@@ -2,15 +2,19 @@ library login_controller;
 
 import 'package:angular/angular.dart';
 
+import '../models/user.dart';
+
 @NgController(
     selector: '[login-ctrl]',
     publishAs: 'ctrl'
 )
 class LoginCtrl {
-  String email = "";
-  String password = "";  
+  User user = new User();
 
   void login() {
-    print('Login: Email($email) Password($password)');
+    user.login().then( (_) {
+      if ( user.isLogin )
+        user.profile();
+    });
   }
 }

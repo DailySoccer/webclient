@@ -16,49 +16,20 @@ class User {
   
   String toString() => "$fullName - $email - $nickName - $password";
   
-  registerEnd(HttpRequest request) {
-    if (request.status != 200) {
-      print('Register: Uh oh, there was an error of ${request.status}');
-    } else {
-      print('Register OK: Data has been posted');
-      isRegistered = true;
-    }
-  }
-  
   Future register() {
     print("Register: $this");
     
-    var dataUrl = "$DomainApp/register";
+    var dataUrl = "$DomainApp/signup";
     var data = {'fullName': fullName, 'email': email, 'nickName': nickName, 'password': password};
-    
-    /*
-    var encodedData = encodeMap(data);
-
-    var httpRequest = new HttpRequest();
-    httpRequest.open('POST', dataUrl);
-    httpRequest.setRequestHeader('Content-type',
-                                 'application/x-www-form-urlencoded');
-    httpRequest.onLoadEnd.listen((e) => registerEnd(httpRequest));
-    httpRequest.send(encodedData);
-    */
     
     return HttpRequest.postFormData(dataUrl, data)
         .then( (HttpRequest request) {
-          registerEnd( request );
+          _registerEnd( request );
         }).catchError((error) {
-            print("Error: " + error.target.responseText); // Current target should be you HttpRequest
+            print("Register Error: " + error.target.responseText);
         });
    }
 
-  loginEnd(HttpRequest request) {
-    if (request.status != 200) {
-      print('Login: Uh oh, there was an error of ${request.status}');
-    } else {
-      print('Login OK: Data has been posted');
-      isLogin = true;
-    }
-  }
-  
   Future login() {
     print("Login: $email - $password");
     
@@ -67,9 +38,41 @@ class User {
     
     return HttpRequest.postFormData(dataUrl, data)
         .then( (HttpRequest request) {
-          loginEnd( request );
+          _loginEnd( request );
         }).catchError((error) {
-            print("Login Error: " + error.target.responseText); // Current target should be you HttpRequest
+            print("Login Error: " + error.target.responseText);
         });
    }
+  
+  Future profile() {
+    print("Profile");
+    
+    var dataUrl = "$DomainApp/user_profile";
+    
+    return HttpRequest.getString(dataUrl)
+        .then( (String result) {
+          print( result );
+        }).catchError((error) {
+            print("Profile Error: " + error.target.responseText);
+        });
+  }
+  
+  _registerEnd(HttpRequest request) {
+    if (request.status != 200) {
+      print('Register: Error: ${request.status}');
+    } else {
+      print('Register OK');
+      isRegistered = true;
+    }
+  }
+  
+  _loginEnd(HttpRequest request) {
+    if (request.status != 200) {
+      print('Login: Error: ${request.status}');
+    } else {
+      print('Login OK');
+      isLogin = true;
+    }
+  }
+  
 }

@@ -5,7 +5,7 @@ import 'package:angular/angular.dart';
 void webClientRouteInitializer(Router router, ViewFactory views) {
   views.configure({
     'home': ngRoute(
-        path: '',
+        defaultRoute: true,
         view: 'view/home.html'
     ),
     'login': ngRoute(

@@ -19,7 +19,7 @@ class User {
   Future register() {
     print("Register: $this");
     
-    var dataUrl = "$DomainApp/signup";
+    var dataUrl = "$HostServer/signup";
     var data = {'fullName': fullName, 'email': email, 'nickName': nickName, 'password': password};
     
     return HttpRequest.postFormData(dataUrl, data)
@@ -33,7 +33,7 @@ class User {
   Future login() {
     print("Login: $email - $password");
     
-    var dataUrl = "$DomainApp/login";
+    var dataUrl = "$HostServer/login";
     var data = {'email': email, 'password': password};
     
     return HttpRequest.postFormData(dataUrl, data)
@@ -47,7 +47,7 @@ class User {
   Future profile() {
     print("Profile");
     
-    var dataUrl = "$DomainApp/user_profile";
+    var dataUrl = "$HostServer/user_profile";
     
     return HttpRequest.getString(dataUrl)
         .then( (String result) {

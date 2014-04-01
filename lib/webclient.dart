@@ -1,5 +1,7 @@
 library webclient;
 
+import 'dart:html';
+
 import 'package:angular/angular.dart';
 import 'package:angular/routing/module.dart';
 import 'package:webclient/routing/webclient_router.dart';
@@ -9,7 +11,7 @@ import 'models/user.dart';
 import 'controllers/login_ctrl.dart';
 import 'controllers/register_ctrl.dart';
 
-const String DomainApp = "http://localhost:3000"; //"http://dailysoccer.herokuapp.com";
+String HostServer = "http://dailysoccer.herokuapp.com";
 
 // REVIEW:...
 User user = new User();
@@ -32,5 +34,16 @@ class WebClientApp extends Module {
 }
 
 startWebClientApp(){
+  
+  if ( !window.location.hostname.contains("dailysoccer") ) {
+    HostServer = "http://localhost:3000";
+  }
+  /*
+  if ( !identical(1, 1.0) ) { // XXX: horrible hack to detect if we're in JS -- Src: Seth Ladd / Google
+    DomainApp = "http://localhost:3000";
+  }
+  */
+  print( "Host: $HostServer" );
+  
   ngBootstrap(module: new WebClientApp());
 }

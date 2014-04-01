@@ -1,4 +1,4 @@
-library User;
+library user;
 
 import 'dart:async';
 import 'dart:html';
@@ -26,7 +26,7 @@ class User {
         .then( (HttpRequest request) {
           _registerEnd( request );
         }).catchError((error) {
-            print("Register Error: " + error.target.responseText);
+          print("Register Error: " + error.target.responseText);
         });
    }
 
@@ -40,7 +40,7 @@ class User {
         .then( (HttpRequest request) {
           _loginEnd( request );
         }).catchError((error) {
-            print("Login Error: " + error.target.responseText);
+          print("Login Error: " + error.target.responseText);
         });
    }
   
@@ -53,7 +53,7 @@ class User {
         .then( (String result) {
           print( result );
         }).catchError((error) {
-            print("Profile Error: " + error.target.responseText);
+          print("Profile Error: " + error.target.responseText);
         });
   }
   

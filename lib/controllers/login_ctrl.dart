@@ -2,6 +2,7 @@ library login_controller;
 
 import 'package:angular/angular.dart';
 
+import '../webclient.dart';
 import '../models/user.dart';
 
 @NgController(
@@ -9,12 +10,18 @@ import '../models/user.dart';
     publishAs: 'ctrl'
 )
 class LoginCtrl {
-  User user = new User();
+  User _user = new User();
+  
+  LoginCtrl(Scope scope) {
+    scope['user'] = _user;
+  }
 
   void login() {
-    user.login().then( (_) {
-      if ( user.isLogin )
-        user.profile();
+    _user.login().then( (_) {
+      if ( _user.isLogin ) {
+        _user.profile();
+      }
+      user = _user;
     });
   }
 }

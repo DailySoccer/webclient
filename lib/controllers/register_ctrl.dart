@@ -2,6 +2,7 @@ library register_controller;
 
 import 'package:angular/angular.dart';
 
+import '../webclient.dart';
 import '../models/user.dart';
 
 @NgController(
@@ -9,11 +10,16 @@ import '../models/user.dart';
     publishAs: 'ctrl'
 )
 class RegisterCtrl {
-  User user = new User();
+  User _user = new User();
+  
+  RegisterCtrl(Scope scope) {
+    scope['user'] = _user;
+  }
   
   void register() {
-    user.register().then( (_) {
+    _user.register().then( (_) {
       print("Register End");
+      user = _user;
     });
   }
 }

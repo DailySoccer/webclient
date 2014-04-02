@@ -2,7 +2,6 @@ library register_controller;
 
 import 'package:angular/angular.dart';
 
-import '../webclient.dart';
 import '../models/user.dart';
 
 @NgController(
@@ -10,16 +9,19 @@ import '../models/user.dart';
     publishAs: 'ctrl'
 )
 class RegisterCtrl {
-  User _user = new User();
+  User user = new User();
   
+  /*
+   * REVIEW: ¿Queremos ser explícitos a lo que un template puede acceder?
   RegisterCtrl(Scope scope) {
-    scope['user'] = _user;
+    scope['user'] = user;
   }
+  */
   
   void register() {
-    _user.register().then( (_) {
+    user.register().then( (_) {
       print("Register End");
-      user = _user;
+      webclient:user = user;
     });
   }
 }

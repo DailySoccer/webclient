@@ -2,7 +2,6 @@ library login_controller;
 
 import 'package:angular/angular.dart';
 
-import '../webclient.dart';
 import '../models/user.dart';
 
 @NgController(
@@ -10,18 +9,21 @@ import '../models/user.dart';
     publishAs: 'ctrl'
 )
 class LoginCtrl {
-  User _user = new User();
+  User user = new User();
   
+  /*
+   * REVIEW: ¿Queremos ser explícitos a lo que un template puede acceder?
   LoginCtrl(Scope scope) {
-    scope['user'] = _user;
+    scope['user'] = user;
   }
+  */
 
   void login() {
-    _user.login().then( (_) {
-      if ( _user.isLogin ) {
-        _user.profile();
+    user.login().then( (_) {
+      if ( user.isLogin ) {
+        user.profile();
       }
-      user = _user;
+      webclient:user = user;
     });
   }
 }

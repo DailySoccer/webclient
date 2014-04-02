@@ -11,7 +11,8 @@ import 'models/user.dart';
 import 'controllers/login_ctrl.dart';
 import 'controllers/register_ctrl.dart';
 
-String HostServer = "http://dailysoccer.herokuapp.com";
+String HostServer = window.location.origin;
+String LocalHostServer = "http://localhost:3000";
 
 // REVIEW:...
 User user = new User();
@@ -22,6 +23,11 @@ String encodeMap(Map data) {
     return '${Uri.encodeComponent(k)}=${Uri.encodeComponent(data[k])}';
   }).join('&');
 }
+
+bool isLocalHost() {
+  return ( window.location.hostname.contains("127.") || window.location.hostname.contains("localhost") );
+}
+
 
 class WebClientApp extends Module {
   WebClientApp() {
@@ -35,8 +41,8 @@ class WebClientApp extends Module {
 
 startWebClientApp(){
   
-  if ( !window.location.hostname.contains("dailysoccer") ) {
-    HostServer = "http://localhost:3000";
+  if ( isLocalHost() ) {
+    HostServer = LocalHostServer;
   }
   /*
   if ( !identical(1, 1.0) ) { // XXX: horrible hack to detect if we're in JS -- Src: Seth Ladd / Google

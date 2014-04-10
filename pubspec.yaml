@@ -4,6 +4,8 @@ dependencies:
   angular: any
   bootjack: any
   browser: any
+  dartmocks: any
   http: any
   js: any
   json_object: any
+  unittest: any

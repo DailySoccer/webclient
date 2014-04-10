@@ -23,7 +23,7 @@ class MatchManager {
     var collection = new JsonObject.fromJsonString( json );
     for (var x in collection) {
       var match = new MatchDay.initFromJSONObject(x);
-      _matchDays[match.id]= match;
+      _matchDays[match.id] = match;
     }
   }
   

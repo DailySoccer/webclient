@@ -1,12 +1,12 @@
 library webclient_test;
 
 import 'package:unittest/unittest.dart';
+import "package:json_object/json_object.dart";
+
+import '../lib/models/match_day.dart';
+
+part 'unit/match_day_test.dart';
 
 main() {
-  test("works for two positive numbers", () {
-    expect(1 + 2, equals(3));
-  });
-  test("works for two negative numbers", () {
-    expect(-1 + -2, equals(-3));
-  });
+  testMatchDay();
 }

@@ -1,6 +1,7 @@
 library user_manager;
 
 import 'dart:async';
+import 'package:angular/angular.dart';
 
 import '../models/user.dart';
 

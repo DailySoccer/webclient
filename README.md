@@ -13,7 +13,7 @@ Install Karma
 
 - Verify: dart --version && dart2js --version
 
-  if error -> include path in ~/.profile: PATH:$PATH:<path-to-dart>/dart-sdk/bin
+  if error -> include path in ~/.profile: PATH=$PATH:"path-to-dart"/dart-sdk/bin
 
 Run Karma
 =========

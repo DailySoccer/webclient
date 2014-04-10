@@ -1,8 +1,9 @@
 name: webclient
 description: A sample web application
 dependencies:
-  angular: 0.9.8
+  angular: any
   bootjack: any
   browser: any
   http: any
   js: any
+  json_object: any

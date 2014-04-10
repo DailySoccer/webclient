@@ -63,6 +63,7 @@ class User {
     } else {
       print('Register OK');
       isRegistered = true;
+      isLogin = true;
     }
   }
   

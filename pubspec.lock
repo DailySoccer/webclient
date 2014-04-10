@@ -49,6 +49,10 @@ packages:
     description: js
     source: hosted
     version: "0.2.2"
+  json_object:
+    description: json_object
+    source: hosted
+    version: "1.0.18+2"
   logging:
     description: logging
     source: hosted

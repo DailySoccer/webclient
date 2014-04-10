@@ -1,15 +1,10 @@
 library group_manager;
 
 import "package:json_object/json_object.dart";
-import 'package:angular/angular.dart';
 
 import "../services/match_manager.dart";
 import "../models/match_group.dart";
 
-/*
-@NgInjectableService(
-)
-*/
 class GroupManager {
   var _groups;
   

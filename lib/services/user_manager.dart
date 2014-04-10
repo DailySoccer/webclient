@@ -1,14 +1,9 @@
 library user_manager;
 
 import 'dart:async';
-import 'package:angular/angular.dart';
 
 import '../models/user.dart';
 
-/*
-@NgInjectableService(
-)
-*/
 class UserManager {
   User currentUser = new User();
   

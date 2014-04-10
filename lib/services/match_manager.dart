@@ -1,23 +1,23 @@
 library match_manager;
 
 import "package:json_object/json_object.dart";
-import 'package:angular/angular.dart';
 
 import "../models/match_day.dart";
 
-/*
-@NgInjectableService(
-)
-*/
 class MatchManager {
   var _matchDays;
   
   MatchManager() {
     print("new MatchManager");
-    initFromJson( json );
+    _initFromJson( json );
+  }
+
+  MatchManager.initFromJson(String json) {
+    print("new MatchManager");
+    _initFromJson( json );
   }
   
-  initFromJson( String json ) {
+  _initFromJson( String json ) {
     _matchDays = new Map<String, MatchDay>();
     
     var collection = new JsonObject.fromJsonString( json );
@@ -38,25 +38,25 @@ class MatchManager {
     "id":"1-BRACRO",
     "teamIdA":"BRA",
     "teamIdB":"CRO",
-    "date":"12/06/2014-21:00"
+    "date":"2014/06/12-21:00"
   },
   {
     "id":"2-MEXCMR",
     "teamIdA":"MEX",
     "teamIdB":"CMR",
-    "date":"13/06/2014-17:00"
+    "date":"2014/06/13-17:00"
   },
   {
     "id":"3-ESPNED",
     "teamIdA":"ESP",
     "teamIdB":"NED",
-    "date":"13/06/2014-20:00"
+    "date":"2014/06/13-20:00"
   },
   {
     "id":"4-CHIAUS",
     "teamIdA":"CHI",
     "teamIdB":"AUS",
-    "date":"13/06/2014-23:00"
+    "date":"2014/06/13-23:00"
   }
 ]
   """;

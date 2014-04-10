@@ -1,15 +1,10 @@
 library contest_manager;
 
 import "package:json_object/json_object.dart";
-import 'package:angular/angular.dart';
 
 import "../services/group_manager.dart";
 import "../models/contest.dart";
 
-/*
-@NgInjectableService(
-)
-*/
 class ContestManager {
   var _contests;
   

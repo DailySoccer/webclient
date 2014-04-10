@@ -1,0 +1,41 @@
+library user_controller;
+
+import 'package:angular/angular.dart';
+
+import '../services/user_manager.dart';
+import '../services/match_manager.dart';
+import '../services/group_manager.dart';
+import '../services/contest_manager.dart';
+
+@NgController(
+    selector: '[user-ctrl]',
+    publishAs: 'user'
+)
+class UserCtrl {
+  bool isLogin = false;
+  String fullName = "User";
+  String nickName = "User";
+  
+  UserManager _userManager;
+  MatchManager _matchManager;
+  GroupManager _groupManager;
+  ContestManager _contestManager;
+  
+  UserCtrl(Scope scope, this._userManager, this._matchManager, this._contestManager) {
+    print("create UserCtrl");
+    
+    isLogin  = _userManager.isLogin;
+    
+    scope.$watch(() => _userManager.isLogin, onLoginChange);
+  }
+  
+  void onLoginChange(value, previousValue) {
+    isLogin = _userManager.isLogin;
+    
+    print("isLogin: $isLogin");
+  }
+  
+  void logOut() {
+    _userManager.logout();
+  }
+}

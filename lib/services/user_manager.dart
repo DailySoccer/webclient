@@ -8,12 +8,13 @@ import '../models/user.dart';
 class UserManager {
   User currentUser = new User();
   
+  bool get isRegistered => currentUser.isRegistered;
   bool get isLogin => currentUser.isLogin;
 
   Router _router;
-  Http _http;
+  /*Http _http;*/
   
-  UserManager( this._http ) {
+  UserManager( /*this._http*/ ) {
     print("new UserManager");
   }
 
@@ -22,13 +23,13 @@ class UserManager {
     
     var completer = new Completer();
     
-    currentUser.isRegistered  = true;
-    currentUser.isLogin       = true;
-    
-    currentUser.fullName  = user.fullName;
-    currentUser.email     = user.email;
-    currentUser.nickName  = user.nickName;
-    currentUser.password  = user.password;
+    currentUser
+      ..isRegistered  = user.isRegistered = true
+      ..isLogin       = user.isLogin = true
+      ..fullName  = user.fullName
+      ..email     = user.email
+      ..nickName  = user.nickName
+      ..password  = user.password;
     
     completer.complete();
     return completer.future;
@@ -39,10 +40,10 @@ class UserManager {
     
     var completer = new Completer();
     
-    currentUser.isLogin = true;
-    
-    currentUser.email     = user.email;
-    currentUser.password  = user.password;
+    currentUser
+      ..isLogin   = user.isLogin = true
+      ..email     = user.email
+      ..password  = user.password;
     
     completer.complete();
     return completer.future;

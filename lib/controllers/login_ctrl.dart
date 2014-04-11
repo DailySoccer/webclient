@@ -12,14 +12,17 @@ import '../models/user.dart';
 class LoginCtrl {
   User user = new User();
   
+  Scope _scope;
   Router _router;
   UserManager _userManager;
   
-  LoginCtrl(Scope scope, this._router, this._userManager ) {
+  LoginCtrl(Scope this._scope, this._router, this._userManager ) {
     print("create LoginCtrl");
   }
 
   void login() {
+    // _scope.$digest();
+    
     _userManager.login( user )
       .then( (_) => _router.go('lobby', {}) );
   }

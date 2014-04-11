@@ -14,6 +14,9 @@ class User {
   bool isRegistered = false;
   bool isLogin = false;
   
+  String get registerInfo =>"$fullName - $email - $nickName - $password";
+  String get loginInfo => "$email - $password";
+  
   String toString() => "$fullName - $email - $nickName - $password";
   
   Future register() {

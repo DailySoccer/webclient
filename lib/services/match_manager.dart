@@ -8,12 +8,12 @@ class MatchManager {
   var _matchDays;
   
   MatchManager() {
-    print("new MatchManager");
+    // print("new MatchManager");
     _initFromJson( json );
   }
 
   MatchManager.initFromJson(String json) {
-    print("new MatchManager");
+    // print("new MatchManager");
     _initFromJson( json );
   }
   

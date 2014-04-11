@@ -11,7 +11,7 @@ class GroupManager {
   MatchManager _matchManager;
   
   GroupManager( this._matchManager ) {
-    print("new GroupManager");
+    // print("new GroupManager");
     initFromJson( json );
   }
   

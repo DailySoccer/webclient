@@ -1,7 +1,7 @@
 library user;
 
 import 'dart:async';
-import 'dart:html';
+// import 'dart:html';
 
 import '../webclient.dart';
 
@@ -19,6 +19,7 @@ class User {
   
   String toString() => "$fullName - $email - $nickName - $password";
   
+  /*
   Future register() {
     print("Register: $this");
     
@@ -78,5 +79,5 @@ class User {
       isLogin = true;
     }
   }
-  
+  */
 }

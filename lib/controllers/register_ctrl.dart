@@ -21,6 +21,7 @@ class RegisterCtrl {
   
   void register() {
     _userManager.register( user )
-      .then( (_) => _router.go('lobby', {}) );      
+      .then( (_) => _router.go('login', {}) )
+      .catchError( (error) => print("register inválido: $error") );
   }
 }

@@ -24,6 +24,7 @@ class LoginCtrl {
     // _scope.$digest();
     
     _userManager.login( user )
-      .then( (_) => _router.go('lobby', {}) );
+      .then( (_) => _router.go('lobby', {}) )
+      .catchError( (error) => print("login inválido: $error") );
   }
 }

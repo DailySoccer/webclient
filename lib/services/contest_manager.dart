@@ -11,7 +11,7 @@ class ContestManager {
   GroupManager _groupManager;
   
   ContestManager( this._groupManager ) {
-    print("new ContestManager");
+    // print("new ContestManager");
     initFromJson( json );
   }
     

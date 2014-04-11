@@ -16,10 +16,10 @@ testMatchDay(){
         """;
         final el = new JsonObject.fromJsonString( json );
         final item = new MatchDay.initFromJSONObject(el[0]);
-        expect(item.id == "1-BRACRO", isTrue, reason: "id inválido");
-        expect(item.teamIdA == "BRA", isTrue, reason: "teamIdA inválido");
-        expect(item.teamIdB == "CRO", isTrue, reason: "teamIdB inválido");
-        expect(item.date == "2014/06/12-21:00", isTrue, reason: "date inválido");
+        expect(item.id, "1-BRACRO");
+        expect(item.teamIdA, "BRA");
+        expect(item.teamIdB, "CRO");
+        expect(item.date, "2014/06/12-21:00");
       });
     });
   });

@@ -18,10 +18,10 @@ testMatchManager(){
       });
       
       test("true si proporciona correctamente las fechas de comienzo de un match", (){
-        expect(matchManager.startDate("1-BRACRO") == "2014/06/12-21:00", isTrue, reason: "startDate(1-BRACRO) inválido");
-        expect(matchManager.startDate("2-MEXCMR") == "2014/06/13-17:00", isTrue, reason: "startDate(2-MEXCMR) inválido");
-        expect(matchManager.startDate("3-ESPNED") == "2014/06/13-20:00", isTrue, reason: "startDate(3-ESPNED) inválido");
-        expect(matchManager.startDate("4-CHIAUS") == "2014/06/13-23:00", isTrue, reason: "startDate(4-CHIAUS) inválido");
+        expect(matchManager.startDate("1-BRACRO"), "2014/06/12-21:00");
+        expect(matchManager.startDate("2-MEXCMR"), "2014/06/13-17:00");
+        expect(matchManager.startDate("3-ESPNED"), "2014/06/13-20:00");
+        expect(matchManager.startDate("4-CHIAUS"), "2014/06/13-23:00");
       });
     });
   });

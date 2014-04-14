@@ -26,13 +26,10 @@ class UserCtrl {
     
     isLogin  = _userManager.isLogin;
     
-    scope.$watch(() => _userManager.isLogin, onLoginChange);
-  }
-  
-  void onLoginChange(value, previousValue) {
-    isLogin = _userManager.isLogin;
-    
-    print("isLogin: $isLogin");
+    scope.watch( "isLogin", (value, _) {
+      isLogin = value;
+      print("isLogin: $isLogin");
+    }, context: _userManager );
   }
   
   void logOut() {

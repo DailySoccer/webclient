@@ -2,7 +2,7 @@ library webclient_routing;
 
 import 'package:angular/angular.dart';
 
-void webClientRouteInitializer(Router router, ViewFactory views) {
+void webClientRouteInitializer(Router router, RouteViewFactory views) {
   views.configure({
     'home': ngRoute(
         defaultRoute: true,

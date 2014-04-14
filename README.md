@@ -9,7 +9,7 @@ Install Karma
 
 - Verify: karma --version
 
-  if error -> iInclude path in ~/.profile: PATH=$PATH:/usr/local/lib/node_modules/karma/bin
+  if error -> include path in ~/.profile: PATH=$PATH:/usr/local/lib/node_modules/karma/bin
 
 - Verify: dart --version && dart2js --version
 

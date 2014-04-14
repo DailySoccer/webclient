@@ -19,9 +19,9 @@ testUserManager() {
       test("true si registra correctamente un usuario", (){
         Future result = userManager.register( user );
         return result.then( (_) {
-          expect( user.isRegistered, isTrue, reason: "No registrado" );
           expect( userManager.currentUser.isRegistered, isTrue, reason: "No registrado" );
           expect( userManager.currentUser.registerInfo, equals(user.registerInfo), reason: "currentUser no actualizado" );
+          expect( userManager.getUser(user.email).isRegistered, isTrue, reason: "No registrado" );
           expect( userManager.existsUser(user.email), isTrue, reason: "user no existe");
         });
       });
@@ -30,9 +30,9 @@ testUserManager() {
         Future result = userManager.register( user )
           .then( (_) => userManager.login( user ) );
         return result.then( (_) {
-          expect( user.isLogin, isTrue, reason: "No login" );
           expect( userManager.currentUser.isLogin, isTrue, reason: "No login" );
           expect( userManager.currentUser.loginInfo, equals(user.loginInfo), reason: "currentUser distinto" );
+          expect( userManager.getUser(user.email).isLogin, isTrue, reason: "No login" );
           expect( userManager.existsUser(user.email), isTrue, reason: "user no existe");
         });
       });
@@ -43,6 +43,7 @@ testUserManager() {
           .then( (_) => userManager.logout() );
         return result.then( (_) {
           expect( userManager.currentUser.isLogin, isFalse, reason: "No logout" );
+          expect( userManager.getUser(user.email).isLogin, isFalse, reason: "No login" );
           expect( userManager.existsUser(user.email), isTrue, reason: "user no existe");
         });
       });

@@ -13,8 +13,8 @@ import '../services/contest_manager.dart';
 )
 class UserCtrl {
   bool isLogin = false;
-  String fullName = "User";
-  String nickName = "User";
+  String fullName = "";
+  String nickName = "";
   
   UserManager _userManager;
   MatchManager _matchManager;
@@ -28,6 +28,11 @@ class UserCtrl {
     
     scope.watch( "isLogin", (value, _) {
       isLogin = value;
+      
+      if ( isLogin ) {
+        fullName = _userManager.currentUser.fullName;
+        nickName = _userManager.currentUser.nickName;
+      }
       print("isLogin: $isLogin");
     }, context: _userManager );
   }

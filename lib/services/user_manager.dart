@@ -33,16 +33,16 @@ class UserManager {
     
     if ( !existsUser(user.email) ) {
       currentUser
-        ..isRegistered  = user.isRegistered = true
-        ..isLogin       = user.isLogin = false
         ..fullName  = user.fullName
         ..email     = user.email
         ..nickName  = user.nickName
-        ..password  = user.password;
+        ..password  = user.password
+        ..isRegistered  = true
+        ..isLogin       = false;
       
       _insertUser( currentUser );
       
-      completer.complete();
+      completer.complete( currentUser );
     }
     else {
       completer.completeError( ERR_YA_REGISTRADO );
@@ -57,17 +57,18 @@ class UserManager {
     var completer = new Completer();
     
     if ( existsUser(user.email) ) {
-      User userRegistered = get(user.email);
+      User userRegistered = getUser(user.email);
       if ( _canLogin(userRegistered, user) ) {
         currentUser
-          ..isRegistered  = user.isRegistered = true
-          ..isLogin       = user.isLogin = true
-          ..fullName  = user.fullName
-          ..email     = user.email
-          ..nickName  = user.nickName
-          ..password  = user.password;
+          ..fullName  = userRegistered.fullName
+          ..email     = userRegistered.email
+          ..nickName  = userRegistered.nickName
+          ..password  = userRegistered.password
+          ..isRegistered  = userRegistered.isRegistered = true
+          ..isLogin       = userRegistered.isLogin = true;
           
-          completer.complete();
+        print("login: $currentUser");
+        completer.complete( currentUser );
       }
       else {
         completer.completeError( ERR_NO_REGISTRADO );
@@ -86,7 +87,7 @@ class UserManager {
     if ( currentUser.isLogin ) {
       currentUser.isLogin = false;
       
-      completer.complete();
+      completer.complete( currentUser );
     }
     else {
       completer.completeError( ERR_NO_LOGIN );
@@ -99,7 +100,7 @@ class UserManager {
     return _usersRegistered.containsKey(email);
   }
   
-  User get( String email ) {
+  User getUser( String email ) {
     return _usersRegistered[ email ];
   }
   

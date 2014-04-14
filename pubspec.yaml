@@ -1,11 +1,13 @@
 name: webclient
-description: A sample web application
+description: DailySoccer application
 dependencies:
-  angular: any
-  bootjack: any
-  browser: any
-  dartmocks: any
-  http: any
-  js: any
-  json_object: any
-  unittest: any
+  angular: 0.9.10
+  bootjack: 0.6.5
+  browser: 0.9.1
+  dartmocks: 0.5.1
+  di: 0.0.34
+  http: 0.10.0
+  js: 0.2.2
+  json_object: 1.0.18+2
+  mock: 0.10.0+1
+  unittest: 0.10.1+2

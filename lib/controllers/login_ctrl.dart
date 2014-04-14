@@ -21,7 +21,7 @@ class LoginCtrl {
   }
 
   void login() {
-    // _scope.$digest();
+    // _scope.rootScope.apply();
     
     _userManager.login( user )
       .then( (_) => _router.go('lobby', {}) )

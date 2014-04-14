@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="packages/bootjack/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
   </head>
-  <body user-ctrl>
+  <body>
    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -20,7 +20,7 @@
           </button>
           <a class="navbar-brand" href="#">Daily Soccer</a>
         </div>
-        <div class="ng-cloak" ng-switch="user.isLogin">
+        <div user-ctrl class="ng-cloak" ng-switch="user.isLogin">
           <div class="collapse navbar-collapse" ng-switch-when="false">
             <ul class="nav navbar-nav">
               <li class="active"><a href="#">Home</a></li>
@@ -66,6 +66,6 @@
     <script src="packages/browser/dart.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script> 
-    <script src="autofill-event.js"></script>
+    <!-- <script src="autofill-event.js"></script> -->
   </body>
 </html>

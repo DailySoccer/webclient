@@ -15,7 +15,7 @@ testMatchDay(){
         ]        
         """;
         final el = new JsonObject.fromJsonString( json );
-        final item = new MatchDay.initFromJSONObject(el[0]);
+        final item = new MatchEvent.initFromJSONObject(el[0]);
         expect(item.id, "1-BRACRO");
         expect(item.teamIdA, "BRA");
         expect(item.teamIdB, "CRO");

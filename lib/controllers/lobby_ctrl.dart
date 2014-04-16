@@ -1,4 +1,4 @@
-library list_contest_controller;
+library lobby_ctrl;
 
 import 'package:angular/angular.dart';
 
@@ -11,17 +11,15 @@ import '../models/contest.dart';
 )
 class LobbyCtrl {
   List<Contest> contests;
-  
+
   Router _router;
   ContestManager _contestManager;
-  
-  LobbyCtrl(Scope scope, this._router, this._contestManager ) {
-    print("create LoginCtrl");
-    
+
+  LobbyCtrl(Scope scope, this._router, this._contestManager) {
     contests = this._contestManager.all();
   }
-  
-  Enter( Contest contest ) {
+
+  Enter(Contest contest) {
     print("Lobby: Enter to Contest: ${contest.name}");
     _router.go('team.create', { "contestId": contest.id });
   }

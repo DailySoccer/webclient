@@ -12,11 +12,11 @@ import 'services/group_manager.dart';
 import 'services/contest_manager.dart';
 import 'services/contest_entry_manager.dart';
 
-import 'controllers/user_ctrl.dart';
+import 'controllers/menu_ctrl.dart';
 import 'controllers/login_ctrl.dart';
-import 'controllers/register_ctrl.dart';
+import 'controllers/signup_ctrl.dart';
 import 'controllers/lobby_ctrl.dart';
-import 'controllers/team_ctrl.dart';
+import 'controllers/contest_entry_ctrl.dart';
 
 String HostServer = window.location.origin;
 String LocalHostServer = "http://localhost:9000";
@@ -39,21 +39,21 @@ class WebClientApp extends Module {
     type(GroupManager);
     type(ContestManager);
     type(ContestEntryManager);
-    
-    type(UserCtrl);
+
+    type(MenuCtrl);
     type(LoginCtrl);
-    type(RegisterCtrl);
+    type(SignupCtrl);
     type(LobbyCtrl);
-    type(TeamCtrl);
-    
+    type(ContestEntryCtrl);
+
     value(RouteInitializerFn, webClientRouteInitializer);
     factory(NgRoutingUsePushState, (_) => new NgRoutingUsePushState.value(false));
   }
 }
 
-startWebClientApp(){
-  
-  if ( isLocalHost() ) {
+startWebClientApp() {
+
+  if (isLocalHost()) {
     HostServer = LocalHostServer;
   }
   /*
@@ -61,7 +61,7 @@ startWebClientApp(){
     DomainApp = "http://localhost:3000";
   }
   */
-  print( "Host: $HostServer" );
-  
+  print("Host: $HostServer");
+
   ngBootstrap(module: new WebClientApp());
 }

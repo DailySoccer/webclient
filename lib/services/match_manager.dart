@@ -2,7 +2,7 @@ library match_manager;
 
 import "package:json_object/json_object.dart";
 
-import "../models/match_day.dart";
+import "../models/match_event.dart";
 
 class MatchManager {
   var _matchDays;
@@ -18,17 +18,17 @@ class MatchManager {
   }
   
   _initFromJson( String json ) {
-    _matchDays = new Map<String, MatchDay>();
+    _matchDays = new Map<String, MatchEvent>();
     
     var collection = new JsonObject.fromJsonString( json );
     for (var x in collection) {
-      var match = new MatchDay.initFromJSONObject(x);
+      var match = new MatchEvent.initFromJSONObject(x);
       _matchDays[match.id] = match;
     }
   }
   
   String startDate( String matchDayId ) {
-    MatchDay matchDay = _matchDays[ matchDayId ];
+    MatchEvent matchDay = _matchDays[ matchDayId ];
     return matchDay.date;
   }
   

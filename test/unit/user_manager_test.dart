@@ -7,7 +7,18 @@ testUserManager() {
       var user;
       
       setUp( () {
-        userManager = new UserManager();
+        /*
+        setUpInjector();
+        
+        module((module) {
+              module
+                ..type( AbstractHttp, implementedBy: MockDailySoccerServer );
+            });
+            
+        inject((UserManager u) { userManager = u; });
+        */
+        
+        userManager = new UserManager( new MockDailySoccerServer() );
         
         user = new User()
           ..fullName  = "Nombre Apellido1 Apellido2"
@@ -21,8 +32,8 @@ testUserManager() {
         return result.then( (_) {
           expect( userManager.currentUser.isRegistered, isTrue, reason: "No registrado" );
           expect( userManager.currentUser.registerInfo, equals(user.registerInfo), reason: "currentUser no actualizado" );
-          expect( userManager.getUser(user.email).isRegistered, isTrue, reason: "No registrado" );
-          expect( userManager.existsUser(user.email), isTrue, reason: "user no existe");
+          expect( userManager.get(user.email).isRegistered, isTrue, reason: "No registrado" );
+          expect( userManager.exists(user.email), isTrue, reason: "user no existe");
         });
       });
       
@@ -32,8 +43,9 @@ testUserManager() {
         return result.then( (_) {
           expect( userManager.currentUser.isLogin, isTrue, reason: "No login" );
           expect( userManager.currentUser.loginInfo, equals(user.loginInfo), reason: "currentUser distinto" );
-          expect( userManager.getUser(user.email).isLogin, isTrue, reason: "No login" );
-          expect( userManager.existsUser(user.email), isTrue, reason: "user no existe");
+          expect( userManager.currentUser.registerInfo, equals(user.registerInfo), reason: "currentUser no actualizado" );
+          expect( userManager.get(user.email).isLogin, isTrue, reason: "No login" );
+          expect( userManager.exists(user.email), isTrue, reason: "user no existe");
         });
       });
 
@@ -43,8 +55,8 @@ testUserManager() {
           .then( (_) => userManager.logout() );
         return result.then( (_) {
           expect( userManager.currentUser.isLogin, isFalse, reason: "No logout" );
-          expect( userManager.getUser(user.email).isLogin, isFalse, reason: "No login" );
-          expect( userManager.existsUser(user.email), isTrue, reason: "user no existe");
+          expect( userManager.get(user.email).isLogin, isFalse, reason: "No login" );
+          expect( userManager.exists(user.email), isTrue, reason: "user no existe");
         });
       });
 
@@ -58,7 +70,7 @@ testUserManager() {
           expect( error, userManager.ERR_YA_REGISTRADO );
         });
       });
-
+      
       test("true si no se puede hacer login sin estar registrado", (){
         Future result = userManager.login( user );
         return result.then( (_) {

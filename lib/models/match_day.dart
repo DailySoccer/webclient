@@ -2,13 +2,15 @@ library match_day;
 
 import "package:json_object/json_object.dart";
 
+import "soccer_team.dart";
+
 class MatchDay {
   String id;
-  String teamIdA;
-  String teamIdB;
+  SoccerTeam   teamA;
+  SoccerTeam   teamB;
   String date;
   
-  MatchDay( this.id, this.teamIdA, this.teamIdB, this.date );
+  MatchDay( this.id, this.teamA, this.teamB, this.date );
   
   MatchDay.initFromJSONObject( JsonObject json ) {
     _initFromJSONObject( json );
@@ -16,9 +18,10 @@ class MatchDay {
   
   _initFromJSONObject( JsonObject json ) {
       id        = json.id;
-      teamIdA   = json.teamIdA;
-      teamIdB   = json.teamIdB;
       date      = json.date;
+
+      teamA     = new SoccerTeam.initFromJSONObject( json.teamA );
+      teamB     = new SoccerTeam.initFromJSONObject( json.teamB );
       
       print( "new MatchDay: $json" );
   }

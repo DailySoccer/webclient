@@ -1,11 +1,15 @@
 library webclient;
 
 import 'dart:html';
+import 'dart:async';
 
 import 'package:angular/angular.dart';
 import 'package:angular/routing/module.dart';
 import 'package:webclient/routing/webclient_router.dart';
 
+import 'mock/mock_server.dart';
+
+import 'services/server_request.dart';
 import 'services/user_manager.dart';
 import 'services/match_manager.dart';
 import 'services/group_manager.dart';
@@ -34,6 +38,10 @@ bool isLocalHost() {
 
 class WebClientApp extends Module {
   WebClientApp() {
+    // REVIEW: switch entre real y simulación
+    // real: DailySoccerServer / simulation: MockDailySoccerServer
+    type(ServerRequest, implementedBy: MockDailySoccerServer);
+    
     type(UserManager);
     type(MatchManager);
     type(GroupManager);
@@ -49,6 +57,10 @@ class WebClientApp extends Module {
     value(RouteInitializerFn, webClientRouteInitializer);
     factory(NgRoutingUsePushState, (_) => new NgRoutingUsePushState.value(false));
   }
+}
+
+Future testFuture() {
+  return new Future.error("error");
 }
 
 startWebClientApp(){

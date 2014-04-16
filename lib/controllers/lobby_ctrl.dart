@@ -18,7 +18,10 @@ class LobbyCtrl {
   LobbyCtrl(Scope scope, this._router, this._contestManager ) {
     print("create LoginCtrl");
     
-    contests = this._contestManager.all();
+    this._contestManager.all
+      .then( (values) {
+        contests = values;
+      });
   }
   
   Enter( Contest contest ) {

@@ -1,10 +1,5 @@
 library user;
 
-import 'dart:async';
-// import 'dart:html';
-
-import '../webclient.dart';
-
 class User {
   String fullName;
   String email;
@@ -18,6 +13,10 @@ class User {
   String get loginInfo => "$email - $password";
   
   String toString() => "$fullName - $email - $nickName - $password";
+  
+  reset() {
+    fullName = email = nickName = password = "";
+  }
   
   /*
   Future register() {

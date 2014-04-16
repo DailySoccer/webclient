@@ -1,5 +1,7 @@
 library soccer;
 
+import "package:json_object/json_object.dart";
+
 class Soccer {
   String id;
   String name;
@@ -7,4 +9,15 @@ class Soccer {
   String position;
   int    points;
   num    salary;
+  
+  Soccer.initFromJSONObject( JsonObject json ) {
+    _initFromJSONObject( json );
+  }
+  
+  _initFromJSONObject( JsonObject json ) {
+      id    = json.id;
+      name  = json.name;
+      
+      print( "new Soccer: $json" );
+  }  
 }

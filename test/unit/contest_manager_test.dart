@@ -12,7 +12,7 @@ testContestManager(){
         contestManager = new ContestManager( mockServer, groupManager );
       });
       
-      test("true si proporciona correctamente las fechas de comienzo de un match group", (){
+      test("true si proporciona correctamente las fechas de comienzo de un contest", (){
         Future result = contestManager.all;
         return result.then( (_) {
             expect(contestManager.startDate("1-001"), "2014/06/12-21:00");

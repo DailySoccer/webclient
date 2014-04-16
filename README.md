@@ -20,4 +20,14 @@ Run Karma
 
   karma start karma.conf.js
 
+WebClient
+=========
+
+Configure Server:
+
+Puede solicitar datos de un servidor "real" o "simulado".
+
+type( ServerRequest, implementedBy: DailySoccerServer )
+or
+type( ServerRequest, implementedBy: MockDailySoccerServer )
 

@@ -1,7 +1,7 @@
 library login_ctrl;
 
 import 'package:angular/angular.dart';
-import '../services/user_manager.dart';
+import '../services/profile_service.dart';
 
 
 @NgController(
@@ -10,16 +10,18 @@ import '../services/user_manager.dart';
 )
 class LoginCtrl {
 
-  Scope _scope;
-  Router _router;
-  UserManager _userManager;
-
-  LoginCtrl(Scope this._scope, this._router, this._userManager) {
+  LoginCtrl(Scope this._scope, this._router, this._profileManager) {
   }
+
 
   void login(String email, String password) {
-    _userManager.login(email, password)
-      .then( (_) => _router.go('lobby', {}) )
-      .catchError( (error) => print("login inválido: $error") );
+    _profileManager.login(email, password)
+        .then((_) => _router.go('lobby', {}))
+        .catchError((error) => print("login inválido: $error"));
   }
+
+
+  Scope _scope;
+  Router _router;
+  ProfileService _profileManager;
 }

@@ -6,7 +6,6 @@ void webClientRouteInitializer(Router router, RouteViewFactory views) {
   views.configure({
     'home': ngRoute(
         defaultRoute: true,
-        path: '/',
         view: 'view/home.tpl.html'
     ),
     'login': ngRoute(

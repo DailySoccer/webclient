@@ -1,7 +1,7 @@
 library user_ctrl;
 
 import 'package:angular/angular.dart';
-import '../services/user_manager.dart';
+import '../services/profile_service.dart';
 
 @NgController(
     selector: '[menu-ctrl]',
@@ -12,22 +12,23 @@ class MenuCtrl {
   String fullName = "";
   String nickName = "";
 
-  UserManager _userManager;
-
-  MenuCtrl(Scope scope, this._userManager) {
-    isLoggedIn  = _userManager.isLoggedIn;
+  MenuCtrl(Scope scope, this._profileService) {
+    isLoggedIn  = _profileService.isLoggedIn;
 
     scope.watch("isLoggedIn", (value, _) {
       isLoggedIn = value;
 
       if (isLoggedIn) {
-        fullName = _userManager.user.fullName;
-        nickName = _userManager.user.nickName;
+        fullName = _profileService.user.fullName;
+        nickName = _profileService.user.nickName;
       }
 
-    }, context: _userManager);
+    }, context: _profileService);
   }
 
   void logOut() {
   }
+
+
+  ProfileService _profileService;
 }

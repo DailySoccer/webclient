@@ -14,7 +14,7 @@ testMatchManager(){
           { "id":"4-CHIAUS", "teamIdA":"CHI", "teamIdB":"AUS", "date":"2014/06/13-23:00" }
         ]
           """;
-        matchManager = new MatchManager.initFromJson(json);
+        matchManager = new MatchService.initFromJson(json);
       });
       
       test("true si proporciona correctamente las fechas de comienzo de un match", (){

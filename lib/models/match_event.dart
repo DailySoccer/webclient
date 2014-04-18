@@ -8,18 +8,18 @@ class MatchEvent {
   String teamIdB;
   String date;
 
-  MatchEvent( this.id, this.teamIdA, this.teamIdB, this.date );
+  MatchEvent(this.id, this.teamIdA, this.teamIdB, this.date);
 
-  MatchEvent.initFromJSONObject( JsonObject json ) {
-    _initFromJSONObject( json );
+  MatchEvent.initFromJSONObject(JsonObject json) {
+    _initFromJSONObject(json);
   }
 
-  _initFromJSONObject( JsonObject json ) {
+  _initFromJSONObject(JsonObject json) {
       id        = json.id;
       teamIdA   = json.teamIdA;
       teamIdB   = json.teamIdB;
       date      = json.date;
 
-      print( "new MatchEvent: $json" );
+      print("new MatchEvent: $json");
   }
 }

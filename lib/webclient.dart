@@ -6,20 +6,20 @@ import 'package:angular/angular.dart';
 import 'package:angular/routing/module.dart';
 import 'package:webclient/routing/webclient_router.dart';
 
-import 'services/user_manager.dart';
-import 'services/match_manager.dart';
-import 'services/group_manager.dart';
-import 'services/contest_manager.dart';
-import 'services/contest_entry_manager.dart';
+import 'services/profile_service.dart';
+import 'services/match_service.dart';
+import 'services/match_group_service.dart';
+import 'services/contest_service.dart';
+import 'services/contest_entry_service.dart';
 
 import 'controllers/menu_ctrl.dart';
 import 'controllers/login_ctrl.dart';
 import 'controllers/signup_ctrl.dart';
 import 'controllers/lobby_ctrl.dart';
-import 'controllers/contest_entry_ctrl.dart';
+import 'controllers/enter_contest_ctrl.dart';
 
 String HostServer = window.location.origin;
-String LocalHostServer = "http://localhost:9000";
+
 
 String encodeMap(Map data) {
   return data.keys.map((k) {
@@ -28,23 +28,23 @@ String encodeMap(Map data) {
 }
 
 bool isLocalHost() {
-  return ( window.location.hostname.contains("127.") || window.location.hostname.contains("localhost") );
+  return (window.location.hostname.contains("127.") || window.location.hostname.contains("localhost"));
 }
 
 
 class WebClientApp extends Module {
   WebClientApp() {
-    type(UserManager);
-    type(MatchManager);
-    type(GroupManager);
-    type(ContestManager);
-    type(ContestEntryManager);
+    type(ProfileService);
+    type(MatchService);
+    type(MatchGroupService);
+    type(ContestService);
+    type(ContestEntryService);
 
     type(MenuCtrl);
     type(LoginCtrl);
     type(SignupCtrl);
     type(LobbyCtrl);
-    type(ContestEntryCtrl);
+    type(EnterContestCtrl);
 
     value(RouteInitializerFn, webClientRouteInitializer);
     factory(NgRoutingUsePushState, (_) => new NgRoutingUsePushState.value(false));
@@ -54,14 +54,11 @@ class WebClientApp extends Module {
 startWebClientApp() {
 
   if (isLocalHost()) {
-    HostServer = LocalHostServer;
+    HostServer = _LocalHostServer;
   }
-  /*
-  if ( !identical(1, 1.0) ) { // XXX: horrible hack to detect if we're in JS -- Src: Seth Ladd / Google
-    DomainApp = "http://localhost:3000";
-  }
-  */
   print("Host: $HostServer");
 
   ngBootstrap(module: new WebClientApp());
 }
+
+String _LocalHostServer = "http://localhost:9000";

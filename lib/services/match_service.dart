@@ -1,38 +1,30 @@
-library match_manager;
+library match_service;
 
 import "package:json_object/json_object.dart";
-
 import "../models/match_event.dart";
 
-class MatchManager {
-  var _matchDays;
-  
-  MatchManager() {
-    // print("new MatchManager");
-    _initFromJson( json );
-  }
 
-  MatchManager.initFromJson(String json) {
-    // print("new MatchManager");
-    _initFromJson( json );
-  }
-  
-  _initFromJson( String json ) {
-    _matchDays = new Map<String, MatchEvent>();
-    
-    var collection = new JsonObject.fromJsonString( json );
+class MatchService {
+
+  String getMatchStartDate(String matchEventId) => _matchEvents[matchEventId].date;
+
+  MatchService() : this.initFromJson(INIT_JSON);
+
+  MatchService.initFromJson(String json) {
+    _matchEvents = new Map<String, MatchEvent>();
+
+    var collection = new JsonObject.fromJsonString(json);
+
     for (var x in collection) {
       var match = new MatchEvent.initFromJSONObject(x);
-      _matchDays[match.id] = match;
+      _matchEvents[match.id] = match;
     }
   }
-  
-  String startDate( String matchDayId ) {
-    MatchEvent matchDay = _matchDays[ matchDayId ];
-    return matchDay.date;
-  }
-  
-  String json = """
+
+  var _matchEvents;
+
+
+  static String INIT_JSON = """
 [
   {
     "id":"1-BRACRO",

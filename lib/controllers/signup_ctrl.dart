@@ -2,7 +2,7 @@ library register_ctrl;
 
 import 'package:angular/angular.dart';
 
-import '../services/user_manager.dart';
+import '../services/profile_service.dart';
 import '../models/user.dart';
 
 @NgController(
@@ -10,17 +10,21 @@ import '../models/user.dart';
     publishAs: 'ctrl'
 )
 class SignupCtrl {
+
   User user = new User();
 
-  Router _router;
-  UserManager _userManager;
 
-  SignupCtrl(Scope scope, this._router, this._userManager) {
+  SignupCtrl(Scope scope, this._router, this._profileService) {
   }
 
+
   void submitSignup() {
-    _userManager.signup(user)
+    _profileService.signup(user)
         .then((_) => _router.go('login', {}))
         .catchError((error) => print("Signup inválido: $error"));
   }
+
+
+  Router _router;
+  ProfileService _profileService;
 }

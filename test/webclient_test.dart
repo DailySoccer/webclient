@@ -6,9 +6,7 @@ import "package:json_object/json_object.dart";
 
 
 import 'package:webclient/models/match_event.dart';
-
-import 'package:webclient/services/user_manager.dart';
-import 'package:webclient/services/match_manager.dart';
+import 'package:webclient/services/match_service.dart';
 
 part 'unit/match_day_test.dart';
 part 'unit/match_manager_test.dart';

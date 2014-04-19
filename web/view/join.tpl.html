@@ -1,6 +1,6 @@
-<section register-ctrl>
+<section signup-ctrl>
 
-<form class="form-join form-horizontal" ng-submit="ctrl.register()" data-toggle="validator" role="form">
+<form class="form-join form-horizontal" ng-submit="ctrl.submitSignup()" data-toggle="validator" role="form">
 <fieldset>
 
 <!-- Form Name -->
@@ -8,10 +8,16 @@
 
 <!-- Text input-->
 <div class="control-group">
-  <label class="control-label" for="Your full name">Your full name</label>
+  <label class="control-label" for="Your first name">Your first name</label>
   <div class="controls">
-    <input id="Your full name" name="Your full name" ng-model="ctrl.user.fullName" type="text" placeholder="your full name" class="input-xlarge form-control" data-toggle="validator" required="">
-    
+    <input id="firstName" name="Your first name" ng-model="ctrl.user.firstName" type="text" placeholder="your first name" class="input-xlarge form-control" data-toggle="validator" required="">
+  </div>
+</div>
+
+<div class="control-group">
+  <label class="control-label" for="Your last name">Your last name</label>
+  <div class="controls">
+    <input id="lastName" name="Your last name" ng-model="ctrl.user.lastName" type="text" placeholder="your last name" class="input-xlarge form-control" data-toggle="validator" required="">
   </div>
 </div>
 
@@ -19,7 +25,7 @@
 <div class="control-group">
   <label class="control-label" for="Email">Email</label>
   <div class="controls">
-    <input id="Email"name="Email" ng-model="ctrl.user.email"  type="email" placeholder="email" class="input-xlarge form-control" data-toggle="validator" required="">
+    <input id="email"name="Email" ng-model="ctrl.user.email"  type="email" placeholder="email" class="input-xlarge form-control" data-toggle="validator" required="">
     
   </div>
 </div>
@@ -28,7 +34,7 @@
 <div class="control-group">
   <label class="control-label" for="NickName">Pick a screen name</label>
   <div class="controls">
-    <input id="NickName" name="NickName" ng-model="ctrl.user.nickName" type="text" placeholder="nickname" class="input-xlarge form-control" data-toggle="validator" required="">
+    <input id="nickName" name="NickName" ng-model="ctrl.user.nickName" type="text" placeholder="nickname" class="input-xlarge form-control" data-toggle="validator" required="">
     
   </div>
 </div>
@@ -37,7 +43,7 @@
 <div class="control-group">
   <label class="control-label" for="Password">Choose password</label>
   <div class="controls">
-    <input id="Password" name="Password" ng-model="ctrl.user.password" type="password" placeholder="password" class="input-xlarge form-control" data-toggle="validator" required="" data-minlength="8" ng-minlength="8">
+    <input id="password" name="Password" ng-model="ctrl.user.password" type="password" placeholder="password" class="input-xlarge form-control" data-toggle="validator" required="" data-minlength="8" ng-minlength="8">
     <p class="help-block">min 8 characters</p>
   </div>
 </div>
@@ -46,11 +52,11 @@
 <div class="control-group">
   <label class="control-label" for="joinNow"></label>
   <div class="controls">
-    <button id="joinNow" name="joinNow" class="btn btn-primary"">Join Now</button>
+    <button id="joinNow" name="joinNow" class="btn btn-primary">Join Now</button>
   </div>
 </div>
 
-</fieldset
+</fieldset>
 </form>
 
 </section>

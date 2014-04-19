@@ -9,21 +9,20 @@ import 'package:webclient/routing/webclient_router.dart';
 
 import 'mock/mock_server.dart';
 
-import 'services/server_request.dart';
-import 'services/user_manager.dart';
-import 'services/match_manager.dart';
-import 'services/group_manager.dart';
-import 'services/contest_manager.dart';
-import 'services/contest_entry_manager.dart';
+import 'services/profile_service.dart';
+import 'services/match_service.dart';
+import 'services/match_group_service.dart';
+import 'services/contest_service.dart';
+import 'services/contest_entry_service.dart';
 
-import 'controllers/user_ctrl.dart';
+import 'controllers/menu_ctrl.dart';
 import 'controllers/login_ctrl.dart';
-import 'controllers/register_ctrl.dart';
+import 'controllers/signup_ctrl.dart';
 import 'controllers/lobby_ctrl.dart';
-import 'controllers/team_ctrl.dart';
+import 'controllers/enter_contest_ctrl.dart';
 
 String HostServer = window.location.origin;
-String LocalHostServer = "http://localhost:9000";
+
 
 String encodeMap(Map data) {
   return data.keys.map((k) {
@@ -32,7 +31,7 @@ String encodeMap(Map data) {
 }
 
 bool isLocalHost() {
-  return ( window.location.hostname.contains("127.") || window.location.hostname.contains("localhost") );
+  return (window.location.hostname.contains("127.") || window.location.hostname.contains("localhost"));
 }
 
 
@@ -42,18 +41,18 @@ class WebClientApp extends Module {
     // real: DailySoccerServer / simulation: MockDailySoccerServer
     type(ServerRequest, implementedBy: MockDailySoccerServer);
     
-    type(UserManager);
-    type(MatchManager);
-    type(GroupManager);
-    type(ContestManager);
-    type(ContestEntryManager);
-    
-    type(UserCtrl);
+    type(ProfileService);
+    type(MatchService);
+    type(MatchGroupService);
+    type(ContestService);
+    type(ContestEntryService);
+
+    type(MenuCtrl);
     type(LoginCtrl);
-    type(RegisterCtrl);
+    type(SignupCtrl);
     type(LobbyCtrl);
-    type(TeamCtrl);
-    
+    type(EnterContestCtrl);
+
     value(RouteInitializerFn, webClientRouteInitializer);
     factory(NgRoutingUsePushState, (_) => new NgRoutingUsePushState.value(false));
   }
@@ -63,17 +62,14 @@ Future testFuture() {
   return new Future.error("error");
 }
 
-startWebClientApp(){
-  
-  if ( isLocalHost() ) {
-    HostServer = LocalHostServer;
+startWebClientApp() {
+
+  if (isLocalHost()) {
+    HostServer = _LocalHostServer;
   }
-  /*
-  if ( !identical(1, 1.0) ) { // XXX: horrible hack to detect if we're in JS -- Src: Seth Ladd / Google
-    DomainApp = "http://localhost:3000";
-  }
-  */
-  print( "Host: $HostServer" );
-  
+  print("Host: $HostServer");
+
   ngBootstrap(module: new WebClientApp());
 }
+
+String _LocalHostServer = "http://localhost:9000";

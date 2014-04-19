@@ -6,7 +6,6 @@ void webClientRouteInitializer(Router router, RouteViewFactory views) {
   views.configure({
     'home': ngRoute(
         defaultRoute: true,
-        path: '/',
         view: 'view/home.tpl.html'
     ),
     'login': ngRoute(
@@ -21,12 +20,12 @@ void webClientRouteInitializer(Router router, RouteViewFactory views) {
         path: '/lobby',
         view: 'view/lobby.tpl.html'
     ),
-    'team': ngRoute(
-        path: '/team/:contestId',
+    'contest_entry': ngRoute(
+        path: '/contest_entry/:contestEntryId',
         mount: {
           'create': ngRoute(
               path: '/create',
-              view: 'view/team.tpl.html')
+              view: 'view/contest_entry.tpl.html')
         })
   });
 }

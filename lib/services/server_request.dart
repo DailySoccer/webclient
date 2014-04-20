@@ -1,80 +1,40 @@
 library server_request;
 
 import 'dart:async';
-
 import 'package:angular/angular.dart';
+import 'package:json_object/json_object.dart';
 
-import '../webclient.dart';
+import 'package:webclient/webclient.dart';
 
 abstract class ServerRequest {
-  Future<String> register   ( String fullName, String email, String nickName, String password );
-  Future<String> login      ( String email, String password );
-  Future<String> matchAll   ();
-  Future<String> groupAll   ();
-  Future<String> contestAll ();
+  Future<JsonObject> signup(String firstName, String lastName, String email, String nickName, String password);
+  Future<JsonObject> login(String email, String password);
+  Future<JsonObject> getAllContests();
 }
 
 class DailySoccerServer implements ServerRequest {
 
+  DailySoccerServer(this._http);
+
+  Future<JsonObject> signup(String firstName, String lastName, String email, String nickName, String password) {
+    return _innerServerCall("$HostServer/signup", {'firstName': firstName, 'lastName': lastName, 'email': email, 'nickName': nickName, 'password': password});
+  }
+
+  Future<JsonObject> login(String email, String password) {
+    return _innerServerCall("$HostServer/login", {'email': email, 'password': password});
+  }
+
+  Future<JsonObject> getAllContests() {
+    return _innerServerCall("$HostServer/getAllContests", null);
+  }
+
+  Future<JsonObject> _innerServerCall(String dataUrl, var data) {
+    var completer = new Completer<JsonObject>();
+    _http.post(dataUrl, null, params: data)
+        .then((httpResponse) => completer.complete(new JsonObject.fromMap(httpResponse.data)))
+        .catchError((httpResponse) => completer.completeError(new JsonObject.fromJsonString(httpResponse.data)));
+    return completer.future;
+  }
+
   Http _http;
-  
-  DailySoccerServer( this._http );
-  
-  Future<String> register( String fullName, String email, String nickName, String password ) {
-    print("Http: Register: $fullName - $email - $nickName - $password");
-    
-    var dataUrl = "$HostServer/signup";
-    var data = {'fullName': fullName, 'email': email, 'nickName': nickName, 'password': password};
-    
-    return _http.post( dataUrl, null, params: data )
-      .then( (HttpResponse responseRequest) {
-        return new Future.value( responseRequest.data );
-      });
-   }
-  
-  Future<String> login( String email, String password ) {
-    print("Http: Login: $email - $password");
-    
-    var dataUrl = "$HostServer/login";
-    var data = {'email': email, 'password': password};
-    
-    return _http.post( dataUrl, null, params: data )
-      .then( (HttpResponse responseRequest) {
-        return new Future.value( responseRequest.data );
-      });
-  }
-
-  Future<String> matchAll() {
-    print("Http: matchAll");
-    
-    var dataUrl = "$HostServer/match_all";
-    
-    return _http.get( dataUrl )
-      .then( (HttpResponse responseRequest) {
-        return new Future.value( responseRequest.data );
-      });
-  }
-
-  Future<String> groupAll() {
-    print("Http: groupAll");
-    
-    var dataUrl = "$HostServer/group_all";
-    
-    return _http.get( dataUrl )
-      .then( (HttpResponse responseRequest) {
-        return new Future.value( responseRequest.data );
-      });
-  }
-  
-  Future<String> contestAll() {
-    print("Http: contestAll");
-    
-    var dataUrl = "$HostServer/contest_all";
-    
-    return _http.get( dataUrl )
-      .then( (HttpResponse responseRequest) {
-        return new Future.value( responseRequest.data );
-      });
-  }
-  
 }

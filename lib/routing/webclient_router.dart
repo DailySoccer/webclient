@@ -1,4 +1,4 @@
-library webclient_routing;
+library webclient_router;
 
 import 'package:angular/angular.dart';
 

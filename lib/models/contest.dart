@@ -8,25 +8,24 @@ class Contest {
   String groupId;
   int    maxPlayers;
   num    capSalary;
-  List<String> playersIdList;
+  List<String> playersListIds;
 
-  Contest( this.id, this.name, this.groupId, this.maxPlayers, this.capSalary, this.playersIdList );
+  Contest(this.id, this.name, this.groupId, this.maxPlayers, this.capSalary, this.playersListIds);
 
-  Contest.initFromJSONObject( JsonObject json ) {
-    _initFromJSONObject( json );
+  Contest.initFromJSONObject(JsonObject json) {
+    _initFromJSONObject(json);
   }
 
-  Contest.initFromJSON( String json ) {
-    var contest = new JsonObject.fromJsonString( json );
-    _initFromJSONObject( contest );
+  Contest.initFromJSON(String json) {
+    _initFromJSONObject(new JsonObject.fromJsonString(json));
   }
 
-  _initFromJSONObject( JsonObject json ) {
-    id          = json.id;
-    name        = json.name;
-    groupId     = json.groupId;
-    maxPlayers  = json.maxPlayers;
-    capSalary   = json.capSalary;
+  _initFromJSONObject(JsonObject json) {
+    id         = json.id;
+    name       = json.name;
+    groupId    = json.groupId;
+    maxPlayers = json.maxPlayers;
+    capSalary  = json.capSalary;
 
     print( "New Contest: $json" );
   }

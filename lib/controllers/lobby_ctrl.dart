@@ -13,16 +13,13 @@ import '../models/contest.dart';
 class LobbyCtrl {
   Iterable<Contest> contests;
 
-
   LobbyCtrl(Scope scope, this._router, this._contestService) {
     contests = this._contestService.getAllContests();
   }
 
-
   EnterContest(Contest contest) {
     _router.go('team.create', { "contestId": contest.id });
   }
-
 
   Router _router;
   ContestService _contestService;
@@ -31,7 +28,7 @@ class LobbyCtrl {
 /*
   LobbyCtrl(Scope scope, this._router, this._contestManager ) {
     print("create LoginCtrl");
-    
+
     this._contestManager.all
       .then( (values) {
         contests = values;

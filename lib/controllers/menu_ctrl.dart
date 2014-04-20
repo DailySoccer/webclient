@@ -1,4 +1,4 @@
-library user_ctrl;
+library menu_ctrl;
 
 import 'package:angular/angular.dart';
 import '../services/profile_service.dart';

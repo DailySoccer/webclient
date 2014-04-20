@@ -1,4 +1,4 @@
-library register_ctrl;
+library signup_ctrl;
 
 import 'package:angular/angular.dart';
 
@@ -13,17 +13,14 @@ class SignupCtrl {
 
   User user = new User();
 
-
   SignupCtrl(Scope scope, this._router, this._profileService) {
   }
-
 
   void submitSignup() {
     _profileService.signup(user)
         .then((_) => _router.go('login', {}))
         .catchError((error) => print("Signup inválido: $error"));
   }
-
 
   Router _router;
   ProfileService _profileService;

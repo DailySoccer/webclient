@@ -1,7 +1,6 @@
 library webclient;
 
 import 'dart:html';
-import 'dart:async';
 
 import 'package:angular/angular.dart';
 import 'package:angular/routing/module.dart';
@@ -14,6 +13,7 @@ import 'services/match_service.dart';
 import 'services/match_group_service.dart';
 import 'services/contest_service.dart';
 import 'services/contest_entry_service.dart';
+import 'services/server_request.dart';
 
 import 'controllers/menu_ctrl.dart';
 import 'controllers/login_ctrl.dart';
@@ -39,8 +39,8 @@ class WebClientApp extends Module {
   WebClientApp() {
     // REVIEW: switch entre real y simulación
     // real: DailySoccerServer / simulation: MockDailySoccerServer
-    type(ServerRequest, implementedBy: MockDailySoccerServer);
-    
+    type(ServerRequest, implementedBy: DailySoccerServer);
+
     type(ProfileService);
     type(MatchService);
     type(MatchGroupService);
@@ -58,9 +58,6 @@ class WebClientApp extends Module {
   }
 }
 
-Future testFuture() {
-  return new Future.error("error");
-}
 
 startWebClientApp() {
 

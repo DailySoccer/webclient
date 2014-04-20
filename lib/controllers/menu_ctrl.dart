@@ -27,6 +27,7 @@ class MenuCtrl {
   }
 
   void logOut() {
+    _profileService.logout();
   }
 
 

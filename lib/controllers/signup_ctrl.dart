@@ -1,7 +1,6 @@
 library signup_ctrl;
 
 import 'package:angular/angular.dart';
-
 import 'package:webclient/services/profile_service.dart';
 
 

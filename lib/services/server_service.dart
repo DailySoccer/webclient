@@ -6,15 +6,19 @@ import 'package:json_object/json_object.dart';
 import 'package:webclient/webclient.dart';
 
 abstract class ServerService {
+  void               setSessionToken(String sessionToken);
   Future<JsonObject> signup(String firstName, String lastName, String email, String nickName, String password);
   Future<JsonObject> login(String email, String password);
   Future<JsonObject> getUserProfile();
   Future<JsonObject> getAllContests();
+
 }
 
 class DailySoccerServer implements ServerService {
 
   DailySoccerServer(this._http);
+
+  void setSessionToken(String sessionToken) { _sessionToken = sessionToken; }
 
   Future<JsonObject> signup(String firstName, String lastName, String email, String nickName, String password) {
     return _innerServerCall("$HostServer/signup", {'firstName': firstName, 'lastName': lastName, 'email': email, 'nickName': nickName, 'password': password});
@@ -39,6 +43,10 @@ class DailySoccerServer implements ServerService {
   Future<JsonObject> _innerServerCall(String url, var postData) {
     var completer = new Completer<JsonObject>();
 
+    if (_sessionToken != null) {
+      url += "?sessionToken=$_sessionToken";
+    }
+
     if (postData != null) {
       _http.post(url, null, params: postData)
           .then((httpResponse) => completer.complete(new JsonObject.fromMap(httpResponse.data)))
@@ -59,4 +67,5 @@ class DailySoccerServer implements ServerService {
   }
 
   Http _http;
+  String _sessionToken;
 }

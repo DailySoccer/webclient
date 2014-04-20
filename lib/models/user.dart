@@ -9,6 +9,7 @@ class User {
 
   String get fullName => "$firstName $lastName";
   String toString() => "$fullName - $email - $nickName";
+  Map toJson() => {"firstName": firstName, "lastName": lastName, "email": email, "nickName": nickName};
 
   User.initFromJSONObject(JsonObject jsonObject) {
     firstName = jsonObject.firstName;
@@ -16,4 +17,6 @@ class User {
     email = jsonObject.email;
     nickName = jsonObject.nickName;
   }
+
+  User.initFromJSONString(String jsonString) : this(new JsonObject.fromJsonString(jsonString));
 }

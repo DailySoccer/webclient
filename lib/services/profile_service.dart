@@ -3,42 +3,39 @@ library profile_service;
 import 'dart:async';
 import 'package:json_object/json_object.dart';
 import 'package:webclient/models/user.dart';
-import 'package:webclient/services/server_request.dart';
+import 'package:webclient/services/server_service.dart';
 
 
 class ProfileService {
   User user = null;
-  bool get isLoggedIn => user != null;
+  String sessionToken;
+  bool get isLoggedIn => user != null && sessionToken != null;
 
   ProfileService(this._server);
 
-  Future signup(User newUser) {
-    _server.signup(newUser.firstName, newUser.lastName, newUser.email, newUser.nickName, newUser.password)
-        .then((jsonObject) {
-
-           var veamos = 0;
-
-        }).catchError((e) {
-          print("TODO: Tratar errores $e");
-        });
-
-    var completer = new Completer();
-    return completer.future;
+  Future signup(String firstName, String lastName, String email, String nickName, String password) {
+    return _server.signup(firstName, lastName, email, nickName, password)
+                  .then((jsonObject) => login(email, password))
+                  .catchError((error) => print("TODO: Tratar errores $error"));
   }
 
-
-  Future login(String login, String password) {
-
-    var completer = new Completer();
-    return completer.future;
+  Future login(String email, String password) {
+    return _server.login(email, password).then(_onLoginResponse).catchError((error) => print("TODO: tratar errores $error"));
   }
 
+  Future _onLoginResponse(JsonObject jsonObject) {
+    sessionToken = jsonObject.sessionToken;
+
+    return _server.getUserProfile()
+                  .then((jsonObject) => user = new User.initFromJSONObject(jsonObject))
+                  .catchError((error) => print("TODO: Tratar errores $error"));
+  }
 
   Future logout() {
-    var completer = new Completer();
-
-    return completer.future;
+    user = null;
+    sessionToken = null;
+    return new Completer.sync().future;
   }
 
-  ServerRequest _server;
+  ServerService _server;
 }

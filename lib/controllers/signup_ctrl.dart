@@ -2,8 +2,8 @@ library signup_ctrl;
 
 import 'package:angular/angular.dart';
 
-import '../services/profile_service.dart';
-import '../models/user.dart';
+import 'package:webclient/services/profile_service.dart';
+
 
 @NgController(
     selector: '[signup-ctrl]',
@@ -11,15 +11,19 @@ import '../models/user.dart';
 )
 class SignupCtrl {
 
-  User user = new User();
+  String firstName;
+  String lastName;
+  String email;
+  String nickName;
+  String password;
 
   SignupCtrl(Scope scope, this._router, this._profileService) {
   }
 
   void submitSignup() {
-    _profileService.signup(user)
-        .then((_) => _router.go('login', {}))
-        .catchError((error) => print("Signup inválido: $error"));
+    _profileService.signup(firstName, lastName, email, nickName, password)
+        .then((_) => /*_router.go('/', {})*/false)
+        .catchError((error) => print("TODO: Signup inválido: $error"));
   }
 
   Router _router;

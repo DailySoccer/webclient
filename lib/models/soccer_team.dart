@@ -10,17 +10,13 @@ class SoccerTeam {
   List<SoccerPlayer> soccerPlayers = new List<SoccerPlayer>();
 
   SoccerTeam.initFromJSONObject(JsonObject json) {
-    _initFromJSONObject(json);
-  }
+    id   = json.id;
+    name = json.name;
 
-  _initFromJSONObject(JsonObject json) {
-      id   = json.id;
-      name = json.name;
+    for (var x in json.soccers) {
+      soccerPlayers.add(new SoccerPlayer.initFromJSONObject(x));
+    }
 
-      for (var x in json.soccers) {
-        soccerPlayers.add(new SoccerPlayer.initFromJSONObject(x));
-      }
-
-      print("new SoccerTeam: $json");
+    print("new SoccerTeam: $json");
   }
 }

@@ -3,15 +3,14 @@ library mock_daily_soccer_http;
 import 'dart:async';
 import 'package:mock/mock.dart';
 import "package:json_object/json_object.dart";
-
-import '../services/server_request.dart';
+import 'package:webclient/services/server_service.dart';
 
 part 'mock_users.dart';
 part 'mock_matches.dart';
 part 'mock_groups.dart';
 part 'mock_contests.dart';
 
-class MockDailySoccerServer extends Mock implements DailySoccerServer {
+class MockDailySoccerServer extends Mock implements ServerService {
 
   MockDailySoccerServer();
 

@@ -1,4 +1,4 @@
-library soccer;
+library soccer_player;
 
 import "package:json_object/json_object.dart";
 

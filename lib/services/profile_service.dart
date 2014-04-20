@@ -1,12 +1,11 @@
 library profile_service;
 
 import 'dart:async';
+import 'dart:html';
+import 'dart:convert';
 import 'package:json_object/json_object.dart';
 import 'package:webclient/models/user.dart';
 import 'package:webclient/services/server_service.dart';
-import 'dart:html';
-import 'dart:convert';
-import 'package:serialization/serialization.dart';
 
 
 class ProfileService {
@@ -28,10 +27,10 @@ class ProfileService {
   }
 
   Future _onLoginResponse(JsonObject sessionTokenJson) {
-    _server.setSessionToken(sessionTokenJson.sessionToken); // So that the getUserProfileCall is successful
+    _server.setSessionToken(sessionTokenJson.sessionToken); // to make the getUserProfile call succeed
 
     return _server.getUserProfile()
-                  .then((jsonObject) => _setProfile(sessionTokenJson.sessionToken, new User.initFromJSONObject(jsonObject), true))
+                  .then((jsonObject) => _setProfile(sessionTokenJson.sessionToken, new User.fromJsonObject(jsonObject), true))
                   .catchError((error) => print("TODO: Tratar errores $error"));
   }
 
@@ -55,7 +54,7 @@ class ProfileService {
     var storedUser = window.localStorage['user'];
 
     if (storedSessionToken != null && storedUser != null) {
-      _setProfile(storedSessionToken, new User.initFromJSONString(storedUser), false);
+      _setProfile(storedSessionToken, new User.fromJsonString(storedUser), false);
     }
   }
 
@@ -65,8 +64,8 @@ class ProfileService {
       window.localStorage['user'] = JSON.encode(user);
     }
     else {
-      window.localStorage['sessionToken'] = null;
-      window.localStorage['user'] = null;
+      window.localStorage.remove('sessionToken');
+      window.localStorage.remove('user');
     }
   }
 

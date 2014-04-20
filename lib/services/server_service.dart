@@ -11,7 +11,6 @@ abstract class ServerService {
   Future<JsonObject> login(String email, String password);
   Future<JsonObject> getUserProfile();
   Future<JsonObject> getAllContests();
-
 }
 
 class DailySoccerServer implements ServerService {

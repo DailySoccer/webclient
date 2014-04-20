@@ -21,7 +21,7 @@ class SignupCtrl {
 
   void submitSignup() {
     _profileService.signup(firstName, lastName, email, nickName, password)
-        .then((_) => /*_router.go('/', {})*/false)
+        .then((_) => _router.go('lobby', {}))
         .catchError((error) => print("TODO: Signup inválido: $error"));
   }
 

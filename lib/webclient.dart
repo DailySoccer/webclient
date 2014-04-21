@@ -61,8 +61,6 @@ class WebClientApp extends Module {
 
 startWebClientApp() {
 
-  print("HELLO");
-
   if (isLocalHost()) {
     HostServer = _LocalHostServer;
   }

@@ -18,20 +18,18 @@ class ProfileService {
 
   Future signup(String firstName, String lastName, String email, String nickName, String password) {
     return _server.signup(firstName, lastName, email, nickName, password)
-                  .then((jsonObject) => login(email, password))
-                  .catchError((error) => print("TODO: Tratar errores $error"));
+                  .then((jsonObject) => login(email, password));
   }
 
   Future login(String email, String password) {
-    return _server.login(email, password).then(_onLoginResponse).catchError((error) => print("TODO: Tratar errores $error"));
+    return _server.login(email, password).then(_onLoginResponse);
   }
 
   Future _onLoginResponse(JsonObject sessionTokenJson) {
     _server.setSessionToken(sessionTokenJson.sessionToken); // to make the getUserProfile call succeed
 
     return _server.getUserProfile()
-                  .then((jsonObject) => _setProfile(sessionTokenJson.sessionToken, new User.fromJsonObject(jsonObject), true))
-                  .catchError((error) => print("TODO: Tratar errores $error"));
+                  .then((jsonObject) => _setProfile(sessionTokenJson.sessionToken, new User.fromJsonObject(jsonObject), true));
   }
 
   Future logout() {

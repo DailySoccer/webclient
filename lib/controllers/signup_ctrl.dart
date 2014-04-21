@@ -22,7 +22,7 @@ class SignupCtrl {
   void submitSignup() {
     _profileService.signup(firstName, lastName, email, nickName, password)
         .then((_) => _router.go('lobby', {}))
-        .catchError((error) => print("TODO: Signup inválido: $error"));
+        .catchError((error) => print("WTF 154: tratar errores $error"));
   }
 
   Router _router;

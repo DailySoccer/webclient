@@ -1,4 +1,5 @@
 library user;
+
 import 'package:json_object/json_object.dart';
 
 class User {

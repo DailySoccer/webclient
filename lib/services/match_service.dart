@@ -1,7 +1,7 @@
 library match_service;
 
 import "package:json_object/json_object.dart";
-import "../models/match_event.dart";
+import "package:webclient/models/match_event.dart";
 
 
 class MatchService {
@@ -16,7 +16,7 @@ class MatchService {
     var collection = new JsonObject.fromJsonString(json);
 
     for (var x in collection) {
-      var match = new MatchEvent.initFromJSONObject(x);
+      var match = new MatchEvent.fromJsonObject(x);
       _matchEvents[match.id] = match;
     }
   }

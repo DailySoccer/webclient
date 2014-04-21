@@ -10,16 +10,12 @@ class MatchEvent {
 
   MatchEvent(this.id, this.teamIdA, this.teamIdB, this.date);
 
-  MatchEvent.initFromJSONObject(JsonObject json) {
-    _initFromJSONObject(json);
-  }
+  MatchEvent.fromJsonObject(JsonObject json) {
+    id        = json.id;
+    teamIdA   = json.teamIdA;
+    teamIdB   = json.teamIdB;
+    date      = json.date;
 
-  _initFromJSONObject(JsonObject json) {
-      id        = json.id;
-      teamIdA   = json.teamIdA;
-      teamIdB   = json.teamIdB;
-      date      = json.date;
-
-      print("new MatchEvent: $json");
+    print("new MatchEvent: $json");
   }
 }

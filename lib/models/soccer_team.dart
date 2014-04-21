@@ -1,7 +1,6 @@
 library soccer_team;
 
 import "package:json_object/json_object.dart";
-
 import "soccer_player.dart";
 
 class SoccerTeam {

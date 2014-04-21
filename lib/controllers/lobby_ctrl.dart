@@ -13,7 +13,7 @@ import '../models/contest.dart';
 class LobbyCtrl {
   Iterable<Contest> contests;
 
-  LobbyCtrl(Scope scope, this._router, this._contestService) {
+  LobbyCtrl(this._router, this._contestService) {
     contests = this._contestService.getAllContests();
   }
 

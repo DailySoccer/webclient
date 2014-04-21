@@ -3,7 +3,7 @@ Configuring the launches
 
 Your default launch will look like this:
 
-![alt tag](launch01.png)
+![alt tag](doc/launch01.png)
 
 If you want to have only the backend server and have your static files served from it, you first need to create a symlink of the public folder:
 
@@ -11,12 +11,13 @@ If you want to have only the backend server and have your static files served fr
 
 And then, configure your launch like this:
 
-![alt tag](launch02.png)
+![alt tag](doc/launch02.png)
 
-Build your client with pub build and then execute with the appropiate launch configuration: 
-![alt tag](launch03.png)
+Build your client with pub build and then execute with the appropiate launch configuration:
 
-Unfortunately DartEditor doesn't support a prelaunch step to do both things, the pub build and launch, in only one step.
+![alt tag](doc/launch03.png)
+
+Unfortunately DartEditor doesn't support a prelaunch step to do both the pub build and launch in only one step.
 
 
 Testing

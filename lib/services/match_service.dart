@@ -28,26 +28,26 @@ class MatchService {
 [
   {
     "id":"1-BRACRO",
-    "teamIdA":"BRA",
-    "teamIdB":"CRO",
+    "teamAId":"BRA",
+    "teamBId":"CRO",
     "date":"2014/06/12-21:00"
   },
   {
     "id":"2-MEXCMR",
-    "teamIdA":"MEX",
-    "teamIdB":"CMR",
+    "teamAId":"MEX",
+    "teamBId":"CMR",
     "date":"2014/06/13-17:00"
   },
   {
     "id":"3-ESPNED",
-    "teamIdA":"ESP",
-    "teamIdB":"NED",
+    "teamAId":"ESP",
+    "teamBId":"NED",
     "date":"2014/06/13-20:00"
   },
   {
     "id":"4-CHIAUS",
-    "teamIdA":"CHI",
-    "teamIdB":"AUS",
+    "teamAId":"CHI",
+    "teamBId":"AUS",
     "date":"2014/06/13-23:00"
   }
 ]

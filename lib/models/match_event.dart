@@ -4,18 +4,16 @@ import "package:json_object/json_object.dart";
 
 class MatchEvent {
   String id;
-  String teamIdA;
-  String teamIdB;
+  String teamAId;
+  String teamBId;
   String date;
 
-  MatchEvent(this.id, this.teamIdA, this.teamIdB, this.date);
+  MatchEvent(this.id, this.teamAId, this.teamBId, this.date);
 
   MatchEvent.fromJsonObject(JsonObject json) {
-    id        = json.id;
-    teamIdA   = json.teamIdA;
-    teamIdB   = json.teamIdB;
-    date      = json.date;
-
-    print("new MatchEvent: $json");
+    id = json.id;
+    teamAId = json.teamAId;
+    teamBId = json.teamBId;
+    date = json.date;
   }
 }

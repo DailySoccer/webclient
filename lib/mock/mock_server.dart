@@ -14,23 +14,25 @@ class MockDailySoccerServer extends Mock implements ServerService {
 
   MockDailySoccerServer();
 
-  Future<String> signup(String firstName, String lastName, String email, String nickName, String password) {
-    print("Mock Register: $fullName - $email - $nickName - $password");
+  void setSessionToken(String sessionToken) {}
+
+  Future<JsonObject> signup(String firstName, String lastName, String email, String nickName, String password) {
+    print("Mock Register: $firstName - $lastName - $email - $nickName - $password");
 
     var completer = new Completer();
 
     if (!_users.exists(email)) {
       _users.add(new JsonObject.fromMap({"firstName": firstName, "lastName": lastName, "email": email, "nickName": nickName, "password": password}));
-      completer.complete(JSON_REGISTRADO_OK);
+      completer.complete(new JsonObject.fromJsonString(JSON_REGISTRADO_OK));
     }
     else {
-      completer.complete(JSON_ERR_YA_REGISTRADO);
+      completer.complete(new JsonObject.fromJsonString(JSON_ERR_YA_REGISTRADO));
     }
 
     return completer.future;
   }
 
-  Future<String> login(String email, String password) {
+  Future<JsonObject> login(String email, String password) {
     print("Mock: Login: $email - $password");
 
     var completer = new Completer();
@@ -38,22 +40,30 @@ class MockDailySoccerServer extends Mock implements ServerService {
     if (_users.exists(email)) {
       JsonObject userRegistered = _users.get(email);
       if (userRegistered.password == password) {
-        String responseLogin = JSON_LOGIN_OK.replaceFirst("%lastName%", userRegistered.lastName).replaceFirst("%nickName%", userRegistered.nickName);
-        completer.complete(responseLogin);
+        completer.complete(new JsonObject.fromJsonString(JSON_LOGIN_OK));
       }
       else {
-        completer.complete(JSON_ERR_NO_REGISTRADO);
+        completer.complete(new JsonObject.fromJsonString(JSON_ERR_NO_REGISTRADO));
       }
     }
     else {
-      completer.complete(JSON_ERR_NO_REGISTRADO);
+      completer.complete(new JsonObject.fromJsonString(JSON_ERR_NO_REGISTRADO));
     }
 
     return completer.future;
   }
 
 
-  Future<String> getAllContests() {
+  Future<JsonObject> getUserProfile() {
+    var completer = new Completer();
+
+    // TODO: Como rellenar el userProfile? Supongo que el cliente deberia llamar a setSessionToken.
+    completer.complete(new JsonObject.fromJsonString(JSON_USER_PROFILE));
+
+    return completer.future;
+  }
+
+  Future<JsonObject> getAllContests() {
     return new Future.value(_contests.json);
   }
 
@@ -70,7 +80,11 @@ class MockDailySoccerServer extends Mock implements ServerService {
     {"result": "ok"} 
   """;
   final JSON_LOGIN_OK = """
-    {"result": "ok", "data": { "firstName": "%firstName%", "lastName": "%lastName%", "nickName": "%nickName%" }}
+    { "sessionToken": "THEROOFISONFIRE" }
+  """;
+
+  final JSON_USER_PROFILE = """
+    { "firstName": "%firstName%", "lastName": "%lastName%", "email": "%email", "nickName": "%nickName%" }
   """;
 
   final JSON_ERR_YA_REGISTRADO  = """

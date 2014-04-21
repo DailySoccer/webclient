@@ -2,8 +2,8 @@ library lobby_ctrl;
 
 import 'package:angular/angular.dart';
 
-import '../services/contest_service.dart';
-import '../models/contest.dart';
+import 'package:webclient/services/contest_service.dart';
+import 'package:webclient/models/contest.dart';
 
 
 @NgController(

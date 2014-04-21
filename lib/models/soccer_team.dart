@@ -8,14 +8,12 @@ class SoccerTeam {
   String name;
   List<SoccerPlayer> soccerPlayers = new List<SoccerPlayer>();
 
-  SoccerTeam.initFromJSONObject(JsonObject json) {
+  SoccerTeam.fromJsonObject(JsonObject json) {
     id   = json.id;
     name = json.name;
 
     for (var x in json.soccers) {
-      soccerPlayers.add(new SoccerPlayer.initFromJSONObject(x));
+      soccerPlayers.add(new SoccerPlayer.fromJsonObject(x));
     }
-
-    print("new SoccerTeam: $json");
   }
 }

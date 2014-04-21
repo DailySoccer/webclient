@@ -10,14 +10,8 @@ class SoccerPlayer {
   int    points;
   num    salary;
 
-  SoccerPlayer.initFromJSONObject(JsonObject json) {
-    _initFromJSONObject(json);
-  }
-
-  _initFromJSONObject(JsonObject json) {
-      id   = json.id;
-      name = json.name;
-
-      print("new SoccerPlayer: $json");
+  SoccerPlayer.fromJsonObject(JsonObject json) {
+    id   = json.id;
+    name = json.name;
   }
 }

@@ -25,11 +25,11 @@ class ProfileService {
     return _server.login(email, password).then(_onLoginResponse);
   }
 
-  Future _onLoginResponse(JsonObject sessionTokenJson) {
-    _server.setSessionToken(sessionTokenJson.sessionToken); // to make the getUserProfile call succeed
+  Future _onLoginResponse(JsonObject loginResponseJson) {
+    _server.setSessionToken(loginResponseJson.sessionToken); // to make the getUserProfile call succeed
 
     return _server.getUserProfile()
-                  .then((jsonObject) => _setProfile(sessionTokenJson.sessionToken, new User.fromJsonObject(jsonObject), true));
+                  .then((jsonObject) => _setProfile(loginResponseJson.sessionToken, new User.fromJsonObject(jsonObject), true));
   }
 
   Future logout() {

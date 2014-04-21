@@ -1,5 +1,6 @@
 library lobby_ctrl;
 
+import 'dart:async';
 import 'package:angular/angular.dart';
 
 import 'package:webclient/services/contest_service.dart';
@@ -14,7 +15,10 @@ class LobbyCtrl {
   Iterable<Contest> contests;
 
   LobbyCtrl(this._router, this._contestService) {
-    contests = this._contestService.getAllContests();
+    this._contestService.getAllContests()
+        .then((values) {
+            contests = values;
+        });    
   }
 
   EnterContest(Contest contest) {
@@ -24,14 +28,3 @@ class LobbyCtrl {
   Router _router;
   ContestService _contestService;
 }
-
-/*
-  LobbyCtrl(Scope scope, this._router, this._contestManager ) {
-    print("create LoginCtrl");
-
-    this._contestManager.all
-      .then( (values) {
-        contests = values;
-      });
-  }
- */

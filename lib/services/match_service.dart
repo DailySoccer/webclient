@@ -1,55 +1,51 @@
 library match_service;
 
+import 'dart:async';
 import "package:json_object/json_object.dart";
+
+import "package:webclient/services/server_service.dart";
 import "package:webclient/models/match_event.dart";
 
 
 class MatchService {
 
+  bool initialized = false;
+   
   String getMatchStartDate(String matchEventId) => _matchEvents[matchEventId].date;
 
-  MatchService() : this.initFromJson(INIT_JSON);
-
-  MatchService.initFromJson(String json) {
-    _matchEvents = new Map<String, MatchEvent>();
-
-    var collection = new JsonObject.fromJsonString(json);
-
-    for (var x in collection) {
-      var match = new MatchEvent.fromJsonObject(x);
-      _matchEvents[match.id] = match;
-    }
+   MatchService(this._server);
+  
+   Future updated () {
+     if ( !initialized ) {
+       return getAllMatchEvents();
+     }
+     return new Future.value( true );
+   }
+   
+   Future< List<MatchEvent> > getAllMatchEvents() {
+     print("MatchManager: all");
+  
+    return _server.getAllMatchEvents()
+        .then( (response) {
+          initialized = true;
+         
+           print( "response: $response" );
+           
+           // Inicialización del mapa de partidos
+           _matchEvents = new Map<String, MatchEvent>();
+           for (var x in response) {
+             print("match: ${x.id}: $x");
+             _matchEvents[x.id] = new MatchEvent.fromJsonObject(x);
+           }
+           
+           // Devolver el map en formato lista
+           // TODO: ¿usar _matchDays.values?
+             var list = new List<MatchEvent>();
+             _matchEvents.forEach( (k,v) => list.add(v) );
+             return list;        
+        });
   }
-
-  var _matchEvents;
-
-
-  static String INIT_JSON = """
-[
-  {
-    "id":"1-BRACRO",
-    "teamAId":"BRA",
-    "teamBId":"CRO",
-    "date":"2014/06/12-21:00"
-  },
-  {
-    "id":"2-MEXCMR",
-    "teamAId":"MEX",
-    "teamBId":"CMR",
-    "date":"2014/06/13-17:00"
-  },
-  {
-    "id":"3-ESPNED",
-    "teamAId":"ESP",
-    "teamBId":"NED",
-    "date":"2014/06/13-20:00"
-  },
-  {
-    "id":"4-CHIAUS",
-    "teamAId":"CHI",
-    "teamBId":"AUS",
-    "date":"2014/06/13-23:00"
-  }
-]
-  """;
+ 
+   ServerService _server;
+   var _matchEvents;
 }

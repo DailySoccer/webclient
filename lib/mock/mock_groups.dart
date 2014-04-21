@@ -13,7 +13,7 @@ class MockGroups {
   [
     {
       "id":"1-001",
-      "matchIdList": ["1-BRACRO", "2-MEXCMR", "3-ESPNED", "4-CHIAUS"]
+      "matchsIds": ["1-BRACRO", "2-MEXCMR", "3-ESPNED", "4-CHIAUS"]
     }
   ]
   """;  

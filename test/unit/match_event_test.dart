@@ -1,7 +1,7 @@
 part of webclient_test;
 
 testMatchDay(){
-  group("[MatchDay]", (){
+  group("[MatchEvent]", (){
     group("[valid]", (){
       test("true si se inicializa correctamente desde un json", (){
         final json = """

@@ -63,8 +63,16 @@ class MockDailySoccerServer extends Mock implements ServerService {
     return completer.future;
   }
 
+  Future<JsonObject> getAllMatchEvents() {
+    return new Future.value(new JsonObject.fromJsonString(_matches.json));
+  }
+  
+  Future<JsonObject> getAllMatchGroups() {
+    return new Future.value(new JsonObject.fromJsonString(_groups.json));
+  }
+  
   Future<JsonObject> getAllContests() {
-    return new Future.value(_contests.json);
+    return new Future.value(new JsonObject.fromJsonString(_contests.json));
   }
 
   var _users    = new MockUsers();

@@ -10,6 +10,8 @@ abstract class ServerService {
   Future<JsonObject> signup(String firstName, String lastName, String email, String nickName, String password);
   Future<JsonObject> login(String email, String password);
   Future<JsonObject> getUserProfile();
+  Future<JsonObject> getAllMatchEvents();
+  Future<JsonObject> getAllMatchGroups();
   Future<JsonObject> getAllContests();
 }
 
@@ -31,6 +33,14 @@ class DailySoccerServer implements ServerService {
     return _innerServerCall("$HostServer/get_user_profile", null);
   }
 
+  Future<JsonObject> getAllMatchEvents() {
+    return _innerServerCall("$HostServer/get_all_contests", null);
+  }
+
+  Future<JsonObject> getAllMatchGroups() {
+    return _innerServerCall("$HostServer/get_all_contests", null);
+  }
+  
   Future<JsonObject> getAllContests() {
     return _innerServerCall("$HostServer/get_all_contests", null);
   }

@@ -8,21 +8,26 @@ import "package:json_object/json_object.dart";
 
 import 'package:webclient/mock/mock_server.dart';
 
+import 'package:webclient/services/profile_service.dart';
+import 'package:webclient/services/match_service.dart';
+import 'package:webclient/services/match_group_service.dart';
+import 'package:webclient/services/contest_service.dart';
+
 import 'package:webclient/models/user.dart';
 import 'package:webclient/models/match_event.dart';
 
-part 'unit/user_manager_test.dart';
-part 'unit/match_day_test.dart';
-part 'unit/match_manager_test.dart';
-part 'unit/group_manager_test.dart';
-part 'unit/contest_manager_test.dart';
+part 'unit/profile_service_test.dart';
+part 'unit/match_service_test.dart';
+part 'unit/match_group_service_test.dart';
+part 'unit/contest_service_test.dart';
+part 'unit/match_event_test.dart';
 
 main() {
   testMatchDay();
-  testMatchManager();
-  testGroupManager();
-  testContestManager();
-  testUserManager();
+  testMatchService();
+  testMatchGroupService();
+  testContestService();
+  testProfileService();
 
   // filterTests("valid");
 }

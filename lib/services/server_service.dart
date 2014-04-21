@@ -39,7 +39,7 @@ class DailySoccerServer implements ServerService {
   /**
    * This is the only place where we call our server
    */
-  Future<JsonObject> _innerServerCall(String url, var postData) {
+  Future<JsonObject> _innerServerCall(String url, Map postData) {
     var completer = new Completer<JsonObject>();
 
     if (_sessionToken != null) {

@@ -10,6 +10,7 @@ class MatchGroupService {
   // The group starts whenever the first match in the group starts
   String getMatchGroupStartDate(String groupId) => _matchService.getMatchStartDate(_groups[groupId].matchsIds[0]);
 
+
   MatchGroupService(this._matchService) {
     initFromJson(INIT_JSON);
   }

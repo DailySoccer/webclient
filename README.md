@@ -1,27 +1,5 @@
 [![Build Status](https://drone.io/github.com/DailySoccer/webclient/status.png)](https://drone.io/github.com/DailySoccer/webclient/latest)
 
-Configuring the launches
-=========================
-
-Your default launch will look like this:
-
-![alt tag](doc/launch01.png)
-
-If you want to have only the backend server and have your static files served from it, you first need to create a symlink of the public folder:
-
-  $ backend git:(master) ✗ ln -s ../webclient/build/web/ public
-
-And then, configure your launch like this:
-
-![alt tag](doc/launch02.png)
-
-Build your client with pub build and then execute with the appropiate launch configuration:
-
-![alt tag](doc/launch03.png)
-
-Unfortunately DartEditor doesn't support a prelaunch step to do both the pub build and launch in only one step.
-
-
 Testing
 =============
 
@@ -57,4 +35,15 @@ Puede solicitar datos de un servidor "real" o "simulado".
 type( ServerRequest, implementedBy: DailySoccerServer )
 or
 type( ServerRequest, implementedBy: MockDailySoccerServer )
+
+
+Configuring the launches
+=========================
+
+Your default launch will look like this:
+
+![alt tag](doc/launch01.png)
+
+The server uses CORS to allow the client to be executed in its own server (localhost:3000 or wherever). But you can also copy 
+the output of "pub build" to the backend/public folder and execute directly with the server serving the client as static files.
 

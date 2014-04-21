@@ -1,3 +1,5 @@
+[![Build Status](https://drone.io/github.com/DailySoccer/webclient/status.png)](https://drone.io/github.com/DailySoccer/webclient/latest)
+
 Configuring the launches
 =========================
 

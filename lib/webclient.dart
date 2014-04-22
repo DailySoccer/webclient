@@ -6,6 +6,8 @@ import 'package:angular/angular.dart';
 import 'package:angular/routing/module.dart';
 import 'package:webclient/routing/webclient_router.dart';
 
+import 'mock/mock_server.dart';
+
 import 'services/profile_service.dart';
 import 'services/match_service.dart';
 import 'services/match_group_service.dart';

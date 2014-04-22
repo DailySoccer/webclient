@@ -9,7 +9,7 @@ import "package:webclient//models/contest.dart";
 
 class ContestService {
 
-  bool initialized = false;
+  bool isSynchronized = false;
   
   Contest getContest(String contestId) => _contests[contestId];
   String getContestStartDate(String contestId) => _matchGroupService.getMatchGroupStartDate(_contests[ contestId ].groupId);
@@ -19,10 +19,10 @@ class ContestService {
   Future< Iterable<Contest> > getAllContests() {
     print("ContestManager: all");
 
-    return _matchGroupService.updated()
+    return _matchGroupService.sync()
       .then((_) => _server.getAllContests())
       .then((response) {
-        initialized = true;
+        isSynchronized = true;
         
         print("response: $response");
         

@@ -9,15 +9,15 @@ import "package:webclient/models/match_group.dart";
 
 class MatchGroupService {
   
-  bool initialized = false;
+  bool isSynchronized = false;
 
   // The group starts whenever the first match in the group starts
   String getMatchGroupStartDate(String groupId) => _matchService.getMatchStartDate(_groups[groupId].matchsIds[0]);
   
   MatchGroupService(this._server, this._matchService);
   
-  Future updated() {
-    if ( !initialized ) {
+  Future sync() {
+    if ( !isSynchronized ) {
       return getAllMatchGroups();
     }
     return new Future.value(true);
@@ -26,10 +26,10 @@ class MatchGroupService {
   Future< List<MatchGroup> > getAllMatchGroups() {
     print("MatchGroup: all");
 
-    return _matchService.updated()
+    return _matchService.sync()
         .then((_) => _server.getAllMatchGroups())
         .then((response) {
-          initialized = true;
+          isSynchronized = true;
         
           print("response: $response");
           

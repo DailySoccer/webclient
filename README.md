@@ -8,22 +8,19 @@ Install Karma
 
 - Install Node: brew install node  (or download from http://nodejs.org/download/)
 
-- Install Karma: npm install -g karma
+- Verify that you have the dart bin folder in your path: 
+    
+    $ webclient> dart --version && dart2js --version
 
-- Install Karma-Dart: npm install -g karma-dart 
-
-- Verify: karma --version
-
-  if error -> include path in ~/.profile: PATH=$PATH:/usr/local/lib/node_modules/karma/bin
-
-- Verify: dart --version && dart2js --version
-
-  if error -> include path in ~/.profile: PATH=$PATH:"path-to-dart"/dart-sdk/bin
+  if you don't have it -> include path in ~/.profile: PATH=$PATH:"path-to-dart"/dart-sdk/bin
 
 Run Karma
 ---------
 
-  karma start karma.conf.js
+  $ webclient> ./run_karma.sh
+
+After this, you should be able to access the karma server in your browser at http://localhost:9876  
+   
 
 WebClient
 =========

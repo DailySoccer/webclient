@@ -8,16 +8,16 @@ Install Karma
 
 - Install Node: brew install node  (or download from http://nodejs.org/download/)
 
-- Verify that you have the dart bin folder in your path: 
+- Verify that you have the "dart-sdk/bin" folder in your path: 
     
-    $ webclient> dart --version && dart2js --version
+    $ webclient > dart --version && dart2js --version
 
-  if you don't have it -> include path in ~/.profile: PATH=$PATH:"path-to-dart"/dart-sdk/bin
+  if you don't have it, just include the path in ~/.profile: PATH=$PATH:"path-to-dart"/dart-sdk/bin
 
 Run Karma
 ---------
 
-  $ webclient> ./run_karma.sh
+  $ webclient > ./run_karma.sh
 
 After this, you should be able to access the karma server in your browser at http://localhost:9876  
    
@@ -29,9 +29,11 @@ Configure Server:
 
 Puede solicitar datos de un servidor "real" o "simulado".
 
-type( ServerRequest, implementedBy: DailySoccerServer )
+type(ServerRequest, implementedBy: DailySoccerServer)
+
 or
-type( ServerRequest, implementedBy: MockDailySoccerServer )
+
+type(ServerRequest, implementedBy: MockDailySoccerServer)
 
 
 Configuring the launches

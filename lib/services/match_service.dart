@@ -9,14 +9,14 @@ import "package:webclient/models/match_event.dart";
 
 class MatchService {
 
-  bool initialized = false;
+  bool isSynchronized = false;
    
   String getMatchStartDate(String matchEventId) => _matchEvents[matchEventId].date;
 
    MatchService(this._server);
   
-   Future updated () {
-     if ( !initialized ) {
+   Future sync () {
+     if ( !isSynchronized ) {
        return getAllMatchEvents();
      }
      return new Future.value( true );
@@ -27,7 +27,7 @@ class MatchService {
   
     return _server.getAllMatchEvents()
         .then( (response) {
-          initialized = true;
+          isSynchronized = true;
          
            print( "response: $response" );
            

@@ -5,7 +5,7 @@ import "package:json_object/json_object.dart";
 
 import "package:webclient/services/server_service.dart";
 import "package:webclient/services/match_group_service.dart";
-import "package:webclient//models/contest.dart";
+import "package:webclient/models/contest.dart"; 
 
 class ContestService {
 

@@ -41,7 +41,10 @@ class WebClientApp extends Module {
     // real: DailySoccerServer / simulation: MockDailySoccerServer
     type(ServerService, implementedBy: DailySoccerServer);
 
-    type(ProfileService);
+    factory(ProfileService, (Injector inj){
+      return new ProfileService(inj.get(ServerService));
+    });    
+    
     type(MatchService);
     type(MatchGroupService);
     type(ContestService);

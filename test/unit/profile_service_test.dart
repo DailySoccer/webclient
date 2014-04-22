@@ -8,9 +8,7 @@ testProfileService() {
 
       setUp(() {
         // En los tests no queremos que carge el profile del localStorage, puesto que en general se queda ahi de ejecuciones anteriores
-        ProfileService.tryProfileLoad = false;
-        
-        profileService = new ProfileService(new MockDailySoccerServer());
+        profileService = new ProfileService(new MockDailySoccerServer(), tryProfileLoad: false);
 
         var rand = new Random(new DateTime.now().millisecondsSinceEpoch);
 

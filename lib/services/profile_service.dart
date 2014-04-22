@@ -9,12 +9,10 @@ import 'package:webclient/services/server_service.dart';
 
 
 class ProfileService {
-  static bool tryProfileLoad = true;
-  
   User user = null;
   bool get isLoggedIn => user != null;
 
-  ProfileService(this._server) {
+  ProfileService(this._server, {bool tryProfileLoad: true}) {
     if (tryProfileLoad)
       _tryProfileLoad();
   }

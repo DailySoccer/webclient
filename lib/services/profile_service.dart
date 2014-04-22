@@ -12,29 +12,33 @@ class ProfileService {
   User user = null;
   bool get isLoggedIn => user != null;
 
-  ProfileService(this._server) {
-    _tryProfileLoad();
+  ProfileService(this._server, {bool tryProfileLoad: true}) {
+    if (tryProfileLoad)
+      _tryProfileLoad();
   }
 
-  Future signup(String firstName, String lastName, String email, String nickName, String password) {
-    return _server.signup(firstName, lastName, email, nickName, password)
-                  .then((jsonObject) => login(email, password));
-  }
+  Future<JsonObject> signup(String firstName, String lastName, String email, String nickName, String password) {
 
-  Future login(String email, String password) {
+    if (isLoggedIn)
+      throw new Exception("WTF 4234 - We shouldn't be logged in when signing up");
+
+    return _server.signup(firstName, lastName, email, nickName, password);
+   }
+
+  Future<JsonObject> login(String email, String password) {
     return _server.login(email, password).then(_onLoginResponse);
   }
 
-  Future _onLoginResponse(JsonObject loginResponseJson) {
+  Future<JsonObject> _onLoginResponse(JsonObject loginResponseJson) {
     _server.setSessionToken(loginResponseJson.sessionToken); // to make the getUserProfile call succeed
 
     return _server.getUserProfile()
                   .then((jsonObject) => _setProfile(loginResponseJson.sessionToken, new User.fromJsonObject(jsonObject), true));
   }
 
-  Future logout() {
+  Future<JsonObject> logout() {
     _setProfile(null, null, true);
-    return new Completer.sync().future;
+    return new Future.value();
   }
 
   void _setProfile(String theSessionToken, User theUser, bool bSave) {

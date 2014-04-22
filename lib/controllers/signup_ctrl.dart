@@ -21,6 +21,7 @@ class SignupCtrl {
 
   void submitSignup() {
     _profileService.signup(firstName, lastName, email, nickName, password)
+        .then((_) => _profileService.login(email, password))
         .then((_) => _router.go('lobby', {}))
         .catchError((error) => print("WTF 154: tratar errores $error"));
   }

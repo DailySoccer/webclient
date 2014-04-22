@@ -17,7 +17,7 @@ class MockDailySoccerServer extends Mock implements ServerService {
   void setSessionToken(String sessionToken) {}
 
   Future<JsonObject> signup(String firstName, String lastName, String email, String nickName, String password) {
-    print("Mock Register: $firstName - $lastName - $email - $nickName - $password");
+    print("Mock signup: $firstName - $lastName - $email - $nickName - $password");
 
     var completer = new Completer();
 
@@ -33,14 +33,16 @@ class MockDailySoccerServer extends Mock implements ServerService {
   }
 
   Future<JsonObject> login(String email, String password) {
-    print("Mock: Login: $email - $password");
+    print("Mock login: $email - $password");
 
     var completer = new Completer();
 
     if (_users.exists(email)) {
-      JsonObject userRegistered = _users.get(email);
-      if (userRegistered.password == password) {
+      JsonObject userSignedUp = _users.get(email);
+
+      if (userSignedUp.password == password) {
         completer.complete(new JsonObject.fromJsonString(JSON_LOGIN_OK));
+        _loggedUser = userSignedUp;
       }
       else {
         completer.complete(new JsonObject.fromJsonString(JSON_ERR_NO_REGISTRADO));
@@ -53,27 +55,22 @@ class MockDailySoccerServer extends Mock implements ServerService {
     return completer.future;
   }
 
+  Future<JsonObject> getUserProfile() => new Future.value(_loggedUser);
 
-  Future<JsonObject> getUserProfile() {
-    var completer = new Completer();
-
-    // TODO: Como rellenar el userProfile? Supongo que el cliente deberia llamar a setSessionToken.
-    completer.complete(new JsonObject.fromJsonString(JSON_USER_PROFILE));
-
-    return completer.future;
-  }
 
   Future<JsonObject> getAllMatchEvents() {
     return new Future.value(new JsonObject.fromJsonString(_matches.json));
   }
-  
+
   Future<JsonObject> getAllMatchGroups() {
     return new Future.value(new JsonObject.fromJsonString(_groups.json));
   }
-  
+
   Future<JsonObject> getAllContests() {
     return new Future.value(new JsonObject.fromJsonString(_contests.json));
   }
+
+  JsonObject _loggedUser;
 
   var _users    = new MockUsers();
   var _matches  = new MockMatches();
@@ -89,10 +86,6 @@ class MockDailySoccerServer extends Mock implements ServerService {
   """;
   final JSON_LOGIN_OK = """
     { "sessionToken": "THEROOFISONFIRE" }
-  """;
-
-  final JSON_USER_PROFILE = """
-    { "firstName": "%firstName%", "lastName": "%lastName%", "email": "%email", "nickName": "%nickName%" }
   """;
 
   final JSON_ERR_YA_REGISTRADO  = """

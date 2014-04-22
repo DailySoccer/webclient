@@ -1,45 +1,47 @@
 part of webclient_test;
 
 testProfileService() {
-  group("[UserManager]", (){
+  group("[ProfileService]", (){
     group("[valid]", (){
-      var profileService;
-      String firstName, lastName, email, nickName, password;      
-      
+      ProfileService profileService;
+      String firstName, lastName, email, nickName, password;
+
       setUp( () {
         /*
         setUpInjector();
-        
+
         module((module) {
               module
                 ..type( AbstractHttp, implementedBy: MockDailySoccerServer );
             });
-            
+
         inject((UserManager u) { userManager = u; });
         */
-        
+
         profileService = new ProfileService(new MockDailySoccerServer());
-        
+
+        var rand = new Random(new DateTime.now().millisecondsSinceEpoch);
+
         firstName = "Test One Two";
         lastName  = "Three Four";
-        email     = "test@test.com";
-        nickName  = "nick";
-        password  = "test";        
+        email     = "fromtests" + rand.nextInt(0xFFFFFFFF) + "@test.com";
+        nickName  = "fromtests" + rand.nextInt(0xFFFFFFFF);
+        password  = "test";
       });
-      
-      test("true si registra correctamente un usuario", (){
-        /*
-        Future result = profileService.signup( firstName, lastName, email, nickName, password );
-        return result.then( (_) {
-          expect( profileService.user.isRegistered, isTrue, reason: "No registrado" );
-          expect( profileService.currentUser.registerInfo, equals(user.registerInfo), reason: "currentUser no actualizado" );
-          expect( profileService.get(user.email).isRegistered, isTrue, reason: "No registrado" );
-          expect( profileService.exists(user.email), isTrue, reason: "user no existe");
+
+      test("true si hace signup correctamente un usuario", () {
+        Future result = profileService.signup(firstName, lastName, email, nickName, password);
+
+        return result.then((_) {
+          expect(profileService.isLoggedIn, isTrue, reason: "Not logged in");
+          expect(profileService.user, isNotNull, reason: "User doesn't exist");
+          expect(profileService.user.fullName, equals("$firstName $lastName"), reason: "Invalid fullName");
+          expect(profileService.user.email, equals(email), reason: "email is not equal");
+          expect(profileService.user.nickName, equals(nickName), reason: "User doesn't exist");
         });
-        */
       });
-      
-      test("true si hace correctamente un login de usuario", (){
+
+      test("true si hace correctamente un login de usuario", () {
         /*
         Future result = profileService.register( user )
           .then( (_) => profileService.login( user ) );
@@ -78,7 +80,7 @@ testProfileService() {
         });
         */
       });
-      
+
       test("true si no se puede hacer login sin estar registrado", (){
         /*
         Future result = profileService.login( user );
@@ -103,7 +105,7 @@ testProfileService() {
         });
         */
       });
-      
+
       test("true si no se puede hacer logout sin estar login", (){
         /*
         Future result = profileService.logout();
@@ -115,7 +117,7 @@ testProfileService() {
         });
         */
       });
-      
+
     });
   });
 }

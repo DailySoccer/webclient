@@ -2,6 +2,7 @@ name: webclient
 description: DailySoccer application
 dependencies:
   angular: 0.9.10
+  angular_dart_ui_bootstrap: 0.2.1
   bootjack: 0.6.5
   browser: 0.9.1
   dartmocks: 0.5.1
@@ -11,4 +12,3 @@ dependencies:
   json_object: 1.0.18+2
   mock: 0.10.0+1
   unittest: 0.10.1+2
-

@@ -54,6 +54,20 @@
     
     <div class="container">
 
+      <!--
+      <div flash-messages class="ng-cloak">
+        <alert ng-repeat="m in flashCtrl.messages" type="m.type" close="flashCtrl.closeAlert($index)">{{m.text}}</alert>
+      </div>
+      -->
+      <div flash-messages class="ng-cloak">
+        <div ng-repeat="m in flashCtrl.messages" id="flash-messages">
+            <div class="alert alert-{{m.type}} alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <span class="">{{m.text}}</span>
+            </div>
+        </div>    
+      </div>
+
       <div class="starter-template">
         <ng-view></ng-view>
       </div>

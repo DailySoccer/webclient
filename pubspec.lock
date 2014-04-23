@@ -9,6 +9,10 @@ packages:
     description: angular
     source: hosted
     version: "0.9.10"
+  angular_dart_ui_bootstrap:
+    description: angular_dart_ui_bootstrap
+    source: hosted
+    version: "0.2.1"
   args:
     description: args
     source: hosted

@@ -14,6 +14,9 @@ import 'services/match_group_service.dart';
 import 'services/contest_service.dart';
 import 'services/contest_entry_service.dart';
 import 'services/server_service.dart';
+import 'services/flash_messages_service.dart';
+
+import 'controllers/flash_messages_ctrl.dart';
 
 import 'controllers/menu_ctrl.dart';
 import 'controllers/login_ctrl.dart';
@@ -49,12 +52,14 @@ class WebClientApp extends Module {
     type(MatchGroupService);
     type(ContestService);
     type(ContestEntryService);
-
+    type(FlashMessagesService);
+    
     type(MenuCtrl);
     type(LoginCtrl);
     type(SignupCtrl);
     type(LobbyCtrl);
     type(EnterContestCtrl);
+    type(FlashMessagesCtrl);
 
     value(RouteInitializerFn, webClientRouteInitializer);
     factory(NgRoutingUsePushState, (_) => new NgRoutingUsePushState.value(false));

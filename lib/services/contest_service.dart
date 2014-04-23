@@ -1,6 +1,7 @@
 library contest_service;
 
 import 'dart:async';
+import 'package:logging/logging.dart';
 import "package:json_object/json_object.dart";
 
 import "package:webclient/services/server_service.dart";
@@ -17,7 +18,7 @@ class ContestService {
   ContestService(this._server, this._matchGroupService);
 
   Future< Iterable<Contest> > getAllContests() {
-    print("ContestManager: all");
+    Logger.root.info("ContestManager: all");
 
     return _matchGroupService.sync()
       .then((_) => _server.getAllContests())

@@ -55,53 +55,39 @@ testProfileService() {
       });
 
       test("true si no se puede registrar el usuario 2 veces", () {
-        /*
-        Future result = profileService.register( user )
-          .then( (_) => profileService.register( user ) );
-        return result.then( (_) {
-          fail( "usuario registrado 2 veces" );
-        })
-        .catchError( (error) {
-          expect( error, profileService.ERR_YA_REGISTRADO );
-        });
-        */
+        return profileService.signup(firstName, lastName, email, nickName, password)
+            .then((_) => profileService.signup(firstName, lastName, email, nickName, password))
+            .then((_) {
+              fail("usuario registrado 2 veces");
+            })
+            .catchError((error) {
+              expect(error, new JsonObject.fromJsonString(MockDailySoccerServer.JSON_ERR_YA_REGISTRADO));
+            });
       });
 
       test("true si no se puede hacer login sin estar registrado", () {
-        /*
-        Future result = profileService.login( user );
-        return result.then( (_) {
-          fail( "login de un usuario no registrado" );
-        })
-        .catchError( (error) {
-          expect( error, profileService.ERR_NO_REGISTRADO );
-        });
-        */
+        return profileService.login(email, password)
+            .then((_) {
+              fail("login de un usuario no registrado");
+            })
+            .catchError((error) {
+              expect(error, new JsonObject.fromJsonString(MockDailySoccerServer.JSON_ERR_NO_REGISTRADO));
+            });
       });
 
       test("true si no se puede hacer login con un password incorrecto", () {
-        /*
-        Future result = profileService.register( user )
-          .then ( (_) { user.password = "invalido"; return profileService.login( user ); } );
-        return result.then( (_) {
-          fail( "login con un password incorrecto" );
-        })
-        .catchError( (error) {
-          expect( error, profileService.ERR_NO_REGISTRADO );
-        });
-        */
+        return profileService.signup(firstName, lastName, email, nickName, password)
+            .then((_) => profileService.login(email, "invalido"))
+            .then((_) {
+              fail("login con un password incorrecto");
+            })
+            .catchError((error) {
+              expect(error, new JsonObject.fromJsonString(MockDailySoccerServer.JSON_ERR_NO_REGISTRADO));
+            });
       });
 
-      test("true si no se puede hacer logout sin estar login", () {
-        /*
-        Future result = profileService.logout();
-        return result.then( (_) {
-          fail( "logout sin estar login" );
-        })
-        .catchError( (error) {
-          expect( error, profileService.ERR_NO_LOGIN );
-        });
-        */
+      skip_test("true si no se puede hacer logout sin estar login", () {
+        expect(profileService.logout(), throws);
       });
 
     });

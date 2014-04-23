@@ -26,7 +26,7 @@ class MockDailySoccerServer extends Mock implements ServerService {
       completer.complete(new JsonObject.fromJsonString(JSON_REGISTRADO_OK));
     }
     else {
-      completer.complete(new JsonObject.fromJsonString(JSON_ERR_YA_REGISTRADO));
+      completer.completeError(new JsonObject.fromJsonString(JSON_ERR_YA_REGISTRADO));
     }
 
     return completer.future;
@@ -45,11 +45,11 @@ class MockDailySoccerServer extends Mock implements ServerService {
         _loggedUser = userSignedUp;
       }
       else {
-        completer.complete(new JsonObject.fromJsonString(JSON_ERR_NO_REGISTRADO));
+        completer.completeError(new JsonObject.fromJsonString(JSON_ERR_NO_REGISTRADO));
       }
     }
     else {
-      completer.complete(new JsonObject.fromJsonString(JSON_ERR_NO_REGISTRADO));
+      completer.completeError(new JsonObject.fromJsonString(JSON_ERR_NO_REGISTRADO));
     }
 
     return completer.future;
@@ -81,20 +81,20 @@ class MockDailySoccerServer extends Mock implements ServerService {
   /*
    *  JSON RESPONSES
    */
-  final JSON_REGISTRADO_OK = """
+  static const JSON_REGISTRADO_OK = """
     {"result": "ok"} 
   """;
-  final JSON_LOGIN_OK = """
+  static const JSON_LOGIN_OK = """
     { "sessionToken": "THEROOFISONFIRE" }
   """;
 
-  final JSON_ERR_YA_REGISTRADO  = """
+  static const JSON_ERR_YA_REGISTRADO  = """
     {"result": "error", "reason": "ya registrado"}
   """;
-  final JSON_ERR_NO_REGISTRADO  = """
+  static const JSON_ERR_NO_REGISTRADO  = """
     {"result": "error", "reason": "no registrado"}
   """;
-  final JSON_ERR_NO_LOGIN       = """
+  static const JSON_ERR_NO_LOGIN       = """
     {"result": "error", "reason": "no login"}
   """;
 }

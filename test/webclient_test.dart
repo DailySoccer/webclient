@@ -25,10 +25,10 @@ part 'unit/contest_service_test.dart';
 part 'unit/match_event_test.dart';
 
 main() {
-  //testMatchDay();
-  //testMatchService();
-  //testMatchGroupService();
-  //testContestService();
+  testMatchDay();
+  testMatchService();
+  testMatchGroupService();
+  testContestService();
   testProfileService();
 
   // filterTests("valid");

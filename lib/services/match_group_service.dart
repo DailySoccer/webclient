@@ -1,6 +1,7 @@
 library match_group_service;
 
 import 'dart:async';
+import 'package:logging/logging.dart';
 import "package:json_object/json_object.dart";
 
 import "package:webclient/services/match_service.dart";
@@ -24,19 +25,19 @@ class MatchGroupService {
   }
   
   Future< List<MatchGroup> > getAllMatchGroups() {
-    print("MatchGroup: all");
+    Logger.root.info("MatchGroup: all");
 
     return _matchService.sync()
         .then((_) => _server.getAllMatchGroups())
         .then((response) {
           isSynchronized = true;
         
-          print("response: $response");
+          Logger.root.info("response: $response");
           
           // Inicialización del mapa de grupos de partidos
           _groups = new Map<String, MatchGroup>();
           for (var x in response) {
-            print("group: ${x.id}: $x");
+            Logger.root.info("group: ${x.id}: $x");
             _groups[x.id] = new MatchGroup.fromJsonObject(x);
           }
           

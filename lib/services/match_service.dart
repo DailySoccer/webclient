@@ -1,6 +1,7 @@
 library match_service;
 
 import 'dart:async';
+import 'package:logging/logging.dart';
 import "package:json_object/json_object.dart";
 
 import "package:webclient/services/server_service.dart";
@@ -23,18 +24,18 @@ class MatchService {
    }
    
    Future< List<MatchEvent> > getAllMatchEvents() {
-     print("MatchManager: all");
+     Logger.root.info("MatchManager: all");
   
     return _server.getAllMatchEvents()
         .then( (response) {
           isSynchronized = true;
          
-           print( "response: $response" );
+          Logger.root.info( "response: $response" );
            
            // Inicialización del mapa de partidos
            _matchEvents = new Map<String, MatchEvent>();
            for (var x in response) {
-             print("match: ${x.id}: $x");
+             Logger.root.info("match: ${x.id}: $x");
              _matchEvents[x.id] = new MatchEvent.fromJsonObject(x);
            }
            

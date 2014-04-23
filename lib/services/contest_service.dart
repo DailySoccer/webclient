@@ -25,12 +25,12 @@ class ContestService {
       .then((response) {
         isSynchronized = true;
 
-        print("response: $response");
+        Logger.root.info("response: $response");
 
         // Inicialización del mapa de partidos
         _contests = new Map<String, Contest>();
         for (var x in response) {
-          print("contest: ${x.id}: $x");
+          Logger.root.info("contest: ${x.id}: $x");
 
           var contest = new Contest.fromJsonObject(x);
 

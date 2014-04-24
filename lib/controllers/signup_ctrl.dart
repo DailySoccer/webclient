@@ -25,7 +25,6 @@ class SignupCtrl implements NgDetachAware {
         .then((_) => _profileService.login(email, password))
         .then((_) => _router.go('lobby', {}))
         .catchError((error) {
-          print("WTF 154: tratar errores $error");
           _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
         });
   }
@@ -33,7 +32,7 @@ class SignupCtrl implements NgDetachAware {
   void detach() {
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
   }
-  
+
   Router _router;
   ProfileService _profileService;
   FlashMessagesService _flashMessage;

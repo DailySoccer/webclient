@@ -16,8 +16,7 @@ class LoginCtrl implements NgDetachAware {
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
     _profileManager.login(email, password)
         .then((_) => _router.go('lobby', {}))
-        .catchError( (error){
-          print("WTF 322: tratar errores $error");
+        .catchError((error) {
           _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
         });
   }
@@ -25,7 +24,7 @@ class LoginCtrl implements NgDetachAware {
   void detach() {
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
   }
-  
+
   Router _router;
   ProfileService _profileManager;
   FlashMessagesService _flashMessage;

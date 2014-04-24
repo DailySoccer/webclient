@@ -39,8 +39,8 @@ class ProfileService {
   Future<JsonObject> logout() {
 
     if (!isLoggedIn)
-      throw new Exception("WTF 4234 - We should be logged in when log out");
-    
+      throw new Exception("WTF 444 - We should be logged in when loging out");
+
     _setProfile(null, null, true);
     return new Future.value();
   }

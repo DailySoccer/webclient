@@ -23,10 +23,10 @@ class MockDailySoccerServer extends Mock implements ServerService {
 
     if (!_users.exists(email)) {
       _users.add(new JsonObject.fromMap({"firstName": firstName, "lastName": lastName, "email": email, "nickName": nickName, "password": password}));
-      completer.complete(new JsonObject.fromJsonString(JSON_REGISTRADO_OK));
+      completer.complete(new JsonObject.fromJsonString(JSON_SIGNUP_OK));
     }
     else {
-      completer.completeError(new JsonObject.fromJsonString(JSON_ERR_YA_REGISTRADO));
+      completer.completeError(new JsonObject.fromJsonString(JSON_ERR_ALREADY_SIGNEDUP));
     }
 
     return completer.future;
@@ -45,11 +45,11 @@ class MockDailySoccerServer extends Mock implements ServerService {
         _loggedUser = userSignedUp;
       }
       else {
-        completer.completeError(new JsonObject.fromJsonString(JSON_ERR_NO_REGISTRADO));
+        completer.completeError(new JsonObject.fromJsonString(JSON_ERR_INVALID_LOGIN));
       }
     }
     else {
-      completer.completeError(new JsonObject.fromJsonString(JSON_ERR_NO_REGISTRADO));
+      completer.completeError(new JsonObject.fromJsonString(JSON_ERR_INVALID_LOGIN));
     }
 
     return completer.future;
@@ -81,20 +81,17 @@ class MockDailySoccerServer extends Mock implements ServerService {
   /*
    *  JSON RESPONSES
    */
-  static const JSON_REGISTRADO_OK = """
+  static const JSON_SIGNUP_OK = """
     {"result": "ok"} 
   """;
   static const JSON_LOGIN_OK = """
     { "sessionToken": "THEROOFISONFIRE" }
   """;
 
-  static const JSON_ERR_YA_REGISTRADO  = """
+  static const JSON_ERR_ALREADY_SIGNEDUP  = """
     {"result": "error", "reason": "ya registrado"}
   """;
-  static const JSON_ERR_NO_REGISTRADO  = """
+  static const JSON_ERR_INVALID_LOGIN  = """
     {"result": "error", "reason": "no registrado"}
-  """;
-  static const JSON_ERR_NO_LOGIN       = """
-    {"result": "error", "reason": "no login"}
   """;
 }

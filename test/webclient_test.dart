@@ -17,6 +17,7 @@ import 'package:webclient/services/contest_service.dart';
 import 'package:webclient/models/user.dart';
 import 'package:webclient/models/match_event.dart';
 import 'dart:html';
+import 'package:webclient/services/server_service.dart';
 
 part 'unit/profile_service_test.dart';
 part 'unit/match_service_test.dart';

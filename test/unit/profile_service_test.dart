@@ -1,7 +1,7 @@
 part of webclient_test;
 
 testProfileService() {
-  group("[ProfileService]", (){
+  group("[ProfileService]", () {
     group("[valid]", () {
       ProfileService profileService;
       String firstName, lastName, email, nickName, password;
@@ -12,14 +12,14 @@ testProfileService() {
 
         var rand = new Random(new DateTime.now().millisecondsSinceEpoch);
 
-        firstName = "Test One Two";
-        lastName  = "Three Four";
+        firstName = "Test FirstName";
+        lastName  = "Test LastName";
         email     = "fromtests" + rand.nextInt(0xFFFFFFFF).toString() + "@test.com";
         nickName  = "fromtests" + rand.nextInt(0xFFFFFFFF).toString();
         password  = "test";
       });
 
-      test("true si hace signup correctamente un usuario", () {
+      test("Se hace signup correctamente de un usuario", () {
 
         return profileService.signup(firstName, lastName, email, nickName, password)
             .then((jsonObject) {
@@ -29,7 +29,7 @@ testProfileService() {
             });
       });
 
-      test("true si hace correctamente un login", () {
+      test("Se hace correctamente login de un usuario existente", () {
 
         return profileService.signup(firstName, lastName, email, nickName, password)
             .then((_) => profileService.login(email, password))
@@ -43,7 +43,7 @@ testProfileService() {
             });
       });
 
-      test("true si hace correctamente un logout del usuario actual", () {
+      test("Se hace correctamente logout del usuario actual", () {
 
         return profileService.signup(firstName, lastName, email, nickName, password)
             .then((_) => profileService.login(email, password))
@@ -54,35 +54,35 @@ testProfileService() {
             });
       });
 
-      test("true si no se puede registrar el usuario 2 veces", () {
+      test("No se puede registrar el usuario 2 veces", () {
         return profileService.signup(firstName, lastName, email, nickName, password)
             .then((_) => profileService.signup(firstName, lastName, email, nickName, password))
             .then((_) {
               fail("usuario registrado 2 veces");
             })
             .catchError((error) {
-              expect(error, new JsonObject.fromJsonString(MockDailySoccerServer.JSON_ERR_YA_REGISTRADO));
+              expect(error, new JsonObject.fromJsonString(MockDailySoccerServer.JSON_ERR_ALREADY_SIGNEDUP));
             });
       });
 
-      test("true si no se puede hacer login sin estar registrado", () {
+      test("No se puede hacer login sin estar registrado", () {
         return profileService.login(email, password)
             .then((_) {
               fail("login de un usuario no registrado");
             })
             .catchError((error) {
-              expect(error, new JsonObject.fromJsonString(MockDailySoccerServer.JSON_ERR_NO_REGISTRADO));
+              expect(error, new JsonObject.fromJsonString(MockDailySoccerServer.JSON_ERR_INVALID_LOGIN));
             });
       });
 
-      test("true si no se puede hacer login con un password incorrecto", () {
+      test("No se puede hacer login con un password incorrecto", () {
         return profileService.signup(firstName, lastName, email, nickName, password)
             .then((_) => profileService.login(email, "invalido"))
             .then((_) {
               fail("login con un password incorrecto");
             })
             .catchError((error) {
-              expect(error, new JsonObject.fromJsonString(MockDailySoccerServer.JSON_ERR_NO_REGISTRADO));
+              expect(error, new JsonObject.fromJsonString(MockDailySoccerServer.JSON_ERR_INVALID_LOGIN));
             });
       });
 

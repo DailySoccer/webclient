@@ -86,10 +86,9 @@ testProfileService() {
             });
       });
 
-      skip_test("true si no se puede hacer logout sin estar login", () {
-        expect(profileService.logout(), throws);
+      test("No se puede hacer logout sin estar login", () {
+        expect(() => profileService.logout(), throws);
       });
-
     });
   });
 }

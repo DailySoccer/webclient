@@ -34,12 +34,12 @@ testProfileService() {
         return profileService.signup(firstName, lastName, email, nickName, password)
             .then((_) => profileService.login(email, password))
             .then((_) {
-              expect(profileService.isLoggedIn, isTrue, reason: "No login");
-              expect(profileService.user, isNotNull, reason: "User should exist");
-              expect(profileService.user.firstName, equals(firstName), reason: "Same firstName");
-              expect(profileService.user.lastName, equals(lastName), reason: "Same lastName");
-              expect(profileService.user.email, equals(email), reason: "Same email");
-              expect(profileService.user.nickName, equals(nickName), reason: "Same nickName");
+              expect(profileService.isLoggedIn, isTrue, reason: "Must be login in");
+              expect(profileService.user, isNotNull, reason: "User must exist");
+              expect(profileService.user.firstName, equals(firstName), reason: " The firstName must be equal");
+              expect(profileService.user.lastName, equals(lastName), reason: "The lastName must be equal");
+              expect(profileService.user.email, equals(email), reason: "The email must be equal");
+              expect(profileService.user.nickName, equals(nickName), reason: "The nickName must be equal");
             });
       });
 

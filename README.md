@@ -25,9 +25,7 @@ After this, you should be able to access the karma server in your browser at htt
 WebClient
 =========
 
-Configure Server:
-
-Puede solicitar datos de un servidor "real" o "simulado".
+El cliente puede solicitar datos de un servidor "real" o "simulado". Para configurar esto, en webclient.dart:
 
 type(ServerRequest, implementedBy: DailySoccerServer)
 

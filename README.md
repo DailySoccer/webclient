@@ -3,23 +3,27 @@
 Testing
 =============
 
-Install Karma
--------------
+- Install Node:
 
-- Install Node: brew install node  (or download from http://nodejs.org/download/)
+	$ webclient > brew install node
 
+- Install the npm packages using:
+
+	$ webclient > npm install
+
+	This of course will create the "node_modules/" folder
+	
 - Verify that you have the "dart-sdk/bin" folder in your path: 
     
     $ webclient > dart --version && dart2js --version
 
   if you don't have it, just include the path in ~/.profile: PATH=$PATH:"path-to-dart"/dart-sdk/bin
 
-Run Karma
----------
+- To run karma use the provided script:
 
   $ webclient > ./run_karma.sh
 
-After this, you should be able to access the karma server in your browser at http://localhost:9876  
+The browser is launched automatically by karma. You can access it at http://localhost:9876  
    
 
 WebClient

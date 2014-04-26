@@ -9,6 +9,7 @@ module.exports = function(config) {
     files: [
       'test/*.dart',
       {pattern: '**/*.dart', watched: true, included: false, served: true},
+      {pattern: '**/*.html', watched: true, included: false, served: true},
       'packages/browser/dart.js',
       'packages/browser/interop.js'
     ],
@@ -32,14 +33,19 @@ module.exports = function(config) {
     // If browser does not capture in given timeout [ms], kill it
     captureTimeout: 5000,
 
-    // browsers: [ 'Chrome' ],
+    browsers: [ 'Chrome' ], 
+    // browsers: [ 'Firefox', 'Chrome' ], 
+    // browsers: [ 'Firefox' ],   
+
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
+    // singleRun: false,
 
     plugins: [
-      'karma-dart'
+      'karma-dart',
+      'karma-chrome-launcher',
+      'karma-firefox-launcher'
     ]
   });
 };

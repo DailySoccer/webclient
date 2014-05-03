@@ -1,14 +1,21 @@
 name: webclient
 description: DailySoccer application
 dependencies:
-  angular: 0.9.10
-  angular_dart_ui_bootstrap: 0.2.1
-  bootjack: 0.6.5
-  browser: 0.9.1
-  dartmocks: 0.5.1
-  di: 0.0.34
-  http: 0.10.0
-  js: 0.2.2
-  json_object: 1.0.18+2
-  mock: 0.10.0+1
-  unittest: 0.10.1+2
+    angular: '>=0.10.0 < 0.11.0'
+    angular_dart_ui_bootstrap: 0.2.1
+    bootjack: 0.6.5
+    json_object: 1.0.18+2
+    
+dev_dependencies:
+    unittest: 0.10.1+2
+  
+transformers:
+- angular
+- $dart2js:
+    checked: false
+    minify: false
+    verbose: false
+    analyzeAll: false
+    suppressWarnings: false
+    suppressHints: false
+    terse: false

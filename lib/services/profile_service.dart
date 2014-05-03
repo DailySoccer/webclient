@@ -12,8 +12,7 @@ class ProfileService {
   User user = null;
   bool get isLoggedIn => user != null;
 
-  ProfileService(this._server, {bool tryProfileLoad: true}) {
-    if (tryProfileLoad)
+  ProfileService(this._server) {
       _tryProfileLoad();
   }
 

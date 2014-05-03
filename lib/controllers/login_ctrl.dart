@@ -4,18 +4,18 @@ import 'package:angular/angular.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 
-@NgController(
+@Controller(
     selector: '[login-ctrl]',
     publishAs: 'ctrl'
 )
-class LoginCtrl implements NgDetachAware {
+class LoginCtrl implements DetachAware {
   bool enabledSubmit = true;
 
   LoginCtrl(this._router, this._profileManager, this._flashMessage);
 
   void login(String email, String password) {
     enabledSubmit = false;
-    
+
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
     _profileManager.login(email, password)
         .then((_) => _router.go('lobby', {}))

@@ -5,11 +5,11 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 
 
-@NgController(
+@Controller(
     selector: '[signup-ctrl]',
     publishAs: 'ctrl'
 )
-class SignupCtrl implements NgDetachAware {
+class SignupCtrl implements DetachAware {
 
   String firstName;
   String lastName;
@@ -22,7 +22,7 @@ class SignupCtrl implements NgDetachAware {
 
   void submitSignup() {
     enabledSubmit = false;
-    
+
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
     _profileService.signup(firstName, lastName, email, nickName, password)
         .then((_) => _profileService.login(email, password))

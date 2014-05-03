@@ -4,11 +4,11 @@ import 'package:angular/angular.dart';
 import 'package:webclient/services/profile_service.dart';
 
 
-@NgController(
+@Controller(
     selector: '[menu-ctrl]',
     publishAs: 'menuCtrl'
 )
-class MenuCtrl implements NgAttachAware {
+class MenuCtrl implements AttachAware {
   bool   isLoggedIn = false;
   String fullName = "";
   String nickName = "";

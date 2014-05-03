@@ -1,13 +1,12 @@
 library lobby_ctrl;
 
-import 'dart:async';
 import 'package:angular/angular.dart';
 
 import 'package:webclient/services/contest_service.dart';
 import 'package:webclient/models/contest.dart';
 
 
-@NgController(
+@Controller(
     selector: '[lobby-ctrl]',
     publishAs: 'ctrl'
 )
@@ -18,7 +17,7 @@ class LobbyCtrl {
     this._contestService.getAllContests()
         .then((values) {
             contests = values;
-        });    
+        });
   }
 
   EnterContest(Contest contest) {

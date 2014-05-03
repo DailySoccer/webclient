@@ -20,6 +20,7 @@ import 'package:webclient/services/contest_service.dart';
 import 'package:webclient/models/user.dart';
 import 'package:webclient/models/match_event.dart';
 import 'package:webclient/services/server_service.dart';
+import 'dart:html';
 
 part 'unit/profile_service_test.dart';
 part 'unit/match_service_test.dart';

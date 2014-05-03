@@ -3,10 +3,9 @@ library webclient;
 import 'dart:html';
 
 import 'package:angular/angular.dart';
+import 'package:angular/application_factory.dart';
 import 'package:angular/routing/module.dart';
 import 'package:webclient/routing/webclient_router.dart';
-
-import 'mock/mock_server.dart';
 
 import 'services/profile_service.dart';
 import 'services/match_service.dart';
@@ -40,32 +39,27 @@ bool isLocalHost() {
 
 class WebClientApp extends Module {
   WebClientApp() {
-    // REVIEW: switch entre real y simulación
     // real: DailySoccerServer / simulation: MockDailySoccerServer
-    type(ServerService, implementedBy: DailySoccerServer);
+    bind(ServerService, toImplementation: DailySoccerServer);
 
-    factory(ProfileService, (Injector inj){
-      return new ProfileService(inj.get(ServerService));
-    });    
-    
-    type(MatchService);
-    type(MatchGroupService);
-    type(ContestService);
-    type(ContestEntryService);
-    type(FlashMessagesService);
-    
-    type(MenuCtrl);
-    type(LoginCtrl);
-    type(SignupCtrl);
-    type(LobbyCtrl);
-    type(EnterContestCtrl);
-    type(FlashMessagesCtrl);
+    bind(ProfileService);
+    bind(MatchService);
+    bind(MatchGroupService);
+    bind(ContestService);
+    bind(ContestEntryService);
+    bind(FlashMessagesService);
 
-    value(RouteInitializerFn, webClientRouteInitializer);
-    factory(NgRoutingUsePushState, (_) => new NgRoutingUsePushState.value(false));
+    bind(MenuCtrl);
+    bind(LoginCtrl);
+    bind(SignupCtrl);
+    bind(LobbyCtrl);
+    bind(EnterContestCtrl);
+    bind(FlashMessagesCtrl);
+
+    bind(RouteInitializerFn, toValue: webClientRouteInitializer);
+    bind(NgRoutingUsePushState, toFactory:  (_) => new NgRoutingUsePushState.value(false));
   }
 }
-
 
 startWebClientApp() {
 
@@ -74,7 +68,7 @@ startWebClientApp() {
   }
   print("Host: $HostServer");
 
-  ngBootstrap(module: new WebClientApp());
+  applicationFactory().addModule(new WebClientApp()).run();
 }
 
 String _LocalHostServer = "http://localhost:9000";

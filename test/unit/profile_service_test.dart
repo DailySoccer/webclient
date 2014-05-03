@@ -7,8 +7,8 @@ testProfileService() {
       String firstName, lastName, email, nickName, password;
 
       setUp(() {
-        // En los tests no queremos que carge el profile del localStorage, puesto que en general se queda ahi de ejecuciones anteriores
-        profileService = new ProfileService(new MockDailySoccerServer(), tryProfileLoad: false);
+        // En los tests no queremos que se carge nada del localstorage (en general se queda ahi de ejecuciones anteriores)
+        window.localStorage.clear();
 
         var rand = new Random(new DateTime.now().millisecondsSinceEpoch);
 
@@ -17,6 +17,8 @@ testProfileService() {
         email     = "fromtests" + rand.nextInt(0xFFFFFFFF).toString() + "@test.com";
         nickName  = "fromtests" + rand.nextInt(0xFFFFFFFF).toString();
         password  = "test";
+
+        profileService = new ProfileService(new MockDailySoccerServer());
       });
 
       test("Se hace signup correctamente de un usuario", () {

@@ -2,7 +2,6 @@ library match_group_service;
 
 import 'dart:async';
 import 'package:logging/logging.dart';
-import "package:json_object/json_object.dart";
 
 import "package:webclient/services/match_service.dart";
 import "package:webclient/services/server_service.dart";

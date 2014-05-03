@@ -6,7 +6,7 @@ import 'package:webclient/services/contest_service.dart';
 import 'package:webclient/models/contest.dart';
 
 
-@NgController(
+@Controller(
     selector: '[enter-contest-ctrl]',
     publishAs: 'ctrl'
 )

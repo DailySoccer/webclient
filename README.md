@@ -12,7 +12,8 @@ Testing
 
 	$ webclient > npm install
 
-	This of course will create the "node_modules/" folder
+	This of course will create the "node_modules/" folder. Hide it in your DartEditor workspace by right-clicking 
+	in the root project -> properties, and adding an Exclude filter under the Resources section.
 	
 - Verify that you have the "dart-sdk/bin" folder in your path: 
     
@@ -32,11 +33,11 @@ WebClient
 
 El cliente puede solicitar datos de un servidor "real" o "simulado". Para configurar esto, en webclient.dart:
 
-type(ServerRequest, implementedBy: DailySoccerServer)
+bind(ServerRequest, toImplementation: DailySoccerServer)
 
 or
 
-type(ServerRequest, implementedBy: MockDailySoccerServer)
+type(ServerRequest, toImplementation: MockDailySoccerServer)
 
 
 Configuring the launches

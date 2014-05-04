@@ -1,5 +1,5 @@
 [![Build Status](https://drone.io/github.com/DailySoccer/webclient/status.png)](https://drone.io/github.com/DailySoccer/webclient/latest)
-[![Build Status](https://www.codeship.io/projects/baab71b0-af1d-0131-12d8-2e66f154cad7/status)](https://github.com/DailySoccer/webclient/master)
+[![Build Status](https://www.codeship.io/projects/baab71b0-af1d-0131-12d8-2e66f154cad7/status)](https://www.codeship.io/projects/19780)
 
 Testing
 =============

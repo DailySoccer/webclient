@@ -3,6 +3,7 @@ description: Daily Fantasy Soccer
 dependencies:
     angular: '>=0.10.0 < 0.11.0'
     angular_dart_ui_bootstrap: 0.2.1
+    browser: '>=0.10.0 < 0.11.0'
     bootjack: 0.6.5
     json_object: 1.0.18+2
     

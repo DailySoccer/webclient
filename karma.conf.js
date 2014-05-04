@@ -10,8 +10,7 @@ module.exports = function(config) {
       'test/*.dart',
       {pattern: '**/*.dart', watched: true, included: false, served: true},
       {pattern: '**/*.html', watched: true, included: false, served: true},
-      'packages/browser/dart.js',
-      'packages/browser/interop.js'
+      'packages/browser/dart.js'
     ],
 
     // list of files to exclude
@@ -35,13 +34,12 @@ module.exports = function(config) {
 
     browserNoActivityTimeout: 60000,
 
-    browsers: [ 'Chrome' ], 
-    // browsers: [ 'Firefox', 'Chrome' ], 
-    // browsers: [ 'Firefox' ],   
+    browsers: [ 'Chrome' ],
+    // browsers: [ 'Firefox', 'Chrome' ],
+    // browsers: [ 'Firefox' ],
 
 
-    // Continuous Integration mode
-    // if true, Karma captures browsers, runs the tests and exits
+    // Continuous Integration mode. if true, Karma captures browsers, runs the tests and exits
     // singleRun: false,
 
     plugins: [

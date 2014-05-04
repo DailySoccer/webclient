@@ -2,11 +2,14 @@ library contest_service;
 
 import 'dart:async';
 import 'package:logging/logging.dart';
+import 'package:angular/angular.dart';
 
 import "package:webclient/services/server_service.dart";
 import "package:webclient/services/match_group_service.dart";
 import "package:webclient/models/contest.dart";
 
+
+@Injectable()
 class ContestService {
 
   bool isSynchronized = false;

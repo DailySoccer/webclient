@@ -1,6 +1,6 @@
 <section login-ctrl>
 
-<form class="form-login form-horizontal" ng-submit="ctrl.login(email, password)" data-toggle="validator" role="form">
+<form class="form-login form-horizontal" ng-submit="loginCtrl.login(email, password)" data-toggle="validator" role="form">
 <fieldset>
 
 <!-- Form Name -->
@@ -28,7 +28,7 @@
 <div class="control-group">
   <label class="control-label" for="login"></label>
   <div class="controls">
-    <button id="login" name="login" class="btn btn-primary" ng-disabled="!ctrl.enabledSubmit">Log in</button>
+    <button id="login" name="login" class="btn btn-primary" ng-disabled="!loginCtrl.enabledSubmit">Log in</button>
   </div>
 </div>
 

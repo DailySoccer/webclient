@@ -5,6 +5,7 @@ import 'package:angular/angular.dart';
 import 'package:json_object/json_object.dart';
 import 'package:webclient/webclient.dart';
 
+
 abstract class ServerService {
   void               setSessionToken(String sessionToken);
   Future<JsonObject> signup(String firstName, String lastName, String email, String nickName, String password);
@@ -15,6 +16,7 @@ abstract class ServerService {
   Future<JsonObject> getAllContests();
 }
 
+@Injectable()
 class DailySoccerServer implements ServerService {
 
   DailySoccerServer(this._http);
@@ -22,27 +24,27 @@ class DailySoccerServer implements ServerService {
   void setSessionToken(String sessionToken) { _sessionToken = sessionToken; }
 
   Future<JsonObject> signup(String firstName, String lastName, String email, String nickName, String password) {
-    return _innerServerCall("$HostServer/signup", {'firstName': firstName, 'lastName': lastName, 'email': email, 'nickName': nickName, 'password': password});
+    return _innerServerCall("$HostServerUrl/signup", {'firstName': firstName, 'lastName': lastName, 'email': email, 'nickName': nickName, 'password': password});
   }
 
   Future<JsonObject> login(String email, String password) {
-    return _innerServerCall("$HostServer/login", {'email': email, 'password': password});
+    return _innerServerCall("$HostServerUrl/login", {'email': email, 'password': password});
   }
 
   Future<JsonObject> getUserProfile() {
-    return _innerServerCall("$HostServer/get_user_profile", null);
+    return _innerServerCall("$HostServerUrl/get_user_profile", null);
   }
 
   Future<JsonObject> getAllMatchEvents() {
-    return _innerServerCall("$HostServer/get_all_contests", null);
+    return _innerServerCall("$HostServerUrl/get_all_contests", null);
   }
 
   Future<JsonObject> getAllMatchGroups() {
-    return _innerServerCall("$HostServer/get_all_contests", null);
+    return _innerServerCall("$HostServerUrl/get_all_contests", null);
   }
 
   Future<JsonObject> getAllContests() {
-    return _innerServerCall("$HostServer/get_all_contests", null);
+    return _innerServerCall("$HostServerUrl/get_all_contests", null);
   }
 
 

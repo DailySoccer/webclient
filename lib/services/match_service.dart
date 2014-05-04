@@ -2,28 +2,30 @@ library match_service;
 
 import 'dart:async';
 import 'package:logging/logging.dart';
+import 'package:angular/angular.dart';
 
 import "package:webclient/services/server_service.dart";
 import "package:webclient/models/match_event.dart";
 
 
+@Injectable()
 class MatchService {
 
   bool isSynchronized = false;
 
   String getMatchStartDate(String matchEventId) => _matchEvents[matchEventId].date;
 
-   MatchService(this._server);
+  MatchService(this._server);
 
-   Future sync () {
-     if (!isSynchronized) {
-       return getAllMatchEvents();
-     }
-     return new Future.value(true);
-   }
+  Future sync () {
+    if (!isSynchronized) {
+      return getAllMatchEvents();
+    }
+      return new Future.value(true);
+  }
 
-   Future< List<MatchEvent> > getAllMatchEvents() {
-     Logger.root.info("MatchManager: all");
+  Future< List<MatchEvent> > getAllMatchEvents() {
+    Logger.root.info("MatchManager: all");
 
     return _server.getAllMatchEvents()
         .then((response) {

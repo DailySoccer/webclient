@@ -10,11 +10,17 @@ dev_dependencies:
     unittest: 0.10.1+2
   
 transformers:
-- angular
+- angular:
+    html_files:
+    - web/view/contest_entry.tpl.html
+    - web/view/home.tpl.html
+    - web/view/join.tpl.html
+    - web/view/lobby.tpl.html
+    - web/view/login.tpl.html
 - $dart2js:
     checked: false
-    minify: false
-    verbose: false
+    minify: true
+    verbose: true
     analyzeAll: false
     suppressWarnings: false
     suppressHints: false

@@ -6,7 +6,7 @@ import 'package:webclient/services/flash_messages_service.dart';
 
 @Controller(
     selector: '[login-ctrl]',
-    publishAs: 'ctrl'
+    publishAs: 'loginCtrl'
 )
 class LoginCtrl implements DetachAware {
   bool enabledSubmit = true;

@@ -7,6 +7,8 @@ class MockMatchEvents {
     matches = new JsonObject.fromJsonString(JSON);
   }
 
+  static int _startDate = 123;
+
   static String JSON = """
       [
         {
@@ -25,7 +27,7 @@ class MockMatchEvents {
               { "name": "Jugador1-Croatia", "fieldPos":"DEFENSE", "salary": 10000 }
             ]
           },
-          "startDate":"2014/06/12-21:00"
+          "startDate": $_startDate
         },
         {
           "_id":"2-MEXCMR",
@@ -43,7 +45,7 @@ class MockMatchEvents {
               { "name": "Jugador1-Cameroon", "fieldPos":"FORWARD", "salary": 10000 }
             ]
           },
-          "startDate":"2014/06/13-17:00"
+          "startDate": $_startDate
         },
         {
           "_id":"3-ESPNED",
@@ -61,7 +63,7 @@ class MockMatchEvents {
               { "name": "Jugador1-Netherlands", "fieldPos":"MIDDLE", "salary": 10000 }
             ]
           },
-          "startDate":"2014/06/13-20:00"
+          "startDate": $_startDate
         },
         {
           "_id":"4-CHIAUS",
@@ -79,7 +81,7 @@ class MockMatchEvents {
               { "name": "Jugador1-Australia", "fieldPos":"FORWARD", "salary": 10000 }
             ]
           },
-          "startDate":"2014/06/13-23:00"
+          "startDate": $_startDate
         }
       ]
   """;

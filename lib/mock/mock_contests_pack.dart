@@ -4,10 +4,14 @@ class MockContestsPack {
   ContestsPack contestsPack;
 
   MockContestsPack() {
+    contestsPack = new ContestsPack.fromJsonObject(contestsPackJson());
+  }
+
+  static JsonObject contestsPackJson() {
     var contestsPackJson = new JsonObject();
     contestsPackJson.contests = new JsonObject.fromJsonString(JSON);
     contestsPackJson.matchEvents = new JsonObject.fromJsonString(MockMatchEvents.JSON);
-    contestsPack = new ContestsPack.fromJsonObject(contestsPackJson);
+    return contestsPackJson;
   }
 
   static String JSON = """

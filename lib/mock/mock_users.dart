@@ -4,7 +4,7 @@ class MockUsers {
   var _users = new Map<String, Map<String, JsonObject>>();
 
   MockUsers() {
-    var collection = new JsonObject.fromJsonString(json);
+    var collection = new JsonObject.fromJsonString(JSON);
     collection.forEach((x) => add(x));
   }
 
@@ -20,7 +20,7 @@ class MockUsers {
     _users[user.email] = user;
   }
 
-  String json = """
+  static String JSON = """
   [
     { "firstName": "Test One Two", "lastName": "Three Four", "email":"test@test.com", "nickName": "nick", "password": "test" } 
   ]

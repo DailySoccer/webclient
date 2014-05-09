@@ -11,9 +11,7 @@ abstract class ServerService {
   Future<JsonObject> signup(String firstName, String lastName, String email, String nickName, String password);
   Future<JsonObject> login(String email, String password);
   Future<JsonObject> getUserProfile();
-  Future<JsonObject> getAllMatchEvents();
-  Future<JsonObject> getAllMatchGroups();
-  Future<JsonObject> getAllContests();
+  Future<JsonObject> getActiveContestsPack();
 }
 
 @Injectable()
@@ -35,16 +33,8 @@ class DailySoccerServer implements ServerService {
     return _innerServerCall("$HostServerUrl/get_user_profile", null);
   }
 
-  Future<JsonObject> getAllMatchEvents() {
-    return _innerServerCall("$HostServerUrl/get_all_contests", null);
-  }
-
-  Future<JsonObject> getAllMatchGroups() {
-    return _innerServerCall("$HostServerUrl/get_all_contests", null);
-  }
-
-  Future<JsonObject> getAllContests() {
-    return _innerServerCall("$HostServerUrl/get_all_contests", null);
+  Future<JsonObject> getActiveContestsPack() {
+    return _innerServerCall("$HostServerUrl/get_active_contests_pack", null);
   }
 
 
@@ -61,27 +51,35 @@ class DailySoccerServer implements ServerService {
     if (postData != null) {
       _http.post(url, null, params: postData)
           .then((httpResponse) => completer.complete(new JsonObject.fromMap(httpResponse.data)))
-          .catchError((HttpResponse httpResponse) => _processError(httpResponse, url, completer));
+          .catchError((error) => _processError(error, url, completer));
     } else {
       _http.get(url)
            .then((httpResponse) => completer.complete(new JsonObject.fromMap(httpResponse.data)))
-           .catchError((HttpResponse httpResponse) => _processError(httpResponse, url, completer));
+           .catchError((error) => _processError(error, url, completer));
     }
 
     return completer.future;
   }
 
-  void _processError(HttpResponse httpResponse, String url, Completer completer) {
-    print("_innerServerCall url: $url\n_innerServerCall res: $httpResponse");
+  void _processError(var error, String url, Completer completer) {
 
-    if (httpResponse.status == 400) {
-      completer.completeError(new JsonObject.fromJsonString(httpResponse.data));
-    }
-    else if (httpResponse.status == 500 || httpResponse.status == 404) {
-      completer.completeError(new JsonObject.fromJsonString(SERVER_ERROR_JSON));
+    print("_innerServerCall url: $url\n_innerServerCall error: $error");
+
+    if (error is HttpResponse) {
+      HttpResponse httpResponse = error as HttpResponse;
+
+      if (httpResponse.status == 400) {
+        completer.completeError(new JsonObject.fromJsonString(httpResponse.data));
+      }
+      else if (httpResponse.status == 500 || httpResponse.status == 404) {
+        completer.completeError(new JsonObject.fromJsonString(SERVER_ERROR_JSON));
+      }
+      else {
+        completer.completeError(new JsonObject.fromJsonString(CONNECTION_ERROR_JSON));
+      }
     }
     else {
-      completer.completeError(new JsonObject.fromJsonString(CONNECTION_ERROR_JSON));
+      completer.completeError(new JsonObject.fromJsonString(SERVER_ERROR_JSON));
     }
   }
 

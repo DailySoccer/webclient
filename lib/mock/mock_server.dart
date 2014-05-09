@@ -4,11 +4,12 @@ import 'dart:async';
 import 'package:mock/mock.dart';
 import "package:json_object/json_object.dart";
 import 'package:webclient/services/server_service.dart';
+import 'package:webclient/models/contests_pack.dart';
 
 part 'mock_users.dart';
-part 'mock_matches.dart';
+part 'mock_match_events.dart';
 part 'mock_groups.dart';
-part 'mock_contests.dart';
+part 'mock_contests_pack.dart';
 
 class MockDailySoccerServer extends Mock implements ServerService {
 
@@ -57,25 +58,16 @@ class MockDailySoccerServer extends Mock implements ServerService {
 
   Future<JsonObject> getUserProfile() => new Future.value(_loggedUser);
 
-
-  Future<JsonObject> getAllMatchEvents() {
-    return new Future.value(new JsonObject.fromJsonString(_matches.json));
-  }
-
-  Future<JsonObject> getAllMatchGroups() {
-    return new Future.value(new JsonObject.fromJsonString(_groups.json));
-  }
-
-  Future<JsonObject> getAllContests() {
-    return new Future.value(new JsonObject.fromJsonString(_contests.json));
+  Future<JsonObject> getActiveContestsPack() {
+    return new Future.value(new JsonObject.fromJsonString(_contestsPack.JSON));
   }
 
   JsonObject _loggedUser;
 
-  var _users    = new MockUsers();
-  var _matches  = new MockMatches();
-  var _groups   = new MockGroups();
-  var _contests = new MockContests();
+  var _users = new MockUsers();
+  var _matches = new MockMatchEvents();
+  var _groups = new MockGroups();
+  var _contestsPack = new MockContestsPack();
 
 
   /*

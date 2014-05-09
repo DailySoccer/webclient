@@ -2,8 +2,14 @@
 
 <h2>Lista de Partidos</h2>
 
-<div ng-repeat="contest in ctrl.contests">
-  <span>{{ contest.name }}</span><button type="button" class="btn btn-xs btn-success" ng-click="ctrl.EnterContest(contest)">Entrar</button>
+<div ng-repeat="contest in ctrl.contestService.activeContestsPack.contests">
+    <span>{{contest.name}}</span> |
+    <span>{{contest.currentEntries}}</span> |
+    <span>{{contest.maxEntries}}</span> |
+    <span>{{contest.salaryCap}}</span> |
+    <span>{{contest.entryFee}}</span> |
+    <span>{{contest.prizeType}}</span>
+    <button type="button" class="btn btn-xs btn-success" ng-click="ctrl.enterContest(contest)">Entrar</button>
 </div>
 
 </section>

@@ -6,10 +6,7 @@ import 'package:angular/routing/module.dart';
 import 'package:webclient/routing/webclient_router.dart';
 
 import 'package:webclient/services/profile_service.dart';
-import 'package:webclient/services/match_service.dart';
-import 'package:webclient/services/match_group_service.dart';
 import 'package:webclient/services/contest_service.dart';
-import 'package:webclient/services/contest_entry_service.dart';
 import 'package:webclient/services/server_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 
@@ -43,10 +40,7 @@ class WebClientApp extends Module {
     bind(ServerService, toImplementation: DailySoccerServer);
 
     bind(ProfileService);
-    bind(MatchService);
-    bind(MatchGroupService);
     bind(ContestService);
-    bind(ContestEntryService);
     bind(FlashMessagesService);
     bind(FlashMessagesService);
 

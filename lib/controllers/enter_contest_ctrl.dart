@@ -14,7 +14,7 @@ class EnterContestCtrl {
   Contest contest;
 
   EnterContestCtrl(Scope scope, RouteProvider routeProvider, ContestService _contestService) {
-    contest = _contestService.getContest(routeProvider.parameters['contestEntryId']);
+    contest = _contestService.getContestById(routeProvider.parameters['contestEntryId']);
   }
 
   ContestService _contestService;

@@ -11,19 +11,16 @@ import 'package:webclient/models/contest.dart';
     publishAs: 'ctrl'
 )
 class LobbyCtrl {
-  Iterable<Contest> contests;
 
-  LobbyCtrl(this._router, this._contestService) {
-    this._contestService.getAllContests()
-        .then((values) {
-            contests = values;
-        });
+  ContestService contestService;
+
+  LobbyCtrl(this._router, this.contestService) {
+    this.contestService.refreshActiveContests();
   }
 
-  EnterContest(Contest contest) {
-    _router.go('team.create', { "contestId": contest.id });
+  void enterContest(Contest contest) {
+    _router.go('team.create', { "contestId": contest.contestId });
   }
 
   Router _router;
-  ContestService _contestService;
 }

@@ -1,10 +1,10 @@
 part of mock_daily_soccer_http;
 
 class MockGroups {
-  var  groups;
+  var  all;
 
   MockGroups() {
-    groups = new JsonObject.fromJsonString(JSON);
+    all = new JsonObject.fromJsonString(JSON);
   }
 
   static String JSON = """

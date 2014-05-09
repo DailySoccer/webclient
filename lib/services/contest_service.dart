@@ -5,24 +5,25 @@ import 'package:angular/angular.dart';
 
 import "package:webclient/services/server_service.dart";
 import "package:webclient/models/contest.dart";
-import "package:webclient/models/contests_pack.dart";
 import "package:webclient/models/match_event.dart";
 
 
 @Injectable()
 class ContestService {
 
-  ContestsPack activeContestsPack;
+  Iterable<Contest> activeContests;
+  Iterable<MatchEvent> activeMatchEvents;
 
   ContestService(this._server);
 
-  Future<ContestsPack> refreshActiveContests() {
-    var completer = new Completer<ContestsPack>();
+  Future refreshActiveContests() {
+    var completer = new Completer();
 
-    _server.getActiveContestsPack()
-        .then((response) {
-          activeContestsPack = new ContestsPack.fromJsonObject(response);
-          completer.complete(activeContestsPack);
+    Future.wait([_server.getActiveContests(), _server.getActiveMatchEvents()])
+        .then((List responses) {
+          activeContests = responses[0].content;
+          activeMatchEvents = responses[1].content;
+          completer.complete();
         });
 
     return completer.future;

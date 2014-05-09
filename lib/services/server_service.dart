@@ -11,7 +11,8 @@ abstract class ServerService {
   Future<JsonObject> signup(String firstName, String lastName, String email, String nickName, String password);
   Future<JsonObject> login(String email, String password);
   Future<JsonObject> getUserProfile();
-  Future<JsonObject> getActiveContestsPack();
+  Future<JsonObject> getActiveContests();
+  Future<JsonObject> getActiveMatchEvents();
 }
 
 @Injectable()
@@ -33,10 +34,13 @@ class DailySoccerServer implements ServerService {
     return _innerServerCall("$HostServerUrl/get_user_profile", null);
   }
 
-  Future<JsonObject> getActiveContestsPack() {
-    return _innerServerCall("$HostServerUrl/get_active_contests_pack", null);
+  Future<JsonObject> getActiveContests() {
+    return _innerServerCall("$HostServerUrl/get_active_contests", null);
   }
 
+  Future<JsonObject> getActiveMatchEvents() {
+    return _innerServerCall("$HostServerUrl/get_active_match_events", null);
+  }
 
   /**
    * This is the only place where we call our server
@@ -50,15 +54,26 @@ class DailySoccerServer implements ServerService {
 
     if (postData != null) {
       _http.post(url, null, params: postData)
-          .then((httpResponse) => completer.complete(new JsonObject.fromMap(httpResponse.data)))
+          .then((httpResponse) => _processSuccess(httpResponse, completer))
           .catchError((error) => _processError(error, url, completer));
     } else {
       _http.get(url)
-           .then((httpResponse) => completer.complete(new JsonObject.fromMap(httpResponse.data)))
+           .then((httpResponse) => _processSuccess(httpResponse, completer))
            .catchError((error) => _processError(error, url, completer));
     }
 
     return completer.future;
+  }
+
+  void _processSuccess(HttpResponse httpResponse, Completer completer) {
+    // The response can be either a Map or a List. We should avoid this step by rewriting the HttpInterceptor and creating the
+    // JsonObject directly from the JsonString.
+    if (httpResponse.data is List) {
+      completer.complete(new JsonObject.fromMap(new Map<String, List>()..putIfAbsent("content", () => httpResponse.data)));
+    }
+    else {
+      completer.complete(new JsonObject.fromMap(httpResponse.data));
+    }
   }
 
   void _processError(var error, String url, Completer completer) {

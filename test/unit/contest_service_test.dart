@@ -1,8 +1,9 @@
 part of webclient_test;
 
 testContestService(){
-  group("[ContestService]", (){
-    group("[valid]", (){
+  group("[ContestService]", () {
+    group("[valid]", () {
+
       ContestService contestService;
 
       setUp((){
@@ -12,8 +13,9 @@ testContestService(){
 
       test("Se refrescan los concursos", () {
         return contestService.refreshActiveContests()
-            .then((ContestsPack contestsPack) {
-              expect(contestsPack.contests.length, equals(2));
+            .then((x) {
+              expect(contestService.activeContests.length, equals(2));
+              expect(contestService.activeMatchEvents.length, equals(4));
             });
       });
 

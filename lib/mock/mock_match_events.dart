@@ -1,15 +1,16 @@
 part of mock_daily_soccer_http;
 
 class MockMatchEvents {
-  var matches;
+  var all;
 
   MockMatchEvents() {
-    matches = new JsonObject.fromJsonString(JSON);
+    all = new JsonObject.fromJsonString(JSON);
   }
 
   static int _startDate = 123;
 
   static String JSON = """
+  { "content":
       [
         {
           "_id":"1-BRACRO",
@@ -84,5 +85,6 @@ class MockMatchEvents {
           "startDate": $_startDate
         }
       ]
+  }
   """;
 }

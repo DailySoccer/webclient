@@ -19,7 +19,7 @@ class LobbyCtrl {
   }
 
   void enterContest(Contest contest) {
-    _router.go('team.create', { "contestId": contest.contestId });
+    _router.go('contest_entry.create', { "contestId": contest.contestId });
   }
 
   Router _router;

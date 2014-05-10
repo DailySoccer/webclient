@@ -13,8 +13,8 @@ import 'package:webclient/models/contest.dart';
 class EnterContestCtrl {
   Contest contest;
 
-  EnterContestCtrl(Scope scope, RouteProvider routeProvider, ContestService _contestService) {
-    contest = _contestService.getContestById(routeProvider.parameters['contestEntryId']);
+  EnterContestCtrl(Scope scope, RouteProvider routeProvider, this._contestService) {
+    contest = _contestService.getContestById(routeProvider.parameters['contestId']);
   }
 
   ContestService _contestService;

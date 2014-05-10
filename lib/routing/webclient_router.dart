@@ -21,7 +21,7 @@ void webClientRouteInitializer(Router router, RouteViewFactory views) {
         view: 'view/lobby.tpl.html'
     ),
     'contest_entry': ngRoute(
-        path: '/contest_entry/:contestEntryId',
+        path: '/contest_entry/:contestId',
         mount: {
           'create': ngRoute(
               path: '/create',

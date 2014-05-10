@@ -12,7 +12,7 @@ class MockContests {
       [
         { 
           "_id": "001001001001001001001001", 
-          "name": "", 
+          "name": "001001001001001001001001 contest", 
           "currentEntries": 1,
           "maxEntries": 66,
           "salaryCap": 60000, 
@@ -22,7 +22,7 @@ class MockContests {
         },
         { 
           "_id": "002002002002002002002002", 
-          "name": "", 
+          "name": "002002002002002002002002 contest", 
           "currentEntries": 7,
           "maxEntries": 10,
           "salaryCap": 1200000, 

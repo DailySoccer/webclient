@@ -11,8 +11,18 @@ import "package:webclient/models/match_event.dart";
 @Injectable()
 class ContestService {
 
-  Iterable<Contest> activeContests;
-  Iterable<MatchEvent> activeMatchEvents;
+  List<Contest> activeContests = new List<Contest>();
+  List<MatchEvent> activeMatchEvents = new List<MatchEvent>();
+
+  Contest getContestById(String id) => activeContests.firstWhere((contest) => contest.contestId == id, orElse: () => null);
+  MatchEvent getMatchEventById(String id) => activeMatchEvents.firstWhere((matchEvent) => matchEvent.matchEventId == id, orElse: () => null);
+
+  List<MatchEvent> getMatchEventsForContest(Contest contest) => contest.matchEventIds.map((matchEventId) => getMatchEventById(matchEventId)).toList();
+
+  DateTime getContestStartDate(Contest contest) {
+    return getMatchEventsForContest(contest).map((matchEvent) => matchEvent.startDate)
+                                            .reduce((val, elem) => val.isBefore(elem)? val : elem);
+  }
 
   ContestService(this._server);
 
@@ -21,8 +31,8 @@ class ContestService {
 
     Future.wait([_server.getActiveContests(), _server.getActiveMatchEvents()])
         .then((List responses) {
-          activeContests = responses[0].content;
-          activeMatchEvents = responses[1].content;
+          activeContests = responses[0].content.map((jsonObject) => new Contest.fromJsonObject(jsonObject)).toList();
+          activeMatchEvents = responses[1].content.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject)).toList();
           completer.complete();
         });
 

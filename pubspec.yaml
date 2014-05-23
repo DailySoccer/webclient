@@ -9,7 +9,7 @@ dependencies:
     web_components: '>=0.3.3 <0.4.0'
     
 dev_dependencies:
-    unittest: 0.10.1+2
+    unittest: any
   
 transformers:
 - angular:
@@ -21,7 +21,7 @@ transformers:
     - web/view/login.tpl.html
 - $dart2js:
     checked: false
-    minify: true
+    minify: false
     verbose: true
     analyzeAll: false
     suppressWarnings: false

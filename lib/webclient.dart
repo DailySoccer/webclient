@@ -17,6 +17,8 @@ import 'package:webclient/controllers/lobby_ctrl.dart';
 import 'package:webclient/controllers/enter_contest_ctrl.dart';
 import 'package:webclient/controllers/flash_messages_ctrl.dart';
 
+import 'package:webclient/components/modal_msg_comp.dart';
+
 // Global variable to hold the url of the app's server
 String HostServerUrl;
 
@@ -50,6 +52,8 @@ class WebClientApp extends Module {
     bind(SignupCtrl);
     bind(LobbyCtrl);
     bind(EnterContestCtrl);
+
+    bind(ModalMsgComp);
 
     bind(RouteInitializerFn, toValue: webClientRouteInitializer);
     bind(NgRoutingUsePushState, toFactory:  (_) => new NgRoutingUsePushState.value(false));

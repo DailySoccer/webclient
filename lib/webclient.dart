@@ -44,7 +44,6 @@ class WebClientApp extends Module {
     bind(ProfileService);
     bind(ContestService);
     bind(FlashMessagesService);
-    bind(FlashMessagesService);
 
     bind(FlashMessagesCtrl);
     bind(MenuCtrl);

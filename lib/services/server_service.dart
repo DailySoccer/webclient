@@ -84,7 +84,12 @@ class DailySoccerServer implements ServerService {
       HttpResponse httpResponse = error as HttpResponse;
 
       if (httpResponse.status == 400) {
-        completer.completeError(new JsonObject.fromJsonString(httpResponse.data));
+        if (httpResponse.data != null && httpResponse.data != "") {
+          completer.completeError(new JsonObject.fromJsonString(httpResponse.data));
+        }
+        else {
+          completer.completeError(new JsonObject());
+        }
       }
       else if (httpResponse.status == 500 || httpResponse.status == 404) {
         completer.completeError(new JsonObject.fromJsonString(SERVER_ERROR_JSON));

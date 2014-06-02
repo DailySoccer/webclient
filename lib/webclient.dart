@@ -5,6 +5,7 @@ import 'package:angular/angular.dart';
 import 'package:angular/routing/module.dart';
 import 'package:webclient/routing/webclient_router.dart';
 
+import 'package:webclient/mock/mock_server.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/contest_service.dart';
 import 'package:webclient/services/server_service.dart';

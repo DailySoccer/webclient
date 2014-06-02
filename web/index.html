@@ -2,59 +2,26 @@
 <html ng-app>
   <head>
     <meta charset="utf-8">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+    <!-- Esto hace que funcione en el mobile -->
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> -->
     <title>Daily Soccer</title>
     
     <!-- Because the Shadow DOM polyfill does extensive DOM patching, platform.js should be included before other script tags. -->
     <script src="packages/web_components/platform.js"></script>
     <script src="packages/web_components/dart_support.js"></script>
     
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">    
-  </head>
-  <body>
-   <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Daily Soccer</a>
-        </div>
-        <div menu-ctrl class="ng-cloak" ng-switch="menuCtrl.isLoggedIn">
-          <div class="collapse navbar-collapse" ng-switch-when="false">
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="#/login">Login</a></li>
-              <li><a href="#/join">Join</a></li>
-            </ul>
-          </div>
-          <div class="collapse navbar-collapse" ng-switch-when="true">
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="#/lobby">Lobby</a></li>
-              <li><a href="#">Upcoming</a></li>
-              <li><a href="#">Live</a></li>
-              <li><a href="#">History</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{menuCtrl.fullName}} <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#" ng-click="menuCtrl.logOut()">Logout</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </div><!--/.nav-collapse -->
-      </div>
-    </div>
+    <link rel="stylesheet/less" type="text/css" href="css/style.less" />
     
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <script src="less-1.7.0.min.js" type="text/javascript"></script>
+    
+  </head>
+  <body>  
+    <main-menu></main-menu>
+
     <div class="container">
       <div flash-messages class="ng-cloak">
         <div ng-repeat="m in flashCtrl.messages" id="flash-messages">
@@ -66,11 +33,9 @@
       </div>
 
       <div class="starter-template">
-        <modal-msg></modal-msg>
         <ng-view></ng-view>
       </div>      
     </div>
-
 
     <!-- Deprecated
     <script src="packages/shadow_dom/shadow_dom.debug.js"></script>
@@ -78,7 +43,7 @@
     -->
         
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>    
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.js"></script>    
     <!-- <script src="autofill-event.js"></script> -->
     
     <script type="application/dart" src="main.dart"></script>

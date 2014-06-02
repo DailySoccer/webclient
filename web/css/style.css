@@ -1,5 +1,17 @@
 body {
-  padding-top: 50px;
+}
+
+
+#main-menu-header {
+  background: url(../images/HeaderBackground.jpg) no-repeat center top;
+}
+
+.navbar {
+  height: 70px;
+}
+
+.navbar .nav > li > a {
+  padding: 25px 25px 10px 10px;
 }
 
 .starter-template {

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-static-top" role="navigation" id="main-menu-header">
+<nav class="navbar navbar-static-top" role="navigation" id="main-menu-header">
   <div class="container">
   
     <div class="navbar-header" ng-if="mainMenu.isLoggedIn">
@@ -21,9 +21,9 @@
     <div class="ng-cloak" ng-switch="mainMenu.isLoggedIn">
       <div class="collapse navbar-collapse navbar-left" ng-switch-when="true" id="game-menu-collapse">   
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#/lobby">Torneos</a></li>
-          <li><a href="#">En Espera</a></li>
-          <li><a href="#">En Directo</a></li>
+          <li class="active"><a href="#/lobby">TORNEOS</a></li>
+          <li><a href="#/enteredcontests">EN ESPERA</a></li>
+          <li><a href="#/livecontests">EN DIRECTO</a></li>
         </ul>
       </div>  <!-- #game-menu-collapse -->
       
@@ -51,9 +51,10 @@
             </ul>
           </li>
         </ul>
-        <button type="button" class="btn btn-default hidden-xs pull-right">Default</button>
+        <button type="button" class="btn">AÑADIR FONDOS</button>
       </div>  <!-- #user-menu-collapse -->
 
+      <!-- Cuando no estamos logeados, mostramos simplemente un boton de Login -->
       <ul class="nav navbar-nav pull-right" ng-switch-when="false">
         <li><a href="#/login">Login</a></li>
       </ul>

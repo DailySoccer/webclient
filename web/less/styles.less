@@ -1,0 +1,79 @@
+@import "../bootstrap-3.1.1/less/bootstrap.less";
+ 
+@images: "../images";
+
+@brand-primary: rgb(250, 156, 25);
+
+#main-menu-header {
+  // Partimos de la navbar-inverse y vamos cambiando
+  .navbar-inverse();
+
+  // Version desktop (min-width: pequeña)
+	@media (min-width: @screen-sm-min) {
+    background-image: url("@{images}/HeaderBackground.jpg");
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-color: #000000;
+    border-color: rgb(252, 166, 27);
+    border-width: 0px 0px 2px 0px;
+
+    height:70px;
+
+    // Todos los enlaces: centrados vertical
+    .nav > li > a {
+      padding: 23px 10px 25px 10px;
+    }
+	}  
+
+  // Boton de añadir fondos
+  .btn {
+    .btn-primary();
+    .hidden-xs();                             // oculto en mobile
+    .pull-right();
+    .button-size(4px, 6px, 9pt, 1.5em, 4px);  // .button-size(@padding-vertical; @padding-horizontal; @font-size; @line-height; @border-radius)
+    margin: 25px 10px 0px 10px;
+  }
+
+  // Distancia de los botones de toggle a los lados (solo salen en mobile)
+  .navbar-toggle {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  // Links del menu de juego (Torneos, en espera, en directo...)
+  #game-menu-collapse {
+    background-color: transparent;
+
+    // Opcion del menu NO seleccionada
+    .navbar-nav > li {
+      > a { color: rgb(175, 211, 228); }
+      > a:hover { color: #FFF; }
+    }
+
+    // Opcion del menu seleccionada
+    .navbar-nav > .active {
+      > a, > a:focus, > a:hover { color: #FFF; }
+    }    
+  }
+
+  // Dropdowns del menu de usuario
+  #user-menu-collapse {
+    .navbar-nav > li {
+      > a { color: #FFF; }
+      > a:hover { color: rgb(175, 211, 228); }
+    }
+  }
+}
+
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.form-login, .form-join {
+  text-align: left;
+}
+
+[ng-cloak], [data-ng-cloak], .ng-cloak {
+  display: none !important;
+}

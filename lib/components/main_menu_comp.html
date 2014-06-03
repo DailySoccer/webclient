@@ -21,9 +21,9 @@
     <div class="ng-cloak" ng-switch="mainMenu.isLoggedIn">
       <div class="collapse navbar-collapse navbar-left" ng-switch-when="true" id="game-menu-collapse">   
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#/lobby">TORNEOS</a></li>
-          <li><a href="#/enteredcontests">EN ESPERA</a></li>
-          <li><a href="#/livecontests">EN DIRECTO</a></li>
+          <li class="active"><a href="#/lobby" ng-click="mainMenu.gameMenuClicked($event)">TORNEOS</a></li>
+          <li><a href="#/entered_contests" ng-click="mainMenu.gameMenuClicked($event)">EN ESPERA</a></li>
+          <li><a href="#/live_contests" ng-click="mainMenu.gameMenuClicked($event)">EN DIRECTO</a></li>
         </ul>
       </div>  <!-- #game-menu-collapse -->
       

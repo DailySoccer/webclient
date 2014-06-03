@@ -1,5 +1,7 @@
 library main_menu_comp;
 
+
+import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/profile_service.dart';
 
@@ -36,6 +38,11 @@ class MainMenuComp implements AttachAware {
 
   void logOut() {
     _profileService.logout();
+  }
+
+  void gameMenuClicked(event) {
+    querySelector("#game-menu-collapse").querySelector(".active").classes.remove("active");
+    event.target.parent.classes.add("active");
   }
 
   Router _router;

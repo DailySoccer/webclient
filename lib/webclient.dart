@@ -11,7 +11,6 @@ import 'package:webclient/services/contest_service.dart';
 import 'package:webclient/services/server_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 
-import 'package:webclient/controllers/menu_ctrl.dart';
 import 'package:webclient/controllers/login_ctrl.dart';
 import 'package:webclient/controllers/signup_ctrl.dart';
 import 'package:webclient/controllers/lobby_ctrl.dart';
@@ -47,7 +46,6 @@ class WebClientApp extends Module {
     bind(FlashMessagesService);
 
     bind(FlashMessagesCtrl);
-    bind(MenuCtrl);
     bind(LoginCtrl);
     bind(SignupCtrl);
     bind(LobbyCtrl);

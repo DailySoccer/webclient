@@ -3,22 +3,20 @@
     <div class="modal-dialog modal-lg">
       <!-- Modal Window Content -->
       <div class="modal-content ">        
-        <div class="modal-header">
+        <div class="modalHeader">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
-          <div class="grayBg">
-            <div class="row">
-              <div class="col-xs-12 col-md-5">
-                <div class="modalSupTitle openSansBold"><p>TORNEO MULTIJUGADOR (500) LIM. 60M</p></div>
-                <div class="modalTitle  klavikaBoldBlue"><p><b>CONQUISTA EUROPA</b></p></div>
-              </div>
-              <div class="col-xs-6 col-md-3">
-                <div class="modalSupTitle openSansBold"><p class="indent">ENTRADA</p></div>
-                <div class="modalTitle  klavikaBoldBlue">  <p><img src="img/IconoEntrada.png"></img><b>25</b><b class="font20">€</b></p></div>
-              </div>
-              <div class="col-xs-6 col-md-3">
-                <div class="modalSupTitle openSansBold"><p class="indent">PREMIOS</p></div>
-                <div class="modalTitle klavikaBoldBlue">  <p><img src="img/IconoPremio.png"></img><b>11.256</b><b class="font20">€</b></p></div>
-              </div>
+          <div class="row">
+            <div class="col-xs-12 col-md-5">
+              <div class="modalSupTitle"><b>TORNEO MULTIJUGADOR (500) LIM. 60M</b></div>
+              <div class="modalTitle"><b>CONQUISTA EUROPA</b></div>
+            </div>
+            <div class="col-xs-6 col-md-3">
+              <div class="modalSupTitle"><b class="indent">ENTRADA</b></div>
+              <div class="modalTitle"><img src="images/IconPrice.png" /><b>25<small>€</small></b></div>
+            </div>
+            <div class="col-xs-6 col-md-3">
+              <div class="modalSupTitle"><b class="indent">PREMIOS</b></div>
+              <div class="modalTitle"><img src="images/IconPrize.png"/><b>11.256<small>€</small></b></div>
             </div>
           </div>
         </div>
@@ -27,42 +25,40 @@
           <div class="modalContentHeader-big hidden-xs hidden-sm"></div>
           <div class="modalContentHeader-small hidden-md hidden-lg"></div>
           <div class="modal-body">
-            <div class="col-xs-8 col-md-5 col-md-push-5 verticalFixText openSansBoldWhite timesEnterContest">
-              HAS ENTRADO <a class="klavikaLightBlue teamContest">0</a> VECES EN ESTE DESAFÍO
-            </div>
-            <div class="col-xs-2 col-md-2 col-md-push-5 verticalFixButton">
-              <button type="button" class="btn btn-warning openSansBoldWhite" data-dismiss="modal">ENTRAR</button>
+            <div class="col-xs-12 col-md-7 col-md-push-5 ">
+              <div class="col-xs-9 col-md-9 timesEnterContest">HAS ENTRADO <span class="teamContestants">0</span> VECES EN ESTE DESAFÍO</div>
+              <div class="col-xs-3 col-md-3 enterContestButton"><button type="button" class="btn btn-primary" data-dismiss="modal">ENTRAR</button></div>
             </div>
             <div class="col-xs-12 col-md-5 col-md-pull-7">
               <!-- Nav tabs -->
-              <ul class="nav nav-tabs openSansBoldGray tabText">
-                <li class="active"><a href="#informacion" data-toggle="tab">INFORMACIÓN</a></li>
-                <li><a href="#participantes" data-toggle="tab">PARTICIPANTES</a></li>
-                <li><a href="#premios" data-toggle="tab">PREMIOS</a></li>
+              <ul class="modalTabs">
+                <li class="active"><a href="#info" data-toggle="tab">INFORMACIÓN</a></li>
+                <li><a href="#participants" data-toggle="tab">PARTICIPANTES</a></li>
+                <li><a href="#prizes" data-toggle="tab">PREMIOS</a></li>
               </ul>
             </div>
             
     	     <!-- Tab panes -->
             <div class="tab-content">
-              <div class="tab-pane active" id="informacion">{{modalContest.informacion}}
+              <div class="tab-pane active" id="info">{{modalContest.informacion}}
                 <div id="infoNameAndDate" class="row">
                   <div class="clearFloat verticalSeparator20"></div>
                   <div class="col-md-8"><p class="infoDescription">Elige un equipo de 11 jugadores a partir de los siguientes partidos</p></div>
-                  <div class="col-md-4"><div class="startDate openSansBoldGray well well-sm">comienza el DOM. 15/05 19:00</div></div>
+                  <div class="col-md-4"><div class="startDate well well-sm">comienza el DOM. 15/05 19:00</div></div>
                 </div>
                 <div id="infoTeams" class="row">
                   <div class="col-md-12 text-left">
                     <ul class="listaPartidos ">
-                      <li class="col-xs-6 col-md-3"><div class="klavikaLightBlue teamContest">ATM - RMA</div><div class="openSansBoldGray dateContest">Dom. 15/05 19:00</div></li>
-                      <li class="col-xs-6 col-md-3"><div class="klavikaLightBlue teamContest">ATM - RMA</div><div class="openSansBoldGray dateContest">Dom. 15/05 19:00</div></li>
-                      <li class="col-xs-6 col-md-3"><div class="klavikaLightBlue teamContest">ATM - RMA</div><div class="openSansBoldGray dateContest">Dom. 15/05 19:00</div></li>
-                      <li class="col-xs-6 col-md-3"><div class="klavikaLightBlue teamContest">ATM - RMA</div><div class="openSansBoldGray dateContest">Dom. 15/05 19:00</div></li>
-                      <li class="col-xs-6 col-md-3"><div class="klavikaLightBlue teamContest">ATM - RMA</div><div class="openSansBoldGray dateContest">Dom. 15/05 19:00</div></li>
-                      <li class="col-xs-6 col-md-3"><div class="klavikaLightBlue teamContest">ATM - RMA</div><div class="openSansBoldGray dateContest">Dom. 15/05 19:00</div></li>
-                      <li class="col-xs-6 col-md-3"><div class="klavikaLightBlue teamContest">ATM - RMA</div><div class="openSansBoldGray dateContest">Dom. 15/05 19:00</div></li>
-                      <li class="col-xs-6 col-md-3"><div class="klavikaLightBlue teamContest">ATM - RMA</div><div class="openSansBoldGray dateContest">Dom. 15/05 19:00</div></li>
-                      <li class="col-xs-6 col-md-3"><div class="klavikaLightBlue teamContest">ATM - RMA</div><div class="openSansBoldGray dateContest">Dom. 15/05 19:00</div></li>
-                      <li class="col-xs-6 col-md-3"><div class="klavikaLightBlue teamContest">ATM - RMA</div><div class="openSansBoldGray dateContest">Dom. 15/05 19:00</div></li>
+                      <li class="col-xs-6 col-md-3"><div class="teamContestants">ATM - RMA</div><div class="dateContest">Dom. 15/05 19:00</div></li>
+                      <li class="col-xs-6 col-md-3"><div class="teamContestants">ATM - RMA</div><div class="dateContest">Dom. 15/05 19:00</div></li>
+                      <li class="col-xs-6 col-md-3"><div class="teamContestants">ATM - RMA</div><div class="dateContest">Dom. 15/05 19:00</div></li>
+                      <li class="col-xs-6 col-md-3"><div class="teamContestants">ATM - RMA</div><div class="dateContest">Dom. 15/05 19:00</div></li>
+                      <li class="col-xs-6 col-md-3"><div class="teamContestants">ATM - RMA</div><div class="dateContest">Dom. 15/05 19:00</div></li>
+                      <li class="col-xs-6 col-md-3"><div class="teamContestants">ATM - RMA</div><div class="dateContest">Dom. 15/05 19:00</div></li>
+                      <li class="col-xs-6 col-md-3"><div class="teamContestants">ATM - RMA</div><div class="dateContest">Dom. 15/05 19:00</div></li>
+                      <li class="col-xs-6 col-md-3"><div class="teamContestants">ATM - RMA</div><div class="dateContest">Dom. 15/05 19:00</div></li>
+                      <li class="col-xs-6 col-md-3"><div class="teamContestants">ATM - RMA</div><div class="dateContest">Dom. 15/05 19:00</div></li>
+                      <li class="col-xs-6 col-md-3"><div class="teamContestants">ATM - RMA</div><div class="dateContest">Dom. 15/05 19:00</div></li>
                     </ul>
                   </div>
                 </div>
@@ -79,8 +75,8 @@
                   </div>
                 </div>
               </div>
-              <div class="tab-pane" id="participantes">{{modalContest.participantes}}</div>
-              <div class="tab-pane" id="premios">{{modalContest.premios}}</div>
+              <div class="tab-pane" id="participants">{{modalContest.participantes}}</div>
+              <div class="tab-pane" id="prizes">{{modalContest.premios}}</div>
             </div>
           
           </div>                    

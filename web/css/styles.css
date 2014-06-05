@@ -5861,6 +5861,23 @@ button.close {
 #main-menu-header .navbar-link:hover {
   color: #ffffff;
 }
+#main-menu-header .navbar-brand {
+  background-image: url("../images/LogoDailyFootball_md.png");
+  width: 170px;
+  height: 23px;
+}
+@media (max-width: 768px) {
+  #main-menu-header .navbar-brand {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px;
+    float: none;
+    display: inline;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+}
 @media (min-width: 768px) {
   #main-menu-header {
     background-image: url("../images/HeaderBackground.jpg");
@@ -5932,6 +5949,7 @@ fieldset[disabled] #main-menu-header .btn.active {
   margin-right: 10px;
 }
 #main-menu-header #game-menu-collapse {
+  float: left !important;
   background-color: transparent;
 }
 #main-menu-header #game-menu-collapse .navbar-nav > li > a {
@@ -5944,6 +5962,9 @@ fieldset[disabled] #main-menu-header .btn.active {
 #main-menu-header #game-menu-collapse .navbar-nav > .active > a:focus,
 #main-menu-header #game-menu-collapse .navbar-nav > .active > a:hover {
   color: #FFF;
+}
+#main-menu-header #user-menu-collapse {
+  float: right !important;
 }
 #main-menu-header #user-menu-collapse .navbar-nav > li > a {
   color: #FFF;

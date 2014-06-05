@@ -14,51 +14,49 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-      </button> 
-      <!--<a class="navbar-brand" href="#">Daily Soccer</a>-->
+      </button>
     </div>  <!-- .navbar-header -->
-    
-    <div class="ng-cloak" ng-switch="mainMenu.isLoggedIn">
-      <div class="collapse navbar-collapse navbar-left" ng-switch-when="true" id="game-menu-collapse">   
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="#/lobby" ng-click="mainMenu.gameMenuClicked($event)">TORNEOS</a></li>
-          <li><a href="#/entered_contests" ng-click="mainMenu.gameMenuClicked($event)">EN ESPERA</a></li>
-          <li><a href="#/live_contests" ng-click="mainMenu.gameMenuClicked($event)">EN DIRECTO</a></li>
-        </ul>
-      </div>  <!-- #game-menu-collapse -->
-      
-      <div class="collapse navbar-collapse navbar-right" ng-switch-when="true" id="user-menu-collapse">
-        <ul class="nav navbar-nav">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{mainMenu.fullName}}<b class="caret"></b></a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="#" ng-click="">Mi cuenta</a></li>
-              <li><a href="#" ng-click="">Añadir fondos</a></li>
-              <li><a href="#" ng-click="">Historial de transacciones</a></li>
-              <li><a href="#" ng-click="">Centro de referencias</a></li>
-              <li><a href="#" ng-click="">Clasificación</a></li>
-              <li><a href="#" ng-click="">Promos</a></li>
-              <li><a href="#" ng-click="mainMenu.logOut()">Logout</a></li>
-            </ul>
-          </li>
-          
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ayuda<b class="caret"></b></a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="#" ng-click="">Soporte</a></li>
-              <li><a href="#" ng-click="">Cómo funciona</a></li>
-              <li><a href="#" ng-click="">Reglas y puntuaciones</a></li>
-            </ul>
-          </li>
-        </ul>
-        <button type="button" class="btn">AÑADIR FONDOS</button>
-      </div>  <!-- #user-menu-collapse -->
-
-      <!-- Cuando no estamos logeados, mostramos simplemente un boton de Login -->
-      <ul class="nav navbar-nav pull-right" ng-switch-when="false">
-        <li><a href="#/login">Login</a></li>
+       
+    <div class="collapse navbar-collapse" ng-if="mainMenu.isLoggedIn" id="game-menu-collapse">   
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#/lobby" ng-click="mainMenu.gameMenuClicked($event)">TORNEOS</a></li>
+        <li><a href="#/entered_contests" ng-click="mainMenu.gameMenuClicked($event)">EN ESPERA</a></li>
+        <li><a href="#/live_contests" ng-click="mainMenu.gameMenuClicked($event)">EN DIRECTO</a></li>
       </ul>
-      
-    </div> 
+    </div>  <!-- #game-menu-collapse -->
+    
+    <div class="collapse navbar-collapse" ng-if="mainMenu.isLoggedIn" id="user-menu-collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{mainMenu.fullName}}<b class="caret"></b></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#" ng-click="">Mi cuenta</a></li>
+            <li><a href="#" ng-click="">Añadir fondos</a></li>
+            <li><a href="#" ng-click="">Historial de transacciones</a></li>
+            <li><a href="#" ng-click="">Centro de referencias</a></li>
+            <li><a href="#" ng-click="">Clasificación</a></li>
+            <li><a href="#" ng-click="">Promos</a></li>
+            <li><a href="#" ng-click="mainMenu.logOut()">Logout</a></li>
+          </ul>
+        </li>        
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ayuda<b class="caret"></b></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#" ng-click="">Soporte</a></li>
+            <li><a href="#" ng-click="">Cómo funciona</a></li>
+            <li><a href="#" ng-click="">Reglas y puntuaciones</a></li>
+          </ul>
+        </li>
+      </ul>
+      <button type="button" class="btn">AÑADIR FONDOS</button>
+    </div>  <!-- #user-menu-collapse -->
+
+    <!-- Cuando no estamos logeados, mostramos simplemente un boton de Login -->
+    <ul class="nav navbar-nav pull-right" ng-if="!mainMenu.isLoggedIn">
+      <li><a href="#/login">Login</a></li>
+    </ul>      
+   
+    <!--<a class="navbar-brand" href="#"></a>-->
+       
   </div>
 </nav>

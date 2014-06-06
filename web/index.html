@@ -19,11 +19,11 @@
     <!--<link rel="stylesheet" type="text/css" href="css/styles.css">-->
   </head>
   
-  <body>
+  <body class="ng-cloak">
     <main-menu></main-menu>
 
     <div class="container">
-      <div flash-messages class="ng-cloak">
+      <div flash-messages>
         <div ng-repeat="m in flashCtrl.messages" id="flash-messages">
             <div class="alert alert-{{m.type}} alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>

@@ -1,18 +1,3 @@
-@fontOpenSans: 'open_sansregular', sans-serif;
-@fontExo: 'Exo', sans-serif;
-
-@lightBlue: #0d75a6;
-@darkBlue: #214a5f;
-@darkestBlue: #103343;
-@lightGray: #777777;
-@darkGray: #e4e4e4;
-@white: #FFFFFF;
-
-body {
-  font-family: @fontOpenSans;
-  color: @lightGray;
-}
-
 .modalHeader {
   .modal-header();
   .grayBg();
@@ -26,16 +11,17 @@ body {
      border-top-right-radius: 5px;
  }
 .grayBg {
-  background-color: @darkGray;
+  background-color: @color44;
 }
-.modalSupTitle {
+.modalHeaderSupTitle {
   font-family: @fontOpenSans;
-  color: @lightGray;
+  color: @color42;
   text-align: left;
+  font-size: 12px;
 }
-.modalTitle {
+.modalHeaderTitle {
   font-family: @fontExo;
-  color: @darkestBlue;
+  color: @color21;
   text-align: left;
   font-size: 30px;
 }
@@ -50,14 +36,14 @@ body {
 .modalContentHeader-small{
   width: 100%;
   height: 100px;
-  background-color: #103343;
+  background-color: @color21;
 }
 #modalContent{
   position:relative;
 }
 .teamContestants{
   font-family: @fontExo;
-  color: @lightBlue;
+  color: @color22;
   font-weight: normal;
   @media (max-width: 991px) { /* mediaquery versión Desktop */
     font-size: 18px;
@@ -68,7 +54,7 @@ body {
 }
 .listaPartidos li{
   list-style-type: none;
-  border-left-color: #0b80af;
+  border-left-color: @color23;
   border-left-style: dotted;
   border-left-width: 0.1em;
   padding: 10px 12px;
@@ -77,6 +63,7 @@ body {
 .timesEnterContest{
   .verticalFixText();
   font-family: @fontOpenSans;
+  color: @color12;
   font-weight: bold;
   padding: 0;
   text-align: left; 
@@ -90,9 +77,20 @@ body {
     font-size: 14px;
   }
 }
+.timesEnterContestCounter{
+    .teamContestants();
+    color: @color23;
+}
 .dateContest{
   font-family: @fontOpenSans;
+  color: @color42;
   font-weight: bold;
+  font-size: 12px;
+}
+.startDate{
+  .well();
+  .well-sm();
+  color: @color42;
   font-size: 12px;
 }
 .verticalFixButton{
@@ -104,21 +102,21 @@ body {
 .enterContestButton{
   .verticalFixButton();
   font-family: @fontOpenSans;
-  color: @white;
+  color: @color11;
 }
 .modalTabs{
   .nav();
   .nav-tabs();
   .tabText();
-  border-bottom: 0px solid #ddd;
 }
 .tabText{
   font-family: @fontOpenSans;
   font-size: 10px;
-  color: @lightGray;
+  color: @color43;
 }
 .infoDescription{
   font-family: @fontOpenSans;
+  color: @color42;
   text-align: left;
   padding: 7px 0;
   @media (max-width: 991px) { /* mediaquery versión Desktop */
@@ -145,11 +143,13 @@ body {
     padding: 10px 10px;
   }
 }
-
-#infoRules{
+.infoRules{
   position:relative;
+  color: @color42;
 }
-.scrollText{
+.rulesDescription{
+  font-family: @fontOpenSans;
+  color: @color42;
   overflow-y: scroll;
   height: 300px;
 }

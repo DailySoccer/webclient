@@ -1,12 +1,43 @@
 @import "../bootstrap-3.1.1/less/bootstrap.less";
 @import "../bootstrap-3.1.1/less/navbar.less";
+@import "colorPalette.less";
 @import "modalContest.less";
 
+@fontOpenSans: 'open_sansregular', sans-serif;
+@fontExo: 'Exo', sans-serif;
 
- 
+// Color Definitions 
+@color11: @black;
+@color12: @white;
+@color21: @blueDark;
+@color22: @blueMed;
+@color23: @blueLight;
+@color24: @blueMenu;
+@color31: @orange;
+@color32: @orange50;
+@color33: @green;
+@color41: @greyUltraDark;
+@color42: @greyDark;
+@color43: @greyMed;
+@color44: @greyLight;
+@color45: @greyUltralight;
+@color51: @tramaBlue;
+@color61: @tramaPor;
+@color62: @tramaDef;
+@color63: @tramaMed;
+@color64: @tramaDel;
+
+// Font Definitions
+@font-family-base: @fontOpenSans;
+
+// Path Definitions
 @images: "../images";
 
 @brand-primary: rgb(250, 156, 25);
+
+body {
+  //color: @color11;
+}
 
 #main-menu-header {
   // Partimos de la navbar-inverse y vamos cambiando

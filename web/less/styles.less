@@ -5,8 +5,6 @@
 @import "main_menu_comp.less";
 @import "modal_contest_comp.less";
 
-@fontOpenSans: 'open_sansregular', sans-serif;
-@fontExo: 'Exo', sans-serif;
 
 // Color Definitions 
 @color11: @black;
@@ -29,7 +27,12 @@
 @color63: @tramaMed;
 @color64: @tramaDel;
 
+@brand-primary: rgb(250, 156, 25);
+
 // Font Definitions
+@fontOpenSans: 'open_sansregular', sans-serif;
+@fontExo: 'Exo', sans-serif;
+
 @font-family-base: @fontOpenSans;
 
 // Path Definitions
@@ -37,20 +40,18 @@
 @icon-font-path: "../bootstrap-3.1.1/fonts/";
 
 
-@brand-primary: rgb(250, 156, 25);
-
 body > .container-fluid {
 	height: 1100px;
 
 	@media (min-width: @screen-sm-min) {
-		background-color: #000000;
+		background-color: @black;
 		background-image: url("@{images}/DesignBackgroundBIG.jpg");
 		background-position: center top;
 		background-repeat: no-repeat;
 	}
 
 	@media (max-width: @screen-sm-min) {
-		background-color: #FFFFFF;
+		background-color: @white;
 	}
 }
 

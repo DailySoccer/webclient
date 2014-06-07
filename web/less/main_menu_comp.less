@@ -9,7 +9,7 @@
     background-image: url("@{images}/HeaderBackground.jpg");
     background-repeat: no-repeat;
     background-position: center top;
-    background-color: #000000;
+    background-color: @black;
     border-color: rgb(252, 166, 27);
     border-width: 0px 0px 2px 0px;
 
@@ -82,12 +82,12 @@
     // Opcion del menu NO seleccionada
     .navbar-nav > li {
       > a { color: rgb(175, 211, 228); }
-      > a:hover { color: #FFF; }
+      > a:hover { color: @white; }
     }
 
     // Opcion del menu seleccionada
     .navbar-nav > .active {
-      > a, > a:focus, > a:hover { color: #FFF; }
+      > a, > a:focus, > a:hover { color: @white; }
     }    
   }
 
@@ -98,7 +98,7 @@
     }
 
     .navbar-nav > li {
-      > a { color: #FFF; }
+      > a { color: @white; }
       > a:hover { color: rgb(175, 211, 228); }
     }
   }

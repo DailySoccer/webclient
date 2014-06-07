@@ -2,9 +2,6 @@ library lobby_ctrl;
 
 import 'package:angular/angular.dart';
 
-import 'package:webclient/services/contest_service.dart';
-import 'package:webclient/models/contest.dart';
-
 
 @Controller(
     selector: '[lobby-ctrl]',
@@ -12,15 +9,7 @@ import 'package:webclient/models/contest.dart';
 )
 class LobbyCtrl {
 
-  ContestService contestService;
-
-  LobbyCtrl(this._router, this.contestService) {
-    this.contestService.refreshActiveContests();
-  }
-
-  void enterContest(Contest contest) {
-    _router.go('contest_entry.create', { "contestId": contest.contestId });
-  }
+  LobbyCtrl(this._router);
 
   Router _router;
 }

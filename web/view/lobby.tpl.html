@@ -1,18 +1,9 @@
 <section lobby-ctrl>
 
-<h2>Lista de Partidos</h2>
-
-<div ng-repeat="contest in ctrl.contestService.activeContests">
-    <span>{{contest.name}}</span> |
-    <span>{{contest.currentUserIds}}</span> |
-    <span>{{contest.maxUsers}}</span> |
-    <span>{{ctrl.contestService.getSalaryCapForContest(contest)}}</span> |
-    <span>{{ctrl.contestService.getEntryFeeForContest(contest)}}</span> |
-    <span>{{ctrl.contestService.getPrizeTypeForContest(contest)}}</span>
-    <div ng-repeat="match in ctrl.contestService.getMatchEventsForContest(contest)">
-      <span>{{match.soccerTeamA.name}} vs {{match.soccerTeamB.name}}</span>
-    </div>
-    <button type="button" class="btn btn-xs btn-success" ng-click="ctrl.enterContest(contest)">Entrar</button>
-</div>
+  <!-- Button trigger modal -->
+  <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalContest">Launch demo modal</button>
+  <modal-contest></modal-contest>
+  
+  <active-contest-list></active-contest-list>
 
 </section>

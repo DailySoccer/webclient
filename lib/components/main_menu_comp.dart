@@ -12,7 +12,7 @@ import 'package:webclient/services/profile_service.dart';
     publishAs: 'mainMenu',
     useShadowDom: false
 )
-class MainMenuComp implements AttachAware {
+class MainMenuComp {
   bool   isLoggedIn = false;
   String fullName = "";
   String nickName = "";
@@ -30,12 +30,6 @@ class MainMenuComp implements AttachAware {
     }, context: _profileService);
   }
 
-  void attach() {
-    if (isLoggedIn) {
-      _router.go('lobby', {});
-    }
-  }
-
   void logOut() {
     _profileService.logout();
   }
@@ -44,6 +38,7 @@ class MainMenuComp implements AttachAware {
     querySelector("#game-menu-collapse").querySelector(".active").classes.remove("active");
     event.target.parent.classes.add("active");
   }
+
 
   Router _router;
   ProfileService _profileService;

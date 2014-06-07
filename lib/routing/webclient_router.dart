@@ -4,10 +4,6 @@ import 'package:angular/angular.dart';
 
 void webClientRouteInitializer(Router router, RouteViewFactory views) {
   views.configure({
-    'home': ngRoute(
-        defaultRoute: true,
-        view: 'view/home.tpl.html'
-    ),
     'login': ngRoute(
         path: '/login',
         view: 'view/login.tpl.html'
@@ -17,6 +13,7 @@ void webClientRouteInitializer(Router router, RouteViewFactory views) {
         view: 'view/join.tpl.html'
     ),
     'lobby': ngRoute(
+        defaultRoute: true,
         path: '/lobby',
         view: 'view/lobby.tpl.html'
     ),

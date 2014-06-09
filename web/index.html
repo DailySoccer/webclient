@@ -18,8 +18,8 @@
          todo bootstrap.css, asi que no nos hace falta incluirlo otra vez 
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     -->
-    <!-- fuentes -->
-    <link href='http://fonts.googleapis.com/css?family=Exo:300,700' rel='stylesheet' type='text/css'>
+    
+    <link href='http://fonts.googleapis.com/css?family=Exo:300,600' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     
   </head>
@@ -28,26 +28,18 @@
   
     <main-menu></main-menu>
     
-    <div class="container-fluid">
+    <div class="main-content-container">
       <div flash-messages>
         <div ng-repeat="m in flashCtrl.messages" id="flash-messages">
             <div class="alert alert-{{m.type}} alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <span class="">{{m.text}}</span>
             </div>
-        </div>    
+        </div>
       </div>
 
-      <div class="starter-template">
-        <ng-view></ng-view>
-      </div>
-      
+      <ng-view></ng-view>
     </div>
-
-    <!-- Deprecated
-    <script src="packages/shadow_dom/shadow_dom.debug.js"></script>
-    <script src="packages/shadow_dom/shadow_dom.min.js"></script>
-    -->
         
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>

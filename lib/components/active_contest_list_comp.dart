@@ -16,7 +16,7 @@ class ActiveContestList {
 
   ContestService contestService;
 
-  ActiveContestList(Scope scope, this.contestService) {
+  ActiveContestList(this.contestService) {
     this.contestService.refreshActiveContests();
   }
 

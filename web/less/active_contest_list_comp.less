@@ -1,3 +1,56 @@
 #active-contest-list {
 	background-color: @white;
+	
+	.container();
+
+	.active-contest-row {
+		.make-row();
+
+		padding: 10px 0px 10px 0px;
+
+		.list-title-text {
+			.opensans_small();
+			color: @greyDark;
+		}
+
+		.list-content-text {			
+			.exo_big_bold();
+			color: @blueDark;
+		}
+	
+		.column-name {
+			.make-sm-column(5);
+		}
+
+		.column-entry-fee {
+			.make-sm-column(2);
+			.list-title-text {
+				padding-left: 30px;
+			}
+		}
+
+		.column-prize {
+			.make-sm-column(2);
+			.list-title-text {
+				padding-left: 32px;	
+			}
+		}
+
+		.column-begins {
+			.make-sm-column(1);
+
+			.list-content-text { 
+				.exo_big_light(); 
+			}
+		}
+
+		.column-play {
+			.make-sm-column(2);
+		}
+
+		// El contenido y los iconos se alinea verticalmente
+		span {
+			vertical-align: middle;
+		}
+	}
 }

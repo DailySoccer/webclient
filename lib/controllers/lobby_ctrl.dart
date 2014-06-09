@@ -9,7 +9,7 @@ import 'package:angular/angular.dart';
 )
 class LobbyCtrl {
 
-  LobbyCtrl(this._router);
+  LobbyCtrl() {
 
-  Router _router;
+  }
 }

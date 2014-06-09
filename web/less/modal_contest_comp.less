@@ -1,6 +1,7 @@
 .modalHeader {
   .modal-header();
   .grayBg();
+  //.border-top-radius(5px);
     padding:9px 15px;
     border-bottom:1px solid #eee;
     -webkit-border-top-left-radius: 5px;
@@ -18,15 +19,21 @@
   color: @color42;
   text-align: left;
   font-size: 12px;
+  font-weight: bold;
 }
 .modalHeaderTitle {
   font-family: @fontExo;
   color: @color21;
   text-align: left;
   font-size: 30px;
+  font-weight: bold;
 }
 .indent{
-  margin-left: 26px; 
+  margin-left: 26px
+}
+.currency{
+    .modalHeaderTitle();
+    .small();
 }
 .modalContentHeader-big{
   width: 100%;

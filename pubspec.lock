@@ -16,7 +16,7 @@ packages:
   barback:
     description: barback
     source: hosted
-    version: "0.13.0"
+    version: "0.12.0"
   browser:
     description: browser
     source: hosted
@@ -88,4 +88,4 @@ packages:
   web_components:
     description: web_components
     source: hosted
-    version: "0.3.4"
+    version: "0.3.3"

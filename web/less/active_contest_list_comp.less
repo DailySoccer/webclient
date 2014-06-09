@@ -1,56 +1,128 @@
 #active-contest-list {
-	background-color: @white;
 	
 	.container();
+
+	@media (min-width: @screen-sm-min) {
+		background-color: @white;
+		.border-bottom-radius(10px);
+	}
 
 	.active-contest-row {
 		.make-row();
 
-		padding: 10px 0px 10px 0px;
-
-		.list-title-text {
+		// El borde entre cada row
+		border-color: @greyLight;
+		border-width: 1px 0px 0px 0px;
+		border-style: solid none none none;
+		
+		.title-text {
 			.opensans_small();
 			color: @greyDark;
+			display: block;
 		}
 
-		.list-content-text {			
+		.content-text {			
 			.exo_big_bold();
 			color: @blueDark;
 		}
-	
-		.column-name {
-			.make-sm-column(5);
-		}
 
-		.column-entry-fee {
-			.make-sm-column(2);
-			.list-title-text {
-				padding-left: 30px;
-			}
-		}
-
-		.column-prize {
-			.make-sm-column(2);
-			.list-title-text {
-				padding-left: 32px;	
-			}
-		}
-
-		.column-begins {
-			.make-sm-column(1);
-
-			.list-content-text { 
-				.exo_big_light(); 
-			}
-		}
-
-		.column-play {
-			.make-sm-column(2);
-		}
-
-		// El contenido y los iconos se alinea verticalmente
 		span {
-			vertical-align: middle;
+			vertical-align: middle; 			// El context-text y los iconos se alinea verticalmente
+		}
+	
+		// Cuando no sea mobile
+		@media (min-width: @screen-sm-min) {
+			padding: 15px 0px 15px 0px;
+
+			.column-name {
+				.make-sm-column(5);
+				.title-text {
+					padding-left: 30px;
+				}
+			}
+
+			.column-entry-fee {
+				.make-sm-column(2);
+				.make-sm-column-pull(1);		// column-begins se nos pone a nuestra derecha, tenemos q ir 1 a la izq
+				.title-text {
+					padding-left: 30px;
+				}
+			}
+
+			.column-prize {
+				.make-sm-column(2);
+				.make-sm-column-pull(1);
+				.title-text {
+					padding-left: 32px;	
+				}
+			}
+
+			.column-begins {
+				.make-sm-column(1);
+				.make-sm-column-push(4);		// Nos vamos a la derecha!
+				.content-text { 
+					.exo_big_light(); 
+				}
+			}
+
+			.column-play {
+				.make-sm-column(2);
+
+				.btn {
+					.btn-default();
+					.center-block();
+					margin-top: 6px;
+				}
+			}
+		}
+
+		// En mobile
+		@media (max-width: @screen-xs-max) {
+			padding: 10px 0px 0px 0px;
+
+			.column-name {
+				margin: 0px 0px 5px 15px;
+				.price-icon, .prize-icon { 
+					.hidden-xs(); 
+				}
+			}
+			.column-begins {
+				color: @greyDark;
+
+				.title-text {
+					.opensans_small();	
+					float: left;
+					margin: 0px 0px 5px 15px;
+
+					&:after { content: "\00a0\00a0"; }	// Espacio entre el dia y la hora
+				}
+				
+				.content-text {
+					.opensans_small();
+					vertical-align: top;
+				}
+
+				.clearfix();
+			}
+			.column-entry-fee {
+				display: inline-block;
+				margin: 0px 40px 10px 10px;
+				.title-text { .hidden-xs(); }
+			}
+			.column-prize {
+				display: inline-block;
+				margin: 0px 0px 10px 0px;
+				.title-text { .hidden-xs(); }	
+			}
+			.column-play {
+				float:right;			// Esto lo pone a la derecha en la misma linea q los anteriores entry-fee & prize
+				position: relative;		// Y ahora lo movemos hacia arriba/izq
+				top: -40px;
+				right: 20px;				
+				.btn {
+					.btn-default();
+				}
+			}
 		}
 	}
 }

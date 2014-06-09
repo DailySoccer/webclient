@@ -2,41 +2,28 @@
 @import "../bootstrap-3.1.1/less/navbar.less";
 
 @import "color_palette.less";
+@import "fonts.less";
 
 @import "main_menu_comp.less";
 @import "modal_contest_comp.less";
 @import "active_contest_list_comp.less";
 
 
-// Font Definitions
-@fontOpenSans: 'open_sansregular', sans-serif;
-@fontExo: 'Exo', sans-serif;
-
-@font-family-base: @fontOpenSans;
-
 // Path Definitions
 @images: "../images";							// No ponemos / al final para separar mejor donde realmente se define la imagen
 @icon-font-path: "../bootstrap-3.1.1/fonts/";
 
-// Fonts
-.exo_big_bold {
-	font-family: @fontExo;
-	font-size: 16pt;
-	font-weight: 600;
-}
+// Por ejemplo, el color del boton "Añadir fondos", al que consideramos un btn-primary
+@brand-primary: @orange;
 
-.exo_big_light {
-	font-family: @fontExo;
-	font-size: 16pt;
-	font-weight: 300;
+// Color y borde del boton default (por ejemplo, el "Entrar" en un concurso)
+@btn-default-bg: @green;
+@btn-default-color: @white;
+.btn-default {
+	border-width: 0px 0px 2px 0px;
+	border-style: solid;
+	border-color: #555757;
 }
-
-.opensans_small {
-	font-family: @fontOpenSans;
-	font-size: 8pt;
-	font-weight: 400;
-}
-
 
 // Forzamos a que siempre aparezca la scrollbar vertical para que no haya saltos
 body { overflow-y: scroll; }
@@ -44,17 +31,16 @@ body { overflow-y: scroll; }
 
 // Contenedor principal que envuelve a todo el contenido
 body > .main-content-container {
-	height: 1100px;
-
 	@media (min-width: @screen-sm-min) {
+		height: 1100px;
 		background-color: @black;
 		background-image: url("@{images}/DesignBackgroundBIG.jpg");
 		background-position: center top;
 		background-repeat: no-repeat;
 	}
 
-	@media (max-width: @screen-sm-min) {
-		background-color: @white;
+	@media (max-width: @screen-xs-max) {
+		background-color: @tramaBlue;
 	}
 }
 

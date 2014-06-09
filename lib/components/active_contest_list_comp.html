@@ -2,31 +2,30 @@
   <div class="active-contest-row" ng-repeat="contest in activeContestList.contestService.activeContests">
 
       <div class="column-name">
-        <div class="list-title-text">LIGA: 67/100 - SALARIO LIMITE: 60M</div>
+        <span class="title-text">LIGA: 67 de 100 jugadores - SALARIO LIMITE: 60M</span>
         <span class="price-icon"></span>
-        <span class="prize-icon"></span>
-        <span class="list-content-text">€11.250K Domingo Monster</span>
-      </div>
-
-      <div class="column-entry-fee">
-        <div class="list-title-text">ENTRADA</div>
-        <span class="price-icon"></span>
-        <span class="list-content-text">€{{activeContestList.contestService.getEntryFeeForContest(contest)}}</span>
-      </div>
-
-      <div class="column-prize">
-        <div  class="list-title-text">PREMIOS</div>
-        <span class="prize-icon"></span>
-        <span class="list-content-text">€11.250</span>
+        <span class="content-text">€11.250K Domingo Monster</span>
       </div>
 
       <div class="column-begins">
-        <div  class="list-title-text">DOM 7/09</div>
-        <span class="list-content-text">20:45</span>
+        <span class="title-text">DOM 7/9</span>
+        <span class="content-text">20:45</span>
+      </div>
+
+      <div class="column-entry-fee">
+        <span class="title-text">ENTRADA</span>
+        <span class="price-icon"></span>
+        <span class="content-text">€{{activeContestList.contestService.getEntryFeeForContest(contest)}}</span>
+      </div>
+
+      <div class="column-prize">
+        <span class="title-text">PREMIOS</span>
+        <span class="prize-icon"></span>
+        <span class="content-text">€11.250</span>
       </div>
 
       <div class="column-play">
-        <button type="button" class="btn btn-primary" ng-click="activeContestList.enterContest(contest)">Entrar</button>
+        <button type="button" class="btn" ng-click="activeContestList.enterContest(contest)">Entrar</button>
       </div>
   </div>
 </div>

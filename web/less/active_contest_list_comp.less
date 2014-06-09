@@ -21,7 +21,7 @@
 			display: block;
 		}
 
-		.content-text {			
+		.content-text {
 			.exo_big_bold();
 			color: @blueDark;
 		}
@@ -41,6 +41,14 @@
 				}
 			}
 
+			.column-begins {
+				.make-sm-column(1);
+				.make-sm-column-push(4);		// Nos vamos a la derecha!
+				.content-text { 
+					.exo_big_light(); 
+				}
+			}
+
 			.column-entry-fee {
 				.make-sm-column(2);
 				.make-sm-column-pull(1);		// column-begins se nos pone a nuestra derecha, tenemos q ir 1 a la izq
@@ -54,14 +62,6 @@
 				.make-sm-column-pull(1);
 				.title-text {
 					padding-left: 32px;	
-				}
-			}
-
-			.column-begins {
-				.make-sm-column(1);
-				.make-sm-column-push(4);		// Nos vamos a la derecha!
-				.content-text { 
-					.exo_big_light(); 
 				}
 			}
 
@@ -118,7 +118,7 @@
 				float:right;			// Esto lo pone a la derecha en la misma linea q los anteriores entry-fee & prize
 				position: relative;		// Y ahora lo movemos hacia arriba/izq
 				top: -30px;
-				right: 20px;				
+				right: 20px;
 				.btn {
 					.btn-default();
 				}

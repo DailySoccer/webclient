@@ -21,6 +21,8 @@ import 'package:webclient/components/main_menu_comp.dart';
 import 'package:webclient/components/modal_contest_comp.dart';
 import 'package:webclient/components/active_contest_list_comp.dart';
 
+import 'package:webclient/directives/form-autofill-fix.dart';
+
 // Global variable to hold the url of the app's server
 String HostServerUrl;
 
@@ -56,6 +58,8 @@ class WebClientApp extends Module {
     bind(MainMenuComp);
     bind(ModalContestComp);
     bind(ActiveContestList);
+    
+    bind(FormAutofillDecorator);
 
     bind(RouteInitializerFn, toValue: webClientRouteInitializer);
     bind(NgRoutingUsePushState, toFactory:  (_) => new NgRoutingUsePushState.value(false));

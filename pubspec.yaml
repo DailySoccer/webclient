@@ -12,11 +12,13 @@ dev_dependencies:
 transformers:
 - angular:
     html_files:
-    - web/view/contest_entry.tpl.html
+    - web/view/lobby.tpl.html
+    - web/view/live_contests.tpl.html
+    - web/view/entered_contests.tpl.html
     - web/view/home.tpl.html
     - web/view/join.tpl.html
-    - web/view/lobby.tpl.html
     - web/view/login.tpl.html
+    - web/view/enter_contest.tpl.html
 - $dart2js:
     checked: false
     minify: false

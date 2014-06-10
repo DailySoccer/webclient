@@ -1,5 +1,5 @@
 #active-contest-list {
-	
+
 	.container();
 
 	@media (min-width: @screen-sm-min) {
@@ -21,108 +21,84 @@
 			display: block;
 		}
 
-		.content-text {			
-			.exo_big_bold();
+		.content-text {
+			@media (min-width: @screen-md-min) { .exo_big_bold(); }
+			@media (max-width: @screen-sm-max) { .exo_normal_bold(); }
 			color: @blueDark;
 		}
 
-		span {
-			vertical-align: middle; 			// El context-text y los iconos se alinea verticalmente
+		@grid-columns-padding: 5px;
+
+		.column-name {
+			.make-sm-column(5, @grid-columns-padding);
+			.inner-icon { .hidden-xs();	}
 		}
-	
-		// Cuando no sea mobile
+
+		.column-begins {
+			.make-sm-column(2, @grid-columns-padding);
+			.make-sm-column-push(4);					// Nos vamos a la derecha!
+			.title-text { .hidden-xs();	}
+
+			@media (max-width: @screen-xs-max) {
+				padding-bottom: 5px;
+				.content-text {
+					.opensans_small();
+					color: @greyDark;
+				}
+				.clearfix();
+			}
+		}
+
+		.column-entry-fee {
+			.make-sm-column(2, @grid-columns-padding);
+			.make-sm-column-pull(2);
+			.title-text { .hidden-xs(); }
+
+			@media (max-width: @screen-xs-max) { 
+				.inner-icon { display: inline; }
+				.inner-content { display: inline-block; }
+				display: inline-block; 
+				padding: 0px; 
+				margin: 0px 20px 0px 0px;
+			}
+		}
+
+		.column-prize {
+			.make-sm-column(2, @grid-columns-padding);
+			.make-sm-column-pull(2);
+			.title-text { .hidden-xs(); }
+
+			@media (max-width: @screen-xs-max) { 
+				.inner-icon { display: inline; }
+				.inner-content { display: inline-block; }
+				display: inline-block; 
+				padding: 0px; 
+				margin: 0px; 	
+			}
+		}
+
+		.column-play {
+			.make-sm-column(1, @grid-columns-padding);
+			
+			.btn { 
+				.btn-default();
+				margin-top: 8px;
+			}
+		}
+
+		// En desktop & tablet
 		@media (min-width: @screen-sm-min) {
 			padding: 15px 0px 15px 0px;
+			margin-left: 0px; margin-right: 0px;
 
-			.column-name {				
-				.make-sm-column(5);
-				.title-text {
-					padding-left: 30px;
-				}
-			}
-
-			.column-entry-fee {
-				.make-sm-column(2);
-				.make-sm-column-pull(1);		// column-begins se nos pone a nuestra derecha, tenemos q ir 1 a la izq
-				.title-text {
-					padding-left: 30px;
-				}
-			}
-
-			.column-prize {
-				.make-sm-column(2);
-				.make-sm-column-pull(1);
-				.title-text {
-					padding-left: 32px;	
-				}
-			}
-
-			.column-begins {
-				.make-sm-column(1);
-				.make-sm-column-push(4);		// Nos vamos a la derecha!
-				.content-text { 
-					.exo_big_light(); 
-				}
-			}
-
-			.column-play {
-				.make-sm-column(2);
-
-				.btn {
-					.btn-default();
-					.center-block();
-					margin-top: 6px;
-				}
-			}
+			.inner-icon { float:left; padding: 0px 5px 0px 0px; margin-top: 17px; }
 		}
 
 		// En mobile
 		@media (max-width: @screen-xs-max) {
-			padding: 10px 0px 0px 0px;
+			padding: 10px 0px 10px 0px;
 
-			.column-name {
-				margin: 0px 0px 5px 15px;
-				.price-icon, .prize-icon { 
-					.hidden-xs(); 
-				}
-			}
-			.column-begins {
-				color: @greyDark;
-
-				.title-text {
-					.opensans_small();
-					float: left;
-					margin: 0px 0px 5px 15px;
-
-					&:after { content: "\00a0\00a0"; }	// Espacio entre el dia y la hora
-				}
-				
-				.content-text {
-					.opensans_small();
-					vertical-align: top;
-				}
-
-				.clearfix();
-			}
-			.column-entry-fee {
-				display: inline-block;
-				margin: 0px 40px 10px 10px;
-				.title-text { .hidden-xs(); }
-			}
-			.column-prize {
-				display: inline-block;
-				margin: 0px 0px 10px 0px;
-				.title-text { .hidden-xs(); }	
-			}
-			.column-play {
-				float:right;			// Esto lo pone a la derecha en la misma linea q los anteriores entry-fee & prize
-				position: relative;		// Y ahora lo movemos hacia arriba/izq
-				top: -30px;
-				right: 20px;				
-				.btn {
-					.btn-default();
-				}
-			}
+			.inner-icon { float:left; padding: 0px 5px 0px 0px; }
 		}
 	}
 }

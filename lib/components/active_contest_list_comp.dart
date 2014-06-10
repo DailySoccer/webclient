@@ -16,12 +16,12 @@ class ActiveContestList {
 
   ContestService contestService;
 
-  ActiveContestList(this.contestService) {
+  ActiveContestList(this._router, this.contestService) {
     this.contestService.refreshActiveContests();
   }
 
   void enterContest(Contest contest) {
-    _router.go('contest_entry.create', { "contestId": contest.contestId });
+    _router.go('enter_contest', { "contestId": contest.contestId });
   }
 
    Router _router;

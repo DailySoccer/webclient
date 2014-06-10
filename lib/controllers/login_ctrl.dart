@@ -16,6 +16,8 @@ class LoginCtrl implements DetachAware {
   void login(String email, String password) {
     enabledSubmit = false;
 
+    //print("email: $email / password: $password");
+    
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
     _profileManager.login(email, password)
         .then((_) => _router.go('lobby', {}))

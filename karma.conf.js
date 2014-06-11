@@ -30,13 +30,14 @@ module.exports = function(config) {
     autoWatch: true,
 
     // If browser does not capture in given timeout [ms], kill it
-    captureTimeout: 5000,
+    captureTimeout: 20000,
 
     browserNoActivityTimeout: 60000,
 
-    browsers: [ 'Chrome' ],
+    // browsers: [ 'Chrome' ],
     // browsers: [ 'Firefox', 'Chrome' ],
     // browsers: [ 'Firefox' ],
+    browsers: [ 'PhantomJS' ],
 
 
     // Continuous Integration mode. if true, Karma captures browsers, runs the tests and exits
@@ -45,7 +46,8 @@ module.exports = function(config) {
     plugins: [
       'karma-dart',
       'karma-chrome-launcher',
-      'karma-firefox-launcher'
+      'karma-firefox-launcher',
+      'karma-phantomjs-launcher'
     ]
   });
 };

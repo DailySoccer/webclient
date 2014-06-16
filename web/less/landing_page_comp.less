@@ -1,0 +1,174 @@
+#landing-wrapper{
+	.screen{
+		position: relative;
+	}
+	#desktop-content{
+		.hidden-xs();
+		background-color: @blueDark;
+		
+		.quarterScreen{
+			text-align: center;
+			width: 450px;
+			margin: 65px auto;
+		}
+
+		.featuredBigText{
+			.exo_extra_big_bold();
+			color: @orange;
+		}
+
+		.featuredMediumText{
+			.exo_big_bold();
+			font-size: 12pt;
+ 			color: @blueMed;
+ 			margin: 0;
+		}
+
+		.featuredNormalText{
+			.exo_normal_bold();
+		}
+
+		.titleText{
+			.exo_extra_big_light();
+			color: @blueMed;
+			text-align: left;
+		}
+
+		.descriptionText{
+			.opensans_semiSmall();
+			text-align: left;
+		}
+
+		.descriptionTextBold{
+			.opensans_semiSmall_bold();
+			text-align: left;
+		}
+
+		.verticalSeparator{
+			height: 40px;
+			width: 100%;
+		}
+
+		.btn{
+			.btn-primary();
+			.button-size(10px, 50px, 12pt, 1.5em, 4px);  // .button-size(@padding-vertical; @padding-horizontal; @font-size; @line-height; @border-radius)
+		}
+
+		.goDownWhite-icon {
+			background-image: url("@{images}/goDownWhite.png");
+			.size(15px, 15px);
+			display: inline-block;
+		}
+
+		.goDownBlack-icon {
+			background-image: url("@{images}/goDownBlack.png");
+			.size(15px, 15px);
+			display: inline-block;
+		}
+
+		.screenLogo{
+			.img-responsive();
+		}
+
+		.screenTextBlock{
+			.make-sm-column(6);
+			margin-top: 30px;
+		}
+
+		.screenLogoBlock{
+			.make-sm-column(6);
+		}
+
+		.knowMoreLinkWhite{
+			color: @white;
+		}
+
+		.knowMoreLinkBlack{
+			color: @black;
+		}
+	}
+	#mobile-content{
+		.hidden-sm();
+		.hidden-md();
+		.hidden-lg();		
+		background-color: @black; 
+
+		.textMobile{
+			.exo_small_bold();
+			line-height: 2.5;
+			text-align: center;
+			margin: 40px 0 260px 0;
+		}
+
+		.btn{
+			.btn-block();
+			.btn-primary();
+			.btn-lg();
+		}
+	}
+
+	.screenContent{
+		.main-content-container();
+		@media (max-width: @screen-xs-max) {
+			margin: 0 30px;
+		}
+		@media (min-width: @screen-sm-min) {		
+			width: 100%;
+		}
+		position: absolute;
+		top: 0px;
+		color: @white;
+	}
+
+	.screenContentAlt{
+		.main-content-container();
+		@media (min-width: @screen-sm-min) {		
+			width: 100%;
+		}
+		position: relative;
+		color: @white;
+	}
+
+	.screenBackground{
+		.img-responsive();
+		margin: 0 auto;
+		@media (min-width: @screen-sm-min) {		
+			min-width: 960px;
+		}		
+		width: 100%;
+	}
+
+	.screenPattern{
+		position: absolute;
+		top: 0;
+		background-image: url('@{images}/pattern.png');
+		width:100%;
+		height: 100%;
+	}
+
+	.halfBackground{
+		position: relative;
+	}
+
+	.screenwhiteDownSide{
+		position: relative;
+		background-color: @white;
+	}
+
+	.whiteDownsideContent{
+		text-align: center;
+		width: 960px;
+		margin: 20px auto;
+		color: @black;		
+	}
+
+	.playButtonHolder{
+		.make-sm-column(2);
+		padding-left: 30px;
+	}
+
+	.knowMoreHolder{
+		.make-sm-column(8);
+		text-decoration: none;
+	}
+}

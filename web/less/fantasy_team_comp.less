@@ -12,6 +12,12 @@
 		.exo_bold(11pt);
 		padding-top: 2px;
 	}
+	.content {
+		display: block; 
+		text-align: center;
+		.exo_light(16pt);
+		margin-top: 4px;
+	}
 }
 
 .fantasy-team-header {
@@ -23,24 +29,27 @@
 		.header-box();
 		float:left;
 
-		.position {
+		.content {
 			.exo_light(30pt);
-			display: block; 
-			text-align: center;
-			line-height: 1.2;
+			line-height: 1.1;
 		}
 	}
 
 	.score-box {
 		.header-box();
 		float:right;
+	}
 
-		.score {
-			.exo_light(16pt);
-			display: block;
-			text-align: center;
-			margin-top: 4px;
-		}
+	.user-nickname {
+		.exo_light(16pt, @white);
+		height: 45px; 
+		padding-top: 10px;
+	}
+
+	.total-remaining-matches-time {
+		.exo_light(10pt, @white);
+		height: 45px; 
+		padding-top: 10px
 	}
 }
 

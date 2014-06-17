@@ -17,13 +17,13 @@ void webClientRouteInitializer(Router router, RouteViewFactory views) {
         path: '/lobby',
         view: 'view/lobby.tpl.html'
     ),
-    'entered_contests': ngRoute(
-        path: '/entered_contests',
-        view: 'view/entered_contests.tpl.html'
+    'my_entered_contests': ngRoute(
+        path: '/my_entered_contests',
+        view: 'view/my_entered_contests.tpl.html'
     ),
-    'live_contests': ngRoute(
-         path: '/live_contests',
-         view: 'view/live_contests.tpl.html'
+    'my_live_contests': ngRoute(
+         path: '/my_live_contests',
+         view: 'view/my_live_contests.tpl.html'
      ),
     'enter_contest': ngRoute(
         path: '/enter_contest/:contestId',

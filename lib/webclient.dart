@@ -21,6 +21,7 @@ import 'package:webclient/components/landing_page_comp.dart';
 import 'package:webclient/components/main_menu_comp.dart';
 import 'package:webclient/components/modal_contest_comp.dart';
 import 'package:webclient/components/active_contest_list_comp.dart';
+import 'package:webclient/components/fantasy_team_comp.dart';
 
 import 'package:webclient/directives/form-autofill-fix.dart';
 
@@ -59,8 +60,9 @@ class WebClientApp extends Module {
     bind(LandingPageComp);
     bind(MainMenuComp);
     bind(ModalContestComp);
+    bind(FantasyTeamComp);
     bind(ActiveContestList);
-    
+
     bind(FormAutofillDecorator);
 
     bind(RouteInitializerFn, toValue: webClientRouteInitializer);

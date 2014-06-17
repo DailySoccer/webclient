@@ -1,0 +1,31 @@
+<div>HELLO Fantasy Team</div>
+
+<div class="fantasy-team-header">
+
+  <div class="ranking-box">
+    <span class="title">POS</span>
+    <span class="position">3</span>
+  </div>
+  
+   <div class="score-box">
+    <span class="title">PUNTOS</span>
+    <span class="score">20.30</span>
+  </div>
+
+  <div class="user-picture"></div>
+  <div class="user-nickname">FRAN GALVEZ</div>
+  <div class="total-remaining-matches-time">60'</div>
+    
+</div>
+
+<div class="fantasy-team-list" ng-repeat="slot in fantasyTeam.slot">
+  <div class="fantasy-team-slot">
+    <div class="column-fieldpos">{{slot.fieldPos}}</div>
+    <div class="column-primary-info">
+      <span class="soccer-player-name">{{slot.fullName}}</span>
+      <span class="match-event-name">{{slot.matchEventName}}</span>
+      <span class="remaining-match-time">{{slot.remainingMatchTime}}</span>
+    </div>
+    <div class="column-score">2.00</div>
+  </div>
+</div>

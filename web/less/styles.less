@@ -8,6 +8,7 @@
 @import "modal_contest_comp.less";
 @import "active_contest_list_comp.less";
 @import "landing_page_comp.less";
+@import "fantasy_team_comp.less";
 
 
 // Path Definitions
@@ -52,6 +53,11 @@ body { overflow-y: scroll; }
 // Contenedor interior que envuelve al contenido. Fijamos el width con el.
 .main-content-container {
 	.container();
+
+	@media (max-width: @screen-xs-max) {
+		padding-left: 0px;
+		padding-right: 0px;
+	}
 }
 
 .price-icon {

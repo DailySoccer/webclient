@@ -1,0 +1,90 @@
+.header-box {
+	width:70px;
+	height:70px;
+	border-radius:5px;
+	margin: 10px 10px 0px 10px;
+	
+	#gradient.vertical(@white, @blueUltraLight, 49%, 51%);
+	color: @greyUltraDark;
+
+	.title { 
+		display: block; text-align: center;
+		.exo_bold(11pt);
+		padding-top: 2px;
+	}
+}
+
+.fantasy-team-header {
+	height:90px;
+
+	#gradient.vertical(@orangeHeaderLight, @orangeHeaderDark, 49%, 51%);
+
+	.ranking-box {
+		.header-box();
+		float:left;
+
+		.position {
+			.exo_light(30pt);
+			display: block; 
+			text-align: center;
+			line-height: 1.2;
+		}
+	}
+
+	.score-box {
+		.header-box();
+		float:right;
+
+		.score {
+			.exo_light(16pt);
+			display: block;
+			text-align: center;
+			margin-top: 4px;
+		}
+	}
+}
+
+.fantasy-team-list {
+	@fantasy-team-gutter: 0px;
+
+	.fantasy-team-slot {
+		.make-row(0px);		// Para quitar los margenes negativos
+		margin-top: 10px;
+		padding-bottom: 8px;
+		border-width: 0px 0px 1px 0px;
+		border-style: none none dotted none;
+		border-color: #FF0000;
+
+		.column-fieldpos {
+			.make-xs-column(2, @fantasy-team-gutter);
+			.opensans_bold(10pt, @greyDark);
+			text-align: center;
+			margin-top: 10px;
+		}
+		.column-primary-info {
+			.make-xs-column(8, @fantasy-team-gutter);
+
+			.soccer-player-name {
+				.opensans_bold(12pt);
+				display: block;
+			}
+			.match-event-name {
+				.opensans_normal(10pt, @blueLight);
+			}
+			.remaining-match-time {
+				.opensans_normal(8pt, @greyMed);
+				padding-left: 5px;				
+				&:before { content: "("; }
+				&:after { content: ")"; }
+			}
+		}
+		.column-score {
+			.make-xs-column(2, @fantasy-team-gutter);
+			.exo_light(18pt, @blueLight);
+			text-align: right;
+			padding-right: 10px;
+			margin-top: 5px;
+		}
+	}
+
+}

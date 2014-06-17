@@ -3,6 +3,33 @@
 
 @font-family-base: @fontOpenSans;
 
+.exo_bold(@theFontSize, @theFontColor:default) {
+	font-family: @fontExo;
+	font-weight: 600;
+	font-size: @theFontSize;
+	color: @theFontColor;
+}
+.exo_light(@theFontSize, @theFontColor:default) {
+	font-family: @fontExo;
+	font-weight: 300;	
+	font-size: @theFontSize;
+	color: @theFontColor;
+}
+
+.opensans_normal(@theFontSize, @theFontColor:default) {
+	font-family: @fontOpenSans;
+	font-weight: 400;
+	font-size: @theFontSize;
+	color: @theFontColor;
+}
+.opensans_bold(@theFontSize, @theFontColor:default) {
+	font-family: @fontOpenSans;
+	font-weight: 700;
+	font-size: @theFontSize;
+	color: @theFontColor;
+}
+
+// TODO: Borrar en cuanto usemos las de arriba
 .exo_extra_big_bold {
 	font-family: @fontExo;
 	font-size: 24pt;

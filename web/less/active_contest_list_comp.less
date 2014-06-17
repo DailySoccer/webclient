@@ -16,14 +16,13 @@
 		border-style: solid none none none;
 		
 		.title-text {
-			.opensans_small();
-			color: @greyDark;
+			.opensans_normal(8pt, @greyDark);
 			display: block;
 		}
 
 		.content-text {
-			@media (min-width: @screen-md-min) { .exo_big_bold(); }
-			@media (max-width: @screen-sm-max) { .exo_normal_bold(); }
+			@media (min-width: @screen-md-min) { .exo_bold(16pt); }
+			@media (max-width: @screen-sm-max) { .exo_bold(14pt); }
 			color: @blueDark;
 		}
 
@@ -42,8 +41,7 @@
 			@media (max-width: @screen-xs-max) {
 				padding-bottom: 5px;
 				.content-text {
-					.opensans_small();
-					color: @greyDark;
+					.opensans_normal(8pt, @greyDark);
 				}
 				.clearfix();
 			}

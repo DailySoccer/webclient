@@ -23,10 +23,35 @@
   </head>
   
   <body class="ng-cloak">
-    
     <main-menu></main-menu>
+    <!--   backup only pourpose
     
-    <wrapper-content-container></wrapper-content-container>
+     <div id="mainWrapper" class="wrapper-content-container" class="switcheo el class en funcion de dnd este">
+      <div id="mainContent" class="main-content-container">
+        <!- - Content - ->
+        <ng-view></ng-view>
+      </div>
+    </div>
+    -->
+    
+    <div id="mainWrapper">
+      <div id="mainContent" class="main-content-container">
+        
+        <!--BEG future component for alerts -->
+        <div flash-messages>
+          <div ng-repeat="m in flashCtrl.messages" id="flash-messages">
+              <div class="alert alert-{{m.type}} alert-dismissable">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <span class="">{{m.text}}</span>
+              </div>
+          </div>
+        </div>
+         <!-- END future component for alerts -->
+         
+        <!-- Content -->
+        <ng-view></ng-view>
+      </div>
+    </div>
     
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>

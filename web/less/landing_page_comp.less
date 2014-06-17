@@ -1,4 +1,4 @@
-#landing-wrapper{
+.landing-wrapper{
 	.screen{
 		position: relative;
 	}
@@ -142,6 +142,9 @@
 		position: absolute;
 		top: 0;
 		background-image: url('@{images}/pattern.png');
+		@media (min-width: @screen-sm-min) {		
+			min-width: 960px;
+		}	
 		width:100%;
 		height: 100%;
 	}
@@ -153,6 +156,9 @@
 	.screenwhiteDownSide{
 		position: relative;
 		background-color: @white;
+		@media (min-width: @screen-sm-min) {		
+			min-width: 960px;
+		}	
 	}
 
 	.whiteDownsideContent{

@@ -10,6 +10,7 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/contest_service.dart';
 import 'package:webclient/services/server_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
+import 'package:webclient/services/screen_detector_service.dart';
 
 import 'package:webclient/controllers/login_ctrl.dart';
 import 'package:webclient/controllers/signup_ctrl.dart';
@@ -22,6 +23,8 @@ import 'package:webclient/components/main_menu_comp.dart';
 import 'package:webclient/components/modal_contest_comp.dart';
 import 'package:webclient/components/active_contest_list_comp.dart';
 import 'package:webclient/components/fantasy_team_comp.dart';
+import 'package:webclient/components/live_contest_comp.dart';
+import 'package:webclient/components/players_list_comp.dart';
 
 import 'package:webclient/directives/form-autofill-fix.dart';
 
@@ -50,6 +53,7 @@ class WebClientApp extends Module {
     bind(ProfileService);
     bind(ContestService);
     bind(FlashMessagesService);
+    bind(ScreenDetectorService);
 
     bind(FlashMessagesCtrl);
     bind(LoginCtrl);
@@ -61,7 +65,9 @@ class WebClientApp extends Module {
     bind(MainMenuComp);
     bind(ModalContestComp);
     bind(FantasyTeamComp);
-    bind(ActiveContestList);
+    bind(LiveContestComp);
+    bind(PlayerListComp);
+    bind(ActiveContestListComp);
 
     bind(FormAutofillDecorator);
 

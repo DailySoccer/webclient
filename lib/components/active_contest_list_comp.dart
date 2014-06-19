@@ -4,6 +4,7 @@ import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/contest_service.dart';
 import 'package:webclient/models/contest.dart';
+import 'dart:async';
 
 
 @Component(
@@ -12,12 +13,12 @@ import 'package:webclient/models/contest.dart';
     publishAs: 'activeContestList',
     useShadowDom: false
 )
-class ActiveContestList {
+class ActiveContestListComp {
 
   ContestService contestService;
 
-  ActiveContestList(this._router, this.contestService) {
-    this.contestService.refreshActiveContests();
+  ActiveContestListComp(this._router, this.contestService) {
+      this.contestService.refreshActiveContests();
   }
 
   void enterContest(Contest contest) {

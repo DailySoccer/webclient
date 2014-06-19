@@ -1,0 +1,45 @@
+#playersListRoot {
+	background-color: @tramaBlue;
+
+	.make-sm-column(6);
+
+	.players-header {
+		.hidden-xs();
+	}
+
+	.player-row {
+		.make-row(0px);
+		.opensans_bold(10pt, @greyDark);
+		border-color: @white;
+		border-width: 1px;
+		border-style: none none solid none;
+		text-align: center;
+		line-height: 46px;
+		
+		@grid-columns-gutter: 4px;
+		
+		.pos {
+			.make-xs-column(1, @grid-columns-gutter);
+		}
+		.name {
+			.make-xs-column(5, @grid-columns-gutter);
+			text-align: left;
+		}
+		.remaining-time {
+			.make-xs-column(2, @grid-columns-gutter);
+		}
+		.score {
+			.make-xs-column(2, @grid-columns-gutter);
+			.exo_bold(10pt, @blueDark);
+
+			span {
+				background-color: @white;
+				padding: 12px 5px 12px 5px;
+				border-radius: 5px;
+			}
+		}
+		.prize {
+			.make-xs-column(2, @grid-columns-gutter);
+		}
+	}
+}

@@ -35,7 +35,7 @@ class MainMenuComp {
   }
 
   void gameMenuClicked(event) {
-    querySelector("#game-menu-collapse").querySelector(".active").classes.remove("active");
+    querySelector("#gameMenuCollapse").querySelector(".active").classes.remove("active");
     event.target.parent.classes.add("active");
   }
 

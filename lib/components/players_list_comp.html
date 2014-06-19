@@ -1,0 +1,13 @@
+<div id="playersListRoot">
+  <div class="players-header">
+    <h1>USUARIOS EN ESTE CONCURSO</h1>
+    <h2>Selecciona a un usuario de esta lista para ver y comparar su alineacion con la tuya</h2>
+  </div>
+  <div class="player-row" ng-repeat="player in playersList.players">
+    <div class="pos">{{$index + 1}}</div>
+    <div class="name">{{player.name}}</div>
+    <div class="remaining-time">{{player.remainingTime}}</div>
+    <div class="score"><span>{{player.score}}</span></div>
+    <div class="prize">{{player.prize}}</div>
+  </div>
+</div>

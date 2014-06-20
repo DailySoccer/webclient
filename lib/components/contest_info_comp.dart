@@ -16,14 +16,14 @@ class ContestInfoComp {
                       }; 
     String currentPath;
     String informacion;
-    String participantes;
-    String premios;
+    String contestants;
+    String prizes;
 
     ContestInfoComp(Scope scope, this._router) {
         //contest = new Map();
         informacion    = "";
-        participantes  = "//TODO Participantes";
-        premios        = "//TODO premios";
+        contestants    = "//TODO Participantes";
+        prizes         = "//TODO premios";
     }
 
     Router _router;

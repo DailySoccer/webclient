@@ -35,5 +35,8 @@ class PlayerListComp {
     players.add({"name":"JUAN CARLOS RUIZ", "remainingTime":"60'", "score":"0.00", "prize":"-"});
   }
 
+  void onPlayerClick(var player) {
+    print("HERE");
+  }
 
 }

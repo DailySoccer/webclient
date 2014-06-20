@@ -14,6 +14,7 @@ class PlayerListComp {
 
   var players = new List();
 
+  @NgTwoWay("selectedPlayer")
   var selectedPlayer = null;
 
   PlayerListComp() {
@@ -36,7 +37,7 @@ class PlayerListComp {
   }
 
   void onPlayerClick(var player) {
-    print("HERE");
+    selectedPlayer = player;
   }
 
 }

@@ -14,8 +14,9 @@
   </div>
 
   <div ng-switch-when="false">
-    <players-list id="playerList" ng-show="selectedOpponent == null"></players-list>
+    <players-list id="playerList" ng-show="selectedOpponent == null" selectedPlayer="selectedOpponent"></players-list>
     <fantasy-team id="playerFantasyTeam"></fantasy-team>      
     <fantasy-team id="opponentFantasyTeam" ng-show="selectedOpponent != null"></fantasy-team>
+    <button type="button" class="btn" ng-click="selectedOpponent = null" ng-show="selectedOpponent != null">CERRAR</button>
   </div>
 </div>

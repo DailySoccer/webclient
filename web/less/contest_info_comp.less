@@ -100,6 +100,7 @@
 		.contest-info-content{
 			.modal-body();
 			background-color: @white;
+			min-height: 500px;
 
 			.instructions{
 				.make-sm-column(8);
@@ -146,29 +147,57 @@
 				overflow-y: scroll;
   				max-height: 250px;
 			}
-			
 		} 
 
-	}
-
-
-}
-
-
-
-/*   
-				.match{
-					.make-sm-column(2);
-					border-left-color: @blueLight;
-					border-left-style: dotted;
-  					border-left-width: 0.1em;
-  					margin: 10px 0;
-  					> p {margin:0;}
-					.teams{
-						.exo_light(16pt, @blueMed);
-					}
-					.date{
-						.opensans_bold(8pt, @greyDark);
-					}
+		.list-wrapper{				
+			.make-sm-column(12);
+			max-height: 450px;
+			overflow-y: scroll;
+			.participant-list{					
+				.contestant-position{
+					.make-sm-column(1);
+					.opensans_bold(10pt, @greyDark);
 				}
-*/
+				.contestant-name{
+					.make-sm-column(8);
+					.opensans_bold(8pt, @greyDark);
+				}
+				.contestant-points{
+					.make-sm-column(3);
+					.exo_light(10pt, @greyDark);
+				}
+				.participant-element{
+					.make-row();
+					padding: 10px 0;
+				}
+				> div:nth-child(even){
+					background-color: @greyLight;	
+				}
+				> div:nth-child(odd){
+									
+				}	
+			}				
+		}
+
+		.prizes-wrapper{
+			.prize-element{
+				width: 16.66666667%;
+				min-width: 135px;
+				float: left;				
+				margin: 10px 1px;	
+
+				.prize-position{
+					.exo_bold(16pt, @blueDark); 
+					padding: 10px;
+				}
+				.prize-separator{
+					border-top: @blueDark 2px dotted;
+				}
+				.prize-amount{
+					.exo_light(16pt, @blueDark); 
+					padding: 10px;
+				}
+			}
+		}
+	}
+}

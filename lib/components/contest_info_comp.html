@@ -1,0 +1,60 @@
+<section>
+    <div id="infoContent" class="modal-content ">
+        
+        <div class="modalHeader">
+            <div class="contest-info-header-row">
+                
+                <div class="column-name">
+                    <div class="inner-content">
+                        <span class="title-text">{{contestInfo.contest['description']}}</span> 
+                        <span class="content-text">{{contestInfo.contest['name']}}</span>
+                    </div>
+                </div>
+                
+                <div class="column-entry-fee">
+                    <div class="inner-icon">
+                        <span class="price-icon"></span>
+                    </div>
+                    <div class="inner-content">
+                        <span class="title-text">ENTRADA</span> 
+                        <span class="content-text">{{contestInfo.contest['entry']}}</span>
+                    </div>
+                </div>
+        
+                <div class="column-prize">
+                    <div class="inner-icon">
+                        <span class="prize-icon"></span>
+                    </div>
+                    <div class="inner-content">
+                        <span class="title-text">PREMIOS</span> 
+                        <span class="content-text">{{contestInfo.contest['prize']}}</span>
+                    </div>
+                </div>
+            
+            </div>
+            
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                <span class="glyphicon glyphicon-remove"></span>
+            </button>            
+        </div>
+        
+        <div class="modalContent">            
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#home" data-toggle="tab">Home</a></li>
+              <li><a href="#/#profile" data-toggle="tab">Profile</a></li>
+              <li><a href="#/#messages" data-toggle="tab">Messages</a></li>
+              <li><a href="#/#settings" data-toggle="tab">Settings</a></li>
+            </ul>
+            
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <div class="tab-pane active" id="home">...</div>
+              <div class="tab-pane" id="profile">...</div>
+              <div class="tab-pane" id="messages">...</div>
+              <div class="tab-pane" id="settings">...</div>
+            </div>
+
+        </div>
+    </div>
+</section>

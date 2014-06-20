@@ -21,7 +21,7 @@ class ActiveContestList {
   }
 
   void enterContest(Contest contest) {
-    _router.go('enter_contest', { "contestId": contest.contestId });
+   // _router.go('enter_contest', { "contestId": contest.contestId });
   }
 
    Router _router;

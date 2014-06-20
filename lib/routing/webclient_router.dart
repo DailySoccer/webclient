@@ -4,6 +4,11 @@ import 'package:angular/angular.dart';
 
 void webClientRouteInitializer(Router router, RouteViewFactory views) {
   views.configure({
+    'landing_page': ngRoute(
+        defaultRoute: true,
+        path: '/landing_page',
+        view: 'view/landing_page.tpl.html'
+    ),
     'login': ngRoute(
         path: '/login',
         view: 'view/login.tpl.html'
@@ -12,8 +17,7 @@ void webClientRouteInitializer(Router router, RouteViewFactory views) {
         path: '/join',
         view: 'view/join.tpl.html'
     ),
-    'lobby': ngRoute(
-        
+    'lobby': ngRoute(    
         path: '/lobby',
         view: 'view/lobby.tpl.html'
     ),
@@ -28,11 +32,6 @@ void webClientRouteInitializer(Router router, RouteViewFactory views) {
     'enter_contest': ngRoute(
         path: '/enter_contest/:contestId',
         view: 'view/enter_contest.tpl.html'
-    ),
-    'landingPage': ngRoute(
-        defaultRoute: true,
-        path: '/',
-        view: 'view/landing_page.tpl.html'
     )
   });
 }

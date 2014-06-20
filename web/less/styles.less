@@ -74,6 +74,17 @@ body { overflow-y: scroll; }
 	display: inline-block;
 }
 
+
+.make-border(@width, @style, @color, @radius: default) {
+	border-width: @width;
+	border-style: @style;
+	border-color: @color;
+	border-radius: @radius;
+}
+
+// Cajas como las de live contests (player_list y fantasy_team)
+@globalBoxesRadius: 8px;
+
 // Ayuda debug
 .pink_bg {
 	background-color: #FF00A0;

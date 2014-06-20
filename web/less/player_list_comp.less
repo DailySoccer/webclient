@@ -1,33 +1,18 @@
 #playersListRoot {
-	background-color: @tramaBlue;
-
-	.make-sm-column(6);
-
-	.players-header {
-		.hidden-xs();
-	}
-
+	
 	.player-row {
 		.make-row(0px);
 		.opensans_bold(10pt, @greyDark);
-		border-color: @white;
-		border-width: 1px;
-		border-style: none none solid none;
+		.make-border(1px, none none solid none, @white);
+		background-color: @tramaBlue;		
 		text-align: center;
 		line-height: 46px;
 		
 		@grid-columns-gutter: 4px;
 		
-		.pos {
-			.make-xs-column(1, @grid-columns-gutter);
-		}
-		.name {
-			.make-xs-column(5, @grid-columns-gutter);
-			text-align: left;
-		}
-		.remaining-time {
-			.make-xs-column(2, @grid-columns-gutter);
-		}
+		.pos { .make-xs-column(1, @grid-columns-gutter); }
+		.name {	.make-xs-column(5, @grid-columns-gutter); text-align: left;	}
+		.remaining-time { .make-xs-column(2, @grid-columns-gutter); }
 		.score {
 			.make-xs-column(2, @grid-columns-gutter);
 			.exo_bold(10pt, @blueDark);
@@ -38,8 +23,52 @@
 				border-radius: 5px;
 			}
 		}
-		.prize {
-			.make-xs-column(2, @grid-columns-gutter);
+		.prize { .make-xs-column(2, @grid-columns-gutter); }
+	}
+
+	.players-table-header {
+		background-color: @blueDark;
+		line-height: 40px;
+		text-align: center;
+		.opensans_bold(8pt, @white);
+
+		@grid-table-header-gutter: 0px;
+		.make-row(0px);
+		.pos {.make-xs-column(1, @grid-table-header-gutter);}
+		.name {.make-xs-column(5, @grid-table-header-gutter); text-align: left;}
+		.remaining-time {.make-xs-column(2, @grid-table-header-gutter);}
+		.score {.make-xs-column(2, @grid-table-header-gutter);}
+		.prize {.make-xs-column(2, @grid-table-header-gutter);}
+	}
+
+	// Desktop
+	.players-header { .hidden-xs(); }
+
+	@media (min-width: @screen-sm-min) {
+		background-color: @white;
+		.make-border(1px, solid, @greyDark, @globalBoxesRadius);
+
+		width: 50%;
+		float:left;
+		height: 540px;
+		overflow: hidden;
+
+		.players-header {
+			padding: 0px 50px 0px 15px;
+			h1 { .exo_light(16pt, @greyDark); margin: 10px 0px 5px 0px;}
+			h2 { .opensans_bold(9pt, @greyDark); margin: 5px 0px 10px 0px;}
+		}
+
+		.players-table-rows {
+			height: 400px;
+			overflow-y: scroll;
+			overflow-x: hidden;
+		}
+
+		.players-table-header {
+			// Para que la header quede centrada respecto a las rows, 
+			// puesto que en desktop las rows tienen la scrollbar a la derecha
+			padding-right: 15px;	
 		}
 	}
 }

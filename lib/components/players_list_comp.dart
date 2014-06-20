@@ -5,7 +5,7 @@ import 'package:angular/angular.dart';
 
 
 @Component(
-    selector: 'player-list',
+    selector: 'players-list',
     templateUrl: 'packages/webclient/components/players_list_comp.html',
     publishAs: 'playersList',
     useShadowDom: false
@@ -13,6 +13,8 @@ import 'package:angular/angular.dart';
 class PlayerListComp {
 
   var players = new List();
+
+  var selectedPlayer = null;
 
   PlayerListComp() {
 
@@ -32,4 +34,6 @@ class PlayerListComp {
     players.add({"name":"JUAN CARLOS RUIZ", "remainingTime":"60'", "score":"0.00", "prize":"-"});
     players.add({"name":"JUAN CARLOS RUIZ", "remainingTime":"60'", "score":"0.00", "prize":"-"});
   }
+
+
 }

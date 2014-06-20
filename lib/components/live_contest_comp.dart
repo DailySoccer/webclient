@@ -14,6 +14,7 @@ import 'package:webclient/services/screen_detector_service.dart';
 class LiveContestComp {
 
   ScreenDetectorService scrDet;
+  var selectedOpponent;
 
   LiveContestComp(this._scope, this.scrDet) {
   }

@@ -1,14 +1,14 @@
 <div id="liveContestRoot" ng-switch="liveContest.scrDet.isXsScreen">
   <div ng-switch-when="true">
     <ul class="nav nav-tabs" id="liveContestTab" >
-      <li><a href="#/my_live_contests/#playerFantasyTeam" data-toggle="tab">Tu alineación</a></li>
-      <li class="active"><a href="#/my_live_contests/#playersList" data-toggle="tab">Usuarios</a></li>
+      <li class="active"><a href="#/my_live_contests/#playerFantasyTeam" data-toggle="tab">Tu alineación</a></li>
+      <li><a href="#/my_live_contests/#playersList" data-toggle="tab">Usuarios</a></li>
       <li><a href="#/my_live_contests/#opponentFantasyTeam" data-toggle="tab">Comparar</a></li>
     </ul>
     
     <div class="tab-content" id="liveContestTabContent">
-      <fantasy-team class="tab-pane" id="playerFantasyTeam"></fantasy-team>
-      <players-list class="tab-pane active" id="playersList"></players-list>
+      <fantasy-team class="tab-pane active" id="playerFantasyTeam"></fantasy-team>
+      <players-list class="tab-pane" id="playersList"></players-list>
       <fantasy-team class="tab-pane" id="opponentFantasyTeam"></fantasy-team>
     </div>
   </div>

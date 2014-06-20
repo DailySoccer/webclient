@@ -14,7 +14,7 @@ class ScreenDetectorService {
 
     // La otra aproximacion, usando dart:js para capturar el evento, fallo (ver historico en git si es necesario)
     new Timer.periodic(new Duration(milliseconds: 500), (Timer timer) {
-      MediaQueryList mq = window.matchMedia("(min-width: 767px)");
+      MediaQueryList mq = window.matchMedia("(min-width: 768px)");
       isXsScreen = !mq.matches;
     });
   }

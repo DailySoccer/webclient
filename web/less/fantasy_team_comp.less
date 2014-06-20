@@ -2,13 +2,12 @@
 	@media (min-width: @screen-sm-min) {
 		width: 50%;
 		float:left;
-		background-color: @white;
+		.border-bottom-radius(@globalBoxesRadius);
 	}
 }
 
 .fantasy-team-header {
-	height:75px;
-	.border-top-radius(@globalBoxesRadius);
+	height:76px;
 
 	#gradient.vertical(@orangeHeaderLight, @orangeHeaderDark, 49%, 51%);
 
@@ -21,22 +20,23 @@
 			line-height: 1.1;
 		}
 	}
-
 	.score-box {
 		.header-box();
 		float:right;
 	}
-
 	.user-nickname {
 		.exo_light(16pt, @white);
 		height: 45px; 
 		padding-top: 5px;
 	}
-
 	.total-remaining-matches-time {
 		.exo_light(10pt, @white);
 		height: 45px; 
 		padding-top: 5px
+	}
+
+	@media (min-width: @screen-sm-min) {
+		.border-top-radius(@globalBoxesRadius);
 	}
 }
 
@@ -45,17 +45,15 @@
 
 	.fantasy-team-slot {
 		.make-row(0px);		// Para quitar los margenes negativos
-		margin-top: 10px;
-		padding-bottom: 8px;
-		border-width: 0px 0px 1px 0px;
-		border-style: none none dotted none;
-		border-color: #FF0000;
+		margin-top: 2px;
+		padding-bottom: 1px;
+		.make-border(1px, none none dotted none, #FF0000);
 
 		.column-fieldpos {
 			.make-xs-column(2, @fantasy-team-gutter);
 			.opensans_bold(10pt, @greyDark);
 			text-align: center;
-			//margin-top: 10px;
+			padding-top: 12px;
 		}
 		.column-primary-info {
 			.make-xs-column(8, @fantasy-team-gutter);
@@ -88,7 +86,7 @@
 	width:70px;
 	height:70px;
 	border-radius:5px;
-	margin: 2px 10px 0px 10px;
+	margin: 3px 10px 0px 10px;
 	
 	#gradient.vertical(@white, @blueUltraLight, 49%, 51%);
 	color: @greyUltraDark;

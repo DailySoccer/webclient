@@ -4,7 +4,7 @@
 		.make-row(0px);
 		.opensans_bold(10pt, @greyDark);
 		.make-border(1px, none none solid none, @white);
-		background-color: @tramaBlue;		
+		background-color: @tramaBlue;
 		text-align: center;
 		line-height: 46px;
 		
@@ -45,23 +45,20 @@
 	.players-header { .hidden-xs(); }
 
 	@media (min-width: @screen-sm-min) {
-		background-color: @white;
 		.make-border(1px, solid, @greyDark, @globalBoxesRadius);
-
-		width: 50%;
-		float:left;
-		height: 550px;
+		.make-percent-box(50%, 2%);
+		height: 549px;		// Mismo tamaño que fantasy_team
 		overflow: hidden;
 
 		.players-header {
 			padding: 10px 50px 0px 15px;
 			height: 75px;				// +border del padre => 76
-			h1 { .exo_light(16pt, @greyDark); margin: 0px;}
+			h1 { .exo_light(14pt, @greyDark); margin: 0px;}
 			h2 { .opensans_bold(9pt, @greyDark); margin: 6px 0px 0px 0px;}
 		}
 
 		.players-table-rows {
-			height: 430px;
+			height: 429px;
 			overflow-y: scroll;
 			overflow-x: hidden;
 		}

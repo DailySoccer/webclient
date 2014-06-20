@@ -1,11 +1,3 @@
-.fantasy-team-wrapper {
-	@media (min-width: @screen-sm-min) {
-		width: 50%;
-		float:left;
-		.border-bottom-radius(@globalBoxesRadius);
-	}
-}
-
 .fantasy-team-header {
 	height:76px;
 
@@ -25,12 +17,12 @@
 		float:right;
 	}
 	.user-nickname {
-		.exo_light(16pt, @white);
+		.exo_light(14pt, @white);
 		height: 45px; 
 		padding-top: 5px;
 	}
 	.total-remaining-matches-time {
-		.exo_light(10pt, @white);
+		.opensans_bold(8pt, @white);
 		height: 45px; 
 		padding-top: 5px
 	}
@@ -100,5 +92,14 @@
 		display: block; 
 		text-align: center;
 		.exo_light(16pt);
+	}
+}
+
+.fantasy-team-wrapper {
+	@media (min-width: @screen-sm-min) {
+		height: 549px;	// Quitamos 1 pixel para comernos el borde final del slot
+		.make-percent-box(50%, 2%);
+		.make-border(1px, solid, @orange, @globalBoxesRadius);
+		overflow: hidden;
 	}
 }

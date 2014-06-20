@@ -85,6 +85,13 @@ body { overflow-y: scroll; }
 // Cajas como las de live contests (player_list y fantasy_team)
 @globalBoxesRadius: 8px;
 
+.make-percent-box(@percentWidth, @percentGutter) {
+	width: @percentWidth - @percentGutter;
+	float: left;
+	margin-left: @percentGutter/2;
+	margin-right: @percentGutter/2;
+}
+
 // Ayuda debug
 .pink_bg {
 	background-color: #FF00A0;

@@ -20,7 +20,7 @@ import 'package:webclient/controllers/flash_messages_ctrl.dart';
 
 import 'package:webclient/components/landing_page_comp.dart';
 import 'package:webclient/components/main_menu_comp.dart';
-import 'package:webclient/components/modal_contest_comp.dart';
+import 'package:webclient/components/contest_info_comp.dart';
 import 'package:webclient/components/active_contest_list_comp.dart';
 import 'package:webclient/components/fantasy_team_comp.dart';
 import 'package:webclient/components/live_contest_comp.dart';
@@ -64,7 +64,7 @@ class WebClientApp extends Module {
 
     bind(LandingPageComp);
     bind(MainMenuComp);
-    bind(ModalContestComp);
+    bind(ContestInfoComp);
     bind(FantasyTeamComp);
     bind(LiveContestComp);
     bind(PlayersListComp);

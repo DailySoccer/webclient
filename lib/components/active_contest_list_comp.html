@@ -1,46 +1,54 @@
-<div id="activeContestListRoot">
-  <div class="active-contest-row"
-    ng-repeat="contest in activeContestList.contestService.activeContests">
+<div id="active-contest-list">
+    <div class="active-contest-row" ng-repeat="contest in activeContestList.contestService.activeContests">
 
-    <div class="column-name">
-      <div class="inner-icon">
-        <span class="price-icon"></span>
-      </div>
-      <div class="inner-content">
-        <span class="title-text">LIGA: 67 de 100 jugadores -
-          SALARIO LIMITE: 60M</span> <span class="content-text">€11.250K
-          Domingo Monsters Leches</span>
-      </div>
-    </div>
+        <div class="column-name">
+            <div class="inner-icon">
+                <span class="price-icon"></span>
+            </div>
+            <div class="inner-content">
+                <span class="title-text">LIGA: 67 de 100 jugadores - SALARIO LIMITE: 60M</span> 
+                <span class="content-text">€11.250K Domingo Monsters Leches</span>
+            </div>
+        </div>
 
-    <div class="column-begins">
-      <span class="title-text">COMIENZA</span> <span
-        class="content-text">DOM 20:45</span>
-    </div>
+        <div class="column-begins">
+            <span class="title-text">COMIENZA</span> 
+            <span class="content-text">DOM 20:45</span>
+        </div>
 
-    <div class="column-entry-fee">
-      <div class="inner-icon">
-        <span class="price-icon"></span>
-      </div>
-      <div class="inner-content">
-        <span class="title-text">ENTRADA</span> <span
-          class="content-text">€{{activeContestList.contestService.getEntryFeeForContest(contest)}}00</span>
-      </div>
-    </div>
+        <div class="column-entry-fee">
+            <div class="inner-icon">
+                <span class="price-icon"></span>
+            </div>
+            <div class="inner-content">
+                <span class="title-text">ENTRADA</span> 
+                <span class="content-text">€{{activeContestList.contestService.getEntryFeeForContest(contest)}}00</span>
+            </div>
+        </div>
 
-    <div class="column-prize">
-      <div class="inner-icon">
-        <span class="prize-icon"></span>
-      </div>
-      <div class="inner-content">
-        <span class="title-text">PREMIOS</span> <span
-          class="content-text">€11.250</span>
-      </div>
-    </div>
+        <div class="column-prize">
+            <div class="inner-icon">
+                <span class="prize-icon"></span>
+            </div>
+            <div class="inner-content">
+                <span class="title-text">PREMIOS</span> 
+                <span class="content-text">€11.250</span>
+            </div>
+        </div>
 
-    <div class="column-play">
-      <button type="button" class="btn"
-        ng-click="activeContestList.enterContest(contest)">Entrar</button>
+        <div class="column-play">
+            <button type="button" class="btn" ng-click="activeContestList.enterContest(contest)"
+            data-target="#modalContest" data-toggle="modal" >Entrar</button>
+        </div>
+    
     </div>
-  </div>
+    
 </div>
+
+<!-- Modal Window -->
+<div class="modal fade" id="modalContest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <contest-info></contest-info>
+    </div>
+</div>
+  

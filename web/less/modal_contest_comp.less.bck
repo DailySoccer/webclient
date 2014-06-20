@@ -11,9 +11,12 @@
      border-top-left-radius: 5px;
      border-top-right-radius: 5px;
  }
+
 .grayBg {
   background-color: @greyLight;
 }
+
+
 .modalHeaderSupTitle {
   font-family: @fontOpenSans;
   color: @greyDark;

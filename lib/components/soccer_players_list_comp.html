@@ -1,1 +1,15 @@
-<div>HELLO WORLD</div>
+<div class="soccer-players-list" ng-repeat="slot in soccerPlayersList.slots">
+  <div class="soccer-players-list-slot">
+    <div class="column-fieldpos">{{slot.fieldPos}}</div>
+    <div class="column-primary-info">
+      <span class="soccer-player-name">{{slot.fullName}}</span>
+      <span class="match-event-name">{{slot.matchEventName}}</span>
+    </div>
+    <div class="column-dfp">11.00</div>
+    <div class="column-played">23</div>
+    <div class="column-salary">6.500€</div>
+    <div class="column-add">
+      <button type="button" class="btn">Añadir</button>
+    </div>
+  </div>
+</div>

@@ -13,6 +13,7 @@ void webClientRouteInitializer(Router router, RouteViewFactory views) {
         view: 'view/join.tpl.html'
     )
     ,'lobby': ngRoute(
+        defaultRoute: true,
         path: '/lobby',
         view: 'view/lobby.tpl.html'
     )
@@ -21,7 +22,6 @@ void webClientRouteInitializer(Router router, RouteViewFactory views) {
         view: 'view/my_entered_contests.tpl.html'
     )
     ,'my_live_contests': ngRoute(
-        defaultRoute: true,
         path: '/my_live_contests',
         view: 'view/my_live_contests.tpl.html'
     )

@@ -10,14 +10,14 @@ import 'package:angular/angular.dart';
     publishAs: 'playersList',
     useShadowDom: false
 )
-class PlayerListComp {
+class PlayersListComp {
 
   var players = new List();
 
   @NgTwoWay("selectedPlayer")
   var selectedPlayer = null;
 
-  PlayerListComp() {
+  PlayersListComp() {
 
     players.add({"name":"JUAN CARLOS RUIZ", "remainingTime":"1800'", "score":"150.00", "prize":"€100,00"});
     players.add({"name":"JUAN CARLOS RUIZ", "remainingTime":"120'", "score":"120.00", "prize":"€50,00"});

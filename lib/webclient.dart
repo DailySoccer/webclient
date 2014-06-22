@@ -25,6 +25,7 @@ import 'package:webclient/components/active_contest_list_comp.dart';
 import 'package:webclient/components/fantasy_team_comp.dart';
 import 'package:webclient/components/live_contest_comp.dart';
 import 'package:webclient/components/players_list_comp.dart';
+import 'package:webclient/components/soccer_players_list_comp.dart';
 
 import 'package:webclient/directives/form-autofill-fix.dart';
 
@@ -66,7 +67,8 @@ class WebClientApp extends Module {
     bind(ModalContestComp);
     bind(FantasyTeamComp);
     bind(LiveContestComp);
-    bind(PlayerListComp);
+    bind(PlayersListComp);
+    bind(SoccerPlayersListComp);
     bind(ActiveContestListComp);
 
     bind(FormAutofillDecorator);

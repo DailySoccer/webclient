@@ -1,8 +1,9 @@
 .fantasy-team-header {
 	height:76px;
+	position: relative;
 
 	#gradient.vertical(@orangeHeaderLight, @orangeHeaderDark, 49%, 51%);
-
+	
 	.ranking-box {
 		.header-box();
 		float:left;
@@ -23,9 +24,24 @@
 		padding-top: 5px;
 	}
 	.total-remaining-matches-time {
-		.opensans_bold(8pt, @white);
+		.opensans_normal(8pt, @white);
 		height: 45px; 
 		padding-top: 5px
+	}
+
+	.close-team {
+		.hidden-xs();
+		cursor: pointer;
+		position: absolute;
+		right: 80px;
+		top: 7px;
+		color: @white; 
+		.title { .opensans_normal(8pt); .hidden-sm(); }
+		.glyphicon { font-size: 18pt; vertical-align: middle;}
+
+		&:hover {
+			color: @greyLight;
+		}
 	}
 
 	@media (min-width: @screen-sm-min) {
@@ -103,4 +119,8 @@
 		.make-percent-box(50%, 2%);
 		.make-border(1px, solid, @orange, @globalBoxesRadius);
 	}
+}
+
+.opponent-team-gradient {
+	#gradient.vertical(@greyHeaderLight, @greyHeaderDark, 49%, 51%);
 }

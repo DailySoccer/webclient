@@ -11,12 +11,16 @@ class ScreenDetectorService {
   bool isXsScreen = false;
 
   ScreenDetectorService(this._scope) {
+    _detectNow(0);
+  }
 
-    // La otra aproximacion, usando dart:js para capturar el evento, falló (ver historico en git si es necesario)
-    new Timer.periodic(new Duration(milliseconds: 500), (Timer timer) {
-      MediaQueryList mq = window.matchMedia("(min-width: 768px)");
-      isXsScreen = !mq.matches;
-    });
+  // La otra aproximacion, usando dart:js para capturar el evento, falló (ver historico en git si es necesario).
+  // Tambien estuvo como un timer, pero queda mas bonito detectarlo cada frame
+  void _detectNow(num theTime) {
+    MediaQueryList mq = window.matchMedia("(min-width: 768px)");
+    isXsScreen = !mq.matches;
+
+    window.animationFrame.then(_detectNow);
   }
 
   Scope _scope;

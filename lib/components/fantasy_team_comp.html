@@ -1,12 +1,11 @@
 <div class="fantasy-team-wrapper" ng-cloak>
   <div class="fantasy-team-header">
-  
     <div class="ranking-box">
       <span class="title">POS</span>
       <span class="content">3</span>
     </div>
     
-     <div class="score-box">
+    <div class="score-box">
       <span class="title">PUNTOS</span>
       <span class="content">20.30</span>
     </div>
@@ -14,6 +13,11 @@
     <div class="user-picture"></div>
     <div class="user-nickname">FRAN GALVEZ</div>
     <div class="total-remaining-matches-time">TIEMPO RESTANTE: TODO</div>
+    
+    <div class="close-team" ng-click="fantasyTeam.onCloseButtonClick()">
+      <span class="title">CERRAR</span>
+      <span class="glyphicon glyphicon-remove"></span>
+    </div>
   </div>
   
   <div class="fantasy-team-list" ng-repeat="slot in fantasyTeam.slots">

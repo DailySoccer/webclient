@@ -24,7 +24,7 @@ class LandingPageComp  implements DetachAware, AttachAware {
         if(isLoggedIn)
             _router.go('lobby', {});
       
-        //capturamos el elemento wrapper
+        // Capturamos el elemento wrapper
         mainWrapper = document.getElementById('mainWrapper');
         containerForContent = document.getElementById('mainContent'); 
     }
@@ -38,7 +38,7 @@ class LandingPageComp  implements DetachAware, AttachAware {
     }
  
     void detach() {
-        print('Desontnado landing page');   
+        print('Desmontnado landing page');   
    
         mainWrapper.classes.clear();
         mainWrapper.classes.add('wrapper-content-container');

@@ -5,9 +5,6 @@
 		// Heredamos los estilos de nuestro padre la lista fantasy_team
 		&:extend(.fantasy-team-list .fantasy-team-slot);
 
-		padding-left: 8px;
-		padding-right: 8px;
-		
 		.column-fieldpos {
 			&:extend(.fantasy-team-list .fantasy-team-slot .column-fieldpos);
 			.hidden-xs();
@@ -46,9 +43,16 @@
 			text-align: center;
 			.btn {
 				.btn-default();
-				padding-left: 8px;
-				padding-right: 8px;
+				padding-left: 7px;
+				padding-right: 7px;
 			}
 		}
+		
+		// En mobile tenemos que dejar un poco de margin para que funcione a 320x480
+		@media (max-width: @screen-xs-max) {
+			margin-left: 10px;
+			margin-right: 10px;
+		}
+
 	}
 }

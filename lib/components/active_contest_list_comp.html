@@ -1,7 +1,7 @@
 <div id="active-contest-list">
     <div class="active-contest-row" ng-repeat="contest in activeContestList.contestService.activeContests">
 
-        <div class="column-name">
+        <div class="column-name" data-target="#modalContest" data-toggle="modal" >
             <div class="inner-icon">
                 <span class="price-icon"></span>
             </div>
@@ -11,12 +11,12 @@
             </div>
         </div>
 
-        <div class="column-begins">
+        <div class="column-begins" data-target="#modalContest" data-toggle="modal" >
             <span class="title-text">COMIENZA</span> 
             <span class="content-text">DOM 20:45</span>
         </div>
 
-        <div class="column-entry-fee">
+        <div class="column-entry-fee" data-target="#modalContest" data-toggle="modal" >
             <div class="inner-icon">
                 <span class="price-icon"></span>
             </div>
@@ -26,7 +26,7 @@
             </div>
         </div>
 
-        <div class="column-prize">
+        <div class="column-prize" data-target="#modalContest" data-toggle="modal" >
             <div class="inner-icon">
                 <span class="prize-icon"></span>
             </div>
@@ -38,7 +38,7 @@
 
         <div class="column-play">
             <button type="button" class="btn" ng-click="activeContestList.enterContest(contest)"
-            data-target="#modalContest" data-toggle="modal" >Entrar</button>
+              href="#">Entrar</button>
         </div>
     
     </div>

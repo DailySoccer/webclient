@@ -13,34 +13,30 @@
 		}
 
 		.featuredBigText{
-			.exo_extra_big_bold();
-			color: @orange;
+			.exo_bold(32pt,  @orange);
 		}
 
 		.featuredMediumText{
-			.exo_big_bold();
-			font-size: 12pt;
- 			color: @blueMed;
+			.exo_bold(16pt, @blueMed);
  			margin: 0;
 		}
 
 		.featuredNormalText{
-			.exo_normal_bold();
+			.exo_bold(10pt,  @white);
 		}
 
 		.titleText{
-			.exo_extra_big_light();
-			color: @blueMed;
+			.exo_light(24pt, @blueMed);
 			text-align: left;
 		}
 
 		.descriptionText{
-			.opensans_semiSmall();
+			.opensans_normal(9pt, @blueDark);
 			text-align: left;
 		}
 
 		.descriptionTextBold{
-			.opensans_semiSmall_bold();
+			.opensans_bold(9pt, @blueDark);
 			text-align: left;
 		}
 
@@ -94,7 +90,7 @@
 		background-color: @black; 
 
 		.textMobile{
-			.exo_small_bold();
+			.exo_bold(8pt, @white);
 			line-height: 2.5;
 			text-align: center;
 			margin: 40px 0 260px 0;

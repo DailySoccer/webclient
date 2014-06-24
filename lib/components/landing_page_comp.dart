@@ -10,35 +10,36 @@ import 'package:webclient/services/profile_service.dart';
    publishAs: 'landingPage',
    useShadowDom: false
 )
-class LandingPageComp  implements ShadowRootAware, DetachAware {
-  
+class LandingPageComp implements ShadowRootAware, DetachAware {
+
   String content;
   HtmlElement mainWrapper;
   HtmlElement containerForContent;
- 
+
   LandingPageComp(Scope scope, this._router, this._profileService) {
-    
-    //capturamos el elemento wrapper
+
+    // Capturamos el elemento wrapper
     mainWrapper = document.getElementById('mainWrapper');
-    containerForContent = document.getElementById('mainContent'); 
- }
-  
+    containerForContent = document.getElementById('mainContent');
+  }
+
   void onShadowRoot(var root) {
-    
-   if(_profileService.isLoggedIn)
-       _router.go("lobby", {});
-       
-   mainWrapper.classes.clear();
-   mainWrapper.classes.add('landing-wrapper');
-   containerForContent.classes.clear();
- }
- 
- void detach() {
-   mainWrapper.classes.clear();
-   mainWrapper.classes.add('wrapper-content-container');
-   containerForContent.classes.add('main-content-container');
- }
- 
- Router _router;
- ProfileService _profileService;
+
+    if(_profileService.isLoggedIn)
+      _router.go("enter_contest", {'contestId': '539fbfdb300456034ddd85a5'});
+      //_router.go("lobby", {});
+
+    mainWrapper.classes.clear();
+    mainWrapper.classes.add('landing-wrapper');
+    containerForContent.classes.clear();
+  }
+
+  void detach() {
+    mainWrapper.classes.clear();
+    mainWrapper.classes.add('wrapper-content-container');
+    containerForContent.classes.add('main-content-container');
+  }
+
+  Router _router;
+  ProfileService _profileService;
 }

@@ -1,22 +1,30 @@
-<div id="liveContestRoot" ng-switch="liveContest.scrDet.isXsScreen" ng-cloak>
-  <div ng-switch-when="true">
-    <ul class="nav nav-tabs" id="liveContestTab" >
-      <li class="active"><a href="#/my_live_contests/#playerFantasyTeam" data-toggle="tab">Tu alineación</a></li>
-      <li><a href="#/my_live_contests/#playersList" data-toggle="tab">Usuarios</a></li>
-      <li><a href="#/my_live_contests/#opponentFantasyTeam" data-toggle="tab">Comparativa</a></li>
-    </ul>
-    
-    <div class="tab-content" id="liveContestTabContent">
-      <fantasy-team class="tab-pane active" id="playerFantasyTeam"></fantasy-team>
-      <players-list class="tab-pane" id="playersList"></players-list>
-      <fantasy-team class="tab-pane" isOpponent="true" id="opponentFantasyTeam"></fantasy-team>
-    </div>
-  </div>
+<div id="liveContestRoot" ng-switch="liveContest.scrDet.isXsScreen"
+    ng-cloak>
+    <div ng-switch-when="true">
+        <ul class="nav nav-tabs" id="liveContestTab">
+            <li class="active"><a
+                href="#/my_live_contests/#playerFantasyTeam"
+                data-toggle="tab">Tu alineación</a></li>
+            <li><a href="#/my_live_contests/#playersList"
+                data-toggle="tab">Usuarios</a></li>
+            <li><a href="#/my_live_contests/#opponentFantasyTeam"
+                data-toggle="tab">Comparativa</a></li>
+        </ul>
 
-  <div ng-switch-when="false">
-    <fantasy-team id="playerFantasyTeam"></fantasy-team> 
-    <players-list id="playerList" ng-show="selectedOpponent == null" selectedPlayer="selectedOpponent"></players-list>    
-    <fantasy-team id="opponentFantasyTeam" isOpponent="true" ng-show="selectedOpponent != null"
-                  showCloseButton="true" onClose="selectedOpponent=null"></fantasy-team>
-  </div>
+        <div class="tab-content" id="liveContestTabContent">
+            <fantasy-team class="tab-pane active" id="playerFantasyTeam"></fantasy-team>
+            <players-list class="tab-pane" id="playersList"></players-list>
+            <fantasy-team class="tab-pane" isOpponent="true"
+                id="opponentFantasyTeam"></fantasy-team>
+        </div>
+    </div>
+
+    <div ng-switch-when="false">
+        <fantasy-team id="playerFantasyTeam"></fantasy-team>
+        <players-list id="playerList" ng-show="selectedOpponent == null"
+            selectedPlayer="selectedOpponent"></players-list>
+        <fantasy-team id="opponentFantasyTeam" isOpponent="true"
+            ng-show="selectedOpponent != null" showCloseButton="true"
+            onClose="selectedOpponent=null"></fantasy-team>
+    </div>
 </div>

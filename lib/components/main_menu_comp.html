@@ -35,7 +35,7 @@
           {{mainMenu.fullName}}<bclass="caret"></b></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="#" ng-click="">Mi cuenta</a></li>
-            <li><a href="#" ng-click="">Añadir fondos</a></li>
+            <li><a id="addMoney" href="#" ng-click="">Añadir fondos</a></li>
             <li><a href="#" ng-click="">Historial de transacciones</a></li>
             <li><a href="#" ng-click="">Centro de referencias</a></li>
             <li><a href="#" ng-click="">Clasificación</a></li>
@@ -56,10 +56,14 @@
     </div>
     <!-- #userMenuCollapse -->
 
-    <!-- Cuando no estamos logeados, mostramos simplemente un boton de Login -->
-    <ul class="nav navbar-nav pull-right" ng-if="!mainMenu.isLoggedIn">
-      <li><a href="#/login">Login</a></li>
-    </ul>
+    <!-- Cuando no estamos logeados, mostramos simplemente un boton de Login y Join -->
+    <div >
+        <ul id="menuRootUnlogged" ng-if="!mainMenu.isLoggedIn">
+          <li><button type="button" class="button-join" link="#/join">join</button></li>
+          <li><button type="button" class="button-login" target="#/login">Login</button></li>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
 
   </div>
 </nav>

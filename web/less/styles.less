@@ -21,7 +21,7 @@
 
 
 // Por ejemplo, el color del boton "Añadir fondos", al que consideramos un btn-primary
-@brand-primary: @orange;
+@brand-primary: @green;
 
 // Color y borde del boton default (por ejemplo, el "Entrar" en un concurso)
 @btn-default-bg: @green;
@@ -31,7 +31,13 @@
 	border-style: solid;
 	border-color: #555757;
 }
-
+// Color y borde del boton primary (por ejemplo, el "Join" en un concurso)
+@btn-default-bg: @blueLight;
+.btn-primary {
+	border-width: 0px 0px 2px 0px;
+	border-style: solid;
+	border-color: #555757;
+}
 
 // Forzamos a que siempre aparezca la scrollbar vertical para que no haya saltos
 body { overflow-y: scroll; }

@@ -30,7 +30,7 @@ void webClientRouteInitializer(Router router, RouteViewFactory views) {
     )
     ,'landingPage': ngRoute(
         defaultRoute: true,
-        path: '/',
+        path: '/landing_page',
         view: 'view/landing_page.tpl.html'
     )
   });

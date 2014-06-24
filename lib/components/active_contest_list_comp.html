@@ -37,15 +37,14 @@
         </div>
 
         <div class="column-play">
-            <button type="button" class="btn" ng-click="activeContestList.enterContest(contest)"
-              href="#">Entrar</button>
+            <button type="button" class="btn" ng-click="activeContestList.enterContest(contest)" href="#">Entrar</button>
         </div>
     
     </div>
     
 </div>
 
-<!-- Modal Window -->
+<!-- Modal Window que envuelve la informacion de concurso, mostrada cuando clickamos en cualquiera de los campos de la fila -->
 <div class="modal fade" id="modalContest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <contest-info></contest-info>

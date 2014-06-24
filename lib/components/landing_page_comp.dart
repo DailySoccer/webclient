@@ -11,40 +11,35 @@ import 'package:webclient/services/profile_service.dart';
     useShadowDom: false
 )
 class LandingPageComp  implements DetachAware, AttachAware {
-  
+
     String content;
     HtmlElement mainWrapper;
     HtmlElement containerForContent;
     bool isLoggedIn;
-    
+
     LandingPageComp(Scope scope, this._router, this._profileService) {
         isLoggedIn  = _profileService.isLoggedIn;
-        print('LANDINGPAGE says: IsLoggedIn: ' + isLoggedIn.toString());   
-        
+
         if(isLoggedIn)
             _router.go('lobby', {});
-      
+
         // Capturamos el elemento wrapper
         mainWrapper = document.getElementById('mainWrapper');
-        containerForContent = document.getElementById('mainContent'); 
+        containerForContent = document.getElementById('mainContent');
     }
-  
+
     void attach() {
-       print('Montnado landing page');
-       
        mainWrapper.classes.clear();
        mainWrapper.classes.add('landing-wrapper');
        containerForContent.classes.clear();
     }
- 
+
     void detach() {
-        print('Desmontnado landing page');   
-   
         mainWrapper.classes.clear();
         mainWrapper.classes.add('wrapper-content-container');
         containerForContent.classes.add('main-content-container');
     }
-    
+
     Router _router;
     ProfileService _profileService;
 }

@@ -11,7 +11,7 @@ import 'dart:async';
 class LobbyCtrl {
 
   LobbyCtrl(this._router) {
-    // Timer.run(() => _router.go("enter_contest", {'contestId': '539fbfdb300456034ddd85a5'}));
+    Timer.run(() => _router.go("enter_contest", {'contestId': '539fbfdb300456034ddd85a5'}));
   }
 
   Router _router;

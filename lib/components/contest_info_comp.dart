@@ -10,16 +10,8 @@ class ContestInfoComp {
         'entry': '€25',
         'prize': '€65.000'
     };
-    String currentPath;
-    String informacion;
-    String contestants;
-    String prizes;
 
     ContestInfoComp(Scope scope, this._router) {
-        //contest = new Map();
-        informacion = "";
-        contestants = "//TODO Participantes";
-        prizes = "//TODO premios";
     }
 
     Router _router;

@@ -2,6 +2,7 @@ library lineup_selector_comp;
 
 import 'dart:html';
 import 'package:angular/angular.dart';
+import 'package:webclient/models/field_pos.dart';
 
 
 @Component(
@@ -15,21 +16,12 @@ class LineupSelectorComp {
   var slots = new List();
 
   LineupSelectorComp() {
-    slots.add({"fieldPos":"POR", "isEmpty":true});
-    slots.add({"fieldPos":"DEF", "isEmpty":true});
-    slots.add({"fieldPos":"DEF", "isEmpty":true});
-    slots.add({"fieldPos":"DEF", "isEmpty":true});
-    slots.add({"fieldPos":"DEF", "isEmpty":true});
-    slots.add({"fieldPos":"MED", "isEmpty":true});
-    slots.add({"fieldPos":"MED", "isEmpty":true});
-    slots.add({"fieldPos":"MED", "isEmpty":true});
-    slots.add({"fieldPos":"MED", "isEmpty":true});
-    slots.add({"fieldPos":"DEL", "isEmpty":true});
-    slots.add({"fieldPos":"DEL", "isEmpty":true});
+    // Creamos los slots iniciales
+    FieldPos.LINEUP.forEach((pos) {
+      slots.add({"fieldPos": FieldPos.FIELD_POSITION_ABREV[pos], "isEmpty":true});
 
-    // Rellenamos color y texto de cada posicion
-    slots.forEach((slot) {
-        slot["desc"] = "AÑADIR PORTERO";
+      // Rellenamos color y texto de cada posicion
+      slots.last["desc"] = "AÑADIR " + FieldPos.FIELD_POSITION_NAMES[pos];
     });
   }
 }

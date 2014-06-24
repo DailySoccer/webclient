@@ -1,23 +1,29 @@
 .soccer-players-list {
-	@soccer-players-list-gutter: 0px;	// Tiene que ser el mismo que fantasy_team
+	@soccer-players-list-gutter: 0px;
 
 	.soccer-players-list-slot {
-		// Heredamos los estilos de nuestro padre la lista fantasy_team
-		&:extend(.fantasy-team-list .fantasy-team-slot);
+		.make-row(0px);				// Para quitar los margenes negativos
+		margin-top: 2px;
+		padding-bottom: 1px;
+		.make-border(1px, none none dotted none, #FF0000);
 
 		.column-fieldpos {
-			&:extend(.fantasy-team-list .fantasy-team-slot .column-fieldpos);
+			.make-xs-column(2, @soccer-players-list-gutter);
 			.hidden-xs();
+			.opensans_bold(10pt, @greyDark);
+			text-align: center;
+			padding-top: 12px;			
 		}
 		.column-primary-info {
 			.make-xs-column(8, @soccer-players-list-gutter);
 			.make-sm-column(5, @soccer-players-list-gutter);
 
 			.soccer-player-name {
-				&:extend(.fantasy-team-list .fantasy-team-slot .column-primary-info .soccer-player-name);
+				.opensans_bold(10pt, @greyDark);
+				display: block;
 			}
 			.match-event-name {
-				&:extend(.fantasy-team-list .fantasy-team-slot .column-primary-info .match-event-name);
+				.opensans_normal(9pt, @blueLight);
 			}
 		}
 		.column-dfp {
@@ -53,6 +59,5 @@
 			margin-left: 10px;
 			margin-right: 10px;
 		}
-
 	}
 }

@@ -1,40 +1,41 @@
 .lineup-selector {
-	@lineup-selector-gutter: 0px;	// Tiene que ser el mismo que fantasy_team
+	@lineup-selector-gutter: 0px;	// Tiene que ser el mismo que soccer_players_list
 
 	.lineup-selector-slot {
-		// Heredamos los estilos de nuestro padre la lista fantasy_team
-		&:extend(.fantasy-team-list .fantasy-team-slot);
+		// Heredamos los estilos de nuestro padre la lista soccer_players_list
+		&:extend(.soccer-players-list .soccer-players-list-slot);
 
 		.column-fieldpos {
-			&:extend(.fantasy-team-list .fantasy-team-slot .column-fieldpos);
-			.hidden-xs();
+			&:extend(.soccer-players-list .soccer-players-list-slot .column-fieldpos);
 		}
 		.column-primary-info {
 			.make-xs-column(8, @lineup-selector-gutter);
 			.make-sm-column(5, @lineup-selector-gutter);
 
 			.soccer-player-name {
-				&:extend(.fantasy-team-list .fantasy-team-slot .column-primary-info .soccer-player-name);
+				&:extend(.soccer-players-list .soccer-players-list-slot .column-primary-info .soccer-player-name);
 			}
 			.match-event-name {
-				&:extend(.fantasy-team-list .fantasy-team-slot .column-primary-info .match-event-name);
+				&:extend(.soccer-players-list .soccer-players-list-slot .column-primary-info .match-event-name);
 			}
 		}
 
+		// Mostraremos o column-primary-info o column-empty-slot (desde dart)
+		.column-empty-slot {
+			.make-xs-column(10, @lineup-selector-gutter);
+		}
+
 		.column-salary {
-			.make-xs-column(2, @lineup-selector-gutter);
-			.make-sm-column(1, @lineup-selector-gutter);
-			.exo_light(10pt, @blueLight);
-			padding-top: 10px;
+			&:extend(.soccer-players-list .soccer-players-list-slot .column-salary);
 		}
 		.column-action {
 			.make-xs-column(2, @lineup-selector-gutter);
 			text-align: center;
-			.btn {
-				.btn-default();
-				padding-left: 7px;
-				padding-right: 7px;
-			}
+			font-size: 20pt;
+			padding-top: 5px;
+
+			#iconButtonSelect { color: @blueDark; }
+			#iconButtonRemove { color: @greyMed; }
 		}
 		
 		// En mobile tenemos que dejar un poco de margin para que funcione a 320x480
@@ -42,6 +43,5 @@
 			margin-left: 10px;
 			margin-right: 10px;
 		}
-
 	}
 }

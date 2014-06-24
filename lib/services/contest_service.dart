@@ -24,25 +24,25 @@ class ContestService {
     var template = getTemplateContestById(contest.templateContestId);
     return (template != null) ? template.salaryCap : -1;
   }
-  
+
   int getEntryFeeForContest(Contest contest) {
     var template = getTemplateContestById(contest.templateContestId);
     return (template != null) ? template.entryFee : -1;
   }
-  
+
   String getPrizeTypeForContest(Contest contest) {
     var template = getTemplateContestById(contest.templateContestId);
     return (template != null) ? template.prizeType : "<>";
   }
-  
+
   List<MatchEvent> getMatchEventsForTemplateContest(TemplateContest template) {
-    // cached value ("Observer reaction functions should not change model.")
-    if ( !_templateMatchEvents.containsKey(template.templateContestId) ) {
+    // Cached value (pq "Observer reaction functions should not change model.")
+    if (!_templateMatchEvents.containsKey(template.templateContestId)) {
       _templateMatchEvents[template.templateContestId] = template.templateMatchEventIds.map((matchEventId) => getMatchEventById(matchEventId)).toList();
     }
     return _templateMatchEvents[template.templateContestId];
   }
-  
+
   List<MatchEvent> getMatchEventsForContest(Contest contest) {
     var template = getTemplateContestById(contest.templateContestId);
     return (template != null) ? getMatchEventsForTemplateContest(template) : null;

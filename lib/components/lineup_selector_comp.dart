@@ -16,21 +16,19 @@ class LineupSelectorComp {
 
   var slots = new List();
 
-  LineupSelectorComp(this._enterContest) {
-    // Creamos los slots iniciales
+  LineupSelectorComp(this._scope) {
     FieldPos.LINEUP.forEach((pos) {
+      // Creamos los slots iniciales
       slots.add({"fieldPos": FieldPos.FIELD_POSITION_ABREV[pos], "isEmpty":true});
 
       // Rellenamos color y texto de cada posicion
       slots.last["desc"] = "AÑADIR " + FieldPos.FIELD_POSITION_NAMES[pos];
     });
-
-    _enterContest.lineupSelector = this;
   }
 
   void onSlotClick(var slot) {
-    _enterContest.onLineupPositionClick(slots.indexOf(slot), slot);
+    _scope.emit("onLineupPositionClick", {"slotIndex": slots.indexOf(slot), "soccerPlayer": slot});
   }
 
-  EnterContestComp _enterContest;
+  Scope _scope;
 }

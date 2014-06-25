@@ -14,10 +14,7 @@ class SoccerPlayersListComp {
 
   var slots = new List();
 
-  @NgTwoWay("selectedSoccerPlayer")
-  var selectedSoccerPlayer;
-
-  SoccerPlayersListComp() {
+  SoccerPlayersListComp(this._scope) {
     slots.add({"fieldPos":"POR", "fullName":"IKER CASILLAS", "matchEventName": "ATM - RMD", "remainingMatchTime": "70 MIN"});
     slots.add({"fieldPos":"DEF", "fullName":"DIEGO LOPEZ", "matchEventName": "RMD - VAL", "remainingMatchTime": "70 MIN"});
     slots.add({"fieldPos":"DEF", "fullName":"JESUS HERNANDEZ", "matchEventName": "RMD - ROS", "remainingMatchTime": "EMPIEZA 19:00"});
@@ -32,6 +29,8 @@ class SoccerPlayersListComp {
   }
 
   void onAddButton(var slot) {
-    selectedSoccerPlayer = slot;
+    _scope.emit("onSoccerPlayerSelected", {"soccerPlayer": slot});
   }
+
+  Scope _scope;
 }

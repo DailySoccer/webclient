@@ -3,6 +3,7 @@ library lineup_selector_comp;
 import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:webclient/models/field_pos.dart';
+import 'package:webclient/components/enter_contest_comp.dart';
 
 
 @Component(
@@ -15,7 +16,7 @@ class LineupSelectorComp {
 
   var slots = new List();
 
-  LineupSelectorComp() {
+  LineupSelectorComp(this._enterContest) {
     // Creamos los slots iniciales
     FieldPos.LINEUP.forEach((pos) {
       slots.add({"fieldPos": FieldPos.FIELD_POSITION_ABREV[pos], "isEmpty":true});
@@ -23,5 +24,13 @@ class LineupSelectorComp {
       // Rellenamos color y texto de cada posicion
       slots.last["desc"] = "AÑADIR " + FieldPos.FIELD_POSITION_NAMES[pos];
     });
+
+    _enterContest.lineupSelector = this;
   }
+
+  void onSlotClick(var slot) {
+    _enterContest.onLineupPositionClick(slots.indexOf(slot), slot);
+  }
+
+  EnterContestComp _enterContest;
 }

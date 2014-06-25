@@ -1,2 +1,5 @@
-<soccer-players-list></soccer-players-list>
-<lineup-selector></lineup-selector>
+<lineup-selector id="lineupSelector" ng-show="!enterContest.isSelectingSoccerPlayer">
+</lineup-selector>
+
+<soccer-players-list ng-show="enterContest.isSelectingSoccerPlayer">
+</soccer-players-list>

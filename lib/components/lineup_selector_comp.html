@@ -1,5 +1,5 @@
 <div class="lineup-selector" ng-repeat="slot in lineupSelector.slots">
-  <div class="lineup-selector-slot">
+  <div class="lineup-selector-slot" ng-click="lineupSelector.onSlotClick(slot)">
     <div class="column-fieldpos">{{slot.fieldPos}}</div>
     <div class="column-primary-info" ng-if="!slot.isEmpty">
       <span class="soccer-player-name">{{slot.fullName}}</span>

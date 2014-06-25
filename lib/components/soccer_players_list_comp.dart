@@ -14,6 +14,9 @@ class SoccerPlayersListComp {
 
   var slots = new List();
 
+  @NgTwoWay("selectedSoccerPlayer")
+  var selectedSoccerPlayer;
+
   SoccerPlayersListComp() {
     slots.add({"fieldPos":"POR", "fullName":"IKER CASILLAS", "matchEventName": "ATM - RMD", "remainingMatchTime": "70 MIN"});
     slots.add({"fieldPos":"DEF", "fullName":"DIEGO LOPEZ", "matchEventName": "RMD - VAL", "remainingMatchTime": "70 MIN"});
@@ -26,5 +29,9 @@ class SoccerPlayersListComp {
     slots.add({"fieldPos":"MED", "fullName":"MARCELO", "matchEventName": "ATM - RMD", "remainingMatchTime": "70 MIN"});
     slots.add({"fieldPos":"DEL", "fullName":"ALVARO ARBELOA", "matchEventName": "ATM - RMD", "remainingMatchTime": "70 MIN"});
     slots.add({"fieldPos":"DEL", "fullName":"DANIEL CARVAJAL", "matchEventName": "ATM - RMD", "remainingMatchTime": "EMPIEZA 9:00"});
+  }
+
+  void onAddButton(var slot) {
+    selectedSoccerPlayer = slot;
   }
 }

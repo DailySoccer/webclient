@@ -11,7 +11,7 @@ import 'package:webclient/components/soccer_players_list_comp.dart';
 @Component(
     selector: 'enter-contest',
     templateUrl: 'packages/webclient/components/enter_contest_comp.html',
-    publishAs: 'enterContest',
+    publishAs: 'comp',
     useShadowDom: false
 )
 class EnterContestComp implements ShadowRootAware {
@@ -19,22 +19,26 @@ class EnterContestComp implements ShadowRootAware {
   Contest contest;
   bool isSelectingSoccerPlayer = false;
 
+  // Intentando hacer la comunicacion a traves de bindings de atributos, falla dart2js. Requiere investigar por que.
+  // De momento vamos a hacer un acoplamiento directo.
+  // http://stackoverflow.com/questions/24397753/how-to-avoid-dart2js-discarding-my-angulardart-callback
+  LineupSelectorComp lineupSelector;
+  SoccerPlayersListComp soccerPlayersList;
+
+
   EnterContestComp(this._scope, this._contestService, RouteProvider routeProvider) {
     contest = _contestService.getContestById(routeProvider.parameters['contestId']);
-
-    _scope.on("onLineupPositionClick").listen(onLineupPositionClick);
-    _scope.on("onSoccerPlayerSelected").listen(onSoccerPlayerSelected);
   }
 
   void onShadowRoot(var root) {
     var rootElement = root as HtmlElement;
   }
 
-  void onLineupPositionClick(ScopeEvent scopeEvent) {
+  void onLineupPositionClick(int slotIndex, var lineupPosition) {
     isSelectingSoccerPlayer = true;
   }
 
-  void onSoccerPlayerSelected(ScopeEvent scopeEvent) {
+  void onSoccerPlayerSelected(var soccerPlayer) {
     isSelectingSoccerPlayer = false;
   }
 

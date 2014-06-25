@@ -1,4 +1,4 @@
-<div class="soccer-players-list" ng-repeat="slot in soccerPlayersList.slots">
+<div class="soccer-players-list" ng-repeat="slot in comp.slots">
   <div class="soccer-players-list-slot">
     <div class="column-fieldpos">{{slot.fieldPos}}</div>
     <div class="column-primary-info">
@@ -9,7 +9,7 @@
     <div class="column-played">23</div>
     <div class="column-salary">6.500€</div>
     <div class="column-add">
-      <button type="button" class="btn" ng-click="soccerPlayersList.onAddButton(slot)">Añadir</button>
+      <button type="button" class="btn" ng-click="comp.onAddButton(slot)">Añadir</button>
     </div>
   </div>
 </div>

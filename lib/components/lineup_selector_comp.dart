@@ -16,6 +16,7 @@ import 'package:angular/core/parser/parser.dart';
 class LineupSelectorComp {
 
   var slots = new List();
+  List<String> slotDescriptions = new List<String>();
 
   @NgTwoWay("selectedLineupPosIndex")
   int selectedLineupPosIndex;
@@ -27,15 +28,12 @@ class LineupSelectorComp {
     // Creamos los slots iniciales, todos vacios
     FieldPos.LINEUP.forEach((pos) {
       slots.add(null);
+      slotDescriptions.add("AÑADIR " + FieldPos.FIELD_POSITION_FULL_NAMES[pos]);
     });
   }
 
   // Por si queremos cambiar lo que significa un slot libre
   bool isEmptySlot(var slot) => slot == null;
-
-  String getDescriptionForEmptySlot(int slotIndex) {
-    return "AÑADIR " + FieldPos.FIELD_POSITION_FULL_NAMES[FieldPos.LINEUP[slotIndex]];
-  }
 
   void setSoccerPlayerIntoSelectedLineupPos(var soccerPlayer) {
     slots[selectedLineupPosIndex] = soccerPlayer;

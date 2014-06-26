@@ -7547,6 +7547,7 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
   border-style: none none dotted none;
   border-color: #ff0000;
   border-radius: default;
+  height: 40px;
 }
 .soccer-players-list .soccer-players-list-slot .column-fieldpos,
 .fantasy-team-list .fantasy-team-slot .column-fieldpos,
@@ -7771,7 +7772,7 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
   text-align: center;
   font-size: 20pt;
   line-height: 1.0;
-  padding-top: 3px;
+  padding-top: 6px;
 }
 .lineup-selector .lineup-selector-slot .column-action #iconButtonSelect {
   color: #214a5f;

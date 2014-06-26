@@ -36,7 +36,7 @@ class LineupSelectorComp {
   void setSoccerPlayerIntoSelectedLineupPos(var soccerPlayer) {
     int idx = slots.indexOf(selectedLineupPos);
     slots[idx] = soccerPlayer;
-    slots[idx]["isEmpty"] = false; // Cuando tengamos datos de verdad, evitar esto
+    slots[idx]["isEmpty"] = false; // Cuando tengamos datos de verdad, evitar esto. Ximo es gay.
   }
 
   void onSlotClick(var slot) {

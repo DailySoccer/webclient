@@ -2,49 +2,45 @@
 	.screen{
 		position: relative;
 	}
-	#desktop-content{
+	#desktopContent{
 		.hidden-xs();
 		background-color: @blueDark;
 		
-		.quarterScreen{
+		.quarter-screen{
 			text-align: center;
 			width: 450px;
 			margin: 65px auto;
 		}
 
-		.featuredBigText{
-			.exo_extra_big_bold();
-			color: @orange;
+		.featured-big-text{
+			.exo_bold(32pt,  @orange);
 		}
 
-		.featuredMediumText{
-			.exo_big_bold();
-			font-size: 12pt;
- 			color: @blueMed;
+		.featured-medium-text{
+			.exo_bold(16pt, @blueMed);
  			margin: 0;
 		}
 
-		.featuredNormalText{
-			.exo_normal_bold();
+		.featured-normal-text{
+			.exo_bold(10pt,  @white);
 		}
 
-		.titleText{
-			.exo_extra_big_light();
-			color: @blueMed;
+		.title-text{
+			.exo_light(24pt, @blueMed);
 			text-align: left;
 		}
 
-		.descriptionText{
-			.opensans_semiSmall();
+		.description-text{
+			.opensans_normal(9pt, @blueDark);
 			text-align: left;
 		}
 
-		.descriptionTextBold{
-			.opensans_semiSmall_bold();
+		.description-text-bold{
+			.opensans_bold(9pt, @blueDark);
 			text-align: left;
 		}
 
-		.verticalSeparator{
+		.vertical-separator{
 			height: 40px;
 			width: 100%;
 		}
@@ -54,47 +50,47 @@
 			.button-size(10px, 50px, 12pt, 1.5em, 4px);  // .button-size(@padding-vertical; @padding-horizontal; @font-size; @line-height; @border-radius)
 		}
 
-		.goDownWhite-icon {
+		.go-down-white-icon {
 			background-image: url("@{images}/goDownWhite.png");
 			.size(15px, 15px);
 			display: inline-block;
 		}
 
-		.goDownBlack-icon {
+		.go-down-black-icon {
 			background-image: url("@{images}/goDownBlack.png");
 			.size(15px, 15px);
 			display: inline-block;
 		}
 
-		.screenLogo{
+		.screen-logo{
 			.img-responsive();
 		}
 
-		.screenTextBlock{
+		.screen-text-block{
 			.make-sm-column(6);
 			margin-top: 30px;
 		}
 
-		.screenLogoBlock{
+		.screen-logo-block{
 			.make-sm-column(6);
 		}
 
-		.knowMoreLinkWhite{
+		.know-more-link-white{
 			color: @white;
 		}
 
-		.knowMoreLinkBlack{
+		.know-more-link-black{
 			color: @black;
 		}
 	}
-	#mobile-content{
+	#mobileContent{
 		.hidden-sm();
 		.hidden-md();
 		.hidden-lg();		
 		background-color: @black; 
 
-		.textMobile{
-			.exo_small_bold();
+		.text-mobile{
+			.exo_bold(8pt, @white);
 			line-height: 2.5;
 			text-align: center;
 			margin: 40px 0 260px 0;
@@ -107,7 +103,7 @@
 		}
 	}
 
-	.screenContent{
+	.screen-content{
 		.main-content-container();
 		@media (max-width: @screen-xs-max) {
 			margin: 0 30px;
@@ -120,7 +116,7 @@
 		color: @white;
 	}
 
-	.screenContentAlt{
+	.screen-content-alt{
 		.main-content-container();
 		@media (min-width: @screen-sm-min) {		
 			width: 100%;
@@ -129,7 +125,7 @@
 		color: @white;
 	}
 
-	.screenBackground{
+	.screen-background{
 		.img-responsive();
 		margin: 0 auto;
 		@media (min-width: @screen-sm-min) {		
@@ -138,7 +134,7 @@
 		width: 100%;
 	}
 
-	.screenPattern{
+	.screen-pattern{
 		position: absolute;
 		top: 0;
 		background-image: url('@{images}/pattern.png');
@@ -149,11 +145,11 @@
 		height: 100%;
 	}
 
-	.halfBackground{
+	.half-background{
 		position: relative;
 	}
 
-	.screenwhiteDownSide{
+	.screen-white-downside{
 		position: relative;
 		background-color: @white;
 		@media (min-width: @screen-sm-min) {		
@@ -161,19 +157,19 @@
 		}	
 	}
 
-	.whiteDownsideContent{
+	.white-downside-content{
 		text-align: center;
 		width: 960px;
 		margin: 20px auto;
 		color: @black;		
 	}
 
-	.playButtonHolder{
+	.play-button-holder{
 		.make-sm-column(2);
 		padding-left: 30px;
 	}
 
-	.knowMoreHolder{
+	.know-more-holder{
 		.make-sm-column(8);
 		text-decoration: none;
 	}

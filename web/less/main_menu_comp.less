@@ -51,7 +51,7 @@
   }
 
   // Boton de añadir fondos
-  .btn {
+  #addMoney, .btn {
     .btn-primary();
     .hidden-xs();                             // oculto en mobile
     .pull-right();
@@ -103,4 +103,30 @@
     .hidden-xs();
   }
   */
+}
+
+#menuRootUnlogged{
+  .nav();
+  .navbar-nav();
+  .pull-right();
+  @media (max-width: @screen-xs-max){
+    width: 100%;
+  }
+  position: relative;
+
+  .button-join{
+    .btn();
+    .btn-primary();
+    padding: 10px 20px;
+    margin: 15px 10px;
+    float:right;
+  }
+
+  .button-login{
+    .btn();
+    .btn-default();
+    padding: 10px 20px;
+    margin: 15px 10px;   
+    float: right;
+  }
 }

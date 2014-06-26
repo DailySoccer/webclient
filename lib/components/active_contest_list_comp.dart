@@ -7,23 +7,18 @@ import 'package:webclient/models/contest.dart';
 import 'dart:async';
 
 
-@Component(
-    selector: 'active-contest-list',
-    templateUrl: 'packages/webclient/components/active_contest_list_comp.html',
-    publishAs: 'activeContestList',
-    useShadowDom: false
-)
+@Component(selector: 'active-contest-list', templateUrl: 'packages/webclient/components/active_contest_list_comp.html', publishAs: 'activeContestList', useShadowDom: false)
 class ActiveContestListComp {
 
-  ContestService contestService;
+    ContestService contestService;
 
-  ActiveContestListComp(this._router, this.contestService) {
-      this.contestService.refreshActiveContests();
-  }
+    ActiveContestListComp(this._router, this.contestService) {
+        this.contestService.refreshActiveContests();
+    }
 
-  void enterContest(Contest contest) {
-    _router.go('enter_contest', { "contestId": contest.contestId });
-  }
+    void enterContest(Contest contest) {
+        // _router.go('enter_contest', { "contestId": contest.contestId });
+    }
 
-   Router _router;
+    Router _router;
 }

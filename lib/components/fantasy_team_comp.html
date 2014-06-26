@@ -1,34 +1,34 @@
 <div class="fantasy-team-wrapper" ng-cloak>
-  <div class="fantasy-team-header">
-    <div class="ranking-box">
-      <span class="title">POS</span>
-      <span class="content">3</span>
+    <div class="fantasy-team-header">
+        <div class="ranking-box">
+            <span class="title">POS</span> <span class="content">3</span>
+        </div>
+
+        <div class="score-box">
+            <span class="title">PUNTOS</span> <span class="content">20.30</span>
+        </div>
+
+        <div class="user-picture"></div>
+        <div class="user-nickname">FRAN GALVEZ</div>
+        <div class="total-remaining-matches-time">TIEMPO RESTANTE:
+            TODO</div>
+
+        <div class="close-team"
+            ng-click="fantasyTeam.onCloseButtonClick()">
+            <span class="title">CERRAR</span> <span
+                class="glyphicon glyphicon-remove"></span>
+        </div>
     </div>
-    
-    <div class="score-box">
-      <span class="title">PUNTOS</span>
-      <span class="content">20.30</span>
+
+    <div class="fantasy-team-list" ng-repeat="slot in fantasyTeam.slots">
+        <div class="fantasy-team-slot">
+            <div class="column-fieldpos">{{slot.fieldPos}}</div>
+            <div class="column-primary-info">
+                <span class="soccer-player-name">{{slot.fullName}}</span>
+                <span class="match-event-name">{{slot.matchEventName}}</span>
+                <span class="remaining-match-time">{{slot.remainingMatchTime}}</span>
+            </div>
+            <div class="column-score">2.00</div>
+        </div>
     </div>
-  
-    <div class="user-picture"></div>
-    <div class="user-nickname">FRAN GALVEZ</div>
-    <div class="total-remaining-matches-time">TIEMPO RESTANTE: TODO</div>
-    
-    <div class="close-team" ng-click="fantasyTeam.onCloseButtonClick()">
-      <span class="title">CERRAR</span>
-      <span class="glyphicon glyphicon-remove"></span>
-    </div>
-  </div>
-  
-  <div class="fantasy-team-list" ng-repeat="slot in fantasyTeam.slots">
-    <div class="fantasy-team-slot">
-      <div class="column-fieldpos">{{slot.fieldPos}}</div>
-      <div class="column-primary-info">
-        <span class="soccer-player-name">{{slot.fullName}}</span>
-        <span class="match-event-name">{{slot.matchEventName}}</span>
-        <span class="remaining-match-time">{{slot.remainingMatchTime}}</span>
-      </div>
-      <div class="column-score">2.00</div>
-    </div>
-  </div>
 </div>

@@ -12,9 +12,6 @@ dev_dependencies:
 transformers:
 - angular:
     html_files:
-    - web/view/my_entered_contests.tpl.html
-    - web/view/my_live_contests.tpl.html
-    - web/view/enter_contest.tpl.html
     - web/view/join.tpl.html    
     - web/view/lobby.tpl.html
     - web/view/login.tpl.html

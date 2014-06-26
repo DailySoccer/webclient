@@ -10,8 +10,8 @@ import 'package:angular/angular.dart';
 )
 
 class ContestHeaderComp {
-  Map contest = {
-    'description': 'TORNEO MULTIJUGADOR (500) LIM. 60M',
+  Map contestHeaderInfo = {
+    'description': '€11.250K Domingo Mongol',
     'startTime':'Empezó a las 20:45',
     'contestType': 'Liga Multijugador',
     'contestantCount': '35 jugadores',    
@@ -21,7 +21,9 @@ class ContestHeaderComp {
   };
   String info;
   
-  ContestHeaderComp(Scope scope, this._router) {}
+  ContestHeaderComp(Scope scope, this._router) {
+    print('printing the contest info' + contestHeaderInfo.toString());
+  }
 
   Router _router;
 }

@@ -25,7 +25,6 @@ class EnterContestComp implements ShadowRootAware {
   LineupSelectorComp lineupSelector;
   SoccerPlayersListComp soccerPlayersList;
 
-
   EnterContestComp(this._scope, this._contestService, RouteProvider routeProvider) {
     contest = _contestService.getContestById(routeProvider.parameters['contestId']);
   }
@@ -34,12 +33,14 @@ class EnterContestComp implements ShadowRootAware {
     var rootElement = root as HtmlElement;
   }
 
-  void onLineupPositionClick(int slotIndex, var lineupPosition) {
+  void onLineupPosClick(int slotIndex, var lineupPosition) {
     isSelectingSoccerPlayer = true;
+    soccerPlayersList.setFieldPosFilter(lineupPosition["fieldPos"]);
   }
 
   void onSoccerPlayerSelected(var soccerPlayer) {
     isSelectingSoccerPlayer = false;
+    lineupSelector.setSoccerPlayerIntoSelectedLineupPos(soccerPlayer);
   }
 
   Scope _scope;

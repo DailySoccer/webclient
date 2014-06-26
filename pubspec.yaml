@@ -20,7 +20,7 @@ transformers:
     - web/view/login.tpl.html
     
 - $dart2js:
-    checked: false
+    checked: true
     minify: false
     verbose: false
     analyzeAll: false

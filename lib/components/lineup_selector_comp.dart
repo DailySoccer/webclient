@@ -4,6 +4,7 @@ import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/components/enter_contest_comp.dart';
+import 'package:angular/core/parser/parser.dart';
 
 
 @Component(
@@ -16,7 +17,12 @@ class LineupSelectorComp {
 
   var slots = new List();
 
+  @NgTwoWay("selectedLineupPos")
+  var selectedLineupPos;
+
   LineupSelectorComp(this._scope, this._enterContest) {
+
+    _enterContest.lineupSelector = this;
 
     FieldPos.LINEUP.forEach((pos) {
       // Creamos los slots iniciales
@@ -25,12 +31,23 @@ class LineupSelectorComp {
       // Rellenamos color y texto de cada posicion
       slots.last["desc"] = "AÑADIR " + FieldPos.FIELD_POSITION_NAMES[pos];
     });
+  }
 
-    _enterContest.lineupSelector = this;
+  void setSoccerPlayerIntoSelectedLineupPos(var soccerPlayer) {
+    int idx = slots.indexOf(selectedLineupPos);
+    slots[idx] = soccerPlayer;
+    slots[idx]["isEmpty"] = false; // Cuando tengamos datos de verdad, evitar esto
   }
 
   void onSlotClick(var slot) {
-    _enterContest.onLineupPositionClick(slots.indexOf(slot), slot);
+
+    if (!slot['isEmpty']) {
+      slots[slots.indexOf(slot)]["isEmpty"] = true;
+    }
+    else {
+      selectedLineupPos = slot;
+      _enterContest.onLineupPosClick(slots.indexOf(slot), slot);
+    }
   }
 
   Scope _scope;

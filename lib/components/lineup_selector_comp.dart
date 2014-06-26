@@ -17,37 +17,37 @@ class LineupSelectorComp {
 
   var slots = new List();
 
-  @NgTwoWay("selectedLineupPos")
-  var selectedLineupPos;
+  @NgTwoWay("selectedLineupPosIndex")
+  int selectedLineupPosIndex;
 
   LineupSelectorComp(this._scope, this._enterContest) {
 
     _enterContest.lineupSelector = this;
 
+    // Creamos los slots iniciales, todos vacios
     FieldPos.LINEUP.forEach((pos) {
-      // Creamos los slots iniciales
-      slots.add({"fieldPos": FieldPos.FIELD_POSITION_ABREV[pos], "isEmpty":true});
-
-      // Rellenamos color y texto de cada posicion
-      slots.last["desc"] = "AÑADIR " + FieldPos.FIELD_POSITION_NAMES[pos];
+      slots.add(null);
     });
   }
 
-  void setSoccerPlayerIntoSelectedLineupPos(var soccerPlayer) {
-    int idx = slots.indexOf(selectedLineupPos);
-    slots[idx] = soccerPlayer;
-    slots[idx]["isEmpty"] = false; // Cuando tengamos datos de verdad, evitar esto.
+  // Por si queremos cambiar lo que significa un slot libre
+  bool isEmptySlot(var slot) => slot == null;
+
+  String getDescriptionForEmptySlot(int slotIndex) {
+    return "AÑADIR " + FieldPos.FIELD_POSITION_FULL_NAMES[FieldPos.LINEUP[slotIndex]];
   }
 
-  void onSlotClick(var slot) {
+  void setSoccerPlayerIntoSelectedLineupPos(var soccerPlayer) {
+    slots[selectedLineupPosIndex] = soccerPlayer;
+  }
 
-    if (!slot['isEmpty']) {
-      slots[slots.indexOf(slot)]["isEmpty"] = true;
-    }
-    else {
-      selectedLineupPos = slot;
-      _enterContest.onLineupPosClick(slots.indexOf(slot), slot);
-    }
+  void onSlotClick(int slotIndex) {
+    selectedLineupPosIndex = slotIndex;
+
+    if (slots[slotIndex] != null)
+      slots[slotIndex] = null;
+    else
+      _enterContest.onLineupPosClick(new FieldPos(FieldPos.LINEUP[slotIndex]));
   }
 
   Scope _scope;

@@ -7,7 +7,7 @@ Testing
 - Install Node:
 
 	$ webclient > brew install node
-
+	
 - Install the npm packages using:
 
 	$ webclient > npm install
@@ -25,7 +25,16 @@ Testing
 
   $ webclient > ./run_karma.sh
 
-The browser is launched automatically by karma. You can access it at http://localhost:9876  
+The browser is launched automatically by karma. You can access it at http://localhost:9876
+
+- To compile automatically the web/less files to css, install grunt-cli and then just run grunt:
+  
+  + $ webclient > npm install -g grunt-cli
+  + $ webclient > grunt
+  
+  If you need to compile the less files for production:
+  
+  $ webclient > grunt less:production
    
 
 WebClient

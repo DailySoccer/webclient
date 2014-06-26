@@ -6,6 +6,7 @@ import 'package:webclient/models/contest.dart';
 import 'package:webclient/services/contest_service.dart';
 import 'package:webclient/components/lineup_selector_comp.dart';
 import 'package:webclient/components/soccer_players_list_comp.dart';
+import 'package:webclient/models/field_pos.dart';
 
 
 @Component(
@@ -33,9 +34,9 @@ class EnterContestComp implements ShadowRootAware {
     var rootElement = root as HtmlElement;
   }
 
-  void onLineupPosClick(int slotIndex, var lineupPosition) {
+  void onLineupPosClick(FieldPos fieldPos) {
     isSelectingSoccerPlayer = true;
-    soccerPlayersList.setFieldPosFilter(lineupPosition["fieldPos"]);
+    soccerPlayersList.setFieldPosFilter(fieldPos);
   }
 
   void onSoccerPlayerSelected(var soccerPlayer) {

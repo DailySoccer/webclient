@@ -18,20 +18,20 @@ void webClientRouteInitializer(Router router, RouteViewFactory views) {
     )
     ,'my_entered_contests': ngRoute(
         path: '/my_entered_contests',
-        view: 'view/my_entered_contests.tpl.html'
+        viewHtml: 'My Entered Contests Hello World'
     )
     ,'my_live_contests': ngRoute(
         path: '/my_live_contests',
-        view: 'view/my_live_contests.tpl.html'
+        viewHtml: '<live-contest></live-contest>'
     )
      ,'enter_contest': ngRoute(
         path: '/enter_contest/:contestId',
-        view: 'view/enter_contest.tpl.html'
+        viewHtml: '<enter-contest></enter-contest>'
     )
     ,'landingPage': ngRoute(
         defaultRoute: true,
         path: '/landing_page',
-        view: 'view/landing_page.tpl.html'
+        viewHtml: '<landing-page></landing-page>'
     )
   });
 }

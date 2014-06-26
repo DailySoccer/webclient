@@ -3,6 +3,7 @@ library soccer_players_list_comp;
 import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:webclient/components/enter_contest_comp.dart';
+import 'package:webclient/models/field_pos.dart';
 
 
 @Component(
@@ -19,24 +20,24 @@ class SoccerPlayersListComp {
 
     _enterContest.soccerPlayersList = this;
 
-    _allSoccerPlayers.add({"fieldPos":"POR", "fullName":"IKER CASILLAS", "matchEventName": "ATM - RMD", "remainingMatchTime": "70 MIN"});
-    _allSoccerPlayers.add({"fieldPos":"DEF", "fullName":"DIEGO LOPEZ", "matchEventName": "RMD - VAL", "remainingMatchTime": "70 MIN"});
-    _allSoccerPlayers.add({"fieldPos":"DEF", "fullName":"JESUS HERNANDEZ", "matchEventName": "RMD - ROS", "remainingMatchTime": "EMPIEZA 19:00"});
-    _allSoccerPlayers.add({"fieldPos":"DEF", "fullName":"RAPHAEL VARANE", "matchEventName": "ATM - RMD", "remainingMatchTime": "70 MIN"});
-    _allSoccerPlayers.add({"fieldPos":"DEF", "fullName":"PEPE", "matchEventName": "ATM - RMD", "remainingMatchTime": "70 MIN"});
-    _allSoccerPlayers.add({"fieldPos":"MED", "fullName":"SERGIO RAMOS", "matchEventName": "ATM - RMD", "remainingMatchTime": "70 MIN"});
-    _allSoccerPlayers.add({"fieldPos":"MED", "fullName":"NACHO FERNANDEZ", "matchEventName": "ATM - RMD", "remainingMatchTime": "EMPIEZA 19:00"});
-    _allSoccerPlayers.add({"fieldPos":"MED", "fullName":"FABIO COENTRAO", "matchEventName": "ATM - RMD", "remainingMatchTime": "70 MIN"});
-    _allSoccerPlayers.add({"fieldPos":"MED", "fullName":"MARCELO", "matchEventName": "ATM - RMD", "remainingMatchTime": "70 MIN"});
-    _allSoccerPlayers.add({"fieldPos":"DEL", "fullName":"ALVARO ARBELOA", "matchEventName": "ATM - RMD", "remainingMatchTime": "70 MIN"});
-    _allSoccerPlayers.add({"fieldPos":"DEL", "fullName":"DANIEL CARVAJAL", "matchEventName": "ATM - RMD", "remainingMatchTime": "EMPIEZA 9:00"});
+    _allSoccerPlayers.add({"fieldPos":new FieldPos("GOALKEEPER"), "fullName":"IKER CASILLAS", "matchEventName": "ATM - RMD", "remainingMatchTime": "70 MIN"});
+    _allSoccerPlayers.add({"fieldPos":new FieldPos("DEFENSE"), "fullName":"DIEGO LOPEZ", "matchEventName": "RMD - VAL", "remainingMatchTime": "70 MIN"});
+    _allSoccerPlayers.add({"fieldPos":new FieldPos("DEFENSE"), "fullName":"JESUS HERNANDEZ", "matchEventName": "RMD - ROS", "remainingMatchTime": "EMPIEZA 19:00"});
+    _allSoccerPlayers.add({"fieldPos":new FieldPos("DEFENSE"), "fullName":"RAPHAEL VARANE", "matchEventName": "ATM - RMD", "remainingMatchTime": "70 MIN"});
+    _allSoccerPlayers.add({"fieldPos":new FieldPos("DEFENSE"), "fullName":"PEPE", "matchEventName": "ATM - RMD", "remainingMatchTime": "70 MIN"});
+    _allSoccerPlayers.add({"fieldPos":new FieldPos("MIDDLE"), "fullName":"SERGIO RAMOS", "matchEventName": "ATM - RMD", "remainingMatchTime": "70 MIN"});
+    _allSoccerPlayers.add({"fieldPos":new FieldPos("MIDDLE"), "fullName":"NACHO FERNANDEZ", "matchEventName": "ATM - RMD", "remainingMatchTime": "EMPIEZA 19:00"});
+    _allSoccerPlayers.add({"fieldPos":new FieldPos("MIDDLE"), "fullName":"FABIO COENTRAO", "matchEventName": "ATM - RMD", "remainingMatchTime": "70 MIN"});
+    _allSoccerPlayers.add({"fieldPos":new FieldPos("MIDDLE"), "fullName":"MARCELO", "matchEventName": "ATM - RMD", "remainingMatchTime": "70 MIN"});
+    _allSoccerPlayers.add({"fieldPos":new FieldPos("FORWARD"), "fullName":"ALVARO ARBELOA", "matchEventName": "ATM - RMD", "remainingMatchTime": "70 MIN"});
+    _allSoccerPlayers.add({"fieldPos":new FieldPos("FORWARD"), "fullName":"DANIEL CARVAJAL", "matchEventName": "ATM - RMD", "remainingMatchTime": "EMPIEZA 9:00"});
   }
 
   void onAddButton(var slot) {
     _enterContest.onSoccerPlayerSelected(slot);
   }
 
-  void setFieldPosFilter(String filter) {
+  void setFieldPosFilter(FieldPos filter) {
     slots = _allSoccerPlayers.where((soccerPlayer) => soccerPlayer["fieldPos"] == filter).toList();
   }
 

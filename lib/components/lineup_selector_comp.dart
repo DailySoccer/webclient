@@ -18,8 +18,6 @@ class LineupSelectorComp {
   var slots = new List();
   List<String> slotDescriptions = new List<String>();
 
-  @NgTwoWay("selectedLineupPosIndex")
-  int selectedLineupPosIndex;
 
   LineupSelectorComp(this._scope, this._enterContest) {
 
@@ -36,11 +34,11 @@ class LineupSelectorComp {
   bool isEmptySlot(var slot) => slot == null;
 
   void setSoccerPlayerIntoSelectedLineupPos(var soccerPlayer) {
-    slots[selectedLineupPosIndex] = soccerPlayer;
+    slots[_selectedLineupPosIndex] = soccerPlayer;
   }
 
   void onSlotClick(int slotIndex) {
-    selectedLineupPosIndex = slotIndex;
+    _selectedLineupPosIndex = slotIndex;
 
     if (slots[slotIndex] != null)
       slots[slotIndex] = null;
@@ -50,4 +48,5 @@ class LineupSelectorComp {
 
   Scope _scope;
   EnterContestComp _enterContest;
+  int _selectedLineupPosIndex = 0;
 }

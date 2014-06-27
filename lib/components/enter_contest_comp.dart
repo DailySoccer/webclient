@@ -15,7 +15,7 @@ import 'package:webclient/models/field_pos.dart';
     publishAs: 'comp',
     useShadowDom: false
 )
-class EnterContestComp implements ShadowRootAware {
+class EnterContestComp {
 
   Contest contest;
   bool isSelectingSoccerPlayer = false;
@@ -26,12 +26,9 @@ class EnterContestComp implements ShadowRootAware {
   LineupSelectorComp lineupSelector;
   SoccerPlayersListComp soccerPlayersList;
 
+
   EnterContestComp(this._scope, this._contestService, RouteProvider routeProvider) {
     contest = _contestService.getContestById(routeProvider.parameters['contestId']);
-  }
-
-  void onShadowRoot(var root) {
-    var rootElement = root as HtmlElement;
   }
 
   void onLineupPosClick(FieldPos fieldPos) {

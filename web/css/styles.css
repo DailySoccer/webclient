@@ -5617,6 +5617,8 @@ button.close {
 .landing-wrapper .screenContent:after,
 .landing-wrapper .screenContentAlt:before,
 .landing-wrapper .screenContentAlt:after,
+.fantasy-team-list .fantasy-team-slot:before,
+.fantasy-team-list .fantasy-team-slot:after,
 #playersListRoot .player-row:before,
 #playersListRoot .player-row:after,
 #playersListRoot .players-table-header:before,
@@ -5625,8 +5627,6 @@ button.close {
 .soccer-players-list .soccer-players-list-slot:after,
 .main-content-container:before,
 .main-content-container:after,
-.fantasy-team-list .fantasy-team-slot:before,
-.fantasy-team-list .fantasy-team-slot:after,
 .lineup-selector .lineup-selector-slot:before,
 .lineup-selector .lineup-selector-slot:after {
   content: " ";
@@ -5651,11 +5651,11 @@ button.close {
 #activeContestListRoot .active-contest-row:after,
 .landing-wrapper .screenContent:after,
 .landing-wrapper .screenContentAlt:after,
+.fantasy-team-list .fantasy-team-slot:after,
 #playersListRoot .player-row:after,
 #playersListRoot .players-table-header:after,
 .soccer-players-list .soccer-players-list-slot:after,
 .main-content-container:after,
-.fantasy-team-list .fantasy-team-slot:after,
 .lineup-selector .lineup-selector-slot:after {
   clear: both;
 }
@@ -7215,23 +7215,29 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
     border-top-left-radius: 8px;
   }
 }
-.fantasy-team-list .fantasy-team-slot .column-fieldpos {
-  display: none !important;
+.fantasy-team-list .fantasy-team-slot {
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 2px;
+  padding-bottom: 2px;
+  border-width: 1px;
+  border-style: none none dotted none;
+  border-color: #ff0000;
+  border-radius: default;
 }
-@media (max-width: 767px) {
-  .fantasy-team-list .fantasy-team-slot .column-fieldpos {
-    display: block !important;
-  }
-  table.fantasy-team-list .fantasy-team-slot .column-fieldpos {
-    display: table;
-  }
-  tr.fantasy-team-list .fantasy-team-slot .column-fieldpos {
-    display: table-row !important;
-  }
-  th.fantasy-team-list .fantasy-team-slot .column-fieldpos,
-  td.fantasy-team-list .fantasy-team-slot .column-fieldpos {
-    display: table-cell !important;
-  }
+.fantasy-team-list .fantasy-team-slot .column-fieldpos {
+  position: relative;
+  float: left;
+  width: 16.66666667%;
+  min-height: 1px;
+  padding-left: 0px;
+  padding-right: 0px;
+  font-family: 'open_sansregular', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #777777;
+  text-align: center;
+  padding-top: 12px;
 }
 .fantasy-team-list .fantasy-team-slot .column-primary-info {
   position: relative;
@@ -7240,6 +7246,19 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
   min-height: 1px;
   padding-left: 0px;
   padding-right: 0px;
+}
+.fantasy-team-list .fantasy-team-slot .column-primary-info .soccer-player-name {
+  font-family: 'open_sansregular', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #777777;
+  display: block;
+}
+.fantasy-team-list .fantasy-team-slot .column-primary-info .match-event-name {
+  font-family: 'open_sansregular', sans-serif;
+  font-weight: 400;
+  font-size: 9pt;
+  color: #59add5;
 }
 .fantasy-team-list .fantasy-team-slot .column-primary-info .remaining-match-time {
   font-family: 'open_sansregular', sans-serif;
@@ -7299,7 +7318,7 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
 }
 @media (min-width: 768px) {
   .fantasy-team-wrapper {
-    height: 549px;
+    height: 561px;
     overflow: hidden;
     width: 48%;
     float: left;
@@ -7449,7 +7468,7 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
     float: left;
     margin-left: 1%;
     margin-right: 1%;
-    height: 549px;
+    height: 561px;
     overflow: hidden;
   }
   #playersListRoot .players-header {
@@ -7471,7 +7490,7 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
     margin: 6px 0px 0px 0px;
   }
   #playersListRoot .players-table-rows {
-    height: 428px;
+    height: 439px;
     overflow-y: scroll;
     overflow-x: hidden;
   }
@@ -7537,7 +7556,6 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
   }
 }
 .soccer-players-list .soccer-players-list-slot,
-.fantasy-team-list .fantasy-team-slot,
 .lineup-selector .lineup-selector-slot {
   margin-left: 0px;
   margin-right: 0px;
@@ -7550,7 +7568,6 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
   height: 40px;
 }
 .soccer-players-list .soccer-players-list-slot .column-fieldpos,
-.fantasy-team-list .fantasy-team-slot .column-fieldpos,
 .lineup-selector .lineup-selector-slot .column-fieldpos {
   position: relative;
   float: left;
@@ -7567,7 +7584,6 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
 }
 @media (max-width: 767px) {
   .soccer-players-list .soccer-players-list-slot .column-fieldpos,
-  .fantasy-team-list .fantasy-team-slot .column-fieldpos,
   .lineup-selector .lineup-selector-slot .column-fieldpos {
     display: none !important;
   }
@@ -7587,7 +7603,6 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
   }
 }
 .soccer-players-list .soccer-players-list-slot .column-primary-info .soccer-player-name,
-.fantasy-team-list .fantasy-team-slot .column-primary-info .soccer-player-name,
 .lineup-selector .lineup-selector-slot .column-primary-info .soccer-player-name {
   font-family: 'open_sansregular', sans-serif;
   font-weight: 700;
@@ -7596,7 +7611,6 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
   display: block;
 }
 .soccer-players-list .soccer-players-list-slot .column-primary-info .match-event-name,
-.fantasy-team-list .fantasy-team-slot .column-primary-info .match-event-name,
 .lineup-selector .lineup-selector-slot .column-primary-info .match-event-name {
   font-family: 'open_sansregular', sans-serif;
   font-weight: 400;
@@ -7726,7 +7740,6 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
 }
 @media (max-width: 767px) {
   .soccer-players-list .soccer-players-list-slot,
-  .fantasy-team-list .fantasy-team-slot,
   .lineup-selector .lineup-selector-slot {
     margin-left: 10px;
     margin-right: 10px;
@@ -7772,7 +7785,7 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
   text-align: center;
   font-size: 20pt;
   line-height: 1.0;
-  padding-top: 6px;
+  padding-top: 4px;
 }
 .lineup-selector .lineup-selector-slot .column-action #iconButtonSelect {
   color: #214a5f;

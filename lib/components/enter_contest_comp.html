@@ -1,5 +1,15 @@
-<lineup-selector id="lineupSelector" ng-show="!comp.isSelectingSoccerPlayer">
-</lineup-selector>
+<section ng-if="comp.scrDet.isXsScreen" ng-cloack>
+  <lineup-selector ng-show="!comp.isSelectingSoccerPlayer">
+  </lineup-selector>
+  
+  <soccer-players-list ng-show="comp.isSelectingSoccerPlayer">
+  </soccer-players-list>
+</section>
 
-<soccer-players-list ng-show="comp.isSelectingSoccerPlayer">
-</soccer-players-list>
+<section ng-if="!comp.scrDet.isXsScreen" ng-cloack>
+  <soccer-players-list>
+  </soccer-players-list>
+  
+  <lineup-selector>
+  </lineup-selector>
+</section>

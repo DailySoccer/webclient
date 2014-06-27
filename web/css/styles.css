@@ -7570,8 +7570,6 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
 .soccer-players-list .soccer-players-list-slot .column-fieldpos,
 .lineup-selector .lineup-selector-slot .column-fieldpos {
   position: relative;
-  float: left;
-  width: 16.66666667%;
   min-height: 1px;
   padding-left: 0px;
   padding-right: 0px;
@@ -7581,6 +7579,13 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
   color: #777777;
   text-align: center;
   padding-top: 12px;
+}
+@media (min-width: 768px) {
+  .soccer-players-list .soccer-players-list-slot .column-fieldpos,
+  .lineup-selector .lineup-selector-slot .column-fieldpos {
+    float: left;
+    width: 16.66666667%;
+  }
 }
 @media (max-width: 767px) {
   .soccer-players-list .soccer-players-list-slot .column-fieldpos,
@@ -7599,7 +7604,13 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
 @media (min-width: 768px) {
   .soccer-players-list .soccer-players-list-slot .column-primary-info {
     float: left;
-    width: 41.66666667%;
+    width: 50%;
+  }
+}
+@media (min-width: 992px) {
+  .soccer-players-list .soccer-players-list-slot .column-primary-info {
+    float: left;
+    width: 33.33333333%;
   }
 }
 .soccer-players-list .soccer-players-list-slot .column-primary-info .soccer-player-name,
@@ -7633,7 +7644,12 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
     display: none !important;
   }
 }
-@media (min-width: 768px) {
+@media (min-width: 768px) and (max-width: 991px) {
+  .soccer-players-list .soccer-players-list-slot .column-dfp {
+    display: none !important;
+  }
+}
+@media (min-width: 992px) {
   .soccer-players-list .soccer-players-list-slot .column-dfp {
     float: left;
     width: 8.33333333%;
@@ -7655,7 +7671,12 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
     display: none !important;
   }
 }
-@media (min-width: 768px) {
+@media (min-width: 768px) and (max-width: 991px) {
+  .soccer-players-list .soccer-players-list-slot .column-played {
+    display: none !important;
+  }
+}
+@media (min-width: 992px) {
   .soccer-players-list .soccer-players-list-slot .column-played {
     float: left;
     width: 8.33333333%;
@@ -7663,9 +7684,9 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
 }
 .soccer-players-list .soccer-players-list-slot .column-salary,
 .lineup-selector .lineup-selector-slot .column-salary {
+  position: relative;
   float: left;
   width: 16.66666667%;
-  position: relative;
   min-height: 1px;
   padding-left: 0px;
   padding-right: 0px;
@@ -7674,13 +7695,7 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
   font-size: 10pt;
   color: #59add5;
   padding-top: 10px;
-}
-@media (min-width: 768px) {
-  .soccer-players-list .soccer-players-list-slot .column-salary,
-  .lineup-selector .lineup-selector-slot .column-salary {
-    float: left;
-    width: 8.33333333%;
-  }
+  text-align: center;
 }
 .soccer-players-list .soccer-players-list-slot .column-add {
   position: relative;
@@ -7745,8 +7760,21 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
     margin-right: 10px;
   }
 }
+@media (min-width: 768px) {
+  .soccer-players-list {
+    width: 61%;
+    float: left;
+    margin-left: 1%;
+    margin-right: 1%;
+  }
+}
 .lineup-selector .lineup-selector-slot {
   cursor: pointer;
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .lineup-selector .lineup-selector-slot .column-fieldpos {
+    display: none !important;
+  }
 }
 .lineup-selector .lineup-selector-slot .column-primary-info {
   float: left;
@@ -7759,7 +7787,13 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
 @media (min-width: 768px) {
   .lineup-selector .lineup-selector-slot .column-primary-info {
     float: left;
-    width: 41.66666667%;
+    width: 66.66666667%;
+  }
+}
+@media (min-width: 992px) {
+  .lineup-selector .lineup-selector-slot .column-primary-info {
+    float: left;
+    width: 50%;
   }
 }
 .lineup-selector .lineup-selector-slot .column-empty-slot {
@@ -7797,6 +7831,14 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
   .lineup-selector .lineup-selector-slot {
     margin-left: 10px;
     margin-right: 10px;
+  }
+}
+@media (min-width: 768px) {
+  .lineup-selector {
+    width: 31%;
+    float: left;
+    margin-left: 1%;
+    margin-right: 1%;
   }
 }
 .btn-default {

@@ -7,6 +7,7 @@ import 'package:webclient/services/contest_service.dart';
 import 'package:webclient/components/lineup_selector_comp.dart';
 import 'package:webclient/components/soccer_players_list_comp.dart';
 import 'package:webclient/models/field_pos.dart';
+import 'package:webclient/services/screen_detector_service.dart';
 
 
 @Component(
@@ -15,7 +16,7 @@ import 'package:webclient/models/field_pos.dart';
     publishAs: 'comp',
     useShadowDom: false
 )
-class EnterContestComp implements ShadowRootAware {
+class EnterContestComp {
 
   Contest contest;
   bool isSelectingSoccerPlayer = false;
@@ -26,12 +27,11 @@ class EnterContestComp implements ShadowRootAware {
   LineupSelectorComp lineupSelector;
   SoccerPlayersListComp soccerPlayersList;
 
-  EnterContestComp(this._scope, this._contestService, RouteProvider routeProvider) {
-    contest = _contestService.getContestById(routeProvider.parameters['contestId']);
-  }
+  ScreenDetectorService scrDet;
 
-  void onShadowRoot(var root) {
-    var rootElement = root as HtmlElement;
+
+  EnterContestComp(this._scope, this._contestService, this.scrDet, RouteProvider routeProvider) {
+    contest = _contestService.getContestById(routeProvider.parameters['contestId']);
   }
 
   void onLineupPosClick(FieldPos fieldPos) {
@@ -42,6 +42,7 @@ class EnterContestComp implements ShadowRootAware {
   void onSoccerPlayerSelected(var soccerPlayer) {
     isSelectingSoccerPlayer = false;
     lineupSelector.setSoccerPlayerIntoSelectedLineupPos(soccerPlayer);
+    soccerPlayersList.setFieldPosFilter(null);
   }
 
   Scope _scope;

@@ -7,6 +7,7 @@ import 'package:webclient/services/contest_service.dart';
 import 'package:webclient/components/lineup_selector_comp.dart';
 import 'package:webclient/components/soccer_players_list_comp.dart';
 import 'package:webclient/models/field_pos.dart';
+import 'package:webclient/services/screen_detector_service.dart';
 
 
 @Component(
@@ -26,8 +27,10 @@ class EnterContestComp {
   LineupSelectorComp lineupSelector;
   SoccerPlayersListComp soccerPlayersList;
 
+  ScreenDetectorService scrDet;
 
-  EnterContestComp(this._scope, this._contestService, RouteProvider routeProvider) {
+
+  EnterContestComp(this._scope, this._contestService, this.scrDet, RouteProvider routeProvider) {
     contest = _contestService.getContestById(routeProvider.parameters['contestId']);
   }
 

@@ -4,7 +4,6 @@ import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/components/enter_contest_comp.dart';
-import 'package:angular/core/parser/parser.dart';
 
 
 @Component(
@@ -15,8 +14,8 @@ import 'package:angular/core/parser/parser.dart';
 )
 class LineupSelectorComp {
 
-  var slots = new List();
-  List<String> slotDescriptions = new List<String>();
+  final slots = new List();
+  final List<String> slotDescriptions = new List<String>();
 
 
   LineupSelectorComp(this._scope, this._enterContest) {

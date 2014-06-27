@@ -31,6 +31,8 @@ class SoccerPlayersListComp {
     _allSoccerPlayers.add({"fieldPos":new FieldPos("MIDDLE"), "fullName":"MARCELO", "matchEventName": "ATM - RMD", "remainingMatchTime": "70 MIN"});
     _allSoccerPlayers.add({"fieldPos":new FieldPos("FORWARD"), "fullName":"ALVARO ARBELOA", "matchEventName": "ATM - RMD", "remainingMatchTime": "70 MIN"});
     _allSoccerPlayers.add({"fieldPos":new FieldPos("FORWARD"), "fullName":"DANIEL CARVAJAL", "matchEventName": "ATM - RMD", "remainingMatchTime": "EMPIEZA 9:00"});
+
+    slots = _allSoccerPlayers;
   }
 
   void onAddButton(var slot) {

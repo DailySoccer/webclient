@@ -40,7 +40,10 @@ class SoccerPlayersListComp {
   }
 
   void setFieldPosFilter(FieldPos filter) {
-    slots = _allSoccerPlayers.where((soccerPlayer) => soccerPlayer["fieldPos"] == filter).toList();
+    if (filter != null)
+      slots = _allSoccerPlayers.where((soccerPlayer) => soccerPlayer["fieldPos"] == filter).toList();
+    else
+      slots = _allSoccerPlayers;
   }
 
   Scope _scope;

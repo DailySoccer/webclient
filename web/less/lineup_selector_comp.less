@@ -8,10 +8,12 @@
 		
 		.column-fieldpos {
 			&:extend(.soccer-players-list .soccer-players-list-slot .column-fieldpos);
+			.hidden-sm();
 		}
 		.column-primary-info {
 			.make-xs-column(8, @lineup-selector-gutter);
-			.make-sm-column(5, @lineup-selector-gutter);
+			.make-sm-column(8, @lineup-selector-gutter);
+			.make-md-column(6, @lineup-selector-gutter);
 			
 			.soccer-player-name {
 				&:extend(.soccer-players-list .soccer-players-list-slot .column-primary-info .soccer-player-name);

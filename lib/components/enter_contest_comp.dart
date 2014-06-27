@@ -42,6 +42,7 @@ class EnterContestComp {
   void onSoccerPlayerSelected(var soccerPlayer) {
     isSelectingSoccerPlayer = false;
     lineupSelector.setSoccerPlayerIntoSelectedLineupPos(soccerPlayer);
+    soccerPlayersList.setFieldPosFilter(null);
   }
 
   Scope _scope;

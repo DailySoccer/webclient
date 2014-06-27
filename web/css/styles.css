@@ -5617,16 +5617,16 @@ button.close {
 .landing-wrapper .screenContent:after,
 .landing-wrapper .screenContentAlt:before,
 .landing-wrapper .screenContentAlt:after,
-#playersListRoot .player-row:before,
-#playersListRoot .player-row:after,
-#playersListRoot .players-table-header:before,
-#playersListRoot .players-table-header:after,
+.fantasy-team-list .fantasy-team-slot:before,
+.fantasy-team-list .fantasy-team-slot:after,
+#usersListRoot .user-row:before,
+#usersListRoot .user-row:after,
+#usersListRoot .users-table-header:before,
+#usersListRoot .users-table-header:after,
 .soccer-players-list .soccer-players-list-slot:before,
 .soccer-players-list .soccer-players-list-slot:after,
 .main-content-container:before,
 .main-content-container:after,
-.fantasy-team-list .fantasy-team-slot:before,
-.fantasy-team-list .fantasy-team-slot:after,
 .lineup-selector .lineup-selector-slot:before,
 .lineup-selector .lineup-selector-slot:after {
   content: " ";
@@ -5651,11 +5651,11 @@ button.close {
 #activeContestListRoot .active-contest-row:after,
 .landing-wrapper .screenContent:after,
 .landing-wrapper .screenContentAlt:after,
-#playersListRoot .player-row:after,
-#playersListRoot .players-table-header:after,
+.fantasy-team-list .fantasy-team-slot:after,
+#usersListRoot .user-row:after,
+#usersListRoot .users-table-header:after,
 .soccer-players-list .soccer-players-list-slot:after,
 .main-content-container:after,
-.fantasy-team-list .fantasy-team-slot:after,
 .lineup-selector .lineup-selector-slot:after {
   clear: both;
 }
@@ -7215,23 +7215,29 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
     border-top-left-radius: 8px;
   }
 }
-.fantasy-team-list .fantasy-team-slot .column-fieldpos {
-  display: none !important;
+.fantasy-team-list .fantasy-team-slot {
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 2px;
+  padding-bottom: 2px;
+  border-width: 1px;
+  border-style: none none dotted none;
+  border-color: #ff0000;
+  border-radius: default;
 }
-@media (max-width: 767px) {
-  .fantasy-team-list .fantasy-team-slot .column-fieldpos {
-    display: block !important;
-  }
-  table.fantasy-team-list .fantasy-team-slot .column-fieldpos {
-    display: table;
-  }
-  tr.fantasy-team-list .fantasy-team-slot .column-fieldpos {
-    display: table-row !important;
-  }
-  th.fantasy-team-list .fantasy-team-slot .column-fieldpos,
-  td.fantasy-team-list .fantasy-team-slot .column-fieldpos {
-    display: table-cell !important;
-  }
+.fantasy-team-list .fantasy-team-slot .column-fieldpos {
+  position: relative;
+  float: left;
+  width: 16.66666667%;
+  min-height: 1px;
+  padding-left: 0px;
+  padding-right: 0px;
+  font-family: 'open_sansregular', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #777777;
+  text-align: center;
+  padding-top: 12px;
 }
 .fantasy-team-list .fantasy-team-slot .column-primary-info {
   position: relative;
@@ -7240,6 +7246,19 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
   min-height: 1px;
   padding-left: 0px;
   padding-right: 0px;
+}
+.fantasy-team-list .fantasy-team-slot .column-primary-info .soccer-player-name {
+  font-family: 'open_sansregular', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #777777;
+  display: block;
+}
+.fantasy-team-list .fantasy-team-slot .column-primary-info .match-event-name {
+  font-family: 'open_sansregular', sans-serif;
+  font-weight: 400;
+  font-size: 9pt;
+  color: #59add5;
 }
 .fantasy-team-list .fantasy-team-slot .column-primary-info .remaining-match-time {
   font-family: 'open_sansregular', sans-serif;
@@ -7299,7 +7318,7 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
 }
 @media (min-width: 768px) {
   .fantasy-team-wrapper {
-    height: 549px;
+    height: 561px;
     overflow: hidden;
     width: 48%;
     float: left;
@@ -7317,7 +7336,7 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff606060', endColorstr='#ff555555', GradientType=0);
 }
-#playersListRoot .player-row {
+#usersListRoot .user-row {
   margin-left: 0px;
   margin-right: 0px;
   font-family: 'open_sansregular', sans-serif;
@@ -7332,7 +7351,7 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
   text-align: center;
   line-height: 46px;
 }
-#playersListRoot .player-row .pos {
+#usersListRoot .user-row .pos {
   position: relative;
   float: left;
   width: 8.33333333%;
@@ -7340,7 +7359,7 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
   padding-left: 2px;
   padding-right: 2px;
 }
-#playersListRoot .player-row .name {
+#usersListRoot .user-row .name {
   position: relative;
   float: left;
   width: 41.66666667%;
@@ -7349,7 +7368,7 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
   padding-right: 2px;
   text-align: left;
 }
-#playersListRoot .player-row .remaining-time {
+#usersListRoot .user-row .remaining-time {
   position: relative;
   float: left;
   width: 16.66666667%;
@@ -7357,7 +7376,7 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
   padding-left: 2px;
   padding-right: 2px;
 }
-#playersListRoot .player-row .score {
+#usersListRoot .user-row .score {
   position: relative;
   float: left;
   width: 16.66666667%;
@@ -7369,12 +7388,12 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
   font-size: 10pt;
   color: #214a5f;
 }
-#playersListRoot .player-row .score span {
+#usersListRoot .user-row .score span {
   background-color: #ffffff;
   padding: 12px 5px 12px 5px;
   border-radius: 5px;
 }
-#playersListRoot .player-row .prize {
+#usersListRoot .user-row .prize {
   position: relative;
   float: left;
   width: 16.66666667%;
@@ -7382,7 +7401,7 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
   padding-left: 2px;
   padding-right: 2px;
 }
-#playersListRoot .players-table-header {
+#usersListRoot .users-table-header {
   background-color: #214a5f;
   line-height: 40px;
   text-align: center;
@@ -7393,7 +7412,7 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
   margin-left: 0px;
   margin-right: 0px;
 }
-#playersListRoot .players-table-header .pos {
+#usersListRoot .users-table-header .pos {
   position: relative;
   float: left;
   width: 8.33333333%;
@@ -7401,7 +7420,7 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
   padding-left: 0px;
   padding-right: 0px;
 }
-#playersListRoot .players-table-header .name {
+#usersListRoot .users-table-header .name {
   position: relative;
   float: left;
   width: 41.66666667%;
@@ -7410,7 +7429,7 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
   padding-right: 0px;
   text-align: left;
 }
-#playersListRoot .players-table-header .remaining-time {
+#usersListRoot .users-table-header .remaining-time {
   position: relative;
   float: left;
   width: 16.66666667%;
@@ -7418,7 +7437,7 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
   padding-left: 0px;
   padding-right: 0px;
 }
-#playersListRoot .players-table-header .score {
+#usersListRoot .users-table-header .score {
   position: relative;
   float: left;
   width: 16.66666667%;
@@ -7426,7 +7445,7 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
   padding-left: 0px;
   padding-right: 0px;
 }
-#playersListRoot .players-table-header .prize {
+#usersListRoot .users-table-header .prize {
   position: relative;
   float: left;
   width: 16.66666667%;
@@ -7435,12 +7454,12 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
   padding-right: 0px;
 }
 @media (max-width: 767px) {
-  #playersListRoot .players-header {
+  #usersListRoot .users-header {
     display: none !important;
   }
 }
 @media (min-width: 768px) {
-  #playersListRoot {
+  #usersListRoot {
     border-width: 1px;
     border-style: solid;
     border-color: #777777;
@@ -7449,36 +7468,36 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
     float: left;
     margin-left: 1%;
     margin-right: 1%;
-    height: 549px;
+    height: 561px;
     overflow: hidden;
   }
-  #playersListRoot .players-header {
+  #usersListRoot .users-header {
     padding: 10px 50px 0px 15px;
     height: 75px;
   }
-  #playersListRoot .players-header h1 {
+  #usersListRoot .users-header h1 {
     font-family: 'Exo', sans-serif;
     font-weight: 300;
     font-size: 14pt;
     color: #777777;
     margin: 0px;
   }
-  #playersListRoot .players-header h2 {
+  #usersListRoot .users-header h2 {
     font-family: 'open_sansregular', sans-serif;
     font-weight: 700;
     font-size: 9pt;
     color: #777777;
     margin: 6px 0px 0px 0px;
   }
-  #playersListRoot .players-table-rows {
-    height: 428px;
+  #usersListRoot .users-table-rows {
+    height: 439px;
     overflow-y: scroll;
     overflow-x: hidden;
   }
-  #playersListRoot .players-table-header {
+  #usersListRoot .users-table-header {
     padding-right: 15px;
   }
-  #playersListRoot .player-row {
+  #usersListRoot .user-row {
     cursor: pointer;
   }
 }
@@ -7537,7 +7556,6 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
   }
 }
 .soccer-players-list .soccer-players-list-slot,
-.fantasy-team-list .fantasy-team-slot,
 .lineup-selector .lineup-selector-slot {
   margin-left: 0px;
   margin-right: 0px;
@@ -7547,9 +7565,9 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
   border-style: none none dotted none;
   border-color: #ff0000;
   border-radius: default;
+  height: 40px;
 }
 .soccer-players-list .soccer-players-list-slot .column-fieldpos,
-.fantasy-team-list .fantasy-team-slot .column-fieldpos,
 .lineup-selector .lineup-selector-slot .column-fieldpos {
   position: relative;
   float: left;
@@ -7566,7 +7584,6 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
 }
 @media (max-width: 767px) {
   .soccer-players-list .soccer-players-list-slot .column-fieldpos,
-  .fantasy-team-list .fantasy-team-slot .column-fieldpos,
   .lineup-selector .lineup-selector-slot .column-fieldpos {
     display: none !important;
   }
@@ -7586,7 +7603,6 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
   }
 }
 .soccer-players-list .soccer-players-list-slot .column-primary-info .soccer-player-name,
-.fantasy-team-list .fantasy-team-slot .column-primary-info .soccer-player-name,
 .lineup-selector .lineup-selector-slot .column-primary-info .soccer-player-name {
   font-family: 'open_sansregular', sans-serif;
   font-weight: 700;
@@ -7595,7 +7611,6 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
   display: block;
 }
 .soccer-players-list .soccer-players-list-slot .column-primary-info .match-event-name,
-.fantasy-team-list .fantasy-team-slot .column-primary-info .match-event-name,
 .lineup-selector .lineup-selector-slot .column-primary-info .match-event-name {
   font-family: 'open_sansregular', sans-serif;
   font-weight: 400;
@@ -7725,7 +7740,6 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
 }
 @media (max-width: 767px) {
   .soccer-players-list .soccer-players-list-slot,
-  .fantasy-team-list .fantasy-team-slot,
   .lineup-selector .lineup-selector-slot {
     margin-left: 10px;
     margin-right: 10px;
@@ -7771,7 +7785,7 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
   text-align: center;
   font-size: 20pt;
   line-height: 1.0;
-  padding-top: 3px;
+  padding-top: 4px;
 }
 .lineup-selector .lineup-selector-slot .column-action #iconButtonSelect {
   color: #214a5f;

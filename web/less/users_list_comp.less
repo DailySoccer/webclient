@@ -1,6 +1,6 @@
-#playersListRoot {
+#usersListRoot {
 	
-	.player-row {
+	.user-row {
 		.make-row(0px);
 		.opensans_bold(10pt, @greyDark);
 		.make-border(1px, none none solid none, @white);
@@ -26,7 +26,7 @@
 		.prize { .make-xs-column(2, @grid-columns-gutter); }
 	}
 
-	.players-table-header {
+	.users-table-header {
 		background-color: @blueDark;
 		line-height: 40px;
 		text-align: center;
@@ -42,34 +42,34 @@
 	}
 
 	// Desktop
-	.players-header { .hidden-xs(); }
+	.users-header { .hidden-xs(); }
 
 	@media (min-width: @screen-sm-min) {
 		.make-border(1px, solid, @greyDark, @globalBoxesRadius);
 		.make-percent-box(50%, 2%);
-		height: 549px;		// Mismo tamaño que fantasy_team
+		height: 561px;		// Mismo tamaño que fantasy_team
 		overflow: hidden;
 
-		.players-header {
+		.users-header {
 			padding: 10px 50px 0px 15px;
 			height: 75px;				// +border del padre => 76
 			h1 { .exo_light(14pt, @greyDark); margin: 0px;}
 			h2 { .opensans_bold(9pt, @greyDark); margin: 6px 0px 0px 0px;}
 		}
 
-		.players-table-rows {
-			height: 428px;
+		.users-table-rows {
+			height: 439px;
 			overflow-y: scroll;
 			overflow-x: hidden;
 		}
 
-		.players-table-header {
+		.users-table-header {
 			// Para que la header quede centrada respecto a las rows, 
 			// puesto que en desktop las rows tienen la scrollbar a la derecha
 			padding-right: 15px;	
 		}
 
-		.player-row {
+		.user-row {
 			cursor: pointer;
 		}
 	}

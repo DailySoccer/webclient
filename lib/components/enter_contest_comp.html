@@ -1,8 +1,8 @@
 <section ng-if="comp.scrDet.isXsScreen" ng-cloack>
-  <lineup-selector ng-show="!comp.isSelectingSoccerPlayer">
+  <lineup-selector ng-show="!comp.enterContestService.isSelectingSoccerPlayer">
   </lineup-selector>
   
-  <soccer-players-list ng-show="comp.isSelectingSoccerPlayer">
+  <soccer-players-list ng-show="comp.enterContestService.isSelectingSoccerPlayer">
   </soccer-players-list>
 </section>
 

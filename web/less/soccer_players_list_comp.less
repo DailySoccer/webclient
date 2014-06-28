@@ -1,5 +1,6 @@
 .soccer-players-list {
 	@soccer-players-list-gutter: 0px;
+	min-height: 1px;	// Para que al quedarse sin futbolistas que mostrar por los filtros, siga ocupando su width
 
 	.soccer-players-list-slot {
 		.make-row(0px);				// Para quitar los margenes negativos
@@ -66,5 +67,6 @@
 
 	@media (min-width: @screen-sm-min) {
 		.make-percent-box(63%, 2%);
+
 	}
 }

@@ -7555,6 +7555,9 @@ fieldset[disabled] .landing-wrapper #mobile-content .btn.active {
     background-color: #ffffff;
   }
 }
+.soccer-players-list {
+  min-height: 1px;
+}
 .soccer-players-list .soccer-players-list-slot,
 .lineup-selector .lineup-selector-slot {
   margin-left: 0px;

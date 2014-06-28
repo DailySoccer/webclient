@@ -19,17 +19,16 @@ class FieldPos {
   // Nuestra alineacion por defecto
   static List<String> LINEUP = [ "GOALKEEPER", "DEFENSE", "DEFENSE", "DEFENSE", "DEFENSE", "MIDDLE", "MIDDLE", "MIDDLE", "MIDDLE", "FORWARD", "FORWARD" ];
 
-  FieldPos(this._key);
+  FieldPos(this.fieldPos);
 
-  String get fullName  => FIELD_POSITION_FULL_NAMES[_key];
-  String get abrevName => FIELD_POSITION_ABREV[_key];
+  String     fieldPos;
+  String get fullName  => FIELD_POSITION_FULL_NAMES[fieldPos];
+  String get abrevName => FIELD_POSITION_ABREV[fieldPos];
 
   bool operator == (other) {
     if (other is! FieldPos) return false;
-    return (other as FieldPos)._key == _key;
+    return (other as FieldPos).fieldPos == fieldPos;
   }
 
-  int get hashCode => _key.hashCode;
-
-  String _key;
+  int get hashCode => fieldPos.hashCode;
 }

@@ -46,6 +46,11 @@ class SoccerPlayersListComp {
       slots = _allSoccerPlayers;
   }
 
+  void removeSoccerPlayer(var soccerPlayer) {
+    _allSoccerPlayers.remove(soccerPlayer);
+    slots.remove(soccerPlayer);
+  }
+
   Scope _scope;
   EnterContestComp _enterContest;
   var _allSoccerPlayers = new List();

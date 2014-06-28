@@ -40,9 +40,19 @@ class EnterContestComp {
   }
 
   void onSoccerPlayerSelected(var soccerPlayer) {
-    isSelectingSoccerPlayer = false;
-    lineupSelector.setSoccerPlayerIntoSelectedLineupPos(soccerPlayer);
-    soccerPlayersList.setFieldPosFilter(null);
+
+    if (isSelectingSoccerPlayer) {
+      isSelectingSoccerPlayer = false;
+      lineupSelector.setSoccerPlayerIntoSelectedLineupPos(soccerPlayer);
+      soccerPlayersList.setFieldPosFilter(null);
+    }
+    else {
+      bool wasAdded = lineupSelector.tryToAddSoccerPlayer(soccerPlayer);
+
+      if (wasAdded) {
+        soccerPlayersList.removeSoccerPlayer(soccerPlayer);
+      }
+    }
   }
 
   Scope _scope;

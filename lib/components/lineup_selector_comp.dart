@@ -39,10 +39,27 @@ class LineupSelectorComp {
   void onSlotClick(int slotIndex) {
     _selectedLineupPosIndex = slotIndex;
 
-    if (slots[slotIndex] != null)
+    if (slots[slotIndex] != null) {
       slots[slotIndex] = null;
+    }
     else
       _enterContest.onLineupPosClick(new FieldPos(FieldPos.LINEUP[slotIndex]));
+  }
+
+  // Añade un futbolista a nuestro lineup si hay algun slot libre de su misma fieldPos. Retorna false si no pudo añadir
+  bool tryToAddSoccerPlayer(var soccerPlayer) {
+    // Buscamos el primer slot libre para la posicion que ocupa el soccer player
+    FieldPos theFieldPos = soccerPlayer["fieldPos"];
+    int c = 0;
+
+    for (; c < slots.length; ++c) {
+      if (slots[c] == null && FieldPos.LINEUP[c] == theFieldPos.fieldPos) {
+        slots[c] = soccerPlayer;
+        break;
+      }
+    }
+
+    return c != slots.length;
   }
 
   Scope _scope;

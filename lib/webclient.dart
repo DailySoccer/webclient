@@ -11,6 +11,7 @@ import 'package:webclient/services/contest_service.dart';
 import 'package:webclient/services/server_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
+import 'package:webclient/services/enter_contest_service.dart';
 
 import 'package:webclient/controllers/login_ctrl.dart';
 import 'package:webclient/controllers/signup_ctrl.dart';
@@ -56,6 +57,7 @@ class WebClientApp extends Module {
     bind(ContestService);
     bind(FlashMessagesService);
     bind(ScreenDetectorService);
+    bind(EnterContestService);
 
     bind(FlashMessagesCtrl);
     bind(LoginCtrl);

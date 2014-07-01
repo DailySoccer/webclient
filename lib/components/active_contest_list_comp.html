@@ -2,7 +2,7 @@
     <div class="active-contest-row"
         ng-repeat="contest in activeContestList.contestService.activeContests">
 
-        <div class="column-name" data-target="#infoContestModal" data-toggle="modal">
+        <div class="column-name" data-target="#infoContestModal" data-toggle="modal" ng-click="activeContestList.selectedContest=contest">
             <div class="inner-icon">
                 <span class="price-icon"></span>
             </div>
@@ -14,12 +14,12 @@
             </div>
         </div>
 
-        <div class="column-begins" data-target="#infoContestModal" data-toggle="modal">
+        <div class="column-begins" data-target="#infoContestModal" data-toggle="modal" ng-click="activeContestList.selectedContest=contest">
             <span class="title-text">COMIENZA</span> <span
                 class="content-text">DOM 20:45</span>
         </div>
 
-        <div class="column-entry-fee" data-target="#infoContestModal" data-toggle="modal">
+        <div class="column-entry-fee" data-target="#infoContestModal" data-toggle="modal" ng-click="activeContestList.selectedContest=contest">
             <div class="inner-icon">
                 <span class="price-icon"></span>
             </div>
@@ -29,7 +29,7 @@
             </div>
         </div>
 
-        <div class="column-prize" data-target="#infoContestModal" data-toggle="modal">
+        <div class="column-prize" data-target="#infoContestModal" data-toggle="modal" ng-click="activeContestList.selectedContest=contest">
             <div class="inner-icon">
                 <span class="prize-icon"></span>
             </div>
@@ -40,9 +40,7 @@
         </div>
 
         <div class="column-play">
-            <button type="button" class="btn"
-                ng-click="activeContestList.enterContest(contest)"
-                href="#">Entrar</button>
+            <button type="button" class="btn" ng-click="activeContestList.enterContest(contest)" href="#">Entrar</button>
         </div>
 
     </div>
@@ -53,7 +51,7 @@
 <div  id="infoContestModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div id="infoContent" class="modal-content">
-        <contest-info></contest-info>
+        <contest-info showContest="activeContestList.selectedContest"></contest-info>
       </div>
     </div>
 </div>

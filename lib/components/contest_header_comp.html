@@ -1,15 +1,38 @@
-<div id="headerContestWidget">
-  <div class="contestName">
-    <div class="featured-text">{{contestHeader.contestHeaderInfo['description']}}</div>
-    <div class="bold-text">{{contestHeader.contestHeaderInfo['startTime']}}</div>
-    <div class="explanation-text">{{contestHeader.contestHeaderInfo['contestType']}} {{contestHeader.contestHeaderInfo['contestantCount']}}</div>
+<div id="headerContestWidget" ng-switch="contestHeader.scrDet.isXsScreen">
+  <div ng-switch-when="true">
+    <div class="contestName">
+      <div class="featured-text">{{contestHeader.contestHeaderInfo['description']}}</div>
+      <div class="date-text">{{contestHeader.contestHeaderInfo['startTime']}}</div>
+      <div class="explanation-text">{{contestHeader.contestHeaderInfo['contestType']}} {{contestHeader.contestHeaderInfo['contestantCount']}}</div>
+    </div>
+    <div class="contestPrice">
+      <div class="money-text">{{contestHeader.contestHeaderInfo['entryPrice']}}</div>
+      <div class="explanation-text">Entrada</div>
+    </div>
+    <div class="contestPrize">
+      <div class="money-text">{{contestHeader.contestHeaderInfo['prize']}}</div>
+      <div class="explanation-text">{{contestHeader.contestHeaderInfo['prizeType']}}</div>
+    </div>
   </div>
-  <div class="contestPrice">
-    <div class="money-text">{{contestHeader.contestHeaderInfo['entryPrice']}}</div>
-    <div class="explanation-text">Entrada</div>
+  
+  <div ng-switch-when="false">
+    <div class="contestName">
+      <div class="featured-text">{{contestHeader.contestHeaderInfo['description']}}</div>
+       <div class="date-text">{{contestHeader.contestHeaderInfo['startTime']}}</div>
+      <div class="explanation-text">{{contestHeader.contestHeaderInfo['contestType']}} {{contestHeader.contestHeaderInfo['contestantCount']}}</div>
+    </div>
+    <div class="contestPrice">
+      <div class="inner-icon"><span class="price-icon"></span></div>
+      <div class="header-name">Entrada</div>      
+      <div class="featured-text">{{contestHeader.contestHeaderInfo['entryPrice']}}</div>      
+    </div>
+    <div class="contestPrize">
+     <div class="inner-icon"><span class="price-icon"></span></div>
+      <div class="header-name">PREMIOS</div>      
+      <div class="money-text">{{contestHeader.contestHeaderInfo['prize']}}</div>
+      <!--<div class="explanation-text">{{contestHeader.contestHeaderInfo['prizeType']}}</div>-->
+    </div>
   </div>
-  <div class="contestPrize">
-    <div class="money-text">{{contestHeader.contestHeaderInfo['prize']}}</div>
-    <div class="explanation-text">{{contestHeader.contestHeaderInfo['prizeType']}}</div>
-  </div>
+  
+  
 </div>

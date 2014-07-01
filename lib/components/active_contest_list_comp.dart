@@ -11,13 +11,15 @@ import 'dart:async';
 class ActiveContestListComp {
 
     ContestService contestService;
+    
+    Contest selectedContest;
 
     ActiveContestListComp(this._router, this.contestService) {
         this.contestService.refreshActiveContests();
     }
 
     void enterContest(Contest contest) {
-        // _router.go('enter_contest', { "contestId": contest.contestId });
+         _router.go('enter_contest', { "contestId": contest.contestId });
     }
 
     Router _router;

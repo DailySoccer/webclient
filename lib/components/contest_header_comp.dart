@@ -1,6 +1,7 @@
 library contest_header_comp;
 
 import 'package:angular/angular.dart';
+import 'package:webclient/services/screen_detector_service.dart';
 
 @Component(
     selector: 'contest-header', 
@@ -19,9 +20,11 @@ class ContestHeaderComp {
     'prize': '€65.000',
     'prizeType':'TODO PARA EL GANADOR'
   };
-  String info;
   
-  ContestHeaderComp(Scope scope, this._router) {
+  String info;
+  ScreenDetectorService scrDet;
+  
+  ContestHeaderComp(Scope scope, this._router, this.scrDet) {
     print('printing the contest info' + contestHeaderInfo.toString());
   }
 

@@ -52,14 +52,18 @@
           </ul>
         </li>
       </ul>
-      <button type="button" class="btn">AÑADIR FONDOS</button>
+      <button id="addMoney" type="button" class="btn">AÑADIR FONDOS</button>
     </div>
     <!-- #userMenuCollapse -->
 
-    <!-- Cuando no estamos logeados, mostramos simplemente un boton de Login -->
-    <ul class="nav navbar-nav pull-right" ng-if="!mainMenu.isLoggedIn">
-      <li><a href="#/login">Login</a></li>
-    </ul>
+    <!-- Cuando no estamos logeados, mostramos simplemente un boton de Login y Join -->
+    <div >
+        <ul id="menuRootUnlogged" ng-if="!mainMenu.isLoggedIn">
+          <li><a type="button" class="button-join" href="#/join">join</a></li>
+          <li><a type="button" class="button-login" href="#/login">Login</a></li>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
 
   </div>
 </nav>

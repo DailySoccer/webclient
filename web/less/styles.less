@@ -5,7 +5,8 @@
 @import "fonts.less";
 
 @import "main_menu_comp.less";
-@import "modal_contest_comp.less";
+@import "contest_info_comp.less";
+@import "contest_header_comp.less";
 @import "active_contest_list_comp.less";
 @import "landing_page_comp.less";
 @import "fantasy_team_comp.less";
@@ -14,7 +15,7 @@
 @import "soccer_players_list_comp.less";
 @import "lineup_selector_comp.less";
 
-
+ 
 // Path Definitions
 @images: "../images";							// No ponemos / al final para separar mejor donde realmente se define la imagen
 
@@ -22,7 +23,7 @@
 
 
 // Por ejemplo, el color del boton "Añadir fondos", al que consideramos un btn-primary
-@brand-primary: @orange;
+@brand-primary: @green;
 
 // Color y borde del boton default (por ejemplo, el "Entrar" en un concurso)
 @btn-default-bg: @green;
@@ -32,7 +33,13 @@
 	border-style: solid;
 	border-color: #555757;
 }
-
+// Color y borde del boton primary (por ejemplo, el "Join" en un concurso)
+@btn-default-bg: @blueLight;
+.btn-primary {
+	border-width: 0px 0px 2px 0px;
+	border-style: solid;
+	border-color: #555757;
+}
 
 // Forzamos a que siempre aparezca la scrollbar vertical para que no haya saltos
 body { overflow-y: scroll; }
@@ -109,6 +116,11 @@ body { overflow-y: scroll; }
 // * * * * * { background-color: rgba(0,255,255,.2); }
 // * * * * * * { background-color: rgba(255,255,0,.2); }
 
+
+#joinControl, #loginControl{
+	color: @white;
+	p, legend {color: @white;}
+}
 .form-login, .form-join {
 	text-align: left;
 }

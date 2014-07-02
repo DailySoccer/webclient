@@ -9,17 +9,17 @@ class Contest {
   String name;
 
   List<String> currentUserIds;
-  int maxUsers;
+  int maxEntries;
 
   String templateContestId;
 
-  Contest(this.contestId, this.name, this.currentUserIds, this.maxUsers, this.templateContestId);
+  Contest(this.contestId, this.name, this.currentUserIds, this.maxEntries, this.templateContestId);
 
   Contest.fromJsonObject(JsonObject json) {
      contestId = json._id;
      name = json.name;
      currentUserIds = json.currentUserIds;
-     maxUsers = json.maxUsers;
+     maxEntries = json.maxEntries;
      templateContestId = json.templateContestId;
      
      // print("Contest: id($contestId) name($name) currentUserIds($currentUserIds) templateContestId($templateContestId)");

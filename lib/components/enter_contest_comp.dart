@@ -17,5 +17,7 @@ class EnterContestComp {
   ScreenDetectorService scrDet;
   EnterContestService enterContestService;
 
-  EnterContestComp(this.scrDet, this.enterContestService);
+  EnterContestComp(RouteProvider routeProvider, this.scrDet, this.enterContestService) {
+    enterContestService.setup(routeProvider.parameters['contestId']);
+  }
 }

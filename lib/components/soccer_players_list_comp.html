@@ -5,9 +5,9 @@
       <span class="soccer-player-name">{{slot.fullName}}</span>
       <span class="match-event-name">{{slot.matchEventName}}</span>
     </div>
-    <div class="column-dfp">11.00</div>
-    <div class="column-played">23</div>
-    <div class="column-salary">6.500€</div>
+    <div class="column-dfp">{{slot.fantasyPoints}}</div>
+    <div class="column-played">{{slot.matchsPlayed}}</div>
+    <div class="column-salary">{{slot.salary}}€</div>
     <div class="column-add">
       <button type="button" class="btn" ng-click="comp.enterContestService.onSoccerPlayerSelected(slot)">Añadir</button>
     </div>

@@ -1,12 +1,12 @@
 <div class="lineup-selector">
-  <div class="lineup-selector-slot" ng-repeat="slot in comp.enterContestService.lineupSlots" ng-click="comp.enterContestService.onSlotSelected($index)">
+  <div class="lineup-selector-slot" ng-repeat="slot in comp.enterContestCtrl.lineupSlots" ng-click="comp.enterContestCtrl.onSlotSelected($index)">
     <div class="column-fieldpos" ng-if="!comp.isEmptySlot(slot)">{{slot.fieldPos.abrevName}}</div>
     <div class="column-primary-info" ng-if="!comp.isEmptySlot(slot)">
       <span class="soccer-player-name">{{slot.fullName}}</span>
       <span class="match-event-name">{{slot.matchEventName}}</span>
     </div>
     <div class="column-empty-slot" ng-if="comp.isEmptySlot(slot)">{{comp.getSlotDescription($index)}}</div>
-    <div class="column-salary" ng-if="!comp.isEmptySlot(slot)">6.500€</div>
+    <div class="column-salary" ng-if="!comp.isEmptySlot(slot)">{{slot.salary}}€</div>
     <div class="column-action">
       <a id="iconButtonSelect" ng-if="comp.isEmptySlot(slot)"><span class="glyphicon glyphicon-play-circle"></span></a>
       <a id="iconButtonRemove" ng-if="!comp.isEmptySlot(slot)"><span class="glyphicon glyphicon-remove"></span></a>

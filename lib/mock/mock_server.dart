@@ -56,8 +56,12 @@ class MockDailySoccerServer implements ServerService {
 
   Future<JsonObject> getUserProfile() => new Future.value(_loggedUser);
   Future<JsonObject> getActiveContests() => new Future.value(_contests.all);
-  Future<JsonObject> getActiveMatchEvents() => new Future.value(_matches.all);
 
+  Future<JsonObject> addContestEntry(String contestId, List<String> soccerPlayers) {
+    var completer = new Completer();
+    completer.completeError(new JsonObject.fromJsonString(JSON_LOGIN_OK));
+    return completer.future;
+  }
 
   JsonObject _loggedUser;
 
@@ -70,6 +74,9 @@ class MockDailySoccerServer implements ServerService {
   /*
    *  JSON RESPONSES
    */
+  static const JSON_TODO = """
+    {"result": "error", "reason": "TODO"} 
+  """;
   static const JSON_SIGNUP_OK = """
     {"result": "ok"} 
   """;

@@ -1,0 +1,23 @@
+<section enter-contest-ctrl>
+
+<div ng-if="ctrl.scrDet.isXsScreen" ng-cloack>
+  <lineup-selector ng-show="!ctrl.isSelectingSoccerPlayer">
+  </lineup-selector>
+  
+  <soccer-players-list ng-show="ctrl.isSelectingSoccerPlayer">
+  </soccer-players-list>
+</div>
+
+<div ng-if="!ctrl.scrDet.isXsScreen" ng-cloack>
+  <soccer-players-list>
+  </soccer-players-list>
+  
+  <lineup-selector>
+  </lineup-selector>
+  
+  <div>
+    <button type="button" class="btn" ng-click="ctrl.createFantasyTeam()" ng-disabled="!ctrl.isFantasyTeamValid()">CONFIRMAR</button>
+  </div>
+</div>
+
+</section>

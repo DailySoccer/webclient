@@ -2,7 +2,7 @@ library lineup_selector_comp;
 
 import 'dart:html';
 import 'package:angular/angular.dart';
-import 'package:webclient/services/enter_contest_service.dart';
+import 'package:webclient/controllers/enter_contest_ctrl.dart';
 import 'package:webclient/models/field_pos.dart';
 
 
@@ -14,9 +14,9 @@ import 'package:webclient/models/field_pos.dart';
 )
 class LineupSelectorComp {
 
-  EnterContestService enterContestService;
+  EnterContestCtrl enterContestCtrl;
 
-  LineupSelectorComp(this.enterContestService);
+  LineupSelectorComp(this.enterContestCtrl);
 
   // Por si queremos cambiar lo que significa un slot libre
   bool isEmptySlot(var slot) => slot == null;

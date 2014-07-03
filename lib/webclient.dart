@@ -11,11 +11,11 @@ import 'package:webclient/services/contest_service.dart';
 import 'package:webclient/services/server_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
-import 'package:webclient/services/enter_contest_service.dart';
 
 import 'package:webclient/controllers/login_ctrl.dart';
 import 'package:webclient/controllers/signup_ctrl.dart';
 import 'package:webclient/controllers/lobby_ctrl.dart';
+import 'package:webclient/controllers/enter_contest_ctrl.dart';
 import 'package:webclient/controllers/flash_messages_ctrl.dart';
 
 import 'package:webclient/components/landing_page_comp.dart';
@@ -28,7 +28,6 @@ import 'package:webclient/components/live_contest_comp.dart';
 import 'package:webclient/components/users_list_comp.dart';
 import 'package:webclient/components/soccer_players_list_comp.dart';
 import 'package:webclient/components/lineup_selector_comp.dart';
-import 'package:webclient/components/enter_contest_comp.dart';
 
 import 'package:webclient/directives/form-autofill-fix.dart';
 
@@ -58,12 +57,12 @@ class WebClientApp extends Module {
     bind(ContestService);
     bind(FlashMessagesService);
     bind(ScreenDetectorService);
-    bind(EnterContestService);
 
     bind(FlashMessagesCtrl);
     bind(LoginCtrl);
     bind(SignupCtrl);
     bind(LobbyCtrl);
+    bind(EnterContestCtrl);
 
     bind(LandingPageComp);
     bind(MainMenuComp);
@@ -75,7 +74,6 @@ class WebClientApp extends Module {
     bind(SoccerPlayersListComp);
     bind(ActiveContestListComp);
     bind(LineupSelectorComp);
-    bind(EnterContestComp);
 
     bind(FormAutofillDecorator);
 

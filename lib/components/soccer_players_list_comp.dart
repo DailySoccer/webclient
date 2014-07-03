@@ -2,8 +2,7 @@ library soccer_players_list_comp;
 
 import 'dart:html';
 import 'package:angular/angular.dart';
-import 'package:webclient/services/enter_contest_service.dart';
-
+import 'package:webclient/controllers/enter_contest_ctrl.dart';
 
 @Component(
     selector: 'soccer-players-list',
@@ -13,7 +12,7 @@ import 'package:webclient/services/enter_contest_service.dart';
 )
 class SoccerPlayersListComp {
 
-  EnterContestService enterContestService;
+  EnterContestCtrl enterContestCtrl;
 
-  SoccerPlayersListComp(this.enterContestService);
+  SoccerPlayersListComp(this.enterContestCtrl);
 }

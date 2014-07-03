@@ -68,6 +68,18 @@ class ContestService {
 
     return completer.future;
   }
+  
+  Future addContestEntry(String contestId, List<String> soccerPlayerIds) {
+    var completer = new Completer();
+    
+    _server.addContestEntry(contestId, soccerPlayerIds)
+      .then((jsonObject) {
+        print("response: " + jsonObject.toString());
+        completer.complete();
+      });
+    
+    return completer.future;
+  }
 
   var _templateMatchEvents = new Map<String, List<MatchEvent>>();
   ServerService _server;

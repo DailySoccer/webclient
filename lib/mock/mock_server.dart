@@ -56,7 +56,6 @@ class MockDailySoccerServer implements ServerService {
 
   Future<JsonObject> getUserProfile() => new Future.value(_loggedUser);
   Future<JsonObject> getActiveContests() => new Future.value(_contests.all);
-  Future<JsonObject> getActiveMatchEvents() => new Future.value(_matches.all);
 
 
   JsonObject _loggedUser;

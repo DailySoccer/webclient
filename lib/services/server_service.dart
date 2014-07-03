@@ -38,9 +38,6 @@ class DailySoccerServer implements ServerService {
     return _innerServerCall("$HostServerUrl/get_active_contests", null);
   }
 
-  Future<JsonObject> getActiveMatchEvents() {
-    return _innerServerCall("$HostServerUrl/get_active_match_events", null);
-  }
 
   /**
    * This is the only place where we call our server

@@ -40,6 +40,12 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
     containerForContent.classes.add('main-content-container');
   }
 
+  
+  void goToLobby(){
+    _router.go("lobby", {});
+  }
+  
+  
   Router _router;
   ProfileService _profileService;
 }

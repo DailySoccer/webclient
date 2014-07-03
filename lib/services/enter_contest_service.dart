@@ -97,7 +97,7 @@ class EnterContestService {
   void _insertSoccerPlayer(MatchEvent matchEvent, SoccerTeam soccerTeam, SoccerPlayer soccerPlayer) {
     _allSoccerPlayers.add(
         {
-          "id": "<NoID>",
+          "id": soccerPlayer.templateSoccerPlayerId,
           "fieldPos": new FieldPos(soccerPlayer.fieldPos),
           "fullName": soccerPlayer.name, 
           "matchEventName": matchEvent.soccerTeamA.shortName + " - " + matchEvent.soccerTeamB.shortName, 
@@ -124,17 +124,25 @@ class EnterContestService {
 
   void createFantasyTeam() {
     // TODO: Se tendría que redireccionar a la pantalla de hacer "Login"?
-    if (!_profileService.isLoggedIn)
+    if (!_profileService.isLoggedIn) {
+      print("login required");
       return;
+    }
     
     print("createFantasyTeam");
 
-    print("contest: " + contest.name);
     print("user: " + _profileService.user.fullName);
+    print("contest: " + contest.name);
     
+    List<String> soccerPlayerIds = new List<String>();
     for (dynamic player in lineupSlots) {
-      print(player["fieldPos"].fieldPos + ": " + player["fullName"]);
+      if (player != null) {
+        print(player["fieldPos"].fieldPos + ": " + player["fullName"] + " : " + player["id"]);
+        soccerPlayerIds.add(player["id"]);
+      }
     }
+    
+    _contestService.addContestEntry(contest.contestId, soccerPlayerIds);
   }
   
   bool isFantasyTeamValid() {

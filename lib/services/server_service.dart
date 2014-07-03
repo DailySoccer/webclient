@@ -1,6 +1,7 @@
 library server_service;
 
 import 'dart:async';
+import 'dart:convert' show JSON;
 import 'package:angular/angular.dart';
 import 'package:json_object/json_object.dart';
 import 'package:webclient/webclient.dart';
@@ -12,6 +13,7 @@ abstract class ServerService {
   Future<JsonObject> login(String email, String password);
   Future<JsonObject> getUserProfile();
   Future<JsonObject> getActiveContests();
+  Future<JsonObject> addContestEntry(String contestId, List<String> soccerPlayers);
 }
 
 @Injectable()
@@ -37,6 +39,10 @@ class DailySoccerServer implements ServerService {
     return _innerServerCall("$HostServerUrl/get_active_contests", null);
   }
 
+  Future<JsonObject> addContestEntry(String contestId, List<String> soccerPlayers) {
+    String jsonSoccerPlayers = JSON.encode(soccerPlayers);
+    return _innerServerCall("$HostServerUrl/add_contest_entry", {'contestId': contestId, 'soccerTeam': jsonSoccerPlayers});
+  }
 
   /**
    * This is the only place where we call our server

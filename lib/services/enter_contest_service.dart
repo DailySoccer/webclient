@@ -102,8 +102,8 @@ class EnterContestService {
           "fullName": soccerPlayer.name, 
           "matchEventName": matchEvent.soccerTeamA.shortName + " - " + matchEvent.soccerTeamB.shortName, 
           "remainingMatchTime": "70 MIN",
-          "fantasyPoints": 0,
-          "matchsPlayed": 23,
+          "fantasyPoints": soccerPlayer.fantasyPoints,
+          "playedMatches": soccerPlayer.playedMatches,
           "salary": soccerPlayer.salary
     });
   }

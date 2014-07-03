@@ -12,7 +12,6 @@ abstract class ServerService {
   Future<JsonObject> login(String email, String password);
   Future<JsonObject> getUserProfile();
   Future<JsonObject> getActiveContests();
-  Future<JsonObject> getActiveMatchEvents();
 }
 
 @Injectable()

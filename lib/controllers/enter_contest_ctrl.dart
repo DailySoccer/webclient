@@ -1,6 +1,8 @@
-library enter_contest_service;
+library enter_contest_ctrl;
 
 import 'package:angular/angular.dart';
+import 'dart:async';
+import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/contest_service.dart';
@@ -8,10 +10,15 @@ import "package:webclient/models/soccer_player.dart";
 import "package:webclient/models/soccer_team.dart";
 import 'package:webclient/models/match_event.dart';
 import 'package:webclient/models/contest.dart';
+import 'package:webclient/services/flash_messages_service.dart';
 
+@Controller(
+    selector: '[enter-contest-ctrl]', 
+    publishAs: 'ctrl'
+)
+class EnterContestCtrl {
 
-@Injectable()
-class EnterContestService {
+  ScreenDetectorService scrDet;
 
   Contest contest;
 
@@ -19,21 +26,23 @@ class EnterContestService {
 
   final List<dynamic> lineupSlots = new List();
   List<dynamic> availableSoccerPlayers = new List();
-
-
-  EnterContestService(this._profileService, this._contestService) {
+  
+  EnterContestCtrl(RouteProvider routeProvider, this._router, this.scrDet, this._profileService, this._contestService, this._flashMessage) {
+    
     // Creamos los slots iniciales, todos vacios
     FieldPos.LINEUP.forEach((pos) {
       lineupSlots.add(null);
     });
+    
+    setup(routeProvider.route.parameters['contestId']);
   }
-  
+
   void setup(String contestId) {
     contest = _contestService.getContestById(contestId);
- 
+
     // Al principio, todos disponibles
     initAllSoccerPlayers();
-    availableSoccerPlayers = new List<dynamic>.from(_allSoccerPlayers); 
+    availableSoccerPlayers = new List<dynamic>.from(_allSoccerPlayers);
   }
 
   void onSlotSelected(int slotIndex) {
@@ -48,8 +57,7 @@ class EnterContestService {
 
       // Reseteamos el filtro para volver a mostrarlo entre los disponibles
       setFieldPosFilter(null);
-    }
-    else {
+    } else {
       isSelectingSoccerPlayer = true;
       setFieldPosFilter(new FieldPos(FieldPos.LINEUP[slotIndex]));
     }
@@ -61,20 +69,15 @@ class EnterContestService {
       isSelectingSoccerPlayer = false;
       lineupSlots[_selectedLineupPosIndex] = soccerPlayer;
       setFieldPosFilter(null);
-    }
-    else {
+    } else {
       bool wasAdded = tryToAddSoccerPlayer(soccerPlayer);
 
-      if (wasAdded)
-        availableSoccerPlayers.remove(soccerPlayer);
+      if (wasAdded) availableSoccerPlayers.remove(soccerPlayer);
     }
   }
 
   void setFieldPosFilter(FieldPos filter) {
-    if (filter != null)
-      availableSoccerPlayers = _allSoccerPlayers.where((soccerPlayer) => soccerPlayer["fieldPos"] == filter && !lineupSlots.contains(soccerPlayer)).toList();
-    else
-      availableSoccerPlayers = _allSoccerPlayers.where((soccerPlayer) => !lineupSlots.contains(soccerPlayer)).toList();
+    if (filter != null) availableSoccerPlayers = _allSoccerPlayers.where((soccerPlayer) => soccerPlayer["fieldPos"] == filter && !lineupSlots.contains(soccerPlayer)).toList(); else availableSoccerPlayers = _allSoccerPlayers.where((soccerPlayer) => !lineupSlots.contains(soccerPlayer)).toList();
   }
 
   // Añade un futbolista a nuestro lineup si hay algun slot libre de su misma fieldPos. Retorna false si no pudo añadir
@@ -84,7 +87,7 @@ class EnterContestService {
     FieldPos theFieldPos = soccerPlayer["fieldPos"];
     int c = 0;
 
-    for (; c < lineupSlots.length; ++c) {
+    for ( ; c < lineupSlots.length; ++c) {
       if (lineupSlots[c] == null && FieldPos.LINEUP[c] == theFieldPos.fieldPos) {
         lineupSlots[c] = soccerPlayer;
         return true;
@@ -95,27 +98,26 @@ class EnterContestService {
   }
 
   void _insertSoccerPlayer(MatchEvent matchEvent, SoccerTeam soccerTeam, SoccerPlayer soccerPlayer) {
-    _allSoccerPlayers.add(
-        {
-          "id": soccerPlayer.templateSoccerPlayerId,
-          "fieldPos": new FieldPos(soccerPlayer.fieldPos),
-          "fullName": soccerPlayer.name, 
-          "matchEventName": matchEvent.soccerTeamA.shortName + " - " + matchEvent.soccerTeamB.shortName, 
-          "remainingMatchTime": "70 MIN",
-          "fantasyPoints": soccerPlayer.fantasyPoints,
-          "playedMatches": soccerPlayer.playedMatches,
-          "salary": soccerPlayer.salary
+    _allSoccerPlayers.add({
+      "id": soccerPlayer.templateSoccerPlayerId,
+      "fieldPos": new FieldPos(soccerPlayer.fieldPos),
+      "fullName": soccerPlayer.name,
+      "matchEventName": matchEvent.soccerTeamA.shortName + " - " + matchEvent.soccerTeamB.shortName,
+      "remainingMatchTime": "70 MIN",
+      "fantasyPoints": soccerPlayer.fantasyPoints,
+      "playedMatches": soccerPlayer.playedMatches,
+      "salary": soccerPlayer.salary
     });
   }
-  
+
   void initAllSoccerPlayers() {
     List<MatchEvent> matchEvents = _contestService.getMatchEventsForContest(contest);
-    
+
     for (var matchEvent in matchEvents) {
       for (var player in matchEvent.soccerTeamA.soccerPlayers) {
         _insertSoccerPlayer(matchEvent, matchEvent.soccerTeamA, player);
       }
-      
+
       for (var player in matchEvent.soccerTeamB.soccerPlayers) {
         _insertSoccerPlayer(matchEvent, matchEvent.soccerTeamB, player);
       }
@@ -126,14 +128,15 @@ class EnterContestService {
     // TODO: Se tendría que redireccionar a la pantalla de hacer "Login"?
     if (!_profileService.isLoggedIn) {
       print("login required");
+      _router.go('login', {});
       return;
     }
-    
+
     print("createFantasyTeam");
 
     print("user: " + _profileService.user.fullName);
     print("contest: " + contest.name);
-    
+
     List<String> soccerPlayerIds = new List<String>();
     for (dynamic player in lineupSlots) {
       if (player != null) {
@@ -141,10 +144,15 @@ class EnterContestService {
         soccerPlayerIds.add(player["id"]);
       }
     }
-    
-    _contestService.addContestEntry(contest.contestId, soccerPlayerIds);
+
+    // TODO: ¿Donde lo redireccionamos?
+    _contestService.addContestEntry(contest.contestId, soccerPlayerIds)
+      .then((_) => _router.go('lobby', {}))
+      .catchError((error) {
+        _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
+      });
   }
-  
+
   bool isFantasyTeamValid() {
     for (dynamic player in lineupSlots) {
       if (player == null) {
@@ -153,10 +161,11 @@ class EnterContestService {
     }
     return true;
   }
-  
 
   var _allSoccerPlayers = new List();
   int _selectedLineupPosIndex = 0;
+  Router _router;
   ContestService _contestService;
   ProfileService _profileService;
+  FlashMessagesService _flashMessage;
 }

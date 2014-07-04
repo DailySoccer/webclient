@@ -16,6 +16,7 @@ import 'package:webclient/controllers/login_ctrl.dart';
 import 'package:webclient/controllers/signup_ctrl.dart';
 import 'package:webclient/controllers/lobby_ctrl.dart';
 import 'package:webclient/controllers/enter_contest_ctrl.dart';
+import 'package:webclient/controllers/live_contest_ctrl.dart';
 import 'package:webclient/controllers/flash_messages_ctrl.dart';
 
 import 'package:webclient/components/landing_page_comp.dart';
@@ -63,6 +64,7 @@ class WebClientApp extends Module {
     bind(SignupCtrl);
     bind(LobbyCtrl);
     bind(EnterContestCtrl);
+    bind(LiveContestCtrl);
 
     bind(LandingPageComp);
     bind(MainMenuComp);

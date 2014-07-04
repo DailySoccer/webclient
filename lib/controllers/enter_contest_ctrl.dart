@@ -146,8 +146,10 @@ class EnterContestCtrl {
     }
 
     // TODO: ¿Donde lo redireccionamos?
+    _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
     _contestService.addContestEntry(contest.contestId, soccerPlayerIds)
-      .then((_) => _router.go('lobby', {}))
+      //.then((_) => _router.go('lobby', {}))
+      .then((_) => _router.go('live_contest', {"contestId" : contest.contestId}))
       .catchError((error) {
         _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
       });

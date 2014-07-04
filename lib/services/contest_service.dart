@@ -80,6 +80,19 @@ class ContestService {
     
     return completer.future;
   }
+  
+  Future getLiveContestEntries(String contestId) {
+    var completer = new Completer();
+    
+    _server.getLiveContestEntries(contestId)
+      .then((jsonObject) {
+        print("response: " + jsonObject.toString());
+        completer.complete(jsonObject);
+      });
+    
+    return completer.future;    
+  }
+  
 
   var _templateMatchEvents = new Map<String, List<MatchEvent>>();
   ServerService _server;

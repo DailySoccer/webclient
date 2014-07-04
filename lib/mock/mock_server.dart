@@ -58,11 +58,23 @@ class MockDailySoccerServer implements ServerService {
   Future<JsonObject> getActiveContests() => new Future.value(_contests.all);
 
   Future<JsonObject> addContestEntry(String contestId, List<String> soccerPlayers) {
-    var completer = new Completer();
-    completer.completeError(new JsonObject.fromJsonString(JSON_LOGIN_OK));
-    return completer.future;
+    return _TODO_();
   }
 
+  Future<JsonObject> getLiveContestEntries(String contestId) {
+    return _TODO_(); 
+  }
+  
+  Future<JsonObject> getLiveMatchEventsFromTemplateContest(String templateContestId) {
+    return _TODO_();
+  }
+  
+  Future<JsonObject> _TODO_ () {
+    var completer = new Completer();
+    completer.completeError(new JsonObject.fromJsonString(JSON_TODO));
+    return completer.future;
+  }
+  
   JsonObject _loggedUser;
 
   var _users = new MockUsers();

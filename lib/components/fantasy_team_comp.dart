@@ -2,6 +2,7 @@ library fantasy_team_comp;
 
 import 'dart:html';
 import 'package:angular/angular.dart';
+import 'package:webclient/controllers/live_contest_ctrl.dart';
 
 
 @Component(selector: 'fantasy-team', templateUrl: 'packages/webclient/components/fantasy_team_comp.html', publishAs: 'fantasyTeam', useShadowDom: false)
@@ -26,7 +27,7 @@ class FantasyTeamComp implements ShadowRootAware {
     @NgCallback('onClose') Function onClose;
 
 
-    FantasyTeamComp() {
+    FantasyTeamComp(this._liveContestCtrl) {
         // Para el bold: new Element.html("ATM - <b>RMD</b>");
         slots.add({
             "fieldPos": "POR",
@@ -132,4 +133,5 @@ class FantasyTeamComp implements ShadowRootAware {
     HtmlElement _rootElement;
     bool _isOpponent = false;
     bool _showCloseButton = false;
+    LiveContestCtrl _liveContestCtrl;
 }

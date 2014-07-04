@@ -2,7 +2,7 @@ library user_list_comp;
 
 import 'dart:html';
 import 'package:angular/angular.dart';
-
+import 'package:webclient/controllers/live_contest_ctrl.dart';
 
 @Component(
     selector: 'users-list',
@@ -17,7 +17,7 @@ class UsersListComp {
   @NgTwoWay("selectedUser")
   var selectedUser = null;
 
-  UsersListComp() {
+  UsersListComp(this._liveContestCtrl) {
 
     users.add({"name":"JUAN CARLOS RUIZ", "remainingTime":"1800'", "score":"150.00", "prize":"€100,00"});
     users.add({"name":"JUAN CARLOS RUIZ", "remainingTime":"120'", "score":"120.00", "prize":"€50,00"});
@@ -40,4 +40,5 @@ class UsersListComp {
     selectedUser = user;
   }
 
+  LiveContestCtrl _liveContestCtrl;
 }

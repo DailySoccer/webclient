@@ -14,6 +14,8 @@ abstract class ServerService {
   Future<JsonObject> getUserProfile();
   Future<JsonObject> getActiveContests();
   Future<JsonObject> addContestEntry(String contestId, List<String> soccerPlayers);
+  Future<JsonObject> getLiveContestEntries(String contestId);
+  Future<JsonObject> getLiveMatchEventsFromTemplateContest(String templateContestId);
 }
 
 @Injectable()
@@ -44,6 +46,14 @@ class DailySoccerServer implements ServerService {
     return _innerServerCall("$HostServerUrl/add_contest_entry", {'contestId': contestId, 'soccerTeam': jsonSoccerPlayers});
   }
 
+  Future<JsonObject> getLiveContestEntries(String contestId) {
+    return _innerServerCall("$HostServerUrl/get_live_contest_entries/$contestId", null);
+  }
+  
+  Future<JsonObject> getLiveMatchEventsFromTemplateContest(String templateContestId) {
+    return _innerServerCall("$HostServerUrl/get_live_match_events/template_contest/$templateContestId", null);
+  }
+  
   /**
    * This is the only place where we call our server
    */

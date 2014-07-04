@@ -7261,6 +7261,9 @@ fieldset[disabled] #activeContestListRoot .active-contest-row .column-play .btn.
     padding: 0px 5px 0px 0px;
   }
 }
+.fondo-negro {
+  background-color: #000000;
+}
 .landing-wrapper .screen {
   position: relative;
 }
@@ -7437,12 +7440,13 @@ fieldset[disabled] .landing-wrapper #desktopContent .btn.active {
 }
 .landing-wrapper #mobileContent .text-mobile {
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
-  font-size: 8pt;
+  font-weight: 300;
+  font-size: 20pt;
   color: #ffffff;
-  line-height: 2.5;
+  line-height: 1.2;
   text-align: center;
-  margin: 40px 0 260px 0;
+  margin: 95% 0 7% 0;
+  text-transform: uppercase;
 }
 .landing-wrapper #mobileContent .btn {
   display: block;

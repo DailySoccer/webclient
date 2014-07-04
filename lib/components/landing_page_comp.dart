@@ -13,14 +13,18 @@ import 'package:webclient/services/profile_service.dart';
 class LandingPageComp implements ShadowRootAware, DetachAware {
 
   String content;
-  HtmlElement mainWrapper;
-  HtmlElement containerForContent;
+  var bodyObj;
+  Element mainWrapper;
+  Element containerForContent;
 
   LandingPageComp(Scope scope, this._router, this._profileService) {
 
     // Capturamos el elemento wrapper
-    mainWrapper = document.getElementById('mainWrapper');
-    containerForContent = document.getElementById('mainContent');
+    bodyObj=  querySelector('body');
+  
+    mainWrapper = querySelector('#mainWrapper');
+    containerForContent = querySelector('#mainContent');
+    
   }
 
   void onShadowRoot(var root) {
@@ -32,12 +36,14 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
     mainWrapper.classes.clear();
     mainWrapper.classes.add('landing-wrapper');
     containerForContent.classes.clear();
+    bodyObj.classes.add('fondo-negro');
   }
 
   void detach() {
     mainWrapper.classes.clear();
     mainWrapper.classes.add('wrapper-content-container');
     containerForContent.classes.add('main-content-container');
+    bodyObj.classes.remove('fondo-negro');
   }
 
   

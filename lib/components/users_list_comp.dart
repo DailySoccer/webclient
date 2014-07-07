@@ -20,42 +20,9 @@ class UsersListComp {
   @NgTwoWay("selectedUser")
   var selectedUser = null;
 
-  UsersListComp(this._scope, this.liveContestCtrl) {
- 
-    _scope.watch("contestEntries", (newValue, oldValue) {
-      refresh(); 
-    }, context: liveContestCtrl, collection: true);
-    
-    /*
-    users.add({"name":"JUAN CARLOS RUIZ", "remainingTime":"1800'", "score":"150.00", "prize":"€100,00"});
-    users.add({"name":"JUAN CARLOS RUIZ", "remainingTime":"120'", "score":"120.00", "prize":"€50,00"});
-    users.add({"name":"JUAN CARLOS RUIZ", "remainingTime":"60'", "score":"100.00", "prize":"€30,00"});
-    users.add({"name":"JUAN CARLOS RUIZ", "remainingTime":"60'", "score":"90.00", "prize":"-"});
-    users.add({"name":"JUAN CARLOS RUIZ", "remainingTime":"60'", "score":"63.21", "prize":"-"});
-    users.add({"name":"JUAN CARLOS RUIZ", "remainingTime":"60'", "score":"50.02", "prize":"-"});
-    users.add({"name":"JUAN CARLOS RUIZ", "remainingTime":"60'", "score":"24.23", "prize":"-"});
-    users.add({"name":"JUAN CARLOS RUIZ", "remainingTime":"60'", "score":"23.00", "prize":"-"});
-    users.add({"name":"JUAN CARLOS RUIZ", "remainingTime":"60'", "score":"14.00", "prize":"-"});
-    users.add({"name":"JUAN CARLOS RUIZ", "remainingTime":"60'", "score":"12.00", "prize":"-"});
-    users.add({"name":"JUAN CARLOS RUIZ", "remainingTime":"60'", "score":"10.00", "prize":"-"});
-    users.add({"name":"JUAN CARLOS RUIZ", "remainingTime":"60'", "score":"9.00", "prize":"-"});
-    users.add({"name":"JUAN CARLOS RUIZ", "remainingTime":"60'", "score":"8.00", "prize":"-"});
-    users.add({"name":"JUAN CARLOS RUIZ", "remainingTime":"60'", "score":"0.00", "prize":"-"});
-    users.add({"name":"JUAN CARLOS RUIZ", "remainingTime":"60'", "score":"0.00", "prize":"-"});
-    */
+  UsersListComp(this.liveContestCtrl) {
   }
-  
-  void refresh() {
-    users.clear();
-    for (var contestEntry in liveContestCtrl.contestEntries) {
-      users.add({
-        "contestEntryId" : contestEntry.contestEntryId,
-        "name": getUserName(contestEntry), 
-        "remainingTime": getUserRemainingTime(contestEntry),
-        "score": getUserScore(contestEntry)
-      });
-    }
-  }
+
   
   String getUserName(ContestEntry contestEntry) {
     return contestEntry.userId;
@@ -78,11 +45,8 @@ class UsersListComp {
     }
     return prize;
   }
-  
 
   void onUserClick(var user) {
     selectedUser = user;
   }
-
-  Scope _scope;
 }

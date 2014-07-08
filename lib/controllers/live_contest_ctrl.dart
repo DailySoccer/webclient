@@ -28,6 +28,13 @@ class LiveContestCtrl {
 
     LiveContestCtrl(RouteProvider routeProvider, this._scope, this.scrDet, this._contestService, this._profileService, this._flashMessage) {
       _contestId = routeProvider.route.parameters['contestId'];
+      if (_contestId == null) {
+        Contest contest = _contestService.activeContests.firstWhere((contest) => contest.currentUserIds.length > 0);
+        _contestId = contest.contestId;
+        
+        print("autoselect contest: $_contestId");
+      }
+      
       mainPlayer = _profileService.user.userId;
       
       _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);

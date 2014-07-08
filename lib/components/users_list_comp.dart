@@ -19,6 +19,8 @@ class UsersListComp {
   @NgTwoWay("selectedUser")
   var selectedUser = null;
 
+  String getPrize(int index) => _liveContestCtrl.getPrize(index);
+  
   UsersListComp(this._scope, this._liveContestCtrl) {
     _scope.watch("contestEntries", (newValue, oldValue) {
       refresh(); 

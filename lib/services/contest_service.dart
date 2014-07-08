@@ -30,10 +30,9 @@ class ContestService {
     // Buscar en la lista de partidos del contest
     List<MatchEvent> matchEvents = getMatchEventsForTemplateContest(templateContest);
     for (MatchEvent match in matchEvents) {
-      // Buscar en cada uno de los equipos
-      SoccerPlayer soccer = match.soccerTeamA.soccerPlayers.firstWhere( (soccer) => soccer.templateSoccerPlayerId == soccerPlayerId, orElse: () => null );
+      SoccerPlayer soccer = match.soccerTeamA.findSoccerPlayer(soccerPlayerId);
       if (soccer == null) {
-        soccer = match.soccerTeamB.soccerPlayers.firstWhere( (soccer) => soccer.templateSoccerPlayerId == soccerPlayerId, orElse: () => null );
+        soccer = match.soccerTeamB.findSoccerPlayer(soccerPlayerId);
       }
       
       // Lo hemos encontrado?
@@ -112,17 +111,21 @@ class ContestService {
     
     _server.getLiveContestEntries(contestId)
       .then((jsonObject) {
-        print("response: " + jsonObject.toString());
+        print("liveContestEntries: response: " + jsonObject.toString());
         completer.complete(jsonObject);
       });
     
     return completer.future;    
   }
   
-  Future getLiveMatchEvents(String contestId) {
+  Future getLiveMatchEvents(String templateContestId) {
     var completer = new Completer();
 
-    completer.complete();
+    _server.getLiveMatchEventsFromTemplateContest(templateContestId)
+      .then((jsonObject) {
+        print("liveMatchEvents: response: " + jsonObject.toString());
+        completer.complete(jsonObject);
+      });
     
     return completer.future;    
   }

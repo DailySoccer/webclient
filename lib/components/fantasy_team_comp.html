@@ -2,12 +2,12 @@
   <div class="fantasy-team-header">
     <div class="ranking-box">
       <span class="title">POS</span>
-      <span class="content">3</span>
+      <span class="content">{{fantasyTeam.getUserPosition()}}</span>
     </div>
     
     <div class="score-box">
       <span class="title">PUNTOS</span>
-      <span class="content">20.30</span>
+      <span class="content">{{fantasyTeam.getUserScore()}}</span>
     </div>
   
     <div class="user-picture"></div>
@@ -28,7 +28,7 @@
         <span class="match-event-name"><safehtml>{{slot.matchEventName}}</safehtml></span>
         <span class="remaining-match-time">{{slot.remainingMatchTime}}</span>
       </div>
-      <div class="column-score">2.00</div>
+      <div class="column-score">{{slot.score}}</div>
     </div>
   </div>
 </div>

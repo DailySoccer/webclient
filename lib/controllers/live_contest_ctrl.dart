@@ -27,12 +27,16 @@ class LiveContestCtrl {
     
     List<User> usersInfo = new List<User>();
     List<ContestEntry> contestEntries = new List<ContestEntry>();
+    List<MatchEvent> liveMatchEvents = new List<MatchEvent>();
 
     LiveContestCtrl(RouteProvider routeProvider, this._scope, this.scrDet, this._contestService, this._profileService, this._flashMessage) {
       _contestId = routeProvider.route.parameters['contestId'];
-      if (_contestId == null) {
-        Contest contest = _contestService.activeContests.firstWhere((contest) => contest.currentUserIds.length > 0);
-        _contestId = contest.contestId;
+      if (_contestId != null) {
+        _contest = _contestService.getContestById(_contestId);
+      }
+      else {
+        _contest = _contestService.activeContests.firstWhere((contest) => contest.currentUserIds.length > 0);
+        _contestId = _contest.contestId;
         
         print("autoselect contest: $_contestId");
       }
@@ -40,23 +44,45 @@ class LiveContestCtrl {
       mainPlayer = _profileService.user.userId;
       
       _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
-      Future.wait([_contestService.getLiveContestEntries(_contestId), _contestService.getLiveMatchEvents(_contestId)])
+      Future.wait([_contestService.getLiveContestEntries(_contestId), _contestService.getLiveMatchEvents(_contest.templateContestId)])
           .then((List responses) {
             usersInfo = responses[0].users_info.map((jsonObject) => new User.fromJsonObject(jsonObject)).toList();
             contestEntries = responses[0].contest_entries.map((jsonObject) => new ContestEntry.fromJsonObject(jsonObject)).toList();
+            liveMatchEvents = responses[1].content.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject)).toList();
           })
           .catchError((error) {
             _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
           });      
      }
     
-    ContestEntry getContestEntry(String userId) {
+    ContestEntry getContestEntryWithUser(String userId) {
       return contestEntries.firstWhere( (entry) => entry.userId == userId, orElse: () => null );
     }
     
     SoccerPlayer getSoccerPlayer(String soccerPlayerId) {
-      // TODO Tendria que buscarse el soccerPlayer en los liveMatchEvents (que se registraran en este controller)
-      return _contestService.getSoccerPlayerInContest(_contestId, soccerPlayerId);
+      SoccerPlayer soccerPlayer = null;
+      
+      // Buscar en la lista de partidos del contest
+      for (MatchEvent match in liveMatchEvents) {
+        soccerPlayer = match.soccerTeamA.findSoccerPlayer(soccerPlayerId);
+        if (soccerPlayer == null) {
+          soccerPlayer = match.soccerTeamB.findSoccerPlayer(soccerPlayerId);
+        }
+        
+        // Lo hemos encontrado?
+        if (soccerPlayer != null)
+          break;
+      }
+      
+      return soccerPlayer;
+    }
+    
+    int getUserPosition(ContestEntry contestEntry) {
+      for (int i=0; i<contestEntries.length; i++) {
+        if (contestEntries[i].contestEntryId == contestEntry.contestEntryId)
+          return i+1;
+      }
+      return -1;
     }
     
     String getUserName(ContestEntry contestEntry) {
@@ -73,8 +99,13 @@ class LiveContestCtrl {
       return "1";
     }
     
-    String getUserScore(ContestEntry contestEntry) {
-      return "0";
+    int getUserScore(ContestEntry contestEntry) {
+      int points = 0;
+      for (String soccerPlayerId in contestEntry.soccerIds) {
+        SoccerPlayer soccerPlayer = getSoccerPlayer(soccerPlayerId);
+        points += soccerPlayer.fantasyPoints;
+      }
+      return points;
     }
     
     String getPrize(int index) {
@@ -93,4 +124,5 @@ class LiveContestCtrl {
     ProfileService _profileService;
     
     String _contestId;
+    Contest _contest;
 }

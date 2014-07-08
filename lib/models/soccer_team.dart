@@ -25,4 +25,8 @@ class SoccerTeam {
       soccerPlayers.add(soccerPlayer);
     }
   }
+  
+  SoccerPlayer findSoccerPlayer(String soccerPlayerId) {
+    return soccerPlayers.firstWhere( (soccer) => soccer.templateSoccerPlayerId == soccerPlayerId, orElse: () => null );
+  }  
 }

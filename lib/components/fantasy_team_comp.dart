@@ -37,6 +37,9 @@ class FantasyTeamComp implements ShadowRootAware {
 
     @NgCallback('onClose') Function onClose;
 
+    String getUserPosition() => (_contestEntry != null) ? _liveContestCtrl.getUserPosition(_contestEntry).toString() : "-";
+    String getUserNickname() => (_contestEntry != null) ? _liveContestCtrl.getUserNickname(_contestEntry) : "";
+    String getUserScore() => (_contestEntry != null) ? _liveContestCtrl.getUserScore(_contestEntry).toString() : "0";
 
     FantasyTeamComp(this._scope, this._liveContestCtrl) {
       _scope.watch("contestEntries", (newValue, oldValue) {
@@ -51,10 +54,6 @@ class FantasyTeamComp implements ShadowRootAware {
         _rootElement = shadowRoot as HtmlElement;
         _refreshHeader();
         _refreshCloseButton();
-    }
-
-    String getUserNickname() { 
-      return (_contestEntry != null) ? _liveContestCtrl.getUserNickname(_contestEntry) : "";
     }
     
     void _refreshHeader() {
@@ -78,11 +77,11 @@ class FantasyTeamComp implements ShadowRootAware {
     }
     
     void _refreshTeam() {
-      _contestEntry = _liveContestCtrl.getContestEntry(_userId);
+      _contestEntry = _liveContestCtrl.getContestEntryWithUser(_userId);
       if (_contestEntry == null) {
         return;
       }
-      
+
       slots.clear();
       
       for (String soccerId in _contestEntry.soccerIds) {
@@ -102,7 +101,8 @@ class FantasyTeamComp implements ShadowRootAware {
             "fieldPos": new FieldPos(soccerPlayer.fieldPos),
             "fullName": soccerPlayer.name,
             "matchEventName": matchEventName,
-            "remainingMatchTime": "70 MIN"
+            "remainingMatchTime": "70 MIN",
+            "score": soccerPlayer.fantasyPoints
         });
       }
 

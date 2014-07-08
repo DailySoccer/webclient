@@ -26,40 +26,20 @@ class UsersListComp {
   }
 
   void refresh() {
+    //print("refresh users: ${_liveContestCtrl.usersInfo}");
+    
     users.clear();
     for (var contestEntry in _liveContestCtrl.contestEntries) {
       users.add({
         "id": contestEntry.userId,
         "contestEntryId" : contestEntry.contestEntryId,
-        "name": getUserName(contestEntry), 
-        "remainingTime": getUserRemainingTime(contestEntry),
-        "score": getUserScore(contestEntry)
+        "name": _liveContestCtrl.getUserName(contestEntry),
+        "remainingTime": _liveContestCtrl.getUserRemainingTime(contestEntry),
+        "score": _liveContestCtrl.getUserScore(contestEntry)
       });
     }
   }
   
-  String getUserName(ContestEntry contestEntry) {
-    return contestEntry.userId;
-  }
-  
-  String getUserRemainingTime(ContestEntry contestEntry) {
-    return "1";
-  }
-  
-  String getUserScore(ContestEntry contestEntry) {
-    return "0";
-  }
-  
-  String getPrize(int index) {
-    String prize = "-";
-    switch(index) {
-      case 0: prize = "€100,00"; break;
-      case 1: prize = "€50,00"; break;
-      case 2: prize = "€30,00"; break;
-    }
-    return prize;
-  }
-
   void onUserClick(var user) {
     selectedUser = user["id"];
   }

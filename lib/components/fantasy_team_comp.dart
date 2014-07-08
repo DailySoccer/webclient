@@ -53,6 +53,10 @@ class FantasyTeamComp implements ShadowRootAware {
         _refreshCloseButton();
     }
 
+    String getUserNickname() { 
+      return (_contestEntry != null) ? _liveContestCtrl.getUserNickname(_contestEntry) : "";
+    }
+    
     void _refreshHeader() {
 
         if (_rootElement == null) return;
@@ -74,14 +78,14 @@ class FantasyTeamComp implements ShadowRootAware {
     }
     
     void _refreshTeam() {
-      ContestEntry contestEntry = _liveContestCtrl.getContestEntry(_userId);
-      if (contestEntry == null) {
+      _contestEntry = _liveContestCtrl.getContestEntry(_userId);
+      if (_contestEntry == null) {
         return;
       }
       
       slots.clear();
       
-      for (String soccerId in contestEntry.soccerIds) {
+      for (String soccerId in _contestEntry.soccerIds) {
         SoccerPlayer soccerPlayer = _liveContestCtrl.getSoccerPlayer(soccerId);
         
         String shortNameTeamA = soccerPlayer.team.matchEvent.soccerTeamA.shortName;
@@ -183,5 +187,6 @@ class FantasyTeamComp implements ShadowRootAware {
     String _userId = null;
     
     Scope _scope;
+    ContestEntry _contestEntry;
     LiveContestCtrl _liveContestCtrl;
 }

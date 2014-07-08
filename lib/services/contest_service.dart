@@ -119,6 +119,14 @@ class ContestService {
     return completer.future;    
   }
   
+  Future getLiveMatchEvents(String contestId) {
+    var completer = new Completer();
+
+    completer.complete();
+    
+    return completer.future;    
+  }
+  
 
   var _templateMatchEvents = new Map<String, List<MatchEvent>>();
   ServerService _server;

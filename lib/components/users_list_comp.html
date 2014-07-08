@@ -11,12 +11,12 @@
     <div class="prize">PREMIOS</div>
   </div>
   <div class="users-table-rows">
-    <div class="user-row" ng-repeat="user in comp.liveContestCtrl.contestEntries" ng-click="comp.onUserClick(user)">
+    <div class="user-row" ng-repeat="user in comp.users" ng-click="comp.onUserClick(user)">
       <div class="pos">{{$index + 1}}</div>
-      <div class="name">{{comp.getUserName(user)}}</div>
-      <div class="remaining-time">{{comp.getUserRemainingTime(user)}}</div>
-      <div class="score"><span>{{comp.getUserScore(user)}}</span></div>
-      <div class="prize">{{comp.getPrize($index)}}</div>
+      <div class="name">{{user.name}}</div>
+      <div class="remaining-time">{{user.remainingTime}}</div>
+      <div class="score"><span>{{user.score}}</span></div>
+      <div class="prize">{{user.score}}</div>
     </div>
   </div>
 </div>

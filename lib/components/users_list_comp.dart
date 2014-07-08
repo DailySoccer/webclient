@@ -20,9 +20,24 @@ class UsersListComp {
   @NgTwoWay("selectedUser")
   var selectedUser = null;
 
-  UsersListComp(this.liveContestCtrl) {
+  UsersListComp(this._scope, this.liveContestCtrl) {
+    _scope.watch("contestEntries", (newValue, oldValue) {
+      refresh(); 
+    }, context: liveContestCtrl, collection: true);
   }
 
+  void refresh() {
+    users.clear();
+    for (var contestEntry in liveContestCtrl.contestEntries) {
+      users.add({
+        "id": contestEntry.userId,
+        "contestEntryId" : contestEntry.contestEntryId,
+        "name": getUserName(contestEntry), 
+        "remainingTime": getUserRemainingTime(contestEntry),
+        "score": getUserScore(contestEntry)
+      });
+    }
+  }
   
   String getUserName(ContestEntry contestEntry) {
     return contestEntry.userId;
@@ -47,6 +62,8 @@ class UsersListComp {
   }
 
   void onUserClick(var user) {
-    selectedUser = user;
+    selectedUser = user["id"];
   }
+  
+  Scope _scope;
 }

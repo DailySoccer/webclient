@@ -21,12 +21,14 @@ import 'package:webclient/services/flash_messages_service.dart';
 class LiveContestCtrl {
 
     ScreenDetectorService scrDet;
+    var mainPlayer;
     var selectedOpponent;
     
     List<ContestEntry> contestEntries = new List<ContestEntry>();
 
-    LiveContestCtrl(RouteProvider routeProvider, this._scope, this.scrDet, this._contestService, this._flashMessage) {
+    LiveContestCtrl(RouteProvider routeProvider, this._scope, this.scrDet, this._contestService, this._profileService, this._flashMessage) {
       _contestId = routeProvider.route.parameters['contestId'];
+      mainPlayer = _profileService.user.userId;
       
       _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
       _contestService.getLiveContestEntries(_contestId)
@@ -39,9 +41,14 @@ class LiveContestCtrl {
           });
      }
     
+    ContestEntry getContestEntry(String userId) {
+      return contestEntries.firstWhere( (entry) => entry.userId == userId );
+    }
+    
     Scope _scope;
     FlashMessagesService _flashMessage;
     ContestService _contestService;
+    ProfileService _profileService;
     
     String _contestId;
 }

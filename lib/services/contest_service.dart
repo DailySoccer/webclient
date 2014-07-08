@@ -7,6 +7,7 @@ import "package:webclient/services/server_service.dart";
 import "package:webclient/models/contest.dart";
 import "package:webclient/models/template_contest.dart";
 import "package:webclient/models/match_event.dart";
+import "package:webclient/models/soccer_player.dart";
 
 
 @Injectable()
@@ -19,6 +20,31 @@ class ContestService {
   Contest getContestById(String id) => activeContests.firstWhere((contest) => contest.contestId == id, orElse: () => null);
   TemplateContest getTemplateContestById(String id) => activeTemplateContests.firstWhere((templateContest) => templateContest.templateContestId == id, orElse: () => null);
   MatchEvent getMatchEventById(String id) => activeMatchEvents.firstWhere((matchEvent) => matchEvent.matchEventId == id, orElse: () => null);
+  
+  SoccerPlayer getSoccerPlayerInContest(String contestId, String soccerPlayerId) {
+    SoccerPlayer soccerPlayer = null;
+    
+    Contest contest = getContestById(contestId);
+    TemplateContest templateContest = getTemplateContestById(contest.templateContestId);
+    
+    // Buscar en la lista de partidos del contest
+    List<MatchEvent> matchEvents = getMatchEventsForTemplateContest(templateContest);
+    for (MatchEvent match in matchEvents) {
+      // Buscar en cada uno de los equipos
+      SoccerPlayer soccer = match.soccerTeamA.soccerPlayers.firstWhere( (soccer) => soccer.templateSoccerPlayerId == soccerPlayerId, orElse: () => null );
+      if (soccer == null) {
+        soccer = match.soccerTeamB.soccerPlayers.firstWhere( (soccer) => soccer.templateSoccerPlayerId == soccerPlayerId, orElse: () => null );
+      }
+      
+      // Lo hemos encontrado?
+      if (soccer != null) {
+        soccerPlayer = soccer;
+        break;
+      }
+    }
+    
+    return soccerPlayer;
+  }
 
   int getSalaryCapForContest(Contest contest) {
     var template = getTemplateContestById(contest.templateContestId);

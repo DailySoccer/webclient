@@ -2,9 +2,10 @@ library fantasy_team_comp;
 
 import 'dart:html';
 import 'package:angular/angular.dart';
+import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/models/contest_entry.dart';
+import 'package:webclient/models/soccer_player.dart';
 import 'package:webclient/controllers/live_contest_ctrl.dart';
-
 
 @Component(selector: 'fantasy-team', templateUrl: 'packages/webclient/components/fantasy_team_comp.html', publishAs: 'fantasyTeam', useShadowDom: false)
 class FantasyTeamComp implements ShadowRootAware {
@@ -15,11 +16,7 @@ class FantasyTeamComp implements ShadowRootAware {
     dynamic get user => _userId;
     set user(dynamic value) {
       _userId = value;
-      
       if (_userId != null) {
-        if (_isOpponent)  print("opponent: $_userId");
-        else              print("mainPlayer: $_userId");
-        
         _refreshTeam();
       }
     }    
@@ -41,7 +38,10 @@ class FantasyTeamComp implements ShadowRootAware {
     @NgCallback('onClose') Function onClose;
 
 
-    FantasyTeamComp(this._liveContestCtrl) {
+    FantasyTeamComp(this._scope, this._liveContestCtrl) {
+      _scope.watch("contestEntries", (newValue, oldValue) {
+        _refreshTeam();
+      }, context: _liveContestCtrl, collection: true);      
     }
 
     // A pesar de que useShadowDom es false, sigue llegando este mensaje y es el primer momento donde podemos hacer un querySelector.
@@ -75,10 +75,34 @@ class FantasyTeamComp implements ShadowRootAware {
     
     void _refreshTeam() {
       ContestEntry contestEntry = _liveContestCtrl.getContestEntry(_userId);
-      print("contestId: ${contestEntry.contestId}");
+      if (contestEntry == null) {
+        return;
+      }
       
       slots.clear();
       
+      for (String soccerId in contestEntry.soccerIds) {
+        SoccerPlayer soccerPlayer = _liveContestCtrl.getSoccerPlayer(soccerId);
+        
+        String shortNameTeamA = soccerPlayer.team.matchEvent.soccerTeamA.shortName;
+        String shortNameTeamB = soccerPlayer.team.matchEvent.soccerTeamB.shortName;
+        // TODO: No funciona el incrustar codigo Html
+        /*
+        var matchEventName = (soccerPlayer.team.templateSoccerTeamId == soccerPlayer.team.matchEvent.soccerTeamA.templateSoccerTeamId)
+            ? new Element.html("<b>$shortNameTeamA</b> - $shortNameTeamB")
+            : new Element.html("$shortNameTeamA - <b>$shortNameTeamB</b>");
+        */   
+        var matchEventName = "$shortNameTeamA - $shortNameTeamB";
+        
+        slots.add({
+            "fieldPos": new FieldPos(soccerPlayer.fieldPos),
+            "fullName": soccerPlayer.name,
+            "matchEventName": matchEventName,
+            "remainingMatchTime": "70 MIN"
+        });
+      }
+
+      /*
       // Para el bold: new Element.html("ATM - <b>RMD</b>");
       slots.add({
           "fieldPos": "POR",
@@ -146,6 +170,7 @@ class FantasyTeamComp implements ShadowRootAware {
           "matchEventName": "ATM - RMD",
           "remainingMatchTime": "EMPIEZA 9:00"
       });
+      */
     }
 
     void onCloseButtonClick() {
@@ -156,5 +181,7 @@ class FantasyTeamComp implements ShadowRootAware {
     bool _isOpponent = false;
     bool _showCloseButton = false;
     String _userId = null;
+    
+    Scope _scope;
     LiveContestCtrl _liveContestCtrl;
 }

@@ -15,20 +15,19 @@ class UsersListComp {
 
   List users = new List();
 
-  LiveContestCtrl liveContestCtrl;
   
   @NgTwoWay("selectedUser")
   var selectedUser = null;
 
-  UsersListComp(this._scope, this.liveContestCtrl) {
+  UsersListComp(this._scope, this._liveContestCtrl) {
     _scope.watch("contestEntries", (newValue, oldValue) {
       refresh(); 
-    }, context: liveContestCtrl, collection: true);
+    }, context: _liveContestCtrl, collection: true);
   }
 
   void refresh() {
     users.clear();
-    for (var contestEntry in liveContestCtrl.contestEntries) {
+    for (var contestEntry in _liveContestCtrl.contestEntries) {
       users.add({
         "id": contestEntry.userId,
         "contestEntryId" : contestEntry.contestEntryId,
@@ -66,4 +65,5 @@ class UsersListComp {
   }
   
   Scope _scope;
+  LiveContestCtrl _liveContestCtrl;
 }

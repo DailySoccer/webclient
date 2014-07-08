@@ -35,14 +35,19 @@ class LiveContestCtrl {
           .then((jsonObject) {
             //print("liveContestCtrl FUTURE OK: " + jsonObject.toString());
             contestEntries = jsonObject.content.map((jsonObject) => new ContestEntry.fromJsonObject(jsonObject)).toList();
-           })
+          })
           .catchError((error) {
             _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
           });
      }
     
     ContestEntry getContestEntry(String userId) {
-      return contestEntries.firstWhere( (entry) => entry.userId == userId );
+      return contestEntries.firstWhere( (entry) => entry.userId == userId, orElse: () => null );
+    }
+    
+    SoccerPlayer getSoccerPlayer(String soccerPlayerId) {
+      // TODO Tendria que buscarse el soccerPlayer en los liveMatchEvents (que se registraran en este controller)
+      return _contestService.getSoccerPlayerInContest(_contestId, soccerPlayerId);
     }
     
     Scope _scope;

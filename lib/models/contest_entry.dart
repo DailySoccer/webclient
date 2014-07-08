@@ -18,7 +18,7 @@ class ContestEntry {
     contestId = json.contestId;
     soccerIds = json.soccerIds.toList();
 
-    print("ContestEntry: id($contestEntryId) userId($userId) contestId($contestId) soccerIds($soccerIds)");
+    // print("ContestEntry: id($contestEntryId) userId($userId) contestId($contestId) soccerIds($soccerIds)");
   }
 
   ContestEntry.fromJsonString(String json) : this.fromJsonObject(new JsonObject.fromJsonString(json));

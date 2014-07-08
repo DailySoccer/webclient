@@ -8139,37 +8139,36 @@ fieldset[disabled] .landing-wrapper #mobileContent .btn.active {
 .lineup-selector .lineup-selector-slot {
   margin-left: 0px;
   margin-right: 0px;
-  margin-top: 4px;
+  /*margin-top: 4px;*/
   padding-bottom: 4px;
+  /*.make-border(1px, none none dotted none, #FF0000);*/
   border-width: 1px;
   border-style: none none dotted none;
-  border-color: #ff0000;
+  border-color: #777777;
   border-radius: default;
   height: 40px;
 }
-.soccer-players-list .soccer-players-list-slot .column-fieldpos,
-.lineup-selector .lineup-selector-slot .column-fieldpos {
+.soccer-players-list .soccer-players-list-slot .column-fieldpos {
   position: relative;
   min-height: 1px;
   padding-left: 0px;
   padding-right: 0px;
+  /*.opensans_bold(10pt, @greyDark);*/
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
-  font-size: 10pt;
+  font-size: 9pt;
   color: #777777;
   text-align: center;
   padding-top: 12px;
 }
 @media (min-width: 768px) {
-  .soccer-players-list .soccer-players-list-slot .column-fieldpos,
-  .lineup-selector .lineup-selector-slot .column-fieldpos {
+  .soccer-players-list .soccer-players-list-slot .column-fieldpos {
     float: left;
     width: 16.66666667%;
   }
 }
 @media (max-width: 767px) {
-  .soccer-players-list .soccer-players-list-slot .column-fieldpos,
-  .lineup-selector .lineup-selector-slot .column-fieldpos {
+  .soccer-players-list .soccer-players-list-slot .column-fieldpos {
     display: none !important;
   }
 }
@@ -8180,6 +8179,7 @@ fieldset[disabled] .landing-wrapper #mobileContent .btn.active {
   min-height: 1px;
   padding-left: 0px;
   padding-right: 0px;
+  line-height: 9pt;
 }
 @media (min-width: 768px) {
   .soccer-players-list .soccer-players-list-slot .column-primary-info {
@@ -8195,11 +8195,14 @@ fieldset[disabled] .landing-wrapper #mobileContent .btn.active {
 }
 .soccer-players-list .soccer-players-list-slot .column-primary-info .soccer-player-name,
 .lineup-selector .lineup-selector-slot .column-primary-info .soccer-player-name {
+  /*.opensans_bold(10pt, @greyDark);*/
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
-  font-size: 10pt;
+  font-size: 9pt;
   color: #777777;
   display: block;
+  text-transform: uppercase;
+  padding-top: 8px;
 }
 .soccer-players-list .soccer-players-list-slot .column-primary-info .match-event-name,
 .lineup-selector .lineup-selector-slot .column-primary-info .match-event-name {
@@ -8336,8 +8339,8 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
 @media (max-width: 767px) {
   .soccer-players-list .soccer-players-list-slot,
   .lineup-selector .lineup-selector-slot {
-    margin-left: 10px;
-    margin-right: 10px;
+    /*margin-left: 10px;
+			margin-right: 10px;*/
   }
 }
 @media (min-width: 768px) {
@@ -8348,21 +8351,45 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
     margin-right: 1%;
   }
 }
+.lineup-selector .posPOR {
+  background-color: #fff6e5;
+}
+.lineup-selector .posDEF {
+  background-color: #e5f3e7;
+}
+.lineup-selector .posMED {
+  background-color: #e8eff6;
+}
+.lineup-selector .posDEL {
+  background-color: #fceaea;
+}
 .lineup-selector .lineup-selector-slot {
   cursor: pointer;
 }
-@media (min-width: 768px) and (max-width: 991px) {
-  .lineup-selector .lineup-selector-slot .column-fieldpos {
-    display: none !important;
-  }
+.lineup-selector .lineup-selector-slot .column-fieldpos {
+  /*&:extend(.soccer-players-list .soccer-players-list-slot .column-fieldpos);
+			.hidden-sm();*/
+  line-height: 40px;
+  position: relative;
+  float: left;
+  width: 16.66666667%;
+  min-height: 1px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 9pt;
+  color: #777777;
 }
 .lineup-selector .lineup-selector-slot .column-primary-info {
+  /*.make-xs-column(8, @lineup-selector-gutter);*/
   float: left;
-  width: 66.66666667%;
+  width: 50%;
   position: relative;
   min-height: 1px;
   padding-left: 0px;
   padding-right: 0px;
+  line-height: 9pt;
 }
 @media (min-width: 768px) {
   .lineup-selector .lineup-selector-slot .column-primary-info {
@@ -8377,17 +8404,25 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
   }
 }
 .lineup-selector .lineup-selector-slot .column-empty-slot {
+  /*.make-xs-column(10, @lineup-selector-gutter);*/
   position: relative;
   float: left;
-  width: 83.33333333%;
+  width: 66.66666667%;
   min-height: 1px;
   padding-left: 0px;
   padding-right: 0px;
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
-  font-size: 10pt;
+  font-size: 9pt;
   color: #fa9c19;
   padding-top: 10px;
+}
+.lineup-selector .lineup-selector-slot .column-salary {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 9pt;
+  color: #777777;
+  text-align: right;
 }
 .lineup-selector .lineup-selector-slot .column-action {
   position: relative;
@@ -8409,8 +8444,8 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
 }
 @media (max-width: 767px) {
   .lineup-selector .lineup-selector-slot {
-    margin-left: 10px;
-    margin-right: 10px;
+    /*margin-left: 10px;
+			margin-right: 10px;*/
   }
 }
 @media (min-width: 768px) {

@@ -4,15 +4,17 @@
 
 	.soccer-players-list-slot {
 		.make-row(0px);				// Para quitar los margenes negativos
-		margin-top: 4px;
+		/*margin-top: 4px;*/
 		padding-bottom: 4px;
-		.make-border(1px, none none dotted none, #FF0000);
+		/*.make-border(1px, none none dotted none, #FF0000);*/
+		.make-border(1px, none none dotted none, @greyDark);
 		height: 40px;
 
 		.column-fieldpos {
 			.make-sm-column(2, @soccer-players-list-gutter);
 			.hidden-xs();
-			.opensans_bold(10pt, @greyDark);
+			/*.opensans_bold(10pt, @greyDark);*/
+			.opensans_bold(9pt, @greyDark);
 			text-align: center;
 			padding-top: 12px;			
 		}
@@ -20,10 +22,14 @@
 			.make-xs-column(8, @soccer-players-list-gutter);
 			.make-sm-column(6, @soccer-players-list-gutter);
 			.make-md-column(4, @soccer-players-list-gutter);
+			line-height: 9pt;
 
 			.soccer-player-name {
-				.opensans_bold(10pt, @greyDark);
+				/*.opensans_bold(10pt, @greyDark);*/
+				.opensans_bold(9pt, @greyDark);
 				display: block;
+				text-transform: uppercase;
+				padding-top: 8px;
 			}
 			.match-event-name {
 				.opensans_normal(9pt, @blueLight);
@@ -60,8 +66,8 @@
 		
 		// En mobile tenemos que dejar un poco de margin para que funcione a 320x480
 		@media (max-width: @screen-xs-max) {
-			margin-left: 10px;
-			margin-right: 10px;
+			/*margin-left: 10px;
+			margin-right: 10px;*/
 		}
 	}
 

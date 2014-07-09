@@ -15,3 +15,4 @@ transformers:
     - web/view/join.tpl.html    
     - web/view/lobby.tpl.html
     - web/view/login.tpl.html
+    - web/view/enter_contest.tpl.html

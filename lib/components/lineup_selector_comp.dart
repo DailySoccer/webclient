@@ -17,15 +17,17 @@ class LineupSelectorComp {
   EnterContestCtrl enterContestCtrl;
 
   LineupSelectorComp(this.enterContestCtrl);
-  
+   
   // Para pintar el color correspondiente segun la posicion del jugador
-  bool getSlotColor(int slotIndex, String slotPos){
+  String getSlotClassColor(int slotIndex){
+    // Listas de las clases y posiciones
+    List<String> classList = ['posPOR', 'posDEF', 'posMED', 'posDEL'];
+    List<String> posList = ['POR', 'DEF', 'MED', 'DEL'];
+    // Mapeamos clase segun posicion   
+    Map<String, String> classMap = new Map.fromIterables(posList, classList);
+  
     String pos = FieldPos.FIELD_POSITION_ABREV[FieldPos.LINEUP[slotIndex]];
-    if (pos == slotPos) {
-      return true;
-    } else {
-      return false;
-    }
+    return classMap[pos];
   }
 
   // Por si queremos cambiar lo que significa un slot libre

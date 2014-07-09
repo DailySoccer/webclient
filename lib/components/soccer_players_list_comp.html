@@ -2,12 +2,12 @@
   <div class="soccer-players-list-slot" ng-repeat="slot in comp.enterContestCtrl.availableSoccerPlayers">
     <div class="column-fieldpos">{{slot.fieldPos.abrevName}}</div>
     <div class="column-primary-info">
-      <span class="soccer-player-name">{{slot.fullName}}</span>
+      <span class="soccer-player-name">{{slot.fullName | limitToDot : 19}}</span>
       <span class="match-event-name">{{slot.matchEventName}}</span>
     </div>
     <div class="column-dfp">{{slot.fantasyPoints}}</div>
     <div class="column-played">{{slot.playedMatches}}</div>
-    <div class="column-salary">{{slot.salary}}€</div>
+    <div class="column-salary">20.000€</div>
     <div class="column-add">
       <button type="button" class="btn" ng-click="comp.enterContestCtrl.onSoccerPlayerSelected(slot)">Añadir</button>
     </div>

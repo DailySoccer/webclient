@@ -2,18 +2,10 @@
 	@lineup-selector-gutter: 0px;	// Tiene que ser el mismo que soccer_players_list
 	@lineup-pos-selector-gutter: 20px;   // Nuevo para la posicion del jugador
 
-	.posPOR {
-		background-color: @tramaPor;
-	}
-	.posDEF {
-		background-color: @tramaDef;
-	}
-	.posMED {
-		background-color: @tramaMed;
-	}
-	.posDEL {
-		background-color: @tramaDel;
-	}
+	.posPOR { background-color: @tramaPor; }
+	.posDEF { background-color: @tramaDef; }
+	.posMED { background-color: @tramaMed; }
+	.posDEL { background-color: @tramaDel; }
 
 	.lineup-selector-slot {
 		// Heredamos los estilos de nuestro padre la lista soccer_players_list
@@ -21,15 +13,12 @@
 		cursor: pointer;
 		
 		.column-fieldpos {
-			/*&:extend(.soccer-players-list .soccer-players-list-slot .column-fieldpos);
-			.hidden-sm();*/
 			float: left;
 			line-height: 40px;
 			.make-xs-column(2, @lineup-pos-selector-gutter);
 			.opensans_bold(9pt, @greyDark);
 		}
 		.column-primary-info {
-			/*.make-xs-column(8, @lineup-selector-gutter);*/
 			.make-xs-column(6, @lineup-selector-gutter);
 			.make-sm-column(8, @lineup-selector-gutter);
 			.make-md-column(6, @lineup-selector-gutter);
@@ -45,7 +34,6 @@
 
 		// Mostraremos o column-primary-info o column-empty-slot (desde dart)
 		.column-empty-slot {
-			/*.make-xs-column(10, @lineup-selector-gutter);*/
 			.make-xs-column(8, @lineup-selector-gutter);
 			.opensans_bold(9pt, @orange);
 			padding-top: 10px;
@@ -61,16 +49,19 @@
 			text-align: center;
 			font-size: 20pt;
 			line-height: 1.0;
-			padding-top: 4px;
 
-			#iconButtonSelect { color: @blueDark; }
-			#iconButtonRemove { color: @greyMed; }
+			#iconButtonSelect {
+				color: @blueDark;
+				font-size: 10pt;
+			}
+			#iconButtonRemove {
+				color: @greyMed;
+				font-size: 10pt;
+			}
 		}
 		
 		// En mobile tenemos que dejar un poco de margin para que funcione a 320x480
 		@media (max-width: @screen-xs-max) {
-			/*margin-left: 10px;
-			margin-right: 10px;*/
 		}
 	}
 

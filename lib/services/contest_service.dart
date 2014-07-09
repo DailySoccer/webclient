@@ -117,6 +117,17 @@ class ContestService {
     return completer.future;
   }
   
+  Future getContest(String contestId) {
+    var completer = new Completer();
+
+    _server.getContest(contestId)
+        .then((jsonObject) {
+          completer.complete(jsonObject);
+        });
+
+    return completer.future;
+  }
+  
   Future getLiveContests() {
     var completer = new Completer();
 

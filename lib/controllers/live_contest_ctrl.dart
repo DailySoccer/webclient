@@ -33,6 +33,7 @@ class LiveContestCtrl {
     TemplateContest templateContest;
     List<ContestEntry> contestEntries = new List<ContestEntry>();
     List<User> usersInfo = new List<User>();
+    List<MatchEvent> matchEvents = new List<MatchEvent>();
     List<MatchEvent> liveMatchEvents = new List<MatchEvent>();
 
     LiveContestCtrl(RouteProvider routeProvider, this._scope, this.scrDet, this._contestService, this._profileService, this._flashMessage) {
@@ -65,13 +66,13 @@ class LiveContestCtrl {
     void initialize() {
        mainPlayer = _profileService.user.userId;
        
-       _contestService.getLiveContest(_contestId)
+       _contestService.getContest(_contestId)
            .then((jsonObject) {
              contest = new Contest.fromJsonObject(jsonObject.contest);
              templateContest = new TemplateContest.fromJsonObject(jsonObject.template_contest);
              usersInfo = jsonObject.users_info.map((jsonObject) => new User.fromJsonObject(jsonObject)).toList();
              contestEntries = jsonObject.contest_entries.map((jsonObject) => new ContestEntry.fromJsonObject(jsonObject)).toList();
-             liveMatchEvents = jsonObject.live_match_events.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject)).toList();
+             matchEvents = jsonObject.match_events.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject)).toList();
              
              updatedDate = new DateTime.now();
              
@@ -96,7 +97,7 @@ class LiveContestCtrl {
       SoccerPlayer soccerPlayer = null;
       
       // Buscar en la lista de partidos del contest
-      for (MatchEvent match in liveMatchEvents) {
+      for (MatchEvent match in matchEvents) {
         soccerPlayer = match.soccerTeamA.findSoccerPlayer(soccerPlayerId);
         if (soccerPlayer == null) {
           soccerPlayer = match.soccerTeamB.findSoccerPlayer(soccerPlayerId);

@@ -42,9 +42,9 @@ class FantasyTeamComp implements ShadowRootAware {
     String getUserScore() => (_contestEntry != null) ? _liveContestCtrl.getUserScore(_contestEntry).toString() : "0";
 
     FantasyTeamComp(this._scope, this._liveContestCtrl) {
-      _scope.watch("contestEntries", (newValue, oldValue) {
+      _scope.watch("updatedDate", (newValue, oldValue) {
         _refreshTeam();
-      }, context: _liveContestCtrl, collection: true);      
+      }, context: _liveContestCtrl);      
     }
 
     // A pesar de que useShadowDom es false, sigue llegando este mensaje y es el primer momento donde podemos hacer un querySelector.
@@ -86,24 +86,25 @@ class FantasyTeamComp implements ShadowRootAware {
       
       for (String soccerId in _contestEntry.soccerIds) {
         SoccerPlayer soccerPlayer = _liveContestCtrl.getSoccerPlayer(soccerId);
-        
-        String shortNameTeamA = soccerPlayer.team.matchEvent.soccerTeamA.shortName;
-        String shortNameTeamB = soccerPlayer.team.matchEvent.soccerTeamB.shortName;
-        // TODO: No funciona el incrustar codigo Html
-        /*
-        var matchEventName = (soccerPlayer.team.templateSoccerTeamId == soccerPlayer.team.matchEvent.soccerTeamA.templateSoccerTeamId)
-            ? new Element.html("<b>$shortNameTeamA</b> - $shortNameTeamB")
-            : new Element.html("$shortNameTeamA - <b>$shortNameTeamB</b>");
-        */   
-        var matchEventName = "$shortNameTeamA - $shortNameTeamB";
-        
-        slots.add({
-            "fieldPos": new FieldPos(soccerPlayer.fieldPos),
-            "fullName": soccerPlayer.name,
-            "matchEventName": matchEventName,
-            "remainingMatchTime": "70 MIN",
-            "score": soccerPlayer.fantasyPoints
-        });
+        if (soccerPlayer != null) {
+          String shortNameTeamA = soccerPlayer.team.matchEvent.soccerTeamA.shortName;
+          String shortNameTeamB = soccerPlayer.team.matchEvent.soccerTeamB.shortName;
+          // TODO: No funciona el incrustar codigo Html
+          /*
+          var matchEventName = (soccerPlayer.team.templateSoccerTeamId == soccerPlayer.team.matchEvent.soccerTeamA.templateSoccerTeamId)
+              ? new Element.html("<b>$shortNameTeamA</b> - $shortNameTeamB")
+              : new Element.html("$shortNameTeamA - <b>$shortNameTeamB</b>");
+          */   
+          var matchEventName = "$shortNameTeamA - $shortNameTeamB";
+          
+          slots.add({
+              "fieldPos": new FieldPos(soccerPlayer.fieldPos),
+              "fullName": soccerPlayer.name,
+              "matchEventName": matchEventName,
+              "remainingMatchTime": "70 MIN",
+              "score": _liveContestCtrl.getSoccerPlayerScore(soccerId)
+          });
+        }
       }
 
       /*

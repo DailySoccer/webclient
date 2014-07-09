@@ -22,7 +22,7 @@ class UsersListComp {
   String getPrize(int index) => _liveContestCtrl.getPrize(index);
   
   UsersListComp(this._scope, this._liveContestCtrl) {
-    _scope.watch("contestEntries", (newValue, oldValue) {
+    _scope.watch("updatedDate", (newValue, oldValue) {
       refresh(); 
     }, context: _liveContestCtrl, collection: true);
   }

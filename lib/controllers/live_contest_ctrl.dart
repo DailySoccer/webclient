@@ -11,6 +11,7 @@ import "package:webclient/models/soccer_player.dart";
 import "package:webclient/models/soccer_team.dart";
 import 'package:webclient/models/match_event.dart';
 import 'package:webclient/models/contest.dart';
+import 'package:webclient/models/template_contest.dart';
 import 'package:webclient/models/contest_entry.dart';
 import 'package:webclient/services/contest_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
@@ -20,45 +21,77 @@ import 'package:webclient/services/flash_messages_service.dart';
     publishAs: 'ctrl'
 )
 class LiveContestCtrl {
-
+  
     ScreenDetectorService scrDet;
     var mainPlayer;
     var selectedOpponent;
+    var initialized;
+   
+    var updatedDate;
     
-    List<User> usersInfo = new List<User>();
+    Contest contest;
+    TemplateContest templateContest;
     List<ContestEntry> contestEntries = new List<ContestEntry>();
+    List<User> usersInfo = new List<User>();
     List<MatchEvent> liveMatchEvents = new List<MatchEvent>();
 
     LiveContestCtrl(RouteProvider routeProvider, this._scope, this.scrDet, this._contestService, this._profileService, this._flashMessage) {
       _contestId = routeProvider.route.parameters['contestId'];
-      if (_contestId != null) {
-        _contest = _contestService.getContestById(_contestId);
-      }
-      else {
-        _contest = _contestService.activeContests.firstWhere((contest) => contest.currentUserIds.length > 0);
-        _contestId = _contest.contestId;
-        
-        print("autoselect contest: $_contestId");
-      }
-      
-      mainPlayer = _profileService.user.userId;
+      initialized = false;
       
       _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
-      Future.wait([_contestService.getLiveContestEntries(_contestId), _contestService.getLiveMatchEvents(_contest.templateContestId)])
-          .then((List responses) {
-            usersInfo = responses[0].users_info.map((jsonObject) => new User.fromJsonObject(jsonObject)).toList();
-            contestEntries = responses[0].contest_entries.map((jsonObject) => new ContestEntry.fromJsonObject(jsonObject)).toList();
-            liveMatchEvents = responses[1].content.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject)).toList();
+      
+      if (_contestId != null) {
+        initialize();
+      }
+      else {
+        // TODO: Elegir uno de los contests
+        
+        // Mostrar el primer contest
+        _contestService.getUserContests()
+          .then( (jsonObject) {
+            List<Contest> contests = jsonObject.contests.map((jsonObject) => new Contest.fromJsonObject(jsonObject)).toList();
+            if (contests != null && !contests.isEmpty) {
+              _contestId = contests.first.contestId;
+              initialize();
+            }
           })
           .catchError((error) {
             _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
-          });      
-     }
+          });         
+      }
+   }
+    
+    void initialize() {
+       mainPlayer = _profileService.user.userId;
+       
+       _contestService.getLiveContest(_contestId)
+           .then((jsonObject) {
+             contest = new Contest.fromJsonObject(jsonObject.contest);
+             templateContest = new TemplateContest.fromJsonObject(jsonObject.template_contest);
+             usersInfo = jsonObject.users_info.map((jsonObject) => new User.fromJsonObject(jsonObject)).toList();
+             contestEntries = jsonObject.contest_entries.map((jsonObject) => new ContestEntry.fromJsonObject(jsonObject)).toList();
+             liveMatchEvents = jsonObject.live_match_events.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject)).toList();
+             
+             updatedDate = new DateTime.now();
+             
+             _updateLive();
+             
+             // Comenzamos a actualizar la información
+             const refreshSeconds = const Duration(seconds:3);
+             new Timer.periodic(refreshSeconds, (Timer t) => _updateLive());
+
+             initialized = true;
+           })
+           .catchError((error) {
+             _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
+           });
+    }
     
     ContestEntry getContestEntryWithUser(String userId) {
       return contestEntries.firstWhere( (entry) => entry.userId == userId, orElse: () => null );
     }
-    
+   
     SoccerPlayer getSoccerPlayer(String soccerPlayerId) {
       SoccerPlayer soccerPlayer = null;
       
@@ -75,6 +108,24 @@ class LiveContestCtrl {
       }
       
       return soccerPlayer;
+    }
+    
+    int getSoccerPlayerScore(String soccerPlayerId) {
+      SoccerPlayer soccerPlayer = null;
+      
+      // Buscar en la lista de partidos del contest
+      for (MatchEvent match in liveMatchEvents) {
+        soccerPlayer = match.soccerTeamA.findSoccerPlayer(soccerPlayerId);
+        if (soccerPlayer == null) {
+          soccerPlayer = match.soccerTeamB.findSoccerPlayer(soccerPlayerId);
+        }
+        
+        // Lo hemos encontrado?
+        if (soccerPlayer != null)
+          break;
+      }
+      
+      return (soccerPlayer!=null) ? soccerPlayer.fantasyPoints : 0;
     }
     
     int getUserPosition(ContestEntry contestEntry) {
@@ -102,8 +153,7 @@ class LiveContestCtrl {
     int getUserScore(ContestEntry contestEntry) {
       int points = 0;
       for (String soccerPlayerId in contestEntry.soccerIds) {
-        SoccerPlayer soccerPlayer = getSoccerPlayer(soccerPlayerId);
-        points += soccerPlayer.fantasyPoints;
+        points += getSoccerPlayerScore(soccerPlayerId);
       }
       return points;
     }
@@ -118,11 +168,23 @@ class LiveContestCtrl {
       return prize;
     }
     
+    void _updateLive() {
+      // Actualizamos únicamente la lista de live MatchEvents
+      _contestService.getLiveMatchEvents(contest.templateContestId)
+          .then( (jsonObject) {
+            liveMatchEvents = jsonObject.content.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject)).toList();
+            
+            updatedDate = new DateTime.now();
+          })
+          .catchError((error) {
+            _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
+          });      
+    }
+    
     Scope _scope;
     FlashMessagesService _flashMessage;
     ContestService _contestService;
     ProfileService _profileService;
     
     String _contestId;
-    Contest _contest;
 }

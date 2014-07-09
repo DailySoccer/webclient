@@ -12,8 +12,17 @@ abstract class ServerService {
   Future<JsonObject> signup(String firstName, String lastName, String email, String nickName, String password);
   Future<JsonObject> login(String email, String password);
   Future<JsonObject> getUserProfile();
+  
+  // Conseguir la lista de Contests Active/Live/History en los que esté inscrito el User
+  Future<JsonObject> getUserContests();
+  
+  // Active Contests
   Future<JsonObject> getActiveContests();
   Future<JsonObject> addContestEntry(String contestId, List<String> soccerPlayers);
+  
+  // Live Contests
+  Future<JsonObject> getLiveContests();
+  Future<JsonObject> getLiveContest(String contestId);
   Future<JsonObject> getLiveContestEntries(String contestId);
   Future<JsonObject> getLiveMatchEventsFromTemplateContest(String templateContestId);
 }
@@ -37,10 +46,22 @@ class DailySoccerServer implements ServerService {
     return _innerServerCall("$HostServerUrl/get_user_profile", null);
   }
 
+  Future<JsonObject> getUserContests() {
+    return _innerServerCall("$HostServerUrl/get_user_contests", null);
+  }
+  
   Future<JsonObject> getActiveContests() {
     return _innerServerCall("$HostServerUrl/get_active_contests", null);
   }
+  
+  Future<JsonObject> getLiveContests() {
+    return _innerServerCall("$HostServerUrl/get_live_contests", null);
+  }
 
+  Future<JsonObject> getLiveContest(String contestId) {
+    return _innerServerCall("$HostServerUrl/get_live_contest/$contestId", null);
+  }
+  
   Future<JsonObject> addContestEntry(String contestId, List<String> soccerPlayers) {
     String jsonSoccerPlayers = JSON.encode(soccerPlayers);
     return _innerServerCall("$HostServerUrl/add_contest_entry", {'contestId': contestId, 'soccerTeam': jsonSoccerPlayers});

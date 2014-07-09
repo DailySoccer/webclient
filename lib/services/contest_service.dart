@@ -106,6 +106,39 @@ class ContestService {
     return completer.future;
   }
   
+  Future getUserContests() {
+    var completer = new Completer();
+
+    _server.getUserContests()
+        .then((jsonObject) {
+          completer.complete(jsonObject);
+        });
+
+    return completer.future;
+  }
+  
+  Future getLiveContests() {
+    var completer = new Completer();
+
+    _server.getLiveContests()
+        .then((jsonObject) {
+          completer.complete(jsonObject);
+        });
+
+    return completer.future;
+  }
+  
+  Future getLiveContest(String contestId) {
+    var completer = new Completer();
+
+    _server.getLiveContest(contestId)
+        .then((jsonObject) {
+          completer.complete(jsonObject);
+        });
+
+    return completer.future;
+  }
+  
   Future getLiveContestEntries(String contestId) {
     var completer = new Completer();
     

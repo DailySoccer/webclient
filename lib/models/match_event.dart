@@ -14,8 +14,12 @@ class MatchEvent {
 
   MatchEvent.fromJsonObject(JsonObject json) {
     matchEventId = json._id;
-    soccerTeamA = new SoccerTeam.fromJsonObject(json.soccerTeamA);
-    soccerTeamB = new SoccerTeam.fromJsonObject(json.soccerTeamB);
+    soccerTeamA = new SoccerTeam.fromJsonObject(json.soccerTeamA)
+      .. matchEvent = this;
+    
+    soccerTeamB = new SoccerTeam.fromJsonObject(json.soccerTeamB)
+      .. matchEvent = this;
+    
     startDate = new DateTime.fromMillisecondsSinceEpoch(json.startDate, isUtc: true);
   }
 }

@@ -2,7 +2,8 @@ library user_list_comp;
 
 import 'dart:html';
 import 'package:angular/angular.dart';
-
+import 'package:webclient/controllers/live_contest_ctrl.dart';
+import 'package:webclient/models/contest_entry.dart';
 
 @Component(
     selector: 'users-list',
@@ -12,32 +13,39 @@ import 'package:angular/angular.dart';
 )
 class UsersListComp {
 
-  var users = new List();
+  List users = new List();
 
+  
   @NgTwoWay("selectedUser")
   var selectedUser = null;
 
-  UsersListComp() {
-
-    users.add({"name":"JUAN CARLOS RUIZ", "remainingTime":"1800'", "score":"150.00", "prize":"€100,00"});
-    users.add({"name":"JUAN CARLOS RUIZ", "remainingTime":"120'", "score":"120.00", "prize":"€50,00"});
-    users.add({"name":"JUAN CARLOS RUIZ", "remainingTime":"60'", "score":"100.00", "prize":"€30,00"});
-    users.add({"name":"JUAN CARLOS RUIZ", "remainingTime":"60'", "score":"90.00", "prize":"-"});
-    users.add({"name":"JUAN CARLOS RUIZ", "remainingTime":"60'", "score":"63.21", "prize":"-"});
-    users.add({"name":"JUAN CARLOS RUIZ", "remainingTime":"60'", "score":"50.02", "prize":"-"});
-    users.add({"name":"JUAN CARLOS RUIZ", "remainingTime":"60'", "score":"24.23", "prize":"-"});
-    users.add({"name":"JUAN CARLOS RUIZ", "remainingTime":"60'", "score":"23.00", "prize":"-"});
-    users.add({"name":"JUAN CARLOS RUIZ", "remainingTime":"60'", "score":"14.00", "prize":"-"});
-    users.add({"name":"JUAN CARLOS RUIZ", "remainingTime":"60'", "score":"12.00", "prize":"-"});
-    users.add({"name":"JUAN CARLOS RUIZ", "remainingTime":"60'", "score":"10.00", "prize":"-"});
-    users.add({"name":"JUAN CARLOS RUIZ", "remainingTime":"60'", "score":"9.00", "prize":"-"});
-    users.add({"name":"JUAN CARLOS RUIZ", "remainingTime":"60'", "score":"8.00", "prize":"-"});
-    users.add({"name":"JUAN CARLOS RUIZ", "remainingTime":"60'", "score":"0.00", "prize":"-"});
-    users.add({"name":"JUAN CARLOS RUIZ", "remainingTime":"60'", "score":"0.00", "prize":"-"});
+  String getPrize(int index) => _liveContestCtrl.getPrize(index);
+  
+  UsersListComp(this._scope, this._liveContestCtrl) {
+    _scope.watch("updatedDate", (newValue, oldValue) {
+      refresh(); 
+    }, context: _liveContestCtrl, collection: true);
   }
 
+  void refresh() {
+    //print("refresh users: ${_liveContestCtrl.usersInfo}");
+    
+    users.clear();
+    for (var contestEntry in _liveContestCtrl.contestEntries) {
+      users.add({
+        "id": contestEntry.userId,
+        "contestEntryId" : contestEntry.contestEntryId,
+        "name": _liveContestCtrl.getUserName(contestEntry),
+        "remainingTime": _liveContestCtrl.getUserRemainingTime(contestEntry),
+        "score": _liveContestCtrl.getUserScore(contestEntry)
+      });
+    }
+  }
+  
   void onUserClick(var user) {
-    selectedUser = user;
+    selectedUser = user["id"];
   }
-
+  
+  Scope _scope;
+  LiveContestCtrl _liveContestCtrl;
 }

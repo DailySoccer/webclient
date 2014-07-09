@@ -7,6 +7,7 @@ import "package:webclient/services/server_service.dart";
 import "package:webclient/models/contest.dart";
 import "package:webclient/models/template_contest.dart";
 import "package:webclient/models/match_event.dart";
+import "package:webclient/models/soccer_player.dart";
 
 
 @Injectable()
@@ -19,6 +20,30 @@ class ContestService {
   Contest getContestById(String id) => activeContests.firstWhere((contest) => contest.contestId == id, orElse: () => null);
   TemplateContest getTemplateContestById(String id) => activeTemplateContests.firstWhere((templateContest) => templateContest.templateContestId == id, orElse: () => null);
   MatchEvent getMatchEventById(String id) => activeMatchEvents.firstWhere((matchEvent) => matchEvent.matchEventId == id, orElse: () => null);
+  
+  SoccerPlayer getSoccerPlayerInContest(String contestId, String soccerPlayerId) {
+    SoccerPlayer soccerPlayer = null;
+    
+    Contest contest = getContestById(contestId);
+    TemplateContest templateContest = getTemplateContestById(contest.templateContestId);
+    
+    // Buscar en la lista de partidos del contest
+    List<MatchEvent> matchEvents = getMatchEventsForTemplateContest(templateContest);
+    for (MatchEvent match in matchEvents) {
+      SoccerPlayer soccer = match.soccerTeamA.findSoccerPlayer(soccerPlayerId);
+      if (soccer == null) {
+        soccer = match.soccerTeamB.findSoccerPlayer(soccerPlayerId);
+      }
+      
+      // Lo hemos encontrado?
+      if (soccer != null) {
+        soccerPlayer = soccer;
+        break;
+      }
+    }
+    
+    return soccerPlayer;
+  }
 
   int getSalaryCapForContest(Contest contest) {
     var template = getTemplateContestById(contest.templateContestId);
@@ -80,6 +105,75 @@ class ContestService {
     
     return completer.future;
   }
+  
+  Future getUserContests() {
+    var completer = new Completer();
+
+    _server.getUserContests()
+        .then((jsonObject) {
+          completer.complete(jsonObject);
+        });
+
+    return completer.future;
+  }
+  
+  Future getContest(String contestId) {
+    var completer = new Completer();
+
+    _server.getContest(contestId)
+        .then((jsonObject) {
+          completer.complete(jsonObject);
+        });
+
+    return completer.future;
+  }
+  
+  Future getLiveContests() {
+    var completer = new Completer();
+
+    _server.getLiveContests()
+        .then((jsonObject) {
+          completer.complete(jsonObject);
+        });
+
+    return completer.future;
+  }
+  
+  Future getLiveContest(String contestId) {
+    var completer = new Completer();
+
+    _server.getLiveContest(contestId)
+        .then((jsonObject) {
+          completer.complete(jsonObject);
+        });
+
+    return completer.future;
+  }
+  
+  Future getLiveContestEntries(String contestId) {
+    var completer = new Completer();
+    
+    _server.getLiveContestEntries(contestId)
+      .then((jsonObject) {
+        print("liveContestEntries: response: " + jsonObject.toString());
+        completer.complete(jsonObject);
+      });
+    
+    return completer.future;    
+  }
+  
+  Future getLiveMatchEvents(String templateContestId) {
+    var completer = new Completer();
+
+    _server.getLiveMatchEventsFromTemplateContest(templateContestId)
+      .then((jsonObject) {
+        print("liveMatchEvents: response: " + jsonObject.toString());
+        completer.complete(jsonObject);
+      });
+    
+    return completer.future;    
+  }
+  
 
   var _templateMatchEvents = new Map<String, List<MatchEvent>>();
   ServerService _server;

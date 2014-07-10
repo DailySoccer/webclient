@@ -62,6 +62,13 @@ class ProfileService {
 
     if (storedSessionToken != null && storedUser != null) {
       _setProfile(storedSessionToken, new User.fromJsonString(storedUser), false);
+      
+      // TODO: Hacemos un "login" a escondidas... (los "usuarios" pueden haber sido eliminados por el simulador)
+      login(user.email, "<no password>")
+        .then((jsonObject) {
+          print("profile load ok");
+        })
+        .catchError((error) => print("login error..."));
     }
   }
 

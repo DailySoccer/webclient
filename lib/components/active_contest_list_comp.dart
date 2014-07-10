@@ -1,6 +1,7 @@
 library active_contest_list_comp;
 
 import 'dart:html';
+import 'dart:async';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/contest_service.dart';
 import 'package:webclient/models/contest.dart';
@@ -14,7 +15,10 @@ class ActiveContestListComp {
     Contest selectedContest;
 
     ActiveContestListComp(this._router, this.contestService) {
-        this.contestService.refreshActiveContests();
+        contestService.refreshActiveContests();
+        
+        const refreshSeconds = const Duration(seconds:10);
+        new Timer.periodic(refreshSeconds, (Timer t) => contestService.refreshActiveContests());   
     }
 
     void enterContest(Contest contest) {

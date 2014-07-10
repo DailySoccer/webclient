@@ -161,6 +161,22 @@ class EnterContestCtrl {
     }
     return true;
   }
+  
+  void deleteFantasyTeam() {
+    int i = 0;
+    for ( ; i < lineupSlots.length; ++i) {
+      lineupSlots[i] = null;
+    }
+  }
+  
+  bool isPlayerSelected() {
+    for (dynamic player in lineupSlots) {
+      if (player != null) {
+        return false;
+      }
+    }
+    return true;
+  }
 
   var _allSoccerPlayers = new List();
   int _selectedLineupPosIndex = 0;

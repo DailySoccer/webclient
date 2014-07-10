@@ -6,6 +6,12 @@
   
   <soccer-players-list ng-show="ctrl.isSelectingSoccerPlayer">
   </soccer-players-list>
+  
+  <div>
+    <button type="button" class="btn" ng-click="ctrl.deleteFantasyTeam()" ng-disabled="ctrl.isPlayerSelected()">Borrar todo</button>
+    <button type="button" class="btn" ng-click="ctrl.createFantasyTeam()" ng-disabled="!ctrl.isFantasyTeamValid()">Confirmar</button>
+    <p>Recuerda que puedes editar tu equipo cuantas veces quiereas hasta que comience la competición</p>
+  </div>
 </div>
 
 <div ng-if="!ctrl.scrDet.isXsScreen" ng-cloack>

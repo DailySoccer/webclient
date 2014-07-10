@@ -2,6 +2,11 @@
 	@soccer-players-list-gutter: 0px;
 	min-height: 1px;	// Para que al quedarse sin futbolistas que mostrar por los filtros, siga ocupando su width
 
+	.posPOR { background-color: @tramaPor; }
+	.posDEF { background-color: @tramaDef; }
+	.posMED { background-color: @tramaMed; }
+	.posDEL { background-color: @tramaDel; }
+
 	.soccer-players-list-slot {
 		.make-row(0px);				// Para quitar los margenes negativos
 		padding-bottom: 4px;
@@ -55,17 +60,17 @@
 		}
 		.column-add {
 			.make-xs-column(3, @soccer-players-list-gutter);
-			text-align: center;
+			text-align: right;
+			@media (max-width: @screen-xs-max) {
+				margin-left: -2%;
+			}
 			.btn {
 				.btn-primary();
-				margin-top: 1px;
-				padding-left: 20px;
-				padding-right: 20px;
+				margin-top: 4px;
+				padding-left: 15px;
+				padding-right: 15px;
+				font-size: 9pt;
 			}
-		}
-		
-		// En mobile tenemos que dejar un poco de margin para que funcione a 320x480
-		@media (max-width: @screen-xs-max) {
 		}
 	}
 

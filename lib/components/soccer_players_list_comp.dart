@@ -26,4 +26,17 @@ class SoccerPlayersListComp {
   
    return classMap[abrevName];
   }
+  
+  int showWidth(String playerName) {
+    /*var element = document.querySelector(".soccer-player-name");
+    var tamanio_span = element.clientWidth;
+    var tamanio_name = playerName.length;
+    print(tamanio);
+    element.text = element.text + "hola";
+    print(playerName);
+    element.text = element.text + playerName;
+    
+    return tamanio_name - 1;*/
+    return 19;
+  }
 }

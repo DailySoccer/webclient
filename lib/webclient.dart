@@ -12,7 +12,7 @@ import 'package:webclient/services/server_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 
-import 'package:webclient/formatter/limit_toDot.dart';
+import 'package:webclient/formatters/limit_to_dot.dart';
 
 import 'package:webclient/controllers/login_ctrl.dart';
 import 'package:webclient/controllers/signup_ctrl.dart';

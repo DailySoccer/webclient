@@ -26,19 +26,19 @@
 @brand-primary: @green;
 
 // Color y borde del boton default (por ejemplo, el "Entrar" en un concurso)
-@btn-default-bg: @green;
-@btn-default-color: @white;
-.btn-default {
-	border-width: 0px 0px 2px 0px;
-	border-style: solid;
-	border-color: #555757;
-}
-// Color y borde del boton primary (por ejemplo, el "Join" en un concurso)
 @btn-default-bg: @blueLight;
-.btn-primary {
-	border-width: 0px 0px 2px 0px;
-	border-style: solid;
-	border-color: #555757;
+@btn-default-color: @white;
+@btn-default-border: rgba(0, 0, 0, 0.3);
+
+@btn-primary-border: @btn-default-border;
+
+// Color y borde del boton cancel (no esta definido en el bootstrap)
+.btn-cancel {
+	.button-variant(@btn-default-color; @greyMed; @btn-default-border);
+}
+
+.btn {
+	border-width: 0 0 2px 0;
 }
 
 // Forzamos a que siempre aparezca la scrollbar vertical para que no haya saltos
@@ -59,7 +59,6 @@ body { overflow-y: scroll; }
 	}
 
 	@media (max-width: @screen-xs-max) {
-		background-color: @tramaBlue;
 	}
 }
 
@@ -127,4 +126,48 @@ body { overflow-y: scroll; }
 
 [ng-cloak], [data-ng-cloak], .ng-cloak, .ng-hide {
 	display: none !important;
+}
+
+//enter-contest mobile
+@media (max-width: @screen-xs-max) {
+	#enter-contest-total-salary {
+		width: 94.6%;
+		height: 40px;
+		margin: 10px 2.7%;
+		background-color: @orange;
+		text-align: center;
+		border-radius: 3px;
+
+		#total-salary {
+			.exo_light(24px, @white);
+			background-color: transparent;
+			border: none;
+			text-align: center;
+			margin-top: 4px;
+		}
+	}
+	.enter-contest-actions {
+		background-color: @white;
+		text-align: center;
+		margin-top: 17px;
+
+		.btn {
+			padding: 6px 35px;
+			margin-right: 2%;
+		}
+
+		.btn-remove {
+			.btn-cancel();
+		}
+
+		.btn-confirm {
+			.btn-primary();
+		}
+
+		p {
+			.opensans_bold(9pt, @greyDark);
+			line-height: 11pt;
+			margin: 10px 2.7%;
+		}
+	}
 }

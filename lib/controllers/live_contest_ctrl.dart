@@ -20,7 +20,7 @@ import 'package:webclient/services/flash_messages_service.dart';
     selector: '[live-contest-ctrl]', 
     publishAs: 'ctrl'
 )
-class LiveContestCtrl {
+class LiveContestCtrl implements DetachAware {
   
     ScreenDetectorService scrDet;
     var mainPlayer;
@@ -80,7 +80,7 @@ class LiveContestCtrl {
              
              // Comenzamos a actualizar la información
              const refreshSeconds = const Duration(seconds:3);
-             new Timer.periodic(refreshSeconds, (Timer t) => _updateLive());
+             _timer = new Timer.periodic(refreshSeconds, (Timer t) => _updateLive());
 
              initialized = true;
            })
@@ -168,6 +168,11 @@ class LiveContestCtrl {
       }
       return prize;
     }
+ 
+    void detach() {
+      if (_timer != null)
+        _timer.cancel();
+    }   
     
     void _updateLive() {
       // Actualizamos únicamente la lista de live MatchEvents
@@ -181,6 +186,8 @@ class LiveContestCtrl {
             _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
           });      
     }
+     
+    Timer _timer;
     
     Scope _scope;
     FlashMessagesService _flashMessage;

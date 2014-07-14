@@ -12,15 +12,15 @@ abstract class ServerService {
   Future<JsonObject> signup(String firstName, String lastName, String email, String nickName, String password);
   Future<JsonObject> login(String email, String password);
   Future<JsonObject> getUserProfile();
-  
+
   // Conseguir la lista de Contests Active/Live/History en los que esté inscrito el User
   Future<JsonObject> getUserContests();
   Future<JsonObject> getContest(String contestId);
-  
+
   // Active Contests
   Future<JsonObject> getActiveContests();
   Future<JsonObject> addContestEntry(String contestId, List<String> soccerPlayers);
-  
+
   // Live Contests
   Future<JsonObject> getLiveContests();
   Future<JsonObject> getLiveContest(String contestId);
@@ -54,11 +54,11 @@ class DailySoccerServer implements ServerService {
   Future<JsonObject> getContest(String contestId) {
     return _innerServerCall("$HostServerUrl/get_contest/$contestId", null);
   }
-  
+
   Future<JsonObject> getActiveContests() {
     return _innerServerCall("$HostServerUrl/get_active_contests", null);
   }
-  
+
   Future<JsonObject> getLiveContests() {
     return _innerServerCall("$HostServerUrl/get_live_contests", null);
   }
@@ -66,7 +66,7 @@ class DailySoccerServer implements ServerService {
   Future<JsonObject> getLiveContest(String contestId) {
     return _innerServerCall("$HostServerUrl/get_live_contest/$contestId", null);
   }
-  
+
   Future<JsonObject> addContestEntry(String contestId, List<String> soccerPlayers) {
     String jsonSoccerPlayers = JSON.encode(soccerPlayers);
     return _innerServerCall("$HostServerUrl/add_contest_entry", {'contestId': contestId, 'soccerTeam': jsonSoccerPlayers});
@@ -75,11 +75,11 @@ class DailySoccerServer implements ServerService {
   Future<JsonObject> getLiveContestEntries(String contestId) {
     return _innerServerCall("$HostServerUrl/get_live_contest_entries/$contestId", null);
   }
-  
+
   Future<JsonObject> getLiveMatchEventsFromTemplateContest(String templateContestId) {
     return _innerServerCall("$HostServerUrl/get_live_match_events/template_contest/$templateContestId", null);
   }
-  
+
   /**
    * This is the only place where we call our server
    */

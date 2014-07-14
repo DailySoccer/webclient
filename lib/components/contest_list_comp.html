@@ -1,0 +1,44 @@
+<div id="contestListRoot">
+  <div class="contest-row" ng-repeat="contest in comp.contestList">
+
+        <div class="column-name">
+            <div class="inner-icon">
+                <span class="price-icon"></span>
+            </div>
+            <div class="inner-content">
+                <span class="title-text">LIGA: 67 de 100 jugadores - SALARIO LIMITE: 60M</span> 
+                <span class="content-text">€11.250K Domingo Monsters Leches</span>
+            </div>
+        </div>
+
+        <div class="column-begins">
+            <span class="title-text">COMIENZA</span>
+            <span class="content-text">DOM 20:45</span>
+        </div>
+
+        <div class="column-entry-fee">
+            <div class="inner-icon">
+                <span class="price-icon"></span>
+            </div>
+            <div class="inner-content">
+                <span class="title-text">ENTRADA</span> 
+                <span class="content-text">€{{comp.contestService.getEntryFeeForContest(contest)}}</span>
+            </div>
+        </div>
+
+        <div class="column-prize">
+            <div class="inner-icon">
+                <span class="prize-icon"></span>
+            </div>
+            <div class="inner-content">
+                <span class="title-text">PREMIOS</span> <span
+                    class="content-text">€11.250</span>
+            </div>
+        </div>
+
+        <div class="column-action">
+            <button type="button" class="btn" ng-click="comp.onContestAction(contest)" href="#">Entrar</button>
+        </div>
+
+    </div>
+</div>

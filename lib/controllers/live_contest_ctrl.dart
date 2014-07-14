@@ -17,18 +17,18 @@ import 'package:webclient/services/contest_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 
 @Controller(
-    selector: '[live-contest-ctrl]', 
+    selector: '[live-contest-ctrl]',
     publishAs: 'ctrl'
 )
 class LiveContestCtrl implements DetachAware {
-  
+
     ScreenDetectorService scrDet;
     var mainPlayer;
     var selectedOpponent;
     var initialized;
-   
+
     var updatedDate;
-    
+
     Contest contest;
     TemplateContest templateContest;
     List<ContestEntry> contestEntries = new List<ContestEntry>();
@@ -39,15 +39,15 @@ class LiveContestCtrl implements DetachAware {
     LiveContestCtrl(RouteProvider routeProvider, this._scope, this.scrDet, this._contestService, this._profileService, this._flashMessage) {
       _contestId = routeProvider.route.parameters['contestId'];
       initialized = false;
-      
+
       _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
-      
+
       if (_contestId != null) {
         initialize();
       }
       else {
         // TODO: Elegir uno de los contests
-        
+
         // Mostrar el primer contest
         _contestService.getUserContests()
           .then( (jsonObject) {
@@ -59,13 +59,13 @@ class LiveContestCtrl implements DetachAware {
           })
           .catchError((error) {
             _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
-          });         
+          });
       }
    }
-    
+
     void initialize() {
        mainPlayer = _profileService.user.userId;
-       
+
        _contestService.getContest(_contestId)
            .then((jsonObject) {
              contest = new Contest.fromJsonObject(jsonObject.contest);
@@ -73,11 +73,11 @@ class LiveContestCtrl implements DetachAware {
              usersInfo = jsonObject.users_info.map((jsonObject) => new User.fromJsonObject(jsonObject)).toList();
              contestEntries = jsonObject.contest_entries.map((jsonObject) => new ContestEntry.fromJsonObject(jsonObject)).toList();
              matchEvents = jsonObject.match_events.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject)).toList();
-             
+
              updatedDate = new DateTime.now();
-             
+
              _updateLive();
-             
+
              // Comenzamos a actualizar la información
              const refreshSeconds = const Duration(seconds:3);
              _timer = new Timer.periodic(refreshSeconds, (Timer t) => _updateLive());
@@ -88,47 +88,47 @@ class LiveContestCtrl implements DetachAware {
              _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
            });
     }
-    
+
     ContestEntry getContestEntryWithUser(String userId) {
       return contestEntries.firstWhere( (entry) => entry.userId == userId, orElse: () => null );
     }
-   
+
     SoccerPlayer getSoccerPlayer(String soccerPlayerId) {
       SoccerPlayer soccerPlayer = null;
-      
+
       // Buscar en la lista de partidos del contest
       for (MatchEvent match in matchEvents) {
         soccerPlayer = match.soccerTeamA.findSoccerPlayer(soccerPlayerId);
         if (soccerPlayer == null) {
           soccerPlayer = match.soccerTeamB.findSoccerPlayer(soccerPlayerId);
         }
-        
+
         // Lo hemos encontrado?
         if (soccerPlayer != null)
           break;
       }
-      
+
       return soccerPlayer;
     }
-    
+
     int getSoccerPlayerScore(String soccerPlayerId) {
       SoccerPlayer soccerPlayer = null;
-      
+
       // Buscar en la lista de partidos del contest
       for (MatchEvent match in liveMatchEvents) {
         soccerPlayer = match.soccerTeamA.findSoccerPlayer(soccerPlayerId);
         if (soccerPlayer == null) {
           soccerPlayer = match.soccerTeamB.findSoccerPlayer(soccerPlayerId);
         }
-        
+
         // Lo hemos encontrado?
         if (soccerPlayer != null)
           break;
       }
-      
+
       return (soccerPlayer!=null) ? soccerPlayer.fantasyPoints : 0;
     }
-    
+
     int getUserPosition(ContestEntry contestEntry) {
       for (int i=0; i<contestEntries.length; i++) {
         if (contestEntries[i].contestEntryId == contestEntry.contestEntryId)
@@ -136,21 +136,21 @@ class LiveContestCtrl implements DetachAware {
       }
       return -1;
     }
-    
+
     String getUserName(ContestEntry contestEntry) {
       User userInfo = usersInfo.firstWhere((user) => user.userId == contestEntry.userId, orElse: () => null);
       return (userInfo != null) ? userInfo.fullName : "";
     }
-    
+
     String getUserNickname(ContestEntry contestEntry) {
       User userInfo = usersInfo.firstWhere((user) => user.userId == contestEntry.userId, orElse: () => null);
       return (userInfo != null) ? userInfo.nickName : "";
     }
-    
+
     String getUserRemainingTime(ContestEntry contestEntry) {
       return "1";
     }
-    
+
     int getUserScore(ContestEntry contestEntry) {
       int points = 0;
       for (String soccerPlayerId in contestEntry.soccerIds) {
@@ -158,7 +158,7 @@ class LiveContestCtrl implements DetachAware {
       }
       return points;
     }
-    
+
     String getPrize(int index) {
       String prize = "-";
       switch(index) {
@@ -168,31 +168,31 @@ class LiveContestCtrl implements DetachAware {
       }
       return prize;
     }
- 
+
     void detach() {
       if (_timer != null)
         _timer.cancel();
-    }   
-    
+    }
+
     void _updateLive() {
       // Actualizamos únicamente la lista de live MatchEvents
       _contestService.getLiveMatchEvents(contest.templateContestId)
           .then( (jsonObject) {
             liveMatchEvents = jsonObject.content.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject)).toList();
-            
+
             updatedDate = new DateTime.now();
           })
           .catchError((error) {
             _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
-          });      
+          });
     }
-     
+
     Timer _timer;
-    
+
     Scope _scope;
     FlashMessagesService _flashMessage;
     ContestService _contestService;
     ProfileService _profileService;
-    
+
     String _contestId;
 }

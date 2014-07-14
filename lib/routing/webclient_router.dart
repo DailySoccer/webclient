@@ -17,13 +17,13 @@ void webClientRouteInitializer(Router router, RouteViewFactory views) {
         path: '/join',
         view: 'view/join.tpl.html'
     )
-    ,'lobby': ngRoute(    
+    ,'lobby': ngRoute(
         path: '/lobby',
         view: 'view/lobby.tpl.html'
     )
-    ,'my_entered_contests': ngRoute(
-        path: '/my_entered_contests',
-        viewHtml: 'My Entered Contests Hello World'
+    ,'my_contests': ngRoute(
+        path: '/my_contests',
+        viewHtml: '<my-contests></my-contests>'
     )
     // Acceso directo a un live (sin indicar un contestId)
     ,'my_live_contests': ngRoute(

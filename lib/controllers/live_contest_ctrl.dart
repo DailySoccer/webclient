@@ -5,7 +5,7 @@ import 'dart:async';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/services/profile_service.dart';
-import 'package:webclient/services/active_contest_service.dart';
+import 'package:webclient/services/my_contest_service.dart';
 import "package:webclient/models/user.dart";
 import "package:webclient/models/soccer_player.dart";
 import "package:webclient/models/soccer_team.dart";
@@ -13,7 +13,6 @@ import 'package:webclient/models/match_event.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/template_contest.dart';
 import 'package:webclient/models/contest_entry.dart';
-import 'package:webclient/services/active_contest_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/contest_references.dart';
 
@@ -31,13 +30,10 @@ class LiveContestCtrl implements DetachAware {
     var updatedDate;
 
     Contest contest;
-    TemplateContest templateContest;
     List<ContestEntry> contestEntries = new List<ContestEntry>();
     List<User> usersInfo = new List<User>();
-    List<MatchEvent> matchEvents = new List<MatchEvent>();
-    List<MatchEvent> liveMatchEvents = new List<MatchEvent>();
 
-    LiveContestCtrl(RouteProvider routeProvider, this._scope, this.scrDet, this._contestService, this._profileService, this._flashMessage) {
+    LiveContestCtrl(RouteProvider routeProvider, this._scope, this.scrDet, this._myContestService, this._profileService, this._flashMessage) {
       _contestId = routeProvider.route.parameters['contestId'];
       initialized = false;
 
@@ -50,7 +46,7 @@ class LiveContestCtrl implements DetachAware {
         // TODO: Elegir uno de los contests
 
         // Mostrar el primer contest
-        _contestService.getUserContests()
+        _myContestService.getUserContests()
           .then( (jsonObject) {
             List<Contest> contests = jsonObject.contests.map((jsonObject) => new Contest.fromJsonObject(jsonObject)).toList();
             if (contests != null && !contests.isEmpty) {
@@ -67,16 +63,16 @@ class LiveContestCtrl implements DetachAware {
     void initialize() {
        mainPlayer = _profileService.user.userId;
 
-       _contestService.getContest(_contestId)
+       _myContestService.getContest(_contestId)
            .then((jsonObject) {
              contest = new Contest.fromJsonObject(jsonObject.contest);
-             templateContest = new TemplateContest.fromJsonObject(jsonObject.template_contest);
-             matchEvents = jsonObject.match_events.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject)).toList();
+             TemplateContest templateContest = new TemplateContest.fromJsonObject(jsonObject.template_contest);
+             List<MatchEvent> matchEvents = jsonObject.match_events.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject)).toList();
+             
+             new ContestReferences.fromContest(contest, templateContest, matchEvents);
              
              usersInfo = jsonObject.users_info.map((jsonObject) => new User.fromJsonObject(jsonObject)).toList();
              contestEntries = jsonObject.contest_entries.map((jsonObject) => new ContestEntry.fromJsonObject(jsonObject)).toList();
-   
-             new ContestReferences.fromContest(contest, templateContest, matchEvents);
 
              updatedDate = new DateTime.now();
 
@@ -101,7 +97,7 @@ class LiveContestCtrl implements DetachAware {
       SoccerPlayer soccerPlayer = null;
 
       // Buscar en la lista de partidos del contest
-      for (MatchEvent match in matchEvents) {
+      for (MatchEvent match in contest.templateContest.templateMatchEvents) {
         soccerPlayer = match.soccerTeamA.findSoccerPlayer(soccerPlayerId);
         if (soccerPlayer == null) {
           soccerPlayer = match.soccerTeamB.findSoccerPlayer(soccerPlayerId);
@@ -113,24 +109,6 @@ class LiveContestCtrl implements DetachAware {
       }
 
       return soccerPlayer;
-    }
-
-    int getSoccerPlayerScore(String soccerPlayerId) {
-      SoccerPlayer soccerPlayer = null;
-
-      // Buscar en la lista de partidos del contest
-      for (MatchEvent match in liveMatchEvents) {
-        soccerPlayer = match.soccerTeamA.findSoccerPlayer(soccerPlayerId);
-        if (soccerPlayer == null) {
-          soccerPlayer = match.soccerTeamB.findSoccerPlayer(soccerPlayerId);
-        }
-
-        // Lo hemos encontrado?
-        if (soccerPlayer != null)
-          break;
-      }
-
-      return (soccerPlayer!=null) ? soccerPlayer.fantasyPoints : 0;
     }
 
     int getUserPosition(ContestEntry contestEntry) {
@@ -154,15 +132,10 @@ class LiveContestCtrl implements DetachAware {
     String getUserRemainingTime(ContestEntry contestEntry) {
       return "1";
     }
-
-    int getUserScore(ContestEntry contestEntry) {
-      int points = 0;
-      for (String soccerPlayerId in contestEntry.soccerIds) {
-        points += getSoccerPlayerScore(soccerPlayerId);
-      }
-      return points;
-    }
-
+    
+    int getSoccerPlayerScore(String soccerPlayerId) => _myContestService.getSoccerPlayerScore(soccerPlayerId);
+    int getUserScore(ContestEntry contestEntry) => _myContestService.getUserScore(contestEntry);
+    
     String getPrize(int index) {
       String prize = "-";
       switch(index) {
@@ -180,14 +153,8 @@ class LiveContestCtrl implements DetachAware {
 
     void _updateLive() {
       // Actualizamos únicamente la lista de live MatchEvents
-      _contestService.getLiveMatchEvents(contest.templateContestId)
+      _myContestService.getLiveMatchEvents(contest.templateContestId)
           .then( (jsonObject) {
-
-            liveMatchEvents = jsonObject.content.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject)).toList();
-            
-            // No asociamos el contest y el templateContest a los partidos live
-            // new ContestReferences.fromContest(contest, templateContest, liveMatchEvents);
-
             updatedDate = new DateTime.now();
           })
           .catchError((error) {
@@ -199,7 +166,7 @@ class LiveContestCtrl implements DetachAware {
 
     Scope _scope;
     FlashMessagesService _flashMessage;
-    ActiveContestService _contestService;
+    MyContestService _myContestService;
     ProfileService _profileService;
 
     String _contestId;

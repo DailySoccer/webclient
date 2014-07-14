@@ -34,8 +34,8 @@ class ContestHeaderComp {
 
   void _refreshHeader() {
     if (_liveContestCtrl.contest != null) {
-      contestHeaderInfo["description"] = "€${_liveContestCtrl.templateContest.salaryCap} ${_liveContestCtrl.contest.name}";
-      contestHeaderInfo["entryPrice"] = "€${_liveContestCtrl.templateContest.entryFee}";
+      contestHeaderInfo["description"] = "€${_liveContestCtrl.contest.templateContest.salaryCap} ${_liveContestCtrl.contest.name}";
+      contestHeaderInfo["entryPrice"] = "€${_liveContestCtrl.contest.templateContest.entryFee}";
       
       int numJugadores = _liveContestCtrl.contest.currentUserIds.length;
       contestHeaderInfo["contestantCount"] = "$numJugadores" + ((numJugadores == 1) ? " jugador" : " jugadores");

@@ -4,11 +4,11 @@ testContestService(){
   group("[ContestService]", () {
     group("[valid]", () {
 
-      ContestService contestService;
+      ActiveContestService contestService;
 
       setUp((){
         var mockServer = new MockDailySoccerServer();
-        contestService = new ContestService(mockServer);
+        contestService = new ActiveContestService(mockServer);
       });
 
       test("Se refrescan los concursos", () {
@@ -25,7 +25,7 @@ testContestService(){
               var contest = contestService.getContestById("001001001001001001001001");
               expect(contestService.getContestById("001001001001001001001001").name, equals("001001001001001001001001 contest"));
 
-              List<MatchEvent> matchEvents = contestService.getMatchEventsForContest(contest);
+              List<MatchEvent> matchEvents = contest.templateContest.templateMatchEvents;
               expect(matchEvents.length, equals(2));
             });
       });
@@ -34,7 +34,7 @@ testContestService(){
         return contestService.refreshActiveContests()
             .then((x) {
               var contest = contestService.getContestById("001001001001001001001001");
-              var startDate = contestService.getContestStartDate(contest);
+              var startDate = contest.templateContest.getStartDate();
 
               expect(startDate, equals(new DateTime.utc(2014, 10, 14, 12, 0, 0, 0)));
             });

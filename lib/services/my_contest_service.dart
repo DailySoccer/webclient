@@ -9,9 +9,10 @@ import "package:webclient/models/template_contest.dart";
 import "package:webclient/models/match_event.dart";
 import "package:webclient/models/soccer_player.dart";
 
+import 'package:webclient/services/contest_references.dart';
 
 @Injectable()
-class ContestService {
+class MyContestService {
 
   List<Contest> activeContests = new List<Contest>();
   List<TemplateContest> activeTemplateContests = new List<TemplateContest>();
@@ -78,16 +79,17 @@ class ContestService {
                                             .reduce((val, elem) => val.isBefore(elem)? val : elem);
   }
 
-  ContestService(this._server);
+  MyContestService(this._server);
 
   Future refreshActiveContests() {
     var completer = new Completer();
 
     _server.getActiveContests()
         .then((jsonObject) {
-          activeMatchEvents = jsonObject.match_events.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject)).toList();
-          activeTemplateContests = jsonObject.template_contests.map((jsonObject) => new TemplateContest.fromJsonObject(jsonObject)).toList();
-          activeContests = jsonObject.contests.map((jsonObject) => new Contest.fromJsonObject(jsonObject)).toList();
+        var contestReferences = new ContestReferences();
+        activeMatchEvents = jsonObject.match_events.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject, contestReferences)).toList();
+        activeTemplateContests = jsonObject.template_contests.map((jsonObject) => new TemplateContest.fromJsonObject(jsonObject, contestReferences)).toList();
+        activeContests = jsonObject.contests.map((jsonObject) => new Contest.fromJsonObject(jsonObject, contestReferences)).toList();
           completer.complete();
         });
 

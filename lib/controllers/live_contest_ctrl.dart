@@ -5,7 +5,7 @@ import 'dart:async';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/services/profile_service.dart';
-import 'package:webclient/services/contest_service.dart';
+import 'package:webclient/services/active_contest_service.dart';
 import "package:webclient/models/user.dart";
 import "package:webclient/models/soccer_player.dart";
 import "package:webclient/models/soccer_team.dart";
@@ -13,8 +13,9 @@ import 'package:webclient/models/match_event.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/template_contest.dart';
 import 'package:webclient/models/contest_entry.dart';
-import 'package:webclient/services/contest_service.dart';
+import 'package:webclient/services/active_contest_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
+import 'package:webclient/services/contest_references.dart';
 
 @Controller(
     selector: '[live-contest-ctrl]',
@@ -51,7 +52,8 @@ class LiveContestCtrl implements DetachAware {
         // Mostrar el primer contest
         _contestService.getUserContests()
           .then( (jsonObject) {
-            List<Contest> contests = jsonObject.contests.map((jsonObject) => new Contest.fromJsonObject(jsonObject)).toList();
+            var contestReferences = new ContestReferences();
+            List<Contest> contests = jsonObject.contests.map((jsonObject) => new Contest.fromJsonObject(jsonObject, contestReferences)).toList();
             if (contests != null && !contests.isEmpty) {
               _contestId = contests.first.contestId;
               initialize();
@@ -68,11 +70,13 @@ class LiveContestCtrl implements DetachAware {
 
        _contestService.getContest(_contestId)
            .then((jsonObject) {
-             contest = new Contest.fromJsonObject(jsonObject.contest);
-             templateContest = new TemplateContest.fromJsonObject(jsonObject.template_contest);
+             var contestReferences = new ContestReferences();
+             contest = new Contest.fromJsonObject(jsonObject.contest, contestReferences);
+             templateContest = new TemplateContest.fromJsonObject(jsonObject.template_contest, contestReferences);
+             matchEvents = jsonObject.match_events.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject, contestReferences)).toList();
+             
              usersInfo = jsonObject.users_info.map((jsonObject) => new User.fromJsonObject(jsonObject)).toList();
              contestEntries = jsonObject.contest_entries.map((jsonObject) => new ContestEntry.fromJsonObject(jsonObject)).toList();
-             matchEvents = jsonObject.match_events.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject)).toList();
 
              updatedDate = new DateTime.now();
 
@@ -178,7 +182,8 @@ class LiveContestCtrl implements DetachAware {
       // Actualizamos únicamente la lista de live MatchEvents
       _contestService.getLiveMatchEvents(contest.templateContestId)
           .then( (jsonObject) {
-            liveMatchEvents = jsonObject.content.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject)).toList();
+            var contestReferences = new ContestReferences();
+            liveMatchEvents = jsonObject.content.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject, contestReferences)).toList();
 
             updatedDate = new DateTime.now();
           })
@@ -191,7 +196,7 @@ class LiveContestCtrl implements DetachAware {
 
     Scope _scope;
     FlashMessagesService _flashMessage;
-    ContestService _contestService;
+    ActiveContestService _contestService;
     ProfileService _profileService;
 
     String _contestId;

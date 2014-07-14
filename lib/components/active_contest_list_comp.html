@@ -7,7 +7,7 @@
             </div>
             <div class="inner-content">
                 <span class="title-text">LIGA: 67 de 100 jugadores - SALARIO LIMITE: 60M</span> 
-                <span class="content-text">€11.250K Domingo Monsters Leches</span>
+                <span class="content-text">€11.250K {{contest.name}}</span>
             </div>
         </div>
 
@@ -22,7 +22,7 @@
             </div>
             <div class="inner-content">
                 <span class="title-text">ENTRADA</span> 
-                <span class="content-text">€{{activeContestList.contestService.getEntryFeeForContest(contest)}}</span>
+                <span class="content-text">€{{contest.templateContest.entryFee}}</span>
             </div>
         </div>
 

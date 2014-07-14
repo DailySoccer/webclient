@@ -1,3 +1,8 @@
+<div class="soccer-player-filter">
+  <select id="match-fliter">
+  </select>
+  <input id="name-player-filter" value="" placeholder="Buscar jugador" />
+</div>
 <div class="soccer-players-list">
   <div class="soccer-players-list-slot" ng-repeat="slot in comp.enterContestCtrl.availableSoccerPlayers" ng-class="comp.getSlotClassColor(slot.fieldPos.abrevName)">
     <div class="column-fieldpos">{{slot.fieldPos.abrevName}}</div>

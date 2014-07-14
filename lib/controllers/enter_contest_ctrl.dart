@@ -17,6 +17,8 @@ import 'package:webclient/services/flash_messages_service.dart';
     publishAs: 'ctrl'
 )
 class EnterContestCtrl {
+  
+  int availableSalary = 0;
 
   ScreenDetectorService scrDet;
 
@@ -176,6 +178,10 @@ class EnterContestCtrl {
       }
     }
     return true;
+  }
+  
+  void cancelPlayerSelection() {
+    isSelectingSoccerPlayer = false;
   }
 
   var _allSoccerPlayers = new List();

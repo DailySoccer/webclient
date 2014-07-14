@@ -3,6 +3,8 @@ library soccer_players_list_comp;
 import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:webclient/controllers/enter_contest_ctrl.dart';
+import 'package:webclient/services/contest_service.dart';
+import 'package:webclient/models/contest.dart';
 
 @Component(
     selector: 'soccer-players-list',
@@ -11,10 +13,24 @@ import 'package:webclient/controllers/enter_contest_ctrl.dart';
     useShadowDom: false
 )
 class SoccerPlayersListComp {
+  
+  Contest contest;
+  var matchesInvolved;
 
   EnterContestCtrl enterContestCtrl;
 
-  SoccerPlayersListComp(this.enterContestCtrl);
+  SoccerPlayersListComp(RouteProvider routeProvider, this.enterContestCtrl, this._contestService) {
+    
+    setup(routeProvider.route.parameters['contestId']);
+  }
+  
+  void setup(String contestId) {
+    contest = _contestService.getContestById(contestId);
+    var tmplateContest  = _contestService.getTemplateContestById(contest.templateContestId);
+    matchesInvolved = _contestService.getMatchEventsForTemplateContest(tmplateContest);
+
+    print("Número de partidos: " + matchesInvolved.length);
+  }
   
   // Para pintar el color correspondiente segun la posicion del jugador
   String getSlotClassColor(String abrevName){
@@ -39,4 +55,6 @@ class SoccerPlayersListComp {
     return tamanio_name - 1;*/
     return 19;
   }
+  
+  ContestService _contestService;
 }

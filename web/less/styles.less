@@ -12,6 +12,7 @@
 @import "fantasy_team_comp.less";
 @import "users_list_comp.less";
 @import "live_contest_comp.less";
+@import "enter_contest_tpl.less";
 @import "soccer_players_list_comp.less";
 @import "lineup_selector_comp.less";
 
@@ -38,6 +39,7 @@
 }
 
 .btn {
+	.btn();
 	border-width: 0 0 2px 0;
 }
 
@@ -126,48 +128,4 @@ body { overflow-y: scroll; }
 
 [ng-cloak], [data-ng-cloak], .ng-cloak, .ng-hide {
 	display: none !important;
-}
-
-//enter-contest mobile
-@media (max-width: @screen-xs-max) {
-	#enter-contest-total-salary {
-		width: 94.6%;
-		height: 40px;
-		margin: 10px 2.7%;
-		background-color: @orange;
-		text-align: center;
-		border-radius: 3px;
-
-		#total-salary {
-			.exo_light(24px, @white);
-			background-color: transparent;
-			border: none;
-			text-align: center;
-			margin-top: 4px;
-		}
-	}
-	.enter-contest-actions {
-		background-color: @white;
-		text-align: center;
-		margin-top: 17px;
-
-		.btn {
-			padding: 6px 35px;
-			margin-right: 2%;
-		}
-
-		.btn-remove {
-			.btn-cancel();
-		}
-
-		.btn-confirm {
-			.btn-primary();
-		}
-
-		p {
-			.opensans_bold(9pt, @greyDark);
-			line-height: 11pt;
-			margin: 10px 2.7%;
-		}
-	}
 }

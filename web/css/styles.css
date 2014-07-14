@@ -6215,6 +6215,35 @@ fieldset[disabled] #menuRootUnlogged .button-join {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+#menuRootUnlogged .button-join:focus,
+#menuRootUnlogged .button-join:active:focus,
+#menuRootUnlogged .button-join.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+#menuRootUnlogged .button-join:hover,
+#menuRootUnlogged .button-join:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+#menuRootUnlogged .button-join:active,
+#menuRootUnlogged .button-join.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+#menuRootUnlogged .button-join.disabled,
+#menuRootUnlogged .button-join[disabled],
+fieldset[disabled] #menuRootUnlogged .button-join {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 #menuRootUnlogged .button-join:hover,
 #menuRootUnlogged .button-join:focus,
 #menuRootUnlogged .button-join:active,
@@ -6276,6 +6305,35 @@ fieldset[disabled] #menuRootUnlogged .button-join.active {
   padding: 10px 20px;
   margin: 15px 10px;
   float: right;
+}
+#menuRootUnlogged .button-login:focus,
+#menuRootUnlogged .button-login:active:focus,
+#menuRootUnlogged .button-login.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+#menuRootUnlogged .button-login:hover,
+#menuRootUnlogged .button-login:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+#menuRootUnlogged .button-login:active,
+#menuRootUnlogged .button-login.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+#menuRootUnlogged .button-login.disabled,
+#menuRootUnlogged .button-login[disabled],
+fieldset[disabled] #menuRootUnlogged .button-login {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 #menuRootUnlogged .button-login:focus,
 #menuRootUnlogged .button-login:active:focus,
@@ -8114,6 +8172,495 @@ fieldset[disabled] .landing-wrapper #mobileContent .btn.active {
     background-color: #ffffff;
   }
 }
+@media (max-width: 767px) {
+  #enter-contest-total-salary {
+    width: 94.6%;
+    height: 40px;
+    margin: 10px 2.7%;
+    background-color: #fa9c19;
+    text-align: center;
+    border-radius: 3px;
+  }
+  #enter-contest-total-salary #total-salary {
+    font-family: 'Exo', sans-serif;
+    font-weight: 300;
+    font-size: 24px;
+    color: #ffffff;
+    background-color: transparent;
+    border: none;
+    text-align: center;
+    margin-top: 4px;
+  }
+}
+@media (max-width: 767px) {
+  .enter-contest-actions {
+    background-color: #ffffff;
+    text-align: center;
+    margin-top: 17px;
+  }
+  .enter-contest-actions .btn {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border-width: 0 0 2px 0;
+    padding: 6px 35px;
+    margin-right: 2%;
+  }
+  .enter-contest-actions .btn:focus,
+  .enter-contest-actions .btn:active:focus,
+  .enter-contest-actions .btn.active:focus {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+  }
+  .enter-contest-actions .btn:hover,
+  .enter-contest-actions .btn:focus {
+    color: #ffffff;
+    text-decoration: none;
+  }
+  .enter-contest-actions .btn:active,
+  .enter-contest-actions .btn.active {
+    outline: 0;
+    background-image: none;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  }
+  .enter-contest-actions .btn.disabled,
+  .enter-contest-actions .btn[disabled],
+  fieldset[disabled] .enter-contest-actions .btn {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.65;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  .enter-contest-actions .btn:focus,
+  .enter-contest-actions .btn:active:focus,
+  .enter-contest-actions .btn.active:focus {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+  }
+  .enter-contest-actions .btn:hover,
+  .enter-contest-actions .btn:focus {
+    color: #ffffff;
+    text-decoration: none;
+  }
+  .enter-contest-actions .btn:active,
+  .enter-contest-actions .btn.active {
+    outline: 0;
+    background-image: none;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  }
+  .enter-contest-actions .btn.disabled,
+  .enter-contest-actions .btn[disabled],
+  fieldset[disabled] .enter-contest-actions .btn {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.65;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  .enter-contest-actions .btn-cancel-player-selection {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border-width: 0 0 2px 0;
+    padding: 6px 35px;
+    margin-right: 2%;
+    color: #ffffff;
+    background-color: #afafaf;
+    border-color: rgba(0, 0, 0, 0.3);
+    width: 94.6%;
+    margin: -7px 2.7% 10px;
+  }
+  .enter-contest-actions .btn-cancel-player-selection:focus,
+  .enter-contest-actions .btn-cancel-player-selection:active:focus,
+  .enter-contest-actions .btn-cancel-player-selection.active:focus {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+  }
+  .enter-contest-actions .btn-cancel-player-selection:hover,
+  .enter-contest-actions .btn-cancel-player-selection:focus {
+    color: #ffffff;
+    text-decoration: none;
+  }
+  .enter-contest-actions .btn-cancel-player-selection:active,
+  .enter-contest-actions .btn-cancel-player-selection.active {
+    outline: 0;
+    background-image: none;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  }
+  .enter-contest-actions .btn-cancel-player-selection.disabled,
+  .enter-contest-actions .btn-cancel-player-selection[disabled],
+  fieldset[disabled] .enter-contest-actions .btn-cancel-player-selection {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.65;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  .enter-contest-actions .btn-cancel-player-selection:focus,
+  .enter-contest-actions .btn-cancel-player-selection:active:focus,
+  .enter-contest-actions .btn-cancel-player-selection.active:focus {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+  }
+  .enter-contest-actions .btn-cancel-player-selection:hover,
+  .enter-contest-actions .btn-cancel-player-selection:focus {
+    color: #ffffff;
+    text-decoration: none;
+  }
+  .enter-contest-actions .btn-cancel-player-selection:active,
+  .enter-contest-actions .btn-cancel-player-selection.active {
+    outline: 0;
+    background-image: none;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  }
+  .enter-contest-actions .btn-cancel-player-selection.disabled,
+  .enter-contest-actions .btn-cancel-player-selection[disabled],
+  fieldset[disabled] .enter-contest-actions .btn-cancel-player-selection {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.65;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  .enter-contest-actions .btn-cancel-player-selection:hover,
+  .enter-contest-actions .btn-cancel-player-selection:focus,
+  .enter-contest-actions .btn-cancel-player-selection:active,
+  .enter-contest-actions .btn-cancel-player-selection.active,
+  .open .dropdown-toggle.enter-contest-actions .btn-cancel-player-selection {
+    color: #ffffff;
+    background-color: #9b9b9b;
+    border-color: rgba(0, 0, 0, 0.3);
+  }
+  .enter-contest-actions .btn-cancel-player-selection:active,
+  .enter-contest-actions .btn-cancel-player-selection.active,
+  .open .dropdown-toggle.enter-contest-actions .btn-cancel-player-selection {
+    background-image: none;
+  }
+  .enter-contest-actions .btn-cancel-player-selection.disabled,
+  .enter-contest-actions .btn-cancel-player-selection[disabled],
+  fieldset[disabled] .enter-contest-actions .btn-cancel-player-selection,
+  .enter-contest-actions .btn-cancel-player-selection.disabled:hover,
+  .enter-contest-actions .btn-cancel-player-selection[disabled]:hover,
+  fieldset[disabled] .enter-contest-actions .btn-cancel-player-selection:hover,
+  .enter-contest-actions .btn-cancel-player-selection.disabled:focus,
+  .enter-contest-actions .btn-cancel-player-selection[disabled]:focus,
+  fieldset[disabled] .enter-contest-actions .btn-cancel-player-selection:focus,
+  .enter-contest-actions .btn-cancel-player-selection.disabled:active,
+  .enter-contest-actions .btn-cancel-player-selection[disabled]:active,
+  fieldset[disabled] .enter-contest-actions .btn-cancel-player-selection:active,
+  .enter-contest-actions .btn-cancel-player-selection.disabled.active,
+  .enter-contest-actions .btn-cancel-player-selection[disabled].active,
+  fieldset[disabled] .enter-contest-actions .btn-cancel-player-selection.active {
+    background-color: #afafaf;
+    border-color: rgba(0, 0, 0, 0.3);
+  }
+  .enter-contest-actions .btn-cancel-player-selection .badge {
+    color: #afafaf;
+    background-color: #ffffff;
+  }
+  .enter-contest-actions .btn-clean-lienup-list {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border-width: 0 0 2px 0;
+    padding: 6px 35px;
+    margin-right: 2%;
+    color: #ffffff;
+    background-color: #afafaf;
+    border-color: rgba(0, 0, 0, 0.3);
+  }
+  .enter-contest-actions .btn-clean-lienup-list:focus,
+  .enter-contest-actions .btn-clean-lienup-list:active:focus,
+  .enter-contest-actions .btn-clean-lienup-list.active:focus {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+  }
+  .enter-contest-actions .btn-clean-lienup-list:hover,
+  .enter-contest-actions .btn-clean-lienup-list:focus {
+    color: #ffffff;
+    text-decoration: none;
+  }
+  .enter-contest-actions .btn-clean-lienup-list:active,
+  .enter-contest-actions .btn-clean-lienup-list.active {
+    outline: 0;
+    background-image: none;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  }
+  .enter-contest-actions .btn-clean-lienup-list.disabled,
+  .enter-contest-actions .btn-clean-lienup-list[disabled],
+  fieldset[disabled] .enter-contest-actions .btn-clean-lienup-list {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.65;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  .enter-contest-actions .btn-clean-lienup-list:focus,
+  .enter-contest-actions .btn-clean-lienup-list:active:focus,
+  .enter-contest-actions .btn-clean-lienup-list.active:focus {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+  }
+  .enter-contest-actions .btn-clean-lienup-list:hover,
+  .enter-contest-actions .btn-clean-lienup-list:focus {
+    color: #ffffff;
+    text-decoration: none;
+  }
+  .enter-contest-actions .btn-clean-lienup-list:active,
+  .enter-contest-actions .btn-clean-lienup-list.active {
+    outline: 0;
+    background-image: none;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  }
+  .enter-contest-actions .btn-clean-lienup-list.disabled,
+  .enter-contest-actions .btn-clean-lienup-list[disabled],
+  fieldset[disabled] .enter-contest-actions .btn-clean-lienup-list {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.65;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  .enter-contest-actions .btn-clean-lienup-list:hover,
+  .enter-contest-actions .btn-clean-lienup-list:focus,
+  .enter-contest-actions .btn-clean-lienup-list:active,
+  .enter-contest-actions .btn-clean-lienup-list.active,
+  .open .dropdown-toggle.enter-contest-actions .btn-clean-lienup-list {
+    color: #ffffff;
+    background-color: #9b9b9b;
+    border-color: rgba(0, 0, 0, 0.3);
+  }
+  .enter-contest-actions .btn-clean-lienup-list:active,
+  .enter-contest-actions .btn-clean-lienup-list.active,
+  .open .dropdown-toggle.enter-contest-actions .btn-clean-lienup-list {
+    background-image: none;
+  }
+  .enter-contest-actions .btn-clean-lienup-list.disabled,
+  .enter-contest-actions .btn-clean-lienup-list[disabled],
+  fieldset[disabled] .enter-contest-actions .btn-clean-lienup-list,
+  .enter-contest-actions .btn-clean-lienup-list.disabled:hover,
+  .enter-contest-actions .btn-clean-lienup-list[disabled]:hover,
+  fieldset[disabled] .enter-contest-actions .btn-clean-lienup-list:hover,
+  .enter-contest-actions .btn-clean-lienup-list.disabled:focus,
+  .enter-contest-actions .btn-clean-lienup-list[disabled]:focus,
+  fieldset[disabled] .enter-contest-actions .btn-clean-lienup-list:focus,
+  .enter-contest-actions .btn-clean-lienup-list.disabled:active,
+  .enter-contest-actions .btn-clean-lienup-list[disabled]:active,
+  fieldset[disabled] .enter-contest-actions .btn-clean-lienup-list:active,
+  .enter-contest-actions .btn-clean-lienup-list.disabled.active,
+  .enter-contest-actions .btn-clean-lienup-list[disabled].active,
+  fieldset[disabled] .enter-contest-actions .btn-clean-lienup-list.active {
+    background-color: #afafaf;
+    border-color: rgba(0, 0, 0, 0.3);
+  }
+  .enter-contest-actions .btn-clean-lienup-list .badge {
+    color: #afafaf;
+    background-color: #ffffff;
+  }
+  .enter-contest-actions .btn-confirm-lienup-list {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border-width: 0 0 2px 0;
+    padding: 6px 35px;
+    margin-right: 2%;
+    color: #ffffff;
+    background-color: #a1c931;
+    border-color: rgba(0, 0, 0, 0.3);
+  }
+  .enter-contest-actions .btn-confirm-lienup-list:focus,
+  .enter-contest-actions .btn-confirm-lienup-list:active:focus,
+  .enter-contest-actions .btn-confirm-lienup-list.active:focus {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+  }
+  .enter-contest-actions .btn-confirm-lienup-list:hover,
+  .enter-contest-actions .btn-confirm-lienup-list:focus {
+    color: #ffffff;
+    text-decoration: none;
+  }
+  .enter-contest-actions .btn-confirm-lienup-list:active,
+  .enter-contest-actions .btn-confirm-lienup-list.active {
+    outline: 0;
+    background-image: none;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  }
+  .enter-contest-actions .btn-confirm-lienup-list.disabled,
+  .enter-contest-actions .btn-confirm-lienup-list[disabled],
+  fieldset[disabled] .enter-contest-actions .btn-confirm-lienup-list {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.65;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  .enter-contest-actions .btn-confirm-lienup-list:focus,
+  .enter-contest-actions .btn-confirm-lienup-list:active:focus,
+  .enter-contest-actions .btn-confirm-lienup-list.active:focus {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+  }
+  .enter-contest-actions .btn-confirm-lienup-list:hover,
+  .enter-contest-actions .btn-confirm-lienup-list:focus {
+    color: #ffffff;
+    text-decoration: none;
+  }
+  .enter-contest-actions .btn-confirm-lienup-list:active,
+  .enter-contest-actions .btn-confirm-lienup-list.active {
+    outline: 0;
+    background-image: none;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  }
+  .enter-contest-actions .btn-confirm-lienup-list.disabled,
+  .enter-contest-actions .btn-confirm-lienup-list[disabled],
+  fieldset[disabled] .enter-contest-actions .btn-confirm-lienup-list {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.65;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  .enter-contest-actions .btn-confirm-lienup-list:hover,
+  .enter-contest-actions .btn-confirm-lienup-list:focus,
+  .enter-contest-actions .btn-confirm-lienup-list:active,
+  .enter-contest-actions .btn-confirm-lienup-list.active,
+  .open .dropdown-toggle.enter-contest-actions .btn-confirm-lienup-list {
+    color: #ffffff;
+    background-color: #87a829;
+    border-color: rgba(0, 0, 0, 0.3);
+  }
+  .enter-contest-actions .btn-confirm-lienup-list:active,
+  .enter-contest-actions .btn-confirm-lienup-list.active,
+  .open .dropdown-toggle.enter-contest-actions .btn-confirm-lienup-list {
+    background-image: none;
+  }
+  .enter-contest-actions .btn-confirm-lienup-list.disabled,
+  .enter-contest-actions .btn-confirm-lienup-list[disabled],
+  fieldset[disabled] .enter-contest-actions .btn-confirm-lienup-list,
+  .enter-contest-actions .btn-confirm-lienup-list.disabled:hover,
+  .enter-contest-actions .btn-confirm-lienup-list[disabled]:hover,
+  fieldset[disabled] .enter-contest-actions .btn-confirm-lienup-list:hover,
+  .enter-contest-actions .btn-confirm-lienup-list.disabled:focus,
+  .enter-contest-actions .btn-confirm-lienup-list[disabled]:focus,
+  fieldset[disabled] .enter-contest-actions .btn-confirm-lienup-list:focus,
+  .enter-contest-actions .btn-confirm-lienup-list.disabled:active,
+  .enter-contest-actions .btn-confirm-lienup-list[disabled]:active,
+  fieldset[disabled] .enter-contest-actions .btn-confirm-lienup-list:active,
+  .enter-contest-actions .btn-confirm-lienup-list.disabled.active,
+  .enter-contest-actions .btn-confirm-lienup-list[disabled].active,
+  fieldset[disabled] .enter-contest-actions .btn-confirm-lienup-list.active {
+    background-color: #a1c931;
+    border-color: rgba(0, 0, 0, 0.3);
+  }
+  .enter-contest-actions .btn-confirm-lienup-list .badge {
+    color: #a1c931;
+    background-color: #ffffff;
+  }
+  .enter-contest-actions p {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 9pt;
+    color: #777777;
+    line-height: 11pt;
+    margin: 10px 2.7%;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .enter-contest-actions {
+    display: none !important;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .enter-contest-actions {
+    display: none !important;
+  }
+}
+@media (min-width: 1200px) {
+  .enter-contest-actions {
+    display: none !important;
+  }
+}
 .soccer-players-list {
   border-width: 1px;
   border-style: solid none none none;
@@ -8487,7 +9034,53 @@ fieldset[disabled] .btn-cancel.active {
   background-color: #ffffff;
 }
 .btn {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   border-width: 0 0 2px 0;
+}
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.btn:hover,
+.btn:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+.btn:active,
+.btn.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.btn.disabled,
+.btn[disabled],
+fieldset[disabled] .btn {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 body {
   overflow-y: scroll;
@@ -8575,123 +9168,4 @@ body {
 .ng-cloak,
 .ng-hide {
   display: none !important;
-}
-@media (max-width: 767px) {
-  #enter-contest-total-salary {
-    width: 94.6%;
-    height: 40px;
-    margin: 10px 2.7%;
-    background-color: #fa9c19;
-    text-align: center;
-    border-radius: 3px;
-  }
-  #enter-contest-total-salary #total-salary {
-    font-family: 'Exo', sans-serif;
-    font-weight: 300;
-    font-size: 24px;
-    color: #ffffff;
-    background-color: transparent;
-    border: none;
-    text-align: center;
-    margin-top: 4px;
-  }
-  .enter-contest-actions {
-    background-color: #ffffff;
-    text-align: center;
-    margin-top: 17px;
-  }
-  .enter-contest-actions .btn {
-    padding: 6px 35px;
-    margin-right: 2%;
-  }
-  .enter-contest-actions .btn-remove {
-    color: #ffffff;
-    background-color: #afafaf;
-    border-color: rgba(0, 0, 0, 0.3);
-  }
-  .enter-contest-actions .btn-remove:hover,
-  .enter-contest-actions .btn-remove:focus,
-  .enter-contest-actions .btn-remove:active,
-  .enter-contest-actions .btn-remove.active,
-  .open .dropdown-toggle.enter-contest-actions .btn-remove {
-    color: #ffffff;
-    background-color: #9b9b9b;
-    border-color: rgba(0, 0, 0, 0.3);
-  }
-  .enter-contest-actions .btn-remove:active,
-  .enter-contest-actions .btn-remove.active,
-  .open .dropdown-toggle.enter-contest-actions .btn-remove {
-    background-image: none;
-  }
-  .enter-contest-actions .btn-remove.disabled,
-  .enter-contest-actions .btn-remove[disabled],
-  fieldset[disabled] .enter-contest-actions .btn-remove,
-  .enter-contest-actions .btn-remove.disabled:hover,
-  .enter-contest-actions .btn-remove[disabled]:hover,
-  fieldset[disabled] .enter-contest-actions .btn-remove:hover,
-  .enter-contest-actions .btn-remove.disabled:focus,
-  .enter-contest-actions .btn-remove[disabled]:focus,
-  fieldset[disabled] .enter-contest-actions .btn-remove:focus,
-  .enter-contest-actions .btn-remove.disabled:active,
-  .enter-contest-actions .btn-remove[disabled]:active,
-  fieldset[disabled] .enter-contest-actions .btn-remove:active,
-  .enter-contest-actions .btn-remove.disabled.active,
-  .enter-contest-actions .btn-remove[disabled].active,
-  fieldset[disabled] .enter-contest-actions .btn-remove.active {
-    background-color: #afafaf;
-    border-color: rgba(0, 0, 0, 0.3);
-  }
-  .enter-contest-actions .btn-remove .badge {
-    color: #afafaf;
-    background-color: #ffffff;
-  }
-  .enter-contest-actions .btn-confirm {
-    color: #ffffff;
-    background-color: #a1c931;
-    border-color: rgba(0, 0, 0, 0.3);
-  }
-  .enter-contest-actions .btn-confirm:hover,
-  .enter-contest-actions .btn-confirm:focus,
-  .enter-contest-actions .btn-confirm:active,
-  .enter-contest-actions .btn-confirm.active,
-  .open .dropdown-toggle.enter-contest-actions .btn-confirm {
-    color: #ffffff;
-    background-color: #87a829;
-    border-color: rgba(0, 0, 0, 0.3);
-  }
-  .enter-contest-actions .btn-confirm:active,
-  .enter-contest-actions .btn-confirm.active,
-  .open .dropdown-toggle.enter-contest-actions .btn-confirm {
-    background-image: none;
-  }
-  .enter-contest-actions .btn-confirm.disabled,
-  .enter-contest-actions .btn-confirm[disabled],
-  fieldset[disabled] .enter-contest-actions .btn-confirm,
-  .enter-contest-actions .btn-confirm.disabled:hover,
-  .enter-contest-actions .btn-confirm[disabled]:hover,
-  fieldset[disabled] .enter-contest-actions .btn-confirm:hover,
-  .enter-contest-actions .btn-confirm.disabled:focus,
-  .enter-contest-actions .btn-confirm[disabled]:focus,
-  fieldset[disabled] .enter-contest-actions .btn-confirm:focus,
-  .enter-contest-actions .btn-confirm.disabled:active,
-  .enter-contest-actions .btn-confirm[disabled]:active,
-  fieldset[disabled] .enter-contest-actions .btn-confirm:active,
-  .enter-contest-actions .btn-confirm.disabled.active,
-  .enter-contest-actions .btn-confirm[disabled].active,
-  fieldset[disabled] .enter-contest-actions .btn-confirm.active {
-    background-color: #a1c931;
-    border-color: rgba(0, 0, 0, 0.3);
-  }
-  .enter-contest-actions .btn-confirm .badge {
-    color: #a1c931;
-    background-color: #ffffff;
-  }
-  .enter-contest-actions p {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 700;
-    font-size: 9pt;
-    color: #777777;
-    line-height: 11pt;
-    margin: 10px 2.7%;
-  }
 }

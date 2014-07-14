@@ -1,0 +1,59 @@
+//enter-contest mobile
+#enter-contest-total-salary {
+	@media (max-width: @screen-xs-max) {
+		width: 94.6%;
+		height: 40px;
+		margin: 10px 2.7%;
+		background-color: @orange;
+		text-align: center;
+		border-radius: 3px;
+
+		#total-salary {
+			.exo_light(24px, @white);
+			background-color: transparent;
+			border: none;
+			text-align: center;
+			margin-top: 4px;
+		}
+	}
+}
+.enter-contest-actions {
+	@media (max-width: @screen-xs-max) {
+		background-color: @white;
+		text-align: center;
+		margin-top: 17px;
+
+		.btn {
+			.btn();
+			padding: 6px 35px;
+			margin-right: 2%;
+		}
+
+		.btn-cancel-player-selection {
+			.btn();
+			.btn-cancel();
+			width: 94.6%;
+			margin: -7px 2.7% 10px;
+		}
+
+		.btn-clean-lienup-list {
+			.btn();
+			.btn-cancel();
+		}
+
+		.btn-confirm-lienup-list {
+			.btn();
+			.btn-primary();
+		}
+
+		p {
+			.opensans_bold(9pt, @greyDark);
+			line-height: 11pt;
+			margin: 10px 2.7%;
+		}
+	}
+	.hidden-sm();
+	.hidden-md();
+	.hidden-lg();
+
+}

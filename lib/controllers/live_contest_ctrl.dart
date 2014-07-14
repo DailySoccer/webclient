@@ -52,8 +52,7 @@ class LiveContestCtrl implements DetachAware {
         // Mostrar el primer contest
         _contestService.getUserContests()
           .then( (jsonObject) {
-            var contestReferences = new ContestReferences();
-            List<Contest> contests = jsonObject.contests.map((jsonObject) => new Contest.fromJsonObject(jsonObject, contestReferences)).toList();
+            List<Contest> contests = jsonObject.contests.map((jsonObject) => new Contest.fromJsonObject(jsonObject)).toList();
             if (contests != null && !contests.isEmpty) {
               _contestId = contests.first.contestId;
               initialize();
@@ -70,13 +69,14 @@ class LiveContestCtrl implements DetachAware {
 
        _contestService.getContest(_contestId)
            .then((jsonObject) {
-             var contestReferences = new ContestReferences();
-             contest = new Contest.fromJsonObject(jsonObject.contest, contestReferences);
-             templateContest = new TemplateContest.fromJsonObject(jsonObject.template_contest, contestReferences);
-             matchEvents = jsonObject.match_events.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject, contestReferences)).toList();
+             contest = new Contest.fromJsonObject(jsonObject.contest);
+             templateContest = new TemplateContest.fromJsonObject(jsonObject.template_contest);
+             matchEvents = jsonObject.match_events.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject)).toList();
              
              usersInfo = jsonObject.users_info.map((jsonObject) => new User.fromJsonObject(jsonObject)).toList();
              contestEntries = jsonObject.contest_entries.map((jsonObject) => new ContestEntry.fromJsonObject(jsonObject)).toList();
+   
+             new ContestReferences.fromContest(contest, templateContest, matchEvents);
 
              updatedDate = new DateTime.now();
 
@@ -182,8 +182,11 @@ class LiveContestCtrl implements DetachAware {
       // Actualizamos únicamente la lista de live MatchEvents
       _contestService.getLiveMatchEvents(contest.templateContestId)
           .then( (jsonObject) {
-            var contestReferences = new ContestReferences();
-            liveMatchEvents = jsonObject.content.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject, contestReferences)).toList();
+
+            liveMatchEvents = jsonObject.content.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject)).toList();
+            
+            // No asociamos el contest y el templateContest a los partidos live
+            // new ContestReferences.fromContest(contest, templateContest, liveMatchEvents);
 
             updatedDate = new DateTime.now();
           })

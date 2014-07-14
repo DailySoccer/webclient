@@ -17,24 +17,20 @@ class Contest {
 
   Contest(this.contestId, this.name, this.currentUserIds, this.maxEntries, this.templateContestId);
   
-  Contest.referenceInit(this.contestId);
-  
-  factory Contest.fromJsonObject(JsonObject json, ContestReferences references) {
-    Contest contest = references.getContestById(json._id);
-    
-    // contest.contestId = json._id;
-    contest.name = json.name;
-    contest.currentUserIds = json.currentUserIds;
-    contest.maxEntries = json.maxEntries;
-    contest.templateContestId = json.templateContestId;
-    contest.templateContest = references.getTemplateContestById(json.templateContestId);
+  Contest.fromJsonObject(JsonObject json) {
+    contestId = json._id;
+    name = json.name;
+    currentUserIds = json.currentUserIds;
+    maxEntries = json.maxEntries;
+    templateContestId = json.templateContestId;
+    // templateContest = references.getTemplateContestById(json.templateContestId);
     
     // print("Contest: id($contestId) name($name) currentUserIds($currentUserIds) templateContestId($templateContestId)");
-    
-    return contest;
   }
   
-  factory Contest.fromJsonString(String json, ContestReferences references) {
-    return new Contest.fromJsonObject(new JsonObject.fromJsonString(json), references);
+  Contest.fromJsonString(String json) : this.fromJsonObject(new JsonObject.fromJsonString(json));
+  
+  void linkReferences(ContestReferences references) {
+    templateContest = references.getTemplateContestById(templateContestId);
   }
 }

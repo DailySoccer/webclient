@@ -19,9 +19,10 @@ class MyContestsService {
   List<Contest> waitingContests = new List<Contest>();
   List<Contest> liveContests = new List<Contest>();
   List<Contest> historyContests = new List<Contest>();
-  List<MatchEvent> liveMatchEvents = new List<MatchEvent>();
   
+  // Informacion relacionada con un unico Contest
   Contest lastContest;
+  List<MatchEvent> liveMatchEvents = new List<MatchEvent>();
   List<ContestEntry> contestEntries = new List<ContestEntry>();
   List<User> usersInfo = new List<User>();
   
@@ -89,7 +90,7 @@ class MyContestsService {
 
     _server.getLiveContest(contestId)
         .then((jsonObject) {
-          lastContest = Contest.loadContestFromJsonRoot(jsonObject);;
+          lastContest = Contest.loadContestFromJsonRoot(jsonObject);
           usersInfo = jsonObject.users_info.map((jsonObject) => new User.fromJsonObject(jsonObject)).toList();
           contestEntries = jsonObject.contest_entries.map((jsonObject) => new ContestEntry.fromJsonObject(jsonObject)).toList();
           completer.complete(jsonObject);
@@ -147,11 +148,7 @@ class MyContestsService {
   }
   
   int getUserScore(ContestEntry contestEntry) {
-    int points = 0;
-    for (String soccerPlayerId in contestEntry.soccerIds) {
-      points += getSoccerPlayerScore(soccerPlayerId);
-    }
-    return points;
+    return contestEntry.soccerIds.fold(0, (prev, soccerPlayerId) => prev + getSoccerPlayerScore(soccerPlayerId) );
   }
   
   void _initContests(List<Contest> contests) {

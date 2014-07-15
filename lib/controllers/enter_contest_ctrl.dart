@@ -5,7 +5,7 @@ import 'dart:async';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/services/profile_service.dart';
-import 'package:webclient/services/active_contest_service.dart';
+import 'package:webclient/services/active_contests_service.dart';
 import "package:webclient/models/soccer_player.dart";
 import "package:webclient/models/soccer_team.dart";
 import 'package:webclient/models/match_event.dart';
@@ -167,7 +167,7 @@ class EnterContestCtrl {
   var _allSoccerPlayers = new List();
   int _selectedLineupPosIndex = 0;
   Router _router;
-  ActiveContestService _contestService;
+  ActiveContestsService _contestService;
   ProfileService _profileService;
   FlashMessagesService _flashMessage;
 }

@@ -4,11 +4,11 @@ testContestService(){
   group("[ContestService]", () {
     group("[valid]", () {
 
-      ActiveContestService contestService;
+      ActiveContestsService contestService;
 
       setUp((){
         var mockServer = new MockDailySoccerServer();
-        contestService = new ActiveContestService(mockServer);
+        contestService = new ActiveContestsService(mockServer);
       });
 
       test("Se refrescan los concursos", () {

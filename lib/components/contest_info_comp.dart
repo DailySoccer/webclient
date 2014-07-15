@@ -3,7 +3,7 @@ library contest_info_comp;
 import 'package:angular/angular.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/template_contest.dart';
-import 'package:webclient/services/active_contest_service.dart';
+import 'package:webclient/services/active_contests_service.dart';
 import 'package:webclient/models/match_event.dart';
 
 
@@ -105,7 +105,7 @@ class ContestInfoComp {
     List<MatchEvent> matchesInvolved;
     
     Router _router;
-    ActiveContestService _contestService;
+    ActiveContestsService _contestService;
     Contest _showedContest;
     
 }

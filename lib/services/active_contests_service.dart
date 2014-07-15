@@ -11,13 +11,13 @@ import "package:webclient/models/match_event.dart";
 import 'package:webclient/services/contest_references.dart';
 
 @Injectable()
-class ActiveContestService {
+class ActiveContestsService {
 
   List<Contest> activeContests = new List<Contest>();
   
   Contest getContestById(String id) => activeContests.firstWhere((contest) => contest.contestId == id, orElse: () => null);
   
-  ActiveContestService(this._server);
+  ActiveContestsService(this._server);
 
   Future refreshActiveContests() {
     var completer = new Completer();

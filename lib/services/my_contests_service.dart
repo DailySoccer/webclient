@@ -13,14 +13,14 @@ import 'package:webclient/models/contest_entry.dart';
 import 'package:webclient/services/contest_references.dart';
 
 @Injectable()
-class MyContestService {
+class MyContestsService {
 
   List<Contest> activeContests = new List<Contest>();
   List<MatchEvent> liveMatchEvents = new List<MatchEvent>();
 
   Contest getContestById(String id) => activeContests.firstWhere((contest) => contest.contestId == id, orElse: () => null);
 
-  MyContestService(this._server);
+  MyContestsService(this._server);
 
   Future refreshMyContests() {
     var completer = new Completer();

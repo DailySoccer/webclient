@@ -7,8 +7,8 @@ import 'package:webclient/routing/webclient_router.dart';
 
 import 'package:webclient/mock/mock_server.dart';
 import 'package:webclient/services/profile_service.dart';
-import 'package:webclient/services/active_contest_service.dart';
-import 'package:webclient/services/my_contest_service.dart';
+import 'package:webclient/services/active_contests_service.dart';
+import 'package:webclient/services/my_contests_service.dart';
 import 'package:webclient/services/server_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
@@ -56,8 +56,8 @@ class WebClientApp extends Module {
     bind(ServerService, toImplementation: DailySoccerServer);
 
     bind(ProfileService);
-    bind(ActiveContestService);
-    bind(MyContestService);
+    bind(ActiveContestsService);
+    bind(MyContestsService);
     bind(FlashMessagesService);
     bind(ScreenDetectorService);
 

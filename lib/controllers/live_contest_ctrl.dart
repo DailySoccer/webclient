@@ -5,7 +5,7 @@ import 'dart:async';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/services/profile_service.dart';
-import 'package:webclient/services/my_contest_service.dart';
+import 'package:webclient/services/my_contests_service.dart';
 import "package:webclient/models/user.dart";
 import "package:webclient/models/soccer_player.dart";
 import "package:webclient/models/soccer_team.dart";
@@ -166,7 +166,7 @@ class LiveContestCtrl implements DetachAware {
 
     Scope _scope;
     FlashMessagesService _flashMessage;
-    MyContestService _myContestService;
+    MyContestsService _myContestService;
     ProfileService _profileService;
 
     String _contestId;

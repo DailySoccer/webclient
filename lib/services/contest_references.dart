@@ -12,7 +12,7 @@ class ContestReferences {
   HashMap<String, TemplateContest> refTemplateContests = new HashMap<String, TemplateContest>();
   HashMap<String, MatchEvent> refMatchEvents = new HashMap<String, MatchEvent>();
   
-  ContestReferences.fromContests(List<Contest> contests, List<TemplateContest> templateContests, List<MatchEvent> matchEvents) {
+  ContestReferences.embedInContests(List<Contest> contests, List<TemplateContest> templateContests, List<MatchEvent> matchEvents) {
     // Registrar los ids para su posterior query
     contests.forEach( (contest) => refContests[contest.contestId] = contest );
     templateContests.forEach( (templateContest) => refTemplateContests[templateContest.templateContestId] = templateContest );
@@ -24,7 +24,7 @@ class ContestReferences {
     matchEvents.forEach( (matchEvent) => matchEvent.linkReferences(this) );
   }
   
-  ContestReferences.fromContest(Contest contest, TemplateContest templateContest, List<MatchEvent> matchEvents) {
+  ContestReferences.embedInContest(Contest contest, TemplateContest templateContest, List<MatchEvent> matchEvents) {
     // Registrar los ids para su posterior query
     refContests[contest.contestId] = contest;
     refTemplateContests[templateContest.templateContestId] = templateContest;

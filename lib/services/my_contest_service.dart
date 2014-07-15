@@ -29,7 +29,7 @@ class MyContestService {
         .then((jsonObject) {
           activeContests = jsonObject.contests.map((jsonObject) => new Contest.fromJsonObject(jsonObject)).toList();
       
-          new ContestReferences.fromContests(
+          new ContestReferences.embedInContests(
               activeContests, 
               jsonObject.template_contests.map((jsonObject) => new TemplateContest.fromJsonObject(jsonObject)).toList(), 
               jsonObject.match_events.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject)).toList()

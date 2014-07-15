@@ -66,10 +66,12 @@ class LiveContestCtrl implements DetachAware {
        _myContestService.getContest(_contestId)
            .then((jsonObject) {
              contest = new Contest.fromJsonObject(jsonObject.contest);
-             TemplateContest templateContest = new TemplateContest.fromJsonObject(jsonObject.template_contest);
-             List<MatchEvent> matchEvents = jsonObject.match_events.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject)).toList();
-             
-             new ContestReferences.fromContest(contest, templateContest, matchEvents);
+           
+             new ContestReferences.embedInContest(
+                 contest, 
+                 new TemplateContest.fromJsonObject(jsonObject.template_contest), 
+                 jsonObject.match_events.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject)).toList()
+                 );
              
              usersInfo = jsonObject.users_info.map((jsonObject) => new User.fromJsonObject(jsonObject)).toList();
              contestEntries = jsonObject.contest_entries.map((jsonObject) => new ContestEntry.fromJsonObject(jsonObject)).toList();

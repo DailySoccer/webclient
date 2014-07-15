@@ -36,7 +36,7 @@ class TemplateContest {
     // print( "TemplateContest: id($templateContestId) name($name) maxEntries($maxEntries) salaryCap($salaryCap) entryFee($entryFee) prizeType($prizeType) templateMatchEventIds($templateMatchEventIds)");
   }
   
-  TemplateContest.fromJsonString(String json, ContestReferences references) : this.fromJsonObject(new JsonObject.fromJsonString(json));
+  TemplateContest.fromJsonString(String json) : this.fromJsonObject(new JsonObject.fromJsonString(json));
   
   DateTime getStartDate() {
     return templateMatchEvents.map((matchEvent) => matchEvent.startDate)

@@ -5,6 +5,7 @@ import 'package:angular/angular.dart';
 import 'package:webclient/controllers/enter_contest_ctrl.dart';
 import 'package:webclient/services/contest_service.dart';
 import 'package:webclient/models/contest.dart';
+import "package:webclient/models/match_event.dart";
 
 @Component(
     selector: 'soccer-players-list',
@@ -12,10 +13,12 @@ import 'package:webclient/models/contest.dart';
     publishAs: 'comp',
     useShadowDom: false
 )
-class SoccerPlayersListComp {
-  
+
+class SoccerPlayersListComp implements ShadowRootAware {
+   
   Contest contest;
-  var matchesInvolved;
+  List<MatchEvent> matchesInvolved;
+  List<String> matchesList = [];
 
   EnterContestCtrl enterContestCtrl;
 
@@ -24,12 +27,49 @@ class SoccerPlayersListComp {
     setup(routeProvider.route.parameters['contestId']);
   }
   
+  void onShadowRoot (var root) {
+    setMatchSelector();
+    setFilterMatchSelector();
+  }
+  
+  void printElement(String element) {
+    print(element);
+  }
+  
+  void setMatchSelector() {
+    SelectElement element = document.querySelector("#match-fliter");
+    for (int i = 0; i < matchesList.length; i++) {
+      OptionElement op = new OptionElement()
+        ..value = i.toString()
+        ..text = matchesList[i];
+      element.children.add(op);
+    }
+  }
+  
+  void handler(Event event) {
+    SelectElement element = document.querySelector("#match-fliter");
+    print(element.value);
+  }
+  
+  void setFilterMatchSelector() {
+    SelectElement element = document.querySelector("#match-fliter");
+    element.onChange.listen(handler);
+  }
+   
+ void setFilterSoccerName(String value) {
+   enterContestCtrl.setNameFilter(value);
+ }
+  
   void setup(String contestId) {
     contest = _contestService.getContestById(contestId);
     var tmplateContest  = _contestService.getTemplateContestById(contest.templateContestId);
     matchesInvolved = _contestService.getMatchEventsForTemplateContest(tmplateContest);
-
-    print("Número de partidos: " + matchesInvolved.length);
+    
+    matchesList.add("Todos los partidos");
+    for (int i = 0; i < matchesInvolved.length; i++) {
+      matchesList.add(matchesInvolved[i].soccerTeamA.shortName + " - " + matchesInvolved[i].soccerTeamB.shortName);
+    }
+    matchesList.forEach(printElement);
   }
   
   // Para pintar el color correspondiente segun la posicion del jugador

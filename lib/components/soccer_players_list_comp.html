@@ -1,7 +1,7 @@
 <div class="soccer-player-filter">
-  <select id="match-fliter">
+  <select id="match-fliter" class="match-selector-filter">
   </select>
-  <input id="name-player-filter" value="" placeholder="Buscar jugador" />
+  <input type="text" id="name-player-filter" class="name-player-input-filter" placeholder="Buscar jugador" ng-model="name_filter" ng-keyup="comp.setFilterSoccerName(name_filter)" />
 </div>
 <div class="soccer-players-list">
   <div class="soccer-players-list-slot" ng-repeat="slot in comp.enterContestCtrl.availableSoccerPlayers" ng-class="comp.getSlotClassColor(slot.fieldPos.abrevName)">

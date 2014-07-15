@@ -2,10 +2,11 @@
 
 <div ng-if="ctrl.scrDet.isXsScreen" ng-cloack>
   
-  <div id="enter-contest-total-salary">
-      <input id="total-salary" value="{{ctrl.availableSalary}}€" readonly />
-  </div>
+  
   <div class="enter-contest-actions">
+    <div id="enter-contest-total-salary">
+        <span id="total-salary">{{ctrl.availableSalary}}€</span>
+    </div>
     <button type="button" class="btn-cancel-player-selection" ng-click="ctrl.cancelPlayerSelection()" ng-show="ctrl.isSelectingSoccerPlayer">Cancelar</button>
   </div>
 

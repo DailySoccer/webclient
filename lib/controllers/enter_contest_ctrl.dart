@@ -1,5 +1,7 @@
 library enter_contest_ctrl;
 
+
+import 'dart:html';
 import 'package:angular/angular.dart';
 import 'dart:async';
 import 'package:webclient/services/screen_detector_service.dart';
@@ -25,6 +27,7 @@ class EnterContestCtrl {
   Contest contest;
 
   bool isSelectingSoccerPlayer = false;
+  FieldPos lastUsedPosFilter;
 
   final List<dynamic> lineupSlots = new List();
   List<dynamic> availableSoccerPlayers = new List();
@@ -47,7 +50,14 @@ class EnterContestCtrl {
     availableSoccerPlayers = new List<dynamic>.from(_allSoccerPlayers);
   }
 
+  void cleanTheFilters() {
+    InputElement inputText = document.querySelector("#name-player-filter");
+    inputText.value = "";
+  }
+  
   void onSlotSelected(int slotIndex) {
+    
+    cleanTheFilters();
 
     _selectedLineupPosIndex = slotIndex;
 
@@ -78,7 +88,15 @@ class EnterContestCtrl {
     }
   }
 
+  void setNameFilter(String filter) {
+    setFieldPosFilter(lastUsedPosFilter);
+    availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => soccerPlayer["fullName"].toUpperCase().contains(filter.toUpperCase())).toList(); 
+  }
+
   void setFieldPosFilter(FieldPos filter) {
+    if(lastUsedPosFilter != filter)
+      lastUsedPosFilter = filter;
+    
     if (filter != null) availableSoccerPlayers = _allSoccerPlayers.where((soccerPlayer) => soccerPlayer["fieldPos"] == filter && !lineupSlots.contains(soccerPlayer)).toList(); else availableSoccerPlayers = _allSoccerPlayers.where((soccerPlayer) => !lineupSlots.contains(soccerPlayer)).toList();
   }
 

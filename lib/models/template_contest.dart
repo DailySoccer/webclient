@@ -8,6 +8,7 @@ import "package:webclient/models/soccer_player.dart";
 class TemplateContest {
   String templateContestId;
 
+  String state;
   String name;
   String postName;
 
@@ -23,6 +24,10 @@ class TemplateContest {
           this.salaryCap, this.entryFee, this.prizeType, this.templateMatchEvents);
 
   TemplateContest.referenceInit(this.templateContestId);
+  
+  bool isActive() => state == "ACTIVE";
+  bool isLive() => state == "LIVE";
+  bool isHistory() => state == "HISTORY";
   
   factory TemplateContest.fromJsonObject(JsonObject json, ContestReferences references) {
     TemplateContest templateContest = references.getTemplateContestById(json._id);
@@ -55,7 +60,9 @@ class TemplateContest {
   
   TemplateContest _initFromJsonObject(JsonObject json, ContestReferences references) {
     assert(templateContestId.isNotEmpty);
+    state = json.state;
     name = json.name;
+    postName = json.postName;
     maxEntries = json.maxEntries;
     salaryCap = json.salaryCap;
     entryFee = json.entryFee;

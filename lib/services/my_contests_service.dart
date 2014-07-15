@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:angular/angular.dart';
 
 import "package:webclient/services/server_service.dart";
+import "package:webclient/models/user.dart";
 import "package:webclient/models/contest.dart";
 import "package:webclient/models/template_contest.dart";
 import "package:webclient/models/match_event.dart";
@@ -15,33 +16,42 @@ import 'package:webclient/services/contest_references.dart';
 @Injectable()
 class MyContestsService {
 
-  List<Contest> activeContests = new List<Contest>();
+  List<Contest> waitingContests = new List<Contest>();
+  List<Contest> liveContests = new List<Contest>();
+  List<Contest> historyContests = new List<Contest>();
   List<MatchEvent> liveMatchEvents = new List<MatchEvent>();
-
-  Contest getContestById(String id) => activeContests.firstWhere((contest) => contest.contestId == id, orElse: () => null);
+  
+  Contest lastContest;
+  List<ContestEntry> contestEntries = new List<ContestEntry>();
+  List<User> usersInfo = new List<User>();
+  
+  Contest getContestById(String id) {
+    return waitingContests.firstWhere((contest) => contest.contestId == id,
+        orElse: () => liveContests.firstWhere((contest) => contest.contestId == id, 
+        orElse: () => historyContests.firstWhere((contest) => contest.contestId == id,
+        orElse: () => null)));
+  }
 
   MyContestsService(this._server);
-
+  
   Future refreshMyContests() {
     var completer = new Completer();
 
-    _server.getActiveContests()
+    _server.getUserContests()
         .then((jsonObject) {
-          ContestReferences contestReferences = new ContestReferences();
-          activeContests = jsonObject.contests.map((jsonObject) => new Contest.fromJsonObject(jsonObject, contestReferences)).toList();
-          var templateContests = jsonObject.template_contests.map((jsonObject) => new TemplateContest.fromJsonObject(jsonObject, contestReferences)).toList();
-          var matchEvents = jsonObject.match_events.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject, contestReferences)).toList();
+          _initContests (Contest.loadContestsFromJsonRoot(jsonObject));
           completer.complete();
         });
 
     return completer.future;
   }
 
-  Future getUserContests() {
+  Future getMyContests() {
     var completer = new Completer();
 
     _server.getUserContests()
         .then((jsonObject) {
+          _initContests (Contest.loadContestsFromJsonRoot(jsonObject));
           completer.complete(jsonObject);
         });
 
@@ -53,6 +63,9 @@ class MyContestsService {
 
     _server.getContest(contestId)
         .then((jsonObject) {
+          lastContest = Contest.loadContestFromJsonRoot(jsonObject);;
+          usersInfo = jsonObject.users_info.map((jsonObject) => new User.fromJsonObject(jsonObject)).toList();
+          contestEntries = jsonObject.contest_entries.map((jsonObject) => new ContestEntry.fromJsonObject(jsonObject)).toList(); 
           completer.complete(jsonObject);
         });
 
@@ -64,6 +77,7 @@ class MyContestsService {
 
     _server.getLiveContests()
         .then((jsonObject) {
+          print("liveContests: response: " + jsonObject.toString());
           completer.complete(jsonObject);
         });
 
@@ -75,6 +89,9 @@ class MyContestsService {
 
     _server.getLiveContest(contestId)
         .then((jsonObject) {
+          lastContest = Contest.loadContestFromJsonRoot(jsonObject);;
+          usersInfo = jsonObject.users_info.map((jsonObject) => new User.fromJsonObject(jsonObject)).toList();
+          contestEntries = jsonObject.contest_entries.map((jsonObject) => new ContestEntry.fromJsonObject(jsonObject)).toList();
           completer.complete(jsonObject);
         });
 
@@ -137,6 +154,11 @@ class MyContestsService {
     return points;
   }
   
-  var _templateMatchEvents = new Map<String, List<MatchEvent>>();
+  void _initContests(List<Contest> contests) {
+    waitingContests = contests.where((contest) => contest.templateContest.isActive()).toList();
+    liveContests = contests.where((contest) => contest.templateContest.isLive()).toList();
+    historyContests = contests.where((contest) => contest.templateContest.isHistory()).toList();
+  }
+  
   ServerService _server;
 }

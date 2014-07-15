@@ -27,13 +27,10 @@ class MyContestService {
 
     _server.getActiveContests()
         .then((jsonObject) {
-          activeContests = jsonObject.contests.map((jsonObject) => new Contest.fromJsonObject(jsonObject)).toList();
-      
-          new ContestReferences.embedInContests(
-              activeContests, 
-              jsonObject.template_contests.map((jsonObject) => new TemplateContest.fromJsonObject(jsonObject)).toList(), 
-              jsonObject.match_events.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject)).toList()
-          );
+          ContestReferences contestReferences = new ContestReferences();
+          activeContests = jsonObject.contests.map((jsonObject) => new Contest.fromJsonObject(jsonObject, contestReferences)).toList();
+          var templateContests = jsonObject.template_contests.map((jsonObject) => new TemplateContest.fromJsonObject(jsonObject, contestReferences)).toList();
+          var matchEvents = jsonObject.match_events.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject, contestReferences)).toList();
           completer.complete();
         });
 
@@ -103,7 +100,8 @@ class MyContestService {
       .then((jsonObject) {
         print("liveMatchEvents: response: " + jsonObject.toString());
       
-        liveMatchEvents = jsonObject.content.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject)).toList();
+        ContestReferences contestReferences = new ContestReferences();
+        liveMatchEvents = jsonObject.content.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject, contestReferences)).toList();
       
         // No asociamos el contest y el templateContest a los partidos live
         // new ContestReferences.fromContest(contest, templateContest, liveMatchEvents);

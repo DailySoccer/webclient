@@ -24,13 +24,10 @@ class ActiveContestService {
 
     _server.getActiveContests()
         .then((jsonObject) {
-          activeContests = jsonObject.contests.map((jsonObject) => new Contest.fromJsonObject(jsonObject)).toList();
-         
-          new ContestReferences.embedInContests(
-              activeContests, 
-              jsonObject.template_contests.map((jsonObject) => new TemplateContest.fromJsonObject(jsonObject)).toList(), 
-              jsonObject.match_events.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject)).toList()
-          );
+          ContestReferences contestReferences = new ContestReferences();
+          activeContests = jsonObject.contests.map((jsonObject) => new Contest.fromJsonObject(jsonObject, contestReferences)).toList();
+          List<TemplateContest> templateContests = jsonObject.template_contests.map((jsonObject) => new TemplateContest.fromJsonObject(jsonObject, contestReferences)).toList();
+          List<MatchEvent> matchEvents = jsonObject.match_events.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject, contestReferences)).toList();
           completer.complete();
         });
 

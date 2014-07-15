@@ -12,31 +12,20 @@ class ContestReferences {
   HashMap<String, TemplateContest> refTemplateContests = new HashMap<String, TemplateContest>();
   HashMap<String, MatchEvent> refMatchEvents = new HashMap<String, MatchEvent>();
   
-  ContestReferences.embedInContests(List<Contest> contests, List<TemplateContest> templateContests, List<MatchEvent> matchEvents) {
-    // Registrar los ids para su posterior query
-    contests.forEach( (contest) => refContests[contest.contestId] = contest );
-    templateContests.forEach( (templateContest) => refTemplateContests[templateContest.templateContestId] = templateContest );
-    matchEvents.forEach( (matchEvent) => refMatchEvents[matchEvent.matchEventId] = matchEvent );
-    
-    // Solicitar a cada objeto que actualice sus referencias
-    contests.forEach( (contest) => contest.linkReferences(this) );
-    templateContests.forEach( (templateContest) => templateContest.linkReferences(this) );
-    matchEvents.forEach( (matchEvent) => matchEvent.linkReferences(this) );
+  ContestReferences();
+  
+  Contest getContestById(String id) {
+    return refContests.containsKey(id) ? refContests[id]
+                                       : refContests[id] = new Contest.referenceInit(id);
   }
   
-  ContestReferences.embedInContest(Contest contest, TemplateContest templateContest, List<MatchEvent> matchEvents) {
-    // Registrar los ids para su posterior query
-    refContests[contest.contestId] = contest;
-    refTemplateContests[templateContest.templateContestId] = templateContest;
-    matchEvents.forEach( (matchEvent) => refMatchEvents[matchEvent.matchEventId] = matchEvent );
-    
-    // Solicitar a cada objeto que actualice sus referencias
-    contest.linkReferences(this);
-    templateContest.linkReferences(this);
-    matchEvents.forEach( (matchEvent) => matchEvent.linkReferences(this) );
+  TemplateContest getTemplateContestById(String id) {
+    return refTemplateContests.containsKey(id) ? refTemplateContests[id]
+                                               : refTemplateContests[id] = new TemplateContest.referenceInit(id);
   }
   
-  Contest getContestById(String id) => refContests[id];
-  TemplateContest getTemplateContestById(String id) => refTemplateContests[id];
-  MatchEvent getMatchEventById(String id) => refMatchEvents[id];
+  MatchEvent getMatchEventById(String id) {
+    return refMatchEvents.containsKey(id) ? refMatchEvents[id]
+                                          : refMatchEvents[id] = new MatchEvent.referenceInit(id);
+  }
 }

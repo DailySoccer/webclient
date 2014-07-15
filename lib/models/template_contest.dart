@@ -17,26 +17,21 @@ class TemplateContest {
   int entryFee;
   String prizeType;
 
-  List<String> templateMatchEventIds;
   List<MatchEvent> templateMatchEvents;
 
   TemplateContest(this.templateContestId, this.name, this.postName, this.maxEntries,
-          this.salaryCap, this.entryFee, this.prizeType, this.templateMatchEventIds);
+          this.salaryCap, this.entryFee, this.prizeType, this.templateMatchEvents);
 
-  TemplateContest.fromJsonObject(JsonObject json) {
-    templateContestId = json._id;
-    name = json.name;
-    maxEntries = json.maxEntries;
-    salaryCap = json.salaryCap;
-    entryFee = json.entryFee;
-    prizeType = json.prizeType;
-    templateMatchEventIds = json.templateMatchEventIds;
-    // templateMatchEvents = json.templateMatchEventIds.map( (matchEventId) => references.getMatchEventById(matchEventId) ).toList();
-    
-    // print( "TemplateContest: id($templateContestId) name($name) maxEntries($maxEntries) salaryCap($salaryCap) entryFee($entryFee) prizeType($prizeType) templateMatchEventIds($templateMatchEventIds)");
+  TemplateContest.referenceInit(this.templateContestId);
+  
+  factory TemplateContest.fromJsonObject(JsonObject json, ContestReferences references) {
+    TemplateContest templateContest = references.getTemplateContestById(json._id);
+    return templateContest._initFromJsonObject(json, references);
   }
   
-  TemplateContest.fromJsonString(String json) : this.fromJsonObject(new JsonObject.fromJsonString(json));
+  factory TemplateContest.fromJsonString(String json, ContestReferences references) {
+    return new TemplateContest.fromJsonObject(new JsonObject.fromJsonString(json), references);
+  }
   
   DateTime getStartDate() {
     return templateMatchEvents.map((matchEvent) => matchEvent.startDate)
@@ -58,7 +53,16 @@ class TemplateContest {
     return soccerPlayer;
   }
   
-  void linkReferences(ContestReferences references) {
-    templateMatchEvents = templateMatchEventIds.map( (matchEventId) => references.getMatchEventById(matchEventId) ).toList();
+  TemplateContest _initFromJsonObject(JsonObject json, ContestReferences references) {
+    assert(templateContestId.isNotEmpty);
+    name = json.name;
+    maxEntries = json.maxEntries;
+    salaryCap = json.salaryCap;
+    entryFee = json.entryFee;
+    prizeType = json.prizeType;
+    templateMatchEvents = json.templateMatchEventIds.map( (matchEventId) => references.getMatchEventById(matchEventId) ).toList();
+    
+    // print( "TemplateContest: id($templateContestId) name($name) maxEntries($maxEntries) salaryCap($salaryCap) entryFee($entryFee) prizeType($prizeType) templateMatchEventIds($templateMatchEventIds)");
+    return this;
   }
 }

@@ -16,15 +16,9 @@ class MatchEvent {
 
   MatchEvent.referenceInit(this.matchEventId);
   
-  MatchEvent.fromJsonObject(JsonObject json) {
-    matchEventId = json._id;
-    soccerTeamA = new SoccerTeam.fromJsonObject(json.soccerTeamA)
-      .. matchEvent = this;
-    
-    soccerTeamB = new SoccerTeam.fromJsonObject(json.soccerTeamB)
-      .. matchEvent = this;
-    
-    startDate = new DateTime.fromMillisecondsSinceEpoch(json.startDate, isUtc: true);
+  factory MatchEvent.fromJsonObject(JsonObject json, ContestReferences references) {
+    MatchEvent matchEvent = references.getMatchEventById(json._id);
+    return matchEvent._initFromJsonObject(json, references);
   }
 
   SoccerPlayer findSoccerPlayer(String soccerPlayerId) {
@@ -34,8 +28,16 @@ class MatchEvent {
     }
     return soccerPlayer;
   }
-  
-  void linkReferences(ContestReferences references) {
     
+  MatchEvent _initFromJsonObject(JsonObject json, ContestReferences references) {
+    assert(matchEventId.isNotEmpty);
+    soccerTeamA = new SoccerTeam.fromJsonObject(json.soccerTeamA)
+      .. matchEvent = this;
+    
+    soccerTeamB = new SoccerTeam.fromJsonObject(json.soccerTeamB)
+      .. matchEvent = this;
+    
+    startDate = new DateTime.fromMillisecondsSinceEpoch(json.startDate, isUtc: true);
+    return this;
   }
 }

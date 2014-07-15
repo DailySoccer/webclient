@@ -3,7 +3,7 @@ library contest_info_comp;
 import 'package:angular/angular.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/template_contest.dart';
-import 'package:webclient/services/contest_service.dart';
+import 'package:webclient/services/active_contests_service.dart';
 import 'package:webclient/models/match_event.dart';
 
 
@@ -78,8 +78,7 @@ class ContestInfoComp {
     
     updateContestInfo(Contest showedContest)
     {
-      tmplateContest  = _contestService.getTemplateContestById(showedContest.templateContestId);
-      matchesInvolved = _contestService.getMatchEventsForTemplateContest(tmplateContest);
+      matchesInvolved = showedContest.templateContest.templateMatchEvents;
       
       hard_code_contest = {  /*  Los datos que no tengo aún, los fakeo en esta variable  */
         'description'     : showedContest.name,
@@ -106,7 +105,7 @@ class ContestInfoComp {
     List<MatchEvent> matchesInvolved;
     
     Router _router;
-    ContestService _contestService;
+    ActiveContestsService _contestService;
     Contest _showedContest;
     
 }

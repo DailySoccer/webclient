@@ -2,6 +2,7 @@ library contest_header_comp;
 
 import 'package:angular/angular.dart';
 import 'package:webclient/services/screen_detector_service.dart';
+import "package:webclient/models/contest.dart";
 import 'package:webclient/controllers/live_contest_ctrl.dart';
 
 @Component(
@@ -33,11 +34,12 @@ class ContestHeaderComp {
   }
 
   void _refreshHeader() {
-    if (_liveContestCtrl.contest != null) {
-      contestHeaderInfo["description"] = "€${_liveContestCtrl.templateContest.salaryCap} ${_liveContestCtrl.contest.name}";
-      contestHeaderInfo["entryPrice"] = "€${_liveContestCtrl.templateContest.entryFee}";
+    Contest contest = _liveContestCtrl.getContest();
+    if (contest != null) {
+      contestHeaderInfo["description"] = "€${contest.templateContest.salaryCap} ${contest.name}";
+      contestHeaderInfo["entryPrice"] = "€${contest.templateContest.entryFee}";
       
-      int numJugadores = _liveContestCtrl.contest.currentUserIds.length;
+      int numJugadores = contest.currentUserIds.length;
       contestHeaderInfo["contestantCount"] = "$numJugadores" + ((numJugadores == 1) ? " jugador" : " jugadores");
     }
   }

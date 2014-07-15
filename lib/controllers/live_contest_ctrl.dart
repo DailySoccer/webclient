@@ -5,7 +5,7 @@ import 'dart:async';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/services/profile_service.dart';
-import 'package:webclient/services/contest_service.dart';
+import 'package:webclient/services/my_contests_service.dart';
 import "package:webclient/models/user.dart";
 import "package:webclient/models/soccer_player.dart";
 import "package:webclient/models/soccer_team.dart";
@@ -13,8 +13,8 @@ import 'package:webclient/models/match_event.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/template_contest.dart';
 import 'package:webclient/models/contest_entry.dart';
-import 'package:webclient/services/contest_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
+import 'package:webclient/services/contest_references.dart';
 
 @Controller(
     selector: '[live-contest-ctrl]',
@@ -29,32 +29,31 @@ class LiveContestCtrl implements DetachAware {
 
     var updatedDate;
 
-    Contest contest;
-    TemplateContest templateContest;
-    List<ContestEntry> contestEntries = new List<ContestEntry>();
-    List<User> usersInfo = new List<User>();
-    List<MatchEvent> matchEvents = new List<MatchEvent>();
-    List<MatchEvent> liveMatchEvents = new List<MatchEvent>();
-
-    LiveContestCtrl(RouteProvider routeProvider, this._scope, this.scrDet, this._contestService, this._profileService, this._flashMessage) {
+    Contest getContest() => _myContestsService.lastContest;
+    List<ContestEntry> getContestEntries() => _myContestsService.contestEntries;
+    
+    LiveContestCtrl(RouteProvider routeProvider, this._scope, this.scrDet, this._myContestsService, this._profileService, this._flashMessage) {
       _contestId = routeProvider.route.parameters['contestId'];
       initialized = false;
 
       _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
 
       if (_contestId != null) {
-        initialize();
+        _initialize();
       }
       else {
         // TODO: Elegir uno de los contests
+        // Mostrar el primer contest (de alguna de las listas que no esté vacia)
+        _myContestsService.getMyContests()
 
-        // Mostrar el primer contest
-        _contestService.getUserContests()
           .then( (jsonObject) {
-            List<Contest> contests = jsonObject.contests.map((jsonObject) => new Contest.fromJsonObject(jsonObject)).toList();
-            if (contests != null && !contests.isEmpty) {
-              _contestId = contests.first.contestId;
-              initialize();
+            Contest contest = _myContestsService.liveContests.isNotEmpty ? _myContestsService.liveContests.first
+                            : _myContestsService.waitingContests.isNotEmpty ? _myContestsService.waitingContests.first
+                            : _myContestsService.historyContests.isNotEmpty ? _myContestsService.historyContests.first
+                            : null;
+            if (contest != null) {
+              _contestId = contest.contestId;
+              _initialize();
             }
           })
           .catchError((error) {
@@ -63,19 +62,12 @@ class LiveContestCtrl implements DetachAware {
       }
    }
 
-    void initialize() {
+    void _initialize() {
        mainPlayer = _profileService.user.userId;
-
-       _contestService.getContest(_contestId)
+       
+       _myContestsService.getContest(_contestId)
            .then((jsonObject) {
-             contest = new Contest.fromJsonObject(jsonObject.contest);
-             templateContest = new TemplateContest.fromJsonObject(jsonObject.template_contest);
-             usersInfo = jsonObject.users_info.map((jsonObject) => new User.fromJsonObject(jsonObject)).toList();
-             contestEntries = jsonObject.contest_entries.map((jsonObject) => new ContestEntry.fromJsonObject(jsonObject)).toList();
-             matchEvents = jsonObject.match_events.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject)).toList();
-
              updatedDate = new DateTime.now();
-
              _updateLive();
 
              // Comenzamos a actualizar la información
@@ -90,14 +82,14 @@ class LiveContestCtrl implements DetachAware {
     }
 
     ContestEntry getContestEntryWithUser(String userId) {
-      return contestEntries.firstWhere( (entry) => entry.userId == userId, orElse: () => null );
+      return _myContestsService.contestEntries.firstWhere( (entry) => entry.userId == userId, orElse: () => null );
     }
 
     SoccerPlayer getSoccerPlayer(String soccerPlayerId) {
       SoccerPlayer soccerPlayer = null;
 
       // Buscar en la lista de partidos del contest
-      for (MatchEvent match in matchEvents) {
+      for (MatchEvent match in _myContestsService.lastContest.templateContest.templateMatchEvents) {
         soccerPlayer = match.soccerTeamA.findSoccerPlayer(soccerPlayerId);
         if (soccerPlayer == null) {
           soccerPlayer = match.soccerTeamB.findSoccerPlayer(soccerPlayerId);
@@ -111,54 +103,31 @@ class LiveContestCtrl implements DetachAware {
       return soccerPlayer;
     }
 
-    int getSoccerPlayerScore(String soccerPlayerId) {
-      SoccerPlayer soccerPlayer = null;
-
-      // Buscar en la lista de partidos del contest
-      for (MatchEvent match in liveMatchEvents) {
-        soccerPlayer = match.soccerTeamA.findSoccerPlayer(soccerPlayerId);
-        if (soccerPlayer == null) {
-          soccerPlayer = match.soccerTeamB.findSoccerPlayer(soccerPlayerId);
-        }
-
-        // Lo hemos encontrado?
-        if (soccerPlayer != null)
-          break;
-      }
-
-      return (soccerPlayer!=null) ? soccerPlayer.fantasyPoints : 0;
-    }
-
     int getUserPosition(ContestEntry contestEntry) {
-      for (int i=0; i<contestEntries.length; i++) {
-        if (contestEntries[i].contestEntryId == contestEntry.contestEntryId)
+      for (int i=0; i<_myContestsService.contestEntries.length; i++) {
+        if (_myContestsService.contestEntries[i].contestEntryId == contestEntry.contestEntryId)
           return i+1;
       }
       return -1;
     }
 
     String getUserName(ContestEntry contestEntry) {
-      User userInfo = usersInfo.firstWhere((user) => user.userId == contestEntry.userId, orElse: () => null);
+      User userInfo = _myContestsService.usersInfo.firstWhere((user) => user.userId == contestEntry.userId, orElse: () => null);
       return (userInfo != null) ? userInfo.fullName : "";
     }
 
     String getUserNickname(ContestEntry contestEntry) {
-      User userInfo = usersInfo.firstWhere((user) => user.userId == contestEntry.userId, orElse: () => null);
+      User userInfo = _myContestsService.usersInfo.firstWhere((user) => user.userId == contestEntry.userId, orElse: () => null);
       return (userInfo != null) ? userInfo.nickName : "";
     }
 
     String getUserRemainingTime(ContestEntry contestEntry) {
       return "1";
     }
-
-    int getUserScore(ContestEntry contestEntry) {
-      int points = 0;
-      for (String soccerPlayerId in contestEntry.soccerIds) {
-        points += getSoccerPlayerScore(soccerPlayerId);
-      }
-      return points;
-    }
-
+    
+    int getSoccerPlayerScore(String soccerPlayerId) => _myContestsService.getSoccerPlayerScore(soccerPlayerId);
+    int getUserScore(ContestEntry contestEntry) => _myContestsService.getUserScore(contestEntry);
+    
     String getPrize(int index) {
       String prize = "-";
       switch(index) {
@@ -176,10 +145,8 @@ class LiveContestCtrl implements DetachAware {
 
     void _updateLive() {
       // Actualizamos únicamente la lista de live MatchEvents
-      _contestService.getLiveMatchEvents(contest.templateContestId)
+      _myContestsService.getLiveMatchEvents(_myContestsService.lastContest.templateContest.templateContestId)
           .then( (jsonObject) {
-            liveMatchEvents = jsonObject.content.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject)).toList();
-
             updatedDate = new DateTime.now();
           })
           .catchError((error) {
@@ -191,8 +158,8 @@ class LiveContestCtrl implements DetachAware {
 
     Scope _scope;
     FlashMessagesService _flashMessage;
-    ContestService _contestService;
     ProfileService _profileService;
+    MyContestsService _myContestsService;
 
     String _contestId;
 }

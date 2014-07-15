@@ -5,7 +5,7 @@ import 'dart:async';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/services/profile_service.dart';
-import 'package:webclient/services/contest_service.dart';
+import 'package:webclient/services/active_contests_service.dart';
 import "package:webclient/models/soccer_player.dart";
 import "package:webclient/models/soccer_team.dart";
 import 'package:webclient/models/match_event.dart';
@@ -111,7 +111,7 @@ class EnterContestCtrl {
   }
 
   void initAllSoccerPlayers() {
-    List<MatchEvent> matchEvents = _contestService.getMatchEventsForContest(contest);
+    List<MatchEvent> matchEvents = contest.templateContest.templateMatchEvents;
 
     for (var matchEvent in matchEvents) {
       for (var player in matchEvent.soccerTeamA.soccerPlayers) {
@@ -167,7 +167,7 @@ class EnterContestCtrl {
   var _allSoccerPlayers = new List();
   int _selectedLineupPosIndex = 0;
   Router _router;
-  ContestService _contestService;
+  ActiveContestsService _contestService;
   ProfileService _profileService;
   FlashMessagesService _flashMessage;
 }

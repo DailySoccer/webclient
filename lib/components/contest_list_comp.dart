@@ -3,7 +3,7 @@ library contest_list_comp;
 import 'dart:html';
 import 'dart:async';
 import 'package:angular/angular.dart';
-import 'package:webclient/services/contest_service.dart';
+import 'package:webclient/services/active_contests_service.dart';
 import 'package:webclient/models/contest.dart';
 
 

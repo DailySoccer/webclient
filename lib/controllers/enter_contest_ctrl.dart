@@ -54,6 +54,7 @@ class EnterContestCtrl {
   void cleanTheFilters() {
     InputElement inputText = document.querySelector("#name-player-filter");
     inputText.value = "";
+    lastUsedNameFilter = "";
   }
   
   void onSlotSelected(int slotIndex) {

@@ -38,7 +38,7 @@ class MyContestsService {
   Future refreshMyContests() {
     var completer = new Completer();
 
-    _server.getUserContests()
+    _server.getMyContests()
         .then((jsonObject) {
           _initContests (Contest.loadContestsFromJsonObject(jsonObject));
           completer.complete();
@@ -50,7 +50,7 @@ class MyContestsService {
   Future getMyContests() {
     var completer = new Completer();
 
-    _server.getUserContests()
+    _server.getMyContests()
         .then((jsonObject) {
           _initContests (Contest.loadContestsFromJsonObject(jsonObject));
           completer.complete(jsonObject);

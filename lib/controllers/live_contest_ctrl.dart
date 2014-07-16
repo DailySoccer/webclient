@@ -82,7 +82,7 @@ class LiveContestCtrl implements DetachAware {
     }
 
     ContestEntry getContestEntryWithUser(String userId) {
-      return getContestEntries().firstWhere( (entry) => entry.userId == userId, orElse: () => null );
+      return getContestEntries().firstWhere( (entry) => entry.user.userId == userId, orElse: () => null );
     }
 
     SoccerPlayer getSoccerPlayer(String soccerPlayerId) {
@@ -113,13 +113,11 @@ class LiveContestCtrl implements DetachAware {
     }
 
     String getUserName(ContestEntry contestEntry) {
-      User userInfo = _myContestsService.usersInfo.firstWhere((user) => user.userId == contestEntry.userId, orElse: () => null);
-      return (userInfo != null) ? userInfo.fullName : "";
+      return contestEntry.user.fullName;
     }
 
     String getUserNickname(ContestEntry contestEntry) {
-      User userInfo = _myContestsService.usersInfo.firstWhere((user) => user.userId == contestEntry.userId, orElse: () => null);
-      return (userInfo != null) ? userInfo.nickName : "";
+      return contestEntry.user.nickName;
     }
 
     String getUserRemainingTime(ContestEntry contestEntry) {

@@ -23,7 +23,6 @@ class MyContestsService {
   // Informacion relacionada con un unico Contest
   Contest lastContest;
   List<MatchEvent> liveMatchEvents = new List<MatchEvent>();
-  List<User> usersInfo = new List<User>();
   
   Contest getContestById(String id) {
     return waitingContests.firstWhere((contest) => contest.contestId == id,
@@ -64,7 +63,6 @@ class MyContestsService {
     _server.getContest(contestId)
         .then((jsonObject) {
           lastContest = Contest.loadContestsFromJsonObject(jsonObject).first;
-          usersInfo = jsonObject.users_info.map((jsonObject) => new User.fromJsonObject(jsonObject)).toList();
           completer.complete(jsonObject);
         });
 
@@ -89,7 +87,6 @@ class MyContestsService {
     _server.getLiveContest(contestId)
         .then((jsonObject) {
           lastContest = Contest.loadContestsFromJsonObject(jsonObject).first;
-          usersInfo = jsonObject.users_info.map((jsonObject) => new User.fromJsonObject(jsonObject)).toList();
           completer.complete(jsonObject);
         });
 

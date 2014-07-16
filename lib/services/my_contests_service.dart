@@ -130,7 +130,7 @@ class MyContestsService {
   }
   
   int getUserScore(ContestEntry contestEntry) {
-    return contestEntry.soccerIds.fold(0, (prev, soccerPlayerId) => prev + getSoccerPlayerScore(soccerPlayerId) );
+    return contestEntry.soccers.fold(0, (prev, soccerPlayer) => prev + getSoccerPlayerScore(soccerPlayer.templateSoccerPlayerId) );
   }
   
   void _initContests(List<Contest> contests) {

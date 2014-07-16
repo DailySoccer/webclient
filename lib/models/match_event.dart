@@ -31,10 +31,10 @@ class MatchEvent {
     
   MatchEvent _initFromJsonObject(JsonObject json, ContestReferences references) {
     assert(matchEventId.isNotEmpty);
-    soccerTeamA = new SoccerTeam.fromJsonObject(json.soccerTeamA)
+    soccerTeamA = new SoccerTeam.fromJsonObject(json.soccerTeamA, references)
       .. matchEvent = this;
     
-    soccerTeamB = new SoccerTeam.fromJsonObject(json.soccerTeamB)
+    soccerTeamB = new SoccerTeam.fromJsonObject(json.soccerTeamB, references)
       .. matchEvent = this;
     
     startDate = new DateTime.fromMillisecondsSinceEpoch(json.startDate, isUtc: true);

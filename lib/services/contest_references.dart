@@ -7,14 +7,18 @@ import "package:webclient/models/contest_entry.dart";
 import "package:webclient/models/contest.dart";
 import "package:webclient/models/template_contest.dart";
 import "package:webclient/models/match_event.dart";
+import "package:webclient/models/soccer_team.dart";
+import "package:webclient/models/soccer_player.dart";
 
 
 class ContestReferences {
-  HashMap<String, User> refUsers = new HashMap<String, User>();
-  HashMap<String, ContestEntry> refContestEntries = new HashMap<String, ContestEntry>();
-  HashMap<String, Contest> refContests = new HashMap<String, Contest>();
-  HashMap<String, TemplateContest> refTemplateContests = new HashMap<String, TemplateContest>();
-  HashMap<String, MatchEvent> refMatchEvents = new HashMap<String, MatchEvent>();
+  var refUsers = new HashMap<String, User>();
+  var refContestEntries = new HashMap<String, ContestEntry>();
+  var refContests = new HashMap<String, Contest>();
+  var refTemplateContests = new HashMap<String, TemplateContest>();
+  var refMatchEvents = new HashMap<String, MatchEvent>();
+  var refSoccerTeams = new HashMap<String, SoccerTeam>();
+  var refSoccerPlayers = new HashMap<String, SoccerPlayer>();
   
   ContestReferences();
 
@@ -41,5 +45,15 @@ class ContestReferences {
   MatchEvent getMatchEventById(String id) {
     return refMatchEvents.containsKey(id) ? refMatchEvents[id]
                                           : refMatchEvents[id] = new MatchEvent.referenceInit(id);
+  }
+  
+  SoccerTeam getSoccerTeamById(String id) {
+    return refSoccerTeams.containsKey(id) ? refSoccerTeams[id]
+                                          : refSoccerTeams[id] = new SoccerTeam.referenceInit(id);
+  }
+  
+  SoccerPlayer getSoccerPlayerById(String id) {
+    return refSoccerPlayers.containsKey(id) ? refSoccerPlayers[id]
+                                            : refSoccerPlayers[id] = new SoccerPlayer.referenceInit(id);
   }
 }

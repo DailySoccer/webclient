@@ -64,7 +64,7 @@ class Contest {
     assert(contestId.isNotEmpty);
     
     name = json.name;
-    contestEntries = json.contestEntries.map((jsonObject) => new ContestEntry.fromJsonObject(jsonObject, references)).toList();
+    contestEntries = json.contestEntries.map((jsonObject) => new ContestEntry.fromJsonObject(jsonObject, references) .. contest = this ).toList();
     maxEntries = json.maxEntries;
     templateContest = references.getTemplateContestById(json.templateContestId);
      

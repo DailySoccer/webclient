@@ -20,6 +20,8 @@ class SoccerPlayersListComp {
   List<MatchEvent> matchesInvolved;
   List<Map<String, String>> matchesList = [];
   dynamic optionValue;
+  dynamic oldOptionValue;
+  String name_filter;
 
   EnterContestCtrl enterContestCtrl;
 
@@ -29,12 +31,14 @@ class SoccerPlayersListComp {
   }
   
  void setFilterMatch() {
-   print(optionValue);
-   enterContestCtrl.setMatchFilter(optionValue);
+   if(oldOptionValue != optionValue){
+      oldOptionValue = optionValue;
+      enterContestCtrl.setMatchFilter(optionValue);
+   }
  }
  
- void setFilterSoccerName(var value) {
-   //enterContestCtrl.setNameFilter(value);
+ void setFilterSoccerName() {
+   enterContestCtrl.setNameFilter(name_filter);
  }
   
  void printElement(String element) {

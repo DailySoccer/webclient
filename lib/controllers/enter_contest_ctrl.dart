@@ -28,7 +28,7 @@ class EnterContestCtrl {
 
   bool isSelectingSoccerPlayer = false;
   FieldPos lastUsedPosFilter;
-  String lastUsedNameFilter;
+  String lastUsedNameFilter = "";
 
   final List<dynamic> lineupSlots = new List();
   List<dynamic> availableSoccerPlayers = new List();
@@ -90,6 +90,9 @@ class EnterContestCtrl {
   }
 
   void setNameFilter(String filter) {
+    if(lastUsedNameFilter != filter)
+      lastUsedNameFilter = filter;
+    
     setFieldPosFilter(lastUsedPosFilter);
     availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => soccerPlayer["fullName"].toUpperCase().contains(filter.toUpperCase())).toList(); 
   }
@@ -106,27 +109,14 @@ class EnterContestCtrl {
   
   void setMatchFilter(String matchId) {
     if (matchId != "-1") {
-      //setFieldPosFilter(lastUsedPosFilter);
-      //availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => soccerPlayer["matchId"].toString() == matchId).toList();
+      setFieldPosFilter(lastUsedPosFilter);
+      setNameFilter(lastUsedNameFilter);
+      availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => soccerPlayer["matchId"].toString() == matchId).toList();
+    } else {
+      setFieldPosFilter(lastUsedPosFilter);
+      setNameFilter(lastUsedNameFilter);
     }
-    /*else 
-      setFieldPosFilter(lastUsedPosFilter);*/
   }
-/*
-  
-  //Establecemos los filtros a la lista de jugadores disponibles
-  void setSoccerPlayerFilters() {
-    
-    if()
-    
-  }
-  
-  */
-  
-  
-  
-  
-  
   
   // Añade un futbolista a nuestro lineup si hay algun slot libre de su misma fieldPos. Retorna false si no pudo añadir
   bool tryToAddSoccerPlayer(var soccerPlayer) {

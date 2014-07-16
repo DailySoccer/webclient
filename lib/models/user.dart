@@ -13,9 +13,13 @@ class User {
   String toString() => "$userId - $fullName - $email - $nickName";
   Map toJson() => {"_id": userId, "firstName": firstName, "lastName": lastName, "email": email, "nickName": nickName};
 
+  User.referenceInit(this.userId);
+  
   User.fromJsonObject(JsonObject jsonObject) {
     // TODO: storedSessionToken almacena un user sin "_id" (por lo que, sin esta comprobacion, lanza una excepcion)
-    userId = (jsonObject.containsKey("_id")) ? jsonObject._id : ((jsonObject.containsKey("userId")) ? jsonObject.userId : "<userId: null>");
+    userId = (jsonObject.containsKey("_id"))      ? jsonObject._id 
+           : ((jsonObject.containsKey("userId"))  ? jsonObject.userId 
+           : "<userId: null>");
     
     firstName = jsonObject.firstName;
     lastName = jsonObject.lastName;

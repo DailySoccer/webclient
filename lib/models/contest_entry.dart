@@ -12,6 +12,8 @@ class ContestEntry {
 
   ContestEntry(this.contestEntryId, this.userId, this.contestId, this.soccerIds);
 
+  ContestEntry.referenceInit(this.contestEntryId);
+  
   ContestEntry.fromJsonObject(JsonObject json) {
     contestEntryId = json._id;
     userId = json.userId;

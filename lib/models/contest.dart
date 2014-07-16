@@ -3,6 +3,8 @@ library contest;
 import "package:json_object/json_object.dart";
 import "package:webclient/models/template_contest.dart";
 import "package:webclient/models/match_event.dart";
+import "package:webclient/models/user.dart";
+import "package:webclient/models/contest_entry.dart";
 import 'package:webclient/services/contest_references.dart';
 
 class Contest {
@@ -20,48 +22,36 @@ class Contest {
   Contest.referenceInit(this.contestId);
 
   /*
-   * Carga 1 Contest a partir de JsonObjects  (1 Contest <- 1 TemplateContest <- * MatchEvent)
-   */
-  static Contest loadContestFromJsonObjects(JsonObject jsonContest, JsonObject jsonTemplateContest, List<JsonObject> jsonMatchEvents) {
-    ContestReferences contestReferences = new ContestReferences();
-    // Carga las referencias de TemplateContest y MatchEvents
-    var templateContest = new TemplateContest.fromJsonObject(jsonTemplateContest, contestReferences);
-    var matchEvents = jsonMatchEvents.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject, contestReferences)).toList();
-    // Devuelve los Contests que contiene referenciado/referenciado a su TemplateContest
-    return new Contest.fromJsonObject(jsonContest, contestReferences);
-  }
-  
-  static Contest loadContestFromJsonRoot(JsonObject jsonRoot) {
-    return loadContestFromJsonObjects(jsonRoot.contest, jsonRoot.template_contest, jsonRoot.match_events);
-  }
-  
-  /*
    * Carga una LISTA de Contests a partir de JsonObjects
    */
-  static List<Contest> loadContestsFromJsonObjects(List<JsonObject> jsonContests, List<JsonObject> jsonTemplateContests, List<JsonObject> jsonMatchEvents) {
+  static List<Contest> loadContestsFromJsonObject(JsonObject jsonRoot) {
+    var contests = new List<Contest>();
+    
     ContestReferences contestReferences = new ContestReferences();
-    // Carga las referencias de TemplateContests y MatchEvents
-    jsonTemplateContests.map((jsonObject) => new TemplateContest.fromJsonObject(jsonObject, contestReferences)).toList();
-    jsonMatchEvents.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject, contestReferences)).toList();
-    // Devuelve los Contests (que contienen referenciados/incrustados a sus TemplateContests)
-    return jsonContests.map((jsonObject) => new Contest.fromJsonObject(jsonObject, contestReferences)).toList();
-  }
-  
-  static List<Contest> loadContestsFromJsonRoot(JsonObject jsonRoot) {
-    return loadContestsFromJsonObjects(jsonRoot.contests, jsonRoot.template_contests, jsonRoot.match_events);
+    
+    // 1 Contest? -> 1 TemplateContest
+    if (jsonRoot.containsKey("contest")) {
+      var templateContest = new TemplateContest.fromJsonObject(jsonRoot.template_contest, contestReferences);
+      contests.add(new Contest.fromJsonObject(jsonRoot.contest, contestReferences));
+    }
+    // >1 Contests!
+    else {
+      jsonRoot.template_contests.map((jsonObject) => new TemplateContest.fromJsonObject(jsonObject, contestReferences)).toList();
+      contests = jsonRoot.contests.map((jsonObject) => new Contest.fromJsonObject(jsonObject, contestReferences)).toList();
+    }
+    
+    jsonRoot.match_events.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject, contestReferences)).toList();
+    
+    return contests;
   }
   
   /*
    * Factorias de creacion de un Contest
    */
   factory Contest.fromJsonObject(JsonObject json, ContestReferences references) {
-    Contest contest = references.getContestById(json._id);
-    return contest._initFromJsonObject(json, references);
+    return references.getContestById(json._id)._initFromJsonObject(json, references);
   }
-  
-  factory Contest.fromJsonString(String json, ContestReferences references) {
-    return new Contest.fromJsonObject(new JsonObject.fromJsonString(json), references);
-  }
+
   
   /*
    * Inicializacion de los contenidos de un Contest

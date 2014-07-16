@@ -1,4 +1,38 @@
 //enter-contest mobile
+.enter-contest-tabs {
+	.nav();
+	.nav-tabs();
+	border-bottom: none;
+}
+.enter-contest-tabs li {
+	.make-xs-column(6, 0);
+	text-align: center;
+	background-color: @blueLight;
+}
+.enter-contest-tabs li a {
+	cursor: pointer;
+	border-radius: 0;
+}
+.enter-contest-tabs li a:hover {
+	border: none;
+	color: @white;
+}
+.enter-contest-tabs li.active {
+	background: none;
+}
+.enter-contest-tabs li.active  a {
+	background-color: @blueDark;
+	border: none;
+	color: @white;
+	cursor: pointer;
+}
+.enter-contest-tabs li.active  a:hover {
+	cursor: pointer;
+}
+.enter-contest-tabs > li > a:hover {
+  border: none;
+  color: @white;
+}
 .enter-contest-actions {
 	@media (max-width: @screen-xs-max) {
 		.container();

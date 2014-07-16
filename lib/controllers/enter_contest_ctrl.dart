@@ -42,6 +42,14 @@ class EnterContestCtrl {
     
     setup(routeProvider.route.parameters['contestId']);
   }
+  
+  void tabChange(String tab) {
+    List<dynamic> allContentTab = document.querySelectorAll(".tab-pane");
+    allContentTab.forEach((element) => element.classes.remove('active'));
+    
+    Element contentTab = document.querySelector("#" + tab);
+    contentTab.classes.add("active");
+  }
 
   void setup(String contestId) {
     contest = _contestService.getContestById(contestId);

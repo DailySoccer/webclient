@@ -28,6 +28,7 @@ class EnterContestCtrl {
 
   bool isSelectingSoccerPlayer = false;
   FieldPos lastUsedPosFilter;
+  String lastUsedNameFilter;
 
   final List<dynamic> lineupSlots = new List();
   List<dynamic> availableSoccerPlayers = new List();
@@ -97,9 +98,36 @@ class EnterContestCtrl {
     if(lastUsedPosFilter != filter)
       lastUsedPosFilter = filter;
     
-    if (filter != null) availableSoccerPlayers = _allSoccerPlayers.where((soccerPlayer) => soccerPlayer["fieldPos"] == filter && !lineupSlots.contains(soccerPlayer)).toList(); else availableSoccerPlayers = _allSoccerPlayers.where((soccerPlayer) => !lineupSlots.contains(soccerPlayer)).toList();
+    if (filter != null) 
+      availableSoccerPlayers = _allSoccerPlayers.where((soccerPlayer) => soccerPlayer["fieldPos"] == filter && !lineupSlots.contains(soccerPlayer)).toList(); 
+    else 
+      availableSoccerPlayers = _allSoccerPlayers.where((soccerPlayer) => !lineupSlots.contains(soccerPlayer)).toList();
   }
-
+  
+  void setMatchFilter(String matchId) {
+    if (matchId != "-1") {
+      //setFieldPosFilter(lastUsedPosFilter);
+      //availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => soccerPlayer["matchId"].toString() == matchId).toList();
+    }
+    /*else 
+      setFieldPosFilter(lastUsedPosFilter);*/
+  }
+/*
+  
+  //Establecemos los filtros a la lista de jugadores disponibles
+  void setSoccerPlayerFilters() {
+    
+    if()
+    
+  }
+  
+  */
+  
+  
+  
+  
+  
+  
   // Añade un futbolista a nuestro lineup si hay algun slot libre de su misma fieldPos. Retorna false si no pudo añadir
   bool tryToAddSoccerPlayer(var soccerPlayer) {
 
@@ -122,6 +150,7 @@ class EnterContestCtrl {
       "id": soccerPlayer.templateSoccerPlayerId,
       "fieldPos": new FieldPos(soccerPlayer.fieldPos),
       "fullName": soccerPlayer.name,
+      "matchId" : matchEvent.matchEventId,
       "matchEventName": matchEvent.soccerTeamA.shortName + " - " + matchEvent.soccerTeamB.shortName,
       "remainingMatchTime": "70 MIN",
       "fantasyPoints": soccerPlayer.fantasyPoints,

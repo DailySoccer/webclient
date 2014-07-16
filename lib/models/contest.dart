@@ -12,12 +12,12 @@ class Contest {
 
   String name;
 
-  List<String> currentUserIds;
+  List<ContestEntry> contestEntries;
   int maxEntries;
 
   TemplateContest templateContest;
 
-  Contest(this.contestId, this.name, this.currentUserIds, this.maxEntries, this.templateContest);
+  Contest(this.contestId, this.name, this.contestEntries, this.maxEntries, this.templateContest);
   
   Contest.referenceInit(this.contestId);
 
@@ -60,7 +60,7 @@ class Contest {
     assert(contestId.isNotEmpty);
     
     name = json.name;
-    currentUserIds = json.currentUserIds;
+    contestEntries = json.contestEntries.map((jsonObject) => new ContestEntry.fromJsonObject(jsonObject, references)).toList();
     maxEntries = json.maxEntries;
     templateContest = references.getTemplateContestById(json.templateContestId);
      

@@ -39,7 +39,7 @@ class ContestHeaderComp {
       contestHeaderInfo["description"] = "€${contest.templateContest.salaryCap} ${contest.name}";
       contestHeaderInfo["entryPrice"] = "€${contest.templateContest.entryFee}";
       
-      int numJugadores = contest.currentUserIds.length;
+      int numJugadores = contest.contestEntries.length;
       contestHeaderInfo["contestantCount"] = "$numJugadores" + ((numJugadores == 1) ? " jugador" : " jugadores");
     }
   }

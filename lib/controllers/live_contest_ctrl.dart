@@ -30,7 +30,7 @@ class LiveContestCtrl implements DetachAware {
     var updatedDate;
 
     Contest getContest() => _myContestsService.lastContest;
-    List<ContestEntry> getContestEntries() => _myContestsService.contestEntries;
+    List<ContestEntry> getContestEntries() => (getContest() != null) ? getContest().contestEntries : new List<ContestEntry>();
     
     LiveContestCtrl(RouteProvider routeProvider, this._scope, this.scrDet, this._myContestsService, this._profileService, this._flashMessage) {
       _contestId = routeProvider.route.parameters['contestId'];
@@ -82,7 +82,7 @@ class LiveContestCtrl implements DetachAware {
     }
 
     ContestEntry getContestEntryWithUser(String userId) {
-      return _myContestsService.contestEntries.firstWhere( (entry) => entry.userId == userId, orElse: () => null );
+      return getContestEntries().firstWhere( (entry) => entry.user.userId == userId, orElse: () => null );
     }
 
     SoccerPlayer getSoccerPlayer(String soccerPlayerId) {
@@ -104,21 +104,20 @@ class LiveContestCtrl implements DetachAware {
     }
 
     int getUserPosition(ContestEntry contestEntry) {
-      for (int i=0; i<_myContestsService.contestEntries.length; i++) {
-        if (_myContestsService.contestEntries[i].contestEntryId == contestEntry.contestEntryId)
+      List<ContestEntry> contestsEntries = getContestEntries();
+      for (int i=0; i<contestsEntries.length; i++) {
+        if (contestsEntries[i].contestEntryId == contestEntry.contestEntryId)
           return i+1;
       }
       return -1;
     }
 
     String getUserName(ContestEntry contestEntry) {
-      User userInfo = _myContestsService.usersInfo.firstWhere((user) => user.userId == contestEntry.userId, orElse: () => null);
-      return (userInfo != null) ? userInfo.fullName : "";
+      return contestEntry.user.fullName;
     }
 
     String getUserNickname(ContestEntry contestEntry) {
-      User userInfo = _myContestsService.usersInfo.firstWhere((user) => user.userId == contestEntry.userId, orElse: () => null);
-      return (userInfo != null) ? userInfo.nickName : "";
+      return contestEntry.user.nickName;
     }
 
     String getUserRemainingTime(ContestEntry contestEntry) {

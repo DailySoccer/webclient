@@ -93,27 +93,24 @@ class FantasyTeamComp implements ShadowRootAware {
 
       slots.clear();
 
-      for (String soccerId in _contestEntry.soccerIds) {
-        SoccerPlayer soccerPlayer = _liveContestCtrl.getSoccerPlayer(soccerId);
-        if (soccerPlayer != null) {
-          String shortNameTeamA = soccerPlayer.team.matchEvent.soccerTeamA.shortName;
-          String shortNameTeamB = soccerPlayer.team.matchEvent.soccerTeamB.shortName;
-          // TODO: No funciona el incrustar codigo Html
-          /*
-          var matchEventName = (soccerPlayer.team.templateSoccerTeamId == soccerPlayer.team.matchEvent.soccerTeamA.templateSoccerTeamId)
-              ? new Element.html("<b>$shortNameTeamA</b> - $shortNameTeamB")
-              : new Element.html("$shortNameTeamA - <b>$shortNameTeamB</b>");
-          */
-          var matchEventName = "$shortNameTeamA - $shortNameTeamB";
+      for (SoccerPlayer soccerPlayer in _contestEntry.soccers) {
+        String shortNameTeamA = soccerPlayer.team.matchEvent.soccerTeamA.shortName;
+        String shortNameTeamB = soccerPlayer.team.matchEvent.soccerTeamB.shortName;
+        // TODO: No funciona el incrustar codigo Html
+        /*
+        var matchEventName = (soccerPlayer.team.templateSoccerTeamId == soccerPlayer.team.matchEvent.soccerTeamA.templateSoccerTeamId)
+            ? new Element.html("<b>$shortNameTeamA</b> - $shortNameTeamB")
+            : new Element.html("$shortNameTeamA - <b>$shortNameTeamB</b>");
+        */
+        var matchEventName = "$shortNameTeamA - $shortNameTeamB";
 
-          slots.add({
-              "fieldPos": new FieldPos(soccerPlayer.fieldPos),
-              "fullName": soccerPlayer.name,
-              "matchEventName": matchEventName,
-              "remainingMatchTime": "70 MIN",
-              "score": _liveContestCtrl.getSoccerPlayerScore(soccerId)
-          });
-        }
+        slots.add({
+            "fieldPos": new FieldPos(soccerPlayer.fieldPos),
+            "fullName": soccerPlayer.name,
+            "matchEventName": matchEventName,
+            "remainingMatchTime": "70 MIN",
+            "score": _liveContestCtrl.getSoccerPlayerScore(soccerPlayer.templateSoccerPlayerId)
+        });
       }
     }
 

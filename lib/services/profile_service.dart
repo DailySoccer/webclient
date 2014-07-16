@@ -61,7 +61,7 @@ class ProfileService {
     var storedUser = window.localStorage['user'];
 
     if (storedSessionToken != null && storedUser != null) {
-      _setProfile(storedSessionToken, new User.fromJsonString(storedUser), false);
+      _setProfile(storedSessionToken, new User.fromJsonObject(new JsonObject.fromJsonString(storedUser)), false);
       
       // TODO: Hacemos un "login" a escondidas... (los "usuarios" pueden haber sido eliminados por el simulador)
       login(user.email, "<no password>")

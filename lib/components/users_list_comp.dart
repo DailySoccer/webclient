@@ -31,7 +31,7 @@ class UsersListComp {
     users.clear();
     for (var contestEntry in _liveContestCtrl.getContestEntries()) {
       users.add({
-        "id": contestEntry.userId,
+        "id": contestEntry.user.userId,
         "contestEntryId" : contestEntry.contestEntryId,
         "name": _liveContestCtrl.getUserName(contestEntry),
         "remainingTime": _liveContestCtrl.getUserRemainingTime(contestEntry),

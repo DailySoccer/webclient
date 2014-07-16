@@ -23,8 +23,6 @@ class MyContestsService {
   // Informacion relacionada con un unico Contest
   Contest lastContest;
   List<MatchEvent> liveMatchEvents = new List<MatchEvent>();
-  List<ContestEntry> contestEntries = new List<ContestEntry>();
-  List<User> usersInfo = new List<User>();
   
   Contest getContestById(String id) {
     return waitingContests.firstWhere((contest) => contest.contestId == id,
@@ -38,9 +36,9 @@ class MyContestsService {
   Future refreshMyContests() {
     var completer = new Completer();
 
-    _server.getUserContests()
+    _server.getMyContests()
         .then((jsonObject) {
-          _initContests (Contest.loadContestsFromJsonRoot(jsonObject));
+          _initContests (Contest.loadContestsFromJsonObject(jsonObject));
           completer.complete();
         });
 
@@ -50,9 +48,9 @@ class MyContestsService {
   Future getMyContests() {
     var completer = new Completer();
 
-    _server.getUserContests()
+    _server.getMyContests()
         .then((jsonObject) {
-          _initContests (Contest.loadContestsFromJsonRoot(jsonObject));
+          _initContests (Contest.loadContestsFromJsonObject(jsonObject));
           completer.complete(jsonObject);
         });
 
@@ -64,9 +62,7 @@ class MyContestsService {
 
     _server.getContest(contestId)
         .then((jsonObject) {
-          lastContest = Contest.loadContestFromJsonRoot(jsonObject);;
-          usersInfo = jsonObject.users_info.map((jsonObject) => new User.fromJsonObject(jsonObject)).toList();
-          contestEntries = jsonObject.contest_entries.map((jsonObject) => new ContestEntry.fromJsonObject(jsonObject)).toList(); 
+          lastContest = Contest.loadContestsFromJsonObject(jsonObject).first;
           completer.complete(jsonObject);
         });
 
@@ -90,27 +86,13 @@ class MyContestsService {
 
     _server.getLiveContest(contestId)
         .then((jsonObject) {
-          lastContest = Contest.loadContestFromJsonRoot(jsonObject);
-          usersInfo = jsonObject.users_info.map((jsonObject) => new User.fromJsonObject(jsonObject)).toList();
-          contestEntries = jsonObject.contest_entries.map((jsonObject) => new ContestEntry.fromJsonObject(jsonObject)).toList();
+          lastContest = Contest.loadContestsFromJsonObject(jsonObject).first;
           completer.complete(jsonObject);
         });
 
     return completer.future;
   }
-  
-  Future getLiveContestEntries(String contestId) {
-    var completer = new Completer();
-    
-    _server.getLiveContestEntries(contestId)
-      .then((jsonObject) {
-        print("liveContestEntries: response: " + jsonObject.toString());
-        completer.complete(jsonObject);
-      });
-    
-    return completer.future;    
-  }
-  
+
   Future getLiveMatchEvents(String templateContestId) {
     var completer = new Completer();
 
@@ -148,13 +130,13 @@ class MyContestsService {
   }
   
   int getUserScore(ContestEntry contestEntry) {
-    return contestEntry.soccerIds.fold(0, (prev, soccerPlayerId) => prev + getSoccerPlayerScore(soccerPlayerId) );
+    return contestEntry.soccers.fold(0, (prev, soccerPlayer) => prev + getSoccerPlayerScore(soccerPlayer.templateSoccerPlayerId) );
   }
   
   void _initContests(List<Contest> contests) {
-    waitingContests = contests.where((contest) => contest.templateContest.isActive()).toList();
-    liveContests = contests.where((contest) => contest.templateContest.isLive()).toList();
-    historyContests = contests.where((contest) => contest.templateContest.isHistory()).toList();
+    waitingContests = contests.where((contest) => contest.templateContest.isActive).toList();
+    liveContests = contests.where((contest) => contest.templateContest.isLive).toList();
+    historyContests = contests.where((contest) => contest.templateContest.isHistory).toList();
   }
   
   ServerService _server;

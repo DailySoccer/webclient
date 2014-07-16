@@ -25,10 +25,13 @@ class TemplateContest {
 
   TemplateContest.referenceInit(this.templateContestId);
   
-  bool isActive() => state == "ACTIVE";
-  bool isLive() => state == "LIVE";
-  bool isHistory() => state == "HISTORY";
+  bool get isActive => state == "ACTIVE";
+  bool get isLive => state == "LIVE";
+  bool get isHistory => state == "HISTORY";
   
+  DateTime get startDate => templateMatchEvents.map((matchEvent) => matchEvent.startDate)
+                                               .reduce((val, elem) => val.isBefore(elem)? val : elem);
+
   factory TemplateContest.fromJsonObject(JsonObject json, ContestReferences references) {
     TemplateContest templateContest = references.getTemplateContestById(json._id);
     return templateContest._initFromJsonObject(json, references);
@@ -36,26 +39,6 @@ class TemplateContest {
   
   factory TemplateContest.fromJsonString(String json, ContestReferences references) {
     return new TemplateContest.fromJsonObject(new JsonObject.fromJsonString(json), references);
-  }
-  
-  DateTime getStartDate() {
-    return templateMatchEvents.map((matchEvent) => matchEvent.startDate)
-                              .reduce((val, elem) => val.isBefore(elem)? val : elem);
-  }
-  
-  SoccerPlayer findSoccerPlayer(String soccerPlayerId) {
-    SoccerPlayer soccerPlayer = null;
-    
-    // Buscar en la lista de partidos del contest
-    for (MatchEvent match in templateMatchEvents) {
-      SoccerPlayer soccer = match.findSoccerPlayer(soccerPlayerId);
-      if (soccer != null) {
-        soccerPlayer = soccer;
-        break;
-      }
-    }
-    
-    return soccerPlayer;
   }
   
   TemplateContest _initFromJsonObject(JsonObject json, ContestReferences references) {

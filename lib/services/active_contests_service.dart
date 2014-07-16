@@ -23,7 +23,7 @@ class ActiveContestsService {
 
     _server.getActiveContests()
         .then((jsonObject) {
-          activeContests = Contest.loadContestsFromJsonRoot(jsonObject);
+          activeContests = Contest.loadContestsFromJsonObject(jsonObject);
           completer.complete();
         });
 

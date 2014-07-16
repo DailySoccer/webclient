@@ -1,25 +1,35 @@
 library contest_entry;
 
 import "package:json_object/json_object.dart";
+import "package:webclient/models/user.dart";
+import "package:webclient/models/soccer_player.dart";
+import "package:webclient/models/contest.dart";
+import 'package:webclient/services/contest_references.dart';
 
 class ContestEntry {
   String contestEntryId;
 
-  String userId;
+  User user;
+  Contest contest;
   String contestId;
   
-  List<String> soccerIds;
+  List<SoccerPlayer> soccers;
 
-  ContestEntry(this.contestEntryId, this.userId, this.contestId, this.soccerIds);
+  ContestEntry(this.contestEntryId, this.user, this.contestId, this.soccers);
 
-  ContestEntry.fromJsonObject(JsonObject json) {
-    contestEntryId = json._id;
-    userId = json.userId;
-    contestId = json.contestId;
-    soccerIds = json.soccerIds.toList();
+  ContestEntry.referenceInit(this.contestEntryId);
+
+  factory ContestEntry.fromJsonObject(JsonObject json, ContestReferences references) {
+    ContestEntry contestEntry = references.getContestEntryById(json._id);
+    return contestEntry._initFromJsonObject(json, references);
+  }
+  
+  ContestEntry _initFromJsonObject(JsonObject json, ContestReferences references) {
+    assert(contestEntryId.isNotEmpty);
+    user = references.getUserById(json.userId);
+    soccers = json.soccerIds.map((soccerPlayerId) => references.getSoccerPlayerById(soccerPlayerId)).toList();
 
     // print("ContestEntry: id($contestEntryId) userId($userId) contestId($contestId) soccerIds($soccerIds)");
+    return this;
   }
-
-  ContestEntry.fromJsonString(String json) : this.fromJsonObject(new JsonObject.fromJsonString(json));
 }

@@ -29,6 +29,7 @@ class EnterContestCtrl {
   bool isSelectingSoccerPlayer = false;
   FieldPos lastUsedPosFilter;
   String lastUsedNameFilter = "";
+  String oldMatchValue = "-1";
 
   final List<dynamic> lineupSlots = new List();
   List<dynamic> availableSoccerPlayers = new List();
@@ -103,6 +104,8 @@ class EnterContestCtrl {
       lastUsedNameFilter = filter;
     
     setFieldPosFilter(lastUsedPosFilter);
+    if(oldMatchValue != "-1") 
+          setMatchFilter(oldMatchValue);
     availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => soccerPlayer["fullName"].toUpperCase().contains(filter.toUpperCase())).toList(); 
   }
 
@@ -117,14 +120,19 @@ class EnterContestCtrl {
   }
   
   void setMatchFilter(String matchId) {
-    if (matchId != "-1") {
-      setFieldPosFilter(lastUsedPosFilter);
-      setNameFilter(lastUsedNameFilter);
-      availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => soccerPlayer["matchId"].toString() == matchId).toList();
-    } else {
-      setFieldPosFilter(lastUsedPosFilter);
+    
+    if(oldMatchValue != matchId) {
+      oldMatchValue = matchId;
       setNameFilter(lastUsedNameFilter);
     }
+    
+      if (matchId != "-1") {
+        setFieldPosFilter(lastUsedPosFilter);       
+        availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => soccerPlayer["matchId"].toString() == matchId).toList();
+      } else {
+        setFieldPosFilter(lastUsedPosFilter);
+      }
+     
   }
   
   // Añade un futbolista a nuestro lineup si hay algun slot libre de su misma fieldPos. Retorna false si no pudo añadir

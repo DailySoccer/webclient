@@ -29,7 +29,7 @@ class UsersListComp {
     //print("refresh users: ${_liveContestCtrl.usersInfo}");
 
     users.clear();
-    for (var contestEntry in _liveContestCtrl.getContestEntries()) {
+    for (var contestEntry in _liveContestCtrl.contestEntries) {
       users.add({
         "id": contestEntry.user.userId,
         "contestEntryId" : contestEntry.contestEntryId,

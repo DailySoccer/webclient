@@ -34,7 +34,7 @@ class ContestHeaderComp {
   }
 
   void _refreshHeader() {
-    Contest contest = _liveContestCtrl.getContest();
+    Contest contest = _liveContestCtrl.contest;
     if (contest != null) {
       contestHeaderInfo["description"] = "€${contest.templateContest.salaryCap} ${contest.name}";
       contestHeaderInfo["entryPrice"] = "€${contest.templateContest.entryFee}";

@@ -25,11 +25,12 @@ class ContestHeaderComp {
   
   Contest contestInfo; 
 
-  @NgTwoWay("contestData")
-  Contest get contestData => contestInfo;
+  @NgOneWay("contestData")
   void set contestData(Contest value) {
     contestInfo = value;
-    _refreshHeader();
+    if (value != null) {
+      _refreshHeader();
+    }
   }
   
   String info;

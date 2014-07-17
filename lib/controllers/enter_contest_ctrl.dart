@@ -30,6 +30,7 @@ class EnterContestCtrl {
   FieldPos lastUsedPosFilter;
   String lastUsedNameFilter = "";
   String oldMatchValue = "-1";
+  String currentContestId = "";
 
   final List<dynamic> lineupSlots = new List();
   List<dynamic> availableSoccerPlayers = new List();
@@ -41,7 +42,13 @@ class EnterContestCtrl {
       lineupSlots.add(null);
     });
     
-    setup(routeProvider.route.parameters['contestId']);
+    currentContestId = routeProvider.route.parameters['contestId'];
+    
+    contest = _contestService.getContestById(currentContestId);
+
+    // Al principio, todos disponibles
+    initAllSoccerPlayers();
+    availableSoccerPlayers = new List<dynamic>.from(_allSoccerPlayers);
   }
   
   void tabChange(String tab) {
@@ -50,14 +57,6 @@ class EnterContestCtrl {
     
     Element contentTab = document.querySelector("#" + tab);
     contentTab.classes.add("active");
-  }
-
-  void setup(String contestId) {
-    contest = _contestService.getContestById(contestId);
-
-    // Al principio, todos disponibles
-    initAllSoccerPlayers();
-    availableSoccerPlayers = new List<dynamic>.from(_allSoccerPlayers);
   }
 
   void cleanTheFilters() {

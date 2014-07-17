@@ -36,7 +36,7 @@ class MyContestsService {
   MyContestsService(this._server);
 
 
-  Future getMyContests() {
+  Future refreshMyContests() {
     var completer = new Completer();
 
     _server.getMyContests()
@@ -48,7 +48,7 @@ class MyContestsService {
     return completer.future;
   }
 
-  Future getContest(String contestId) {
+  Future refreshContest(String contestId) {
     var completer = new Completer();
 
     _server.getContest(contestId)
@@ -60,7 +60,7 @@ class MyContestsService {
     return completer.future;
   }
 
-  Future getLiveContests() {
+  Future refreshLiveContests() {
     var completer = new Completer();
 
     _server.getLiveContests()
@@ -72,7 +72,7 @@ class MyContestsService {
     return completer.future;
   }
 
-  Future getLiveContest(String contestId) {
+  Future refreshLiveContest(String contestId) {
     var completer = new Completer();
 
     _server.getLiveContest(contestId)
@@ -84,7 +84,7 @@ class MyContestsService {
     return completer.future;
   }
 
-  Future getLiveMatchEvents(String templateContestId) {
+  Future refreshLiveMatchEvents(String templateContestId) {
     var completer = new Completer();
 
     _server.getLiveMatchEventsFromTemplateContest(templateContestId)

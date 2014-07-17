@@ -44,7 +44,7 @@ class LiveContestCtrl implements DetachAware {
       else {
         // TODO: Elegir uno de los contests
         // Mostrar el primer contest (de alguna de las listas que no esté vacia)
-        _myContestsService.getMyContests()
+        _myContestsService.refreshMyContests()
           .then( (jsonObject) {
             Contest contest = _myContestsService.liveContests.isNotEmpty ? _myContestsService.liveContests.first
                             : _myContestsService.waitingContests.isNotEmpty ? _myContestsService.waitingContests.first
@@ -64,7 +64,7 @@ class LiveContestCtrl implements DetachAware {
     void _initialize() {
        mainPlayer = _profileService.user.userId;
 
-       _myContestsService.getContest(_contestId)
+       _myContestsService.refreshContest(_contestId)
            .then((jsonObject) {
              updatedDate = new DateTime.now();
              _updateLive();
@@ -143,7 +143,7 @@ class LiveContestCtrl implements DetachAware {
 
     void _updateLive() {
       // Actualizamos únicamente la lista de live MatchEvents
-      _myContestsService.getLiveMatchEvents(_myContestsService.lastContest.templateContest.templateContestId)
+      _myContestsService.refreshLiveMatchEvents(_myContestsService.lastContest.templateContest.templateContestId)
           .then( (jsonObject) {
             updatedDate = new DateTime.now();
           })

@@ -15,15 +15,12 @@ import 'package:webclient/services/flash_messages_service.dart';
            useShadowDom: false)
 class MyContestsComp {
 
-  MyContestsService get myContestsService => _myContestService;
+  MyContestsService myContestsService;
 
-  MyContestsComp(this._myContestService, this._flashMessage) {
-    print(myContestsService.waitingContests.length);
-
-    myContestsService.getMyContests()
+  MyContestsComp(this.myContestsService, this._flashMessage) {
+    myContestsService.refreshMyContests()
       .catchError((error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW));
   }
 
-  MyContestsService _myContestService;
   FlashMessagesService _flashMessage;
 }

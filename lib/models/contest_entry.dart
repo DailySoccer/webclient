@@ -11,11 +11,10 @@ class ContestEntry {
 
   User user;
   Contest contest;
-  String contestId;
   
   List<SoccerPlayer> soccers;
 
-  ContestEntry(this.contestEntryId, this.user, this.contestId, this.soccers);
+  ContestEntry(this.contestEntryId, this.user, this.soccers);
 
   ContestEntry.referenceInit(this.contestEntryId);
 
@@ -27,7 +26,11 @@ class ContestEntry {
   ContestEntry _initFromJsonObject(JsonObject json, ContestReferences references) {
     assert(contestEntryId.isNotEmpty);
     user = references.getUserById(json.userId);
-    soccers = json.soccerIds.map((soccerPlayerId) => references.getSoccerPlayerById(soccerPlayerId)).toList();
+    
+    // Enviado únicamente cuando se envíe usando jsonView.FullContest
+    if (json.containsKey("soccerIds")) {
+      soccers = json.soccerIds.map((soccerPlayerId) => references.getSoccerPlayerById(soccerPlayerId)).toList();
+    }
 
     // print("ContestEntry: id($contestEntryId) userId($userId) contestId($contestId) soccerIds($soccerIds)");
     return this;

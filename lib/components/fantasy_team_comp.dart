@@ -3,8 +3,12 @@ library fantasy_team_comp;
 import 'dart:html';
 import 'package:angular/angular.dart';
 
-
-@Component(selector: 'fantasy-team', templateUrl: 'packages/webclient/components/fantasy_team_comp.html', publishAs: 'fantasyTeam', useShadowDom: false)
+@Component(
+    selector: 'fantasy-team', 
+    templateUrl: 'packages/webclient/components/fantasy_team_comp.html', 
+    publishAs: 'fantasyTeam', 
+    useShadowDom: false
+)
 class FantasyTeamComp implements ShadowRootAware {
 
     var slots = new List();
@@ -112,21 +116,30 @@ class FantasyTeamComp implements ShadowRootAware {
         var header = _rootElement.querySelector(".fantasy-team-header");
 
         if (header != null) {
-            if (_isOpponent) header.classes.add("opponent-team-gradient"); else header.classes.remove("opponent-team-gradient");
+            if (_isOpponent) 
+              header.classes.add("opponent-team-gradient"); 
+            else 
+              header.classes.remove("opponent-team-gradient");
         }
     }
 
     void _refreshCloseButton() {
 
-        if (_rootElement == null) return;
+        if (_rootElement == null) 
+          return;
 
         var closeButton = _rootElement.querySelector(".close-team");
 
-        if (_showCloseButton) closeButton.classes.remove("ng-hide"); else closeButton.classes.add("ng-hide");
+        if (_showCloseButton) 
+          closeButton.classes.remove("ng-hide"); 
+        else 
+          closeButton.classes.add("ng-hide");
     }
 
     void onCloseButtonClick() {
-        if (onClose != null) onClose();
+      
+        if (onClose != null) 
+          onClose();
     }
 
     HtmlElement _rootElement;

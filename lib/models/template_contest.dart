@@ -16,8 +16,7 @@ class TemplateContest {
 
   List<String> templateMatchEventIds;
 
-  TemplateContest(this.templateContestId, this.name, this.postName, this.maxEntries,
-          this.salaryCap, this.entryFee, this.prizeType, this.templateMatchEventIds);
+  TemplateContest(this.templateContestId, this.name, this.postName, this.maxEntries, this.salaryCap, this.entryFee, this.prizeType, this.templateMatchEventIds);
 
   TemplateContest.fromJsonObject(JsonObject json) {
     templateContestId = json._id;

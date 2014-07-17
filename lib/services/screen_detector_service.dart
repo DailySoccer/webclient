@@ -25,16 +25,19 @@ class ScreenDetectorService {
       isSmScreen = false;
       isDesktop = false;
     } 
+    
     if (window.matchMedia("(min-width: 568px)").matches) {
       isXsScreen = false;
       isSmScreen = true;
       isDesktop = false;
     }
+    
     if (window.matchMedia("(min-width: 768px)").matches){
       isXsScreen = false;
       isSmScreen = false;
       isDesktop = true;
     }
+    
     window.animationFrame.then(_detectNow);
   }
 

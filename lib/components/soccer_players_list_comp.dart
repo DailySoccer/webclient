@@ -25,8 +25,7 @@ class SoccerPlayersListComp {
 
   EnterContestCtrl enterContestCtrl;
 
-  SoccerPlayersListComp(RouteProvider routeProvider, this.enterContestCtrl, this._contestService) {
-    
+  SoccerPlayersListComp(RouteProvider routeProvider, this.enterContestCtrl, this._contestService) {    
     setup(routeProvider.route.parameters['contestId']);
   }
   

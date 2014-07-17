@@ -3,7 +3,6 @@ library user_list_comp;
 import 'dart:html';
 import 'package:angular/angular.dart';
 
-
 @Component(
     selector: 'users-list',
     templateUrl: 'packages/webclient/components/users_list_comp.html',

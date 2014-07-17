@@ -1,4 +1,5 @@
 <contest-header></contest-header>
+
 <div id="liveContestRoot" ng-switch="liveContest.scrDet.isXsScreen" ng-cloak>
   <div ng-switch-when="true">
     <ul class="nav nav-tabs" id="liveContestTab" >
@@ -17,7 +18,7 @@
   <div ng-switch-when="false">
     <fantasy-team id="userFantasyTeam"></fantasy-team> 
     <users-list id="usersList" ng-show="selectedOpponent == null" selectedUser="selectedOpponent"></users-list>    
-    <fantasy-team id="opponentFantasyTeam" isOpponent="true" ng-show="selectedOpponent != null"
-                  showCloseButton="true" onClose="selectedOpponent=null"></fantasy-team>
+    <fantasy-team id="opponentFantasyTeam" isOpponent="true" ng-show="selectedOpponent != null" showCloseButton="true" onClose="selectedOpponent=null"></fantasy-team>
   </div>
+  
 </div>

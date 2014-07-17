@@ -11,8 +11,11 @@ class LimitToDot implements Function {
   LimitToDot(this._injector);
 
   dynamic call(String items, [int limit]) {
-    if (items == null) return null;
-    if (limit == null) limit = -1;
+    if (items == null) 
+      return null;
+    if (limit == null) 
+      limit = -1;
+   
     int i = 0, j = items.length;
     if (limit > -1) {
       _dotted = (j > limit) ? true : false;

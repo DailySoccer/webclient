@@ -4,8 +4,8 @@
             
             <div class="column-name">
                 <div class="inner-content">
-                    <span class="title-text">{{contestInfo.hard_code_contest['description']}}</span>
-                    <span class="content-text">{{contestInfo.hard_code_contest['name']}}</span>
+                    <span class="title-text">{{contestInfo.currentInfoData['description']}}</span>
+                    <span class="content-text">{{contestInfo.currentInfoData['name']}}</span>
                 </div>
             </div>
 
@@ -14,8 +14,8 @@
                     <span class="price-icon"></span>
                 </div>
                 <div class="inner-content">
-                    <span class="title-text">ENTRADA</span> 
-                    <span class="content-text">€{{contestInfo.hard_code_contest['entry']}}</span>
+                    <span class="title-text">ENTRADA</span> <span
+                        class="content-text">€{{contestInfo.currentInfoData['entry']}}</span>
                 </div>
             </div>
 
@@ -24,8 +24,8 @@
                     <span class="prize-icon"></span>
                 </div>
                 <div class="inner-content">
-                    <span class="title-text">PREMIOS</span> 
-                    <span class="content-text">€{{contestInfo.hard_code_contest['prize']}}</span>
+                    <span class="title-text">PREMIOS</span> <span
+                        class="content-text">€{{contestInfo.currentInfoData['prize']}}</span>
                 </div>
             </div>
 
@@ -57,23 +57,27 @@
                            
                 <!-- Tab panes -->
                 <div class="tab-pane active" id="info">
-                    <p class="instructions">{{contestInfo.hard_code_contest['rules']}}</p>                    
-                    <div class="start-date">{{contestInfo.hard_code_contest['startDateTime']}}</div>
-                    <div class="matches-involved">                        
+
+                    <p class="instructions">{{contestInfo.currentInfoData['rules']}}</p>
+                    <div class="start-date">COMIENZA EL {{contestInfo.currentInfoData['startDateTime']}}</div>
+
+                    <div class="matches-involved">
                         <div class="match"   ng-repeat="match in contestInfo.matchesInvolved">
                             <p class="teams">{{match.soccerTeamA.shortName}} - {{match.soccerTeamB.shortName}}</p> <!-- En un futuro habrá match.shortName -->
                             <p class="date">{{match.startDate | date:'dd-MM-yyyy hh:mm'}}h.</p>
-                        </div>                                                
-                    </div>                    
-                    <div class="clearfix"></div>                    
-                    <p class="bases-title">REGLAS DE PUNTUACIÓN</p>                    
-                    <pre class="rules-description">{{contestInfo.hard_code_contest['rulesDescription']}}</pre>                    
+                        </div>                        
+                    </div>
+                    <div class="clearfix"></div>
+                    <p class="bases-title">REGLAS DE PUNTUACIÓN</p>
+                    
+                    <pre class="rules-description">{{contestInfo.currentInfoData['legals']}}</pre>
+                    
                 </div>
 
                 <div class="tab-pane" id="contestants">                    
                     <div class="list-wrapper">
-                        <div class="contestant-list">                           
-                            <div class="contestant-element"ng-repeat="contestant in contestInfo.hard_code_contest['contestants']">
+                        <div class="contestant-list">
+                            <div class="contestant-element"ng-repeat="contestant in contestInfo.currentInfoData['contestants']">
                                 <div class="contestant-position">{{$index + 1}}º</div>
                                 <div class="contestant-name">{{contestant.name}}</div>
                                 <div class="contestant-points">{{contestant.points + ' '}}<span class="prize-currency">DFP</span></div>
@@ -82,10 +86,10 @@
                     </div>
                 </div>
 
-                <div class="tab-pane" id="prizes">                    
-                    <div class="prizes-wrapper">                       
-                        <div id="prizes-list">                           
-                            <div class="prize-element" ng-repeat="prize in contestInfo.hard_code_contest['prizes']">
+                <div class="tab-pane" id="prizes">
+                    <div class="prizes-wrapper">
+                        <div id="prizes-list">
+                            <div class="prize-element" ng-repeat="prize in contestInfo.currentInfoData['prizes']">
                                 <div class="prize-position">{{$index + 1}}º</div>
                                 <div class="prize-separator"></div>
                                 <div class="prize-amount">€{{prize.value}}</div>

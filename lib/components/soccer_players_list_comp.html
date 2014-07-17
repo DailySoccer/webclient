@@ -1,8 +1,17 @@
+<div class="soccer-player-filter">
+  <select id="match-fliter" class="match-selector-filter" ng-model="comp.optionValue" ng-selected="comp.setFilterMatch()">
+    <option ng-repeat="match in comp.matchesList" ng-value="match.id">{{match.texto}}</option>
+  </select>
+  <input type="text" id="name-player-filter" class="name-player-input-filter" placeholder="Buscar jugador" ng-model="comp.name_filter" ng-keyup="comp.setFilterSoccerName()" />
+</div>
+
 <div class="soccer-players-list">
-  <div class="soccer-players-list-slot" ng-repeat="slot in comp.enterContestCtrl.availableSoccerPlayers">
+  
+  <div class="soccer-players-list-slot" ng-repeat="slot in comp.enterContestCtrl.availableSoccerPlayers" ng-class="comp.getSlotClassColor(slot.fieldPos.abrevName)">
     <div class="column-fieldpos">{{slot.fieldPos.abrevName}}</div>
     <div class="column-primary-info">
-      <span class="soccer-player-name">{{slot.fullName}}</span>
+      <!--<span class="soccer-player-name">{{slot.fullName | limitToDot : 19}}</span>-->
+      <span class="soccer-player-name">{{slot.fullName | limitToDot : comp.showWidth(slot.fullName)}}</span>
       <span class="match-event-name">{{slot.matchEventName}}</span>
     </div>
     <div class="column-dfp">{{slot.fantasyPoints}}</div>
@@ -12,4 +21,5 @@
       <button type="button" class="btn" ng-click="comp.enterContestCtrl.onSoccerPlayerSelected(slot)">Añadir</button>
     </div>
   </div>
+  
 </div>

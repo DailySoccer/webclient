@@ -1,7 +1,6 @@
 library flash_messages_ctrl;
 
 import 'dart:html';
-
 import 'package:angular/angular.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 
@@ -9,6 +8,7 @@ import 'package:webclient/services/flash_messages_service.dart';
     selector: '[flash-messages]',
     publishAs: 'flashCtrl'
 )
+
 class FlashMessagesCtrl {
 
   Scope scope;

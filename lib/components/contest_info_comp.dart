@@ -7,18 +7,23 @@ import 'package:webclient/services/active_contests_service.dart';
 import 'package:webclient/models/match_event.dart';
 
 
-@Component(selector: 'contest-info', templateUrl: 'packages/webclient/components/contest_info_comp.html', publishAs: 'contestInfo', useShadowDom: false)
+@Component(
+    selector: 'contest-info', 
+    templateUrl: 'packages/webclient/components/contest_info_comp.html', 
+    publishAs: 'contestInfo', 
+    useShadowDom: false
+)
+
 class ContestInfoComp {
 
   @NgTwoWay("showContest")
       Contest get showedContest => _showedContest;
-      void set showedContest(Contest value) {
-        _showedContest = value;
-          if(value != null)
-            updateContestInfo(value);
-      }
-  
-      
+     
+    void set showedContest(Contest value) {
+      _showedContest = value;
+      if(value != null)
+        updateContestInfo(value);
+     }
       
     var hard_code_contest;
     var contestants  = new List();
@@ -76,7 +81,7 @@ class ContestInfoComp {
       prizes.add({'value' : '50,00' });
     }
     
-    updateContestInfo(Contest showedContest)
+    void updateContestInfo( Contest showedContest )
     {
       matchesInvolved = showedContest.templateContest.templateMatchEvents;
       
@@ -98,8 +103,8 @@ class ContestInfoComp {
     }
     
     void enterContest() {
-            _router.go('enter_contest', { "contestId": showedContest.contestId });
-       }
+      _router.go('enter_contest', { "contestId": showedContest.contestId });
+    }
     
     TemplateContest tmplateContest;
     List<MatchEvent> matchesInvolved;

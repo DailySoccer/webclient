@@ -1,69 +1,69 @@
 <nav class="navbar navbar-static-top" role="navigation" id="mainMenuRoot">
-  <div class="container">
-
-    <div class="navbar-header" ng-if="mainMenu.isLoggedIn">
-      <div class="navbar-brand-container">
-        <a class="navbar-brand" href="#"></a>
+    <div class="container">
+  
+      <div class="navbar-header" ng-if="mainMenu.isLoggedIn">
+          <div class="navbar-brand-container">
+            <a class="navbar-brand" href="#"></a>
+          </div>
+    
+          <button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target="#gameMenuCollapse">
+              <span class="sr-only">Toggle game menu</span> 
+              <span class="icon-bar"></span> <span class="icon-bar"></span> 
+              <span class="icon-bar"></span>
+          </button>
+    
+          <button type="button" class="navbar-toggle pull-right" data-toggle="collapse" data-target="#userMenuCollapse">
+              <span class="sr-only">Toggle user menu</span> 
+              <span class="icon-bar"></span> <span class="icon-bar"></span> 
+              <span class="icon-bar"></span>
+          </button>
       </div>
-
-      <button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target="#gameMenuCollapse">
-        <span class="sr-only">Toggle game menu</span> <span
-          class="icon-bar"></span> <span class="icon-bar"></span> <span
-          class="icon-bar"></span>
-      </button>
-
-      <button type="button" class="navbar-toggle pull-right" data-toggle="collapse" data-target="#userMenuCollapse">
-        <span class="sr-only">Toggle user menu</span> <span
-          class="icon-bar"></span> <span class="icon-bar"></span> <span
-          class="icon-bar"></span>
-      </button>
-    </div>
-    <!-- .navbar-header -->
-
-    <div class="collapse navbar-collapse" ng-if="mainMenu.isLoggedIn" id="gameMenuCollapse">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#/lobby" ng-click="mainMenu.gameMenuClicked($event)">TORNEOS</a></li>
-        <li><a href="#/my_entered_contests" ng-click="mainMenu.gameMenuClicked($event)">EN ESPERA</a></li>
-        <li><a href="#/my_live_contests" ng-click="mainMenu.gameMenuClicked($event)">EN DIRECTO</a></li>
-      </ul>
-    </div>
-    <!-- #gameMenuCollapse -->
-
-    <div class="collapse navbar-collapse" ng-if="mainMenu.isLoggedIn" id="userMenuCollapse">
-      <ul class="nav navbar-nav">
-        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
-          {{mainMenu.fullName}}<bclass="caret"></b></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#" ng-click="">Mi cuenta</a></li>
-            <li><a href="#" ng-click="">Añadir fondos</a></li>
-            <li><a href="#" ng-click="">Historial de transacciones</a></li>
-            <li><a href="#" ng-click="">Centro de referencias</a></li>
-            <li><a href="#" ng-click="">Clasificación</a></li>
-            <li><a href="#" ng-click="">Promos</a></li>
-            <li><a href="#" ng-click="mainMenu.logOut()">Logout</a></li>
+      
+      <!-- .navbar-header -->
+      <div class="collapse navbar-collapse" ng-if="mainMenu.isLoggedIn" id="gameMenuCollapse">
+          <ul class="nav navbar-nav">
+              <li class="active"><a href="#/lobby" ng-click="mainMenu.gameMenuClicked($event)">TORNEOS</a></li>
+              <li><a href="#/my_entered_contests" ng-click="mainMenu.gameMenuClicked($event)">EN ESPERA</a></li>
+              <li><a href="#/my_live_contests" ng-click="mainMenu.gameMenuClicked($event)">EN DIRECTO</a></li>
           </ul>
-        </li>
-        <li class="help dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
-          Ayuda<bclass="caret"></b></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#" ng-click="">Soporte</a></li>
-            <li><a href="#" ng-click="">Cómo funciona</a></li>
-            <li><a href="#" ng-click="">Reglas y puntuaciones</a></li>
+      </div>
+      
+      <!-- #gameMenuCollapse -->
+      <div class="collapse navbar-collapse" ng-if="mainMenu.isLoggedIn" id="userMenuCollapse">
+          <ul class="nav navbar-nav">
+              <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                {{mainMenu.fullName}}<bclass="caret"></b></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#" ng-click="">Mi cuenta</a></li>
+                    <li><a href="#" ng-click="">Añadir fondos</a></li>
+                    <li><a href="#" ng-click="">Historial de transacciones</a></li>
+                    <li><a href="#" ng-click="">Centro de referencias</a></li>
+                    <li><a href="#" ng-click="">Clasificación</a></li>
+                    <li><a href="#" ng-click="">Promos</a></li>
+                    <li><a href="#" ng-click="mainMenu.logOut()">Logout</a></li>
+                </ul>
+              </li>
+              <li class="help dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ayuda<b class="caret"></b></a>
+                  <ul class="dropdown-menu" role="menu">
+                      <li><a href="#" ng-click="">Soporte</a></li>
+                      <li><a href="#" ng-click="">Cómo funciona</a></li>
+                      <li><a href="#" ng-click="">Reglas y puntuaciones</a></li>
+                  </ul>
+              </li>
           </ul>
-        </li>
-      </ul>
-      <button id="addMoney" type="button" class="btn">AÑADIR FONDOS</button>
+        <button id="addMoney" type="button" class="btn">AÑADIR FONDOS</button>
+      </div>
+      <!-- #userMenuCollapse -->
+  
+      <!-- Cuando no estamos logeados, mostramos simplemente un boton de Login y Join -->
+      <div >
+          <ul id="menuRootUnlogged" ng-if="!mainMenu.isLoggedIn">
+            <li><a type="button" class="button-join" href="#/join">join</a></li>
+            <li><a type="button" class="button-login" href="#/login">Login</a></li>
+          </ul>
+          <div class="clearfix"></div>
+      </div>
+  
     </div>
-    <!-- #userMenuCollapse -->
-
-    <!-- Cuando no estamos logeados, mostramos simplemente un boton de Login y Join -->
-    <div >
-        <ul id="menuRootUnlogged" ng-if="!mainMenu.isLoggedIn">
-          <li><a type="button" class="button-join" href="#/join">join</a></li>
-          <li><a type="button" class="button-login" href="#/login">Login</a></li>
-        </ul>
-        <div class="clearfix"></div>
-    </div>
-
-  </div>
 </nav>

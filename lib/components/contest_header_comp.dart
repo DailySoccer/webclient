@@ -23,28 +23,30 @@ class ContestHeaderComp {
     'prizeType':'TODO PARA EL GANADOR'
   };
   
+  Contest contestInfo; 
+
+  @NgTwoWay("contestData")
+  Contest get contestData => contestInfo;
+  void set contestData(Contest value) {
+    contestInfo = value;
+    _refreshHeader();
+  }
+  
   String info;
   ScreenDetectorService scrDet;
   
-  ContestHeaderComp(this._scope, this._router, this.scrDet, this._liveContestCtrl) {
+  ContestHeaderComp(this._scope, this._router, this.scrDet) {
     print('printing the contest info' + contestHeaderInfo.toString());
-    _scope.watch("updatedDate", (newValue, oldValue) {
-      _refreshHeader();
-    }, context: _liveContestCtrl);    
   }
 
-  void _refreshHeader() {
-    Contest contest = _liveContestCtrl.getContest();
-    if (contest != null) {
-      contestHeaderInfo["description"] = "€${contest.templateContest.salaryCap} ${contest.name}";
-      contestHeaderInfo["entryPrice"] = "€${contest.templateContest.entryFee}";
-      
-      int numJugadores = contest.contestEntries.length;
-      contestHeaderInfo["contestantCount"] = "$numJugadores" + ((numJugadores == 1) ? " jugador" : " jugadores");
-    }
+  void _refreshHeader() { 
+    contestHeaderInfo["description"] = "€${contestInfo.templateContest.salaryCap} ${contestInfo.name}";
+    contestHeaderInfo["entryPrice"] = "€${contestInfo.templateContest.entryFee}";
+    
+    int numJugadores = contestInfo.contestEntries.length;
+    contestHeaderInfo["contestantCount"] = "$numJugadores" + ((numJugadores == 1) ? " jugador" : " jugadores");
   }
   
   Scope _scope;
   Router _router;
-  LiveContestCtrl _liveContestCtrl;
 }

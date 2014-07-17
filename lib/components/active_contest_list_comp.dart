@@ -8,8 +8,13 @@ import 'package:webclient/models/contest.dart';
 
 
 
-@Component(selector: 'active-contest-list', templateUrl: 'packages/webclient/components/active_contest_list_comp.html', publishAs: 'activeContestList', useShadowDom: false)
-class ActiveContestListComp implements DetachAware {
+@Component(
+    selector: 'active-contest-list', 
+    templateUrl: 'packages/webclient/components/active_contest_list_comp.html', 
+    publishAs: 'activeContestList', 
+    useShadowDom: false
+)
+class ActiveContestListComp {
 
   ActiveContestsService contestService;
   Contest selectedContest;

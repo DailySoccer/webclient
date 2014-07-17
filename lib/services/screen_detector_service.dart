@@ -9,7 +9,9 @@ import 'dart:async';
 class ScreenDetectorService {
 
   bool isXsScreen = false;
-
+  bool isSmScreen = false;
+  bool isDesktop  = false;
+  
   ScreenDetectorService(this._scope) {
     _detectNow(0);
   }
@@ -17,9 +19,25 @@ class ScreenDetectorService {
   // La otra aproximacion, usando dart:js para capturar el evento, falló (ver historico en git si es necesario).
   // Tambien estuvo como un timer, pero queda mas bonito detectarlo cada frame
   void _detectNow(num theTime) {
-    MediaQueryList mq = window.matchMedia("(min-width: 768px)");
-    isXsScreen = !mq.matches;
 
+    if (window.matchMedia("(max-width: 568px)").matches) {
+      isXsScreen = true;
+      isSmScreen = false;
+      isDesktop = false;
+    } 
+    
+    if (window.matchMedia("(min-width: 568px)").matches) {
+      isXsScreen = false;
+      isSmScreen = true;
+      isDesktop = false;
+    }
+    
+    if (window.matchMedia("(min-width: 768px)").matches){
+      isXsScreen = false;
+      isSmScreen = false;
+      isDesktop = true;
+    }
+    
     window.animationFrame.then(_detectNow);
   }
 

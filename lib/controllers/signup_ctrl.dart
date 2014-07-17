@@ -9,6 +9,7 @@ import 'package:webclient/services/flash_messages_service.dart';
     selector: '[signup-ctrl]',
     publishAs: 'ctrl'
 )
+
 class SignupCtrl implements DetachAware {
 
   String firstName;

@@ -10,6 +10,7 @@ import 'package:webclient/services/profile_service.dart';
    publishAs: 'landingPage',
    useShadowDom: false
 )
+
 class LandingPageComp implements ShadowRootAware, DetachAware {
 
   String content;
@@ -20,9 +21,8 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
   LandingPageComp(Scope scope, this._router, this._profileService) {
 
     // Capturamos el elemento wrapper
-    bodyObj=  querySelector('body');
-  
-    mainWrapper = querySelector('#mainWrapper');
+    bodyObj             = querySelector('body');  
+    mainWrapper         = querySelector('#mainWrapper');
     containerForContent = querySelector('#mainContent');
     
   }
@@ -31,7 +31,6 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
 
     if(_profileService.isLoggedIn)
       _router.go("lobby", {});
-      //_router.go("enter_contest", {'contestId': '539fbfdb300456034ddd85a5'});
 
     mainWrapper.classes.clear();
     mainWrapper.classes.add('landing-wrapper');

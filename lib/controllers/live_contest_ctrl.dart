@@ -33,6 +33,7 @@ class LiveContestCtrl implements DetachAware {
     List<ContestEntry> getContestEntries() => (getContest() != null) ? getContest().contestEntries : new List<ContestEntry>();
     
     LiveContestCtrl(RouteProvider routeProvider, this._scope, this.scrDet, this._myContestsService, this._profileService, this._flashMessage) {
+      
       _contestId = routeProvider.route.parameters['contestId'];
       initialized = false;
 

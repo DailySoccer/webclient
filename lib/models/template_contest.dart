@@ -24,23 +24,22 @@ class TemplateContest {
           this.salaryCap, this.entryFee, this.prizeType, this.templateMatchEvents);
 
   TemplateContest.referenceInit(this.templateContestId);
-  
+
   bool get isActive => state == "ACTIVE";
   bool get isLive => state == "LIVE";
   bool get isHistory => state == "HISTORY";
-  
+
   DateTime get startDate => templateMatchEvents.map((matchEvent) => matchEvent.startDate)
                                                .reduce((val, elem) => val.isBefore(elem)? val : elem);
 
   factory TemplateContest.fromJsonObject(JsonObject json, ContestReferences references) {
-    TemplateContest templateContest = references.getTemplateContestById(json._id);
-    return templateContest._initFromJsonObject(json, references);
+    return references.getTemplateContestById(json._id)._initFromJsonObject(json, references);
   }
-  
+
   factory TemplateContest.fromJsonString(String json, ContestReferences references) {
     return new TemplateContest.fromJsonObject(new JsonObject.fromJsonString(json), references);
   }
-  
+
   TemplateContest _initFromJsonObject(JsonObject json, ContestReferences references) {
     assert(templateContestId.isNotEmpty);
     state = json.state;
@@ -51,7 +50,7 @@ class TemplateContest {
     entryFee = json.entryFee;
     prizeType = json.prizeType;
     templateMatchEvents = json.templateMatchEventIds.map( (matchEventId) => references.getMatchEventById(matchEventId) ).toList();
-    
+
     // print( "TemplateContest: id($templateContestId) name($name) maxEntries($maxEntries) salaryCap($salaryCap) entryFee($entryFee) prizeType($prizeType) templateMatchEventIds($templateMatchEventIds)");
     return this;
   }

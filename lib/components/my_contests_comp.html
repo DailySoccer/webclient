@@ -1,0 +1,16 @@
+<div><h1>WAITING CONTESTS:</h1></div>
+<contests-list id="waitingContests" contestsList='comp.myContestsService.waitingContests'></contests-list>
+
+<div><h1>LIVE CONTESTS:</h1></div>
+<contests-list id="liveContests" contestsList="comp.myContestsService.liveContests"></contests-list>
+
+<div><h1>HISTORY CONTESTS:</h1></div>
+<contests-list id="historyContests" contestsList="comp.myContestsService.historyContests"></contests-list>
+
+
+<!-- Hack temporal hasta que arreglen Angular o nos respondan con una solucion mejor -->
+<div class="ng-hide">
+  {{comp.myContestsService.waitingContests.length}}
+  {{comp.myContestsService.liveContests.length}}
+  {{comp.myContestsService.historyContests.length}}
+</div>

@@ -30,6 +30,8 @@ import 'package:webclient/components/live_contest_comp.dart';
 import 'package:webclient/components/users_list_comp.dart';
 import 'package:webclient/components/soccer_players_list_comp.dart';
 import 'package:webclient/components/lineup_selector_comp.dart';
+import 'package:webclient/components/my_contests_comp.dart';
+import 'package:webclient/components/contests_list_comp.dart';
 
 import 'package:webclient/directives/form-autofill-fix.dart';
 
@@ -76,8 +78,11 @@ class WebClientApp extends Module {
     bind(LiveContestComp);
     bind(UsersListComp);
     bind(SoccerPlayersListComp);
-    bind(ActiveContestListComp);
     bind(LineupSelectorComp);
+
+    bind(MyContestsComp);
+    bind(ContestsListComp);
+    bind(ActiveContestListComp);
 
     bind(FormAutofillDecorator);
 

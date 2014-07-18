@@ -2,7 +2,7 @@ library contest;
 
 import "package:json_object/json_object.dart";
 import "package:webclient/models/template_contest.dart";
-import "package:webclient/models/match_event.dart";
+import "package:webclient/models/template_match_event.dart";
 import "package:webclient/models/user.dart";
 import "package:webclient/models/contest_entry.dart";
 import 'package:webclient/services/contest_references.dart';
@@ -40,7 +40,7 @@ class Contest {
       contests = jsonRoot.contests.map((jsonObject) => new Contest.fromJsonObject(jsonObject, contestReferences)).toList();
     }
     
-    jsonRoot.match_events.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject, contestReferences)).toList();
+    jsonRoot.match_events.map((jsonObject) => new TemplateMatchEvent.fromJsonObject(jsonObject, contestReferences)).toList();
     
     if (jsonRoot.containsKey("users_info")) {
       jsonRoot.users_info.map((jsonObject) => new User.fromJsonObject(jsonObject, contestReferences)).toList();

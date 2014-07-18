@@ -7,7 +7,7 @@ import "package:webclient/services/server_service.dart";
 import "package:webclient/models/user.dart";
 import "package:webclient/models/contest.dart";
 import "package:webclient/models/template_contest.dart";
-import "package:webclient/models/match_event.dart";
+import "package:webclient/models/template_match_event.dart";
 import "package:webclient/models/live_match_event.dart";
 import "package:webclient/models/soccer_player.dart";
 import 'package:webclient/models/contest_entry.dart';
@@ -89,7 +89,7 @@ class MyContestsService {
         jsonObject.content.map((jsonObject) => new LiveMatchEvent.fromJsonObject(jsonObject))
           .toList()
           .forEach( (liveMatchEvent) =>
-              liveMatchEvent.updateFantasyPoints(lastContest.templateContest.templateMatchEvents.firstWhere((match_event) => match_event.matchEventId == liveMatchEvent.matchEventId)) );
+              liveMatchEvent.updateFantasyPoints(lastContest.templateContest.templateMatchEvents.firstWhere((matchEvent) => matchEvent.templateMatchEventId == liveMatchEvent.templateMatchEventId)) );
 
         completer.complete(jsonObject);
       });

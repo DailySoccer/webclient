@@ -5,7 +5,7 @@ import 'package:angular/angular.dart';
 import 'package:webclient/controllers/enter_contest_ctrl.dart';
 import 'package:webclient/services/active_contests_service.dart';
 import 'package:webclient/models/contest.dart';
-import "package:webclient/models/match_event.dart";
+import "package:webclient/models/template_match_event.dart";
 
 @Component(
     selector: 'soccer-players-list',
@@ -17,7 +17,7 @@ import "package:webclient/models/match_event.dart";
 class SoccerPlayersListComp {
    
   Contest contest;
-  List<MatchEvent> matchesInvolved;
+  List<TemplateMatchEvent> matchesInvolved;
   List<Map<String, String>> matchesList = [];
   dynamic optionValue;
   dynamic oldOptionValue;
@@ -49,8 +49,8 @@ class SoccerPlayersListComp {
     matchesInvolved = contest.templateContest.templateMatchEvents;
     
     matchesList.add({"id":"-1", "texto":"Todos los partidos"});
-    for (MatchEvent match in matchesInvolved) {
-      matchesList.add({"id": match.matchEventId, "texto":match.soccerTeamA.shortName + " - " + match.soccerTeamB.shortName});
+    for (TemplateMatchEvent match in matchesInvolved) {
+      matchesList.add({"id": match.templateMatchEventId, "texto":match.soccerTeamA.shortName + " - " + match.soccerTeamB.shortName});
     }
     optionValue = "-1";
     //matchesList.forEach((element) => printElement(element["texto"]));

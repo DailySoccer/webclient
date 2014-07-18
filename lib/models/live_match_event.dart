@@ -1,23 +1,23 @@
 library live_match_day;
 
 import "package:json_object/json_object.dart";
-import "package:webclient/models/match_event.dart";
+import "package:webclient/models/template_match_event.dart";
 import "package:webclient/models/soccer_team.dart";
 
 class LiveMatchEvent {
-  String matchEventId;
+  String templateMatchEventId;
 
   // Asocia un soccerPlayerId con fantasyPoints
   var soccerPlayerToPoints = new Map<String, int>();
 
-  LiveMatchEvent(this.matchEventId, this.soccerPlayerToPoints);
+  LiveMatchEvent(this.templateMatchEventId, this.soccerPlayerToPoints);
 
   LiveMatchEvent.fromJsonObject(JsonObject json) {
-    matchEventId = json.templateMatchEventId;
+    templateMatchEventId = json.templateMatchEventId;
     soccerPlayerToPoints = json.soccerPlayerToPoints;
   }
 
-  void updateFantasyPoints(MatchEvent matchEvent) {
+  void updateFantasyPoints(TemplateMatchEvent matchEvent) {
     _updateFantasyPoints(matchEvent.soccerTeamA);
     _updateFantasyPoints(matchEvent.soccerTeamB);
   }

@@ -10,7 +10,7 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/active_contests_service.dart';
 import "package:webclient/models/soccer_player.dart";
 import "package:webclient/models/soccer_team.dart";
-import 'package:webclient/models/match_event.dart';
+import 'package:webclient/models/template_match_event.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 
@@ -151,12 +151,12 @@ class EnterContestCtrl {
     return false;
   }
 
-  void _insertSoccerPlayer(MatchEvent matchEvent, SoccerTeam soccerTeam, SoccerPlayer soccerPlayer) {
+  void _insertSoccerPlayer(TemplateMatchEvent matchEvent, SoccerTeam soccerTeam, SoccerPlayer soccerPlayer) {
     _allSoccerPlayers.add({
       "id": soccerPlayer.templateSoccerPlayerId,
       "fieldPos": new FieldPos(soccerPlayer.fieldPos),
       "fullName": soccerPlayer.name,
-      "matchId" : matchEvent.matchEventId,
+      "matchId" : matchEvent.templateMatchEventId,
       "matchEventName": matchEvent.soccerTeamA.shortName + " - " + matchEvent.soccerTeamB.shortName,
       "remainingMatchTime": "70 MIN",
       "fantasyPoints": soccerPlayer.fantasyPoints,
@@ -166,7 +166,7 @@ class EnterContestCtrl {
   }
 
   void initAllSoccerPlayers() {
-    List<MatchEvent> matchEvents = contest.templateContest.templateMatchEvents;
+    List<TemplateMatchEvent> matchEvents = contest.templateContest.templateMatchEvents;
 
     for (var matchEvent in matchEvents) {
       for (var player in matchEvent.soccerTeamA.soccerPlayers) {

@@ -1,7 +1,7 @@
 library template_contest;
 
 import "package:json_object/json_object.dart";
-import 'package:webclient/models/match_event.dart';
+import 'package:webclient/models/template_match_event.dart';
 import 'package:webclient/services/contest_references.dart';
 import "package:webclient/models/soccer_player.dart";
 
@@ -18,7 +18,7 @@ class TemplateContest {
   int entryFee;
   String prizeType;
 
-  List<MatchEvent> templateMatchEvents;
+  List<TemplateMatchEvent> templateMatchEvents;
 
   TemplateContest(this.templateContestId, this.name, this.postName, this.maxEntries,
           this.salaryCap, this.entryFee, this.prizeType, this.templateMatchEvents);
@@ -44,7 +44,7 @@ class TemplateContest {
     SoccerPlayer soccerPlayer = null;
 
     // Buscar en la lista de partidos del contest
-    for (MatchEvent match in templateMatchEvents) {
+    for (TemplateMatchEvent match in templateMatchEvents) {
       soccerPlayer = match.findSoccerPlayer(soccerPlayerId);
       
       // Lo hemos encontrado?

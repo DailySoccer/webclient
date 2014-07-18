@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/template_contest.dart';
 import 'package:webclient/services/active_contests_service.dart';
-import 'package:webclient/models/match_event.dart';
+import 'package:webclient/models/template_match_event.dart';
 
 
 @Component(
@@ -148,7 +148,7 @@ class ContestInfoComp {
        }
 
     TemplateContest tmplateContest;
-    List<MatchEvent> matchesInvolved;
+    List<TemplateMatchEvent> matchesInvolved;
 
     Router _router;
     ActiveContestsService _contestService;

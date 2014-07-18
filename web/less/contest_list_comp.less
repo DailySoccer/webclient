@@ -1,14 +1,14 @@
-#activeContestListRoot {
-	background-color: @tramaBlue;
-
+.contests-list {
+	
 	.container();
+	background-color: @tramaBlue;
 
 	@media (min-width: @screen-sm-min) {
 		background-color: @white;
 		.border-bottom-radius(10px);
 	}
 
-	.active-contest-row {
+	.contest-row {
 		.make-row();
 
 		//el cursor cambia, porque la linea entera lika al modal en formato Desktop
@@ -80,7 +80,7 @@
 			}
 		}
 
-		.column-play {
+		.column-action {
 			.make-sm-column(1, @grid-columns-padding);
 			
 			.btn { 

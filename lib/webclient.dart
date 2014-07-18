@@ -17,7 +17,6 @@ import 'package:webclient/formatters/limit_to_dot.dart';
 
 import 'package:webclient/controllers/login_ctrl.dart';
 import 'package:webclient/controllers/signup_ctrl.dart';
-import 'package:webclient/controllers/lobby_ctrl.dart';
 import 'package:webclient/controllers/enter_contest_ctrl.dart';
 import 'package:webclient/controllers/live_contest_ctrl.dart';
 import 'package:webclient/controllers/flash_messages_ctrl.dart';
@@ -26,12 +25,14 @@ import 'package:webclient/components/landing_page_comp.dart';
 import 'package:webclient/components/main_menu_comp.dart';
 import 'package:webclient/components/contest_info_comp.dart';
 import 'package:webclient/components/contest_header_comp.dart';
-import 'package:webclient/components/active_contest_list_comp.dart';
+import 'package:webclient/components/lobby_comp.dart';
 import 'package:webclient/components/fantasy_team_comp.dart';
 import 'package:webclient/components/live_contest_comp.dart';
 import 'package:webclient/components/users_list_comp.dart';
 import 'package:webclient/components/soccer_players_list_comp.dart';
 import 'package:webclient/components/lineup_selector_comp.dart';
+import 'package:webclient/components/my_contests_comp.dart';
+import 'package:webclient/components/contests_list_comp.dart';
 
 import 'package:webclient/directives/form-autofill-fix.dart';
 
@@ -68,7 +69,6 @@ class WebClientApp extends Module {
     bind(FlashMessagesCtrl);
     bind(LoginCtrl);
     bind(SignupCtrl);
-    bind(LobbyCtrl);
     bind(EnterContestCtrl);
     bind(LiveContestCtrl);
 
@@ -80,8 +80,11 @@ class WebClientApp extends Module {
     bind(LiveContestComp);
     bind(UsersListComp);
     bind(SoccerPlayersListComp);
-    bind(ActiveContestListComp);
     bind(LineupSelectorComp);
+
+    bind(MyContestsComp);
+    bind(ContestsListComp);
+    bind(LobbyComp);
 
     bind(FormAutofillDecorator);
 

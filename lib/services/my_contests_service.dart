@@ -19,33 +19,24 @@ class MyContestsService {
   List<Contest> waitingContests = new List<Contest>();
   List<Contest> liveContests = new List<Contest>();
   List<Contest> historyContests = new List<Contest>();
-  
-  // Informacion relacionada con un unico Contest
+
+  // El ultimo concurso que hemos cargado a traves de getContest
   Contest lastContest;
+
+  // El refresco de informacion de partidos Live que hemos traido desde el servidor
   List<MatchEvent> liveMatchEvents = new List<MatchEvent>();
-  
+
   Contest getContestById(String id) {
     return waitingContests.firstWhere((contest) => contest.contestId == id,
-        orElse: () => liveContests.firstWhere((contest) => contest.contestId == id, 
+        orElse: () => liveContests.firstWhere((contest) => contest.contestId == id,
         orElse: () => historyContests.firstWhere((contest) => contest.contestId == id,
         orElse: () => null)));
   }
 
   MyContestsService(this._server);
-  
+
+
   Future refreshMyContests() {
-    var completer = new Completer();
-
-    _server.getMyContests()
-        .then((jsonObject) {
-          _initContests (Contest.loadContestsFromJsonObject(jsonObject));
-          completer.complete();
-        });
-
-    return completer.future;
-  }
-
-  Future getMyContests() {
     var completer = new Completer();
 
     _server.getMyContests()
@@ -56,8 +47,8 @@ class MyContestsService {
 
     return completer.future;
   }
-  
-  Future getContest(String contestId) {
+
+  Future refreshContest(String contestId) {
     var completer = new Completer();
 
     _server.getContest(contestId)
@@ -68,8 +59,8 @@ class MyContestsService {
 
     return completer.future;
   }
-  
-  Future getLiveContests() {
+
+  Future refreshLiveContests() {
     var completer = new Completer();
 
     _server.getLiveContests()
@@ -80,8 +71,8 @@ class MyContestsService {
 
     return completer.future;
   }
-  
-  Future getLiveContest(String contestId) {
+
+  Future refreshLiveContest(String contestId) {
     var completer = new Completer();
 
     _server.getLiveContest(contestId)
@@ -93,51 +84,51 @@ class MyContestsService {
     return completer.future;
   }
 
-  Future getLiveMatchEvents(String templateContestId) {
+  Future refreshLiveMatchEvents(String templateContestId) {
     var completer = new Completer();
 
     _server.getLiveMatchEventsFromTemplateContest(templateContestId)
       .then((jsonObject) {
         print("liveMatchEvents: response: " + jsonObject.toString());
-      
+
         ContestReferences contestReferences = new ContestReferences();
         liveMatchEvents = jsonObject.content.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject, contestReferences)).toList();
-      
+
         // No asociamos el contest y el templateContest a los partidos live
         // new ContestReferences.fromContest(contest, templateContest, liveMatchEvents);
         completer.complete(jsonObject);
       });
-    
-    return completer.future;    
+
+    return completer.future;
   }
-  
+
   int getSoccerPlayerScore(String soccerPlayerId) {
     SoccerPlayer soccerPlayer = null;
-    
+
     // Buscar en la lista de partidos del contest
     for (MatchEvent match in liveMatchEvents) {
       soccerPlayer = match.soccerTeamA.findSoccerPlayer(soccerPlayerId);
       if (soccerPlayer == null) {
         soccerPlayer = match.soccerTeamB.findSoccerPlayer(soccerPlayerId);
       }
-      
+
       // Lo hemos encontrado?
       if (soccerPlayer != null)
         break;
     }
-    
+
     return (soccerPlayer!=null) ? soccerPlayer.fantasyPoints : 0;
   }
-  
+
   int getUserScore(ContestEntry contestEntry) {
     return contestEntry.soccers.fold(0, (prev, soccerPlayer) => prev + getSoccerPlayerScore(soccerPlayer.templateSoccerPlayerId) );
   }
-  
+
   void _initContests(List<Contest> contests) {
     waitingContests = contests.where((contest) => contest.templateContest.isActive).toList();
     liveContests = contests.where((contest) => contest.templateContest.isLive).toList();
     historyContests = contests.where((contest) => contest.templateContest.isHistory).toList();
   }
-  
+
   ServerService _server;
 }

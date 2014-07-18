@@ -1,0 +1,43 @@
+<div id="contestsListRoot" class="contests-list">
+  <div class="contest-row" ng-repeat="contest in comp.contestsList">
+    <div class="column-name" ng-click="comp.onRow(contest)">
+        <div class="inner-icon">
+            <span class="price-icon"></span>
+        </div>
+        <div class="inner-content">
+            <span class="title-text">LIGA: 67 de 100 jugadores - SALARIO LIMITE: 60M</span> 
+            <span class="content-text">{{contest.name}}</span>
+        </div>
+    </div>
+
+    <div class="column-begins" ng-click="comp.onRow(contest)">
+        <span class="title-text">COMIENZA</span>
+        <span class="content-text">DOM 20:45</span>
+    </div>
+
+    <div class="column-entry-fee" ng-click="comp.onRow(contest)">
+        <div class="inner-icon">
+            <span class="price-icon"></span>
+        </div>
+        <div class="inner-content">
+            <span class="title-text">ENTRADA</span> 
+            <span class="content-text">€{{contest.templateContest.entryFee}}</span>
+        </div>
+    </div>
+
+    <div class="column-prize" ng-click="comp.onRow(contest)">
+        <div class="inner-icon">
+            <span class="prize-icon"></span>
+        </div>
+        <div class="inner-content">
+            <span class="title-text">PREMIOS</span> <span
+                class="content-text">€11.250</span>
+        </div>
+    </div>
+
+    <div class="column-action">
+        <button type="button" class="btn" ng-click="comp.onAction(contest)" href="#">{{comp.actionButtonTitle}}</button>
+    </div>
+    
+  </div>
+</div>

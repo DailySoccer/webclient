@@ -15,11 +15,11 @@ import 'package:webclient/models/contest.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 
 @Controller(
-    selector: '[enter-contest-ctrl]', 
+    selector: '[enter-contest-ctrl]',
     publishAs: 'ctrl'
 )
 class EnterContestCtrl {
-  
+
   int availableSalary = 0;
 
   ScreenDetectorService scrDet;
@@ -34,27 +34,27 @@ class EnterContestCtrl {
 
   final List<dynamic> lineupSlots = new List();
   List<dynamic> availableSoccerPlayers = new List();
-  
+
   EnterContestCtrl(RouteProvider routeProvider, this._router, this.scrDet, this._profileService, this._contestService, this._flashMessage) {
 
     // Creamos los slots iniciales, todos vacios
     FieldPos.LINEUP.forEach((pos) {
       lineupSlots.add(null);
     });
-    
+
     currentContestId = routeProvider.route.parameters['contestId'];
-    
+
     contest = _contestService.getContestById(currentContestId);
 
     // Al principio, todos disponibles
     initAllSoccerPlayers();
     availableSoccerPlayers = new List<dynamic>.from(_allSoccerPlayers);
   }
-  
+
   void tabChange(String tab) {
     List<dynamic> allContentTab = document.querySelectorAll(".tab-pane");
     allContentTab.forEach((element) => element.classes.remove('active'));
-    
+
     Element contentTab = document.querySelector("#" + tab);
     contentTab.classes.add("active");
   }
@@ -64,9 +64,9 @@ class EnterContestCtrl {
     inputText.value = "";
     lastUsedNameFilter = "";
   }
-  
+
   void onSlotSelected(int slotIndex) {
-    
+
     cleanTheFilters();
 
     _selectedLineupPosIndex = slotIndex;
@@ -101,39 +101,39 @@ class EnterContestCtrl {
   void setNameFilter(String filter) {
     if(lastUsedNameFilter != filter)
       lastUsedNameFilter = filter;
-    
+
     setFieldPosFilter(lastUsedPosFilter);
-    if(oldMatchValue != "-1") 
+    if(oldMatchValue != "-1")
           setMatchFilter(oldMatchValue);
-    availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => soccerPlayer["fullName"].toUpperCase().contains(filter.toUpperCase())).toList(); 
+    availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => soccerPlayer["fullName"].toUpperCase().contains(filter.toUpperCase())).toList();
   }
 
   void setFieldPosFilter(FieldPos filter) {
     if(lastUsedPosFilter != filter)
       lastUsedPosFilter = filter;
-    
-    if (filter != null) 
-      availableSoccerPlayers = _allSoccerPlayers.where((soccerPlayer) => soccerPlayer["fieldPos"] == filter && !lineupSlots.contains(soccerPlayer)).toList(); 
-    else 
+
+    if (filter != null)
+      availableSoccerPlayers = _allSoccerPlayers.where((soccerPlayer) => soccerPlayer["fieldPos"] == filter && !lineupSlots.contains(soccerPlayer)).toList();
+    else
       availableSoccerPlayers = _allSoccerPlayers.where((soccerPlayer) => !lineupSlots.contains(soccerPlayer)).toList();
   }
-  
+
   void setMatchFilter(String matchId) {
-    
+
     if(oldMatchValue != matchId) {
       oldMatchValue = matchId;
       setNameFilter(lastUsedNameFilter);
     }
-    
+
       if (matchId != "-1") {
-        setFieldPosFilter(lastUsedPosFilter);       
+        setFieldPosFilter(lastUsedPosFilter);
         availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => soccerPlayer["matchId"].toString() == matchId).toList();
       } else {
         setFieldPosFilter(lastUsedPosFilter);
       }
-     
+
   }
-  
+
   // Añade un futbolista a nuestro lineup si hay algun slot libre de su misma fieldPos. Retorna false si no pudo añadir
   bool tryToAddSoccerPlayer(var soccerPlayer) {
 
@@ -182,32 +182,18 @@ class EnterContestCtrl {
   void createFantasyTeam() {
     // TODO: Se tendría que redireccionar a la pantalla de hacer "Login"?
     if (!_profileService.isLoggedIn) {
-      print("login required");
       _router.go('login', {});
       return;
     }
 
     print("createFantasyTeam");
-
-    print("user: " + _profileService.user.fullName);
     print("contest: " + contest.name);
+    lineupSlots.forEach((player) => print(player["fieldPos"].fieldPos + ": " + player["fullName"] + " : " + player["id"]));
 
-    List<String> soccerPlayerIds = new List<String>();
-    for (dynamic player in lineupSlots) {
-      if (player != null) {
-        print(player["fieldPos"].fieldPos + ": " + player["fullName"] + " : " + player["id"]);
-        soccerPlayerIds.add(player["id"]);
-      }
-    }
-
-    // TODO: ¿Donde lo redireccionamos?
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
-    _contestService.addContestEntry(contest.contestId, soccerPlayerIds)
-      //.then((_) => _router.go('lobby', {}))
-      .then((_) => _router.go('live_contest', {"contestId" : contest.contestId}))
-      .catchError((error) {
-        _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
-      });
+    _contestService.addContestEntry(contest.contestId, lineupSlots.map((player) => player["id"]).toList())
+      .then((_) => _router.go('lobby', {}))
+      .catchError((error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW));
   }
 
   bool isFantasyTeamValid() {
@@ -218,14 +204,14 @@ class EnterContestCtrl {
     }
     return true;
   }
-  
+
   void deleteFantasyTeam() {
     int i = 0;
     for ( ; i < lineupSlots.length; ++i) {
       lineupSlots[i] = null;
     }
   }
-  
+
   bool isPlayerSelected() {
     for (dynamic player in lineupSlots) {
       if (player != null) {
@@ -234,7 +220,7 @@ class EnterContestCtrl {
     }
     return true;
   }
-  
+
   void cancelPlayerSelection() {
     isSelectingSoccerPlayer = false;
   }

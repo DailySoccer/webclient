@@ -1,4 +1,4 @@
-<contests-list contestsList="comp.activeContestsService.activeContests" 
+<contests-list contestsList="comp.activeContestsService.activeContests"
                actionButtonTitle='"Entrar"'
                onRowClick="comp.onRowClick(contest)"
                onActionClick='comp.onActionClick(contest)'>
@@ -9,7 +9,7 @@
 <div  id="infoContestModal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div id="infoContent" class="modal-content">
-        <contest-info showContest="comp.selectedContest"></contest-info>
+        <contest-info contestData="comp.selectedContest"></contest-info>
       </div>
     </div>
 </div>

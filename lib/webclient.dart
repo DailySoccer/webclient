@@ -13,6 +13,8 @@ import 'package:webclient/services/server_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 
+import 'package:webclient/formatters/limit_to_dot.dart';
+
 import 'package:webclient/controllers/login_ctrl.dart';
 import 'package:webclient/controllers/signup_ctrl.dart';
 import 'package:webclient/controllers/enter_contest_ctrl.dart';
@@ -61,6 +63,8 @@ class WebClientApp extends Module {
     bind(MyContestsService);
     bind(FlashMessagesService);
     bind(ScreenDetectorService);
+    
+    bind(LimitToDot);
 
     bind(FlashMessagesCtrl);
     bind(LoginCtrl);

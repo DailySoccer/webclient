@@ -1,8 +1,10 @@
 <div id="usersListRoot" ng-cloak>
+  
   <div class="users-header">
     <h1>USUARIOS EN ESTE CONCURSO</h1>
     <h2>Selecciona un usuario de esta lista para ver y comparar su alineacion con la tuya:</h2>
   </div>
+  
   <div class="users-table-header">
     <div class="pos">POS</div>
     <div class="name">JUGADOR</div>
@@ -10,6 +12,7 @@
     <div class="score">PUNTOS</div>
     <div class="prize">PREMIOS</div>
   </div>
+  
   <div class="users-table-rows">
     <div class="user-row" ng-repeat="user in comp.users" ng-click="comp.onUserClick(user)">
       <div class="pos">{{$index + 1}}</div>
@@ -19,4 +22,5 @@
       <div class="prize">{{comp.getPrize($index)}}</div>
     </div>
   </div>
+  
 </div>

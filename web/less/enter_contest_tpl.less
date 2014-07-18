@@ -1,0 +1,79 @@
+//enter-contest mobile
+.enter-contest-tabs {
+	@tabheight: 50px;
+	padding: 0;
+	margin-bottom: 14px;
+	height: @tabheight;
+	> li {
+		width: 50%;
+		float: left;
+		display: inline;
+		background-color: @blueLight;
+		.make-border(4px, none none solid none, @blueDark);
+		a {
+			cursor: pointer;
+			line-height: @tabheight;
+			text-align: center;
+			display: block;
+			text-decoration: none;
+			color: @white;
+		}
+	}
+	.active {
+		background-color: @blueDark;
+	}
+}
+.enter-contest-actions {
+	@media (max-width: @screen-xs-max) {
+		.container();
+		padding: 0 10px 15px;
+		background-color: @white;
+		text-align: center;
+		margin-top: 10px;
+
+		.btn {
+			.btn();
+			padding: 6px 35px;
+			margin-right: 2%;
+		}
+
+		.btn-cancel-player-selection {
+			.btn();
+			.btn-cancel();
+			.btn-block();
+			margin-top: 10px;
+		}
+
+		.btn-clean-lienup-list {
+			.btn();
+			.btn-cancel();
+		}
+
+		.btn-confirm-lienup-list {
+			.btn();
+			.btn-primary();
+		}
+
+		p {
+			.opensans_bold(9pt, @greyDark);
+			line-height: 11pt;
+			margin: 10px 2.7%;
+		}
+
+		#enter-contest-total-salary {
+			background-color: @orange;
+			text-align: center;
+			border-radius: 3px;
+			padding: 2px 0;
+
+			#total-salary {
+				.exo_light(24px, @white);
+				text-align: center;
+			}
+		}
+	}
+	.hidden-sm();
+	.hidden-md();
+	.hidden-lg();
+
+}

@@ -13,6 +13,7 @@ import 'package:webclient/services/screen_detector_service.dart';
     publishAs: 'mainMenu',
     useShadowDom: false
 )
+
 class MainMenuComp {
   bool   isLoggedIn = false;
   String fullName = "";

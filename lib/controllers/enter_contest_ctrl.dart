@@ -1,5 +1,7 @@
 library enter_contest_ctrl;
 
+
+import 'dart:html';
 import 'package:angular/angular.dart';
 import 'dart:async';
 import 'package:webclient/services/screen_detector_service.dart';
@@ -17,35 +19,55 @@ import 'package:webclient/services/flash_messages_service.dart';
     publishAs: 'ctrl'
 )
 class EnterContestCtrl {
+  
+  int availableSalary = 0;
 
   ScreenDetectorService scrDet;
 
   Contest contest;
 
   bool isSelectingSoccerPlayer = false;
+  FieldPos lastUsedPosFilter;
+  String lastUsedNameFilter = "";
+  String oldMatchValue = "-1";
+  String currentContestId = "";
 
   final List<dynamic> lineupSlots = new List();
   List<dynamic> availableSoccerPlayers = new List();
   
   EnterContestCtrl(RouteProvider routeProvider, this._router, this.scrDet, this._profileService, this._contestService, this._flashMessage) {
-    
+
     // Creamos los slots iniciales, todos vacios
     FieldPos.LINEUP.forEach((pos) {
       lineupSlots.add(null);
     });
     
-    setup(routeProvider.route.parameters['contestId']);
-  }
-
-  void setup(String contestId) {
-    contest = _contestService.getContestById(contestId);
+    currentContestId = routeProvider.route.parameters['contestId'];
+    
+    contest = _contestService.getContestById(currentContestId);
 
     // Al principio, todos disponibles
     initAllSoccerPlayers();
     availableSoccerPlayers = new List<dynamic>.from(_allSoccerPlayers);
   }
+  
+  void tabChange(String tab) {
+    List<dynamic> allContentTab = document.querySelectorAll(".tab-pane");
+    allContentTab.forEach((element) => element.classes.remove('active'));
+    
+    Element contentTab = document.querySelector("#" + tab);
+    contentTab.classes.add("active");
+  }
 
+  void cleanTheFilters() {
+    InputElement inputText = document.querySelector("#name-player-filter");
+    inputText.value = "";
+    lastUsedNameFilter = "";
+  }
+  
   void onSlotSelected(int slotIndex) {
+    
+    cleanTheFilters();
 
     _selectedLineupPosIndex = slotIndex;
 
@@ -76,10 +98,42 @@ class EnterContestCtrl {
     }
   }
 
-  void setFieldPosFilter(FieldPos filter) {
-    if (filter != null) availableSoccerPlayers = _allSoccerPlayers.where((soccerPlayer) => soccerPlayer["fieldPos"] == filter && !lineupSlots.contains(soccerPlayer)).toList(); else availableSoccerPlayers = _allSoccerPlayers.where((soccerPlayer) => !lineupSlots.contains(soccerPlayer)).toList();
+  void setNameFilter(String filter) {
+    if(lastUsedNameFilter != filter)
+      lastUsedNameFilter = filter;
+    
+    setFieldPosFilter(lastUsedPosFilter);
+    if(oldMatchValue != "-1") 
+          setMatchFilter(oldMatchValue);
+    availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => soccerPlayer["fullName"].toUpperCase().contains(filter.toUpperCase())).toList(); 
   }
 
+  void setFieldPosFilter(FieldPos filter) {
+    if(lastUsedPosFilter != filter)
+      lastUsedPosFilter = filter;
+    
+    if (filter != null) 
+      availableSoccerPlayers = _allSoccerPlayers.where((soccerPlayer) => soccerPlayer["fieldPos"] == filter && !lineupSlots.contains(soccerPlayer)).toList(); 
+    else 
+      availableSoccerPlayers = _allSoccerPlayers.where((soccerPlayer) => !lineupSlots.contains(soccerPlayer)).toList();
+  }
+  
+  void setMatchFilter(String matchId) {
+    
+    if(oldMatchValue != matchId) {
+      oldMatchValue = matchId;
+      setNameFilter(lastUsedNameFilter);
+    }
+    
+      if (matchId != "-1") {
+        setFieldPosFilter(lastUsedPosFilter);       
+        availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => soccerPlayer["matchId"].toString() == matchId).toList();
+      } else {
+        setFieldPosFilter(lastUsedPosFilter);
+      }
+     
+  }
+  
   // Añade un futbolista a nuestro lineup si hay algun slot libre de su misma fieldPos. Retorna false si no pudo añadir
   bool tryToAddSoccerPlayer(var soccerPlayer) {
 
@@ -102,6 +156,7 @@ class EnterContestCtrl {
       "id": soccerPlayer.templateSoccerPlayerId,
       "fieldPos": new FieldPos(soccerPlayer.fieldPos),
       "fullName": soccerPlayer.name,
+      "matchId" : matchEvent.matchEventId,
       "matchEventName": matchEvent.soccerTeamA.shortName + " - " + matchEvent.soccerTeamB.shortName,
       "remainingMatchTime": "70 MIN",
       "fantasyPoints": soccerPlayer.fantasyPoints,
@@ -162,6 +217,26 @@ class EnterContestCtrl {
       }
     }
     return true;
+  }
+  
+  void deleteFantasyTeam() {
+    int i = 0;
+    for ( ; i < lineupSlots.length; ++i) {
+      lineupSlots[i] = null;
+    }
+  }
+  
+  bool isPlayerSelected() {
+    for (dynamic player in lineupSlots) {
+      if (player != null) {
+        return false;
+      }
+    }
+    return true;
+  }
+  
+  void cancelPlayerSelection() {
+    isSelectingSoccerPlayer = false;
   }
 
   var _allSoccerPlayers = new List();

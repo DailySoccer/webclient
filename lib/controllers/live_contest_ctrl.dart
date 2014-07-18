@@ -29,10 +29,12 @@ class LiveContestCtrl implements DetachAware {
 
     var updatedDate;
 
-    Contest getContest() => _myContestsService.lastContest;
-    List<ContestEntry> getContestEntries() => (getContest() != null) ? getContest().contestEntries : new List<ContestEntry>();
-
+    Contest get contest => _myContestsService.lastContest;
+    List<ContestEntry> get contestEntries => (contest != null) ? contest.contestEntries : new List<ContestEntry>();
+    
+    
     LiveContestCtrl(RouteProvider routeProvider, this._scope, this.scrDet, this._myContestsService, this._profileService, this._flashMessage) {
+      
       _contestId = routeProvider.route.parameters['contestId'];
       initialized = false;
 
@@ -81,7 +83,7 @@ class LiveContestCtrl implements DetachAware {
     }
 
     ContestEntry getContestEntryWithUser(String userId) {
-      return getContestEntries().firstWhere( (entry) => entry.user.userId == userId, orElse: () => null );
+      return contestEntries.firstWhere( (entry) => entry.user.userId == userId, orElse: () => null );
     }
 
     SoccerPlayer getSoccerPlayer(String soccerPlayerId) {
@@ -103,7 +105,7 @@ class LiveContestCtrl implements DetachAware {
     }
 
     int getUserPosition(ContestEntry contestEntry) {
-      List<ContestEntry> contestsEntries = getContestEntries();
+      List<ContestEntry> contestsEntries = contestEntries;
       for (int i=0; i<contestsEntries.length; i++) {
         if (contestsEntries[i].contestEntryId == contestEntry.contestEntryId)
           return i+1;

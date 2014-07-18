@@ -7,10 +7,12 @@ import 'package:webclient/models/contest_entry.dart';
 import 'package:webclient/models/soccer_player.dart';
 import 'package:webclient/controllers/live_contest_ctrl.dart';
 
-@Component(selector: 'fantasy-team',
+@Component(
+           selector: 'fantasy-team',
            templateUrl: 'packages/webclient/components/fantasy_team_comp.html',
            publishAs: 'fantasyTeam',
-           useShadowDom: false)
+           useShadowDom: false
+)
 class FantasyTeamComp implements ShadowRootAware {
 
     var slots = new List();
@@ -68,7 +70,10 @@ class FantasyTeamComp implements ShadowRootAware {
         var header = _rootElement.querySelector(".fantasy-team-header");
 
         if (header != null) {
-            if (_isOpponent) header.classes.add("opponent-team-gradient"); else header.classes.remove("opponent-team-gradient");
+            if (_isOpponent) 
+              header.classes.add("opponent-team-gradient");
+            else 
+              header.classes.remove("opponent-team-gradient");
         }
     }
 

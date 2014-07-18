@@ -1,6 +1,6 @@
 <section live-contest-ctrl ng-show="ctrl.initialized">
 
-<contest-header></contest-header>
+<contest-header contestData="ctrl.contest"></contest-header>
 <div id="liveContestRoot" ng-switch="ctrl.scrDet.isXsScreen" ng-cloak>
   <div ng-switch-when="true">
     <ul class="nav nav-tabs" id="liveContestTab" >

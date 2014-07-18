@@ -5,6 +5,7 @@ import 'dart:async';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/my_contests_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
+import 'package:webclient/models/contest.dart';
 
 
 
@@ -16,10 +17,30 @@ class MyContestsComp {
 
   MyContestsService myContestsService;
 
-  MyContestsComp(this.myContestsService, this._flashMessage) {
+  MyContestsComp(this.myContestsService, this._router, this._flashMessage) {
     myContestsService.refreshMyContests()
       .catchError((error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW));
   }
 
+  void onWaitingRowClick(Contest contest) {
+  }
+
+  void onWaitingActionClick(Contest contest) {
+  }
+
+  void onLiveRowClick(Contest contest) {
+  }
+
+  void onLiveActionClick(Contest contest) {
+    _router.go('live_contest', {"contestId" : contest.contestId});
+  }
+
+  void onHistoryRowClick(Contest contest) {
+  }
+
+  void onHistoryActionClick(Contest contest) {
+  }
+
+  Router _router;
   FlashMessagesService _flashMessage;
 }

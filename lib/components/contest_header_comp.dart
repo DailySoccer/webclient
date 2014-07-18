@@ -1,9 +1,9 @@
 library contest_header_comp;
 
 import 'package:angular/angular.dart';
+import 'package:intl/intl.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import "package:webclient/models/contest.dart";
-import 'package:webclient/controllers/live_contest_ctrl.dart';
 
 @Component(
     selector: 'contest-header', 
@@ -14,13 +14,13 @@ import 'package:webclient/controllers/live_contest_ctrl.dart';
 
 class ContestHeaderComp {
   var contestHeaderInfo = {
-    'description': '',
-    'startTime':'Empezó a las 20:45',
-    'contestType': 'Liga Multijugador',
-    'contestantCount': '',    
-    'entryPrice': '',
-    'prize': '€65.000',
-    'prizeType':'TODO PARA EL GANADOR'
+    'description': '<description>',
+    'startTime':'<startTime>',
+    'contestType': '<contestType>',
+    'contestantCount': '<contestantCount>',    
+    'entryPrice': '<entryPrice>',
+    'prize': '<prize>',
+    'prizeType':'<prizeType>'
   };
   
   Contest contestInfo; 
@@ -28,7 +28,9 @@ class ContestHeaderComp {
   @NgOneWay("contestData")
   void set contestData(Contest value) {
     contestInfo = value;
+    
     if (value != null) {
+      print('CABECERA: he recibido el concurso: ' + value.contestId);
       _refreshHeader();
     }
   }
@@ -41,8 +43,10 @@ class ContestHeaderComp {
   }
 
   void _refreshHeader() { 
+    var date = new DateFormat('dd-MM-yy HH:mm');
     contestHeaderInfo["description"] = "€${contestInfo.templateContest.salaryCap} ${contestInfo.name}";
     contestHeaderInfo["entryPrice"] = "€${contestInfo.templateContest.entryFee}";
+    contestHeaderInfo["startTime"] = "${date.format(contestInfo.templateContest.startDate)}";
     
     int numJugadores = contestInfo.contestEntries.length;
     contestHeaderInfo["contestantCount"] = "$numJugadores" + ((numJugadores == 1) ? " jugador" : " jugadores");

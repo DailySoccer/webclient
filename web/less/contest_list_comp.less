@@ -1,7 +1,11 @@
-.contests-list {
-	
-	.container();
+#activeContestListRoot {
 	background-color: @tramaBlue;
+	@media (min-width: @screen-md-min) {
+		.container();
+	}
+	@media (max-width: @screen-sm-max) {
+		.container-fluid();
+	}
 
 	@media (min-width: @screen-sm-min) {
 		background-color: @white;

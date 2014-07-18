@@ -66,12 +66,17 @@ body { overflow-y: scroll; }
 
 // Contenedor interior que envuelve al contenido. Fijamos el width con el.
 .main-content-container {
-	.container();
-
+	
 	@media (max-width: @screen-xs-max) {
+		.container();
 		padding-left: 0px;
 		padding-right: 0px;
 	}
+	@media (min-width: @screen-sm-min) {
+		.container-fluid(); /* */
+	}
+	padding-left: 0px;
+	padding-right: 0px;
 }
 
 .price-icon {

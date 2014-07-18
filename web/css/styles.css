@@ -5617,10 +5617,10 @@ button.close {
 #infoContent .modal-content .list-wrapper .contestant-list .contestant-element:after,
 #headerContestWidget:before,
 #headerContestWidget:after,
-#activeContestListRoot:before,
-#activeContestListRoot:after,
-#activeContestListRoot .active-contest-row:before,
-#activeContestListRoot .active-contest-row:after,
+.contests-list:before,
+.contests-list:after,
+.contests-list .contest-row:before,
+.contests-list .contest-row:after,
 .landing-wrapper .screen-content:before,
 .landing-wrapper .screen-content:after,
 .landing-wrapper .screen-content-alt:before,
@@ -5659,8 +5659,8 @@ button.close {
 #infoContent .modal-content .info-options:after,
 #infoContent .modal-content .list-wrapper .contestant-list .contestant-element:after,
 #headerContestWidget:after,
-#activeContestListRoot:after,
-#activeContestListRoot .active-contest-row:after,
+.contests-list:after,
+.contests-list .contest-row:after,
 .landing-wrapper .screen-content:after,
 .landing-wrapper .screen-content-alt:after,
 .fantasy-team-list .fantasy-team-slot:after,
@@ -6972,47 +6972,47 @@ button#infoContent .modal-info-head button.close {
     color: #214a5f;
   }
 }
-#activeContestListRoot {
+.contests-list {
   margin-right: auto;
   margin-left: auto;
   padding-left: 15px;
   padding-right: 15px;
 }
 @media (min-width: 768px) {
-  #activeContestListRoot {
+  .contests-list {
     width: 750px;
   }
 }
 @media (min-width: 992px) {
-  #activeContestListRoot {
+  .contests-list {
     width: 970px;
   }
 }
 @media (min-width: 1200px) {
-  #activeContestListRoot {
+  .contests-list {
     width: 970px;
   }
 }
-#activeContestListRoot > .navbar-header,
-#activeContestListRoot > .navbar-collapse {
+.contests-list > .navbar-header,
+.contests-list > .navbar-collapse {
   margin-right: -15px;
   margin-left: -15px;
 }
 @media (min-width: 768px) {
-  #activeContestListRoot > .navbar-header,
-  #activeContestListRoot > .navbar-collapse {
+  .contests-list > .navbar-header,
+  .contests-list > .navbar-collapse {
     margin-right: 0;
     margin-left: 0;
   }
 }
 @media (min-width: 768px) {
-  #activeContestListRoot {
+  .contests-list {
     background-color: #ffffff;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
   }
 }
-#activeContestListRoot .active-contest-row {
+.contests-list .contest-row {
   margin-left: -15px;
   margin-right: -15px;
   cursor: pointer;
@@ -7021,18 +7021,18 @@ button#infoContent .modal-info-head button.close {
   border-width: 1px 0px 0px 0px;
   border-style: solid none none none;
 }
-#activeContestListRoot .active-contest-row .title-text {
+.contests-list .contest-row .title-text {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 8pt;
   color: #777777;
   display: block;
 }
-#activeContestListRoot .active-contest-row .content-text {
+.contests-list .contest-row .content-text {
   color: #214a5f;
 }
 @media (min-width: 992px) {
-  #activeContestListRoot .active-contest-row .content-text {
+  .contests-list .contest-row .content-text {
     font-family: 'Exo', sans-serif;
     font-weight: 600;
     font-size: 16pt;
@@ -7040,162 +7040,162 @@ button#infoContent .modal-info-head button.close {
   }
 }
 @media (max-width: 991px) {
-  #activeContestListRoot .active-contest-row .content-text {
+  .contests-list .contest-row .content-text {
     font-family: 'Exo', sans-serif;
     font-weight: 600;
     font-size: 14pt;
     color: default;
   }
 }
-#activeContestListRoot .active-contest-row .column-name {
+.contests-list .contest-row .column-name {
   position: relative;
   min-height: 1px;
   padding-left: 2.5px;
   padding-right: 2.5px;
 }
 @media (min-width: 768px) {
-  #activeContestListRoot .active-contest-row .column-name {
+  .contests-list .contest-row .column-name {
     float: left;
     width: 41.66666667%;
   }
 }
 @media (max-width: 767px) {
-  #activeContestListRoot .active-contest-row .column-name .inner-icon {
+  .contests-list .contest-row .column-name .inner-icon {
     display: none !important;
   }
 }
-#activeContestListRoot .active-contest-row .column-begins {
+.contests-list .contest-row .column-begins {
   position: relative;
   min-height: 1px;
   padding-left: 2.5px;
   padding-right: 2.5px;
 }
 @media (min-width: 768px) {
-  #activeContestListRoot .active-contest-row .column-begins {
+  .contests-list .contest-row .column-begins {
     float: left;
     width: 16.66666667%;
   }
 }
 @media (min-width: 768px) {
-  #activeContestListRoot .active-contest-row .column-begins {
+  .contests-list .contest-row .column-begins {
     left: 33.33333333%;
   }
 }
 @media (max-width: 767px) {
-  #activeContestListRoot .active-contest-row .column-begins .title-text {
+  .contests-list .contest-row .column-begins .title-text {
     display: none !important;
   }
 }
 @media (max-width: 767px) {
-  #activeContestListRoot .active-contest-row .column-begins {
+  .contests-list .contest-row .column-begins {
     padding-bottom: 5px;
   }
-  #activeContestListRoot .active-contest-row .column-begins .content-text {
+  .contests-list .contest-row .column-begins .content-text {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     font-size: 8pt;
     color: #777777;
   }
-  #activeContestListRoot .active-contest-row .column-begins:before,
-  #activeContestListRoot .active-contest-row .column-begins:after {
+  .contests-list .contest-row .column-begins:before,
+  .contests-list .contest-row .column-begins:after {
     content: " ";
     display: table;
   }
-  #activeContestListRoot .active-contest-row .column-begins:after {
+  .contests-list .contest-row .column-begins:after {
     clear: both;
   }
-  #activeContestListRoot .active-contest-row .column-begins:before,
-  #activeContestListRoot .active-contest-row .column-begins:after {
+  .contests-list .contest-row .column-begins:before,
+  .contests-list .contest-row .column-begins:after {
     content: " ";
     display: table;
   }
-  #activeContestListRoot .active-contest-row .column-begins:after {
+  .contests-list .contest-row .column-begins:after {
     clear: both;
   }
 }
-#activeContestListRoot .active-contest-row .column-entry-fee {
+.contests-list .contest-row .column-entry-fee {
   position: relative;
   min-height: 1px;
   padding-left: 2.5px;
   padding-right: 2.5px;
 }
 @media (min-width: 768px) {
-  #activeContestListRoot .active-contest-row .column-entry-fee {
+  .contests-list .contest-row .column-entry-fee {
     float: left;
     width: 16.66666667%;
   }
 }
 @media (min-width: 768px) {
-  #activeContestListRoot .active-contest-row .column-entry-fee {
+  .contests-list .contest-row .column-entry-fee {
     right: 16.66666667%;
   }
 }
 @media (max-width: 767px) {
-  #activeContestListRoot .active-contest-row .column-entry-fee .title-text {
+  .contests-list .contest-row .column-entry-fee .title-text {
     display: none !important;
   }
 }
 @media (max-width: 767px) {
-  #activeContestListRoot .active-contest-row .column-entry-fee {
+  .contests-list .contest-row .column-entry-fee {
     display: inline-block;
     padding: 0px;
     margin: 0px 20px 0px 0px;
   }
-  #activeContestListRoot .active-contest-row .column-entry-fee .inner-icon {
+  .contests-list .contest-row .column-entry-fee .inner-icon {
     display: inline;
   }
-  #activeContestListRoot .active-contest-row .column-entry-fee .inner-content {
+  .contests-list .contest-row .column-entry-fee .inner-content {
     display: inline-block;
   }
 }
-#activeContestListRoot .active-contest-row .column-prize {
+.contests-list .contest-row .column-prize {
   position: relative;
   min-height: 1px;
   padding-left: 2.5px;
   padding-right: 2.5px;
 }
 @media (min-width: 768px) {
-  #activeContestListRoot .active-contest-row .column-prize {
+  .contests-list .contest-row .column-prize {
     float: left;
     width: 16.66666667%;
   }
 }
 @media (min-width: 768px) {
-  #activeContestListRoot .active-contest-row .column-prize {
+  .contests-list .contest-row .column-prize {
     right: 16.66666667%;
   }
 }
 @media (max-width: 767px) {
-  #activeContestListRoot .active-contest-row .column-prize .title-text {
+  .contests-list .contest-row .column-prize .title-text {
     display: none !important;
   }
 }
 @media (max-width: 767px) {
-  #activeContestListRoot .active-contest-row .column-prize {
+  .contests-list .contest-row .column-prize {
     display: inline-block;
     padding: 0px;
     margin: 0px;
   }
-  #activeContestListRoot .active-contest-row .column-prize .inner-icon {
+  .contests-list .contest-row .column-prize .inner-icon {
     display: inline;
   }
-  #activeContestListRoot .active-contest-row .column-prize .inner-content {
+  .contests-list .contest-row .column-prize .inner-content {
     display: inline-block;
   }
 }
-#activeContestListRoot .active-contest-row .column-play {
+.contests-list .contest-row .column-action {
   position: relative;
   min-height: 1px;
   padding-left: 2.5px;
   padding-right: 2.5px;
 }
 @media (min-width: 768px) {
-  #activeContestListRoot .active-contest-row .column-play {
+  .contests-list .contest-row .column-action {
     float: left;
     width: 8.33333333%;
   }
 }
-#activeContestListRoot .active-contest-row .column-play .btn {
+.contests-list .contest-row .column-action .btn {
   color: #ffffff;
   background-color: #59add5;
   border-color: #cccccc;
@@ -7204,59 +7204,59 @@ button#infoContent .modal-info-head button.close {
   border-color: #555757;
   margin-top: 8px;
 }
-#activeContestListRoot .active-contest-row .column-play .btn:hover,
-#activeContestListRoot .active-contest-row .column-play .btn:focus,
-#activeContestListRoot .active-contest-row .column-play .btn:active,
-#activeContestListRoot .active-contest-row .column-play .btn.active,
-.open .dropdown-toggle#activeContestListRoot .active-contest-row .column-play .btn {
+.contests-list .contest-row .column-action .btn:hover,
+.contests-list .contest-row .column-action .btn:focus,
+.contests-list .contest-row .column-action .btn:active,
+.contests-list .contest-row .column-action .btn.active,
+.open .dropdown-toggle.contests-list .contest-row .column-action .btn {
   color: #ffffff;
   background-color: #389dcd;
   border-color: #adadad;
 }
-#activeContestListRoot .active-contest-row .column-play .btn:active,
-#activeContestListRoot .active-contest-row .column-play .btn.active,
-.open .dropdown-toggle#activeContestListRoot .active-contest-row .column-play .btn {
+.contests-list .contest-row .column-action .btn:active,
+.contests-list .contest-row .column-action .btn.active,
+.open .dropdown-toggle.contests-list .contest-row .column-action .btn {
   background-image: none;
 }
-#activeContestListRoot .active-contest-row .column-play .btn.disabled,
-#activeContestListRoot .active-contest-row .column-play .btn[disabled],
-fieldset[disabled] #activeContestListRoot .active-contest-row .column-play .btn,
-#activeContestListRoot .active-contest-row .column-play .btn.disabled:hover,
-#activeContestListRoot .active-contest-row .column-play .btn[disabled]:hover,
-fieldset[disabled] #activeContestListRoot .active-contest-row .column-play .btn:hover,
-#activeContestListRoot .active-contest-row .column-play .btn.disabled:focus,
-#activeContestListRoot .active-contest-row .column-play .btn[disabled]:focus,
-fieldset[disabled] #activeContestListRoot .active-contest-row .column-play .btn:focus,
-#activeContestListRoot .active-contest-row .column-play .btn.disabled:active,
-#activeContestListRoot .active-contest-row .column-play .btn[disabled]:active,
-fieldset[disabled] #activeContestListRoot .active-contest-row .column-play .btn:active,
-#activeContestListRoot .active-contest-row .column-play .btn.disabled.active,
-#activeContestListRoot .active-contest-row .column-play .btn[disabled].active,
-fieldset[disabled] #activeContestListRoot .active-contest-row .column-play .btn.active {
+.contests-list .contest-row .column-action .btn.disabled,
+.contests-list .contest-row .column-action .btn[disabled],
+fieldset[disabled] .contests-list .contest-row .column-action .btn,
+.contests-list .contest-row .column-action .btn.disabled:hover,
+.contests-list .contest-row .column-action .btn[disabled]:hover,
+fieldset[disabled] .contests-list .contest-row .column-action .btn:hover,
+.contests-list .contest-row .column-action .btn.disabled:focus,
+.contests-list .contest-row .column-action .btn[disabled]:focus,
+fieldset[disabled] .contests-list .contest-row .column-action .btn:focus,
+.contests-list .contest-row .column-action .btn.disabled:active,
+.contests-list .contest-row .column-action .btn[disabled]:active,
+fieldset[disabled] .contests-list .contest-row .column-action .btn:active,
+.contests-list .contest-row .column-action .btn.disabled.active,
+.contests-list .contest-row .column-action .btn[disabled].active,
+fieldset[disabled] .contests-list .contest-row .column-action .btn.active {
   background-color: #59add5;
   border-color: #cccccc;
 }
-#activeContestListRoot .active-contest-row .column-play .btn .badge {
+.contests-list .contest-row .column-action .btn .badge {
   color: #59add5;
   background-color: #ffffff;
 }
 @media (min-width: 768px) {
-  #activeContestListRoot .active-contest-row {
+  .contests-list .contest-row {
     padding: 15px 0px 15px 0px;
     margin-left: 0px;
     margin-right: 0px;
   }
-  #activeContestListRoot .active-contest-row .inner-icon {
+  .contests-list .contest-row .inner-icon {
     float: left;
     padding: 0px 5px 0px 0px;
     margin-top: 17px;
   }
 }
 @media (max-width: 767px) {
-  #activeContestListRoot .active-contest-row {
+  .contests-list .contest-row {
     padding: 10px 0px 10px 0px;
   }
-  #activeContestListRoot .active-contest-row .inner-icon {
+  .contests-list .contest-row .inner-icon {
     float: left;
     padding: 0px 5px 0px 0px;
   }

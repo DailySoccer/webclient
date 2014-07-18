@@ -19,7 +19,7 @@ void webClientRouteInitializer(Router router, RouteViewFactory views) {
     )
     ,'lobby': ngRoute(
         path: '/lobby',
-        view: 'view/lobby.tpl.html'
+        viewHtml: '<lobby></lobby>'
     )
     ,'my_contests': ngRoute(
         path: '/my_contests',

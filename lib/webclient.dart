@@ -15,7 +15,6 @@ import 'package:webclient/services/screen_detector_service.dart';
 
 import 'package:webclient/controllers/login_ctrl.dart';
 import 'package:webclient/controllers/signup_ctrl.dart';
-import 'package:webclient/controllers/lobby_ctrl.dart';
 import 'package:webclient/controllers/enter_contest_ctrl.dart';
 import 'package:webclient/controllers/live_contest_ctrl.dart';
 import 'package:webclient/controllers/flash_messages_ctrl.dart';
@@ -24,7 +23,7 @@ import 'package:webclient/components/landing_page_comp.dart';
 import 'package:webclient/components/main_menu_comp.dart';
 import 'package:webclient/components/contest_info_comp.dart';
 import 'package:webclient/components/contest_header_comp.dart';
-import 'package:webclient/components/active_contest_list_comp.dart';
+import 'package:webclient/components/lobby_comp.dart';
 import 'package:webclient/components/fantasy_team_comp.dart';
 import 'package:webclient/components/live_contest_comp.dart';
 import 'package:webclient/components/users_list_comp.dart';
@@ -66,7 +65,6 @@ class WebClientApp extends Module {
     bind(FlashMessagesCtrl);
     bind(LoginCtrl);
     bind(SignupCtrl);
-    bind(LobbyCtrl);
     bind(EnterContestCtrl);
     bind(LiveContestCtrl);
 
@@ -82,7 +80,7 @@ class WebClientApp extends Module {
 
     bind(MyContestsComp);
     bind(ContestsListComp);
-    bind(ActiveContestListComp);
+    bind(LobbyComp);
 
     bind(FormAutofillDecorator);
 

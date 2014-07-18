@@ -1,6 +1,6 @@
-<div id="contestsListRoot">
+<div id="contestsListRoot" class="contests-list">
   <div class="contest-row" ng-repeat="contest in comp.contestsList">
-    <div class="column-name">
+    <div class="column-name" ng-click="comp.onRow(contest)">
         <div class="inner-icon">
             <span class="price-icon"></span>
         </div>
@@ -10,12 +10,12 @@
         </div>
     </div>
 
-    <div class="column-begins">
+    <div class="column-begins" ng-click="comp.onRow(contest)">
         <span class="title-text">COMIENZA</span>
         <span class="content-text">DOM 20:45</span>
     </div>
 
-    <div class="column-entry-fee">
+    <div class="column-entry-fee" ng-click="comp.onRow(contest)">
         <div class="inner-icon">
             <span class="price-icon"></span>
         </div>
@@ -25,7 +25,7 @@
         </div>
     </div>
 
-    <div class="column-prize">
+    <div class="column-prize" ng-click="comp.onRow(contest)">
         <div class="inner-icon">
             <span class="prize-icon"></span>
         </div>
@@ -36,7 +36,7 @@
     </div>
 
     <div class="column-action">
-        <button type="button" class="btn" ng-click="comp.onContestAction(contest)" href="#">Entrar</button>
+        <button type="button" class="btn" ng-click="comp.onAction(contest)" href="#">{{comp.actionButtonTitle}}</button>
     </div>
     
   </div>

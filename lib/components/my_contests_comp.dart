@@ -3,7 +3,6 @@ library my_contests_comp;
 import 'dart:html';
 import 'dart:async';
 import 'package:angular/angular.dart';
-import 'package:webclient/models/contest.dart';
 import 'package:webclient/services/my_contests_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 

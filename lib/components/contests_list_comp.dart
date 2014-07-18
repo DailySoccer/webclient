@@ -1,12 +1,7 @@
 library contests_list_comp;
 
-import 'dart:html';
-import 'dart:async';
 import 'package:angular/angular.dart';
 import 'package:webclient/models/contest.dart';
-import 'package:webclient/services/my_contests_service.dart';
-import 'package:webclient/services/flash_messages_service.dart';
-
 
 @Component(selector: 'contests-list',
            templateUrl: 'packages/webclient/components/contests_list_comp.html',
@@ -17,5 +12,24 @@ class ContestsListComp {
   @NgOneWay("contestsList")
   List<Contest> contestsList;
 
+  @NgOneWay("actionButtonTitle")
+  String actionButtonTitle = "Ver";
+
+  @NgCallback("onRowClick")
+  Function onRowClick;
+
+  @NgCallback("onActionClick")
+  Function onActionClick;
+
   ContestsListComp();
+
+  void onRow(Contest contest) {
+    if (onRowClick != null)
+      onRowClick({"contest":contest});
+  }
+
+  void onAction(Contest contest) {
+    if (onActionClick != null)
+      onActionClick({"contest":contest});
+  }
 }

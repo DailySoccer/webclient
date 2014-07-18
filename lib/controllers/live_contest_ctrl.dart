@@ -68,20 +68,9 @@ class LiveContestCtrl implements DetachAware {
     return -1;
   }
 
-  String getUserName(ContestEntry contestEntry) {
-    return contestEntry.user.fullName;
-  }
-
-  String getUserNickname(ContestEntry contestEntry) {
-    return contestEntry.user.nickName;
-  }
-
   String getUserRemainingTime(ContestEntry contestEntry) {
     return "1";
   }
-
-  int getSoccerPlayerScore(String soccerPlayerId) => _myContestsService.getSoccerPlayerScore(soccerPlayerId);
-  int getUserScore(ContestEntry contestEntry) => _myContestsService.getUserScore(contestEntry);
 
   String getPrize(int index) {
     String prize = "-";

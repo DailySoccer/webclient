@@ -44,8 +44,8 @@ class FantasyTeamComp implements ShadowRootAware {
     Function onClose;
 
     String get userPosition => (_contestEntry != null) ? _liveContestCtrl.getUserPosition(_contestEntry).toString() : "-";
-    String get userNickname => (_contestEntry != null) ? _liveContestCtrl.getUserNickname(_contestEntry) : "";
-    String get userScore => (_contestEntry != null) ? _liveContestCtrl.getUserScore(_contestEntry).toString() : "0";
+    String get userNickname => (_contestEntry != null) ? _contestEntry.user.nickName : "";
+    String get userScore => (_contestEntry != null) ? _contestEntry.currentLivePoints.toString() : "0";
 
     FantasyTeamComp(this._scope, this._liveContestCtrl);
 
@@ -106,7 +106,7 @@ class FantasyTeamComp implements ShadowRootAware {
             "fullName": soccerPlayer.name,
             "matchEventName": matchEventName,
             "remainingMatchTime": "70 MIN",
-            "score": _liveContestCtrl.getSoccerPlayerScore(soccerPlayer.templateSoccerPlayerId)
+            "score": soccerPlayer.currentLivePoints
         });
         }
       }

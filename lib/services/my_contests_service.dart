@@ -8,6 +8,7 @@ import "package:webclient/models/user.dart";
 import "package:webclient/models/contest.dart";
 import "package:webclient/models/template_contest.dart";
 import "package:webclient/models/match_event.dart";
+import "package:webclient/models/live_match_event.dart";
 import "package:webclient/models/soccer_player.dart";
 import 'package:webclient/models/contest_entry.dart';
 
@@ -22,9 +23,6 @@ class MyContestsService {
 
   // El ultimo concurso que hemos cargado a traves de getContest
   Contest lastContest;
-
-  // El refresco de informacion de partidos Live que hemos traido desde el servidor
-  List<MatchEvent> liveMatchEvents = new List<MatchEvent>();
 
   Contest getContestById(String id) {
     return waitingContests.firstWhere((contest) => contest.contestId == id,
@@ -88,37 +86,15 @@ class MyContestsService {
 
     _server.getLiveMatchEventsFromTemplateContest(templateContestId)
       .then((jsonObject) {
-        ContestReferences contestReferences = new ContestReferences();
-        liveMatchEvents = jsonObject.content.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject, contestReferences)).toList();
+        jsonObject.content.map((jsonObject) => new LiveMatchEvent.fromJsonObject(jsonObject))
+          .toList()
+          .forEach( (liveMatchEvent) =>
+              liveMatchEvent.updateFantasyPoints(lastContest.templateContest.templateMatchEvents.firstWhere((match_event) => match_event.matchEventId == liveMatchEvent.matchEventId)) );
 
-        // No asociamos el contest y el templateContest a los partidos live
-        // new ContestReferences.fromContest(contest, templateContest, liveMatchEvents);
         completer.complete(jsonObject);
       });
 
     return completer.future;
-  }
-
-  int getSoccerPlayerScore(String soccerPlayerId) {
-    SoccerPlayer soccerPlayer = null;
-
-    // Buscar en la lista de partidos del contest
-    for (MatchEvent match in liveMatchEvents) {
-      soccerPlayer = match.soccerTeamA.findSoccerPlayer(soccerPlayerId);
-      if (soccerPlayer == null) {
-        soccerPlayer = match.soccerTeamB.findSoccerPlayer(soccerPlayerId);
-      }
-
-      // Lo hemos encontrado?
-      if (soccerPlayer != null)
-        break;
-    }
-
-    return (soccerPlayer!=null) ? soccerPlayer.fantasyPoints : 0;
-  }
-
-  int getUserScore(ContestEntry contestEntry) {
-    return contestEntry.soccers.fold(0, (prev, soccerPlayer) => prev + getSoccerPlayerScore(soccerPlayer.templateSoccerPlayerId) );
   }
 
   void _initContests(List<Contest> contests) {

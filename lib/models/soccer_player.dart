@@ -12,11 +12,14 @@ class SoccerPlayer {
   int    playedMatches;
   int    salary;
 
+  // Fantasy Points (actualizado por liveMatchEvent)
+  int    currentLivePoints = 0;
+
   // Equipo en el que juega
-  SoccerTeam team;  
-  
+  SoccerTeam team;
+
   SoccerPlayer.referenceInit(this.templateSoccerPlayerId);
-  
+
   factory SoccerPlayer.fromJsonObject(JsonObject json, ContestReferences references) {
     SoccerPlayer soccerPlayer = references.getSoccerPlayerById(json.templateSoccerPlayerId);
     return soccerPlayer._initFromJsonObject(json, references);

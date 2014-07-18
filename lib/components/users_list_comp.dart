@@ -43,9 +43,9 @@ class UsersListComp {
         users.add({
           "id": contestEntry.user.userId,
           "contestEntry" : contestEntry,
-          "name": _liveContestCtrl.getUserName(contestEntry),
+          "name": contestEntry.user.fullName,
           "remainingTime": _liveContestCtrl.getUserRemainingTime(contestEntry),
-          "score": _liveContestCtrl.getUserScore(contestEntry)
+          "score": contestEntry.currentLivePoints
         });
       }
     }

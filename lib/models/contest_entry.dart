@@ -11,8 +11,10 @@ class ContestEntry {
 
   User user;
   Contest contest;
-  
+
   List<SoccerPlayer> soccers;
+
+  int get currentLivePoints => soccers.fold(0, (prev, soccerPlayer) => prev + soccerPlayer.currentLivePoints );
 
   ContestEntry(this.contestEntryId, this.user, this.soccers);
 
@@ -22,11 +24,11 @@ class ContestEntry {
     ContestEntry contestEntry = references.getContestEntryById(json._id);
     return contestEntry._initFromJsonObject(json, references);
   }
-  
+
   ContestEntry _initFromJsonObject(JsonObject json, ContestReferences references) {
     assert(contestEntryId.isNotEmpty);
     user = references.getUserById(json.userId);
-    
+
     // Enviado únicamente cuando se envíe usando jsonView.FullContest
     if (json.containsKey("soccerIds")) {
       soccers = json.soccerIds.map((soccerPlayerId) => references.getSoccerPlayerById(soccerPlayerId)).toList();

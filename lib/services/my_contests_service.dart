@@ -65,7 +65,6 @@ class MyContestsService {
 
     _server.getLiveContests()
         .then((jsonObject) {
-          print("liveContests: response: " + jsonObject.toString());
           completer.complete(jsonObject);
         });
 
@@ -89,8 +88,6 @@ class MyContestsService {
 
     _server.getLiveMatchEventsFromTemplateContest(templateContestId)
       .then((jsonObject) {
-        print("liveMatchEvents: response: " + jsonObject.toString());
-
         ContestReferences contestReferences = new ContestReferences();
         liveMatchEvents = jsonObject.content.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject, contestReferences)).toList();
 

@@ -40,6 +40,21 @@ class TemplateContest {
     return new TemplateContest.fromJsonObject(new JsonObject.fromJsonString(json), references);
   }
 
+  SoccerPlayer findSoccerPlayer(String soccerPlayerId) {
+    SoccerPlayer soccerPlayer = null;
+
+    // Buscar en la lista de partidos del contest
+    for (MatchEvent match in templateMatchEvents) {
+      soccerPlayer = match.findSoccerPlayer(soccerPlayerId);
+      
+      // Lo hemos encontrado?
+      if (soccerPlayer != null)
+        break;
+    }
+
+    return soccerPlayer;
+  }
+  
   TemplateContest _initFromJsonObject(JsonObject json, ContestReferences references) {
     assert(templateContestId.isNotEmpty);
     state = json.state;

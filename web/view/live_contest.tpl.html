@@ -8,7 +8,7 @@
       <li><a href="#/live_contest/#usersList" data-toggle="tab">Usuarios</a></li>
       <li><a href="#/live_contest/#opponentFantasyTeam" data-toggle="tab">Adversario</a></li>
     </ul>
-    
+
     <div class="tab-content" id="liveContestTabContent">
       <fantasy-team class="tab-pane active" id="userFantasyTeam"></fantasy-team>
       <users-list class="tab-pane" id="usersList"></users-list>
@@ -17,11 +17,17 @@
   </div>
 
   <div ng-switch-when="false">
-    <fantasy-team id="userFantasyTeam" user="ctrl.mainPlayer"></fantasy-team> 
-    <users-list id="usersList" ng-show="ctrl.selectedOpponent == null" selectedUser="ctrl.selectedOpponent"></users-list>    
-    <fantasy-team id="opponentFantasyTeam" user="ctrl.selectedOpponent" isOpponent="true" ng-show="ctrl.selectedOpponent != null"
-                  showCloseButton="true" onClose="ctrl.selectedOpponent=null"></fantasy-team>
+    <fantasy-team id="userFantasyTeam" contestEntry="ctrl.mainPlayer" watch="ctrl.updatedDate"></fantasy-team>
+    <users-list id="usersList" ng-show="ctrl.selectedOpponent == null" contestEntries="ctrl.contestEntries" selectedContestEntry="ctrl.selectedOpponent" watch="ctrl.updatedDate"></users-list>
+    <fantasy-team id="opponentFantasyTeam" contestEntry="ctrl.selectedOpponent" isOpponent="true" ng-show="ctrl.selectedOpponent != null"
+                  showCloseButton="true" onClose="ctrl.selectedOpponent=null" watch="ctrl.updatedDate"></fantasy-team>
   </div>
+</div>
+
+<!-- Hack temporal hasta que arreglen Angular o nos respondan con una solucion mejor -->
+<div class="ng-hide">
+  {{ctrl.mainPlayer}}
+  {{ctrl.updatedDate}}
 </div>
 
 </section>

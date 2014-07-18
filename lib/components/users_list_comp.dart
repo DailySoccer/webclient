@@ -2,6 +2,7 @@ library user_list_comp;
 
 import 'dart:html';
 import 'package:angular/angular.dart';
+import 'package:webclient/models/contest_entry.dart';
 import 'package:webclient/controllers/live_contest_ctrl.dart';
 
 @Component(
@@ -14,36 +15,47 @@ class UsersListComp {
 
   List users = new List();
 
-  @NgTwoWay("selectedUser")
-  var selectedUser = null;
+  @NgTwoWay("selectedContestEntry")
+  ContestEntry selectedContestEntry= null;
+
+  @NgOneWay("contestEntries")
+  set contestEntries(List<ContestEntry> value) {
+    _contestEntries = value;
+    _refresh();
+  }
+
+  @NgOneWay("watch")
+  set watch(dynamic value) {
+    _refresh();
+  }
 
   String getPrize(int index) => _liveContestCtrl.getPrize(index);
 
-  UsersListComp(this._scope, this._liveContestCtrl) {
-    _scope.watch("updatedDate", (newValue, oldValue) {
-      refresh();
-    }, context: _liveContestCtrl, collection: true);
-  }
+  UsersListComp(this._scope, this._liveContestCtrl);
 
-  void refresh() {
+  void _refresh() {
     //print("refresh users: ${_liveContestCtrl.usersInfo}");
 
     users.clear();
-    for (var contestEntry in _liveContestCtrl.contestEntries) {
-      users.add({
-        "id": contestEntry.user.userId,
-        "contestEntryId" : contestEntry.contestEntryId,
-        "name": _liveContestCtrl.getUserName(contestEntry),
-        "remainingTime": _liveContestCtrl.getUserRemainingTime(contestEntry),
-        "score": _liveContestCtrl.getUserScore(contestEntry)
-      });
+
+    if (_contestEntries != null) {
+      for (var contestEntry in _liveContestCtrl.contestEntries) {
+        users.add({
+          "id": contestEntry.user.userId,
+          "contestEntry" : contestEntry,
+          "name": _liveContestCtrl.getUserName(contestEntry),
+          "remainingTime": _liveContestCtrl.getUserRemainingTime(contestEntry),
+          "score": _liveContestCtrl.getUserScore(contestEntry)
+        });
+      }
     }
   }
 
   void onUserClick(var user) {
-    selectedUser = user["id"];
+    selectedContestEntry = user["contestEntry"];
   }
 
   Scope _scope;
+  List<ContestEntry> _contestEntries;
   LiveContestCtrl _liveContestCtrl;
 }

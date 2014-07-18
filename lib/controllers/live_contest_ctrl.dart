@@ -18,26 +18,27 @@ import 'package:webclient/services/flash_messages_service.dart';
 class LiveContestCtrl implements DetachAware {
 
   ScreenDetectorService scrDet;
-  var mainPlayer;
-  var selectedOpponent;
-  var initialized;
+  dynamic mainPlayer;
+  dynamic selectedOpponent;
+  bool initialized;
 
-  var updatedDate;
+  DateTime updatedDate;
 
   Contest get contest => _myContestsService.lastContest;
-  List<ContestEntry> get contestEntries => (contest != null) ? contest.contestEntries : new List<ContestEntry>();
+  List<ContestEntry> get contestEntries => (contest != null) ? contest.contestEntries : null;
 
 
   LiveContestCtrl(RouteProvider routeProvider, this._scope, this.scrDet, this._myContestsService, this._profileService, this._flashMessage) {
 
     _contestId = routeProvider.route.parameters['contestId'];
-    mainPlayer = _profileService.user.userId;
     initialized = false;
 
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
 
     _myContestsService.refreshContest(_contestId)
       .then((jsonObject) {
+        mainPlayer = getContestEntryWithUser(_profileService.user.userId);
+
         updatedDate = new DateTime.now();
         _updateLive();
 
@@ -55,21 +56,7 @@ class LiveContestCtrl implements DetachAware {
   }
 
   SoccerPlayer getSoccerPlayer(String soccerPlayerId) {
-    SoccerPlayer soccerPlayer = null;
-
-    // Buscar en la lista de partidos del contest
-    for (MatchEvent match in _myContestsService.lastContest.templateContest.templateMatchEvents) {
-      soccerPlayer = match.soccerTeamA.findSoccerPlayer(soccerPlayerId);
-      if (soccerPlayer == null) {
-        soccerPlayer = match.soccerTeamB.findSoccerPlayer(soccerPlayerId);
-      }
-
-      // Lo hemos encontrado?
-      if (soccerPlayer != null)
-        break;
-    }
-
-    return soccerPlayer;
+    return _myContestsService.lastContest.templateContest.findSoccerPlayer(soccerPlayerId);
   }
 
   int getUserPosition(ContestEntry contestEntry) {

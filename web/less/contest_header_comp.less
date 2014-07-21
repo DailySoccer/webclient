@@ -1,8 +1,68 @@
 #headerContestWidget{
 	.make-row(0); 
 	padding: 10px 0px;
+	background-color: @tramaBlue;
+
+	@media (min-width: @screen-md-min) {
+		.container();
+		.contestName{
+			.make-sm-column(12);
+			.make-md-column(12);
+			.make-lg-column(12);
+			border: 1px solid red;
+
+		}
+		.featured-text{
+			.exo_bold(18pt, @blueDark);
+		}
+		.contestExplanation {
+			.make-sm-column(8);
+			.make-md-column(8);
+			.make-lg-column(8);
+			border: 1px solid red;
+			.date-text{
+				.opensans_bold(12pt, @greyUltraDark);
+			}
+			.explanation-text{
+				.opensans_bold(12pt, @greyDark);
+			}
+		}
+		.contestPrice {
+			.make-sm-column(2);
+			.make-md-column(2);
+			.make-lg-column(2);
+			border: 1px solid red;
+		}
+		.header-name{
+			.opensans_bold(12pt, @greyDark);
+		}
+		.featured-money-text{
+			.featured-text();
+
+		}
+		.contestPrize { 
+			.make-sm-column(2);
+			.make-md-column(2);
+			.make-lg-column(2);
+			border: 1px solid red;
+		}
+		
+		.inner-icon {
+			float: left; 
+			padding: 0px 5px 0px 0px; 
+			margin-top: 30px; 
+		}
+	}
+	@media (max-width: @screen-sm-max) {
+		.container-fluid();
+	}
+
+	@media (min-width: @screen-sm-min){
+		
+	}
+
 	@media (max-width: @screen-xs-max){
-		background-color: @tramaBlue;
+
 		.contestName{
 			.make-xs-column(12);
 			padding: 0 5px;
@@ -69,41 +129,6 @@
 			}
 		}
 	}
-	@media (min-width: @screen-sm-min){
-		//background-color: @tramaBlue;
-		.contestName{
-			.make-xs-column(6);
-		}
-		.contestPrice{
-			.make-xs-column(3);
-		}
-		.contestPrize{
-			.make-xs-column(3);
-		}
-		
-		.inner-icon {
-			float: left; 
-			padding: 0px 5px 0px 0px; 
-			margin-top: 30px; 
-		}
-		.featured-text{
-			.exo_bold(20pt, @blueDark);
-		}
-		.date-text{
-			.opensans_bold(12pt, @greyUltraDark);
-		}
-		.explanation-text{
-			.opensans_bold(12pt, @greyDark);
-		}
-		.header-name{
-			.opensans_bold(12pt, @greyDark);
-		}		
-		.featured-money-text{
-			.featured-text();
-		}
-		
-
-
-
-	}
+	
+	
 }

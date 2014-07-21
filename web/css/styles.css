@@ -3634,11 +3634,15 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   min-height: 50px;
   margin-bottom: 20px;
   border: 1px solid transparent;
+  
 }
 @media (min-width: 768px) {
   .navbar {
     border-radius: 4px;
   }
+}
+.navbar-header {
+  
 }
 @media (min-width: 768px) {
   .navbar-header {
@@ -3652,6 +3656,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   padding-left: 15px;
   border-top: 1px solid transparent;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  
   -webkit-overflow-scrolling: touch;
 }
 .navbar-collapse.in {
@@ -5595,12 +5600,6 @@ button.close {
 .btn-group-vertical > .btn-group:after,
 .nav:before,
 .nav:after,
-.navbar:before,
-.navbar:after,
-.navbar-header:before,
-.navbar-header:after,
-.navbar-collapse:before,
-.navbar-collapse:after,
 .pager:before,
 .pager:after,
 .panel-body:before,
@@ -5646,9 +5645,6 @@ button.close {
 .btn-toolbar:after,
 .btn-group-vertical > .btn-group:after,
 .nav:after,
-.navbar:after,
-.navbar-header:after,
-.navbar-collapse:after,
 .pager:after,
 .panel-body:after,
 .modal-footer:after,
@@ -7039,11 +7035,199 @@ button#infoContent .modal-info-head button.close {
   margin-left: 0;
   margin-right: 0;
   padding: 10px 0px;
+  background-color: #ecf0f1;
+}
+@media (min-width: 992px) {
+  #headerContestWidget {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  #headerContestWidget > .navbar-header,
+  #headerContestWidget > .navbar-collapse {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+  #headerContestWidget .contestName {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border: 1px solid red;
+  }
+  #headerContestWidget .featured-text {
+    font-family: 'Exo', sans-serif;
+    font-weight: 600;
+    font-size: 18pt;
+    color: #214a5f;
+  }
+  #headerContestWidget .contestExplanation {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border: 1px solid red;
+  }
+  #headerContestWidget .contestExplanation .date-text {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 12pt;
+    color: #434343;
+  }
+  #headerContestWidget .contestExplanation .explanation-text {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 12pt;
+    color: #777777;
+  }
+  #headerContestWidget .contestPrice {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border: 1px solid red;
+  }
+  #headerContestWidget .header-name {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 12pt;
+    color: #777777;
+  }
+  #headerContestWidget .featured-money-text {
+    font-family: 'Exo', sans-serif;
+    font-weight: 600;
+    font-size: 18pt;
+    color: #214a5f;
+  }
+  #headerContestWidget .contestPrize {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border: 1px solid red;
+  }
+  #headerContestWidget .inner-icon {
+    float: left;
+    padding: 0px 5px 0px 0px;
+    margin-top: 30px;
+  }
+}
+@media (min-width: 992px) and (min-width: 768px) {
+  #headerContestWidget {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) and (min-width: 992px) {
+  #headerContestWidget {
+    width: 970px;
+  }
+}
+@media (min-width: 992px) and (min-width: 1200px) {
+  #headerContestWidget {
+    width: 970px;
+  }
+}
+@media (min-width: 992px) and (min-width: 768px) {
+  #headerContestWidget > .navbar-header,
+  #headerContestWidget > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+@media (min-width: 992px) and (min-width: 768px) {
+  #headerContestWidget .contestName {
+    float: left;
+    width: 100%;
+  }
+}
+@media (min-width: 992px) and (min-width: 992px) {
+  #headerContestWidget .contestName {
+    float: left;
+    width: 100%;
+  }
+}
+@media (min-width: 992px) and (min-width: 1200px) {
+  #headerContestWidget .contestName {
+    float: left;
+    width: 100%;
+  }
+}
+@media (min-width: 992px) and (min-width: 768px) {
+  #headerContestWidget .contestExplanation {
+    float: left;
+    width: 66.66666667%;
+  }
+}
+@media (min-width: 992px) and (min-width: 992px) {
+  #headerContestWidget .contestExplanation {
+    float: left;
+    width: 66.66666667%;
+  }
+}
+@media (min-width: 992px) and (min-width: 1200px) {
+  #headerContestWidget .contestExplanation {
+    float: left;
+    width: 66.66666667%;
+  }
+}
+@media (min-width: 992px) and (min-width: 768px) {
+  #headerContestWidget .contestPrice {
+    float: left;
+    width: 16.66666667%;
+  }
+}
+@media (min-width: 992px) and (min-width: 992px) {
+  #headerContestWidget .contestPrice {
+    float: left;
+    width: 16.66666667%;
+  }
+}
+@media (min-width: 992px) and (min-width: 1200px) {
+  #headerContestWidget .contestPrice {
+    float: left;
+    width: 16.66666667%;
+  }
+}
+@media (min-width: 992px) and (min-width: 768px) {
+  #headerContestWidget .contestPrize {
+    float: left;
+    width: 16.66666667%;
+  }
+}
+@media (min-width: 992px) and (min-width: 992px) {
+  #headerContestWidget .contestPrize {
+    float: left;
+    width: 16.66666667%;
+  }
+}
+@media (min-width: 992px) and (min-width: 1200px) {
+  #headerContestWidget .contestPrize {
+    float: left;
+    width: 16.66666667%;
+  }
+}
+@media (max-width: 991px) {
+  #headerContestWidget {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  #headerContestWidget > .navbar-header,
+  #headerContestWidget > .navbar-collapse {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+}
+@media (max-width: 991px) and (min-width: 768px) {
+  #headerContestWidget > .navbar-header,
+  #headerContestWidget > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
 }
 @media (max-width: 767px) {
-  #headerContestWidget {
-    background-color: #ecf0f1;
-  }
   #headerContestWidget .contestName {
     position: relative;
     float: left;
@@ -7185,67 +7369,6 @@ button#infoContent .modal-info-head button.close {
     font-size: 9pt;
     content: "\e014";
     margin-left: 10px;
-  }
-}
-@media (min-width: 768px) {
-  #headerContestWidget .contestName {
-    position: relative;
-    float: left;
-    width: 50%;
-    min-height: 1px;
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-  #headerContestWidget .contestPrice {
-    position: relative;
-    float: left;
-    width: 25%;
-    min-height: 1px;
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-  #headerContestWidget .contestPrize {
-    position: relative;
-    float: left;
-    width: 25%;
-    min-height: 1px;
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-  #headerContestWidget .inner-icon {
-    float: left;
-    padding: 0px 5px 0px 0px;
-    margin-top: 30px;
-  }
-  #headerContestWidget .featured-text {
-    font-family: 'Exo', sans-serif;
-    font-weight: 600;
-    font-size: 20pt;
-    color: #214a5f;
-  }
-  #headerContestWidget .date-text {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 700;
-    font-size: 12pt;
-    color: #434343;
-  }
-  #headerContestWidget .explanation-text {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 700;
-    font-size: 12pt;
-    color: #777777;
-  }
-  #headerContestWidget .header-name {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 700;
-    font-size: 12pt;
-    color: #777777;
-  }
-  #headerContestWidget .featured-money-text {
-    font-family: 'Exo', sans-serif;
-    font-weight: 600;
-    font-size: 20pt;
-    color: #214a5f;
   }
 }
 #contestsListRoot {

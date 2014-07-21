@@ -9,12 +9,11 @@ import 'package:webclient/services/flash_messages_service.dart';
            templateUrl: 'packages/webclient/components/flash_messages_comp.html',
            publishAs: 'comp',
            useShadowDom: false)
-class FlashMessageComp implements DetachAware {
+class FlashMessageComp {
 
-  FlashMessagesService flashMessageService;
+  List<FlashMessage> get messages => _flashMessageService.messages;
 
-  FlashMessageComp(this.flashMessageService);
+  FlashMessageComp(this._flashMessageService);
 
-  void detach() {
-  }
+  FlashMessagesService _flashMessageService;
 }

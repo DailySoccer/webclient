@@ -30,16 +30,7 @@
     <div id="mainWrapper" class="wrapper-content-container">
       <div id="mainContent" class="main-content-container">
 
-        <!--BEG future component for alerts -->
-        <div flash-messages>
-          <div ng-repeat="m in flashCtrl.messages" id="flash-messages">
-              <div class="alert alert-{{m.type}} alert-dismissable">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                  <span class="">{{m.text}}</span>
-              </div>
-          </div>
-        </div>
-         <!-- END future component for alerts -->
+        <flash-messages></flash-messages>
 
         <!-- Content -->
         <ng-view></ng-view>

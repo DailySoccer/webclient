@@ -1,0 +1,8 @@
+<div>
+  <div ng-repeat="m in comp.flashMessageService.messages" id="flash-messages">
+      <div class="alert alert-{{m.type}} alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <span class="">{{m.text}}</span>
+      </div>
+  </div>
+</div>

@@ -6883,16 +6883,21 @@ button#infoContent .modal-info-head button.close {
   padding: 10px;
 }
 .matches-involved {
-  margin-top: 10px;
-  width: 100%;
-  display: inline-block;
+  margin: 10px auto 0;
 }
 .matches-involved .match {
-  width: 16.66666667%;
-  min-width: 135px;
-  float: left;
+  display: inline-block;
+  min-width: 16.6667%;
   border-left: #59add5 0.1em dotted;
   margin: 10px 0;
+}
+@media (max-width: 767px) {
+  .matches-involved .match {
+    min-width: 25%;
+    float: left;
+    border-left: #59add5 0.1em dotted;
+    margin: 10px 0;
+  }
 }
 .matches-involved .match > p {
   text-align: center;

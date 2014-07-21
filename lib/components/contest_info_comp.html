@@ -61,14 +61,10 @@
                     <div class="start-date">COMIENZA EL {{contestInfo.currentInfoData['startDateTime']}}</div>
 
                     <div class="matches-involved">
-                        <div class="match"   ng-repeat="mi in contestInfo.currentInfoData['matchesInvolved']">
-                            <p class="teams">{{mi.soccerTeamA.shortName}} - {{mi.soccerTeamB.shortName}}</p>
-                            <p class="date">{{mi.startDate | date:'dd/MM hh:mm'}}</p>
-                        </div>
-                        <!--<div class="match"   ng-repeat="match in contestInfo.currentInfoData['matchesInvolved']">
+                        <div class="match"   ng-repeat="match in contestInfo.currentInfoData['matchesInvolved']">
                             <p class="teams">{{match.soccerTeamA.shortName}} - {{match.soccerTeamB.shortName}}</p>
-                            <p class="date">{{match.startDate | date:'dd-MM-yyyy hh:mm'}}h.</p>
-                        </div>-->
+                            <p class="date">{{match.startDate | date:'dd/MM hh:mm'}}</p>
+                        </div>
                     </div>
                     <div class="clearfix"></div>
                     <p class="bases-title">REGLAS DE PUNTUACIÓN</p>
@@ -115,12 +111,11 @@
     <p class="instructions">{{contestInfo.currentInfoData['rules']}}</p>
 
     <div class="matches-involved">
-        <div class="match"   ng-repeat="mi in contestInfo.currentInfoData['matchesInvolved']">
-            <p class="teams">{{mi.soccerTeamA.shortName}} - {{mi.soccerTeamB.shortName}}</p>
-            <p class="date">{{mi.startDate | date:'dd/MM hh:mm'}}</p>
+        <div class="match"   ng-repeat="match in contestInfo.currentInfoData['matchesInvolved']">
+            <p class="teams">{{match.soccerTeamA.shortName}} - {{match.soccerTeamB.shortName}}</p>
+            <p class="date">{{match.startDate | date:'dd/MM hh:mm'}}</p>
         </div>
     </div>
     <div class="clearfix"></div>
-
   </div>
 </div>

@@ -1,11 +1,11 @@
 #headerContestWidget{
-	
 	.make-row(0); 
 	padding: 10px 0px;
 	@media (max-width: @screen-xs-max){
-		background-color: @tramaBlue; 
+		background-color: @tramaBlue;
 		.contestName{
 			.make-xs-column(12);
+			padding: 0 5px;
 
 			.featured-text{
 				.opensans_bold(10pt, @blueDark);
@@ -16,18 +16,28 @@
 		}
 		.contestPrice{
 			.make-xs-column(4);
+			padding: 0 5px;
 			margin: 5px auto;
 			vertical-align: middle;
 		}
 		.contestPrize{
 			.make-xs-column(8);
+			padding: 0 5px;
 			margin: 5px auto;
 		}
 		.contestTimes { 
-			.make-xs-column(12);
-			margin: 5px auto 0; 
 			.date-text {
+				.make-xs-column(8);
 				.opensans_bold(9pt, @blueMed);
+				padding: 0 5px;
+				margin: 5px auto 0;
+			}
+			.countdown-text {
+				.make-xs-column(4);
+				.opensans_bold(9pt, @blueDark);
+				padding: 0 5px;
+				text-align: right;
+				margin: 5px auto 0;
 			}
 		}
 		.money-text{
@@ -42,6 +52,21 @@
 		.explanation-text{
 			.opensans_normal(10pt, @greyDark);
 			padding: 2px 0;
+		}
+
+		.close_contest {
+			float: left;
+			position: absolute;
+			right: 5px;
+			.btn {
+				.btn-default();
+			}
+			.btn::after {
+				font-family: 'Glyphicons Halflings';
+				font-size: 9pt;
+				content: "\e014";
+				margin-left: 10px;
+			}
 		}
 	}
 	@media (min-width: @screen-sm-min){

@@ -110,38 +110,9 @@
   				.well-sm();
   				text-align: center;
 			}
-			/*.matches-involved{
-				margin-top: 10px;
-				width: 100%;
-				display: inline-block;
-
-				.match{
-					width: 16.66666667%;
-					min-width: 135px;
-					float: left;
-					border-left: @blueLight 0.1em dotted;
-  					margin: 10px 0;
-  					> p {
-  						margin: 0;
-  						padding: 0 10px;
-
-  					}
-					.teams{
-						.exo_light(16pt, @blueMed);
-					}
-					.date{
-						.opensans_bold(8pt, @greyDark);
-					}
-				}
-			}*/
 			.bases-title{
 				.opensans_bold(12pt, @greyDark);
 				margin-top: 20px;
-			}
-			.rules-description{
-				.opensans_normal(8pt, @greyDark);
-				overflow-x: hidden;
-  				max-height: 250px;
 			}
 		} 
 
@@ -179,28 +150,6 @@
 				}	
 			}				
 		}
-
-		.prizes-wrapper{
-			.prize-element{
-				width: 16.66666667%;
-				min-width: 135px;
-				float: left;				
-				margin: 10px 1px;	
-
-				.prize-position{
-					.exo_bold(16pt, @blueDark); 
-					padding: 10px;
-				}
-				.prize-separator{
-					border-top: @blueDark 2px dotted;
-				}
-				.prize-amount{
-					.exo_light(16pt, @blueDark); 
-					padding: 10px;
-				}
-			}
-		}
-
 	}
 }
 
@@ -216,7 +165,10 @@
 			float: left;
 			border-left: @blueLight 0.1em dotted;
 			margin: 10px 0;
-		}		
+		}	
+		@media (min-width: @screen-sm-min) { 	
+			min-width: 20%;
+		}
 		> p {
 			text-align: center;
 			margin: 0px; 
@@ -225,7 +177,6 @@
 			.exo_light(16pt, @blueMed);
 			@media (max-width: @screen-xs-max) { 
 				.opensans_bold(8pt, @blueMed);
-
 			}
 		}
 		.date{
@@ -234,11 +185,87 @@
 	}
 }
 
-#contestInfoTabContent{
+.rules-description{
+	.opensans_normal(8pt, @greyDark);
+	overflow-x: hidden;
+		max-height: 250px;
+		margin: 10px auto 0;
+}
 
-	.instructions{
-		.exo_bold(10pt, @blueDark);
-		text-align: center;
+.prizes-wrapper{
+	.prize-element{
+		width: 16.66666667%;
+		min-width: 135px;
+		float: left;				
+		margin: 10px 1px;	
+		@media (max-width: @screen-xs-max) { 
+			margin: 10px auto 0;
+			min-width: 0;
+			width: 33%;
+		}
+
+		.prize-position{
+			.exo_bold(16pt, @blueDark); 
+			padding: 10px;
+		}
+		.prize-separator{
+			border-top: @blueDark 2px dotted;
+		}
+		.prize-amount{
+			.exo_light(16pt, @blueDark); 
+			padding: 10px;
+		}
+
+		.prize{
+			.exo_bold(10pt, @blueMed); 
+			display: inline-block;
+			background-color: @tramaBlue;
+			padding: 0 10px;
+			border-radius: 20px;
+		}
 	}
+
+}
+
+#contestInfoTabContent{
+	.container();
+	text-align: center;
+	
+	.info-section{
+		height: 1px;
+		border-top: 1px dashed @blueMed;
+		margin: 20px 0;
+	}
+	.title-first{
+		.opensans_bold(10pt, @blueDark);
+		margin: 10px auto 0;	
+	}
+	.title{
+		.opensans_bold(10pt, @blueDark);
+		margin: 10px auto 0;	
+	}
+	.contestant-list{					
+		.contestant-name{
+			.make-xs-column(8);
+			.make-sm-column(8);
+			.opensans_bold(10pt, @greyDark);
+			text-align: left;
+		}
+		.contestant-points{
+			.make-xs-column(4);
+			.make-sm-column(4);
+			.exo_bold(12pt, @blueMed);
+			text-align: right;
+		}
+		.prize-currency{
+			.opensans_bold(8pt, @blueMed);
+		}
+		.contestant-element{
+			.make-row();
+			padding: 10px 0;
+			background-color: @greyUltraLight;
+			border: 1px solid @white;
+		}
+	}		
 
 }

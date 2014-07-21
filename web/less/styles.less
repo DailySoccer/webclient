@@ -29,18 +29,24 @@
 // Color y borde del boton default (por ejemplo, el "Entrar" en un concurso)
 @btn-default-bg: @blueLight;
 @btn-default-color: @white;
-@btn-default-border: rgba(0, 0, 0, 0.3);
 
-@btn-primary-border: @btn-default-border;
+.btn {
+	.btn();
+	border-width: 0;
+}
+
+.btn-default {
+	box-shadow: 0px 5px 0px rgba(red(@blueLight), green(@blueLight), blue(@blueLight), 0.5);
+}
+
+.btn-primary {
+	box-shadow: 0px 5px 0px rgba(red(@green), green(@green), blue(@green), 0.5);
+}
 
 // Color y borde del boton cancel (no esta definido en el bootstrap)
 .btn-cancel {
 	.button-variant(@btn-default-color; @greyMed; @btn-default-border);
-}
-
-.btn {
-	.btn();
-	border-width: 0 0 2px 0;
+	box-shadow: 0px 5px 0px rgba(red(@greyMed), green(@greyMed), blue(@greyMed), 0.5);
 }
 
 // Forzamos a que siempre aparezca la scrollbar vertical para que no haya saltos

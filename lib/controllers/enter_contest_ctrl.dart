@@ -187,7 +187,6 @@ class EnterContestCtrl {
     }
 
     print("createFantasyTeam");
-    print("contest: " + contest.name);
     lineupSlots.forEach((player) => print(player["fieldPos"].fieldPos + ": " + player["fullName"] + " : " + player["id"]));
 
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);

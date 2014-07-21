@@ -1,6 +1,7 @@
+ <div ng-if="contestInfo.isPopUp">
     <div class="modal-info-head">
         <div class="contest-info-header-row">
-            
+
             <div class="column-name">
                 <div class="inner-content">
                     <span class="title-text">{{contestInfo.currentInfoData['description']}}</span>
@@ -36,23 +37,23 @@
     </div>
 
     <div class="modal-content">
-        
+
         <div class="tabs-background"></div>
-        
+
         <!-- Nav tabs -->
         <ul class="info-options" id="modalInfoContestTabs">
             <li class="active"><a href="#/lobby/#info" data-toggle="tab">INFORMACIÓN</a></li>
             <li><a href="#/lobby#contestants" data-toggle="tab">PARTICIPANTES</a></li>
             <li><a href="#/lobby#prizes" data-toggle="tab">PREMIOS</a></li>
         </ul>
-        
+
         <div class="enter-contest-button">
             <button type="button" class="btn btn-primary" ng-click="contestInfo.enterContest()" data-dismiss="modal" href="#">ENTRAR</button>
         </div>
-        
-        <div class="contest-info-content" id="modalInfoContestTabContent">           
+
+        <div class="contest-info-content" id="modalInfoContestTabContent">
             <div class=" tab-content">
-                           
+
                 <!-- Tab panes -->
                 <div class="tab-pane active" id="info">
 
@@ -60,27 +61,31 @@
                     <div class="start-date">COMIENZA EL {{contestInfo.currentInfoData['startDateTime']}}</div>
 
                     <div class="matches-involved">
-                        <div class="match"   ng-repeat="match in contestInfo.matchesInvolved">
-                            <p class="teams">{{match.soccerTeamA.shortName}} - {{match.soccerTeamB.shortName}}</p> <!-- En un futuro habrá match.shortName -->
+                        <div class="match"   ng-repeat="mi in contestInfo.currentInfoData['matchesInvolved']">
+                            <p class="teams">{{mi.soccerTeamA.shortName}} - {{mi.soccerTeamB.shortName}}</p>
+                            <p class="date">{{mi.startDate | date:'dd/MM hh:mm'}}</p>
+                        </div>
+                        <!--<div class="match"   ng-repeat="match in contestInfo.currentInfoData['matchesInvolved']">
+                            <p class="teams">{{match.soccerTeamA.shortName}} - {{match.soccerTeamB.shortName}}</p>
                             <p class="date">{{match.startDate | date:'dd-MM-yyyy hh:mm'}}h.</p>
-                        </div>                        
+                        </div>-->
                     </div>
                     <div class="clearfix"></div>
                     <p class="bases-title">REGLAS DE PUNTUACIÓN</p>
-                    
+
                     <pre class="rules-description">{{contestInfo.currentInfoData['legals']}}</pre>
-                    
+
                 </div>
 
-                <div class="tab-pane" id="contestants">                    
+                <div class="tab-pane" id="contestants">
                     <div class="list-wrapper">
                         <div class="contestant-list">
                             <div class="contestant-element"ng-repeat="contestant in contestInfo.currentInfoData['contestants']">
                                 <div class="contestant-position">{{$index + 1}}º</div>
                                 <div class="contestant-name">{{contestant.name}}</div>
                                 <div class="contestant-points">{{contestant.points + ' '}}<span class="prize-currency">DFP</span></div>
-                            </div>                            
-                        </div>                        
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -91,15 +96,31 @@
                                 <div class="prize-position">{{$index + 1}}º</div>
                                 <div class="prize-separator"></div>
                                 <div class="prize-amount">€{{prize.value}}</div>
-                            </div>                            
-                            <div class="clearfix"></div>                            
-                        </div>                        
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
                     </div>
                 </div>
-                
-            </div>            
+
+            </div>
         </div>
-        
-    </div>   
+
+    </div>
     <!-- <div class="modal-footer"></div> -->
+</div>
+
+<div ng-if="!contestInfo.isPopUp">
+  <div id="contestInfoTabContent">
+
+    <p class="instructions">{{contestInfo.currentInfoData['rules']}}</p>
+
+    <div class="matches-involved">
+        <div class="match"   ng-repeat="mi in contestInfo.currentInfoData['matchesInvolved']">
+            <p class="teams">{{mi.soccerTeamA.shortName}} - {{mi.soccerTeamB.shortName}}</p>
+            <p class="date">{{mi.startDate | date:'dd/MM hh:mm'}}</p>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+  </div>
 </div>

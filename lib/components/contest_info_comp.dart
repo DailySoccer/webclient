@@ -25,9 +25,19 @@ class ContestInfoComp {
             updateContestInfo(value);
       }
 
+     @NgTwoWay("isPopUp")
+    bool get isPopUp => popUpStyle;
+    void set isPopUp (bool value){
+      popUpStyle = value;
+      print("soy popup?" + value.toString());
+    }
+
+    bool popUpStyle;
     Map currentInfoData;
     List contestants  = new List();
     List prizes = new List();
+    TemplateContest tmplateContest;
+    List<TemplateMatchEvent> matchesInvolved;
 
     ContestInfoComp(Scope scope, this._router, this._contestService) {
 
@@ -38,6 +48,7 @@ class ContestInfoComp {
         'prize'           : '<prize>',
         'rules'           : '<rules>',         // 'Elige un equipo de 11 jugadores a partir de los siguientes partidos',
         'startDateTime'   : '<startDateTime>', // 'COMIENZA EL DOM. 15/05 19:00',
+        'matchesInvolved' : null,
         'legals'          : '<legals>',
         'contestants'     : contestants,
         'prizes'          : prizes
@@ -75,14 +86,13 @@ class ContestInfoComp {
 
     updateContestInfo(Contest cont)
     {
-      matchesInvolved = cont.templateContest.templateMatchEvents;
-
       currentInfoData["description"]    = cont.templateContest.postName;
       currentInfoData["name"]           = cont.templateContest.name;
       currentInfoData["entry"]          = cont.templateContest.entryFee.toString();
       currentInfoData["startDateTime"]  = getFormatedDate(cont.templateContest.startDate);
       currentInfoData["contestants"]    = contestants;
       currentInfoData["prizes"]         = prizes;
+      currentInfoData["matchesInvolved"]= cont.templateContest.templateMatchEvents;
 
     }
 
@@ -142,13 +152,11 @@ class ContestInfoComp {
       */
     }
 
-
     void enterContest() {
             _router.go('enter_contest', { "contestId": contestData.contestId });
        }
 
-    TemplateContest tmplateContest;
-    List<TemplateMatchEvent> matchesInvolved;
+
 
     Router _router;
     ActiveContestsService _contestService;

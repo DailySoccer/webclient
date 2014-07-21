@@ -68,7 +68,6 @@
 			top: 10px;
 			right: 15px;
    		}
-  
 	}
 
 	.modal-content{
@@ -111,7 +110,7 @@
   				.well-sm();
   				text-align: center;
 			}
-			.matches-involved{
+			/*.matches-involved{
 				margin-top: 10px;
 				width: 100%;
 				display: inline-block;
@@ -134,7 +133,7 @@
 						.opensans_bold(8pt, @greyDark);
 					}
 				}
-			}
+			}*/
 			.bases-title{
 				.opensans_bold(12pt, @greyDark);
 				margin-top: 20px;
@@ -201,5 +200,43 @@
 				}
 			}
 		}
+
 	}
+}
+
+.matches-involved{
+	margin-top: 10px;
+	width: 100%;
+	display: inline-block;
+
+	.match{
+		width: 16.66666667%;
+		min-width: 135px;
+		float: left;
+		border-left: @blueLight 0.1em dotted;
+		margin: 10px 0;
+		> p {
+			text-align: center;
+			margin: 0px; 
+		}
+		
+			.teams{
+				.exo_light(16pt, @blueMed);
+				@media (max-width: @screen-xs-max) { 
+					.opensans_bold(8pt, @blueMed);
+				}
+			}
+			.date{
+				.opensans_bold(8pt, @greyDark);
+			}
+	}
+}
+
+#contestInfoTabContent{
+
+	.instructions{
+		.exo_bold(10pt, @blueDark);
+		text-align: center;
+	}
+
 }

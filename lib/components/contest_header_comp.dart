@@ -35,7 +35,6 @@ class ContestHeaderComp {
     contestInfo = value;
 
     if (value != null) {
-      print('CABECERA: he recibido el concurso: ' + value.contestId);
       _refreshHeader();
     }
   }
@@ -44,8 +43,6 @@ class ContestHeaderComp {
   ScreenDetectorService scrDet;
 
   ContestHeaderComp(this._scope, this._router, this.scrDet) {
-    print('printing the contest info' + contestHeaderInfo.toString());
-
 
     timeDisplayFormat = new DateFormat("HH:mm:ss");
     count = new Timer.periodic(new Duration(milliseconds:1000), (Timer timer) => this.countdownDate());

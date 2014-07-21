@@ -6693,6 +6693,30 @@ button#infoContent .modal-info-head button.close {
   padding: 20px;
   background-color: #ffffff;
   min-height: 500px;
+  /*.matches-involved{
+				margin-top: 10px;
+				width: 100%;
+				display: inline-block;
+
+				.match{
+					width: 16.66666667%;
+					min-width: 135px;
+					float: left;
+					border-left: @blueLight 0.1em dotted;
+  					margin: 10px 0;
+  					> p {
+  						margin: 0;
+  						padding: 0 10px;
+
+  					}
+					.teams{
+						.exo_light(16pt, @blueMed);
+					}
+					.date{
+						.opensans_bold(8pt, @greyDark);
+					}
+				}
+			}*/
 }
 #infoContent .modal-content .contest-info-content .instructions {
   position: relative;
@@ -6741,34 +6765,6 @@ button#infoContent .modal-info-head button.close {
 #infoContent .modal-content .contest-info-content .start-date blockquote {
   border-color: #ddd;
   border-color: rgba(0, 0, 0, 0.15);
-}
-#infoContent .modal-content .contest-info-content .matches-involved {
-  margin-top: 10px;
-  width: 100%;
-  display: inline-block;
-}
-#infoContent .modal-content .contest-info-content .matches-involved .match {
-  width: 16.66666667%;
-  min-width: 135px;
-  float: left;
-  border-left: #59add5 0.1em dotted;
-  margin: 10px 0;
-}
-#infoContent .modal-content .contest-info-content .matches-involved .match > p {
-  margin: 0;
-  padding: 0 10px;
-}
-#infoContent .modal-content .contest-info-content .matches-involved .match .teams {
-  font-family: 'Exo', sans-serif;
-  font-weight: 300;
-  font-size: 16pt;
-  color: #0d75a6;
-}
-#infoContent .modal-content .contest-info-content .matches-involved .match .date {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-  font-size: 8pt;
-  color: #777777;
 }
 #infoContent .modal-content .contest-info-content .bases-title {
   font-family: 'Open Sans', sans-serif;
@@ -6886,12 +6882,58 @@ button#infoContent .modal-info-head button.close {
   color: #214a5f;
   padding: 10px;
 }
+.matches-involved {
+  margin-top: 10px;
+  width: 100%;
+  display: inline-block;
+}
+.matches-involved .match {
+  width: 16.66666667%;
+  min-width: 135px;
+  float: left;
+  border-left: #59add5 0.1em dotted;
+  margin: 10px 0;
+}
+.matches-involved .match > p {
+  text-align: center;
+  margin: 0px;
+}
+.matches-involved .match .teams {
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 16pt;
+  color: #0d75a6;
+}
+@media (max-width: 767px) {
+  .matches-involved .match .teams {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 8pt;
+    color: #0d75a6;
+  }
+}
+.matches-involved .match .date {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #777777;
+}
+#contestInfoTabContent .instructions {
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  font-size: 10pt;
+  color: #214a5f;
+  text-align: center;
+}
 #headerContestWidget {
   margin-left: 0;
   margin-right: 0;
   padding: 10px 0px;
 }
 @media (max-width: 767px) {
+  #headerContestWidget {
+    background-color: #ecf0f1;
+  }
   #headerContestWidget .contestName {
     position: relative;
     float: left;
@@ -6903,13 +6945,13 @@ button#infoContent .modal-info-head button.close {
   #headerContestWidget .contestName .featured-text {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
-    font-size: 12pt;
+    font-size: 10pt;
     color: #214a5f;
   }
   #headerContestWidget .contestName .date-text {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
-    font-size: 12pt;
+    font-size: 10pt;
     color: #434343;
   }
   #headerContestWidget .contestPrice {
@@ -6930,6 +6972,21 @@ button#infoContent .modal-info-head button.close {
     padding-left: 15px;
     padding-right: 15px;
     margin: 5px auto;
+  }
+  #headerContestWidget .contestTimes {
+    position: relative;
+    float: left;
+    width: 100%;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: 5px auto 0;
+  }
+  #headerContestWidget .contestTimes .date-text {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 9pt;
+    color: #0d75a6;
   }
   #headerContestWidget .money-text {
     font-family: 'Open Sans', sans-serif;

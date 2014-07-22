@@ -42,9 +42,9 @@
 
         <!-- Nav tabs -->
         <ul class="info-options" id="modalInfoContestTabs">
-            <li class="active"><a href="#/lobby/#info" data-toggle="tab">INFORMACIÓN</a></li>
-            <li><a href="#/lobby#contestants" data-toggle="tab">PARTICIPANTES</a></li>
-            <li><a href="#/lobby#prizes" data-toggle="tab">PREMIOS</a></li>
+            <li class="active"><a  data-toggle="tab" ng-click="contestInfo.tabChange('info')">INFORMACIÓN</a></li>
+            <li><a  data-toggle="tab" ng-click="contestInfo.tabChange('contestants')">PARTICIPANTES</a></li>
+            <li><a  data-toggle="tab" ng-click="contestInfo.tabChange('prizes')">PREMIOS</a></li>
         </ul>
 
         <div class="enter-contest-button">

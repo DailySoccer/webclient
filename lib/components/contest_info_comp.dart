@@ -1,6 +1,7 @@
 library contest_info_comp;
 
 import 'package:angular/angular.dart';
+import 'dart:html';
 import 'package:intl/intl.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/template_contest.dart';
@@ -21,8 +22,10 @@ class ContestInfoComp {
       Contest get contestData => _contestData;
       void set contestData(Contest value) {
         _contestData = value;
-          if(value != null)
+          if(value != null){
             updateContestInfo(value);
+            tabChange('info');
+          }
       }
 
      @NgTwoWay("isPopUp")
@@ -154,9 +157,15 @@ class ContestInfoComp {
 
     void enterContest() {
             _router.go('enter_contest', { "contestId": contestData.contestId });
-       }
+    }
 
+    void tabChange(String tab) {
+      List<dynamic> allContentTab = document.querySelectorAll(".tab-pane");
+      allContentTab.forEach((element) => element.classes.remove('active'));
 
+      Element contentTab = document.querySelector("#" + tab);
+      contentTab.classes.add("active");
+    }
 
     Router _router;
     ActiveContestsService _contestService;

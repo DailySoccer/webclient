@@ -6,13 +6,13 @@
 </div>
 
 <div class="soccer-players-list">
-  
+
   <div class="soccer-players-list-slot" ng-repeat="slot in comp.enterContestCtrl.availableSoccerPlayers" ng-class="comp.getSlotClassColor(slot.fieldPos.abrevName)">
     <div class="column-fieldpos">{{slot.fieldPos.abrevName}}</div>
     <div class="column-primary-info">
       <!--<span class="soccer-player-name">{{slot.fullName | limitToDot : 19}}</span>-->
       <span class="soccer-player-name">{{slot.fullName | limitToDot : comp.showWidth(slot.fullName)}}</span>
-      <span class="match-event-name">{{slot.matchEventName}}</span>
+      <span class="match-event-name" ng-bind-html="slot.matchEventName"></span>
     </div>
     <div class="column-dfp">{{slot.fantasyPoints}}</div>
     <div class="column-played">{{slot.playedMatches}}</div>
@@ -21,5 +21,5 @@
       <button type="button" class="btn" ng-click="comp.enterContestCtrl.onSoccerPlayerSelected(slot)">Añadir</button>
     </div>
   </div>
-  
+
 </div>

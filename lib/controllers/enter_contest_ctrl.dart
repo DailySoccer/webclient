@@ -152,12 +152,18 @@ class EnterContestCtrl {
   }
 
   void _insertSoccerPlayer(TemplateMatchEvent matchEvent, SoccerTeam soccerTeam, SoccerPlayer soccerPlayer) {
+    String shortNameTeamA = soccerPlayer.team.matchEvent.soccerTeamA.shortName;
+    String shortNameTeamB = soccerPlayer.team.matchEvent.soccerTeamB.shortName;
+    var matchEventName = (soccerPlayer.team.templateSoccerTeamId == soccerPlayer.team.matchEvent.soccerTeamA.templateSoccerTeamId)
+        ? "<strong>$shortNameTeamA</strong> - $shortNameTeamB"
+        : "$shortNameTeamA - <strong>$shortNameTeamB</strong>";
+
     _allSoccerPlayers.add({
       "id": soccerPlayer.templateSoccerPlayerId,
       "fieldPos": new FieldPos(soccerPlayer.fieldPos),
       "fullName": soccerPlayer.name,
       "matchId" : matchEvent.templateMatchEventId,
-      "matchEventName": matchEvent.soccerTeamA.shortName + " - " + matchEvent.soccerTeamB.shortName,
+      "matchEventName": matchEventName,
       "remainingMatchTime": "70 MIN",
       "fantasyPoints": soccerPlayer.fantasyPoints,
       "playedMatches": soccerPlayer.playedMatches,

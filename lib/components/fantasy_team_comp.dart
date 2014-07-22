@@ -91,23 +91,19 @@ class FantasyTeamComp implements ShadowRootAware {
 
       if (_contestEntry != null) {
         for (SoccerPlayer soccerPlayer in _contestEntry.soccers) {
-        String shortNameTeamA = soccerPlayer.team.matchEvent.soccerTeamA.shortName;
-        String shortNameTeamB = soccerPlayer.team.matchEvent.soccerTeamB.shortName;
-        // TODO: No funciona el incrustar codigo Html
-        /*
-        var matchEventName = (soccerPlayer.team.templateSoccerTeamId == soccerPlayer.team.matchEvent.soccerTeamA.templateSoccerTeamId)
-            ? new Element.html("<b>$shortNameTeamA</b> - $shortNameTeamB")
-            : new Element.html("$shortNameTeamA - <b>$shortNameTeamB</b>");
-        */
-        var matchEventName = "$shortNameTeamA - $shortNameTeamB";
+          String shortNameTeamA = soccerPlayer.team.matchEvent.soccerTeamA.shortName;
+          String shortNameTeamB = soccerPlayer.team.matchEvent.soccerTeamB.shortName;
+          var matchEventName = (soccerPlayer.team.templateSoccerTeamId == soccerPlayer.team.matchEvent.soccerTeamA.templateSoccerTeamId)
+              ? "<strong>$shortNameTeamA</strong> - $shortNameTeamB"
+              : "$shortNameTeamA - <strong>$shortNameTeamB<strong>";
 
-        slots.add({
-            "fieldPos": new FieldPos(soccerPlayer.fieldPos),
-            "fullName": soccerPlayer.name,
-            "matchEventName": matchEventName,
-            "remainingMatchTime": "70 MIN",
-            "score": soccerPlayer.currentLivePoints
-        });
+          slots.add({
+              "fieldPos": new FieldPos(soccerPlayer.fieldPos),
+              "fullName": soccerPlayer.name,
+              "matchEventName": matchEventName,
+              "remainingMatchTime": "70 MIN",
+              "score": soccerPlayer.currentLivePoints
+          });
         }
       }
     }

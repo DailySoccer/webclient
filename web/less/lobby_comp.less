@@ -1,0 +1,21 @@
+.lobby-top-infobar{
+	@media (min-width: @screen-md-min) {
+		.container();
+	}
+	@media (max-width: @screen-sm-max) {
+		.container-fluid();
+	}
+
+	@media (min-width: @screen-sm-min) {
+		background-color: @white;
+	}
+	.make-row();
+	height: 50px;
+	background: @white url('../images/ContentHeaderBg.png') repeat-x;
+
+	p {
+		.opensans_bold(8pt, @white);
+		line-height: 50px;
+		text-align: center;
+	}
+}

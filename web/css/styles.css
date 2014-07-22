@@ -5633,6 +5633,10 @@ button.close {
 .soccer-player-list-header-table:after,
 .soccer-players-list .soccer-players-list-slot:before,
 .soccer-players-list .soccer-players-list-slot:after,
+#promosComponent:before,
+#promosComponent:after,
+.lobby-top-infobar:before,
+.lobby-top-infobar:after,
 .lineup-selector .lineup-selector-slot:before,
 .lineup-selector .lineup-selector-slot:after {
   content: " ";
@@ -5665,6 +5669,8 @@ button.close {
 #usersListRoot .users-table-header:after,
 .soccer-player-list-header-table:after,
 .soccer-players-list .soccer-players-list-slot:after,
+#promosComponent:after,
+.lobby-top-infobar:after,
 .lineup-selector .lineup-selector-slot:after {
   clear: both;
 }
@@ -10128,6 +10134,161 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
     border-color: #fa9c19;
     border-radius: default;
   }
+}
+#promosComponent {
+  position: relative;
+  background-color: #ffffff;
+  padding: 20px 10px;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+@media (min-width: 992px) {
+  #promosComponent {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  #promosComponent > .navbar-header,
+  #promosComponent > .navbar-collapse {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+}
+@media (min-width: 992px) and (min-width: 768px) {
+  #promosComponent {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) and (min-width: 992px) {
+  #promosComponent {
+    width: 970px;
+  }
+}
+@media (min-width: 992px) and (min-width: 1200px) {
+  #promosComponent {
+    width: 970px;
+  }
+}
+@media (min-width: 992px) and (min-width: 768px) {
+  #promosComponent > .navbar-header,
+  #promosComponent > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+@media (max-width: 991px) {
+  #promosComponent {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  #promosComponent > .navbar-header,
+  #promosComponent > .navbar-collapse {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+}
+@media (max-width: 991px) and (min-width: 768px) {
+  #promosComponent > .navbar-header,
+  #promosComponent > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+@media (min-width: 768px) {
+  #promosComponent {
+    background-color: #ffffff;
+  }
+}
+#promosComponent .texto-demo {
+  margin: -170px auto 0;
+  text-align: center;
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  font-size: 72pt;
+  color: #ffffff;
+  text-shadow: 5px 5px #ec990e;
+}
+#promosComponent img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.lobby-top-infobar {
+  margin-left: -15px;
+  margin-right: -15px;
+  height: 50px;
+  background: #ffffff url('../images/ContentHeaderBg.png') repeat-x;
+}
+@media (min-width: 992px) {
+  .lobby-top-infobar {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .lobby-top-infobar > .navbar-header,
+  .lobby-top-infobar > .navbar-collapse {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+}
+@media (min-width: 992px) and (min-width: 768px) {
+  .lobby-top-infobar {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) and (min-width: 992px) {
+  .lobby-top-infobar {
+    width: 970px;
+  }
+}
+@media (min-width: 992px) and (min-width: 1200px) {
+  .lobby-top-infobar {
+    width: 970px;
+  }
+}
+@media (min-width: 992px) and (min-width: 768px) {
+  .lobby-top-infobar > .navbar-header,
+  .lobby-top-infobar > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+@media (max-width: 991px) {
+  .lobby-top-infobar {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .lobby-top-infobar > .navbar-header,
+  .lobby-top-infobar > .navbar-collapse {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+}
+@media (max-width: 991px) and (min-width: 768px) {
+  .lobby-top-infobar > .navbar-header,
+  .lobby-top-infobar > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+@media (min-width: 768px) {
+  .lobby-top-infobar {
+    background-color: #ffffff;
+  }
+}
+.lobby-top-infobar p {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #ffffff;
+  line-height: 50px;
+  text-align: center;
 }
 .btn {
   display: inline-block;

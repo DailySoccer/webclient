@@ -1,0 +1,29 @@
+#promosComponent{
+	position: relative;
+	background-color: @white;
+	padding: 20px 10px;
+	.make-row();
+
+	@media (min-width: @screen-md-min) {
+		.container();
+	}
+	@media (max-width: @screen-sm-max) {
+		.container-fluid();
+	}
+
+	@media (min-width: @screen-sm-min) {
+		background-color: @white;
+	}
+
+	.texto-demo {
+		margin: -170px auto 0;
+		text-align: center;
+		.exo_bold(72pt, @white);
+		text-shadow: 5px 5px @orangeHeaderDark;
+		
+	}
+
+	img {
+		.img-responsive();
+	}
+}

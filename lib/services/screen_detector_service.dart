@@ -7,11 +7,12 @@ import 'dart:async';
 
 @Injectable()
 class ScreenDetectorService {
+  StreamController mediaScreenWidthChangeController = new StreamController.broadcast();
 
   bool isXsScreen = false;
   bool isSmScreen = false;
   bool isDesktop  = false;
-
+  String lastMessage;
   ScreenDetectorService(this._scope) {
     _detectNow(0);
   }
@@ -20,26 +21,47 @@ class ScreenDetectorService {
   // Tambien estuvo como un timer, pero queda mas bonito detectarlo cada frame
   void _detectNow(num theTime) {
 
-    if (window.matchMedia("(max-width: 567px)").matches) {
-      isXsScreen = true;
-      isSmScreen = false;
-      isDesktop = false;
+    String message = '';
+    if (window.matchMedia("(min-width: 768px)").matches)
+    {
+      message = 'md-lg';
+    }
+    else if (window.matchMedia("(min-width: 568px)").matches && !isSmScreen) {
+      message = 'sm';
+    }
+    else if (window.matchMedia("(max-width: 567px)").matches && !isXsScreen){
+      message = 'xs';
     }
 
-    if (window.matchMedia("(min-width: 568px)").matches) {
-      isXsScreen = false;
-      isSmScreen = true;
-      isDesktop = false;
-    }
+    if( message != lastMessage && message != '') {
+      mediaScreenWidthChangeController.add(message);
+      lastMessage = message;
 
-    if (window.matchMedia("(min-width: 768px)").matches){
-      isXsScreen = false;
-      isSmScreen = false;
-      isDesktop = true;
+      print('-screen_detector_service- screenWidth = ' + message);
+
+      switch(message){
+        case "xs":
+          isXsScreen = true;
+          isSmScreen = false;
+          isDesktop = false;
+        break;
+        case "sm":
+          isXsScreen = false;
+          isSmScreen = true;
+          isDesktop = false;
+        break;
+        case "md-lg":
+          isXsScreen = false;
+          isSmScreen = false;
+          isDesktop = true;
+        break;
+      }
     }
 
     window.animationFrame.then(_detectNow);
   }
+
+  Stream get mediaScreenWidth => mediaScreenWidthChangeController.stream;
 
   Scope _scope;
 }

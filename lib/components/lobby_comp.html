@@ -1,10 +1,32 @@
+<!-- Header de Promociones -->
 <promos></promos>
+
 <!-- Barra de información y filtros para las versiones SM y MD-LG -->
-<div class="lobby-top-infobar">
-<p>Siguiente torneo: 14:35:031  &nbsp; &nbsp;  35.000 Jugadores online-</span>
+<div id="infoAndFilterHeader">
+  <div class="lobby-top-infobar">
+    <p>&lt; placeholder &gt;</p>
+  </div>
+  <div id="contestSortsFilters">
+
+    <div id="contestFastSort">
+      <span class="filterText">Ordenar por: </span>
+      <div class="btn-group" >
+        <div id="sort-contest-name"      type="button" class="btn sorting-button" ng-click="comp.sortListByFlied('contest-name')">Nombre del Concurso</div>
+        <div id="sort-contest-entry-fee"  type="button" class="btn sorting-button" ng-click="comp.sortListByFlied('contest-entry-fee')">Entrada</div>
+        <div id="sort-contest-start-time" type="button" class="btn sorting-button" ng-click="comp.sortListByFlied('contest-start-time')">Comienzo</div>
+      </div>
+    </div>
+
+    <div id="contestFastSearch">
+        <input class="searcher" type="text">
+    </div>
+
+  </div>
 </div>
 
-<contests-list contestsList="comp.activeContestsService.activeContests"
+<!-- Lista de concursos -->
+<contests-list sortedBy="comp.sortType"
+               contestsList="comp.activeContestsService.activeContests"
                actionButtonTitle='"Entrar"'
                onRowClick="comp.onRowClick(contest)"
                onActionClick='comp.onActionClick(contest)'>

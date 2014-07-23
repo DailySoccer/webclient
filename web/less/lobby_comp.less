@@ -1,4 +1,4 @@
-.lobby-top-infobar{
+#infoAndFilterHeader{
 	@media (min-width: @screen-md-min) {
 		.container();
 	}
@@ -9,13 +9,69 @@
 	@media (min-width: @screen-sm-min) {
 		background-color: @white;
 	}
+}
+.lobby-top-infobar{
+	
 	.make-row();
 	height: 50px;
-	background: @white url('../images/ContentHeaderBg.png') repeat-x;
-
+	//background: @white url('../images/ContentHeaderBg.png') repeat-x;
+    #gradient.vertical(@blueGradientLight, @blueGradientDark, 49%, 51%);
 	p {
 		.opensans_bold(8pt, @white);
 		line-height: 50px;
 		text-align: center;
+	}
+}
+#contestSortsFilters{
+	padding: 20px 0;
+	.filterText{
+		.opensans_bold(8pt, @greyUltraDark);
+	}
+	.make-row(0);
+	#contestFastSort{
+		
+		.make-xs-column(5);
+		padding: 3px 0;
+
+		.sorting-button{
+			.btn-default();
+			.filterText();
+			box-shadow: none;
+			background-color: transparent;
+			border-width: 1px;
+			border-color: @black;
+			color: @greyDark;
+			&:hover{
+				background-color: transparent;
+				border-width: 1px;
+				color: @black;
+				border-color: @black;
+			} 
+		}
+		.asc::after{
+			font-family: 'Glyphicons Halflings';
+			content: "\E113";
+			font-size:  5pt;
+			margin-left: 5px;
+		}	
+		.desc::after{
+			font-family: 'Glyphicons Halflings';
+			content: "\E114";
+			font-size:  5pt;
+			margin-left: 5px;
+		}
+	}
+	
+	#contestFastSearch{
+
+		.searcher{
+			.form-control();
+			.make-xs-column(2);
+			margin: 10px 0 15px;
+			padding-left: 30px;
+			background: url('../images/search-icon.png') no-repeat 10px center;		
+			margin: 0;
+			padding: 0 0 0 30px;
+		}
 	}
 }

@@ -7,12 +7,14 @@ import 'dart:async';
 
 @Injectable()
 class ScreenDetectorService {
-  StreamController mediaScreenWidthChangeController = new StreamController.broadcast();
 
   bool isXsScreen = false;
   bool isSmScreen = false;
   bool isDesktop  = false;
-  String lastMessage;
+
+  Stream get mediaScreenWidth => mediaScreenWidthChangeController.stream;
+
+
   ScreenDetectorService(this._scope) {
     _detectNow(0);
   }
@@ -33,11 +35,11 @@ class ScreenDetectorService {
       message = 'xs';
     }
 
-    if( message != lastMessage && message != '') {
+    if (message != _lastMessage && message != '') {
       mediaScreenWidthChangeController.add(message);
-      lastMessage = message;
+      _lastMessage = message;
 
-      print('-screen_detector_service- screenWidth = ' + message);
+      print('-screen_detector_service- screenWidth is ' + message.toUpperCase());
 
       switch(message){
         case "xs":
@@ -61,7 +63,8 @@ class ScreenDetectorService {
     window.animationFrame.then(_detectNow);
   }
 
-  Stream get mediaScreenWidth => mediaScreenWidthChangeController.stream;
 
+  StreamController mediaScreenWidthChangeController = new StreamController.broadcast();
   Scope _scope;
+  String _lastMessage;
 }

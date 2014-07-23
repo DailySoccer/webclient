@@ -5637,6 +5637,8 @@ button.close {
 #promosComponent:after,
 .lobby-top-infobar:before,
 .lobby-top-infobar:after,
+#contestSortsFilters:before,
+#contestSortsFilters:after,
 .lineup-selector .lineup-selector-slot:before,
 .lineup-selector .lineup-selector-slot:after {
   content: " ";
@@ -5671,6 +5673,7 @@ button.close {
 .soccer-players-list .soccer-players-list-slot:after,
 #promosComponent:after,
 .lobby-top-infobar:after,
+#contestSortsFilters:after,
 .lineup-selector .lineup-selector-slot:after {
   clear: both;
 }
@@ -6577,7 +6580,10 @@ button#infoContent .modal-info-head button.close {
 #infoContent .modal-content .tabs-background {
   width: 100%;
   height: 51px;
-  background-image: url('../images/ContentHeaderBg.png');
+  background-image: -webkit-linear-gradient(top, #1a3949 49%, #0f2630 51%);
+  background-image: linear-gradient(to bottom, #1a3949 49%, #0f2630 51%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff1a3949', endColorstr='#ff0f2630', GradientType=0);
 }
 #infoContent .modal-content .info-options {
   margin-bottom: 0;
@@ -10216,71 +10222,74 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
   max-width: 100%;
   height: auto;
 }
-.lobby-top-infobar {
-  margin-left: -15px;
-  margin-right: -15px;
-  height: 50px;
-  background: #ffffff url('../images/ContentHeaderBg.png') repeat-x;
-}
 @media (min-width: 992px) {
-  .lobby-top-infobar {
+  #infoAndFilterHeader {
     margin-right: auto;
     margin-left: auto;
     padding-left: 15px;
     padding-right: 15px;
   }
-  .lobby-top-infobar > .navbar-header,
-  .lobby-top-infobar > .navbar-collapse {
+  #infoAndFilterHeader > .navbar-header,
+  #infoAndFilterHeader > .navbar-collapse {
     margin-right: -15px;
     margin-left: -15px;
   }
 }
 @media (min-width: 992px) and (min-width: 768px) {
-  .lobby-top-infobar {
+  #infoAndFilterHeader {
     width: 750px;
   }
 }
 @media (min-width: 992px) and (min-width: 992px) {
-  .lobby-top-infobar {
+  #infoAndFilterHeader {
     width: 970px;
   }
 }
 @media (min-width: 992px) and (min-width: 1200px) {
-  .lobby-top-infobar {
+  #infoAndFilterHeader {
     width: 970px;
   }
 }
 @media (min-width: 992px) and (min-width: 768px) {
-  .lobby-top-infobar > .navbar-header,
-  .lobby-top-infobar > .navbar-collapse {
+  #infoAndFilterHeader > .navbar-header,
+  #infoAndFilterHeader > .navbar-collapse {
     margin-right: 0;
     margin-left: 0;
   }
 }
 @media (max-width: 991px) {
-  .lobby-top-infobar {
+  #infoAndFilterHeader {
     margin-right: auto;
     margin-left: auto;
     padding-left: 15px;
     padding-right: 15px;
   }
-  .lobby-top-infobar > .navbar-header,
-  .lobby-top-infobar > .navbar-collapse {
+  #infoAndFilterHeader > .navbar-header,
+  #infoAndFilterHeader > .navbar-collapse {
     margin-right: -15px;
     margin-left: -15px;
   }
 }
 @media (max-width: 991px) and (min-width: 768px) {
-  .lobby-top-infobar > .navbar-header,
-  .lobby-top-infobar > .navbar-collapse {
+  #infoAndFilterHeader > .navbar-header,
+  #infoAndFilterHeader > .navbar-collapse {
     margin-right: 0;
     margin-left: 0;
   }
 }
 @media (min-width: 768px) {
-  .lobby-top-infobar {
+  #infoAndFilterHeader {
     background-color: #ffffff;
   }
+}
+.lobby-top-infobar {
+  margin-left: -15px;
+  margin-right: -15px;
+  height: 50px;
+  background-image: -webkit-linear-gradient(top, #1a3949 49%, #0f2630 51%);
+  background-image: linear-gradient(to bottom, #1a3949 49%, #0f2630 51%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff1a3949', endColorstr='#ff0f2630', GradientType=0);
 }
 .lobby-top-infobar p {
   font-family: 'Open Sans', sans-serif;
@@ -10289,6 +10298,149 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
   color: #ffffff;
   line-height: 50px;
   text-align: center;
+}
+#contestSortsFilters {
+  padding: 20px 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+#contestSortsFilters .filterText {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #434343;
+}
+#contestSortsFilters #contestFastSort {
+  position: relative;
+  float: left;
+  width: 41.66666667%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 3px 0;
+}
+#contestSortsFilters #contestFastSort .sorting-button {
+  color: #ffffff;
+  background-color: #59add5;
+  border-color: #cccccc;
+  box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #434343;
+  box-shadow: none;
+  background-color: transparent;
+  border-width: 1px;
+  border-color: #000000;
+  color: #777777;
+}
+#contestSortsFilters #contestFastSort .sorting-button:hover,
+#contestSortsFilters #contestFastSort .sorting-button:focus,
+#contestSortsFilters #contestFastSort .sorting-button:active,
+#contestSortsFilters #contestFastSort .sorting-button.active,
+.open .dropdown-toggle#contestSortsFilters #contestFastSort .sorting-button {
+  color: #ffffff;
+  background-color: #389dcd;
+  border-color: #adadad;
+}
+#contestSortsFilters #contestFastSort .sorting-button:active,
+#contestSortsFilters #contestFastSort .sorting-button.active,
+.open .dropdown-toggle#contestSortsFilters #contestFastSort .sorting-button {
+  background-image: none;
+}
+#contestSortsFilters #contestFastSort .sorting-button.disabled,
+#contestSortsFilters #contestFastSort .sorting-button[disabled],
+fieldset[disabled] #contestSortsFilters #contestFastSort .sorting-button,
+#contestSortsFilters #contestFastSort .sorting-button.disabled:hover,
+#contestSortsFilters #contestFastSort .sorting-button[disabled]:hover,
+fieldset[disabled] #contestSortsFilters #contestFastSort .sorting-button:hover,
+#contestSortsFilters #contestFastSort .sorting-button.disabled:focus,
+#contestSortsFilters #contestFastSort .sorting-button[disabled]:focus,
+fieldset[disabled] #contestSortsFilters #contestFastSort .sorting-button:focus,
+#contestSortsFilters #contestFastSort .sorting-button.disabled:active,
+#contestSortsFilters #contestFastSort .sorting-button[disabled]:active,
+fieldset[disabled] #contestSortsFilters #contestFastSort .sorting-button:active,
+#contestSortsFilters #contestFastSort .sorting-button.disabled.active,
+#contestSortsFilters #contestFastSort .sorting-button[disabled].active,
+fieldset[disabled] #contestSortsFilters #contestFastSort .sorting-button.active {
+  background-color: #59add5;
+  border-color: #cccccc;
+}
+#contestSortsFilters #contestFastSort .sorting-button .badge {
+  color: #59add5;
+  background-color: #ffffff;
+}
+#contestSortsFilters #contestFastSort .sorting-button:hover {
+  background-color: transparent;
+  border-width: 1px;
+  color: #000000;
+  border-color: #000000;
+}
+#contestSortsFilters #contestFastSort .asc::after {
+  font-family: 'Glyphicons Halflings';
+  content: "\E113";
+  font-size: 5pt;
+  margin-left: 5px;
+}
+#contestSortsFilters #contestFastSort .desc::after {
+  font-family: 'Glyphicons Halflings';
+  content: "\E114";
+  font-size: 5pt;
+  margin-left: 5px;
+}
+#contestSortsFilters #contestFastSearch .searcher {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555555;
+  background-color: #ffffff;
+  background-image: none;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  position: relative;
+  float: left;
+  width: 16.66666667%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 10px 0 15px;
+  padding-left: 30px;
+  background: url('../images/search-icon.png') no-repeat 10px center;
+  margin: 0;
+  padding: 0 0 0 30px;
+}
+#contestSortsFilters #contestFastSearch .searcher:focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+#contestSortsFilters #contestFastSearch .searcher::-moz-placeholder {
+  color: #999999;
+  opacity: 1;
+}
+#contestSortsFilters #contestFastSearch .searcher:-ms-input-placeholder {
+  color: #999999;
+}
+#contestSortsFilters #contestFastSearch .searcher::-webkit-input-placeholder {
+  color: #999999;
+}
+#contestSortsFilters #contestFastSearch .searcher[disabled],
+#contestSortsFilters #contestFastSearch .searcher[readonly],
+fieldset[disabled] #contestSortsFilters #contestFastSearch .searcher {
+  cursor: not-allowed;
+  background-color: #eeeeee;
+  opacity: 1;
+}
+textarea#contestSortsFilters #contestFastSearch .searcher {
+  height: auto;
 }
 .btn {
   display: inline-block;

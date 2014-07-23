@@ -19,7 +19,7 @@
 
     <div class="contestTimes">
       <div class="date-text">{{contestHeader.contestHeaderInfo['startTime']}}</div>
-      <div class="countdown-text">{{contestHeader.contestHeaderInfo['countdownDate']}}</div>
+      <div class="countdown-text"><span class="time-countdown">{{contestHeader.contestHeaderInfo['countdownDate']}}</span></div>
     </div>
 
     <div class="close_contest"><button type="button" class="btn" ng-click="contestHeader.goToLobby()">Cerrar</button></div>
@@ -28,6 +28,7 @@
   <div ng-switch-when="false">
 
     <div class="contestName">
+      <div class="close_contest"><button type="button" class="btn" ng-click="contestHeader.goToLobby()">Cerrar</button></div>
       <div class="featured-text">{{contestHeader.contestHeaderInfo['description']}}</div>
     </div>
 
@@ -38,14 +39,19 @@
 
     <div class="contestPrice">
       <div class="inner-icon"><span class="price-icon"></span></div>
-      <div class="header-name">Entrada</div>
+      <div class="header-name">ENTRADA</div>
       <div class="featured-money-text">{{contestHeader.contestHeaderInfo['entryPrice']}}</div>
     </div>
 
     <div class="contestPrize">
-     <div class="inner-icon"><span class="price-icon"></span></div>
+      <div class="inner-icon"><span class="price-icon"></span></div>
       <div class="header-name">PREMIOS</div>
       <div class="featured-money-text">{{contestHeader.contestHeaderInfo['prize']}}</div>
+    </div>
+
+    <div class="contestTimes">
+      <div class="contest-text">ELIGE 11 JUGADORES</div>
+      <div class="countdown-text"><span class="time-countdown">{{contestHeader.contestHeaderInfo['countdownDate']}}</spa></div>
     </div>
 
   </div>

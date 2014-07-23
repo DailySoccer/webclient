@@ -1,16 +1,15 @@
 #headerContestWidget{
 	.make-row(0); 
-	padding: 10px 0px;
 	background-color: @tramaBlue;
 
 	@media (min-width: @screen-md-min) {
 		.container();
+		padding: 10px 0 0 0;
 		.contestName{
 			.make-sm-column(12);
 			.make-md-column(12);
 			.make-lg-column(12);
-			border: 1px solid red;
-
+			padding-left: 10px;
 		}
 		.featured-text{
 			.exo_bold(18pt, @blueDark);
@@ -19,50 +18,110 @@
 			.make-sm-column(8);
 			.make-md-column(8);
 			.make-lg-column(8);
-			border: 1px solid red;
-			.date-text{
-				.opensans_bold(12pt, @greyUltraDark);
-			}
-			.explanation-text{
-				.opensans_bold(12pt, @greyDark);
-			}
+			margin-top: 20px;
+			padding-left: 10px;
+		}
+		.explanation-text{
+			.opensans_bold(10pt, @greyDark);
+		}
+		.date-text{
+			.opensans_bold(9pt, @blueMed);
 		}
 		.contestPrice {
 			.make-sm-column(2);
 			.make-md-column(2);
 			.make-lg-column(2);
-			border: 1px solid red;
-		}
-		.header-name{
-			.opensans_bold(12pt, @greyDark);
-		}
-		.featured-money-text{
-			.featured-text();
-
+			margin-top: 5px;
+			padding: 0 0 0 5%;
 		}
 		.contestPrize { 
 			.make-sm-column(2);
 			.make-md-column(2);
 			.make-lg-column(2);
-			border: 1px solid red;
+			margin-top: 5px;
+			padding: 0 0 0 4%;
 		}
-		
+		.header-name{
+			.opensans_bold(8pt, @greyDark);
+			margin-top: 5px;
+		}
+		.featured-money-text{
+			.featured-text();
+			line-height: 30px;
+		}
 		.inner-icon {
 			float: left; 
-			padding: 0px 5px 0px 0px; 
-			margin-top: 30px; 
+			padding: 0 5px 0; 
+			margin-top: 22px; 
+		}
+		.close_contest {
+			float: left;
+			position: absolute;
+			right: 5px;
+			.btn {
+				.btn-default();
+			}
+			.btn::after {
+				font-family: 'Glyphicons Halflings';
+				font-size: 9pt;
+				content: "\e014";
+				margin-left: 10px;
+			}
+		}
+		.contestTimes {
+			.make-sm-column(12);
+			.make-md-column(12);
+			.make-lg-column(12);
+			height: 41px;
+			margin-top: 10px;
+			#gradient.vertical(@blueGradientLight, @blueGradientDark, 49%, 51%);
+			padding: 0;
+			.contest-text {
+				.make-sm-column(6);
+				.make-md-column(6);
+				.make-lg-column(6);
+				.exo_bold(16pt, @white);
+				padding: 7px 10px 0;
+			}
+			.countdown-text {
+				.make-sm-column(6);
+				.make-md-column(6);
+				.make-lg-column(6);
+				.exo_light(18pt, @blueLight);
+				padding: 4px 0 0 0;
+				text-align: right;
+				.time-countdown {
+					width: 95px;
+					margin-right: 10px;
+					display: block;
+					text-align: left;
+					float: right;
+				}
+				.days {
+					width: 185px;
+				}
+				.text-countdown {
+					.exo_bold(10pt, @white);
+					display: block;
+					float: right;
+					width: 185px;
+					margin: 9px 5px 0;
+					text-align: right;
+				}
+			}
 		}
 	}
-	@media (max-width: @screen-sm-max) {
+	
+	/*@media (max-width: @screen-sm-max) {
 		.container-fluid();
 	}
 
 	@media (min-width: @screen-sm-min){
 		
-	}
+	}*/
 
 	@media (max-width: @screen-xs-max){
-
+		padding: 10px 0;
 		.contestName{
 			.make-xs-column(12);
 			padding: 0 5px;
@@ -87,17 +146,30 @@
 		}
 		.contestTimes { 
 			.date-text {
-				.make-xs-column(8);
-				.opensans_bold(9pt, @blueMed);
+				.make-xs-column(6);
+				.opensans_bold(8pt, @blueMed);
 				padding: 0 5px;
 				margin: 5px auto 0;
 			}
 			.countdown-text {
-				.make-xs-column(4);
-				.opensans_bold(9pt, @blueDark);
+				.make-xs-column(6);
+				.opensans_bold(8pt, @blueDark);
 				padding: 0 5px;
 				text-align: right;
 				margin: 5px auto 0;
+				.time-countdown {
+					width: 47px;
+					display: block;
+					text-align: left;
+					float: right;
+				}
+				.days {
+					width: 90px;
+				}
+				.text-countdown {
+					float: right;
+					margin-right: 5px;
+				}
 			}
 		}
 		.money-text{

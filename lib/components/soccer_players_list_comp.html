@@ -5,6 +5,13 @@
   <input type="text" id="name-player-filter" class="name-player-input-filter" placeholder="Buscar jugador" ng-model="comp.name_filter" ng-keyup="comp.setFilterSoccerName()" />
 </div>
 
+<div class="soccer-player-list-header-table" ng-if="comp.scrDet.isDesktop" ng-cloack>
+  <ul>
+    <li><a href="#" class="filter">Pos.</a></li>
+    <li><a href="#">Nombre.</a></li>
+  </ul>
+</div>
+
 <div class="soccer-players-list">
 
   <div class="soccer-players-list-slot" ng-repeat="slot in comp.enterContestCtrl.availableSoccerPlayers" ng-class="comp.getSlotClassColor(slot.fieldPos.abrevName)">

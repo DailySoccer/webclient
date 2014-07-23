@@ -17,12 +17,12 @@
 			float: left;
 			line-height: 42px;
 			.make-xs-column(2, @lineup-pos-selector-gutter);
+			.make-md-column(2, @lineup-pos-selector-gutter);
 			.opensans_bold(9pt, @greyDark);
 		}
 		.column-primary-info {
-			.make-xs-column(6, @lineup-selector-gutter);
-			.make-sm-column(8, @lineup-selector-gutter);
-			.make-md-column(6, @lineup-selector-gutter);
+			.make-xs-column(7, @lineup-selector-gutter);
+			.make-md-column(8, @lineup-selector-gutter);
 			line-height: 10pt;
 			
 			.soccer-player-name {
@@ -35,7 +35,7 @@
 
 		// Mostraremos o column-primary-info o column-empty-slot (desde dart)
 		.column-empty-slot {
-			.make-xs-column(8, @lineup-selector-gutter);
+			.make-xs-column(9, @lineup-selector-gutter);
 			.opensans_bold(9pt, @orange);
 			padding-top: 11px;
 		}
@@ -46,11 +46,10 @@
 			text-align: right;
 		}
 		.column-action {
-			.make-xs-column(2, @lineup-selector-gutter);
-			text-align: center;
+			.make-xs-column(1, @lineup-selector-gutter);
+			.make-md-column(1, @lineup-selector-gutter);
 			font-size: 20pt;
 			line-height: 30px;
-
 			#iconButtonSelect {
 				color: @blueDark;
 				font-size: 10pt;
@@ -62,7 +61,12 @@
 		}
 	}
 
-	@media (min-width: @screen-sm-min) {
+	/*@media (min-width: @screen-sm-min) {
 		.make-percent-box(33%, 2%);
+		border: 1px solid blue;
+	}*/
+
+	@media (min-width: @screen-md-min) {
+		.make-border(1px, solid none none none, @orange);
 	}
 }

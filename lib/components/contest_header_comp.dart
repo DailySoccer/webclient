@@ -1,5 +1,6 @@
 library contest_header_comp;
 
+import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:intl/intl.dart';
 import 'package:webclient/services/screen_detector_service.dart';
@@ -17,7 +18,7 @@ class ContestHeaderComp implements DetachAware{
   var contestHeaderInfo = {
     'description': '<description>',
     'startTime':'<startTime>',
-    'countdownDate': '<countdownDate>',
+    'countdownDate': '',
     'contestType': '<contestType>',
     'contestantCount': '<contestantCount>',
     'entryPrice': '<entryPrice>',
@@ -27,6 +28,7 @@ class ContestHeaderComp implements DetachAware{
   Timer count;
   DateFormat timeDisplayFormat;
   int elapsed;
+  String texto = "";
 
   Contest contestInfo;
 
@@ -49,24 +51,46 @@ class ContestHeaderComp implements DetachAware{
   }
 
   void countdownDate() {
-    NumberFormat nf_day = new NumberFormat("0");
-    NumberFormat nf_time = new NumberFormat("00");
-    DateTime t = new DateTime.now().add(new Duration());
-    Duration cd = contestInfo.templateContest.startDate.difference(t);
-    //Duration cd = new DateTime(2014, 7, 23, 12, 19, 0).difference(t);
+    if(contestInfo != null) {
+      NumberFormat nf_day = new NumberFormat("0");
+      NumberFormat nf_time = new NumberFormat("00");
+      DateTime t = new DateTime.now().add(new Duration());
+      //Duration cd = contestInfo.templateContest.startDate.difference(t);
+      Duration cd = new DateTime(2014, 7, 23, 12, 19, 0).difference(t);
 
-    if(cd.inSeconds <= 0) {
-      contestHeaderInfo["countdownDate"] = "FINALIZADO";
-      count.cancel();
-    } else {
-      var days = cd.inDays;
-      var hours = nf_time.format(cd.inHours % 24);
-      var minutes = nf_time.format(cd.inMinutes % 60);
-      var seconds = nf_time.format(cd.inSeconds % 60);
-      if(days > 0) {
-        contestHeaderInfo["countdownDate"] = nf_day.format(days) + (days > 1 ? " DIAS ": " DIA ") + hours + ":" + minutes + ":" + seconds;
+      List<SpanElement> textCountdown = document.querySelectorAll(".text-countdown");
+      textCountdown.forEach((element) => element.remove());
+
+      if(cd.inSeconds <= 0) {
+        contestHeaderInfo["countdownDate"] = "";
+        contestHeaderInfo["startTime"] = "FINALIZADO";
+        count.cancel();
       } else {
-        contestHeaderInfo["countdownDate"] = hours + ":" + minutes + ":" + seconds;
+        var days = cd.inDays;
+        var hours = nf_time.format(cd.inHours % 24);
+        var minutes = nf_time.format(cd.inMinutes % 60);
+        var seconds = nf_time.format(cd.inSeconds % 60);
+
+        if(scrDet.isXsScreen) {
+          texto = "FALTAN ";
+        }
+        if(scrDet.isDesktop) {
+          texto = "EL DESAFIO COMENZARÁ EN: ";
+        }
+        SpanElement countdownTextSpan = new SpanElement();
+        countdownTextSpan.text = texto;
+        countdownTextSpan.classes.add('text-countdown');
+        List<Element> countdownText = document.querySelectorAll(".countdown-text");
+        countdownText.forEach((element) => element.append(countdownTextSpan));
+
+        List<Element> countdownDays = document.querySelectorAll(".time-countdown");
+        if(days > 0) {
+          contestHeaderInfo["countdownDate"] = nf_day.format(days) + (days > 1 ? " DIAS ": " DIA ") + hours + ":" + minutes + ":" + seconds;
+          countdownDays.forEach((element) => element.classes.add("days"));
+        } else {
+          contestHeaderInfo["countdownDate"] = hours + ":" + minutes + ":" + seconds;
+          countdownDays.forEach((element) => element.classes.remove("days"));
+        }
       }
     }
   }

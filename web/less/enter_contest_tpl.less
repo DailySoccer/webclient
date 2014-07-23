@@ -26,54 +26,110 @@
 .enter-contest-actions {
 	@media (max-width: @screen-xs-max) {
 		.container();
+		margin-top: 10px;
 		padding: 0 10px 15px;
 		background-color: @white;
 		text-align: center;
-		margin-top: 10px;
-
-		.btn {
-			.btn();
-			padding: 6px 35px;
-			margin-right: 2%;
-		}
-
 		.btn-cancel-player-selection {
 			.btn();
 			.btn-cancel();
 			.btn-block();
 			margin-top: 10px;
 		}
-
-		.btn-clean-lienup-list {
-			.btn();
-			.btn-cancel();
+	}
+	@media (min-width: @screen-md-min) {
+		margin-top: 20px;
+		padding: 0;
+	}
+	.btn {
+		.btn();
+		padding: 6px 35px;
+		margin-right: 2%;
+	}
+	.btn-clean-lienup-list {
+		.btn();
+		.btn-cancel();
+		@media (min-width: @screen-md-min) {
+			padding-left: 20px;
+			margin: 0 55px 0 10px;
 		}
-
-		.btn-confirm-lienup-list {
-			.btn();
-			.btn-primary();
+	}
+	@media (min-width: @screen-md-min) {
+		.btn-clean-lienup-list::before {
+			font-family: 'Glyphicons Halflings';
+			font-size: 9pt;
+			content: "\e014";
+			margin-right: 15px;
 		}
-
-		p {
-			.opensans_bold(9pt, @greyDark);
-			line-height: 11pt;
-			margin: 10px 2.7%;
-		}
-
-		#enter-contest-total-salary {
-			background-color: @orange;
+	}
+	.btn-confirm-lienup-list {
+		.btn();
+		.btn-primary();
+	}
+	p {
+		.opensans_bold(9pt, @greyDark);
+		line-height: 11pt;
+		margin: 10px 2.7%;
+		@media (min-width: @screen-md-min) {
+			margin: 25px 2.7%;
 			text-align: center;
-			border-radius: 3px;
-			padding: 2px 0;
-
-			#total-salary {
-				.exo_light(24px, @white);
-				text-align: center;
-			}
 		}
 	}
 	.hidden-sm();
 	.hidden-md();
-	.hidden-lg();
+}
 
+.enter-contest-total-salary {
+	@media (max-width: @screen-xs-max) {
+		background-color: @orange;
+		text-align: center;
+		border-radius: 3px;
+		padding: 2px 0;
+	}
+	@media (min-width: @screen-md-min) {
+		.exo_bold(20px, @white);
+		padding-left: 10px;
+		padding-right: 2px;
+		#gradient.vertical(@orangeHeaderLight, @orangeHeaderDark, 49%, 51%);
+		line-height: 76px;
+	}
+	.total-salary {
+		.exo_light(24px, @white);
+		text-align: center;
+		@media (min-width: @screen-md-min) {
+			float: right;
+			background-color: @white;
+			line-height: 43px;
+			display: block;
+			width: 208px;
+			.make-border(1px, solid, @white, @globalBoxesRadius);
+			.exo_bold(30px, @greyDark);
+			margin-top: 3px;
+			overflow: hidden;
+			span {
+				background-color: @greyLight;
+				font-size: 12px;
+				display: block;
+				line-height: 25px;
+			}
+		}
+	}
+}
+
+.enter-contest-soccer-players {
+	.make-border(1px, solid, @greyLight, @globalBoxesRadius);
+	width: 540px;
+	height: 670px;
+	margin: 20px 0 55px 12px;
+	display: inline-block;
+}
+
+.enter-contest-lineup {
+	.make-border(1px, solid, @orange, @globalBoxesRadius);
+	width: 378px;
+	height: 670px;
+	margin: 20px 12px 55px 0;
+	display: inline-block;
+	float: right;
+	overflow: hidden;
 }

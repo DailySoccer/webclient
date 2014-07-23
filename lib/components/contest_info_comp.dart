@@ -164,7 +164,9 @@ class ContestInfoComp {
       allContentTab.forEach((element) => element.classes.remove('active'));
 
       Element contentTab = document.querySelector("#" + tab);
-      contentTab.classes.add("active");
+      if(contentTab != null) {
+        contentTab.classes.add("active");
+      }
     }
 
     Router _router;

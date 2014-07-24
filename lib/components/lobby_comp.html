@@ -18,9 +18,16 @@
     </div>
 
     <div id="contestFastSearch">
-        <input class="searcher" type="text">
+        <input class="searcher" type="text" placeholder="Buscar torneo">
     </div>
 
+    <div id="filterToggler">
+        <div type="button" class="btn filters-button" ng-click="comp.toggleFilterMenu()" data-toggle="collapse" data-target="#filtersPanel">Filtros</div>
+    </div>
+
+  </div>
+  <div id="filtersPanel" class="collapse">
+      <img class="img-responsive" src="images/fake_lobby_filters.jpg"></img>
   </div>
 </div>
 

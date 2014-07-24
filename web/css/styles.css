@@ -10310,6 +10310,10 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
   font-size: 8pt;
   color: #434343;
 }
+#contestSortsFilters .left-separator {
+  padding-left: 20px;
+  border-left: 1px solid #434343;
+}
 #contestSortsFilters #contestFastSort {
   position: relative;
   float: left;
@@ -10318,6 +10322,31 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
   padding-left: 15px;
   padding-right: 15px;
   padding: 3px 0;
+}
+#contestSortsFilters #contestFastSort .btn-group {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 13px;
+}
+#contestSortsFilters #contestFastSort .btn-group > .btn {
+  position: relative;
+  float: left;
+}
+#contestSortsFilters #contestFastSort .btn-group > .btn:hover,
+#contestSortsFilters #contestFastSort .btn-group > .btn:focus,
+#contestSortsFilters #contestFastSort .btn-group > .btn:active,
+#contestSortsFilters #contestFastSort .btn-group > .btn.active {
+  z-index: 2;
+}
+#contestSortsFilters #contestFastSort .btn-group > .btn:focus {
+  outline: none;
+}
+#contestSortsFilters #contestFastSort .btn-group .btn + .btn,
+#contestSortsFilters #contestFastSort .btn-group .btn + .btn-group,
+#contestSortsFilters #contestFastSort .btn-group .btn-group + .btn,
+#contestSortsFilters #contestFastSort .btn-group .btn-group + .btn-group {
+  margin-left: -1px;
 }
 #contestSortsFilters #contestFastSort .sorting-button {
   color: #ffffff;
@@ -10331,7 +10360,7 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
   box-shadow: none;
   background-color: transparent;
   border-width: 1px;
-  border-color: #000000;
+  border-color: #434343;
   color: #777777;
 }
 #contestSortsFilters #contestFastSort .sorting-button:hover,
@@ -10373,8 +10402,8 @@ fieldset[disabled] #contestSortsFilters #contestFastSort .sorting-button.active 
 #contestSortsFilters #contestFastSort .sorting-button:hover {
   background-color: transparent;
   border-width: 1px;
-  color: #000000;
-  border-color: #000000;
+  color: #434343;
+  border-color: #434343;
 }
 #contestSortsFilters #contestFastSort .asc::after {
   font-family: 'Glyphicons Halflings';
@@ -10387,6 +10416,16 @@ fieldset[disabled] #contestSortsFilters #contestFastSort .sorting-button.active 
   content: "\E114";
   font-size: 5pt;
   margin-left: 5px;
+}
+#contestSortsFilters #contestFastSearch {
+  position: relative;
+  float: left;
+  width: 25%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-left: 20px;
+  border-left: 1px solid #434343;
 }
 #contestSortsFilters #contestFastSearch .searcher {
   display: block;
@@ -10404,17 +10443,12 @@ fieldset[disabled] #contestSortsFilters #contestFastSort .sorting-button.active 
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-  position: relative;
-  float: left;
-  width: 16.66666667%;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
   margin: 10px 0 15px;
   padding-left: 30px;
   background: url('../images/search-icon.png') no-repeat 10px center;
-  margin: 0;
-  padding: 0 0 0 30px;
+  margin: 2px 0 0 0;
+  padding: 1px 0 0 30px;
+  height: 30px;
 }
 #contestSortsFilters #contestFastSearch .searcher:focus {
   border-color: #66afe9;
@@ -10441,6 +10475,96 @@ fieldset[disabled] #contestSortsFilters #contestFastSearch .searcher {
 }
 textarea#contestSortsFilters #contestFastSearch .searcher {
   height: auto;
+}
+#contestSortsFilters #filterToggler {
+  position: relative;
+  float: left;
+  width: 16.66666667%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-left: 20px;
+  border-left: 1px solid #434343;
+  padding-left: 0px;
+}
+#contestSortsFilters #filterToggler .filters-button {
+  color: #ffffff;
+  background-color: #59add5;
+  border-color: #cccccc;
+  box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #434343;
+  line-height: 20px;
+  box-shadow: none;
+  background-color: transparent;
+  border-color: #434343;
+  color: #777777;
+}
+#contestSortsFilters #filterToggler .filters-button:hover,
+#contestSortsFilters #filterToggler .filters-button:focus,
+#contestSortsFilters #filterToggler .filters-button:active,
+#contestSortsFilters #filterToggler .filters-button.active,
+.open .dropdown-toggle#contestSortsFilters #filterToggler .filters-button {
+  color: #ffffff;
+  background-color: #389dcd;
+  border-color: #adadad;
+}
+#contestSortsFilters #filterToggler .filters-button:active,
+#contestSortsFilters #filterToggler .filters-button.active,
+.open .dropdown-toggle#contestSortsFilters #filterToggler .filters-button {
+  background-image: none;
+}
+#contestSortsFilters #filterToggler .filters-button.disabled,
+#contestSortsFilters #filterToggler .filters-button[disabled],
+fieldset[disabled] #contestSortsFilters #filterToggler .filters-button,
+#contestSortsFilters #filterToggler .filters-button.disabled:hover,
+#contestSortsFilters #filterToggler .filters-button[disabled]:hover,
+fieldset[disabled] #contestSortsFilters #filterToggler .filters-button:hover,
+#contestSortsFilters #filterToggler .filters-button.disabled:focus,
+#contestSortsFilters #filterToggler .filters-button[disabled]:focus,
+fieldset[disabled] #contestSortsFilters #filterToggler .filters-button:focus,
+#contestSortsFilters #filterToggler .filters-button.disabled:active,
+#contestSortsFilters #filterToggler .filters-button[disabled]:active,
+fieldset[disabled] #contestSortsFilters #filterToggler .filters-button:active,
+#contestSortsFilters #filterToggler .filters-button.disabled.active,
+#contestSortsFilters #filterToggler .filters-button[disabled].active,
+fieldset[disabled] #contestSortsFilters #filterToggler .filters-button.active {
+  background-color: #59add5;
+  border-color: #cccccc;
+}
+#contestSortsFilters #filterToggler .filters-button .badge {
+  color: #59add5;
+  background-color: #ffffff;
+}
+#contestSortsFilters #filterToggler .filters-button:hover {
+  background-color: transparent;
+  color: #434343;
+  border-color: #434343;
+}
+#contestSortsFilters .toggleOff::after {
+  font-family: 'Glyphicons Halflings';
+  content: "\E114";
+  font-size: 10pt;
+  margin-left: 15px;
+  top: 7px;
+  position: absolute;
+}
+#contestSortsFilters .toggleOn {
+  background-color: #fa9c19;
+}
+#contestSortsFilters .toggleOn::after {
+  font-family: 'Glyphicons Halflings';
+  content: "\E113";
+  font-size: 10pt;
+  background-color: #777777;
+  color: #f8f8f8;
+  position: absolute;
+  border-radius: 10px 10px 0 0;
+  padding: 0px 5px 28px 5px;
+  top: 7px;
+  right: 70px;
 }
 .btn {
   display: inline-block;

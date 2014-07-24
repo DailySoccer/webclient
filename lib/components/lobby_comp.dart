@@ -34,6 +34,12 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     // Nos guardamos la lista de clases por defecto que traen los botones de filtros.
     _sortingButtonClassesByDefault = _sortingButtons.first.classes.toList();
 
+    //capturamos el botón que abre el panel de filtros
+    _filtersButton = document.querySelector('.filters-button');
+    _filtersButtonClassesByDefault = _filtersButton.classes.toList();
+    //Al iniciar, tiene que está cerrado por lo tanto le añadimos la clase que pone la flecha hacia abajo
+    _filtersButton.classes.add('toggleOff');
+
     /*
       _sortingButtons.first.classes.forEach((value) => _sortingButtonClassesByDefault += (" " + value) );   ///(String value => _sortingButtonClassesByDefault += value);
       _sortingButtonClassesByDefault = _sortingButtons.first.classes.fold("", (prev, value) => prev + value + " " );
@@ -128,6 +134,22 @@ class LobbyComp implements ShadowRootAware, DetachAware {
        }
   }
 
+  void toggleFilterMenu()
+  {
+    _filtersButton.classes.clear();
+    _filtersButton.classes.addAll(_filtersButtonClassesByDefault);
+
+    if (_isFilterButtonOpen){
+      _filtersButton.classes.add('toggleOff');
+       _isFilterButtonOpen = false;
+    }
+    else
+    {
+      _filtersButton.classes.add('toggleOn');
+      _isFilterButtonOpen = true;
+    }
+  }
+
   Timer _timer;
   Router _router;
   ScreenDetectorService _scrDet;
@@ -137,4 +159,8 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   int _currentButtonState = 0;
   String _currentSelectedButton = "";
   List<String> _sortingButtonClassesByDefault;
+
+  Element _filtersButton;
+  List<String> _filtersButtonClassesByDefault;
+  bool _isFilterButtonOpen = false;
 }

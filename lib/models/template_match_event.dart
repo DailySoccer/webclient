@@ -15,7 +15,7 @@ class TemplateMatchEvent {
   TemplateMatchEvent(this.templateMatchEventId, this.soccerTeamA, this.soccerTeamB, this.startDate);
 
   TemplateMatchEvent.referenceInit(this.templateMatchEventId);
-  
+
   factory TemplateMatchEvent.fromJsonObject(JsonObject json, ContestReferences references) {
     TemplateMatchEvent matchEvent = references.getMatchEventById(json._id);
     return matchEvent._initFromJsonObject(json, references);
@@ -28,15 +28,23 @@ class TemplateMatchEvent {
     }
     return soccerPlayer;
   }
-    
+
+  void updateFantasyPoints(Map<String, int> soccerPlayerToPoints) {
+    soccerTeamA.soccerPlayers.forEach( (soccerPlayer) =>
+        soccerPlayer.currentLivePoints = soccerPlayerToPoints[soccerPlayer.templateSoccerPlayerId]);
+
+    soccerTeamB.soccerPlayers.forEach( (soccerPlayer) =>
+        soccerPlayer.currentLivePoints = soccerPlayerToPoints[soccerPlayer.templateSoccerPlayerId]);
+  }
+
   TemplateMatchEvent _initFromJsonObject(JsonObject json, ContestReferences references) {
     assert(templateMatchEventId.isNotEmpty);
     soccerTeamA = new SoccerTeam.fromJsonObject(json.soccerTeamA, references)
       .. matchEvent = this;
-    
+
     soccerTeamB = new SoccerTeam.fromJsonObject(json.soccerTeamB, references)
       .. matchEvent = this;
-    
+
     startDate = new DateTime.fromMillisecondsSinceEpoch(json.startDate, isUtc: true);
     return this;
   }

@@ -86,11 +86,10 @@ class MyContestsService {
 
     _server.getLiveMatchEventsFromTemplateContest(templateContestId)
       .then((jsonObject) {
-        jsonObject.content.map((jsonObject) => new LiveMatchEvent.fromJsonObject(jsonObject))
-          .toList()
-          .forEach( (liveMatchEvent) =>
-              liveMatchEvent.updateFantasyPoints(lastContest.templateContest.templateMatchEvents.firstWhere((matchEvent) => matchEvent.templateMatchEventId == liveMatchEvent.templateMatchEventId)) );
-
+        jsonObject.content.forEach((jsonObject) {
+            lastContest.templateContest.templateMatchEvents.firstWhere((matchEvent) => matchEvent.templateMatchEventId == jsonObject._id)
+                .. updateFantasyPoints(jsonObject.livePlayerToPoints);
+        });
         completer.complete(jsonObject);
       });
 

@@ -8,7 +8,6 @@ import "package:webclient/models/user.dart";
 import "package:webclient/models/contest.dart";
 import "package:webclient/models/template_contest.dart";
 import "package:webclient/models/template_match_event.dart";
-import "package:webclient/models/live_match_event.dart";
 import "package:webclient/models/soccer_player.dart";
 import 'package:webclient/models/contest_entry.dart';
 

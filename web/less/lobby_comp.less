@@ -58,15 +58,11 @@
 			} 
 		}
 		.asc::after{
-			font-family: 'Glyphicons Halflings';
-			content: "\E113";
-			font-size:  5pt;
+			.create-glyph("\E113", 5pt, @greyUltraLight);
 			margin-left: 5px;
 		}	
 		.desc::after{
-			font-family: 'Glyphicons Halflings';
-			content: "\E114";
-			font-size:  5pt;
+			.create-glyph("\E114", 5pt, @greyUltraLight);
 			margin-left: 5px;
 		}
 	}
@@ -112,9 +108,7 @@
 	}
 
 	.toggleOff::after{
-		font-family: 'Glyphicons Halflings';
-		content: "\E114";
-		font-size:  10pt;
+		.create-glyph("\E114", 10pt, @greyUltraLight);
 		margin-left: 15px;
 		top: 7px;
 		position: absolute;
@@ -125,13 +119,8 @@
 	}
 	
 	.toggleOn::after{
-		font-family: 'Glyphicons Halflings';
-		content: "\E113";
-		font-size:  10pt;
-		//margin-left: 15px;
+		.create-glyph("\E113", 10pt, @greyUltraLight);
 		background-color: @greyDark;
-		color: @greyUltraLight;
-
 		position: absolute;
 		border-radius: 10px 10px 0 0;
 		padding: 0px 5px 28px 5px;

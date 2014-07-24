@@ -128,6 +128,16 @@
 	background-color: #FF00A0;
 }
 
+.create-glyph(@code, @size){
+	font-family: 'Glyphicons Halflings';
+	content: @code;
+	font-size:  @size;	
+}
+.create-glyph(@code, @size, @color){
+	.create-glyph(@code, @size)	
+	color: @color;
+}
+
 // Da trick ;)
 // * { background-color: rgba(255,0,0,.2); }
 // * * { background-color: rgba(0,255,0,.2); }

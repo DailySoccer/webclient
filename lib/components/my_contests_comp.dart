@@ -13,13 +13,14 @@ import 'package:webclient/models/contest.dart';
            templateUrl: 'packages/webclient/components/my_contests_comp.html',
            publishAs: 'comp',
            useShadowDom: false)
-class MyContestsComp {
+class MyContestsComp implements DetachAware {
 
   MyContestsService myContestsService;
 
   MyContestsComp(this.myContestsService, this._router, this._flashMessage) {
-    myContestsService.refreshMyContests()
-      .catchError((error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW));
+
+    _updateLive();
+    _timer = new Timer.periodic(const Duration(seconds:3), (Timer t) => _updateLive());
   }
 
   void onWaitingRowClick(Contest contest) {
@@ -40,6 +41,18 @@ class MyContestsComp {
 
   void onHistoryActionClick(Contest contest) {
   }
+
+  void detach() {
+    if (_timer != null)
+      _timer.cancel();
+  }
+
+  void _updateLive() {
+    myContestsService.refreshMyContests()
+      .catchError((error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW));
+  }
+
+  Timer _timer;
 
   Router _router;
   FlashMessagesService _flashMessage;

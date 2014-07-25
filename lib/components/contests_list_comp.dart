@@ -15,6 +15,9 @@ class ContestsListComp {
   @NgOneWay("sortedBy")
   void set sortedBy(String value) {
 
+    if(value == null)
+       return;
+
     var sortParams = value.split('_');
     if(sortParams != null)
     {

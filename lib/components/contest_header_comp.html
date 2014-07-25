@@ -1,59 +1,31 @@
-<div id="headerContestWidget" ng-switch="contestHeader.scrDet.isXsScreen">
+<div id="headerContestWidget">
 
-  <div ng-switch-when="true">
+    <div class="contest-name">{{contestHeader.contestHeaderInfo['description']}}</div>
 
-    <div class="contestName">
-      <div class="featured-text">{{contestHeader.contestHeaderInfo['description']}}</div>
-      <div class="explanation-text">{{contestHeader.contestHeaderInfo['contestType']}} {{contestHeader.contestHeaderInfo['contestantCount']}}</div>
+    <div class="contest-explanation">{{contestHeader.contestHeaderInfo['contestType']}} {{contestHeader.contestHeaderInfo['contestantCount']}}</div>
+
+    <div class="contest-coins">
+
+      <div class="contest-price">
+        <div class="contest-coins-header">ENTRADA</div>
+        <div class="contest-coins-content"><span>{{contestHeader.contestHeaderInfo['entryPrice']}}</span></div>
+      </div>
+
+      <div class="contes-prize">
+        <div class="contest-coins-header">
+          <div class="contest-coins-header-title">PREMIOS</div>
+          <div class="contest-coins-header-prize-type">{{contestHeader.contestHeaderInfo['prizeType']}}</div>
+        </div>
+        <div class="contest-coins-content"><span>{{contestHeader.contestHeaderInfo['prize']}}</span></div>
+      </div>
+
     </div>
 
-    <div class="contestPrice">
-      <div class="money-text">{{contestHeader.contestHeaderInfo['entryPrice']}}</div>
-      <div class="explanation-text">Entrada</div>
-    </div>
-
-    <div class="contestPrize">
-      <div class="money-text">{{contestHeader.contestHeaderInfo['prize']}}</div>
-      <div class="explanation-text">{{contestHeader.contestHeaderInfo['prizeType']}}</div>
-    </div>
-
-    <div class="contestTimes">
+    <div class="contest-times">
       <div class="date-text">{{contestHeader.contestHeaderInfo['startTime']}}</div>
-      <div class="countdown-text"><span class="time-countdown">{{contestHeader.contestHeaderInfo['countdownDate']}}</span></div>
+      <div class="countdown-text"><span class="choose-player-text">ELIGE 11 JUGADORES</span><span class="time-countdown">{{contestHeader.contestHeaderInfo['countdownDate']}}</span></div>
     </div>
 
-    <div class="close_contest"><button type="button" class="btn" ng-click="contestHeader.goToLobby()">Cerrar</button></div>
-  </div>
-
-  <div ng-switch-when="false">
-
-    <div class="contestName">
-      <div class="close_contest"><button type="button" class="btn" ng-click="contestHeader.goToLobby()">Cerrar</button></div>
-      <div class="featured-text">{{contestHeader.contestHeaderInfo['description']}}</div>
-    </div>
-
-    <div class="contestExplanation">
-      <div class="explanation-text">{{contestHeader.contestHeaderInfo['contestType']}} {{contestHeader.contestHeaderInfo['contestantCount']}}</div>
-      <div class="date-text">{{contestHeader.contestHeaderInfo['startTime']}}</div>
-    </div>
-
-    <div class="contestPrice">
-      <div class="inner-icon"><span class="price-icon"></span></div>
-      <div class="header-name">ENTRADA</div>
-      <div class="featured-money-text">{{contestHeader.contestHeaderInfo['entryPrice']}}</div>
-    </div>
-
-    <div class="contestPrize">
-      <div class="inner-icon"><span class="price-icon"></span></div>
-      <div class="header-name">PREMIOS</div>
-      <div class="featured-money-text">{{contestHeader.contestHeaderInfo['prize']}}</div>
-    </div>
-
-    <div class="contestTimes">
-      <div class="contest-text">ELIGE 11 JUGADORES</div>
-      <div class="countdown-text"><span class="time-countdown">{{contestHeader.contestHeaderInfo['countdownDate']}}</spa></div>
-    </div>
-
-  </div>
+    <div class="close-contest"><button type="button" class="btn" ng-click="contestHeader.goToLobby()">Cerrar</button></div>
 
 </div>

@@ -56,7 +56,7 @@ class ContestHeaderComp implements DetachAware{
       NumberFormat nf_time = new NumberFormat("00");
       DateTime t = new DateTime.now().add(new Duration());
       //Duration cd = contestInfo.templateContest.startDate.difference(t);
-      Duration cd = new DateTime(2014, 7, 23, 12, 19, 0).difference(t);
+      Duration cd = new DateTime(2014, 7, 27, 12, 19, 0).difference(t);
 
       List<SpanElement> textCountdown = document.querySelectorAll(".text-countdown");
       textCountdown.forEach((element) => element.remove());

@@ -21,7 +21,7 @@
 
 
 // Path Definitions
-@images: "../images";							// No ponemos / al final para separar mejor donde realmente se define la imagen
+@images: "../images"; // No ponemos / al final para separar mejor donde realmente se define la imagen
 
 
 @icon-font-path: "//netdna.bootstrapcdn.com/bootstrap/3.0.0/fonts/";
@@ -59,6 +59,12 @@
 // En pantallas > 1200 nos limitamos a > 992px
 @container-lg: @container-md;
 
+//Funcion para quitar paddings al container
+.clean-paddings {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
 // Contenedor exterior que envuelve a todo el contenido. Lo usamos para fijar el background.
 .wrapper-content-container {
 	@media (min-width: @screen-sm-min) {
@@ -76,24 +82,13 @@
 
 // Contenedor interior que envuelve al contenido. Fijamos el width con el.
 .main-content-container {
+	.container-fluid();
+	.clean-paddings();
 	
-	@media (max-width: @screen-xs-max) {
-		.container-fluid();
-		/*padding-left: 0px;
-		padding-right: 0px;*/
-	}
-	@media (min-width: @screen-sm-min) {
-		.container-fluid(); /* */
-	}
 	@media (min-width: @screen-md-min) {
 		.container();
-		/*padding-left: 0px;
-		padding-right: 0px;*/
-		background-color: @white;
+		.clean-paddings();
 	}
-
-	padding-left: 0px;
-	padding-right: 0px;
 }
 
 .price-icon {
@@ -137,7 +132,7 @@
 	font-size:  @size;	
 }
 .create-glyph(@code, @size, @color){
-	.create-glyph(@code, @size);
+	.create-glyph(@code, @size);	
 	color: @color;
 }
 

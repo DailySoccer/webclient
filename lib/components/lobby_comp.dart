@@ -40,8 +40,6 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     //Al iniciar, tiene que está cerrado por lo tanto le añadimos la clase que pone la flecha hacia abajo
     _filtersButton.classes.add('toggleOff');
 
-    js.context.callMethod(r'$', ['#ex2'])
-            .callMethod('slider', [{'width':'200px'}]);
 
     /*
       _sortingButtons.first.classes.forEach((value) => _sortingButtonClassesByDefault += (" " + value) );   ///(String value => _sortingButtonClassesByDefault += value);

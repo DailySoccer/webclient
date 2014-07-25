@@ -55,8 +55,8 @@ class ContestHeaderComp implements DetachAware{
       NumberFormat nf_day = new NumberFormat("0");
       NumberFormat nf_time = new NumberFormat("00");
       DateTime t = new DateTime.now().add(new Duration());
-      //Duration cd = contestInfo.templateContest.startDate.difference(t);
-      Duration cd = new DateTime(2014, 7, 27, 12, 19, 0).difference(t);
+      Duration cd = contestInfo.templateContest.startDate.difference(t);
+      //Duration cd = new DateTime(2014, 8, 26, 12, 19, 0).difference(t);
 
       List<SpanElement> textCountdown = document.querySelectorAll(".text-countdown");
       textCountdown.forEach((element) => element.remove());
@@ -71,11 +71,10 @@ class ContestHeaderComp implements DetachAware{
         var minutes = nf_time.format(cd.inMinutes % 60);
         var seconds = nf_time.format(cd.inSeconds % 60);
 
-        if(scrDet.isXsScreen) {
-          texto = "FALTAN ";
-        }
         if(scrDet.isDesktop) {
           texto = "EL DESAFIO COMENZARÁ EN: ";
+        } else {
+          texto = "FALTAN ";
         }
         SpanElement countdownTextSpan = new SpanElement();
         countdownTextSpan.text = texto;

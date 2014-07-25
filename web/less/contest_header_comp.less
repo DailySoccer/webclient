@@ -1,4 +1,5 @@
 #headerContestWidget {
+	.make-row(15);
 	position: relative;
 	background-color: @tramaBlue;
 	padding: 10px 5px;
@@ -107,6 +108,17 @@
 			}
 		}
 	}
+
+	.contest-start-date {
+		.make-xs-column(6, 0);
+		.make-md-column(12, 0);
+		.opensans_bold(10pt, @blueMed);
+		@media (max-width: @screen-xs-max) {
+			.opensans_bold(8pt, @blueMed);
+			margin-top: 15px;
+		}
+	}
+
 	// Botón de cerrar
 	.close-contest {
 		position: absolute;
@@ -126,4 +138,43 @@
 		}
 	}
 	
+}
+
+.countdown-text {
+	@media (max-width: @screen-sm-max){
+		.make-xs-column(6, 0);
+		.opensans_bold(10pt, @blueMed);
+	}
+
+	@media (min-width: @screen-md-min) {
+		#gradient.vertical(@blueGradientLight, @blueGradientDark, 49%, 51%);
+		padding: 10px;
+	}
+
+	@media (max-width: @screen-xs-max) {
+		.opensans_bold(8pt, @blueMed);
+		margin-top: 15px;
+	}
+
+	.choose-player-text {
+		display: inline-block;
+		.exo_bold(16pt, @white);
+	}
+	.time-countdown{
+		@media (min-width: @screen-md-min) {
+			.exo_light(18pt, @blueLight);
+		}
+		.opensans_bold(8pt, @blueDark);
+		.pull-right();
+	}
+	.text-countdown {
+		@media (min-width: @screen-md-min) {
+			.exo_bold(10pt, @white);
+			margin: 9px 5px 0;
+		}
+		.opensans_bold(8pt, @blueDark);
+		.pull-right();
+		margin-right: 5px;
+	}
+		
 }

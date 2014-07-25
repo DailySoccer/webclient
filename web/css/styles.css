@@ -5619,6 +5619,8 @@ button.close {
 #contestInfoTabContent:after,
 #contestInfoTabContent .contestant-list .contestant-element:before,
 #contestInfoTabContent .contestant-list .contestant-element:after,
+#headerContestWidget:before,
+#headerContestWidget:after,
 #contestsListRoot .contest-row:before,
 #contestsListRoot .contest-row:after,
 .landing-wrapper .screen-content:before,
@@ -5670,6 +5672,7 @@ button.close {
 #infoContent .modal-content .list-wrapper .contestant-list .contestant-element:after,
 #contestInfoTabContent:after,
 #contestInfoTabContent .contestant-list .contestant-element:after,
+#headerContestWidget:after,
 #contestsListRoot .contest-row:after,
 .landing-wrapper .screen-content:after,
 .landing-wrapper .screen-content-alt:after,
@@ -7057,6 +7060,8 @@ button#infoContent .modal-info-head button.close {
   border: 1px solid #ffffff;
 }
 #headerContestWidget {
+  margin-left: -7.5;
+  margin-right: -7.5;
   position: relative;
   background-color: #ecf0f1;
   padding: 10px 5px;
@@ -7247,6 +7252,33 @@ button#infoContent .modal-info-head button.close {
     left: 0;
   }
 }
+#headerContestWidget .contest-start-date {
+  float: left;
+  width: 50%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 0;
+  padding-right: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #0d75a6;
+}
+@media (min-width: 992px) {
+  #headerContestWidget .contest-start-date {
+    float: left;
+    width: 100%;
+  }
+}
+@media (max-width: 767px) {
+  #headerContestWidget .contest-start-date {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 8pt;
+    color: #0d75a6;
+    margin-top: 15px;
+  }
+}
 #headerContestWidget .close-contest {
   position: absolute;
   right: 10px;
@@ -7305,6 +7337,77 @@ fieldset[disabled] #headerContestWidget .close-contest .btn.active {
   content: "\E014";
   font-size: 9pt;
   margin-left: 10px;
+}
+@media (max-width: 991px) {
+  .countdown-text {
+    position: relative;
+    float: left;
+    width: 50%;
+    min-height: 1px;
+    padding-left: 0;
+    padding-right: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 10pt;
+    color: #0d75a6;
+  }
+}
+@media (min-width: 992px) {
+  .countdown-text {
+    background-image: -webkit-linear-gradient(top, #1a3949 49%, #0f2630 51%);
+    background-image: linear-gradient(to bottom, #1a3949 49%, #0f2630 51%);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff1a3949', endColorstr='#ff0f2630', GradientType=0);
+    padding: 10px;
+  }
+}
+@media (max-width: 767px) {
+  .countdown-text {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 8pt;
+    color: #0d75a6;
+    margin-top: 15px;
+  }
+}
+.countdown-text .choose-player-text {
+  display: inline-block;
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  font-size: 16pt;
+  color: #ffffff;
+}
+.countdown-text .time-countdown {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #214a5f;
+  float: right !important;
+}
+@media (min-width: 992px) {
+  .countdown-text .time-countdown {
+    font-family: 'Exo', sans-serif;
+    font-weight: 300;
+    font-size: 18pt;
+    color: #59add5;
+  }
+}
+.countdown-text .text-countdown {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #214a5f;
+  float: right !important;
+  margin-right: 5px;
+}
+@media (min-width: 992px) {
+  .countdown-text .text-countdown {
+    font-family: 'Exo', sans-serif;
+    font-weight: 600;
+    font-size: 10pt;
+    color: #ffffff;
+    margin: 9px 5px 0;
+  }
 }
 #contestsListRoot {
   background-color: #ecf0f1;

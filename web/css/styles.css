@@ -5637,6 +5637,12 @@ button.close {
 .soccer-players-list .soccer-players-list-slot:after,
 #promosComponent:before,
 #promosComponent:after,
+.lobby-top-infobar:before,
+.lobby-top-infobar:after,
+#contestSortsFilters:before,
+#contestSortsFilters:after,
+#filtersPanel:before,
+#filtersPanel:after,
 .main-content-container:before,
 .main-content-container:after,
 .lineup-selector .lineup-selector-slot:before,
@@ -5673,6 +5679,9 @@ button.close {
 .soccer-player-list-header-table:after,
 .soccer-players-list .soccer-players-list-slot:after,
 #promosComponent:after,
+.lobby-top-infobar:after,
+#contestSortsFilters:after,
+#filtersPanel:after,
 .main-content-container:after,
 .lineup-selector .lineup-selector-slot:after {
   clear: both;
@@ -9874,14 +9883,76 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
   max-width: 100%;
   height: auto;
 }
-#infoAndFilterHeader .lobby-top-infobar {
+@media (max-width: 991px) {
+  #infoAndFilterHeader {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  #infoAndFilterHeader > .navbar-header,
+  #infoAndFilterHeader > .navbar-collapse {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+}
+@media (max-width: 991px) and (min-width: 768px) {
+  #infoAndFilterHeader > .navbar-header,
+  #infoAndFilterHeader > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+@media (min-width: 768px) {
+  #infoAndFilterHeader {
+    background-color: #ffffff;
+  }
+}
+@media (min-width: 1200px) {
+  #infoAndFilterHeader {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  #infoAndFilterHeader > .navbar-header,
+  #infoAndFilterHeader > .navbar-collapse {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+}
+@media (min-width: 1200px) and (min-width: 768px) {
+  #infoAndFilterHeader {
+    width: 750px;
+  }
+}
+@media (min-width: 1200px) and (min-width: 992px) {
+  #infoAndFilterHeader {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) and (min-width: 1200px) {
+  #infoAndFilterHeader {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) and (min-width: 768px) {
+  #infoAndFilterHeader > .navbar-header,
+  #infoAndFilterHeader > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+.lobby-top-infobar {
+  margin-left: -15px;
+  margin-right: -15px;
   height: 50px;
   background-image: -webkit-linear-gradient(top, #1a3949 49%, #0f2630 51%);
   background-image: linear-gradient(to bottom, #1a3949 49%, #0f2630 51%);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff1a3949', endColorstr='#ff0f2630', GradientType=0);
 }
-#infoAndFilterHeader .lobby-top-infobar p {
+.lobby-top-infobar p {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 8pt;
@@ -9889,20 +9960,22 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
   line-height: 50px;
   text-align: center;
 }
-#infoAndFilterHeader #contestSortsFilters {
+#contestSortsFilters {
   padding: 20px 0;
+  margin-left: 0;
+  margin-right: 0;
 }
-#infoAndFilterHeader #contestSortsFilters .filterText {
+#contestSortsFilters .filterText {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 8pt;
   color: #434343;
 }
-#infoAndFilterHeader #contestSortsFilters .left-separator {
+#contestSortsFilters .left-separator {
   padding-left: 20px;
   border-left: 1px solid #434343;
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSort {
+#contestSortsFilters #contestFastSort {
   position: relative;
   float: left;
   width: 50%;
@@ -9911,32 +9984,32 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
   padding-right: 15px;
   padding: 3px 0;
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .btn-group {
+#contestSortsFilters #contestFastSort .btn-group {
   position: relative;
   display: inline-block;
   vertical-align: middle;
   padding-left: 13px;
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .btn-group > .btn {
+#contestSortsFilters #contestFastSort .btn-group > .btn {
   position: relative;
   float: left;
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .btn-group > .btn:hover,
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .btn-group > .btn:focus,
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .btn-group > .btn:active,
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .btn-group > .btn.active {
+#contestSortsFilters #contestFastSort .btn-group > .btn:hover,
+#contestSortsFilters #contestFastSort .btn-group > .btn:focus,
+#contestSortsFilters #contestFastSort .btn-group > .btn:active,
+#contestSortsFilters #contestFastSort .btn-group > .btn.active {
   z-index: 2;
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .btn-group > .btn:focus {
+#contestSortsFilters #contestFastSort .btn-group > .btn:focus {
   outline: none;
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .btn-group .btn + .btn,
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .btn-group .btn + .btn-group,
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .btn-group .btn-group + .btn,
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .btn-group .btn-group + .btn-group {
+#contestSortsFilters #contestFastSort .btn-group .btn + .btn,
+#contestSortsFilters #contestFastSort .btn-group .btn + .btn-group,
+#contestSortsFilters #contestFastSort .btn-group .btn-group + .btn,
+#contestSortsFilters #contestFastSort .btn-group .btn-group + .btn-group {
   margin-left: -1px;
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button {
+#contestSortsFilters #contestFastSort .sorting-button {
   color: #ffffff;
   background-color: #59add5;
   border-color: #cccccc;
@@ -9952,63 +10025,63 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
   color: #777777;
   padding: 6px 23px;
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button:hover,
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button:focus,
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button:active,
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button.active,
-.open .dropdown-toggle#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button {
+#contestSortsFilters #contestFastSort .sorting-button:hover,
+#contestSortsFilters #contestFastSort .sorting-button:focus,
+#contestSortsFilters #contestFastSort .sorting-button:active,
+#contestSortsFilters #contestFastSort .sorting-button.active,
+.open .dropdown-toggle#contestSortsFilters #contestFastSort .sorting-button {
   color: #ffffff;
   background-color: #389dcd;
   border-color: #adadad;
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button:active,
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button.active,
-.open .dropdown-toggle#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button {
+#contestSortsFilters #contestFastSort .sorting-button:active,
+#contestSortsFilters #contestFastSort .sorting-button.active,
+.open .dropdown-toggle#contestSortsFilters #contestFastSort .sorting-button {
   background-image: none;
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button.disabled,
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button[disabled],
-fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button,
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button.disabled:hover,
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button[disabled]:hover,
-fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button:hover,
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button.disabled:focus,
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button[disabled]:focus,
-fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button:focus,
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button.disabled:active,
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button[disabled]:active,
-fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button:active,
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button.disabled.active,
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button[disabled].active,
-fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button.active {
+#contestSortsFilters #contestFastSort .sorting-button.disabled,
+#contestSortsFilters #contestFastSort .sorting-button[disabled],
+fieldset[disabled] #contestSortsFilters #contestFastSort .sorting-button,
+#contestSortsFilters #contestFastSort .sorting-button.disabled:hover,
+#contestSortsFilters #contestFastSort .sorting-button[disabled]:hover,
+fieldset[disabled] #contestSortsFilters #contestFastSort .sorting-button:hover,
+#contestSortsFilters #contestFastSort .sorting-button.disabled:focus,
+#contestSortsFilters #contestFastSort .sorting-button[disabled]:focus,
+fieldset[disabled] #contestSortsFilters #contestFastSort .sorting-button:focus,
+#contestSortsFilters #contestFastSort .sorting-button.disabled:active,
+#contestSortsFilters #contestFastSort .sorting-button[disabled]:active,
+fieldset[disabled] #contestSortsFilters #contestFastSort .sorting-button:active,
+#contestSortsFilters #contestFastSort .sorting-button.disabled.active,
+#contestSortsFilters #contestFastSort .sorting-button[disabled].active,
+fieldset[disabled] #contestSortsFilters #contestFastSort .sorting-button.active {
   background-color: #59add5;
   border-color: #cccccc;
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button .badge {
+#contestSortsFilters #contestFastSort .sorting-button .badge {
   color: #59add5;
   background-color: #ffffff;
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button:hover {
+#contestSortsFilters #contestFastSort .sorting-button:hover {
   background-color: transparent;
   border-width: 1px;
   color: #434343;
   border-color: #434343;
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .asc::after {
+#contestSortsFilters #contestFastSort .asc::after {
   font-family: 'Glyphicons Halflings';
   content: "\E113";
   font-size: 5pt;
   color: #434343;
   margin-left: 5px;
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .desc::after {
+#contestSortsFilters #contestFastSort .desc::after {
   font-family: 'Glyphicons Halflings';
   content: "\E114";
   font-size: 5pt;
   color: #434343;
   margin-left: 5px;
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSearch {
+#contestSortsFilters #contestFastSearch {
   position: relative;
   float: left;
   width: 41.66666667%;
@@ -10018,7 +10091,7 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #contestFastSort .s
   padding-left: 20px;
   border-left: 1px solid #434343;
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSearch .searcher {
+#contestSortsFilters #contestFastSearch .searcher {
   display: block;
   width: 100%;
   height: 34px;
@@ -10043,33 +10116,33 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #contestFastSort .s
   box-shadow: none;
   border-width: 0;
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSearch .searcher:focus {
+#contestSortsFilters #contestFastSearch .searcher:focus {
   border-color: #66afe9;
   outline: 0;
   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
   box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSearch .searcher::-moz-placeholder {
+#contestSortsFilters #contestFastSearch .searcher::-moz-placeholder {
   color: #999999;
   opacity: 1;
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSearch .searcher:-ms-input-placeholder {
+#contestSortsFilters #contestFastSearch .searcher:-ms-input-placeholder {
   color: #999999;
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSearch .searcher::-webkit-input-placeholder {
+#contestSortsFilters #contestFastSearch .searcher::-webkit-input-placeholder {
   color: #999999;
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSearch .searcher[disabled],
-#infoAndFilterHeader #contestSortsFilters #contestFastSearch .searcher[readonly],
-fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #contestFastSearch .searcher {
+#contestSortsFilters #contestFastSearch .searcher[disabled],
+#contestSortsFilters #contestFastSearch .searcher[readonly],
+fieldset[disabled] #contestSortsFilters #contestFastSearch .searcher {
   cursor: not-allowed;
   background-color: #eeeeee;
   opacity: 1;
 }
-textarea#infoAndFilterHeader #contestSortsFilters #contestFastSearch .searcher {
+textarea#contestSortsFilters #contestFastSearch .searcher {
   height: auto;
 }
-#infoAndFilterHeader #contestSortsFilters #filterToggler {
+#contestSortsFilters #filterToggler {
   position: relative;
   float: left;
   width: 8.33333333%;
@@ -10080,7 +10153,7 @@ textarea#infoAndFilterHeader #contestSortsFilters #contestFastSearch .searcher {
   border-left: 1px solid #434343;
   padding-left: 0px;
 }
-#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button {
+#contestSortsFilters #filterToggler .filters-button {
   color: #ffffff;
   background-color: #59add5;
   border-color: #cccccc;
@@ -10095,48 +10168,48 @@ textarea#infoAndFilterHeader #contestSortsFilters #contestFastSearch .searcher {
   border-color: #434343;
   color: #777777;
 }
-#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button:hover,
-#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button:focus,
-#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button:active,
-#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button.active,
-.open .dropdown-toggle#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button {
+#contestSortsFilters #filterToggler .filters-button:hover,
+#contestSortsFilters #filterToggler .filters-button:focus,
+#contestSortsFilters #filterToggler .filters-button:active,
+#contestSortsFilters #filterToggler .filters-button.active,
+.open .dropdown-toggle#contestSortsFilters #filterToggler .filters-button {
   color: #ffffff;
   background-color: #389dcd;
   border-color: #adadad;
 }
-#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button:active,
-#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button.active,
-.open .dropdown-toggle#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button {
+#contestSortsFilters #filterToggler .filters-button:active,
+#contestSortsFilters #filterToggler .filters-button.active,
+.open .dropdown-toggle#contestSortsFilters #filterToggler .filters-button {
   background-image: none;
 }
-#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button.disabled,
-#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button[disabled],
-fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button,
-#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button.disabled:hover,
-#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button[disabled]:hover,
-fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button:hover,
-#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button.disabled:focus,
-#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button[disabled]:focus,
-fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button:focus,
-#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button.disabled:active,
-#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button[disabled]:active,
-fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button:active,
-#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button.disabled.active,
-#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button[disabled].active,
-fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button.active {
+#contestSortsFilters #filterToggler .filters-button.disabled,
+#contestSortsFilters #filterToggler .filters-button[disabled],
+fieldset[disabled] #contestSortsFilters #filterToggler .filters-button,
+#contestSortsFilters #filterToggler .filters-button.disabled:hover,
+#contestSortsFilters #filterToggler .filters-button[disabled]:hover,
+fieldset[disabled] #contestSortsFilters #filterToggler .filters-button:hover,
+#contestSortsFilters #filterToggler .filters-button.disabled:focus,
+#contestSortsFilters #filterToggler .filters-button[disabled]:focus,
+fieldset[disabled] #contestSortsFilters #filterToggler .filters-button:focus,
+#contestSortsFilters #filterToggler .filters-button.disabled:active,
+#contestSortsFilters #filterToggler .filters-button[disabled]:active,
+fieldset[disabled] #contestSortsFilters #filterToggler .filters-button:active,
+#contestSortsFilters #filterToggler .filters-button.disabled.active,
+#contestSortsFilters #filterToggler .filters-button[disabled].active,
+fieldset[disabled] #contestSortsFilters #filterToggler .filters-button.active {
   background-color: #59add5;
   border-color: #cccccc;
 }
-#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button .badge {
+#contestSortsFilters #filterToggler .filters-button .badge {
   color: #59add5;
   background-color: #ffffff;
 }
-#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button:hover {
+#contestSortsFilters #filterToggler .filters-button:hover {
   background-color: transparent;
   color: #434343;
   border-color: #434343;
 }
-#infoAndFilterHeader #contestSortsFilters .toggleOff::after {
+#contestSortsFilters .toggleOff::after {
   font-family: 'Glyphicons Halflings';
   content: "\E114";
   font-size: 10pt;
@@ -10145,7 +10218,7 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #filterToggler .fil
   margin-left: 15px;
   top: 7px;
 }
-#infoAndFilterHeader #contestSortsFilters .toggleOn::after {
+#contestSortsFilters .toggleOn::after {
   font-family: 'Glyphicons Halflings';
   content: "\E113";
   font-size: 10pt;
@@ -10154,10 +10227,12 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #filterToggler .fil
   margin-left: 15px;
   top: 7px;
 }
-#infoAndFilterHeader #filtersPanel {
+#filtersPanel {
+  margin-left: 0;
+  margin-right: 0;
   border-top: 1px dotted #434343;
 }
-#infoAndFilterHeader #filtersPanel .filter-column {
+#filtersPanel .filter-column {
   position: relative;
   float: left;
   width: 25%;
@@ -10167,20 +10242,20 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #filterToggler .fil
   border-right: 1px dotted #434343;
   padding: 10px;
 }
-#infoAndFilterHeader #filtersPanel .filter-column .filter-head {
+#filtersPanel .filter-column .filter-head {
   font-family: 'Exo', sans-serif;
   font-weight: 300;
   font-size: 16pt;
   color: #214a5f;
 }
-#infoAndFilterHeader #filtersPanel .filter-column .filter-content {
+#filtersPanel .filter-column .filter-content {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 12pt;
   color: #214a5f;
   min-height: 300px;
 }
-#infoAndFilterHeader #filtersPanel .filter-column-last {
+#filtersPanel .filter-column-last {
   position: relative;
   float: left;
   width: 25%;
@@ -10191,13 +10266,13 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #filterToggler .fil
   padding: 10px;
   border-width: 0px;
 }
-#infoAndFilterHeader #filtersPanel .filter-column-last .filter-head {
+#filtersPanel .filter-column-last .filter-head {
   font-family: 'Exo', sans-serif;
   font-weight: 300;
   font-size: 16pt;
   color: #214a5f;
 }
-#infoAndFilterHeader #filtersPanel .filter-column-last .filter-content {
+#filtersPanel .filter-column-last .filter-content {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 12pt;

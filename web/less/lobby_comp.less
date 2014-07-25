@@ -1,7 +1,19 @@
 #infoAndFilterHeader{
+	@media (max-width: @screen-sm-max) {
+		.container-fluid();
+	}
+	@media (min-width: @screen-sm-min) {
+		background-color: @white;
+	}
+	@media (min-width: @screen-lg-min) {
+		.container();
+	}
 
+	
+}
 .lobby-top-infobar{
-
+	
+	.make-row();
 	height: 50px;
     #gradient.vertical(@blueGradientLight, @blueGradientDark, 49%, 51%);
 	p {
@@ -10,7 +22,6 @@
 		text-align: center;
 	}
 }
-
 #contestSortsFilters{
 	padding: 20px 0;
 	.filterText{
@@ -20,7 +31,7 @@
 		padding-left: 20px;
 		border-left: 1px solid @greyUltraDark;
 	}
-	//.make-row(0);
+	.make-row(0);
 	#contestFastSort{	
 		.make-xs-column(6);
 		padding: 3px 0;		
@@ -107,7 +118,7 @@
 	}
 }
 	#filtersPanel{
-		//.make-row(0);
+		.make-row(0);
 		border-top: 1px dotted @greyUltraDark;
 		.filter-column{
 			.make-xs-column(3);
@@ -127,4 +138,3 @@
 		}
 
 	}
-}

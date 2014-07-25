@@ -9134,7 +9134,7 @@ fieldset[disabled] .enter-contest-actions .btn {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-.enter-contest-actions .btn-clean-lienup-list {
+.enter-contest-actions .btn-clean-lineup-list {
   display: inline-block;
   margin-bottom: 0;
   font-weight: normal;
@@ -9160,28 +9160,28 @@ fieldset[disabled] .enter-contest-actions .btn {
   border-color: #cccccc;
   box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
 }
-.enter-contest-actions .btn-clean-lienup-list:focus,
-.enter-contest-actions .btn-clean-lienup-list:active:focus,
-.enter-contest-actions .btn-clean-lienup-list.active:focus {
+.enter-contest-actions .btn-clean-lineup-list:focus,
+.enter-contest-actions .btn-clean-lineup-list:active:focus,
+.enter-contest-actions .btn-clean-lineup-list.active:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-.enter-contest-actions .btn-clean-lienup-list:hover,
-.enter-contest-actions .btn-clean-lienup-list:focus {
+.enter-contest-actions .btn-clean-lineup-list:hover,
+.enter-contest-actions .btn-clean-lineup-list:focus {
   color: #ffffff;
   text-decoration: none;
 }
-.enter-contest-actions .btn-clean-lienup-list:active,
-.enter-contest-actions .btn-clean-lienup-list.active {
+.enter-contest-actions .btn-clean-lineup-list:active,
+.enter-contest-actions .btn-clean-lineup-list.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-.enter-contest-actions .btn-clean-lienup-list.disabled,
-.enter-contest-actions .btn-clean-lienup-list[disabled],
-fieldset[disabled] .enter-contest-actions .btn-clean-lienup-list {
+.enter-contest-actions .btn-clean-lineup-list.disabled,
+.enter-contest-actions .btn-clean-lineup-list[disabled],
+fieldset[disabled] .enter-contest-actions .btn-clean-lineup-list {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -9189,28 +9189,28 @@ fieldset[disabled] .enter-contest-actions .btn-clean-lienup-list {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-.enter-contest-actions .btn-clean-lienup-list:focus,
-.enter-contest-actions .btn-clean-lienup-list:active:focus,
-.enter-contest-actions .btn-clean-lienup-list.active:focus {
+.enter-contest-actions .btn-clean-lineup-list:focus,
+.enter-contest-actions .btn-clean-lineup-list:active:focus,
+.enter-contest-actions .btn-clean-lineup-list.active:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-.enter-contest-actions .btn-clean-lienup-list:hover,
-.enter-contest-actions .btn-clean-lienup-list:focus {
+.enter-contest-actions .btn-clean-lineup-list:hover,
+.enter-contest-actions .btn-clean-lineup-list:focus {
   color: #ffffff;
   text-decoration: none;
 }
-.enter-contest-actions .btn-clean-lienup-list:active,
-.enter-contest-actions .btn-clean-lienup-list.active {
+.enter-contest-actions .btn-clean-lineup-list:active,
+.enter-contest-actions .btn-clean-lineup-list.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-.enter-contest-actions .btn-clean-lienup-list.disabled,
-.enter-contest-actions .btn-clean-lienup-list[disabled],
-fieldset[disabled] .enter-contest-actions .btn-clean-lienup-list {
+.enter-contest-actions .btn-clean-lineup-list.disabled,
+.enter-contest-actions .btn-clean-lineup-list[disabled],
+fieldset[disabled] .enter-contest-actions .btn-clean-lineup-list {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -9218,57 +9218,57 @@ fieldset[disabled] .enter-contest-actions .btn-clean-lienup-list {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-.enter-contest-actions .btn-clean-lienup-list:hover,
-.enter-contest-actions .btn-clean-lienup-list:focus,
-.enter-contest-actions .btn-clean-lienup-list:active,
-.enter-contest-actions .btn-clean-lienup-list.active,
-.open .dropdown-toggle.enter-contest-actions .btn-clean-lienup-list {
+.enter-contest-actions .btn-clean-lineup-list:hover,
+.enter-contest-actions .btn-clean-lineup-list:focus,
+.enter-contest-actions .btn-clean-lineup-list:active,
+.enter-contest-actions .btn-clean-lineup-list.active,
+.open .dropdown-toggle.enter-contest-actions .btn-clean-lineup-list {
   color: #ffffff;
   background-color: #9b9b9b;
   border-color: #adadad;
 }
-.enter-contest-actions .btn-clean-lienup-list:active,
-.enter-contest-actions .btn-clean-lienup-list.active,
-.open .dropdown-toggle.enter-contest-actions .btn-clean-lienup-list {
+.enter-contest-actions .btn-clean-lineup-list:active,
+.enter-contest-actions .btn-clean-lineup-list.active,
+.open .dropdown-toggle.enter-contest-actions .btn-clean-lineup-list {
   background-image: none;
 }
-.enter-contest-actions .btn-clean-lienup-list.disabled,
-.enter-contest-actions .btn-clean-lienup-list[disabled],
-fieldset[disabled] .enter-contest-actions .btn-clean-lienup-list,
-.enter-contest-actions .btn-clean-lienup-list.disabled:hover,
-.enter-contest-actions .btn-clean-lienup-list[disabled]:hover,
-fieldset[disabled] .enter-contest-actions .btn-clean-lienup-list:hover,
-.enter-contest-actions .btn-clean-lienup-list.disabled:focus,
-.enter-contest-actions .btn-clean-lienup-list[disabled]:focus,
-fieldset[disabled] .enter-contest-actions .btn-clean-lienup-list:focus,
-.enter-contest-actions .btn-clean-lienup-list.disabled:active,
-.enter-contest-actions .btn-clean-lienup-list[disabled]:active,
-fieldset[disabled] .enter-contest-actions .btn-clean-lienup-list:active,
-.enter-contest-actions .btn-clean-lienup-list.disabled.active,
-.enter-contest-actions .btn-clean-lienup-list[disabled].active,
-fieldset[disabled] .enter-contest-actions .btn-clean-lienup-list.active {
+.enter-contest-actions .btn-clean-lineup-list.disabled,
+.enter-contest-actions .btn-clean-lineup-list[disabled],
+fieldset[disabled] .enter-contest-actions .btn-clean-lineup-list,
+.enter-contest-actions .btn-clean-lineup-list.disabled:hover,
+.enter-contest-actions .btn-clean-lineup-list[disabled]:hover,
+fieldset[disabled] .enter-contest-actions .btn-clean-lineup-list:hover,
+.enter-contest-actions .btn-clean-lineup-list.disabled:focus,
+.enter-contest-actions .btn-clean-lineup-list[disabled]:focus,
+fieldset[disabled] .enter-contest-actions .btn-clean-lineup-list:focus,
+.enter-contest-actions .btn-clean-lineup-list.disabled:active,
+.enter-contest-actions .btn-clean-lineup-list[disabled]:active,
+fieldset[disabled] .enter-contest-actions .btn-clean-lineup-list:active,
+.enter-contest-actions .btn-clean-lineup-list.disabled.active,
+.enter-contest-actions .btn-clean-lineup-list[disabled].active,
+fieldset[disabled] .enter-contest-actions .btn-clean-lineup-list.active {
   background-color: #afafaf;
   border-color: #cccccc;
 }
-.enter-contest-actions .btn-clean-lienup-list .badge {
+.enter-contest-actions .btn-clean-lineup-list .badge {
   color: #afafaf;
   background-color: #ffffff;
 }
 @media (min-width: 992px) {
-  .enter-contest-actions .btn-clean-lienup-list {
+  .enter-contest-actions .btn-clean-lineup-list {
     padding-left: 20px;
     margin: 0 55px 0 10px;
   }
 }
 @media (min-width: 992px) {
-  .enter-contest-actions .btn-clean-lienup-list::before {
+  .enter-contest-actions .btn-clean-lineup-list::before {
     font-family: 'Glyphicons Halflings';
     font-size: 9pt;
     content: "\e014";
     margin-right: 15px;
   }
 }
-.enter-contest-actions .btn-confirm-lienup-list {
+.enter-contest-actions .btn-confirm-lineup-list {
   display: inline-block;
   margin-bottom: 0;
   font-weight: normal;
@@ -9294,28 +9294,28 @@ fieldset[disabled] .enter-contest-actions .btn-clean-lienup-list.active {
   border-color: #91b42c;
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
 }
-.enter-contest-actions .btn-confirm-lienup-list:focus,
-.enter-contest-actions .btn-confirm-lienup-list:active:focus,
-.enter-contest-actions .btn-confirm-lienup-list.active:focus {
+.enter-contest-actions .btn-confirm-lineup-list:focus,
+.enter-contest-actions .btn-confirm-lineup-list:active:focus,
+.enter-contest-actions .btn-confirm-lineup-list.active:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-.enter-contest-actions .btn-confirm-lienup-list:hover,
-.enter-contest-actions .btn-confirm-lienup-list:focus {
+.enter-contest-actions .btn-confirm-lineup-list:hover,
+.enter-contest-actions .btn-confirm-lineup-list:focus {
   color: #ffffff;
   text-decoration: none;
 }
-.enter-contest-actions .btn-confirm-lienup-list:active,
-.enter-contest-actions .btn-confirm-lienup-list.active {
+.enter-contest-actions .btn-confirm-lineup-list:active,
+.enter-contest-actions .btn-confirm-lineup-list.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-.enter-contest-actions .btn-confirm-lienup-list.disabled,
-.enter-contest-actions .btn-confirm-lienup-list[disabled],
-fieldset[disabled] .enter-contest-actions .btn-confirm-lienup-list {
+.enter-contest-actions .btn-confirm-lineup-list.disabled,
+.enter-contest-actions .btn-confirm-lineup-list[disabled],
+fieldset[disabled] .enter-contest-actions .btn-confirm-lineup-list {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -9323,28 +9323,28 @@ fieldset[disabled] .enter-contest-actions .btn-confirm-lienup-list {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-.enter-contest-actions .btn-confirm-lienup-list:focus,
-.enter-contest-actions .btn-confirm-lienup-list:active:focus,
-.enter-contest-actions .btn-confirm-lienup-list.active:focus {
+.enter-contest-actions .btn-confirm-lineup-list:focus,
+.enter-contest-actions .btn-confirm-lineup-list:active:focus,
+.enter-contest-actions .btn-confirm-lineup-list.active:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-.enter-contest-actions .btn-confirm-lienup-list:hover,
-.enter-contest-actions .btn-confirm-lienup-list:focus {
+.enter-contest-actions .btn-confirm-lineup-list:hover,
+.enter-contest-actions .btn-confirm-lineup-list:focus {
   color: #ffffff;
   text-decoration: none;
 }
-.enter-contest-actions .btn-confirm-lienup-list:active,
-.enter-contest-actions .btn-confirm-lienup-list.active {
+.enter-contest-actions .btn-confirm-lineup-list:active,
+.enter-contest-actions .btn-confirm-lineup-list.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-.enter-contest-actions .btn-confirm-lienup-list.disabled,
-.enter-contest-actions .btn-confirm-lienup-list[disabled],
-fieldset[disabled] .enter-contest-actions .btn-confirm-lienup-list {
+.enter-contest-actions .btn-confirm-lineup-list.disabled,
+.enter-contest-actions .btn-confirm-lineup-list[disabled],
+fieldset[disabled] .enter-contest-actions .btn-confirm-lineup-list {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -9352,39 +9352,39 @@ fieldset[disabled] .enter-contest-actions .btn-confirm-lienup-list {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-.enter-contest-actions .btn-confirm-lienup-list:hover,
-.enter-contest-actions .btn-confirm-lienup-list:focus,
-.enter-contest-actions .btn-confirm-lienup-list:active,
-.enter-contest-actions .btn-confirm-lienup-list.active,
-.open .dropdown-toggle.enter-contest-actions .btn-confirm-lienup-list {
+.enter-contest-actions .btn-confirm-lineup-list:hover,
+.enter-contest-actions .btn-confirm-lineup-list:focus,
+.enter-contest-actions .btn-confirm-lineup-list:active,
+.enter-contest-actions .btn-confirm-lineup-list.active,
+.open .dropdown-toggle.enter-contest-actions .btn-confirm-lineup-list {
   color: #ffffff;
   background-color: #87a829;
   border-color: #698320;
 }
-.enter-contest-actions .btn-confirm-lienup-list:active,
-.enter-contest-actions .btn-confirm-lienup-list.active,
-.open .dropdown-toggle.enter-contest-actions .btn-confirm-lienup-list {
+.enter-contest-actions .btn-confirm-lineup-list:active,
+.enter-contest-actions .btn-confirm-lineup-list.active,
+.open .dropdown-toggle.enter-contest-actions .btn-confirm-lineup-list {
   background-image: none;
 }
-.enter-contest-actions .btn-confirm-lienup-list.disabled,
-.enter-contest-actions .btn-confirm-lienup-list[disabled],
-fieldset[disabled] .enter-contest-actions .btn-confirm-lienup-list,
-.enter-contest-actions .btn-confirm-lienup-list.disabled:hover,
-.enter-contest-actions .btn-confirm-lienup-list[disabled]:hover,
-fieldset[disabled] .enter-contest-actions .btn-confirm-lienup-list:hover,
-.enter-contest-actions .btn-confirm-lienup-list.disabled:focus,
-.enter-contest-actions .btn-confirm-lienup-list[disabled]:focus,
-fieldset[disabled] .enter-contest-actions .btn-confirm-lienup-list:focus,
-.enter-contest-actions .btn-confirm-lienup-list.disabled:active,
-.enter-contest-actions .btn-confirm-lienup-list[disabled]:active,
-fieldset[disabled] .enter-contest-actions .btn-confirm-lienup-list:active,
-.enter-contest-actions .btn-confirm-lienup-list.disabled.active,
-.enter-contest-actions .btn-confirm-lienup-list[disabled].active,
-fieldset[disabled] .enter-contest-actions .btn-confirm-lienup-list.active {
+.enter-contest-actions .btn-confirm-lineup-list.disabled,
+.enter-contest-actions .btn-confirm-lineup-list[disabled],
+fieldset[disabled] .enter-contest-actions .btn-confirm-lineup-list,
+.enter-contest-actions .btn-confirm-lineup-list.disabled:hover,
+.enter-contest-actions .btn-confirm-lineup-list[disabled]:hover,
+fieldset[disabled] .enter-contest-actions .btn-confirm-lineup-list:hover,
+.enter-contest-actions .btn-confirm-lineup-list.disabled:focus,
+.enter-contest-actions .btn-confirm-lineup-list[disabled]:focus,
+fieldset[disabled] .enter-contest-actions .btn-confirm-lineup-list:focus,
+.enter-contest-actions .btn-confirm-lineup-list.disabled:active,
+.enter-contest-actions .btn-confirm-lineup-list[disabled]:active,
+fieldset[disabled] .enter-contest-actions .btn-confirm-lineup-list:active,
+.enter-contest-actions .btn-confirm-lineup-list.disabled.active,
+.enter-contest-actions .btn-confirm-lineup-list[disabled].active,
+fieldset[disabled] .enter-contest-actions .btn-confirm-lineup-list.active {
   background-color: #a1c931;
   border-color: #91b42c;
 }
-.enter-contest-actions .btn-confirm-lienup-list .badge {
+.enter-contest-actions .btn-confirm-lineup-list .badge {
   color: #a1c931;
   background-color: #ffffff;
 }

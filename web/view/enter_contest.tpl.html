@@ -28,8 +28,8 @@
 
             <div class="enter-contest-actions">
               <button type="button" class="btn-cancel-player-selection" ng-click="ctrl.cancelPlayerSelection()" ng-show="ctrl.isSelectingSoccerPlayer">Cancelar</button>
-              <button type="button" class="btn-clean-lienup-list" ng-click="ctrl.deleteFantasyTeam()" ng-disabled="ctrl.isPlayerSelected()" ng-show="!ctrl.isSelectingSoccerPlayer">Borrar todo</button>
-              <button type="button" class="btn-confirm-lienup-list" ng-click="ctrl.createFantasyTeam()" ng-disabled="!ctrl.isFantasyTeamValid()" ng-show="!ctrl.isSelectingSoccerPlayer">Confirmar</button>
+              <button type="button" class="btn-clean-lineup-list" ng-click="ctrl.deleteFantasyTeam()" ng-disabled="ctrl.isPlayerSelected()" ng-show="!ctrl.isSelectingSoccerPlayer">Borrar todo</button>
+              <button type="button" class="btn-confirm-lineup-list" ng-click="ctrl.createFantasyTeam()" ng-disabled="!ctrl.isFantasyTeamValid()" ng-show="!ctrl.isSelectingSoccerPlayer">Confirmar</button>
               <p ng-show="!ctrl.isSelectingSoccerPlayer">Recuerda que puedes editar tu equipo cuantas veces quiereas hasta que comience la competición</p>
             </div>
 
@@ -61,8 +61,8 @@
       </div>
       <lineup-selector></lineup-selector>
       <div class="enter-contest-actions">
-        <button type="button" class="btn-clean-lienup-list" ng-click="ctrl.deleteFantasyTeam()" ng-disabled="ctrl.isPlayerSelected()" ng-show="!ctrl.isSelectingSoccerPlayer">Borrar todo</button>
-        <button type="button" class="btn-confirm-lienup-list" ng-click="ctrl.createFantasyTeam()" ng-disabled="!ctrl.isFantasyTeamValid()" ng-show="!ctrl.isSelectingSoccerPlayer">Confirmar</button>
+        <button type="button" class="btn-clean-lineup-list" ng-click="ctrl.deleteFantasyTeam()" ng-disabled="ctrl.isPlayerSelected()" ng-show="!ctrl.isSelectingSoccerPlayer">Borrar todo</button>
+        <button type="button" class="btn-confirm-lineup-list" ng-click="ctrl.createFantasyTeam()" ng-disabled="!ctrl.isFantasyTeamValid()" ng-show="!ctrl.isSelectingSoccerPlayer">Confirmar</button>
         <p ng-show="!ctrl.isSelectingSoccerPlayer">Recuerda que puedes editar tu equipo cuantas veces quiereas hasta que comience la competición</p>
       </div>
     </div>

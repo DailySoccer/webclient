@@ -24,14 +24,14 @@ class ScreenDetectorService {
   void _detectNow(num theTime) {
 
     String message = '';
-    if (window.matchMedia("(min-width: 768px)").matches)
+    if (window.matchMedia("(min-width: 992px)").matches)
     {
       message = 'md-lg';
     }
-    else if (window.matchMedia("(min-width: 568px)").matches && !isSmScreen) {
+    else if (window.matchMedia("(min-width: 768px)").matches && !isSmScreen) {
       message = 'sm';
     }
-    else if (window.matchMedia("(max-width: 567px)").matches && !isXsScreen){
+    else if (window.matchMedia("(max-width: 767px)").matches && !isXsScreen){
       message = 'xs';
     }
 

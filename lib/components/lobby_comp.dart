@@ -40,6 +40,9 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     //Al iniciar, tiene que está cerrado por lo tanto le añadimos la clase que pone la flecha hacia abajo
     _filtersButton.classes.add('toggleOff');
 
+    js.context.callMethod(r'$', ['#ex2'])
+            .callMethod('slider', [{'width':'200px'}]);
+
     /*
       _sortingButtons.first.classes.forEach((value) => _sortingButtonClassesByDefault += (" " + value) );   ///(String value => _sortingButtonClassesByDefault += value);
       _sortingButtonClassesByDefault = _sortingButtons.first.classes.fold("", (prev, value) => prev + value + " " );
@@ -55,6 +58,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     _router.go('enter_contest', { "contestId": contest.contestId });
   }
 
+  // Handle que recibe cual es la nueva mediaquery que se aplica.
   void onScreenWidthChange(String msg)
   {
     if(msg == "xs"){
@@ -66,6 +70,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     }
   }
 
+  // Mostramos la ventana modal con la información de ese torneo, si no es la versión movil.
   void onRowClick(Contest contest) {
     if(!_scrDet.isXsScreen)
     {
@@ -134,6 +139,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
        }
   }
 
+  // Muestra/Oculta el panel de filtros avanzados
   void toggleFilterMenu()
   {
     _filtersButton.classes.clear();
@@ -155,12 +161,12 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   ScreenDetectorService _scrDet;
 
   List<Element> _sortingButtons  = [];
-  List<String> _butonState = ['asc', 'desc'];
-  int _currentButtonState = 0;
-  String _currentSelectedButton = "";
-  List<String> _sortingButtonClassesByDefault;
+  List<String>  _butonState = ['asc', 'desc'];
+  int           _currentButtonState = 0;
+  String        _currentSelectedButton = "";
+  List<String>  _sortingButtonClassesByDefault;
 
-  Element _filtersButton;
-  List<String> _filtersButtonClassesByDefault;
-  bool _isFilterButtonOpen = false;
+  Element       _filtersButton;
+  List<String>  _filtersButtonClassesByDefault;
+  bool          _isFilterButtonOpen = false;
 }

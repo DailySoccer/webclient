@@ -10,7 +10,6 @@ class TemplateContest {
 
   String state;
   String name;
-  String postName;
 
   int maxEntries;
 
@@ -20,7 +19,7 @@ class TemplateContest {
 
   List<TemplateMatchEvent> templateMatchEvents;
 
-  TemplateContest(this.templateContestId, this.name, this.postName, this.maxEntries,
+  TemplateContest(this.templateContestId, this.name, this.maxEntries,
           this.salaryCap, this.entryFee, this.prizeType, this.templateMatchEvents);
 
   TemplateContest.referenceInit(this.templateContestId);
@@ -46,7 +45,7 @@ class TemplateContest {
     // Buscar en la lista de partidos del contest
     for (TemplateMatchEvent match in templateMatchEvents) {
       soccerPlayer = match.findSoccerPlayer(soccerPlayerId);
-      
+
       // Lo hemos encontrado?
       if (soccerPlayer != null)
         break;
@@ -54,12 +53,11 @@ class TemplateContest {
 
     return soccerPlayer;
   }
-  
+
   TemplateContest _initFromJsonObject(JsonObject json, ContestReferences references) {
     assert(templateContestId.isNotEmpty);
     state = json.state;
     name = json.name;
-    postName = json.postName;
     maxEntries = json.maxEntries;
     salaryCap = json.salaryCap;
     entryFee = json.entryFee;

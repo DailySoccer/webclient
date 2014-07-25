@@ -89,7 +89,6 @@ class ContestInfoComp {
 
     updateContestInfo(Contest cont)
     {
-      currentInfoData["description"]    = cont.templateContest.postName;
       currentInfoData["name"]           = cont.templateContest.name;
       currentInfoData["entry"]          = cont.templateContest.entryFee.toString();
       currentInfoData["startDateTime"]  = getFormatedDate(cont.templateContest.startDate);

@@ -10578,46 +10578,166 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #filterToggler .fil
     margin-left: 0;
   }
 }
-#infoAndFilterHeader #filtersPanel .filter-column {
-  border: 1px dotted #434343;
-  border-right-width: 0;
-  position: relative;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-@media (min-width: 768px) {
-  #infoAndFilterHeader #filtersPanel .filter-column {
-    float: left;
-    width: 25%;
-  }
-}
-#infoAndFilterHeader #filtersPanel .filter-column .filter-title {
+#infoAndFilterHeader #filtersPanel .filter-title {
   font-family: 'Exo', sans-serif;
   font-weight: 300;
   font-size: 16pt;
   color: #214a5f;
 }
-#infoAndFilterHeader #filtersPanel .filter-column-last {
-  border: 1px dotted #434343;
-  border-right-width: 0;
+@media (min-width: 768px) and (max-width: 991px) {
+  #infoAndFilterHeader #filtersPanel .centered-sm-text {
+    text-align: center;
+  }
+}
+#infoAndFilterHeader #filtersPanel .filter-column-competition {
+  float: left;
+  width: 100%;
   position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  border-right: 1px dotted #434343;
+  min-height: 300px;
+}
+@media (min-width: 992px) {
+  #infoAndFilterHeader #filtersPanel .filter-column-competition {
+    border: 1px dotted #434343;
+    border-right-width: 0;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  #infoAndFilterHeader #filtersPanel .filter-column-competition {
+    border: 1px dashed #434343;
+    border-top-width: 1;
+    border-right-width: 1;
+    border-bottom-width: 0;
+    border-left-width: 0;
+  }
 }
 @media (min-width: 768px) {
-  #infoAndFilterHeader #filtersPanel .filter-column-last {
+  #infoAndFilterHeader #filtersPanel .filter-column-competition {
+    float: left;
+    width: 33.33333333%;
+  }
+}
+@media (min-width: 992px) {
+  #infoAndFilterHeader #filtersPanel .filter-column-competition {
     float: left;
     width: 25%;
   }
 }
-#infoAndFilterHeader #filtersPanel .filter-column-last .filter-title {
-  font-family: 'Exo', sans-serif;
-  font-weight: 300;
-  font-size: 16pt;
-  color: #214a5f;
+#infoAndFilterHeader #filtersPanel .filter-column-tournaments {
+  float: left;
+  width: 100%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  min-height: 300px;
+}
+@media (min-width: 992px) {
+  #infoAndFilterHeader #filtersPanel .filter-column-tournaments {
+    border: 1px dotted #434343;
+    border-right-width: 0;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  #infoAndFilterHeader #filtersPanel .filter-column-tournaments {
+    border: 1px dashed #434343;
+    border-top-width: 1;
+    border-right-width: 1;
+    border-bottom-width: 0;
+    border-left-width: 0;
+  }
+}
+@media (min-width: 768px) {
+  #infoAndFilterHeader #filtersPanel .filter-column-tournaments {
+    float: left;
+    width: 33.33333333%;
+  }
+}
+@media (min-width: 992px) {
+  #infoAndFilterHeader #filtersPanel .filter-column-tournaments {
+    float: left;
+    width: 25%;
+  }
+}
+#infoAndFilterHeader #filtersPanel .filter-column-salary-limit {
+  float: left;
+  width: 100%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  min-height: 300px;
+}
+@media (min-width: 992px) {
+  #infoAndFilterHeader #filtersPanel .filter-column-salary-limit {
+    border: 1px dotted #434343;
+    border-right-width: 0;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  #infoAndFilterHeader #filtersPanel .filter-column-salary-limit {
+    border: 1px dashed #434343;
+    border-top-width: 1;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+  }
+}
+@media (min-width: 768px) {
+  #infoAndFilterHeader #filtersPanel .filter-column-salary-limit {
+    float: left;
+    width: 33.33333333%;
+  }
+}
+@media (min-width: 992px) {
+  #infoAndFilterHeader #filtersPanel .filter-column-salary-limit {
+    float: left;
+    width: 25%;
+  }
+}
+#infoAndFilterHeader #filtersPanel .filter-column-entry-fee {
+  float: left;
+  width: 100%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  min-height: 300px;
+}
+@media (min-width: 992px) {
+  #infoAndFilterHeader #filtersPanel .filter-column-entry-fee {
+    border: 1px dotted #434343;
+    min-height: 300px;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  #infoAndFilterHeader #filtersPanel .filter-column-entry-fee {
+    border: 1px dashed #434343;
+    border-top-width: 1;
+    border-right-width: 0;
+    border-bottom-width: 1;
+    border-left-width: 0;
+    min-height: 100px;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  #infoAndFilterHeader #filtersPanel .filter-column-entry-fee {
+    text-align: center;
+  }
+}
+@media (min-width: 768px) {
+  #infoAndFilterHeader #filtersPanel .filter-column-entry-fee {
+    float: left;
+    width: 100%;
+  }
+}
+@media (min-width: 992px) {
+  #infoAndFilterHeader #filtersPanel .filter-column-entry-fee {
+    float: left;
+    width: 25%;
+  }
 }
 .btn {
   display: inline-block;

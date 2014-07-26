@@ -5639,12 +5639,14 @@ button.close {
 .soccer-players-list .soccer-players-list-slot:after,
 #promosComponent:before,
 #promosComponent:after,
-.lobby-top-infobar:before,
-.lobby-top-infobar:after,
-#contestSortsFilters:before,
-#contestSortsFilters:after,
-#filtersPanel:before,
-#filtersPanel:after,
+.section-container:before,
+.section-container:after,
+#lobbyTopInfobar:before,
+#lobbyTopInfobar:after,
+#infoAndFilterHeader #contestSortsFilters:before,
+#infoAndFilterHeader #contestSortsFilters:after,
+#infoAndFilterHeader #filtersPanel:before,
+#infoAndFilterHeader #filtersPanel:after,
 .main-content-container:before,
 .main-content-container:after,
 .lineup-selector .lineup-selector-slot:before,
@@ -5682,9 +5684,10 @@ button.close {
 .soccer-player-list-header-table:after,
 .soccer-players-list .soccer-players-list-slot:after,
 #promosComponent:after,
-.lobby-top-infobar:after,
-#contestSortsFilters:after,
-#filtersPanel:after,
+.section-container:after,
+#lobbyTopInfobar:after,
+#infoAndFilterHeader #contestSortsFilters:after,
+#infoAndFilterHeader #filtersPanel:after,
 .main-content-container:after,
 .lineup-selector .lineup-selector-slot:after {
   clear: both;
@@ -9908,7 +9911,6 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
 #promosComponent {
   position: relative;
   background-color: #ffffff;
-  padding: 20px 10px;
   margin-left: -15px;
   margin-right: -15px;
 }
@@ -9986,67 +9988,66 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
   max-width: 100%;
   height: auto;
 }
+.section-container {
+  margin-left: -15px;
+  margin-right: -15px;
+}
 @media (max-width: 991px) {
-  #infoAndFilterHeader {
+  .section-container {
     margin-right: auto;
     margin-left: auto;
     padding-left: 15px;
     padding-right: 15px;
   }
-  #infoAndFilterHeader > .navbar-header,
-  #infoAndFilterHeader > .navbar-collapse {
+  .section-container > .navbar-header,
+  .section-container > .navbar-collapse {
     margin-right: -15px;
     margin-left: -15px;
   }
 }
 @media (max-width: 991px) and (min-width: 768px) {
-  #infoAndFilterHeader > .navbar-header,
-  #infoAndFilterHeader > .navbar-collapse {
+  .section-container > .navbar-header,
+  .section-container > .navbar-collapse {
     margin-right: 0;
     margin-left: 0;
   }
 }
-@media (min-width: 768px) {
-  #infoAndFilterHeader {
-    background-color: #ffffff;
-  }
-}
-@media (min-width: 1200px) {
-  #infoAndFilterHeader {
+@media (min-width: 992px) {
+  .section-container {
     margin-right: auto;
     margin-left: auto;
     padding-left: 15px;
     padding-right: 15px;
   }
-  #infoAndFilterHeader > .navbar-header,
-  #infoAndFilterHeader > .navbar-collapse {
+  .section-container > .navbar-header,
+  .section-container > .navbar-collapse {
     margin-right: -15px;
     margin-left: -15px;
   }
 }
-@media (min-width: 1200px) and (min-width: 768px) {
-  #infoAndFilterHeader {
+@media (min-width: 992px) and (min-width: 768px) {
+  .section-container {
     width: 750px;
   }
 }
-@media (min-width: 1200px) and (min-width: 992px) {
-  #infoAndFilterHeader {
+@media (min-width: 992px) and (min-width: 992px) {
+  .section-container {
     width: 970px;
   }
 }
-@media (min-width: 1200px) and (min-width: 1200px) {
-  #infoAndFilterHeader {
+@media (min-width: 992px) and (min-width: 1200px) {
+  .section-container {
     width: 970px;
   }
 }
-@media (min-width: 1200px) and (min-width: 768px) {
-  #infoAndFilterHeader > .navbar-header,
-  #infoAndFilterHeader > .navbar-collapse {
+@media (min-width: 992px) and (min-width: 768px) {
+  .section-container > .navbar-header,
+  .section-container > .navbar-collapse {
     margin-right: 0;
     margin-left: 0;
   }
 }
-.lobby-top-infobar {
+#lobbyTopInfobar {
   margin-left: -15px;
   margin-right: -15px;
   height: 50px;
@@ -10055,7 +10056,62 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff1a3949', endColorstr='#ff0f2630', GradientType=0);
 }
-.lobby-top-infobar p {
+@media (max-width: 991px) {
+  #lobbyTopInfobar {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  #lobbyTopInfobar > .navbar-header,
+  #lobbyTopInfobar > .navbar-collapse {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+}
+@media (max-width: 991px) and (min-width: 768px) {
+  #lobbyTopInfobar > .navbar-header,
+  #lobbyTopInfobar > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+@media (min-width: 992px) {
+  #lobbyTopInfobar {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  #lobbyTopInfobar > .navbar-header,
+  #lobbyTopInfobar > .navbar-collapse {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+}
+@media (min-width: 992px) and (min-width: 768px) {
+  #lobbyTopInfobar {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) and (min-width: 992px) {
+  #lobbyTopInfobar {
+    width: 970px;
+  }
+}
+@media (min-width: 992px) and (min-width: 1200px) {
+  #lobbyTopInfobar {
+    width: 970px;
+  }
+}
+@media (min-width: 992px) and (min-width: 768px) {
+  #lobbyTopInfobar > .navbar-header,
+  #lobbyTopInfobar > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+#lobbyTopInfobar p {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 8pt;
@@ -10063,56 +10119,151 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
   line-height: 50px;
   text-align: center;
 }
-#contestSortsFilters {
-  padding: 20px 0;
-  margin-left: 0;
-  margin-right: 0;
+#infoAndFilterHeader #contestSortsFilters {
+  margin-left: -15px;
+  margin-right: -15px;
+  background-color: #ffffff;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
-#contestSortsFilters .filterText {
+@media (max-width: 991px) {
+  #infoAndFilterHeader #contestSortsFilters {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  #infoAndFilterHeader #contestSortsFilters > .navbar-header,
+  #infoAndFilterHeader #contestSortsFilters > .navbar-collapse {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+}
+@media (max-width: 991px) and (min-width: 768px) {
+  #infoAndFilterHeader #contestSortsFilters > .navbar-header,
+  #infoAndFilterHeader #contestSortsFilters > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+@media (min-width: 992px) {
+  #infoAndFilterHeader #contestSortsFilters {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  #infoAndFilterHeader #contestSortsFilters > .navbar-header,
+  #infoAndFilterHeader #contestSortsFilters > .navbar-collapse {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+}
+@media (min-width: 992px) and (min-width: 768px) {
+  #infoAndFilterHeader #contestSortsFilters {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) and (min-width: 992px) {
+  #infoAndFilterHeader #contestSortsFilters {
+    width: 970px;
+  }
+}
+@media (min-width: 992px) and (min-width: 1200px) {
+  #infoAndFilterHeader #contestSortsFilters {
+    width: 970px;
+  }
+}
+@media (min-width: 992px) and (min-width: 768px) {
+  #infoAndFilterHeader #contestSortsFilters > .navbar-header,
+  #infoAndFilterHeader #contestSortsFilters > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+#infoAndFilterHeader #contestSortsFilters .left-separator {
+  border-left: 1px solid #434343;
+}
+@media (min-width: 992px) {
+  #infoAndFilterHeader #contestSortsFilters .left-separator {
+    padding-left: 20px;
+  }
+}
+@media (max-width: 991px) {
+  #infoAndFilterHeader #contestSortsFilters .left-separator {
+    border-width: 0;
+  }
+}
+#infoAndFilterHeader #contestSortsFilters #contestFastSort {
+  float: left;
+  width: 83.33333333%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  #infoAndFilterHeader #contestSortsFilters #contestFastSort {
+    float: left;
+    width: 50%;
+  }
+}
+@media (min-width: 992px) {
+  #infoAndFilterHeader #contestSortsFilters #contestFastSort {
+    float: left;
+    width: 50%;
+  }
+}
+@media (max-width: 767px) {
+  #infoAndFilterHeader #contestSortsFilters #contestFastSort {
+    padding-bottom: 15px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+#infoAndFilterHeader #contestSortsFilters #contestFastSort .filter-text {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 8pt;
   color: #434343;
 }
-#contestSortsFilters .left-separator {
-  padding-left: 20px;
-  border-left: 1px solid #434343;
+@media (max-width: 991px) {
+  #infoAndFilterHeader #contestSortsFilters #contestFastSort .filter-text {
+    display: none !important;
+    visibility: hidden !important;
+  }
 }
-#contestSortsFilters #contestFastSort {
-  position: relative;
-  float: left;
-  width: 50%;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding: 3px 0;
+@media (max-width: 767px) {
+  #infoAndFilterHeader #contestSortsFilters #contestFastSort .filter-text {
+    padding: 0 10px;
+  }
 }
-#contestSortsFilters #contestFastSort .btn-group {
+#infoAndFilterHeader #contestSortsFilters #contestFastSort .btn-group {
   position: relative;
   display: inline-block;
   vertical-align: middle;
   padding-left: 13px;
 }
-#contestSortsFilters #contestFastSort .btn-group > .btn {
+#infoAndFilterHeader #contestSortsFilters #contestFastSort .btn-group > .btn {
   position: relative;
   float: left;
 }
-#contestSortsFilters #contestFastSort .btn-group > .btn:hover,
-#contestSortsFilters #contestFastSort .btn-group > .btn:focus,
-#contestSortsFilters #contestFastSort .btn-group > .btn:active,
-#contestSortsFilters #contestFastSort .btn-group > .btn.active {
+#infoAndFilterHeader #contestSortsFilters #contestFastSort .btn-group > .btn:hover,
+#infoAndFilterHeader #contestSortsFilters #contestFastSort .btn-group > .btn:focus,
+#infoAndFilterHeader #contestSortsFilters #contestFastSort .btn-group > .btn:active,
+#infoAndFilterHeader #contestSortsFilters #contestFastSort .btn-group > .btn.active {
   z-index: 2;
 }
-#contestSortsFilters #contestFastSort .btn-group > .btn:focus {
+#infoAndFilterHeader #contestSortsFilters #contestFastSort .btn-group > .btn:focus {
   outline: none;
 }
-#contestSortsFilters #contestFastSort .btn-group .btn + .btn,
-#contestSortsFilters #contestFastSort .btn-group .btn + .btn-group,
-#contestSortsFilters #contestFastSort .btn-group .btn-group + .btn,
-#contestSortsFilters #contestFastSort .btn-group .btn-group + .btn-group {
+#infoAndFilterHeader #contestSortsFilters #contestFastSort .btn-group .btn + .btn,
+#infoAndFilterHeader #contestSortsFilters #contestFastSort .btn-group .btn + .btn-group,
+#infoAndFilterHeader #contestSortsFilters #contestFastSort .btn-group .btn-group + .btn,
+#infoAndFilterHeader #contestSortsFilters #contestFastSort .btn-group .btn-group + .btn-group {
   margin-left: -1px;
 }
-#contestSortsFilters #contestFastSort .sorting-button {
+#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button {
   color: #ffffff;
   background-color: #59add5;
   border-color: #cccccc;
@@ -10128,73 +10279,97 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
   color: #777777;
   padding: 6px 23px;
 }
-#contestSortsFilters #contestFastSort .sorting-button:hover,
-#contestSortsFilters #contestFastSort .sorting-button:focus,
-#contestSortsFilters #contestFastSort .sorting-button:active,
-#contestSortsFilters #contestFastSort .sorting-button.active,
-.open .dropdown-toggle#contestSortsFilters #contestFastSort .sorting-button {
+#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button:hover,
+#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button:focus,
+#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button:active,
+#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button.active,
+.open .dropdown-toggle#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button {
   color: #ffffff;
   background-color: #389dcd;
   border-color: #adadad;
 }
-#contestSortsFilters #contestFastSort .sorting-button:active,
-#contestSortsFilters #contestFastSort .sorting-button.active,
-.open .dropdown-toggle#contestSortsFilters #contestFastSort .sorting-button {
+#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button:active,
+#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button.active,
+.open .dropdown-toggle#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button {
   background-image: none;
 }
-#contestSortsFilters #contestFastSort .sorting-button.disabled,
-#contestSortsFilters #contestFastSort .sorting-button[disabled],
-fieldset[disabled] #contestSortsFilters #contestFastSort .sorting-button,
-#contestSortsFilters #contestFastSort .sorting-button.disabled:hover,
-#contestSortsFilters #contestFastSort .sorting-button[disabled]:hover,
-fieldset[disabled] #contestSortsFilters #contestFastSort .sorting-button:hover,
-#contestSortsFilters #contestFastSort .sorting-button.disabled:focus,
-#contestSortsFilters #contestFastSort .sorting-button[disabled]:focus,
-fieldset[disabled] #contestSortsFilters #contestFastSort .sorting-button:focus,
-#contestSortsFilters #contestFastSort .sorting-button.disabled:active,
-#contestSortsFilters #contestFastSort .sorting-button[disabled]:active,
-fieldset[disabled] #contestSortsFilters #contestFastSort .sorting-button:active,
-#contestSortsFilters #contestFastSort .sorting-button.disabled.active,
-#contestSortsFilters #contestFastSort .sorting-button[disabled].active,
-fieldset[disabled] #contestSortsFilters #contestFastSort .sorting-button.active {
+#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button.disabled,
+#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button[disabled],
+fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button,
+#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button.disabled:hover,
+#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button[disabled]:hover,
+fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button:hover,
+#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button.disabled:focus,
+#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button[disabled]:focus,
+fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button:focus,
+#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button.disabled:active,
+#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button[disabled]:active,
+fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button:active,
+#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button.disabled.active,
+#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button[disabled].active,
+fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button.active {
   background-color: #59add5;
   border-color: #cccccc;
 }
-#contestSortsFilters #contestFastSort .sorting-button .badge {
+#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button .badge {
   color: #59add5;
   background-color: #ffffff;
 }
-#contestSortsFilters #contestFastSort .sorting-button:hover {
+#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button:hover {
   background-color: transparent;
   border-width: 1px;
   color: #434343;
   border-color: #434343;
 }
-#contestSortsFilters #contestFastSort .asc::after {
+#infoAndFilterHeader #contestSortsFilters #contestFastSort .asc::after {
   font-family: 'Glyphicons Halflings';
   content: "\E113";
   font-size: 5pt;
   color: #434343;
   margin-left: 5px;
 }
-#contestSortsFilters #contestFastSort .desc::after {
+#infoAndFilterHeader #contestSortsFilters #contestFastSort .desc::after {
   font-family: 'Glyphicons Halflings';
   content: "\E114";
   font-size: 5pt;
   color: #434343;
   margin-left: 5px;
 }
-#contestSortsFilters #contestFastSearch {
+#infoAndFilterHeader #contestSortsFilters #contestFastSearch {
   position: relative;
-  float: left;
-  width: 41.66666667%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  padding-left: 20px;
   border-left: 1px solid #434343;
 }
-#contestSortsFilters #contestFastSearch .searcher {
+@media (min-width: 768px) {
+  #infoAndFilterHeader #contestSortsFilters #contestFastSearch {
+    float: left;
+    width: 41.66666667%;
+  }
+}
+@media (min-width: 992px) {
+  #infoAndFilterHeader #contestSortsFilters #contestFastSearch {
+    float: left;
+    width: 41.66666667%;
+  }
+}
+@media (max-width: 767px) {
+  #infoAndFilterHeader #contestSortsFilters #contestFastSearch {
+    display: none !important;
+  }
+}
+@media (min-width: 992px) {
+  #infoAndFilterHeader #contestSortsFilters #contestFastSearch {
+    padding-left: 20px;
+  }
+}
+@media (max-width: 991px) {
+  #infoAndFilterHeader #contestSortsFilters #contestFastSearch {
+    border-width: 0;
+  }
+}
+#infoAndFilterHeader #contestSortsFilters #contestFastSearch .searcher {
   display: block;
   width: 100%;
   height: 34px;
@@ -10210,53 +10385,65 @@ fieldset[disabled] #contestSortsFilters #contestFastSort .sorting-button.active 
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-  margin: 10px 0 15px;
   padding-left: 30px;
   background: url('../images/search-icon.png') no-repeat 10px center;
-  margin: 2px 0 0 0;
   padding: 1px 0 0 30px;
-  height: 30px;
+  height: 29px;
   box-shadow: none;
   border-width: 0;
 }
-#contestSortsFilters #contestFastSearch .searcher:focus {
+#infoAndFilterHeader #contestSortsFilters #contestFastSearch .searcher:focus {
   border-color: #66afe9;
   outline: 0;
   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
   box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
 }
-#contestSortsFilters #contestFastSearch .searcher::-moz-placeholder {
+#infoAndFilterHeader #contestSortsFilters #contestFastSearch .searcher::-moz-placeholder {
   color: #999999;
   opacity: 1;
 }
-#contestSortsFilters #contestFastSearch .searcher:-ms-input-placeholder {
+#infoAndFilterHeader #contestSortsFilters #contestFastSearch .searcher:-ms-input-placeholder {
   color: #999999;
 }
-#contestSortsFilters #contestFastSearch .searcher::-webkit-input-placeholder {
+#infoAndFilterHeader #contestSortsFilters #contestFastSearch .searcher::-webkit-input-placeholder {
   color: #999999;
 }
-#contestSortsFilters #contestFastSearch .searcher[disabled],
-#contestSortsFilters #contestFastSearch .searcher[readonly],
-fieldset[disabled] #contestSortsFilters #contestFastSearch .searcher {
+#infoAndFilterHeader #contestSortsFilters #contestFastSearch .searcher[disabled],
+#infoAndFilterHeader #contestSortsFilters #contestFastSearch .searcher[readonly],
+fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #contestFastSearch .searcher {
   cursor: not-allowed;
   background-color: #eeeeee;
   opacity: 1;
 }
-textarea#contestSortsFilters #contestFastSearch .searcher {
+textarea#infoAndFilterHeader #contestSortsFilters #contestFastSearch .searcher {
   height: auto;
 }
-#contestSortsFilters #filterToggler {
-  position: relative;
+#infoAndFilterHeader #contestSortsFilters #filterToggler {
   float: left;
-  width: 8.33333333%;
+  width: 16.66666667%;
+  position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  padding-left: 20px;
   border-left: 1px solid #434343;
-  padding-left: 0px;
 }
-#contestSortsFilters #filterToggler .filters-button {
+@media (min-width: 768px) {
+  #infoAndFilterHeader #contestSortsFilters #filterToggler {
+    float: left;
+    width: 8.33333333%;
+  }
+}
+@media (min-width: 992px) {
+  #infoAndFilterHeader #contestSortsFilters #filterToggler {
+    padding-left: 20px;
+  }
+}
+@media (max-width: 991px) {
+  #infoAndFilterHeader #contestSortsFilters #filterToggler {
+    border-width: 0;
+  }
+}
+#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button {
   color: #ffffff;
   background-color: #59add5;
   border-color: #cccccc;
@@ -10265,122 +10452,172 @@ textarea#contestSortsFilters #contestFastSearch .searcher {
   font-weight: 700;
   font-size: 8pt;
   color: #434343;
-  line-height: 20px;
+  line-height: 29px;
   box-shadow: none;
   background-color: transparent;
   border-color: #434343;
   color: #777777;
+  padding: 0;
 }
-#contestSortsFilters #filterToggler .filters-button:hover,
-#contestSortsFilters #filterToggler .filters-button:focus,
-#contestSortsFilters #filterToggler .filters-button:active,
-#contestSortsFilters #filterToggler .filters-button.active,
-.open .dropdown-toggle#contestSortsFilters #filterToggler .filters-button {
+#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button:hover,
+#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button:focus,
+#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button:active,
+#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button.active,
+.open .dropdown-toggle#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button {
   color: #ffffff;
   background-color: #389dcd;
   border-color: #adadad;
 }
-#contestSortsFilters #filterToggler .filters-button:active,
-#contestSortsFilters #filterToggler .filters-button.active,
-.open .dropdown-toggle#contestSortsFilters #filterToggler .filters-button {
+#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button:active,
+#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button.active,
+.open .dropdown-toggle#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button {
   background-image: none;
 }
-#contestSortsFilters #filterToggler .filters-button.disabled,
-#contestSortsFilters #filterToggler .filters-button[disabled],
-fieldset[disabled] #contestSortsFilters #filterToggler .filters-button,
-#contestSortsFilters #filterToggler .filters-button.disabled:hover,
-#contestSortsFilters #filterToggler .filters-button[disabled]:hover,
-fieldset[disabled] #contestSortsFilters #filterToggler .filters-button:hover,
-#contestSortsFilters #filterToggler .filters-button.disabled:focus,
-#contestSortsFilters #filterToggler .filters-button[disabled]:focus,
-fieldset[disabled] #contestSortsFilters #filterToggler .filters-button:focus,
-#contestSortsFilters #filterToggler .filters-button.disabled:active,
-#contestSortsFilters #filterToggler .filters-button[disabled]:active,
-fieldset[disabled] #contestSortsFilters #filterToggler .filters-button:active,
-#contestSortsFilters #filterToggler .filters-button.disabled.active,
-#contestSortsFilters #filterToggler .filters-button[disabled].active,
-fieldset[disabled] #contestSortsFilters #filterToggler .filters-button.active {
+#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button.disabled,
+#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button[disabled],
+fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button,
+#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button.disabled:hover,
+#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button[disabled]:hover,
+fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button:hover,
+#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button.disabled:focus,
+#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button[disabled]:focus,
+fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button:focus,
+#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button.disabled:active,
+#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button[disabled]:active,
+fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button:active,
+#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button.disabled.active,
+#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button[disabled].active,
+fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button.active {
   background-color: #59add5;
   border-color: #cccccc;
 }
-#contestSortsFilters #filterToggler .filters-button .badge {
+#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button .badge {
   color: #59add5;
   background-color: #ffffff;
 }
-#contestSortsFilters #filterToggler .filters-button:hover {
+#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button:hover {
   background-color: transparent;
   color: #434343;
   border-color: #434343;
 }
-#contestSortsFilters .toggleOff::after {
+#infoAndFilterHeader #contestSortsFilters .toggleOff::after {
   font-family: 'Glyphicons Halflings';
   content: "\E114";
-  font-size: 10pt;
+  font-size: 8pt;
   color: #434343;
-  position: absolute;
-  margin-left: 15px;
-  top: 7px;
+  margin-left: 7px;
+  display: inline-block;
+  line-height: 1;
 }
-#contestSortsFilters .toggleOn::after {
+#infoAndFilterHeader #contestSortsFilters .toggleOn::after {
   font-family: 'Glyphicons Halflings';
   content: "\E113";
-  font-size: 10pt;
+  font-size: 8pt;
   color: #434343;
-  position: absolute;
-  margin-left: 15px;
-  top: 7px;
+  margin-left: 7px;
+  display: inline-block;
+  line-height: 1;
 }
-#filtersPanel {
-  margin-left: 0;
-  margin-right: 0;
-  border-top: 1px dotted #434343;
+#infoAndFilterHeader #filtersPanel {
+  margin-left: -15px;
+  margin-right: -15px;
+  background-color: #ffffff;
 }
-#filtersPanel .filter-column {
+@media (max-width: 991px) {
+  #infoAndFilterHeader #filtersPanel {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  #infoAndFilterHeader #filtersPanel > .navbar-header,
+  #infoAndFilterHeader #filtersPanel > .navbar-collapse {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+}
+@media (max-width: 991px) and (min-width: 768px) {
+  #infoAndFilterHeader #filtersPanel > .navbar-header,
+  #infoAndFilterHeader #filtersPanel > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+@media (min-width: 992px) {
+  #infoAndFilterHeader #filtersPanel {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  #infoAndFilterHeader #filtersPanel > .navbar-header,
+  #infoAndFilterHeader #filtersPanel > .navbar-collapse {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+}
+@media (min-width: 992px) and (min-width: 768px) {
+  #infoAndFilterHeader #filtersPanel {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) and (min-width: 992px) {
+  #infoAndFilterHeader #filtersPanel {
+    width: 970px;
+  }
+}
+@media (min-width: 992px) and (min-width: 1200px) {
+  #infoAndFilterHeader #filtersPanel {
+    width: 970px;
+  }
+}
+@media (min-width: 992px) and (min-width: 768px) {
+  #infoAndFilterHeader #filtersPanel > .navbar-header,
+  #infoAndFilterHeader #filtersPanel > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+#infoAndFilterHeader #filtersPanel .filter-column {
+  border: 1px dotted #434343;
+  border-right-width: 0;
   position: relative;
-  float: left;
-  width: 25%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  border-right: 1px dotted #434343;
-  padding: 10px;
 }
-#filtersPanel .filter-column .filter-head {
+@media (min-width: 768px) {
+  #infoAndFilterHeader #filtersPanel .filter-column {
+    float: left;
+    width: 25%;
+  }
+}
+#infoAndFilterHeader #filtersPanel .filter-column .filter-title {
   font-family: 'Exo', sans-serif;
   font-weight: 300;
   font-size: 16pt;
   color: #214a5f;
 }
-#filtersPanel .filter-column .filter-content {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 12pt;
-  color: #214a5f;
-  min-height: 300px;
-}
-#filtersPanel .filter-column-last {
+#infoAndFilterHeader #filtersPanel .filter-column-last {
+  border: 1px dotted #434343;
+  border-right-width: 0;
   position: relative;
-  float: left;
-  width: 25%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
   border-right: 1px dotted #434343;
-  padding: 10px;
-  border-width: 0px;
 }
-#filtersPanel .filter-column-last .filter-head {
+@media (min-width: 768px) {
+  #infoAndFilterHeader #filtersPanel .filter-column-last {
+    float: left;
+    width: 25%;
+  }
+}
+#infoAndFilterHeader #filtersPanel .filter-column-last .filter-title {
   font-family: 'Exo', sans-serif;
   font-weight: 300;
   font-size: 16pt;
   color: #214a5f;
-}
-#filtersPanel .filter-column-last .filter-content {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 12pt;
-  color: #214a5f;
-  min-height: 300px;
 }
 .btn {
   display: inline-block;

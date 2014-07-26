@@ -1,17 +1,19 @@
 <!-- Header de Promociones -->
 <promos></promos>
 
-<!-- Barra de información y filtros para las versiones SM y MD-LG -->
+<!-- Barra azul de información -->
+<div id="lobbyTopInfobar">
+  <p>&lt; placeholder &gt;</p>
+</div>
+
+<!-- filtros para las versiones a partir de SM -->
 <div id="infoAndFilterHeader">
-  <div class="lobby-top-infobar">
-    <p>&lt; placeholder &gt;</p>
-  </div>
   <div id="contestSortsFilters">
 
     <div id="contestFastSort">
-      <span class="filterText">Ordenar por: </span>
+      <span class="filter-text">Ordenar por: </span>
       <div class="btn-group" >
-        <div id="sort-contest-name"      type="button" class="btn sorting-button" ng-click="comp.sortListByFlied('contest-name')">Nombre del Concurso</div>
+        <div id="sort-contest-name"      type="button" class="btn sorting-button" ng-click="comp.sortListByFlied('contest-name')">Nombre</div>
         <div id="sort-contest-entry-fee"  type="button" class="btn sorting-button" ng-click="comp.sortListByFlied('contest-entry-fee')">Entrada</div>
         <div id="sort-contest-start-time" type="button" class="btn sorting-button" ng-click="comp.sortListByFlied('contest-start-time')">Comienzo</div>
       </div>
@@ -26,38 +28,39 @@
     </div>
 
   </div>
+
   <div id="filtersPanel" class="collapse">
 
       <div class="filter-column">
-        <p class="filter-head">COMPETICIÓN</p>
+        <p class="filter-title">COMPETICIÓN</p>
         <div class="filter-content">
             &LT; NOT YET &gt;
         </div>
       </div>
 
       <div class="filter-column">
-        <p class="filter-head">TORNEOS</p>
+        <p class="filter-title">TORNEOS</p>
         <div class="filter-content">
             &lt; NOT YET &gt;
         </div>
       </div>
 
       <div class="filter-column">
-        <p class="filter-head">ENTRADA</p>
+        <p class="filter-title">ENTRADA</p>
         <div class="filter-content">
-
-
+           &lt; NOT YET &gt;
         </div>
       </div>
 
       <div class="filter-column-last">
-        <p class="filter-head">TORNEOS</p>
+        <p class="filter-title">TORNEOS</p>
         <div class="filter-content">
             &lt; NOT YET &gt;
         </div>
       </div>
 
   </div>
+
 </div>
 
 <!-- Lista de concursos -->

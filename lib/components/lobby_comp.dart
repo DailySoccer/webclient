@@ -59,7 +59,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   // Handle que recibe cual es la nueva mediaquery que se aplica.
   void onScreenWidthChange(String msg)
   {
-    if(msg == "xs"){
+    if(msg != "desktop"){
       // Con esto llamamos a funciones de jQuery
       js.context.callMethod(r'$', ['#infoContestModal'])
         .callMethod('modal', ['hide']);
@@ -70,8 +70,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
 
   // Mostramos la ventana modal con la información de ese torneo, si no es la versión movil.
   void onRowClick(Contest contest) {
-    if(!_scrDet.isXsScreen)
-    {
+    if(_scrDet.isDesktop) {
       selectedContest = contest;
 
       // Esto soluciona el bug por el que no se muestra la ventana modal en Firefox;
@@ -81,6 +80,10 @@ class LobbyComp implements ShadowRootAware, DetachAware {
       // Con esto llamamos a funciones de jQuery
       js.context.callMethod(r'$', ['#infoContestModal'])
         .callMethod('modal');
+    }
+    else
+    {
+      onActionClick(contest);
     }
   }
 

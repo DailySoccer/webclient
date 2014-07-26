@@ -26,7 +26,7 @@ class ScreenDetectorService {
     String message = '';
     if (window.matchMedia("(min-width: 992px)").matches)
     {
-      message = 'md-lg';
+      message = 'desktop';
     }
     else if (window.matchMedia("(min-width: 768px)").matches && !isSmScreen) {
       message = 'sm';
@@ -52,7 +52,7 @@ class ScreenDetectorService {
           isSmScreen = true;
           isDesktop = false;
         break;
-        case "md-lg":
+        case "desktop":
           isXsScreen = false;
           isSmScreen = false;
           isDesktop = true;

@@ -1,0 +1,36 @@
+.my-contest-title-tab{
+	.exo_light(20pt, @blueDark);
+	margin-left: 15px;
+}
+
+#myContestMenuTabs{
+	@tabheight: 50px;
+	padding: 0;
+	margin-bottom: 14px;
+	height: @tabheight;
+	> li {
+		.make-xs-column(4);
+		background-color: @blueLight;
+		.make-border(4px, none none solid none, @blueDark);
+		list-style-type: none;
+		a {
+			cursor: pointer;
+			line-height: @tabheight;
+			text-align: center;
+			display: block;
+			text-decoration: none;
+			color: @white;
+		}
+	}
+	.active {
+		background-color: @blueDark;
+	}
+
+	.contest-count{
+		background-color: @orange;
+		.make-border(1px, solid, @white, 20px);
+		padding: 1px 6px;
+		margin-left: 5px;
+	}
+
+}

@@ -1,36 +1,81 @@
+<div class="my-contest-title-tab">MIS TORNEOS</div>
+<!-- Nav tabs -->
+<ul  id="myContestMenuTabs" class="my-contest-tabs" role="tablist">
+  <li class="active"><a role="tab" data-toggle="tab" ng-click="comp.tabChange('live-contest-content')">En Vivo <spam class="contest-count">1</spam></a></li>
+  <li>               <a role="tab" data-toggle="tab" ng-click="comp.tabChange('next-contest-content')">Próximos<spam class="contest-count">6</spam></a></li>
+  <li>               <a role="tab" data-toggle="tab" ng-click="comp.tabChange('history-contest-content')">Historial</a></li>
+</ul>
+
+<div class="tabs">
+  <!-- Tab panes -->
+  <div class="tab-content">
+
+    <div class="tab-pane active" id="live-contest-content">
+      <!--<div><h4>WAITING CONTESTS:</h4></div>-->
+      <contests-list id="waitingContests"
+                     contestsList='comp.myContestsService.waitingContests'
+                     onActionClick='comp.onWaitingActionClick(contest)'
+                     onRowClick='comp.onWaitingRowClick(contest)'>
+      </contests-list>
+    </div>
+
+    <div class="tab-pane active" id="next-contest-content">
+      <!--<div><h4>HISTORY CONTESTS:</h4></div>-->
+      <contests-list id="historyContests"
+                     contestsList="comp.myContestsService.historyContests"
+                     onActionClick='comp.onHistoryActionClick(contest)'
+                     onRowClick='comp.onHistoryRowClick(contest)'>
+      </contests-list>
+    </div>
+
+    <div class="tab-pane active" id="history-contest-content">
+    <!--<div><h4>HISTORY CONTESTS:</h4></div>-->
+    <contests-list id="historyContests"
+                   contestsList="comp.myContestsService.historyContests"
+                   onActionClick='comp.onHistoryActionClick(contest)'
+                   onRowClick='comp.onHistoryRowClick(contest)'>
+    </contests-list>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!--
 <div><h4>WAITING CONTESTS:</h4></div>
-<contests-list id="waitingContests" 
+<contests-list id="waitingContests"
                contestsList='comp.myContestsService.waitingContests'
                onActionClick='comp.onWaitingActionClick(contest)'
                onRowClick='comp.onWaitingRowClick(contest)'>
 </contests-list>
 
 <div><h4>LIVE CONTESTS:</h4></div>
-<contests-list id="liveContests" 
+<contests-list id="liveContests"
                contestsList="comp.myContestsService.liveContests"
                onActionClick='comp.onLiveActionClick(contest)'
                onRowClick='comp.onLiveRowClick(contest)'>
 </contests-list>
 
 <div><h4>HISTORY CONTESTS:</h4></div>
-<contests-list id="historyContests" 
+<contests-list id="historyContests"
                contestsList="comp.myContestsService.historyContests"
                onActionClick='comp.onHistoryActionClick(contest)'
                onRowClick='comp.onHistoryRowClick(contest)'>
 </contests-list>
-
+-->
 
 <!-- Hack temporal hasta que arreglen Angular o nos respondan con una solucion mejor -->
 <div class="ng-hide">
   {{comp.myContestsService.waitingContests.length}}
   {{comp.myContestsService.liveContests.length}}
   {{comp.myContestsService.historyContests.length}}
-  
+
   {{comp.onWaitingActionClick}}
   {{comp.onLiveActionClick}}
   {{comp.onHistoryActionClick}}
-  
+
   {{comp.onWaitingRowClick}}
   {{comp.onLiveRowClick}}
-  {{comp.onHistoryRowClick}}  
+  {{comp.onHistoryRowClick}}
 </div>

@@ -1,35 +1,22 @@
-@media (max-width: @screen-xs-max) {
-	.soccer-player-filter {
-		.container();
+
+.soccer-player-filter {
+	//.container();
+	@media (max-width: @screen-sm-max) {
 		padding: 0 10px;
-		.match-selector-filter {
-			.form-control();
-		}
-		.name-player-input-filter {
-			.form-control();
+	}
+	.match-selector-filter {
+		.form-control();
+	}
+	.name-player-input-filter {
+		.form-control();
+		@media (max-width: @screen-sm-max) {
 			margin: 10px 0 15px;
-			padding-left: 30px;
-			background: url('../images/search-icon.png') no-repeat 10px center;	
 		}
+		border: none;
+		padding-left: 30px;
+		background: url('../images/search-icon.png') no-repeat 10px center;	
 	}
 }
-
-@media (min-width: @screen-md-min) {
-	.soccer-player-filter {
-		.make-row(0px);
-		padding: 0;
-		.match-selector-filter {
-			.form-control();
-		}
-		.name-player-input-filter {
-			.form-control();
-			border: none;
-			padding-left: 30px;
-			background: url('../images/search-icon.png') no-repeat 10px center;	
-		}
-	}
-}
-
 .soccer-player-list-header-table {
 	.make-row(0px);
 	line-height: 30px;
@@ -58,7 +45,10 @@
 		.opensans_bold(10pt, @white);
 	}
 }
+
 .soccer-players-list {
+	overflow: auto; 
+	max-height: 546px;
 	.make-border(1px, solid none none none, @greyDark);
 	@soccer-players-list-gutter: 0px;
 	min-height: 1px;	// Para que al quedarse sin futbolistas que mostrar por los filtros, siga ocupando su width
@@ -77,6 +67,7 @@
 		.column-fieldpos {
 			.make-md-column(1, @soccer-players-list-gutter);
 			.hidden-xs();
+			.hidden-sm();
 			.opensans_bold(9pt, @greyDark);
 			text-align: center;
 			padding-top: 12px;			
@@ -125,7 +116,7 @@
 			.make-xs-column(3, @soccer-players-list-gutter);
 			.make-md-column(2, @soccer-players-list-gutter);
 			text-align: right;
-			@media (max-width: @screen-xs-max) {
+			@media (max-width: @screen-sm-max) {
 				margin-left: -2%;
 			}
 			.btn {
@@ -137,16 +128,5 @@
 			}
 		}
 	}
-
-	/*@media (min-width: @screen-sm-min) {
-		.make-percent-box(63%, 2%);
-
-	}*/
-
-	@media (min-width: @screen-md-min) {
-		overflow: auto;
-		width: 539px;
-		height: 506px;
-		margin: 0;
-	}
+	
 }

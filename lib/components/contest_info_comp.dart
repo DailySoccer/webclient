@@ -32,7 +32,6 @@ class ContestInfoComp {
     bool get isPopUp => popUpStyle;
     void set isPopUp (bool value){
       popUpStyle = value;
-      print("soy popup?" + value.toString());
     }
 
     bool popUpStyle;

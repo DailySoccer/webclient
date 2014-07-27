@@ -63,8 +63,6 @@ class LobbyComp implements ShadowRootAware, DetachAware {
       // Con esto llamamos a funciones de jQuery
       js.context.callMethod(r'$', ['#infoContestModal'])
         .callMethod('modal', ['hide']);
-
-      print('-LOBBY COMP- .Ventana Modal cerrada automáticamente');
     }
   }
 

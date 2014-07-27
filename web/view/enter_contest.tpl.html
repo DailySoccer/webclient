@@ -1,10 +1,18 @@
 <section enter-contest-ctrl>
 
-  <contest-header contestData="ctrl.contest"></contest-header>
+  <!-- Nav tabs -->
+  <ul  id="enterContestMenuTabs" class="enter-contest-tabs" role="tablist">
+    <li class="active"><a role="tab" data-toggle="tab" ng-click="ctrl.tabChange('lineup-tab-content')">Tu alineación</a></li>
+    <li><a role="tab" data-toggle="tab" ng-click="ctrl.tabChange('contest-info-tab-content')">Info torneo</a></li>
+  </ul>
 
-  <div ng-switch="ctrl.scrDet.isDesktop" ng-cloack>
+  <div class="match-teams-filter">
+    <button class="btn btn-default button-filtro-team" ng-repeat="match in ctrl.availableMatchTeams">{{match}}</button>
+  </div>
+
+  <div id="enterContest">
     <!-- Version Desktop-->
-    <div ng-switch-when="true">
+    <div ng-if="ctrl.scrDet.isDesktop">
 
       <div class="enter-contest-soccer-players">
         <soccer-players-list></soccer-players-list>
@@ -23,18 +31,12 @@
         </div>
       </div>
 
-    </div> <!-- Fin NG-Switch-when="true" -->
+    </div> <!-- Fin ng-if="ctrl.scrDet.isDesktop" -->
 
     <!-- Resto de Versiones-->
-    <div ng-witch-when="false">
+    <div ng-if="!ctrl.scrDet.isDesktop">
 
       <div class="tabs">
-        <!-- Nav tabs -->
-        <ul class="enter-contest-tabs" role="tablist">
-          <li class="active"><a role="tab" data-toggle="tab" ng-click="ctrl.tabChange('lineup-tab-content')">Tu alineación</a></li>
-          <li><a role="tab" data-toggle="tab" ng-click="ctrl.tabChange('contest-info-tab-content')">Info torneo</a></li>
-        </ul>
-
         <!-- Tab panes -->
         <div class="tab-content">
 
@@ -52,9 +54,11 @@
 
               <div class="enter-contest-actions">
                 <button type="button" class="btn-cancel-player-selection" ng-click="ctrl.cancelPlayerSelection()" ng-show="ctrl.isSelectingSoccerPlayer">Cancelar</button>
-                <button type="button" class="btn-clean-lineup-list" ng-click="ctrl.deleteFantasyTeam()" ng-disabled="ctrl.isPlayerSelected()" ng-show="!ctrl.isSelectingSoccerPlayer">Borrar todo</button>
-                <button type="button" class="btn-confirm-lineup-list" ng-click="ctrl.createFantasyTeam()" ng-disabled="!ctrl.isFantasyTeamValid()" ng-show="!ctrl.isSelectingSoccerPlayer">Confirmar</button>
-                <p ng-show="!ctrl.isSelectingSoccerPlayer">Recuerda que puedes editar tu equipo cuantas veces quiereas hasta que comience la competición</p>
+                <button type="button" class="btn-clean-lineup-list"       ng-click="ctrl.deleteFantasyTeam()"     ng-show="!ctrl.isSelectingSoccerPlayer" ng-disabled="ctrl.isPlayerSelected()" >Borrar todo</button>
+                <button type="button" class="btn-confirm-lineup-list"     ng-click="ctrl.createFantasyTeam()"     ng-show="!ctrl.isSelectingSoccerPlayer" ng-disabled="!ctrl.isFantasyTeamValid()">Confirmar</button>
+                <p ng-show="!ctrl.isSelectingSoccerPlayer">
+                  Recuerda que puedes editar tu equipo cuantas veces quiereas hasta que comience la competición
+                </p>
               </div>
 
           </div>
@@ -64,8 +68,9 @@
           </div>
 
         </div>
+
       </div>
 
-    </div> <!-- Fin NG-Switch-when="false" -->
-  </div> <!-- Fin NG-Switch -->
+    </div> <!-- Fin ng-if="!ctrl.scrDet.isDesktop" -->
+  </div>
 </section>

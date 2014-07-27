@@ -13,6 +13,7 @@ import "package:webclient/models/soccer_team.dart";
 import 'package:webclient/models/template_match_event.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/services/flash_messages_service.dart';
+import 'package:intl/intl.dart';
 
 @Controller(
     selector: '[enter-contest-ctrl]',
@@ -26,6 +27,7 @@ class EnterContestCtrl {
 
   Contest contest;
 
+  bool isDesktopVersion = false;
   bool isSelectingSoccerPlayer = false;
   FieldPos lastUsedPosFilter;
   String lastUsedNameFilter = "";
@@ -34,6 +36,9 @@ class EnterContestCtrl {
 
   final List<dynamic> lineupSlots = new List();
   List<dynamic> availableSoccerPlayers = new List();
+  List<String> availableMatchTeams = ['Todos los partidos'];
+
+  DateFormat timeDisplayFormat= new DateFormat("HH:mm");
 
   EnterContestCtrl(RouteProvider routeProvider, this._router, this.scrDet, this._profileService, this._contestService, this._flashMessage) {
 
@@ -182,6 +187,10 @@ class EnterContestCtrl {
       for (var player in matchEvent.soccerTeamB.soccerPlayers) {
         _insertSoccerPlayer(matchEvent, matchEvent.soccerTeamB, player);
       }
+      // generamos los partidos para el filtro de partidos
+      String teams = matchEvent.soccerTeamA.shortName + '-' + matchEvent.soccerTeamB.shortName + " " + timeDisplayFormat.format(matchEvent.startDate);
+      if (!availableMatchTeams.contains(teams))
+        availableMatchTeams.add(teams);
     }
   }
 

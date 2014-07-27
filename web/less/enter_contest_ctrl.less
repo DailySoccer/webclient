@@ -1,3 +1,41 @@
+#enterContest{
+	@media (max-width: @screen-sm-max) {
+		.container-fluid();
+		padding-left: 0;
+		padding-right: 0;
+	}
+	@media (min-width: @screen-md-min) {
+		.container();
+		padding-left: 0;
+		padding-right: 0;
+	}
+	.make-row();
+
+
+	background-color: @white;
+}
+@recomended-control-heihgt: 670px;
+
+.enter-contest-soccer-players {
+	.make-border(1px, solid, @greyLight, @globalBoxesRadius);
+	//width: 540px;
+	.make-md-column(7, 20px);
+	height: @recomended-control-heihgt;
+	//margin: 20px 0 55px 12px;
+	//display: inline-block;
+	overflow: hidden;
+}
+.enter-contest-lineup {
+	.make-border(1px, solid, @orange, @globalBoxesRadius);
+	//width: 378px;
+	.make-md-column(5, 20px);
+	height: @recomended-control-heihgt;
+	//margin: 20px 12px 55px 0;
+	//display: inline-block;
+	//float: right;
+	overflow: hidden;
+}
+
 //enter-contest mobile
 .enter-contest-tabs {
 	@tabheight: 50px;
@@ -24,8 +62,8 @@
 	}
 }
 .enter-contest-actions {
-	@media (max-width: @screen-xs-max) {
-		.container();
+	@media (max-width: @screen-sm-max) {
+		//.container();
 		margin-top: 10px;
 		padding: 0 10px 15px;
 		background-color: @white;
@@ -73,12 +111,11 @@
 			text-align: center;
 		}
 	}
-	.hidden-sm();
-	.hidden-md();
 }
 
 .enter-contest-total-salary {
-	@media (max-width: @screen-xs-max) {
+	.make-row();
+	@media (max-width: @screen-sm-max) {
 		background-color: @orange;
 		text-align: center;
 		border-radius: 3px;
@@ -113,21 +150,25 @@
 		}
 	}
 }
-
-.enter-contest-soccer-players {
-	.make-border(1px, solid, @greyLight, @globalBoxesRadius);
-	width: 540px;
-	height: 670px;
-	margin: 20px 0 55px 12px;
-	display: inline-block;
+#enterContestMenuTabs{
+	.hidden-md();
+	.hidden-lg();
 }
 
-.enter-contest-lineup {
-	.make-border(1px, solid, @orange, @globalBoxesRadius);
-	width: 378px;
-	height: 670px;
-	margin: 20px 12px 55px 0;
-	display: inline-block;
-	float: right;
-	overflow: hidden;
+.match-teams-filter{
+	background-color: @white;
+	//margin: 10px;
+	.make-row(0);
+
+	.button-filtro-team {
+		//.btn-lg();
+		.make-sm-column(1.2);
+		.hidden-xs();
+		padding: 10px;
+		margin: 10px 0 10px 10px;
+		.opensans_bold(9pt, @white);
+		white-space: normal;
+		overflow: auto;
+		
+	}
 }

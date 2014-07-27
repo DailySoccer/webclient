@@ -102,8 +102,8 @@
 	display: inline-block;
 }
 
-
-.make-border(@width, @style, @color, @radius: default) {
+@default: 0;
+.make-border(@width, @style, @color, @radius: @default) {
 	border-width: @width;
 	border-style: @style;
 	border-color: @color;

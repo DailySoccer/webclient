@@ -26,6 +26,8 @@ class SoccerPlayersListComp {
   dynamic oldOptionValue;
   String name_filter;
 
+  List<String> posFilterList = ['POR', 'DEF', 'MED', 'DEL'];
+
   EnterContestCtrl enterContestCtrl;
 
   SoccerPlayersListComp(RouteProvider routeProvider, this.enterContestCtrl, this._contestService, this.scrDet) {

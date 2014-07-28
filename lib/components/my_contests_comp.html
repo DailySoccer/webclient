@@ -1,55 +1,64 @@
-<div class="my-contest-title-tab">MIS TORNEOS</div>
-<!-- Nav tabs -->
-<ul  id="myContestMenuTabs" class="my-contest-tabs" role="tablist">
-  <li class="active">
-    <a role="tab" data-toggle="tab" ng-click="comp.tabChange('waiting-contest-content')">
-      Próximos<spam class="contest-count">{{comp.myContestsService.waitingContests.length}}</spam>
-    </a>
-  </li>
-  <li>
-    <a role="tab" data-toggle="tab" ng-click="comp.tabChange('live-contest-content')">
-      En Vivo<spam class="contest-count">{{comp.myContestsService.liveContests.length}}</spam>
-    </a>
-  </li>
-  <li>
-    <a role="tab" data-toggle="tab" ng-click="comp.tabChange('history-contest-content')">Historial</a>
-  </li>
-</ul>
+<div id="myContest">
+  <div class="my-contest-title-tab">MIS TORNEOS</div>
+  <!-- Nav tabs -->
+  <ul  id="myContestMenuTabs" class="my-contest-tabs" role="tablist">
+    <li class="active">
+      <a role="tab" data-toggle="tab" ng-click="comp.tabChange('waiting-contest-content')">
+        Próximos<spam class="contest-count">{{comp.myContestsService.waitingContests.length}}</spam>
+      </a>
+    </li>
+    <li>
+      <a role="tab" data-toggle="tab" ng-click="comp.tabChange('live-contest-content')">
+        En Vivo<spam class="contest-count">{{comp.myContestsService.liveContests.length}}</spam>
+      </a>
+    </li>
+    <li>
+      <a role="tab" data-toggle="tab" ng-click="comp.tabChange('history-contest-content')">Historial</a>
+    </li>
+  </ul>
 
-<div class="tabs">
-  <!-- Tab panes -->
-  <div class="tab-content">
-
-    <div class="tab-pane active" id="waiting-contest-content">
-      <!--<div><h4>WAITING CONTESTS:</h4></div>-->
-      <contests-list id="waitingContests"
-                     contestsList='comp.myContestsService.waitingContests'
-                     onActionClick='comp.onWaitingActionClick(contest)'
-                     onRowClick='comp.onWaitingRowClick(contest)'>
-      </contests-list>
+  <div class="resume-bar">
+    <div class="info">
+      <spam class="info-registers-count">6 Registros</spam>
+      <spam class="info-wins-count">2 Ganados</spam>
+      <spam class="info-available-money">35.000€</spam>
     </div>
+  </div>
+  <div class="tabs">
+    <!-- Tab panes -->
+    <div class="tab-content">
 
-    <div class="tab-pane" id="live-contest-content">
-      <!--<div><h4>LIVE CONTESTS:</h4></div>-->
-      <contests-list id="liveContests"
-                     contestsList="comp.myContestsService.liveContests"
-                     onActionClick='comp.onLiveActionClick(contest)'
-                     onRowClick='comp.onLiveRowClick(contest)'>
+      <div class="tab-pane active" id="waiting-contest-content">
+        <!--<div><h4>WAITING CONTESTS:</h4></div>-->
+        <contests-list id="waitingContests"
+                       contestsList='comp.myContestsService.waitingContests'
+                       onActionClick='comp.onWaitingActionClick(contest)'
+                       onRowClick='comp.onWaitingRowClick(contest)'>
+        </contests-list>
+      </div>
+
+      <div class="tab-pane" id="live-contest-content">
+        <!--<div><h4>LIVE CONTESTS:</h4></div>-->
+        <contests-list id="liveContests"
+                       contestsList="comp.myContestsService.liveContests"
+                       onActionClick='comp.onLiveActionClick(contest)'
+                       onRowClick='comp.onLiveRowClick(contest)'>
+        </contests-list>
+      </div>
+
+      <div class="tab-pane" id="history-contest-content">
+      <!--<div><h4>HISTORY CONTESTS:</h4></div>-->
+      <contests-list id="historyContests"
+                     contestsList="comp.myContestsService.historyContests"
+                     onActionClick='comp.onHistoryActionClick(contest)'
+                     onRowClick='comp.onHistoryRowClick(contest)'>
       </contests-list>
-    </div>
 
-    <div class="tab-pane" id="history-contest-content">
-    <!--<div><h4>HISTORY CONTESTS:</h4></div>-->
-    <contests-list id="historyContests"
-                   contestsList="comp.myContestsService.historyContests"
-                   onActionClick='comp.onHistoryActionClick(contest)'
-                   onRowClick='comp.onHistoryRowClick(contest)'>
-    </contests-list>
+      </div>
 
     </div>
 
   </div>
-
 </div>
 
 <!--

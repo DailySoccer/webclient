@@ -5651,6 +5651,10 @@ button.close {
 #infoAndFilterHeader #contestSortsFilters:after,
 #infoAndFilterHeader #filtersPanel:before,
 #infoAndFilterHeader #filtersPanel:after,
+.my-contest-title-tab:before,
+.my-contest-title-tab:after,
+.resume-bar:before,
+.resume-bar:after,
 .main-content-container:before,
 .main-content-container:after,
 .lineup-selector .lineup-selector-slot:before,
@@ -5694,6 +5698,8 @@ button.close {
 #lobbyTopInfobar:after,
 #infoAndFilterHeader #contestSortsFilters:after,
 #infoAndFilterHeader #filtersPanel:after,
+.my-contest-title-tab:after,
+.resume-bar:after,
 .main-content-container:after,
 .lineup-selector .lineup-selector-slot:after {
   clear: both;
@@ -5848,11 +5854,6 @@ button.close {
   background-color: #222222;
   border-color: #080808;
   margin-bottom: 0px;
-  /*
-  .help {
-    .hidden-xs();
-  }
-  */
 }
 #mainMenuRoot .navbar-brand {
   color: #999999;
@@ -10677,16 +10678,129 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #filterToggler .fil
     width: 25%;
   }
 }
+#myContest {
+  background-color: #ecf0f1;
+}
+@media (max-width: 991px) {
+  #myContest {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  #myContest > .navbar-header,
+  #myContest > .navbar-collapse {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+}
+@media (max-width: 991px) and (min-width: 768px) {
+  #myContest > .navbar-header,
+  #myContest > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+@media (min-width: 992px) {
+  #myContest {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  #myContest > .navbar-header,
+  #myContest > .navbar-collapse {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+}
+@media (min-width: 992px) and (min-width: 768px) {
+  #myContest {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) and (min-width: 992px) {
+  #myContest {
+    width: 970px;
+  }
+}
+@media (min-width: 992px) and (min-width: 1200px) {
+  #myContest {
+    width: 970px;
+  }
+}
+@media (min-width: 992px) and (min-width: 768px) {
+  #myContest > .navbar-header,
+  #myContest > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
 .my-contest-title-tab {
+  margin-left: -15px;
+  margin-right: -15px;
   font-family: 'Exo', sans-serif;
   font-weight: 300;
   font-size: 20pt;
   color: #214a5f;
   margin-left: 15px;
 }
+@media (max-width: 767px) {
+  .my-contest-title-tab {
+    text-align: center;
+  }
+}
+.resume-bar {
+  margin-left: 0;
+  margin-right: 0;
+  background-color: #214a5f;
+}
+@media (max-width: 767px) {
+  .resume-bar {
+    display: none !important;
+  }
+}
+.resume-bar .info {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .resume-bar .info {
+    float: left;
+    width: 50%;
+  }
+}
+@media (min-width: 768px) {
+  .resume-bar .info {
+    left: 25%;
+  }
+}
+.resume-bar .info .info-registers-count,
+.resume-bar .info .info-wins-count {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #ffffff;
+  margin-right: 10px;
+}
+.resume-bar .info .info-available-money {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #fa9c19;
+}
 #myContestMenuTabs {
   padding: 0;
-  margin-bottom: 14px;
+  margin-bottom: 0px;
   height: 50px;
 }
 #myContestMenuTabs > li {

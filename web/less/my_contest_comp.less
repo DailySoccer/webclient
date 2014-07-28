@@ -1,12 +1,48 @@
+#myContest{
+	background-color: @tramaBlue;
+	@media (max-width: @screen-sm-max) {
+		.container-fluid();
+		.clean-paddings();
+	}
+	@media (min-width: @screen-md-min) {
+		.container();
+		.clean-paddings();
+	}
+}
+
 .my-contest-title-tab{
+	.make-row();
 	.exo_light(20pt, @blueDark);
 	margin-left: 15px;
+	@media (max-width: @screen-xs-max) {
+		text-align: center;
+	}
 }
+
+	.resume-bar{
+		.hidden-xs();
+		.make-row(0);
+		background-color: @blueDark;
+		.info{
+			padding-top: 10px;
+			padding-bottom: 10px;
+			.make-sm-column(6);
+			.make-sm-column-push(3);
+			text-align: center;
+			.info-registers-count, .info-wins-count{
+				.opensans_bold(10pt, @white);
+				margin-right: 10px;
+			}
+			.info-available-money{
+				.opensans_bold(10pt, @orange);	
+			}
+		}
+	}
 
 #myContestMenuTabs{
 	@tabheight: 50px;
 	padding: 0;
-	margin-bottom: 14px;
+	margin-bottom: 0px;
 	height: @tabheight;
 	> li {
 		.make-xs-column(4);

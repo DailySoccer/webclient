@@ -36,7 +36,7 @@ class EnterContestCtrl {
 
   final List<dynamic> lineupSlots = new List();
   List<dynamic> availableSoccerPlayers = new List();
-  List<String> availableMatchTeams = ['Todos los partidos'];
+  List<String> availableMatchTeams = ['Todos&#160;los partidos'];
 
   DateFormat timeDisplayFormat= new DateFormat("HH:mm");
 
@@ -188,7 +188,7 @@ class EnterContestCtrl {
         _insertSoccerPlayer(matchEvent, matchEvent.soccerTeamB, player);
       }
       // generamos los partidos para el filtro de partidos
-      String teams = matchEvent.soccerTeamA.shortName + '-' + matchEvent.soccerTeamB.shortName + " " + timeDisplayFormat.format(matchEvent.startDate);
+      String teams = matchEvent.soccerTeamA.shortName + '&#8209;' + matchEvent.soccerTeamB.shortName + " " + timeDisplayFormat.format(matchEvent.startDate);
       if (!availableMatchTeams.contains(teams))
         availableMatchTeams.add(teams);
     }

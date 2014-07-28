@@ -1,174 +1,111 @@
 #enterContest{
 	@media (max-width: @screen-sm-max) {
 		.container-fluid();
-		padding-left: 0;
-		padding-right: 0;
+		.clean-paddings();
 	}
 	@media (min-width: @screen-md-min) {
 		.container();
-		padding-left: 0;
-		padding-right: 0;
+		.clean-paddings();
 	}
-	.make-row();
-
-
 	background-color: @white;
 }
-@recomended-control-heihgt: 670px;
 
-.enter-contest-soccer-players {
-	.make-border(1px, solid, @greyLight, @globalBoxesRadius);
-	//width: 540px;
-	.make-md-column(7, 20px);
-	height: @recomended-control-heihgt;
-	//margin: 20px 0 55px 12px;
-	//display: inline-block;
-	overflow: hidden;
-}
-.enter-contest-lineup {
-	.make-border(1px, solid, @orange, @globalBoxesRadius);
-	//width: 378px;
-	.make-md-column(5, 20px);
-	height: @recomended-control-heihgt;
-	//margin: 20px 12px 55px 0;
-	//display: inline-block;
-	//float: right;
-	overflow: hidden;
-}
-
-//enter-contest mobile
+// Tabs menu
 .enter-contest-tabs {
 	@tabheight: 50px;
-	padding: 0;
-	margin-bottom: 14px;
+	.hidden-md();
+	.hidden-lg();
+	.reset-list();
 	height: @tabheight;
 	> li {
-		width: 50%;
-		float: left;
-		display: inline;
+		.make-xs-column(6);
 		background-color: @blueLight;
 		.make-border(4px, none none solid none, @blueDark);
 		a {
 			cursor: pointer;
 			line-height: @tabheight;
 			text-align: center;
+			color: @white;
 			display: block;
 			text-decoration: none;
-			color: @white;
 		}
 	}
 	.active {
 		background-color: @blueDark;
 	}
 }
-.enter-contest-actions {
-	@media (max-width: @screen-sm-max) {
-		//.container();
-		margin-top: 10px;
-		padding: 0 10px 15px;
-		background-color: @white;
-		text-align: center;
-		.btn-cancel-player-selection {
-			.btn();
-			.btn-cancel();
-			.btn-block();
-			margin-top: 10px;
-		}
-	}
-	@media (min-width: @screen-md-min) {
-		margin-top: 20px;
-		padding: 0;
-	}
-	.btn {
-		.btn();
-		padding: 6px 35px;
-		margin-right: 2%;
-	}
-	.btn-clean-lineup-list {
-		.btn();
-		.btn-cancel();
-		@media (min-width: @screen-md-min) {
-			padding-left: 20px;
-			margin: 0 55px 0 10px;
-		}
-	}
-	@media (min-width: @screen-md-min) {
-		.btn-clean-lineup-list::before {
-			.create-glyph("\E014", 9pt);
-			margin-right: 15px;
-		}
-	}
-	.btn-confirm-lineup-list {
-		.btn();
-		.btn-primary();
-	}
-	p {
-		.opensans_bold(9pt, @greyDark);
-		line-height: 11pt;
-		margin: 10px 2.7%;
-		@media (min-width: @screen-md-min) {
-			margin: 25px 2.7%;
-			text-align: center;
-		}
-	}
-}
 
-.enter-contest-total-salary {
-	.make-row();
-	@media (max-width: @screen-sm-max) {
+.enter-contest-actions-wrapper {
+	border: 1px solid #000;
+	.make-row(15);
+	padding: 10px;
+	padding-top: 0;
+	.total-salary {
+		.make-xs-column(12);
+		.exo_light(24px, @white);
 		background-color: @orange;
 		text-align: center;
 		border-radius: 3px;
-		padding: 2px 0;
 	}
-	@media (min-width: @screen-md-min) {
-		.exo_bold(20px, @white);
-		padding-left: 10px;
-		padding-right: 2px;
-		#gradient.vertical(@orangeHeaderLight, @orangeHeaderDark, 49%, 51%);
-		line-height: 76px;
+	.btn-cancel-player-selection {
+		.btn-cancel();
+		.make-xs-column(12);
+		margin-top: 10px;
 	}
-	.total-salary {
-		.exo_light(24px, @white);
+
+	.button-wrapper {
+		padding: 10px;
+		.make-xs-column(6);
+	}
+
+	.btn-clean-lineup-list {
+		.btn-cancel();
+		.btn-block();
+	}
+	.btn-confirm-lineup-list {
+		.btn-primary();
+		.btn-block();
+	}
+
+	p {
+		.make-xs-column(12);
+		.opensans_bold(9pt, @greyDark);
 		text-align: center;
-		@media (min-width: @screen-md-min) {
-			float: right;
-			background-color: @white;
-			line-height: 43px;
-			display: block;
-			width: 208px;
-			.make-border(1px, solid, @white, @globalBoxesRadius);
-			.exo_bold(30px, @greyDark);
-			margin-top: 3px;
-			overflow: hidden;
-			span {
-				background-color: @greyLight;
-				font-size: 12px;
-				display: block;
-				line-height: 25px;
-			}
-		}
 	}
-}
-#enterContestMenuTabs{
-	.hidden-md();
-	.hidden-lg();
 }
 
 .match-teams-filter{
 	background-color: @white;
-	//margin: 10px;
 	.make-row(0);
-
+	padding-bottom: 10px;
 	.button-filtro-team {
-		//.btn-lg();
 		.make-sm-column(1.2);
 		.hidden-xs();
-		padding: 10px;
-		margin: 10px 0 10px 10px;
-		.opensans_bold(9pt, @white);
+		padding: 10px 20px;
+		margin: 10px 0 4px 10px;
+		.opensans_bold(8pt, @white);
 		white-space: normal;
-		overflow: auto;
-		
+		overflow: hidden;
+	}
+}
+
+@recomended-control-heihgt: 670px;
+.enter-contest-soccer-players-wrapper {
+	.make-md-column(7, 0);
+	padding: 0 5px 60px 10px;
+	.enter-contest-soccer-players {
+		.make-border(1px, solid, @greyLight, @globalBoxesRadius);
+		height: @recomended-control-heihgt;
+		overflow: hidden;
+	}
+}
+
+.enter-contest-lineup-wrapper {
+	.make-md-column(5, 0);
+	padding: 0 10px 60px 5px;
+	.enter-contest-lineup {
+		.make-border(1px, solid, @orange, @globalBoxesRadius);
+		height: @recomended-control-heihgt;
+		overflow: hidden;
 	}
 }

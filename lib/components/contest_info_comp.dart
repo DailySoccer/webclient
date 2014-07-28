@@ -24,7 +24,6 @@ class ContestInfoComp {
         _contestData = value;
           if(value != null){
             updateContestInfo(value);
-            tabChange('info');
           }
       }
 

@@ -86,7 +86,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   }
 
   // Cambia el orden de la lista de concursos
-  void sortListByFlied(String sortName)
+  void sortListByField(String sortName)
   {
     if ( sortName !=_currentSelectedButton )
     {

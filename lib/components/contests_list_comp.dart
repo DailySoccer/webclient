@@ -12,6 +12,20 @@ class ContestsListComp {
   @NgOneWay("contestsList")
   List<Contest> contestsList;
 
+
+  final int FILTER_FIELD      = 0;
+  final int FILTER_CONDITION  = 1;
+  final int FILTER_VALUE      = 2;
+
+
+  @NgOneWay("filterBy")
+  void set filterBy(List<Map> value) {
+    if(value == null)
+      return;
+
+
+  }
+
   @NgOneWay("sortedBy")
   void set sortedBy(String value) {
     if(value == null) {

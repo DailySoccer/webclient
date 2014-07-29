@@ -9,7 +9,8 @@
   </ul>
 
   <div class="match-teams-filter">
-    <button class="btn btn-default button-filtro-team" ng-repeat="match in ctrl.availableMatchTeams" ng-bind-html="match"></button>
+    <button class="btn btn-default button-filtro-team active" ng-click="ctrl.setMatchFilterClass('-1', 'Todos los partidos')">Todos los partidos</button>
+    <button class="btn btn-default button-filtro-team" ng-repeat="match in ctrl.availableMatchEvents" ng-bind-html="match.texto" ng-click="ctrl.setMatchFilterClass(match.id, match.texto)"></button>
   </div>
 
   <div id="enterContest">

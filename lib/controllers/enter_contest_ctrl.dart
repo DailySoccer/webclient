@@ -37,7 +37,7 @@ class EnterContestCtrl {
 
   final List<dynamic> lineupSlots = new List();
   List<dynamic> availableSoccerPlayers = new List();
-  List<String> availableMatchTeams = ['Todos&#160;los partidos'];
+  List<Map<String, String>> availableMatchEvents = [];
 
   String selectedSoccerPlayerId;
 
@@ -120,7 +120,7 @@ class EnterContestCtrl {
   void setPosFilterClass(String abrevPosition) {
     List<ButtonElement> buttonsFilter = document.querySelectorAll(".button-filtro-position");
     buttonsFilter.forEach((element) {
-      element.classes.remove('active');
+      element.classes.remove("active");
       if(element.text == abrevPosition) {
         element.classes.add("active");
       }
@@ -139,6 +139,17 @@ class EnterContestCtrl {
       setPosFilterClass("TODOS");
       availableSoccerPlayers = _allSoccerPlayers.where((soccerPlayer) => !lineupSlots.contains(soccerPlayer)).toList();
     }
+  }
+
+  void setMatchFilterClass(String matchId, String matchText) {
+    List<ButtonElement> buttonsFilter = document.querySelectorAll(".button-filtro-team");
+    buttonsFilter.forEach((element) {
+      element.classes.remove('active');
+      if(element.text == matchText) {
+        element.classes.add("active");
+      }
+    });
+    setMatchFilter(matchId);
   }
 
   void setMatchFilter(String matchId) {
@@ -205,10 +216,16 @@ class EnterContestCtrl {
       for (var player in matchEvent.soccerTeamB.soccerPlayers) {
         _insertSoccerPlayer(matchEvent, matchEvent.soccerTeamB, player);
       }
+
       // generamos los partidos para el filtro de partidos
-      String teams = matchEvent.soccerTeamA.shortName + '&#8209;' + matchEvent.soccerTeamB.shortName + " " + timeDisplayFormat.format(matchEvent.startDate);
-      if (!availableMatchTeams.contains(teams))
-        availableMatchTeams.add(teams);
+      availableMatchEvents.clear();
+      for (TemplateMatchEvent match in matchEvents) {
+        availableMatchEvents.add({
+          "id": match.templateMatchEventId,
+          "texto":match.soccerTeamA.shortName + '-' + match.soccerTeamB.shortName + " " + timeDisplayFormat.format(match.startDate)
+        });
+      }
+
     }
   }
 

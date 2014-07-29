@@ -9158,7 +9158,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list.activ
   text-align: center;
 }
 .match-teams-filter {
-  background-color: #ffffff;
+  background-color: #ecf0f1;
   margin-left: 0;
   margin-right: 0;
   padding-bottom: 10px;
@@ -9188,12 +9188,30 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list.activ
     display: none !important;
   }
 }
+.match-teams-filter .button-filtro-team:active,
+.match-teams-filter .button-filtro-team:focus,
+.match-teams-filter .button-filtro-team:hover,
+.match-teams-filter .button-filtro-team:visited {
+  outline: none;
+}
+.match-teams-filter .active {
+  background-color: #ffffff;
+  color: #434343;
+  box-shadow: none !important;
+  outline: none !important;
+}
+.match-teams-filter .active:active,
+.match-teams-filter .active:hover,
+.match-teams-filter .active:focus,
+.match-teams-filter .active:visited {
+  color: #434343;
+}
 .enter-contest-soccer-players-wrapper {
   position: relative;
   min-height: 1px;
   padding-left: 0;
   padding-right: 0;
-  padding: 0 5px 60px 10px;
+  padding: 10px 5px 60px 10px;
 }
 @media (min-width: 992px) {
   .enter-contest-soccer-players-wrapper {
@@ -9214,7 +9232,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list.activ
   min-height: 1px;
   padding-left: 0;
   padding-right: 0;
-  padding: 0 10px 60px 5px;
+  padding: 10px 10px 60px 5px;
 }
 @media (min-width: 992px) {
   .enter-contest-lineup-wrapper {
@@ -9277,7 +9295,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list.activ
 }
 .soccer-player-filter .filter-by-position {
   height: 58px;
-  background-color: #f2f2f2;
+  background-color: #ecf0f1;
   padding: 20px 0 0 10px;
 }
 @media (max-width: 767px) {

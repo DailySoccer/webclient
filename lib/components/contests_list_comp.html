@@ -5,7 +5,7 @@
             <span class="price-icon"></span>
         </div>
         <div class="inner-content">
-            <span class="title-text">LIGA: 67 de 100 jugadores - SALARIO LIMITE: 60M</span> 
+            <span class="title-text">LIGA: {{contest.contestEntries.length}} de {{contest.maxEntries}} jugadores - SALARIO LIMITE: {{contest.templateContest.salaryCap}}</span>
             <span class="content-text">{{contest.name}}</span>
         </div>
     </div>
@@ -20,7 +20,7 @@
             <span class="price-icon"></span>
         </div>
         <div class="inner-content">
-            <span class="title-text">ENTRADA</span> 
+            <span class="title-text">ENTRADA</span>
             <span class="content-text">€{{contest.templateContest.entryFee}}</span>
         </div>
     </div>
@@ -38,6 +38,6 @@
     <div class="column-action">
         <button type="button" class="btn" ng-click="comp.onAction(contest)" href="#">{{comp.actionButtonTitle}}</button>
     </div>
-    
+
   </div>
 </div>

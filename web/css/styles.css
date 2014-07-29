@@ -7734,7 +7734,7 @@ fieldset[disabled] #contestsListRoot .contest-row .column-action .btn.active {
     padding: 0px 5px 0px 0px;
   }
 }
-#desktopContent {
+.fondo-negro {
   background-color: #000000;
 }
 @media (max-width: 767px) {
@@ -7800,21 +7800,21 @@ fieldset[disabled] #contestsListRoot .contest-row .column-action .btn.active {
   left: 50%;
   margin-left: -320px;
 }
-#desktopContent .screen-content .title-sup-text {
+#desktopContent .title-sup-text {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 12pt;
   color: #ffffff;
   margin: 0;
 }
-#desktopContent .screen-content .title-text {
+#desktopContent .title-text {
   font-family: 'Exo', sans-serif;
   font-weight: 300;
   font-size: 30pt;
   color: #fa9c19;
   margin: 0;
 }
-#desktopContent .screen-content .description-text {
+#desktopContent .description-text {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 8pt;
@@ -7836,7 +7836,23 @@ fieldset[disabled] #contestsListRoot .contest-row .column-action .btn.active {
     display: none !important;
   }
 }
-#mobileContent .button-play {
+#mobileContent .background {
+  display: block;
+  margin-left: -384px;
+  position: relative;
+  left: 50%;
+}
+#mobileContent .screen {
+  position: relative;
+}
+#mobileContent .content {
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+  position: absolute;
+  bottom: 10%;
+}
+#mobileContent .content .button-play-mobile {
   display: inline-block;
   margin-bottom: 0;
   font-weight: normal;
@@ -7859,33 +7875,33 @@ fieldset[disabled] #contestsListRoot .contest-row .column-action .btn.active {
   background-color: #a1c931;
   border-color: #91b42c;
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
-  display: block;
-  width: 100%;
-  padding-left: 0;
-  padding-right: 0;
+  width: 80%;
+  max-width: 300px;
+  margin: 0 auto;
+  margin-top: 40px;
 }
-#mobileContent .button-play:focus,
-#mobileContent .button-play:active:focus,
-#mobileContent .button-play.active:focus {
+#mobileContent .content .button-play-mobile:focus,
+#mobileContent .content .button-play-mobile:active:focus,
+#mobileContent .content .button-play-mobile.active:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-#mobileContent .button-play:hover,
-#mobileContent .button-play:focus {
+#mobileContent .content .button-play-mobile:hover,
+#mobileContent .content .button-play-mobile:focus {
   color: #ffffff;
   text-decoration: none;
 }
-#mobileContent .button-play:active,
-#mobileContent .button-play.active {
+#mobileContent .content .button-play-mobile:active,
+#mobileContent .content .button-play-mobile.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-#mobileContent .button-play.disabled,
-#mobileContent .button-play[disabled],
-fieldset[disabled] #mobileContent .button-play {
+#mobileContent .content .button-play-mobile.disabled,
+#mobileContent .content .button-play-mobile[disabled],
+fieldset[disabled] #mobileContent .content .button-play-mobile {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -7893,28 +7909,28 @@ fieldset[disabled] #mobileContent .button-play {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-#mobileContent .button-play:focus,
-#mobileContent .button-play:active:focus,
-#mobileContent .button-play.active:focus {
+#mobileContent .content .button-play-mobile:focus,
+#mobileContent .content .button-play-mobile:active:focus,
+#mobileContent .content .button-play-mobile.active:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-#mobileContent .button-play:hover,
-#mobileContent .button-play:focus {
+#mobileContent .content .button-play-mobile:hover,
+#mobileContent .content .button-play-mobile:focus {
   color: #ffffff;
   text-decoration: none;
 }
-#mobileContent .button-play:active,
-#mobileContent .button-play.active {
+#mobileContent .content .button-play-mobile:active,
+#mobileContent .content .button-play-mobile.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-#mobileContent .button-play.disabled,
-#mobileContent .button-play[disabled],
-fieldset[disabled] #mobileContent .button-play {
+#mobileContent .content .button-play-mobile.disabled,
+#mobileContent .content .button-play-mobile[disabled],
+fieldset[disabled] #mobileContent .content .button-play-mobile {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -7922,41 +7938,55 @@ fieldset[disabled] #mobileContent .button-play {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-#mobileContent .button-play:hover,
-#mobileContent .button-play:focus,
-#mobileContent .button-play:active,
-#mobileContent .button-play.active,
-.open .dropdown-toggle#mobileContent .button-play {
+#mobileContent .content .button-play-mobile:hover,
+#mobileContent .content .button-play-mobile:focus,
+#mobileContent .content .button-play-mobile:active,
+#mobileContent .content .button-play-mobile.active,
+.open .dropdown-toggle#mobileContent .content .button-play-mobile {
   color: #ffffff;
   background-color: #87a829;
   border-color: #698320;
 }
-#mobileContent .button-play:active,
-#mobileContent .button-play.active,
-.open .dropdown-toggle#mobileContent .button-play {
+#mobileContent .content .button-play-mobile:active,
+#mobileContent .content .button-play-mobile.active,
+.open .dropdown-toggle#mobileContent .content .button-play-mobile {
   background-image: none;
 }
-#mobileContent .button-play.disabled,
-#mobileContent .button-play[disabled],
-fieldset[disabled] #mobileContent .button-play,
-#mobileContent .button-play.disabled:hover,
-#mobileContent .button-play[disabled]:hover,
-fieldset[disabled] #mobileContent .button-play:hover,
-#mobileContent .button-play.disabled:focus,
-#mobileContent .button-play[disabled]:focus,
-fieldset[disabled] #mobileContent .button-play:focus,
-#mobileContent .button-play.disabled:active,
-#mobileContent .button-play[disabled]:active,
-fieldset[disabled] #mobileContent .button-play:active,
-#mobileContent .button-play.disabled.active,
-#mobileContent .button-play[disabled].active,
-fieldset[disabled] #mobileContent .button-play.active {
+#mobileContent .content .button-play-mobile.disabled,
+#mobileContent .content .button-play-mobile[disabled],
+fieldset[disabled] #mobileContent .content .button-play-mobile,
+#mobileContent .content .button-play-mobile.disabled:hover,
+#mobileContent .content .button-play-mobile[disabled]:hover,
+fieldset[disabled] #mobileContent .content .button-play-mobile:hover,
+#mobileContent .content .button-play-mobile.disabled:focus,
+#mobileContent .content .button-play-mobile[disabled]:focus,
+fieldset[disabled] #mobileContent .content .button-play-mobile:focus,
+#mobileContent .content .button-play-mobile.disabled:active,
+#mobileContent .content .button-play-mobile[disabled]:active,
+fieldset[disabled] #mobileContent .content .button-play-mobile:active,
+#mobileContent .content .button-play-mobile.disabled.active,
+#mobileContent .content .button-play-mobile[disabled].active,
+fieldset[disabled] #mobileContent .content .button-play-mobile.active {
   background-color: #a1c931;
   border-color: #91b42c;
 }
-#mobileContent .button-play .badge {
+#mobileContent .content .button-play-mobile .badge {
   color: #a1c931;
   background-color: #ffffff;
+}
+#mobileContent .content .title-sup-text-mobile {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.8em;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+#mobileContent .content .title-text-mobile {
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 2.3em;
+  color: #fa9c19;
+  margin-bottom: 30px;
 }
 .landing-wrapper .first-screen {
   position: relative;

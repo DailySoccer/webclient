@@ -9,6 +9,7 @@ import 'package:webclient/mock/mock_server.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/active_contests_service.dart';
 import 'package:webclient/services/my_contests_service.dart';
+import 'package:webclient/services/soccer_player_service.dart';
 import 'package:webclient/services/server_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
@@ -24,6 +25,7 @@ import 'package:webclient/components/flash_messages_comp.dart';
 import 'package:webclient/components/landing_page_comp.dart';
 import 'package:webclient/components/main_menu_comp.dart';
 import 'package:webclient/components/contest_info_comp.dart';
+import 'package:webclient/components/soccer_player_info_comp.dart';
 import 'package:webclient/components/contest_header_comp.dart';
 import 'package:webclient/components/lobby_comp.dart';
 import 'package:webclient/components/fantasy_team_comp.dart';
@@ -62,6 +64,7 @@ class WebClientApp extends Module {
     bind(ProfileService);
     bind(ActiveContestsService);
     bind(MyContestsService);
+    bind(SoccerPlayerService);
     bind(FlashMessagesService);
     bind(ScreenDetectorService);
 
@@ -76,6 +79,7 @@ class WebClientApp extends Module {
     bind(LandingPageComp);
     bind(MainMenuComp);
     bind(ContestInfoComp);
+    bind(SoccerPlayerInfoComp);
     bind(ContestHeaderComp);
     bind(FantasyTeamComp);
     bind(LiveContestComp);

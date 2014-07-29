@@ -8,6 +8,7 @@ import 'package:webclient/services/active_contests_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/models/contest.dart';
 import "package:webclient/models/template_match_event.dart";
+import 'package:webclient/models/soccer_player.dart';
 
 @Component(
     selector: 'soccer-players-list',
@@ -89,6 +90,14 @@ class SoccerPlayersListComp {
 
     return tamanio_name - 1;*/
     return 19;
+  }
+
+  @NgCallback("onRowClick")
+  Function onRowClick;
+
+  void onRow(String soccerPlayerId) {
+    if (onRowClick != null)
+      onRowClick({"soccerPlayerId":soccerPlayerId});
   }
 
   ActiveContestsService _contestService;

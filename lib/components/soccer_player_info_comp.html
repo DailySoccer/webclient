@@ -1,0 +1,51 @@
+<div class="modal-info-head">
+    <div class="contest-info-header-row">
+
+        <div class="column-name">
+            <div class="inner-content">
+                <span class="title-text">{{soccerPlayerInfo.currentInfoData['description']}}</span>
+                <span class="content-text">{{soccerPlayerInfo.currentInfoData['name']}}</span>
+            </div>
+        </div>
+
+    </div>
+
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+      <span class="glyphicon glyphicon-remove"></span>
+    </button>
+</div>
+
+<div class="modal-content">
+
+    <div class="tabs-background"></div>
+
+    <!-- Nav tabs -->
+    <ul class="info-options" id="modalInfoContestTabs">
+        <li class="active"><a  data-toggle="tab" ng-click="soccerPlayerInfo.tabChange('info')">INFORMACIÓN</a></li>
+    </ul>
+
+    <div class="contest-info-content" id="modalInfoContestTabContent">
+        <div class=" tab-content">
+
+            <!-- Tab panes -->
+            <div class="tab-pane active" id="info">
+
+                   <div class="list-wrapper">
+                        <div class="contestant-list">
+                            <div>PARTIDOS</div>
+                            <div class="contestant-element"ng-repeat="partido in soccerPlayerInfo.partidos">
+                                <span>{{$index + 1}}º - </span>
+                                <span>Fantasy Points: {{partido.fantasyPoints}}</span>
+                                <span>Minutos Jugados: {{partido.playedMinutes}}</span>
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<!-- <div class="modal-footer"></div> -->
+

@@ -21,15 +21,15 @@
 <div class="soccer-players-list">
 
   <div class="soccer-players-list-slot" ng-repeat="slot in comp.enterContestCtrl.availableSoccerPlayers" ng-class="comp.getSlotClassColor(slot.fieldPos.abrevName)">
-    <div class="column-fieldpos">{{slot.fieldPos.abrevName}}</div>
+    <div class="column-fieldpos" ng-click="comp.onRow(slot.id)">{{slot.fieldPos.abrevName}}</div>
     <div class="column-primary-info">
       <!--<span class="soccer-player-name">{{slot.fullName | limitToDot : 19}}</span>-->
-      <span class="soccer-player-name">{{slot.fullName | limitToDot : comp.showWidth(slot.fullName)}}</span>
-      <span class="match-event-name" ng-bind-html="slot.matchEventName"></span>
+      <span class="soccer-player-name" ng-click="comp.onRow(slot.id)">{{slot.fullName | limitToDot : comp.showWidth(slot.fullName)}}</span>
+      <span class="match-event-name" ng-click="comp.onRow(slot.id)" ng-bind-html="slot.matchEventName"></span>
     </div>
-    <div class="column-dfp">{{slot.fantasyPoints}}</div>
-    <div class="column-played">{{slot.playedMatches}}</div>
-    <div class="column-salary">{{slot.salary}}€</div>
+    <div class="column-dfp" ng-click="comp.onRow(slot.id)">{{slot.fantasyPoints}}</div>
+    <div class="column-played" ng-click="comp.onRow(slot.id)">{{slot.playedMatches}}</div>
+    <div class="column-salary" ng-click="comp.onRow(slot.id)">{{slot.salary}}€</div>
     <div class="column-add">
       <button type="button" class="btn" ng-click="comp.enterContestCtrl.onSoccerPlayerSelected(slot)">Añadir</button>
     </div>

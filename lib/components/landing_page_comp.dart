@@ -43,7 +43,6 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
     mainWrapper.classes.clear();
     mainWrapper.classes.add('wrapper-content-container');
     containerForContent.classes.add('main-content-container');
-    containerForContent.style.backgroundColor = "#FFFFFF";
     bodyObj.classes.remove('fondo-negro');
   }
 

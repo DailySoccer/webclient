@@ -2,6 +2,7 @@ library soccer_players_list_comp;
 
 import 'dart:html';
 import 'package:angular/angular.dart';
+import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/controllers/enter_contest_ctrl.dart';
 import 'package:webclient/services/active_contests_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
@@ -26,7 +27,12 @@ class SoccerPlayersListComp {
   dynamic oldOptionValue;
   String name_filter;
 
-  List<String> posFilterList = ['POR', 'DEF', 'MED', 'DEL'];
+  List<FieldPos> posFilterList = [
+                                new FieldPos("GOALKEEPER"),
+                                new FieldPos("DEFENSE"),
+                                new FieldPos("MIDDLE"),
+                                new FieldPos("FORWARD")
+                                ];
 
   EnterContestCtrl enterContestCtrl;
 

@@ -96,6 +96,7 @@ class EnterContestCtrl {
       isSelectingSoccerPlayer = false;
       lineupSlots[_selectedLineupPosIndex] = soccerPlayer;
       setFieldPosFilter(null);
+      setPosFilterClass("TODOS");
     } else {
       bool wasAdded = tryToAddSoccerPlayer(soccerPlayer);
 
@@ -113,14 +114,28 @@ class EnterContestCtrl {
     availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => soccerPlayer["fullName"].toUpperCase().contains(filter.toUpperCase())).toList();
   }
 
+  void setPosFilterClass(String abrevPosition) {
+    List<ButtonElement> buttonsFilter = document.querySelectorAll(".button-filtro-position");
+    buttonsFilter.forEach((element) {
+      element.classes.remove('active');
+      if(element.text == abrevPosition) {
+        element.classes.add("active");
+      }
+    });
+  }
+
   void setFieldPosFilter(FieldPos filter) {
     if(lastUsedPosFilter != filter)
       lastUsedPosFilter = filter;
 
-    if (filter != null)
+    if (filter != null) {
+      setPosFilterClass(filter.abrevName);
       availableSoccerPlayers = _allSoccerPlayers.where((soccerPlayer) => soccerPlayer["fieldPos"] == filter && !lineupSlots.contains(soccerPlayer)).toList();
-    else
+    }
+    else {
+      setPosFilterClass("TODOS");
       availableSoccerPlayers = _allSoccerPlayers.where((soccerPlayer) => !lineupSlots.contains(soccerPlayer)).toList();
+    }
   }
 
   void setMatchFilter(String matchId) {

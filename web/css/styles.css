@@ -3634,11 +3634,15 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   min-height: 50px;
   margin-bottom: 20px;
   border: 1px solid transparent;
+  
 }
 @media (min-width: 768px) {
   .navbar {
     border-radius: 4px;
   }
+}
+.navbar-header {
+  
 }
 @media (min-width: 768px) {
   .navbar-header {
@@ -3652,6 +3656,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   padding-left: 15px;
   border-top: 1px solid transparent;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  
   -webkit-overflow-scrolling: touch;
 }
 .navbar-collapse.in {
@@ -5595,12 +5600,6 @@ button.close {
 .btn-group-vertical > .btn-group:after,
 .nav:before,
 .nav:after,
-.navbar:before,
-.navbar:after,
-.navbar-header:before,
-.navbar-header:after,
-.navbar-collapse:before,
-.navbar-collapse:after,
 .pager:before,
 .pager:after,
 .panel-body:before,
@@ -5633,6 +5632,8 @@ button.close {
 #usersListRoot .user-row:after,
 #usersListRoot .users-table-header:before,
 #usersListRoot .users-table-header:after,
+#enterContest:before,
+#enterContest:after,
 .enter-contest-actions-wrapper:before,
 .enter-contest-actions-wrapper:after,
 .match-teams-filter:before,
@@ -5670,9 +5671,6 @@ button.close {
 .btn-toolbar:after,
 .btn-group-vertical > .btn-group:after,
 .nav:after,
-.navbar:after,
-.navbar-header:after,
-.navbar-collapse:after,
 .pager:after,
 .panel-body:after,
 .modal-footer:after,
@@ -5689,6 +5687,7 @@ button.close {
 .fantasy-team-list .fantasy-team-slot:after,
 #usersListRoot .user-row:after,
 #usersListRoot .users-table-header:after,
+#enterContest:after,
 .enter-contest-actions-wrapper:after,
 .match-teams-filter:after,
 .soccer-player-list-header-table:after,
@@ -8633,6 +8632,8 @@ fieldset[disabled] .landing-wrapper #mobileContent .btn.active {
   }
 }
 #enterContest {
+  margin-left: -15px;
+  margin-right: -15px;
   background-color: #ffffff;
 }
 @media (max-width: 991px) {
@@ -9292,10 +9293,14 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list.activ
     display: none !important;
   }
 }
-.soccer-player-filter .filter-by-position .button-filtro-team {
+.soccer-player-filter .filter-by-position .button-filtro-position {
   font-size: 9pt;
   margin: 0 2px;
   box-shadow: none;
+}
+.soccer-player-filter .filter-by-position .button-filtro-position:active,
+.soccer-player-filter .filter-by-position .button-filtro-position:focus {
+  outline: none;
 }
 .soccer-player-filter .filter-by-position .active {
   background-color: #ffffff;

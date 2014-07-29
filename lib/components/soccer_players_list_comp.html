@@ -1,8 +1,8 @@
 <div class="soccer-player-filter">
   <div class="filter-by-position">
     <span>JUGADORES</span>
-    <button class="btn btn-default button-filtro-team active">TODOS</button>
-    <button class="btn btn-default button-filtro-team" ng-repeat="pos in comp.posFilterList" ng-bind-html="pos"></button>
+    <button class="btn btn-default button-filtro-position active" ng-click="comp.enterContestCtrl.setFieldPosFilter(null)">TODOS</button>
+    <button class="btn btn-default button-filtro-position" ng-click="comp.enterContestCtrl.setFieldPosFilter(fieldPos)" ng-repeat="fieldPos in comp.posFilterList" ng-bind-html="fieldPos.abrevName"></button>
   </div>
   <select id="match-fliter" class="match-selector-filter" ng-model="comp.optionValue" ng-selected="comp.setFilterMatch()">
     <option ng-repeat="match in comp.matchesList" ng-value="match.id">{{match.texto}}</option>

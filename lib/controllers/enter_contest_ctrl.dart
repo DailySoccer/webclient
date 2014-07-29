@@ -4,6 +4,7 @@ library enter_contest_ctrl;
 import 'dart:html';
 import 'package:angular/angular.dart';
 import 'dart:async';
+import 'dart:js' as js;
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/services/profile_service.dart';
@@ -37,6 +38,8 @@ class EnterContestCtrl {
   final List<dynamic> lineupSlots = new List();
   List<dynamic> availableSoccerPlayers = new List();
   List<String> availableMatchTeams = ['Todos&#160;los partidos'];
+
+  String selectedSoccerPlayerId;
 
   DateFormat timeDisplayFormat= new DateFormat("HH:mm");
 
@@ -252,6 +255,19 @@ class EnterContestCtrl {
 
   void cancelPlayerSelection() {
     isSelectingSoccerPlayer = false;
+  }
+
+  // Mostramos la ventana modal con la información de ese torneo, si no es la versión movil.
+  void onRowClick(String soccerPlayerId) {
+    selectedSoccerPlayerId = soccerPlayerId;
+
+    // Esto soluciona el bug por el que no se muestra la ventana modal en Firefox;
+    var modal = querySelector('#infoContestModal');
+    modal.style.display = "block";
+
+    // Con esto llamamos a funciones de jQuery
+    js.context.callMethod(r'$', ['#infoContestModal'])
+      .callMethod('modal');
   }
 
   var _allSoccerPlayers = new List();

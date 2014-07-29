@@ -1,4 +1,4 @@
-library landing_page_comp;
+  library landing_page_comp;
 
 import 'dart:html';
 import 'package:angular/angular.dart';

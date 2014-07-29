@@ -1,70 +1,140 @@
 #desktopContent{
+	.hidden-xs();
 	background-color: @black;	
-	.vertical-separator{
+	.vertical-separator-big{
 		widht: 100%;
 		height: 58px;
+	}
+	.vertical-separator-small{
+		widht: 100%;
+		height: 58px;
+	}
+	.wrapping-link {
+		text-decoration: none;
+	}
+	.more-info-section(@bgColor, @textColor, @imageName){
+		display: block;
+		background-color: @bgColor,;
+		margin:0;
+		padding: 15px;
+		
+		> span{
+			.opensans_bold(9pt, @textColor);
+			display: block;
+			text-align: center;
+		}
+		.go-down-icon {
+			background-image: url("@{images}/@{imageName}");
+			.size(15px, 15px);
+			margin: 0 auto;
+		}
+
+	}
+	.more-info-section-dark{
+		.more-info-section(@blueDark,  @white,    "godownLight.png");
+	}
+	.more-info-section-light{
+		.more-info-section(@greyLight, @blueDark, "godownDark.png");
+	}
+	.screen-content{
+		max-width: 410px;
+		position:absolute;
+		bottom: 0px;
+		left: 50%;
+		margin-left: -320px;
+		.title-sup-text{
+			.opensans_bold(12pt, @white);
+			margin: 0;
+		}
+		.title-text{
+			.exo_light(30pt, @orange);
+			margin: 0;
+		}
+		.description-text{
+			.opensans_bold(8pt, @white);
+			margin: 0;
+		}
+	}
+}
+#mobileContent{
+	.hidden-sm();
+	.hidden-md();
+	.hidden-lg();
+
+	.button-play {
+		.btn();
+		.btn-primary();
+		.btn-block();
+	}
+}
+.landing-wrapper{
+	.first-screen{
+		position:relative;
+		.screen-background{
+		 	display: block;
+		 	margin-left: -800px;
+		 	position: relative;
+			left: 50%;
+		}
+	}
+	.screen{
+		.screen-background{
+		 	display: block;
+		 	position: relative;
+			.img-responsive();
+		}
+		.slider-wrapper {
+			position: relative;
+		}
+		.content-wrapper{
+			background-color: white;
+			width: 100%;
+			.content-container{
+				.container();
+				.make-row();
+				margin: 0 auto;
+				padding-top: 40px;
+				padding-bottom: 40px;
+				.screen-image-block {
+					.make-sm-column(6);
+					> img {
+						.img-responsive();
+					}
+				}
+				.screen-text-block {
+					.make-sm-column(6);
+					.title-text-dark{
+						.exo_light(30pt, @blueDark);
+						margin: 0;
+					}
+					.description-text{
+						.opensans_bold(9pt, @blueDark);
+						margin: 0;
+					}
+					.description-text-alt{
+						.opensans_bold(9pt, @orange);
+						margin: 0;
+					}
+					> p {
+						padding-bottom: 15px;
+					} 
+				}
+			}
+		}
 	}
 	.button-play{
 		.btn();
 		.btn-primary();
 		padding: 10px 60px;
 	}
-	.more-info-section-grey{
-		background-color: @greyLight;
-		margin:0;
-		padding: 15px;
-		> span{
-			.opensans_bold(9pt, @blueDark);
-			display: block;
-			text-align: center;
-		}
-		.go-down-dark-icon {
-			background-image: url("@{images}/goDownDark.png");
-			.size(15px, 15px);
-			margin: 0 auto;
-		}
+	.screen-pattern{
+		position: absolute;
+		background-image: url('@{images}/pattern.png');
+		width:100%;
+		height: 100%;
+		top: 0;
 	}
-}
-#mobileContent{
+}	
 
-}
-.landing-wrapper{
-	#screen1{
-			position:relative;
-			.screen-background{
-			 	display: block;
-			 	margin-left: -800px;
-			 	position: relative;
-				left: 50%;
-			}
-			.screen-pattern{
-				position: absolute;
-				top: 0;
-				left: 0;
-				background-image: url('@{images}/pattern.png');
-				width:100%;
-				height: 100%;
-			}
-			.screen-content{
-				max-width: 410px;
-				position:absolute;
-				bottom: 0px;
-				left: 50%;
-				margin-left: -320px;
-				.title-sup-text{
-					.opensans_bold(12pt, @white);
-					margin: 0;
-				}
-				.title-text{
-					.exo_light(30pt, @orange);
-					margin: 0;
-				}
-				.description-text{
-					.opensans_bold(8pt, @white);
-					margin: 0;
-				}
-
-			}
-		}
-	}
+	
 	

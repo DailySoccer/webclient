@@ -1,125 +1,104 @@
 <div id="desktopContent">
 
-    <div id="screen1" class="screen">
-
-        <img class="screen-background" src="images/ScreenDesktop1.jpg" />
-        <div class="screen-pattern"></div>
+    <div id="screen1" class="first-screen">
+        <div class="slider-wrapper">
+          <img class="screen-background" src="images/ScreenDesktop1.jpg" />
+          <div class="screen-pattern"></div>
+        </div>
         <div class="screen-content">
-            <div class="quarter-screen">
-                <p class="title-sup-text">¿ERES UN EXPERTO EN FÚTBOL?</p>
-                <p class="title-text">¡DEMUÉSTRALO!</p>
-                <div class="vertical-separator"></div>
-                <p class="description-text">HAZ TU 11 CADA JORNADA SIN COMPROMISOS CREA LIGAS, <br>COMPITE EN LAS QUE HAY O DESAFÍA A TUS AMIGOS SIGUE LOS PARTIDOS EN TIEMPO REAL Y GANA DINERO</p>
-                <div class="vertical-separator"></div>
-                <button type="button" class="button-play"  ng-click="landingPage.goToLobby()">JUGAR</button>
-                <div class="vertical-separator"></div>
-
-            </div>
+            <p class="title-sup-text">¿ERES UN EXPERTO EN FÚTBOL?</p>
+            <p class="title-text">¡DEMUÉSTRALO!</p>
+            <div class="vertical-separator-big"></div>
+            <p class="description-text">HAZ TU 11 CADA JORNADA SIN COMPROMISOS CREA LIGAS, <br>COMPITE EN LAS QUE HAY O DESAFÍA A TUS AMIGOS SIGUE LOS PARTIDOS EN TIEMPO REAL Y GANA DINERO</p>
+            <div class="vertical-separator-big"></div>
+            <button type="button" class="button-play"  ng-click="landingPage.goToLobby()">JUGAR</button>
+            <div class="vertical-separator-big"></div>
         </div>
     </div>
-    <div id="screen2" class="more-info-section-grey">
-      <span>SABER MÁS</span>
-      <span class="go-down-dark-icon"></span>
-    </div>
 
+    <a class="wrapping-link" href="#screen2">
+      <span id="screenSeparator1" class="more-info-section-light">
+        <span>SABER MÁS</span>
+        <span class="go-down-icon"></span>
+      </span>
+    </a>
 
     <div id="screen2" class="screen">
-        <div class="half-background">
-            <img class="screen-background" src="images/screenDesktop2.jpg" />
-            <div class="screen-pattern"></div>
+        <div class="slider-wrapper">
+          <img class="screen-background" src="images/ScreenDesktop2.jpg" />
+          <div class="screen-pattern"></div>
         </div>
-        <div class="screen-white-downside">
-            <div class="screen-content-alt">
-                <div class="white-downside-content">
-                    <!-- contenido pagina 2-->
-                    <div class="screen-text-block">
-                        <p class="title-text">ELIGE TORNEO Y GANA PREMIOS EN METÁLICO</p>
-                        <p class="description-text">
-                            Elige entre los torneos que te ofrecemos o crea los tuyos y reta a tus amigos. Hay muchos tipos de torneo: diarios, semanales, gratuitos o de pago.
-                        </p>
-                        <p class="description-text-bold">Puedes participar en tantos torneos como desees y ganar premios en metálico.</p>
-                    </div>
-                    <div class="screen-logo-block">
-                        <img class="screen-logo" src="images/landingLogo1.png" />
-                    </div>
-                    <div class="row">
-                        <div class="play-button-holder">
-                            <button type="button" class="btn" ng-click="landingPage.goToLobby()">JUGAR</button>
-                        </div>
-                        <div class="know-more-holder">
-                            <a href="#screen3" class="know-more-link-black">
-                                <p>SABER MÁS</p> <span class="go-down-black-icon"></span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class=vertical-separator></div>
-                </div>
+        <div class="content-wrapper">
+          <div class="content-container">
+            <div class="screen-image-block">
+              <img class="screen-logo" src="images/landingLogo1.png" />
             </div>
+            <div class="screen-text-block">
+              <p class="title-text-dark">ELIGE TORNEO Y GANA PREMIOS EN METÁLICO</p>
+              <p class="description-text">
+                  Elige entre los torneos que te ofrecemos o crea los tuyos y reta a tus amigos. Hay muchos tipos de torneo: diarios, semanales, gratuitos o de pago.
+              </p>
+              <p class="description-text-alt">Puedes participar en tantos torneos como desees y ganar premios en metálico.</p>
+              <button type="button" class="button-play"  ng-click="landingPage.goToLobby()">JUGAR</button>
+            </div>
+          </div>
         </div>
     </div>
+
+    <a class="wrapping-link" href="#screen3">
+      <span id="screenSeparator2" class="more-info-section-light">
+        <span>SABER MÁS</span>
+        <span class="go-down-icon"></span>
+      </span>
+    </a>
 
     <div id="screen3" class="screen">
-        <div class="half-background">
-            <img class="screen-background"
-                src="images/screenDesktop3.jpg" />
-            <div class="screen-pattern"></div>
+        <div class="slider-wrapper">
+          <img class="screen-background" src="images/ScreenDesktop3.jpg" />
+          <div class="screen-pattern"></div>
         </div>
-        <div class="screen-white-downside">
-            <div class="screen-content-alt">
-                <div class="white-downside-content">
-                    <div class="screen-text-block">
-                        <p class="title-text">ELIGE TU EQUIPO</p>
-                        <p class="description-text">Cada jugador tiene un salario acorde a su rendimiento en la vida real.</p>
-                        <p class="description-text-bold">Elige bien, deberás mantenerte por debajo del límite de presupuesto.</p>
-                    </div>
-                    <div class="screen-logo-block">
-                        <img class="screen-logo" src="images/landingLogo2.png" />
-                    </div>
-                    <div class="row">
-                        <div class="play-button-holder">
-                            <button type="button" class="btn" ng-click="landingPage.goToLobby()">JUGAR</button>
-                        </div>
-                        <div class="know-more-holder">
-                            <a href="#screen4" class="know-more-link-black">
-                                <p>SABER MÁS</p> <span class="go-down-black-icon"></span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="vertical-separator"></div>
-                </div>
+        <div class="content-wrapper">
+          <div class="content-container">
+            <div class="screen-image-block">
+              <img class="screen-logo" src="images/landingLogo2.png" />
             </div>
+            <div class="screen-text-block">
+              <p class="title-text-dark">ELIGE TU EQUIPO</p>
+              <p class="description-text">
+                  Cada jugador tiene un salario acorde a su rendimiento en la vida real. Elige bien, deberás mantenerte por debajo del límite de presupuesto.
+              </p>
+              <button type="button" class="button-play"  ng-click="landingPage.goToLobby()">JUGAR</button>
+            </div>
+          </div>
         </div>
-
     </div>
 
+    <a class="wrapping-link" href="#screen4">
+      <span id="screenSeparator3" class="more-info-section-dark">
+        <span>SABER MÁS</span>
+        <span class="go-down-icon"></span>
+      </span>
+    </a>
+
     <div id="screen4" class="screen">
-        <div class="half-background">
-            <img class="screen-background"
-                src="images/screenDesktop4.jpg" />
-            <div class="screen-pattern"></div>
+        <div class="slider-wrapper">
+          <img class="screen-background" src="images/ScreenDesktop4.jpg" />
+          <div class="screen-pattern"></div>
         </div>
-        <div class="screen-white-downside">
-            <div class="screen-content-alt">
-                <div class="white-downside-content">
-                    <!-- contenido pagina 2-->
-                    <!--<div class="vertical-separator"></div>-->
-                    <div class="screen-text-block">
-                        <p class="title-text">PUNTÚA Y GANA</p>
-                        <p class="description-text">Cuando comiencen los partidos, tus jugadores acumularán puntos en función de su rendimiento. Podrás seguir su puntuación en tiempo real y compararla con los equipos rivales.</p>
-                        <p class="description-text-bold">Si ganas, recibirás tu premio al instante, sin tener que esperar a final de temporada.</p>
-                    </div>
-                    <div class="screen-logo-block">
-                        <img class="screen-logo"
-                            src="images/landingLogo3.jpg" />
-                    </div>
-                    <div class="row">
-                        <div class="play-button-holder">
-                            <button type="button" class="btn" ng-click="landingPage.goToLobby()">JUGAR</button>
-                        </div>
-                    </div>
-                    <div class="vertical-separator"></div>
-                </div>
+        <div class="content-wrapper">
+          <div class="content-container">
+            <div class="screen-image-block">
+              <img class="screen-logo" src="images/landingLogo3.jpg" />
             </div>
+            <div class="screen-text-block">
+              <p class="title-text-dark">PUNTÚA Y GANA</p>
+              <p class="description-text">
+                  Cuando comiencen los partidos, tus jugadores acumularán puntos en función de su rendimiento. Podrás seguir su puntuación en tiempo real y compararla con los equipos rivales.
+              </p>
+              <p class="description-text-alt">Si ganas, recibirás tu premio al instante, sin tener que esperar a final de temporada.</p>
+              <button type="button" class="button-play"  ng-click="landingPage.goToLobby()">JUGAR</button>
+            </div>
+          </div>
         </div>
     </div>
 
@@ -128,14 +107,12 @@
 <!-- Versión Móvil -->
 <div id="mobileContent">
     <div id="screenMobile1" class="screen">
+
+      <div class="slider-wrapper">
         <img class="screen-background" src="images/screenBackgroundMobile.jpg" />
         <div class="screen-pattern"></div>
-        <div class="screen-content">
-            <div class="text-mobile">
-                Crea ligas, compite en las que hay o desafía a tus amigos
-            </div>
-            <button type="button" class="btn" ng-click="landingPage.goToLobby()">JUGAR</button>
-        </div>
+      </div>
+
     </div>
 </div>
 

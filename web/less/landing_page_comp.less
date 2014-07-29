@@ -1,183 +1,70 @@
-.fondo-negro{
+#desktopContent{
 	background-color: @black;	
+	.vertical-separator{
+		widht: 100%;
+		height: 58px;
+	}
+	.button-play{
+		.btn();
+		.btn-primary();
+		padding: 10px 60px;
+	}
+	.more-info-section-grey{
+		background-color: @greyLight;
+		margin:0;
+		padding: 15px;
+		> span{
+			.opensans_bold(9pt, @blueDark);
+			display: block;
+			text-align: center;
+		}
+		.go-down-dark-icon {
+			background-image: url("@{images}/goDownDark.png");
+			.size(15px, 15px);
+			margin: 0 auto;
+		}
+	}
+}
+#mobileContent{
+
 }
 .landing-wrapper{
-	.screen{
-		position: relative;
-	 }
-	#desktopContent{
-		.hidden-xs();
-		background-color: @blueDark;
-		
-		.quarter-screen{
-			text-align: center;
-			width: 450px;
-			margin: 65px auto;
-		}
+	#screen1{
+			position:relative;
+			.screen-background{
+			 	display: block;
+			 	margin-left: -800px;
+			 	position: relative;
+				left: 50%;
+			}
+			.screen-pattern{
+				position: absolute;
+				top: 0;
+				left: 0;
+				background-image: url('@{images}/pattern.png');
+				width:100%;
+				height: 100%;
+			}
+			.screen-content{
+				max-width: 410px;
+				position:absolute;
+				bottom: 0px;
+				left: 50%;
+				margin-left: -320px;
+				.title-sup-text{
+					.opensans_bold(12pt, @white);
+					margin: 0;
+				}
+				.title-text{
+					.exo_light(30pt, @orange);
+					margin: 0;
+				}
+				.description-text{
+					.opensans_bold(8pt, @white);
+					margin: 0;
+				}
 
-		.featured-big-text{
-			.exo_bold(32pt,  @orange);
+			}
 		}
-
-		.featured-medium-text{
-			.exo_bold(16pt, @blueMed);
- 			margin: 0;
-		}
-
-		.featured-normal-text{
-			.exo_bold(10pt,  @white);
-		}
-
-		.title-text{
-			.exo_light(24pt, @blueMed);
-			text-align: left;
-		}
-
-		.description-text{
-			.opensans_normal(9pt, @blueDark);
-			text-align: left;
-		}
-
-		.description-text-bold{
-			.opensans_bold(9pt, @blueDark);
-			text-align: left;
-		}
-
-		.vertical-separator{
-			height: 40px;
-			width: 100%;
-		}
-
-		.btn{
-			.btn-primary();
-			.button-size(10px, 50px, 12pt, 1.5em, 4px);  // .button-size(@padding-vertical; @padding-horizontal; @font-size; @line-height; @border-radius)
-		}
-
-		.go-down-white-icon {
-			background-image: url("@{images}/goDownWhite.png");
-			.size(15px, 15px);
-			display: inline-block;
-		}
-
-		.go-down-black-icon {
-			background-image: url("@{images}/goDownBlack.png");
-			.size(15px, 15px);
-			display: inline-block;
-		}
-
-		.screen-logo{
-			.img-responsive();
-		}
-
-		.screen-text-block{
-			.make-sm-column(6);
-			margin-top: 30px;
-		}
-
-		.screen-logo-block{
-			.make-sm-column(6);
-		}
-
-		.know-more-link-white{
-			color: @white;
-		}
-
-		.know-more-link-black{
-			color: @black;
-		}
-	}
-
-	#mobileContent{
-		.hidden-sm();
-		.hidden-md();
-		.hidden-lg();		
-		background-color: @black; 
-
-		.text-mobile{
-			.exo_light(20pt, @white);
-			line-height: 1.2;
-			text-align: center;
-			margin: 95% 0 7% 0;
-			text-transform: uppercase;
-		}
-
-		.btn{
-			.btn-block();
-			.btn-primary();
-			.btn-lg();
-		}
-	}
-
-	.screen-content{
-		.main-content-container();
-		@media (max-width: @screen-xs-max) {
-			margin: 0 30px;
-		}
-		@media (min-width: @screen-sm-min) {		
-			width: 100%;
-		}
-		position: absolute;
-		top: 0px;
-		color: @white;
-	}
-
-	.screen-content-alt{
-		.main-content-container();
-		@media (min-width: @screen-sm-min) {		
-			width: 100%;
-		}
-		position: relative;
-		color: @white;
-	}
-
-	.screen-background{
-		.img-responsive();
-		margin: 0 auto;
-		@media (min-width: @screen-sm-min) {		
-			min-width: 960px;
-		}		
-		width: 100%;
-		max-height: 518px;
 	}
 	
-
-	.screen-pattern{
-		position: absolute;
-		top: 0;
-		background-image: url('@{images}/pattern.png');
-		@media (min-width: @screen-sm-min) {		
-			min-width: 960px;
-		}	
-		width:100%;
-		height: 100%;
-	}
-
-	.half-background{
-		position: relative;
-	}
-
-	.screen-white-downside{
-		position: relative;
-		background-color: @white;
-		@media (min-width: @screen-sm-min) {		
-			min-width: 960px;
-		}	
-	}
-
-	.white-downside-content{
-		text-align: center;
-		width: 960px;
-		margin: 20px auto;
-		color: @black;		
-	}
-
-	.play-button-holder{
-		.make-sm-column(2);
-		padding-left: 30px;
-	}
-
-	.know-more-holder{
-		.make-sm-column(8);
-		text-decoration: none;
-	}
-}

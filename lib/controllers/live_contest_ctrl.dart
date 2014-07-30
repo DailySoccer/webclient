@@ -27,6 +27,11 @@ class LiveContestCtrl implements DetachAware {
   Contest get contest => _myContestsService.lastContest;
   List<ContestEntry> get contestEntries => (contest != null) ? contest.contestEntries : null;
 
+  List<ContestEntry> get contestEntriesOrderByPoints {
+    List<ContestEntry> entries = contestEntries;
+    entries.sort((entry1, entry2) => entry2.currentLivePoints.compareTo(entry1.currentLivePoints));
+    return entries;
+  }
 
   LiveContestCtrl(RouteProvider routeProvider, this._scope, this.scrDet, this._myContestsService, this._profileService, this._flashMessage) {
 
@@ -60,7 +65,7 @@ class LiveContestCtrl implements DetachAware {
   }
 
   int getUserPosition(ContestEntry contestEntry) {
-    List<ContestEntry> contestsEntries = contestEntries;
+    List<ContestEntry> contestsEntries = contestEntriesOrderByPoints;
     for (int i=0; i<contestsEntries.length; i++) {
       if (contestsEntries[i].contestEntryId == contestEntry.contestEntryId)
         return i+1;

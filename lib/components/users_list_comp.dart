@@ -39,7 +39,7 @@ class UsersListComp {
     users.clear();
 
     if (_contestEntries != null) {
-      for (var contestEntry in _liveContestCtrl.contestEntries) {
+      for (var contestEntry in _liveContestCtrl.contestEntriesOrderByPoints) {
         users.add({
           "id": contestEntry.user.userId,
           "contestEntry" : contestEntry,

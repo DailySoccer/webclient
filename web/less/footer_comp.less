@@ -1,11 +1,12 @@
 #mainFooter{
 		
 	@media (max-width: @screen-sm-max) {
-		.container-fluid();
+		//.container-fluid();
 		.clean-paddings();
+		width:100%;
+
 	}
 	@media (min-width: @screen-md-min) {
-		//.container();
 		.clean-paddings();
 		width:100%;
 	}
@@ -23,6 +24,10 @@
 		.footer-link();
 		line-height: 35px;
 	}
+	.username-link {
+		.profile-link;
+		padding-left: 0;
+	}
 	.profile-link-desktop-first{
 		.profile-link-desktop();
 		padding-left: 0;
@@ -39,7 +44,7 @@
 		line-height: @own-gutter * 2px;
 	}
 	.sup-footer-wrapper {
-		.container();
+		.container-fluid();
 	}
 	.user-info-sup-footer {
 		.hidden-sm();

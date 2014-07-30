@@ -10,10 +10,21 @@
 <div id="infoAndFilterHeader">
   <div id="contestSortsFilters">
 
+    <div class="choosed-filters-container" ng-show="comp.scrDet.isXsScreen">
+        <div class="competition-filter-name">Competition type <span class="contest-count">125</span></div>
+        <div class="filterToggler">
+          <div type="button" class="btn filters-button" ng-click="comp.toggleFilterMenu()" data-toggle="collapse" data-target="#filtersPanel">Filtros</div>
+        </div>
+        <div class="filter-list">
+          <span class="filters-choosed">0$-50.000$</span>
+          <span class="filters-choosed">PRINCIPIANTE</span>
+        </div>
+    </div>
+
     <div id="contestFastSort">
       <span class="filter-text">Ordenar por: </span>
       <div class="btn-group" >
-        <div id="sort-contest-name"      type="button" class="btn sorting-button" ng-click="comp.sortListByField('contest-name')">Nombre</div>
+        <div id="sort-contest-name"       type="button" class="btn sorting-button" ng-click="comp.sortListByField('contest-name')">Nombre</div>
         <div id="sort-contest-entry-fee"  type="button" class="btn sorting-button" ng-click="comp.sortListByField('contest-entry-fee')">Entrada</div>
         <div id="sort-contest-start-time" type="button" class="btn sorting-button" ng-click="comp.sortListByField('contest-start-time')">Comienzo</div>
       </div>
@@ -23,7 +34,7 @@
         <input class="searcher" type="text" placeholder="Buscar torneo">
     </div>
 
-    <div id="filterToggler">
+    <div class="filterToggler"  ng-show="!comp.scrDet.isXsScreen">
         <div type="button" class="btn filters-button" ng-click="comp.toggleFilterMenu()" data-toggle="collapse" data-target="#filtersPanel">Filtros</div>
     </div>
 

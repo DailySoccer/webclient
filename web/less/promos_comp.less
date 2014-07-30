@@ -4,26 +4,23 @@
 	//padding: 20px 10px;
 	.make-row();
 
+	//Tipo de contenedor que contendrá el contenido
 	@media (min-width: @screen-md-min) {
 		.container();
 	}
 	@media (max-width: @screen-sm-max) {
 		.container-fluid();
 	}
-
+	//a la version > XS le ponemos un fondo blanco
 	@media (min-width: @screen-sm-min) {
 		background-color: @white;
 	}
-
-	.texto-demo {
-		margin: -170px auto 0;
-		text-align: center;
-		.exo_bold(72pt, @white);
-		text-shadow: 5px 5px @orangeHeaderDark;
-		
-	}
-
+	//Las imagenes las hacemos responsivas
 	img {
 		.img-responsive();
+	}
+	//Esto es la versión XS. En dart se muestra solo si es isScreenXs
+	.promoXs{
+		margin: 0 auto;
 	}
 }

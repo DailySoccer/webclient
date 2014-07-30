@@ -1,3 +1,4 @@
 <div id="promosComponent">
-  <img src="images/banners.png"></img>
+   <img ng-show="!promosComp.scrDet.isXsScreen" src="images/BannerPromoDesktop.png" />
+   <img class="promoXs" ng-show="promosComp.scrDet.isXsScreen" src="images/BannerPromoXs.jpg"/>
 </div>

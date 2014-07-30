@@ -19,12 +19,13 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   Contest selectedContest;
 
   String sortType ="";
+  ScreenDetectorService scrDet;
 
-  LobbyComp(this._router, this.activeContestsService, this._scrDet) {
+  LobbyComp(this._router, this.activeContestsService, this.scrDet) {
       activeContestsService.refreshActiveContests();
       const refreshSeconds = const Duration(seconds:10);
       _timer = new Timer.periodic(refreshSeconds, (Timer t) => activeContestsService.refreshActiveContests());
-      _scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg) );
+      scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg) );
   }
 
   void onShadowRoot(root)
@@ -35,10 +36,10 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     _sortingButtonClassesByDefault = _sortingButtons.first.classes.toList();
 
     //capturamos el botón que abre el panel de filtros
-    _filtersButton = document.querySelector('.filters-button');
-    _filtersButtonClassesByDefault = _filtersButton.classes.toList();
+    _filtersButtons = document.querySelectorAll('.filters-button');
+    _filtersButtonClassesByDefault = _filtersButtons.first.classes.toList();
     //Al iniciar, tiene que está cerrado por lo tanto le añadimos la clase que pone la flecha hacia abajo
-    _filtersButton.classes.add('toggleOff');
+    _filtersButtons.forEach((value) => value.classes.add('toggleOff'));
 
 
     /*
@@ -68,7 +69,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
 
   // Mostramos la ventana modal con la información de ese torneo, si no es la versión movil.
   void onRowClick(Contest contest) {
-    if(_scrDet.isDesktop) {
+    if(scrDet.isDesktop) {
       selectedContest = contest;
 
       // Esto soluciona el bug por el que no se muestra la ventana modal en Firefox;
@@ -141,23 +142,22 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   // Muestra/Oculta el panel de filtros avanzados
   void toggleFilterMenu()
   {
-    _filtersButton.classes.clear();
-    _filtersButton.classes.addAll(_filtersButtonClassesByDefault);
+    _filtersButtons.forEach((value) => value.classes.clear());
+    _filtersButtons.forEach((value) => value.classes.addAll(_filtersButtonClassesByDefault));
 
     if (_isFilterButtonOpen){
-      _filtersButton.classes.add('toggleOff');
+      _filtersButtons.forEach((value) => value.classes.add('toggleOff'));
        _isFilterButtonOpen = false;
     }
     else
     {
-      _filtersButton.classes.add('toggleOn');
+      _filtersButtons.forEach((value) => value.classes.add('toggleOn'));
       _isFilterButtonOpen = true;
     }
   }
 
   Timer _timer;
   Router _router;
-  ScreenDetectorService _scrDet;
 
   List<Element> _sortingButtons  = [];
   List<String>  _butonState = ['asc', 'desc'];
@@ -165,7 +165,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   String        _currentSelectedButton = "";
   List<String>  _sortingButtonClassesByDefault;
 
-  Element       _filtersButton;
+  List<Element> _filtersButtons;
   List<String>  _filtersButtonClassesByDefault;
   bool          _isFilterButtonOpen = false;
 }

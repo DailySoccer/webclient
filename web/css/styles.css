@@ -5649,6 +5649,10 @@ button.close {
 #lobbyTopInfobar:after,
 #infoAndFilterHeader #contestSortsFilters:before,
 #infoAndFilterHeader #contestSortsFilters:after,
+#infoAndFilterHeader #contestSortsFilters .choosed-filters-container:before,
+#infoAndFilterHeader #contestSortsFilters .choosed-filters-container:after,
+#infoAndFilterHeader #contestSortsFilters .choosed-filters-container:before,
+#infoAndFilterHeader #contestSortsFilters .choosed-filters-container:after,
 #infoAndFilterHeader #filtersPanel:before,
 #infoAndFilterHeader #filtersPanel:after,
 .my-contest-title-tab:before,
@@ -5705,6 +5709,8 @@ button.close {
 .section-container:after,
 #lobbyTopInfobar:after,
 #infoAndFilterHeader #contestSortsFilters:after,
+#infoAndFilterHeader #contestSortsFilters .choosed-filters-container:after,
+#infoAndFilterHeader #contestSortsFilters .choosed-filters-container:after,
 #infoAndFilterHeader #filtersPanel:after,
 .my-contest-title-tab:after,
 .resume-bar:after,
@@ -9928,19 +9934,13 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
     background-color: #ffffff;
   }
 }
-#promosComponent .texto-demo {
-  margin: -170px auto 0;
-  text-align: center;
-  font-family: 'Exo', sans-serif;
-  font-weight: 600;
-  font-size: 72pt;
-  color: #ffffff;
-  text-shadow: 5px 5px #ec990e;
-}
 #promosComponent img {
   display: block;
   max-width: 100%;
   height: auto;
+}
+#promosComponent .promoXs {
+  margin: 0 auto;
 }
 .section-container {
   margin-left: -15px;
@@ -10135,22 +10135,27 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
     margin-left: 0;
   }
 }
+@media (max-width: 767px) {
+  #infoAndFilterHeader #contestSortsFilters {
+    padding: 0;
+  }
+}
 #infoAndFilterHeader #contestSortsFilters .left-separator {
   border-left: 1px solid #434343;
-}
-@media (min-width: 992px) {
-  #infoAndFilterHeader #contestSortsFilters .left-separator {
-    padding-left: 20px;
-  }
 }
 @media (max-width: 991px) {
   #infoAndFilterHeader #contestSortsFilters .left-separator {
     border-width: 0;
   }
 }
+@media (min-width: 992px) {
+  #infoAndFilterHeader #contestSortsFilters .left-separator {
+    padding-left: 20px;
+  }
+}
 #infoAndFilterHeader #contestSortsFilters #contestFastSort {
   float: left;
-  width: 83.33333333%;
+  width: 100%;
   position: relative;
   min-height: 1px;
   padding-left: 15px;
@@ -10170,9 +10175,15 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
 }
 @media (max-width: 767px) {
   #infoAndFilterHeader #contestSortsFilters #contestFastSort {
-    padding-bottom: 15px;
+    padding-bottom: 10px;
+    padding-top: 10px;
     padding-left: 0;
     padding-right: 0;
+    text-align: center;
+    border-width: 1px;
+    border-style: solid none none none;
+    border-color: #dcdcdc;
+    border-radius: 0;
   }
 }
 #infoAndFilterHeader #contestSortsFilters #contestFastSort .filter-text {
@@ -10313,14 +10324,14 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #contestFastSort .s
     display: none !important;
   }
 }
-@media (min-width: 992px) {
-  #infoAndFilterHeader #contestSortsFilters #contestFastSearch {
-    padding-left: 20px;
-  }
-}
 @media (max-width: 991px) {
   #infoAndFilterHeader #contestSortsFilters #contestFastSearch {
     border-width: 0;
+  }
+}
+@media (min-width: 992px) {
+  #infoAndFilterHeader #contestSortsFilters #contestFastSearch {
+    padding-left: 20px;
   }
 }
 #infoAndFilterHeader #contestSortsFilters #contestFastSearch .searcher {
@@ -10372,87 +10383,172 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #contestFastSearch 
 textarea#infoAndFilterHeader #contestSortsFilters #contestFastSearch .searcher {
   height: auto;
 }
-#infoAndFilterHeader #contestSortsFilters #filterToggler {
-  float: left;
-  width: 16.66666667%;
+#infoAndFilterHeader #contestSortsFilters .choosed-filters-container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 10px 0px;
+}
+@media (min-width: 768px) {
+  #infoAndFilterHeader #contestSortsFilters .choosed-filters-container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  #infoAndFilterHeader #contestSortsFilters .choosed-filters-container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  #infoAndFilterHeader #contestSortsFilters .choosed-filters-container {
+    width: 970px;
+  }
+}
+#infoAndFilterHeader #contestSortsFilters .choosed-filters-container > .navbar-header,
+#infoAndFilterHeader #contestSortsFilters .choosed-filters-container > .navbar-collapse {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+@media (min-width: 768px) {
+  #infoAndFilterHeader #contestSortsFilters .choosed-filters-container > .navbar-header,
+  #infoAndFilterHeader #contestSortsFilters .choosed-filters-container > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+#infoAndFilterHeader #contestSortsFilters .competition-filter-name {
   position: relative;
+  float: left;
+  width: 66.66666667%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 9pt;
+  color: #214a5f;
+}
+#infoAndFilterHeader #contestSortsFilters .competition-filter-name .contest-count {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #ffffff;
+  background-color: #fa9c19;
+  border-radius: 20px;
+  padding: 2px 6px;
+  margin-left: 5px;
+}
+#infoAndFilterHeader #contestSortsFilters .filter-list {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 10px 15px;
+}
+#infoAndFilterHeader #contestSortsFilters .filter-list .filters-choosed {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #ffffff;
+  background-color: #59add5;
+  border-radius: 20px;
+  padding: 2px 5px;
+}
+#infoAndFilterHeader #contestSortsFilters .filterToggler {
+  position: relative;
+  float: left;
+  width: 33.33333333%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
   border-left: 1px solid #434343;
 }
 @media (min-width: 768px) {
-  #infoAndFilterHeader #contestSortsFilters #filterToggler {
+  #infoAndFilterHeader #contestSortsFilters .filterToggler {
     float: left;
     width: 8.33333333%;
   }
 }
-@media (min-width: 992px) {
-  #infoAndFilterHeader #contestSortsFilters #filterToggler {
-    padding-left: 20px;
-  }
-}
 @media (max-width: 991px) {
-  #infoAndFilterHeader #contestSortsFilters #filterToggler {
+  #infoAndFilterHeader #contestSortsFilters .filterToggler {
     border-width: 0;
   }
 }
-#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button {
+@media (min-width: 992px) {
+  #infoAndFilterHeader #contestSortsFilters .filterToggler {
+    padding-left: 20px;
+  }
+}
+@media (max-width: 767px) {
+  #infoAndFilterHeader #contestSortsFilters .filterToggler {
+    text-align: right;
+  }
+}
+#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button {
   color: #ffffff;
   background-color: #59add5;
   border-color: #cccccc;
   box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-  font-size: 8pt;
-  color: #434343;
-  line-height: 29px;
-  box-shadow: none;
-  background-color: transparent;
-  border-color: #434343;
-  color: #777777;
-  padding: 0;
 }
-#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button:hover,
-#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button:focus,
-#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button:active,
-#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button.active,
-.open .dropdown-toggle#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button {
+#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button:hover,
+#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button:focus,
+#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button:active,
+#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button.active,
+.open .dropdown-toggle#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button {
   color: #ffffff;
   background-color: #389dcd;
   border-color: #adadad;
 }
-#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button:active,
-#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button.active,
-.open .dropdown-toggle#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button {
+#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button:active,
+#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button.active,
+.open .dropdown-toggle#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button {
   background-image: none;
 }
-#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button.disabled,
-#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button[disabled],
-fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button,
-#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button.disabled:hover,
-#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button[disabled]:hover,
-fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button:hover,
-#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button.disabled:focus,
-#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button[disabled]:focus,
-fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button:focus,
-#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button.disabled:active,
-#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button[disabled]:active,
-fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button:active,
-#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button.disabled.active,
-#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button[disabled].active,
-fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button.active {
+#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button.disabled,
+#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button[disabled],
+fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button,
+#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button.disabled:hover,
+#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button[disabled]:hover,
+fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button:hover,
+#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button.disabled:focus,
+#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button[disabled]:focus,
+fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button:focus,
+#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button.disabled:active,
+#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button[disabled]:active,
+fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button:active,
+#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button.disabled.active,
+#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button[disabled].active,
+fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button.active {
   background-color: #59add5;
   border-color: #cccccc;
 }
-#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button .badge {
+#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button .badge {
   color: #59add5;
   background-color: #ffffff;
 }
-#infoAndFilterHeader #contestSortsFilters #filterToggler .filters-button:hover {
-  background-color: transparent;
-  color: #434343;
-  border-color: #434343;
+@media (min-width: 768px) {
+  #infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 8pt;
+    color: #434343;
+    line-height: 29px;
+    box-shadow: none;
+    background-color: transparent;
+    border-color: #434343;
+    color: #777777;
+    padding: 0;
+  }
+  #infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button:hover {
+    background-color: transparent;
+    color: #434343;
+    border-color: #434343;
+  }
 }
 #infoAndFilterHeader #contestSortsFilters .toggleOff::after {
   font-family: 'Glyphicons Halflings';
@@ -10996,24 +11092,9 @@ fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest.acti
 }
 @media (max-width: 991px) {
   #mainFooter {
-    margin-right: auto;
-    margin-left: auto;
-    padding-left: 15px;
-    padding-right: 15px;
     padding-left: 0px;
     padding-right: 0px;
-  }
-  #mainFooter > .navbar-header,
-  #mainFooter > .navbar-collapse {
-    margin-right: -15px;
-    margin-left: -15px;
-  }
-}
-@media (max-width: 991px) and (min-width: 768px) {
-  #mainFooter > .navbar-header,
-  #mainFooter > .navbar-collapse {
-    margin-right: 0;
-    margin-left: 0;
+    width: 100%;
   }
 }
 @media (min-width: 992px) {
@@ -11041,6 +11122,17 @@ fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest.acti
   border-right: 2px solid #ffffff;
   text-decoration: none;
   line-height: 35px;
+}
+#mainFooter .username-link {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #ffffff;
+  padding: 0 20px;
+  border-right: 2px solid #ffffff;
+  text-decoration: none;
+  line-height: 35px;
+  padding-left: 0;
 }
 #mainFooter .profile-link-desktop-first {
   font-family: 'Open Sans', sans-serif;
@@ -11089,21 +11181,6 @@ fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest.acti
   margin-left: auto;
   padding-left: 15px;
   padding-right: 15px;
-}
-@media (min-width: 768px) {
-  #mainFooter .sup-footer-wrapper {
-    width: 750px;
-  }
-}
-@media (min-width: 992px) {
-  #mainFooter .sup-footer-wrapper {
-    width: 970px;
-  }
-}
-@media (min-width: 1200px) {
-  #mainFooter .sup-footer-wrapper {
-    width: 970px;
-  }
 }
 #mainFooter .sup-footer-wrapper > .navbar-header,
 #mainFooter .sup-footer-wrapper > .navbar-collapse {

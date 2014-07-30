@@ -29,28 +29,35 @@
 		background-color: @white;
 		padding-top: 15px;
 		padding-bottom: 15px;
+		@media (max-width: @screen-xs-max) {
+			padding: 0;
+		}
 
 		.left-separator{
-			//los separadores olo son visibles en la versión desktop
+			@media (max-width: @screen-sm-max) {
+				border-width: 0;
+			}
+			//los separadores solo son visibles en la versión desktop
 			@media (min-width: @screen-md-min) {
 				padding-left: 20px;
 			}
 			border-left: 1px solid @greyUltraDark;
-			@media (max-width: @screen-sm-max) {
-				border-width: 0;
-			}
+			
 		}
 		//botonera de ordenado
 		#contestFastSort{
-			.make-xs-column(10);
+			.make-xs-column(12);
 			.make-sm-column(6);
 			.make-md-column(6);
 
 			//ajustes para la versión movil
 			@media (max-width: @screen-xs-max) {
-				padding-bottom: 15px;
+				padding-bottom: 10px;
+				padding-top: 10px;
 				padding-left: 0;
 				padding-right: 0;
+				text-align: center;
+				.make-border(1px, solid none none none, @greyLight);
 			}
 			.filter-text{
 				.opensans_bold(8pt, @greyUltraDark);
@@ -80,7 +87,8 @@
 					color: @greyUltraDark;
 					border-color: @greyUltraDark;
 				} 
-			}
+			} 
+			//flechitas que indican el orden de filtrado
 			.asc::after{
 				.create-glyph("\E113", 5pt, @greyUltraDark);
 				margin-left: 5px;
@@ -107,28 +115,61 @@
 				border-width: 0;
 			}
 		}
+		//Contenedor de los filtro en XS
+		.choosed-filters-container{
+			.container();
+			.make-row(0);
+			padding: 10px 0px;
+		}
+		//filtro por tipo de competicion
+		.competition-filter-name {
+			.make-xs-column(8);
+			.opensans_bold(9pt, @blueDark);	
+			.contest-count {
+				.opensans_bold(8pt, @white);	
+				background-color: @orange;
+				border-radius: 20px;
+				padding: 2px 6px;
+				margin-left: 5px;
+			}
+		}
+		// Globos de los filtros seleccionados
+		.filter-list {
+			.make-xs-column(12);
+			padding: 10px 15px;
+			.filters-choosed {
+				.opensans_bold(8pt, @white);	
+				background-color: @blueLight;
+				border-radius: 20px;
+				padding: 2px 5px;
+			}
+		}
+
 		//botón para activar el panel de filtros avanzados
-		#filterToggler{
-			.make-xs-column(2);
+		.filterToggler {
 			.make-sm-column(1);
-			
+			.make-xs-column(4);
 			.left-separator();
+			@media (max-width: @screen-xs-max) {
+				text-align: right;
+			}
 			.filters-button{
 				.btn-default();
-				.opensans_bold(8pt, @greyUltraDark);
-				line-height: 29px;
-				box-shadow: none;
-				background-color: transparent;
-				border-color: @greyUltraDark;
-				color: @greyDark;
-				padding:0;
-				&:hover{
+				@media (min-width:  @screen-sm-min) {
+					.opensans_bold(8pt, @greyUltraDark);
+					line-height: 29px;
+					box-shadow: none;
 					background-color: transparent;
-					color: @greyUltraDark;
 					border-color: @greyUltraDark;
+					color: @greyDark;
+					padding:0;
+					&:hover{
+						background-color: transparent;
+						color: @greyUltraDark;
+						border-color: @greyUltraDark;
+					}
 				} 
 			}
-
 		}
 		.toggleOff::after{
 			.create-glyph("\E114", 8pt, @greyUltraDark);

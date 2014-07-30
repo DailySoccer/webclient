@@ -9949,6 +9949,9 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
 }
 #promosComponent .promoXs {
   margin: 0 auto;
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 .section-container {
   margin-left: -15px;

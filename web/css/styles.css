@@ -5607,8 +5607,6 @@ button.close {
 .panel-body:after,
 .modal-footer:before,
 .modal-footer:after,
-#menuRootUnlogged:before,
-#menuRootUnlogged:after,
 #infoContent .modal-info-head .contest-info-header-row:before,
 #infoContent .modal-info-head .contest-info-header-row:after,
 #infoContent .modal-content .info-options:before,
@@ -5686,7 +5684,6 @@ button.close {
 .pager:after,
 .panel-body:after,
 .modal-footer:after,
-#menuRootUnlogged:after,
 #infoContent .modal-info-head .contest-info-header-row:after,
 #infoContent .modal-content .info-options:after,
 #infoContent .modal-content .list-wrapper .contestant-list .contestant-element:after,
@@ -5865,6 +5862,14 @@ button.close {
     display: none !important;
   }
 }
+.background-header {
+  background-image: url("../images/HeaderBackground.jpg");
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-color: #000000;
+  border-color: #fa9c19;
+  border-width: 0px 0px 2px 0px;
+}
 #mainMenuRoot {
   background-color: #222222;
   border-color: #080808;
@@ -5955,6 +5960,11 @@ button.close {
 #mainMenuRoot .navbar-link:hover {
   color: #ffffff;
 }
+@media (max-width: 991px) {
+  #mainMenuRoot .container {
+    width: 100%;
+  }
+}
 @media (min-width: 768px) {
   #mainMenuRoot {
     background-image: url("../images/HeaderBackground.jpg");
@@ -5969,26 +5979,30 @@ button.close {
     padding: 23px 10px 25px 10px;
   }
 }
-@media (min-width: 992px) {
-  #mainMenuRoot .navbar-brand-container .navbar-brand {
+@media (max-width: 767px) {
+  #mainMenuRoot .container {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+@media (min-width: 768px) {
+  #mainMenuRoot .navbar-header-loggin .navbar-brand-container .navbar-brand {
     background-image: url("../images/LogoEpic11.png");
     width: 120px;
     height: 37px;
-    padding: 0px;
-    margin: 20px 30px 0px 0px;
+    margin: 20px 10px 0px 0px;
   }
 }
 @media (max-width: 767px) {
-  #mainMenuRoot .navbar-brand-container {
+  #mainMenuRoot .navbar-header-loggin .navbar-brand-container {
     width: 100%;
     height: 100%;
     position: absolute;
   }
-  #mainMenuRoot .navbar-brand-container .navbar-brand {
+  #mainMenuRoot .navbar-header-loggin .navbar-brand-container .navbar-brand {
     background-image: url("../images/LogoEpic11.png");
     width: 120px;
     height: 37px;
-    padding: 0px;
     float: none;
     margin-top: 10px;
     display: block;
@@ -5996,8 +6010,274 @@ button.close {
     margin-right: auto;
   }
 }
-#mainMenuRoot #addMoney,
-#mainMenuRoot .btn {
+#mainMenuRoot .navbar-header-unloggin {
+  background-image: url("../images/HeaderBackground.jpg");
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-color: #000000;
+  border-color: #fa9c19;
+  border-width: 0px 0px 2px 0px;
+  height: 70px;
+  text-align: center;
+}
+#mainMenuRoot .navbar-header-unloggin .navbar-brand-container {
+  background-image: url("../images/LogoEpic11.png");
+  width: 120px;
+  height: 37px;
+  float: left !important;
+  margin-top: 20px;
+}
+@media (max-width: 767px) {
+  #mainMenuRoot .navbar-header-unloggin .navbar-brand-container {
+    display: none !important;
+  }
+}
+@media (min-width: 768px) {
+  #mainMenuRoot .navbar-header-unloggin .button-wrapper {
+    float: right !important;
+  }
+}
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  color: #ffffff;
+  background-color: #59add5;
+  border-color: #cccccc;
+  box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
+  padding: 5px 20px;
+  margin: 18px 7px 0;
+}
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join:focus,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join:active:focus,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join:hover,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join:active,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join.disabled,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join[disabled],
+fieldset[disabled] #mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join:focus,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join:active:focus,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join:hover,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join:active,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join.disabled,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join[disabled],
+fieldset[disabled] #mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join:hover,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join:focus,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join:active,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join.active,
+.open .dropdown-toggle#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join {
+  color: #ffffff;
+  background-color: #389dcd;
+  border-color: #adadad;
+}
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join:active,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join.active,
+.open .dropdown-toggle#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join {
+  background-image: none;
+}
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join.disabled,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join[disabled],
+fieldset[disabled] #mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join.disabled:hover,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join[disabled]:hover,
+fieldset[disabled] #mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join:hover,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join.disabled:focus,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join[disabled]:focus,
+fieldset[disabled] #mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join:focus,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join.disabled:active,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join[disabled]:active,
+fieldset[disabled] #mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join:active,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join.disabled.active,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join[disabled].active,
+fieldset[disabled] #mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join.active {
+  background-color: #59add5;
+  border-color: #cccccc;
+}
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join .badge {
+  color: #59add5;
+  background-color: #ffffff;
+}
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  color: #ffffff;
+  background-color: #a1c931;
+  border-color: #91b42c;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  padding: 5px 20px;
+  margin: 18px 0 0 7px;
+}
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login:focus,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login:active:focus,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login:hover,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login:active,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login.disabled,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login[disabled],
+fieldset[disabled] #mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login:focus,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login:active:focus,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login:hover,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login:active,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login.disabled,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login[disabled],
+fieldset[disabled] #mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login:hover,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login:focus,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login:active,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login.active,
+.open .dropdown-toggle#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login {
+  color: #ffffff;
+  background-color: #87a829;
+  border-color: #698320;
+}
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login:active,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login.active,
+.open .dropdown-toggle#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login {
+  background-image: none;
+}
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login.disabled,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login[disabled],
+fieldset[disabled] #mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login.disabled:hover,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login[disabled]:hover,
+fieldset[disabled] #mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login:hover,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login.disabled:focus,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login[disabled]:focus,
+fieldset[disabled] #mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login:focus,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login.disabled:active,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login[disabled]:active,
+fieldset[disabled] #mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login:active,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login.disabled.active,
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login[disabled].active,
+fieldset[disabled] #mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login.active {
+  background-color: #a1c931;
+  border-color: #91b42c;
+}
+#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login .badge {
+  color: #a1c931;
+  background-color: #ffffff;
+}
+#mainMenuRoot #addMoney {
   color: #ffffff;
   background-color: #a1c931;
   border-color: #91b42c;
@@ -6007,77 +6287,56 @@ button.close {
   font-size: 9pt;
   line-height: 1.5em;
   border-radius: 4px;
-  margin: 25px 10px 0px 10px;
+  margin: 20px 10px 0px 10px;
 }
 #mainMenuRoot #addMoney:hover,
-#mainMenuRoot .btn:hover,
 #mainMenuRoot #addMoney:focus,
-#mainMenuRoot .btn:focus,
 #mainMenuRoot #addMoney:active,
-#mainMenuRoot .btn:active,
 #mainMenuRoot #addMoney.active,
-#mainMenuRoot .btn.active,
-.open .dropdown-toggle#mainMenuRoot #addMoney,
-.open .dropdown-toggle#mainMenuRoot .btn {
+.open .dropdown-toggle#mainMenuRoot #addMoney {
   color: #ffffff;
   background-color: #87a829;
   border-color: #698320;
 }
 #mainMenuRoot #addMoney:active,
-#mainMenuRoot .btn:active,
 #mainMenuRoot #addMoney.active,
-#mainMenuRoot .btn.active,
-.open .dropdown-toggle#mainMenuRoot #addMoney,
-.open .dropdown-toggle#mainMenuRoot .btn {
+.open .dropdown-toggle#mainMenuRoot #addMoney {
   background-image: none;
 }
 #mainMenuRoot #addMoney.disabled,
-#mainMenuRoot .btn.disabled,
 #mainMenuRoot #addMoney[disabled],
-#mainMenuRoot .btn[disabled],
 fieldset[disabled] #mainMenuRoot #addMoney,
-fieldset[disabled] #mainMenuRoot .btn,
 #mainMenuRoot #addMoney.disabled:hover,
-#mainMenuRoot .btn.disabled:hover,
 #mainMenuRoot #addMoney[disabled]:hover,
-#mainMenuRoot .btn[disabled]:hover,
 fieldset[disabled] #mainMenuRoot #addMoney:hover,
-fieldset[disabled] #mainMenuRoot .btn:hover,
 #mainMenuRoot #addMoney.disabled:focus,
-#mainMenuRoot .btn.disabled:focus,
 #mainMenuRoot #addMoney[disabled]:focus,
-#mainMenuRoot .btn[disabled]:focus,
 fieldset[disabled] #mainMenuRoot #addMoney:focus,
-fieldset[disabled] #mainMenuRoot .btn:focus,
 #mainMenuRoot #addMoney.disabled:active,
-#mainMenuRoot .btn.disabled:active,
 #mainMenuRoot #addMoney[disabled]:active,
-#mainMenuRoot .btn[disabled]:active,
 fieldset[disabled] #mainMenuRoot #addMoney:active,
-fieldset[disabled] #mainMenuRoot .btn:active,
 #mainMenuRoot #addMoney.disabled.active,
-#mainMenuRoot .btn.disabled.active,
 #mainMenuRoot #addMoney[disabled].active,
-#mainMenuRoot .btn[disabled].active,
-fieldset[disabled] #mainMenuRoot #addMoney.active,
-fieldset[disabled] #mainMenuRoot .btn.active {
+fieldset[disabled] #mainMenuRoot #addMoney.active {
   background-color: #a1c931;
   border-color: #91b42c;
 }
-#mainMenuRoot #addMoney .badge,
-#mainMenuRoot .btn .badge {
+#mainMenuRoot #addMoney .badge {
   color: #a1c931;
   background-color: #ffffff;
 }
 @media (max-width: 767px) {
-  #mainMenuRoot #addMoney,
-  #mainMenuRoot .btn {
+  #mainMenuRoot #addMoney {
     display: none !important;
   }
 }
 #mainMenuRoot .navbar-toggle {
   margin-left: 10px;
   margin-right: 10px;
+}
+#mainMenuRoot .container > .navbar-collapse {
+  margin-right: 0;
+  margin-left: -1px;
 }
 #mainMenuRoot #gameMenuCollapse {
   background-color: transparent;
@@ -6108,343 +6367,6 @@ fieldset[disabled] #mainMenuRoot .btn.active {
 }
 #mainMenuRoot #userMenuCollapse .navbar-nav > li > a:hover {
   color: #afd3e4;
-}
-#menuRootUnlogged {
-  margin-bottom: 0;
-  padding-left: 0;
-  list-style: none;
-  margin: 7.5px -15px;
-  float: right !important;
-  position: relative;
-}
-#menuRootUnlogged > li {
-  position: relative;
-  display: block;
-}
-#menuRootUnlogged > li > a {
-  position: relative;
-  display: block;
-  padding: 10px 15px;
-}
-#menuRootUnlogged > li > a:hover,
-#menuRootUnlogged > li > a:focus {
-  text-decoration: none;
-  background-color: #eeeeee;
-}
-#menuRootUnlogged > li.disabled > a {
-  color: #999999;
-}
-#menuRootUnlogged > li.disabled > a:hover,
-#menuRootUnlogged > li.disabled > a:focus {
-  color: #999999;
-  text-decoration: none;
-  background-color: transparent;
-  cursor: not-allowed;
-}
-#menuRootUnlogged .open > a,
-#menuRootUnlogged .open > a:hover,
-#menuRootUnlogged .open > a:focus {
-  background-color: #eeeeee;
-  border-color: #a1c931;
-}
-#menuRootUnlogged .nav-divider {
-  height: 1px;
-  margin: 9px 0;
-  overflow: hidden;
-  background-color: #e5e5e5;
-}
-#menuRootUnlogged > li > a > img {
-  max-width: none;
-}
-#menuRootUnlogged > li > a {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  line-height: 20px;
-}
-@media (max-width: 767px) {
-  #menuRootUnlogged .open .dropdown-menu {
-    position: static;
-    float: none;
-    width: auto;
-    margin-top: 0;
-    background-color: transparent;
-    border: 0;
-    box-shadow: none;
-  }
-  #menuRootUnlogged .open .dropdown-menu > li > a,
-  #menuRootUnlogged .open .dropdown-menu .dropdown-header {
-    padding: 5px 15px 5px 25px;
-  }
-  #menuRootUnlogged .open .dropdown-menu > li > a {
-    line-height: 20px;
-  }
-  #menuRootUnlogged .open .dropdown-menu > li > a:hover,
-  #menuRootUnlogged .open .dropdown-menu > li > a:focus {
-    background-image: none;
-  }
-}
-@media (min-width: 768px) {
-  #menuRootUnlogged {
-    float: left;
-    margin: 0;
-  }
-  #menuRootUnlogged > li {
-    float: left;
-  }
-  #menuRootUnlogged > li > a {
-    padding-top: 15px;
-    padding-bottom: 15px;
-  }
-  #menuRootUnlogged.navbar-right:last-child {
-    margin-right: -15px;
-  }
-}
-@media (max-width: 767px) {
-  #menuRootUnlogged {
-    width: 100%;
-  }
-}
-#menuRootUnlogged .button-join {
-  display: inline-block;
-  margin-bottom: 0;
-  font-weight: normal;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  background-image: none;
-  border: 1px solid transparent;
-  white-space: nowrap;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  border-radius: 4px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  border-width: 0;
-  color: #ffffff;
-  background-color: #a1c931;
-  border-color: #91b42c;
-  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
-  padding: 10px 20px;
-  margin: 15px 10px;
-  float: right;
-}
-#menuRootUnlogged .button-join:focus,
-#menuRootUnlogged .button-join:active:focus,
-#menuRootUnlogged .button-join.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-#menuRootUnlogged .button-join:hover,
-#menuRootUnlogged .button-join:focus {
-  color: #ffffff;
-  text-decoration: none;
-}
-#menuRootUnlogged .button-join:active,
-#menuRootUnlogged .button-join.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-#menuRootUnlogged .button-join.disabled,
-#menuRootUnlogged .button-join[disabled],
-fieldset[disabled] #menuRootUnlogged .button-join {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-#menuRootUnlogged .button-join:focus,
-#menuRootUnlogged .button-join:active:focus,
-#menuRootUnlogged .button-join.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-#menuRootUnlogged .button-join:hover,
-#menuRootUnlogged .button-join:focus {
-  color: #ffffff;
-  text-decoration: none;
-}
-#menuRootUnlogged .button-join:active,
-#menuRootUnlogged .button-join.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-#menuRootUnlogged .button-join.disabled,
-#menuRootUnlogged .button-join[disabled],
-fieldset[disabled] #menuRootUnlogged .button-join {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-#menuRootUnlogged .button-join:hover,
-#menuRootUnlogged .button-join:focus,
-#menuRootUnlogged .button-join:active,
-#menuRootUnlogged .button-join.active,
-.open .dropdown-toggle#menuRootUnlogged .button-join {
-  color: #ffffff;
-  background-color: #87a829;
-  border-color: #698320;
-}
-#menuRootUnlogged .button-join:active,
-#menuRootUnlogged .button-join.active,
-.open .dropdown-toggle#menuRootUnlogged .button-join {
-  background-image: none;
-}
-#menuRootUnlogged .button-join.disabled,
-#menuRootUnlogged .button-join[disabled],
-fieldset[disabled] #menuRootUnlogged .button-join,
-#menuRootUnlogged .button-join.disabled:hover,
-#menuRootUnlogged .button-join[disabled]:hover,
-fieldset[disabled] #menuRootUnlogged .button-join:hover,
-#menuRootUnlogged .button-join.disabled:focus,
-#menuRootUnlogged .button-join[disabled]:focus,
-fieldset[disabled] #menuRootUnlogged .button-join:focus,
-#menuRootUnlogged .button-join.disabled:active,
-#menuRootUnlogged .button-join[disabled]:active,
-fieldset[disabled] #menuRootUnlogged .button-join:active,
-#menuRootUnlogged .button-join.disabled.active,
-#menuRootUnlogged .button-join[disabled].active,
-fieldset[disabled] #menuRootUnlogged .button-join.active {
-  background-color: #a1c931;
-  border-color: #91b42c;
-}
-#menuRootUnlogged .button-join .badge {
-  color: #a1c931;
-  background-color: #ffffff;
-}
-#menuRootUnlogged .button-login {
-  display: inline-block;
-  margin-bottom: 0;
-  font-weight: normal;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  background-image: none;
-  border: 1px solid transparent;
-  white-space: nowrap;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  border-radius: 4px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  border-width: 0;
-  color: #ffffff;
-  background-color: #59add5;
-  border-color: #cccccc;
-  box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
-  padding: 10px 20px;
-  margin: 15px 10px;
-  float: right;
-}
-#menuRootUnlogged .button-login:focus,
-#menuRootUnlogged .button-login:active:focus,
-#menuRootUnlogged .button-login.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-#menuRootUnlogged .button-login:hover,
-#menuRootUnlogged .button-login:focus {
-  color: #ffffff;
-  text-decoration: none;
-}
-#menuRootUnlogged .button-login:active,
-#menuRootUnlogged .button-login.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-#menuRootUnlogged .button-login.disabled,
-#menuRootUnlogged .button-login[disabled],
-fieldset[disabled] #menuRootUnlogged .button-login {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-#menuRootUnlogged .button-login:focus,
-#menuRootUnlogged .button-login:active:focus,
-#menuRootUnlogged .button-login.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-#menuRootUnlogged .button-login:hover,
-#menuRootUnlogged .button-login:focus {
-  color: #ffffff;
-  text-decoration: none;
-}
-#menuRootUnlogged .button-login:active,
-#menuRootUnlogged .button-login.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-#menuRootUnlogged .button-login.disabled,
-#menuRootUnlogged .button-login[disabled],
-fieldset[disabled] #menuRootUnlogged .button-login {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-#menuRootUnlogged .button-login:hover,
-#menuRootUnlogged .button-login:focus,
-#menuRootUnlogged .button-login:active,
-#menuRootUnlogged .button-login.active,
-.open .dropdown-toggle#menuRootUnlogged .button-login {
-  color: #ffffff;
-  background-color: #389dcd;
-  border-color: #adadad;
-}
-#menuRootUnlogged .button-login:active,
-#menuRootUnlogged .button-login.active,
-.open .dropdown-toggle#menuRootUnlogged .button-login {
-  background-image: none;
-}
-#menuRootUnlogged .button-login.disabled,
-#menuRootUnlogged .button-login[disabled],
-fieldset[disabled] #menuRootUnlogged .button-login,
-#menuRootUnlogged .button-login.disabled:hover,
-#menuRootUnlogged .button-login[disabled]:hover,
-fieldset[disabled] #menuRootUnlogged .button-login:hover,
-#menuRootUnlogged .button-login.disabled:focus,
-#menuRootUnlogged .button-login[disabled]:focus,
-fieldset[disabled] #menuRootUnlogged .button-login:focus,
-#menuRootUnlogged .button-login.disabled:active,
-#menuRootUnlogged .button-login[disabled]:active,
-fieldset[disabled] #menuRootUnlogged .button-login:active,
-#menuRootUnlogged .button-login.disabled.active,
-#menuRootUnlogged .button-login[disabled].active,
-fieldset[disabled] #menuRootUnlogged .button-login.active {
-  background-color: #59add5;
-  border-color: #cccccc;
-}
-#menuRootUnlogged .button-login .badge {
-  color: #59add5;
-  background-color: #ffffff;
 }
 #infoContent {
   background-color: #dcdcdc;

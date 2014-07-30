@@ -1,18 +1,28 @@
+.background-header {
+  background-image: url("@{images}/HeaderBackground.jpg");
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-color: @black;
+  border-color: @orange;
+  border-width: 0px 0px 2px 0px;
+}
+
 #mainMenuRoot {
   // Partimos de la navbar-inverse y vamos cambiando
   .navbar-inverse();
 
   margin-bottom: 0px;
+
+  @media (max-width: @screen-sm-max) {
+    .container {
+      width: 100%;
+    }
+  }
  
   // Version desktop (min-width: pequeña)
   @media (min-width: @screen-sm-min) {
-    background-image: url("@{images}/HeaderBackground.jpg");
-    background-repeat: no-repeat;
-    background-position: center top;
-    background-color: @black;
-    border-color: @orange;
-    border-width: 0px 0px 2px 0px;
-
+    .background-header();
+    
     // Nuestro menu en desktop son 70px, en mobile son 50px (defecto de bootstrap)
     height: 70px;
 
@@ -20,45 +30,82 @@
     .nav > li > a {
       padding: 23px 10px 25px 10px;
     }
+  }
+
+  @media (max-width: @screen-xs-max) {
+    .container {
+      .clean-paddings();
+    }
   } 
 
-  // Logo
-  .navbar-brand-container {      
-    // Logo en pantallas minimo medianas
-    @media (min-width: @screen-md-min) {
-      .navbar-brand {      
-        //background-image: url("@{images}/LogoDailyFootball_md.png");
-         background-image: url("@{images}/LogoEpic11.png");
-        .size(120px, 37px);
-        padding: 0px;
-        margin: 20px 30px 0px 0px;
+  .navbar-header-loggin {
+    // Logo
+    .navbar-brand-container { 
+      // Logo en pantallas minimo medianas
+      @media (min-width: @screen-sm-min) {
+        .navbar-brand {      
+          background-image: url("@{images}/LogoEpic11.png");
+          .size(120px, 37px);
+          margin: 20px 10px 0px 0px;
+        }
+      }
+
+      // Logo en mobile
+      @media (max-width: @screen-xs-max) {
+        .size(100%, 100%);
+        position: absolute;
+
+        .navbar-brand {
+          background-image: url("@{images}/LogoEpic11.png");
+          .size(120px, 37px);
+          float: none;
+          margin-top: 10px;
+          .center-block();
+        }
       }
     }
+  }
 
-    // Logo en mobile
-    @media (max-width: @screen-xs-max) {
-      .size(100%, 100%);
-      position: absolute;
+  .navbar-header-unloggin {
+    .background-header();
+    height: 70px;
+    text-align: center;
 
-      .navbar-brand {
-        //background-image: url("@{images}/LogoDailyFootball_xs.png");
-        background-image: url("@{images}/LogoEpic11.png");
-        .size(120px, 37px);
-        padding: 0px;
-        float: none;
-        margin-top: 10px;
-        .center-block();
+    .navbar-brand-container {  
+      .hidden-xs();
+      background-image: url("@{images}/LogoEpic11.png");
+      .size(120px, 37px);
+      .pull-left();
+      margin-top: 20px;
+    }
+    
+    .button-wrapper {
+      @media (min-width: @screen-sm-min) {
+        .pull-right();
+      }
+      .button-join {
+        .btn();
+        .btn-default();
+        padding: 5px 20px;
+        margin: 18px 7px 0;
+      }
+
+      .button-login {
+        .btn();
+        .btn-primary();
+        padding: 5px 20px;
+        margin: 18px 0 0 7px;
       }
     }
   }
 
   // Boton de añadir fondos
-  #addMoney, .btn {
+  #addMoney {
     .btn-primary();
     .hidden-xs();                             // oculto en mobile
     .pull-right();
     .button-size(4px, 6px, 9pt, 1.5em, 4px);  // .button-size(@padding-vertical; @padding-horizontal; @font-size; @line-height; @border-radius)
-    margin: 25px 10px 0px 10px;
+    margin: 20px 10px 0px 10px;
   }
 
   // Distancia de los botones de toggle a los lados (solo salen en mobile)
@@ -67,10 +114,16 @@
     margin-right: 10px;
   }
 
+  // Quita el scroll horizontal al desplegar los menus
+  .container > .navbar-collapse {
+    margin-right: 0;
+    margin-left: -1px;
+  }
+
   // Links del menu de juego (Torneos, en espera, en directo...)
   #gameMenuCollapse {
     @media (min-width: @screen-sm-min) {
-      .pull-left(); 
+      .pull-left();
     }
 
     background-color: transparent;
@@ -97,31 +150,5 @@
       > a { color: @white; }
       > a:hover { color: @blueMenu; }
     }
-  }
-}
-
-#menuRootUnlogged{
-  .nav();
-  .navbar-nav();
-  .pull-right();
-  @media (max-width: @screen-xs-max){
-    width: 100%;
-  }
-  position: relative;
-
-  .button-join{
-    .btn();
-    .btn-primary();
-    padding: 10px 20px;
-    margin: 15px 10px;
-    float:right;
-  }
-
-  .button-login{
-    .btn();
-    .btn-default();
-    padding: 10px 20px;
-    margin: 15px 10px;   
-    float: right;
   }
 }

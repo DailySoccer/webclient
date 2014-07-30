@@ -1,7 +1,7 @@
 <nav class="navbar navbar-static-top" role="navigation" id="mainMenuRoot">
   <div class="container">
 
-    <div class="navbar-header" ng-if="mainMenu.isLoggedIn">
+    <div class="navbar-header-loggin" ng-if="mainMenu.isLoggedIn">
       <div class="navbar-brand-container">
         <a class="navbar-brand" href="#"></a>
       </div>
@@ -24,7 +24,7 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="#/lobby" ng-click="mainMenu.gameMenuClicked($event)">TORNEOS</a></li>
         <li><a href="#/my_contests" ng-click="mainMenu.gameMenuClicked($event)">MIS TORNEOS</a></li>
-        <li><a href="#/my_live_contests" ng-click="mainMenu.gameMenuClicked($event)">DEPRECATED</a></li>
+        <li><a href="#/my_live_contests" ng-click="mainMenu.gameMenuClicked($event)">PROMOS</a></li>
       </ul>
     </div>
     <!-- #gameMenuCollapse -->
@@ -57,12 +57,14 @@
     <!-- #userMenuCollapse -->
 
     <!-- Cuando no estamos logeados, mostramos simplemente un boton de Login y Join -->
-    <div >
-        <ul id="menuRootUnlogged" ng-if="!mainMenu.isLoggedIn">
-          <li><a type="button" class="button-join" href="#/join">join</a></li>
-          <li><a type="button" class="button-login" href="#/login">Login</a></li>
-        </ul>
-        <div class="clearfix"></div>
+    <div class="navbar-header-unloggin" ng-if="!mainMenu.isLoggedIn">
+      <div class="navbar-brand-container">
+        <a class="navbar-brand" href="#"></a>
+      </div>
+      <div class="button-wrapper">
+        <a type="button" class="button-join" href="#/join">REGISTRO</a>
+        <a type="button" class="button-login" href="#/login">ENTRAR</a>
+      </div>
     </div>
 
   </div>

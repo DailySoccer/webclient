@@ -40,6 +40,7 @@ class MyContestsComp implements DetachAware {
   }
 
   void onHistoryActionClick(Contest contest) {
+    _router.go('history_contest', {"contestId" : contest.contestId});
   }
 
   void detach() {

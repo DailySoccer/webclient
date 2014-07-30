@@ -1,13 +1,31 @@
 <div id="mainFooter" ng-cloak>
-  <div class="user-info" ng-show="footer.isLoggedIn">
-      <a href="#" class="goto-link" ng-click="footer.gotoProfile()"><span class="profile-link">{{footer.fullName}}</span></a>
-      <a href="#" class="goto-link" ng-click="footer.logOut()"><span class="logout-link">Salir</span></a>
-      <button class="add-funds-button">AÑADIR FONDOS</button>
+   <div class="sup-footer-wrapper">
+    <div class="user-info-sup-footer" ng-show="footer.isLoggedIn">
+        <a href="#" class="goto-link" ng-click="footer.gotoProfile()"><span class="profile-link">{{footer.fullName}}</span></a>
+        <a href="#" class="goto-link" ng-click="footer.logOut()"><span class="logout-link">Salir</span></a>
+        <button class="add-funds-button">AÑADIR FONDOS</button>
+    </div>
   </div>
-  <div class="sub-footer">
-     <a href="#" class="goto-link"><span class="profile-link">Política de Privacidad</span></a>
-     <a href="#" class="goto-link"><span class="logout-link">Términos de uso</span></a>
-     <div class="centered">@ 2014 Epic Eleven</div>
+  <div class="sub-footer-wrapper">
+    <div class="sub-footer">
+      <div class="data-wrapper">
+         <a href="#" class="goto-link"><span class="profile-link-desktop-first">AYUDA</span></a>
+         <a href="#" class="goto-link"><span class="profile-link-desktop">LEGAL</span></a>
+         <a href="#" class="goto-link"><span class="profile-link">TERMINOS DE USO</span></a>
+         <a href="#" class="goto-link"><span class="logout-link">POLÍTICA DE PRIVACIDAD</span></a>
+      </div>
+      <div class="credit-cards">
+       <img src="images/CreditCards.png" />
+      </div>
+      <div class="copyright">@ 2014 Epic Eleven</div>
+      <div class="social">
+        <img src="images/social.png"/>
+      </div>
+      <a href="#" class="url-link">
+        <span>www.fantasysportsgames.com</span>
+      </a>
+    </div>
+
   </div>
 
 </div>

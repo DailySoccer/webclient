@@ -1,0 +1,58 @@
+#mainFooter{
+		
+	@media (max-width: @screen-sm-max) {
+		.container-fluid();
+		.clean-paddings();
+	}
+	@media (min-width: @screen-md-min) {
+		.container();
+		.clean-paddings();
+	}
+	.hidden-sm;
+	.hidden-md;
+	.hidden-lg;
+
+
+	.make-row(0);
+	background: @black;
+	.footer-link {
+		.opensans_bold(10pt, @white);
+		padding: 0 20px;
+		border-right: 2px solid @white;
+		text-decoration: none;
+	}
+	@own-gutter: 18px;
+	.profile-link {
+		.footer-link();
+		padding-left: 0; 
+		line-height: 35px;
+	}
+
+	.logout-link {
+		.footer-link();
+		border-right-width: 0;
+		line-height: @own-gutter * 2px;
+	}
+	.user-info {
+		.make-xs-column(12);
+		padding: @own-gutter 20px;
+
+		.add-funds-button {
+			.btn();
+			.btn-primary();
+			float: right;
+			.opensans_bold(8pt, @white);
+			padding: 10px 20px;
+		}
+	}
+	.centered {
+		text-align: center;
+	}
+	.sub-footer {
+		background: @greyDark;
+		.make-xs-column(12);
+		padding: 30px 20px;
+		text-align: center;
+	}
+
+}

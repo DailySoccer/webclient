@@ -5659,6 +5659,8 @@ button.close {
 .resume-bar:after,
 .no-contest .my-no-contest-bottom-row:before,
 .no-contest .my-no-contest-bottom-row:after,
+#mainFooter:before,
+#mainFooter:after,
 .main-content-container:before,
 .main-content-container:after,
 .lineup-selector .lineup-selector-slot:before,
@@ -5706,6 +5708,7 @@ button.close {
 .my-contest-title-tab:after,
 .resume-bar:after,
 .no-contest .my-no-contest-bottom-row:after,
+#mainFooter:after,
 .main-content-container:after,
 .lineup-selector .lineup-selector-slot:after {
   clear: both;
@@ -11054,6 +11057,262 @@ fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest.acti
 .no-contest .my-no-contest-bottom-row .btn-go-to-contest .badge {
   color: #a1c931;
   background-color: #ffffff;
+}
+#mainFooter {
+  margin-left: 0;
+  margin-right: 0;
+  background: #000000;
+}
+@media (max-width: 991px) {
+  #mainFooter {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  #mainFooter > .navbar-header,
+  #mainFooter > .navbar-collapse {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+}
+@media (max-width: 991px) and (min-width: 768px) {
+  #mainFooter > .navbar-header,
+  #mainFooter > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+@media (min-width: 992px) {
+  #mainFooter {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  #mainFooter > .navbar-header,
+  #mainFooter > .navbar-collapse {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+}
+@media (min-width: 992px) and (min-width: 768px) {
+  #mainFooter {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) and (min-width: 992px) {
+  #mainFooter {
+    width: 970px;
+  }
+}
+@media (min-width: 992px) and (min-width: 1200px) {
+  #mainFooter {
+    width: 970px;
+  }
+}
+@media (min-width: 992px) and (min-width: 768px) {
+  #mainFooter > .navbar-header,
+  #mainFooter > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  #mainFooter {
+    display: none !important;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  #mainFooter {
+    display: none !important;
+  }
+}
+@media (min-width: 1200px) {
+  #mainFooter {
+    display: none !important;
+  }
+}
+#mainFooter .footer-link {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #ffffff;
+  padding: 0 20px;
+  border-right: 2px solid #ffffff;
+  text-decoration: none;
+}
+#mainFooter .profile-link {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #ffffff;
+  padding: 0 20px;
+  border-right: 2px solid #ffffff;
+  text-decoration: none;
+  padding-left: 0;
+  line-height: 35px;
+}
+#mainFooter .logout-link {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #ffffff;
+  padding: 0 20px;
+  border-right: 2px solid #ffffff;
+  text-decoration: none;
+  border-right-width: 0;
+  line-height: 36px;
+}
+#mainFooter .user-info {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 18px 20px;
+}
+#mainFooter .user-info .add-funds-button {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  background-color: #a1c931;
+  border-color: #91b42c;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  float: right;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #ffffff;
+  padding: 10px 20px;
+}
+#mainFooter .user-info .add-funds-button:focus,
+#mainFooter .user-info .add-funds-button:active:focus,
+#mainFooter .user-info .add-funds-button.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+#mainFooter .user-info .add-funds-button:hover,
+#mainFooter .user-info .add-funds-button:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+#mainFooter .user-info .add-funds-button:active,
+#mainFooter .user-info .add-funds-button.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+#mainFooter .user-info .add-funds-button.disabled,
+#mainFooter .user-info .add-funds-button[disabled],
+fieldset[disabled] #mainFooter .user-info .add-funds-button {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+#mainFooter .user-info .add-funds-button:focus,
+#mainFooter .user-info .add-funds-button:active:focus,
+#mainFooter .user-info .add-funds-button.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+#mainFooter .user-info .add-funds-button:hover,
+#mainFooter .user-info .add-funds-button:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+#mainFooter .user-info .add-funds-button:active,
+#mainFooter .user-info .add-funds-button.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+#mainFooter .user-info .add-funds-button.disabled,
+#mainFooter .user-info .add-funds-button[disabled],
+fieldset[disabled] #mainFooter .user-info .add-funds-button {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+#mainFooter .user-info .add-funds-button:hover,
+#mainFooter .user-info .add-funds-button:focus,
+#mainFooter .user-info .add-funds-button:active,
+#mainFooter .user-info .add-funds-button.active,
+.open .dropdown-toggle#mainFooter .user-info .add-funds-button {
+  color: #ffffff;
+  background-color: #87a829;
+  border-color: #698320;
+}
+#mainFooter .user-info .add-funds-button:active,
+#mainFooter .user-info .add-funds-button.active,
+.open .dropdown-toggle#mainFooter .user-info .add-funds-button {
+  background-image: none;
+}
+#mainFooter .user-info .add-funds-button.disabled,
+#mainFooter .user-info .add-funds-button[disabled],
+fieldset[disabled] #mainFooter .user-info .add-funds-button,
+#mainFooter .user-info .add-funds-button.disabled:hover,
+#mainFooter .user-info .add-funds-button[disabled]:hover,
+fieldset[disabled] #mainFooter .user-info .add-funds-button:hover,
+#mainFooter .user-info .add-funds-button.disabled:focus,
+#mainFooter .user-info .add-funds-button[disabled]:focus,
+fieldset[disabled] #mainFooter .user-info .add-funds-button:focus,
+#mainFooter .user-info .add-funds-button.disabled:active,
+#mainFooter .user-info .add-funds-button[disabled]:active,
+fieldset[disabled] #mainFooter .user-info .add-funds-button:active,
+#mainFooter .user-info .add-funds-button.disabled.active,
+#mainFooter .user-info .add-funds-button[disabled].active,
+fieldset[disabled] #mainFooter .user-info .add-funds-button.active {
+  background-color: #a1c931;
+  border-color: #91b42c;
+}
+#mainFooter .user-info .add-funds-button .badge {
+  color: #a1c931;
+  background-color: #ffffff;
+}
+#mainFooter .centered {
+  text-align: center;
+}
+#mainFooter .sub-footer {
+  background: #777777;
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 30px 20px;
+  text-align: center;
 }
 .btn {
   display: inline-block;

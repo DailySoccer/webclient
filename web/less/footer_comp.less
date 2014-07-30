@@ -17,15 +17,31 @@
 		.opensans_bold(8pt, @white);
 		padding: 0 20px;
 		border-right: 2px solid @white;
-		text-decoration: none;
 	}
-	@own-gutter: 18px;
+
+	@own-gutter: 10px;
+	//link de nombre de usuario
 	.profile-link {
 		.footer-link();
 		line-height: 35px;
+		@media (max-width: @screen-sm-max) {
+			.opensans_normal(8pt, @greyMed);
+			border-right: 2px solid @greyMed;
+		}
 	}
+	.goto-link{
+		text-decoration: none;
+	}
+	.policy-link {
+		.profile-link();
+		@media (max-width: @screen-sm-max) {
+			border-right: none;
+		}
+	}
+
 	.username-link {
-		.profile-link;
+		.footer-link();
+		line-height: 35px;
 		padding-left: 0;
 	}
 	.profile-link-desktop-first{
@@ -40,8 +56,11 @@
 
 	.logout-link {
 		.footer-link();
+		color: @greyDark;
 		border-right-width: 0;
 		line-height: @own-gutter * 2px;
+		text-decoration: none;
+
 	}
 	.sup-footer-wrapper {
 		.container-fluid();
@@ -51,7 +70,7 @@
 		.hidden-md();
 		.hidden-lg();
 		.make-xs-column(12);
-		padding: @own-gutter 20px;
+		padding: @own-gutter 0;
 
 		.add-funds-button {
 			.btn();
@@ -59,42 +78,59 @@
 			float: right;
 			.opensans_bold(8pt, @white);
 			padding: 10px 20px;
+			.pull-right();
+    		@media (max-width: @screen-sm-max) {
+			 // .button-size(@padding-vertical; @padding-horizontal; @font-size; @line-height; @border-radius)
+				.button-size(4px, 4px, 8pt, 1.5em, 4px); 
+				margin-top: 5px;
+			}
 		}
 	}
 
 	.sub-footer-wrapper{
 		width: 100%;
-		height: 150px;
-		@media (min-width: @screen-sm-min) {
-			background: @black;
+		//height: 150px;
+
+		@media (max-width: @screen-xs-max) {
+			background: @greyUltraDark;
+			padding: 10px 15px;
+			.make-border(1px, solid none none none, @greyMed);
 		}
-		background: @greyMed;
+		background: @black;
 	}
 	.sub-footer {
-		.container();		
+		.container();
+		@media (min-width: @screen-sm-min) {
+			width: 100%; //aunque sea un cotainer, queremos que se ajuste al ancho
+			padding-bottom: 15px;
+		}
 		float: none;
+
 		.data-wrapper{
 			.make-xs-column(12);
 			.make-sm-column(9);
 			margin: 0 auto;
-			padding: 30px 20px;
+			padding: 20px 20px;
 			@media (max-width: @screen-xs-max) {
 				text-align: center;	
+				padding: 0px 0px;
 			}
 		}
 		.credit-cards {
 			.hidden-xs();
 			.make-sm-column(3);
 			margin: 0 auto;
-			padding: 36px 0 36px 20px;
+			padding: 25px 0px 26px 20px;
 			text-align: right;
+			.pull-right();
 
 		}
 		.copyright {			
 			.make-xs-column(12);
 			.make-sm-column(2.5);
 			@media (max-width: @screen-xs-max) {
-				text-align: center;	
+				text-align: center;
+				.opensans_normal(8pt, @greyMed);
 			}
 			.opensans_bold(8pt, @white);
 			line-height: 21px;

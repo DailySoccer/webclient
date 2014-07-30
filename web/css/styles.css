@@ -6336,6 +6336,14 @@ fieldset[disabled] #mainMenuRoot #addMoney.active {
     display: none !important;
   }
 }
+@media (max-width: 991px) {
+  #mainMenuRoot #addMoney {
+    padding: 4px 4px;
+    font-size: 8pt;
+    line-height: 1.5em;
+    border-radius: 4px;
+  }
+}
 #mainMenuRoot .navbar-toggle {
   margin-left: 10px;
   margin-right: 10px;
@@ -11111,7 +11119,6 @@ fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest.acti
   color: #ffffff;
   padding: 0 20px;
   border-right: 2px solid #ffffff;
-  text-decoration: none;
 }
 #mainFooter .profile-link {
   font-family: 'Open Sans', sans-serif;
@@ -11120,8 +11127,42 @@ fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest.acti
   color: #ffffff;
   padding: 0 20px;
   border-right: 2px solid #ffffff;
-  text-decoration: none;
   line-height: 35px;
+}
+@media (max-width: 991px) {
+  #mainFooter .profile-link {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 8pt;
+    color: #afafaf;
+    border-right: 2px solid #afafaf;
+  }
+}
+#mainFooter .goto-link {
+  text-decoration: none;
+}
+#mainFooter .policy-link {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #ffffff;
+  padding: 0 20px;
+  border-right: 2px solid #ffffff;
+  line-height: 35px;
+}
+@media (max-width: 991px) {
+  #mainFooter .policy-link {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 8pt;
+    color: #afafaf;
+    border-right: 2px solid #afafaf;
+  }
+}
+@media (max-width: 991px) {
+  #mainFooter .policy-link {
+    border-right: none;
+  }
 }
 #mainFooter .username-link {
   font-family: 'Open Sans', sans-serif;
@@ -11130,7 +11171,6 @@ fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest.acti
   color: #ffffff;
   padding: 0 20px;
   border-right: 2px solid #ffffff;
-  text-decoration: none;
   line-height: 35px;
   padding-left: 0;
 }
@@ -11140,10 +11180,18 @@ fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest.acti
   font-size: 8pt;
   color: #ffffff;
   border-right: 2px solid #ffffff;
-  text-decoration: none;
   line-height: 35px;
   padding: 0 20px;
   padding-left: 0;
+}
+@media (max-width: 991px) {
+  #mainFooter .profile-link-desktop-first {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 8pt;
+    color: #afafaf;
+    border-right: 2px solid #afafaf;
+  }
 }
 @media (max-width: 767px) {
   #mainFooter .profile-link-desktop-first {
@@ -11156,9 +11204,17 @@ fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest.acti
   font-size: 8pt;
   color: #ffffff;
   border-right: 2px solid #ffffff;
-  text-decoration: none;
   line-height: 35px;
   padding: 0 20px;
+}
+@media (max-width: 991px) {
+  #mainFooter .profile-link-desktop {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 8pt;
+    color: #afafaf;
+    border-right: 2px solid #afafaf;
+  }
 }
 @media (max-width: 767px) {
   #mainFooter .profile-link-desktop {
@@ -11172,9 +11228,10 @@ fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest.acti
   color: #ffffff;
   padding: 0 20px;
   border-right: 2px solid #ffffff;
-  text-decoration: none;
+  color: #777777;
   border-right-width: 0;
-  line-height: 36px;
+  line-height: 20px;
+  text-decoration: none;
 }
 #mainFooter .sup-footer-wrapper {
   margin-right: auto;
@@ -11201,7 +11258,7 @@ fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest.acti
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  padding: 18px 20px;
+  padding: 10px 0;
 }
 @media (min-width: 768px) and (max-width: 991px) {
   #mainFooter .user-info-sup-footer {
@@ -11246,6 +11303,7 @@ fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest.acti
   font-size: 8pt;
   color: #ffffff;
   padding: 10px 20px;
+  float: right !important;
 }
 #mainFooter .user-info-sup-footer .add-funds-button:focus,
 #mainFooter .user-info-sup-footer .add-funds-button:active:focus,
@@ -11341,14 +11399,27 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button.active {
   color: #a1c931;
   background-color: #ffffff;
 }
+@media (max-width: 991px) {
+  #mainFooter .user-info-sup-footer .add-funds-button {
+    padding: 4px 4px;
+    font-size: 8pt;
+    line-height: 1.5em;
+    border-radius: 4px;
+    margin-top: 5px;
+  }
+}
 #mainFooter .sub-footer-wrapper {
   width: 100%;
-  height: 150px;
-  background: #afafaf;
+  background: #000000;
 }
-@media (min-width: 768px) {
+@media (max-width: 767px) {
   #mainFooter .sub-footer-wrapper {
-    background: #000000;
+    background: #434343;
+    padding: 10px 15px;
+    border-width: 1px;
+    border-style: solid none none none;
+    border-color: #afafaf;
+    border-radius: 0;
   }
 }
 #mainFooter .sub-footer {
@@ -11385,6 +11456,12 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button.active {
     margin-left: 0;
   }
 }
+@media (min-width: 768px) {
+  #mainFooter .sub-footer {
+    width: 100%;
+    padding-bottom: 15px;
+  }
+}
 #mainFooter .sub-footer .data-wrapper {
   float: left;
   width: 100%;
@@ -11393,7 +11470,7 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button.active {
   padding-left: 15px;
   padding-right: 15px;
   margin: 0 auto;
-  padding: 30px 20px;
+  padding: 20px 20px;
 }
 @media (min-width: 768px) {
   #mainFooter .sub-footer .data-wrapper {
@@ -11404,6 +11481,7 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button.active {
 @media (max-width: 767px) {
   #mainFooter .sub-footer .data-wrapper {
     text-align: center;
+    padding: 0px 0px;
   }
 }
 #mainFooter .sub-footer .credit-cards {
@@ -11412,8 +11490,9 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button.active {
   padding-left: 15px;
   padding-right: 15px;
   margin: 0 auto;
-  padding: 36px 0 36px 20px;
+  padding: 25px 0px 26px 20px;
   text-align: right;
+  float: right !important;
 }
 @media (max-width: 767px) {
   #mainFooter .sub-footer .credit-cards {
@@ -11448,6 +11527,10 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button.active {
 @media (max-width: 767px) {
   #mainFooter .sub-footer .copyright {
     text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 8pt;
+    color: #afafaf;
   }
 }
 #mainFooter .sub-footer .social {

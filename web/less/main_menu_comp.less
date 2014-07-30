@@ -105,7 +105,11 @@
     .hidden-xs();                             // oculto en mobile
     .pull-right();
     .button-size(4px, 6px, 9pt, 1.5em, 4px);  // .button-size(@padding-vertical; @padding-horizontal; @font-size; @line-height; @border-radius)
-    margin: 20px 10px 0px 10px;
+     margin: 20px 10px 0px 10px;
+     //ajuste para versión MD
+     @media (max-width: @screen-sm-max) {
+       .button-size(4px, 4px, 8pt, 1.5em, 4px);  // .button-size(@padding-vertical; @padding-horizontal; @font-size; @line-height; @border-radius)
+     }
   }
 
   // Distancia de los botones de toggle a los lados (solo salen en mobile)

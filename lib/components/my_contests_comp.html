@@ -4,12 +4,12 @@
   <ul  id="myContestMenuTabs" class="my-contest-tabs" role="tablist">
     <li class="active">
       <a role="tab" data-toggle="tab" ng-click="comp.tabChange('waiting-contest-content')">
-        Próximos<spam class="contest-count">{{comp.myContestsService.waitingContests.length}}</spam>
+        Próximos<spam class="contest-count" ng-hide="comp.myContestsService.liveContests.length <= 0">{{comp.myContestsService.waitingContests.length}}</spam>
       </a>
     </li>
     <li>
       <a role="tab" data-toggle="tab" ng-click="comp.tabChange('live-contest-content')">
-        En Vivo<spam class="contest-count">{{comp.myContestsService.liveContests.length}}</spam>
+        En Vivo<spam class="contest-count" ng-hide="comp.myContestsService.liveContests.length <= 0">{{comp.myContestsService.liveContests.length}}</spam>
       </a>
     </li>
     <li>
@@ -17,19 +17,20 @@
     </li>
   </ul>
 
-  <div class="resume-bar">
-    <div class="info">
-      <spam class="info-registers-count">6 Registros</spam>
-      <spam class="info-wins-count">2 Ganados</spam>
-      <spam class="info-available-money">35.000€</spam>
-    </div>
-  </div>
   <div class="tabs">
     <!-- Tab panes -->
     <div class="tab-content">
 
       <div class="tab-pane active" id="waiting-contest-content">
         <!--<div><h4>WAITING CONTESTS:</h4></div>-->
+
+        <div class="no-contest" ng-hide="comp.myContestsService.liveContests.length > 0">
+          <img src="images/NoWaitingContests.png"></img>
+          <div class="my-no-contest-bottom-row">
+            <button class="btn-go-to-contest" ng-click="comp.gotoLobby()">IR A LOS TORNEOS</button>
+          </div>
+        </div>
+
         <contests-list id="waitingContests"
                        contestsList='comp.myContestsService.waitingContests'
                        onActionClick='comp.onWaitingActionClick(contest)'
@@ -39,6 +40,12 @@
 
       <div class="tab-pane" id="live-contest-content">
         <!--<div><h4>LIVE CONTESTS:</h4></div>-->
+        <div class="no-contest" ng-hide="comp.myContestsService.liveContests.length > 0">
+          <img src="images/NoLiveContests.png" />
+          <div class="my-no-contest-bottom-row">
+            <button class="btn-go-to-contest" ng-click="comp.gotoLobby()">IR AL TORNEO</button>
+          </div>
+        </div>
         <contests-list id="liveContests"
                        contestsList="comp.myContestsService.liveContests"
                        onActionClick='comp.onLiveActionClick(contest)'
@@ -47,13 +54,19 @@
       </div>
 
       <div class="tab-pane" id="history-contest-content">
-      <!--<div><h4>HISTORY CONTESTS:</h4></div>-->
-      <contests-list id="historyContests"
-                     contestsList="comp.myContestsService.historyContests"
-                     onActionClick='comp.onHistoryActionClick(contest)'
-                     onRowClick='comp.onHistoryRowClick(contest)'>
-      </contests-list>
-
+          <div class="resume-bar">
+            <div class="info">
+              <spam class="info-registers-count">-- Registros</spam>
+              <spam class="info-wins-count">-- Ganados</spam>
+              <spam class="info-available-money">--- €</spam>
+            </div>
+          </div>
+          <!--<div><h4>HISTORY CONTESTS:</h4></div>-->
+          <contests-list id="historyContests"
+                         contestsList="comp.myContestsService.historyContests"
+                         onActionClick='comp.onHistoryActionClick(contest)'
+                         onRowClick='comp.onHistoryRowClick(contest)'>
+          </contests-list>
       </div>
 
     </div>

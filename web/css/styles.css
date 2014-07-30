@@ -5657,6 +5657,8 @@ button.close {
 .my-contest-title-tab:after,
 .resume-bar:before,
 .resume-bar:after,
+.no-contest .my-no-contest-bottom-row:before,
+.no-contest .my-no-contest-bottom-row:after,
 .main-content-container:before,
 .main-content-container:after,
 .lineup-selector .lineup-selector-slot:before,
@@ -5703,6 +5705,7 @@ button.close {
 #infoAndFilterHeader #filtersPanel:after,
 .my-contest-title-tab:after,
 .resume-bar:after,
+.no-contest .my-no-contest-bottom-row:after,
 .main-content-container:after,
 .lineup-selector .lineup-selector-slot:after {
   clear: both;
@@ -7818,7 +7821,7 @@ fieldset[disabled] #contestsListRoot .contest-row .column-action .btn.active {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 8pt;
-  color: #ffffff;
+  color: #214a5f;
   margin: 0;
 }
 @media (min-width: 768px) and (max-width: 991px) {
@@ -10761,9 +10764,6 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #filterToggler .fil
     width: 25%;
   }
 }
-#myContest {
-  background-color: #ecf0f1;
-}
 @media (max-width: 991px) {
   #myContest {
     margin-right: auto;
@@ -10824,13 +10824,14 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #filterToggler .fil
   }
 }
 .my-contest-title-tab {
-  margin-left: -15px;
-  margin-right: -15px;
+  margin-left: 0;
+  margin-right: 0;
   font-family: 'Exo', sans-serif;
   font-weight: 300;
   font-size: 20pt;
   color: #214a5f;
-  margin-left: 15px;
+  padding-left: 15px;
+  background-color: #ffffff;
 }
 @media (max-width: 767px) {
   .my-contest-title-tab {
@@ -10919,6 +10920,140 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #filterToggler .fil
   border-radius: 20px;
   padding: 1px 6px;
   margin-left: 5px;
+}
+.no-contest > img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.no-contest .my-no-contest-bottom-row {
+  background-color: #214a5f;
+  margin-left: 0;
+  margin-right: 0;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  border-radius: 0 0 10px 10px;
+}
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  color: #ffffff;
+  background-color: #a1c931;
+  border-color: #91b42c;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  margin: 0 auto;
+  padding: 5px 60px;
+  display: block;
+}
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest:focus,
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest:active:focus,
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest:hover,
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest:active,
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest.disabled,
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest[disabled],
+fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest:focus,
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest:active:focus,
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest:hover,
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest:active,
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest.disabled,
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest[disabled],
+fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest:hover,
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest:focus,
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest:active,
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest.active,
+.open .dropdown-toggle.no-contest .my-no-contest-bottom-row .btn-go-to-contest {
+  color: #ffffff;
+  background-color: #87a829;
+  border-color: #698320;
+}
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest:active,
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest.active,
+.open .dropdown-toggle.no-contest .my-no-contest-bottom-row .btn-go-to-contest {
+  background-image: none;
+}
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest.disabled,
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest[disabled],
+fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest,
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest.disabled:hover,
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest[disabled]:hover,
+fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest:hover,
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest.disabled:focus,
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest[disabled]:focus,
+fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest:focus,
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest.disabled:active,
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest[disabled]:active,
+fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest:active,
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest.disabled.active,
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest[disabled].active,
+fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest.active {
+  background-color: #a1c931;
+  border-color: #91b42c;
+}
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest .badge {
+  color: #a1c931;
+  background-color: #ffffff;
 }
 .btn {
   display: inline-block;
@@ -11107,7 +11242,7 @@ fieldset[disabled] .btn-cancel.active {
     min-height: 1100px;
     background-color: #000000;
     background-image: url("../images/DesignBackgroundBIG.jpg");
-    background-size: cover;
+    background-size: contain;
     background-position: center top;
     background-repeat: no-repeat;
   }

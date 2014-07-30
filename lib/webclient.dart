@@ -36,6 +36,7 @@ import 'package:webclient/components/lineup_selector_comp.dart';
 import 'package:webclient/components/my_contests_comp.dart';
 import 'package:webclient/components/contests_list_comp.dart';
 import 'package:webclient/components/promos_comp.dart';
+import 'package:webclient/components/footer_comp.dart';
 
 import 'package:webclient/directives/form-autofill-fix.dart';
 
@@ -91,6 +92,7 @@ class WebClientApp extends Module {
     bind(ContestsListComp);
     bind(LobbyComp);
     bind(PromosComp);
+    bind(FooterComp);
 
     bind(FormAutofillDecorator);
 

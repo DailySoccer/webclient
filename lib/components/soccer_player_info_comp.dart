@@ -31,6 +31,7 @@ class SoccerPlayerInfoComp {
     SoccerPlayerInfoComp(Scope scope, this._router, this._soccerPlayerService, this._flashMessage) {
 
       currentInfoData = {
+        'fieldPos'        : '<fieldPos>',
         'description'     : '<description>',
         'name'            : '<name>',
       };
@@ -47,14 +48,14 @@ class SoccerPlayerInfoComp {
     }
 
     updateSoccerPlayerInfoFromService() {
+      currentInfoData['fieldPos'] = _soccerPlayerService.soccerPlayerInfo.fieldPos;
       currentInfoData['name'] = "${_soccerPlayerService.soccerPlayerInfo.name} (${_soccerPlayerService.soccerPlayerInfo.fieldPos})";
 
       partidos.clear();
 
       for (SoccerPlayerStats stats in _soccerPlayerService.soccerPlayerInfo.stats){
         partidos.add({
-          'fantasyPoints' : stats.fantasyPoints,
-          'playedMinutes' : stats.playedMinutes
+          'stats' : stats
         });
       }
     }

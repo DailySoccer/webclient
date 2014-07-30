@@ -30,16 +30,82 @@
             <!-- Tab panes -->
             <div class="tab-pane active" id="info">
 
-                   <div class="list-wrapper">
-                        <div class="contestant-list">
-                            <div>PARTIDOS</div>
-                            <div class="contestant-element"ng-repeat="partido in soccerPlayerInfo.partidos">
-                                <span>{{$index + 1}}º - </span>
-                                <span>Fantasy Points: {{partido.fantasyPoints}}</span>
-                                <span>Minutos Jugados: {{partido.playedMinutes}}</span>
-                            </div>
-                        </div>
-                    </div>
+              <div ng-switch="soccerPlayerInfo.currentInfoData['fieldPos'] == 'GOALKEEPER'" >
+              <table class="table table-striped" ng-switch-when="true">
+                  <caption>PARTIDOS</caption>
+                  <thead>
+                  <tr>
+                      <th>DFP</th>
+                      <th>Min.</th>
+                      <th>Goles Encajados</th>
+                      <th>Paradas</th>
+                      <th>Despejes</th>
+                      <th>Pases</th>
+                      <th>Recuperac.</th>
+                      <th>Perdidas Balon</th>
+                      <th>Penaltis Detenidos</th>
+                      <th>Faltas Recibidas</th>
+                      <th>Faltas Cometidas</th>
+                      <th>Tarjetas Amarillas</th>
+                      <th>Tarjetas Rojas</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr ng-repeat="partido in soccerPlayerInfo.partidos">
+                      <td>{{partido.stats.fantasyPoints}}</td>
+                      <td>{{partido.stats.playedMinutes}}</td>
+                      <td>{{partido.stats.golesEncajados}}</td>
+                      <td>{{partido.stats.paradas}}</td>
+                      <td>{{partido.stats.despejes}}</td>
+                      <td>{{partido.stats.pases}}</td>
+                      <td>{{partido.stats.recuperaciones}}</td>
+                      <td>{{partido.stats.perdidasBalon}}</td>
+                      <td>{{partido.stats.penaltisDetenidos}}</td>
+                      <td>{{partido.stats.faltasRecibidas}}</td>
+                      <td>{{partido.stats.faltasCometidas}}</td>
+                      <td>{{partido.stats.tarjetasAmarillas}}</td>
+                      <td>{{partido.stats.tarjetasRojas}}</td>
+                  </tr>
+                  </tbody>
+              </table>
+              <table class="table table-striped" ng-switch-when="false">
+                  <caption>PARTIDOS</caption>
+                  <thead>
+                  <tr>
+                      <th>DFP</th>
+                      <th>Min.</th>
+                      <th>Goles</th>
+                      <th>Tiros</th>
+                      <th>Pases</th>
+                      <th>Asist.</th>
+                      <th>Regates</th>
+                      <th>Recuperac.</th>
+                      <th>Perdidas Balon</th>
+                      <th>Faltas Recibidas</th>
+                      <th>Faltas Cometidas</th>
+                      <th>Tarjetas Amarillas</th>
+                      <th>Tarjetas Rojas</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr ng-repeat="partido in soccerPlayerInfo.partidos">
+                      <td>{{partido.stats.fantasyPoints}}</td>
+                      <td>{{partido.stats.playedMinutes}}</td>
+                      <td>{{partido.stats.goles}}</td>
+                      <td>{{partido.stats.tiros}}</td>
+                      <td>{{partido.stats.pases}}</td>
+                      <td>{{partido.stats.asistencias}}</td>
+                      <td>{{partido.stats.regates}}</td>
+                      <td>{{partido.stats.recuperaciones}}</td>
+                      <td>{{partido.stats.perdidasBalon}}</td>
+                      <td>{{partido.stats.faltasRecibidas}}</td>
+                      <td>{{partido.stats.faltasCometidas}}</td>
+                      <td>{{partido.stats.tarjetasAmarillas}}</td>
+                      <td>{{partido.stats.tarjetasRojas}}</td>
+                  </tr>
+                  </tbody>
+              </table>
+              </div>
 
             </div>
 

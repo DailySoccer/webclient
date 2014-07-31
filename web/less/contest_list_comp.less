@@ -1,16 +1,14 @@
 #contestsListRoot {
-	background-color: @tramaBlue;
-	@media (min-width: @screen-md-min) {
-		.container();
-	}
 	@media (max-width: @screen-sm-max) {
 		.container-fluid();
 	}
-
-	@media (min-width: @screen-sm-min) {
-		background-color: @white;
-		.border-bottom-radius(10px);
+	@media (min-width: @screen-md-min) {
+		.container();
 	}
+	.make-border(1px, solid none solid none, @greyLight);
+	padding-bottom: 10px;
+	background-color: @white;
+	position: relative;
 
 	.contest-row {
 		.make-row();
@@ -19,93 +17,160 @@
 		cursor: pointer;
 		cursor: hand;
 
-		// El borde entre cada row
-		border-color: @greyLight;
-		border-width: 1px 0px 0px 0px;
-		border-style: solid none none none;
-		
-		.title-text {
-			.opensans_normal(8pt, @greyDark);
-			display: block;
-		}
-
-		.content-text {
-			@media (min-width: @screen-md-min) { .exo_bold(16pt); }
-			@media (max-width: @screen-sm-max) { .exo_bold(14pt); }
-			color: @blueDark;
-		}
-
-		@grid-columns-padding: 5px;
-
-		.column-name {
-			.make-sm-column(5, @grid-columns-padding);
-			.inner-icon { .hidden-xs();	}
-		}
-
-		.column-begins {
-			.make-sm-column(2, @grid-columns-padding);
-			.make-sm-column-push(4);					// Nos vamos a la derecha!
-			.title-text { .hidden-xs();	}
-
-			@media (max-width: @screen-xs-max) {
-				padding-bottom: 5px;
-				.content-text {
-					.opensans_normal(8pt, @greyDark);
+		.column-contest-name {
+			.make-xs-column(12, 10px);
+			.make-sm-column(6, 10px);
+			.column-name {
+				.exo_bold(18pt, @blueDark);
+				margin-top: 15px;
+				padding-left: 20px;
+				// Tamaño para la versión móvil
+				@media (max-width: @screen-xs-max) {
+					.opensans_bold(10pt, @blueDark);
+					padding-left: 0;
 				}
-				.clearfix();
+			}
+			.column-description {
+				.opensans_bold(10pt, @greyDark);
+				margin-bottom: 15px;
+				padding-left: 20px;
+				// Tamaño para la versión móvil
+				@media (max-width: @screen-xs-max) {
+					.opensans_normal(9pt, @greyDark);
+					margin: 5px 0 10px;
+					padding-left: 0;
+				}
 			}
 		}
 
-		.column-entry-fee {
-			.make-sm-column(2, @grid-columns-padding);
-			.make-sm-column-pull(2);
-			.title-text { .hidden-xs(); }
-
-			@media (max-width: @screen-xs-max) { 
-				.inner-icon { display: inline; }
-				.inner-content { display: inline-block; }
-				display: inline-block; 
-				padding: 0px; 
-				margin: 0px 20px 0px 0px;
+		.column-contest-price {
+			// 5 columnas xs y 2 para el resto
+			.make-xs-column(5, 0);
+			.make-sm-column(2, 0);
+			@media (min-width: @screen-sm-min) {
+				margin-top: 24px;
 			}
 		}
 
-		.column-prize {
-			.make-sm-column(2, @grid-columns-padding);
-			.make-sm-column-pull(2);
-			.title-text { .hidden-xs(); }
-
-			@media (max-width: @screen-xs-max) { 
-				.inner-icon { display: inline; }
-				.inner-content { display: inline-block; }
-				display: inline-block; 
-				padding: 0px; 
-				margin: 0px; 	
+		.column-contest-prize {
+			// 7 columnas xs y 2 para el resto
+			.make-xs-column(7, 0);
+			.make-sm-column(2, 0);
+			@media (min-width: @screen-sm-min) {
+				margin-top: 24px;
 			}
 		}
 
-		.column-action {
-			.make-sm-column(1, @grid-columns-padding);
-			
-			.btn { 
-				.btn-default();
-				margin-top: 8px;
+		.column-contest-price-header, .column-contest-prize-header{
+			.opensans_normal(9pt, @greyDark);
+			padding-top: 2px;
+			// Tamaño para todas las versiones excepto xs
+			@media (min-width: @screen-sm-min) {
+				.opensans_bold(9pt, @greyDark);
+				padding-left: 28px;
 			}
 		}
 
-		// En desktop & tablet
+		.column-contest-prize-header-title {
+			// La cabecera de premios la ocultamos para la versión xs
+			.hidden-xs();
+		}
+		.column-contest-prize-header-prize-type {
+			// A partir de 480px desaparece el tipo de premio	
+			 @media (min-width: @screen-sm-min) {
+				.hidden();
+			}
+		}
+
+		.column-contest-price-content, .column-contest-prize-content {
+			// Inversion para header y content
+			.pull-left();
+			.make-sm-column(12, 5px);
+			@media (min-width: @screen-sm-min) {
+				padding: 0 0 0 28px;
+			}
+			> span {
+				.opensans_bold(14pt, @blueDark);
+				// Formato de los precios para versión xs
+				@media (max-width: @screen-xs-max) {
+					background-color: @greyLight;
+					border-radius: 20px;
+					.opensans_bold(10pt, @greyUltraDark);
+					padding: 0px 10px;
+					margin-right: 5px;
+				}
+			}
+		}
+
+		// Iconos de precio y premio
 		@media (min-width: @screen-sm-min) {
-			padding: 15px 0px 15px 0px;
-			margin-left: 0px; margin-right: 0px;
-
-			.inner-icon { float:left; padding: 0px 5px 0px 0px; margin-top: 17px; }
+			.column-contest-price span::before {
+				.addIcon("IconPrice.png");
+			}
+			.column-contest-prize span::before {
+				.addIcon("IconPrize.png");
+			}
+			.addIcon(@IconName){
+				content: " ";
+				background-image: url("@{images}/@{IconName}");
+				width: 26px;
+				height: 24px;
+				display: inline-block;
+				position: absolute;
+				top: 2px;
+				left: 0;
+			}
 		}
 
-		// En mobile
-		@media (max-width: @screen-xs-max) {
-			padding: 10px 0px 10px 0px;
+		.column-contest-start-date {
+			.make-sm-column(1, 0);
+			.opensans_bold(9pt, @greyDark);
+			margin-top: 17px;
+			@media (min-width: @screen-sm-min) {
+				.column-start-date-day {
+					.exo_light(18pt, @blueDark);
+				}
+			}
+			@media (max-width: @screen-xs-max) {
+				position: absolute;
+				right: 10px;
+				.opensans_bold(9pt, @blueDark);
+				.column-start-date-day {
+					.pull-left();
+				}
+				.column-start-date-hour {
+					.pull-right();
+					margin-left: 5px;
+				}
+			}
+		}
 
-			.inner-icon { float:left; padding: 0px 5px 0px 0px; }
+		// Botón de entrar al concurso
+		.column-contest-action {
+			.make-sm-column(1, 0);
+			.btn {
+				.btn-primary();
+			}
+			margin-top: 25px;
+			padding-left: 5px;
+			// Posición para versión xs
+			@media (max-width: @screen-xs-max) {
+				position: absolute;
+				right: 10px;
+				top: 40px;
+				.btn {
+					background-color: transparent;
+					padding: 0;
+					overflow: hidden;
+					width: 12px;
+					box-shadow: none;
+				}
+				.btn::before {
+					color: @blueDark; 
+					.create-glyph("\E080", 10pt);
+					padding: 0;
+				}
+			}
 		}
 	}
 }

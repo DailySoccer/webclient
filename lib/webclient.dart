@@ -19,7 +19,7 @@ import 'package:webclient/utils/limit_to_dot.dart';
 import 'package:webclient/controllers/login_ctrl.dart';
 import 'package:webclient/controllers/signup_ctrl.dart';
 import 'package:webclient/controllers/enter_contest_ctrl.dart';
-import 'package:webclient/controllers/live_contest_ctrl.dart';
+import 'package:webclient/controllers/view_contest_ctrl.dart';
 
 import 'package:webclient/components/flash_messages_comp.dart';
 import 'package:webclient/components/landing_page_comp.dart';
@@ -73,7 +73,7 @@ class WebClientApp extends Module {
     bind(LoginCtrl);
     bind(SignupCtrl);
     bind(EnterContestCtrl);
-    bind(LiveContestCtrl);
+    bind(ViewContestCtrl);
 
     bind(FlashMessageComp);
     bind(LandingPageComp);

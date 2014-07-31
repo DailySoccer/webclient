@@ -3,7 +3,7 @@ library user_list_comp;
 import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:webclient/models/contest_entry.dart';
-import 'package:webclient/controllers/live_contest_ctrl.dart';
+import 'package:webclient/controllers/view_contest_ctrl.dart';
 
 @Component(
     selector: 'users-list',
@@ -29,9 +29,9 @@ class UsersListComp {
     _refresh();
   }
 
-  String getPrize(int index) => _liveContestCtrl.getPrize(index);
+  String getPrize(int index) => _viewContestCtrl.getPrize(index);
 
-  UsersListComp(this._scope, this._liveContestCtrl);
+  UsersListComp(this._scope, this._viewContestCtrl);
 
   void _refresh() {
     //print("refresh users: ${_liveContestCtrl.usersInfo}");
@@ -39,12 +39,12 @@ class UsersListComp {
     users.clear();
 
     if (_contestEntries != null) {
-      for (var contestEntry in _liveContestCtrl.contestEntriesOrderByPoints) {
+      for (var contestEntry in _viewContestCtrl.contestEntriesOrderByPoints) {
         users.add({
           "id": contestEntry.user.userId,
           "contestEntry" : contestEntry,
           "name": contestEntry.user.fullName,
-          "remainingTime": _liveContestCtrl.getUserRemainingTime(contestEntry),
+          "remainingTime": _viewContestCtrl.getUserRemainingTime(contestEntry),
           "score": contestEntry.currentLivePoints
         });
       }
@@ -57,5 +57,5 @@ class UsersListComp {
 
   Scope _scope;
   List<ContestEntry> _contestEntries;
-  LiveContestCtrl _liveContestCtrl;
+  ViewContestCtrl _viewContestCtrl;
 }

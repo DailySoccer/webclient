@@ -27,11 +27,11 @@ void webClientRouteInitializer(Router router, RouteViewFactory views) {
     )
     ,'live_contest': ngRoute(
         path: '/live_contest/:contestId',
-        view: 'view/live_contest.tpl.html'
+        view: 'view/view_contest.tpl.html'
     )
     ,'history_contest': ngRoute(
         path: '/history_contest/:contestId',
-        view: 'view/live_contest.tpl.html'
+        view: 'view/view_contest.tpl.html'
     )
     ,'enter_contest': ngRoute(
         path: '/enter_contest/:contestId',

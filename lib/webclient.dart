@@ -29,7 +29,6 @@ import 'package:webclient/components/soccer_player_info_comp.dart';
 import 'package:webclient/components/contest_header_comp.dart';
 import 'package:webclient/components/lobby_comp.dart';
 import 'package:webclient/components/fantasy_team_comp.dart';
-import 'package:webclient/components/live_contest_comp.dart';
 import 'package:webclient/components/users_list_comp.dart';
 import 'package:webclient/components/soccer_players_list_comp.dart';
 import 'package:webclient/components/lineup_selector_comp.dart';
@@ -83,7 +82,6 @@ class WebClientApp extends Module {
     bind(SoccerPlayerInfoComp);
     bind(ContestHeaderComp);
     bind(FantasyTeamComp);
-    bind(LiveContestComp);
     bind(UsersListComp);
     bind(SoccerPlayersListComp);
     bind(LineupSelectorComp);

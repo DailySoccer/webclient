@@ -28,7 +28,7 @@ class LiveContestCtrl implements DetachAware {
   List<ContestEntry> get contestEntries => (contest != null) ? contest.contestEntries : null;
 
   List<ContestEntry> get contestEntriesOrderByPoints {
-    List<ContestEntry> entries = contestEntries;
+    List<ContestEntry> entries = new List<ContestEntry>.from(contestEntries);
     entries.sort((entry1, entry2) => entry2.currentLivePoints.compareTo(entry1.currentLivePoints));
     return entries;
   }

@@ -34,7 +34,7 @@ class ContestsListComp {
 
     List<String> sortParams = value.split('_');
 
-    if(sortParams.length != 2) {
+    if (sortParams.length != 2) {
       print("El número de parametros no se ha establecido correctamente. La forma correcta es \'campo\'_\'dirección\'. Pon atención a la barra baja \'_\'");
     }
 
@@ -60,7 +60,6 @@ class ContestsListComp {
       break;
     }
     print('Ordenando la lista by: $sortParams');
-
   }
 
   @NgOneWay("actionButtonTitle")

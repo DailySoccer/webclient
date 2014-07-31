@@ -4,14 +4,8 @@ import 'dart:async';
 import 'package:angular/angular.dart';
 
 import "package:webclient/services/server_service.dart";
-import "package:webclient/models/user.dart";
 import "package:webclient/models/contest.dart";
-import "package:webclient/models/template_contest.dart";
-import "package:webclient/models/template_match_event.dart";
-import "package:webclient/models/soccer_player.dart";
-import 'package:webclient/models/contest_entry.dart';
 
-import 'package:webclient/services/contest_references.dart';
 
 @Injectable()
 class MyContestsService {

@@ -43,6 +43,10 @@ class MyContestsComp implements DetachAware {
     _router.go('history_contest', {"contestId" : contest.contestId});
   }
 
+  void gotoLobby() {
+    _router.go("lobby", {});
+  }
+
   void detach() {
     if (_timer != null)
       _timer.cancel();

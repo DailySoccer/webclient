@@ -3634,15 +3634,11 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   min-height: 50px;
   margin-bottom: 20px;
   border: 1px solid transparent;
-  
 }
 @media (min-width: 768px) {
   .navbar {
     border-radius: 4px;
   }
-}
-.navbar-header {
-  
 }
 @media (min-width: 768px) {
   .navbar-header {
@@ -3656,7 +3652,6 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   padding-left: 15px;
   border-top: 1px solid transparent;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  
   -webkit-overflow-scrolling: touch;
 }
 .navbar-collapse.in {
@@ -5600,6 +5595,12 @@ button.close {
 .btn-group-vertical > .btn-group:after,
 .nav:before,
 .nav:after,
+.navbar:before,
+.navbar:after,
+.navbar-header:before,
+.navbar-header:after,
+.navbar-collapse:before,
+.navbar-collapse:after,
 .pager:before,
 .pager:after,
 .panel-body:before,
@@ -5681,6 +5682,9 @@ button.close {
 .btn-toolbar:after,
 .btn-group-vertical > .btn-group:after,
 .nav:after,
+.navbar:after,
+.navbar-header:after,
+.navbar-collapse:after,
 .pager:after,
 .panel-body:after,
 .modal-footer:after,
@@ -7368,7 +7372,6 @@ fieldset[disabled] #headerContestWidget .close-contest .btn.active {
 }
 #contestsListRoot {
   background-color: #ecf0f1;
-  min-height: 500px;
 }
 @media (min-width: 992px) {
   #contestsListRoot {
@@ -9939,10 +9942,11 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
     background-color: #ffffff;
   }
 }
-#promosComponent img {
-  display: block;
-  max-width: 100%;
-  height: auto;
+@media (max-width: 767px) {
+  #promosComponent {
+    background-color: #0d75a6;
+    padding: 10px;
+  }
 }
 #promosComponent .promoXs {
   margin: 0 auto;
@@ -10868,12 +10872,13 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   font-weight: 300;
   font-size: 20pt;
   color: #214a5f;
-  padding-left: 15px;
+  padding: 30px 15px 30px 15px;
   background-color: #ffffff;
+  text-align: center;
 }
 @media (max-width: 767px) {
   .my-contest-title-tab {
-    text-align: center;
+    padding: 10px 5px 10px 5px;
   }
 }
 .resume-bar {
@@ -10887,12 +10892,12 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   }
 }
 .resume-bar .info {
-  padding-top: 10px;
-  padding-bottom: 10px;
   position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   text-align: center;
 }
 @media (min-width: 768px) {
@@ -10919,6 +10924,21 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   font-weight: 700;
   font-size: 10pt;
   color: #fa9c19;
+}
+.resume-bar .information-no-contest {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 9pt;
+  color: #ffffff;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
 }
 #myContestMenuTabs {
   padding: 0;
@@ -10965,7 +10985,7 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   height: auto;
 }
 .no-contest .my-no-contest-bottom-row {
-  background-color: #214a5f;
+  background-color: #ffffff;
   margin-left: 0;
   margin-right: 0;
   padding-top: 30px;
@@ -11092,6 +11112,37 @@ fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest.acti
 .no-contest .my-no-contest-bottom-row .btn-go-to-contest .badge {
   color: #a1c931;
   background-color: #ffffff;
+}
+.no-contests-wrapper {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: #ffffff;
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 200px;
+}
+.no-contests-wrapper .no-contests-title {
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 20pt;
+  color: #0d75a6;
+  padding-bottom: 20px;
+}
+.no-contests-wrapper .no-contests-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 9pt;
+  color: #777777;
+}
+.list-container {
+  min-height: 539px;
+  background-color: #ffffff;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 #mainFooter {
   margin-left: 0;

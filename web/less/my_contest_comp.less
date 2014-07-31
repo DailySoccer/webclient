@@ -14,10 +14,12 @@
 	.make-row(0);
 	.exo_light(20pt, @blueDark);
 
-	padding-left: 15px;
+	//padding-left: 15px;
+	padding: 30px 15px 30px 15px;
 	background-color: @white;
+	text-align: center;
 	@media (max-width: @screen-xs-max) {
-		text-align: center;
+		padding: 10px 5px 10px 5px;
 	}
 }
 
@@ -26,11 +28,9 @@
 	.make-row(0);
 	background-color: @blueDark;
 	.info{
-		padding-top: 10px;
-		padding-bottom: 10px;
 		.make-sm-column(6);
 		.make-sm-column-push(3);
-		text-align: center;
+		
 		.info-registers-count, .info-wins-count{
 			.opensans_bold(10pt, @white);
 			margin-right: 10px;
@@ -38,7 +38,18 @@
 		.info-available-money{
 			.opensans_bold(10pt, @orange);	
 		}
+		padding-top: 10px;
+		padding-bottom: 10px;
+		text-align: center;
 	}
+	.information-no-contest{
+			.make-xs-column(12);
+			.opensans_bold(9pt, @white);
+			padding-top: 10px;
+			padding-bottom: 10px;	
+			text-align: center;
+			
+	}	
 }
 
 #myContestMenuTabs{
@@ -77,20 +88,42 @@
 		.img-responsive();	
 	}
 	.my-no-contest-bottom-row {
-	background-color: @blueDark;
-	.make-row(0);
-	padding-top: 30px;
-	padding-bottom: 30px;
-	border-radius: 0 0 10px 10px; 
-	
-	.btn-go-to-contest{
-		.btn();
-		.btn-primary();
+		background-color: @white;
+		.make-row(0);
+		padding-top: 30px;
+		padding-bottom: 30px;
+		border-radius: 0 0 10px 10px; 
 		
-		margin: 0 auto;
-		padding: 5px 60px;
-		display: block;
+		.btn-go-to-contest{
+			.btn();
+			.btn-primary();
+			
+			margin: 0 auto;
+			padding: 5px 60px;
+			display: block;
+		}
+	}	
+}
+
+.no-contests-wrapper {
+	.make-xs-column(12);
+	background-color: @white;
+	text-align: center;
+	padding-top: 30px;
+	padding-bottom: 200px;
+	.no-contests-title {
+		.exo_light(20pt, @blueMed);
+		padding-bottom: 20px;
+
+	}
+	.no-contests-text {
+		.opensans_bold(9pt, @greyDark);
 	}
 }
-	
+
+.list-container {
+	min-height: 539px;
+	background-color: @white;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
 }

@@ -3,15 +3,23 @@
   <!-- Nav tabs -->
   <ul  id="myContestMenuTabs" class="my-contest-tabs" role="tablist">
     <li class="active">
-      <a role="tab" data-toggle="tab" ng-click="comp.tabChange('waiting-contest-content')">
-        Próximos<spam class="contest-count" ng-hide="comp.myContestsService.liveContests.length <= 0">{{comp.myContestsService.waitingContests.length}}</spam>
-      </a>
-    </li>
-    <li>
       <a role="tab" data-toggle="tab" ng-click="comp.tabChange('live-contest-content')">
-        En Vivo<spam class="contest-count" ng-hide="comp.myContestsService.liveContests.length <= 0">{{comp.myContestsService.liveContests.length}}</spam>
+        En Vivo
+        <spam class="contest-count" ng-hide="comp.myContestsService.liveContests.length <= 0 || comp.myContestsService.liveContests == null">
+          {{comp.myContestsService.liveContests.length}}
+        </spam>
       </a>
     </li>
+
+    <li>
+      <a role="tab" data-toggle="tab" ng-click="comp.tabChange('waiting-contest-content')">
+        Próximos
+        <spam class="contest-count" ng-hide="comp.myContestsService.liveContests.length <= 0 || comp.myContestsService.liveContests == null">
+        {{comp.myContestsService.waitingContests.length}}
+        </spam>
+      </a>
+    </li>
+
     <li>
       <a role="tab" data-toggle="tab" ng-click="comp.tabChange('history-contest-content')">Historial</a>
     </li>
@@ -21,36 +29,56 @@
     <!-- Tab panes -->
     <div class="tab-content">
 
-      <div class="tab-pane active" id="waiting-contest-content">
-        <!--<div><h4>WAITING CONTESTS:</h4></div>-->
-
-        <div class="no-contest" ng-hide="comp.myContestsService.liveContests.length > 0">
-          <img src="images/NoWaitingContests.png"></img>
+      <div class="tab-pane active" id="live-contest-content">
+        <div class="resume-bar" ng-show="comp.myContestsService.liveContests.length <= 0 || comp.myContestsService.liveContests == null">
+             <spam class="information-no-contest">AQUÍ PODRÁS CONSULTAR EN TIEMPO REAL LOS TORNEOS QUE TENGAS ACTIVOS</spam>
+        </div>
+        <div class="no-contest" ng-show="comp.myContestsService.liveContests.length <= 0 || comp.myContestsService.liveContests == null">
+          <div class="no-contests-wrapper">
+            <div class="no-contests-title">
+             EN ESTE MOMENTO, NO TIENES<br>UN EQUIPO CREADO PARA NINGÚN TORNEO
+            </div>
+            <div class="no-contests-text">
+              VE A LA LISTA DE TORNEOS, ELIGE UNO Y EMPIEZA A JUGAR
+            </div>
+          </div>
           <div class="my-no-contest-bottom-row">
             <button class="btn-go-to-contest" ng-click="comp.gotoLobby()">IR A LOS TORNEOS</button>
           </div>
         </div>
-
-        <contests-list id="waitingContests"
-                       contestsList='comp.myContestsService.waitingContests'
-                       onActionClick='comp.onWaitingActionClick(contest)'
-                       onRowClick='comp.onWaitingRowClick(contest)'>
-        </contests-list>
+        <div class="list-container" ng-hide="comp.myContestsService.liveContests.length <= 0 || comp.myContestsService.liveContests == null">
+          <contests-list id="liveContests"
+                         contestsList="comp.myContestsService.liveContests"
+                         onActionClick='comp.onLiveActionClick(contest)'
+                         onRowClick='comp.onLiveRowClick(contest)'>
+          </contests-list>
+        </div>
       </div>
 
-      <div class="tab-pane" id="live-contest-content">
-        <!--<div><h4>LIVE CONTESTS:</h4></div>-->
-        <div class="no-contest" ng-hide="comp.myContestsService.liveContests.length > 0">
-          <img src="images/NoLiveContests.png" />
+      <div class="tab-pane" id="waiting-contest-content">
+        <div class="resume-bar" ng-show="comp.myContestsService.liveContests.length <= 0 || comp.myContestsService.liveContests == null">
+            <spam class="information-no-contest">EN ESTE ESPACIO PODRÁS CONSULTAR Y MODIFICAR LOS EQUIPOS QUE TIENES PENDIENTES DE JUGAR EN UN TORNEO</spam>
+        </div>
+        <div class="no-contest" ng-show="comp.myContestsService.liveContests.length <= 0 || comp.myContestsService.liveContests == null">
+        <div class="no-contests-wrapper">
+            <div class="no-contests-title">
+             EN ESTE MOMENTO,<br> NO ESTÁS JUGANDO NUNGÚN TORNEO
+            </div>
+            <div class="no-contests-text">
+              VE A LA LISTA DE TORNEOS, ELIGE UNO Y EMPIEZA A JUGAR
+            </div>
+          </div>
           <div class="my-no-contest-bottom-row">
-            <button class="btn-go-to-contest" ng-click="comp.gotoLobby()">IR AL TORNEO</button>
+            <button class="btn-go-to-contest" ng-click="comp.gotoLobby()">IR A LOS TORNEOS</button>
           </div>
         </div>
-        <contests-list id="liveContests"
-                       contestsList="comp.myContestsService.liveContests"
-                       onActionClick='comp.onLiveActionClick(contest)'
-                       onRowClick='comp.onLiveRowClick(contest)'>
-        </contests-list>
+        <div class="list-container" ng-hide="comp.myContestsService.liveContests.length <= 0 || comp.myContestsService.liveContests == null">
+          <contests-list id="waitingContests"
+                         contestsList='comp.myContestsService.waitingContests'
+                         onActionClick='comp.onWaitingActionClick(contest)'
+                         onRowClick='comp.onWaitingRowClick(contest)'>
+          </contests-list>
+        </div>
       </div>
 
       <div class="tab-pane" id="history-contest-content">
@@ -61,12 +89,13 @@
               <spam class="info-available-money">--- €</spam>
             </div>
           </div>
-          <!--<div><h4>HISTORY CONTESTS:</h4></div>-->
-          <contests-list id="historyContests"
-                         contestsList="comp.myContestsService.historyContests"
-                         onActionClick='comp.onHistoryActionClick(contest)'
-                         onRowClick='comp.onHistoryRowClick(contest)'>
-          </contests-list>
+          <div class="list-container">
+            <contests-list id="historyContests"
+                           contestsList="comp.myContestsService.historyContests"
+                           onActionClick='comp.onHistoryActionClick(contest)'
+                           onRowClick='comp.onHistoryRowClick(contest)'>
+            </contests-list>
+          </div>
       </div>
 
     </div>

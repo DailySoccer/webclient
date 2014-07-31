@@ -15,9 +15,10 @@
 	@media (min-width: @screen-sm-min) {
 		background-color: @white;
 	}
-	//Las imagenes las hacemos responsivas
-	img {
-		.img-responsive();
+	//la versión movil lleva el fondo azul y un padding
+	@media (max-width: @screen-xs-max) {
+		background-color: @blueMed;
+		padding: 10px;
 	}
 	//Esto es la versión XS. En dart se muestra solo si es isScreenXs
 	.promoXs{

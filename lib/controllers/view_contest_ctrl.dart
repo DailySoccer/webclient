@@ -1,4 +1,4 @@
-library live_contest_ctrl;
+library view_contest_ctrl;
 
 import 'package:angular/angular.dart';
 import 'dart:async';
@@ -12,10 +12,10 @@ import 'package:webclient/models/contest_entry.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 
 @Controller(
-    selector: '[live-contest-ctrl]',
+    selector: '[view-contest-ctrl]',
     publishAs: 'ctrl'
 )
-class LiveContestCtrl implements DetachAware {
+class ViewContestCtrl implements DetachAware {
 
   ScreenDetectorService scrDet;
   dynamic mainPlayer;
@@ -33,7 +33,7 @@ class LiveContestCtrl implements DetachAware {
     return entries;
   }
 
-  LiveContestCtrl(RouteProvider routeProvider, this._scope, this.scrDet, this._myContestsService, this._profileService, this._flashMessage) {
+  ViewContestCtrl(RouteProvider routeProvider, this._scope, this.scrDet, this._myContestsService, this._profileService, this._flashMessage) {
 
     _contestId = routeProvider.route.parameters['contestId'];
     initialized = false;
@@ -45,11 +45,14 @@ class LiveContestCtrl implements DetachAware {
         mainPlayer = getContestEntryWithUser(_profileService.user.userId);
 
         updatedDate = new DateTime.now();
-        _updateLive();
 
-        // Comenzamos a actualizar la información
-        const refreshSeconds = const Duration(seconds:3);
-        _timer = new Timer.periodic(refreshSeconds, (Timer t) => _updateLive());
+        // Únicamente actualizamos los contests que estén en "live"
+        if (_myContestsService.lastContest.templateContest.isLive) {
+          _updateLive();
+
+          // Comenzamos a actualizar la información
+          _timer = new Timer.periodic(const Duration(seconds:3), (Timer t) => _updateLive());
+        }
 
         initialized = true;
       })

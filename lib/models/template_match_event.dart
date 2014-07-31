@@ -46,6 +46,12 @@ class TemplateMatchEvent {
       .. matchEvent = this;
 
     startDate = new DateTime.fromMillisecondsSinceEpoch(json.startDate, isUtc: true);
+
+    // Si el templateMatchEvent incluye la información "live", la actualizamos
+    if (json.containsKey("livePlayerToPoints")) {
+      updateFantasyPoints(json.livePlayerToPoints);
+    }
+
     return this;
   }
 }

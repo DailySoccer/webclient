@@ -51,29 +51,6 @@ class MyContestsService {
     return completer.future;
   }
 
-  Future refreshLiveContests() {
-    var completer = new Completer();
-
-    _server.getLiveContests()
-        .then((jsonObject) {
-          completer.complete(jsonObject);
-        });
-
-    return completer.future;
-  }
-
-  Future refreshLiveContest(String contestId) {
-    var completer = new Completer();
-
-    _server.getLiveContest(contestId)
-        .then((jsonObject) {
-          lastContest = Contest.loadContestsFromJsonObject(jsonObject).first;
-          completer.complete(jsonObject);
-        });
-
-    return completer.future;
-  }
-
   Future refreshLiveMatchEvents(String templateContestId) {
     var completer = new Completer();
 

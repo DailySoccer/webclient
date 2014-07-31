@@ -5,7 +5,7 @@ import 'package:angular/angular.dart';
 import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/models/contest_entry.dart';
 import 'package:webclient/models/soccer_player.dart';
-import 'package:webclient/controllers/live_contest_ctrl.dart';
+import 'package:webclient/controllers/view_contest_ctrl.dart';
 
 @Component(
            selector: 'fantasy-team',
@@ -43,11 +43,11 @@ class FantasyTeamComp implements ShadowRootAware {
     @NgCallback('onClose')
     Function onClose;
 
-    String get userPosition => (_contestEntry != null) ? _liveContestCtrl.getUserPosition(_contestEntry).toString() : "-";
+    String get userPosition => (_contestEntry != null) ? _viewContestCtrl.getUserPosition(_contestEntry).toString() : "-";
     String get userNickname => (_contestEntry != null) ? _contestEntry.user.nickName : "";
     String get userScore => (_contestEntry != null) ? _contestEntry.currentLivePoints.toString() : "0";
 
-    FantasyTeamComp(this._scope, this._liveContestCtrl);
+    FantasyTeamComp(this._scope, this._viewContestCtrl);
 
     // A pesar de que useShadowDom es false, sigue llegando este mensaje y es el primer momento donde podemos hacer un querySelector.
     // Hemos probado attach y el constructor, pero alli parece que todavia no estan creados los hijos. Tiene que ser var y no ShadowRoot
@@ -119,5 +119,5 @@ class FantasyTeamComp implements ShadowRootAware {
 
     Scope _scope;
     ContestEntry _contestEntry;
-    LiveContestCtrl _liveContestCtrl;
+    ViewContestCtrl _viewContestCtrl;
 }

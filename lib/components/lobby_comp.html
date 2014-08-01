@@ -31,7 +31,7 @@
     </div>
 
     <div id="contestFastSearch">
-        <input class="searcher" type="text" placeholder="Buscar torneo">
+        <input class="searcher" type="text" placeholder="Buscar torneo" ng-model="comp.filterContestName" ng-keyUp="comp.filterByContestName()">
     </div>
 
     <div class="filterToggler"  ng-show="!comp.scrDet.isXsScreen">
@@ -76,6 +76,7 @@
 
 <!-- Lista de concursos -->
 <contests-list sortedBy="comp.sortType"
+               filterBy="comp.lobbyFilters"
                contestsList="comp.activeContestsService.activeContests"
                actionButtonTitle='"Entrar"'
                onRowClick="comp.onRowClick(contest)"
@@ -98,4 +99,5 @@
   {{comp.activeContestsService.activeContests.length}}
   {{comp.selectedContest}}
   {{comp.sortType}}
+  {{comp.lobbyFilters}}
 </div>

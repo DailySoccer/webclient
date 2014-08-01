@@ -4,16 +4,20 @@
 	}
 	@media (min-width: @screen-md-min) {
 		.container();
+		// Bordes redondeados para la version Desktop
+		border-bottom-right-radius: 10px;
+		border-bottom-left-radius: 10px;
 	}
-	.make-border(1px, solid none solid none, @greyLight);
-	padding-bottom: 10px;
 	background-color: @white;
 	position: relative;
 
+	// Fila de contest
 	.contest-row {
 		.make-row();
+		.make-border(1px, solid none none none, @greyLight);
+		padding-bottom: 10px;
 
-		//el cursor cambia, porque la linea entera lika al modal en formato Desktop
+		// El cursor cambia, porque la linea entera lika al modal en formato Desktop
 		cursor: pointer;
 		cursor: hand;
 
@@ -121,7 +125,8 @@
 				left: 0;
 			}
 		}
-
+		
+		// Fecha comienzo de contest
 		.column-contest-start-date {
 			.make-sm-column(1, 0);
 			.opensans_bold(9pt, @greyDark);
@@ -157,7 +162,7 @@
 			@media (max-width: @screen-xs-max) {
 				position: absolute;
 				right: 10px;
-				top: 40px;
+				margin-top: 65px;
 				.btn {
 					background-color: transparent;
 					padding: 0;

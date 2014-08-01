@@ -3634,11 +3634,15 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   min-height: 50px;
   margin-bottom: 20px;
   border: 1px solid transparent;
+  
 }
 @media (min-width: 768px) {
   .navbar {
     border-radius: 4px;
   }
+}
+.navbar-header {
+  
 }
 @media (min-width: 768px) {
   .navbar-header {
@@ -3652,6 +3656,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   padding-left: 15px;
   border-top: 1px solid transparent;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  
   -webkit-overflow-scrolling: touch;
 }
 .navbar-collapse.in {
@@ -5595,12 +5600,6 @@ button.close {
 .btn-group-vertical > .btn-group:after,
 .nav:before,
 .nav:after,
-.navbar:before,
-.navbar:after,
-.navbar-header:before,
-.navbar-header:after,
-.navbar-collapse:before,
-.navbar-collapse:after,
 .pager:before,
 .pager:after,
 .panel-body:before,
@@ -5682,9 +5681,6 @@ button.close {
 .btn-toolbar:after,
 .btn-group-vertical > .btn-group:after,
 .nav:after,
-.navbar:after,
-.navbar-header:after,
-.navbar-collapse:after,
 .pager:after,
 .panel-body:after,
 .modal-footer:after,
@@ -5999,6 +5995,12 @@ button.close {
     margin: 20px 10px 0px 0px;
   }
 }
+@media (min-width: 768px) and only screen and (-webkit-min-device-pixel-ratio: 2), (min-width: 768px) and only screen and (min--moz-device-pixel-ratio: 2), (min-width: 768px) and only screen and (-o-min-device-pixel-ratio: 2/1), (min-width: 768px) and only screen and (min-device-pixel-ratio: 2), (min-width: 768px) and only screen and (min-resolution: 192dpi), (min-width: 768px) and only screen and (min-resolution: 2dppx) {
+  #mainMenuRoot .navbar-header-loggin .navbar-brand-container .navbar-brand {
+    background-image: url("../images/LogoEpic11-2x.png");
+    background-size: 120px 37px;
+  }
+}
 @media (max-width: 767px) {
   #mainMenuRoot .navbar-header-loggin .navbar-brand-container {
     width: 100%;
@@ -6014,6 +6016,12 @@ button.close {
     display: block;
     margin-left: auto;
     margin-right: auto;
+  }
+}
+@media (max-width: 767px) and only screen and (-webkit-min-device-pixel-ratio: 2), (max-width: 767px) and only screen and (min--moz-device-pixel-ratio: 2), (max-width: 767px) and only screen and (-o-min-device-pixel-ratio: 2/1), (max-width: 767px) and only screen and (min-device-pixel-ratio: 2), (max-width: 767px) and only screen and (min-resolution: 192dpi), (max-width: 767px) and only screen and (min-resolution: 2dppx) {
+  #mainMenuRoot .navbar-header-loggin .navbar-brand-container .navbar-brand {
+    background-image: url("../images/LogoEpic11-2x.png");
+    background-size: 120px 37px;
   }
 }
 #mainMenuRoot .navbar-header-unloggin {
@@ -6036,6 +6044,12 @@ button.close {
 @media (max-width: 767px) {
   #mainMenuRoot .navbar-header-unloggin .navbar-brand-container {
     display: none !important;
+  }
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  #mainMenuRoot .navbar-header-unloggin .navbar-brand-container {
+    background-image: url("../images/LogoEpic11-2x.png");
+    background-size: 120px 37px;
   }
 }
 @media (min-width: 768px) {
@@ -7097,7 +7111,7 @@ button#infoContent .modal-info-head button.close {
 }
 #headerContestWidget .contest-coins .contest-price {
   float: left;
-  width: 33.33333333%;
+  width: 41.66666667%;
   position: relative;
   min-height: 1px;
   padding-left: 0;
@@ -7111,7 +7125,7 @@ button#infoContent .modal-info-head button.close {
 }
 #headerContestWidget .contest-coins .contest-prize {
   float: left;
-  width: 66.66666667%;
+  width: 58.33333333%;
   position: relative;
   min-height: 1px;
   padding-left: 0;
@@ -7371,11 +7385,6 @@ fieldset[disabled] #headerContestWidget .close-contest .btn.active {
   }
 }
 #contestsListRoot {
-  border-width: 1px;
-  border-style: solid none solid none;
-  border-color: #dcdcdc;
-  border-radius: 0;
-  padding-bottom: 10px;
   background-color: #ffffff;
   position: relative;
 }
@@ -7405,6 +7414,8 @@ fieldset[disabled] #headerContestWidget .close-contest .btn.active {
     margin-left: auto;
     padding-left: 15px;
     padding-right: 15px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
   }
   #contestsListRoot > .navbar-header,
   #contestsListRoot > .navbar-collapse {
@@ -7437,6 +7448,11 @@ fieldset[disabled] #headerContestWidget .close-contest .btn.active {
 #contestsListRoot .contest-row {
   margin-left: -15px;
   margin-right: -15px;
+  border-width: 1px;
+  border-style: solid none none none;
+  border-color: #dcdcdc;
+  border-radius: 0;
+  padding-bottom: 10px;
   cursor: pointer;
   cursor: hand;
 }
@@ -7721,7 +7737,7 @@ fieldset[disabled] #contestsListRoot .contest-row .column-contest-action .btn.ac
   #contestsListRoot .contest-row .column-contest-action {
     position: absolute;
     right: 10px;
-    top: 40px;
+    margin-top: 65px;
   }
   #contestsListRoot .contest-row .column-contest-action .btn {
     background-color: transparent;
@@ -10131,6 +10147,11 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
   #lobbyTopInfobar > .navbar-collapse {
     margin-right: 0;
     margin-left: 0;
+  }
+}
+@media (max-width: 767px) {
+  #lobbyTopInfobar {
+    display: none !important;
   }
 }
 #lobbyTopInfobar p {

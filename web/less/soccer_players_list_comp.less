@@ -1,9 +1,9 @@
-
+// Filtros para la version Desktop
 .soccer-player-filter {
-	//.container();
 	@media (max-width: @screen-sm-max) {
 		padding: 0 10px;
 	}
+	// Por posicion
 	.filter-by-position {
 		height: 58px;
 		background-color: @tramaBlue;
@@ -29,11 +29,13 @@
 			box-shadow: none;
 		}
 	}
+	// Por equipo
 	.match-selector-filter {
 		.form-control();
 		.hidden-md();
 		.hidden-lg();
 	}
+	// Por nombre de jugador
 	.name-player-input-filter {
 		.form-control();
 		@media (max-width: @screen-sm-max) {
@@ -47,6 +49,8 @@
 		background: url('../images/search-icon.png') no-repeat 10px center;	
 	}
 }
+
+// Tabla de ordenacion en la cabecera del listado de jugadores
 .soccer-player-list-header-table {
 	.make-row(0px);
 	line-height: 30px;
@@ -76,6 +80,7 @@
 	}
 }
 
+// Lista de seleccion de jugadores
 .soccer-players-list {
 	overflow: auto; 
 	max-height: 505px;

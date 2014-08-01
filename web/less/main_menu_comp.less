@@ -1,3 +1,4 @@
+// Funcion para pintar el fondo de la cabecera
 .background-header {
   background-image: url("@{images}/HeaderBackground.jpg");
   background-repeat: no-repeat;
@@ -34,6 +35,7 @@
 
   @media (max-width: @screen-xs-max) {
     .container {
+      // Limpiamos los paddings de 15px
       .clean-paddings();
     }
   } 
@@ -43,8 +45,9 @@
     .navbar-brand-container { 
       // Logo en pantallas minimo medianas
       @media (min-width: @screen-sm-min) {
-        .navbar-brand {      
-          background-image: url("@{images}/LogoEpic11.png");
+        .navbar-brand {
+          // Retina display
+          .img-retina("@{images}/LogoEpic11.png", "@{images}/LogoEpic11-2x.png", 120px, 37px);      
           .size(120px, 37px);
           margin: 20px 10px 0px 0px;
         }
@@ -56,7 +59,8 @@
         position: absolute;
 
         .navbar-brand {
-          background-image: url("@{images}/LogoEpic11.png");
+          // Retina display
+          .img-retina("@{images}/LogoEpic11.png", "@{images}/LogoEpic11-2x.png", 120px, 37px);      
           .size(120px, 37px);
           float: none;
           margin-top: 10px;
@@ -66,6 +70,7 @@
     }
   }
 
+  // Menu deslogado
   .navbar-header-unloggin {
     .background-header();
     height: 70px;
@@ -73,12 +78,14 @@
 
     .navbar-brand-container {  
       .hidden-xs();
-      background-image: url("@{images}/LogoEpic11.png");
+      // Retina display
+      .img-retina("@{images}/LogoEpic11.png", "@{images}/LogoEpic11-2x.png", 120px, 37px);      
       .size(120px, 37px);
       .pull-left();
       margin-top: 20px;
     }
     
+    // Botones de login y join
     .button-wrapper {
       @media (min-width: @screen-sm-min) {
         .pull-right();

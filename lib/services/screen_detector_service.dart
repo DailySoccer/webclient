@@ -15,7 +15,7 @@ class ScreenDetectorService {
   Stream get mediaScreenWidth => mediaScreenWidthChangeController.stream;
 
 
-  ScreenDetectorService(this._scope) {
+  ScreenDetectorService() {
     _detectNow(0);
   }
 
@@ -65,6 +65,5 @@ class ScreenDetectorService {
 
 
   StreamController mediaScreenWidthChangeController = new StreamController.broadcast();
-  Scope _scope;
   String _lastMessage;
 }

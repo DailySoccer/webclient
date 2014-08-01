@@ -9,6 +9,7 @@
 		.clean-paddings();
 	}
 	background-color: @white;
+	// Bordes redondeados
 	border-bottom-right-radius: 10px;
 	border-bottom-left-radius: 10px;
 }
@@ -38,6 +39,7 @@
 	}
 }
 
+// Botones de cancelar seleccion, borrar seleccion y confirmar equipo
 .enter-contest-actions-wrapper {
 	.make-row(15);
 	padding: 10px;
@@ -81,6 +83,7 @@
 	}
 }
 
+// Filtro de equipos
 .match-teams-filter{
 	background-color: @tramaBlue;
 	.make-row(0);
@@ -108,6 +111,8 @@
 	}
 }
 
+// Lineup y Soccer player list en Desktop
+// Variable para el alto de los contenedores de lineup y soccer list. Solo para version desktop
 @recomended-control-heihgt: 645px;
 .enter-contest-soccer-players-wrapper {
 	.make-md-column(7, 0);

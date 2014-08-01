@@ -18,7 +18,6 @@ class MyContestsComp implements DetachAware {
   MyContestsService myContestsService;
 
   MyContestsComp(this.myContestsService, this._router, this._flashMessage) {
-
     _updateLive();
     _timer = new Timer.periodic(const Duration(seconds:3), (Timer t) => _updateLive());
   }

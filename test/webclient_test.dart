@@ -14,7 +14,7 @@ import 'package:webclient/mock/mock_server.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/active_contests_service.dart';
 
-import 'package:webclient/models/template_match_event.dart';
+import 'package:webclient/models/match_event.dart';
 import 'package:webclient/models/contest.dart';
 
 part 'unit/profile_service_test.dart';

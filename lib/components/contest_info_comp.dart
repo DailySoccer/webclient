@@ -6,7 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/template_contest.dart';
 import 'package:webclient/services/active_contests_service.dart';
-import 'package:webclient/models/template_match_event.dart';
+import 'package:webclient/models/match_event.dart';
 
 
 @Component(
@@ -38,7 +38,7 @@ class ContestInfoComp {
     List contestants  = new List();
     List prizes = new List();
     TemplateContest tmplateContest;
-    List<TemplateMatchEvent> matchesInvolved;
+    List<MatchEvent> matchesInvolved;
 
     ContestInfoComp(Scope scope, this._router, this._contestService) {
 
@@ -92,7 +92,7 @@ class ContestInfoComp {
       currentInfoData["startDateTime"]  = getFormatedDate(cont.templateContest.startDate);
       currentInfoData["contestants"]    = contestants;
       currentInfoData["prizes"]         = prizes;
-      currentInfoData["matchesInvolved"]= cont.templateContest.templateMatchEvents;
+      currentInfoData["matchesInvolved"]= cont.templateContest.matchEvents;
 
     }
 

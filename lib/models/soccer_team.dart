@@ -2,7 +2,7 @@ library soccer_team;
 
 import "package:json_object/json_object.dart";
 import "package:webclient/models/soccer_player.dart";
-import "package:webclient/models/template_match_event.dart";
+import "package:webclient/models/match_event.dart";
 import 'package:webclient/services/contest_references.dart';
 
 class SoccerTeam {
@@ -12,7 +12,7 @@ class SoccerTeam {
   List<SoccerPlayer> soccerPlayers = new List<SoccerPlayer>();
 
   // Partido en el que juega
-  TemplateMatchEvent matchEvent;
+  MatchEvent matchEvent;
   
   SoccerTeam.referenceInit(this.templateSoccerTeamId);
   

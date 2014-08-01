@@ -11,7 +11,7 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/active_contests_service.dart';
 import "package:webclient/models/soccer_player.dart";
 import "package:webclient/models/soccer_team.dart";
-import 'package:webclient/models/template_match_event.dart';
+import 'package:webclient/models/match_event.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:intl/intl.dart';
@@ -185,7 +185,7 @@ class EnterContestCtrl {
     return false;
   }
 
-  void _insertSoccerPlayer(TemplateMatchEvent matchEvent, SoccerTeam soccerTeam, SoccerPlayer soccerPlayer) {
+  void _insertSoccerPlayer(MatchEvent matchEvent, SoccerTeam soccerTeam, SoccerPlayer soccerPlayer) {
     String shortNameTeamA = soccerPlayer.team.matchEvent.soccerTeamA.shortName;
     String shortNameTeamB = soccerPlayer.team.matchEvent.soccerTeamB.shortName;
     var matchEventName = (soccerPlayer.team.templateSoccerTeamId == soccerPlayer.team.matchEvent.soccerTeamA.templateSoccerTeamId)
@@ -206,7 +206,7 @@ class EnterContestCtrl {
   }
 
   void initAllSoccerPlayers() {
-    List<TemplateMatchEvent> matchEvents = contest.templateContest.templateMatchEvents;
+    List<MatchEvent> matchEvents = contest.templateContest.matchEvents;
 
     for (var matchEvent in matchEvents) {
       for (var player in matchEvent.soccerTeamA.soccerPlayers) {
@@ -219,7 +219,7 @@ class EnterContestCtrl {
 
       // generamos los partidos para el filtro de partidos
       availableMatchEvents.clear();
-      for (TemplateMatchEvent match in matchEvents) {
+      for (MatchEvent match in matchEvents) {
         availableMatchEvents.add({
           "id": match.templateMatchEventId,
           "texto":match.soccerTeamA.shortName + '-' + match.soccerTeamB.shortName + " " + timeDisplayFormat.format(match.startDate)

@@ -50,6 +50,7 @@ class SoccerPlayersListComp {
 
  void setFilterSoccerName() {
    enterContestCtrl.setNameFilter(nameFilter);
+
  }
 
  void printElement(String element) {

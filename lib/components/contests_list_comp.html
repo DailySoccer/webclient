@@ -11,8 +11,8 @@
       <div class="column-contest-price-header">ENTRADA</div>
     </div>
 
-    <div class="column-contest-prize" ng-click="comp.onRow(contest)">
-      <div class="column-contest-prize-content"><span>11.250€</span></div>
+    <div class="column-contest-prize" ng-click="comp.onRow(contest) ">
+      <div class="column-contest-prize-content"><span> &lt;prize&gt;€</span></div>
       <div class="column-contest-prize-header">
         <div class="column-contest-prize-header-title">PREMIOS</div>
         <div class="column-contest-prize-header-prize-type">PREMIO</div>
@@ -20,8 +20,8 @@
     </div>
 
     <div class="column-contest-start-date" ng-click="comp.onRow(contest)">
-      <div class="column-start-date-day">30/07</div>
-      <div class="column-start-date-hour">20:45</div>
+      <div class="column-start-date-day">{{comp.startDate.format(contest.templateContest.startDate)}}</div>
+      <div class="column-start-date-hour">{{comp.startTime.format(contest.templateContest.startDate)}}</div>
     </div>
 
     <div class="column-contest-action">

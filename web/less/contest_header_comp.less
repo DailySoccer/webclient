@@ -18,7 +18,7 @@
 	}
 
 	.contest-explanation {
-		// 12 columnas en xs y 6 en el resto -> flota a la izaquierda con el contest-coins
+		// 12 columnas en xs y 8 en el resto -> flota a la izaquierda con el contest-coins
 		.make-xs-column(12, 0);
 		.make-sm-column(8, 0);
 		.opensans_normal(9pt, @greyDark);
@@ -31,20 +31,20 @@
 	}
 
 	.contest-coins {
-		// Una fila entera para la versión xs y 6 columnas para el resto
+		// Una fila entera para la versión xs y 4 columnas para el resto
 		.make-xs-column(12, 0);
 		.make-sm-column(4, 0);
 		margin-top: 5px;
 
 		.contest-price {
-			// 4 columnas xs y 6 para el resto
-			.make-xs-column(4, 0);
+			// 5 columnas xs y 6 para el resto
+			.make-xs-column(5, 0);
 			.make-sm-column(6, 0);
 		}
 
 		.contest-prize {
-			// 8 columnas xs y 6 para el resto
-			.make-xs-column(8, 0);
+			// 7 columnas xs y 6 para el resto
+			.make-xs-column(7, 0);
 			.make-sm-column(6, 0);
 		}
 		.contest-coins-header {
@@ -109,6 +109,7 @@
 		}
 	}
 
+	// Fecha comienzo contest
 	.contest-start-date {
 		.make-xs-column(6, 0);
 		.make-md-column(12, 0);
@@ -140,6 +141,7 @@
 	
 }
 
+// Contador para comienzo de contest
 .countdown-text {
 	@media (max-width: @screen-sm-max){
 		.make-xs-column(6, 0);

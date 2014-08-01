@@ -26,7 +26,7 @@ class SoccerPlayersListComp {
   List<Map<String, String>> matchesList = [];
   dynamic optionValue;
   dynamic oldOptionValue;
-  String name_filter;
+  String nameFilter;
 
   List<FieldPos> posFilterList = [
                                 new FieldPos("GOALKEEPER"),
@@ -49,7 +49,7 @@ class SoccerPlayersListComp {
  }
 
  void setFilterSoccerName() {
-   enterContestCtrl.setNameFilter(name_filter);
+   enterContestCtrl.setNameFilter(nameFilter);
  }
 
  void printElement(String element) {

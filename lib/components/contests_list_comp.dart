@@ -10,25 +10,41 @@ import 'package:webclient/models/contest.dart';
 class ContestsListComp {
 
   @NgOneWay("contestsList")
-  List<Contest> contestsList;
+  void set contestsList(List<Contest> value) {
+    contestsListOriginal = value;
+    contestsListFiltered = contestsListOriginal;
+    refreshFilters();
+  }
 
+  // Lista original de los contest
+  List<Contest> contestsListOriginal;
+  // Lista copia de la original que guardará los contest tras aplicar los filtros
+  List<Contest> contestsListFiltered;
+  // Lista de filtros a aplicar
+  Map<String,Map> filterList;
 
-  final int FILTER_FIELD      = 0;
-  final int FILTER_CONDITION  = 1;
-  final int FILTER_VALUE      = 2;
-
-
+  /*
+    Setter de los filtros, Recibe la lista de los filtros aplicados.
+    Los filtros son un mapa compuesto tal que así:
+    filtro = {{'FILTER_FIELD':'value'},{'FILTER_CONDITION':'value'},{'FILTER_VALUE':'value'}}
+  */
   @NgOneWay("filterBy")
-  void set filterBy(List<Map> value) {
+  void set filterBy(Map<String,Map> value) {
     if(value == null)
       return;
-
+    filterList = value;
 
   }
 
+  /*// Constantes para la identificación de los campos del mapa
+  final int FILTER_FIELD      = 0;
+  final int FILTER_CONDITION  = 1;
+  final int FILTER_VALUE      = 2;
+*/
+
   @NgOneWay("sortedBy")
   void set sortedBy(String value) {
-    if(value == null) {
+    if(value == null || value.isEmpty) {
       return;
     }
 
@@ -41,17 +57,17 @@ class ContestsListComp {
     switch(sortParams[0])
     {
       case "contest-name":
-        contestsList.sort(( contest1, contest2) => (sortParams[1] == "asc") ? contest1.name.compareTo(contest2.name): contest2.name.compareTo(contest1.name) );
+        contestsListFiltered.sort(( contest1, contest2) => (sortParams[1] == "asc") ? contest1.name.compareTo(contest2.name): contest2.name.compareTo(contest1.name) );
 
       break;
 
       case "contest-entry-fee":
-        contestsList.sort((contest1, contest2) => ( sortParams[1] == "asc"? contest1.templateContest.entryFee.compareTo(contest2.templateContest.entryFee):
+        contestsListFiltered.sort((contest1, contest2) => ( sortParams[1] == "asc"? contest1.templateContest.entryFee.compareTo(contest2.templateContest.entryFee):
                                                                             contest2.templateContest.entryFee.compareTo(contest1.templateContest.entryFee)) );
       break;
 
       case "contest-start-time":
-        contestsList.sort((contest1, contest2) => ( sortParams[1] == "asc"? contest1.templateContest.startDate.compareTo(contest2.templateContest.startDate):
+        contestsListFiltered.sort((contest1, contest2) => ( sortParams[1] == "asc"? contest1.templateContest.startDate.compareTo(contest2.templateContest.startDate):
                                                                             contest2.templateContest.startDate.compareTo(contest1.templateContest.startDate)) );
       break;
 
@@ -81,5 +97,11 @@ class ContestsListComp {
   void onAction(Contest contest) {
     if (onActionClick != null)
       onActionClick({"contest":contest});
+  }
+
+  void refreshFilters() {
+    if( filterList == null){
+      return;
+    }
   }
 }

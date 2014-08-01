@@ -20,6 +20,8 @@ class LobbyComp implements ShadowRootAware, DetachAware {
 
   String sortType ="";
   ScreenDetectorService scrDet;
+  //Filtros que están bindeados a la contestList
+  Map<String, Map> lobbyFilters;
 
   LobbyComp(this._router, this.activeContestsService, this.scrDet) {
       activeContestsService.refreshActiveContests();
@@ -40,7 +42,6 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     _filtersButtonClassesByDefault = _filtersButtons.first.classes.toList();
     //Al iniciar, tiene que está cerrado por lo tanto le añadimos la clase que pone la flecha hacia abajo
     _filtersButtons.forEach((value) => value.classes.add('toggleOff'));
-
 
     /*
       _sortingButtons.first.classes.forEach((value) => _sortingButtonClassesByDefault += (" " + value) );   ///(String value => _sortingButtonClassesByDefault += value);

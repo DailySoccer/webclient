@@ -12,13 +12,11 @@ class ContestsListComp {
 
   @NgOneWay("contestsList")
   void set contestsList(List<Contest> value) {
-    contestsListOriginal = value;
-    contestsListFiltered = contestsListOriginal;
+    _contestsListOriginal = value;
+    contestsListFiltered = _contestsListOriginal;
     refreshFilters();
   }
 
-  // Lista original de los contest
-  List<Contest> contestsListOriginal;
   // Lista copia de la original que guardará los contest tras aplicar los filtros
   List<Contest> contestsListFiltered;
   // Lista de filtros a aplicar
@@ -36,7 +34,7 @@ class ContestsListComp {
     if (value == null)
       return;
     if (value.keys.length <= 0){
-      contestsListFiltered = contestsListOriginal;
+      contestsListFiltered = _contestsListOriginal;
       return;
     }
     //List<Contest> tmpContestList;
@@ -47,11 +45,10 @@ class ContestsListComp {
       //String field          = valor["FILTER_FIELD"];
       //String condition      = valor["FILTER_CONDITION"];
       String valueToCompare = valor["FILTER_VALUE"]; //En principio solo voy a necesitar el Valor, por que el resto de datos los tengo que suponer.
-
       switch(clave)
       {
         case "FILTER_CONTEST_NAME":
-          contestsListFiltered = contestsListOriginal.where((contest) => contest.name.toUpperCase().contains(valueToCompare.toUpperCase())).toList();
+          contestsListFiltered = _contestsListOriginal.where((contest) => contest.name.toUpperCase().contains(valueToCompare.toUpperCase())).toList();
         break;
       }
     });
@@ -129,4 +126,7 @@ class ContestsListComp {
       return;
     }
   }
+
+  // Lista original de los contest
+  List<Contest> _contestsListOriginal;
 }

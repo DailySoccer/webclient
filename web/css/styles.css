@@ -11026,9 +11026,10 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   text-align: center;
 }
 #myContestMenuTabs {
+  background-color: #214a5f;
   padding: 0;
   margin-bottom: 0px;
-  height: 50px;
+  height: 60px;
 }
 #myContestMenuTabs > li {
   position: relative;

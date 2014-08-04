@@ -75,12 +75,12 @@
 </div>
 
 <!-- Lista de concursos -->
-<contests-list sortedBy="comp.sortType"
-               filterBy="comp.lobbyFilters"
-               contestsList="comp.activeContestsService.activeContests"
-               actionButtonTitle='"Entrar"'
-               onRowClick="comp.onRowClick(contest)"
-               onActionClick='comp.onActionClick(contest)'>
+<contests-list sorted-by="comp.sortType"
+               filter-by="comp.lobbyFilters"
+               contests-list="comp.activeContestsService.activeContests"
+               action-button-title='"Entrar"'
+               on-row-click="comp.onRowClick(contest)"
+               on-action-click='comp.onActionClick(contest)'>
 </contests-list>
 
 
@@ -88,16 +88,7 @@
 <div  id="infoContestModal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div id="infoContent" class="modal-content">
-        <contest-info contestData="comp.selectedContest" isPopUp="true"></contest-info>
+        <contest-info contest-data="comp.selectedContest" is-pop-up="true"></contest-info>
       </div>
     </div>
-</div>
-
-
-<!-- Hack temporal hasta que arreglen Angular o nos respondan con una solucion mejor -->
-<div class="ng-hide">
-  {{comp.activeContestsService.activeContests.length}}
-  {{comp.selectedContest}}
-  {{comp.sortType}}
-  {{comp.lobbyFilters}}
 </div>

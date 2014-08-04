@@ -5,19 +5,19 @@ import "package:webclient/models/soccer_team.dart";
 import 'package:webclient/services/contest_references.dart';
 import "package:webclient/models/soccer_player.dart";
 
-class TemplateMatchEvent {
+class MatchEvent {
   String templateMatchEventId;
 
   SoccerTeam soccerTeamA;
   SoccerTeam soccerTeamB;
   DateTime startDate;
 
-  TemplateMatchEvent(this.templateMatchEventId, this.soccerTeamA, this.soccerTeamB, this.startDate);
+  MatchEvent(this.templateMatchEventId, this.soccerTeamA, this.soccerTeamB, this.startDate);
 
-  TemplateMatchEvent.referenceInit(this.templateMatchEventId);
+  MatchEvent.referenceInit(this.templateMatchEventId);
 
-  factory TemplateMatchEvent.fromJsonObject(JsonObject json, ContestReferences references) {
-    TemplateMatchEvent matchEvent = references.getMatchEventById(json._id);
+  factory MatchEvent.fromJsonObject(JsonObject json, ContestReferences references) {
+    MatchEvent matchEvent = references.getMatchEventById(json.templateMatchEventId);
     return matchEvent._initFromJsonObject(json, references);
   }
 
@@ -37,7 +37,7 @@ class TemplateMatchEvent {
         soccerPlayer.currentLivePoints = soccerPlayerToPoints[soccerPlayer.templateSoccerPlayerId]);
   }
 
-  TemplateMatchEvent _initFromJsonObject(JsonObject json, ContestReferences references) {
+  MatchEvent _initFromJsonObject(JsonObject json, ContestReferences references) {
     assert(templateMatchEventId.isNotEmpty);
     soccerTeamA = new SoccerTeam.fromJsonObject(json.soccerTeamA, references)
       .. matchEvent = this;

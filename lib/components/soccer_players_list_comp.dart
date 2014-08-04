@@ -8,7 +8,6 @@ import 'package:webclient/services/active_contests_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/models/contest.dart';
 import "package:webclient/models/match_event.dart";
-import 'package:webclient/models/soccer_player.dart';
 
 @Component(
     selector: 'soccer-players-list',
@@ -38,35 +37,31 @@ class SoccerPlayersListComp {
   EnterContestCtrl enterContestCtrl;
 
   SoccerPlayersListComp(RouteProvider routeProvider, this.enterContestCtrl, this._contestService, this.scrDet) {
-    setup(routeProvider.route.parameters['contestId']);
-  }
 
- void setFilterMatch() {
-   if(oldOptionValue != optionValue){
-      oldOptionValue = optionValue;
-      enterContestCtrl.setMatchFilter(optionValue);
-   }
- }
-
- void setFilterSoccerName() {
-   enterContestCtrl.setNameFilter(nameFilter);
-
- }
-
- void printElement(String element) {
-    print(element);
-  }
-
-  void setup(String contestId) {
-    contest = _contestService.getContestById(contestId);
+    contest = _contestService.getContestById(routeProvider.route.parameters['contestId']);
     matchesInvolved = contest.templateContest.matchEvents;
 
     matchesList.add({"id":"-1", "texto":"Todos los partidos"});
     for (MatchEvent match in matchesInvolved) {
-      matchesList.add({"id": match.templateMatchEventId, "texto":match.soccerTeamA.shortName + " - " + match.soccerTeamB.shortName});
+      matchesList.add({"id": match.templateMatchEventId, "texto":match.soccerTeamA.shortName + "-" + match.soccerTeamB.shortName});
     }
     optionValue = "-1";
-    //matchesList.forEach((element) => printElement(element["texto"]));
+  }
+
+ void setFilterMatch() {
+    if(optionValue != oldOptionValue) {
+      oldOptionValue = optionValue;
+      var a = matchesList.where( (match) => match["id"] == optionValue).first;
+      enterContestCtrl.setMatchFilter(optionValue, a["texto"]);
+    }
+ }
+
+ void setFilterSoccerName() {
+   enterContestCtrl.setNameFilter(nameFilter);
+ }
+
+ void printElement(String element) {
+    print(element);
   }
 
   // Para pintar el color correspondiente segun la posicion del jugador

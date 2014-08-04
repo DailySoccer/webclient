@@ -9,13 +9,13 @@
   </ul>
 
   <div class="match-teams-filter">
-    <button class="btn btn-default button-filtro-team active" ng-click="ctrl.setMatchFilterClass('-1', 'Todos los partidos')">Todos los partidos</button>
-    <button class="btn btn-default button-filtro-team" ng-repeat="match in ctrl.availableMatchEvents" ng-bind-html="match.texto" ng-click="ctrl.setMatchFilterClass(match.id, match.texto)"></button>
+    <button class="btn btn-default button-filtro-team active" ng-click="ctrl.setMatchFilter('-1', 'Todos los partidos')">Todos los partidos</button>
+    <button class="btn btn-default button-filtro-team" ng-repeat="match in ctrl.availableMatchEvents" ng-bind-html="match.texto" ng-click="ctrl.setMatchFilter(match.id, match.texto)"></button>
   </div>
 
   <div id="enterContest">
     <!-- Version Desktop-->
-    <div ng-if="ctrl.scrDet.isDesktop">
+    <div ng-show="ctrl.scrDet.isDesktop">
 
       <div class="enter-contest-soccer-players-wrapper">
         <div class="enter-contest-soccer-players">
@@ -45,7 +45,7 @@
     </div> <!-- Fin ng-if="ctrl.scrDet.isDesktop" -->
 
     <!-- Resto de Versiones-->
-    <div ng-if="!ctrl.scrDet.isDesktop">
+    <div ng-hide="ctrl.scrDet.isDesktop">
 
       <div class="tabs">
         <!-- Tab panes -->

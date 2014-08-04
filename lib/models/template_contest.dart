@@ -1,7 +1,7 @@
 library template_contest;
 
 import "package:json_object/json_object.dart";
-import 'package:webclient/models/template_match_event.dart';
+import 'package:webclient/models/match_event.dart';
 import 'package:webclient/services/contest_references.dart';
 import "package:webclient/models/soccer_player.dart";
 
@@ -17,10 +17,10 @@ class TemplateContest {
   int entryFee;
   String prizeType;
 
-  List<TemplateMatchEvent> templateMatchEvents;
+  List<MatchEvent> matchEvents;
 
   TemplateContest(this.templateContestId, this.name, this.maxEntries,
-          this.salaryCap, this.entryFee, this.prizeType, this.templateMatchEvents);
+          this.salaryCap, this.entryFee, this.prizeType, this.matchEvents);
 
   TemplateContest.referenceInit(this.templateContestId);
 
@@ -28,7 +28,7 @@ class TemplateContest {
   bool get isLive => state == "LIVE";
   bool get isHistory => state == "HISTORY";
 
-  DateTime get startDate => templateMatchEvents.map((matchEvent) => matchEvent.startDate)
+  DateTime get startDate => matchEvents.map((matchEvent) => matchEvent.startDate)
                                                .reduce((val, elem) => val.isBefore(elem)? val : elem);
 
   factory TemplateContest.fromJsonObject(JsonObject json, ContestReferences references) {
@@ -43,7 +43,7 @@ class TemplateContest {
     SoccerPlayer soccerPlayer = null;
 
     // Buscar en la lista de partidos del contest
-    for (TemplateMatchEvent match in templateMatchEvents) {
+    for (MatchEvent match in matchEvents) {
       soccerPlayer = match.findSoccerPlayer(soccerPlayerId);
 
       // Lo hemos encontrado?
@@ -62,7 +62,7 @@ class TemplateContest {
     salaryCap = json.salaryCap;
     entryFee = json.entryFee;
     prizeType = json.prizeType;
-    templateMatchEvents = json.templateMatchEventIds.map( (matchEventId) => references.getMatchEventById(matchEventId) ).toList();
+    matchEvents = json.templateMatchEventIds.map( (matchEventId) => references.getMatchEventById(matchEventId) ).toList();
 
     // print( "TemplateContest: id($templateContestId) name($name) maxEntries($maxEntries) salaryCap($salaryCap) entryFee($entryFee) prizeType($prizeType) templateMatchEventIds($templateMatchEventIds)");
     return this;

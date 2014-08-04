@@ -25,7 +25,7 @@ testContestService(){
               var contest = contestService.getContestById("001001001001001001001001");
               expect(contestService.getContestById("001001001001001001001001").name, equals("001001001001001001001001 contest"));
 
-              List<TemplateMatchEvent> matchEvents = contest.templateContest.templateMatchEvents;
+              List<MatchEvent> matchEvents = contest.templateContest.matchEvents;
               expect(matchEvents.length, equals(2));
             });
       });

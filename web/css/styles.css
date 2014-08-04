@@ -9781,16 +9781,12 @@ textarea.soccer-player-filter .name-player-input-filter {
   padding-left: 0px;
   padding-right: 0px;
   text-align: right;
+  padding-right: 3px;
 }
 @media (min-width: 992px) {
   .soccer-players-list .soccer-players-list-slot .column-add {
     float: left;
     width: 16.66666667%;
-  }
-}
-@media (max-width: 991px) {
-  .soccer-players-list .soccer-players-list-slot .column-add {
-    margin-left: -2%;
   }
 }
 .soccer-players-list .soccer-players-list-slot .column-add .btn {

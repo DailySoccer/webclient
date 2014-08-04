@@ -22,6 +22,10 @@ import 'package:intl/intl.dart';
 )
 class EnterContestCtrl {
 
+  static const String FILTER_POSITION = "FILTER_POSITION";
+  static const String FILTER_NAME = "FILTER_NAME";
+  static const String FILTER_MATCH = "FILTER_MATCH";
+
   int availableSalary = 0;
 
   ScreenDetectorService scrDet;
@@ -30,10 +34,6 @@ class EnterContestCtrl {
 
   bool isDesktopVersion = false;
   bool isSelectingSoccerPlayer = false;
-  FieldPos lastUsedPosFilter;
-  String lastUsedNameFilter = "";
-  String oldMatchValue = "-1";
-  String currentContestId = "";
 
   final List<dynamic> lineupSlots = new List();
   List<dynamic> availableSoccerPlayers = new List();
@@ -43,6 +43,12 @@ class EnterContestCtrl {
 
   DateFormat timeDisplayFormat= new DateFormat("HH:mm");
 
+  // Lista de filtros a aplicar
+  Map<String,String> filterList = {};
+
+  // Ordenes
+  String shortBy;
+
   EnterContestCtrl(RouteProvider routeProvider, this._router, this.scrDet, this._profileService, this._contestService, this._flashMessage) {
 
     // Creamos los slots iniciales, todos vacios
@@ -50,9 +56,7 @@ class EnterContestCtrl {
       lineupSlots.add(null);
     });
 
-    currentContestId = routeProvider.route.parameters['contestId'];
-
-    contest = _contestService.getContestById(currentContestId);
+    contest = _contestService.getContestById(routeProvider.route.parameters['contestId']);
 
     // Al principio, todos disponibles
     initAllSoccerPlayers();
@@ -67,15 +71,7 @@ class EnterContestCtrl {
     contentTab.classes.add("active");
   }
 
-  void cleanTheFilters() {
-    InputElement inputText = document.querySelector("#name-player-filter");
-    inputText.value = "";
-    lastUsedNameFilter = "";
-  }
-
   void onSlotSelected(int slotIndex) {
-
-    cleanTheFilters();
 
     _selectedLineupPosIndex = slotIndex;
 
@@ -98,23 +94,12 @@ class EnterContestCtrl {
     if (isSelectingSoccerPlayer) {
       isSelectingSoccerPlayer = false;
       lineupSlots[_selectedLineupPosIndex] = soccerPlayer;
-      setFieldPosFilter(null);
-      setPosFilterClass("TODOS");
+      //setFieldPosFilter(null);
     } else {
       bool wasAdded = tryToAddSoccerPlayer(soccerPlayer);
 
       if (wasAdded) availableSoccerPlayers.remove(soccerPlayer);
     }
-  }
-
-  void setNameFilter(String filter) {
-    if(lastUsedNameFilter != filter)
-      lastUsedNameFilter = filter;
-
-    setFieldPosFilter(lastUsedPosFilter);
-    if(oldMatchValue != "-1")
-          setMatchFilter(oldMatchValue);
-    availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => soccerPlayer["fullName"].toUpperCase().contains(filter.toUpperCase())).toList();
   }
 
   void setPosFilterClass(String abrevPosition) {
@@ -128,44 +113,120 @@ class EnterContestCtrl {
   }
 
   void setFieldPosFilter(FieldPos filter) {
-    if(lastUsedPosFilter != filter)
-      lastUsedPosFilter = filter;
-
-    if (filter != null) {
-      setPosFilterClass(filter.abrevName);
-      availableSoccerPlayers = _allSoccerPlayers.where((soccerPlayer) => soccerPlayer["fieldPos"] == filter && !lineupSlots.contains(soccerPlayer)).toList();
+    if(filter == null) {
+      removeFilters(FILTER_POSITION);
+      setPosFilterClass('TODOS');
+      return;
     }
-    else {
-      setPosFilterClass("TODOS");
-      availableSoccerPlayers = _allSoccerPlayers.where((soccerPlayer) => !lineupSlots.contains(soccerPlayer)).toList();
-    }
+    addFilter(FILTER_POSITION, filter.abrevName);
+    setPosFilterClass(filter.abrevName);
   }
 
-  void setMatchFilterClass(String matchId, String matchText) {
+  void setNameFilter(String filter) {
+    addFilter(FILTER_NAME, filter);
+  }
+
+  void setMatchFilterClass(String matchText) {
     List<ButtonElement> buttonsFilter = document.querySelectorAll(".button-filtro-team");
     buttonsFilter.forEach((element) {
       element.classes.remove('active');
-      if(element.text == matchText) {
+      if(element.text.contains(matchText)) {
         element.classes.add("active");
       }
     });
-    setMatchFilter(matchId);
   }
 
-  void setMatchFilter(String matchId) {
-
-    if(oldMatchValue != matchId) {
-      oldMatchValue = matchId;
-      setNameFilter(lastUsedNameFilter);
+  void setMatchFilter(String matchId, String matchText) {
+    print(matchText);
+    if(matchId == "-1") {
+      removeFilters(FILTER_MATCH);
+      setMatchFilterClass('Todos los partidos');
+      return;
     }
+    addFilter(FILTER_MATCH, matchId);
+    setMatchFilterClass(matchText);
+  }
 
-      if (matchId != "-1") {
-        setFieldPosFilter(lastUsedPosFilter);
-        availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => soccerPlayer["matchId"].toString() == matchId).toList();
-      } else {
-        setFieldPosFilter(lastUsedPosFilter);
+  void removeFilters(String filterName) {
+    filterList.remove(filterName);
+    _refreshFilter();
+  }
+
+  void addFilter(String key, String valor) {
+    //Si existew esta clave, la borramos
+    if(filterList.containsKey(key)) {
+      filterList.remove(key);
+    }
+    //Como no se actualiza en el componente lista al modificar los valores... hay que crear siempre la lista 'filterListClone 'de cero:
+    //1-Creamos un mapa nuevo
+    Map<String, String> filterListClone = {};
+    //2- El mapa nuevo lo iniciamos con los valores de filterList para que no sea una referencia
+    filterListClone.addAll(filterList);
+    //3-Creamos el nuevo filtro...
+    Map<String, String> tmpMap = { key: valor };
+    //... y lo añadimos a la lista temporal que tendrá los valores anteriores + este nuevo
+    filterListClone.addAll(tmpMap);
+    //4-Por ultimo igualamos el filterList con el temporal que hemos construidos.
+    filterList = filterListClone;
+
+    //Refrescsamos los filtros
+    _refreshFilter();
+  }
+
+  void _refreshFilter() {
+    if (filterList == null)
+      return;
+
+    //Partimos siempre de la lista original de todos los players
+    availableSoccerPlayers = _allSoccerPlayers;
+
+    //Recorremos la lista de filtros
+    filterList.forEach( (String clave, String valor )  {
+
+      switch(clave)
+      {
+        case FILTER_POSITION:
+          availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => soccerPlayer["fieldPos"].abrevName == valor && !lineupSlots.contains(soccerPlayer)).toList();
+        break;
+        case FILTER_NAME:
+          availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => soccerPlayer["fullName"].toUpperCase().contains(valor.toUpperCase())).toList();
+        break;
+        case FILTER_MATCH:
+          availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => soccerPlayer["matchId"].toString() == valor).toList();
+        break;
       }
+    });
+  }
 
+  void shortListByField(String fieldName) {
+    if(fieldName != _currentField) {
+      _currentDir = 0;
+      _currentField = fieldName;
+    }
+    else {
+      _currentDir++;
+      if(_currentDir >= _shortDir.length) {
+        _currentDir = 0;
+      }
+    }
+    shortBy = fieldName + "_" + _shortDir[_currentDir];
+
+    _refreshOrder();
+  }
+
+  void _refreshOrder() {
+    if(shortBy == null || shortBy.isEmpty) {
+      return;
+    }
+    List<String> params = shortBy.split("_");
+
+    switch(params[0])
+      {
+        case "Pos":
+          availableSoccerPlayers.sort(( player1, player2) => (params[1] == "asc") ? player1["fieldPos"].abrevName.compareTo(player2["fieldPos"].abrevName):
+                                                                                    player2["fieldPos"].abrevName.compareTo(player1["fieldPos"].abrevName) );
+          break;
+      }
   }
 
   // Añade un futbolista a nuestro lineup si hay algun slot libre de su misma fieldPos. Retorna false si no pudo añadir
@@ -222,7 +283,7 @@ class EnterContestCtrl {
       for (MatchEvent match in matchEvents) {
         availableMatchEvents.add({
           "id": match.templateMatchEventId,
-          "texto":match.soccerTeamA.shortName + '-' + match.soccerTeamB.shortName + " " + timeDisplayFormat.format(match.startDate)
+          "texto":match.soccerTeamA.shortName + '-' + match.soccerTeamB.shortName + " " + timeDisplayFormat.format(match.startDate) + "h."
         });
       }
 
@@ -288,6 +349,9 @@ class EnterContestCtrl {
   }
 
   var _allSoccerPlayers = new List();
+  List<String> _shortDir = ["asc", "desc"];
+  int _currentDir = 0;
+  String _currentField = "";
   int _selectedLineupPosIndex = 0;
   Router _router;
   ActiveContestsService _contestService;

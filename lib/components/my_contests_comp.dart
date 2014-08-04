@@ -64,6 +64,16 @@ class MyContestsComp implements DetachAware {
     contentTab.classes.add("active");
   }
 
+  bool haveContests(List<Contest> contestList) {
+    if(contestList == null)
+      return false;
+
+    if (contestList.length <= 0)
+      return false;
+
+    return true;
+
+  }
 
   Timer _timer;
 

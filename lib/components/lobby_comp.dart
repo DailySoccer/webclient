@@ -9,7 +9,13 @@ import 'package:webclient/models/contest.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 
 
-@Component(selector: 'lobby', templateUrl: 'packages/webclient/components/lobby_comp.html', publishAs: 'comp', useShadowDom: false)
+@Component(
+    selector: 'lobby',
+    templateUrl: 'packages/webclient/components/lobby_comp.html',
+    publishAs: 'comp',
+    useShadowDom: false
+)
+
 class LobbyComp implements ShadowRootAware, DetachAware {
 
   ActiveContestsService activeContestsService;

@@ -10656,6 +10656,14 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   display: inline-block;
   line-height: 1;
 }
+@media (max-width: 767px) {
+  #infoAndFilterHeader #contestSortsFilters .toggleOff::after {
+    font-family: 'Glyphicons Halflings';
+    content: "\E114";
+    font-size: 8pt;
+    color: #ffffff;
+  }
+}
 #infoAndFilterHeader #contestSortsFilters .toggleOn::after {
   font-family: 'Glyphicons Halflings';
   content: "\E113";
@@ -10664,6 +10672,14 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   margin-left: 7px;
   display: inline-block;
   line-height: 1;
+}
+@media (max-width: 767px) {
+  #infoAndFilterHeader #contestSortsFilters .toggleOn::after {
+    font-family: 'Glyphicons Halflings';
+    content: "\E113";
+    font-size: 8pt;
+    color: #ffffff;
+  }
 }
 #infoAndFilterHeader #filtersPanel {
   margin-left: -15px;

@@ -175,6 +175,9 @@
 		}
 		.toggleOff::after{
 			.create-glyph("\E114", 8pt, @greyUltraDark);
+			@media (max-width:  @screen-xs-max) {
+				.create-glyph("\E114", 8pt, @white);
+			}
 			margin-left: 7px;
 			display: inline-block;
 			line-height: 1;
@@ -182,6 +185,9 @@
 		}
 		.toggleOn::after{
 			.create-glyph("\E113", 8pt, @greyUltraDark);
+			@media (max-width:  @screen-xs-max) {
+				.create-glyph("\E113", 8pt, @white);
+			}
 			margin-left: 7px;
 			display: inline-block;
 			line-height: 1;

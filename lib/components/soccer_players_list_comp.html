@@ -23,7 +23,6 @@
   <div class="soccer-players-list-slot" ng-repeat="slot in comp.enterContestCtrl.availableSoccerPlayers" ng-class="comp.getSlotClassColor(slot.fieldPos.abrevName)">
     <div class="column-fieldpos" ng-click="comp.onRow(slot.id)">{{slot.fieldPos.abrevName}}</div>
     <div class="column-primary-info">
-      <!--<span class="soccer-player-name">{{slot.fullName | limitToDot : 19}}</span>-->
       <span class="soccer-player-name" ng-click="comp.onRow(slot.id)">{{slot.fullName | limitToDot : comp.showWidth(slot.fullName)}}</span>
       <span class="match-event-name" ng-click="comp.onRow(slot.id)" ng-bind-html="slot.matchEventName"></span>
     </div>

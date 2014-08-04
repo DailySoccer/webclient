@@ -10981,7 +10981,6 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  padding-top: 10px;
   padding-bottom: 10px;
   text-align: center;
 }
@@ -11021,7 +11020,6 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   font-weight: 700;
   font-size: 9pt;
   color: #ffffff;
-  padding-top: 10px;
   padding-bottom: 10px;
   text-align: center;
 }

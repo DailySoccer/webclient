@@ -35,8 +35,10 @@ class ContestsListComp {
   void set filterBy(Map<String,Map> value) {
     if (value == null)
       return;
-    if (value.keys.length <= 0)
+    if (value.keys.length <= 0){
+      contestsListFiltered = contestsListOriginal;
       return;
+    }
     //List<Contest> tmpContestList;
 
     //Recorremos la lista de filtros

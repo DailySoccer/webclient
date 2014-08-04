@@ -146,9 +146,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
    * Funciones para los filtros
    */
   void filterByContestName() {
-    if (filterContestName.isEmpty)
-      return;
-    //comprobamos que si existe ya este filtro.. si existe lo eliminamos
+    //comprobamos que si existe ya este filtro... Si existe lo eliminamos
     if (lobbyFilters.containsKey(FILTER_CONTEST_NAME)) {
       lobbyFilters.remove(FILTER_CONTEST_NAME);
     }

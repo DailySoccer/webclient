@@ -57,7 +57,7 @@ class MyContestsService {
     _server.getLiveMatchEventsFromTemplateContest(templateContestId)
       .then((jsonObject) {
         jsonObject.content.forEach((jsonObject) {
-            lastContest.templateContest.matchEvents.firstWhere((matchEvent) => matchEvent.templateMatchEventId == jsonObject._id)
+            lastContest.templateContest.matchEvents.firstWhere((matchEvent) => matchEvent.templateMatchEventId == jsonObject.templateMatchEventId)
                 .. updateFantasyPoints(jsonObject.livePlayerToPoints);
         });
         completer.complete(jsonObject);

@@ -7,17 +7,15 @@ import 'package:webclient/models/contest_entry.dart';
 import 'package:webclient/models/soccer_player.dart';
 import 'package:webclient/controllers/view_contest_ctrl.dart';
 
-@Component(
-           selector: 'fantasy-team',
+@Component(selector: 'fantasy-team',
            templateUrl: 'packages/webclient/components/fantasy_team_comp.html',
            publishAs: 'fantasyTeam',
-           useShadowDom: false
-)
+           useShadowDom: false)
 class FantasyTeamComp implements ShadowRootAware {
 
     var slots = new List();
 
-    @NgOneWay("contestEntry")
+    @NgOneWay("contest-entry")
     set contestEntry(ContestEntry value) {
       _contestEntry = value;
       _refreshTeam();
@@ -28,19 +26,19 @@ class FantasyTeamComp implements ShadowRootAware {
       _refreshTeam();
     }
 
-    @NgOneWay("isOpponent")
+    @NgOneWay("is-opponent")
     set isOpponent(bool value) {
         _isOpponent = value;
         _refreshHeader();
     }
 
-    @NgOneWay("showCloseButton")
+    @NgOneWay("show-close-button")
     set showCloseButton(bool value) {
         _showCloseButton = value;
         _refreshCloseButton();
     }
 
-    @NgCallback('onClose')
+    @NgCallback('on-close')
     Function onClose;
 
     String get userPosition => (_contestEntry != null) ? _viewContestCtrl.getUserPosition(_contestEntry).toString() : "-";

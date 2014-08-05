@@ -26,6 +26,9 @@ abstract class ServerService {
 
   // Estadísticas SoccerPlayer
   Future<JsonObject> getSoccerPlayerInfo(String templateSoccerPlayerId);
+
+  // Debug
+  Future<JsonObject> getCurrentDate();
 }
 
 @Injectable()
@@ -70,6 +73,10 @@ class DailySoccerServer implements ServerService {
 
   Future<JsonObject> getSoccerPlayerInfo(String templateSoccerPlayerId) {
     return _innerServerCall("$HostServerUrl/get_soccer_player_info/$templateSoccerPlayerId", null);
+  }
+
+  Future<JsonObject> getCurrentDate() {
+    return _innerServerCall("$HostServerUrl/current_date", null);
   }
 
   /**

@@ -56,9 +56,9 @@
         <!-- lista de concursos -->
         <div class="list-container" ng-show="comp.haveContests(comp.myContestsService.liveContests)">
           <contests-list id="liveContests"
-                         contestsList="comp.myContestsService.liveContests"
-                         onActionClick='comp.onLiveActionClick(contest)'
-                         onRowClick='comp.onLiveRowClick(contest)'>
+                         contests-list="comp.myContestsService.liveContests"
+                         on-action-click='comp.onLiveActionClick(contest)'
+                         on-row-click='comp.onLiveRowClick(contest)'>
           </contests-list>
         </div>
       </div>
@@ -89,9 +89,9 @@
         <!-- lista de concursos -->
         <div class="list-container" ng-show="comp.haveContests(comp.myContestsService.waitingContests)">
           <contests-list id="waitingContests"
-                         contestsList='comp.myContestsService.waitingContests'
-                         onActionClick='comp.onWaitingActionClick(contest)'
-                         onRowClick='comp.onWaitingRowClick(contest)'>
+                         contests-list='comp.myContestsService.waitingContests'
+                         on-action-click='comp.onWaitingActionClick(contest)'
+                         on-row-click='comp.onWaitingRowClick(contest)'>
           </contests-list>
         </div>
       </div>
@@ -111,9 +111,9 @@
           <!-- lista de concursos -->
           <div class="list-container">
             <contests-list id="historyContests"
-                           contestsList="comp.myContestsService.historyContests"
-                           onActionClick='comp.onHistoryActionClick(contest)'
-                           onRowClick='comp.onHistoryRowClick(contest)'>
+                           contests-list="comp.myContestsService.historyContests"
+                           on-action-click='comp.onHistoryActionClick(contest)'
+                           on-row-click='comp.onHistoryRowClick(contest)'>
             </contests-list>
           </div>
       </div>
@@ -121,42 +121,4 @@
     </div>
 
   </div>
-</div>
-
-<!--
-<div><h4>WAITING CONTESTS:</h4></div>
-<contests-list id="waitingContests"
-               contestsList='comp.myContestsService.waitingContests'
-               onActionClick='comp.onWaitingActionClick(contest)'
-               onRowClick='comp.onWaitingRowClick(contest)'>
-</contests-list>
-
-<div><h4>LIVE CONTESTS:</h4></div>
-<contests-list id="liveContests"
-               contestsList="comp.myContestsService.liveContests"
-               onActionClick='comp.onLiveActionClick(contest)'
-               onRowClick='comp.onLiveRowClick(contest)'>
-</contests-list>
-
-<div><h4>HISTORY CONTESTS:</h4></div>
-<contests-list id="historyContests"
-               contestsList="comp.myContestsService.historyContests"
-               onActionClick='comp.onHistoryActionClick(contest)'
-               onRowClick='comp.onHistoryRowClick(contest)'>
-</contests-list>
--->
-
-<!-- Hack temporal hasta que arreglen Angular o nos respondan con una solucion mejor -->
-<div class="ng-hide">
-  {{comp.myContestsService.waitingContests.length}}
-  {{comp.myContestsService.liveContests.length}}
-  {{comp.myContestsService.historyContests.length}}
-
-  {{comp.onWaitingActionClick}}
-  {{comp.onLiveActionClick}}
-  {{comp.onHistoryActionClick}}
-
-  {{comp.onWaitingRowClick}}
-  {{comp.onLiveRowClick}}
-  {{comp.onHistoryRowClick}}
 </div>

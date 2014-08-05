@@ -6,6 +6,8 @@ import 'package:angular/routing/module.dart';
 import 'package:webclient/webclient_router.dart';
 
 import 'package:webclient/mock/mock_server.dart';
+import 'package:webclient/services/debug_service.dart';
+import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/active_contests_service.dart';
 import 'package:webclient/services/my_contests_service.dart';
@@ -64,6 +66,8 @@ class WebClientApp extends Module {
     // real: DailySoccerServer / simulation: MockDailySoccerServer
     bind(ServerService, toImplementation: DailySoccerServer);
 
+    bind(DebugService);
+    bind(DateTimeService);
     bind(ProfileService);
     bind(ActiveContestsService);
     bind(MyContestsService);

@@ -10,26 +10,31 @@ import 'package:intl/intl.dart';
            useShadowDom: false)
 class ContestsListComp {
 
-  @NgOneWay("contestsList")
-  void set contestsList(List<Contest> value) {
-    _contestsListOriginal = value;
-    contestsListFiltered = _contestsListOriginal;
-    refreshFilters();
-  }
+  // Lista original de los contest
+  List<Contest> contestsListOriginal;
 
   // Lista copia de la original que guardará los contest tras aplicar los filtros
   List<Contest> contestsListFiltered;
+
   // Lista de filtros a aplicar
   Map<String,Map> filterList;
+
   DateFormat startDate = new DateFormat("dd/MM");
   DateFormat startTime = new DateFormat("HH:mm");
+
+  @NgOneWay("contests-list")
+  void set contestsList(List<Contest> value) {
+    contestsListOriginal = value;
+    contestsListFiltered = contestsListOriginal;
+    refreshFilters();
+  }
 
   /*******************************************/
     //Setter de los filtros, Recibe la lista de los filtros aplicados.
     //Los filtros son un mapa compuesto tal que así:
     //filtro = {'NOMBRE_FILTRO': {'FILTER_FIELD':'value'},{'FILTER_CONDITION':'value'},{'FILTER_VALUE':'value'}}
 
-  @NgOneWay("filterBy")
+  @NgOneWay("filter-by")
   void set filterBy(Map<String,Map> value) {
     if (value == null)
       return;
@@ -63,7 +68,7 @@ class ContestsListComp {
   static const int FILTER_VALUE      = 2;
   */
   /*******************************************/
-  @NgOneWay("sortedBy")
+  @NgOneWay("sorted-by")
   void set sortedBy(String value) {
     if(value == null || value.isEmpty) {
       return;
@@ -99,13 +104,13 @@ class ContestsListComp {
     print('Ordenando la lista by: $sortParams');
   }
 
-  @NgOneWay("actionButtonTitle")
+  @NgOneWay("action-button-title")
   String actionButtonTitle = "Ver";
 
-  @NgCallback("onRowClick")
+  @NgCallback("on-row-click")
   Function onRowClick;
 
-  @NgCallback("onActionClick")
+  @NgCallback("on-action-click")
   Function onActionClick;
 
   ContestsListComp();

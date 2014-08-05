@@ -7,12 +7,13 @@ import 'package:webclient/services/my_contests_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/models/contest.dart';
 
+@Component(
+  selector: 'my-contests',
+  templateUrl: 'packages/webclient/components/my_contests_comp.html',
+  publishAs: 'comp',
+  useShadowDom: false
+)
 
-
-@Component(selector: 'my-contests',
-           templateUrl: 'packages/webclient/components/my_contests_comp.html',
-           publishAs: 'comp',
-           useShadowDom: false)
 class MyContestsComp implements DetachAware {
 
   MyContestsService myContestsService;
@@ -64,6 +65,10 @@ class MyContestsComp implements DetachAware {
     contentTab.classes.add("active");
   }
 
+  bool get hasLiveContests    => myContestsService.liveContests     == null ? false : myContestsService.liveContests.length     > 0;
+  bool get hasWaitingContests => myContestsService.waitingContests  == null ? false : myContestsService.waitingContests.length  > 0;
+  //bool get hasHistoryContests => myContestsService.historyContests  == null ? false : myContestsService.historyContests.length  > 0;
+  /*
   bool haveContests(List<Contest> contestList) {
     if(contestList == null)
       return false;
@@ -72,11 +77,10 @@ class MyContestsComp implements DetachAware {
       return false;
 
     return true;
-
   }
+  */
 
   Timer _timer;
-
   Router _router;
   FlashMessagesService _flashMessage;
 }

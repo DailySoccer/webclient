@@ -6,7 +6,7 @@
     <li class="active"> <!-- LIVE CONTESTS CONTENT-->
       <a role="tab" data-toggle="tab" ng-click="comp.tabChange('live-contest-content')">
         En Vivo
-        <span class="contest-count" ng-show="comp.haveContests(comp.myContestsService.liveContests)">
+        <span class="contest-count" ng-show="comp.hasLiveContests">
           {{comp.myContestsService.liveContests.length}}
         </span>
       </a>
@@ -15,7 +15,7 @@
     <li> <!-- WAITING CONTESTS TAB-->
       <a role="tab" data-toggle="tab" ng-click="comp.tabChange('waiting-contest-content')">
         Próximos
-        <span class="contest-count" ng-show="comp.haveContests(comp.myContestsService.waitingContests)">
+        <span class="contest-count" ng-show="comp.hasWaitingContests">
         {{comp.myContestsService.waitingContests.length}}
         </span>
       </a>
@@ -34,12 +34,12 @@
       <div class="tab-pane active" id="live-contest-content">
 
         <!-- Barra de resumen de actividad -->
-        <div class="resume-bar" ng-hide="comp.haveContests(comp.myContestsService.liveContests)">
+        <div class="resume-bar" ng-hide="comp.hasLiveContests">
              <span class="information-no-contest">AQUÍ PODRÁS CONSULTAR EN TIEMPO REAL LOS TORNEOS QUE TENGAS ACTIVOS</span>
         </div>
 
         <!-- Banner de información de lista vacía -->
-        <div class="no-contest" ng-hide="comp.haveContests(comp.myContestsService.liveContests)">
+        <div class="no-contest" ng-hide="comp.hasLiveContests">
           <div class="no-contests-wrapper">
             <div class="no-contests-title">
              EN ESTE MOMENTO, NO TIENES<br>UN EQUIPO CREADO PARA NINGÚN TORNEO
@@ -54,7 +54,7 @@
         </div>
 
         <!-- lista de concursos -->
-        <div class="list-container" ng-show="comp.haveContests(comp.myContestsService.liveContests)">
+        <div class="list-container" ng-show="comp.hasLiveContests">
           <contests-list id="liveContests"
                          contests-list="comp.myContestsService.liveContests"
                          on-action-click='comp.onLiveActionClick(contest)'
@@ -67,12 +67,12 @@
       <div class="tab-pane" id="waiting-contest-content">
 
         <!-- Barra de resumen de actividad -->
-        <div class="resume-bar" ng-hide="comp.haveContests(comp.myContestsService.waitingContests)">
+        <div class="resume-bar" ng-hide="comp.hasWaitingContests">
           <span class="information-no-contest">EN ESTE ESPACIO PODRÁS CONSULTAR Y MODIFICAR LOS EQUIPOS QUE TIENES PENDIENTES DE JUGAR EN UN TORNEO</span>
         </div>
 
         <!-- Banner de información de lista vacía -->
-        <div class="no-contest" ng-hide="comp.haveContests(comp.myContestsService.waitingContests)">
+        <div class="no-contest" ng-hide="comp.hasWaitingContests">
           <div class="no-contests-wrapper">
             <div class="no-contests-title">
              EN ESTE MOMENTO,<br> NO ESTÁS JUGANDO NUNGÚN TORNEO
@@ -87,7 +87,7 @@
         </div>
 
         <!-- lista de concursos -->
-        <div class="list-container" ng-show="comp.haveContests(comp.myContestsService.waitingContests)">
+        <div class="list-container" ng-show="comp.hasWaitingContests">
           <contests-list id="waitingContests"
                          contests-list='comp.myContestsService.waitingContests'
                          on-action-click='comp.onWaitingActionClick(contest)'

@@ -26,13 +26,10 @@ class EnterContestCtrl {
   static const String FILTER_NAME = "FILTER_NAME";
   static const String FILTER_MATCH = "FILTER_MATCH";
 
-  int availableSalary = 0;
-
   ScreenDetectorService scrDet;
 
   Contest contest;
 
-  bool isDesktopVersion = false;
   bool isSelectingSoccerPlayer = false;
 
   final List<dynamic> lineupSlots = new List();
@@ -40,14 +37,6 @@ class EnterContestCtrl {
   List<Map<String, String>> availableMatchEvents = [];
 
   String selectedSoccerPlayerId;
-
-  DateFormat timeDisplayFormat= new DateFormat("HH:mm");
-
-  // Lista de filtros a aplicar
-  Map<String,String> filterList = {};
-
-  // Ordenes
-  String shortBy;
 
   EnterContestCtrl(RouteProvider routeProvider, this._router, this.scrDet, this._profileService, this._contestService, this._flashMessage) {
 
@@ -148,40 +137,40 @@ class EnterContestCtrl {
   }
 
   void removeFilters(String filterName) {
-    filterList.remove(filterName);
+    _filterList.remove(filterName);
     _refreshFilter();
   }
 
   void addFilter(String key, String valor) {
     //Si existew esta clave, la borramos
-    if(filterList.containsKey(key)) {
-      filterList.remove(key);
+    if(_filterList.containsKey(key)) {
+      _filterList.remove(key);
     }
     //Como no se actualiza en el componente lista al modificar los valores... hay que crear siempre la lista 'filterListClone 'de cero:
     //1-Creamos un mapa nuevo
-    Map<String, String> filterListClone = {};
+    Map<String, String> _filterListClone = {};
     //2- El mapa nuevo lo iniciamos con los valores de filterList para que no sea una referencia
-    filterListClone.addAll(filterList);
+    _filterListClone.addAll(_filterList);
     //3-Creamos el nuevo filtro...
     Map<String, String> tmpMap = { key: valor };
     //... y lo añadimos a la lista temporal que tendrá los valores anteriores + este nuevo
-    filterListClone.addAll(tmpMap);
+    _filterListClone.addAll(tmpMap);
     //4-Por ultimo igualamos el filterList con el temporal que hemos construidos.
-    filterList = filterListClone;
+    _filterList = _filterListClone;
 
     //Refrescsamos los filtros
     _refreshFilter();
   }
 
   void _refreshFilter() {
-    if (filterList == null)
+    if (_filterList == null)
       return;
 
     //Partimos siempre de la lista original de todos los players
     availableSoccerPlayers = _allSoccerPlayers;
 
     //Recorremos la lista de filtros
-    filterList.forEach( (String clave, String valor )  {
+    _filterList.forEach( (String clave, String valor )  {
 
       switch(clave)
       {
@@ -209,16 +198,16 @@ class EnterContestCtrl {
         _currentDir = 0;
       }
     }
-    shortBy = fieldName + "_" + _shortDir[_currentDir];
+    _shortBy = fieldName + "_" + _shortDir[_currentDir];
 
     _refreshOrder();
   }
 
   void _refreshOrder() {
-    if(shortBy == null || shortBy.isEmpty) {
+    if(_shortBy == null || _shortBy.isEmpty) {
       return;
     }
-    List<String> params = shortBy.split("_");
+    List<String> params = _shortBy.split("_");
 
     switch(params[0])
       {
@@ -299,7 +288,7 @@ class EnterContestCtrl {
       for (MatchEvent match in matchEvents) {
         availableMatchEvents.add({
           "id": match.templateMatchEventId,
-          "texto":match.soccerTeamA.shortName + '-' + match.soccerTeamB.shortName + " " + timeDisplayFormat.format(match.startDate) + "h."
+          "texto":match.soccerTeamA.shortName + '-' + match.soccerTeamB.shortName + " " + _timeDisplayFormat.format(match.startDate) + "h."
         });
       }
 
@@ -373,4 +362,9 @@ class EnterContestCtrl {
   ActiveContestsService _contestService;
   ProfileService _profileService;
   FlashMessagesService _flashMessage;
+  DateFormat _timeDisplayFormat= new DateFormat("HH:mm");
+  // Lista de filtros a aplicar
+  Map<String,String> _filterList = {};
+  // Ordenes
+  String _shortBy;
 }

@@ -27,7 +27,7 @@
         <div class="enter-contest-lineup">
           <div class="enter-contest-total-salary">
               TU ALINEACIÓN
-              <span class="total-salary"><span>DINERO RESTANTE:</span>{{ctrl.availableSalary}}€</span>
+              <span class="total-salary"><span>DINERO RESTANTE:</span>&lt;Sal Disp€&gt;</span>
           </div>
           <lineup-selector></lineup-selector>
           <div class="enter-contest-actions-wrapper">
@@ -54,7 +54,7 @@
           <div class="tab-pane active" id="lineup-tab-content">
 
               <div class="enter-contest-actions-wrapper">
-                <div class="total-salary">{{ctrl.availableSalary}}€</div>
+                <div class="total-salary">&lt;Sal Disp€&gt;</div>
                 <button type="button" class="btn-cancel-player-selection" ng-click="ctrl.cancelPlayerSelection()" ng-show="ctrl.isSelectingSoccerPlayer">Cancelar</button>
               </div>
 

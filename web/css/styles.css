@@ -9525,6 +9525,7 @@ textarea.soccer-player-filter .name-player-input-filter {
   margin-right: 0px;
   line-height: 30px;
   background-color: #0d75a6;
+  cursor: pointer;
 }
 .soccer-player-list-header-table .filterOrderPos {
   position: relative;

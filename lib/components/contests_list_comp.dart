@@ -53,15 +53,14 @@ class ContestsListComp {
       }
     });
    // contestsListFiltered = tmpContestList;
-
    // print("-CONTEST LIST- Filtros recibidos ${value}");
 
   }
 
   /* Constantes para la identificación de los campos del mapa
-  final int FILTER_FIELD      = 0;
-  final int FILTER_CONDITION  = 1;
-  final int FILTER_VALUE      = 2;
+  static const int FILTER_FIELD      = 0;
+  static const int FILTER_CONDITION  = 1;
+  static const int FILTER_VALUE      = 2;
   */
   /*******************************************/
   @NgOneWay("sortedBy")

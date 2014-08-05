@@ -6,7 +6,7 @@ import 'package:angular/angular.dart';
 import "package:webclient/services/server_service.dart";
 import "package:webclient/models/contest.dart";
 import "package:webclient/models/template_contest.dart";
-import "package:webclient/models/template_match_event.dart";
+import "package:webclient/models/match_event.dart";
 
 
 @Injectable()

@@ -7,7 +7,7 @@ import 'package:webclient/controllers/enter_contest_ctrl.dart';
 import 'package:webclient/services/active_contests_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/models/contest.dart';
-import "package:webclient/models/template_match_event.dart";
+import "package:webclient/models/match_event.dart";
 import 'package:webclient/models/soccer_player.dart';
 
 @Component(
@@ -22,7 +22,7 @@ class SoccerPlayersListComp {
   ScreenDetectorService scrDet;
 
   Contest contest;
-  List<TemplateMatchEvent> matchesInvolved;
+  List<MatchEvent> matchesInvolved;
   List<Map<String, String>> matchesList = [];
   dynamic optionValue;
   dynamic oldOptionValue;
@@ -59,10 +59,10 @@ class SoccerPlayersListComp {
 
   void setup(String contestId) {
     contest = _contestService.getContestById(contestId);
-    matchesInvolved = contest.templateContest.templateMatchEvents;
+    matchesInvolved = contest.templateContest.matchEvents;
 
     matchesList.add({"id":"-1", "texto":"Todos los partidos"});
-    for (TemplateMatchEvent match in matchesInvolved) {
+    for (MatchEvent match in matchesInvolved) {
       matchesList.add({"id": match.templateMatchEventId, "texto":match.soccerTeamA.shortName + " - " + match.soccerTeamB.shortName});
     }
     optionValue = "-1";

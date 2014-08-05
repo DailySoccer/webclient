@@ -8,30 +8,28 @@ import 'package:webclient/services/active_contests_service.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 
-
 @Component(
-    selector: 'lobby',
-    templateUrl: 'packages/webclient/components/lobby_comp.html',
-    publishAs: 'comp',
-    useShadowDom: false
+  selector: 'lobby',
+  templateUrl: 'packages/webclient/components/lobby_comp.html',
+  publishAs: 'comp',
+  useShadowDom: false
 )
 
 class LobbyComp implements ShadowRootAware, DetachAware {
-
-  ActiveContestsService activeContestsService;
-  Contest selectedContest;
-  ScreenDetectorService scrDet;
-
-  String sortType = "";
-
   /******************************************/
-  final String FILTER_CONTEST_NAME = "FILTER_CONTEST_NAME";
-
+  static const String FILTER_CONTEST_NAME = "FILTER_CONTEST_NAME";
   //Filtros que están bindeados a la contestList
   Map<String, Map> lobbyFilters = {};
   //Variable que guarda lo escrito en el input de buscar contest por nombre
   String filterContestName;
   /******************************************/
+
+  ActiveContestsService activeContestsService;
+  Contest selectedContest;
+  ScreenDetectorService scrDet;
+  //Tipo de ordenación de la lista de partidos
+  String sortType = "";
+
   LobbyComp(this._router, this.activeContestsService, this.scrDet) {
     activeContestsService.refreshActiveContests();
     const refreshSeconds = const Duration(seconds: 10);
@@ -50,11 +48,6 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     _filtersButtonClassesByDefault = _filtersButtons.first.classes.toList();
     //Al iniciar, tiene que está cerrado por lo tanto le añadimos la clase que pone la flecha hacia abajo
     _filtersButtons.forEach((value) => value.classes.add('toggleOff'));
-
-    /*
-      _sortingButtons.first.classes.forEach((value) => _sortingButtonClassesByDefault += (" " + value) );   ///(String value => _sortingButtonClassesByDefault += value);
-      _sortingButtonClassesByDefault = _sortingButtons.first.classes.fold("", (prev, value) => prev + value + " " );
-     */
   }
 
   void detach() {
@@ -63,15 +56,13 @@ class LobbyComp implements ShadowRootAware, DetachAware {
 
   void onActionClick(Contest contest) {
     selectedContest = contest;
-    _router.go('enter_contest', {
-      "contestId": contest.contestId
-    });
+    _router.go('enter_contest', { "contestId": contest.contestId });
   }
 
   // Handle que recibe cual es la nueva mediaquery que se aplica.
   void onScreenWidthChange(String msg) {
     if (msg != "desktop") {
-      // Con esto llamamos a funciones de jQuery
+      // hacemos una llamada de jQuery para ocultar la ventana modal
       js.context.callMethod(r'$', ['#infoContestModal']).callMethod('modal', ['hide']);
     }
   }
@@ -84,10 +75,10 @@ class LobbyComp implements ShadowRootAware, DetachAware {
       // Esto soluciona el bug por el que no se muestra la ventana modal en Firefox;
       var modal = querySelector('#infoContestModal');
       modal.style.display = "block";
-
       // Con esto llamamos a funciones de jQuery
       js.context.callMethod(r'$', ['#infoContestModal']).callMethod('modal');
-    } else {
+    }
+    else {
       onActionClick(contest);
     }
   }
@@ -97,14 +88,13 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     if (sortName != _currentSelectedButton) {
       _currentButtonState = 0;
       _currentSelectedButton = sortName;
-    } else {
+    }
+    else {
       _currentButtonState++;
       if (_currentButtonState >= _butonState.length) _currentButtonState = 0;
     }
 
-    //sortType = campo_dirección;
     sortType = sortName + "_" + _butonState[_currentButtonState];
-
     applySortingStyles("sort-" + sortName);
   }
 

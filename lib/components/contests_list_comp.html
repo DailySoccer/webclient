@@ -3,7 +3,7 @@
 
     <div class="column-contest-name" ng-click="comp.onRow(contest)">
       <div class="column-name">{{contest.name}}</div>
-      <div class="column-description">LIGA: {{contest.contestEntries.length}} de {{contest.maxEntries}} jugadores - LIM. SAL.: {{contest.templateContest.salaryCap}}</div>
+      <div class="column-description">{{contest.templateContest.tournamentTypeName}}: {{contest.contestEntries.length}} de {{contest.maxEntries}} jugadores - LIM. SAL.: {{contest.templateContest.salaryCap}}</div>
     </div>
 
     <div class="column-contest-price" ng-click="comp.onRow(contest)">
@@ -12,7 +12,7 @@
     </div>
 
     <div class="column-contest-prize" ng-click="comp.onRow(contest) ">
-      <div class="column-contest-prize-content"><span> &lt;prize&gt;€</span></div>
+      <div class="column-contest-prize-content"><span> {{contest.templateContest.prizePool}}€</span></div>
       <div class="column-contest-prize-header">
         <div class="column-contest-prize-header-title">PREMIOS</div>
         <div class="column-contest-prize-header-prize-type">PREMIO</div>

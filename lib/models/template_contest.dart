@@ -6,6 +6,17 @@ import 'package:webclient/services/contest_references.dart';
 import "package:webclient/models/soccer_player.dart";
 
 class TemplateContest {
+  // Tipos de Premios (obtenidos del backend)
+  static const PRIZE_WINNER_TAKES_ALL = "WINNER_TAKES_ALL";
+  static const PRIZE_TOP_3_GET_PRIZES = "TOP_3_GET_PRIZES";
+  static const PRIZE_TOP_THIRD_GET_PRIZES = "TOP_THIRD_GET_PRIZES";
+  static const PRIZE_FIFTY_FIFTY = "FIFTY_FIFTY";
+
+  // Tipos de Torneos (deducidos por las características del TemplateContest: maxEntries ~ premios)
+  static const TOURNAMENT_HEAD_TO_HEAD = "HEAD_TO_HEAD";
+  static const TOURNAMENT_LEAGUE = "LIGA";
+  static const TOURNAMENT_FIFTY_FIFTY = "FIFTY_FIFTY";
+
   String templateContestId;
 
   String state;
@@ -27,6 +38,47 @@ class TemplateContest {
   bool get isActive => state == "ACTIVE";
   bool get isLive => state == "LIVE";
   bool get isHistory => state == "HISTORY";
+
+  Map<String, String> prizeTypeNames = {
+    PRIZE_WINNER_TAKES_ALL: "Winner takes all",
+    PRIZE_TOP_3_GET_PRIZES: "Top 3 get prizes",
+    PRIZE_TOP_THIRD_GET_PRIZES: "Top third get prizes",
+    PRIZE_FIFTY_FIFTY: "50/50"
+  };
+
+  int get prizePool => ((maxEntries * entryFee) * 0.90).toInt();
+  String get prizeTypeName => prizeTypeNames[prizeType];
+
+  List get tournamentTypes => [TOURNAMENT_HEAD_TO_HEAD, TOURNAMENT_LEAGUE, TOURNAMENT_FIFTY_FIFTY];
+
+  Map<String,String> get tournamentTypeNames {
+    return {
+      TOURNAMENT_HEAD_TO_HEAD: "Head-to-head",
+      TOURNAMENT_LEAGUE: "Liga",
+      TOURNAMENT_FIFTY_FIFTY: "50/50"
+    };
+  }
+
+  String get tournamentTypeName => tournamentTypeNames[tournamentType];
+
+  String get tournamentType {
+    String type;
+    if (maxEntries == 2)
+      type = TOURNAMENT_HEAD_TO_HEAD;
+    else {
+      switch(prizeType) {
+        case TemplateContest.PRIZE_WINNER_TAKES_ALL:
+        case TemplateContest.PRIZE_TOP_3_GET_PRIZES:
+        case TemplateContest.PRIZE_TOP_THIRD_GET_PRIZES:
+          type = TOURNAMENT_LEAGUE;
+          break;
+        case TemplateContest.PRIZE_FIFTY_FIFTY:
+          type = TOURNAMENT_FIFTY_FIFTY;
+          break;
+      }
+    }
+    return type;
+  }
 
   DateTime get startDate => matchEvents.map((matchEvent) => matchEvent.startDate)
                                                .reduce((val, elem) => val.isBefore(elem)? val : elem);
@@ -52,6 +104,35 @@ class TemplateContest {
     }
 
     return soccerPlayer;
+  }
+
+  List<int> getPrizes() {
+    List<int> prizes = new List<int>();
+
+    switch(prizeType) {
+      case TemplateContest.PRIZE_WINNER_TAKES_ALL:
+        prizes.add(prizePool);
+        break;
+      case TemplateContest.PRIZE_TOP_3_GET_PRIZES:
+        prizes.add( (prizePool * 0.5).toInt() );
+        prizes.add( (prizePool * 0.3).toInt() );
+        prizes.add( (prizePool * 0.2).toInt() );
+        break;
+      case TemplateContest.PRIZE_TOP_THIRD_GET_PRIZES:
+        int third = maxEntries ~/ 3;
+        for (int i=0; i<third; i++) {
+          prizes.add(prizePool ~/ third);
+        }
+        break;
+      case TemplateContest.PRIZE_FIFTY_FIFTY:
+        int mid = maxEntries ~/ 2;
+        for (int i=0; i<mid; i++) {
+          prizes.add(prizePool ~/ mid);
+        }
+        break;
+    }
+
+    return prizes;
   }
 
   TemplateContest _initFromJsonObject(JsonObject json, ContestReferences references) {

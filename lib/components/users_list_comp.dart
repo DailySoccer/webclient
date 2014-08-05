@@ -5,20 +5,18 @@ import 'package:angular/angular.dart';
 import 'package:webclient/models/contest_entry.dart';
 import 'package:webclient/controllers/view_contest_ctrl.dart';
 
-@Component(
-    selector: 'users-list',
-    templateUrl: 'packages/webclient/components/users_list_comp.html',
-    publishAs: 'comp',
-    useShadowDom: false
-)
+@Component(selector: 'users-list',
+           templateUrl: 'packages/webclient/components/users_list_comp.html',
+           publishAs: 'comp',
+           useShadowDom: false)
 class UsersListComp {
 
   List users = new List();
 
-  @NgTwoWay("selectedContestEntry")
-  ContestEntry selectedContestEntry= null;
+  @NgTwoWay("selected-contest-entry")
+  ContestEntry selectedContestEntry = null;
 
-  @NgOneWay("contestEntries")
+  @NgOneWay("contest-entries")
   set contestEntries(List<ContestEntry> value) {
     _contestEntries = value;
     _refresh();

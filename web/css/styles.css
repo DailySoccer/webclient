@@ -6001,7 +6001,7 @@ button.close {
 }
 @media (min-width: 768px) and only screen and (-webkit-min-device-pixel-ratio: 2), (min-width: 768px) and only screen and (min--moz-device-pixel-ratio: 2), (min-width: 768px) and only screen and (-o-min-device-pixel-ratio: 2/1), (min-width: 768px) and only screen and (min-device-pixel-ratio: 2), (min-width: 768px) and only screen and (min-resolution: 192dpi), (min-width: 768px) and only screen and (min-resolution: 2dppx) {
   #mainMenuRoot .navbar-header-loggin .navbar-brand-container .navbar-brand {
-    background-image: url("../images/LogoEpic11-2x.png");
+    background-image: url("../images/logoEpic11-2x.png");
     background-size: 120px 37px;
   }
 }
@@ -6024,7 +6024,7 @@ button.close {
 }
 @media (max-width: 767px) and only screen and (-webkit-min-device-pixel-ratio: 2), (max-width: 767px) and only screen and (min--moz-device-pixel-ratio: 2), (max-width: 767px) and only screen and (-o-min-device-pixel-ratio: 2/1), (max-width: 767px) and only screen and (min-device-pixel-ratio: 2), (max-width: 767px) and only screen and (min-resolution: 192dpi), (max-width: 767px) and only screen and (min-resolution: 2dppx) {
   #mainMenuRoot .navbar-header-loggin .navbar-brand-container .navbar-brand {
-    background-image: url("../images/LogoEpic11-2x.png");
+    background-image: url("../images/logoEpic11-2x.png");
     background-size: 120px 37px;
   }
 }
@@ -6052,7 +6052,7 @@ button.close {
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   #mainMenuRoot .navbar-header-unloggin .navbar-brand-container {
-    background-image: url("../images/LogoEpic11-2x.png");
+    background-image: url("../images/logoEpic11-2x.png");
     background-size: 120px 37px;
   }
 }
@@ -11947,7 +11947,7 @@ fieldset[disabled] .btn-cancel.active {
   .wrapper-content-container {
     min-height: 1100px;
     background-color: #000000;
-    background-image: url("../images/DesignBackgroundBIG.jpg");
+    background-image: url("../images/designBackgroundBig.jpg");
     background-size: contain;
     background-position: center top;
     background-repeat: no-repeat;
@@ -12011,13 +12011,13 @@ fieldset[disabled] .btn-cancel.active {
   }
 }
 .price-icon {
-  background-image: url("../images/IconPrice.png");
+  background-image: url("../images/iconPrice.png");
   width: 24px;
   height: 24px;
   display: inline-block;
 }
 .prize-icon {
-  background-image: url("../images/IconPrize.png");
+  background-image: url("../images/iconPrize.png");
   width: 26px;
   height: 24px;
   display: inline-block;

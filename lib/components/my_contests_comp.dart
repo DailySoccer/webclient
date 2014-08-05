@@ -67,18 +67,6 @@ class MyContestsComp implements DetachAware {
 
   bool get hasLiveContests    => myContestsService.liveContests     == null ? false : myContestsService.liveContests.length     > 0;
   bool get hasWaitingContests => myContestsService.waitingContests  == null ? false : myContestsService.waitingContests.length  > 0;
-  //bool get hasHistoryContests => myContestsService.historyContests  == null ? false : myContestsService.historyContests.length  > 0;
-  /*
-  bool haveContests(List<Contest> contestList) {
-    if(contestList == null)
-      return false;
-
-    if (contestList.length <= 0)
-      return false;
-
-    return true;
-  }
-  */
 
   Timer _timer;
   Router _router;

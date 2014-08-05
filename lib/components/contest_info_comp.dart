@@ -36,8 +36,6 @@ class ContestInfoComp {
     bool popUpStyle;
     Map currentInfoData;
     List contestants  = new List();
-    List prizes = new List();
-    TemplateContest tmplateContest;
     List<MatchEvent> matchesInvolved;
 
     ContestInfoComp(Scope scope, this._router, this._contestService) {
@@ -52,7 +50,7 @@ class ContestInfoComp {
         'matchesInvolved' : null,
         'legals'          : '<legals>',
         'contestants'     : contestants,
-        'prizes'          : prizes
+        'prizes'          : new List()
       };
 
       contestants.add({
@@ -79,21 +77,17 @@ class ContestInfoComp {
         'name'    : 'Jhon Doe 6',
         'points'  : '0000'
       });
-
-      prizes.add({'value' : '<first>'});
-      prizes.add({'value' : '<second>'});
-      prizes.add({'value' : '<third>' });
     }
 
-    updateContestInfo(Contest cont)
+    updateContestInfo(Contest contest)
     {
-      currentInfoData["name"]           = cont.templateContest.name;
-      currentInfoData["entry"]          = cont.templateContest.entryFee.toString();
-      currentInfoData["startDateTime"]  = getFormatedDate(cont.templateContest.startDate);
+      currentInfoData["name"]           = contest.templateContest.name;
+      currentInfoData["entry"]          = contest.templateContest.entryFee.toString();
+      currentInfoData["prize"]          = contest.templateContest.prizePool.toString();
+      currentInfoData["startDateTime"]  = getFormatedDate(contest.templateContest.startDate);
       currentInfoData["contestants"]    = contestants;
-      currentInfoData["prizes"]         = prizes;
-      currentInfoData["matchesInvolved"]= cont.templateContest.matchEvents;
-
+      currentInfoData["prizes"]         = contest.templateContest.getPrizes().map((value) => {'value' : value}).toList();
+      currentInfoData["matchesInvolved"]= contest.templateContest.matchEvents;
     }
 
     String getFormatedDate(DateTime date)

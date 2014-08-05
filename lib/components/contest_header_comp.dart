@@ -96,9 +96,11 @@ class ContestHeaderComp implements DetachAware{
 
   void _refreshHeader() {
     var date = new DateFormat('dd/MM HH:mm');
-    contestHeaderInfo["description"] = "€${contestInfo.templateContest.salaryCap} ${contestInfo.name}";
-    contestHeaderInfo["entryPrice"] = "€${contestInfo.templateContest.entryFee}";
+    contestHeaderInfo["description"] = "${contestInfo.templateContest.salaryCap}€ ${contestInfo.name}";
+    contestHeaderInfo["entryPrice"] = "${contestInfo.templateContest.entryFee}€";
     contestHeaderInfo["startTime"] = "COMIENZA EL ${date.format(contestInfo.templateContest.startDate)}";
+    contestHeaderInfo["prize"] = "${contestInfo.templateContest.prizePool}€";
+    contestHeaderInfo["prizeType"] = "${contestInfo.templateContest.prizeTypeName}";
 
     int numJugadores = contestInfo.contestEntries.length;
     contestHeaderInfo["contestantCount"] = "$numJugadores" + ((numJugadores == 1) ? " jugador" : " jugadores");

@@ -226,6 +226,22 @@ class EnterContestCtrl {
           availableSoccerPlayers.sort(( player1, player2) => (params[1] == "asc") ? player1["fieldPos"].abrevName.compareTo(player2["fieldPos"].abrevName):
                                                                                     player2["fieldPos"].abrevName.compareTo(player1["fieldPos"].abrevName) );
           break;
+        case "Name":
+          availableSoccerPlayers.sort(( soccerPlayer1, soccerPlayer2) => (params[1] == "asc") ? soccerPlayer1["fullName"].compareTo(soccerPlayer2["fullName"]):
+                                                                                                soccerPlayer2["fullName"].compareTo(soccerPlayer1["fullName"]) );
+          break;
+        case "DFP":
+          availableSoccerPlayers.sort(( soccerPlayer1, soccerPlayer2) => (params[1] == "asc") ? soccerPlayer1["fantasyPoints"].compareTo(soccerPlayer2["fantasyPoints"]):
+                                                                                                soccerPlayer2["fantasyPoints"].compareTo(soccerPlayer1["fantasyPoints"]) );
+          break;
+        case "Played":
+          availableSoccerPlayers.sort(( soccerPlayer1, soccerPlayer2) => (params[1] == "asc") ? soccerPlayer1["playedMatches"].compareTo(soccerPlayer2["playedMatches"]):
+                                                                                                soccerPlayer2["playedMatches"].compareTo(soccerPlayer1["playedMatches"]) );
+          break;
+        case "Salary":
+          availableSoccerPlayers.sort(( soccerPlayer1, soccerPlayer2) => (params[1] == "asc") ? soccerPlayer1["salary"].compareTo(soccerPlayer2["salary"]):
+                                                                                                soccerPlayer2["salary"].compareTo(soccerPlayer1["salary"]) );
+          break;
       }
   }
 

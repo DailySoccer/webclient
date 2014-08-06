@@ -10980,16 +10980,23 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   font-weight: 400;
   font-size: 10pt;
   color: #434343;
+  transition: all 1s ease;
 }
 #infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check input[type=checkbox]:checked + label {
   background-color: #f8f0f0;
 }
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check input[type=checkbox] + label::after {
+  font-family: 'Glyphicons Halflings';
+  content: "\E013";
+  font-size: 0pt;
+  color: #afafaf;
+  float: right !important;
+  transition: all 0.5s ease-in-out;
+}
 #infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check input[type=checkbox]:checked + label::after {
   font-family: 'Glyphicons Halflings';
   content: "\E013";
-  font-size: 10pt;
-  color: #afafaf;
-  float: right !important;
+  font-size: 12pt;
 }
 @media (max-width: 991px) {
   #myContest {

@@ -302,14 +302,19 @@
 						margin: 1px 0px;
 						padding: 0 10px;
 						.opensans_normal(10pt, @greyUltraDark);
+						transition: all 1s ease;
 					}
 					input[type=checkbox]:checked + label {
 						background-color: @tramaRed;
 					}
-					input[type=checkbox]:checked + label::after {
-						.create-glyph("\E013", 10pt);
+					input[type=checkbox] + label::after {
+						.create-glyph("\E013", 0pt);
 						color: @greyMed;
 						.pull-right();
+						transition: all .5s ease-in-out;
+					} 
+					input[type=checkbox]:checked + label::after {
+						.create-glyph("\E013", 12pt);
 					} 
 					
 				}

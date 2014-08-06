@@ -34,8 +34,6 @@ class ContestInfoComp {
       popUpStyle = value;
     }
 
-
-
     ContestInfoComp(Scope scope, this._router, this._contestService) {
 
       currentInfoData = {  /*  hay que utilizar esta variable para meter los datos de este componente  */

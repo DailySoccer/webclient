@@ -28,7 +28,7 @@ class SoccerPlayerInfoComp {
     Map currentInfoData;
     List partidos  = new List();
 
-    SoccerPlayerInfoComp(Scope scope, this._router, this._soccerPlayerService, this._flashMessage) {
+    SoccerPlayerInfoComp(this._router, this._soccerPlayerService, this._flashMessage) {
 
       currentInfoData = {
         'fieldPos'        : '<fieldPos>',

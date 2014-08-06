@@ -17,10 +17,12 @@ class ContestsListComp {
   List<Contest> contestsListFiltered;
 
   // Lista de filtros a aplicar
-  Map<String,Map> filterList;
+  Map<String,String> filterList;
 
   DateFormat startDate = new DateFormat("dd/MM");
   DateFormat startTime = new DateFormat("HH:mm");
+  //NumberFormat numFormat = new NumberFormat("#");
+
 
   @NgOneWay("contests-list")
   void set contestsList(List<Contest> value) {
@@ -29,45 +31,17 @@ class ContestsListComp {
     refreshFilters();
   }
 
-  /*******************************************/
-    //Setter de los filtros, Recibe la lista de los filtros aplicados.
-    //Los filtros son un mapa compuesto tal que así:
-    //filtro = {'NOMBRE_FILTRO': {'FILTER_FIELD':'value'},{'FILTER_CONDITION':'value'},{'FILTER_VALUE':'value'}}
-
+  //Setter de los filtros, Recibe la lista de los filtros aplicados.
   @NgOneWay("filter-by")
-  void set filterBy(Map<String,Map> value) {
+  void set filterBy(Map<String,String> value) {
     if (value == null)
       return;
-    if (value.keys.length <= 0){
-      contestsListFiltered = _contestsListOriginal;
-      return;
-    }
-    //List<Contest> tmpContestList;
-
-    //Recorremos la lista de filtros
-    value.forEach( (String clave, Map<String,String> valor )  {
-      //Guardamos los campos que nos vienen como parametros
-      //String field          = valor["FILTER_FIELD"];
-      //String condition      = valor["FILTER_CONDITION"];
-      String valueToCompare = valor["FILTER_VALUE"]; //En principio solo voy a necesitar el Valor, por que el resto de datos los tengo que suponer.
-      switch(clave)
-      {
-        case "FILTER_CONTEST_NAME":
-          contestsListFiltered = _contestsListOriginal.where((contest) => contest.name.toUpperCase().contains(valueToCompare.toUpperCase())).toList();
-        break;
-      }
-    });
-   // contestsListFiltered = tmpContestList;
-   // print("-CONTEST LIST- Filtros recibidos ${value}");
-
+    filterList = value;
+    //Partimos siempre de la lista original de todos los players
+    contestsListFiltered = _contestsListOriginal;
+    refreshFilters();
   }
 
-  /* Constantes para la identificación de los campos del mapa
-  static const int FILTER_FIELD      = 0;
-  static const int FILTER_CONDITION  = 1;
-  static const int FILTER_VALUE      = 2;
-  */
-  /*******************************************/
   @NgOneWay("sorted-by")
   void set sortedBy(String value) {
     if(value == null || value.isEmpty) {
@@ -129,6 +103,22 @@ class ContestsListComp {
     if( filterList == null){
       return;
     }
+    //Recorremos la lista de filtros
+        filterList.forEach( (String key, String value )  {
+         switch(key)
+         {
+           case "FILTER_CONTEST_NAME":
+             contestsListFiltered = contestsListFiltered.where( (contest) => contest.name.toUpperCase().contains(value.toUpperCase()) ).toList();
+           break;
+           case "FILTER_ENTRY_FEE_MIN":
+             contestsListFiltered = contestsListFiltered.where( (contest) => contest.templateContest.entryFee >= int.parse(value.split('.')[0]) ).toList();
+           break;
+           case "FILTER_ENTRY_FEE_MAX":
+             contestsListFiltered = contestsListFiltered.where( (contest) => contest.templateContest.entryFee <= int.parse(value.split('.')[0]) ).toList();
+           break;
+         }
+       });
+
   }
 
   // Lista original de los contest

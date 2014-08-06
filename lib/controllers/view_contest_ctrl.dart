@@ -7,7 +7,6 @@ import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/my_contests_service.dart';
 import "package:webclient/models/soccer_player.dart";
-import 'package:webclient/models/match_event.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/contest_entry.dart';
 import 'package:webclient/services/flash_messages_service.dart';
@@ -34,7 +33,7 @@ class ViewContestCtrl implements DetachAware {
     return entries;
   }
 
-  ViewContestCtrl(RouteProvider routeProvider, this._scope, this.scrDet, this._myContestsService, this._profileService, this._dateTimeService, this._flashMessage) {
+  ViewContestCtrl(RouteProvider routeProvider, this.scrDet, this._myContestsService, this._profileService, this._dateTimeService, this._flashMessage) {
 
     _contestId = routeProvider.route.parameters['contestId'];
     initialized = false;
@@ -109,7 +108,6 @@ class ViewContestCtrl implements DetachAware {
   Timer _timer;
   List<int> _prizes = [];
 
-  Scope _scope;
   FlashMessagesService _flashMessage;
   ProfileService _profileService;
   MyContestsService _myContestsService;

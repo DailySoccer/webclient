@@ -10904,6 +10904,54 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
     width: 25%;
   }
 }
+#infoAndFilterHeader #filtersPanel .filter-content .slider-wrapper {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 15px 5px;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .range-font {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  color: #0d75a6;
+  padding: 0px;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .entry-fee-value-max {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  color: #0d75a6;
+  padding: 0px;
+  position: relative;
+  float: left;
+  width: 50%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  float: right !important;
+  text-align: right;
+  padding-right: 0px;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .entry-fee-value-min {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  color: #0d75a6;
+  padding: 0px;
+  position: relative;
+  float: left;
+  width: 50%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  float: left !important;
+  text-align: left;
+  padding-left: 0px;
+}
 @media (max-width: 991px) {
   #myContest {
     margin-right: auto;
@@ -11947,8 +11995,9 @@ fieldset[disabled] .btn-cancel.active {
   .wrapper-content-container {
     min-height: 1100px;
     background-color: #000000;
-    background-image: url("../images/designBackgroundBig.jpg");
-    background-size: contain;
+    /*background-image: url("@{images}/designBackgroundBig.jpg");*/
+    background-image: url("../images/retroBackgroundBig.jpg");
+    /*background-size: contain;*/
     background-position: center top;
     background-repeat: no-repeat;
   }

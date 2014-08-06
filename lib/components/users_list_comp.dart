@@ -29,7 +29,7 @@ class UsersListComp {
 
   String getPrize(int index) => _viewContestCtrl.getPrize(index);
 
-  UsersListComp(this._scope, this._viewContestCtrl);
+  UsersListComp(this._viewContestCtrl);
 
   void _refresh() {
     //print("refresh users: ${_liveContestCtrl.usersInfo}");
@@ -53,7 +53,6 @@ class UsersListComp {
     selectedContestEntry = user["contestEntry"];
   }
 
-  Scope _scope;
   List<ContestEntry> _contestEntries;
   ViewContestCtrl _viewContestCtrl;
 }

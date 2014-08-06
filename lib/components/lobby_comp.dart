@@ -18,10 +18,17 @@ import 'package:webclient/services/screen_detector_service.dart';
 class LobbyComp implements ShadowRootAware, DetachAware {
   /******************************************/
   static const String FILTER_CONTEST_NAME = "FILTER_CONTEST_NAME";
+  static const String FILTER_ENTRY_FEE_MIN = "FILTER_ENTRY_FEE_MIN";
+  static const String FILTER_ENTRY_FEE_MAX = "FILTER_ENTRY_FEE_MAX";
   //Filtros que están bindeados a la contestList
-  Map<String, Map> lobbyFilters = {};
+  Map<String, String> lobbyFilters = {};
   //Variable que guarda lo escrito en el input de buscar contest por nombre
   String filterContestName;
+
+  //valor para el filtro por entryFee. mínimo
+  String filterEntryFeeMin;
+  //valor para el filtro por entryFee. máximo
+  String filterEntryFeeMax;
   /******************************************/
 
   ActiveContestsService activeContestsService;
@@ -29,6 +36,12 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   ScreenDetectorService scrDet;
   //Tipo de ordenación de la lista de partidos
   String sortType = "";
+
+  // Rango minímo del filtro del EntryFee
+  String get filterEntryFeeRangeMin => getEntryFeeFilterRange()[0];
+  // Rango máximo del filtro del EntryFee
+  String get filterEntryFeeRangeMax => getEntryFeeFilterRange()[1];
+
 
   LobbyComp(this._router, this.activeContestsService, this.scrDet) {
     activeContestsService.refreshActiveContests();
@@ -48,10 +61,31 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     _filtersButtonClassesByDefault = _filtersButtons.first.classes.toList();
     //Al iniciar, tiene que está cerrado por lo tanto le añadimos la clase que pone la flecha hacia abajo
     _filtersButtons.forEach((value) => value.classes.add('toggleOff'));
+
+    // Inicializamos el control que dibuja el slider para el filtro por entrada
+    initSliderRange();
+
+    // Nos subscribimos al evento change
+    js.context.callMethod(r'$', ['#slider-range'])
+      .callMethod('on', new js.JsObject.jsify([{'set': onEntryFeeRangeChange}]));
+  }
+
+  void onEntryFeeRangeChange(dynamic sender, dynamic data) {
+    filterEntryFeeMin = data[0];
+    filterEntryFeeMax = data[1];
+    FilterByEntryFee();
+
+    print("Range change: $sender, $data");
   }
 
   void detach() {
     _timer.cancel();
+  }
+
+
+  dynamic getEntryFeeFilterRange(){
+    var range = js.context.callMethod(r'$', ['#slider-range']).callMethod('val');
+    return range != null? range : ["",""];
   }
 
   void onActionClick(Contest contest) {
@@ -138,21 +172,45 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     }
   }
 
+  void initSliderRange()
+  {
+
+    refeshSliderRange();
+  }
+
+  void refeshSliderRange()
+  {
+    //iniciamos slider-range
+      js.context.callMethod(r'$', ['#slider-range'])
+          .callMethod('noUiSlider', [new js.JsObject.jsify({'start': [0, 100],
+                                                            'step' : 1,
+                                                            'range': {'min':0,'max':100}})]);
+  }
+
   /*
    * Funciones para los filtros
    */
   void filterByContestName() {
+    addFilter(FILTER_CONTEST_NAME, filterContestName);
+  }
+
+  void FilterByEntryFee(){
+    addFilter(FILTER_ENTRY_FEE_MIN, filterEntryFeeMin);
+    addFilter(FILTER_ENTRY_FEE_MAX, filterEntryFeeMax);
+  }
+
+  void addFilter(String key, String valor){
     //comprobamos que si existe ya este filtro... Si existe lo eliminamos
-    if (lobbyFilters.containsKey(FILTER_CONTEST_NAME)) {
-      lobbyFilters.remove(FILTER_CONTEST_NAME);
+    if (lobbyFilters.containsKey(key)) {
+      lobbyFilters.remove(key);
     }
     //Como no se actualiza en el componente lista al modificar los valores... hay que crear siempre la lista 'lobbyFilters 'de cero:
     //1-Creamos un mapa nuevo
-    Map<String, Map> lobbyFilterClone = {};
+    Map<String, String> lobbyFilterClone = {};
     //2- El mapa nuevo lo iniciamos con los valores de lobbyFilters para que no sea una referencia
     lobbyFilterClone.addAll(lobbyFilters);
     //3-Creamos el nuevo filtro...
-    Map<String, Map> tmpMap = { FILTER_CONTEST_NAME: {'FILTER_FIELD': 'name', 'FILTER_CONDITION': 'CONTAINS', 'FILTER_VALUE': filterContestName } };
+    Map<String, String> tmpMap = { key: valor };
     //... y lo añadimos a la lista temporal que tendrá los valores anteriores + este nuevo
     lobbyFilterClone.addAll(tmpMap);
     //4-Por ultimo igualamos el lobbyFilter con el temporal que hemos construidos.

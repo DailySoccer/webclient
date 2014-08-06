@@ -3,6 +3,7 @@ library contest_header_comp;
 import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:intl/intl.dart';
+import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import "package:webclient/models/contest.dart";
 import 'dart:async';
@@ -44,7 +45,7 @@ class ContestHeaderComp implements DetachAware{
   String info;
   ScreenDetectorService scrDet;
 
-  ContestHeaderComp(this._scope, this._router, this.scrDet) {
+  ContestHeaderComp(this._scope, this._router, this.scrDet, this._dateTimeService) {
 
     timeDisplayFormat = new DateFormat("HH:mm:ss");
     count = new Timer.periodic(new Duration(milliseconds:1000), (Timer timer) => this.countdownDate());
@@ -54,7 +55,7 @@ class ContestHeaderComp implements DetachAware{
     if(contestInfo != null) {
       NumberFormat nf_day = new NumberFormat("0");
       NumberFormat nf_time = new NumberFormat("00");
-      DateTime t = new DateTime.now().add(new Duration());
+      DateTime t = _dateTimeService.now.add(new Duration());
       Duration cd = contestInfo.templateContest.startDate.difference(t);
       //Duration cd = new DateTime(2014, 8, 26, 12, 19, 0).difference(t);
 
@@ -116,4 +117,5 @@ class ContestHeaderComp implements DetachAware{
 
   Scope _scope;
   Router _router;
+  DateTimeService _dateTimeService;
 }

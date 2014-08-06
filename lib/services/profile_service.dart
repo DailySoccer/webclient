@@ -6,6 +6,7 @@ import 'dart:convert';
 import 'package:angular/angular.dart';
 import 'package:json_object/json_object.dart';
 import 'package:webclient/models/user.dart';
+import 'package:webclient/services/debug_service.dart';
 import 'package:webclient/services/server_service.dart';
 
 
@@ -14,7 +15,7 @@ class ProfileService {
   User user = null;
   bool get isLoggedIn => user != null;
 
-  ProfileService(this._server) {
+  ProfileService(this._server, this._debugService) {
     _tryProfileLoad();
   }
 
@@ -32,6 +33,7 @@ class ProfileService {
 
   Future<JsonObject> _onLoginResponse(JsonObject loginResponseJson) {
     _server.setSessionToken(loginResponseJson.sessionToken); // to make the getUserProfile call succeed
+    _debugService.activated = loginResponseJson.containsKey("createdAt");
 
     return _server.getUserProfile()
                   .then((jsonObject) => _setProfile(loginResponseJson.sessionToken, new User.fromJsonObject(jsonObject), true));
@@ -82,5 +84,6 @@ class ProfileService {
   }
 
   ServerService _server;
+  DebugService _debugService;
   String _sessionToken;
 }

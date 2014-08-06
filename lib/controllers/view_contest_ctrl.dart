@@ -2,6 +2,7 @@ library view_contest_ctrl;
 
 import 'package:angular/angular.dart';
 import 'dart:async';
+import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/my_contests_service.dart';
@@ -33,7 +34,7 @@ class ViewContestCtrl implements DetachAware {
     return entries;
   }
 
-  ViewContestCtrl(RouteProvider routeProvider, this._scope, this.scrDet, this._myContestsService, this._profileService, this._flashMessage) {
+  ViewContestCtrl(RouteProvider routeProvider, this._scope, this.scrDet, this._myContestsService, this._profileService, this._dateTimeService, this._flashMessage) {
 
     _contestId = routeProvider.route.parameters['contestId'];
     initialized = false;
@@ -44,7 +45,7 @@ class ViewContestCtrl implements DetachAware {
       .then((jsonObject) {
         mainPlayer = getContestEntryWithUser(_profileService.user.userId);
 
-        updatedDate = new DateTime.now();
+        updatedDate = _dateTimeService.now;
 
         // Únicamente actualizamos los contests que estén en "live"
         if (_myContestsService.lastContest.templateContest.isLive) {
@@ -99,7 +100,7 @@ class ViewContestCtrl implements DetachAware {
     // Actualizamos únicamente la lista de live MatchEvents
     _myContestsService.refreshLiveMatchEvents(_myContestsService.lastContest.templateContest.templateContestId)
         .then( (jsonObject) {
-          updatedDate = new DateTime.now();
+          updatedDate = _dateTimeService.now;
         })
         .catchError((error) {
           _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
@@ -112,6 +113,7 @@ class ViewContestCtrl implements DetachAware {
   FlashMessagesService _flashMessage;
   ProfileService _profileService;
   MyContestsService _myContestsService;
+  DateTimeService _dateTimeService;
 
   String _contestId;
 }

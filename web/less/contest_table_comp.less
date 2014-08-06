@@ -1,0 +1,44 @@
+.contests-table {
+	.container-fluid();
+	.clean-paddings();
+
+	.column-1 {
+		.make-sm-column(1);
+	}
+	.column-2 {
+		.make-sm-column(2);
+	}
+	.column-4 {
+		.make-sm-column(4);
+	}
+
+	.header {
+		background-color: @greyUltraDark;
+		line-height: 40px;
+		.opensans_bold(9pt, @white);
+
+		.row {
+			.make-row(0);
+			.make-border(2px, none none solid none, @white);
+		}
+	}
+
+	.data {
+		background-color: @tramaBlue;
+		line-height: 40px;
+		.opensans_bold(9pt, @greyDark);
+
+		.row {
+			.make-row(0);
+			.make-border(2px, none none solid none, @white);
+			span {
+				.pull-left();
+				line-height: 8px;
+				margin-top: 8px;
+			}
+			.fee-prize {
+				.exo_bold(14pt, @blueDark);
+			}
+		}
+	}
+}

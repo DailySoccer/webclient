@@ -5621,6 +5621,12 @@ button.close {
 #headerContestWidget:after,
 #contestsListRoot .contest-row:before,
 #contestsListRoot .contest-row:after,
+.contests-table:before,
+.contests-table:after,
+.contests-table .header .row:before,
+.contests-table .header .row:after,
+.contests-table .data .row:before,
+.contests-table .data .row:after,
 .landing-wrapper .screen .content-wrapper .content-container:before,
 .landing-wrapper .screen .content-wrapper .content-container:after,
 .landing-wrapper .screen .content-wrapper .content-container:before,
@@ -5695,6 +5701,9 @@ button.close {
 #contestInfoTabContent .contestant-list .contestant-element:after,
 #headerContestWidget:after,
 #contestsListRoot .contest-row:after,
+.contests-table:after,
+.contests-table .header .row:after,
+.contests-table .data .row:after,
 .landing-wrapper .screen .content-wrapper .content-container:after,
 .landing-wrapper .screen .content-wrapper .content-container:after,
 .fantasy-team-list .fantasy-team-slot:after,
@@ -7757,6 +7766,105 @@ fieldset[disabled] #contestsListRoot .contest-row .column-contest-action .btn.ac
     font-size: 10pt;
     padding: 0;
   }
+}
+.contests-table {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.contests-table > .navbar-header,
+.contests-table > .navbar-collapse {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+@media (min-width: 768px) {
+  .contests-table > .navbar-header,
+  .contests-table > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+.contests-table .column-1 {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  .contests-table .column-1 {
+    float: left;
+    width: 8.33333333%;
+  }
+}
+.contests-table .column-2 {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  .contests-table .column-2 {
+    float: left;
+    width: 16.66666667%;
+  }
+}
+.contests-table .column-4 {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  .contests-table .column-4 {
+    float: left;
+    width: 33.33333333%;
+  }
+}
+.contests-table .header {
+  background-color: #434343;
+  line-height: 40px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 9pt;
+  color: #ffffff;
+}
+.contests-table .header .row {
+  margin-left: 0;
+  margin-right: 0;
+  border-width: 2px;
+  border-style: none none solid none;
+  border-color: #ffffff;
+  border-radius: 0;
+}
+.contests-table .data {
+  background-color: #ecf0f1;
+  line-height: 40px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 9pt;
+  color: #777777;
+}
+.contests-table .data .row {
+  margin-left: 0;
+  margin-right: 0;
+  border-width: 2px;
+  border-style: none none solid none;
+  border-color: #ffffff;
+  border-radius: 0;
+}
+.contests-table .data .row span {
+  float: left !important;
+  line-height: 8px;
+  margin-top: 8px;
+}
+.contests-table .data .row .fee-prize {
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  font-size: 14pt;
+  color: #214a5f;
 }
 .fondo-negro {
   background-color: #000000;
@@ -11334,6 +11442,15 @@ fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest.acti
   background-color: #ffffff;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
+}
+.list-container .header-contests {
+  background-color: #ecf0f1;
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 24px;
+  color: #214a5f;
+  line-height: 80px;
+  padding-left: 15px;
 }
 #mainFooter {
   margin-left: 0;

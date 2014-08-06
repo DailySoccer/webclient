@@ -21,6 +21,10 @@ class Contest {
 
   Contest.referenceInit(this.contestId);
 
+  ContestEntry getContestEntryWithUser(String userId) {
+    return contestEntries.firstWhere( (entry) => entry.user.userId == userId, orElse: () => null );
+  }
+
   /*
    * Carga una LISTA de Contests a partir de JsonObjects
    */

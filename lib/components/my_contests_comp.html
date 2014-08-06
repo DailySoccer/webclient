@@ -54,12 +54,18 @@
         </div>
 
         <!-- lista de concursos -->
-        <div class="list-container" ng-show="comp.hasLiveContests">
-          <contests-list id="liveContests"
+        <div class="list-container" ng-show="comp.haveContests(comp.myContestsService.liveContests)">
+          <div class="header-contests">TORNEOS EN DIRECTO</div>
+          <contests-table id="liveContests"
+                          data="comp.myContestsService.liveContests"
+                          columns-names="comp.liveColumns" >
+          </contests-table>
+
+          <!--<contests-list id="liveContests"
                          contests-list="comp.myContestsService.liveContests"
                          on-action-click='comp.onLiveActionClick(contest)'
                          on-row-click='comp.onLiveRowClick(contest)'>
-          </contests-list>
+          </contests-list>-->
         </div>
       </div>
 
@@ -87,12 +93,18 @@
         </div>
 
         <!-- lista de concursos -->
-        <div class="list-container" ng-show="comp.hasWaitingContests">
-          <contests-list id="waitingContests"
+        <div class="list-container" ng-show="comp.haveContests(comp.myContestsService.waitingContests)">
+          <div class="header-contests">PRÓXIMOS TORNEOS</div>
+          <contests-table id="waitingContests"
+                          data="comp.myContestsService.waitingContests"
+                          columns-names="comp.waitingColumns" >
+          </contests-table>
+
+          <!--<contests-list id="waitingContests"
                          contests-list='comp.myContestsService.waitingContests'
                          on-action-click='comp.onWaitingActionClick(contest)'
                          on-row-click='comp.onWaitingRowClick(contest)'>
-          </contests-list>
+          </contests-list>-->
         </div>
       </div>
 
@@ -110,11 +122,17 @@
 
           <!-- lista de concursos -->
           <div class="list-container">
-            <contests-list id="historyContests"
+            <div class="header-contests">HISTORIAL DE TORNEOS</div>
+            <contests-table id="historyContests"
+                            data="comp.myContestsService.historyContests"
+                            columns-names="comp.historyColumns" >
+            </contests-table>
+
+            <!--<contests-list id="historyContests"
                            contests-list="comp.myContestsService.historyContests"
                            on-action-click='comp.onHistoryActionClick(contest)'
                            on-row-click='comp.onHistoryRowClick(contest)'>
-            </contests-list>
+            </contests-list>-->
           </div>
       </div>
 

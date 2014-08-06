@@ -182,9 +182,11 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   {
     //iniciamos slider-range
       js.context.callMethod(r'$', ['#slider-range'])
-          .callMethod('noUiSlider', [new js.JsObject.jsify({'start': [0, 100],
-                                                            'step' : 1,
-                                                            'range': {'min':0,'max':100}})]);
+          .callMethod('noUiSlider', [new js.JsObject.jsify({'start':      [0, 100],
+                                                            'step' :      1,
+                                                            'behaviour':  'drag',
+                                                            'connect':    true,
+                                                            'range':      {'min':0,'max':100}})]);
   }
 
   /*

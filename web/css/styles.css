@@ -10830,7 +10830,6 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  min-height: 300px;
 }
 @media (min-width: 992px) {
   #infoAndFilterHeader #filtersPanel .filter-column-salary-limit {
@@ -10860,6 +10859,11 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
     width: 25%;
   }
 }
+@media (min-width: 768px) {
+  #infoAndFilterHeader #filtersPanel .filter-column-salary-limit {
+    min-height: 300px;
+  }
+}
 #infoAndFilterHeader #filtersPanel .filter-column-entry-fee {
   float: left;
   width: 100%;
@@ -10867,7 +10871,6 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  min-height: 300px;
 }
 @media (min-width: 992px) {
   #infoAndFilterHeader #filtersPanel .filter-column-entry-fee {
@@ -10951,6 +10954,42 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   float: left !important;
   text-align: left;
   padding-left: 0px;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check input[type=checkbox] {
+  display: none;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check input[type=checkbox] + label {
+  display: block;
+  background-color: #ffffff;
+  border: 1px solid #afafaf;
+  border-radius: 5px;
+  line-height: 36px;
+  margin: 1px 0px;
+  padding: 0 10px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #434343;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check input[type=checkbox]:checked + label {
+  background-color: #f8f0f0;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check input[type=checkbox]:checked + label::after {
+  font-family: 'Glyphicons Halflings';
+  content: "\E013";
+  font-size: 10pt;
+  color: #afafaf;
+  float: right !important;
 }
 @media (max-width: 991px) {
   #myContest {

@@ -14,7 +14,7 @@ class ContestEntry {
 
   List<SoccerPlayer> soccers;
 
-  int get currentLivePoints => soccers.fold(0, (prev, soccerPlayer) => prev + soccerPlayer.currentLivePoints );
+  int get currentLivePoints => soccers != null ? soccers.fold(0, (prev, soccerPlayer) => prev + soccerPlayer.currentLivePoints ) : 0;
 
   ContestEntry(this.contestEntryId, this.user, this.soccers);
 

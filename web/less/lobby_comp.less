@@ -175,6 +175,9 @@
 		}
 		.toggleOff::after{
 			.create-glyph("\E114", 8pt, @greyUltraDark);
+			@media (max-width:  @screen-xs-max) {
+				.create-glyph("\E114", 8pt, @white);
+			}
 			margin-left: 7px;
 			display: inline-block;
 			line-height: 1;
@@ -182,6 +185,9 @@
 		}
 		.toggleOn::after{
 			.create-glyph("\E113", 8pt, @greyUltraDark);
+			@media (max-width:  @screen-xs-max) {
+				.create-glyph("\E113", 8pt, @white);
+			}
 			margin-left: 7px;
 			display: inline-block;
 			line-height: 1;
@@ -237,7 +243,9 @@
 			.make-xs-column(12);
 			.make-sm-column(4);
 			.make-md-column(3);
-			min-height: 300px;
+			@media (min-width: @screen-sm-min) {
+				min-height: 300px;
+			}
 		}
 		.filter-column-entry-fee{
 			@media (min-width: @screen-md-min) {
@@ -247,16 +255,70 @@
 			@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
 				.make-border(1px, dashed none dashed none, @greyUltraDark);
 				min-height: 100px;
-			}
-			
+			}			
 			//el texto de esta columna esta centrado en sm
 			.centered-sm-text();
-
 			.make-xs-column(12);			
 			.make-sm-column(12);
 			.make-md-column(3);
-			min-height: 300px;
-
+		}
+		.filter-content{
+			.slider-wrapper{
+				.make-xs-column(12);
+				padding: 15px 5px;
+			}
+			.range-font{
+				.opensans_bold(12px, @blueMed);
+				padding: 0px;
+			}
+			.entry-fee-value-max{
+				.range-font();
+				.make-xs-column(6);
+				.pull-right();
+				text-align: right;
+				padding-right: 0px;
+			}
+			.entry-fee-value-min{
+				.range-font();
+				.make-xs-column(6);
+				.pull-left();
+				text-align: left;
+				padding-left: 0px;
+			}
+			// grupo de botones del filtro sin banderas
+			.check-group-wrapper{
+				.button-check{
+					.make-xs-column(12);
+					.clean-paddings();
+					input[type=checkbox]{
+						display: none;
+					}
+					input[type=checkbox] + label {
+						display: block;
+						background-color: @white;
+						border: 1px solid @greyMed;
+						border-radius: 5px;
+						line-height: 36px;
+						margin: 1px 0px;
+						padding: 0 10px;
+						.opensans_normal(10pt, @greyUltraDark);
+						transition: all 1s ease;
+					}
+					input[type=checkbox]:checked + label {
+						background-color: @tramaRed;
+					}
+					input[type=checkbox] + label::after {
+						.create-glyph("\E013", 0pt);
+						color: @greyMed;
+						.pull-right();
+						transition: all .5s ease-in-out;
+					} 
+					input[type=checkbox]:checked + label::after {
+						.create-glyph("\E013", 12pt);
+					} 
+					
+				}
+			}
 		}
 	}
 }

@@ -55,6 +55,7 @@
 	.make-row(0px);
 	line-height: 30px;
 	background-color: @blueMed;
+	cursor: pointer;
 	.filterOrderPos {
 		.make-md-column(1, 0px);
 		padding-left: 7px;
@@ -153,9 +154,8 @@
 			.make-xs-column(3, @soccer-players-list-gutter);
 			.make-md-column(2, @soccer-players-list-gutter);
 			text-align: right;
-			@media (max-width: @screen-sm-max) {
-				margin-left: -2%;
-			}
+			padding-right: 3px;
+
 			.btn {
 				.btn-primary();
 				margin-top: 4px;

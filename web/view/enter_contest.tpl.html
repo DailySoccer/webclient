@@ -9,13 +9,13 @@
   </ul>
 
   <div class="match-teams-filter">
-    <button class="btn btn-default button-filtro-team active" ng-click="ctrl.setMatchFilterClass('-1', 'Todos los partidos')">Todos los partidos</button>
-    <button class="btn btn-default button-filtro-team" ng-repeat="match in ctrl.availableMatchEvents" ng-bind-html="match.texto" ng-click="ctrl.setMatchFilterClass(match.id, match.texto)"></button>
+    <button class="btn btn-default button-filtro-team active" ng-click="ctrl.setMatchFilter('-1', 'Todos los partidos')">Todos los partidos</button>
+    <button class="btn btn-default button-filtro-team" ng-repeat="match in ctrl.availableMatchEvents" ng-bind-html="match.texto" ng-click="ctrl.setMatchFilter(match.id, match.texto)"></button>
   </div>
 
   <div id="enterContest">
     <!-- Version Desktop-->
-    <div ng-if="ctrl.scrDet.isDesktop">
+    <div ng-show="ctrl.scrDet.isDesktop">
 
       <div class="enter-contest-soccer-players-wrapper">
         <div class="enter-contest-soccer-players">
@@ -27,7 +27,7 @@
         <div class="enter-contest-lineup">
           <div class="enter-contest-total-salary">
               TU ALINEACIÓN
-              <span class="total-salary"><span>DINERO RESTANTE:</span>{{ctrl.availableSalary}}€</span>
+              <span class="total-salary"><span>DINERO RESTANTE:</span>&lt;Sal Disp€&gt;</span>
           </div>
           <lineup-selector></lineup-selector>
           <div class="enter-contest-actions-wrapper">
@@ -45,7 +45,7 @@
     </div> <!-- Fin ng-if="ctrl.scrDet.isDesktop" -->
 
     <!-- Resto de Versiones-->
-    <div ng-if="!ctrl.scrDet.isDesktop">
+    <div ng-hide="ctrl.scrDet.isDesktop">
 
       <div class="tabs">
         <!-- Tab panes -->
@@ -54,7 +54,7 @@
           <div class="tab-pane active" id="lineup-tab-content">
 
               <div class="enter-contest-actions-wrapper">
-                <div class="total-salary">{{ctrl.availableSalary}}€</div>
+                <div class="total-salary">&lt;Sal Disp€&gt;</div>
                 <button type="button" class="btn-cancel-player-selection" ng-click="ctrl.cancelPlayerSelection()" ng-show="ctrl.isSelectingSoccerPlayer">Cancelar</button>
               </div>
 

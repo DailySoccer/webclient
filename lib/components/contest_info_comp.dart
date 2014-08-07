@@ -4,27 +4,28 @@ import 'package:angular/angular.dart';
 import 'dart:html';
 import 'package:intl/intl.dart';
 import 'package:webclient/models/contest.dart';
-import 'package:webclient/models/template_contest.dart';
 import 'package:webclient/services/active_contests_service.dart';
-import 'package:webclient/models/match_event.dart';
-
 
 @Component(
-    selector: 'contest-info',
-    templateUrl: 'packages/webclient/components/contest_info_comp.html',
-    publishAs: 'contestInfo',
-    useShadowDom: false
+  selector: 'contest-info',
+  templateUrl: 'packages/webclient/components/contest_info_comp.html',
+  publishAs: 'contestInfo',
+  useShadowDom: false
 )
 
 class ContestInfoComp {
 
+  bool popUpStyle;
+  Map currentInfoData;
+  List contestants  = new List();
+
   @NgTwoWay("contest-data")
-      Contest get contestData => _contestData;
-      void set contestData(Contest value) {
-        _contestData = value;
-          if(value != null){
-            updateContestInfo(value);
-          }
+  Contest get contestData => _contestData;
+  void set contestData(Contest value) {
+    _contestData = value;
+      if(value != null){
+        updateContestInfo(value);
+      }
       }
 
      @NgTwoWay("is-pop-up")
@@ -32,11 +33,6 @@ class ContestInfoComp {
     void set isPopUp (bool value){
       popUpStyle = value;
     }
-
-    bool popUpStyle;
-    Map currentInfoData;
-    List contestants  = new List();
-    List<MatchEvent> matchesInvolved;
 
     ContestInfoComp(Scope scope, this._router, this._contestService) {
 
@@ -125,43 +121,28 @@ class ContestInfoComp {
           retorno = "DOM.";
         break;
 
-      }
-      return retorno;
-
-      /*
-      if ( weekDay == DateTime.MONDAY)
-        return "LUN.";
-      if ( weekDay == DateTime.TUESDAY)
-        return "MAR.";
-      if ( weekDay == DateTime.WEDNESDAY)
-        return "MIE.";
-      if ( weekDay == DateTime.THURSDAY)
-        return "JUE.";
-      if ( weekDay == DateTime.FRIDAY)
-        return "VIE.";
-      if ( weekDay == DateTime.SATURDAY)
-        return "SAB.";
-
-      return "DOM.";
-      */
     }
+    return retorno;
+  }
 
-    void enterContest() {
-            _router.go('enter_contest', { "contestId": contestData.contestId });
+  void enterContest() {
+          _router.go('enter_contest', { "contestId": contestData.contestId });
+  }
+
+  void tabChange(String tab) {
+    List<dynamic> allContentTab = document.querySelectorAll(".tab-pane");
+    allContentTab.forEach((element) => element.classes.remove('active'));
+
+    Element contentTab = document.querySelector("#" + tab);
+    if(contentTab != null) {
+      contentTab.classes.add("active");
     }
+  }
 
-    void tabChange(String tab) {
-      List<dynamic> allContentTab = document.querySelectorAll(".tab-pane");
-      allContentTab.forEach((element) => element.classes.remove('active'));
+  Router _router;
+  ActiveContestsService _contestService;
+  Contest _contestData;
+  bool _popUpStyle;
 
-      Element contentTab = document.querySelector("#" + tab);
-      if(contentTab != null) {
-        contentTab.classes.add("active");
-      }
-    }
-
-    Router _router;
-    ActiveContestsService _contestService;
-    Contest _contestData;
 
 }

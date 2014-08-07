@@ -1,3 +1,7 @@
+
+
+
+
 <!-- Header de Promociones -->
 <promos></promos>
 
@@ -16,8 +20,8 @@
           <div type="button" class="btn filters-button" ng-click="comp.toggleFilterMenu()" data-toggle="collapse" data-target="#filtersPanel">Filtros</div>
         </div>
         <div class="filter-list">
-          <span class="filters-choosed">0$-50.000$</span>
-          <span class="filters-choosed">PRINCIPIANTE</span>
+          <span class="filters-choosed">&lt;filtro 1&gt;</span>
+          <span class="filters-choosed">&lt;filtro 2&gt;</span>
         </div>
     </div>
 
@@ -52,21 +56,55 @@
       <div class="filter-column-tournaments">
         <p class="filter-title">TORNEOS</p>
         <div class="filter-content">
-            &lt; NOT YET &gt;
+            <div class="check-group-wrapper">
+              <div class="button-check">
+                <input id="filtroOneOnOne" type="checkbox" >
+                <label for="filtroOneOnOne">Uno contra uno</label>
+              </div>
+              <div class="button-check">
+                <input id="filtroLiga" type="checkbox" >
+                <label for="filtroLiga">Liga</label>
+              </div>
+              <div class="button-check">
+                <input id="filtroFiftyFifty" type="checkbox" >
+                <label for="filtroFiftyFifty">50/50</label>
+              </div>
+              <div class="button-check">
+                <input id="filtroSpecials" type="checkbox" >
+                <label for="filtroSpecials">Torneos Especiales</label>
+              </div>
+            </div>
         </div>
       </div>
 
       <div class="filter-column-salary-limit">
         <p class="filter-title">LÍMITE DE SALARIO</p>
         <div class="filter-content">
-            &lt; NOT YET &gt;
+            <div class="check-group-wrapper">
+              <div class="button-check">
+                <input id="filtroPrincipiante" type="checkbox">
+                <label for="filtroPrincipiante">Principiante</label>
+              </div>
+              <div class="button-check">
+                <input id="filtroEstandar" type="checkbox">
+                <label for="filtroEstandar">Estandar</label>
+              </div>
+              <div class="button-check">
+                <input id="filtroExperto" type="checkbox">
+                <label for="filtroExperto">Experto</label>
+              </div>
+          </div>
         </div>
       </div>
 
       <div class="filter-column-entry-fee">
         <p class="filter-title">ENTRADA</p>
         <div class="filter-content">
-           &lt; NOT YET &gt;
+           <div class="entry-fee-value-min">MIN: {{comp.filterEntryFeeRangeMin | number:0}}€ </div>
+           <div class="entry-fee-value-max">MAX: {{comp.filterEntryFeeRangeMax | number:0}}€ </div>
+            <div class="slider-wrapper">
+              <div id="slider-range"></div>
+            </div>
         </div>
       </div>
 

@@ -8,6 +8,7 @@
 @import "contest_info_comp.less";
 @import "contest_header_comp.less";
 @import "contest_list_comp.less";
+@import "contest_table_comp.less";
 @import "landing_page_comp.less";
 @import "fantasy_team_comp.less";
 @import "users_list_comp.less";
@@ -77,8 +78,9 @@
 	@media (min-width: @screen-sm-min) {
 		min-height: 1100px;
 		background-color: @black;
-		background-image: url("@{images}/DesignBackgroundBIG.jpg");
-		background-size: contain;
+		/*background-image: url("@{images}/designBackgroundBig.jpg");*/
+		background-image: url("@{images}/retroBackgroundBig.jpg");
+		/*background-size: contain;*/
 		background-position: center top;
 		background-repeat: no-repeat;
 	}
@@ -99,13 +101,13 @@
 }
 
 .price-icon {
-	background-image: url("@{images}/IconPrice.png");
+	background-image: url("@{images}/iconPrice.png");
 	.size(24px, 24px);
 	display: inline-block;
 }
 
 .prize-icon {
-	background-image: url("@{images}/IconPrize.png");
+	background-image: url("@{images}/iconPrize.png");
 	.size(26px, 24px);
 	display: inline-block;
 }

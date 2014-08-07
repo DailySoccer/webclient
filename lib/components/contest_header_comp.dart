@@ -16,7 +16,8 @@ import 'dart:async';
 )
 
 class ContestHeaderComp implements DetachAware{
-  var contestHeaderInfo = {
+
+  Map<String, dynamic> contestHeaderInfo = {
     'description': '<description>',
     'startTime':'<startTime>',
     'countdownDate': '',
@@ -26,37 +27,31 @@ class ContestHeaderComp implements DetachAware{
     'prize': '<prize>',
     'prizeType':'<prizeType>'
   };
-  Timer count;
-  DateFormat timeDisplayFormat;
-  int elapsed;
-  String texto = "";
 
-  Contest contestInfo;
+  ScreenDetectorService scrDet;
 
   @NgOneWay("contestData")
   void set contestData(Contest value) {
-    contestInfo = value;
+    _contestInfo = value;
 
     if (value != null) {
       _refreshHeader();
     }
   }
 
-  String info;
-  ScreenDetectorService scrDet;
 
-  ContestHeaderComp(this._scope, this._router, this.scrDet, this._dateTimeService) {
+  ContestHeaderComp(this._router, this.scrDet, this._dateTimeService) {
 
-    timeDisplayFormat = new DateFormat("HH:mm:ss");
-    count = new Timer.periodic(new Duration(milliseconds:1000), (Timer timer) => this.countdownDate());
+    _timeDisplayFormat = new DateFormat("HH:mm:ss");
+    _count = new Timer.periodic(new Duration(milliseconds:1000), (Timer timer) => this.countdownDate());
   }
 
   void countdownDate() {
-    if(contestInfo != null) {
+    if(_contestInfo != null) {
       NumberFormat nf_day = new NumberFormat("0");
       NumberFormat nf_time = new NumberFormat("00");
       DateTime t = _dateTimeService.now.add(new Duration());
-      Duration cd = contestInfo.templateContest.startDate.difference(t);
+      Duration cd = _contestInfo.templateContest.startDate.difference(t);
       //Duration cd = new DateTime(2014, 8, 26, 12, 19, 0).difference(t);
 
       List<SpanElement> textCountdown = document.querySelectorAll(".text-countdown");
@@ -65,7 +60,7 @@ class ContestHeaderComp implements DetachAware{
       if(cd.inSeconds <= 0) {
         contestHeaderInfo["countdownDate"] = "";
         contestHeaderInfo["startTime"] = "FINALIZADO";
-        count.cancel();
+        _count.cancel();
       } else {
         var days = cd.inDays;
         var hours = nf_time.format(cd.inHours % 24);
@@ -73,12 +68,12 @@ class ContestHeaderComp implements DetachAware{
         var seconds = nf_time.format(cd.inSeconds % 60);
 
         if(scrDet.isDesktop) {
-          texto = "EL DESAFIO COMENZARÁ EN: ";
+          _msg = "EL DESAFIO COMENZARÁ EN: ";
         } else {
-          texto = "FALTAN ";
+          _msg = "FALTAN ";
         }
         SpanElement countdownTextSpan = new SpanElement();
-        countdownTextSpan.text = texto;
+        countdownTextSpan.text = _msg;
         countdownTextSpan.classes.add('text-countdown');
         List<Element> countdownText = document.querySelectorAll(".countdown-text");
         countdownText.forEach((element) => element.append(countdownTextSpan));
@@ -97,13 +92,13 @@ class ContestHeaderComp implements DetachAware{
 
   void _refreshHeader() {
     var date = new DateFormat('dd/MM HH:mm');
-    contestHeaderInfo["description"] = "${contestInfo.templateContest.salaryCap}€ ${contestInfo.name}";
-    contestHeaderInfo["entryPrice"] = "${contestInfo.templateContest.entryFee}€";
-    contestHeaderInfo["startTime"] = "COMIENZA EL ${date.format(contestInfo.templateContest.startDate)}";
-    contestHeaderInfo["prize"] = "${contestInfo.templateContest.prizePool}€";
-    contestHeaderInfo["prizeType"] = "${contestInfo.templateContest.prizeTypeName}";
+    contestHeaderInfo["description"] = "${_contestInfo.templateContest.salaryCap}€ ${_contestInfo.name}";
+    contestHeaderInfo["entryPrice"] = "${_contestInfo.templateContest.entryFee}€";
+    contestHeaderInfo["startTime"] = "COMIENZA EL ${date.format(_contestInfo.templateContest.startDate)}";
+    contestHeaderInfo["prize"] = "${_contestInfo.templateContest.prizePool}€";
+    contestHeaderInfo["prizeType"] = "${_contestInfo.templateContest.prizeTypeName}";
 
-    int numJugadores = contestInfo.contestEntries.length;
+    int numJugadores = _contestInfo.contestEntries.length;
     contestHeaderInfo["contestantCount"] = "$numJugadores" + ((numJugadores == 1) ? " jugador" : " jugadores");
   }
 
@@ -112,10 +107,14 @@ class ContestHeaderComp implements DetachAware{
   }
 
   void detach() {
-    count.cancel();
+    _count.cancel();
   }
 
-  Scope _scope;
   Router _router;
+
   DateTimeService _dateTimeService;
+  Timer _count;
+  DateFormat _timeDisplayFormat;
+  String _msg = "";
+  Contest _contestInfo;
 }

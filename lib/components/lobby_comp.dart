@@ -8,24 +8,41 @@ import 'package:webclient/services/active_contests_service.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 
+@Component(
+  selector: 'lobby',
+  templateUrl: 'packages/webclient/components/lobby_comp.html',
+  publishAs: 'comp',
+  useShadowDom: false
+)
 
-@Component(selector: 'lobby', templateUrl: 'packages/webclient/components/lobby_comp.html', publishAs: 'comp', useShadowDom: false)
 class LobbyComp implements ShadowRootAware, DetachAware {
+  /******************************************/
+  static const String FILTER_CONTEST_NAME = "FILTER_CONTEST_NAME";
+  static const String FILTER_ENTRY_FEE_MIN = "FILTER_ENTRY_FEE_MIN";
+  static const String FILTER_ENTRY_FEE_MAX = "FILTER_ENTRY_FEE_MAX";
+  //Filtros que están bindeados a la contestList
+  Map<String, String> lobbyFilters = {};
+  //Variable que guarda lo escrito en el input de buscar contest por nombre
+  String filterContestName;
+
+  //valor para el filtro por entryFee. mínimo
+  String filterEntryFeeMin;
+  //valor para el filtro por entryFee. máximo
+  String filterEntryFeeMax;
+  /******************************************/
 
   ActiveContestsService activeContestsService;
   Contest selectedContest;
   ScreenDetectorService scrDet;
-
+  //Tipo de ordenación de la lista de partidos
   String sortType = "";
 
-  /******************************************/
-  final String FILTER_CONTEST_NAME = "FILTER_CONTEST_NAME";
+  // Rango minímo del filtro del EntryFee
+  String get filterEntryFeeRangeMin => getEntryFeeFilterRange()[0];
+  // Rango máximo del filtro del EntryFee
+  String get filterEntryFeeRangeMax => getEntryFeeFilterRange()[1];
 
-  //Filtros que están bindeados a la contestList
-  Map<String, Map> lobbyFilters = {};
-  //Variable que guarda lo escrito en el input de buscar contest por nombre
-  String filterContestName;
-  /******************************************/
+
   LobbyComp(this._router, this.activeContestsService, this.scrDet) {
     activeContestsService.refreshActiveContests();
     const refreshSeconds = const Duration(seconds: 10);
@@ -45,27 +62,41 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     //Al iniciar, tiene que está cerrado por lo tanto le añadimos la clase que pone la flecha hacia abajo
     _filtersButtons.forEach((value) => value.classes.add('toggleOff'));
 
-    /*
-      _sortingButtons.first.classes.forEach((value) => _sortingButtonClassesByDefault += (" " + value) );   ///(String value => _sortingButtonClassesByDefault += value);
-      _sortingButtonClassesByDefault = _sortingButtons.first.classes.fold("", (prev, value) => prev + value + " " );
-     */
+    // Inicializamos el control que dibuja el slider para el filtro por entrada
+    initSliderRange();
+
+    // Nos subscribimos al evento change
+    js.context.callMethod(r'$', ['#slider-range'])
+      .callMethod('on', new js.JsObject.jsify([{'set': onEntryFeeRangeChange}]));
+  }
+
+  void onEntryFeeRangeChange(dynamic sender, dynamic data) {
+    filterEntryFeeMin = data[0];
+    filterEntryFeeMax = data[1];
+    FilterByEntryFee();
+
+    print("Range change: $sender, $data");
   }
 
   void detach() {
     _timer.cancel();
   }
 
+
+  dynamic getEntryFeeFilterRange(){
+    var range = js.context.callMethod(r'$', ['#slider-range']).callMethod('val');
+    return range != null? range : ["",""];
+  }
+
   void onActionClick(Contest contest) {
     selectedContest = contest;
-    _router.go('enter_contest', {
-      "contestId": contest.contestId
-    });
+    _router.go('enter_contest', { "contestId": contest.contestId });
   }
 
   // Handle que recibe cual es la nueva mediaquery que se aplica.
   void onScreenWidthChange(String msg) {
     if (msg != "desktop") {
-      // Con esto llamamos a funciones de jQuery
+      // hacemos una llamada de jQuery para ocultar la ventana modal
       js.context.callMethod(r'$', ['#infoContestModal']).callMethod('modal', ['hide']);
     }
   }
@@ -78,10 +109,10 @@ class LobbyComp implements ShadowRootAware, DetachAware {
       // Esto soluciona el bug por el que no se muestra la ventana modal en Firefox;
       var modal = querySelector('#infoContestModal');
       modal.style.display = "block";
-
       // Con esto llamamos a funciones de jQuery
       js.context.callMethod(r'$', ['#infoContestModal']).callMethod('modal');
-    } else {
+    }
+    else {
       onActionClick(contest);
     }
   }
@@ -91,14 +122,13 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     if (sortName != _currentSelectedButton) {
       _currentButtonState = 0;
       _currentSelectedButton = sortName;
-    } else {
+    }
+    else {
       _currentButtonState++;
       if (_currentButtonState >= _butonState.length) _currentButtonState = 0;
     }
 
-    //sortType = campo_dirección;
     sortType = sortName + "_" + _butonState[_currentButtonState];
-
     applySortingStyles("sort-" + sortName);
   }
 
@@ -142,23 +172,47 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     }
   }
 
+  void initSliderRange()
+  {
+
+    refeshSliderRange();
+  }
+
+  void refeshSliderRange()
+  {
+    //iniciamos slider-range
+      js.context.callMethod(r'$', ['#slider-range'])
+          .callMethod('noUiSlider', [new js.JsObject.jsify({'start':      [0, 100],
+                                                            'step' :      1,
+                                                            'behaviour':  'drag',
+                                                            'connect':    true,
+                                                            'range':      {'min':0,'max':100}})]);
+  }
+
   /*
    * Funciones para los filtros
    */
   void filterByContestName() {
-    if (filterContestName.isEmpty)
-      return;
-    //comprobamos que si existe ya este filtro.. si existe lo eliminamos
-    if (lobbyFilters.containsKey(FILTER_CONTEST_NAME)) {
-      lobbyFilters.remove(FILTER_CONTEST_NAME);
+    addFilter(FILTER_CONTEST_NAME, filterContestName);
+  }
+
+  void FilterByEntryFee(){
+    addFilter(FILTER_ENTRY_FEE_MIN, filterEntryFeeMin);
+    addFilter(FILTER_ENTRY_FEE_MAX, filterEntryFeeMax);
+  }
+
+  void addFilter(String key, String valor){
+    //comprobamos que si existe ya este filtro... Si existe lo eliminamos
+    if (lobbyFilters.containsKey(key)) {
+      lobbyFilters.remove(key);
     }
     //Como no se actualiza en el componente lista al modificar los valores... hay que crear siempre la lista 'lobbyFilters 'de cero:
     //1-Creamos un mapa nuevo
-    Map<String, Map> lobbyFilterClone = {};
+    Map<String, String> lobbyFilterClone = {};
     //2- El mapa nuevo lo iniciamos con los valores de lobbyFilters para que no sea una referencia
     lobbyFilterClone.addAll(lobbyFilters);
     //3-Creamos el nuevo filtro...
-    Map<String, Map> tmpMap = { FILTER_CONTEST_NAME: {'FILTER_FIELD': 'name', 'FILTER_CONDITION': 'CONTAINS', 'FILTER_VALUE': filterContestName } };
+    Map<String, String> tmpMap = { key: valor };
     //... y lo añadimos a la lista temporal que tendrá los valores anteriores + este nuevo
     lobbyFilterClone.addAll(tmpMap);
     //4-Por ultimo igualamos el lobbyFilter con el temporal que hemos construidos.

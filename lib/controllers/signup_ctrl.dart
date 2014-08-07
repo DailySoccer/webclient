@@ -19,7 +19,7 @@ class SignupCtrl implements DetachAware {
   String password;
   bool enabledSubmit = true;
 
-  SignupCtrl(Scope scope, this._router, this._profileService, this._flashMessage);
+  SignupCtrl(this._router, this._profileService, this._flashMessage);
 
   void submitSignup() {
     enabledSubmit = false;

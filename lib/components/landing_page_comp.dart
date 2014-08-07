@@ -18,7 +18,7 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
   Element mainWrapper;
   Element containerForContent;
 
-  LandingPageComp(Scope scope, this._router, this._profileService) {
+  LandingPageComp(this._router, this._profileService) {
 
     // Capturamos el elemento wrapper
     bodyObj             = querySelector('body');

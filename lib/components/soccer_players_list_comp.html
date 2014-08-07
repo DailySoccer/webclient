@@ -11,11 +11,11 @@
 </div>
 
 <div class="soccer-player-list-header-table" ng-show="comp.scrDet.isDesktop" ng-cloack>
-  <div class="filterOrderPos"><a ng-click="">Pos.</a></div>
-  <div class="filterOrderName"><a ng-click="">Nombre</a></div>
-  <div class="filterOrderDFP"><a ng-click="">DFP</a></div>
-  <div class="filterOrderPlayed"><a ng-click="">Jugados</a></div>
-  <div class="filterOrderSalary"><a ng-click="">Sueldo</a></div>
+  <div class="filterOrderPos"><a ng-click="comp.enterContestCtrl.shortListByField('Pos')">Pos.</a></div>
+  <div class="filterOrderName"><a ng-click="comp.enterContestCtrl.shortListByField('Name')">Nombre</a></div>
+  <div class="filterOrderDFP"><a ng-click="comp.enterContestCtrl.shortListByField('DFP')">DFP</a></div>
+  <div class="filterOrderPlayed"><a ng-click="comp.enterContestCtrl.shortListByField('Played')">Jugados</a></div>
+  <div class="filterOrderSalary"><a ng-click="comp.enterContestCtrl.shortListByField('Salary')">Sueldo</a></div>
 </div>
 
 <div class="soccer-players-list">
@@ -23,7 +23,6 @@
   <div class="soccer-players-list-slot" ng-repeat="slot in comp.enterContestCtrl.availableSoccerPlayers" ng-class="comp.getSlotClassColor(slot.fieldPos.abrevName)">
     <div class="column-fieldpos" ng-click="comp.onRow(slot.id)">{{slot.fieldPos.abrevName}}</div>
     <div class="column-primary-info">
-      <!--<span class="soccer-player-name">{{slot.fullName | limitToDot : 19}}</span>-->
       <span class="soccer-player-name" ng-click="comp.onRow(slot.id)">{{slot.fullName | limitToDot : comp.showWidth(slot.fullName)}}</span>
       <span class="match-event-name" ng-click="comp.onRow(slot.id)" ng-bind-html="slot.matchEventName"></span>
     </div>

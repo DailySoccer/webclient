@@ -36,6 +36,7 @@ import 'package:webclient/components/soccer_players_list_comp.dart';
 import 'package:webclient/components/lineup_selector_comp.dart';
 import 'package:webclient/components/my_contests_comp.dart';
 import 'package:webclient/components/contests_list_comp.dart';
+import 'package:webclient/components/contests_table_comp.dart';
 import 'package:webclient/components/promos_comp.dart';
 import 'package:webclient/components/footer_comp.dart';
 
@@ -95,6 +96,7 @@ class WebClientApp extends Module {
 
     bind(MyContestsComp);
     bind(ContestsListComp);
+    bind(ContestsTableComp);
     bind(LobbyComp);
     bind(PromosComp);
     bind(FooterComp);

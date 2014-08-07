@@ -1,4 +1,4 @@
 <div id="promosComponent">
-   <img ng-show="!promosComp.scrDet.isXsScreen" src="images/BannerPromoDesktop.png" />
-   <img class="promoXs" ng-show="promosComp.scrDet.isXsScreen" src="images/BannerPromo.png"/>
+   <img ng-hide="promosComp.scrDet.isXsScreen" src="images/BannerPromoDesktop.png" class="promoDesktop" />
+   <img ng-show="promosComp.scrDet.isXsScreen" src="images/BannerPromo.png" class="promoXs" />
 </div>

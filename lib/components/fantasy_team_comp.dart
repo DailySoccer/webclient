@@ -45,7 +45,7 @@ class FantasyTeamComp implements ShadowRootAware {
     String get userNickname => (_contestEntry != null) ? _contestEntry.user.nickName : "";
     String get userScore => (_contestEntry != null) ? _contestEntry.currentLivePoints.toString() : "0";
 
-    FantasyTeamComp(this._scope, this._viewContestCtrl);
+    FantasyTeamComp(this._viewContestCtrl);
 
     // A pesar de que useShadowDom es false, sigue llegando este mensaje y es el primer momento donde podemos hacer un querySelector.
     // Hemos probado attach y el constructor, pero alli parece que todavia no estan creados los hijos. Tiene que ser var y no ShadowRoot
@@ -115,7 +115,6 @@ class FantasyTeamComp implements ShadowRootAware {
     bool _isOpponent = false;
     bool _showCloseButton = false;
 
-    Scope _scope;
     ContestEntry _contestEntry;
     ViewContestCtrl _viewContestCtrl;
 }

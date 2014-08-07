@@ -5621,6 +5621,12 @@ button.close {
 #headerContestWidget:after,
 #contestsListRoot .contest-row:before,
 #contestsListRoot .contest-row:after,
+.contests-table:before,
+.contests-table:after,
+.contests-table .header .row:before,
+.contests-table .header .row:after,
+.contests-table .data .row:before,
+.contests-table .data .row:after,
 .landing-wrapper .screen .content-wrapper .content-container:before,
 .landing-wrapper .screen .content-wrapper .content-container:after,
 .landing-wrapper .screen .content-wrapper .content-container:before,
@@ -5695,6 +5701,9 @@ button.close {
 #contestInfoTabContent .contestant-list .contestant-element:after,
 #headerContestWidget:after,
 #contestsListRoot .contest-row:after,
+.contests-table:after,
+.contests-table .header .row:after,
+.contests-table .data .row:after,
 .landing-wrapper .screen .content-wrapper .content-container:after,
 .landing-wrapper .screen .content-wrapper .content-container:after,
 .fantasy-team-list .fantasy-team-slot:after,
@@ -6001,7 +6010,7 @@ button.close {
 }
 @media (min-width: 768px) and only screen and (-webkit-min-device-pixel-ratio: 2), (min-width: 768px) and only screen and (min--moz-device-pixel-ratio: 2), (min-width: 768px) and only screen and (-o-min-device-pixel-ratio: 2/1), (min-width: 768px) and only screen and (min-device-pixel-ratio: 2), (min-width: 768px) and only screen and (min-resolution: 192dpi), (min-width: 768px) and only screen and (min-resolution: 2dppx) {
   #mainMenuRoot .navbar-header-loggin .navbar-brand-container .navbar-brand {
-    background-image: url("../images/LogoEpic11-2x.png");
+    background-image: url("../images/logoEpic11-2x.png");
     background-size: 120px 37px;
   }
 }
@@ -6024,7 +6033,7 @@ button.close {
 }
 @media (max-width: 767px) and only screen and (-webkit-min-device-pixel-ratio: 2), (max-width: 767px) and only screen and (min--moz-device-pixel-ratio: 2), (max-width: 767px) and only screen and (-o-min-device-pixel-ratio: 2/1), (max-width: 767px) and only screen and (min-device-pixel-ratio: 2), (max-width: 767px) and only screen and (min-resolution: 192dpi), (max-width: 767px) and only screen and (min-resolution: 2dppx) {
   #mainMenuRoot .navbar-header-loggin .navbar-brand-container .navbar-brand {
-    background-image: url("../images/LogoEpic11-2x.png");
+    background-image: url("../images/logoEpic11-2x.png");
     background-size: 120px 37px;
   }
 }
@@ -6052,7 +6061,7 @@ button.close {
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   #mainMenuRoot .navbar-header-unloggin .navbar-brand-container {
-    background-image: url("../images/LogoEpic11-2x.png");
+    background-image: url("../images/logoEpic11-2x.png");
     background-size: 120px 37px;
   }
 }
@@ -7757,6 +7766,105 @@ fieldset[disabled] #contestsListRoot .contest-row .column-contest-action .btn.ac
     font-size: 10pt;
     padding: 0;
   }
+}
+.contests-table {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.contests-table > .navbar-header,
+.contests-table > .navbar-collapse {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+@media (min-width: 768px) {
+  .contests-table > .navbar-header,
+  .contests-table > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+.contests-table .column-1 {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  .contests-table .column-1 {
+    float: left;
+    width: 8.33333333%;
+  }
+}
+.contests-table .column-2 {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  .contests-table .column-2 {
+    float: left;
+    width: 16.66666667%;
+  }
+}
+.contests-table .column-4 {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  .contests-table .column-4 {
+    float: left;
+    width: 33.33333333%;
+  }
+}
+.contests-table .header {
+  background-color: #434343;
+  line-height: 40px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 9pt;
+  color: #ffffff;
+}
+.contests-table .header .row {
+  margin-left: 0;
+  margin-right: 0;
+  border-width: 2px;
+  border-style: none none solid none;
+  border-color: #ffffff;
+  border-radius: 0;
+}
+.contests-table .data {
+  background-color: #ecf0f1;
+  line-height: 40px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 9pt;
+  color: #777777;
+}
+.contests-table .data .row {
+  margin-left: 0;
+  margin-right: 0;
+  border-width: 2px;
+  border-style: none none solid none;
+  border-color: #ffffff;
+  border-radius: 0;
+}
+.contests-table .data .row span {
+  float: left !important;
+  line-height: 8px;
+  margin-top: 8px;
+}
+.contests-table .data .row .fee-prize {
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  font-size: 14pt;
+  color: #214a5f;
 }
 .fondo-negro {
   background-color: #000000;
@@ -9525,6 +9633,7 @@ textarea.soccer-player-filter .name-player-input-filter {
   margin-right: 0px;
   line-height: 30px;
   background-color: #0d75a6;
+  cursor: pointer;
 }
 .soccer-player-list-header-table .filterOrderPos {
   position: relative;
@@ -9781,16 +9890,12 @@ textarea.soccer-player-filter .name-player-input-filter {
   padding-left: 0px;
   padding-right: 0px;
   text-align: right;
+  padding-right: 3px;
 }
 @media (min-width: 992px) {
   .soccer-players-list .soccer-players-list-slot .column-add {
     float: left;
     width: 16.66666667%;
-  }
-}
-@media (max-width: 991px) {
-  .soccer-players-list .soccer-players-list-slot .column-add {
-    margin-left: -2%;
   }
 }
 .soccer-players-list .soccer-players-list-slot .column-add .btn {
@@ -10028,7 +10133,8 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
     padding: 10px;
   }
 }
-#promosComponent .promoXs {
+#promosComponent .promoXs,
+#promosComponent .promoDesktop {
   margin: 0 auto;
   display: block;
   max-width: 100%;
@@ -10656,6 +10762,14 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   display: inline-block;
   line-height: 1;
 }
+@media (max-width: 767px) {
+  #infoAndFilterHeader #contestSortsFilters .toggleOff::after {
+    font-family: 'Glyphicons Halflings';
+    content: "\E114";
+    font-size: 8pt;
+    color: #ffffff;
+  }
+}
 #infoAndFilterHeader #contestSortsFilters .toggleOn::after {
   font-family: 'Glyphicons Halflings';
   content: "\E113";
@@ -10664,6 +10778,14 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   margin-left: 7px;
   display: inline-block;
   line-height: 1;
+}
+@media (max-width: 767px) {
+  #infoAndFilterHeader #contestSortsFilters .toggleOn::after {
+    font-family: 'Glyphicons Halflings';
+    content: "\E113";
+    font-size: 8pt;
+    color: #ffffff;
+  }
 }
 #infoAndFilterHeader #filtersPanel {
   margin-left: -15px;
@@ -10817,7 +10939,6 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  min-height: 300px;
 }
 @media (min-width: 992px) {
   #infoAndFilterHeader #filtersPanel .filter-column-salary-limit {
@@ -10847,6 +10968,11 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
     width: 25%;
   }
 }
+@media (min-width: 768px) {
+  #infoAndFilterHeader #filtersPanel .filter-column-salary-limit {
+    min-height: 300px;
+  }
+}
 #infoAndFilterHeader #filtersPanel .filter-column-entry-fee {
   float: left;
   width: 100%;
@@ -10854,7 +10980,6 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  min-height: 300px;
 }
 @media (min-width: 992px) {
   #infoAndFilterHeader #filtersPanel .filter-column-entry-fee {
@@ -10890,6 +11015,97 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
     float: left;
     width: 25%;
   }
+}
+#infoAndFilterHeader #filtersPanel .filter-content .slider-wrapper {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 15px 5px;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .range-font {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  color: #0d75a6;
+  padding: 0px;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .entry-fee-value-max {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  color: #0d75a6;
+  padding: 0px;
+  position: relative;
+  float: left;
+  width: 50%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  float: right !important;
+  text-align: right;
+  padding-right: 0px;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .entry-fee-value-min {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  color: #0d75a6;
+  padding: 0px;
+  position: relative;
+  float: left;
+  width: 50%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  float: left !important;
+  text-align: left;
+  padding-left: 0px;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check input[type=checkbox] {
+  display: none;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check input[type=checkbox] + label {
+  display: block;
+  background-color: #ffffff;
+  border: 1px solid #afafaf;
+  border-radius: 5px;
+  line-height: 36px;
+  margin: 1px 0px;
+  padding: 0 10px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #434343;
+  transition: all 1s ease;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check input[type=checkbox]:checked + label {
+  background-color: #f8f0f0;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check input[type=checkbox] + label::after {
+  font-family: 'Glyphicons Halflings';
+  content: "\E013";
+  font-size: 0pt;
+  color: #afafaf;
+  float: right !important;
+  transition: all 0.5s ease-in-out;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check input[type=checkbox]:checked + label::after {
+  font-family: 'Glyphicons Halflings';
+  content: "\E013";
+  font-size: 12pt;
 }
 @media (max-width: 991px) {
   #myContest {
@@ -10981,7 +11197,6 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  padding-top: 10px;
   padding-bottom: 10px;
   text-align: center;
 }
@@ -11021,7 +11236,6 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   font-weight: 700;
   font-size: 9pt;
   color: #ffffff;
-  padding-top: 10px;
   padding-bottom: 10px;
   text-align: center;
 }
@@ -11229,6 +11443,15 @@ fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest.acti
   background-color: #ffffff;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
+}
+.list-container .header-contests {
+  background-color: #ecf0f1;
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 24px;
+  color: #214a5f;
+  line-height: 80px;
+  padding-left: 15px;
 }
 #mainFooter {
   margin-left: 0;
@@ -11936,8 +12159,9 @@ fieldset[disabled] .btn-cancel.active {
   .wrapper-content-container {
     min-height: 1100px;
     background-color: #000000;
-    background-image: url("../images/DesignBackgroundBIG.jpg");
-    background-size: contain;
+    /*background-image: url("@{images}/designBackgroundBig.jpg");*/
+    background-image: url("../images/retroBackgroundBig.jpg");
+    /*background-size: contain;*/
     background-position: center top;
     background-repeat: no-repeat;
   }
@@ -12000,13 +12224,13 @@ fieldset[disabled] .btn-cancel.active {
   }
 }
 .price-icon {
-  background-image: url("../images/IconPrice.png");
+  background-image: url("../images/iconPrice.png");
   width: 24px;
   height: 24px;
   display: inline-block;
 }
 .prize-icon {
-  background-image: url("../images/IconPrize.png");
+  background-image: url("../images/iconPrize.png");
   width: 26px;
   height: 24px;
   display: inline-block;

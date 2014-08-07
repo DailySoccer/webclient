@@ -79,4 +79,5 @@ class MyContestsComp implements DetachAware {
   Timer _timer;
   Router _router;
   FlashMessagesService _flashMessage;
+
 }

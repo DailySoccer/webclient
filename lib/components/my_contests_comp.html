@@ -55,7 +55,6 @@
 
         <!-- lista de concursos -->
         <div class="list-container" ng-show="comp.hasLiveContests">
-          <div class="header-contests">TORNEOS EN DIRECTO</div>
           <contests-list id="liveContests"
                          contests-list="comp.myContestsService.liveContests"
                          on-action-click='comp.onLiveActionClick(contest)'
@@ -67,9 +66,16 @@
       <!-- WAITING CONTESTS CONTENT-->
       <div class="tab-pane" id="waiting-contest-content">
 
-        <!-- Barra de resumen de actividad -->
+        <!-- Barra de resumen de actividad sin registros-->
         <div class="resume-bar" ng-hide="comp.hasWaitingContests">
           <span class="information-no-contest">EN ESTE ESPACIO PODRÁS CONSULTAR Y MODIFICAR LOS EQUIPOS QUE TIENES PENDIENTES DE JUGAR EN UN TORNEO</span>
+        </div>
+
+        <!-- Barra de resumen de actividad con registros-->
+        <div class="resume-bar" ng-show="comp.hasWaitingContests">
+          <div class="change-player">
+            <button class="btn-change-player" ng-click="">CAMBIO RÁPIDO DE JUGADOR</button>
+          </div>
         </div>
 
         <!-- Banner de información de lista vacía -->
@@ -89,7 +95,6 @@
 
         <!-- lista de concursos -->
         <div class="list-container" ng-show="comp.hasWaitingContests">
-          <div class="header-contests">PRÓXIMOS TORNEOS</div>
           <contests-list id="waitingContests"
                          contests-list='comp.myContestsService.waitingContests'
                          on-action-click='comp.onWaitingActionClick(contest)'
@@ -106,10 +111,14 @@
           </div>
           <!-- Barra de resumen de actividad con registros-->
           <div class="resume-bar" ng-show="comp.hasHistoryContests">
+            <div class="refresh-text">Actualizado cada 24 horas</div>
             <div class="info">
-              <span class="info-registers-count">-- REGISTROS</span>
-              <span class="info-wins-count">-- GANADOS</span>
-              <span class="info-available-money">--- €</span>
+              <span class="info-registers-count">&lt;num_reg&gt; Registros</span>
+              <span class="info-wins-count">&lt;num_win&gt; Ganados</span>
+              <span class="info-available-money">&lt;money&gt; €</span>
+            </div>
+            <div class="data-to-csv">
+              <button class="btn-data-to-csv" ng-click="">DESCARGAR COMO CSV</button>
             </div>
           </div>
 
@@ -130,7 +139,7 @@
 
           <!-- lista de concursos -->
           <div class="list-container" ng-show="comp.hasHistoryContests">
-            <div class="header-contests">HISTORIAL DE TORNEOS</div>
+            <div class="text-refresh-history">Actualizado cada 24 horas</div>
             <contests-list id="historyContests"
                            contests-list="comp.myContestsService.historyContests"
                            on-action-click='comp.onHistoryActionClick(contest)'

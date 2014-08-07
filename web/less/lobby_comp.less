@@ -303,6 +303,7 @@
 						padding: 0 10px;
 						.opensans_normal(10pt, @greyUltraDark);
 						transition: all 1s ease;
+						cursor:pointer;
 					}
 					input[type=checkbox]:checked + label {
 						background-color: @tramaRed;
@@ -315,10 +316,32 @@
 					} 
 					input[type=checkbox]:checked + label::after {
 						.create-glyph("\E013", 12pt);
-					} 
-					
+					}					
 				}
+			}
+			/******** Sobreescritura de los estilos de noUiSlider ********/
+			/* Slider size and handle placement */
+			.noUi-horizontal .noUi-handle {
+				width: 30px;
+				height: 30px;
+				left: -17px;
+				top: -7px;
+				border-radius: 15px;
+			}
+			/* Handle stripes */
+			.noUi-handle:before,
+			.noUi-handle:after {
+				content: none;
+			}
+			/* Styling */
+			.noUi-connect {
+				background: @blueMed;
 			}
 		}
 	}
 }
+
+
+
+
+

@@ -11016,6 +11016,12 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
     width: 25%;
   }
 }
+#infoAndFilterHeader #filtersPanel .filter-content {
+  /******** Sobreescritura de los estilos de noUiSlider ********/
+  /* Slider size and handle placement */
+  /* Handle stripes */
+  /* Styling */
+}
 #infoAndFilterHeader #filtersPanel .filter-content .slider-wrapper {
   position: relative;
   float: left;
@@ -11090,6 +11096,7 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   font-size: 10pt;
   color: #434343;
   transition: all 1s ease;
+  cursor: pointer;
 }
 #infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check input[type=checkbox]:checked + label {
   background-color: #f8f0f0;
@@ -11106,6 +11113,20 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   font-family: 'Glyphicons Halflings';
   content: "\E013";
   font-size: 12pt;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .noUi-horizontal .noUi-handle {
+  width: 30px;
+  height: 30px;
+  left: -17px;
+  top: -7px;
+  border-radius: 15px;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .noUi-handle:before,
+#infoAndFilterHeader #filtersPanel .filter-content .noUi-handle:after {
+  content: none;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .noUi-connect {
+  background: #0d75a6;
 }
 @media (max-width: 991px) {
   #myContest {

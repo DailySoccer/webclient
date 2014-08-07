@@ -53,11 +53,10 @@
 	height: 18px;
 }
 .noUi-horizontal .noUi-handle {
-	width: 30px;
-	height: 30px;
+	width: 34px;
+	height: 28px;
 	left: -17px;
-	top: -7px;
-	border-radius: 15px;
+	top: -6px;
 }
 .noUi-horizontal.noUi-extended {
 	padding: 0 15px;
@@ -129,7 +128,7 @@
 }
 
 /* Handle stripes;
-
+ */
 .noUi-handle:before,
 .noUi-handle:after {
 	content: "";
@@ -140,7 +139,7 @@
 	background: #E8E7E6;
 	left: 14px;
 	top: 6px;
-}*/
+}
 .noUi-handle:after {
 	left: 17px;
 }

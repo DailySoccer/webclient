@@ -11114,6 +11114,14 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   content: "\E013";
   font-size: 12pt;
 }
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check input[type=checkbox]:disabled + label {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #dcdcdc;
+  border: 1px solid #dcdcdc;
+  background-color: #f8f8f8;
+}
 #infoAndFilterHeader #filtersPanel .filter-content .noUi-horizontal .noUi-handle {
   width: 30px;
   height: 30px;

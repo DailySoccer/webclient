@@ -58,20 +58,20 @@
         <div class="filter-content">
             <div class="check-group-wrapper">
               <div class="button-check">
-                <input id="filtroOneOnOne" type="checkbox" >
-                <label for="filtroOneOnOne">Uno contra uno</label>
+                <input id="filtroFree" type="checkbox" ng-disabled="!comp.hasFreeTournaments" ng-model="comp.isFreeTournamentChecked" ng-click="comp.filterByFreeTournamentType()">
+                <label for="filtroFree">Gratis</label>
               </div>
               <div class="button-check">
-                <input id="filtroLiga" type="checkbox" >
+                <input id="filtroLiga" type="checkbox"  ng-disabled="!comp.hasLigaTournaments" ng-model="comp.isLigaTournamentChecked" ng-click="comp.filterByLigaTournamentType()">
                 <label for="filtroLiga">Liga</label>
               </div>
               <div class="button-check">
-                <input id="filtroFiftyFifty" type="checkbox" >
+                <input id="filtroFiftyFifty" type="checkbox"  ng-disabled="!comp.hasFiftyFiftyTournaments" ng-model="comp.isFiftyFiftyTournamentChecked" ng-click="comp.filterByFiftyFiftyTournamentType()">
                 <label for="filtroFiftyFifty">50/50</label>
               </div>
               <div class="button-check">
-                <input id="filtroSpecials" type="checkbox" >
-                <label for="filtroSpecials">Torneos Especiales</label>
+                <input id="filtroHeadToHead" type="checkbox"  ng-disabled="!comp.hasHeadToHeadTournaments" ng-model="comp.isHeadToHeadTournamentChecked" ng-click="comp.filterByHeadToHeadTournamentType()" >
+                <label for="filtroHeadToHead">1 conta 1</label>
               </div>
             </div>
         </div>
@@ -82,15 +82,15 @@
         <div class="filter-content">
             <div class="check-group-wrapper">
               <div class="button-check">
-                <input id="filtroPrincipiante" type="checkbox">
+                <input id="filtroPrincipiante" type="checkbox" ng-disabled="!comp.hasBegginerTier" ng-model="comp.isBeginnerTierChecked" ng-click="comp.filterByBegginerTier()">
                 <label for="filtroPrincipiante">Principiante</label>
               </div>
               <div class="button-check">
-                <input id="filtroEstandar" type="checkbox">
+                <input id="filtroEstandar" type="checkbox" ng-disabled="!comp.hasStandardTier" ng-model="comp.isStandardTierChecked" ng-click="comp.filterByStandardTier()">
                 <label for="filtroEstandar">Estandar</label>
               </div>
               <div class="button-check">
-                <input id="filtroExperto" type="checkbox">
+                <input id="filtroExperto" type="checkbox" ng-disabled="!comp.hasSkilledTier" ng-model="comp.isSkilledTierChecked" ng-click="comp.filterBySkilledTier()">
                 <label for="filtroExperto">Experto</label>
               </div>
           </div>

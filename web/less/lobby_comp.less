@@ -316,7 +316,12 @@
 					} 
 					input[type=checkbox]:checked + label::after {
 						.create-glyph("\E013", 12pt);
-					}					
+					}
+					input[type=checkbox]:disabled + label {
+						.opensans_normal(10pt, @greyLight);
+						border: 1px solid @greyLight;
+						background-color: @greyUltraLight;
+					}				
 				}
 			}
 			/******** Sobreescritura de los estilos de noUiSlider ********/

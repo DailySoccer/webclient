@@ -10,6 +10,15 @@ import 'package:intl/intl.dart';
            useShadowDom: false)
 class ContestsListComp {
 
+  static const int    SALARY_LIMIT_FOR_BEGGINERS    = 80000;
+  static const int    SALARY_LIMIT_FOR_STANDARDS    = 70000;
+  static const int    SALARY_LIMIT_FOR_SKILLEDS     = 60000;
+
+   static const String TOURNAMENT_TYPE_FREE         = "FREE";
+   static const String TOURNAMENT_TYPE_LIGA         = "LIGA";
+   static const String TOURNAMENT_TYPE_FIFTY_FIFTY  = "FIFTY_FIFTY";
+   static const String TOURNAMENT_TYPE_HEAD_TO_HEAD = "HEAD_TO_HEAD";
+
   // Lista copia de la original que guardará los contest tras aplicar los filtros
   List<Contest> contestsListFiltered;
 
@@ -112,6 +121,28 @@ class ContestsListComp {
            break;
            case "FILTER_ENTRY_FEE_MAX":
              contestsListFiltered = contestsListFiltered.where( (contest) => contest.templateContest.entryFee <= int.parse(value.split('.')[0]) ).toList();
+           break;
+           case "FILTER_SALARY_LIMIT_BEGINNER":
+             contestsListFiltered = contestsListFiltered.where( (contest) => contest.templateContest.salaryCap >= SALARY_LIMIT_FOR_BEGGINERS ).toList();
+           break;
+           case "FILTER_SALARY_LIMIT_STANDARD":
+             contestsListFiltered = contestsListFiltered.where( (contest) => contest.templateContest.salaryCap < SALARY_LIMIT_FOR_BEGGINERS &&
+                                                                             contest.templateContest.salaryCap > SALARY_LIMIT_FOR_SKILLEDS ).toList();
+           break;
+           case "FILTER_SALARY_LIMIT_SKILLED":
+             contestsListFiltered = contestsListFiltered.where( (contest) => contest.templateContest.salaryCap <= SALARY_LIMIT_FOR_SKILLEDS ).toList();
+           break;
+           case "FILTER_TOURNAMENT_TYPE_FREE":
+             contestsListFiltered = contestsListFiltered.where( (contest) => contest.templateContest.tournamentType == TOURNAMENT_TYPE_FREE ).toList();
+           break;
+           case "FILTER_TOURNAMENT_TYPE_LIGA":
+             contestsListFiltered = contestsListFiltered.where( (contest) => contest.templateContest.tournamentType == TOURNAMENT_TYPE_LIGA ).toList();
+           break;
+           case "FILTER_TOURNAMENT_TYPE_FIFTY_FIFTY":
+             contestsListFiltered = contestsListFiltered.where( (contest) => contest.templateContest.tournamentType == TOURNAMENT_TYPE_FIFTY_FIFTY).toList();
+           break;
+           case "FILTER_TOURNAMENT_TYPE_HEAD_TO_HEAD":
+             contestsListFiltered = contestsListFiltered.where( (contest) => contest.templateContest.tournamentType == TOURNAMENT_TYPE_HEAD_TO_HEAD ).toList();
            break;
          }
        });

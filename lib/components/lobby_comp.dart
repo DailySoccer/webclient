@@ -17,13 +17,25 @@ import 'package:webclient/services/screen_detector_service.dart';
 
 class LobbyComp implements ShadowRootAware, DetachAware {
   /******************************************/
-  static const String FILTER_CONTEST_NAME           = "FILTER_CONTEST_NAME";
-  static const String FILTER_ENTRY_FEE_MIN          = "FILTER_ENTRY_FEE_MIN";
-  static const String FILTER_ENTRY_FEE_MAX          = "FILTER_ENTRY_FEE_MAX";
+  static const String FILTER_CONTEST_NAME                 = "FILTER_CONTEST_NAME";
+  static const String FILTER_ENTRY_FEE_MIN                = "FILTER_ENTRY_FEE_MIN";
+  static const String FILTER_ENTRY_FEE_MAX                = "FILTER_ENTRY_FEE_MAX";
 
-  static const String FILTER_SALARY_LIMIT_BEGINNER  = "FILTER_SALARY_LIMIT_BEGINNER";
-  static const String FILTER_SALARY_LIMIT_STANDARD  = "FILTER_SALARY_LIMIT_STANDARD";
-  static const String FILTER_SALARY_LIMIT_SKILLED   = "FILTER_SALARY_LIMIT_SKILLED";
+  static const int    SALARY_LIMIT_FOR_BEGGINERS          = 80000;
+  static const String FILTER_SALARY_LIMIT_BEGINNER        = "FILTER_SALARY_LIMIT_BEGINNER";
+  static const int    SALARY_LIMIT_FOR_STANDARDS          = 70000;
+  static const String FILTER_SALARY_LIMIT_STANDARD        = "FILTER_SALARY_LIMIT_STANDARD";
+  static const int    SALARY_LIMIT_FOR_SKILLEDS           = 60000;
+  static const String FILTER_SALARY_LIMIT_SKILLED         = "FILTER_SALARY_LIMIT_SKILLED";
+
+  static const String TOURNAMENT_TYPE_FREE                = "FREE";
+  static const String FILTER_TOURNAMENT_TYPE_FREE         = "FILTER_TOURNAMENT_TYPE_FREE";
+  static const String TOURNAMENT_TYPE_LIGA                = "LIGA";
+  static const String FILTER_TOURNAMENT_TYPE_LIGA         = "FILTER_TOURNAMENT_TYPE_LIGA";
+  static const String TOURNAMENT_TYPE_FIFTY_FIFTY         = "FIFTY_FIFTY";
+  static const String FILTER_TOURNAMENT_TYPE_FIFTY_FIFTY  = "FILTER_TOURNAMENT_TYPE_FIFTY_FIFTY";
+  static const String TOURNAMENT_TYPE_HEAD_TO_HEAD        = "HEAD_TO_HEAD";
+  static const String FILTER_TOURNAMENT_TYPE_HEAD_TO_HEAD = "FILTER_TOURNAMENT_TYPE_HEAD_TO_HEAD";
 
   //Filtros que están bindeados a la contestList
   Map<String, String> lobbyFilters = {};
@@ -34,8 +46,20 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   String filterEntryFeeMin;
   //valor para el filtro por entryFee. máximo
   String filterEntryFeeMax;
-  /******************************************/
 
+  // Variables expuestas por ng-model en los checks del filtro de dificultad
+  bool isBeginnerTierChecked;
+  bool isStandardTierChecked;
+  bool isSkilledTierChecked;
+
+  // Variables expuestas por ng-model en los checks del filtro de Tipo de Torneo
+  bool isFreeTournamentChecked;
+  bool isLigaTournamentChecked;
+  bool isFiftyFiftyTournamentChecked;
+  bool isHeadToHeadTournamentChecked;
+
+
+  /******************************************/
   ActiveContestsService activeContestsService;
   Contest selectedContest;
   ScreenDetectorService scrDet;
@@ -48,10 +72,104 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   String get filterEntryFeeRangeMax => getEntryFeeFilterRange()[1];
 
 
+  // propiedad que dice si existen concursos del tipo "PRINCIPIANTE" en la lista actual de concursos.
+  bool get hasBegginerTier {
+    bool result = false;
+    if( activeContestsService.activeContests != null) {
+      activeContestsService.activeContests.forEach( (Contest contest) {
+         bool comparison = contest.templateContest.salaryCap >= SALARY_LIMIT_FOR_BEGGINERS;
+         if(comparison)
+           result =  true;
+      });
+    }
+    return result;
+  }
+  // propiedad que dice si existen concursos del tipo "STANDARS" en la lista actual de concursos.
+  bool get hasStandardTier {
+    bool result = false;
+    if( activeContestsService.activeContests != null) {
+      activeContestsService.activeContests.forEach( (Contest contest) {
+         bool comparison = contest.templateContest.salaryCap < SALARY_LIMIT_FOR_BEGGINERS &&
+                           contest.templateContest.salaryCap > SALARY_LIMIT_FOR_SKILLEDS;
+         if(comparison)
+           result =  true;
+      });
+    }
+    return result;
+  }
+  // propiedad que dice si existen concursos del tipo "EXPERTS" en la lista actual de concursos.
+  bool get hasSkilledTier {
+    bool result = false;
+    if( activeContestsService.activeContests != null) {
+      activeContestsService.activeContests.forEach( (Contest contest) {
+         bool comparison = contest.templateContest.salaryCap <= SALARY_LIMIT_FOR_SKILLEDS;
+         if(comparison)
+           result =  true;
+      });
+    }
+    return result;
+  }
+
+  //Propiedad que dice si hay partido del torneos FREE
+  bool get hasFreeTournaments
+  {
+    bool result = false;
+        if( activeContestsService.activeContests != null) {
+          activeContestsService.activeContests.forEach( (Contest contest) {
+             bool comparison = contest.templateContest.tournamentType == TOURNAMENT_TYPE_FREE;
+             if(comparison)
+               result =  true;
+          });
+        }
+        return result;
+  }
+  //Propiedad que dice si hay partido del torneos LIGA
+  bool get hasLigaTournaments
+  {
+    bool result = false;
+        if( activeContestsService.activeContests != null) {
+          activeContestsService.activeContests.forEach( (Contest contest) {
+             bool comparison = contest.templateContest.tournamentType == TOURNAMENT_TYPE_LIGA;
+             if(comparison)
+               result =  true;
+          });
+        }
+        return result;
+  }
+
+  //Propiedad que dice si hay partido del torneos FIFTY_FIFTY
+  bool get hasFiftyFiftyTournaments
+  {
+    bool result = false;
+        if( activeContestsService.activeContests != null) {
+          activeContestsService.activeContests.forEach( (Contest contest) {
+             bool comparison = contest.templateContest.tournamentType == TOURNAMENT_TYPE_FIFTY_FIFTY;
+             if(comparison)
+               result =  true;
+          });
+        }
+        return result;
+  }
+  //Propiedad que dice si hay partido del torneos HEAD_TO_HEAD
+  bool get hasHeadToHeadTournaments
+  {
+    bool result = false;
+        if( activeContestsService.activeContests != null) {
+          activeContestsService.activeContests.forEach( (Contest contest) {
+             bool comparison = contest.templateContest.tournamentType == TOURNAMENT_TYPE_HEAD_TO_HEAD;
+             if(comparison)
+               result =  true;
+          });
+        }
+        return result;
+  }
+/**************************************/
+
+
   LobbyComp(this._router, this.activeContestsService, this.scrDet) {
     activeContestsService.refreshActiveContests();
     const refreshSeconds = const Duration(seconds: 10);
-    _timer = new Timer.periodic(refreshSeconds, (Timer t) => activeContestsService.refreshActiveContests());
+    _timer = new Timer.periodic(refreshSeconds, (Timer t) =>  activeContestsService.refreshActiveContests());
     scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
   }
 
@@ -69,8 +187,6 @@ class LobbyComp implements ShadowRootAware, DetachAware {
 
     // Inicializamos el control que dibuja el slider para el filtro por entrada
     initSliderRange();
-
-
   }
 
   void onEntryFeeRangeChange(dynamic sender, dynamic data) {
@@ -84,7 +200,6 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   void detach() {
     _timer.cancel();
   }
-
 
   dynamic getEntryFeeFilterRange(){
     var range = js.context.callMethod(r'$', ['#slider-range']).callMethod('val');
@@ -207,18 +322,99 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     if (lobbyFilters.containsKey(key)) {
       lobbyFilters.remove(key);
     }
-    //Como no se actualiza en el componente lista al modificar los valores... hay que crear siempre la lista 'lobbyFilters 'de cero:
-    //1-Creamos un mapa nuevo
-    Map<String, String> lobbyFilterClone = {};
-    //2- El mapa nuevo lo iniciamos con los valores de lobbyFilters para que no sea una referencia
-    lobbyFilterClone.addAll(lobbyFilters);
-    //3-Creamos el nuevo filtro...
-    Map<String, String> tmpMap = { key: valor };
-    //... y lo añadimos a la lista temporal que tendrá los valores anteriores + este nuevo
-    lobbyFilterClone.addAll(tmpMap);
-    //4-Por ultimo igualamos el lobbyFilter con el temporal que hemos construidos.
-    lobbyFilters = lobbyFilterClone;
+    refreshFilterList(key, valor);
   }
+
+  void refreshFilterList(String key, String valor){
+
+      //Como no se actualiza en el componente lista al modificar los valores... hay que crear siempre la lista 'lobbyFilters 'de cero:
+      //1-Creamos un mapa nuevo
+      Map<String, String> lobbyFilterClone = {};
+      //2- El mapa nuevo lo iniciamos con los valores de lobbyFilters para que no sea una referencia
+      lobbyFilterClone.addAll(lobbyFilters);
+      //3-Creamos el nuevo filtro...
+      if(!key.isEmpty) {
+        Map<String, String> tmpMap = { key: valor };
+        //... y lo añadimos a la lista temporal que tendrá los valores anteriores + este nuevo
+        lobbyFilterClone.addAll(tmpMap);
+      }
+      //4-Por ultimo igualamos el lobbyFilter con el temporal que hemos construidos.
+      lobbyFilters = lobbyFilterClone;
+  }
+
+  // Filtra la lista por concursos de dificultad Fácil
+  void filterByBegginerTier() {
+    if(isBeginnerTierChecked)
+      addFilter(FILTER_SALARY_LIMIT_BEGINNER, SALARY_LIMIT_FOR_BEGGINERS.toString());
+    else
+      if (lobbyFilters.containsKey(FILTER_SALARY_LIMIT_BEGINNER))
+        lobbyFilters.remove(FILTER_SALARY_LIMIT_BEGINNER);
+
+    refreshFilterList("", "");
+  }
+
+  // Filtra la lista por concursos de dificultad media
+  void filterByStandardTier() {
+    if(isStandardTierChecked)
+      addFilter(FILTER_SALARY_LIMIT_STANDARD, "");
+    else
+      if (lobbyFilters.containsKey(FILTER_SALARY_LIMIT_STANDARD))
+        lobbyFilters.remove(FILTER_SALARY_LIMIT_STANDARD);
+
+    refreshFilterList("", "");
+  }
+
+  // Filtra la lista por concursos de dificultad dificil
+  void filterBySkilledTier() {
+    if(isBeginnerTierChecked)
+      addFilter(FILTER_SALARY_LIMIT_SKILLED, "");
+    else
+      if (lobbyFilters.containsKey(FILTER_SALARY_LIMIT_SKILLED))
+        lobbyFilters.remove(FILTER_SALARY_LIMIT_SKILLED);
+
+    refreshFilterList("", "");
+  }
+
+  // Filtra la lista por concursos de torneos GRATIS
+  void filterByFreeTournamentType() {
+    if(isFreeTournamentChecked)
+      addFilter(FILTER_TOURNAMENT_TYPE_FREE, "");
+    else
+      if (lobbyFilters.containsKey(FILTER_TOURNAMENT_TYPE_FREE))
+        lobbyFilters.remove(FILTER_TOURNAMENT_TYPE_FREE);
+
+    refreshFilterList("", "");
+  }
+  // Filtra la lista por concursos de torneos LIGA
+  void filterByLigaTournamentType() {
+    if(isLigaTournamentChecked)
+      addFilter(FILTER_TOURNAMENT_TYPE_LIGA, "");
+    else
+      if (lobbyFilters.containsKey(FILTER_TOURNAMENT_TYPE_LIGA))
+        lobbyFilters.remove(FILTER_TOURNAMENT_TYPE_LIGA);
+
+    refreshFilterList("", "");
+  }
+  // Filtra la lista por concursos de torneos 50/50
+  void filterByFiftyFiftyTournamentType() {
+    if(isFiftyFiftyTournamentChecked)
+      addFilter(FILTER_TOURNAMENT_TYPE_FIFTY_FIFTY, "");
+    else
+      if (lobbyFilters.containsKey(FILTER_TOURNAMENT_TYPE_FIFTY_FIFTY))
+        lobbyFilters.remove(FILTER_TOURNAMENT_TYPE_FIFTY_FIFTY);
+    refreshFilterList("", "");
+  }
+  // Filtra la lista por concursos de torneos 1 vs 1
+  void filterByHeadToHeadTournamentType() {
+    if(isHeadToHeadTournamentChecked)
+      addFilter(FILTER_TOURNAMENT_TYPE_HEAD_TO_HEAD, "");
+    else
+      if (lobbyFilters.containsKey(FILTER_TOURNAMENT_TYPE_HEAD_TO_HEAD))
+        lobbyFilters.remove(FILTER_TOURNAMENT_TYPE_HEAD_TO_HEAD);
+
+    refreshFilterList("", "");
+  }
+
 
 
   Timer _timer;

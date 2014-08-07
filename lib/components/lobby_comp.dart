@@ -65,15 +65,13 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     // Inicializamos el control que dibuja el slider para el filtro por entrada
     initSliderRange();
 
-    // Nos subscribimos al evento change
-    js.context.callMethod(r'$', ['#slider-range'])
-      .callMethod('on', new js.JsObject.jsify([{'set': onEntryFeeRangeChange}]));
+
   }
 
   void onEntryFeeRangeChange(dynamic sender, dynamic data) {
     filterEntryFeeMin = data[0];
     filterEntryFeeMax = data[1];
-    FilterByEntryFee();
+    filterByEntryFee();
 
     print("Range change: $sender, $data");
   }
@@ -174,29 +172,27 @@ class LobbyComp implements ShadowRootAware, DetachAware {
 
   void initSliderRange()
   {
-
-    refeshSliderRange();
-  }
-
-  void refeshSliderRange()
-  {
     //iniciamos slider-range
-      js.context.callMethod(r'$', ['#slider-range'])
-          .callMethod('noUiSlider', [new js.JsObject.jsify({'start':      [0, 100],
-                                                            'step' :      1,
-                                                            'behaviour':  'drag',
-                                                            'connect':    true,
-                                                            'range':      {'min':0,'max':100}})]);
+        js.context.callMethod(r'$', ['#slider-range'])
+            .callMethod('noUiSlider', [new js.JsObject.jsify({'start':      [0, 100],
+                                                              'step' :      1,
+                                                              'behaviour':  'drag',
+                                                              'connect':    true,
+                                                              'range':      {'min':0,'max':100}})]);
+
+    // Nos subscribimos al evento change
+     js.context.callMethod(r'$', ['#slider-range'])
+       .callMethod('on', new js.JsObject.jsify([{'set': onEntryFeeRangeChange}]));
   }
 
-  /*
+   /*
    * Funciones para los filtros
    */
   void filterByContestName() {
     addFilter(FILTER_CONTEST_NAME, filterContestName);
   }
 
-  void FilterByEntryFee(){
+  void filterByEntryFee(){
     addFilter(FILTER_ENTRY_FEE_MIN, filterEntryFeeMin);
     addFilter(FILTER_ENTRY_FEE_MAX, filterEntryFeeMax);
   }

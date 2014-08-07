@@ -42,7 +42,7 @@ class ViewContestCtrl implements DetachAware {
 
     _myContestsService.refreshContest(_contestId)
       .then((jsonObject) {
-        mainPlayer = getContestEntryWithUser(_profileService.user.userId);
+        mainPlayer = contest.getContestEntryWithUser(_profileService.user.userId);
         _prizes = contest.templateContest.getPrizes();
 
         updatedDate = _dateTimeService.now;

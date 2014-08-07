@@ -28,6 +28,7 @@ abstract class ServerService {
   Future<JsonObject> getSoccerPlayerInfo(String templateSoccerPlayerId);
 
   // Debug
+  Future<JsonObject> isSimulatorActivated();
   Future<JsonObject> getCurrentDate();
 }
 
@@ -73,6 +74,10 @@ class DailySoccerServer implements ServerService {
 
   Future<JsonObject> getSoccerPlayerInfo(String templateSoccerPlayerId) {
     return _innerServerCall("$HostServerUrl/get_soccer_player_info/$templateSoccerPlayerId", null);
+  }
+
+  Future<JsonObject> isSimulatorActivated() {
+    return _innerServerCall("$HostServerUrl/admin/is_simulator_activated", null);
   }
 
   Future<JsonObject> getCurrentDate() {

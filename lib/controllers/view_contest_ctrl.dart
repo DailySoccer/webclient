@@ -44,6 +44,7 @@ class ViewContestCtrl implements DetachAware {
     _myContestsService.refreshContest(_contestId)
       .then((jsonObject) {
         mainPlayer = getContestEntryWithUser(_profileService.user.userId);
+        _prizes = contest.templateContest.getPrizes();
 
         updatedDate = _dateTimeService.now;
 
@@ -82,13 +83,11 @@ class ViewContestCtrl implements DetachAware {
   }
 
   String getPrize(int index) {
-    String prize = "-";
-    switch(index) {
-      case 0: prize = "€100,00"; break;
-      case 1: prize = "€50,00"; break;
-      case 2: prize = "€30,00"; break;
+    String prizeText = "-";
+    if (index < _prizes.length) {
+      prizeText = "${_prizes[index]}€";
     }
-    return prize;
+    return prizeText;
   }
 
   void detach() {
@@ -108,6 +107,7 @@ class ViewContestCtrl implements DetachAware {
   }
 
   Timer _timer;
+  List<int> _prizes = [];
 
   Scope _scope;
   FlashMessagesService _flashMessage;

@@ -54,7 +54,7 @@
         </div>
 
         <!-- lista de concursos -->
-        <div class="list-container" ng-show="comp.haveContests(comp.myContestsService.liveContests)">
+        <div class="list-container" ng-show="comp.hasLiveContests">
           <div class="header-contests">TORNEOS EN DIRECTO</div>
           <contests-table id="liveContests"
                           data="comp.myContestsService.liveContests"
@@ -93,7 +93,7 @@
         </div>
 
         <!-- lista de concursos -->
-        <div class="list-container" ng-show="comp.haveContests(comp.myContestsService.waitingContests)">
+        <div class="list-container" ng-show="comp.hasWaitingContests">
           <div class="header-contests">PRÓXIMOS TORNEOS</div>
           <contests-table id="waitingContests"
                           data="comp.myContestsService.waitingContests"

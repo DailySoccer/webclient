@@ -10,9 +10,6 @@ import 'package:intl/intl.dart';
            useShadowDom: false)
 class ContestsListComp {
 
-  // Lista original de los contest
-  List<Contest> contestsListOriginal;
-
   // Lista copia de la original que guardará los contest tras aplicar los filtros
   List<Contest> contestsListFiltered;
 
@@ -26,8 +23,8 @@ class ContestsListComp {
 
   @NgOneWay("contests-list")
   void set contestsList(List<Contest> value) {
-    contestsListOriginal = value;
-    contestsListFiltered = contestsListOriginal;
+    _contestsListOriginal = value;
+    contestsListFiltered = _contestsListOriginal;
     refreshFilters();
   }
 

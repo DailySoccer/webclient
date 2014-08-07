@@ -24,12 +24,12 @@
 }
 
 .resume-bar{
-	.hidden-xs();
 	.make-row(0);
 	background-color: @blueDark;
 	.info{
 		.make-sm-column(6);
 		.make-sm-column-push(3);
+		padding: 10px;
 		
 		.info-registers-count, .info-wins-count{
 			.opensans_bold(10pt, @white);
@@ -38,15 +38,12 @@
 		.info-available-money{
 			.opensans_bold(10pt, @orange);	
 		}
-		//padding-top: 10px;
-		padding-bottom: 10px;
 		text-align: center;
 	}
 	.information-no-contest{
 			.make-xs-column(12);
 			.opensans_bold(9pt, @white);
-			//padding-top: 10px;
-			padding-bottom: 10px;	
+			padding: 10px;
 			text-align: center;
 			
 	}	
@@ -117,7 +114,10 @@
 
 	}
 	.no-contests-text {
-		.opensans_bold(9pt, @greyDark);
+		.opensans_bold(8pt, @greyMed);
+		strong {
+			color: @blueDark;
+		}
 	}
 }
 

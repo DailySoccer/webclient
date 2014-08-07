@@ -42,10 +42,10 @@
         <div class="no-contest" ng-hide="comp.hasLiveContests">
           <div class="no-contests-wrapper">
             <div class="no-contests-title">
-             EN ESTE MOMENTO, NO TIENES<br>UN EQUIPO CREADO PARA NINGÚN TORNEO
+             EN ESTE MOMENTO, <br> NO ESTÁS JUGANDO NINGÚN TORNEO
             </div>
             <div class="no-contests-text">
-              VE A LA LISTA DE TORNEOS, ELIGE UNO Y EMPIEZA A JUGAR
+              CONSULTA LA LISTA DE TUS <strong>PRÓXIMOS TORNEOS</strong> PARA VER CUÁNDO EMPIEZAN
             </div>
           </div>
           <div class="my-no-contest-bottom-row">
@@ -56,16 +56,11 @@
         <!-- lista de concursos -->
         <div class="list-container" ng-show="comp.hasLiveContests">
           <div class="header-contests">TORNEOS EN DIRECTO</div>
-          <contests-table id="liveContests"
-                          data="comp.myContestsService.liveContests"
-                          columns-names="comp.liveColumns" >
-          </contests-table>
-
-          <!--<contests-list id="liveContests"
+          <contests-list id="liveContests"
                          contests-list="comp.myContestsService.liveContests"
                          on-action-click='comp.onLiveActionClick(contest)'
                          on-row-click='comp.onLiveRowClick(contest)'>
-          </contests-list>-->
+          </contests-list>
         </div>
       </div>
 
@@ -81,7 +76,7 @@
         <div class="no-contest" ng-hide="comp.hasWaitingContests">
           <div class="no-contests-wrapper">
             <div class="no-contests-title">
-             EN ESTE MOMENTO,<br> NO ESTÁS JUGANDO NUNGÚN TORNEO
+             EN ESTE MOMENTO, NO TIENES <br>UN EQUIPO CREADO PARA NUNGÚN TORNEO
             </div>
             <div class="no-contests-text">
               VE A LA LISTA DE TORNEOS, ELIGE UNO Y EMPIEZA A JUGAR
@@ -95,24 +90,22 @@
         <!-- lista de concursos -->
         <div class="list-container" ng-show="comp.hasWaitingContests">
           <div class="header-contests">PRÓXIMOS TORNEOS</div>
-          <contests-table id="waitingContests"
-                          data="comp.myContestsService.waitingContests"
-                          columns-names="comp.waitingColumns" >
-          </contests-table>
-
-          <!--<contests-list id="waitingContests"
+          <contests-list id="waitingContests"
                          contests-list='comp.myContestsService.waitingContests'
                          on-action-click='comp.onWaitingActionClick(contest)'
                          on-row-click='comp.onWaitingRowClick(contest)'>
-          </contests-list>-->
+          </contests-list>
         </div>
       </div>
 
       <!-- HISTORY CONTESTS CONTENT-->
       <div class="tab-pane" id="history-contest-content">
-
-           <!-- Barra de resumen de actividad -->
-          <div class="resume-bar">
+          <!-- Barra de resumen de actividad sin registros-->
+          <div class="resume-bar" ng-hide="comp.hasHistoryContests">
+            <span class="information-no-contest">AQUÍ PODRÁS CONSULTAR Y REPASAR TODOS LOS TORNEOS QUE HAS JUGADO: TUS EQUIPOS, RIVALES PUNTUACIONES…</span>
+          </div>
+          <!-- Barra de resumen de actividad con registros-->
+          <div class="resume-bar" ng-show="comp.hasHistoryContests">
             <div class="info">
               <span class="info-registers-count">-- REGISTROS</span>
               <span class="info-wins-count">-- GANADOS</span>
@@ -120,19 +113,29 @@
             </div>
           </div>
 
-          <!-- lista de concursos -->
-          <div class="list-container">
-            <div class="header-contests">HISTORIAL DE TORNEOS</div>
-            <contests-table id="historyContests"
-                            data="comp.myContestsService.historyContests"
-                            columns-names="comp.historyColumns" >
-            </contests-table>
+          <!-- Banner de información de lista vacía -->
+          <div class="no-contest" ng-hide="comp.hasHistoryContests">
+            <div class="no-contests-wrapper">
+              <div class="no-contests-title">
+               TODAVÍA NO HAS JUGADO <br>NUNGÚN TORNEO
+              </div>
+              <div class="no-contests-text">
+                VE A LA LISTA DE TORNEOS, ELIGE UNO Y EMPIEZA A JUGAR
+              </div>
+            </div>
+            <div class="my-no-contest-bottom-row">
+              <button class="btn-go-to-contest" ng-click="comp.gotoLobby()">IR A LOS TORNEOS</button>
+            </div>
+          </div>
 
-            <!--<contests-list id="historyContests"
+          <!-- lista de concursos -->
+          <div class="list-container" ng-show="comp.hasHistoryContests">
+            <div class="header-contests">HISTORIAL DE TORNEOS</div>
+            <contests-list id="historyContests"
                            contests-list="comp.myContestsService.historyContests"
                            on-action-click='comp.onHistoryActionClick(contest)'
                            on-row-click='comp.onHistoryRowClick(contest)'>
-            </contests-list>-->
+            </contests-list>
           </div>
       </div>
 

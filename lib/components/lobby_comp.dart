@@ -17,9 +17,14 @@ import 'package:webclient/services/screen_detector_service.dart';
 
 class LobbyComp implements ShadowRootAware, DetachAware {
   /******************************************/
-  static const String FILTER_CONTEST_NAME = "FILTER_CONTEST_NAME";
-  static const String FILTER_ENTRY_FEE_MIN = "FILTER_ENTRY_FEE_MIN";
-  static const String FILTER_ENTRY_FEE_MAX = "FILTER_ENTRY_FEE_MAX";
+  static const String FILTER_CONTEST_NAME           = "FILTER_CONTEST_NAME";
+  static const String FILTER_ENTRY_FEE_MIN          = "FILTER_ENTRY_FEE_MIN";
+  static const String FILTER_ENTRY_FEE_MAX          = "FILTER_ENTRY_FEE_MAX";
+
+  static const String FILTER_SALARY_LIMIT_BEGINNER  = "FILTER_SALARY_LIMIT_BEGINNER";
+  static const String FILTER_SALARY_LIMIT_STANDARD  = "FILTER_SALARY_LIMIT_STANDARD";
+  static const String FILTER_SALARY_LIMIT_SKILLED   = "FILTER_SALARY_LIMIT_SKILLED";
+
   //Filtros que están bindeados a la contestList
   Map<String, String> lobbyFilters = {};
   //Variable que guarda lo escrito en el input de buscar contest por nombre

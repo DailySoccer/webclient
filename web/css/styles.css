@@ -11208,17 +11208,12 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   margin-right: 0;
   background-color: #214a5f;
 }
-@media (max-width: 767px) {
-  .resume-bar {
-    display: none !important;
-  }
-}
 .resume-bar .info {
   position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  padding-bottom: 10px;
+  padding: 10px;
   text-align: center;
 }
 @media (min-width: 768px) {
@@ -11257,7 +11252,7 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   font-weight: 700;
   font-size: 9pt;
   color: #ffffff;
-  padding-bottom: 10px;
+  padding: 10px;
   text-align: center;
 }
 #myContestMenuTabs {
@@ -11456,8 +11451,11 @@ fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest.acti
 .no-contests-wrapper .no-contests-text {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
-  font-size: 9pt;
-  color: #777777;
+  font-size: 8pt;
+  color: #afafaf;
+}
+.no-contests-wrapper .no-contests-text strong {
+  color: #214a5f;
 }
 .list-container {
   min-height: 539px;

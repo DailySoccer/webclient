@@ -4,6 +4,7 @@ import "package:json_object/json_object.dart";
 import "package:webclient/models/user.dart";
 import "package:webclient/models/soccer_player.dart";
 import "package:webclient/models/contest.dart";
+import "package:webclient/models/match_event.dart";
 import 'package:webclient/services/contest_references.dart';
 
 class ContestEntry {
@@ -15,6 +16,16 @@ class ContestEntry {
   List<SoccerPlayer> soccers;
 
   int get currentLivePoints => soccers != null ? soccers.fold(0, (prev, soccerPlayer) => prev + soccerPlayer.currentLivePoints ) : 0;
+
+  int get timeLeft {
+    // Buscar los partidos en los que participan nuestro fantasyTeam
+    Set<MatchEvent> matchEvents = new Set<MatchEvent>();
+    for (SoccerPlayer soccerPlayer in soccers) {
+      matchEvents.add(soccerPlayer.team.matchEvent);
+    }
+    // Calcular cuántas "media partes" quedan...
+    return matchEvents.fold(0, (prev, matchEvent) => prev + matchEvent.halfTimesLeft);
+  }
 
   ContestEntry(this.contestEntryId, this.user, this.soccers);
 

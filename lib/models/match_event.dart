@@ -10,11 +10,21 @@ class MatchEvent {
 
   SoccerTeam soccerTeamA;
   SoccerTeam soccerTeamB;
+  String period;
   DateTime startDate;
 
   MatchEvent(this.templateMatchEventId, this.soccerTeamA, this.soccerTeamB, this.startDate);
 
   MatchEvent.referenceInit(this.templateMatchEventId);
+
+  int get halfTimesLeft {
+    int left = 2;
+    switch (period) {
+      case "SECOND_HALF": left = 1; break;
+      case "POST_GAME":   left = 0; break;
+    }
+    return left;
+  }
 
   factory MatchEvent.fromJsonObject(JsonObject json, ContestReferences references) {
     MatchEvent matchEvent = references.getMatchEventById(json.templateMatchEventId);
@@ -29,12 +39,21 @@ class MatchEvent {
     return soccerPlayer;
   }
 
-  void updateFantasyPoints(Map<String, int> soccerPlayerToPoints) {
+  void updateLiveInfo(JsonObject jsonObject) {
+    _updateFantasyPoints(jsonObject.livePlayerToPoints);
+    _updatePeriod(jsonObject.period);
+  }
+
+  void _updateFantasyPoints(Map<String, int> soccerPlayerToPoints) {
     soccerTeamA.soccerPlayers.forEach( (soccerPlayer) =>
         soccerPlayer.currentLivePoints = soccerPlayerToPoints[soccerPlayer.templateSoccerPlayerId]);
 
     soccerTeamB.soccerPlayers.forEach( (soccerPlayer) =>
         soccerPlayer.currentLivePoints = soccerPlayerToPoints[soccerPlayer.templateSoccerPlayerId]);
+  }
+
+  void _updatePeriod(String updatedPeriod) {
+    period = updatedPeriod;
   }
 
   MatchEvent _initFromJsonObject(JsonObject json, ContestReferences references) {
@@ -45,11 +64,13 @@ class MatchEvent {
     soccerTeamB = new SoccerTeam.fromJsonObject(json.soccerTeamB, references)
       .. matchEvent = this;
 
+    period = json.period;
+
     startDate = new DateTime.fromMillisecondsSinceEpoch(json.startDate, isUtc: true);
 
     // Si el templateMatchEvent incluye la información "live", la actualizamos
     if (json.containsKey("livePlayerToPoints")) {
-      updateFantasyPoints(json.livePlayerToPoints);
+      _updateFantasyPoints(json.livePlayerToPoints);
     }
 
     return this;

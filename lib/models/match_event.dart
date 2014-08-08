@@ -11,6 +11,7 @@ class MatchEvent {
   SoccerTeam soccerTeamA;
   SoccerTeam soccerTeamB;
   String period;
+  int minutesPlayed;
   DateTime startDate;
 
   MatchEvent(this.templateMatchEventId, this.soccerTeamA, this.soccerTeamB, this.startDate);
@@ -41,7 +42,9 @@ class MatchEvent {
 
   void updateLiveInfo(JsonObject jsonObject) {
     _updateFantasyPoints(jsonObject.livePlayerToPoints);
-    _updatePeriod(jsonObject.period);
+
+    period = jsonObject.period;
+    minutesPlayed = jsonObject.minutesPlayed;
   }
 
   void _updateFantasyPoints(Map<String, int> soccerPlayerToPoints) {
@@ -50,10 +53,6 @@ class MatchEvent {
 
     soccerTeamB.soccerPlayers.forEach( (soccerPlayer) =>
         soccerPlayer.currentLivePoints = soccerPlayerToPoints[soccerPlayer.templateSoccerPlayerId]);
-  }
-
-  void _updatePeriod(String updatedPeriod) {
-    period = updatedPeriod;
   }
 
   MatchEvent _initFromJsonObject(JsonObject json, ContestReferences references) {
@@ -65,6 +64,7 @@ class MatchEvent {
       .. matchEvent = this;
 
     period = json.period;
+    minutesPlayed = json.minutesPlayed;
 
     startDate = new DateTime.fromMillisecondsSinceEpoch(json.startDate, isUtc: true);
 

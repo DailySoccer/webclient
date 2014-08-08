@@ -100,7 +100,7 @@ class FantasyTeamComp implements ShadowRootAware {
               "fieldPos": new FieldPos(soccerPlayer.fieldPos),
               "fullName": soccerPlayer.name,
               "matchEventName": matchEventName,
-              "remainingMatchTime": "70 MIN",
+              "remainingMatchTime": soccerPlayer.team.matchEvent.minutesPlayed <= 90 ? "${90-soccerPlayer.team.matchEvent.minutesPlayed} MIN" : "EXTRA TIME",
               "score": soccerPlayer.currentLivePoints
           });
         }

@@ -122,24 +122,51 @@
 // Variable para el alto de los contenedores de lineup y soccer list. Solo para version desktop
 @recomended-control-heihgt: 645px;
 .enter-contest-soccer-players-wrapper {
-	.make-md-column(7, 0);
-	padding: 10px 5px 60px 10px;
-	.enter-contest-soccer-players {
-		.make-border(1px, solid, @greyLight, @globalBoxesRadius);
-		height: @recomended-control-heihgt;
-		overflow: hidden;
+	@media (min-width: @screen-sm-min) {
+		.make-sm-column(6, 0);
+		.pull-left();
+		padding: 10px 5px 0 10px;
+		.enter-contest-soccer-players {
+			.make-border(1px, solid, @greyLight, @globalBoxesRadius);
+			height: @recomended-control-heihgt - 70px;
+			overflow: hidden;
+		}
+	}
+	@media (min-width: @screen-md-min) {
+		.make-md-column(7, 0);
+		padding: 10px 5px 60px 10px;
+		.enter-contest-soccer-players {
+			.make-border(1px, solid, @greyLight, @globalBoxesRadius);
+			height: @recomended-control-heihgt;
+			overflow: hidden;
+		}
 	}
 }
 
 .enter-contest-lineup-wrapper {
-	.make-md-column(5, 0);
-	padding: 10px 10px 60px 5px;
-	.enter-contest-lineup {
-		.make-border(1px, solid, @orange, @globalBoxesRadius);
-		height: @recomended-control-heihgt;
-		overflow: hidden;
+	@media (min-width: @screen-sm-min) {
+		.make-sm-column(6, 0);
+		.pull-right();
+		padding: 10px 10px 0 5px;
+		.enter-contest-lineup {
+			.make-border(1px, solid, @orange, @globalBoxesRadius);
+			height: @recomended-control-heihgt - 70px;
+			overflow: hidden;
+		}
+	}
+	@media (min-width: @screen-md-min) {
+		.make-md-column(5, 0);
+		padding: 10px 10px 60px 5px;
+		.enter-contest-lineup {
+			.make-border(1px, solid, @orange, @globalBoxesRadius);
+			height: @recomended-control-heihgt;
+			overflow: hidden;
+		}
 	}
 	.enter-contest-total-salary {
+		@media (max-width: @screen-xs-max) {
+			.hidden-xs();
+		}
 		.exo_bold(20px, @white);
 		padding-left: 10px;
 		padding-right: 2px;
@@ -153,6 +180,9 @@
 			line-height: 43px;
 			display: block;
 			width: 208px;
+			@media (min-width: @screen-sm-min) {
+				width: 198px;
+			}
 			.make-border(1px, solid, @white, @globalBoxesRadius);
 			.exo_bold(30px, @greyDark);
 			margin-top: 3px;
@@ -164,58 +194,5 @@
 				line-height: 25px;
 			}
 		}
-	}
-}
-@media (min-width: @screen-sm-min) {
-	.enter-contest-soccer-players-wrapper-sm {
-		.make-sm-column(6, 0);
-		.pull-left();
-		padding: 10px 5px 0 10px;
-		.enter-contest-soccer-players {
-			.make-border(1px, solid, @greyLight, @globalBoxesRadius);
-			height: @recomended-control-heihgt - 70px;
-			overflow: hidden;
-		}
-	}	
-	.enter-contest-lineup-wrapper-sm {
-		.make-sm-column(6, 0);
-		.pull-right();
-		padding: 10px 10px 0 5px;
-		.enter-contest-lineup {
-			.make-border(1px, solid, @orange, @globalBoxesRadius);
-			height: @recomended-control-heihgt - 70px;
-			overflow: hidden;
-		}
-		.enter-contest-total-salary {
-			.exo_bold(20px, @white);
-			padding-left: 10px;
-			padding-right: 2px;
-			#gradient.vertical(@orangeHeaderLight, @orangeHeaderDark, 49%, 51%);
-			line-height: 76px;
-			.total-salary {
-				.exo_light(24px, @white);
-				text-align: center;
-				float: right;
-				background-color: @white;
-				line-height: 43px;
-				display: block;
-				width: 198px;
-				.make-border(1px, solid, @white, @globalBoxesRadius);
-				.exo_bold(30px, @greyDark);
-				margin-top: 3px;
-				overflow: hidden;
-				span {
-					background-color: @greyLight;
-					font-size: 10px;
-					display: block;
-					line-height: 25px;
-				}
-			}
-		}
-	}
-}
-@media (max-width: @screen-xs-max) {
-	.enter-contest-total-salary {
-		.hidden-xs();
 	}
 }

@@ -57,7 +57,7 @@
                 <div class="total-salary">{{ctrl.contest.templateContest.salaryCap}}€</div>
                 <button type="button" class="btn-cancel-player-selection" ng-click="ctrl.cancelPlayerSelection()" ng-show="ctrl.isSelectingSoccerPlayer">Cancelar</button>
               </div>
-              <div class="enter-contest-lineup-wrapper-sm">
+              <div class="enter-contest-lineup-wrapper">
                 <div class="enter-contest-lineup">
                   <div class="enter-contest-total-salary">
                       <span class="total-salary-text">TU ALINEACIÓN</span>
@@ -66,7 +66,7 @@
                   <lineup-selector ng-show="!ctrl.isSelectingSoccerPlayer || ctrl.scrDet.isSmScreen"></lineup-selector>
                 </div>
               </div>
-              <div class="enter-contest-soccer-players-wrapper-sm">
+              <div class="enter-contest-soccer-players-wrapper">
                 <div class="enter-contest-soccer-players">
                   <soccer-players-list ng-show="ctrl.isSelectingSoccerPlayer || ctrl.scrDet.isSmScreen"></soccer-players-list>
                 </div>

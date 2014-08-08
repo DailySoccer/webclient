@@ -124,9 +124,27 @@ class TemplateContest {
         prizes.add( (prizePool * 0.2).toInt() );
         break;
       case TemplateContest.PRIZE_TOP_THIRD:
+        // A cuantos repartiremos premios?
         int third = maxEntries ~/ 3;
-        for (int i=0; i<third; i++) {
-          prizes.add(prizePool ~/ third);
+
+        // Para hacer el reparto proporcional asignaremos puntos inversamente a la posición
+        // Más puntos cuanto más baja su posición. p.ej. para repartir a 6 usuarios: 1º: 6 pts / 2º: 5 pts / 3º: 4 pts / 4º: 3 pts / 5º: 2 pts / 6º: 1 pts
+
+        // Averiguar los puntos totales a repartir para saber cuánto vale el punto
+        // n * (n+1) / 2
+        int totalPoints = third * (third + 1) ~/ 2;
+        int prizeByPoint = prizePool ~/ totalPoints;
+
+        // A cada posición le damos el premio (multiplicando su posición "invertida": el 1º tiene 6 puntos, el 2º tiene 5 puntos, etc)
+        int totalPrize = prizePool;
+        for (int i=third; i>0; i--) {
+          int prize = prizeByPoint * i;
+          prizes.add(prize);
+          totalPrize -= prize;
+        }
+        // Si queda algo, ¿se lo damos al primero?
+        if (totalPrize > 0) {
+          prizes[0] += totalPrize;
         }
         break;
       case TemplateContest.PRIZE_FIFTY_FIFTY:

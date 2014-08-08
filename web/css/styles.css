@@ -7754,6 +7754,11 @@ fieldset[disabled] #contestsListRoot .contest-row .column-contest-action .btn.ac
     font-size: 10pt;
     padding: 0;
   }
+  #contestsListRoot .contest-row .column-contest-action .btn:focus,
+  #contestsListRoot .contest-row .column-contest-action .btn:active,
+  #contestsListRoot .contest-row .column-contest-action .btn:hover {
+    background-color: transparent;
+  }
 }
 .contests-table {
   margin-right: auto;
@@ -9179,6 +9184,11 @@ fieldset[disabled] .close-team .btn-close-cancel.active {
   padding: 10px;
   padding-top: 0;
 }
+@media (min-width: 768px) {
+  .enter-contest-actions-wrapper {
+    padding: 0 10px;
+  }
+}
 .enter-contest-actions-wrapper .total-salary {
   position: relative;
   float: left;
@@ -9193,6 +9203,11 @@ fieldset[disabled] .close-team .btn-close-cancel.active {
   background-color: #fa9c19;
   text-align: center;
   border-radius: 3px;
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .enter-contest-actions-wrapper .total-salary {
+    display: none !important;
+  }
 }
 .enter-contest-actions-wrapper .btn-cancel-player-selection {
   display: inline-block;
@@ -9318,6 +9333,11 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-cancel-player-selection.a
 .enter-contest-actions-wrapper .btn-cancel-player-selection .badge {
   color: #afafaf;
   background-color: #ffffff;
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .enter-contest-actions-wrapper .btn-cancel-player-selection {
+    display: none !important;
+  }
 }
 .enter-contest-actions-wrapper .button-wrapper {
   padding: 10px;
@@ -9592,10 +9612,14 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list.activ
   text-align: center;
 }
 .match-teams-filter {
-  background-color: #ecf0f1;
   margin-left: 0;
   margin-right: 0;
   padding-bottom: 10px;
+}
+@media (min-width: 768px) {
+  .match-teams-filter {
+    background-color: #ecf0f1;
+  }
 }
 .match-teams-filter .button-filtro-team {
   position: relative;
@@ -9722,7 +9746,98 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list.activ
   display: block;
   line-height: 25px;
 }
-@media (max-width: 991px) {
+@media (min-width: 768px) {
+  .enter-contest-soccer-players-wrapper-sm {
+    position: relative;
+    min-height: 1px;
+    padding-left: 0;
+    padding-right: 0;
+    float: left !important;
+    padding: 10px 5px 0 10px;
+  }
+  .enter-contest-soccer-players-wrapper-sm .enter-contest-soccer-players {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #dcdcdc;
+    border-radius: 8px;
+    height: 575px;
+    overflow: hidden;
+  }
+  .enter-contest-lineup-wrapper-sm {
+    position: relative;
+    min-height: 1px;
+    padding-left: 0;
+    padding-right: 0;
+    float: right !important;
+    padding: 10px 10px 0 5px;
+  }
+  .enter-contest-lineup-wrapper-sm .enter-contest-lineup {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #fa9c19;
+    border-radius: 8px;
+    height: 575px;
+    overflow: hidden;
+  }
+  .enter-contest-lineup-wrapper-sm .enter-contest-total-salary {
+    font-family: 'Exo', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: #ffffff;
+    padding-left: 10px;
+    padding-right: 2px;
+    background-image: -webkit-linear-gradient(top, #fba61a 49%, #ec990e 51%);
+    background-image: linear-gradient(to bottom, #fba61a 49%, #ec990e 51%);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffba61a', endColorstr='#ffec990e', GradientType=0);
+    line-height: 76px;
+  }
+  .enter-contest-lineup-wrapper-sm .enter-contest-total-salary .total-salary {
+    font-weight: 300;
+    font-size: 24px;
+    color: #ffffff;
+    text-align: center;
+    float: right;
+    background-color: #ffffff;
+    line-height: 43px;
+    display: block;
+    width: 198px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #ffffff;
+    border-radius: 8px;
+    font-family: 'Exo', sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+    color: #777777;
+    margin-top: 3px;
+    overflow: hidden;
+  }
+  .enter-contest-lineup-wrapper-sm .enter-contest-total-salary .total-salary span {
+    background-color: #dcdcdc;
+    font-size: 10px;
+    display: block;
+    line-height: 25px;
+  }
+}
+@media (min-width: 768px) and (min-width: 768px) {
+  .enter-contest-soccer-players-wrapper-sm {
+    float: left;
+    width: 50%;
+  }
+}
+@media (min-width: 768px) and (min-width: 768px) {
+  .enter-contest-lineup-wrapper-sm {
+    float: left;
+    width: 50%;
+  }
+}
+@media (max-width: 767px) and (max-width: 767px) {
+  .enter-contest-total-salary {
+    display: none !important;
+  }
+}
+@media (max-width: 767px) {
   .soccer-player-filter {
     padding: 0 10px;
   }
@@ -9744,7 +9859,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list.activ
   color: #777777;
   padding: 0 10px 0 0;
 }
-@media (min-width: 992px) and (max-width: 1199px) {
+@media (min-width: 768px) and (max-width: 991px) {
   .soccer-player-filter .filter-by-position span {
     display: none !important;
   }
@@ -9807,6 +9922,11 @@ fieldset[disabled] .soccer-player-filter .match-selector-filter {
 textarea.soccer-player-filter .match-selector-filter {
   height: auto;
 }
+@media (min-width: 768px) and (max-width: 991px) {
+  .soccer-player-filter .match-selector-filter {
+    display: none !important;
+  }
+}
 @media (min-width: 992px) and (max-width: 1199px) {
   .soccer-player-filter .match-selector-filter {
     display: none !important;
@@ -9864,7 +9984,7 @@ fieldset[disabled] .soccer-player-filter .name-player-input-filter {
 textarea.soccer-player-filter .name-player-input-filter {
   height: auto;
 }
-@media (max-width: 991px) {
+@media (max-width: 767px) {
   .soccer-player-filter .name-player-input-filter {
     margin: 10px 0 15px;
     border: 1px solid #dcdcdc;
@@ -9956,6 +10076,11 @@ textarea.soccer-player-filter .name-player-input-filter {
   border-color: #777777;
   border-radius: 0;
   min-height: 1px;
+}
+@media (min-width: 768px) {
+  .soccer-players-list {
+    max-height: 465px;
+  }
 }
 @media (min-width: 992px) {
   .soccer-players-list {

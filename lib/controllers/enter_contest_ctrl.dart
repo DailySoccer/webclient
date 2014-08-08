@@ -126,7 +126,6 @@ class EnterContestCtrl {
   }
 
   void setMatchFilter(String matchId, String matchText) {
-    print(matchText);
     if(matchId == "-1") {
       removeFilters(FILTER_MATCH);
       setMatchFilterClass('Todos los partidos');

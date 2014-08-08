@@ -23,9 +23,6 @@ class MyContestsComp implements DetachAware {
     _timer = new Timer.periodic(const Duration(seconds:3), (Timer t) => _updateLive());
   }
 
-  String waitingColumns = "ID-1,TORNEO-4,INICIO-1,SALARIO-1,CONTRINCANTE-2,ENTRADA-1,PREMIOS-2";
-  String liveColumns, historyColumns = "ID-1,TORNEO-4,SALARIO-1,PUNTOS-1,CONTRINCANTE-2,ENTRADA-1,PREMIOS-2";
-
   void onWaitingRowClick(Contest contest) {
   }
 
@@ -33,6 +30,7 @@ class MyContestsComp implements DetachAware {
   }
 
   void onLiveRowClick(Contest contest) {
+    _router.go('live_contest', {"contestId" : contest.contestId});
   }
 
   void onLiveActionClick(Contest contest) {
@@ -40,6 +38,7 @@ class MyContestsComp implements DetachAware {
   }
 
   void onHistoryRowClick(Contest contest) {
+    _router.go('history_contest', {"contestId" : contest.contestId});
   }
 
   void onHistoryActionClick(Contest contest) {

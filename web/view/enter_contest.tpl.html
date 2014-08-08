@@ -27,7 +27,7 @@
         <div class="enter-contest-lineup">
           <div class="enter-contest-total-salary">
               TU ALINEACIÓN
-              <span class="total-salary"><span>DINERO RESTANTE:</span>&lt;Sal Disp€&gt;</span>
+              <span class="total-salary"><span>DINERO RESTANTE:</span>{{ctrl.contest.templateContest.salaryCap}}€</span>
           </div>
           <lineup-selector></lineup-selector>
           <div class="enter-contest-actions-wrapper">
@@ -54,12 +54,23 @@
           <div class="tab-pane active" id="lineup-tab-content">
 
               <div class="enter-contest-actions-wrapper">
-                <div class="total-salary">&lt;Sal Disp€&gt;</div>
+                <div class="total-salary">{{ctrl.contest.templateContest.salaryCap}}€</div>
                 <button type="button" class="btn-cancel-player-selection" ng-click="ctrl.cancelPlayerSelection()" ng-show="ctrl.isSelectingSoccerPlayer">Cancelar</button>
               </div>
-
-              <lineup-selector ng-show="!ctrl.isSelectingSoccerPlayer"></lineup-selector>
-              <soccer-players-list ng-show="ctrl.isSelectingSoccerPlayer"></soccer-players-list>
+              <div class="enter-contest-lineup-wrapper-sm">
+                <div class="enter-contest-lineup">
+                  <div class="enter-contest-total-salary">
+                      <span class="total-salary-text">TU ALINEACIÓN</span>
+                      <span class="total-salary"><span>DINERO RESTANTE:</span>{{ctrl.contest.templateContest.salaryCap}}€</span>
+                  </div>
+                  <lineup-selector ng-show="!ctrl.isSelectingSoccerPlayer || ctrl.scrDet.isSmScreen"></lineup-selector>
+                </div>
+              </div>
+              <div class="enter-contest-soccer-players-wrapper-sm">
+                <div class="enter-contest-soccer-players">
+                  <soccer-players-list ng-show="ctrl.isSelectingSoccerPlayer || ctrl.scrDet.isSmScreen"></soccer-players-list>
+                </div>
+              </div>
 
               <div class="enter-contest-actions-wrapper">
                 <button type="button" class="btn-cancel-player-selection" ng-click="ctrl.cancelPlayerSelection()" ng-show="ctrl.isSelectingSoccerPlayer">Cancelar</button>

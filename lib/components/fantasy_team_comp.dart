@@ -101,7 +101,7 @@ class FantasyTeamComp implements ShadowRootAware {
               "fullName": soccerPlayer.name,
               "matchEventName": matchEventName,
               "remainingMatchTime": soccerPlayer.team.matchEvent.minutesPlayed <= 90 ? "${90-soccerPlayer.team.matchEvent.minutesPlayed} MIN" : "EXTRA TIME",
-              "score": soccerPlayer.team.matchEvent.minutesPlayed > 0 ? soccerPlayer.currentLivePoints : "-"
+              "score": (soccerPlayer.currentLivePoints > 0 || soccerPlayer.team.matchEvent.minutesPlayed > 0) ? soccerPlayer.currentLivePoints : "-"
           });
         }
       }

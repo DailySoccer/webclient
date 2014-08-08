@@ -128,14 +128,13 @@ class TemplateContest {
         int third = maxEntries ~/ 3;
 
         // Para hacer el reparto proporcional asignaremos puntos inversamente a la posición
-        // Más puntos cuanto más baja su posición. p.ej. para repartir a 6 usuarios: 1º: 6 pts / 2º: 5 pts / 3º: 4 pts / 4º: 3 pts / 5º: 2 pts / 6º: 1 pts
+        // Más puntos cuanto más baja su posición. Para repartir a "n" usuarios: 1º = (n) pts / 2º = (n-1) pts / 3º = (n-2) pts / ... / nº = 1 pts
 
-        // Averiguar los puntos totales a repartir para saber cuánto vale el punto
-        // n * (n+1) / 2
+        // Averiguar los puntos totales a repartir para saber cuánto vale el punto: n * (n+1) / 2  (suma el valor de "n" numeros)
         int totalPoints = third * (third + 1) ~/ 2;
         int prizeByPoint = prizePool ~/ totalPoints;
 
-        // A cada posición le damos el premio (multiplicando su posición "invertida": el 1º tiene 6 puntos, el 2º tiene 5 puntos, etc)
+        // A cada posición le damos el premio (sus puntos se corresponden con su posición "invertida": p.ej. para repartir a 6 usuarios: el 1º tiene 6 puntos, el 2º tiene 5 puntos, etc)
         int totalPrize = prizePool;
         for (int i=third; i>0; i--) {
           int prize = prizeByPoint * i;

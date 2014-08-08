@@ -77,8 +77,64 @@
 		.tabs-background{
 			width: 100%;
 			height: 51px;
+			//background-color: @blueDark;
 			#gradient.vertical(@blueGradientLight, @blueGradientDark, 49%, 51%);
 		}
+
+
+
+
+
+
+
+
+
+
+
+
+							// Tabs menu
+							.contest-info-tabs {
+								@tabheight: 46px;
+								height: @tabheight;
+								list-style: none;
+								padding: 0;
+								.make-row(0);
+								.tab{
+									.make-xs-column(2);
+									background-color: @blueLight;
+									.make-border(4px, none none solid none, @blueDark);
+									a {
+										cursor: pointer;
+										line-height: @tabheight;
+										text-align: center;
+										color: @white;
+										display: block;
+										text-decoration: none;
+									}
+								}
+								.active {
+									background-color: @blueDark;
+								}
+								.buton-place{
+									.make-xs-column(6);
+									> button {
+										.pull-right();
+										margin-top: 7px;
+									}
+								}
+							}
+
+
+
+
+
+
+
+
+
+
+
+
 		.info-options{
 		  	.nav();
 		  	.nav-tabs();

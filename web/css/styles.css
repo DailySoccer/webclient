@@ -5609,6 +5609,8 @@ button.close {
 .modal-footer:after,
 #infoContent .modal-info-head .contest-info-header-row:before,
 #infoContent .modal-info-head .contest-info-header-row:after,
+#infoContent .modal-content .contest-info-tabs:before,
+#infoContent .modal-content .contest-info-tabs:after,
 #infoContent .modal-content .info-options:before,
 #infoContent .modal-content .info-options:after,
 #infoContent .modal-content .list-wrapper .contestant-list .contestant-element:before,
@@ -5695,6 +5697,7 @@ button.close {
 .panel-body:after,
 .modal-footer:after,
 #infoContent .modal-info-head .contest-info-header-row:after,
+#infoContent .modal-content .contest-info-tabs:after,
 #infoContent .modal-content .info-options:after,
 #infoContent .modal-content .list-wrapper .contestant-list .contestant-element:after,
 #contestInfoTabContent:after,
@@ -6584,6 +6587,49 @@ button#infoContent .modal-info-head button.close {
   background-image: linear-gradient(to bottom, #1a3949 49%, #0f2630 51%);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff1a3949', endColorstr='#ff0f2630', GradientType=0);
+}
+#infoContent .modal-content .contest-info-tabs {
+  height: 46px;
+  list-style: none;
+  padding: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+#infoContent .modal-content .contest-info-tabs .tab {
+  position: relative;
+  float: left;
+  width: 16.66666667%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: #59add5;
+  border-width: 4px;
+  border-style: none none solid none;
+  border-color: #214a5f;
+  border-radius: 0;
+}
+#infoContent .modal-content .contest-info-tabs .tab a {
+  cursor: pointer;
+  line-height: 46px;
+  text-align: center;
+  color: #ffffff;
+  display: block;
+  text-decoration: none;
+}
+#infoContent .modal-content .contest-info-tabs .active {
+  background-color: #214a5f;
+}
+#infoContent .modal-content .contest-info-tabs .buton-place {
+  position: relative;
+  float: left;
+  width: 50%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+#infoContent .modal-content .contest-info-tabs .buton-place > button {
+  float: right !important;
+  margin-top: 7px;
 }
 #infoContent .modal-content .info-options {
   margin-bottom: 0;

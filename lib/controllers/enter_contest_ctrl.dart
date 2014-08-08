@@ -324,6 +324,9 @@ class EnterContestCtrl {
     for ( ; i < lineupSlots.length; ++i) {
       lineupSlots[i] = null;
     }
+    //Reseteamos la lista para que aparezcan todos los jugadores borrados otra vez en la lista de disponibles
+    initAllSoccerPlayers();
+    availableSoccerPlayers = new List<dynamic>.from(_allSoccerPlayers);
   }
 
   bool isPlayerSelected() {

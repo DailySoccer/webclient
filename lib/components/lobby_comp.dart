@@ -161,6 +161,16 @@ class LobbyComp implements ShadowRootAware, DetachAware {
         }
         return result;
   }
+
+  bool hasCompetitionsOf(String value)
+  {
+    if( activeContestsService.activeContests != null) {
+      activeContestsService.activeContests.forEach( (Contest contest) {
+        //TODO: devuelvo true o false en funcion del tipo de concurso
+      });
+    }
+    return false;
+  }
   /**************************************************************************/
 
 
@@ -385,41 +395,6 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     }
 
   /**************************************************************************/
-
-/*
-  // Filtra la lista por concursos de dificultad Fácil
-  void filterByBegginerTier() {
-    if(isBeginnerTierChecked)
-      addFilter(FILTER_SALARY_LIMIT_BEGINNER, SALARY_LIMIT_FOR_BEGGINERS.toString());
-    else
-      if (lobbyFilters.containsKey(FILTER_SALARY_LIMIT_BEGINNER))
-        lobbyFilters.remove(FILTER_SALARY_LIMIT_BEGINNER);
-
-    refreshFilterList("", "");
-  }
-
-  // Filtra la lista por concursos de dificultad media
-  void filterByStandardTier() {
-    if(isStandardTierChecked)
-      addFilter(FILTER_SALARY_LIMIT_STANDARD, "");
-    else
-      if (lobbyFilters.containsKey(FILTER_SALARY_LIMIT_STANDARD))
-        lobbyFilters.remove(FILTER_SALARY_LIMIT_STANDARD);
-
-    refreshFilterList("", "");
-  }
-
-  // Filtra la lista por concursos de dificultad dificil
-  void filterBySkilledTier() {
-    if(isBeginnerTierChecked)
-      addFilter(FILTER_SALARY_LIMIT_SKILLED, "");
-    else
-      if (lobbyFilters.containsKey(FILTER_SALARY_LIMIT_SKILLED))
-        lobbyFilters.remove(FILTER_SALARY_LIMIT_SKILLED);
-
-    refreshFilterList("", "");
-  }
-  */
 
   Timer _timer;
   Router _router;

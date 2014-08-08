@@ -17,6 +17,4 @@ class PromosComp {
   PromosComp(this.scrDet){
       //print(scrDet.isXsScreen.toString());
   }
-
-
 }

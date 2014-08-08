@@ -231,13 +231,16 @@
 			.filter-column-base();
 		}
 		.filter-column-tournaments{
+			.filter-column-base();
 			@media (min-width: @screen-md-min) {
 				.make-border(1px, dotted none dotted dotted, @greyUltraDark);
 			}
 			@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
 				.make-border(1px, dashed dashed none none, @greyUltraDark);
+				min-height: 340px;
 			}
-			.filter-column-base();
+			
+
 		}
 		.filter-column-salary-limit{
 			@media (min-width: @screen-md-min) {

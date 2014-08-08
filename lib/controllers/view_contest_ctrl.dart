@@ -10,6 +10,8 @@ import "package:webclient/models/soccer_player.dart";
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/contest_entry.dart';
 import 'package:webclient/services/flash_messages_service.dart';
+import 'package:intl/intl.dart';
+import 'package:webclient/models/match_event.dart';
 
 @Controller(
     selector: '[view-contest-ctrl]',
@@ -24,8 +26,11 @@ class ViewContestCtrl implements DetachAware {
 
   DateTime updatedDate;
 
+  List<String> matchesInvolved = [];
+
   Contest get contest => _myContestsService.lastContest;
   List<ContestEntry> get contestEntries => (contest != null) ? contest.contestEntries : null;
+
 
   List<ContestEntry> get contestEntriesOrderByPoints {
     List<ContestEntry> entries = new List<ContestEntry>.from(contestEntries);
@@ -95,6 +100,12 @@ class ViewContestCtrl implements DetachAware {
         .catchError((error) {
           _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
         });
+
+    // generamos los partidos para el filtro de partidos
+     matchesInvolved.clear();
+     contest.templateContest.matchEvents.forEach( (match) {
+       matchesInvolved.add(match.soccerTeamA.shortName + '-' + match.soccerTeamB.shortName + " " + _timeDisplayFormat.format(match.startDate) + "h.");
+     });
   }
 
   Timer _timer;
@@ -104,6 +115,7 @@ class ViewContestCtrl implements DetachAware {
   ProfileService _profileService;
   MyContestsService _myContestsService;
   DateTimeService _dateTimeService;
+  DateFormat _timeDisplayFormat= new DateFormat("HH:mm");
 
   String _contestId;
 }

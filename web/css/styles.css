@@ -10853,9 +10853,42 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   font-size: 16pt;
   color: #214a5f;
 }
+@media (max-width: 767px) {
+  #infoAndFilterHeader #filtersPanel .filter-title {
+    border-top: 1px dashed #000;
+    padding-top: 10px;
+  }
+}
 @media (min-width: 768px) and (max-width: 991px) {
   #infoAndFilterHeader #filtersPanel .centered-sm-text {
     text-align: center;
+  }
+}
+#infoAndFilterHeader #filtersPanel .filter-column-base {
+  float: left;
+  width: 100%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  min-height: 330px;
+}
+@media (min-width: 768px) {
+  #infoAndFilterHeader #filtersPanel .filter-column-base {
+    float: left;
+    width: 33.33333333%;
+  }
+}
+@media (min-width: 992px) {
+  #infoAndFilterHeader #filtersPanel .filter-column-base {
+    float: left;
+    width: 25%;
+  }
+}
+@media (max-width: 991px) {
+  #infoAndFilterHeader #filtersPanel .filter-column-base {
+    padding-bottom: 20px;
+    min-height: 50px;
   }
 }
 #infoAndFilterHeader #filtersPanel .filter-column-competition {
@@ -10865,7 +10898,7 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  min-height: 300px;
+  min-height: 330px;
 }
 @media (min-width: 992px) {
   #infoAndFilterHeader #filtersPanel .filter-column-competition {
@@ -10893,6 +10926,12 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   #infoAndFilterHeader #filtersPanel .filter-column-competition {
     float: left;
     width: 25%;
+  }
+}
+@media (max-width: 991px) {
+  #infoAndFilterHeader #filtersPanel .filter-column-competition {
+    padding-bottom: 20px;
+    min-height: 50px;
   }
 }
 #infoAndFilterHeader #filtersPanel .filter-column-tournaments {
@@ -10902,7 +10941,7 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  min-height: 300px;
+  min-height: 330px;
 }
 @media (min-width: 992px) {
   #infoAndFilterHeader #filtersPanel .filter-column-tournaments {
@@ -10932,6 +10971,12 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
     width: 25%;
   }
 }
+@media (max-width: 991px) {
+  #infoAndFilterHeader #filtersPanel .filter-column-tournaments {
+    padding-bottom: 20px;
+    min-height: 50px;
+  }
+}
 #infoAndFilterHeader #filtersPanel .filter-column-salary-limit {
   float: left;
   width: 100%;
@@ -10939,6 +10984,7 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  min-height: 330px;
 }
 @media (min-width: 992px) {
   #infoAndFilterHeader #filtersPanel .filter-column-salary-limit {
@@ -10968,9 +11014,10 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
     width: 25%;
   }
 }
-@media (min-width: 768px) {
+@media (max-width: 991px) {
   #infoAndFilterHeader #filtersPanel .filter-column-salary-limit {
-    min-height: 300px;
+    padding-bottom: 20px;
+    min-height: 50px;
   }
 }
 #infoAndFilterHeader #filtersPanel .filter-column-entry-fee {
@@ -10987,7 +11034,7 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
     border-style: dotted dotted dotted dotted;
     border-color: #434343;
     border-radius: 0;
-    min-height: 300px;
+    min-height: 330px;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
@@ -10997,6 +11044,12 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
     border-color: #434343;
     border-radius: 0;
     min-height: 100px;
+  }
+}
+@media (max-width: 991px) {
+  #infoAndFilterHeader #filtersPanel .filter-column-entry-fee {
+    padding-bottom: 20px;
+    min-height: 50px;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
@@ -11017,6 +11070,7 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   }
 }
 #infoAndFilterHeader #filtersPanel .filter-content {
+  /* estilod para la colmna del filtro con slider */
   /******** Sobreescritura de los estilos de noUiSlider ********/
   /* Slider size and handle placement */
   /* Handle stripes */
@@ -11121,6 +11175,465 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   color: #dcdcdc;
   border: 1px solid #dcdcdc;
   background-color: #f8f8f8;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-with-flag {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox] {
+  display: none;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox] + label {
+  display: block;
+  background-color: #ffffff;
+  border: 1px solid #afafaf;
+  border-radius: 5px;
+  line-height: 36px;
+  margin: 1px 0px;
+  padding: 0 10px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #434343;
+  transition: all 1s ease;
+  cursor: pointer;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox]:checked + label {
+  background-color: #f8f0f0;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox] + label::after {
+  font-family: 'Glyphicons Halflings';
+  content: "\E013";
+  font-size: 0pt;
+  color: #afafaf;
+  float: right !important;
+  transition: all 0.5s ease-in-out;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox]:checked + label::after {
+  font-family: 'Glyphicons Halflings';
+  content: "\E013";
+  font-size: 12pt;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox]:disabled + label {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #dcdcdc;
+  border: 1px solid #dcdcdc;
+  background-color: #f8f8f8;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox] + label {
+  padding-left: 15px;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox] + label::before {
+  content: " ";
+  height: 11px;
+  background: url(../flags/flags.png) no-repeat;
+  width: 16px;
+  margin-right: 10px;
+  display: inline-block;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-ESP {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox] {
+  display: none;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox] + label {
+  display: block;
+  background-color: #ffffff;
+  border: 1px solid #afafaf;
+  border-radius: 5px;
+  line-height: 36px;
+  margin: 1px 0px;
+  padding: 0 10px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #434343;
+  transition: all 1s ease;
+  cursor: pointer;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox]:checked + label {
+  background-color: #f8f0f0;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox] + label::after {
+  font-family: 'Glyphicons Halflings';
+  content: "\E013";
+  font-size: 0pt;
+  color: #afafaf;
+  float: right !important;
+  transition: all 0.5s ease-in-out;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox]:checked + label::after {
+  font-family: 'Glyphicons Halflings';
+  content: "\E013";
+  font-size: 12pt;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox]:disabled + label {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #dcdcdc;
+  border: 1px solid #dcdcdc;
+  background-color: #f8f8f8;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox] + label {
+  padding-left: 15px;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox] + label::before {
+  content: " ";
+  height: 11px;
+  background: url(../flags/flags.png) no-repeat;
+  width: 16px;
+  margin-right: 10px;
+  display: inline-block;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox] + label::before {
+  background-position: -32px 0;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-UK {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox] {
+  display: none;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox] + label {
+  display: block;
+  background-color: #ffffff;
+  border: 1px solid #afafaf;
+  border-radius: 5px;
+  line-height: 36px;
+  margin: 1px 0px;
+  padding: 0 10px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #434343;
+  transition: all 1s ease;
+  cursor: pointer;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox]:checked + label {
+  background-color: #f8f0f0;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox] + label::after {
+  font-family: 'Glyphicons Halflings';
+  content: "\E013";
+  font-size: 0pt;
+  color: #afafaf;
+  float: right !important;
+  transition: all 0.5s ease-in-out;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox]:checked + label::after {
+  font-family: 'Glyphicons Halflings';
+  content: "\E013";
+  font-size: 12pt;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox]:disabled + label {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #dcdcdc;
+  border: 1px solid #dcdcdc;
+  background-color: #f8f8f8;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox] + label {
+  padding-left: 15px;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox] + label::before {
+  content: " ";
+  height: 11px;
+  background: url(../flags/flags.png) no-repeat;
+  width: 16px;
+  margin-right: 10px;
+  display: inline-block;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox] + label::before {
+  background-position: -32px -11px;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-GER {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox] {
+  display: none;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox] + label {
+  display: block;
+  background-color: #ffffff;
+  border: 1px solid #afafaf;
+  border-radius: 5px;
+  line-height: 36px;
+  margin: 1px 0px;
+  padding: 0 10px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #434343;
+  transition: all 1s ease;
+  cursor: pointer;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox]:checked + label {
+  background-color: #f8f0f0;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox] + label::after {
+  font-family: 'Glyphicons Halflings';
+  content: "\E013";
+  font-size: 0pt;
+  color: #afafaf;
+  float: right !important;
+  transition: all 0.5s ease-in-out;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox]:checked + label::after {
+  font-family: 'Glyphicons Halflings';
+  content: "\E013";
+  font-size: 12pt;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox]:disabled + label {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #dcdcdc;
+  border: 1px solid #dcdcdc;
+  background-color: #f8f8f8;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox] + label {
+  padding-left: 15px;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox] + label::before {
+  content: " ";
+  height: 11px;
+  background: url(../flags/flags.png) no-repeat;
+  width: 16px;
+  margin-right: 10px;
+  display: inline-block;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox] + label::before {
+  background-position: -16px 0;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-IT {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox] {
+  display: none;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox] + label {
+  display: block;
+  background-color: #ffffff;
+  border: 1px solid #afafaf;
+  border-radius: 5px;
+  line-height: 36px;
+  margin: 1px 0px;
+  padding: 0 10px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #434343;
+  transition: all 1s ease;
+  cursor: pointer;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox]:checked + label {
+  background-color: #f8f0f0;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox] + label::after {
+  font-family: 'Glyphicons Halflings';
+  content: "\E013";
+  font-size: 0pt;
+  color: #afafaf;
+  float: right !important;
+  transition: all 0.5s ease-in-out;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox]:checked + label::after {
+  font-family: 'Glyphicons Halflings';
+  content: "\E013";
+  font-size: 12pt;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox]:disabled + label {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #dcdcdc;
+  border: 1px solid #dcdcdc;
+  background-color: #f8f8f8;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox] + label {
+  padding-left: 15px;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox] + label::before {
+  content: " ";
+  height: 11px;
+  background: url(../flags/flags.png) no-repeat;
+  width: 16px;
+  margin-right: 10px;
+  display: inline-block;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox] + label::before {
+  background-position: 0 -22px;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-FR {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox] {
+  display: none;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox] + label {
+  display: block;
+  background-color: #ffffff;
+  border: 1px solid #afafaf;
+  border-radius: 5px;
+  line-height: 36px;
+  margin: 1px 0px;
+  padding: 0 10px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #434343;
+  transition: all 1s ease;
+  cursor: pointer;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox]:checked + label {
+  background-color: #f8f0f0;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox] + label::after {
+  font-family: 'Glyphicons Halflings';
+  content: "\E013";
+  font-size: 0pt;
+  color: #afafaf;
+  float: right !important;
+  transition: all 0.5s ease-in-out;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox]:checked + label::after {
+  font-family: 'Glyphicons Halflings';
+  content: "\E013";
+  font-size: 12pt;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox]:disabled + label {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #dcdcdc;
+  border: 1px solid #dcdcdc;
+  background-color: #f8f8f8;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox] + label {
+  padding-left: 15px;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox] + label::before {
+  content: " ";
+  height: 11px;
+  background: url(../flags/flags.png) no-repeat;
+  width: 16px;
+  margin-right: 10px;
+  display: inline-block;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox] + label::before {
+  background-position: -16px -11px;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-EU {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox] {
+  display: none;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox] + label {
+  display: block;
+  background-color: #ffffff;
+  border: 1px solid #afafaf;
+  border-radius: 5px;
+  line-height: 36px;
+  margin: 1px 0px;
+  padding: 0 10px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #434343;
+  transition: all 1s ease;
+  cursor: pointer;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox]:checked + label {
+  background-color: #f8f0f0;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox] + label::after {
+  font-family: 'Glyphicons Halflings';
+  content: "\E013";
+  font-size: 0pt;
+  color: #afafaf;
+  float: right !important;
+  transition: all 0.5s ease-in-out;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox]:checked + label::after {
+  font-family: 'Glyphicons Halflings';
+  content: "\E013";
+  font-size: 12pt;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox]:disabled + label {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #dcdcdc;
+  border: 1px solid #dcdcdc;
+  background-color: #f8f8f8;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox] + label {
+  padding-left: 15px;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox] + label::before {
+  content: " ";
+  height: 11px;
+  background: url(../flags/flags.png) no-repeat;
+  width: 16px;
+  margin-right: 10px;
+  display: inline-block;
+}
+#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox] + label::before {
+  background-position: 0 -11px;
 }
 #infoAndFilterHeader #filtersPanel .filter-content .noUi-horizontal .noUi-handle {
   width: 30px;
@@ -11999,6 +12512,43 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button.active {
     float: left;
     width: 29.16666667%;
   }
+}
+/*************************************************
+Si hay que añadir nuevas banderas, ir a la siguiente url
+url: http://flag-sprites.com/es_ES/;
+
+Para evitar carga seleccionar todas las banderas que usemos.
+
+Banderas usadas hasta la fecha: 
+  - Alemania
+  - España
+  - Europa
+  - Francia
+  - UK
+  - Italia
+*************************************************/
+.flag {
+  width: 16px;
+  height: 11px;
+  background: url(../flags/flags.png) no-repeat;
+}
+.flag.flag-de {
+  background-position: -16px 0;
+}
+.flag.flag-es {
+  background-position: -32px 0;
+}
+.flag.flag-eu {
+  background-position: 0 -11px;
+}
+.flag.flag-fr {
+  background-position: -16px -11px;
+}
+.flag.flag-gb {
+  background-position: -32px -11px;
+}
+.flag.flag-it {
+  background-position: 0 -22px;
 }
 .btn {
   display: inline-block;

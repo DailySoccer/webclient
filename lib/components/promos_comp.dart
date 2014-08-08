@@ -15,7 +15,7 @@ class PromosComp {
   ScreenDetectorService scrDet;
 
   PromosComp(this.scrDet){
-      print(scrDet.isXsScreen.toString());
+      //print(scrDet.isXsScreen.toString());
   }
 
 

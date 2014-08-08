@@ -45,7 +45,7 @@ class DateTimeService {
     _server.getCurrentDate()
       .then((jsonObject) {
       _fakeDateTime = new DateTime.fromMillisecondsSinceEpoch(jsonObject.currentDate, isUtc: true);
-        print("now...: $now");
+      //print("now...: $now");
       });
   }
 

@@ -201,13 +201,26 @@
 
 		.filter-title{
 			.exo_light(16pt, @blueDark);
+			@media (max-width: @screen-xs-max) {
+				border-top: 1px dashed #000;
+				padding-top: 10px;
+			}
 		}
 		.centered-sm-text{
 			@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max)  {
 				text-align: center;
 			}
 		}
-
+		.filter-column-base {
+			.make-xs-column(12);
+			.make-sm-column(4);
+			.make-md-column(3);
+			min-height: 330px;
+			@media (max-width: @screen-sm-max)  {
+				padding-bottom: 20px;
+				min-height: 50px;
+			}
+		}
 		.filter-column-competition{
 			@media (min-width: @screen-md-min) {
 				.make-border(1px, dotted none dotted dotted, @greyUltraDark);
@@ -215,11 +228,7 @@
 			@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
 				.make-border(1px, dashed dashed none none, @greyUltraDark);
 			}
-			
-			.make-xs-column(12);
-			.make-sm-column(4);
-			.make-md-column(3);
-			min-height: 300px;
+			.filter-column-base();
 		}
 		.filter-column-tournaments{
 			@media (min-width: @screen-md-min) {
@@ -228,10 +237,7 @@
 			@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
 				.make-border(1px, dashed dashed none none, @greyUltraDark);
 			}
-			.make-xs-column(12);
-			.make-sm-column(4);
-			.make-md-column(3);
-			min-height: 300px;
+			.filter-column-base();
 		}
 		.filter-column-salary-limit{
 			@media (min-width: @screen-md-min) {
@@ -240,22 +246,21 @@
 			@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
 				.make-border(1px, dashed none none none, @greyUltraDark);
 			}
-			.make-xs-column(12);
-			.make-sm-column(4);
-			.make-md-column(3);
-			@media (min-width: @screen-sm-min) {
-				min-height: 300px;
-			}
+			.filter-column-base();
 		}
 		.filter-column-entry-fee{
 			@media (min-width: @screen-md-min) {
 				.make-border(1px, dotted dotted dotted dotted, @greyUltraDark);
-				min-height: 300px;
+				min-height: 330px;
 			}
 			@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
 				.make-border(1px, dashed none dashed none, @greyUltraDark);
 				min-height: 100px;
 			}			
+			@media (max-width: @screen-sm-max)  {
+				padding-bottom: 20px;
+				min-height: 50px;
+			}
 			//el texto de esta columna esta centrado en sm
 			.centered-sm-text();
 			.make-xs-column(12);			
@@ -263,6 +268,7 @@
 			.make-md-column(3);
 		}
 		.filter-content{
+			/* estilod para la colmna del filtro con slider */
 			.slider-wrapper{
 				.make-xs-column(12);
 				padding: 15px 5px;
@@ -323,7 +329,57 @@
 						background-color: @greyUltraLight;
 					}				
 				}
+				.button-with-flag {
+					.button-check();
+					input[type=checkbox] + label {
+						padding-left: 15px;
+					}					
+					input[type=checkbox] + label::before{
+						content: " ";
+						.flag();
+						width: 16px;
+						margin-right: 10px;
+						display: inline-block;
+					}	
+				}
+				.button-check-ESP{
+					.button-with-flag();
+					input[type=checkbox] + label::before{
+						.flag.flag-es();
+					}		
+				}
+				.button-check-UK{
+					.button-with-flag();
+					input[type=checkbox] + label::before{
+						.flag.flag-gb();
+					}		
+				}
+				.button-check-GER{
+					.button-with-flag();
+					input[type=checkbox] + label::before{
+						.flag.flag-de();
+					}		
+				}
+				.button-check-IT{
+					.button-with-flag();
+					input[type=checkbox] + label::before{
+						.flag.flag-it();
+					}		
+				}
+				.button-check-FR{
+					.button-with-flag();
+					input[type=checkbox] + label::before{
+						.flag.flag-fr();
+					}		
+				}
+				.button-check-EU{
+					.button-with-flag();
+					input[type=checkbox] + label::before{
+						.flag.flag-eu();
+					}		
+				}
 			}
+
 			/******** Sobreescritura de los estilos de noUiSlider ********/
 			/* Slider size and handle placement */
 			.noUi-horizontal .noUi-handle {

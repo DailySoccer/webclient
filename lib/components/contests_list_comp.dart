@@ -23,7 +23,7 @@ class ContestsListComp {
   List<Contest> contestsListFiltered;
 
   // Lista de filtros a aplicar
-  Map<String,String> filterList;
+  Map<String,dynamic> filterList;
 
   DateFormat startDate = new DateFormat("dd/MM");
   DateFormat startTime = new DateFormat("HH:mm");
@@ -39,12 +39,12 @@ class ContestsListComp {
 
   //Setter de los filtros, Recibe la lista de los filtros aplicados.
   @NgOneWay("filter-by")
-  void set filterBy(Map<String,String> value) {
+  void set filterBy(Map<String,dynamic> value) {
     if (value == null)
       return;
     filterList = value;
     //Partimos siempre de la lista original de todos los players
-    contestsListFiltered = _contestsListOriginal;
+
     refreshFilters();
   }
 
@@ -109,44 +109,53 @@ class ContestsListComp {
     if( filterList == null){
       return;
     }
+    contestsListFiltered = _contestsListOriginal;
     //Recorremos la lista de filtros
-        filterList.forEach( (String key, String value )  {
-         switch(key)
-         {
-           case "FILTER_CONTEST_NAME":
-             contestsListFiltered = contestsListFiltered.where( (contest) => contest.name.toUpperCase().contains(value.toUpperCase()) ).toList();
-           break;
-           case "FILTER_ENTRY_FEE_MIN":
-             contestsListFiltered = contestsListFiltered.where( (contest) => contest.templateContest.entryFee >= int.parse(value.split('.')[0]) ).toList();
-           break;
-           case "FILTER_ENTRY_FEE_MAX":
-             contestsListFiltered = contestsListFiltered.where( (contest) => contest.templateContest.entryFee <= int.parse(value.split('.')[0]) ).toList();
-           break;
-           case "FILTER_SALARY_LIMIT_BEGINNER":
-             contestsListFiltered = contestsListFiltered.where( (contest) => contest.templateContest.salaryCap >= SALARY_LIMIT_FOR_BEGGINERS ).toList();
-           break;
-           case "FILTER_SALARY_LIMIT_STANDARD":
-             contestsListFiltered = contestsListFiltered.where( (contest) => contest.templateContest.salaryCap < SALARY_LIMIT_FOR_BEGGINERS &&
-                                                                             contest.templateContest.salaryCap > SALARY_LIMIT_FOR_SKILLEDS ).toList();
-           break;
-           case "FILTER_SALARY_LIMIT_SKILLED":
-             contestsListFiltered = contestsListFiltered.where( (contest) => contest.templateContest.salaryCap <= SALARY_LIMIT_FOR_SKILLEDS ).toList();
-           break;
-           case "FILTER_TOURNAMENT_TYPE_FREE":
-             contestsListFiltered = contestsListFiltered.where( (contest) => contest.templateContest.tournamentType == TOURNAMENT_TYPE_FREE ).toList();
-           break;
-           case "FILTER_TOURNAMENT_TYPE_LIGA":
-             contestsListFiltered = contestsListFiltered.where( (contest) => contest.templateContest.tournamentType == TOURNAMENT_TYPE_LIGA ).toList();
-           break;
-           case "FILTER_TOURNAMENT_TYPE_FIFTY_FIFTY":
-             contestsListFiltered = contestsListFiltered.where( (contest) => contest.templateContest.tournamentType == TOURNAMENT_TYPE_FIFTY_FIFTY).toList();
-           break;
-           case "FILTER_TOURNAMENT_TYPE_HEAD_TO_HEAD":
-             contestsListFiltered = contestsListFiltered.where( (contest) => contest.templateContest.tournamentType == TOURNAMENT_TYPE_HEAD_TO_HEAD ).toList();
-           break;
-         }
-       });
-
+    filterList.forEach( (String key, dynamic value )  {
+      switch(key)
+      {
+        case "FILTER_CONTEST_NAME":
+          contestsListFiltered = contestsListFiltered.where( (contest) => contest.name.toUpperCase().contains(value.toUpperCase()) ).toList();
+        break;
+        case "FILTER_ENTRY_FEE_MIN":
+          contestsListFiltered = contestsListFiltered.where( (contest) => contest.templateContest.entryFee >= int.parse(value.split('.')[0]) ).toList();
+        break;
+        case "FILTER_ENTRY_FEE_MAX":
+          contestsListFiltered = contestsListFiltered.where( (contest) => contest.templateContest.entryFee <= int.parse(value.split('.')[0]) ).toList();
+        break;
+        case "FILTER_TOURNAMENT":
+          contestsListFiltered = contestsListFiltered.where( (contest) => value.contains(contest.templateContest.tournamentType)).toList();
+        break;
+        case "FILTER_TIER":
+          contestsListFiltered = contestsListFiltered.where( (contest) {
+            for (String val in value) {
+              switch(val)
+              {
+                case "BEGGINER":
+                  if(contest.templateContest.salaryCap >= SALARY_LIMIT_FOR_BEGGINERS){
+                    return true;
+                  }else
+                    return false;
+                break;
+                case "STANDARD":
+                  if(contest.templateContest.salaryCap < SALARY_LIMIT_FOR_BEGGINERS &&
+                     contest.templateContest.salaryCap > SALARY_LIMIT_FOR_SKILLEDS){
+                    return true;
+                  }else
+                    return false;
+                break;
+                case "SKILLED":
+                  if(contest.templateContest.salaryCap <= SALARY_LIMIT_FOR_SKILLEDS) {
+                    return true;
+                  }else
+                    return false;
+                break;
+              }
+            }
+          }).toList();
+        break;
+      }
+    });
   }
 
   // Lista original de los contest

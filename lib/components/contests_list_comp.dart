@@ -3,6 +3,7 @@ library contests_list_comp;
 import 'package:angular/angular.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:intl/intl.dart';
+import 'package:webclient/services/datetime_service.dart';
 
 @Component(selector: 'contests-list',
            templateUrl: 'packages/webclient/components/contests_list_comp.html',
@@ -25,10 +26,41 @@ class ContestsListComp {
   // Lista de filtros a aplicar
   Map<String,dynamic> filterList;
 
-  DateFormat startDate = new DateFormat("dd/MM");
-  DateFormat startTime = new DateFormat("HH:mm");
   //NumberFormat numFormat = new NumberFormat("#");
 
+  bool isToday(DateTime date) => (date.year == _dateTimeService.now.year && date.month == _dateTimeService.now.month && date.day == _dateTimeService.now.day);
+
+  String dateInfo(DateTime date) {
+    DateTime now = _dateTimeService.now;
+
+    // Avisamos cuando sea "Hoy"
+    if (isToday(date)) {
+      Duration duration = date.difference(_dateTimeService.now);
+      // Avisamos unos minutos antes (30 min)
+      if (duration.inMinutes >= 0 && duration.inMinutes < 30) {
+        int secondsTotal = duration.inSeconds;
+        int minutes = secondsTotal ~/ 60;
+        int seconds = secondsTotal - (minutes * 60);
+        if (minutes >= 0 && seconds >= 0) {
+          return "$minutes:$seconds";
+        }
+      }
+      return "Hoy";
+    }
+    return new DateFormat("dd/MM").format(date);
+  }
+
+  String timeInfo(DateTime date) {
+    // Avisamos 2 horas antes...
+    if (isToday(date) && date.isAfter(_dateTimeService.now)) {
+      Duration duration = date.difference(_dateTimeService.now);
+      int minutesLeft = duration.inMinutes;
+      if (minutesLeft >= 0 && minutesLeft < 120) {
+        return (minutesLeft > 30) ? "${minutesLeft} min." : "Faltan";
+      }
+    }
+    return new DateFormat("HH:mm").format(date) + "h.";
+  }
 
   @NgOneWay("contests-list")
   void set contestsList(List<Contest> value) {
@@ -93,7 +125,7 @@ class ContestsListComp {
   @NgCallback("on-action-click")
   Function onActionClick;
 
-  ContestsListComp();
+  ContestsListComp(this._dateTimeService);
 
   void onRow(Contest contest) {
     if (onRowClick != null)
@@ -160,4 +192,6 @@ class ContestsListComp {
 
   // Lista original de los contest
   List<Contest> _contestsListOriginal;
+
+  DateTimeService _dateTimeService;
 }

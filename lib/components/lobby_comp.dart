@@ -46,7 +46,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   bool isBeginnerTierChecked          = false;
   bool isStandardTierChecked          = false;
   bool isSkilledTierChecked           = false;
-  List<String> TierFilterList;
+  List<String> tierFilterList;
 
   // Variables expuestas por ng-model en los checks del filtro de Tipo de Torneo
   bool isFreeTournamentChecked        = false;
@@ -164,11 +164,12 @@ class LobbyComp implements ShadowRootAware, DetachAware {
 
   bool hasCompetitionsOf(String value)
   {
-    if( activeContestsService.activeContests != null) {
+    /*if( activeContestsService.activeContests != null) {
       activeContestsService.activeContests.forEach( (Contest contest) {
         //TODO: devuelvo true o false en funcion del tipo de concurso
       });
-    }
+    }*/
+    //print('Botón de filtro por ${value} deshabilitado temporalmente');
     return false;
   }
   /**************************************************************************/
@@ -201,8 +202,6 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     filterEntryFeeMin = data[0];
     filterEntryFeeMax = data[1];
     filterByEntryFee();
-
-    print("Range change: $sender, $data");
   }
 
   void detach() {
@@ -323,11 +322,12 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   void filterByEntryFee(){
     addFilter(FILTER_ENTRY_FEE_MIN, filterEntryFeeMin);
     addFilter(FILTER_ENTRY_FEE_MAX, filterEntryFeeMax);
+    print('filtrando por tipo precio entrada. Valores entre [${filterEntryFeeMin} - ${filterEntryFeeMax}]');
   }
 
   void refreshTierFilter() {
     List<String> tierValues = [];
-    TierFilterList = [];
+    tierFilterList = [];
 
     if(isBeginnerTierChecked)
       tierValues.add(SALARY_LIMIT_FOR_BEGGINERS);
@@ -336,16 +336,17 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     if(isSkilledTierChecked)
       tierValues.add(SALARY_LIMIT_FOR_SKILLEDS);
 
-    TierFilterList.addAll(tierValues);
+    tierFilterList.addAll(tierValues);
 
     //Añadimos el filtro solo si se ha seleccionado algún valor...
-    if(TierFilterList.length > 0)
-      addFilter(FILTER_TIER, TierFilterList);
+    if(tierFilterList.length > 0)
+      addFilter(FILTER_TIER, tierFilterList);
     else //...si no, nos aseguramos que no vaya este filtro para que no interfiera
       if(lobbyFilters.containsKey(FILTER_TIER))
         lobbyFilters.remove(FILTER_TIER);
     //provocamos la actialización
     addFilter("", []);
+    print('filtrando por tipo de torneo: torneos: [${tierFilterList}]');
   }
 
   void refreshTorunamentFilter() {
@@ -371,6 +372,8 @@ class LobbyComp implements ShadowRootAware, DetachAware {
         lobbyFilters.remove(FILTER_TOURNAMENT);
     //provocamos la actialización
     addFilter("", []);
+
+    print('filtrando por tipo de torneo: torneos: [${tournamentFilterList}]');
   }
 
   void addFilter(String key, dynamic valor){
@@ -394,6 +397,32 @@ class LobbyComp implements ShadowRootAware, DetachAware {
       lobbyFilters = lobbyFilterClone;
     }
 
+  void resetAllFilters(){
+    // reseteo del filtro por precio de entrada
+    filterEntryFeeMin = "0";
+    filterEntryFeeMax = "100";
+    js.context.callMethod(r'$', ['#slider-range'])
+           .callMethod('val', new js.JsObject.jsify([0, 100]));
+
+    // reseteo del filtro por dificultad
+    isBeginnerTierChecked          = false;
+    isStandardTierChecked          = false;
+    isSkilledTierChecked           = false;
+    tierFilterList = [];
+
+    // Reseteo del filtro por tipo de torneo
+    isFreeTournamentChecked        = false;
+    isLigaTournamentChecked        = false;
+    isFiftyFiftyTournamentChecked  = false;
+    isHeadToHeadTournamentChecked  = false;
+    tournamentFilterList = [];
+
+    //provocamos la actialización
+    lobbyFilters = {};
+    addFilter("", []);
+    print('Filtros reseteados');
+
+  }
   /**************************************************************************/
 
   Timer _timer;

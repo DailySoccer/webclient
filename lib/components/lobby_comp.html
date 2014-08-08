@@ -51,34 +51,35 @@
         <div class="filter-content">
           <div class="check-group-wrapper">
 
-            <div class="button-check-ESP" ng-disabled="!comp.hasCompetitionsOf('spainLiga')">
-              <input id="filtroLigaEsp" type="checkbox">
+            <div class="button-check-ESP">
+              <input id="filtroLigaEsp" type="checkbox" ng-disabled="!comp.hasCompetitionsOf('LigaEsp')">
               <label for="filtroLigaEsp">Liga Española</label>
             </div>
             <div class="button-check-UK">
-              <input id="filtroLigaUK" type="checkbox">
+              <input id="filtroLigaUK" type="checkbox" ng-disabled="!comp.hasCompetitionsOf('LigaUK')">
               <label for="filtroLigaUK">Liga Inglesa</label>
             </div>
             <div class="button-check-GER">
-              <input id="filtroLigaGER" type="checkbox">
+              <input id="filtroLigaGER" type="checkbox" ng-disabled="!comp.hasCompetitionsOf('LigaGER')">
               <label for="filtroLigaGER">Liga Alemana</label>
             </div>
             <div class="button-check-IT">
-              <input id="filtroLigaIT" type="checkbox">
+              <input id="filtroLigaIT" type="checkbox" ng-disabled="!comp.hasCompetitionsOf('LigaIT')">
               <label for="filtroLigaIT">Liga Italiana</label>
             </div>
             <div class="button-check-FR">
-              <input id="filtroLigaFR" type="checkbox">
+              <input id="filtroLigaFR" type="checkbox" ng-disabled="!comp.hasCompetitionsOf('LigaFR')">
               <label for="filtroLigaFR">Liga Francesa</label>
             </div>
             <div class="button-check-EU">
-              <input id="filtroLigaEUCham" type="checkbox">
-              <label for="filtroLigaEUCham">Europa Champions</label>
+              <input id="filtroLigaEUChampions" type="checkbox" ng-disabled="!comp.hasCompetitionsOf('LigaEUChampions')">
+              <label for="filtroLigaEUChampions">Europa Champions</label>
             </div>
             <div class="button-check-EU">
-              <input id="filtroLigaEULiga" type="checkbox">
+              <input id="filtroLigaEULiga" type="checkbox" ng-disabled="!comp.hasCompetitionsOf('LigaEULiga')">
               <label for="filtroLigaEULiga">Europa Liga</label>
             </div>
+
           </div>
         </div>
       </div>
@@ -152,6 +153,9 @@
         </div>
       </div>
 
+      <div class="reset-button-wrapper">
+        <button type="button" class="btn-reset" ng-click="comp.resetAllFilters()">Limpiar filtros</button>
+      </div>
   </div>
 
 </div>

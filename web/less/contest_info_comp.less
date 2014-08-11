@@ -194,8 +194,11 @@
 }
 
 .prizes-wrapper{
-	.prize-element{
+	.prize-element-wrapper{
 		.make-xs-column(3);
+		padding: 5px
+	}
+	.prize-element{
 		.exo_bold(12pt, @blueMed);
 		background-color: @tramaBlue;
 		padding: 5px 10px;
@@ -224,6 +227,8 @@
 
 .contestant-list{
 	padding: 10px 0;
+	@row-height: 39px;
+	
 	.contestant-position{
 		.make-xs-column(1);
 		.opensans_bold(10pt, @greyDark);
@@ -241,10 +246,12 @@
 	}
 	.prize-currency{
 		.opensans_bold(10pt, @greyDark);
+		line-height: @row-height;
 	}
 	.contestant-element{
 		.make-row();
-		padding: 10px 0;
+		line-height: @row-height;
+		//padding: 10px 0;
 		background-color: @greyUltraLight;
 		border: 1px solid @white;
 	}

@@ -6888,13 +6888,16 @@ button#infoContent .modal-info-head button.close {
   max-height: 250px;
   margin: 10px auto 0;
 }
-.prizes-wrapper .prize-element {
+.prizes-wrapper .prize-element-wrapper {
   position: relative;
   float: left;
   width: 25%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  padding: 5px;
+}
+.prizes-wrapper .prize-element {
   font-family: 'Exo', sans-serif;
   font-weight: 600;
   font-size: 12pt;
@@ -6983,11 +6986,12 @@ button#infoContent .modal-info-head button.close {
   font-weight: 700;
   font-size: 10pt;
   color: #777777;
+  line-height: 39px;
 }
 .contestant-list .contestant-element {
   margin-left: -15px;
   margin-right: -15px;
-  padding: 10px 0;
+  line-height: 39px;
   background-color: #f8f8f8;
   border: 1px solid #ffffff;
 }

@@ -97,8 +97,10 @@
 
                   <div class="prizes-wrapper">
                     <div id="prizes-list">
-                      <div class="prize-element" ng-repeat="prize in contestInfo.currentInfoData['prizes']">
-                        {{$index + 1}}º &nbsp;&nbsp; {{prize.value | number: 0.00}}€
+                      <div class="prize-element-wrapper" ng-repeat="prize in contestInfo.currentInfoData['prizes']">
+                        <div class="prize-element">
+                            {{$index + 1}}º &nbsp;&nbsp; {{prize.value | number: 0.00}}€
+                        </div>
                       </div>
                       <div class="clearfix"></div>
                     </div>
@@ -131,10 +133,12 @@
     <p class="title">PREMIOS</p>
     <div class="prizes-wrapper">
         <div id="prizes-list">
-            <div class="prize-element" ng-repeat="prize in contestInfo.currentInfoData['prizes']">
+          <div class="prize-element-wrapper" ng-repeat="prize in contestInfo.currentInfoData['prizes']">
+            <div class="prize-element">
                 {{$index + 1}}º &nbsp;&nbsp; {{prize.value | number: 0.00}}€
             </div>
-            <div class="clearfix"></div>
+          </div>
+          <div class="clearfix"></div>
         </div>
     </div>
     <div class="info-section"></div>

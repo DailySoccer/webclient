@@ -12137,16 +12137,6 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
   padding: 0;
   height: 50px;
 }
-@media (min-width: 992px) and (max-width: 1199px) {
-  #myContestMenuTabs {
-    display: none !important;
-  }
-}
-@media (min-width: 1200px) {
-  #myContestMenuTabs {
-    display: none !important;
-  }
-}
 #myContestMenuTabs > li {
   position: relative;
   float: left;

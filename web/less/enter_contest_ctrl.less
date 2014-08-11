@@ -41,6 +41,7 @@
 
 // Botones de cancelar seleccion, borrar seleccion y confirmar equipo
 .enter-contest-actions-wrapper {
+	clear: both;
 	.make-row(15);
 	padding: 10px;
 	@media (min-width: @screen-sm-min) {
@@ -54,6 +55,9 @@
 		background-color: @orange;
 		text-align: center;
 		border-radius: 3px;
+		.red-numbers {
+			color: @white;
+		}
 	}
 	.btn-cancel-player-selection {
 		.btn-cancel();
@@ -150,7 +154,7 @@
 		padding: 10px 10px 0 5px;
 		.enter-contest-lineup {
 			.make-border(1px, solid, @orange, @globalBoxesRadius);
-			height: @recomended-control-heihgt - 70px;
+			min-height: @recomended-control-heihgt - 70px;
 			overflow: hidden;
 		}
 	}
@@ -159,7 +163,7 @@
 		padding: 10px 10px 60px 5px;
 		.enter-contest-lineup {
 			.make-border(1px, solid, @orange, @globalBoxesRadius);
-			height: @recomended-control-heihgt;
+			min-height: @recomended-control-heihgt;
 			overflow: hidden;
 		}
 	}
@@ -187,11 +191,14 @@
 			.exo_bold(30px, @greyDark);
 			margin-top: 3px;
 			overflow: hidden;
-			span {
+			.total-salary-text {
 				background-color: @greyLight;
 				font-size: 12px;
 				display: block;
 				line-height: 25px;
+			}
+			.red-numbers {
+				color: red;
 			}
 		}
 	}

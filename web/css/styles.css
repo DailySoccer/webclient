@@ -9179,6 +9179,7 @@ fieldset[disabled] .close-team .btn-close-cancel.active {
   background-color: #214a5f;
 }
 .enter-contest-actions-wrapper {
+  clear: both;
   margin-left: -7.5;
   margin-right: -7.5;
   padding: 10px;
@@ -9208,6 +9209,9 @@ fieldset[disabled] .close-team .btn-close-cancel.active {
   .enter-contest-actions-wrapper .total-salary {
     display: none !important;
   }
+}
+.enter-contest-actions-wrapper .total-salary .red-numbers {
+  color: #ffffff;
 }
 .enter-contest-actions-wrapper .btn-cancel-player-selection {
   display: inline-block;
@@ -9725,7 +9729,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list.activ
     border-style: solid;
     border-color: #fa9c19;
     border-radius: 8px;
-    height: 575px;
+    min-height: 575px;
     overflow: hidden;
   }
 }
@@ -9748,7 +9752,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list.activ
     border-style: solid;
     border-color: #fa9c19;
     border-radius: 8px;
-    height: 645px;
+    min-height: 645px;
     overflow: hidden;
   }
 }
@@ -9802,11 +9806,14 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list.activ
     width: 198px;
   }
 }
-.enter-contest-lineup-wrapper .enter-contest-total-salary .total-salary span {
+.enter-contest-lineup-wrapper .enter-contest-total-salary .total-salary .total-salary-text {
   background-color: #dcdcdc;
   font-size: 12px;
   display: block;
   line-height: 25px;
+}
+.enter-contest-lineup-wrapper .enter-contest-total-salary .total-salary .red-numbers {
+  color: red;
 }
 @media (max-width: 767px) {
   .soccer-player-filter {
@@ -10399,6 +10406,12 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
     border-color: #fa9c19;
     border-radius: 0;
   }
+}
+.lineup-selector .alert-red-numbers {
+  width: 100%;
+  text-align: center;
+  font-size: 10pt;
+  margin-bottom: 0;
 }
 #promosComponent {
   position: relative;

@@ -1,5 +1,8 @@
 <div class="lineup-selector">
-
+  <div class="alert alert-danger alert-dismissible alert-red-numbers" role="alert">
+    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <strong>Te has pasado del límite salarial</strong><br> Por favor, elige jugadores que se ajusten al presupuesto
+  </div>
   <div class="lineup-selector-slot" ng-repeat="slot in comp.enterContestCtrl.lineupSlots" ng-click="comp.enterContestCtrl.onSlotSelected($index)" ng-class="comp.getSlotClassColor($index)">
     <div class="column-fieldpos" ng-if="!comp.isEmptySlot(slot)">{{slot.fieldPos.abrevName}}</div>
     <div class="column-fieldpos" ng-if="comp.isEmptySlot(slot)">{{comp.getSlotPosition($index)}}</div>

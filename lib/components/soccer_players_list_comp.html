@@ -7,7 +7,7 @@
   <select id="match-fliter" class="match-selector-filter" ng-model="comp.optionValue" ng-selected="comp.setFilterMatch()">
     <option ng-repeat="match in comp.matchesList" ng-value="match.id">{{match.texto}}</option>
   </select>
-  <input type="text" id="name-player-filter" class="name-player-input-filter" placeholder="Buscar jugador" ng-model="comp.nameFilter" ng-keyup="comp.setFilterSoccerName()" />
+  <input type="text" class="name-player-input-filter" placeholder="Buscar jugador" ng-model="comp.nameFilter" ng-keyup="comp.setFilterSoccerName()" />
 </div>
 
 <div class="soccer-player-list-header-table" ng-show="comp.scrDet.isDesktop" ng-cloack>

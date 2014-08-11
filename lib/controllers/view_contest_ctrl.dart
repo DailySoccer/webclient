@@ -117,7 +117,7 @@ class ViewContestCtrl implements DetachAware {
   ProfileService _profileService;
   MyContestsService _myContestsService;
   DateTimeService _dateTimeService;
-  DateFormat _timeDisplayFormat= new DateFormat("HH:mm");
+  DateFormat _timeDisplayFormat= new DateFormat("E,HH:mm", "es_ES");
 
   String _contestId;
 }

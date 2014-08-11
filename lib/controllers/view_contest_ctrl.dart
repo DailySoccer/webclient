@@ -86,6 +86,11 @@ class ViewContestCtrl implements DetachAware {
     return -1;
   }
 
+  int getPercentOfUsersThatOwn(SoccerPlayer soccerPlayer) {
+    int numOwners = contestEntries.fold(0, (prev, contestEntry) => contestEntry.contains(soccerPlayer) ? (prev + 1) : prev );
+    return (numOwners * 100 / contestEntries.length).truncate();
+  }
+
   String getPrize(int index) {
     String prizeText = "-";
     if (index < _prizes.length) {

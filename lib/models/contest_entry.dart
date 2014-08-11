@@ -27,6 +27,8 @@ class ContestEntry {
     return matchEvents.fold(0, (prev, matchEvent) => prev + matchEvent.halfTimesLeft);
   }
 
+  bool contains(SoccerPlayer soccerPlayer) => soccers.any( (elem) => elem.templateSoccerPlayerId == soccerPlayer.templateSoccerPlayerId );
+
   ContestEntry(this.contestEntryId, this.user, this.soccers);
 
   ContestEntry.referenceInit(this.contestEntryId);

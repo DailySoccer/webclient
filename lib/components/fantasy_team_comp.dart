@@ -100,7 +100,7 @@ class FantasyTeamComp implements ShadowRootAware {
               "fieldPos": new FieldPos(soccerPlayer.fieldPos),
               "fullName": soccerPlayer.name,
               "matchEventName": matchEventName,
-              "remainingMatchTime": soccerPlayer.team.matchEvent.minutesPlayed <= 90 ? "${90-soccerPlayer.team.matchEvent.minutesPlayed} MIN" : "EXTRA TIME",
+              "percentOfUsersThatOwn": _viewContestCtrl.getPercentOfUsersThatOwn(soccerPlayer),
               "score": (soccerPlayer.currentLivePoints > 0 || soccerPlayer.team.matchEvent.minutesPlayed > 0) ? soccerPlayer.currentLivePoints : "-"
           });
         }

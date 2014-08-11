@@ -1,4 +1,4 @@
-<div id="desktopContent">
+<div id="desktopContent" ng-if="!landingPage.scrDet.isXsScreen">
 
     <div id="screen1" class="first-screen">
         <div class="slider-wrapper">
@@ -9,7 +9,7 @@
             <p class="title-sup-text">¿ERES UN EXPERTO EN FÚTBOL?</p>
             <p class="title-text">¡DEMUÉSTRALO!</p>
             <div class="vertical-separator-big"></div>
-            <p class="description-text">HAZ TU 11 CADA JORNADA SIN COMPROMISOS CREA LIGAS, <br>COMPITE EN LAS QUE HAY O DESAFÍA A TUS AMIGOS SIGUE LOS PARTIDOS EN TIEMPO REAL Y GANA DINERO</p>
+            <p class="first-description-text">HAZ TU 11 CADA JORNADA SIN COMPROMISOS CREA LIGAS, <br>COMPITE EN LAS QUE HAY O DESAFÍA A TUS AMIGOS SIGUE LOS PARTIDOS EN TIEMPO REAL Y GANA DINERO</p>
             <div class="vertical-separator-big"></div>
             <button type="button" class="button-play"  ng-click="landingPage.goToLobby()" id="playButton1">JUGAR</button>
             <div class="vertical-separator-big"></div>
@@ -105,7 +105,7 @@
 </div>
 
 <!-- Versión Móvil -->
-<div id="mobileContent">
+<div id="mobileContent"  ng-if="landingPage.scrDet.isXsScreen">
     <div id="screenMobile1" class="screen">
 
       <div class="slider-wrapper">

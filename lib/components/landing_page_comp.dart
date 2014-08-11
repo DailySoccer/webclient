@@ -3,6 +3,7 @@
 import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/profile_service.dart';
+import 'package:webclient/services/screen_detector_service.dart';
 
 @Component(
    selector: 'landing-page',
@@ -17,8 +18,9 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
   var bodyObj;
   Element mainWrapper;
   Element containerForContent;
+  ScreenDetectorService scrDet;
 
-  LandingPageComp(this._router, this._profileService) {
+  LandingPageComp(this._router, this._profileService, this.scrDet) {
 
     // Capturamos el elemento wrapper
     bodyObj             = querySelector('body');

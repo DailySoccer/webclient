@@ -166,3 +166,27 @@
 [ng-cloak], [data-ng-cloak], .ng-cloak, .ng-hide {
 	display: none !important;
 }
+
+.tabs-navigation(@columns) {
+	@tabheight: 50px;
+	.hidden-md();
+	.hidden-lg();
+	.reset-list();
+	height: @tabheight;
+	> li {
+		.make-xs-column(12/@columns);
+		background-color: @blueLight;
+		.make-border(4px, none none solid none, @blueDark);
+		a {
+			cursor: pointer;
+			line-height: @tabheight;
+			text-align: center;
+			color: @white;
+			display: block;
+			text-decoration: none;
+		}
+	}
+	.active {
+		background-color: @blueDark;
+	}
+}

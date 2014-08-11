@@ -29,7 +29,7 @@
 		padding-top: 5px
 	}
 
-	.close-team {
+	/*.close-team {
 		.hidden-xs();
 		cursor: pointer;
 		position: absolute;
@@ -44,7 +44,27 @@
 
 	@media (min-width: @screen-sm-min) {
 		.border-top-radius(@globalBoxesRadius);
+	}*/
+}
+
+.close-team {
+	.hidden-xs();
+	cursor: pointer;
+	.make-sm-column(12);
+	padding: 8px 10px 20px 10px;
+
+	.btn-close-cancel{
+		.btn-cancel();
+		.btn-block();
 	}
+	.btn-close-cancel::after {
+		.create-glyph("\E014", 10pt);
+		margin-right: 20px;
+	}
+}
+.top-separator {
+	.make-sm-column(12);
+	height: 60px;
 }
 
 .fantasy-team-list {
@@ -112,7 +132,7 @@
 
 .fantasy-team-wrapper {
 	@media (min-width: @screen-sm-min) {
-		height: 561px;		// Quitamos 1 pixel para comernos el borde final del slot
+		height: 620px;		// Quitamos 1 pixel para comernos el borde final del slot
 		overflow: hidden;	// Asi nos lo comemos
 		.make-percent-box(50%, 2%);
 		.make-border(1px, solid, @orange, @globalBoxesRadius);

@@ -50,27 +50,7 @@
 }
 
 #myContestMenuTabs{
-	background-color: @blueDark;
-	padding: 0;
-	margin-bottom: 0px;
-	height: 60px;
-	> li {
-		.make-xs-column(4);
-		background-color: @blueLight;
-		.make-border(4px, none none solid none, @blueDark);
-		list-style-type: none;
-		a {
-			cursor: pointer;
-			line-height: 50px;
-			text-align: center;
-			display: block;
-			text-decoration: none; 
-			color: @white;
-		}
-	}
-	.active {
-		background-color: @blueDark;
-	}
+	.tabs-navigation(3);
 
 	.contest-count{
 		background-color: @orange;

@@ -6,7 +6,7 @@
 		.make-border(1px, none none solid none, @white);
 		background-color: @tramaBlue;
 		text-align: center;
-		line-height: 46px;
+		line-height: 45px;
 		
 		@grid-columns-gutter: 4px;
 		
@@ -40,6 +40,12 @@
 		.score {.make-xs-column(2, @grid-table-header-gutter);}
 		.prize {.make-xs-column(2, @grid-table-header-gutter);}
 	}
+	
+	.top-separator {
+		.make-sm-column(12);
+		height: 60px;
+		background-color: @white;
+	}
 
 	// Desktop
 	.users-header { .hidden-xs(); }
@@ -47,7 +53,7 @@
 	@media (min-width: @screen-sm-min) {
 		.make-border(1px, solid, @greyDark, @globalBoxesRadius);
 		.make-percent-box(50%, 2%);
-		height: 561px;		// Mismo tamaño que fantasy_team
+		height: 620px;		// Mismo tamaño que fantasy_team
 		overflow: hidden;
 
 		.users-header {
@@ -58,8 +64,8 @@
 		}
 
 		.users-table-rows {
-			height: 439px;
-			overflow-y: scroll;
+			height: 505px;
+			overflow-y: hidden;
 			overflow-x: hidden;
 		}
 

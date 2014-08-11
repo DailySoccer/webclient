@@ -9,10 +9,10 @@
   </div>
   <div id="liveContestRoot" ng-switch="ctrl.scrDet.isXsScreen" ng-cloak>
     <div ng-switch-when="true">
-      <ul class="nav nav-tabs" id="liveContestTab" >
-        <li class="active"><a href="#/live_contest/#userFantasyTeam" data-toggle="tab">Tu alineación</a></li>
-        <li><a href="#/live_contest/#usersList" data-toggle="tab">Usuarios</a></li>
-        <li><a href="#/live_contest/#opponentFantasyTeam" data-toggle="tab">Adversario</a></li>
+      <ul class="live-contest-tabs" id="liveContestTab" >
+        <li class="active"><a ng-click="ctrl.tabChange('userFantasyTeam')" data-toggle="tab">Tu alineación</a></li>
+        <li><a ng-click="ctrl.tabChange('usersList')"data-toggle="tab">Usuarios</a></li>
+        <li><a ng-click="ctrl.tabChange('opponentFantasyTeam')"data-toggle="tab">Adversario</a></li>
       </ul>
 
       <div class="tab-content" id="liveContestTabContent">

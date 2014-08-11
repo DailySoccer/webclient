@@ -12,6 +12,7 @@ import 'package:webclient/models/contest_entry.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:intl/intl.dart';
 import 'package:webclient/models/match_event.dart';
+import 'dart:html';
 
 @Controller(
     selector: '[view-contest-ctrl]',
@@ -113,6 +114,14 @@ class ViewContestCtrl implements DetachAware {
         .catchError((error) {
           _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
         });
+  }
+
+  void tabChange(String tab) {
+    List<dynamic> allContentTab = document.querySelectorAll(".tab-pane");
+    allContentTab.forEach((element) => element.classes.remove('active'));
+
+    Element contentTab = document.querySelector("#" + tab);
+    contentTab.classes.add("active");
   }
 
   Timer _timer;

@@ -39,29 +39,22 @@
     <div class="modal-content">
 
         <div class="tabs-background">
-        <!-- Nav tabs -->
-        <ul class="contest-info-tabs " id="modalInfoContestTabs">
-            <li class="tab active"><a  data-toggle="tab" ng-click="contestInfo.tabChange('info')">INFORMACIÓN</a></li>
-            <li class="tab"><a  data-toggle="tab" ng-click="contestInfo.tabChange('contestants')">PARTICIPANTES</a></li>
-            <li class="tab"><a  data-toggle="tab" ng-click="contestInfo.tabChange('prizes')">PREMIOS</a></li>
-            <li class="buton-place">
-              <button type="button" class="btn btn-primary" ng-click="contestInfo.enterContest()" data-dismiss="modal" href="#">ENTRAR</button>
-            </li>
-        </ul>
-
+          <!-- Nav tabs -->
+          <ul class="contest-info-tabs " id="modalInfoContestTabs">
+              <li class="tab active"><a  data-toggle="tab" ng-click="contestInfo.tabChange('info')">INFORMACIÓN</a></li>
+              <li class="tab"><a  data-toggle="tab" ng-click="contestInfo.tabChange('contestants')">PARTICIPANTES</a></li>
+              <li class="tab"><a  data-toggle="tab" ng-click="contestInfo.tabChange('prizes')">PREMIOS</a></li>
+              <li class="buton-place">
+                <button type="button" class="btn btn-primary" ng-click="contestInfo.enterContest()" data-dismiss="modal" href="#">ENTRAR</button>
+              </li>
+          </ul>
         </div>
 
-        <!--
-        <div class="enter-contest-button">
-
-        </div>
--->
         <div class="contest-info-content" id="modalInfoContestTabContent">
             <div class=" tab-content">
 
                 <!-- Tab panes -->
                 <div class="tab-pane active" id="info">
-
                     <p class="instructions">{{contestInfo.currentInfoData['rules']}}</p>
                     <div class="start-date">COMIENZA EL {{contestInfo.currentInfoData['startDateTime']}}</div>
 
@@ -75,10 +68,19 @@
                     <p class="bases-title">REGLAS DE PUNTUACIÓN</p>
 
                     <pre class="rules-description">{{contestInfo.currentInfoData['legals']}}</pre>
-
                 </div>
 
                 <div class="tab-pane" id="contestants">
+                <div class="contestant-list-wrapper ">
+                  <div class="contestant-list">
+                    <div class="contestant-element"ng-repeat="contestant in contestInfo.currentInfoData['contestants']">
+                        <div class="contestant-position">{{$index}}</div>
+                        <div class="contestant-name">{{contestant.name}}</div>
+                        <div class="contestant-points">{{contestant.points + ' '}}<span class="prize-currency">DFP</span></div>
+                    </div>
+                  </div>
+                  </div>
+                  <!--
                     <div class="list-wrapper">
                         <div class="contestant-list">
                             <div class="contestant-element"ng-repeat="contestant in contestInfo.currentInfoData['contestants']">
@@ -88,21 +90,21 @@
                             </div>
                         </div>
                     </div>
+                  -->
                 </div>
 
                 <div class="tab-pane" id="prizes">
-                    <div class="prizes-wrapper">
-                        <div id="prizes-list">
-                            <div class="prize-element" ng-repeat="prize in contestInfo.currentInfoData['prizes']">
-                                <div class="prize-position">{{$index + 1}}º</div>
-                                <div class="prize-separator"></div>
-                                <div class="prize-amount">{{prize.value}}€</div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
 
+                  <div class="prizes-wrapper">
+                    <div id="prizes-list">
+                      <div class="prize-element" ng-repeat="prize in contestInfo.currentInfoData['prizes']">
+                        {{$index + 1}}º &nbsp;&nbsp; {{prize.value | number: 0.00}}€
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+
+                </div>
             </div>
         </div>
 
@@ -111,9 +113,8 @@
 </div>
 
 <div ng-if="!contestInfo.isPopUp">
-  <div id="contestInfoTabContent">
-
-    <p class="title-first">{{contestInfo.currentInfoData['rules']}}</p>
+  <div id="contestInfoTabbed">
+    <p class="title">{{contestInfo.currentInfoData['rules']}}</p>
     <div class="matches-involved">
         <div class="match"   ng-repeat="match in contestInfo.currentInfoData['matchesInvolved']">
             <p class="teams">{{match.soccerTeamA.shortName}} - {{match.soccerTeamB.shortName}}</p>
@@ -131,7 +132,7 @@
     <div class="prizes-wrapper">
         <div id="prizes-list">
             <div class="prize-element" ng-repeat="prize in contestInfo.currentInfoData['prizes']">
-                <div class="prize">{{$index + 1}}º {{prize.value}}€</div>
+                {{$index + 1}}º &nbsp;&nbsp; {{prize.value | number: 0.00}}€
             </div>
             <div class="clearfix"></div>
         </div>
@@ -141,9 +142,11 @@
     <p class="title">JUGADORES</p>
     <div class="contestant-list">
         <div class="contestant-element"ng-repeat="contestant in contestInfo.currentInfoData['contestants']">
+            <div class="contestant-position">{{$index}}</div>
             <div class="contestant-name">{{contestant.name}}</div>
             <div class="contestant-points">{{contestant.points + ' '}}<span class="prize-currency">DFP</span></div>
         </div>
     </div>
   </div>
+
 </div>

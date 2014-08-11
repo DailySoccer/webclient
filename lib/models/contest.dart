@@ -17,6 +17,8 @@ class Contest {
 
   TemplateContest templateContest;
 
+  String get description => "${templateContest.tournamentTypeName}: ${contestEntries.length} de ${maxEntries} jugadores - LIM. SAL.: ${templateContest.salaryCap}";
+
   Contest(this.contestId, this.name, this.contestEntries, this.maxEntries, this.templateContest);
 
   Contest.referenceInit(this.contestId);

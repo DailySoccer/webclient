@@ -26,101 +26,99 @@ class ContestInfoComp {
       if(value != null){
         updateContestInfo(value);
       }
-      }
+  }
 
-     @NgTwoWay("is-pop-up")
-    bool get isPopUp => popUpStyle;
-    void set isPopUp (bool value){
-      popUpStyle = value;
-    }
+  @NgTwoWay("is-pop-up")
+  bool get isPopUp => popUpStyle;
+  void set isPopUp (bool value){
+    popUpStyle = value;
+  }
 
-    ContestInfoComp(Scope scope, this._router, this._contestService) {
+  ContestInfoComp(Scope scope, this._router, this._contestService) {
 
-      currentInfoData = {  /*  hay que utilizar esta variable para meter los datos de este componente  */
-        'description'     : '<description>',
-        'name'            : '<name>',
-        'entry'           : '<entry>',
-        'prize'           : '<prize>',
-        'rules'           : '<rules>',         // 'Elige un equipo de 11 jugadores a partir de los siguientes partidos',
-        'startDateTime'   : '<startDateTime>', // 'COMIENZA EL DOM. 15/05 19:00',
-        'matchesInvolved' : null,
-        'legals'          : '<legals>',
-        'contestants'     : contestants,
-        'prizes'          : new List()
-      };
+    currentInfoData = {  /*  hay que utilizar esta variable para meter los datos de este componente  */
+      'description'     : '<description>',
+      'name'            : '<name>',
+      'entry'           : '<entry>',
+      'prize'           : '<prize>',
+      'rules'           : '<rules>',         // 'Elige un equipo de 11 jugadores a partir de los siguientes partidos',
+      'startDateTime'   : '<startDateTime>', // 'COMIENZA EL DOM. 15/05 19:00',
+      'matchesInvolved' : null,
+      'legals'          : '<legals>',
+      'contestants'     : contestants,
+      'prizes'          : []
+    };
 
-      contestants.add({
-        'name'    : 'Jhon Doe 1',
-        'points'  : '0000'
-      });
-      contestants.add({
-        'name'    : 'Jhon Doe 2',
-        'points'  : '0000'
-      });
-      contestants.add({
-        'name'    : 'Jhon Doe 3',
-        'points'  : '0000'
-      });
-      contestants.add({
-        'name'    : 'Jhon Doe 4',
-        'points'  : '0000'
-      });
-      contestants.add({
-        'name'    : 'Jhon Doe 5',
-        'points'  : '0000'
-      });
-      contestants.add({
-        'name'    : 'Jhon Doe 6',
-        'points'  : '0000'
-      });
-    }
+    contestants.add({
+      'name'    : 'Jhon Doe 1',
+      'points'  : '0000'
+    });
+    contestants.add({
+      'name'    : 'Jhon Doe 2',
+      'points'  : '0000'
+    });
+    contestants.add({
+      'name'    : 'Jhon Doe 3',
+      'points'  : '0000'
+    });
+    contestants.add({
+      'name'    : 'Jhon Doe 4',
+      'points'  : '0000'
+    });
+    contestants.add({
+      'name'    : 'Jhon Doe 5',
+      'points'  : '0000'
+    });
+    contestants.add({
+      'name'    : 'Jhon Doe 6',
+      'points'  : '0000'
+    });
+  }
 
-    updateContestInfo(Contest contest)
+  void updateContestInfo(Contest contest)
+  {
+    currentInfoData["name"]           = contest.templateContest.name;
+    currentInfoData["description"]    = contest.description;
+    currentInfoData["entry"]          = contest.templateContest.entryFee.toString();
+    currentInfoData["prize"]          = contest.templateContest.prizePool.toString();
+    currentInfoData["startDateTime"]  = getFormatedDate(contest.templateContest.startDate);
+    currentInfoData["contestants"]    = contestants;
+    currentInfoData["prizes"]         = contest.templateContest.getPrizes().map((value) => {'value' : value}).toList();
+    currentInfoData["matchesInvolved"]= contest.templateContest.matchEvents;
+  }
+
+  String getFormatedDate(DateTime date) {
+    String result ="";
+    var dateTimeFormat = new DateFormat(' MM/yy H:mm');
+    result = getDayOfTheWeek(date.weekday) + dateTimeFormat.format(date);
+    return result;
+  }
+
+  String getDayOfTheWeek(int weekDay) {
+    String retorno = "";
+    switch(weekDay)
     {
-      currentInfoData["name"]           = contest.templateContest.name;
-      currentInfoData["entry"]          = contest.templateContest.entryFee.toString();
-      currentInfoData["prize"]          = contest.templateContest.prizePool.toString();
-      currentInfoData["startDateTime"]  = getFormatedDate(contest.templateContest.startDate);
-      currentInfoData["contestants"]    = contestants;
-      currentInfoData["prizes"]         = contest.templateContest.getPrizes().map((value) => {'value' : value}).toList();
-      currentInfoData["matchesInvolved"]= contest.templateContest.matchEvents;
-    }
-
-    String getFormatedDate(DateTime date)
-    {
-      String result ="";
-      var dateTimeFormat = new DateFormat(' MM/yy H:mm');
-      result = getDayOfTheWeek(date.weekday) + dateTimeFormat.format(date);
-      return result;
-    }
-
-    String getDayOfTheWeek(int weekDay)
-    {
-      String retorno="";
-      switch(weekDay)
-      {
-        case DateTime.MONDAY:
-          retorno = "LUN.";
-        break;
-        case DateTime.TUESDAY:
-          retorno = "MAR.";
-        break;
-        case DateTime.WEDNESDAY:
-          retorno = "MIE.";
-        break;
-        case DateTime.THURSDAY:
-          retorno = "JUE.";
-        break;
-        case DateTime.FRIDAY:
-          retorno = "VIE.";
-        break;
-        case DateTime.SATURDAY:
-          retorno = "SAB.";
-        break;
-        case DateTime.SUNDAY:
-          retorno = "DOM.";
-        break;
-
+      case DateTime.MONDAY:
+        retorno = "LUN.";
+      break;
+      case DateTime.TUESDAY:
+        retorno = "MAR.";
+      break;
+      case DateTime.WEDNESDAY:
+        retorno = "MIE.";
+      break;
+      case DateTime.THURSDAY:
+        retorno = "JUE.";
+      break;
+      case DateTime.FRIDAY:
+        retorno = "VIE.";
+      break;
+      case DateTime.SATURDAY:
+        retorno = "SAB.";
+      break;
+      case DateTime.SUNDAY:
+        retorno = "DOM.";
+      break;
     }
     return retorno;
   }
@@ -143,6 +141,4 @@ class ContestInfoComp {
   ActiveContestsService _contestService;
   Contest _contestData;
   bool _popUpStyle;
-
-
 }

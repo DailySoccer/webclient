@@ -362,7 +362,7 @@ class EnterContestCtrl {
   ActiveContestsService _contestService;
   ProfileService _profileService;
   FlashMessagesService _flashMessage;
-  DateFormat _timeDisplayFormat= new DateFormat("HH:mm");
+  DateFormat _timeDisplayFormat= new DateFormat("E,HH:mm", "es_ES");
   // Lista de filtros a aplicar
   Map<String,String> _filterList = {};
   // Ordenes

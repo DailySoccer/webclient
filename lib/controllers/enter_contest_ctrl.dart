@@ -186,7 +186,6 @@ class EnterContestCtrl {
     });
   }
   void setMatchFilter(String matchId, String matchText) {
-      print(matchText);
       if(matchId == "-1") {
           removeFilter(FILTER_MATCH);
           setMatchFilterClass("Todos");

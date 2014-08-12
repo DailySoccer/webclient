@@ -62,11 +62,6 @@
 		}
 	}
 
-	/*@media (min-width: @screen-sm-min) {
-		.make-percent-box(33%, 2%);
-		border: 1px solid blue;
-	}*/
-
 	@media (min-width: @screen-md-min) {
 		.make-border(1px, solid none none none, @orange);
 	}
@@ -76,6 +71,14 @@
 		width: 100%;
 		text-align: center;
 		font-size: 10pt;
-		margin-bottom: 0;	
+		margin-bottom: 0;
+		display: none;
+		border-radius: 0;
+		button {
+			margin: -12px -10px 0 0;
+		}
+	}
+	.alert-red-numbers.active {
+		display: block;
 	}
 }

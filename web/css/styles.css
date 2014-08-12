@@ -10295,10 +10295,6 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
   border-style: solid none none none;
   border-color: #777777;
   border-radius: 0;
-  /*@media (min-width: @screen-sm-min) {
-		.make-percent-box(33%, 2%);
-		border: 1px solid blue;
-	}*/
 }
 .lineup-selector .posPOR {
   background-color: #fff6e5;
@@ -10412,6 +10408,14 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
   text-align: center;
   font-size: 10pt;
   margin-bottom: 0;
+  display: none;
+  border-radius: 0;
+}
+.lineup-selector .alert-red-numbers button {
+  margin: -12px -10px 0 0;
+}
+.lineup-selector .alert-red-numbers.active {
+  display: block;
 }
 #promosComponent {
   position: relative;

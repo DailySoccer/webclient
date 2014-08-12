@@ -80,6 +80,12 @@ class EnterContestCtrl {
 
       // Reseteamos el filtro para volver a mostrarlo entre los disponibles
       setFieldPosFilter(null);
+
+      //Quitamos la modal de números rojos si no hay salario disponible
+      if(availableSalary >= 0) {
+        alertDismiss();
+      }
+
     } else {
       isSelectingSoccerPlayer = true;
       setFieldPosFilter(new FieldPos(FieldPos.LINEUP[slotIndex]));
@@ -327,10 +333,21 @@ class EnterContestCtrl {
     }
   }
 
+  void alertDismiss() {
+    List<DivElement> alerta = querySelectorAll(".alert-red-numbers");
+    alerta.forEach((element) => element.classes.remove('active'));
+  }
+
   void createFantasyTeam() {
     // TODO: Se tendría que redireccionar a la pantalla de hacer "Login"?
     if (!_profileService.isLoggedIn) {
       _router.go('login', {});
+      return;
+    }
+
+    if (availableSalary < 0) {
+      List<DivElement> alerta = querySelectorAll(".alert-red-numbers");
+      alerta.forEach((element) => element.classes.add('active'));
       return;
     }
 
@@ -374,6 +391,8 @@ class EnterContestCtrl {
     updateTextAvailableSalary(availableSalary.toString());
     //Resetamos todos los filtros
     removeAllFilters();
+    //Quito la modal de alerta de números rojos
+    alertDismiss();
   }
 
   bool isPlayerSelected() {

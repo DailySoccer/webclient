@@ -30,10 +30,12 @@ class MyContestsService {
   Future refreshMyContests() {
     var completer = new Completer();
 
-    _server.getMyContests()
-        .then((jsonObject) {
-          _initContests (Contest.loadContestsFromJsonObject(jsonObject));
-          completer.complete(jsonObject);
+    Future.wait([_server.getMyNextContests(), _server.getMyLiveContests(), _server.getMyHistoryContests()])
+        .then((List responses) {
+          waitingContests = Contest.loadContestsFromJsonObject(responses[0]);
+          liveContests = Contest.loadContestsFromJsonObject(responses[1]);
+          historyContests = Contest.loadContestsFromJsonObject(responses[2]);
+          completer.complete(responses);
         });
 
     return completer.future;
@@ -64,12 +66,6 @@ class MyContestsService {
       });
 
     return completer.future;
-  }
-
-  void _initContests(List<Contest> contests) {
-    waitingContests = contests.where((contest) => contest.templateContest.isActive).toList();
-    liveContests = contests.where((contest) => contest.templateContest.isLive).toList();
-    historyContests = contests.where((contest) => contest.templateContest.isHistory).toList();
   }
 
   ServerService _server;

@@ -29,24 +29,48 @@
 	.info{
 		.make-sm-column(6);
 		.make-sm-column-push(3);
-		padding: 10px;
+		padding: 10px 10px 20px;
 		
 		.info-registers-count, .info-wins-count{
-			.opensans_bold(10pt, @white);
+			.opensans_bold(8pt, @white);
 			margin-right: 10px;
 		}
 		.info-available-money{
-			.opensans_bold(10pt, @orange);	
+			.opensans_bold(8pt, @orange);	
 		}
 		text-align: center;
 	}
 	.information-no-contest{
-			.make-xs-column(12);
-			.opensans_bold(9pt, @white);
-			padding: 10px;
-			text-align: center;
+		.make-xs-column(12);
+		.opensans_bold(9pt, @white);
+		padding: 10px 10px 20px;
+		text-align: center;
 			
-	}	
+	}
+	.refresh-text {
+		.hidden-xs();
+		.pull-left();
+		position: absolute;
+		margin: 12px 0 0 10px;
+		.opensans_normal(9pt, @white);
+	}
+	.data-to-csv {
+		.hidden-xs();
+		.pull-right();
+		margin: 2px 10px 0 0;
+		.btn-data-to-csv {
+			.btn();
+			.btn-default();
+		}
+	}
+	.change-player {
+		text-align: center;
+		margin: 2px 0 16px 0;
+		.btn-change-player {
+			.btn();
+			.btn-primary();
+		}
+	}
 }
 
 #myContestMenuTabs{
@@ -106,12 +130,14 @@
 	background-color: @white;
 	border-bottom-right-radius: 10px;
 	border-bottom-left-radius: 10px;
-
-	.header-contests {
-		background-color: @tramaBlue;
-		.exo_light(24px, @blueDark);
-		line-height: 80px;
-		padding-left: 15px;
+	.text-refresh-history {
+		.hidden-sm();
+		.hidden-md();
+		.hidden-lg();
+		.opensans_normal(9pt, @greyDark);
+		line-height: 40px;
+		background-color: @greyLight;
+		padding-left: 10px;
 	}
 }
 

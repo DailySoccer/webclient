@@ -47,7 +47,12 @@
 			}
 		}
 
-		.column-contest-price {
+		.column-contest-empty {
+			.make-sm-column(1, 0);
+			.hidden-xs();
+		}
+
+		.column-contest-price, .column-contest-position {
 			// 5 columnas xs y 2 para el resto
 			.make-xs-column(5, 0);
 			.make-sm-column(2, 0);
@@ -56,7 +61,7 @@
 			}
 		}
 
-		.column-contest-prize {
+		.column-contest-prize, .column-contest-points {
 			// 7 columnas xs y 2 para el resto
 			.make-xs-column(7, 0);
 			.make-sm-column(2, 0);
@@ -65,7 +70,7 @@
 			}
 		}
 
-		.column-contest-price-header, .column-contest-prize-header{
+		.column-contest-price-header, .column-contest-prize-header, .column-contest-points-header, .column-contest-position-header {
 			.opensans_normal(9pt, @greyDark);
 			padding-top: 2px;
 			// Tamaño para todas las versiones excepto xs
@@ -86,7 +91,7 @@
 			}
 		}
 
-		.column-contest-price-content, .column-contest-prize-content {
+		.column-contest-price-content, .column-contest-prize-content, .column-contest-points-content, .column-contest-position-content {
 			// Inversion para header y content
 			.pull-left();
 			.make-sm-column(12, 5px);
@@ -174,6 +179,9 @@
 					color: @blueDark; 
 					.create-glyph("\E080", 10pt);
 					padding: 0;
+				}
+				.btn:focus, .btn:active, .btn:hover {
+					background-color: transparent;
 				}
 			}
 		}

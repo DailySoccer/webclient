@@ -38,6 +38,8 @@ class EnterContestCtrl {
 
   String selectedSoccerPlayerId;
 
+  int availableSalary;
+
   EnterContestCtrl(RouteProvider routeProvider, this._router, this.scrDet, this._profileService, this._contestService, this._flashMessage) {
 
     // Creamos los slots iniciales, todos vacios
@@ -50,6 +52,9 @@ class EnterContestCtrl {
     // Al principio, todos disponibles
     initAllSoccerPlayers();
     availableSoccerPlayers = new List<dynamic>.from(_allSoccerPlayers);
+
+    //Saldo disponible
+    availableSalary = contest.templateContest.salaryCap;
   }
 
   void tabChange(String tab) {
@@ -65,6 +70,9 @@ class EnterContestCtrl {
     _selectedLineupPosIndex = slotIndex;
 
     if (lineupSlots[slotIndex] != null) {
+      //Al borrar el jugador seleccionado en el lineup, sumamos su salario al total
+      calculateAvailableSalary(-lineupSlots[slotIndex]["salary"]);
+
       isSelectingSoccerPlayer = false;
 
       // Lo quitamos del slot
@@ -72,10 +80,35 @@ class EnterContestCtrl {
 
       // Reseteamos el filtro para volver a mostrarlo entre los disponibles
       setFieldPosFilter(null);
+
+      //Quitamos la modal de números rojos si no hay salario disponible
+      if(availableSalary >= 0) {
+        alertDismiss();
+      }
+
     } else {
       isSelectingSoccerPlayer = true;
       setFieldPosFilter(new FieldPos(FieldPos.LINEUP[slotIndex]));
     }
+  }
+
+  void updateTextAvailableSalary(String availableSalaryText) {
+    List<SpanElement> totalSalary = querySelectorAll(".total-salary-money");
+
+    totalSalary.forEach((element) {
+      element.text = availableSalaryText + "€";
+      if(int.parse(availableSalaryText) < 0) {
+        element.classes.add("red-numbers");
+      } else {
+        element.classes.remove("red-numbers");
+      }
+    });
+  }
+
+  void calculateAvailableSalary(int soccerPrice) {
+    availableSalary = availableSalary - soccerPrice;
+    //Pintamos en la caja de texto el total
+    updateTextAvailableSalary(availableSalary.toString());
   }
 
   void onSoccerPlayerSelected(var soccerPlayer) {
@@ -84,8 +117,14 @@ class EnterContestCtrl {
       isSelectingSoccerPlayer = false;
       lineupSlots[_selectedLineupPosIndex] = soccerPlayer;
       //setFieldPosFilter(null);
+
+      calculateAvailableSalary(soccerPlayer["salary"]);
     } else {
       bool wasAdded = tryToAddSoccerPlayer(soccerPlayer);
+
+      if(wasAdded) {
+        calculateAvailableSalary(soccerPlayer["salary"]);
+      }
 
       if (wasAdded) availableSoccerPlayers.remove(soccerPlayer);
     }
@@ -103,7 +142,7 @@ class EnterContestCtrl {
 
   void setFieldPosFilter(FieldPos filter) {
     if(filter == null) {
-      removeFilters(FILTER_POSITION);
+      removeFilter(FILTER_POSITION);
       setPosFilterClass('TODOS');
       return;
     }
@@ -126,9 +165,8 @@ class EnterContestCtrl {
   }
 
   void setMatchFilter(String matchId, String matchText) {
-    print(matchText);
     if(matchId == "-1") {
-      removeFilters(FILTER_MATCH);
+      removeFilter(FILTER_MATCH);
       setMatchFilterClass('Todos los partidos');
       return;
     }
@@ -136,7 +174,7 @@ class EnterContestCtrl {
     setMatchFilterClass(matchText);
   }
 
-  void removeFilters(String filterName) {
+  void removeFilter(String filterName) {
     _filterList.remove(filterName);
     _refreshFilter();
   }
@@ -295,10 +333,21 @@ class EnterContestCtrl {
     }
   }
 
+  void alertDismiss() {
+    List<DivElement> alerta = querySelectorAll(".alert-red-numbers");
+    alerta.forEach((element) => element.classes.remove('active'));
+  }
+
   void createFantasyTeam() {
     // TODO: Se tendría que redireccionar a la pantalla de hacer "Login"?
     if (!_profileService.isLoggedIn) {
       _router.go('login', {});
+      return;
+    }
+
+    if (availableSalary < 0) {
+      List<DivElement> alerta = querySelectorAll(".alert-red-numbers");
+      alerta.forEach((element) => element.classes.add('active'));
       return;
     }
 
@@ -320,11 +369,30 @@ class EnterContestCtrl {
     return true;
   }
 
+  void removeAllFilters() {
+    setPosFilterClass('TODOS');
+    setMatchFilterClass('Todos los partidos');
+    List<InputElement> nameInput = querySelectorAll(".name-player-input-filter");
+    nameInput.forEach((element) => element.value = "");
+    _filterList={};
+    _refreshFilter();
+  }
+
   void deleteFantasyTeam() {
     int i = 0;
     for ( ; i < lineupSlots.length; ++i) {
       lineupSlots[i] = null;
     }
+    //Reseteamos la lista para que aparezcan todos los jugadores borrados otra vez en la lista de disponibles
+    initAllSoccerPlayers();
+    availableSoccerPlayers = new List<dynamic>.from(_allSoccerPlayers);
+    //Reseteamos el salario disponible
+    availableSalary = contest.templateContest.salaryCap;
+    updateTextAvailableSalary(availableSalary.toString());
+    //Resetamos todos los filtros
+    removeAllFilters();
+    //Quito la modal de alerta de números rojos
+    alertDismiss();
   }
 
   bool isPlayerSelected() {

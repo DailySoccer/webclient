@@ -24,8 +24,8 @@ class MainMenuComp {
   MainMenuComp(Scope scope, this.scrDet, this._router, this._profileService) {
     isLoggedIn  = _profileService.isLoggedIn;
 
-    scope.watch("isLoggedIn", (value, _) {
-      isLoggedIn = value;
+    scope.watch("user", (value, _) {
+      isLoggedIn = _profileService.isLoggedIn;
 
       if (isLoggedIn) {
         fullName = _profileService.user.fullName;

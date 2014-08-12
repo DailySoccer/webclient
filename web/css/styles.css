@@ -8956,44 +8956,32 @@ fieldset[disabled] .close-team .btn-close-cancel.active {
   background-color: #ecf0f1;
 }
 .info-and-social-bar .social {
-  float: left;
-  width: 25%;
   position: relative;
+  float: left;
+  width: 0%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  min-width: 150px;
+  width: 150px;
   padding: 10px 20px;
-}
-@media (min-width: 768px) {
-  .info-and-social-bar .social {
-    float: left;
-    width: 16.66666667%;
-  }
 }
 .info-and-social-bar .teams-info {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 10pt;
   color: #afafaf;
-  float: left;
-  width: 25%;
   position: relative;
+  float: left;
+  width: 0%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  min-width: 140px;
+  width: 140px;
   background-color: #ffffff;
   border-radius: 10px;
   padding: 10px;
   margin: 8px 4px;
   text-align: center;
-}
-@media (min-width: 768px) {
-  .info-and-social-bar .teams-info {
-    float: left;
-    width: 16.66666667%;
-  }
 }
 @media (min-width: 768px) {
   #liveContestRoot {
@@ -9670,19 +9658,19 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list.activ
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  min-width: 120px;
-  padding: 10px 20px;
+  width: 140px;
+  padding: 15px;
   margin: 10px 4px;
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
-  font-size: 8pt;
+  font-size: 10pt;
   color: #ffffff;
   overflow: hidden;
 }
 @media (min-width: 768px) {
   .match-teams-filter .button-filtro-team {
     float: left;
-    width: 10%;
+    width: 16.66666667%;
   }
 }
 @media (max-width: 767px) {

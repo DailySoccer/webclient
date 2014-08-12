@@ -8963,12 +8963,12 @@ fieldset[disabled] .close-team .btn-close-cancel.active {
   padding-left: 15px;
   padding-right: 15px;
   width: 150px;
-  padding: 10px 20px;
+  padding: 9px 20px;
 }
 .info-and-social-bar .teams-info {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
-  font-size: 10pt;
+  font-size: 9pt;
   color: #afafaf;
   position: relative;
   float: left;
@@ -9618,64 +9618,35 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list.activ
   color: #777777;
   text-align: center;
 }
-/*.match-teams-filter{
-	@media (min-width: @screen-sm-min) {
-		background-color: @tramaBlue;
-	}
-	.make-row(0);
-	padding-bottom: 10px;
-	.button-filtro-team {
-		.make-sm-column(1.2);
-		min-width: 120px;
-		.hidden-xs();
-		padding: 10px 20px;
-		margin: 10px 4px;
-		.opensans_bold(8pt, @white);
-		//white-space: normal;
-		overflow: hidden;
-	}
-	.button-filtro-team:active, .button-filtro-team:focus, .button-filtro-team:hover, .button-filtro-team:visited {
-		outline: none;
-	}
-	.active {
-		background-color: @white;
-		color: @greyUltraDark;
-		box-shadow: none !important;
-		outline: none !important;
-	}
-	.active:active, .active:hover, .active:focus, .active:visited {
-		color: @greyUltraDark;
-	}
-}*/
 .match-teams-filter {
   background-color: #ecf0f1;
   margin-left: 0;
   margin-right: 0;
-  padding-bottom: 10px;
+  padding: 0 5px 5px 5px;
 }
 .match-teams-filter .button-filtro-team {
   position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  width: 140px;
-  padding: 15px;
-  margin: 10px 4px;
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
-  font-size: 10pt;
+  font-size: 9pt;
   color: #ffffff;
-  overflow: hidden;
-}
-@media (min-width: 768px) {
-  .match-teams-filter .button-filtro-team {
-    float: left;
-    width: 16.66666667%;
-  }
+  min-width: 120px;
+  padding: 10px 0;
+  margin: 10px 4px;
+  text-align: center;
 }
 @media (max-width: 767px) {
   .match-teams-filter .button-filtro-team {
     display: none !important;
+  }
+}
+@media (min-width: 768px) {
+  .match-teams-filter .button-filtro-team {
+    float: left;
+    width: 8.33333333%;
   }
 }
 .match-teams-filter .button-filtro-team:active,
@@ -10115,6 +10086,7 @@ textarea.soccer-player-filter .name-player-input-filter {
   border-color: #777777;
   border-radius: 0;
   height: 42px;
+  cursor: pointer;
 }
 .soccer-players-list .soccer-players-list-slot .column-fieldpos {
   position: relative;

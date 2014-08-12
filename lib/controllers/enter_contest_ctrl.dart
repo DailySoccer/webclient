@@ -154,6 +154,7 @@ class EnterContestCtrl {
   }
 
   void setMatchFilterClass(String matchText) {
+
     List<ButtonElement> buttonsFilter = document.querySelectorAll(".button-filtro-team");
     buttonsFilter.forEach((element) {
       element.classes.remove('active');
@@ -162,7 +163,18 @@ class EnterContestCtrl {
       }
     });
   }
-
+  void setMatchFilter(String matchId, String matchText) {
+      print(matchText);
+      if(matchId == "-1") {
+          removeFilter(FILTER_MATCH);
+          setMatchFilterClass("Todos");
+          return;
+      }
+      addFilter(FILTER_MATCH, matchId);
+      var firstWord = matchText.split('<br>')[0];
+      setMatchFilterClass(firstWord);
+    }
+/*
   void setMatchFilter(String matchId, String matchText) {
     if(matchId == "-1") {
       removeFilter(FILTER_MATCH);
@@ -172,7 +184,7 @@ class EnterContestCtrl {
     addFilter(FILTER_MATCH, matchId);
     setMatchFilterClass(matchText);
   }
-
+*/
   void removeFilter(String filterName) {
     _filterList.remove(filterName);
     _refreshFilter();
@@ -307,7 +319,7 @@ class EnterContestCtrl {
       "salary": soccerPlayer.salary
     });
   }
-
+/*
   void initAllSoccerPlayers() {
     List<MatchEvent> matchEvents = contest.templateContest.matchEvents;
 
@@ -327,6 +339,30 @@ class EnterContestCtrl {
           "id": match.templateMatchEventId,
           "texto":match.soccerTeamA.shortName + '-' + match.soccerTeamB.shortName + "<br>" + _timeDisplayFormat.format(match.startDate) + "h."
         });
+      }
+    }
+  }
+*/
+
+  void initAllSoccerPlayers() {
+    List<MatchEvent> matchEvents = contest.templateContest.matchEvents;
+
+    for (var matchEvent in matchEvents) {
+      for (var player in matchEvent.soccerTeamA.soccerPlayers) {
+        _insertSoccerPlayer(matchEvent, matchEvent.soccerTeamA, player);
+      }
+
+      for (var player in matchEvent.soccerTeamB.soccerPlayers) {
+        _insertSoccerPlayer(matchEvent, matchEvent.soccerTeamB, player);
+      }
+
+      // generamos los partidos para el filtro de partidos
+      availableMatchEvents.clear();
+      for (MatchEvent match in matchEvents) {
+        availableMatchEvents.add({
+            "id": match.templateMatchEventId,
+              "texto":match.soccerTeamA.shortName + '-' + match.soccerTeamB.shortName + "<br>" + _timeDisplayFormat.format(match.startDate) + "h."
+          });
       }
     }
   }

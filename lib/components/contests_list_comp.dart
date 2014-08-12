@@ -2,8 +2,10 @@ library contests_list_comp;
 
 import 'package:angular/angular.dart';
 import 'package:webclient/models/contest.dart';
+import 'package:webclient/models/contest_entry.dart';
 import 'package:intl/intl.dart';
 import 'package:webclient/services/datetime_service.dart';
+import 'package:webclient/services/profile_service.dart';
 
 @Component(selector: 'contests-list',
            templateUrl: 'packages/webclient/components/contests_list_comp.html',
@@ -60,6 +62,22 @@ class ContestsListComp {
       }
     }
     return new DateFormat("HH:mm").format(date) + "h.";
+  }
+
+
+  int getMyPosition(Contest contest) {
+    ContestEntry mainContestEntry = contest.getContestEntryWithUser(_profileService.user.userId);
+    return mainContestEntry.position + 1;
+  }
+
+  int getMyFantasyPoints(Contest contest) {
+    ContestEntry mainContestEntry = contest.getContestEntryWithUser(_profileService.user.userId);
+    return mainContestEntry.fantasyPoints;
+  }
+
+  int getMyPrize(Contest contest) {
+    ContestEntry mainContestEntry = contest.getContestEntryWithUser(_profileService.user.userId);
+    return mainContestEntry.prize;
   }
 
   @NgOneWay("contests-list")
@@ -125,7 +143,7 @@ class ContestsListComp {
   @NgCallback("on-action-click")
   Function onActionClick;
 
-  ContestsListComp(this._dateTimeService);
+  ContestsListComp(this._profileService, this._dateTimeService);
 
   void onRow(Contest contest) {
     if (onRowClick != null)
@@ -194,4 +212,5 @@ class ContestsListComp {
   List<Contest> _contestsListOriginal;
 
   DateTimeService _dateTimeService;
+  ProfileService _profileService;
 }

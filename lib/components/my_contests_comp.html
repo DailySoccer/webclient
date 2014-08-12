@@ -108,9 +108,9 @@
           <div class="resume-bar" ng-show="comp.hasHistoryContests">
             <div class="refresh-text">Actualizado cada 24 horas</div>
             <div class="info">
-              <span class="info-registers-count">&lt;num_reg&gt; Registros</span>
-              <span class="info-wins-count">&lt;num_win&gt; Ganados</span>
-              <span class="info-available-money">&lt;money&gt; €</span>
+              <span class="info-registers-count">{{comp.myContestsService.historyContests.length}} Registros</span>
+              <span class="info-wins-count">{{comp.totalHistoryContestsWinner}} Ganados</span>
+              <span class="info-available-money">{{comp.totalHistoryContestsPrizes}} €</span>
             </div>
             <!--<div class="data-to-csv">
               <button class="btn-data-to-csv" ng-click="">DESCARGAR COMO CSV</button>

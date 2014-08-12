@@ -3,9 +3,11 @@ library my_contests_comp;
 import 'dart:html';
 import 'dart:async';
 import 'package:angular/angular.dart';
+import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/my_contests_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/models/contest.dart';
+import 'package:webclient/models/contest_entry.dart';
 
 @Component(
   selector: 'my-contests',
@@ -18,7 +20,7 @@ class MyContestsComp implements DetachAware {
 
   MyContestsService myContestsService;
 
-  MyContestsComp(this.myContestsService, this._router, this._flashMessage) {
+  MyContestsComp(this._profileService, this.myContestsService, this._router, this._flashMessage) {
     _updateLive();
     _timer = new Timer.periodic(const Duration(seconds:3), (Timer t) => _updateLive());
   }
@@ -75,8 +77,12 @@ class MyContestsComp implements DetachAware {
   bool get hasWaitingContests => myContestsService.waitingContests  == null ? false : myContestsService.waitingContests.length  > 0;
   bool get hasHistoryContests => myContestsService.historyContests  == null ? false : myContestsService.historyContests.length  > 0;
 
+  int get totalHistoryContestsWinner => myContestsService.historyContests.fold(0, (prev, contest) => (contest.getContestEntryWithUser(_profileService.user.userId).position == 0) ? prev+1 : prev);
+  int get totalHistoryContestsPrizes => myContestsService.historyContests.fold(0, (prev, contest) => prev + contest.getContestEntryWithUser(_profileService.user.userId).prize);
+
   Timer _timer;
   Router _router;
   FlashMessagesService _flashMessage;
+  ProfileService _profileService;
 
 }

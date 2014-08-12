@@ -15,6 +15,10 @@ class ContestEntry {
 
   List<SoccerPlayer> soccers;
 
+  int position;
+  int prize;
+  int fantasyPoints;
+
   int get currentLivePoints => soccers != null ? soccers.fold(0, (prev, soccerPlayer) => prev + soccerPlayer.currentLivePoints ) : 0;
 
   int get timeLeft {
@@ -46,6 +50,10 @@ class ContestEntry {
     if (json.containsKey("soccerIds")) {
       soccers = json.soccerIds.map((soccerPlayerId) => references.getSoccerPlayerById(soccerPlayerId)).toList();
     }
+
+    position = (json.containsKey("position")) ? json.position : 0;
+    prize = (json.containsKey("prize")) ? json.prize : 0;
+    fantasyPoints = (json.containsKey("fantasyPoints")) ? json.fantasyPoints : 0;
 
     // print("ContestEntry: id($contestEntryId) userId($userId) contestId($contestId) soccerIds($soccerIds)");
     return this;

@@ -6,13 +6,13 @@
         <a class="navbar-brand" href="#"></a>
       </div>
 
-      <button id="menuToggleGame" type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target="#gameMenuCollapse">
+      <button id="menuToggleGameMenu" type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target="#gameMenuCollapse">
         <span class="sr-only">Toggle game menu</span> <span
           class="icon-bar"></span> <span class="icon-bar"></span> <span
           class="icon-bar"></span>
       </button>
 
-      <button id="menuToggleUser" type="button" class="navbar-toggle pull-right" data-toggle="collapse" data-target="#userMenuCollapse">
+      <button id="menuToggleUserMenu" type="button" class="navbar-toggle pull-right" data-toggle="collapse" data-target="#userMenuCollapse">
         <span class="sr-only">Toggle user menu</span> <span
           class="icon-bar"></span> <span class="icon-bar"></span> <span
           class="icon-bar"></span>
@@ -31,7 +31,7 @@
 
     <div class="collapse navbar-collapse" ng-if="mainMenu.isLoggedIn" id="userMenuCollapse">
       <ul class="nav navbar-nav">
-        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <li class="dropdown"><a id="userMenuToggleDropDown" href="#" class="dropdown-toggle" data-toggle="dropdown">
           {{mainMenu.fullName}}<b class="caret"></b></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="#" ng-click="" id="userMenuMyAccount">Mi cuenta</a></li>

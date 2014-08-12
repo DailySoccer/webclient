@@ -8616,15 +8616,17 @@ fieldset[disabled] .close-team .btn-close-cancel.active {
 }
 .top-separator {
   position: relative;
+  float: left;
+  width: 100%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
   height: 60px;
+  background-color: #ffffff;
 }
-@media (min-width: 768px) {
+@media (max-width: 767px) {
   .top-separator {
-    float: left;
-    width: 100%;
+    display: none !important;
   }
 }
 .fantasy-team-list .fantasy-team-slot {
@@ -8867,16 +8869,17 @@ fieldset[disabled] .close-team .btn-close-cancel.active {
 }
 #usersListRoot .top-separator {
   position: relative;
+  float: left;
+  width: 100%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
   height: 60px;
   background-color: #ffffff;
 }
-@media (min-width: 768px) {
+@media (max-width: 767px) {
   #usersListRoot .top-separator {
-    float: left;
-    width: 100%;
+    display: none !important;
   }
 }
 @media (max-width: 767px) {
@@ -8953,12 +8956,14 @@ fieldset[disabled] .close-team .btn-close-cancel.active {
   background-color: #ecf0f1;
 }
 .info-and-social-bar .social {
+  float: left;
+  width: 25%;
   position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  min-width: 150px;
+  padding: 10px 20px;
 }
 @media (min-width: 768px) {
   .info-and-social-bar .social {
@@ -8971,14 +8976,24 @@ fieldset[disabled] .close-team .btn-close-cancel.active {
   font-weight: 700;
   font-size: 10pt;
   color: #afafaf;
+  float: left;
+  width: 25%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  min-width: 140px;
   background-color: #ffffff;
   border-radius: 10px;
-  padding: 5px 10px;
-  width: 10%;
-  white-space: normal;
-  display: inline-block;
-  margin: 15px 3px;
+  padding: 10px;
+  margin: 8px 4px;
   text-align: center;
+}
+@media (min-width: 768px) {
+  .info-and-social-bar .teams-info {
+    float: left;
+    width: 16.66666667%;
+  }
 }
 @media (min-width: 768px) {
   #liveContestRoot {
@@ -9036,7 +9051,7 @@ fieldset[disabled] .close-team .btn-close-cancel.active {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  height: 50px;
+  height: 54px;
 }
 @media (min-width: 992px) and (max-width: 1199px) {
   #liveContestRoot .live-contest-tabs {
@@ -9630,13 +9645,13 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list.activ
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  padding: 5px 20px;
-  margin: 10px 0 4px 10px;
+  min-width: 120px;
+  padding: 10px 20px;
+  margin: 10px 4px;
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 8pt;
   color: #ffffff;
-  white-space: normal;
   overflow: hidden;
 }
 @media (min-width: 768px) {
@@ -12548,7 +12563,7 @@ fieldset[disabled] .resume-bar .change-player .btn-change-player.active {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  height: 50px;
+  height: 54px;
 }
 #myContestMenuTabs > li {
   position: relative;

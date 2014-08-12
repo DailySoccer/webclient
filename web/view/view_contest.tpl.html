@@ -1,12 +1,16 @@
 <section view-contest-ctrl ng-show="ctrl.initialized">
+
   <div class="contest-id-bar">
     <div class="contest-id">ID: {{ctrl.contest.contestId.toUpperCase()}}</div>
   </div>
+
   <contest-header contestData="ctrl.contest"></contest-header>
+
   <div class="info-and-social-bar">
     <div class="social"><img src="images/socialBig.png"></div>
-     <div class="teams-info" ng-repeat="match in ctrl.matchesInvolved" ng-bind-html="match"></div>
+    <div class="teams-info" ng-repeat="match in ctrl.matchesInvolved" ng-bind-html="match"></div>
   </div>
+
   <div id="liveContestRoot" ng-switch="ctrl.scrDet.isXsScreen" ng-cloak>
     <div ng-switch-when="true">
       <ul class="live-contest-tabs" id="liveContestTab" >

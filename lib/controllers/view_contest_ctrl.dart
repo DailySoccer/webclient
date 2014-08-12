@@ -58,7 +58,7 @@ class ViewContestCtrl implements DetachAware {
         List<MatchEvent> matchEventsSorted = new List<MatchEvent>.from(contest.templateContest.matchEvents)
             .. sort((entry1, entry2) => entry1.startDate.compareTo(entry2.startDate))
             .. forEach( (match) {
-              matchesInvolved.add(match.soccerTeamA.shortName + '-' + match.soccerTeamB.shortName + " " + _timeDisplayFormat.format(match.startDate) + "h.");
+              matchesInvolved.add(match.soccerTeamA.shortName + '-' + match.soccerTeamB.shortName + "<br>" + _timeDisplayFormat.format(match.startDate) + "h.");
             });
 
         // Únicamente actualizamos los contests que estén en "live"
@@ -131,7 +131,7 @@ class ViewContestCtrl implements DetachAware {
   ProfileService _profileService;
   MyContestsService _myContestsService;
   DateTimeService _dateTimeService;
-  DateFormat _timeDisplayFormat= new DateFormat("E,HH:mm", "es_ES");
+  DateFormat _timeDisplayFormat= new DateFormat("E, HH:mm", "es_ES");
 
   String _contestId;
 }

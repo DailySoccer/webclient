@@ -15,20 +15,20 @@
 	.make-row(0);
 	background-color: @tramaBlue;
 	.social{
+		.make-xs-column(3);
 		.make-sm-column(2);
-		padding-top: 10px;
-		padding-bottom: 10px;
+		min-width: 150px;
+		padding: 10px 20px;
 	}
 	.teams-info{
-		//.make-sm-column(2);
 		.opensans_bold(10pt, @greyMed);
+		.make-xs-column(3);
+		.make-sm-column(2);
+		min-width: 140px;
 		background-color: @white;		
 		border-radius: 10px;
-		padding: 5px 10px;
-		width: 10%;
-		white-space: normal;
-		display: inline-block;
-		margin: 15px 3px;
+		padding: 10px;
+		margin: 8px 4px;
 		text-align: center;
 	}
 }
@@ -50,8 +50,4 @@
 		.hidden-lg();
 		.tabs-navigation(3);
 	}
-
-
-	
-
 }

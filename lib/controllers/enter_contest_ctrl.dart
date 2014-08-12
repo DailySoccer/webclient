@@ -3,7 +3,6 @@ library enter_contest_ctrl;
 
 import 'dart:html';
 import 'package:angular/angular.dart';
-import 'dart:async';
 import 'dart:js' as js;
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/models/field_pos.dart';
@@ -326,10 +325,9 @@ class EnterContestCtrl {
       for (MatchEvent match in matchEvents) {
         availableMatchEvents.add({
           "id": match.templateMatchEventId,
-          "texto":match.soccerTeamA.shortName + '-' + match.soccerTeamB.shortName + " " + _timeDisplayFormat.format(match.startDate) + "h."
+          "texto":match.soccerTeamA.shortName + '-' + match.soccerTeamB.shortName + "<br>" + _timeDisplayFormat.format(match.startDate) + "h."
         });
       }
-
     }
   }
 
@@ -430,7 +428,7 @@ class EnterContestCtrl {
   ActiveContestsService _contestService;
   ProfileService _profileService;
   FlashMessagesService _flashMessage;
-  DateFormat _timeDisplayFormat= new DateFormat("E,HH:mm", "es_ES");
+  DateFormat _timeDisplayFormat= new DateFormat("E, HH:mm", "es_ES");
   // Lista de filtros a aplicar
   Map<String,String> _filterList = {};
   // Ordenes

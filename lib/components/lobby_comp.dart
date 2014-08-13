@@ -254,6 +254,9 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     }
 
     sortType = sortName + "_" + _butonState[_currentButtonState];
+
+    print('Ordenando la lista de torneos: ${sortType.split('_')}');
+
     applySortingStyles("sort-" + sortName);
   }
 
@@ -264,7 +267,6 @@ class LobbyComp implements ShadowRootAware, DetachAware {
 
     if (btn != null) {
       btn.classes.add(_butonState[_currentButtonState]);
-      //print("El boton [$sortName] tiene ahora las clases: " + btn.classes.toList().toString() );
     }
   }
 

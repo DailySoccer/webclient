@@ -85,6 +85,7 @@ class ContestsListComp {
     _contestsListOriginal = value;
     contestsListFiltered = _contestsListOriginal;
     refreshFilters();
+    refreshSort();
   }
 
   //Setter de los filtros, Recibe la lista de los filtros aplicados.
@@ -93,18 +94,44 @@ class ContestsListComp {
     if (value == null)
       return;
     filterList = value;
-    //Partimos siempre de la lista original de todos los players
-
     refreshFilters();
   }
 
   @NgOneWay("sorted-by")
   void set sortedBy(String value) {
-    if(value == null || value.isEmpty) {
+    if(value == null || value.isEmpty)
       return;
-    }
+    _sortType = value;
+    refreshSort();
+  }
 
-    List<String> sortParams = value.split('_');
+  @NgOneWay("action-button-title")
+  String actionButtonTitle = "Ver";
+
+  @NgCallback("on-row-click")
+  Function onRowClick;
+
+  @NgCallback("on-action-click")
+  Function onActionClick;
+
+  ContestsListComp(this._profileService, this._dateTimeService);
+
+  void onRow(Contest contest) {
+    if (onRowClick != null)
+      onRowClick({"contest":contest});
+  }
+
+  void onAction(Contest contest) {
+    if (onActionClick != null)
+      onActionClick({"contest":contest});
+  }
+
+  void refreshSort()
+  {
+    if(_sortType == null)
+      return;
+
+    List<String> sortParams = _sortType.split('_');
 
     if (sortParams.length != 2) {
       print("El número de parametros no se ha establecido correctamente. La forma correcta es \'campo\'_\'dirección\'. Pon atención a la barra baja \'_\'");
@@ -131,34 +158,12 @@ class ContestsListComp {
         print('No se ha encontrado el campo para ordenar');
       break;
     }
-    print('Ordenando la lista by: $sortParams');
-  }
-
-  @NgOneWay("action-button-title")
-  String actionButtonTitle = "Ver";
-
-  @NgCallback("on-row-click")
-  Function onRowClick;
-
-  @NgCallback("on-action-click")
-  Function onActionClick;
-
-  ContestsListComp(this._profileService, this._dateTimeService);
-
-  void onRow(Contest contest) {
-    if (onRowClick != null)
-      onRowClick({"contest":contest});
-  }
-
-  void onAction(Contest contest) {
-    if (onActionClick != null)
-      onActionClick({"contest":contest});
   }
 
   void refreshFilters() {
-    if( filterList == null){
+    if( filterList == null)
       return;
-    }
+
     contestsListFiltered = _contestsListOriginal;
     //Recorremos la lista de filtros
     filterList.forEach( (String key, dynamic value )  {
@@ -210,6 +215,7 @@ class ContestsListComp {
 
   // Lista original de los contest
   List<Contest> _contestsListOriginal;
+  String _sortType;
 
   DateTimeService _dateTimeService;
   ProfileService _profileService;

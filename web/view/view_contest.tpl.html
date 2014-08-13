@@ -4,7 +4,7 @@
     <div class="contest-id">ID: {{ctrl.contest.contestId.toUpperCase()}}</div>
   </div>
 
-  <contest-header contestData="ctrl.contest"></contest-header>
+  <contest-header contestData="ctrl.contest" mode="'VIEW_CONTEST'"></contest-header>
 
   <div class="info-and-social-bar">
     <div class="social"><img src="images/socialBig.png"></div>
@@ -17,7 +17,7 @@
       <ul class="live-contest-tabs" id="liveContestTab" >
         <li class="active"><a ng-click="ctrl.tabChange('userFantasyTeam')" data-toggle="tab">Tu alineación</a></li>
         <li><a ng-click="ctrl.tabChange('usersList')" data-toggle="tab">Usuarios</a></li>
-        <li><a id="opponentTab" ng-click="ctrl.tabChange('opponentFantasyTeam')" data-toggle="tab">Adversario</a></li>
+        <li><a id="opponentTab" ng-click="ctrl.tabChange('opponentFantasyTeam')" data-toggle="tab">{{ctrl.lastOpponentSelected}}</a></li>
       </ul>
 
       <div class="tab-content" id="liveContestTabContent">

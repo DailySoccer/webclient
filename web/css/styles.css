@@ -9075,6 +9075,10 @@ fieldset[disabled] .close-team .btn-close-cancel.active {
 #liveContestRoot .live-contest-tabs .active {
   background-color: #214a5f;
 }
+#liveContestRoot .live-contest-tabs a {
+  overflow: hidden;
+  white-space: nowrap;
+}
 #enterContest {
   margin-left: -15px;
   margin-right: -15px;

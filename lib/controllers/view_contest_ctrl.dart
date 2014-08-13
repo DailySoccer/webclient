@@ -26,6 +26,7 @@ class ViewContestCtrl implements DetachAware {
   bool initialized;
 
   DateTime updatedDate;
+  String lastOpponentSelected = "Adversario";
 
   List<String> matchesInvolved = [];
 
@@ -126,8 +127,9 @@ class ViewContestCtrl implements DetachAware {
 
   void setTabNameAndShowIt(String name)
   {
+    lastOpponentSelected = name;
     Element anchor = querySelector("#opponentTab");
-    anchor.text = name;
+    anchor.text = lastOpponentSelected;
     tabChange("opponentFantasyTeam");
 
     // Tenemos que cambiar a mano tb la clase del tab para que aparezca con el estilo seleccionado.

@@ -17,7 +17,6 @@ class UsersListComp {
 
   List users = new List();
 
-
   @NgTwoWay("selected-contest-entry")
   ContestEntry selectedContestEntry = null;
 
@@ -45,8 +44,6 @@ class UsersListComp {
         print("-USER_LIST-COMP: Se ha establecido un valor para el parametro 'mode' no valido.");
     }
   }
-  int _mode;
-
 
   String getPrize(int index) => _viewContestCtrl.getPrize(index);
 
@@ -82,4 +79,5 @@ class UsersListComp {
 
   List<ContestEntry> _contestEntries;
   ViewContestCtrl _viewContestCtrl;
+  int _mode;
 }

@@ -81,8 +81,10 @@ class EnterContestCtrl {
   void onScreenWidthChange(String value) {
     if(value == "desktop") {
       Element matchesFilter = document.querySelector('.match-teams-filter');
-      matchesFilter.style.display = "block";
-      tabChange('lineup-tab-content');
+      if(matchesFilter != null) {
+        matchesFilter.style.display = "block";
+        tabChange('lineup-tab-content');
+      }
     }
   }
 

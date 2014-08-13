@@ -17,6 +17,11 @@ import 'dart:async';
 
 class ContestHeaderComp implements DetachAware{
 
+  static const int ENTER_CONTEST = 0;
+  static const int VIEW_CONTEST = 1;
+
+  int mode;
+
   Map<String, dynamic> contestHeaderInfo = {
     'description': '<description>',
     'startTime':'<startTime>',
@@ -36,6 +41,18 @@ class ContestHeaderComp implements DetachAware{
 
     if (value != null) {
       _refreshHeader();
+    }
+  }
+
+  @NgOneWay("mode")
+  void set viewMode(String value) {
+    switch(value) {
+      case "ENTER_CONTEST":
+        mode = ENTER_CONTEST;
+        break;
+      case "VIEW_CONTEST":
+        mode = VIEW_CONTEST;
+        break;
     }
   }
 
@@ -103,8 +120,15 @@ class ContestHeaderComp implements DetachAware{
     contestHeaderInfo["contestantCount"] = "${_contestInfo.contestEntries.length} de ${_contestInfo.maxEntries} jugadores  - LIM. SAL.: ${_contestInfo.templateContest.salaryCap}";
   }
 
-  void goToLobby(){
-    _router.go("lobby", {});
+  void goBackTo(){
+    switch(mode) {
+      case ENTER_CONTEST:
+        _router.go("lobby", {});
+        break;
+      case VIEW_CONTEST:
+        _router.go("my_contests", {});
+        break;
+    }
   }
 
   void detach() {

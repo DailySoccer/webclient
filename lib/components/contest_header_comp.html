@@ -26,11 +26,11 @@
       <span class="time-countdown">{{contestHeader.contestHeaderInfo['countdownDate']}}</span>
     </div>
 
-    <div class="close-contest"><button type="button" class="btn" ng-click="contestHeader.goToLobby()">Cerrar</button></div>
+    <div class="close-contest"><button type="button" class="btn" ng-click="contestHeader.goBackTo()">Cerrar</button></div>
 
 </div>
 
-<div class="countdown-text" ng-if="contestHeader.scrDet.isDesktop">
+<div class="countdown-text" ng-if="contestHeader.scrDet.isDesktop && contestHeader.mode == 0">
   <span class="choose-player-text">ELIGE 11 JUGADORES</span>
   <span class="time-countdown"><span></span>{{contestHeader.contestHeaderInfo['countdownDate']}}</span>
 </div>

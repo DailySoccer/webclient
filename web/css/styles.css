@@ -8887,6 +8887,9 @@ fieldset[disabled] .close-team .btn-close-cancel.active {
     display: none !important;
   }
 }
+#usersListRoot .user-row {
+  cursor: pointer;
+}
 @media (min-width: 768px) {
   #usersListRoot {
     border-width: 1px;
@@ -8925,9 +8928,6 @@ fieldset[disabled] .close-team .btn-close-cancel.active {
   }
   #usersListRoot .users-table-header {
     padding-right: 15px;
-  }
-  #usersListRoot .user-row {
-    cursor: pointer;
   }
 }
 .contest-id-bar {

@@ -50,7 +50,10 @@
 
 	// Desktop
 	.users-header { .hidden-xs(); }
-
+		
+	.user-row {
+		cursor: pointer;
+	}
 	@media (min-width: @screen-sm-min) {
 		.make-border(1px, solid, @greyDark, @globalBoxesRadius);
 		.make-percent-box(50%, 2%);
@@ -74,10 +77,6 @@
 			// Para que la header quede centrada respecto a las rows, 
 			// puesto que en desktop las rows tienen la scrollbar a la derecha
 			padding-right: 15px;	
-		}
-
-		.user-row {
-			cursor: pointer;
 		}
 	}
 }

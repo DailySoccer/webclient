@@ -124,6 +124,18 @@ class ViewContestCtrl implements DetachAware {
     contentTab.classes.add("active");
   }
 
+  void setTabNameAndShowIt(String name)
+  {
+    Element anchor = querySelector("#opponentTab");
+    anchor.text = name;
+    tabChange("opponentFantasyTeam");
+
+    // Tenemos que cambiar a mano tb la clase del tab para que aparezca con el estilo seleccionado.
+    List<Element> lis = querySelectorAll("#liveContestTab li");
+    lis.forEach( (element) => element.classes.remove('active'));
+    anchor.parent.classes.add("active");
+  }
+
   Timer _timer;
   List<int> _prizes = [];
 

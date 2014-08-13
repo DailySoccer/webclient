@@ -1,4 +1,4 @@
-
+hasCompetitionsOf
 
 
 
@@ -89,25 +89,25 @@
         <div class="filter-content">
             <div class="check-group-wrapper">
               <div class="button-check">
-                <input id="filtroFree" type="checkbox"  ng-disabled="!comp.hasFreeTournaments"
+                <input id="filtroFree" type="checkbox"  ng-disabled="!comp.hasTournamentsType('FREE')"
                                                         ng-model="comp.isFreeTournamentChecked"
                                                         ng-click="comp.refreshTorunamentFilter()">
                 <label for="filtroFree">Gratis</label>
               </div>
               <div class="button-check">
-                <input id="filtroLiga" type="checkbox"  ng-disabled="!comp.hasLigaTournaments"
+                <input id="filtroLiga" type="checkbox"  ng-disabled="!comp.hasTournamentsType('LIGA')"
                                                         ng-model="comp.isLigaTournamentChecked"
                                                         ng-click="comp.refreshTorunamentFilter()">
                 <label for="filtroLiga">Liga</label>
               </div>
               <div class="button-check">
-                <input id="filtroFiftyFifty" type="checkbox"  ng-disabled="!comp.hasFiftyFiftyTournaments"
+                <input id="filtroFiftyFifty" type="checkbox"  ng-disabled="!comp.hasTournamentsType('FIFTY_FIFTY')"
                                                               ng-model="comp.isFiftyFiftyTournamentChecked"
                                                               ng-click="comp.refreshTorunamentFilter()">
                 <label for="filtroFiftyFifty">50/50</label>
               </div>
               <div class="button-check">
-                <input id="filtroHeadToHead" type="checkbox"  ng-disabled="!comp.hasHeadToHeadTournaments"
+                <input id="filtroHeadToHead" type="checkbox"  ng-disabled="!comp.hasTournamentsType('HEAD_TO_HEAD')"
                                                               ng-model="comp.isHeadToHeadTournamentChecked"
                                                               ng-click="comp.refreshTorunamentFilter()" >
                 <label for="filtroHeadToHead">1 conta 1</label>

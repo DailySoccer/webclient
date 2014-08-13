@@ -84,8 +84,7 @@ class ContestsListComp {
   void set contestsList(List<Contest> value) {
     _contestsListOriginal = value;
     contestsListFiltered = _contestsListOriginal;
-    refreshFilters();
-    refreshSort();
+    refreshList();
   }
 
   //Setter de los filtros, Recibe la lista de los filtros aplicados.
@@ -94,7 +93,7 @@ class ContestsListComp {
     if (value == null)
       return;
     filterList = value;
-    refreshFilters();
+    refreshList();
   }
 
   @NgOneWay("sorted-by")
@@ -102,7 +101,7 @@ class ContestsListComp {
     if(value == null || value.isEmpty)
       return;
     _sortType = value;
-    refreshSort();
+    refreshList();
   }
 
   @NgOneWay("action-button-title")
@@ -124,6 +123,11 @@ class ContestsListComp {
   void onAction(Contest contest) {
     if (onActionClick != null)
       onActionClick({"contest":contest});
+  }
+  void refreshList()
+  {
+    refreshFilters();
+    refreshSort();
   }
 
   void refreshSort()

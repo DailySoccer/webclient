@@ -8612,7 +8612,7 @@ fieldset[disabled] .close-team .btn-close-cancel.active {
   font-family: 'Glyphicons Halflings';
   content: "\E014";
   font-size: 10pt;
-  margin-right: 20px;
+  margin-left: 10px;
 }
 .top-separator {
   position: relative;

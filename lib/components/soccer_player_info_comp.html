@@ -1,4 +1,25 @@
-<div class="modal-info-head">
+<div class="soccer-player-info-header">
+  <div class="actions-header">
+    <button class="btn" ng-click="soccerPlayerInfo.enterContestCtrl.cancelPlayerInfo()">CANCELAR</button>
+    <button class="btn">AÑADIR</button>
+  </div>
+  <div class="description-header">
+    <div class="soccer-player-pos-team">
+      <span>{{soccerPlayerInfo.currentInfoData['fieldPos']}}</span> | <span>{{soccerPlayerInfo.currentInfoData['team']}}</span>
+    </div>
+    <div class="soccer-player-name">{{soccerPlayerInfo.currentInfoData['name']}}</div>
+    <div class="soccer-player-info-stats">
+      <div class="soccer-player-fantasy-points"><span class="info-header">EEP</span><span class="info-content">{{soccerPlayerInfo.currentInfoData['fantasyPoints']}}</span></div>
+      <div class="soccer-player-matches"><span class="info-header">PARTIDOS</span><span class="info-content">{{soccerPlayerInfo.currentInfoData['matches']}}</span></div>
+      <div class="soccer-player-salary"><span class="info-header">SALARIO</span><span class="info-content">{{soccerPlayerInfo.currentInfoData['salary']}}</span></div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!--<div class="modal-info-head">
     <div class="contest-info-header-row">
 
         <div class="column-name">
@@ -17,18 +38,18 @@
 
 <div class="modal-content">
 
-    <div class="tabs-background"></div>
+    <div class="tabs-background"></div>-->
 
     <!-- Nav tabs -->
-    <ul class="info-options" id="modalInfoContestTabs">
+ <!--   <ul class="info-options" id="modalInfoContestTabs">
         <li class="active"><a  data-toggle="tab" ng-click="soccerPlayerInfo.tabChange('info')">INFORMACIÓN</a></li>
     </ul>
 
     <div class="contest-info-content" id="modalInfoContestTabContent">
-        <div class=" tab-content">
+        <div class=" tab-content">-->
 
             <!-- Tab panes -->
-            <div class="tab-pane active" id="info">
+ <!--           <div class="tab-pane active" id="info">
 
               <div ng-switch="soccerPlayerInfo.currentInfoData['fieldPos'] == 'GOALKEEPER'" >
               <table class="table table-striped" ng-switch-when="true">
@@ -112,6 +133,6 @@
         </div>
     </div>
 
-</div>
+</div>-->
 <!-- <div class="modal-footer"></div> -->
 

@@ -3,8 +3,10 @@ library soccer_player_info_comp;
 import 'package:angular/angular.dart';
 import 'dart:html';
 import 'package:webclient/models/soccer_player_info.dart';
+import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/services/soccer_player_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
+import 'package:webclient/controllers/enter_contest_ctrl.dart';
 
 
 @Component(
@@ -15,6 +17,8 @@ import 'package:webclient/services/flash_messages_service.dart';
 )
 
 class SoccerPlayerInfoComp {
+
+  EnterContestCtrl enterContestCtrl;
 
   @NgTwoWay("soccerPlayerData")
       String get soccerPlayerData => _soccerPlayerIdData;
@@ -28,12 +32,15 @@ class SoccerPlayerInfoComp {
     Map currentInfoData;
     List partidos  = new List();
 
-    SoccerPlayerInfoComp(this._router, this._soccerPlayerService, this._flashMessage) {
+    SoccerPlayerInfoComp(this._router, this._soccerPlayerService, this._flashMessage, this.enterContestCtrl) {
 
       currentInfoData = {
         'fieldPos'        : '<fieldPos>',
-        'description'     : '<description>',
+        'team'            : '<team>',
         'name'            : '<name>',
+        'fantasyPoints'   : '<fantasyPoints>',
+        'matches'         : '<matches>',
+        'salary'          : '<salary>'
       };
     }
 
@@ -49,7 +56,10 @@ class SoccerPlayerInfoComp {
 
     updateSoccerPlayerInfoFromService() {
       currentInfoData['fieldPos'] = _soccerPlayerService.soccerPlayerInfo.fieldPos;
-      currentInfoData['name'] = "${_soccerPlayerService.soccerPlayerInfo.name} (${_soccerPlayerService.soccerPlayerInfo.fieldPos.value})";
+      currentInfoData['name'] = _soccerPlayerService.soccerPlayerInfo.name.toUpperCase();
+      currentInfoData['fantasyPoints'] =_soccerPlayerService.soccerPlayerInfo.fantasyPoints;
+      currentInfoData['matches'] =_soccerPlayerService.soccerPlayerInfo.stats.length;
+      currentInfoData['salary'] =_soccerPlayerService.soccerPlayerInfo.salary;
 
       partidos.clear();
 

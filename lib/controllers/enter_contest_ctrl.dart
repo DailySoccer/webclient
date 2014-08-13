@@ -85,6 +85,7 @@ class EnterContestCtrl {
         matchesFilter.style.display = "block";
         tabChange('lineup-tab-content');
       }
+      cancelPlayerInfo();
     }
   }
 
@@ -431,17 +432,35 @@ class EnterContestCtrl {
     isSelectingSoccerPlayer = false;
   }
 
+  void cancelPlayerInfo() {
+    DivElement enterContestWrapper = querySelector('.enter-contest-wrapper');
+    enterContestWrapper.style.display = "block";
+    DivElement soccerPlayerInfoWrapper = querySelector('.soccer-player-info-wrapper');
+    soccerPlayerInfoWrapper.style.display = "none";
+  }
+
   // Mostramos la ventana modal con la información de ese torneo, si no es la versión movil.
   void onRowClick(String soccerPlayerId) {
     selectedSoccerPlayerId = soccerPlayerId;
 
-    // Esto soluciona el bug por el que no se muestra la ventana modal en Firefox;
-    var modal = querySelector('#infoContestModal');
-    modal.style.display = "block";
+    // Version Small or Desktop => sacamos la modal
+    if(scrDet.isSmScreen || scrDet.isDesktop) {
 
-    // Con esto llamamos a funciones de jQuery
-    js.context.callMethod(r'$', ['#infoContestModal'])
-      .callMethod('modal');
+      // Esto soluciona el bug por el que no se muestra la ventana modal en Firefox;
+      var modal = querySelector('#infoContestModal');
+      modal.style.display = "block";
+
+      // Con esto llamamos a funciones de jQuery
+      js.context.callMethod(r'$', ['#infoContestModal'])
+        .callMethod('modal');
+
+    } else { // Resto de versiones => mostramos el componente soccer_player_info_comp
+      print('resto versiones ' + soccerPlayerId);
+      DivElement enterContestWrapper = querySelector('.enter-contest-wrapper');
+      enterContestWrapper.style.display = "none";
+      DivElement soccerPlayerInfoWrapper = querySelector('.soccer-player-info-wrapper');
+      soccerPlayerInfoWrapper.style.display = "block";
+    }
   }
 
   var _allSoccerPlayers = new List();

@@ -9866,6 +9866,20 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list.activ
 .enter-contest-lineup-wrapper .enter-contest-total-salary .total-salary .red-numbers {
   color: red;
 }
+@media (min-width: 768px) {
+  .enter-contest-wrapper {
+    display: block !important;
+  }
+}
+.soccer-player-info-wrapper {
+  display: none;
+}
+@media (min-width: 768px) {
+  .soccer-player-info-wrapper {
+    background-color: #fff;
+    display: none !important;
+  }
+}
 @media (max-width: 767px) {
   .soccer-player-filter {
     padding: 0 10px;

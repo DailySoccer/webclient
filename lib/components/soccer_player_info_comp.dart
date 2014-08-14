@@ -35,6 +35,7 @@ class SoccerPlayerInfoComp {
     SoccerPlayerInfoComp(this._router, this._soccerPlayerService, this._flashMessage, this.enterContestCtrl) {
 
       currentInfoData = {
+        'id'              : '<id>',
         'fieldPos'        : '<fieldPos>',
         'team'            : '<team>',
         'name'            : '<name>',
@@ -55,6 +56,7 @@ class SoccerPlayerInfoComp {
     }
 
     updateSoccerPlayerInfoFromService() {
+      currentInfoData['id'] = _soccerPlayerIdData;
       currentInfoData['fieldPos'] = _soccerPlayerService.soccerPlayerInfo.fieldPos;
       currentInfoData['name'] = _soccerPlayerService.soccerPlayerInfo.name.toUpperCase();
       currentInfoData['fantasyPoints'] =_soccerPlayerService.soccerPlayerInfo.fantasyPoints;

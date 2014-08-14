@@ -1,17 +1,28 @@
 <div class="soccer-player-info-header">
   <div class="actions-header">
-    <button class="btn" ng-click="soccerPlayerInfo.enterContestCtrl.cancelPlayerInfo()">CANCELAR</button>
-    <button class="btn">AÑADIR</button>
+    <div class="text-header">Estadísticas de jugador</div>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+      <span class="glyphicon glyphicon-remove"></span>
+    </button>
+    <div class="button-wrapper">
+      <button class="btn-cancel-soccer-player-info" ng-click="soccerPlayerInfo.enterContestCtrl.closePlayerInfo()">CANCELAR</button>
+    </div>
+    <div class="button-wrapper">
+      <span class="next-match">PRÓXIMO PARTIDO: <strong>R.MADRID</strong> VS. A. MADRID</span>
+      <button class="btn-add-soccer-player-info" ng-click="soccerPlayerInfo.enterContestCtrl.addSoccerPlayerToLineup(soccerPlayerInfo.currentInfoData['id'])">AÑADIR</button>
+    </div>
   </div>
   <div class="description-header">
-    <div class="soccer-player-pos-team">
-      <span>{{soccerPlayerInfo.currentInfoData['fieldPos']}}</span> | <span>{{soccerPlayerInfo.currentInfoData['team']}}</span>
+    <div class="soccer-player-description">
+      <div class="soccer-player-pos-team">
+        <span>{{soccerPlayerInfo.currentInfoData['fieldPos']}}</span> | <span>{{soccerPlayerInfo.currentInfoData['team']}}</span>
+      </div>
+      <div class="soccer-player-name">{{soccerPlayerInfo.currentInfoData['name']}}</div>
     </div>
-    <div class="soccer-player-name">{{soccerPlayerInfo.currentInfoData['name']}}</div>
     <div class="soccer-player-info-stats">
-      <div class="soccer-player-fantasy-points"><span class="info-header">EEP</span><span class="info-content">{{soccerPlayerInfo.currentInfoData['fantasyPoints']}}</span></div>
-      <div class="soccer-player-matches"><span class="info-header">PARTIDOS</span><span class="info-content">{{soccerPlayerInfo.currentInfoData['matches']}}</span></div>
-      <div class="soccer-player-salary"><span class="info-header">SALARIO</span><span class="info-content">{{soccerPlayerInfo.currentInfoData['salary']}}</span></div>
+      <div class="soccer-player-fantasy-points"><span>EEP</span><span>{{soccerPlayerInfo.currentInfoData['fantasyPoints']}}</span></div>
+      <div class="soccer-player-matches"><span>PARTIDOS</span><span>{{soccerPlayerInfo.currentInfoData['matches']}}</span></div>
+      <div class="soccer-player-salary"><span>SALARIO</span><span>{{soccerPlayerInfo.currentInfoData['salary']}}</span></div>
     </div>
   </div>
 </div>

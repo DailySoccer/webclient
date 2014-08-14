@@ -5649,6 +5649,8 @@ button.close {
 .enter-contest-actions-wrapper:after,
 .match-teams-filter:before,
 .match-teams-filter:after,
+.soccer-player-info-header:before,
+.soccer-player-info-header:after,
 .soccer-player-list-header-table:before,
 .soccer-player-list-header-table:after,
 .soccer-players-list .soccer-players-list-slot:before,
@@ -5721,6 +5723,7 @@ button.close {
 #enterContest:after,
 .enter-contest-actions-wrapper:after,
 .match-teams-filter:after,
+.soccer-player-info-header:after,
 .soccer-player-list-header-table:after,
 .soccer-players-list .soccer-players-list-slot:after,
 #promosComponent:after,
@@ -9259,6 +9262,7 @@ fieldset[disabled] .landing-wrapper .button-play.active {
   background-color: #fa9c19;
   text-align: center;
   border-radius: 3px;
+  margin-top: 10px;
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .enter-contest-actions-wrapper .total-salary {
@@ -9674,7 +9678,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list.activ
   background-color: #ecf0f1;
   margin-left: 0;
   margin-right: 0;
-  padding: 0 5px 5px 5px;
+  padding: -1px 5px 5px 5px;
 }
 .match-teams-filter .button-filtro-team {
   position: relative;
@@ -9878,6 +9882,645 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list.activ
   .soccer-player-info-wrapper {
     background-color: #fff;
     display: none !important;
+  }
+}
+.soccer-player-info-header {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+@media (max-width: 767px) {
+  .soccer-player-info-header {
+    border-width: 1px;
+    border-style: solid none none none;
+    border-color: #fba61a;
+    border-radius: 0;
+    background-color: #434343;
+    color: #ffffff;
+    padding: 0 5px;
+  }
+}
+.soccer-player-info-header > .navbar-header,
+.soccer-player-info-header > .navbar-collapse {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+@media (min-width: 768px) {
+  .soccer-player-info-header > .navbar-header,
+  .soccer-player-info-header > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+.soccer-player-info-header .text-header {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14pt;
+  color: #777777;
+  line-height: 66px;
+  margin-left: 5px;
+}
+@media (max-width: 767px) {
+  .soccer-player-info-header .text-header {
+    display: none !important;
+  }
+}
+.soccer-player-info-header .close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+@media (max-width: 767px) {
+  .soccer-player-info-header .close {
+    display: none !important;
+  }
+}
+.soccer-player-info-header .button-wrapper {
+  float: left;
+  width: 50%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 15px 5px;
+}
+@media (min-width: 768px) {
+  .soccer-player-info-header .button-wrapper {
+    float: left;
+    width: 100%;
+  }
+}
+@media (min-width: 768px) {
+  .soccer-player-info-header .button-wrapper {
+    display: none;
+  }
+}
+.soccer-player-info-header .button-wrapper .next-match {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 9pt;
+  color: #59add5;
+  display: inline-block;
+  margin-top: 10px;
+}
+@media (max-width: 767px) {
+  .soccer-player-info-header .button-wrapper .next-match {
+    display: none !important;
+  }
+}
+.soccer-player-info-header .button-wrapper .next-match strong {
+  color: #ffffff;
+}
+@media (min-width: 768px) {
+  .soccer-player-info-header .button-wrapper + .button-wrapper {
+    background-image: -webkit-linear-gradient(top, #1a3949 49%, #0f2630 51%);
+    background-image: linear-gradient(to bottom, #1a3949 49%, #0f2630 51%);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff1a3949', endColorstr='#ff0f2630', GradientType=0);
+    display: block;
+    position: absolute;
+    top: 148px;
+    z-index: 999;
+    padding: 5px 5px 10px;
+  }
+}
+.soccer-player-info-header .btn-cancel-soccer-player-info {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  color: #ffffff;
+  background-color: #afafaf;
+  border-color: #cccccc;
+  box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
+  display: block;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+.soccer-player-info-header .btn-cancel-soccer-player-info:focus,
+.soccer-player-info-header .btn-cancel-soccer-player-info:active:focus,
+.soccer-player-info-header .btn-cancel-soccer-player-info.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.soccer-player-info-header .btn-cancel-soccer-player-info:hover,
+.soccer-player-info-header .btn-cancel-soccer-player-info:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+.soccer-player-info-header .btn-cancel-soccer-player-info:active,
+.soccer-player-info-header .btn-cancel-soccer-player-info.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.soccer-player-info-header .btn-cancel-soccer-player-info.disabled,
+.soccer-player-info-header .btn-cancel-soccer-player-info[disabled],
+fieldset[disabled] .soccer-player-info-header .btn-cancel-soccer-player-info {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.soccer-player-info-header .btn-cancel-soccer-player-info:focus,
+.soccer-player-info-header .btn-cancel-soccer-player-info:active:focus,
+.soccer-player-info-header .btn-cancel-soccer-player-info.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.soccer-player-info-header .btn-cancel-soccer-player-info:hover,
+.soccer-player-info-header .btn-cancel-soccer-player-info:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+.soccer-player-info-header .btn-cancel-soccer-player-info:active,
+.soccer-player-info-header .btn-cancel-soccer-player-info.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.soccer-player-info-header .btn-cancel-soccer-player-info.disabled,
+.soccer-player-info-header .btn-cancel-soccer-player-info[disabled],
+fieldset[disabled] .soccer-player-info-header .btn-cancel-soccer-player-info {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.soccer-player-info-header .btn-cancel-soccer-player-info:hover,
+.soccer-player-info-header .btn-cancel-soccer-player-info:focus,
+.soccer-player-info-header .btn-cancel-soccer-player-info:active,
+.soccer-player-info-header .btn-cancel-soccer-player-info.active,
+.open .dropdown-toggle.soccer-player-info-header .btn-cancel-soccer-player-info {
+  color: #ffffff;
+  background-color: #9b9b9b;
+  border-color: #adadad;
+}
+.soccer-player-info-header .btn-cancel-soccer-player-info:active,
+.soccer-player-info-header .btn-cancel-soccer-player-info.active,
+.open .dropdown-toggle.soccer-player-info-header .btn-cancel-soccer-player-info {
+  background-image: none;
+}
+.soccer-player-info-header .btn-cancel-soccer-player-info.disabled,
+.soccer-player-info-header .btn-cancel-soccer-player-info[disabled],
+fieldset[disabled] .soccer-player-info-header .btn-cancel-soccer-player-info,
+.soccer-player-info-header .btn-cancel-soccer-player-info.disabled:hover,
+.soccer-player-info-header .btn-cancel-soccer-player-info[disabled]:hover,
+fieldset[disabled] .soccer-player-info-header .btn-cancel-soccer-player-info:hover,
+.soccer-player-info-header .btn-cancel-soccer-player-info.disabled:focus,
+.soccer-player-info-header .btn-cancel-soccer-player-info[disabled]:focus,
+fieldset[disabled] .soccer-player-info-header .btn-cancel-soccer-player-info:focus,
+.soccer-player-info-header .btn-cancel-soccer-player-info.disabled:active,
+.soccer-player-info-header .btn-cancel-soccer-player-info[disabled]:active,
+fieldset[disabled] .soccer-player-info-header .btn-cancel-soccer-player-info:active,
+.soccer-player-info-header .btn-cancel-soccer-player-info.disabled.active,
+.soccer-player-info-header .btn-cancel-soccer-player-info[disabled].active,
+fieldset[disabled] .soccer-player-info-header .btn-cancel-soccer-player-info.active {
+  background-color: #afafaf;
+  border-color: #cccccc;
+}
+.soccer-player-info-header .btn-cancel-soccer-player-info .badge {
+  color: #afafaf;
+  background-color: #ffffff;
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .soccer-player-info-header .btn-cancel-soccer-player-info {
+    display: none !important;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .soccer-player-info-header .btn-cancel-soccer-player-info {
+    display: none !important;
+  }
+}
+@media (min-width: 1200px) {
+  .soccer-player-info-header .btn-cancel-soccer-player-info {
+    display: none !important;
+  }
+}
+.soccer-player-info-header .btn-add-soccer-player-info {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+}
+.soccer-player-info-header .btn-add-soccer-player-info:focus,
+.soccer-player-info-header .btn-add-soccer-player-info:active:focus,
+.soccer-player-info-header .btn-add-soccer-player-info.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.soccer-player-info-header .btn-add-soccer-player-info:hover,
+.soccer-player-info-header .btn-add-soccer-player-info:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+.soccer-player-info-header .btn-add-soccer-player-info:active,
+.soccer-player-info-header .btn-add-soccer-player-info.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.soccer-player-info-header .btn-add-soccer-player-info.disabled,
+.soccer-player-info-header .btn-add-soccer-player-info[disabled],
+fieldset[disabled] .soccer-player-info-header .btn-add-soccer-player-info {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.soccer-player-info-header .btn-add-soccer-player-info:focus,
+.soccer-player-info-header .btn-add-soccer-player-info:active:focus,
+.soccer-player-info-header .btn-add-soccer-player-info.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.soccer-player-info-header .btn-add-soccer-player-info:hover,
+.soccer-player-info-header .btn-add-soccer-player-info:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+.soccer-player-info-header .btn-add-soccer-player-info:active,
+.soccer-player-info-header .btn-add-soccer-player-info.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.soccer-player-info-header .btn-add-soccer-player-info.disabled,
+.soccer-player-info-header .btn-add-soccer-player-info[disabled],
+fieldset[disabled] .soccer-player-info-header .btn-add-soccer-player-info {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+@media (max-width: 767px) {
+  .soccer-player-info-header .btn-add-soccer-player-info {
+    color: #ffffff;
+    background-color: #a1c931;
+    border-color: #91b42c;
+    box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+    display: block;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .soccer-player-info-header .btn-add-soccer-player-info:hover,
+  .soccer-player-info-header .btn-add-soccer-player-info:focus,
+  .soccer-player-info-header .btn-add-soccer-player-info:active,
+  .soccer-player-info-header .btn-add-soccer-player-info.active,
+  .open .dropdown-toggle.soccer-player-info-header .btn-add-soccer-player-info {
+    color: #ffffff;
+    background-color: #87a829;
+    border-color: #698320;
+  }
+  .soccer-player-info-header .btn-add-soccer-player-info:active,
+  .soccer-player-info-header .btn-add-soccer-player-info.active,
+  .open .dropdown-toggle.soccer-player-info-header .btn-add-soccer-player-info {
+    background-image: none;
+  }
+  .soccer-player-info-header .btn-add-soccer-player-info.disabled,
+  .soccer-player-info-header .btn-add-soccer-player-info[disabled],
+  fieldset[disabled] .soccer-player-info-header .btn-add-soccer-player-info,
+  .soccer-player-info-header .btn-add-soccer-player-info.disabled:hover,
+  .soccer-player-info-header .btn-add-soccer-player-info[disabled]:hover,
+  fieldset[disabled] .soccer-player-info-header .btn-add-soccer-player-info:hover,
+  .soccer-player-info-header .btn-add-soccer-player-info.disabled:focus,
+  .soccer-player-info-header .btn-add-soccer-player-info[disabled]:focus,
+  fieldset[disabled] .soccer-player-info-header .btn-add-soccer-player-info:focus,
+  .soccer-player-info-header .btn-add-soccer-player-info.disabled:active,
+  .soccer-player-info-header .btn-add-soccer-player-info[disabled]:active,
+  fieldset[disabled] .soccer-player-info-header .btn-add-soccer-player-info:active,
+  .soccer-player-info-header .btn-add-soccer-player-info.disabled.active,
+  .soccer-player-info-header .btn-add-soccer-player-info[disabled].active,
+  fieldset[disabled] .soccer-player-info-header .btn-add-soccer-player-info.active {
+    background-color: #a1c931;
+    border-color: #91b42c;
+  }
+  .soccer-player-info-header .btn-add-soccer-player-info .badge {
+    color: #a1c931;
+    background-color: #ffffff;
+  }
+}
+@media (min-width: 768px) {
+  .soccer-player-info-header .btn-add-soccer-player-info {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border-width: 0;
+    color: #ffffff;
+    background-color: #fa9c19;
+    border-color: #cccccc;
+    box-shadow: 0px 5px 0px rgba(250, 156, 25, 0.5);
+    float: right !important;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  .soccer-player-info-header .btn-add-soccer-player-info:focus,
+  .soccer-player-info-header .btn-add-soccer-player-info:active:focus,
+  .soccer-player-info-header .btn-add-soccer-player-info.active:focus {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+  }
+  .soccer-player-info-header .btn-add-soccer-player-info:hover,
+  .soccer-player-info-header .btn-add-soccer-player-info:focus {
+    color: #ffffff;
+    text-decoration: none;
+  }
+  .soccer-player-info-header .btn-add-soccer-player-info:active,
+  .soccer-player-info-header .btn-add-soccer-player-info.active {
+    outline: 0;
+    background-image: none;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  }
+  .soccer-player-info-header .btn-add-soccer-player-info.disabled,
+  .soccer-player-info-header .btn-add-soccer-player-info[disabled],
+  fieldset[disabled] .soccer-player-info-header .btn-add-soccer-player-info {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.65;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  .soccer-player-info-header .btn-add-soccer-player-info:focus,
+  .soccer-player-info-header .btn-add-soccer-player-info:active:focus,
+  .soccer-player-info-header .btn-add-soccer-player-info.active:focus {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+  }
+  .soccer-player-info-header .btn-add-soccer-player-info:hover,
+  .soccer-player-info-header .btn-add-soccer-player-info:focus {
+    color: #ffffff;
+    text-decoration: none;
+  }
+  .soccer-player-info-header .btn-add-soccer-player-info:active,
+  .soccer-player-info-header .btn-add-soccer-player-info.active {
+    outline: 0;
+    background-image: none;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  }
+  .soccer-player-info-header .btn-add-soccer-player-info.disabled,
+  .soccer-player-info-header .btn-add-soccer-player-info[disabled],
+  fieldset[disabled] .soccer-player-info-header .btn-add-soccer-player-info {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.65;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  .soccer-player-info-header .btn-add-soccer-player-info:hover,
+  .soccer-player-info-header .btn-add-soccer-player-info:focus,
+  .soccer-player-info-header .btn-add-soccer-player-info:active,
+  .soccer-player-info-header .btn-add-soccer-player-info.active,
+  .open .dropdown-toggle.soccer-player-info-header .btn-add-soccer-player-info {
+    color: #ffffff;
+    background-color: #e58805;
+    border-color: #adadad;
+  }
+  .soccer-player-info-header .btn-add-soccer-player-info:active,
+  .soccer-player-info-header .btn-add-soccer-player-info.active,
+  .open .dropdown-toggle.soccer-player-info-header .btn-add-soccer-player-info {
+    background-image: none;
+  }
+  .soccer-player-info-header .btn-add-soccer-player-info.disabled,
+  .soccer-player-info-header .btn-add-soccer-player-info[disabled],
+  fieldset[disabled] .soccer-player-info-header .btn-add-soccer-player-info,
+  .soccer-player-info-header .btn-add-soccer-player-info.disabled:hover,
+  .soccer-player-info-header .btn-add-soccer-player-info[disabled]:hover,
+  fieldset[disabled] .soccer-player-info-header .btn-add-soccer-player-info:hover,
+  .soccer-player-info-header .btn-add-soccer-player-info.disabled:focus,
+  .soccer-player-info-header .btn-add-soccer-player-info[disabled]:focus,
+  fieldset[disabled] .soccer-player-info-header .btn-add-soccer-player-info:focus,
+  .soccer-player-info-header .btn-add-soccer-player-info.disabled:active,
+  .soccer-player-info-header .btn-add-soccer-player-info[disabled]:active,
+  fieldset[disabled] .soccer-player-info-header .btn-add-soccer-player-info:active,
+  .soccer-player-info-header .btn-add-soccer-player-info.disabled.active,
+  .soccer-player-info-header .btn-add-soccer-player-info[disabled].active,
+  fieldset[disabled] .soccer-player-info-header .btn-add-soccer-player-info.active {
+    background-color: #fa9c19;
+    border-color: #cccccc;
+  }
+  .soccer-player-info-header .btn-add-soccer-player-info .badge {
+    color: #fa9c19;
+    background-color: #ffffff;
+  }
+}
+.soccer-player-info-header .description-header {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding: 10px 0;
+}
+@media (min-width: 768px) {
+  .soccer-player-info-header .description-header {
+    background-color: #434343;
+    border-width: 1px;
+    border-style: none none solid none;
+    border-color: #ffffff;
+    border-radius: 0;
+    margin-bottom: 100px;
+  }
+}
+.soccer-player-info-header .description-header .soccer-player-description {
+  float: left;
+  width: 100%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+@media (min-width: 768px) {
+  .soccer-player-info-header .description-header .soccer-player-description {
+    float: left;
+    width: 58.33333333%;
+  }
+}
+@media (min-width: 992px) {
+  .soccer-player-info-header .description-header .soccer-player-description {
+    float: left;
+    width: 66.66666667%;
+  }
+}
+.soccer-player-info-header .description-header .soccer-player-description .soccer-player-pos-team {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 0px;
+  padding-right: 0px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #afafaf;
+}
+.soccer-player-info-header .description-header .soccer-player-description .soccer-player-pos-team span + span {
+  color: #ffffff;
+}
+.soccer-player-info-header .description-header .soccer-player-description .soccer-player-name {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 0px;
+  padding-right: 0px;
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 20pt;
+  color: #fba61a;
+  margin-bottom: 5px;
+}
+.soccer-player-info-header .description-header .soccer-player-info-stats {
+  float: left;
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+  position: relative;
+  min-height: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+@media (min-width: 768px) {
+  .soccer-player-info-header .description-header .soccer-player-info-stats {
+    float: left;
+    width: 41.66666667%;
+  }
+}
+@media (min-width: 992px) {
+  .soccer-player-info-header .description-header .soccer-player-info-stats {
+    float: left;
+    width: 33.33333333%;
+  }
+}
+.soccer-player-info-header .description-header .soccer-player-info-stats .soccer-player-fantasy-points,
+.soccer-player-info-header .description-header .soccer-player-info-stats .soccer-player-matches,
+.soccer-player-info-header .description-header .soccer-player-info-stats .soccer-player-salary {
+  position: relative;
+  float: left;
+  width: 33.33333333%;
+  min-height: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .soccer-player-info-header .description-header .soccer-player-info-stats .soccer-player-fantasy-points,
+  .soccer-player-info-header .description-header .soccer-player-info-stats .soccer-player-matches,
+  .soccer-player-info-header .description-header .soccer-player-info-stats .soccer-player-salary {
+    text-align: right;
+  }
+}
+.soccer-player-info-header .description-header .soccer-player-info-stats .soccer-player-fantasy-points span,
+.soccer-player-info-header .description-header .soccer-player-info-stats .soccer-player-matches span,
+.soccer-player-info-header .description-header .soccer-player-info-stats .soccer-player-salary span {
+  display: block;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 9pt;
+  color: #ffffff;
+  padding-top: 5px;
+}
+@media (max-width: 767px) {
+  .soccer-player-info-header .description-header .soccer-player-info-stats .soccer-player-fantasy-points span,
+  .soccer-player-info-header .description-header .soccer-player-info-stats .soccer-player-matches span,
+  .soccer-player-info-header .description-header .soccer-player-info-stats .soccer-player-salary span {
+    background-color: #777777;
+    color: #dcdcdc;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+  }
+}
+.soccer-player-info-header .description-header .soccer-player-info-stats .soccer-player-fantasy-points span + span,
+.soccer-player-info-header .description-header .soccer-player-info-stats .soccer-player-matches span + span,
+.soccer-player-info-header .description-header .soccer-player-info-stats .soccer-player-salary span + span {
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 18pt;
+  color: #dcdcdc;
+  padding-top: 0;
+}
+@media (max-width: 767px) {
+  .soccer-player-info-header .description-header .soccer-player-info-stats .soccer-player-fantasy-points span + span,
+  .soccer-player-info-header .description-header .soccer-player-info-stats .soccer-player-matches span + span,
+  .soccer-player-info-header .description-header .soccer-player-info-stats .soccer-player-salary span + span {
+    color: #ffffff;
+    border-radius: 0;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
   }
 }
 @media (max-width: 767px) {
@@ -13569,6 +14212,124 @@ fieldset[disabled] .btn-cancel.active {
 }
 .btn-cancel .badge {
   color: #afafaf;
+  background-color: #ffffff;
+}
+.btn-orange {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  color: #ffffff;
+  background-color: #fa9c19;
+  border-color: #cccccc;
+  box-shadow: 0px 5px 0px rgba(250, 156, 25, 0.5);
+}
+.btn-orange:focus,
+.btn-orange:active:focus,
+.btn-orange.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.btn-orange:hover,
+.btn-orange:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+.btn-orange:active,
+.btn-orange.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.btn-orange.disabled,
+.btn-orange[disabled],
+fieldset[disabled] .btn-orange {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.btn-orange:focus,
+.btn-orange:active:focus,
+.btn-orange.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.btn-orange:hover,
+.btn-orange:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+.btn-orange:active,
+.btn-orange.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.btn-orange.disabled,
+.btn-orange[disabled],
+fieldset[disabled] .btn-orange {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.btn-orange:hover,
+.btn-orange:focus,
+.btn-orange:active,
+.btn-orange.active,
+.open .dropdown-toggle.btn-orange {
+  color: #ffffff;
+  background-color: #e58805;
+  border-color: #adadad;
+}
+.btn-orange:active,
+.btn-orange.active,
+.open .dropdown-toggle.btn-orange {
+  background-image: none;
+}
+.btn-orange.disabled,
+.btn-orange[disabled],
+fieldset[disabled] .btn-orange,
+.btn-orange.disabled:hover,
+.btn-orange[disabled]:hover,
+fieldset[disabled] .btn-orange:hover,
+.btn-orange.disabled:focus,
+.btn-orange[disabled]:focus,
+fieldset[disabled] .btn-orange:focus,
+.btn-orange.disabled:active,
+.btn-orange[disabled]:active,
+fieldset[disabled] .btn-orange:active,
+.btn-orange.disabled.active,
+.btn-orange[disabled].active,
+fieldset[disabled] .btn-orange.active {
+  background-color: #fa9c19;
+  border-color: #cccccc;
+}
+.btn-orange .badge {
+  color: #fa9c19;
   background-color: #ffffff;
 }
 .clean-paddings {

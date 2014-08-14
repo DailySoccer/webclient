@@ -85,7 +85,8 @@ class EnterContestCtrl {
         matchesFilter.style.display = "block";
         tabChange('lineup-tab-content');
       }
-      cancelPlayerInfo();
+      //Para cerrar el soccer player info una vez que cambiamos a la resolución Desktop
+      closePlayerInfo();
     }
   }
 
@@ -432,7 +433,7 @@ class EnterContestCtrl {
     isSelectingSoccerPlayer = false;
   }
 
-  void cancelPlayerInfo() {
+  void closePlayerInfo() {
     DivElement enterContestWrapper = querySelector('.enter-contest-wrapper');
     enterContestWrapper.style.display = "block";
     DivElement soccerPlayerInfoWrapper = querySelector('.soccer-player-info-wrapper');
@@ -463,7 +464,19 @@ class EnterContestCtrl {
     }
   }
 
-  var _allSoccerPlayers = new List();
+  void addSoccerPlayerToLineup(String soccerPlayerId) {
+    print(soccerPlayerId);
+    var selectedSoccerPlayer = availableSoccerPlayers.firstWhere(
+        (soccerPlayer) => soccerPlayer["id"] == soccerPlayerId,
+        orElse: () => null);
+    print(selectedSoccerPlayer);
+    if(selectedSoccerPlayer != null) {
+      onSoccerPlayerSelected(selectedSoccerPlayer);
+    }
+    closePlayerInfo();
+  }
+
+  List<dynamic> _allSoccerPlayers = new List();
   List<String> _shortDir = ["asc", "desc"];
   int _currentDir = 0;
   String _currentField = "";

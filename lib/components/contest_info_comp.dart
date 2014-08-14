@@ -4,7 +4,9 @@ import 'package:angular/angular.dart';
 import 'dart:html';
 import 'package:intl/intl.dart';
 import 'package:webclient/models/contest.dart';
+import 'package:webclient/models/contest_entry.dart';
 import 'package:webclient/services/active_contests_service.dart';
+import 'package:webclient/services/flash_messages_service.dart';
 
 @Component(
   selector: 'contest-info',
@@ -17,15 +19,15 @@ class ContestInfoComp {
 
   bool popUpStyle;
   Map currentInfoData;
-  List contestants  = new List();
+  List contestants  = [];
 
   @NgTwoWay("contest-data")
   Contest get contestData => _contestData;
   void set contestData(Contest value) {
     _contestData = value;
-      if(value != null){
-        updateContestInfo(value);
-      }
+    if(value != null){
+      updateContestInfo(value.contestId);
+    }
   }
 
   @NgTwoWay("is-pop-up")
@@ -34,7 +36,7 @@ class ContestInfoComp {
     popUpStyle = value;
   }
 
-  ContestInfoComp(Scope scope, this._router, this._contestService) {
+  ContestInfoComp(Scope scope, this._router, this._contestService, this._flashMessage) {
 
     currentInfoData = {  /*  hay que utilizar esta variable para meter los datos de este componente  */
       'description'     : '<description>',
@@ -48,43 +50,33 @@ class ContestInfoComp {
       'contestants'     : contestants,
       'prizes'          : []
     };
-
-    contestants.add({
-      'name'    : 'Jhon Doe 1',
-      'points'  : '0000'
-    });
-    contestants.add({
-      'name'    : 'Jhon Doe 2',
-      'points'  : '0000'
-    });
-    contestants.add({
-      'name'    : 'Jhon Doe 3',
-      'points'  : '0000'
-    });
-    contestants.add({
-      'name'    : 'Jhon Doe 4',
-      'points'  : '0000'
-    });
-    contestants.add({
-      'name'    : 'Jhon Doe 5',
-      'points'  : '0000'
-    });
-    contestants.add({
-      'name'    : 'Jhon Doe 6',
-      'points'  : '0000'
-    });
   }
 
-  void updateContestInfo(Contest contest)
-  {
-    currentInfoData["name"]           = contest.templateContest.name;
-    currentInfoData["description"]    = contest.description;
-    currentInfoData["entry"]          = contest.templateContest.entryFee.toString();
-    currentInfoData["prize"]          = contest.templateContest.prizePool.toString();
-    currentInfoData["startDateTime"]  = getFormatedDate(contest.templateContest.startDate);
-    currentInfoData["contestants"]    = contestants;
-    currentInfoData["prizes"]         = contest.templateContest.getPrizes().map((value) => {'value' : value}).toList();
-    currentInfoData["matchesInvolved"]= contest.templateContest.matchEvents;
+  void updateContestInfo(String contestId) {
+    _contestService.refreshContest(contestId)
+      .then((_) {
+        Contest contest = _contestService.lastContest;
+
+        currentInfoData["name"]           = contest.templateContest.name;
+        currentInfoData["description"]    = contest.description;
+        currentInfoData["entry"]          = contest.templateContest.entryFee.toString();
+        currentInfoData["prize"]          = contest.templateContest.prizePool.toString();
+        currentInfoData["startDateTime"]  = getFormatedDate(contest.templateContest.startDate);
+        currentInfoData["contestants"]    = contestants;
+        currentInfoData["prizes"]         = contest.templateContest.getPrizes().map((value) => {'value' : value}).toList();
+        currentInfoData["matchesInvolved"]= contest.templateContest.matchEvents;
+
+        contestants.clear();
+        for (ContestEntry contestEntry in contest.contestEntries) {
+          contestants.add({
+                'name'    : contestEntry.user.fullName,
+                'points'  : '0000'
+              });
+        }
+      })
+      .catchError((error) {
+        _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
+      });
   }
 
   String getFormatedDate(DateTime date) {
@@ -139,6 +131,8 @@ class ContestInfoComp {
 
   Router _router;
   ActiveContestsService _contestService;
+  FlashMessagesService _flashMessage;
+
   Contest _contestData;
   bool _popUpStyle;
 }

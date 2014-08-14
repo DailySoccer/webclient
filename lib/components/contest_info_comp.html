@@ -74,7 +74,7 @@
                 <div class="contestant-list-wrapper ">
                   <div class="contestant-list">
                     <div class="contestant-element"ng-repeat="contestant in contestInfo.currentInfoData['contestants']">
-                        <div class="contestant-position">{{$index}}</div>
+                        <div class="contestant-position">{{$index + 1}}º</div>
                         <div class="contestant-name">{{contestant.name}}</div>
                         <div class="contestant-points">{{contestant.points + ' '}}<span class="prize-currency">DFP</span></div>
                     </div>
@@ -146,7 +146,7 @@
     <p class="title">JUGADORES</p>
     <div class="contestant-list">
         <div class="contestant-element"ng-repeat="contestant in contestInfo.currentInfoData['contestants']">
-            <div class="contestant-position">{{$index}}</div>
+            <div class="contestant-position">{{$index + 1}}º</div>
             <div class="contestant-name">{{contestant.name}}</div>
             <div class="contestant-points">{{contestant.points + ' '}}<span class="prize-currency">DFP</span></div>
         </div>

@@ -46,6 +46,11 @@ class Contest {
       contests = jsonRoot.contests.map((jsonObject) => new Contest.fromJsonObject(jsonObject, contestReferences)).toList();
     }
 
+    // Contest Entries?
+    if (jsonRoot.containsKey("contest_entries")) {
+      jsonRoot.contest_entries.map((jsonObject) => new ContestEntry.fromJsonObject(jsonObject, contestReferences)).toList();
+    }
+
     jsonRoot.match_events.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject, contestReferences)).toList();
 
     if (jsonRoot.containsKey("users_info")) {

@@ -49,7 +49,7 @@ class SoccerPlayerInfoComp {
 
     updateSoccerPlayerInfoFromService() {
       currentInfoData['fieldPos'] = _soccerPlayerService.soccerPlayerInfo.fieldPos;
-      currentInfoData['name'] = "${_soccerPlayerService.soccerPlayerInfo.name} (${_soccerPlayerService.soccerPlayerInfo.fieldPos})";
+      currentInfoData['name'] = "${_soccerPlayerService.soccerPlayerInfo.name} (${_soccerPlayerService.soccerPlayerInfo.fieldPos.value})";
 
       partidos.clear();
 

@@ -1,10 +1,11 @@
 library soccer_player_info;
 
 import "package:json_object/json_object.dart";
+import "package:webclient/models/field_pos.dart";
 
 class SoccerPlayerInfo {
   String name;
-  String fieldPos;
+  FieldPos fieldPos;
   int    fantasyPoints;
   int    salary;
 
@@ -12,7 +13,7 @@ class SoccerPlayerInfo {
 
   SoccerPlayerInfo.fromJsonObject(JsonObject json) {
     name = json.name;
-    fieldPos = json.fieldPos;
+    fieldPos = new FieldPos(json.fieldPos);
     fantasyPoints = json.fantasyPoints;
     salary = json.salary;
 

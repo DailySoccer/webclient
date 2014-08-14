@@ -304,7 +304,7 @@ class EnterContestCtrl {
     int c = 0;
 
     for ( ; c < lineupSlots.length; ++c) {
-      if (lineupSlots[c] == null && FieldPos.LINEUP[c] == theFieldPos.fieldPos) {
+      if (lineupSlots[c] == null && FieldPos.LINEUP[c] == theFieldPos.value) {
         lineupSlots[c] = soccerPlayer;
         return true;
       }
@@ -322,7 +322,7 @@ class EnterContestCtrl {
 
     _allSoccerPlayers.add({
       "id": soccerPlayer.templateSoccerPlayerId,
-      "fieldPos": new FieldPos(soccerPlayer.fieldPos),
+      "fieldPos": soccerPlayer.fieldPos,
       "fullName": soccerPlayer.name,
       "matchId" : matchEvent.templateMatchEventId,
       "matchEventName": matchEventName,

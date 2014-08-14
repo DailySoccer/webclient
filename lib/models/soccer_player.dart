@@ -2,12 +2,13 @@ library soccer_player;
 
 import "package:json_object/json_object.dart";
 import "package:webclient/models/soccer_team.dart";
+import "package:webclient/models/field_pos.dart";
 import 'package:webclient/services/contest_references.dart';
 
 class SoccerPlayer {
   String templateSoccerPlayerId;
   String name;
-  String fieldPos;
+  FieldPos fieldPos;
   int    fantasyPoints;
   int    playedMatches;
   int    salary;
@@ -28,7 +29,7 @@ class SoccerPlayer {
   SoccerPlayer _initFromJsonObject(JsonObject json, ContestReferences references) {
     assert(templateSoccerPlayerId.isNotEmpty);
     name = json.name;
-    fieldPos = json.fieldPos;
+    fieldPos = new FieldPos(json.fieldPos);
     fantasyPoints = json.fantasyPoints;
     playedMatches = json.playedMatches;
     salary = json.salary;

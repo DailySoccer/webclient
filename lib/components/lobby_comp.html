@@ -13,7 +13,7 @@
     <div class="choosed-filters-container" ng-show="comp.scrDet.isXsScreen">
         <div class="competition-filter-name">Competition type <span class="contest-count">125</span></div>
         <div class="filterToggler">
-          <div type="button" class="btn filters-button" ng-click="comp.toggleFilterMenu()" data-toggle="collapse" data-target="#filtersPanel">Filtros</div>
+          <div id="filtersButtonMobile" type="button" class="btn filters-button" ng-click="comp.toggleFilterMenu()" data-toggle="collapse" data-target="#filtersPanel">Filtros</div>
         </div>
         <div class="filter-list">
           <span class="filters-choosed">&lt;filtro 1&gt;</span>
@@ -35,7 +35,7 @@
     </div>
 
     <div class="filterToggler"  ng-show="!comp.scrDet.isXsScreen">
-        <div type="button" class="btn filters-button" ng-click="comp.toggleFilterMenu()" data-toggle="collapse" data-target="#filtersPanel">Filtros</div>
+        <div id="filtersButtonDesktop" type="button" class="btn filters-button" ng-click="comp.toggleFilterMenu()" data-toggle="collapse" data-target="#filtersPanel">Filtros</div>
     </div>
 
   </div>

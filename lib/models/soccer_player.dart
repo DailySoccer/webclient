@@ -15,6 +15,7 @@ class SoccerPlayer {
 
   // Fantasy Points (actualizado por liveMatchEvent)
   int    currentLivePoints = 0;
+  Map<String, int> eventLivePoints = new Map<String, int>();
 
   // Equipo en el que juega
   SoccerTeam team;

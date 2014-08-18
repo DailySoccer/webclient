@@ -41,18 +41,25 @@ class MatchEvent {
   }
 
   void updateLiveInfo(JsonObject jsonObject) {
-    _updateFantasyPoints(jsonObject.livePlayerToPoints);
+    _updateFantasyPoints(jsonObject.liveFantasyPoints);
 
     period = jsonObject.period;
     minutesPlayed = jsonObject.minutesPlayed;
   }
 
-  void _updateFantasyPoints(Map<String, int> soccerPlayerToPoints) {
-    soccerTeamA.soccerPlayers.forEach( (soccerPlayer) =>
-        soccerPlayer.currentLivePoints = soccerPlayerToPoints[soccerPlayer.templateSoccerPlayerId]);
+  void _updateFantasyPoints(Map<String, JsonObject> soccerFantasyPoints) {
+    soccerTeamA.soccerPlayers.forEach( (soccerPlayer) {
+      JsonObject jsonObject = soccerFantasyPoints[soccerPlayer.templateSoccerPlayerId];
+      soccerPlayer.currentLivePoints = jsonObject.points;
+      jsonObject.events.forEach( (key, value) =>
+          soccerPlayer.eventLivePoints[key] = value );
+    });
 
-    soccerTeamB.soccerPlayers.forEach( (soccerPlayer) =>
-        soccerPlayer.currentLivePoints = soccerPlayerToPoints[soccerPlayer.templateSoccerPlayerId]);
+    soccerTeamB.soccerPlayers.forEach( (soccerPlayer) {
+      JsonObject jsonObject = soccerFantasyPoints[soccerPlayer.templateSoccerPlayerId];
+      soccerPlayer.currentLivePoints = jsonObject.points;
+      jsonObject.events.forEach( (key, value) => soccerPlayer.eventLivePoints[key] = value );
+    });
   }
 
   MatchEvent _initFromJsonObject(JsonObject json, ContestReferences references) {

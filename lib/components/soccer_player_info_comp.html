@@ -27,6 +27,41 @@
   </div>
 </div>
 
+<div class="soccer-player-info-content">
+    <!-- Nav tabs -->
+    <ul class="soccer-player-info-tabs" role="tablist">
+      <li class="active"><a role="tab" data-toggle="tab" ng-click="soccerPlayerInfo.tabChange('season-info-tab-content')">Datos de Temporada</a></li>
+      <li><a role="tab" data-toggle="tab" ng-click="soccerPlayerInfo.tabChange('match-info-tab-content')">Partido a Partido</a></li>
+    </ul>
+
+    <div class="tabs">
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div class="tab-pane active" id="season-info-tab-content">
+          <div class="next-match">PRÓXIMO PARTIDO: <strong>R.MADRID</strong> VS. A. MADRID</div>
+          <div class="date-season">15/05 19:00</div>
+          <div class="season-stats">
+            <div class="season-stats-column">
+              <div class="season-stats-header">MIN</div>
+              <div class="season-stats-info">00.00</div>
+              <div class="season-stats-header">G</div>
+              <div class="season-stats-info">00.00</div>
+            </div>
+            <div class="season-stats-column">
+              <div class="season-stats-header">E</div>
+              <div class="season-stats-info">00.00</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane" id="match-info-tab-content">
+          MATCH
+        </div>
+      </div>
+    </div>
+
+</div>
+
 
 
 

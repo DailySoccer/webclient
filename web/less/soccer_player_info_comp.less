@@ -69,8 +69,7 @@
 	.description-header {
 		@media (min-width: @screen-sm-min) {
 			background-color: @greyUltraDark;
-			.make-border(1px, none none solid none, @white);
-			margin-bottom: 100px;
+			margin-bottom: 70px;
 		}
 		.make-xs-column(12);
 		.clean-paddings();
@@ -124,6 +123,54 @@
 						border-bottom-left-radius: 4px;
 					}
 				}
+			}
+		}
+	}
+}
+
+.soccer-player-info-content {
+	// Tabs menu
+	.soccer-player-info-tabs {
+		@tabheight: 50px;
+		.make-border(1px, solid none none none, @white);
+		.hidden-sm();
+		.hidden-md();
+		.hidden-lg();
+		.reset-list();
+		height: @tabheight;
+		> li {
+			.make-xs-column(6);
+			background-color: @greyMed;
+			.make-border(4px, none none solid none, @greyDark);
+			a {
+				cursor: pointer;
+				line-height: @tabheight;
+				text-align: center;
+				color: @white;
+				display: block;
+				text-decoration: none;
+			}
+		}
+		.active {
+			background-color: @greyDark;
+		}
+	}
+
+	.season-stats {
+		.make-border(1px, solid none solid none, @greyDark);
+		background-color: @greyUltraLight;
+		.make-xs-column(12, 0px);
+
+		.season-stats-column {
+			.make-xs-column(6, 10px);
+			border: 1px solid #000;
+
+			.season-stats-header {
+				.make-xs-column(2, 5px);
+			}
+			.season-stats-info {
+				.make-xs-column(10, 5px);
+				text-align: right;
 			}
 		}
 	}

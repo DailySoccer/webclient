@@ -73,7 +73,7 @@ class SoccerPlayerInfoComp {
     }
 
     void tabChange(String tab) {
-      List<dynamic> allContentTab = document.querySelectorAll(".tab-pane");
+      List<dynamic> allContentTab = document.querySelectorAll(".soccer-player-info-content .tab-pane");
       allContentTab.forEach((element) => element.classes.remove('active'));
 
       Element contentTab = document.querySelector("#" + tab);

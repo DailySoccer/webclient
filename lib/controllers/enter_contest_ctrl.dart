@@ -52,6 +52,9 @@ class EnterContestCtrl {
     initAllSoccerPlayers();
     availableSoccerPlayers = new List<dynamic>.from(_allSoccerPlayers);
 
+    //Cuando se inicializa la lista de jugadores, esta se ordena por posicion
+    shortListByField('Pos');
+
     //Saldo disponible
     availableSalary = contest.templateContest.salaryCap;
 
@@ -60,7 +63,7 @@ class EnterContestCtrl {
   }
 
   void tabChange(String tab) {
-    List<dynamic> allContentTab = document.querySelectorAll(".tab-pane");
+    List<dynamic> allContentTab = document.querySelectorAll(".enter-contest-wrapper .tab-pane");
     allContentTab.forEach((element) => element.classes.remove('active'));
 
     Element contentTab = document.querySelector("#" + tab);
@@ -227,11 +230,14 @@ class EnterContestCtrl {
   }
 
   void _refreshFilter() {
-    if (_filterList == null)
+    if (_filterList.isEmpty && availableSoccerPlayers.length == _allSoccerPlayers.length)
       return;
 
     //Partimos siempre de la lista original de todos los players
     availableSoccerPlayers = _allSoccerPlayers;
+
+    //Siempre dejamos ordenada la lista por posicion por defecto
+    shortListByField('Pos');
 
     //Recorremos la lista de filtros
     _filterList.forEach( (String clave, String valor )  {
@@ -442,6 +448,10 @@ class EnterContestCtrl {
 
   // Mostramos la ventana modal con la información de ese torneo, si no es la versión movil.
   void onRowClick(String soccerPlayerId) {
+    //Reseteamos el boton de añadir (enable el boton)
+    List<ButtonElement> btnAdd = querySelectorAll('.btn-add-soccer-player-info');
+    btnAdd.forEach((element) => element.disabled = false);
+
     selectedSoccerPlayerId = soccerPlayerId;
 
     // Version Small or Desktop => sacamos la modal
@@ -456,7 +466,6 @@ class EnterContestCtrl {
         .callMethod('modal');
 
     } else { // Resto de versiones => mostramos el componente soccer_player_info_comp
-      print('resto versiones ' + soccerPlayerId);
       DivElement enterContestWrapper = querySelector('.enter-contest-wrapper');
       enterContestWrapper.style.display = "none";
       DivElement soccerPlayerInfoWrapper = querySelector('.soccer-player-info-wrapper');
@@ -465,12 +474,15 @@ class EnterContestCtrl {
   }
 
   void addSoccerPlayerToLineup(String soccerPlayerId) {
-    print(soccerPlayerId);
     var selectedSoccerPlayer = availableSoccerPlayers.firstWhere(
         (soccerPlayer) => soccerPlayer["id"] == soccerPlayerId,
         orElse: () => null);
     print(selectedSoccerPlayer);
     if(selectedSoccerPlayer != null) {
+      //No permito añadir más de una vez el jugador (disable el boton)
+      List<ButtonElement> btnAdd = querySelectorAll('.btn-add-soccer-player-info');
+      btnAdd.forEach((element) => element.disabled = true);
+      //Añado el jugador
       onSoccerPlayerSelected(selectedSoccerPlayer);
     }
     closePlayerInfo();

@@ -30,6 +30,7 @@ class ViewContestCtrl implements DetachAware {
 
   List<String> matchesInvolved = [];
 
+  String whereAmI;
   Contest get contest => _myContestsService.lastContest;
   List<ContestEntry> get contestEntries => (contest != null) ? contest.contestEntries : null;
 
@@ -43,6 +44,9 @@ class ViewContestCtrl implements DetachAware {
   ViewContestCtrl(RouteProvider routeProvider, this.scrDet, this._myContestsService, this._profileService, this._dateTimeService, this._flashMessage) {
 
     _contestId = routeProvider.route.parameters['contestId'];
+    //TODO: Con esta variable whereAmI, lo que tengo que hacer es decirle al control que se ponga en modo 'mode=Live, next, history, ...' para saber como se tiene que comportar cuando le hagan click en los links.
+    whereAmI = routeProvider.route.name;
+    print("-VIEW CONTEST- Estoy en un ${whereAmI}");
     initialized = false;
 
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);

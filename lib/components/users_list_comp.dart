@@ -31,18 +31,10 @@ class UsersListComp {
     _refresh();
   }
 
-  //
   @NgOneWay("mode")
   set mode(String value)
   {
-    switch(value)
-    {
-      case "LIVE_CONTEST":
-        _mode = LIVE_CONTEST;
-      break;
-      default:
-        print("-USER_LIST-COMP: Se ha establecido un valor para el parametro 'mode' no valido.");
-    }
+    _mode = value;
   }
 
   String getPrize(int index) => _viewContestCtrl.getPrize(index);
@@ -70,8 +62,12 @@ class UsersListComp {
   void onUserClick(var user) {
     switch(_mode)
     {
-      case LIVE_CONTEST:
+      case "live_contest":
         _viewContestCtrl.setTabNameAndShowIt(user["name"]);
+      break;
+      case "history_contest":
+        //_viewContestCtrl.setTabNameAndShowIt(user["name"]);
+        //TODO: Aqui cuando me hacen click, despliego la lista de acciones que hizo el jugador en el partido.
       break;
     }
     selectedContestEntry = user["contestEntry"];
@@ -79,5 +75,5 @@ class UsersListComp {
 
   List<ContestEntry> _contestEntries;
   ViewContestCtrl _viewContestCtrl;
-  int _mode;
+  String _mode;
 }

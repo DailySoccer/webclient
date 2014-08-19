@@ -5631,8 +5631,8 @@ button.close {
 .landing-wrapper .screen .content-wrapper .content-container:after,
 .landing-wrapper .screen .content-wrapper .content-container:before,
 .landing-wrapper .screen .content-wrapper .content-container:after,
-.fantasy-team-list .fantasy-team-slot:before,
-.fantasy-team-list .fantasy-team-slot:after,
+.fantasy-team-list .soccer-player-row:before,
+.fantasy-team-list .soccer-player-row:after,
 #usersListRoot .user-row:before,
 #usersListRoot .user-row:after,
 #usersListRoot .users-table-header:before,
@@ -5677,6 +5677,8 @@ button.close {
 #mainFooter .sup-footer-wrapper:after,
 #mainFooter .sub-footer:before,
 #mainFooter .sub-footer:after,
+.statistic:before,
+.statistic:after,
 .main-content-container:before,
 .main-content-container:after,
 .lineup-selector .lineup-selector-slot:before,
@@ -5710,7 +5712,7 @@ button.close {
 .contests-table .data .row:after,
 .landing-wrapper .screen .content-wrapper .content-container:after,
 .landing-wrapper .screen .content-wrapper .content-container:after,
-.fantasy-team-list .fantasy-team-slot:after,
+.fantasy-team-list .soccer-player-row:after,
 #usersListRoot .user-row:after,
 #usersListRoot .users-table-header:after,
 .contest-id-bar:after,
@@ -5733,6 +5735,7 @@ button.close {
 #mainFooter:after,
 #mainFooter .sup-footer-wrapper:after,
 #mainFooter .sub-footer:after,
+.statistic:after,
 .main-content-container:after,
 .lineup-selector .lineup-selector-slot:after {
   clear: both;
@@ -8368,22 +8371,6 @@ fieldset[disabled] .landing-wrapper .button-play.active {
   background-image: linear-gradient(to bottom, #fba61a 49%, #ec990e 51%);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffba61a', endColorstr='#ffec990e', GradientType=0);
-  /*.close-team {
-		.hidden-xs();
-		cursor: pointer;
-		position: absolute;
-		right: 80px;
-		top: 7px;
-		color: @white; 
-		.title { .opensans_normal(8pt); .hidden-sm(); }
-		.glyphicon { font-size: 18pt; vertical-align: middle;}
-
-		&:hover { color: @greyLight; }
-	}
-
-	@media (min-width: @screen-sm-min) {
-		.border-top-radius(@globalBoxesRadius);
-	}*/
 }
 .fantasy-team-header .ranking-box {
   width: 70px;
@@ -8629,9 +8616,12 @@ fieldset[disabled] .close-team .btn-close-cancel.active {
     display: none !important;
   }
 }
-.fantasy-team-list .fantasy-team-slot {
+.fantasy-team-list .soccer-player-row {
   margin-left: 0px;
   margin-right: 0px;
+  background-color: #ffffff;
+}
+.fantasy-team-list .fantasy-team-slot {
   margin-top: 2px;
   padding-bottom: 2px;
   border-width: 1px;
@@ -13335,6 +13325,41 @@ Banderas usadas hasta la fecha:
 }
 .flag.flag-it {
   background-position: 0 -22px;
+}
+.statistic {
+  margin-left: 0;
+  margin-right: 0;
+  line-height: 30px;
+  background-color: #f8f8f8;
+  border-width: 1px;
+  border-style: none none solid none;
+  border-color: #ffffff;
+  border-radius: 0px;
+}
+.statistic .stat-name {
+  position: relative;
+  float: left;
+  width: 50%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #777777;
+}
+.statistic .stat-points {
+  position: relative;
+  float: left;
+  width: 50%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  font-size: 12pt;
+  color: #777777;
+  text-align: right;
 }
 .btn {
   display: inline-block;

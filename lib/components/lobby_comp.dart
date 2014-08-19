@@ -45,20 +45,14 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   bool isStandardTierChecked          = false;
   bool isSkilledTierChecked           = false;
 
-  // Variables expuestas por ng-model en los checks del filtro de Tipo de Torneo
-  bool isFreeTournamentChecked        = false;
-  bool isLigaTournamentChecked        = false;
-  bool isFiftyFiftyTournamentChecked  = false;
-  bool isHeadToHeadTournamentChecked  = false;
-
   ActiveContestsService activeContestsService;
   Contest selectedContest;
   ScreenDetectorService scrDet;
 
   // Rango minímo del filtro del EntryFee
-  String get filterEntryFeeRangeMin => getEntryFeeFilterRange()[0];
+  int get filterEntryFeeRangeMin => 0;
   // Rango máximo del filtro del EntryFee
-  String get filterEntryFeeRangeMax => getEntryFeeFilterRange()[1];
+  int get filterEntryFeeRangeMax => 100;
 
   // propiedad que dice si existen concursos del tipo "PRINCIPIANTE" en la lista actual de concursos.
   bool get hasBegginerTier {
@@ -115,6 +109,31 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     return false;
   }
 
+  // Variables expuestas por ng-model en los checks del filtro de Tipo de Torneo
+  void set isFreeTournamentChecked(value) {
+    _isFreeTournamentChecked = value;
+    refreshTorunamentFilter();
+  }
+  bool get isFreeTournamentChecked => _isFreeTournamentChecked;
+
+  void set isLigaTournamentChecked(value) {
+    _isLigaTournamentChecked = value;
+    refreshTorunamentFilter();
+  }
+  bool get isLigaTournamentChecked => _isLigaTournamentChecked;
+
+  void set isFiftyFiftyTournamentChecked(value) {
+    _isFiftyFiftyTournamentChecked = value;
+    refreshTorunamentFilter();
+  }
+  bool get isFiftyFiftyTournamentChecked => _isFiftyFiftyTournamentChecked;
+
+  void set isHeadToHeadTournamentChecked(value) {
+    _isHeadToHeadTournamentChecked = value;
+    refreshTorunamentFilter();
+  }
+  bool get isHeadToHeadTournamentChecked => _isHeadToHeadTournamentChecked;
+
   LobbyComp(this._router, this.activeContestsService, this.scrDet) {
     activeContestsService.refreshActiveContests();
     const refreshSeconds = const Duration(seconds: 10);
@@ -148,11 +167,12 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     _timer.cancel();
   }
 
+  /*
   dynamic getEntryFeeFilterRange(){
     var range = js.context.callMethod(r'$', ['#slider-range']).callMethod('val');
     return range != null? range : ["",""];
   }
-
+  */
   void onActionClick(Contest contest) {
     selectedContest = contest;
     _router.go('enter_contest', { "contestId": contest.contestId });
@@ -358,7 +378,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     _filterEntryFeeMin = "0";
     _filterEntryFeeMax = "100";
     js.context.callMethod(r'$', ['#slider-range'])
-      .callMethod('val', new js.JsObject.jsify([0, 100]));
+      .callMethod('val', [new js.JsObject.jsify([0,100])]);
 
     // reseteo del filtro por dificultad
     isBeginnerTierChecked          = false;
@@ -395,4 +415,9 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   String _filterEntryFeeMax;
   List<String> _tierFilterList;
   List<String> _tournamentFilterList;
+
+  bool _isFreeTournamentChecked        = false;
+  bool _isLigaTournamentChecked        = false;
+  bool _isFiftyFiftyTournamentChecked  = false;
+  bool _isHeadToHeadTournamentChecked  = false;
 }

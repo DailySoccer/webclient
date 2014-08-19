@@ -41,12 +41,35 @@ class FantasyTeamComp implements ShadowRootAware {
     @NgCallback('on-close')
     Function onClose;
 
+    @NgOneWay("mode")
+    set mode(String value)
+    {
+      _mode = value;
+    }
+
+    List<Map> liveStatistics = [];
+
     String get userPosition => (_contestEntry != null) ? _viewContestCtrl.getUserPosition(_contestEntry).toString() : "-";
     String get userNickname => (_contestEntry != null) ? _contestEntry.user.nickName : "";
     String get userScore => (_contestEntry != null) ? _contestEntry.currentLivePoints.toString() : "0";
     String get remainingTime => (_contestEntry != null) ? "${_contestEntry.timeLeft}" : "-";
 
-    FantasyTeamComp(this._viewContestCtrl);
+    dynamic get scrDet => _viewContestCtrl.scrDet;
+
+    FantasyTeamComp(this._viewContestCtrl) {
+      liveStatistics.addAll([
+          {'name':'Goles encajados', 'points': 0.00},
+          {'name':'paradas', 'points':0.00},
+          {'name':'Despejes', 'points':0.00},
+          {'name':'Pases', 'points':0.00},
+          {'name':'Recuperaciones', 'points':0.00},
+          {'name':'Faltas cometidas', 'points':0.00},
+          {'name':'Tarjetas amarillas', 'points':0.00},
+          {'name':'...', 'points':0.00},
+          {'name':'....', 'points':0.00},
+          {'name':'.....', 'points':0.00}
+      ]);
+    }
 
     // A pesar de que useShadowDom es false, sigue llegando este mensaje y es el primer momento donde podemos hacer un querySelector.
     // Hemos probado attach y el constructor, pero alli parece que todavia no estan creados los hijos. Tiene que ser var y no ShadowRoot
@@ -112,6 +135,9 @@ class FantasyTeamComp implements ShadowRootAware {
       }
     }
 
+    void onRow(int id) {
+    }
+
     void onCloseButtonClick() {
       if (onClose != null)
         onClose();
@@ -123,4 +149,5 @@ class FantasyTeamComp implements ShadowRootAware {
 
     ContestEntry _contestEntry;
     ViewContestCtrl _viewContestCtrl;
+    String _mode;
 }

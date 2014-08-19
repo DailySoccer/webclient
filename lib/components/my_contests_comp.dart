@@ -7,7 +7,6 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/my_contests_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/models/contest.dart';
-import 'package:webclient/models/contest_entry.dart';
 
 @Component(
   selector: 'my-contests',

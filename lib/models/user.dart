@@ -10,32 +10,36 @@ class User {
   String nickName;
   String email;
 
+  // Numero de veces que el usuario ha ganado un contest
+  int wins;
+
   String get fullName => "$firstName $lastName";
   String toString() => "$userId - $fullName - $email - $nickName";
   Map toJson() => {"_id": userId, "firstName": firstName, "lastName": lastName, "email": email, "nickName": nickName};
 
   User.referenceInit(this.userId);
-  
+
   // TODO: El User para el jugador principal es cargado sin necesidad de ContestReferences
   factory User.fromJsonObject(JsonObject jsonObject, [ContestReferences references]) {
     if (references == null)
       references = new ContestReferences();
-    
+
     // TODO: storedSessionToken almacena un user sin "_id" (por lo que, sin esta comprobacion, lanza una excepcion)
-    String userId = (jsonObject.containsKey("_id"))      ? jsonObject._id 
-                  : ((jsonObject.containsKey("userId"))  ? jsonObject.userId 
+    String userId = (jsonObject.containsKey("_id"))      ? jsonObject._id
+                  : ((jsonObject.containsKey("userId"))  ? jsonObject.userId
                   : "<userId: null>");
     User user = references.getUserById(userId);
     return user._initFromJsonObject(jsonObject, references);
   }
-  
+
   User _initFromJsonObject(JsonObject jsonObject, ContestReferences references) {
     assert(userId.isNotEmpty);
     firstName = jsonObject.firstName;
     lastName = jsonObject.lastName;
     nickName = jsonObject.nickName;
-    
+
     email = (jsonObject.containsKey("email")) ? jsonObject.email : "<email: null>";
+    wins = (jsonObject.containsKey("wins")) ? jsonObject.wins : 0;
     return this;
   }
 }

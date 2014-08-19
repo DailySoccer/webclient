@@ -69,8 +69,8 @@ class ContestInfoComp {
         contestants.clear();
         for (ContestEntry contestEntry in contest.contestEntries) {
           contestants.add({
-                'name'    : contestEntry.user.fullName,
-                'points'  : '0000'
+                'name'  : contestEntry.user.fullName,
+                'wins'  : contestEntry.user.wins
               });
         }
       })

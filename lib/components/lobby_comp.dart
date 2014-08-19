@@ -22,9 +22,13 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   static const String FILTER_TOURNAMENT             = "FILTER_TOURNAMENT";
   static const String FILTER_TIER                   = "FILTER_TIER";
 
-  static const String SALARY_LIMIT_FOR_BEGGINERS    = "BEGGINER";
-  static const String SALARY_LIMIT_FOR_STANDARDS    = "STANDARD";
-  static const String SALARY_LIMIT_FOR_SKILLEDS     = "SKILLED";
+  static const String FILTER_TIER_LIMIT_FOR_BEGGINERS    = "BEGGINER";
+  static const String FILTER_TIER_LIMIT_FOR_STANDARDS    = "STANDARD";
+  static const String FILTER_TIER_LIMIT_FOR_SKILLEDS     = "SKILLED";
+
+  static const int    SALARY_LIMIT_FOR_BEGGINERS    = 90000;
+  static const int    SALARY_LIMIT_FOR_STANDARDS    = 80000;
+  static const int    SALARY_LIMIT_FOR_SKILLEDS     = 70000;
 
   static const String TOURNAMENT_TYPE_FREE          = "FREE";
   static const String TOURNAMENT_TYPE_LIGA          = "LIGA";
@@ -59,7 +63,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     bool result = false;
     if( activeContestsService.activeContests != null) {
       activeContestsService.activeContests.forEach( (Contest contest) {
-         bool comparison = contest.templateContest.salaryCap >= 80000;
+         bool comparison = contest.templateContest.salaryCap >= SALARY_LIMIT_FOR_BEGGINERS;
          if(comparison)
            result =  true;
       });
@@ -72,8 +76,8 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     bool result = false;
     if( activeContestsService.activeContests != null) {
       activeContestsService.activeContests.forEach( (Contest contest) {
-         bool comparison = contest.templateContest.salaryCap < 80000 &&
-                           contest.templateContest.salaryCap > 60000;
+         bool comparison = contest.templateContest.salaryCap < SALARY_LIMIT_FOR_BEGGINERS &&
+                           contest.templateContest.salaryCap > SALARY_LIMIT_FOR_SKILLEDS;
          if(comparison)
            result =  true;
       });
@@ -86,7 +90,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     bool result = false;
     if( activeContestsService.activeContests != null) {
       activeContestsService.activeContests.forEach( (Contest contest) {
-         bool comparison = contest.templateContest.salaryCap <= 60000;
+         bool comparison = contest.templateContest.salaryCap <= SALARY_LIMIT_FOR_BEGGINERS;
          if(comparison)
            result =  true;
       });
@@ -292,11 +296,11 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     _tierFilterList = [];
 
     if(isBeginnerTierChecked)
-      tierValues.add(SALARY_LIMIT_FOR_BEGGINERS);
+      tierValues.add(FILTER_TIER_LIMIT_FOR_BEGGINERS);
     if(isStandardTierChecked)
-      tierValues.add(SALARY_LIMIT_FOR_STANDARDS);
+      tierValues.add(FILTER_TIER_LIMIT_FOR_STANDARDS);
     if(isSkilledTierChecked)
-      tierValues.add(SALARY_LIMIT_FOR_SKILLEDS);
+      tierValues.add(FILTER_TIER_LIMIT_FOR_SKILLEDS);
 
     _tierFilterList.addAll(tierValues);
 

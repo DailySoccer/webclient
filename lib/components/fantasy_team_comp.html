@@ -14,13 +14,6 @@
     <div class="user-picture"></div>
     <div class="user-nickname">{{fantasyTeam.userNickname}}</div>
     <div class="total-remaining-matches-time">TIEMPO RESTANTE: {{fantasyTeam.remainingTime}}</div>
-
-    <!-- Antiguo botón de cerrar
-    <div class="close-team" ng-click="fantasyTeam.onCloseButtonClick()">
-      <span class="title">CERRAR</span>
-      <span class="glyphicon glyphicon-remove"></span>
-    </div>
-    -->
   </div>
 
   <div class="fantasy-team-list">
@@ -28,7 +21,6 @@
       <button type="button" class="btn-close-cancel" ng-click="fantasyTeam.onCloseButtonClick()">Cerrar</button>
     </div>
     <div class="top-separator"></div>
-
 
     <div class="fantasy-team-slot" ng-repeat="slot in fantasyTeam.slots" >
       <div class="soccer-player-row" data-toggle="collapse" data-target="#statistic_{{$index}}">
@@ -40,12 +32,8 @@
         </div>
         <div class="column-score">{{slot.score}}</div>
       </div>
-      <div ng-if="ctrl.scrDet.isXsScreen == true"> ScreenXs</div>
       <div id="statistic_{{$index}}" class="soccer-player-statistics collapse" ng-if="fantasyTeam.scrDet.isXsScreen" >
-        <div class="statistic" ng-repeat="stat in fantasyTeam.liveStatistics">
-          <div class="stat-name">{{stat['name']}}</div>
-          <div class="stat-points">{{stat['points']}}</div>
-        </div>
+        <soccer-player-events data-source="fantasyTeam.liveStatistics" ng-if=""></soccer-player-events>
       </div>
     </div>
   </div>

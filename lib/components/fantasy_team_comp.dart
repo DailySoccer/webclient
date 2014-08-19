@@ -117,6 +117,7 @@ class FantasyTeamComp implements ShadowRootAware {
       slots.clear();
 
       if (_contestEntry != null) {
+        //TODO: actualizar los datos de la lista de slots, sin recrearla de nuevo. Buscar los jugadores y actualizar buscandolo por ID.
         for (SoccerPlayer soccerPlayer in _contestEntry.soccers) {
           String shortNameTeamA = soccerPlayer.team.matchEvent.soccerTeamA.shortName;
           String shortNameTeamB = soccerPlayer.team.matchEvent.soccerTeamB.shortName;
@@ -125,6 +126,7 @@ class FantasyTeamComp implements ShadowRootAware {
               : "$shortNameTeamA - <strong>$shortNameTeamB<strong>";
 
           slots.add({
+              "id" : soccerPlayer.templateSoccerPlayerId,
               "fieldPos": soccerPlayer.fieldPos,
               "fullName": soccerPlayer.name,
               "matchEventName": matchEventName,
@@ -135,7 +137,7 @@ class FantasyTeamComp implements ShadowRootAware {
       }
     }
 
-    void onRow(int id) {
+    void onRow(String id) {
     }
 
     void onCloseButtonClick() {

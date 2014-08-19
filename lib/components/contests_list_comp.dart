@@ -13,9 +13,9 @@ import 'package:webclient/services/profile_service.dart';
            useShadowDom: false)
 class ContestsListComp {
 
-  static const int    SALARY_LIMIT_FOR_BEGGINERS    = 80000;
-  static const int    SALARY_LIMIT_FOR_STANDARDS    = 70000;
-  static const int    SALARY_LIMIT_FOR_SKILLEDS     = 60000;
+  static const int    SALARY_LIMIT_FOR_BEGGINERS    = 90000;
+  static const int    SALARY_LIMIT_FOR_STANDARDS    = 80000;
+  static const int    SALARY_LIMIT_FOR_SKILLEDS     = 70000;
 
    static const String TOURNAMENT_TYPE_FREE         = "FREE";
    static const String TOURNAMENT_TYPE_LIGA         = "LIGA";
@@ -142,18 +142,15 @@ class ContestsListComp {
     switch(sortParams[0])
     {
       case "contest-name":
-        contestsListFiltered.sort(( contest1, contest2) => (sortParams[1] == "asc") ? contest1.name.compareTo(contest2.name): contest2.name.compareTo(contest1.name) );
-
+        contestsListFiltered.sort(( contest1, contest2) => ( sortParams[1] == "asc" ? contest1.compareNameTo(contest2) : contest2.compareNameTo(contest1)) );
       break;
 
       case "contest-entry-fee":
-        contestsListFiltered.sort((contest1, contest2) => ( sortParams[1] == "asc"? contest1.templateContest.entryFee.compareTo(contest2.templateContest.entryFee):
-                                                                            contest2.templateContest.entryFee.compareTo(contest1.templateContest.entryFee)) );
+        contestsListFiltered.sort((contest1, contest2) => ( sortParams[1] == "asc"? contest1.compareEntryFeeTo(contest2) : contest2.compareEntryFeeTo(contest1)) );
       break;
 
       case "contest-start-time":
-        contestsListFiltered.sort((contest1, contest2) => ( sortParams[1] == "asc"? contest1.templateContest.startDate.compareTo(contest2.templateContest.startDate):
-                                                                            contest2.templateContest.startDate.compareTo(contest1.templateContest.startDate)) );
+        contestsListFiltered.sort((contest1, contest2) => ( sortParams[1] == "asc"? contest1.compareStartDateTo(contest2) : contest2.compareStartDateTo(contest1)) );
       break;
 
       default:

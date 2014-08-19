@@ -63,7 +63,7 @@ class ContestInfoComp {
         currentInfoData["prize"]          = contest.templateContest.prizePool.toString();
         currentInfoData["startDateTime"]  = getFormatedDate(contest.templateContest.startDate);
         currentInfoData["contestants"]    = contestants;
-        currentInfoData["prizes"]         = contest.templateContest.getPrizes().map((value) => {'value' : value}).toList();
+        currentInfoData["prizes"]         = contest.templateContest.prizes.map((value) => {'value' : value}).toList();
         currentInfoData["matchesInvolved"]= contest.templateContest.matchEvents;
 
         contestants.clear();

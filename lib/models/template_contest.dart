@@ -29,6 +29,7 @@ class TemplateContest {
   int salaryCap;
   int entryFee;
   String prizeType;
+  List<int> prizes;
 
   List<MatchEvent> matchEvents;
 
@@ -109,54 +110,6 @@ class TemplateContest {
     return soccerPlayer;
   }
 
-  List<int> getPrizes() {
-    List<int> prizes = new List<int>();
-
-    switch(prizeType) {
-      case TemplateContest.PRIZE_FREE:
-        break;
-      case TemplateContest.PRIZE_WINNER:
-        prizes.add(prizePool);
-        break;
-      case TemplateContest.PRIZE_TOP_3:
-        prizes.add( (prizePool * 0.5).toInt() );
-        prizes.add( (prizePool * 0.3).toInt() );
-        prizes.add( (prizePool * 0.2).toInt() );
-        break;
-      case TemplateContest.PRIZE_TOP_THIRD:
-        // A cuantos repartiremos premios?
-        int third = maxEntries ~/ 3;
-
-        // Para hacer el reparto proporcional asignaremos puntos inversamente a la posición
-        // Más puntos cuanto más baja su posición. Para repartir a "n" usuarios: 1º = (n) pts / 2º = (n-1) pts / 3º = (n-2) pts / ... / nº = 1 pts
-
-        // Averiguar los puntos totales a repartir para saber cuánto vale el punto: n * (n+1) / 2  (suma el valor de "n" numeros)
-        int totalPoints = third * (third + 1) ~/ 2;
-        int prizeByPoint = prizePool ~/ totalPoints;
-
-        // A cada posición le damos el premio (sus puntos se corresponden con su posición "invertida": p.ej. para repartir a 6 usuarios: el 1º tiene 6 puntos, el 2º tiene 5 puntos, etc)
-        int totalPrize = prizePool;
-        for (int i=third; i>0; i--) {
-          int prize = prizeByPoint * i;
-          prizes.add(prize);
-          totalPrize -= prize;
-        }
-        // Si queda algo, ¿se lo damos al primero?
-        if (totalPrize > 0) {
-          prizes[0] += totalPrize;
-        }
-        break;
-      case TemplateContest.PRIZE_FIFTY_FIFTY:
-        int mid = maxEntries ~/ 2;
-        for (int i=0; i<mid; i++) {
-          prizes.add(prizePool ~/ mid);
-        }
-        break;
-    }
-
-    return prizes;
-  }
-
   TemplateContest _initFromJsonObject(JsonObject json, ContestReferences references) {
     assert(templateContestId.isNotEmpty);
     state = json.state;
@@ -165,6 +118,7 @@ class TemplateContest {
     salaryCap = json.salaryCap;
     entryFee = json.entryFee;
     prizeType = json.prizeType;
+    prizes = json.containsKey("prizes") ? json.prizes : [];
     matchEvents = json.templateMatchEventIds.map( (matchEventId) => references.getMatchEventById(matchEventId) ).toList();
 
     // print( "TemplateContest: id($templateContestId) name($name) maxEntries($maxEntries) salaryCap($salaryCap) entryFee($entryFee) prizeType($prizeType) templateMatchEventIds($templateMatchEventIds)");

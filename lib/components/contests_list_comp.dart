@@ -33,8 +33,6 @@ class ContestsListComp {
   bool isToday(DateTime date) => (date.year == _dateTimeService.now.year && date.month == _dateTimeService.now.month && date.day == _dateTimeService.now.day);
 
   String dateInfo(DateTime date) {
-    DateTime now = _dateTimeService.now;
-
     // Avisamos cuando sea "Hoy"
     if (isToday(date)) {
       Duration duration = date.difference(_dateTimeService.now);
@@ -44,7 +42,7 @@ class ContestsListComp {
         int minutes = secondsTotal ~/ 60;
         int seconds = secondsTotal - (minutes * 60);
         if (minutes >= 0 && seconds >= 0) {
-          return "$minutes:$seconds";
+          return (seconds >= 10) ? "$minutes:$seconds" : "$minutes:0$seconds";
         }
       }
       return "Hoy";
@@ -58,7 +56,7 @@ class ContestsListComp {
       Duration duration = date.difference(_dateTimeService.now);
       int minutesLeft = duration.inMinutes;
       if (minutesLeft >= 0 && minutesLeft < 120) {
-        return (minutesLeft > 30) ? "${minutesLeft} min." : "Faltan";
+        return (minutesLeft >= 30) ? "${minutesLeft} min." : "Faltan";
       }
     }
     return new DateFormat("HH:mm").format(date) + "h.";

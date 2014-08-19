@@ -18,6 +18,8 @@ class MatchEvent {
 
   MatchEvent.referenceInit(this.templateMatchEventId);
 
+  bool get isStarted => period != "PRE_GAME";
+
   int get halfTimesLeft {
     int left = 2;
     switch (period) {

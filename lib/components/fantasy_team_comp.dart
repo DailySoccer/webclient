@@ -106,7 +106,7 @@ class FantasyTeamComp implements ShadowRootAware {
               "fullName": soccerPlayer.name,
               "matchEventName": matchEventName,
               "percentOfUsersThatOwn": _viewContestCtrl.getPercentOfUsersThatOwn(soccerPlayer),
-              "score": (soccerPlayer.currentLivePoints > 0 || soccerPlayer.team.matchEvent.minutesPlayed > 0) ? soccerPlayer.currentLivePoints : "-"
+              "score": (soccerPlayer.team.matchEvent.isStarted) ? soccerPlayer.currentLivePoints : "-"
           });
         }
       }

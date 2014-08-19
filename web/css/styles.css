@@ -10568,6 +10568,23 @@ fieldset[disabled] .soccer-player-info-header .btn-add-soccer-player-info {
 .soccer-player-info-content .soccer-player-info-tabs .active {
   background-color: #777777;
 }
+.soccer-player-info-content .next-match,
+.soccer-player-info-content .date-season {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #777777;
+}
+.soccer-player-info-content .next-match strong,
+.soccer-player-info-content .date-season strong {
+  color: #0d75a6;
+}
+.soccer-player-info-content .next-match {
+  margin: 25px 10px 0;
+}
+.soccer-player-info-content .date-season {
+  margin: 0 10px 20px;
+}
 .soccer-player-info-content .season-stats {
   border-width: 1px;
   border-style: solid none solid none;
@@ -10581,31 +10598,397 @@ fieldset[disabled] .soccer-player-info-header .btn-add-soccer-player-info {
   padding-left: 0px;
   padding-right: 0px;
 }
-.soccer-player-info-content .season-stats .season-stats-column {
+.soccer-player-info-content .season-stats .season-stats-row {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 0px;
+  padding-right: 0px;
+  border-width: 1px;
+  border-style: dotted none none none;
+  border-color: #777777;
+  border-radius: 0;
+  line-height: 30px;
+}
+.soccer-player-info-content .season-stats .season-stats-row .season-stats-header {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #777777;
+  position: relative;
+  float: left;
+  width: 8.33333333%;
+  min-height: 1px;
+  padding-left: 7.5px;
+  padding-right: 7.5px;
+}
+.soccer-player-info-content .season-stats .season-stats-row .season-stats-info {
+  border-width: 1px;
+  border-style: none dotted none none;
+  border-color: #777777;
+  border-radius: 0;
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  font-size: 14pt;
+  color: #777777;
+  position: relative;
+  float: left;
+  width: 41.66666667%;
+  min-height: 1px;
+  padding-left: 7.5px;
+  padding-right: 7.5px;
+  text-align: right;
+}
+.soccer-player-info-content .season-stats .season-stats-row .season-stats-info:last-child {
+  border: none;
+}
+.soccer-player-info-content .season-stats .season-stats-row:first-child {
+  border: none;
+}
+.soccer-player-info-content .match-stats {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 0px;
+  padding-right: 0px;
+  background-color: #ffffff;
+}
+.soccer-player-info-content .match-stats .match-stats-header {
+  position: relative;
+  width: 12.5%;
+  min-height: 1px;
+  padding-left: 0px;
+  padding-right: 0px;
+  display: inline-table;
+  float: left;
+  border-bottom: 1px solid #000;
+}
+.soccer-player-info-content .match-stats .match-stats-header div {
+  border-width: 1px;
+  border-style: dotted none none none;
+  border-color: #777777;
+  border-radius: 0;
+  line-height: 30px;
+  text-align: center;
+  border-right: 1px solid #000;
+}
+.soccer-player-info-content .match-stats .match-stats-header div:first-child {
+  border-bottom: 1px solid #000;
+  border-top: none;
+}
+.soccer-player-info-content .match-stats .match-stats-header div:first-child + div {
+  border-top: none;
+}
+.soccer-player-info-content .match-stats .match-stats-content {
+  background-color: #ccc;
+  position: relative;
+  float: left;
+  width: 87.5%;
+  min-height: 1px;
+  padding-left: 0px;
+  padding-right: 0px;
+  overflow-x: scroll;
+}
+.soccer-player-info-content .match-stats .match-stats-content .match-stats-data {
+  width: 99999px;
+  margin-left: -1px;
+}
+.soccer-player-info-content .match-stats .match-stats-content .match-stats-data .match-year {
+  float: left;
+  border-left: 1px solid #000;
+  line-height: 30px;
+  text-align: center;
+}
+.soccer-player-info-content .match-stats .match-stats-content .match-stats-data .match-year + .data {
+  margin-left: -33px;
+  border-left: 1px solid #000;
+}
+.soccer-player-info-content .match-stats .match-stats-content .match-stats-data .data {
+  margin: 30px 0 0 0;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  display: inline-table;
+  float: left;
+}
+.soccer-player-info-content .match-stats .match-stats-content .match-stats-data .data div {
+  border-width: 1px;
+  border-style: dotted none none none;
+  border-color: #777777;
+  border-radius: 0;
+  line-height: 30px;
+  width: 50px;
+  text-align: center;
+  border-right: 1px solid #000;
+}
+.soccer-player-info-content .match-stats .match-stats-content .match-stats-data .data div:first-child {
+  border: none;
+  border-right: 1px solid #000;
+}
+.soccer-player-info-content .action-buttons {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 2.5px;
+  padding-right: 2.5px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  background-color: #ffffff;
+}
+.soccer-player-info-content .action-buttons .button-wrapper {
   position: relative;
   float: left;
   width: 50%;
   min-height: 1px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border: 1px solid #000;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 15px 5px;
 }
-.soccer-player-info-content .season-stats .season-stats-column .season-stats-header {
-  position: relative;
-  float: left;
-  width: 16.66666667%;
-  min-height: 1px;
-  padding-left: 2.5px;
-  padding-right: 2.5px;
+.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  color: #ffffff;
+  background-color: #afafaf;
+  border-color: #cccccc;
+  box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
+  display: block;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
 }
-.soccer-player-info-content .season-stats .season-stats-column .season-stats-info {
-  position: relative;
-  float: left;
-  width: 83.33333333%;
-  min-height: 1px;
-  padding-left: 2.5px;
-  padding-right: 2.5px;
-  text-align: right;
+.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info:focus,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info:active:focus,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info:hover,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info:active,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info.disabled,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info[disabled],
+fieldset[disabled] .soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info:focus,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info:active:focus,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info:hover,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info:active,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info.disabled,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info[disabled],
+fieldset[disabled] .soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info:hover,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info:focus,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info:active,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info.active,
+.open .dropdown-toggle.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info {
+  color: #ffffff;
+  background-color: #9b9b9b;
+  border-color: #adadad;
+}
+.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info:active,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info.active,
+.open .dropdown-toggle.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info {
+  background-image: none;
+}
+.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info.disabled,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info[disabled],
+fieldset[disabled] .soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info.disabled:hover,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info[disabled]:hover,
+fieldset[disabled] .soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info:hover,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info.disabled:focus,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info[disabled]:focus,
+fieldset[disabled] .soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info:focus,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info.disabled:active,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info[disabled]:active,
+fieldset[disabled] .soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info:active,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info.disabled.active,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info[disabled].active,
+fieldset[disabled] .soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info.active {
+  background-color: #afafaf;
+  border-color: #cccccc;
+}
+.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info .badge {
+  color: #afafaf;
+  background-color: #ffffff;
+}
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  color: #ffffff;
+  background-color: #a1c931;
+  border-color: #91b42c;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  display: block;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info:focus,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info:active:focus,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info:hover,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info:active,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info.disabled,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info[disabled],
+fieldset[disabled] .soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info:focus,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info:active:focus,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info:hover,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info:active,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info.disabled,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info[disabled],
+fieldset[disabled] .soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info:hover,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info:focus,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info:active,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info.active,
+.open .dropdown-toggle.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info {
+  color: #ffffff;
+  background-color: #87a829;
+  border-color: #698320;
+}
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info:active,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info.active,
+.open .dropdown-toggle.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info {
+  background-image: none;
+}
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info.disabled,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info[disabled],
+fieldset[disabled] .soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info.disabled:hover,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info[disabled]:hover,
+fieldset[disabled] .soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info:hover,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info.disabled:focus,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info[disabled]:focus,
+fieldset[disabled] .soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info:focus,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info.disabled:active,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info[disabled]:active,
+fieldset[disabled] .soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info:active,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info.disabled.active,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info[disabled].active,
+fieldset[disabled] .soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info.active {
+  background-color: #a1c931;
+  border-color: #91b42c;
+}
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info .badge {
+  color: #a1c931;
+  background-color: #ffffff;
 }
 @media (max-width: 767px) {
   .soccer-player-filter {

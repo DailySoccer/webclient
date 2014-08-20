@@ -23,7 +23,7 @@
     <div class="top-separator"></div>
 
     <div class="fantasy-team-slot" ng-repeat="slot in fantasyTeam.slots" >
-      <div class="soccer-player-row" data-toggle="collapse" data-target="#statistic_{{$index}}">
+      <div class="soccer-player-row" data-toggle="collapse" data-target="#statistic_{{fantasyTeam.owner}}_{{$index}}">
         <div ng-click="fantasyTeam.onRow(slot.id)" class="column-fieldpos">{{slot.fieldPos.abrevName}}</div>
         <div class="column-primary-info">
           <span ng-click="fantasyTeam.onRow(slot.id)" class="soccer-player-name">{{slot.fullName}}</span>

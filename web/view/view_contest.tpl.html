@@ -21,14 +21,14 @@
       </ul>
 
       <div class="tab-content" id="liveContestTabContent">
-        <fantasy-team class="tab-pane active" id="userFantasyTeam" contest-entry="ctrl.mainPlayer" watch="ctrl.updatedDate" mode="ctrl.whereAmI"></fantasy-team>
+        <fantasy-team class="tab-pane active" id="userFantasyTeam" contest-entry="ctrl.mainPlayer" watch="ctrl.updatedDate" is-opponent="false" mode="ctrl.whereAmI"></fantasy-team>
         <users-list class="tab-pane" id="usersList" contest-entries="ctrl.contestEntries" selected-contest-entry="ctrl.selectedOpponent" watch="ctrl.updatedDate" mode="ctrl.whereAmI"></users-list>
         <fantasy-team class="tab-pane" is-opponent="true" id="opponentFantasyTeam" contest-entry="ctrl.selectedOpponent" watch="ctrl.updatedDate" mode="ctrl.whereAmI"></fantasy-team>
       </div>
     </div>
 
     <div ng-switch-when="false">
-      <fantasy-team id="userFantasyTeam" contest-entry="ctrl.mainPlayer" watch="ctrl.updatedDate" mode="ctrl.whereAmI"></fantasy-team>
+      <fantasy-team id="userFantasyTeam" contest-entry="ctrl.mainPlayer" watch="ctrl.updatedDate" is-opponent="false" mode="ctrl.whereAmI"></fantasy-team>
       <users-list id="usersList" ng-show="ctrl.selectedOpponent == null" contest-entries="ctrl.contestEntries" selected-contest-entry="ctrl.selectedOpponent"
                   watch="ctrl.updatedDate" mode="ctrl.whereAmI"></users-list>
       <fantasy-team id="opponentFantasyTeam" contest-entry="ctrl.selectedOpponent" is-opponent="true" ng-show="ctrl.selectedOpponent != null"

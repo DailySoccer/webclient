@@ -14,7 +14,7 @@ import 'package:webclient/controllers/view_contest_ctrl.dart';
 class FantasyTeamComp implements ShadowRootAware {
 
     var slots = new List();
-    String _owner = "me";
+    String _owner = "";
     String get owner => _owner;
 
     @NgOneWay("contest-entry")
@@ -32,7 +32,7 @@ class FantasyTeamComp implements ShadowRootAware {
 
     @NgOneWay("is-opponent")
     set isOpponent(bool value) {
-      _owner = _isOpponent == true ? "opponent" : "me";
+      _owner = value ? "opponent" : "me";
       _isOpponent = value;
 
         _refreshHeader();

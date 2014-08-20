@@ -4,7 +4,7 @@ import 'package:angular/angular.dart';
 
 @Component(
     selector: 'soccer-player-events',
-    templateUrl: 'packages/webclient/components/soccer_player_events.html',
+    templateUrl: 'packages/webclient/components/soccer_player_events_comp.html',
     publishAs: 'comp',
     useShadowDom: false
 )
@@ -17,6 +17,6 @@ class SoccerPlayerEventsComp{
     soccerPlayerStats = value;
   }
 
-  SoccerPlayerEventsComp();
+  SoccerPlayerEventsComp(){}
 
 }

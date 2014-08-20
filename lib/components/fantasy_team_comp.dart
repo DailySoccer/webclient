@@ -14,21 +14,27 @@ import 'package:webclient/controllers/view_contest_ctrl.dart';
 class FantasyTeamComp implements ShadowRootAware {
 
     var slots = new List();
+    String _owner = "me";
+    String get owner => _owner;
 
     @NgOneWay("contest-entry")
     set contestEntry(ContestEntry value) {
       _contestEntry = value;
-      _refreshTeam();
+      if(value != null)
+        _refreshTeam();
     }
 
     @NgOneWay("watch")
     set watch(dynamic value) {
+      backUpStatistics();
       _refreshTeam();
     }
 
     @NgOneWay("is-opponent")
     set isOpponent(bool value) {
-        _isOpponent = value;
+      _owner = _isOpponent == true ? "opponent" : "me";
+      _isOpponent = value;
+
         _refreshHeader();
     }
 
@@ -47,7 +53,7 @@ class FantasyTeamComp implements ShadowRootAware {
       _mode = value;
     }
 
-    List<Map> liveStatistics = [];
+    List<Map> soccerPlayerStats = [];
 
     String get userPosition => (_contestEntry != null) ? _viewContestCtrl.getUserPosition(_contestEntry).toString() : "-";
     String get userNickname => (_contestEntry != null) ? _contestEntry.user.nickName : "";
@@ -57,7 +63,7 @@ class FantasyTeamComp implements ShadowRootAware {
     dynamic get scrDet => _viewContestCtrl.scrDet;
 
     FantasyTeamComp(this._viewContestCtrl) {
-      liveStatistics.addAll([
+      soccerPlayerStats.addAll([
           {'name':'Goles encajados', 'points': 0.00},
           {'name':'paradas', 'points':0.00},
           {'name':'Despejes', 'points':0.00},
@@ -114,11 +120,14 @@ class FantasyTeamComp implements ShadowRootAware {
     }
 
     void _refreshTeam() {
+      //backUpStatistics();
+
       slots.clear();
 
       if (_contestEntry != null) {
         //TODO: actualizar los datos de la lista de slots, sin recrearla de nuevo. Buscar los jugadores y actualizar buscandolo por ID.
-        for (SoccerPlayer soccerPlayer in _contestEntry.soccers) {
+
+        _contestEntry.soccers.forEach((soccerPlayer) {
           String shortNameTeamA = soccerPlayer.team.matchEvent.soccerTeamA.shortName;
           String shortNameTeamB = soccerPlayer.team.matchEvent.soccerTeamB.shortName;
           var matchEventName = (soccerPlayer.team.templateSoccerTeamId == soccerPlayer.team.matchEvent.soccerTeamA.templateSoccerTeamId)
@@ -133,11 +142,40 @@ class FantasyTeamComp implements ShadowRootAware {
               "percentOfUsersThatOwn": _viewContestCtrl.getPercentOfUsersThatOwn(soccerPlayer),
               "score": (soccerPlayer.team.matchEvent.isStarted) ? soccerPlayer.currentLivePoints : "-"
           });
-        }
+        });
       }
     }
 
+    void backUpStatistics() {
+      collapsables.clear();
+      var coll = document.getElementsByClassName('soccer-player-statistics collapse');
+      coll.forEach((Element element) {
+        var classes = element.classes.toString();
+        var style = element.style;
+        var id = element.id;
+
+        Map css = { id : {"classes" : classes.toString(), "height" : style.height} };
+        collapsables.addAll(css);
+      });
+      print("backup de los estilos de los collapsables");
+    }
+
+    String restoreStatisticsCss(String id) {
+      String retorno = "";
+      if(collapsables.isNotEmpty) {
+        Map css = collapsables[id];
+        if(css != null){
+          if (css["classes"] != null) {
+            retorno =  css["classes"];
+          }
+        }
+      }
+      return retorno;
+    }
+
+
     void onRow(String id) {
+      var a = id;
     }
 
     void onCloseButtonClick() {
@@ -152,4 +190,7 @@ class FantasyTeamComp implements ShadowRootAware {
     ContestEntry _contestEntry;
     ViewContestCtrl _viewContestCtrl;
     String _mode;
+
+    Map collapsables = {};
+
 }

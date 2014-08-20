@@ -32,8 +32,12 @@
         </div>
         <div class="column-score">{{slot.score}}</div>
       </div>
-      <div id="statistic_{{$index}}" class="soccer-player-statistics collapse" ng-if="fantasyTeam.scrDet.isXsScreen" >
-        <soccer-player-events data-source="fantasyTeam.liveStatistics" ng-if=""></soccer-player-events>
+      <div id="statistic_{{fantasyTeam.owner}}_{{$index}}" class="soccer-player-statistics collapse" ng-if="fantasyTeam.scrDet.isXsScreen" ng-class="fantasyTeam.restoreStatisticsCss('statistic_{{fantasyTeam.owner}}_{{$index}}')" >
+        <div class="statistic" ng-repeat="stat in fantasyTeam.soccerPlayerStats">
+          <div class="stat-name">{{stat['name']}}</div>
+          <div class="stat-points">{{stat['points']}}</div>
+        </div>
+       <!-- <soccer-player-events data-source="fantasyTeam.soccerPlayerStats"></soccer-player-events> -->
       </div>
     </div>
   </div>

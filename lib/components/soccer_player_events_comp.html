@@ -1,4 +1,11 @@
-<div class="statistic" ng-repeat="stat in comp.soccerPlayerStats">
-  <div class="stat-name">{{stat['name']}}</div>
-  <div class="stat-points">{{stat['points']}}</div>
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+    <span class="glyphicon glyphicon-remove"></span>
+  </button>
+</div>
+<div class="modal-content">
+  <div class="statistic" ng-repeat="stat in comp.soccerPlayerStats">
+    <div class="stat-name">{{stat['name']}}</div>
+    <div class="stat-points">{{stat['points']}}</div>
+  </div>
 </div>

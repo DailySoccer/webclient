@@ -4,7 +4,7 @@ import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/models/contest_entry.dart';
-import 'package:webclient/models/soccer_player.dart';
+import 'dart:js' as js;
 import 'package:webclient/controllers/view_contest_ctrl.dart';
 
 @Component(selector: 'fantasy-team',
@@ -176,6 +176,13 @@ class FantasyTeamComp implements ShadowRootAware {
 
     void onRow(String id) {
       var a = id;
+      if (scrDet.isDesktop) {
+        // Esto soluciona el bug por el que no se muestra la ventana modal en Firefox;
+        var modal = querySelector('#infoContestModal');
+        modal.style.display = "block";
+        // Con esto llamamos a funciones de jQuery
+        js.context.callMethod(r'$', ['#infoContestModal']).callMethod('modal');
+      }
     }
 
     void onCloseButtonClick() {

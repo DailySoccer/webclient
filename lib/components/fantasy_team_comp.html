@@ -22,13 +22,13 @@
     </div>
     <div class="top-separator"></div>
 
-    <div class="fantasy-team-slot" ng-repeat="slot in fantasyTeam.slots" >
+    <div class="fantasy-team-slot" ng-repeat="slot in fantasyTeam.slots"  ng-click="fantasyTeam.onRow(slot.id)">
       <div class="soccer-player-row" data-toggle="collapse" data-target="#statistic_{{fantasyTeam.owner}}_{{$index}}">
-        <div ng-click="fantasyTeam.onRow(slot.id)" class="column-fieldpos">{{slot.fieldPos.abrevName}}</div>
+        <div class="column-fieldpos">{{slot.fieldPos.abrevName}}</div>
         <div class="column-primary-info">
-          <span ng-click="fantasyTeam.onRow(slot.id)" class="soccer-player-name">{{slot.fullName}}</span>
-          <span ng-click="fantasyTeam.onRow(slot.id)" class="match-event-name" ng-bind-html="slot.matchEventName"></span>
-          <span ng-click="fantasyTeam.onRow(slot.id)" class="remaining-match-time">{{slot.percentOfUsersThatOwn}}% LO TIENEN</span>
+          <span class="soccer-player-name">{{slot.fullName}}</span>
+          <span class="match-event-name" ng-bind-html="slot.matchEventName"></span>
+          <span class="remaining-match-time">{{slot.percentOfUsersThatOwn}}% LO TIENEN</span>
         </div>
         <div class="column-score">{{slot.score}}</div>
       </div>
@@ -42,4 +42,13 @@
     </div>
   </div>
 
+</div>
+
+<!-- Modal Window para mostrar las estadísticas/eventos de los futbol jugadoers -->
+<div  id="infoContestModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div id="infoContent" class="modal-content">
+        <soccer-player-events data-source="fantasyTeam.soccerPlayerStats"></soccer-player-events>
+      </div>
+    </div>
 </div>

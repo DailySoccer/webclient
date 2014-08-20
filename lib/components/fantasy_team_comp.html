@@ -14,13 +14,6 @@
     <div class="user-picture"></div>
     <div class="user-nickname">{{fantasyTeam.userNickname}}</div>
     <div class="total-remaining-matches-time">TIEMPO RESTANTE: {{fantasyTeam.remainingTime}}</div>
-
-    <!-- Antiguo botón de cerrar
-    <div class="close-team" ng-click="fantasyTeam.onCloseButtonClick()">
-      <span class="title">CERRAR</span>
-      <span class="glyphicon glyphicon-remove"></span>
-    </div>
-    -->
   </div>
 
   <div class="fantasy-team-list">
@@ -29,16 +22,33 @@
     </div>
     <div class="top-separator"></div>
 
-
-    <div class="fantasy-team-slot" ng-repeat="slot in fantasyTeam.slots">
-      <div class="column-fieldpos">{{slot.fieldPos.abrevName}}</div>
-      <div class="column-primary-info">
-        <span class="soccer-player-name">{{slot.fullName}}</span>
-        <span class="match-event-name" ng-bind-html="slot.matchEventName"></span>
-        <span class="remaining-match-time">{{slot.percentOfUsersThatOwn}}% LO TIENEN</span>
+    <div class="fantasy-team-slot" ng-repeat="slot in fantasyTeam.slots"  ng-click="fantasyTeam.onRow(slot.id)">
+      <div class="soccer-player-row" data-toggle="collapse" data-target="#statistic_{{fantasyTeam.owner}}_{{$index}}">
+        <div class="column-fieldpos">{{slot.fieldPos.abrevName}}</div>
+        <div class="column-primary-info">
+          <span class="soccer-player-name">{{slot.fullName}}</span>
+          <span class="match-event-name" ng-bind-html="slot.matchEventName"></span>
+          <span class="remaining-match-time">{{slot.percentOfUsersThatOwn}}% LO TIENEN</span>
+        </div>
+        <div class="column-score">{{slot.score}}</div>
       </div>
-      <div class="column-score">{{slot.score}}</div>
+      <div id="statistic_{{fantasyTeam.owner}}_{{$index}}" class="soccer-player-statistics collapse" ng-if="fantasyTeam.scrDet.isXsScreen" ng-class="fantasyTeam.restoreStatisticsCss('statistic_{{fantasyTeam.owner}}_{{$index}}')" >
+        <div class="statistic" ng-repeat="stat in fantasyTeam.soccerPlayerStats">
+          <div class="stat-name">{{stat['name']}}</div>
+          <div class="stat-points">{{stat['points']}}</div>
+        </div>
+       <!-- <soccer-player-events data-source="fantasyTeam.soccerPlayerStats"></soccer-player-events> -->
+      </div>
     </div>
   </div>
 
+</div>
+
+<!-- Modal Window para mostrar las estadísticas/eventos de los futbol jugadoers -->
+<div  id="infoContestModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div id="infoContent" class="modal-content">
+        <soccer-player-events data-source="fantasyTeam.soccerPlayerStats"></soccer-player-events>
+      </div>
+    </div>
 </div>

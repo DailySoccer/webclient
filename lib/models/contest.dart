@@ -82,4 +82,19 @@ class Contest {
     // print("Contest: id($contestId) name($name) currentUserIds($currentUserIds) templateContestId($templateContestId)");
     return this;
   }
+
+  int compareNameTo(Contest cont){
+    int comp = name.compareTo(cont.name);
+    return comp != 0 ? comp : contestId.compareTo(cont.contestId);
+  }
+
+  int compareEntryFeeTo(Contest cont){
+    int comp = templateContest.entryFee.compareTo(cont.templateContest.entryFee);
+    return comp != 0 ? comp : contestId.compareTo(cont.contestId);
+  }
+
+  int compareStartDateTo(Contest cont){
+    int comp = templateContest.startDate.compareTo(cont.templateContest.startDate);
+    return comp != 0 ? comp : contestId.compareTo(cont.contestId);
+  }
 }

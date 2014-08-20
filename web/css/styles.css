@@ -5607,12 +5607,14 @@ button.close {
 .panel-body:after,
 .modal-footer:before,
 .modal-footer:after,
+#infoContent .modal-info-head:before,
+#infoContent .modal-info-head:after,
 #infoContent .modal-info-head .contest-info-header-row:before,
 #infoContent .modal-info-head .contest-info-header-row:after,
-#infoContent .modal-content .contest-info-tabs:before,
-#infoContent .modal-content .contest-info-tabs:after,
-#infoContent .modal-content .info-options:before,
-#infoContent .modal-content .info-options:after,
+#infoContent .modal-info-content .contest-info-tabs:before,
+#infoContent .modal-info-content .contest-info-tabs:after,
+#infoContent .modal-info-content .info-options:before,
+#infoContent .modal-info-content .info-options:after,
 #contestInfoTabbed:before,
 #contestInfoTabbed:after,
 .contestant-list .contestant-element:before,
@@ -5631,8 +5633,8 @@ button.close {
 .landing-wrapper .screen .content-wrapper .content-container:after,
 .landing-wrapper .screen .content-wrapper .content-container:before,
 .landing-wrapper .screen .content-wrapper .content-container:after,
-.fantasy-team-list .fantasy-team-slot:before,
-.fantasy-team-list .fantasy-team-slot:after,
+.fantasy-team-list .soccer-player-row:before,
+.fantasy-team-list .soccer-player-row:after,
 #usersListRoot .user-row:before,
 #usersListRoot .user-row:after,
 #usersListRoot .users-table-header:before,
@@ -5677,6 +5679,10 @@ button.close {
 #mainFooter .sup-footer-wrapper:after,
 #mainFooter .sub-footer:before,
 #mainFooter .sub-footer:after,
+.statistic:before,
+.statistic:after,
+.modal-header:before,
+.modal-header:after,
 .main-content-container:before,
 .main-content-container:after,
 .lineup-selector .lineup-selector-slot:before,
@@ -5698,9 +5704,10 @@ button.close {
 .pager:after,
 .panel-body:after,
 .modal-footer:after,
+#infoContent .modal-info-head:after,
 #infoContent .modal-info-head .contest-info-header-row:after,
-#infoContent .modal-content .contest-info-tabs:after,
-#infoContent .modal-content .info-options:after,
+#infoContent .modal-info-content .contest-info-tabs:after,
+#infoContent .modal-info-content .info-options:after,
 #contestInfoTabbed:after,
 .contestant-list .contestant-element:after,
 #headerContestWidget:after,
@@ -5710,7 +5717,7 @@ button.close {
 .contests-table .data .row:after,
 .landing-wrapper .screen .content-wrapper .content-container:after,
 .landing-wrapper .screen .content-wrapper .content-container:after,
-.fantasy-team-list .fantasy-team-slot:after,
+.fantasy-team-list .soccer-player-row:after,
 #usersListRoot .user-row:after,
 #usersListRoot .users-table-header:after,
 .contest-id-bar:after,
@@ -5733,6 +5740,8 @@ button.close {
 #mainFooter:after,
 #mainFooter .sup-footer-wrapper:after,
 #mainFooter .sub-footer:after,
+.statistic:after,
+.modal-header:after,
 .main-content-container:after,
 .lineup-selector .lineup-selector-slot:after {
   clear: both;
@@ -6422,10 +6431,25 @@ fieldset[disabled] #mainMenuRoot #addMoney.active {
   padding: 15px;
   border-bottom: 1px solid #e5e5e5;
   min-height: 16.42857143px;
+  margin-left: -15px;
+  margin-right: -15px;
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
   position: relative;
   border-bottom: 1px solid #f8f8f8;
+}
+#infoContent .modal-info-head .title {
+  position: relative;
+  float: left;
+  width: 91.66666667%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 26px;
+  color: #555555;
+  text-align: left;
 }
 #infoContent .modal-info-head .contest-info-header-row {
   margin-left: -15px;
@@ -6579,10 +6603,10 @@ button#infoContent .modal-info-head button.close {
   border: 0;
   -webkit-appearance: none;
 }
-#infoContent .modal-content {
+#infoContent .modal-info-content {
   position: relative;
 }
-#infoContent .modal-content .tabs-background {
+#infoContent .modal-info-content .tabs-background {
   width: 100%;
   height: 51px;
   background-image: -webkit-linear-gradient(top, #1a3949 49%, #0f2630 51%);
@@ -6590,14 +6614,14 @@ button#infoContent .modal-info-head button.close {
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff1a3949', endColorstr='#ff0f2630', GradientType=0);
 }
-#infoContent .modal-content .contest-info-tabs {
+#infoContent .modal-info-content .contest-info-tabs {
   height: 46px;
   list-style: none;
   padding: 0;
   margin-left: 0;
   margin-right: 0;
 }
-#infoContent .modal-content .contest-info-tabs .tab {
+#infoContent .modal-info-content .contest-info-tabs .tab {
   position: relative;
   float: left;
   width: 16.66666667%;
@@ -6610,7 +6634,7 @@ button#infoContent .modal-info-head button.close {
   border-color: #214a5f;
   border-radius: 0;
 }
-#infoContent .modal-content .contest-info-tabs .tab a {
+#infoContent .modal-info-content .contest-info-tabs .tab a {
   cursor: pointer;
   line-height: 46px;
   text-align: center;
@@ -6618,10 +6642,10 @@ button#infoContent .modal-info-head button.close {
   display: block;
   text-decoration: none;
 }
-#infoContent .modal-content .contest-info-tabs .active {
+#infoContent .modal-info-content .contest-info-tabs .active {
   background-color: #214a5f;
 }
-#infoContent .modal-content .contest-info-tabs .buton-place {
+#infoContent .modal-info-content .contest-info-tabs .buton-place {
   position: relative;
   float: left;
   width: 50%;
@@ -6629,11 +6653,11 @@ button#infoContent .modal-info-head button.close {
   padding-left: 15px;
   padding-right: 15px;
 }
-#infoContent .modal-content .contest-info-tabs .buton-place > button {
+#infoContent .modal-info-content .contest-info-tabs .buton-place > button {
   float: right !important;
   margin-top: 7px;
 }
-#infoContent .modal-content .info-options {
+#infoContent .modal-info-content .info-options {
   margin-bottom: 0;
   padding-left: 0;
   list-style: none;
@@ -6647,124 +6671,124 @@ button#infoContent .modal-info-head button.close {
   top: 15px;
   width: 100%;
 }
-#infoContent .modal-content .info-options > li {
+#infoContent .modal-info-content .info-options > li {
   position: relative;
   display: block;
 }
-#infoContent .modal-content .info-options > li > a {
+#infoContent .modal-info-content .info-options > li > a {
   position: relative;
   display: block;
   padding: 10px 15px;
 }
-#infoContent .modal-content .info-options > li > a:hover,
-#infoContent .modal-content .info-options > li > a:focus {
+#infoContent .modal-info-content .info-options > li > a:hover,
+#infoContent .modal-info-content .info-options > li > a:focus {
   text-decoration: none;
   background-color: #eeeeee;
 }
-#infoContent .modal-content .info-options > li.disabled > a {
+#infoContent .modal-info-content .info-options > li.disabled > a {
   color: #999999;
 }
-#infoContent .modal-content .info-options > li.disabled > a:hover,
-#infoContent .modal-content .info-options > li.disabled > a:focus {
+#infoContent .modal-info-content .info-options > li.disabled > a:hover,
+#infoContent .modal-info-content .info-options > li.disabled > a:focus {
   color: #999999;
   text-decoration: none;
   background-color: transparent;
   cursor: not-allowed;
 }
-#infoContent .modal-content .info-options .open > a,
-#infoContent .modal-content .info-options .open > a:hover,
-#infoContent .modal-content .info-options .open > a:focus {
+#infoContent .modal-info-content .info-options .open > a,
+#infoContent .modal-info-content .info-options .open > a:hover,
+#infoContent .modal-info-content .info-options .open > a:focus {
   background-color: #eeeeee;
   border-color: #a1c931;
 }
-#infoContent .modal-content .info-options .nav-divider {
+#infoContent .modal-info-content .info-options .nav-divider {
   height: 1px;
   margin: 9px 0;
   overflow: hidden;
   background-color: #e5e5e5;
 }
-#infoContent .modal-content .info-options > li > a > img {
+#infoContent .modal-info-content .info-options > li > a > img {
   max-width: none;
 }
-#infoContent .modal-content .info-options > li {
+#infoContent .modal-info-content .info-options > li {
   float: left;
   margin-bottom: -1px;
 }
-#infoContent .modal-content .info-options > li > a {
+#infoContent .modal-info-content .info-options > li > a {
   margin-right: 2px;
   line-height: 1.42857143;
   border: 1px solid transparent;
   border-radius: 4px 4px 0 0;
 }
-#infoContent .modal-content .info-options > li > a:hover {
+#infoContent .modal-info-content .info-options > li > a:hover {
   border-color: #eeeeee #eeeeee #dddddd;
 }
-#infoContent .modal-content .info-options > li.active > a,
-#infoContent .modal-content .info-options > li.active > a:hover,
-#infoContent .modal-content .info-options > li.active > a:focus {
+#infoContent .modal-info-content .info-options > li.active > a,
+#infoContent .modal-info-content .info-options > li.active > a:hover,
+#infoContent .modal-info-content .info-options > li.active > a:focus {
   color: #555555;
   background-color: #ffffff;
   border: 1px solid #dddddd;
   border-bottom-color: transparent;
   cursor: default;
 }
-#infoContent .modal-content .info-options.nav-justified {
+#infoContent .modal-info-content .info-options.nav-justified {
   width: 100%;
   border-bottom: 0;
 }
-#infoContent .modal-content .info-options.nav-justified > li {
+#infoContent .modal-info-content .info-options.nav-justified > li {
   float: none;
 }
-#infoContent .modal-content .info-options.nav-justified > li > a {
+#infoContent .modal-info-content .info-options.nav-justified > li > a {
   text-align: center;
   margin-bottom: 5px;
 }
-#infoContent .modal-content .info-options.nav-justified > .dropdown .dropdown-menu {
+#infoContent .modal-info-content .info-options.nav-justified > .dropdown .dropdown-menu {
   top: auto;
   left: auto;
 }
 @media (min-width: 768px) {
-  #infoContent .modal-content .info-options.nav-justified > li {
+  #infoContent .modal-info-content .info-options.nav-justified > li {
     display: table-cell;
     width: 1%;
   }
-  #infoContent .modal-content .info-options.nav-justified > li > a {
+  #infoContent .modal-info-content .info-options.nav-justified > li > a {
     margin-bottom: 0;
   }
 }
-#infoContent .modal-content .info-options.nav-justified > li > a {
+#infoContent .modal-info-content .info-options.nav-justified > li > a {
   margin-right: 0;
   border-radius: 4px;
 }
-#infoContent .modal-content .info-options.nav-justified > .active > a,
-#infoContent .modal-content .info-options.nav-justified > .active > a:hover,
-#infoContent .modal-content .info-options.nav-justified > .active > a:focus {
+#infoContent .modal-info-content .info-options.nav-justified > .active > a,
+#infoContent .modal-info-content .info-options.nav-justified > .active > a:hover,
+#infoContent .modal-info-content .info-options.nav-justified > .active > a:focus {
   border: 1px solid #dddddd;
 }
 @media (min-width: 768px) {
-  #infoContent .modal-content .info-options.nav-justified > li > a {
+  #infoContent .modal-info-content .info-options.nav-justified > li > a {
     border-bottom: 1px solid #dddddd;
     border-radius: 4px 4px 0 0;
   }
-  #infoContent .modal-content .info-options.nav-justified > .active > a,
-  #infoContent .modal-content .info-options.nav-justified > .active > a:hover,
-  #infoContent .modal-content .info-options.nav-justified > .active > a:focus {
+  #infoContent .modal-info-content .info-options.nav-justified > .active > a,
+  #infoContent .modal-info-content .info-options.nav-justified > .active > a:hover,
+  #infoContent .modal-info-content .info-options.nav-justified > .active > a:focus {
     border-bottom-color: #ffffff;
   }
 }
-#infoContent .modal-content .enter-contest-button {
+#infoContent .modal-info-content .enter-contest-button {
   position: absolute;
   top: 8px;
   right: 15px;
 }
-#infoContent .modal-content .contest-info-content {
+#infoContent .modal-info-content .contest-info-content {
   position: relative;
   padding: 20px;
   padding: 10px;
   background-color: #ffffff;
   min-height: 500px;
 }
-#infoContent .modal-content .contest-info-content .instructions {
+#infoContent .modal-info-content .contest-info-content .instructions {
   position: relative;
   min-height: 1px;
   padding-left: 15px;
@@ -6776,12 +6800,12 @@ button#infoContent .modal-info-head button.close {
   padding: 10px 0;
 }
 @media (min-width: 768px) {
-  #infoContent .modal-content .contest-info-content .instructions {
+  #infoContent .modal-info-content .contest-info-content .instructions {
     float: left;
     width: 66.66666667%;
   }
 }
-#infoContent .modal-content .contest-info-content .start-date {
+#infoContent .modal-info-content .contest-info-content .start-date {
   position: relative;
   min-height: 1px;
   padding-left: 15px;
@@ -6803,23 +6827,23 @@ button#infoContent .modal-info-head button.close {
   text-align: center;
 }
 @media (min-width: 768px) {
-  #infoContent .modal-content .contest-info-content .start-date {
+  #infoContent .modal-info-content .contest-info-content .start-date {
     float: left;
     width: 33.33333333%;
   }
 }
-#infoContent .modal-content .contest-info-content .start-date blockquote {
+#infoContent .modal-info-content .contest-info-content .start-date blockquote {
   border-color: #ddd;
   border-color: rgba(0, 0, 0, 0.15);
 }
-#infoContent .modal-content .contest-info-content .bases-title {
+#infoContent .modal-info-content .contest-info-content .bases-title {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 12pt;
   color: #777777;
   margin-top: 20px;
 }
-#infoContent .modal-content .contestant-list-wrapper {
+#infoContent .modal-info-content .contestant-list-wrapper {
   position: relative;
   min-height: 1px;
   padding-left: 15px;
@@ -6828,7 +6852,7 @@ button#infoContent .modal-info-head button.close {
   overflow: auto;
 }
 @media (min-width: 768px) {
-  #infoContent .modal-content .contestant-list-wrapper {
+  #infoContent .modal-info-content .contestant-list-wrapper {
     float: left;
     width: 100%;
   }
@@ -8368,22 +8392,6 @@ fieldset[disabled] .landing-wrapper .button-play.active {
   background-image: linear-gradient(to bottom, #fba61a 49%, #ec990e 51%);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffba61a', endColorstr='#ffec990e', GradientType=0);
-  /*.close-team {
-		.hidden-xs();
-		cursor: pointer;
-		position: absolute;
-		right: 80px;
-		top: 7px;
-		color: @white; 
-		.title { .opensans_normal(8pt); .hidden-sm(); }
-		.glyphicon { font-size: 18pt; vertical-align: middle;}
-
-		&:hover { color: @greyLight; }
-	}
-
-	@media (min-width: @screen-sm-min) {
-		.border-top-radius(@globalBoxesRadius);
-	}*/
 }
 .fantasy-team-header .ranking-box {
   width: 70px;
@@ -8629,9 +8637,12 @@ fieldset[disabled] .close-team .btn-close-cancel.active {
     display: none !important;
   }
 }
-.fantasy-team-list .fantasy-team-slot {
+.fantasy-team-list .soccer-player-row {
   margin-left: 0px;
   margin-right: 0px;
+  background-color: #ffffff;
+}
+.fantasy-team-list .fantasy-team-slot {
   margin-top: 2px;
   padding-bottom: 2px;
   border-width: 1px;
@@ -13335,6 +13346,58 @@ Banderas usadas hasta la fecha:
 }
 .flag.flag-it {
   background-position: 0 -22px;
+}
+.statistic {
+  margin-left: 0;
+  margin-right: 0;
+  line-height: 30px;
+  background-color: #f8f8f8;
+  border-width: 1px;
+  border-style: none none solid none;
+  border-color: #ffffff;
+  border-radius: 0px;
+}
+.statistic .stat-name {
+  position: relative;
+  float: left;
+  width: 50%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #777777;
+}
+.statistic .stat-points {
+  position: relative;
+  float: left;
+  width: 50%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  font-size: 12pt;
+  color: #777777;
+  text-align: right;
+}
+.modal-header {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+.modal-header .title {
+  position: relative;
+  float: left;
+  width: 91.66666667%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 26px;
+  color: #555555;
+  text-align: left;
 }
 .btn {
   display: inline-block;

@@ -1,0 +1,15 @@
+<div class="modal-header">
+  <div class="modal-statistic-header">
+      <div class="title">Estadísticas de jugador</div>
+  </div>
+
+  <button type="button" class="close-button" data-dismiss="modal" aria-hidden="true">
+    <span class="glyphicon glyphicon-remove"></span>
+  </button>
+</div>
+<div class="modal-content">
+  <div class="statistic" ng-repeat="stat in comp.soccerPlayerStats">
+    <div class="stat-name">{{stat['name']}}</div>
+    <div class="stat-points">{{stat['points']}}</div>
+  </div>
+</div>

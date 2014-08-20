@@ -1,0 +1,27 @@
+.statistic{
+	.make-row(0);
+	line-height: 30px;
+	background-color: @greyUltraLight;
+	.make-border(1px, none none solid none, @white, 0px);
+	.stat-name{ .make-xs-column(6); .opensans_normal(10pt, @greyDark); }
+	.stat-points{ .make-xs-column(6); .exo_bold(12pt, @greyDark); text-align: right; }
+}
+
+.modal-statistic-header {
+	.make-row(0);
+
+	.title {
+		.make-xs-column(11);
+		.opensans_normal(26px, @greyHeaderDark);
+		text-align: left;
+	}
+	button.close-button {
+   			.close();
+   			.make-xs-column(1);
+   			position: absolute;
+			top: 10px;
+			right: 15px;
+			border:none;
+   		}
+	}
+}

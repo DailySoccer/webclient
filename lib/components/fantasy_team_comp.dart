@@ -53,7 +53,7 @@ class FantasyTeamComp implements ShadowRootAware {
       _mode = value;
     }
 
-    List<Map> soccerPlayerStats = [];
+    dynamic soccerPlayerEventsModal;
 
     String get userPosition => (_contestEntry != null) ? _viewContestCtrl.getUserPosition(_contestEntry).toString() : "-";
     String get userNickname => (_contestEntry != null) ? _contestEntry.user.nickName : "";
@@ -62,20 +62,7 @@ class FantasyTeamComp implements ShadowRootAware {
 
     dynamic get scrDet => _viewContestCtrl.scrDet;
 
-    FantasyTeamComp(this._viewContestCtrl) {
-      soccerPlayerStats.addAll([
-          {'name':'Goles encajados', 'points': 0.00},
-          {'name':'paradas', 'points':0.00},
-          {'name':'Despejes', 'points':0.00},
-          {'name':'Pases', 'points':0.00},
-          {'name':'Recuperaciones', 'points':0.00},
-          {'name':'Faltas cometidas', 'points':0.00},
-          {'name':'Tarjetas amarillas', 'points':0.00},
-          {'name':'...', 'points':0.00},
-          {'name':'....', 'points':0.00},
-          {'name':'.....', 'points':0.00}
-      ]);
-    }
+    FantasyTeamComp(this._viewContestCtrl);
 
     // A pesar de que useShadowDom es false, sigue llegando este mensaje y es el primer momento donde podemos hacer un querySelector.
     // Hemos probado attach y el constructor, pero alli parece que todavia no estan creados los hijos. Tiene que ser var y no ShadowRoot
@@ -134,13 +121,25 @@ class FantasyTeamComp implements ShadowRootAware {
               ? "<strong>$shortNameTeamA</strong> - $shortNameTeamB"
               : "$shortNameTeamA - <strong>$shortNameTeamB<strong>";
 
+          List<Map> soccerPlayerStats = [];
+
+          soccerPlayer.eventLivePoints.forEach((key,value) {
+            if (eventKeyToName.containsKey(key)) {
+              soccerPlayerStats.add({'name':eventKeyToName[key], 'points':value});
+            }
+            else {
+              soccerPlayerStats.add({'name':"???", 'points':value});
+            }
+          });
+
           slots.add({
               "id" : soccerPlayer.templateSoccerPlayerId,
               "fieldPos": soccerPlayer.fieldPos,
               "fullName": soccerPlayer.name,
               "matchEventName": matchEventName,
               "percentOfUsersThatOwn": _viewContestCtrl.getPercentOfUsersThatOwn(soccerPlayer),
-              "score": (soccerPlayer.team.matchEvent.isStarted) ? soccerPlayer.currentLivePoints : "-"
+              "score": (soccerPlayer.team.matchEvent.isStarted) ? soccerPlayer.currentLivePoints : "-",
+              "stats": soccerPlayerStats
           });
         });
       }
@@ -174,14 +173,14 @@ class FantasyTeamComp implements ShadowRootAware {
     }
 
 
-    void onRow(String id) {
-      var a = id;
+    void onRow(dynamic soccerPlayerData) {
+      soccerPlayerEventsModal = soccerPlayerData["stats"];
       if (scrDet.isDesktop) {
         // Esto soluciona el bug por el que no se muestra la ventana modal en Firefox;
-        var modal = querySelector('#soccerPlayerEventModal');
+        var modal = querySelector('#soccerPlayerEventModal_'+owner);
         modal.style.display = "block";
         // Con esto llamamos a funciones de jQuery
-        js.context.callMethod(r'$', ['#soccerPlayerEventModal']).callMethod('modal');
+        js.context.callMethod(r'$', ['#soccerPlayerEventModal_'+owner]).callMethod('modal');
       }
     }
 
@@ -199,5 +198,40 @@ class FantasyTeamComp implements ShadowRootAware {
     String _mode;
 
     Map collapsables = {};
+
+    final Map<String, String> eventKeyToName = {
+      "PASS_SUCCESSFUL"   : "Pass Successful",
+      "PASS_UNSUCCESSFUL" : "Pass Unsuccessfull",
+      "TAKE_ON"           : "Take On",
+      "FOUL_RECEIVED"     : "Foul Received",
+      "TACKLE"            : "Tackle",
+      "INTERCEPTION"      : "Interception",
+      "SAVE"              : "Save",
+      "CLAIM"             : "Claim",
+      "CLEARANCE"         : "Clearance",
+      "MISS"              : "Miss",
+      "POST"              : "Post",
+      "ATTEMPT_SAVED"     : "Attempt Saved",
+      "YELLOW_CARD"       : "Yellow Card",
+      "PUNCH"             : "Punch",
+      "DISPOSSESSED"      : "Dispossessed",
+      "ERROR"             : "Error",
+      "ASSIST"            : "Assist",
+      "TACKLE_EFFECTIVE"  : "Tackle Effective",
+      "GOAL_SCORED_BY_GOALKEEPER" : "Goal",
+      "GOAL_SCORED_BY_DEFENDER"   : "Goal",
+      "GOAL_SCORED_BY_MIDFIELDER" : "Goal",
+      "GOAL_SCORED_BY_FORWARD"    : "Goal",
+    "OWN_GOAL"            : "Own Goal",
+    "FOUL_COMMITTED"      : "Foul Committed",
+    "SECOND_YELLOW_CARD"  : "Second Yellow Card",
+    "RED_CARD"            : "Red Card",
+    "CAUGHT_OFFSIDE"      : "Offside",
+    "PENALTY_COMMITTED"   : "Penalty Committed",
+    "PENALTY_FAILED"      : "Penalty Failed",
+    "GOALKEEPER_SAVES_PENALTY"    : "Saves Penalty",
+    "CLEAN_SHEET"         : "Clean Sheet",
+    "GOAL_CONCEDED"       : "Goal Conceded"
+    };
 
 }

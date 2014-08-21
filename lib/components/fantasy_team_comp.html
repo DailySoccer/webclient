@@ -22,7 +22,7 @@
     </div>
     <div class="top-separator"></div>
 
-    <div class="fantasy-team-slot" ng-repeat="slot in fantasyTeam.slots"  ng-click="fantasyTeam.onRow(slot.id)">
+    <div class="fantasy-team-slot" ng-repeat="slot in fantasyTeam.slots"  ng-click="fantasyTeam.onRow(slot);">
       <div class="soccer-player-row" data-toggle="collapse" data-target="#statistic_{{fantasyTeam.owner}}_{{$index}}">
         <div class="column-fieldpos">{{slot.fieldPos.abrevName}}</div>
         <div class="column-primary-info">
@@ -33,7 +33,7 @@
         <div class="column-score">{{slot.score}}</div>
       </div>
       <div id="statistic_{{fantasyTeam.owner}}_{{$index}}" class="soccer-player-statistics collapse" ng-if="fantasyTeam.scrDet.isXsScreen" ng-class="fantasyTeam.restoreStatisticsCss('statistic_{{fantasyTeam.owner}}_{{$index}}')" >
-        <div class="statistic" ng-repeat="stat in fantasyTeam.soccerPlayerStats">
+        <div class="statistic" ng-repeat="stat in slot.stats">
           <div class="stat-name">{{stat['name']}}</div>
           <div class="stat-points">{{stat['points']}}</div>
         </div>
@@ -45,10 +45,9 @@
 </div>
 
 <!-- Modal Window para mostrar las estadísticas/eventos de los futbol jugadoers -->
-<div  id="soccerPlayerEventModal" class="modal fade" tabindex="-1" role="dialog">
+<div  id="soccerPlayerEventModal_{{fantasyTeam.owner}}" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div id="playerEventsWindow" class="modal-content">
-
         <div class="modal-header">
           <div class="modal-statistic-header-top">
             <div class="title">Estadísticas de jugador</div>
@@ -61,7 +60,7 @@
         <div class="modal-events-content">
           <div class="content">
 
-            <soccer-player-events data-source="fantasyTeam.soccerPlayerStats"></soccer-player-events>
+            <soccer-player-events data-source="fantasyTeam.soccerPlayerEventsModal"></soccer-player-events>
 
           </div>
         </div>

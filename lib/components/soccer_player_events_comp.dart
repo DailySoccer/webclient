@@ -17,6 +17,6 @@ class SoccerPlayerEventsComp{
     soccerPlayerStats = value;
   }
 
-  SoccerPlayerEventsComp(){}
+  SoccerPlayerEventsComp();
 
 }

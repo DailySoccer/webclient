@@ -54,9 +54,9 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   ScreenDetectorService scrDet;
 
   // Rango minímo del filtro del EntryFee
-  int get filterEntryFeeRangeMin => 0;
+  String get filterEntryFeeRangeMin => getEntryFeeFilterRange()[0];
   // Rango máximo del filtro del EntryFee
-  int get filterEntryFeeRangeMax => 100;
+  String get filterEntryFeeRangeMax => getEntryFeeFilterRange()[1];
 
   // propiedad que dice si existen concursos del tipo "PRINCIPIANTE" en la lista actual de concursos.
   bool get hasBegginerTier {
@@ -171,12 +171,12 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     _timer.cancel();
   }
 
-  /*
+
   dynamic getEntryFeeFilterRange(){
     var range = js.context.callMethod(r'$', ['#slider-range']).callMethod('val');
     return range != null? range : ["",""];
   }
-  */
+
   void onActionClick(Contest contest) {
     selectedContest = contest;
     _router.go('enter_contest', { "contestId": contest.contestId });

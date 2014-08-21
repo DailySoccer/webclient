@@ -1,4 +1,7 @@
-.statistic{
+#playerEventsWindow {
+	background-color: @white;
+}
+.statistic {
 	.make-row(0);
 	line-height: 30px;
 	background-color: @greyUltraLight;
@@ -6,22 +9,41 @@
 	.stat-name{ .make-xs-column(6); .opensans_normal(10pt, @greyDark); }
 	.stat-points{ .make-xs-column(6); .exo_bold(12pt, @greyDark); text-align: right; }
 }
+.modal-header {
+	.modal-header();
+	padding-bottom: 0;
+}
 
-.modal-statistic-header {
-	.make-row(0);
-
+.modal-statistic-header-top {
+	.make-row();
+	line-height: 60px;
+	//padding-bottom: 20px;
 	.title {
 		.make-xs-column(11);
-		.opensans_normal(26px, @greyHeaderDark);
+		.opensans_normal(20pt, @greyDark);
 		text-align: left;
 	}
-	button.close-button {
-   			.close();
-   			.make-xs-column(1);
-   			position: absolute;
-			top: 10px;
-			right: 15px;
-			border:none;
-   		}
+
+	.close-button {
+		.close();
+		.make-xs-column(1);
+		background-color: transparent;
+		border:none;
+	}
+
+	.content-title {
+		.opensans_normal(20pt, @greyDark);
+		text-align: center;
+		line-height: 90px;
+
+	}
+
+
+	.place-holder {
+		.make-xs-column(12);
+		padding: 20px;
+		background-color: @greyUltraDark;
+		.exo_light (26pt, @orange);
 	}
 }
+

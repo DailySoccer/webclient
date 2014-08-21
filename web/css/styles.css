@@ -5607,8 +5607,6 @@ button.close {
 .panel-body:after,
 .modal-footer:before,
 .modal-footer:after,
-#infoContent .modal-info-head:before,
-#infoContent .modal-info-head:after,
 #infoContent .modal-info-head .contest-info-header-row:before,
 #infoContent .modal-info-head .contest-info-header-row:after,
 #infoContent .modal-info-content .contest-info-tabs:before,
@@ -5681,8 +5679,8 @@ button.close {
 #mainFooter .sub-footer:after,
 .statistic:before,
 .statistic:after,
-.modal-header:before,
-.modal-header:after,
+.modal-statistic-header-top:before,
+.modal-statistic-header-top:after,
 .main-content-container:before,
 .main-content-container:after,
 .lineup-selector .lineup-selector-slot:before,
@@ -5704,7 +5702,6 @@ button.close {
 .pager:after,
 .panel-body:after,
 .modal-footer:after,
-#infoContent .modal-info-head:after,
 #infoContent .modal-info-head .contest-info-header-row:after,
 #infoContent .modal-info-content .contest-info-tabs:after,
 #infoContent .modal-info-content .info-options:after,
@@ -5741,7 +5738,7 @@ button.close {
 #mainFooter .sup-footer-wrapper:after,
 #mainFooter .sub-footer:after,
 .statistic:after,
-.modal-header:after,
+.modal-statistic-header-top:after,
 .main-content-container:after,
 .lineup-selector .lineup-selector-slot:after {
   clear: both;
@@ -6431,25 +6428,11 @@ fieldset[disabled] #mainMenuRoot #addMoney.active {
   padding: 15px;
   border-bottom: 1px solid #e5e5e5;
   min-height: 16.42857143px;
-  margin-left: -15px;
-  margin-right: -15px;
+  padding-bottom: 0;
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
   position: relative;
   border-bottom: 1px solid #f8f8f8;
-}
-#infoContent .modal-info-head .title {
-  position: relative;
-  float: left;
-  width: 91.66666667%;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 26px;
-  color: #555555;
-  text-align: left;
 }
 #infoContent .modal-info-head .contest-info-header-row {
   margin-left: -15px;
@@ -13347,6 +13330,9 @@ Banderas usadas hasta la fecha:
 .flag.flag-it {
   background-position: 0 -22px;
 }
+#playerEventsWindow {
+  background-color: #ffffff;
+}
 .statistic {
   margin-left: 0;
   margin-right: 0;
@@ -13383,10 +13369,17 @@ Banderas usadas hasta la fecha:
   text-align: right;
 }
 .modal-header {
+  padding: 15px;
+  border-bottom: 1px solid #e5e5e5;
+  min-height: 16.42857143px;
+  padding-bottom: 0;
+}
+.modal-statistic-header-top {
   margin-left: -15px;
   margin-right: -15px;
+  line-height: 60px;
 }
-.modal-header .title {
+.modal-statistic-header-top .title {
   position: relative;
   float: left;
   width: 91.66666667%;
@@ -13395,9 +13388,64 @@ Banderas usadas hasta la fecha:
   padding-right: 15px;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
-  font-size: 26px;
-  color: #555555;
+  font-size: 20pt;
+  color: #777777;
   text-align: left;
+}
+.modal-statistic-header-top .close-button {
+  float: right;
+  font-size: 21px;
+  font-weight: bold;
+  line-height: 1;
+  color: #000000;
+  text-shadow: 0 1px 0 #ffffff;
+  opacity: 0.2;
+  filter: alpha(opacity=20);
+  position: relative;
+  float: left;
+  width: 8.33333333%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: transparent;
+  border: none;
+}
+.modal-statistic-header-top .close-button:hover,
+.modal-statistic-header-top .close-button:focus {
+  color: #000000;
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+button.modal-statistic-header-top .close-button {
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  -webkit-appearance: none;
+}
+.modal-statistic-header-top .content-title {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 20pt;
+  color: #777777;
+  text-align: center;
+  line-height: 90px;
+}
+.modal-statistic-header-top .place-holder {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 20px;
+  background-color: #434343;
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 26pt;
+  color: #fa9c19;
 }
 .btn {
   display: inline-block;

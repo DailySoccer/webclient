@@ -222,16 +222,16 @@ class FantasyTeamComp implements ShadowRootAware {
       "GOAL_SCORED_BY_DEFENDER"   : "Goal",
       "GOAL_SCORED_BY_MIDFIELDER" : "Goal",
       "GOAL_SCORED_BY_FORWARD"    : "Goal",
-    "OWN_GOAL"            : "Own Goal",
-    "FOUL_COMMITTED"      : "Foul Committed",
-    "SECOND_YELLOW_CARD"  : "Second Yellow Card",
-    "RED_CARD"            : "Red Card",
-    "CAUGHT_OFFSIDE"      : "Offside",
-    "PENALTY_COMMITTED"   : "Penalty Committed",
-    "PENALTY_FAILED"      : "Penalty Failed",
-    "GOALKEEPER_SAVES_PENALTY"    : "Saves Penalty",
-    "CLEAN_SHEET"         : "Clean Sheet",
-    "GOAL_CONCEDED"       : "Goal Conceded"
+      "OWN_GOAL"          : "Own Goal",
+      "FOUL_COMMITTED"    : "Foul Committed",
+      "SECOND_YELLOW_CARD": "Second Yellow Card",
+      "RED_CARD"          : "Red Card",
+      "CAUGHT_OFFSIDE"    : "Offside",
+      "PENALTY_COMMITTED" : "Penalty Committed",
+      "PENALTY_FAILED"    : "Penalty Failed",
+      "GOALKEEPER_SAVES_PENALTY"  : "Saves Penalty",
+      "CLEAN_SHEET"       : "Clean Sheet",
+      "GOAL_CONCEDED"     : "Goal Conceded"
     };
 
 }

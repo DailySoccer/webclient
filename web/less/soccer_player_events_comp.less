@@ -1,49 +1,84 @@
 #playerEventsWindow {
 	background-color: @white;
 }
+//Estilos de las estadísticas (compartido para todas sus versiones)
 .statistic {
 	.make-row(0);
 	line-height: 30px;
 	background-color: @greyUltraLight;
 	.make-border(1px, none none solid none, @white, 0px);
-	.stat-name{ .make-xs-column(6); .opensans_normal(10pt, @greyDark); }
-	.stat-points{ .make-xs-column(6); .exo_bold(12pt, @greyDark); text-align: right; }
+	.stat-name { 
+		.make-xs-column(6);
+		.opensans_normal(10pt, @greyDark);
+		@media (min-width: @screen-md-min) {
+			padding-left: 225px;
+		}
+	}
+	.stat-points{
+		.make-xs-column(6);
+		.exo_bold(12pt, @greyDark);
+		text-align: right;
+		@media (min-width: @screen-md-min) {
+			padding-right: 225px;
+		}
+	}
 }
+
+/* cabecera de la ventana modal */
 .modal-header {
 	.modal-header();
 	padding-bottom: 0;
-}
+	
+	//barra de título con botón de cerrar ['X']
+	.modal-statistic-header-top {
+		.make-row();
+		margin: 0 -15px 15px -15px;
 
-.modal-statistic-header-top {
-	.make-row();
-	line-height: 60px;
-	//padding-bottom: 20px;
-	.title {
-		.make-xs-column(11);
-		.opensans_normal(20pt, @greyDark);
-		text-align: left;
-	}
+		.title {
+			.make-xs-column(11);
+			.opensans_normal(20pt, @greyDark);
+			text-align: left;
+		}
 
-	.close-button {
-		.close();
-		.make-xs-column(1);
-		background-color: transparent;
-		border:none;
-	}
-
-	.content-title {
-		.opensans_normal(20pt, @greyDark);
-		text-align: center;
-		line-height: 90px;
-
-	}
-
-
-	.place-holder {
-		.make-xs-column(12);
-		padding: 20px;
-		background-color: @greyUltraDark;
-		.exo_light (26pt, @orange);
+		.close-button {
+			.close();
+			.make-xs-column(1);
+			background-color: transparent;
+			border:none;
+		}
 	}
 }
+//Cuerpo de la ventana modal
+.modal-events-content {
+	//wrapper para el título del body
+	.content {
+		.make-row(0);
+		
+		/* place holder temporal */
+		.place-holder {
+			.make-row(0);
+
+			padding: 20px;
+			background-color: @greyUltraDark;
+			.exo_light (26pt, @orange);
+		}
+		/* place holder temporal */
+
+
+		//título por encima de las estadísticas
+		.content-title{
+			.opensans_normal(20pt, @greyDark);
+			text-align: center;
+			line-height: 90px;
+
+		}
+	}	
+}
+
+.modal-events-footer {
+	.modal-footer();
+	border: none;
+}
+
+
 

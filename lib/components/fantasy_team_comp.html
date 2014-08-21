@@ -48,7 +48,25 @@
 <div  id="soccerPlayerEventModal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div id="playerEventsWindow" class="modal-content">
-        <soccer-player-events data-source="fantasyTeam.soccerPlayerStats"></soccer-player-events>
+
+        <div class="modal-header">
+          <div class="modal-statistic-header-top">
+            <div class="title">Estadísticas de jugador</div>
+            <button type="button" class="close-button" data-dismiss="modal" aria-hidden="true">
+              <span class="glyphicon glyphicon-remove"></span>
+            </button>
+          </div>
+        </div>
+
+        <div class="modal-events-content">
+          <div class="content">
+
+            <soccer-player-events data-source="fantasyTeam.soccerPlayerStats"></soccer-player-events>
+
+          </div>
+        </div>
+
+        <div class="modal-events-footer"></div>
       </div>
     </div>
 </div>

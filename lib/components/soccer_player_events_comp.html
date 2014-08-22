@@ -7,8 +7,14 @@
   <div class="content-title">
     Puntuación en directo
   </div>
-  <div class="statistic" ng-repeat="stat in comp.soccerPlayerStats">
-    <div class="stat-name">{{stat['name']}}</div>
-    <div class="stat-points">{{stat['points']}}</div>
+
+  <div   ng-if="comp.hasData" >
+    <div class="statistic" ng-repeat="stat in comp.soccerPlayerStats">
+      <div class="stat-name">{{stat['name']}}</div>
+      <div class="stat-points">{{stat['points']}}</div>
+    </div>
+  </div>
+  <div ng-if="!comp.hasData">
+    <div class="content-no-data">Este jugador no ha puntuado aún.</div>
   </div>
 

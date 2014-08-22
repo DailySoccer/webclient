@@ -13531,6 +13531,14 @@ button.modal-header .modal-statistic-header-top .close-button {
   text-align: center;
   line-height: 90px;
 }
+.modal-events-content .content .content-no-data {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14pt;
+  color: #777777;
+  text-align: center;
+  line-height: 90px;
+}
 .modal-events-footer {
   margin-top: 15px;
   padding: 19px 20px 20px;

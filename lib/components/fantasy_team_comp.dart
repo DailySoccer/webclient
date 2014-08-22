@@ -2,7 +2,6 @@ library fantasy_team_comp;
 
 import 'dart:html';
 import 'package:angular/angular.dart';
-import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/models/contest_entry.dart';
 import 'dart:js' as js;
 import 'package:webclient/controllers/view_contest_ctrl.dart';
@@ -162,7 +161,6 @@ class FantasyTeamComp implements ShadowRootAware {
         Map css = { id : {"classes" : classes.toString(), "height" : style.height} };
         collapsables.addAll(css);
       });
-      print("backup de los estilos de los collapsables");
     }
 
     String restoreStatisticsCss(String id) {

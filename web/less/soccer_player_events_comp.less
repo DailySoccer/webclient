@@ -33,13 +33,11 @@
 	.modal-statistic-header-top {
 		.make-row();
 		margin: 0 -15px 15px -15px;
-
 		.title {
 			.make-xs-column(11);
 			.opensans_normal(20pt, @greyDark);
 			text-align: left;
 		}
-
 		.close-button {
 			.close();
 			.make-xs-column(1);
@@ -48,6 +46,7 @@
 		}
 	}
 }
+
 //Cuerpo de la ventana modal
 .modal-events-content {
 	//wrapper para el título del body
@@ -57,28 +56,28 @@
 		/* place holder temporal */
 		.place-holder {
 			.make-row(0);
-
 			padding: 20px;
 			background-color: @greyUltraDark;
 			.exo_light (26pt, @orange);
 		}
 		/* place holder temporal */
-
+	
 
 		//título por encima de las estadísticas
 		.content-title{
 			.opensans_normal(20pt, @greyDark);
 			text-align: center;
 			line-height: 90px;
-
 		}
-	}	
+		.content-no-data {
+			.opensans_normal(14pt, @greyDark);
+			text-align: center;
+			line-height: 90px;
+		}
+	}
 }
-
+//Footer de la modal
 .modal-events-footer {
 	.modal-footer();
 	border: none;
 }
-
-
-

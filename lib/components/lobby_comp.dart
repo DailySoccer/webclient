@@ -397,6 +397,10 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     isHeadToHeadTournamentChecked  = false;
     _tournamentFilterList = [];
 
+    //limpio la caja de filtro por nombre
+   InputElement el = document.querySelector('.searcher');
+   el.value = "";
+
     //provocamos la actialización
     lobbyFilters = {};
     addFilter("", []);

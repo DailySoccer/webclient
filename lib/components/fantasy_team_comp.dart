@@ -53,6 +53,7 @@ class FantasyTeamComp implements ShadowRootAware {
       _mode = value;
     }
 
+    String soccerPlayerIdModal;
     dynamic soccerPlayerEventsModal;
 
     String get userPosition => (_contestEntry != null) ? _viewContestCtrl.getUserPosition(_contestEntry).toString() : "-";
@@ -141,6 +142,11 @@ class FantasyTeamComp implements ShadowRootAware {
               "score": (soccerPlayer.team.matchEvent.isStarted) ? soccerPlayer.currentLivePoints : "-",
               "stats": soccerPlayerStats
           });
+
+          // Actualizar los datos que ofrecemos en la ventana Modal
+          if (soccerPlayer.templateSoccerPlayerId == soccerPlayerIdModal) {
+            soccerPlayerEventsModal = soccerPlayerStats;
+          }
         });
       }
     }
@@ -174,6 +180,7 @@ class FantasyTeamComp implements ShadowRootAware {
 
 
     void onRow(dynamic soccerPlayerData) {
+      soccerPlayerIdModal = soccerPlayerData["id"];
       soccerPlayerEventsModal = soccerPlayerData["stats"];
       if (scrDet.isDesktop) {
         // Esto soluciona el bug por el que no se muestra la ventana modal en Firefox;

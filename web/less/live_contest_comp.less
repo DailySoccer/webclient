@@ -33,7 +33,7 @@
 #liveContestRoot {
 	@media (min-width: @screen-sm-min) {
 		padding-top: 20px;	// Quitar cuando haya mas componentes, usar un espaciador vertical
-		min-height: 718px;
+		min-height: 718px; 
 		background-color: @white;
 		.border-bottom-radius(@globalBoxesRadius);
 
@@ -52,4 +52,9 @@
 			white-space: nowrap;
 		}
 	}
+}
+.clear-fix-bottom {
+	clear: both;
+	width: 100%;
+	height: 15px;
 }

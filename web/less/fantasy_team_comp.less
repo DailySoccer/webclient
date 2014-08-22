@@ -97,6 +97,7 @@
 			margin-top: 5px;
 		}
 	}
+ 	.fantasy-team-slot:last-child { border: none; margin-bottom: 3px;}
 }
 
 .header-box {
@@ -122,8 +123,8 @@
 
 .fantasy-team-wrapper {
 	@media (min-width: @screen-sm-min) {
-		height: 620px;		// Quitamos 1 pixel para comernos el borde final del slot
-		overflow: hidden;	// Asi nos lo comemos
+		min-height: 620px;		// Quitamos 1 pixel para comernos el borde final del slot
+		//overflow: hidden;	// Asi nos lo comemos
 		.make-percent-box(50%, 2%);
 		.make-border(1px, solid, @orange, @globalBoxesRadius);
 	}

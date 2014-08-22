@@ -10519,6 +10519,17 @@ fieldset[disabled] .soccer-player-info-header .btn-add-soccer-player-info {
     border-bottom-left-radius: 4px;
   }
 }
+.soccer-player-info-content {
+  /*.season-stats-no-xs {
+		border: 1px solid #000;
+
+		.season-stats-col {
+			display: inline-block;
+			border: 1px solid red;
+			float: left;
+		}
+	}*/
+}
 .soccer-player-info-content .soccer-player-info-tabs {
   border-width: 1px;
   border-style: solid none none none;
@@ -10601,7 +10612,7 @@ fieldset[disabled] .soccer-player-info-header .btn-add-soccer-player-info {
 .soccer-player-info-content .season-stats .season-stats-row {
   position: relative;
   float: left;
-  width: 100%;
+  width: 50%;
   min-height: 1px;
   padding-left: 0px;
   padding-right: 0px;
@@ -10618,23 +10629,19 @@ fieldset[disabled] .soccer-player-info-header .btn-add-soccer-player-info {
   color: #777777;
   position: relative;
   float: left;
-  width: 8.33333333%;
+  width: 16.66666667%;
   min-height: 1px;
   padding-left: 7.5px;
   padding-right: 7.5px;
 }
 .soccer-player-info-content .season-stats .season-stats-row .season-stats-info {
-  border-width: 1px;
-  border-style: none dotted none none;
-  border-color: #777777;
-  border-radius: 0;
   font-family: 'Exo', sans-serif;
   font-weight: 600;
   font-size: 14pt;
   color: #777777;
   position: relative;
   float: left;
-  width: 41.66666667%;
+  width: 83.33333333%;
   min-height: 1px;
   padding-left: 7.5px;
   padding-right: 7.5px;
@@ -10646,6 +10653,12 @@ fieldset[disabled] .soccer-player-info-header .btn-add-soccer-player-info {
 .soccer-player-info-content .season-stats .season-stats-row:first-child {
   border: none;
 }
+.soccer-player-info-content .season-stats .season-stats-row:first-child + .season-stats-row {
+  border: none;
+}
+.soccer-player-info-content .season-stats .season-stats-row:nth-child(odd) {
+  border-right: 1px dotted #777777;
+}
 .soccer-player-info-content .match-stats {
   position: relative;
   float: left;
@@ -10654,6 +10667,10 @@ fieldset[disabled] .soccer-player-info-header .btn-add-soccer-player-info {
   padding-left: 0px;
   padding-right: 0px;
   background-color: #ffffff;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #777777;
 }
 .soccer-player-info-content .match-stats .match-stats-header {
   position: relative;
@@ -10663,68 +10680,101 @@ fieldset[disabled] .soccer-player-info-header .btn-add-soccer-player-info {
   padding-right: 0px;
   display: inline-table;
   float: left;
-  border-bottom: 1px solid #000;
+  border-width: 1px;
+  border-style: none none solid none;
+  border-color: #777777;
+  border-radius: 0;
 }
 .soccer-player-info-content .match-stats .match-stats-header div {
   border-width: 1px;
-  border-style: dotted none none none;
+  border-style: dotted solid none none;
   border-color: #777777;
   border-radius: 0;
   line-height: 30px;
   text-align: center;
-  border-right: 1px solid #000;
+}
+.soccer-player-info-content .match-stats .match-stats-header div:nth-child(even) {
+  background-color: #ecf0f1;
 }
 .soccer-player-info-content .match-stats .match-stats-header div:first-child {
-  border-bottom: 1px solid #000;
-  border-top: none;
+  border-width: 1px;
+  border-style: none none solid none;
+  border-color: #777777;
+  border-radius: 0;
+  line-height: 40px;
 }
 .soccer-player-info-content .match-stats .match-stats-header div:first-child + div {
   border-top: none;
+  color: #214a5f;
+}
+.soccer-player-info-content .match-stats .match-stats-header div:first-child + div + div {
+  color: #0d75a6;
 }
 .soccer-player-info-content .match-stats .match-stats-content {
-  background-color: #ccc;
   position: relative;
   float: left;
   width: 87.5%;
   min-height: 1px;
   padding-left: 0px;
   padding-right: 0px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #777777;
   overflow-x: scroll;
 }
 .soccer-player-info-content .match-stats .match-stats-content .match-stats-data {
   width: 99999px;
-  margin-left: -1px;
 }
 .soccer-player-info-content .match-stats .match-stats-content .match-stats-data .match-year {
   float: left;
-  border-left: 1px solid #000;
-  line-height: 30px;
+  line-height: 40px;
   text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #214a5f;
 }
 .soccer-player-info-content .match-stats .match-stats-content .match-stats-data .match-year + .data {
   margin-left: -33px;
-  border-left: 1px solid #000;
+  border-left: 1px solid #777777;
 }
 .soccer-player-info-content .match-stats .match-stats-content .match-stats-data .data {
-  margin: 30px 0 0 0;
-  border-top: 1px solid #000;
-  border-bottom: 1px solid #000;
+  margin: 40px 0 0 0;
+  border-width: 1px;
+  border-style: solid none solid none;
+  border-color: #777777;
+  border-radius: 0;
   display: inline-table;
   float: left;
 }
 .soccer-player-info-content .match-stats .match-stats-content .match-stats-data .data div {
   border-width: 1px;
-  border-style: dotted none none none;
+  border-style: dotted solid none none;
   border-color: #777777;
   border-radius: 0;
   line-height: 30px;
   width: 50px;
   text-align: center;
-  border-right: 1px solid #000;
+}
+.soccer-player-info-content .match-stats .match-stats-content .match-stats-data .data div:nth-child(odd) {
+  background-color: #ecf0f1;
 }
 .soccer-player-info-content .match-stats .match-stats-content .match-stats-data .data div:first-child {
-  border: none;
-  border-right: 1px solid #000;
+  border-width: 1px;
+  border-style: none solid none none;
+  border-color: #777777;
+  border-radius: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #214a5f;
+}
+.soccer-player-info-content .match-stats .match-stats-content .match-stats-data .data div:first-child + div {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #0d75a6;
 }
 .soccer-player-info-content .action-buttons {
   position: relative;
@@ -10736,6 +10786,21 @@ fieldset[disabled] .soccer-player-info-header .btn-add-soccer-player-info {
   padding-top: 5px;
   padding-bottom: 10px;
   background-color: #ffffff;
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .soccer-player-info-content .action-buttons {
+    display: none !important;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .soccer-player-info-content .action-buttons {
+    display: none !important;
+  }
+}
+@media (min-width: 1200px) {
+  .soccer-player-info-content .action-buttons {
+    display: none !important;
+  }
 }
 .soccer-player-info-content .action-buttons .button-wrapper {
   position: relative;

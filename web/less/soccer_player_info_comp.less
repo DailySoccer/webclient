@@ -174,18 +174,17 @@
 		background-color: @greyUltraLight;
 		.make-xs-column(12, 0px);
 			.season-stats-row {
-				.make-xs-column(12, 0px);
+				.make-xs-column(6, 0px);
 				.make-border(1px, dotted none none none, @greyDark);
 				line-height: 30px;
 
 				.season-stats-header {
 					.opensans_normal(10pt, @greyDark);
-					.make-xs-column(1, 15px);
+					.make-xs-column(2, 15px);
 				}
 				.season-stats-info {
-					.make-border(1px, none dotted none none, @greyDark);
 					.exo_bold(14pt,  @greyDark);
-					.make-xs-column(5, 15px);
+					.make-xs-column(10, 15px);
 					text-align: right;
 				}
 				.season-stats-info:last-child {
@@ -195,69 +194,96 @@
 			.season-stats-row:first-child {
 				border: none;
 			}
+			.season-stats-row:first-child + .season-stats-row {
+				border: none;
+			}
+			.season-stats-row:nth-child(odd) {
+				border-right: 1px dotted @greyDark;
+			}
 	}
 	.match-stats {
 		.make-xs-column(12, 0px);
 		background-color: @white;
+		.opensans_bold(10pt, @greyDark);
 		.match-stats-header {
 			.make-xs-column(1.5, 0px);
 			display: inline-table;
 			float: left;
-			border-bottom: 1px solid #000;
+			.make-border(1px, none none solid none, @greyDark);
 			div {
-				.make-border(1px, dotted none none none, @greyDark);
+				.make-border(1px, dotted solid none none, @greyDark);
 				line-height: 30px;
 				text-align: center;
-				border-right: 1px solid #000;
+			}
+			div:nth-child(even) {
+				background-color: @tramaBlue;
 			}
 			div:first-child {
-				border-bottom: 1px solid #000;
-				border-top: none;
+				.make-border(1px, none none solid none, @greyDark);
+				line-height: 40px;
 			}
 			div:first-child + div {
 				border-top: none;
+				color: @blueDark;
+			}
+			div:first-child + div + div {
+				color: @blueMed;
 			}
 		}
 		.match-stats-content {
-			background-color: #ccc;
 			.make-xs-column(10.5, 0px);
+			.opensans_normal(10pt, @greyDark);
 			overflow-x: scroll;
-
 			.match-stats-data {
 				width: 99999px;
-				margin-left: -1px;
 				.match-year {
 					float: left;
-					border-left: 1px solid #000;
-					line-height: 30px;
+					line-height: 40px;
 					text-align: center;
+					.opensans_bold(10pt, @blueDark);
 				}
 				.match-year + .data {
 					margin-left: -33px;
-					border-left: 1px solid #000;
+					border-left: 1px solid @greyDark;
 				}
 				.data {
-					margin: 30px 0 0 0;	
-					border-top: 1px solid #000;
-					border-bottom: 1px solid #000;
+					margin: 40px 0 0 0;
+					.make-border(1px, solid none solid none, @greyDark);
 					display: inline-table;
 					float: left;
 					div {
-						.make-border(1px, dotted none none none, @greyDark);
+						.make-border(1px, dotted solid none none, @greyDark);
 						line-height: 30px;
 						width: 50px;
 						text-align: center;
-						border-right: 1px solid #000;
+					}
+					div:nth-child(odd) {
+						background-color: @tramaBlue;
 					}
 					div:first-child {
-						border: none;
-						border-right: 1px solid #000;
+						.make-border(1px, none solid none none, @greyDark);
+						.opensans_bold(10pt, @blueDark);
+					}
+					div:first-child + div {
+						.opensans_bold(10pt, @blueMed);
 					}
 				}
 			}
 		}
 	}
+	/*.season-stats-no-xs {
+		border: 1px solid #000;
+
+		.season-stats-col {
+			display: inline-block;
+			border: 1px solid red;
+			float: left;
+		}
+	}*/
 	.action-buttons {
+		.hidden-sm();
+		.hidden-md();
+		.hidden-lg();
 		.make-xs-column(12, 5px);
 		padding-top: 5px;
 		padding-bottom: 10px;

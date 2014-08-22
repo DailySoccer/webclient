@@ -11,17 +11,17 @@
     </ul>
 
     <div id="matchTeamsFilterContainer" class="match-teams-filter">
-      <button class="btn btn-default button-filtro-team active" ng-click="ctrl.setMatchFilter('-1', 'Todos los partidos')">Todos los<br>partidos</button>
-      <button class="btn btn-default button-filtro-team" ng-repeat="match in ctrl.availableMatchEvents" ng-bind-html="match.texto" ng-click="ctrl.setMatchFilter(match.id, match.texto)"></button>
+      <button class="btn btn-default button-filtro-team active" id="match-{{ctrl.ALL_MATCHES}}" ng-click="ctrl.setMatchFilter(ctrl.ALL_MATCHES)">Todos los<br>partidos</button>
+      <button class="btn btn-default button-filtro-team" ng-repeat="match in ctrl.availableMatchEvents" ng-bind-html="match.texto" id="match-{{match.id}}" ng-click="ctrl.setMatchFilter(match.id)"></button>
     </div>
 
     <div id="enterContest">
       <!-- Version Desktop-->
-      <div ng-show="ctrl.scrDet.isDesktop">
+      <div ng-if="ctrl.scrDet.isDesktop">
 
         <div class="enter-contest-soccer-players-wrapper">
           <div class="enter-contest-soccer-players">
-            <soccer-players-list onRowClick="ctrl.onRowClick(soccerPlayerId)"></soccer-players-list>
+            <soccer-players-list on-row-click="ctrl.onRowClick(soccerPlayerId)"></soccer-players-list>
           </div>
         </div>
 
@@ -47,7 +47,7 @@
       </div> <!-- Fin ng-if="ctrl.scrDet.isDesktop" -->
 
       <!-- Resto de Versiones-->
-      <div id="enterContestNotDesktop" ng-hide="ctrl.scrDet.isDesktop">
+      <div id="enterContestNotDesktop" ng-if="!ctrl.scrDet.isDesktop">
         <div class="tabs">
           <!-- Tab panes -->
           <div class="tab-content">
@@ -69,7 +69,7 @@
                 </div>
                 <div class="enter-contest-soccer-players-wrapper">
                   <div class="enter-contest-soccer-players">
-                    <soccer-players-list ng-show="ctrl.isSelectingSoccerPlayer || ctrl.scrDet.isSmScreen" onRowClick="ctrl.onRowClick(soccerPlayerId)"></soccer-players-list>
+                    <soccer-players-list ng-show="ctrl.isSelectingSoccerPlayer || ctrl.scrDet.isSmScreen" on-row-click="ctrl.onRowClick(soccerPlayerId)"></soccer-players-list>
                   </div>
                 </div>
 
@@ -102,22 +102,16 @@
   </div>
 
   <div class="soccer-player-info-wrapper">
-    <soccer-player-info soccerPlayerData="ctrl.selectedSoccerPlayerId"></soccer-player-info>
+    <soccer-player-info soccer-player-id="ctrl.selectedSoccerPlayerId"></soccer-player-info>
   </div>
 
   <!-- Modal Window que envuelve la informacion de concurso, mostrada cuando clickamos en cualquiera de los campos de la fila -->
   <div  id="infoContestModal" class="modal fade" tabindex="-1" role="dialog">
       <div class="modal-dialog modal-lg">
         <div id="infoContent" class="modal-content">
-          <soccer-player-info soccerPlayerData="ctrl.selectedSoccerPlayerId"></soccer-player-info>
+          <soccer-player-info soccer-player-id="ctrl.selectedSoccerPlayerId"></soccer-player-info>
         </div>
       </div>
-  </div>
-
-  <!-- Hack temporal hasta que arreglen Angular o nos respondan con una solucion mejor -->
-  <div class="ng-hide">
-    {{ctrl.selectedSoccerPlayerId}}
-    {{soccerPlayerId}}
   </div>
 
 </section>

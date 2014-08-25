@@ -85,6 +85,10 @@ class EnterContestCtrl {
   }
 
   void onScreenWidthChange(String value) {
+   // Resetamos todos los filtros
+   removeAllFilters();
+   // Cuando se inicializa la lista de jugadores, esta se ordena por posicion
+   sortListByField("Pos", false);
     if(value == "desktop") {
       Element matchesFilter = document.querySelector('.match-teams-filter');
       if(matchesFilter != null) {
@@ -146,19 +150,15 @@ class EnterContestCtrl {
 
   void onSoccerPlayerSelected(var soccerPlayer) {
     bool wasAdded = true;
-    if (isSelectingSoccerPlayer) {
-      isSelectingSoccerPlayer = false;
-      lineupSlots[_selectedLineupPosIndex] = soccerPlayer;
-    }
-    else {
-      wasAdded = tryToAddSoccerPlayer(soccerPlayer);
-    }
+    wasAdded = tryToAddSoccerPlayer(soccerPlayer);
 
     if(wasAdded) {
+      // Comprobar cuantos jugadores me quedan por añadir de esa posicion
+      //isSelectingSoccerPlayer = availableSoccerPlayer(soccerPlayer);
+      isSelectingSoccerPlayer = false;
       availableSoccerPlayers.remove(soccerPlayer);
       calculateAvailableSalary(soccerPlayer["salary"]);
     }
-
   }
 
   void setPosFilterClass(String abrevPosition) {
@@ -199,12 +199,9 @@ class EnterContestCtrl {
     setMatchFilterClass(matchId);
     if(matchId == ALL_MATCHES) {
         removeFilter(FILTER_MATCH);
-        //setMatchFilterClass("Todos");
         return;
     }
     addFilter(FILTER_MATCH, matchId);
-    //var firstWord = matchText.split('<br>')[0];
-    //setMatchFilterClass(firstWord);
   }
 
   void removeFilter(String filterName) {
@@ -278,6 +275,16 @@ class EnterContestCtrl {
                                                                       player1["salary"].compareTo(player2["salary"]));
           break;
       }
+  }
+
+  bool availableSoccerPlayer(var soccerPlayer) {
+    FieldPos theFieldPos = soccerPlayer["fieldPos"];
+    int c = 0;
+    for ( ; c < lineupSlots.length; ++c) {
+      if (lineupSlots[c] == null && FieldPos.LINEUP[c] == theFieldPos.fieldPos)
+        return true;
+    }
+    return false;
   }
 
   // Añade un futbolista a nuestro lineup si hay algun slot libre de su misma fieldPos. Retorna false si no pudo añadir
@@ -376,7 +383,7 @@ class EnterContestCtrl {
 
   void removeAllFilters() {
     setPosFilterClass('TODOS');
-    //setMatchFilterClass('Todos');
+    setMatchFilterClass(ALL_MATCHES);
     (querySelector(".name-player-input-filter") as InputElement).value = "";
     _filterList={};
     _refreshFilter();

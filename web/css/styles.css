@@ -13426,11 +13426,6 @@ Banderas usadas hasta la fecha:
   font-size: 10pt;
   color: #777777;
 }
-@media (min-width: 992px) {
-  .statistic .stat-name {
-    padding-left: 225px;
-  }
-}
 .statistic .stat-points {
   position: relative;
   float: left;
@@ -13443,11 +13438,6 @@ Banderas usadas hasta la fecha:
   font-size: 12pt;
   color: #777777;
   text-align: right;
-}
-@media (min-width: 992px) {
-  .statistic .stat-points {
-    padding-right: 225px;
-  }
 }
 /* cabecera de la ventana modal */
 .modal-header {

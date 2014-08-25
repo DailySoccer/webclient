@@ -32,40 +32,13 @@
         </div>
         <div class="column-score">{{slot.score}}</div>
       </div>
-      <div id="statistic_{{fantasyTeam.owner}}_{{$index}}" class="soccer-player-statistics collapse" ng-if="!fantasyTeam.scrDet.isDesktop" ng-class="fantasyTeam.restoreStatisticsCss('statistic_{{fantasyTeam.owner}}_{{$index}}')" >
+      <div id="statistic_{{fantasyTeam.owner}}_{{$index}}" class="soccer-player-statistics collapse" ng-class="fantasyTeam.restoreStatisticsCss('statistic_{{fantasyTeam.owner}}_{{$index}}')">
         <div class="statistic" ng-repeat="stat in slot.stats">
           <div class="stat-name">{{stat['name']}}</div>
           <div class="stat-points">{{stat['points']}}</div>
         </div>
-       <!-- <soccer-player-events data-source="fantasyTeam.soccerPlayerStats"></soccer-player-events> -->
       </div>
     </div>
   </div>
 
-</div>
-
-<!-- Modal Window para mostrar las estadísticas/eventos de los futbol jugadoers -->
-<div  id="soccerPlayerEventModal_{{fantasyTeam.owner}}" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div id="playerEventsWindow" class="modal-content">
-        <div class="modal-header">
-          <div class="modal-statistic-header-top">
-            <div class="title">Estadísticas de jugador</div>
-            <button type="button" class="close-button" data-dismiss="modal" aria-hidden="true">
-              <span class="glyphicon glyphicon-remove"></span>
-            </button>
-          </div>
-        </div>
-
-        <div class="modal-events-content">
-          <div class="content">
-
-            <soccer-player-events data-source="fantasyTeam.soccerPlayerEventsModal"></soccer-player-events>
-
-          </div>
-        </div>
-
-        <div class="modal-events-footer"></div>
-      </div>
-    </div>
 </div>

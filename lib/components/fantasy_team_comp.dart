@@ -177,17 +177,7 @@ class FantasyTeamComp implements ShadowRootAware {
     }
 
 
-    void onRow(dynamic soccerPlayerData) {
-      soccerPlayerIdModal = soccerPlayerData["id"];
-      soccerPlayerEventsModal = soccerPlayerData["stats"];
-      if (scrDet.isDesktop) {
-        // Esto soluciona el bug por el que no se muestra la ventana modal en Firefox;
-        var modal = querySelector('#soccerPlayerEventModal_'+owner);
-        modal.style.display = "block";
-        // Con esto llamamos a funciones de jQuery
-        js.context.callMethod(r'$', ['#soccerPlayerEventModal_'+owner]).callMethod('modal');
-      }
-    }
+    void onRow(dynamic soccerPlayerData) {}
 
     void onCloseButtonClick() {
       if (onClose != null)

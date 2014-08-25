@@ -14,12 +14,17 @@
     <div class="user-picture"></div>
     <div class="user-nickname">{{fantasyTeam.userNickname}}</div>
     <div class="total-remaining-matches-time">TIEMPO RESTANTE: {{fantasyTeam.remainingTime}}</div>
+
+
+    <div class="close-team" ng-click="fantasyTeam.onCloseButtonClick()">
+      <span class="title">CERRAR</span>
+      <span class="glyphicon glyphicon-remove"></span>
+    </div>
+
   </div>
 
   <div class="fantasy-team-list">
-    <div class="close-team">
-      <button type="button" class="btn-close-cancel" ng-click="fantasyTeam.onCloseButtonClick()">Cerrar</button>
-    </div>
+
     <div class="top-separator"></div>
 
     <div class="fantasy-team-slot" ng-repeat="slot in fantasyTeam.slots"  ng-click="fantasyTeam.onRow(slot);">

@@ -94,21 +94,16 @@ class FantasyTeamComp implements ShadowRootAware {
         return;
 
       var closeButton = _rootElement.querySelector(".close-team");
-      var separator = _rootElement.querySelector(".top-separator");
 
       if (_showCloseButton) {
         closeButton.classes.remove("ng-hide");
-        separator.classes.add("ng-hide");
       }
       else {
         closeButton.classes.add("ng-hide");
-        separator.classes.remove("ng-hide");
       }
     }
 
     void _refreshTeam() {
-      //backUpStatistics();
-
       slots.clear();
 
       if (_contestEntry != null) {

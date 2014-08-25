@@ -28,8 +28,26 @@
 		height: 45px; 
 		padding-top: 5px
 	}
-}
 
+	.close-team {
+		.btn-cancel();
+		.hidden-xs();
+		cursor: pointer;
+		position: absolute;
+		right: 80px;
+		top: 7px;
+		color: @white; 
+		.title { .opensans_normal(8pt); .hidden-sm(); }
+		.glyphicon { font-size: 18pt; vertical-align: middle;}
+
+		&:hover { color: @greyLight; }
+	}
+
+	@media (min-width: @screen-sm-min) {
+		.border-top-radius(@globalBoxesRadius);
+	}
+}
+/*
 .close-team {
 	.hidden-xs();
 	cursor: pointer;
@@ -45,10 +63,11 @@
 		margin-left: 10px;
 	}
 }
+*/
 .top-separator {
 	.hidden-xs();
 	.make-xs-column(12);
-	height: 60px;
+	height: 20px;
 	background-color: @white;
 }
 
@@ -123,7 +142,7 @@
 
 .fantasy-team-wrapper {
 	@media (min-width: @screen-sm-min) {
-		min-height: 620px;		// Quitamos 1 pixel para comernos el borde final del slot
+		min-height: 580px;		// Quitamos 1 pixel para comernos el borde final del slot
 		//overflow: hidden;	// Asi nos lo comemos
 		.make-percent-box(50%, 2%);
 		.make-border(1px, solid, @orange, @globalBoxesRadius);
@@ -132,4 +151,21 @@
 
 .opponent-team-gradient {
 	#gradient.vertical(@greyHeaderLight, @greyHeaderDark, 49%, 51%);
+}
+
+//Estilos de las estadísticas (compartido para todas sus versiones)
+.statistic {
+	.make-row(0);
+	line-height: 30px;
+	background-color: @greyUltraLight;
+	.make-border(1px, none none solid none, @white, 0px);
+	.stat-name { 
+		.make-xs-column(6);
+		.opensans_normal(10pt, @greyDark);
+	}
+	.stat-points{
+		.make-xs-column(6);
+		.exo_bold(12pt, @greyDark);
+		text-align: right;
+	}
 }

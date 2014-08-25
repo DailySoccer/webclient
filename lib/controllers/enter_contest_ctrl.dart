@@ -89,6 +89,8 @@ class EnterContestCtrl {
    removeAllFilters();
    // Cuando se inicializa la lista de jugadores, esta se ordena por posicion
    sortListByField("Pos", false);
+   // Para que en la versión móvil aparezca la pantalla de lineup
+   isSelectingSoccerPlayer = false;
     if(value == "desktop") {
       Element matchesFilter = document.querySelector('.match-teams-filter');
       if(matchesFilter != null) {

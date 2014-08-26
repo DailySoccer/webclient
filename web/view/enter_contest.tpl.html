@@ -8,7 +8,7 @@
     <li><a role="tab" data-toggle="tab" ng-click="ctrl.tabChange('contest-info-tab-content')">Info torneo</a></li>
   </ul>
 
-  <div class="match-teams-filter">
+  <div id="matchTeamsFilterContainer" class="match-teams-filter">
     <button class="btn btn-default button-filtro-team active" ng-click="ctrl.setMatchFilter('-1', 'Todos los partidos')">Todos los<br>partidos</button>
     <button class="btn btn-default button-filtro-team" ng-repeat="match in ctrl.availableMatchEvents" ng-bind-html="match.texto" ng-click="ctrl.setMatchFilter(match.id, match.texto)"></button>
   </div>

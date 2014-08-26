@@ -10,7 +10,7 @@ import 'package:webclient/services/contest_references.dart';
 class Contest {
   String contestId;
 
-  String name;
+  String get name => templateContest.name;
 
   List<ContestEntry> contestEntries;
   int maxEntries;
@@ -19,7 +19,7 @@ class Contest {
 
   String get description => "${templateContest.tournamentTypeName}: ${contestEntries.length} de ${maxEntries} jugadores - LIM. SAL.: ${templateContest.salaryCap}";
 
-  Contest(this.contestId, this.name, this.contestEntries, this.maxEntries, this.templateContest);
+  Contest(this.contestId, this.contestEntries, this.maxEntries, this.templateContest);
 
   Contest.referenceInit(this.contestId);
 
@@ -74,7 +74,6 @@ class Contest {
   Contest _initFromJsonObject(JsonObject json, ContestReferences references) {
     assert(contestId.isNotEmpty);
 
-    name = json.name;
     contestEntries = json.contestEntries.map((jsonObject) => new ContestEntry.fromJsonObject(jsonObject, references) .. contest = this ).toList();
     maxEntries = json.maxEntries;
     templateContest = references.getTemplateContestById(json.templateContestId);

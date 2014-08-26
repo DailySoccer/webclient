@@ -1,5 +1,6 @@
 library template_contest;
 
+import 'package:intl/intl.dart';
 import "package:json_object/json_object.dart";
 import 'package:webclient/models/match_event.dart';
 import 'package:webclient/services/contest_references.dart';
@@ -22,7 +23,13 @@ class TemplateContest {
   String templateContestId;
 
   String state;
-  String name;
+
+  String get name {
+    if (_name == null) {
+      _name = _parsePattern(_namePattern);
+    }
+    return _name;
+  }
 
   int maxEntries;
 
@@ -33,7 +40,7 @@ class TemplateContest {
 
   List<MatchEvent> matchEvents;
 
-  TemplateContest(this.templateContestId, this.name, this.maxEntries,
+  TemplateContest(this.templateContestId, this._namePattern, this.maxEntries,
           this.salaryCap, this.entryFee, this.prizeType, this.matchEvents);
 
   TemplateContest.referenceInit(this.templateContestId);
@@ -113,7 +120,7 @@ class TemplateContest {
   TemplateContest _initFromJsonObject(JsonObject json, ContestReferences references) {
     assert(templateContestId.isNotEmpty);
     state = json.state;
-    name = json.name;
+    _namePattern = json.name;
     maxEntries = json.maxEntries;
     salaryCap = json.salaryCap;
     entryFee = json.entryFee;
@@ -124,4 +131,16 @@ class TemplateContest {
     // print( "TemplateContest: id($templateContestId) name($name) maxEntries($maxEntries) salaryCap($salaryCap) entryFee($entryFee) prizeType($prizeType) templateMatchEventIds($templateMatchEventIds)");
     return this;
   }
+
+  String _parsePattern(String text) {
+    return text
+        .replaceAll("%StartDate", new DateFormat("EEE, d MMM", "es_ES").format(startDate))
+        .replaceAll("%MaxEntries", "$maxEntries")
+        .replaceAll("%SalaryCap", "${(salaryCap ~/ 1000)}")
+        .replaceAll("%PrizeType", prizeTypeName)
+        .replaceAll("%EntryFee", "${entryFee}");
+  }
+
+  String _name;
+  String _namePattern;
 }

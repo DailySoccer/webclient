@@ -6,6 +6,7 @@ import 'package:webclient/models/contest_entry.dart';
 import 'package:intl/intl.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/profile_service.dart';
+import 'dart:html';
 
 @Component(selector: 'contests-list',
            templateUrl: 'packages/webclient/components/contests_list_comp.html',
@@ -17,10 +18,10 @@ class ContestsListComp {
   static const int    SALARY_LIMIT_FOR_STANDARDS    = 80000;
   static const int    SALARY_LIMIT_FOR_SKILLEDS     = 70000;
 
-   static const String TOURNAMENT_TYPE_FREE         = "FREE";
-   static const String TOURNAMENT_TYPE_LIGA         = "LIGA";
-   static const String TOURNAMENT_TYPE_FIFTY_FIFTY  = "FIFTY_FIFTY";
-   static const String TOURNAMENT_TYPE_HEAD_TO_HEAD = "HEAD_TO_HEAD";
+  static const String TOURNAMENT_TYPE_FREE          = "FREE";
+  static const String TOURNAMENT_TYPE_LIGA          = "LIGA";
+  static const String TOURNAMENT_TYPE_FIFTY_FIFTY   = "FIFTY_FIFTY";
+  static const String TOURNAMENT_TYPE_HEAD_TO_HEAD  = "HEAD_TO_HEAD";
 
   // Lista copia de la original que guardará los contest tras aplicar los filtros
   List<Contest> contestsListFiltered;
@@ -31,6 +32,46 @@ class ContestsListComp {
   //NumberFormat numFormat = new NumberFormat("#");
 
   bool isToday(DateTime date) => (date.year == _dateTimeService.now.year && date.month == _dateTimeService.now.month && date.day == _dateTimeService.now.day);
+
+  String listName="";
+
+  @NgOneWay("list-name")
+  void set name(value){
+    listName = value;
+  }
+
+  @NgOneWay("contests-list")
+  void set contestsList(List<Contest> value) {
+    _contestsListOriginal = value;
+    contestsListFiltered = _contestsListOriginal;
+    refreshList();
+  }
+
+  //Setter de los filtros, Recibe la lista de los filtros aplicados.
+  @NgOneWay("filter-by")
+  void set filterBy(Map<String,dynamic> value) {
+    if (value == null)
+      return;
+    filterList = value;
+    refreshList();
+  }
+
+  @NgOneWay("sorted-by")
+  void set sortedBy(String value) {
+    if(value == null || value.isEmpty)
+      return;
+    _sortType = value;
+    refreshList();
+  }
+
+  @NgOneWay("action-button-title")
+  String actionButtonTitle = "Ver";
+
+  @NgCallback("on-row-click")
+  Function onRowClick;
+
+  @NgCallback("on-action-click")
+  Function onActionClick;
 
   String dateInfo(DateTime date) {
     // Avisamos cuando sea "Hoy"
@@ -78,38 +119,6 @@ class ContestsListComp {
     return mainContestEntry.prize;
   }
 
-  @NgOneWay("contests-list")
-  void set contestsList(List<Contest> value) {
-    _contestsListOriginal = value;
-    contestsListFiltered = _contestsListOriginal;
-    refreshList();
-  }
-
-  //Setter de los filtros, Recibe la lista de los filtros aplicados.
-  @NgOneWay("filter-by")
-  void set filterBy(Map<String,dynamic> value) {
-    if (value == null)
-      return;
-    filterList = value;
-    refreshList();
-  }
-
-  @NgOneWay("sorted-by")
-  void set sortedBy(String value) {
-    if(value == null || value.isEmpty)
-      return;
-    _sortType = value;
-    refreshList();
-  }
-
-  @NgOneWay("action-button-title")
-  String actionButtonTitle = "Ver";
-
-  @NgCallback("on-row-click")
-  Function onRowClick;
-
-  @NgCallback("on-action-click")
-  Function onActionClick;
 
   ContestsListComp(this._profileService, this._dateTimeService);
 
@@ -122,10 +131,12 @@ class ContestsListComp {
     if (onActionClick != null)
       onActionClick({"contest":contest});
   }
+
   void refreshList()
   {
     refreshFilters();
     refreshSort();
+    createPaginator();
   }
 
   void refreshSort()
@@ -218,4 +229,81 @@ class ContestsListComp {
 
   DateTimeService _dateTimeService;
   ProfileService _profileService;
+
+  /*************************************/
+  /*****  Paginador functionality  *****/
+  /*************************************/
+
+
+
+  var _meta;
+
+  Map _defaults = {
+    "itemContainerId"       : ".content",
+    "itemPerPage"           : 10,
+    "navPanelId0"           : ".page-navigation",
+    "navInfoId"             : ".info-text",
+    "numPageLinksToDisplay" : 20,
+    "startPage"             : 0,
+    "wrapAround"            : false,
+    "navLabelFirst"         : "&laquo;",
+    "navLabelPrev"          : "&lt;",
+    "navLabelNext"          : "&gt",
+    "navLabelLast"          : "&raquo;",
+    "navOrder"              : ["first", "prev", "num", "next", "last"],
+    "navLabelInfo"          : "Showing [0]-[1] of {2} results",
+    "showFirstLast"         : true,
+    "abortOnSmallLists"     : true,
+    "stateActive"           : "active",
+    "stateDisabled"         : "disabled"
+  };
+  int _currentPage = 0;
+  int _itemsPerPage = 5;
+  int _totalPages = 0;
+
+  List<Contest> currentPageList = [];
+
+  Element _paginatorContainer;
+
+  bool paginatorAvailable = false;
+
+  void createPaginator() {
+    if(listName == null) {
+      print('-CONTEST_LIST-: El nombre de esta lista de concursos es null');
+    }
+    // Capturamos el elementos qe será el padre del paginador.
+    String paginatorContainerId = "paginatorBox" + listName;
+    _paginatorContainer = querySelector('#'+paginatorContainerId);
+
+    if(contestsListFiltered != null){
+    //  Determinamos que elementos se mostrarán en la first page
+    //Calculamos la páginas que habrá en total y determinamos si el paginador estará disponible o no.
+    _totalPages = (contestsListFiltered.length /_itemsPerPage).ceil();
+    if(_totalPages > 1)
+      paginatorAvailable = true;
+
+    ///////
+    if(_paginatorContainer != null) {
+      _paginatorContainer.text = "El paginador tendrá ${_totalPages} páginas";
+      _paginatorContainer.style.width = "150px";
+    }
+    /////
+
+    if(paginatorAvailable){
+      currentPageList = contestsListFiltered.getRange(_currentPage * _itemsPerPage , _itemsPerPage).toList();
+    }
+    else //Si solo elementos para rellenar una página mostramos la lista talcual
+      currentPageList = contestsListFiltered;
+    }
+
+
+
+  }
+
+
+
+
+
+
+
 }

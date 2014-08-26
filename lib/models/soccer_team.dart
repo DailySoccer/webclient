@@ -13,29 +13,31 @@ class SoccerTeam {
 
   // Partido en el que juega
   MatchEvent matchEvent;
-  
+
   SoccerTeam.referenceInit(this.templateSoccerTeamId);
-  
+
   factory SoccerTeam.fromJsonObject(JsonObject json, ContestReferences references) {
-    SoccerTeam soccerTeam = references.getSoccerTeamById(json.templateSoccerTeamId);
+    SoccerTeam soccerTeam = references.getSoccerTeamById(json.containsKey("templateSoccerTeamId") ? json.templateSoccerTeamId : json._id);
     return soccerTeam._initFromJsonObject(json, references);
   }
-  
+
   SoccerTeam _initFromJsonObject(JsonObject json, ContestReferences references) {
     assert(templateSoccerTeamId.isNotEmpty);
     name = json.name;
     shortName = json.shortName;
 
-    for (var x in json.soccerPlayers) {
-      SoccerPlayer soccerPlayer = new SoccerPlayer.fromJsonObject(x, references)
-        .. team = this;
-      
-      soccerPlayers.add(soccerPlayer);
+    if (json.containsKey("soccerPlayers")) {
+      for (var x in json.soccerPlayers) {
+        SoccerPlayer soccerPlayer = new SoccerPlayer.fromJsonObject(x, references)
+          .. team = this;
+
+        soccerPlayers.add(soccerPlayer);
+      }
     }
     return this;
   }
-  
+
   SoccerPlayer findSoccerPlayer(String soccerPlayerId) {
     return soccerPlayers.firstWhere( (soccer) => soccer.templateSoccerPlayerId == soccerPlayerId, orElse: () => null );
-  }  
+  }
 }

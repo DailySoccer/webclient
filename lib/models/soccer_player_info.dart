@@ -2,6 +2,8 @@ library soccer_player_info;
 
 import "package:json_object/json_object.dart";
 import "package:webclient/models/field_pos.dart";
+import "package:webclient/models/soccer_team.dart";
+import 'package:webclient/services/contest_references.dart';
 
 class SoccerPlayerInfo {
   String name;
@@ -11,7 +13,7 @@ class SoccerPlayerInfo {
 
   List<SoccerPlayerStats> stats;
 
-  SoccerPlayerInfo.fromJsonObject(JsonObject json) {
+  SoccerPlayerInfo.fromJsonObject(JsonObject json, ContestReferences references) {
     name = json.name;
     fieldPos = new FieldPos(json.fieldPos);
     fantasyPoints = json.fantasyPoints;
@@ -19,12 +21,15 @@ class SoccerPlayerInfo {
 
     stats = new List();
     for (var x in json.stats) {
-      stats.add(new SoccerPlayerStats.fromJsonObject(x));
+      stats.add(new SoccerPlayerStats.fromJsonObject(x, references));
     }
   }
 }
 
 class SoccerPlayerStats {
+  DateTime startDate;
+  SoccerTeam soccerTeam;
+
   int fantasyPoints;
   int playedMinutes;
 
@@ -44,7 +49,10 @@ class SoccerPlayerStats {
   int despejes;
   int penaltisDetenidos;
 
-  SoccerPlayerStats.fromJsonObject(JsonObject json) {
+  SoccerPlayerStats.fromJsonObject(JsonObject json, ContestReferences references) {
+    startDate = json.containsKey("startDate") ? new DateTime.fromMillisecondsSinceEpoch(json.startDate, isUtc: true) : new DateTime.now();
+    soccerTeam = json.containsKey("templateSoccerTeamId") ? references.getSoccerTeamById(json.templateSoccerTeamId) : "???";
+
     fantasyPoints = json.fantasyPoints;
     playedMinutes = json.playedMinutes;
 

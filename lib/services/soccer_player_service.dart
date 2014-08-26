@@ -4,6 +4,8 @@ import 'dart:async';
 import 'package:angular/angular.dart';
 
 import "package:webclient/services/server_service.dart";
+import 'package:webclient/services/contest_references.dart';
+import "package:webclient/models/soccer_team.dart";
 import "package:webclient/models/soccer_player_info.dart";
 
 
@@ -19,7 +21,10 @@ class SoccerPlayerService {
 
     _server.getSoccerPlayerInfo(templateSoccerPlayerId)
         .then((jsonObject) {
-          soccerPlayerInfo = new SoccerPlayerInfo.fromJsonObject(jsonObject);
+          ContestReferences contestReferences = new ContestReferences();
+          jsonObject.soccerTeams.forEach( (jsonTeam) =>
+              new SoccerTeam.fromJsonObject(jsonTeam, contestReferences) );
+          soccerPlayerInfo = new SoccerPlayerInfo.fromJsonObject(jsonObject.soccerPlayer, contestReferences);
           completer.complete();
         });
 

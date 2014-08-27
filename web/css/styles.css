@@ -11699,11 +11699,11 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
     width: 8.33333333%;
   }
 }
-.lineup-selector .lineup-selector-slot .column-action .iconButtonSelect {
+.lineup-selector .lineup-selector-slot .column-action #iconButtonSelect {
   color: #214a5f;
   font-size: 10pt;
 }
-.lineup-selector .lineup-selector-slot .column-action .iconButtonRemove {
+.lineup-selector .lineup-selector-slot .column-action #iconButtonRemove {
   color: #afafaf;
   font-size: 10pt;
 }

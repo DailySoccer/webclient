@@ -56,7 +56,7 @@ class EnterContestCtrl {
     availableSalary = contest.templateContest.salaryCap;
 
     //Nos subscribimos al evento de cambio de tamañano de ventana
-    scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
+    _streamListener = scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
   }
 
   void tabChange(String tab) {
@@ -458,4 +458,6 @@ class EnterContestCtrl {
   Map<String,String> _filterList = {};
   // Ordenes
   String _shortBy;
+
+  var _streamListener;
 }

@@ -8,12 +8,13 @@ import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'dart:html';
 import 'package:webclient/services/screen_detector_service.dart';
-import 'dart:async';
 
-@Component(selector: 'contests-list',
-           templateUrl: 'packages/webclient/components/contests_list_comp.html',
-           publishAs: 'comp',
-           useShadowDom: false)
+@Component(
+    selector: 'contests-list',
+    templateUrl: 'packages/webclient/components/contests_list_comp.html',
+    publishAs: 'comp',
+    useShadowDom: false
+)
 class ContestsListComp implements DetachAware, ShadowRootAware {
 
   static const int    SALARY_LIMIT_FOR_BEGGINERS    = 90000;
@@ -31,11 +32,11 @@ class ContestsListComp implements DetachAware, ShadowRootAware {
   // Lista de filtros a aplicar
   Map<String,dynamic> filterList;
 
-  //NumberFormat numFormat = new NumberFormat("#");
-
   bool isToday(DateTime date) => (date.year == _dateTimeService.now.year && date.month == _dateTimeService.now.month && date.day == _dateTimeService.now.day);
-  var streamsub;
+
   String listName="";
+
+  List<Contest> currentPageList = [];
 
   @NgOneWay("list-name")
   void set name(value){
@@ -123,8 +124,36 @@ class ContestsListComp implements DetachAware, ShadowRootAware {
   }
 
   ContestsListComp(this._profileService, this._dateTimeService, this._scrDet){
-    originalPageLinksCount = options["numPageLinksToDisplay"];
-    streamsub = _scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
+    _originalPageLinksCount = _options["numPageLinksToDisplay"];
+    _streamListener = _scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
+  }
+
+  void detach() {
+    _streamListener.cancel();
+  }
+
+  // Esto es necesario porque cuando quiero buscar al padre, lo tengo que buscar dentro del ShadowRoot.
+  // No se puede generar un ID en el div padre de forma dinámica con angular (id="prefijo_{{comp.nombrepropio}}") porque deja el id en el root vacío.
+  // parece ser que solo rellena ese id cuando realmente lo inserta en el DOM.
+  // Para poder tener el ID de forma dinámica, lo que hago es dejar el prefijo de forma fija en el HTML y una vez que lo encuentro, lo modifico.
+  void onShadowRoot(root) {
+    var rootElement = root as HtmlElement;
+    // Capturamos el elementos qe será el padre del paginador del sharowRoot.
+    String parentName= _options["navPanelIdPrefix"] + listName;
+    _paginatorContainer = rootElement.querySelector("#paginatorBox_")
+        ..id = parentName;
+
+    createPaginator();
+  }
+
+
+  void onScreenWidthChange(msg) {
+    if(msg == "xs")
+      _options["numPageLinksToDisplay"] = 2;
+    else
+      _options["numPageLinksToDisplay"] = _originalPageLinksCount;
+
+    createPaginator();
   }
 
   void onRow(Contest contest) {
@@ -228,68 +257,30 @@ class ContestsListComp implements DetachAware, ShadowRootAware {
     });
   }
 
-  // Lista original de los contest
-  List<Contest> _contestsListOriginal;
-  String _sortType;
-
-  DateTimeService _dateTimeService;
-  ProfileService _profileService;
-  ScreenDetectorService _scrDet;
-
   /*************************************/
   /*****  Paginador functionality  *****/
   /*************************************/
-  Map options = {
-    "itemsPerPage"          : 10,
-    "navPanelIdPrefix"      : "#paginatorBox_",
-    "linkButtonId"          : "linkButton",
-    "pageLinksIdentifier"   : "page-link",
-    "numPageLinksToDisplay" :  5,
-    "navLabelFirst"         : "&laquo;",
-    "navLabelPrev"          : "&lt;",
-    "navLabelNext"          : "&gt",
-    "navLabelLast"          : "&raquo;",
-    "navOrder"              : ["first", "prev", "num", "next", "last"],
-    "showFirstLast"         : true,
-    "stateActive"           : "active",
-    "stateDisabled"         : "disabled"
-  };
-
-  int _currentPage = 0;
-  int _totalPages = 0;
-  int originalPageLinksCount;
-
-  List<Contest> currentPageList = [];
-
-  Element _paginatorContainer;
-
-  bool paginatorAvailable = false;
-
   void createPaginator() {
 
     if(_scrDet.isXsScreen)
-      options["numPageLinksToDisplay"] = 2;
+      _options["numPageLinksToDisplay"] = 2;
 
     if(listName == null) {
       print('-CONTEST_LIST-: El nombre de esta lista de concursos es null');
     }
-    // Capturamos el elementos qe será el padre del paginador.
-    //String parentName= options["navPanelIdPrefix"] + listName;
-    //print('-CONTEST_LIST-: nombre del padre de los botones: ${parentName}');
-    //_paginatorContainer = document.querySelector(parentName);
 
     if(contestsListFiltered != null){
 
       //Calculamos la páginas que habrá en total y determinamos si el paginador estará disponible o no.
-      _totalPages = (contestsListFiltered.length /options["itemsPerPage"]).ceil();
+      _totalPages = (contestsListFiltered.length /_options["itemsPerPage"]).ceil();
 
-      paginatorAvailable = _totalPages > 1 ? true : false;
+      _paginatorAvailable = _totalPages > 1 ? true : false;
 
-      if(paginatorAvailable){
+      if(_paginatorAvailable){
         generatePaginatorButtons();
         // Determinamos que elementos se mostrarán en la pagina actual
-        int rangeStart = _currentPage * options["itemsPerPage"];
-        int rangeEnd =  (rangeStart + options["itemsPerPage"] < contestsListFiltered.length) ? rangeStart + options["itemsPerPage"] : contestsListFiltered.length;
+        int rangeStart = _currentPage * _options["itemsPerPage"];
+        int rangeEnd =  (rangeStart + _options["itemsPerPage"] < contestsListFiltered.length) ? rangeStart + _options["itemsPerPage"] : contestsListFiltered.length;
         currentPageList = contestsListFiltered.getRange(rangeStart, rangeEnd).toList();
       }
       else//Si solo elementos para rellenar una página mostramos la lista talcual
@@ -304,13 +295,9 @@ class ContestsListComp implements DetachAware, ShadowRootAware {
 
   void generatePaginatorButtons() {
     if(_paginatorContainer == null) {
-      print ("No creo los botones porque mi padre no existe");
       return;
     }
-    else
-    {
-      print ("Mi padre ya existe:¡. Creando botones");
-    }
+
     // Limpiamos el paginador
     _paginatorContainer.innerHtml="";
 
@@ -319,16 +306,16 @@ class ContestsListComp implements DetachAware, ShadowRootAware {
     ul.classes.add("pagination");
 
     // El botón de ir a la "Primera"
-    LIElement first = createPageOption(options["navLabelFirst"], null, ["to-first-page"] );
+    LIElement first = createPageOption(_options["navLabelFirst"], null, ["to-first-page"] );
 
    // El botón de ir a la "Anterior"
-    LIElement prev = createPageOption(options["navLabelPrev"], null, ["to-prev-page"] );
+    LIElement prev = createPageOption(_options["navLabelPrev"], null, ["to-prev-page"] );
 
     // El botón de ir a la "Siguiente"
-    LIElement next =  createPageOption(options["navLabelNext"], null, ["to-next-page"] );
+    LIElement next =  createPageOption(_options["navLabelNext"], null, ["to-next-page"] );
 
     // El botón de ir a la "Última"
-    LIElement last = createPageOption(options["navLabelLast"], null, ["to-last-page"] );
+    LIElement last = createPageOption(_options["navLabelLast"], null, ["to-last-page"] );
 
     //Además creamos el botón de "..." que indica que hay mas botones antes
     LIElement less = createPageOption("...", null, ["ellipsis", "less"] );
@@ -336,10 +323,10 @@ class ContestsListComp implements DetachAware, ShadowRootAware {
     LIElement more = createPageOption("...", null, ["ellipsis", "more"] );
 
     // Generamos la lista de elementos que tendrá el paginador
-    for (int i=0; i < options["navOrder"].length; i++) {
-      switch(options["navOrder"][i]) {
+    for (int i=0; i < _options["navOrder"].length; i++) {
+      switch(_options["navOrder"][i]) {
         case "first":
-          if(options["showFirstLast"])
+          if(_options["showFirstLast"])
             ul.children.add(first);
         break;
         case "prev":
@@ -350,7 +337,7 @@ class ContestsListComp implements DetachAware, ShadowRootAware {
          int currentLink = 0;
          while (_totalPages > currentLink) {
            // El primer elemento se linka con la página 0 aunque su label sea 1;
-           ul.children.add(createPageOption("${currentLink + 1}", currentLink, [options["pageLinksIdentifier"]]));
+           ul.children.add(createPageOption("${currentLink + 1}", currentLink, [_options["pageLinksIdentifier"]]));
           currentLink++;
          }
          ul.children.add(more);
@@ -359,7 +346,7 @@ class ContestsListComp implements DetachAware, ShadowRootAware {
           ul.children.add(next);
         break;
         case "last":
-          if(options["showFirstLast"])
+          if(_options["showFirstLast"])
             ul.children.add(last);
         break;
       }
@@ -370,17 +357,17 @@ class ContestsListComp implements DetachAware, ShadowRootAware {
    ellipsisButtons.forEach( (LIElement element) => element.style.display = 'none');
 
    // Llista inks de enlaces a páginas
-   var links = ul.children.where( (element) => element.classes.contains(options["pageLinksIdentifier"])).toList();
+   var links = ul.children.where( (element) => element.classes.contains(_options["pageLinksIdentifier"])).toList();
     //Activamos la página actual
-   links[_currentPage].classes.add(options["stateActive"]);
+   links[_currentPage].classes.add(_options["stateActive"]);
 
    // Ocultamos todos los links de páginas...
    links.forEach((LIElement element) => element.style.display = 'none');
    // ... Y mostramos X elementos según el parametro 'numPageLinkdToDisplay' definido en las opciones
    List<dynamic> visibles;
-   if(links.length > options["numPageLinksToDisplay"]) {
-      int rangeStarts = calculateRangeStart(_currentPage, options["numPageLinksToDisplay"], 0, links.length);
-      int rangeEnds = rangeStarts + options["numPageLinksToDisplay"];
+   if(links.length > _options["numPageLinksToDisplay"]) {
+      int rangeStarts = calculateRangeStart(_currentPage, _options["numPageLinksToDisplay"], 0, links.length);
+      int rangeEnds = rangeStarts + _options["numPageLinksToDisplay"];
       visibles = links.getRange(rangeStarts, rangeEnds).toList();
    } else {
      visibles = links;
@@ -408,7 +395,7 @@ class ContestsListComp implements DetachAware, ShadowRootAware {
     if(pageNum == _totalPages - 1)
       cssClasses.add('last-page');
 
-    String myName = "${options["linkButtonId"]}_${listName}_";
+    String myName = "${_options["linkButtonId"]}_${listName}_";
     myName += pageNum == null? cssClasses.join("-") : (pageNum + 1).toString();
     LIElement li = new LIElement()
       ..children.add(a)
@@ -473,33 +460,38 @@ class ContestsListComp implements DetachAware, ShadowRootAware {
     createPaginator();
   }
 
-  void onScreenWidthChange(msg) {
-    if(msg == "xs")
-      options["numPageLinksToDisplay"] = 2;
-    else
-      options["numPageLinksToDisplay"] = originalPageLinksCount;
 
-    createPaginator();
-  }
+  // Lista original de los contest
+  List<Contest> _contestsListOriginal;
 
-  void detach() {
-    streamsub.cancel();
-  }
+  Map _options = {
+    "itemsPerPage"          : 10,
+    "navPanelIdPrefix"      : "paginatorBox_",
+    "linkButtonId"          : "linkButton",
+    "pageLinksIdentifier"   : "page-link",
+    "numPageLinksToDisplay" :  5,
+    "navLabelFirst"         : "&laquo;",
+    "navLabelPrev"          : "&lt;",
+    "navLabelNext"          : "&gt",
+    "navLabelLast"          : "&raquo;",
+    "navOrder"              : ["first", "prev", "num", "next", "last"],
+    "showFirstLast"         : true,
+    "stateActive"           : "active",
+    "stateDisabled"         : "disabled"
+  };
 
+  int _currentPage = 0;
+  int _totalPages = 0;
+  int _originalPageLinksCount;
 
-  // Esto es necesario porque cuando quiero buscar al padre, lo tengo que buscar dentro del ShadowRoot.
-  // No se puede generar un ID en el div padre de forma dinámica con angular (id="prefijo_{{comp.nombrepropio}}") porque deja el id en el root vacío.
-  // parece ser que solo rellena ese id cuando realmente lo inserta en el DOM.
-  // Para poder tener el ID de forma dinámica, lo que hago es dejar el prefijo de forma fija en el HTML y una vez que lo encuentro, lo modifico.
-  void onShadowRoot(root) {
-    var rootElement = root as HtmlElement;
-    // Capturamos el elementos qe será el padre del paginador.
-    String parentName= options["navPanelIdPrefix"] + listName;
-    print('-CONTEST_LIST-: nombre del padre de los botones: ${parentName}');
-    print(rootElement.toString());
-    _paginatorContainer = rootElement.querySelector("#paginatorBox_")
-        ..id = parentName;
+  Element _paginatorContainer;
 
-    createPaginator();
-  }
+  bool _paginatorAvailable = false;
+  String _sortType;
+
+  DateTimeService _dateTimeService;
+  ProfileService _profileService;
+  ScreenDetectorService _scrDet;
+
+  var _streamListener;
 }

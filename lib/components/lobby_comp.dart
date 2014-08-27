@@ -142,7 +142,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     activeContestsService.refreshActiveContests();
     const refreshSeconds = const Duration(seconds: 10);
     _timer = new Timer.periodic(refreshSeconds, (Timer t) =>  activeContestsService.refreshActiveContests());
-    scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
+    _streamListener = scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
   }
 
   void onShadowRoot(root) {
@@ -169,8 +169,8 @@ class LobbyComp implements ShadowRootAware, DetachAware {
 
   void detach() {
     _timer.cancel();
+    _streamListener.cancel();
   }
-
 
   dynamic getEntryFeeFilterRange(){
     var range = js.context.callMethod(r'$', ['#slider-range']).callMethod('val');
@@ -428,4 +428,6 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   bool _isLigaTournamentChecked        = false;
   bool _isFiftyFiftyTournamentChecked  = false;
   bool _isHeadToHeadTournamentChecked  = false;
+
+  var _streamListener;
 }

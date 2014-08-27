@@ -196,14 +196,28 @@
 		margin: 0 auto;
 		
 		ul li a {
+
 			cursor: pointer;
-			width: 50px; 
+			color: @blueLight;
+			width: 45px; 
+			.user-select(none);
+		}
+		.ellipsis a{
+			padding-left: 0;
+			padding-right: 0; 
+			width: 20px;
+		}
+		.active a{
+			border-color: @blueLight;
+			background-color: @blueLight;
+			color: @white;
+			font-weight: bold; 
 		}
 		.ellipsis a{
 			cursor: default;
-		&:hover{
-			background-color: white;
-		}
+			&:hover{
+				background-color: white;
+			}
 		}
 	}	
 }

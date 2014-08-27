@@ -7848,7 +7848,23 @@ fieldset[disabled] .contests-list-root .contest-row .column-contest-action .btn.
 }
 .paginator-wrapper .paginator-box ul li a {
   cursor: pointer;
-  width: 50px;
+  color: #59add5;
+  width: 45px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.paginator-wrapper .paginator-box .ellipsis a {
+  padding-left: 0;
+  padding-right: 0;
+  width: 20px;
+}
+.paginator-wrapper .paginator-box .active a {
+  border-color: #59add5;
+  background-color: #59add5;
+  color: #ffffff;
+  font-weight: bold;
 }
 .paginator-wrapper .paginator-box .ellipsis a {
   cursor: default;

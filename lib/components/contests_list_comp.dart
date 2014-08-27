@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'dart:html';
+import 'package:webclient/services/screen_detector_service.dart';
 
 @Component(selector: 'contests-list',
            templateUrl: 'packages/webclient/components/contests_list_comp.html',
@@ -120,7 +121,10 @@ class ContestsListComp {
   }
 
 
-  ContestsListComp(this._profileService, this._dateTimeService);
+  ContestsListComp(this._profileService, this._dateTimeService, this._scrDet){
+    originalPageLinksCount = options["numPageLinksToDisplay"];
+    _scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
+  }
 
   void onRow(Contest contest) {
     if (onRowClick != null)
@@ -229,6 +233,7 @@ class ContestsListComp {
 
   DateTimeService _dateTimeService;
   ProfileService _profileService;
+  ScreenDetectorService _scrDet;
 
   /*************************************/
   /*****  Paginador functionality  *****/
@@ -238,7 +243,7 @@ class ContestsListComp {
     "navPanelId"            : "#paginatorBox_",
     "linkButtonId"          : "linkButton",
     "pageLinksIdentifier"   : "page-link",
-    "numPageLinksToDisplay" : 3,
+    "numPageLinksToDisplay" :  5,
     "navLabelFirst"         : "&laquo;",
     "navLabelPrev"          : "&lt;",
     "navLabelNext"          : "&gt",
@@ -251,6 +256,7 @@ class ContestsListComp {
 
   int _currentPage = 0;
   int _totalPages = 0;
+  int originalPageLinksCount;
 
   List<Contest> currentPageList = [];
 
@@ -259,6 +265,10 @@ class ContestsListComp {
   bool paginatorAvailable = false;
 
   void createPaginator() {
+
+    if(_scrDet.isXsScreen)
+      options["numPageLinksToDisplay"] = 2;
+
     if(listName == null) {
       print('-CONTEST_LIST-: El nombre de esta lista de concursos es null');
     }
@@ -452,6 +462,15 @@ class ContestsListComp {
       _currentPage = _totalPages -1;
 
     print("Mostrando página ${_currentPage}");
+
+    createPaginator();
+  }
+
+  void onScreenWidthChange(msg) {
+    if(msg == "xs")
+      options["numPageLinksToDisplay"] = 2;
+    else
+      options["numPageLinksToDisplay"] = originalPageLinksCount;
 
     createPaginator();
   }

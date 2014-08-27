@@ -8,6 +8,7 @@ import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'dart:html';
 import 'package:webclient/services/screen_detector_service.dart';
+import 'dart:async';
 
 @Component(selector: 'contests-list',
            templateUrl: 'packages/webclient/components/contests_list_comp.html',
@@ -120,7 +121,6 @@ class ContestsListComp implements DetachAware, ShadowRootAware {
     ContestEntry mainContestEntry = contest.getContestEntryWithUser(_profileService.user.userId);
     return mainContestEntry.prize;
   }
-
 
   ContestsListComp(this._profileService, this._dateTimeService, this._scrDet){
     originalPageLinksCount = options["numPageLinksToDisplay"];
@@ -241,7 +241,7 @@ class ContestsListComp implements DetachAware, ShadowRootAware {
   /*************************************/
   Map options = {
     "itemsPerPage"          : 10,
-    "navPanelId"            : "#paginatorBox_",
+    "navPanelIdPrefix"      : "#paginatorBox_",
     "linkButtonId"          : "linkButton",
     "pageLinksIdentifier"   : "page-link",
     "numPageLinksToDisplay" :  5,
@@ -274,8 +274,9 @@ class ContestsListComp implements DetachAware, ShadowRootAware {
       print('-CONTEST_LIST-: El nombre de esta lista de concursos es null');
     }
     // Capturamos el elementos qe será el padre del paginador.
-    options["navPanelId"] = "#paginatorBox_" + listName;
-    _paginatorContainer = querySelector(options["navPanelId"]);
+    //String parentName= options["navPanelIdPrefix"] + listName;
+    //print('-CONTEST_LIST-: nombre del padre de los botones: ${parentName}');
+    //_paginatorContainer = document.querySelector(parentName);
 
     if(contestsListFiltered != null){
 
@@ -302,8 +303,14 @@ class ContestsListComp implements DetachAware, ShadowRootAware {
   }
 
   void generatePaginatorButtons() {
-    if(_paginatorContainer == null)
+    if(_paginatorContainer == null) {
+      print ("No creo los botones porque mi padre no existe");
       return;
+    }
+    else
+    {
+      print ("Mi padre ya existe:¡. Creando botones");
+    }
     // Limpiamos el paginador
     _paginatorContainer.innerHtml="";
 
@@ -357,7 +364,6 @@ class ContestsListComp implements DetachAware, ShadowRootAware {
         break;
       }
     };
-
 
     // Los botones de puntos suspensivos los ocultamos
    var ellipsisButtons  = ul.children.where( (Element element) => element.classes.contains('ellipsis')).toList();
@@ -476,14 +482,24 @@ class ContestsListComp implements DetachAware, ShadowRootAware {
     createPaginator();
   }
 
-  @override
   void detach() {
-    // TODO: implement detach
     streamsub.cancel();
   }
 
-  @override
+
+  // Esto es necesario porque cuando quiero buscar al padre, lo tengo que buscar dentro del ShadowRoot.
+  // No se puede generar un ID en el div padre de forma dinámica con angular (id="prefijo_{{comp.nombrepropio}}") porque deja el id en el root vacío.
+  // parece ser que solo rellena ese id cuando realmente lo inserta en el DOM.
+  // Para poder tener el ID de forma dinámica, lo que hago es dejar el prefijo de forma fija en el HTML y una vez que lo encuentro, lo modifico.
   void onShadowRoot(root) {
+    var rootElement = root as HtmlElement;
+    // Capturamos el elementos qe será el padre del paginador.
+    String parentName= options["navPanelIdPrefix"] + listName;
+    print('-CONTEST_LIST-: nombre del padre de los botones: ${parentName}');
+    print(rootElement.toString());
+    _paginatorContainer = rootElement.querySelector("#paginatorBox_")
+        ..id = parentName;
+
     createPaginator();
   }
 }

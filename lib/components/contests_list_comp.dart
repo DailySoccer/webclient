@@ -54,6 +54,7 @@ class ContestsListComp implements DetachAware, ShadowRootAware {
     if (value == null)
       return;
     filterList = value;
+    _currentPage = 0;
     refreshList();
   }
 
@@ -402,7 +403,7 @@ class ContestsListComp implements DetachAware, ShadowRootAware {
       cssClasses.add('last-page');
 
     String myName = "${options["linkButtonId"]}_${listName}_";
-    myName += pageNum == null? cssClasses.join("-") : pageNum.toString();
+    myName += pageNum == null? cssClasses.join("-") : (pageNum + 1).toString();
     LIElement li = new LIElement()
       ..children.add(a)
       ..classes.addAll(cssClasses)

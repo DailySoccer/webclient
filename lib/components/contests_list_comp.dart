@@ -301,6 +301,8 @@ class ContestsListComp implements DetachAware {
   }
 
   void generatePaginatorButtons() {
+    if(_paginatorContainer == null)
+      return;
     // Limpiamos el paginador
     _paginatorContainer.innerHtml="";
 

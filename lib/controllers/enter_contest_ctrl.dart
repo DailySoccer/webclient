@@ -85,21 +85,21 @@ class EnterContestCtrl {
   }
 
   void onScreenWidthChange(String value) {
-   // Resetamos todos los filtros
-   removeAllFilters();
-   // Cuando se inicializa la lista de jugadores, esta se ordena por posicion
-   sortListByField("Pos", false);
-   // Para que en la versión móvil aparezca la pantalla de lineup
-   isSelectingSoccerPlayer = false;
+    // Resetamos todos los filtros
+    removeAllFilters();
+    // Cuando se inicializa la lista de jugadores, esta se ordena por posicion
+    sortListByField("Pos", false);
+    // Para que en la versión móvil aparezca la pantalla de lineup
+    isSelectingSoccerPlayer = false;
     if(value == "desktop") {
       Element matchesFilter = document.querySelector('.match-teams-filter');
       if(matchesFilter != null) {
         matchesFilter.style.display = "block";
         tabChange('lineup-tab-content');
       }
-      // Para cerrar el soccer player info una vez que cambiamos a la resolución Desktop
-      closePlayerInfo();
     }
+    // Para cerrar el soccer player info una vez que cambiamos a otra resolución
+    closePlayerInfo();
   }
 
   void onSlotSelected(int slotIndex) {
@@ -475,6 +475,14 @@ class EnterContestCtrl {
     // hacemos una llamada de jQuery para ocultar la ventana modal
     js.context.callMethod(r'$', ['#infoContestModal']).callMethod('modal', ['hide']);
     closePlayerInfo();
+  }
+
+  String getMyTotalSalaryClasses() {
+    String clases = "total-salary-money";
+    if(availableSalary < 0)
+      clases = "total-salary-money red-numbers";
+
+    return clases;
   }
 
   List<dynamic> _allSoccerPlayers = new List();

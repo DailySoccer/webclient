@@ -29,7 +29,7 @@
           <div class="enter-contest-lineup">
             <div class="enter-contest-total-salary">
                 TU ALINEACIÓN
-                <span class="total-salary"><span class="total-salary-text">DINERO RESTANTE:</span><span class="total-salary-money">{{ctrl.contest.templateContest.salaryCap}}€</span></span>
+                <span class="total-salary"><span class="total-salary-text">DINERO RESTANTE:</span><span ng-class="ctrl.getMyTotalSalaryClasses()">{{ctrl.availableSalary}}€</span></span>
             </div>
             <lineup-selector></lineup-selector>
             <div class="enter-contest-actions-wrapper">
@@ -55,14 +55,14 @@
             <div class="tab-pane active" id="lineup-tab-content">
 
                 <div class="enter-contest-actions-wrapper">
-                  <div class="total-salary"><span class="total-salary-money">{{ctrl.contest.templateContest.salaryCap}}€</span></div>
+                  <div class="total-salary"><span ng-class="ctrl.getMyTotalSalaryClasses()">{{ctrl.availableSalary}}€</span></div>
                   <button id="cancelSoccerPlayerSelection" type="button" class="btn-cancel-player-selection" ng-click="ctrl.cancelPlayerSelection()" ng-show="ctrl.isSelectingSoccerPlayer">Cancelar</button>
                 </div>
                 <div class="enter-contest-lineup-wrapper">
                   <div class="enter-contest-lineup">
                     <div class="enter-contest-total-salary">
                         <span class="total-salary-text">TU ALINEACIÓN</span>
-                        <span class="total-salary"><span class="total-salary-text">DINERO RESTANTE:</span><span class="total-salary-money">{{ctrl.contest.templateContest.salaryCap}}€</span></span>
+                        <span class="total-salary"><span class="total-salary-text">DINERO RESTANTE:</span><span ng-class="ctrl.getMyTotalSalaryClasses()">{{ctrl.availableSalary}}€</span></span>
                     </div>
                     <lineup-selector ng-show="!ctrl.isSelectingSoccerPlayer || ctrl.scrDet.isSmScreen"></lineup-selector>
                   </div>

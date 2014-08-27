@@ -375,7 +375,7 @@ class EnterContestCtrl {
     }
 
     print("createFantasyTeam");
-    lineupSlots.forEach((player) => print(player["fieldPos"].fieldPos + ": " + player["fullName"] + " : " + player["id"]));
+    lineupSlots.forEach((player) => print(player["fieldPos"].abrevName + ": " + player["fullName"] + " : " + player["id"]));
 
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
     _contestService.addContestEntry(contest.contestId, lineupSlots.map((player) => player["id"]).toList())

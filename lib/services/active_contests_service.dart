@@ -29,7 +29,7 @@ class ActiveContestsService {
           activeContests = Contest.loadContestsFromJsonObject(jsonObject);
           completer.complete();
         });
-    print('Actualizando concursos');
+    print('-ACTIVE_CONTEST_SERVICE-: Actualizando concursos');
     return completer.future;
   }
 

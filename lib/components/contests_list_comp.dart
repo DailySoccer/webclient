@@ -13,7 +13,7 @@ import 'package:webclient/services/screen_detector_service.dart';
            templateUrl: 'packages/webclient/components/contests_list_comp.html',
            publishAs: 'comp',
            useShadowDom: false)
-class ContestsListComp implements DetachAware {
+class ContestsListComp implements DetachAware, ShadowRootAware {
 
   static const int    SALARY_LIMIT_FOR_BEGGINERS    = 90000;
   static const int    SALARY_LIMIT_FOR_STANDARDS    = 80000;
@@ -479,5 +479,10 @@ class ContestsListComp implements DetachAware {
   void detach() {
     // TODO: implement detach
     streamsub.cancel();
+  }
+
+  @override
+  void onShadowRoot(root) {
+    createPaginator();
   }
 }

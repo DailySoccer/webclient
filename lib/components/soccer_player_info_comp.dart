@@ -59,7 +59,7 @@ class SoccerPlayerInfoComp {
   updateSoccerPlayerInfoFromService() {
     SoccerPlayerInfo soccerPlayer = _soccerPlayerService.soccerPlayerInfo;
     currentInfoData['id'] = _soccerPlayerId;
-    currentInfoData['fieldPos'] = soccerPlayer.fieldPos;
+    currentInfoData['fieldPos'] = soccerPlayer.fieldPos.abrevName;
     currentInfoData['name'] = soccerPlayer.name.toUpperCase();
     currentInfoData['fantasyPoints'] = soccerPlayer.fantasyPoints;
     currentInfoData['matches'] = soccerPlayer.stats.length;
@@ -102,48 +102,51 @@ class SoccerPlayerInfoComp {
     int sumatorioFaltasRecibidas = 0;
 
 
-    int i = 0;
-    String year = "";
+    // Si ha jugado partidos
+    if (partidosTotales != 0) {
+      soccerPlayer.stats.forEach((stat) {
+        // Sumatorios para las medias
+        sumatorioMinutos += stat.playedMinutes;
+        sumatorioGoles += stat.goles;
+        sumatorioTiros += stat.tiros;
+        sumatorioPases += stat.pases;
+        sumatorioAsistencias += stat.asistencias;
+        sumatorioRegates += stat.regates;
+        sumatorioRecuperaciones += stat.recuperaciones;
+        sumatorioPerdidasBalon += stat.perdidasBalon;
+        sumatorioFaltasCometidas += stat.faltasCometidas;
+        sumatorioFaltasRecibidas += stat.faltasRecibidas;
+        sumatorioTarjetasAmarillas += stat.tarjetasAmarillas;
+        sumatorioTarjetasRojas += stat.tarjetasRojas;
+        sumatorioGolesEncajados += stat.golesEncajados;
+        sumatorioParadas += stat.paradas;
+        sumatorioDespejes += stat.despejes;
+        sumatorioPenaltisDetenidos += stat.penaltisDetenidos;
 
-    soccerPlayer.stats.forEach((stat) {
-      // Sumatorios para las medias
-      sumatorioMinutos += stat.playedMinutes;
-      sumatorioGoles += stat.goles;
-      sumatorioTiros += stat.tiros;
-      sumatorioPases += stat.pases;
-      sumatorioAsistencias += stat.asistencias;
-      sumatorioRegates += stat.regates;
-      sumatorioRecuperaciones += stat.recuperaciones;
-      sumatorioPerdidasBalon += stat.perdidasBalon;
-      sumatorioFaltasCometidas += stat.faltasCometidas;
-      sumatorioFaltasRecibidas += stat.faltasRecibidas;
-      sumatorioTarjetasAmarillas += stat.tarjetasAmarillas;
-      sumatorioTarjetasRojas += stat.tarjetasRojas;
-      sumatorioGolesEncajados += stat.golesEncajados;
-      sumatorioParadas += stat.paradas;
-      sumatorioDespejes += stat.despejes;
-      sumatorioPenaltisDetenidos += stat.penaltisDetenidos;
-
-
-      seasons = [
-                  {"año":"2014","value" : [
-                                           ["20/01","ATM","120"],
-                                           ["20/01","BCN","120"]
-                                          ]
-                  },
-                  {"año":"2013","value" : [
-                                           ["20/01","VAL","120"],
-                                           ["20/01","RMD","120"]
-                                          ]
-                  }
-                 ];
+        //print(stat.startDate);
 
 
-    });
+        seasons = [
+                    {"año":"2014","value" : [
+                                             ["20/01","ATM","120"],
+                                             ["20/01","BCN","120"]
+                                            ]
+                    },
+                    {"año":"2013","value" : [
+                                             ["20/01","VAL","120"],
+                                             ["20/01","RMD","120"]
+                                            ]
+                    }
+                   ];
 
-    print(seasons);
 
-    // añadimos las medias comunes a todos los jugadores
+      });
+
+    } else {
+
+    }
+
+    //print(seasons);
 
 
     if(isGoalkeeper()) {

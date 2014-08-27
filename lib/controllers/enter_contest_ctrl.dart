@@ -115,8 +115,8 @@ class EnterContestCtrl {
       // Lo quitamos del slot
       lineupSlots[slotIndex] = null;
 
-      // Reseteamos el filtro para volver a mostrarlo entre los disponibles
-      setFieldPosFilter(null);
+      // Refrescamos los filtros para volver a mostrarlo entre los disponibles
+      _refreshFilter();
 
       // Quitamos la modal de números rojos si no hay salario disponible
       if(availableSalary >= 0) {
@@ -283,7 +283,7 @@ class EnterContestCtrl {
     FieldPos theFieldPos = soccerPlayer["fieldPos"];
     int c = 0;
     for ( ; c < lineupSlots.length; ++c) {
-      if (lineupSlots[c] == null && FieldPos.LINEUP[c] == theFieldPos.fieldPos)
+      if (lineupSlots[c] == null && FieldPos.LINEUP[c] == theFieldPos.value)
         return true;
     }
     return false;
@@ -430,9 +430,17 @@ class EnterContestCtrl {
 
   // Mostramos la ventana modal con la información de ese torneo, si no es la versión movil.
   void onRowClick(String soccerPlayerId) {
-    //Reseteamos el boton de añadir (enable el boton)
-    List<ButtonElement> btnAdd = querySelectorAll('.btn-add-soccer-player-info');
-    btnAdd.forEach((element) => element.disabled = false);
+    // Permitimos añadir el juador solo en el caso de que exista hueco en el lineup (disabilitamos el botón de añadir)
+    var selectedSoccerPlayer = availableSoccerPlayers.firstWhere(
+            (soccerPlayer) => soccerPlayer["id"] == soccerPlayerId,
+            orElse: () => null);
+    if(selectedSoccerPlayer != null) {
+      List<ButtonElement> btnAdd = querySelectorAll('.btn-add-soccer-player-info');
+      if (availableSoccerPlayer(selectedSoccerPlayer))
+        btnAdd.forEach((element) => element.disabled = false);
+      else
+        btnAdd.forEach((element) => element.disabled = true);
+    }
 
     selectedSoccerPlayerId = soccerPlayerId;
 
@@ -460,14 +468,12 @@ class EnterContestCtrl {
     var selectedSoccerPlayer = availableSoccerPlayers.firstWhere(
         (soccerPlayer) => soccerPlayer["id"] == soccerPlayerId,
         orElse: () => null);
-    print(selectedSoccerPlayer);
     if(selectedSoccerPlayer != null) {
-      //No permito añadir más de una vez el jugador (disable el boton)
-      List<ButtonElement> btnAdd = querySelectorAll('.btn-add-soccer-player-info');
-      btnAdd.forEach((element) => element.disabled = true);
       //Añado el jugador
       onSoccerPlayerSelected(selectedSoccerPlayer);
     }
+    // hacemos una llamada de jQuery para ocultar la ventana modal
+    js.context.callMethod(r'$', ['#infoContestModal']).callMethod('modal', ['hide']);
     closePlayerInfo();
   }
 

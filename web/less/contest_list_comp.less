@@ -188,11 +188,22 @@
 		}
 	}
 }
+
 .paginator-wrapper {
 	padding-bottom: 15px;
 	.paginator-box {
-		border: 1px solid #F0F;
 		text-align: center;
 		margin: 0 auto;
+		
+		ul li a {
+			cursor: pointer;
+			width: 50px; 
+		}
+		.ellipsis a{
+			cursor: default;
+		&:hover{
+			background-color: white;
+		}
+		}
 	}	
 }

@@ -7843,9 +7843,18 @@ fieldset[disabled] .contests-list-root .contest-row .column-contest-action .btn.
   padding-bottom: 15px;
 }
 .paginator-wrapper .paginator-box {
-  border: 1px solid #F0F;
   text-align: center;
   margin: 0 auto;
+}
+.paginator-wrapper .paginator-box ul li a {
+  cursor: pointer;
+  width: 50px;
+}
+.paginator-wrapper .paginator-box .ellipsis a {
+  cursor: default;
+}
+.paginator-wrapper .paginator-box .ellipsis a:hover {
+  background-color: white;
 }
 .contests-table {
   margin-right: auto;

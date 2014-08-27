@@ -109,7 +109,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
         //TODO: devuelvo true o false en funcion del tipo de concurso
       });
     }*/
-    //print('Botón de filtro por ${value} deshabilitado temporalmente');
+    //print('-LOBBY_COMP-: Botón de filtro por ${value} deshabilitado temporalmente');
     return false;
   }
 
@@ -219,7 +219,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
 
     sortType = sortName + "_" + _butonState[_currentButtonState];
 
-    print('Ordenando la lista de torneos: ${sortType.split('_')}');
+    print('-LOBBY_COMP-: Ordenando la lista de torneos: ${sortType.split('_')}');
 
     applySortingStyles("sort-" + sortName);
   }
@@ -288,7 +288,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   void filterByEntryFee(){
     addFilter(FILTER_ENTRY_FEE_MIN, _filterEntryFeeMin);
     addFilter(FILTER_ENTRY_FEE_MAX, _filterEntryFeeMax);
-    print('filtrando por tipo precio entrada. Valores entre [${_filterEntryFeeMin} - ${_filterEntryFeeMax}]');
+    print('-LOBBY_COMP-: Filtrando por tipo precio entrada. Valores entre [${_filterEntryFeeMin} - ${_filterEntryFeeMax}]');
   }
 
   void refreshTierFilter() {
@@ -312,7 +312,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
         lobbyFilters.remove(FILTER_TIER);
     //provocamos la actialización
     addFilter("", []);
-    print('filtrando por tipo de torneo: torneos: [${_tierFilterList}]');
+    print('-LOBBY_COMP-: Filtrando por tipo de torneo: torneos: [${_tierFilterList}]');
   }
 
   // Devuelve true si existe un torneo del tipo que le pasamos por parametro.
@@ -353,7 +353,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     //provocamos la actialización
     addFilter("", []);
 
-    print('filtrando por tipo de torneo: torneos: [${_tournamentFilterList}]');
+    print('-LOBBY_COMP-: Filtrando por tipo de torneo: torneos: [${_tournamentFilterList}]');
   }
 
   void addFilter(String key, dynamic valor){
@@ -404,7 +404,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     //provocamos la actialización
     lobbyFilters = {};
     addFilter("", []);
-    print('Filtros reseteados');
+    print('-LOBBY_COMP-: Filtros reseteados');
   }
 
   Timer _timer;

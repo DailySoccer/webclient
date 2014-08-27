@@ -13,7 +13,7 @@ import 'package:webclient/services/screen_detector_service.dart';
            templateUrl: 'packages/webclient/components/contests_list_comp.html',
            publishAs: 'comp',
            useShadowDom: false)
-class ContestsListComp {
+class ContestsListComp implements DetachAware {
 
   static const int    SALARY_LIMIT_FOR_BEGGINERS    = 90000;
   static const int    SALARY_LIMIT_FOR_STANDARDS    = 80000;
@@ -33,7 +33,7 @@ class ContestsListComp {
   //NumberFormat numFormat = new NumberFormat("#");
 
   bool isToday(DateTime date) => (date.year == _dateTimeService.now.year && date.month == _dateTimeService.now.month && date.day == _dateTimeService.now.day);
-
+  var streamsub;
   String listName="";
 
   @NgOneWay("list-name")
@@ -123,7 +123,7 @@ class ContestsListComp {
 
   ContestsListComp(this._profileService, this._dateTimeService, this._scrDet){
     originalPageLinksCount = options["numPageLinksToDisplay"];
-    _scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
+    streamsub = _scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
   }
 
   void onRow(Contest contest) {
@@ -151,7 +151,7 @@ class ContestsListComp {
     List<String> sortParams = _sortType.split('_');
 
     if (sortParams.length != 2) {
-      print("El número de parametros no se ha establecido correctamente. La forma correcta es \'campo\'_\'dirección\'. Pon atención a la barra baja \'_\'");
+      print("-CONTEST_LIST-: El número de parametros no se ha establecido correctamente. La forma correcta es \'campo\'_\'dirección\'. Pon atención a la barra baja \'_\'");
     }
 
     switch(sortParams[0])
@@ -169,7 +169,7 @@ class ContestsListComp {
       break;
 
       default:
-        print('No se ha encontrado el campo para ordenar');
+        print('-CONTEST_LIST-: No se ha encontrado el campo para ordenar');
       break;
     }
   }
@@ -401,7 +401,6 @@ class ContestsListComp {
 
     String myName = "${options["linkButtonId"]}_${listName}_";
     myName += pageNum == null? cssClasses.join("-") : pageNum.toString();
-    print("añadido botón con id ${myName}");
     LIElement li = new LIElement()
       ..children.add(a)
       ..classes.addAll(cssClasses)
@@ -436,7 +435,6 @@ class ContestsListComp {
   void goToPage(Element target, int pageNum) {
     if(pageNum == null)
     {
-      //print("Han pulsado en el botón ${target.parent.classes}");
       switch(target.parent.classes.first)
       {
         case "to-first-page":
@@ -461,7 +459,7 @@ class ContestsListComp {
     if(_currentPage > _totalPages -1)
       _currentPage = _totalPages -1;
 
-    print("Mostrando página ${_currentPage}");
+    print("-CONTEST_LIST-: Cambio a la página ${_currentPage}");
 
     createPaginator();
   }
@@ -473,5 +471,11 @@ class ContestsListComp {
       options["numPageLinksToDisplay"] = originalPageLinksCount;
 
     createPaginator();
+  }
+
+  @override
+  void detach() {
+    // TODO: implement detach
+    streamsub.cancel();
   }
 }

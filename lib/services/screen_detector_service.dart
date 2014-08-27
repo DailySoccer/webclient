@@ -39,7 +39,7 @@ class ScreenDetectorService {
       mediaScreenWidthChangeController.add(message);
       _lastMessage = message;
 
-      print('-screen_detector_service- screenWidth is ' + message.toUpperCase());
+      print('-SCREEN_DETECTOR_SERVICE- : ScreenWidth is ' + message.toUpperCase());
 
       switch(message){
         case "xs":

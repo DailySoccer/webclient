@@ -1,4 +1,4 @@
-#contestsListRoot {
+.contests-list-root {
 	@media (max-width: @screen-sm-max) {
 		.container-fluid();
 	}
@@ -11,6 +11,7 @@
 	background-color: @white;
 	position: relative;
 
+	
 	// Fila de contest
 	.contest-row {
 		.make-row();
@@ -186,4 +187,23 @@
 			}
 		}
 	}
+}
+
+.paginator-wrapper {
+	padding-bottom: 15px;
+	.paginator-box {
+		text-align: center;
+		margin: 0 auto;
+		
+		ul li a {
+			cursor: pointer;
+			width: 50px; 
+		}
+		.ellipsis a{
+			cursor: default;
+		&:hover{
+			background-color: white;
+		}
+		}
+	}	
 }

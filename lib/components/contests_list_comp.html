@@ -1,5 +1,6 @@
-<div id="contestsListRoot" class="contests-list">
-  <div class="contest-row" ng-repeat="contest in comp.contestsListFiltered">
+<div id="contestsListRoot_{{comp.listName}}" class="contests-list-root">
+<!--  <div class="contest-row" ng-repeat="contest in comp.contestsListFiltered"> -->
+  <div class="contest-row" ng-repeat="contest in comp.currentPageList">
 
     <div class="column-contest-name" ng-click="comp.onRow(contest)">
       <div class="column-name">{{contest.name}}</div>
@@ -40,5 +41,18 @@
         <button type="button" class="btn" ng-click="comp.onAction(contest)">{{comp.actionButtonTitle}}</button>
     </div>
 
+  </div>
+
+  <!-- PAGINADOR -->
+  <div class="paginator-wrapper">
+    <!--
+    <ul class="pagination">
+      <li><a ng-click="comp.goToPage(0)"> primera</a></li>
+      <li><a ng-click="comp.goToPage(comp.currentPage - 1)"> prev</a></li>
+      <li><a ng-click="comp.goToPage(comp.currentPage + 1)"> next</a></li>
+      <li><a ng-click="comp.goToPage(comp.totalPages)"> ultima</a></li>
+    </ul>
+    -->
+    <div id="paginatorBox_{{comp.listName}}" class="paginator-box"> Paginador </div>
   </div>
 </div>

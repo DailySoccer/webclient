@@ -32,6 +32,7 @@ class SoccerPlayerInfoComp {
   List<Map> medias;
   Map currentInfoData;
   List partidos  = new List();
+  dynamic seasons = [];
 
   SoccerPlayerInfoComp(this._router, this._soccerPlayerService, this._flashMessage, this.enterContestCtrl) {
     currentInfoData = {
@@ -72,7 +73,13 @@ class SoccerPlayerInfoComp {
       });
     }
 
-    print(partidos);
+    calculateAverage(soccerPlayer);
+
+  }
+
+  bool isGoalkeeper() => currentInfoData['fieldPos'] == "POR";
+
+  void calculateAverage(SoccerPlayerInfo soccerPlayer) {
 
     int partidosTotales = soccerPlayer.stats.length;
     int sumatorioMinutos = 0;
@@ -94,8 +101,12 @@ class SoccerPlayerInfoComp {
     int sumatorioRegates = 0;
     int sumatorioFaltasRecibidas = 0;
 
-    soccerPlayer.stats.forEach((stat) {
 
+    int i = 0;
+    String year = "";
+
+    soccerPlayer.stats.forEach((stat) {
+      // Sumatorios para las medias
       sumatorioMinutos += stat.playedMinutes;
       sumatorioGoles += stat.goles;
       sumatorioTiros += stat.tiros;
@@ -113,44 +124,66 @@ class SoccerPlayerInfoComp {
       sumatorioDespejes += stat.despejes;
       sumatorioPenaltisDetenidos += stat.penaltisDetenidos;
 
-      print(stat.playedMinutes);
+
+      seasons = [
+                  {"año":"2014","value" : [
+                                           ["20/01","ATM","120"],
+                                           ["20/01","BCN","120"]
+                                          ]
+                  },
+                  {"año":"2013","value" : [
+                                           ["20/01","VAL","120"],
+                                           ["20/01","RMD","120"]
+                                          ]
+                  }
+                 ];
+
 
     });
 
+    print(seasons);
+
     // añadimos las medias comunes a todos los jugadores
-    medias = [
-              {'nombre' : "MIN" , 'valor': sumatorioMinutos / partidosTotales},
-              {'nombre' : "P" , 'valor': sumatorioPases / partidosTotales},
-              {'nombre' : "RE" , 'valor': sumatorioRecuperaciones / partidosTotales},
-              {'nombre' : "PB" , 'valor': sumatorioPerdidasBalon / partidosTotales},
-              {'nombre' : "FC" , 'valor': sumatorioFaltasCometidas / partidosTotales},
-              {'nombre' : "TA" , 'valor': sumatorioTarjetasAmarillas / partidosTotales},
-              {'nombre' : "TR" , 'valor': sumatorioTarjetasRojas / partidosTotales}
-    ];
+
 
     if(isGoalkeeper()) {
       //añadimos las especificas del portero
-      medias.add({'nombre' : "GE" , 'valor': sumatorioGolesEncajados / partidosTotales});
-      medias.add({'nombre' : "PA" , 'valor': sumatorioParadas / partidosTotales});
-      medias.add({'nombre' : "D" , 'valor': sumatorioDespejes / partidosTotales});
-      medias.add({'nombre' : "PD" , 'valor': sumatorioPenaltisDetenidos / partidosTotales});
+      medias = [
+                {'nombre' : "MIN" , 'valor': partidosTotales ==  0 ? 0 : sumatorioMinutos / partidosTotales},
+                {'nombre' : "PB" , 'valor': partidosTotales ==  0 ? 0 : sumatorioPerdidasBalon / partidosTotales},
+                {'nombre' : "GE" , 'valor': partidosTotales ==  0 ? 0 : sumatorioGolesEncajados / partidosTotales},
+                {'nombre' : "PD" , 'valor': partidosTotales ==  0 ? 0 : sumatorioPenaltisDetenidos / partidosTotales},
+                {'nombre' : "PA" , 'valor': partidosTotales ==  0 ? 0 : sumatorioParadas / partidosTotales},
+                {'nombre' : "FC" , 'valor': partidosTotales ==  0 ? 0 : sumatorioFaltasCometidas / partidosTotales},
+                {'nombre' : "D" , 'valor': partidosTotales ==  0 ? 0 : sumatorioDespejes / partidosTotales},
+                {'nombre' : "TA" , 'valor': partidosTotales ==  0 ? 0 : sumatorioTarjetasAmarillas / partidosTotales},
+                {'nombre' : "P" , 'valor': partidosTotales ==  0 ? 0 : sumatorioPases / partidosTotales},
+                {'nombre' : "TR" , 'valor': partidosTotales ==  0 ? 0 : sumatorioTarjetasRojas / partidosTotales},
+                {'nombre' : "RE" , 'valor': partidosTotales ==  0 ? 0 : sumatorioRecuperaciones / partidosTotales}
+      ];
     }
     else {
       //añadimos las especificas del resto de jugadores
-      medias.add({'nombre' : "G" , 'valor': sumatorioGoles / partidosTotales});
-      medias.add({'nombre' : "T" , 'valor': sumatorioTiros / partidosTotales});
-      medias.add({'nombre' : "A" , 'valor': sumatorioAsistencias / partidosTotales});
-      medias.add({'nombre' : "R" , 'valor': sumatorioRegates / partidosTotales});
-      medias.add({'nombre' : "FR" , 'valor': sumatorioFaltasRecibidas / partidosTotales});
+      medias = [
+                {'nombre' : "MIN" , 'valor': partidosTotales ==  0 ? 0 : sumatorioMinutos / partidosTotales},
+                {'nombre' : "RE" , 'valor': partidosTotales ==  0 ? 0 : sumatorioRecuperaciones / partidosTotales},
+                {'nombre' : "G" , 'valor': partidosTotales ==  0 ? 0 : sumatorioGoles / partidosTotales},
+                {'nombre' : "PB" , 'valor': partidosTotales ==  0 ? 0 : sumatorioPerdidasBalon / partidosTotales},
+                {'nombre' : "T" , 'valor': partidosTotales ==  0 ? 0 : sumatorioTiros / partidosTotales},
+                {'nombre' : "FR" , 'valor': partidosTotales ==  0 ? 0 : sumatorioFaltasRecibidas / partidosTotales},
+                {'nombre' : "P" , 'valor': partidosTotales ==  0 ? 0 : sumatorioPases / partidosTotales},
+                {'nombre' : "FC" , 'valor': partidosTotales ==  0 ? 0 : sumatorioFaltasCometidas / partidosTotales},
+                {'nombre' : "A" , 'valor': partidosTotales ==  0 ? 0 : sumatorioAsistencias / partidosTotales},
+                {'nombre' : "TA" , 'valor': partidosTotales ==  0 ? 0 : sumatorioTarjetasAmarillas / partidosTotales},
+                {'nombre' : "R" , 'valor': partidosTotales ==  0 ? 0 : sumatorioRegates / partidosTotales},
+                {'nombre' : "TR" , 'valor': partidosTotales ==  0 ? 0 : sumatorioTarjetasRojas / partidosTotales}
+      ];
     }
 
     if (medias.length % 2 != 0)
       medias.add({"nombre":"","valor":""});
 
-
   }
-
-  bool isGoalkeeper() => currentInfoData['fieldPos'] == "POR";
 
   void tabChange(String tab) {
     List<dynamic> allContentTab = document.querySelectorAll(".soccer-player-info-content .tab-pane");

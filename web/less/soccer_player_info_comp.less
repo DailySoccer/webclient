@@ -1,3 +1,10 @@
+.modal-content-soccer-player-info {
+	.modal-content();
+	.container-fluid();
+	.clean-paddings();
+	background-color: @greyLight;
+}
+
 .soccer-player-info-header {
 	@media (max-width: @screen-xs-max) {
 		.make-border(1px, solid none none none, @orangeHeaderLight);
@@ -69,7 +76,7 @@
 	.description-header {
 		@media (min-width: @screen-sm-min) {
 			background-color: @greyUltraDark;
-			margin-bottom: 70px;
+			margin-bottom: 50px;
 		}
 		.make-xs-column(12);
 		.clean-paddings();
@@ -157,6 +164,9 @@
 	}
 
 	.next-match, .date-season {
+		.hidden-sm();
+		.hidden-md();
+		.hidden-lg();
 		.opensans_bold(10pt, @greyDark);
 		strong {
 			color: @blueMed;
@@ -170,37 +180,49 @@
 	}
 
 	.season-stats {
-		.make-border(1px, solid none solid none, @greyDark);
-		background-color: @greyUltraLight;
-		.make-xs-column(12, 0px);
-			.season-stats-row {
-				.make-xs-column(6, 0px);
-				.make-border(1px, dotted none none none, @greyDark);
-				line-height: 30px;
 
-				.season-stats-header {
-					.opensans_normal(10pt, @greyDark);
-					.make-xs-column(2, 15px);
+		@media (max-width: @screen-xs-max) {
+			.make-border(1px, solid none solid none, @greyDark);
+			background-color: @greyUltraLight;
+			.make-xs-column(12, 0px);
+				.season-stats-row {
+					.make-xs-column(6, 0px);
+					.make-border(1px, dotted none none none, @greyDark);
+					line-height: 30px;
+
+					.season-stats-header {
+						.opensans_normal(10pt, @greyDark);
+						.make-xs-column(2, 15px);
+					}
+					.season-stats-info {
+						.exo_bold(14pt,  @greyDark);
+						.make-xs-column(10, 15px);
+						text-align: right;
+					}
+					.season-stats-info:last-child {
+						border: none;
+					}
 				}
-				.season-stats-info {
-					.exo_bold(14pt,  @greyDark);
-					.make-xs-column(10, 15px);
-					text-align: right;
-				}
-				.season-stats-info:last-child {
+				.season-stats-row:first-child {
 					border: none;
 				}
+				.season-stats-row:first-child + .season-stats-row {
+					border: none;
+				}
+				.season-stats-row:nth-child(odd) {
+					border-right: 1px dotted @greyDark;
+				}
+		}
+
+		@media (min-width: @screen-sm-min) {
+			.make-row(0);
+			.season-stats-row {
+				.make-md-column(6, 0px);
 			}
-			.season-stats-row:first-child {
-				border: none;
-			}
-			.season-stats-row:first-child + .season-stats-row {
-				border: none;
-			}
-			.season-stats-row:nth-child(odd) {
-				border-right: 1px dotted @greyDark;
-			}
+		}
+
 	}
+
 	.match-stats {
 		.make-xs-column(12, 0px);
 		background-color: @white;

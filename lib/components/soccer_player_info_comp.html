@@ -28,7 +28,6 @@
 </div>
 
 <div class="soccer-player-info-content">
-<div ng-if="soccerPlayerInfo.enterContestCtrl.scrDet.isXsScreen">
     <!-- Nav tabs -->
     <ul class="soccer-player-info-tabs" role="tablist">
       <li class="active"><a role="tab" data-toggle="tab" ng-click="soccerPlayerInfo.tabChange('season-info-tab-content')">Datos de Temporada</a></li>
@@ -55,7 +54,23 @@
         <div class="tab-pane" id="match-info-tab-content">
           <div class="match-stats">
             <!--HEADER-->
-            <div class="match-stats-header">
+            <div ng-if="soccerPlayerInfo.isGoalkeeper()" class="match-stats-header">
+              <div>&nbsp;</div>
+              <div>DÍA</div>
+              <div>OP</div>
+              <div>MIN</div>
+              <div>GE</div>
+              <div>PA</div>
+              <div>D</div>
+              <div>P</div>
+              <div>RE</div>
+              <div>PB</div>
+              <div>PD</div>
+              <div>FC</div>
+              <div>TA</div>
+              <div>TR</div>
+            </div>
+            <div ng-if="!soccerPlayerInfo.isGoalkeeper()" class="match-stats-header">
               <div>&nbsp;</div>
               <div>DÍA</div>
               <div>OP</div>
@@ -75,223 +90,13 @@
             <!--CONTENT-->
             <div class="match-stats-content">
                 <div class="match-stats-data">
-                  <!-- Los datos con un ng-repeat-->
-                  <div>
-                    <div class="match-year">2014</div>
-                    <div class="data">
-                      <div>20/05</div>
-                      <div>ATM</div>
-                      <div>120</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                    </div>
-                    <div class="data">
-                      <div>18/04</div>
-                      <div>VIL</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                    </div>
-                    <div class="data">
-                      <div>18/04</div>
-                      <div>VIL</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                    </div>
-                    <div class="data">
-                      <div>18/04</div>
-                      <div>VIL</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                    </div>
-                    <div class="data">
-                      <div>18/04</div>
-                      <div>VIL</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                    </div>
-                    <div class="data">
-                      <div>18/04</div>
-                      <div>VIL</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                    </div>
-                    <div class="data">
-                      <div>18/04</div>
-                      <div>VIL</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                    </div>
-                    <div class="data">
-                      <div>18/04</div>
-                      <div>VIL</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                    </div>
-                    <div class="data">
-                      <div>18/04</div>
-                      <div>VIL</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                    </div>
-                    <div class="data">
-                      <div>18/04</div>
-                      <div>VIL</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                    </div>
-                    <div class="data">
-                      <div>18/04</div>
-                      <div>VIL</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                    </div>
+                  <!-- Los datos con un ng-repeat por año -->
+                  <div ng-repeat="slot in soccerPlayerInfo.seasons">
+                      <div class="match-year">{{slot["año"]}}</div>
+                      <div class="data" ng-repeat="match in slot['value']">
+                        <div ng-repeat="data in match">{{data}}</div>
+                      </div>
                   </div>
-                  <!--2014-->
-                  <div>
-                    <div class="match-year">2013</div>
-                    <div class="data">
-                      <div>18/04</div>
-                      <div>VIL</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                    </div>
-                    <div class="data">
-                      <div>18/04</div>
-                      <div>VIL</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                      <div>00</div>
-                    </div>
-                  </div>
-                  <!--2013-->
                 </div>
             </div>
           </div>
@@ -308,76 +113,6 @@
         <button class="btn-add-soccer-player-info" ng-click="soccerPlayerInfo.enterContestCtrl.addSoccerPlayerToLineup(soccerPlayerInfo.currentInfoData['id'])">AÑADIR</button>
       </div>
     </div>
-</div>
-<div ng-if="!soccerPlayerInfo.enterContestCtrl.scrDet.isXsScreen">
-          <div class="season-stats-no-xs">
-            <div class="season-stats-title">Estadísticas de temporada (datos por partido)</div>
-            <div class="season-stats-col">
-              <div class="season-stats-header">MINUTOS</div>
-              <div class="season-stats-info">90.32</div>
-            </div>
-            <div class="season-stats-col" ng-if="soccerPlayerInfo.isGoalkeeper()">
-              <div class="season-stats-header">GOLES ENCAJADOS</div>
-              <div class="season-stats-info">00.32</div>
-            </div>
-            <div class="season-stats-col" ng-if="!soccerPlayerInfo.isGoalkeeper()">
-              <div class="season-stats-header">GOLES</div>
-              <div class="season-stats-info">00.00</div>
-            </div>
-            <div class="season-stats-col" ng-if="soccerPlayerInfo.isGoalkeeper()">
-              <div class="season-stats-header">PARADAS</div>
-              <div class="season-stats-info">00.32</div>
-            </div>
-            <div class="season-stats-col" ng-if="!soccerPlayerInfo.isGoalkeeper()">
-              <div class="season-stats-header">TIROS</div>
-              <div class="season-stats-info">00.00</div>
-            </div>
-            <div class="season-stats-col" ng-if="soccerPlayerInfo.isGoalkeeper()">
-              <div class="season-stats-header">DESPEJES</div>
-              <div class="season-stats-info">00.32</div>
-            </div>
-            <div class="season-stats-col">
-              <div class="season-stats-header">PASES</div>
-              <div class="season-stats-info">00.00</div>
-            </div>
-            <div class="season-stats-col" ng-if="!soccerPlayerInfo.isGoalkeeper()">
-              <div class="season-stats-header">ASISTENCIAS</div>
-              <div class="season-stats-info">00.00</div>
-            </div>
-            <div class="season-stats-col" ng-if="!soccerPlayerInfo.isGoalkeeper()">
-              <div class="season-stats-header">REGATES</div>
-              <div class="season-stats-info">00.00</div>
-            </div>
-            <div class="season-stats-col">
-              <div class="season-stats-header">RECUPERACIONES</div>
-              <div class="season-stats-info">00.00</div>
-            </div>
-            <div class="season-stats-col">
-              <div class="season-stats-header">PÉRDIDAS DE BALÓN</div>
-              <div class="season-stats-info">00.00</div>
-            </div>
-            <div class="season-stats-col" ng-if="soccerPlayerInfo.isGoalkeeper()">
-              <div class="season-stats-header">PENALTIS DETENIDOS</div>
-              <div class="season-stats-info">00/32</div>
-            </div>
-            <div class="season-stats-col" ng-if="!soccerPlayerInfo.isGoalkeeper()">
-              <div class="season-stats-header">FALTAS RECIBIDAS</div>
-              <div class="season-stats-info">00.00</div>
-            </div>
-            <div class="season-stats-col">
-              <div class="season-stats-header">FALTAS COMETIDAS</div>
-              <div class="season-stats-info">00.00</div>
-            </div>
-            <div class="season-stats-col">
-              <div class="season-stats-header">TARJETAS AMARILLAS</div>
-              <div class="season-stats-info">00.00</div>
-            </div>
-            <div class="season-stats-col">
-              <div class="season-stats-header">TARJETAS ROJAS</div>
-              <div class="season-stats-info">00.00</div>
-            </div>
-          </div>
-</div>
 </div>
 
 

@@ -56,7 +56,7 @@ class SoccerPlayerStats {
     fantasyPoints = json.fantasyPoints;
     playedMinutes = json.playedMinutes;
 
-    int _getIntValue(String key) => (json.events.containsKey(key)) ? json.events[key] : 0;
+    int _getIntValue(String key) => (json.statsCount.containsKey(key)) ? json.statsCount[key] : 0;
 
     goles = _getIntValue("GOLES");
     tiros = _getIntValue("TIROS");

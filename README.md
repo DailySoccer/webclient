@@ -1,7 +1,13 @@
 [![Build Status](https://drone.io/github.com/DailySoccer/webclient/status.png)](https://drone.io/github.com/DailySoccer/webclient/latest)
 
-Testing
+Install
 =============
+
+- Of course you need to install Dart. The downloaded package from the web includes both the DartEditor and the DartSDK.
+
+  Add the SDK path to your .zshrc (use zsh and oh-my-zsh, for the love of Dijkstra):
+  
+  PATH=$PATH:$HOME/Documents/Dart/dart-sdk/bin
 
 - Install Node:
 
@@ -34,18 +40,6 @@ The browser is launched automatically by karma. You can access it at http://loca
   If you need to compile the less files for production:
   
   $ webclient > grunt less:production
-   
-
-WebClient
-=========
-
-El cliente puede solicitar datos de un servidor "real" o "simulado". Para configurar esto, en webclient.dart:
-
-bind(ServerRequest, toImplementation: DailySoccerServer)
-
-or
-
-type(ServerRequest, toImplementation: MockDailySoccerServer)
 
 
 Configuring the launches

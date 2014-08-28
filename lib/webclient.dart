@@ -5,7 +5,6 @@ import 'package:angular/angular.dart';
 import 'package:angular/routing/module.dart';
 import 'package:webclient/webclient_router.dart';
 
-import 'package:webclient/mock/mock_server.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/active_contests_service.dart';
@@ -63,7 +62,6 @@ class WebClientApp extends Module {
 
     Binding.printInjectWarning = false;   // needed for https://github.com/angular/angular.dart/issues/1272
 
-    // real: DailySoccerServer / simulation: MockDailySoccerServer
     bind(ServerService, toImplementation: DailySoccerServer);
 
     bind(DateTimeService);

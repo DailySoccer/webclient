@@ -43,8 +43,6 @@
 
   </div>
 
-  <!-- PAGINADOR -->
-  <div class="paginator-wrapper">
-    <div id="paginatorBox_" class="paginator-box"></div>
-  </div>
+  <paginator on-page-change="comp.onPageChange(currentPage, itemsPerPage)" list-length="comp.contestsListFiltered.length"></paginator>
+
 </div>

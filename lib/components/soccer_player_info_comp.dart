@@ -23,7 +23,7 @@ class SoccerPlayerInfoComp {
   String get soccerPlayerData => _soccerPlayerId;
   void set soccerPlayerData(String value) {
     _soccerPlayerId = value;
-    if(value != null){
+    if (value != null) {
       updateSoccerPlayerInfo(value);
     }
   }
@@ -47,7 +47,7 @@ class SoccerPlayerInfoComp {
     };
   }
 
-  updateSoccerPlayerInfo(String soccerPlayerId) {
+  void updateSoccerPlayerInfo(String soccerPlayerId) {
     _soccerPlayerService.refreshSoccerPlayerInfo(soccerPlayerId)
       .then((_) {
         updateSoccerPlayerInfoFromService();
@@ -57,7 +57,7 @@ class SoccerPlayerInfoComp {
       });
   }
 
-  updateSoccerPlayerInfoFromService() {
+  void updateSoccerPlayerInfoFromService() {
     SoccerPlayerInfo soccerPlayer = _soccerPlayerService.soccerPlayerInfo;
     currentInfoData['id'] = _soccerPlayerId;
     currentInfoData['fieldPos'] = soccerPlayer.fieldPos.abrevName;
@@ -133,11 +133,12 @@ class SoccerPlayerInfoComp {
         dayMonth = day[0]+"/"+matchDate[1];
 
         List<String> matchStats = [];
-        if(isGoalkeeper())
+        if (isGoalkeeper()) {
           matchStats.addAll([dayMonth, stat.opponentTeam.shortName, stat.playedMinutes, stat.golesEncajados, stat.paradas, stat.despejes, stat.pases, stat.recuperaciones, stat.perdidasBalon, stat.penaltisDetenidos, stat.faltasCometidas, stat.tarjetasAmarillas, stat.tarjetasRojas]);
-        else
+        }
+        else {
           matchStats.addAll([dayMonth, stat.opponentTeam.shortName, stat.playedMinutes, stat.goles, stat.tiros, stat.pases, stat.asistencias, stat.regates, stat.recuperaciones, stat.perdidasBalon, stat.faltasRecibidas, stat.faltasCometidas, stat.tarjetasAmarillas, stat.tarjetasRojas]);
-
+        }
         /*seasons = [
                     {"año":"2013","value" : [
                                              ["20/01","ATM","120"],
@@ -160,9 +161,9 @@ class SoccerPlayerInfoComp {
               season["value"].add(matchStats);
               tempSeasons.add(season);
             }
-            else
+            else {
               stat["value"].add(matchStats);
-
+            }
           });
           tempSeasons.forEach((stat) {
             seasons.add(stat);
@@ -178,7 +179,7 @@ class SoccerPlayerInfoComp {
       seasons = [];
     }
 
-    if(isGoalkeeper()) {
+    if (isGoalkeeper()) {
       //añadimos las especificas del portero
       medias = [
                 {'nombre' : "MIN" , 'valor': partidosTotales ==  0 ? 0 : sumatorioMinutos / partidosTotales},
@@ -212,8 +213,9 @@ class SoccerPlayerInfoComp {
       ];
     }
     // Añado una última columna en las medias de portero para que cuadre
-    if (medias.length % 2 != 0)
+    if (medias.length % 2 != 0) {
       medias.add({"nombre":"","valor":""});
+    }
   }
 
   void tabChange(String tab) {
@@ -221,7 +223,7 @@ class SoccerPlayerInfoComp {
     allContentTab.forEach((element) => element.classes.remove('active'));
 
     Element contentTab = document.querySelector("#" + tab);
-    if(contentTab != null) {
+    if (contentTab != null) {
       contentTab.classes.add("active");
     }
   }

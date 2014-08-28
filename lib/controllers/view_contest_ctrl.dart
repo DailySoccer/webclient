@@ -33,13 +33,7 @@ class ViewContestCtrl implements DetachAware {
   String whereAmI;
   Contest get contest => _myContestsService.lastContest;
   List<ContestEntry> get contestEntries => (contest != null) ? contest.contestEntries : null;
-
-
-  List<ContestEntry> get contestEntriesOrderByPoints {
-    List<ContestEntry> entries = new List<ContestEntry>.from(contestEntries);
-    entries.sort((entry1, entry2) => entry2.currentLivePoints.compareTo(entry1.currentLivePoints));
-    return entries;
-  }
+  List<ContestEntry> get contestEntriesOrderByPoints => (contest != null) ? contest.contestEntriesOrderByPoints : null;
 
   ViewContestCtrl(RouteProvider routeProvider, this.scrDet, this._myContestsService, this._profileService, this._dateTimeService, this._flashMessage) {
 
@@ -82,14 +76,7 @@ class ViewContestCtrl implements DetachAware {
     return _myContestsService.lastContest.templateContest.findSoccerPlayer(soccerPlayerId);
   }
 
-  int getUserPosition(ContestEntry contestEntry) {
-    List<ContestEntry> contestsEntries = contestEntriesOrderByPoints;
-    for (int i=0; i<contestsEntries.length; i++) {
-      if (contestsEntries[i].contestEntryId == contestEntry.contestEntryId)
-        return i+1;
-    }
-    return -1;
-  }
+  int getUserPosition(ContestEntry contestEntry) => contest.getUserPosition(contestEntry);
 
   int getPercentOfUsersThatOwn(SoccerPlayer soccerPlayer) {
     int numOwners = contestEntries.fold(0, (prev, contestEntry) => contestEntry.contains(soccerPlayer) ? (prev + 1) : prev );

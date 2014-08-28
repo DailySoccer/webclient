@@ -32,6 +32,7 @@ class SoccerPlayerInfoComp {
   Map currentInfoData;
   List partidos  = new List();
   dynamic seasons = [];
+  dynamic tempSeasons = [];
   bool matchesPlayed;
 
   SoccerPlayerInfoComp(this._router, this._soccerPlayerService, this._flashMessage, this.enterContestCtrl) {
@@ -60,7 +61,7 @@ class SoccerPlayerInfoComp {
     SoccerPlayerInfo soccerPlayer = _soccerPlayerService.soccerPlayerInfo;
     currentInfoData['id'] = _soccerPlayerId;
     currentInfoData['fieldPos'] = soccerPlayer.fieldPos.abrevName;
-    currentInfoData['team'] = soccerPlayer.team.name;
+    currentInfoData['team'] = soccerPlayer.team.name.toUpperCase();
     currentInfoData['name'] = soccerPlayer.name.toUpperCase();
     currentInfoData['fantasyPoints'] = soccerPlayer.fantasyPoints;
     currentInfoData['matches'] = soccerPlayer.stats.length;
@@ -79,6 +80,11 @@ class SoccerPlayerInfoComp {
   bool isGoalkeeper() => currentInfoData['fieldPos'] == "POR";
 
   void calculateStadistics(SoccerPlayerInfo soccerPlayer) {
+    List<String> matchDate = [];
+    List<String> day = [];
+    String year;
+    String dayMonth ;
+
     int partidosTotales = soccerPlayer.stats.length;
     int sumatorioMinutos = 0;
     int sumatorioPases = 0;
@@ -121,21 +127,48 @@ class SoccerPlayerInfoComp {
         sumatorioDespejes += stat.despejes;
         sumatorioPenaltisDetenidos += stat.penaltisDetenidos;
 
+        matchDate = stat.startDate.toString().split("-");
+        day = matchDate[2].split(" ");
+        year = matchDate[0];
+        dayMonth = day[0]+"/"+matchDate[1];
 
-        seasons = [
-                    {"año":"2014","value" : [
-                                             ["20/01","ATM","120"],
-                                             ["20/01","BCN","120"]
-                                            ]
-                    },
+        List<String> matchStats = [];
+        if(isGoalkeeper())
+          matchStats.addAll([dayMonth, stat.opponentTeam.shortName, stat.playedMinutes, stat.golesEncajados, stat.paradas, stat.despejes, stat.pases, stat.recuperaciones, stat.perdidasBalon, stat.penaltisDetenidos, stat.faltasCometidas, stat.tarjetasAmarillas, stat.tarjetasRojas]);
+        else
+          matchStats.addAll([dayMonth, stat.opponentTeam.shortName, stat.playedMinutes, stat.goles, stat.tiros, stat.pases, stat.asistencias, stat.regates, stat.recuperaciones, stat.perdidasBalon, stat.faltasRecibidas, stat.faltasCometidas, stat.tarjetasAmarillas, stat.tarjetasRojas]);
+
+        /*seasons = [
                     {"año":"2013","value" : [
-                                             ["20/01","VAL","120"],
-                                             ["20/01","RMD","120"]
+                                             ["20/01","ATM","120"],
+                                             ["21/01","BCN","121"]
                                             ]
                     }
-                   ];
+                   ];*/
 
+        if (seasons.length == 0) {
+          Map season = {};
+          season.addAll({"año":year,"value":[]});
+          season["value"].add(matchStats);
+          seasons.add(season);
+        }
+        else {
+          seasons.forEach((stat) {
+            if (stat["año"] != year) {
+              Map season = {};
+              season.addAll({"año":year,"value":[]});
+              season["value"].add(matchStats);
+              tempSeasons.add(season);
+            }
+            else
+              stat["value"].add(matchStats);
 
+          });
+          tempSeasons.forEach((stat) {
+            seasons.add(stat);
+          });
+        }
+        print(seasons);
       });
 
     // No ha jugado ningún partido

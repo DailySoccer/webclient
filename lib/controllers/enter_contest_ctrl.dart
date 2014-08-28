@@ -91,15 +91,18 @@ class EnterContestCtrl {
     sortListByField("Pos", false);
     // Para que en la versión móvil aparezca la pantalla de lineup
     isSelectingSoccerPlayer = false;
-    if(value == "desktop") {
+    if(value == "desktop" || value == "sm") {
       Element matchesFilter = document.querySelector('.match-teams-filter');
       if(matchesFilter != null) {
         matchesFilter.style.display = "block";
-        tabChange('lineup-tab-content');
       }
     }
-    // Para cerrar el soccer player info una vez que cambiamos a otra resolución
-    closePlayerInfo();
+    else {
+      // hacemos una llamada de jQuery para ocultar la ventana modal
+      js.context.callMethod(r'$', ['#infoContestModal']).callMethod('modal', ['hide']);
+      // Para cerrar el soccer player info una vez que cambiamos a otra resolución
+      closePlayerInfo();
+    }
   }
 
   void onSlotSelected(int slotIndex) {
@@ -425,7 +428,8 @@ class EnterContestCtrl {
     DivElement enterContestWrapper = querySelector('.enter-contest-wrapper');
     enterContestWrapper.style.display = "block";
     DivElement soccerPlayerInfoWrapper = querySelector('.soccer-player-info-wrapper');
-    soccerPlayerInfoWrapper.style.display = "none";
+    if (soccerPlayerInfoWrapper != null)
+      soccerPlayerInfoWrapper.style.display = "none";
   }
 
   // Mostramos la ventana modal con la información de ese torneo, si no es la versión movil.
@@ -472,9 +476,12 @@ class EnterContestCtrl {
       //Añado el jugador
       onSoccerPlayerSelected(selectedSoccerPlayer);
     }
-    // hacemos una llamada de jQuery para ocultar la ventana modal
-    js.context.callMethod(r'$', ['#infoContestModal']).callMethod('modal', ['hide']);
-    closePlayerInfo();
+    if(scrDet.isSmScreen || scrDet.isDesktop) {
+      // hacemos una llamada de jQuery para ocultar la ventana modal
+      js.context.callMethod(r'$', ['#infoContestModal']).callMethod('modal', ['hide']);
+    }
+    else
+      closePlayerInfo();
   }
 
   String getMyTotalSalaryClasses() {

@@ -60,6 +60,7 @@ class SoccerPlayerInfoComp {
     SoccerPlayerInfo soccerPlayer = _soccerPlayerService.soccerPlayerInfo;
     currentInfoData['id'] = _soccerPlayerId;
     currentInfoData['fieldPos'] = soccerPlayer.fieldPos.abrevName;
+    currentInfoData['team'] = soccerPlayer.team.name;
     currentInfoData['name'] = soccerPlayer.name.toUpperCase();
     currentInfoData['fantasyPoints'] = soccerPlayer.fantasyPoints;
     currentInfoData['matches'] = soccerPlayer.stats.length;

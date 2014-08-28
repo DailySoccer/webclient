@@ -11,7 +11,7 @@
     </ul>
 
     <div id="matchTeamsFilterContainer" class="match-teams-filter">
-      <button class="btn btn-default button-filtro-team active" id="match-{{ctrl.ALL_MATCHES}}" ng-click="ctrl.setMatchFilter(ctrl.ALL_MATCHES)">Todos los<br>partidos</button>
+      <button class="btn btn-default button-filtro-team" id="match-{{ctrl.ALL_MATCHES}}" ng-click="ctrl.setMatchFilter(ctrl.ALL_MATCHES)">Todos los<br>partidos</button>
       <button class="btn btn-default button-filtro-team" ng-repeat="match in ctrl.availableMatchEvents" ng-bind-html="match.texto" id="match-{{match.id}}" ng-click="ctrl.setMatchFilter(match.id)"></button>
     </div>
 

@@ -154,7 +154,7 @@ class EnterContestCtrl {
   }
 
   void onSoccerPlayerSelected(var soccerPlayer) {
-    bool wasAdded = true;
+    bool wasAdded = false;
     wasAdded = tryToAddSoccerPlayer(soccerPlayer);
 
     if(wasAdded) {
@@ -285,6 +285,9 @@ class EnterContestCtrl {
   bool availableSoccerPlayer(var soccerPlayer) {
     FieldPos theFieldPos = soccerPlayer["fieldPos"];
     int c = 0;
+    if (lineupSlots.contains(soccerPlayer)) {
+      return false;
+    }
     for ( ; c < lineupSlots.length; ++c) {
       if (lineupSlots[c] == null && FieldPos.LINEUP[c] == theFieldPos.value)
         return true;
@@ -298,7 +301,9 @@ class EnterContestCtrl {
     // Buscamos el primer slot libre para la posicion que ocupa el soccer player
     FieldPos theFieldPos = soccerPlayer["fieldPos"];
     int c = 0;
-
+    if (lineupSlots.contains(soccerPlayer)) {
+      return false;
+    }
     for ( ; c < lineupSlots.length; ++c) {
       if (lineupSlots[c] == null && FieldPos.LINEUP[c] == theFieldPos.value) {
         lineupSlots[c] = soccerPlayer;

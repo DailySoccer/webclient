@@ -7845,39 +7845,6 @@ fieldset[disabled] .contests-list-root .contest-row .column-contest-action .btn.
     background-color: transparent;
   }
 }
-.paginator-wrapper {
-  padding-bottom: 15px;
-}
-.paginator-wrapper .paginator-box {
-  text-align: center;
-  margin: 0 auto;
-}
-.paginator-wrapper .paginator-box ul li a {
-  cursor: pointer;
-  color: #59add5;
-  width: 45px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-.paginator-wrapper .paginator-box .ellipsis a {
-  padding-left: 0;
-  padding-right: 0;
-  width: 20px;
-}
-.paginator-wrapper .paginator-box .active a {
-  border-color: #59add5;
-  background-color: #59add5;
-  color: #ffffff;
-  font-weight: bold;
-}
-.paginator-wrapper .paginator-box .ellipsis a {
-  cursor: default;
-}
-.paginator-wrapper .paginator-box .ellipsis a:hover {
-  background-color: white;
-}
 .contests-table {
   margin-right: auto;
   margin-left: auto;
@@ -14614,6 +14581,39 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button.active {
     float: left;
     width: 29.16666667%;
   }
+}
+.paginator-wrapper {
+  padding-bottom: 15px;
+}
+.paginator-wrapper .paginator-box {
+  text-align: center;
+  margin: 0 auto;
+}
+.paginator-wrapper .paginator-box ul li a {
+  cursor: pointer;
+  color: #59add5;
+  width: 45px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.paginator-wrapper .paginator-box .ellipsis a {
+  padding-left: 0;
+  padding-right: 0;
+  width: 20px;
+}
+.paginator-wrapper .paginator-box .active a {
+  border-color: #59add5;
+  background-color: #59add5;
+  color: #ffffff;
+  font-weight: bold;
+}
+.paginator-wrapper .paginator-box .ellipsis a {
+  cursor: default;
+}
+.paginator-wrapper .paginator-box .ellipsis a:hover {
+  background-color: white;
 }
 /*************************************************
 Si hay que añadir nuevas banderas, ir a la siguiente url

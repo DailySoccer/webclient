@@ -64,7 +64,7 @@ class ContestHeaderComp implements DetachAware{
   }
 
   void countdownDate() {
-    if(_contestInfo != null) {
+    if (_contestInfo != null) {
       NumberFormat nf_day = new NumberFormat("0");
       NumberFormat nf_time = new NumberFormat("00");
       DateTime t = _dateTimeService.now.add(new Duration());
@@ -74,19 +74,21 @@ class ContestHeaderComp implements DetachAware{
       List<SpanElement> textCountdown = document.querySelectorAll(".text-countdown");
       textCountdown.forEach((element) => element.remove());
 
-      if(cd.inSeconds <= 0) {
+      if (cd.inSeconds <= 0) {
         contestHeaderInfo["countdownDate"] = "";
         contestHeaderInfo["startTime"] = "FINALIZADO";
         _count.cancel();
-      } else {
+      }
+      else {
         var days = cd.inDays;
         var hours = nf_time.format(cd.inHours % 24);
         var minutes = nf_time.format(cd.inMinutes % 60);
         var seconds = nf_time.format(cd.inSeconds % 60);
 
-        if(scrDet.isDesktop) {
+        if (scrDet.isDesktop) {
           _msg = "EL DESAFIO COMENZARÁ EN: ";
-        } else {
+        }
+        else {
           _msg = "FALTAN ";
         }
         SpanElement countdownTextSpan = new SpanElement();
@@ -96,10 +98,11 @@ class ContestHeaderComp implements DetachAware{
         countdownText.forEach((element) => element.append(countdownTextSpan));
 
         List<Element> countdownDays = document.querySelectorAll(".time-countdown");
-        if(days > 0) {
+        if (days > 0) {
           contestHeaderInfo["countdownDate"] = nf_day.format(days) + (days > 1 ? " DIAS ": " DIA ") + hours + ":" + minutes + ":" + seconds;
           countdownDays.forEach((element) => element.classes.add("days"));
-        } else {
+        }
+        else {
           contestHeaderInfo["countdownDate"] = hours + ":" + minutes + ":" + seconds;
           countdownDays.forEach((element) => element.classes.remove("days"));
         }
@@ -120,7 +123,7 @@ class ContestHeaderComp implements DetachAware{
     contestHeaderInfo["contestantCount"] = "${_contestInfo.contestEntries.length} de ${_contestInfo.maxEntries} jugadores  - LIM. SAL.: ${_contestInfo.templateContest.salaryCap}";
   }
 
-  void goBackTo(){
+  void goBackTo() {
     switch(mode) {
       case ENTER_CONTEST:
         _router.go("lobby", {});

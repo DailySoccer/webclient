@@ -25,7 +25,7 @@ class ContestInfoComp {
   Contest get contestData => _contestData;
   void set contestData(Contest value) {
     _contestData = value;
-    if(value != null){
+    if (value != null) {
       updateContestInfo(value.contestId);
     }
   }
@@ -88,8 +88,7 @@ class ContestInfoComp {
 
   String getDayOfTheWeek(int weekDay) {
     String retorno = "";
-    switch(weekDay)
-    {
+    switch(weekDay) {
       case DateTime.MONDAY:
         retorno = "LUN.";
       break;
@@ -124,7 +123,7 @@ class ContestInfoComp {
     allContentTab.forEach((element) => element.classes.remove('active'));
 
     Element contentTab = document.querySelector("#" + tab);
-    if(contentTab != null) {
+    if (contentTab != null) {
       contentTab.classes.add("active");
     }
   }

@@ -31,8 +31,9 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
 
   void onShadowRoot(var root) {
 
-    if(_profileService.isLoggedIn)
+    if (_profileService.isLoggedIn) {
       _router.go("lobby", {});
+    }
 
     mainWrapper.classes.clear();
     mainWrapper.classes.add('landing-wrapper');

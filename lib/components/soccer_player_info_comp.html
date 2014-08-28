@@ -1,117 +1,122 @@
-<div class="modal-info-head">
-    <div class="contest-info-header-row">
-
-        <div class="column-name">
-            <div class="inner-content">
-                <span class="title-text">{{soccerPlayerInfo.currentInfoData['description']}}</span>
-                <span class="content-text">{{soccerPlayerInfo.currentInfoData['name']}}</span>
-            </div>
-        </div>
-
-    </div>
-
+<div class="soccer-player-info-header">
+  <div class="actions-header">
+    <div class="text-header">Estadísticas de jugador</div>
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
       <span class="glyphicon glyphicon-remove"></span>
     </button>
+    <div class="button-wrapper">
+      <button class="btn-cancel-soccer-player-info" ng-click="soccerPlayerInfo.enterContestCtrl.closePlayerInfo()">CANCELAR</button>
+    </div>
+    <div class="button-wrapper">
+      <span class="next-match">PRÓXIMO PARTIDO: <strong>R.MADRID</strong> VS. A. MADRID</span>
+      <button class="btn-add-soccer-player-info" ng-click="soccerPlayerInfo.enterContestCtrl.addSoccerPlayerToLineup(soccerPlayerInfo.currentInfoData['id'])">AÑADIR</button>
+    </div>
+  </div>
+  <div class="description-header">
+    <div class="soccer-player-description">
+      <div class="soccer-player-pos-team">
+        <span>{{soccerPlayerInfo.currentInfoData['fieldPos']}}</span> | <span>{{soccerPlayerInfo.currentInfoData['team']}}</span>
+      </div>
+      <div class="soccer-player-name">{{soccerPlayerInfo.currentInfoData['name']}}</div>
+    </div>
+    <div class="soccer-player-info-stats">
+      <div class="soccer-player-fantasy-points"><span>EEP</span><span>{{soccerPlayerInfo.currentInfoData['fantasyPoints']}}</span></div>
+      <div class="soccer-player-matches"><span>PARTIDOS</span><span>{{soccerPlayerInfo.currentInfoData['matches']}}</span></div>
+      <div class="soccer-player-salary"><span>SALARIO</span><span>{{soccerPlayerInfo.currentInfoData['salary']}}</span></div>
+    </div>
+  </div>
 </div>
 
-<div class="modal-content">
-
-    <div class="tabs-background"></div>
-
+<div class="soccer-player-info-content">
     <!-- Nav tabs -->
-    <ul class="info-options" id="modalInfoContestTabs">
-        <li class="active"><a  data-toggle="tab" ng-click="soccerPlayerInfo.tabChange('info')">INFORMACIÓN</a></li>
+    <ul class="soccer-player-info-tabs" role="tablist">
+      <li class="active"><a role="tab" data-toggle="tab" ng-click="soccerPlayerInfo.tabChange('season-info-tab-content')">Datos de Temporada</a></li>
+      <li><a role="tab" data-toggle="tab" ng-click="soccerPlayerInfo.tabChange('match-info-tab-content')">Partido a Partido</a></li>
     </ul>
 
-    <div class="contest-info-content" id="modalInfoContestTabContent">
-        <div class=" tab-content">
-
-            <!-- Tab panes -->
-            <div class="tab-pane active" id="info">
-
-              <div ng-switch="soccerPlayerInfo.currentInfoData['fieldPos'] == 'GOALKEEPER'" >
-              <table class="table table-striped" ng-switch-when="true">
-                  <caption>PARTIDOS</caption>
-                  <thead>
-                  <tr>
-                      <th>DFP</th>
-                      <th>Min.</th>
-                      <th>Goles Encajados</th>
-                      <th>Paradas</th>
-                      <th>Despejes</th>
-                      <th>Pases</th>
-                      <th>Recuperac.</th>
-                      <th>Perdidas Balon</th>
-                      <th>Penaltis Detenidos</th>
-                      <th>Faltas Recibidas</th>
-                      <th>Faltas Cometidas</th>
-                      <th>Tarjetas Amarillas</th>
-                      <th>Tarjetas Rojas</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr ng-repeat="partido in soccerPlayerInfo.partidos">
-                      <td>{{partido.stats.fantasyPoints}}</td>
-                      <td>{{partido.stats.playedMinutes}}</td>
-                      <td>{{partido.stats.golesEncajados}}</td>
-                      <td>{{partido.stats.paradas}}</td>
-                      <td>{{partido.stats.despejes}}</td>
-                      <td>{{partido.stats.pases}}</td>
-                      <td>{{partido.stats.recuperaciones}}</td>
-                      <td>{{partido.stats.perdidasBalon}}</td>
-                      <td>{{partido.stats.penaltisDetenidos}}</td>
-                      <td>{{partido.stats.faltasRecibidas}}</td>
-                      <td>{{partido.stats.faltasCometidas}}</td>
-                      <td>{{partido.stats.tarjetasAmarillas}}</td>
-                      <td>{{partido.stats.tarjetasRojas}}</td>
-                  </tr>
-                  </tbody>
-              </table>
-              <table class="table table-striped" ng-switch-when="false">
-                  <caption>PARTIDOS</caption>
-                  <thead>
-                  <tr>
-                      <th>DFP</th>
-                      <th>Min.</th>
-                      <th>Goles</th>
-                      <th>Tiros</th>
-                      <th>Pases</th>
-                      <th>Asist.</th>
-                      <th>Regates</th>
-                      <th>Recuperac.</th>
-                      <th>Perdidas Balon</th>
-                      <th>Faltas Recibidas</th>
-                      <th>Faltas Cometidas</th>
-                      <th>Tarjetas Amarillas</th>
-                      <th>Tarjetas Rojas</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr ng-repeat="partido in soccerPlayerInfo.partidos">
-                      <td>{{partido.stats.fantasyPoints}}</td>
-                      <td>{{partido.stats.playedMinutes}}</td>
-                      <td>{{partido.stats.goles}}</td>
-                      <td>{{partido.stats.tiros}}</td>
-                      <td>{{partido.stats.pases}}</td>
-                      <td>{{partido.stats.asistencias}}</td>
-                      <td>{{partido.stats.regates}}</td>
-                      <td>{{partido.stats.recuperaciones}}</td>
-                      <td>{{partido.stats.perdidasBalon}}</td>
-                      <td>{{partido.stats.faltasRecibidas}}</td>
-                      <td>{{partido.stats.faltasCometidas}}</td>
-                      <td>{{partido.stats.tarjetasAmarillas}}</td>
-                      <td>{{partido.stats.tarjetasRojas}}</td>
-                  </tr>
-                  </tbody>
-              </table>
-              </div>
-
+    <div class="tabs">
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <!--SEASON-->
+        <div class="tab-pane active" id="season-info-tab-content">
+          <div class="next-match">PRÓXIMO PARTIDO: <strong>R.MADRID</strong> VS. A. MADRID</div>
+          <div class="date-season">15/05 19:00</div>
+          <!-- MEDIAS -->
+          <div class="season-stats">
+            <div class="season-stats-row" ng-repeat="stat in soccerPlayerInfo.medias">
+              <div class="season-stats-header">{{stat['nombre']}}</div>
+              <div class="season-stats-info">{{stat['valor']}}</div>
             </div>
-
+          </div>
         </div>
+        <!--END SEASON-->
+        <!--MATCH-->
+        <div class="tab-pane" id="match-info-tab-content">
+          <div class="match-stats" ng-if="soccerPlayerInfo.matchesPlayed">
+            <!--HEADER-->
+            <div ng-if="soccerPlayerInfo.isGoalkeeper()" class="match-stats-header">
+              <div>&nbsp;</div>
+              <div>DÍA</div>
+              <div>OP</div>
+              <div>MIN</div>
+              <div>GE</div>
+              <div>PA</div>
+              <div>D</div>
+              <div>P</div>
+              <div>RE</div>
+              <div>PB</div>
+              <div>PD</div>
+              <div>FC</div>
+              <div>TA</div>
+              <div>TR</div>
+            </div>
+            <div ng-if="!soccerPlayerInfo.isGoalkeeper()" class="match-stats-header">
+              <div>&nbsp;</div>
+              <div>DÍA</div>
+              <div>OP</div>
+              <div>MIN</div>
+              <div>G</div>
+              <div>T</div>
+              <div>P</div>
+              <div>A</div>
+              <div>R</div>
+              <div>RE</div>
+              <div>E</div>
+              <div>PB</div>
+              <div>FJ</div>
+              <div>TA</div>
+              <div>TR</div>
+            </div>
+            <!--CONTENT-->
+            <div class="match-stats-content">
+                <div class="match-stats-data">
+                  <!-- Los datos con un ng-repeat por año -->
+                  <div ng-repeat="slot in soccerPlayerInfo.seasons">
+                      <div class="match-year">{{slot["año"]}}</div>
+                      <div class="data" ng-repeat="match in slot['value']">
+                        <div ng-repeat="data in match">{{data}}</div>
+                      </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="noMatchesPlayed" ng-if="!soccerPlayerInfo.matchesPlayed">
+              <span>NO HA JUGADO NINGÚN PARTIDO ESTA TEMPORADA</span>
+          </div>
+        </div>
+        <!--END MATCH-->
+      </div>
     </div>
-
+    <!--BUTTONS-->
+    <div class="action-buttons">
+      <div class="button-wrapper">
+        <button class="btn-cancel-soccer-player-info" ng-click="soccerPlayerInfo.enterContestCtrl.closePlayerInfo()">CANCELAR</button>
+      </div>
+      <div class="button-wrapper">
+        <button class="btn-add-soccer-player-info" ng-click="soccerPlayerInfo.enterContestCtrl.addSoccerPlayerToLineup(soccerPlayerInfo.currentInfoData['id'])">AÑADIR</button>
+      </div>
+    </div>
 </div>
-<!-- <div class="modal-footer"></div> -->
+
+
 

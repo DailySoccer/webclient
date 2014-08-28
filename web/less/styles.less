@@ -14,6 +14,7 @@
 @import "users_list_comp.less";
 @import "live_contest_comp.less";
 @import "enter_contest_ctrl.less";
+@import "soccer_player_info_comp.less";
 @import "soccer_players_list_comp.less";
 @import "lineup_selector_comp.less";
 @import "promos_comp.less";
@@ -54,6 +55,13 @@
 	.btn();
 	.button-variant(@btn-default-color; @greyMed; @btn-default-border);
 	box-shadow: 0px 5px 0px rgba(red(@greyMed), green(@greyMed), blue(@greyMed), 0.5);
+}
+
+// Color y borde del boton naranja (no esta definido en el bootstrap)
+.btn-orange {
+	.btn();
+	.button-variant(@btn-default-color; @orange; @btn-default-border);
+	box-shadow: 0px 5px 0px rgba(red(@orange), green(@orange), blue(@orange), 0.5);
 }
 
 // Forzamos a que siempre aparezca la scrollbar vertical para que no haya saltos

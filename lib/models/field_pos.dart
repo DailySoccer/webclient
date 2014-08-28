@@ -16,7 +16,9 @@ class FieldPos {
       'FORWARD': "DEL"
    };
 
-  // Nuestra alineacion por defecto
+  static List<String> SORT_ORDER = ["POR", "DEF", "MED", "DEL"];
+
+    // Nuestra alineacion por defecto
   static List<String> LINEUP = [ "GOALKEEPER", "DEFENSE", "DEFENSE", "DEFENSE", "DEFENSE", "MIDDLE", "MIDDLE", "MIDDLE", "MIDDLE", "FORWARD", "FORWARD" ];
 
   FieldPos(this.value);
@@ -24,6 +26,8 @@ class FieldPos {
   String     value;
   String get fullName  => FIELD_POSITION_FULL_NAMES[value];
   String get abrevName => FIELD_POSITION_ABREV[value];
+
+  int get sortOrder => SORT_ORDER.indexOf(abrevName);
 
   bool operator == (other) {
     if (other is! FieldPos) return false;

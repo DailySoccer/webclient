@@ -24,7 +24,6 @@ class SoccerPlayersListComp {
   List<Map<String, String>> matchesList = [];
   dynamic optionValue;
   dynamic oldOptionValue;
-  String nameFilter;
 
   List<FieldPos> posFilterList = [
     new FieldPos("GOALKEEPER"),
@@ -40,26 +39,22 @@ class SoccerPlayersListComp {
     contest = _contestService.getContestById(routeProvider.route.parameters['contestId']);
     matchesInvolved = contest.templateContest.matchEvents;
 
-    matchesList.add({"id":"-1", "texto":"Todos los partidos"});
+    matchesList.add({"id":enterContestCtrl.ALL_MATCHES, "texto":"Todos los partidos"});
     for (MatchEvent match in matchesInvolved) {
       matchesList.add({"id": match.templateMatchEventId, "texto":match.soccerTeamA.shortName + "-" + match.soccerTeamB.shortName});
     }
-    optionValue = "-1";
+    optionValue = enterContestCtrl.ALL_MATCHES;
   }
 
- void setFilterMatch() {
+  void setFilterMatch() {
     if(optionValue != oldOptionValue) {
       oldOptionValue = optionValue;
       var a = matchesList.where( (match) => match["id"] == optionValue).first;
-      enterContestCtrl.setMatchFilter(optionValue, a["texto"]);
+      enterContestCtrl.setMatchFilter(optionValue);
     }
- }
+  }
 
- void setFilterSoccerName() {
-   enterContestCtrl.setNameFilter(nameFilter);
- }
-
- void printElement(String element) {
+  void printElement(String element) {
     print(element);
   }
 
@@ -87,7 +82,7 @@ class SoccerPlayersListComp {
     return 19;
   }
 
-  @NgCallback("onRowClick")
+  @NgCallback("on-row-click")
   Function onRowClick;
 
   void onRow(String soccerPlayerId) {

@@ -25,6 +25,8 @@ class EnterContestCtrl {
   static const String FILTER_NAME = "FILTER_NAME";
   static const String FILTER_MATCH = "FILTER_MATCH";
 
+  String get ALL_MATCHES => "all";
+
   ScreenDetectorService scrDet;
 
   Contest contest;
@@ -39,6 +41,8 @@ class EnterContestCtrl {
 
   int availableSalary;
 
+  String nameFilter;
+
   EnterContestCtrl(RouteProvider routeProvider, this._router, this.scrDet, this._profileService, this._contestService, this._flashMessage) {
 
     // Creamos los slots iniciales, todos vacios
@@ -52,7 +56,10 @@ class EnterContestCtrl {
     initAllSoccerPlayers();
     availableSoccerPlayers = new List<dynamic>.from(_allSoccerPlayers);
 
-    //Saldo disponible
+    // Cuando se inicializa la lista de jugadores, esta se ordena por posicion
+    sortListByField('Pos', false);
+
+    // Saldo disponible
     availableSalary = contest.templateContest.salaryCap;
 
     //Nos subscribimos al evento de cambio de tamañano de ventana
@@ -60,12 +67,11 @@ class EnterContestCtrl {
   }
 
   void tabChange(String tab) {
-    List<dynamic> allContentTab = document.querySelectorAll(".tab-pane");
+    List<dynamic> allContentTab = document.querySelectorAll(".enter-contest-wrapper .tab-pane");
     allContentTab.forEach((element) => element.classes.remove('active'));
 
     Element contentTab = document.querySelector("#" + tab);
     contentTab.classes.add("active");
-
 
     Element matchesFilter = document.querySelector('.match-teams-filter');
     if(tab == "contest-info-tab-content"){
@@ -79,12 +85,23 @@ class EnterContestCtrl {
   }
 
   void onScreenWidthChange(String value) {
-    if(value == "desktop") {
+    // Resetamos todos los filtros
+    removeAllFilters();
+    // Cuando se inicializa la lista de jugadores, esta se ordena por posicion
+    sortListByField("Pos", false);
+    // Para que en la versión móvil aparezca la pantalla de lineup
+    isSelectingSoccerPlayer = false;
+    if(value == "desktop" || value == "sm") {
       Element matchesFilter = document.querySelector('.match-teams-filter');
       if(matchesFilter != null) {
         matchesFilter.style.display = "block";
-        tabChange('lineup-tab-content');
       }
+    }
+    else {
+      // hacemos una llamada de jQuery para ocultar la ventana modal
+      js.context.callMethod(r'$', ['#infoContestModal']).callMethod('modal', ['hide']);
+      // Para cerrar el soccer player info una vez que cambiamos a otra resolución
+      closePlayerInfo();
     }
   }
 
@@ -93,7 +110,7 @@ class EnterContestCtrl {
     _selectedLineupPosIndex = slotIndex;
 
     if (lineupSlots[slotIndex] != null) {
-      //Al borrar el jugador seleccionado en el lineup, sumamos su salario al total
+      // Al borrar el jugador seleccionado en el lineup, sumamos su salario al total
       calculateAvailableSalary(-lineupSlots[slotIndex]["salary"]);
 
       isSelectingSoccerPlayer = false;
@@ -101,15 +118,16 @@ class EnterContestCtrl {
       // Lo quitamos del slot
       lineupSlots[slotIndex] = null;
 
-      // Reseteamos el filtro para volver a mostrarlo entre los disponibles
-      setFieldPosFilter(null);
+      // Refrescamos los filtros para volver a mostrarlo entre los disponibles
+      _refreshFilter();
 
-      //Quitamos la modal de números rojos si no hay salario disponible
+      // Quitamos la modal de números rojos si no hay salario disponible
       if(availableSalary >= 0) {
         alertDismiss();
       }
 
-    } else {
+    }
+    else {
       isSelectingSoccerPlayer = true;
       setFieldPosFilter(new FieldPos(FieldPos.LINEUP[slotIndex]));
     }
@@ -122,7 +140,8 @@ class EnterContestCtrl {
       element.text = availableSalaryText + "€";
       if(int.parse(availableSalaryText) < 0) {
         element.classes.add("red-numbers");
-      } else {
+      }
+      else {
         element.classes.remove("red-numbers");
       }
     });
@@ -130,26 +149,20 @@ class EnterContestCtrl {
 
   void calculateAvailableSalary(int soccerPrice) {
     availableSalary = availableSalary - soccerPrice;
-    //Pintamos en la caja de texto el total
+    // Pintamos en la caja de texto el total
     updateTextAvailableSalary(availableSalary.toString());
   }
 
   void onSoccerPlayerSelected(var soccerPlayer) {
+    bool wasAdded = true;
+    wasAdded = tryToAddSoccerPlayer(soccerPlayer);
 
-    if (isSelectingSoccerPlayer) {
+    if(wasAdded) {
+      // Comprobar cuantos jugadores me quedan por añadir de esa posicion
+      //isSelectingSoccerPlayer = availableSoccerPlayer(soccerPlayer);
       isSelectingSoccerPlayer = false;
-      lineupSlots[_selectedLineupPosIndex] = soccerPlayer;
-      //setFieldPosFilter(null);
-
+      availableSoccerPlayers.remove(soccerPlayer);
       calculateAvailableSalary(soccerPlayer["salary"]);
-    } else {
-      bool wasAdded = tryToAddSoccerPlayer(soccerPlayer);
-
-      if(wasAdded) {
-        calculateAvailableSalary(soccerPlayer["salary"]);
-      }
-
-      if (wasAdded) availableSoccerPlayers.remove(soccerPlayer);
     }
   }
 
@@ -164,39 +177,37 @@ class EnterContestCtrl {
   }
 
   void setFieldPosFilter(FieldPos filter) {
-    if(filter == null) {
+    if (filter == null) {
       removeFilter(FILTER_POSITION);
       setPosFilterClass('TODOS');
-      return;
     }
-    addFilter(FILTER_POSITION, filter.abrevName);
-    setPosFilterClass(filter.abrevName);
+    else {
+      addFilter(FILTER_POSITION, filter.abrevName);
+      setPosFilterClass(filter.abrevName);
+    }
   }
 
-  void setNameFilter(String filter) {
-    addFilter(FILTER_NAME, filter);
+  void refreshNameFilter() {
+    addFilter(FILTER_NAME, nameFilter);
   }
 
-  void setMatchFilterClass(String matchText) {
-
+  void setMatchFilterClass(String buttonId) {
     List<ButtonElement> buttonsFilter = document.querySelectorAll(".button-filtro-team");
     buttonsFilter.forEach((element) {
       element.classes.remove('active');
-      if(element.text.contains(matchText)) {
-        element.classes.add("active");
-      }
     });
+    List<ButtonElement> button = querySelectorAll("#match-$buttonId");
+    button.forEach((element) => element.classes.add("active"));
   }
-  void setMatchFilter(String matchId, String matchText) {
-      if(matchId == "-1") {
-          removeFilter(FILTER_MATCH);
-          setMatchFilterClass("Todos");
-          return;
-      }
-      addFilter(FILTER_MATCH, matchId);
-      var firstWord = matchText.split('<br>')[0];
-      setMatchFilterClass(firstWord);
+
+  void setMatchFilter(String matchId) {
+    setMatchFilterClass(matchId);
+    if(matchId == ALL_MATCHES) {
+        removeFilter(FILTER_MATCH);
+        return;
     }
+    addFilter(FILTER_MATCH, matchId);
+  }
 
   void removeFilter(String filterName) {
     _filterList.remove(filterName);
@@ -204,32 +215,16 @@ class EnterContestCtrl {
   }
 
   void addFilter(String key, String valor) {
-    //Si existew esta clave, la borramos
-    if(_filterList.containsKey(key)) {
-      _filterList.remove(key);
-    }
-    //Como no se actualiza en el componente lista al modificar los valores... hay que crear siempre la lista 'filterListClone 'de cero:
-    //1-Creamos un mapa nuevo
-    Map<String, String> _filterListClone = {};
-    //2- El mapa nuevo lo iniciamos con los valores de filterList para que no sea una referencia
-    _filterListClone.addAll(_filterList);
-    //3-Creamos el nuevo filtro...
-    Map<String, String> tmpMap = { key: valor };
-    //... y lo añadimos a la lista temporal que tendrá los valores anteriores + este nuevo
-    _filterListClone.addAll(tmpMap);
-    //4-Por ultimo igualamos el filterList con el temporal que hemos construidos.
-    _filterList = _filterListClone;
-
-    //Refrescsamos los filtros
+    _filterList[key] = valor;
     _refreshFilter();
   }
 
   void _refreshFilter() {
-    if (_filterList == null)
+    if (_filterList.isEmpty && availableSoccerPlayers.length == _allSoccerPlayers.length)
       return;
 
-    //Partimos siempre de la lista original de todos los players
-    availableSoccerPlayers = _allSoccerPlayers;
+    // Partimos siempre de la lista original de todos los players menos los seleccionados
+    availableSoccerPlayers = _allSoccerPlayers.where( (soccerPlayer) => !lineupSlots.contains(soccerPlayer)).toList();
 
     //Recorremos la lista de filtros
     _filterList.forEach( (String clave, String valor )  {
@@ -247,53 +242,54 @@ class EnterContestCtrl {
         break;
       }
     });
+    _refreshOrder();
   }
 
-  void shortListByField(String fieldName) {
-    if(fieldName != _currentField) {
-      _currentDir = 0;
-      _currentField = fieldName;
+  void sortListByField(String fieldName, [bool invert = true]) {
+    if (fieldName != _sortField) {
+      _sortDir = false;
+      _sortField = fieldName;
     }
-    else {
-      _currentDir++;
-      if(_currentDir >= _shortDir.length) {
-        _currentDir = 0;
-      }
+    else if (invert) {
+      _sortDir = !_sortDir;
     }
-    _shortBy = fieldName + "_" + _shortDir[_currentDir];
-
     _refreshOrder();
   }
 
   void _refreshOrder() {
-    if(_shortBy == null || _shortBy.isEmpty) {
-      return;
-    }
-    List<String> params = _shortBy.split("_");
-
-    switch(params[0])
+    switch(_sortField)
       {
         case "Pos":
-          availableSoccerPlayers.sort(( player1, player2) => (params[1] == "asc") ? player1["fieldPos"].abrevName.compareTo(player2["fieldPos"].abrevName):
-                                                                                    player2["fieldPos"].abrevName.compareTo(player1["fieldPos"].abrevName) );
+          availableSoccerPlayers.sort((player1, player2) => _sortDir? player2["fieldPos"].sortOrder - player1["fieldPos"].sortOrder :
+                                                                      player1["fieldPos"].sortOrder - player2["fieldPos"].sortOrder);
           break;
         case "Name":
-          availableSoccerPlayers.sort(( soccerPlayer1, soccerPlayer2) => (params[1] == "asc") ? soccerPlayer1["fullName"].compareTo(soccerPlayer2["fullName"]):
-                                                                                                soccerPlayer2["fullName"].compareTo(soccerPlayer1["fullName"]) );
+          availableSoccerPlayers.sort((player1, player2) => _sortDir? player2["fullName"].compareTo(player1["fullName"]) :
+                                                                      player1["fullName"].compareTo(player2["fullName"]));
           break;
         case "DFP":
-          availableSoccerPlayers.sort(( soccerPlayer1, soccerPlayer2) => (params[1] == "asc") ? soccerPlayer1["fantasyPoints"].compareTo(soccerPlayer2["fantasyPoints"]):
-                                                                                                soccerPlayer2["fantasyPoints"].compareTo(soccerPlayer1["fantasyPoints"]) );
+          availableSoccerPlayers.sort((player1, player2) => _sortDir? player2["fantasyPoints"].compareTo(player1["fantasyPoints"]) :
+                                                                      player1["fantasyPoints"].compareTo(player2["fantasyPoints"]));
           break;
         case "Played":
-          availableSoccerPlayers.sort(( soccerPlayer1, soccerPlayer2) => (params[1] == "asc") ? soccerPlayer1["playedMatches"].compareTo(soccerPlayer2["playedMatches"]):
-                                                                                                soccerPlayer2["playedMatches"].compareTo(soccerPlayer1["playedMatches"]) );
+          availableSoccerPlayers.sort((player1, player2) => _sortDir? player2["playedMatches"].compareTo(player1["playedMatches"]) :
+                                                                      player1["playedMatches"].compareTo(player2["playedMatches"]));
           break;
         case "Salary":
-          availableSoccerPlayers.sort(( soccerPlayer1, soccerPlayer2) => (params[1] == "asc") ? soccerPlayer1["salary"].compareTo(soccerPlayer2["salary"]):
-                                                                                                soccerPlayer2["salary"].compareTo(soccerPlayer1["salary"]) );
+          availableSoccerPlayers.sort((player1, player2) => _sortDir? player2["salary"].compareTo(player1["salary"]) :
+                                                                      player1["salary"].compareTo(player2["salary"]));
           break;
       }
+  }
+
+  bool availableSoccerPlayer(var soccerPlayer) {
+    FieldPos theFieldPos = soccerPlayer["fieldPos"];
+    int c = 0;
+    for ( ; c < lineupSlots.length; ++c) {
+      if (lineupSlots[c] == null && FieldPos.LINEUP[c] == theFieldPos.value)
+        return true;
+    }
+    return false;
   }
 
   // Añade un futbolista a nuestro lineup si hay algun slot libre de su misma fieldPos. Retorna false si no pudo añadir
@@ -357,8 +353,7 @@ class EnterContestCtrl {
   }
 
   void alertDismiss() {
-    List<DivElement> alerta = querySelectorAll(".alert-red-numbers");
-    alerta.forEach((element) => element.classes.remove('active'));
+    (querySelector(".alert-red-numbers") as DivElement).classes.remove('active');
   }
 
   void createFantasyTeam() {
@@ -369,8 +364,7 @@ class EnterContestCtrl {
     }
 
     if (availableSalary < 0) {
-      List<DivElement> alerta = querySelectorAll(".alert-red-numbers");
-      alerta.forEach((element) => element.classes.add('active'));
+      (querySelector(".alert-red-numbers") as DivElement).classes.add('active');
       return;
     }
 
@@ -394,27 +388,26 @@ class EnterContestCtrl {
 
   void removeAllFilters() {
     setPosFilterClass('TODOS');
-    setMatchFilterClass('Todos los partidos');
-    List<InputElement> nameInput = querySelectorAll(".name-player-input-filter");
-    nameInput.forEach((element) => element.value = "");
+    setMatchFilterClass(ALL_MATCHES);
+    (querySelector(".name-player-input-filter") as InputElement).value = "";
     _filterList={};
     _refreshFilter();
   }
 
   void deleteFantasyTeam() {
-    int i = 0;
-    for ( ; i < lineupSlots.length; ++i) {
+    for (int i = 0; i < lineupSlots.length; ++i) {
       lineupSlots[i] = null;
     }
-    //Reseteamos la lista para que aparezcan todos los jugadores borrados otra vez en la lista de disponibles
-    initAllSoccerPlayers();
+    // Reseteamos la lista para que aparezcan todos los jugadores borrados otra vez en la lista de disponibles
     availableSoccerPlayers = new List<dynamic>.from(_allSoccerPlayers);
-    //Reseteamos el salario disponible
+    // Reseteamos el salario disponible
     availableSalary = contest.templateContest.salaryCap;
     updateTextAvailableSalary(availableSalary.toString());
-    //Resetamos todos los filtros
+    // Resetamos todos los filtros
     removeAllFilters();
-    //Quito la modal de alerta de números rojos
+    // Cuando se inicializa la lista de jugadores, esta se ordena por posicion
+    sortListByField("Pos", false);
+    // Quito la modal de alerta de números rojos
     alertDismiss();
   }
 
@@ -431,23 +424,77 @@ class EnterContestCtrl {
     isSelectingSoccerPlayer = false;
   }
 
-  // Mostramos la ventana modal con la información de ese torneo, si no es la versión movil.
-  void onRowClick(String soccerPlayerId) {
-    selectedSoccerPlayerId = soccerPlayerId;
-
-    // Esto soluciona el bug por el que no se muestra la ventana modal en Firefox;
-    var modal = querySelector('#infoContestModal');
-    modal.style.display = "block";
-
-    // Con esto llamamos a funciones de jQuery
-    js.context.callMethod(r'$', ['#infoContestModal'])
-      .callMethod('modal');
+  void closePlayerInfo() {
+    DivElement enterContestWrapper = querySelector('.enter-contest-wrapper');
+    enterContestWrapper.style.display = "block";
+    DivElement soccerPlayerInfoWrapper = querySelector('.soccer-player-info-wrapper');
+    if (soccerPlayerInfoWrapper != null)
+      soccerPlayerInfoWrapper.style.display = "none";
   }
 
-  var _allSoccerPlayers = new List();
-  List<String> _shortDir = ["asc", "desc"];
-  int _currentDir = 0;
-  String _currentField = "";
+  // Mostramos la ventana modal con la información de ese torneo, si no es la versión movil.
+  void onRowClick(String soccerPlayerId) {
+    // Permitimos añadir el juador solo en el caso de que exista hueco en el lineup (disabilitamos el botón de añadir)
+    var selectedSoccerPlayer = availableSoccerPlayers.firstWhere(
+            (soccerPlayer) => soccerPlayer["id"] == soccerPlayerId,
+            orElse: () => null);
+    if(selectedSoccerPlayer != null) {
+      List<ButtonElement> btnAdd = querySelectorAll('.btn-add-soccer-player-info');
+      if (availableSoccerPlayer(selectedSoccerPlayer))
+        btnAdd.forEach((element) => element.disabled = false);
+      else
+        btnAdd.forEach((element) => element.disabled = true);
+    }
+
+    selectedSoccerPlayerId = soccerPlayerId;
+
+    // Version Small or Desktop => sacamos la modal
+    if(scrDet.isSmScreen || scrDet.isDesktop) {
+
+      // Esto soluciona el bug por el que no se muestra la ventana modal en Firefox;
+      var modal = querySelector('#infoContestModal');
+      modal.style.display = "block";
+
+      // Con esto llamamos a funciones de jQuery
+      js.context.callMethod(r'$', ['#infoContestModal'])
+        .callMethod('modal');
+
+    }
+    else { // Resto de versiones => mostramos el componente soccer_player_info_comp
+      DivElement enterContestWrapper = querySelector('.enter-contest-wrapper');
+      enterContestWrapper.style.display = "none";
+      DivElement soccerPlayerInfoWrapper = querySelector('.soccer-player-info-wrapper');
+      soccerPlayerInfoWrapper.style.display = "block";
+    }
+  }
+
+  void addSoccerPlayerToLineup(String soccerPlayerId) {
+    var selectedSoccerPlayer = availableSoccerPlayers.firstWhere(
+        (soccerPlayer) => soccerPlayer["id"] == soccerPlayerId,
+        orElse: () => null);
+    if(selectedSoccerPlayer != null) {
+      //Añado el jugador
+      onSoccerPlayerSelected(selectedSoccerPlayer);
+    }
+    if(scrDet.isSmScreen || scrDet.isDesktop) {
+      // hacemos una llamada de jQuery para ocultar la ventana modal
+      js.context.callMethod(r'$', ['#infoContestModal']).callMethod('modal', ['hide']);
+    }
+    else
+      closePlayerInfo();
+  }
+
+  String getMyTotalSalaryClasses() {
+    String clases = "total-salary-money";
+    if(availableSalary < 0)
+      clases = "total-salary-money red-numbers";
+
+    return clases;
+  }
+
+  List<dynamic> _allSoccerPlayers = new List();
+  bool _sortDir = false;
+  String _sortField = "";
   int _selectedLineupPosIndex = 0;
   Router _router;
   ActiveContestsService _contestService;
@@ -456,8 +503,5 @@ class EnterContestCtrl {
   DateFormat _timeDisplayFormat= new DateFormat("E, HH:mm", "es_ES");
   // Lista de filtros a aplicar
   Map<String,String> _filterList = {};
-  // Ordenes
-  String _shortBy;
-
   var _streamListener;
 }

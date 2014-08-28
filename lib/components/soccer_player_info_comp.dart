@@ -3,7 +3,6 @@ library soccer_player_info_comp;
 import 'package:angular/angular.dart';
 import 'dart:html';
 import 'package:webclient/models/soccer_player_info.dart';
-import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/services/soccer_player_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/controllers/enter_contest_ctrl.dart';
@@ -33,6 +32,7 @@ class SoccerPlayerInfoComp {
   Map currentInfoData;
   List partidos  = new List();
   dynamic seasons = [];
+  bool matchesPlayed;
 
   SoccerPlayerInfoComp(this._router, this._soccerPlayerService, this._flashMessage, this.enterContestCtrl) {
     currentInfoData = {
@@ -66,21 +66,18 @@ class SoccerPlayerInfoComp {
     currentInfoData['salary'] = soccerPlayer.salary;
 
     partidos.clear();
-
     for (SoccerPlayerStats stats in _soccerPlayerService.soccerPlayerInfo.stats){
       partidos.add({
         'stats' : stats
       });
     }
-
-    calculateAverage(soccerPlayer);
-
+    // Calculo de estadisticas de jugador
+    calculateStadistics(soccerPlayer);
   }
 
   bool isGoalkeeper() => currentInfoData['fieldPos'] == "POR";
 
-  void calculateAverage(SoccerPlayerInfo soccerPlayer) {
-
+  void calculateStadistics(SoccerPlayerInfo soccerPlayer) {
     int partidosTotales = soccerPlayer.stats.length;
     int sumatorioMinutos = 0;
     int sumatorioPases = 0;
@@ -101,9 +98,9 @@ class SoccerPlayerInfoComp {
     int sumatorioRegates = 0;
     int sumatorioFaltasRecibidas = 0;
 
-
     // Si ha jugado partidos
     if (partidosTotales != 0) {
+      matchesPlayed = true;
       soccerPlayer.stats.forEach((stat) {
         // Sumatorios para las medias
         sumatorioMinutos += stat.playedMinutes;
@@ -123,8 +120,6 @@ class SoccerPlayerInfoComp {
         sumatorioDespejes += stat.despejes;
         sumatorioPenaltisDetenidos += stat.penaltisDetenidos;
 
-        //print(stat.startDate);
-
 
         seasons = [
                     {"año":"2014","value" : [
@@ -142,12 +137,12 @@ class SoccerPlayerInfoComp {
 
       });
 
-    } else {
-
+    // No ha jugado ningún partido
     }
-
-    //print(seasons);
-
+    else {
+      matchesPlayed = false;
+      seasons = [];
+    }
 
     if(isGoalkeeper()) {
       //añadimos las especificas del portero
@@ -182,10 +177,9 @@ class SoccerPlayerInfoComp {
                 {'nombre' : "TR" , 'valor': partidosTotales ==  0 ? 0 : sumatorioTarjetasRojas / partidosTotales}
       ];
     }
-
+    // Añado una última columna en las medias de portero para que cuadre
     if (medias.length % 2 != 0)
       medias.add({"nombre":"","valor":""});
-
   }
 
   void tabChange(String tab) {
@@ -203,5 +197,4 @@ class SoccerPlayerInfoComp {
   FlashMessagesService _flashMessage;
 
   String _soccerPlayerId;
-
 }

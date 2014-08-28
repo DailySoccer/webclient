@@ -52,7 +52,7 @@
         <!--END SEASON-->
         <!--MATCH-->
         <div class="tab-pane" id="match-info-tab-content">
-          <div class="match-stats">
+          <div class="match-stats" ng-if="soccerPlayerInfo.matchesPlayed">
             <!--HEADER-->
             <div ng-if="soccerPlayerInfo.isGoalkeeper()" class="match-stats-header">
               <div>&nbsp;</div>
@@ -99,6 +99,9 @@
                   </div>
                 </div>
             </div>
+          </div>
+          <div class="noMatchesPlayed" ng-if="!soccerPlayerInfo.matchesPlayed">
+              <span>NO HA JUGADO NINGÚN PARTIDO ESTA TEMPORADA</span>
           </div>
         </div>
         <!--END MATCH-->

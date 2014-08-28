@@ -357,14 +357,14 @@ class EnterContestCtrl {
   }
 
   void createFantasyTeam() {
-    // TODO: Se tendría que redireccionar a la pantalla de hacer "Login"?
-    if (!_profileService.isLoggedIn) {
-      _router.go('login', {});
+    if (availableSalary < 0) {
+      (querySelector(".alert-red-numbers") as DivElement).classes.add('active');
       return;
     }
 
-    if (availableSalary < 0) {
-      (querySelector(".alert-red-numbers") as DivElement).classes.add('active');
+    // TODO: Se tendría que redireccionar a la pantalla de hacer "Login"?
+    if (!_profileService.isLoggedIn) {
+      _router.go('login', {});
       return;
     }
 

@@ -73,6 +73,9 @@ class SoccerPlayerInfoComp {
         'stats' : stats
       });
     }
+    // Limpiamos las estadísticas partido a partido
+    seasons.clear();
+    tempSeasons.clear();
     // Calculo de estadisticas de jugador
     calculateStadistics(soccerPlayer);
   }
@@ -108,7 +111,7 @@ class SoccerPlayerInfoComp {
     // Si ha jugado partidos
     if (partidosTotales != 0) {
       matchesPlayed = true;
-      soccerPlayer.stats.forEach((stat) {
+      soccerPlayer.stats.reversed.forEach((stat) {
         // Sumatorios para las medias
         sumatorioMinutos += stat.playedMinutes;
         sumatorioGoles += stat.goles;
@@ -139,20 +142,14 @@ class SoccerPlayerInfoComp {
         else {
           matchStats.addAll([dayMonth, stat.opponentTeam.shortName, stat.playedMinutes, stat.goles, stat.tiros, stat.pases, stat.asistencias, stat.regates, stat.recuperaciones, stat.perdidasBalon, stat.faltasRecibidas, stat.faltasCometidas, stat.tarjetasAmarillas, stat.tarjetasRojas]);
         }
-        /*seasons = [
-                    {"año":"2013","value" : [
-                                             ["20/01","ATM","120"],
-                                             ["21/01","BCN","121"]
-                                            ]
-                    }
-                   ];*/
-
+        // Si no tenemos creadas las estadísticas partido a partido
         if (seasons.length == 0) {
           Map season = {};
           season.addAll({"año":year,"value":[]});
           season["value"].add(matchStats);
           seasons.add(season);
         }
+        // Vamos completanto las estadísticas partido a partido
         else {
           seasons.forEach((stat) {
             if (stat["año"] != year) {
@@ -169,7 +166,6 @@ class SoccerPlayerInfoComp {
             seasons.add(stat);
           });
         }
-        print(seasons);
       });
 
     // No ha jugado ningún partido

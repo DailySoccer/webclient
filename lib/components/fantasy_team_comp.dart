@@ -3,7 +3,6 @@ library fantasy_team_comp;
 import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:webclient/models/contest_entry.dart';
-import 'dart:js' as js;
 import 'package:webclient/controllers/view_contest_ctrl.dart';
 
 @Component(selector: 'fantasy-team',

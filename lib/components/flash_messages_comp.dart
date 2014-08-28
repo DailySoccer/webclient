@@ -1,7 +1,5 @@
 library flash_message_comp;
 
-import 'dart:html';
-import 'dart:async';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 

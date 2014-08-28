@@ -1,6 +1,5 @@
 library soccer_players_list_comp;
 
-import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/controllers/enter_contest_ctrl.dart';

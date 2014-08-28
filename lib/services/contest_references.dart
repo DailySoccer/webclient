@@ -6,7 +6,6 @@ import "package:webclient/models/user.dart";
 import "package:webclient/models/contest_entry.dart";
 import "package:webclient/models/contest.dart";
 import "package:webclient/models/template_contest.dart";
-import "package:webclient/models/contest.dart";
 import "package:webclient/models/match_event.dart";
 import "package:webclient/models/soccer_team.dart";
 import "package:webclient/models/soccer_player.dart";

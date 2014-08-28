@@ -7,6 +7,7 @@ import 'package:webclient/services/contest_references.dart';
 
 class SoccerPlayerInfo {
   String name;
+  SoccerTeam team;
   FieldPos fieldPos;
   int    fantasyPoints;
   int    salary;
@@ -15,6 +16,7 @@ class SoccerPlayerInfo {
 
   SoccerPlayerInfo.fromJsonObject(JsonObject json, ContestReferences references) {
     name = json.name;
+    team = references.getSoccerTeamById(json.templateTeamId);
     fieldPos = new FieldPos(json.fieldPos);
     fantasyPoints = json.fantasyPoints;
     salary = json.salary;
@@ -28,7 +30,7 @@ class SoccerPlayerInfo {
 
 class SoccerPlayerStats {
   DateTime startDate;
-  SoccerTeam soccerTeam;
+  SoccerTeam opponentTeam;
 
   int fantasyPoints;
   int playedMinutes;
@@ -51,7 +53,7 @@ class SoccerPlayerStats {
 
   SoccerPlayerStats.fromJsonObject(JsonObject json, ContestReferences references) {
     startDate = json.containsKey("startDate") ? new DateTime.fromMillisecondsSinceEpoch(json.startDate, isUtc: true) : new DateTime.now();
-    soccerTeam = json.containsKey("templateSoccerTeamId") ? references.getSoccerTeamById(json.templateSoccerTeamId) : "???";
+    opponentTeam = json.containsKey("opponentTeamId") ? references.getSoccerTeamById(json.opponentTeamId) : "???";
 
     fantasyPoints = json.fantasyPoints;
     playedMinutes = json.playedMinutes;

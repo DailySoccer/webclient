@@ -57,7 +57,7 @@ class FantasyTeamComp implements ShadowRootAware {
     String get userPosition => (_contestEntry != null) ? _viewContestCtrl.getUserPosition(_contestEntry).toString() : "-";
     String get userNickname => (_contestEntry != null) ? _contestEntry.user.nickName : "";
     String get userScore => (_contestEntry != null) ? _contestEntry.currentLivePoints.toString() : "0";
-    String get remainingTime => (_contestEntry != null) ? "${_contestEntry.timeLeft}" : "-";
+    String get remainingTime => (_contestEntry != null) ? "${_contestEntry.timeLeft} min." : "-";
 
     dynamic get scrDet => _viewContestCtrl.scrDet;
 

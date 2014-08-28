@@ -27,8 +27,7 @@ class ContestEntry {
     for (SoccerPlayer soccerPlayer in soccers) {
       matchEvents.add(soccerPlayer.team.matchEvent);
     }
-    // Calcular cuántas "media partes" quedan...
-    return matchEvents.fold(0, (prev, matchEvent) => prev + matchEvent.halfTimesLeft);
+    return matchEvents.fold(0, (prev, matchEvent) => prev + matchEvent.minutesLeft);
   }
 
   bool contains(SoccerPlayer soccerPlayer) => soccers.any( (elem) => elem.templateSoccerPlayerId == soccerPlayer.templateSoccerPlayerId );

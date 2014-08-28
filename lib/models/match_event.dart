@@ -19,6 +19,9 @@ class MatchEvent {
   MatchEvent.referenceInit(this.templateMatchEventId);
 
   bool get isStarted => period != "PRE_GAME";
+  bool get isFirstHalf => period == "FIRST_HALF";
+  bool get isSecondHalf => period == "SECOND_HALF";
+  bool get isFinished => period == "POST_GAME";
 
   int get halfTimesLeft {
     int left = 2;
@@ -27,6 +30,30 @@ class MatchEvent {
       case "POST_GAME":   left = 0; break;
     }
     return left;
+  }
+
+  int get minutesLeft {
+    const int TOTAL_TIEMPO_PARTIDO = 90;
+    const int TIEMPO_MITAD_PARTIDO = 45;
+
+    int minutes = 0;
+    if (isStarted) {
+      if (isFirstHalf) {
+        // Los minutos no pueden superar el tiempo asignado a la primera parte (45)
+        //   por lo que al superarse dicho tiempo, devolvemos el tiempo restante de la segunda parte (45)
+        minutes += (minutesPlayed <= 45) ? (TOTAL_TIEMPO_PARTIDO - minutesPlayed) : TIEMPO_MITAD_PARTIDO;
+      }
+      else if (isSecondHalf) {
+        // Cuando los minutos superan al tiempo asignado a un partido, devolvemos un "tiempo extra" fijo de 1 minuto
+        // que permanecerá tanto tiempo como se prolongue el partido
+        minutes += (minutesPlayed <= TOTAL_TIEMPO_PARTIDO) ? (TOTAL_TIEMPO_PARTIDO - minutesPlayed) : 1;
+      }
+    }
+    else {
+      // Falta jugar todo el partido
+      minutes += TOTAL_TIEMPO_PARTIDO;
+    }
+    return minutes;
   }
 
   factory MatchEvent.fromJsonObject(JsonObject json, ContestReferences references) {

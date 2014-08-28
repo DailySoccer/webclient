@@ -52,7 +52,7 @@ class UsersListComp {
           "id": contestEntry.user.userId,
           "contestEntry" : contestEntry,
           "name": contestEntry.user.fullName,
-          "remainingTime": contestEntry.timeLeft,
+          "remainingTime": "${contestEntry.timeLeft} min.",
           "score": contestEntry.currentLivePoints
         });
       }

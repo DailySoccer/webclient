@@ -18,7 +18,7 @@ class FantasyTeamComp implements ShadowRootAware {
     @NgOneWay("contest-entry")
     set contestEntry(ContestEntry value) {
       _contestEntry = value;
-      if(value != null)
+      if (value != null)
         _refreshTeam();
     }
 
@@ -159,9 +159,9 @@ class FantasyTeamComp implements ShadowRootAware {
 
     String restoreStatisticsCss(String id) {
       String retorno = "";
-      if(collapsables.isNotEmpty) {
+      if (collapsables.isNotEmpty) {
         Map css = collapsables[id];
-        if(css != null){
+        if (css != null){
           if (css["classes"] != null) {
             retorno =  css["classes"];
           }

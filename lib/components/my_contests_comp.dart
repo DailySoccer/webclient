@@ -51,12 +51,9 @@ class MyContestsComp implements DetachAware {
   }
 
   void detach() {
-    if (_timer != null)
+    if (_timer != null) {
       _timer.cancel();
-  }
-
-  void _generateLiveTable() {
-
+    }
   }
 
   void _updateLive() {

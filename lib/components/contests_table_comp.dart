@@ -28,7 +28,7 @@ class ContestsTableComp {
 
   @NgOneWay ('columns-names')
   void set tableHeaders (String val) {
-    if(val != null) {
+    if (val != null) {
       List<String> columns = val.split(",");
       columns.forEach( (col) {
         var colum = {'name': col.split('-')[0], 'size': col.split('-')[1]};
@@ -38,12 +38,11 @@ class ContestsTableComp {
     }
   }
 
+  ContestsTableComp(this._profileService);
+
   int getFantasyPointsByContest(Contest contest) {
     ContestEntry mainPlayer = contest.getContestEntryWithUser(_profileService.user.userId);
     return mainPlayer.currentLivePoints;
-  }
-
-  ContestsTableComp(this._profileService){
   }
 
   ProfileService _profileService;

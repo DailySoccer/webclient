@@ -61,11 +61,12 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   // propiedad que dice si existen concursos del tipo "PRINCIPIANTE" en la lista actual de concursos.
   bool get hasBegginerTier {
     bool result = false;
-    if( activeContestsService.activeContests != null) {
+    if (activeContestsService.activeContests != null) {
       activeContestsService.activeContests.forEach( (Contest contest) {
          bool comparison = contest.templateContest.salaryCap >= SALARY_LIMIT_FOR_BEGGINERS;
-         if(comparison)
+         if (comparison) {
            result =  true;
+         }
       });
     }
     return result;
@@ -74,12 +75,12 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   // propiedad que dice si existen concursos del tipo "STANDARS" en la lista actual de concursos.
   bool get hasStandardTier {
     bool result = false;
-    if( activeContestsService.activeContests != null) {
+    if (activeContestsService.activeContests != null) {
       activeContestsService.activeContests.forEach( (Contest contest) {
-         bool comparison = contest.templateContest.salaryCap < SALARY_LIMIT_FOR_BEGGINERS &&
-                           contest.templateContest.salaryCap > SALARY_LIMIT_FOR_SKILLEDS;
-         if(comparison)
+         bool comparison = contest.templateContest.salaryCap < SALARY_LIMIT_FOR_BEGGINERS && contest.templateContest.salaryCap > SALARY_LIMIT_FOR_SKILLEDS;
+         if (comparison) {
            result =  true;
+         }
       });
     }
     return result;
@@ -88,11 +89,12 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   // propiedad que dice si existen concursos del tipo "EXPERTS" en la lista actual de concursos.
   bool get hasSkilledTier {
     bool result = false;
-    if( activeContestsService.activeContests != null) {
+    if (activeContestsService.activeContests != null) {
       activeContestsService.activeContests.forEach( (Contest contest) {
          bool comparison = contest.templateContest.salaryCap <= SALARY_LIMIT_FOR_BEGGINERS;
-         if(comparison)
+         if (comparison) {
            result =  true;
+         }
       });
     }
     return result;
@@ -104,7 +106,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
    */
   bool hasCompetitionsOf(String value)
   {
-    /*if( activeContestsService.activeContests != null) {
+    /*if (activeContestsService.activeContests != null) {
       activeContestsService.activeContests.forEach( (Contest contest) {
         //TODO: devuelvo true o false en funcion del tipo de concurso
       });
@@ -295,21 +297,30 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     List<String> tierValues = [];
     _tierFilterList = [];
 
-    if(isBeginnerTierChecked)
+    if (isBeginnerTierChecked) {
       tierValues.add(FILTER_TIER_LIMIT_FOR_BEGGINERS);
-    if(isStandardTierChecked)
+    }
+
+    if (isStandardTierChecked) {
       tierValues.add(FILTER_TIER_LIMIT_FOR_STANDARDS);
-    if(isSkilledTierChecked)
+    }
+
+    if (isSkilledTierChecked) {
       tierValues.add(FILTER_TIER_LIMIT_FOR_SKILLEDS);
+    }
 
     _tierFilterList.addAll(tierValues);
 
     //Añadimos el filtro solo si se ha seleccionado algún valor...
-    if(_tierFilterList.length > 0)
+    if (_tierFilterList.length > 0) {
       addFilter(FILTER_TIER, _tierFilterList);
-    else //...si no, nos aseguramos que no vaya este filtro para que no interfiera
-      if(lobbyFilters.containsKey(FILTER_TIER))
+    }
+    else { //...si no, nos aseguramos que no vaya este filtro para que no interfiera
+      if (lobbyFilters.containsKey(FILTER_TIER)) {
         lobbyFilters.remove(FILTER_TIER);
+      }
+    }
+
     //provocamos la actialización
     addFilter("", []);
     print('-LOBBY_COMP-: Filtrando por tipo de torneo: torneos: [${_tierFilterList}]');
@@ -319,11 +330,12 @@ class LobbyComp implements ShadowRootAware, DetachAware {
    bool hasTournamentsType(String value)
    {
      bool result = false;
-     if( activeContestsService.activeContests != null) {
-        activeContestsService.activeContests.forEach( (Contest contest) {
+     if (activeContestsService.activeContests != null) {
+        activeContestsService.activeContests.forEach((Contest contest) {
            bool comparison = contest.templateContest.tournamentType == value;
-           if(comparison)
+           if (comparison) {
              result =  true;
+           }
         });
       }
       return result;
@@ -333,30 +345,40 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     List<String> tournamentValues = [];
     _tournamentFilterList = [];
 
-    if(isFreeTournamentChecked)
+    if (isFreeTournamentChecked) {
       tournamentValues.add(TOURNAMENT_TYPE_FREE);
-    if(isLigaTournamentChecked)
+    }
+
+    if (isLigaTournamentChecked) {
       tournamentValues.add(TOURNAMENT_TYPE_LIGA);
-    if(isFiftyFiftyTournamentChecked)
+    }
+
+    if (isFiftyFiftyTournamentChecked) {
       tournamentValues.add(TOURNAMENT_TYPE_FIFTY_FIFTY);
-    if(isHeadToHeadTournamentChecked)
+    }
+
+    if (isHeadToHeadTournamentChecked) {
       tournamentValues.add(TOURNAMENT_TYPE_HEAD_TO_HEAD);
+    }
 
     _tournamentFilterList.addAll(tournamentValues);
 
     //Añadimos el filtro solo si se ha seleccionado algún valor...
-    if(_tournamentFilterList.length > 0)
+    if (_tournamentFilterList.length > 0) {
       addFilter(FILTER_TOURNAMENT, _tournamentFilterList);
-    else //...si no, nos aseguramos que no vaya este filtro para que no interfiera
-      if(lobbyFilters.containsKey(FILTER_TOURNAMENT))
+    }
+    else {//...si no, nos aseguramos que no vaya este filtro para que no interfiera
+      if (lobbyFilters.containsKey(FILTER_TOURNAMENT)) {
         lobbyFilters.remove(FILTER_TOURNAMENT);
+      }
+    }
     //provocamos la actialización
     addFilter("", []);
 
     print('-LOBBY_COMP-: Filtrando por tipo de torneo: torneos: [${_tournamentFilterList}]');
   }
 
-  void addFilter(String key, dynamic valor){
+  void addFilter(String key, dynamic valor) {
       //comprobamos que si existe ya este filtro... Si existe lo eliminamos
       if (lobbyFilters.containsKey(key)) {
         lobbyFilters.remove(key);
@@ -367,7 +389,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
       //2- El mapa nuevo lo iniciamos con los valores de lobbyFilters para que no sea una referencia
       lobbyFilterClone.addAll(lobbyFilters);
       // no metemos keys vacías
-      if(key != ""){
+      if (key != "") {
         //3-Creamos el nuevo filtro siempre que no no llegue una Key vacía...
         Map<String, dynamic> tmpMap = { key: valor };
         // ... y lo añadimos a la lista temporal que tendrá los valores anteriores + este nuevo

@@ -26,7 +26,7 @@ class ContestsListComp {
   static const String TOURNAMENT_TYPE_HEAD_TO_HEAD  = "HEAD_TO_HEAD";
 
   // Lista copia de la original que guardará los contest tras aplicar los filtros
-  List<Contest> contestsListFiltered;
+  List<Contest> contestsListFiltered = [];
 
   // Lista de filtros a aplicar
   Map<String,dynamic> filterList;
@@ -34,13 +34,6 @@ class ContestsListComp {
   bool isToday(DateTime date) => (date.year == _dateTimeService.now.year && date.month == _dateTimeService.now.month && date.day == _dateTimeService.now.day);
 
   List<Contest> currentPageList = [];
-
-  String listName="";
-
-  @NgOneWay("list-name")
-  void set name(value){
-    listName = value;
-  }
 
   @NgOneWay("contests-list")
   void set contestsList(List<Contest> value) {
@@ -52,16 +45,18 @@ class ContestsListComp {
   //Setter de los filtros, Recibe la lista de los filtros aplicados.
   @NgOneWay("filter-by")
   void set filterBy(Map<String,dynamic> value) {
-    if (value == null)
+    if (value == null) {
       return;
+    }
     filterList = value;
     refreshList();
   }
 
   @NgOneWay("sorted-by")
   void set sortedBy(String value) {
-    if(value == null || value.isEmpty)
+    if (value == null || value.isEmpty) {
       return;
+    }
     _sortType = value;
     refreshList();
   }
@@ -135,13 +130,15 @@ class ContestsListComp {
   }
 
   void onRow(Contest contest) {
-    if (onRowClick != null)
+    if (onRowClick != null) {
       onRowClick({"contest":contest});
+    }
   }
 
   void onAction(Contest contest) {
-    if (onActionClick != null)
+    if (onActionClick != null) {
       onActionClick({"contest":contest});
+    }
   }
 
   void refreshList() {
@@ -150,8 +147,9 @@ class ContestsListComp {
   }
 
   void refreshSort() {
-    if(_sortType == null)
+    if (_sortType == null) {
       return;
+    }
 
     List<String> sortParams = _sortType.split('_');
 
@@ -203,14 +201,15 @@ class ContestsListComp {
             for (String val in value) {
               switch(val) {
                 case "BEGGINER":
-                  if(contest.templateContest.salaryCap >= SALARY_LIMIT_FOR_BEGGINERS) {
+                  if (contest.templateContest.salaryCap >= SALARY_LIMIT_FOR_BEGGINERS) {
                     return true;
-                  } else {
+                  }
+                  else {
                     return false;
                   }
                 break;
                 case "STANDARD":
-                  if(contest.templateContest.salaryCap < SALARY_LIMIT_FOR_BEGGINERS && contest.templateContest.salaryCap > SALARY_LIMIT_FOR_SKILLEDS) {
+                  if (contest.templateContest.salaryCap < SALARY_LIMIT_FOR_BEGGINERS && contest.templateContest.salaryCap > SALARY_LIMIT_FOR_SKILLEDS) {
                     return true;
                   }
                   else {
@@ -218,10 +217,12 @@ class ContestsListComp {
                   }
                 break;
                 case "SKILLED":
-                  if(contest.templateContest.salaryCap <= SALARY_LIMIT_FOR_SKILLEDS) {
+                  if (contest.templateContest.salaryCap <= SALARY_LIMIT_FOR_SKILLEDS) {
                     return true;
-                  }else
+                  }
+                  else {
                     return false;
+                  }
                 break;
               }
             }

@@ -21,6 +21,7 @@ class PaginatorComp implements DetachAware, ShadowRootAware {
     if (value == null) {
       return;
     }
+    _currentPage = 0;
     _listLength = value;
 
     // Calculamos la páginas que habrá en total y determinamos si el paginador estará disponible o no.
@@ -33,9 +34,9 @@ class PaginatorComp implements DetachAware, ShadowRootAware {
     _originalPageLinksCount = _options["numPageLinksToDisplay"];
 
     // Si empezamos desde la versión XS el numero de botones es menor.
-    if (_scrDet.isXsScreen)
+    if (_scrDet.isXsScreen) {
       _options["numPageLinksToDisplay"] = 2;
-
+    }
     _streamListener = _scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
   }
 
@@ -53,17 +54,20 @@ class PaginatorComp implements DetachAware, ShadowRootAware {
 
   void onScreenWidthChange(msg) {
 
-    if (msg == "xs")
+    if (msg == "xs") {
       _options["numPageLinksToDisplay"] = 2;
-    else
+    }
+    else {
       _options["numPageLinksToDisplay"] = _originalPageLinksCount;
+    }
 
     createPaginator();
   }
 
   void createPaginator() {
-    if (_paginatorContainer == null)
+    if (_paginatorContainer == null) {
       return;
+    }
 
     if (_totalPages > 0) {
       generatePaginatorButtons();
@@ -99,7 +103,7 @@ class PaginatorComp implements DetachAware, ShadowRootAware {
     int currentLink = 0;
     while (_totalPages > currentLink) {
       // El primer elemento se linka con la página 0 aunque su label sea 1;
-      numbers.add(createLinkElement("${currentLink + 1}", currentLink, [_options["pageLinksCSS"]]));
+      numbers.add(createLinkElement("${currentLink + 1}", currentLink, [_options["pageLinksCss"]]));
       currentLink++;
     }
 
@@ -111,13 +115,12 @@ class PaginatorComp implements DetachAware, ShadowRootAware {
 
     // Mostramos X elementos según el parametro 'numPageLinkdToDisplay' definido en las opciones
     if (numbers.length > _options["numPageLinksToDisplay"]) {
-      int rangeStarts = calculateRangeStart(_currentPage, _options["numPageLinksToDisplay"], 0, numbers.length); // TODO: Arreglar el calculo del rango de inicio y fin (devolviendo la lista con [inicio, fin]
-      int rangeEnds = min(_totalPages, rangeStarts + _options["numPageLinksToDisplay"]);
+      Map range = calculateLinksRange(_currentPage, _options["numPageLinksToDisplay"]);
 
-      numbers.skip(rangeStarts).take(rangeEnds - rangeStarts).forEach((LIElement element) => element.style.display = '');
+      numbers.skip(range["start"]).take(range["end"] - range["start"]).forEach((LIElement element) => element.style.display = '');
 
-      less.style.display = rangeStarts == 0 ? 'none' : '';
-      more.style.display = rangeEnds >= _totalPages ? 'none' : '';
+      less.style.display = range["start"] == 0 ? 'none' : '';
+      more.style.display = range["end"] >= _totalPages ? 'none' : '';
     }
     else {
       // Si estamos dentro del rango los botones de puntos suspensivos los ocultamos
@@ -135,8 +138,9 @@ class PaginatorComp implements DetachAware, ShadowRootAware {
     for (int i=0; i < _options["navOrder"].length; i++) {
       switch(_options["navOrder"][i]) {
         case "first":
-          if(_options["showFirstLast"])
+          if (_options["showFirstLast"]) {
             ul.children.add(first);
+          }
         break;
 
         case "prev":
@@ -153,8 +157,9 @@ class PaginatorComp implements DetachAware, ShadowRootAware {
           ul.children.add(next);
         break;
         case "last":
-          if(_options["showFirstLast"])
+          if (_options["showFirstLast"]) {
             ul.children.add(last);
+          }
         break;
       }
     };
@@ -172,58 +177,69 @@ class PaginatorComp implements DetachAware, ShadowRootAware {
       a.on['click'].listen((event) => goToPage(pageNum));
     }
 
-    if (pageNum == 0)
+    if (pageNum == 0) {
       cssClasses.add('first-page');
+    }
 
-    if (pageNum == _totalPages - 1)
+    if (pageNum == _totalPages - 1) {
       cssClasses.add('last-page');
-
-   // String myName = "${_options["linkButtonId"]}_${listName}_";
-   // myName += pageNum == null? cssClasses.join("-") : (pageNum + 1).toString();
+    }
 
     LIElement li = new LIElement()
       ..children.add(a)
       ..classes.addAll(cssClasses);
-      //..id = myName;
 
     return li;
   }
 
   // Calcula el valor inicial de un rango
-  int calculateRangeStart(int current, int size, int minLmit, int maxLimit) {
+  Map calculateLinksRange(int current, int size) {
 
-    int retorno;
-    int average = (size / 2).ceil()-1;
-    // El limite inferior es posible es minLmit
-    retorno  = current - average < minLmit ? minLmit : current - average;
+    int start = 0;
+    int end = 0;
 
-    if(retorno > maxLimit - size) {
-      retorno = maxLimit- size;
+    int average = (size / 2).ceil() - 1;
+    // El limite inferior posible es 0
+    start  = current - average < 0 ? 0 : current - average;
+
+    if (start > _totalPages -1 - size) {
+      start = _totalPages - size;
     }
-    // TODO: devolver [start, end];
-    return retorno;
+
+    if (_totalPages < size) {
+      end = size;
+    }
+    else {
+      end = start + size;
+    }
+
+    return {"start":start, "end":end};
  }
 
   void goToPage(int pageNum) {
     if (_totalPages == 0) {
+      onPageChange({"currentPage":0, "itemsPerPage":_options["itemsPerPage"]});
+      if (_paginatorContainer != null) {
+        _paginatorContainer.innerHtml = "";
+      }
       return;
     }
 
     _currentPage = pageNum;
 
-    if (_currentPage < 0)
+    if (_currentPage < 0) {
       _currentPage = 0;
+    }
 
-    if (_currentPage > _totalPages -1)
+    if (_currentPage > _totalPages -1) {
       _currentPage = _totalPages -1;
+    }
 
     createPaginator();
 
     if (onPageChange != null) {
       onPageChange({"currentPage":_currentPage, "itemsPerPage":_options["itemsPerPage"]});
     }
-
-    //TODO: poner llaves en los IF's de una linea
   }
 
   Map _options = {

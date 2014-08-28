@@ -46,8 +46,8 @@ class SoccerPlayersListComp {
     optionValue = enterContestCtrl.ALL_MATCHES;
   }
 
-  void setFilterMatch() {
-    if(optionValue != oldOptionValue) {
+ void setFilterMatch() {
+    if (optionValue != oldOptionValue) {
       oldOptionValue = optionValue;
       var a = matchesList.where( (match) => match["id"] == optionValue).first;
       enterContestCtrl.setMatchFilter(optionValue);
@@ -86,8 +86,9 @@ class SoccerPlayersListComp {
   Function onRowClick;
 
   void onRow(String soccerPlayerId) {
-    if (onRowClick != null)
+    if (onRowClick != null) {
       onRowClick({"soccerPlayerId":soccerPlayerId});
+    }
   }
 
   ActiveContestsService _contestService;

@@ -159,9 +159,7 @@
 		// Botón de entrar al concurso
 		.column-contest-action {
 			.make-sm-column(1, 0);
-			.btn {
-				.btn-primary();
-			}
+			.btn { .btn-primary(); }
 			margin-top: 25px;
 			padding-left: 5px;
 			// Posición para versión xs
@@ -169,7 +167,7 @@
 				position: absolute;
 				right: 10px;
 				margin-top: 65px;
-				.btn {
+				.btn{
 					background-color: transparent;
 					padding: 0;
 					overflow: hidden;
@@ -177,7 +175,7 @@
 					box-shadow: none;
 				}
 				.btn::before {
-					color: @blueDark; 
+					color: @blueDark;
 					.create-glyph("\E080", 10pt);
 					padding: 0;
 				}
@@ -189,35 +187,4 @@
 	}
 }
 
-.paginator-wrapper {
-	padding-bottom: 15px;
-	.paginator-box {
-		text-align: center;
-		margin: 0 auto;
-		
-		ul li a {
 
-			cursor: pointer;
-			color: @blueLight;
-			width: 45px; 
-			.user-select(none);
-		}
-		.ellipsis a{
-			padding-left: 0;
-			padding-right: 0; 
-			width: 20px;
-		}
-		.active a{
-			border-color: @blueLight;
-			background-color: @blueLight;
-			color: @white;
-			font-weight: bold; 
-		}
-		.ellipsis a{
-			cursor: default;
-			&:hover{
-				background-color: white;
-			}
-		}
-	}	
-}

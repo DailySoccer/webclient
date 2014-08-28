@@ -110,12 +110,24 @@ class ContestsListComp implements DetachAware, ShadowRootAware {
 
   int getMyPosition(Contest contest) {
     ContestEntry mainContestEntry = contest.getContestEntryWithUser(_profileService.user.userId);
-    return mainContestEntry.position + 1;
+
+    // En los templateContest Históricos tendremos la posición registrada en el propio ContestEntry
+    if (contest.templateContest.isHistory) {
+      return mainContestEntry.position + 1;
+    }
+
+    return contest.getUserPosition(mainContestEntry);
   }
 
   int getMyFantasyPoints(Contest contest) {
     ContestEntry mainContestEntry = contest.getContestEntryWithUser(_profileService.user.userId);
-    return mainContestEntry.fantasyPoints;
+
+    // En los templateContest Históricos tendremos los fantasyPoints registrados en el propio ContestEntry
+    if (contest.templateContest.isHistory) {
+      return mainContestEntry.fantasyPoints;
+    }
+
+    return mainContestEntry.currentLivePoints;
   }
 
   int getMyPrize(Contest contest) {

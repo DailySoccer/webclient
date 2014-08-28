@@ -19,12 +19,27 @@ class Contest {
 
   String get description => "${templateContest.tournamentTypeName}: ${contestEntries.length} de ${maxEntries} jugadores - LIM. SAL.: ${templateContest.salaryCap}";
 
+  List<ContestEntry> get contestEntriesOrderByPoints {
+    List<ContestEntry> entries = new List<ContestEntry>.from(contestEntries);
+    entries.sort((entry1, entry2) => entry2.currentLivePoints.compareTo(entry1.currentLivePoints));
+    return entries;
+  }
+
   Contest(this.contestId, this.contestEntries, this.maxEntries, this.templateContest);
 
   Contest.referenceInit(this.contestId);
 
   ContestEntry getContestEntryWithUser(String userId) {
     return contestEntries.firstWhere( (entry) => entry.user.userId == userId, orElse: () => null );
+  }
+
+  int getUserPosition(ContestEntry contestEntry) {
+    List<ContestEntry> contestsEntries = contestEntriesOrderByPoints;
+    for (int i=0; i<contestsEntries.length; i++) {
+      if (contestsEntries[i].contestEntryId == contestEntry.contestEntryId)
+        return i+1;
+    }
+    return -1;
   }
 
   /*
@@ -51,7 +66,15 @@ class Contest {
       jsonRoot.contest_entries.map((jsonObject) => new ContestEntry.fromJsonObject(jsonObject, contestReferences)).toList();
     }
 
-    jsonRoot.match_events.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject, contestReferences)).toList();
+    if (jsonRoot.containsKey("match_events")) {
+      jsonRoot.match_events.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject, contestReferences)).toList();
+    }
+    else {
+      // Aceptamos múltiples listas de partidos (con mayor o menor información)
+      for (int view=0; view<10 && jsonRoot.containsKey("match_events_$view"); view++) {
+          jsonRoot["match_events_$view"].map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject, contestReferences)).toList();
+      }
+    }
 
     if (jsonRoot.containsKey("users_info")) {
       jsonRoot.users_info.map((jsonObject) => new User.fromJsonObject(jsonObject, contestReferences)).toList();

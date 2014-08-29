@@ -42,7 +42,7 @@
 
   <div id="filtersPanel" class="collapse">
 
-      <div class="filter-column-competition">
+      <div class="filter-column-competition" ng-if="!comp.scrDet.isXsScreen")>
         <p class="filter-title">COMPETICIÓN</p>
         <div class="filter-content">
           <div class="check-group-wrapper">
@@ -85,22 +85,22 @@
         <div class="filter-content">
             <div class="check-group-wrapper">
               <div class="button-check">
-                <input id="filtroFree" type="checkbox"  ng-disabled="!comp.hasTournamentsType('FREE')"
+                <input id="filtroFree" type="checkbox"  ng-disabled="!comp.hasTournamentsFree"
                                                         ng-model="comp.isFreeTournamentChecked">
                 <label for="filtroFree">Gratis</label>
               </div>
               <div class="button-check">
-                <input id="filtroLiga" type="checkbox"  ng-disabled="!comp.hasTournamentsType('LIGA')"
+                <input id="filtroLiga" type="checkbox"  ng-disabled="!comp.hasTournamentsLeague"
                                                         ng-model="comp.isLigaTournamentChecked">
                 <label for="filtroLiga">Liga</label>
               </div>
               <div class="button-check">
-                <input id="filtroFiftyFifty" type="checkbox"  ng-disabled="!comp.hasTournamentsType('FIFTY_FIFTY')"
+                <input id="filtroFiftyFifty" type="checkbox"  ng-disabled="!comp.hasTournamentsFiftyFifty"
                                                               ng-model="comp.isFiftyFiftyTournamentChecked">
                 <label for="filtroFiftyFifty">50/50</label>
               </div>
               <div class="button-check">
-                <input id="filtroHeadToHead" type="checkbox"  ng-disabled="!comp.hasTournamentsType('HEAD_TO_HEAD')"
+                <input id="filtroHeadToHead" type="checkbox"  ng-disabled="!comp.hasTournamentsHeadToHead"
                                                               ng-model="comp.isHeadToHeadTournamentChecked">
                 <label for="filtroHeadToHead">1 contra 1</label>
               </div>

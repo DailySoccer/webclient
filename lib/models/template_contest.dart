@@ -17,16 +17,16 @@ class TemplateContest {
   // Tipos de Torneos (deducidos por las características del TemplateContest: maxEntries ~ premios)
   static const TOURNAMENT_FREE            = "FREE";
   static const TOURNAMENT_HEAD_TO_HEAD    = "HEAD_TO_HEAD";
-  static const TOURNAMENT_LEAGUE          = "LIGA";
+  static const TOURNAMENT_LEAGUE          = "LEAGUE";
   static const TOURNAMENT_FIFTY_FIFTY     = "FIFTY_FIFTY";
 
   static const SALARY_LIMIT_FOR_BEGGINERS = 90000;
   static const SALARY_LIMIT_FOR_STANDARDS = 80000;
   static const SALARY_LIMIT_FOR_SKILLEDS  = 70000;
 
-  static const BEGGINER                   = "BEGGINER";
-  static const STANDARDS                  = "STANDARDS";
-  static const SKILLEDS                   = "SKILLEDS";
+  static const TIER_BEGGINER              = "BEGGINER";
+  static const TIER_STANDARD             = "STANDARDS";
+  static const TIER_SKILLED              = "SKILLEDS";
 
   String templateContestId;
 
@@ -46,11 +46,11 @@ class TemplateContest {
   String get tier {
 
     if (salaryCap >= SALARY_LIMIT_FOR_BEGGINERS)
-      return BEGGINER;
+      return TIER_BEGGINER;
     else if (salaryCap < SALARY_LIMIT_FOR_BEGGINERS && salaryCap > SALARY_LIMIT_FOR_SKILLEDS)
-      return STANDARDS;
+      return TIER_STANDARD;
     else
-      return SKILLEDS;
+      return TIER_SKILLED;
   }
 
   int entryFee;

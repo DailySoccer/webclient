@@ -7,6 +7,7 @@ import 'package:angular/angular.dart';
 import 'package:webclient/services/active_contests_service.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/services/screen_detector_service.dart';
+import 'package:webclient/models/template_contest.dart';
 
 @Component(
   selector: 'lobby',
@@ -21,15 +22,6 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   static const String FILTER_ENTRY_FEE_MAX          = "FILTER_ENTRY_FEE_MAX";
   static const String FILTER_TOURNAMENT             = "FILTER_TOURNAMENT";
   static const String FILTER_TIER                   = "FILTER_TIER";
-
-  static const String FILTER_TIER_LIMIT_FOR_BEGGINERS    = "BEGGINER";
-  static const String FILTER_TIER_LIMIT_FOR_STANDARDS    = "STANDARD";
-  static const String FILTER_TIER_LIMIT_FOR_SKILLEDS     = "SKILLED";
-
-  static const String TOURNAMENT_TYPE_FREE          = "FREE";
-  static const String TOURNAMENT_TYPE_LIGA          = "LIGA";
-  static const String TOURNAMENT_TYPE_FIFTY_FIFTY   = "FIFTY_FIFTY";
-  static const String TOURNAMENT_TYPE_HEAD_TO_HEAD  = "HEAD_TO_HEAD";
 
   //Tipo de ordenación de la lista de partidos
   String sortType = "";
@@ -55,13 +47,13 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   String get filterEntryFeeRangeMax => getEntryFeeFilterRange()[1];
 
   // propiedad que dice si existen concursos del tipo "PRINCIPIANTE" en la lista actual de concursos.
-  bool get hasBegginerTier => activeContestsService.activeContests.where((contest) => contest.templateContest.tier == FILTER_TIER_LIMIT_FOR_BEGGINERS).toList().length > 0;
+  bool get hasBegginerTier => activeContestsService.activeContests.where((contest) => contest.templateContest.tier == TemplateContest.TIER_BEGGINER).toList().length > 0;
 
   // propiedad que dice si existen concursos del tipo "STANDARS" en la lista actual de concursos.
-  bool get hasStandardTier => activeContestsService.activeContests.where((contest) => contest.templateContest.tier == FILTER_TIER_LIMIT_FOR_STANDARDS).toList().length > 0;
+  bool get hasStandardTier => activeContestsService.activeContests.where((contest) => contest.templateContest.tier == TemplateContest.TIER_STANDARD).toList().length > 0;
 
   // propiedad que dice si existen concursos del tipo "EXPERTS" en la lista actual de concursos.
-  bool get hasSkilledTier  => activeContestsService.activeContests.where((contest) => contest.templateContest.tier == FILTER_TIER_LIMIT_FOR_SKILLEDS).toList().length > 0;
+  bool get hasSkilledTier  => activeContestsService.activeContests.where((contest) => contest.templateContest.tier == TemplateContest.TIER_SKILLED).toList().length > 0;
 
   /*
    * TODO: Mientras no tengamos los datos de a que competición pertenece el torneo, esta función
@@ -261,15 +253,15 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     _tierFilterList = [];
 
     if (isBeginnerTierChecked) {
-      tierValues.add(FILTER_TIER_LIMIT_FOR_BEGGINERS);
+      tierValues.add(TemplateContest.TIER_BEGGINER);
     }
 
     if (isStandardTierChecked) {
-      tierValues.add(FILTER_TIER_LIMIT_FOR_STANDARDS);
+      tierValues.add(TemplateContest.TIER_STANDARD);
     }
 
     if (isSkilledTierChecked) {
-      tierValues.add(FILTER_TIER_LIMIT_FOR_SKILLEDS);
+      tierValues.add(TemplateContest.TIER_SKILLED);
     }
 
     _tierFilterList.addAll(tierValues);
@@ -289,39 +281,37 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     print('-LOBBY_COMP-: Filtrando por tipo de torneo: torneos: [${_tierFilterList}]');
   }
 
-  // Devuelve true si existe un torneo del tipo que le pasamos por parametro.
-   bool hasTournamentsType(String value)
-   {
-     bool result = false;
-     if (activeContestsService.activeContests != null) {
-        activeContestsService.activeContests.forEach((Contest contest) {
-           bool comparison = contest.templateContest.tournamentType == value;
-           if (comparison) {
-             result =  true;
-           }
-        });
-      }
-      return result;
-   }
+  // Devuelve true si existen torneos del tipo GRATIS
+  bool get hasTournamentsFree => activeContestsService.activeContests.where((contest)       => contest.templateContest.tournamentType == TemplateContest.TOURNAMENT_FREE).toList().length > 0;
+
+  // Devuelve true si existen torneos del tipo 50 / 50
+  bool get hasTournamentsFiftyFifty => activeContestsService.activeContests.where((contest) => contest.templateContest.tournamentType == TemplateContest.TOURNAMENT_FIFTY_FIFTY).toList().length > 0;
+
+  // Devuelve true si existen torneos del tipo LIGA
+  bool get hasTournamentsLeague => activeContestsService.activeContests.where((contest)     => contest.templateContest.tournamentType == TemplateContest.TOURNAMENT_LEAGUE).toList().length > 0;
+
+  // Devuelve true si existen torneos del tipo LIGA
+  bool get hasTournamentsHeadToHead => activeContestsService.activeContests.where((contest) => contest.templateContest.tournamentType == TemplateContest.TOURNAMENT_HEAD_TO_HEAD).toList().length > 0;
+
 
   void refreshTorunamentFilter() {
     List<String> tournamentValues = [];
     _tournamentFilterList = [];
 
     if (isFreeTournamentChecked) {
-      tournamentValues.add(TOURNAMENT_TYPE_FREE);
+      tournamentValues.add(TemplateContest.TOURNAMENT_FREE);
     }
 
     if (isLigaTournamentChecked) {
-      tournamentValues.add(TOURNAMENT_TYPE_LIGA);
+      tournamentValues.add(TemplateContest.TOURNAMENT_LEAGUE);
     }
 
     if (isFiftyFiftyTournamentChecked) {
-      tournamentValues.add(TOURNAMENT_TYPE_FIFTY_FIFTY);
+      tournamentValues.add(TemplateContest.TOURNAMENT_FIFTY_FIFTY);
     }
 
     if (isHeadToHeadTournamentChecked) {
-      tournamentValues.add(TOURNAMENT_TYPE_HEAD_TO_HEAD);
+      tournamentValues.add(TemplateContest.TOURNAMENT_HEAD_TO_HEAD);
     }
 
     _tournamentFilterList.addAll(tournamentValues);

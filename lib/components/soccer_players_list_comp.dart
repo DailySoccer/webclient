@@ -22,7 +22,13 @@ class SoccerPlayersListComp {
   Contest contest;
   List<MatchEvent> matchesInvolved;
   List<Map<String, String>> matchesList = [];
-  dynamic optionValue;
+  dynamic _optionValue;
+  dynamic get optionValue => _optionValue;
+  void set optionValue (value) {
+    _optionValue = value;
+    setFilterMatch();
+  }
+
   dynamic oldOptionValue;
 
   List<FieldPos> posFilterList = [

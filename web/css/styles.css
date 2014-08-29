@@ -7163,7 +7163,7 @@ button#infoContent .modal-info-head button.close {
 #headerContestWidget .contest-coins .contest-coins-content > span {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
-  font-size: 14pt;
+  font-size: 16pt;
   color: #214a5f;
 }
 @media (max-width: 767px) {
@@ -7680,7 +7680,7 @@ fieldset[disabled] #headerContestWidget .close-contest .btn.active {
 .contests-list-root .contest-row .column-contest-position-content > span {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
-  font-size: 14pt;
+  font-size: 16pt;
   color: #214a5f;
 }
 @media (max-width: 767px) {
@@ -11255,6 +11255,10 @@ textarea.soccer-player-filter .name-player-input-filter {
   }
 }
 .soccer-player-list-header-table {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   margin-left: 0px;
   margin-right: 0px;
   line-height: 30px;

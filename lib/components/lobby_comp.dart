@@ -420,8 +420,8 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     _tournamentFilterList = [];
 
     //limpio la caja de filtro por nombre
-   InputElement el = document.querySelector('.searcher');
-   el.value = "";
+   InputElement txtSearch = document.querySelector('.searcher');
+   txtSearch.value = "";
 
     //provocamos la actialización
     lobbyFilters = {};

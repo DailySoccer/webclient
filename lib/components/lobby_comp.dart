@@ -26,10 +26,6 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   static const String FILTER_TIER_LIMIT_FOR_STANDARDS    = "STANDARD";
   static const String FILTER_TIER_LIMIT_FOR_SKILLEDS     = "SKILLED";
 
-  static const int    SALARY_LIMIT_FOR_BEGGINERS    = 90000;
-  static const int    SALARY_LIMIT_FOR_STANDARDS    = 80000;
-  static const int    SALARY_LIMIT_FOR_SKILLEDS     = 70000;
-
   static const String TOURNAMENT_TYPE_FREE          = "FREE";
   static const String TOURNAMENT_TYPE_LIGA          = "LIGA";
   static const String TOURNAMENT_TYPE_FIFTY_FIFTY   = "FIFTY_FIFTY";
@@ -59,46 +55,13 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   String get filterEntryFeeRangeMax => getEntryFeeFilterRange()[1];
 
   // propiedad que dice si existen concursos del tipo "PRINCIPIANTE" en la lista actual de concursos.
-  bool get hasBegginerTier {
-    bool result = false;
-    if (activeContestsService.activeContests != null) {
-      activeContestsService.activeContests.forEach( (Contest contest) {
-         bool comparison = contest.templateContest.salaryCap >= SALARY_LIMIT_FOR_BEGGINERS;
-         if (comparison) {
-           result =  true;
-         }
-      });
-    }
-    return result;
-  }
+  bool get hasBegginerTier => activeContestsService.activeContests.where((contest) => contest.templateContest.tier == FILTER_TIER_LIMIT_FOR_BEGGINERS).toList().length > 0;
 
   // propiedad que dice si existen concursos del tipo "STANDARS" en la lista actual de concursos.
-  bool get hasStandardTier {
-    bool result = false;
-    if (activeContestsService.activeContests != null) {
-      activeContestsService.activeContests.forEach( (Contest contest) {
-         bool comparison = contest.templateContest.salaryCap < SALARY_LIMIT_FOR_BEGGINERS && contest.templateContest.salaryCap > SALARY_LIMIT_FOR_SKILLEDS;
-         if (comparison) {
-           result =  true;
-         }
-      });
-    }
-    return result;
-  }
+  bool get hasStandardTier => activeContestsService.activeContests.where((contest) => contest.templateContest.tier == FILTER_TIER_LIMIT_FOR_STANDARDS).toList().length > 0;
 
   // propiedad que dice si existen concursos del tipo "EXPERTS" en la lista actual de concursos.
-  bool get hasSkilledTier {
-    bool result = false;
-    if (activeContestsService.activeContests != null) {
-      activeContestsService.activeContests.forEach( (Contest contest) {
-         bool comparison = contest.templateContest.salaryCap <= SALARY_LIMIT_FOR_BEGGINERS;
-         if (comparison) {
-           result =  true;
-         }
-      });
-    }
-    return result;
-  }
+  bool get hasSkilledTier  => activeContestsService.activeContests.where((contest) => contest.templateContest.tier == FILTER_TIER_LIMIT_FOR_SKILLEDS).toList().length > 0;
 
   /*
    * TODO: Mientras no tengamos los datos de a que competición pertenece el torneo, esta función

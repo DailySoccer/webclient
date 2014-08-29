@@ -8,17 +8,25 @@ import "package:webclient/models/soccer_player.dart";
 
 class TemplateContest {
   // Tipos de Premios (obtenidos del backend)
-  static const PRIZE_FREE = "FREE";
-  static const PRIZE_WINNER = "WINNER_TAKES_ALL";
-  static const PRIZE_TOP_3 = "TOP_3_GET_PRIZES";
-  static const PRIZE_TOP_THIRD = "TOP_THIRD_GET_PRIZES";
-  static const PRIZE_FIFTY_FIFTY = "FIFTY_FIFTY";
+  static const PRIZE_FREE                 = "FREE";
+  static const PRIZE_WINNER               = "WINNER_TAKES_ALL";
+  static const PRIZE_TOP_3                = "TOP_3_GET_PRIZES";
+  static const PRIZE_TOP_THIRD            = "TOP_THIRD_GET_PRIZES";
+  static const PRIZE_FIFTY_FIFTY          = "FIFTY_FIFTY";
 
   // Tipos de Torneos (deducidos por las características del TemplateContest: maxEntries ~ premios)
-  static const TOURNAMENT_FREE = "FREE";
-  static const TOURNAMENT_HEAD_TO_HEAD = "HEAD_TO_HEAD";
-  static const TOURNAMENT_LEAGUE = "LIGA";
-  static const TOURNAMENT_FIFTY_FIFTY = "FIFTY_FIFTY";
+  static const TOURNAMENT_FREE            = "FREE";
+  static const TOURNAMENT_HEAD_TO_HEAD    = "HEAD_TO_HEAD";
+  static const TOURNAMENT_LEAGUE          = "LIGA";
+  static const TOURNAMENT_FIFTY_FIFTY     = "FIFTY_FIFTY";
+
+  static const SALARY_LIMIT_FOR_BEGGINERS = 90000;
+  static const SALARY_LIMIT_FOR_STANDARDS = 80000;
+  static const SALARY_LIMIT_FOR_SKILLEDS  = 70000;
+
+  static const BEGGINER                   = "BEGGINER";
+  static const STANDARDS                  = "STANDARDS";
+  static const SKILLEDS                   = "SKILLEDS";
 
   String templateContestId;
 
@@ -34,6 +42,17 @@ class TemplateContest {
   int maxEntries;
 
   int salaryCap;
+
+  String get tier {
+
+    if (salaryCap >= SALARY_LIMIT_FOR_BEGGINERS)
+      return BEGGINER;
+    else if (salaryCap < SALARY_LIMIT_FOR_BEGGINERS && salaryCap > SALARY_LIMIT_FOR_SKILLEDS)
+      return STANDARDS;
+    else
+      return SKILLEDS;
+  }
+
   int entryFee;
   String prizeType;
   List<int> prizes;
@@ -134,11 +153,11 @@ class TemplateContest {
 
   String _parsePattern(String text) {
     return text
-        .replaceAll("%StartDate", new DateFormat("EEE, d MMM", "es_ES").format(startDate))
-        .replaceAll("%MaxEntries", "$maxEntries")
-        .replaceAll("%SalaryCap", "${(salaryCap ~/ 1000)}")
-        .replaceAll("%PrizeType", prizeTypeName)
-        .replaceAll("%EntryFee", "${entryFee}");
+      .replaceAll("%StartDate", new DateFormat("EEE, d MMM", "es_ES").format(startDate))
+      .replaceAll("%MaxEntries", "$maxEntries")
+      .replaceAll("%SalaryCap", "${(salaryCap ~/ 1000)}")
+      .replaceAll("%PrizeType", prizeTypeName)
+      .replaceAll("%EntryFee", "${entryFee}");
   }
 
   String _name;

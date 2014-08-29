@@ -16,15 +16,6 @@ import 'package:webclient/services/screen_detector_service.dart';
 )
 class ContestsListComp {
 
-  static const int    SALARY_LIMIT_FOR_BEGGINERS    = 90000;
-  static const int    SALARY_LIMIT_FOR_STANDARDS    = 80000;
-  static const int    SALARY_LIMIT_FOR_SKILLEDS     = 70000;
-
-  static const String TOURNAMENT_TYPE_FREE          = "FREE";
-  static const String TOURNAMENT_TYPE_LIGA          = "LIGA";
-  static const String TOURNAMENT_TYPE_FIFTY_FIFTY   = "FIFTY_FIFTY";
-  static const String TOURNAMENT_TYPE_HEAD_TO_HEAD  = "HEAD_TO_HEAD";
-
   // Lista copia de la original que guardará los contest tras aplicar los filtros
   List<Contest> contestsListFiltered = [];
 
@@ -197,36 +188,7 @@ class ContestsListComp {
           contestsListFiltered = contestsListFiltered.where((contest) => value.contains(contest.templateContest.tournamentType)).toList();
         break;
         case "FILTER_TIER":
-          contestsListFiltered = contestsListFiltered.where((contest) {
-            for (String val in value) {
-              switch(val) {
-                case "BEGGINER":
-                  if (contest.templateContest.salaryCap >= SALARY_LIMIT_FOR_BEGGINERS) {
-                    return true;
-                  }
-                  else {
-                    return false;
-                  }
-                break;
-                case "STANDARD":
-                  if (contest.templateContest.salaryCap < SALARY_LIMIT_FOR_BEGGINERS && contest.templateContest.salaryCap > SALARY_LIMIT_FOR_SKILLEDS) {
-                    return true;
-                  }
-                  else {
-                    return false;
-                  }
-                break;
-                case "SKILLED":
-                  if (contest.templateContest.salaryCap <= SALARY_LIMIT_FOR_SKILLEDS) {
-                    return true;
-                  }
-                  else {
-                    return false;
-                  }
-                break;
-              }
-            }
-          }).toList();
+          contestsListFiltered = contestsListFiltered.where((contest) => value.contains(contest.templateContest.tier)).toList();
         break;
       }
     });

@@ -50,8 +50,7 @@
 
         <!-- lista de concursos -->
         <div class="list-container" ng-show="comp.hasLiveContests">
-          <contests-list list-name="'liveContests'"
-                         id="liveContests"
+          <contests-list id="liveContests"
                          contests-list="comp.myContestsService.liveContests"
                          on-action-click='comp.onLiveActionClick(contest)'
                          on-row-click='comp.onLiveRowClick(contest)'>
@@ -91,8 +90,7 @@
 
         <!-- lista de concursos -->
         <div class="list-container" ng-show="comp.hasWaitingContests">
-          <contests-list list-name="'waitingContests'"
-                         id="waitingContests"
+          <contests-list id="waitingContests"
                          contests-list='comp.myContestsService.waitingContests'
                          on-action-click='comp.onWaitingActionClick(contest)'
                          on-row-click='comp.onWaitingRowClick(contest)'>
@@ -137,8 +135,7 @@
           <!-- lista de concursos -->
           <div class="list-container" ng-show="comp.hasHistoryContests">
             <div class="text-refresh-history">Actualizado cada 24 horas</div>
-            <contests-list list-name="'historyContests'"
-                           id="historyContests"
+            <contests-list id="historyContests"
                            contests-list="comp.myContestsService.historyContests"
                            on-action-click='comp.onHistoryActionClick(contest)'
                            on-row-click='comp.onHistoryRowClick(contest)'>

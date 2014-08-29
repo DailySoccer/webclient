@@ -102,7 +102,7 @@
               <div class="button-check">
                 <input id="filtroHeadToHead" type="checkbox"  ng-disabled="!comp.hasTournamentsType('HEAD_TO_HEAD')"
                                                               ng-model="comp.isHeadToHeadTournamentChecked">
-                <label for="filtroHeadToHead">1 conta 1</label>
+                <label for="filtroHeadToHead">1 contra 1</label>
               </div>
             </div>
         </div>
@@ -153,8 +153,7 @@
 </div>
 
 <!-- Lista de concursos -->
-<contests-list list-name="'lobby'"
-               sorted-by="comp.sortType"
+<contests-list sorted-by="comp.sortType"
                filter-by="comp.lobbyFilters"
                contests-list="comp.activeContestsService.activeContests"
                action-button-title='"Jugar"'

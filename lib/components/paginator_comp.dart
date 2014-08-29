@@ -194,24 +194,23 @@ class PaginatorComp implements DetachAware, ShadowRootAware {
   }
 
   // Calcula el valor inicial de un rango
-  Map calculateLinksRange(int current, int size) {
+  Map calculateLinksRange(int currentPosition, int numPageLinksToDisplay) {
 
     int start = 0;
     int end = 0;
 
-    int average = (size / 2).ceil() - 1;
-    // El limite inferior posible es 0
-    start  = current - average < 0 ? 0 : current - average;
+    int average = (numPageLinksToDisplay / 2).ceil();
+    start = max(currentPosition + 1 - average, 0);
 
-    if (start > _totalPages -1 - size) {
-      start = _totalPages - size;
+    if (start > _totalPages -1 - numPageLinksToDisplay) {
+      start = _totalPages - numPageLinksToDisplay;
     }
 
-    if (_totalPages < size) {
-      end = size;
+    if (_totalPages < numPageLinksToDisplay) {
+      end = numPageLinksToDisplay;
     }
     else {
-      end = start + size;
+      end = start + numPageLinksToDisplay;
     }
 
     return {"start":start, "end":end};
@@ -245,8 +244,6 @@ class PaginatorComp implements DetachAware, ShadowRootAware {
 
   Map _options = {
      "itemsPerPage"          : 10,
-     "navPanelIdPrefix"      : "paginatorBox_",
-     "linkButtonId"          : "linkButton",
      "pageLinksCss"          : "page-link",
      "numPageLinksToDisplay" :  5,
      "navLabelFirst"         : "&laquo;",
@@ -255,16 +252,13 @@ class PaginatorComp implements DetachAware, ShadowRootAware {
      "navLabelLast"          : "&raquo;",
      "navOrder"              : ["first", "prev", "num", "next", "last"],
      "showFirstLast"         : true,
-     "stateActive"           : "active",
-     "stateDisabled"         : "disabled"
+     "stateActive"           : "active"
    };
 
    int _currentPage = 0;
    int _totalPages = 0;
    int _originalPageLinksCount;
    int _listLength;
-
-   String _parentListName;
 
    Element _paginatorContainer;
 

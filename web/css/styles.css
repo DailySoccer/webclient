@@ -7181,7 +7181,7 @@ button#infoContent .modal-info-head button.close {
 @media (min-width: 768px) {
   #headerContestWidget .contest-coins .contest-price span::before {
     content: " ";
-    background-image: url("../images/IconPrice.png");
+    background-image: url("../images/iconPrice.png");
     width: 26px;
     height: 24px;
     display: inline-block;
@@ -7191,7 +7191,7 @@ button#infoContent .modal-info-head button.close {
   }
   #headerContestWidget .contest-coins .contest-prize span::before {
     content: " ";
-    background-image: url("../images/IconPrize.png");
+    background-image: url("../images/iconPrize.png");
     width: 26px;
     height: 24px;
     display: inline-block;
@@ -7701,7 +7701,7 @@ fieldset[disabled] #headerContestWidget .close-contest .btn.active {
 @media (min-width: 768px) {
   .contests-list-root .contest-row .column-contest-price span::before {
     content: " ";
-    background-image: url("../images/IconPrice.png");
+    background-image: url("../images/iconPrice.png");
     width: 26px;
     height: 24px;
     display: inline-block;
@@ -7711,7 +7711,7 @@ fieldset[disabled] #headerContestWidget .close-contest .btn.active {
   }
   .contests-list-root .contest-row .column-contest-prize span::before {
     content: " ";
-    background-image: url("../images/IconPrize.png");
+    background-image: url("../images/iconPrize.png");
     width: 26px;
     height: 24px;
     display: inline-block;

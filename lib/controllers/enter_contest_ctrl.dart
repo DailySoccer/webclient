@@ -19,7 +19,7 @@ import 'package:intl/intl.dart';
     selector: '[enter-contest-ctrl]',
     publishAs: 'ctrl'
 )
-class EnterContestCtrl {
+class EnterContestCtrl implements DetachAware{
 
   static const String FILTER_POSITION = "FILTER_POSITION";
   static const String FILTER_NAME = "FILTER_NAME";
@@ -64,6 +64,10 @@ class EnterContestCtrl {
 
     //Nos subscribimos al evento de cambio de tamañano de ventana
     _streamListener = scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
+  }
+
+  void detach() {
+    _streamListener.cancel();
   }
 
   void tabChange(String tab) {
@@ -394,7 +398,9 @@ class EnterContestCtrl {
   void removeAllFilters() {
     setPosFilterClass('TODOS');
     setMatchFilterClass(ALL_MATCHES);
-    (querySelector(".name-player-input-filter") as InputElement).value = "";
+    InputElement txtfilterByName = querySelector(".name-player-input-filter");
+    if (txtfilterByName != null)
+        txtfilterByName.value = "";
     _filterList={};
     _refreshFilter();
   }
@@ -509,4 +515,6 @@ class EnterContestCtrl {
   // Lista de filtros a aplicar
   Map<String,String> _filterList = {};
   var _streamListener;
+
+
 }

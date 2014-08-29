@@ -1,33 +1,27 @@
- // barra supeior que muestra el id del partido
-.contest-id-bar{
-	.make-row(0);
-	background-color: @tramaBlue;
-	.contest-id{
-		.make-xs-column(12);
-		.opensans_bold(10pt, @blueDark);
-		text-align: right;
-		padding-top: 5px;
-		padding-bottom: 5px;
-	}
-}
 //barra que muestra los partidos que intervienen en el concurso y los encales sociales
 .info-and-social-bar{
 	.make-row(0);
 	background-color: @tramaBlue;
+	padding: 0 4px;
 	.social{
 		.make-xs-column(0);
 		width: 150px;
 		padding: 9px 20px;
 	}
-	.teams-info{
-		.opensans_bold(9pt, @greyMed);
-		.make-xs-column(0);
-		width: 140px;
-		background-color: @white;		
-		border-radius: 10px;
-		padding: 10px;
-		margin: 8px 4px;
-		text-align: center;
+	.teams-info-wrapper{
+		.make-xs-column(4);
+		.make-sm-column(3);
+		.make-md-column(2);
+		.clean-paddings();
+		.teams-info{
+			.opensans_bold(9pt, @greyMed);
+			min-width: 90px;
+			background-color: @white;		
+			border-radius: 10px;
+			padding: 10px 0;
+			margin: 0 4px 8px 4px;
+			text-align: center;
+		}
 	}
 }
 #liveContestRoot {
@@ -51,6 +45,17 @@
 			overflow: hidden;
 			white-space: nowrap;
 		}
+	}
+}
+ // barra supeior que muestra el id del partido
+.contest-id-bar{
+	.make-row(0);
+	.contest-id{
+		.make-xs-column(12);
+		.opensans_bold(10pt, @blueDark);
+		text-align: right;
+		padding-top: 5px;
+		padding-bottom: 5px;
 	}
 }
 .clear-fix-bottom {

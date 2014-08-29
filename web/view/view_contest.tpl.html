@@ -1,14 +1,12 @@
 <section view-contest-ctrl ng-show="ctrl.initialized">
 
-  <div class="contest-id-bar">
-    <div class="contest-id">ID: {{ctrl.contest.contestId.toUpperCase()}}</div>
-  </div>
-
   <contest-header contestData="ctrl.contest" mode="'VIEW_CONTEST'"></contest-header>
 
   <div class="info-and-social-bar">
-    <div class="social"><img src="images/socialBig.png"></div>
-    <div class="teams-info" ng-repeat="match in ctrl.matchesInvolved" ng-bind-html="match"></div>
+    <!--<div class="social"><img src="images/socialBig.png"></div>-->
+    <div class="teams-info-wrapper" ng-repeat="match in ctrl.matchesInvolved">
+      <div class="teams-info" ng-bind-html="match"></div>
+    </div>
   </div>
 
   <div id="liveContestRoot" ng-switch="ctrl.scrDet.isXsScreen" ng-cloak>
@@ -33,6 +31,9 @@
                   watch="ctrl.updatedDate" mode="ctrl.whereAmI"></users-list>
       <fantasy-team id="opponentFantasyTeam" contest-entry="ctrl.selectedOpponent" is-opponent="true" ng-show="ctrl.selectedOpponent != null"
                     show-close-button="true" on-close="ctrl.selectedOpponent=null" watch="ctrl.updatedDate" mode="ctrl.whereAmI"></fantasy-team>
+    </div>
+    <div class="contest-id-bar">
+      <div class="contest-id">ID: {{ctrl.contest.contestId.toUpperCase()}}</div>
     </div>
     <div class="clear-fix-bottom"></div>
   </div>

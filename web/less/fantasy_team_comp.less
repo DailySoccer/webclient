@@ -9,7 +9,7 @@
 		float:left;
 
 		.content {
-			.exo_light(30pt);
+			.exo_light(24pt);
 			line-height: 1.1;
 		}
 		margin-right: 10px;
@@ -17,6 +17,10 @@
 	.score-box {
 		.header-box();
 		float:right;
+		.content {
+			.exo_light(20pt);
+			line-height: 1.3;
+		}
 	}
 	.user-nickname {
 		.exo_light(14pt, @white);
@@ -78,7 +82,8 @@
 		background-color: @white;
 	}
 	.fantasy-team-slot {
-		
+		.user-select(none);
+		cursor: pointer;
 		margin-top: 2px;
 		padding-bottom: 2px;
 		.make-border(1px, none none dotted none, @red);
@@ -115,6 +120,7 @@
 			margin-top: 5px;
 		}
 	}
+	.fantasy-team-slot:first-child { margin-top: 10px; }
  	.fantasy-team-slot:last-child { border: none; margin-bottom: 3px;}
 }
 
@@ -141,7 +147,7 @@
 
 .fantasy-team-wrapper {
 	@media (min-width: @screen-sm-min) {
-		min-height: 580px;		// Quitamos 1 pixel para comernos el borde final del slot
+		min-height: 574px;		// Quitamos 1 pixel para comernos el borde final del slot
 		//overflow: hidden;	// Asi nos lo comemos
 		.make-percent-box(50%, 2%);
 		.make-border(1px, solid, @orange, @globalBoxesRadius);

@@ -69,7 +69,7 @@ class PaginatorComp implements DetachAware, ShadowRootAware {
       return;
     }
 
-    if (_totalPages > 0) {
+    if (_totalPages > 1) {
       generatePaginatorButtons();
     }
     else {
@@ -82,16 +82,16 @@ class PaginatorComp implements DetachAware, ShadowRootAware {
     _paginatorContainer.innerHtml = "";
 
     // El botón de ir a la "Primera"
-    LIElement first = createLinkElement(_options["navLabelFirst"], 0, []);
+    LIElement first = createLinkElement(_options["navLabelFirst"], 0, ["go-to-first-page"]);
 
     // El botón de ir a la "Anterior"
-    LIElement prev = createLinkElement(_options["navLabelPrev"], _currentPage - 1, []);
+    LIElement prev = createLinkElement(_options["navLabelPrev"], _currentPage - 1, ["go-to-prev-page"]);
 
     // El botón de ir a la "Siguiente"
-    LIElement next =  createLinkElement(_options["navLabelNext"], _currentPage + 1, []);
+    LIElement next =  createLinkElement(_options["navLabelNext"], _currentPage + 1, ["go-to-next-page"]);
 
     // El botón de ir a la "Última"
-    LIElement last = createLinkElement(_options["navLabelLast"], _totalPages -1, []);
+    LIElement last = createLinkElement(_options["navLabelLast"], _totalPages -1, ["go-to-last-page"]);
 
     // Además creamos el botón de "..." que indica que hay mas botones antes
     LIElement less = createLinkElement("...", null, ["ellipsis", "less"] );
@@ -103,7 +103,7 @@ class PaginatorComp implements DetachAware, ShadowRootAware {
     int currentLink = 0;
     while (_totalPages > currentLink) {
       // El primer elemento se linka con la página 0 aunque su label sea 1;
-      numbers.add(createLinkElement("${currentLink + 1}", currentLink, [_options["pageLinksCss"]]));
+      numbers.add(createLinkElement("${currentLink + 1}", currentLink, _options["pageLinksCss"]));
       currentLink++;
     }
 
@@ -244,7 +244,7 @@ class PaginatorComp implements DetachAware, ShadowRootAware {
 
   Map _options = {
      "itemsPerPage"          : 10,
-     "pageLinksCss"          : "page-link",
+     "pageLinksCss"          : ["page-link"],
      "numPageLinksToDisplay" :  5,
      "navLabelFirst"         : "&laquo;",
      "navLabelPrev"          : "&lt;",

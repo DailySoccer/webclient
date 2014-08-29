@@ -35,7 +35,7 @@ class PaginatorComp implements DetachAware, ShadowRootAware {
 
     // Si empezamos desde la versión XS el numero de botones es menor.
     if (_scrDet.isXsScreen) {
-      _options["numPageLinksToDisplay"] = 2;
+      _options["numPageLinksToDisplay"] = 1;
     }
     _streamListener = _scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
   }
@@ -55,7 +55,7 @@ class PaginatorComp implements DetachAware, ShadowRootAware {
   void onScreenWidthChange(msg) {
 
     if (msg == "xs") {
-      _options["numPageLinksToDisplay"] = 2;
+      _options["numPageLinksToDisplay"] = 1;
     }
     else {
       _options["numPageLinksToDisplay"] = _originalPageLinksCount;
@@ -110,14 +110,15 @@ class PaginatorComp implements DetachAware, ShadowRootAware {
     // Activamos la página actual
     numbers[_currentPage].classes.add(_options["stateActive"]);
 
-    // Ocultamos TODOS los botones numericos
-    numbers.forEach((Element elem) => elem.style.display = 'none');
 
     // Mostramos X elementos según el parametro 'numPageLinkdToDisplay' definido en las opciones
     if (numbers.length > _options["numPageLinksToDisplay"]) {
+      // Ocultamos TODOS los botones numericos
+      numbers.forEach((Element elem) => elem.style.display = 'none');
+
       Map range = calculateLinksRange(_currentPage, _options["numPageLinksToDisplay"]);
 
-      numbers.skip(range["start"]).take(range["end"] - range["start"]).forEach((LIElement element) => element.style.display = '');
+      numbers.getRange(range["start"], range["end"]).forEach((LIElement element) => element.style.display = '');
 
       less.style.display = range["start"] == 0 ? 'none' : '';
       more.style.display = range["end"] >= _totalPages ? 'none' : '';

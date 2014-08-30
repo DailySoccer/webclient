@@ -6897,6 +6897,22 @@ button#infoContent .modal-info-head button.close {
   max-height: 250px;
   margin: 10px auto 0;
 }
+.prizes-wrapper .no-prizes {
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 20pt;
+  color: #0d75a6;
+  text-align: center;
+  padding: 15px 0;
+}
+@media (max-width: 991px) {
+  .prizes-wrapper .no-prizes {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 10pt;
+    color: #777777;
+  }
+}
 .prizes-wrapper .prize-element-wrapper {
   position: relative;
   float: left;
@@ -12553,13 +12569,13 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
 @media (min-width: 768px) {
   #infoAndFilterHeader #filtersPanel .filter-column-base {
     float: left;
-    width: 33.33333333%;
+    width: 50%;
   }
 }
 @media (min-width: 992px) {
   #infoAndFilterHeader #filtersPanel .filter-column-base {
     float: left;
-    width: 25%;
+    width: 33.33333333%;
   }
 }
 @media (max-width: 991px) {
@@ -12596,13 +12612,13 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
 @media (min-width: 768px) {
   #infoAndFilterHeader #filtersPanel .filter-column-competition {
     float: left;
-    width: 33.33333333%;
+    width: 50%;
   }
 }
 @media (min-width: 992px) {
   #infoAndFilterHeader #filtersPanel .filter-column-competition {
     float: left;
-    width: 25%;
+    width: 33.33333333%;
   }
 }
 @media (max-width: 991px) {
@@ -12623,13 +12639,13 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
 @media (min-width: 768px) {
   #infoAndFilterHeader #filtersPanel .filter-column-tournaments {
     float: left;
-    width: 33.33333333%;
+    width: 50%;
   }
 }
 @media (min-width: 992px) {
   #infoAndFilterHeader #filtersPanel .filter-column-tournaments {
     float: left;
-    width: 25%;
+    width: 33.33333333%;
   }
 }
 @media (max-width: 991px) {
@@ -12683,13 +12699,13 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
 @media (min-width: 768px) {
   #infoAndFilterHeader #filtersPanel .filter-column-salary-limit {
     float: left;
-    width: 33.33333333%;
+    width: 50%;
   }
 }
 @media (min-width: 992px) {
   #infoAndFilterHeader #filtersPanel .filter-column-salary-limit {
     float: left;
-    width: 25%;
+    width: 33.33333333%;
   }
 }
 @media (max-width: 991px) {
@@ -12744,7 +12760,7 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
 @media (min-width: 992px) {
   #infoAndFilterHeader #filtersPanel .filter-column-entry-fee {
     float: left;
-    width: 25%;
+    width: 33.33333333%;
   }
 }
 #infoAndFilterHeader #filtersPanel .filter-content {

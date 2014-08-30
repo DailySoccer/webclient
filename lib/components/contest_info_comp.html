@@ -96,6 +96,9 @@
                 <div class="tab-pane" id="prizes">
 
                   <div class="prizes-wrapper">
+                    <div ng-if="contestInfo.currentInfoData['prizes'].length == 0" class="no-prizes">
+                      Este Concurso no tiene premios
+                    </div>
                     <div id="prizes-list">
                       <div class="prize-element-wrapper" ng-repeat="prize in contestInfo.currentInfoData['prizes']">
                         <div class="prize-element">
@@ -111,7 +114,6 @@
         </div>
 
     </div>
-    <!-- <div class="modal-footer"></div> -->
 </div>
 
 <div ng-if="!contestInfo.isPopUp">
@@ -133,7 +135,9 @@
     <p class="title">PREMIOS</p>
     <div class="prizes-wrapper">
         <div id="prizes-list">
-          <div></div>
+          <div ng-if="contestInfo.currentInfoData['prizes'].length == 0" class="no-prizes">
+            Este Concurso no tiene premios
+          </div>
           <div class="prize-element-wrapper" ng-repeat="prize in contestInfo.currentInfoData['prizes']">
             <div class="prize-element">
                 {{$index + 1}}º &nbsp;&nbsp; {{prize.value | number: 0.00}}€

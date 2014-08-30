@@ -23,7 +23,6 @@ class ViewContestCtrl implements DetachAware {
   ScreenDetectorService scrDet;
   dynamic mainPlayer;
   dynamic selectedOpponent;
-  bool initialized;
 
   DateTime updatedDate;
   String lastOpponentSelected = "Adversario";
@@ -38,10 +37,11 @@ class ViewContestCtrl implements DetachAware {
   ViewContestCtrl(RouteProvider routeProvider, this.scrDet, this._myContestsService, this._profileService, this._dateTimeService, this._flashMessage) {
 
     _contestId = routeProvider.route.parameters['contestId'];
-    //TODO: Con esta variable whereAmI, lo que tengo que hacer es decirle al control que se ponga en modo 'mode=Live, next, history, ...' para saber como se tiene que comportar cuando le hagan click en los links.
+
+    // TODO: Con esta variable whereAmI, lo que tengo que hacer es decirle al control que se ponga en modo
+    // 'mode=Live, next, history, ...' para saber como se tiene que comportar cuando le hagan click en los links.
     whereAmI = routeProvider.route.name;
     print("-VIEW CONTEST- Estoy en un ${whereAmI}");
-    initialized = false;
 
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
 
@@ -67,7 +67,6 @@ class ViewContestCtrl implements DetachAware {
           _timer = new Timer.periodic(const Duration(seconds:3), (Timer t) => _updateLive());
         }
 
-        initialized = true;
       })
       .catchError((error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW));
   }

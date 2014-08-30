@@ -25,8 +25,8 @@ class TemplateContest {
   static const SALARY_LIMIT_FOR_SKILLEDS  = 70000;
 
   static const TIER_BEGGINER              = "BEGGINER";
-  static const TIER_STANDARD             = "STANDARDS";
-  static const TIER_SKILLED              = "SKILLEDS";
+  static const TIER_STANDARD              = "STANDARDS";
+  static const TIER_SKILLED               = "SKILLEDS";
 
   String templateContestId;
 

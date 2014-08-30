@@ -12,8 +12,8 @@ import 'package:webclient/controllers/view_contest_ctrl.dart';
 class FantasyTeamComp implements ShadowRootAware {
 
     var slots = new List();
-    String _owner = "";
-    String get owner => _owner;
+
+    String get owner => isOpponent? "opponent" : "me";
 
     @NgOneWay("contest-entry")
     set contestEntry(ContestEntry value) {
@@ -29,27 +29,13 @@ class FantasyTeamComp implements ShadowRootAware {
     }
 
     @NgOneWay("is-opponent")
-    set isOpponent(bool value) {
-      _owner = value ? "opponent" : "me";
-      _isOpponent = value;
-
-        _refreshHeader();
-    }
+    bool isOpponent = false;
 
     @NgOneWay("show-close-button")
-    set showCloseButton(bool value) {
-        _showCloseButton = value;
-        _refreshCloseButton();
-    }
+    bool showCloseButton = false;
 
     @NgCallback('on-close')
     Function onClose;
-
-    @NgOneWay("mode")
-    set mode(String value)
-    {
-      _mode = value;
-    }
 
     String soccerPlayerIdModal;
     dynamic soccerPlayerEventsModal;
@@ -59,8 +45,6 @@ class FantasyTeamComp implements ShadowRootAware {
     String get userScore => (_contestEntry != null) ? _contestEntry.currentLivePoints.toString() : "0";
     String get remainingTime => (_contestEntry != null) ? "${_contestEntry.timeLeft} min." : "-";
 
-    dynamic get scrDet => _viewContestCtrl.scrDet;
-
     FantasyTeamComp(this._viewContestCtrl);
 
     // A pesar de que useShadowDom es false, sigue llegando este mensaje y es el primer momento donde podemos hacer un querySelector.
@@ -68,38 +52,6 @@ class FantasyTeamComp implements ShadowRootAware {
     // pq nos esta llegando un HtmlElement (es logico puesto que useShadowRoot es false)
     void onShadowRoot(var shadowRoot) {
       _rootElement = shadowRoot as HtmlElement;
-      _refreshHeader();
-      _refreshCloseButton();
-    }
-
-    void _refreshHeader() {
-
-      if (_rootElement == null)
-        return;
-
-      var header = _rootElement.querySelector(".fantasy-team-header");
-
-      if (header != null) {
-          if (_isOpponent)
-            header.classes.add("opponent-team-gradient");
-          else
-            header.classes.remove("opponent-team-gradient");
-      }
-    }
-
-    void _refreshCloseButton() {
-
-      if (_rootElement == null)
-        return;
-
-      var closeButton = _rootElement.querySelector(".close-team");
-
-      if (_showCloseButton) {
-        closeButton.classes.remove("ng-hide");
-      }
-      else {
-        closeButton.classes.add("ng-hide");
-      }
     }
 
     void _refreshTeam() {
@@ -179,12 +131,9 @@ class FantasyTeamComp implements ShadowRootAware {
     }
 
     HtmlElement _rootElement;
-    bool _isOpponent = false;
-    bool _showCloseButton = false;
 
     ContestEntry _contestEntry;
     ViewContestCtrl _viewContestCtrl;
-    String _mode;
 
     Map collapsables = {};
 

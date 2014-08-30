@@ -1,6 +1,6 @@
 <div class="fantasy-team-wrapper" ng-cloak>
 
-  <div class="fantasy-team-header">
+  <div class="fantasy-team-header" ng-class="{'opponent-team-gradient': fantasyTeam.isOpponent}">
     <div class="ranking-box">
       <span class="title">POS</span>
       <span class="content">{{fantasyTeam.userPosition}}</span>
@@ -16,7 +16,7 @@
     <div class="total-remaining-matches-time">TIEMPO RESTANTE: {{fantasyTeam.remainingTime}}</div>
 
 
-    <div class="close-team" ng-click="fantasyTeam.onCloseButtonClick()">
+    <div class="close-team" ng-click="fantasyTeam.onCloseButtonClick()" ng-show="fantasyTeam.showCloseButton">
       <span class="title">CERRAR</span>
       <span class="glyphicon glyphicon-remove"></span>
     </div>

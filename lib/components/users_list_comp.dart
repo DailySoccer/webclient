@@ -13,8 +13,6 @@ import 'package:webclient/controllers/view_contest_ctrl.dart';
 
 class UsersListComp {
 
-  static const int LIVE_CONTEST = 0;
-
   List users = new List();
 
   @NgTwoWay("selected-contest-entry")
@@ -31,15 +29,9 @@ class UsersListComp {
     _refresh();
   }
 
-  @NgOneWay("mode")
-  set mode(String value)
-  {
-    _mode = value;
-  }
-
   String getPrize(int index) => _viewContestCtrl.getPrize(index);
 
-  UsersListComp(this._viewContestCtrl);
+  UsersListComp(this._routeProvider, this._viewContestCtrl);
 
   void _refresh() {
     //print("refresh users: ${_liveContestCtrl.usersInfo}");
@@ -60,7 +52,7 @@ class UsersListComp {
   }
 
   void onUserClick(var user) {
-    switch(_mode)
+    switch(_routeProvider.route.name)
     {
       case "live_contest":
         _viewContestCtrl.setTabNameAndShowIt(user["name"]);
@@ -75,5 +67,5 @@ class UsersListComp {
 
   List<ContestEntry> _contestEntries;
   ViewContestCtrl _viewContestCtrl;
-  String _mode;
+  RouteProvider _routeProvider;
 }

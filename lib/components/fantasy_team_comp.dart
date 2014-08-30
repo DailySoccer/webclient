@@ -37,8 +37,7 @@ class FantasyTeamComp implements ShadowRootAware {
     @NgCallback('on-close')
     Function onClose;
 
-    String soccerPlayerIdModal;
-    dynamic soccerPlayerEventsModal;
+    Map collapsables = {};
 
     String get userPosition => (_contestEntry != null) ? _viewContestCtrl.getUserPosition(_contestEntry).toString() : "-";
     String get userNickname => (_contestEntry != null) ? _contestEntry.user.nickName : "";
@@ -55,45 +54,40 @@ class FantasyTeamComp implements ShadowRootAware {
     }
 
     void _refreshTeam() {
+      if (_contestEntry == null)
+        return;
+
       slots.clear();
 
-      if (_contestEntry != null) {
-        //TODO: actualizar los datos de la lista de slots, sin recrearla de nuevo. Buscar los jugadores y actualizar buscandolo por ID.
+      //TODO: actualizar los datos de la lista de slots, sin recrearla de nuevo. Buscar los jugadores y actualizar buscandolo por ID.
+      _contestEntry.soccers.forEach((soccerPlayer) {
+        String shortNameTeamA = soccerPlayer.team.matchEvent.soccerTeamA.shortName;
+        String shortNameTeamB = soccerPlayer.team.matchEvent.soccerTeamB.shortName;
+        var matchEventName = (soccerPlayer.team.templateSoccerTeamId == soccerPlayer.team.matchEvent.soccerTeamA.templateSoccerTeamId)?
+                             "<strong>$shortNameTeamA</strong> - $shortNameTeamB" :
+                             "$shortNameTeamA - <strong>$shortNameTeamB<strong>";
 
-        _contestEntry.soccers.forEach((soccerPlayer) {
-          String shortNameTeamA = soccerPlayer.team.matchEvent.soccerTeamA.shortName;
-          String shortNameTeamB = soccerPlayer.team.matchEvent.soccerTeamB.shortName;
-          var matchEventName = (soccerPlayer.team.templateSoccerTeamId == soccerPlayer.team.matchEvent.soccerTeamA.templateSoccerTeamId)
-              ? "<strong>$shortNameTeamA</strong> - $shortNameTeamB"
-              : "$shortNameTeamA - <strong>$shortNameTeamB<strong>";
+        List<Map> soccerPlayerStats = [];
 
-          List<Map> soccerPlayerStats = [];
-
-          soccerPlayer.eventLivePoints.forEach((key,value) {
-            if (eventKeyToName.containsKey(key)) {
-              soccerPlayerStats.add({'name':eventKeyToName[key], 'points':value});
-            }
-            else {
-              soccerPlayerStats.add({'name':"???", 'points':value});
-            }
-          });
-
-          slots.add({
-              "id" : soccerPlayer.templateSoccerPlayerId,
-              "fieldPos": soccerPlayer.fieldPos,
-              "fullName": soccerPlayer.name,
-              "matchEventName": matchEventName,
-              "percentOfUsersThatOwn": _viewContestCtrl.getPercentOfUsersThatOwn(soccerPlayer),
-              "score": (soccerPlayer.team.matchEvent.isStarted) ? soccerPlayer.currentLivePoints : "-",
-              "stats": soccerPlayerStats
-          });
-
-          // Actualizar los datos que ofrecemos en la ventana Modal
-          if (soccerPlayer.templateSoccerPlayerId == soccerPlayerIdModal) {
-            soccerPlayerEventsModal = soccerPlayerStats;
+        soccerPlayer.eventLivePoints.forEach((key,value) {
+          if (EVENT_KEY_TO_NAME.containsKey(key)) {
+            soccerPlayerStats.add({'name':EVENT_KEY_TO_NAME[key], 'points':value});
+          }
+          else {
+            soccerPlayerStats.add({'name':"???", 'points':value});
           }
         });
-      }
+
+        slots.add({
+            "id" : soccerPlayer.templateSoccerPlayerId,
+            "fieldPos": soccerPlayer.fieldPos,
+            "fullName": soccerPlayer.name,
+            "matchEventName": matchEventName,
+            "percentOfUsersThatOwn": _viewContestCtrl.getPercentOfUsersThatOwn(soccerPlayer),
+            "score": (soccerPlayer.team.matchEvent.isStarted) ? soccerPlayer.currentLivePoints : "-",
+            "stats": soccerPlayerStats
+        });
+      });
     }
 
     void backUpStatistics() {
@@ -135,9 +129,7 @@ class FantasyTeamComp implements ShadowRootAware {
     ContestEntry _contestEntry;
     ViewContestCtrl _viewContestCtrl;
 
-    Map collapsables = {};
-
-    final Map<String, String> eventKeyToName = {
+    final Map<String, String> EVENT_KEY_TO_NAME = {
       "PASS_SUCCESSFUL"   : "Pase completado",
       "PASS_UNSUCCESSFUL" : "Pase no completado",
       "TAKE_ON"           : "Regate",

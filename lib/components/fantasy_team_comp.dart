@@ -11,20 +11,18 @@ import 'package:webclient/controllers/view_contest_ctrl.dart';
            useShadowDom: false)
 class FantasyTeamComp implements ShadowRootAware {
 
-    var slots = new List();
+    List<dynamic> slots = null;
 
     String get owner => isOpponent? "opponent" : "me";
 
     @NgOneWay("contest-entry")
     set contestEntry(ContestEntry value) {
       _contestEntry = value;
-      if (value != null)
-        _refreshTeam();
+      _refreshTeam();
     }
 
     @NgOneWay("watch")
     set watch(dynamic value) {
-      backUpStatistics();
       _refreshTeam();
     }
 
@@ -37,8 +35,6 @@ class FantasyTeamComp implements ShadowRootAware {
     @NgCallback('on-close')
     Function onClose;
 
-    Map collapsables = {};
-
     String get userPosition => (_contestEntry != null) ? _viewContestCtrl.getUserPosition(_contestEntry).toString() : "-";
     String get userNickname => (_contestEntry != null) ? _contestEntry.user.nickName : "";
     String get userScore => (_contestEntry != null) ? _contestEntry.currentLivePoints.toString() : "0";
@@ -46,20 +42,26 @@ class FantasyTeamComp implements ShadowRootAware {
 
     FantasyTeamComp(this._viewContestCtrl);
 
-    // A pesar de que useShadowDom es false, sigue llegando este mensaje y es el primer momento donde podemos hacer un querySelector.
-    // Hemos probado attach y el constructor, pero alli parece que todavia no estan creados los hijos. Tiene que ser var y no ShadowRoot
-    // pq nos esta llegando un HtmlElement (es logico puesto que useShadowRoot es false)
     void onShadowRoot(var shadowRoot) {
       _rootElement = shadowRoot as HtmlElement;
     }
 
     void _refreshTeam() {
-      if (_contestEntry == null)
+      if (_rootElement == null || _contestEntry == null)
         return;
 
-      slots.clear();
+      if (slots == null) {
+        _createSlots();
+      }
+      else {
+        _refreshSlots();
+      }
+    }
 
-      //TODO: actualizar los datos de la lista de slots, sin recrearla de nuevo. Buscar los jugadores y actualizar buscandolo por ID.
+    void _createSlots() {
+
+      slots = new List<dynamic>();
+
       _contestEntry.soccers.forEach((soccerPlayer) {
         String shortNameTeamA = soccerPlayer.team.matchEvent.soccerTeamA.shortName;
         String shortNameTeamB = soccerPlayer.team.matchEvent.soccerTeamB.shortName;
@@ -67,57 +69,31 @@ class FantasyTeamComp implements ShadowRootAware {
                              "<strong>$shortNameTeamA</strong> - $shortNameTeamB" :
                              "$shortNameTeamA - <strong>$shortNameTeamB<strong>";
 
-        List<Map> soccerPlayerStats = [];
-
-        soccerPlayer.eventLivePoints.forEach((key,value) {
-          if (EVENT_KEY_TO_NAME.containsKey(key)) {
-            soccerPlayerStats.add({'name':EVENT_KEY_TO_NAME[key], 'points':value});
-          }
-          else {
-            soccerPlayerStats.add({'name':"???", 'points':value});
-          }
-        });
-
         slots.add({
             "id" : soccerPlayer.templateSoccerPlayerId,
             "fieldPos": soccerPlayer.fieldPos,
             "fullName": soccerPlayer.name,
             "matchEventName": matchEventName,
             "percentOfUsersThatOwn": _viewContestCtrl.getPercentOfUsersThatOwn(soccerPlayer),
-            "score": (soccerPlayer.team.matchEvent.isStarted) ? soccerPlayer.currentLivePoints : "-",
-            "stats": soccerPlayerStats
+            "score": soccerPlayer.printableCurrentLivePoints,
+            "stats": soccerPlayer.printableLivePointsPerOptaEvent
         });
       });
     }
 
-    void backUpStatistics() {
-      collapsables.clear();
-      var coll = document.getElementsByClassName('soccer-player-statistics collapse');
-      coll.forEach((Element element) {
-        var classes = element.classes.toString();
-        var style = element.style;
-        var id = element.id;
+    void _refreshSlots() {
+      _contestEntry.soccers.forEach((soccerPlayer) {
 
-        Map css = { id : {"classes" : classes.toString(), "height" : style.height} };
-        collapsables.addAll(css);
+        // Para el score, refrescamos solo el texto y lanzamos una animacion (rojo fade-in/out por ejemplo)
+        Element scoreElement = _rootElement.querySelector("[data-id='${soccerPlayer.templateSoccerPlayerId}'] .column-score");
+
+        if (scoreElement != null)
+          scoreElement.innerHtml = soccerPlayer.printableCurrentLivePoints;
+
+        // Refrescamos el array completo de stats. A medida que lleguen nuevas stats se iran rellenando nuevas rows.
+        slots.firstWhere((slot) => slot['id'] == soccerPlayer.templateSoccerPlayerId)["stats"] = soccerPlayer.printableLivePointsPerOptaEvent;
       });
     }
-
-    String restoreStatisticsCss(String id) {
-      String retorno = "";
-      if (collapsables.isNotEmpty) {
-        Map css = collapsables[id];
-        if (css != null){
-          if (css["classes"] != null) {
-            retorno =  css["classes"];
-          }
-        }
-      }
-      return retorno;
-    }
-
-
-    void onRow(dynamic soccerPlayerData) {}
 
     void onCloseButtonClick() {
       if (onClose != null)
@@ -128,40 +104,4 @@ class FantasyTeamComp implements ShadowRootAware {
 
     ContestEntry _contestEntry;
     ViewContestCtrl _viewContestCtrl;
-
-    final Map<String, String> EVENT_KEY_TO_NAME = {
-      "PASS_SUCCESSFUL"   : "Pase completado",
-      "PASS_UNSUCCESSFUL" : "Pase no completado",
-      "TAKE_ON"           : "Regate",
-      "FOUL_RECEIVED"     : "Falta recibida",
-      "TACKLE"            : "Entrada",
-      "INTERCEPTION"      : "Intercepción",
-      "SAVE"              : "Parada",
-      "CLAIM"             : "Anticipación",
-      "CLEARANCE"         : "Despeje",
-      "MISS"              : "Disparo fallado",
-      "POST"              : "Poste",
-      "ATTEMPT_SAVED"     : "Disparo detenido",
-      "YELLOW_CARD"       : "Tarjeta amarilla",
-      "PUNCH"             : "Despeje de puño",
-      "DISPOSSESSED"      : "Pérdida de balón",
-      "ERROR"             : "Error",
-      "ASSIST"            : "Asistencia",
-      "TACKLE_EFFECTIVE"  : "Entrada exitosa",
-      "GOAL_SCORED_BY_GOALKEEPER" : "Gol",
-      "GOAL_SCORED_BY_DEFENDER"   : "Gol",
-      "GOAL_SCORED_BY_MIDFIELDER" : "Gol",
-      "GOAL_SCORED_BY_FORWARD"    : "Gol",
-      "OWN_GOAL"          : "Gol en propia meta",
-      "FOUL_COMMITTED"    : "Falta cometida",
-      "SECOND_YELLOW_CARD": "Segunda tarjeta amarilla",
-      "RED_CARD"          : "Tarjeta roja",
-      "CAUGHT_OFFSIDE"    : "Fuera de juego",
-      "PENALTY_COMMITTED" : "Penalti cometido",
-      "PENALTY_FAILED"    : "Penalti fallado",
-      "GOALKEEPER_SAVES_PENALTY"  : "Penalti detenido",
-      "CLEAN_SHEET"       : "Sin goles encajados",
-      "GOAL_CONCEDED"     : "Gol concedido"
-    };
-
 }

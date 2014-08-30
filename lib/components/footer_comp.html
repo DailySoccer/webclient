@@ -1,31 +1,38 @@
 <div id="mainFooter" ng-cloak>
+   
    <div class="sup-footer-wrapper">
-    <div class="user-info-sup-footer" ng-show="footer.isLoggedIn">
-        <a id="footerProfile" href="#" class="goto-link" ng-click="footer.gotoProfile()"><span class="username-link">{{footer.fullName}}</span></a>
-        <a id="footerLogOut" href="#" class="goto-link" ng-click="footer.logOut()"><span class="logout-link">Salir</span></a>
+    <div class="user-info-sup-footer" ng-show="footer.profileService.isLoggedIn">
+        <a id="footerProfile" href="#" class="goto-link" ng-click="footer.gotoProfile()"><span class="username-link">{{footer.profileService.user.fullName}}</span></a>
+        <a id="footerLogOut" href="#" class="goto-link" ng-click="footer.profileService.logout()"><span class="logout-link">Salir</span></a>
         <button id="footerAddFunds" class="add-funds-button">AÑADIR FONDOS</button>
     </div>
   </div>
+  
   <div class="sub-footer-wrapper">
     <div class="sub-footer">
+      
       <div class="data-wrapper">
-         <a href="#" class="goto-link" id="footerHelp"><span class="sub-footer-help-link">AYUDA</span></a>
-         <a href="#" class="goto-link" id="footerLegal"><span class="sub-footer-legal-link">LEGAL</span></a>
-         <a href="#" class="goto-link" id="footerTermsOfUse"><span class="sub-footer-terms-link">TERMINOS DE USO</span></a>
-         <a href="#" class="goto-link" id="footerPrivacyPolicy"><span class="sub-footer-policy-link">POLÍTICA DE PRIVACIDAD</span></a>
+          <a href="#" class="goto-link" id="footerHelp"><span class="sub-footer-help-link">AYUDA</span></a>
+          <a href="#" class="goto-link" id="footerLegal"><span class="sub-footer-legal-link">LEGAL</span></a>
+          <a href="#" class="goto-link" id="footerTermsOfUse"><span class="sub-footer-terms-link">TERMINOS DE USO</span></a>
+          <a href="#" class="goto-link" id="footerPrivacyPolicy"><span class="sub-footer-policy-link">POLÍTICA DE PRIVACIDAD</span></a>
       </div>
+      
       <div class="credit-cards">
-       <img src="images/creditCards.png" />
+          <img src="images/creditCards.png" />
       </div>
+      
       <div class="copyright">@ 2014 Epic Eleven</div>
+      
       <div class="social">
-        <img src="images/social.png"/>
+          <img src="images/social.png"/>
       </div>
+      
       <a href="#" class="url-link">
-        <span>&lt;www.fantasysportsgames.com&gt;</span>
+          <span>&lt;www.fantasysportsgames.com&gt;</span>
       </a>
+      
+      {{footer.dateTimeService.nowEverySecond}}
     </div>
-
   </div>
-
 </div>

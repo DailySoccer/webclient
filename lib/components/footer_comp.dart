@@ -2,6 +2,7 @@ library footer_comp;
 
 import 'package:angular/angular.dart';
 import 'package:webclient/services/profile_service.dart';
+import 'package:webclient/services/datetime_service.dart';
 
 @Component(
    selector: 'footer',
@@ -9,27 +10,9 @@ import 'package:webclient/services/profile_service.dart';
    publishAs: 'footer',
    useShadowDom: false
 )
-
 class FooterComp {
-  bool   isLoggedIn = false;
-  String fullName = "";
+  DateTimeService dateTimeService;
+  ProfileService profileService;
 
-  FooterComp(Scope scope, this._profileService) {
-    isLoggedIn  = _profileService.isLoggedIn;
-
-       scope.watch("isLoggedIn", (value, _) {
-         isLoggedIn = value;
-
-         if (isLoggedIn) {
-           fullName = _profileService.user.fullName;
-         }
-       }, context: _profileService);
-     }
-
-  void logOut() {
-    _profileService.logout();
-  }
-
-  ProfileService _profileService;
-
+  FooterComp(this.profileService, this.dateTimeService);
 }

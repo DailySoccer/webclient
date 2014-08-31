@@ -80,6 +80,7 @@ class MatchEvent {
     [soccerTeamA, soccerTeamB].forEach((team) => team.soccerPlayers.forEach((soccerPlayer) {
       JsonObject jsonObject = soccerFantasyPoints[soccerPlayer.templateSoccerPlayerId];
       soccerPlayer.currentLivePoints = jsonObject.points;
+      soccerPlayer.currentLivePointsPerOptaEvent = new Map<String, int>();
       jsonObject.events.forEach((key, value) => soccerPlayer.currentLivePointsPerOptaEvent[key] = value);
     }));
   }

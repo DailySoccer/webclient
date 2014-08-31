@@ -8598,6 +8598,15 @@ fieldset[disabled] .landing-wrapper .button-play.active {
   text-align: right;
   padding-right: 10px;
   margin-top: 5px;
+  background-color: #ffffff;
+}
+.fantasy-team-list .fantasy-team-slot .column-score span {
+  border-radius: 6px;
+  transition: background-color ease-in-out 150ms;
+  padding: 3px 10px 0px 10px;
+}
+.fantasy-team-list .fantasy-team-slot .column-score .changed {
+  background-color: #ffff00;
 }
 .fantasy-team-list .fantasy-team-slot:first-child {
   margin-top: 10px;

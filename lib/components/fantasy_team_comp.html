@@ -32,7 +32,7 @@
           <span class="match-event-name" ng-bind-html="slot.matchEventName"></span>
           <span class="remaining-match-time">{{slot.percentOfUsersThatOwn}}% LO TIENEN</span>
         </div>
-        <div class="column-score">{{slot.score}}</div>
+        <div class="column-score"><span>{{slot.score}}</span></div>
       </div>
       <div id="statistic_{{fantasyTeam.owner}}_{{$index}}" class="soccer-player-statistics collapse">
         <div class="statistic" ng-repeat="stat in slot.stats">

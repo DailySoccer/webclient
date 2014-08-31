@@ -4,6 +4,8 @@ import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:webclient/models/contest_entry.dart';
 import 'package:webclient/controllers/view_contest_ctrl.dart';
+import 'dart:async';
+import 'dart:math';
 
 @Component(selector: 'fantasy-team',
            templateUrl: 'packages/webclient/components/fantasy_team_comp.html',
@@ -17,6 +19,10 @@ class FantasyTeamComp implements ShadowRootAware {
 
     @NgOneWay("contest-entry")
     set contestEntry(ContestEntry value) {
+      // Si nos mandan cambiar de ContestEntry, tenemos que resetear los slots
+      if (_contestEntry != value)
+        slots = null;
+
       _contestEntry = value;
       _refreshTeam();
     }
@@ -82,16 +88,29 @@ class FantasyTeamComp implements ShadowRootAware {
     }
 
     void _refreshSlots() {
+
+      var random = new Random();
+
       _contestEntry.soccers.forEach((soccerPlayer) {
 
-        // Para el score, refrescamos solo el texto y lanzamos una animacion (rojo fade-in/out por ejemplo)
-        Element scoreElement = _rootElement.querySelector("[data-id='${soccerPlayer.templateSoccerPlayerId}'] .column-score");
+        // Para el score refrescamos solo el texto y lanzamos una animacion (fade-in/out por ejemplo)
+        Element scoreElement = _rootElement.querySelector("[data-id='${soccerPlayer.templateSoccerPlayerId}'] .column-score span");
 
-        if (scoreElement != null)
-          scoreElement.innerHtml = soccerPlayer.printableCurrentLivePoints;
+        if (scoreElement != null && scoreElement.innerHtml != soccerPlayer.printableCurrentLivePoints) {
 
-        // Refrescamos el array completo de stats. A medida que lleguen nuevas stats se iran rellenando nuevas rows.
-        slots.firstWhere((slot) => slot['id'] == soccerPlayer.templateSoccerPlayerId)["stats"] = soccerPlayer.printableLivePointsPerOptaEvent;
+          // Un pequeño efecto visual: como que nos vienen unas antes que otras
+          int startDelay = random.nextInt(4000);
+
+          new Timer(new Duration(milliseconds: startDelay), () {
+            scoreElement.innerHtml = soccerPlayer.printableCurrentLivePoints;
+
+            // Refrescamos el array completo de stats. A medida que lleguen nuevas stats se iran rellenando nuevas rows.
+            slots.firstWhere((slot) => slot['id'] == soccerPlayer.templateSoccerPlayerId)["stats"] = soccerPlayer.printableLivePointsPerOptaEvent;
+
+            scoreElement.classes.add("changed");
+            new Timer(new Duration(seconds: 1), () => scoreElement.classes.remove("changed"));
+          });
+        }
       });
     }
 

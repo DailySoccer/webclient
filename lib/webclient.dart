@@ -60,8 +60,6 @@ void setUpHostServerUrl() {
 class WebClientApp extends Module {
   WebClientApp() {
 
-    Binding.printInjectWarning = false;   // needed for https://github.com/angular/angular.dart/issues/1272
-
     bind(ServerService, toImplementation: DailySoccerServer);
 
     bind(DateTimeService);

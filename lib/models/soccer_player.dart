@@ -23,6 +23,7 @@ class SoccerPlayer {
   List<Map> get printableLivePointsPerOptaEvent {
     List<Map> stats = new List<Map>();
     currentLivePointsPerOptaEvent.forEach((key, value) => stats.add({'name':_EVENT_KEY_TO_NAME[key], 'points': value}));
+    stats.sort((elem0, elem1) => elem0["name"].compareTo(elem1["name"]) );
     return stats;
   }
 

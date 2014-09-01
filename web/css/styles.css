@@ -7885,7 +7885,7 @@ fieldset[disabled] .contests-list-root .contest-row .column-contest-action .btn.
   text-align: center;
 }
 #desktopContent .more-info-section-dark .go-down-icon {
-  background-image: url("../images/godownLight.png");
+  background-image: url("../images/goDownLight.png");
   width: 15px;
   height: 15px;
   margin: 0 auto;
@@ -7905,7 +7905,7 @@ fieldset[disabled] .contests-list-root .contest-row .column-contest-action .btn.
   text-align: center;
 }
 #desktopContent .more-info-section-light .go-down-icon {
-  background-image: url("../images/godownDark.png");
+  background-image: url("../images/goDownDark.png");
   width: 15px;
   height: 15px;
   margin: 0 auto;

@@ -11167,7 +11167,7 @@ textarea.soccer-player-filter .match-selector-filter {
   border: none;
   border-radius: 0;
   padding-left: 30px;
-  background: url('../images/search-icon.png') no-repeat 10px center;
+  background: url('../images/searchIcon.png') no-repeat 10px center;
 }
 .soccer-player-filter .name-player-input-filter:focus {
   border-color: #66afe9;
@@ -12148,7 +12148,7 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #contestFastSort .s
   -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   padding-left: 30px;
-  background: url('../images/search-icon.png') no-repeat 10px center;
+  background: url('../images/searchIcon.png') no-repeat 10px center;
   padding: 1px 0 0 30px;
   height: 29px;
   box-shadow: none;

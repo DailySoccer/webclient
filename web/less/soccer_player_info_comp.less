@@ -5,6 +5,13 @@
 	background-color: @greyLight;
 }
 
+@media (max-width: @screen-sm-max) {
+	// El ancho de la modal en la versión Sm es liquido
+	.modal-dialog {
+		width: 96%;
+	}
+}
+
 .soccer-player-info-header {
 	@media (max-width: @screen-xs-max) {
 		.make-border(1px, solid none none none, @orangeHeaderLight);
@@ -76,7 +83,7 @@
 	.description-header {
 		@media (min-width: @screen-sm-min) {
 			background-color: @greyUltraDark;
-			margin-bottom: 50px;
+			margin-bottom: 49px;
 		}
 		.make-xs-column(12);
 		.clean-paddings();
@@ -136,6 +143,10 @@
 }
 
 .soccer-player-info-content {
+	// Color de fondo para las versiones Sm y Desktop
+	background-color: @white;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
 	// Tabs menu
 	.soccer-player-info-tabs {
 		@tabheight: 50px;
@@ -179,8 +190,17 @@
 		margin: 0 10px 20px;
 	}
 
-	.season-stats {
+	.season-header {
+		.hidden-xs();
+		.make-row(0);
+		padding: 20px 10px 10px;
+		.opensans_normal(16pt, @greyDark);
+		span {
+			font-size: 12pt;
+		}
+	}
 
+	.season-stats {
 		@media (max-width: @screen-xs-max) {
 			.make-border(1px, solid none solid none, @greyDark);
 			background-color: @greyUltraLight;
@@ -213,100 +233,174 @@
 					border-right: 1px dotted @greyDark;
 				}
 		}
-
 		@media (min-width: @screen-sm-min) {
 			.make-row(0);
-			.season-stats-row {
-				.make-md-column(6, 0px);
+			overflow-x: scroll;
+			.season-stats-wrapper {
+				width: 1200px;
+				.season-stats-row {
+					.make-sm-column(1, 0px);
+					.make-border(1px, none none none dotted, @greyDark);
+					background-color: @white;
+					padding: 0 15px;
+					margin-bottom: 5px;
+					.season-stats-header {
+						.opensans_bold(9pt, @greyDark);
+					}
+					.season-stats-info {
+						margin-left: -2px;
+						.exo_light(24pt,  @blueMed);
+						
+					}
+				}
+				.season-stats-row:first-child {
+					border-left: none;
+				}
 			}
 		}
+	}
 
+	@media (min-width: @screen-sm-min) {
+		#match-info-tab-content {
+			display: block;
+		}
+	}
+	
+	.match-header {
+		.hidden-xs();
+		.make-row(0);
+		padding: 20px 10px 10px;
+		.opensans_normal(16pt, @greyDark);
 	}
 
 	.match-stats {
-		.make-xs-column(12, 0px);
-		background-color: @white;
-		.opensans_bold(10pt, @greyDark);
-		.match-stats-header {
-			.make-xs-column(1.5, 0px);
-			display: inline-table;
-			float: left;
-			.make-border(1px, none none solid none, @greyDark);
-			div {
-				.make-border(1px, dotted solid none none, @greyDark);
-				line-height: 30px;
-				text-align: center;
-			}
-			div:nth-child(even) {
-				background-color: @tramaBlue;
-			}
-			div:first-child {
+		@media (max-width: @screen-xs-max) {
+			.make-xs-column(12, 0px);
+			background-color: @white;
+			.opensans_bold(10pt, @greyDark);
+			.match-stats-header {
+				.make-xs-column(1.5, 0px);
+				display: inline-table;
+				float: left;
 				.make-border(1px, none none solid none, @greyDark);
-				line-height: 40px;
-			}
-			div:first-child + div {
-				border-top: none;
-				color: @blueDark;
-			}
-			div:first-child + div + div {
-				color: @blueMed;
-			}
-		}
-		.match-stats-content {
-			.make-xs-column(10.5, 0px);
-			.opensans_normal(10pt, @greyDark);
-			overflow-x: scroll;
-			.match-stats-data {
-				width: 99999px;
-				.match-year {
-					float: left;
-					line-height: 40px;
+				div {
+					.make-border(1px, dotted solid none none, @greyDark);
+					line-height: 30px;
 					text-align: center;
-					.opensans_bold(10pt, @blueDark);
 				}
-				.match-year + .data {
-					margin-left: -33px;
-					border-left: 1px solid @greyDark;
+				div:nth-child(even) {
+					background-color: @tramaBlue;
 				}
-				.data {
-					margin: 40px 0 0 0;
-					.make-border(1px, solid none solid none, @greyDark);
-					display: inline-table;
-					float: left;
-					div {
-						.make-border(1px, dotted solid none none, @greyDark);
-						line-height: 30px;
-						width: 50px;
+				div:first-child {
+					.make-border(1px, none none solid none, @greyDark);
+					line-height: 40px;
+				}
+				div:first-child + div {
+					border-top: none;
+					color: @blueDark;
+				}
+				div:first-child + div + div {
+					color: @blueMed;
+				}
+			}
+			.match-stats-content {
+				.make-xs-column(10.5, 0px);
+				.opensans_normal(10pt, @greyDark);
+				overflow-x: scroll;
+				.match-stats-data {
+					width: 99999px;
+					.match-year {
+						float: left;
+						line-height: 40px;
 						text-align: center;
-					}
-					div:nth-child(odd) {
-						background-color: @tramaBlue;
-					}
-					div:first-child {
-						.make-border(1px, none solid none none, @greyDark);
 						.opensans_bold(10pt, @blueDark);
 					}
-					div:first-child + div {
-						.opensans_bold(10pt, @blueMed);
+					.match-year + .data {
+						margin-left: -33px;
+						border-left: 1px solid @greyDark;
 					}
+					.data {
+						margin: 40px 0 0 0;
+						.make-border(1px, solid none solid none, @greyDark);
+						display: inline-table;
+						float: left;
+						div {
+							.make-border(1px, dotted solid none none, @greyDark);
+							line-height: 30px;
+							width: 50px;
+							text-align: center;
+						}
+						div:nth-child(odd) {
+							background-color: @tramaBlue;
+						}
+						div:first-child {
+							.make-border(1px, none solid none none, @greyDark);
+							.opensans_bold(10pt, @blueDark);
+						}
+						div:first-child + div {
+							.opensans_bold(10pt, @blueMed);
+						}
+					}
+				}
+			}
+		}
+		@media (min-width: @screen-sm-min) {
+			background-color: @white;
+			height: 290px;
+			overflow-y: scroll;
+			margin: 0 10px;
+			.match-stats-header {
+				.make-row(0);
+				div {
+					.make-border(1px, solid solid dotted none, @greyDark);
+					.make-sm-column(0.85, 0px);
+					text-align: center;
+					.opensans_bold(8pt, @black);
+					line-height: 40px;
+				}
+				div:first-child {
+					border-left: 1px solid @greyDark;
+					text-align: left;
+					padding-left: 5px;
+				}
+			}
+			.match-stats-content {
+				.make-row(0);
+				clear: both;
+				.match-year {
+					.hidden();
+				}
+				.data {
+					div {
+						.make-border(1px, none solid dotted none, @greyDark);
+						.make-sm-column(0.85, 0px);
+						text-align: center;
+						.opensans_bold(8pt, @greyDark);
+						line-height: 40px;
+					}
+					div:first-child {
+						border-left: 1px solid @greyDark;
+						text-align: left;
+						padding-left: 5px;
+						clear: both;
+						color: @blueMed;
+					}
+					div:first-child + div {
+						color: @blueMed;
+					}
+				}
+				.data:nth-child(even) div {
+					background-color: @tramaBlue;
 				}
 			}
 		}
 	}
 	.noMatchesPlayed {
 		.opensans_bold(10pt, @greyDark);
-		line-height: 258px;
+		line-height: 268px;
 		text-align: center;
 	}
-	/*.season-stats-no-xs {
-		border: 1px solid #000;
-
-		.season-stats-col {
-			display: inline-block;
-			border: 1px solid red;
-			float: left;
-		}
-	}*/
+	
 	.action-buttons {
 		.hidden-sm();
 		.hidden-md();

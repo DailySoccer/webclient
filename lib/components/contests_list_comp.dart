@@ -25,6 +25,7 @@ class ContestsListComp {
   bool isToday(DateTime date) => (date.year == _dateTimeService.now.year && date.month == _dateTimeService.now.month && date.day == _dateTimeService.now.day);
 
   List<Contest> currentPageList = [];
+  bool mustRefreshTheList = false;
 
   @NgOneWay("contests-list")
   void set contestsList(List<Contest> value) {
@@ -165,6 +166,7 @@ class ContestsListComp {
         print('-CONTEST_LIST-: No se ha encontrado el campo para ordenar');
       break;
     }
+    mustRefreshTheList =  true;
   }
 
   void refreshFilters() {
@@ -199,6 +201,7 @@ class ContestsListComp {
     int rangeStart = currentPage * itemsPerPage;
     int rangeEnd =  (rangeStart + itemsPerPage < contestsListFiltered.length) ? rangeStart + itemsPerPage : contestsListFiltered.length;
     currentPageList = contestsListFiltered.getRange(rangeStart, rangeEnd).toList();
+    mustRefreshTheList = false;
   }
 
   // Lista original de los contest

@@ -13,6 +13,18 @@ import 'package:webclient/services/screen_detector_service.dart';
 )
 class PaginatorComp implements DetachAware, ShadowRootAware {
 
+  @NgTwoWay("must-refresh")
+  bool get mustRefresh {
+    return _refreshed;
+  }
+  void set mustRefresh(bool value) {
+    if(value == true) {
+      goToPage(0);
+      _refreshed = false;
+    }
+  }
+  bool _refreshed = false;
+
   @NgCallback('on-page-change')
   Function onPageChange;
 

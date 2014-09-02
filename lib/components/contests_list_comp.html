@@ -19,7 +19,10 @@
     </div>
 
     <div class="column-contest-prize" ng-click="comp.onRow(contest)" ng-if="!contest.templateContest.isLive">
-      <div class="column-contest-prize-content"><span ng-if="!contest.templateContest.isHistory">{{contest.templateContest.prizePool}}€</span><span ng-if="contest.templateContest.isHistory">{{comp.getMyPrize(contest)}}€</span></div>
+      <div class="column-contest-prize-content">
+        <span ng-if="!contest.templateContest.isHistory">{{contest.templateContest.prizePool}}€</span>
+        <span ng-if="contest.templateContest.isHistory">{{comp.getMyPrize(contest)}}€</span>
+      </div>
       <div class="column-contest-prize-header">
         <div class="column-contest-prize-header-title">PREMIO</div>
         <div class="column-contest-prize-header-prize-type">&lt;type prize&gt;</div>
@@ -37,7 +40,7 @@
     </div>
 
     <div class="column-contest-action">
-        <button type="button" class="btn" ng-click="comp.onAction(contest)">{{comp.actionButtonTitle}}</button>
+      <button type="button" class="btn" ng-click="comp.onAction(contest)">{{comp.actionButtonTitle}}</button>
     </div>
 
   </div>

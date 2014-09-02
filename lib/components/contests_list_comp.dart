@@ -56,6 +56,9 @@ class ContestsListComp {
   @NgOneWay("action-button-title")
   String actionButtonTitle = "Ver";
 
+  @NgCallback('on-list-change')
+  Function onListChange;
+
   @NgCallback("on-row-click")
   Function onRowClick;
 
@@ -136,6 +139,7 @@ class ContestsListComp {
   void refreshList() {
     refreshFilters();
     refreshSort();
+    onListChange({"itemsCount": contestsListFiltered.length});
   }
 
   void refreshSort() {
@@ -208,6 +212,7 @@ class ContestsListComp {
   List<Contest> _contestsListOriginal;
 
   String _sortType;
+  int _contestsCount = 0;
 
   DateTimeService _dateTimeService;
   ProfileService _profileService;

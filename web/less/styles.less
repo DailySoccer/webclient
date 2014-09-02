@@ -196,3 +196,18 @@
 		background-color: @blueDark;
 	}
 }
+.addIcon(@picture, @width, @height) {
+	content: " ";
+	background-image: url("@{images}/@{picture}");
+	width: @width;
+	height: @height;
+	display: inline-block;
+	vertical-align: middle;
+}
+.addAbsoluteIcon(@IconName, @width, @height, @posX, @posY) {
+	.addIcon(@IconName, @width, @height);
+	position: absolute;	
+	left: @posX;
+	top:  @posY;
+}
+	

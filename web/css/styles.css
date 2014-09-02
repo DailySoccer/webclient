@@ -5669,6 +5669,8 @@ button.close {
 #infoAndFilterHeader #contestSortsFilters .choosed-filters-container:after,
 #infoAndFilterHeader #filtersPanel:before,
 #infoAndFilterHeader #filtersPanel:after,
+.pre-filter-row:before,
+.pre-filter-row:after,
 .my-contest-title-tab:before,
 .my-contest-title-tab:after,
 .resume-bar:before,
@@ -5733,6 +5735,7 @@ button.close {
 #infoAndFilterHeader #contestSortsFilters .choosed-filters-container:after,
 #infoAndFilterHeader #contestSortsFilters .choosed-filters-container:after,
 #infoAndFilterHeader #filtersPanel:after,
+.pre-filter-row:after,
 .my-contest-title-tab:after,
 .resume-bar:after,
 .no-contest .my-no-contest-bottom-row:after,
@@ -7718,9 +7721,10 @@ fieldset[disabled] #headerContestWidget .close-contest .btn.active {
     width: 26px;
     height: 24px;
     display: inline-block;
+    vertical-align: middle;
     position: absolute;
-    top: 2px;
-    left: 0;
+    left: 2px;
+    top: 0;
   }
   .contests-list-root .contest-row .column-contest-prize span::before {
     content: " ";
@@ -7728,9 +7732,10 @@ fieldset[disabled] #headerContestWidget .close-contest .btn.active {
     width: 26px;
     height: 24px;
     display: inline-block;
+    vertical-align: middle;
     position: absolute;
-    top: 2px;
-    left: 0;
+    left: 2px;
+    top: 0;
   }
 }
 .contests-list-root .contest-row .column-contest-start-date {
@@ -12380,6 +12385,7 @@ textarea#infoAndFilterHeader #contestSortsFilters #contestFastSearch .searcher {
   font-weight: 700;
   font-size: 9pt;
   color: #214a5f;
+  line-height: 20px;
 }
 #infoAndFilterHeader #contestSortsFilters .competition-filter-name .contest-count {
   font-family: 'Open Sans', sans-serif;
@@ -12400,7 +12406,7 @@ textarea#infoAndFilterHeader #contestSortsFilters #contestFastSearch .searcher {
   padding-right: 15px;
   padding: 10px 15px;
 }
-#infoAndFilterHeader #contestSortsFilters .filter-list .filters-choosed {
+#infoAndFilterHeader #contestSortsFilters .filter-list .filter-choosed {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 8pt;
@@ -13544,6 +13550,131 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
 #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset .badge {
   color: #a1c931;
   background-color: #ffffff;
+}
+.pre-filter-row {
+  margin-left: 0;
+  margin-right: 0;
+  border-width: 1px;
+  border-style: solid none none none;
+  border-color: #ffffff;
+  border-radius: 0;
+  position: relative;
+  background-color: #f8f8f8;
+}
+.pre-filter-row-content {
+  cursor: pointer;
+}
+.column-info-trophy {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #214a5f;
+  position: relative;
+  float: left;
+  width: 83.33333333%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  line-height: 50px;
+}
+.column-info-trophy::before {
+  content: " ";
+  background-image: url("../images/iconTrophy.png");
+  width: 17px;
+  height: 17px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+.column-info-shield {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #214a5f;
+  position: relative;
+  float: left;
+  width: 83.33333333%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  line-height: 50px;
+}
+.column-info-shield::before {
+  content: " ";
+  background-image: url("../images/iconShield.png");
+  width: 17px;
+  height: 17px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+.column-info-prized {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #214a5f;
+  position: relative;
+  float: left;
+  width: 83.33333333%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  line-height: 50px;
+}
+.column-info-prized::after {
+  content: " ";
+  background-image: url("../images/iconPrize.png");
+  width: 26px;
+  height: 24px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 10px;
+}
+.column-info {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #214a5f;
+  position: relative;
+  float: left;
+  width: 83.33333333%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  line-height: 50px;
+}
+.globo {
+  position: relative;
+  float: left;
+  width: 16.66666667%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-left: 0;
+  padding-right: 0;
+  line-height: 50px;
+  background-color: transparent;
+  padding: 0;
+  height: 50px;
+  text-align: center;
+}
+.globo .badge-content {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #ffffff;
+  background-color: #fa9c19;
+  border-radius: 20px;
+  padding: 2px 6px;
+  margin-right: 20px;
+}
+.globo::after {
+  color: #214a5f;
+  font-family: 'Glyphicons Halflings';
+  content: "\E080";
+  font-size: 10pt;
+  position: absolute;
+  right: 10px;
 }
 @media (max-width: 991px) {
   #myContest {

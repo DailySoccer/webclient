@@ -166,19 +166,19 @@
 </div>
 
 <!-- Lista de concursos XS -->
-<div ng-if="comp.scrDet.isXsScreen">
+<div id="lobbyContestListMenuXS" ng-if="comp.scrDet.isXsScreen">
   <div ng-switch="comp.currentXsLobbyState">
     <!-- Selecciona ver TODOS LOS TORNEOS / MIS TORNEOS -->
     <div ng-switch-when="0">
       <div class="pre-filter-row">
-        <div class="pre-filter-row-content" ng-click="comp.filterXsLobbyClick(0)">
+        <div id="lobby_AllContests" class="pre-filter-row-content" ng-click="comp.filterXsLobbyClick(0)">
           <div class="column-info-trophy">Todos los torneos</div>
           <div class="globo">
           </div>
         </div>
       </div>
       <div class="pre-filter-row">
-        <div class="pre-filter-row-content" ng-click="comp.filterXsLobbyClick(1)">
+        <div id="lobby_MyContests" class="pre-filter-row-content" ng-click="comp.filterXsLobbyClick(1)">
           <div class="column-info-shield">Mis torneos</div>
           <div class="globo">
           </div>
@@ -189,7 +189,7 @@
     <!-- Selecciona TORNEOS CON PREMIOS / TORNEOS GRATUITOS -->
     <div ng-switch-when="1">
       <div class="pre-filter-row">
-        <div class="pre-filter-row-content" ng-click="comp.filterXsLobbyClick(2)">
+        <div id="lobby_PrizedContests" class="pre-filter-row-content" ng-click="comp.filterXsLobbyClick(2)">
           <div class="column-info-prized">Juegos con premio</div>
           <div class="globo">
             <span class="badge-content">{{comp.prizedTournamentsCount}}</span>
@@ -197,7 +197,7 @@
         </div>
       </div>
       <div class="pre-filter-row">
-        <div class="pre-filter-row-content"  ng-click="comp.filterXsLobbyClick(3)">
+        <div id="lobby_FreeContests" class="pre-filter-row-content" ng-click="comp.filterXsLobbyClick(3)">
           <div class="column-info">Juegos sin premio</div>
           <div class="globo">
             <span class="badge-content">{{comp.freeTournamentsCount}}</span>

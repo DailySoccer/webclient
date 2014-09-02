@@ -35,7 +35,8 @@ class LobbyComp implements ShadowRootAware, DetachAware {
       "STANDARD" :"Dificultad Estandar",
       "SKILLEDS" :"Dificultad Experto"
     },
-    "FILTER_ENTRY_FEE":"Entrada "
+    "FILTER_ENTRY_FEE":"Entrada ",
+    "FILTER_CONTEST_NAME":"Nombre "
   };
 
   // Tipo de ordenación de la lista de partidos
@@ -167,7 +168,11 @@ class LobbyComp implements ShadowRootAware, DetachAware {
       // hacemos una llamada de jQuery para ocultar la ventana modal
       js.context.callMethod(r'$', ['#infoContestModal']).callMethod('modal', ['hide']);
     }
+    if(msg == "xs") {
       ResetXsLobby();
+      //toggleFilterMenu();
+      js.context.callMethod(r'$', ['#filtersPanel']).callMethod('collapse',['hide']);
+    }
   }
 
   // Mostramos la ventana modal con la información de ese torneo, si no es la versión movil.
@@ -522,8 +527,8 @@ class LobbyComp implements ShadowRootAware, DetachAware {
           }
           xsFilterList.add(filtersFriendlyName[key] + EntryRange);
         break;
-        default:
-          xsFilterList.add(filtersFriendlyName[key][value]);
+        case FILTER_CONTEST_NAME:
+          xsFilterList.add(filtersFriendlyName[key]);
         break;
       }
     });

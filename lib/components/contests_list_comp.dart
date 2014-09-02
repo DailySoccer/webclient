@@ -184,11 +184,9 @@ class ContestsListComp {
         case "FILTER_CONTEST_NAME":
           contestsListFiltered = contestsListFiltered.where((contest) => contest.name.toUpperCase().contains(value.toUpperCase())).toList();
         break;
-        case "FILTER_ENTRY_FEE_MIN":
-          contestsListFiltered = contestsListFiltered.where((contest) => contest.templateContest.entryFee >= int.parse(value.split('.')[0])).toList();
-        break;
-        case "FILTER_ENTRY_FEE_MAX":
-          contestsListFiltered = contestsListFiltered.where((contest) => contest.templateContest.entryFee <= int.parse(value.split('.')[0])).toList();
+        case "FILTER_ENTRY_FEE":
+          contestsListFiltered = contestsListFiltered.where((contest) =>  contest.templateContest.entryFee >= int.parse(value[0].split('.')[0]) &&
+                                                                          contest.templateContest.entryFee <= int.parse(value[1].split('.')[0])).toList();
         break;
         case "FILTER_TOURNAMENT":
           contestsListFiltered = contestsListFiltered.where((contest) => value.contains(contest.templateContest.tournamentType)).toList();

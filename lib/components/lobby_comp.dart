@@ -17,12 +17,12 @@ import 'package:webclient/models/template_contest.dart';
 )
 
 class LobbyComp implements ShadowRootAware, DetachAware {
-  static const String FILTER_CONTEST_NAME           = "FILTER_CONTEST_NAME";
-  static const String FILTER_ENTRY_FEE_MIN          = "FILTER_ENTRY_FEE_MIN";
-  static const String FILTER_ENTRY_FEE_MAX          = "FILTER_ENTRY_FEE_MAX";
-  static const String FILTER_TOURNAMENT             = "FILTER_TOURNAMENT";
-  static const String FILTER_TIER                   = "FILTER_TIER";
+  static const String FILTER_CONTEST_NAME = "FILTER_CONTEST_NAME";
+  static const String FILTER_ENTRY_FEE    = "FILTER_ENTRY_FEE";
+  static const String FILTER_TOURNAMENT   = "FILTER_TOURNAMENT";
+  static const String FILTER_TIER         = "FILTER_TIER";
 
+  // Mapa para traducir los filtros a lenguaje Human readable
   Map filtersFriendlyName = {
     "FILTER_TOURNAMENT":{
       "FREE"          :"Torneos Gratuitos",
@@ -35,21 +35,19 @@ class LobbyComp implements ShadowRootAware, DetachAware {
       "STANDARD" :"Dificultad Estandar",
       "SKILLEDS" :"Dificultad Experto"
     },
-    "FILTER_ENTRY_FEE_MIN":"Entrada ",
-    "FILTER_ENTRY_FEE_MAX":"- "
+    "FILTER_ENTRY_FEE":"Entrada "
   };
 
-  //Tipo de ordenación de la lista de partidos
+  // Tipo de ordenación de la lista de partidos
   String sortType = "";
 
-  //Filtros que están bindeados a la contestList
+  // Filtros que están bindeados a la contestList
   Map<String, dynamic> lobbyFilters = {};
 
-
-  //valor para el filtro por nombre
+  // Valor para el filtro por nombre
   String filterContestName;
 
-   // Variables expuestas por ng-model en los checks del filtro de dificultad
+  // Variables expuestas por ng-model en los checks del filtro de dificultad
   bool isBeginnerTierChecked          = false;
   bool isStandardTierChecked          = false;
   bool isSkilledTierChecked           = false;
@@ -60,6 +58,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
 
   // Rango minímo del filtro del EntryFee
   String get filterEntryFeeRangeMin => getEntryFeeFilterRange()[0];
+
   // Rango máximo del filtro del EntryFee
   String get filterEntryFeeRangeMax => getEntryFeeFilterRange()[1];
 
@@ -73,9 +72,9 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   bool get hasSkilledTier  => activeContestsService.activeContests.where((contest) => contest.templateContest.tier == TemplateContest.TIER_SKILLED).toList().length > 0;
 
   /*
-   * TODO: Mientras no tengamos los datos de a que competición pertenece el torneo, esta función
-   *       devolverá siempre "false" para que los botones del filtro de competición estén deshabilitados.
-   */
+  * TODO: Mientras no tengamos los datos de a que competición pertenece el torneo, esta función
+  *       devolverá siempre "false" para que los botones del filtro de competición estén deshabilitados.
+  */
   bool hasCompetitionsOf(String value)
   {
     /*if (activeContestsService.activeContests != null) {
@@ -111,6 +110,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   }
   bool get isHeadToHeadTournamentChecked => _isHeadToHeadTournamentChecked;
 
+  //CONTRUCTOR
   LobbyComp(this._router, this.activeContestsService, this.scrDet) {
     refreshActiveContest();
     const refreshSeconds = const Duration(seconds: 10);
@@ -118,7 +118,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     _streamListener = scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
   }
 
-
+  // Rutina que refresca la lista de concursos
   void refreshActiveContest() {
     activeContestsService.refreshActiveContests();
     _freeContestCount   = activeContestsService.activeContests.where((contest) => contest.templateContest.tournamentType == TemplateContest.TOURNAMENT_FREE).toList().length;
@@ -214,7 +214,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     }
   }
 
-  // devuelve un elemento de la lista de botones de orden por su id
+  // Devuelve un elemento de la lista de botones de orden por su id
   Element getButtonElementById(String id) {
     for (Element button in _sortingButtons) {
       if (button.id == id) return button;
@@ -258,16 +258,15 @@ class LobbyComp implements ShadowRootAware, DetachAware {
        .callMethod('on', new js.JsObject.jsify([{'set': onEntryFeeRangeChange}]));
   }
 
-   /*
-   * Funciones para los filtros
-   */
+  /*
+  * Funciones para los filtros
+  */
   void filterByContestName() {
     addFilter(FILTER_CONTEST_NAME, filterContestName);
   }
 
   void filterByEntryFee(){
-    addFilter(FILTER_ENTRY_FEE_MIN, _filterEntryFeeMin);
-    addFilter(FILTER_ENTRY_FEE_MAX, _filterEntryFeeMax);
+    addFilter(FILTER_ENTRY_FEE, [_filterEntryFeeMin, _filterEntryFeeMax]);
     print('-LOBBY_COMP-: Filtrando por tipo precio entrada. Valores entre [${_filterEntryFeeMin} - ${_filterEntryFeeMax}]');
   }
 
@@ -504,23 +503,32 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     return false;
   }
 
+  // Actualizamos el resumen de siltros aplicados. Sólo se vé en XS y son  Human Friendly
   void updateXsFiltersResumeList() {
     xsFilterList = [];
     lobbyFilters.forEach((key, value) {
       switch (key) {
         case FILTER_TOURNAMENT:
         case FILTER_TIER:
-          String f= "";
-          for(int i = 0; i< value.length; i++) {
+          for (int i = 0; i< value.length; i++) {
             xsFilterList.add(filtersFriendlyName[key][value[i]]); // añadimos cada uno de los filros del tipo torneo que haya
           }
+        break;
+        case FILTER_ENTRY_FEE:
+          String EntryRange = "";
+          for (int i = 0; i< value.length; i++) {
+            //formamos el rango con el currency
+            EntryRange += (i == 0)? value[i].split(".")[0] + "€" : " - " + value[i].split(".")[0] + "€";
+          }
+          xsFilterList.add(filtersFriendlyName[key] + EntryRange);
         break;
         default:
           xsFilterList.add(filtersFriendlyName[key][value]);
         break;
       }
     });
-   // print(xsFilterList.join(" - "));
   }
+
+  // Esto devuelve un bloque HTML con el resumen de los filtros aplicados
   String get xsFilterResume => xsFilterList.join("<br>") + "<div>Torneos disponibles <span class='contest-count'>" + contestsCount.toString() + "</span></div>";
 }

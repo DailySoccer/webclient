@@ -3,6 +3,7 @@ library user_list_comp;
 import 'package:angular/angular.dart';
 import 'package:webclient/models/contest_entry.dart';
 import 'package:webclient/controllers/view_contest_ctrl.dart';
+import 'package:webclient/services/profile_service.dart';
 
 @Component(
    selector: 'users-list',
@@ -31,7 +32,7 @@ class UsersListComp {
 
   String getPrize(int index) => _viewContestCtrl.getPrize(index);
 
-  UsersListComp(this._routeProvider, this._viewContestCtrl);
+  UsersListComp(this._routeProvider, this._viewContestCtrl, this._profileService);
 
   void _refresh() {
     //print("refresh users: ${_liveContestCtrl.usersInfo}");
@@ -51,6 +52,8 @@ class UsersListComp {
     }
   }
 
+  String isMainPlayer(var user) => _profileService.user.userId == user["id"] ? 'user-main' : '';
+
   void onUserClick(var user) {
     switch(_routeProvider.route.name)
     {
@@ -68,4 +71,5 @@ class UsersListComp {
   List<ContestEntry> _contestEntries;
   ViewContestCtrl _viewContestCtrl;
   RouteProvider _routeProvider;
+  ProfileService _profileService;
 }

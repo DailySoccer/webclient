@@ -8,17 +8,17 @@
 
 <!-- filtros para las versiones a partir de SM -->
 <div id="infoAndFilterHeader">
-  <div id="contestSortsFilters">
-
+  <div id="contestSortsFilters" ng-show="comp.sortsAndFiltersVisibles()">
     <div class="choosed-filters-container" ng-show="comp.scrDet.isXsScreen">
-        <div class="competition-filter-name">Competition type <span class="contest-count">125</span></div>
+        <div class="competition-filter-name" ng-bind-html="comp.xsFilterResume">
+        </div>
+
         <div class="filterToggler">
           <div id="filtersButtonMobile" type="button" class="btn filters-button" ng-click="comp.toggleFilterMenu()" data-toggle="collapse" data-target="#filtersPanel">Filtros</div>
         </div>
-        <div class="filter-list">
-          <span class="filters-choosed">&lt;filtro 1&gt;</span>
-          <span class="filters-choosed">&lt;filtro 2&gt;</span>
-        </div>
+        <!--<div class="filter-list">
+          <span class="filter-choosed" ng-repeat="filter in comp.xsFilterList">{{filter}}</span>
+        </div>-->
     </div>
 
     <div id="contestFastSort">
@@ -154,14 +154,70 @@
 
 </div>
 
-<!-- Lista de concursos -->
-<contests-list sorted-by="comp.sortType"
-               filter-by="comp.lobbyFilters"
-               contests-list="comp.activeContestsService.activeContests"
-               action-button-title='"Jugar"'
-               on-row-click="comp.onRowClick(contest)"
-               on-action-click='comp.onActionClick(contest)'>
-</contests-list>
+<!-- Lista de concursos DESKTOP -->
+<div ng-if="!comp.scrDet.isXsScreen">
+  <contests-list sorted-by="comp.sortType"
+                 filter-by="comp.lobbyFilters"
+                 contests-list="comp.activeContestsService.activeContests"
+                 action-button-title='"Jugar"'
+                 on-row-click="comp.onRowClick(contest)"
+                 on-action-click='comp.onActionClick(contest)'>
+  </contests-list>
+</div>
+
+<!-- Lista de concursos XS -->
+<div ng-if="comp.scrDet.isXsScreen">
+  <div ng-switch="comp.currentXsLobbyState">
+    <!-- Selecciona ver TODOS LOS TORNEOS / MIS TORNEOS -->
+    <div ng-switch-when="0">
+      <div class="pre-filter-row">
+        <div class="pre-filter-row-content" ng-click="comp.filterXsLobbyClick(0)">
+          <div class="column-info-trophy">Todos los torneos</div>
+          <div class="globo">
+          </div>
+        </div>
+      </div>
+      <div class="pre-filter-row">
+        <div class="pre-filter-row-content" ng-click="comp.filterXsLobbyClick(1)">
+          <div class="column-info-shield">Mis torneos</div>
+          <div class="globo">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Selecciona TORNEOS CON PREMIOS / TORNEOS GRATUITOS -->
+    <div ng-switch-when="1">
+      <div class="pre-filter-row">
+        <div class="pre-filter-row-content" ng-click="comp.filterXsLobbyClick(2)">
+          <div class="column-info-prized">Juegos con premio</div>
+          <div class="globo">
+            <span class="badge-content">{{comp.prizedTournamentsCount}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="pre-filter-row">
+        <div class="pre-filter-row-content"  ng-click="comp.filterXsLobbyClick(3)">
+          <div class="column-info">Juegos sin premio</div>
+          <div class="globo">
+            <span class="badge-content">{{comp.freeTournamentsCount}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- VISTA FILTRADA DE LOS TORNEOS -->
+    <div ng-switch-when="2">
+      <contests-list sorted-by="comp.sortType"
+                 filter-by="comp.lobbyFilters"
+                 contests-list="comp.activeContestsService.activeContests"
+                 action-button-title='"Jugar"'
+                 on-row-click="comp.onRowClick(contest)"
+                 on-action-click='comp.onActionClick(contest)'
+                 on-list-change="comp.onListChange(itemsCount)">
+      </contests-list>
+    </div>
+  </div>
+</div>
 
 
 <!-- Modal Window que envuelve la informacion de concurso, mostrada cuando clickamos en cualquiera de los campos de la fila -->

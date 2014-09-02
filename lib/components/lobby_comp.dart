@@ -23,11 +23,28 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   static const String FILTER_TOURNAMENT             = "FILTER_TOURNAMENT";
   static const String FILTER_TIER                   = "FILTER_TIER";
 
+  Map filtersFriendlyName = {
+    "FILTER_TOURNAMENT":{
+      "FREE"          :"Torneos Gratuitos",
+      "HEAD_TO_HEAD"  :"Torneos 1 Contra 1",
+      "LEAGUE"        :"Torneos de Liga",
+      "FIFTY_FIFTY"   :"Torneos 50 / 50"
+    },
+    "FILTER_TIER":{
+      "BEGGINER" :"Dificultad principiante",
+      "STANDARD" :"Dificultad Estandar",
+      "SKILLEDS" :"Dificultad Experto"
+    },
+    "FILTER_ENTRY_FEE_MIN":"Entrada ",
+    "FILTER_ENTRY_FEE_MAX":"- "
+  };
+
   //Tipo de ordenación de la lista de partidos
   String sortType = "";
 
   //Filtros que están bindeados a la contestList
   Map<String, dynamic> lobbyFilters = {};
+
 
   //valor para el filtro por nombre
   String filterContestName;
@@ -66,7 +83,6 @@ class LobbyComp implements ShadowRootAware, DetachAware {
         //TODO: devuelvo true o false en funcion del tipo de concurso
       });
     }*/
-    //print('-LOBBY_COMP-: Botón de filtro por ${value} deshabilitado temporalmente');
     return false;
   }
 
@@ -96,10 +112,16 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   bool get isHeadToHeadTournamentChecked => _isHeadToHeadTournamentChecked;
 
   LobbyComp(this._router, this.activeContestsService, this.scrDet) {
-    activeContestsService.refreshActiveContests();
+    refreshActiveContest();
     const refreshSeconds = const Duration(seconds: 10);
-    _timer = new Timer.periodic(refreshSeconds, (Timer t) =>  activeContestsService.refreshActiveContests());
+    _timer = new Timer.periodic(refreshSeconds, (Timer t) =>  refreshActiveContest());
     _streamListener = scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
+  }
+
+
+  void refreshActiveContest() {
+    activeContestsService.refreshActiveContests();
+    _freeContestCount   = activeContestsService.activeContests.where((contest) => contest.templateContest.tournamentType == TemplateContest.TOURNAMENT_FREE).toList().length;
   }
 
   void onShadowRoot(root) {
@@ -145,6 +167,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
       // hacemos una llamada de jQuery para ocultar la ventana modal
       js.context.callMethod(r'$', ['#infoContestModal']).callMethod('modal', ['hide']);
     }
+      ResetXsLobby();
   }
 
   // Mostramos la ventana modal con la información de ese torneo, si no es la versión movil.
@@ -331,26 +354,28 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     print('-LOBBY_COMP-: Filtrando por tipo de torneo: torneos: [${_tournamentFilterList}]');
   }
 
-  void addFilter(String key, dynamic valor) {
-      //comprobamos que si existe ya este filtro... Si existe lo eliminamos
-      if (lobbyFilters.containsKey(key)) {
-        lobbyFilters.remove(key);
-      }
-      //Como no se actualiza en el componente lista al modificar los valores... hay que crear siempre la lista 'lobbyFilters 'de cero:
-      //1-Creamos un mapa nuevo
-      Map<String, dynamic> lobbyFilterClone = {};
-      //2- El mapa nuevo lo iniciamos con los valores de lobbyFilters para que no sea una referencia
-      lobbyFilterClone.addAll(lobbyFilters);
-      // no metemos keys vacías
-      if (key != "") {
-        //3-Creamos el nuevo filtro siempre que no no llegue una Key vacía...
-        Map<String, dynamic> tmpMap = { key: valor };
-        // ... y lo añadimos a la lista temporal que tendrá los valores anteriores + este nuevo
-        lobbyFilterClone.addAll(tmpMap);
-      }
-      //4-Por ultimo igualamos el lobbyFilter con el temporal que hemos construidos.
-      lobbyFilters = lobbyFilterClone;
+  void addFilter(String key, dynamic val) {
+    //comprobamos que si existe ya este filtro... Si existe lo eliminamos
+    if (lobbyFilters.containsKey(key)) {
+      lobbyFilters.remove(key);
     }
+    //Como no se actualiza en el componente lista al modificar los valores... hay que crear siempre la lista 'lobbyFilters 'de cero:
+    //1-Creamos un mapa nuevo
+    Map<String, dynamic> lobbyFilterClone = {};
+    //2- El mapa nuevo lo iniciamos con los valores de lobbyFilters para que no sea una referencia
+    lobbyFilterClone.addAll(lobbyFilters);
+    // no metemos keys vacías
+    if (key != "") {
+      //3-Creamos el nuevo filtro siempre que no no llegue una Key vacía...
+      Map<String, dynamic> tmpMap = {key: val};
+      // ... y lo añadimos a la lista temporal que tendrá los valores anteriores + este nuevo
+      lobbyFilterClone.addAll(tmpMap);
+    }
+    //4-Por ultimo igualamos el lobbyFilter con el temporal que hemos construidos.
+    lobbyFilters = lobbyFilterClone;
+    updateXsFiltersResumeList();
+  }
+
 
   void resetAllFilters(){
     // reseteo del filtro por precio de entrada
@@ -373,8 +398,8 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     _tournamentFilterList = [];
 
     //limpio la caja de filtro por nombre
-   InputElement txtSearch = document.querySelector('.searcher');
-   txtSearch.value = "";
+    InputElement txtSearch = document.querySelector('.searcher');
+    txtSearch.value = "";
 
     //provocamos la actialización
     lobbyFilters = {};
@@ -405,4 +430,97 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   bool _isHeadToHeadTournamentChecked  = false;
 
   var _streamListener;
+
+
+  /****************************************************
+   *      Secuencia de acceso al lobby desde XS       *
+   ***************************************************/
+  static const int XS_LOBBY_ACTION_GOTO_ALL_TOURNAMENTS       = 0;
+  static const int XS_LOBBY_ACTION_GOTO_MY_TOURNAMENTS        = 1;
+  static const int XS_LOBBY_ACTION_GOTO_NOT_FREE_TOURNAMENTS  = 2;
+  static const int XS_LOBBY_ACTION_GOTO_FREE_TOURNAMENTS      = 3;
+
+  //filtro aplicados en el lobby XS
+  List<String> xsFilterList = [];
+
+  // estado actual del lobby en XS
+  int currentXsLobbyState = 0;
+  //Conteos de los torneos gratuitos
+  int _freeContestCount = 0;
+  // numero de torneos listados actualmente
+  int contestsCount = 0;
+
+  void ResetXsLobby()
+  {
+    currentXsLobbyState = 0;
+    refreshActiveContest();
+    resetAllFilters();
+    xsFilterList = [];
+  }
+
+  void filterXsLobbyClick(int action)
+  {
+    switch(action) {
+      case XS_LOBBY_ACTION_GOTO_ALL_TOURNAMENTS:
+        // Informamos que estamos en el estado elige tipo de juegos [con / sin premios]
+        currentXsLobbyState = 1;
+      break;
+      case XS_LOBBY_ACTION_GOTO_MY_TOURNAMENTS:
+        _router.go("my_contests", {});
+      break;
+      case XS_LOBBY_ACTION_GOTO_FREE_TOURNAMENTS:
+        addFilter(FILTER_TOURNAMENT, [TemplateContest.TOURNAMENT_FREE]);
+       _isFreeTournamentChecked = true;
+        //Pasamos al estado en el muestra la lista de torneos disponibles.
+        currentXsLobbyState = 2;
+      break;
+      case XS_LOBBY_ACTION_GOTO_NOT_FREE_TOURNAMENTS:
+        addFilter(FILTER_TOURNAMENT, [TemplateContest.TOURNAMENT_LEAGUE, TemplateContest.TOURNAMENT_FIFTY_FIFTY, TemplateContest.TOURNAMENT_HEAD_TO_HEAD]);
+        _isLigaTournamentChecked = true;
+        _isFiftyFiftyTournamentChecked = true;
+        _isHeadToHeadTournamentChecked = true;
+        //Pasamos al estado en el muestra la lista de torneos disponibles.
+        currentXsLobbyState = 2;
+      break;
+    }
+    refreshActiveContest();
+  }
+
+  int get freeTournamentsCount    => _freeContestCount;
+  int get prizedTournamentsCount  => activeContestsService.activeContests.length - _freeContestCount;
+
+  void onListChange(int itemsCount) {
+    contestsCount = itemsCount;
+  }
+
+  bool sortsAndFiltersVisibles() {
+    if (!scrDet.isXsScreen) {
+      return true;
+    }
+    else {
+      if (currentXsLobbyState == 2)
+        return true;
+    }
+    return false;
+  }
+
+  void updateXsFiltersResumeList() {
+    xsFilterList = [];
+    lobbyFilters.forEach((key, value) {
+      switch (key) {
+        case FILTER_TOURNAMENT:
+        case FILTER_TIER:
+          String f= "";
+          for(int i = 0; i< value.length; i++) {
+            xsFilterList.add(filtersFriendlyName[key][value[i]]); // añadimos cada uno de los filros del tipo torneo que haya
+          }
+        break;
+        default:
+          xsFilterList.add(filtersFriendlyName[key][value]);
+        break;
+      }
+    });
+   // print(xsFilterList.join(" - "));
+  }
+  String get xsFilterResume => xsFilterList.join("<br>") + "<div>Torneos disponibles <span class='contest-count'>" + contestsCount.toString() + "</span></div>";
 }

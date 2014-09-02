@@ -26,6 +26,7 @@ class ContestHeaderComp implements DetachAware{
     'description': '<description>',
     'startTime':'<startTime>',
     'countdownDate': '',
+    'textCountdownDate': '',
     'contestType': '<contestType>',
     'contestantCount': '<contestantCount>',
     'entryPrice': '<entryPrice>',
@@ -58,68 +59,66 @@ class ContestHeaderComp implements DetachAware{
 
 
   ContestHeaderComp(this._router, this.scrDet, this._dateTimeService) {
-
     _timeDisplayFormat = new DateFormat("HH:mm:ss");
     _count = new Timer.periodic(new Duration(milliseconds:1000), (Timer timer) => this.countdownDate());
   }
 
   void countdownDate() {
+    contestHeaderInfo["textCountdownDate"] = "";
+    contestHeaderInfo["countdownDate"] = "";
     if (_contestInfo != null) {
-      NumberFormat nf_day = new NumberFormat("0");
-      NumberFormat nf_time = new NumberFormat("00");
-      DateTime t = _dateTimeService.now.add(new Duration());
-      Duration cd = _contestInfo.templateContest.startDate.difference(t);
-      //Duration cd = new DateTime(2014, 8, 26, 12, 19, 0).difference(t);
-
-      List<SpanElement> textCountdown = document.querySelectorAll(".text-countdown");
-      textCountdown.forEach((element) => element.remove());
-
-      if (cd.inSeconds <= 0) {
-        contestHeaderInfo["countdownDate"] = "";
+      if (_contestInfo.templateContest.isHistory) {
         contestHeaderInfo["startTime"] = "FINALIZADO";
         _count.cancel();
       }
+      else if (_contestInfo.templateContest.isLive) {
+        contestHeaderInfo["startTime"] = "COMENZÓ EL ${_contestInfo.templateContest.startDate}";
+        _count.cancel();
+      }
       else {
-        var days = cd.inDays;
-        var hours = nf_time.format(cd.inHours % 24);
-        var minutes = nf_time.format(cd.inMinutes % 60);
-        var seconds = nf_time.format(cd.inSeconds % 60);
+        var date = new DateFormat('dd/MM HH:mm');
+        contestHeaderInfo["startTime"] = "COMIENZA EL ${date.format(_contestInfo.templateContest.startDate)}";
 
-        if (scrDet.isDesktop) {
-          _msg = "EL DESAFIO COMENZARÁ EN: ";
+        NumberFormat nf_day = new NumberFormat("0");
+        NumberFormat nf_time = new NumberFormat("00");
+        DateTime fechaActual = _dateTimeService.now;
+        Duration tiempoRestante = _contestInfo.templateContest.startDate.difference(fechaActual);
+
+        if (tiempoRestante.inSeconds <= 0) {
+          contestHeaderInfo["startTime"] = "EN BREVE";
+          _count.cancel();
         }
         else {
-          _msg = "FALTAN ";
-        }
-        SpanElement countdownTextSpan = new SpanElement();
-        countdownTextSpan.text = _msg;
-        countdownTextSpan.classes.add('text-countdown');
-        List<Element> countdownText = document.querySelectorAll(".countdown-text");
-        countdownText.forEach((element) => element.append(countdownTextSpan));
+          var days = tiempoRestante.inDays;
+          var hours = nf_time.format(tiempoRestante.inHours % 24);
+          var minutes = nf_time.format(tiempoRestante.inMinutes % 60);
+          var seconds = nf_time.format(tiempoRestante.inSeconds % 60);
 
-        List<Element> countdownDays = document.querySelectorAll(".time-countdown");
-        if (days > 0) {
-          contestHeaderInfo["countdownDate"] = nf_day.format(days) + (days > 1 ? " DIAS ": " DIA ") + hours + ":" + minutes + ":" + seconds;
-          countdownDays.forEach((element) => element.classes.add("days"));
-        }
-        else {
-          contestHeaderInfo["countdownDate"] = hours + ":" + minutes + ":" + seconds;
-          countdownDays.forEach((element) => element.classes.remove("days"));
+          if (scrDet.isDesktop) {
+            contestHeaderInfo["textCountdownDate"] = "EL DESAFIO COMENZARÁ EN: ";
+          }
+          else {
+            contestHeaderInfo["textCountdownDate"] = "FALTAN ";
+          }
+
+          if (days > 0) {
+            contestHeaderInfo["countdownDate"] = nf_day.format(days) + (days > 1 ? " DIAS ": " DIA ") + hours + ":" + minutes + ":" + seconds;
+          }
+          else {
+            contestHeaderInfo["countdownDate"] = hours + ":" + minutes + ":" + seconds;
+          }
         }
       }
     }
   }
 
   void _refreshHeader() {
-    var date = new DateFormat('dd/MM HH:mm');
-
     contestHeaderInfo["description"] = "${_contestInfo.name}";
     contestHeaderInfo['contestType'] = "${_contestInfo.templateContest.tournamentTypeName}: ";
     contestHeaderInfo["entryPrice"] = "${_contestInfo.templateContest.entryFee}€";
-    contestHeaderInfo["startTime"] = "COMIENZA EL ${date.format(_contestInfo.templateContest.startDate)}";
     contestHeaderInfo["prize"] = "${_contestInfo.templateContest.prizePool}€";
     contestHeaderInfo["prizeType"] = "${_contestInfo.templateContest.prizeTypeName}";
-
+    contestHeaderInfo["startTime"] = "";
     contestHeaderInfo["contestantCount"] = "${_contestInfo.contestEntries.length} de ${_contestInfo.maxEntries} jugadores  - LIM. SAL.: ${_contestInfo.templateContest.salaryCap}";
   }
 

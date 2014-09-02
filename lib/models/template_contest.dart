@@ -1,8 +1,8 @@
 library template_contest;
 
-import 'package:intl/intl.dart';
 import "package:json_object/json_object.dart";
 import 'package:webclient/models/match_event.dart';
+import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/contest_references.dart';
 import "package:webclient/models/soccer_player.dart";
 
@@ -153,7 +153,7 @@ class TemplateContest {
 
   String _parsePattern(String text) {
     return text
-      .replaceAll("%StartDate", new DateFormat("EEE, d MMM", "es_ES").format(startDate))
+      .replaceAll("%StartDate", DateTimeService.formatDateWithDayOfTheMonth(startDate))
       .replaceAll("%MaxEntries", "$maxEntries")
       .replaceAll("%SalaryCap", "${(salaryCap ~/ 1000)}")
       .replaceAll("%PrizeType", prizeTypeName)

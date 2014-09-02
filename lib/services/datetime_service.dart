@@ -1,6 +1,7 @@
 library date_service;
 
 import 'dart:async';
+import 'package:intl/intl.dart';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/server_service.dart';
 
@@ -19,6 +20,38 @@ class DateTimeService {
     _verifySimulatorActivated();
 
     new Timer.periodic(new Duration(seconds:1), (t) => _nowEverySecond = now);
+  }
+
+  Duration timeLeft(DateTime date) {
+    return date.difference(now);
+  }
+
+  static String formatDateWithDayOfTheMonth(DateTime date) {
+    return new DateFormat("EEE, d MMM", "es_ES").format(date);
+  }
+
+  static String formatDateShort(DateTime date) {
+    return new DateFormat("dd/MM").format(date);
+  }
+
+  static String formatTimeShort(DateTime date) {
+    return "${new DateFormat("HH:mm").format(date)}h";
+  }
+
+  static String formatDateTimeShort(DateTime date) {
+    return "${new DateFormat('dd/MM HH:mm').format(date)}h";
+  }
+
+  static String formatDateTimeLong(DateTime date) {
+    return "${new DateFormat('dd/MM HH:mm').format(date)}h";
+  }
+
+  static String formatDateTimeShortWithWeekDay(DateTime date) {
+    return "${new DateFormat("E, HH:mm", "es_ES").format(date)}h";
+  }
+
+  static String formatDateTimeLongWithWeekDay(DateTime date) {
+    return "${new DateFormat("E, dd/MM/yy HH:mm", "es_ES").format(date)}h";
   }
 
   void _verifySimulatorActivated() {

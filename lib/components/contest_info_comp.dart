@@ -62,7 +62,7 @@ class ContestInfoComp {
         currentInfoData["description"]    = contest.description;
         currentInfoData["entry"]          = contest.templateContest.entryFee.toString();
         currentInfoData["prize"]          = contest.templateContest.prizePool.toString();
-        currentInfoData["startDateTime"]  = DateTimeService.formatDateTimeLongWithWeekDay(contest.templateContest.startDate).toUpperCase();
+        currentInfoData["startDateTime"]  = DateTimeService.formatDateTimeLong(contest.templateContest.startDate).toUpperCase();
         currentInfoData["contestants"]    = contestants;
         currentInfoData["prizes"]         = contest.templateContest.prizes.map((value) => {'value' : value}).toList();
         currentInfoData["matchesInvolved"]= contest.templateContest.matchEvents;
@@ -85,7 +85,7 @@ class ContestInfoComp {
   }
 
   String formatMatchDate(DateTime date) {
-    return DateTimeService.formatDateTimeShortWithWeekDay(date);
+    return DateTimeService.formatDateTimeShort(date);
   }
 
   void tabChange(String tab) {

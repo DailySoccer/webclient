@@ -39,18 +39,10 @@ class DateTimeService {
   }
 
   static String formatDateTimeShort(DateTime date) {
-    return "${new DateFormat('dd/MM HH:mm').format(date)}h";
-  }
-
-  static String formatDateTimeLong(DateTime date) {
-    return "${new DateFormat('dd/MM HH:mm').format(date)}h";
-  }
-
-  static String formatDateTimeShortWithWeekDay(DateTime date) {
     return "${new DateFormat("E, HH:mm", "es_ES").format(date)}h";
   }
 
-  static String formatDateTimeLongWithWeekDay(DateTime date) {
+  static String formatDateTimeLong(DateTime date) {
     return "${new DateFormat("E, dd/MM/yy HH:mm", "es_ES").format(date)}h";
   }
 

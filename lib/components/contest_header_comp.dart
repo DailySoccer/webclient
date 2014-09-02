@@ -72,11 +72,11 @@ class ContestHeaderComp implements DetachAware{
         _count.cancel();
       }
       else if (_contestInfo.templateContest.isLive) {
-        contestHeaderInfo["startTime"] = "COMENZÓ EL ${_contestInfo.templateContest.startDate}";
+        contestHeaderInfo["startTime"] = "COMENZÓ EL ${DateTimeService.formatDateTimeShort(_contestInfo.templateContest.startDate).toUpperCase()}";
         _count.cancel();
       }
       else {
-        contestHeaderInfo["startTime"] = "COMIENZA EL ${DateTimeService.formatDateTimeShort(_contestInfo.templateContest.startDate)}";
+        contestHeaderInfo["startTime"] = "COMIENZA EL ${DateTimeService.formatDateTimeShort(_contestInfo.templateContest.startDate).toUpperCase()}";
 
         Duration tiempoRestante = _dateTimeService.timeLeft(_contestInfo.templateContest.startDate);
         if (tiempoRestante.inSeconds <= 0) {

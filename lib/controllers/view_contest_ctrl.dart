@@ -50,7 +50,7 @@ class ViewContestCtrl implements DetachAware {
         List<MatchEvent> matchEventsSorted = new List<MatchEvent>.from(contest.templateContest.matchEvents)
             .. sort((entry1, entry2) => entry1.startDate.compareTo(entry2.startDate))
             .. forEach( (match) {
-              matchesInvolved.add(match.soccerTeamA.shortName + '-' + match.soccerTeamB.shortName + "<br>" + DateTimeService.formatDateTimeShortWithWeekDay(match.startDate));
+              matchesInvolved.add(match.soccerTeamA.shortName + '-' + match.soccerTeamB.shortName + "<br>" + DateTimeService.formatDateTimeShort(match.startDate));
             });
 
         // Únicamente actualizamos los contests que estén en "live"

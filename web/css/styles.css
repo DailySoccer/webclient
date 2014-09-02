@@ -7437,6 +7437,7 @@ fieldset[disabled] #headerContestWidget .close-contest .btn.active {
   font-weight: 700;
   font-size: 8pt;
   color: #214a5f;
+  float: right !important;
   margin-right: 5px;
 }
 @media (min-width: 992px) {

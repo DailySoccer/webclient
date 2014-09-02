@@ -98,7 +98,7 @@ class ContestHeaderComp implements DetachAware{
             contestHeaderInfo["textCountdownDate"] = "EL DESAFIO COMENZARÁ EN: ";
           }
           else {
-            contestHeaderInfo["textCountdownDate"] = "FALTAN ";
+            contestHeaderInfo["textCountdownDate"] = "FALTAN";
           }
 
           if (days > 0) {

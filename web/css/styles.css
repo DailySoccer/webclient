@@ -8936,7 +8936,7 @@ fieldset[disabled] .landing-wrapper .button-play.active {
 @media (min-width: 768px) {
   #liveContestRoot {
     padding-top: 20px;
-    min-height: 718px;
+    padding-bottom: 20px;
     background-color: #ffffff;
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;

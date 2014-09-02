@@ -84,7 +84,7 @@ class ContestHeaderComp implements DetachAware{
           _count.cancel();
         }
         else {
-          contestHeaderInfo["textCountdownDate"] = (scrDet.isDesktop) ? "EL DESAFIO COMENZARÁ EN: " : "FALTAN ";
+          contestHeaderInfo["textCountdownDate"] = (scrDet.isDesktop) ? "EL DESAFIO COMENZARÁ EN: " : "FALTAN";
           contestHeaderInfo["countdownDate"] = formatTimeLeft(tiempoRestante);
         }
       }

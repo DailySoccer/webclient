@@ -153,7 +153,8 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   }
 
   dynamic getEntryFeeFilterRange(){
-    var range = js.context.callMethod(r'$', ['#slider-range']).callMethod('val');
+    //var range = js.context.callMethod(r'$', ['#slider-range']).callMethod('val');
+    var range = runJavascript("#slider-range", 'val', null);
     return range != null? range : ["",""];
   }
 
@@ -166,12 +167,16 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   void onScreenWidthChange(String msg) {
     if (msg != "desktop") {
       // hacemos una llamada de jQuery para ocultar la ventana modal
-      js.context.callMethod(r'$', ['#infoContestModal']).callMethod('modal', ['hide']);
+      runJavascript('#infoContestModal', 'modal', "hide");
+      //js.context.callMethod(r'$', ['#infoContestModal']).callMethod('modal', ['hide']);
     }
-    if(msg == "xs") {
+    if (msg == "xs") {
       ResetXsLobby();
-      //toggleFilterMenu();
-      js.context.callMethod(r'$', ['#filtersPanel']).callMethod('collapse',['hide']);
+      if(_isFiltersPanelOpen) {
+        runJavascript('#filtersPanel', 'collapse', "hide");
+        _isFiltersPanelOpen = false;
+      }
+      //js.context.callMethod(r'$', ['#filtersPanel']).callMethod('collapse',['hide']);
     }
   }
 
@@ -184,7 +189,8 @@ class LobbyComp implements ShadowRootAware, DetachAware {
       var modal = querySelector('#infoContestModal');
       modal.style.display = "block";
       // Con esto llamamos a funciones de jQuery
-      js.context.callMethod(r'$', ['#infoContestModal']).callMethod('modal');
+      runJavascript('#infoContestModal', 'modal', null);
+      //js.context.callMethod(r'$', ['#infoContestModal']).callMethod('modal');
     }
     else {
       onActionClick(contest);
@@ -236,6 +242,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
 
   // Muestra/Oculta el panel de filtros avanzados
   void toggleFilterMenu() {
+    //Controlamos el estado de la flecha de los dos botones que abren los filtros (en XS y Desktop son diferentes)
     _filtersButtons.forEach((value) => value.classes.clear());
     _filtersButtons.forEach((value) => value.classes.addAll(_filtersButtonClassesByDefault));
 
@@ -246,21 +253,39 @@ class LobbyComp implements ShadowRootAware, DetachAware {
       _filtersButtons.forEach((value) => value.classes.add('toggleOn'));
       _isFilterButtonOpen = true;
     }
+
+    // Abrimos el menú si está cerrado
+    if (_isFiltersPanelOpen) {
+      runJavascript('#filtersPanel', 'collapse', "hide");
+      _isFiltersPanelOpen = false;
+    }
+    else {
+      runJavascript('#filtersPanel', 'collapse', "show");
+      _isFiltersPanelOpen = true;
+    }
+    //js.context.callMethod(r'$', ['#filtersPanel']).callMethod('collapse',['show']);
+
   }
 
   void initSliderRange()
   {
     //iniciamos slider-range
-        js.context.callMethod(r'$', ['#slider-range'])
+    runJavascript('#slider-range', 'noUiSlider', { 'start':      [0, 100],
+                                                  'step' :      1,
+                                                  'behaviour':  'drag',
+                                                  'connect':    true,
+                                                  'range':      {'min':0,'max':100}});
+
+     /*   js.context.callMethod(r'$', ['#slider-range'])
             .callMethod('noUiSlider', [new js.JsObject.jsify({'start':      [0, 100],
                                                               'step' :      1,
                                                               'behaviour':  'drag',
                                                               'connect':    true,
                                                               'range':      {'min':0,'max':100}})]);
-
+    */
     // Nos subscribimos al evento change
-     js.context.callMethod(r'$', ['#slider-range'])
-       .callMethod('on', new js.JsObject.jsify([{'set': onEntryFeeRangeChange}]));
+    runJavascript('#slider-range', 'on', {'set': onEntryFeeRangeChange});
+    //js.context.callMethod(r'$', ['#slider-range']).callMethod('on', [new js.JsObject.jsify({'set': onEntryFeeRangeChange})]);
   }
 
   /*
@@ -385,8 +410,8 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     // reseteo del filtro por precio de entrada
     _filterEntryFeeMin = "0";
     _filterEntryFeeMax = "100";
-    js.context.callMethod(r'$', ['#slider-range'])
-      .callMethod('val', [new js.JsObject.jsify([0,100])]);
+    runJavascript('#slider-range','val', [_filterEntryFeeMin, _filterEntryFeeMax]);
+    //js.context.callMethod(r'$', ['#slider-range']).callMethod('val', [new js.JsObject.jsify([_filterEntryFeeMin,_filterEntryFeeMax])]);
 
     // reseteo del filtro por dificultad
     isBeginnerTierChecked          = false;
@@ -453,6 +478,8 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   int _freeContestCount = 0;
   // numero de torneos listados actualmente
   int contestsCount = 0;
+
+  bool _isFiltersPanelOpen = false;
 
   void ResetXsLobby()
   {
@@ -536,4 +563,16 @@ class LobbyComp implements ShadowRootAware, DetachAware {
 
   // Esto devuelve un bloque HTML con el resumen de los filtros aplicados
   String get xsFilterResume => xsFilterList.join("<br>") + "<div>Torneos disponibles <span class='contest-count'>" + contestsCount.toString() + "</span></div>";
+
+  // Funcion para ejecutar los JavaScripts que necesitamos en esta página
+  dynamic runJavascript(String selector, String method, dynamic params) {
+    if (params == null) { //javascript / jquery sin parametros
+      return js.context.callMethod(r'$', [selector]).callMethod(method);
+    }
+    else { //javascript / jquery con parametro de valor iterable
+      if (params.toString().contains('[') || params.toString().contains('{')  ) // Si tienen un objeto iterable
+        return js.context.callMethod(r'$', [selector]).callMethod(method, [new js.JsObject.jsify(params)]);
+    } //javascript / jquery con parametro de valor simple
+    return js.context.callMethod(r'$', [selector]).callMethod(method, [params]);
+  }
 }

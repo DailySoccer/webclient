@@ -274,8 +274,8 @@ class EnterContestCtrl implements DetachAware{
                                                                       player1["fieldPos"].sortOrder - player2["fieldPos"].sortOrder);
           break;
         case "Name":
-          availableSoccerPlayers.sort((player1, player2) => _sortDir? player2["fullName"].compareTo(player1["fullName"]) :
-                                                                      player1["fullName"].compareTo(player2["fullName"]));
+          availableSoccerPlayers.sort((player1, player2) => _sortDir? normalize(player2["fullName"]).compareTo(normalize(player1["fullName"])) :
+                                                                      normalize(player1["fullName"]).compareTo(normalize(player2["fullName"])));
           break;
         case "DFP":
           availableSoccerPlayers.sort((player1, player2) => _sortDir? player2["fantasyPoints"].compareTo(player1["fantasyPoints"]) :
@@ -291,6 +291,24 @@ class EnterContestCtrl implements DetachAware{
           break;
       }
   }
+
+  String normalize(String txt) {
+      String from = "ÃÀÁÄÂÈÉËÊÌÍÏÎÒÓÖÔÙÚÜÛãàáäâèéëêìíïîòóöôùúüûÑñÇç";
+        String to   = "AAAAAEEEEIIIIOOOOUUUUaaaaaeeeeiiiioooouuuunncc";
+        Map map = {};
+
+        for (int i = 0; i < from.length; i++ ) {
+          map[  from[i] ] = to[i];
+        }
+
+        String ret = '';
+        String c = '';
+        for( int i = 0, j = txt.length; i < j; i++ ) {
+          c = txt[i];
+          ret += map.containsKey(c) ? map[c] : c;
+        }
+        return ret;
+    }
 
   bool availableSoccerPlayer(var soccerPlayer) {
     FieldPos theFieldPos = soccerPlayer["fieldPos"];

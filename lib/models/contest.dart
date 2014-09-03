@@ -109,7 +109,7 @@ class Contest {
   }
 
   int compareNameTo(Contest cont){
-    int comp = name.compareTo(cont.name);
+    int comp = normalize(name).compareTo(normalize(cont.name));
     return comp != 0 ? comp : contestId.compareTo(cont.contestId);
   }
 
@@ -121,5 +121,23 @@ class Contest {
   int compareStartDateTo(Contest cont){
     int comp = templateContest.startDate.compareTo(cont.templateContest.startDate);
     return comp != 0 ? comp : contestId.compareTo(cont.contestId);
+  }
+
+  String normalize(String txt) {
+    String from = "ÃÀÁÄÂÈÉËÊÌÍÏÎÒÓÖÔÙÚÜÛãàáäâèéëêìíïîòóöôùúüûÑñÇç";
+      String to   = "AAAAAEEEEIIIIOOOOUUUUaaaaaeeeeiiiioooouuuunncc";
+      Map map = {};
+
+      for (int i = 0; i < from.length; i++ ) {
+        map[  from[i] ] = to[i];
+      }
+
+      String ret = '';
+      String c = '';
+      for( int i = 0, j = txt.length; i < j; i++ ) {
+        c = txt[i];
+        ret += map.containsKey(c) ? map[c] : c;
+      }
+      return ret;
   }
 }

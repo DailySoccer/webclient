@@ -14,7 +14,7 @@
   </div>
 
   <div class="users-table-rows">
-    <div class="user-row" ng-repeat="user in comp.users" ng-click="comp.onUserClick(user)" ng-class="comp.isMainPlayer(user)">
+    <div class="user-row" ng-repeat="user in comp.users" ng-click="comp.onUserClick(user)" ng-class="{'user-main': comp.isMainPlayer(user)}">
       <div class="pos">{{$index + 1}}</div>
       <div class="name">{{user.name}}</div>
       <div class="remaining-time">{{user.remainingTime}}</div>

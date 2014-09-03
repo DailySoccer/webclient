@@ -52,7 +52,7 @@ class UsersListComp {
     }
   }
 
-  String isMainPlayer(var user) => _profileService.user.userId == user["id"] ? 'user-main' : '';
+  bool isMainPlayer(var user) => _profileService.user.userId == user["id"];
 
   void onUserClick(var user) {
     switch(_routeProvider.route.name)

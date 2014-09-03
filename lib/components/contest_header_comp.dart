@@ -1,8 +1,6 @@
 library contest_header_comp;
 
-import 'dart:html';
 import 'package:angular/angular.dart';
-import 'package:intl/intl.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import "package:webclient/models/contest.dart";
@@ -14,13 +12,12 @@ import 'dart:async';
     publishAs: 'contestHeader',
     useShadowDom: false
 )
-
 class ContestHeaderComp implements DetachAware{
 
   static const int ENTER_CONTEST = 0;
   static const int VIEW_CONTEST = 1;
 
-  int mode;
+  bool get isEnterContestMode => _mode == ENTER_CONTEST;
 
   Map<String, dynamic> contestHeaderInfo = {
     'description': '<description>',
@@ -49,60 +46,49 @@ class ContestHeaderComp implements DetachAware{
   void set viewMode(String value) {
     switch(value) {
       case "ENTER_CONTEST":
-        mode = ENTER_CONTEST;
+        _mode = ENTER_CONTEST;
         break;
       case "VIEW_CONTEST":
-        mode = VIEW_CONTEST;
+        _mode = VIEW_CONTEST;
         break;
     }
   }
 
 
-  ContestHeaderComp(this._router, this.scrDet, this._dateTimeService) {
-    _count = new Timer.periodic(new Duration(milliseconds:1000), (Timer timer) => this.countdownDate());
+  ContestHeaderComp(this._router, this.scrDet) {
+    _count = new Timer.periodic(new Duration(milliseconds:1000), (Timer timer) => _refreshCountdownDate());
   }
 
-  void countdownDate() {
+  void _refreshCountdownDate() {
     contestHeaderInfo["textCountdownDate"] = "";
     contestHeaderInfo["countdownDate"] = "";
 
-    if (_contestInfo != null) {
-      if (_contestInfo.templateContest.isHistory) {
-        contestHeaderInfo["startTime"] = "FINALIZADO";
-        _count.cancel();
-      }
-      else if (_contestInfo.templateContest.isLive) {
-        contestHeaderInfo["startTime"] = "COMENZÓ EL ${DateTimeService.formatDateTimeShort(_contestInfo.templateContest.startDate).toUpperCase()}";
+    if (_contestInfo == null) {
+      return;
+    }
+
+    if (_contestInfo.templateContest.isHistory) {
+      contestHeaderInfo["startTime"] = "FINALIZADO";
+      _count.cancel();
+    }
+    else if (_contestInfo.templateContest.isLive) {
+      contestHeaderInfo["startTime"] = "COMENZÓ EL ${DateTimeService.formatDateTimeShort(_contestInfo.templateContest.startDate).toUpperCase()}";
+      _count.cancel();
+    }
+    else {
+      contestHeaderInfo["startTime"] = "COMIENZA EL ${DateTimeService.formatDateTimeShort(_contestInfo.templateContest.startDate).toUpperCase()}";
+
+      Duration tiempoRestante = DateTimeService.getTimeLeft(_contestInfo.templateContest.startDate);
+
+      if (tiempoRestante.inSeconds <= 0) {
+        contestHeaderInfo["startTime"] = "EN BREVE";
         _count.cancel();
       }
       else {
-        contestHeaderInfo["startTime"] = "COMIENZA EL ${DateTimeService.formatDateTimeShort(_contestInfo.templateContest.startDate).toUpperCase()}";
-
-        Duration tiempoRestante = _dateTimeService.timeLeft(_contestInfo.templateContest.startDate);
-        if (tiempoRestante.inSeconds <= 0) {
-          contestHeaderInfo["startTime"] = "EN BREVE";
-          _count.cancel();
-        }
-        else {
-          contestHeaderInfo["textCountdownDate"] = (scrDet.isDesktop) ? "EL DESAFIO COMENZARÁ EN: " : "FALTAN";
-          contestHeaderInfo["countdownDate"] = formatTimeLeft(tiempoRestante);
-        }
+        contestHeaderInfo["textCountdownDate"] = (scrDet.isDesktop) ? "EL CONCURSO COMENZARÁ EN: " : "FALTAN";
+        contestHeaderInfo["countdownDate"] = DateTimeService.formatTimeLeft(tiempoRestante);
       }
     }
-  }
-
-  String formatTimeLeft(Duration tiempoRestante) {
-    NumberFormat nf_day = new NumberFormat("0");
-    NumberFormat nf_time = new NumberFormat("00");
-
-    var days = tiempoRestante.inDays;
-    var hours = nf_time.format(tiempoRestante.inHours % 24);
-    var minutes = nf_time.format(tiempoRestante.inMinutes % 60);
-    var seconds = nf_time.format(tiempoRestante.inSeconds % 60);
-
-    return (days > 0)
-              ? nf_day.format(days) + (days > 1 ? " DIAS ": " DIA ") + hours + ":" + minutes + ":" + seconds
-              : hours + ":" + minutes + ":" + seconds;
   }
 
   void _refreshHeader() {
@@ -116,7 +102,7 @@ class ContestHeaderComp implements DetachAware{
   }
 
   void goBackTo() {
-    switch(mode) {
+    switch(_mode) {
       case ENTER_CONTEST:
         _router.go("lobby", {});
         break;
@@ -132,7 +118,7 @@ class ContestHeaderComp implements DetachAware{
 
   Router _router;
 
-  DateTimeService _dateTimeService;
   Timer _count;
   Contest _contestInfo;
+  int _mode;
 }

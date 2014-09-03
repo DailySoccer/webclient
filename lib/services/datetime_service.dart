@@ -9,20 +9,31 @@ import 'package:webclient/services/server_service.dart';
 @Injectable()
 class DateTimeService {
 
-  DateTime get now => (_fakeDateTime == null) ? new DateTime.now() : _fakeDateTime;
+  static DateTime get now => _instance._internalNow;
+  static DateTime fromMillisecondsSinceEpoch(int millisecondsSinceEpoch) => new DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch, isUtc: _UTC);
 
   // Hora actual que cambia cada segundo, util para imprimir el reloj directamente desde una vista con binding. Si estamos
   // recibiendo la hora desde el servidor, cambia un poco mas lento (cada 3 segundos)
   DateTime get nowEverySecond => _nowEverySecond;
 
   DateTimeService(this._server) {
+    if (_instance != null)
+      throw new Exception("WTF 1233");
+
+    _instance = this;
+
     _timerVerifySimulatorActivated = new Timer.periodic(const Duration(seconds:3), (Timer t) => _verifySimulatorActivated());
     _verifySimulatorActivated();
 
     new Timer.periodic(new Duration(seconds:1), (t) => _nowEverySecond = now);
   }
 
-  Duration timeLeft(DateTime date) {
+  static bool isToday(DateTime date) {
+    var theNow = now;
+    return (date.year == theNow.year && date.month == theNow.month && date.day == theNow.day);
+  }
+
+  static Duration getTimeLeft(DateTime date) {
     return date.difference(now);
   }
 
@@ -44,6 +55,19 @@ class DateTimeService {
 
   static String formatDateTimeLong(DateTime date) {
     return "${new DateFormat("E, dd/MM/yy HH:mm", "es_ES").format(date)}h";
+  }
+
+  static String formatTimeLeft(Duration timeLeft) {
+    NumberFormat nfDay = new NumberFormat("0");
+    NumberFormat nfTime = new NumberFormat("00");
+
+    var days = timeLeft.inDays;
+    var hours = nfTime.format(timeLeft.inHours % 24);
+    var minutes = nfTime.format(timeLeft.inMinutes % 60);
+    var seconds = nfTime.format(timeLeft.inSeconds % 60);
+
+    return (days > 0)? nfDay.format(days) + (days > 1 ? " DIAS ": " DIA ") + hours + ":" + minutes + ":" + seconds
+                     : hours + ":" + minutes + ":" + seconds;
   }
 
   void _verifySimulatorActivated() {
@@ -69,9 +93,18 @@ class DateTimeService {
   void _updateDateFromServer () {
     _server.getCurrentDate()
       .then((jsonObject) {
-        _fakeDateTime = new DateTime.fromMillisecondsSinceEpoch(jsonObject.currentDate, isUtc: true);
+        _fakeDateTime = fromMillisecondsSinceEpoch(jsonObject.currentDate);
       });
   }
+
+  DateTime get _internalNow {
+    if (_fakeDateTime != null) {
+      return _fakeDateTime;
+    }
+
+    return _UTC? new DateTime.now().toUtc() : new DateTime.now();
+  }
+
 
   Timer _timerVerifySimulatorActivated;
   Timer _timerUpdateFromServer;
@@ -80,4 +113,7 @@ class DateTimeService {
   bool _simulatorActivated = false;
 
   ServerService _server;
+
+  static DateTimeService _instance;
+  static final bool _UTC = false;
 }

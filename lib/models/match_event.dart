@@ -4,6 +4,7 @@ import "package:json_object/json_object.dart";
 import "package:webclient/models/soccer_team.dart";
 import 'package:webclient/services/contest_references.dart';
 import "package:webclient/models/soccer_player.dart";
+import 'package:webclient/services/datetime_service.dart';
 
 class MatchEvent {
   String templateMatchEventId;
@@ -96,7 +97,7 @@ class MatchEvent {
     period = json.period;
     minutesPlayed = json.minutesPlayed;
 
-    startDate = new DateTime.fromMillisecondsSinceEpoch(json.startDate, isUtc: true);
+    startDate = DateTimeService.fromMillisecondsSinceEpoch(json.startDate);
 
     // Si el templateMatchEvent incluye la información "live", la actualizamos
     if (json.containsKey("liveFantasyPoints")) {

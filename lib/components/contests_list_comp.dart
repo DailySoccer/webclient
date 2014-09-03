@@ -3,7 +3,6 @@ library contests_list_comp;
 import 'package:angular/angular.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/contest_entry.dart';
-import 'package:intl/intl.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
@@ -21,8 +20,6 @@ class ContestsListComp {
 
   // Lista de filtros a aplicar
   Map<String,dynamic> filterList;
-
-  bool isToday(DateTime date) => (date.year == _dateTimeService.now.year && date.month == _dateTimeService.now.month && date.day == _dateTimeService.now.day);
 
   List<Contest> currentPageList = [];
   bool mustRefreshTheList = false;
@@ -65,12 +62,13 @@ class ContestsListComp {
   @NgCallback("on-action-click")
   Function onActionClick;
 
-  ContestsListComp(this._profileService, this._dateTimeService, this._scrDet);
+  ContestsListComp(this._profileService, this._scrDet);
 
   String dateInfo(DateTime date) {
     // Avisamos cuando sea "Hoy"
-    if (isToday(date)) {
-      Duration duration = _dateTimeService.timeLeft(date);
+    if (DateTimeService.isToday(date)) {
+      Duration duration = DateTimeService.getTimeLeft(date);
+
       // Avisamos unos minutos antes (30 min)
       if (duration.inMinutes >= 0 && duration.inMinutes < 30) {
         int secondsTotal = duration.inSeconds;
@@ -87,8 +85,8 @@ class ContestsListComp {
 
   String timeInfo(DateTime date) {
     // Avisamos 2 horas antes...
-    if (isToday(date) && date.isAfter(_dateTimeService.now)) {
-      Duration duration = _dateTimeService.timeLeft(date);
+    if (DateTimeService.isToday(date) && date.isAfter(DateTimeService.now)) {
+      Duration duration = DateTimeService.getTimeLeft(date);
       int minutesLeft = duration.inMinutes;
       if (minutesLeft >= 0 && minutesLeft < 120) {
         return (minutesLeft >= 30) ? "${minutesLeft} min." : "Faltan";
@@ -178,7 +176,7 @@ class ContestsListComp {
       return;
     }
     contestsListFiltered = _contestsListOriginal;
-    //Recorremos la lista de filtros
+    // Recorremos la lista de filtros
     filterList.forEach((String key, dynamic value) {
       switch(key) {
         case "FILTER_CONTEST_NAME":
@@ -212,7 +210,6 @@ class ContestsListComp {
   String _sortType;
   int _contestsCount = 0;
 
-  DateTimeService _dateTimeService;
   ProfileService _profileService;
   ScreenDetectorService _scrDet;
 }

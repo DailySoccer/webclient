@@ -4,6 +4,7 @@ import "package:json_object/json_object.dart";
 import "package:webclient/models/field_pos.dart";
 import "package:webclient/models/soccer_team.dart";
 import 'package:webclient/services/contest_references.dart';
+import 'package:webclient/services/datetime_service.dart';
 
 class SoccerPlayerInfo {
   String name;
@@ -52,7 +53,7 @@ class SoccerPlayerStats {
   int penaltisDetenidos;
 
   SoccerPlayerStats.fromJsonObject(JsonObject json, ContestReferences references) {
-    startDate = json.containsKey("startDate") ? new DateTime.fromMillisecondsSinceEpoch(json.startDate, isUtc: true) : new DateTime.now();
+    startDate = json.containsKey("startDate") ? DateTimeService.fromMillisecondsSinceEpoch(json.startDate) : DateTimeService.now;
     opponentTeam = json.containsKey("opponentTeamId") ? references.getSoccerTeamById(json.opponentTeamId) : "???";
 
     fantasyPoints = json.fantasyPoints;

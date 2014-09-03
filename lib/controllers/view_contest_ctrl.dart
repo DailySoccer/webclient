@@ -10,7 +10,6 @@ import "package:webclient/models/soccer_player.dart";
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/contest_entry.dart';
 import 'package:webclient/services/flash_messages_service.dart';
-import 'package:intl/intl.dart';
 import 'package:webclient/models/match_event.dart';
 import 'dart:html';
 
@@ -33,7 +32,7 @@ class ViewContestCtrl implements DetachAware {
   List<ContestEntry> get contestEntries => (contest != null) ? contest.contestEntries : null;
   List<ContestEntry> get contestEntriesOrderByPoints => (contest != null) ? contest.contestEntriesOrderByPoints : null;
 
-  ViewContestCtrl(RouteProvider routeProvider, this.scrDet, this._myContestsService, this._profileService, this._dateTimeService, this._flashMessage) {
+  ViewContestCtrl(RouteProvider routeProvider, this.scrDet, this._myContestsService, this._profileService, this._flashMessage) {
 
     _contestId = routeProvider.route.parameters['contestId'];
 
@@ -43,7 +42,7 @@ class ViewContestCtrl implements DetachAware {
       .then((jsonObject) {
         mainPlayer = contest.getContestEntryWithUser(_profileService.user.userId);
 
-        updatedDate = _dateTimeService.now;
+        updatedDate = DateTimeService.now;
 
         // generamos los partidos para el filtro de partidos
         matchesInvolved.clear();
@@ -93,7 +92,7 @@ class ViewContestCtrl implements DetachAware {
     // Actualizamos únicamente la lista de live MatchEvents
     _myContestsService.refreshLiveMatchEvents(_myContestsService.lastContest.templateContest.templateContestId)
         .then((jsonObject) {
-          updatedDate = _dateTimeService.now;
+          updatedDate = DateTimeService.now;
         })
         .catchError((error) {
           _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
@@ -130,7 +129,6 @@ class ViewContestCtrl implements DetachAware {
   FlashMessagesService _flashMessage;
   ProfileService _profileService;
   MyContestsService _myContestsService;
-  DateTimeService _dateTimeService;
 
   String _contestId;
 }

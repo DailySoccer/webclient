@@ -4,7 +4,6 @@ import 'package:angular/angular.dart';
 import 'dart:html';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/contest_entry.dart';
-import 'package:webclient/models/match_event.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/active_contests_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';

@@ -13,11 +13,13 @@ class Contest {
   String get name => templateContest.name;
 
   List<ContestEntry> contestEntries;
-  int maxEntries;
+  int numEntries;
+
+  int get maxEntries => templateContest.maxEntries;
 
   TemplateContest templateContest;
 
-  String get description => "${templateContest.tournamentTypeName}: ${contestEntries.length} de ${maxEntries} jugadores - LIM. SAL.: ${templateContest.salaryCap}";
+  String get description => "${templateContest.tournamentTypeName}: ${numEntries} de ${maxEntries} jugadores - LIM. SAL.: ${templateContest.salaryCap}";
 
   List<ContestEntry> get contestEntriesOrderByPoints {
     List<ContestEntry> entries = new List<ContestEntry>.from(contestEntries);
@@ -25,7 +27,7 @@ class Contest {
     return entries;
   }
 
-  Contest(this.contestId, this.contestEntries, this.maxEntries, this.templateContest);
+  Contest(this.contestId, this.contestEntries, this.templateContest);
 
   Contest.referenceInit(this.contestId);
 
@@ -97,8 +99,9 @@ class Contest {
   Contest _initFromJsonObject(JsonObject json, ContestReferences references) {
     assert(contestId.isNotEmpty);
 
-    contestEntries = json.contestEntries.map((jsonObject) => new ContestEntry.fromJsonObject(jsonObject, references) .. contest = this ).toList();
-    maxEntries = json.maxEntries;
+    contestEntries = json.containsKey("contestEntries") ? json.contestEntries.map((jsonObject) => new ContestEntry.fromJsonObject(jsonObject, references) .. contest = this ).toList() : [];
+    numEntries = json.containsKey("numEntries") ? json.numEntries : contestEntries.length;
+
     templateContest = references.getTemplateContestById(json.templateContestId);
 
     // print("Contest: id($contestId) name($name) currentUserIds($currentUserIds) templateContestId($templateContestId)");

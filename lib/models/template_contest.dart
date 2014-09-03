@@ -57,6 +57,8 @@ class TemplateContest {
   String prizeType;
   List<int> prizes;
 
+  DateTime startDate;
+
   List<MatchEvent> matchEvents;
 
   TemplateContest(this.templateContestId, this._namePattern, this.maxEntries,
@@ -110,9 +112,6 @@ class TemplateContest {
     return type;
   }
 
-  DateTime get startDate => matchEvents.map((matchEvent) => matchEvent.startDate)
-                                               .reduce((val, elem) => val.isBefore(elem)? val : elem);
-
   factory TemplateContest.fromJsonObject(JsonObject json, ContestReferences references) {
     return references.getTemplateContestById(json._id)._initFromJsonObject(json, references);
   }
@@ -138,14 +137,16 @@ class TemplateContest {
 
   TemplateContest _initFromJsonObject(JsonObject json, ContestReferences references) {
     assert(templateContestId.isNotEmpty);
-    state = json.state;
+
+    state = json.containsKey("state") ? json.state : "ACTIVE";
     _namePattern = json.name;
     maxEntries = json.maxEntries;
     salaryCap = json.salaryCap;
     entryFee = json.entryFee;
     prizeType = json.prizeType;
     prizes = json.containsKey("prizes") ? json.prizes : [];
-    matchEvents = json.templateMatchEventIds.map( (matchEventId) => references.getMatchEventById(matchEventId) ).toList();
+    startDate = new DateTime.fromMillisecondsSinceEpoch(json.startDate, isUtc: true);
+    matchEvents = json.containsKey("templateMatchEventIds") ? json.templateMatchEventIds.map( (matchEventId) => references.getMatchEventById(matchEventId) ).toList() : [];
 
     // print( "TemplateContest: id($templateContestId) name($name) maxEntries($maxEntries) salaryCap($salaryCap) entryFee($entryFee) prizeType($prizeType) templateMatchEventIds($templateMatchEventIds)");
     return this;

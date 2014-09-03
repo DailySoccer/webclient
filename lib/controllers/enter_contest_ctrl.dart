@@ -33,13 +33,13 @@ class EnterContestCtrl implements DetachAware{
 
   bool isSelectingSoccerPlayer = false;
 
-  final List<dynamic> lineupSlots = new List();
-  List<dynamic> availableSoccerPlayers = new List();
+  final List<dynamic> lineupSlots = [];
+  List<dynamic> availableSoccerPlayers = [];
   List<Map<String, String>> availableMatchEvents = [];
 
   String selectedSoccerPlayerId;
 
-  int availableSalary;
+  int availableSalary = 0;
 
   String nameFilter;
 
@@ -50,20 +50,26 @@ class EnterContestCtrl implements DetachAware{
       lineupSlots.add(null);
     });
 
-    contest = _contestService.getContestById(routeProvider.route.parameters['contestId']);
-
-    // Al principio, todos disponibles
-    initAllSoccerPlayers();
-    availableSoccerPlayers = new List<dynamic>.from(_allSoccerPlayers);
-
     // Cuando se inicializa la lista de jugadores, esta se ordena por posicion
     sortListByField('Pos', false);
 
-    // Saldo disponible
-    availableSalary = contest.templateContest.salaryCap;
-
     //Nos subscribimos al evento de cambio de tamañano de ventana
     _streamListener = scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
+
+    _contestService.refreshContest(routeProvider.route.parameters['contestId'])
+      .then((_) {
+        contest = _contestService.lastContest;
+
+        // Al principio, todos disponibles
+        initAllSoccerPlayers();
+        availableSoccerPlayers = new List<dynamic>.from(_allSoccerPlayers);
+
+        // Saldo disponible
+        availableSalary = contest.templateContest.salaryCap;
+      })
+      .catchError((error) {
+        _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
+      });
   }
 
   void detach() {

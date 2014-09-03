@@ -21,7 +21,7 @@
 
         <div class="enter-contest-soccer-players-wrapper">
           <div class="enter-contest-soccer-players">
-            <soccer-players-list on-row-click="ctrl.onRowClick(soccerPlayerId)"></soccer-players-list>
+            <soccer-players-list contest="ctrl.contest" on-row-click="ctrl.onRowClick(soccerPlayerId)"></soccer-players-list>
           </div>
         </div>
 
@@ -69,7 +69,7 @@
                 </div>
                 <div class="enter-contest-soccer-players-wrapper">
                   <div class="enter-contest-soccer-players">
-                    <soccer-players-list ng-show="ctrl.isSelectingSoccerPlayer || ctrl.scrDet.isSmScreen" on-row-click="ctrl.onRowClick(soccerPlayerId)"></soccer-players-list>
+                    <soccer-players-list contest="ctrl.contest" ng-show="ctrl.isSelectingSoccerPlayer || ctrl.scrDet.isSmScreen" on-row-click="ctrl.onRowClick(soccerPlayerId)"></soccer-players-list>
                   </div>
                 </div>
 

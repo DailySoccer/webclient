@@ -19,9 +19,22 @@ class SoccerPlayersListComp {
 
   ScreenDetectorService scrDet;
 
-  Contest contest;
-  List<MatchEvent> matchesInvolved;
   List<Map<String, String>> matchesList = [];
+
+  @NgOneWay("contest")
+  void set contest(Contest value) {
+    _contest = value;
+
+    if (_contest != null) {
+      _matchesInvolved = _contest.templateContest.matchEvents;
+
+      matchesList.add({"id":enterContestCtrl.ALL_MATCHES, "texto":"Todos los partidos"});
+      for (MatchEvent match in _matchesInvolved) {
+        matchesList.add({"id": match.templateMatchEventId, "texto":match.soccerTeamA.shortName + "-" + match.soccerTeamB.shortName});
+      }
+    }
+  }
+
   dynamic _optionValue;
   dynamic get optionValue => _optionValue;
   void set optionValue (value) {
@@ -42,20 +55,12 @@ class SoccerPlayersListComp {
 
   SoccerPlayersListComp(RouteProvider routeProvider, this.enterContestCtrl, this._contestService, this.scrDet) {
 
-    contest = _contestService.getContestById(routeProvider.route.parameters['contestId']);
-    matchesInvolved = contest.templateContest.matchEvents;
-
-    matchesList.add({"id":enterContestCtrl.ALL_MATCHES, "texto":"Todos los partidos"});
-    for (MatchEvent match in matchesInvolved) {
-      matchesList.add({"id": match.templateMatchEventId, "texto":match.soccerTeamA.shortName + "-" + match.soccerTeamB.shortName});
-    }
     optionValue = enterContestCtrl.ALL_MATCHES;
   }
 
  void setFilterMatch() {
     if (optionValue != oldOptionValue) {
       oldOptionValue = optionValue;
-      var a = matchesList.where( (match) => match["id"] == optionValue).first;
       enterContestCtrl.setMatchFilter(optionValue);
     }
   }
@@ -98,4 +103,7 @@ class SoccerPlayersListComp {
   }
 
   ActiveContestsService _contestService;
+
+  Contest _contest;
+  List<MatchEvent> _matchesInvolved;
 }

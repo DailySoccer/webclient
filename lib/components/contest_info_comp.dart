@@ -2,9 +2,10 @@ library contest_info_comp;
 
 import 'package:angular/angular.dart';
 import 'dart:html';
-import 'package:intl/intl.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/contest_entry.dart';
+import 'package:webclient/models/match_event.dart';
+import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/active_contests_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 
@@ -61,7 +62,7 @@ class ContestInfoComp {
         currentInfoData["description"]    = contest.description;
         currentInfoData["entry"]          = contest.templateContest.entryFee.toString();
         currentInfoData["prize"]          = contest.templateContest.prizePool.toString();
-        currentInfoData["startDateTime"]  = getFormatedDate(contest.templateContest.startDate);
+        currentInfoData["startDateTime"]  = DateTimeService.formatDateTimeLong(contest.templateContest.startDate).toUpperCase();
         currentInfoData["contestants"]    = contestants;
         currentInfoData["prizes"]         = contest.templateContest.prizes.map((value) => {'value' : value}).toList();
         currentInfoData["matchesInvolved"]= contest.templateContest.matchEvents;
@@ -79,43 +80,12 @@ class ContestInfoComp {
       });
   }
 
-  String getFormatedDate(DateTime date) {
-    String result ="";
-    var dateTimeFormat = new DateFormat(' MM/yy H:mm');
-    result = getDayOfTheWeek(date.weekday) + dateTimeFormat.format(date);
-    return result;
-  }
-
-  String getDayOfTheWeek(int weekDay) {
-    String retorno = "";
-    switch(weekDay) {
-      case DateTime.MONDAY:
-        retorno = "LUN.";
-      break;
-      case DateTime.TUESDAY:
-        retorno = "MAR.";
-      break;
-      case DateTime.WEDNESDAY:
-        retorno = "MIE.";
-      break;
-      case DateTime.THURSDAY:
-        retorno = "JUE.";
-      break;
-      case DateTime.FRIDAY:
-        retorno = "VIE.";
-      break;
-      case DateTime.SATURDAY:
-        retorno = "SAB.";
-      break;
-      case DateTime.SUNDAY:
-        retorno = "DOM.";
-      break;
-    }
-    return retorno;
-  }
-
   void enterContest() {
-          _router.go('enter_contest', { "contestId": contestData.contestId });
+    _router.go('enter_contest', { "contestId": contestData.contestId });
+  }
+
+  String formatMatchDate(DateTime date) {
+    return DateTimeService.formatDateTimeShort(date);
   }
 
   void tabChange(String tab) {

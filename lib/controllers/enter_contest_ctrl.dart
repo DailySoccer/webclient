@@ -12,8 +12,8 @@ import "package:webclient/models/soccer_player.dart";
 import "package:webclient/models/soccer_team.dart";
 import 'package:webclient/models/match_event.dart';
 import 'package:webclient/models/contest.dart';
+import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
-import 'package:intl/intl.dart';
 
 @Controller(
     selector: '[enter-contest-ctrl]',
@@ -355,7 +355,7 @@ class EnterContestCtrl implements DetachAware{
       for (MatchEvent match in matchEvents) {
         availableMatchEvents.add({
             "id": match.templateMatchEventId,
-              "texto":match.soccerTeamA.shortName + '-' + match.soccerTeamB.shortName + "<br>" + _timeDisplayFormat.format(match.startDate) + "h."
+              "texto":match.soccerTeamA.shortName + '-' + match.soccerTeamB.shortName + "<br>" + DateTimeService.formatDateTimeShort(match.startDate)
           });
       }
     }
@@ -511,7 +511,6 @@ class EnterContestCtrl implements DetachAware{
   ActiveContestsService _contestService;
   ProfileService _profileService;
   FlashMessagesService _flashMessage;
-  DateFormat _timeDisplayFormat= new DateFormat("E, HH:mm", "es_ES");
   // Lista de filtros a aplicar
   Map<String,String> _filterList = {};
   var _streamListener;

@@ -70,7 +70,7 @@ class ContestsListComp {
   String dateInfo(DateTime date) {
     // Avisamos cuando sea "Hoy"
     if (isToday(date)) {
-      Duration duration = date.difference(_dateTimeService.now);
+      Duration duration = _dateTimeService.timeLeft(date);
       // Avisamos unos minutos antes (30 min)
       if (duration.inMinutes >= 0 && duration.inMinutes < 30) {
         int secondsTotal = duration.inSeconds;
@@ -82,19 +82,19 @@ class ContestsListComp {
       }
       return "Hoy";
     }
-    return new DateFormat("dd/MM").format(date);
+    return DateTimeService.formatDateShort(date);
   }
 
   String timeInfo(DateTime date) {
     // Avisamos 2 horas antes...
     if (isToday(date) && date.isAfter(_dateTimeService.now)) {
-      Duration duration = date.difference(_dateTimeService.now);
+      Duration duration = _dateTimeService.timeLeft(date);
       int minutesLeft = duration.inMinutes;
       if (minutesLeft >= 0 && minutesLeft < 120) {
         return (minutesLeft >= 30) ? "${minutesLeft} min." : "Faltan";
       }
     }
-    return new DateFormat("HH:mm").format(date) + "h.";
+    return DateTimeService.formatTimeShort(date);
   }
 
   int getMyPosition(Contest contest) {

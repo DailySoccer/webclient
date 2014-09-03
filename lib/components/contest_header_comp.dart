@@ -59,57 +59,50 @@ class ContestHeaderComp implements DetachAware{
 
 
   ContestHeaderComp(this._router, this.scrDet, this._dateTimeService) {
-    _timeDisplayFormat = new DateFormat("HH:mm:ss");
     _count = new Timer.periodic(new Duration(milliseconds:1000), (Timer timer) => this.countdownDate());
   }
 
   void countdownDate() {
     contestHeaderInfo["textCountdownDate"] = "";
     contestHeaderInfo["countdownDate"] = "";
+
     if (_contestInfo != null) {
       if (_contestInfo.templateContest.isHistory) {
         contestHeaderInfo["startTime"] = "FINALIZADO";
         _count.cancel();
       }
       else if (_contestInfo.templateContest.isLive) {
-        contestHeaderInfo["startTime"] = "COMENZÓ EL ${_contestInfo.templateContest.startDate}";
+        contestHeaderInfo["startTime"] = "COMENZÓ EL ${DateTimeService.formatDateTimeShort(_contestInfo.templateContest.startDate).toUpperCase()}";
         _count.cancel();
       }
       else {
-        var date = new DateFormat('dd/MM HH:mm');
-        contestHeaderInfo["startTime"] = "COMIENZA EL ${date.format(_contestInfo.templateContest.startDate)}";
+        contestHeaderInfo["startTime"] = "COMIENZA EL ${DateTimeService.formatDateTimeShort(_contestInfo.templateContest.startDate).toUpperCase()}";
 
-        NumberFormat nf_day = new NumberFormat("0");
-        NumberFormat nf_time = new NumberFormat("00");
-        DateTime fechaActual = _dateTimeService.now;
-        Duration tiempoRestante = _contestInfo.templateContest.startDate.difference(fechaActual);
-
+        Duration tiempoRestante = _dateTimeService.timeLeft(_contestInfo.templateContest.startDate);
         if (tiempoRestante.inSeconds <= 0) {
           contestHeaderInfo["startTime"] = "EN BREVE";
           _count.cancel();
         }
         else {
-          var days = tiempoRestante.inDays;
-          var hours = nf_time.format(tiempoRestante.inHours % 24);
-          var minutes = nf_time.format(tiempoRestante.inMinutes % 60);
-          var seconds = nf_time.format(tiempoRestante.inSeconds % 60);
-
-          if (scrDet.isDesktop) {
-            contestHeaderInfo["textCountdownDate"] = "EL DESAFIO COMENZARÁ EN: ";
-          }
-          else {
-            contestHeaderInfo["textCountdownDate"] = "FALTAN";
-          }
-
-          if (days > 0) {
-            contestHeaderInfo["countdownDate"] = nf_day.format(days) + (days > 1 ? " DIAS ": " DIA ") + hours + ":" + minutes + ":" + seconds;
-          }
-          else {
-            contestHeaderInfo["countdownDate"] = hours + ":" + minutes + ":" + seconds;
-          }
+          contestHeaderInfo["textCountdownDate"] = (scrDet.isDesktop) ? "EL DESAFIO COMENZARÁ EN: " : "FALTAN";
+          contestHeaderInfo["countdownDate"] = formatTimeLeft(tiempoRestante);
         }
       }
     }
+  }
+
+  String formatTimeLeft(Duration tiempoRestante) {
+    NumberFormat nf_day = new NumberFormat("0");
+    NumberFormat nf_time = new NumberFormat("00");
+
+    var days = tiempoRestante.inDays;
+    var hours = nf_time.format(tiempoRestante.inHours % 24);
+    var minutes = nf_time.format(tiempoRestante.inMinutes % 60);
+    var seconds = nf_time.format(tiempoRestante.inSeconds % 60);
+
+    return (days > 0)
+              ? nf_day.format(days) + (days > 1 ? " DIAS ": " DIA ") + hours + ":" + minutes + ":" + seconds
+              : hours + ":" + minutes + ":" + seconds;
   }
 
   void _refreshHeader() {
@@ -141,7 +134,5 @@ class ContestHeaderComp implements DetachAware{
 
   DateTimeService _dateTimeService;
   Timer _count;
-  DateFormat _timeDisplayFormat;
-  String _msg = "";
   Contest _contestInfo;
 }

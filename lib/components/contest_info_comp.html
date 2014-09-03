@@ -61,7 +61,7 @@
                     <div class="matches-involved">
                         <div class="match"   ng-repeat="match in contestInfo.currentInfoData['matchesInvolved']">
                             <p class="teams">{{match.soccerTeamA.shortName}} - {{match.soccerTeamB.shortName}}</p>
-                            <p class="date">{{match.startDate | date:'dd/MM HH:mm'}}</p>
+                            <p class="date">{{contestInfo.formatMatchDate(match.startDate)}}</p>
                         </div>
                     </div>
                     <div class="clearfix"></div>
@@ -122,7 +122,7 @@
     <div class="matches-involved">
         <div class="match"   ng-repeat="match in contestInfo.currentInfoData['matchesInvolved']">
             <p class="teams">{{match.soccerTeamA.shortName}} - {{match.soccerTeamB.shortName}}</p>
-            <p class="date">{{match.startDate | date:'dd/MM HH:mm'}}</p>
+            <p class="date">{{contestInfo.formatMatchDate(match.startDate)}}</p>
         </div>
     </div>
     <div class="clearfix"></div>

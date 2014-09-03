@@ -37,5 +37,9 @@ void webClientRouteInitializer(Router router, RouteViewFactory views) {
         path: '/enter_contest/:contestId',
         view: 'view/enter_contest.tpl.html'
     )
+    ,'view_contestentry': ngRoute(
+        path: '/view_contestentry/:contestId',
+        viewHtml: '<view-contestentry></view-contestentry>'
+    )
   });
 }

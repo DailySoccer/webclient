@@ -11,7 +11,7 @@ void webClientRouteInitializer(Router router, RouteViewFactory views) {
     )
     ,'login': ngRoute(
         path: '/login',
-        view: 'view/login.tpl.html'
+        viewHtml: '<login></login>'
     )
     ,'join': ngRoute(
         path: '/join',

@@ -50,9 +50,6 @@ class EnterContestCtrl implements DetachAware{
       lineupSlots.add(null);
     });
 
-    // Cuando se inicializa la lista de jugadores, esta se ordena por posicion
-    sortListByField('Pos', false);
-
     //Nos subscribimos al evento de cambio de tamañano de ventana
     _streamListener = scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
 
@@ -66,6 +63,9 @@ class EnterContestCtrl implements DetachAware{
 
         // Saldo disponible
         availableSalary = contest.templateContest.salaryCap;
+
+        // Cuando se inicializa la lista de jugadores, esta se ordena por posicion
+        sortListByField('Pos', invert: false);
       })
       .catchError((error) {
         _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
@@ -98,7 +98,7 @@ class EnterContestCtrl implements DetachAware{
     // Resetamos todos los filtros
     removeAllFilters();
     // Cuando se inicializa la lista de jugadores, esta se ordena por posicion
-    sortListByField("Pos", false);
+    sortListByField("Pos", invert: false);
     // Para que en la versión móvil aparezca la pantalla de lineup
     isSelectingSoccerPlayer = false;
     if(value == "desktop" || value == "sm") {
@@ -255,7 +255,7 @@ class EnterContestCtrl implements DetachAware{
     _refreshOrder();
   }
 
-  void sortListByField(String fieldName, [bool invert = true]) {
+  void sortListByField(String fieldName, {bool invert : true}) {
     if (fieldName != _sortField) {
       _sortDir = false;
       _sortField = fieldName;
@@ -441,7 +441,7 @@ class EnterContestCtrl implements DetachAware{
     // Resetamos todos los filtros
     removeAllFilters();
     // Cuando se inicializa la lista de jugadores, esta se ordena por posicion
-    sortListByField("Pos", false);
+    sortListByField("Pos", invert: false);
     // Quito la modal de alerta de números rojos
     alertDismiss();
   }

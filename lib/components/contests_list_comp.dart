@@ -215,11 +215,12 @@ class ContestsListComp {
   List<Contest> _contestsListOriginal;
 
   String _sortType;
-  int _contestsCount = 0;
+  int _contestsCount  = 0;
+  int _itemsPerPage   = 0;
+  int _currentPage    = 0;
 
   ProfileService _profileService;
   ScreenDetectorService _scrDet;
 
-  int _itemsPerPage;
-  int _currentPage;
+
 }

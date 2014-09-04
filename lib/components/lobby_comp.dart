@@ -22,6 +22,11 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   static const String FILTER_TOURNAMENT   = "FILTER_TOURNAMENT";
   static const String FILTER_TIER         = "FILTER_TIER";
 
+  static const int XS_LOBBY_ACTION_GOTO_ALL_TOURNAMENTS       = 0;
+  static const int XS_LOBBY_ACTION_GOTO_MY_TOURNAMENTS        = 1;
+  static const int XS_LOBBY_ACTION_GOTO_NOT_FREE_TOURNAMENTS  = 2;
+  static const int XS_LOBBY_ACTION_GOTO_FREE_TOURNAMENTS      = 3;
+
   // Mapa para traducir los filtros a lenguaje Human readable
   Map filtersFriendlyName = {
     "FILTER_TOURNAMENT":{
@@ -39,19 +44,29 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     "FILTER_CONTEST_NAME":"Nombre "
   };
 
-  // Tipo de ordenación de la lista de partidos
-  String sortType = "";
-
-  // Filtros que están bindeados a la contestList
-  Map<String, dynamic> lobbyFilters = {};
-
-  // Valor para el filtro por nombre
-  String filterContestName;
 
   // Variables expuestas por ng-model en los checks del filtro de dificultad
   bool isBeginnerTierChecked          = false;
   bool isStandardTierChecked          = false;
   bool isSkilledTierChecked           = false;
+
+  // Filtros que están bindeados a la contestList
+  Map<String, dynamic> lobbyFilters = {};
+
+  // Tipo de ordenación de la lista de partidos
+  String sortType = "";
+
+  // Valor para el filtro por nombre
+  String filterContestName;
+
+  //filtro aplicados en el lobby XS
+  List<String> xsFilterList = [];
+
+  // estado actual del lobby en XS
+  int currentXsLobbyState = 0;
+
+  // numero de torneos listados actualmente
+  int contestsCount = 0;
 
   ActiveContestsService activeContestsService;
   Contest selectedContest;
@@ -71,6 +86,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
 
   // propiedad que dice si existen concursos del tipo "EXPERTS" en la lista actual de concursos.
   bool get hasSkilledTier  => activeContestsService.activeContests.where((contest) => contest.templateContest.tier == TemplateContest.TIER_SKILLED).toList().length > 0;
+
 
   /*
   * TODO: Mientras no tengamos los datos de a que competición pertenece el torneo, esta función
@@ -92,24 +108,39 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     refreshTorunamentFilter();
   }
   bool get isFreeTournamentChecked => _isFreeTournamentChecked;
+  // Devuelve true si existen torneos del tipo GRATIS
+  bool get hasTournamentsFree => activeContestsService.activeContests.where((contest)       => contest.templateContest.tournamentType == TemplateContest.TOURNAMENT_FREE).toList().length > 0;
 
   void set isLigaTournamentChecked(value) {
     _isLigaTournamentChecked = value;
     refreshTorunamentFilter();
   }
   bool get isLigaTournamentChecked => _isLigaTournamentChecked;
+  // Devuelve true si existen torneos del tipo LIGA
+  bool get hasTournamentsLeague => activeContestsService.activeContests.where((contest)     => contest.templateContest.tournamentType == TemplateContest.TOURNAMENT_LEAGUE).toList().length > 0;
 
   void set isFiftyFiftyTournamentChecked(value) {
     _isFiftyFiftyTournamentChecked = value;
     refreshTorunamentFilter();
   }
   bool get isFiftyFiftyTournamentChecked => _isFiftyFiftyTournamentChecked;
+  // Devuelve true si existen torneos del tipo 50 / 50
+  bool get hasTournamentsFiftyFifty => activeContestsService.activeContests.where((contest) => contest.templateContest.tournamentType == TemplateContest.TOURNAMENT_FIFTY_FIFTY).toList().length > 0;
 
   void set isHeadToHeadTournamentChecked(value) {
     _isHeadToHeadTournamentChecked = value;
     refreshTorunamentFilter();
   }
   bool get isHeadToHeadTournamentChecked => _isHeadToHeadTournamentChecked;
+  // Devuelve true si existen torneos del tipo LIGA
+  bool get hasTournamentsHeadToHead => activeContestsService.activeContests.where((contest) => contest.templateContest.tournamentType == TemplateContest.TOURNAMENT_HEAD_TO_HEAD).toList().length > 0;
+
+
+  // Esto devuelve un bloque HTML con el resumen de los filtros aplicados
+  String get xsFilterResume => xsFilterList.join("<br>") + "<div>Torneos disponibles <span class='contest-count'>" + contestsCount.toString() + "</span></div>";
+
+  int get freeTournamentsCount    => _freeContestCount;
+  int get prizedTournamentsCount  => activeContestsService.activeContests.length - _freeContestCount;
 
   //CONTRUCTOR
   LobbyComp(this._router, this.activeContestsService, this.scrDet) {
@@ -169,7 +200,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     }
     if (msg == "xs") {
       ResetXsLobby();
-      if(_isFiltersPanelOpen) {
+      if (_isFiltersPanelOpen) {
         runJavascript('#filtersPanel', 'collapse', "hide");
         _isFiltersPanelOpen = false;
       }
@@ -191,6 +222,10 @@ class LobbyComp implements ShadowRootAware, DetachAware {
       onActionClick(contest);
     }
   }
+
+  void onListChange(int itemsCount) {
+     contestsCount = itemsCount;
+   }
 
   // Cambia el orden de la lista de concursos
   void sortListByField(String id, String sortName) {
@@ -303,19 +338,6 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     print('-LOBBY_COMP-: Filtrando por tipo de torneo: torneos: [${_tierFilterList}]');
   }
 
-  // Devuelve true si existen torneos del tipo GRATIS
-  bool get hasTournamentsFree => activeContestsService.activeContests.where((contest)       => contest.templateContest.tournamentType == TemplateContest.TOURNAMENT_FREE).toList().length > 0;
-
-  // Devuelve true si existen torneos del tipo 50 / 50
-  bool get hasTournamentsFiftyFifty => activeContestsService.activeContests.where((contest) => contest.templateContest.tournamentType == TemplateContest.TOURNAMENT_FIFTY_FIFTY).toList().length > 0;
-
-  // Devuelve true si existen torneos del tipo LIGA
-  bool get hasTournamentsLeague => activeContestsService.activeContests.where((contest)     => contest.templateContest.tournamentType == TemplateContest.TOURNAMENT_LEAGUE).toList().length > 0;
-
-  // Devuelve true si existen torneos del tipo LIGA
-  bool get hasTournamentsHeadToHead => activeContestsService.activeContests.where((contest) => contest.templateContest.tournamentType == TemplateContest.TOURNAMENT_HEAD_TO_HEAD).toList().length > 0;
-
-
   void refreshTorunamentFilter() {
     List<String> tournamentValues = [];
     _tournamentFilterList = [];
@@ -375,7 +397,6 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     updateXsFiltersResumeList();
   }
 
-
   void resetAllFilters(){
     // reseteo del filtro por precio de entrada
     _filterEntryFeeMin = "0";
@@ -405,59 +426,6 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     print('-LOBBY_COMP-: Filtros reseteados');
   }
 
-  Timer _timer;
-  Router _router;
-
-  List<Element> _sortingButtons = [];
-  List<String> _butonState = ['asc', 'desc'];
-  int _currentButtonState = 0;
-  String _currentSelectedButton = "";
-  List<String> _sortingButtonClassesByDefault;
-
-  List<Element> _filtersButtons;
-  List<String> _filtersButtonClassesByDefault;
-  bool _isFilterButtonOpen = false;
-  String _filterEntryFeeMin;
-  String _filterEntryFeeMax;
-  List<String> _tierFilterList;
-  List<String> _tournamentFilterList;
-
-  bool _isFreeTournamentChecked        = false;
-  bool _isLigaTournamentChecked        = false;
-  bool _isFiftyFiftyTournamentChecked  = false;
-  bool _isHeadToHeadTournamentChecked  = false;
-
-  var _streamListener;
-
-
-  /****************************************************
-   *      Secuencia de acceso al lobby desde XS       *
-   ***************************************************/
-  static const int XS_LOBBY_ACTION_GOTO_ALL_TOURNAMENTS       = 0;
-  static const int XS_LOBBY_ACTION_GOTO_MY_TOURNAMENTS        = 1;
-  static const int XS_LOBBY_ACTION_GOTO_NOT_FREE_TOURNAMENTS  = 2;
-  static const int XS_LOBBY_ACTION_GOTO_FREE_TOURNAMENTS      = 3;
-
-  //filtro aplicados en el lobby XS
-  List<String> xsFilterList = [];
-
-  // estado actual del lobby en XS
-  int currentXsLobbyState = 0;
-  //Conteos de los torneos gratuitos
-  int _freeContestCount = 0;
-  // numero de torneos listados actualmente
-  int contestsCount = 0;
-
-  bool _isFiltersPanelOpen = false;
-
-  void ResetXsLobby()
-  {
-    currentXsLobbyState = 0;
-    refreshActiveContest();
-    resetAllFilters();
-    xsFilterList = [];
-  }
-
   void filterXsLobbyClick(int action)
   {
     switch(action) {
@@ -470,8 +438,8 @@ class LobbyComp implements ShadowRootAware, DetachAware {
       break;
       case XS_LOBBY_ACTION_GOTO_FREE_TOURNAMENTS:
         addFilter(FILTER_TOURNAMENT, [TemplateContest.TOURNAMENT_FREE]);
-       _isFreeTournamentChecked = true;
-        //Pasamos al estado en el muestra la lista de torneos disponibles.
+        _isFreeTournamentChecked = true;
+        // Pasamos al estado en el muestra la lista de torneos disponibles.
         currentXsLobbyState = 2;
       break;
       case XS_LOBBY_ACTION_GOTO_NOT_FREE_TOURNAMENTS:
@@ -479,18 +447,18 @@ class LobbyComp implements ShadowRootAware, DetachAware {
         _isLigaTournamentChecked = true;
         _isFiftyFiftyTournamentChecked = true;
         _isHeadToHeadTournamentChecked = true;
-        //Pasamos al estado en el muestra la lista de torneos disponibles.
+        // Pasamos al estado en el muestra la lista de torneos disponibles.
         currentXsLobbyState = 2;
       break;
     }
     refreshActiveContest();
   }
 
-  int get freeTournamentsCount    => _freeContestCount;
-  int get prizedTournamentsCount  => activeContestsService.activeContests.length - _freeContestCount;
-
-  void onListChange(int itemsCount) {
-    contestsCount = itemsCount;
+  void ResetXsLobby() {
+    currentXsLobbyState = 0;
+    refreshActiveContest();
+    resetAllFilters();
+    xsFilterList = [];
   }
 
   bool sortsAndFiltersVisibles() {
@@ -522,16 +490,46 @@ class LobbyComp implements ShadowRootAware, DetachAware {
             EntryRange += (i == 0)? value[i].split(".")[0] + "€" : " - " + value[i].split(".")[0] + "€";
           }
           xsFilterList.add(filtersFriendlyName[key] + EntryRange);
-        break;
-        case FILTER_CONTEST_NAME:
-          xsFilterList.add(filtersFriendlyName[key]);
-        break;
+          break;
+          case FILTER_CONTEST_NAME:
+            xsFilterList.add(filtersFriendlyName[key]);
+          break;
       }
     });
   }
 
-  // Esto devuelve un bloque HTML con el resumen de los filtros aplicados
-  String get xsFilterResume => xsFilterList.join("<br>") + "<div>Torneos disponibles <span class='contest-count'>" + contestsCount.toString() + "</span></div>";
+  Timer _timer;
+  Router _router;
+
+  List<Element> _sortingButtons = [];
+  List<String> _butonState = ['asc', 'desc'];
+  int _currentButtonState = 0;
+  String _currentSelectedButton = "";
+  List<String> _sortingButtonClassesByDefault;
+
+  List<Element> _filtersButtons;
+  List<String> _filtersButtonClassesByDefault;
+  bool _isFilterButtonOpen = false;
+  String _filterEntryFeeMin;
+  String _filterEntryFeeMax;
+  List<String> _tierFilterList;
+  List<String> _tournamentFilterList;
+
+  bool _isFreeTournamentChecked        = false;
+  bool _isLigaTournamentChecked        = false;
+  bool _isFiftyFiftyTournamentChecked  = false;
+  bool _isHeadToHeadTournamentChecked  = false;
+
+  //Conteos de los torneos gratuitos
+  int _freeContestCount = 0;
+  bool _isFiltersPanelOpen = false;
+
+  var _streamListener;
+
+
+  /****************************************************
+   *      Pasar esta Funcion a una de utiles          *
+   ***************************************************/
 
   // Funcion para ejecutar los JavaScripts que necesitamos en esta página
   dynamic runJavascript(String selector, String method, dynamic params) {
@@ -544,4 +542,5 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     } //javascript / jquery con parametro de valor simple
     return js.context.callMethod(r'$', [selector]).callMethod(method, [params]);
   }
+
 }

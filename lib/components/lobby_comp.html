@@ -24,9 +24,9 @@
     <div id="contestFastSort">
       <span class="filter-text">Ordenar por: </span>
       <div class="btn-group" >
-        <div id="sortContestName"       type="button" class="btn sorting-button" ng-click="comp.sortListByField('contest-name')">Nombre</div>
-        <div id="sortContestEntryFee"  type="button" class="btn sorting-button" ng-click="comp.sortListByField('contest-entry-fee')">Entrada</div>
-        <div id="sortContestStartTime" type="button" class="btn sorting-button" ng-click="comp.sortListByField('contest-start-time')">Comienzo</div>
+        <div id="sortContestName"      type="button" class="btn sorting-button" ng-click="comp.sortListByField('sortContestName', 'contest-name')">Nombre</div>
+        <div id="sortContestEntryFee"  type="button" class="btn sorting-button" ng-click="comp.sortListByField('sortContestEntryFee', 'contest-entry-fee')">Entrada</div>
+        <div id="sortContestStartTime" type="button" class="btn sorting-button" ng-click="comp.sortListByField('sortContestStartTime', 'contest-start-time')">Comienzo</div>
       </div>
     </div>
 
@@ -156,12 +156,12 @@
 
 <!-- Lista de concursos DESKTOP -->
 <div ng-if="!comp.scrDet.isXsScreen">
-  <contests-list sorted-by="comp.sortType"
-                 filter-by="comp.lobbyFilters"
-                 contests-list="comp.activeContestsService.activeContests"
-                 action-button-title='"Jugar"'
-                 on-row-click="comp.onRowClick(contest)"
-                 on-action-click='comp.onActionClick(contest)'>
+  <contests-list  sorted-by="comp.sortType"
+                  filter-by="comp.lobbyFilters"
+                  contests-list="comp.activeContestsService.activeContests"
+                  action-button-title='"Jugar"'
+                  on-row-click="comp.onRowClick(contest)"
+                  on-action-click='comp.onActionClick(contest)'>
   </contests-list>
 </div>
 
@@ -207,13 +207,13 @@
     </div>
     <!-- VISTA FILTRADA DE LOS TORNEOS -->
     <div ng-switch-when="2">
-      <contests-list sorted-by="comp.sortType"
-                 filter-by="comp.lobbyFilters"
-                 contests-list="comp.activeContestsService.activeContests"
-                 action-button-title='"Jugar"'
-                 on-row-click="comp.onRowClick(contest)"
-                 on-action-click='comp.onActionClick(contest)'
-                 on-list-change="comp.onListChange(itemsCount)">
+      <contests-list  sorted-by="comp.sortType"
+                      filter-by="comp.lobbyFilters"
+                      contests-list="comp.activeContestsService.activeContests"
+                      action-button-title='"Jugar"'
+                      on-row-click="comp.onRowClick(contest)"
+                      on-action-click='comp.onActionClick(contest)'
+                      on-list-change="comp.onListChange(itemsCount)">
       </contests-list>
     </div>
   </div>

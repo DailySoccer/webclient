@@ -130,11 +130,10 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     _sortingButtons = document.querySelectorAll('.sorting-button');
     // Nos guardamos la lista de clases por defecto que traen los botones de filtros.
     _sortingButtonClassesByDefault = _sortingButtons.first.classes.toList();
-
     //capturamos el botón que abre el panel de filtros
     _filtersButtons = document.querySelectorAll('.filters-button');
     _filtersButtonClassesByDefault = _filtersButtons.first.classes.toList();
-    //Al iniciar, tiene que está cerrado por lo tanto le añadimos la clase que pone la flecha hacia abajo
+    //Al iniciar, tiene está cerrado por lo tanto le añadimos la clase que pone la flecha hacia abajo
     _filtersButtons.forEach((value) => value.classes.add('toggleOff'));
 
     // Inicializamos el control que dibuja el slider para el filtro por entrada
@@ -153,7 +152,6 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   }
 
   dynamic getEntryFeeFilterRange(){
-    //var range = js.context.callMethod(r'$', ['#slider-range']).callMethod('val');
     var range = runJavascript("#slider-range", 'val', null);
     return range != null? range : ["",""];
   }
@@ -168,7 +166,6 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     if (msg != "desktop") {
       // hacemos una llamada de jQuery para ocultar la ventana modal
       runJavascript('#infoContestModal', 'modal', "hide");
-      //js.context.callMethod(r'$', ['#infoContestModal']).callMethod('modal', ['hide']);
     }
     if (msg == "xs") {
       ResetXsLobby();
@@ -176,7 +173,6 @@ class LobbyComp implements ShadowRootAware, DetachAware {
         runJavascript('#filtersPanel', 'collapse', "hide");
         _isFiltersPanelOpen = false;
       }
-      //js.context.callMethod(r'$', ['#filtersPanel']).callMethod('collapse',['hide']);
     }
   }
 
@@ -190,7 +186,6 @@ class LobbyComp implements ShadowRootAware, DetachAware {
       modal.style.display = "block";
       // Con esto llamamos a funciones de jQuery
       runJavascript('#infoContestModal', 'modal', null);
-      //js.context.callMethod(r'$', ['#infoContestModal']).callMethod('modal');
     }
     else {
       onActionClick(contest);
@@ -198,7 +193,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   }
 
   // Cambia el orden de la lista de concursos
-  void sortListByField(String sortName) {
+  void sortListByField(String id, String sortName) {
     if (sortName != _currentSelectedButton) {
       _currentButtonState = 0;
       _currentSelectedButton = sortName;
@@ -212,32 +207,18 @@ class LobbyComp implements ShadowRootAware, DetachAware {
 
     print('-LOBBY_COMP-: Ordenando la lista de torneos: ${sortType.split('_')}');
 
-    applySortingStyles("sort-" + sortName);
+    updateSorButtonsStyle(id);
   }
 
   // Aplica los estilos necesarios para mostrar las flechitas de orden en los botones
-  void applySortingStyles(String sortName) {
-    Element btn = getButtonElementById(sortName);
-    CleanAllSortButtonClasses();
-
-    if (btn != null) {
-      btn.classes.add(_butonState[_currentButtonState]);
-    }
-  }
-
-  // Devuelve un elemento de la lista de botones de orden por su id
-  Element getButtonElementById(String id) {
-    for (Element button in _sortingButtons) {
-      if (button.id == id) return button;
-    }
-    return null;
-  }
-
-  void CleanAllSortButtonClasses() {
-    for (Element button in _sortingButtons) {
-      button.classes.clear();
-      button.classes.addAll(_sortingButtonClassesByDefault);
-    }
+  void updateSorButtonsStyle(String buttonId) {
+    _sortingButtons.forEach( (Element btn) {
+      btn..classes.clear()
+        ..classes.addAll(_sortingButtonClassesByDefault);
+      if (btn.id == buttonId) {
+        btn..classes.add(_butonState[_currentButtonState]);
+      }
+    });
   }
 
   // Muestra/Oculta el panel de filtros avanzados
@@ -263,8 +244,6 @@ class LobbyComp implements ShadowRootAware, DetachAware {
       runJavascript('#filtersPanel', 'collapse', "show");
       _isFiltersPanelOpen = true;
     }
-    //js.context.callMethod(r'$', ['#filtersPanel']).callMethod('collapse',['show']);
-
   }
 
   void initSliderRange()
@@ -275,17 +254,8 @@ class LobbyComp implements ShadowRootAware, DetachAware {
                                                   'behaviour':  'drag',
                                                   'connect':    true,
                                                   'range':      {'min':0,'max':100}});
-
-     /*   js.context.callMethod(r'$', ['#slider-range'])
-            .callMethod('noUiSlider', [new js.JsObject.jsify({'start':      [0, 100],
-                                                              'step' :      1,
-                                                              'behaviour':  'drag',
-                                                              'connect':    true,
-                                                              'range':      {'min':0,'max':100}})]);
-    */
     // Nos subscribimos al evento change
     runJavascript('#slider-range', 'on', {'set': onEntryFeeRangeChange});
-    //js.context.callMethod(r'$', ['#slider-range']).callMethod('on', [new js.JsObject.jsify({'set': onEntryFeeRangeChange})]);
   }
 
   /*
@@ -411,7 +381,6 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     _filterEntryFeeMin = "0";
     _filterEntryFeeMax = "100";
     runJavascript('#slider-range','val', [_filterEntryFeeMin, _filterEntryFeeMax]);
-    //js.context.callMethod(r'$', ['#slider-range']).callMethod('val', [new js.JsObject.jsify([_filterEntryFeeMin,_filterEntryFeeMax])]);
 
     // reseteo del filtro por dificultad
     isBeginnerTierChecked          = false;

@@ -22,7 +22,6 @@ class ContestsListComp {
   Map<String,dynamic> filterList;
 
   List<Contest> currentPageList = [];
-  bool mustRefreshTheList = false;
 
   @NgOneWay("contests-list")
   void set contestsList(List<Contest> value) {
@@ -146,7 +145,6 @@ class ContestsListComp {
     }
 
     List<String> sortParams = _sortType.split('_');
-
     if (sortParams.length != 2) {
       print("-CONTEST_LIST-: El número de parametros no se ha establecido correctamente. La forma correcta es \'campo\'_\'dirección\'. Pon atención a la barra baja \'_\'");
     }
@@ -168,14 +166,18 @@ class ContestsListComp {
         print('-CONTEST_LIST-: No se ha encontrado el campo para ordenar');
       break;
     }
-    mustRefreshTheList =  true;
+    // Forzamos el refresco la lista.
+    updateCurrentPageLsit(_currentPage, _itemsPerPage);
   }
 
   void refreshFilters() {
     if (filterList == null) {
       return;
     }
-    contestsListFiltered = _contestsListOriginal;
+    // Partimos de la lista original.
+    contestsListFiltered = [];
+    contestsListFiltered.addAll(_contestsListOriginal);
+
     // Recorremos la lista de filtros
     filterList.forEach((String key, dynamic value) {
       switch(key) {
@@ -197,13 +199,18 @@ class ContestsListComp {
   }
 
   void onPageChange(int currentPage, int itemsPerPage) {
-    // Determinamos que elementos se mostrarán en la pagina actual
-    int rangeStart = currentPage * itemsPerPage;
-    int rangeEnd =  (rangeStart + itemsPerPage < contestsListFiltered.length) ? rangeStart + itemsPerPage : contestsListFiltered.length;
-    currentPageList = contestsListFiltered.getRange(rangeStart, rangeEnd).toList();
-    mustRefreshTheList = false;
+    _currentPage = currentPage;
+    _itemsPerPage = itemsPerPage;
+    //Actualizamos la página actual de la lista.
+    updateCurrentPageLsit(_currentPage, _itemsPerPage);
   }
 
+  void updateCurrentPageLsit(int currentPage, int itemsPerPage) {
+    // Determinamos que elementos se mostrarán en la pagina actual
+       int rangeStart = currentPage * itemsPerPage;
+       int rangeEnd =  (rangeStart + itemsPerPage < contestsListFiltered.length) ? rangeStart + itemsPerPage : contestsListFiltered.length;
+       currentPageList = contestsListFiltered.getRange(rangeStart, rangeEnd).toList();
+  }
   // Lista original de los contest
   List<Contest> _contestsListOriginal;
 
@@ -212,4 +219,7 @@ class ContestsListComp {
 
   ProfileService _profileService;
   ScreenDetectorService _scrDet;
+
+  int _itemsPerPage;
+  int _currentPage;
 }

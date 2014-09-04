@@ -1,3 +1,5 @@
+library string_utils;
+
 class StringUtils {
 
   static String normalize(String txt) {

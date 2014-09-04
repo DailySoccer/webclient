@@ -1,3 +1,5 @@
+library js_utils;
+
 import 'dart:js' as js;
 
 class JsUtils {

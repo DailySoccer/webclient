@@ -3,7 +3,6 @@ library enter_contest_ctrl;
 
 import 'dart:html';
 import 'package:angular/angular.dart';
-import 'dart:js' as js;
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/services/profile_service.dart';
@@ -14,6 +13,7 @@ import 'package:webclient/models/match_event.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
+import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/utils/string_utils.dart';
 
 @Controller(
@@ -110,7 +110,8 @@ class EnterContestCtrl implements DetachAware{
     }
     else {
       // hacemos una llamada de jQuery para ocultar la ventana modal
-      js.context.callMethod(r'$', ['#infoContestModal']).callMethod('modal', ['hide']);
+      JsUtils.runJavascript('#infoContestModal','modal', 'hide');
+      //js.context.callMethod(r'$', ['#infoContestModal']).callMethod('modal', ['hide']);
       // Para cerrar el soccer player info una vez que cambiamos a otra resolución
       closePlayerInfo();
     }
@@ -479,8 +480,8 @@ class EnterContestCtrl implements DetachAware{
       modal.style.display = "block";
 
       // Con esto llamamos a funciones de jQuery
-      js.context.callMethod(r'$', ['#infoContestModal'])
-        .callMethod('modal');
+      JsUtils.runJavascript('#infoContestModal', 'modal', null);
+      //js.context.callMethod(r'$', ['#infoContestModal']).callMethod('modal');
 
     }
     else { // Resto de versiones => mostramos el componente soccer_player_info_comp
@@ -501,7 +502,8 @@ class EnterContestCtrl implements DetachAware{
     }
     if(scrDet.isSmScreen || scrDet.isDesktop) {
       // hacemos una llamada de jQuery para ocultar la ventana modal
-      js.context.callMethod(r'$', ['#infoContestModal']).callMethod('modal', ['hide']);
+      JsUtils.runJavascript('#infoContestModal', 'modal', 'hide');
+     // js.context.callMethod(r'$', ['#infoContestModal']).callMethod('modal', ['hide']);
     }
     else
       closePlayerInfo();

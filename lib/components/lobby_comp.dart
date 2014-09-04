@@ -196,12 +196,12 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   void onScreenWidthChange(String msg) {
     if (msg != "desktop") {
       // hacemos una llamada de jQuery para ocultar la ventana modal
-      JsUtils.runJavascript('#infoContestModal', 'modal', "hide");
+      JsUtils.runJavascript('#infoContestModal', 'modal', 'hide');
     }
     if (msg == "xs") {
       ResetXsLobby();
       if (_isFiltersPanelOpen) {
-        JsUtils.runJavascript('#filtersPanel', 'collapse', "hide");
+        JsUtils.runJavascript('#filtersPanel', 'collapse', 'hide');
         _isFiltersPanelOpen = false;
       }
     }

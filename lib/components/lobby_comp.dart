@@ -2,12 +2,14 @@ library active_contest_list_comp;
 
 import 'dart:html';
 import 'dart:async';
-import 'dart:js' as js;
+
+import 'dart:math';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/active_contests_service.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/models/template_contest.dart';
+import 'package:webclient/utils/js_utils.dart';
 
 @Component(
   selector: 'lobby',
@@ -32,7 +34,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     "FILTER_TOURNAMENT":{
       "FREE"          :"Torneos Gratuitos",
       "HEAD_TO_HEAD"  :"Torneos 1 Contra 1",
-      "LEAGUE"        :"Torneos de Liga",
+      "LEAGUE"        :"Torneos de league",
       "FIFTY_FIFTY"   :"Torneos 50 / 50"
     },
     "FILTER_TIER":{
@@ -111,12 +113,12 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   // Devuelve true si existen torneos del tipo GRATIS
   bool get hasTournamentsFree => activeContestsService.activeContests.where((contest)       => contest.templateContest.tournamentType == TemplateContest.TOURNAMENT_FREE).toList().length > 0;
 
-  void set isLigaTournamentChecked(value) {
-    _isLigaTournamentChecked = value;
+  void set isleagueTournamentChecked(value) {
+    _isleagueTournamentChecked = value;
     refreshTorunamentFilter();
   }
-  bool get isLigaTournamentChecked => _isLigaTournamentChecked;
-  // Devuelve true si existen torneos del tipo LIGA
+  bool get isleagueTournamentChecked => _isleagueTournamentChecked;
+  // Devuelve true si existen torneos del tipo league
   bool get hasTournamentsLeague => activeContestsService.activeContests.where((contest)     => contest.templateContest.tournamentType == TemplateContest.TOURNAMENT_LEAGUE).toList().length > 0;
 
   void set isFiftyFiftyTournamentChecked(value) {
@@ -132,9 +134,8 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     refreshTorunamentFilter();
   }
   bool get isHeadToHeadTournamentChecked => _isHeadToHeadTournamentChecked;
-  // Devuelve true si existen torneos del tipo LIGA
+  // Devuelve true si existen torneos del tipo league
   bool get hasTournamentsHeadToHead => activeContestsService.activeContests.where((contest) => contest.templateContest.tournamentType == TemplateContest.TOURNAMENT_HEAD_TO_HEAD).toList().length > 0;
-
 
   // Esto devuelve un bloque HTML con el resumen de los filtros aplicados
   String get xsFilterResume => xsFilterList.join("<br>") + "<div>Torneos disponibles <span class='contest-count'>" + contestsCount.toString() + "</span></div>";
@@ -166,7 +167,6 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     _filtersButtonClassesByDefault = _filtersButtons.first.classes.toList();
     //Al iniciar, tiene está cerrado por lo tanto le añadimos la clase que pone la flecha hacia abajo
     _filtersButtons.forEach((value) => value.classes.add('toggleOff'));
-
     // Inicializamos el control que dibuja el slider para el filtro por entrada
     initSliderRange();
   }
@@ -183,7 +183,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   }
 
   dynamic getEntryFeeFilterRange(){
-    var range = runJavascript("#slider-range", 'val', null);
+    var range = JsUtils.runJavascript("#slider-range", 'val', null);
     return range != null? range : ["",""];
   }
 
@@ -196,12 +196,12 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   void onScreenWidthChange(String msg) {
     if (msg != "desktop") {
       // hacemos una llamada de jQuery para ocultar la ventana modal
-      runJavascript('#infoContestModal', 'modal', "hide");
+      JsUtils.runJavascript('#infoContestModal', 'modal', "hide");
     }
     if (msg == "xs") {
       ResetXsLobby();
       if (_isFiltersPanelOpen) {
-        runJavascript('#filtersPanel', 'collapse', "hide");
+        JsUtils.runJavascript('#filtersPanel', 'collapse', "hide");
         _isFiltersPanelOpen = false;
       }
     }
@@ -216,7 +216,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
       var modal = querySelector('#infoContestModal');
       modal.style.display = "block";
       // Con esto llamamos a funciones de jQuery
-      runJavascript('#infoContestModal', 'modal', null);
+      JsUtils.runJavascript('#infoContestModal', 'modal', null);
     }
     else {
       onActionClick(contest);
@@ -225,6 +225,11 @@ class LobbyComp implements ShadowRootAware, DetachAware {
 
   void onListChange(int itemsCount) {
      contestsCount = itemsCount;
+     //La primera vez que la lista se rellene con los torneos, actualizamos el rango de selección del filtro de EntryFee
+     if (isFirstTimeListFill && contestsCount > 0) {
+       isFirstTimeListFill = false;
+       updateEntryFeeFilter();
+     }
    }
 
   // Cambia el orden de la lista de concursos
@@ -272,25 +277,26 @@ class LobbyComp implements ShadowRootAware, DetachAware {
 
     // Abrimos el menú si está cerrado
     if (_isFiltersPanelOpen) {
-      runJavascript('#filtersPanel', 'collapse', "hide");
+      JsUtils.runJavascript('#filtersPanel', 'collapse', "hide");
       _isFiltersPanelOpen = false;
     }
     else {
-      runJavascript('#filtersPanel', 'collapse', "show");
+      JsUtils.runJavascript('#filtersPanel', 'collapse', "show");
       _isFiltersPanelOpen = true;
     }
   }
 
   void initSliderRange()
   {
+    List<int> range = getFilterEntryFeeRange();
     //iniciamos slider-range
-    runJavascript('#slider-range', 'noUiSlider', { 'start':      [0, 100],
-                                                  'step' :      1,
-                                                  'behaviour':  'drag',
-                                                  'connect':    true,
-                                                  'range':      {'min':0,'max':100}});
+    JsUtils.runJavascript('#slider-range', 'noUiSlider', {  'start'     : [0, 1],
+                                                            'step'      : 1,
+                                                            'behaviour' : 'drag',
+                                                            'connect'   : true,
+                                                            'range'     : {'min':range[0],'max':range[1]}});
     // Nos subscribimos al evento change
-    runJavascript('#slider-range', 'on', {'set': onEntryFeeRangeChange});
+    JsUtils.runJavascript('#slider-range', 'on', {'set': onEntryFeeRangeChange});
   }
 
   /*
@@ -346,7 +352,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
       tournamentValues.add(TemplateContest.TOURNAMENT_FREE);
     }
 
-    if (isLigaTournamentChecked) {
+    if (isleagueTournamentChecked) {
       tournamentValues.add(TemplateContest.TOURNAMENT_LEAGUE);
     }
 
@@ -398,10 +404,11 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   }
 
   void resetAllFilters(){
-    // reseteo del filtro por precio de entrada
-    _filterEntryFeeMin = "0";
-    _filterEntryFeeMax = "100";
-    runJavascript('#slider-range','val', [_filterEntryFeeMin, _filterEntryFeeMax]);
+//    // reseteo del filtro por precio de entrada
+//    _filterEntryFeeMin = "0";
+//    _filterEntryFeeMax = "100";
+//    runJavascript('#slider-range','val', [_filterEntryFeeMin, _filterEntryFeeMax]);
+    updateEntryFeeFilter();
 
     // reseteo del filtro por dificultad
     isBeginnerTierChecked          = false;
@@ -411,7 +418,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
 
     // Reseteo del filtro por tipo de torneo
     isFreeTournamentChecked        = false;
-    isLigaTournamentChecked        = false;
+    isleagueTournamentChecked        = false;
     isFiftyFiftyTournamentChecked  = false;
     isHeadToHeadTournamentChecked  = false;
     _tournamentFilterList = [];
@@ -424,6 +431,20 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     lobbyFilters = {};
     addFilter("", []);
     print('-LOBBY_COMP-: Filtros reseteados');
+  }
+
+  updateEntryFeeFilter() {
+    List<int> range = getFilterEntryFeeRange();
+    JsUtils.runJavascript('#slider-range','noUiSlider', {'range': {'min': range[0], 'max': range[1]}}, true);
+    JsUtils.runJavascript('#slider-range','val', range);
+  }
+
+  List<int> getFilterEntryFeeRange() {
+    int maxLimit = 1;
+    activeContestsService.activeContests.forEach( (contest) {
+      maxLimit = max(contest.templateContest.entryFee, maxLimit);
+    });
+    return [0, maxLimit];
   }
 
   void filterXsLobbyClick(int action)
@@ -444,7 +465,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
       break;
       case XS_LOBBY_ACTION_GOTO_NOT_FREE_TOURNAMENTS:
         addFilter(FILTER_TOURNAMENT, [TemplateContest.TOURNAMENT_LEAGUE, TemplateContest.TOURNAMENT_FIFTY_FIFTY, TemplateContest.TOURNAMENT_HEAD_TO_HEAD]);
-        _isLigaTournamentChecked = true;
+        _isleagueTournamentChecked = true;
         _isFiftyFiftyTournamentChecked = true;
         _isHeadToHeadTournamentChecked = true;
         // Pasamos al estado en el muestra la lista de torneos disponibles.
@@ -507,16 +528,20 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   String _currentSelectedButton = "";
   List<String> _sortingButtonClassesByDefault;
 
+  bool _isFilterButtonOpen = false;
+
   List<Element> _filtersButtons;
   List<String> _filtersButtonClassesByDefault;
-  bool _isFilterButtonOpen = false;
+
   String _filterEntryFeeMin;
   String _filterEntryFeeMax;
-  List<String> _tierFilterList;
-  List<String> _tournamentFilterList;
 
+  List<String> _tierFilterList;
+
+  List<String> _tournamentFilterList;
+  // estado de los botones de filtro por tipo de torneo
   bool _isFreeTournamentChecked        = false;
-  bool _isLigaTournamentChecked        = false;
+  bool _isleagueTournamentChecked      = false;
   bool _isFiftyFiftyTournamentChecked  = false;
   bool _isHeadToHeadTournamentChecked  = false;
 
@@ -525,22 +550,5 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   bool _isFiltersPanelOpen = false;
 
   var _streamListener;
-
-
-  /****************************************************
-   *      Pasar esta Funcion a una de utiles          *
-   ***************************************************/
-
-  // Funcion para ejecutar los JavaScripts que necesitamos en esta página
-  dynamic runJavascript(String selector, String method, dynamic params) {
-    if (params == null) { //javascript / jquery sin parametros
-      return js.context.callMethod(r'$', [selector]).callMethod(method);
-    }
-    else { //javascript / jquery con parametro de valor iterable
-      if (params.toString().contains('[') || params.toString().contains('{')  ) // Si tienen un objeto iterable
-        return js.context.callMethod(r'$', [selector]).callMethod(method, [new js.JsObject.jsify(params)]);
-    } //javascript / jquery con parametro de valor simple
-    return js.context.callMethod(r'$', [selector]).callMethod(method, [params]);
-  }
-
+  bool isFirstTimeListFill = true;
 }

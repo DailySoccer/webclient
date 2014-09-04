@@ -48,32 +48,32 @@
           <div class="check-group-wrapper">
 
             <div class="button-check-ESP">
-              <input id="filtroLigaEsp" type="checkbox" ng-disabled="!comp.hasCompetitionsOf('LigaEsp')">
-              <label for="filtroLigaEsp">Liga Española</label>
+              <input id="filtroleagueEsp" type="checkbox" ng-disabled="!comp.hasCompetitionsOf('leagueEsp')">
+              <label for="filtroleagueEsp">league Española</label>
             </div>
             <div class="button-check-UK">
-              <input id="filtroLigaUK" type="checkbox" ng-disabled="!comp.hasCompetitionsOf('LigaUK')">
-              <label for="filtroLigaUK">Liga Inglesa</label>
+              <input id="filtroleagueUK" type="checkbox" ng-disabled="!comp.hasCompetitionsOf('leagueUK')">
+              <label for="filtroleagueUK">league Inglesa</label>
             </div>
             <div class="button-check-GER">
-              <input id="filtroLigaGER" type="checkbox" ng-disabled="!comp.hasCompetitionsOf('LigaGER')">
-              <label for="filtroLigaGER">Liga Alemana</label>
+              <input id="filtroleagueGER" type="checkbox" ng-disabled="!comp.hasCompetitionsOf('leagueGER')">
+              <label for="filtroleagueGER">league Alemana</label>
             </div>
             <div class="button-check-IT">
-              <input id="filtroLigaIT" type="checkbox" ng-disabled="!comp.hasCompetitionsOf('LigaIT')">
-              <label for="filtroLigaIT">Liga Italiana</label>
+              <input id="filtroleagueIT" type="checkbox" ng-disabled="!comp.hasCompetitionsOf('leagueIT')">
+              <label for="filtroleagueIT">league Italiana</label>
             </div>
             <div class="button-check-FR">
-              <input id="filtroLigaFR" type="checkbox" ng-disabled="!comp.hasCompetitionsOf('LigaFR')">
-              <label for="filtroLigaFR">Liga Francesa</label>
+              <input id="filtroleagueFR" type="checkbox" ng-disabled="!comp.hasCompetitionsOf('leagueFR')">
+              <label for="filtroleagueFR">league Francesa</label>
             </div>
             <div class="button-check-EU">
-              <input id="filtroLigaEUChampions" type="checkbox" ng-disabled="!comp.hasCompetitionsOf('LigaEUChampions')">
-              <label for="filtroLigaEUChampions">Europa Champions</label>
+              <input id="filtroleagueEUChampions" type="checkbox" ng-disabled="!comp.hasCompetitionsOf('leagueEUChampions')">
+              <label for="filtroleagueEUChampions">Europa Champions</label>
             </div>
             <div class="button-check-EU">
-              <input id="filtroLigaEULiga" type="checkbox" ng-disabled="!comp.hasCompetitionsOf('LigaEULiga')">
-              <label for="filtroLigaEULiga">Europa Liga</label>
+              <input id="filtroleagueEUleague" type="checkbox" ng-disabled="!comp.hasCompetitionsOf('leagueEUleague')">
+              <label for="filtroleagueEUleague">Europa league</label>
             </div>
 
           </div>
@@ -92,9 +92,9 @@
                 <label for="filtroFree">Gratis</label>
               </div>
               <div class="button-check">
-                <input id="filtroLiga" type="checkbox"  ng-disabled="!comp.hasTournamentsLeague"
-                                                        ng-model="comp.isLigaTournamentChecked">
-                <label for="filtroLiga">Liga</label>
+                <input id="filtroleague" type="checkbox"  ng-disabled="!comp.hasTournamentsLeague"
+                                                        ng-model="comp.isleagueTournamentChecked">
+                <label for="filtroleague">league</label>
               </div>
               <div class="button-check">
                 <input id="filtroFiftyFifty" type="checkbox"  ng-disabled="!comp.hasTournamentsFiftyFifty"
@@ -161,7 +161,8 @@
                   contests-list="comp.activeContestsService.activeContests"
                   action-button-title='"Jugar"'
                   on-row-click="comp.onRowClick(contest)"
-                  on-action-click='comp.onActionClick(contest)'>
+                  on-action-click='comp.onActionClick(contest)'
+                  on-list-change="comp.onListChange(itemsCount)">
   </contests-list>
 </div>
 

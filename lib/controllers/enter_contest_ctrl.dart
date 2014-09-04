@@ -111,7 +111,6 @@ class EnterContestCtrl implements DetachAware{
     else {
       // hacemos una llamada de jQuery para ocultar la ventana modal
       JsUtils.runJavascript('#infoContestModal','modal', 'hide');
-      //js.context.callMethod(r'$', ['#infoContestModal']).callMethod('modal', ['hide']);
       // Para cerrar el soccer player info una vez que cambiamos a otra resolución
       closePlayerInfo();
     }
@@ -481,7 +480,6 @@ class EnterContestCtrl implements DetachAware{
 
       // Con esto llamamos a funciones de jQuery
       JsUtils.runJavascript('#infoContestModal', 'modal', null);
-      //js.context.callMethod(r'$', ['#infoContestModal']).callMethod('modal');
 
     }
     else { // Resto de versiones => mostramos el componente soccer_player_info_comp
@@ -503,7 +501,6 @@ class EnterContestCtrl implements DetachAware{
     if(scrDet.isSmScreen || scrDet.isDesktop) {
       // hacemos una llamada de jQuery para ocultar la ventana modal
       JsUtils.runJavascript('#infoContestModal', 'modal', 'hide');
-     // js.context.callMethod(r'$', ['#infoContestModal']).callMethod('modal', ['hide']);
     }
     else
       closePlayerInfo();

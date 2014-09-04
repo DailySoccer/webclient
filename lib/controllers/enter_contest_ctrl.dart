@@ -14,6 +14,7 @@ import 'package:webclient/models/match_event.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 @Controller(
     selector: '[enter-contest-ctrl]',
@@ -272,43 +273,30 @@ class EnterContestCtrl implements DetachAware{
         case "Pos":
           availableSoccerPlayers.sort((player1, player2) => _sortDir? player2["fieldPos"].sortOrder - player1["fieldPos"].sortOrder :
                                                                       player1["fieldPos"].sortOrder - player2["fieldPos"].sortOrder);
-          break;
+        break;
         case "Name":
-          availableSoccerPlayers.sort((player1, player2) => _sortDir? normalize(player2["fullName"]).compareTo(normalize(player1["fullName"])) :
-                                                                      normalize(player1["fullName"]).compareTo(normalize(player2["fullName"])));
-          break;
+          availableSoccerPlayers.sort((player1, player2) => _sortDir? compareNameTo(player2, player1) : compareNameTo(player1, player2));
+        break;
         case "DFP":
           availableSoccerPlayers.sort((player1, player2) => _sortDir? player2["fantasyPoints"].compareTo(player1["fantasyPoints"]) :
                                                                       player1["fantasyPoints"].compareTo(player2["fantasyPoints"]));
-          break;
+        break;
         case "Played":
           availableSoccerPlayers.sort((player1, player2) => _sortDir? player2["playedMatches"].compareTo(player1["playedMatches"]) :
                                                                       player1["playedMatches"].compareTo(player2["playedMatches"]));
-          break;
+        break;
         case "Salary":
           availableSoccerPlayers.sort((player1, player2) => _sortDir? player2["salary"].compareTo(player1["salary"]) :
                                                                       player1["salary"].compareTo(player2["salary"]));
-          break;
+        break;
       }
   }
 
-  String normalize(String txt) {
-      String from = "ÃÀÁÄÂÈÉËÊÌÍÏÎÒÓÖÔÙÚÜÛãàáäâèéëêìíïîòóöôùúüûÑñÇç";
-        String to   = "AAAAAEEEEIIIIOOOOUUUUaaaaaeeeeiiiioooouuuunncc";
-        Map map = {};
 
-        for (int i = 0; i < from.length; i++ ) {
-          map[  from[i] ] = to[i];
-        }
-
-        String ret = '';
-        String c = '';
-        for( int i = 0, j = txt.length; i < j; i++ ) {
-          c = txt[i];
-          ret += map.containsKey(c) ? map[c] : c;
-        }
-        return ret;
-    }
+  int compareNameTo(playerA, playerB){
+     int comp = StringUtils.normalize(playerA["fullName"]).compareTo(StringUtils.normalize(playerB["fullName"]));
+     return comp != 0 ? comp : playerA["id"].compareTo(playerB["id"]);
+   }
 
   bool availableSoccerPlayer(var soccerPlayer) {
     FieldPos theFieldPos = soccerPlayer["fieldPos"];

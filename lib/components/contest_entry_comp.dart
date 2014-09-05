@@ -1,22 +1,22 @@
-library view_contestentry_comp;
+library contest_entry_comp;
 
 import 'package:angular/angular.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/services/active_contests_service.dart';
 
 @Component(
-   selector: 'view-contestentry',
-   templateUrl: 'packages/webclient/components/view_contestentry_comp.html',
-   publishAs: 'viewContestentry',
+   selector: 'contest-entry',
+   templateUrl: 'packages/webclient/components/contest_entry_comp.html',
+   publishAs: 'contestEntry',
    useShadowDom: false
 )
 
-class ViewContestentryComp {
+class ContestEntryComp {
 
   Contest contest;
 
 
-  ViewContestentryComp(RouteProvider routeProvider, this._contestService) {
+  ContestEntryComp(RouteProvider routeProvider, this._contestService) {
       contest = _contestService.getContestById(routeProvider.route.parameters['contestId']);
   }
 

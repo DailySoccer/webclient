@@ -394,7 +394,7 @@ class EnterContestCtrl implements DetachAware{
 
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
     _contestService.addContestEntry(contest.contestId, lineupSlots.map((player) => player["id"]).toList())
-      .then((_) => _router.go('view_contestentry', {"contestId" : contest.contestId}))
+      .then((_) => _router.go('contest_entry', {"contestId" : contest.contestId}))
       .catchError((error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW));
   }
 

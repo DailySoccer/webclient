@@ -106,7 +106,7 @@
           </div>
           <!-- Barra de resumen de actividad con registros-->
           <div class="resume-bar" ng-if="comp.hasHistoryContests">
-            <div class="refresh-text">Actualizado cada 24 horas</div>
+            <!--<div class="refresh-text">Actualizado cada 24 horas</div>-->
             <div class="info">
               <span class="info-registers-count">{{comp.myContestsService.historyContests.length}} Registros</span>
               <span class="info-wins-count">{{comp.totalHistoryContestsWinner}} Ganados</span>
@@ -134,7 +134,7 @@
 
           <!-- lista de concursos -->
           <div class="list-container" ng-if="comp.hasHistoryContests">
-            <div class="text-refresh-history">Actualizado cada 24 horas</div>
+            <!--<div class="text-refresh-history">Actualizado cada 24 horas</div>-->
             <contests-list id="historyContests"
                            contests-list="comp.myContestsService.historyContests"
                            on-action-click='comp.onHistoryActionClick(contest)'

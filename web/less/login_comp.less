@@ -1,0 +1,133 @@
+#loginRoot {
+	.make-row(0);
+	@media (min-width: @screen-sm-min) {
+		min-height: 750px;
+	}	
+}
+
+.main-box {	
+	.make-sm-column(8);
+	.make-sm-column-push(2);
+	.make-md-column(6);
+	.make-md-column-push(3);
+	.make-xs-column(12, 0px);
+	@media (max-width: @screen-xs-max) {
+		
+	}
+	@media (min-width: @screen-sm-min) {
+		margin-top:50px;
+		background-color: transparent;
+	}
+	.panel {	
+		border-width: 0px;
+		@media (max-width: @screen-xs-max) {			
+			border-radius: 0;
+		}
+		.panel-heading {			
+			background-color: @blueDark;
+			.panel-title {
+				.exo_light(14pt, @white);
+			}
+		}
+		// estilo de textos
+		.text-form {
+			.opensans_bold(8pt, @greyDark);
+			text-align: center;
+		}
+		.form-horizontal { 
+			.make-row(0);
+		}
+		.panel-body {
+			// Textos del form
+			.form-description{
+				.text-form();
+			}			
+			label {
+		 		.opensans_normal(8pt, @greyDark);
+		 	}
+			
+			// Inputs
+			.input-group {
+			 	.make-xs-column(12, 0px);
+			 	margin-top: 20px;
+			 	input {
+			 		&::-webkit-input-placeholder { .text-form(); }
+					&::-moz-placeholder { .text-form(); } /* firefox 19+ */
+					&::-ms-input-placeholder { .text-form(); } /* ie */
+					&:-webkit-autofill { -webkit-box-shadow: 0px 0px 0px 1000px @white inset; }
+			 	}
+			}
+			//Check y link para recordar password
+			.remember-forgot-group {
+				.make-xs-column(12, 0px);
+				margin-top: 10px;
+				.checkbox {
+					.make-xs-column(6);
+					padding-left: 20px;
+				}
+				.forget-pass {
+					.make-xs-column(6, 0px);				
+					text-align: right;
+					padding-top: 7px;
+					a {
+						cursor: pointer;
+						.opensans_normal(8pt, @blueLight);
+					}				
+				}
+			}
+			// botón entrar
+			.new-row {
+				.make-xs-column(12, 0);
+				.enter-button {
+   					.btn();
+   					.btn-primary();
+   					.btn-block();
+   				}
+   				.separator-top {
+   					.opensans_normal(8pt, @greyDark);
+					border-top: 1px solid#888; 
+					padding-top:15px;
+					text-align: left;
+					a {
+						cursor: pointer;
+						.opensans_normal(8pt, @blueLight);
+					}
+   				}
+			}
+
+		}
+	}
+}
+
+
+/*
+#loginRoot {
+	border: 1px solid #F00;
+	.container();
+	
+	legend {
+		.exo_light(14pt, @white);
+		padding: 15px;
+		margin: 0;
+		background-color: @blueDark;
+		color: @white;
+	}
+
+	.controls-group {
+		.make-xs-column(12);
+		
+
+		input {
+			background-color: @white;
+		}
+	}
+
+		
+	
+	.input-field {
+		.make-xs-column(12,10px);
+
+	}
+}
+
+*/

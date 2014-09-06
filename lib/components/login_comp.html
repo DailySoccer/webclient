@@ -1,0 +1,56 @@
+<div id="loginRoot">
+  <div id="loginBox" class="main-box">
+
+    <div class="panel" >
+
+      <!-- Header -->
+      <div class="panel-heading">
+        <div class="panel-title">Entrar</div>
+        <!--<div style="float:right; font-size: 80%; position: relative; top:-10px"><a ng-click="#">¿Olvidaste tu contraseña?</a></div>-->
+      </div>
+
+      <div class="panel-body" >
+        <!-- TODO: MENSAJES DE ERROR - Hay que pasarle los mensajes de error SOLO del login -->
+        <flash-messages></flash-messages>
+
+        <form id="loginform" class="form-horizontal" ng-submit="comp.login(email, password, rememberMe)" data-toggle="validator" role="form" formAutofillFix>
+          <div class="form-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae lectus orci.</div>
+          <!-- MAIL -->
+          <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+            <input id="login-mail" type="text" ng-model="email" name="email" placeholder="Correo Electrónico" class="form-control">
+          </div>
+          <!-- PÂSSWORD -->
+          <div class="input-group">
+            <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
+            <input id="login-password" type="password" ng-model="password" name="password" placeholder="password" class="form-control">
+          </div>
+          <!-- REMEMBER ME -->
+          <div class="remember-forgot-group">
+            <div class="checkbox">
+              <label><input id="login-remember" type="checkbox" ng-model="rememberMe" name="rememberMe"> Recuerdame </label>
+            </div>
+            <div class="forget-pass">
+              <a ng-click="comp.rememberMe()">¿Olvidaste tu contraseña?</a>
+            </div>
+          </div>
+          <!-- BUTTON -->
+          <div class="input-group">
+            <div class="new-row">
+              <button id="login" ng-click="comp.login(email, password, rememberMe)" class="enter-button">Login</button>
+            </div>
+          </div>
+          <!-- GOTO REGISTER -->
+          <div class="input-group">
+            <div class="new-row">
+              <div class="separator-top">¿Aún no tienes cuenta? <a ng-click="comp.registerPressed()"> Regístrate aquí! </a></div>
+            </div>
+          </div>
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>

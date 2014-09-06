@@ -5683,6 +5683,10 @@ button.close {
 #mainFooter .sup-footer-wrapper:after,
 #mainFooter .sub-footer:before,
 #mainFooter .sub-footer:after,
+#loginRoot:before,
+#loginRoot:after,
+.main-box .panel .form-horizontal:before,
+.main-box .panel .form-horizontal:after,
 .main-content-container:before,
 .main-content-container:after,
 .lineup-selector .lineup-selector-slot:before,
@@ -5742,6 +5746,8 @@ button.close {
 #mainFooter:after,
 #mainFooter .sup-footer-wrapper:after,
 #mainFooter .sub-footer:after,
+#loginRoot:after,
+.main-box .panel .form-horizontal:after,
 .main-content-container:after,
 .lineup-selector .lineup-selector-slot:after {
   clear: both;
@@ -14857,6 +14863,343 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button.active {
 .paginator-wrapper .paginator-box .ellipsis a:hover {
   background-color: white;
 }
+#loginRoot {
+  margin-left: 0;
+  margin-right: 0;
+}
+@media (min-width: 768px) {
+  #loginRoot {
+    min-height: 750px;
+  }
+}
+.main-box {
+  padding-left: 15px;
+  padding-right: 15px;
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+@media (min-width: 768px) {
+  .main-box {
+    float: left;
+    width: 66.66666667%;
+  }
+}
+@media (min-width: 768px) {
+  .main-box {
+    left: 16.66666667%;
+  }
+}
+@media (min-width: 992px) {
+  .main-box {
+    float: left;
+    width: 50%;
+  }
+}
+@media (min-width: 992px) {
+  .main-box {
+    left: 25%;
+  }
+}
+@media (min-width: 768px) {
+  .main-box {
+    margin-top: 50px;
+    background-color: transparent;
+  }
+}
+.main-box .panel {
+  border-width: 0px;
+}
+@media (max-width: 767px) {
+  .main-box .panel {
+    border-radius: 0;
+  }
+}
+.main-box .panel .panel-heading {
+  background-color: #214a5f;
+}
+.main-box .panel .panel-heading .panel-title {
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 14pt;
+  color: #ffffff;
+}
+.main-box .panel .text-form {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #777777;
+  text-align: center;
+}
+.main-box .panel .form-horizontal {
+  margin-left: 0;
+  margin-right: 0;
+}
+.main-box .panel .panel-body .form-description {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #777777;
+  text-align: center;
+}
+.main-box .panel .panel-body label {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 8pt;
+  color: #777777;
+}
+.main-box .panel .panel-body .input-group {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-top: 20px;
+}
+.main-box .panel .panel-body .input-group input {
+  /* firefox 19+ */
+  /* ie */
+}
+.main-box .panel .panel-body .input-group input::-webkit-input-placeholder {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #777777;
+  text-align: center;
+}
+.main-box .panel .panel-body .input-group input::-moz-placeholder {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #777777;
+  text-align: center;
+}
+.main-box .panel .panel-body .input-group input::-ms-input-placeholder {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #777777;
+  text-align: center;
+}
+.main-box .panel .panel-body .input-group input:-webkit-autofill {
+  -webkit-box-shadow: 0px 0px 0px 1000px #ffffff inset;
+}
+.main-box .panel .panel-body .remember-forgot-group {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-top: 10px;
+}
+.main-box .panel .panel-body .remember-forgot-group .checkbox {
+  position: relative;
+  float: left;
+  width: 50%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-left: 20px;
+}
+.main-box .panel .panel-body .remember-forgot-group .forget-pass {
+  position: relative;
+  float: left;
+  width: 50%;
+  min-height: 1px;
+  padding-left: 0px;
+  padding-right: 0px;
+  text-align: right;
+  padding-top: 7px;
+}
+.main-box .panel .panel-body .remember-forgot-group .forget-pass a {
+  cursor: pointer;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 8pt;
+  color: #59add5;
+}
+.main-box .panel .panel-body .new-row {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 0;
+  padding-right: 0;
+}
+.main-box .panel .panel-body .new-row .enter-button {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  color: #ffffff;
+  background-color: #a1c931;
+  border-color: #91b42c;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  display: block;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+.main-box .panel .panel-body .new-row .enter-button:focus,
+.main-box .panel .panel-body .new-row .enter-button:active:focus,
+.main-box .panel .panel-body .new-row .enter-button.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.main-box .panel .panel-body .new-row .enter-button:hover,
+.main-box .panel .panel-body .new-row .enter-button:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+.main-box .panel .panel-body .new-row .enter-button:active,
+.main-box .panel .panel-body .new-row .enter-button.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.main-box .panel .panel-body .new-row .enter-button.disabled,
+.main-box .panel .panel-body .new-row .enter-button[disabled],
+fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.main-box .panel .panel-body .new-row .enter-button:focus,
+.main-box .panel .panel-body .new-row .enter-button:active:focus,
+.main-box .panel .panel-body .new-row .enter-button.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.main-box .panel .panel-body .new-row .enter-button:hover,
+.main-box .panel .panel-body .new-row .enter-button:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+.main-box .panel .panel-body .new-row .enter-button:active,
+.main-box .panel .panel-body .new-row .enter-button.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.main-box .panel .panel-body .new-row .enter-button.disabled,
+.main-box .panel .panel-body .new-row .enter-button[disabled],
+fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.main-box .panel .panel-body .new-row .enter-button:hover,
+.main-box .panel .panel-body .new-row .enter-button:focus,
+.main-box .panel .panel-body .new-row .enter-button:active,
+.main-box .panel .panel-body .new-row .enter-button.active,
+.open .dropdown-toggle.main-box .panel .panel-body .new-row .enter-button {
+  color: #ffffff;
+  background-color: #87a829;
+  border-color: #698320;
+}
+.main-box .panel .panel-body .new-row .enter-button:active,
+.main-box .panel .panel-body .new-row .enter-button.active,
+.open .dropdown-toggle.main-box .panel .panel-body .new-row .enter-button {
+  background-image: none;
+}
+.main-box .panel .panel-body .new-row .enter-button.disabled,
+.main-box .panel .panel-body .new-row .enter-button[disabled],
+fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button,
+.main-box .panel .panel-body .new-row .enter-button.disabled:hover,
+.main-box .panel .panel-body .new-row .enter-button[disabled]:hover,
+fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button:hover,
+.main-box .panel .panel-body .new-row .enter-button.disabled:focus,
+.main-box .panel .panel-body .new-row .enter-button[disabled]:focus,
+fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button:focus,
+.main-box .panel .panel-body .new-row .enter-button.disabled:active,
+.main-box .panel .panel-body .new-row .enter-button[disabled]:active,
+fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button:active,
+.main-box .panel .panel-body .new-row .enter-button.disabled.active,
+.main-box .panel .panel-body .new-row .enter-button[disabled].active,
+fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button.active {
+  background-color: #a1c931;
+  border-color: #91b42c;
+}
+.main-box .panel .panel-body .new-row .enter-button .badge {
+  color: #a1c931;
+  background-color: #ffffff;
+}
+.main-box .panel .panel-body .new-row .separator-top {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 8pt;
+  color: #777777;
+  border-top: 1px solid#888;
+  padding-top: 15px;
+  text-align: left;
+}
+.main-box .panel .panel-body .new-row .separator-top a {
+  cursor: pointer;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 8pt;
+  color: #59add5;
+}
+/*
+#loginRoot {
+	border: 1px solid #F00;
+	.container();
+	
+	legend {
+		.exo_light(14pt, @white);
+		padding: 15px;
+		margin: 0;
+		background-color: @blueDark;
+		color: @white;
+	}
+
+	.controls-group {
+		.make-xs-column(12);
+		
+
+		input {
+			background-color: @white;
+		}
+	}
+
+		
+	
+	.input-field {
+		.make-xs-column(12,10px);
+
+	}
+}
+
+*/
 /*************************************************
 Si hay que añadir nuevas banderas, ir a la siguiente url
 url: http://flag-sprites.com/es_ES/;
@@ -15276,20 +15619,6 @@ fieldset[disabled] .btn-orange.active {
 }
 .pink-bg {
   background-color: #FF00A0;
-}
-#joinControl,
-#loginControl {
-  color: #ffffff;
-}
-#joinControl p,
-#loginControl p,
-#joinControl legend,
-#loginControl legend {
-  color: #ffffff;
-}
-.form-login,
-.form-join {
-  text-align: left;
 }
 [ng-cloak],
 [data-ng-cloak],

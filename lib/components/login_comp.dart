@@ -20,11 +20,11 @@ class LoginComp implements DetachAware  {
 
       _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
       _profileManager.login(email, password)
-        .then((_) => _router.go('lobby', {}))
-        .catchError((error) {
-          _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
-          enabledSubmit = true;
-        });
+          .then((_) => _router.go('lobby', {}))
+          .catchError((error) {
+            _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
+            enabledSubmit = true;
+          });
     }
 
     void detach() {

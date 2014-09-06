@@ -6,18 +6,18 @@ import 'dart:html';
 /*
  *  Actualizar los campos asociados ("ng-model") a los inputs de los formularios
  *    que no funcionan correctamente cuando se produce el "autofill" en algunos browsers.
- * 
+ *
  * Problema:
  *  - Los inputs se autorellenan (automáticamente por parte de los browsers)
  *  - Se pulsa "submit"
  *  - Los campos asociados ("ng-model") no se han enterado del cambio automático (producido por el autofill)
  *  - El formulario es considerado valido (sin datos válidos)
- * 
+ *
  * Solucion:
  *  - El evento "click" se produce antes del "submit"
  *  - Detectar cuando se produce el evento "click" sobre el boton de "submit"
  *  - Informar a los "inputs" del formulario que "han cambiado" (para que actualicen correctamente las variables "ng-model" asociadas)
- * 
+ *
  * Fuentes:
  *  - http://victorblog.com/2014/01/12/fixing-autocomplete-autofill-on-angularjs-form-submit/
  *  - https://github.com/angular/angular.js/issues/1460#issuecomment-42970168
@@ -33,7 +33,7 @@ class FormAutofillDecorator implements AttachAware{
   @override
   void attach() {
     // Buscamos el button principal del form
-    ButtonElement button = formElement.querySelector('.btn-primary');
+    ButtonElement button = formElement.querySelector('.enter-button');
     if (button != null) {
       // Si alguien lo pulsa (para 'submit')
       button.onClick.listen( (e) {
@@ -66,7 +66,7 @@ class FormAutofillDecorator implements AttachAware{
       }
     });
     */
-    
+
     /*
     // Verificar que los distintos 'inputs' reciben la solicitu de 'change'
     List<InputElement> inputs = formElement.querySelectorAll('input');

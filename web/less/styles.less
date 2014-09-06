@@ -21,11 +21,11 @@
 @import "my_contest_comp.less";
 @import "footer_comp.less";
 @import "paginator_comp.less";
+@import "login_comp.less";
 @import "../flags/flags.less";
 
 // Path Definitions
 @images: "../images"; // No ponemos / al final para separar mejor donde realmente se define la imagen
-
 
 @icon-font-path: "//netdna.bootstrapcdn.com/bootstrap/3.0.0/fonts/";
 
@@ -161,15 +161,6 @@
 // * * * * { background-color: rgba(255,0,255,.2); }
 // * * * * * { background-color: rgba(0,255,255,.2); }
 // * * * * * * { background-color: rgba(255,255,0,.2); }
-
-
-#joinControl, #loginControl{
-	color: @white;
-	p, legend {color: @white;}
-}
-.form-login, .form-join {
-	text-align: left;
-}
 
 [ng-cloak], [data-ng-cloak], .ng-cloak, .ng-hide {
 	display: none !important;

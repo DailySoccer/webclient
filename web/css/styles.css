@@ -5685,6 +5685,8 @@ button.close {
 #mainFooter .sub-footer:after,
 #loginRoot:before,
 #loginRoot:after,
+#joinRoot:before,
+#joinRoot:after,
 .main-box .panel .form-horizontal:before,
 .main-box .panel .form-horizontal:after,
 .main-content-container:before,
@@ -5747,6 +5749,7 @@ button.close {
 #mainFooter .sup-footer-wrapper:after,
 #mainFooter .sub-footer:after,
 #loginRoot:after,
+#joinRoot:after,
 .main-box .panel .form-horizontal:after,
 .main-content-container:after,
 .lineup-selector .lineup-selector-slot:after {
@@ -14863,12 +14866,14 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button.active {
 .paginator-wrapper .paginator-box .ellipsis a:hover {
   background-color: white;
 }
-#loginRoot {
+#loginRoot,
+#joinRoot {
   margin-left: 0;
   margin-right: 0;
 }
 @media (min-width: 768px) {
-  #loginRoot {
+  #loginRoot,
+  #joinRoot {
     min-height: 750px;
   }
 }
@@ -14913,13 +14918,14 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button.active {
 .main-box .panel {
   border-width: 0px;
 }
-@media (max-width: 767px) {
-  .main-box .panel {
-    border-radius: 0;
-  }
-}
 .main-box .panel .panel-heading {
   background-color: #214a5f;
+}
+@media (max-width: 767px) {
+  .main-box .panel .panel-heading {
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+  }
 }
 .main-box .panel .panel-heading .panel-title {
   font-family: 'Exo', sans-serif;
@@ -14950,6 +14956,12 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button.active {
   font-weight: 400;
   font-size: 8pt;
   color: #777777;
+  position: relative;
+  float: left;
+  width: 25%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 .main-box .panel .panel-body .input-group {
   position: relative;
@@ -15158,7 +15170,7 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button.active {
   font-weight: 400;
   font-size: 8pt;
   color: #777777;
-  border-top: 1px solid#888;
+  border-top: 1px #000000;
   padding-top: 15px;
   text-align: left;
 }
@@ -15169,37 +15181,6 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button.active {
   font-size: 8pt;
   color: #59add5;
 }
-/*
-#loginRoot {
-	border: 1px solid #F00;
-	.container();
-	
-	legend {
-		.exo_light(14pt, @white);
-		padding: 15px;
-		margin: 0;
-		background-color: @blueDark;
-		color: @white;
-	}
-
-	.controls-group {
-		.make-xs-column(12);
-		
-
-		input {
-			background-color: @white;
-		}
-	}
-
-		
-	
-	.input-field {
-		.make-xs-column(12,10px);
-
-	}
-}
-
-*/
 /*************************************************
 Si hay que añadir nuevas banderas, ir a la siguiente url
 url: http://flag-sprites.com/es_ES/;

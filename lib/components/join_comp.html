@@ -1,0 +1,121 @@
+<div id="joinRoot">
+  <div id="signupbox" class="main-box">
+
+    <div class="panel">
+
+      <div class="panel-heading">
+        <div class="panel-title">REGÍSTRATE</div>
+        <!-- <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="#" onclick="$('#signupbox').hide(); $('#loginbox').show()">Sign In</a></div> -->
+      </div>
+
+      <div class="panel-body" >
+
+        <form id="signupForm" class="form-horizontal" ng-submit="comp.submitSignup()" data-toggle="validator" role="form" formAutofillFix>
+          <!-- TODO: MENSAJES DE ERROR - Hay que pasarle los mensajes de error SOLO del join -->
+          <flash-messages></flash-messages>
+
+          <div class="form-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae lectus orci.</div>
+          <!-- USERNAME  -->
+          <div class="input-group">
+            <span class="input-group-addon"><div class="glyphicon glyphicon-user"></div></span>
+            <input id="nickName" name="NickName" ng-model="comp.nickName" type="text" placeholder="Nombre de usuario" class="form-control" data-toggle="validator" required="">
+          </div>
+          <!-- EMAIL -->
+          <div class="input-group">
+            <span class="input-group-addon"><div class="glyphicon glyphicon-envelope"></div></span>
+            <input id="email"name="Email" ng-model="comp.email"  type="email" placeholder="Correo electrónico" class="form-control" data-toggle="validator" required="">
+          </div>
+          <!-- PASSWORD -->
+          <div class="input-group">
+            <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
+            <input id="password" name="Password" ng-model="comp.password" type="password" placeholder="Password (mínimo 8 caracteres)" class="form-control" data-toggle="validator" required="" data-minlength="8" ng-minlength="8">
+          </div>
+          <!-- BUTTON -->
+          <div class="input-group">
+            <div class="new-row">
+              <button id="joinNow" name="joinNow" ng-disabled="!comp.enabledSubmit" class="enter-button">REGÍSTRATE</button>
+            </div>
+          </div>
+          <!-- GOTO REGISTER -->
+          <div class="input-group">
+            <div class="new-row">
+              <div class="separator-top">¿Ya tienes cuenta? <a ng-click="comp.loginPressed()"> Entra por aquí! </a></div>
+            </div>
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!--
+<section signup-ctrl id="joinControl">
+
+  <form class="form-join form-horizontal" ng-submit="ctrl.submitSignup()" data-toggle="validator" role="form" formAutofillFix>
+    <fieldset>
+
+      <!- - Form Name - ->
+      <legend>Start Playing</legend>
+
+      <!- - Text input - ->
+      <div class="control-group">
+        <label class="control-label" for="Your first name">Your first name</label>
+        <div class="controls">
+          <input id="firstName" name="Your first name" ng-model="ctrl.firstName" type="text" placeholder="your first name" class="input-xlarge form-control" data-toggle="validator" required="">
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="Your last name">Your last name</label>
+        <div class="controls">
+          <input id="lastName" name="Your last name" ng-model="ctrl.lastName" type="text" placeholder="your last name" class="input-xlarge form-control" data-toggle="validator" required="">
+        </div>
+      </div>
+
+      <!- - Text input - ->
+      <div class="control-group">
+        <label class="control-label" for="Email">Email</label>
+        <div class="controls">
+          <input id="email"name="Email" ng-model="ctrl.email"  type="email" placeholder="email" class="input-xlarge form-control" data-toggle="validator" required="">
+
+        </div>
+      </div>
+
+      <!- - Text input - ->
+      <div class="control-group">
+        <label class="control-label" for="NickName">Pick a screen name</label>
+        <div class="controls">
+          <input id="nickName" name="NickName" ng-model="ctrl.nickName" type="text" placeholder="nickname" class="input-xlarge form-control" data-toggle="validator" required="">
+
+        </div>
+      </div>
+
+      <!- - Password input - ->
+      <div class="control-group">
+        <label class="control-label" for="Password">Choose password</label>
+        <div class="controls">
+          <input id="password" name="Password" ng-model="ctrl.password" type="password" placeholder="password" class="input-xlarge form-control" data-toggle="validator" required="" data-minlength="8" ng-minlength="8">
+          <p class="help-block">min 8 characters</p>
+        </div>
+      </div>
+
+      <!- - Button - ->
+      <div class="control-group">
+        <label class="control-label" for="joinNow"></label>
+        <div class="controls">
+          <button id="joinNow" name="joinNow" class="btn btn-primary" ng-disabled="!ctrl.enabledSubmit">Join Now</button>
+        </div>
+      </div>
+
+    </fieldset>
+  </form>
+
+</section>
+-->
+
+
+

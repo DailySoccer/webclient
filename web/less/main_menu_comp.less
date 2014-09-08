@@ -43,6 +43,7 @@
   .navbar-header-loggin {
     // Logo
     .navbar-brand-container { 
+      cursor: pointer;
       // Logo en pantallas minimo medianas
       @media (min-width: @screen-sm-min) {
         .navbar-brand {
@@ -77,12 +78,15 @@
     text-align: center;
 
     .navbar-brand-container {  
+      cursor: pointer;
       .hidden-xs();
-      // Retina display
-      .img-retina("@{images}/logoEpic11.png", "@{images}/logoEpic11-2x.png", 120px, 37px);      
-      .size(120px, 37px);
-      .pull-left();
-      margin-top: 20px;
+      .navbar-brand {
+        // Retina display
+        .img-retina("@{images}/logoEpic11.png", "@{images}/logoEpic11-2x.png", 120px, 37px);      
+        .size(120px, 37px);
+        margin-top: 20px;
+      }     
+
     }
     
     // Botones de login y join

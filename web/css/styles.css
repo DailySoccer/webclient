@@ -6024,6 +6024,9 @@ button.close {
     padding-right: 0px;
   }
 }
+#mainMenuRoot .navbar-header-loggin .navbar-brand-container {
+  cursor: pointer;
+}
 @media (min-width: 768px) {
   #mainMenuRoot .navbar-header-loggin .navbar-brand-container .navbar-brand {
     background-image: url("../images/logoEpic11.png");
@@ -6072,19 +6075,21 @@ button.close {
   text-align: center;
 }
 #mainMenuRoot .navbar-header-unloggin .navbar-brand-container {
-  background-image: url("../images/logoEpic11.png");
-  width: 120px;
-  height: 37px;
-  float: left !important;
-  margin-top: 20px;
+  cursor: pointer;
 }
 @media (max-width: 767px) {
   #mainMenuRoot .navbar-header-unloggin .navbar-brand-container {
     display: none !important;
   }
 }
+#mainMenuRoot .navbar-header-unloggin .navbar-brand-container .navbar-brand {
+  background-image: url("../images/logoEpic11.png");
+  width: 120px;
+  height: 37px;
+  margin-top: 20px;
+}
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  #mainMenuRoot .navbar-header-unloggin .navbar-brand-container {
+  #mainMenuRoot .navbar-header-unloggin .navbar-brand-container .navbar-brand {
     background-image: url("../images/logoEpic11-2x.png");
     background-size: 120px 37px;
   }

@@ -13,8 +13,8 @@ class User {
   // Numero de veces que el usuario ha ganado un contest
   int wins;
 
-  String get fullName => "$firstName $lastName";
-  String toString() => "$userId - $fullName - $email - $nickName";
+  //String get fullName => "$firstName $lastName";
+  String toString() => "$userId - $email - $nickName";
   Map toJson() => {"_id": userId, "firstName": firstName, "lastName": lastName, "email": email, "nickName": nickName};
 
   User.referenceInit(this.userId);

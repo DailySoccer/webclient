@@ -14973,6 +14973,7 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button.active {
   margin-top: 20px;
 }
 .main-box .panel .panel-body .input-group input {
+  line-height: 20px;
   /* firefox 19+ */
   /* ie */
 }

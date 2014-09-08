@@ -44,7 +44,7 @@ class UsersListComp {
         users.add({
           "id": contestEntry.user.userId,
           "contestEntry" : contestEntry,
-          "name": contestEntry.user.fullName,
+          "name": contestEntry.user.nickName,
           "remainingTime": "${contestEntry.timeLeft} min.",
           "score": contestEntry.currentLivePoints
         });

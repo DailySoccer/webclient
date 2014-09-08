@@ -69,7 +69,7 @@ class ContestInfoComp {
         contestants.clear();
         for (ContestEntry contestEntry in contest.contestEntries) {
           contestants.add({
-                'name'  : contestEntry.user.fullName,
+                'name'  : contestEntry.user.nickName,
                 'wins'  : contestEntry.user.wins
               });
         }

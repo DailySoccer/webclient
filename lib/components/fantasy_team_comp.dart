@@ -17,6 +17,11 @@ class FantasyTeamComp implements ShadowRootAware {
 
     String get owner => isOpponent? "opponent" : "me";
 
+    @NgOneWay("parent")
+    set parent(ViewContestCtrl value) {
+      _viewContestCtrl = value;
+    }
+
     @NgOneWay("contest-entry")
     set contestEntry(ContestEntry value) {
       // Si nos mandan cambiar de ContestEntry, tenemos que resetear los slots
@@ -41,12 +46,12 @@ class FantasyTeamComp implements ShadowRootAware {
     @NgCallback('on-close')
     Function onClose;
 
-    String get userPosition => (_contestEntry != null) ? _viewContestCtrl.getUserPosition(_contestEntry).toString() : "-";
+    String get userPosition => (_contestEntry != null && _viewContestCtrl!=null) ? _viewContestCtrl.getUserPosition(_contestEntry).toString() : "-";
     String get userNickname => (_contestEntry != null) ? _contestEntry.user.nickName : "";
     String get userScore => (_contestEntry != null) ? _contestEntry.currentLivePoints.toString() : "0";
     String get remainingTime => (_contestEntry != null) ? "${_contestEntry.timeLeft} min." : "-";
 
-    FantasyTeamComp(this._viewContestCtrl);
+    FantasyTeamComp();
 
     void onShadowRoot(var shadowRoot) {
       _rootElement = shadowRoot as HtmlElement;
@@ -80,7 +85,7 @@ class FantasyTeamComp implements ShadowRootAware {
             "fieldPos": soccerPlayer.fieldPos,
             "fullName": soccerPlayer.name,
             "matchEventName": matchEventName,
-            "percentOfUsersThatOwn": _viewContestCtrl.getPercentOfUsersThatOwn(soccerPlayer),
+            "percentOfUsersThatOwn": (_viewContestCtrl != null) ? _viewContestCtrl.getPercentOfUsersThatOwn(soccerPlayer) : "",
             "score": soccerPlayer.printableCurrentLivePoints,
             "stats": soccerPlayer.printableLivePointsPerOptaEvent
         });

@@ -16,6 +16,11 @@ class UsersListComp {
 
   List users = new List();
 
+  @NgOneWay("parent")
+   set parent(ViewContestCtrl value) {
+     _viewContestCtrl = value;
+   }
+
   @NgTwoWay("selected-contest-entry")
   ContestEntry selectedContestEntry = null;
 
@@ -30,9 +35,9 @@ class UsersListComp {
     _refresh();
   }
 
-  String getPrize(int index) => _viewContestCtrl.getPrize(index);
+  String getPrize(int index) => (_viewContestCtrl != null) ? _viewContestCtrl.getPrize(index) : "";
 
-  UsersListComp(this._routeProvider, this._viewContestCtrl, this._profileService);
+  UsersListComp(this._routeProvider, this._profileService);
 
   void _refresh() {
     //print("refresh users: ${_liveContestCtrl.usersInfo}");
@@ -40,14 +45,27 @@ class UsersListComp {
     users.clear();
 
     if (_contestEntries != null) {
-      for (var contestEntry in _viewContestCtrl.contestEntriesOrderByPoints) {
-        users.add({
-          "id": contestEntry.user.userId,
-          "contestEntry" : contestEntry,
-          "name": contestEntry.user.nickName,
-          "remainingTime": "${contestEntry.timeLeft} min.",
-          "score": contestEntry.currentLivePoints
-        });
+      if (_viewContestCtrl != null) {
+        for (var contestEntry in _viewContestCtrl.contestEntriesOrderByPoints) {
+          users.add({
+            "id": contestEntry.user.userId,
+            "contestEntry" : contestEntry,
+            "name": contestEntry.user.fullName,
+            "remainingTime": "${contestEntry.timeLeft} min.",
+            "score": contestEntry.currentLivePoints
+          });
+        }
+      }
+      else {
+        for (var contestEntry in _contestEntries) {
+          users.add({
+            "id": contestEntry.user.userId,
+            "contestEntry" : contestEntry,
+            "name": contestEntry.user.fullName,
+            "remainingTime": "${contestEntry.timeLeft} min.",
+            "score": contestEntry.currentLivePoints
+          });
+        }
       }
     }
   }

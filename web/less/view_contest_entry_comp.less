@@ -1,0 +1,43 @@
+// Barra separadora del header
+.separator-bar {
+	#gradient.vertical(@blueGradientLight, @blueGradientDark, 49%, 51%);
+	height: 40px;
+	.hidden-xs();
+}
+// Barra que muestra el mensaje de enhorabuena al crear el concurso
+.info-complete-bar {
+	.make-row(0);
+	background-color: @white;
+	text-align: center;
+	padding: 20px 5px 10px;
+	@media (min-width: @screen-sm-min) {
+		background-color: @tramaBlue;
+		padding: 30px 5px 15px;
+	}
+	p {
+		.exo_light(20pt, @blueMed);
+	}
+	p + p {
+		.opensans_normal(10pt, @greyDark);
+	}
+}
+// Botones de cancelar concurso y volver
+.view-contest-entry-actions-wrapper {
+	clear: both;
+	.make-row(15);
+	.button-wrapper {
+		padding: 40px 0 20px;
+		text-align: center;
+		.make-xs-column(6);
+	}
+
+	.btn-cancel-contest {
+		.btn-cancel();
+		width: 70%;
+	}
+	.btn-back-contest {
+		.btn();
+		.btn-primary();
+		width: 70%;
+	}
+}

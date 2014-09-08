@@ -38,6 +38,7 @@ import 'package:webclient/components/footer_comp.dart';
 import 'package:webclient/components/paginator_comp.dart';
 import 'package:webclient/components/login_comp.dart';
 import 'package:webclient/components/join_comp.dart';
+import 'package:webclient/components/view_contest_entry_comp.dart';
 import 'package:webclient/utils/form-autofill-fix.dart';
 
 // Global variable to hold the url of the app's server
@@ -96,6 +97,7 @@ class WebClientApp extends Module {
     bind(PaginatorComp);
     bind(LoginComp);
     bind(JoinComp);
+    bind(ViewContestEntryComp);
 
     bind(FormAutofillDecorator);
 

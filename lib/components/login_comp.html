@@ -5,20 +5,20 @@
 
       <!-- Header -->
       <div class="panel-heading">
-        <div class="panel-title">Entrar</div>
-        <!--<div style="float:right; font-size: 80%; position: relative; top:-10px"><a ng-click="#">¿Olvidaste tu contraseña?</a></div>-->
+        <div class="panel-title">ENTRA</div>
       </div>
 
       <div class="panel-body" >
-        <!-- TODO: MENSAJES DE ERROR - Hay que pasarle los mensajes de error SOLO del login -->
-        <flash-messages></flash-messages>
 
-        <form id="loginform" class="form-horizontal" ng-submit="comp.login(email, password, rememberMe)" data-toggle="validator" role="form" formAutofillFix>
+        <form id="loginForm" class="form-horizontal" ng-submit="comp.login(email, password, rememberMe)" data-toggle="validator" role="form" formAutofillFix>
+          <!-- TODO: MENSAJES DE ERROR - Hay que pasarle los mensajes de error SOLO del login -->
+          <flash-messages></flash-messages>
+
           <div class="form-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae lectus orci.</div>
           <!-- MAIL -->
           <div class="input-group">
             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-            <input id="login-mail" type="text" ng-model="email" name="email" placeholder="Correo Electrónico" class="form-control">
+            <input id="login-mail" type="email" ng-model="email" name="email" placeholder="Correo Electrónico" class="form-control">
           </div>
           <!-- PÂSSWORD -->
           <div class="input-group">
@@ -37,7 +37,7 @@
           <!-- BUTTON -->
           <div class="input-group">
             <div class="new-row">
-              <button id="login" ng-click="comp.login(email, password, rememberMe)" class="enter-button">Login</button>
+              <button id="login" ng-click="comp.login(email, password, rememberMe)" class="enter-button">ENTRAR</button>
             </div>
           </div>
           <!-- GOTO REGISTER -->

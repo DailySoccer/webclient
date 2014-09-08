@@ -3,7 +3,7 @@
 
     <div class="navbar-header-loggin" ng-if="mainMenu.isLoggedIn">
       <div class="navbar-brand-container">
-        <a class="navbar-brand" href="#"></a>
+        <a class="navbar-brand" href="/index.html"></a>
       </div>
 
       <button id="menuToggleGameMenu" type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target="#gameMenuCollapse">
@@ -32,7 +32,7 @@
     <div class="collapse navbar-collapse" ng-if="mainMenu.isLoggedIn" id="userMenuCollapse">
       <ul class="nav navbar-nav">
         <li class="dropdown"><a id="userMenuToggleDropDown" href="#" class="dropdown-toggle" data-toggle="dropdown">
-          {{mainMenu.fullName}}<b class="caret"></b></a>
+          {{mainMenu.nickName}}<b class="caret"></b></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="#" ng-click="" id="userMenuMyAccount">Mi cuenta</a></li>
             <li><a href="#" ng-click="" id="userMenuAddFunds">Añadir fondos</a></li>
@@ -59,7 +59,7 @@
     <!-- Cuando no estamos logeados, mostramos simplemente un boton de Login y Join -->
     <div class="navbar-header-unloggin" ng-if="!mainMenu.isLoggedIn">
       <div class="navbar-brand-container">
-        <a class="navbar-brand" href="#"></a>
+        <a class="navbar-brand" href="/index.html"></a>
       </div>
       <div class="button-wrapper">
         <a id="joinButton" type="button" class="button-join" href="#/join">REGISTRO</a>

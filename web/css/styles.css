@@ -5685,6 +5685,8 @@ button.close {
 #mainFooter .sub-footer:after,
 #loginRoot:before,
 #loginRoot:after,
+#joinRoot:before,
+#joinRoot:after,
 .main-box .panel .form-horizontal:before,
 .main-box .panel .form-horizontal:after,
 .main-content-container:before,
@@ -5747,6 +5749,7 @@ button.close {
 #mainFooter .sup-footer-wrapper:after,
 #mainFooter .sub-footer:after,
 #loginRoot:after,
+#joinRoot:after,
 .main-box .panel .form-horizontal:after,
 .main-content-container:after,
 .lineup-selector .lineup-selector-slot:after {
@@ -6021,6 +6024,9 @@ button.close {
     padding-right: 0px;
   }
 }
+#mainMenuRoot .navbar-header-loggin .navbar-brand-container {
+  cursor: pointer;
+}
 @media (min-width: 768px) {
   #mainMenuRoot .navbar-header-loggin .navbar-brand-container .navbar-brand {
     background-image: url("../images/logoEpic11.png");
@@ -6069,19 +6075,21 @@ button.close {
   text-align: center;
 }
 #mainMenuRoot .navbar-header-unloggin .navbar-brand-container {
-  background-image: url("../images/logoEpic11.png");
-  width: 120px;
-  height: 37px;
-  float: left !important;
-  margin-top: 20px;
+  cursor: pointer;
 }
 @media (max-width: 767px) {
   #mainMenuRoot .navbar-header-unloggin .navbar-brand-container {
     display: none !important;
   }
 }
+#mainMenuRoot .navbar-header-unloggin .navbar-brand-container .navbar-brand {
+  background-image: url("../images/logoEpic11.png");
+  width: 120px;
+  height: 37px;
+  margin-top: 20px;
+}
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  #mainMenuRoot .navbar-header-unloggin .navbar-brand-container {
+  #mainMenuRoot .navbar-header-unloggin .navbar-brand-container .navbar-brand {
     background-image: url("../images/logoEpic11-2x.png");
     background-size: 120px 37px;
   }
@@ -14863,12 +14871,14 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button.active {
 .paginator-wrapper .paginator-box .ellipsis a:hover {
   background-color: white;
 }
-#loginRoot {
+#loginRoot,
+#joinRoot {
   margin-left: 0;
   margin-right: 0;
 }
 @media (min-width: 768px) {
-  #loginRoot {
+  #loginRoot,
+  #joinRoot {
     min-height: 750px;
   }
 }
@@ -14913,13 +14923,14 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button.active {
 .main-box .panel {
   border-width: 0px;
 }
-@media (max-width: 767px) {
-  .main-box .panel {
-    border-radius: 0;
-  }
-}
 .main-box .panel .panel-heading {
   background-color: #214a5f;
+}
+@media (max-width: 767px) {
+  .main-box .panel .panel-heading {
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+  }
 }
 .main-box .panel .panel-heading .panel-title {
   font-family: 'Exo', sans-serif;
@@ -14950,6 +14961,12 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button.active {
   font-weight: 400;
   font-size: 8pt;
   color: #777777;
+  position: relative;
+  float: left;
+  width: 25%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 .main-box .panel .panel-body .input-group {
   position: relative;
@@ -14961,6 +14978,7 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button.active {
   margin-top: 20px;
 }
 .main-box .panel .panel-body .input-group input {
+  line-height: 20px;
   /* firefox 19+ */
   /* ie */
 }
@@ -15158,7 +15176,7 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button.active {
   font-weight: 400;
   font-size: 8pt;
   color: #777777;
-  border-top: 1px solid#888;
+  border-top: 1px #000000;
   padding-top: 15px;
   text-align: left;
 }
@@ -15169,37 +15187,6 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button.active {
   font-size: 8pt;
   color: #59add5;
 }
-/*
-#loginRoot {
-	border: 1px solid #F00;
-	.container();
-	
-	legend {
-		.exo_light(14pt, @white);
-		padding: 15px;
-		margin: 0;
-		background-color: @blueDark;
-		color: @white;
-	}
-
-	.controls-group {
-		.make-xs-column(12);
-		
-
-		input {
-			background-color: @white;
-		}
-	}
-
-		
-	
-	.input-field {
-		.make-xs-column(12,10px);
-
-	}
-}
-
-*/
 /*************************************************
 Si hay que añadir nuevas banderas, ir a la siguiente url
 url: http://flag-sprites.com/es_ES/;

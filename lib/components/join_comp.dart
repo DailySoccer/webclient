@@ -1,25 +1,25 @@
-library signup_ctrl;
+library join_comp;
 
 import 'package:angular/angular.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 
-
-@Controller(
-    selector: '[signup-ctrl]',
-    publishAs: 'ctrl'
+@Component(
+    selector: 'join',
+    templateUrl: 'packages/webclient/components/join_comp.html',
+    publishAs: 'comp',
+    useShadowDom: false
 )
+class JoinComp implements DetachAware {
 
-class SignupCtrl implements DetachAware {
-
-  String firstName;
-  String lastName;
+  String firstName = "";
+  String lastName = "";
   String email;
   String nickName;
   String password;
   bool enabledSubmit = true;
 
-  SignupCtrl(this._router, this._profileService, this._flashMessage);
+  JoinComp(this._router, this._profileService, this._flashMessage);
 
   void submitSignup() {
     enabledSubmit = false;
@@ -36,6 +36,10 @@ class SignupCtrl implements DetachAware {
 
   void detach() {
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
+  }
+
+  void loginPressed() {
+    _router.go("login", {});
   }
 
   Router _router;

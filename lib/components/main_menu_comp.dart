@@ -16,7 +16,7 @@ import 'package:webclient/services/screen_detector_service.dart';
 
 class MainMenuComp {
   bool   isLoggedIn = false;
-  String fullName = "";
+  //String fullName = "";
   String nickName = "";
 
   ScreenDetectorService scrDet;
@@ -28,7 +28,7 @@ class MainMenuComp {
       isLoggedIn = _profileService.isLoggedIn;
 
       if (isLoggedIn) {
-        fullName = _profileService.user.fullName;
+        //fullName = _profileService.user.fullName;
         nickName = _profileService.user.nickName;
       }
     }, context: _profileService);

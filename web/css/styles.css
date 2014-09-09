@@ -14319,6 +14319,8 @@ fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest.acti
   }
 }
 #mainFooter {
+  position: relative;
+  bottom: 0;
   margin-left: 0;
   margin-right: 0;
   background: #000000;
@@ -15360,6 +15362,9 @@ Banderas usadas hasta la fecha:
 }
 .flag.flag-it {
   background-position: 0 -22px;
+}
+#injectedContainer {
+  min-height: 400px;
 }
 .btn {
   display: inline-block;

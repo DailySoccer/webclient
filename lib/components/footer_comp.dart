@@ -15,4 +15,5 @@ class FooterComp {
   ProfileService profileService;
 
   FooterComp(this.profileService, this.dateTimeService);
+
 }

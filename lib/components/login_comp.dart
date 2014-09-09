@@ -43,6 +43,9 @@ class LoginComp implements ShadowRootAware  {
   void registerPressed() {
     _router.go("join", {});
   }
+  void forgetPass() {
+    print("Me llaman a 'He olvidado mi contraseña'");
+  }
 
   Router _router;
   ProfileService _profileManager;

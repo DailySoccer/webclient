@@ -29,8 +29,10 @@
 
     <div id="mainWrapper" class="wrapper-content-container">
       <div id="mainContent" class="main-content-container">
-        <flash-messages></flash-messages>
-        <ng-view></ng-view>
+        <div id="injectedContainer">
+          <flash-messages></flash-messages>
+          <ng-view></ng-view>
+        </div>
         <footer></footer>
       </div>
     </div>

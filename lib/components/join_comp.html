@@ -1,7 +1,7 @@
 <div id="joinRoot">
   <div id="signupbox" class="main-box">
 
-    <div class="panel">
+    <div class="panel window-slide-in">
 
       <div class="panel-heading">
         <div class="panel-title">REGÍSTRATE</div>
@@ -11,25 +11,34 @@
       <div class="panel-body" >
 
         <form id="signupForm" class="form-horizontal" ng-submit="comp.submitSignup()" data-toggle="validator" role="form" formAutofillFix>
-          <!-- TODO: MENSAJES DE ERROR - Hay que pasarle los mensajes de error SOLO del join -->
-          <flash-messages></flash-messages>
-
           <div class="form-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae lectus orci.</div>
           <!-- USERNAME  -->
           <div class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-user"></div></span>
             <input id="nickName" name="NickName" type="text" ng-model="comp.nickName" placeholder="Nombre de usuario" class="form-control" data-toggle="validator" required="">
           </div>
+          <!-- Error de username -->
+          <div class="new-row">
+            <div id="nickNameError" class="join-err-text">ERROR DE REGISTRO. El user name no es válido.</div>
+          </div>
           <!-- EMAIL -->
           <div class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-envelope"></div></span>
             <input id="email" name="Email" type="email" ng-model="comp.email" placeholder="Correo electrónico" class="form-control" data-toggle="validator" required="">
+          </div>
+          <!-- Error de mail -->
+          <div class="new-row">
+            <div id="emailError" class="join-err-text">ERROR DE REGISTRO. El mail no es válido.</div>
           </div>
           <!-- PASSWORD -->
           <div class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
             <input id="password" name="Password" type="password" ng-model="comp.password" placeholder="Password (mínimo 8 caracteres)" class="form-control" data-toggle="validator" required="" data-minlength="8" ng-minlength="8">
           </div>
+          <!-- Error de password -->
+            <div class="new-row">
+              <div id="passwordError" class="join-err-text">ERROR DE REGISTRO. El password no es válido.</div>
+            </div>
           <!-- BUTTON -->
           <div class="input-group">
             <div class="new-row">

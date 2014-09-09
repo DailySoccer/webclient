@@ -1,29 +1,27 @@
 <div id="loginRoot">
   <div id="loginBox" class="main-box">
 
-    <div class="panel" >
+    <div class="panel window-slide-in">
 
       <!-- Header -->
       <div class="panel-heading">
         <div class="panel-title">ENTRA</div>
       </div>
 
-      <div class="panel-body" >
+      <div class="panel-body" ng-cloak>
 
-        <form id="loginForm" class="form-horizontal" ng-submit="comp.login(email, password, rememberMe)" data-toggle="validator" role="form" formAutofillFix>
-          <!-- TODO: MENSAJES DE ERROR - Hay que pasarle los mensajes de error SOLO del login -->
-          <flash-messages></flash-messages>
+        <form id="loginForm" class="form-horizontal" ng-submit="comp.login()" data-toggle="validator" role="form" formAutofillFix>
 
           <div class="form-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae lectus orci.</div>
           <!-- MAIL -->
           <div class="input-group">
             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-            <input id="login-mail" type="email" ng-model="email" name="email" placeholder="Correo Electrónico" class="form-control">
+            <input id="login-mail" type="email" ng-model="comp.email" name="email" placeholder="Correo Electrónico" class="form-control">
           </div>
           <!-- PÂSSWORD -->
           <div class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-            <input id="login-password" type="password" ng-model="password" name="password" placeholder="password" class="form-control">
+            <input id="login-password" type="password" ng-model="comp.password" name="password" placeholder="password" class="form-control">
           </div>
           <!-- REMEMBER ME -->
           <div class="remember-forgot-group">
@@ -37,7 +35,13 @@
           <!-- BUTTON -->
           <div class="input-group">
             <div class="new-row">
-              <button id="login" ng-click="comp.login(email, password, rememberMe)" class="enter-button">ENTRAR</button>
+              <button id="login" ng-click="comp.login()" ng-disabled="!comp.isEnabledSubmit" class="enter-button">ENTRAR</button>
+            </div>
+          </div>
+          <!-- Error de login/password -->
+          <div class="input-group">
+            <div class="new-row">
+              <div id="mailPassError" class="login-err-text">ERROR DE LOGIN. El mail y/o la contraseña no son correctos.</div>
             </div>
           </div>
           <!-- GOTO REGISTER -->

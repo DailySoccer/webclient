@@ -11,11 +11,13 @@
 	.make-md-column(6);
 	.make-md-column-push(3);
 	.make-xs-column(12, 0px);
+
 	@media (min-width: @screen-sm-min) {
 		margin-top:50px;
 		background-color: transparent;
 	}
 	.panel {	
+		.slide-from-top-in();
 		border-width: 0px;
 		.panel-heading {	
 			@media (max-width: @screen-xs-max) {
@@ -93,7 +95,58 @@
 						.opensans_normal(8pt, @blueLight);
 					}
    				}
+   				.join-err-text {
+   					.opensans_normal(10pt, @red);
+   				}
+   				 .login-err-text {
+   					.opensans_normal(10pt, @red);
+   					text-align: center;
+   				}
+
 			}
 		}
 	}
+}
+
+//animaciones
+.slide-from-top-in() {
+	0%   { top: -300px; opacity: 0;}
+    100% { top: 0px; opacity: 1; }
+}
+
+@-webkit-keyframes 	window-from-top-frames{ .slide-from-top-in() };
+@-moz-keyframes 	window-from-top-frames{ .slide-from-top-in() };
+@-ms-keyframes 		window-from-top-frames{ .slide-from-top-in() };
+@-o-keyframes 		window-from-top-frames{ .slide-from-top-in() };
+@keyframes 			window-from-top-frames{ .slide-from-top-in() };
+
+.window-slide-in {
+	position: relative;
+	-webkit-animation: window-from-top-frames  1s;
+  	-moz-animation: window-from-top-frames  1s;
+  	-ms-keyframes: window-from-top-frames 1s;
+	-o-keyframes: window-from-top-frames 1s;
+	animation: window-from-top-frames 1s;
+}
+
+
+// aparece creciendo a la vez que con opacidad
+.unvanish-keyframes() {
+	0%   { left: 100px; opacity: 0; }
+    100% { left: 0px;   opacity: 1; }
+}
+
+@-webkit-keyframes 	errDetectionFrames{ .unvanish-keyframes() };
+@-moz-keyframes 	errDetectionFrames{ .unvanish-keyframes() };
+@-ms-keyframes 		errDetectionFrames{ .unvanish-keyframes() };
+@-o-keyframes 		errDetectionFrames{ .unvanish-keyframes() };
+@keyframes 			errDetectionFrames{ .unvanish-keyframes() };
+
+.errorDetected {
+	position: relative;
+	-webkit-animation: errDetectionFrames  0.5s;
+  	-moz-animation: errDetectionFrames  0.5s;
+  	-ms-keyframes: errDetectionFrames 0.5s;
+	-o-keyframes: errDetectionFrames 0.5s;
+	animation: errDetectionFrames  0.5s;
 }

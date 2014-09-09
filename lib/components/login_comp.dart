@@ -1,8 +1,8 @@
 library login_comp;
 
 import 'package:angular/angular.dart';
+import 'dart:html';
 import 'package:webclient/services/profile_service.dart';
-import 'package:webclient/services/flash_messages_service.dart';
 
 @Component(
     selector: 'login',
@@ -10,27 +10,35 @@ import 'package:webclient/services/flash_messages_service.dart';
     publishAs: 'comp',
     useShadowDom: false
 )
-class LoginComp implements DetachAware  {
+class LoginComp implements ShadowRootAware  {
 
   bool enabledSubmit = true;
+  String email = "";
+  String password = "";
+  String rememberMe;
 
-  LoginComp(this._router, this._profileManager, this._flashMessage);
+  Element errSection;
 
-  void login(String email, String password, bool rememberMe) {
+  LoginComp(this._router, this._profileManager);
+
+  void login() {
+    errSection = querySelector('#mailPassError')
+                  ..parent.parent.style.display = "none";
     enabledSubmit = false;
 
-    _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
     _profileManager.login(email, password)
         .then((_) => _router.go('lobby', {}))
-        .catchError((error) {
-          _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
+        .catchError( (error) {
           enabledSubmit = true;
+          errSection
+            ..text = error["email"][0]
+            ..classes.remove("errorDetected")
+            ..classes.add("errorDetected")
+            ..parent.parent.style.display = '';
         });
   }
 
-  void detach() {
-    _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
-  }
+  bool get isEnabledSubmit => email.isNotEmpty && password.isNotEmpty;
 
   void registerPressed() {
     _router.go("join", {});
@@ -38,5 +46,11 @@ class LoginComp implements DetachAware  {
 
   Router _router;
   ProfileService _profileManager;
-  FlashMessagesService _flashMessage;
+
+  @override
+  void onShadowRoot(root) {
+    var rootElement = root as HtmlElement;
+    var errSection = rootElement.querySelector("#mailPassError");
+    errSection.parent.parent.style.display = 'none';
+  }
 }

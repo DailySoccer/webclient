@@ -134,7 +134,12 @@
 		}
 	}
 	.fantasy-team-slot:first-child { margin-top: 10px; }
- 	.fantasy-team-slot:last-child { border: none; margin-bottom: 3px;}
+ 	.fantasy-team-slot:last-child {
+ 		@media (min-width: @screen-sm-min) {
+ 			border: none;
+ 		} 
+ 		margin-bottom: 3px;
+ 	}
 }
 
 .header-box {

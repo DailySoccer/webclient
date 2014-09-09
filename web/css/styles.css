@@ -8309,8 +8309,12 @@ fieldset[disabled] .landing-wrapper .button-play.active {
   margin-top: 10px;
 }
 .fantasy-team-list .fantasy-team-slot:last-child {
-  border: none;
   margin-bottom: 3px;
+}
+@media (min-width: 768px) {
+  .fantasy-team-list .fantasy-team-slot:last-child {
+    border: none;
+  }
 }
 .header-box {
   width: 70px;

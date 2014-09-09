@@ -9,6 +9,7 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/models/contest_entry.dart';
 import 'package:webclient/models/match_event.dart';
+import 'dart:html';
 
 @Component(
    selector: 'view-contest-entry',
@@ -23,6 +24,8 @@ class ViewContestEntryComp {
   dynamic mainPlayer;
   dynamic selectedOpponent;
 
+  String parent = "";
+
   DateTime updatedDate;
 
   List<String> matchesInvolved = [];
@@ -31,8 +34,12 @@ class ViewContestEntryComp {
   List<ContestEntry> get contestEntries => (contest != null) ? contest.contestEntries : null;
   List<ContestEntry> get contestEntriesOrderByPoints => (contest != null) ? contest.contestEntriesOrderByPoints : null;
 
-  ViewContestEntryComp(RouteProvider routeProvider, this.scrDet, this._myContestsService, this._profileService, this._flashMessage) {
-      //contest = _contestService.getContestById(routeProvider.route.parameters['contestId']);
+  bool get isEnterContestMode => parent == "lobby";
+
+  ViewContestEntryComp(RouteProvider routeProvider, this.scrDet, this._myContestsService, this._profileService, this._flashMessage, this._router) {
+
+      // Identificamos cúal es la pantalla desde la que se ha llamado al view contest entry
+      parent = routeProvider.route.parameters['parent'];
 
       _contestId = routeProvider.route.parameters['contestId'];
 
@@ -58,10 +65,23 @@ class ViewContestEntryComp {
 
   }
 
+  void tabChange(String tab) {
+    List<dynamic> allContentTab = document.querySelectorAll(".tab-pane");
+    allContentTab.forEach((element) => element.classes.remove('active'));
+
+    Element contentTab = document.querySelector("#" + tab);
+    contentTab.classes.add("active");
+  }
+
+  void goTo(String screenParent) {
+    _router.go(screenParent, {});
+  }
+
   FlashMessagesService _flashMessage;
   ProfileService _profileService;
   MyContestsService _myContestsService;
 
   String _contestId;
 
+  Router _router;
 }

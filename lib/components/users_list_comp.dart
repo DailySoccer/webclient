@@ -50,7 +50,7 @@ class UsersListComp {
           users.add({
             "id": contestEntry.user.userId,
             "contestEntry" : contestEntry,
-            "name": contestEntry.user.fullName,
+            "name": contestEntry.user.nickName,
             "remainingTime": "${contestEntry.timeLeft} min.",
             "score": contestEntry.currentLivePoints
           });
@@ -61,7 +61,7 @@ class UsersListComp {
           users.add({
             "id": contestEntry.user.userId,
             "contestEntry" : contestEntry,
-            "name": contestEntry.user.fullName,
+            "name": contestEntry.user.nickName,
             "remainingTime": "${contestEntry.timeLeft} min.",
             "score": contestEntry.currentLivePoints
           });
@@ -79,8 +79,7 @@ class UsersListComp {
         _viewContestCtrl.setTabNameAndShowIt(user["name"]);
       break;
       case "history_contest":
-        //_viewContestCtrl.setTabNameAndShowIt(user["name"]);
-        //TODO: Aqui cuando me hacen click, despliego la lista de acciones que hizo el jugador en el partido.
+        _viewContestCtrl.setTabNameAndShowIt(user["name"]);
       break;
     }
     selectedContestEntry = user["contestEntry"];

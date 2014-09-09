@@ -16,6 +16,7 @@ class ContestHeaderComp implements DetachAware{
 
   static const int ENTER_CONTEST = 0;
   static const int VIEW_CONTEST = 1;
+  static const int VIEW_CONTEST_ENTRY = 2;
 
   bool get isEnterContestMode => _mode == ENTER_CONTEST;
 
@@ -42,6 +43,11 @@ class ContestHeaderComp implements DetachAware{
     }
   }
 
+  @NgOneWay("parent")
+    void set goParent(String value) {
+      _parent = value;
+  }
+
   @NgOneWay("mode")
   void set viewMode(String value) {
     switch(value) {
@@ -50,6 +56,9 @@ class ContestHeaderComp implements DetachAware{
         break;
       case "VIEW_CONTEST":
         _mode = VIEW_CONTEST;
+        break;
+      case "VIEW_CONTEST_ENTRY":
+        _mode = VIEW_CONTEST_ENTRY;
         break;
     }
   }
@@ -109,6 +118,9 @@ class ContestHeaderComp implements DetachAware{
       case VIEW_CONTEST:
         _router.go("my_contests", {});
         break;
+      case VIEW_CONTEST_ENTRY:
+        _router.go(_parent, {});
+        break;
     }
   }
 
@@ -121,4 +133,5 @@ class ContestHeaderComp implements DetachAware{
   Timer _count;
   Contest _contestInfo;
   int _mode;
+  String _parent;
 }

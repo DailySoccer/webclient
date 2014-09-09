@@ -1,6 +1,6 @@
 <section view-contest-entry-comp ng-show="viewContestEntry.updatedDate != null">
 
-  <contest-header contestData="viewContestEntry.contest" mode="'VIEW_CONTEST'"></contest-header>
+  <contest-header contestData="viewContestEntry.contest" mode="'VIEW_CONTEST_ENTRY'" parent="viewContestEntry.parent"></contest-header>
 
   <div class="info-and-social-bar">
     <!--<div class="social"><img src="images/socialBig.png"></div>-->
@@ -10,12 +10,23 @@
   </div>
 
   <div class="separator-bar"></div>
-  <div class="info-complete-bar">
+  <div class="info-complete-bar" ng-if="viewContestEntry.isEnterContestMode">
     <p>¡PERFECTO! HAS COMPLETADO TU ALINEACIÓN CON ÉXITO</p>
     <p>Recuerda que puedes editar tu equipo cuantas veces quieras hasta que comience la competición</p>
   </div>
 
-  <div id="liveContestRoot" ng-switch="viewContestEntry.scrDet.isXsScreen" ng-cloak>
+  <div id="viewContestEntry" ng-switch="viewContestEntry.scrDet.isXsScreen" ng-cloak>
+    <div ng-switch-when="true">
+      <!-- Tabs de la versión XS -->
+      <ul class="view-contest-entry-tabs" id="viewContestEntryTab" >
+        <li class="active"><a ng-click="viewContestEntry.tabChange('userFantasyTeam')" data-toggle="tab">Tu alineación</a></li>
+        <li><a ng-click="viewContestEntry.tabChange('usersList')" data-toggle="tab">Usuarios</a></li>
+      </ul>
+      <div class="tab-content" id="viewContestEntryTabContent">
+        <fantasy-team class="tab-pane active" id="userFantasyTeam" contest-entry="viewContestEntry.mainPlayer" watch="viewContestEntry.updatedDate" is-opponent="false"></fantasy-team>
+        <users-list class="tab-pane" id="usersList" contest-entries="viewContestEntry.contestEntries" selected-contest-entry="viewContestEntry.selectedOpponent" watch="viewContestEntry.updatedDate"></users-list>
+      </div>
+    </div>
     <div ng-switch-when="false">
       <fantasy-team id="userFantasyTeam" contest-entry="viewContestEntry.mainPlayer" watch="viewContestEntry.updatedDate" is-opponent="false"></fantasy-team>
       <users-list id="usersList" ng-show="viewContestEntry.selectedOpponent == null" contest-entries="viewContestEntry.contestEntries" selected-contest-entry="viewContestEntry.selectedOpponent"
@@ -23,7 +34,7 @@
     </div>
     <div class="view-contest-entry-actions-wrapper">
       <div class="button-wrapper">
-        <button type="button" class="btn-back-contest" ng-click="">OTROS DESAFÍOS</button>
+        <button type="button" class="btn-back-contest" ng-click="viewContestEntry.goTo(viewContestEntry.parent)">OTROS DESAFÍOS</button>
       </div>
       <div class="button-wrapper">
         <button type="button" class="btn-cancel-contest" ng-click="">CANCELAR ENTRADA</button>

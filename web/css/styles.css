@@ -15114,12 +15114,23 @@ Banderas usadas hasta la fecha:
 .view-contest-entry-actions-wrapper .button-wrapper {
   padding: 40px 0 20px;
   text-align: center;
-  position: relative;
   float: left;
-  width: 50%;
+  width: 100%;
+  position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+}
+@media (max-width: 767px) {
+  .view-contest-entry-actions-wrapper .button-wrapper {
+    padding: 10px;
+  }
+}
+@media (min-width: 768px) {
+  .view-contest-entry-actions-wrapper .button-wrapper {
+    float: left;
+    width: 50%;
+  }
 }
 .view-contest-entry-actions-wrapper .btn-cancel-contest {
   display: inline-block;
@@ -15240,6 +15251,14 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-cancel-contest.activ
   color: #afafaf;
   background-color: #ffffff;
 }
+@media (max-width: 767px) {
+  .view-contest-entry-actions-wrapper .btn-cancel-contest {
+    display: block;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
 .view-contest-entry-actions-wrapper .btn-back-contest {
   display: inline-block;
   margin-bottom: 0;
@@ -15358,6 +15377,67 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-back-contest.active 
 .view-contest-entry-actions-wrapper .btn-back-contest .badge {
   color: #a1c931;
   background-color: #ffffff;
+}
+@media (max-width: 767px) {
+  .view-contest-entry-actions-wrapper .btn-back-contest {
+    display: block;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+@media (min-width: 768px) {
+  #viewContestEntry {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #ffffff;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+}
+#viewContestEntry .view-contest-entry-tabs {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  height: 54px;
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  #viewContestEntry .view-contest-entry-tabs {
+    display: none !important;
+  }
+}
+@media (min-width: 1200px) {
+  #viewContestEntry .view-contest-entry-tabs {
+    display: none !important;
+  }
+}
+#viewContestEntry .view-contest-entry-tabs > li {
+  position: relative;
+  float: left;
+  width: 50%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: #59add5;
+  border-width: 4px;
+  border-style: none none solid none;
+  border-color: #214a5f;
+  border-radius: 0;
+}
+#viewContestEntry .view-contest-entry-tabs > li a {
+  cursor: pointer;
+  line-height: 50px;
+  text-align: center;
+  color: #ffffff;
+  display: block;
+  text-decoration: none;
+}
+#viewContestEntry .view-contest-entry-tabs .active {
+  background-color: #214a5f;
+}
+#viewContestEntry .view-contest-entry-tabs a {
+  overflow: hidden;
+  white-space: nowrap;
 }
 #injectedContainer {
   min-height: 400px;

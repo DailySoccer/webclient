@@ -26,18 +26,11 @@ class MyContestsComp implements DetachAware {
   }
 
   void onWaitingRowClick(Contest contest) {
-    /*
-     * Test para eliminar una ContestEntry (de un contest "activo")
-     *
-    ContestEntry mainPlayer = contest.getContestEntryWithUser(_profileService.user.userId);
-    myContestsService.cancelContestEntry(mainPlayer.contestEntryId)
-      .then((jsonObject) {
-        print("cancelado contestEntry");
-      });
-    */
+    _router.go('view_contest_entry', {"contestId" : contest.contestId, "parent" : "my_contests"});
   }
 
   void onWaitingActionClick(Contest contest) {
+    _router.go('view_contest_entry', {"contestId" : contest.contestId, "parent" : "my_contests"});
   }
 
   void onLiveRowClick(Contest contest) {

@@ -27,17 +27,45 @@
 	.make-row(15);
 	.button-wrapper {
 		padding: 40px 0 20px;
+		@media (max-width: @screen-xs-max) {
+			padding: 10px;
+		}
 		text-align: center;
-		.make-xs-column(6);
+		.make-xs-column(12);
+		.make-sm-column(6);
 	}
 
 	.btn-cancel-contest {
 		.btn-cancel();
+		@media (max-width: @screen-xs-max) {
+			.btn-block();
+		}
 		width: 70%;
 	}
 	.btn-back-contest {
 		.btn();
 		.btn-primary();
+		@media (max-width: @screen-xs-max) {
+			.btn-block();
+		}
 		width: 70%;
+	}
+}
+#viewContestEntry {
+	@media (min-width: @screen-sm-min) {
+		padding-top: 20px;	// Quitar cuando haya mas componentes, usar un espaciador vertical
+		padding-bottom: 20px;
+		background-color: @white;
+		.border-bottom-radius(@globalBoxesRadius);
+	}
+	// Tabs menu
+	.view-contest-entry-tabs {
+		.hidden-md();
+		.hidden-lg();
+		.tabs-navigation(2);
+		a {
+			overflow: hidden;
+			white-space: nowrap;
+		}
 	}
 }

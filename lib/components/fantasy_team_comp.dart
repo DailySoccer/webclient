@@ -55,6 +55,9 @@ class FantasyTeamComp implements ShadowRootAware {
 
     void onShadowRoot(var shadowRoot) {
       _rootElement = shadowRoot as HtmlElement;
+
+      if (slots == null)
+        _refreshTeam();
     }
 
     void _refreshTeam() {

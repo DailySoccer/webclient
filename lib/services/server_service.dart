@@ -20,6 +20,7 @@ abstract class ServerService {
   // Active Contests
   Future<JsonObject> getActiveContests();
   Future<JsonObject> addContestEntry(String contestId, List<String> soccerPlayers);
+  Future<JsonObject> cancelContestEntry(String contestEntryId);
   Future<JsonObject> getContestInfo(String contestId);
 
   // Live Contests
@@ -67,6 +68,10 @@ class DailySoccerServer implements ServerService {
   Future<JsonObject> addContestEntry(String contestId, List<String> soccerPlayers) {
     String jsonSoccerPlayers = JSON.encode(soccerPlayers);
     return _innerServerCall("$HostServerUrl/add_contest_entry", {'contestId': contestId, 'soccerTeam': jsonSoccerPlayers});
+  }
+
+  Future<JsonObject> cancelContestEntry(String contestEntryId) {
+    return _innerServerCall("$HostServerUrl/cancel_contest_entry", {'contestEntryId': contestEntryId});
   }
 
   Future<JsonObject> getContestInfo(String contestId) {

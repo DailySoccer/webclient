@@ -26,6 +26,17 @@ class MyContestsService {
 
   MyContestsService(this._server);
 
+  Future cancelContestEntry(String contestEntryId) {
+    var completer = new Completer();
+
+    _server.cancelContestEntry(contestEntryId)
+      .then((jsonObject) {
+        print("response: " + jsonObject.toString());
+        completer.complete();
+      });
+
+    return completer.future;
+  }
 
   Future refreshMyContests() {
     var completer = new Completer();

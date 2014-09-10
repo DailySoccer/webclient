@@ -2,11 +2,13 @@ library contest_info_comp;
 
 import 'package:angular/angular.dart';
 import 'dart:html';
+import 'dart:async';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/contest_entry.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/active_contests_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
+import 'package:webclient/utils/js_utils.dart';
 
 @Component(
   selector: 'contest-info',
@@ -80,7 +82,12 @@ class ContestInfoComp {
   }
 
   void enterContest() {
-    _router.go('enter_contest', { "contestId": contestData.contestId });
+    // hacemos una llamada de jQuery para ocultar la ventana modal
+    JsUtils.runJavascript('#infoContestModal', 'modal', 'hide');
+    _timer = new Timer(new Duration(milliseconds: 350), () {
+      _router.go('enter_contest', { "contestId": contestData.contestId });
+      _timer.cancel();
+    });
   }
 
   String formatMatchDate(DateTime date) {
@@ -100,6 +107,8 @@ class ContestInfoComp {
   Router _router;
   ActiveContestsService _contestService;
   FlashMessagesService _flashMessage;
+
+  Timer _timer;
 
   Contest _contestData;
   bool _popUpStyle;

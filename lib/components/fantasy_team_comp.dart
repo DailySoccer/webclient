@@ -51,7 +51,9 @@ class FantasyTeamComp implements ShadowRootAware {
     String get userScore => (_contestEntry != null) ? _contestEntry.currentLivePoints.toString() : "0";
     String get remainingTime => (_contestEntry != null) ? "${_contestEntry.timeLeft} min." : "-";
 
-    FantasyTeamComp();
+    bool get isViewContestEntryMode => _routeProvider.route.name == "view_contest_entry";
+
+    FantasyTeamComp(this._routeProvider);
 
     void onShadowRoot(var shadowRoot) {
       _rootElement = shadowRoot as HtmlElement;
@@ -131,4 +133,7 @@ class FantasyTeamComp implements ShadowRootAware {
 
     ContestEntry _contestEntry;
     ViewContestCtrl _viewContestCtrl;
+
+    RouteProvider _routeProvider;
+
 }

@@ -1,20 +1,24 @@
 <div class="fantasy-team-wrapper" ng-cloak>
 
   <div class="fantasy-team-header" ng-class="{'opponent-team-gradient': fantasyTeam.isOpponent}">
-    <div class="ranking-box">
+
+    <div class="edit-team" ng-if="fantasyTeam.isViewContestEntryMode">
+      <button class="btn-edit-team">EDITAR EL EQUIPO</button>
+    </div>
+
+    <div class="ranking-box" ng-if="!fantasyTeam.isViewContestEntryMode">
       <span class="title">POS</span>
       <span class="content">{{fantasyTeam.userPosition}}</span>
     </div>
 
-    <div class="score-box">
+    <div class="score-box" ng-if="!fantasyTeam.isViewContestEntryMode">
       <span class="title">PUNTOS</span>
       <span class="content">{{fantasyTeam.userScore}}</span>
     </div>
 
     <div class="user-picture"></div>
-    <div class="user-nickname">{{fantasyTeam.userNickname}}</div>
-    <div class="total-remaining-matches-time">TIEMPO RESTANTE: {{fantasyTeam.remainingTime}}</div>
-
+    <div class="user-nickname" ng-class="{'nickname-view-contest-entry-mode': fantasyTeam.isViewContestEntryMode}">{{fantasyTeam.userNickname}}</div>
+    <div class="total-remaining-matches-time" ng-if="!fantasyTeam.isViewContestEntryMode">TIEMPO RESTANTE: {{fantasyTeam.remainingTime}}</div>
 
     <div class="close-team" ng-click="fantasyTeam.onCloseButtonClick()" ng-show="fantasyTeam.showCloseButton">
       <span class="title">CERRAR</span>
@@ -30,11 +34,11 @@
         <div class="column-primary-info">
           <span class="soccer-player-name">{{slot.fullName}}</span>
           <span class="match-event-name" ng-bind-html="slot.matchEventName"></span>
-          <span class="remaining-match-time">{{slot.percentOfUsersThatOwn}}% LO TIENEN</span>
+          <span class="remaining-match-time" ng-if="!fantasyTeam.isViewContestEntryMode">{{slot.percentOfUsersThatOwn}}% LO TIENEN</span>
         </div>
-        <div class="column-score"><span>{{slot.score}}</span></div>
+        <div class="column-score" ng-if="!fantasyTeam.isViewContestEntryMode"><span>{{slot.score}}</span></div>
       </div>
-      <div id="statistic_{{fantasyTeam.owner}}_{{$index}}" class="soccer-player-statistics collapse">
+      <div id="statistic_{{fantasyTeam.owner}}_{{$index}}" class="soccer-player-statistics collapse" ng-if="!fantasyTeam.isViewContestEntryMode">
         <div class="statistic" ng-repeat="stat in slot.stats">
           <div class="stat-name">{{stat['name']}}</div>
           <div class="stat-points">{{stat['points']}}</div>

@@ -37,6 +37,8 @@ class UsersListComp {
 
   String getPrize(int index) => (_viewContestCtrl != null) ? _viewContestCtrl.getPrize(index) : "";
 
+  bool get isViewContestEntryMode => _routeProvider.route.name == "view_contest_entry";
+
   UsersListComp(this._routeProvider, this._profileService);
 
   void _refresh() {
@@ -77,12 +79,13 @@ class UsersListComp {
     {
       case "live_contest":
         _viewContestCtrl.setTabNameAndShowIt(user["name"]);
+        selectedContestEntry = user["contestEntry"];
       break;
       case "history_contest":
         _viewContestCtrl.setTabNameAndShowIt(user["name"]);
+        selectedContestEntry = user["contestEntry"];
       break;
     }
-    selectedContestEntry = user["contestEntry"];
   }
 
   List<ContestEntry> _contestEntries;

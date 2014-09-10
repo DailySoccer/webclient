@@ -2,6 +2,11 @@
 	height:76px;
 	position: relative;
 
+	@media (max-width: @screen-xs-max) {
+		margin-top: 70px;
+		text-align: center;
+	}
+
 	#gradient.vertical(@orangeHeaderLight, @orangeHeaderDark, 49%, 51%);
 	
 	.ranking-box {
@@ -27,10 +32,14 @@
 		height: 45px; 
 		padding-top: 5px;
 	}
+	.nickname-view-contest-entry-mode {
+		.exo_light(20pt, @white);
+		padding: 20px 0 0 10px;
+	}
 	.total-remaining-matches-time {
 		.opensans_normal(8pt, @white);
 		height: 45px; 
-		padding-top: 5px
+		padding-top: 5px;
 	}
 
 	.close-team {
@@ -48,6 +57,26 @@
 
 	@media (min-width: @screen-sm-min) {
 		.border-top-radius(@globalBoxesRadius);
+	}
+
+	.edit-team {
+		.pull-right();
+		margin: 20px 5px 0 0;
+		.btn-edit-team {
+			.btn();
+			.btn-default();
+			line-height: 25px;
+		}
+		@media (max-width: @screen-xs-max) {
+			position: absolute;
+			.make-xs-column(12);
+			.clean-paddings();
+			.btn-edit-team {
+				.btn-block();
+			}
+			margin: -70px 0;
+			padding: 15px 10px;
+		}
 	}
 }
 /*

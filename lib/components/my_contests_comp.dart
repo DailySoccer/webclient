@@ -7,6 +7,7 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/my_contests_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/models/contest.dart';
+import 'package:webclient/models/contest_entry.dart';
 
 @Component(
   selector: 'my-contests',
@@ -25,6 +26,15 @@ class MyContestsComp implements DetachAware {
   }
 
   void onWaitingRowClick(Contest contest) {
+    /*
+     * Test para eliminar una ContestEntry (de un contest "activo")
+     *
+    ContestEntry mainPlayer = contest.getContestEntryWithUser(_profileService.user.userId);
+    myContestsService.cancelContestEntry(mainPlayer.contestEntryId)
+      .then((jsonObject) {
+        print("cancelado contestEntry");
+      });
+    */
   }
 
   void onWaitingActionClick(Contest contest) {

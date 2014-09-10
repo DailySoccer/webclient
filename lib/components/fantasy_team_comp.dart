@@ -53,7 +53,7 @@ class FantasyTeamComp implements ShadowRootAware {
 
     bool get isViewContestEntryMode => _routeProvider.route.name == "view_contest_entry";
 
-    FantasyTeamComp(this._routeProvider);
+    FantasyTeamComp(this._routeProvider, this._router);
 
     void onShadowRoot(var shadowRoot) {
       _rootElement = shadowRoot as HtmlElement;
@@ -124,6 +124,11 @@ class FantasyTeamComp implements ShadowRootAware {
       });
     }
 
+    void editTeam() {
+      print(slots);
+      _router.go('enter_contest', { "contestId": _contestEntry.contest.contestId });
+    }
+
     void onCloseButtonClick() {
       if (onClose != null)
         onClose();
@@ -135,5 +140,6 @@ class FantasyTeamComp implements ShadowRootAware {
     ViewContestCtrl _viewContestCtrl;
 
     RouteProvider _routeProvider;
+    Router _router;
 
 }

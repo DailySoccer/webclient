@@ -3,7 +3,7 @@
   <div class="fantasy-team-header" ng-class="{'opponent-team-gradient': fantasyTeam.isOpponent}">
 
     <div class="edit-team" ng-if="fantasyTeam.isViewContestEntryMode">
-      <button class="btn-edit-team">EDITAR EL EQUIPO</button>
+      <button class="btn-edit-team" ng-click="fantasyTeam.editTeam()">EDITAR EL EQUIPO</button>
     </div>
 
     <div class="ranking-box" ng-if="!fantasyTeam.isViewContestEntryMode">

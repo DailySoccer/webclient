@@ -107,6 +107,12 @@ class EnterContestCtrl implements DetachAware{
       if(matchesFilter != null) {
         matchesFilter.style.display = "block";
       }
+      if(value == "desktop") {
+        // Reseteo las pestañas
+        List<dynamic> allTabs = document.querySelectorAll(".enter-contest-tabs li");
+        allTabs.forEach((element) => element.classes.remove('active'));
+        allTabs[0].classes.add('active');
+      }
     }
     else {
       // hacemos una llamada de jQuery para ocultar la ventana modal

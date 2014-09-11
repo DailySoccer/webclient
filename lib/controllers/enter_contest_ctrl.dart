@@ -7,10 +7,12 @@ import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/active_contests_service.dart';
+import 'package:webclient/services/my_contests_service.dart';
 import "package:webclient/models/soccer_player.dart";
 import "package:webclient/models/soccer_team.dart";
 import 'package:webclient/models/match_event.dart';
 import 'package:webclient/models/contest.dart';
+import 'package:webclient/models/contest_entry.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/utils/js_utils.dart';
@@ -44,12 +46,14 @@ class EnterContestCtrl implements DetachAware{
 
   String nameFilter;
 
-  EnterContestCtrl(RouteProvider routeProvider, this._router, this.scrDet, this._profileService, this._contestService, this._flashMessage) {
+  EnterContestCtrl(RouteProvider routeProvider, this._router, this.scrDet, this._profileService, this._contestService, this._myContestService, this._flashMessage) {
 
     // Creamos los slots iniciales, todos vacios
     FieldPos.LINEUP.forEach((pos) {
       lineupSlots.add(null);
     });
+
+    print(routeProvider.route.parameters['contestEntryId']);
 
     //Nos subscribimos al evento de cambio de tamañano de ventana
     _streamListener = scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
@@ -64,6 +68,16 @@ class EnterContestCtrl implements DetachAware{
 
         // Saldo disponible
         availableSalary = contest.templateContest.salaryCap;
+
+        // Si nos viene el torneo para editar la alineación
+        String contestEntryId = routeProvider.route.parameters['contestEntryId'];
+        if (contestEntryId != null) {
+          ContestEntry contestEntry = _myContestService.lastContest.getContestEntry(contestEntryId);
+          // Insertamos en el lineup el jugador
+          contestEntry.soccers.forEach((soccer) {
+            onSoccerPlayerSelected(_allSoccerPlayers.firstWhere((slot) => slot["id"] == soccer.templateSoccerPlayerId));
+          });
+        }
 
         // Cuando se inicializa la lista de jugadores, esta se ordena por posicion
         sortListByField('Pos', invert: false);
@@ -528,6 +542,7 @@ class EnterContestCtrl implements DetachAware{
   int _selectedLineupPosIndex = 0;
   Router _router;
   ActiveContestsService _contestService;
+  MyContestsService _myContestService;
   ProfileService _profileService;
   FlashMessagesService _flashMessage;
   // Lista de filtros a aplicar

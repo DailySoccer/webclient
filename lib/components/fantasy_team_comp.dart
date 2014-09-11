@@ -126,7 +126,7 @@ class FantasyTeamComp implements ShadowRootAware {
 
     void editTeam() {
       print(slots);
-      _router.go('enter_contest', { "contestId": _contestEntry.contest.contestId });
+      _router.go('edit_contest', { "contestId": _contestEntry.contest.contestId , "contestEntryId": _contestEntry.contestEntryId});
     }
 
     void onCloseButtonClick() {

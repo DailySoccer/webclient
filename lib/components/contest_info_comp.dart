@@ -17,7 +17,7 @@ import 'package:webclient/utils/js_utils.dart';
   useShadowDom: false
 )
 
-class ContestInfoComp {
+class ContestInfoComp implements ShadowRootAware {
 
   bool popUpStyle;
   Map currentInfoData;
@@ -81,13 +81,18 @@ class ContestInfoComp {
       });
   }
 
+  void goToEnterContest(obj) {
+    _router.go('enter_contest', { "contestId": contestData.contestId });
+  }
+
   void enterContest() {
+    //Element modal = querySelector('#infoContestModal');
+    // quitamos la clase fade porque se lanza el router antes de cerrar la modal y queda
+    //modal.classes.remove('fade');
     // hacemos una llamada de jQuery para ocultar la ventana modal
     JsUtils.runJavascript('#infoContestModal', 'modal', 'hide');
-    _timer = new Timer(new Duration(milliseconds: 350), () {
-      _router.go('enter_contest', { "contestId": contestData.contestId });
-      _timer.cancel();
-    });
+    //modal.classes.add('fade');
+    //_router.go('enter_contest', { "contestId": contestData.contestId });
   }
 
   String formatMatchDate(DateTime date) {
@@ -112,4 +117,9 @@ class ContestInfoComp {
 
   Contest _contestData;
   bool _popUpStyle;
+
+  void onShadowRoot(root) {
+    JsUtils.runJavascript('#infoContestModal', 'on', {'hidden.bs.modal': goToEnterContest});
+  }
+
 }

@@ -123,44 +123,4 @@ class FantasyTeamComp implements ShadowRootAware {
 
     ContestEntry _contestEntry;
     ViewContestCtrl _viewContestCtrl;
-
-    String _mode;
-
-    Map collapsables = {};
-
-    final Map<String, String> eventKeyToName = {
-      "PASS_SUCCESSFUL"   : "Pase completado",
-      "PASS_UNSUCCESSFUL" : "Pase no completado",
-      "TAKE_ON"           : "Regate",
-      "FOUL_RECEIVED"     : "Falta recibida",
-      "TACKLE"            : "Entrada",
-      "INTERCEPTION"      : "Intercepción",
-      "SAVE"              : "Parada",
-      "CLAIM"             : "Anticipación",
-      "CLEARANCE"         : "Despeje",
-      "MISS"              : "Disparo fallado",
-      "POST"              : "Disparo al poste",
-      "ATTEMPT_SAVED"     : "Disparo detenido por el contrario",
-      "YELLOW_CARD"       : "Tarjeta amarilla",
-      "PUNCH"             : "Despeje de puño",
-      "DISPOSSESSED"      : "Pérdida de balón",
-      "ERROR"             : "Error",
-      "ASSIST"            : "Asistencia",
-      "TACKLE_EFFECTIVE"  : "Entrada exitosa",
-      "GOAL_SCORED_BY_GOALKEEPER" : "Gol",
-      "GOAL_SCORED_BY_DEFENDER"   : "Gol",
-      "GOAL_SCORED_BY_MIDFIELDER" : "Gol",
-      "GOAL_SCORED_BY_FORWARD"    : "Gol",
-      "OWN_GOAL"          : "Gol en propia meta",
-      "FOUL_COMMITTED"    : "Falta cometida",
-      "SECOND_YELLOW_CARD": "Segunda tarjeta amarilla",
-      "RED_CARD"          : "Tarjeta roja",
-      "CAUGHT_OFFSIDE"    : "Fuera de juego",
-      "PENALTY_COMMITTED" : "Penalti cometido",
-      "PENALTY_FAILED"    : "Penalti fallado",
-      "GOALKEEPER_SAVES_PENALTY"  : "Penalti detenido",
-      "CLEAN_SHEET"       : "Sin goles encajados",
-      "GOAL_CONCEDED"     : "Gol concedido"
-    };
-
 }

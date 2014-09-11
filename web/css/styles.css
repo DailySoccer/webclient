@@ -5607,6 +5607,8 @@ button.close {
 .panel-body:after,
 .modal-footer:before,
 .modal-footer:after,
+#mainMenu .inner-wrapper:before,
+#mainMenu .inner-wrapper:after,
 #infoContent .modal-info-head .contest-info-header-row:before,
 #infoContent .modal-info-head .contest-info-header-row:after,
 #infoContent .modal-info-content .contest-info-tabs:before,
@@ -5677,6 +5679,8 @@ button.close {
 .resume-bar:after,
 .no-contest .my-no-contest-bottom-row:before,
 .no-contest .my-no-contest-bottom-row:after,
+footer:before,
+footer:after,
 #mainFooter:before,
 #mainFooter:after,
 #mainFooter .sup-footer-wrapper:before,
@@ -5710,6 +5714,7 @@ button.close {
 .pager:after,
 .panel-body:after,
 .modal-footer:after,
+#mainMenu .inner-wrapper:after,
 #infoContent .modal-info-head .contest-info-header-row:after,
 #infoContent .modal-info-content .contest-info-tabs:after,
 #infoContent .modal-info-content .info-options:after,
@@ -5745,6 +5750,7 @@ button.close {
 .my-contest-title-tab:after,
 .resume-bar:after,
 .no-contest .my-no-contest-bottom-row:after,
+footer:after,
 #mainFooter:after,
 #mainFooter .sup-footer-wrapper:after,
 #mainFooter .sub-footer:after,
@@ -5909,534 +5915,196 @@ button.close {
   border-color: #fa9c19;
   border-width: 0px 0px 2px 0px;
 }
-#mainMenuRoot {
+#mainMenu {
   background-color: #222222;
   border-color: #080808;
-  margin-bottom: 0px;
 }
-#mainMenuRoot .navbar-brand {
+#mainMenu .navbar-brand {
   color: #999999;
 }
-#mainMenuRoot .navbar-brand:hover,
-#mainMenuRoot .navbar-brand:focus {
+#mainMenu .navbar-brand:hover,
+#mainMenu .navbar-brand:focus {
   color: #ffffff;
   background-color: transparent;
 }
-#mainMenuRoot .navbar-text {
+#mainMenu .navbar-text {
   color: #999999;
 }
-#mainMenuRoot .navbar-nav > li > a {
+#mainMenu .navbar-nav > li > a {
   color: #999999;
 }
-#mainMenuRoot .navbar-nav > li > a:hover,
-#mainMenuRoot .navbar-nav > li > a:focus {
+#mainMenu .navbar-nav > li > a:hover,
+#mainMenu .navbar-nav > li > a:focus {
   color: #ffffff;
   background-color: transparent;
 }
-#mainMenuRoot .navbar-nav > .active > a,
-#mainMenuRoot .navbar-nav > .active > a:hover,
-#mainMenuRoot .navbar-nav > .active > a:focus {
+#mainMenu .navbar-nav > .active > a,
+#mainMenu .navbar-nav > .active > a:hover,
+#mainMenu .navbar-nav > .active > a:focus {
   color: #ffffff;
   background-color: #080808;
 }
-#mainMenuRoot .navbar-nav > .disabled > a,
-#mainMenuRoot .navbar-nav > .disabled > a:hover,
-#mainMenuRoot .navbar-nav > .disabled > a:focus {
+#mainMenu .navbar-nav > .disabled > a,
+#mainMenu .navbar-nav > .disabled > a:hover,
+#mainMenu .navbar-nav > .disabled > a:focus {
   color: #444444;
   background-color: transparent;
 }
-#mainMenuRoot .navbar-toggle {
+#mainMenu .navbar-toggle {
   border-color: #333333;
 }
-#mainMenuRoot .navbar-toggle:hover,
-#mainMenuRoot .navbar-toggle:focus {
+#mainMenu .navbar-toggle:hover,
+#mainMenu .navbar-toggle:focus {
   background-color: #333333;
 }
-#mainMenuRoot .navbar-toggle .icon-bar {
+#mainMenu .navbar-toggle .icon-bar {
   background-color: #ffffff;
 }
-#mainMenuRoot .navbar-collapse,
-#mainMenuRoot .navbar-form {
+#mainMenu .navbar-collapse,
+#mainMenu .navbar-form {
   border-color: #101010;
 }
-#mainMenuRoot .navbar-nav > .open > a,
-#mainMenuRoot .navbar-nav > .open > a:hover,
-#mainMenuRoot .navbar-nav > .open > a:focus {
+#mainMenu .navbar-nav > .open > a,
+#mainMenu .navbar-nav > .open > a:hover,
+#mainMenu .navbar-nav > .open > a:focus {
   background-color: #080808;
   color: #ffffff;
 }
 @media (max-width: 767px) {
-  #mainMenuRoot .navbar-nav .open .dropdown-menu > .dropdown-header {
+  #mainMenu .navbar-nav .open .dropdown-menu > .dropdown-header {
     border-color: #080808;
   }
-  #mainMenuRoot .navbar-nav .open .dropdown-menu .divider {
+  #mainMenu .navbar-nav .open .dropdown-menu .divider {
     background-color: #080808;
   }
-  #mainMenuRoot .navbar-nav .open .dropdown-menu > li > a {
+  #mainMenu .navbar-nav .open .dropdown-menu > li > a {
     color: #999999;
   }
-  #mainMenuRoot .navbar-nav .open .dropdown-menu > li > a:hover,
-  #mainMenuRoot .navbar-nav .open .dropdown-menu > li > a:focus {
+  #mainMenu .navbar-nav .open .dropdown-menu > li > a:hover,
+  #mainMenu .navbar-nav .open .dropdown-menu > li > a:focus {
     color: #ffffff;
     background-color: transparent;
   }
-  #mainMenuRoot .navbar-nav .open .dropdown-menu > .active > a,
-  #mainMenuRoot .navbar-nav .open .dropdown-menu > .active > a:hover,
-  #mainMenuRoot .navbar-nav .open .dropdown-menu > .active > a:focus {
+  #mainMenu .navbar-nav .open .dropdown-menu > .active > a,
+  #mainMenu .navbar-nav .open .dropdown-menu > .active > a:hover,
+  #mainMenu .navbar-nav .open .dropdown-menu > .active > a:focus {
     color: #ffffff;
     background-color: #080808;
   }
-  #mainMenuRoot .navbar-nav .open .dropdown-menu > .disabled > a,
-  #mainMenuRoot .navbar-nav .open .dropdown-menu > .disabled > a:hover,
-  #mainMenuRoot .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+  #mainMenu .navbar-nav .open .dropdown-menu > .disabled > a,
+  #mainMenu .navbar-nav .open .dropdown-menu > .disabled > a:hover,
+  #mainMenu .navbar-nav .open .dropdown-menu > .disabled > a:focus {
     color: #444444;
     background-color: transparent;
   }
 }
-#mainMenuRoot .navbar-link {
+#mainMenu .navbar-link {
   color: #999999;
 }
-#mainMenuRoot .navbar-link:hover {
+#mainMenu .navbar-link:hover {
   color: #ffffff;
 }
-@media (max-width: 991px) {
-  #mainMenuRoot .container {
-    width: 100%;
-  }
+#mainMenu .inner-wrapper {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+#mainMenu .inner-wrapper > .navbar-header,
+#mainMenu .inner-wrapper > .navbar-collapse {
+  margin-right: -15px;
+  margin-left: -15px;
 }
 @media (min-width: 768px) {
-  #mainMenuRoot {
-    background-image: url("../images/headerBackground.jpg");
-    background-repeat: no-repeat;
-    background-position: center top;
-    background-color: #000000;
-    border-color: #fa9c19;
-    border-width: 0px 0px 2px 0px;
-    height: 70px;
-  }
-  #mainMenuRoot .nav > li > a {
-    padding: 23px 10px 25px 10px;
+  #mainMenu .inner-wrapper > .navbar-header,
+  #mainMenu .inner-wrapper > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
   }
 }
-@media (max-width: 767px) {
-  #mainMenuRoot .container {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-}
-#mainMenuRoot .navbar-header-loggin .navbar-brand-container {
-  cursor: pointer;
-}
-@media (min-width: 768px) {
-  #mainMenuRoot .navbar-header-loggin .navbar-brand-container .navbar-brand {
-    background-image: url("../images/logoEpic11.png");
-    width: 120px;
-    height: 37px;
-    margin: 20px 10px 0px 0px;
-  }
-}
-@media (min-width: 768px) and only screen and (-webkit-min-device-pixel-ratio: 2), (min-width: 768px) and only screen and (min--moz-device-pixel-ratio: 2), (min-width: 768px) and only screen and (-o-min-device-pixel-ratio: 2/1), (min-width: 768px) and only screen and (min-device-pixel-ratio: 2), (min-width: 768px) and only screen and (min-resolution: 192dpi), (min-width: 768px) and only screen and (min-resolution: 2dppx) {
-  #mainMenuRoot .navbar-header-loggin .navbar-brand-container .navbar-brand {
-    background-image: url("../images/logoEpic11-2x.png");
-    background-size: 120px 37px;
-  }
-}
-@media (max-width: 767px) {
-  #mainMenuRoot .navbar-header-loggin .navbar-brand-container {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-  }
-  #mainMenuRoot .navbar-header-loggin .navbar-brand-container .navbar-brand {
-    background-image: url("../images/logoEpic11.png");
-    width: 120px;
-    height: 37px;
-    float: none;
-    margin-top: 10px;
-    display: block;
-    margin-left: auto;
+@media (min-width: 992px) {
+  #mainMenu .inner-wrapper {
     margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  #mainMenu .inner-wrapper > .navbar-header,
+  #mainMenu .inner-wrapper > .navbar-collapse {
+    margin-right: -15px;
+    margin-left: -15px;
   }
 }
-@media (max-width: 767px) and only screen and (-webkit-min-device-pixel-ratio: 2), (max-width: 767px) and only screen and (min--moz-device-pixel-ratio: 2), (max-width: 767px) and only screen and (-o-min-device-pixel-ratio: 2/1), (max-width: 767px) and only screen and (min-device-pixel-ratio: 2), (max-width: 767px) and only screen and (min-resolution: 192dpi), (max-width: 767px) and only screen and (min-resolution: 2dppx) {
-  #mainMenuRoot .navbar-header-loggin .navbar-brand-container .navbar-brand {
-    background-image: url("../images/logoEpic11-2x.png");
-    background-size: 120px 37px;
+@media (min-width: 992px) and (min-width: 768px) {
+  #mainMenu .inner-wrapper {
+    width: 750px;
   }
 }
-#mainMenuRoot .navbar-header-unloggin {
+@media (min-width: 992px) and (min-width: 992px) {
+  #mainMenu .inner-wrapper {
+    width: 970px;
+  }
+}
+@media (min-width: 992px) and (min-width: 1200px) {
+  #mainMenu .inner-wrapper {
+    width: 970px;
+  }
+}
+@media (min-width: 992px) and (min-width: 768px) {
+  #mainMenu .inner-wrapper > .navbar-header,
+  #mainMenu .inner-wrapper > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+@media (min-width: 768px) {
   background-image: url("../images/headerBackground.jpg");
   background-repeat: no-repeat;
   background-position: center top;
   background-color: #000000;
   border-color: #fa9c19;
   border-width: 0px 0px 2px 0px;
-  height: 70px;
-  text-align: center;
-}
-#mainMenuRoot .navbar-header-unloggin .navbar-brand-container {
-  cursor: pointer;
-}
-@media (max-width: 767px) {
-  #mainMenuRoot .navbar-header-unloggin .navbar-brand-container {
-    display: none !important;
+  
+  .nav > li > a {
+    padding: 23px 20px 20px 10px;
   }
 }
-#mainMenuRoot .navbar-header-unloggin .navbar-brand-container .navbar-brand {
+#toggleSlideMenu {
+  float: left;
+}
+.navbar {
+  margin-bottom: 0px;
+}
+@media (min-width: 768px) {
+  .navbar {
+    padding-right: 15px;
+  }
+  .navbar .navbar > .container .navbar-brand {
+    margin-left: 0px;
+  }
+}
+.navbar-nav > a {
+  cursor: pointer;
+}
+.navbar-brand {
   background-image: url("../images/logoEpic11.png");
   width: 120px;
   height: 37px;
-  margin-top: 20px;
+  margin-top: 10px;
+  margin-left: 0px;
+  cursor: pointer;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  #mainMenuRoot .navbar-header-unloggin .navbar-brand-container .navbar-brand {
+  .navbar-brand {
     background-image: url("../images/logoEpic11-2x.png");
     background-size: 120px 37px;
   }
 }
-@media (min-width: 768px) {
-  #mainMenuRoot .navbar-header-unloggin .button-wrapper {
-    float: right !important;
-  }
-}
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join {
-  display: inline-block;
-  margin-bottom: 0;
-  font-weight: normal;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  background-image: none;
-  border: 1px solid transparent;
-  white-space: nowrap;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  border-radius: 4px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  border-width: 0;
-  color: #ffffff;
-  background-color: #59add5;
-  border-color: #cccccc;
-  box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
-  padding: 5px 20px;
-  margin: 18px 7px 0;
-}
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join:focus,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join:active:focus,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join:hover,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join:focus {
-  color: #ffffff;
-  text-decoration: none;
-}
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join:active,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join.disabled,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join[disabled],
-fieldset[disabled] #mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join:focus,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join:active:focus,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join:hover,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join:focus {
-  color: #ffffff;
-  text-decoration: none;
-}
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join:active,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join.disabled,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join[disabled],
-fieldset[disabled] #mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join:hover,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join:focus,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join:active,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join.active,
-.open .dropdown-toggle#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join {
-  color: #ffffff;
-  background-color: #389dcd;
-  border-color: #adadad;
-}
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join:active,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join.active,
-.open .dropdown-toggle#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join {
-  background-image: none;
-}
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join.disabled,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join[disabled],
-fieldset[disabled] #mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join.disabled:hover,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join[disabled]:hover,
-fieldset[disabled] #mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join:hover,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join.disabled:focus,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join[disabled]:focus,
-fieldset[disabled] #mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join:focus,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join.disabled:active,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join[disabled]:active,
-fieldset[disabled] #mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join:active,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join.disabled.active,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join[disabled].active,
-fieldset[disabled] #mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join.active {
-  background-color: #59add5;
-  border-color: #cccccc;
-}
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-join .badge {
-  color: #59add5;
-  background-color: #ffffff;
-}
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login {
-  display: inline-block;
-  margin-bottom: 0;
-  font-weight: normal;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  background-image: none;
-  border: 1px solid transparent;
-  white-space: nowrap;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  border-radius: 4px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  border-width: 0;
-  color: #ffffff;
-  background-color: #a1c931;
-  border-color: #91b42c;
-  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
-  padding: 5px 20px;
-  margin: 18px 0 0 7px;
-}
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login:focus,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login:active:focus,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login:hover,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login:focus {
-  color: #ffffff;
-  text-decoration: none;
-}
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login:active,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login.disabled,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login[disabled],
-fieldset[disabled] #mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login:focus,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login:active:focus,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login:hover,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login:focus {
-  color: #ffffff;
-  text-decoration: none;
-}
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login:active,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login.disabled,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login[disabled],
-fieldset[disabled] #mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login:hover,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login:focus,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login:active,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login.active,
-.open .dropdown-toggle#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login {
-  color: #ffffff;
-  background-color: #87a829;
-  border-color: #698320;
-}
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login:active,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login.active,
-.open .dropdown-toggle#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login {
-  background-image: none;
-}
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login.disabled,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login[disabled],
-fieldset[disabled] #mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login.disabled:hover,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login[disabled]:hover,
-fieldset[disabled] #mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login:hover,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login.disabled:focus,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login[disabled]:focus,
-fieldset[disabled] #mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login:focus,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login.disabled:active,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login[disabled]:active,
-fieldset[disabled] #mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login:active,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login.disabled.active,
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login[disabled].active,
-fieldset[disabled] #mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login.active {
-  background-color: #a1c931;
-  border-color: #91b42c;
-}
-#mainMenuRoot .navbar-header-unloggin .button-wrapper .button-login .badge {
-  color: #a1c931;
-  background-color: #ffffff;
-}
-#mainMenuRoot #addMoney {
-  color: #ffffff;
-  background-color: #a1c931;
-  border-color: #91b42c;
-  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
-  float: right !important;
-  padding: 4px 6px;
-  font-size: 9pt;
-  line-height: 1.5em;
-  border-radius: 4px;
-  margin: 20px 10px 0px 10px;
-}
-#mainMenuRoot #addMoney:hover,
-#mainMenuRoot #addMoney:focus,
-#mainMenuRoot #addMoney:active,
-#mainMenuRoot #addMoney.active,
-.open .dropdown-toggle#mainMenuRoot #addMoney {
-  color: #ffffff;
-  background-color: #87a829;
-  border-color: #698320;
-}
-#mainMenuRoot #addMoney:active,
-#mainMenuRoot #addMoney.active,
-.open .dropdown-toggle#mainMenuRoot #addMoney {
-  background-image: none;
-}
-#mainMenuRoot #addMoney.disabled,
-#mainMenuRoot #addMoney[disabled],
-fieldset[disabled] #mainMenuRoot #addMoney,
-#mainMenuRoot #addMoney.disabled:hover,
-#mainMenuRoot #addMoney[disabled]:hover,
-fieldset[disabled] #mainMenuRoot #addMoney:hover,
-#mainMenuRoot #addMoney.disabled:focus,
-#mainMenuRoot #addMoney[disabled]:focus,
-fieldset[disabled] #mainMenuRoot #addMoney:focus,
-#mainMenuRoot #addMoney.disabled:active,
-#mainMenuRoot #addMoney[disabled]:active,
-fieldset[disabled] #mainMenuRoot #addMoney:active,
-#mainMenuRoot #addMoney.disabled.active,
-#mainMenuRoot #addMoney[disabled].active,
-fieldset[disabled] #mainMenuRoot #addMoney.active {
-  background-color: #a1c931;
-  border-color: #91b42c;
-}
-#mainMenuRoot #addMoney .badge {
-  color: #a1c931;
-  background-color: #ffffff;
-}
 @media (max-width: 767px) {
-  #mainMenuRoot #addMoney {
-    display: none !important;
+  .navbar-brand {
+    margin: 10px auto;
+    float: none;
   }
-}
-@media (max-width: 991px) {
-  #mainMenuRoot #addMoney {
-    padding: 4px 4px;
-    font-size: 8pt;
-    line-height: 1.5em;
-    border-radius: 4px;
-  }
-}
-#mainMenuRoot .navbar-toggle {
-  margin-left: 10px;
-  margin-right: 10px;
-}
-#mainMenuRoot .container > .navbar-collapse {
-  margin-right: 0;
-  margin-left: -1px;
-}
-#mainMenuRoot #gameMenuCollapse {
-  background-color: transparent;
-}
-@media (min-width: 768px) {
-  #mainMenuRoot #gameMenuCollapse {
-    float: left !important;
-  }
-}
-#mainMenuRoot #gameMenuCollapse .navbar-nav > li > a {
-  color: #afd3e4;
-}
-#mainMenuRoot #gameMenuCollapse .navbar-nav > li > a:hover {
-  color: #ffffff;
-}
-#mainMenuRoot #gameMenuCollapse .navbar-nav > .active > a,
-#mainMenuRoot #gameMenuCollapse .navbar-nav > .active > a:focus,
-#mainMenuRoot #gameMenuCollapse .navbar-nav > .active > a:hover {
-  color: #ffffff;
-}
-@media (min-width: 768px) {
-  #mainMenuRoot #userMenuCollapse {
-    float: right !important;
-  }
-}
-#mainMenuRoot #userMenuCollapse .navbar-nav > li > a {
-  color: #ffffff;
-}
-#mainMenuRoot #userMenuCollapse .navbar-nav > li > a:hover {
-  color: #afd3e4;
 }
 #infoContent {
   background-color: #dcdcdc;
@@ -7493,8 +7161,6 @@ fieldset[disabled] #headerContestWidget .close-contest .btn.active {
     margin-left: auto;
     padding-left: 15px;
     padding-right: 15px;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
   }
   .contests-list-root > .navbar-header,
   .contests-list-root > .navbar-collapse {
@@ -14316,6 +13982,40 @@ fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest.acti
 @media (min-width: 1200px) {
   .list-container .text-refresh-history {
     display: none !important;
+  }
+}
+footer {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 0px;
+}
+@media (min-width: 768px) {
+  footer {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  footer {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  footer {
+    width: 970px;
+  }
+}
+footer > .navbar-header,
+footer > .navbar-collapse {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+@media (min-width: 768px) {
+  footer > .navbar-header,
+  footer > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
   }
 }
 #mainFooter {

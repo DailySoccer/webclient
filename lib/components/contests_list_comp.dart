@@ -167,7 +167,7 @@ class ContestsListComp {
       break;
     }
     // Forzamos el refresco la lista.
-    updateCurrentPageLsit(_currentPage, _itemsPerPage);
+    updateCurrentPageList(_currentPage, _itemsPerPage);
   }
 
   void refreshFilters() {
@@ -202,10 +202,10 @@ class ContestsListComp {
     _currentPage = currentPage;
     _itemsPerPage = itemsPerPage;
     //Actualizamos la página actual de la lista.
-    updateCurrentPageLsit(_currentPage, _itemsPerPage);
+    updateCurrentPageList(_currentPage, _itemsPerPage);
   }
 
-  void updateCurrentPageLsit(int currentPage, int itemsPerPage) {
+  void updateCurrentPageList(int currentPage, int itemsPerPage) {
     // Determinamos que elementos se mostrarán en la pagina actual
     int rangeStart = currentPage * itemsPerPage;
     int rangeEnd =  (rangeStart + itemsPerPage < contestsListFiltered.length) ? rangeStart + itemsPerPage : contestsListFiltered.length;

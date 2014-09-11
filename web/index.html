@@ -25,16 +25,15 @@
 
   <body ng-cloak>
 
-    <main-menu></main-menu>
+    <!--<main-menu></main-menu>-->
 
     <div id="mainWrapper" class="wrapper-content-container">
+      <main-menu-slide></main-menu-slide>
       <div id="mainContent" class="main-content-container">
-        <div id="injectedContainer">
-          <flash-messages></flash-messages>
-          <ng-view></ng-view>
-        </div>
-        <footer></footer>
+        <flash-messages></flash-messages>
+        <ng-view></ng-view>
       </div>
+      <footer></footer>
     </div>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -46,5 +45,8 @@
     <!-- Script y Style del third party noUiSlider -->
     <link rel="stylesheet" type="text/css" href="nouislider/jquery.nouislider.css">
     <script src="nouislider/jquery.nouislider.min.js"></script>
+    <!-- menu slide -->
+    <link rel="stylesheet" type="text/css" href="Jasny/css/jasny-bootstrap.min.css"></link>
+    <script src="Jasny/js/jasny-bootstrap.min.js"></script>
   </body>
 </html>

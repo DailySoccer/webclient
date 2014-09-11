@@ -22,6 +22,7 @@ import 'package:webclient/controllers/view_contest_ctrl.dart';
 import 'package:webclient/components/flash_messages_comp.dart';
 import 'package:webclient/components/landing_page_comp.dart';
 import 'package:webclient/components/main_menu_comp.dart';
+import 'package:webclient/components/main_menu_slide_comp.dart';
 import 'package:webclient/components/contest_info_comp.dart';
 import 'package:webclient/components/soccer_player_info_comp.dart';
 import 'package:webclient/components/contest_header_comp.dart';
@@ -78,6 +79,8 @@ class WebClientApp extends Module {
     bind(FlashMessageComp);
     bind(LandingPageComp);
     bind(MainMenuComp);
+    bind(MainMenuSlideComp);
+
     bind(ContestInfoComp);
     bind(SoccerPlayerInfoComp);
     bind(ContestHeaderComp);

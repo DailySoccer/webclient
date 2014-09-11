@@ -1,0 +1,63 @@
+// Funcion para pintar el fondo de la cabecera
+.background-header {
+  background-image: url("@{images}/headerBackground.jpg");
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-color: @black;
+  border-color: @orange;
+  border-width: 0px 0px 2px 0px;
+}
+
+#mainMenu {
+  	// Partimos de la navbar-inverse y vamos cambiando
+  	.navbar-inverse();
+
+	.inner-wrapper {
+		.container-fluid();
+  		@media (min-width: @screen-md-min) {
+  			.container;
+  		}
+	}
+}
+ 
+// Version no XS (SM y Desktop)
+@media (min-width: @screen-sm-min) {
+	.background-header();
+
+	// Todos los enlaces: centrados vertical
+	.nav > li > a {
+	  padding: 23px 20px 20px 10px;
+	}
+}
+
+#toggleSlideMenu {
+	float: left;
+}
+
+.navbar {
+    margin-bottom: 0px;
+    @media (min-width: @screen-sm-min) {
+    	padding-right: 15px;
+    	.navbar > .container .navbar-brand {
+			margin-left: 0px;
+		}
+  	}
+}
+
+.navbar-nav > a{
+	cursor:pointer;
+}
+
+.navbar-brand {
+  // Retina display
+  .img-retina("@{images}/logoEpic11.png", "@{images}/logoEpic11-2x.png", 120px, 37px);      
+  .size(120px, 37px);
+  margin-top: 10px;
+  margin-left: 0px;
+  cursor: pointer;
+
+  @media (max-width: @screen-xs-max) {
+  	margin: 10px auto;
+  	float: none;
+  }
+}

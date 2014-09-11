@@ -26,10 +26,10 @@ class MainMenuSlideComp implements ShadowRootAware{
       _router.go(destination, params);
     }
 
-    updateMenuLinks(event.target as AnchorElement);
+    updateMenuLinks(event.target);
   }
 
-  void updateMenuLinks(AnchorElement a) {
+  void updateMenuLinks(dynamic a) {
     if(a.attributes["destination"] == "") {
       print("-MAIN_MENU_SLIDE_COMP-: Este elemento del menu no tiene 'destination'");
       return;

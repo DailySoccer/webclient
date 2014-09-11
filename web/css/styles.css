@@ -8058,6 +8058,12 @@ fieldset[disabled] .landing-wrapper .button-play.active {
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffba61a', endColorstr='#ffec990e', GradientType=0);
 }
+@media (max-width: 767px) {
+  .fantasy-team-header {
+    margin-top: 70px;
+    text-align: center;
+  }
+}
 .fantasy-team-header .ranking-box {
   width: 70px;
   height: 70px;
@@ -8139,6 +8145,13 @@ fieldset[disabled] .landing-wrapper .button-play.active {
   height: 45px;
   padding-top: 5px;
 }
+.fantasy-team-header .nickname-view-contest-entry-mode {
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 20pt;
+  color: #ffffff;
+  padding: 20px 0 0 10px;
+}
 .fantasy-team-header .total-remaining-matches-time {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
@@ -8181,6 +8194,150 @@ fieldset[disabled] .landing-wrapper .button-play.active {
   .fantasy-team-header {
     border-top-right-radius: 8px;
     border-top-left-radius: 8px;
+  }
+}
+.fantasy-team-header .edit-team {
+  float: right !important;
+  margin: 20px 5px 0 0;
+}
+.fantasy-team-header .edit-team .btn-edit-team {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  color: #ffffff;
+  background-color: #59add5;
+  border-color: #cccccc;
+  box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
+  line-height: 25px;
+}
+.fantasy-team-header .edit-team .btn-edit-team:focus,
+.fantasy-team-header .edit-team .btn-edit-team:active:focus,
+.fantasy-team-header .edit-team .btn-edit-team.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.fantasy-team-header .edit-team .btn-edit-team:hover,
+.fantasy-team-header .edit-team .btn-edit-team:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+.fantasy-team-header .edit-team .btn-edit-team:active,
+.fantasy-team-header .edit-team .btn-edit-team.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.fantasy-team-header .edit-team .btn-edit-team.disabled,
+.fantasy-team-header .edit-team .btn-edit-team[disabled],
+fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.fantasy-team-header .edit-team .btn-edit-team:focus,
+.fantasy-team-header .edit-team .btn-edit-team:active:focus,
+.fantasy-team-header .edit-team .btn-edit-team.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.fantasy-team-header .edit-team .btn-edit-team:hover,
+.fantasy-team-header .edit-team .btn-edit-team:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+.fantasy-team-header .edit-team .btn-edit-team:active,
+.fantasy-team-header .edit-team .btn-edit-team.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.fantasy-team-header .edit-team .btn-edit-team.disabled,
+.fantasy-team-header .edit-team .btn-edit-team[disabled],
+fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.fantasy-team-header .edit-team .btn-edit-team:hover,
+.fantasy-team-header .edit-team .btn-edit-team:focus,
+.fantasy-team-header .edit-team .btn-edit-team:active,
+.fantasy-team-header .edit-team .btn-edit-team.active,
+.open .dropdown-toggle.fantasy-team-header .edit-team .btn-edit-team {
+  color: #ffffff;
+  background-color: #389dcd;
+  border-color: #adadad;
+}
+.fantasy-team-header .edit-team .btn-edit-team:active,
+.fantasy-team-header .edit-team .btn-edit-team.active,
+.open .dropdown-toggle.fantasy-team-header .edit-team .btn-edit-team {
+  background-image: none;
+}
+.fantasy-team-header .edit-team .btn-edit-team.disabled,
+.fantasy-team-header .edit-team .btn-edit-team[disabled],
+fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team,
+.fantasy-team-header .edit-team .btn-edit-team.disabled:hover,
+.fantasy-team-header .edit-team .btn-edit-team[disabled]:hover,
+fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team:hover,
+.fantasy-team-header .edit-team .btn-edit-team.disabled:focus,
+.fantasy-team-header .edit-team .btn-edit-team[disabled]:focus,
+fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team:focus,
+.fantasy-team-header .edit-team .btn-edit-team.disabled:active,
+.fantasy-team-header .edit-team .btn-edit-team[disabled]:active,
+fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team:active,
+.fantasy-team-header .edit-team .btn-edit-team.disabled.active,
+.fantasy-team-header .edit-team .btn-edit-team[disabled].active,
+fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team.active {
+  background-color: #59add5;
+  border-color: #cccccc;
+}
+.fantasy-team-header .edit-team .btn-edit-team .badge {
+  color: #59add5;
+  background-color: #ffffff;
+}
+@media (max-width: 767px) {
+  .fantasy-team-header .edit-team {
+    position: absolute;
+    position: relative;
+    float: left;
+    width: 100%;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin: -70px 0;
+    padding: 15px 10px;
+  }
+  .fantasy-team-header .edit-team .btn-edit-team {
+    display: block;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 /*
@@ -8430,6 +8587,15 @@ fieldset[disabled] .landing-wrapper .button-play.active {
   padding-right: 2px;
   text-align: left;
 }
+#usersListRoot .user-row .name-view-contest-entry-mode {
+  position: relative;
+  float: left;
+  width: 75%;
+  min-height: 1px;
+  padding-left: 2px;
+  padding-right: 2px;
+  text-align: left;
+}
 #usersListRoot .user-row .remaining-time {
   position: relative;
   float: left;
@@ -8486,6 +8652,15 @@ fieldset[disabled] .landing-wrapper .button-play.active {
   position: relative;
   float: left;
   width: 41.66666667%;
+  min-height: 1px;
+  padding-left: 0px;
+  padding-right: 0px;
+  text-align: left;
+}
+#usersListRoot .users-table-header .name-view-contest-entry-mode {
+  position: relative;
+  float: left;
+  width: 75%;
   min-height: 1px;
   padding-left: 0px;
   padding-right: 0px;

@@ -189,7 +189,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
 
   void onActionClick(Contest contest) {
     selectedContest = contest;
-    _router.go('enter_contest', { "contestId": contest.contestId });
+    _router.go('enter_contest', { "contestId": contest.contestId, "parent": "lobby" });
   }
 
   // Handle que recibe cual es la nueva mediaquery que se aplica.

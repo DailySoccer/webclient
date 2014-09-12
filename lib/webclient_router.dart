@@ -26,23 +26,23 @@ void webClientRouteInitializer(Router router, RouteViewFactory views) {
         viewHtml: '<my-contests></my-contests>'
     )
     ,'live_contest': ngRoute(
-        path: '/live_contest/:contestId',
+        path: '/:parent/live_contest/:contestId',
         view: 'view/view_contest.tpl.html'
     )
     ,'history_contest': ngRoute(
-        path: '/history_contest/:contestId',
+        path: '/:parent/history_contest/:contestId',
         view: 'view/view_contest.tpl.html'
     )
     ,'enter_contest': ngRoute(
-        path: '/enter_contest/:contestId',
+        path: '/:parent/enter_contest/:contestId',
         view: 'view/enter_contest.tpl.html'
     )
     ,'edit_contest': ngRoute(
-        path: '/edit_contest/:contestId/:contestEntryId',
+        path: '/:parent/edit_contest/:contestId/:contestEntryId',
         view: 'view/enter_contest.tpl.html'
     )
     ,'view_contest_entry': ngRoute(
-        path: '/view_contest_entry/:parent/:contestId',
+        path: '/:parent/view_contest_entry/:contestId',
         viewHtml: '<view-contest-entry></view-contest-entry>'
     )
   });

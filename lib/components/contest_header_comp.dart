@@ -111,17 +111,7 @@ class ContestHeaderComp implements DetachAware{
   }
 
   void goBackTo() {
-    switch(_mode) {
-      case ENTER_CONTEST:
-        _router.go("lobby", {});
-        break;
-      case VIEW_CONTEST:
-        _router.go("my_contests", {});
-        break;
-      case VIEW_CONTEST_ENTRY:
-        _router.go(_parent, {});
-        break;
-    }
+    _router.go(_parent, {});
   }
 
   void detach() {

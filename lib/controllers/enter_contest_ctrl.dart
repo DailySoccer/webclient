@@ -46,12 +46,17 @@ class EnterContestCtrl implements DetachAware{
 
   String nameFilter;
 
+  String parent = "";
+
   EnterContestCtrl(RouteProvider routeProvider, this._router, this.scrDet, this._profileService, this._activeContestService, this._myContestService, this._flashMessage) {
 
     // Creamos los slots iniciales, todos vacios
     FieldPos.LINEUP.forEach((pos) {
       lineupSlots.add(null);
     });
+
+    // Identificamos cúal es la pantalla desde la que se ha llamado al view contest entry
+    parent = routeProvider.route.parameters['parent'];
 
     _editingContestEntry = (routeProvider.route.parameters['contestEntryId'] != null);
 
@@ -418,12 +423,12 @@ class EnterContestCtrl implements DetachAware{
 
     if (_editingContestEntry) {
       _myContestService.editContestEntry(_contestEntryId, lineupSlots.map((player) => player["id"]).toList())
-        .then((_) => _router.go('view_contest_entry', {"contestId" : contest.contestId, "parent" : "edit"}))
+        .then((_) => _router.go('view_contest_entry', {"contestId" : contest.contestId, "parent" : parent}))
         .catchError((error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW));
     }
     else {
       _activeContestService.addContestEntry(contest.contestId, lineupSlots.map((player) => player["id"]).toList())
-        .then((_) => _router.go('view_contest_entry', {"contestId" : contest.contestId, "parent" : "lobby"}))
+        .then((_) => _router.go('view_contest_entry', {"contestId" : contest.contestId, "parent" : parent}))
         .catchError((error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW));
     }
   }

@@ -23,12 +23,12 @@
         <li><a ng-click="viewContestEntry.tabChange('usersList')" data-toggle="tab">Usuarios</a></li>
       </ul>
       <div class="tab-content" id="viewContestEntryTabContent">
-        <fantasy-team class="tab-pane active" id="userFantasyTeam" contest-entry="viewContestEntry.mainPlayer" watch="viewContestEntry.updatedDate" is-opponent="false"></fantasy-team>
+        <fantasy-team class="tab-pane active" id="userFantasyTeam" contest-entry="viewContestEntry.mainPlayer" watch="viewContestEntry.updatedDate" is-opponent="false" goParent="viewContestEntry.parent"></fantasy-team>
         <users-list class="tab-pane" id="usersList" contest-entries="viewContestEntry.contestEntries" selected-contest-entry="viewContestEntry.selectedOpponent" watch="viewContestEntry.updatedDate"></users-list>
       </div>
     </div>
     <div ng-switch-when="false">
-      <fantasy-team id="userFantasyTeam" contest-entry="viewContestEntry.mainPlayer" watch="viewContestEntry.updatedDate" is-opponent="false"></fantasy-team>
+      <fantasy-team id="userFantasyTeam" contest-entry="viewContestEntry.mainPlayer" watch="viewContestEntry.updatedDate" is-opponent="false" goParent="viewContestEntry.parent"></fantasy-team>
       <users-list id="usersList" ng-show="viewContestEntry.selectedOpponent == null" contest-entries="viewContestEntry.contestEntries" selected-contest-entry="viewContestEntry.selectedOpponent"
                   watch="viewContestEntry.updatedDate"></users-list>
     </div>

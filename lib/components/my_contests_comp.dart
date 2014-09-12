@@ -33,19 +33,19 @@ class MyContestsComp implements DetachAware {
   }
 
   void onLiveRowClick(Contest contest) {
-    _router.go('live_contest', {"contestId" : contest.contestId});
+    _router.go('live_contest', {"contestId" : contest.contestId, "parent" : "my_contests"});
   }
 
   void onLiveActionClick(Contest contest) {
-    _router.go('live_contest', {"contestId" : contest.contestId});
+    _router.go('live_contest', {"contestId" : contest.contestId, "parent" : "my_contests"});
   }
 
   void onHistoryRowClick(Contest contest) {
-    _router.go('history_contest', {"contestId" : contest.contestId});
+    _router.go('history_contest', {"contestId" : contest.contestId, "parent" : "my_contests"});
   }
 
   void onHistoryActionClick(Contest contest) {
-    _router.go('history_contest', {"contestId" : contest.contestId});
+    _router.go('history_contest', {"contestId" : contest.contestId, "parent" : "my_contests"});
   }
 
   void gotoLobby() {

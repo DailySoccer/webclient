@@ -22,6 +22,11 @@ class FantasyTeamComp implements ShadowRootAware {
       _viewContestCtrl = value;
     }
 
+    @NgOneWay("goParent")
+    void set goParent(String value) {
+      _parent = value;
+    }
+
     @NgOneWay("contest-entry")
     set contestEntry(ContestEntry value) {
       // Si nos mandan cambiar de ContestEntry, tenemos que resetear los slots
@@ -126,7 +131,7 @@ class FantasyTeamComp implements ShadowRootAware {
 
     void editTeam() {
       print(slots);
-      _router.go('edit_contest', { "contestId": _contestEntry.contest.contestId , "contestEntryId": _contestEntry.contestEntryId});
+      _router.go('edit_contest', { "contestId": _contestEntry.contest.contestId , "contestEntryId": _contestEntry.contestEntryId, "parent": _parent});
     }
 
     void onCloseButtonClick() {
@@ -138,6 +143,8 @@ class FantasyTeamComp implements ShadowRootAware {
 
     ContestEntry _contestEntry;
     ViewContestCtrl _viewContestCtrl;
+
+    String _parent = "";
 
     RouteProvider _routeProvider;
     Router _router;

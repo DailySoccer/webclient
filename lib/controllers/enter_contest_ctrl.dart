@@ -46,21 +46,21 @@ class EnterContestCtrl implements DetachAware{
 
   String nameFilter;
 
-  EnterContestCtrl(RouteProvider routeProvider, this._router, this.scrDet, this._profileService, this._contestService, this._myContestService, this._flashMessage) {
+  EnterContestCtrl(RouteProvider routeProvider, this._router, this.scrDet, this._profileService, this._activeContestService, this._myContestService, this._flashMessage) {
 
     // Creamos los slots iniciales, todos vacios
     FieldPos.LINEUP.forEach((pos) {
       lineupSlots.add(null);
     });
 
-    print(routeProvider.route.parameters['contestEntryId']);
+    _editingContestEntry = (routeProvider.route.parameters['contestEntryId'] != null);
 
     //Nos subscribimos al evento de cambio de tamañano de ventana
     _streamListener = scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
 
-    _contestService.refreshContest(routeProvider.route.parameters['contestId'])
+    _activeContestService.refreshContest(routeProvider.route.parameters['contestId'])
       .then((_) {
-        contest = _contestService.lastContest;
+        contest = _activeContestService.lastContest;
 
         // Al principio, todos disponibles
         initAllSoccerPlayers();
@@ -70,13 +70,15 @@ class EnterContestCtrl implements DetachAware{
         availableSalary = contest.templateContest.salaryCap;
 
         // Si nos viene el torneo para editar la alineación
-        String contestEntryId = routeProvider.route.parameters['contestEntryId'];
-        if (contestEntryId != null) {
-          ContestEntry contestEntry = _myContestService.lastContest.getContestEntry(contestEntryId);
-          // Insertamos en el lineup el jugador
-          contestEntry.soccers.forEach((soccer) {
-            onSoccerPlayerSelected(_allSoccerPlayers.firstWhere((slot) => slot["id"] == soccer.templateSoccerPlayerId));
-          });
+        if (_editingContestEntry) {
+          _contestEntryId = routeProvider.route.parameters['contestEntryId'];
+          if (_contestEntryId != null) {
+            ContestEntry contestEntry = _myContestService.lastContest.getContestEntry(_contestEntryId);
+            // Insertamos en el lineup el jugador
+            contestEntry.soccers.forEach((soccer) {
+              onSoccerPlayerSelected(_allSoccerPlayers.firstWhere((slot) => slot["id"] == soccer.templateSoccerPlayerId));
+            });
+          }
         }
 
         // Cuando se inicializa la lista de jugadores, esta se ordena por posicion
@@ -413,9 +415,17 @@ class EnterContestCtrl implements DetachAware{
     lineupSlots.forEach((player) => print(player["fieldPos"].abrevName + ": " + player["fullName"] + " : " + player["id"]));
 
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
-    _contestService.addContestEntry(contest.contestId, lineupSlots.map((player) => player["id"]).toList())
-      .then((_) => _router.go('view_contest_entry', {"contestId" : contest.contestId, "parent" : "lobby"}))
-      .catchError((error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW));
+
+    if (_editingContestEntry) {
+      _myContestService.editContestEntry(_contestEntryId, lineupSlots.map((player) => player["id"]).toList())
+        .then((_) => _router.go('view_contest_entry', {"contestId" : contest.contestId, "parent" : "lobby"}))
+        .catchError((error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW));
+    }
+    else {
+      _activeContestService.addContestEntry(contest.contestId, lineupSlots.map((player) => player["id"]).toList())
+        .then((_) => _router.go('view_contest_entry', {"contestId" : contest.contestId, "parent" : "lobby"}))
+        .catchError((error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW));
+    }
   }
 
   bool isFantasyTeamValid() {
@@ -540,8 +550,11 @@ class EnterContestCtrl implements DetachAware{
   bool _sortDir = false;
   String _sortField = "";
   int _selectedLineupPosIndex = 0;
+  bool _editingContestEntry = false;
+  String _contestEntryId = null;
+
   Router _router;
-  ActiveContestsService _contestService;
+  ActiveContestsService _activeContestService;
   MyContestsService _myContestService;
   ProfileService _profileService;
   FlashMessagesService _flashMessage;

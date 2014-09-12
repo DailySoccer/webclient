@@ -38,6 +38,18 @@ class MyContestsService {
     return completer.future;
   }
 
+  Future editContestEntry(String contestId, List<String> soccerPlayerIds) {
+    var completer = new Completer();
+
+    _server.editContestEntry(contestId, soccerPlayerIds)
+      .then((jsonObject) {
+        print("response: " + jsonObject.toString());
+        completer.complete();
+      });
+
+    return completer.future;
+  }
+
   Future refreshMyContests() {
     var completer = new Completer();
 

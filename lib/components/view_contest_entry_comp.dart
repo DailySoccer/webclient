@@ -21,7 +21,7 @@ import 'dart:html';
 class ViewContestEntryComp {
   ScreenDetectorService scrDet;
 
-  dynamic mainPlayer;
+  ContestEntry mainPlayer;
   dynamic selectedOpponent;
 
   String parent = "";
@@ -75,6 +75,14 @@ class ViewContestEntryComp {
 
   void goTo(String screenParent) {
     _router.go(screenParent, {});
+  }
+
+  void cancelContestEntry() {
+    _myContestsService.cancelContestEntry(mainPlayer.contestEntryId)
+      .then((jsonObject) {
+        print("cancelado contestEntry");
+        _router.go(parent, {});
+      });
   }
 
   FlashMessagesService _flashMessage;

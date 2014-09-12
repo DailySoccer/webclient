@@ -8555,6 +8555,12 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team.active {
   color: #777777;
   text-align: right;
 }
+#usersListRoot {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 #usersListRoot .user-row {
   margin-left: 0px;
   margin-right: 0px;

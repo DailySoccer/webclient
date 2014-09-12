@@ -37,6 +37,7 @@
           <span class="remaining-match-time" ng-if="!fantasyTeam.isViewContestEntryMode">{{slot.percentOfUsersThatOwn}}% LO TIENEN</span>
         </div>
         <div class="column-score" ng-if="!fantasyTeam.isViewContestEntryMode"><span>{{slot.score}}</span></div>
+        <div class="column-salary" ng-if="fantasyTeam.isViewContestEntryMode">{{slot.salary}}€</div>
       </div>
       <div id="statistic_{{fantasyTeam.owner}}_{{$index}}" class="soccer-player-statistics collapse" ng-if="!fantasyTeam.isViewContestEntryMode">
         <div class="statistic" ng-repeat="stat in slot.stats">

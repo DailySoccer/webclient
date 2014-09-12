@@ -95,6 +95,7 @@ class FantasyTeamComp implements ShadowRootAware {
             "fieldPos": soccerPlayer.fieldPos,
             "fullName": soccerPlayer.name,
             "matchEventName": matchEventName,
+            "salary": soccerPlayer.salary,
             "percentOfUsersThatOwn": (_viewContestCtrl != null) ? _viewContestCtrl.getPercentOfUsersThatOwn(soccerPlayer) : "",
             "score": soccerPlayer.printableCurrentLivePoints,
             "stats": soccerPlayer.printableLivePointsPerOptaEvent

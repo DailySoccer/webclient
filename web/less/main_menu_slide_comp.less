@@ -18,20 +18,27 @@
   			.container;
   		}
 	}
-}
- 
-// Version no XS (SM y Desktop)
-@media (min-width: @screen-sm-min) {
 	.background-header();
 
-	// Todos los enlaces: centrados vertical
-	.nav > li > a {
-	  padding: 23px 20px 20px 10px;
+ 	// Version no XS (SM y Desktop)
+	@media (min-width: @screen-sm-min) {
+		
+
+		// Todos los enlaces: centrados vertical
+		.nav > li > a {
+		  padding: 20px;
+		}
 	}
 }
-
+.navbar-toggle {
+	margin: 12px 0 0 15px;
+}
 #toggleSlideMenu {
 	float: left;
+  background-color: @blueDark;
+  &:hover {
+    background-color: @blueDark;
+  }
 }
 
 .navbar {
@@ -39,8 +46,8 @@
     @media (min-width: @screen-sm-min) {
     	padding-right: 15px;
     	.navbar > .container .navbar-brand {
-			margin-left: 0px;
-		}
+  			margin-left: 0px;
+  		}
   	}
 }
 
@@ -48,16 +55,44 @@
 	cursor:pointer;
 }
 
+.brand {
+	// Retina display
+  	.img-retina("@{images}/logoEpic11.png", "@{images}/logoEpic11-2x.png", 120px, 37px);      
+  	.size(120px, 37px);
+  	margin-top: 10px;
+  	cursor: pointer;
+    margin-top: 15px;
+}
 .navbar-brand {
-  // Retina display
-  .img-retina("@{images}/logoEpic11.png", "@{images}/logoEpic11-2x.png", 120px, 37px);      
-  .size(120px, 37px);
-  margin-top: 10px;
+  .brand();
   margin-left: 0px;
-  cursor: pointer;
 
   @media (max-width: @screen-xs-max) {
   	margin: 10px auto;
   	float: none;
   }
+}
+
+
+
+.navbar-header-unloggin {   
+	.navbar-brand {
+  		.brand();
+  		@media (max-width: @screen-xs-max) {
+		  	.hidden-xs();
+		}
+	}
+    // Botones de login y join
+    .button-wrapper {
+      	margin: 5px auto;
+      	.pull-right();
+      	.button-join {
+        	.btn();
+        	.btn-default();
+      	}
+      	.button-login {
+        	.btn();
+        	.btn-primary();
+      	}
+    }
 }

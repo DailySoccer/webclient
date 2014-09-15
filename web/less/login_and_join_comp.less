@@ -110,23 +110,23 @@
 
 //animaciones
 .slide-from-top-in() {
-	0%   { top: -300px; opacity: 0;}
+	0%   { top: 300px; opacity: 0;}
     100% { top: 0px; opacity: 1; }
 }
 
-@-webkit-keyframes 	window-from-top-frames{ .slide-from-top-in() };
-@-moz-keyframes 	window-from-top-frames{ .slide-from-top-in() };
-@-ms-keyframes 		window-from-top-frames{ .slide-from-top-in() };
-@-o-keyframes 		window-from-top-frames{ .slide-from-top-in() };
-@keyframes 			window-from-top-frames{ .slide-from-top-in() };
+@-webkit-keyframes 	window-come-in{ .slide-from-top-in() };
+@-moz-keyframes 	window-come-in{ .slide-from-top-in() };
+@-ms-keyframes 		window-come-in{ .slide-from-top-in() };
+@-o-keyframes 		window-come-in{ .slide-from-top-in() };
+@keyframes 			window-come-in{ .slide-from-top-in() };
 
 .window-slide-in {
 	position: relative;
-	-webkit-animation: window-from-top-frames  1s;
-  	-moz-animation: window-from-top-frames  1s;
-  	-ms-keyframes: window-from-top-frames 1s;
-	-o-keyframes: window-from-top-frames 1s;
-	animation: window-from-top-frames 1s;
+	-webkit-animation: window-come-in  0.4s;
+  	-moz-animation: window-come-in  0.4s;
+  	-ms-keyframes: window-come-in 0.4s;
+	-o-keyframes: window-come-in 0.4s;
+	animation: window-come-in 0.4s;
 }
 
 

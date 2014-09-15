@@ -5924,6 +5924,12 @@ footer:after,
 #mainMenu {
   background-color: #222222;
   border-color: #080808;
+  background-image: url("../images/headerBackground.jpg");
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-color: #000000;
+  border-color: #fa9c19;
+  border-width: 0px 0px 2px 0px;
 }
 #mainMenu .navbar-brand {
   color: #999999;
@@ -6064,19 +6070,19 @@ footer:after,
   }
 }
 @media (min-width: 768px) {
-  background-image: url("../images/headerBackground.jpg");
-  background-repeat: no-repeat;
-  background-position: center top;
-  background-color: #000000;
-  border-color: #fa9c19;
-  border-width: 0px 0px 2px 0px;
-  
-  .nav > li > a {
-    padding: 23px 20px 20px 10px;
+  #mainMenu .nav > li > a {
+    padding: 20px;
   }
+}
+.navbar-toggle {
+  margin: 12px 0 0 15px;
 }
 #toggleSlideMenu {
   float: left;
+  background-color: #214a5f;
+}
+#toggleSlideMenu:hover {
+  background-color: #214a5f;
 }
 .navbar {
   margin-bottom: 0px;
@@ -6092,13 +6098,28 @@ footer:after,
 .navbar-nav > a {
   cursor: pointer;
 }
+.brand {
+  background-image: url("../images/logoEpic11.png");
+  width: 120px;
+  height: 37px;
+  margin-top: 10px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  .brand {
+    background-image: url("../images/logoEpic11-2x.png");
+    background-size: 120px 37px;
+  }
+}
 .navbar-brand {
   background-image: url("../images/logoEpic11.png");
   width: 120px;
   height: 37px;
   margin-top: 10px;
-  margin-left: 0px;
   cursor: pointer;
+  margin-top: 15px;
+  margin-left: 0px;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   .navbar-brand {
@@ -6111,6 +6132,265 @@ footer:after,
     margin: 10px auto;
     float: none;
   }
+}
+.navbar-header-unloggin .navbar-brand {
+  background-image: url("../images/logoEpic11.png");
+  width: 120px;
+  height: 37px;
+  margin-top: 10px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  .navbar-header-unloggin .navbar-brand {
+    background-image: url("../images/logoEpic11-2x.png");
+    background-size: 120px 37px;
+  }
+}
+@media (max-width: 767px) and (max-width: 767px) {
+  .navbar-header-unloggin .navbar-brand {
+    display: none !important;
+  }
+}
+.navbar-header-unloggin .button-wrapper {
+  margin: 5px auto;
+  float: right !important;
+}
+.navbar-header-unloggin .button-wrapper .button-join {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  color: #ffffff;
+  background-color: #59add5;
+  border-color: #cccccc;
+  box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
+}
+.navbar-header-unloggin .button-wrapper .button-join:focus,
+.navbar-header-unloggin .button-wrapper .button-join:active:focus,
+.navbar-header-unloggin .button-wrapper .button-join.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.navbar-header-unloggin .button-wrapper .button-join:hover,
+.navbar-header-unloggin .button-wrapper .button-join:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+.navbar-header-unloggin .button-wrapper .button-join:active,
+.navbar-header-unloggin .button-wrapper .button-join.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.navbar-header-unloggin .button-wrapper .button-join.disabled,
+.navbar-header-unloggin .button-wrapper .button-join[disabled],
+fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-join {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.navbar-header-unloggin .button-wrapper .button-join:focus,
+.navbar-header-unloggin .button-wrapper .button-join:active:focus,
+.navbar-header-unloggin .button-wrapper .button-join.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.navbar-header-unloggin .button-wrapper .button-join:hover,
+.navbar-header-unloggin .button-wrapper .button-join:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+.navbar-header-unloggin .button-wrapper .button-join:active,
+.navbar-header-unloggin .button-wrapper .button-join.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.navbar-header-unloggin .button-wrapper .button-join.disabled,
+.navbar-header-unloggin .button-wrapper .button-join[disabled],
+fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-join {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.navbar-header-unloggin .button-wrapper .button-join:hover,
+.navbar-header-unloggin .button-wrapper .button-join:focus,
+.navbar-header-unloggin .button-wrapper .button-join:active,
+.navbar-header-unloggin .button-wrapper .button-join.active,
+.open .dropdown-toggle.navbar-header-unloggin .button-wrapper .button-join {
+  color: #ffffff;
+  background-color: #389dcd;
+  border-color: #adadad;
+}
+.navbar-header-unloggin .button-wrapper .button-join:active,
+.navbar-header-unloggin .button-wrapper .button-join.active,
+.open .dropdown-toggle.navbar-header-unloggin .button-wrapper .button-join {
+  background-image: none;
+}
+.navbar-header-unloggin .button-wrapper .button-join.disabled,
+.navbar-header-unloggin .button-wrapper .button-join[disabled],
+fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-join,
+.navbar-header-unloggin .button-wrapper .button-join.disabled:hover,
+.navbar-header-unloggin .button-wrapper .button-join[disabled]:hover,
+fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-join:hover,
+.navbar-header-unloggin .button-wrapper .button-join.disabled:focus,
+.navbar-header-unloggin .button-wrapper .button-join[disabled]:focus,
+fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-join:focus,
+.navbar-header-unloggin .button-wrapper .button-join.disabled:active,
+.navbar-header-unloggin .button-wrapper .button-join[disabled]:active,
+fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-join:active,
+.navbar-header-unloggin .button-wrapper .button-join.disabled.active,
+.navbar-header-unloggin .button-wrapper .button-join[disabled].active,
+fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-join.active {
+  background-color: #59add5;
+  border-color: #cccccc;
+}
+.navbar-header-unloggin .button-wrapper .button-join .badge {
+  color: #59add5;
+  background-color: #ffffff;
+}
+.navbar-header-unloggin .button-wrapper .button-login {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  color: #ffffff;
+  background-color: #a1c931;
+  border-color: #91b42c;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+}
+.navbar-header-unloggin .button-wrapper .button-login:focus,
+.navbar-header-unloggin .button-wrapper .button-login:active:focus,
+.navbar-header-unloggin .button-wrapper .button-login.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.navbar-header-unloggin .button-wrapper .button-login:hover,
+.navbar-header-unloggin .button-wrapper .button-login:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+.navbar-header-unloggin .button-wrapper .button-login:active,
+.navbar-header-unloggin .button-wrapper .button-login.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.navbar-header-unloggin .button-wrapper .button-login.disabled,
+.navbar-header-unloggin .button-wrapper .button-login[disabled],
+fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-login {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.navbar-header-unloggin .button-wrapper .button-login:focus,
+.navbar-header-unloggin .button-wrapper .button-login:active:focus,
+.navbar-header-unloggin .button-wrapper .button-login.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.navbar-header-unloggin .button-wrapper .button-login:hover,
+.navbar-header-unloggin .button-wrapper .button-login:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+.navbar-header-unloggin .button-wrapper .button-login:active,
+.navbar-header-unloggin .button-wrapper .button-login.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.navbar-header-unloggin .button-wrapper .button-login.disabled,
+.navbar-header-unloggin .button-wrapper .button-login[disabled],
+fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-login {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.navbar-header-unloggin .button-wrapper .button-login:hover,
+.navbar-header-unloggin .button-wrapper .button-login:focus,
+.navbar-header-unloggin .button-wrapper .button-login:active,
+.navbar-header-unloggin .button-wrapper .button-login.active,
+.open .dropdown-toggle.navbar-header-unloggin .button-wrapper .button-login {
+  color: #ffffff;
+  background-color: #87a829;
+  border-color: #698320;
+}
+.navbar-header-unloggin .button-wrapper .button-login:active,
+.navbar-header-unloggin .button-wrapper .button-login.active,
+.open .dropdown-toggle.navbar-header-unloggin .button-wrapper .button-login {
+  background-image: none;
+}
+.navbar-header-unloggin .button-wrapper .button-login.disabled,
+.navbar-header-unloggin .button-wrapper .button-login[disabled],
+fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-login,
+.navbar-header-unloggin .button-wrapper .button-login.disabled:hover,
+.navbar-header-unloggin .button-wrapper .button-login[disabled]:hover,
+fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-login:hover,
+.navbar-header-unloggin .button-wrapper .button-login.disabled:focus,
+.navbar-header-unloggin .button-wrapper .button-login[disabled]:focus,
+fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-login:focus,
+.navbar-header-unloggin .button-wrapper .button-login.disabled:active,
+.navbar-header-unloggin .button-wrapper .button-login[disabled]:active,
+fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-login:active,
+.navbar-header-unloggin .button-wrapper .button-login.disabled.active,
+.navbar-header-unloggin .button-wrapper .button-login[disabled].active,
+fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-login.active {
+  background-color: #a1c931;
+  border-color: #91b42c;
+}
+.navbar-header-unloggin .button-wrapper .button-login .badge {
+  color: #a1c931;
+  background-color: #ffffff;
 }
 #infoContent {
   background-color: #dcdcdc;
@@ -14834,7 +15114,7 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button.active {
   border-width: 0px;
 }
 .main-box .panel 0% {
-  top: -300px;
+  top: 300px;
   opacity: 0;
 }
 .main-box .panel 100% {
@@ -15118,9 +15398,9 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button.active {
   color: #ff0000;
   text-align: center;
 }
-@-webkit-keyframes window-from-top-frames {
+@-webkit-keyframes window-come-in {
   0% {
-    top: -300px;
+    top: 300px;
     opacity: 0;
   }
   100% {
@@ -15128,9 +15408,9 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button.active {
     opacity: 1;
   }
 }
-@-moz-keyframes window-from-top-frames {
+@-moz-keyframes window-come-in {
   0% {
-    top: -300px;
+    top: 300px;
     opacity: 0;
   }
   100% {
@@ -15138,9 +15418,9 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button.active {
     opacity: 1;
   }
 }
-@-ms-keyframes window-from-top-frames {
+@-ms-keyframes window-come-in {
   0% {
-    top: -300px;
+    top: 300px;
     opacity: 0;
   }
   100% {
@@ -15148,9 +15428,9 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button.active {
     opacity: 1;
   }
 }
-@-o-keyframes window-from-top-frames {
+@-o-keyframes window-come-in {
   0% {
-    top: -300px;
+    top: 300px;
     opacity: 0;
   }
   100% {
@@ -15158,9 +15438,9 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button.active {
     opacity: 1;
   }
 }
-@keyframes window-from-top-frames {
+@keyframes window-come-in {
   0% {
-    top: -300px;
+    top: 300px;
     opacity: 0;
   }
   100% {
@@ -15170,11 +15450,11 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button.active {
 }
 .window-slide-in {
   position: relative;
-  -webkit-animation: window-from-top-frames 1s;
-  -moz-animation: window-from-top-frames 1s;
-  -ms-keyframes: window-from-top-frames 1s;
-  -o-keyframes: window-from-top-frames 1s;
-  animation: window-from-top-frames 1s;
+  -webkit-animation: window-come-in 0.4s;
+  -moz-animation: window-come-in 0.4s;
+  -ms-keyframes: window-come-in 0.4s;
+  -o-keyframes: window-come-in 0.4s;
+  animation: window-come-in 0.4s;
 }
 @-webkit-keyframes errDetectionFrames {
   0% {

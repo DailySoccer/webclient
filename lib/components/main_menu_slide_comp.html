@@ -1,46 +1,47 @@
 <nav id="mainMenu" class="navbar navbar-default" role="navigation">
   <div class="inner-wrapper">
-    <!-- logo y botón de la versión XS -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navbar-offcanvas" data-canvas="body" id="toggleSlideMenu">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <div class="navbar-brand" ng-click="comp.navigateTo($event)" destination="lobby"></div>
-    </div>
-    <!-- Opciones del menu -->
 
-    <div class="navbar-offcanvas navmenu-fixed-left offcanvas">
-      <ul class="nav navbar-nav">
-        <li class="active nav-item"><a  id="menuLobby"                ng-click="comp.navigateTo($event)" destination="lobby">Torneos</a></li>
-        <li>                        <a  id="menuMy_Contest"           ng-click="comp.navigateTo($event)" destination="my_contests">Mis torneos</a></li>
-        <li>                        <a  id="menuPromos"               ng-click="comp.navigateTo($event)" destination="">Promos</a></li>
-        <li class="dropdown">
-          <a id="menuUser" class="dropdown-toggle" data-toggle="dropdown">{{comp.profileService.user.nickName}}<b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li>                    <a  id="menuUserMyAccount"        ng-click="comp.navigateTo($event)" destination="">Mi cuenta</a></li>
-            <li>                    <a  id="menuUserAddFunds"         ng-click="comp.navigateTo($event)" destination="">Añadir fondos</a></li>
-            <li>                    <a  id="menuUserHistory"          ng-click="comp.navigateTo($event)" destination="">Historial de transacciones</a></li>
-            <li>                    <a  id="menuUserReferencesCenter" ng-click="comp.navigateTo($event)" destination="">Centro de referencias</a></li>
-            <li>                    <a  id="menuUserClassification"   ng-click="comp.navigateTo($event)" destination="">Clasificación</a></li>
-            <li>                    <a  id="menuUserPromos"           ng-click="comp.navigateTo($event)" destination="">Promos</a></li>
-            <li class="divider"></li>
-            <li>                    <a  id="menuUserLogOut"           ng-click="comp.profileService.logout()">Logout</a></li>
-          </ul>
-        </li>
-        <li>                        <a  id="menuAyuda"                ng-click="" destination="">Ayuda</a></li>
-      </ul>
-    </div>
-
-    <!-- Cuando no estamos logeados, mostramos simplemente un boton de Login y Join -->
-    <div class="navbar-header-unloggin" ng-if="!comp.profileService.isLoggedIn">
-      <div class="navbar-brand-container">
-        <a class="navbar-brand" href="/index.html"></a>
+    <div id="menuLoggedIn" ng-if="comp.profileService.isLoggedIn">
+      <!-- lcabecera when logeado -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navbar-offcanvas" data-canvas="body" id="toggleSlideMenu" >
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <div class="navbar-brand" ng-click="comp.navigateTo($event)" destination="lobby"></div>
       </div>
+      <!-- Opciones del menu -->
+
+      <div class="navbar-offcanvas navmenu-fixed-left offcanvas" >
+        <ul class="nav navbar-nav" ng-model="comp.saveActiveClass()">
+          <li class="active">         <a  id="menuLobby"                ng-click="comp.navigateTo($event)" destination="lobby">Torneos</a></li>
+          <li>                        <a  id="menuMy_Contest"           ng-click="comp.navigateTo($event)" destination="my_contests">Mis torneos</a></li>
+          <li>                        <a  id="menuPromos"               ng-click="comp.navigateTo($event)" destination="">Promos</a></li>
+          <li class="dropdown">
+            <a id="menuUser" class="dropdown-toggle" data-toggle="dropdown">{{comp.profileService.user.nickName}}<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li>                    <a  id="menuUserMyAccount"        ng-click="comp.navigateTo($event)" destination="">Mi cuenta</a></li>
+              <li>                    <a  id="menuUserAddFunds"         ng-click="comp.navigateTo($event)" destination="">Añadir fondos</a></li>
+              <li>                    <a  id="menuUserHistory"          ng-click="comp.navigateTo($event)" destination="">Historial de transacciones</a></li>
+              <li>                    <a  id="menuUserReferencesCenter" ng-click="comp.navigateTo($event)" destination="">Centro de referencias</a></li>
+              <li>                    <a  id="menuUserClassification"   ng-click="comp.navigateTo($event)" destination="">Clasificación</a></li>
+              <li>                    <a  id="menuUserPromos"           ng-click="comp.navigateTo($event)" destination="">Promos</a></li>
+              <li class="divider"></li>
+              <li>                    <a  id="menuUserLogOut"           ng-click="comp.logOut()"           destination="">Logout</a></li>
+            </ul>
+          </li>
+          <li>                        <a  id="menuAyuda"                ng-click="" destination="">Ayuda</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- lcabecera when NO logeado -->
+    <div class="navbar-header-unloggin" ng-if="!comp.profileService.isLoggedIn">
+      <div class="navbar-brand" ng-click="comp.navigateTo($event)" destination="lobby"></div>
       <div class="button-wrapper">
-        <a id="joinButton" type="button" class="button-join" href="#/join">REGISTRO</a>
-        <a id="loginButton" type="button" class="button-login" href="#/login">ENTRAR</a>
+        <a id="joinButton"  type="button" class="button-join"  ng-click="comp.navigateTo($event)" destination="join">REGISTRO</a>
+        <a id="loginButton" type="button" class="button-login" ng-click="comp.navigateTo($event)" destination="login">ENTRAR</a>
       </div>
     </div>
 

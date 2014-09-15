@@ -14,11 +14,29 @@ import 'dart:html';
 class MainMenuSlideComp implements ShadowRootAware{
   ProfileService profileService;
 
-  MainMenuSlideComp(this._router, this.profileService);
+
+  void logOut() {
+    _router.go('landing_page', {});
+    profileService.logout();
+    _currentActiveElement = null;
+  }
+
+  MainMenuSlideComp(this._router, this.profileService) {
+  }
+
+
+  void saveActiveClass() {
+    if ( _currentActiveElement == null ) {
+      LIElement activ = querySelector('.active');
+      _currentActiveElement = activ;
+      print("primera vez");
+    }
+  }
 
   void navigateTo(event, [Map params]) {
     if( params == null) {
       params = {};
+
     }
     String destination = event.target.attributes["destination"];
 
@@ -35,34 +53,41 @@ class MainMenuSlideComp implements ShadowRootAware{
       return;
     }
 
-    _currentActiveElement.classes.remove('active');
-    if (a.attributes["destination"] == 'lobby') {
-      _currentActiveElement = querySelector('#menuLobby').parent;
-    }
-    else {
-      //Si el id tiene la palabra user, es un elemento del submenu de usuario
-      if (a.id.contains("user")) {
-        _currentActiveElement = a.parent.parent.parent; // Si está en el submenu tenemos que subir hasta el li padre (profuncidad actual: li>ul>li>a)
+    if(_currentActiveElement != null) {
+      _currentActiveElement.classes.remove('active');
+      if (a.attributes["destination"] == 'lobby') {
+        _currentActiveElement = querySelector('#menuLobby').parent;
       }
       else {
-        _currentActiveElement = a.parent;
+        //Si el id tiene la palabra user, es un elemento del submenu de usuario
+        if (a.id.contains("user")) {
+          _currentActiveElement = a.parent.parent.parent; // Si está en el submenu tenemos que subir hasta el li padre (profuncidad actual: li>ul>li>a)
+        }
+        else {
+          if (a.parent.runtimeType.toString() != "DivElement") {
+            _currentActiveElement = a.parent;
+          }
+          else {
+            _currentActiveElement = null;
+          }
+        }
       }
+      _currentActiveElement.classes.add('active');
     }
-    _currentActiveElement.classes.add('active');
   }
 
-  // Para las utilidades del menu solo queremos buscar cosas que estén dentro del menu
-  LIElement _currentActiveElement;
-  Router _router;
 
 
   @override
   void onShadowRoot(root) {
-    Element rootElement = root as HtmlElement;
-    // buscamos el menu
-    _currentActiveElement = rootElement.querySelector('.active') as LIElement;
-    // --Debug only--
-    if(_currentActiveElement != null)
-      print("Encontrado el elemento activo");
+   _rootElement = root as HtmlElement;
+   // buscamos el menu
+   // = _currentActiveElement.querySelector('.active');
+   // --Debug only--
+   //if(_currentActiveElement == null)
+   //  print("No se ha encontrado el elemento del menu 'active'");
   }
+  HtmlElement _rootElement;
+  LIElement _currentActiveElement;
+  Router _router;
 }

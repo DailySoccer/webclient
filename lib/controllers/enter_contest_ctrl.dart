@@ -98,6 +98,11 @@ class EnterContestCtrl implements DetachAware{
     _streamListener.cancel();
   }
 
+  bool isActiveContestInfoTab() {
+    Element contestInfoTabContent = document.querySelector('#contest-info-tab-content');
+    return (contestInfoTabContent != null) && (contestInfoTabContent.classes.contains("active"));
+  }
+
   void tabChange(String tab) {
     List<dynamic> allContentTab = document.querySelectorAll(".enter-contest-wrapper .tab-pane");
     allContentTab.forEach((element) => element.classes.remove('active'));
@@ -429,7 +434,13 @@ class EnterContestCtrl implements DetachAware{
     else {
       _activeContestService.addContestEntry(contest.contestId, lineupSlots.map((player) => player["id"]).toList())
         .then((_) => _router.go('view_contest_entry', {"contestId" : contest.contestId, "parent" : parent}))
-        .catchError((error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW));
+        .catchError((error) {
+          _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
+
+          if (error["error"].contains("ERROR_CONTEST_FULL")) {
+            print('Esta lleno');
+          }
+        });
     }
   }
 

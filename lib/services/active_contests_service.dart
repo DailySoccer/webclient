@@ -20,39 +20,24 @@ class ActiveContestsService {
   ActiveContestsService(this._server);
 
   Future refreshActiveContests() {
-    var completer = new Completer();
-
-    _server.getActiveContests()
-        .then((jsonObject) {
-          activeContests = Contest.loadContestsFromJsonObject(jsonObject);
-          completer.complete();
-        });
-    print('-ACTIVE_CONTEST_SERVICE-: Actualizando concursos');
-    return completer.future;
+    return _server.getActiveContests()
+      .then((jsonObject) {
+        activeContests = Contest.loadContestsFromJsonObject(jsonObject);
+      });
   }
 
   Future addContestEntry(String contestId, List<String> soccerPlayerIds) {
-    var completer = new Completer();
-
-    _server.addContestEntry(contestId, soccerPlayerIds)
+    return _server.addContestEntry(contestId, soccerPlayerIds)
       .then((jsonObject) {
         print("response: " + jsonObject.toString());
-        completer.complete();
       });
-
-    return completer.future;
   }
 
   Future refreshContest(String contestId) {
-    var completer = new Completer();
-
-    _server.getContestInfo(contestId)
-        .then((jsonObject) {
-          lastContest = Contest.loadContestsFromJsonObject(jsonObject).first;
-          completer.complete(jsonObject);
-        });
-
-    return completer.future;
+    return _server.getContestInfo(contestId)
+      .then((jsonObject) {
+        lastContest = Contest.loadContestsFromJsonObject(jsonObject).first;
+      });
   }
 
   ServerService _server;

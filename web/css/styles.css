@@ -9543,6 +9543,9 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list.activ
 .match-teams-filter .active:visited {
   color: #434343;
 }
+.contest-info-tab-active {
+  display: none !important;
+}
 @media (min-width: 768px) {
   .enter-contest-soccer-players-wrapper {
     position: relative;

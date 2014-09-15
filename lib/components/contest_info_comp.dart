@@ -82,10 +82,13 @@ class ContestInfoComp implements ShadowRootAware {
   }
 
   void goToEnterContest(obj) {
-    _router.go('enter_contest', { "contestId": contestData.contestId });
+    if (_goToEnterContest) {
+      _router.go('enter_contest', { "contestId": contestData.contestId, "parent": "lobby" });
+    }
   }
 
   void enterContest() {
+    _goToEnterContest = true;
     //Element modal = querySelector('#infoContestModal');
     // quitamos la clase fade porque se lanza el router antes de cerrar la modal y queda
     //modal.classes.remove('fade');
@@ -117,6 +120,7 @@ class ContestInfoComp implements ShadowRootAware {
 
   Contest _contestData;
   bool _popUpStyle;
+  bool _goToEnterContest = false;
 
   void onShadowRoot(root) {
     JsUtils.runJavascript('#infoContestModal', 'on', {'hidden.bs.modal': goToEnterContest});

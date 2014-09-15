@@ -25,6 +25,7 @@ class ViewContestEntryComp {
   dynamic selectedOpponent;
 
   String parent = "";
+  String editMode = "";
 
   DateTime updatedDate;
 
@@ -35,11 +36,15 @@ class ViewContestEntryComp {
   List<ContestEntry> get contestEntriesOrderByPoints => (contest != null) ? contest.contestEntriesOrderByPoints : null;
 
   bool get isEnterContestMode => parent == "lobby";
+  bool get isEditContestMode => editMode== "edit_contest_entry";
 
   ViewContestEntryComp(RouteProvider routeProvider, this.scrDet, this._myContestsService, this._profileService, this._flashMessage, this._router) {
 
       // Identificamos cúal es la pantalla desde la que se ha llamado al view contest entry
       parent = routeProvider.route.parameters['parent'];
+
+      // Identificamos si estamos editando o no
+      editMode = routeProvider.route.name;
 
       _contestId = routeProvider.route.parameters['contestId'];
 

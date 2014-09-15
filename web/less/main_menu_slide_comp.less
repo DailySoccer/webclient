@@ -1,46 +1,163 @@
-// Funcion para pintar el fondo de la cabecera
+// Funcion para pintar el fondo de la cabecera  
 .background-header {
-  background-image: url("@{images}/headerBackground.jpg");
-  background-repeat: no-repeat;
-  background-position: center top;
-  background-color: @black;
-  border-color: @orange;
-  border-width: 0px 0px 2px 0px;
+    background-image: url("@{images}/headerBackground.jpg");
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-color: @black;
+    border-color: @orange;
+    border-width: 0px 0px 2px 0px;
 }
 
 #mainMenu {
-  	// Partimos de la navbar-inverse y vamos cambiando
-  	.navbar-inverse();
+    // Partimos de la navbar-inverse y vamos cambiando: ;
+    .navbar-inverse();
 
-	.inner-wrapper {
-		.container-fluid();
-  		@media (min-width: @screen-md-min) {
-  			.container;
+  	.inner-wrapper {
+  		  	.container-fluid();
+    		@media (min-width: @screen-md-min) {
+    			.container;
+    		}
+  	}
+  	.background-header();
+
+   	// Version no XS (SM y Desktop)
+  	@media (min-width: @screen-sm-min) {
+	  	// elementos del menu
+	  	.navbar-nav > .active > a {
+  			background-color: fade( @black, 30%);
+  			color: @white;
+  			&:hover {
+  				background-color: fade( @black, 30%);
+  				color: @white;
+  			}
   		}
-	}
-	.background-header();
+  		.navbar-nav > .open > a {
+  			background-color: transparent;
+  			&:hover {
+  				background-color: transparent;
+  			}
+  		}
+	  	.navbar-nav > li > a {
+	    	padding: 20px;
+  			cursor:pointer;
+	  	}
+    	// elementos del sub-menu
+        .dropdown-menu {
+			& {
+				padding: 0px;
+			}
+	        & > li > a {
+	            cursor:pointer;
+	            padding: 15px 60px 15px 20px;
+	            .make-border(1px, none solid solid solid, @greyUltraLight);
 
- 	// Version no XS (SM y Desktop)
-	@media (min-width: @screen-sm-min) {
-		
+	            &:hover {
+	            	background-color: @greyUltraLight;
+	            }
+	        }
+	    }
+  	}
 
-		// Todos los enlaces: centrados vertical
-		.nav > li > a {
-		  padding: 20px;
+	// elementos del menu reducido:
+    @media (max-width: @screen-xs-max) {        
+        .navbar-offcanvas {
+        	background-color: @greyUltraDark;
+        	//caja menu ppal.
+			& ul {
+				background-color: @white;
+				// li activo
+				& > .active, li {
+					background-color: transparent;
+					//anchor del activo
+					& > a {	
+						background-color: transparent;
+						.opensans_bold(12pt, @black);
+					}
+					// li del activo en hover
+					&:hover {
+						background-color: transparent;
+						//anchor del activo en hover
+						& > a {
+							background-color: transparent;
+							.opensans_bold(12pt, @black);
+						}
+					}
+				}
+				// Elementos li no activos
+				& >li {
+					.make-border(1px, solid none none none, @greyLight);
+					//anchor de los elementos no activos
+					& > a {
+						.opensans_normal(12pt, @greyDark);
+					}
+					// Elementos li en no activos en hover
+					&:hover {
+						background-color: @greyLight;
+						//anchor de los elementos li no activos en hover
+						> a {
+							.opensans_normal(12pt, @greyDark);
+						}
+					}
+        		}
+			}
+			//submenu de usuario abierto
+			.open > a, .open > a:hover, .open > a:focus {
+	  			background-color: @greyLight;
+	  		}
+	  		.dropdown-menu {
+				padding: 0px;
+		        & li > a {
+		            cursor:pointer;
+		            padding: 15px 60px 15px 40px;
+		        }
+		    }	
+
+	        
+
+        }
+        /*
+        // caja submenu;
+        .open > ul {
+        	padding: 0;
+        }
+        //elementos submenu
+		.navbar-nav > .open > ul > li {
+
+			& > a {
+				cursor:pointer;
+				background-color: @white;
+			}
+            &:hover {
+            	background-color: @greyLight;
+            	color: @red;
+            }
 		}
-	}
-}
-.navbar-toggle {
-	margin: 12px 0 0 15px;
-}
-#toggleSlideMenu {
-	float: left;
-  background-color: @blueDark;
-  &:hover {
-    background-color: @blueDark;
-  }
-}
+	    .navbar-nav > .open > a {
+  			background-color: transparent;
+  			&:hover {
+  				background-color: transparent;
+  			}
+  		}
+        .navbar-nav > li > a{
+            cursor: pointer;
+        }
+        */
+        .navbar-toggle {
+			&:hover, &:focus {
+		    	background-color: transparent;
+			}
+		}
+		#toggleSlideMenu {
+		  	.make-border(0px, none none none none, @black);
+			.icon-bar {
+				height: 3px;
+			}
+			float: left;
+		  	background-color: transparent;
+		}
+    }
 
+}
 .navbar {
     margin-bottom: 0px;
     @media (min-width: @screen-sm-min) {
@@ -51,20 +168,18 @@
   	}
 }
 
-.navbar-nav > a{
-	cursor:pointer;
-}
 
-.brand {
-	// Retina display
+.brand-style {
+	// Retina display: ;
   	.img-retina("@{images}/logoEpic11.png", "@{images}/logoEpic11-2x.png", 120px, 37px);      
   	.size(120px, 37px);
   	margin-top: 10px;
   	cursor: pointer;
     margin-top: 15px;
 }
+
 .navbar-brand {
-  .brand();
+  .brand-style();
   margin-left: 0px;
 
   @media (max-width: @screen-xs-max) {
@@ -74,15 +189,15 @@
 }
 
 
-
+// Menu sin logear: ;
 .navbar-header-unloggin {   
 	.navbar-brand {
-  		.brand();
+  		.brand-style();
   		@media (max-width: @screen-xs-max) {
 		  	.hidden-xs();
 		}
 	}
-    // Botones de login y join
+    // Botones de login y join: ;
     .button-wrapper {
       	margin: 5px auto;
       	.pull-right();

@@ -6070,19 +6070,147 @@ footer:after,
   }
 }
 @media (min-width: 768px) {
-  #mainMenu .nav > li > a {
+  #mainMenu .navbar-nav > .active > a {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #ffffff;
+  }
+  #mainMenu .navbar-nav > .active > a:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #ffffff;
+  }
+  #mainMenu .navbar-nav > .open > a {
+    background-color: transparent;
+  }
+  #mainMenu .navbar-nav > .open > a:hover {
+    background-color: transparent;
+  }
+  #mainMenu .navbar-nav > li > a {
     padding: 20px;
+    cursor: pointer;
+  }
+  #mainMenu .dropdown-menu {
+    padding: 0px;
+  }
+  #mainMenu .dropdown-menu > li > a {
+    cursor: pointer;
+    padding: 15px 60px 15px 20px;
+    border-width: 1px;
+    border-style: none solid solid solid;
+    border-color: #f8f8f8;
+    border-radius: 0;
+  }
+  #mainMenu .dropdown-menu > li > a:hover {
+    background-color: #f8f8f8;
   }
 }
-.navbar-toggle {
-  margin: 12px 0 0 15px;
-}
-#toggleSlideMenu {
-  float: left;
-  background-color: #214a5f;
-}
-#toggleSlideMenu:hover {
-  background-color: #214a5f;
+@media (max-width: 767px) {
+  #mainMenu {
+    /*
+        // caja submenu;
+        .open > ul {
+        	padding: 0;
+        }
+        //elementos submenu
+		.navbar-nav > .open > ul > li {
+
+			& > a {
+				cursor:pointer;
+				background-color: @white;
+			}
+            &:hover {
+            	background-color: @greyLight;
+            	color: @red;
+            }
+		}
+	    .navbar-nav > .open > a {
+  			background-color: transparent;
+  			&:hover {
+  				background-color: transparent;
+  			}
+  		}
+        .navbar-nav > li > a{
+            cursor: pointer;
+        }
+        */
+  }
+  #mainMenu .navbar-offcanvas {
+    background-color: #434343;
+  }
+  #mainMenu .navbar-offcanvas ul {
+    background-color: #ffffff;
+  }
+  #mainMenu .navbar-offcanvas ul > .active,
+  #mainMenu .navbar-offcanvas ul li {
+    background-color: transparent;
+  }
+  #mainMenu .navbar-offcanvas ul > .active > a,
+  #mainMenu .navbar-offcanvas ul li > a {
+    background-color: transparent;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 12pt;
+    color: #000000;
+  }
+  #mainMenu .navbar-offcanvas ul > .active:hover,
+  #mainMenu .navbar-offcanvas ul li:hover {
+    background-color: transparent;
+  }
+  #mainMenu .navbar-offcanvas ul > .active:hover > a,
+  #mainMenu .navbar-offcanvas ul li:hover > a {
+    background-color: transparent;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 12pt;
+    color: #000000;
+  }
+  #mainMenu .navbar-offcanvas ul > li {
+    border-width: 1px;
+    border-style: solid none none none;
+    border-color: #dcdcdc;
+    border-radius: 0;
+  }
+  #mainMenu .navbar-offcanvas ul > li > a {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 12pt;
+    color: #777777;
+  }
+  #mainMenu .navbar-offcanvas ul > li:hover {
+    background-color: #dcdcdc;
+  }
+  #mainMenu .navbar-offcanvas ul > li:hover > a {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 12pt;
+    color: #777777;
+  }
+  #mainMenu .navbar-offcanvas .open > a,
+  #mainMenu .navbar-offcanvas .open > a:hover,
+  #mainMenu .navbar-offcanvas .open > a:focus {
+    background-color: #dcdcdc;
+  }
+  #mainMenu .navbar-offcanvas .dropdown-menu {
+    padding: 0px;
+  }
+  #mainMenu .navbar-offcanvas .dropdown-menu li > a {
+    cursor: pointer;
+    padding: 15px 60px 15px 40px;
+  }
+  #mainMenu .navbar-toggle:hover,
+  #mainMenu .navbar-toggle:focus {
+    background-color: transparent;
+  }
+  #mainMenu #toggleSlideMenu {
+    border-width: 0px;
+    border-style: none none none none;
+    border-color: #000000;
+    border-radius: 0;
+    float: left;
+    background-color: transparent;
+  }
+  #mainMenu #toggleSlideMenu .icon-bar {
+    height: 3px;
+  }
 }
 .navbar {
   margin-bottom: 0px;
@@ -6095,10 +6223,7 @@ footer:after,
     margin-left: 0px;
   }
 }
-.navbar-nav > a {
-  cursor: pointer;
-}
-.brand {
+.brand-style {
   background-image: url("../images/logoEpic11.png");
   width: 120px;
   height: 37px;
@@ -6107,7 +6232,7 @@ footer:after,
   margin-top: 15px;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  .brand {
+  .brand-style {
     background-image: url("../images/logoEpic11-2x.png");
     background-size: 120px 37px;
   }

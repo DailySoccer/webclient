@@ -6104,35 +6104,6 @@ footer:after,
   }
 }
 @media (max-width: 767px) {
-  #mainMenu {
-    /*
-        // caja submenu;
-        .open > ul {
-        	padding: 0;
-        }
-        //elementos submenu
-		.navbar-nav > .open > ul > li {
-
-			& > a {
-				cursor:pointer;
-				background-color: @white;
-			}
-            &:hover {
-            	background-color: @greyLight;
-            	color: @red;
-            }
-		}
-	    .navbar-nav > .open > a {
-  			background-color: transparent;
-  			&:hover {
-  				background-color: transparent;
-  			}
-  		}
-        .navbar-nav > li > a{
-            cursor: pointer;
-        }
-        */
-  }
   #mainMenu .navbar-offcanvas {
     background-color: #434343;
   }
@@ -6148,7 +6119,7 @@ footer:after,
     background-color: transparent;
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
-    font-size: 12pt;
+    font-size: 10pt;
     color: #000000;
   }
   #mainMenu .navbar-offcanvas ul > .active:hover,
@@ -6160,7 +6131,7 @@ footer:after,
     background-color: transparent;
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
-    font-size: 12pt;
+    font-size: 10pt;
     color: #000000;
   }
   #mainMenu .navbar-offcanvas ul > li {
@@ -6172,7 +6143,7 @@ footer:after,
   #mainMenu .navbar-offcanvas ul > li > a {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
-    font-size: 12pt;
+    font-size: 10pt;
     color: #777777;
   }
   #mainMenu .navbar-offcanvas ul > li:hover {
@@ -6181,7 +6152,7 @@ footer:after,
   #mainMenu .navbar-offcanvas ul > li:hover > a {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
-    font-size: 12pt;
+    font-size: 10pt;
     color: #777777;
   }
   #mainMenu .navbar-offcanvas .open > a,
@@ -6194,7 +6165,7 @@ footer:after,
   }
   #mainMenu .navbar-offcanvas .dropdown-menu li > a {
     cursor: pointer;
-    padding: 15px 60px 15px 40px;
+    padding: 10px 0px 10px 40px;
   }
   #mainMenu .navbar-toggle:hover,
   #mainMenu .navbar-toggle:focus {

@@ -30,6 +30,7 @@ class ActiveContestsService {
     return _server.addContestEntry(contestId, soccerPlayerIds)
       .then((jsonObject) {
         print("response: " + jsonObject.toString());
+        return jsonObject.contestId;
       });
   }
 

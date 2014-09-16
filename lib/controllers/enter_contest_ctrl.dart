@@ -433,16 +433,15 @@ class EnterContestCtrl implements DetachAware{
     }
     else {
       _activeContestService.addContestEntry(contest.contestId, lineupSlots.map((player) => player["id"]).toList())
-        .then((_) => _router.go('view_contest_entry', {"contestId" : contest.contestId, "parent" : parent}))
-
-        .catchError((error) {
-          _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
-
-          if (error["error"].contains("ERROR_CONTEST_FULL")) {
-            print('Esta lleno');
-            _router.go('new_contest_entry', {"contestId" : contest.contestId, "parent" : parent});
+        .then((contestId) {
+          if (contestId == contest.contestId) {
+            _router.go('view_contest_entry', {"contestId" : contest.contestId, "parent" : parent});
           }
-        });
+          else {
+            _router.go('new_contest_entry', {"contestId" : contestId, "parent" : parent});
+          }
+        })
+        .catchError((error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW));
     }
   }
 

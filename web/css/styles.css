@@ -7273,7 +7273,7 @@ button#infoContent .modal-info-head button.close {
     height: 24px;
     display: inline-block;
     position: absolute;
-    top: 2px;
+    top: 3px;
     left: 0;
   }
   #headerContestWidget .contest-coins .contest-prize span::before {
@@ -7283,8 +7283,9 @@ button#infoContent .modal-info-head button.close {
     height: 24px;
     display: inline-block;
     position: absolute;
-    top: 2px;
+    top: 3px;
     left: 0;
+    left: -5px;
   }
 }
 #headerContestWidget .contest-start-date {

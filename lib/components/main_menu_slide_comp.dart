@@ -2,6 +2,7 @@ library main_menu_slide_comp;
 
 import 'package:angular/angular.dart';
 import 'package:webclient/services/profile_service.dart';
+import 'package:webclient/utils/js_utils.dart';
 import 'dart:html';
 
 @Component(
@@ -16,13 +17,15 @@ class MainMenuSlideComp implements ShadowRootAware{
 
 
   void logOut() {
+    JsUtils.runJavascript('.navbar-offcanvas.navmenu-fixed-left', 'offcanvas', 'hide');
     _router.go('landing_page', {});
     profileService.logout();
     _currentActiveElement = null;
+
+
   }
 
-  MainMenuSlideComp(this._router, this.profileService) {
-  }
+  MainMenuSlideComp(this._router, this.profileService);
 
 
   void saveActiveClass() {
@@ -45,6 +48,7 @@ class MainMenuSlideComp implements ShadowRootAware{
     }
 
     updateMenuLinks(event.target);
+    JsUtils.runJavascript('.navbar-offcanvas.navmenu-fixed-left', 'offcanvas', 'hide');
   }
 
   void updateMenuLinks(dynamic a) {
@@ -72,7 +76,10 @@ class MainMenuSlideComp implements ShadowRootAware{
           }
         }
       }
-      _currentActiveElement.classes.add('active');
+
+      if(_currentActiveElement != null) {
+        _currentActiveElement.classes.add('active');
+      }
     }
   }
 

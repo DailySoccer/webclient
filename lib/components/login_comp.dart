@@ -17,20 +17,17 @@ class LoginComp implements ShadowRootAware  {
   String password = "";
   String rememberMe;
 
-  Element errSection;
-
   LoginComp(this._router, this._profileManager);
 
   void login() {
-    errSection = querySelector('#mailPassError')
-                  ..parent.parent.style.display = "none";
+    _errSection.parent.parent.style.display = "none";
     enabledSubmit = false;
 
     _profileManager.login(email, password)
         .then((_) => _router.go('lobby', {}))
         .catchError( (error) {
           enabledSubmit = true;
-          errSection
+          _errSection
             ..text = error["email"][0]
             ..classes.remove("errorDetected")
             ..classes.add("errorDetected")
@@ -44,16 +41,17 @@ class LoginComp implements ShadowRootAware  {
     _router.go("join", {});
   }
   void forgetPass() {
-    print("Me llaman a 'He olvidado mi contraseña'");
+    _router.go("rememberPassword", {});
   }
 
   Router _router;
   ProfileService _profileManager;
+  Element _errSection;
 
   @override
   void onShadowRoot(root) {
     var rootElement = root as HtmlElement;
-    var errSection = rootElement.querySelector("#mailPassError");
-    errSection.parent.parent.style.display = 'none';
+    _errSection = rootElement.querySelector("#mailPassError");
+    _errSection.parent.parent.style.display = 'none';
   }
 }

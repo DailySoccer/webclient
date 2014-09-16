@@ -1,4 +1,4 @@
-#loginRoot, #joinRoot {
+#loginRoot, #joinRoot, #rememberPasswordRoot {
 	.make-row(0);
 	@media (min-width: @screen-sm-min) {
 		min-height: 750px;
@@ -85,6 +85,18 @@
    					.btn-primary();
    					.btn-block();
    				}
+				.enter-button-half {
+   					.btn();
+   					.btn-primary();
+   					.make-xs-column(5.9);
+
+   				}
+   				.cancel-button-half {
+   					.btn();
+   					.btn-cancel();
+   					.make-xs-column(5.9);
+   					.pull-right();
+   				}
    				.separator-top {
    					.opensans_normal(8pt, @greyDark);
 					border-top: 1px @black;
@@ -108,7 +120,7 @@
 	}
 }
 
-//animaciones
+//animacion slide arriba
 .slide-from-top-in() {
 	0%   { top: 300px; opacity: 0;}
     100% { top: 0px; opacity: 1; }
@@ -128,7 +140,6 @@
 	-o-keyframes: window-come-in 0.4s;
 	animation: window-come-in 0.4s;
 }
-
 
 // aparece creciendo a la vez que con opacidad
 .unvanish-keyframes() {

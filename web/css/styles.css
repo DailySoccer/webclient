@@ -5691,6 +5691,8 @@ footer:after,
 #loginRoot:after,
 #joinRoot:before,
 #joinRoot:after,
+#rememberPasswordRoot:before,
+#rememberPasswordRoot:after,
 .main-box .panel .form-horizontal:before,
 .main-box .panel .form-horizontal:after,
 .info-complete-bar:before,
@@ -5760,6 +5762,7 @@ footer:after,
 #mainFooter .sub-footer:after,
 #loginRoot:after,
 #joinRoot:after,
+#rememberPasswordRoot:after,
 .main-box .panel .form-horizontal:after,
 .info-complete-bar:after,
 .view-contest-entry-actions-wrapper:after,
@@ -15166,13 +15169,15 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button.active {
   background-color: white;
 }
 #loginRoot,
-#joinRoot {
+#joinRoot,
+#rememberPasswordRoot {
   margin-left: 0;
   margin-right: 0;
 }
 @media (min-width: 768px) {
   #loginRoot,
-  #joinRoot {
+  #joinRoot,
+  #rememberPasswordRoot {
     min-height: 750px;
   }
 }
@@ -15473,6 +15478,313 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button.active {
   color: #a1c931;
   background-color: #ffffff;
 }
+.main-box .panel .panel-body .new-row .enter-button-half {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  color: #ffffff;
+  background-color: #a1c931;
+  border-color: #91b42c;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  position: relative;
+  float: left;
+  width: 49.16666667%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.main-box .panel .panel-body .new-row .enter-button-half:focus,
+.main-box .panel .panel-body .new-row .enter-button-half:active:focus,
+.main-box .panel .panel-body .new-row .enter-button-half.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.main-box .panel .panel-body .new-row .enter-button-half:hover,
+.main-box .panel .panel-body .new-row .enter-button-half:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+.main-box .panel .panel-body .new-row .enter-button-half:active,
+.main-box .panel .panel-body .new-row .enter-button-half.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.main-box .panel .panel-body .new-row .enter-button-half.disabled,
+.main-box .panel .panel-body .new-row .enter-button-half[disabled],
+fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button-half {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.main-box .panel .panel-body .new-row .enter-button-half:focus,
+.main-box .panel .panel-body .new-row .enter-button-half:active:focus,
+.main-box .panel .panel-body .new-row .enter-button-half.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.main-box .panel .panel-body .new-row .enter-button-half:hover,
+.main-box .panel .panel-body .new-row .enter-button-half:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+.main-box .panel .panel-body .new-row .enter-button-half:active,
+.main-box .panel .panel-body .new-row .enter-button-half.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.main-box .panel .panel-body .new-row .enter-button-half.disabled,
+.main-box .panel .panel-body .new-row .enter-button-half[disabled],
+fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button-half {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.main-box .panel .panel-body .new-row .enter-button-half:hover,
+.main-box .panel .panel-body .new-row .enter-button-half:focus,
+.main-box .panel .panel-body .new-row .enter-button-half:active,
+.main-box .panel .panel-body .new-row .enter-button-half.active,
+.open .dropdown-toggle.main-box .panel .panel-body .new-row .enter-button-half {
+  color: #ffffff;
+  background-color: #87a829;
+  border-color: #698320;
+}
+.main-box .panel .panel-body .new-row .enter-button-half:active,
+.main-box .panel .panel-body .new-row .enter-button-half.active,
+.open .dropdown-toggle.main-box .panel .panel-body .new-row .enter-button-half {
+  background-image: none;
+}
+.main-box .panel .panel-body .new-row .enter-button-half.disabled,
+.main-box .panel .panel-body .new-row .enter-button-half[disabled],
+fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button-half,
+.main-box .panel .panel-body .new-row .enter-button-half.disabled:hover,
+.main-box .panel .panel-body .new-row .enter-button-half[disabled]:hover,
+fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button-half:hover,
+.main-box .panel .panel-body .new-row .enter-button-half.disabled:focus,
+.main-box .panel .panel-body .new-row .enter-button-half[disabled]:focus,
+fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button-half:focus,
+.main-box .panel .panel-body .new-row .enter-button-half.disabled:active,
+.main-box .panel .panel-body .new-row .enter-button-half[disabled]:active,
+fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button-half:active,
+.main-box .panel .panel-body .new-row .enter-button-half.disabled.active,
+.main-box .panel .panel-body .new-row .enter-button-half[disabled].active,
+fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button-half.active {
+  background-color: #a1c931;
+  border-color: #91b42c;
+}
+.main-box .panel .panel-body .new-row .enter-button-half .badge {
+  color: #a1c931;
+  background-color: #ffffff;
+}
+.main-box .panel .panel-body .new-row .cancel-button-half {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  color: #ffffff;
+  background-color: #afafaf;
+  border-color: #cccccc;
+  box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
+  position: relative;
+  float: left;
+  width: 49.16666667%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  float: right !important;
+}
+.main-box .panel .panel-body .new-row .cancel-button-half:focus,
+.main-box .panel .panel-body .new-row .cancel-button-half:active:focus,
+.main-box .panel .panel-body .new-row .cancel-button-half.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.main-box .panel .panel-body .new-row .cancel-button-half:hover,
+.main-box .panel .panel-body .new-row .cancel-button-half:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+.main-box .panel .panel-body .new-row .cancel-button-half:active,
+.main-box .panel .panel-body .new-row .cancel-button-half.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.main-box .panel .panel-body .new-row .cancel-button-half.disabled,
+.main-box .panel .panel-body .new-row .cancel-button-half[disabled],
+fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.main-box .panel .panel-body .new-row .cancel-button-half:focus,
+.main-box .panel .panel-body .new-row .cancel-button-half:active:focus,
+.main-box .panel .panel-body .new-row .cancel-button-half.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.main-box .panel .panel-body .new-row .cancel-button-half:hover,
+.main-box .panel .panel-body .new-row .cancel-button-half:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+.main-box .panel .panel-body .new-row .cancel-button-half:active,
+.main-box .panel .panel-body .new-row .cancel-button-half.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.main-box .panel .panel-body .new-row .cancel-button-half.disabled,
+.main-box .panel .panel-body .new-row .cancel-button-half[disabled],
+fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.main-box .panel .panel-body .new-row .cancel-button-half:focus,
+.main-box .panel .panel-body .new-row .cancel-button-half:active:focus,
+.main-box .panel .panel-body .new-row .cancel-button-half.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.main-box .panel .panel-body .new-row .cancel-button-half:hover,
+.main-box .panel .panel-body .new-row .cancel-button-half:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+.main-box .panel .panel-body .new-row .cancel-button-half:active,
+.main-box .panel .panel-body .new-row .cancel-button-half.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.main-box .panel .panel-body .new-row .cancel-button-half.disabled,
+.main-box .panel .panel-body .new-row .cancel-button-half[disabled],
+fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.main-box .panel .panel-body .new-row .cancel-button-half:focus,
+.main-box .panel .panel-body .new-row .cancel-button-half:active:focus,
+.main-box .panel .panel-body .new-row .cancel-button-half.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.main-box .panel .panel-body .new-row .cancel-button-half:hover,
+.main-box .panel .panel-body .new-row .cancel-button-half:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+.main-box .panel .panel-body .new-row .cancel-button-half:active,
+.main-box .panel .panel-body .new-row .cancel-button-half.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.main-box .panel .panel-body .new-row .cancel-button-half.disabled,
+.main-box .panel .panel-body .new-row .cancel-button-half[disabled],
+fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.main-box .panel .panel-body .new-row .cancel-button-half:hover,
+.main-box .panel .panel-body .new-row .cancel-button-half:focus,
+.main-box .panel .panel-body .new-row .cancel-button-half:active,
+.main-box .panel .panel-body .new-row .cancel-button-half.active,
+.open .dropdown-toggle.main-box .panel .panel-body .new-row .cancel-button-half {
+  color: #ffffff;
+  background-color: #9b9b9b;
+  border-color: #adadad;
+}
+.main-box .panel .panel-body .new-row .cancel-button-half:active,
+.main-box .panel .panel-body .new-row .cancel-button-half.active,
+.open .dropdown-toggle.main-box .panel .panel-body .new-row .cancel-button-half {
+  background-image: none;
+}
+.main-box .panel .panel-body .new-row .cancel-button-half.disabled,
+.main-box .panel .panel-body .new-row .cancel-button-half[disabled],
+fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half,
+.main-box .panel .panel-body .new-row .cancel-button-half.disabled:hover,
+.main-box .panel .panel-body .new-row .cancel-button-half[disabled]:hover,
+fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half:hover,
+.main-box .panel .panel-body .new-row .cancel-button-half.disabled:focus,
+.main-box .panel .panel-body .new-row .cancel-button-half[disabled]:focus,
+fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half:focus,
+.main-box .panel .panel-body .new-row .cancel-button-half.disabled:active,
+.main-box .panel .panel-body .new-row .cancel-button-half[disabled]:active,
+fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half:active,
+.main-box .panel .panel-body .new-row .cancel-button-half.disabled.active,
+.main-box .panel .panel-body .new-row .cancel-button-half[disabled].active,
+fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half.active {
+  background-color: #afafaf;
+  border-color: #cccccc;
+}
+.main-box .panel .panel-body .new-row .cancel-button-half .badge {
+  color: #afafaf;
+  background-color: #ffffff;
+}
 .main-box .panel .panel-body .new-row .separator-top {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
@@ -15617,43 +15929,6 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button.active {
   -ms-keyframes: errDetectionFrames 0.5s;
   -o-keyframes: errDetectionFrames 0.5s;
   animation: errDetectionFrames  0.5s;
-}
-/*************************************************
-Si hay que añadir nuevas banderas, ir a la siguiente url
-url: http://flag-sprites.com/es_ES/;
-
-Para evitar carga seleccionar todas las banderas que usemos.
-
-Banderas usadas hasta la fecha: 
-  - Alemania
-  - España
-  - Europa
-  - Francia
-  - UK
-  - Italia
-*************************************************/
-.flag {
-  width: 16px;
-  height: 11px;
-  background: url(../flags/flags.png) no-repeat;
-}
-.flag.flag-de {
-  background-position: -16px 0;
-}
-.flag.flag-es {
-  background-position: -32px 0;
-}
-.flag.flag-eu {
-  background-position: 0 -11px;
-}
-.flag.flag-fr {
-  background-position: -16px -11px;
-}
-.flag.flag-gb {
-  background-position: -32px -11px;
-}
-.flag.flag-it {
-  background-position: 0 -22px;
 }
 .separator-bar {
   background-image: -webkit-linear-gradient(top, #1a3949 49%, #0f2630 51%);
@@ -16025,10 +16300,46 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-back-contest.active 
   overflow: hidden;
   white-space: nowrap;
 }
+/*************************************************
+Si hay que añadir nuevas banderas, ir a la siguiente url
+url: http://flag-sprites.com/es_ES/;
+
+Para evitar carga seleccionar todas las banderas que usemos.
+
+Banderas usadas hasta la fecha: 
+  - Alemania
+  - España
+  - Europa
+  - Francia
+  - UK
+  - Italia
+*************************************************/
+.flag {
+  width: 16px;
+  height: 11px;
+  background: url(../flags/flags.png) no-repeat;
+}
+.flag.flag-de {
+  background-position: -16px 0;
+}
+.flag.flag-es {
+  background-position: -32px 0;
+}
+.flag.flag-eu {
+  background-position: 0 -11px;
+}
+.flag.flag-fr {
+  background-position: -16px -11px;
+}
+.flag.flag-gb {
+  background-position: -32px -11px;
+}
+.flag.flag-it {
+  background-position: 0 -22px;
+}
 html,
 body {
   height: 100%;
-  background-color: #000000;
 }
 #injectedContainer {
   min-height: 400px;

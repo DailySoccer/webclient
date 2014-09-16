@@ -6093,7 +6093,7 @@ footer:after,
   }
   #mainMenu .dropdown-menu > li > a {
     cursor: pointer;
-    padding: 15px 60px 15px 20px;
+    padding: 15px 0px 15px 20px;
     border-width: 1px;
     border-style: none solid solid solid;
     border-color: #f8f8f8;
@@ -6145,6 +6145,7 @@ footer:after,
     font-weight: 400;
     font-size: 10pt;
     color: #777777;
+    cursor: pointer;
   }
   #mainMenu .navbar-offcanvas ul > li:hover {
     background-color: #dcdcdc;
@@ -6155,10 +6156,16 @@ footer:after,
     font-size: 10pt;
     color: #777777;
   }
-  #mainMenu .navbar-offcanvas .open > a,
-  #mainMenu .navbar-offcanvas .open > a:hover,
-  #mainMenu .navbar-offcanvas .open > a:focus {
+  #mainMenu .navbar-offcanvas .navbar-nav > .open > a,
+  #mainMenu .navbar-offcanvas .navbar-nav > .open > a:focus,
+  #mainMenu .navbar-offcanvas .navbar-nav > .open > a:hover {
     background-color: #dcdcdc;
+    color: #000000;
+  }
+  #mainMenu .navbar-offcanvas .navbar-nav > .open .dropdown-menu > li > a:hover,
+  #mainMenu .navbar-offcanvas .navbar-nav > .open .dropdown-menu > li > a:focus {
+    color: #000000;
+    background-color: #f8f8f8;
   }
   #mainMenu .navbar-offcanvas .dropdown-menu {
     padding: 0px;

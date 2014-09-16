@@ -11,14 +11,13 @@
 #mainMenu {
     // Partimos de la navbar-inverse y vamos cambiando: ;
     .navbar-inverse();
-
-  	.inner-wrapper {
-  		  	.container-fluid();
-    		@media (min-width: @screen-md-min) {
-    			.container;
-    		}
+	.background-header();
+  	.inner-wrapper { 
+	  	.container-fluid();
+		@media (min-width: @screen-md-min) {
+			.container;
+		}
   	}
-  	.background-header();
 
    	// Version no XS (SM y Desktop)
   	@media (min-width: @screen-sm-min) {
@@ -48,7 +47,7 @@
 			}
 	        & > li > a {
 	            cursor:pointer;
-	            padding: 15px 60px 15px 20px;
+	            padding: 15px 0px 15px 20px;
 	            .make-border(1px, none solid solid solid, @greyUltraLight);
 
 	            &:hover {
@@ -57,7 +56,6 @@
 	        }
 	    }
   	}
-
 	// elementos del menu reducido:
     @media (max-width: @screen-xs-max) {        
         .navbar-offcanvas {
@@ -89,6 +87,7 @@
 					//anchor de los elementos no activos
 					& > a {
 						.opensans_normal(10pt, @greyDark);
+						cursor: pointer;
 					}
 					// Elementos li en no activos en hover
 					&:hover {
@@ -101,21 +100,29 @@
         		}
 			}
 			//submenu de usuario abierto
-			.open > a, .open > a:hover, .open > a:focus {
-	  			background-color: @greyLight;
-	  		}
+			.navbar-nav > .open {
+				& > a, & > a:focus, & > a:hover {
+					background-color: @greyLight;
+					color: @black;
+				}
+				.dropdown-menu > li {
+					& > a:hover, & > a:focus {
+						color:@black;
+						background-color: @greyUltraLight;
+					}
+				}
+			}
+
 	  		.dropdown-menu {
 				padding: 0px;
 		        & li > a {
 		            cursor:pointer;
 		            padding: 10px 0px 10px 40px;
 		        }
-		    }	
-
-	        
-
+		    }
         }
 
+		// Icono que abre el menu
         .navbar-toggle {
 			     &:hover, &:focus {
 		    	 background-color: transparent;

@@ -5,6 +5,7 @@ import 'dart:convert' show JSON;
 import 'package:angular/angular.dart';
 import 'package:json_object/json_object.dart';
 import 'package:webclient/webclient.dart';
+import 'package:logging/logging.dart';
 
 
 abstract class ServerService {
@@ -38,7 +39,12 @@ abstract class ServerService {
 @Injectable()
 class DailySoccerServer implements ServerService {
 
-  DailySoccerServer(this._http);
+  DailySoccerServer(this._http) {
+    if (_instance != null) {
+      throw new Exception("WTF 492");
+    }
+    _instance = this;
+  }
 
   void setSessionToken(String sessionToken) { _sessionToken = sessionToken; }
 
@@ -98,6 +104,12 @@ class DailySoccerServer implements ServerService {
 
   Future<JsonObject> getCurrentDate() {
     return _innerServerCall("$HostServerUrl/current_date", null);
+  }
+
+  static void logPost(LogRecord r) {
+    if (_instance != null) {
+      _instance._http.post("$HostServerUrl/logPost", null, params: {"errorMessage": r.message, "level": r.level});
+    }
   }
 
   /**
@@ -166,4 +178,5 @@ class DailySoccerServer implements ServerService {
 
   Http _http;
   String _sessionToken;
+  static DailySoccerServer _instance = null;
 }

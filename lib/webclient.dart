@@ -42,9 +42,11 @@ import 'package:webclient/components/user_profile_comp.dart';
 import 'package:webclient/components/remember_password_comp.dart';
 import 'package:webclient/components/view_contest_entry_comp.dart';
 import 'package:webclient/utils/form-autofill-fix.dart';
+import 'package:logging/logging.dart';
 
 // Global variable to hold the url of the app's server
 String HostServerUrl;
+final Logger logger = new Logger('DailySoccer');
 
 bool isLocalHost() {
   return (window.location.hostname.contains("127.") || window.location.hostname.contains("localhost"));

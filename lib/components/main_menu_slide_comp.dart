@@ -46,9 +46,9 @@ class MainMenuSlideComp implements ShadowRootAware{
     if (destination.isNotEmpty) {
       _router.go(destination, params);
     }
-
+    JsUtils.runJavascript('.navbar-offcanvas.navmenu-fixed-left', 'offcanvas', 'toggle');
     updateMenuLinks(event.target);
-    JsUtils.runJavascript('.navbar-offcanvas.navmenu-fixed-left', 'offcanvas', 'hide');
+
   }
 
   void updateMenuLinks(dynamic a) {

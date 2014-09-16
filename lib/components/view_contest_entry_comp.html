@@ -10,9 +10,10 @@
   </div>
 
   <div class="separator-bar"></div>
-  <div class="info-complete-bar" ng-if="viewContestEntry.isEnterContestMode || viewContestEntry.isEditContestMode">
-    <p ng-if="viewContestEntry.isEnterContestMode && !viewContestEntry.isEditContestMode">¡PERFECTO! HAS COMPLETADO TU ALINEACIÓN CON ÉXITO</p>
+  <div class="info-complete-bar" ng-if="viewContestEntry.isEnterContestMode || viewContestEntry.isEditAndNewMode">
+    <p ng-if="viewContestEntry.isEnterContestMode && !viewContestEntry.isEditAndNewMode">¡PERFECTO! HAS COMPLETADO TU ALINEACIÓN CON ÉXITO</p>
     <p ng-if="viewContestEntry.isEditContestMode">¡PERFECTO! HAS EDITADO TU ALINEACIÓN CON ÉXITO</p>
+    <p ng-if="viewContestEntry.isNewContestEntry">EL TORNEO ESTABA LLENO PERO TE HEMOS METIDO EN ESTE QUE ES IGUAL</p>
     <p>Recuerda que puedes editar tu equipo cuantas veces quieras hasta que comience la competición</p>
   </div>
 

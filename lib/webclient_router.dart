@@ -49,5 +49,9 @@ void webClientRouteInitializer(Router router, RouteViewFactory views) {
         path: '/:parent/edit_contest_entry/:contestId',
         viewHtml: '<view-contest-entry></view-contest-entry>'
     )
+    ,'new_contest_entry': ngRoute(
+        path: '/:parent/new_contest_entry/:contestId',
+        viewHtml: '<view-contest-entry></view-contest-entry>'
+    )
   });
 }

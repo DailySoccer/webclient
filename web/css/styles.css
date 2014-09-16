@@ -16028,7 +16028,7 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-back-contest.active 
 html,
 body {
   height: 100%;
-  background-color: #ff0000;
+  background-color: #000000;
 }
 #injectedContainer {
   min-height: 400px;

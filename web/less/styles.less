@@ -27,6 +27,12 @@
 @import "../flags/flags.less";
 @import "view_contest_entry_comp.less";
 
+html, body{     
+    height: 100%; 
+    background-color: @red;
+}
+
+
 // Con esto le damos un minimo de altura a todo lo que no es el footer
 #injectedContainer {
 	min-height: 400px;
@@ -92,6 +98,10 @@
 
 // Contenedor exterior que envuelve a todo el contenido. Lo usamos para fijar el background.
 .wrapper-content-container {
+	min-height: 100%; 
+	height: auto !important; 
+	height: 100%; 
+
 	@media (min-width: @screen-sm-min) {
 		min-height: 1100px;
 		background-color: @black;
@@ -100,11 +110,21 @@
 		/*background-size: contain;*/
 		background-position: center top;
 		background-repeat: no-repeat;
+
+		margin: 0 auto -152px;
 	}
 
 	@media (max-width: @screen-xs-max) {
+		margin: 0 auto -152px;
+	}
+	#wrapper-push {
+		height: 150px;
+	}
+	footer {
+		height: 150px;
 	}
 }
+
 
 // Contenedor interior que envuelve al contenido. Fijamos el width con el.
 .main-content-container {

@@ -16025,6 +16025,11 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-back-contest.active 
   overflow: hidden;
   white-space: nowrap;
 }
+html,
+body {
+  height: 100%;
+  background-color: #ff0000;
+}
 #injectedContainer {
   min-height: 400px;
 }
@@ -16328,6 +16333,11 @@ fieldset[disabled] .btn-orange.active {
   margin: 0;
   padding: 0;
 }
+.wrapper-content-container {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+}
 @media (min-width: 768px) {
   .wrapper-content-container {
     min-height: 1100px;
@@ -16337,7 +16347,19 @@ fieldset[disabled] .btn-orange.active {
     /*background-size: contain;*/
     background-position: center top;
     background-repeat: no-repeat;
+    margin: 0 auto -152px;
   }
+}
+@media (max-width: 767px) {
+  .wrapper-content-container {
+    margin: 0 auto -152px;
+  }
+}
+.wrapper-content-container #wrapper-push {
+  height: 150px;
+}
+.wrapper-content-container footer {
+  height: 150px;
 }
 .main-content-container {
   margin-right: auto;

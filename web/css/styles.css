@@ -3634,11 +3634,15 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   min-height: 50px;
   margin-bottom: 20px;
   border: 1px solid transparent;
+  
 }
 @media (min-width: 768px) {
   .navbar {
     border-radius: 4px;
   }
+}
+.navbar-header {
+  
 }
 @media (min-width: 768px) {
   .navbar-header {
@@ -3652,6 +3656,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   padding-left: 15px;
   border-top: 1px solid transparent;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  
   -webkit-overflow-scrolling: touch;
 }
 .navbar-collapse.in {
@@ -5595,12 +5600,6 @@ button.close {
 .btn-group-vertical > .btn-group:after,
 .nav:before,
 .nav:after,
-.navbar:before,
-.navbar:after,
-.navbar-header:before,
-.navbar-header:after,
-.navbar-collapse:before,
-.navbar-collapse:after,
 .pager:before,
 .pager:after,
 .panel-body:before,
@@ -5714,9 +5713,6 @@ footer:after,
 .btn-toolbar:after,
 .btn-group-vertical > .btn-group:after,
 .nav:after,
-.navbar:after,
-.navbar-header:after,
-.navbar-collapse:after,
 .pager:after,
 .panel-body:after,
 .modal-footer:after,
@@ -8437,6 +8433,12 @@ fieldset[disabled] .landing-wrapper .button-play.active {
   height: 100%;
   top: 0;
 }
+@media (max-width: 767px) {
+  .header-view-contest-entry-mode {
+    margin-top: 70px;
+    text-align: center;
+  }
+}
 .fantasy-team-header {
   height: 76px;
   position: relative;
@@ -8444,12 +8446,6 @@ fieldset[disabled] .landing-wrapper .button-play.active {
   background-image: linear-gradient(to bottom, #fba61a 49%, #ec990e 51%);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffba61a', endColorstr='#ffec990e', GradientType=0);
-}
-@media (max-width: 767px) {
-  .fantasy-team-header {
-    margin-top: 70px;
-    text-align: center;
-  }
 }
 .fantasy-team-header .ranking-box {
   width: 70px;

@@ -1,6 +1,6 @@
 <div class="fantasy-team-wrapper" ng-cloak>
 
-  <div class="fantasy-team-header" ng-class="{'opponent-team-gradient': fantasyTeam.isOpponent}">
+  <div class="fantasy-team-header" ng-class="{'opponent-team-gradient': fantasyTeam.isOpponent, 'header-view-contest-entry-mode': fantasyTeam.isViewContestEntryMode}">
 
     <div class="edit-team" ng-if="fantasyTeam.isViewContestEntryMode">
       <button class="btn-edit-team" ng-click="fantasyTeam.editTeam()">EDITAR EL EQUIPO</button>

@@ -4,16 +4,10 @@ import 'package:angular/routing/static_keys.dart';
 import 'package:angular/core_dom/static_keys.dart';
 
 import 'package:webclient/webclient.dart';
-import 'package:webclient/services/server_service.dart';
 
 void main() {
   Logger.root.level = Level.ALL;
-  Logger.root.onRecord.listen((LogRecord r) {
-    print('[${r.loggerName}] ${r.time}: ${r.message}');
-    if (r.loggerName == 'DailySoccer') {
-      DailySoccerServer.logPost(r);
-    }
-    });
+  Logger.root.onRecord.listen((LogRecord r) { print('[${r.loggerName}] ${r.time}: ${r.message}'); });
 
   setUpHostServerUrl();
   var injector = applicationFactory().addModule(new WebClientApp()).run();
@@ -30,4 +24,3 @@ void main() {
   cache.fromUrl("view/enter_contest.tpl.html", injector.getByKey(DIRECTIVE_MAP_KEY));
   cache.fromUrl("view/view_contest.tpl.html", injector.getByKey(DIRECTIVE_MAP_KEY));
 }
-

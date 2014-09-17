@@ -46,7 +46,8 @@ import 'package:logging/logging.dart';
 
 // Global variable to hold the url of the app's server
 String HostServerUrl;
-final Logger serverLogger = new Logger('DailySoccer');
+Logger serverLogger = new Logger('DailySoccer');
+
 
 bool isLocalHost() {
   return (window.location.hostname.contains("127.") || window.location.hostname.contains("localhost"));
@@ -64,6 +65,10 @@ void setUpHostServerUrl() {
 
 class WebClientApp extends Module {
   WebClientApp() {
+    serverLogger.onRecord.listen( (r) {
+      print("[${r.loggerName}] ${r.time}: ${r.message}");
+          DailySoccerServer.logPost(r);
+           });
 
     bind(ServerService, toImplementation: DailySoccerServer);
 

@@ -8,7 +8,6 @@ import 'package:angular/angular.dart';
 import 'package:webclient/services/active_contests_service.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/services/screen_detector_service.dart';
-import 'package:webclient/models/template_contest.dart';
 import 'package:webclient/utils/js_utils.dart';
 
 @Component(
@@ -316,15 +315,15 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     _tierFilterList = [];
 
     if (isBeginnerTierChecked) {
-      tierValues.add(TemplateContest.TIER_BEGGINER);
+      tierValues.add(Contest.TIER_BEGGINER);
     }
 
     if (isStandardTierChecked) {
-      tierValues.add(TemplateContest.TIER_STANDARD);
+      tierValues.add(Contest.TIER_STANDARD);
     }
 
     if (isSkilledTierChecked) {
-      tierValues.add(TemplateContest.TIER_SKILLED);
+      tierValues.add(Contest.TIER_SKILLED);
     }
 
     _tierFilterList.addAll(tierValues);
@@ -349,19 +348,19 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     _tournamentFilterList = [];
 
     if (isFreeTournamentChecked) {
-      tournamentValues.add(TemplateContest.TOURNAMENT_FREE);
+      tournamentValues.add(Contest.TOURNAMENT_FREE);
     }
 
     if (isleagueTournamentChecked) {
-      tournamentValues.add(TemplateContest.TOURNAMENT_LEAGUE);
+      tournamentValues.add(Contest.TOURNAMENT_LEAGUE);
     }
 
     if (isFiftyFiftyTournamentChecked) {
-      tournamentValues.add(TemplateContest.TOURNAMENT_FIFTY_FIFTY);
+      tournamentValues.add(Contest.TOURNAMENT_FIFTY_FIFTY);
     }
 
     if (isHeadToHeadTournamentChecked) {
-      tournamentValues.add(TemplateContest.TOURNAMENT_HEAD_TO_HEAD);
+      tournamentValues.add(Contest.TOURNAMENT_HEAD_TO_HEAD);
     }
 
     _tournamentFilterList.addAll(tournamentValues);

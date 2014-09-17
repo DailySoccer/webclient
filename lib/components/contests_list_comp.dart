@@ -97,7 +97,7 @@ class ContestsListComp {
   int getMyPosition(Contest contest) {
     ContestEntry mainContestEntry = contest.getContestEntryWithUser(_profileService.user.userId);
 
-    // En los templateContest Históricos tendremos la posición registrada en el propio ContestEntry
+    // En los contest Históricos tendremos la posición registrada en el propio ContestEntry
     if (contest.isHistory) {
       return mainContestEntry.position + 1;
     }
@@ -108,7 +108,7 @@ class ContestsListComp {
   int getMyFantasyPoints(Contest contest) {
     ContestEntry mainContestEntry = contest.getContestEntryWithUser(_profileService.user.userId);
 
-    // En los templateContest Históricos tendremos los fantasyPoints registrados en el propio ContestEntry
+    // En los contest Históricos tendremos los fantasyPoints registrados en el propio ContestEntry
     if (contest.isHistory) {
       return mainContestEntry.fantasyPoints;
     }

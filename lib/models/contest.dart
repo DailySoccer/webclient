@@ -1,7 +1,6 @@
 library contest;
 
 import "package:json_object/json_object.dart";
-import "package:webclient/models/template_contest.dart";
 import "package:webclient/models/match_event.dart";
 import "package:webclient/models/user.dart";
 import "package:webclient/models/contest_entry.dart";
@@ -18,7 +17,7 @@ class Contest {
   static const PRIZE_TOP_THIRD            = "TOP_THIRD_GET_PRIZES";
   static const PRIZE_FIFTY_FIFTY          = "FIFTY_FIFTY";
 
-  // Tipos de Torneos (deducidos por las características del TemplateContest: maxEntries ~ premios)
+  // Tipos de Torneos (deducidos por las características del Contest: maxEntries ~ premios)
   static const TOURNAMENT_FREE            = "FREE";
   static const TOURNAMENT_HEAD_TO_HEAD    = "HEAD_TO_HEAD";
   static const TOURNAMENT_LEAGUE          = "LEAGUE";
@@ -111,15 +110,15 @@ class Contest {
   String get tournamentType {
     String type;
     switch(prizeType) {
-      case TemplateContest.PRIZE_FREE:
+      case Contest.PRIZE_FREE:
         type = TOURNAMENT_FREE;
         break;
-      case TemplateContest.PRIZE_WINNER:
-      case TemplateContest.PRIZE_TOP_3:
-      case TemplateContest.PRIZE_TOP_THIRD:
+      case Contest.PRIZE_WINNER:
+      case Contest.PRIZE_TOP_3:
+      case Contest.PRIZE_TOP_THIRD:
         type = (maxEntries == 2) ? TOURNAMENT_HEAD_TO_HEAD : TOURNAMENT_LEAGUE;
         break;
-      case TemplateContest.PRIZE_FIFTY_FIFTY:
+      case Contest.PRIZE_FIFTY_FIFTY:
         type = TOURNAMENT_FIFTY_FIFTY;
         break;
     }
@@ -157,12 +156,10 @@ class Contest {
 
     // 1 Contest? -> 1 TemplateContest
     if (jsonRoot.containsKey("contest")) {
-      //var templateContest = new TemplateContest.fromJsonObject(jsonRoot.template_contest, contestReferences);
       contests.add(new Contest.fromJsonObject(jsonRoot.contest, contestReferences));
     }
     // >1 Contests!
     else {
-      //jsonRoot.template_contests.map((jsonObject) => new TemplateContest.fromJsonObject(jsonObject, contestReferences)).toList();
       contests = jsonRoot.containsKey("contests") ? jsonRoot.contests.map((jsonObject) => new Contest.fromJsonObject(jsonObject, contestReferences)).toList() : [];
 
       // Aceptamos múltiples listas de contests (con mayor o menor información)

@@ -8993,7 +8993,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team.active {
 #usersListRoot .user-row .name {
   position: relative;
   float: left;
-  width: 41.66666667%;
+  width: 33.33333333%;
   min-height: 1px;
   padding-left: 2px;
   padding-right: 2px;
@@ -9011,7 +9011,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team.active {
 #usersListRoot .user-row .remaining-time {
   position: relative;
   float: left;
-  width: 16.66666667%;
+  width: 25%;
   min-height: 1px;
   padding-left: 2px;
   padding-right: 2px;
@@ -9063,7 +9063,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team.active {
 #usersListRoot .users-table-header .name {
   position: relative;
   float: left;
-  width: 41.66666667%;
+  width: 33.33333333%;
   min-height: 1px;
   padding-left: 0px;
   padding-right: 0px;
@@ -9081,7 +9081,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team.active {
 #usersListRoot .users-table-header .remaining-time {
   position: relative;
   float: left;
-  width: 16.66666667%;
+  width: 25%;
   min-height: 1px;
   padding-left: 0px;
   padding-right: 0px;

@@ -157,7 +157,7 @@
 		.reset-list();
 		height: @tabheight;
 		> li {
-			.make-xs-column(6);
+			.make-xs-column(6, 0px);
 			background-color: @greyMed;
 			.make-border(4px, none none solid none, @greyDark);
 			a {
@@ -167,6 +167,7 @@
 				color: @white;
 				display: block;
 				text-decoration: none;
+				border: 1px solid red;
 			}
 		}
 		.active {

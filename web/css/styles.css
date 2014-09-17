@@ -10804,8 +10804,8 @@ fieldset[disabled] .soccer-player-info-header .btn-add-soccer-player-info {
   float: left;
   width: 50%;
   min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 0px;
+  padding-right: 0px;
   background-color: #afafaf;
   border-width: 4px;
   border-style: none none solid none;
@@ -10819,6 +10819,7 @@ fieldset[disabled] .soccer-player-info-header .btn-add-soccer-player-info {
   color: #ffffff;
   display: block;
   text-decoration: none;
+  border: 1px solid red;
 }
 .soccer-player-info-content .soccer-player-info-tabs .active {
   background-color: #777777;
@@ -14384,8 +14385,8 @@ fieldset[disabled] .resume-bar .change-player .btn-change-player.active {
   background-color: #214a5f;
 }
 #myContestMenuTabs li {
-  padding-left: 0;
-  padding-right: 0;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 #myContestMenuTabs .contest-count {
   background-color: #fa9c19;

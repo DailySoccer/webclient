@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:angular/angular.dart';
 
 import "package:webclient/services/server_service.dart";
+import "package:webclient/services/profile_service.dart";
 import "package:webclient/models/contest.dart";
 
 
@@ -17,12 +18,17 @@ class ActiveContestsService {
   // El ultimo concurso que hemos cargado a traves de getContest
   Contest lastContest;
 
-  ActiveContestsService(this._server);
+  ActiveContestsService(this._server, this._profileService);
 
   Future refreshActiveContests() {
     return _server.getActiveContests()
       .then((jsonObject) {
         activeContests = Contest.loadContestsFromJsonObject(jsonObject);
+
+        if (_profileService.isLoggedIn) {
+          // Quitar los contests en los que esté inscrito el usuario
+          activeContests.removeWhere((contest) => contest.containsContestEntryWithUser(_profileService.user.userId));
+        }
       });
   }
 
@@ -42,4 +48,5 @@ class ActiveContestsService {
   }
 
   ServerService _server;
+  ProfileService _profileService;
 }

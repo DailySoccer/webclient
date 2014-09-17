@@ -32,6 +32,10 @@ class Contest {
 
   Contest.referenceInit(this.contestId);
 
+  bool containsContestEntryWithUser(String userId) {
+    return getContestEntryWithUser(userId) != null;
+  }
+
   ContestEntry getContestEntry(String contestEntryId) {
     return contestEntries.firstWhere( (entry) => entry.contestEntryId == contestEntryId, orElse: () => null );
   }

@@ -5679,8 +5679,6 @@ button.close {
 .resume-bar:after,
 .no-contest .my-no-contest-bottom-row:before,
 .no-contest .my-no-contest-bottom-row:after,
-footer:before,
-footer:after,
 #mainFooter:before,
 #mainFooter:after,
 #mainFooter .sup-footer-wrapper:before,
@@ -5756,7 +5754,6 @@ footer:after,
 .my-contest-title-tab:after,
 .resume-bar:after,
 .no-contest .my-no-contest-bottom-row:after,
-footer:after,
 #mainFooter:after,
 #mainFooter .sup-footer-wrapper:after,
 #mainFooter .sub-footer:after,
@@ -14588,34 +14585,59 @@ fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest.acti
     display: none !important;
   }
 }
-footer {
-  margin-right: auto;
-  margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding: 0px;
-}
 @media (min-width: 768px) {
   footer {
-    width: 750px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  footer > .navbar-header,
+  footer > .navbar-collapse {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+}
+@media (min-width: 768px) and (min-width: 768px) {
+  footer > .navbar-header,
+  footer > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
   }
 }
 @media (min-width: 992px) {
   footer {
-    width: 970px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  footer > .navbar-header,
+  footer > .navbar-collapse {
+    margin-right: -15px;
+    margin-left: -15px;
   }
 }
-@media (min-width: 1200px) {
+@media (min-width: 992px) and (min-width: 768px) {
+  footer {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) and (min-width: 992px) {
   footer {
     width: 970px;
   }
 }
-footer > .navbar-header,
-footer > .navbar-collapse {
-  margin-right: -15px;
-  margin-left: -15px;
+@media (min-width: 992px) and (min-width: 1200px) {
+  footer {
+    width: 970px;
+  }
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) and (min-width: 768px) {
   footer > .navbar-header,
   footer > .navbar-collapse {
     margin-right: 0;
@@ -14625,6 +14647,8 @@ footer > .navbar-collapse {
 #mainFooter {
   position: relative;
   bottom: 0;
+  padding-left: 0px;
+  padding-right: 0px;
   margin-left: 0;
   margin-right: 0;
   background: #000000;

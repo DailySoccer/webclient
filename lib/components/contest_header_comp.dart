@@ -76,18 +76,18 @@ class ContestHeaderComp implements DetachAware{
       return;
     }
 
-    if (_contestInfo.templateContest.isHistory) {
+    if (_contestInfo.isHistory) {
       contestHeaderInfo["startTime"] = "FINALIZADO";
       _count.cancel();
     }
-    else if (_contestInfo.templateContest.isLive) {
-      contestHeaderInfo["startTime"] = "COMENZÓ EL ${DateTimeService.formatDateTimeShort(_contestInfo.templateContest.startDate).toUpperCase()}";
+    else if (_contestInfo.isLive) {
+      contestHeaderInfo["startTime"] = "COMENZÓ EL ${DateTimeService.formatDateTimeShort(_contestInfo.startDate).toUpperCase()}";
       _count.cancel();
     }
     else {
-      contestHeaderInfo["startTime"] = "COMIENZA EL ${DateTimeService.formatDateTimeShort(_contestInfo.templateContest.startDate).toUpperCase()}";
+      contestHeaderInfo["startTime"] = "COMIENZA EL ${DateTimeService.formatDateTimeShort(_contestInfo.startDate).toUpperCase()}";
 
-      Duration tiempoRestante = DateTimeService.getTimeLeft(_contestInfo.templateContest.startDate);
+      Duration tiempoRestante = DateTimeService.getTimeLeft(_contestInfo.startDate);
 
       if (tiempoRestante.inSeconds <= 0) {
         contestHeaderInfo["startTime"] = "EN BREVE";
@@ -102,12 +102,12 @@ class ContestHeaderComp implements DetachAware{
 
   void _refreshHeader() {
     contestHeaderInfo["description"] = "${_contestInfo.name}";
-    contestHeaderInfo['contestType'] = "${_contestInfo.templateContest.tournamentTypeName}: ";
-    contestHeaderInfo["entryPrice"] = "${_contestInfo.templateContest.entryFee}€";
-    contestHeaderInfo["prize"] = "${_contestInfo.templateContest.prizePool}€";
-    contestHeaderInfo["prizeType"] = "${_contestInfo.templateContest.prizeTypeName}";
+    contestHeaderInfo['contestType'] = "${_contestInfo.tournamentTypeName}: ";
+    contestHeaderInfo["entryPrice"] = "${_contestInfo.entryFee}€";
+    contestHeaderInfo["prize"] = "${_contestInfo.prizePool}€";
+    contestHeaderInfo["prizeType"] = "${_contestInfo.prizeTypeName}";
     contestHeaderInfo["startTime"] = "";
-    contestHeaderInfo["contestantCount"] = "${_contestInfo.contestEntries.length} de ${_contestInfo.maxEntries} jugadores  - LIM. SAL.: ${_contestInfo.templateContest.salaryCap}";
+    contestHeaderInfo["contestantCount"] = "${_contestInfo.contestEntries.length} de ${_contestInfo.maxEntries} jugadores  - LIM. SAL.: ${_contestInfo.salaryCap}";
   }
 
   void goBackTo() {

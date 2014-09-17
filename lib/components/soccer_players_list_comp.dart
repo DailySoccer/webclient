@@ -26,7 +26,7 @@ class SoccerPlayersListComp {
     _contest = value;
 
     if (_contest != null) {
-      _matchesInvolved = _contest.templateContest.matchEvents;
+      _matchesInvolved = _contest.matchEvents;
 
       matchesList.add({"id":enterContestCtrl.ALL_MATCHES, "texto":"Todos los partidos"});
       for (MatchEvent match in _matchesInvolved) {

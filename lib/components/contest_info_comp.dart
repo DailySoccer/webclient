@@ -59,14 +59,14 @@ class ContestInfoComp implements ShadowRootAware {
       .then((_) {
         Contest contest = _contestService.lastContest;
 
-        currentInfoData["name"]           = contest.templateContest.name;
+        currentInfoData["name"]           = contest.name;
         currentInfoData["description"]    = contest.description;
-        currentInfoData["entry"]          = contest.templateContest.entryFee.toString();
-        currentInfoData["prize"]          = contest.templateContest.prizePool.toString();
-        currentInfoData["startDateTime"]  = DateTimeService.formatDateTimeLong(contest.templateContest.startDate).toUpperCase();
+        currentInfoData["entry"]          = contest.entryFee.toString();
+        currentInfoData["prize"]          = contest.prizePool.toString();
+        currentInfoData["startDateTime"]  = DateTimeService.formatDateTimeLong(contest.startDate).toUpperCase();
         currentInfoData["contestants"]    = contestants;
-        currentInfoData["prizes"]         = contest.templateContest.prizes.map((value) => {'value' : value}).toList();
-        currentInfoData["matchesInvolved"]= contest.templateContest.matchEvents;
+        currentInfoData["prizes"]         = contest.prizes.map((value) => {'value' : value}).toList();
+        currentInfoData["matchesInvolved"]= contest.matchEvents;
 
         contestants.clear();
         for (ContestEntry contestEntry in contest.contestEntries) {

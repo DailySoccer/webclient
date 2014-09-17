@@ -90,7 +90,7 @@ class MyContestsService {
     _server.getLiveMatchEventsFromTemplateContest(templateContestId)
       .then((jsonObject) {
         jsonObject.content.forEach((jsonObject) {
-            lastContest.templateContest.matchEvents.firstWhere((matchEvent) => matchEvent.templateMatchEventId == jsonObject.templateMatchEventId)
+            lastContest.matchEvents.firstWhere((matchEvent) => matchEvent.templateMatchEventId == jsonObject.templateMatchEventId)
                 .. updateLiveInfo(jsonObject);
         });
         completer.complete(jsonObject);
@@ -100,9 +100,9 @@ class MyContestsService {
   }
 
   void _initContests(List<Contest> contests) {
-    waitingContests = contests.where((contest) => contest.templateContest.isActive).toList();
-    liveContests = contests.where((contest) => contest.templateContest.isLive).toList();
-    historyContests = contests.where((contest) => contest.templateContest.isHistory).toList();
+    waitingContests = contests.where((contest) => contest.isActive).toList();
+    liveContests = contests.where((contest) => contest.isLive).toList();
+    historyContests = contests.where((contest) => contest.isHistory).toList();
   }
 
   ServerService _server;

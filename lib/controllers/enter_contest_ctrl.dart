@@ -72,7 +72,7 @@ class EnterContestCtrl implements DetachAware{
         availableSoccerPlayers = new List<dynamic>.from(_allSoccerPlayers);
 
         // Saldo disponible
-        availableSalary = contest.templateContest.salaryCap;
+        availableSalary = contest.salaryCap;
 
         // Si nos viene el torneo para editar la alineación
         if (_editingContestEntry) {
@@ -383,7 +383,7 @@ class EnterContestCtrl implements DetachAware{
   }
 
   void initAllSoccerPlayers() {
-    List<MatchEvent> matchEvents = contest.templateContest.matchEvents;
+    List<MatchEvent> matchEvents = contest.matchEvents;
 
     for (var matchEvent in matchEvents) {
       for (var player in matchEvent.soccerTeamA.soccerPlayers) {
@@ -473,7 +473,7 @@ class EnterContestCtrl implements DetachAware{
     // Reseteamos la lista para que aparezcan todos los jugadores borrados otra vez en la lista de disponibles
     availableSoccerPlayers = new List<dynamic>.from(_allSoccerPlayers);
     // Reseteamos el salario disponible
-    availableSalary = contest.templateContest.salaryCap;
+    availableSalary = contest.salaryCap;
     updateTextAvailableSalary(availableSalary.toString());
     // Resetamos todos los filtros
     removeAllFilters();

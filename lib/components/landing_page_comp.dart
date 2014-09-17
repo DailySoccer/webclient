@@ -4,7 +4,6 @@ import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
-import 'package:webclient/webclient.dart';
 
 @Component(
    selector: 'landing-page',

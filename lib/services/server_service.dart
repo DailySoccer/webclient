@@ -108,8 +108,8 @@ class DailySoccerServer implements ServerService {
 
   static void logPost(LogRecord r) {
     if (_instance != null) {
-      _instance._http.post("$HostServerUrl/logPost", null, params: {"errorMessage": r.message, "level": r.level});
-    }
+      _instance._http.post("$HostServerUrl/log", null, params: {"errorMessage": r.message, "level": r.level, "time": r.time});
+    };
   }
 
   /**

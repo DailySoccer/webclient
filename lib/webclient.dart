@@ -13,6 +13,7 @@ import 'package:webclient/services/soccer_player_service.dart';
 import 'package:webclient/services/server_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
+import 'package:webclient/services/logger_exception_handler.dart';
 
 import 'package:webclient/utils/limit_to_dot.dart';
 
@@ -42,12 +43,9 @@ import 'package:webclient/components/user_profile_comp.dart';
 import 'package:webclient/components/remember_password_comp.dart';
 import 'package:webclient/components/view_contest_entry_comp.dart';
 import 'package:webclient/utils/form-autofill-fix.dart';
-import 'package:logging/logging.dart';
 
 // Global variable to hold the url of the app's server
 String HostServerUrl;
-Logger serverLogger = new Logger('DailySoccer');
-
 
 bool isLocalHost() {
   return (window.location.hostname.contains("127.") || window.location.hostname.contains("localhost"));
@@ -65,11 +63,8 @@ void setUpHostServerUrl() {
 
 class WebClientApp extends Module {
   WebClientApp() {
-    serverLogger.onRecord.listen( (r) {
-      print("[${r.loggerName}] ${r.time}: ${r.message}");
-          DailySoccerServer.logPost(r);
-           });
 
+    bind(ExceptionHandler, toImplementation: LoggerExceptionHandler);
     bind(ServerService, toImplementation: DailySoccerServer);
 
     bind(DateTimeService);

@@ -21,10 +21,19 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
   ScreenDetectorService scrDet;
 
   LandingPageComp(this._router, this._profileService, this.scrDet) {
-    // Capturamos los elementos envolventes, porque el layout en landing page es diferente al del resto de la web.
+
+    //Example of Exception logging
+    //throw "FAILING!";
+
+    //Example of logging to server
+    //import 'package:webclient/services/logger_exception_handler.dart';
+    //serverLogger.info("HOLAAAAA");
+
+    // Capturamos el elemento wrapper
     bodyObj             = querySelector('body');
     mainWrapper         = querySelector('#mainWrapper');
     containerForContent = querySelector('#mainContent');
+
   }
 
   void onShadowRoot(var root) {
@@ -36,6 +45,7 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
     mainWrapper.classes.clear();
     mainWrapper.classes.add('landing-wrapper');
     containerForContent.classes.clear();
+    //containerForContent.style.backgroundColor = "tranparent";
     bodyObj.classes.add('fondo-negro');
   }
 
@@ -47,9 +57,11 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
     bodyObj.classes.remove('fondo-negro');
   }
 
+
   void buttonPressed(String route){
     _router.go(route, {});
   }
+
 
   Router _router;
   ProfileService _profileService;

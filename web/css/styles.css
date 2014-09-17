@@ -14383,6 +14383,10 @@ fieldset[disabled] .resume-bar .change-player .btn-change-player.active {
 #myContestMenuTabs .active {
   background-color: #214a5f;
 }
+#myContestMenuTabs li {
+  padding-left: 0;
+  padding-right: 0;
+}
 #myContestMenuTabs .contest-count {
   background-color: #fa9c19;
   border-width: 1px;

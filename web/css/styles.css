@@ -5693,6 +5693,10 @@ button.close {
 #rememberPasswordRoot:after,
 .main-box .panel .form-horizontal:before,
 .main-box .panel .form-horizontal:after,
+.profile-content:before,
+.profile-content:after,
+.profile-content .data-header:before,
+.profile-content .data-header:after,
 .info-complete-bar:before,
 .info-complete-bar:after,
 .view-contest-entry-actions-wrapper:before,
@@ -5761,6 +5765,8 @@ button.close {
 #joinRoot:after,
 #rememberPasswordRoot:after,
 .main-box .panel .form-horizontal:after,
+.profile-content:after,
+.profile-content .data-header:after,
 .info-complete-bar:after,
 .view-contest-entry-actions-wrapper:after,
 .main-content-container:after,
@@ -6093,7 +6099,7 @@ button.close {
   }
   #mainMenu .dropdown-menu > li > a {
     cursor: pointer;
-    padding: 15px 0px 15px 20px;
+    padding: 15px 25px 15px 20px;
     border-width: 1px;
     border-style: none solid solid solid;
     border-color: #f8f8f8;
@@ -15963,6 +15969,838 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half.act
   -o-keyframes: errDetectionFrames 0.5s;
   animation: errDetectionFrames  0.5s;
 }
+#userProfileRoot {
+  padding-bottom: 100px;
+  background-color: #ffffff;
+}
+.profile-head {
+  padding: 20px 15px;
+  text-align: center;
+  background-color: #f8f8f8;
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 24pt;
+  color: #214a5f;
+}
+@media (max-width: 767px) {
+  .profile-head {
+    text-align: left;
+    background-color: #214a5f;
+    font-family: 'Exo', sans-serif;
+    font-weight: 300;
+    font-size: 24pt;
+    color: #f8f8f8;
+  }
+}
+.profile-content {
+  margin-left: 0;
+  margin-right: 0;
+  border-width: 1px;
+  border-style: none none dotted none;
+  border-color: #214a5f;
+  border-radius: 0;
+  background-color: #ffffff;
+}
+@media (max-width: 767px) {
+  .profile-content {
+    background-color: #f8f8f8;
+  }
+}
+.profile-content .data-header {
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding: 0px 0px 15px 0px;
+}
+.profile-content .data-header .data-header-title {
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 14pt;
+  color: #214a5f;
+}
+@media (min-width: 992px) {
+  .profile-content .data-header .data-header-title {
+    font-family: 'Exo', sans-serif;
+    font-weight: 600;
+    font-size: 20pt;
+    color: #214a5f;
+  }
+}
+.profile-content .action-button {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  background-color: #59add5;
+  border-color: #cccccc;
+  box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
+  float: right !important;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #ffffff;
+}
+.profile-content .action-button:focus,
+.profile-content .action-button:active:focus,
+.profile-content .action-button.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.profile-content .action-button:hover,
+.profile-content .action-button:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+.profile-content .action-button:active,
+.profile-content .action-button.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.profile-content .action-button.disabled,
+.profile-content .action-button[disabled],
+fieldset[disabled] .profile-content .action-button {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.profile-content .action-button:focus,
+.profile-content .action-button:active:focus,
+.profile-content .action-button.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.profile-content .action-button:hover,
+.profile-content .action-button:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+.profile-content .action-button:active,
+.profile-content .action-button.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.profile-content .action-button.disabled,
+.profile-content .action-button[disabled],
+fieldset[disabled] .profile-content .action-button {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.profile-content .action-button:hover,
+.profile-content .action-button:focus,
+.profile-content .action-button:active,
+.profile-content .action-button.active,
+.open .dropdown-toggle.profile-content .action-button {
+  color: #ffffff;
+  background-color: #389dcd;
+  border-color: #adadad;
+}
+.profile-content .action-button:active,
+.profile-content .action-button.active,
+.open .dropdown-toggle.profile-content .action-button {
+  background-image: none;
+}
+.profile-content .action-button.disabled,
+.profile-content .action-button[disabled],
+fieldset[disabled] .profile-content .action-button,
+.profile-content .action-button.disabled:hover,
+.profile-content .action-button[disabled]:hover,
+fieldset[disabled] .profile-content .action-button:hover,
+.profile-content .action-button.disabled:focus,
+.profile-content .action-button[disabled]:focus,
+fieldset[disabled] .profile-content .action-button:focus,
+.profile-content .action-button.disabled:active,
+.profile-content .action-button[disabled]:active,
+fieldset[disabled] .profile-content .action-button:active,
+.profile-content .action-button.disabled.active,
+.profile-content .action-button[disabled].active,
+fieldset[disabled] .profile-content .action-button.active {
+  background-color: #59add5;
+  border-color: #cccccc;
+}
+.profile-content .action-button .badge {
+  color: #59add5;
+  background-color: #ffffff;
+}
+.profile-content .add-funds-button {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  color: #ffffff;
+  background-color: #a1c931;
+  border-color: #91b42c;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  float: right !important;
+  margin: 0 5px;
+}
+.profile-content .add-funds-button:focus,
+.profile-content .add-funds-button:active:focus,
+.profile-content .add-funds-button.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.profile-content .add-funds-button:hover,
+.profile-content .add-funds-button:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+.profile-content .add-funds-button:active,
+.profile-content .add-funds-button.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.profile-content .add-funds-button.disabled,
+.profile-content .add-funds-button[disabled],
+fieldset[disabled] .profile-content .add-funds-button {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.profile-content .add-funds-button:focus,
+.profile-content .add-funds-button:active:focus,
+.profile-content .add-funds-button.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.profile-content .add-funds-button:hover,
+.profile-content .add-funds-button:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+.profile-content .add-funds-button:active,
+.profile-content .add-funds-button.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.profile-content .add-funds-button.disabled,
+.profile-content .add-funds-button[disabled],
+fieldset[disabled] .profile-content .add-funds-button {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.profile-content .add-funds-button:hover,
+.profile-content .add-funds-button:focus,
+.profile-content .add-funds-button:active,
+.profile-content .add-funds-button.active,
+.open .dropdown-toggle.profile-content .add-funds-button {
+  color: #ffffff;
+  background-color: #87a829;
+  border-color: #698320;
+}
+.profile-content .add-funds-button:active,
+.profile-content .add-funds-button.active,
+.open .dropdown-toggle.profile-content .add-funds-button {
+  background-image: none;
+}
+.profile-content .add-funds-button.disabled,
+.profile-content .add-funds-button[disabled],
+fieldset[disabled] .profile-content .add-funds-button,
+.profile-content .add-funds-button.disabled:hover,
+.profile-content .add-funds-button[disabled]:hover,
+fieldset[disabled] .profile-content .add-funds-button:hover,
+.profile-content .add-funds-button.disabled:focus,
+.profile-content .add-funds-button[disabled]:focus,
+fieldset[disabled] .profile-content .add-funds-button:focus,
+.profile-content .add-funds-button.disabled:active,
+.profile-content .add-funds-button[disabled]:active,
+fieldset[disabled] .profile-content .add-funds-button:active,
+.profile-content .add-funds-button.disabled.active,
+.profile-content .add-funds-button[disabled].active,
+fieldset[disabled] .profile-content .add-funds-button.active {
+  background-color: #a1c931;
+  border-color: #91b42c;
+}
+.profile-content .add-funds-button .badge {
+  color: #a1c931;
+  background-color: #ffffff;
+}
+.profile-content .data-key {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 9pt;
+  color: #214a5f;
+  line-height: 2.5;
+}
+.profile-content .data-value {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 9pt;
+  color: #214a5f;
+  line-height: 2.5;
+  padding-left: 8px;
+}
+.profile-content .personal-data {
+  float: left;
+  width: 100%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 20px 15px;
+}
+@media (min-width: 768px) {
+  .profile-content .personal-data {
+    float: left;
+    width: 100%;
+  }
+}
+@media (min-width: 992px) {
+  .profile-content .personal-data {
+    float: left;
+    width: 50%;
+  }
+}
+@media (max-width: 767px) {
+  .profile-content .personal-data .data-header-title {
+    display: none !important;
+  }
+}
+@media (max-width: 767px) {
+  .profile-content .personal-data .action-button {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border-width: 0;
+    background-color: #59add5;
+    border-color: #cccccc;
+    box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
+    float: right !important;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 10pt;
+    color: #ffffff;
+    width: 100%;
+  }
+  .profile-content .personal-data .action-button:focus,
+  .profile-content .personal-data .action-button:active:focus,
+  .profile-content .personal-data .action-button.active:focus {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+  }
+  .profile-content .personal-data .action-button:hover,
+  .profile-content .personal-data .action-button:focus {
+    color: #ffffff;
+    text-decoration: none;
+  }
+  .profile-content .personal-data .action-button:active,
+  .profile-content .personal-data .action-button.active {
+    outline: 0;
+    background-image: none;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  }
+  .profile-content .personal-data .action-button.disabled,
+  .profile-content .personal-data .action-button[disabled],
+  fieldset[disabled] .profile-content .personal-data .action-button {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.65;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  .profile-content .personal-data .action-button:focus,
+  .profile-content .personal-data .action-button:active:focus,
+  .profile-content .personal-data .action-button.active:focus {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+  }
+  .profile-content .personal-data .action-button:hover,
+  .profile-content .personal-data .action-button:focus {
+    color: #ffffff;
+    text-decoration: none;
+  }
+  .profile-content .personal-data .action-button:active,
+  .profile-content .personal-data .action-button.active {
+    outline: 0;
+    background-image: none;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  }
+  .profile-content .personal-data .action-button.disabled,
+  .profile-content .personal-data .action-button[disabled],
+  fieldset[disabled] .profile-content .personal-data .action-button {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.65;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  .profile-content .personal-data .action-button:hover,
+  .profile-content .personal-data .action-button:focus,
+  .profile-content .personal-data .action-button:active,
+  .profile-content .personal-data .action-button.active,
+  .open .dropdown-toggle.profile-content .personal-data .action-button {
+    color: #ffffff;
+    background-color: #389dcd;
+    border-color: #adadad;
+  }
+  .profile-content .personal-data .action-button:active,
+  .profile-content .personal-data .action-button.active,
+  .open .dropdown-toggle.profile-content .personal-data .action-button {
+    background-image: none;
+  }
+  .profile-content .personal-data .action-button.disabled,
+  .profile-content .personal-data .action-button[disabled],
+  fieldset[disabled] .profile-content .personal-data .action-button,
+  .profile-content .personal-data .action-button.disabled:hover,
+  .profile-content .personal-data .action-button[disabled]:hover,
+  fieldset[disabled] .profile-content .personal-data .action-button:hover,
+  .profile-content .personal-data .action-button.disabled:focus,
+  .profile-content .personal-data .action-button[disabled]:focus,
+  fieldset[disabled] .profile-content .personal-data .action-button:focus,
+  .profile-content .personal-data .action-button.disabled:active,
+  .profile-content .personal-data .action-button[disabled]:active,
+  fieldset[disabled] .profile-content .personal-data .action-button:active,
+  .profile-content .personal-data .action-button.disabled.active,
+  .profile-content .personal-data .action-button[disabled].active,
+  fieldset[disabled] .profile-content .personal-data .action-button.active {
+    background-color: #59add5;
+    border-color: #cccccc;
+  }
+  .profile-content .personal-data .action-button .badge {
+    color: #59add5;
+    background-color: #ffffff;
+  }
+}
+@media (min-width: 768px) {
+  .profile-content .personal-data {
+    border-width: 1px;
+    border-style: none none dotted none;
+    border-color: #214a5f;
+    border-radius: 0;
+  }
+  .profile-content .personal-data .bloque-sm {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding: 0;
+  }
+}
+@media (min-width: 768px) and (min-width: 768px) {
+  .profile-content .personal-data .bloque-sm {
+    float: left;
+    width: 50%;
+  }
+}
+@media (min-width: 992px) {
+  .profile-content .personal-data {
+    border-width: 1px;
+    border-style: none none none none;
+    border-color: #214a5f;
+    border-radius: 0;
+  }
+  .profile-content .personal-data .bloque-sm {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding: 0;
+  }
+}
+@media (min-width: 992px) and (min-width: 768px) {
+  .profile-content .personal-data .bloque-sm {
+    float: left;
+    width: 100%;
+  }
+}
+.profile-content .pocket-data {
+  float: left;
+  width: 100%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 20px 15px;
+}
+@media (min-width: 768px) {
+  .profile-content .pocket-data {
+    float: left;
+    width: 50%;
+  }
+}
+@media (min-width: 768px) {
+  .profile-content .pocket-data {
+    border-width: 1px;
+    border-style: none none none none;
+    border-color: #214a5f;
+    border-radius: 0;
+  }
+}
+@media (min-width: 992px) {
+  .profile-content .pocket-data {
+    border-width: 1px;
+    border-style: none none dotted dotted;
+    border-color: #214a5f;
+    border-radius: 0;
+  }
+}
+.profile-content .pocket-data .button-wrapper {
+  display: inline-block;
+  float: right;
+}
+.profile-content .pocket-data .button-wrapper .action-button-transaction {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  background-color: #59add5;
+  border-color: #cccccc;
+  box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
+  float: right !important;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #ffffff;
+  float: left !important;
+  width: 49%;
+}
+.profile-content .pocket-data .button-wrapper .action-button-transaction:focus,
+.profile-content .pocket-data .button-wrapper .action-button-transaction:active:focus,
+.profile-content .pocket-data .button-wrapper .action-button-transaction.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.profile-content .pocket-data .button-wrapper .action-button-transaction:hover,
+.profile-content .pocket-data .button-wrapper .action-button-transaction:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+.profile-content .pocket-data .button-wrapper .action-button-transaction:active,
+.profile-content .pocket-data .button-wrapper .action-button-transaction.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.profile-content .pocket-data .button-wrapper .action-button-transaction.disabled,
+.profile-content .pocket-data .button-wrapper .action-button-transaction[disabled],
+fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-transaction {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.profile-content .pocket-data .button-wrapper .action-button-transaction:focus,
+.profile-content .pocket-data .button-wrapper .action-button-transaction:active:focus,
+.profile-content .pocket-data .button-wrapper .action-button-transaction.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.profile-content .pocket-data .button-wrapper .action-button-transaction:hover,
+.profile-content .pocket-data .button-wrapper .action-button-transaction:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+.profile-content .pocket-data .button-wrapper .action-button-transaction:active,
+.profile-content .pocket-data .button-wrapper .action-button-transaction.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.profile-content .pocket-data .button-wrapper .action-button-transaction.disabled,
+.profile-content .pocket-data .button-wrapper .action-button-transaction[disabled],
+fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-transaction {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.profile-content .pocket-data .button-wrapper .action-button-transaction:hover,
+.profile-content .pocket-data .button-wrapper .action-button-transaction:focus,
+.profile-content .pocket-data .button-wrapper .action-button-transaction:active,
+.profile-content .pocket-data .button-wrapper .action-button-transaction.active,
+.open .dropdown-toggle.profile-content .pocket-data .button-wrapper .action-button-transaction {
+  color: #ffffff;
+  background-color: #389dcd;
+  border-color: #adadad;
+}
+.profile-content .pocket-data .button-wrapper .action-button-transaction:active,
+.profile-content .pocket-data .button-wrapper .action-button-transaction.active,
+.open .dropdown-toggle.profile-content .pocket-data .button-wrapper .action-button-transaction {
+  background-image: none;
+}
+.profile-content .pocket-data .button-wrapper .action-button-transaction.disabled,
+.profile-content .pocket-data .button-wrapper .action-button-transaction[disabled],
+fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-transaction,
+.profile-content .pocket-data .button-wrapper .action-button-transaction.disabled:hover,
+.profile-content .pocket-data .button-wrapper .action-button-transaction[disabled]:hover,
+fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-transaction:hover,
+.profile-content .pocket-data .button-wrapper .action-button-transaction.disabled:focus,
+.profile-content .pocket-data .button-wrapper .action-button-transaction[disabled]:focus,
+fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-transaction:focus,
+.profile-content .pocket-data .button-wrapper .action-button-transaction.disabled:active,
+.profile-content .pocket-data .button-wrapper .action-button-transaction[disabled]:active,
+fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-transaction:active,
+.profile-content .pocket-data .button-wrapper .action-button-transaction.disabled.active,
+.profile-content .pocket-data .button-wrapper .action-button-transaction[disabled].active,
+fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-transaction.active {
+  background-color: #59add5;
+  border-color: #cccccc;
+}
+.profile-content .pocket-data .button-wrapper .action-button-transaction .badge {
+  color: #59add5;
+  background-color: #ffffff;
+}
+.profile-content .pocket-data .button-wrapper .action-button-get-funds {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  background-color: #59add5;
+  border-color: #cccccc;
+  box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
+  float: right !important;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #ffffff;
+  width: 49%;
+}
+.profile-content .pocket-data .button-wrapper .action-button-get-funds:focus,
+.profile-content .pocket-data .button-wrapper .action-button-get-funds:active:focus,
+.profile-content .pocket-data .button-wrapper .action-button-get-funds.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.profile-content .pocket-data .button-wrapper .action-button-get-funds:hover,
+.profile-content .pocket-data .button-wrapper .action-button-get-funds:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+.profile-content .pocket-data .button-wrapper .action-button-get-funds:active,
+.profile-content .pocket-data .button-wrapper .action-button-get-funds.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.profile-content .pocket-data .button-wrapper .action-button-get-funds.disabled,
+.profile-content .pocket-data .button-wrapper .action-button-get-funds[disabled],
+fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-get-funds {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.profile-content .pocket-data .button-wrapper .action-button-get-funds:focus,
+.profile-content .pocket-data .button-wrapper .action-button-get-funds:active:focus,
+.profile-content .pocket-data .button-wrapper .action-button-get-funds.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.profile-content .pocket-data .button-wrapper .action-button-get-funds:hover,
+.profile-content .pocket-data .button-wrapper .action-button-get-funds:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+.profile-content .pocket-data .button-wrapper .action-button-get-funds:active,
+.profile-content .pocket-data .button-wrapper .action-button-get-funds.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.profile-content .pocket-data .button-wrapper .action-button-get-funds.disabled,
+.profile-content .pocket-data .button-wrapper .action-button-get-funds[disabled],
+fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-get-funds {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.profile-content .pocket-data .button-wrapper .action-button-get-funds:hover,
+.profile-content .pocket-data .button-wrapper .action-button-get-funds:focus,
+.profile-content .pocket-data .button-wrapper .action-button-get-funds:active,
+.profile-content .pocket-data .button-wrapper .action-button-get-funds.active,
+.open .dropdown-toggle.profile-content .pocket-data .button-wrapper .action-button-get-funds {
+  color: #ffffff;
+  background-color: #389dcd;
+  border-color: #adadad;
+}
+.profile-content .pocket-data .button-wrapper .action-button-get-funds:active,
+.profile-content .pocket-data .button-wrapper .action-button-get-funds.active,
+.open .dropdown-toggle.profile-content .pocket-data .button-wrapper .action-button-get-funds {
+  background-image: none;
+}
+.profile-content .pocket-data .button-wrapper .action-button-get-funds.disabled,
+.profile-content .pocket-data .button-wrapper .action-button-get-funds[disabled],
+fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-get-funds,
+.profile-content .pocket-data .button-wrapper .action-button-get-funds.disabled:hover,
+.profile-content .pocket-data .button-wrapper .action-button-get-funds[disabled]:hover,
+fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-get-funds:hover,
+.profile-content .pocket-data .button-wrapper .action-button-get-funds.disabled:focus,
+.profile-content .pocket-data .button-wrapper .action-button-get-funds[disabled]:focus,
+fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-get-funds:focus,
+.profile-content .pocket-data .button-wrapper .action-button-get-funds.disabled:active,
+.profile-content .pocket-data .button-wrapper .action-button-get-funds[disabled]:active,
+fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-get-funds:active,
+.profile-content .pocket-data .button-wrapper .action-button-get-funds.disabled.active,
+.profile-content .pocket-data .button-wrapper .action-button-get-funds[disabled].active,
+fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-get-funds.active {
+  background-color: #59add5;
+  border-color: #cccccc;
+}
+.profile-content .pocket-data .button-wrapper .action-button-get-funds .badge {
+  color: #59add5;
+  background-color: #ffffff;
+}
+@media (max-width: 991px) {
+  .profile-content .pocket-data .button-wrapper {
+    position: relative;
+    float: left;
+    width: 100%;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding: 0;
+  }
+}
+.profile-content .epicpoints-data {
+  float: left;
+  width: 100%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 20px 15px;
+}
+@media (min-width: 768px) {
+  .profile-content .epicpoints-data {
+    float: left;
+    width: 50%;
+  }
+}
+@media (min-width: 768px) {
+  .profile-content .epicpoints-data {
+    border-width: 1px;
+    border-style: none none none dotted;
+    border-color: #214a5f;
+    border-radius: 0;
+  }
+}
+@media (min-width: 992px) {
+  .profile-content .epicpoints-data {
+    border-width: 1px;
+    border-style: none none none dotted;
+    border-color: #214a5f;
+    border-radius: 0;
+  }
+}
 .separator-bar {
   background-image: -webkit-linear-gradient(top, #1a3949 49%, #0f2630 51%);
   background-image: linear-gradient(to bottom, #1a3949 49%, #0f2630 51%);
@@ -16684,10 +17522,10 @@ fieldset[disabled] .btn-orange.active {
 }
 @media (min-width: 768px) {
   .wrapper-content-container {
-    min-height: 1100px;
     background-color: #000000;
-    /*background-image: url("@{images}/designBackgroundBig.jpg");*/
-    background-image: url("../images/retroBackgroundBig.jpg");
+    /*background-image: url("@{images}/designBackgroundBig.jpg");
+		background-image: url("@{images}/retroBackgroundBig.jpg");*/
+    background-image: url("../images/backgroundPlayersAction.jpg");
     /*background-size: contain;*/
     background-position: center top;
     background-repeat: no-repeat;

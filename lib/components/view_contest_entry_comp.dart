@@ -60,7 +60,7 @@ class ViewContestEntryComp {
 
           // generamos los partidos para el filtro de partidos
           matchesInvolved.clear();
-          List<MatchEvent> matchEventsSorted = new List<MatchEvent>.from(contest.templateContest.matchEvents)
+          List<MatchEvent> matchEventsSorted = new List<MatchEvent>.from(contest.matchEvents)
               .. sort((entry1, entry2) => entry1.startDate.compareTo(entry2.startDate))
               .. forEach( (match) {
                 matchesInvolved.add(match.soccerTeamA.shortName + '-' + match.soccerTeamB.shortName + "<br>" + DateTimeService.formatDateTimeShort(match.startDate));

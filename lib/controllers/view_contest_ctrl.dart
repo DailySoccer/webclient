@@ -51,14 +51,14 @@ class ViewContestCtrl implements DetachAware {
 
         // generamos los partidos para el filtro de partidos
         matchesInvolved.clear();
-        List<MatchEvent> matchEventsSorted = new List<MatchEvent>.from(contest.templateContest.matchEvents)
+        List<MatchEvent> matchEventsSorted = new List<MatchEvent>.from(contest.matchEvents)
             .. sort((entry1, entry2) => entry1.startDate.compareTo(entry2.startDate))
             .. forEach( (match) {
               matchesInvolved.add(match.soccerTeamA.shortName + '-' + match.soccerTeamB.shortName + "<br>" + DateTimeService.formatDateTimeShort(match.startDate));
             });
 
         // Únicamente actualizamos los contests que estén en "live"
-        if (_myContestsService.lastContest.templateContest.isLive) {
+        if (_myContestsService.lastContest.isLive) {
           _updateLive();
 
           // Comenzamos a actualizar la información
@@ -70,7 +70,7 @@ class ViewContestCtrl implements DetachAware {
   }
 
   SoccerPlayer getSoccerPlayer(String soccerPlayerId) {
-    return _myContestsService.lastContest.templateContest.findSoccerPlayer(soccerPlayerId);
+    return _myContestsService.lastContest.findSoccerPlayer(soccerPlayerId);
   }
 
   int getUserPosition(ContestEntry contestEntry) => contest.getUserPosition(contestEntry);
@@ -95,7 +95,7 @@ class ViewContestCtrl implements DetachAware {
 
   void _updateLive() {
     // Actualizamos únicamente la lista de live MatchEvents
-    _myContestsService.refreshLiveMatchEvents(_myContestsService.lastContest.templateContest.templateContestId)
+    _myContestsService.refreshLiveMatchEvents(_myContestsService.lastContest.templateContestId)
         .then((jsonObject) {
           updatedDate = DateTimeService.now;
         })
@@ -129,7 +129,7 @@ class ViewContestCtrl implements DetachAware {
   }
 
   Timer _timer;
-  List<int> get _prizes => (contest != null) ? contest.templateContest.prizes : [];
+  List<int> get _prizes => (contest != null) ? contest.prizes : [];
 
   FlashMessagesService _flashMessage;
   ProfileService _profileService;

@@ -5,7 +5,6 @@ import 'dart:collection';
 import "package:webclient/models/user.dart";
 import "package:webclient/models/contest_entry.dart";
 import "package:webclient/models/contest.dart";
-import "package:webclient/models/template_contest.dart";
 import "package:webclient/models/match_event.dart";
 import "package:webclient/models/soccer_team.dart";
 import "package:webclient/models/soccer_player.dart";
@@ -15,7 +14,6 @@ class ContestReferences {
   var refUsers = new HashMap<String, User>();
   var refContestEntries = new HashMap<String, ContestEntry>();
   var refContests = new HashMap<String, Contest>();
-  var refTemplateContests = new HashMap<String, TemplateContest>();
   var refMatchEvents = new HashMap<String, MatchEvent>();
   var refSoccerTeams = new HashMap<String, SoccerTeam>();
   var refSoccerPlayers = new HashMap<String, SoccerPlayer>();
@@ -35,11 +33,6 @@ class ContestReferences {
   Contest getContestById(String id) {
     return refContests.containsKey(id) ? refContests[id]
                                        : refContests[id] = new Contest.referenceInit(id);
-  }
-
-  TemplateContest getTemplateContestById(String id) {
-    return refTemplateContests.containsKey(id) ? refTemplateContests[id]
-                                               : refTemplateContests[id] = new TemplateContest.referenceInit(id);
   }
 
   MatchEvent getMatchEventById(String id) {

@@ -185,14 +185,14 @@ class ContestsListComp {
           contestsListFiltered = contestsListFiltered.where((contest) => contest.name.toUpperCase().contains(value.toUpperCase())).toList();
         break;
         case "FILTER_ENTRY_FEE":
-          contestsListFiltered = contestsListFiltered.where((contest) =>  contest.templateContest.entryFee >= int.parse(value[0].split('.')[0]) &&
-                                                                          contest.templateContest.entryFee <= int.parse(value[1].split('.')[0])).toList();
+          contestsListFiltered = contestsListFiltered.where((contest) =>  contest.entryFee >= int.parse(value[0].split('.')[0]) &&
+                                                                          contest.entryFee <= int.parse(value[1].split('.')[0])).toList();
         break;
         case "FILTER_TOURNAMENT":
-          contestsListFiltered = contestsListFiltered.where((contest) => value.contains(contest.templateContest.tournamentType)).toList();
+          contestsListFiltered = contestsListFiltered.where((contest) => value.contains(contest.tournamentType)).toList();
         break;
         case "FILTER_TIER":
-          contestsListFiltered = contestsListFiltered.where((contest) => value.contains(contest.templateContest.tier)).toList();
+          contestsListFiltered = contestsListFiltered.where((contest) => value.contains(contest.tier)).toList();
         break;
       }
     });

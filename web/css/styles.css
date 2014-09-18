@@ -5697,6 +5697,8 @@ button.close {
 .profile-content:after,
 .profile-content .data-header:before,
 .profile-content .data-header:after,
+.profile-content .data-row:before,
+.profile-content .data-row:after,
 .info-complete-bar:before,
 .info-complete-bar:after,
 .view-contest-entry-actions-wrapper:before,
@@ -5767,6 +5769,7 @@ button.close {
 .main-box .panel .form-horizontal:after,
 .profile-content:after,
 .profile-content .data-header:after,
+.profile-content .data-row:after,
 .info-complete-bar:after,
 .view-contest-entry-actions-wrapper:after,
 .main-content-container:after,
@@ -15969,10 +15972,6 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half.act
   -o-keyframes: errDetectionFrames 0.5s;
   animation: errDetectionFrames  0.5s;
 }
-#userProfileRoot {
-  padding-bottom: 100px;
-  background-color: #ffffff;
-}
 .profile-head {
   padding: 20px 15px;
   text-align: center;
@@ -15996,7 +15995,7 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half.act
   margin-left: 0;
   margin-right: 0;
   border-width: 1px;
-  border-style: none none dotted none;
+  border-style: none none none none;
   border-color: #214a5f;
   border-radius: 0;
   background-color: #ffffff;
@@ -16016,7 +16015,7 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half.act
 .profile-content .data-header .data-header-title {
   font-family: 'Exo', sans-serif;
   font-weight: 300;
-  font-size: 14pt;
+  font-size: 16pt;
   color: #214a5f;
 }
 @media (min-width: 992px) {
@@ -16168,12 +16167,14 @@ fieldset[disabled] .profile-content .action-button.active {
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
-  color: #ffffff;
   background-color: #a1c931;
   border-color: #91b42c;
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   float: right !important;
-  margin: 0 5px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #ffffff;
 }
 .profile-content .add-funds-button:focus,
 .profile-content .add-funds-button:active:focus,
@@ -16274,15 +16275,26 @@ fieldset[disabled] .profile-content .add-funds-button.active {
   font-weight: 700;
   font-size: 9pt;
   color: #214a5f;
-  line-height: 2.5;
+  line-height: 25pt;
 }
 .profile-content .data-value {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 9pt;
   color: #214a5f;
-  line-height: 2.5;
-  padding-left: 8px;
+  line-height: 25pt;
+  margin-left: 8px;
+}
+.profile-content .data-value-balance {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 9pt;
+  color: #ffffff;
+  line-height: 25pt;
+  margin-left: 8px;
+  background-color: #fa9c19;
+  padding: 5px 10px;
+  border-radius: 5px;
 }
 .profile-content .personal-data {
   float: left;
@@ -16459,7 +16471,7 @@ fieldset[disabled] .profile-content .add-funds-button.active {
 @media (min-width: 992px) {
   .profile-content .personal-data {
     border-width: 1px;
-    border-style: none none none none;
+    border-style: none dotted none none;
     border-color: #214a5f;
     border-radius: 0;
   }
@@ -16503,7 +16515,7 @@ fieldset[disabled] .profile-content .add-funds-button.active {
 @media (min-width: 992px) {
   .profile-content .pocket-data {
     border-width: 1px;
-    border-style: none none dotted dotted;
+    border-style: none none dotted none;
     border-color: #214a5f;
     border-radius: 0;
   }
@@ -16796,10 +16808,54 @@ fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-
 @media (min-width: 992px) {
   .profile-content .epicpoints-data {
     border-width: 1px;
-    border-style: none none none dotted;
+    border-style: none none none none;
     border-color: #214a5f;
     border-radius: 0;
   }
+}
+.profile-content .epicpoints-data .data-column {
+  float: left;
+  width: 50%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 0;
+}
+@media (min-width: 992px) {
+  .profile-content .epicpoints-data .data-column {
+    float: left;
+    width: 33.33333333%;
+  }
+}
+.profile-content .epicpoints-data .data-column a {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 8pt;
+  color: #59add5;
+  line-height: 33px;
+}
+.profile-content .data-row {
+  margin-left: 0;
+  margin-right: 0;
+}
+.profile-content .data-container-3 {
+  position: relative;
+  float: left;
+  width: 25%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 0;
+}
+.profile-content .data-container-9 {
+  position: relative;
+  float: left;
+  width: 75%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 0;
 }
 .separator-bar {
   background-image: -webkit-linear-gradient(top, #1a3949 49%, #0f2630 51%);

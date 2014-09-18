@@ -59,16 +59,6 @@ class MyContestsService {
           completer.complete(jsonObject);
         });
 
-    /*
-    Future.wait([_server.getMyNextContests(), _server.getMyLiveContests(), _server.getMyHistoryContests()])
-        .then((List responses) {
-          waitingContests = Contest.loadContestsFromJsonObject(responses[0]);
-          liveContests = Contest.loadContestsFromJsonObject(responses[1]);
-          historyContests = Contest.loadContestsFromJsonObject(responses[2]);
-          completer.complete(responses);
-        });
-    */
-
     return completer.future;
   }
 

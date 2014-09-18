@@ -147,18 +147,18 @@ class Contest {
   }
 
   /*
-   * Carga una LISTA de Contests a partir de JsonObjects
+   * Carga o un Contest o una LISTA de Contests a partir de JsonObjects
    */
   static List<Contest> loadContestsFromJsonObject(JsonObject jsonRoot) {
     var contests = new List<Contest>();
 
     ContestReferences contestReferences = new ContestReferences();
 
-    // 1 Contest? -> 1 TemplateContest
+    // Solo 1 contest
     if (jsonRoot.containsKey("contest")) {
       contests.add(new Contest.fromJsonObject(jsonRoot.contest, contestReferences));
     }
-    // >1 Contests!
+    // Array de contests
     else {
       contests = jsonRoot.containsKey("contests") ? jsonRoot.contests.map((jsonObject) => new Contest.fromJsonObject(jsonObject, contestReferences)).toList() : [];
 
@@ -166,11 +166,6 @@ class Contest {
       for (int view=0; view<10 && jsonRoot.containsKey("contests_$view"); view++) {
           contests.addAll( jsonRoot["contests_$view"].map((jsonObject) => new Contest.fromJsonObject(jsonObject, contestReferences)).toList() );
       }
-    }
-
-    // Contest Entries?
-    if (jsonRoot.containsKey("contest_entries")) {
-      jsonRoot.contest_entries.map((jsonObject) => new ContestEntry.fromJsonObject(jsonObject, contestReferences)).toList();
     }
 
     if (jsonRoot.containsKey("match_events")) {

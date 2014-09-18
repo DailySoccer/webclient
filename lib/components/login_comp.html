@@ -29,7 +29,7 @@
               <label><input id="login-remember" type="checkbox" ng-model="rememberMe" name="rememberMe"> Recuerdame </label>
             </div>
             <div class="forget-pass">
-              <a ng-click="comp.forgetPass()">¿Olvidaste tu contraseña?</a>
+              <a ng-click="comp.navigateTo('remember_password', {})">¿Olvidaste tu contraseña?</a>
             </div>
           </div>
           <!-- BUTTON -->
@@ -47,7 +47,7 @@
           <!-- GOTO REGISTER -->
           <div class="input-group">
             <div class="new-row">
-              <div class="separator-top">¿Aún no tienes cuenta? <a ng-click="comp.registerPressed()"> Regístrate aquí! </a></div>
+              <div class="separator-top">¿Aún no tienes cuenta? <a ng-click="comp.navigateTo('join', {})"> Regístrate aquí! </a></div>
             </div>
           </div>
         </form>

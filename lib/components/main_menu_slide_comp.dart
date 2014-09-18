@@ -21,12 +21,9 @@ class MainMenuSlideComp implements ShadowRootAware{
     _router.go('landing_page', {});
     profileService.logout();
     _currentActiveElement = null;
-
-
   }
 
   MainMenuSlideComp(this._router, this.profileService);
-
 
   void saveActiveClass() {
     if ( _currentActiveElement == null ) {
@@ -39,16 +36,16 @@ class MainMenuSlideComp implements ShadowRootAware{
   void navigateTo(event, [Map params]) {
     if( params == null) {
       params = {};
-
     }
+
     String destination = event.target.attributes["destination"];
 
     if (destination.isNotEmpty) {
       _router.go(destination, params);
     }
+
     JsUtils.runJavascript('.navbar-offcanvas.navmenu-fixed-left', 'offcanvas', 'toggle');
     updateMenuLinks(event.target);
-
   }
 
   void updateMenuLinks(dynamic a) {
@@ -64,7 +61,7 @@ class MainMenuSlideComp implements ShadowRootAware{
       }
       else {
         //Si el id tiene la palabra user, es un elemento del submenu de usuario
-        if (a.id.contains("user")) {
+        if (a.id.contains("menuUser")) {
           _currentActiveElement = a.parent.parent.parent; // Si está en el submenu tenemos que subir hasta el li padre (profuncidad actual: li>ul>li>a)
         }
         else {
@@ -88,11 +85,6 @@ class MainMenuSlideComp implements ShadowRootAware{
   @override
   void onShadowRoot(root) {
    _rootElement = root as HtmlElement;
-   // buscamos el menu
-   // = _currentActiveElement.querySelector('.active');
-   // --Debug only--
-   //if(_currentActiveElement == null)
-   //  print("No se ha encontrado el elemento del menu 'active'");
   }
   HtmlElement _rootElement;
   LIElement _currentActiveElement;

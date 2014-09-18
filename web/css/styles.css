@@ -6600,16 +6600,16 @@ fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-login.active 
 }
 @media (min-width: 992px) {
   #infoContent .modal-info-head .contest-info-header-row .content-text {
-    font-family: 'Exo', sans-serif;
-    font-weight: 600;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
     font-size: 16pt;
     color: #214a5f;
   }
 }
 @media (max-width: 991px) {
   #infoContent .modal-info-head .contest-info-header-row .content-text {
-    font-family: 'Exo', sans-serif;
-    font-weight: 600;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
     font-size: 14pt;
     color: #214a5f;
   }

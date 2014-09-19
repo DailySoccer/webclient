@@ -6357,12 +6357,25 @@ button.close {
     color: #000000;
     background-color: #f8f8f8;
   }
+  #mainMenu .navbar-offcanvas .navbar-nav .right-menu a::after {
+    font-family: 'Glyphicons Halflings';
+    content: "\E114";
+    font-size: 8pt;
+    color: #999999;
+    margin-left: 5px;
+  }
+  #mainMenu .navbar-offcanvas .navbar-nav .right-menu + .right-menu {
+    display: none;
+  }
   #mainMenu .navbar-offcanvas .dropdown-menu {
     padding: 0px;
   }
   #mainMenu .navbar-offcanvas .dropdown-menu li > a {
     cursor: pointer;
     padding: 10px 0px 10px 40px;
+  }
+  #mainMenu .navbar-offcanvas .dropdown-menu li > a::after {
+    content: "" !important;
   }
   #mainMenu .navbar-toggle:hover,
   #mainMenu .navbar-toggle:focus {

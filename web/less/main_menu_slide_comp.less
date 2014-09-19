@@ -171,12 +171,25 @@
 				}
 			}
 
+			.navbar-nav .right-menu a::after {
+	  			.create-glyph("\E114", 8pt, #999999);
+	  			margin-left: 5px;
+
+	  		}
+
+		    .navbar-nav .right-menu + .right-menu {
+		    	display: none;
+		    }
+
 	  		.dropdown-menu {
 				padding: 0px;
 		        & li > a {
 		            cursor:pointer;
 		            padding: 10px 0px 10px 40px;
 		        }
+		        & li > a::after {
+		        	content: "" !important;
+		        } 
 		    }
         }
 

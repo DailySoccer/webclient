@@ -6079,6 +6079,15 @@ button.close {
   }
 }
 @media (min-width: 768px) {
+  #mainMenu .navbar-header {
+    float: left;
+    position: absolute;
+  }
+  #mainMenu .navbar-nav {
+    width: 100%;
+    padding-left: 130px;
+    margin-left: 20px;
+  }
   #mainMenu .navbar-nav > .active > a {
     background-color: rgba(0, 0, 0, 0.3);
     color: #ffffff;
@@ -6094,22 +6103,194 @@ button.close {
     background-color: transparent;
   }
   #mainMenu .navbar-nav > li > a {
-    padding: 20px;
+    padding: 20px 0;
     cursor: pointer;
+    margin-right: 20px;
+  }
+  #mainMenu .navbar-nav > .right-menu {
+    float: right;
+    width: 130px;
+    text-align: right;
+  }
+  #mainMenu .navbar-nav > .right-menu .current-balance {
+    display: block;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 10pt;
+    color: #ffffff;
+    text-align: center;
+    margin: 5px 0;
+  }
+  #mainMenu .navbar-nav .right-menu a::after {
+    font-family: 'Glyphicons Halflings';
+    content: "\E114";
+    font-size: 8pt;
+    color: #999999;
+    margin-left: 5px;
+  }
+  #mainMenu .navbar-nav .right-menu a:hover::after {
+    color: #ffffff;
+  }
+  #mainMenu .navbar-nav .open a::after {
+    color: #ffffff;
+  }
+  #mainMenu .navbar-nav .right-menu + .right-menu {
+    text-align: center;
+  }
+  #mainMenu .navbar-nav .right-menu + .right-menu a::after {
+    content: "";
+  }
+  #mainMenu .add-funds-button {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border-width: 0;
+    background-color: #a1c931;
+    border-color: #91b42c;
+    box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    color: #ffffff;
+    padding: 4px 4px;
+    font-size: 8pt;
+    line-height: 1.5em;
+    border-radius: 4px;
+  }
+  #mainMenu .add-funds-button:focus,
+  #mainMenu .add-funds-button:active:focus,
+  #mainMenu .add-funds-button.active:focus {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+  }
+  #mainMenu .add-funds-button:hover,
+  #mainMenu .add-funds-button:focus {
+    color: #ffffff;
+    text-decoration: none;
+  }
+  #mainMenu .add-funds-button:active,
+  #mainMenu .add-funds-button.active {
+    outline: 0;
+    background-image: none;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  }
+  #mainMenu .add-funds-button.disabled,
+  #mainMenu .add-funds-button[disabled],
+  fieldset[disabled] #mainMenu .add-funds-button {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.65;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  #mainMenu .add-funds-button:focus,
+  #mainMenu .add-funds-button:active:focus,
+  #mainMenu .add-funds-button.active:focus {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+  }
+  #mainMenu .add-funds-button:hover,
+  #mainMenu .add-funds-button:focus {
+    color: #ffffff;
+    text-decoration: none;
+  }
+  #mainMenu .add-funds-button:active,
+  #mainMenu .add-funds-button.active {
+    outline: 0;
+    background-image: none;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  }
+  #mainMenu .add-funds-button.disabled,
+  #mainMenu .add-funds-button[disabled],
+  fieldset[disabled] #mainMenu .add-funds-button {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.65;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  #mainMenu .add-funds-button:hover,
+  #mainMenu .add-funds-button:focus,
+  #mainMenu .add-funds-button:active,
+  #mainMenu .add-funds-button.active,
+  .open .dropdown-toggle#mainMenu .add-funds-button {
+    color: #ffffff;
+    background-color: #87a829;
+    border-color: #698320;
+  }
+  #mainMenu .add-funds-button:active,
+  #mainMenu .add-funds-button.active,
+  .open .dropdown-toggle#mainMenu .add-funds-button {
+    background-image: none;
+  }
+  #mainMenu .add-funds-button.disabled,
+  #mainMenu .add-funds-button[disabled],
+  fieldset[disabled] #mainMenu .add-funds-button,
+  #mainMenu .add-funds-button.disabled:hover,
+  #mainMenu .add-funds-button[disabled]:hover,
+  fieldset[disabled] #mainMenu .add-funds-button:hover,
+  #mainMenu .add-funds-button.disabled:focus,
+  #mainMenu .add-funds-button[disabled]:focus,
+  fieldset[disabled] #mainMenu .add-funds-button:focus,
+  #mainMenu .add-funds-button.disabled:active,
+  #mainMenu .add-funds-button[disabled]:active,
+  fieldset[disabled] #mainMenu .add-funds-button:active,
+  #mainMenu .add-funds-button.disabled.active,
+  #mainMenu .add-funds-button[disabled].active,
+  fieldset[disabled] #mainMenu .add-funds-button.active {
+    background-color: #a1c931;
+    border-color: #91b42c;
+  }
+  #mainMenu .add-funds-button .badge {
+    color: #a1c931;
+    background-color: #ffffff;
   }
   #mainMenu .dropdown-menu {
+    margin-left: -104px;
     padding: 0px;
   }
   #mainMenu .dropdown-menu > li > a {
+    text-align: left;
     cursor: pointer;
-    padding: 15px 25px 15px 20px;
+    padding: 10px 40px 10px 20px;
     border-width: 1px;
     border-style: none solid solid solid;
     border-color: #f8f8f8;
     border-radius: 0;
+    position: relative;
   }
   #mainMenu .dropdown-menu > li > a:hover {
     background-color: #f8f8f8;
+  }
+  #mainMenu .dropdown-menu > li > a:hover::after {
+    color: #999 !important;
+  }
+  #mainMenu .dropdown-menu > li > a::after {
+    font-family: 'Glyphicons Halflings' !important;
+    content: "\E080" !important;
+    font-size: 9pt !important;
+    color: #000000 !important;
+    position: absolute;
+    top: 12px;
+    right: 12px;
   }
 }
 @media (max-width: 767px) {

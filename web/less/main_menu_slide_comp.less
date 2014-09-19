@@ -21,6 +21,15 @@
 
    	// Version no XS (SM y Desktop)
   	@media (min-width: @screen-sm-min) {
+  		.navbar-header {
+  			float: left;
+  			position: absolute;
+  		}
+		.navbar-nav {
+			width: 100%;
+			padding-left: 130px;
+			margin-left: 20px;
+		}
 	  	// elementos del menu
 	  	.navbar-nav > .active > a {
   			background-color: fade( @black, 30%);
@@ -37,22 +46,71 @@
   			}
   		}
 	  	.navbar-nav > li > a {
-	    	padding: 20px;
-  			cursor:pointer;
+	    	padding: 20px 0;
+  			cursor: pointer;
+  			margin-right: 20px;
 	  	}
+	  	.navbar-nav > .right-menu {
+	  		float: right;
+	  		width: 130px;
+	  		text-align: right;
+	  		.current-balance {
+	  			display: block;
+	  			.opensans_bold(10pt, @white);
+	  			text-align: center;
+	  			margin: 5px 0;
+	  		}
+	  	}
+	  	.navbar-nav .right-menu a::after {
+	  		.create-glyph("\E114", 8pt, #999999);
+	  		margin-left: 5px;
+
+	  	}
+	  	.navbar-nav .right-menu a:hover {
+	  		&::after {
+	  			color: @white;
+	  		}
+	  	}
+	  	.navbar-nav .open a::after {
+	  		color: @white;
+	  	} 
+	  	.navbar-nav .right-menu + .right-menu {
+	  		text-align: center;
+	  	}
+	  	.navbar-nav .right-menu + .right-menu a::after {
+	  		content: "";
+	  	}
+	  	.add-funds-button {
+			.btn();
+			.btn-primary();
+			.opensans_bold(8pt, @white);
+			.button-size(4px, 4px, 8pt, 1.5em, 4px);
+		}
     	// elementos del sub-menu
         .dropdown-menu {
+        	margin-left: -104px;
 			& {
 				padding: 0px;
 			}
 	        & > li > a {
+	        	text-align: left;
 	            cursor:pointer;
-	            padding: 15px 25px 15px 20px;
+	            padding: 10px 40px 10px 20px;
 	            .make-border(1px, none solid solid solid, @greyUltraLight);
+	            position: relative;
 
 	            &:hover {
 	            	background-color: @greyUltraLight;
+	            	&::after {
+	        			color: #999 !important;
+	        		}
 	            }
+	            &::after {
+	        		.create-glyph("\E080", 9pt, @black) !important;
+	        		position: absolute;
+	        		top: 12px;
+	        		right: 12px;
+	        	}
 	        }
 	    }
   	}

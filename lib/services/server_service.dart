@@ -7,6 +7,15 @@ import 'package:json_object/json_object.dart';
 import 'package:webclient/webclient.dart';
 import 'package:logging/logging.dart';
 
+// Logger global para cuando queramos mandar un mensaje al servidor
+Logger serverLogger = new Logger('DailySoccer');
+
+startLogger() {
+  serverLogger.onRecord.listen((r) {
+       print("[${r.loggerName}] ${r.time}: ${r.message}");
+       DailySoccerServer.log(r);
+     });
+}
 
 abstract class ServerService {
   void               setSessionToken(String sessionToken);
@@ -108,7 +117,7 @@ class DailySoccerServer implements ServerService {
 
   static void log(LogRecord r) {
     if (_instance != null) {
-      _instance._http.post("$HostServerUrl/log", null, params: {"errorMessage": r.message, "level": r.level, "time": r.time});
+      _instance._http.post("$HostServerUrl/log", JSON.encode({"errorMessage": "${r.message}", "level": "${r.level}", "time": "${r.time}"}));
     };
   }
 

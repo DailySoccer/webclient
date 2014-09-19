@@ -106,7 +106,7 @@ class DailySoccerServer implements ServerService {
     return _innerServerCall("$HostServerUrl/current_date", null);
   }
 
-  static void logPost(LogRecord r) {
+  static void log(LogRecord r) {
     if (_instance != null) {
       _instance._http.post("$HostServerUrl/log", null, params: {"errorMessage": r.message, "level": r.level, "time": r.time});
     };

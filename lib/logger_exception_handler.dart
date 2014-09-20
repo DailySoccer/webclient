@@ -6,8 +6,8 @@ import 'package:webclient/utils/host_server.dart';
 @Injectable()
 class LoggerExceptionHandler extends ExceptionHandler {
 
-  call(dynamic error, dynamic stack, [String reason = '']) {
-    Logger.root.severe("$error $reason \nORIGINAL STACKTRACE:\n$stack");
+  call(dynamic exc, dynamic stackTrace, [String reason = '']) {
+    logException(exc, stackTrace, reason);
   }
 
   static void setUpLogger() {
@@ -17,7 +17,7 @@ class LoggerExceptionHandler extends ExceptionHandler {
     // Si quisieramos tener mas de un logger, mirar bien este flag
     // hierarchicalLoggingEnabled = true;
 
-    Logger.root.onRecord.listen((r) {
+    Logger.root.onRecord.listen((LogRecord r) {
       print("${r.time}: ${r.message}");
 
       // Por convenio, si se quiere mandar un mensaje al servidor, basta usar el logger root con level >= SEVERE.
@@ -26,5 +26,9 @@ class LoggerExceptionHandler extends ExceptionHandler {
                    .catchError((error) => print(error));
       }
     });
+  }
+
+  static void logException(dynamic exc, dynamic stackTrace, [String reason = '']) {
+    Logger.root.severe("$exc $reason \nORIGINAL STACKTRACE:\n$stackTrace");
   }
 }

@@ -1,9 +1,10 @@
-  library landing_page_comp;
+library landing_page_comp;
 
 import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
+
 
 @Component(
    selector: 'landing-page',
@@ -11,7 +12,6 @@ import 'package:webclient/services/screen_detector_service.dart';
    publishAs: 'comp',
    useShadowDom: false
 )
-
 class LandingPageComp implements ShadowRootAware, DetachAware {
 
   String content;
@@ -21,7 +21,8 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
   ScreenDetectorService scrDet;
 
   LandingPageComp(this._router, this._profileService, this.scrDet) {
-    // Capturamos los elementos envolventes, porque el layout en landing page es diferente al del resto de la web.
+
+    // Capturamos el elemento wrapper
     bodyObj             = querySelector('body');
     mainWrapper         = querySelector('#mainWrapper');
     containerForContent = querySelector('#mainContent');
@@ -36,6 +37,7 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
     mainWrapper.classes.clear();
     mainWrapper.classes.add('landing-wrapper');
     containerForContent.classes.clear();
+    //containerForContent.style.backgroundColor = "tranparent";
     bodyObj.classes.add('fondo-negro');
   }
 
@@ -47,9 +49,11 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
     bodyObj.classes.remove('fondo-negro');
   }
 
+
   void buttonPressed(String route){
     _router.go(route, {});
   }
+
 
   Router _router;
   ProfileService _profileService;

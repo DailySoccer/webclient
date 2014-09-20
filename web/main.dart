@@ -1,17 +1,24 @@
-import 'package:logging/logging.dart';
 import 'package:angular/application_factory.dart';
 import 'package:angular/routing/static_keys.dart';
 import 'package:angular/core_dom/static_keys.dart';
 
 import 'package:webclient/webclient.dart';
+import 'package:webclient/logger_exception_handler.dart';
 
 void main() {
-  Logger.root.level = Level.FINEST;
-  Logger.root.onRecord.listen((LogRecord r) { print(r.message); });
 
-  setUpHostServerUrl();
-  var injector = applicationFactory().addModule(new WebClientApp()).run();
+  try {
+    LoggerExceptionHandler.setUpLogger();
 
+    var injector = applicationFactory().addModule(new WebClientApp()).run();
+    setUpCache(injector);
+  }
+  catch (exc, stackTrace) {
+    LoggerExceptionHandler.logExceptionToServer(exc, stackTrace);
+  }
+}
+
+void setUpCache(injector) {
   // Precacheamos lost html de las vistas para que no los cargue luego al entrar en las pantallas
   var cache = injector.getByKey(VIEW_CACHE_KEY);
 
@@ -24,3 +31,4 @@ void main() {
   cache.fromUrl("view/enter_contest.tpl.html", injector.getByKey(DIRECTIVE_MAP_KEY));
   cache.fromUrl("view/view_contest.tpl.html", injector.getByKey(DIRECTIVE_MAP_KEY));
 }
+

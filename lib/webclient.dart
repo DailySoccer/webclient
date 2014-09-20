@@ -1,6 +1,5 @@
 library webclient;
 
-import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:angular/routing/module.dart';
 import 'package:webclient/webclient_router.dart';
@@ -13,6 +12,7 @@ import 'package:webclient/services/soccer_player_service.dart';
 import 'package:webclient/services/server_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
+import 'package:webclient/logger_exception_handler.dart';
 
 import 'package:webclient/utils/limit_to_dot.dart';
 
@@ -43,25 +43,10 @@ import 'package:webclient/components/remember_password_comp.dart';
 import 'package:webclient/components/view_contest_entry_comp.dart';
 import 'package:webclient/utils/form-autofill-fix.dart';
 
-// Global variable to hold the url of the app's server
-String HostServerUrl;
-
-bool isLocalHost() {
-  return (window.location.hostname.contains("127.") || window.location.hostname.contains("localhost"));
-}
-
-void setUpHostServerUrl() {
-  if (isLocalHost()) {
-    HostServerUrl = "http://localhost:9000";
-  }
-  else {
-    HostServerUrl = window.location.origin;
-  }
-  print("Host: $HostServerUrl");
-}
-
 class WebClientApp extends Module {
   WebClientApp() {
+
+    bind(ExceptionHandler, toImplementation: LoggerExceptionHandler);
 
     bind(ServerService, toImplementation: DailySoccerServer);
 

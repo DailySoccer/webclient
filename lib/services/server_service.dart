@@ -4,7 +4,8 @@ import 'dart:async';
 import 'dart:convert' show JSON;
 import 'package:angular/angular.dart';
 import 'package:json_object/json_object.dart';
-import 'package:webclient/webclient.dart';
+import 'package:webclient/utils/host_server.dart';
+import 'package:logging/logging.dart';
 
 
 abstract class ServerService {
@@ -43,65 +44,65 @@ class DailySoccerServer implements ServerService {
   void setSessionToken(String sessionToken) { _sessionToken = sessionToken; }
 
   Future<JsonObject> signup(String firstName, String lastName, String email, String nickName, String password) {
-    return _innerServerCall("$HostServerUrl/signup", {'firstName': firstName, 'lastName': lastName, 'email': email, 'nickName': nickName, 'password': password});
+    return _innerServerCall("${HostServer.url}/signup", {'firstName': firstName, 'lastName': lastName, 'email': email, 'nickName': nickName, 'password': password});
   }
 
   Future<JsonObject> login(String email, String password) {
-    return _innerServerCall("$HostServerUrl/login", {'email': email, 'password': password});
+    return _innerServerCall("${HostServer.url}/login", {'email': email, 'password': password});
   }
 
   Future<JsonObject> getUserProfile() {
-    return _innerServerCall("$HostServerUrl/get_user_profile", null);
+    return _innerServerCall("${HostServer.url}/get_user_profile", null);
   }
 
   Future<JsonObject> getMyContests() {
-    return _innerServerCall("$HostServerUrl/get_my_contests", null);
+    return _innerServerCall("${HostServer.url}/get_my_contests", null);
   }
 
   Future<JsonObject> getContest(String contestId) {
-    return _innerServerCall("$HostServerUrl/get_contest/$contestId", null);
+    return _innerServerCall("${HostServer.url}/get_contest/$contestId", null);
   }
 
   Future<JsonObject> getActiveContests() {
-    return _innerServerCall("$HostServerUrl/get_active_contests", null);
+    return _innerServerCall("${HostServer.url}/get_active_contests", null);
   }
 
   Future<JsonObject> addContestEntry(String contestId, List<String> soccerPlayers) {
     String jsonSoccerPlayers = JSON.encode(soccerPlayers);
-    return _innerServerCall("$HostServerUrl/add_contest_entry", {'contestId': contestId, 'soccerTeam': jsonSoccerPlayers});
+    return _innerServerCall("${HostServer.url}/add_contest_entry", {'contestId': contestId, 'soccerTeam': jsonSoccerPlayers});
   }
 
   Future<JsonObject> editContestEntry(String contestEntryId, List<String> soccerPlayers) {
     String jsonSoccerPlayers = JSON.encode(soccerPlayers);
-    return _innerServerCall("$HostServerUrl/edit_contest_entry", {'contestEntryId': contestEntryId, 'soccerTeam': jsonSoccerPlayers});
+    return _innerServerCall("${HostServer.url}/edit_contest_entry", {'contestEntryId': contestEntryId, 'soccerTeam': jsonSoccerPlayers});
   }
 
   Future<JsonObject> cancelContestEntry(String contestEntryId) {
-    return _innerServerCall("$HostServerUrl/cancel_contest_entry", {'contestEntryId': contestEntryId});
+    return _innerServerCall("${HostServer.url}/cancel_contest_entry", {'contestEntryId': contestEntryId});
   }
 
   Future<JsonObject> getContestInfo(String contestId) {
-    return _innerServerCall("$HostServerUrl/get_contest_info/$contestId", null);
+    return _innerServerCall("${HostServer.url}/get_contest_info/$contestId", null);
   }
 
   Future<JsonObject> getLiveMatchEventsFromTemplateContest(String templateContestId) {
-    return _innerServerCall("$HostServerUrl/get_live_match_events/template_contest/$templateContestId", null);
+    return _innerServerCall("${HostServer.url}/get_live_match_events/template_contest/$templateContestId", null);
   }
 
   Future<JsonObject> getSoccerPlayerInfo(String templateSoccerPlayerId) {
-    return _innerServerCall("$HostServerUrl/get_soccer_player_info/$templateSoccerPlayerId", null);
+    return _innerServerCall("${HostServer.url}/get_soccer_player_info/$templateSoccerPlayerId", null);
   }
 
   Future<JsonObject> isSimulatorActivated() {
-    return _innerServerCall("$HostServerUrl/admin/is_simulator_activated", null);
+    return _innerServerCall("${HostServer.url}/admin/is_simulator_activated", null);
   }
 
   Future<JsonObject> getCurrentDate() {
-    return _innerServerCall("$HostServerUrl/current_date", null);
+    return _innerServerCall("${HostServer.url}/current_date", null);
   }
 
   /**
-   * This is the only place where we call our server
+   * This is the only place where we call our server (except the LoggerExceptionHandler)
    */
   Future<JsonObject> _innerServerCall(String url, Map postData) {
     var completer = new Completer<JsonObject>();
@@ -136,7 +137,7 @@ class DailySoccerServer implements ServerService {
 
   void _processError(var error, String url, Completer completer) {
 
-    print("_innerServerCall url: $url\n_innerServerCall error: $error");
+    Logger.root.severe("_innerServerCall error: $error, url: $url");
 
     if (error is HttpResponse) {
       HttpResponse httpResponse = error as HttpResponse;

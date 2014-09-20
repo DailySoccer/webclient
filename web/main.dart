@@ -8,7 +8,7 @@ import 'package:webclient/logger_exception_handler.dart';
 void main() {
 
   LoggerExceptionHandler.setUpLogger();
-  setUpHostServerUrl();
+
   var injector = applicationFactory().addModule(new WebClientApp()).run();
 
   // Precacheamos lost html de las vistas para que no los cargue luego al entrar en las pantallas

@@ -1,7 +1,7 @@
 import 'package:angular/angular.dart';
-import 'package:webclient/services/server_service.dart';
 import 'package:logging/logging.dart';
-
+import 'dart:html';
+import 'package:webclient/utils/host_server.dart';
 
 @Injectable()
 class LoggerExceptionHandler extends ExceptionHandler {
@@ -18,11 +18,12 @@ class LoggerExceptionHandler extends ExceptionHandler {
     // hierarchicalLoggingEnabled = true;
 
     Logger.root.onRecord.listen((r) {
-      print("[${r.loggerName}] ${r.time}: ${r.message}");
+      print("${r.time}: ${r.message}");
 
       // Por convenio, si se quiere mandar un mensaje al servidor, basta usar el logger root con level >= SEVERE.
       if (r.level >=  Level.SEVERE) {
-        DailySoccerServer.log(r);
+        HttpRequest.postFormData("${HostServer.url}/log", {"errorMessage": "${r.message}", "level": "${r.level}", "time": "${r.time}"})
+                   .catchError((error) => print(error));
       }
     });
   }

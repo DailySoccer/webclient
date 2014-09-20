@@ -44,23 +44,6 @@ import 'package:webclient/components/remember_password_comp.dart';
 import 'package:webclient/components/view_contest_entry_comp.dart';
 import 'package:webclient/utils/form-autofill-fix.dart';
 
-// Global variable to hold the url of the app's server
-String HostServerUrl;
-
-bool isLocalHost() {
-  return (window.location.hostname.contains("127.") || window.location.hostname.contains("localhost"));
-}
-
-void setUpHostServerUrl() {
-  if (isLocalHost()) {
-    HostServerUrl = "http://localhost:9000";
-  }
-  else {
-    HostServerUrl = window.location.origin;
-  }
-  print("Host: $HostServerUrl");
-}
-
 class WebClientApp extends Module {
   WebClientApp() {
 

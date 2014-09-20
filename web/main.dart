@@ -14,7 +14,7 @@ void main() {
     setUpCache(injector);
   }
   catch (exc, stackTrace) {
-    LoggerExceptionHandler.logException(exc, stackTrace);
+    LoggerExceptionHandler.logExceptionToServer(exc, stackTrace);
   }
 }
 

@@ -5,6 +5,7 @@ import 'dart:convert' show JSON;
 import 'package:angular/angular.dart';
 import 'package:json_object/json_object.dart';
 import 'package:webclient/utils/host_server.dart';
+import 'package:logging/logging.dart';
 
 
 abstract class ServerService {
@@ -101,7 +102,7 @@ class DailySoccerServer implements ServerService {
   }
 
   /**
-   * This is the only place where we call our server
+   * This is the only place where we call our server (except the LoggerExceptionHandler)
    */
   Future<JsonObject> _innerServerCall(String url, Map postData) {
     var completer = new Completer<JsonObject>();
@@ -136,7 +137,7 @@ class DailySoccerServer implements ServerService {
 
   void _processError(var error, String url, Completer completer) {
 
-    print("_innerServerCall url: $url\n_innerServerCall error: $error");
+    Logger.root.severe("_innerServerCall error: $error, url: $url");
 
     if (error is HttpResponse) {
       HttpResponse httpResponse = error as HttpResponse;

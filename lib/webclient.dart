@@ -64,11 +64,9 @@ void setUpHostServerUrl() {
 class WebClientApp extends Module {
   WebClientApp() {
 
-    startLogger();
+    bind(ExceptionHandler, toImplementation: LoggerExceptionHandler);
 
     bind(ServerService, toImplementation: DailySoccerServer);
-
-    bind(ExceptionHandler, toImplementation: LoggerExceptionHandler);
 
     bind(DateTimeService);
     bind(ProfileService);

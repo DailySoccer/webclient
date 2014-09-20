@@ -1,4 +1,4 @@
-  library landing_page_comp;
+library landing_page_comp;
 
 import 'dart:html';
 import 'package:angular/angular.dart';
@@ -21,13 +21,6 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
   ScreenDetectorService scrDet;
 
   LandingPageComp(this._router, this._profileService, this.scrDet) {
-
-    // Example of Exception logging
-    //throw new Exception("FAILING!");
-
-    // Example of logging to server
-    //import 'package:webclient/logger_exception_handler.dart';
-    //serverLogger.info("HOLAAAAA");
 
     // Capturamos el elemento wrapper
     bodyObj             = querySelector('body');

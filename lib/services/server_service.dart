@@ -7,15 +7,6 @@ import 'package:json_object/json_object.dart';
 import 'package:webclient/webclient.dart';
 import 'package:logging/logging.dart';
 
-// Logger global para cuando queramos mandar un mensaje al servidor
-Logger serverLogger = new Logger('DailySoccer');
-
-startLogger() {
-  serverLogger.onRecord.listen((r) {
-       print("[${r.loggerName}] ${r.time}: ${r.message}");
-       DailySoccerServer.log(r);
-     });
-}
 
 abstract class ServerService {
   void               setSessionToken(String sessionToken);
@@ -52,6 +43,7 @@ class DailySoccerServer implements ServerService {
     if (_instance != null) {
       throw new Exception("WTF 492");
     }
+
     _instance = this;
   }
 

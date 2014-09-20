@@ -3,6 +3,7 @@ library screen_detector_service;
 import 'dart:html';
 import 'package:angular/angular.dart';
 import 'dart:async';
+import 'package:logging/logging.dart';
 
 
 @Injectable()
@@ -39,7 +40,7 @@ class ScreenDetectorService {
       mediaScreenWidthChangeController.add(message);
       _lastMessage = message;
 
-      print('-SCREEN_DETECTOR_SERVICE- : ScreenWidth is ' + message.toUpperCase());
+      Logger.root.info('ScreenDetectorService: ScreenWidth is ' + message.toUpperCase());
 
       switch(message){
         case "xs":

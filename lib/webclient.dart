@@ -1,6 +1,5 @@
 library webclient;
 
-import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:angular/routing/module.dart';
 import 'package:webclient/webclient_router.dart';

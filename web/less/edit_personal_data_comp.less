@@ -1,0 +1,42 @@
+#personalDataContent {
+	background-color: @greyUltraLight;
+}
+.header{
+	.make-row(0);
+	.opensans_bold(10pt, @white);
+	padding-top: 5px;
+	padding-bottom: 5px; 
+
+	background-color: @blueDark;
+	text-align: center;
+	.header-title {
+		.make-xs-column(12);
+		.exo_light(20pt, @white);
+		text-align: left;
+	}
+}
+.field-padding {
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.content {
+	.container();
+	padding: 20px 10px;
+	.content-field {
+		.make-sm-column(6);
+		.make-xs-column(12);
+		padding-bottom: 10px;
+		padding-left: 10px;
+		padding-right: 10px;
+		input {
+			.opensans_bold(8pt, @greyDark);
+		}
+	}
+	.content-field-block {
+		.make-xs-column(12);
+		.opensans_normal(8pt, @greyDark);
+		padding-bottom: 10px;
+	}
+	
+}

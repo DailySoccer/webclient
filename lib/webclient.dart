@@ -39,6 +39,7 @@ import 'package:webclient/components/paginator_comp.dart';
 import 'package:webclient/components/login_comp.dart';
 import 'package:webclient/components/join_comp.dart';
 import 'package:webclient/components/user_profile_comp.dart';
+import 'package:webclient/components/edit_personal_data_comp.dart';
 import 'package:webclient/components/remember_password_comp.dart';
 import 'package:webclient/components/view_contest_entry_comp.dart';
 import 'package:webclient/utils/form-autofill-fix.dart';
@@ -86,6 +87,7 @@ class WebClientApp extends Module {
     bind(JoinComp);
     bind(RememberPasswordComp);
     bind(UserProfileComp);
+    bind(EditPersonalDataComp);
     bind(ViewContestEntryComp);
 
     bind(FormAutofillDecorator);

@@ -17757,6 +17757,9 @@ fieldset[disabled] .btn-orange.active {
   color: #fa9c19;
   background-color: #ffffff;
 }
+body {
+  overflow-y: scroll;
+}
 .clean-paddings {
   padding-left: 0px;
   padding-right: 0px;

@@ -1,10 +1,9 @@
-<div id="userProfileRoot">
+<div id="viewProfileContent">
   <div class="profile-head"> MI CUENTA </div>
-
   <div class="profile-content">
 
     <div class="personal-data">
-      <div class="data-header"><span class="data-header-title">INFORMACION PERSONAL</span><button class="action-button">EDITAR</button></div>
+      <div class="data-header"><span class="data-header-title">INFORMACION PERSONAL</span><button class="action-button" ng-click="comp.editPersonalData()">EDITAR</button></div>
       <div class="bloque-sm">
         <div class="data-row"><span class="data-key">Nombre:</span><span class="data-value">{{comp.userData.firstName + ' ' + comp.userData.lastName}}</span></div>
         <div class="data-row"><span class="data-key">Nombre de usuario:</span><span class="data-value">{{comp.userData.nickName}}</span></div>
@@ -36,23 +35,34 @@
       </div>
     </div>
 
-
-   <div class="epicpoints-data">
+    <div class="epicpoints-data">
       <div class="data-header"><span class="data-header-title">EPIC POINTS</span></div>
-
-        <div class="data-row">
-          <div class="data-column"><span class="data-key">E11P BALANCE:</span><span class="data-value">--€</span></div>
-          <div class="data-column"><span class="data-key">&lt;ulti-month&gt;:</span><span class="data-value">--€</span></div>
-        </div>
-        <div class="data-row">
-          <div class="data-column"><span class="data-key">THIS MONTH:</span><span class="data-value">--€</span></div>
-          <div class="data-column"><span class="data-key">&lt;penul-month&gt;:</span><span class="data-value">--€</span></div>
-          <div class="data-column"><a class="data-link" href="#">¿Cómo gastar tus EPs?</a></div>
-        </div>
-
-
+      <div class="data-row">
+        <div class="data-column"><span class="data-key">E11P BALANCE:</span><span class="data-value">--€</span></div>
+        <div class="data-column"><span class="data-key">&lt;ulti-month&gt;:</span><span class="data-value">--€</span></div>
+      </div>
+      <div class="data-row">
+        <div class="data-column"><span class="data-key">THIS MONTH:</span><span class="data-value">--€</span></div>
+        <div class="data-column"><span class="data-key">&lt;penul-month&gt;:</span><span class="data-value">--€</span></div>
+        <div class="data-column"><a class="data-link" href="">¿Cómo gastar tus EPs?</a></div>
+      </div>
     </div>
 
   </div>
-
 </div>
+
+<!-- Edit personal data fullScreen -->
+<div id=editProfileContent>
+  <edit-personal-data is-pop-up="false"></edit-personal-data>
+</div>
+
+<!-- Edit personal data Modal -->
+<div  id="editPersonalDataModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div id="infoContent" class="modal-content">
+        <edit-personal-data is-pop-up="true"></edit-personal-data>
+      </div>
+    </div>
+</div>
+
+

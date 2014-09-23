@@ -1,0 +1,129 @@
+#personalDataContent {
+	background-color: @greyUltraLight;
+}
+
+.edit-personal-data-modal-header {
+	background-color: @blueDark;
+	line-height: 60px;
+	.header-title{
+		.exo_light(20pt, @white);
+		text-align: left;
+		padding-left: 20px;
+
+	}
+	button.close {
+		.close();
+		color: @white;
+		opacity: 0.5;
+		position: absolute;
+		top: 10px;
+		right: 15px;
+		font-size: 20pt;
+		&:hover {
+			font-size: 20pt;
+			color: @white;
+			opacity: 1;
+		}
+	}
+
+}
+.header{
+	.make-row(0);
+	.opensans_bold(10pt, @white);
+	padding-top: 5px;
+	padding-bottom: 5px;
+	background-color: @blueDark;
+	text-align: center;
+	position: relative;
+	.btn-cancel {
+		position: absolute;
+		top: 5px;
+		right: 10px;
+	}
+	.header-title {
+		.make-xs-column(12);
+		.exo_light(20pt, @white);
+		text-align: left;
+	}
+}
+.field-padding {
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.content {
+	.make-row(0);
+	@media (min-width: @screen-sm-min) {
+		padding: 20px 100px;
+	}
+	@media (max-width: @screen-xs-max) {
+		padding-top: 20px;
+	}
+}
+.data-content {
+	.content();
+	@media (min-width: @screen-md-min) {
+		padding: 20px 20px;
+	}
+
+}
+.content-field {
+	.make-sm-column(6);
+	.make-xs-column(12);
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	input {
+		.opensans_bold(8pt, @greyDark);
+	}
+}
+.content-field-block {
+	.make-xs-column(12);
+	.opensans_normal(8pt, @greyDark);
+	padding-bottom: 10px;
+}	
+.subscriptions-content {
+	.content();
+}
+
+.subscription-wrapper {
+	background-color: @blueMenu;
+	border-radius: 10px;
+	border: 1px solid @greyMed;
+	display: inline-block;
+	width: 100%;
+	line-height: 25px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.subscription-label {
+	.opensans_bold(8pt, @white);
+	padding-left: 10px;	
+	float: left;
+}
+.check-wrapper  {
+	padding-right: 10px;
+	float: right;
+}
+.save-changes-content {
+	.make-row(0);
+	@media (min-width: @screen-sm-min) {
+		padding: 0 100px 20px 100px;
+	}
+	@media (max-width: @screen-xs-max) {
+		padding: 0 20px 20px 20px;
+	}
+	.action-button {
+		.btn();
+		.btn-primary();
+		.btn-block();
+		.opensans_normal(10pt, @white);
+		.make-xs-column(12);
+		//.make-xs-column-push();
+		.make-sm-column(6);
+		.make-sm-column-push(3);
+
+
+		//margin: 0 5px;
+	}
+}

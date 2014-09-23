@@ -3,9 +3,15 @@ library edit_personal_data_comp;
 import 'package:angular/angular.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/js_utils.dart';
+import 'package:webclient/services/screen_detector_service.dart';
+import 'package:webclient/components/user_profile_comp.dart';
 
-@Component(selector: 'edit-personal-data', templateUrl: 'packages/webclient/components/edit_personal_data_comp.html', publishAs: 'comp', useShadowDom: false)
-
+@Component(
+    selector: 'edit-personal-data',
+    templateUrl: 'packages/webclient/components/edit_personal_data_comp.html',
+    publishAs: 'comp',
+    useShadowDom: false
+)
 class EditPersonalDataComp implements ShadowRootAware {
 
   String password;
@@ -40,35 +46,34 @@ class EditPersonalDataComp implements ShadowRootAware {
 
   dynamic get userData => _profileManager.user;
 
-  EditPersonalDataComp(this._profileManager);
+  EditPersonalDataComp(this._profileManager, this.parent);
 
   @override
   void onShadowRoot(root) {
     //switch NEWSLETTER/OFERTAS ESPECIALES
-    JsUtils.runJavascript("[name='switchNewsletter']", 'bootstrapSwitch', {
-                                                                                    'size': 'mini',
-                                                                                    'state': acceptNewsletter,
+    JsUtils.runJavascript("[name='switchNewsletter']", 'bootstrapSwitch', {         'size'          : 'mini',
+                                                                                    'state'         : acceptNewsletter,
                                                                                     'disabled'      : 'true',
-                                                                                    'onColor': 'primary',
-                                                                                    'offColor': 'default',
+                                                                                    'onColor'       : 'primary',
+                                                                                    'offColor'      : 'default',
                                                                                     'onSwitchChange': onNewsLetterSwitchChange
                                                                            });
+
     //switch NOTIFICACIONES DE JUEGO
-    JsUtils.runJavascript("[name='switchGameAlerts']", 'bootstrapSwitch', {
-                                                                                    'size': 'mini',
-                                                                                    'state': _acceptGameAlerts,
+    JsUtils.runJavascript("[name='switchGameAlerts']", 'bootstrapSwitch', {         'size'          : 'mini',
+                                                                                    'state'         : _acceptGameAlerts,
                                                                                     'disabled'      : 'true',
-                                                                                    'onColor': 'primary',
-                                                                                    'offColor': 'default',
+                                                                                    'onColor'       : 'primary',
+                                                                                    'offColor'      : 'default',
                                                                                     'onSwitchChange': onGameAlertsSwitchChange
                                                                           });
+
     //switch NOTIFICACIONES DE TUS FICHAJES
-    JsUtils.runJavascript("[name='switchsoccerPlayerAlerts']", 'bootstrapSwitch', {
-                                                                                    'size': 'mini',
-                                                                                    'state': _acceptSoccerPlayerAlerts,
+    JsUtils.runJavascript("[name='switchsoccerPlayerAlerts']", 'bootstrapSwitch', { 'size'          : 'mini',
+                                                                                    'state'         : _acceptSoccerPlayerAlerts,
                                                                                     'disabled'      : 'true',
-                                                                                    'onColor': 'primary',
-                                                                                    'offColor': 'default',
+                                                                                    'onColor'       : 'primary',
+                                                                                    'offColor'      : 'default',
                                                                                     'onSwitchChange': onSoccerPlayerAlertsSwitchChange
                                                                                   });
   }
@@ -85,10 +90,22 @@ class EditPersonalDataComp implements ShadowRootAware {
     acceptSoccerPlayerAlerts = state;
   }
 
+  void saveChanges() {
+    closeModal();
+  }
+
+  void closeModal() {
+    parent.endEditPersonalData();
+    //JsUtils.runJavascript('#editPersonalDataModal', 'modal', 'hide');
+  }
+
   ProfileService _profileManager;
   bool _acceptNewsletter;
   bool _acceptGameAlerts;
   bool _acceptSoccerPlayerAlerts;
 
   bool _popUpStyle;
+
+  UserProfileComp parent;
+
 }

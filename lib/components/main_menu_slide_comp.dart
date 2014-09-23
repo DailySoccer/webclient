@@ -29,7 +29,7 @@ class MainMenuSlideComp implements ShadowRootAware{
     if ( _currentActiveElement == null ) {
       LIElement activ = querySelector('.active');
       _currentActiveElement = activ;
-      print("primera vez");
+      print("No funciono bien... arreglamé");
     }
   }
 

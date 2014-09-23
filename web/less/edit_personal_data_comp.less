@@ -56,9 +56,16 @@
 	@media (min-width: @screen-sm-min) {
 		padding: 20px 100px;
 	}
+	@media (max-width: @screen-xs-max) {
+		padding-top: 20px;
+	}
+}
+.data-content {
+	.content();
 	@media (min-width: @screen-md-min) {
 		padding: 20px 20px;
 	}
+
 }
 .content-field {
 	.make-sm-column(6);
@@ -76,13 +83,7 @@
 	padding-bottom: 10px;
 }	
 .subscriptions-content {
-	.make-row(0);
-	@media (min-width: @screen-sm-min) {
-		padding: 20px 100px;
-	}
-	@media (max-width: @screen-xs-max) {
-		padding-top: 20px;
-	}
+	.content();
 }
 
 .subscription-wrapper {

@@ -13,13 +13,19 @@ import 'dart:html';
     useShadowDom: false
 )
 
-class UserProfileComp implements ShadowRootAware{
-
-  dynamic get userData => _profileManager.user;
-  UserProfileComp(this._profileManager, this._scrDet);
+class UserProfileComp implements ShadowRootAware, DetachAware{
 
   bool isEditingProfile = false;
 
+  dynamic get userData => _profileManager.user;
+
+  UserProfileComp(this._profileManager, this._scrDet) {
+    _streamListener = _scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
+  }
+
+  void onScreenWidthChange(String msg) {
+    updateUserProfileContent();
+  }
 
   void editPersonalData() {
     isEditingProfile = true;
@@ -66,10 +72,16 @@ class UserProfileComp implements ShadowRootAware{
     updateUserProfileContent();
   }
 
+  @override
+  void detach() {
+    _streamListener.cancel();
+  }
+
   Element elmntViewProfile;
   Element elmntEditProfile;
 
 
   ScreenDetectorService _scrDet;
   ProfileService _profileManager;
+  var _streamListener;
 }

@@ -5625,6 +5625,8 @@ button.close {
 .header:after,
 .content:before,
 .content:after,
+.data-content:before,
+.data-content:after,
 .subscriptions-content:before,
 .subscriptions-content:after,
 .save-changes-content:before,
@@ -5741,6 +5743,7 @@ button.close {
 .contests-list-root .contest-row:after,
 .header:after,
 .content:after,
+.data-content:after,
 .subscriptions-content:after,
 .save-changes-content:after,
 #enterContest:after,
@@ -7472,8 +7475,27 @@ button.edit-personal-data-modal-header button.close {
     padding: 20px 100px;
   }
 }
-@media (min-width: 992px) {
+@media (max-width: 767px) {
   .content {
+    padding-top: 20px;
+  }
+}
+.data-content {
+  margin-left: 0;
+  margin-right: 0;
+}
+@media (min-width: 768px) {
+  .data-content {
+    padding: 20px 100px;
+  }
+}
+@media (max-width: 767px) {
+  .data-content {
+    padding-top: 20px;
+  }
+}
+@media (min-width: 992px) {
+  .data-content {
     padding: 20px 20px;
   }
 }

@@ -26,10 +26,20 @@ class MainMenuSlideComp implements ShadowRootAware{
   MainMenuSlideComp(this._router, this.profileService);
 
   void saveActiveClass() {
-    if ( _currentActiveElement == null ) {
+   if ( _currentActiveElement == null ) {
       LIElement activ = querySelector('.active');
       _currentActiveElement = activ;
-      print("No funciono bien... arreglamé");
+      //print("No funciono bien... arreglamé");
+    }
+    String aActive  = window.location.hash.replaceFirst("#/", "");
+    if (aActive.isEmpty) {
+      aActive = "lobby";
+    }
+    Element aElementActive = querySelector('a[destination="${aActive}"]');
+    if(aElementActive != null && !_linkActualizado) {
+      updateMenuLinks(aElementActive);
+      _linkActualizado = true;
+      print('actualizo link');
     }
   }
 
@@ -54,7 +64,7 @@ class MainMenuSlideComp implements ShadowRootAware{
       return;
     }
 
-    if(_currentActiveElement != null) {
+    if (_currentActiveElement != null) {
       _currentActiveElement.classes.remove('active');
       if (a.attributes["destination"] == 'lobby') {
         _currentActiveElement = querySelector('#menuLobby').parent;
@@ -80,13 +90,22 @@ class MainMenuSlideComp implements ShadowRootAware{
     }
   }
 
-
+/*  void updateActiveMenu(String parent) {
+    print(parent);
+    if (parent.isEmpty) {parent = "lobby";}
+    Element active = querySelector("a[destination='" + parent + "']");
+    print(active);
+    active.parent.classes.add("active");
+  }*/
 
   @override
   void onShadowRoot(root) {
    _rootElement = root as HtmlElement;
   }
+
   HtmlElement _rootElement;
   LIElement _currentActiveElement;
   Router _router;
+
+  bool _linkActualizado = false;
 }

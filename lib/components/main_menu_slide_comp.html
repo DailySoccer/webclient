@@ -38,7 +38,7 @@
     </div>
 
     <!-- lcabecera when NO logeado -->
-    <div class="navbar-header-unloggin" ng-show="!comp.profileService.isLoggedIn">
+    <div class="navbar-header-unloggin" ng-if="!comp.profileService.isLoggedIn">
       <div class="navbar-brand" ng-click="comp.navigateTo($event)" destination="lobby"></div>
       <div class="button-wrapper">
         <a id="joinButton"  type="button" class="button-join"  ng-click="comp.navigateTo($event)" destination="join">REGISTRO</a>

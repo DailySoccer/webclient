@@ -3,7 +3,6 @@ library edit_personal_data_comp;
 import 'package:angular/angular.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/js_utils.dart';
-import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/components/user_profile_comp.dart';
 
 @Component(

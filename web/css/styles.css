@@ -6134,6 +6134,9 @@ button.close {
   #mainMenu .navbar-nav .open a::after {
     color: #ffffff;
   }
+  #mainMenu .navbar-nav .active a::after {
+    color: #ffffff;
+  }
   #mainMenu .navbar-nav .right-menu + .right-menu {
     text-align: center;
   }

@@ -1,6 +1,7 @@
 library soccer_player;
 
 import "package:json_object/json_object.dart";
+import 'package:logging/logging.dart';
 import "package:webclient/models/soccer_team.dart";
 import "package:webclient/models/field_pos.dart";
 import 'package:webclient/services/contest_references.dart';
@@ -22,7 +23,7 @@ class SoccerPlayer {
 
   List<Map> get printableLivePointsPerOptaEvent {
     List<Map> stats = new List<Map>();
-    currentLivePointsPerOptaEvent.forEach((key, value) => stats.add({'name':_EVENT_KEY_TO_NAME[key], 'points': value}));
+    currentLivePointsPerOptaEvent.forEach((key, value) => stats.add({'name': getEventName(key), 'points': value}));
     stats.sort((elem0, elem1) => elem0["name"].compareTo(elem1["name"]) );
     return stats;
   }
@@ -47,6 +48,13 @@ class SoccerPlayer {
     return this;
   }
 
+  static String getEventName(String key) {
+    if (!_EVENT_KEY_TO_NAME.containsKey(key)) {
+      Logger.root.severe("soccer_player:getEventName:$key invalid");
+      return key;
+    }
+    return _EVENT_KEY_TO_NAME[key];
+  }
 
   static final Map<String, String> _EVENT_KEY_TO_NAME = {
     "PASS_SUCCESSFUL"   : "Pase completado",
@@ -55,7 +63,8 @@ class SoccerPlayer {
     "FOUL_RECEIVED"     : "Falta recibida",
     "TACKLE"            : "Entrada",
     "INTERCEPTION"      : "Intercepción",
-    "SAVE"              : "Parada",
+    "SAVE_GOALKEEPER"   : "Parada",
+    "SAVE_PLAYER"       : "Bloquea un disparo",
     "CLAIM"             : "Anticipación",
     "CLEARANCE"         : "Despeje",
     "MISS"              : "Disparo fallado",

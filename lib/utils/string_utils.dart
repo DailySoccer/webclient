@@ -18,6 +18,6 @@ class StringUtils {
       ret += map.containsKey(c) ? map[c] : c;
     }
 
-    return ret;
+    return ret.toLowerCase();
   }
 }

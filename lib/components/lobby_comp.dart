@@ -228,6 +228,8 @@ class LobbyComp implements ShadowRootAware, DetachAware {
      if (isFirstTimeListFill && contestsCount > 0) {
        isFirstTimeListFill = false;
        updateEntryFeeFilter();
+       //Metemos un filtro por defecto en la lista
+       sortListByField('sortContestName', 'contest-name');
      }
    }
 
@@ -550,4 +552,5 @@ class LobbyComp implements ShadowRootAware, DetachAware {
 
   var _streamListener;
   bool isFirstTimeListFill = true;
+  bool _firstTime;
 }

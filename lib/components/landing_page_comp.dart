@@ -15,36 +15,40 @@ import 'package:webclient/services/screen_detector_service.dart';
 class LandingPageComp implements ShadowRootAware, DetachAware {
 
   String content;
-  var bodyObj;
-  Element mainWrapper;
-  Element containerForContent;
+  Element _bodyObj;
+  Element _mainWrapper;
+  Element _mainContent;
   ScreenDetectorService scrDet;
 
-  LandingPageComp(this._router, this._profileService, this.scrDet) {
-
-    // Capturamos los elementos envolventes, porque el layout en landing page es diferente al del resto de la web.
-    bodyObj             = querySelector('body');
-    mainWrapper         = querySelector('#mainWrapper');
-    containerForContent = querySelector('#mainContent');
-  }
+  LandingPageComp(this._router, this._profileService, this.scrDet);
 
   void onShadowRoot(var root) {
 
     if (_profileService.isLoggedIn) {
       _router.go("lobby", {});
+      return;
     }
 
-    mainWrapper.classes.clear();
-    mainWrapper.classes.add('landing-wrapper');
-    containerForContent.classes.clear();
-    bodyObj.classes.add('fondo-negro');
+    // Capturamos los elementos envolventes, porque el layout en landing page es diferente al del resto de la web.
+    _bodyObj     = querySelector('body');
+    _mainWrapper = querySelector('#mainWrapper');
+    _mainContent = querySelector('#mainContent');
+
+    _bodyObj.classes.add('fondo-negro');
+    _mainWrapper.classes
+      ..clear()
+      ..add('landing-wrapper');
+    _mainContent.classes.clear();
+
   }
 
   void detach() {
-    mainWrapper.classes.clear();
-    mainWrapper.classes.add('wrapper-content-container');
-    containerForContent.classes.add('main-content-container');
-    bodyObj.classes.remove('fondo-negro');
+    _bodyObj.classes.remove('fondo-negro');
+    _mainWrapper.classes
+      ..clear()
+      ..add('wrapper-content-container');
+    _mainContent.classes.add('main-content-container');
+
   }
 
   void buttonPressed(String route) {

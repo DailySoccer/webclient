@@ -5621,16 +5621,16 @@ button.close {
 .contestant-list .contestant-element:after,
 .contests-list-root .contest-row:before,
 .contests-list-root .contest-row:after,
-.header:before,
-.header:after,
-.content:before,
-.content:after,
-.data-content:before,
-.data-content:after,
-.subscriptions-content:before,
-.subscriptions-content:after,
-.save-changes-content:before,
-.save-changes-content:after,
+#personalDataContent .header:before,
+#personalDataContent .header:after,
+#personalDataContent .content:before,
+#personalDataContent .content:after,
+#personalDataContent .data-content:before,
+#personalDataContent .data-content:after,
+#personalDataContent .subscriptions-content:before,
+#personalDataContent .subscriptions-content:after,
+#personalDataContent .save-changes-content:before,
+#personalDataContent .save-changes-content:after,
 #enterContest:before,
 #enterContest:after,
 .enter-contest-actions-wrapper:before,
@@ -5741,11 +5741,11 @@ button.close {
 #contestInfoTabbed:after,
 .contestant-list .contestant-element:after,
 .contests-list-root .contest-row:after,
-.header:after,
-.content:after,
-.data-content:after,
-.subscriptions-content:after,
-.save-changes-content:after,
+#personalDataContent .header:after,
+#personalDataContent .content:after,
+#personalDataContent .data-content:after,
+#personalDataContent .subscriptions-content:after,
+#personalDataContent .save-changes-content:after,
 #enterContest:after,
 .enter-contest-actions-wrapper:after,
 .match-teams-filter:after,
@@ -7382,11 +7382,11 @@ fieldset[disabled] .contests-list-root .contest-row .column-contest-action .btn.
 #personalDataContent {
   background-color: #f8f8f8;
 }
-.edit-personal-data-modal-header {
+#personalDataContent .edit-personal-data-modal-header {
   background-color: #214a5f;
   line-height: 60px;
 }
-.edit-personal-data-modal-header .header-title {
+#personalDataContent .edit-personal-data-modal-header .header-title {
   font-family: 'Exo', sans-serif;
   font-weight: 300;
   font-size: 20pt;
@@ -7394,7 +7394,7 @@ fieldset[disabled] .contests-list-root .contest-row .column-contest-action .btn.
   text-align: left;
   padding-left: 20px;
 }
-.edit-personal-data-modal-header button.close {
+#personalDataContent .edit-personal-data-modal-header button.close {
   float: right;
   font-size: 21px;
   font-weight: bold;
@@ -7410,27 +7410,27 @@ fieldset[disabled] .contests-list-root .contest-row .column-contest-action .btn.
   right: 15px;
   font-size: 20pt;
 }
-.edit-personal-data-modal-header button.close:hover,
-.edit-personal-data-modal-header button.close:focus {
+#personalDataContent .edit-personal-data-modal-header button.close:hover,
+#personalDataContent .edit-personal-data-modal-header button.close:focus {
   color: #000000;
   text-decoration: none;
   cursor: pointer;
   opacity: 0.5;
   filter: alpha(opacity=50);
 }
-button.edit-personal-data-modal-header button.close {
+button#personalDataContent .edit-personal-data-modal-header button.close {
   padding: 0;
   cursor: pointer;
   background: transparent;
   border: 0;
   -webkit-appearance: none;
 }
-.edit-personal-data-modal-header button.close:hover {
+#personalDataContent .edit-personal-data-modal-header button.close:hover {
   font-size: 20pt;
   color: #ffffff;
   opacity: 1;
 }
-.header {
+#personalDataContent .header {
   margin-left: 0;
   margin-right: 0;
   font-family: 'Open Sans', sans-serif;
@@ -7443,12 +7443,12 @@ button.edit-personal-data-modal-header button.close {
   text-align: center;
   position: relative;
 }
-.header .btn-cancel {
+#personalDataContent .header .btn-cancel {
   position: absolute;
   top: 5px;
   right: 10px;
 }
-.header .header-title {
+#personalDataContent .header .header-title {
   position: relative;
   float: left;
   width: 100%;
@@ -7461,45 +7461,45 @@ button.edit-personal-data-modal-header button.close {
   color: #ffffff;
   text-align: left;
 }
-.field-padding {
+#personalDataContent .field-padding {
   padding-bottom: 10px;
   padding-left: 10px;
   padding-right: 10px;
 }
-.content {
+#personalDataContent .content {
   margin-left: 0;
   margin-right: 0;
 }
 @media (min-width: 768px) {
-  .content {
+  #personalDataContent .content {
     padding: 20px 100px;
   }
 }
 @media (max-width: 767px) {
-  .content {
+  #personalDataContent .content {
     padding-top: 20px;
   }
 }
-.data-content {
+#personalDataContent .data-content {
   margin-left: 0;
   margin-right: 0;
 }
 @media (min-width: 768px) {
-  .data-content {
+  #personalDataContent .data-content {
     padding: 20px 100px;
   }
 }
 @media (max-width: 767px) {
-  .data-content {
+  #personalDataContent .data-content {
     padding-top: 20px;
   }
 }
 @media (min-width: 992px) {
-  .data-content {
+  #personalDataContent .data-content {
     padding: 20px 20px;
   }
 }
-.content-field {
+#personalDataContent .content-field {
   position: relative;
   float: left;
   width: 100%;
@@ -7511,18 +7511,18 @@ button.edit-personal-data-modal-header button.close {
   padding-right: 10px;
 }
 @media (min-width: 768px) {
-  .content-field {
+  #personalDataContent .content-field {
     float: left;
     width: 50%;
   }
 }
-.content-field input {
+#personalDataContent .content-field input {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 8pt;
   color: #777777;
 }
-.content-field-block {
+#personalDataContent .content-field-block {
   position: relative;
   float: left;
   width: 100%;
@@ -7535,21 +7535,21 @@ button.edit-personal-data-modal-header button.close {
   color: #777777;
   padding-bottom: 10px;
 }
-.subscriptions-content {
+#personalDataContent .subscriptions-content {
   margin-left: 0;
   margin-right: 0;
 }
 @media (min-width: 768px) {
-  .subscriptions-content {
+  #personalDataContent .subscriptions-content {
     padding: 20px 100px;
   }
 }
 @media (max-width: 767px) {
-  .subscriptions-content {
+  #personalDataContent .subscriptions-content {
     padding-top: 20px;
   }
 }
-.subscription-wrapper {
+#personalDataContent .subscription-wrapper {
   background-color: #afd3e4;
   border-radius: 10px;
   border: 1px solid #afafaf;
@@ -7559,7 +7559,7 @@ button.edit-personal-data-modal-header button.close {
   padding-top: 5px;
   padding-bottom: 5px;
 }
-.subscription-label {
+#personalDataContent .subscription-label {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 8pt;
@@ -7567,25 +7567,25 @@ button.edit-personal-data-modal-header button.close {
   padding-left: 10px;
   float: left;
 }
-.check-wrapper {
+#personalDataContent .check-wrapper {
   padding-right: 10px;
   float: right;
 }
-.save-changes-content {
+#personalDataContent .save-changes-content {
   margin-left: 0;
   margin-right: 0;
 }
 @media (min-width: 768px) {
-  .save-changes-content {
+  #personalDataContent .save-changes-content {
     padding: 0 100px 20px 100px;
   }
 }
 @media (max-width: 767px) {
-  .save-changes-content {
+  #personalDataContent .save-changes-content {
     padding: 0 20px 20px 20px;
   }
 }
-.save-changes-content .action-button {
+#personalDataContent .save-changes-content .action-button {
   display: inline-block;
   margin-bottom: 0;
   font-weight: normal;
@@ -7621,28 +7621,28 @@ button.edit-personal-data-modal-header button.close {
   padding-left: 15px;
   padding-right: 15px;
 }
-.save-changes-content .action-button:focus,
-.save-changes-content .action-button:active:focus,
-.save-changes-content .action-button.active:focus {
+#personalDataContent .save-changes-content .action-button:focus,
+#personalDataContent .save-changes-content .action-button:active:focus,
+#personalDataContent .save-changes-content .action-button.active:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-.save-changes-content .action-button:hover,
-.save-changes-content .action-button:focus {
+#personalDataContent .save-changes-content .action-button:hover,
+#personalDataContent .save-changes-content .action-button:focus {
   color: #ffffff;
   text-decoration: none;
 }
-.save-changes-content .action-button:active,
-.save-changes-content .action-button.active {
+#personalDataContent .save-changes-content .action-button:active,
+#personalDataContent .save-changes-content .action-button.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-.save-changes-content .action-button.disabled,
-.save-changes-content .action-button[disabled],
-fieldset[disabled] .save-changes-content .action-button {
+#personalDataContent .save-changes-content .action-button.disabled,
+#personalDataContent .save-changes-content .action-button[disabled],
+fieldset[disabled] #personalDataContent .save-changes-content .action-button {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -7650,28 +7650,28 @@ fieldset[disabled] .save-changes-content .action-button {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-.save-changes-content .action-button:focus,
-.save-changes-content .action-button:active:focus,
-.save-changes-content .action-button.active:focus {
+#personalDataContent .save-changes-content .action-button:focus,
+#personalDataContent .save-changes-content .action-button:active:focus,
+#personalDataContent .save-changes-content .action-button.active:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-.save-changes-content .action-button:hover,
-.save-changes-content .action-button:focus {
+#personalDataContent .save-changes-content .action-button:hover,
+#personalDataContent .save-changes-content .action-button:focus {
   color: #ffffff;
   text-decoration: none;
 }
-.save-changes-content .action-button:active,
-.save-changes-content .action-button.active {
+#personalDataContent .save-changes-content .action-button:active,
+#personalDataContent .save-changes-content .action-button.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-.save-changes-content .action-button.disabled,
-.save-changes-content .action-button[disabled],
-fieldset[disabled] .save-changes-content .action-button {
+#personalDataContent .save-changes-content .action-button.disabled,
+#personalDataContent .save-changes-content .action-button[disabled],
+fieldset[disabled] #personalDataContent .save-changes-content .action-button {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -7679,50 +7679,50 @@ fieldset[disabled] .save-changes-content .action-button {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-.save-changes-content .action-button:hover,
-.save-changes-content .action-button:focus,
-.save-changes-content .action-button:active,
-.save-changes-content .action-button.active,
-.open .dropdown-toggle.save-changes-content .action-button {
+#personalDataContent .save-changes-content .action-button:hover,
+#personalDataContent .save-changes-content .action-button:focus,
+#personalDataContent .save-changes-content .action-button:active,
+#personalDataContent .save-changes-content .action-button.active,
+.open .dropdown-toggle#personalDataContent .save-changes-content .action-button {
   color: #ffffff;
   background-color: #87a829;
   border-color: #698320;
 }
-.save-changes-content .action-button:active,
-.save-changes-content .action-button.active,
-.open .dropdown-toggle.save-changes-content .action-button {
+#personalDataContent .save-changes-content .action-button:active,
+#personalDataContent .save-changes-content .action-button.active,
+.open .dropdown-toggle#personalDataContent .save-changes-content .action-button {
   background-image: none;
 }
-.save-changes-content .action-button.disabled,
-.save-changes-content .action-button[disabled],
-fieldset[disabled] .save-changes-content .action-button,
-.save-changes-content .action-button.disabled:hover,
-.save-changes-content .action-button[disabled]:hover,
-fieldset[disabled] .save-changes-content .action-button:hover,
-.save-changes-content .action-button.disabled:focus,
-.save-changes-content .action-button[disabled]:focus,
-fieldset[disabled] .save-changes-content .action-button:focus,
-.save-changes-content .action-button.disabled:active,
-.save-changes-content .action-button[disabled]:active,
-fieldset[disabled] .save-changes-content .action-button:active,
-.save-changes-content .action-button.disabled.active,
-.save-changes-content .action-button[disabled].active,
-fieldset[disabled] .save-changes-content .action-button.active {
+#personalDataContent .save-changes-content .action-button.disabled,
+#personalDataContent .save-changes-content .action-button[disabled],
+fieldset[disabled] #personalDataContent .save-changes-content .action-button,
+#personalDataContent .save-changes-content .action-button.disabled:hover,
+#personalDataContent .save-changes-content .action-button[disabled]:hover,
+fieldset[disabled] #personalDataContent .save-changes-content .action-button:hover,
+#personalDataContent .save-changes-content .action-button.disabled:focus,
+#personalDataContent .save-changes-content .action-button[disabled]:focus,
+fieldset[disabled] #personalDataContent .save-changes-content .action-button:focus,
+#personalDataContent .save-changes-content .action-button.disabled:active,
+#personalDataContent .save-changes-content .action-button[disabled]:active,
+fieldset[disabled] #personalDataContent .save-changes-content .action-button:active,
+#personalDataContent .save-changes-content .action-button.disabled.active,
+#personalDataContent .save-changes-content .action-button[disabled].active,
+fieldset[disabled] #personalDataContent .save-changes-content .action-button.active {
   background-color: #a1c931;
   border-color: #91b42c;
 }
-.save-changes-content .action-button .badge {
+#personalDataContent .save-changes-content .action-button .badge {
   color: #a1c931;
   background-color: #ffffff;
 }
 @media (min-width: 768px) {
-  .save-changes-content .action-button {
+  #personalDataContent .save-changes-content .action-button {
     float: left;
     width: 50%;
   }
 }
 @media (min-width: 768px) {
-  .save-changes-content .action-button {
+  #personalDataContent .save-changes-content .action-button {
     left: 25%;
   }
 }

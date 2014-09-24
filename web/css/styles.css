@@ -12335,11 +12335,11 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
     margin-left: 20px;
   }
   #mainMenu .navbar-nav > .active > a {
-    background-color: rgba(0, 0, 0, 0.3);
+    background: none;
     color: #ffffff;
   }
   #mainMenu .navbar-nav > .active > a:hover {
-    background-color: rgba(0, 0, 0, 0.3);
+    background: none;
     color: #ffffff;
   }
   #mainMenu .navbar-nav > .open > a {

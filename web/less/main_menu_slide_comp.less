@@ -226,7 +226,8 @@
 
 .brand-style {
 	// Retina display: ;
-  	.img-retina("@{images}/logoEpic11.png", "@{images}/logoEpic11-2x.png", 120px, 37px);      
+  	.img-retina("@{images}/logoEpic11.png", "@{images}/logoEpic11-2x.png", 120px, 37px);
+  	background-repeat: no-repeat;
   	.size(120px, 37px);
   	margin-top: 10px;
   	cursor: pointer;
@@ -238,8 +239,8 @@
   	margin-left: 0px;
 
   	@media (max-width: @screen-xs-max) {
-  		margin: 10px auto;
-  		float: none;
+  		//margin: 10px auto;
+  		//float: none;
   	}
 }
 
@@ -249,7 +250,7 @@
 	.navbar-brand {
   		.brand-style();
   		@media (max-width: @screen-xs-max) {
-		  	.hidden-xs();
+		  	//.hidden-xs();
 		}
 	}
     // Botones de login y join: ;

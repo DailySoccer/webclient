@@ -82,7 +82,10 @@ class MatchEvent {
       JsonObject jsonObject = soccerFantasyPoints[soccerPlayer.templateSoccerPlayerId];
       soccerPlayer.currentLivePoints = jsonObject.points;
       soccerPlayer.currentLivePointsPerOptaEvent = new Map<String, int>();
-      jsonObject.events.forEach((key, value) => soccerPlayer.currentLivePointsPerOptaEvent[key] = value);
+
+      if (jsonObject.containsKey("events")) {
+        jsonObject.events.forEach((key, value) => soccerPlayer.currentLivePointsPerOptaEvent[key] = value);
+      }
     }));
   }
 
@@ -94,10 +97,10 @@ class MatchEvent {
     soccerTeamB = new SoccerTeam.fromJsonObject(json.soccerTeamB, references)
       .. matchEvent = this;
 
-    period = json.period;
-    minutesPlayed = json.minutesPlayed;
+    period = json.containsKey("period") ? json.period : "PRE_GAME";
+    minutesPlayed = json.containsKey("minutesPlayed") ? json.minutesPlayed : 0;
 
-    startDate = DateTimeService.fromMillisecondsSinceEpoch(json.startDate);
+    startDate = json.containsKey("startDate") ? DateTimeService.fromMillisecondsSinceEpoch(json.startDate) : null;
 
     // Si el templateMatchEvent incluye la información "live", la actualizamos
     if (json.containsKey("liveFantasyPoints")) {

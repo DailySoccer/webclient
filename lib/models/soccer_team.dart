@@ -23,8 +23,8 @@ class SoccerTeam {
 
   SoccerTeam _initFromJsonObject(JsonObject json, ContestReferences references) {
     assert(templateSoccerTeamId.isNotEmpty);
-    name = json.name;
-    shortName = json.shortName;
+    name = json.containsKey("name") ? json.name : "";
+    shortName = json.containsKey("shortName") ? json.shortName : "";
 
     if (json.containsKey("soccerPlayers")) {
       for (var x in json.soccerPlayers) {

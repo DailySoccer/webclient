@@ -40,11 +40,11 @@ class SoccerPlayer {
 
   SoccerPlayer _initFromJsonObject(JsonObject json, ContestReferences references) {
     assert(templateSoccerPlayerId.isNotEmpty);
-    name = json.name;
-    fieldPos = new FieldPos(json.fieldPos);
-    fantasyPoints = json.fantasyPoints;
-    playedMatches = json.playedMatches;
-    salary = json.salary;
+    name = json.containsKey("name") ? json.name : "";
+    fieldPos = json.containsKey("fieldPos") ? new FieldPos(json.fieldPos) : null;
+    fantasyPoints = json.containsKey("fantasyPoints") ? json.fantasyPoints : 0;
+    playedMatches = json.containsKey("playedMatches") ? json.playedMatches : 0;
+    salary = json.containsKey("salary") ? json.salary : 0;
     return this;
   }
 

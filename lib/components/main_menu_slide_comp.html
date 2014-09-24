@@ -9,7 +9,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <div class="navbar-brand" ng-click="comp.navigateTo($event)" destination="lobby"></div>
+        <div id="brandLogoLogged" class="navbar-brand" ng-click="comp.navigateTo($event)" destination="lobby" ng-class="['loggedIn-brand']"></div>
       </div>
       <!-- Opciones del menu -->
 
@@ -39,7 +39,7 @@
 
     <!-- lcabecera when NO logeado -->
     <div class="navbar-header-unloggin" ng-if="!comp.profileService.isLoggedIn">
-      <div class="navbar-brand" ng-click="comp.navigateTo($event)" destination="landing_page"></div>
+      <div id="brandLogoNotLogged" class="navbar-brand" ng-click="comp.navigateTo($event)" destination="landing_page"></div>
       <div class="button-wrapper">
         <a id="joinButton"  type="button" class="button-join"  ng-click="comp.navigateTo($event)" destination="join">REGISTRO</a>
         <a id="loginButton" type="button" class="button-login" ng-click="comp.navigateTo($event)" destination="login">ENTRAR</a>

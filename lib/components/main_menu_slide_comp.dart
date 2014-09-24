@@ -4,6 +4,7 @@ import 'package:angular/angular.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'dart:html';
+import 'package:webclient/services/screen_detector_service.dart';
 
 @Component(
     selector: 'main-menu-slide',
@@ -14,7 +15,7 @@ import 'dart:html';
 
 class MainMenuSlideComp implements ShadowRootAware{
   ProfileService profileService;
-
+  ScreenDetectorService scrDet;
 
   void logOut() {
     JsUtils.runJavascript('.navbar-offcanvas.navmenu-fixed-left', 'offcanvas', 'hide');
@@ -23,7 +24,7 @@ class MainMenuSlideComp implements ShadowRootAware{
     _currentActiveElement = null;
   }
 
-  MainMenuSlideComp(this._router, this.profileService);
+  MainMenuSlideComp(this._router, this.profileService, this.scrDet);
 
   void saveActiveClass() {
    if ( _currentActiveElement == null ) {
@@ -54,7 +55,10 @@ class MainMenuSlideComp implements ShadowRootAware{
       _router.go(destination, params);
     }
 
-    JsUtils.runJavascript('.navbar-offcanvas.navmenu-fixed-left', 'offcanvas', 'toggle');
+    if (profileService.isLoggedIn && scrDet.isXsScreen && !event.target.id.contains("brandLogo")){
+      JsUtils.runJavascript('.navbar-offcanvas.navmenu-fixed-left', 'offcanvas', 'toggle');
+    }
+
     updateMenuLinks(event.target);
   }
 

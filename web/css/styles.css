@@ -12684,6 +12684,12 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
     background-size: 120px 37px;
   }
 }
+@media (max-width: 767px) {
+  .loggedIn-brand {
+    margin: 10px auto;
+    float: none;
+  }
+}
 .navbar-header-unloggin .navbar-brand {
   background-image: url("../images/logoEpic11.png");
   background-repeat: no-repeat;

@@ -19,7 +19,9 @@ class RememberPasswordComp implements ShadowRootAware {
 
   RememberPasswordComp(this._router, this._profileManager);
 
-  void navigateTo(String route) {
+  void navigateTo(String route, Map parameters, event)
+  {
+    event.preventDefault();
     _router.go(route, {});
   }
 

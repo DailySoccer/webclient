@@ -33,7 +33,7 @@ class FormAutofillDecorator implements AttachAware{
   @override
   void attach() {
     // Buscamos el button principal del form
-    ButtonElement button = formElement.querySelector('.enter-button');
+    ButtonElement button = formElement.querySelector('[type=submit]');
     if (button != null) {
       // Si alguien lo pulsa (para 'submit')
       button.onClick.listen( (e) {

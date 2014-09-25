@@ -37,7 +37,8 @@ class LoginComp implements ShadowRootAware  {
 
   bool get isEnabledSubmit => email.isNotEmpty && password.isNotEmpty;
 
-  void navigateTo(String routePath, Map parameters) {
+  void navigateTo(String routePath, Map parameters, event) {
+    event.preventDefault();
     _router.go(routePath, parameters);
   }
 

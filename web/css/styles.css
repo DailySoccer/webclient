@@ -7239,6 +7239,11 @@ fieldset[disabled] .contests-list-root .contest-row .column-contest-action .btn.
   color: #a1c931;
   background-color: #ffffff;
 }
+.contests-list-root .contest-row .column-contest-action .btn[disabled] {
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #f8f8f8 !important;
+  cursor: not-allowed !important;
+}
 @media (max-width: 767px) {
   .contests-list-root .contest-row .column-contest-action {
     position: absolute;
@@ -7600,6 +7605,11 @@ fieldset[disabled] #personalDataContent .save-changes-content .action-button.act
 #personalDataContent .save-changes-content .action-button .badge {
   color: #a1c931;
   background-color: #ffffff;
+}
+#personalDataContent .save-changes-content .action-button[disabled] {
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #f8f8f8 !important;
+  cursor: not-allowed !important;
 }
 @media (min-width: 768px) {
   #personalDataContent .save-changes-content .action-button {
@@ -8137,6 +8147,11 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list.activ
   color: #a1c931;
   background-color: #ffffff;
 }
+.enter-contest-actions-wrapper .btn-confirm-lineup-list[disabled] {
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #f8f8f8 !important;
+  cursor: not-allowed !important;
+}
 .enter-contest-actions-wrapper p {
   position: relative;
   float: left;
@@ -8632,6 +8647,11 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team.active {
 .fantasy-team-header .edit-team .btn-edit-team .badge {
   color: #59add5;
   background-color: #ffffff;
+}
+.fantasy-team-header .edit-team .btn-edit-team[disabled] {
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #f8f8f8 !important;
+  cursor: not-allowed !important;
 }
 @media (max-width: 767px) {
   .fantasy-team-header .edit-team {
@@ -9285,6 +9305,11 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button.active {
   color: #a1c931;
   background-color: #ffffff;
 }
+#mainFooter .user-info-sup-footer .add-funds-button[disabled] {
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #f8f8f8 !important;
+  cursor: not-allowed !important;
+}
 @media (max-width: 991px) {
   #mainFooter .user-info-sup-footer .add-funds-button {
     padding: 4px 12px;
@@ -9714,6 +9739,11 @@ fieldset[disabled] #mobileContent .content .button-play-mobile.active {
   color: #a1c931;
   background-color: #ffffff;
 }
+#mobileContent .content .button-play-mobile[disabled] {
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #f8f8f8 !important;
+  cursor: not-allowed !important;
+}
 #mobileContent .content .title-sup-text-mobile {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
@@ -9961,6 +9991,11 @@ fieldset[disabled] .landing-wrapper .button-play.active {
   color: #a1c931;
   background-color: #ffffff;
 }
+.landing-wrapper .button-play[disabled] {
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #f8f8f8 !important;
+  cursor: not-allowed !important;
+}
 .landing-wrapper .screen-pattern {
   position: absolute;
   background-image: url('../images/pattern.png');
@@ -10196,6 +10231,11 @@ fieldset[disabled] .landing-wrapper .button-play.active {
   #liveContestRoot .btn .badge {
     color: #59add5;
     background-color: #ffffff;
+  }
+  #liveContestRoot .btn[disabled] {
+    box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+    color: #f8f8f8 !important;
+    cursor: not-allowed !important;
   }
 }
 #liveContestRoot .live-contest-tabs {
@@ -10609,6 +10649,11 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #contestFastSort .s
   color: #59add5;
   background-color: #ffffff;
 }
+#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button[disabled] {
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #f8f8f8 !important;
+  cursor: not-allowed !important;
+}
 #infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button:hover {
   background-color: transparent;
   border-width: 1px;
@@ -10860,6 +10905,11 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
 #infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button .badge {
   color: #59add5;
   background-color: #ffffff;
+}
+#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button[disabled] {
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #f8f8f8 !important;
+  cursor: not-allowed !important;
 }
 @media (min-width: 768px) {
   #infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button {
@@ -11925,6 +11975,11 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
   color: #a1c931;
   background-color: #ffffff;
 }
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset[disabled] {
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #f8f8f8 !important;
+  cursor: not-allowed !important;
+}
 .pre-filter-row {
   margin-left: 0;
   margin-right: 0;
@@ -12397,6 +12452,11 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
     color: #a1c931;
     background-color: #ffffff;
   }
+  #mainMenu .add-funds-button[disabled] {
+    box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+    color: #f8f8f8 !important;
+    cursor: not-allowed !important;
+  }
   #mainMenu .dropdown-menu {
     margin-left: -113px;
     padding: 0px;
@@ -12729,6 +12789,11 @@ fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-join.active {
   color: #59add5;
   background-color: #ffffff;
 }
+.navbar-header-unloggin .button-wrapper .button-join[disabled] {
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #f8f8f8 !important;
+  cursor: not-allowed !important;
+}
 .navbar-header-unloggin .button-wrapper .button-login {
   display: inline-block;
   margin-bottom: 0;
@@ -12846,6 +12911,11 @@ fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-login.active 
 .navbar-header-unloggin .button-wrapper .button-login .badge {
   color: #a1c931;
   background-color: #ffffff;
+}
+.navbar-header-unloggin .button-wrapper .button-login[disabled] {
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #f8f8f8 !important;
+  cursor: not-allowed !important;
 }
 @media (max-width: 991px) {
   #myContest {
@@ -13115,6 +13185,11 @@ fieldset[disabled] .resume-bar .data-to-csv .btn-data-to-csv.active {
   color: #59add5;
   background-color: #ffffff;
 }
+.resume-bar .data-to-csv .btn-data-to-csv[disabled] {
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #f8f8f8 !important;
+  cursor: not-allowed !important;
+}
 .resume-bar .change-player {
   text-align: center;
   margin: 2px 0 16px 0;
@@ -13236,6 +13311,11 @@ fieldset[disabled] .resume-bar .change-player .btn-change-player.active {
 .resume-bar .change-player .btn-change-player .badge {
   color: #a1c931;
   background-color: #ffffff;
+}
+.resume-bar .change-player .btn-change-player[disabled] {
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #f8f8f8 !important;
+  cursor: not-allowed !important;
 }
 #myContestMenuTabs {
   list-style-type: none;
@@ -13413,6 +13493,11 @@ fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest.acti
 .no-contest .my-no-contest-bottom-row .btn-go-to-contest .badge {
   color: #a1c931;
   background-color: #ffffff;
+}
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest[disabled] {
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #f8f8f8 !important;
+  cursor: not-allowed !important;
 }
 .no-contests-wrapper {
   position: relative;
@@ -13983,6 +14068,11 @@ fieldset[disabled] .soccer-player-info-header .btn-add-soccer-player-info {
   .soccer-player-info-header .btn-add-soccer-player-info .badge {
     color: #a1c931;
     background-color: #ffffff;
+  }
+  .soccer-player-info-header .btn-add-soccer-player-info[disabled] {
+    box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+    color: #f8f8f8 !important;
+    cursor: not-allowed !important;
   }
 }
 @media (min-width: 768px) {
@@ -14987,6 +15077,11 @@ fieldset[disabled] .soccer-player-info-content .action-buttons .button-wrapper .
   color: #a1c931;
   background-color: #ffffff;
 }
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info[disabled] {
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #f8f8f8 !important;
+  cursor: not-allowed !important;
+}
 @media (max-width: 767px) {
   .soccer-player-filter {
     padding: 0 10px;
@@ -15467,6 +15562,11 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
   color: #a1c931;
   background-color: #ffffff;
 }
+.soccer-players-list .soccer-players-list-slot .column-add .btn[disabled] {
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #f8f8f8 !important;
+  cursor: not-allowed !important;
+}
 #loginRoot,
 #joinRoot,
 #rememberPasswordRoot {
@@ -15543,6 +15643,42 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
   font-weight: 300;
   font-size: 14pt;
   color: #ffffff;
+}
+.main-box .panel .panel-heading button.close {
+  float: right;
+  font-size: 21px;
+  font-weight: bold;
+  line-height: 1;
+  color: #000000;
+  text-shadow: 0 1px 0 #ffffff;
+  opacity: 0.2;
+  filter: alpha(opacity=20);
+  color: #ffffff;
+  opacity: 0.5;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20pt;
+}
+.main-box .panel .panel-heading button.close:hover,
+.main-box .panel .panel-heading button.close:focus {
+  color: #000000;
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+button.main-box .panel .panel-heading button.close {
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  -webkit-appearance: none;
+}
+.main-box .panel .panel-heading button.close:hover {
+  font-size: 20pt;
+  color: #ffffff;
+  opacity: 1;
 }
 .main-box .panel .text-form {
   font-family: 'Open Sans', sans-serif;
@@ -15777,6 +15913,11 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button.active {
   color: #a1c931;
   background-color: #ffffff;
 }
+.main-box .panel .panel-body .new-row .enter-button[disabled] {
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #f8f8f8 !important;
+  cursor: not-allowed !important;
+}
 .main-box .panel .panel-body .new-row .enter-button-half {
   display: inline-block;
   margin-bottom: 0;
@@ -15806,6 +15947,7 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button.active {
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  float: left !important;
 }
 .main-box .panel .panel-body .new-row .enter-button-half:focus,
 .main-box .panel .panel-body .new-row .enter-button-half:active:focus,
@@ -15900,6 +16042,11 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button-half.acti
 .main-box .panel .panel-body .new-row .enter-button-half .badge {
   color: #a1c931;
   background-color: #ffffff;
+}
+.main-box .panel .panel-body .new-row .enter-button-half[disabled] {
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #f8f8f8 !important;
+  cursor: not-allowed !important;
 }
 .main-box .panel .panel-body .new-row .cancel-button-half {
   display: inline-block;
@@ -16616,6 +16763,11 @@ fieldset[disabled] .profile-content .action-button.active {
   color: #59add5;
   background-color: #ffffff;
 }
+.profile-content .action-button[disabled] {
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #f8f8f8 !important;
+  cursor: not-allowed !important;
+}
 .profile-content .add-funds-button {
   display: inline-block;
   margin-bottom: 0;
@@ -16737,6 +16889,11 @@ fieldset[disabled] .profile-content .add-funds-button.active {
 .profile-content .add-funds-button .badge {
   color: #a1c931;
   background-color: #ffffff;
+}
+.profile-content .add-funds-button[disabled] {
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #f8f8f8 !important;
+  cursor: not-allowed !important;
 }
 .profile-content .data-key {
   font-family: 'Open Sans', sans-serif;
@@ -16913,6 +17070,11 @@ fieldset[disabled] .profile-content .add-funds-button.active {
   .profile-content .personal-data .action-button .badge {
     color: #59add5;
     background-color: #ffffff;
+  }
+  .profile-content .personal-data .action-button[disabled] {
+    box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+    color: #f8f8f8 !important;
+    cursor: not-allowed !important;
   }
 }
 @media (min-width: 768px) {
@@ -17116,6 +17278,11 @@ fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-
   color: #59add5;
   background-color: #ffffff;
 }
+.profile-content .pocket-data .button-wrapper .action-button-transaction[disabled] {
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #f8f8f8 !important;
+  cursor: not-allowed !important;
+}
 .profile-content .pocket-data .button-wrapper .action-button-get-funds {
   display: inline-block;
   margin-bottom: 0;
@@ -17238,6 +17405,11 @@ fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-
 .profile-content .pocket-data .button-wrapper .action-button-get-funds .badge {
   color: #59add5;
   background-color: #ffffff;
+}
+.profile-content .pocket-data .button-wrapper .action-button-get-funds[disabled] {
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #f8f8f8 !important;
+  cursor: not-allowed !important;
 }
 @media (max-width: 991px) {
   .profile-content .pocket-data .button-wrapper {
@@ -17637,6 +17809,11 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-back-contest.active 
   color: #a1c931;
   background-color: #ffffff;
 }
+.view-contest-entry-actions-wrapper .btn-back-contest[disabled] {
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #f8f8f8 !important;
+  cursor: not-allowed !important;
+}
 @media (max-width: 767px) {
   .view-contest-entry-actions-wrapper .btn-back-contest {
     display: block;
@@ -17979,8 +18156,18 @@ fieldset[disabled] .btn {
 .btn-default {
   box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
 }
+.btn-default[disabled] {
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #f8f8f8 !important;
+  cursor: not-allowed !important;
+}
 .btn-primary {
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+}
+.btn-primary[disabled] {
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #f8f8f8 !important;
+  cursor: not-allowed !important;
 }
 .btn-cancel {
   display: inline-block;

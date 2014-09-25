@@ -63,10 +63,20 @@ html, body{
 
 .btn-default {
 	box-shadow: 0px 5px 0px rgba(red(@blueLight), green(@blueLight), blue(@blueLight), 0.5);
+	&[disabled] {
+		box-shadow: 0px 5px 0px rgba(red(@green), green(@green), blue(@green), 0.5);
+		color: @greyUltraLight !important;
+		cursor: not-allowed !important;
+	}
 }
 
 .btn-primary {
 	box-shadow: 0px 5px 0px rgba(red(@green), green(@green), blue(@green), 0.5);
+	&[disabled] {
+		box-shadow: 0px 5px 0px rgba(red(@green), green(@green), blue(@green), 0.5);
+		color: @greyUltraLight !important;
+		cursor: not-allowed !important;
+	}
 }
 
 // Color y borde del boton cancel (no esta definido en el bootstrap)

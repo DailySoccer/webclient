@@ -79,9 +79,11 @@ class JoinComp implements ShadowRootAware {
         });
   }
 
-  void loginPressed() {
-    _router.go("login", {});
+  void navigateTo(String routePath, Map parameters, event) {
+    event.preventDefault();
+    _router.go(routePath, parameters);
   }
+
 
   Router _router;
   ProfileService _profileService;

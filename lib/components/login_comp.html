@@ -6,6 +6,9 @@
       <!-- Header -->
       <div class="panel-heading">
         <div class="panel-title">ENTRA</div>
+        <button type="button" class="close" ng-click="comp.navigateTo('landing_page',{}, $event)">
+          <span class="glyphicon glyphicon-remove"></span>
+        </button>
       </div>
 
       <div class="panel-body" ng-cloak>
@@ -29,13 +32,18 @@
               <label><input id="login-remember" type="checkbox" ng-model="rememberMe" name="rememberMe"> Recuerdame </label>
             </div>
             <div class="forget-pass">
-              <a ng-click="comp.navigateTo('remember_password', {})">¿Olvidaste tu contraseña?</a>
+              <a ng-click="comp.navigateTo('remember_password', {}, $event)">¿Olvidaste tu contraseña?</a>
             </div>
           </div>
           <!-- BUTTON -->
           <div class="input-group">
             <div class="new-row">
-              <button id="login" ng-click="comp.login()" ng-disabled="!comp.isEnabledSubmit" class="enter-button">ENTRAR</button>
+              <!--
+              <button type="submit" id="btnCancel" ng-click="comp.cancel()" class="cancel-button-half">CANCELAR</button>
+              <button id="login" ng-click="comp.login()" ng-disabled="!comp.isEnabledSubmit" class="enter-button-half" formnovalidate>ENTRAR</button>
+              -->
+              <button id="btnCancel" ng-click="comp.navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCELAR</button>
+              <button type="submit" id="joinNow" name="JoinNow" ng-disabled="!comp.enabledSubmit" class="enter-button-half">REGÍSTRATE</button>
             </div>
           </div>
           <!-- Error de login/password -->
@@ -47,7 +55,7 @@
           <!-- GOTO REGISTER -->
           <div class="input-group">
             <div class="new-row">
-              <div class="separator-top">¿Aún no tienes cuenta? <a ng-click="comp.navigateTo('join', {})"> Regístrate aquí! </a></div>
+              <div class="separator-top">¿Aún no tienes cuenta? <a ng-click="comp.navigateTo('join', {}, $event)"> Regístrate aquí! </a></div>
             </div>
           </div>
         </form>

@@ -5,7 +5,9 @@
 
       <div class="panel-heading">
         <div class="panel-title">REGÍSTRATE</div>
-        <!-- <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="#" onclick="$('#signupbox').hide(); $('#loginbox').show()">Sign In</a></div> -->
+        <button type="button" class="close" ng-click="comp.navigateTo('landing_page', {}, $event)">
+          <span class="glyphicon glyphicon-remove"></span>
+        </button>
       </div>
 
       <div class="panel-body" >
@@ -39,16 +41,17 @@
             <div class="new-row">
               <div id="passwordError" class="join-err-text">ERROR DE REGISTRO. El password no es válido.</div>
             </div>
-          <!-- BUTTON -->
+          <!-- BUTTONS -->
           <div class="input-group">
             <div class="new-row">
-              <button id="joinNow" name="JoinNow" ng-disabled="!comp.enabledSubmit" class="enter-button">REGÍSTRATE</button>
+              <button id="btnCancel" ng-click="comp.navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCELAR</button>
+              <button type="submit" id="joinNow" name="JoinNow" ng-disabled="!comp.enabledSubmit" class="enter-button-half">REGÍSTRATE</button>
             </div>
           </div>
           <!-- GOTO REGISTER -->
           <div class="input-group">
             <div class="new-row">
-              <div class="separator-top">¿Ya tienes cuenta? <a ng-click="comp.loginPressed()"> Entra por aquí! </a></div>
+              <div class="separator-top">¿Ya tienes cuenta? <a ng-click="comp.navigateTo('login', {}, $event)"> Entra por aquí! </a></div>
             </div>
           </div>
 

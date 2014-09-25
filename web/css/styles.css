@@ -12352,10 +12352,11 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
     padding: 20px 0;
     cursor: pointer;
     margin-right: 20px;
+    color: #afd3e4;
   }
   #mainMenu .navbar-nav > .right-menu {
     float: right;
-    width: 130px;
+    width: 120px;
     text-align: right;
   }
   #mainMenu .navbar-nav > .right-menu .current-balance {
@@ -12364,14 +12365,16 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
     font-weight: 700;
     font-size: 10pt;
     color: #ffffff;
-    text-align: center;
     margin: 5px 0;
+  }
+  #mainMenu .navbar-nav > .right-menu a {
+    margin-right: 0px;
   }
   #mainMenu .navbar-nav .right-menu a::after {
     font-family: 'Glyphicons Halflings';
     content: "\E114";
     font-size: 8pt;
-    color: #999999;
+    color: #afd3e4;
     margin-left: 5px;
   }
   #mainMenu .navbar-nav .right-menu a:hover::after {
@@ -12413,7 +12416,7 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
     color: #ffffff;
-    padding: 4px 4px;
+    padding: 4px 12px;
     font-size: 8pt;
     line-height: 1.5em;
     border-radius: 4px;
@@ -12513,7 +12516,7 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
     background-color: #ffffff;
   }
   #mainMenu .dropdown-menu {
-    margin-left: -104px;
+    margin-left: -113px;
     padding: 0px;
   }
   #mainMenu .dropdown-menu > li > a {
@@ -12527,7 +12530,7 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
     position: relative;
   }
   #mainMenu .dropdown-menu > li > a:hover {
-    background-color: #f8f8f8;
+    background-color: #dcdcdc;
   }
   #mainMenu .dropdown-menu > li > a:hover::after {
     color: #999 !important;
@@ -12540,6 +12543,11 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
     position: absolute;
     top: 12px;
     right: 12px;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  #mainMenu .dropdown-menu {
+    margin-left: -107px;
   }
 }
 @media (max-width: 767px) {
@@ -12586,6 +12594,15 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
     color: #777777;
     cursor: pointer;
   }
+  #mainMenu .navbar-offcanvas ul > li > a::after {
+    font-family: 'Glyphicons Halflings';
+    content: "\E080";
+    font-size: 9pt;
+    color: #000000;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+  }
   #mainMenu .navbar-offcanvas ul > li:hover {
     background-color: #dcdcdc;
   }
@@ -12594,6 +12611,9 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
     font-weight: 400;
     font-size: 10pt;
     color: #777777;
+  }
+  #mainMenu .navbar-offcanvas ul > li:hover > a::after {
+    color: #999 ;
   }
   #mainMenu .navbar-offcanvas .navbar-nav > .open > a,
   #mainMenu .navbar-offcanvas .navbar-nav > .open > a:focus,
@@ -12604,12 +12624,12 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
   #mainMenu .navbar-offcanvas .navbar-nav > .open .dropdown-menu > li > a:hover,
   #mainMenu .navbar-offcanvas .navbar-nav > .open .dropdown-menu > li > a:focus {
     color: #000000;
-    background-color: #f8f8f8;
+    background-color: #dcdcdc;
   }
   #mainMenu .navbar-offcanvas .navbar-nav .right-menu a::after {
     font-family: 'Glyphicons Halflings';
     content: "\E114";
-    font-size: 8pt;
+    font-size: 9pt;
     color: #999999;
     margin-left: 5px;
   }
@@ -12622,9 +12642,6 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
   #mainMenu .navbar-offcanvas .dropdown-menu li > a {
     cursor: pointer;
     padding: 10px 0px 10px 40px;
-  }
-  #mainMenu .navbar-offcanvas .dropdown-menu li > a::after {
-    content: "" !important;
   }
   #mainMenu .navbar-toggle:hover,
   #mainMenu .navbar-toggle:focus {

@@ -49,20 +49,23 @@
 	    	padding: 20px 0;
   			cursor: pointer;
   			margin-right: 20px;
+  			color: @blueMenu;
 	  	}
 	  	.navbar-nav > .right-menu {
 	  		float: right;
-	  		width: 130px;
+	  		width: 120px;
 	  		text-align: right;
 	  		.current-balance {
 	  			display: block;
 	  			.opensans_bold(10pt, @white);
-	  			text-align: center;
 	  			margin: 5px 0;
+	  		}
+	  		& a {
+	  			margin-right: 0px;
 	  		}
 	  	}
 	  	.navbar-nav .right-menu a::after {
-	  		.create-glyph("\E114", 8pt, #999999);
+	  		.create-glyph("\E114", 8pt, @blueMenu);
 	  		margin-left: 5px;
 
 	  	}
@@ -87,11 +90,14 @@
 			.btn();
 			.btn-primary();
 			.opensans_bold(8pt, @white);
-			.button-size(4px, 4px, 8pt, 1.5em, 4px);
+			.button-size(4px, 12px, 8pt, 1.5em, 4px);
 		}
     	// elementos del sub-menu
         .dropdown-menu {
-        	margin-left: -104px;
+        	@media (max-width: @screen-sm-max) {
+        		margin-left: -107px;
+        	}
+        	margin-left: -113px;
 			& {
 				padding: 0px;
 			}
@@ -103,7 +109,7 @@
 	            position: relative;
 
 	            &:hover {
-	            	background-color: @greyUltraLight;
+	            	background-color: @greyLight;
 	            	&::after {
 	        			color: #999 !important;
 	        		}
@@ -150,6 +156,12 @@
 						.opensans_normal(10pt, @greyDark);
 						cursor: pointer;
 					}
+					& > a::after {
+	        			.create-glyph("\E080", 9pt, @black);
+	        			position: absolute;
+	        			top: 12px;
+	        			right: 12px;
+	        		}
 					// Elementos li en no activos en hover
 					&:hover {
 						background-color: @greyLight;
@@ -157,6 +169,9 @@
 						> a {
 							.opensans_normal(10pt, @greyDark);
 						}
+						& > a::after {
+	        				color: #999 ;
+	        			}
 					}
         		}
 			}
@@ -169,13 +184,13 @@
 				.dropdown-menu > li {
 					& > a:hover, & > a:focus {
 						color:@black;
-						background-color: @greyUltraLight;
+						background-color: @greyLight;
 					}
 				}
 			}
 
 			.navbar-nav .right-menu a::after {
-	  			.create-glyph("\E114", 8pt, #999999);
+	  			.create-glyph("\E114", 9pt, #999999);
 	  			margin-left: 5px;
 
 	  		}
@@ -190,9 +205,6 @@
 		            cursor:pointer;
 		            padding: 10px 0px 10px 40px;
 		        }
-		        & li > a::after {
-		        	content: "" !important;
-		        } 
 		    }
         }
 

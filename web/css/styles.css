@@ -12525,6 +12525,9 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
     cursor: pointer;
     padding: 10px 0px 10px 40px;
   }
+  #mainMenu .navbar-toggle {
+    margin-right: 0;
+  }
   #mainMenu .navbar-toggle:hover,
   #mainMenu .navbar-toggle:focus {
     background-color: transparent;
@@ -12534,7 +12537,7 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
     border-style: none none none none;
     border-color: #000000;
     border-radius: 0;
-    float: left;
+    float: right;
     background-color: transparent;
   }
   #mainMenu #toggleSlideMenu .icon-bar {
@@ -12585,7 +12588,7 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
 }
 @media (max-width: 767px) {
   .loggedIn-brand {
-    margin: 10px auto;
+    margin: 10px 0;
     float: none;
   }
 }

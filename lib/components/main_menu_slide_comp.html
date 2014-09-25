@@ -13,7 +13,7 @@
       </div>
       <!-- Opciones del menu -->
 
-      <div id="menuSlide" class="navbar-offcanvas navmenu-fixed-left offcanvas" ng-if="comp.profileService.isLoggedIn">
+      <div id="menuSlide" class="navbar-offcanvas navmenu-fixed offcanvas" ng-if="comp.profileService.isLoggedIn">
         <ul class="nav navbar-nav" ng-model="comp.saveActiveClass()">
           <li class="active">         <a  id="menuLobby"                ng-click="comp.navigateTo($event)" destination="lobby">Buscar Torneos</a></li>
           <li>                        <a  id="menuMy_Contest"           ng-click="comp.navigateTo($event)" destination="my_contests">Mis torneos</a></li>

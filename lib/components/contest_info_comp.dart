@@ -45,7 +45,7 @@ class ContestInfoComp implements ShadowRootAware {
       'name'            : '<name>',
       'entry'           : '<entry>',
       'prize'           : '<prize>',
-      'rules'           : '<rules>',         // 'Elige un equipo de 11 jugadores a partir de los siguientes partidos',
+      'rules'           : 'Elige un equipo de 11 jugadores a partir de los siguientes partidos',         // 'Elige un equipo de 11 jugadores a partir de los siguientes partidos',
       'startDateTime'   : '<startDateTime>', // 'COMIENZA EL DOM. 15/05 19:00',
       'matchesInvolved' : null,
       'legals'          : '<legals>',

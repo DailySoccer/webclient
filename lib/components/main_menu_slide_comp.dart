@@ -94,14 +94,6 @@ class MainMenuSlideComp implements ShadowRootAware{
     }
   }
 
-/*  void updateActiveMenu(String parent) {
-    print(parent);
-    if (parent.isEmpty) {parent = "lobby";}
-    Element active = querySelector("a[destination='" + parent + "']");
-    print(active);
-    active.parent.classes.add("active");
-  }*/
-
   @override
   void onShadowRoot(root) {
    _rootElement = root as HtmlElement;

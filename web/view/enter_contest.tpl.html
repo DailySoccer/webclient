@@ -34,10 +34,10 @@
             <lineup-selector></lineup-selector>
             <div class="enter-contest-actions-wrapper">
               <div class="button-wrapper">
-                <button type="button" class="btn-clean-lineup-list" ng-click="ctrl.deleteFantasyTeam()" ng-disabled="ctrl.isPlayerSelected()">Borrar todo</button>
+                <button type="button" class="btn-clean-lineup-list" ng-click="ctrl.deleteFantasyTeam()" ng-disabled="ctrl.isPlayerSelected()">BORRAR TODO</button>
               </div>
               <div class="button-wrapper">
-                <button type="button" class="btn-confirm-lineup-list" ng-click="ctrl.createFantasyTeam()" ng-disabled="!ctrl.isFantasyTeamValid()">Confirmar</button>
+                <button type="button" class="btn-confirm-lineup-list" ng-click="ctrl.createFantasyTeam()" ng-disabled="!ctrl.isFantasyTeamValid()">CONFIRMAR</button>
               </div>
               <p>Recuerda que puedes editar tu equipo cuantas veces quiereas hasta que comience la competición</p>
             </div>
@@ -56,7 +56,7 @@
 
                 <div class="enter-contest-actions-wrapper">
                   <div class="total-salary"><span ng-class="ctrl.getMyTotalSalaryClasses()">{{ctrl.availableSalary}}€</span></div>
-                  <button id="cancelSoccerPlayerSelection" type="button" class="btn-cancel-player-selection" ng-click="ctrl.cancelPlayerSelection()" ng-show="ctrl.isSelectingSoccerPlayer">Cancelar</button>
+                  <button id="cancelSoccerPlayerSelection" type="button" class="btn-cancel-player-selection" ng-click="ctrl.cancelPlayerSelection()" ng-show="ctrl.isSelectingSoccerPlayer">CANCELAR</button>
                 </div>
                 <div class="enter-contest-lineup-wrapper">
                   <div class="enter-contest-lineup">
@@ -74,12 +74,12 @@
                 </div>
 
                 <div class="enter-contest-actions-wrapper">
-                  <button type="button" class="btn-cancel-player-selection" ng-click="ctrl.cancelPlayerSelection()" ng-show="ctrl.isSelectingSoccerPlayer">Cancelar</button>
+                  <button type="button" class="btn-cancel-player-selection" ng-click="ctrl.cancelPlayerSelection()" ng-show="ctrl.isSelectingSoccerPlayer">CANCELAR</button>
                   <div class="button-wrapper">
-                    <button type="button" class="btn-clean-lineup-list" ng-click="ctrl.deleteFantasyTeam()" ng-if="!ctrl.isSelectingSoccerPlayer || ctrl.scrDet.isSmScreen" ng-disabled="ctrl.isPlayerSelected()" >Borrar todo</button>
+                    <button type="button" class="btn-clean-lineup-list" ng-click="ctrl.deleteFantasyTeam()" ng-if="!ctrl.isSelectingSoccerPlayer || ctrl.scrDet.isSmScreen" ng-disabled="ctrl.isPlayerSelected()" >BORRAR TODO</button>
                   </div>
                   <div class="button-wrapper">
-                    <button type="button" class="btn-confirm-lineup-list" ng-click="ctrl.createFantasyTeam()" ng-if="!ctrl.isSelectingSoccerPlayer || ctrl.scrDet.isSmScreen" ng-disabled="!ctrl.isFantasyTeamValid()">Confirmar</button>
+                    <button type="button" class="btn-confirm-lineup-list" ng-click="ctrl.createFantasyTeam()" ng-if="!ctrl.isSelectingSoccerPlayer || ctrl.scrDet.isSmScreen" ng-disabled="!ctrl.isFantasyTeamValid()">CONFIRMAR</button>
                   </div>
                   <p ng-if="!ctrl.isSelectingSoccerPlayer || ctrl.scrDet.isSmScreen">
                     Recuerda que puedes editar tu equipo cuantas veces quieras hasta que comience la competición

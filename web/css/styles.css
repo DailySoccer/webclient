@@ -8137,12 +8137,6 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list.activ
   color: #a1c931;
   background-color: #ffffff;
 }
-.enter-contest-actions-wrapper .btn-clean-lineup-list::before {
-  font-family: 'Glyphicons Halflings';
-  content: "\E014";
-  font-size: 9pt;
-  margin-right: 15px;
-}
 .enter-contest-actions-wrapper p {
   position: relative;
   float: left;
@@ -8172,9 +8166,10 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list.activ
   font-size: 9pt;
   color: #ffffff;
   min-width: 120px;
-  padding: 10px 0;
+  padding: 5px 0;
   margin: 10px 4px;
   text-align: center;
+  line-height: 15px;
 }
 @media (max-width: 767px) {
   .match-teams-filter .button-filtro-team {
@@ -8195,7 +8190,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list.activ
 }
 .match-teams-filter .active {
   background-color: #ffffff;
-  color: #434343;
+  color: #777777;
   box-shadow: none !important;
   outline: none !important;
 }
@@ -8203,7 +8198,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list.activ
 .match-teams-filter .active:hover,
 .match-teams-filter .active:focus,
 .match-teams-filter .active:visited {
-  color: #434343;
+  color: #777777;
 }
 .contest-info-tab-active {
   display: none !important;

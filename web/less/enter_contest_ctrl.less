@@ -81,10 +81,6 @@
 		.btn-primary();
 		.btn-block();
 	}
-	.btn-clean-lineup-list::before {
-		.create-glyph("\E014", 9pt);
-		margin-right: 15px;
-	}
 
 	p {
 		.make-xs-column(12);
@@ -104,21 +100,22 @@
 		.make-sm-column(1);
 		.opensans_bold(9pt, @white);
 		min-width: 120px;		
-		padding: 10px 0;
+		padding: 5px 0;
 		margin: 10px 4px;
 		text-align: center;
+		line-height: 15px;
 	}
 	.button-filtro-team:active, .button-filtro-team:focus, .button-filtro-team:hover, .button-filtro-team:visited {
 		outline: none;
 	}
 	.active {
 		background-color: @white;
-		color: @greyUltraDark;
+		color: @greyDark;
 		box-shadow: none !important;
 		outline: none !important;
 	}
 	.active:active, .active:hover, .active:focus, .active:visited {
-		color: @greyUltraDark;
+		color: @greyDark;
 	}
 }
 .contest-info-tab-active {

@@ -10141,9 +10141,10 @@ fieldset[disabled] .landing-wrapper .button-play.active {
   min-width: 90px;
   background-color: #ffffff;
   border-radius: 10px;
-  padding: 10px 0;
+  padding: 5px 0;
   margin: 0 4px 8px 4px;
   text-align: center;
+  line-height: 15px;
 }
 @media (min-width: 768px) {
   #liveContestRoot {
@@ -17365,7 +17366,7 @@ fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-
 }
 .view-contest-entry-actions-wrapper .button-wrapper {
   padding: 40px 0 20px;
-  text-align: center;
+  text-align: right;
   float: left;
   width: 100%;
   position: relative;
@@ -17383,6 +17384,9 @@ fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-
     float: left;
     width: 50%;
   }
+}
+.view-contest-entry-actions-wrapper .button-wrapper + .button-wrapper {
+  text-align: left;
 }
 .view-contest-entry-actions-wrapper .btn-cancel-contest {
   display: inline-block;

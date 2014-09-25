@@ -9287,7 +9287,7 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button.active {
 }
 @media (max-width: 991px) {
   #mainFooter .user-info-sup-footer .add-funds-button {
-    padding: 4px 4px;
+    padding: 4px 12px;
     font-size: 8pt;
     line-height: 1.5em;
     border-radius: 4px;

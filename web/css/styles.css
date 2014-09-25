@@ -5994,7 +5994,12 @@ button.close {
     font-weight: 700;
     font-size: 11pt;
     color: #777777;
-    margin: 20px 0 10px;
+    margin: 30px 0 0;
+  }
+}
+@media (max-width: 991px) {
+  #headerContestWidget .contest-explanation {
+    margin: 10px 0 0;
   }
 }
 @media (max-width: 767px) {
@@ -6174,129 +6179,10 @@ button.close {
     top: 8px;
   }
 }
-#headerContestWidget .close-contest .btn {
-  display: inline-block;
-  margin-bottom: 0;
-  font-weight: normal;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  background-image: none;
-  border: 1px solid transparent;
-  white-space: nowrap;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  border-radius: 4px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  border-width: 0;
-  color: #ffffff;
-  background-color: #afafaf;
-  border-color: #cccccc;
-  box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
-}
-#headerContestWidget .close-contest .btn:focus,
-#headerContestWidget .close-contest .btn:active:focus,
-#headerContestWidget .close-contest .btn.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-#headerContestWidget .close-contest .btn:hover,
-#headerContestWidget .close-contest .btn:focus {
-  color: #ffffff;
-  text-decoration: none;
-}
-#headerContestWidget .close-contest .btn:active,
-#headerContestWidget .close-contest .btn.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-#headerContestWidget .close-contest .btn.disabled,
-#headerContestWidget .close-contest .btn[disabled],
-fieldset[disabled] #headerContestWidget .close-contest .btn {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-#headerContestWidget .close-contest .btn:focus,
-#headerContestWidget .close-contest .btn:active:focus,
-#headerContestWidget .close-contest .btn.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-#headerContestWidget .close-contest .btn:hover,
-#headerContestWidget .close-contest .btn:focus {
-  color: #ffffff;
-  text-decoration: none;
-}
-#headerContestWidget .close-contest .btn:active,
-#headerContestWidget .close-contest .btn.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-#headerContestWidget .close-contest .btn.disabled,
-#headerContestWidget .close-contest .btn[disabled],
-fieldset[disabled] #headerContestWidget .close-contest .btn {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-#headerContestWidget .close-contest .btn:hover,
-#headerContestWidget .close-contest .btn:focus,
-#headerContestWidget .close-contest .btn:active,
-#headerContestWidget .close-contest .btn.active,
-.open .dropdown-toggle#headerContestWidget .close-contest .btn {
-  color: #ffffff;
-  background-color: #9b9b9b;
-  border-color: #adadad;
-}
-#headerContestWidget .close-contest .btn:active,
-#headerContestWidget .close-contest .btn.active,
-.open .dropdown-toggle#headerContestWidget .close-contest .btn {
-  background-image: none;
-}
-#headerContestWidget .close-contest .btn.disabled,
-#headerContestWidget .close-contest .btn[disabled],
-fieldset[disabled] #headerContestWidget .close-contest .btn,
-#headerContestWidget .close-contest .btn.disabled:hover,
-#headerContestWidget .close-contest .btn[disabled]:hover,
-fieldset[disabled] #headerContestWidget .close-contest .btn:hover,
-#headerContestWidget .close-contest .btn.disabled:focus,
-#headerContestWidget .close-contest .btn[disabled]:focus,
-fieldset[disabled] #headerContestWidget .close-contest .btn:focus,
-#headerContestWidget .close-contest .btn.disabled:active,
-#headerContestWidget .close-contest .btn[disabled]:active,
-fieldset[disabled] #headerContestWidget .close-contest .btn:active,
-#headerContestWidget .close-contest .btn.disabled.active,
-#headerContestWidget .close-contest .btn[disabled].active,
-fieldset[disabled] #headerContestWidget .close-contest .btn.active {
-  background-color: #afafaf;
-  border-color: #cccccc;
-}
-#headerContestWidget .close-contest .btn .badge {
-  color: #afafaf;
-  background-color: #ffffff;
-}
 #headerContestWidget .close-contest .btn::after {
   font-family: 'Glyphicons Halflings';
   content: "\E014";
   font-size: 9pt;
-  margin-left: 10px;
 }
 @media (max-width: 991px) {
   .countdown-text {

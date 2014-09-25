@@ -26,7 +26,10 @@
 		// Tamaño para todas las versiones excepto xs
 		@media (min-width: @screen-sm-min) {
 			.opensans_bold(11pt, @greyDark);
-			margin: 20px 0 10px;
+			margin: 30px 0 0;
+		}
+		@media (max-width: @screen-sm-max) {
+			margin: 10px 0 0;
 		}
 		@media (max-width: @screen-xs-max) {
 			max-width: 70%;
@@ -135,12 +138,8 @@
 			right: 5px;
 			top: 8px;
 		}
-		.btn {
-			.btn-cancel();
-		}
 		.btn::after {
 			.create-glyph("\E014", 9pt);
-			margin-left: 10px;
 		}
 	}
 	

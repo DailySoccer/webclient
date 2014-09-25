@@ -14426,6 +14426,7 @@ fieldset[disabled] .soccer-player-info-header .btn-add-soccer-player-info {
     margin-left: 0;
     margin-right: 0;
     overflow-x: scroll;
+    padding-bottom: 5px;
   }
   .soccer-player-info-content .season-stats .season-stats-wrapper {
     width: 1200px;
@@ -14695,6 +14696,13 @@ fieldset[disabled] .soccer-player-info-header .btn-add-soccer-player-info {
   height: 268px;
   padding-top: 134px;
   text-align: center;
+}
+@media (min-width: 768px) {
+  .soccer-player-info-content .noMatchesPlayed {
+    height: 80px;
+    padding: 10px;
+    text-align: left;
+  }
 }
 .soccer-player-info-content .action-buttons {
   position: relative;

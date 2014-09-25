@@ -236,6 +236,7 @@
 		@media (min-width: @screen-sm-min) {
 			.make-row(0);
 			overflow-x: scroll;
+			padding-bottom: 5px;
 			.season-stats-wrapper {
 				width: 1200px;
 				.season-stats-row {
@@ -400,6 +401,11 @@
 		height: 268px;
 		padding-top: 134px;
 		text-align: center;
+		@media (min-width: @screen-sm-min) {
+			height: 80px;
+			padding: 10px;
+			text-align: left;
+		}
 	}
 	
 	.action-buttons {

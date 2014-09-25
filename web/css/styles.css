@@ -15641,7 +15641,7 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
 .main-box .panel .panel-heading .panel-title {
   font-family: 'Exo', sans-serif;
   font-weight: 300;
-  font-size: 14pt;
+  font-size: 20pt;
   color: #ffffff;
 }
 .main-box .panel .panel-heading button.close {
@@ -15690,6 +15690,9 @@ button.main-box .panel .panel-heading button.close {
 .main-box .panel .form-horizontal {
   margin-left: 0;
   margin-right: 0;
+}
+.main-box .panel .panel-body {
+  padding: 15px 15%;
 }
 .main-box .panel .panel-body .form-description {
   font-family: 'Open Sans', sans-serif;

@@ -15,6 +15,8 @@ class ProfileService {
   User user = null;
   bool get isLoggedIn => user != null;
 
+  static bool allowAccess = false;
+
   ProfileService(this._server, this._dateTimeService) {
     _tryProfileLoad();
   }
@@ -51,6 +53,7 @@ class ProfileService {
     _sessionToken = theSessionToken;
     _server.setSessionToken(_sessionToken);
     user = theUser;
+    allowAccess = theUser != null;
 
     if (bSave) {
       _saveProfile();
@@ -80,6 +83,13 @@ class ProfileService {
       window.localStorage.remove('sessionToken');
       window.localStorage.remove('user');
     }
+  }
+
+
+  static Future<bool> allowEnter() {
+    var completer = new Completer();
+    completer.complete(allowAccess);
+    return completer.future;
   }
 
   ServerService _server;

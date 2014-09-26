@@ -16951,6 +16951,11 @@ fieldset[disabled] .profile-content .add-funds-button.active {
     width: 50%;
   }
 }
+@media (min-width: 992px) {
+  .profile-content .personal-data {
+    left: 25%;
+  }
+}
 @media (max-width: 767px) {
   .profile-content .personal-data .data-header-title {
     display: none !important;
@@ -17087,12 +17092,6 @@ fieldset[disabled] .profile-content .add-funds-button.active {
   }
 }
 @media (min-width: 768px) {
-  .profile-content .personal-data {
-    border-width: 1px;
-    border-style: none none dotted none;
-    border-color: #214a5f;
-    border-radius: 0;
-  }
   .profile-content .personal-data .bloque-sm {
     position: relative;
     min-height: 1px;
@@ -17108,12 +17107,6 @@ fieldset[disabled] .profile-content .add-funds-button.active {
   }
 }
 @media (min-width: 992px) {
-  .profile-content .personal-data {
-    border-width: 1px;
-    border-style: none dotted none none;
-    border-color: #214a5f;
-    border-radius: 0;
-  }
   .profile-content .personal-data .bloque-sm {
     position: relative;
     min-height: 1px;

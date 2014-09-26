@@ -51,8 +51,7 @@ class UserProfileComp implements ShadowRootAware, DetachAware{
         modal.style.display = "block";
         JsUtils.runJavascript('#editPersonalDataModal', 'modal', null);
       }
-      else { //La versión Desktop para editar los datos personales se muestran en pantalla completa
-        //onActionClick(contest);
+      else { // Resto de versiones para editar los datos personales se muestran en pantalla completa
         elmntEditProfile.style.display = '';
         JsUtils.runJavascript('#editPersonalDataModal', 'modal', 'hide');
       }

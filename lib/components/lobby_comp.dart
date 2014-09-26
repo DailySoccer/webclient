@@ -229,7 +229,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
        isFirstTimeListFill = false;
        updateEntryFeeFilter();
        //Metemos un filtro por defecto en la lista
-       sortListByField('sortContestName', 'contest-start-time');
+       sortListByField('sortContestStartTime', 'contest-start-time');
      }
    }
 

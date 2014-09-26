@@ -225,7 +225,7 @@ class Contest {
     entryFee = json.entryFee;
     prizeType = json.prizeType;
     prizes = json.containsKey("prizes") ? json.prizes : [];
-    startDate = new DateTime.fromMillisecondsSinceEpoch(json.startDate, isUtc: true);
+    startDate = DateTimeService.fromMillisecondsSinceEpoch(json.startDate);
     matchEvents = json.containsKey("templateMatchEventIds") ? json.templateMatchEventIds.map( (matchEventId) => references.getMatchEventById(matchEventId) ).toList() : [];
 
     // print("Contest: id($contestId) name($name) currentUserIds($currentUserIds) templateContestId($templateContestId)");

@@ -22,22 +22,15 @@ class JoinComp implements ShadowRootAware {
   Element emailError;
   Element passwordError;
 
-  bool _enabledSubmit = true;
   bool get enabledSubmit => nickName.isNotEmpty && email.isNotEmpty && password.isNotEmpty && _enabledSubmit;
 
   JoinComp(this._router, this._profileService);
 
   void submitSignup() {
 
-    nicknameError = querySelector('#nickNameError')
-                      ..parent.style.display = "none";
-
-    emailError =    querySelector('#emailError')
-                      ..parent.style.display = "none";
-
-    passwordError = querySelector('#passwordError')
-                      ..parent.style.display = "none";
-
+    nicknameError.parent.style.display = "none";
+    emailError.parent.style.display = "none";
+    passwordError.parent.style.display = "none";
     _enabledSubmit = false;
 
     _profileService.signup(firstName, lastName, email, nickName, password)
@@ -86,21 +79,22 @@ class JoinComp implements ShadowRootAware {
     _router.go(routePath, parameters);
   }
 
-
-  Router _router;
-  ProfileService _profileService;
-
   @override
   void onShadowRoot(root) {
     var rootElement = root as HtmlElement;
-    var errNickName = rootElement.querySelector("#nickNameError")
-                        ..parent.style.display = 'none';
+    nicknameError = rootElement.querySelector("#nickNameError");
+    nicknameError.parent.style.display = 'none';
 
-    var errEmail = rootElement.querySelector("#emailError")
-                        ..parent.style.display = 'none';
+    emailError = rootElement.querySelector("#emailError");
+    emailError.parent.style.display = 'none';
 
-    var errPassword = rootElement.querySelector("#passwordError")
-                        ..parent.style.display = 'none';
+    passwordError = rootElement.querySelector("#passwordError");
+    passwordError.parent.style.display = 'none';
 
-  }
+   }
+
+  Router _router;
+  ProfileService _profileService;
+  bool _enabledSubmit = true;
+
 }

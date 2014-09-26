@@ -4,6 +4,7 @@ import 'package:angular/angular.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/components/user_profile_comp.dart';
+import 'dart:html';
 
 @Component(
     selector: 'edit-personal-data',
@@ -13,11 +14,20 @@ import 'package:webclient/components/user_profile_comp.dart';
 )
 class EditPersonalDataComp implements ShadowRootAware {
 
+  String firstName;
+  String lastName;
+  String nickName;
+  String email;
   String password;
   String repeatPassword;
+
   String country;
   String region;
   String city;
+
+  Element nicknameError;
+  Element emailError;
+  Element passwordError;
 
   @NgTwoWay("is-pop-up")
    bool get isPopUp => _popUpStyle;
@@ -44,6 +54,8 @@ class EditPersonalDataComp implements ShadowRootAware {
   }
 
   dynamic get userData => _profileManager.user;
+
+  bool get enabledSubmit => nickName.isNotEmpty && email.isNotEmpty && password.isNotEmpty && _enabledSubmit;
 
   EditPersonalDataComp(this._profileManager, this.parent);
 
@@ -75,6 +87,14 @@ class EditPersonalDataComp implements ShadowRootAware {
                                                                                     'offColor'      : 'default',
                                                                                     'onSwitchChange': onSoccerPlayerAlertsSwitchChange
                                                                                   });
+    nicknameError = querySelector('#nickNameError');
+    nicknameError.parent.style.display = "none";
+
+    emailError =    querySelector('#emailError');
+    emailError.parent.style.display = "none";
+
+    passwordError = querySelector('#passwordError');
+    passwordError.parent.style.display = "none";
   }
 
   void onNewsLetterSwitchChange(event, state) {
@@ -89,8 +109,66 @@ class EditPersonalDataComp implements ShadowRootAware {
     acceptSoccerPlayerAlerts = state;
   }
 
+  bool validatePassword() {
+    bool retorno = true;
+    // Verificación del password
+    if(password != repeatPassword) {
+        passwordError
+          ..text = "Los passwords no coinciden"
+          ..classes.remove("errorDetected")
+          ..classes.add("errorDetected")
+          ..parent.style.display = "";
+        retorno = false;
+      }
+
+    return retorno;
+  }
+
   void saveChanges() {
-    closeModal();
+
+      if(!validatePassword()) {
+        return;
+      }
+        _enabledSubmit = false;
+
+        _profileManager.signup(firstName, lastName, email, nickName, password)
+            //Not implemented yet //.then((_) => _profileManager.saveUserData(firstName, lastName,acceptGameAlerts, /* nickName, */ email, password))
+            .then((_) => closeModal())
+            .catchError((Map error) {
+
+              print("keys: ${error.keys.length} - ${error.keys.toString()}");
+
+              error.keys.forEach( (key) {
+                switch (key)
+                {
+                  case "nickName":
+                    nicknameError
+                      ..text = error[key][0]
+                      ..classes.remove("errorDetected")
+                      ..classes.add("errorDetected")
+                      ..parent.style.display = "";
+
+                  break;
+                  case "email":
+                    emailError
+                      ..text = error[key][0]
+                      ..classes.remove("errorDetected")
+                      ..classes.add("errorDetected")
+                      ..parent.style.display = "";
+                  break;
+                  case "email":
+                    passwordError
+                      ..text = error[key][0]
+                      ..classes.remove("errorDetected")
+                      ..classes.add("errorDetected")
+                      ..parent.style.display = "";
+                  break;
+                }
+                print("-JOIN_COMP-: Error recibido: ${key}");
+              });
+
+              _enabledSubmit = true;
+            });
   }
 
   void closeModal() {
@@ -102,7 +180,7 @@ class EditPersonalDataComp implements ShadowRootAware {
   bool _acceptNewsletter;
   bool _acceptGameAlerts;
   bool _acceptSoccerPlayerAlerts;
-
+  bool _enabledSubmit = false;
   bool _popUpStyle;
 
   UserProfileComp parent;

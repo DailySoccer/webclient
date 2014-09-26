@@ -7426,6 +7426,12 @@ button#personalDataContent .edit-personal-data-modal-header button.close {
   color: #777777;
   padding-bottom: 10px;
 }
+#personalDataContent .join-err-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #ff0000;
+}
 #personalDataContent .subscriptions-content {
   margin-left: 0;
   margin-right: 0;

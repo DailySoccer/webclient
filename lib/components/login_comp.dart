@@ -12,7 +12,6 @@ import 'package:webclient/services/profile_service.dart';
 )
 class LoginComp implements ShadowRootAware  {
 
-  bool enabledSubmit = true;
   String email = "";
   String password = "";
   String rememberMe;
@@ -21,12 +20,12 @@ class LoginComp implements ShadowRootAware  {
 
   void login() {
     _errSection.parent.parent.style.display = "none";
-    enabledSubmit = false;
+    _enabledSubmit = false;
 
     _profileManager.login(email, password)
         .then((_) => _router.go('lobby', {}))
         .catchError( (error) {
-          enabledSubmit = true;
+          _enabledSubmit = true;
           _errSection
             ..text = error["email"][0]
             ..classes.remove("errorDetected")
@@ -35,7 +34,7 @@ class LoginComp implements ShadowRootAware  {
         });
   }
 
-  bool get isEnabledSubmit => email.isNotEmpty && password.isNotEmpty;
+  bool get enabledSubmit => email.isNotEmpty && password.isNotEmpty && _enabledSubmit;
 
   void navigateTo(String routePath, Map parameters, event) {
     if (event.target.id != "btnSubmit") {
@@ -47,6 +46,7 @@ class LoginComp implements ShadowRootAware  {
   Router _router;
   ProfileService _profileManager;
   Element _errSection;
+  bool _enabledSubmit = true;
 
   @override
   void onShadowRoot(root) {

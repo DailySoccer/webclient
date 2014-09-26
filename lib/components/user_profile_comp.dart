@@ -17,6 +17,13 @@ class UserProfileComp implements ShadowRootAware, DetachAware{
 
   bool isEditingProfile = false;
 
+  String firstName;
+  String lastName;
+  String nickName;
+  String email;
+  String password;
+  String repeatPassword;
+
   dynamic get userData => _profileManager.user;
 
   UserProfileComp(this._profileManager, this._scrDet) {

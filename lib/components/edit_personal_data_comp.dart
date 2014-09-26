@@ -13,17 +13,19 @@ import 'dart:html';
     useShadowDom: false
 )
 class EditPersonalDataComp implements ShadowRootAware {
-
+/*
   String firstName;
   String lastName;
   String nickName;
   String email;
   String password;
   String repeatPassword;
-
+*/
   String country;
   String region;
   String city;
+
+  UserProfileComp parent;
 
   Element nicknameError;
   Element emailError;
@@ -55,7 +57,7 @@ class EditPersonalDataComp implements ShadowRootAware {
 
   dynamic get userData => _profileManager.user;
 
-  bool get enabledSubmit => nickName.isNotEmpty && email.isNotEmpty && password.isNotEmpty && _enabledSubmit;
+  bool get enabledSubmit => parent.nickName.isNotEmpty && parent.email.isNotEmpty && parent.password.isNotEmpty && _enabledSubmit;
 
   EditPersonalDataComp(this._profileManager, this.parent);
 
@@ -112,7 +114,7 @@ class EditPersonalDataComp implements ShadowRootAware {
   bool validatePassword() {
     bool retorno = true;
     // Verificación del password
-    if(password != repeatPassword) {
+    if(parent.password != parent.repeatPassword) {
         passwordError
           ..text = "Los passwords no coinciden"
           ..classes.remove("errorDetected")
@@ -131,7 +133,7 @@ class EditPersonalDataComp implements ShadowRootAware {
       }
         _enabledSubmit = false;
 
-        _profileManager.signup(firstName, lastName, email, nickName, password)
+        _profileManager.signup(parent.firstName, parent.lastName, parent.email, parent.nickName, parent.password)
             //Not implemented yet //.then((_) => _profileManager.saveUserData(firstName, lastName,acceptGameAlerts, /* nickName, */ email, password))
             .then((_) => closeModal())
             .catchError((Map error) {
@@ -182,7 +184,4 @@ class EditPersonalDataComp implements ShadowRootAware {
   bool _acceptSoccerPlayerAlerts;
   bool _enabledSubmit = false;
   bool _popUpStyle;
-
-  UserProfileComp parent;
-
 }

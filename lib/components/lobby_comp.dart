@@ -229,7 +229,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
        isFirstTimeListFill = false;
        updateEntryFeeFilter();
        //Metemos un filtro por defecto en la lista
-       sortListByField('sortContestName', 'contest-name');
+       sortListByField('sortContestName', 'contest-start-time');
      }
    }
 
@@ -241,7 +241,9 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     }
     else {
       _currentButtonState++;
-      if (_currentButtonState >= _butonState.length) _currentButtonState = 0;
+      if (_currentButtonState >= _butonState.length) {
+        _currentButtonState = 0;
+      }
     }
 
     sortType = sortName + "_" + _butonState[_currentButtonState];

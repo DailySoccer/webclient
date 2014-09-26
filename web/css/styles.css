@@ -11049,6 +11049,7 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   padding-left: 15px;
   padding-right: 15px;
   min-height: 330px;
+  padding-top: 20px;
 }
 @media (min-width: 768px) {
   #infoAndFilterHeader #filtersPanel .filter-column-base {
@@ -11076,6 +11077,7 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   padding-left: 15px;
   padding-right: 15px;
   min-height: 330px;
+  padding-top: 20px;
 }
 @media (min-width: 992px) {
   #infoAndFilterHeader #filtersPanel .filter-column-competition {
@@ -11119,6 +11121,7 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   padding-left: 15px;
   padding-right: 15px;
   min-height: 330px;
+  padding-top: 20px;
 }
 @media (min-width: 768px) {
   #infoAndFilterHeader #filtersPanel .filter-column-tournaments {
@@ -11163,6 +11166,7 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   padding-left: 15px;
   padding-right: 15px;
   min-height: 330px;
+  padding-top: 20px;
 }
 @media (min-width: 992px) {
   #infoAndFilterHeader #filtersPanel .filter-column-salary-limit {
@@ -11199,6 +11203,7 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   }
 }
 #infoAndFilterHeader #filtersPanel .filter-column-entry-fee {
+  padding-top: 20px;
   float: left;
   width: 100%;
   position: relative;
@@ -15951,7 +15956,7 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button.active {
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  float: left !important;
+  float: right !important;
 }
 .main-box .panel .panel-body .new-row .enter-button-half:focus,
 .main-box .panel .panel-body .new-row .enter-button-half:active:focus,
@@ -16081,7 +16086,7 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button-half.acti
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  float: right !important;
+  float: left !important;
 }
 .main-box .panel .panel-body .new-row .cancel-button-half:focus,
 .main-box .panel .panel-body .new-row .cancel-button-half:active:focus,

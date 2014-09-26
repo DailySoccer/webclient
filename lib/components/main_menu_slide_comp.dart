@@ -18,7 +18,7 @@ class MainMenuSlideComp implements ShadowRootAware{
   ScreenDetectorService scrDet;
 
   void logOut() {
-    JsUtils.runJavascript('.navbar-offcanvas.navmenu-fixed-left', 'offcanvas', 'hide');
+    JsUtils.runJavascript('.navbar-offcanvas.navmenu-fixed', 'offcanvas', 'hide');
     _router.go('landing_page', {});
     profileService.logout();
     _currentActiveElement = null;
@@ -56,7 +56,7 @@ class MainMenuSlideComp implements ShadowRootAware{
     }
 
     if (profileService.isLoggedIn && scrDet.isXsScreen && !event.target.id.contains("brandLogo")){
-      JsUtils.runJavascript('.navbar-offcanvas.navmenu-fixed-left', 'offcanvas', 'toggle');
+      JsUtils.runJavascript('.navbar-offcanvas.navmenu-fixed', 'offcanvas', 'toggle');
     }
 
     updateMenuLinks(event.target);

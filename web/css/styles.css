@@ -17931,17 +17931,75 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-back-contest.active 
   overflow: hidden;
   white-space: nowrap;
 }
-#helpInfo {
-  border: 1px solid red;
+#helpInfo .block-dark {
+  background-color: #ecf0f1;
+  padding-bottom: 40px;
+}
+#helpInfo .block-light {
+  background-color: #ffffff;
+  padding-bottom: 40px;
 }
 #helpInfo .title {
   font-family: 'Exo', sans-serif;
   font-weight: 300;
   font-size: 20pt;
   color: #214a5f;
+  line-height: 66px;
   text-align: center;
-  border: 1px solid green;
-  background-color: #ecf0f1;
+}
+#helpInfo .description {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #777777;
+  text-align: center;
+  padding: 20px 0;
+}
+#helpInfo .img-wrapper {
+  max-width: 829px;
+  margin: 0 auto;
+}
+#helpInfo .img-wrapper img {
+  display: block;
+  width: 100%;
+  padding: 10px;
+}
+#helpInfo .help-info-tabs {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  height: 50px;
+}
+#helpInfo .help-info-tabs > li {
+  position: relative;
+  float: left;
+  width: 50%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: #59add5;
+  border-width: 4px;
+  border-style: none none solid none;
+  border-color: #214a5f;
+  border-radius: 0;
+}
+#helpInfo .help-info-tabs > li a {
+  cursor: pointer;
+  line-height: 50px;
+  text-align: center;
+  color: #ffffff;
+  display: block;
+  text-decoration: none;
+  padding: 0;
+}
+#helpInfo .help-info-tabs .active {
+  background-color: #214a5f;
+}
+#helpInfo .tab-pane {
+  display: none;
+}
+#helpInfo .tab-pane.active {
+  display: block;
 }
 .bootstrap-switch {
   display: inline-block;

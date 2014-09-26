@@ -1,11 +1,64 @@
 #helpInfo {
-	border: 1px solid red;
-	
+
+	.block-dark {
+		background-color: @tramaBlue;
+		padding-bottom: 40px;
+	}
+	.block-light {
+		background-color: @white;
+		padding-bottom: 40px;
+	}
 
 	.title {
 		.exo_light(20pt, @blueDark);
+		line-height: 66px;
 		text-align: center;
-		border: 1px solid green;
-		background-color: @tramaBlue;
+	}
+
+	.description {
+		.opensans_normal(10pt, @greyDark);
+		text-align: center;
+		padding: 20px 0; 
+	}
+	.img-wrapper {
+		max-width: 829px;
+		margin: 0 auto;
+		img {
+			display: block;
+			width: 100%;
+			padding: 10px;
+		}
+	}
+
+	// Tabs menu
+	.help-info-tabs {
+		@tabheight: 50px;
+		.reset-list();
+		height: @tabheight;
+		> li {
+			.make-xs-column(6);
+			background-color: @blueLight;
+			.make-border(4px, none none solid none, @blueDark);
+			a {
+				cursor: pointer;
+				line-height: @tabheight;
+				text-align: center;
+				color: @white;
+				display: block;
+				text-decoration: none;
+				padding: 0;
+			}
+		}
+		.active {
+			background-color: @blueDark;
+		}
+	}
+
+	.tab-pane {
+		display: none;
+	}
+
+	.tab-pane.active {
+		display: block;
 	}
 }

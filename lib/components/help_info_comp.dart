@@ -1,5 +1,6 @@
 library help_info_comp;
 
+import 'dart:html';
 import 'package:angular/angular.dart';
 
 @Component(
@@ -11,5 +12,14 @@ import 'package:angular/angular.dart';
 class HelpInfoComp {
 
   HelpInfoComp();
+
+  void tabChange(String tab) {
+    List<dynamic> allContentTab = document.querySelectorAll("#helpInfo .tab-pane");
+    allContentTab.forEach((element) => element.classes.remove('active'));
+
+    Element contentTab = document.querySelector("#" + tab);
+    contentTab.classes.add("active");
+
+  }
 
 }

@@ -200,8 +200,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     if (msg == "xs") {
       ResetXsLobby();
       if (_isFiltersPanelOpen) {
-        JsUtils.runJavascript('#filtersPanel', 'collapse', 'hide');
-        _isFiltersPanelOpen = false;
+        toggleFilterMenu();
       }
     }
   }

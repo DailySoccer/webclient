@@ -24,11 +24,21 @@
     <!-- Nickname -->
     <div class="content-field">
       <div class="control-wrapper"><input id="txtNickName" type="text" ng-model="comp.nickName" name="nickName" placeholder="Nombre de usuario" class="form-control" disabled></div>
+      <!-- Error de mail -->
+      <div class="content-field">
+        <div id="nickNameError" class="join-err-text">Error en el nick</div>
+      </div>
     </div>
+
     <!-- Correo Electrónico -->
     <div class="content-field">
       <div class="control-wrapper"><input id="txtEmail" type="email" ng-model="comp.email" name="email" placeholder="Email" class="form-control"></div>
+      <!-- Error de mail -->
+      <div class="content-field">
+        <div id="emailError" class="join-err-text">Error de mail</div>
+      </div>
     </div>
+
     <!-- Label Contraseña -->
     <div class="content-field-block">
       <div class="control-wrapper"><span id="lblPassword" class="text-label">Contraseña:********</span></div>
@@ -36,15 +46,16 @@
     <!-- Contraseña -->
     <div class="content-field">
       <div class="control-wrapper"><input id="txtPassword" type="password" ng-model="comp.password" name="password" placeholder="Contraseña" class="form-control"></div>
+      <!-- Error de contraseñas -->
+      <div class="content-field-block">
+        <div id="passwordError" class="join-err-text">Los passwords no coinciden.</div>
+      </div>
     </div>
     <!-- Repetir Contraseña -->
     <div class="content-field">
       <div class="control-wrapper"><input id="txtRepeatPassword" type="password" ng-model="comp.repeatPassword" name="repeatPassword" placeholder="Repetir Contraseña" class="form-control"></div>
     </div>
-    <!-- Error de username -->
-    <div class="content-field-block">
-      <div id="passwordError" class="join-err-text">Los passwords no coinciden.</div>
-    </div>
+
     <!-- Label Instrucciones contraseña -->
     <div class="content-field-block">
       <div class="control-wrapper"><span id="lblPasswordIntructions" class="text-label">Asegúrate al menos que tiene 8<br>caracteres y que no contiene espacios</span></div>

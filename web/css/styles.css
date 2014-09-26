@@ -17931,6 +17931,18 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-back-contest.active 
   overflow: hidden;
   white-space: nowrap;
 }
+#helpInfo {
+  border: 1px solid red;
+}
+#helpInfo .title {
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 20pt;
+  color: #214a5f;
+  text-align: center;
+  border: 1px solid green;
+  background-color: #ecf0f1;
+}
 .bootstrap-switch {
   display: inline-block;
   cursor: pointer;

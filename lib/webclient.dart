@@ -38,6 +38,7 @@ import 'package:webclient/components/footer_comp.dart';
 import 'package:webclient/components/paginator_comp.dart';
 import 'package:webclient/components/login_comp.dart';
 import 'package:webclient/components/join_comp.dart';
+import 'package:webclient/components/help_info_comp.dart';
 import 'package:webclient/components/user_profile_comp.dart';
 import 'package:webclient/components/edit_personal_data_comp.dart';
 import 'package:webclient/components/remember_password_comp.dart';
@@ -85,6 +86,7 @@ class WebClientApp extends Module {
     bind(PaginatorComp);
     bind(LoginComp);
     bind(JoinComp);
+    bind(HelpInfoComp);
     bind(RememberPasswordComp);
     bind(UserProfileComp);
     bind(EditPersonalDataComp);

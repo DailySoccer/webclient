@@ -80,7 +80,9 @@ class JoinComp implements ShadowRootAware {
   }
 
   void navigateTo(String routePath, Map parameters, event) {
-    event.preventDefault();
+    if (event.target.id != "btnSubmit") {
+      event.preventDefault();
+    }
     _router.go(routePath, parameters);
   }
 

@@ -35,15 +35,11 @@
               <a ng-click="comp.navigateTo('remember_password', {}, $event)">¿Olvidaste tu contraseña?</a>
             </div>
           </div>
-          <!-- BUTTON -->
+          <!-- BUTTONS -->
           <div class="input-group">
             <div class="new-row">
-              <!--
-              <button type="submit" id="btnCancel" ng-click="comp.cancel()" class="cancel-button-half">CANCELAR</button>
-              <button id="login" ng-click="comp.login()" ng-disabled="!comp.isEnabledSubmit" class="enter-button-half" formnovalidate>ENTRAR</button>
-              -->
-              <button id="btnCancel" ng-click="comp.navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCELAR</button>
-              <button type="submit" id="joinNow" name="JoinNow" ng-disabled="!comp.enabledSubmit" class="enter-button-half">REGÍSTRATE</button>
+              <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!comp.enabledSubmit" class="enter-button-half">ENTRAR</button>
+              <button id="btnCancelLogin" ng-click="comp.navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCELAR</button>
             </div>
           </div>
           <!-- Error de login/password -->

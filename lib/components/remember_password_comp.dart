@@ -21,26 +21,16 @@ class RememberPasswordComp implements ShadowRootAware {
 
   void navigateTo(String route, Map parameters, event)
   {
-    event.preventDefault();
+    if (event.target.id != "btnSubmit") {
+      event.preventDefault();
+    }
     _router.go(route, {});
   }
 
   void rememberMyPassword() {
     print('-REMEMBER_PASSWORD-: Se ha enviado correctamente');
-    _errSection.parent.parent.style.display = "none";
-    enabledSubmit = false;
-/*
-      _profileManager.rememberPassword(email)
-          .then((_) => _router.go('lobby', {}))
-          .catchError( (error) {
-            enabledSubmit = true;
-            _errSection
-              ..text = error["email"][0]
-              ..classes.remove("errorDetected")
-              ..classes.add("errorDetected")
-              ..parent.parent.style.display = '';
-          });
-*/
+    //_errSection.parent.parent.style.display = "none";
+   // enabledSubmit = false;
   }
 
   @override

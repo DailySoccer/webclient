@@ -38,9 +38,11 @@ class LoginComp implements ShadowRootAware  {
   bool get isEnabledSubmit => email.isNotEmpty && password.isNotEmpty;
 
   void navigateTo(String routePath, Map parameters, event) {
-    event.preventDefault();
+    if (event.target.id != "btnSubmit") {
+      event.preventDefault();
+    }
     _router.go(routePath, parameters);
-  }
+   }
 
   Router _router;
   ProfileService _profileManager;

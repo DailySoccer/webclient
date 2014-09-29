@@ -17,12 +17,12 @@ class UserProfileComp implements ShadowRootAware, DetachAware{
 
   bool isEditingProfile = false;
 
-  String firstName;
-  String lastName;
-  String nickName;
-  String email;
-  String password;
-  String repeatPassword;
+  String editedFirstName;
+  String editedLastName;
+  String editedNickName;
+  String editedEmail;
+  String editedPassword;
+  String editedRepeatPassword;
 
   dynamic get userData => _profileManager.user;
 

@@ -13,14 +13,7 @@ import 'dart:html';
     useShadowDom: false
 )
 class EditPersonalDataComp implements ShadowRootAware {
-/*
-  String firstName;
-  String lastName;
-  String nickName;
-  String email;
-  String password;
-  String repeatPassword;
-*/
+
   String country;
   String region;
   String city;
@@ -57,7 +50,8 @@ class EditPersonalDataComp implements ShadowRootAware {
 
   dynamic get userData => _profileManager.user;
 
-  bool get enabledSubmit => parent.nickName.isNotEmpty && parent.email.isNotEmpty && parent.password.isNotEmpty && _enabledSubmit;
+  //TODO: pensar si Esto debería estar siempre habilitado y hacerlas comprobaciones antes de enviar los cambios.
+  //bool get enabledSubmit => parent.editedNickName.isNotEmpty && parent.editedEmail.isNotEmpty && parent.editedRepeatPassword.isNotEmpty && parent.editedPassword.isNotEmpty && _enabledSubmit;
 
   EditPersonalDataComp(this._profileManager, this.parent);
 
@@ -89,13 +83,16 @@ class EditPersonalDataComp implements ShadowRootAware {
                                                                                     'offColor'      : 'default',
                                                                                     'onSwitchChange': onSoccerPlayerAlertsSwitchChange
                                                                                   });
-    nicknameError = querySelector('#nickNameError');
+
+    var nicks  = querySelectorAll('#nickNameError');
+
+    nicknameError = isPopUp ? querySelectorAll('#nickNameError')[1] : querySelectorAll('#nickNameError')[0];
     nicknameError.parent.style.display = "none";
 
-    emailError =    querySelector('#emailError');
+    emailError = isPopUp ? querySelectorAll('#emailError')[1] : querySelectorAll('#emailError')[0];
     emailError.parent.style.display = "none";
 
-    passwordError = querySelector('#passwordError');
+    passwordError =  isPopUp ? querySelectorAll('#passwordError')[1] : querySelectorAll('#passwordError')[0];
     passwordError.parent.style.display = "none";
   }
 
@@ -114,7 +111,7 @@ class EditPersonalDataComp implements ShadowRootAware {
   bool validatePassword() {
     bool retorno = true;
     // Verificación del password
-    if(parent.password != parent.repeatPassword) {
+    if(parent.editedPassword != parent.editedRepeatPassword) {
         passwordError
           ..text = "Los passwords no coinciden"
           ..classes.remove("errorDetected")
@@ -131,9 +128,9 @@ class EditPersonalDataComp implements ShadowRootAware {
       if(!validatePassword()) {
         return;
       }
-        _enabledSubmit = false;
+        //_enabledSubmit = false;
 
-        _profileManager.signup(parent.firstName, parent.lastName, parent.email, parent.nickName, parent.password)
+        _profileManager.signup(parent.editedFirstName, parent.editedLastName, parent.editedEmail, parent.editedNickName, parent.editedPassword)
             //Not implemented yet //.then((_) => _profileManager.saveUserData(firstName, lastName,acceptGameAlerts, /* nickName, */ email, password))
             .then((_) => closeModal())
             .catchError((Map error) {
@@ -169,7 +166,7 @@ class EditPersonalDataComp implements ShadowRootAware {
                 print("-JOIN_COMP-: Error recibido: ${key}");
               });
 
-              _enabledSubmit = true;
+             //_enabledSubmit = true;
             });
   }
 

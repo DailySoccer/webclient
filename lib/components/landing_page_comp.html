@@ -1,19 +1,12 @@
 <div id="desktopContent" ng-if="!comp.scrDet.isXsScreen">
 
     <div id="screen1" class="first-screen">
-        <div class="slider-wrapper">
+
           <img class="screen-background" src="images/landing01.jpg" />
-          <div class="screen-pattern"></div>
-        </div>
-        <div class="screen-content">
-            <p class="title-sup-text">¿ERES UN EXPERTO EN FÚTBOL?</p>
-            <p class="title-text">¡DEMUÉSTRALO!</p>
-            <div class="vertical-separator-big"></div>
-            <p class="first-description-text">HAZ TU 11 CADA JORNADA SIN COMPROMISOS CREA LIGAS, <br>COMPITE EN LAS QUE HAY O DESAFÍA A TUS AMIGOS SIGUE LOS PARTIDOS EN TIEMPO REAL Y GANA DINERO</p>
-            <div class="vertical-separator-big"></div>
-            <button type="button" class="button-play"  ng-click="comp.buttonPressed('join')" id="playButton1">JUGAR</button>
-            <div class="vertical-separator-big"></div>
-        </div>
+         <!--<div class="screen-pattern"></div>-->
+      <div class="button-wrap">
+        <button type="button" class="button-play"  ng-click="comp.buttonPressed('join')" id="playButton1">JUGAR</button>
+      </div>
     </div>
 
     <a class="wrapping-link" href="#screen2">

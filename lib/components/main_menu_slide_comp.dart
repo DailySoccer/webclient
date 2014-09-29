@@ -17,6 +17,9 @@ class MainMenuSlideComp implements ShadowRootAware{
   ProfileService profileService;
   ScreenDetectorService scrDet;
 
+  dynamic getMenuClass() {
+    return  ['fade-background'];
+  }
   void logOut() {
     JsUtils.runJavascript('.navbar-offcanvas.navmenu-fixed', 'offcanvas', 'hide');
     _router.go('landing_page', {});

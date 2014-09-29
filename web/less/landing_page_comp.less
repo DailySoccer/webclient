@@ -107,17 +107,32 @@
 		}
 	}
 }
-//wrapper que se añade por código dart a la web sólo para la landing
-.landing-wrapper{
-	.first-screen{
-		position:relative;
-		.screen-background{
-		 	display: block;
-		 	margin-left: -800px;
-		 	position: relative;
-			left: 50%;
+
+.first-screen{
+	.make-row(0);
+	position: relative;
+	.screen-background {
+		.make-sm-column(12,0);		
+	}
+	.button-wrap {
+		position: absolute;
+		width: 100%;
+		bottom: 5%;
+		.button-play {
+			margin: 0 auto;
+			width: 20%;
+			display: block;
 		}
 	}
+}
+
+//la primera pantalla se pome por debajo del menu
+.unlogged-margin {
+	margin-top: -54px;
+}
+
+//wrapper que se añade por código dart a la web sólo para la landing
+.landing-wrapper{
 	.screen{
 		.screen-background{
 		 	display: block;

@@ -5647,6 +5647,8 @@ button.close {
 #mainFooter .sup-footer-wrapper:after,
 #mainFooter .sub-footer:before,
 #mainFooter .sub-footer:after,
+.first-screen:before,
+.first-screen:after,
 .landing-wrapper .screen .content-wrapper .content-container:before,
 .landing-wrapper .screen .content-wrapper .content-container:after,
 .landing-wrapper .screen .content-wrapper .content-container:before,
@@ -5754,6 +5756,7 @@ button.close {
 #mainFooter:after,
 #mainFooter .sup-footer-wrapper:after,
 #mainFooter .sub-footer:after,
+.first-screen:after,
 .landing-wrapper .screen .content-wrapper .content-container:after,
 .landing-wrapper .screen .content-wrapper .content-container:after,
 .info-and-social-bar:after,
@@ -9764,14 +9767,35 @@ fieldset[disabled] #mobileContent .content .button-play-mobile.active {
   color: #fa9c19;
   margin-bottom: 30px;
 }
-.landing-wrapper .first-screen {
+.first-screen {
+  margin-left: 0;
+  margin-right: 0;
   position: relative;
 }
-.landing-wrapper .first-screen .screen-background {
-  display: block;
-  margin-left: -800px;
+.first-screen .screen-background {
   position: relative;
-  left: 50%;
+  min-height: 1px;
+  padding-left: 0;
+  padding-right: 0;
+}
+@media (min-width: 768px) {
+  .first-screen .screen-background {
+    float: left;
+    width: 100%;
+  }
+}
+.first-screen .button-wrap {
+  position: absolute;
+  width: 100%;
+  bottom: 5%;
+}
+.first-screen .button-wrap .button-play {
+  margin: 0 auto;
+  width: 20%;
+  display: block;
+}
+.unlogged-margin {
+  margin-top: -54px;
 }
 .landing-wrapper .screen .screen-background {
   position: relative;
@@ -12131,12 +12155,9 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
   user-select: none;
   background-color: #222222;
   border-color: #080808;
-  background-image: url("../images/headerBackground.jpg");
-  background-repeat: no-repeat;
-  background-position: center top;
-  background-color: #000000;
-  border-color: #fa9c19;
-  border-width: 0px 0px 2px 0px;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  border-bottom: 2px solid #fa9c19;
 }
 #mainMenu .navbar-brand {
   color: #999999;
@@ -12275,6 +12296,14 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
     margin-right: 0;
     margin-left: 0;
   }
+}
+#mainMenu.image-background {
+  background-image: url("../images/headerBackground.jpg");
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-color: #000000;
+  border-color: #fa9c19;
+  border-width: 0px 0px 2px 0px;
 }
 @media (min-width: 768px) {
   #mainMenu .navbar-header {
@@ -12638,7 +12667,7 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
   height: 37px;
   margin-top: 10px;
   cursor: pointer;
-  margin-top: 15px;
+  margin-top: 5px;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   .brand-style {
@@ -12653,7 +12682,7 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
   height: 37px;
   margin-top: 10px;
   cursor: pointer;
-  margin-top: 15px;
+  margin-top: 5px;
   margin-left: 0px;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
@@ -12675,7 +12704,7 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
   height: 37px;
   margin-top: 10px;
   cursor: pointer;
-  margin-top: 15px;
+  margin-top: 5px;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   .navbar-header-unloggin .navbar-brand {
@@ -15630,7 +15659,7 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
 }
 @media (min-width: 768px) {
   .main-box {
-    margin-top: 50px;
+    margin-top: 100px;
     background-color: transparent;
   }
 }

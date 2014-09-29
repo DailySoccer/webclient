@@ -38,7 +38,9 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
     _mainWrapper.classes
       ..clear()
       ..add('landing-wrapper');
+
     _mainContent.classes.clear();
+    _mainContent.classes.add('unlogged-margin');
 
   }
 
@@ -52,6 +54,7 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
         ..add('wrapper-content-container');
     }
     if(_mainContent != null) {
+      _mainContent.classes.clear();
       _mainContent.classes.add('main-content-container');
     }
 

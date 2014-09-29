@@ -12,14 +12,18 @@
 	.user-select(none);
     // Partimos de la navbar-inverse y vamos cambiando: ;
     .navbar-inverse();
-	.background-header();
+	background-color: fade(@black, 20%);
+	z-index: 999;
+	border-bottom: 2px solid @orange;
   	.inner-wrapper { 
 	  	.container-fluid();
 		@media (min-width: @screen-md-min) {
 			.container;
 		}
   	}
-
+	&.image-background {		
+		.background-header();		
+	}
    	// Version no XS (SM y Desktop)
   	@media (min-width: @screen-sm-min) {
   		.navbar-header {
@@ -239,7 +243,6 @@
   	}
 }
 
-
 .brand-style {
 	// Retina display: ;
   	.img-retina("@{images}/logoEpic11.png", "@{images}/logoEpic11-2x.png", 120px, 37px);
@@ -247,7 +250,7 @@
   	.size(120px, 37px);
   	margin-top: 10px;
   	cursor: pointer;
-    margin-top: 15px;
+    margin-top: 5px;
 }
 
 .navbar-brand {
@@ -260,7 +263,6 @@
   		float: none;
   	}
 }
-
 
 // Menu sin logear: ;
 .navbar-header-unloggin {   

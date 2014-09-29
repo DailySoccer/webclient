@@ -13,6 +13,7 @@ abstract class ServerService {
   Future<JsonObject> signup(String firstName, String lastName, String email, String nickName, String password);
   Future<JsonObject> login(String email, String password);
   Future<JsonObject> getUserProfile();
+  Future<JsonObject> changeUserProfile(String firstName, String lastName, String email, String nickName, String password);
 
   // Conseguir la lista de Contests Active/Live/History en los que esté inscrito el User
   Future<JsonObject> getMyContests();
@@ -53,6 +54,10 @@ class DailySoccerServer implements ServerService {
 
   Future<JsonObject> getUserProfile() {
     return _innerServerCall("${HostServer.url}/get_user_profile", null);
+  }
+
+  Future<JsonObject> changeUserProfile(String firstName, String lastName, String email, String nickName, String password) {
+    return _innerServerCall("${HostServer.url}/change_user_profile", {'firstName': firstName, 'lastName': lastName, 'email': email, 'nickName': nickName, 'password': password});
   }
 
   Future<JsonObject> getMyContests() {

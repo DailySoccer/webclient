@@ -40,6 +40,14 @@ class ProfileService {
                   .then((jsonObject) => _setProfile(loginResponseJson.sessionToken, new User.fromJsonObject(jsonObject), true));
   }
 
+  Future<JsonObject> changeUserProfile(String firstName, String lastName, String email, String nickName, String password) {
+
+    if (!isLoggedIn)
+      throw new Exception("WTF 4288 - We should be logged in when change User Profile");
+
+    return _server.changeUserProfile(firstName, lastName, email, nickName, password);
+  }
+
   Future<JsonObject> logout() {
 
     if (!isLoggedIn)

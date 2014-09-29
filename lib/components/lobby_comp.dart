@@ -2,7 +2,6 @@ library active_contest_list_comp;
 
 import 'dart:html';
 import 'dart:async';
-
 import 'dart:math';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/active_contests_service.dart';
@@ -93,7 +92,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
 
   void calculateInfoBarText() {
     Contest nextContest = activeContestsService.getAvailableNextContest();
-    String tmp = nextContest == null ? "Pronto habrá nuevos Troneos disponibles" : "SIGUIENTE TORNEO: ${nextContest.name.toUpperCase()} - ${calculateTimeToNextTournament()}";
+    String tmp = nextContest == null ? "Pronto habrá nuevos Torneos disponibles" : "SIGUIENTE TORNEO: ${nextContest.name.toUpperCase()} - ${calculateTimeToNextTournament()}";
     if(tmp.compareTo(infoBarText) != 0) {
       infoBarText = tmp;
     }
@@ -202,7 +201,8 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   }
 
   void detach() {
-    _timer.cancel();
+    _refresListTimer.cancel();
+    _refreshNextTournamentInfoTimer.cancel();
     _streamListener.cancel();
   }
 

@@ -44,6 +44,7 @@ class UserProfileComp implements ShadowRootAware, DetachAware{
   }
 
   void updateUserProfileContent() {
+
     elmntViewProfile.style.display = isEditingProfile ? 'none' : '';
     editContent();
   }
@@ -69,12 +70,23 @@ class UserProfileComp implements ShadowRootAware, DetachAware{
     }
   }
 
+  void setUserVariables() {
+    editedFirstName = _profileManager.user.firstName;
+    editedLastName = _profileManager.user.lastName;
+    editedNickName = _profileManager.user.nickName;
+    editedEmail = _profileManager.user.email;
+    editedPassword = "";
+    editedRepeatPassword = "";
+
+  }
+
   @override
   void onShadowRoot(root) {
     HtmlElement rootElement = root as HtmlElement;
     elmntViewProfile = root.querySelector('#viewProfileContent');
     elmntEditProfile = root.querySelector('#editProfileContent');
 
+    setUserVariables();
     updateUserProfileContent();
   }
 

@@ -9,6 +9,7 @@ import 'package:webclient/services/active_contests_service.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/js_utils.dart';
+import 'package:webclient/services/datetime_service.dart';
 
 @Component(
   selector: 'lobby',
@@ -88,6 +89,24 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   // propiedad que dice si existen concursos del tipo "EXPERTS" en la lista actual de concursos.
   bool get hasSkilledTier  => activeContestsService.activeContests.where((contest) => contest.tier == Contest.TIER_SKILLED).toList().length > 0;
 
+  String infoBarText = "";
+
+  void calculateInfoBarText() {
+    Contest nextContest = activeContestsService.getAvailableNextContest();
+    String tmp = nextContest == null ? "Pronto habrá nuevos Troneos disponibles" : "SIGUIENTE TORNEO: ${nextContest.name.toUpperCase()} - ${calculateTimeToNextTournament()}";
+    if(tmp.compareTo(infoBarText) != 0) {
+      infoBarText = tmp;
+    }
+  }
+
+
+
+
+
+  String calculateTimeToNextTournament() {
+    String timeToNextTournament =  DateTimeService.formatTimeLeft(DateTimeService.getTimeLeft( activeContestsService.getAvailableNextContest().startDate ) );
+    return timeToNextTournament;
+  }
 
   /*
   * TODO: Mientras no tengamos los datos de a que competición pertenece el torneo, esta función
@@ -145,9 +164,15 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   //CONTRUCTOR
   LobbyComp(this._router, this.activeContestsService, this.scrDet) {
     refreshActiveContest();
-    const refreshSeconds = const Duration(seconds: 10);
-    _timer = new Timer.periodic(refreshSeconds, (Timer t) =>  refreshActiveContest());
+
+    const refreshListSeconds = const Duration(seconds: 10);
+    _refresListTimer = new Timer.periodic(refreshListSeconds, (Timer t) =>  refreshActiveContest());
+
+    const refrestNextoTournamentInfoSeconds = const Duration(seconds: 1);
+    _refreshNextTournamentInfoTimer = new Timer.periodic(refrestNextoTournamentInfoSeconds, (Timer t) =>  calculateInfoBarText());
+
     _streamListener = scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
+
   }
 
   // Rutina que refresca la lista de concursos
@@ -521,7 +546,8 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     });
   }
 
-  Timer _timer;
+  Timer _refresListTimer;
+  Timer _refreshNextTournamentInfoTimer;
   Router _router;
 
   List<Element> _sortingButtons = [];

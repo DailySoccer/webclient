@@ -12,6 +12,7 @@ import "package:webclient/models/contest.dart";
 class ActiveContestsService {
 
   List<Contest> activeContests = new List<Contest>();
+  List<Contest> myContests = new List<Contest>();
 
   Contest getContestById(String id) => activeContests.firstWhere((contest) => contest.contestId == id, orElse: () => null);
 
@@ -25,9 +26,26 @@ class ActiveContestsService {
       .then((jsonObject) {
         activeContests = Contest.loadContestsFromJsonObject(jsonObject);
 
+
         if (_profileService.isLoggedIn) {
           // Quitar los contests en los que esté inscrito el usuario
+          /*
+           * myContests.clear();
+          activeContests.clear();
+               contests.forEach((contest) {
+              if(contest.containsContestEntryWithUser(_profileService.user.userId)) {
+                myContests.add(contest);
+              }
+              else {
+                activeContests.add(contest);
+              }
+          });
+          */
+          myContests = activeContests.where((contest) => contest.containsContestEntryWithUser(_profileService.user.userId)).toList();
           activeContests.removeWhere((contest) => contest.containsContestEntryWithUser(_profileService.user.userId));
+
+          myContests.sort((A,B) => A.compareStartDateTo(B));
+          activeContests.sort((A,B) => A.compareStartDateTo(B));
         }
       });
   }
@@ -45,6 +63,14 @@ class ActiveContestsService {
       .then((jsonObject) {
         lastContest = Contest.loadContestsFromJsonObject(jsonObject).first;
       });
+  }
+
+  Contest getAvailableNextContest() {
+    if(myContests.isNotEmpty) {
+      return myContests.first;
+    }
+
+    return activeContests.isNotEmpty ? activeContests.first : null;
   }
 
   ServerService _server;

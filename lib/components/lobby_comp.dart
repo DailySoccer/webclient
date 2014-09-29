@@ -98,10 +98,6 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     }
   }
 
-
-
-
-
   String calculateTimeToNextTournament() {
     String timeToNextTournament =  DateTimeService.formatTimeLeft(DateTimeService.getTimeLeft( activeContestsService.getAvailableNextContest().startDate ) );
     return timeToNextTournament;

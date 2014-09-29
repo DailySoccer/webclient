@@ -9,6 +9,7 @@
 }
 
 #mainMenu {
+	.user-select(none);
     // Partimos de la navbar-inverse y vamos cambiando: ;
     .navbar-inverse();
 	.background-header();
@@ -60,20 +61,23 @@
 	  			.opensans_bold(10pt, @white);
 	  			margin: 5px 0;
 	  		}
-	  		& a {
-	  			margin-right: 0px;
-	  		}
 	  	}
-	  	.navbar-nav .right-menu a::after {
+	  	.navbar-nav .right-menu > a::after {
 	  		.create-glyph("\E114", 8pt, @blueMenu);
 	  		margin-left: 5px;
-
 	  	}
-	  	.navbar-nav .right-menu a:hover {
-	  		&::after {
-	  			color: @white;
-	  		}
-	  	}
+	  	.open > a::after {
+	  		.create-glyph("\E113", 8pt, @blueMenu) !important;
+	  		margin-left: 5px;
+  		}
+  		.open > a::after{
+  			color: white !important;
+  		}
+		.navbar-nav .right-menu a:hover {
+            &::after {
+                color: @white;
+            }
+         }
 	  	.navbar-nav .open a::after {
 	  		color: @white;
 	  	} 
@@ -83,9 +87,7 @@
 	  	.navbar-nav .right-menu + .right-menu {
 	  		text-align: center;
 	  	}
-	  	.navbar-nav .right-menu + .right-menu a::after {
-	  		content: "";
-	  	}
+
 	  	.add-funds-button {
 			.btn();
 			.btn-primary();
@@ -110,16 +112,16 @@
 
 	            &:hover {
 	            	background-color: @greyLight;
-	            	&::after {
-	        			color: #999 !important;
-	        		}
+	            	//&::after {
+	        			//color: #999 !important;
+	        		//}
 	            }
-	            &::after {
-	        		.create-glyph("\E080", 9pt, @black) !important;
+	            /*&::after {
+	        		//.create-glyph("\E080", 9pt, @black) !important;
 	        		position: absolute;
 	        		top: 12px;
 	        		right: 12px;
-	        	}
+	        	}*/
 	        }
 	    }
   	}
@@ -157,7 +159,7 @@
 						cursor: pointer;
 					}
 					& > a::after {
-	        			.create-glyph("\E080", 9pt, @black);
+	        			//.create-glyph("\E080", 9pt, @black);
 	        			position: absolute;
 	        			top: 12px;
 	        			right: 12px;
@@ -189,16 +191,17 @@
 				}
 			}
 
-			.navbar-nav .right-menu a::after {
-	  			.create-glyph("\E114", 9pt, #999999);
+			.navbar-nav .right-menu > a::after {
+	  			.create-glyph("\E080", 9pt, #999999);
 	  			margin-left: 5px;
-
 	  		}
-
+	  		.open > a::after {
+	  			.create-glyph("\E114", 9pt, #999999) !important;
+	  			margin-left: 5px;
+	  		}
 		    .navbar-nav .right-menu + .right-menu {
 		    	display: none;
 		    }
-
 	  		.dropdown-menu {
 				padding: 0px;
 		        & li > a {

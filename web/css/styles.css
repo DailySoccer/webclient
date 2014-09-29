@@ -12125,6 +12125,10 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
   border-width: 0px 0px 2px 0px;
 }
 #mainMenu {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   background-color: #222222;
   border-color: #080808;
   background-image: url("../images/headerBackground.jpg");
@@ -12315,15 +12319,22 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
     color: #ffffff;
     margin: 5px 0;
   }
-  #mainMenu .navbar-nav > .right-menu a {
-    margin-right: 0px;
-  }
-  #mainMenu .navbar-nav .right-menu a::after {
+  #mainMenu .navbar-nav .right-menu > a::after {
     font-family: 'Glyphicons Halflings';
     content: "\E114";
     font-size: 8pt;
     color: #afd3e4;
     margin-left: 5px;
+  }
+  #mainMenu .open > a::after {
+    font-family: 'Glyphicons Halflings' !important;
+    content: "\E113" !important;
+    font-size: 8pt !important;
+    color: #afd3e4 !important;
+    margin-left: 5px;
+  }
+  #mainMenu .open > a::after {
+    color: white !important;
   }
   #mainMenu .navbar-nav .right-menu a:hover::after {
     color: #ffffff;
@@ -12336,9 +12347,6 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
   }
   #mainMenu .navbar-nav .right-menu + .right-menu {
     text-align: center;
-  }
-  #mainMenu .navbar-nav .right-menu + .right-menu a::after {
-    content: "";
   }
   #mainMenu .add-funds-button {
     display: inline-block;
@@ -12481,21 +12489,15 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
     border-color: #f8f8f8;
     border-radius: 0;
     position: relative;
+    /*&::after {
+	        		//.create-glyph("\E080", 9pt, @black) !important;
+	        		position: absolute;
+	        		top: 12px;
+	        		right: 12px;
+	        	}*/
   }
   #mainMenu .dropdown-menu > li > a:hover {
     background-color: #dcdcdc;
-  }
-  #mainMenu .dropdown-menu > li > a:hover::after {
-    color: #999 !important;
-  }
-  #mainMenu .dropdown-menu > li > a::after {
-    font-family: 'Glyphicons Halflings' !important;
-    content: "\E080" !important;
-    font-size: 9pt !important;
-    color: #000000 !important;
-    position: absolute;
-    top: 12px;
-    right: 12px;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
@@ -12548,10 +12550,6 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
     cursor: pointer;
   }
   #mainMenu .navbar-offcanvas ul > li > a::after {
-    font-family: 'Glyphicons Halflings';
-    content: "\E080";
-    font-size: 9pt;
-    color: #000000;
     position: absolute;
     top: 12px;
     right: 12px;
@@ -12579,11 +12577,18 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
     color: #000000;
     background-color: #dcdcdc;
   }
-  #mainMenu .navbar-offcanvas .navbar-nav .right-menu a::after {
+  #mainMenu .navbar-offcanvas .navbar-nav .right-menu > a::after {
     font-family: 'Glyphicons Halflings';
-    content: "\E114";
+    content: "\E080";
     font-size: 9pt;
     color: #999999;
+    margin-left: 5px;
+  }
+  #mainMenu .navbar-offcanvas .open > a::after {
+    font-family: 'Glyphicons Halflings' !important;
+    content: "\E114" !important;
+    font-size: 9pt !important;
+    color: #999999 !important;
     margin-left: 5px;
   }
   #mainMenu .navbar-offcanvas .navbar-nav .right-menu + .right-menu {

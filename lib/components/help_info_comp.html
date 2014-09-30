@@ -1,0 +1,381 @@
+<div id="helpInfo">
+
+  <div class="block-dark-header">
+    <div class="title">AYUDA</div>
+  </div>
+
+  <!-- Nav tabs -->
+  <ul class="help-info-tabs" role="tablist">
+    <li class="active"><a role="tab" data-toggle="tab" ng-click="helpInfo.tabChange('how-works-content')">CÓMO FUNCIONA</a></li>
+    <li><a role="tab" data-toggle="tab" ng-click="helpInfo.tabChange('rules-scores-content')">REGLAS Y PUNTUACIONES</a></li>
+  </ul>
+
+  <div class="tab-pane active" id="how-works-content">
+    <div class="block-light">
+      <div class="title">ELIGE UN TORNEO</div>
+      <div class="description">Configura tu equipo siguiendo estas sencillas indicaciones: <br>En primer lugar, debes seleccionar el torneo en el que quieras participar. <br>Haz clic en la competición deseada y a continuación podrás elegir tus jugadores.</div>
+      <div class="img-wrapper">
+        <img src="images/help01.jpg" ng-if="!helpInfo.scrDet.isXsScreen">
+        <img src="images/help01-xs.jpg" ng-if="helpInfo.scrDet.isXsScreen">
+      </div>
+      <div class="description">Puedes filtrar los torneos según la competición, el límite salarial de que dispones <br>para confeccionar tu equipo o el tipo de torneo en el que quieras participar. </div>
+      <div class="img-wrapper">
+        <img src="images/help02.jpg" ng-if="!helpInfo.scrDet.isXsScreen">
+        <img src="images/help02-xs.jpg" ng-if="helpInfo.scrDet.isXsScreen">
+      </div>
+    </div>
+    <div class="block-dark">
+      <div class="title">HAZ TU EQUIPO</div>
+      <div class="description">A continuación, selecciona los 11 jugadores que quieras que participen <br>en el torneo que has elegido. Recuerda que debes ceñirte al <br>límite salarial que marque cada torneo.</div>
+      <div class="img-wrapper">
+        <img src="images/help03.jpg" ng-if="!helpInfo.scrDet.isXsScreen">
+        <img src="images/help03-xs.jpg" ng-if="helpInfo.scrDet.isXsScreen">
+      </div>
+      <div class="description">No olvides que puedes consultar las estadísticas de los jugadores que has elegido <br>en tiempo real y comparar los resultados de tu alineación con las de otros usuarios.</div>
+      <div class="img-wrapper">
+        <img src="images/help04.jpg" ng-if="!helpInfo.scrDet.isXsScreen">
+        <img src="images/help04-xs.jpg" ng-if="helpInfo.scrDet.isXsScreen">
+      </div>
+    </div>
+    <div class="block-light">
+      <div class="title">CONSIGUE EL MÁXIMO DE PUNTOS Y GANA</div>
+      <div class="description">En EPIC 11 ser un buen estratega del fútbol tiene recompensa. <br>Confecciona tu alineación para cada torneo en el que quieras participar <br>y observa las estadísticas de los jugadores. Demuestra que eres el mejor, <br>porque próximamente podrás ganar fantásticos premios en metálico.</div>
+      <div class="img-wrapper">
+        <img src="images/help05.jpg" ng-if="!helpInfo.scrDet.isXsScreen">
+        <p class="img-footer">Compara tu alineación con las de otros usuarios en directo.</p>
+      </div>
+    </div>
+    <div class="block-light">
+      <div class="title">JUEGA DESDE CUALQUIER LUGAR</div>
+      <div class="block-last">
+        <div class="img-wrapper-left">
+          <img src="images/help06.jpg">
+        </div>
+        <div class="description-right">
+          <p>Comprueba lo sencillo que es participar en los torneos de EPIC 11 desde dónde quieras. Podrás seguir en directo las estadísticas de tus jugadores desde tu ordenador, tablet o smartphone con interfaces adaptadas a cada tipo de dispositivo para optimizar la usabilidad.</p>
+          <button type="button" class="button-play">JUGAR AHORA</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane" id="rules-scores-content">
+    <div class="block-light">
+      <div class="title">REGLAS</div>
+      <div class="toogle-block">
+        <input type="checkbox" id="rule1" class="toggle">
+        <label for="rule1">MAYORÍA DE EDAD</label>
+        <div>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit quis dolor sed tincidunt. Quisque rhoncus nulla eu
+vulputate varius. Donec pretium diam magna, nec gravida orci pharetra sit amet. Ut dictum magna turpis, in aliquet quam
+bibendum non. Fusce sit amet lectus lectus. Suspendisse eget mauris a lectus accumsan tristique. Phasellus ultrices euismod
+auctor. Praesent lacinia arcu tortor. Nam aliquam, enim at viverra rutrum, mauris tellus vehicula metus, quis lobortis ante
+diam nec lacus. Morbi venenatis sapien vel purus lacinia commodo.</p>
+          <p>Phasellus eros lorem, pellentesque sit amet lacinia ut, aliquet blandit ligula. Cras rhoncus, elit sed cursus interdum, libero dui
+blandit tortor, congue mattis risus libero vel tortor. Donec vestibulum vel arcu malesuada tincidunt.</p>
+        </div>
+      </div>
+      <div class="toogle-block">
+        <input type="checkbox" id="rule2" class="toggle">
+        <label for="rule2">MÚLTIPLES CUENTAS</label>
+        <div>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit quis dolor sed tincidunt. Quisque rhoncus nulla eu
+vulputate varius. Donec pretium diam magna, nec gravida orci pharetra sit amet. Ut dictum magna turpis, in aliquet quam
+bibendum non. Fusce sit amet lectus lectus. Suspendisse eget mauris a lectus accumsan tristique. Phasellus ultrices euismod
+auctor. Praesent lacinia arcu tortor. Nam aliquam, enim at viverra rutrum, mauris tellus vehicula metus, quis lobortis ante
+diam nec lacus. Morbi venenatis sapien vel purus lacinia commodo.</p>
+          <p>Phasellus eros lorem, pellentesque sit amet lacinia ut, aliquet blandit ligula. Cras rhoncus, elit sed cursus interdum, libero dui
+blandit tortor, congue mattis risus libero vel tortor. Donec vestibulum vel arcu malesuada tincidunt.</p>
+        </div>
+      </div>
+      <div class="toogle-block">
+        <input type="checkbox" id="rule3" class="toggle">
+        <label for="rule3">CUENTAS SUSPENDIDAS</label>
+        <div>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit quis dolor sed tincidunt. Quisque rhoncus nulla eu
+vulputate varius. Donec pretium diam magna, nec gravida orci pharetra sit amet. Ut dictum magna turpis, in aliquet quam
+bibendum non. Fusce sit amet lectus lectus. Suspendisse eget mauris a lectus accumsan tristique. Phasellus ultrices euismod
+auctor. Praesent lacinia arcu tortor. Nam aliquam, enim at viverra rutrum, mauris tellus vehicula metus, quis lobortis ante
+diam nec lacus. Morbi venenatis sapien vel purus lacinia commodo.</p>
+          <p>Phasellus eros lorem, pellentesque sit amet lacinia ut, aliquet blandit ligula. Cras rhoncus, elit sed cursus interdum, libero dui
+blandit tortor, congue mattis risus libero vel tortor. Donec vestibulum vel arcu malesuada tincidunt.</p>
+        </div>
+      </div>
+      <div class="toogle-block">
+        <input type="checkbox" id="rule4" class="toggle">
+        <label for="rule4">NOMBRES DE USUARIOS</label>
+        <div>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit quis dolor sed tincidunt. Quisque rhoncus nulla eu
+vulputate varius. Donec pretium diam magna, nec gravida orci pharetra sit amet. Ut dictum magna turpis, in aliquet quam
+bibendum non. Fusce sit amet lectus lectus. Suspendisse eget mauris a lectus accumsan tristique. Phasellus ultrices euismod
+auctor. Praesent lacinia arcu tortor. Nam aliquam, enim at viverra rutrum, mauris tellus vehicula metus, quis lobortis ante
+diam nec lacus. Morbi venenatis sapien vel purus lacinia commodo.</p>
+          <p>Phasellus eros lorem, pellentesque sit amet lacinia ut, aliquet blandit ligula. Cras rhoncus, elit sed cursus interdum, libero dui
+blandit tortor, congue mattis risus libero vel tortor. Donec vestibulum vel arcu malesuada tincidunt.</p>
+        </div>
+      </div>
+      <div class="toogle-block">
+        <input type="checkbox" id="rule5" class="toggle">
+        <label for="rule5">DESAFÍOS SIN JUGADORES</label>
+        <div>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit quis dolor sed tincidunt. Quisque rhoncus nulla eu
+vulputate varius. Donec pretium diam magna, nec gravida orci pharetra sit amet. Ut dictum magna turpis, in aliquet quam
+bibendum non. Fusce sit amet lectus lectus. Suspendisse eget mauris a lectus accumsan tristique. Phasellus ultrices euismod
+auctor. Praesent lacinia arcu tortor. Nam aliquam, enim at viverra rutrum, mauris tellus vehicula metus, quis lobortis ante
+diam nec lacus. Morbi venenatis sapien vel purus lacinia commodo.</p>
+          <p>Phasellus eros lorem, pellentesque sit amet lacinia ut, aliquet blandit ligula. Cras rhoncus, elit sed cursus interdum, libero dui
+blandit tortor, congue mattis risus libero vel tortor. Donec vestibulum vel arcu malesuada tincidunt.</p>
+        </div>
+      </div>
+      <div class="toogle-block">
+        <input type="checkbox" id="rule6" class="toggle">
+        <label for="rule6">CANCELACIÓN DE ENTRADAS O DESAFÍOS</label>
+        <div>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit quis dolor sed tincidunt. Quisque rhoncus nulla eu
+vulputate varius. Donec pretium diam magna, nec gravida orci pharetra sit amet. Ut dictum magna turpis, in aliquet quam
+bibendum non. Fusce sit amet lectus lectus. Suspendisse eget mauris a lectus accumsan tristique. Phasellus ultrices euismod
+auctor. Praesent lacinia arcu tortor. Nam aliquam, enim at viverra rutrum, mauris tellus vehicula metus, quis lobortis ante
+diam nec lacus. Morbi venenatis sapien vel purus lacinia commodo.</p>
+          <p>Phasellus eros lorem, pellentesque sit amet lacinia ut, aliquet blandit ligula. Cras rhoncus, elit sed cursus interdum, libero dui
+blandit tortor, congue mattis risus libero vel tortor. Donec vestibulum vel arcu malesuada tincidunt.</p>
+        </div>
+      </div>
+      <div class="toogle-block">
+        <input type="checkbox" id="rule7" class="toggle">
+        <label for="rule7">PARTIDOS POSPUESTOS</label>
+        <div>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit quis dolor sed tincidunt. Quisque rhoncus nulla eu
+vulputate varius. Donec pretium diam magna, nec gravida orci pharetra sit amet. Ut dictum magna turpis, in aliquet quam
+bibendum non. Fusce sit amet lectus lectus. Suspendisse eget mauris a lectus accumsan tristique. Phasellus ultrices euismod
+auctor. Praesent lacinia arcu tortor. Nam aliquam, enim at viverra rutrum, mauris tellus vehicula metus, quis lobortis ante
+diam nec lacus. Morbi venenatis sapien vel purus lacinia commodo.</p>
+          <p>Phasellus eros lorem, pellentesque sit amet lacinia ut, aliquet blandit ligula. Cras rhoncus, elit sed cursus interdum, libero dui
+blandit tortor, congue mattis risus libero vel tortor. Donec vestibulum vel arcu malesuada tincidunt.</p>
+        </div>
+      </div>
+      <div class="toogle-block">
+        <input type="checkbox" id="rule8" class="toggle">
+        <label for="rule8">JUGADORES VENDIDOS</label>
+        <div>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit quis dolor sed tincidunt. Quisque rhoncus nulla eu
+vulputate varius. Donec pretium diam magna, nec gravida orci pharetra sit amet. Ut dictum magna turpis, in aliquet quam
+bibendum non. Fusce sit amet lectus lectus. Suspendisse eget mauris a lectus accumsan tristique. Phasellus ultrices euismod
+auctor. Praesent lacinia arcu tortor. Nam aliquam, enim at viverra rutrum, mauris tellus vehicula metus, quis lobortis ante
+diam nec lacus. Morbi venenatis sapien vel purus lacinia commodo.</p>
+          <p>Phasellus eros lorem, pellentesque sit amet lacinia ut, aliquet blandit ligula. Cras rhoncus, elit sed cursus interdum, libero dui
+blandit tortor, congue mattis risus libero vel tortor. Donec vestibulum vel arcu malesuada tincidunt.</p>
+        </div>
+      </div>
+      <div class="toogle-block">
+        <input type="checkbox" id="rule9" class="toggle">
+        <label for="rule9">RESTRICCIONES DE ALINEACIÓN</label>
+        <div>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit quis dolor sed tincidunt. Quisque rhoncus nulla eu
+vulputate varius. Donec pretium diam magna, nec gravida orci pharetra sit amet. Ut dictum magna turpis, in aliquet quam
+bibendum non. Fusce sit amet lectus lectus. Suspendisse eget mauris a lectus accumsan tristique. Phasellus ultrices euismod
+auctor. Praesent lacinia arcu tortor. Nam aliquam, enim at viverra rutrum, mauris tellus vehicula metus, quis lobortis ante
+diam nec lacus. Morbi venenatis sapien vel purus lacinia commodo.</p>
+          <p>Phasellus eros lorem, pellentesque sit amet lacinia ut, aliquet blandit ligula. Cras rhoncus, elit sed cursus interdum, libero dui
+blandit tortor, congue mattis risus libero vel tortor. Donec vestibulum vel arcu malesuada tincidunt.</p>
+        </div>
+      </div>
+      <div class="toogle-block">
+        <input type="checkbox" id="rule10" class="toggle">
+        <label for="rule10">RETIRADAS DE EFECTIVO</label>
+        <div>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit quis dolor sed tincidunt. Quisque rhoncus nulla eu
+vulputate varius. Donec pretium diam magna, nec gravida orci pharetra sit amet. Ut dictum magna turpis, in aliquet quam
+bibendum non. Fusce sit amet lectus lectus. Suspendisse eget mauris a lectus accumsan tristique. Phasellus ultrices euismod
+auctor. Praesent lacinia arcu tortor. Nam aliquam, enim at viverra rutrum, mauris tellus vehicula metus, quis lobortis ante
+diam nec lacus. Morbi venenatis sapien vel purus lacinia commodo.</p>
+          <p>Phasellus eros lorem, pellentesque sit amet lacinia ut, aliquet blandit ligula. Cras rhoncus, elit sed cursus interdum, libero dui
+blandit tortor, congue mattis risus libero vel tortor. Donec vestibulum vel arcu malesuada tincidunt.</p>
+        </div>
+      </div>
+      <div class="toogle-block">
+        <input type="checkbox" id="rule11" class="toggle">
+        <label for="rule11">DEPÓSITOS DE EFECTIVO</label>
+        <div>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit quis dolor sed tincidunt. Quisque rhoncus nulla eu
+vulputate varius. Donec pretium diam magna, nec gravida orci pharetra sit amet. Ut dictum magna turpis, in aliquet quam
+bibendum non. Fusce sit amet lectus lectus. Suspendisse eget mauris a lectus accumsan tristique. Phasellus ultrices euismod
+auctor. Praesent lacinia arcu tortor. Nam aliquam, enim at viverra rutrum, mauris tellus vehicula metus, quis lobortis ante
+diam nec lacus. Morbi venenatis sapien vel purus lacinia commodo.</p>
+          <p>Phasellus eros lorem, pellentesque sit amet lacinia ut, aliquet blandit ligula. Cras rhoncus, elit sed cursus interdum, libero dui
+blandit tortor, congue mattis risus libero vel tortor. Donec vestibulum vel arcu malesuada tincidunt.</p>
+        </div>
+      </div>
+      <div class="toogle-block">
+        <input type="checkbox" id="rule12" class="toggle">
+        <label for="rule12">FINALIZACIÓN DE DESAFÍOS Y PAGOS DE PREMIOS</label>
+        <div>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit quis dolor sed tincidunt. Quisque rhoncus nulla eu
+vulputate varius. Donec pretium diam magna, nec gravida orci pharetra sit amet. Ut dictum magna turpis, in aliquet quam
+bibendum non. Fusce sit amet lectus lectus. Suspendisse eget mauris a lectus accumsan tristique. Phasellus ultrices euismod
+auctor. Praesent lacinia arcu tortor. Nam aliquam, enim at viverra rutrum, mauris tellus vehicula metus, quis lobortis ante
+diam nec lacus. Morbi venenatis sapien vel purus lacinia commodo.</p>
+          <p>Phasellus eros lorem, pellentesque sit amet lacinia ut, aliquet blandit ligula. Cras rhoncus, elit sed cursus interdum, libero dui
+blandit tortor, congue mattis risus libero vel tortor. Donec vestibulum vel arcu malesuada tincidunt.</p>
+        </div>
+      </div>
+      <div class="toogle-block">
+        <input type="checkbox" id="rule13" class="toggle">
+        <label for="rule13">REVISIONES DE PUNTUACIONES</label>
+        <div>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit quis dolor sed tincidunt. Quisque rhoncus nulla eu
+vulputate varius. Donec pretium diam magna, nec gravida orci pharetra sit amet. Ut dictum magna turpis, in aliquet quam
+bibendum non. Fusce sit amet lectus lectus. Suspendisse eget mauris a lectus accumsan tristique. Phasellus ultrices euismod
+auctor. Praesent lacinia arcu tortor. Nam aliquam, enim at viverra rutrum, mauris tellus vehicula metus, quis lobortis ante
+diam nec lacus. Morbi venenatis sapien vel purus lacinia commodo.</p>
+          <p>Phasellus eros lorem, pellentesque sit amet lacinia ut, aliquet blandit ligula. Cras rhoncus, elit sed cursus interdum, libero dui
+blandit tortor, congue mattis risus libero vel tortor. Donec vestibulum vel arcu malesuada tincidunt.</p>
+        </div>
+      </div>
+      <div class="toogle-block">
+        <input type="checkbox" id="rule14" class="toggle">
+        <label for="rule14">ACCESO A LA PÁGINA Y PAGOS ASOCIADOS</label>
+        <div>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit quis dolor sed tincidunt. Quisque rhoncus nulla eu
+vulputate varius. Donec pretium diam magna, nec gravida orci pharetra sit amet. Ut dictum magna turpis, in aliquet quam
+bibendum non. Fusce sit amet lectus lectus. Suspendisse eget mauris a lectus accumsan tristique. Phasellus ultrices euismod
+auctor. Praesent lacinia arcu tortor. Nam aliquam, enim at viverra rutrum, mauris tellus vehicula metus, quis lobortis ante
+diam nec lacus. Morbi venenatis sapien vel purus lacinia commodo.</p>
+          <p>Phasellus eros lorem, pellentesque sit amet lacinia ut, aliquet blandit ligula. Cras rhoncus, elit sed cursus interdum, libero dui
+blandit tortor, congue mattis risus libero vel tortor. Donec vestibulum vel arcu malesuada tincidunt.</p>
+        </div>
+      </div>
+    </div>
+    <div class="block-dark">
+      <div class="title">PUNTUACIONES Y ABREVIATURAS</div>
+      <div class="scores-wrapper">
+        <div class="score-table">
+          <div class="score-table-header">TODOS LOS JUGADORES</div>
+          <div class="score-table-content positive">
+            <div class="content-abrev"><span>(P)</span> Pase</div>
+            <div class="content-score">2</div>
+          </div>
+          <div class="score-table-content positive">
+            <div class="content-abrev"><span>(R)</span> Regate</div>
+            <div class="content-score">10</div>
+          </div>
+          <div class="score-table-content positive">
+            <div class="content-abrev"><span>(FR)</span> Falta recibida</div>
+            <div class="content-score">10</div>
+          </div>
+          <div class="score-table-content positive">
+            <div class="content-abrev"><span>(PI)</span> Pase interceptado</div>
+            <div class="content-score">15</div>
+          </div>
+          <div class="score-table-content positive">
+            <div class="content-abrev"><span>(TP)</span> Tiro a puerta (fallado, poste o parado)</div>
+            <div class="content-score">15</div>
+          </div>
+          <div class="score-table-content positive">
+            <div class="content-abrev"><span>(EE)</span> Entrada exitosa</div>
+            <div class="content-score">15</div>
+          </div>
+          <div class="score-table-content positive">
+            <div class="content-abrev"><span>(A)</span> Asistencia</div>
+            <div class="content-score">20</div>
+          </div>
+          <div class="score-table-content negative">
+            <div class="content-abrev"><span>(FC)</span> Falta cometida</div>
+            <div class="content-score">-5</div>
+          </div>
+          <div class="score-table-content negative">
+            <div class="content-abrev"><span>(PB)</span> Pérdida de balón</div>
+            <div class="content-score">-5</div>
+          </div>
+          <div class="score-table-content negative">
+            <div class="content-abrev"><span>(E)</span> Error</div>
+            <div class="content-score">-20</div>
+          </div>
+          <div class="score-table-content negative">
+            <div class="content-abrev"><span>(TA)</span> Tarjeta amarilla</div>
+            <div class="content-score">-25</div>
+          </div>
+          <div class="score-table-content negative">
+            <div class="content-abrev"><span>(TR)</span> Tarjeta roja</div>
+            <div class="content-score">-75</div>
+          </div>
+          <div class="score-table-content negative">
+            <div class="content-abrev"><span>(PC)</span> Penalti cometido</div>
+            <div class="content-score">-30</div>
+          </div>
+          <div class="score-table-content negative">
+            <div class="content-abrev"><span>(PF)</span> Penalti fallado</div>
+            <div class="content-score">-30</div>
+          </div>
+          <div class="score-table-content negative">
+            <div class="content-abrev"><span>(GPP)</span> Gol en propia puerta</div>
+            <div class="content-score">-10</div>
+          </div>
+          <div class="score-table-content negative">
+            <div class="content-abrev"><span>(FJ)</span> Fuera de juego</div>
+            <div class="content-score">-5</div>
+          </div>
+        </div>
+        <div class="score-table">
+          <div class="score-table-header">PORTERO</div>
+          <div class="score-table-content positive">
+            <div class="content-abrev"><span>(P0)</span> Puerta a cero</div>
+            <div class="content-score">40</div>
+          </div>
+          <div class="score-table-content positive">
+            <div class="content-abrev"><span>(G)</span> Gol</div>
+            <div class="content-score">100</div>
+          </div>
+          <div class="score-table-content positive">
+            <div class="content-abrev"><span>(PP)</span> Penalti parado</div>
+            <div class="content-score">30</div>
+          </div>
+          <div class="score-table-content positive">
+            <div class="content-abrev"><span>(PA)</span> Parada</div>
+            <div class="content-score">10</div>
+          </div>
+          <div class="score-table-content positive">
+            <div class="content-abrev"><span>(DP)</span> Despeje de puños</div>
+            <div class="content-score">10</div>
+          </div>
+          <div class="score-table-content positive">
+            <div class="content-abrev"><span>(D)</span> Despeje</div>
+            <div class="content-score">10</div>
+          </div>
+          <div class="score-table-content negative">
+            <div class="content-abrev"><span>(GE)</span> Gol encajado</div>
+            <div class="content-score">-10</div>
+          </div>
+        </div>
+        <div class="score-table">
+          <div class="score-table-header">DEFENSA</div>
+          <div class="score-table-content positive">
+            <div class="content-abrev"><span>(P0)</span> Puerta a cero</div>
+            <div class="content-score">60</div>
+          </div>
+          <div class="score-table-content positive">
+            <div class="content-abrev"><span>(G)</span> Gol</div>
+            <div class="content-score">80</div>
+          </div>
+          <div class="score-table-content negative">
+            <div class="content-abrev"><span>(GE)</span> Gol encajado</div>
+            <div class="content-score">-10</div>
+          </div>
+        </div>
+        <div class="score-table">
+          <div class="score-table-header">CENTROCAMPISTA</div>
+          <div class="score-table-content positive">
+            <div class="content-abrev"><span>(G)</span> Gol</div>
+            <div class="content-score">60</div>
+          </div>
+        </div>
+        <div class="score-table">
+          <div class="score-table-header">DELANTERO</div>
+          <div class="score-table-content positive">
+            <div class="content-abrev"><span>(G)</span> Gol</div>
+            <div class="content-score">40</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

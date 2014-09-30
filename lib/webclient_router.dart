@@ -19,6 +19,10 @@ void webClientRouteInitializer(Router router, RouteViewFactory views) {
         path: '/join',
         viewHtml: '<join></join>'
     )
+    ,'help_info': ngRoute(
+        path: '/help-info',
+        viewHtml: '<help-info></help-info>'
+    )
     ,'remember_password': ngRoute(
         path: '/remember_password',
         viewHtml: '<remember-password></remember-password>'

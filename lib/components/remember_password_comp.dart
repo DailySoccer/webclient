@@ -29,8 +29,6 @@ class RememberPasswordComp implements ShadowRootAware {
 
   void rememberMyPassword() {
     print('-REMEMBER_PASSWORD-: Se ha enviado correctamente');
-    //_errSection.parent.parent.style.display = "none";
-   // enabledSubmit = false;
   }
 
   @override

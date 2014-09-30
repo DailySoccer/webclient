@@ -65,7 +65,6 @@ class JoinComp implements ShadowRootAware {
                   ..parent.style.display = "";
               break;
             }
-            print("-JOIN_COMP-: Error recibido: ${key}");
           });
 
           _enabledSubmit = true;

@@ -1,14 +1,21 @@
 <div id="desktopContent" ng-if="!comp.scrDet.isXsScreen">
 
     <div id="screen1" class="first-screen">
+      <div class="slider-wrapper">
+        <img class="screen-background" src="images/LandingBackground.jpg" />
+        <div class="screen-pattern"></div>
+      </div>
 
-          <img class="screen-background" src="images/landing01.jpg" />
-         <!--<div class="screen-pattern"></div>-->
+      <div class="first-screen-wrapper">
+        <img class="" src="images/LandingTitle.png" />
+        <img class="" src="images/LandingModulos.png" />
+      </div>
+
       <div class="button-wrap">
         <button type="button" class="button-play"  ng-click="comp.buttonPressed('join')" id="playButton1">JUGAR</button>
       </div>
     </div>
-
+    <!-- Separador -->
     <a class="wrapping-link" href="#screen2">
       <span id="screenSeparator1" class="more-info-section-light">
         <span>SABER MÁS</span>
@@ -102,8 +109,8 @@
     <div id="screenMobile1" class="screen">
 
       <div class="slider-wrapper">
-        <img class="background" src="images/landingBackground.jpg" />
-        <div class="screen-pattern"></div>
+        <img class="background" src="images/xsLandingBackground.jpg" />
+        <!--<div class="screen-pattern"></div>-->
       </div>
 
       <div class="content">
@@ -111,7 +118,7 @@
         <!--<p class="highlight-text"><span class="stars"></span>CADA SEMANA,<span class="stars"></span><BR> UNA NUEVA TEMPORADA</p>-->
         <p class="title-sup-text-mobile">HAZ TU 11 CADA JORNADA</p>
         <p class="title-sup-text-mobile">ESTADÍSTICAS ACTUALIZADAS</p>
-        <p class="title-sup-text-mobile">SIGUE LOS PARTIDOS<BR>EN TIEMPO REAL</p>
+        <p class="title-sup-text-mobile">SIGUE LOS PARTIDOS EN TIEMPO REAL</p>
         <button type="button" class="button-play-mobile" ng-click="comp.buttonPressed('join')" id="playButtonMobile">JUGAR</button>
       </div>
     </div>

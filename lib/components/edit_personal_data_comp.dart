@@ -125,12 +125,19 @@ class EditPersonalDataComp implements ShadowRootAware {
 
   void saveChanges() {
 
-      if(!validatePassword()) {
+      if(!validatePassword() ) {
         return;
       }
-        //_enabledSubmit = false;
+      //_enabledSubmit = false;
+      String firstName = _profileManager.user.firstName  != parent.editedFirstName ? parent.editedFirstName  : "";
+      String lastName  = _profileManager.user.lastName   != parent.editedLastName  ? parent.editedLastName   : "";
+      String email     = _profileManager.user.email      != parent.editedEmail     ? parent.editedEmail      : "";
+      // El nickname de momento no sabemos si le daremos permisos al usuario para que lo cambie a placer.
+      String nickName  = "";
+      String password  = parent.editedPassword;
 
-        _profileManager.changeUserProfile(parent.editedFirstName, parent.editedLastName, parent.editedEmail, parent.editedNickName, parent.editedPassword)
+
+        _profileManager.changeUserProfile(firstName, lastName, email, nickName, password)
         //Not implemented yet //.then((_) => _profileManager.saveUserData(firstName, lastName,acceptGameAlerts, /* nickName, */ email, password))
             .then((_) => closeModal())
             .catchError((Map error) {
@@ -163,7 +170,7 @@ class EditPersonalDataComp implements ShadowRootAware {
                       ..parent.style.display = "";
                   break;
                 }
-                print("-JOIN_COMP-: Error recibido: ${key}");
+                print("-EDIT_PERSONAL_DATA_COMP-: Error recibido: ${key}");
               });
 
              //_enabledSubmit = true;

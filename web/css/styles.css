@@ -9612,7 +9612,7 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button.active {
 }
 #mobileContent .background {
   display: block;
-  margin-left: -500px;
+  margin-left: -512px;
   position: relative;
   left: 50%;
   max-height: 520px;
@@ -9628,7 +9628,7 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button.active {
   top: 60px;
 }
 #mobileContent .content .banner-top {
-  margin-bottom: 25px;
+  margin-bottom: 100px;
 }
 #mobileContent .content .highlight-text {
   font-family: 'Exo', sans-serif;
@@ -9778,6 +9778,7 @@ fieldset[disabled] #mobileContent .content .button-play-mobile.active {
   font-weight: 600;
   font-size: 14pt;
   color: #ffffff;
+  text-shadow: 2px 2px #000000;
   margin-bottom: 25px;
 }
 .first-screen {
@@ -12168,7 +12169,7 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
   user-select: none;
   background-color: #222222;
   border-color: #080808;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.7);
   z-index: 999;
   border-bottom: 2px solid #fa9c19;
 }

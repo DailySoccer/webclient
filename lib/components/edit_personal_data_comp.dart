@@ -130,8 +130,8 @@ class EditPersonalDataComp implements ShadowRootAware {
       }
         //_enabledSubmit = false;
 
-        _profileManager.signup(parent.editedFirstName, parent.editedLastName, parent.editedEmail, parent.editedNickName, parent.editedPassword)
-            //Not implemented yet //.then((_) => _profileManager.saveUserData(firstName, lastName,acceptGameAlerts, /* nickName, */ email, password))
+        _profileManager.changeUserProfile(parent.editedFirstName, parent.editedLastName, parent.editedEmail, parent.editedNickName, parent.editedPassword)
+        //Not implemented yet //.then((_) => _profileManager.saveUserData(firstName, lastName,acceptGameAlerts, /* nickName, */ email, password))
             .then((_) => closeModal())
             .catchError((Map error) {
 
@@ -172,7 +172,7 @@ class EditPersonalDataComp implements ShadowRootAware {
 
   void closeModal() {
     parent.endEditPersonalData();
-    //JsUtils.runJavascript('#editPersonalDataModal', 'modal', 'hide');
+    JsUtils.runJavascript('#editPersonalDataModal', 'modal', 'hide');
   }
 
   ProfileService _profileManager;

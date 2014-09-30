@@ -2,6 +2,7 @@ library help_info_comp;
 
 import 'dart:html';
 import 'package:angular/angular.dart';
+import 'package:webclient/services/screen_detector_service.dart';
 
 @Component(
    selector: 'help-info',
@@ -10,8 +11,9 @@ import 'package:angular/angular.dart';
    useShadowDom: false
 )
 class HelpInfoComp {
+  ScreenDetectorService scrDet;
 
-  HelpInfoComp();
+  HelpInfoComp(this.scrDet);
 
   void tabChange(String tab) {
     List<dynamic> allContentTab = document.querySelectorAll("#helpInfo .tab-pane");

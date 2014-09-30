@@ -9612,9 +9612,10 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button.active {
 }
 #mobileContent .background {
   display: block;
-  margin-left: -384px;
+  margin-left: -500px;
   position: relative;
   left: 50%;
+  max-height: 520px;
 }
 #mobileContent .screen {
   position: relative;
@@ -9624,7 +9625,27 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button.active {
   text-align: center;
   margin: 0 auto;
   position: absolute;
-  bottom: 10%;
+  top: 60px;
+}
+#mobileContent .content .banner-top {
+  margin-bottom: 25px;
+}
+#mobileContent .content .highlight-text {
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  font-size: 14pt;
+  color: #ffffff;
+  background-color: #fa9c19;
+  margin-bottom: 20px;
+  padding: 10px 0px;
+}
+#mobileContent .content .stars {
+  background-image: url("../images/star.png");
+  background-repeat: repeat-x;
+  width: 30px;
+  height: 14px;
+  display: inline-block;
+  margin: 0 5px;
 }
 #mobileContent .content .button-play-mobile {
   display: inline-block;
@@ -9652,7 +9673,6 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button.active {
   width: 80%;
   max-width: 300px;
   margin: 0 auto;
-  margin-top: 40px;
 }
 #mobileContent .content .button-play-mobile:focus,
 #mobileContent .content .button-play-mobile:active:focus,
@@ -9754,18 +9774,11 @@ fieldset[disabled] #mobileContent .content .button-play-mobile.active {
   cursor: not-allowed !important;
 }
 #mobileContent .content .title-sup-text-mobile {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-  font-size: 0.8em;
-  color: #ffffff;
-  margin-bottom: 10px;
-}
-#mobileContent .content .title-text-mobile {
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
-  font-size: 2.3em;
-  color: #fa9c19;
-  margin-bottom: 30px;
+  font-weight: 600;
+  font-size: 14pt;
+  color: #ffffff;
+  margin-bottom: 25px;
 }
 .first-screen {
   margin-left: 0;

@@ -69,9 +69,10 @@
 	.hidden-lg();
 	.background{
 		display: block;
-	 	margin-left: -384px;
+	 	margin-left: -500px;
 	 	position: relative;
 		left: 50%;
+		max-height: 520px;
 	}	
 	.screen{
 		position: relative;
@@ -81,29 +82,34 @@
 		text-align: center;
 		margin: 0 auto;
 		position: absolute;
-		bottom: 10%;
-		> p{
-			
+		top: 60px;
+		.banner-top {
+			margin-bottom: 25px;
+		}
+		.highlight-text {
+			.exo_bold(14pt, @white);
+			background-color: @orange;
+			margin-bottom: 20px;
+			padding: 10px 0px;
+		}
+		.stars {
+			background-image: url("@{images}/star.png");
+			background-repeat: repeat-x;
+			width: 30px;
+			height: 14px;
+			display: inline-block;
+			margin: 0 5px;
 		}
 		.button-play-mobile {
 			.btn();
 			.btn-primary();
 			width: 80%;
 			max-width: 300px;
-			
 			margin: 0 auto;
-			margin-top: 40px;
-
 		}
 		.title-sup-text-mobile{
-			.opensans_bold(0.8em, @white);
-			margin-bottom: 10px;
-			//margin: 0;
-		}
-		.title-text-mobile{
-			.exo_light(2.3em, @orange);
-			margin-bottom: 30px;
-			//margin: 0;
+			.exo_bold(14pt, @white);
+			margin-bottom: 25px;
 		}
 	}
 }

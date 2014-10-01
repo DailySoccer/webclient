@@ -9893,7 +9893,7 @@ fieldset[disabled] #mobileContent .content .button-play-mobile.active {
 .landing-wrapper .slider-wrapper {
   position: relative;
   overflow: hidden;
-  max-height: 480px;
+  max-height: 340px;
 }
 .landing-wrapper .button-play {
   display: inline-block;

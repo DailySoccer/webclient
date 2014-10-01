@@ -29,6 +29,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   static const int XS_LOBBY_ACTION_GOTO_FREE_TOURNAMENTS      = 3;
   static const int XS_LOBBY_ACTION_GOTO_FULL_TOURNAMENTS_LIST = 4;
 
+  //Utiles para definir si queremos secuencia de filtros en el lobby o no. Para la BETA no.
   static const int XS_LOBBY_STATE_SEQUENCE_ORIGINAL = 0;
   static const int XS_LOBBY_STATE_NO_SEQUENCE       = 2;
 

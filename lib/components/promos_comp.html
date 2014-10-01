@@ -1,5 +1,7 @@
 <div id="promosComponent">
    <img ng-if="!promosComp.scrDet.isXsScreen" src="images/bannerPromoDesktop.jpg" class="promoDesktop" />
-   <span ng-if="!promosComp.scrDet.isXsScreen" class="beta-version">VERSIÓN BETA</span>
+   <div class="beta-version" ng-if="!promosComp.scrDet.isXsScreen">
+    <span class="beta-version-text">VERSIÓN BETA</span>
+   </div>
    <img ng-if="promosComp.scrDet.isXsScreen" src="images/bannerPromo.png" class="promoXs" />
 </div>

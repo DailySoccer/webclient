@@ -13766,19 +13766,25 @@ fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest.acti
   height: auto;
 }
 #promosComponent .beta-version {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#promosComponent .beta-version .beta-version-text {
   font-family: 'Exo', sans-serif;
   font-weight: 600;
   font-size: 11pt;
   color: #ffffff;
+  display: inline-block;
   background-color: #fa9c19;
-  position: absolute;
-  top: 0;
-  left: 0;
   line-height: 31px;
-  padding: 0 20px 0 5px;
-  background-image: url("../images/BetaBackgroundArrow.png");
-  background-repeat: no-repeat;
-  background-position: right center;
+  padding: 0 10px 0 5px;
+}
+#promosComponent .beta-version .beta-version-text::after {
+  content: url("../images/BetaBackgroundArrow.png");
+  position: absolute;
+  right: -6px;
+  top: 0;
 }
 .modal-content-soccer-player-info {
   position: relative;

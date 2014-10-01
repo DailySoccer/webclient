@@ -35,15 +35,21 @@
 		.img-responsive();
 	}
 	.beta-version {
-		.exo_bold(11pt, @white);
-		background-color: @orange;
 		position: absolute;
 		top: 0;
 		left: 0;
-		line-height: 31px;
-		padding: 0 20px 0 5px;
-		background-image: url("@{images}/BetaBackgroundArrow.png");
-		background-repeat: no-repeat;
-		background-position: right center;
+		.beta-version-text {
+			.exo_bold(11pt, @white);
+			display: inline-block;
+			background-color: @orange;
+			line-height: 31px;
+			padding: 0 10px 0 5px;
+			&::after {
+				content: url("@{images}/BetaBackgroundArrow.png");
+				position: absolute;
+				right: -6px;
+				top: 0;
+			}
+		}
 	}
 }

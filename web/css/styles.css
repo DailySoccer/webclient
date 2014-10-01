@@ -9620,6 +9620,11 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button.active {
   left: 50%;
   max-height: 520px;
 }
+#mobileContent .slider-wrapper {
+  position: relative;
+  overflow: hidden;
+  max-height: 480px;
+}
 #mobileContent .screen {
   position: relative;
 }

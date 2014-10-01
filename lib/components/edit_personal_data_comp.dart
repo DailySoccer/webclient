@@ -172,12 +172,12 @@ class EditPersonalDataComp implements ShadowRootAware {
                 }
                 print("-EDIT_PERSONAL_DATA_COMP-: Error recibido: ${key}");
               });
-
              //_enabledSubmit = true;
             });
   }
 
   void closeModal() {
+    _profileManager.refreshUserProfile();
     parent.endEditPersonalData();
     JsUtils.runJavascript('#editPersonalDataModal', 'modal', 'hide');
   }

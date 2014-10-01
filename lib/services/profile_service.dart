@@ -33,11 +33,17 @@ class ProfileService {
     return _server.login(email, password).then(_onLoginResponse);
   }
 
+
+
   Future<JsonObject> _onLoginResponse(JsonObject loginResponseJson) {
     _server.setSessionToken(loginResponseJson.sessionToken); // to make the getUserProfile call succeed
+    return refreshUserProfile();
 
+  }
+
+  Future<JsonObject> refreshUserProfile() {
     return _server.getUserProfile()
-                  .then((jsonObject) => _setProfile(loginResponseJson.sessionToken, new User.fromJsonObject(jsonObject), true));
+                      .then((jsonObject) => _setProfile(_sessionToken, new User.fromJsonObject(jsonObject), true));
   }
 
   Future<JsonObject> changeUserProfile(String firstName, String lastName, String email, String nickName, String password) {

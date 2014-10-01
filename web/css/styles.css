@@ -9645,7 +9645,7 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button.active {
 		}*/
 }
 #mobileContent .content .banner-top {
-  margin-bottom: 100px;
+  margin-bottom: 60px;
 }
 #mobileContent .content .button-play-mobile {
   display: inline-block;
@@ -9791,7 +9791,7 @@ fieldset[disabled] #mobileContent .content .button-play-mobile.active {
   position: relative;
 }
 .first-screen .slider-wrapper {
-  max-height: 600px;
+  max-height: 680px;
 }
 .first-screen .screen-background {
   position: relative;
@@ -9822,7 +9822,7 @@ fieldset[disabled] #mobileContent .content .button-play-mobile.active {
 .first-screen .button-wrap {
   position: absolute;
   width: 100%;
-  bottom: 3%;
+  bottom: 6%;
 }
 .first-screen .button-wrap .button-play {
   margin: 0 auto;

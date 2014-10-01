@@ -18,31 +18,24 @@
 	@media (min-width: @screen-sm-min) {
 		background-color: @white;
 	}
-	//la versión movil lleva el fondo azul y un padding
-	@media (max-width: @screen-xs-max) {
-		background-color: @blueMed;
-		padding: 10px;
-	}
-	//Esto es la versión XS. En dart se muestra solo si es isScreenXs
-	.promoDesktop{
-		display: block;
+	//función para centrar la imagen en las promos
+	.centerImage(@widthImage) {
 		position: relative;
+		display: block;
 		left: 50%;
-		margin-left: -485px;		
+		margin-left: -@widthImage/2px;
+	}
+	.promoDesktop{
+		.centerImage(970);		
 	}
 	.promoXs {
-		margin: 0 auto;
-		.img-responsive();
+		.centerImage(768);
 	}
-	.beta-version {
+	.beta-version-desktop {
 		position: absolute;
 		top: 0;
 		left: 0;
 		.beta-version-text {
-			.exo_bold(11pt, @white);
-			display: inline-block;
-			background-color: @orange;
-			line-height: 31px;
 			padding: 0 10px 0 5px;
 			&::after {
 				content: url("@{images}/betaBackgroundArrow.png");
@@ -50,6 +43,26 @@
 				right: -6px;
 				top: 0;
 			}
+		}	
+	}
+	.beta-version-xs {
+		position: absolute;
+		top: 0;
+		width: 100%;
+		.betaVersionXs {
+			.centerImage(330);
 		}
+		.beta-version-text {
+			position: absolute;
+			top: 0;
+			left: 0;
+			padding: 0 5px;
+		}
+	}
+	.beta-version-text {
+		.exo_bold(10pt, @white);
+		display: inline-block;
+		background-color: @orange;
+		line-height: 31px;
 	}
 }

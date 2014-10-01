@@ -13750,44 +13750,57 @@ fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest.acti
     background-color: #ffffff;
   }
 }
-@media (max-width: 767px) {
-  #promosComponent {
-    background-color: #0d75a6;
-    padding: 10px;
-  }
-}
 #promosComponent .promoDesktop {
-  display: block;
   position: relative;
+  display: block;
   left: 50%;
   margin-left: -485px;
 }
 #promosComponent .promoXs {
-  margin: 0 auto;
+  position: relative;
   display: block;
-  max-width: 100%;
-  height: auto;
+  left: 50%;
+  margin-left: -384px;
 }
-#promosComponent .beta-version {
+#promosComponent .beta-version-desktop {
   position: absolute;
   top: 0;
   left: 0;
 }
-#promosComponent .beta-version .beta-version-text {
-  font-family: 'Exo', sans-serif;
-  font-weight: 600;
-  font-size: 11pt;
-  color: #ffffff;
-  display: inline-block;
-  background-color: #fa9c19;
-  line-height: 31px;
+#promosComponent .beta-version-desktop .beta-version-text {
   padding: 0 10px 0 5px;
 }
-#promosComponent .beta-version .beta-version-text::after {
+#promosComponent .beta-version-desktop .beta-version-text::after {
   content: url("../images/betaBackgroundArrow.png");
   position: absolute;
   right: -6px;
   top: 0;
+}
+#promosComponent .beta-version-xs {
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+#promosComponent .beta-version-xs .betaVersionXs {
+  position: relative;
+  display: block;
+  left: 50%;
+  margin-left: -165px;
+}
+#promosComponent .beta-version-xs .beta-version-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0 5px;
+}
+#promosComponent .beta-version-text {
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  font-size: 10pt;
+  color: #ffffff;
+  display: inline-block;
+  background-color: #fa9c19;
+  line-height: 31px;
 }
 .modal-content-soccer-player-info {
   position: relative;

@@ -37,8 +37,8 @@ class ProfileService {
 
   Future<JsonObject> _onLoginResponse(JsonObject loginResponseJson) {
     _server.setSessionToken(loginResponseJson.sessionToken); // to make the getUserProfile call succeed
-    return refreshUserProfile();
-
+    return _server.getUserProfile()
+                      .then((jsonObject) => _setProfile(loginResponseJson.sessionToken, new User.fromJsonObject(jsonObject), true));
   }
 
   Future<JsonObject> refreshUserProfile() {

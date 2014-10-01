@@ -63,6 +63,8 @@ class ContestsListComp {
 
   ContestsListComp(this._profileService, this._scrDet);
 
+  bool isFreeContest(Contest contest) => contest.entryFee == 0;
+
   String dateInfo(DateTime date) {
     // Avisamos cuando sea "Hoy"
     if (DateTimeService.isToday(date)) {

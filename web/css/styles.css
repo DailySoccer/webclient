@@ -17993,7 +17993,11 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-back-contest.active 
 #helpInfo .img-wrapper img {
   display: block;
   width: 100%;
-  padding: 10px;
+}
+@media (min-width: 768px) {
+  #helpInfo .img-wrapper img {
+    padding: 10px;
+  }
 }
 #helpInfo .img-wrapper .img-footer {
   font-family: 'Open Sans', sans-serif;
@@ -18007,16 +18011,15 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-back-contest.active 
   margin: 0 auto;
 }
 #helpInfo .block-last .img-wrapper-left {
-  text-align: center;
+  max-width: 323px;
   padding: 10px;
+  margin: 0 auto;
 }
 @media (min-width: 768px) {
   #helpInfo .block-last .img-wrapper-left {
     float: left !important;
     width: 45%;
-    max-width: 323px;
     height: 222px;
-    text-align: left;
   }
 }
 #helpInfo .block-last .img-wrapper-left img {

@@ -30,7 +30,9 @@
 		img {
 			display: block;
 			width: 100%;
-			padding: 10px;
+			@media (min-width: @screen-sm-min) {
+				padding: 10px;
+			}
 		}
 		.img-footer {
 			.opensans_bold(10pt, @greyUltraDark);
@@ -43,13 +45,12 @@
 		.img-wrapper-left {
 			@media (min-width: @screen-sm-min) {
 				.pull-left();
-				width: 45%;
-				max-width: 323px;
+				width: 45%;		
 				height: 222px;
-				text-align: left;
 			}
-			text-align: center;
+			max-width: 323px;
 			padding: 10px;
+			margin: 0 auto;
 			img {
 				display: block;
 				width: 100%;

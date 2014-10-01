@@ -27,6 +27,10 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   static const int XS_LOBBY_ACTION_GOTO_MY_TOURNAMENTS        = 1;
   static const int XS_LOBBY_ACTION_GOTO_NOT_FREE_TOURNAMENTS  = 2;
   static const int XS_LOBBY_ACTION_GOTO_FREE_TOURNAMENTS      = 3;
+  static const int XS_LOBBY_ACTION_GOTO_FULL_TOURNAMENTS_LIST = 4;
+
+  static const int XS_LOBBY_STATE_SEQUENCE_ORIGINAL = 0;
+  static const int XS_LOBBY_STATE_NO_SEQUENCE       = 2;
 
   // Mapa para traducir los filtros a lenguaje Human readable
   Map filtersFriendlyName = {
@@ -64,7 +68,8 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   List<String> xsFilterList = [];
 
   // estado actual del lobby en XS
-  int currentXsLobbyState = 0;
+  //int currentXsLobbyState = XS_LOBBY_STATE_SEQUENCE_ORIGINAL;
+  int currentXsLobbyState = XS_LOBBY_STATE_NO_SEQUENCE;
 
   // numero de torneos listados actualmente
   int contestsCount = 0;
@@ -494,12 +499,23 @@ class LobbyComp implements ShadowRootAware, DetachAware {
         // Pasamos al estado en el muestra la lista de torneos disponibles.
         currentXsLobbyState = 2;
       break;
+      case XS_LOBBY_ACTION_GOTO_FULL_TOURNAMENTS_LIST:
+        //Mostramos todos los torneos que haya
+        addFilter("", []);
+        _isFreeTournamentChecked = false;
+        _isleagueTournamentChecked = false;
+        _isFiftyFiftyTournamentChecked = false;
+        _isHeadToHeadTournamentChecked = false;
+        // Pasamos al estado en el muestra la lista de torneos disponibles.
+        currentXsLobbyState = 2;
+      break;
     }
     refreshActiveContest();
   }
 
   void ResetXsLobby() {
-    currentXsLobbyState = 0;
+    //currentXsLobbyState = XS_LOBBY_STATE_SEQUENCE_ORIGINAL;
+    currentXsLobbyState = XS_LOBBY_STATE_NO_SEQUENCE;
     refreshActiveContest();
     resetAllFilters();
     xsFilterList = [];

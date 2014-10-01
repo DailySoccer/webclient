@@ -1,0 +1,54 @@
+<div id="scoringForAll" class="panel-points">
+  <div class=header">TODOS LOS JUGADORES</div>
+  <div class="body">
+    <div class="punctuation" ng-repeat="points in comp.AllPLayers">
+      <span class="shortName">{{points["shortName"]}}</span>
+      <span class="name">{{points["name"]}}</span>
+      <span class="points">{{points["points"]}}</span>
+    </div>
+  </div>
+</div>
+
+<div id="scoringForGoalKeepers" class="panel-points">
+  <div class="panel-heading">PORTEROS</div>
+  <div class="panel-body">
+    <div class="punctuation" ng-repeat="points in comp.GoalKeepers">
+      <span class="shortName">{{points["shortName"]}}</span>
+      <span class="name">{{points["name"]}}</span>
+      <span class="points">{{points["points"]}}</span>
+    </div>
+  </div>
+</div>
+
+<div id="scoringForDefenders" class="panel-points">
+  <div class="panel-heading">DEFENSAS</div>
+  <div class="panel-body">
+    <div class="punctuation" ng-repeat="points in comp.Defenders">
+      <span class="shortName">{{points["shortName"]}}</span>
+      <span class="name">{{points["name"]}}</span>
+      <span class="points">{{points["points"]}}</span>
+    </div>
+  </div>
+</div>
+
+<div id="scoringForMidFielders" class="panel-points">
+  <div class="panel-heading">CENTROCAMPISTAS</div>
+  <div class="panel-body">
+    <div class="punctuation" ng-repeat="points in comp.MidFielders">
+      <span class="shortName">{{points["shortName"]}}</span>
+      <span class="name">{{points["name"]}}</span>
+      <span class="points">{{points["points"]}}</span>
+    </div>
+  </div>
+</div>
+
+<div id="scoringForForwards" class="panel-points">
+  <div class="panel-heading">DELANTEROS</div>
+  <div class="panel-body">
+    <div class="punctuation" ng-repeat="points in comp.Forwards">
+      <span class="shortName">{{points["shortName"]}}</span>
+      <span class="name">{{points["name"]}}</span>
+      <span class="points">{{points["points"]}}</span>
+    </div>
+  </div>
+</div>

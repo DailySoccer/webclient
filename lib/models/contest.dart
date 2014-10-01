@@ -23,9 +23,9 @@ class Contest {
   static const TOURNAMENT_LEAGUE          = "LEAGUE";
   static const TOURNAMENT_FIFTY_FIFTY     = "FIFTY_FIFTY";
 
-  static const SALARY_LIMIT_FOR_BEGGINERS = 90000;
-  static const SALARY_LIMIT_FOR_STANDARDS = 80000;
-  static const SALARY_LIMIT_FOR_SKILLEDS  = 70000;
+  static const SALARY_LIMIT_FOR_BEGGINERS = 70000;
+  static const SALARY_LIMIT_FOR_STANDARDS = 65000;
+  static const SALARY_LIMIT_FOR_SKILLEDS  = 60000;
 
   static const TIER_BEGGINER              = "BEGGINER";
   static const TIER_STANDARD              = "STANDARD";

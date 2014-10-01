@@ -45,6 +45,8 @@ class SoccerPlayer {
     fantasyPoints = json.containsKey("fantasyPoints") ? json.fantasyPoints : 0;
     playedMatches = json.containsKey("playedMatches") ? json.playedMatches : 0;
     salary = json.containsKey("salary") ? json.salary : 0;
+
+    team = references.getSoccerTeamById(json.templateTeamId);
     return this;
   }
 

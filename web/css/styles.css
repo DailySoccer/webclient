@@ -6733,6 +6733,7 @@ button#infoContent .modal-info-head button.close {
   overflow-x: hidden;
   max-height: 250px;
   margin: 10px auto 0;
+  background-color: #ecf0f1;
 }
 .prizes-wrapper .no-prizes {
   font-family: 'Exo', sans-serif;
@@ -6861,10 +6862,14 @@ button#infoContent .modal-info-head button.close {
   background-color: #dcdcdc;
 }
 .panel-points {
+  float: left;
+  width: 100%;
   position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 @media (min-width: 768px) {
   .panel-points {
@@ -6873,35 +6878,55 @@ button#infoContent .modal-info-head button.close {
   }
 }
 .panel-points .header {
-  background-color: #434343;
   font-family: 'Exo', sans-serif;
   font-weight: 600;
-  font-size: 10pt;
+  font-size: 12pt;
   color: #ffffff;
+  background-color: #434343;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 5px 10px;
+}
+.panel-points .punctuation {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-width: 1px;
+  border-style: none solid solid solid;
+  border-color: #f3f3f3;
+  border-radius: 0;
+  min-height: 32px;
+  background-color: white;
+  padding: 5px 10px;
+}
+@media (min-width: 768px) {
+  .panel-points .punctuation {
+    float: left;
+    width: 100%;
+  }
 }
 .panel-points .shortName {
-  float: left;
   font-family: 'Exo', sans-serif;
   font-weight: 600;
   font-size: 12pt;
   color: #777777;
-  display: block;
+  float: left;
 }
 .panel-points .name {
-  float: left;
   font-family: 'Exo', sans-serif;
   font-weight: 300;
   font-size: 12pt;
   color: #777777;
-  display: block;
+  float: left;
+  padding-left: 5px;
 }
 .panel-points .points {
-  float: right;
   font-family: 'Exo', sans-serif;
   font-weight: 600;
   font-size: 12pt;
   color: #777777;
-  display: block;
+  float: right;
 }
 .contests-list-root {
   background-color: #ffffff;

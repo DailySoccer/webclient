@@ -1,24 +1,39 @@
 .panel-points {
+	.make-xs-column(12);
 	.make-sm-column(6);
+	padding-top: 15px;
+	padding-bottom: 15px;
 	.header {
+		.exo_bold(12pt, @white);
 		background-color: @greyUltraDark;
-		.exo_bold(10pt, @white);
+		border-top-left-radius: 10px;
+		border-top-right-radius: 10px;
+		padding: 5px 10px;  
+
+	}
+	.body{
+		
+	}
+	.punctuation {
+		.make-sm-column(12);
+		.make-border(1px, none solid solid solid, @blueUltraLight);
+		min-height: 32px;
+		background-color: white;
+		padding: 5px 10px;
 	}
 
 	.shortName {
-		float: left;
 		.exo_bold(12pt, @greyDark);
-		display: block;
+		float: left;
 	}
 
-	.name {
-		float: left;
+	.name {	
 		.exo_light(12pt, @greyDark);
-		display: block;
+		float: left;
+		padding-left: 5px;
 	}
 	.points {
-		float: right;
 		.exo_bold(12pt, @greyDark);
-		display: block;
+		float: right;
 	}
 }

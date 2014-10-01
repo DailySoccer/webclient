@@ -1,6 +1,7 @@
 #promosComponent{
 	position: relative;
 	background-color: @white;
+	overflow: hidden;
 
 	.make-row();
 
@@ -23,8 +24,26 @@
 		padding: 10px;
 	}
 	//Esto es la versión XS. En dart se muestra solo si es isScreenXs
-	.promoXs, .promoDesktop{
+	.promoDesktop{
+		display: block;
+		position: relative;
+		left: 50%;
+		margin-left: -485px;		
+	}
+	.promoXs {
 		margin: 0 auto;
 		.img-responsive();
+	}
+	.beta-version {
+		.exo_bold(11pt, @white);
+		background-color: @orange;
+		position: absolute;
+		top: 0;
+		left: 0;
+		line-height: 31px;
+		padding: 0 20px 0 5px;
+		background-image: url("@{images}/BetaBackgroundArrow.png");
+		background-repeat: no-repeat;
+		background-position: right center;
 	}
 }

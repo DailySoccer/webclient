@@ -28,7 +28,7 @@ class SoccerTeam {
 
     if (json.containsKey("soccerPlayers")) {
       for (var x in json.soccerPlayers) {
-        SoccerPlayer soccerPlayer = new SoccerPlayer.fromJsonObject(x, references)
+        SoccerPlayer soccerPlayer = references.getSoccerPlayerById(x)
           .. team = this;
 
         soccerPlayers.add(soccerPlayer);

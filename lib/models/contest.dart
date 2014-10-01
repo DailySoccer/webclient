@@ -5,6 +5,7 @@ import "package:webclient/models/match_event.dart";
 import "package:webclient/models/user.dart";
 import "package:webclient/models/contest_entry.dart";
 import "package:webclient/models/soccer_player.dart";
+import "package:webclient/models/soccer_team.dart";
 import 'package:webclient/services/contest_references.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/utils/string_utils.dart';
@@ -176,6 +177,14 @@ class Contest {
       for (int view=0; view<10 && jsonRoot.containsKey("match_events_$view"); view++) {
           jsonRoot["match_events_$view"].map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject, contestReferences)).toList();
       }
+    }
+
+    if (jsonRoot.containsKey("soccer_teams")) {
+      jsonRoot.soccer_teams.map((jsonObject) => new SoccerTeam.fromJsonObject(jsonObject, contestReferences)).toList();
+    }
+
+    if (jsonRoot.containsKey("soccer_players")) {
+      jsonRoot.soccer_players.map((jsonObject) => new SoccerPlayer.fromJsonObject(jsonObject, contestReferences)).toList();
     }
 
     if (jsonRoot.containsKey("users_info")) {

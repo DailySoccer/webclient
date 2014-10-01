@@ -58,7 +58,7 @@ class MatchEvent {
   }
 
   factory MatchEvent.fromJsonObject(JsonObject json, ContestReferences references) {
-    MatchEvent matchEvent = references.getMatchEventById(json.templateMatchEventId);
+    MatchEvent matchEvent = references.getMatchEventById(json.containsKey("templateMatchEventId") ? json.templateMatchEventId : json._id);
     return matchEvent._initFromJsonObject(json, references);
   }
 
@@ -91,10 +91,10 @@ class MatchEvent {
 
   MatchEvent _initFromJsonObject(JsonObject json, ContestReferences references) {
     assert(templateMatchEventId.isNotEmpty);
-    soccerTeamA = new SoccerTeam.fromJsonObject(json.soccerTeamA, references)
+    soccerTeamA = references.getSoccerTeamById(json.templateSoccerTeamAId)
       .. matchEvent = this;
 
-    soccerTeamB = new SoccerTeam.fromJsonObject(json.soccerTeamB, references)
+    soccerTeamB = references.getSoccerTeamById(json.templateSoccerTeamBId)
       .. matchEvent = this;
 
     period = json.containsKey("period") ? json.period : "PRE_GAME";

@@ -13688,6 +13688,8 @@ fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest.acti
     margin-left: auto;
     padding-left: 15px;
     padding-right: 15px;
+    padding-left: 0px;
+    padding-right: 0px;
   }
   #promosComponent > .navbar-header,
   #promosComponent > .navbar-collapse {
@@ -13723,6 +13725,8 @@ fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest.acti
     margin-left: auto;
     padding-left: 15px;
     padding-right: 15px;
+    padding-left: 0px;
+    padding-right: 0px;
   }
   #promosComponent > .navbar-header,
   #promosComponent > .navbar-collapse {

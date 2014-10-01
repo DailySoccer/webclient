@@ -9,9 +9,10 @@
     <div class="column-contest-empty" ng-click="comp.onRow(contest)" ng-if="contest.isLive"></div>
 
     <div class="column-contest-price" ng-click="comp.onRow(contest)" ng-if="!contest.isLive && !contest.isHistory">
-      <div class="column-contest-price-content" ng-if="!comp.isFreeContest(contest)"><span>{{contest.entryFee}}€</span></div>
-      <div class="column-contest-price-header" ng-if="!comp.isFreeContest(contest)">ENTRADA</div>
-      <div ng-if="comp.isFreeContest(contest)"><img src="images/iconFree.png" alt="GRATIS"></div>
+      <div class="column-contest-price-content"><span>{{contest.entryFee}}€</span></div>
+      <div class="column-contest-price-header">ENTRADA</div>
+      <!-- torneo gratis -->
+      <!--<div ng-if="comp.isFreeContest(contest)"><img src="images/iconFree.png" alt="GRATIS"></div>-->
     </div>
 
     <div class="column-contest-position" ng-click="comp.onRow(contest)" ng-if="contest.isLive || contest.isHistory">

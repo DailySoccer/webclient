@@ -20,6 +20,9 @@ class ContestHeaderComp implements DetachAware{
 
   bool get isEnterContestMode => _mode == ENTER_CONTEST;
 
+  // torneo gratis
+  //bool isFreeContest = false;
+
   Map<String, dynamic> contestHeaderInfo = {
     'description': '<description>',
     'startTime':'<startTime>',
@@ -40,6 +43,8 @@ class ContestHeaderComp implements DetachAware{
 
     if (value != null) {
       _refreshHeader();
+      // torneo gratis
+      //isFreeContest = _contestInfo.entryFee == 0;
     }
   }
 
@@ -62,7 +67,6 @@ class ContestHeaderComp implements DetachAware{
         break;
     }
   }
-
 
   ContestHeaderComp(this._router, this.scrDet) {
     _count = new Timer.periodic(new Duration(milliseconds:1000), (Timer timer) => _refreshCountdownDate());

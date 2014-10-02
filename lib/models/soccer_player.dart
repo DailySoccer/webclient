@@ -64,12 +64,12 @@ class SoccerPlayer {
     "TACKLE"            : "Entrada",
     "INTERCEPTION"      : "Intercepción",
     "SAVE_GOALKEEPER"   : "Parada",
-    "SAVE_PLAYER"       : "Bloquea un disparo",
+    "SAVE_PLAYER"       : "Disparo defendido",
     "CLAIM"             : "Anticipación",
     "CLEARANCE"         : "Despeje",
-    "MISS"              : "Disparo fallado",
+    "MISS"              : "Disparo fuera",
     "POST"              : "Poste",
-    "ATTEMPT_SAVED"     : "Disparo detenido",
+    "ATTEMPT_SAVED"     : "Disparo a puerta",
     "YELLOW_CARD"       : "Tarjeta amarilla",
     "PUNCH"             : "Despeje de puño",
     "DISPOSSESSED"      : "Pérdida de balón",
@@ -87,8 +87,8 @@ class SoccerPlayer {
     "CAUGHT_OFFSIDE"    : "Fuera de juego",
     "PENALTY_COMMITTED" : "Penalti cometido",
     "PENALTY_FAILED"    : "Penalti fallado",
-    "GOALKEEPER_SAVES_PENALTY"  : "Penalti detenido",
+    "GOALKEEPER_SAVES_PENALTY"  : "Penalti parado",
     "CLEAN_SHEET"       : "Sin goles encajados",
-    "GOAL_CONCEDED"     : "Gol concedido"
+    "GOAL_CONCEDED"     : "Gol encajado"
   };
 }

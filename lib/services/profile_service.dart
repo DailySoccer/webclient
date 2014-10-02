@@ -99,11 +99,8 @@ class ProfileService {
     }
   }
 
-
   static Future<bool> allowEnter() {
-    var completer = new Completer();
-    completer.complete(allowAccess);
-    return completer.future;
+    return new Future<bool>(() => allowAccess);
   }
 
   ServerService _server;

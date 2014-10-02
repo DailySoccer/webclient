@@ -2,10 +2,12 @@
 .background-header {
     background-image: url("@{images}/headerBackground.jpg");
     background-repeat: no-repeat;
-    background-position: center top;
+    background-position: center 4px;
     background-color: @black;
     border-color: @orange;
     border-width: 0px 0px 2px 0px;
+    border-radius: 0px;
+    height: 70px;
 }
 
 #mainMenu {
@@ -34,7 +36,7 @@
   		}
 		.navbar-nav {
 			width: 100%;
-			padding-left: 130px;
+			padding-left: 110px;
 			margin-left: 20px;
 		}
 	  	// elementos del menu
@@ -231,6 +233,7 @@
 			}
 			float: right;
 		  	background-color: transparent;
+		  	margin-top: 15px;
 		}
     }
 
@@ -247,9 +250,9 @@
 
 .brand-style {
 	// Retina display: ;
-  	.img-retina("@{images}/logoEpic11.png", "@{images}/logoEpic11-2x.png", 120px, 37px);
+  	.img-retina("@{images}/logoEpic11.png", "@{images}/logoEpic11-2x.png", 99px, 52px);
   	background-repeat: no-repeat;
-  	.size(120px, 37px);
+  	.size(99px, 52px);
   	margin-top: 10px;
   	cursor: pointer;
 }
@@ -269,7 +272,7 @@
 .navbar-header-unloggin {   
 	.navbar-brand {
   		.brand-style();
-  		margin-top: 5px;
+  		margin-top: 0;
   		@media (max-width: @screen-xs-max) {
 		  	//.hidden-xs();
 		}

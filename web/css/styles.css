@@ -12255,10 +12255,12 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
 .background-header {
   background-image: url("../images/headerBackground.jpg");
   background-repeat: no-repeat;
-  background-position: center top;
+  background-position: center 4px;
   background-color: #000000;
   border-color: #fa9c19;
   border-width: 0px 0px 2px 0px;
+  border-radius: 0px;
+  height: 70px;
 }
 #mainMenu {
   -webkit-user-select: none;
@@ -12414,10 +12416,12 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
 #mainMenu.image-background {
   background-image: url("../images/headerBackground.jpg");
   background-repeat: no-repeat;
-  background-position: center top;
+  background-position: center 4px;
   background-color: #000000;
   border-color: #fa9c19;
   border-width: 0px 0px 2px 0px;
+  border-radius: 0px;
+  height: 70px;
 }
 @media (min-width: 768px) {
   #mainMenu .navbar-header {
@@ -12426,7 +12430,7 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
   }
   #mainMenu .navbar-nav {
     width: 100%;
-    padding-left: 130px;
+    padding-left: 110px;
     margin-left: 20px;
   }
   #mainMenu .navbar-nav > .active > a {
@@ -12758,6 +12762,7 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
     border-radius: 0;
     float: right;
     background-color: transparent;
+    margin-top: 15px;
   }
   #mainMenu #toggleSlideMenu .icon-bar {
     height: 3px;
@@ -12777,22 +12782,22 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
 .brand-style {
   background-image: url("../images/logoEpic11.png");
   background-repeat: no-repeat;
-  width: 120px;
-  height: 37px;
+  width: 99px;
+  height: 52px;
   margin-top: 10px;
   cursor: pointer;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   .brand-style {
     background-image: url("../images/logoEpic11-2x.png");
-    background-size: 120px 37px;
+    background-size: 99px 52px;
   }
 }
 .navbar-brand {
   background-image: url("../images/logoEpic11.png");
   background-repeat: no-repeat;
-  width: 120px;
-  height: 37px;
+  width: 99px;
+  height: 52px;
   margin-top: 10px;
   cursor: pointer;
   margin-left: 0px;
@@ -12800,7 +12805,7 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   .navbar-brand {
     background-image: url("../images/logoEpic11-2x.png");
-    background-size: 120px 37px;
+    background-size: 99px 52px;
   }
 }
 @media (max-width: 767px) {
@@ -12812,16 +12817,16 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
 .navbar-header-unloggin .navbar-brand {
   background-image: url("../images/logoEpic11.png");
   background-repeat: no-repeat;
-  width: 120px;
-  height: 37px;
+  width: 99px;
+  height: 52px;
   margin-top: 10px;
   cursor: pointer;
-  margin-top: 5px;
+  margin-top: 0;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   .navbar-header-unloggin .navbar-brand {
     background-image: url("../images/logoEpic11-2x.png");
-    background-size: 120px 37px;
+    background-size: 99px 52px;
   }
 }
 .navbar-header-unloggin .button-wrapper {

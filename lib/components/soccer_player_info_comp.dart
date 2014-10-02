@@ -6,6 +6,7 @@ import 'package:webclient/models/soccer_player_info.dart';
 import 'package:webclient/services/soccer_player_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/controllers/enter_contest_ctrl.dart';
+import 'package:intl/intl.dart';
 
 
 @Component(
@@ -82,6 +83,19 @@ class SoccerPlayerInfoComp {
 
   bool isGoalkeeper() => currentInfoData['fieldPos'] == "POR";
 
+  String calculateStatAverage(int statSummatory, int totalMatch) {
+    String zero = "0";
+    if (totalMatch == 0 || statSummatory == 0) {
+      return zero;
+    }
+    else {
+      NumberFormat twoDecimals = new NumberFormat("0.00");
+      NumberFormat oneDecimals = new NumberFormat("00.0");
+      var average = statSummatory/totalMatch;
+      return (average >= 10) ? oneDecimals.format(average).toString() : average = twoDecimals.format(average).toString();
+    }
+  }
+
   void calculateStadistics(SoccerPlayerInfo soccerPlayer) {
     List<String> matchDate = [];
     List<String> day = [];
@@ -137,10 +151,10 @@ class SoccerPlayerInfoComp {
 
         List<String> matchStats = [];
         if (isGoalkeeper()) {
-          matchStats.addAll([dayMonth, stat.opponentTeam.shortName, stat.playedMinutes, stat.golesEncajados, stat.paradas, stat.despejes, stat.pases, stat.recuperaciones, stat.perdidasBalon, stat.penaltisDetenidos, stat.faltasCometidas, stat.tarjetasAmarillas, stat.tarjetasRojas]);
+          matchStats.addAll([dayMonth, stat.opponentTeam.shortName, stat.fantasyPoints, stat.playedMinutes, stat.golesEncajados, stat.paradas, stat.despejes, stat.pases, stat.recuperaciones, stat.perdidasBalon, stat.penaltisDetenidos, stat.faltasCometidas, stat.tarjetasAmarillas, stat.tarjetasRojas]);
         }
         else {
-          matchStats.addAll([dayMonth, stat.opponentTeam.shortName, stat.playedMinutes, stat.goles, stat.tiros, stat.pases, stat.asistencias, stat.regates, stat.recuperaciones, stat.perdidasBalon, stat.faltasRecibidas, stat.faltasCometidas, stat.tarjetasAmarillas, stat.tarjetasRojas]);
+          matchStats.addAll([dayMonth, stat.opponentTeam.shortName, stat.fantasyPoints, stat.playedMinutes, stat.goles, stat.tiros, stat.pases, stat.asistencias, stat.regates, stat.recuperaciones, stat.perdidasBalon, stat.faltasRecibidas, stat.faltasCometidas, stat.tarjetasAmarillas, stat.tarjetasRojas]);
         }
         // Si no tenemos creadas las estadísticas partido a partido
         if (seasons.length == 0) {
@@ -178,34 +192,34 @@ class SoccerPlayerInfoComp {
     if (isGoalkeeper()) {
       //añadimos las especificas del portero
       medias = [
-                {'nombre' : "MIN" , 'valor': partidosTotales ==  0 ? 0 : sumatorioMinutos / partidosTotales},
-                {'nombre' : "PB" , 'valor': partidosTotales ==  0 ? 0 : sumatorioPerdidasBalon / partidosTotales},
-                {'nombre' : "GE" , 'valor': partidosTotales ==  0 ? 0 : sumatorioGolesEncajados / partidosTotales},
-                {'nombre' : "PD" , 'valor': partidosTotales ==  0 ? 0 : sumatorioPenaltisDetenidos / partidosTotales},
-                {'nombre' : "PA" , 'valor': partidosTotales ==  0 ? 0 : sumatorioParadas / partidosTotales},
-                {'nombre' : "FC" , 'valor': partidosTotales ==  0 ? 0 : sumatorioFaltasCometidas / partidosTotales},
-                {'nombre' : "D" , 'valor': partidosTotales ==  0 ? 0 : sumatorioDespejes / partidosTotales},
-                {'nombre' : "TA" , 'valor': partidosTotales ==  0 ? 0 : sumatorioTarjetasAmarillas / partidosTotales},
-                {'nombre' : "P" , 'valor': partidosTotales ==  0 ? 0 : sumatorioPases / partidosTotales},
-                {'nombre' : "TR" , 'valor': partidosTotales ==  0 ? 0 : sumatorioTarjetasRojas / partidosTotales},
-                {'nombre' : "RE" , 'valor': partidosTotales ==  0 ? 0 : sumatorioRecuperaciones / partidosTotales}
+                {'nombre' : "MIN" , 'valor': calculateStatAverage(sumatorioMinutos, partidosTotales)},
+                {'nombre' : "PB" , 'valor': calculateStatAverage(sumatorioPerdidasBalon, partidosTotales)},
+                {'nombre' : "GE" , 'valor': calculateStatAverage(sumatorioGolesEncajados, partidosTotales)},
+                {'nombre' : "PD" , 'valor': calculateStatAverage(sumatorioPenaltisDetenidos, partidosTotales)},
+                {'nombre' : "PA" , 'valor': calculateStatAverage(sumatorioParadas, partidosTotales)},
+                {'nombre' : "FC" , 'valor': calculateStatAverage(sumatorioFaltasCometidas, partidosTotales)},
+                {'nombre' : "D" , 'valor': calculateStatAverage(sumatorioDespejes, partidosTotales)},
+                {'nombre' : "TA" , 'valor': calculateStatAverage(sumatorioTarjetasAmarillas, partidosTotales)},
+                {'nombre' : "P" , 'valor': calculateStatAverage(sumatorioPases, partidosTotales)},
+                {'nombre' : "TR" , 'valor': calculateStatAverage(sumatorioTarjetasRojas, partidosTotales)},
+                {'nombre' : "RE" , 'valor': calculateStatAverage(sumatorioRecuperaciones, partidosTotales)}
       ];
     }
     else {
       //añadimos las especificas del resto de jugadores
       medias = [
-                {'nombre' : "MIN" , 'valor': partidosTotales ==  0 ? 0 : sumatorioMinutos / partidosTotales},
-                {'nombre' : "RE" , 'valor': partidosTotales ==  0 ? 0 : sumatorioRecuperaciones / partidosTotales},
-                {'nombre' : "G" , 'valor': partidosTotales ==  0 ? 0 : sumatorioGoles / partidosTotales},
-                {'nombre' : "PB" , 'valor': partidosTotales ==  0 ? 0 : sumatorioPerdidasBalon / partidosTotales},
-                {'nombre' : "T" , 'valor': partidosTotales ==  0 ? 0 : sumatorioTiros / partidosTotales},
-                {'nombre' : "FR" , 'valor': partidosTotales ==  0 ? 0 : sumatorioFaltasRecibidas / partidosTotales},
-                {'nombre' : "P" , 'valor': partidosTotales ==  0 ? 0 : sumatorioPases / partidosTotales},
-                {'nombre' : "FC" , 'valor': partidosTotales ==  0 ? 0 : sumatorioFaltasCometidas / partidosTotales},
-                {'nombre' : "A" , 'valor': partidosTotales ==  0 ? 0 : sumatorioAsistencias / partidosTotales},
-                {'nombre' : "TA" , 'valor': partidosTotales ==  0 ? 0 : sumatorioTarjetasAmarillas / partidosTotales},
-                {'nombre' : "R" , 'valor': partidosTotales ==  0 ? 0 : sumatorioRegates / partidosTotales},
-                {'nombre' : "TR" , 'valor': partidosTotales ==  0 ? 0 : sumatorioTarjetasRojas / partidosTotales}
+                {'nombre' : "MIN" , 'valor': calculateStatAverage(sumatorioMinutos, partidosTotales)},
+                {'nombre' : "RE" , 'valor': calculateStatAverage(sumatorioRecuperaciones, partidosTotales)},
+                {'nombre' : "G" , 'valor': calculateStatAverage(sumatorioGoles, partidosTotales)},
+                {'nombre' : "PB" , 'valor': calculateStatAverage(sumatorioPerdidasBalon, partidosTotales)},
+                {'nombre' : "T" , 'valor': calculateStatAverage(sumatorioTiros, partidosTotales)},
+                {'nombre' : "FR" , 'valor': calculateStatAverage(sumatorioFaltasRecibidas, partidosTotales)},
+                {'nombre' : "P" , 'valor': calculateStatAverage(sumatorioPases, partidosTotales)},
+                {'nombre' : "FC" , 'valor': calculateStatAverage(sumatorioFaltasCometidas, partidosTotales)},
+                {'nombre' : "A" , 'valor': calculateStatAverage(sumatorioAsistencias, partidosTotales)},
+                {'nombre' : "TA" , 'valor': calculateStatAverage(sumatorioTarjetasAmarillas, partidosTotales)},
+                {'nombre' : "R" , 'valor': calculateStatAverage(sumatorioRegates, partidosTotales)},
+                {'nombre' : "TR" , 'valor': calculateStatAverage(sumatorioTarjetasRojas, partidosTotales)}
       ];
     }
     // Añado una última columna en las medias de portero para que cuadre

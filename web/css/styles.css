@@ -14976,13 +14976,13 @@ fieldset[disabled] .soccer-player-info-header .btn-add-soccer-player-info {
 @media (min-width: 768px) and (min-width: 768px) {
   .soccer-player-info-content .match-stats .match-stats-header div {
     float: left;
-    width: 7.08333333%;
+    width: 6.66666667%;
   }
 }
 @media (min-width: 768px) and (min-width: 768px) {
   .soccer-player-info-content .match-stats .match-stats-content .data div {
     float: left;
-    width: 7.08333333%;
+    width: 6.66666667%;
   }
 }
 .soccer-player-info-content .noMatchesPlayed {

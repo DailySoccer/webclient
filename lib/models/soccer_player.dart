@@ -47,6 +47,7 @@ class SoccerPlayer {
     salary = json.containsKey("salary") ? json.salary : 0;
 
     team = references.getSoccerTeamById(json.templateTeamId);
+    team.addSoccerPlayer(this);
     return this;
   }
 

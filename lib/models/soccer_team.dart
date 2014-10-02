@@ -31,7 +31,7 @@ class SoccerTeam {
         SoccerPlayer soccerPlayer = references.getSoccerPlayerById(x)
           .. team = this;
 
-        soccerPlayers.add(soccerPlayer);
+        addSoccerPlayer(soccerPlayer);
       }
     }
     return this;
@@ -39,5 +39,9 @@ class SoccerTeam {
 
   SoccerPlayer findSoccerPlayer(String soccerPlayerId) {
     return soccerPlayers.firstWhere( (soccer) => soccer.templateSoccerPlayerId == soccerPlayerId, orElse: () => null );
+  }
+
+  void addSoccerPlayer(SoccerPlayer soccerPlayer) {
+    soccerPlayers.add(soccerPlayer);
   }
 }

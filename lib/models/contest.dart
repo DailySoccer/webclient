@@ -169,16 +169,6 @@ class Contest {
       }
     }
 
-    if (jsonRoot.containsKey("match_events")) {
-      jsonRoot.match_events.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject, contestReferences)).toList();
-    }
-    else {
-      // Aceptamos múltiples listas de partidos (con mayor o menor información)
-      for (int view=0; view<10 && jsonRoot.containsKey("match_events_$view"); view++) {
-          jsonRoot["match_events_$view"].map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject, contestReferences)).toList();
-      }
-    }
-
     if (jsonRoot.containsKey("soccer_teams")) {
       jsonRoot.soccer_teams.map((jsonObject) => new SoccerTeam.fromJsonObject(jsonObject, contestReferences)).toList();
     }
@@ -189,6 +179,17 @@ class Contest {
 
     if (jsonRoot.containsKey("users_info")) {
       jsonRoot.users_info.map((jsonObject) => new User.fromJsonObject(jsonObject, contestReferences)).toList();
+    }
+
+    // < FINAL > : Los partidos incluyen información ("liveFantasyPoints") que actualizarán a los futbolistas ("soccer_players")
+    if (jsonRoot.containsKey("match_events")) {
+      jsonRoot.match_events.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject, contestReferences)).toList();
+    }
+    else {
+      // Aceptamos múltiples listas de partidos (con mayor o menor información)
+      for (int view=0; view<10 && jsonRoot.containsKey("match_events_$view"); view++) {
+          jsonRoot["match_events_$view"].map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject, contestReferences)).toList();
+      }
     }
 
     return contests;

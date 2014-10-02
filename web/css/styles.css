@@ -18523,6 +18523,23 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play.active 
 #helpInfo .tab-pane.active {
   display: block;
 }
+#staticInfo .block-dark {
+  background-color: #ecf0f1;
+  padding-bottom: 40px;
+}
+#staticInfo .block-dark-header {
+  background-color: #ecf0f1;
+  padding-bottom: 40px;
+  padding-bottom: 0;
+}
+#staticInfo .title {
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 20pt;
+  color: #214a5f;
+  padding: 16px 10px 12px;
+  text-align: center;
+}
 .bootstrap-switch {
   display: inline-block;
   cursor: pointer;

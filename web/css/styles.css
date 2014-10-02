@@ -9703,7 +9703,7 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button.active {
   text-align: center;
   margin: 0 auto;
   position: absolute;
-  top: 60px;
+  top: 80px;
   /*.highlight-text {
 			.exo_bold(14pt, @white);
 			background-color: @orange;
@@ -9861,7 +9861,7 @@ fieldset[disabled] #mobileContent .content .button-play-mobile.active {
   padding-bottom: 5px;
 }
 .unlogged-margin {
-  margin-top: -54px;
+  margin-top: -70px;
 }
 .landing-wrapper .screen .screen-background {
   position: relative;
@@ -10126,7 +10126,7 @@ fieldset[disabled] .landing-wrapper .button-play.active {
   bottom: 1%;
   padding-bottom: 0%;
   width: 100%;
-  top: 14%;
+  top: 18%;
 }
 .first-screen .first-screen-wrapper > img {
   max-width: 100%;

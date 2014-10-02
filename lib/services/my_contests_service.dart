@@ -80,7 +80,7 @@ class MyContestsService {
     _server.getLiveMatchEventsFromTemplateContest(templateContestId)
       .then((jsonObject) {
         jsonObject.content.forEach((jsonObject) {
-            lastContest.matchEvents.firstWhere((matchEvent) => matchEvent.templateMatchEventId == jsonObject.templateMatchEventId)
+            lastContest.matchEvents.firstWhere((matchEvent) => matchEvent.templateMatchEventId == (jsonObject.containsKey("templateMatchEventId") ? jsonObject.templateMatchEventId : jsonObject._id))
                 .. updateLiveInfo(jsonObject);
         });
         completer.complete(jsonObject);

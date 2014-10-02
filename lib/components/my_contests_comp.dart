@@ -19,6 +19,10 @@ class MyContestsComp implements DetachAware {
 
   MyContestsService myContestsService;
 
+  String liveSortType = "contest-start-time_asc";
+  String waittingSortType = "contest-start-time_asc";
+  String historySortType = "contest-start-time_desc";
+
   MyContestsComp(this._profileService, this.myContestsService, this._router, this._flashMessage) {
     _updateLive();
     _timer = new Timer.periodic(const Duration(seconds:3), (Timer t) => _updateLive());

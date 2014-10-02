@@ -276,11 +276,11 @@ class LobbyComp implements ShadowRootAware, DetachAware {
 
     print('-LOBBY_COMP-: Ordenando la lista de torneos: ${sortType.split('_')}');
 
-    updateSorButtonsStyle(id);
+    updateSortButtonsStyle(id);
   }
 
   // Aplica los estilos necesarios para mostrar las flechitas de orden en los botones
-  void updateSorButtonsStyle(String buttonId) {
+  void updateSortButtonsStyle(String buttonId) {
     _sortingButtons.forEach( (Element btn) {
       btn..classes.clear()
         ..classes.addAll(_sortingButtonClassesByDefault);

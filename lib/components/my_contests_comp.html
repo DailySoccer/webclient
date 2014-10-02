@@ -51,6 +51,7 @@
         <!-- lista de concursos -->
         <div class="list-container" ng-if="comp.hasLiveContests">
           <contests-list id="liveContests"
+                         sorted-by="comp.liveSortType"
                          contests-list="comp.myContestsService.liveContests"
                          on-action-click='comp.onLiveActionClick(contest)'
                          on-row-click='comp.onLiveRowClick(contest)'>
@@ -91,6 +92,7 @@
         <!-- lista de concursos -->
         <div class="list-container" ng-if="comp.hasWaitingContests">
           <contests-list id="waitingContests"
+                         sorted-by="comp.waittingSortType"
                          contests-list='comp.myContestsService.waitingContests'
                          on-action-click='comp.onWaitingActionClick(contest)'
                          on-row-click='comp.onWaitingRowClick(contest)'>
@@ -136,6 +138,7 @@
           <div class="list-container" ng-if="comp.hasHistoryContests">
             <!--<div class="text-refresh-history">Actualizado cada 24 horas</div>-->
             <contests-list id="historyContests"
+                           sorted-by="comp.historySortType"
                            contests-list="comp.myContestsService.historyContests"
                            on-action-click='comp.onHistoryActionClick(contest)'
                            on-row-click='comp.onHistoryRowClick(contest)'>

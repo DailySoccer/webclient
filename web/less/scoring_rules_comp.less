@@ -1,8 +1,8 @@
 .panel-points {
 	.make-xs-column(12);
 	.make-sm-column(6);
-	padding-top: 15px;
-	padding-bottom: 15px;
+	padding: 15px 15px 0 15px;
+
 	.header {
 		.exo_bold(12pt, @white);
 		background-color: @greyUltraDark;
@@ -11,29 +11,26 @@
 		padding: 5px 10px;  
 
 	}
-	.body{
-		
-	}
+	
 	.punctuation {
-		.make-sm-column(12);
+		.make-row(0);
 		.make-border(1px, none solid solid solid, @blueUltraLight);
-		min-height: 32px;
-		background-color: white;
-		padding: 5px 10px;
+		background-color: @white;
+		vertical-align: middle;
 	}
-
-	.shortName {
-		.exo_bold(12pt, @greyDark);
-		float: left;
-	}
-
 	.name {	
-		.exo_light(12pt, @greyDark);
-		float: left;
-		padding-left: 5px;
+		.exo_light(10pt, @greyDark);
+		.make-xs-column(10);
+		text-align: left;
+		padding: 3px 0 3px 10px;
 	}
 	.points {
-		.exo_bold(12pt, @greyDark);
-		float: right;
+		.exo_light(10pt, @greyDark);
+		.make-xs-column(2);
+		text-align: right;
+		padding: 3px 10px 3px 0px;
 	}
+}
+#scoringForForwards {
+	padding-bottom: 15px;
 }

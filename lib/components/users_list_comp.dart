@@ -53,7 +53,7 @@ class UsersListComp {
             "id": contestEntry.user.userId,
             "contestEntry" : contestEntry,
             "name": contestEntry.user.nickName,
-            "remainingTime": "${contestEntry.timeLeft} min.",
+            "remainingTime": "${contestEntry.percentLeft}%",
             "score": contestEntry.currentLivePoints
           });
         }
@@ -64,7 +64,7 @@ class UsersListComp {
             "id": contestEntry.user.userId,
             "contestEntry" : contestEntry,
             "name": contestEntry.user.nickName,
-            "remainingTime": "${contestEntry.timeLeft} min.",
+            "remainingTime": "${contestEntry.percentLeft}%",
             "score": contestEntry.currentLivePoints
           });
         }

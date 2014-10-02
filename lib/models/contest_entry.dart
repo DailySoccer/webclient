@@ -21,13 +21,16 @@ class ContestEntry {
 
   int get currentLivePoints => soccers != null ? soccers.fold(0, (prev, soccerPlayer) => prev + soccerPlayer.currentLivePoints ) : 0;
 
+  int get percentLeft {
+    final int TOTAL = soccers.length * 90;
+    int time = timeLeft;
+    int percent = (time * 100) ~/ TOTAL;
+    return (percent > 0) ? percent
+                         : (time > 0) ? 1 : 0;
+  }
+
   int get timeLeft {
-    // Buscar los partidos en los que participan nuestro fantasyTeam
-    Set<MatchEvent> matchEvents = new Set<MatchEvent>();
-    for (SoccerPlayer soccerPlayer in soccers) {
-      matchEvents.add(soccerPlayer.team.matchEvent);
-    }
-    return matchEvents.fold(0, (prev, matchEvent) => prev + matchEvent.minutesLeft);
+    return soccers.fold(0, (prev, soccerPlayer) => prev + soccerPlayer.team.matchEvent.minutesLeft);
   }
 
   bool contains(SoccerPlayer soccerPlayer) => soccers.any( (elem) => elem.templateSoccerPlayerId == soccerPlayer.templateSoccerPlayerId );

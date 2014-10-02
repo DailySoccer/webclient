@@ -54,7 +54,7 @@ class FantasyTeamComp implements ShadowRootAware {
     String get userPosition => (_contestEntry != null && _viewContestCtrl!=null) ? _viewContestCtrl.getUserPosition(_contestEntry).toString() : "-";
     String get userNickname => (_contestEntry != null) ? _contestEntry.user.nickName : "";
     String get userScore => (_contestEntry != null) ? _contestEntry.currentLivePoints.toString() : "0";
-    String get remainingTime => (_contestEntry != null) ? "${_contestEntry.timeLeft} min." : "-";
+    String get remainingTime => (_contestEntry != null) ? "${_contestEntry.percentLeft}%" : "-";
 
     bool get isViewContestEntryMode => (_routeProvider.route.name == "view_contest_entry") || (_routeProvider.route.name == "edit_contest_entry") || (_routeProvider.route.name == "new_contest_entry");
 

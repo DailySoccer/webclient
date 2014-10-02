@@ -114,11 +114,15 @@
 	background-color: @white;
 	text-align: center;
 	padding-top: 30px;
-	padding-bottom: 200px;
+	padding-bottom: 60px;
+	@media (max-width: @screen-xs-max) {
+		padding-bottom: 30px;
+	}
 	.no-contests-title {
 		.exo_light(20pt, @blueMed);
+		max-width: 500px;
+		margin: 0 auto;
 		padding-bottom: 20px;
-
 	}
 	.no-contests-text {
 		.opensans_bold(8pt, @greyMed);

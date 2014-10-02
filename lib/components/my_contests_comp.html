@@ -37,10 +37,10 @@
         <div class="no-contest" ng-if="!comp.hasLiveContests">
           <div class="no-contests-wrapper">
             <div class="no-contests-title">
-             EN ESTE MOMENTO, <br> NO ESTÁS JUGANDO NINGÚN TORNEO
+             EN ESTE MOMENTO, NO ESTÁS JUGANDO NINGÚN TORNEO
             </div>
             <div class="no-contests-text">
-              CONSULTA LA LISTA DE TUS <strong>PRÓXIMOS TORNEOS</strong> PARA VER CUÁNDO EMPIEZAN
+              CONSULTA LA LISTA DE TUS <strong data-toggle="tab" ng-click="comp.tabChange('waiting-contest-content')">PRÓXIMOS TORNEOS</strong> PARA VER CUÁNDO EMPIEZAN
             </div>
           </div>
           <div class="my-no-contest-bottom-row">
@@ -78,7 +78,7 @@
         <div class="no-contest" ng-if="!comp.hasWaitingContests">
           <div class="no-contests-wrapper">
             <div class="no-contests-title">
-             EN ESTE MOMENTO, NO TIENES <br>UN EQUIPO CREADO PARA NUNGÚN TORNEO
+             EN ESTE MOMENTO, NO TIENES UN EQUIPO CREADO PARA NUNGÚN TORNEO
             </div>
             <div class="no-contests-text">
               VE A LA LISTA DE TORNEOS, ELIGE UNO Y EMPIEZA A JUGAR
@@ -112,7 +112,7 @@
             <div class="info">
               <span class="info-registers-count">{{comp.myContestsService.historyContests.length}} Registros</span>
               <span class="info-wins-count">{{comp.totalHistoryContestsWinner}} Ganados</span>
-              <span class="info-available-money">{{comp.totalHistoryContestsPrizes}} €</span>
+              <!--<span class="info-available-money">{{comp.totalHistoryContestsPrizes}} €</span>-->
             </div>
             <!--<div class="data-to-csv">
               <button class="btn-data-to-csv" ng-click="">DESCARGAR COMO CSV</button>
@@ -123,7 +123,7 @@
           <div class="no-contest" ng-if="!comp.hasHistoryContests">
             <div class="no-contests-wrapper">
               <div class="no-contests-title">
-               TODAVÍA NO HAS JUGADO <br>NUNGÚN TORNEO
+               TODAVÍA NO HAS JUGADO NUNGÚN TORNEO
               </div>
               <div class="no-contests-text">
                 VE A LA LISTA DE TORNEOS, ELIGE UNO Y EMPIEZA A JUGAR

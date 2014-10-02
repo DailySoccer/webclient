@@ -13674,13 +13674,20 @@ fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest.acti
   background-color: #ffffff;
   text-align: center;
   padding-top: 30px;
-  padding-bottom: 200px;
+  padding-bottom: 60px;
+}
+@media (max-width: 767px) {
+  .no-contests-wrapper {
+    padding-bottom: 30px;
+  }
 }
 .no-contests-wrapper .no-contests-title {
   font-family: 'Exo', sans-serif;
   font-weight: 300;
   font-size: 20pt;
   color: #0d75a6;
+  max-width: 500px;
+  margin: 0 auto;
   padding-bottom: 20px;
 }
 .no-contests-wrapper .no-contests-text {

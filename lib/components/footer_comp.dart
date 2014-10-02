@@ -14,6 +14,11 @@ class FooterComp {
   DateTimeService dateTimeService;
   ProfileService profileService;
 
-  FooterComp(this.profileService, this.dateTimeService);
+  FooterComp(this.profileService, this.dateTimeService, this._router);
 
+  void goTo(String routePath) {
+    _router.go(routePath, {});
+  }
+
+  Router _router;
 }

@@ -9477,6 +9477,9 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button.active {
     padding: 0px 0px;
   }
 }
+#mainFooter .sub-footer .data-wrapper a {
+  cursor: pointer;
+}
 #mainFooter .sub-footer .credit-cards {
   position: relative;
   min-height: 1px;

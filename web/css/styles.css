@@ -18459,6 +18459,8 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play.active 
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  padding-left: 0px;
+  padding-right: 0px;
   background-color: #59add5;
   border-width: 4px;
   border-style: none none solid none;

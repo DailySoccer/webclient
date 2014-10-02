@@ -36,6 +36,7 @@ class RememberPasswordComp implements ShadowRootAware {
     var rootElement = root as HtmlElement;
     _errSection = rootElement.querySelector("#errLabel");
     _errSection.parent.parent.style.display = 'none';
+    rootElement.querySelector('#email').focus();
   }
 
   Router _router;

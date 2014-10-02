@@ -89,8 +89,8 @@ class JoinComp implements ShadowRootAware {
 
     passwordError = rootElement.querySelector("#passwordError");
     passwordError.parent.style.display = 'none';
-
-   }
+    rootElement.querySelector('#nickName').focus();
+  }
 
   Router _router;
   ProfileService _profileService;

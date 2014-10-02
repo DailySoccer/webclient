@@ -53,5 +53,6 @@ class LoginComp implements ShadowRootAware  {
     var rootElement = root as HtmlElement;
     _errSection = rootElement.querySelector("#mailPassError");
     _errSection.parent.parent.style.display = 'none';
+    rootElement.querySelector('#login-mail').focus();
   }
 }

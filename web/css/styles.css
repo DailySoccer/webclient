@@ -10162,6 +10162,7 @@ fieldset[disabled] .landing-wrapper .button-play.active {
 }
 .first-screen .slider-wrapper {
   max-height: 680px;
+  width: 100%;
 }
 .first-screen .screen-background {
   position: relative;

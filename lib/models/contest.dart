@@ -6,6 +6,7 @@ import "package:webclient/models/user.dart";
 import "package:webclient/models/contest_entry.dart";
 import "package:webclient/models/soccer_player.dart";
 import "package:webclient/models/soccer_team.dart";
+import "package:webclient/models/instance_soccer_player.dart";
 import 'package:webclient/services/contest_references.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/utils/string_utils.dart';
@@ -65,6 +66,7 @@ class Contest {
   List<int> prizes;
 
   List<MatchEvent> matchEvents;
+  List<InstanceSoccerPlayer> instanceSoccerPlayers;
 
   DateTime startDate;
 
@@ -174,7 +176,8 @@ class Contest {
     }
 
     if (jsonRoot.containsKey("soccer_players")) {
-      jsonRoot.soccer_players.map((jsonObject) => new SoccerPlayer.fromJsonObject(jsonObject, contestReferences)).toList();
+      List<SoccerPlayer> soccerPlayers = jsonRoot.soccer_players.map((jsonObject) => new SoccerPlayer.fromJsonObject(jsonObject, contestReferences)).toList();
+      contests.forEach((Contest contest) => contest.applyOnSoccerPlayers(soccerPlayers));
     }
 
     if (jsonRoot.containsKey("users_info")) {
@@ -237,6 +240,7 @@ class Contest {
     prizes = json.containsKey("prizes") ? json.prizes : [];
     startDate = DateTimeService.fromMillisecondsSinceEpoch(json.startDate);
     matchEvents = json.containsKey("templateMatchEventIds") ? json.templateMatchEventIds.map( (matchEventId) => references.getMatchEventById(matchEventId) ).toList() : [];
+    instanceSoccerPlayers = (json.containsKey("instanceSoccerPlayers")) ? json.instanceSoccerPlayers.map((jsonObject) => new InstanceSoccerPlayer.initFromJsonObject(jsonObject)).toList() : [];
 
     // print("Contest: id($contestId) name($name) currentUserIds($currentUserIds) templateContestId($templateContestId)");
     return this;
@@ -255,6 +259,15 @@ class Contest {
   int compareStartDateTo(Contest contest){
     int comp = startDate.compareTo(contest.startDate);
     return comp != 0 ? comp : contestId.compareTo(contest.contestId);
+  }
+
+  void applyOnSoccerPlayers(List<SoccerPlayer> soccerPlayers) {
+    instanceSoccerPlayers.forEach((instance) {
+      SoccerPlayer soccerPlayer = soccerPlayers.firstWhere((player) => player.templateSoccerPlayerId == instance.templateSoccerPlayerId, orElse: null);
+      if (soccerPlayer != null) {
+        instance.applyOn(soccerPlayer);
+      }
+    });
   }
 
   String _parsePattern(String text) {

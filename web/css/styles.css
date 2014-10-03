@@ -9724,7 +9724,7 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button.active {
 		}*/
 }
 #mobileContent .content .banner-top {
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 }
 #mobileContent .content .button-play-mobile {
   display: inline-block;
@@ -9752,7 +9752,7 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button.active {
   width: 80%;
   max-width: 300px;
   margin: 0 auto;
-  margin-top: 70px;
+  margin-top: 40px;
 }
 #mobileContent .content .button-play-mobile:focus,
 #mobileContent .content .button-play-mobile:active:focus,
@@ -9856,9 +9856,8 @@ fieldset[disabled] #mobileContent .content .button-play-mobile.active {
 #mobileContent .content .title-sup-text-mobile {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
-  font-size: 12pt;
+  font-size: 11pt;
   color: #ffffff;
-  background-color: rgba(0, 0, 0, 0.5);
   text-shadow: 2px 2px #000000;
   margin-bottom: 5px;
   padding-top: 5px;

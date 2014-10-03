@@ -6882,12 +6882,12 @@ button#infoContent .modal-info-head button.close {
 .panel-points .header {
   font-family: 'Exo', sans-serif;
   font-weight: 600;
-  font-size: 12pt;
+  font-size: 10pt;
   color: #ffffff;
   background-color: #434343;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  padding: 5px 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  padding: 2px 10px;
 }
 .panel-points .punctuation {
   margin-left: 0;
@@ -6898,6 +6898,7 @@ button#infoContent .modal-info-head button.close {
   border-radius: 0;
   background-color: #ffffff;
   vertical-align: middle;
+  padding: 4.5px 10px;
 }
 .panel-points .name {
   font-family: 'Exo', sans-serif;
@@ -6911,7 +6912,7 @@ button#infoContent .modal-info-head button.close {
   padding-left: 15px;
   padding-right: 15px;
   text-align: left;
-  padding: 3px 0 3px 10px;
+  padding: 0;
 }
 .panel-points .points {
   font-family: 'Exo', sans-serif;
@@ -6925,7 +6926,7 @@ button#infoContent .modal-info-head button.close {
   padding-left: 15px;
   padding-right: 15px;
   text-align: right;
-  padding: 3px 10px 3px 0px;
+  padding: 0;
 }
 #scoringForForwards {
   padding-bottom: 15px;
@@ -15992,7 +15993,7 @@ button.main-box .panel .panel-heading button.close {
 .main-box .panel .panel-body .remember-forgot-group .forget-pass {
   position: relative;
   float: left;
-  width: 50%;
+  width: 100%;
   min-height: 1px;
   padding-left: 0px;
   padding-right: 0px;

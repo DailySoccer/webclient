@@ -11,6 +11,10 @@ void webClientRouteInitializer(Router router, RouteViewFactory views) {
         path: '/landing_page',
         viewHtml: '<landing-page></landing-page>'
     )
+    ,'beta_info': ngRoute(
+        path: '/beta_info',
+        viewHtml: '<beta-info></beta-info>'
+    )
     ,'login': ngRoute(
         path: '/login',
         viewHtml: '<login></login>'
@@ -24,15 +28,15 @@ void webClientRouteInitializer(Router router, RouteViewFactory views) {
         viewHtml: '<help-info></help-info>'
     )
     ,'legal_info': ngRoute(
-        path: '/legal-info',
+        path: '/legal_info',
         viewHtml: '<legal-info></legal-info>'
     )
     ,'terminus_info': ngRoute(
-        path: '/terminus-info',
+        path: '/terminus_info',
         viewHtml: '<terminus-info></terminus-info>'
     )
     ,'policy_info': ngRoute(
-        path: '/policy-info',
+        path: '/policy_info',
         viewHtml: '<policy-info></policy-info>'
     )
     ,'remember_password': ngRoute(

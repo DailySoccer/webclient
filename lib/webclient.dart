@@ -48,6 +48,7 @@ import 'package:webclient/components/edit_personal_data_comp.dart';
 import 'package:webclient/components/remember_password_comp.dart';
 import 'package:webclient/components/view_contest_entry_comp.dart';
 import 'package:webclient/utils/form-autofill-fix.dart';
+import 'package:webclient/components/beta_info_comp.dart';
 
 class WebClientApp extends Module {
   WebClientApp() {
@@ -99,6 +100,7 @@ class WebClientApp extends Module {
     bind(UserProfileComp);
     bind(EditPersonalDataComp);
     bind(ViewContestEntryComp);
+    bind(BetaInfoComp);
 
     bind(FormAutofillDecorator);
 

@@ -111,7 +111,7 @@ class Contest {
     String type;
     switch(prizeType) {
       case Contest.PRIZE_FREE:
-        type = TOURNAMENT_FREE;
+        type = (maxEntries == 2) ? TOURNAMENT_HEAD_TO_HEAD : TOURNAMENT_FREE;
         break;
       case Contest.PRIZE_WINNER:
       case Contest.PRIZE_TOP_3:

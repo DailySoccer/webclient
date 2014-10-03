@@ -13890,10 +13890,9 @@ fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest.acti
   }
 }
 #promosComponent .promoDesktop {
-  position: relative;
   display: block;
-  left: 50%;
-  margin-left: -485px;
+  max-width: 100%;
+  height: auto;
 }
 #promosComponent .promoXs {
   position: relative;

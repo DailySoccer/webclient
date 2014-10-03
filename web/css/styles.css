@@ -9653,20 +9653,20 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button.active {
 #desktopContent .title-text {
   font-family: 'Exo', sans-serif;
   font-weight: 300;
-  font-size: 30pt;
+  font-size: 25pt;
   color: #fa9c19;
   margin: 0;
 }
 #desktopContent .description-text {
   font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
+  font-weight: 400;
   font-size: 10pt;
   color: #214a5f;
   margin: 0;
 }
 #desktopContent .first-description-text {
   font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
+  font-weight: 400;
   font-size: 10pt;
   color: #214a5f;
   margin: 0;
@@ -9933,7 +9933,7 @@ fieldset[disabled] #mobileContent .content .button-play-mobile.active {
 .landing-wrapper .screen .content-wrapper .content-container .screen-text-block .title-text-dark {
   font-family: 'Exo', sans-serif;
   font-weight: 300;
-  font-size: 30pt;
+  font-size: 25pt;
   color: #214a5f;
   margin: 0;
 }

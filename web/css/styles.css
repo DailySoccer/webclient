@@ -10142,7 +10142,7 @@ fieldset[disabled] .landing-wrapper .button-play.active {
 .first-screen .button-wrap {
   position: absolute;
   width: 100%;
-  bottom: 6%;
+  bottom: 5%;
 }
 .first-screen .button-wrap .button-play {
   margin: 0 auto;

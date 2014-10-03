@@ -1,3 +1,32 @@
 #betaComp {
 	background-color: @white;
+	.block-dark {
+		background-color: @tramaBlue;
+	}
+	.block-blue-header {
+		.block-dark();
+		background-color: @blueLight;
+	}
+	.block-dark-header {
+		.block-dark();
+		padding-bottom: 10px 15px;
+	}
+	.title {
+		.exo_light(20pt, @blueDark);
+		padding: 16px 10px 12px;
+		text-align: center;
+	}
+	.title_white {
+		.title();
+		color: @white;
+	}
+	.info-wrapper {
+		.make-xs-column(12);
+		background-color: @white;
+		padding: 20px 8% 80px 8%;
+		.texto {
+			.opensans_normal(12px, @greyDark);
+			text-align: center;
+		}
+	}
 }

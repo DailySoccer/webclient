@@ -9708,20 +9708,6 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button.active {
   margin: 0 auto;
   position: absolute;
   top: 80px;
-  /*.highlight-text {
-			.exo_bold(14pt, @white);
-			background-color: @orange;
-			margin-bottom: 20px;
-			padding: 10px 0px;
-		}
-		.stars {
-			background-image: url("@{images}/star.png");
-			background-repeat: repeat-x;
-			width: 30px;
-			height: 14px;
-			display: inline-block;
-			margin: 0 5px;
-		}*/
 }
 #mobileContent .content .banner-top {
   margin-bottom: 40px;
@@ -18570,6 +18556,51 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play.active 
 }
 #betaComp {
   background-color: #ffffff;
+}
+#betaComp .block-dark {
+  background-color: #ecf0f1;
+}
+#betaComp .block-blue-header {
+  background-color: #ecf0f1;
+  background-color: #59add5;
+}
+#betaComp .block-dark-header {
+  background-color: #ecf0f1;
+  padding-bottom: 10px 15px;
+}
+#betaComp .title {
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 20pt;
+  color: #214a5f;
+  padding: 16px 10px 12px;
+  text-align: center;
+}
+#betaComp .title_white {
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 20pt;
+  color: #214a5f;
+  padding: 16px 10px 12px;
+  text-align: center;
+  color: #ffffff;
+}
+#betaComp .info-wrapper {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: #ffffff;
+  padding: 20px 8% 80px 8%;
+}
+#betaComp .info-wrapper .texto {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  color: #777777;
+  text-align: center;
 }
 .bootstrap-switch {
   display: inline-block;

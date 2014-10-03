@@ -12680,7 +12680,8 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
     cursor: not-allowed !important;
   }
   #mainMenu .dropdown-menu {
-    margin-left: -113px;
+    margin-left: -115px;
+    margin-top: 7px;
     padding: 0px;
   }
   #mainMenu .dropdown-menu > li > a {
@@ -12701,11 +12702,6 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
   }
   #mainMenu .dropdown-menu > li > a:hover {
     background-color: #dcdcdc;
-  }
-}
-@media (min-width: 768px) and (max-width: 991px) {
-  #mainMenu .dropdown-menu {
-    margin-left: -107px;
   }
 }
 @media (max-width: 767px) {

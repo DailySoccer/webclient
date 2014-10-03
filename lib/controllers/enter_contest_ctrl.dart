@@ -34,6 +34,8 @@ class EnterContestCtrl implements DetachAware{
 
   Contest contest;
 
+  String contestEntryId = null;
+
   bool isSelectingSoccerPlayer = false;
 
   final List<dynamic> lineupSlots = [];
@@ -76,9 +78,9 @@ class EnterContestCtrl implements DetachAware{
 
         // Si nos viene el torneo para editar la alineación
         if (_editingContestEntry) {
-          _contestEntryId = routeProvider.route.parameters['contestEntryId'];
-          if (_contestEntryId != null) {
-            ContestEntry contestEntry = _myContestService.lastContest.getContestEntry(_contestEntryId);
+          contestEntryId = routeProvider.route.parameters['contestEntryId'];
+          if (contestEntryId != null) {
+            ContestEntry contestEntry = _myContestService.lastContest.getContestEntry(contestEntryId);
             // Insertamos en el lineup el jugador
             contestEntry.soccers.forEach((soccer) {
               onSoccerPlayerSelected(_allSoccerPlayers.firstWhere((slot) => slot["id"] == soccer.templateSoccerPlayerId));
@@ -427,7 +429,7 @@ class EnterContestCtrl implements DetachAware{
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
 
     if (_editingContestEntry) {
-      _myContestService.editContestEntry(_contestEntryId, lineupSlots.map((player) => player["id"]).toList())
+      _myContestService.editContestEntry(contestEntryId, lineupSlots.map((player) => player["id"]).toList())
         .then((_) => _router.go('edit_contest_entry', {"contestId" : contest.contestId, "parent" : parent}))
         .catchError((error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW));
     }
@@ -568,7 +570,6 @@ class EnterContestCtrl implements DetachAware{
   String _sortField = "";
   int _selectedLineupPosIndex = 0;
   bool _editingContestEntry = false;
-  String _contestEntryId = null;
 
   Router _router;
   ActiveContestsService _activeContestService;

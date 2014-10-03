@@ -7713,8 +7713,6 @@ fieldset[disabled] #personalDataContent .save-changes-content .action-button.act
   margin-left: -15px;
   margin-right: -15px;
   background-color: #ffffff;
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
 }
 @media (max-width: 991px) {
   #enterContest {
@@ -10384,8 +10382,6 @@ fieldset[disabled] .landing-wrapper .button-play.active {
     padding-top: 20px;
     padding-bottom: 20px;
     background-color: #ffffff;
-    border-bottom-right-radius: 8px;
-    border-bottom-left-radius: 8px;
   }
   #liveContestRoot .btn {
     color: #ffffff;
@@ -18091,8 +18087,6 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-back-contest.active 
     padding-top: 20px;
     padding-bottom: 20px;
     background-color: #ffffff;
-    border-bottom-right-radius: 8px;
-    border-bottom-left-radius: 8px;
   }
 }
 #viewContestEntry .view-contest-entry-tabs {

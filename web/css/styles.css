@@ -6736,7 +6736,7 @@ button#infoContent .modal-info-head button.close {
   margin: 10px auto 0;
   background-color: #ecf0f1;
 }
-@media (min-width: 1200px) {
+@media (min-width: 992px) {
   .rules-description {
     overflow-x: hidden;
     max-height: 350px;

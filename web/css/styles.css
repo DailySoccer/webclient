@@ -18569,6 +18569,9 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play.active 
   background-color: #ffffff;
   padding: 20px 8% 80px 8%;
 }
+#betaComp {
+  background-color: #ffffff;
+}
 .bootstrap-switch {
   display: inline-block;
   cursor: pointer;

@@ -24,15 +24,15 @@ class ContestHeaderComp implements DetachAware{
   //bool isFreeContest = false;
 
   Map<String, dynamic> contestHeaderInfo = {
-    'description': '<description>',
-    'startTime':'<startTime>',
+    'description': 'cargando...',
+    'startTime':'cargando...',
     'countdownDate': '',
     'textCountdownDate': '',
-    'contestType': '<contestType>',
-    'contestantCount': '<contestantCount>',
-    'entryPrice': '<entryPrice>',
-    'prize': '<prize>',
-    'prizeType':'<prizeType>'
+    'contestType': 'cargando...',
+    'contestantCount': 'cargando...',
+    'entryPrice': 'cargando...>',
+    'prize': 'cargando...',
+    'prizeType':'cargando...'
   };
 
   ScreenDetectorService scrDet;

@@ -18565,7 +18565,7 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play.active 
   padding-left: 15px;
   padding-right: 15px;
   background-color: #ffffff;
-  padding: 20px;
+  padding: 20px 8% 80px 8%;
 }
 .bootstrap-switch {
   display: inline-block;

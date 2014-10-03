@@ -6739,7 +6739,6 @@ button#infoContent .modal-info-head button.close {
 @media (min-width: 992px) {
   .rules-description {
     overflow-x: hidden;
-    max-height: 350px;
   }
 }
 .prizes-wrapper .no-prizes {

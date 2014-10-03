@@ -18547,6 +18547,7 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play.active 
   color: #214a5f;
   margin: 0;
   padding-top: 15px;
+  text-transform: uppercase;
 }
 #staticInfo p {
   font-family: 'Open Sans', sans-serif;

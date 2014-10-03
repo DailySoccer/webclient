@@ -67,7 +67,7 @@ class Contest {
 
   DateTime startDate;
 
-  String get description => "${tournamentTypeName}: ${numEntries} de ${maxEntries} jugadores - LIM. SAL.: ${salaryCap}";
+  String get description => "${tournamentTypeName}: ${numEntries} de ${maxEntries} jugadores - Límite de salario: ${salaryCap}";
 
   List<ContestEntry> get contestEntriesOrderByPoints {
     List<ContestEntry> entries = new List<ContestEntry>.from(contestEntries);
@@ -98,8 +98,8 @@ class Contest {
 
   Map<String,String> get tournamentTypeNames {
     return {
-      TOURNAMENT_FREE: "Free",
-      TOURNAMENT_HEAD_TO_HEAD: "Head-to-head",
+      TOURNAMENT_FREE: "Gratuito",
+      TOURNAMENT_HEAD_TO_HEAD: "1 contra 1",
       TOURNAMENT_LEAGUE: "Liga",
       TOURNAMENT_FIFTY_FIFTY: "50/50"
     };

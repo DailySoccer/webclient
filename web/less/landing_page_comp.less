@@ -78,6 +78,8 @@
 		position: relative;
 		overflow: hidden;
 		max-height: 480px;
+		width: 100%;
+		display: inline-block;
 	}
 	.screen{
 		position: relative;
@@ -179,23 +181,28 @@
 	.make-row(0);
 	position: relative;
 	.slider-wrapper {
-		max-height: 680px;
+		max-height: 500px;
 		width: 100%;
 	}
 	.screen-background {
 		.make-sm-column(12,0);
 	}
 	.first-screen-wrapper {
+
 		position: absolute;
 		bottom: 1%;
 		padding-bottom: 0%;
 		width: 100%;
-		top: 18%;
+		top: 10px;
+		.separator-from-menu {
+			width: 100%;
+			height: 71px; // el menu es de 71px de alto en versión desktop
+		}
 		> img {
 			.img-responsive();
 			display: block;
 			margin: 0 auto;
-			padding: 0 115px;
+			padding: 0 25px;
 		}
 	}
 	.button-wrap {

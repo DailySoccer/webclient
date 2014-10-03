@@ -41,14 +41,14 @@ class ContestInfoComp implements ShadowRootAware {
   ContestInfoComp(Scope scope, this._router, this._contestService, this._flashMessage) {
 
     currentInfoData = {  /*  hay que utilizar esta variable para meter los datos de este componente  */
-      'description'     : 'cargando...',
-      'name'            : 'cargando...',
-      'entry'           : 'cargando...',
-      'prize'           : 'cargando...',
+      'description'     : 'cargando datos...',
+      'name'            : '',
+      'entry'           : '',
+      'prize'           : '',
       'rules'           : 'Elige un equipo de 11 jugadores a partir de los siguientes partidos',         // 'Elige un equipo de 11 jugadores a partir de los siguientes partidos',
-      'startDateTime'   : 'cargando...', // 'COMIENZA EL DOM. 15/05 19:00',
+      'startDateTime'   : '', // 'COMIENZA EL DOM. 15/05 19:00',
       'matchesInvolved' : null,
-      'legals'          : 'cargando...',
+      'legals'          : '',
       'contestants'     : contestants,
       'prizes'          : []
     };

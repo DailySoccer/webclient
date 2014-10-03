@@ -24,15 +24,15 @@ class ContestHeaderComp implements DetachAware{
   //bool isFreeContest = false;
 
   Map<String, dynamic> contestHeaderInfo = {
-    'description': 'cargando...',
-    'startTime':'cargando...',
-    'countdownDate': '',
-    'textCountdownDate': '',
-    'contestType': 'cargando...',
-    'contestantCount': 'cargando...',
-    'entryPrice': 'cargando...>',
-    'prize': 'cargando...',
-    'prizeType':'cargando...'
+    'description':      'cargando datos...',
+    'startTime':        '',
+    'countdownDate':    '',
+    'textCountdownDate':'',
+    'contestType':      '',
+    'contestantCount':  '',
+    'entryPrice':       '',
+    'prize':            '',
+    'prizeType':        ''
   };
 
   ScreenDetectorService scrDet;
@@ -111,7 +111,7 @@ class ContestHeaderComp implements DetachAware{
     contestHeaderInfo["prize"] = "${_contestInfo.prizePool}€";
     contestHeaderInfo["prizeType"] = "${_contestInfo.prizeTypeName}";
     contestHeaderInfo["startTime"] = "";
-    contestHeaderInfo["contestantCount"] = "${_contestInfo.contestEntries.length} de ${_contestInfo.maxEntries} jugadores  - LIM. SAL.: ${_contestInfo.salaryCap}";
+    contestHeaderInfo["contestantCount"] = "${_contestInfo.contestEntries.length} de ${_contestInfo.maxEntries} jugadores  - Límite de salario: ${_contestInfo.salaryCap}";
   }
 
   void goBackTo() {

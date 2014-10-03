@@ -91,8 +91,14 @@ class SoccerPlayerInfoComp {
     else {
       NumberFormat twoDecimals = new NumberFormat("0.00");
       NumberFormat oneDecimals = new NumberFormat("00.0");
+      NumberFormat noDecimals = new NumberFormat("000");
       var average = statSummatory/totalMatch;
-      return (average >= 10) ? oneDecimals.format(average).toString() : average = twoDecimals.format(average).toString();
+      if (average >= 100) {
+       return noDecimals.format(average).toString();
+      }
+      else {
+        return (average >= 10) ? oneDecimals.format(average).toString() : average = twoDecimals.format(average).toString();
+      }
     }
   }
 

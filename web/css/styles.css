@@ -8316,7 +8316,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list.activ
     border-style: solid;
     border-color: #dcdcdc;
     border-radius: 8px;
-    height: 575px;
+    height: 555px;
     overflow: hidden;
   }
 }
@@ -8363,7 +8363,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list.activ
     border-style: solid;
     border-color: #fa9c19;
     border-radius: 8px;
-    min-height: 575px;
+    min-height: 555px;
     overflow: hidden;
   }
 }
@@ -15523,6 +15523,16 @@ textarea.soccer-player-filter .name-player-input-filter {
   padding-right: 0px;
   padding-left: 7px;
 }
+@media (max-width: 767px) {
+  .soccer-player-list-header-table .filterOrderPos {
+    display: none !important;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .soccer-player-list-header-table .filterOrderPos {
+    display: none !important;
+  }
+}
 @media (min-width: 992px) {
   .soccer-player-list-header-table .filterOrderPos {
     float: left;
@@ -15530,6 +15540,8 @@ textarea.soccer-player-filter .name-player-input-filter {
   }
 }
 .soccer-player-list-header-table .filterOrderName {
+  float: left;
+  width: 58.33333333%;
   position: relative;
   min-height: 1px;
   padding-left: 0px;
@@ -15543,6 +15555,8 @@ textarea.soccer-player-filter .name-player-input-filter {
   }
 }
 .soccer-player-list-header-table .filterOrderDFP {
+  float: left;
+  width: 8.33333333%;
   position: relative;
   min-height: 1px;
   padding-left: 0px;
@@ -15560,6 +15574,16 @@ textarea.soccer-player-filter .name-player-input-filter {
   padding-left: 0px;
   padding-right: 0px;
 }
+@media (max-width: 767px) {
+  .soccer-player-list-header-table .filterOrderPlayed {
+    display: none !important;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .soccer-player-list-header-table .filterOrderPlayed {
+    display: none !important;
+  }
+}
 @media (min-width: 992px) {
   .soccer-player-list-header-table .filterOrderPlayed {
     float: left;
@@ -15567,12 +15591,14 @@ textarea.soccer-player-filter .name-player-input-filter {
   }
 }
 .soccer-player-list-header-table .filterOrderSalary {
+  float: left;
+  width: 16.66666667%;
   position: relative;
   min-height: 1px;
   padding-left: 0px;
   padding-right: 0px;
   text-align: right;
-  padding-right: 15px;
+  padding-right: 5px;
 }
 @media (min-width: 992px) {
   .soccer-player-list-header-table .filterOrderSalary {
@@ -15597,7 +15623,7 @@ textarea.soccer-player-filter .name-player-input-filter {
 }
 @media (min-width: 768px) {
   .soccer-players-list {
-    max-height: 465px;
+    max-height: 421px;
   }
 }
 @media (min-width: 992px) {
@@ -15691,6 +15717,8 @@ textarea.soccer-player-filter .name-player-input-filter {
   color: #59add5;
 }
 .soccer-players-list .soccer-players-list-slot .column-dfp {
+  float: left;
+  width: 8.33333333%;
   position: relative;
   min-height: 1px;
   padding-left: 0px;
@@ -15701,16 +15729,6 @@ textarea.soccer-player-filter .name-player-input-filter {
   color: #777777;
   padding-top: 10px;
   text-align: center;
-}
-@media (max-width: 767px) {
-  .soccer-players-list .soccer-players-list-slot .column-dfp {
-    display: none !important;
-  }
-}
-@media (min-width: 768px) and (max-width: 991px) {
-  .soccer-players-list .soccer-players-list-slot .column-dfp {
-    display: none !important;
-  }
 }
 @media (min-width: 992px) {
   .soccer-players-list .soccer-players-list-slot .column-dfp {
@@ -15771,7 +15789,7 @@ textarea.soccer-player-filter .name-player-input-filter {
 }
 .soccer-players-list .soccer-players-list-slot .column-add {
   float: left;
-  width: 25%;
+  width: 16.66666667%;
   position: relative;
   min-height: 1px;
   padding-left: 0px;
@@ -15791,8 +15809,8 @@ textarea.soccer-player-filter .name-player-input-filter {
   border-color: #91b42c;
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   margin-top: 4px;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
   font-size: 9pt;
 }
 .soccer-players-list .soccer-players-list-slot .column-add .btn:hover,
@@ -15835,6 +15853,12 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
+}
+@media (min-width: 768px) {
+  .soccer-players-list .soccer-players-list-slot .column-add .btn {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }
 #loginRoot,
 #joinRoot,

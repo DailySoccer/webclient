@@ -20,6 +20,9 @@
   <div id="viewContestEntry" ng-switch="viewContestEntry.scrDet.isXsScreen" ng-cloak>
     <div ng-switch-when="true">
       <!-- Tabs de la versión XS -->
+      <div class="social">
+        <a href="whatsapp://send?text={{viewContestEntry.currentUrl}}"><img src="http://diariohoy.net/grafica/header-logo-whatsapp.png"/></a>
+      </div>
       <ul class="view-contest-entry-tabs" id="viewContestEntryTab" >
         <li class="active"><a ng-click="viewContestEntry.tabChange('userFantasyTeam')" data-toggle="tab">Tu alineación</a></li>
         <li><a ng-click="viewContestEntry.tabChange('usersList')" data-toggle="tab">Usuarios</a></li>
@@ -29,6 +32,7 @@
         <users-list class="tab-pane" id="usersList" contest-entries="viewContestEntry.contestEntries" selected-contest-entry="viewContestEntry.selectedOpponent" watch="viewContestEntry.updatedDate"></users-list>
       </div>
     </div>
+
     <div ng-switch-when="false">
       <fantasy-team id="userFantasyTeam" contest-entry="viewContestEntry.mainPlayer" watch="viewContestEntry.updatedDate" is-opponent="false" goParent="viewContestEntry.parent"></fantasy-team>
       <users-list id="usersList" ng-show="viewContestEntry.selectedOpponent == null" contest-entries="viewContestEntry.contestEntries" selected-contest-entry="viewContestEntry.selectedOpponent"

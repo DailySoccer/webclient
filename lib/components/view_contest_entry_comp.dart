@@ -31,6 +31,8 @@ class ViewContestEntryComp {
 
   List<String> matchesInvolved = [];
 
+  String get currentUrl => window.location.toString();//"www.epiceleven.com";
+
   Contest get contest => _myContestsService.lastContest;
   List<ContestEntry> get contestEntries => (contest != null) ? contest.contestEntries : null;
   List<ContestEntry> get contestEntriesOrderByPoints => (contest != null) ? contest.contestEntriesOrderByPoints : null;

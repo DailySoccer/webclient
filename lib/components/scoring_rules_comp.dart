@@ -16,7 +16,7 @@ class ScoringRulesComp {
     ,{"shortName":"(R)",    "name":"Regate",                                    "points": "10"}
     ,{"shortName":"(FR)",   "name":"Falta recibida",                            "points": "10"}
     ,{"shortName":"(PI)",   "name":"Pase Interceptado",                         "points": "15"}
-    ,{"shortName":"(TP)",   "name":"Tiro a puerta (fallado, poste o parado)",  "points": "15"}
+    ,{"shortName":"(TP)",   "name":"Tiro a puerta (fallado, poste o parado)",   "points": "15"}
     ,{"shortName":"(EE)",   "name":"Entrada Exitosa",                           "points": "15"}
     ,{"shortName":"(A)",    "name":"Asistencia",                                "points": "20"}
     ,{"shortName":"(FC)",   "name":"Falta cometida",                            "points": "-5"}
@@ -31,7 +31,7 @@ class ScoringRulesComp {
   ];
 
   List<Map> GoalKeepers = [
-    {"shortName":"(P0)",   "name":"Puerta a cero",                             "points": "40"}
+    {"shortName":"(P0)",   "name":"Puerta a cero",                              "points": "40"}
     ,{"shortName":"(G)",    "name":"Gol",                                       "points": "100"}
     ,{"shortName":"(PP)",   "name":"Penalti parado",                            "points": "30"}
     ,{"shortName":"(PA)",   "name":"Parada",                                    "points": "10"}
@@ -41,7 +41,7 @@ class ScoringRulesComp {
   ];
 
   List<Map> Defenders = [
-    {"shortName":"(P0)",   "name":"Puerta a cero",                             "points": "40"}
+    {"shortName":"(P0)",   "name":"Puerta a cero",                              "points": "40"}
     ,{"shortName":"(G)",    "name":"Gol",                                       "points": "80"}
     ,{"shortName":"(GE)",   "name":"Gol encajado",                              "points": "-10"}
 

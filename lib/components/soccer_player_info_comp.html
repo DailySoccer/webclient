@@ -8,7 +8,7 @@
       <button class="btn-cancel-soccer-player-info" ng-click="soccerPlayerInfo.enterContestCtrl.closePlayerInfo()">CANCELAR</button>
     </div>
     <div class="button-wrapper">
-      <span class="next-match">PRÓXIMO PARTIDO: <strong>R.MADRID</strong> VS. A. MADRID</span>
+      <!--<span class="next-match">PRÓXIMO PARTIDO: <strong>R.MADRID</strong> VS. A. MADRID</span>-->
       <button class="btn-add-soccer-player-info" ng-click="soccerPlayerInfo.enterContestCtrl.addSoccerPlayerToLineup(soccerPlayerInfo.currentInfoData['id'])">AÑADIR</button>
     </div>
   </div>
@@ -20,7 +20,7 @@
       <div class="soccer-player-name">{{soccerPlayerInfo.currentInfoData['name']}}</div>
     </div>
     <div class="soccer-player-info-stats">
-      <div class="soccer-player-fantasy-points"><span>EPIC POINTS</span><span>{{soccerPlayerInfo.currentInfoData['fantasyPoints']}}</span></div>
+      <div class="soccer-player-fantasy-points"><span>DFP</span><span>{{soccerPlayerInfo.currentInfoData['fantasyPoints']}}</span></div>
       <div class="soccer-player-matches"><span>PARTIDOS</span><span>{{soccerPlayerInfo.currentInfoData['matches']}}</span></div>
       <div class="soccer-player-salary"><span>SALARIO</span><span>{{soccerPlayerInfo.currentInfoData['salary']}}</span></div>
     </div>
@@ -39,8 +39,8 @@
       <div class="tab-content">
         <!--SEASON-->
         <div class="tab-pane active" id="season-info-tab-content">
-          <div class="next-match">PRÓXIMO PARTIDO: <strong>R.MADRID</strong> VS. A. MADRID</div>
-          <div class="date-season">15/05 19:00</div>
+          <!--<div class="next-match">PRÓXIMO PARTIDO: <strong>R.MADRID</strong> VS. A. MADRID</div>
+          <div class="date-season">15/05 19:00</div>-->
           <!-- MEDIAS -->
           <div class="season-header">Estadísticas de temporada <span>(datos por partido)</span></div>
           <div class="season-stats">
@@ -62,7 +62,7 @@
               <div><span ng-if="soccerPlayerInfo.enterContestCtrl.scrDet.isDesktop || soccerPlayerInfo.enterContestCtrl.scrDet.isSmScreen">FECHA</span>&nbsp;</div>
               <div ng-if="soccerPlayerInfo.enterContestCtrl.scrDet.isXsScreen">DÍA</div>
               <div>OP</div>
-              <div>EP</div>
+              <div>DFP</div>
               <div>MIN</div>
               <div>GE</div>
               <div>PA</div>
@@ -79,7 +79,7 @@
               <div><span ng-if="soccerPlayerInfo.enterContestCtrl.scrDet.isDesktop || soccerPlayerInfo.enterContestCtrl.scrDet.isSmScreen">FECHA</span>&nbsp;</div>
               <div ng-if="soccerPlayerInfo.enterContestCtrl.scrDet.isXsScreen">DÍA</div>
               <div>OP</div>
-              <div>EP</div>
+              <div>DFP</div>
               <div>MIN</div>
               <div>G</div>
               <div>T</div>

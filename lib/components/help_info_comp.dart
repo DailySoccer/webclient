@@ -13,7 +13,7 @@ import 'package:webclient/services/screen_detector_service.dart';
 class HelpInfoComp {
   ScreenDetectorService scrDet;
 
-  HelpInfoComp(this.scrDet);
+  HelpInfoComp(this.scrDet, this._router);
 
   void tabChange(String tab) {
     List<dynamic> allContentTab = document.querySelectorAll("#helpInfo .tab-pane");
@@ -24,4 +24,9 @@ class HelpInfoComp {
 
   }
 
+  void gotoLobby() {
+    _router.go("lobby", {});
+  }
+
+  Router _router;
 }

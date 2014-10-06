@@ -18548,6 +18548,11 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play.active 
   text-decoration: none;
   padding: 0;
 }
+@media (max-width: 767px) {
+  #helpInfo .help-info-tabs > li a {
+    font-size: 9pt;
+  }
+}
 #helpInfo .help-info-tabs li + li {
   float: left;
   width: 58.33333333%;

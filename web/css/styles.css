@@ -18435,6 +18435,9 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play.active 
 #helpInfo .toogle-block .toggle {
   display: none;
 }
+#helpInfo .toogle-block a {
+  cursor: pointer;
+}
 #helpInfo .scores-wrapper {
   margin-left: 0;
   margin-right: 0;

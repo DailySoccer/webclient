@@ -24,8 +24,8 @@ class HelpInfoComp {
 
   }
 
-  void gotoLobby() {
-    _router.go("lobby", {});
+  void goTo(String path) {
+    _router.go(path, {});
   }
 
   Router _router;

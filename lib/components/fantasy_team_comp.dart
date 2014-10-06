@@ -92,10 +92,10 @@ class FantasyTeamComp implements ShadowRootAware {
 
         slots.add({
             "id" : soccerPlayer.templateSoccerPlayerId,
-            "fieldPos": soccerPlayer.fieldPos,
+            "fieldPos": _contestEntry.contest.getFieldPos(soccerPlayer),
             "fullName": soccerPlayer.name,
             "matchEventName": matchEventName,
-            "salary": soccerPlayer.salary,
+            "salary": _contestEntry.contest.getSalary(soccerPlayer),
             "percentOfUsersThatOwn": (_viewContestCtrl != null) ? _viewContestCtrl.getPercentOfUsersThatOwn(soccerPlayer) : "",
             "score": soccerPlayer.printableCurrentLivePoints,
             "stats": soccerPlayer.printableLivePointsPerOptaEvent

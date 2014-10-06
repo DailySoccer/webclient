@@ -6,6 +6,7 @@ import "package:webclient/models/user.dart";
 import "package:webclient/models/contest_entry.dart";
 import "package:webclient/models/soccer_player.dart";
 import "package:webclient/models/soccer_team.dart";
+import "package:webclient/models/field_pos.dart";
 import "package:webclient/models/instance_soccer_player.dart";
 import 'package:webclient/services/contest_references.dart';
 import 'package:webclient/services/datetime_service.dart';
@@ -66,7 +67,7 @@ class Contest {
   List<int> prizes;
 
   List<MatchEvent> matchEvents;
-  List<InstanceSoccerPlayer> instanceSoccerPlayers;
+  Map<String, InstanceSoccerPlayer> instanceSoccerPlayers = new Map<String, InstanceSoccerPlayer>();
 
   DateTime startDate;
 
@@ -149,6 +150,18 @@ class Contest {
     return -1;
   }
 
+  bool isSoccerPlayerValid(SoccerPlayer soccerPlayer) {
+    return instanceSoccerPlayers.containsKey(soccerPlayer.templateSoccerPlayerId);
+  }
+
+  int getSalary(SoccerPlayer soccerPlayer) {
+    return instanceSoccerPlayers[soccerPlayer.templateSoccerPlayerId].salary;
+  }
+
+  FieldPos getFieldPos(SoccerPlayer soccerPlayer) {
+    return instanceSoccerPlayers[soccerPlayer.templateSoccerPlayerId].fieldPos;
+  }
+
   /*
    * Carga o un Contest o una LISTA de Contests a partir de JsonObjects
    */
@@ -176,8 +189,7 @@ class Contest {
     }
 
     if (jsonRoot.containsKey("soccer_players")) {
-      List<SoccerPlayer> soccerPlayers = jsonRoot.soccer_players.map((jsonObject) => new SoccerPlayer.fromJsonObject(jsonObject, contestReferences)).toList();
-      contests.forEach((Contest contest) => contest.applyOnSoccerPlayers(soccerPlayers));
+      jsonRoot.soccer_players.map((jsonObject) => new SoccerPlayer.fromJsonObject(jsonObject, contestReferences)).toList();
     }
 
     if (jsonRoot.containsKey("users_info")) {
@@ -240,7 +252,14 @@ class Contest {
     prizes = json.containsKey("prizes") ? json.prizes : [];
     startDate = DateTimeService.fromMillisecondsSinceEpoch(json.startDate);
     matchEvents = json.containsKey("templateMatchEventIds") ? json.templateMatchEventIds.map( (matchEventId) => references.getMatchEventById(matchEventId) ).toList() : [];
-    instanceSoccerPlayers = (json.containsKey("instanceSoccerPlayers")) ? json.instanceSoccerPlayers.map((jsonObject) => new InstanceSoccerPlayer.initFromJsonObject(jsonObject)).toList() : [];
+
+    instanceSoccerPlayers = {};
+    if (json.containsKey("instanceSoccerPlayers")) {
+      json.instanceSoccerPlayers.forEach((jsonObject) {
+        InstanceSoccerPlayer instanceSoccerPlayer =  new InstanceSoccerPlayer.initFromJsonObject(jsonObject);
+        instanceSoccerPlayers[instanceSoccerPlayer.templateSoccerPlayerId] = instanceSoccerPlayer;
+      });
+    }
 
     // print("Contest: id($contestId) name($name) currentUserIds($currentUserIds) templateContestId($templateContestId)");
     return this;
@@ -259,15 +278,6 @@ class Contest {
   int compareStartDateTo(Contest contest){
     int comp = startDate.compareTo(contest.startDate);
     return comp != 0 ? comp : contestId.compareTo(contest.contestId);
-  }
-
-  void applyOnSoccerPlayers(List<SoccerPlayer> soccerPlayers) {
-    instanceSoccerPlayers.forEach((instance) {
-      SoccerPlayer soccerPlayer = soccerPlayers.firstWhere((player) => player.templateSoccerPlayerId == instance.templateSoccerPlayerId, orElse: null);
-      if (soccerPlayer != null) {
-        instance.applyOn(soccerPlayer);
-      }
-    });
   }
 
   String _parsePattern(String text) {

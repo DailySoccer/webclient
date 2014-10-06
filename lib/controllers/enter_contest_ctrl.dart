@@ -373,14 +373,14 @@ class EnterContestCtrl implements DetachAware{
 
     _allSoccerPlayers.add({
       "id": soccerPlayer.templateSoccerPlayerId,
-      "fieldPos": soccerPlayer.fieldPos,
+      "fieldPos": contest.getFieldPos(soccerPlayer),
       "fullName": soccerPlayer.name,
       "matchId" : matchEvent.templateMatchEventId,
       "matchEventName": matchEventName,
       "remainingMatchTime": "70 MIN",
       "fantasyPoints": soccerPlayer.fantasyPoints,
       "playedMatches": soccerPlayer.playedMatches,
-      "salary": soccerPlayer.salary
+      "salary": contest.getSalary(soccerPlayer)
     });
   }
 
@@ -389,11 +389,15 @@ class EnterContestCtrl implements DetachAware{
 
     for (var matchEvent in matchEvents) {
       for (var player in matchEvent.soccerTeamA.soccerPlayers) {
-        _insertSoccerPlayer(matchEvent, matchEvent.soccerTeamA, player);
+        if (contest.isSoccerPlayerValid(player)) {
+          _insertSoccerPlayer(matchEvent, matchEvent.soccerTeamA, player);
+        }
       }
 
       for (var player in matchEvent.soccerTeamB.soccerPlayers) {
-        _insertSoccerPlayer(matchEvent, matchEvent.soccerTeamB, player);
+        if (contest.isSoccerPlayerValid(player)) {
+          _insertSoccerPlayer(matchEvent, matchEvent.soccerTeamB, player);
+        }
       }
 
       // generamos los partidos para el filtro de partidos

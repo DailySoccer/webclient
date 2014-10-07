@@ -7,7 +7,7 @@
   <!-- Nav tabs -->
   <ul class="help-info-tabs" role="tablist">
     <li class="active"><a role="tab" data-toggle="tab" ng-click="helpInfo.tabChange('how-works-content')">CÓMO FUNCIONA</a></li>
-    <li><a role="tab" data-toggle="tab" ng-click="helpInfo.tabChange('rules-scores-content')">REGLAS Y PUNTUACIONES</a></li>
+    <li><a role="tab" data-toggle="tab" ng-click="helpInfo.tabChange('rules-scores-content')">PUNTUACIONES Y REGLAS</a></li>
   </ul>
 
   <div class="tab-pane active" id="how-works-content">
@@ -59,6 +59,12 @@
     </div>
   </div>
   <div class="tab-pane" id="rules-scores-content">
+    <div class="block-dark">
+      <div class="title">PUNTUACIONES Y ABREVIATURAS</div>
+      <div class="scores-wrapper">
+        <scoring-rules></scoring-rules>
+      </div>
+    </div>
     <div class="block-light">
       <div class="title">REGLAS</div>
       <div class="toogle-block">
@@ -154,12 +160,6 @@
           <p>Epic Eleven también se reserva el derecho de cancelar los torneos a su criterio, sin ningún tipo de restricciones. Normalmente, esto se llevará a cabo sólo en los casos en los que creemos que, debido a problemas en el servicio o hechos que afecten a los eventos deportivos, no habría un impacto generalizado en la mayor parte de las competiciones.</p>
           <p>Para más información sobre la manera en que Epic Eleven trabaja, por favor, visita nuestra sección de Preguntas Frecuentes en nuestra Página de Ayuda.</p>
         </div>
-      </div>
-    </div>
-    <div class="block-dark">
-      <div class="title">PUNTUACIONES Y ABREVIATURAS</div>
-      <div class="scores-wrapper">
-        <scoring-rules></scoring-rules>
       </div>
     </div>
   </div>

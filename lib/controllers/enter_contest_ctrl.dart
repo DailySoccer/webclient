@@ -13,6 +13,7 @@ import "package:webclient/models/soccer_team.dart";
 import 'package:webclient/models/match_event.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/contest_entry.dart';
+import "package:webclient/models/instance_soccer_player.dart";
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/utils/js_utils.dart';
@@ -82,8 +83,8 @@ class EnterContestCtrl implements DetachAware{
           if (contestEntryId != null) {
             ContestEntry contestEntry = _myContestService.lastContest.getContestEntry(contestEntryId);
             // Insertamos en el lineup el jugador
-            contestEntry.soccers.forEach((soccer) {
-              onSoccerPlayerSelected(_allSoccerPlayers.firstWhere((slot) => slot["id"] == soccer.templateSoccerPlayerId));
+            contestEntry.instanceSoccerPlayers.forEach((instanceSoccerPlayer) {
+              onSoccerPlayerSelected(_allSoccerPlayers.firstWhere((slot) => slot["id"] == instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId));
             });
           }
         }
@@ -364,50 +365,40 @@ class EnterContestCtrl implements DetachAware{
     return false;
   }
 
-  void _insertSoccerPlayer(MatchEvent matchEvent, SoccerTeam soccerTeam, SoccerPlayer soccerPlayer) {
-    String shortNameTeamA = soccerPlayer.team.matchEvent.soccerTeamA.shortName;
-    String shortNameTeamB = soccerPlayer.team.matchEvent.soccerTeamB.shortName;
-    var matchEventName = (soccerPlayer.team.templateSoccerTeamId == soccerPlayer.team.matchEvent.soccerTeamA.templateSoccerTeamId)
+  void _insertSoccerPlayer(MatchEvent matchEvent, SoccerTeam soccerTeam, InstanceSoccerPlayer instanceSoccerPlayer) {
+    String shortNameTeamA = matchEvent.soccerTeamA.shortName;
+    String shortNameTeamB = matchEvent.soccerTeamB.shortName;
+    var matchEventName = (instanceSoccerPlayer.soccerTeam.templateSoccerTeamId == matchEvent.soccerTeamA.templateSoccerTeamId)
         ? "<strong>$shortNameTeamA</strong> - $shortNameTeamB"
         : "$shortNameTeamA - <strong>$shortNameTeamB</strong>";
 
     _allSoccerPlayers.add({
-      "id": soccerPlayer.templateSoccerPlayerId,
-      "fieldPos": contest.getFieldPos(soccerPlayer),
-      "fullName": soccerPlayer.name,
+      "id": instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId,
+      "fieldPos": instanceSoccerPlayer.fieldPos,
+      "fullName": instanceSoccerPlayer.soccerPlayer.name,
       "matchId" : matchEvent.templateMatchEventId,
       "matchEventName": matchEventName,
-      "remainingMatchTime": "70 MIN",
-      "fantasyPoints": soccerPlayer.fantasyPoints,
-      "playedMatches": soccerPlayer.playedMatches,
-      "salary": contest.getSalary(soccerPlayer)
+      "remainingMatchTime": "-",
+      "fantasyPoints": instanceSoccerPlayer.soccerPlayer.fantasyPoints,
+      "playedMatches": instanceSoccerPlayer.soccerPlayer.playedMatches,
+      "salary": instanceSoccerPlayer.salary
     });
   }
 
   void initAllSoccerPlayers() {
+    contest.instanceSoccerPlayers.forEach((templateSoccerId, instanceSoccerPlayer) {
+      _insertSoccerPlayer(instanceSoccerPlayer.soccerTeam.matchEvent, instanceSoccerPlayer.soccerTeam, instanceSoccerPlayer);
+    });
+
+    // generamos los partidos para el filtro de partidos
+    availableMatchEvents.clear();
+
     List<MatchEvent> matchEvents = contest.matchEvents;
-
-    for (var matchEvent in matchEvents) {
-      for (var player in matchEvent.soccerTeamA.soccerPlayers) {
-        if (contest.isSoccerPlayerValid(player)) {
-          _insertSoccerPlayer(matchEvent, matchEvent.soccerTeamA, player);
-        }
-      }
-
-      for (var player in matchEvent.soccerTeamB.soccerPlayers) {
-        if (contest.isSoccerPlayerValid(player)) {
-          _insertSoccerPlayer(matchEvent, matchEvent.soccerTeamB, player);
-        }
-      }
-
-      // generamos los partidos para el filtro de partidos
-      availableMatchEvents.clear();
-      for (MatchEvent match in matchEvents) {
-        availableMatchEvents.add({
-            "id": match.templateMatchEventId,
-              "texto":match.soccerTeamA.shortName + '-' + match.soccerTeamB.shortName + "<br>" + DateTimeService.formatDateTimeShort(match.startDate)
-          });
-      }
+    for (MatchEvent match in matchEvents) {
+      availableMatchEvents.add({
+          "id": match.templateMatchEventId,
+            "texto":match.soccerTeamA.shortName + '-' + match.soccerTeamB.shortName + "<br>" + DateTimeService.formatDateTimeShort(match.startDate)
+        });
     }
   }
 

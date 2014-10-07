@@ -150,6 +150,10 @@ class Contest {
     return -1;
   }
 
+  InstanceSoccerPlayer getInstanceSoccerPlayer(String templateSoccerPlayerId) {
+    return instanceSoccerPlayers.containsKey(templateSoccerPlayerId) ? instanceSoccerPlayers[templateSoccerPlayerId] : null;
+  }
+
   bool isSoccerPlayerValid(SoccerPlayer soccerPlayer) {
     return instanceSoccerPlayers.containsKey(soccerPlayer.templateSoccerPlayerId);
   }
@@ -240,9 +244,6 @@ class Contest {
 
     templateContestId = json.templateContestId;
 
-    contestEntries = json.containsKey("contestEntries") ? json.contestEntries.map((jsonObject) => new ContestEntry.fromJsonObject(jsonObject, references) .. contest = this ).toList() : [];
-    numEntries = json.containsKey("numEntries") ? json.numEntries : contestEntries.length;
-
     state = json.containsKey("state") ? json.state : "ACTIVE";
     _namePattern = json.name;
     maxEntries = json.maxEntries;
@@ -256,10 +257,14 @@ class Contest {
     instanceSoccerPlayers = {};
     if (json.containsKey("instanceSoccerPlayers")) {
       json.instanceSoccerPlayers.forEach((jsonObject) {
-        InstanceSoccerPlayer instanceSoccerPlayer =  new InstanceSoccerPlayer.initFromJsonObject(jsonObject);
-        instanceSoccerPlayers[instanceSoccerPlayer.templateSoccerPlayerId] = instanceSoccerPlayer;
+        InstanceSoccerPlayer instanceSoccerPlayer =  new InstanceSoccerPlayer.initFromJsonObject(jsonObject, references);
+        instanceSoccerPlayers[instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId] = instanceSoccerPlayer;
       });
     }
+
+    // <FINAL> : Necesita acceso a los instanceSoccerPlayers
+    contestEntries = json.containsKey("contestEntries") ? json.contestEntries.map((jsonObject) => new ContestEntry.initFromJsonObject(jsonObject, references, this) ).toList() : [];
+    numEntries = json.containsKey("numEntries") ? json.numEntries : contestEntries.length;
 
     // print("Contest: id($contestId) name($name) currentUserIds($currentUserIds) templateContestId($templateContestId)");
     return this;

@@ -3,6 +3,7 @@ library fantasy_team_comp;
 import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:webclient/models/contest_entry.dart';
+import "package:webclient/models/soccer_player.dart";
 import 'package:webclient/controllers/view_contest_ctrl.dart';
 import 'dart:async';
 import 'dart:math';
@@ -83,7 +84,9 @@ class FantasyTeamComp implements ShadowRootAware {
 
       slots = new List<dynamic>();
 
-      _contestEntry.soccers.forEach((soccerPlayer) {
+      _contestEntry.instanceSoccerPlayers.forEach((instanceSoccerPlayer) {
+        SoccerPlayer soccerPlayer = instanceSoccerPlayer.soccerPlayer;
+
         String shortNameTeamA = soccerPlayer.team.matchEvent.soccerTeamA.shortName;
         String shortNameTeamB = soccerPlayer.team.matchEvent.soccerTeamB.shortName;
         var matchEventName = (soccerPlayer.team.templateSoccerTeamId == soccerPlayer.team.matchEvent.soccerTeamA.templateSoccerTeamId)?
@@ -107,7 +110,8 @@ class FantasyTeamComp implements ShadowRootAware {
 
       var random = new Random();
 
-      _contestEntry.soccers.forEach((soccerPlayer) {
+      _contestEntry.instanceSoccerPlayers.forEach((instanceSoccerPlayer) {
+        SoccerPlayer soccerPlayer = instanceSoccerPlayer.soccerPlayer;
 
         // Para el score refrescamos solo el texto y lanzamos una animacion (fade-in/out por ejemplo)
         Element scoreElement = _rootElement.querySelector("[data-id='${soccerPlayer.templateSoccerPlayerId}'] .column-score span");

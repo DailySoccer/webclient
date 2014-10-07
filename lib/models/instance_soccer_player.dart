@@ -2,23 +2,21 @@ library instance_soccer_player;
 
 import "package:json_object/json_object.dart";
 import "package:webclient/models/soccer_player.dart";
+import "package:webclient/models/soccer_team.dart";
 import "package:webclient/models/field_pos.dart";
+import 'package:webclient/services/contest_references.dart';
 
 class InstanceSoccerPlayer {
-  String templateSoccerPlayerId;
-  FieldPos fieldPos;
-  int    salary;
-  String templateSoccerTeamId;
+  SoccerPlayer soccerPlayer;
+  SoccerTeam soccerTeam;
 
-  InstanceSoccerPlayer.initFromJsonObject(JsonObject json) {
-    templateSoccerPlayerId = json.templateSoccerPlayerId;
+  FieldPos fieldPos;
+  int salary;
+
+  InstanceSoccerPlayer.initFromJsonObject(JsonObject json, ContestReferences references) {
+    soccerPlayer = references.getSoccerPlayerById(json.templateSoccerPlayerId);
     fieldPos = json.containsKey("fieldPos") ? new FieldPos(json.fieldPos) : null;
     salary = json.containsKey("salary") ? json.salary : 0;
-    templateSoccerTeamId = json.templateSoccerTeamId;
-  }
-
-  void applyOn(SoccerPlayer soccerPlayer) {
-    soccerPlayer.salary = salary;
-    soccerPlayer.fieldPos = soccerPlayer.fieldPos;
+    soccerTeam = references.getSoccerTeamById(json.templateSoccerTeamId);
   }
 }

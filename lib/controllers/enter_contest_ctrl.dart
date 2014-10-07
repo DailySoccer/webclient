@@ -313,15 +313,15 @@ class EnterContestCtrl implements DetachAware{
           availableSoccerPlayers.sort((player1, player2) => _sortDir? compareNameTo(player2, player1) : compareNameTo(player1, player2));
         break;
         case "DFP":
-          availableSoccerPlayers.sort((player1, player2) => _sortDir? player2["fantasyPoints"].compareTo(player1["fantasyPoints"]) :
+          availableSoccerPlayers.sort((player1, player2) => !_sortDir? player2["fantasyPoints"].compareTo(player1["fantasyPoints"]) :
                                                                       player1["fantasyPoints"].compareTo(player2["fantasyPoints"]));
         break;
         case "Played":
-          availableSoccerPlayers.sort((player1, player2) => _sortDir? player2["playedMatches"].compareTo(player1["playedMatches"]) :
+          availableSoccerPlayers.sort((player1, player2) => !_sortDir? player2["playedMatches"].compareTo(player1["playedMatches"]) :
                                                                       player1["playedMatches"].compareTo(player2["playedMatches"]));
         break;
         case "Salary":
-          availableSoccerPlayers.sort((player1, player2) => _sortDir? player2["salary"].compareTo(player1["salary"]) :
+          availableSoccerPlayers.sort((player1, player2) => !_sortDir? player2["salary"].compareTo(player1["salary"]) :
                                                                       player1["salary"].compareTo(player2["salary"]));
         break;
       }

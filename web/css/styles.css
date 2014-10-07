@@ -14714,10 +14714,7 @@ fieldset[disabled] .soccer-player-info-header .btn-add-soccer-player-info {
   color: #0d75a6;
 }
 .soccer-player-info-content .next-match {
-  margin: 25px 10px 0;
-}
-.soccer-player-info-content .date-season {
-  margin: 0 10px 20px;
+  margin: 25px 10px 20px;
 }
 .soccer-player-info-content .season-header {
   margin-left: 0;

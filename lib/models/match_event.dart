@@ -58,7 +58,7 @@ class MatchEvent {
   }
 
   factory MatchEvent.fromJsonObject(JsonObject json, ContestReferences references) {
-    MatchEvent matchEvent = references.getMatchEventById(json.templateMatchEventId);
+    MatchEvent matchEvent = references.getMatchEventById(json.containsKey("templateMatchEventId") ? json.templateMatchEventId : json._id);
     return matchEvent._initFromJsonObject(json, references);
   }
 
@@ -79,22 +79,24 @@ class MatchEvent {
 
   void _updateFantasyPoints(Map<String, JsonObject> soccerFantasyPoints) {
     [soccerTeamA, soccerTeamB].forEach((team) => team.soccerPlayers.forEach((soccerPlayer) {
-      JsonObject jsonObject = soccerFantasyPoints[soccerPlayer.templateSoccerPlayerId];
-      soccerPlayer.currentLivePoints = jsonObject.points;
-      soccerPlayer.currentLivePointsPerOptaEvent = new Map<String, int>();
+      if (soccerFantasyPoints.containsKey(soccerPlayer.templateSoccerPlayerId)) {
+        JsonObject jsonObject = soccerFantasyPoints[soccerPlayer.templateSoccerPlayerId];
+        soccerPlayer.currentLivePoints = jsonObject.points;
+        soccerPlayer.currentLivePointsPerOptaEvent = new Map<String, int>();
 
-      if (jsonObject.containsKey("events")) {
-        jsonObject.events.forEach((key, value) => soccerPlayer.currentLivePointsPerOptaEvent[key] = value);
+        if (jsonObject.containsKey("events")) {
+          jsonObject.events.forEach((key, value) => soccerPlayer.currentLivePointsPerOptaEvent[key] = value);
+        }
       }
     }));
   }
 
   MatchEvent _initFromJsonObject(JsonObject json, ContestReferences references) {
     assert(templateMatchEventId.isNotEmpty);
-    soccerTeamA = new SoccerTeam.fromJsonObject(json.soccerTeamA, references)
+    soccerTeamA = references.getSoccerTeamById(json.templateSoccerTeamAId)
       .. matchEvent = this;
 
-    soccerTeamB = new SoccerTeam.fromJsonObject(json.soccerTeamB, references)
+    soccerTeamB = references.getSoccerTeamById(json.templateSoccerTeamBId)
       .. matchEvent = this;
 
     period = json.containsKey("period") ? json.period : "PRE_GAME";

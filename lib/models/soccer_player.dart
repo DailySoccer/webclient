@@ -34,7 +34,7 @@ class SoccerPlayer {
   SoccerPlayer.referenceInit(this.templateSoccerPlayerId);
 
   factory SoccerPlayer.fromJsonObject(JsonObject json, ContestReferences references) {
-    SoccerPlayer soccerPlayer = references.getSoccerPlayerById(json.templateSoccerPlayerId);
+    SoccerPlayer soccerPlayer = references.getSoccerPlayerById(json.containsKey("templateSoccerPlayerId") ? json.templateSoccerPlayerId : json._id);
     return soccerPlayer._initFromJsonObject(json, references);
   }
 
@@ -45,6 +45,9 @@ class SoccerPlayer {
     fantasyPoints = json.containsKey("fantasyPoints") ? json.fantasyPoints : 0;
     playedMatches = json.containsKey("playedMatches") ? json.playedMatches : 0;
     salary = json.containsKey("salary") ? json.salary : 0;
+
+    team = references.getSoccerTeamById(json.templateTeamId);
+    team.addSoccerPlayer(this);
     return this;
   }
 

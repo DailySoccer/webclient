@@ -64,14 +64,21 @@ html, body{
 	.btn();
 	border-width: 0;
 }
-
+.btn-pressed {
+	&:active,
+	&[disabled],
+	fieldset[disabled] & {
+		.box-shadow(none);
+	}
+}
 .btn-default {
 	box-shadow: 0px 5px 0px rgba(red(@blueLight), green(@blueLight), blue(@blueLight), 0.5);
 	&[disabled] {
 		box-shadow: 0px 5px 0px rgba(red(@green), green(@green), blue(@green), 0.5);
 		color: @greyUltraLight !important;
 		cursor: not-allowed !important;
-	}
+	}	
+	.btn-pressed();
 }
 
 .btn-primary {
@@ -81,6 +88,7 @@ html, body{
 		color: @greyUltraLight !important;
 		cursor: not-allowed !important;
 	}
+	.btn-pressed();
 }
 
 // Color y borde del boton cancel (no esta definido en el bootstrap)
@@ -88,6 +96,7 @@ html, body{
 	.btn();
 	.button-variant(@btn-default-color; @greyMed; @btn-default-border);
 	box-shadow: 0px 5px 0px rgba(red(@greyMed), green(@greyMed), blue(@greyMed), 0.5);
+	.btn-pressed();
 }
 
 // Color y borde del boton naranja (no esta definido en el bootstrap)
@@ -95,6 +104,7 @@ html, body{
 	.btn();
 	.button-variant(@btn-default-color; @orange; @btn-default-border);
 	box-shadow: 0px 5px 0px rgba(red(@orange), green(@orange), blue(@orange), 0.5);
+	.btn-pressed();
 }
 
 // Forzamos a que siempre aparezca la scrollbar vertical para que no haya saltos

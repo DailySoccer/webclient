@@ -54,12 +54,12 @@ class MainMenuSlideComp implements ShadowRootAware{
 
     String destination = event.target.attributes["destination"];
 
-    if (destination.isNotEmpty) {
-      _router.go(destination, params);
+    if (profileService.isLoggedIn && scrDet.isXsScreen && !event.target.id.contains("brandLogo")){
+         JsUtils.runJavascript('.navbar-offcanvas.navmenu-fixed', 'offcanvas', 'toggle');
     }
 
-    if (profileService.isLoggedIn && scrDet.isXsScreen && !event.target.id.contains("brandLogo")){
-      JsUtils.runJavascript('.navbar-offcanvas.navmenu-fixed', 'offcanvas', 'toggle');
+    if (destination.isNotEmpty) {
+      _router.go(destination, params);
     }
 
     updateMenuLinks(event.target);

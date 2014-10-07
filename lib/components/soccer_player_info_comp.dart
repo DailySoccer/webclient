@@ -2,7 +2,8 @@ library soccer_player_info_comp;
 
 import 'package:angular/angular.dart';
 import 'dart:html';
-import 'package:webclient/models/soccer_player_info.dart';
+import 'package:webclient/models/soccer_player.dart';
+import 'package:webclient/models/soccer_player_stats.dart';
 import 'package:webclient/services/soccer_player_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/controllers/enter_contest_ctrl.dart';
@@ -59,17 +60,17 @@ class SoccerPlayerInfoComp {
   }
 
   void updateSoccerPlayerInfoFromService() {
-    SoccerPlayerInfo soccerPlayer = _soccerPlayerService.soccerPlayerInfo;
+    SoccerPlayer soccerPlayer = _soccerPlayerService.soccerPlayer;
     currentInfoData['id'] = _soccerPlayerId;
     currentInfoData['fieldPos'] = soccerPlayer.fieldPos.abrevName;
-    currentInfoData['team'] = soccerPlayer.team.name.toUpperCase();
+    currentInfoData['team'] = soccerPlayer.soccerTeam.name.toUpperCase();
     currentInfoData['name'] = soccerPlayer.name.toUpperCase();
     currentInfoData['fantasyPoints'] = soccerPlayer.fantasyPoints;
     currentInfoData['matches'] = soccerPlayer.stats.length;
     currentInfoData['salary'] = soccerPlayer.salary;
 
     partidos.clear();
-    for (SoccerPlayerStats stats in _soccerPlayerService.soccerPlayerInfo.stats){
+    for (SoccerPlayerStats stats in _soccerPlayerService.soccerPlayer.stats){
       partidos.add({
         'stats' : stats
       });
@@ -102,7 +103,7 @@ class SoccerPlayerInfoComp {
     }
   }
 
-  void calculateStadistics(SoccerPlayerInfo soccerPlayer) {
+  void calculateStadistics(SoccerPlayer soccerPlayer) {
     List<String> matchDate = [];
     List<String> day = [];
     String year;

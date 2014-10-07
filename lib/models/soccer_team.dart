@@ -29,7 +29,7 @@ class SoccerTeam {
     if (json.containsKey("soccerPlayers")) {
       for (var x in json.soccerPlayers) {
         SoccerPlayer soccerPlayer = references.getSoccerPlayerById(x)
-          .. team = this;
+          .. soccerTeam = this;
 
         addSoccerPlayer(soccerPlayer);
       }

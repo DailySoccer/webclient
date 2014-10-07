@@ -221,21 +221,6 @@ class Contest {
     return references.getContestById(json._id)._initFromJsonObject(json, references);
   }
 
-  SoccerPlayer findSoccerPlayer(String soccerPlayerId) {
-    SoccerPlayer soccerPlayer = null;
-
-    // Buscar en la lista de partidos del contest
-    for (MatchEvent match in matchEvents) {
-      soccerPlayer = match.findSoccerPlayer(soccerPlayerId);
-
-      // Lo hemos encontrado?
-      if (soccerPlayer != null)
-        break;
-    }
-
-    return soccerPlayer;
-  }
-
   /*
    * Inicializacion de los contenidos de un Contest
    */

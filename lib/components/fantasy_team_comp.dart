@@ -85,23 +85,21 @@ class FantasyTeamComp implements ShadowRootAware {
       slots = new List<dynamic>();
 
       _contestEntry.instanceSoccerPlayers.forEach((instanceSoccerPlayer) {
-        SoccerPlayer soccerPlayer = instanceSoccerPlayer.soccerPlayer;
-
-        String shortNameTeamA = soccerPlayer.team.matchEvent.soccerTeamA.shortName;
-        String shortNameTeamB = soccerPlayer.team.matchEvent.soccerTeamB.shortName;
-        var matchEventName = (soccerPlayer.team.templateSoccerTeamId == soccerPlayer.team.matchEvent.soccerTeamA.templateSoccerTeamId)?
+        String shortNameTeamA = instanceSoccerPlayer.soccerTeam.matchEvent.soccerTeamA.shortName;
+        String shortNameTeamB = instanceSoccerPlayer.soccerTeam.matchEvent.soccerTeamB.shortName;
+        var matchEventName = (instanceSoccerPlayer.soccerTeam.templateSoccerTeamId == instanceSoccerPlayer.soccerTeam.matchEvent.soccerTeamA.templateSoccerTeamId)?
                              "<strong>$shortNameTeamA</strong> - $shortNameTeamB" :
                              "$shortNameTeamA - <strong>$shortNameTeamB<strong>";
 
         slots.add({
-            "id" : soccerPlayer.templateSoccerPlayerId,
-            "fieldPos": _contestEntry.contest.getFieldPos(soccerPlayer),
-            "fullName": soccerPlayer.name,
+            "id" : instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId,
+            "fieldPos": instanceSoccerPlayer.fieldPos,
+            "fullName": instanceSoccerPlayer.soccerPlayer.name,
             "matchEventName": matchEventName,
-            "salary": _contestEntry.contest.getSalary(soccerPlayer),
-            "percentOfUsersThatOwn": (_viewContestCtrl != null) ? _viewContestCtrl.getPercentOfUsersThatOwn(soccerPlayer) : "",
-            "score": soccerPlayer.printableCurrentLivePoints,
-            "stats": soccerPlayer.printableLivePointsPerOptaEvent
+            "salary": instanceSoccerPlayer.salary,
+            "percentOfUsersThatOwn": (_viewContestCtrl != null) ? _viewContestCtrl.getPercentOfUsersThatOwn(instanceSoccerPlayer.soccerPlayer) : "",
+            "score": instanceSoccerPlayer.printableCurrentLivePoints,
+            "stats": instanceSoccerPlayer.printableLivePointsPerOptaEvent
         });
       });
     }
@@ -116,16 +114,16 @@ class FantasyTeamComp implements ShadowRootAware {
         // Para el score refrescamos solo el texto y lanzamos una animacion (fade-in/out por ejemplo)
         Element scoreElement = _rootElement.querySelector("[data-id='${soccerPlayer.templateSoccerPlayerId}'] .column-score span");
 
-        if (scoreElement != null && scoreElement.innerHtml != soccerPlayer.printableCurrentLivePoints) {
+        if (scoreElement != null && scoreElement.innerHtml != instanceSoccerPlayer.printableCurrentLivePoints) {
 
           // Un pequeño efecto visual: como que nos vienen unas antes que otras
           int startDelay = random.nextInt(4000);
 
           new Timer(new Duration(milliseconds: startDelay), () {
-            scoreElement.innerHtml = soccerPlayer.printableCurrentLivePoints;
+            scoreElement.innerHtml = instanceSoccerPlayer.printableCurrentLivePoints;
 
             // Refrescamos el array completo de stats. A medida que lleguen nuevas stats se iran rellenando nuevas rows.
-            slots.firstWhere((slot) => slot['id'] == soccerPlayer.templateSoccerPlayerId)["stats"] = soccerPlayer.printableLivePointsPerOptaEvent;
+            slots.firstWhere((slot) => slot['id'] == soccerPlayer.templateSoccerPlayerId)["stats"] = instanceSoccerPlayer.printableLivePointsPerOptaEvent;
 
             scoreElement.classes.add("changed");
             new Timer(new Duration(seconds: 1), () => scoreElement.classes.remove("changed"));

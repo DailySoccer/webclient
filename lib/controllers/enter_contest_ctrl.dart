@@ -397,7 +397,7 @@ class EnterContestCtrl implements DetachAware{
     for (MatchEvent match in matchEvents) {
       availableMatchEvents.add({
           "id": match.templateMatchEventId,
-            "texto":match.soccerTeamA.shortName + '-' + match.soccerTeamB.shortName + "<br>" + DateTimeService.formatDateTimeShort(match.startDate)
+          "texto": match.soccerTeamA.shortName + '-' + match.soccerTeamB.shortName + "<br>" + DateTimeService.formatDateTimeShort(match.startDate)
         });
     }
   }

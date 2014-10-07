@@ -75,7 +75,7 @@ class UsersListComp {
   bool isMainPlayer(var user) => _profileService.user.userId == user["id"];
 
   void onUserClick(var user) {
-    if( isMainPlayer(user) ) {
+    if( isMainPlayer(user)  && !isViewContestEntryMode) {
       _viewContestCtrl.tabChange('userFantasyTeam');
       return;
     }

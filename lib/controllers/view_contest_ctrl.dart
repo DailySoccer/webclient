@@ -113,9 +113,13 @@ class ViewContestCtrl implements DetachAware {
 
     List<dynamic> allTabButtons = document.querySelectorAll("#liveContestTab li");
     allTabButtons.forEach((element) => element.classes.remove('active'));
+
     // activamos el tab button
     Element tabButton = document.querySelector("#" + tab + "Tab");
-    tabButton.parent.classes.add("active");
+    if (tabButton != null) {
+      tabButton.parent.classes.add("active");
+    }
+
   }
 
   void setTabNameAndShowIt(String name)

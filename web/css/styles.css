@@ -7325,6 +7325,12 @@ fieldset[disabled] .contests-list-root .contest-row .column-contest-action .btn.
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
 }
+.contests-list-root .contest-row .column-contest-action .btn:active,
+.contests-list-root .contest-row .column-contest-action .btn[disabled],
+fieldset[disabled] .contests-list-root .contest-row .column-contest-action .btn {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 @media (max-width: 767px) {
   .contests-list-root .contest-row .column-contest-action {
     position: absolute;
@@ -7698,6 +7704,12 @@ fieldset[disabled] #personalDataContent .save-changes-content .action-button.act
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
 }
+#personalDataContent .save-changes-content .action-button:active,
+#personalDataContent .save-changes-content .action-button[disabled],
+fieldset[disabled] #personalDataContent .save-changes-content .action-button {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 @media (min-width: 768px) {
   #personalDataContent .save-changes-content .action-button {
     float: left;
@@ -7974,6 +7986,12 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-cancel-player-selection.a
   color: #afafaf;
   background-color: #ffffff;
 }
+.enter-contest-actions-wrapper .btn-cancel-player-selection:active,
+.enter-contest-actions-wrapper .btn-cancel-player-selection[disabled],
+fieldset[disabled] .enter-contest-actions-wrapper .btn-cancel-player-selection {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 @media (min-width: 768px) and (max-width: 991px) {
   .enter-contest-actions-wrapper .btn-cancel-player-selection {
     display: none !important;
@@ -8110,6 +8128,12 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-clean-lineup-list.active 
   color: #afafaf;
   background-color: #ffffff;
 }
+.enter-contest-actions-wrapper .btn-clean-lineup-list:active,
+.enter-contest-actions-wrapper .btn-clean-lineup-list[disabled],
+fieldset[disabled] .enter-contest-actions-wrapper .btn-clean-lineup-list {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   display: inline-block;
   margin-bottom: 0;
@@ -8236,6 +8260,12 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list.activ
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
+}
+.enter-contest-actions-wrapper .btn-confirm-lineup-list:active,
+.enter-contest-actions-wrapper .btn-confirm-lineup-list[disabled],
+fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 .enter-contest-actions-wrapper p {
   position: relative;
@@ -8737,6 +8767,12 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team.active {
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
+}
+.fantasy-team-header .edit-team .btn-edit-team:active,
+.fantasy-team-header .edit-team .btn-edit-team[disabled],
+fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 @media (max-width: 767px) {
   .fantasy-team-header .edit-team {
@@ -9401,6 +9437,12 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button.active {
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
 }
+#mainFooter .user-info-sup-footer .add-funds-button:active,
+#mainFooter .user-info-sup-footer .add-funds-button[disabled],
+fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 @media (max-width: 991px) {
   #mainFooter .user-info-sup-footer .add-funds-button {
     padding: 4px 12px;
@@ -9906,6 +9948,12 @@ fieldset[disabled] #mobileContent .content .button-play-mobile.active {
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
 }
+#mobileContent .content .button-play-mobile:active,
+#mobileContent .content .button-play-mobile[disabled],
+fieldset[disabled] #mobileContent .content .button-play-mobile {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 #mobileContent .content .title-sup-text-mobile {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
@@ -10149,6 +10197,12 @@ fieldset[disabled] .landing-wrapper .button-play.active {
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
+}
+.landing-wrapper .button-play:active,
+.landing-wrapper .button-play[disabled],
+fieldset[disabled] .landing-wrapper .button-play {
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 .landing-wrapper .screen-pattern {
   position: absolute;
@@ -10437,6 +10491,12 @@ fieldset[disabled] .landing-wrapper .button-play.active {
     box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
     color: #f8f8f8 !important;
     cursor: not-allowed !important;
+  }
+  #liveContestRoot .btn:active,
+  #liveContestRoot .btn[disabled],
+  fieldset[disabled] #liveContestRoot .btn {
+    -webkit-box-shadow: none;
+    box-shadow: none;
   }
 }
 #liveContestRoot .live-contest-tabs {
@@ -10863,6 +10923,12 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #contestFastSort .s
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
 }
+#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button:active,
+#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button[disabled],
+fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 #infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button:hover {
   background-color: transparent;
   border-width: 1px;
@@ -11119,6 +11185,12 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
+}
+#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button:active,
+#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button[disabled],
+fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button {
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 @media (min-width: 768px) {
   #infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button {
@@ -12194,6 +12266,12 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
 }
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:active,
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset[disabled],
+fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 .pre-filter-row {
   margin-left: 0;
   margin-right: 0;
@@ -12690,6 +12768,12 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
     color: #f8f8f8 !important;
     cursor: not-allowed !important;
   }
+  #mainMenu .add-funds-button:active,
+  #mainMenu .add-funds-button[disabled],
+  fieldset[disabled] #mainMenu .add-funds-button {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
   #mainMenu .dropdown-menu {
     margin-left: -115px;
     margin-top: 7px;
@@ -13021,6 +13105,12 @@ fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-join.active {
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
 }
+.navbar-header-unloggin .button-wrapper .button-join:active,
+.navbar-header-unloggin .button-wrapper .button-join[disabled],
+fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-join {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 .navbar-header-unloggin .button-wrapper .button-login {
   display: inline-block;
   margin-bottom: 0;
@@ -13144,6 +13234,12 @@ fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-login.active 
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
+}
+.navbar-header-unloggin .button-wrapper .button-login:active,
+.navbar-header-unloggin .button-wrapper .button-login[disabled],
+fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-login {
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 @media (max-width: 991px) {
   #myContest {
@@ -13418,6 +13514,12 @@ fieldset[disabled] .resume-bar .data-to-csv .btn-data-to-csv.active {
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
 }
+.resume-bar .data-to-csv .btn-data-to-csv:active,
+.resume-bar .data-to-csv .btn-data-to-csv[disabled],
+fieldset[disabled] .resume-bar .data-to-csv .btn-data-to-csv {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 .resume-bar .change-player {
   text-align: center;
   margin: 2px 0 16px 0;
@@ -13544,6 +13646,12 @@ fieldset[disabled] .resume-bar .change-player .btn-change-player.active {
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
+}
+.resume-bar .change-player .btn-change-player:active,
+.resume-bar .change-player .btn-change-player[disabled],
+fieldset[disabled] .resume-bar .change-player .btn-change-player {
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 #myContestMenuTabs {
   list-style-type: none;
@@ -13734,6 +13842,12 @@ fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest.acti
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
+}
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest:active,
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest[disabled],
+fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest {
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 .no-contests-wrapper {
   position: relative;
@@ -14215,6 +14329,12 @@ fieldset[disabled] .soccer-player-info-header .btn-cancel-soccer-player-info.act
   color: #afafaf;
   background-color: #ffffff;
 }
+.soccer-player-info-header .btn-cancel-soccer-player-info:active,
+.soccer-player-info-header .btn-cancel-soccer-player-info[disabled],
+fieldset[disabled] .soccer-player-info-header .btn-cancel-soccer-player-info {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 @media (min-width: 768px) and (max-width: 991px) {
   .soccer-player-info-header .btn-cancel-soccer-player-info {
     display: none !important;
@@ -14360,6 +14480,12 @@ fieldset[disabled] .soccer-player-info-header .btn-add-soccer-player-info {
     color: #f8f8f8 !important;
     cursor: not-allowed !important;
   }
+  .soccer-player-info-header .btn-add-soccer-player-info:active,
+  .soccer-player-info-header .btn-add-soccer-player-info[disabled],
+  fieldset[disabled] .soccer-player-info-header .btn-add-soccer-player-info {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
 }
 @media (min-width: 768px) {
   .soccer-player-info-header .btn-add-soccer-player-info {
@@ -14482,6 +14608,12 @@ fieldset[disabled] .soccer-player-info-header .btn-add-soccer-player-info {
   .soccer-player-info-header .btn-add-soccer-player-info .badge {
     color: #fa9c19;
     background-color: #ffffff;
+  }
+  .soccer-player-info-header .btn-add-soccer-player-info:active,
+  .soccer-player-info-header .btn-add-soccer-player-info[disabled],
+  fieldset[disabled] .soccer-player-info-header .btn-add-soccer-player-info {
+    -webkit-box-shadow: none;
+    box-shadow: none;
   }
 }
 .soccer-player-info-header .description-header {
@@ -15238,6 +15370,12 @@ fieldset[disabled] .soccer-player-info-content .action-buttons .button-wrapper .
   color: #afafaf;
   background-color: #ffffff;
 }
+.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info:active,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info[disabled],
+fieldset[disabled] .soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 .soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info {
   display: inline-block;
   margin-bottom: 0;
@@ -15364,6 +15502,12 @@ fieldset[disabled] .soccer-player-info-content .action-buttons .button-wrapper .
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
+}
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info:active,
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info[disabled],
+fieldset[disabled] .soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info {
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 @media (max-width: 767px) {
   .soccer-player-filter {
@@ -15868,6 +16012,12 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
 }
+.soccer-players-list .soccer-players-list-slot .column-add .btn:active,
+.soccer-players-list .soccer-players-list-slot .column-add .btn[disabled],
+fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .btn {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 @media (min-width: 768px) {
   .soccer-players-list .soccer-players-list-slot .column-add .btn {
     padding-left: 15px;
@@ -16229,6 +16379,12 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button.active {
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
 }
+.main-box .panel .panel-body .new-row .enter-button:active,
+.main-box .panel .panel-body .new-row .enter-button[disabled],
+fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 .main-box .panel .panel-body .new-row .enter-button-half {
   display: inline-block;
   margin-bottom: 0;
@@ -16358,6 +16514,12 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button-half.acti
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
+}
+.main-box .panel .panel-body .new-row .enter-button-half:active,
+.main-box .panel .panel-body .new-row .enter-button-half[disabled],
+fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button-half {
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 .main-box .panel .panel-body .new-row .cancel-button-half {
   display: inline-block;
@@ -16541,6 +16703,12 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half.act
 .main-box .panel .panel-body .new-row .cancel-button-half .badge {
   color: #afafaf;
   background-color: #ffffff;
+}
+.main-box .panel .panel-body .new-row .cancel-button-half:active,
+.main-box .panel .panel-body .new-row .cancel-button-half[disabled],
+fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 .main-box .panel .panel-body .new-row .separator-top {
   font-family: 'Open Sans', sans-serif;
@@ -17090,6 +17258,12 @@ fieldset[disabled] .profile-content .action-button.active {
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
 }
+.profile-content .action-button:active,
+.profile-content .action-button[disabled],
+fieldset[disabled] .profile-content .action-button {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 .profile-content .add-funds-button {
   display: inline-block;
   margin-bottom: 0;
@@ -17216,6 +17390,12 @@ fieldset[disabled] .profile-content .add-funds-button.active {
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
+}
+.profile-content .add-funds-button:active,
+.profile-content .add-funds-button[disabled],
+fieldset[disabled] .profile-content .add-funds-button {
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 .profile-content .data-key {
   font-family: 'Open Sans', sans-serif;
@@ -17402,6 +17582,12 @@ fieldset[disabled] .profile-content .add-funds-button.active {
     box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
     color: #f8f8f8 !important;
     cursor: not-allowed !important;
+  }
+  .profile-content .personal-data .action-button:active,
+  .profile-content .personal-data .action-button[disabled],
+  fieldset[disabled] .profile-content .personal-data .action-button {
+    -webkit-box-shadow: none;
+    box-shadow: none;
   }
 }
 @media (min-width: 768px) {
@@ -17598,6 +17784,12 @@ fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
 }
+.profile-content .pocket-data .button-wrapper .action-button-transaction:active,
+.profile-content .pocket-data .button-wrapper .action-button-transaction[disabled],
+fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-transaction {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 .profile-content .pocket-data .button-wrapper .action-button-get-funds {
   display: inline-block;
   margin-bottom: 0;
@@ -17725,6 +17917,12 @@ fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
+}
+.profile-content .pocket-data .button-wrapper .action-button-get-funds:active,
+.profile-content .pocket-data .button-wrapper .action-button-get-funds[disabled],
+fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-get-funds {
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 @media (max-width: 991px) {
   .profile-content .pocket-data .button-wrapper {
@@ -17997,6 +18195,12 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-cancel-contest.activ
   color: #afafaf;
   background-color: #ffffff;
 }
+.view-contest-entry-actions-wrapper .btn-cancel-contest:active,
+.view-contest-entry-actions-wrapper .btn-cancel-contest[disabled],
+fieldset[disabled] .view-contest-entry-actions-wrapper .btn-cancel-contest {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 @media (max-width: 767px) {
   .view-contest-entry-actions-wrapper .btn-cancel-contest {
     display: block;
@@ -18128,6 +18332,12 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-back-contest.active 
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
+}
+.view-contest-entry-actions-wrapper .btn-back-contest:active,
+.view-contest-entry-actions-wrapper .btn-back-contest[disabled],
+fieldset[disabled] .view-contest-entry-actions-wrapper .btn-back-contest {
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 @media (max-width: 767px) {
   .view-contest-entry-actions-wrapper .btn-back-contest {
@@ -18403,6 +18613,12 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play.active 
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
+}
+#helpInfo .block-last .description-right .button-play:active,
+#helpInfo .block-last .description-right .button-play[disabled],
+fieldset[disabled] #helpInfo .block-last .description-right .button-play {
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 #helpInfo .toogle-block {
   max-width: 808px;
@@ -18912,6 +19128,12 @@ fieldset[disabled] .btn {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+.btn-pressed:active,
+.btn-pressed[disabled],
+fieldset[disabled] .btn-pressed {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 .btn-default {
   box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
 }
@@ -18920,6 +19142,12 @@ fieldset[disabled] .btn {
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
 }
+.btn-default:active,
+.btn-default[disabled],
+fieldset[disabled] .btn-default {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 .btn-primary {
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
 }
@@ -18927,6 +19155,12 @@ fieldset[disabled] .btn {
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
+}
+.btn-primary:active,
+.btn-primary[disabled],
+fieldset[disabled] .btn-primary {
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 .btn-cancel {
   display: inline-block;
@@ -19046,6 +19280,12 @@ fieldset[disabled] .btn-cancel.active {
   color: #afafaf;
   background-color: #ffffff;
 }
+.btn-cancel:active,
+.btn-cancel[disabled],
+fieldset[disabled] .btn-cancel {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 .btn-orange {
   display: inline-block;
   margin-bottom: 0;
@@ -19163,6 +19403,12 @@ fieldset[disabled] .btn-orange.active {
 .btn-orange .badge {
   color: #fa9c19;
   background-color: #ffffff;
+}
+.btn-orange:active,
+.btn-orange[disabled],
+fieldset[disabled] .btn-orange {
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 html {
   overflow-y: scroll;

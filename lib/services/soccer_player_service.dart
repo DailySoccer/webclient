@@ -26,9 +26,9 @@ class SoccerPlayerService {
           ContestReferences contestReferences = new ContestReferences();
 
           nextMatchEvent = jsonObject.containsKey("match_event") ? new MatchEvent.fromJsonObject(jsonObject.match_event, contestReferences) : null;
-          jsonObject.soccerTeams.forEach( (jsonTeam) =>
+          jsonObject.soccer_teams.forEach( (jsonTeam) =>
               new SoccerTeam.fromJsonObject(jsonTeam, contestReferences) );
-          soccerPlayer = new SoccerPlayer.fromJsonObject(jsonObject.soccerPlayer, contestReferences);
+          soccerPlayer = new SoccerPlayer.fromJsonObject(jsonObject.soccer_player, contestReferences);
           completer.complete();
         });
 

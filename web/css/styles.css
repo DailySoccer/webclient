@@ -7032,6 +7032,7 @@ button#infoContent .modal-info-head button.close {
     font-size: 10pt;
     color: #214a5f;
     padding-left: 0;
+    padding-right: 90px;
   }
 }
 .contests-list-root .contest-row .column-contest-name .column-description {

@@ -27,19 +27,25 @@
 	.make-row(0);
 	background-color: @blueDark;
 
-	.info-registers-count, .info-wins-count{
-		.opensans_bold(8pt, @white);
-		margin: 0 5px;
-	}
-	.info-available-money{
-		.opensans_bold(8pt, @orange);	
+	.info{
+		.make-sm-column(6);
+		.make-sm-column-push(3);
+		padding: 7px 10px 20px;
+		
+		.info-registers-count, .info-wins-count{
+			.opensans_bold(8pt, @white);
+			margin-right: 10px;
+		}
+		.info-available-money{
+			.opensans_bold(8pt, @orange);	
+		}
+		text-align: center;
 	}
 	.information-no-contest{
 		.make-xs-column(12);
 		.opensans_bold(9pt, @white);
 		padding: 10px 10px 20px;
 		text-align: center;
-			
 	}
 	.refresh-text {
 		.hidden-xs();

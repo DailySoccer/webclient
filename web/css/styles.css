@@ -13230,7 +13230,7 @@ fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-login.active 
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  padding: 7px 10px 20px;
+  padding: 7px 10px 12px;
   text-align: center;
 }
 @media (min-width: 768px) {
@@ -13248,14 +13248,14 @@ fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-login.active 
 .resume-bar .info .info-wins-count {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
-  font-size: 8pt;
+  font-size: 9pt;
   color: #ffffff;
   margin-right: 10px;
 }
 .resume-bar .info .info-available-money {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
-  font-size: 8pt;
+  font-size: 9pt;
   color: #fa9c19;
 }
 .resume-bar .information-no-contest {
@@ -13269,7 +13269,7 @@ fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-login.active 
   font-weight: 700;
   font-size: 9pt;
   color: #ffffff;
-  padding: 10px 10px 20px;
+  padding: 10px 10px 12px;
   text-align: center;
 }
 .resume-bar .refresh-text {
@@ -16888,6 +16888,17 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half.act
     font-size: 9pt;
     color: #777777;
     margin: 6px 0px 0px 0px;
+  }
+  #usersListRoot .users-header-next {
+    padding: 10px 0;
+    height: 75px;
+  }
+  #usersListRoot .users-header-next h1 {
+    font-family: 'Exo', sans-serif;
+    font-weight: 300;
+    font-size: 16pt;
+    color: #777777;
+    text-align: center;
   }
   #usersListRoot .users-table-rows {
     height: 453px;

@@ -69,10 +69,6 @@ class ViewContestCtrl implements DetachAware {
       .catchError((error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW));
   }
 
-  SoccerPlayer getSoccerPlayer(String soccerPlayerId) {
-    return _myContestsService.lastContest.findSoccerPlayer(soccerPlayerId);
-  }
-
   int getUserPosition(ContestEntry contestEntry) => contest.getUserPosition(contestEntry);
 
   int getPercentOfUsersThatOwn(SoccerPlayer soccerPlayer) {

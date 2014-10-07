@@ -150,16 +150,8 @@ class Contest {
     return -1;
   }
 
-  bool isSoccerPlayerValid(SoccerPlayer soccerPlayer) {
-    return instanceSoccerPlayers.containsKey(soccerPlayer.templateSoccerPlayerId);
-  }
-
-  int getSalary(SoccerPlayer soccerPlayer) {
-    return instanceSoccerPlayers[soccerPlayer.templateSoccerPlayerId].salary;
-  }
-
-  FieldPos getFieldPos(SoccerPlayer soccerPlayer) {
-    return instanceSoccerPlayers[soccerPlayer.templateSoccerPlayerId].fieldPos;
+  InstanceSoccerPlayer getInstanceSoccerPlayer(String templateSoccerPlayerId) {
+    return instanceSoccerPlayers.containsKey(templateSoccerPlayerId) ? instanceSoccerPlayers[templateSoccerPlayerId] : null;
   }
 
   /*
@@ -217,21 +209,6 @@ class Contest {
     return references.getContestById(json._id)._initFromJsonObject(json, references);
   }
 
-  SoccerPlayer findSoccerPlayer(String soccerPlayerId) {
-    SoccerPlayer soccerPlayer = null;
-
-    // Buscar en la lista de partidos del contest
-    for (MatchEvent match in matchEvents) {
-      soccerPlayer = match.findSoccerPlayer(soccerPlayerId);
-
-      // Lo hemos encontrado?
-      if (soccerPlayer != null)
-        break;
-    }
-
-    return soccerPlayer;
-  }
-
   /*
    * Inicializacion de los contenidos de un Contest
    */
@@ -239,9 +216,6 @@ class Contest {
     assert(contestId.isNotEmpty);
 
     templateContestId = json.templateContestId;
-
-    contestEntries = json.containsKey("contestEntries") ? json.contestEntries.map((jsonObject) => new ContestEntry.fromJsonObject(jsonObject, references) .. contest = this ).toList() : [];
-    numEntries = json.containsKey("numEntries") ? json.numEntries : contestEntries.length;
 
     state = json.containsKey("state") ? json.state : "ACTIVE";
     _namePattern = json.name;
@@ -256,10 +230,14 @@ class Contest {
     instanceSoccerPlayers = {};
     if (json.containsKey("instanceSoccerPlayers")) {
       json.instanceSoccerPlayers.forEach((jsonObject) {
-        InstanceSoccerPlayer instanceSoccerPlayer =  new InstanceSoccerPlayer.initFromJsonObject(jsonObject);
-        instanceSoccerPlayers[instanceSoccerPlayer.templateSoccerPlayerId] = instanceSoccerPlayer;
+        InstanceSoccerPlayer instanceSoccerPlayer =  new InstanceSoccerPlayer.initFromJsonObject(jsonObject, references);
+        instanceSoccerPlayers[instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId] = instanceSoccerPlayer;
       });
     }
+
+    // <FINAL> : Necesita acceso a los instanceSoccerPlayers
+    contestEntries = json.containsKey("contestEntries") ? json.contestEntries.map((jsonObject) => new ContestEntry.initFromJsonObject(jsonObject, references, this) ).toList() : [];
+    numEntries = json.containsKey("numEntries") ? json.numEntries : contestEntries.length;
 
     // print("Contest: id($contestId) name($name) currentUserIds($currentUserIds) templateContestId($templateContestId)");
     return this;

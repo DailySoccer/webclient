@@ -3,6 +3,7 @@ library soccer_player;
 import "package:json_object/json_object.dart";
 import 'package:logging/logging.dart';
 import "package:webclient/models/soccer_team.dart";
+import "package:webclient/models/soccer_player_stats.dart";
 import "package:webclient/models/field_pos.dart";
 import 'package:webclient/services/contest_references.dart';
 
@@ -16,20 +17,14 @@ class SoccerPlayer {
 
   // Fantasy Points (actualizado por liveMatchEvent)
   int currentLivePoints = 0;
-  String get printableCurrentLivePoints => (team.matchEvent.isStarted) ? currentLivePoints.toString() : "-";
 
   // Estadisticas: Nombre del evento segun el enumerado OptaEventType => puntos obtenidos gracias a ese evento
   Map<String, int> currentLivePointsPerOptaEvent = new Map<String, int>();
 
-  List<Map> get printableLivePointsPerOptaEvent {
-    List<Map> stats = new List<Map>();
-    currentLivePointsPerOptaEvent.forEach((key, value) => stats.add({'name': getEventName(key), 'points': value}));
-    stats.sort((elem0, elem1) => elem0["name"].compareTo(elem1["name"]) );
-    return stats;
-  }
+  List<SoccerPlayerStats> stats = [];
 
   // Equipo en el que juega
-  SoccerTeam team;
+  SoccerTeam soccerTeam;
 
   SoccerPlayer.referenceInit(this.templateSoccerPlayerId);
 
@@ -46,8 +41,15 @@ class SoccerPlayer {
     playedMatches = json.containsKey("playedMatches") ? json.playedMatches : 0;
     salary = json.containsKey("salary") ? json.salary : 0;
 
-    team = references.getSoccerTeamById(json.templateTeamId);
-    team.addSoccerPlayer(this);
+    if (json.containsKey("stats")) {
+      stats = [];
+      for (var x in json.stats) {
+        stats.add(new SoccerPlayerStats.fromJsonObject(x, references));
+      }
+    }
+
+    soccerTeam = references.getSoccerTeamById(json.templateTeamId);
+    soccerTeam.addSoccerPlayer(this);
     return this;
   }
 

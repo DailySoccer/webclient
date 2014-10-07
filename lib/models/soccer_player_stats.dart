@@ -1,33 +1,9 @@
-library soccer_player_info;
+library soccer_player_stats;
 
 import "package:json_object/json_object.dart";
-import "package:webclient/models/field_pos.dart";
 import "package:webclient/models/soccer_team.dart";
 import 'package:webclient/services/contest_references.dart';
 import 'package:webclient/services/datetime_service.dart';
-
-class SoccerPlayerInfo {
-  String name;
-  SoccerTeam team;
-  FieldPos fieldPos;
-  int    fantasyPoints;
-  int    salary;
-
-  List<SoccerPlayerStats> stats;
-
-  SoccerPlayerInfo.fromJsonObject(JsonObject json, ContestReferences references) {
-    name = json.name;
-    team = references.getSoccerTeamById(json.templateTeamId);
-    fieldPos = new FieldPos(json.fieldPos);
-    fantasyPoints = json.fantasyPoints;
-    salary = json.salary;
-
-    stats = new List();
-    for (var x in json.stats) {
-      stats.add(new SoccerPlayerStats.fromJsonObject(x, references));
-    }
-  }
-}
 
 class SoccerPlayerStats {
   DateTime startDate;

@@ -6,13 +6,13 @@ import 'package:angular/angular.dart';
 import "package:webclient/services/server_service.dart";
 import 'package:webclient/services/contest_references.dart';
 import "package:webclient/models/soccer_team.dart";
-import "package:webclient/models/soccer_player_info.dart";
+import "package:webclient/models/soccer_player.dart";
 
 
 @Injectable()
 class SoccerPlayerService {
 
-  SoccerPlayerInfo soccerPlayerInfo;
+  SoccerPlayer soccerPlayer;
 
   SoccerPlayerService(this._server);
 
@@ -24,7 +24,7 @@ class SoccerPlayerService {
           ContestReferences contestReferences = new ContestReferences();
           jsonObject.soccerTeams.forEach( (jsonTeam) =>
               new SoccerTeam.fromJsonObject(jsonTeam, contestReferences) );
-          soccerPlayerInfo = new SoccerPlayerInfo.fromJsonObject(jsonObject.soccerPlayer, contestReferences);
+          soccerPlayer = new SoccerPlayer.fromJsonObject(jsonObject.soccerPlayer, contestReferences);
           completer.complete();
         });
 

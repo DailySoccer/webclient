@@ -229,6 +229,13 @@ html { overflow-y: scroll; }
 			display: block;
 			text-decoration: none;
 		}
+		&[disabled] {
+			background-color: @blueUltraLight;
+			cursor: no-drop;
+			&>a {
+				cursor: no-drop;
+			}
+		}
 	}
 	.active {
 		background-color: @blueDark;

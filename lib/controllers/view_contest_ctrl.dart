@@ -25,6 +25,7 @@ class ViewContestCtrl implements DetachAware {
 
   DateTime updatedDate;
   String lastOpponentSelected = "Adversario";
+  bool isOpponentSelected = false;
 
   String parent = "";
 
@@ -101,17 +102,26 @@ class ViewContestCtrl implements DetachAware {
   }
 
   void tabChange(String tab) {
+    if (tab == "opponentFantasyTeam" && !isOpponentSelected) {
+      return;
+    }
     List<dynamic> allContentTab = document.querySelectorAll(".tab-pane");
     allContentTab.forEach((element) => element.classes.remove('active'));
 
     Element contentTab = document.querySelector("#" + tab);
     contentTab.classes.add("active");
+
+    List<dynamic> allTabButtons = document.querySelectorAll("#liveContestTab li");
+    allTabButtons.forEach((element) => element.classes.remove('active'));
+    // activamos el tab button
+    Element tabButton = document.querySelector("#" + tab + "Tab");
+    tabButton.parent.classes.add("active");
   }
 
   void setTabNameAndShowIt(String name)
   {
     lastOpponentSelected = name;
-    Element anchor = querySelector("#opponentTab");
+    Element anchor = querySelector("#opponentFantasyTeamTab");
 
     if (anchor != null) {
       anchor.text = lastOpponentSelected;

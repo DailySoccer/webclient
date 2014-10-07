@@ -75,13 +75,20 @@ class UsersListComp {
   bool isMainPlayer(var user) => _profileService.user.userId == user["id"];
 
   void onUserClick(var user) {
+    if( isMainPlayer(user) ) {
+      _viewContestCtrl.tabChange('userFantasyTeam');
+      return;
+    }
+
     switch(_routeProvider.route.name)
     {
       case "live_contest":
+      case "history_contest":
+        _viewContestCtrl.isOpponentSelected = true;
         _viewContestCtrl.setTabNameAndShowIt(user["name"]);
         selectedContestEntry = user["contestEntry"];
-      break;
-      case "history_contest":
+
+        _viewContestCtrl.isOpponentSelected = true;
         _viewContestCtrl.setTabNameAndShowIt(user["name"]);
         selectedContestEntry = user["contestEntry"];
       break;

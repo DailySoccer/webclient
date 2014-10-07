@@ -10475,6 +10475,13 @@ fieldset[disabled] .landing-wrapper .button-play.active {
   display: block;
   text-decoration: none;
 }
+#liveContestRoot .live-contest-tabs > li[disabled] {
+  background-color: #f3f3f3;
+  cursor: no-drop;
+}
+#liveContestRoot .live-contest-tabs > li[disabled] > a {
+  cursor: no-drop;
+}
 #liveContestRoot .live-contest-tabs .active {
   background-color: #214a5f;
 }
@@ -13562,6 +13569,13 @@ fieldset[disabled] .resume-bar .change-player .btn-change-player.active {
   color: #ffffff;
   display: block;
   text-decoration: none;
+}
+#myContestMenuTabs > li[disabled] {
+  background-color: #f3f3f3;
+  cursor: no-drop;
+}
+#myContestMenuTabs > li[disabled] > a {
+  cursor: no-drop;
 }
 #myContestMenuTabs .active {
   background-color: #214a5f;
@@ -18155,6 +18169,13 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-back-contest.active 
   color: #ffffff;
   display: block;
   text-decoration: none;
+}
+#viewContestEntry .view-contest-entry-tabs > li[disabled] {
+  background-color: #f3f3f3;
+  cursor: no-drop;
+}
+#viewContestEntry .view-contest-entry-tabs > li[disabled] > a {
+  cursor: no-drop;
 }
 #viewContestEntry .view-contest-entry-tabs .active {
   background-color: #214a5f;

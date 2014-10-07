@@ -154,18 +154,6 @@ class Contest {
     return instanceSoccerPlayers.containsKey(templateSoccerPlayerId) ? instanceSoccerPlayers[templateSoccerPlayerId] : null;
   }
 
-  bool isSoccerPlayerValid(SoccerPlayer soccerPlayer) {
-    return instanceSoccerPlayers.containsKey(soccerPlayer.templateSoccerPlayerId);
-  }
-
-  int getSalary(SoccerPlayer soccerPlayer) {
-    return instanceSoccerPlayers[soccerPlayer.templateSoccerPlayerId].salary;
-  }
-
-  FieldPos getFieldPos(SoccerPlayer soccerPlayer) {
-    return instanceSoccerPlayers[soccerPlayer.templateSoccerPlayerId].fieldPos;
-  }
-
   /*
    * Carga o un Contest o una LISTA de Contests a partir de JsonObjects
    */

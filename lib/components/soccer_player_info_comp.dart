@@ -4,7 +4,9 @@ import 'package:angular/angular.dart';
 import 'dart:html';
 import 'package:webclient/models/soccer_player.dart';
 import 'package:webclient/models/soccer_player_stats.dart';
+import 'package:webclient/models/match_event.dart';
 import 'package:webclient/services/soccer_player_service.dart';
+import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/controllers/enter_contest_ctrl.dart';
 import 'package:intl/intl.dart';
@@ -45,7 +47,8 @@ class SoccerPlayerInfoComp {
       'name'            : '<name>',
       'fantasyPoints'   : '<fantasyPoints>',
       'matches'         : '<matches>',
-      'salary'          : '<salary>'
+      'salary'          : '<salary>',
+      'nextMatchEvent'  : ''
     };
   }
 
@@ -59,7 +62,21 @@ class SoccerPlayerInfoComp {
       });
   }
 
+
+
   void updateSoccerPlayerInfoFromService() {
+    var matchEventName = "", matchEventDate = "";
+
+    MatchEvent nextMatchEvent = _soccerPlayerService.nextMatchEvent;
+    if (nextMatchEvent != null) {
+      String shortNameTeamA = nextMatchEvent.soccerTeamA.name;
+      String shortNameTeamB = nextMatchEvent.soccerTeamB.name;
+      matchEventName = (_soccerPlayerService.soccerPlayer.soccerTeam.templateSoccerTeamId == nextMatchEvent.soccerTeamA.templateSoccerTeamId)
+          ? "<strong>$shortNameTeamA</strong> vs $shortNameTeamB"
+          : "$shortNameTeamA vs <strong>$shortNameTeamB</strong>";
+      matchEventDate = " (${DateTimeService.formatDateTimeShort(nextMatchEvent.startDate)})";
+    }
+
     SoccerPlayer soccerPlayer = _soccerPlayerService.soccerPlayer;
     currentInfoData['id'] = _soccerPlayerId;
     currentInfoData['fieldPos'] = soccerPlayer.fieldPos.abrevName;
@@ -68,6 +85,7 @@ class SoccerPlayerInfoComp {
     currentInfoData['fantasyPoints'] = soccerPlayer.fantasyPoints;
     currentInfoData['matches'] = soccerPlayer.stats.length;
     currentInfoData['salary'] = soccerPlayer.salary;
+    currentInfoData['nextMatchEvent'] = matchEventName + matchEventDate;
 
     partidos.clear();
     for (SoccerPlayerStats stats in _soccerPlayerService.soccerPlayer.stats){

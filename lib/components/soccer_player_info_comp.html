@@ -8,7 +8,7 @@
       <button class="btn-cancel-soccer-player-info" ng-click="soccerPlayerInfo.enterContestCtrl.closePlayerInfo()">CANCELAR</button>
     </div>
     <div class="button-wrapper">
-      <!--<span class="next-match">PRÓXIMO PARTIDO: <strong>R.MADRID</strong> VS. A. MADRID</span>-->
+      <span class="next-match">PRÓXIMO PARTIDO:</span> <span class="next-match" ng-bind-html="soccerPlayerInfo.currentInfoData['nextMatchEvent']"></span>
       <button class="btn-add-soccer-player-info" ng-click="soccerPlayerInfo.enterContestCtrl.addSoccerPlayerToLineup(soccerPlayerInfo.currentInfoData['id'])">AÑADIR</button>
     </div>
   </div>
@@ -27,6 +27,8 @@
   </div>
 </div>
 
+
+
 <div class="soccer-player-info-content">
     <!-- Nav tabs -->
     <ul class="soccer-player-info-tabs" role="tablist">
@@ -39,8 +41,8 @@
       <div class="tab-content">
         <!--SEASON-->
         <div class="tab-pane active" id="season-info-tab-content">
-          <!--<div class="next-match">PRÓXIMO PARTIDO: <strong>R.MADRID</strong> VS. A. MADRID</div>
-          <div class="date-season">15/05 19:00</div>-->
+          <div class="next-match">PRÓXIMO PARTIDO: <span ng-bind-html="soccerPlayerInfo.currentInfoData['nextMatchEvent']"></span></div>
+          <!--<div class="date-season">15/05 19:00</div>-->
           <!-- MEDIAS -->
           <div class="season-header">Estadísticas de temporada <span>(datos por partido)</span></div>
           <div class="season-stats">

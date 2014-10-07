@@ -7,12 +7,14 @@ import "package:webclient/services/server_service.dart";
 import 'package:webclient/services/contest_references.dart';
 import "package:webclient/models/soccer_team.dart";
 import "package:webclient/models/soccer_player.dart";
+import "package:webclient/models/match_event.dart";
 
 
 @Injectable()
 class SoccerPlayerService {
 
   SoccerPlayer soccerPlayer;
+  MatchEvent nextMatchEvent;
 
   SoccerPlayerService(this._server);
 
@@ -22,6 +24,8 @@ class SoccerPlayerService {
     _server.getSoccerPlayerInfo(templateSoccerPlayerId)
         .then((jsonObject) {
           ContestReferences contestReferences = new ContestReferences();
+
+          nextMatchEvent = jsonObject.containsKey("match_event") ? new MatchEvent.fromJsonObject(jsonObject.match_event, contestReferences) : null;
           jsonObject.soccerTeams.forEach( (jsonTeam) =>
               new SoccerTeam.fromJsonObject(jsonTeam, contestReferences) );
           soccerPlayer = new SoccerPlayer.fromJsonObject(jsonObject.soccerPlayer, contestReferences);

@@ -26,19 +26,13 @@
 .resume-bar{
 	.make-row(0);
 	background-color: @blueDark;
-	.info{
-		.make-sm-column(6);
-		.make-sm-column-push(3);
-		padding: 10px 10px 20px;
-		
-		.info-registers-count, .info-wins-count{
-			.opensans_bold(8pt, @white);
-			margin-right: 10px;
-		}
-		.info-available-money{
-			.opensans_bold(8pt, @orange);	
-		}
-		text-align: center;
+
+	.info-registers-count, .info-wins-count{
+		.opensans_bold(8pt, @white);
+		margin: 0 5px;
+	}
+	.info-available-money{
+		.opensans_bold(8pt, @orange);	
 	}
 	.information-no-contest{
 		.make-xs-column(12);

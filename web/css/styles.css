@@ -13216,34 +13216,15 @@ fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-login.active 
   margin-right: 0;
   background-color: #214a5f;
 }
-.resume-bar .info {
-  position: relative;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding: 10px 10px 20px;
-  text-align: center;
-}
-@media (min-width: 768px) {
-  .resume-bar .info {
-    float: left;
-    width: 50%;
-  }
-}
-@media (min-width: 768px) {
-  .resume-bar .info {
-    left: 25%;
-  }
-}
-.resume-bar .info .info-registers-count,
-.resume-bar .info .info-wins-count {
+.resume-bar .info-registers-count,
+.resume-bar .info-wins-count {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 8pt;
   color: #ffffff;
-  margin-right: 10px;
+  margin: 0 5px;
 }
-.resume-bar .info .info-available-money {
+.resume-bar .info-available-money {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 8pt;

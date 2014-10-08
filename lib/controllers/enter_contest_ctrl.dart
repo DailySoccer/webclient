@@ -2,7 +2,9 @@ library enter_contest_ctrl;
 
 
 import 'dart:html';
+import 'dart:async';
 import 'package:angular/angular.dart';
+import "package:json_object/json_object.dart";
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/services/profile_service.dart';
@@ -23,6 +25,8 @@ import 'package:webclient/utils/string_utils.dart';
     publishAs: 'ctrl'
 )
 class EnterContestCtrl implements DetachAware{
+
+  static final String ERROR_RETRY_OP = "ERROR_RETRY_OP";
 
   static const String FILTER_POSITION = "FILTER_POSITION";
   static const String FILTER_NAME = "FILTER_NAME";
@@ -97,6 +101,9 @@ class EnterContestCtrl implements DetachAware{
   }
 
   void detach() {
+    if (_retryOpTimer != null && _retryOpTimer.isActive) {
+      _retryOpTimer.cancel();
+    }
     _streamListener.cancel();
   }
 
@@ -113,11 +120,10 @@ class EnterContestCtrl implements DetachAware{
     contentTab.classes.add("active");
 
     Element matchesFilter = document.querySelector('.match-teams-filter');
-    if(tab == "contest-info-tab-content"){
+    if(tab == "contest-info-tab-content") {
       matchesFilter.style.display = "none";
     }
-    else
-    {
+    else {
       matchesFilter.style.display = "block";
     }
 
@@ -170,7 +176,6 @@ class EnterContestCtrl implements DetachAware{
       if(availableSalary >= 0) {
         alertDismiss();
       }
-
     }
     else {
       isSelectingSoccerPlayer = true;
@@ -418,6 +423,11 @@ class EnterContestCtrl implements DetachAware{
       return;
     }
 
+    // No permitimos la reentrada de la solicitud (hasta que termine el timer de espera para volver a reintentarlo)
+    if (_retryOpTimer != null && _retryOpTimer.isActive) {
+      return;
+    }
+
     print("createFantasyTeam");
     lineupSlots.forEach((player) => print(player["fieldPos"].abrevName + ": " + player["fullName"] + " : " + player["id"]));
 
@@ -426,7 +436,7 @@ class EnterContestCtrl implements DetachAware{
     if (_editingContestEntry) {
       _myContestService.editContestEntry(contestEntryId, lineupSlots.map((player) => player["id"]).toList())
         .then((_) => _router.go('edit_contest_entry', {"contestId" : contest.contestId, "parent" : parent}))
-        .catchError((error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW));
+        .catchError((error) => _errorCreating(error));
     }
     else {
       _activeContestService.addContestEntry(contest.contestId, lineupSlots.map((player) => player["id"]).toList())
@@ -438,7 +448,18 @@ class EnterContestCtrl implements DetachAware{
             _router.go('new_contest_entry', {"contestId" : contestId, "parent" : parent});
           }
         })
-        .catchError((error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW));
+        .catchError((error) => _errorCreating(error));
+    }
+  }
+
+  void _errorCreating(JsonObject jsonObject) {
+    if (jsonObject.containsKey("error")) {
+      if (jsonObject.error.contains(ERROR_RETRY_OP)) {
+        _retryOpTimer = new Timer(const Duration(seconds:3), () => createFantasyTeam());
+      }
+      else {
+        _flashMessage.error("$jsonObject", context: FlashMessagesService.CONTEXT_VIEW);
+      }
     }
   }
 
@@ -575,5 +596,5 @@ class EnterContestCtrl implements DetachAware{
   Map<String,String> _filterList = {};
   var _streamListener;
 
-
+  Timer _retryOpTimer;
 }

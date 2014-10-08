@@ -7,6 +7,7 @@ import 'package:webclient/services/active_contests_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/models/contest.dart';
 import "package:webclient/models/match_event.dart";
+import "package:webclient/models/instance_soccer_player.dart";
 
 @Component(
     selector: 'soccer-players-list',

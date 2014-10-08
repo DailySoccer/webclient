@@ -92,7 +92,7 @@ class FantasyTeamComp implements ShadowRootAware {
                              "$shortNameTeamA - <strong>$shortNameTeamB<strong>";
 
         slots.add({
-            "id" : instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId,
+            "id" : instanceSoccerPlayer.id,
             "fieldPos": instanceSoccerPlayer.fieldPos,
             "fullName": instanceSoccerPlayer.soccerPlayer.name,
             "matchEventName": matchEventName,

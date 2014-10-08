@@ -4,6 +4,7 @@ import 'package:angular/angular.dart';
 import 'dart:html';
 import 'package:webclient/models/soccer_player.dart';
 import 'package:webclient/models/soccer_player_stats.dart';
+import 'package:webclient/models/instance_soccer_player.dart';
 import 'package:webclient/models/match_event.dart';
 import 'package:webclient/services/soccer_player_service.dart';
 import 'package:webclient/services/datetime_service.dart';
@@ -23,12 +24,11 @@ class SoccerPlayerInfoComp {
 
   EnterContestCtrl enterContestCtrl;
 
-  @NgTwoWay("soccer-player-id")
-  String get soccerPlayerData => _soccerPlayerId;
-  void set soccerPlayerData(String value) {
-    _soccerPlayerId = value;
+  @NgOneWay("instance-soccer-player")
+  void set instanceSoccerPlayerData(InstanceSoccerPlayer value) {
+    _instanceSoccerPlayer = value;
     if (value != null) {
-      updateSoccerPlayerInfo(value);
+      updateSoccerPlayerInfo(_instanceSoccerPlayer.id);
     }
   }
 
@@ -41,13 +41,13 @@ class SoccerPlayerInfoComp {
 
   SoccerPlayerInfoComp(this._router, this._soccerPlayerService, this._flashMessage, this.enterContestCtrl) {
     currentInfoData = {
-      'id'              : '<id>',
-      'fieldPos'        : '<fieldPos>',
-      'team'            : '<team>',
-      'name'            : '<name>',
-      'fantasyPoints'   : '<fantasyPoints>',
-      'matches'         : '<matches>',
-      'salary'          : '<salary>',
+      'id'              : '',
+      'fieldPos'        : '',
+      'team'            : '',
+      'name'            : '',
+      'fantasyPoints'   : '',
+      'matches'         : '',
+      'salary'          : '',
       'nextMatchEvent'  : ''
     };
   }
@@ -78,13 +78,13 @@ class SoccerPlayerInfoComp {
     }
 
     SoccerPlayer soccerPlayer = _soccerPlayerService.soccerPlayer;
-    currentInfoData['id'] = _soccerPlayerId;
-    currentInfoData['fieldPos'] = soccerPlayer.fieldPos.abrevName;
-    currentInfoData['team'] = soccerPlayer.soccerTeam.name.toUpperCase();
+    currentInfoData['id'] = _instanceSoccerPlayer.id;
+    currentInfoData['fieldPos'] = _instanceSoccerPlayer.fieldPos.abrevName;
+    currentInfoData['team'] = _instanceSoccerPlayer.soccerTeam.name.toUpperCase();
     currentInfoData['name'] = soccerPlayer.name.toUpperCase();
     currentInfoData['fantasyPoints'] = soccerPlayer.fantasyPoints;
     currentInfoData['matches'] = soccerPlayer.stats.length;
-    currentInfoData['salary'] = soccerPlayer.salary;
+    currentInfoData['salary'] = _instanceSoccerPlayer.salary;
     currentInfoData['nextMatchEvent'] = matchEventName + matchEventDate;
 
     partidos.clear();
@@ -267,5 +267,5 @@ class SoccerPlayerInfoComp {
   SoccerPlayerService _soccerPlayerService;
   FlashMessagesService _flashMessage;
 
-  String _soccerPlayerId;
+  InstanceSoccerPlayer _instanceSoccerPlayer;
 }

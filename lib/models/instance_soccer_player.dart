@@ -13,6 +13,8 @@ class InstanceSoccerPlayer {
   FieldPos fieldPos;
   int salary;
 
+  String get id => soccerPlayer.templateSoccerPlayerId;
+
   String get printableCurrentLivePoints => (soccerTeam.matchEvent.isStarted) ? soccerPlayer.currentLivePoints.toString() : "-";
 
   List<Map> get printableLivePointsPerOptaEvent {

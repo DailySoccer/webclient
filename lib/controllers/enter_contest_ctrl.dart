@@ -42,7 +42,7 @@ class EnterContestCtrl implements DetachAware{
   List<dynamic> availableSoccerPlayers = [];
   List<Map<String, String>> availableMatchEvents = [];
 
-  String selectedSoccerPlayerId;
+  InstanceSoccerPlayer selectedInstanceSoccerPlayer;
 
   int availableSalary = 0;
 
@@ -83,7 +83,7 @@ class EnterContestCtrl implements DetachAware{
             ContestEntry contestEntry = _myContestService.lastContest.getContestEntry(contestEntryId);
             // Insertamos en el lineup el jugador
             contestEntry.instanceSoccerPlayers.forEach((instanceSoccerPlayer) {
-              onSoccerPlayerSelected(_allSoccerPlayers.firstWhere((slot) => slot["id"] == instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId));
+              onSoccerPlayerSelected(_allSoccerPlayers.firstWhere((slot) => slot["id"] == instanceSoccerPlayer.id));
             });
           }
         }
@@ -372,7 +372,8 @@ class EnterContestCtrl implements DetachAware{
         : "$shortNameTeamA - <strong>$shortNameTeamB</strong>";
 
     _allSoccerPlayers.add({
-      "id": instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId,
+      "instanceSoccerPlayer": instanceSoccerPlayer,
+      "id": instanceSoccerPlayer.id,
       "fieldPos": instanceSoccerPlayer.fieldPos,
       "fullName": instanceSoccerPlayer.soccerPlayer.name,
       "matchId" : matchEvent.templateMatchEventId,
@@ -502,7 +503,7 @@ class EnterContestCtrl implements DetachAware{
 
   // Mostramos la ventana modal con la información de ese torneo, si no es la versión movil.
   void onRowClick(String soccerPlayerId) {
-    // Permitimos añadir el juador solo en el caso de que exista hueco en el lineup (disabilitamos el botón de añadir)
+    // Permitimos añadir el jugador solo en el caso de que exista hueco en el lineup (disabilitamos el botón de añadir)
     var selectedSoccerPlayer = availableSoccerPlayers.firstWhere(
             (soccerPlayer) => soccerPlayer["id"] == soccerPlayerId,
             orElse: () => null);
@@ -512,9 +513,9 @@ class EnterContestCtrl implements DetachAware{
         btnAdd.forEach((element) => element.disabled = false);
       else
         btnAdd.forEach((element) => element.disabled = true);
-    }
 
-    selectedSoccerPlayerId = soccerPlayerId;
+      selectedInstanceSoccerPlayer = selectedSoccerPlayer["instanceSoccerPlayer"];
+    }
 
     // Version Small or Desktop => sacamos la modal
     if(scrDet.isSmScreen || scrDet.isDesktop) {

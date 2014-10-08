@@ -93,9 +93,9 @@ class ContestInfoComp implements ShadowRootAware {
     // quitamos la clase fade porque se lanza el router antes de cerrar la modal y queda
     //modal.classes.remove('fade');
     // hacemos una llamada de jQuery para ocultar la ventana modal
-    JsUtils.runJavascript('#infoContestModal', 'modal', 'hide');
+    //JsUtils.runJavascript('#infoContestModal', 'modal', 'hide');
     //modal.classes.add('fade');
-    //_router.go('enter_contest', { "contestId": contestData.contestId });
+    _router.go('enter_contest', { "contestId": contestData.contestId });
   }
 
   String formatMatchDate(DateTime date) {
@@ -123,7 +123,7 @@ class ContestInfoComp implements ShadowRootAware {
   bool _goToEnterContest = false;
 
   void onShadowRoot(root) {
-    JsUtils.runJavascript('#infoContestModal', 'on', {'hidden.bs.modal': goToEnterContest});
+    //JsUtils.runJavascript('#infoContestModal', 'on', {'hidden.bs.modal': goToEnterContest});
   }
 
 }

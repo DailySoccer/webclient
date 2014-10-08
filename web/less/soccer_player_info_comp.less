@@ -344,11 +344,10 @@
 		}
 		@media (min-width: @screen-sm-min) {
 			background-color: @white;
-			height: 290px;
-			overflow-y: scroll;
 			margin: 0 10px;
 			.match-stats-header {
 				.make-row(0);
+				margin-right: 15px;
 				div {
 					.make-border(1px, solid solid dotted none, @greyDark);
 					.make-sm-column(0.8, 0px);
@@ -364,6 +363,8 @@
 			}
 			.match-stats-content {
 				.make-row(0);
+				height: 287px;
+				overflow-y: scroll;
 				clear: both;
 				.match-year {
 					.hidden();

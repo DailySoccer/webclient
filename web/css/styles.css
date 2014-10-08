@@ -15117,13 +15117,12 @@ fieldset[disabled] .soccer-player-info-header .btn-add-soccer-player-info {
 @media (min-width: 768px) {
   .soccer-player-info-content .match-stats {
     background-color: #ffffff;
-    height: 290px;
-    overflow-y: scroll;
     margin: 0 10px;
   }
   .soccer-player-info-content .match-stats .match-stats-header {
     margin-left: 0;
     margin-right: 0;
+    margin-right: 15px;
   }
   .soccer-player-info-content .match-stats .match-stats-header div {
     border-width: 1px;
@@ -15149,6 +15148,8 @@ fieldset[disabled] .soccer-player-info-header .btn-add-soccer-player-info {
   .soccer-player-info-content .match-stats .match-stats-content {
     margin-left: 0;
     margin-right: 0;
+    height: 287px;
+    overflow-y: scroll;
     clear: both;
   }
   .soccer-player-info-content .match-stats .match-stats-content .match-year {

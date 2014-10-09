@@ -27,24 +27,38 @@ class MainMenuSlideComp implements ShadowRootAware{
     _currentActiveElement = null;
   }
 
-  MainMenuSlideComp(this._router, this.profileService, this.scrDet);
+  String currentRouteName;
 
-  void saveActiveClass() {
-   if ( _currentActiveElement == null ) {
-      LIElement activ = querySelector('.active');
-      _currentActiveElement = activ;
-      //print("No funciono bien... arreglamé");
-    }
-    String aActive  = window.location.hash.replaceFirst("#/", "");
-    if (aActive.isEmpty) {
-      aActive = "lobby";
-    }
-    Element aElementActive = querySelector('a[destination="${aActive}"]');
-    if(aElementActive != null && !_linkActualizado) {
-      updateMenuLinks(aElementActive);
-      _linkActualizado = true;
-      print('actualizo link');
-    }
+  MainMenuSlideComp(this._router, this.profileService, this.scrDet) {
+    _router.onRouteStart.listen((RouteStartEvent event) {
+      event.completed.then((_) {
+        if (_router.activePath.length > 0) {
+          currentRouteName = _router.activePath[0].name;
+          print("MAIN_MENU_SLIDE-: Estoy en ${currentRouteName}");
+          updateActiveElement(currentRouteName);
+        }
+        else {
+              currentRouteName = null;
+        }
+      });
+    });
+  }
+
+  void updateActiveElement(String name) {
+      LIElement oldLi = querySelector("li.active");
+      if (oldLi != null) {
+        oldLi.classes.remove('active');
+      }
+      LIElement li = querySelector("[highlights=${name}]");
+      if (li != null ) {
+        li.classes.add('active');
+      }
+      else {
+        if ( name.contains('user')) {
+          LIElement li = querySelector('[highlights="user"]');
+          li.classes.add('active');
+        }
+      }
   }
 
   void navigateTo(event, [Map params]) {
@@ -60,40 +74,6 @@ class MainMenuSlideComp implements ShadowRootAware{
 
     if (destination.isNotEmpty) {
       _router.go(destination, params);
-    }
-
-    updateMenuLinks(event.target);
-  }
-
-  void updateMenuLinks(dynamic a) {
-    if(a.attributes["destination"] == "") {
-      print("-MAIN_MENU_SLIDE_COMP-: Este elemento del menu no tiene 'destination'");
-      return;
-    }
-
-    if (_currentActiveElement != null) {
-      _currentActiveElement.classes.remove('active');
-      if (a.attributes["destination"] == 'lobby') {
-        _currentActiveElement = querySelector('#menuLobby').parent;
-      }
-      else {
-        //Si el id tiene la palabra user, es un elemento del submenu de usuario
-        if (a.id.contains("menuUser")) {
-          _currentActiveElement = a.parent.parent.parent; // Si está en el submenu tenemos que subir hasta el li padre (profuncidad actual: li>ul>li>a)
-        }
-        else {
-          if (a.parent.runtimeType.toString() != "DivElement") {
-            _currentActiveElement = a.parent;
-          }
-          else {
-            _currentActiveElement = null;
-          }
-        }
-      }
-
-      if(_currentActiveElement != null) {
-        _currentActiveElement.classes.add('active');
-      }
     }
   }
 

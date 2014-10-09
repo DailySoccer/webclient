@@ -12,13 +12,12 @@
         <div id="brandLogoLogged" class="navbar-brand" ng-click="comp.navigateTo($event)" destination="lobby" ng-class="['loggedIn-brand']"></div>
       </div>
       <!-- Opciones del menu -->
-
       <div id="menuSlide" class="navbar-offcanvas navmenu-fixed offcanvas" ng-if="comp.profileService.isLoggedIn">
-        <ul class="nav navbar-nav" ng-model="comp.saveActiveClass()">
-          <li class="active">         <a  id="menuLobby"                ng-click="comp.navigateTo($event)" destination="lobby">Buscar Torneos</a></li>
-          <li>                        <a  id="menuMy_Contest"           ng-click="comp.navigateTo($event)" destination="my_contests">Mis torneos</a></li>
-          <li>                        <a  id="menuPromos"               ng-click="comp.navigateTo($event)" destination="beta_info">Promos</a></li>
-          <li class="right-menu">
+        <ul class="nav navbar-nav">
+          <li class="active" highlights="lobby"> <a  id="menuLobby"                ng-click="comp.navigateTo($event)" destination="lobby">Buscar Torneos</a></li>
+          <li highlights="my_contests">          <a  id="menuMy_Contest"           ng-click="comp.navigateTo($event)" destination="my_contests">Mis torneos</a></li>
+          <li highlights="">                     <a  id="menuPromos"               ng-click="comp.navigateTo($event)" destination="beta_info">Promos</a></li>
+          <li highlights="user" class="right-menu">
             <a id="menuUser" class="dropdown-toggle" data-toggle="dropdown">{{comp.profileService.user.nickName}}</a>
             <ul class="dropdown-menu">
               <li>                    <a  id="menuUserMyAccount"        ng-click="comp.navigateTo($event)" destination="user_profile">Mi cuenta</a></li>

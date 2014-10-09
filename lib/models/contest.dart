@@ -6,7 +6,6 @@ import "package:webclient/models/user.dart";
 import "package:webclient/models/contest_entry.dart";
 import "package:webclient/models/soccer_player.dart";
 import "package:webclient/models/soccer_team.dart";
-import "package:webclient/models/field_pos.dart";
 import "package:webclient/models/instance_soccer_player.dart";
 import 'package:webclient/services/contest_references.dart';
 import 'package:webclient/services/datetime_service.dart';

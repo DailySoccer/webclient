@@ -8,7 +8,6 @@ import 'package:webclient/models/contest_entry.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/active_contests_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
-import 'package:webclient/utils/js_utils.dart';
 
 @Component(
   selector: 'contest-info',
@@ -16,7 +15,6 @@ import 'package:webclient/utils/js_utils.dart';
   publishAs: 'contestInfo',
   useShadowDom: false
 )
-
 class ContestInfoComp implements ShadowRootAware {
 
   bool popUpStyle;

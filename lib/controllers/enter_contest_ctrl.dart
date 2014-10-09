@@ -7,7 +7,6 @@ import 'package:angular/angular.dart';
 import "package:json_object/json_object.dart";
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/models/field_pos.dart';
-import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/active_contests_service.dart';
 import 'package:webclient/services/my_contests_service.dart';
 import "package:webclient/models/soccer_team.dart";
@@ -24,7 +23,7 @@ import 'package:webclient/utils/string_utils.dart';
     selector: '[enter-contest-ctrl]',
     publishAs: 'ctrl'
 )
-class EnterContestCtrl implements DetachAware{
+class EnterContestCtrl implements DetachAware {
 
   static final String ERROR_RETRY_OP = "ERROR_RETRY_OP";
 
@@ -52,24 +51,20 @@ class EnterContestCtrl implements DetachAware{
 
   String nameFilter;
 
-  String parent = "";
 
-  EnterContestCtrl(RouteProvider routeProvider, this._router, this.scrDet, this._profileService, this._activeContestService, this._myContestService, this._flashMessage) {
+  EnterContestCtrl(this._routeProvider, this._router, this.scrDet, this._activeContestService, this._myContestService, this._flashMessage) {
 
     // Creamos los slots iniciales, todos vacios
     FieldPos.LINEUP.forEach((pos) {
       lineupSlots.add(null);
     });
 
-    // Identificamos cúal es la pantalla desde la que se ha llamado al view contest entry
-    parent = routeProvider.route.parameters['parent'];
+    _editingContestEntry = (_routeProvider.route.parameters['contestEntryId'] != null);
 
-    _editingContestEntry = (routeProvider.route.parameters['contestEntryId'] != null);
-
-    //Nos subscribimos al evento de cambio de tamañano de ventana
+    // Nos subscribimos al evento de cambio de tamañano de ventana
     _streamListener = scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
 
-    _activeContestService.refreshContest(routeProvider.route.parameters['contestId'])
+    _activeContestService.refreshContest(_routeProvider.route.parameters['contestId'])
       .then((_) {
         contest = _activeContestService.lastContest;
 
@@ -82,9 +77,11 @@ class EnterContestCtrl implements DetachAware{
 
         // Si nos viene el torneo para editar la alineación
         if (_editingContestEntry) {
-          contestEntryId = routeProvider.route.parameters['contestEntryId'];
+          contestEntryId = _routeProvider.route.parameters['contestEntryId'];
+
           if (contestEntryId != null) {
             ContestEntry contestEntry = _myContestService.lastContest.getContestEntry(contestEntryId);
+
             // Insertamos en el lineup el jugador
             contestEntry.instanceSoccerPlayers.forEach((instanceSoccerPlayer) {
               onSoccerPlayerSelected(_allSoccerPlayers.firstWhere((slot) => slot["id"] == instanceSoccerPlayer.id));
@@ -126,22 +123,28 @@ class EnterContestCtrl implements DetachAware{
     else {
       matchesFilter.style.display = "block";
     }
-
   }
 
   void onScreenWidthChange(String value) {
+
     // Resetamos todos los filtros
     removeAllFilters();
+
     // Cuando se inicializa la lista de jugadores, esta se ordena por posicion
     sortListByField("Pos", invert: false);
+
     // Para que en la versión móvil aparezca la pantalla de lineup
     isSelectingSoccerPlayer = false;
-    if(value == "desktop" || value == "sm") {
+
+    if (value == "desktop" || value == "sm") {
+
       Element matchesFilter = document.querySelector('.match-teams-filter');
+
       if(matchesFilter != null) {
         matchesFilter.style.display = "block";
       }
-      if(value == "desktop") {
+
+      if (value == "desktop") {
         // Reseteo las pestañas
         List<dynamic> allTabs = document.querySelectorAll(".enter-contest-tabs li");
         allTabs.forEach((element) => element.classes.remove('active'));
@@ -417,37 +420,29 @@ class EnterContestCtrl implements DetachAware{
       return;
     }
 
-    // TODO: Se tendría que redireccionar a la pantalla de hacer "Login"?
-    if (!_profileService.isLoggedIn) {
-      _router.go('login', {});
-      return;
-    }
-
     // No permitimos la reentrada de la solicitud (hasta que termine el timer de espera para volver a reintentarlo)
     if (_retryOpTimer != null && _retryOpTimer.isActive) {
       return;
     }
 
-    print("createFantasyTeam");
     lineupSlots.forEach((player) => print(player["fieldPos"].abrevName + ": " + player["fullName"] + " : " + player["id"]));
 
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
 
     if (_editingContestEntry) {
       _myContestService.editContestEntry(contestEntryId, lineupSlots.map((player) => player["id"]).toList())
-        .then((_) => _router.go('edit_contest_entry', {"contestId" : contest.contestId, "parent" : parent}))
+        .then((_) => _router.go('view_contest_entry', {"contestId": contest.contestId, "parent":
+                                                       _routeProvider.parameters["parent"],
+                                                       "viewContestEntryMode": "edited"
+                                                      }))
         .catchError((error) => _errorCreating(error));
     }
     else {
       _activeContestService.addContestEntry(contest.contestId, lineupSlots.map((player) => player["id"]).toList())
-        .then((contestId) {
-          if (contestId == contest.contestId) {
-            _router.go('view_contest_entry', {"contestId" : contest.contestId, "parent" : parent});
-          }
-          else {
-            _router.go('new_contest_entry', {"contestId" : contestId, "parent" : parent});
-          }
-        })
+        .then((contestId) => _router.go('view_contest_entry', {"contestId": contestId,
+                                        "parent": _routeProvider.parameters["parent"],
+                                        "viewContestEntryMode": contestId == contest.contestId? "created" : "swapped"
+                                         }))
         .catchError((error) => _errorCreating(error));
     }
   }
@@ -525,11 +520,11 @@ class EnterContestCtrl implements DetachAware{
   // Mostramos la ventana modal con la información de ese torneo, si no es la versión movil.
   void onRowClick(String soccerPlayerId) {
     // Permitimos añadir el jugador solo en el caso de que exista hueco en el lineup (disabilitamos el botón de añadir)
-    var selectedSoccerPlayer = availableSoccerPlayers.firstWhere(
-            (soccerPlayer) => soccerPlayer["id"] == soccerPlayerId,
-            orElse: () => null);
-    if(selectedSoccerPlayer != null) {
+    var selectedSoccerPlayer = availableSoccerPlayers.firstWhere((soccerPlayer) => soccerPlayer["id"] == soccerPlayerId,
+                                                                 orElse: () => null);
+    if (selectedSoccerPlayer != null) {
       List<ButtonElement> btnAdd = querySelectorAll('.btn-add-soccer-player-info');
+
       if (availableSoccerPlayer(selectedSoccerPlayer))
         btnAdd.forEach((element) => element.disabled = false);
       else
@@ -539,7 +534,7 @@ class EnterContestCtrl implements DetachAware{
     }
 
     // Version Small or Desktop => sacamos la modal
-    if(scrDet.isSmScreen || scrDet.isDesktop) {
+    if (scrDet.isSmScreen || scrDet.isDesktop) {
 
       // Esto soluciona el bug por el que no se muestra la ventana modal en Firefox;
       var modal = querySelector('#infoContestModal');
@@ -558,14 +553,13 @@ class EnterContestCtrl implements DetachAware{
   }
 
   void addSoccerPlayerToLineup(String soccerPlayerId) {
-    var selectedSoccerPlayer = availableSoccerPlayers.firstWhere(
-        (soccerPlayer) => soccerPlayer["id"] == soccerPlayerId,
-        orElse: () => null);
-    if(selectedSoccerPlayer != null) {
+    var selectedSoccerPlayer = availableSoccerPlayers.firstWhere((soccerPlayer) => soccerPlayer["id"] == soccerPlayerId,
+                                                                 orElse: () => null);
+    if (selectedSoccerPlayer != null) {
       //Añado el jugador
       onSoccerPlayerSelected(selectedSoccerPlayer);
     }
-    if(scrDet.isSmScreen || scrDet.isDesktop) {
+    if (scrDet.isSmScreen || scrDet.isDesktop) {
       // hacemos una llamada de jQuery para ocultar la ventana modal
       JsUtils.runJavascript('#infoContestModal', 'modal', 'hide');
     }
@@ -588,10 +582,12 @@ class EnterContestCtrl implements DetachAware{
   bool _editingContestEntry = false;
 
   Router _router;
+  RouteProvider _routeProvider;
+
   ActiveContestsService _activeContestService;
   MyContestsService _myContestService;
-  ProfileService _profileService;
   FlashMessagesService _flashMessage;
+
   // Lista de filtros a aplicar
   Map<String,String> _filterList = {};
   var _streamListener;

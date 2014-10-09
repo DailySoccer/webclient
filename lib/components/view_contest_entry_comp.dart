@@ -17,61 +17,49 @@ import 'dart:html';
    publishAs: 'viewContestEntry',
    useShadowDom: false
 )
-
 class ViewContestEntryComp {
   ScreenDetectorService scrDet;
 
   ContestEntry mainPlayer;
   dynamic selectedOpponent;
 
-  String parent = "";
-  String contestEntryMode = "";
-
   DateTime updatedDate;
 
   List<String> matchesInvolved = [];
-
-  String get currentUrl => window.location.toString();//"www.epiceleven.com";
 
   Contest get contest => _myContestsService.lastContest;
   List<ContestEntry> get contestEntries => (contest != null) ? contest.contestEntries : null;
   List<ContestEntry> get contestEntriesOrderByPoints => (contest != null) ? contest.contestEntriesOrderByPoints : null;
 
-  bool get isEnterContestMode => parent == "lobby";
-  bool get isEditContestMode => contestEntryMode == "edit_contest_entry";
-  bool get isNewContestEntry => contestEntryMode == "new_contest_entry";
-  bool get isEditAndNewMode => (contestEntryMode == "edit_contest_entry") || (contestEntryMode == "new_contest_entry");
+  // A esta pantalla entramos de varias maneras:
+  bool get isModeViewing => _viewContestEntryMode == "viewing"; // Clickamos "my_contests->proximos->ver".
+  bool get isModeCreated => _viewContestEntryMode == "created"; // Acabamos de crearla a traves de enter_contest
+  bool get isModeEdited  => _viewContestEntryMode == "edited";  // Venimos de editarla a traves de enter_contest.
+  bool get isModeSwapped => _viewContestEntryMode == "swapped"; // Acabamos de crearla pero el servidor nos cambio a otro concurso pq el nuestro estaba lleno.
 
-  ViewContestEntryComp(RouteProvider routeProvider, this.scrDet, this._myContestsService, this._profileService, this._flashMessage, this._router) {
+  ViewContestEntryComp(this._routeProvider, this.scrDet, this._myContestsService, this._profileService, this._flashMessage, this._router) {
 
-      // Identificamos cúal es la pantalla desde la que se ha llamado al view contest entry
-      parent = routeProvider.route.parameters['parent'];
+    _viewContestEntryMode = _routeProvider.route.parameters['viewContestEntryMode'];
+    _contestId = _routeProvider.route.parameters['contestId'];
 
-      // Identificamos si estamos editando o es un nuevo contest entry
-      contestEntryMode = routeProvider.route.name;
+    _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
 
-      _contestId = routeProvider.route.parameters['contestId'];
+    _myContestsService.refreshContest(_contestId)
+      .then((jsonObject) {
+        mainPlayer = contest.getContestEntryWithUser(_profileService.user.userId);
 
-      _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
+        updatedDate = DateTimeService.now;
 
-      _myContestsService.refreshContest(_contestId)
-        .then((jsonObject) {
-          mainPlayer = contest.getContestEntryWithUser(_profileService.user.userId);
+        // generamos los partidos para el filtro de partidos
+        matchesInvolved.clear();
+        List<MatchEvent> matchEventsSorted = new List<MatchEvent>.from(contest.matchEvents)
+            .. sort((entry1, entry2) => entry1.startDate.compareTo(entry2.startDate))
+            .. forEach( (match) {
+              matchesInvolved.add(match.soccerTeamA.shortName + '-' + match.soccerTeamB.shortName + "<br>" + DateTimeService.formatDateTimeShort(match.startDate));
+            });
 
-          updatedDate = DateTimeService.now;
-
-          // generamos los partidos para el filtro de partidos
-          matchesInvolved.clear();
-          List<MatchEvent> matchEventsSorted = new List<MatchEvent>.from(contest.matchEvents)
-              .. sort((entry1, entry2) => entry1.startDate.compareTo(entry2.startDate))
-              .. forEach( (match) {
-                matchesInvolved.add(match.soccerTeamA.shortName + '-' + match.soccerTeamB.shortName + "<br>" + DateTimeService.formatDateTimeShort(match.startDate));
-              });
-
-        })
-        .catchError((error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW));
-
-
+      })
+      .catchError((error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW));
   }
 
   void tabChange(String tab) {
@@ -82,23 +70,24 @@ class ViewContestEntryComp {
     contentTab.classes.add("active");
   }
 
-  void goTo(String screenParent) {
-    _router.go(screenParent, {});
+  void goToParent() {
+    _router.go(_routeProvider.parameters["parent"] , {});
   }
 
   void cancelContestEntry() {
     _myContestsService.cancelContestEntry(mainPlayer.contestEntryId)
       .then((jsonObject) {
-        print("cancelado contestEntry");
-        _router.go(parent, {});
+        goToParent();
       });
   }
+
+  Router _router;
+  RouteProvider _routeProvider;
 
   FlashMessagesService _flashMessage;
   ProfileService _profileService;
   MyContestsService _myContestsService;
 
   String _contestId;
-
-  Router _router;
+  String _viewContestEntryMode;
 }

@@ -1,6 +1,6 @@
 <section view-contest-entry-comp ng-show="viewContestEntry.updatedDate != null">
 
-  <contest-header contestData="viewContestEntry.contest" mode="'VIEW_CONTEST_ENTRY'" parent="viewContestEntry.parent"></contest-header>
+  <contest-header contestData="viewContestEntry.contest" mode="'VIEW_CONTEST_ENTRY'"></contest-header>
 
   <div class="info-and-social-bar">
     <!--<div class="social"><img src="images/socialBig.png"></div>-->
@@ -10,10 +10,10 @@
   </div>
 
   <div class="separator-bar"></div>
-  <div class="info-complete-bar" ng-if="viewContestEntry.isEnterContestMode || viewContestEntry.isEditAndNewMode">
-    <p ng-if="viewContestEntry.isEnterContestMode && !viewContestEntry.isEditAndNewMode">¡PERFECTO! HAS COMPLETADO TU ALINEACIÓN CON ÉXITO</p>
-    <p ng-if="viewContestEntry.isEditContestMode">¡PERFECTO! HAS EDITADO TU ALINEACIÓN CON ÉXITO</p>
-    <p ng-if="viewContestEntry.isNewContestEntry">EL TORNEO ESTABA LLENO PERO TE HEMOS METIDO EN ESTE QUE ES IGUAL</p>
+  <div class="info-complete-bar" ng-if="!viewContestEntry.isModeViewing">
+    <p ng-if="viewContestEntry.isModeCreated">¡PERFECTO! HAS COMPLETADO TU ALINEACIÓN CON ÉXITO</p>
+    <p ng-if="viewContestEntry.isModeEdited">¡PERFECTO! HAS EDITADO TU ALINEACIÓN CON ÉXITO</p>
+    <p ng-if="viewContestEntry.isModeSwapped">EL TORNEO ESTABA LLENO PERO TE HEMOS METIDO EN ESTE QUE ES IGUAL</p>
     <p>Recuerda que puedes editar tu equipo cuantas veces quieras hasta que comience la competición</p>
   </div>
 
@@ -25,22 +25,22 @@
         <li><a ng-click="viewContestEntry.tabChange('usersList')" data-toggle="tab">Usuarios</a></li>
       </ul>
       <div class="tab-content" id="viewContestEntryTabContent">
-        <fantasy-team class="tab-pane active" id="userFantasyTeam" contest-entry="viewContestEntry.mainPlayer" watch="viewContestEntry.updatedDate" is-opponent="false" goParent="viewContestEntry.parent"></fantasy-team>
+        <fantasy-team class="tab-pane active" id="userFantasyTeam" contest-entry="viewContestEntry.mainPlayer" watch="viewContestEntry.updatedDate" is-opponent="false"></fantasy-team>
         <users-list class="tab-pane" id="usersList" contest-entries="viewContestEntry.contestEntries" selected-contest-entry="viewContestEntry.selectedOpponent" watch="viewContestEntry.updatedDate"></users-list>
       </div>
     </div>
 
     <div ng-switch-when="false">
-      <fantasy-team id="userFantasyTeam" contest-entry="viewContestEntry.mainPlayer" watch="viewContestEntry.updatedDate" is-opponent="false" goParent="viewContestEntry.parent"></fantasy-team>
-      <users-list id="usersList" ng-show="viewContestEntry.selectedOpponent == null" contest-entries="viewContestEntry.contestEntries" selected-contest-entry="viewContestEntry.selectedOpponent"
-                  watch="viewContestEntry.updatedDate"></users-list>
+      <fantasy-team id="userFantasyTeam" contest-entry="viewContestEntry.mainPlayer" watch="viewContestEntry.updatedDate" is-opponent="false"></fantasy-team>
+      <users-list id="usersList" ng-show="viewContestEntry.selectedOpponent == null" contest-entries="viewContestEntry.contestEntries" 
+                  selected-contest-entry="viewContestEntry.selectedOpponent" watch="viewContestEntry.updatedDate"></users-list>
     </div>
     <div class="view-contest-entry-actions-wrapper">
       <div class="button-wrapper">
         <button type="button" class="btn-cancel-contest" ng-click="viewContestEntry.cancelContestEntry()">CANCELAR ENTRADA</button>
       </div>
       <div class="button-wrapper">
-        <button type="button" class="btn-back-contest" ng-click="viewContestEntry.goTo(viewContestEntry.parent)">OTROS DESAFÍOS</button>
+        <button type="button" class="btn-back-contest" ng-click="viewContestEntry.goToParent()">OTROS DESAFÍOS</button>
       </div>
     </div>
     <div class="clear-fix-bottom"></div>

@@ -48,11 +48,6 @@ class ContestHeaderComp implements DetachAware{
     }
   }
 
-  @NgOneWay("parent")
-    void set goParent(String value) {
-      _parent = value;
-  }
-
   @NgOneWay("mode")
   void set viewMode(String value) {
     switch(value) {
@@ -68,7 +63,7 @@ class ContestHeaderComp implements DetachAware{
     }
   }
 
-  ContestHeaderComp(this._router, this.scrDet) {
+  ContestHeaderComp(this._router, this._routeProvider, this.scrDet) {
     _count = new Timer.periodic(new Duration(milliseconds:1000), (Timer timer) => _refreshCountdownDate());
   }
 
@@ -114,8 +109,8 @@ class ContestHeaderComp implements DetachAware{
     contestHeaderInfo["contestantCount"] = "${_contestInfo.contestEntries.length} de ${_contestInfo.maxEntries} jugadores  - Límite de salario: ${_contestInfo.salaryCap}";
   }
 
-  void goBackTo() {
-    _router.go(_parent, {});
+  void goToParent() {
+    _router.go(_routeProvider.parameters["parent"], {});
   }
 
   void detach() {
@@ -123,9 +118,9 @@ class ContestHeaderComp implements DetachAware{
   }
 
   Router _router;
+  RouteProvider _routeProvider;
 
   Timer _count;
   Contest _contestInfo;
   int _mode;
-  String _parent;
 }

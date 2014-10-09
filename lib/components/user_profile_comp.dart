@@ -13,7 +13,7 @@ import 'dart:html';
     useShadowDom: false
 )
 
-class UserProfileComp implements ShadowRootAware, DetachAware{
+class UserProfileComp implements ShadowRootAware, DetachAware {
 
   bool isEditingProfile = false;
 

@@ -11,7 +11,6 @@ import 'package:webclient/services/profile_service.dart';
    publishAs: 'comp',
    useShadowDom: false
 )
-
 class UsersListComp {
 
   List users = new List();
@@ -37,12 +36,11 @@ class UsersListComp {
 
   String getPrize(int index) => (_viewContestCtrl != null) ? _viewContestCtrl.getPrize(index) : "";
 
-  bool get isViewContestEntryMode => (_routeProvider.route.name == "view_contest_entry") || (_routeProvider.route.name == "edit_contest_entry") || (_routeProvider.route.name == "new_contest_entry");
+  bool get isViewContestEntryMode => _routeProvider.route.name.contains("view_contest_entry");
 
   UsersListComp(this._routeProvider, this._profileService);
 
   void _refresh() {
-    //print("refresh users: ${_liveContestCtrl.usersInfo}");
 
     users.clear();
 
@@ -75,12 +73,12 @@ class UsersListComp {
   bool isMainPlayer(var user) => _profileService.user.userId == user["id"];
 
   void onUserClick(var user) {
-    if( isMainPlayer(user)  && !isViewContestEntryMode) {
+    if (isMainPlayer(user)  && !isViewContestEntryMode) {
       _viewContestCtrl.tabChange('userFantasyTeam');
       return;
     }
 
-    switch(_routeProvider.route.name)
+    switch (_routeProvider.route.name)
     {
       case "live_contest":
       case "history_contest":

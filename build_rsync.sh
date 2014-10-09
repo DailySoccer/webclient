@@ -7,6 +7,8 @@ if [[ $1 != "" ]]
         mode=$1
 fi
 
+./compile_less.sh
+
 # mode puede ser debug|relesae
 pub build --mode=$mode
 rsync -r  -v --copy-unsafe-links build/web/. ../backend/public/

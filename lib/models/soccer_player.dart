@@ -4,16 +4,16 @@ import "package:json_object/json_object.dart";
 import 'package:logging/logging.dart';
 import "package:webclient/models/soccer_team.dart";
 import "package:webclient/models/soccer_player_stats.dart";
-import "package:webclient/models/field_pos.dart";
+//import "package:webclient/models/field_pos.dart";
 import 'package:webclient/services/contest_references.dart';
 
 class SoccerPlayer {
   String templateSoccerPlayerId;
   String name;
-  FieldPos fieldPos;
+  // FieldPos fieldPos;
   int    fantasyPoints;
   int    playedMatches;
-  int    salary;
+  // int    salary;
 
   // Fantasy Points (actualizado por liveMatchEvent)
   int currentLivePoints = 0;
@@ -36,10 +36,10 @@ class SoccerPlayer {
   SoccerPlayer _initFromJsonObject(JsonObject json, ContestReferences references) {
     assert(templateSoccerPlayerId.isNotEmpty);
     name = json.containsKey("name") ? json.name : "";
-    fieldPos = json.containsKey("fieldPos") ? new FieldPos(json.fieldPos) : null;
+    // fieldPos = json.containsKey("fieldPos") ? new FieldPos(json.fieldPos) : null;
     fantasyPoints = json.containsKey("fantasyPoints") ? json.fantasyPoints : 0;
     playedMatches = json.containsKey("playedMatches") ? json.playedMatches : 0;
-    salary = json.containsKey("salary") ? json.salary : 0;
+    // salary = json.containsKey("salary") ? json.salary : 0;
 
     if (json.containsKey("stats")) {
       stats = [];

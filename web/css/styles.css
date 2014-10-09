@@ -12132,12 +12132,17 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
 @media (min-width: 768px) {
   #infoAndFilterHeader #filtersPanel .reset-button-wrapper {
     float: left;
-    width: 33.33333333%;
+    width: 25%;
   }
 }
 @media (min-width: 768px) {
   #infoAndFilterHeader #filtersPanel .reset-button-wrapper {
-    left: 33.33333333%;
+    left: 25%;
+  }
+}
+@media (min-width: 768px) {
+  #infoAndFilterHeader #filtersPanel .reset-button-wrapper {
+    margin: 0 10px 0 0;
   }
 }
 @media (max-width: 767px) {
@@ -12147,6 +12152,217 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   }
 }
 #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset {
+  display: block;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  color: #ffffff;
+  background-color: #afafaf;
+  border-color: #cccccc;
+  box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
+}
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:focus,
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:active:focus,
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:hover,
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:active,
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.disabled,
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset[disabled],
+fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:focus,
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:active:focus,
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:hover,
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:active,
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.disabled,
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset[disabled],
+fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:focus,
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:active:focus,
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:hover,
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:active,
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.disabled,
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset[disabled],
+fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:focus,
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:active:focus,
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:hover,
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:active,
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.disabled,
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset[disabled],
+fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:hover,
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:focus,
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:active,
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.active,
+.open .dropdown-toggle#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset {
+  color: #ffffff;
+  background-color: #9b9b9b;
+  border-color: #adadad;
+}
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:active,
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.active,
+.open .dropdown-toggle#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset {
+  background-image: none;
+}
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.disabled,
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset[disabled],
+fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset,
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.disabled:hover,
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset[disabled]:hover,
+fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:hover,
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.disabled:focus,
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset[disabled]:focus,
+fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:focus,
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.disabled:active,
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset[disabled]:active,
+fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:active,
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.disabled.active,
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset[disabled].active,
+fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.active {
+  background-color: #afafaf;
+  border-color: #cccccc;
+}
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset .badge {
+  color: #afafaf;
+  background-color: #ffffff;
+}
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:active,
+#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset[disabled],
+fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper {
+  float: left;
+  width: 100%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 10px 0 15px 0;
+}
+@media (min-width: 768px) {
+  #infoAndFilterHeader #filtersPanel .confirm-button-wrapper {
+    float: left;
+    width: 25%;
+  }
+}
+@media (min-width: 768px) {
+  #infoAndFilterHeader #filtersPanel .confirm-button-wrapper {
+    left: 25%;
+  }
+}
+@media (min-width: 768px) {
+  #infoAndFilterHeader #filtersPanel .confirm-button-wrapper {
+    margin: 0 0 0 10px;
+  }
+}
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm {
   display: inline-block;
   margin-bottom: 0;
   font-weight: normal;
@@ -12174,28 +12390,28 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   border-color: #91b42c;
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
 }
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:focus,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:active:focus,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.active:focus {
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm:focus,
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm:active:focus,
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm.active:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:hover,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:focus {
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm:hover,
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm:focus {
   color: #ffffff;
   text-decoration: none;
 }
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:active,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.active {
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm:active,
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.disabled,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset[disabled],
-fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset {
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm.disabled,
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm[disabled],
+fieldset[disabled] #infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -12203,28 +12419,28 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:focus,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:active:focus,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.active:focus {
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm:focus,
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm:active:focus,
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm.active:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:hover,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:focus {
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm:hover,
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm:focus {
   color: #ffffff;
   text-decoration: none;
 }
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:active,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.active {
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm:active,
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.disabled,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset[disabled],
-fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset {
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm.disabled,
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm[disabled],
+fieldset[disabled] #infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -12232,50 +12448,50 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:hover,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:focus,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:active,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.active,
-.open .dropdown-toggle#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset {
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm:hover,
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm:focus,
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm:active,
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm.active,
+.open .dropdown-toggle#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm {
   color: #ffffff;
   background-color: #87a829;
   border-color: #698320;
 }
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:active,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.active,
-.open .dropdown-toggle#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset {
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm:active,
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm.active,
+.open .dropdown-toggle#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm {
   background-image: none;
 }
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.disabled,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset[disabled],
-fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.disabled:hover,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset[disabled]:hover,
-fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:hover,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.disabled:focus,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset[disabled]:focus,
-fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:focus,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.disabled:active,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset[disabled]:active,
-fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:active,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.disabled.active,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset[disabled].active,
-fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.active {
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm.disabled,
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm[disabled],
+fieldset[disabled] #infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm,
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm.disabled:hover,
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm[disabled]:hover,
+fieldset[disabled] #infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm:hover,
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm.disabled:focus,
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm[disabled]:focus,
+fieldset[disabled] #infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm:focus,
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm.disabled:active,
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm[disabled]:active,
+fieldset[disabled] #infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm:active,
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm.disabled.active,
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm[disabled].active,
+fieldset[disabled] #infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm.active {
   background-color: #a1c931;
   border-color: #91b42c;
 }
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset .badge {
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm .badge {
   color: #a1c931;
   background-color: #ffffff;
 }
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset[disabled] {
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm[disabled] {
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
 }
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:active,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset[disabled],
-fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset {
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm:active,
+#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm[disabled],
+fieldset[disabled] #infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm {
   -webkit-box-shadow: none;
   box-shadow: none;
 }

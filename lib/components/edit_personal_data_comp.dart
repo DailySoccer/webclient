@@ -24,11 +24,7 @@ class EditPersonalDataComp implements ShadowRootAware {
   Element emailError;
   Element passwordError;
 
-  @NgTwoWay("is-pop-up")
-   bool get isPopUp => _popUpStyle;
-   void set isPopUp (bool value){
-     _popUpStyle = value;
-   }
+  bool isPopUp;
 
   bool get acceptNewsletter => _acceptNewsletter;
   void set acceptNewsletter(bool value) {
@@ -57,6 +53,9 @@ class EditPersonalDataComp implements ShadowRootAware {
 
   @override
   void onShadowRoot(root) {
+    HtmlElement htmlRoot = root as HtmlElement;
+
+
     //switch NEWSLETTER/OFERTAS ESPECIALES
     JsUtils.runJavascript("[name='switchNewsletter']", 'bootstrapSwitch', {         'size'          : 'mini',
                                                                                     'state'         : acceptNewsletter,
@@ -84,16 +83,13 @@ class EditPersonalDataComp implements ShadowRootAware {
                                                                                     'onSwitchChange': onSoccerPlayerAlertsSwitchChange
                                                                                   });
 
-    var nicks  = querySelectorAll('#nickNameError');
+      nicknameError = htmlRoot.querySelector('#nickNameError');
+      emailError    = htmlRoot.querySelector('#emailError');
+      passwordError = htmlRoot.querySelector('#passwordError');
 
-    nicknameError = isPopUp ? querySelectorAll('#nickNameError')[1] : querySelectorAll('#nickNameError')[0];
-    nicknameError.parent.style.display = "none";
+      hideErrors();
 
-    emailError = isPopUp ? querySelectorAll('#emailError')[1] : querySelectorAll('#emailError')[0];
-    emailError.parent.style.display = "none";
-
-    passwordError =  isPopUp ? querySelectorAll('#passwordError')[1] : querySelectorAll('#passwordError')[0];
-    passwordError.parent.style.display = "none";
+      isPopUp = htmlRoot.id == 'modalEditPersonalDataForm';
   }
 
   void onNewsLetterSwitchChange(event, state) {
@@ -106,6 +102,12 @@ class EditPersonalDataComp implements ShadowRootAware {
 
   void onSoccerPlayerAlertsSwitchChange(event, state) {
     acceptSoccerPlayerAlerts = state;
+  }
+
+  void hideErrors() {
+    nicknameError.parent.style.display  = "none";
+    emailError.parent.style.display     = "none";
+    passwordError.parent.style.display  = "none";
   }
 
   bool validatePassword() {
@@ -124,6 +126,7 @@ class EditPersonalDataComp implements ShadowRootAware {
   }
 
   void saveChanges() {
+      hideErrors();
 
       if(!validatePassword() ) {
         return;
@@ -162,7 +165,7 @@ class EditPersonalDataComp implements ShadowRootAware {
                       ..classes.add("errorDetected")
                       ..parent.style.display = "";
                   break;
-                  case "email":
+                  case "password":
                     passwordError
                       ..text = error[key][0]
                       ..classes.remove("errorDetected")

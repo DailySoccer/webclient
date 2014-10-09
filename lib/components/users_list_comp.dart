@@ -73,12 +73,12 @@ class UsersListComp {
   bool isMainPlayer(var user) => _profileService.user.userId == user["id"];
 
   void onUserClick(var user) {
-    if( isMainPlayer(user)  && !isViewContestEntryMode) {
+    if (isMainPlayer(user)  && !isViewContestEntryMode) {
       _viewContestCtrl.tabChange('userFantasyTeam');
       return;
     }
 
-    switch(_routeProvider.route.name)
+    switch (_routeProvider.route.name)
     {
       case "live_contest":
       case "history_contest":

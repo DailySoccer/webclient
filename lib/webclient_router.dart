@@ -111,21 +111,7 @@ void webClientRouteInitializer(Router router, RouteViewFactory views) {
         view: 'view/enter_contest.tpl.html'
     )
     ,'view_contest_entry': ngRoute(
-        path: '/:parent/view_contest_entry/:contestId',
-        preEnter: (RoutePreEnterEvent e) => e.allowEnter(ProfileService.allowEnter()),
-        enter: (RouteEnterEvent e) => enterPage(e),
-        leave: (RouteLeaveEvent e) => leavePage(e),
-        viewHtml: '<view-contest-entry></view-contest-entry>'
-    )
-    ,'edit_contest_entry': ngRoute(
-        path: '/:parent/edit_contest_entry/:contestId',
-        preEnter: (RoutePreEnterEvent e) => e.allowEnter(ProfileService.allowEnter()),
-        enter: (RouteEnterEvent e) => enterPage(e),
-        leave: (RouteLeaveEvent e) => leavePage(e),
-        viewHtml: '<view-contest-entry></view-contest-entry>'
-    )
-    ,'new_contest_entry': ngRoute(
-        path: '/:parent/new_contest_entry/:contestId',
+        path: '/:parent/view_contest_entry/:viewContestEntryMode/:contestId',
         preEnter: (RoutePreEnterEvent e) => e.allowEnter(ProfileService.allowEnter()),
         enter: (RouteEnterEvent e) => enterPage(e),
         leave: (RouteLeaveEvent e) => leavePage(e),

@@ -299,9 +299,10 @@ class EnterContestCtrl implements DetachAware {
   }
 
   void sortListByField(String fieldName, {bool invert : true}) {
-    if (fieldName != _sortField) {
+    if (fieldName != _primarySort) {
       _sortDir = false;
-      _sortField = fieldName;
+      _secondarySort = _primarySort;
+      _primarySort = fieldName;
     }
     else if (invert) {
       _sortDir = !_sortDir;
@@ -309,27 +310,64 @@ class EnterContestCtrl implements DetachAware {
     _refreshOrder();
   }
 
-  void _refreshOrder() {
-    switch(_sortField)
-      {
+  dynamic compare(String field, var playerA, var playerB) {
+    int compResult;
+    int retorno;
+    switch(field) {
+      case "fieldPos":
+        compResult = playerA["fieldPos"].sortOrder - playerB["fieldPos"].sortOrder;
+      break;
+      case "Name":
+        compResult = compareNameTo(playerA, playerB);
+      break;
+      default:
+        compResult = playerA[field].compareTo(playerB[field]);
+      break;
+    }
+    if(_secondarySort == "")
+      return compResult;
+    if (compResult == 0) {
+      //print('Orden primario: ${_primarySort} | Orden secundario: ${_secondarySort}');
+      switch(_secondarySort) {
         case "Pos":
-          availableSoccerPlayers.sort((player1, player2) => _sortDir? player2["fieldPos"].sortOrder - player1["fieldPos"].sortOrder :
-                                                                      player1["fieldPos"].sortOrder - player2["fieldPos"].sortOrder);
+          retorno = playerB["fieldPos"].sortOrder - playerA["fieldPos"].sortOrder;
         break;
         case "Name":
-          availableSoccerPlayers.sort((player1, player2) => _sortDir? compareNameTo(player2, player1) : compareNameTo(player1, player2));
+          retorno = compareNameTo(playerA, playerB);
         break;
         case "DFP":
-          availableSoccerPlayers.sort((player1, player2) => !_sortDir? player2["fantasyPoints"].compareTo(player1["fantasyPoints"]) :
-                                                                      player1["fantasyPoints"].compareTo(player2["fantasyPoints"]));
+          retorno = playerA["fantasyPoints"].compareTo(playerB["fantasyPoints"]);
         break;
         case "Played":
-          availableSoccerPlayers.sort((player1, player2) => !_sortDir? player2["playedMatches"].compareTo(player1["playedMatches"]) :
-                                                                      player1["playedMatches"].compareTo(player2["playedMatches"]));
+          retorno = playerA["playedMatches"].compareTo(playerB["playedMatches"]);
         break;
         case "Salary":
-          availableSoccerPlayers.sort((player1, player2) => !_sortDir? player2["salary"].compareTo(player1["salary"]) :
-                                                                      player1["salary"].compareTo(player2["salary"]));
+          retorno = playerA["salary"].compareTo(playerB["salary"]);
+        break;
+      }
+    } else {
+      retorno = compResult;
+    }
+    return retorno;
+  }
+
+  void _refreshOrder() {
+    switch(_primarySort)
+      {
+        case "Pos":
+          availableSoccerPlayers.sort((player1, player2) => _sortDir? compare("fieldPos", player2, player1) : compare("fieldPos", player1, player2));
+        break;
+        case "Name":
+          availableSoccerPlayers.sort((player1, player2) => _sortDir? compare("Name", player2, player1) : compare("Name", player1, player2));
+        break;
+        case "DFP":
+          availableSoccerPlayers.sort((player1, player2) => !_sortDir? compare("fantasyPoints", player2, player1): compare("fantasyPoints", player1, player2));
+        break;
+        case "Played":
+          availableSoccerPlayers.sort((player1, player2) => !_sortDir? compare("playedMatches", player2, player1): compare("playedMatches", player1, player2));
+        break;
+        case "Salary":
+          availableSoccerPlayers.sort((player1, player2) => !_sortDir? compare("salary", player2, player1): compare("salary", player1, player2));
         break;
       }
   }
@@ -577,7 +615,8 @@ class EnterContestCtrl implements DetachAware {
 
   List<dynamic> _allSoccerPlayers = new List();
   bool _sortDir = false;
-  String _sortField = "";
+  String _primarySort = "";
+  String _secondarySort = "";
   int _selectedLineupPosIndex = 0;
   bool _editingContestEntry = false;
 

@@ -92,7 +92,7 @@
         <!-- lista de concursos -->
         <div class="list-container" ng-if="comp.hasWaitingContests">
           <contests-list id="waitingContests"
-                         sorted-by="comp.waittingSortType"
+                         sorted-by="comp.waitingSortType"
                          contests-list='comp.myContestsService.waitingContests'
                          on-action-click='comp.onWaitingActionClick(contest)'
                          on-row-click='comp.onWaitingRowClick(contest)'>

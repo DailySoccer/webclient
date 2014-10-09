@@ -20,7 +20,7 @@ class MyContestsComp implements DetachAware {
   MyContestsService myContestsService;
 
   String liveSortType = "contest-start-time_asc";
-  String waittingSortType = "contest-start-time_asc";
+  String waitingSortType = "contest-start-time_asc";
   String historySortType = "contest-start-time_desc";
 
   MyContestsComp(this._profileService, this.myContestsService, this._router, this._flashMessage) {
@@ -29,27 +29,27 @@ class MyContestsComp implements DetachAware {
   }
 
   void onWaitingRowClick(Contest contest) {
-    _router.go('view_contest_entry', {"contestId" : contest.contestId, "parent" : "my_contests"});
+    _router.go('view_contest_entry', {"contestId": contest.contestId, "parent": "my_contests", "viewContestEntryMode": "viewing"});
   }
 
   void onWaitingActionClick(Contest contest) {
-    _router.go('view_contest_entry', {"contestId" : contest.contestId, "parent" : "my_contests"});
+    _router.go('view_contest_entry', {"contestId": contest.contestId, "parent": "my_contests", "viewContestEntryMode": "viewing"});
   }
 
   void onLiveRowClick(Contest contest) {
-    _router.go('live_contest', {"contestId" : contest.contestId, "parent" : "my_contests"});
+    _router.go('live_contest', {"contestId": contest.contestId, "parent": "my_contests"});
   }
 
   void onLiveActionClick(Contest contest) {
-    _router.go('live_contest', {"contestId" : contest.contestId, "parent" : "my_contests"});
+    _router.go('live_contest', {"contestId": contest.contestId, "parent": "my_contests"});
   }
 
   void onHistoryRowClick(Contest contest) {
-    _router.go('history_contest', {"contestId" : contest.contestId, "parent" : "my_contests"});
+    _router.go('history_contest', {"contestId": contest.contestId, "parent": "my_contests"});
   }
 
   void onHistoryActionClick(Contest contest) {
-    _router.go('history_contest', {"contestId" : contest.contestId, "parent" : "my_contests"});
+    _router.go('history_contest', {"contestId": contest.contestId, "parent": "my_contests"});
   }
 
   void gotoLobby() {
@@ -86,5 +86,4 @@ class MyContestsComp implements DetachAware {
   Router _router;
   FlashMessagesService _flashMessage;
   ProfileService _profileService;
-
 }

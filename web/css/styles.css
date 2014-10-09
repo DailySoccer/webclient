@@ -6818,6 +6818,8 @@ button#infoContent .modal-info-head button.close {
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  padding-left: 0px;
+  padding-right: 0px;
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 10pt;
@@ -6827,10 +6829,12 @@ button#infoContent .modal-info-head button.close {
 .contestant-list .contestant-name {
   position: relative;
   float: left;
-  width: 58.33333333%;
+  width: 50%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  padding-left: 0px;
+  padding-right: 0px;
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 10pt;
@@ -6840,10 +6844,13 @@ button#infoContent .modal-info-head button.close {
 .contestant-list .contestant-points {
   position: relative;
   float: left;
-  width: 33.33333333%;
+  width: 41.66666667%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-right: 10px;
   font-family: 'Exo', sans-serif;
   font-weight: 300;
   font-size: 14pt;

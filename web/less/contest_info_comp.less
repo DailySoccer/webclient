@@ -243,16 +243,20 @@
 	
 	.contestant-position {
 		.make-xs-column(1);
+		.clean-paddings();
 		.opensans_bold(10pt, @greyDark);
 		text-align: center;
 	}
 	.contestant-name {
-		.make-xs-column(7);
+		.make-xs-column(6);
+		.clean-paddings();
 		.opensans_bold(10pt, @greyDark);
 		text-align: left;
 	}
 	.contestant-points {
-		.make-xs-column(4);
+		.make-xs-column(5);
+		.clean-paddings();
+		padding-right: 10px;
 		.exo_light(14pt, @greyDark);
 		text-align: right;
 	}

@@ -19,18 +19,18 @@
       </ul>
 
       <div class="tab-content" id="liveContestTabContent">
-        <fantasy-team class="tab-pane active" id="userFantasyTeam" parent="ctrl" contest-entry="ctrl.mainPlayer" watch="ctrl.updatedDate" is-opponent="false" goParent="ctrl.parent"></fantasy-team>
+        <fantasy-team class="tab-pane active" id="userFantasyTeam" parent="ctrl" contest-entry="ctrl.mainPlayer" watch="ctrl.updatedDate" is-opponent="false"></fantasy-team>
         <users-list class="tab-pane" id="usersList" parent="ctrl" contest-entries="ctrl.contestEntries" selected-contest-entry="ctrl.selectedOpponent" watch="ctrl.updatedDate"></users-list>
-        <fantasy-team class="tab-pane" is-opponent="true" id="opponentFantasyTeam" parent="ctrl" contest-entry="ctrl.selectedOpponent" watch="ctrl.updatedDate" goParent="ctrl.parent"></fantasy-team>
+        <fantasy-team class="tab-pane" is-opponent="true" id="opponentFantasyTeam" parent="ctrl" contest-entry="ctrl.selectedOpponent" watch="ctrl.updatedDate"></fantasy-team>
       </div>
     </div>
 
     <div ng-switch-when="false">
-      <fantasy-team id="userFantasyTeam" parent="ctrl" contest-entry="ctrl.mainPlayer" watch="ctrl.updatedDate" is-opponent="false" goParent="ctrl.parent"></fantasy-team>
+      <fantasy-team id="userFantasyTeam" parent="ctrl" contest-entry="ctrl.mainPlayer" watch="ctrl.updatedDate" is-opponent="false"></fantasy-team>
       <users-list id="usersList" parent="ctrl" ng-show="ctrl.selectedOpponent == null" contest-entries="ctrl.contestEntries" selected-contest-entry="ctrl.selectedOpponent"
                   watch="ctrl.updatedDate"></users-list>
       <fantasy-team id="opponentFantasyTeam" parent="ctrl" contest-entry="ctrl.selectedOpponent" is-opponent="true" ng-show="ctrl.selectedOpponent != null"
-                    show-close-button="true" on-close="ctrl.selectedOpponent=null" watch="ctrl.updatedDate" goParent="ctrl.parent"></fantasy-team>
+                    show-close-button="true" on-close="ctrl.selectedOpponent=null" watch="ctrl.updatedDate"></fantasy-team>
     </div>
     <div class="contest-id-bar">
       <div class="contest-id">ID: {{ctrl.contest.contestId.toUpperCase()}}</div>

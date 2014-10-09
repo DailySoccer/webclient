@@ -27,8 +27,6 @@ class ViewContestCtrl implements DetachAware {
   String lastOpponentSelected = "Adversario";
   bool isOpponentSelected = false;
 
-  String parent = "";
-
   List<String> matchesInvolved = [];
 
   Contest get contest => _myContestsService.lastContest;
@@ -36,9 +34,6 @@ class ViewContestCtrl implements DetachAware {
   List<ContestEntry> get contestEntriesOrderByPoints => (contest != null) ? contest.contestEntriesOrderByPoints : null;
 
   ViewContestCtrl(RouteProvider routeProvider, this.scrDet, this._myContestsService, this._profileService, this._flashMessage) {
-
-    // Identificamos cúal es la pantalla desde la que se ha llamado al view contest entry
-    parent = routeProvider.route.parameters['parent'];
 
     _contestId = routeProvider.route.parameters['contestId'];
 
@@ -138,12 +133,11 @@ class ViewContestCtrl implements DetachAware {
     }
   }
 
-  Timer _timer;
-  List<int> get _prizes => (contest != null) ? contest.prizes : [];
-
   FlashMessagesService _flashMessage;
   ProfileService _profileService;
   MyContestsService _myContestsService;
 
+  Timer _timer;
+  List<int> get _prizes => (contest != null) ? contest.prizes : [];
   String _contestId;
 }

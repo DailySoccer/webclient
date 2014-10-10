@@ -312,7 +312,6 @@ class EnterContestCtrl implements DetachAware {
 
   dynamic compare(String field, var playerA, var playerB) {
     int compResult;
-    int retorno;
     switch(field) {
       case "fieldPos":
         compResult = playerA["fieldPos"].sortOrder - playerB["fieldPos"].sortOrder;
@@ -324,31 +323,28 @@ class EnterContestCtrl implements DetachAware {
         compResult = playerA[field].compareTo(playerB[field]);
       break;
     }
-    if(_secondarySort == "")
-      return compResult;
-    if (compResult == 0) {
+
+    if (_secondarySort != "" && compResult == 0) {
       //print('Orden primario: ${_primarySort} | Orden secundario: ${_secondarySort}');
       switch(_secondarySort) {
         case "Pos":
-          retorno = playerB["fieldPos"].sortOrder - playerA["fieldPos"].sortOrder;
+          compResult = playerB["fieldPos"].sortOrder - playerA["fieldPos"].sortOrder;
         break;
         case "Name":
-          retorno = compareNameTo(playerA, playerB);
+          compResult = compareNameTo(playerA, playerB);
         break;
         case "DFP":
-          retorno = playerA["fantasyPoints"].compareTo(playerB["fantasyPoints"]);
+          compResult = playerA["fantasyPoints"].compareTo(playerB["fantasyPoints"]);
         break;
         case "Played":
-          retorno = playerA["playedMatches"].compareTo(playerB["playedMatches"]);
+          compResult = playerA["playedMatches"].compareTo(playerB["playedMatches"]);
         break;
         case "Salary":
-          retorno = playerA["salary"].compareTo(playerB["salary"]);
+          compResult = playerA["salary"].compareTo(playerB["salary"]);
         break;
       }
-    } else {
-      retorno = compResult;
     }
-    return retorno;
+    return compResult;
   }
 
   void _refreshOrder() {

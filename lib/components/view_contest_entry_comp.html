@@ -26,14 +26,13 @@
       </ul>
       <div class="tab-content" id="viewContestEntryTabContent">
         <fantasy-team class="tab-pane active" id="userFantasyTeam" contest-entry="viewContestEntry.mainPlayer" watch="viewContestEntry.updatedDate" is-opponent="false"></fantasy-team>
-        <users-list class="tab-pane" id="usersList" contest-entries="viewContestEntry.contestEntries" selected-contest-entry="viewContestEntry.selectedOpponent" watch="viewContestEntry.updatedDate"></users-list>
+        <users-list class="tab-pane" id="usersList" contest-entries="viewContestEntry.contestEntries" watch="viewContestEntry.updatedDate"></users-list>
       </div>
     </div>
 
     <div ng-switch-when="false">
       <fantasy-team id="userFantasyTeam" contest-entry="viewContestEntry.mainPlayer" watch="viewContestEntry.updatedDate" is-opponent="false"></fantasy-team>
-      <users-list id="usersList" ng-show="viewContestEntry.selectedOpponent == null" contest-entries="viewContestEntry.contestEntries" 
-                  selected-contest-entry="viewContestEntry.selectedOpponent" watch="viewContestEntry.updatedDate"></users-list>
+      <users-list id="usersList" ng-show="viewContestEntry.selectedOpponent == null" contest-entries="viewContestEntry.contestEntries" watch="viewContestEntry.updatedDate"></users-list>
     </div>
     <div class="view-contest-entry-actions-wrapper">
       <div class="button-wrapper">

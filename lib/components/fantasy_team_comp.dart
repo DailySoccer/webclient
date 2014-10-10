@@ -4,7 +4,6 @@ import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:webclient/models/contest_entry.dart';
 import "package:webclient/models/soccer_player.dart";
-import 'package:webclient/controllers/view_contest_ctrl.dart';
 import 'dart:async';
 import 'dart:math';
 
@@ -17,11 +16,6 @@ class FantasyTeamComp implements ShadowRootAware {
     List<dynamic> slots = null;
 
     String get owner => isOpponent? "opponent" : "me";
-
-    @NgOneWay("parent")
-    set parent(ViewContestCtrl value) {
-      _viewContestCtrl = value;
-    }
 
     @NgOneWay("contest-entry")
     set contestEntry(ContestEntry value) {
@@ -47,7 +41,7 @@ class FantasyTeamComp implements ShadowRootAware {
     @NgCallback('on-close')
     Function onClose;
 
-    String get userPosition => (_contestEntry != null && _viewContestCtrl!=null) ? _viewContestCtrl.getUserPosition(_contestEntry).toString() : "-";
+    String get userPosition => (_contestEntry != null) ? _contestEntry.contest.getUserPosition(_contestEntry).toString() : "-";
     String get userNickname => (_contestEntry != null) ? _contestEntry.user.nickName : "";
     String get userScore => (_contestEntry != null) ? _contestEntry.currentLivePoints.toString() : "0";
     String get remainingTime => (_contestEntry != null) ? "${_contestEntry.percentLeft}%" : "-";
@@ -92,7 +86,7 @@ class FantasyTeamComp implements ShadowRootAware {
             "fullName": instanceSoccerPlayer.soccerPlayer.name,
             "matchEventName": matchEventName,
             "salary": instanceSoccerPlayer.salary,
-            "percentOfUsersThatOwn": (_viewContestCtrl != null) ? _viewContestCtrl.getPercentOfUsersThatOwn(instanceSoccerPlayer.soccerPlayer) : "",
+            "percentOfUsersThatOwn": _contestEntry.contest.getPercentOfUsersThatOwn(instanceSoccerPlayer.soccerPlayer),
             "score": instanceSoccerPlayer.printableCurrentLivePoints,
             "stats": instanceSoccerPlayer.printableLivePointsPerOptaEvent
         });
@@ -142,7 +136,6 @@ class FantasyTeamComp implements ShadowRootAware {
     HtmlElement _rootElement;
 
     ContestEntry _contestEntry;
-    ViewContestCtrl _viewContestCtrl;
 
     RouteProvider _routeProvider;
     Router _router;

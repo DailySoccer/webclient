@@ -2,7 +2,7 @@ library user_list_comp;
 
 import 'package:angular/angular.dart';
 import 'package:webclient/models/contest_entry.dart';
-import 'package:webclient/controllers/view_contest_ctrl.dart';
+import 'package:webclient/models/contest.dart';
 import 'package:webclient/services/profile_service.dart';
 
 @Component(
@@ -15,28 +15,24 @@ class UsersListComp {
 
   List users = new List();
 
-  @NgOneWay("parent")
-   set parent(ViewContestCtrl value) {
-     _viewContestCtrl = value;
-   }
-
-  @NgTwoWay("selected-contest-entry")
-  ContestEntry selectedContestEntry = null;
-
   @NgOneWay("contest-entries")
   set contestEntries(List<ContestEntry> value) {
     _contestEntries = value;
     _refresh();
   }
 
+  @NgCallback("on-row-click")
+  Function onRowClick;
+
   @NgOneWay("watch")
   set watch(dynamic value) {
     _refresh();
   }
 
-  String getPrize(int index) => (_viewContestCtrl != null) ? _viewContestCtrl.getPrize(index) : "";
-
   bool get isViewContestEntryMode => _routeProvider.route.name.contains("view_contest_entry");
+  bool isMainPlayer(var user) => _profileService.user.userId == user["id"];
+
+  String getPrize(int index) => (_contest != null) ? _contest.getPrize(index) : "";
 
   UsersListComp(this._routeProvider, this._profileService);
 
@@ -45,56 +41,28 @@ class UsersListComp {
     users.clear();
 
     if (_contestEntries != null) {
-      if (_viewContestCtrl != null) {
-        for (var contestEntry in _viewContestCtrl.contestEntriesOrderByPoints) {
-          users.add({
-            "id": contestEntry.user.userId,
-            "contestEntry" : contestEntry,
-            "name": contestEntry.user.nickName,
-            "remainingTime": "${contestEntry.percentLeft}%",
-            "score": contestEntry.currentLivePoints
-          });
-        }
-      }
-      else {
-        for (var contestEntry in _contestEntries) {
-          users.add({
-            "id": contestEntry.user.userId,
-            "contestEntry" : contestEntry,
-            "name": contestEntry.user.nickName,
-            "remainingTime": "${contestEntry.percentLeft}%",
-            "score": contestEntry.currentLivePoints
-          });
-        }
+      _contest = _contestEntries.first.contest;
+
+      for (var contestEntry in _contest.contestEntriesOrderByPoints) {
+        users.add({
+          "id": contestEntry.user.userId,
+          "contestEntry" : contestEntry,
+          "name": contestEntry.user.nickName,
+          "remainingTime": "${contestEntry.percentLeft}%",
+          "score": contestEntry.currentLivePoints
+        });
       }
     }
   }
-
-  bool isMainPlayer(var user) => _profileService.user.userId == user["id"];
 
   void onUserClick(var user) {
-    if (isMainPlayer(user)  && !isViewContestEntryMode) {
-      _viewContestCtrl.tabChange('userFantasyTeam');
-      return;
-    }
-
-    switch (_routeProvider.route.name)
-    {
-      case "live_contest":
-      case "history_contest":
-        _viewContestCtrl.isOpponentSelected = true;
-        _viewContestCtrl.setTabNameAndShowIt(user["name"]);
-        selectedContestEntry = user["contestEntry"];
-
-        _viewContestCtrl.isOpponentSelected = true;
-        _viewContestCtrl.setTabNameAndShowIt(user["name"]);
-        selectedContestEntry = user["contestEntry"];
-      break;
+    if (onRowClick != null) {
+      onRowClick({"contestEntry":user["contestEntry"]});
     }
   }
 
+  Contest _contest;
   List<ContestEntry> _contestEntries;
-  ViewContestCtrl _viewContestCtrl;
   RouteProvider _routeProvider;
   ProfileService _profileService;
 }

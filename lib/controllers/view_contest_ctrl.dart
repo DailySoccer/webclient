@@ -20,8 +20,8 @@ import 'dart:html';
 class ViewContestCtrl implements DetachAware {
 
   ScreenDetectorService scrDet;
-  dynamic mainPlayer;
-  dynamic selectedOpponent;
+  ContestEntry mainPlayer;
+  ContestEntry selectedOpponent;
 
   DateTime updatedDate;
   String lastOpponentSelected = "Adversario";
@@ -33,9 +33,9 @@ class ViewContestCtrl implements DetachAware {
   List<ContestEntry> get contestEntries => (contest != null) ? contest.contestEntries : null;
   List<ContestEntry> get contestEntriesOrderByPoints => (contest != null) ? contest.contestEntriesOrderByPoints : null;
 
-  ViewContestCtrl(RouteProvider routeProvider, this.scrDet, this._myContestsService, this._profileService, this._flashMessage) {
+  ViewContestCtrl(this._routeProvider, this.scrDet, this._myContestsService, this._profileService, this._flashMessage) {
 
-    _contestId = routeProvider.route.parameters['contestId'];
+    _contestId = _routeProvider.route.parameters['contestId'];
 
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
 
@@ -65,13 +65,6 @@ class ViewContestCtrl implements DetachAware {
       .catchError((error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW));
   }
 
-  int getUserPosition(ContestEntry contestEntry) => contest.getUserPosition(contestEntry);
-
-  int getPercentOfUsersThatOwn(SoccerPlayer soccerPlayer) {
-    int numOwners = contestEntries.fold(0, (prev, contestEntry) => contestEntry.contains(soccerPlayer) ? (prev + 1) : prev );
-    return (numOwners * 100 / contestEntries.length).truncate();
-  }
-
   String getPrize(int index) {
     String prizeText = "-";
     if (index < _prizes.length) {
@@ -94,6 +87,23 @@ class ViewContestCtrl implements DetachAware {
         .catchError((error) {
           _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
         });
+  }
+
+  void onUserClick(ContestEntry contestEntry) {
+    if (contestEntry.contestEntryId == mainPlayer.contestEntryId) {
+      tabChange('userFantasyTeam');
+    }
+    else {
+      switch (_routeProvider.route.name)
+      {
+        case "live_contest":
+        case "history_contest":
+          selectedOpponent = contestEntry;
+          isOpponentSelected = true;
+          setTabNameAndShowIt(contestEntry.user.nickName);
+        break;
+      }
+    }
   }
 
   void tabChange(String tab) {
@@ -134,6 +144,7 @@ class ViewContestCtrl implements DetachAware {
   }
 
   FlashMessagesService _flashMessage;
+  RouteProvider _routeProvider;
   ProfileService _profileService;
   MyContestsService _myContestsService;
 

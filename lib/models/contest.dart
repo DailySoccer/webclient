@@ -149,8 +149,21 @@ class Contest {
     return -1;
   }
 
+  int getPercentOfUsersThatOwn(SoccerPlayer soccerPlayer) {
+    int numOwners = contestEntries.fold(0, (prev, contestEntry) => contestEntry.contains(soccerPlayer) ? (prev + 1) : prev );
+    return (numOwners * 100 / contestEntries.length).truncate();
+  }
+
   InstanceSoccerPlayer getInstanceSoccerPlayer(String templateSoccerPlayerId) {
     return instanceSoccerPlayers.containsKey(templateSoccerPlayerId) ? instanceSoccerPlayers[templateSoccerPlayerId] : null;
+  }
+
+  String getPrize(int index) {
+    String prizeText = "-";
+    if (index < prizes.length) {
+      prizeText = "${prizes[index]}€";
+    }
+    return prizeText;
   }
 
   /*

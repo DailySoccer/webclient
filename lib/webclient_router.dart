@@ -73,6 +73,7 @@ void webClientRouteInitializer(Router router, RouteViewFactory views) {
         preEnter: (RoutePreEnterEvent e) => e.allowEnter(ProfileService.allowEnter()),
         enter: (RouteEnterEvent e) => enterPage(e),
         leave: (RouteLeaveEvent e) => leavePage(e),
+        viewHtml: '<lobby test="true"></lobby>'
     )
     ,'my_contests': ngRoute(
         path: '/my_contests',

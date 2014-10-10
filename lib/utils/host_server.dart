@@ -10,6 +10,9 @@ class HostServer {
       if (_isLocalHost()) {
         _url = "http://localhost:9000";
       }
+      else if (window.location.origin.contains("epiceleven.com")) {
+        _url = "http://backend.epiceleven.com";
+      }
       else {
         _url = window.location.origin;
       }

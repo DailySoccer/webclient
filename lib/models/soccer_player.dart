@@ -7,6 +7,16 @@ import "package:webclient/models/soccer_player_stats.dart";
 //import "package:webclient/models/field_pos.dart";
 import 'package:webclient/services/contest_references.dart';
 
+class LiveEventInfo {
+  int count;
+  int points;
+
+  LiveEventInfo.initFromJsonObject(JsonObject json) {
+    count = json.count;
+    points = json.points;
+  }
+}
+
 class SoccerPlayer {
   String templateSoccerPlayerId;
   String name;
@@ -19,7 +29,7 @@ class SoccerPlayer {
   int currentLivePoints = 0;
 
   // Estadisticas: Nombre del evento segun el enumerado OptaEventType => puntos obtenidos gracias a ese evento
-  Map<String, int> currentLivePointsPerOptaEvent = new Map<String, int>();
+  Map<String, LiveEventInfo> currentLivePointsPerOptaEvent = new Map<String, LiveEventInfo>();
 
   List<SoccerPlayerStats> stats = [];
 

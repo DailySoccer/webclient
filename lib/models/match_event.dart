@@ -82,10 +82,10 @@ class MatchEvent {
       if (soccerFantasyPoints.containsKey(soccerPlayer.templateSoccerPlayerId)) {
         JsonObject jsonObject = soccerFantasyPoints[soccerPlayer.templateSoccerPlayerId];
         soccerPlayer.currentLivePoints = jsonObject.points;
-        soccerPlayer.currentLivePointsPerOptaEvent = new Map<String, int>();
+        soccerPlayer.currentLivePointsPerOptaEvent = new Map<String, LiveEventInfo>();
 
         if (jsonObject.containsKey("events")) {
-          jsonObject.events.forEach((key, value) => soccerPlayer.currentLivePointsPerOptaEvent[key] = value);
+          jsonObject.events.forEach((key, jsonEventInfo) => soccerPlayer.currentLivePointsPerOptaEvent[key] = new LiveEventInfo.initFromJsonObject(jsonEventInfo));
         }
       }
     }));

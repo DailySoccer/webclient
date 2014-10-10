@@ -12,7 +12,6 @@ import 'dart:html';
     publishAs: 'comp',
     useShadowDom: false
 )
-
 class UserProfileComp implements ShadowRootAware, DetachAware {
 
   bool isEditingProfile = false;
@@ -77,7 +76,6 @@ class UserProfileComp implements ShadowRootAware, DetachAware {
     editedEmail = _profileManager.user.email;
     editedPassword = "";
     editedRepeatPassword = "";
-
   }
 
   @override

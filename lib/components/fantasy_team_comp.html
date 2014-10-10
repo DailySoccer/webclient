@@ -41,10 +41,9 @@
       </div>
       <div id="statistic_{{fantasyTeam.owner}}_{{$index}}" class="soccer-player-statistics collapse" ng-if="!fantasyTeam.isViewContestEntryMode">
         <div class="statistic" ng-repeat="stat in slot.stats">
-          <div class="stat-times"><span>{{stat['times']}}</span></div>
+          <div class="stat-times"><span>{{stat['count']}}</span></div>
           <div class="stat-name">{{stat['name']}}</div>
-          <div class="stat-points">{{stat['count']}} x {{stat['name']}}</div>
-         <!--<div class="stat-points">{{stat['points']}}</div>-->
+          <div class="stat-points">{{stat['points']}}</div>
         </div>
       </div>
     </div>

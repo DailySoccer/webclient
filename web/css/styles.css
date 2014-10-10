@@ -9006,10 +9006,34 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   border-color: #ffffff;
   border-radius: 0px;
 }
-.statistic .stat-name {
+.statistic .stat-times {
   position: relative;
   float: left;
-  width: 50%;
+  width: 8.33333333%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: center;
+  padding-left: 0;
+  padding-right: 0;
+}
+.statistic .stat-times span {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 8pt;
+  color: #434343;
+  margin: 0 auto;
+  background-color: #dcdcdc;
+  padding: 2px 5px;
+}
+.statistic .stat-name {
+  border-width: 1px;
+  border-style: none solid none solid;
+  border-color: #ffffff;
+  border-radius: 0px;
+  position: relative;
+  float: left;
+  width: 75%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
@@ -9021,7 +9045,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
 .statistic .stat-points {
   position: relative;
   float: left;
-  width: 50%;
+  width: 16.66666667%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;

@@ -219,12 +219,25 @@
 	line-height: 30px;
 	background-color: @greyUltraLight;
 	.make-border(1px, none none solid none, @white, 0px);
-	.stat-name { 
-		.make-xs-column(6);
+	.stat-times {
+		.make-xs-column(1);
+		text-align: center;
+		padding-left: 0;
+		padding-right: 0;
+		span {
+			.opensans_normal(8pt, @greyUltraDark);
+			margin: 0 auto;
+			background-color: @greyLight;
+			padding: 2px 5px;
+		}
+	}
+	.stat-name {
+		.make-border(1px, none solid none solid, @white, 0px);
+		.make-xs-column(9);
 		.opensans_normal(10pt, @greyDark);
 	}
 	.stat-points{
-		.make-xs-column(6);
+		.make-xs-column(2);
 		.exo_bold(12pt, @greyDark);
 		text-align: right;
 	}

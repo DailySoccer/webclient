@@ -110,23 +110,34 @@ class DailySoccerServer implements ServerService {
    * This is the only place where we call our server (except the LoggerExceptionHandler)
    */
   Future<JsonObject> _innerServerCall(String url, Map postData) {
-    var completer = new Completer<JsonObject>();
 
+    var completer = new Completer<JsonObject>();
+    var theHeaders = {};
+
+    // Nuestro sistema no funciona con cookies. Mandamos el sessionToken en una custom header.
     if (_sessionToken != null) {
-      url += "?sessionToken=$_sessionToken";
+      theHeaders["X-SESSION-TOKEN"] = _sessionToken;
     }
 
     if (postData != null) {
-      _http.post(url, null, params: postData)
+      _http.post(url, postData, headers: theHeaders)
           .then((httpResponse) => _processSuccess(httpResponse, completer))
           .catchError((error) => _processError(error, url, completer));
-    } else {
-      _http.get(url)
+    }
+    else {
+      _http.get(url, headers: theHeaders)
            .then((httpResponse) => _processSuccess(httpResponse, completer))
            .catchError((error) => _processError(error, url, completer));
     }
 
     return completer.future;
+  }
+
+  // Por si queremos volver al sistema de mandar todos nuestros posts en form-urlencoded
+  String _mapToFormUrlEncoded(Map postData) {
+    var parts = [];
+    postData.forEach((key, value) { parts.add('${Uri.encodeQueryComponent(key)}=''${Uri.encodeQueryComponent(value)}');});
+    return parts.join('&');
   }
 
   void _processSuccess(HttpResponse httpResponse, Completer completer) {

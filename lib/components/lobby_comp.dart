@@ -174,7 +174,6 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     _refreshNextTournamentInfoTimer = new Timer.periodic(refrestNextoTournamentInfoSeconds, (Timer t) =>  calculateInfoBarText());
 
     _streamListener = scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
-
   }
 
   // Rutina que refresca la lista de concursos
@@ -183,7 +182,6 @@ class LobbyComp implements ShadowRootAware, DetachAware {
       activeContestsService.refreshActiveContests();
     }
     _freeContestCount   = activeContestsService.activeContests.where((contest) => contest.tournamentType == Contest.TOURNAMENT_FREE).toList().length;
-
   }
 
   void onShadowRoot(root) {
@@ -213,8 +211,12 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   }
 
   dynamic getEntryFeeFilterRange(){
+    /*
     var range = JsUtils.runJavascript("#slider-range", 'val', null);
     return range != null? range : ["",""];
+    * */
+
+    return ["0","1000000"];
   }
 
   void onActionClick(Contest contest) {

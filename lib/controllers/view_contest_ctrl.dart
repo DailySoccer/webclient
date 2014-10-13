@@ -11,6 +11,7 @@ import 'package:webclient/models/contest_entry.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/models/match_event.dart';
 import 'dart:html';
+import 'package:webclient/utils/js_utils.dart';
 
 @Controller(
     selector: '[view-contest-ctrl]',
@@ -62,6 +63,8 @@ class ViewContestCtrl implements DetachAware {
 
       })
       .catchError((error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW));
+
+    _streamListener = scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
   }
 
   String getPrize(int index) {
@@ -73,8 +76,10 @@ class ViewContestCtrl implements DetachAware {
   }
 
   void detach() {
-    if (_timer != null)
+    if (_timer != null) {
       _timer.cancel();
+    }
+    _streamListener.cancel();
   }
 
   void _updateLive() {
@@ -86,6 +91,13 @@ class ViewContestCtrl implements DetachAware {
         .catchError((error) {
           _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
         });
+  }
+
+  // Handle que recibe cual es la nueva mediaquery que se aplica.
+  void onScreenWidthChange(String msg) {
+   if (msg == "xs") {
+     _togglerEventsInitizlized = false;
+   }
   }
 
   void onUserClick(ContestEntry contestEntry) {
@@ -142,12 +154,44 @@ class ViewContestCtrl implements DetachAware {
     }
   }
 
+  void toggleTeamsPanel() {
+    if (!_togglerEventsInitizlized) {
+      JsUtils.runJavascript('#teamsPanel', 'on', {'shown.bs.collapse': onOpenTeamsPanel});
+      JsUtils.runJavascript('#teamsPanel', 'on', {'hidden.bs.collapse': onCloseTeamsPanel});
+      _togglerEventsInitizlized = true;
+    }
+
+    // Abrimos el menú si está cerrado
+    if (_isteamsPanelOpen) {
+      JsUtils.runJavascript('#teamsPanel', 'collapse', "hide");
+    }
+    else {
+     JsUtils.runJavascript('#teamsPanel', 'collapse', "show");
+    }
+  }
+
+  void onOpenTeamsPanel(dynamic sender) {
+    //resetfiltersButton();
+    _isteamsPanelOpen = true;
+    querySelector('#teamsToggler').classes.remove('toggleOff');
+    querySelector('#teamsToggler').classes.add('toggleOn');
+  }
+
+  void onCloseTeamsPanel(dynamic sender) {
+    querySelector('#teamsToggler').classes.remove('toggleOn');
+    querySelector('#teamsToggler').classes.add('toggleOff');
+    _isteamsPanelOpen = false;
+  }
+
   FlashMessagesService _flashMessage;
   RouteProvider _routeProvider;
   ProfileService _profileService;
   MyContestsService _myContestsService;
-
   Timer _timer;
-  List<int> get _prizes => (contest != null) ? contest.prizes : [];
   String _contestId;
+  bool _isteamsPanelOpen  = false;
+  bool _togglerEventsInitizlized = false;
+  var _streamListener;
+
+  List<int> get _prizes => (contest != null) ? contest.prizes : [];
 }

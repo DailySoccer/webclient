@@ -5657,6 +5657,8 @@ button.close {
 .first-screen:after,
 .info-and-social-bar:before,
 .info-and-social-bar:after,
+.info-and-social-bar .teams-container:before,
+.info-and-social-bar .teams-container:after,
 .contest-id-bar:before,
 .contest-id-bar:after,
 .section-container:before,
@@ -5765,6 +5767,7 @@ button.close {
 .landing-wrapper .screen .content-wrapper .content-container:after,
 .first-screen:after,
 .info-and-social-bar:after,
+.info-and-social-bar .teams-container:after,
 .contest-id-bar:after,
 .section-container:after,
 #lobbyTopInfobar:after,
@@ -10458,7 +10461,6 @@ fieldset[disabled] .landing-wrapper .button-play {
   margin-left: 0;
   margin-right: 0;
   background-color: #ecf0f1;
-  padding: 0 4px;
 }
 .info-and-social-bar .social {
   position: relative;
@@ -10470,7 +10472,63 @@ fieldset[disabled] .landing-wrapper .button-play {
   width: 150px;
   padding: 9px 20px;
 }
-.info-and-social-bar .teams-info-wrapper {
+.info-and-social-bar .teams-toggler-wrapper {
+  background-color: #ffffff;
+}
+.info-and-social-bar .teams-toggler-wrapper .teams-toggler {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #777777;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  padding: 15px;
+}
+.info-and-social-bar .teams-toggler-wrapper .toggleOff::after {
+  font-family: 'Glyphicons Halflings';
+  content: "\E114";
+  font-size: 8pt;
+  color: #434343;
+  position: absolute;
+  right: 15px;
+}
+.info-and-social-bar .teams-toggler-wrapper .toggleOn::after {
+  font-family: 'Glyphicons Halflings';
+  content: "\E113";
+  font-size: 8pt;
+  color: #434343;
+  position: absolute;
+  right: 15px;
+}
+.info-and-social-bar .teams-container {
+  margin-left: 0;
+  margin-right: 0;
+  padding: 10px 5px;
+}
+@media (max-width: 767px) {
+  .info-and-social-bar .teams-container {
+    background-color: #dcdcdc;
+    padding: 0;
+  }
+  .info-and-social-bar .teams-container .top-border {
+    border-width: 2px;
+    border-style: solid none none none;
+    border-color: #777777;
+    border-radius: 0;
+    height: 10px;
+  }
+  .info-and-social-bar .teams-container .bottom-border {
+    border-width: 2px;
+    border-style: none none solid none;
+    border-color: #777777;
+    border-radius: 0;
+    height: 10px;
+    clear: both;
+  }
+}
+.info-and-social-bar .teams-container .teams-box {
   float: left;
   width: 33.33333333%;
   position: relative;
@@ -10481,18 +10539,18 @@ fieldset[disabled] .landing-wrapper .button-play {
   padding-right: 0px;
 }
 @media (min-width: 768px) {
-  .info-and-social-bar .teams-info-wrapper {
+  .info-and-social-bar .teams-container .teams-box {
     float: left;
     width: 25%;
   }
 }
 @media (min-width: 992px) {
-  .info-and-social-bar .teams-info-wrapper {
+  .info-and-social-bar .teams-container .teams-box {
     float: left;
     width: 16.66666667%;
   }
 }
-.info-and-social-bar .teams-info-wrapper .teams-info {
+.info-and-social-bar .teams-container .teams-box .teams-info {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 9pt;
@@ -10504,6 +10562,11 @@ fieldset[disabled] .landing-wrapper .button-play {
   margin: 0 4px 8px 4px;
   text-align: center;
   line-height: 15px;
+}
+@media (max-width: 767px) {
+  .info-and-social-bar .teams-container .teams-box .teams-info {
+    margin: 4px;
+  }
 }
 @media (min-width: 768px) {
   #liveContestRoot {

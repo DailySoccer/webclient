@@ -196,6 +196,10 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     _filtersButtons.forEach((value) => value.classes.add('toggleOff'));
     // Inicializamos el control que dibuja el slider para el filtro por entrada
     initSliderRange();
+
+    //Nos subscribimos a los eventos de apertura y cierre de los filtros
+    JsUtils.runJavascript('#filtersPanel', 'on', {'hidden.bs.collapse': onCloseFiltersPanel});
+    JsUtils.runJavascript('#filtersPanel', 'on', {'shown.bs.collapse': onOpenFiltersPanel});
   }
 
   void onEntryFeeRangeChange(dynamic sender, dynamic data) {
@@ -298,27 +302,32 @@ class LobbyComp implements ShadowRootAware, DetachAware {
 
   // Muestra/Oculta el panel de filtros avanzados
   void toggleFilterMenu() {
-    //Controlamos el estado de la flecha de los dos botones que abren los filtros (en XS y Desktop son diferentes)
-    _filtersButtons.forEach((value) => value.classes.clear());
-    _filtersButtons.forEach((value) => value.classes.addAll(_filtersButtonClassesByDefault));
-
-    if (_isFilterButtonOpen) {
-      _filtersButtons.forEach((value) => value.classes.add('toggleOff'));
-      _isFilterButtonOpen = false;
-    } else {
-      _filtersButtons.forEach((value) => value.classes.add('toggleOn'));
-      _isFilterButtonOpen = true;
-    }
 
     // Abrimos el menú si está cerrado
     if (_isFiltersPanelOpen) {
       JsUtils.runJavascript('#filtersPanel', 'collapse', "hide");
-      _isFiltersPanelOpen = false;
     }
     else {
       JsUtils.runJavascript('#filtersPanel', 'collapse', "show");
-      _isFiltersPanelOpen = true;
     }
+  }
+
+  void resetfiltersButton() {
+    //Controlamos el estado de la flecha de los dos botones que abren los filtros (en XS y Desktop son diferentes)
+    _filtersButtons.forEach((value) => value.classes.clear());
+    _filtersButtons.forEach((value) => value.classes.addAll(_filtersButtonClassesByDefault));
+  }
+
+  void onOpenFiltersPanel(dynamic sender) {
+    resetfiltersButton();
+    _filtersButtons.forEach((value) => value.classes.add('toggleOn'));
+    _isFiltersPanelOpen = true;
+  }
+
+  void onCloseFiltersPanel(dynamic sender) {
+    resetfiltersButton();
+    _filtersButtons.forEach((value) => value.classes.add('toggleOff'));
+    _isFiltersPanelOpen = false;
   }
 
   void initSliderRange()
@@ -574,8 +583,6 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   int _currentButtonState = 0;
   String _currentSelectedButton = "";
   List<String> _sortingButtonClassesByDefault;
-
-  bool _isFilterButtonOpen = false;
 
   List<Element> _filtersButtons;
   List<String> _filtersButtonClassesByDefault;

@@ -116,7 +116,7 @@ class DailySoccerServer implements ServerService {
 
     // Nuestro sistema no funciona con cookies. Mandamos el sessionToken en una custom header.
     if (_sessionToken != null) {
-      theHeaders["X-SESSION-TOKEN"] = _sessionToken;
+      theHeaders["X-Session-Token"] = _sessionToken;
     }
 
     if (postData != null) {

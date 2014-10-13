@@ -7433,6 +7433,42 @@ button#personalDataContent .edit-personal-data-modal-header button.close {
   top: 5px;
   right: 10px;
 }
+#personalDataContent .header button.close {
+  float: right;
+  font-size: 21px;
+  font-weight: bold;
+  line-height: 1;
+  color: #000000;
+  text-shadow: 0 1px 0 #ffffff;
+  opacity: 0.2;
+  filter: alpha(opacity=20);
+  color: #ffffff;
+  opacity: 0.5;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20pt;
+}
+#personalDataContent .header button.close:hover,
+#personalDataContent .header button.close:focus {
+  color: #000000;
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+button#personalDataContent .header button.close {
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  -webkit-appearance: none;
+}
+#personalDataContent .header button.close:hover {
+  font-size: 20pt;
+  color: #ffffff;
+  opacity: 1;
+}
 #personalDataContent .header .header-title {
   position: relative;
   float: left;

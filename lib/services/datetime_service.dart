@@ -22,10 +22,8 @@ class DateTimeService {
 
     _instance = this;
 
-    /*
     _timerVerifySimulatorActivated = new Timer.periodic(const Duration(seconds:3), (Timer t) => _verifySimulatorActivated());
     _verifySimulatorActivated();
-    */
 
     new Timer.periodic(new Duration(seconds:1), (t) => _nowEverySecond = now);
   }

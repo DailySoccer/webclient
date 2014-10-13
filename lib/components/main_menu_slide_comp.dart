@@ -45,7 +45,7 @@ class MainMenuSlideComp implements ShadowRootAware{
   }
 
   void updateActiveElement(String name) {
-      LIElement oldLi = querySelector("li.active");
+      LIElement oldLi = querySelector("#mainMenu li.active");
       if (oldLi != null) {
         oldLi.classes.remove('active');
       }
@@ -54,7 +54,7 @@ class MainMenuSlideComp implements ShadowRootAware{
         li.classes.add('active');
       }
       else {
-        if ( name.contains('user')) {
+        if ( name.contains('user') || name == 'help_info') {
           LIElement li = querySelector('[highlights="user"]');
           li.classes.add('active');
         }

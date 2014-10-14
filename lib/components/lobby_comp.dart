@@ -215,12 +215,8 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   }
 
   dynamic getEntryFeeFilterRange(){
-    /*
     var range = JsUtils.runJavascript("#slider-range", 'val', null);
-    return range != null? range : ["",""];
-    * */
-
-    return ["0","1000000"];
+    return ( range == null || range == "" ) ? ["0","1000"] : range;
   }
 
   void onActionClick(Contest contest) {

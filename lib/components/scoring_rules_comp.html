@@ -1,9 +1,9 @@
 <div id="scoringForAll" class="panel-points">
   <div class="header">TODOS LOS JUGADORES</div>
   <div class="body">
-    <div class="punctuation" ng-repeat="points in comp.AllPLayers">
-      <span class="name"><b>{{points["shortName"]}}</b> {{points["name"]}} </span>
-      <span class="points"><b>{{points["points"]}}</b></span>
+    <div class="punctuation" ng-repeat="event in comp.AllPlayers">
+      <span class="name">{{event["name"]}}</span>
+      <span class="points"><b>{{event["points"]}}</b></span>
     </div>
   </div>
 </div>
@@ -11,9 +11,9 @@
 <div id="scoringForGoalKeepers" class="panel-points">
   <div class="header">PORTEROS</div>
   <div class="body">
-    <div class="punctuation" ng-repeat="points in comp.GoalKeepers">
-      <span class="name"><b>{{points["shortName"]}}</b> {{points["name"]}} </span>
-      <span class="points"><b>{{points["points"]}}</b></span>
+    <div class="punctuation" ng-repeat="event in comp.GoalKeepers">
+      <span class="name">{{event["name"]}} </span>
+      <span class="points"><b>{{event["points"]}}</b></span>
     </div>
   </div>
 </div>
@@ -21,9 +21,9 @@
 <div id="scoringForDefenders" class="panel-points">
   <div class="header">DEFENSAS</div>
   <div class="body">
-    <div class="punctuation" ng-repeat="points in comp.Defenders">
-      <span class="name"><b>{{points["shortName"]}}</b> {{points["name"]}} </span>
-      <span class="points"><b>{{points["points"]}}</b></span>
+    <div class="punctuation" ng-repeat="event in comp.Defenders ">
+      <span class="name">{{event["name"]}} </span>
+      <span class="points"><b>{{event["points"]}}</b></span>
     </div>
   </div>
 </div>
@@ -31,9 +31,9 @@
 <div id="scoringForMidFielders" class="panel-points">
   <div class="header">CENTROCAMPISTAS</div>
   <div class="body">
-    <div class="punctuation" ng-repeat="points in comp.MidFielders">
-      <span class="name"><b>{{points["shortName"]}}</b> {{points["name"]}} </span>
-      <span class="points"><b>{{points["points"]}}</b></span>
+    <div class="punctuation" ng-repeat="event in comp.MidFielders">
+      <span class="name">{{event["name"]}} </span>
+      <span class="points"><b>{{event["points"]}}</b></span>
     </div>
   </div>
 </div>
@@ -41,9 +41,9 @@
 <div id="scoringForForwards" class="panel-points">
   <div class="header">DELANTEROS</div>
   <div class="body">
-    <div class="punctuation" ng-repeat="points in comp.Forwards">
-      <span class="name"><b>{{points["shortName"]}}</b> {{points["name"]}} </span>
-      <span class="points"><b>{{points["points"]}}</b></span>
+    <div class="punctuation" ng-repeat="event in comp.Forwards">
+      <span class="name">{{event["name"]}} </span>
+      <span class="points"><b>{{event["points"]}}</b></span>
     </div>
   </div>
 </div>

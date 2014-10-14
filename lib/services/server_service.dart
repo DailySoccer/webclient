@@ -55,6 +55,10 @@ class DailySoccerServer implements ServerService {
     return _innerServerCall("${HostServer.url}/login", {'email': email, 'password': password});
   }
 
+  Future<JsonObject> askForPasswordReset(String email) {
+    return _innerServerCall("${HostServer.url}/ask_for_password_reset", {'email': email});
+  }
+
   Future<JsonObject> getUserProfile() {
     return _innerServerCall("${HostServer.url}/get_user_profile", null);
   }

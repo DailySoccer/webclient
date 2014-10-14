@@ -30,6 +30,10 @@ class ScoringRulesComp {
       .catchError((error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW));
   }
 
+  String getClassesIsNegative(int points) {
+    return points<0? "negative": "";
+  }
+
   void _init() {
     AllPlayers = _allPlayerEvents.map((event) => {"name": SoccerPlayer.getEventName(event), "points": scoringPoints[event]}).toList();
     GoalKeepers = _goalKeeperEvents.map((event) => {"name": SoccerPlayer.getEventName(event), "points": scoringPoints[event]}).toList();

@@ -14,6 +14,7 @@ abstract class ServerService {
   Future<JsonObject> login(String email, String password);
   Future<JsonObject> getUserProfile();
   Future<JsonObject> changeUserProfile(String firstName, String lastName, String email, String nickName, String password);
+  Future<JsonObject> askForPasswordReset(String email);
 
   // Conseguir la lista de Contests Active/Live/History en los que esté inscrito el User
   Future<JsonObject> getMyContests();

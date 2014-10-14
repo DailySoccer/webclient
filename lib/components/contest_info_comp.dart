@@ -12,12 +12,12 @@ import 'package:webclient/services/flash_messages_service.dart';
 @Component(
   selector: 'contest-info',
   templateUrl: 'packages/webclient/components/contest_info_comp.html',
-  publishAs: 'contestInfo',
+  publishAs: 'comp',
   useShadowDom: false
 )
 class ContestInfoComp implements ShadowRootAware {
 
-  bool popUpStyle;
+  bool isPopUp = false;
   Map currentInfoData;
   List contestants  = [];
 
@@ -28,12 +28,6 @@ class ContestInfoComp implements ShadowRootAware {
     if (value != null) {
       updateContestInfo(value.contestId);
     }
-  }
-
-  @NgTwoWay("is-pop-up")
-  bool get isPopUp => popUpStyle;
-  void set isPopUp (bool value){
-    popUpStyle = value;
   }
 
   ContestInfoComp(Scope scope, this._router, this._contestService, this._flashMessage) {
@@ -50,6 +44,14 @@ class ContestInfoComp implements ShadowRootAware {
       'contestants'     : contestants,
       'prizes'          : []
     };
+  }
+
+  void onShadowRoot(root) {
+    if (_router.activePath.length > 0) {
+      if( _router.activePath[0].name == 'lobby') {
+        isPopUp = true;
+      }
+    }
   }
 
   void updateContestInfo(String contestId) {
@@ -69,9 +71,9 @@ class ContestInfoComp implements ShadowRootAware {
         contestants.clear();
         for (ContestEntry contestEntry in contest.contestEntries) {
           contestants.add({
-                'name'  : contestEntry.user.nickName,
-                'wins'  : contestEntry.user.wins
-              });
+            'name'  : contestEntry.user.nickName,
+            'wins'  : contestEntry.user.wins
+          });
         }
       })
       .catchError((error) {
@@ -87,12 +89,6 @@ class ContestInfoComp implements ShadowRootAware {
 
   void enterContest() {
     _goToEnterContest = true;
-    //Element modal = querySelector('#infoContestModal');
-    // quitamos la clase fade porque se lanza el router antes de cerrar la modal y queda
-    //modal.classes.remove('fade');
-    // hacemos una llamada de jQuery para ocultar la ventana modal
-    //JsUtils.runJavascript('#infoContestModal', 'modal', 'hide');
-    //modal.classes.add('fade');
     _router.go('enter_contest', { "contestId": contestData.contestId });
   }
 
@@ -117,11 +113,5 @@ class ContestInfoComp implements ShadowRootAware {
   Timer _timer;
 
   Contest _contestData;
-  bool _popUpStyle;
   bool _goToEnterContest = false;
-
-  void onShadowRoot(root) {
-    //JsUtils.runJavascript('#infoContestModal', 'on', {'hidden.bs.modal': goToEnterContest});
-  }
-
 }

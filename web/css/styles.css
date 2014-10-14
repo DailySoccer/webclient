@@ -6913,6 +6913,9 @@ button#infoContent .modal-info-head button.close {
   vertical-align: middle;
   padding: 4.5px 10px;
 }
+.panel-points .negative {
+  background-color: #dcdcdc;
+}
 .panel-points .name {
   font-family: 'Exo', sans-serif;
   font-weight: 300;

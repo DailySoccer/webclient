@@ -31,18 +31,18 @@ class ScoringRulesComp {
   }
 
   String getClassesIsNegative(int points) {
-    return points<0? "negative": "";
+    return ( points == null || points < 0 ) ? "negative": "";
   }
 
   void _init() {
-    AllPlayers = _allPlayerEvents.map((event) => {"name": SoccerPlayer.getEventName(event), "points": scoringPoints[event]}).toList();
+    AllPlayers = _allPlayerEvents.map((event)   => {"name": SoccerPlayer.getEventName(event), "points": scoringPoints[event]}).toList();
     GoalKeepers = _goalKeeperEvents.map((event) => {"name": SoccerPlayer.getEventName(event), "points": scoringPoints[event]}).toList();
-    Defenders = _defendersEvents.map((event) => {"name": SoccerPlayer.getEventName(event), "points": scoringPoints[event]}).toList();
-    MidFielders = _midFieldersEvents.map((event) => {"name": SoccerPlayer.getEventName(event), "points": scoringPoints[event]}).toList();
-    Forwards = _forwardEvents.map((event) => {"name": SoccerPlayer.getEventName(event), "points": scoringPoints[event]}).toList();
+    Defenders = _defendersEvents.map((event)    => {"name": SoccerPlayer.getEventName(event), "points": scoringPoints[event]}).toList();
+    MidFielders = _midFieldersEvents.map((event)=> {"name": SoccerPlayer.getEventName(event), "points": scoringPoints[event]}).toList();
+    Forwards = _forwardEvents.map((event)       => {"name": SoccerPlayer.getEventName(event), "points": scoringPoints[event]}).toList();
   }
 
-  List _allPlayerEvents = [
+  List _allPlayerEvents   = [
                             "PASS_SUCCESSFUL"
                             ,"ATTEMPT_SAVED"
                             ,"POST"
@@ -67,7 +67,7 @@ class ScoringRulesComp {
                             ,"OWN_GOAL"
                             ];
 
-  List _goalKeeperEvents = [
+  List _goalKeeperEvents  = [
                              "GOAL_SCORED_BY_GOALKEEPER"
                             ,"PUNCH"
                             ,"CLAIM"
@@ -77,22 +77,22 @@ class ScoringRulesComp {
                             ,"GOAL_CONCEDED"
                             ];
 
-  List _defendersEvents = [
-                           "GOAL_SCORED_BY_DEFENDER"
-                          ,"SAVE_PLAYER"
-                          ,"CLEAN_SHEET"
-                          ,"GOAL_CONCEDED"
-                          ];
+ List _defendersEvents    = [
+                             "GOAL_SCORED_BY_DEFENDER"
+                            ,"SAVE_PLAYER"
+                            ,"CLEAN_SHEET"
+                            ,"GOAL_CONCEDED"
+                            ];
 
   List _midFieldersEvents = [
                              "GOAL_SCORED_BY_MIDFIELDER"
                             ,"SAVE_PLAYER"
                             ];
 
-  List _forwardEvents = [
-                         "GOAL_SCORED_BY_FORWARD"
-                        ,"SAVE_PLAYER"
-                        ];
+  List _forwardEvents     = [
+                             "GOAL_SCORED_BY_FORWARD"
+                            ,"SAVE_PLAYER"
+                            ];
 
 
 }

@@ -64,11 +64,11 @@ class SoccerPlayersListComp {
       enterContestCtrl.setMatchFilter(optionValue);
     }
   }
-
+/*
   void printElement(String element) {
     print(element);
   }
-
+*/
   // Para pintar el color correspondiente segun la posicion del jugador
   String getSlotClassColor(String abrevName){
    // Listas de las clases y posiciones

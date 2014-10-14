@@ -32,7 +32,7 @@ class RememberPasswordComp implements ShadowRootAware {
     _serverService.askForPasswordReset(email)
      .then((_) {
         state = "REQUESTED";
-        print('-REMEMBER_PASSWORD-: Se ha enviado correctamente');
+      //  print('-REMEMBER_PASSWORD-: Se ha enviado correctamente');
     })
      .catchError( (error) {
           print('-REMEMBER_PASSWORD-: error');

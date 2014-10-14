@@ -29,19 +29,19 @@ class EditPersonalDataComp implements ShadowRootAware {
   bool get acceptNewsletter => _acceptNewsletter;
   void set acceptNewsletter(bool value) {
     _acceptNewsletter = value;
-    print('-EDIT_PERSONAL_DATA-: acceptNewsletter = ${_acceptNewsletter}');
+    //print('-EDIT_PERSONAL_DATA-: acceptNewsletter = ${_acceptNewsletter}');
   }
 
   bool get acceptGameAlerts => _acceptGameAlerts;
   void set acceptGameAlerts(bool value) {
     _acceptGameAlerts = value;
-    print('-EDIT_PERSONAL_DATA-: acceptGameAlerts = ${_acceptGameAlerts}');
+    //print('-EDIT_PERSONAL_DATA-: acceptGameAlerts = ${_acceptGameAlerts}');
   }
 
   bool get acceptSoccerPlayerAlerts => _acceptSoccerPlayerAlerts;
   void set acceptSoccerPlayerAlerts(bool value) {
     _acceptSoccerPlayerAlerts = value;
-    print('-EDIT_PERSONAL_DATA-: acceptSoccerPlayerAlerts = ${_acceptSoccerPlayerAlerts}');
+   //print('-EDIT_PERSONAL_DATA-: acceptSoccerPlayerAlerts = ${_acceptSoccerPlayerAlerts}');
   }
 
   dynamic get userData => _profileManager.user;
@@ -145,7 +145,7 @@ class EditPersonalDataComp implements ShadowRootAware {
             .then((_) => closeModal())
             .catchError((Map error) {
 
-              print("keys: ${error.keys.length} - ${error.keys.toString()}");
+             // print("keys: ${error.keys.length} - ${error.keys.toString()}");
 
               error.keys.forEach( (key) {
                 switch (key)
@@ -173,7 +173,7 @@ class EditPersonalDataComp implements ShadowRootAware {
                       ..parent.style.display = "";
                   break;
                 }
-                print("-EDIT_PERSONAL_DATA_COMP-: Error recibido: ${key}");
+             //   print("-EDIT_PERSONAL_DATA_COMP-: Error recibido: ${key}");
               });
              //_enabledSubmit = true;
             });

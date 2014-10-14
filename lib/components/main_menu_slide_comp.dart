@@ -31,7 +31,7 @@ class MainMenuSlideComp implements ShadowRootAware{
       event.completed.then((_) {
         if (_router.activePath.length > 0) {
           currentRouteName = _router.activePath[0].name;
-          print("MAIN_MENU_SLIDE-: Estoy en ${currentRouteName}");
+         // print("MAIN_MENU_SLIDE-: Estoy en ${currentRouteName}");
           updateActiveElement(currentRouteName);
         }
         else {

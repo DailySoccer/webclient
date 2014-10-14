@@ -280,7 +280,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
 
     sortType = sortName + "_" + _butonState[_currentButtonState];
 
-    print('-LOBBY_COMP-: Ordenando la lista de torneos: ${sortType.split('_')}');
+   // print('-LOBBY_COMP-: Ordenando la lista de torneos: ${sortType.split('_')}');
 
     updateSortButtonsStyle(id);
   }
@@ -348,7 +348,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
 
   void filterByEntryFee(){
     addFilter(FILTER_ENTRY_FEE, [_filterEntryFeeMin, _filterEntryFeeMax]);
-    print('-LOBBY_COMP-: Filtrando por tipo precio entrada. Valores entre [${_filterEntryFeeMin} - ${_filterEntryFeeMax}]');
+  //  print('-LOBBY_COMP-: Filtrando por tipo precio entrada. Valores entre [${_filterEntryFeeMin} - ${_filterEntryFeeMax}]');
   }
 
   void refreshTierFilter() {
@@ -381,7 +381,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
 
     //provocamos la actialización
     addFilter("", []);
-    print('-LOBBY_COMP-: Filtrando por tipo de torneo: torneos: [${_tierFilterList}]');
+  //  print('-LOBBY_COMP-: Filtrando por tipo de torneo: torneos: [${_tierFilterList}]');
   }
 
   void refreshTorunamentFilter() {
@@ -418,7 +418,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     //provocamos la actialización
     addFilter("", []);
 
-    print('-LOBBY_COMP-: Filtrando por tipo de torneo: torneos: [${_tournamentFilterList}]');
+   // print('-LOBBY_COMP-: Filtrando por tipo de torneo: torneos: [${_tournamentFilterList}]');
   }
 
   void addFilter(String key, dynamic val) {
@@ -470,7 +470,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     //provocamos la actialización
     lobbyFilters = {};
     addFilter("", []);
-    print('-LOBBY_COMP-: Filtros reseteados');
+ //   print('-LOBBY_COMP-: Filtros reseteados');
   }
 
   updateEntryFeeFilter() {

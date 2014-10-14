@@ -53,7 +53,7 @@ class ActiveContestsService {
   Future addContestEntry(String contestId, List<String> soccerPlayerIds) {
     return _server.addContestEntry(contestId, soccerPlayerIds)
       .then((jsonObject) {
-        print("response: " + jsonObject.toString());
+        //print("response: " + jsonObject.toString());
         return jsonObject.contestId;
       });
   }

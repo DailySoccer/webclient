@@ -15524,9 +15524,10 @@ fieldset[disabled] .soccer-player-info-header .btn-add-soccer-player-info {
   .soccer-player-info-content .match-stats .match-stats-content .data div:first-child {
     border-left: 1px solid #777777;
     text-align: left;
-    padding-left: 5px;
+    padding-left: 3px;
     clear: both;
     color: #0d75a6;
+    font-size: 7pt;
   }
   .soccer-player-info-content .match-stats .match-stats-content .data div:first-child + div {
     color: #0d75a6;

@@ -1,6 +1,9 @@
 library scoring_rules_comp;
 
 import 'package:angular/angular.dart';
+import 'package:webclient/services/scoring_rules_service.dart';
+import 'package:webclient/services/flash_messages_service.dart';
+import 'package:webclient/models/soccer_player.dart';
 
 @Component(
   selector:     'scoring-rules',
@@ -11,50 +14,85 @@ import 'package:angular/angular.dart';
 
 class ScoringRulesComp {
 
-  List<Map> AllPLayers = [
-    {"shortName":"(P)",     "name":"Pase",                                      "points": "2"}
-    ,{"shortName":"(R)",    "name":"Regate",                                    "points": "10"}
-    ,{"shortName":"(FR)",   "name":"Falta recibida",                            "points": "10"}
-    ,{"shortName":"(PI)",   "name":"Pase Interceptado",                         "points": "15"}
-    ,{"shortName":"(TP)",   "name":"Tiro a puerta (fallado, poste o parado)",   "points": "15"}
-    ,{"shortName":"(EE)",   "name":"Entrada Exitosa",                           "points": "15"}
-    ,{"shortName":"(A)",    "name":"Asistencia",                                "points": "20"}
-    ,{"shortName":"(FC)",   "name":"Falta cometida",                            "points": "-5"}
-    ,{"shortName":"(PB)",   "name":"Pérdida de Balón",                          "points": "-5"}
-    ,{"shortName":"(E)",    "name":"Error (que acaba en gol en contra)",        "points": "-20"}
-    ,{"shortName":"(TA)",   "name":"Tarjeta Amarilla",                          "points": "-25"}
-    ,{"shortName":"(TR)",   "name":"Tarjeta roja",                              "points": "-75"}
-    ,{"shortName":"(PC)",   "name":"Penalti cometido",                          "points": "-30"}
-    ,{"shortName":"(PF)",   "name":"Penalti Fallado",                           "points": "-30"}
-    ,{"shortName":"(GPP)",  "name":"Gol en propia puerta",                      "points": "-10"}
-    ,{"shortName":"(FJ)",   "name":"Fuera de juego",                            "points": "-5"}
-  ];
+  List<Map> AllPlayers;
+  List<Map> GoalKeepers;
+  List<Map> Defenders;
+  List<Map> MidFielders;
+  List<Map> Forwards;
+  Map<String, int> scoringPoints;
 
-  List<Map> GoalKeepers = [
-    {"shortName":"(P0)",   "name":"Puerta a cero",                              "points": "40"}
-    ,{"shortName":"(G)",    "name":"Gol",                                       "points": "100"}
-    ,{"shortName":"(PP)",   "name":"Penalti parado",                            "points": "30"}
-    ,{"shortName":"(PA)",   "name":"Parada",                                    "points": "10"}
-    ,{"shortName":"(DP)",   "name":"Despeje de puños",                          "points": "10"}
-    ,{"shortName":"(D)",    "name":"Despeje",                                   "points": "10"}
-    ,{"shortName":"(GE)",    "name":"Gol encajado",                             "points": "-10"}
-  ];
+  ScoringRulesComp(ScoringRulesService scoringRulesService, FlashMessagesService _flashMessage) {
+    scoringRulesService.refreshScoringRules()
+      .then((_) {
+        scoringPoints = scoringRulesService.scoringRules;
+        _init();
+      })
+      .catchError((error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW));
+  }
 
-  List<Map> Defenders = [
-    {"shortName":"(P0)",   "name":"Puerta a cero",                              "points": "40"}
-    ,{"shortName":"(G)",    "name":"Gol",                                       "points": "80"}
-    ,{"shortName":"(GE)",   "name":"Gol encajado",                              "points": "-10"}
+  String getClassesIsNegative(int points) {
+    return ( points == null || points < 0 ) ? "negative": "";
+  }
 
-  ];
+  void _init() {
+    AllPlayers = _allPlayerEvents.map((event)   => {"name": SoccerPlayer.getEventName(event), "points": scoringPoints[event]}).toList();
+    GoalKeepers = _goalKeeperEvents.map((event) => {"name": SoccerPlayer.getEventName(event), "points": scoringPoints[event]}).toList();
+    Defenders = _defendersEvents.map((event)    => {"name": SoccerPlayer.getEventName(event), "points": scoringPoints[event]}).toList();
+    MidFielders = _midFieldersEvents.map((event)=> {"name": SoccerPlayer.getEventName(event), "points": scoringPoints[event]}).toList();
+    Forwards = _forwardEvents.map((event)       => {"name": SoccerPlayer.getEventName(event), "points": scoringPoints[event]}).toList();
+  }
 
-  List<Map> MidFielders = [
-    {"shortName":"(G)",    "name":"Gol",                                       "points": "60"}
-  ];
+  List _allPlayerEvents   = [
+                            "PASS_SUCCESSFUL"
+                            ,"ATTEMPT_SAVED"
+                            ,"POST"
+                            ,"MISS"
+                            ,"INTERCEPTION"
+                            ,"CLEARANCE"
+                            ,"TAKE_ON"
+                            ,"ASSIST"
+                            ,"TACKLE_EFFECTIVE"
+                            ,"FOUL_RECEIVED"
+                            ,"PASS_UNSUCCESSFUL"
+                            ,"DISPOSSESSED"
+                            ,"FOUL_COMMITTED"
+                            ,"CAUGHT_OFFSIDE"
+                            ,"YELLOW_CARD"
+                            ,"SECOND_YELLOW_CARD"
+                            ,"RED_CARD"
+                            ,"PENALTY_COMMITTED"
+                            ,"PENALTY_FAILED"
+                            ,"ERROR"
+                            ,"DECISIVE_ERROR"
+                            ,"OWN_GOAL"
+                            ];
 
-  List<Map> Forwards = [
-    {"shortName":"(G)",    "name":"Gol",                                       "points": "40"}
-  ];
+  List _goalKeeperEvents  = [
+                             "GOAL_SCORED_BY_GOALKEEPER"
+                            ,"PUNCH"
+                            ,"CLAIM"
+                            ,"SAVE_GOALKEEPER"
+                            ,"GOALKEEPER_SAVES_PENALTY"
+                            ,"CLEAN_SHEET"
+                            ,"GOAL_CONCEDED"
+                            ];
 
-  ScoringRulesComp();
+ List _defendersEvents    = [
+                             "GOAL_SCORED_BY_DEFENDER"
+                            ,"SAVE_PLAYER"
+                            ,"CLEAN_SHEET"
+                            ,"GOAL_CONCEDED"
+                            ];
+
+  List _midFieldersEvents = [
+                             "GOAL_SCORED_BY_MIDFIELDER"
+                            ,"SAVE_PLAYER"
+                            ];
+
+  List _forwardEvents     = [
+                             "GOAL_SCORED_BY_FORWARD"
+                            ,"SAVE_PLAYER"
+                            ];
+
 
 }

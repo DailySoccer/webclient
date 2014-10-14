@@ -35,6 +35,9 @@ abstract class ServerService {
   // Debug
   Future<JsonObject> isSimulatorActivated();
   Future<JsonObject> getCurrentDate();
+
+
+  Future<JsonObject> getScoringRules();
 }
 
 @Injectable()
@@ -50,6 +53,10 @@ class DailySoccerServer implements ServerService {
 
   Future<JsonObject> login(String email, String password) {
     return _innerServerCall("${HostServer.url}/login", {'email': email, 'password': password});
+  }
+
+  Future<JsonObject> askForPasswordReset(String email) {
+    return _innerServerCall("${HostServer.url}/ask_for_password_reset", {'email': email});
   }
 
   Future<JsonObject> getUserProfile() {
@@ -104,6 +111,10 @@ class DailySoccerServer implements ServerService {
 
   Future<JsonObject> getCurrentDate() {
     return _innerServerCall("${HostServer.url}/current_date", null);
+  }
+
+  Future<JsonObject> getScoringRules() {
+    return _innerServerCall("${HostServer.url}/get_scoring_rules", null);
   }
 
   /**

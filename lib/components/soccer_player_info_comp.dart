@@ -9,6 +9,7 @@ import 'package:webclient/models/match_event.dart';
 import 'package:webclient/services/soccer_player_service.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
+import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/controllers/enter_contest_ctrl.dart';
 import 'package:intl/intl.dart';
 
@@ -21,6 +22,8 @@ import 'package:intl/intl.dart';
 )
 
 class SoccerPlayerInfoComp {
+
+  ScreenDetectorService scrDet;
 
   EnterContestCtrl enterContestCtrl;
 
@@ -35,11 +38,11 @@ class SoccerPlayerInfoComp {
   List<Map> medias;
   Map currentInfoData;
   List partidos  = new List();
-  dynamic seasons = [];
-  dynamic tempSeasons = [];
+  List seasons = [];
+  List tempSeasons = [];
   bool matchesPlayed;
 
-  SoccerPlayerInfoComp(this._router, this._soccerPlayerService, this._flashMessage, this.enterContestCtrl) {
+  SoccerPlayerInfoComp(this._router, this._soccerPlayerService, this._flashMessage, this.enterContestCtrl, this.scrDet) {
     currentInfoData = {
       'id'              : '',
       'fieldPos'        : '',
@@ -190,20 +193,15 @@ class SoccerPlayerInfoComp {
         }
         // Vamos completanto las estadísticas partido a partido
         else {
-          seasons.forEach((stat) {
-            if (stat["año"] != year) {
-              Map season = {};
-              season.addAll({"año":year,"value":[]});
-              season["value"].add(matchStats);
-              tempSeasons.add(season);
-            }
-            else {
-              stat["value"].add(matchStats);
-            }
-          });
-          tempSeasons.forEach((stat) {
-            seasons.add(stat);
-          });
+          if (seasons.last["año"] != year) {
+            Map season = {};
+            season.addAll({"año":year,"value":[]});
+            season["value"].add(matchStats);
+            seasons.add(season);
+          }
+          else {
+            seasons.last["value"].add(matchStats);
+          }
         }
       });
 

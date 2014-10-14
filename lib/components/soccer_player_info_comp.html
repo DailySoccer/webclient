@@ -102,7 +102,7 @@
                   <div ng-repeat="slot in soccerPlayerInfo.seasons">
                       <div class="match-year">{{slot["año"]}}</div>
                       <div class="data" ng-repeat="match in slot['value']">
-                        <div ng-repeat="data in match">{{data}}</div>
+                        <div ng-repeat="data in match">{{data}}<span ng-if="$index == 0 && soccerPlayerInfo.scrDet.isDesktop">/{{slot["año"]}}</span></div>
                       </div>
                   </div>
                 </div>

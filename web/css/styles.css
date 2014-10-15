@@ -14376,6 +14376,14 @@ fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest {
   -ms-user-select: none;
   user-select: none;
 }
+@media (max-width: 767px) {
+  .paginator-wrapper .paginator-box ul li a {
+    font-size: 8pt;
+    width: 30px;
+    text-align: center;
+    padding: 6px 5px;
+  }
+}
 .paginator-wrapper .paginator-box .ellipsis a {
   padding-left: 0;
   padding-right: 0;

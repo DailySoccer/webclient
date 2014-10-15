@@ -56,10 +56,10 @@ void setUpCache(injector) {
   cache.fromUrl("packages/webclient/components/terminus_info_comp.html", injector.getByKey(DIRECTIVE_MAP_KEY));
   cache.fromUrl("packages/webclient/components/user_profile_comp.html", injector.getByKey(DIRECTIVE_MAP_KEY));
   //cache.fromUrl("packages/webclient/components/users_list_comp.html", injector.getByKey(DIRECTIVE_MAP_KEY));
+  cache.fromUrl("packages/webclient/components/view_contest_comp.html", injector.getByKey(DIRECTIVE_MAP_KEY));
   cache.fromUrl("packages/webclient/components/view_contest_entry_comp.html", injector.getByKey(DIRECTIVE_MAP_KEY));
 
 
   cache.fromUrl("view/enter_contest.tpl.html", injector.getByKey(DIRECTIVE_MAP_KEY));
-  cache.fromUrl("view/view_contest.tpl.html", injector.getByKey(DIRECTIVE_MAP_KEY));
 }
 

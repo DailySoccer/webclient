@@ -39,16 +39,19 @@ import 'package:webclient/components/footer_comp.dart';
 import 'package:webclient/components/paginator_comp.dart';
 import 'package:webclient/components/login_comp.dart';
 import 'package:webclient/components/join_comp.dart';
-import 'package:webclient/components/help_info_comp.dart';
-import 'package:webclient/components/legal_info_comp.dart';
-import 'package:webclient/components/terminus_info_comp.dart';
-import 'package:webclient/components/policy_info_comp.dart';
+
+import 'package:webclient/components/legalese_and_help/help_info_comp.dart';
+import 'package:webclient/components/legalese_and_help/legal_info_comp.dart';
+import 'package:webclient/components/legalese_and_help/terminus_info_comp.dart';
+import 'package:webclient/components/legalese_and_help/policy_info_comp.dart';
+import 'package:webclient/components/legalese_and_help/beta_info_comp.dart';
+
 import 'package:webclient/components/user_profile_comp.dart';
 import 'package:webclient/components/edit_personal_data_comp.dart';
 import 'package:webclient/components/remember_password_comp.dart';
 import 'package:webclient/components/view_contest_entry_comp.dart';
 import 'package:webclient/components/view_contest_comp.dart';
-import 'package:webclient/components/beta_info_comp.dart';
+
 import 'package:webclient/utils/form-autofill-fix.dart';
 
 class WebClientApp extends Module {

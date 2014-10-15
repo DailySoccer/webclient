@@ -4,11 +4,11 @@ import 'package:angular/angular.dart';
 
 @Component(
     selector: 'beta-info',
-    templateUrl: 'packages/webclient/components/beta_info_comp.html',
+    templateUrl: 'packages/webclient/components/legalese_and_help/beta_info_comp.html',
     publishAs: 'comp',
     useShadowDom: false
 )
-class BetaInfoComp{
+class BetaInfoComp {
 
   BetaInfoComp();
 

@@ -99,13 +99,21 @@
 			width: 80%;
 			max-width: 300px;
 			margin: 0 auto;
-			margin-top: 40px;
+			margin-top: 30px;
+		}
+		.main-title-mobile {
+			.opensans_bold(34pt, @white);
+			line-height: 1.1em;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			padding-top: 5px;
+			padding-bottom: 25px;
 		}
 		.title-sup-text-mobile{
 			.opensans_bold(11pt, @white);
 			text-shadow: 2px 2px @black;
 			margin-bottom: 5px;
-			padding-top: 5px;
+
 			padding-bottom: 5px;
 		}
 	}
@@ -169,51 +177,85 @@
 		.btn-primary();
 		padding: 10px 60px;
 	}
-	.screen-pattern{
-		position: absolute;
-		background-image: url('@{images}/pattern.png');
-		width:100%;
-		height: 100%;
-		top: 0;
-	}
 }
+.screen-pattern{
+	position: absolute;
+	background-image: url('@{images}/pattern.png');
+	background-repeat: repeat;
+	width:100%;
+	height: 100%;
+	top: 0;
+}
+
 .first-screen{
 	.make-row(0);
 	position: relative;
-	.slider-wrapper {
-		max-height: 500px;
-		width: 100%;
+	background-image: url('@{images}/landingBackground.jpg');
+	background-size: cover;
+	@media (max-height: 850px) {
+		min-height: 700px;
 	}
-	.screen-background {
-		.make-sm-column(12,0);
-	}
-	.first-screen-wrapper {
-
-		position: absolute;
-		bottom: 1%;
-		padding-bottom: 0%;
-		width: 100%;
-		top: 10px;
-		.separator-from-menu {
-			width: 100%;
-			height: 71px; // el menu es de 71px de alto en versión desktop
+	
+	.main-title-wrapper {
+		position: relative;
+		width: 90%;
+		max-width: 960px;
+		bottom: -20%;
+		margin: 0 auto;
+		@media (max-height: 850px) {
+			margin: -50px auto 0 auto;
 		}
-		> img {
-			.img-responsive();
+		.main-title {
+			.exo_bold(72pt, @white);
+			text-align: center;
+			width: 100%;
+			@media (max-width: @screen-md-max) {
+				.exo_bold(60pt, @white);
+			}
+			@media (max-width: @screen-sm-max) {
+				.exo_bold(50pt, @white);
+			}
+		}
+	}
+	.modules-wrapper, .separator-wrapper {
+		.make-row(0);
+		
+		img {
 			display: block;
 			margin: 0 auto;
-			padding: 0 25px;
+			.img-responsive();
+		}
+		.module-column {
+			.make-sm-column(4);
+			p {
+				.opensans_normal(18pt, @white);
+				@media (max-width: @screen-md-max) {
+					.opensans_normal(16pt, @white);
+				}
+				@media (max-width: @screen-sm-max) {
+					.opensans_normal(14pt, @white);
+				}
+				text-align: center;
+			}
 		}
 	}
+
 	.button-wrap {
-		position: absolute;
+		position: relative;
 		width: 100%;
-		bottom: 5%;
+		margin-top: 15px;
 		.button-play {
 			margin: 0 auto;
 			width: 20%;
 			display: block;
 		}
+	}
+
+	.wrapping-link {
+		.make-row(0);
+		position: absolute;
+		bottom: 0px;
+		width: 100%;
 	}
 }	
 	

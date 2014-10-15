@@ -3,10 +3,21 @@
   <contest-header contestData="viewContestEntry.contest" mode="'VIEW_CONTEST_ENTRY'"></contest-header>
 
   <div class="info-and-social-bar">
-    <!--<div class="social"><img src="images/socialBig.png"></div>-->
+    <!--
+    <div class="social"><img src="images/socialBig.png"></div>
     <div class="teams-info-wrapper" ng-repeat="match in viewContestEntry.matchesInvolved">
       <div class="teams-info" ng-bind-html="match"></div>
     </div>
+    -->
+    <!-- Chapu hasta que convierta esto en un componente -->
+    <div id="teamsPanel" class="teams-container">
+      <div class="top-border"></div>
+      <div class="teams-box" ng-repeat="match in viewContestEntry.matchesInvolved">
+        <div class="teams-info" ng-bind-html="match"></div>
+      </div>
+      <div class="bottom-border"></div>
+    </div>
+
   </div>
 
   <div class="separator-bar"></div>

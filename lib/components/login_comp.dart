@@ -3,6 +3,7 @@ library login_comp;
 import 'package:angular/angular.dart';
 import 'dart:html';
 import 'package:webclient/services/profile_service.dart';
+import 'package:webclient/utils/js_utils.dart';
 
 @Component(
     selector: 'login',
@@ -19,6 +20,8 @@ class LoginComp implements ShadowRootAware  {
   LoginComp(this._router, this._profileManager);
 
   void login() {
+    // Ejemplo de llamadas a mixpanel
+    JsUtils.runJavascript(null, "track", "Login attempted", false, "mixpanel");
     _errSection.parent.parent.style.display = "none";
     _enabledSubmit = false;
 

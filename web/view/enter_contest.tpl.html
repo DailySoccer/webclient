@@ -21,10 +21,10 @@
 
         <div class="enter-contest-soccer-players-wrapper">
           <div class="enter-contest-soccer-players">
-          
-           <soccer-players-filter on-name-filter-change="ctrl.onNameFilterChange(nameFilter)"></soccer-players-filter>
+           <soccer-players-filter on-name-filter-change="ctrl.onNameFilterChange(nameFilter)" 
+                                  field-pos-filter="ctrl.fieldPosFilter"></soccer-players-filter>
+                                  
            <soccer-players-list contest="ctrl.contest" on-row-click="ctrl.onRowClick(soccerPlayerId)"></soccer-players-list>
-            
           </div>
         </div>
 

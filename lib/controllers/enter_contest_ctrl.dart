@@ -180,7 +180,9 @@ class EnterContestCtrl implements DetachAware {
     }
     else {
       isSelectingSoccerPlayer = true;
-      setFieldPosFilter(new FieldPos(FieldPos.LINEUP[slotIndex]));
+
+      // El componente hijo se entera de que le hemos cambiado el filtro a traves del two-way binding.
+      fieldPosFilter = new FieldPos(FieldPos.LINEUP[slotIndex]);
     }
   }
 
@@ -217,25 +219,13 @@ class EnterContestCtrl implements DetachAware {
     }
   }
 
-  void setPosFilterClass(String abrevPosition) {
-    List<ButtonElement> buttonsFilter = document.querySelectorAll(".button-filtro-position");
-    buttonsFilter.forEach((element) {
-      element.classes.remove("active");
-
-      if (element.text == abrevPosition) {
-        element.classes.add("active");
-      }
-    });
-  }
-
-  void setFieldPosFilter(FieldPos filter) {
-    if (filter == null) {
+  FieldPos get fieldPosFilter => new FieldPos.fromAbrev(_filterList[FILTER_POSITION]);
+  void     set fieldPosFilter(FieldPos value) {
+    if (value == null) {
       removeFilter(FILTER_POSITION);
-      setPosFilterClass('TODOS');
     }
     else {
-      addFilter(FILTER_POSITION, filter.abrevName);
-      setPosFilterClass(filter.abrevName);
+      addFilter(FILTER_POSITION, value.abrevName);
     }
   }
 
@@ -501,13 +491,15 @@ class EnterContestCtrl implements DetachAware {
         return false;
       }
     }
-    /* DEBUG ONLY*/
-    //lineupSlots = {};
+
     return true;
   }
 
   void removeAllFilters() {
-    setPosFilterClass('TODOS');
+
+    // TODO
+    // setPosFilterClass('TODOS');
+
     setMatchFilterClass(ALL_MATCHES);
     InputElement txtfilterByName = querySelector(".name-player-input-filter");
 

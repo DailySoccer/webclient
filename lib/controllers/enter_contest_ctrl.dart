@@ -49,15 +49,6 @@ class EnterContestCtrl implements DetachAware {
 
   int availableSalary = 0;
 
-  String nameFilter;
-
-  List<FieldPos> posFilterList = [
-      new FieldPos("GOALKEEPER"),
-      new FieldPos("DEFENSE"),
-      new FieldPos("MIDDLE"),
-      new FieldPos("FORWARD")
-    ];
-
 
   EnterContestCtrl(this._routeProvider, this._router, this.scrDet, this._activeContestService, this._myContestService, this._flashMessage) {
 
@@ -230,7 +221,8 @@ class EnterContestCtrl implements DetachAware {
     List<ButtonElement> buttonsFilter = document.querySelectorAll(".button-filtro-position");
     buttonsFilter.forEach((element) {
       element.classes.remove("active");
-      if(element.text == abrevPosition) {
+
+      if (element.text == abrevPosition) {
         element.classes.add("active");
       }
     });
@@ -247,7 +239,7 @@ class EnterContestCtrl implements DetachAware {
     }
   }
 
-  void refreshNameFilter() {
+  void onNameFilterChange(String nameFilter) {
     addFilter(FILTER_NAME, nameFilter);
   }
 

@@ -17,8 +17,6 @@ import 'package:webclient/logger_exception_handler.dart';
 
 import 'package:webclient/utils/limit_to_dot.dart';
 
-import 'package:webclient/controllers/enter_contest_ctrl.dart';
-
 import 'package:webclient/components/flash_messages_comp.dart';
 import 'package:webclient/components/landing_page_comp.dart';
 import 'package:webclient/components/main_menu_comp.dart';
@@ -30,8 +28,6 @@ import 'package:webclient/components/contest_header_comp.dart';
 import 'package:webclient/components/lobby_comp.dart';
 import 'package:webclient/components/fantasy_team_comp.dart';
 import 'package:webclient/components/users_list_comp.dart';
-import 'package:webclient/components/soccer_players_list_comp.dart';
-import 'package:webclient/components/lineup_selector_comp.dart';
 import 'package:webclient/components/my_contests_comp.dart';
 import 'package:webclient/components/contests_list_comp.dart';
 import 'package:webclient/components/promos_comp.dart';
@@ -39,6 +35,11 @@ import 'package:webclient/components/footer_comp.dart';
 import 'package:webclient/components/paginator_comp.dart';
 import 'package:webclient/components/login_comp.dart';
 import 'package:webclient/components/join_comp.dart';
+
+import 'package:webclient/components/lineup_selector_comp.dart';
+import 'package:webclient/controllers/enter_contest_ctrl.dart';
+import 'package:webclient/components/soccer_players_list_comp.dart';
+import 'package:webclient/components/soccer_players_filter_comp.dart';
 
 import 'package:webclient/components/legalese_and_help/help_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/legal_info_comp.dart';
@@ -73,8 +74,6 @@ class WebClientApp extends Module {
     bind(LimitToDot);
     bind(FormAutofillDecorator);
 
-    bind(EnterContestCtrl);
-
     bind(FlashMessageComp);
     bind(LandingPageComp);
     bind(MainMenuComp);
@@ -85,8 +84,7 @@ class WebClientApp extends Module {
     bind(ContestHeaderComp);
     bind(FantasyTeamComp);
     bind(UsersListComp);
-    bind(SoccerPlayersListComp);
-    bind(LineupSelectorComp);
+
     bind(ViewContestComp);
     bind(MyContestsComp);
     bind(ContestsListComp);
@@ -102,6 +100,11 @@ class WebClientApp extends Module {
     bind(TerminusInfoComp);
     bind(PolicyInfoComp);
     bind(BetaInfoComp);
+
+    bind(EnterContestCtrl);
+    bind(SoccerPlayersListComp);
+    bind(SoccerPlayersFilterComp);
+    bind(LineupSelectorComp);
 
     bind(RememberPasswordComp);
     bind(UserProfileComp);

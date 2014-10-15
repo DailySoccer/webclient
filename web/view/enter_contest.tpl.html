@@ -22,25 +22,8 @@
         <div class="enter-contest-soccer-players-wrapper">
           <div class="enter-contest-soccer-players">
           
-            <div class="soccer-player-filter">
-            
-              <div class="filter-by-position">
-                <span>JUGADORES</span>
-                <button class="btn btn-default button-filtro-position active" ng-click="ctrl.setFieldPosFilter(null)">TODOS</button>
-                <button class="btn btn-default button-filtro-position" ng-click="ctrl.setFieldPosFilter(fieldPos)" 
-                        ng-repeat="fieldPos in ctrl.posFilterList" ng-bind-html="fieldPos.abrevName"></button>
-              </div>
-              
-              <!--
-              <select id="match-filter" class="match-selector-filter" ng-model="ctrl.optionValue">
-                <option ng-repeat="match in comp.matchesList" id="match-{{match.id}}" value="{{$index + 1}}" ng-value="match.id">{{match.texto}}</option>
-              </select>
-              -->
-              
-              <input type="text" class="name-player-input-filter" placeholder="Buscar jugador" ng-model="ctrl.nameFilter" ng-keyup="ctrl.refreshNameFilter()" />
-            </div>
-
-            <soccer-players-list contest="ctrl.contest" on-row-click="ctrl.onRowClick(soccerPlayerId)"></soccer-players-list>
+           <soccer-players-filter on-name-filter-change="ctrl.onNameFilterChange(nameFilter)"></soccer-players-filter>
+           <soccer-players-list contest="ctrl.contest" on-row-click="ctrl.onRowClick(soccerPlayerId)"></soccer-players-list>
             
           </div>
         </div>

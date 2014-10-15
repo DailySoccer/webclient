@@ -122,59 +122,6 @@
 	display: none !important;
 }
 
-// Filtro de posicion y busqueda por nombre
-.soccer-player-filter {
-	@media (max-width: @screen-xs-max) {
-		padding: 0 10px;
-	}
-	// Por posicion
-	.filter-by-position {
-		height: 58px;
-		background-color: @tramaBlue;
-		padding: 20px 0 0 10px;
-		.hidden-xs();
-		span {
-			.exo_bold(14pt, @greyDark);
-			padding: 0 10px 0 0;
-			.hidden-sm();
-		}
-		.button-filtro-position {
-			font-size: 9pt;
-			margin: 0 2px;
-			box-shadow: none;
-		}
-		.button-filtro-position:active, .button-filtro-position:focus {
-			outline: none;
-		}
-		.active {
-			background-color: @white;
-			color: @greyUltraDark;
-			padding-bottom: 18px;
-			box-shadow: none;
-		}
-	}
-	// Por equipo
-	.match-selector-filter {
-		.form-control();
-		.hidden-sm();
-		.hidden-md();
-		.hidden-lg();
-	}
-	// Por nombre de jugador
-	.name-player-input-filter {
-		.form-control();
-		@media (max-width: @screen-xs-max) {
-			margin: 10px 0 15px;
-			border: 1px solid @greyLight;
-			border-radius: 4px;
-		}
-		border: none;
-		border-radius: 0;
-		padding-left: 30px;
-		background: url('../images/searchIcon.png') no-repeat 10px center;	
-	}
-}
-
 // Lineup y Soccer player list en Desktop
 // Variable para el alto de los contenedores de lineup y soccer list. Solo para version desktop
 @recomended-control-heihgt: 645px;

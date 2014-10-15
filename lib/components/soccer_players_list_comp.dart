@@ -1,7 +1,6 @@
 library soccer_players_list_comp;
 
 import 'package:angular/angular.dart';
-import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/controllers/enter_contest_ctrl.dart';
 import 'package:webclient/services/active_contests_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
@@ -14,7 +13,6 @@ import "package:webclient/models/match_event.dart";
     publishAs: 'comp',
     useShadowDom: false
 )
-
 class SoccerPlayersListComp {
 
   ScreenDetectorService scrDet;

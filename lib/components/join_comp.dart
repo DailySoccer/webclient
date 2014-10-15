@@ -37,7 +37,7 @@ class JoinComp implements ShadowRootAware {
         .then((_) => _profileService.login(email, password))
         .then((_) => _router.go('lobby', {}))
         .catchError((Map error) {
-          print("keys: ${error.keys.length} - ${error.keys.toString()}");
+       //   print("keys: ${error.keys.length} - ${error.keys.toString()}");
 
           error.keys.forEach( (key) {
             switch (key)

@@ -3,6 +3,7 @@ library remember_password_comp;
 import 'package:angular/angular.dart';
 import 'dart:html';
 import 'package:webclient/services/profile_service.dart';
+import 'package:webclient/services/server_service.dart';
 
 @Component(
     selector: 'remember-password',
@@ -14,10 +15,10 @@ class RememberPasswordComp implements ShadowRootAware {
 
   bool enabledSubmit = true;
   String email = "";
-
+  String state = "REQUEST";
   bool get isEnabledSubmit => email.isNotEmpty && enabledSubmit;
 
-  RememberPasswordComp(this._router, this._profileManager);
+  RememberPasswordComp(this._router, this._profileManager, ServerService _serverService);
 
   void navigateTo(String route, Map parameters, event)
   {
@@ -28,18 +29,27 @@ class RememberPasswordComp implements ShadowRootAware {
   }
 
   void rememberMyPassword() {
-    print('-REMEMBER_PASSWORD-: Se ha enviado correctamente');
+    _serverService.askForPasswordReset(email)
+     .then((_) {
+        state = "REQUESTED";
+      //  print('-REMEMBER_PASSWORD-: Se ha enviado correctamente');
+    })
+     .catchError( (error) {
+          print('-REMEMBER_PASSWORD-: error');
+      }
+    );
   }
 
   @override
   void onShadowRoot(root) {
     var rootElement = root as HtmlElement;
-    _errSection = rootElement.querySelector("#errLabel");
-    _errSection.parent.parent.style.display = 'none';
-    rootElement.querySelector('#email').focus();
+ //   _errSection = rootElement.querySelector("#errLabel");
+ //   _errSection.parent.parent.style.display = 'none';
+ //   rootElement.querySelector('#email').focus();
   }
 
   Router _router;
   ProfileService _profileManager;
   Element _errSection;
+  ServerService _serverService;
 }

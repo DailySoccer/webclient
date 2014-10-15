@@ -18,7 +18,6 @@ import 'package:webclient/logger_exception_handler.dart';
 import 'package:webclient/utils/limit_to_dot.dart';
 
 import 'package:webclient/controllers/enter_contest_ctrl.dart';
-import 'package:webclient/controllers/view_contest_ctrl.dart';
 
 import 'package:webclient/components/flash_messages_comp.dart';
 import 'package:webclient/components/landing_page_comp.dart';
@@ -48,8 +47,9 @@ import 'package:webclient/components/user_profile_comp.dart';
 import 'package:webclient/components/edit_personal_data_comp.dart';
 import 'package:webclient/components/remember_password_comp.dart';
 import 'package:webclient/components/view_contest_entry_comp.dart';
-import 'package:webclient/utils/form-autofill-fix.dart';
+import 'package:webclient/components/view_contest_comp.dart';
 import 'package:webclient/components/beta_info_comp.dart';
+import 'package:webclient/utils/form-autofill-fix.dart';
 
 class WebClientApp extends Module {
   WebClientApp() {
@@ -68,15 +68,14 @@ class WebClientApp extends Module {
     bind(ScoringRulesService);
 
     bind(LimitToDot);
+    bind(FormAutofillDecorator);
 
     bind(EnterContestCtrl);
-    bind(ViewContestCtrl);
 
     bind(FlashMessageComp);
     bind(LandingPageComp);
     bind(MainMenuComp);
     bind(MainMenuSlideComp);
-
     bind(ContestInfoComp);
     bind(ScoringRulesComp);
     bind(SoccerPlayerInfoComp);
@@ -85,7 +84,7 @@ class WebClientApp extends Module {
     bind(UsersListComp);
     bind(SoccerPlayersListComp);
     bind(LineupSelectorComp);
-
+    bind(ViewContestComp);
     bind(MyContestsComp);
     bind(ContestsListComp);
     bind(LobbyComp);
@@ -94,17 +93,17 @@ class WebClientApp extends Module {
     bind(PaginatorComp);
     bind(LoginComp);
     bind(JoinComp);
+
     bind(HelpInfoComp);
     bind(LegalInfoComp);
     bind(TerminusInfoComp);
     bind(PolicyInfoComp);
+    bind(BetaInfoComp);
+
     bind(RememberPasswordComp);
     bind(UserProfileComp);
     bind(EditPersonalDataComp);
     bind(ViewContestEntryComp);
-    bind(BetaInfoComp);
-
-    bind(FormAutofillDecorator);
 
     bind(RouteInitializerFn, toValue: webClientRouteInitializer);
     bind(NgRoutingUsePushState, toValue: new NgRoutingUsePushState.value(false));

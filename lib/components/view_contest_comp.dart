@@ -1,4 +1,4 @@
-library view_contest_ctrl;
+library view_contest_comp;
 
 import 'package:angular/angular.dart';
 import 'dart:async';
@@ -10,14 +10,15 @@ import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/contest_entry.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/models/match_event.dart';
-import 'dart:html';
 import 'package:webclient/utils/js_utils.dart';
+import 'dart:html';
 
-@Controller(
-    selector: '[view-contest-ctrl]',
-    publishAs: 'ctrl'
-)
-class ViewContestCtrl implements DetachAware {
+@Component(
+    selector: 'view-contest',
+    templateUrl: 'packages/webclient/components/view_contest_comp.html',
+    publishAs: 'ctrl',
+    useShadowDom: false)
+class ViewContestComp implements DetachAware {
 
   ScreenDetectorService scrDet;
   ContestEntry mainPlayer;
@@ -33,7 +34,7 @@ class ViewContestCtrl implements DetachAware {
   List<ContestEntry> get contestEntries => (contest != null) ? contest.contestEntries : null;
   List<ContestEntry> get contestEntriesOrderByPoints => (contest != null) ? contest.contestEntriesOrderByPoints : null;
 
-  ViewContestCtrl(this._routeProvider, this.scrDet, this._myContestsService, this._profileService, this._flashMessage) {
+  ViewContestComp(this._routeProvider, this.scrDet, this._myContestsService, this._profileService, this._flashMessage) {
 
     _contestId = _routeProvider.route.parameters['contestId'];
 
@@ -95,9 +96,9 @@ class ViewContestCtrl implements DetachAware {
 
   // Handle que recibe cual es la nueva mediaquery que se aplica.
   void onScreenWidthChange(String msg) {
-   if (msg == "xs") {
-     _togglerEventsInitizlized = false;
-   }
+    if (msg == "xs") {
+      _togglerEventsInitialized = false;
+    }
   }
 
   void onUserClick(ContestEntry contestEntry) {
@@ -135,7 +136,6 @@ class ViewContestCtrl implements DetachAware {
     if (tabButton != null) {
       tabButton.parent.classes.add("active");
     }
-
   }
 
   void setTabNameAndShowIt(String name)
@@ -155,14 +155,14 @@ class ViewContestCtrl implements DetachAware {
   }
 
   void toggleTeamsPanel() {
-    if (!_togglerEventsInitizlized) {
+    if (!_togglerEventsInitialized) {
       JsUtils.runJavascript('#teamsPanel', 'on', {'shown.bs.collapse': onOpenTeamsPanel});
       JsUtils.runJavascript('#teamsPanel', 'on', {'hidden.bs.collapse': onCloseTeamsPanel});
-      _togglerEventsInitizlized = true;
+      _togglerEventsInitialized = true;
     }
 
     // Abrimos el menú si está cerrado
-    if (_isteamsPanelOpen) {
+    if (_isTeamsPanelOpen) {
       JsUtils.runJavascript('#teamsPanel', 'collapse', "hide");
     }
     else {
@@ -172,7 +172,7 @@ class ViewContestCtrl implements DetachAware {
 
   void onOpenTeamsPanel(dynamic sender) {
     //resetfiltersButton();
-    _isteamsPanelOpen = true;
+    _isTeamsPanelOpen = true;
     querySelector('#teamsToggler').classes.remove('toggleOff');
     querySelector('#teamsToggler').classes.add('toggleOn');
   }
@@ -180,17 +180,18 @@ class ViewContestCtrl implements DetachAware {
   void onCloseTeamsPanel(dynamic sender) {
     querySelector('#teamsToggler').classes.remove('toggleOn');
     querySelector('#teamsToggler').classes.add('toggleOff');
-    _isteamsPanelOpen = false;
+    _isTeamsPanelOpen = false;
   }
 
   FlashMessagesService _flashMessage;
   RouteProvider _routeProvider;
   ProfileService _profileService;
   MyContestsService _myContestsService;
+
   Timer _timer;
   String _contestId;
-  bool _isteamsPanelOpen  = false;
-  bool _togglerEventsInitizlized = false;
+  bool _isTeamsPanelOpen  = false;
+  bool _togglerEventsInitialized = false;
   var _streamListener;
 
   List<int> get _prizes => (contest != null) ? contest.prizes : [];

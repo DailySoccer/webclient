@@ -1,4 +1,4 @@
-<section view-contest-ctrl ng-show="ctrl.updatedDate != null">
+<section ng-show="ctrl.updatedDate != null">
 
   <contest-header contestData="ctrl.contest" mode="'VIEW_CONTEST'"></contest-header>
 
@@ -11,7 +11,7 @@
     </div>
   </div>
 
-  <div class="info-and-social-bar"  ng-if="ctrl.scrDet.isXsScreen">
+  <div class="info-and-social-bar" ng-if="ctrl.scrDet.isXsScreen">
     <div class="teams-toggler-wrapper">
       <div id="teamsToggler" type="button" class="teams-toggler toggleOff" ng-click="ctrl.toggleTeamsPanel()" data-target="#teamsPanel">PARTIDOS</div>
     </div>

@@ -19,9 +19,10 @@ class FantasyTeamComp implements ShadowRootAware {
 
     @NgOneWay("contest-entry")
     set contestEntry(ContestEntry value) {
-      // Si nos mandan cambiar de ContestEntry, tenemos que resetear los slots
-      if (_contestEntry != value)
-        slots = null;
+
+      if (_contestEntry != value) {
+        slots = null;       // Si nos mandan cambiar de ContestEntry, tenemos que resetear los slots
+      }
 
       _contestEntry = value;
       _refreshTeam();
@@ -74,12 +75,13 @@ class FantasyTeamComp implements ShadowRootAware {
       slots = new List<dynamic>();
 
       _contestEntry.instanceSoccerPlayers.forEach((instanceSoccerPlayer) {
+
         String shortNameTeamA = instanceSoccerPlayer.soccerTeam.matchEvent.soccerTeamA.shortName;
         String shortNameTeamB = instanceSoccerPlayer.soccerTeam.matchEvent.soccerTeamB.shortName;
+
         var matchEventName = (instanceSoccerPlayer.soccerTeam.templateSoccerTeamId == instanceSoccerPlayer.soccerTeam.matchEvent.soccerTeamA.templateSoccerTeamId)?
                              "<strong>$shortNameTeamA</strong> - $shortNameTeamB" :
                              "$shortNameTeamA - <strong>$shortNameTeamB<strong>";
-
         slots.add({
             "id" : instanceSoccerPlayer.id,
             "fieldPos": instanceSoccerPlayer.fieldPos,
@@ -122,7 +124,6 @@ class FantasyTeamComp implements ShadowRootAware {
     }
 
     void editTeam() {
-      print(slots);
       _router.go('edit_contest', { "contestId": _contestEntry.contest.contestId ,
                                    "contestEntryId": _contestEntry.contestEntryId,
                                    "parent": _routeProvider.parameters["parent"]});
@@ -139,5 +140,4 @@ class FantasyTeamComp implements ShadowRootAware {
 
     RouteProvider _routeProvider;
     Router _router;
-
 }

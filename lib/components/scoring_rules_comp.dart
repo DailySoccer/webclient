@@ -11,7 +11,6 @@ import 'package:webclient/models/soccer_player.dart';
   publishAs:    'comp',
   useShadowDom: false
 )
-
 class ScoringRulesComp {
 
   List<Map> AllPlayers;

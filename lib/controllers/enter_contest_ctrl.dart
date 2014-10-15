@@ -245,20 +245,24 @@ class EnterContestCtrl implements DetachAware {
   }
 
   void setMatchFilterClass(String buttonId) {
+
     List<ButtonElement> buttonsFilter = document.querySelectorAll(".button-filtro-team");
     buttonsFilter.forEach((element) {
       element.classes.remove('active');
     });
+
     List<ButtonElement> button = querySelectorAll("#match-$buttonId");
     button.forEach((element) => element.classes.add("active"));
   }
 
   void setMatchFilter(String matchId) {
     setMatchFilterClass(matchId);
+
     if(matchId == ALL_MATCHES) {
         removeFilter(FILTER_MATCH);
         return;
     }
+
     addFilter(FILTER_MATCH, matchId);
   }
 
@@ -507,8 +511,10 @@ class EnterContestCtrl implements DetachAware {
     setPosFilterClass('TODOS');
     setMatchFilterClass(ALL_MATCHES);
     InputElement txtfilterByName = querySelector(".name-player-input-filter");
+
     if (txtfilterByName != null)
         txtfilterByName.value = "";
+
     _filterList={};
     _refreshFilter();
   }
@@ -590,31 +596,28 @@ class EnterContestCtrl implements DetachAware {
     var selectedSoccerPlayer = availableSoccerPlayers.firstWhere((soccerPlayer) => soccerPlayer["id"] == soccerPlayerId,
                                                                  orElse: () => null);
     if (selectedSoccerPlayer != null) {
-      //Añado el jugador
       onSoccerPlayerSelected(selectedSoccerPlayer);
     }
+
     if (scrDet.isSmScreen || scrDet.isDesktop) {
-      // hacemos una llamada de jQuery para ocultar la ventana modal
       JsUtils.runJavascript('#infoContestModal', 'modal', 'hide');
     }
-    else
+    else {
       closePlayerInfo();
+    }
   }
 
   String getMyTotalSalaryClasses() {
-    String clases = "total-salary-money";
-    if(availableSalary < 0)
+
+    String clases = null;
+
+    if (availableSalary < 0)
       clases = "total-salary-money red-numbers";
+    else
+      clases = "total-salary-money";
 
     return clases;
   }
-
-  List<dynamic> _allSoccerPlayers = new List();
-  bool _sortDir = false;
-  String _primarySort = "";
-  String _secondarySort = "";
-  int _selectedLineupPosIndex = 0;
-  bool _editingContestEntry = false;
 
   Router _router;
   RouteProvider _routeProvider;
@@ -623,8 +626,17 @@ class EnterContestCtrl implements DetachAware {
   MyContestsService _myContestService;
   FlashMessagesService _flashMessage;
 
+  List<dynamic> _allSoccerPlayers = new List();
+
+  bool _sortDir = false;
+  String _primarySort = "";
+  String _secondarySort = "";
+
+  int _selectedLineupPosIndex = 0;
+  bool _editingContestEntry = false;
+
   // Lista de filtros a aplicar
-  Map<String,String> _filterList = {};
+  Map<String, String> _filterList = {};
   var _streamListener;
 
   Timer _retryOpTimer;

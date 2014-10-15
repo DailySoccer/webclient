@@ -1,14 +1,3 @@
-<div class="soccer-player-filter">
-  <div class="filter-by-position">
-    <span>JUGADORES</span>
-    <button class="btn btn-default button-filtro-position active" ng-click="comp.enterContestCtrl.setFieldPosFilter(null)">TODOS</button>
-    <button class="btn btn-default button-filtro-position" ng-click="comp.enterContestCtrl.setFieldPosFilter(fieldPos)" ng-repeat="fieldPos in comp.posFilterList" ng-bind-html="fieldPos.abrevName"></button>
-  </div>
-  <select id="match-filter" class="match-selector-filter" ng-model="comp.optionValue">
-    <option ng-repeat="match in comp.matchesList" id="match-{{match.id}}" value="{{$index + 1}}" ng-value="match.id">{{match.texto}}</option>
-  </select>
-  <input type="text" class="name-player-input-filter" placeholder="Buscar jugador" ng-model="comp.enterContestCtrl.nameFilter" ng-keyup="comp.enterContestCtrl.refreshNameFilter()" />
-</div>
 
 <div class="soccer-player-list-header-table" ng-cloack>
   <div class="filterOrderPos"><a ng-click="comp.enterContestCtrl.sortListByField('Pos')">Pos.</a></div>

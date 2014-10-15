@@ -51,6 +51,13 @@ class EnterContestCtrl implements DetachAware {
 
   String nameFilter;
 
+  List<FieldPos> posFilterList = [
+      new FieldPos("GOALKEEPER"),
+      new FieldPos("DEFENSE"),
+      new FieldPos("MIDDLE"),
+      new FieldPos("FORWARD")
+    ];
+
 
   EnterContestCtrl(this._routeProvider, this._router, this.scrDet, this._activeContestService, this._myContestService, this._flashMessage) {
 
@@ -210,7 +217,7 @@ class EnterContestCtrl implements DetachAware {
     bool wasAdded = false;
     wasAdded = tryToAddSoccerPlayer(soccerPlayer);
 
-    if(wasAdded) {
+    if (wasAdded) {
       // Comprobar cuantos jugadores me quedan por añadir de esa posicion
       //isSelectingSoccerPlayer = availableSoccerPlayer(soccerPlayer);
       isSelectingSoccerPlayer = false;
@@ -520,18 +527,23 @@ class EnterContestCtrl implements DetachAware {
   }
 
   void deleteFantasyTeam() {
+
     for (int i = 0; i < lineupSlots.length; ++i) {
       lineupSlots[i] = null;
     }
     // Reseteamos la lista para que aparezcan todos los jugadores borrados otra vez en la lista de disponibles
     availableSoccerPlayers = new List<dynamic>.from(_allSoccerPlayers);
+
     // Reseteamos el salario disponible
     availableSalary = contest.salaryCap;
     updateTextAvailableSalary(availableSalary.toString());
+
     // Resetamos todos los filtros
     removeAllFilters();
+
     // Cuando se inicializa la lista de jugadores, esta se ordena por posicion
     sortListByField("Pos", invert: false);
+
     // Quito la modal de alerta de números rojos
     alertDismiss();
   }

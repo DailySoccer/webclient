@@ -44,13 +44,6 @@ class SoccerPlayersListComp {
 
   dynamic oldOptionValue;
 
-  List<FieldPos> posFilterList = [
-    new FieldPos("GOALKEEPER"),
-    new FieldPos("DEFENSE"),
-    new FieldPos("MIDDLE"),
-    new FieldPos("FORWARD")
-  ];
-
   EnterContestCtrl enterContestCtrl;
 
   SoccerPlayersListComp(RouteProvider routeProvider, this.enterContestCtrl, this._contestService, this.scrDet) {

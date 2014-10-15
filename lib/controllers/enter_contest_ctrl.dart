@@ -219,13 +219,13 @@ class EnterContestCtrl implements DetachAware {
     }
   }
 
-  FieldPos get fieldPosFilter => new FieldPos.fromAbrev(_filterList[FILTER_POSITION]);
-  void     set fieldPosFilter(FieldPos value) {
-    if (value == null) {
+  FieldPos get fieldPosFilter => new FieldPos(_filterList[FILTER_POSITION]);
+  void     set fieldPosFilter(FieldPos fieldPos) {
+    if (fieldPos == null) {
       removeFilter(FILTER_POSITION);
     }
     else {
-      addFilter(FILTER_POSITION, value.abrevName);
+      addFilter(FILTER_POSITION, fieldPos.value);
     }
   }
 
@@ -278,7 +278,7 @@ class EnterContestCtrl implements DetachAware {
       switch(clave)
       {
         case FILTER_POSITION:
-          availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => soccerPlayer["fieldPos"].abrevName == valor && !lineupSlots.contains(soccerPlayer)).toList();
+          availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => soccerPlayer["fieldPos"].value == valor && !lineupSlots.contains(soccerPlayer)).toList();
         break;
         case FILTER_NAME:
           availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => soccerPlayer["fullName"].toUpperCase().contains(valor.toUpperCase())).toList();
@@ -452,8 +452,6 @@ class EnterContestCtrl implements DetachAware {
       return;
     }
 
-    lineupSlots.forEach((player) => print(player["fieldPos"].abrevName + ": " + player["fullName"] + " : " + player["id"]));
-
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
 
     if (_editingContestEntry) {
@@ -497,8 +495,7 @@ class EnterContestCtrl implements DetachAware {
 
   void removeAllFilters() {
 
-    // TODO
-    // setPosFilterClass('TODOS');
+    fieldPosFilter = null;
 
     setMatchFilterClass(ALL_MATCHES);
     InputElement txtfilterByName = querySelector(".name-player-input-filter");

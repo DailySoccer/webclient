@@ -11,12 +11,15 @@ import 'package:webclient/services/server_service.dart';
     publishAs: 'comp',
     useShadowDom: false
 )
-class RememberPasswordComp implements ShadowRootAware {
+class RememberPasswordComp{
 
-  bool enabledSubmit = true;
+  int STATE_REQUEST   = 0;
+  int STATE_REQUESTED = 1;
+
   String email = "";
-  String state = "REQUEST";
-  bool get isEnabledSubmit => email.isNotEmpty && enabledSubmit;
+  int state = 0;
+  bool get enabledSubmit => isValidEmail(email) && _enabledSubmit;
+  bool errorDetected = false;
 
   RememberPasswordComp(this._router, this._profileManager, this._serverService);
 
@@ -29,25 +32,29 @@ class RememberPasswordComp implements ShadowRootAware {
   }
 
   void rememberMyPassword() {
+    errorDetected = false;
+    _enabledSubmit = false;
+
     _serverService.askForPasswordReset(email)
      .then((_) {
-        state = "REQUESTED";
-      //  print('-REMEMBER_PASSWORD-: Se ha enviado correctamente');
+        state = STATE_REQUESTED;
     })
      .catchError( (error) {
-          print('-REMEMBER_PASSWORD-: error');
+        errorDetected = true;
+        _enabledSubmit = true;
+        print('-REMEMBER_PASSWORD-: error');
       }
     );
   }
 
-  @override
-  void onShadowRoot(root) {
-    var rootElement = root as HtmlElement;
- //   _errSection = rootElement.querySelector("#errLabel");
- //   _errSection.parent.parent.style.display = 'none';
- //   rootElement.querySelector('#email').focus();
+  bool isValidEmail(String email) {
+    String p = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+
+    RegExp regExp = new RegExp(p);
+    return regExp.hasMatch(email);
   }
 
+  bool _enabledSubmit = true;
   Router _router;
   ProfileService _profileManager;
   Element _errSection;

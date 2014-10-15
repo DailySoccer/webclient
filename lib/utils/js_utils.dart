@@ -4,7 +4,12 @@ import 'dart:js' as js;
 
 class JsUtils {
   // Funcion para ejecutar los JavaScripts que necesitamos en esta página
-  static dynamic runJavascript(String selector, String method, dynamic params, [bool option]) {
+  static dynamic runJavascript(String selector, String method, dynamic params, [bool option, String contexto]) {
+
+    // Si tenemos el contexto lo llamamos directamente
+    if (contexto != null) {
+       return js.context[contexto].callMethod(method, [params]);
+    }
 
     // Si tenemos el tercer parametro
     if (option != null) {

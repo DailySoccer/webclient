@@ -2,8 +2,8 @@
             
   <div class="filter-by-position">
     <span>JUGADORES</span>
-    <button class="btn btn-default button-filtro-position active" ng-click="comp.onFieldPosFilterClick(null)">TODOS</button>
-    <button class="btn btn-default button-filtro-position" ng-click="comp.onFieldPosFilterClick(fieldPos)" 
+    <button class="btn btn-default button-filtro-position active" ng-click="comp.fieldPosFilter = null">TODOS</button>
+    <button class="btn btn-default button-filtro-position" ng-click="comp.fieldPosFilter = fieldPos" 
             ng-repeat="fieldPos in comp.posFilterList" ng-bind-html="fieldPos.abrevName"></button>
   </div>
   
@@ -13,5 +13,5 @@
   </select>
   -->
 
-  <input type="text" class="name-player-input-filter" placeholder="Buscar jugador" ng-model="comp.nameFilter" ng-keyup="comp.refreshNameFilter()" />
+  <input type="text" class="name-player-input-filter" placeholder="Buscar jugador" ng-model="comp.nameFilter" />
 </div>

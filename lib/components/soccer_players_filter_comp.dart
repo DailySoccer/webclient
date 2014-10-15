@@ -19,6 +19,9 @@ class SoccerPlayersFilterComp {
       new FieldPos("FORWARD")
     ];
 
+  @NgTwoWay("name-filter")
+  String nameFilter;
+
 
   @NgTwoWay('field-pos-filter')
   void set fieldPosFilter(FieldPos value) {
@@ -34,21 +37,6 @@ class SoccerPlayersFilterComp {
   FieldPos get fieldPosFilter => _fieldPosFilter;
 
 
-  @NgCallback("on-name-filter-change")
-  Function onNameFilterChange;
-
-  String nameFilter;
-
-  void refreshNameFilter() {
-    if (onNameFilterChange != null) {
-      onNameFilterChange({"nameFilter": nameFilter});
-    }
-  }
-
-  void onFieldPosFilterClick(FieldPos fieldPos) {
-    fieldPosFilter = fieldPos;
-  }
-
   void _setPosFilterClass(String abrevPosition) {
     List<ButtonElement> buttonsFilter = document.querySelectorAll(".button-filtro-position");
 
@@ -62,4 +50,5 @@ class SoccerPlayersFilterComp {
   }
 
   FieldPos _fieldPosFilter;
+  String _nameFilter;
 }

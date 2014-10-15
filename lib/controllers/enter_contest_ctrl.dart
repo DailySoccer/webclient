@@ -229,8 +229,9 @@ class EnterContestCtrl implements DetachAware {
     }
   }
 
-  void onNameFilterChange(String nameFilter) {
-    addFilter(FILTER_NAME, nameFilter);
+  String get nameFilter => _filterList[FILTER_NAME];
+  void   set nameFilter(String val) {
+    addFilter(FILTER_NAME, val);
   }
 
   void setMatchFilterClass(String buttonId) {
@@ -272,20 +273,20 @@ class EnterContestCtrl implements DetachAware {
     // Partimos siempre de la lista original de todos los players menos los seleccionados
     availableSoccerPlayers = _allSoccerPlayers.where( (soccerPlayer) => !lineupSlots.contains(soccerPlayer)).toList();
 
-    //Recorremos la lista de filtros
-    _filterList.forEach( (String clave, String valor )  {
-
-      switch(clave)
-      {
-        case FILTER_POSITION:
-          availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => soccerPlayer["fieldPos"].value == valor && !lineupSlots.contains(soccerPlayer)).toList();
-        break;
-        case FILTER_NAME:
-          availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => soccerPlayer["fullName"].toUpperCase().contains(valor.toUpperCase())).toList();
-        break;
-        case FILTER_MATCH:
-          availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => soccerPlayer["matchId"].toString() == valor).toList();
-        break;
+    // Recorremos la lista de filtros y aplicamos los que no sean nulos
+    _filterList.forEach((String clave, String valor) {
+      if (valor != null) {
+        switch(clave) {
+          case FILTER_POSITION:
+            availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => soccerPlayer["fieldPos"].value == valor && !lineupSlots.contains(soccerPlayer)).toList();
+          break;
+          case FILTER_NAME:
+            availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => soccerPlayer["fullName"].toUpperCase().contains(valor.toUpperCase())).toList();
+          break;
+          case FILTER_MATCH:
+            availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => soccerPlayer["matchId"].toString() == valor).toList();
+          break;
+        }
       }
     });
     _refreshOrder();
@@ -496,12 +497,9 @@ class EnterContestCtrl implements DetachAware {
   void removeAllFilters() {
 
     fieldPosFilter = null;
+    nameFilter = null;
 
     setMatchFilterClass(ALL_MATCHES);
-    InputElement txtfilterByName = querySelector(".name-player-input-filter");
-
-    if (txtfilterByName != null)
-        txtfilterByName.value = "";
 
     _filterList={};
     _refreshFilter();

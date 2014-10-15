@@ -10316,6 +10316,31 @@ fieldset[disabled] .landing-wrapper .button-play {
     min-height: 700px;
   }
 }
+.first-screen .main-title {
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  font-size: 72pt;
+  color: #ffffff;
+  text-align: center;
+  width: 100%;
+  line-height: 1.1em;
+}
+@media (max-width: 1199px) {
+  .first-screen .main-title {
+    font-family: 'Exo', sans-serif;
+    font-weight: 600;
+    font-size: 60pt;
+    color: #ffffff;
+  }
+}
+@media (max-width: 991px) {
+  .first-screen .main-title {
+    font-family: 'Exo', sans-serif;
+    font-weight: 600;
+    font-size: 50pt;
+    color: #ffffff;
+  }
+}
 .first-screen .main-title-wrapper {
   position: relative;
   width: 90%;
@@ -10326,30 +10351,6 @@ fieldset[disabled] .landing-wrapper .button-play {
 @media (max-height: 850px) {
   .first-screen .main-title-wrapper {
     margin: -50px auto 0 auto;
-  }
-}
-.first-screen .main-title-wrapper .main-title {
-  font-family: 'Exo', sans-serif;
-  font-weight: 600;
-  font-size: 72pt;
-  color: #ffffff;
-  text-align: center;
-  width: 100%;
-}
-@media (max-width: 1199px) {
-  .first-screen .main-title-wrapper .main-title {
-    font-family: 'Exo', sans-serif;
-    font-weight: 600;
-    font-size: 60pt;
-    color: #ffffff;
-  }
-}
-@media (max-width: 991px) {
-  .first-screen .main-title-wrapper .main-title {
-    font-family: 'Exo', sans-serif;
-    font-weight: 600;
-    font-size: 50pt;
-    color: #ffffff;
   }
 }
 .first-screen .modules-wrapper,
@@ -10385,6 +10386,7 @@ fieldset[disabled] .landing-wrapper .button-play {
   font-size: 18pt;
   color: #ffffff;
   text-align: center;
+  line-height: 1.1em;
 }
 @media (max-width: 1199px) {
   .first-screen .modules-wrapper .module-column p,
@@ -13397,6 +13399,9 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .confirm-button-wrapper .b
     margin: 10px 0;
     float: none;
   }
+}
+.navbar-header-unloggin {
+  overflow: hidden;
 }
 .navbar-header-unloggin .navbar-brand {
   background-image: url("../images/logoEpic11.png");

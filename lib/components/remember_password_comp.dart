@@ -18,7 +18,7 @@ class RememberPasswordComp implements ShadowRootAware {
   String state = "REQUEST";
   bool get isEnabledSubmit => email.isNotEmpty && enabledSubmit;
 
-  RememberPasswordComp(this._router, this._profileManager, ServerService _serverService);
+  RememberPasswordComp(this._router, this._profileManager, this._serverService);
 
   void navigateTo(String route, Map parameters, event)
   {

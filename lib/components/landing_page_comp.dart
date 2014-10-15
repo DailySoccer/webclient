@@ -21,8 +21,23 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
   ScreenDetectorService scrDet;
 
   int get screenHeight => window.innerHeight;
+/*
+  String getBounds(String elemId) {
+    Element elem = querySelector('#' + elemId + ' .screen-text-block');
+    double container_height = elem.getBoundingClientRect().height;
+    double wrapper_height = elem.parent.parent.getBoundingClientRect().height;
 
+    return "wrapper: ${wrapper_height} - container: ${container_height}";
+  }
 
+  Map getStyle(String elemId) {
+    Element elem = querySelector('#' + elemId + ' .screen-text-block');
+    double container_height = elem.getBoundingClientRect().height;
+    double wrapper_height = elem.parent.parent.getBoundingClientRect().height;
+
+    return {"position":"absolute", "top":"${(wrapper_height - container_height)*0.5}px;"};
+  }
+*/
   LandingPageComp(this._router, this._profileService, this.scrDet);
 
   void onShadowRoot(var root) {

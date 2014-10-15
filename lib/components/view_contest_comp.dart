@@ -13,10 +13,10 @@ import 'package:webclient/models/match_event.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'dart:html';
 
-
-@Component(selector: 'view-contest',
+@Component(
+    selector: 'view-contest',
     templateUrl: 'packages/webclient/components/view_contest_comp.html',
-    publishAs: 'fantasyTeam',
+    publishAs: 'ctrl',
     useShadowDom: false)
 class ViewContestComp implements DetachAware {
 

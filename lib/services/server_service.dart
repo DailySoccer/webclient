@@ -125,7 +125,7 @@ class DailySoccerServer implements ServerService {
   /**
    * This is the only place where we call our server (except the LoggerExceptionHandler)
    */
-  Future<JsonObject> _innerServerCall(String url, {Map queryString:null, Map postData:null}) {
+  Future<JsonObject> _innerServerCall(String url, {Map queryString:null, Map postData:null, int retryTimes: 3}) {
 
     var completer = new Completer<JsonObject>();
     var theHeaders = {};
@@ -135,18 +135,32 @@ class DailySoccerServer implements ServerService {
       theHeaders["X-Session-Token"] = _sessionToken;
     }
 
-    if (postData != null) {
-      _http.post(url, postData, headers: theHeaders, params: queryString)
-          .then((httpResponse) => _processSuccess(httpResponse, completer))
-          .catchError((error) => _processError(error, url, completer));
-    }
-    else {
-      _http.get(url, headers: theHeaders, params: queryString)
-           .then((httpResponse) => _processSuccess(httpResponse, completer))
-           .catchError((error) => _processError(error, url, completer));
-    }
+    _callLoop(url, queryString, postData, theHeaders, completer, retryTimes);
 
     return completer.future;
+  }
+
+  void _callLoop(String url, Map queryString, Map postData, var headers, Completer completer, int retryTimes) {
+    var retry = (error) {
+      if (retryTimes - 1 > 0) {
+            Logger.root.severe("_innerServerCall error: $error, url: $url, retry: $retryTimes");
+            new Timer(const Duration(seconds:3), () => _callLoop(url, queryString, postData, headers, completer, retryTimes-1));
+          }
+          else {
+            _processError(error, url, completer);
+          }
+    };
+
+    if (postData != null) {
+      _http.post(url, postData, headers: headers, params: queryString)
+          .then((httpResponse) => _processSuccess(httpResponse, completer))
+          .catchError((error) => retry(error));
+    }
+    else {
+      _http.get(url, headers: headers, params: queryString)
+           .then((httpResponse) => _processSuccess(httpResponse, completer))
+           .catchError((error) => retry(error));
+    }
   }
 
   // Por si queremos volver al sistema de mandar todos nuestros posts en form-urlencoded

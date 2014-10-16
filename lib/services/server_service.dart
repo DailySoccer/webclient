@@ -140,27 +140,18 @@ class DailySoccerServer implements ServerService {
     return completer.future;
   }
 
-  void _callLoop(String url, Map queryString, Map postData, var headers, Completer completer, int retryTimes) {
-    var retry = (error) {
-      if (retryTimes - 1 > 0) {
-            Logger.root.severe("_innerServerCall error: $error, url: $url, retry: $retryTimes");
-            new Timer(const Duration(seconds:3), () => _callLoop(url, queryString, postData, headers, completer, retryTimes-1));
-          }
-          else {
-            _processError(error, url, completer);
-          }
-    };
-
-    if (postData != null) {
-      _http.post(url, postData, headers: headers, params: queryString)
-          .then((httpResponse) => _processSuccess(httpResponse, completer))
-          .catchError((error) => retry(error));
-    }
-    else {
-      _http.get(url, headers: headers, params: queryString)
-           .then((httpResponse) => _processSuccess(httpResponse, completer))
-           .catchError((error) => retry(error));
-    }
+  void _callLoop(String url,  Map queryString, Map postData, var headers, Completer completer, int retryTimes) {
+    Future<HttpResponse> http = ((postData != null) ? _http.post(url, postData, headers: headers, params: queryString) : _http.get(url, headers: headers, params: queryString))
+      .then((httpResponse) => _processSuccess(httpResponse, completer))
+      .catchError((error) {
+        Logger.root.severe("_innerServerCall error: $error, url: $url, retry: $retryTimes");
+        if (retryTimes - 1 > 0) {
+          new Timer(const Duration(seconds:3), () => _callLoop(url, queryString, postData, headers, completer, retryTimes-1));
+        }
+        else {
+          _processError(error, url, completer);
+        }
+    });
   }
 
   // Por si queremos volver al sistema de mandar todos nuestros posts en form-urlencoded
@@ -182,30 +173,32 @@ class DailySoccerServer implements ServerService {
   }
 
   void _processError(var error, String url, Completer completer) {
+    completer.completeError(_getJsonError(error, url));
+  }
 
-    Logger.root.severe("_innerServerCall error: $error, url: $url");
+  JsonObject _getJsonError(var error, String url) {
+    JsonObject jsonError = new JsonObject();
 
     if (error is HttpResponse) {
       HttpResponse httpResponse = error as HttpResponse;
 
       if (httpResponse.status == 400) {
         if (httpResponse.data != null && httpResponse.data != "") {
-          completer.completeError(new JsonObject.fromJsonString(httpResponse.data));
-        }
-        else {
-          completer.completeError(new JsonObject());
+          jsonError = new JsonObject.fromJsonString(httpResponse.data);
         }
       }
       else if (httpResponse.status == 500 || httpResponse.status == 404) {
-        completer.completeError(new JsonObject.fromJsonString(SERVER_ERROR_JSON));
+        jsonError = new JsonObject.fromJsonString(SERVER_ERROR_JSON);
       }
       else {
-        completer.completeError(new JsonObject.fromJsonString(CONNECTION_ERROR_JSON));
+        jsonError = new JsonObject.fromJsonString(CONNECTION_ERROR_JSON);
       }
     }
     else {
-      completer.completeError(new JsonObject.fromJsonString(SERVER_ERROR_JSON));
+      jsonError = new JsonObject.fromJsonString(SERVER_ERROR_JSON);
     }
+
+    return jsonError;
   }
 
   static const CONNECTION_ERROR_JSON = "{\"error\": \"Connection error\"}";

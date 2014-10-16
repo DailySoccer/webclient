@@ -68,9 +68,7 @@ class MatchesFilterComp {
     });
 
     ButtonElement button = querySelector("#match-$buttonId");
-    if (button != null) {
-      button.classes.add("active");
-    }
+    button.classes.add("active");
   }
 
   String _selectedOption;

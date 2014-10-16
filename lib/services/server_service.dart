@@ -7,8 +7,13 @@ import 'package:json_object/json_object.dart';
 import 'package:webclient/utils/host_server.dart';
 import 'package:logging/logging.dart';
 
-
 abstract class ServerService {
+  static final String URL = "url";
+  static final String TIMES = "times";
+  static final String SECONDS_TO_RETRY = "secondsToRetry";
+  static final String onSuccess = "onSuccess";
+  static final String onError   = "onError";
+
   void               setSessionToken(String sessionToken);
   Future<JsonObject> signup(String firstName, String lastName, String email, String nickName, String password);
   Future<JsonObject> login(String email, String password);
@@ -34,16 +39,19 @@ abstract class ServerService {
   // Estadísticas SoccerPlayer
   Future<JsonObject> getSoccerPlayerInfo(String templateSoccerPlayerId);
 
+  // Puntuaciones
+  Future<JsonObject> getScoringRules();
+
+  // Suscripción a eventos
+  void               subscribe(dynamic id, Map callbacks);
+
   // Debug
   Future<JsonObject> isSimulatorActivated();
   Future<JsonObject> getCurrentDate();
-
-  Future<JsonObject> getScoringRules();
 }
 
 @Injectable()
 class DailySoccerServer implements ServerService {
-
   DailySoccerServer(this._http);
 
   void setSessionToken(String sessionToken) { _sessionToken = sessionToken; }
@@ -122,6 +130,13 @@ class DailySoccerServer implements ServerService {
     return _innerServerCall("${HostServer.url}/get_scoring_rules");
   }
 
+  void subscribe(dynamic id, Map callbacks) {
+    // Incluimos el identificador en el propio Map
+    callbacks['_id'] = id;
+
+    _subscribers.add(callbacks);
+  }
+
   /**
    * This is the only place where we call our server (except the LoggerExceptionHandler)
    */
@@ -140,18 +155,30 @@ class DailySoccerServer implements ServerService {
     return completer.future;
   }
 
-  void _callLoop(String url,  Map queryString, Map postData, var headers, Completer completer, int retryTimes) {
+  void _callLoop(String url, Map queryString, Map postData, var headers, Completer completer, int retryTimes) {
     Future<HttpResponse> http = ((postData != null) ? _http.post(url, postData, headers: headers, params: queryString) : _http.get(url, headers: headers, params: queryString))
-      .then((httpResponse) => _processSuccess(httpResponse, completer))
-      .catchError((error) {
-        Logger.root.severe("_innerServerCall error: $error, url: $url, retry: $retryTimes");
-        if (retryTimes - 1 > 0) {
-          new Timer(const Duration(seconds:3), () => _callLoop(url, queryString, postData, headers, completer, retryTimes-1));
-        }
-        else {
-          _processError(error, url, completer);
-        }
-    });
+        .then((httpResponse) {
+          _notify(ServerService.onSuccess, {ServerService.URL: url});
+
+          _processSuccess(httpResponse, completer);
+        })
+        .catchError((error) {
+          ConnectionError connectionError = new ConnectionError.fromHttpResponse(error);
+          if (connectionError.isConnectionError || connectionError.isServerError) {
+            _notify(ServerService.onError, {ServerService.URL: url, ServerService.TIMES: retryTimes, ServerService.SECONDS_TO_RETRY: 3});
+
+            Logger.root.severe("_innerServerCall error: $error, url: $url, retry: $retryTimes");
+            if (retryTimes > 0) {
+              new Timer(const Duration(seconds:3), () => _callLoop(url, queryString, postData, headers, completer, retryTimes-1));
+            }
+            else {
+              _processError(error, url, completer);
+            }
+          }
+          else {
+            _processError(error, url, completer);
+          }
+        });
   }
 
   // Por si queremos volver al sistema de mandar todos nuestros posts en form-urlencoded
@@ -173,37 +200,84 @@ class DailySoccerServer implements ServerService {
   }
 
   void _processError(var error, String url, Completer completer) {
-    completer.completeError(_getJsonError(error, url));
+    ConnectionError connectionError = new ConnectionError.fromHttpResponse(error);
+    completer.completeError(connectionError.toJson());
   }
 
-  JsonObject _getJsonError(var error, String url) {
+  void _notify(String key, Map msg) {
+    _subscribers
+      .where((subscribe) => subscribe.containsKey(key))
+      .forEach((subscribe) => subscribe[key](msg));
+  }
+
+  Http _http;
+  String _sessionToken;
+
+  List<Map> _subscribers = new List<Map>();
+}
+
+class ConnectionError {
+  bool get isResponseError => (type == RESPONSE_ERROR);
+  bool get isServerError => (type == SERVER_ERROR);
+  bool get isConnectionError => (type == CONNECTION_ERROR);
+
+  ConnectionError(this.type, this.httpError);
+
+  String type;
+  dynamic httpError;
+
+  bool operator == (other) {
+    if (other is! ConnectionError) return false;
+    return (other as ConnectionError).type == type;
+  }
+
+  JsonObject toJson() {
     JsonObject jsonError = new JsonObject();
+
+    if (isResponseError) {
+      HttpResponse httpResponse = httpError as HttpResponse;
+      jsonError = new JsonObject.fromJsonString(httpResponse.data);
+    }
+    else if (isServerError) {
+      jsonError = new JsonObject.fromJsonString(SERVER_ERROR_JSON);
+    }
+    else if (isConnectionError) {
+      jsonError = new JsonObject.fromJsonString(CONNECTION_ERROR_JSON);
+    }
+
+    return jsonError;
+  }
+
+  factory ConnectionError.fromHttpResponse(var error) {
+    String type = UNKNOWN_ERROR;
 
     if (error is HttpResponse) {
       HttpResponse httpResponse = error as HttpResponse;
 
       if (httpResponse.status == 400) {
         if (httpResponse.data != null && httpResponse.data != "") {
-          jsonError = new JsonObject.fromJsonString(httpResponse.data);
+          type = RESPONSE_ERROR;
         }
       }
       else if (httpResponse.status == 500 || httpResponse.status == 404) {
-        jsonError = new JsonObject.fromJsonString(SERVER_ERROR_JSON);
+        type = SERVER_ERROR;
       }
       else {
-        jsonError = new JsonObject.fromJsonString(CONNECTION_ERROR_JSON);
+        type = CONNECTION_ERROR;
       }
     }
     else {
-      jsonError = new JsonObject.fromJsonString(SERVER_ERROR_JSON);
+      type = SERVER_ERROR;
     }
 
-    return jsonError;
+    return new ConnectionError(type, error);
   }
+
+  static const String UNKNOWN_ERROR = "UNKNOWN_ERROR";
+  static const String RESPONSE_ERROR = "RESPONSE_ERROR";
+  static const String SERVER_ERROR = "SERVER_ERROR";
+  static const String CONNECTION_ERROR = "CONNECTION_ERROR";
 
   static const CONNECTION_ERROR_JSON = "{\"error\": \"Connection error\"}";
   static const SERVER_ERROR_JSON = "{\"error\": \"Server error\"}";
-
-  Http _http;
-  String _sessionToken;
 }

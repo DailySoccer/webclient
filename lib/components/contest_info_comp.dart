@@ -89,7 +89,7 @@ class ContestInfoComp implements ShadowRootAware {
 
   void enterContest() {
     _goToEnterContest = true;
-    _router.go('enter_contest', { "contestId": contestData.contestId });
+    _router.go('enter_contest', { "contestId": contestData.contestId, "parent": "lobby" });
   }
 
   String formatMatchDate(DateTime date) {

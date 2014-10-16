@@ -19,6 +19,7 @@ if [[ $mode=="release" ]]
     git fetch
     git checkout release
     git rebase $client_branch_name
+    git push -f origin release
 fi
 
 

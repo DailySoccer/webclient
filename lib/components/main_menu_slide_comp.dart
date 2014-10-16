@@ -59,7 +59,7 @@ class MainMenuSlideComp implements ShadowRootAware{
   }
 
   void navigateTo(event, [Map params]) {
-    if( params == null) {
+    if ( params == null) {
       params = {};
     }
 

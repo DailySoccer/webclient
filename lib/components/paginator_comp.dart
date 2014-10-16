@@ -35,7 +35,7 @@ class PaginatorComp implements DetachAware, ShadowRootAware {
 
     // Si empezamos desde la versión XS el numero de botones es menor.
     if (_scrDet.isXsScreen) {
-      _options["numPageLinksToDisplay"] = 1;
+      _options["numPageLinksToDisplay"] = _options["numPageLinksToDisplayXs"];
     }
     _streamListener = _scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
   }
@@ -55,7 +55,7 @@ class PaginatorComp implements DetachAware, ShadowRootAware {
   void onScreenWidthChange(msg) {
 
     if (msg == "xs") {
-      _options["numPageLinksToDisplay"] = 1;
+      _options["numPageLinksToDisplay"] = _options["numPageLinksToDisplayXs"];
     }
     else {
       _options["numPageLinksToDisplay"] = _originalPageLinksCount;
@@ -243,16 +243,17 @@ class PaginatorComp implements DetachAware, ShadowRootAware {
   }
 
   Map _options = {
-     "itemsPerPage"          : 10,
-     "pageLinksCss"          : ["page-link"],
-     "numPageLinksToDisplay" :  5,
-     "navLabelFirst"         : "&laquo;",
-     "navLabelPrev"          : "&lt;",
-     "navLabelNext"          : "&gt",
-     "navLabelLast"          : "&raquo;",
-     "navOrder"              : ["first", "prev", "num", "next", "last"],
-     "showFirstLast"         : true,
-     "stateActive"           : "active"
+     "itemsPerPage"           : 10,
+     "pageLinksCss"           : ["page-link"],
+     "numPageLinksToDisplay"  : 5,
+     "numPageLinksToDisplayXs": 3,
+     "navLabelFirst"          : "&laquo;",
+     "navLabelPrev"           : "&lt;",
+     "navLabelNext"           : "&gt",
+     "navLabelLast"           : "&raquo;",
+     "navOrder"               : ["first", "prev", "num", "next", "last"],
+     "showFirstLast"          : true,
+     "stateActive"            : "active"
    };
 
    int _currentPage = 0;

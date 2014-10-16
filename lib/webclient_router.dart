@@ -132,7 +132,7 @@ void leavePage(RouteLeaveEvent event) {
 
 void _closeModal() {
   bool isModalOpen = (document.querySelector('body').classes.contains('modal-open'));
-  if(isModalOpen) {
+  if (isModalOpen) {
     document.querySelector('body').classes.remove('modal-open');
     document.querySelector('.modal-backdrop').remove();
   }

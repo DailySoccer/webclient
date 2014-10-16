@@ -10360,10 +10360,8 @@ fieldset[disabled] .landing-wrapper .button-play {
 }
 .first-screen .modules-wrapper img,
 .first-screen .separator-wrapper img {
-  margin: 0 auto;
   display: block;
-  max-width: 100%;
-  height: auto;
+  margin: 0 auto;
 }
 .first-screen .modules-wrapper .module-column,
 .first-screen .separator-wrapper .module-column {
@@ -10405,6 +10403,12 @@ fieldset[disabled] .landing-wrapper .button-play {
     font-size: 14pt;
     color: #ffffff;
   }
+}
+.first-screen .icono {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  padding: 0px 40px;
 }
 .first-screen .button-wrap {
   position: relative;
@@ -14371,6 +14375,14 @@ fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+@media (max-width: 767px) {
+  .paginator-wrapper .paginator-box ul li a {
+    font-size: 9pt;
+    width: 35px;
+    text-align: center;
+    padding: 6px 5px;
+  }
 }
 .paginator-wrapper .paginator-box .ellipsis a {
   padding-left: 0;

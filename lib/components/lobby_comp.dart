@@ -99,7 +99,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   void calculateInfoBarText() {
     Contest nextContest = activeContestsService.getAvailableNextContest();
     String tmp = nextContest == null ? "Pronto habrá nuevos Torneos disponibles" : "SIGUIENTE TORNEO: ${nextContest.name.toUpperCase()} - ${calculateTimeToNextTournament()}";
-    if(tmp.compareTo(infoBarText) != 0) {
+    if (tmp.compareTo(infoBarText) != 0) {
       infoBarText = tmp;
     }
   }

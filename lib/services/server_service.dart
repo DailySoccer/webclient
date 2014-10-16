@@ -201,7 +201,7 @@ class DailySoccerServer implements ServerService {
 
   void _processError(var error, String url, Completer completer) {
     ConnectionError connectionError = new ConnectionError.fromHttpResponse(error);
-    completer.completeError(connectionError.toJson());
+    completer.completeError(connectionError);
   }
 
   void _notify(String key, Map msg) {
@@ -229,6 +229,10 @@ class ConnectionError {
   bool operator == (other) {
     if (other is! ConnectionError) return false;
     return (other as ConnectionError).type == type;
+  }
+
+  String toString() {
+    return type;
   }
 
   JsonObject toJson() {

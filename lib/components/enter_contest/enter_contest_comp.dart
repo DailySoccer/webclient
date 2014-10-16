@@ -100,11 +100,6 @@ class EnterContestComp implements DetachAware {
     _streamListener.cancel();
   }
 
-  bool isActiveContestInfoTab() {
-    Element contestInfoTabContent = document.querySelector('#contest-info-tab-content');
-    return (contestInfoTabContent != null) && (contestInfoTabContent.classes.contains("active"));
-  }
-
   void tabChange(String tab) {
     List<dynamic> allContentTab = document.querySelectorAll(".enter-contest-wrapper .tab-pane");
     allContentTab.forEach((element) => element.classes.remove('active'));

@@ -6789,14 +6789,6 @@ button#infoContent .modal-info-head button.close {
   border-radius: 20px;
   text-align: center;
 }
-.section-wrapper {
-  position: relative;
-  float: left;
-  width: 100%;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-}
 #contestInfoTabbed {
   margin-right: auto;
   margin-left: auto;

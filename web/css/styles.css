@@ -6210,15 +6210,6 @@ button.close {
     color: #0d75a6;
   }
 }
-@media (min-width: 992px) {
-  .countdown-text {
-    background-image: -webkit-linear-gradient(top, #1a3949 49%, #0f2630 51%);
-    background-image: linear-gradient(to bottom, #1a3949 49%, #0f2630 51%);
-    background-repeat: repeat-x;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff1a3949', endColorstr='#ff0f2630', GradientType=0);
-    padding: 10px;
-  }
-}
 @media (max-width: 767px) {
   .countdown-text {
     font-family: 'Open Sans', sans-serif;
@@ -15029,16 +15020,6 @@ fieldset[disabled] .soccer-player-info-content .action-buttons .button-wrapper .
   margin: 0;
   padding: 0;
   height: 50px;
-}
-@media (min-width: 992px) and (max-width: 1199px) {
-  .enter-contest-tabs {
-    display: none !important;
-  }
-}
-@media (min-width: 1200px) {
-  .enter-contest-tabs {
-    display: none !important;
-  }
 }
 .enter-contest-tabs > li {
   position: relative;

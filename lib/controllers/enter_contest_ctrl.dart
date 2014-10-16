@@ -44,6 +44,9 @@ class EnterContestCtrl implements DetachAware {
 
   int availableSalary = 0;
 
+  bool get isBigScreenVersion   => scrDet.isSmScreen || scrDet.isDesktop;
+  bool get isSmallScreenVersion => !isBigScreenVersion;
+
 
   EnterContestCtrl(this._routeProvider, this._router, this.scrDet, this._activeContestService, this._myContestService, this._flashMessage) {
 

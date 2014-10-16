@@ -4,6 +4,7 @@ import 'package:angular/angular.dart';
 import 'package:angular/routing/module.dart';
 import 'package:webclient/webclient_router.dart';
 
+import 'package:webclient/services/refresh_timers_service.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/active_contests_service.dart';
@@ -13,6 +14,7 @@ import 'package:webclient/services/server_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/scoring_rules_service.dart';
+
 import 'package:webclient/logger_exception_handler.dart';
 
 import 'package:webclient/utils/limit_to_dot.dart';
@@ -55,6 +57,8 @@ class WebClientApp extends Module {
   WebClientApp() {
 
     bind(ExceptionHandler, toImplementation: LoggerExceptionHandler);
+
+    bind(RefreshTimersService);
 
     bind(ServerService, toImplementation: DailySoccerServer);
 

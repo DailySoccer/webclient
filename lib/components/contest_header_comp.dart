@@ -5,6 +5,7 @@ import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import "package:webclient/models/contest.dart";
 import 'dart:async';
+import 'package:webclient/services/refresh_timers_service.dart';
 
 @Component(
     selector: 'contest-header',
@@ -64,7 +65,7 @@ class ContestHeaderComp implements DetachAware{
   }
 
   ContestHeaderComp(this._router, this._routeProvider, this.scrDet) {
-    _count = new Timer.periodic(new Duration(milliseconds:1000), (Timer timer) => _refreshCountdownDate());
+    RefreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_UPDATE_COUNTDOWN_DATE, _refreshCountdownDate);
   }
 
   void _refreshCountdownDate() {
@@ -77,11 +78,11 @@ class ContestHeaderComp implements DetachAware{
 
     if (_contestInfo.isHistory) {
       contestHeaderInfo["startTime"] = "FINALIZADO";
-      _count.cancel();
+      RefreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_UPDATE_COUNTDOWN_DATE);
     }
     else if (_contestInfo.isLive) {
       contestHeaderInfo["startTime"] = "COMENZÓ EL ${DateTimeService.formatDateTimeShort(_contestInfo.startDate).toUpperCase()}";
-      _count.cancel();
+      RefreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_UPDATE_COUNTDOWN_DATE);
     }
     else {
       contestHeaderInfo["startTime"] = "COMIENZA EL ${DateTimeService.formatDateTimeShort(_contestInfo.startDate).toUpperCase()}";
@@ -90,7 +91,7 @@ class ContestHeaderComp implements DetachAware{
 
       if (tiempoRestante.inSeconds <= 0) {
         contestHeaderInfo["startTime"] = "EN BREVE";
-        _count.cancel();
+        RefreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_UPDATE_COUNTDOWN_DATE);
       }
       else {
         contestHeaderInfo["textCountdownDate"] = (scrDet.isDesktop) ? "EL CONCURSO COMENZARÁ EN: " : "FALTAN";
@@ -114,13 +115,12 @@ class ContestHeaderComp implements DetachAware{
   }
 
   void detach() {
-    _count.cancel();
+    RefreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_UPDATE_COUNTDOWN_DATE);
   }
 
   Router _router;
   RouteProvider _routeProvider;
 
-  Timer _count;
   Contest _contestInfo;
   int _mode;
 }

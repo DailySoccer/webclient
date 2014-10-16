@@ -12,6 +12,7 @@ import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/models/match_event.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'dart:html';
+import 'package:webclient/services/refresh_timers_service.dart';
 
 @Component(
     selector: 'view-contest',
@@ -59,7 +60,7 @@ class ViewContestComp implements DetachAware {
           _updateLive();
 
           // Comenzamos a actualizar la información
-          _timer = new Timer.periodic(const Duration(seconds:3), (Timer t) => _updateLive());
+          RefreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE, _updateLive);
         }
 
       })
@@ -77,9 +78,7 @@ class ViewContestComp implements DetachAware {
   }
 
   void detach() {
-    if (_timer != null) {
-      _timer.cancel();
-    }
+    RefreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE);
     _streamListener.cancel();
   }
 
@@ -188,7 +187,6 @@ class ViewContestComp implements DetachAware {
   ProfileService _profileService;
   MyContestsService _myContestsService;
 
-  Timer _timer;
   String _contestId;
   bool _isTeamsPanelOpen  = false;
   bool _togglerEventsInitialized = false;

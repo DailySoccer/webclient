@@ -5695,8 +5695,8 @@ button.close {
 .soccer-player-list-header-table:after,
 .soccer-players-list .soccer-players-list-slot:before,
 .soccer-players-list .soccer-players-list-slot:after,
-.match-teams-filter:before,
-.match-teams-filter:after,
+.matches-filter:before,
+.matches-filter:after,
 #loginRoot:before,
 #loginRoot:after,
 #joinRoot:before,
@@ -5786,7 +5786,7 @@ button.close {
 .enter-contest-actions-wrapper:after,
 .soccer-player-list-header-table:after,
 .soccer-players-list .soccer-players-list-slot:after,
-.match-teams-filter:after,
+.matches-filter:after,
 #loginRoot:after,
 #joinRoot:after,
 #rememberPasswordRoot:after,
@@ -16086,64 +16086,6 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
   padding-bottom: 18px;
   box-shadow: none;
 }
-.soccer-players-filter .match-selector-filter {
-  display: block;
-  width: 100%;
-  height: 34px;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  color: #555555;
-  background-color: #ffffff;
-  background-image: none;
-  border: 1px solid #cccccc;
-  border-radius: 4px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-}
-.soccer-players-filter .match-selector-filter:focus {
-  border-color: #66afe9;
-  outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
-}
-.soccer-players-filter .match-selector-filter::-moz-placeholder {
-  color: #999999;
-  opacity: 1;
-}
-.soccer-players-filter .match-selector-filter:-ms-input-placeholder {
-  color: #999999;
-}
-.soccer-players-filter .match-selector-filter::-webkit-input-placeholder {
-  color: #999999;
-}
-.soccer-players-filter .match-selector-filter[disabled],
-.soccer-players-filter .match-selector-filter[readonly],
-fieldset[disabled] .soccer-players-filter .match-selector-filter {
-  cursor: not-allowed;
-  background-color: #eeeeee;
-  opacity: 1;
-}
-textarea.soccer-players-filter .match-selector-filter {
-  height: auto;
-}
-@media (min-width: 768px) and (max-width: 991px) {
-  .soccer-players-filter .match-selector-filter {
-    display: none !important;
-  }
-}
-@media (min-width: 992px) and (max-width: 1199px) {
-  .soccer-players-filter .match-selector-filter {
-    display: none !important;
-  }
-}
-@media (min-width: 1200px) {
-  .soccer-players-filter .match-selector-filter {
-    display: none !important;
-  }
-}
 .soccer-players-filter .name-player-input-filter {
   display: block;
   width: 100%;
@@ -16198,13 +16140,13 @@ textarea.soccer-players-filter .name-player-input-filter {
     border-radius: 4px;
   }
 }
-.match-teams-filter {
+.matches-filter {
   background-color: #ecf0f1;
   margin-left: 0;
   margin-right: 0;
   padding: -1px 5px 5px 5px;
 }
-.match-teams-filter .button-filtro-team {
+.matches-filter .button-filtro-team {
   position: relative;
   min-height: 1px;
   padding-left: 15px;
@@ -16220,33 +16162,92 @@ textarea.soccer-players-filter .name-player-input-filter {
   line-height: 15px;
 }
 @media (max-width: 767px) {
-  .match-teams-filter .button-filtro-team {
+  .matches-filter .button-filtro-team {
     display: none !important;
   }
 }
 @media (min-width: 768px) {
-  .match-teams-filter .button-filtro-team {
+  .matches-filter .button-filtro-team {
     float: left;
     width: 8.33333333%;
   }
 }
-.match-teams-filter .button-filtro-team:active,
-.match-teams-filter .button-filtro-team:focus,
-.match-teams-filter .button-filtro-team:hover,
-.match-teams-filter .button-filtro-team:visited {
+.matches-filter .button-filtro-team:active,
+.matches-filter .button-filtro-team:focus,
+.matches-filter .button-filtro-team:hover,
+.matches-filter .button-filtro-team:visited {
   outline: none;
 }
-.match-teams-filter .active {
+.matches-filter .active {
   background-color: #ffffff;
   color: #777777;
   box-shadow: none !important;
   outline: none !important;
 }
-.match-teams-filter .active:active,
-.match-teams-filter .active:hover,
-.match-teams-filter .active:focus,
-.match-teams-filter .active:visited {
+.matches-filter .active:active,
+.matches-filter .active:hover,
+.matches-filter .active:focus,
+.matches-filter .active:visited {
   color: #777777;
+}
+.matches-selector-filter {
+  margin: 10px 0px 0px 0px;
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555555;
+  background-color: #ffffff;
+  background-image: none;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.matches-selector-filter:focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+.matches-selector-filter::-moz-placeholder {
+  color: #999999;
+  opacity: 1;
+}
+.matches-selector-filter:-ms-input-placeholder {
+  color: #999999;
+}
+.matches-selector-filter::-webkit-input-placeholder {
+  color: #999999;
+}
+.matches-selector-filter[disabled],
+.matches-selector-filter[readonly],
+fieldset[disabled] .matches-selector-filter {
+  cursor: not-allowed;
+  background-color: #eeeeee;
+  opacity: 1;
+}
+textarea.matches-selector-filter {
+  height: auto;
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .matches-selector-filter {
+    display: none !important;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .matches-selector-filter {
+    display: none !important;
+  }
+}
+@media (min-width: 1200px) {
+  .matches-selector-filter {
+    display: none !important;
+  }
 }
 .lineup-selector {
   border-width: 1px;

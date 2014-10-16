@@ -5,7 +5,6 @@ import 'package:webclient/controllers/enter_contest_ctrl.dart';
 import 'package:webclient/services/active_contests_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/models/contest.dart';
-import "package:webclient/models/match_event.dart";
 
 @Component(
     selector: 'soccer-players-list',
@@ -16,49 +15,23 @@ import "package:webclient/models/match_event.dart";
 class SoccerPlayersListComp {
 
   ScreenDetectorService scrDet;
-
-
+  EnterContestCtrl enterContestCtrl;
 
   @NgOneWay("contest")
   void set contest(Contest value) {
     _contest = value;
-
-    if (_contest != null) {
-      _matchesInvolved = _contest.matchEvents;
-
-    }
-  }
-
-  EnterContestCtrl enterContestCtrl;
-
-  SoccerPlayersListComp(RouteProvider routeProvider, this.enterContestCtrl, this._contestService, this.scrDet);
-
-  // Para pintar el color correspondiente segun la posicion del jugador
-  String getSlotClassColor(String abrevName){
-   // Listas de las clases y posiciones
-   List<String> classList = ['posPOR', 'posDEF', 'posMED', 'posDEL'];
-   List<String> posList = ['POR', 'DEF', 'MED', 'DEL'];
-   // Mapeamos clase segun posicion
-   Map<String, String> classMap = new Map.fromIterables(posList, classList);
-
-   return classMap[abrevName];
-  }
-
-  int showWidth(String playerName) {
-    /*var element = document.querySelector(".soccer-player-name");
-    var tamanio_span = element.clientWidth;
-    var tamanio_name = playerName.length;
-    print(tamanio);
-    element.text = element.text + "hola";
-    print(playerName);
-    element.text = element.text + playerName;
-
-    return tamanio_name - 1;*/
-    return 19;
   }
 
   @NgCallback("on-row-click")
   Function onRowClick;
+
+  SoccerPlayersListComp(this.enterContestCtrl, this._contestService, this.scrDet);
+
+  // Para pintar el color correspondiente segun la posicion del jugador
+  String getSlotClassColor(String abrevName) => _POS_CLASS_NAMES[abrevName];
+
+  // Numero de caracteres a partir del cual cortamos el nombre y mostramos 3 puntos
+  int showWidth(String playerName) => 19;
 
   void onRow(String soccerPlayerId) {
     if (onRowClick != null) {
@@ -67,7 +40,7 @@ class SoccerPlayersListComp {
   }
 
   ActiveContestsService _contestService;
-
   Contest _contest;
-  List<MatchEvent> _matchesInvolved;
+
+  static final Map<String, String> _POS_CLASS_NAMES = { "POR": "posPOR", "DEF": "posDEF", "MED": "posMED", "DEL": "posDEL" };
 }

@@ -1,5 +1,4 @@
-// Filtro de equipos
-.match-teams-filter {
+.matches-filter {
 	background-color: @tramaBlue;
 	.make-row(0);
 	padding: -1px 5px 5px 5px;
@@ -26,4 +25,13 @@
 	.active:active, .active:hover, .active:focus, .active:visited {
 		color: @greyDark;
 	}
+}
+
+// Selector de opciones desplegable
+.matches-selector-filter {
+	margin: 10px 0px 0px 0px;
+	.form-control();
+	.hidden-sm();
+	.hidden-md();
+	.hidden-lg();
 }

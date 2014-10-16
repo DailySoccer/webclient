@@ -113,7 +113,7 @@ class EditPersonalDataComp implements ShadowRootAware {
   bool validatePassword() {
     bool retorno = true;
     // Verificación del password
-    if(parent.editedPassword != parent.editedRepeatPassword) {
+    if (parent.editedPassword != parent.editedRepeatPassword) {
         passwordError
           ..text = "Los passwords no coinciden"
           ..classes.remove("errorDetected")
@@ -128,7 +128,7 @@ class EditPersonalDataComp implements ShadowRootAware {
   void saveChanges() {
       hideErrors();
 
-      if(!validatePassword() ) {
+      if (!validatePassword() ) {
         return;
       }
       //_enabledSubmit = false;

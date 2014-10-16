@@ -48,7 +48,7 @@ class ContestInfoComp implements ShadowRootAware {
 
   void onShadowRoot(root) {
     if (_router.activePath.length > 0) {
-      if( _router.activePath[0].name == 'lobby') {
+      if ( _router.activePath[0].name == 'lobby') {
         isPopUp = true;
       }
     }

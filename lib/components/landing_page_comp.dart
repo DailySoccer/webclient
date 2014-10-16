@@ -63,15 +63,15 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
   }
 
   void detach() {
-    if(_bodyObj !=null) {
+    if (_bodyObj !=null) {
       _bodyObj.classes.remove('fondo-negro');
     }
-    if( _mainWrapper != null) {
+    if ( _mainWrapper != null) {
       _mainWrapper.classes
         ..clear()
         ..add('wrapper-content-container');
     }
-    if(_mainContent != null) {
+    if (_mainContent != null) {
       _mainContent.classes.clear();
       _mainContent.classes.add('main-content-container');
     }

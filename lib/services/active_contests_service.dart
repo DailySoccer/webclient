@@ -33,7 +33,7 @@ class ActiveContestsService {
            * myContests.clear();
           activeContests.clear();
                contests.forEach((contest) {
-              if(contest.containsContestEntryWithUser(_profileService.user.userId)) {
+              if (contest.containsContestEntryWithUser(_profileService.user.userId)) {
                 myContests.add(contest);
               }
               else {
@@ -66,7 +66,7 @@ class ActiveContestsService {
   }
 
   Contest getAvailableNextContest() {
-    if(myContests.isNotEmpty) {
+    if (myContests.isNotEmpty) {
       return myContests.first;
     }
 

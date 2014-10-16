@@ -140,7 +140,7 @@ class EnterContestCtrl implements DetachAware {
 
       Element matchesFilter = document.querySelector('.match-teams-filter');
 
-      if(matchesFilter != null) {
+      if (matchesFilter != null) {
         matchesFilter.style.display = "block";
       }
 
@@ -191,7 +191,7 @@ class EnterContestCtrl implements DetachAware {
 
     totalSalary.forEach((element) {
       element.text = availableSalaryText + "€";
-      if(int.parse(availableSalaryText) < 0) {
+      if (int.parse(availableSalaryText) < 0) {
         element.classes.add("red-numbers");
       }
       else {
@@ -210,7 +210,7 @@ class EnterContestCtrl implements DetachAware {
     bool wasAdded = false;
     wasAdded = tryToAddSoccerPlayer(soccerPlayer);
 
-    if(wasAdded) {
+    if (wasAdded) {
       // Comprobar cuantos jugadores me quedan por añadir de esa posicion
       //isSelectingSoccerPlayer = availableSoccerPlayer(soccerPlayer);
       isSelectingSoccerPlayer = false;
@@ -223,7 +223,7 @@ class EnterContestCtrl implements DetachAware {
     List<ButtonElement> buttonsFilter = document.querySelectorAll(".button-filtro-position");
     buttonsFilter.forEach((element) {
       element.classes.remove("active");
-      if(element.text == abrevPosition) {
+      if (element.text == abrevPosition) {
         element.classes.add("active");
       }
     });
@@ -255,7 +255,7 @@ class EnterContestCtrl implements DetachAware {
 
   void setMatchFilter(String matchId) {
     setMatchFilterClass(matchId);
-    if(matchId == ALL_MATCHES) {
+    if (matchId == ALL_MATCHES) {
         removeFilter(FILTER_MATCH);
         return;
     }
@@ -603,7 +603,7 @@ class EnterContestCtrl implements DetachAware {
 
   String getMyTotalSalaryClasses() {
     String clases = "total-salary-money";
-    if(availableSalary < 0)
+    if (availableSalary < 0)
       clases = "total-salary-money red-numbers";
 
     return clases;

@@ -6,7 +6,7 @@ import 'dart:html';
 
 @Component(
     selector: 'soccer-players-filter',
-    templateUrl: 'packages/webclient/components/soccer_players_filter_comp.html',
+    templateUrl: 'packages/webclient/components/enter_contest/soccer_players_filter_comp.html',
     publishAs: 'comp',
     useShadowDom: false
 )

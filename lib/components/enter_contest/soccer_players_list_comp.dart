@@ -8,7 +8,7 @@ import 'package:webclient/models/contest.dart';
 
 @Component(
     selector: 'soccer-players-list',
-    templateUrl: 'packages/webclient/components/soccer_players_list_comp.html',
+    templateUrl: 'packages/webclient/components/enter_contest/soccer_players_list_comp.html',
     publishAs: 'comp',
     useShadowDom: false
 )

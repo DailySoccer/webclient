@@ -9,7 +9,7 @@ import 'package:webclient/services/datetime_service.dart';
 
 @Component(
     selector: 'matches-filter',
-    templateUrl: 'packages/webclient/components/matches_filter_comp.html',
+    templateUrl: 'packages/webclient/components/enter_contest/matches_filter_comp.html',
     publishAs: 'comp',
     useShadowDom: false
 )

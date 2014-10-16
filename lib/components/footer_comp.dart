@@ -2,7 +2,6 @@ library footer_comp;
 
 import 'package:angular/angular.dart';
 import 'package:webclient/services/profile_service.dart';
-import 'package:webclient/services/refresh_timers_service.dart';
 import 'package:webclient/services/datetime_service.dart';
 
 

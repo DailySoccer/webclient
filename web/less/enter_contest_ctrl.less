@@ -61,7 +61,6 @@
 	.btn-cancel-player-selection {
 		.btn-cancel();
 		.make-xs-column(12);
-		.hidden-sm();
 		margin-top: 10px;
 	}
 
@@ -93,26 +92,21 @@
 
 // Lineup y Soccer player list en Desktop
 // Variable para el alto de los contenedores de lineup y soccer list. Solo para version desktop
-@recomended-control-heihgt: 645px;
+@recomended-control-height: 555px;
 .enter-contest-soccer-players-wrapper {
 	@media (min-width: @screen-sm-min) {
 		.make-sm-column(6, 0);
 		.pull-left();
-		padding: 10px 5px 0 10px;
+		padding: 10px 5px 0px 10px;
 		.enter-contest-soccer-players {
 			.make-border(1px, solid, @greyLight, @globalBoxesRadius);
-			height: @recomended-control-heihgt - 90px;
+			height: @recomended-control-height;
 			overflow: hidden;
 		}
 	}
 	@media (min-width: @screen-md-min) {
 		.make-md-column(7, 0);
-		padding: 10px 5px 40px 10px;
-		.enter-contest-soccer-players {
-			.make-border(1px, solid, @greyLight, @globalBoxesRadius);
-			height: @recomended-control-heihgt;
-			overflow: hidden;
-		}
+		padding: 10px 5px 10px 10px;
 	}
 }
 
@@ -120,21 +114,16 @@
 	@media (min-width: @screen-sm-min) {
 		.make-sm-column(6, 0);
 		.pull-right();
-		padding: 10px 10px 0 5px;
+		padding: 10px 10px 0px 5px;
 		.enter-contest-lineup {
 			.make-border(1px, solid, @orange, @globalBoxesRadius);
-			min-height: @recomended-control-heihgt - 90px;
+			min-height: @recomended-control-height;
 			overflow: hidden;
 		}
 	}
 	@media (min-width: @screen-md-min) {
 		.make-md-column(5, 0);
-		padding: 10px 10px 40px 5px;
-		.enter-contest-lineup {
-			.make-border(1px, solid, @orange, @globalBoxesRadius);
-			min-height: @recomended-control-heihgt;
-			overflow: hidden;
-		}
+		padding: 10px 10px 10px 5px;
 	}
 	.enter-contest-total-salary {
 		@media (max-width: @screen-xs-max) {

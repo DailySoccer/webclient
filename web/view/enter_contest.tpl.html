@@ -47,16 +47,18 @@
               </div>
 
               <div class="enter-contest-actions-wrapper">
-                <button type="button" class="btn-cancel-player-selection" ng-click="ctrl.cancelPlayerSelection()" ng-show="ctrl.isSelectingSoccerPlayer">CANCELAR</button>
-                <div class="button-wrapper">
-                  <button type="button" class="btn-clean-lineup-list" ng-click="ctrl.deleteFantasyTeam()" ng-if="!ctrl.isSelectingSoccerPlayer || ctrl.scrDet.isSmScreen" ng-disabled="ctrl.isPlayerSelected()" >BORRAR TODO</button>
+                
+                <button type="button" class="btn-cancel-player-selection" ng-click="ctrl.cancelPlayerSelection()" ng-show="ctrl.isSelectingSoccerPlayer" ng-if="ctrl.isSmallScreenVersion">CANCELAR</button>
+                
+                <div ng-if="!ctrl.isSelectingSoccerPlayer || ctrl.isBigScreenVersion">
+                  <div class="button-wrapper">
+                    <button type="button" class="btn-clean-lineup-list" ng-click="ctrl.deleteFantasyTeam()" ng-disabled="ctrl.isPlayerSelected()">BORRAR TODO</button>
+                  </div>
+                  <div class="button-wrapper">
+                    <button type="button" class="btn-confirm-lineup-list" ng-click="ctrl.createFantasyTeam()" ng-disabled="!ctrl.isFantasyTeamValid()">CONFIRMAR</button>
+                  </div>
+                  <p>Recuerda que puedes editar tu equipo cuantas veces quieras hasta que comience la competición</p>
                 </div>
-                <div class="button-wrapper">
-                  <button type="button" class="btn-confirm-lineup-list" ng-click="ctrl.createFantasyTeam()" ng-if="!ctrl.isSelectingSoccerPlayer || ctrl.scrDet.isSmScreen" ng-disabled="!ctrl.isFantasyTeamValid()">CONFIRMAR</button>
-                </div>
-                <p ng-if="!ctrl.isSelectingSoccerPlayer || ctrl.scrDet.isSmScreen">
-                  Recuerda que puedes editar tu equipo cuantas veces quieras hasta que comience la competición
-                </p>
               </div>
 
           </div>

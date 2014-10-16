@@ -15212,11 +15212,6 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-cancel-player-selection {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-@media (min-width: 768px) and (max-width: 991px) {
-  .enter-contest-actions-wrapper .btn-cancel-player-selection {
-    display: none !important;
-  }
-}
 .enter-contest-actions-wrapper .button-wrapper {
   padding: 10px;
   position: relative;
@@ -15510,7 +15505,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
     padding-left: 0;
     padding-right: 0;
     float: left !important;
-    padding: 10px 5px 0 10px;
+    padding: 10px 5px 0px 10px;
   }
   .enter-contest-soccer-players-wrapper .enter-contest-soccer-players {
     border-width: 1px;
@@ -15533,15 +15528,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
     min-height: 1px;
     padding-left: 0;
     padding-right: 0;
-    padding: 10px 5px 40px 10px;
-  }
-  .enter-contest-soccer-players-wrapper .enter-contest-soccer-players {
-    border-width: 1px;
-    border-style: solid;
-    border-color: #dcdcdc;
-    border-radius: 8px;
-    height: 645px;
-    overflow: hidden;
+    padding: 10px 5px 10px 10px;
   }
 }
 @media (min-width: 992px) and (min-width: 992px) {
@@ -15557,7 +15544,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
     padding-left: 0;
     padding-right: 0;
     float: right !important;
-    padding: 10px 10px 0 5px;
+    padding: 10px 10px 0px 5px;
   }
   .enter-contest-lineup-wrapper .enter-contest-lineup {
     border-width: 1px;
@@ -15580,15 +15567,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
     min-height: 1px;
     padding-left: 0;
     padding-right: 0;
-    padding: 10px 10px 40px 5px;
-  }
-  .enter-contest-lineup-wrapper .enter-contest-lineup {
-    border-width: 1px;
-    border-style: solid;
-    border-color: #fa9c19;
-    border-radius: 8px;
-    min-height: 645px;
-    overflow: hidden;
+    padding: 10px 10px 10px 5px;
   }
 }
 @media (min-width: 992px) and (min-width: 992px) {
@@ -15783,11 +15762,6 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
 @media (min-width: 768px) {
   .soccer-players-list {
     max-height: 421px;
-  }
-}
-@media (min-width: 992px) {
-  .soccer-players-list {
-    max-height: 505px;
   }
 }
 .soccer-players-list .posPOR {

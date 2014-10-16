@@ -5,11 +5,11 @@
       <span class="glyphicon glyphicon-remove"></span>
     </button>
     <div class="button-wrapper">
-      <button class="btn-cancel-soccer-player-info" ng-click="soccerPlayerInfo.enterContestCtrl.closePlayerInfo()">CANCELAR</button>
+      <button class="btn-cancel-soccer-player-info" ng-click="soccerPlayerInfo.enterContestComp.closePlayerInfo()">CANCELAR</button>
     </div>
     <div class="button-wrapper">
       <span class="next-match">PRÓXIMO PARTIDO:</span> <span class="next-match" ng-bind-html="soccerPlayerInfo.currentInfoData['nextMatchEvent']"></span>
-      <button class="btn-add-soccer-player-info" ng-click="soccerPlayerInfo.enterContestCtrl.addSoccerPlayerToLineup(soccerPlayerInfo.currentInfoData['id'])">AÑADIR</button>
+      <button class="btn-add-soccer-player-info" ng-click="soccerPlayerInfo.enterContestComp.addSoccerPlayerToLineup(soccerPlayerInfo.currentInfoData['id'])">AÑADIR</button>
     </div>
   </div>
   <div class="description-header">
@@ -61,8 +61,8 @@
           <div class="match-stats" ng-if="soccerPlayerInfo.matchesPlayed">
             <!--HEADER-->
             <div ng-if="soccerPlayerInfo.isGoalkeeper()" class="match-stats-header">
-              <div><span ng-if="soccerPlayerInfo.enterContestCtrl.scrDet.isDesktop || soccerPlayerInfo.enterContestCtrl.scrDet.isSmScreen">FECHA</span>&nbsp;</div>
-              <div ng-if="soccerPlayerInfo.enterContestCtrl.scrDet.isXsScreen">DÍA</div>
+              <div><span ng-if="soccerPlayerInfo.enterContestComp.scrDet.isDesktop || soccerPlayerInfo.enterContestComp.scrDet.isSmScreen">FECHA</span>&nbsp;</div>
+              <div ng-if="soccerPlayerInfo.enterContestComp.scrDet.isXsScreen">DÍA</div>
               <div>OP</div>
               <div>DFP</div>
               <div>MIN</div>
@@ -78,8 +78,8 @@
               <div>TR</div>
             </div>
             <div ng-if="!soccerPlayerInfo.isGoalkeeper()" class="match-stats-header">
-              <div><span ng-if="soccerPlayerInfo.enterContestCtrl.scrDet.isDesktop || soccerPlayerInfo.enterContestCtrl.scrDet.isSmScreen">FECHA</span>&nbsp;</div>
-              <div ng-if="soccerPlayerInfo.enterContestCtrl.scrDet.isXsScreen">DÍA</div>
+              <div><span ng-if="soccerPlayerInfo.enterContestComp.scrDet.isDesktop || soccerPlayerInfo.enterContestComp.scrDet.isSmScreen">FECHA</span>&nbsp;</div>
+              <div ng-if="soccerPlayerInfo.enterContestComp.scrDet.isXsScreen">DÍA</div>
               <div>OP</div>
               <div>DFP</div>
               <div>MIN</div>
@@ -118,10 +118,10 @@
     <!--BUTTONS-->
     <div class="action-buttons">
       <div class="button-wrapper">
-        <button class="btn-cancel-soccer-player-info" ng-click="soccerPlayerInfo.enterContestCtrl.closePlayerInfo()">CANCELAR</button>
+        <button class="btn-cancel-soccer-player-info" ng-click="soccerPlayerInfo.enterContestComp.closePlayerInfo()">CANCELAR</button>
       </div>
       <div class="button-wrapper">
-        <button class="btn-add-soccer-player-info" ng-click="soccerPlayerInfo.enterContestCtrl.addSoccerPlayerToLineup(soccerPlayerInfo.currentInfoData['id'])">AÑADIR</button>
+        <button class="btn-add-soccer-player-info" ng-click="soccerPlayerInfo.enterContestComp.addSoccerPlayerToLineup(soccerPlayerInfo.currentInfoData['id'])">AÑADIR</button>
       </div>
     </div>
 </div>

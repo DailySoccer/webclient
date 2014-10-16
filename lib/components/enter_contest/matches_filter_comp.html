@@ -1,5 +1,5 @@
 <div id="matchesFilterWrapper">
-  <div id="matchesFilter" class="matches-filter"> <!-- ng-class="{'contest-info-tab-active': comp.isActiveContestInfoTab()}"> -->
+  <div id="matchesFilter" class="matches-filter">
     <button class="btn btn-default button-filtro-team" ng-repeat="match in comp.availableMatchEvents" ng-bind-html="match.texto" id="match-{{match.id}}" 
             ng-click="comp.optionsSelectorValue = match.id">
     </button>

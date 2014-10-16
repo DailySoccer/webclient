@@ -10,22 +10,21 @@ import 'package:webclient/services/soccer_player_service.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
-import 'package:webclient/controllers/enter_contest_ctrl.dart';
+import 'package:webclient/components/enter_contest/enter_contest_comp.dart';
 import 'package:intl/intl.dart';
 
 
 @Component(
     selector: 'soccer-player-info',
-    templateUrl: 'packages/webclient/components/soccer_player_info_comp.html',
+    templateUrl: 'packages/webclient/components/enter_contest/soccer_player_info_comp.html',
     publishAs: 'soccerPlayerInfo',
     useShadowDom: false
 )
-
 class SoccerPlayerInfoComp {
 
   ScreenDetectorService scrDet;
 
-  EnterContestCtrl enterContestCtrl;
+  EnterContestComp enterContestComp;
 
   @NgOneWay("instance-soccer-player")
   void set instanceSoccerPlayerData(InstanceSoccerPlayer value) {
@@ -42,7 +41,7 @@ class SoccerPlayerInfoComp {
   List tempSeasons = [];
   bool matchesPlayed;
 
-  SoccerPlayerInfoComp(this._router, this._soccerPlayerService, this._flashMessage, this.enterContestCtrl, this.scrDet) {
+  SoccerPlayerInfoComp(this._router, this._soccerPlayerService, this._flashMessage, this.enterContestComp, this.scrDet) {
     currentInfoData = {
       'id'              : '',
       'fieldPos'        : '',

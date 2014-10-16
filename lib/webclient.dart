@@ -16,6 +16,7 @@ import 'package:webclient/services/scoring_rules_service.dart';
 import 'package:webclient/logger_exception_handler.dart';
 
 import 'package:webclient/utils/limit_to_dot.dart';
+import 'package:webclient/utils/form-autofill-fix.dart';
 
 import 'package:webclient/components/flash_messages_comp.dart';
 import 'package:webclient/components/landing_page_comp.dart';
@@ -23,7 +24,6 @@ import 'package:webclient/components/main_menu_comp.dart';
 import 'package:webclient/components/main_menu_slide_comp.dart';
 import 'package:webclient/components/contest_info_comp.dart';
 import 'package:webclient/components/scoring_rules_comp.dart';
-import 'package:webclient/components/soccer_player_info_comp.dart';
 import 'package:webclient/components/contest_header_comp.dart';
 import 'package:webclient/components/lobby_comp.dart';
 import 'package:webclient/components/fantasy_team_comp.dart';
@@ -33,14 +33,15 @@ import 'package:webclient/components/contests_list_comp.dart';
 import 'package:webclient/components/promos_comp.dart';
 import 'package:webclient/components/footer_comp.dart';
 import 'package:webclient/components/paginator_comp.dart';
-import 'package:webclient/components/login_comp.dart';
-import 'package:webclient/components/join_comp.dart';
+import 'package:webclient/components/view_contest_entry_comp.dart';
+import 'package:webclient/components/view_contest_comp.dart';
 
-import 'package:webclient/controllers/enter_contest_ctrl.dart';
+import 'package:webclient/components/enter_contest/enter_contest_comp.dart';
 import 'package:webclient/components/enter_contest/lineup_selector_comp.dart';
 import 'package:webclient/components/enter_contest/soccer_players_list_comp.dart';
 import 'package:webclient/components/enter_contest/soccer_players_filter_comp.dart';
 import 'package:webclient/components/enter_contest/matches_filter_comp.dart';
+import 'package:webclient/components/enter_contest/soccer_player_info_comp.dart';
 
 import 'package:webclient/components/legalese_and_help/help_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/legal_info_comp.dart';
@@ -51,10 +52,9 @@ import 'package:webclient/components/legalese_and_help/beta_info_comp.dart';
 import 'package:webclient/components/user_profile_comp.dart';
 import 'package:webclient/components/edit_personal_data_comp.dart';
 import 'package:webclient/components/remember_password_comp.dart';
-import 'package:webclient/components/view_contest_entry_comp.dart';
-import 'package:webclient/components/view_contest_comp.dart';
+import 'package:webclient/components/login_comp.dart';
+import 'package:webclient/components/join_comp.dart';
 
-import 'package:webclient/utils/form-autofill-fix.dart';
 
 class WebClientApp extends Module {
   WebClientApp() {
@@ -81,7 +81,6 @@ class WebClientApp extends Module {
     bind(MainMenuSlideComp);
     bind(ContestInfoComp);
     bind(ScoringRulesComp);
-    bind(SoccerPlayerInfoComp);
     bind(ContestHeaderComp);
     bind(FantasyTeamComp);
     bind(UsersListComp);
@@ -102,11 +101,12 @@ class WebClientApp extends Module {
     bind(PolicyInfoComp);
     bind(BetaInfoComp);
 
-    bind(EnterContestCtrl);
+    bind(EnterContestComp);
     bind(SoccerPlayersListComp);
     bind(SoccerPlayersFilterComp);
     bind(MatchesFilterComp);
     bind(LineupSelectorComp);
+    bind(SoccerPlayerInfoComp);
 
     bind(RememberPasswordComp);
     bind(UserProfileComp);

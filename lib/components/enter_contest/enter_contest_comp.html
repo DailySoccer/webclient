@@ -1,0 +1,90 @@
+<div class="enter-contest-wrapper">
+
+  <contest-header contestData="comp.contest"></contest-header>
+
+  <!-- Nav tabs -->
+  <ul class="enter-contest-tabs" role="tablist">
+    <li class="active"><a role="tab" data-toggle="tab" ng-click="comp.tabChange('lineup-tab-content')">Tu alineación</a></li>
+    <li><a role="tab" data-toggle="tab" ng-click="comp.tabChange('contest-info-tab-content')">Info torneo</a></li>
+  </ul>
+   
+  <div id="enterContest">
+    <div class="tabs">
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div class="tab-pane active" id="lineup-tab-content">
+        
+            <!-- Este sera el selector de partidos en "grande", con botones-->
+            <matches-filter contest="comp.contest" selected-option="comp.matchFilter" ng-if="comp.isBigScreenVersion"></matches-filter>
+
+            <div class="enter-contest-actions-wrapper" ng-if="comp.isSmallScreenVersion">
+              <div class="total-salary"><span ng-class="comp.getMyTotalSalaryClasses()">{{comp.availableSalary}}€</span></div>
+              <button id="cancelSoccerPlayerSelection" type="button" class="btn-cancel-player-selection" ng-click="comp.cancelPlayerSelection()" ng-show="comp.isSelectingSoccerPlayer">CANCELAR</button>
+            </div>
+            
+            <div class="enter-contest-lineup-wrapper">
+              <div class="enter-contest-lineup">
+                <div class="enter-contest-total-salary">
+                    <span class="total-salary-text">TU ALINEACIÓN</span>
+                    <span class="total-salary"><span class="total-salary-text">DINERO RESTANTE:</span>
+                    <span ng-class="comp.getMyTotalSalaryClasses()">{{comp.availableSalary}}€</span></span>
+                </div>
+                
+                <lineup-selector ng-show="!comp.isSelectingSoccerPlayer || comp.isBigScreenVersion"></lineup-selector>
+              </div>
+            </div>
+
+            <div class="enter-contest-soccer-players-wrapper" ng-show="comp.isSelectingSoccerPlayer || comp.isBigScreenVersion">
+              <div class="enter-contest-soccer-players">
+              
+                <!-- Este es el desplegable, para todas las versiones que sean moviles -->
+                <matches-filter contest="comp.contest" selected-option="comp.matchFilter" ng-if="comp.isSmallScreenVersion"></matches-filter>
+                                                 
+                <soccer-players-filter name-filter="comp.nameFilter" field-pos-filter="comp.fieldPosFilter"></soccer-players-filter>
+                <soccer-players-list contest="comp.contest" on-row-click="comp.onRowClick(soccerPlayerId)"></soccer-players-list>
+              </div>
+            </div>
+
+            <div class="enter-contest-actions-wrapper">
+              
+              <button type="button" class="btn-cancel-player-selection" ng-click="comp.cancelPlayerSelection()" ng-show="comp.isSelectingSoccerPlayer" ng-if="comp.isSmallScreenVersion">CANCELAR</button>
+              
+              <div ng-if="!comp.isSelectingSoccerPlayer || comp.isBigScreenVersion">
+                <div class="button-wrapper">
+                  <button type="button" class="btn-clean-lineup-list" ng-click="comp.deleteFantasyTeam()" ng-disabled="comp.isPlayerSelected()">BORRAR TODO</button>
+                </div>
+                <div class="button-wrapper">
+                  <button type="button" class="btn-confirm-lineup-list" ng-click="comp.createFantasyTeam()" ng-disabled="!comp.isFantasyTeamValid()">CONFIRMAR</button>
+                </div>
+                <p>Recuerda que puedes editar tu equipo cuantas veces quieras hasta que comience la competición</p>
+              </div>
+            </div>
+
+        </div>
+
+        <div class="tab-pane" id="contest-info-tab-content">
+          <contest-info contest-data="comp.contest"></contest-info>
+        </div>
+        
+      </div>
+    </div>
+    
+    <div class="contest-id-bar">
+      <div class="contest-id">ID: {{comp.contest.contestId.toUpperCase()}}</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="soccer-player-info-wrapper" ng-if="comp.scrDet.isXsScreen">
+  <soccer-player-info instance-soccer-player="comp.selectedInstanceSoccerPlayer"></soccer-player-info>
+</div>
+
+<!-- Modal Window que envuelve la informacion de concurso, mostrada cuando clickamos en cualquiera de los campos de la fila -->
+<div  id="infoContestModal" class="modal fade" tabindex="-1" role="dialog" ng-if="!comp.scrDet.isXsScreen">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content-soccer-player-info">
+      <soccer-player-info instance-soccer-player="comp.selectedInstanceSoccerPlayer"></soccer-player-info>
+    </div>
+  </div>
+</div>

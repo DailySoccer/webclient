@@ -1,7 +1,7 @@
 library soccer_players_list_comp;
 
 import 'package:angular/angular.dart';
-import 'package:webclient/controllers/enter_contest_ctrl.dart';
+import 'package:webclient/components/enter_contest/enter_contest_comp.dart';
 import 'package:webclient/services/active_contests_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/models/contest.dart';
@@ -15,7 +15,7 @@ import 'package:webclient/models/contest.dart';
 class SoccerPlayersListComp {
 
   ScreenDetectorService scrDet;
-  EnterContestCtrl enterContestCtrl;
+  EnterContestComp enterContestComp;
 
   @NgOneWay("contest")
   void set contest(Contest value) {
@@ -25,7 +25,7 @@ class SoccerPlayersListComp {
   @NgCallback("on-row-click")
   Function onRowClick;
 
-  SoccerPlayersListComp(this.enterContestCtrl, this._contestService, this.scrDet);
+  SoccerPlayersListComp(this.enterContestComp, this._contestService, this.scrDet);
 
   // Para pintar el color correspondiente segun la posicion del jugador
   String getSlotClassColor(String abrevName) => _POS_CLASS_NAMES[abrevName];

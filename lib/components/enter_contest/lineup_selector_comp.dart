@@ -1,7 +1,7 @@
 library lineup_selector_comp;
 
 import 'package:angular/angular.dart';
-import 'package:webclient/controllers/enter_contest_ctrl.dart';
+import 'package:webclient/components/enter_contest/enter_contest_comp.dart';
 import 'package:webclient/models/field_pos.dart';
 
 
@@ -13,9 +13,9 @@ import 'package:webclient/models/field_pos.dart';
 )
 class LineupSelectorComp {
 
-  EnterContestCtrl enterContestCtrl;
+  EnterContestComp enterContestComp;
 
-  LineupSelectorComp(this.enterContestCtrl);
+  LineupSelectorComp(this.enterContestComp);
 
   // Para pintar el color correspondiente segun la posicion del jugador
   String getSlotClassColor(int slotIndex) => _POS_CLASS_NAMES[FieldPos.FIELD_POSITION_ABREV[FieldPos.LINEUP[slotIndex]]];

@@ -46,17 +46,17 @@ void setUpCache(injector) {
   cache.fromUrl("packages/webclient/components/promos_comp.html", injector.getByKey(DIRECTIVE_MAP_KEY));
   cache.fromUrl("packages/webclient/components/remember_password_comp.html", injector.getByKey(DIRECTIVE_MAP_KEY));
   cache.fromUrl("packages/webclient/components/scoring_rules_comp.html", injector.getByKey(DIRECTIVE_MAP_KEY));
-  cache.fromUrl("packages/webclient/components/soccer_player_info_comp.html", injector.getByKey(DIRECTIVE_MAP_KEY));
 
   cache.fromUrl("packages/webclient/components/user_profile_comp.html", injector.getByKey(DIRECTIVE_MAP_KEY));
   cache.fromUrl("packages/webclient/components/view_contest_entry_comp.html", injector.getByKey(DIRECTIVE_MAP_KEY));
   cache.fromUrl("packages/webclient/components/view_contest_comp.html", injector.getByKey(DIRECTIVE_MAP_KEY));
 
-  cache.fromUrl("view/enter_contest.tpl.html", injector.getByKey(DIRECTIVE_MAP_KEY));
+  cache.fromUrl("packages/webclient/components/enter_contest/enter_contest_comp.html", injector.getByKey(DIRECTIVE_MAP_KEY));
   cache.fromUrl("packages/webclient/components/enter_contest/lineup_selector_comp.html", injector.getByKey(DIRECTIVE_MAP_KEY));
   cache.fromUrl("packages/webclient/components/enter_contest/soccer_players_list_comp.html", injector.getByKey(DIRECTIVE_MAP_KEY));
   cache.fromUrl("packages/webclient/components/enter_contest/soccer_players_filter_comp.html", injector.getByKey(DIRECTIVE_MAP_KEY));
   cache.fromUrl("packages/webclient/components/enter_contest/matches_filter_comp.html", injector.getByKey(DIRECTIVE_MAP_KEY));
+  cache.fromUrl("packages/webclient/components/enter_contest/soccer_player_info_comp.html", injector.getByKey(DIRECTIVE_MAP_KEY));
 
   /*
    * Estos quiza mejor no gastar al principio

@@ -1,15 +1,15 @@
 
 <div class="soccer-player-list-header-table">
-  <div class="filterOrderPos"><a ng-click="comp.enterContestCtrl.sortListByField('Pos')">Pos.</a></div>
-  <div class="filterOrderName"><a ng-click="comp.enterContestCtrl.sortListByField('Name')">Nombre</a></div>
-  <div class="filterOrderDFP"><a ng-click="comp.enterContestCtrl.sortListByField('DFP')">DFP</a></div>
-  <div class="filterOrderPlayed"><a ng-click="comp.enterContestCtrl.sortListByField('Played')">Jugados</a></div>
-  <div class="filterOrderSalary"><a ng-click="comp.enterContestCtrl.sortListByField('Salary')">Sueldo</a></div>
+  <div class="filterOrderPos"><a ng-click="comp.enterContestComp.sortListByField('Pos')">Pos.</a></div>
+  <div class="filterOrderName"><a ng-click="comp.enterContestComp.sortListByField('Name')">Nombre</a></div>
+  <div class="filterOrderDFP"><a ng-click="comp.enterContestComp.sortListByField('DFP')">DFP</a></div>
+  <div class="filterOrderPlayed"><a ng-click="comp.enterContestComp.sortListByField('Played')">Jugados</a></div>
+  <div class="filterOrderSalary"><a ng-click="comp.enterContestComp.sortListByField('Salary')">Sueldo</a></div>
 </div>
 
 <div class="soccer-players-list">
 
-  <div class="soccer-players-list-slot" ng-repeat="slot in comp.enterContestCtrl.availableSoccerPlayers" ng-class="comp.getSlotClassColor(slot.fieldPos.abrevName)">
+  <div class="soccer-players-list-slot" ng-repeat="slot in comp.enterContestComp.availableSoccerPlayers" ng-class="comp.getSlotClassColor(slot.fieldPos.abrevName)">
     <div class="column-fieldpos" ng-click="comp.onRow(slot.id)">{{slot.fieldPos.abrevName}}</div>
     <div class="column-primary-info">
       <span class="soccer-player-name" ng-click="comp.onRow(slot.id)">{{slot.fullName | limitToDot : comp.showWidth(slot.fullName)}}</span>
@@ -19,7 +19,7 @@
     <div class="column-played" ng-click="comp.onRow(slot.id)">{{slot.playedMatches}}</div>
     <div class="column-salary" ng-click="comp.onRow(slot.id)">{{slot.salary}}€</div>
     <div class="column-add">
-      <button type="button" class="btn" ng-click="comp.enterContestCtrl.onSoccerPlayerSelected(slot)">Añadir</button>
+      <button type="button" class="btn" ng-click="comp.enterContestComp.onSoccerPlayerSelected(slot)">Añadir</button>
     </div>
   </div>
 

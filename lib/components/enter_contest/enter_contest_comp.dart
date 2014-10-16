@@ -1,5 +1,4 @@
-library enter_contest_ctrl;
-
+library enter_contest_comp;
 
 import 'dart:html';
 import 'dart:async';
@@ -18,11 +17,13 @@ import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/utils/string_utils.dart';
 
-@Controller(
-    selector: '[enter-contest-ctrl]',
-    publishAs: 'ctrl'
+@Component(
+    selector: 'enter-contest',
+    templateUrl: 'packages/webclient/components/enter_contest/enter_contest_comp.html',
+    publishAs: 'comp',
+    useShadowDom: false
 )
-class EnterContestCtrl implements DetachAware {
+class EnterContestComp implements DetachAware {
 
   static final String ERROR_RETRY_OP = "ERROR_RETRY_OP";
 
@@ -48,7 +49,7 @@ class EnterContestCtrl implements DetachAware {
   bool get isSmallScreenVersion => !isBigScreenVersion;
 
 
-  EnterContestCtrl(this._routeProvider, this._router, this.scrDet, this._activeContestService, this._myContestService, this._flashMessage) {
+  EnterContestComp(this._routeProvider, this._router, this.scrDet, this._activeContestService, this._myContestService, this._flashMessage) {
 
     // Creamos los slots iniciales, todos vacios
     FieldPos.LINEUP.forEach((pos) {

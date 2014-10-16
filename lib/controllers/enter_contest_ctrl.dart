@@ -107,14 +107,6 @@ class EnterContestCtrl implements DetachAware {
 
     Element contentTab = document.querySelector("#" + tab);
     contentTab.classes.add("active");
-
-    Element matchesFilter = document.querySelector('.match-teams-filter');
-    if(tab == "contest-info-tab-content") {
-      matchesFilter.style.display = "none";
-    }
-    else {
-      matchesFilter.style.display = "block";
-    }
   }
 
   void onScreenWidthChange(String value) {
@@ -128,22 +120,13 @@ class EnterContestCtrl implements DetachAware {
     // Para que en la versión móvil aparezca la pantalla de lineup
     isSelectingSoccerPlayer = false;
 
-    if (value == "desktop" || value == "sm") {
-
-      Element matchesFilter = document.querySelector('.match-teams-filter');
-
-      if (matchesFilter != null) {
-        matchesFilter.style.display = "block";
-      }
-
-      if (value == "desktop") {
+    if (value == "desktop") {
         // Reseteo las pestañas
         List<dynamic> allTabs = document.querySelectorAll(".enter-contest-tabs li");
         allTabs.forEach((element) => element.classes.remove('active'));
         allTabs[0].classes.add('active');
-      }
     }
-    else {
+    else if (value != "sm") {
       // hacemos una llamada de jQuery para ocultar la ventana modal
       JsUtils.runJavascript('#infoContestModal','modal', 'hide');
       // Para cerrar el soccer player info una vez que cambiamos a otra resolución

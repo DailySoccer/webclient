@@ -132,7 +132,7 @@ class EnterContestCtrl implements DetachAware {
 
       Element matchesFilter = document.querySelector('.match-teams-filter');
 
-      if(matchesFilter != null) {
+      if (matchesFilter != null) {
         matchesFilter.style.display = "block";
       }
 
@@ -214,36 +214,15 @@ class EnterContestCtrl implements DetachAware {
   }
 
   FieldPos get fieldPosFilter => new FieldPos(_filterList[FILTER_POSITION]);
-  void     set fieldPosFilter(FieldPos fieldPos) {
-    if (fieldPos == null) {
-      removeFilter(FILTER_POSITION);
-    }
-    else {
-      addFilter(FILTER_POSITION, fieldPos.value);
-    }
-  }
+  void     set fieldPosFilter(FieldPos fieldPos) => setFilter(FILTER_POSITION, fieldPos != null? fieldPos.value : null);
 
   String get nameFilter => _filterList[FILTER_NAME];
-  void   set nameFilter(String val) {
-    addFilter(FILTER_NAME, val);
-  }
+  void   set nameFilter(String val) => setFilter(FILTER_NAME, val);
 
   String get matchFilter => _filterList[FILTER_MATCH];
-  void   set matchFilter(String matchId) {
-    if(matchId == null) {
-      removeFilter(FILTER_MATCH);
-    }
-    else {
-      addFilter(FILTER_MATCH, matchId);
-    }
-  }
+  void   set matchFilter(String matchId) => setFilter(FILTER_MATCH, matchId);
 
-  void removeFilter(String filterName) {
-    _filterList.remove(filterName);
-    _refreshFilter();
-  }
-
-  void addFilter(String key, String valor) {
+  void setFilter(String key, String valor) {
     _filterList[key] = valor;
     _refreshFilter();
   }
@@ -266,7 +245,7 @@ class EnterContestCtrl implements DetachAware {
             availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => soccerPlayer["fullName"].toUpperCase().contains(valor.toUpperCase())).toList();
           break;
           case FILTER_MATCH:
-            availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => soccerPlayer["matchId"].toString() == valor).toList();
+            availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => soccerPlayer["matchId"] == valor).toList();
           break;
         }
       }

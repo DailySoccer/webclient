@@ -39,27 +39,38 @@ class MatchesFilterComp {
       return;
     }
 
+    availableMatchEvents.add({"id": ALL_MATCHES, "texto": "Todos los<br>partidos"});
+    availableMatchEventsSelect.add({"id": ALL_MATCHES, "texto": "Todos los partidos"});
+
     for (MatchEvent match in theContest.matchEvents) {
       availableMatchEvents.add({"id": match.templateMatchEventId,
                                 "texto": match.soccerTeamA.shortName + '-' + match.soccerTeamB.shortName + "<br>" + DateTimeService.formatDateTimeShort(match.startDate)
                                });
-    }
 
-    availableMatchEventsSelect.add({"id": ALL_MATCHES, "texto": "Todos los partidos"});
-    for (MatchEvent match in theContest.matchEvents) {
-      availableMatchEventsSelect.add({"id": match.templateMatchEventId, "texto": match.soccerTeamA.shortName + "-" + match.soccerTeamB.shortName});
+      availableMatchEventsSelect.add({"id": match.templateMatchEventId,
+                                      "texto": match.soccerTeamA.shortName + "-" + match.soccerTeamB.shortName});
     }
   }
 
+  // La idea es esconder ALL_MATCHES aqui dentro. Siempre que seleccionamos ALL_MATCHES desde fuera se vera null.
+  String get optionsSelectorValue => selectedOption == null? ALL_MATCHES : selectedOption;
+  void   set optionsSelectorValue(String val) {  selectedOption = (val == ALL_MATCHES)? null : val;  }
+
   void _setMatchFilterClass(String buttonId) {
+
+    if (buttonId == null) {
+      buttonId = ALL_MATCHES;
+    }
 
     List<ButtonElement> buttonsFilter = document.querySelectorAll(".button-filtro-team");
     buttonsFilter.forEach((element) {
       element.classes.remove('active');
     });
 
-    List<ButtonElement> button = querySelectorAll("#match-$buttonId");
-    button.forEach((element) => element.classes.add("active"));
+    ButtonElement button = querySelector("#match-$buttonId");
+    if (button != null) {
+      button.classes.add("active");
+    }
   }
 
   String _selectedOption;

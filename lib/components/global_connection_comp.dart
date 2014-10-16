@@ -20,31 +20,25 @@ class GlobalConnectionComp {
   }
 
   void onServerSuccess(Map aMsg) {
-    if (msg.isNotEmpty && (aMsg['url'] == _url)) {
-      msg = "";
-    }
+    msg = "";
   }
 
   void onServerError(Map aMsg) {
-    if (msg.isEmpty || (aMsg['url'] == _url)) {
-      _url = aMsg['url'];
-      _secondsToRetry = aMsg['secondsToRetry'];
-      msg = "Error en la conexión...";
+    _secondsToRetry = aMsg['secondsToRetry'];
+    msg = "Error en la conexión...";
 
-      /*
-      if (secondsTimer != null && secondsTimer.isActive) {
-        secondsTimer.cancel();
-      }
-
-      secondsTimer = new Timer.periodic(const Duration(seconds: 1), (_) {
-        _secondsToRetry--;
-        msg = "Error en la conexión... $_secondsToRetry seg.";
-      });
-       */
+    /*
+    if (secondsTimer != null && secondsTimer.isActive) {
+      secondsTimer.cancel();
     }
+
+    secondsTimer = new Timer.periodic(const Duration(seconds: 1), (_) {
+      _secondsToRetry--;
+      msg = "Error en la conexión... $_secondsToRetry seg.";
+    });
+     */
   }
 
   Timer secondsTimer;
   int _secondsToRetry;
-  String _url;
 }

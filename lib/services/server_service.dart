@@ -119,15 +119,15 @@ class DailySoccerServer implements ServerService {
   }
 
   Future<JsonObject> isSimulatorActivated() {
-    return _innerServerCall("${HostServer.url}/admin/is_simulator_activated");
+    return _innerServerCall("${HostServer.url}/admin/is_simulator_activated", retryTimes: 0);
   }
 
   Future<JsonObject> getCurrentDate() {
-    return _innerServerCall("${HostServer.url}/current_date");
+    return _innerServerCall("${HostServer.url}/current_date", retryTimes: 0);
   }
 
   Future<JsonObject> getScoringRules() {
-    return _innerServerCall("${HostServer.url}/get_scoring_rules");
+    return _innerServerCall("${HostServer.url}/get_scoring_rules", retryTimes: -1);
   }
 
   void subscribe(dynamic id, Map callbacks) {
@@ -168,8 +168,8 @@ class DailySoccerServer implements ServerService {
             _notify(ServerService.onError, {ServerService.URL: url, ServerService.TIMES: retryTimes, ServerService.SECONDS_TO_RETRY: 3});
 
             Logger.root.severe("_innerServerCall error: $error, url: $url, retry: $retryTimes");
-            if (retryTimes > 0) {
-              new Timer(const Duration(seconds:3), () => _callLoop(url, queryString, postData, headers, completer, retryTimes-1));
+            if ((retryTimes == -1) || (retryTimes > 0)) {
+              new Timer(const Duration(seconds:3), () => _callLoop(url, queryString, postData, headers, completer, (retryTimes > 0) ? retryTimes-1 : retryTimes));
             }
             else {
               _processError(error, url, completer);

@@ -7,7 +7,7 @@ if [[ $1 != "" ]]
         mode=$1
 fi
 
-if [[ "$mode"=="release" ]]
+if [[ "$mode" == "release" ]]
     then
     # Aplicamos cambios de release
     client_branch_name="$(git symbolic-ref HEAD 2>/dev/null)" ||
@@ -27,7 +27,7 @@ echo $mode
 pub build --mode=$mode
 rsync -r  -v --copy-unsafe-links build/web/. ../backend/public/
 
-if [[ "$mode"=="release" ]]
+if [[ "$mode" == "release" ]]
     then
         # Volvemos a la rama original
         git checkout $client_branch_name

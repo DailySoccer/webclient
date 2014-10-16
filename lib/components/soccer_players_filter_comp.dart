@@ -22,9 +22,9 @@ class SoccerPlayersFilterComp {
   @NgTwoWay("name-filter")
   String nameFilter;
 
-
   @NgTwoWay('field-pos-filter')
-  void set fieldPosFilter(FieldPos value) {
+  FieldPos get fieldPosFilter => _fieldPosFilter;
+  void     set fieldPosFilter(FieldPos value) {
     _fieldPosFilter = value;
 
     if (_fieldPosFilter == null) {
@@ -34,7 +34,6 @@ class SoccerPlayersFilterComp {
       _setPosFilterClass(_fieldPosFilter.abrevName);
     }
   }
-  FieldPos get fieldPosFilter => _fieldPosFilter;
 
 
   void _setPosFilterClass(String abrevPosition) {

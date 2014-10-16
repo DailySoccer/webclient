@@ -17,7 +17,7 @@ class SoccerPlayersListComp {
 
   ScreenDetectorService scrDet;
 
-  List<Map<String, String>> matchesList = [];
+
 
   @NgOneWay("contest")
   void set contest(Contest value) {
@@ -26,40 +26,13 @@ class SoccerPlayersListComp {
     if (_contest != null) {
       _matchesInvolved = _contest.matchEvents;
 
-      matchesList.add({"id":enterContestCtrl.ALL_MATCHES, "texto":"Todos los partidos"});
-      for (MatchEvent match in _matchesInvolved) {
-        matchesList.add({"id": match.templateMatchEventId, "texto":match.soccerTeamA.shortName + "-" + match.soccerTeamB.shortName});
-      }
     }
   }
-
-  dynamic _optionValue;
-  dynamic get optionValue => _optionValue;
-  void set optionValue (value) {
-    _optionValue = value;
-    setFilterMatch();
-  }
-
-  dynamic oldOptionValue;
 
   EnterContestCtrl enterContestCtrl;
 
-  SoccerPlayersListComp(RouteProvider routeProvider, this.enterContestCtrl, this._contestService, this.scrDet) {
+  SoccerPlayersListComp(RouteProvider routeProvider, this.enterContestCtrl, this._contestService, this.scrDet);
 
-    optionValue = enterContestCtrl.ALL_MATCHES;
-  }
-
- void setFilterMatch() {
-    if (optionValue != oldOptionValue) {
-      oldOptionValue = optionValue;
-      enterContestCtrl.setMatchFilter(optionValue);
-    }
-  }
-/*
-  void printElement(String element) {
-    print(element);
-  }
-*/
   // Para pintar el color correspondiente segun la posicion del jugador
   String getSlotClassColor(String abrevName){
    // Listas de las clases y posiciones

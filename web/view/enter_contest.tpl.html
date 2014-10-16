@@ -10,11 +10,8 @@
       <li><a role="tab" data-toggle="tab" ng-click="ctrl.tabChange('contest-info-tab-content')">Info torneo</a></li>
     </ul>
 
-    <div id="matchTeamsFilterContainer" class="match-teams-filter" ng-class="{'contest-info-tab-active': ctrl.isActiveContestInfoTab()}">
-      <button class="btn btn-default button-filtro-team" id="match-all" ng-click="ctrl.setMatchFilter(ctrl.ALL_MATCHES)">Todos los<br>partidos</button>
-      <button class="btn btn-default button-filtro-team" ng-repeat="match in ctrl.availableMatchEvents" ng-bind-html="match.texto" id="match-{{match.id}}" ng-click="ctrl.setMatchFilter(match.id)"></button>
-    </div>
-
+    <matches-filter contest="ctrl.contest" selected-option="matchFilter"></matches-filter>
+  
     <div id="enterContest">
       <!-- Version Desktop-->
       <div ng-if="ctrl.scrDet.isDesktop">
@@ -28,11 +25,14 @@
 
         <div class="enter-contest-lineup-wrapper">
           <div class="enter-contest-lineup">
+            
             <div class="enter-contest-total-salary">
                 TU ALINEACIÓN
                 <span class="total-salary"><span class="total-salary-text">DINERO RESTANTE:</span><span ng-class="ctrl.getMyTotalSalaryClasses()">{{ctrl.availableSalary}}€</span></span>
             </div>
+            
             <lineup-selector></lineup-selector>
+            
             <div class="enter-contest-actions-wrapper">
               <div class="button-wrapper">
                 <button type="button" class="btn-clean-lineup-list" ng-click="ctrl.deleteFantasyTeam()" ng-disabled="ctrl.isPlayerSelected()">BORRAR TODO</button>
@@ -47,7 +47,7 @@
 
       </div> <!-- Fin ng-if="ctrl.scrDet.isDesktop" -->
 
-      <!-- Resto de Versiones-->
+      <!-- Resto de Versiones con tabs -->
       <div id="enterContestNotDesktop" ng-if="!ctrl.scrDet.isDesktop">
         <div class="tabs">
           <!-- Tab panes -->
@@ -59,18 +59,22 @@
                   <div class="total-salary"><span ng-class="ctrl.getMyTotalSalaryClasses()">{{ctrl.availableSalary}}€</span></div>
                   <button id="cancelSoccerPlayerSelection" type="button" class="btn-cancel-player-selection" ng-click="ctrl.cancelPlayerSelection()" ng-show="ctrl.isSelectingSoccerPlayer">CANCELAR</button>
                 </div>
+                
                 <div class="enter-contest-lineup-wrapper">
                   <div class="enter-contest-lineup">
                     <div class="enter-contest-total-salary">
                         <span class="total-salary-text">TU ALINEACIÓN</span>
                         <span class="total-salary"><span class="total-salary-text">DINERO RESTANTE:</span><span ng-class="ctrl.getMyTotalSalaryClasses()">{{ctrl.availableSalary}}€</span></span>
                     </div>
+                    
                     <lineup-selector ng-show="!ctrl.isSelectingSoccerPlayer || ctrl.scrDet.isSmScreen"></lineup-selector>
                   </div>
                 </div>
-                <div class="enter-contest-soccer-players-wrapper">
+                
+                <div class="enter-contest-soccer-players-wrapper" ng-show="ctrl.isSelectingSoccerPlayer || ctrl.scrDet.isSmScreen">
                   <div class="enter-contest-soccer-players">
-                    <soccer-players-list contest="ctrl.contest" ng-show="ctrl.isSelectingSoccerPlayer || ctrl.scrDet.isSmScreen" on-row-click="ctrl.onRowClick(soccerPlayerId)"></soccer-players-list>
+                    <soccer-players-filter name-filter="ctrl.nameFilter" field-pos-filter="ctrl.fieldPosFilter"></soccer-players-filter>
+                    <soccer-players-list contest="ctrl.contest" on-row-click="ctrl.onRowClick(soccerPlayerId)"></soccer-players-list>
                   </div>
                 </div>
 

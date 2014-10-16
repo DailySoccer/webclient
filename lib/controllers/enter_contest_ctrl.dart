@@ -14,7 +14,6 @@ import 'package:webclient/models/match_event.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/contest_entry.dart';
 import "package:webclient/models/instance_soccer_player.dart";
-import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/utils/string_utils.dart';
@@ -31,19 +30,15 @@ class EnterContestCtrl implements DetachAware {
   static const String FILTER_NAME = "FILTER_NAME";
   static const String FILTER_MATCH = "FILTER_MATCH";
 
-  String get ALL_MATCHES => "all";
-
   ScreenDetectorService scrDet;
 
   Contest contest;
-
   String contestEntryId = null;
 
   bool isSelectingSoccerPlayer = false;
 
   final List<dynamic> lineupSlots = [];
   List<dynamic> availableSoccerPlayers = [];
-  List<Map<String, String>> availableMatchEvents = [];
 
   InstanceSoccerPlayer selectedInstanceSoccerPlayer;
 
@@ -67,8 +62,7 @@ class EnterContestCtrl implements DetachAware {
         contest = _activeContestService.lastContest;
 
         // Al principio, todos disponibles
-        initAllSoccerPlayers();
-        availableSoccerPlayers = new List<dynamic>.from(_allSoccerPlayers);
+        availableSoccerPlayers = initAllSoccerPlayers();
 
         // Saldo disponible
         availableSalary = contest.salaryCap;
@@ -174,13 +168,15 @@ class EnterContestCtrl implements DetachAware {
       _refreshFilter();
 
       // Quitamos la modal de números rojos si no hay salario disponible
-      if(availableSalary >= 0) {
+      if (availableSalary >= 0) {
         alertDismiss();
       }
     }
     else {
       isSelectingSoccerPlayer = true;
 
+      // Cuando seleccionan un slot del lineup cambiamos siempre el filtro de la soccer-player-list, especialmente
+      // en movil que cambiamos de vista a "solo ella".
       // El componente hijo se entera de que le hemos cambiado el filtro a traves del two-way binding.
       fieldPosFilter = new FieldPos(FieldPos.LINEUP[slotIndex]);
     }
@@ -207,12 +203,10 @@ class EnterContestCtrl implements DetachAware {
   }
 
   void onSoccerPlayerSelected(var soccerPlayer) {
-    bool wasAdded = false;
-    wasAdded = tryToAddSoccerPlayer(soccerPlayer);
+    bool wasAdded = tryToAddSoccerPlayer(soccerPlayer);
 
     if (wasAdded) {
       // Comprobar cuantos jugadores me quedan por añadir de esa posicion
-      //isSelectingSoccerPlayer = availableSoccerPlayer(soccerPlayer);
       isSelectingSoccerPlayer = false;
       availableSoccerPlayers.remove(soccerPlayer);
       calculateAvailableSalary(soccerPlayer["salary"]);
@@ -234,26 +228,14 @@ class EnterContestCtrl implements DetachAware {
     addFilter(FILTER_NAME, val);
   }
 
-  void setMatchFilterClass(String buttonId) {
-
-    List<ButtonElement> buttonsFilter = document.querySelectorAll(".button-filtro-team");
-    buttonsFilter.forEach((element) {
-      element.classes.remove('active');
-    });
-
-    List<ButtonElement> button = querySelectorAll("#match-$buttonId");
-    button.forEach((element) => element.classes.add("active"));
-  }
-
-  void setMatchFilter(String matchId) {
-    setMatchFilterClass(matchId);
-
-    if(matchId == ALL_MATCHES) {
-        removeFilter(FILTER_MATCH);
-        return;
+  String get matchFilter => _filterList[FILTER_MATCH];
+  void   set matchFilter(String matchId) {
+    if(matchId == null) {
+      removeFilter(FILTER_MATCH);
     }
-
-    addFilter(FILTER_MATCH, matchId);
+    else {
+      addFilter(FILTER_MATCH, matchId);
+    }
   }
 
   void removeFilter(String filterName) {
@@ -270,8 +252,8 @@ class EnterContestCtrl implements DetachAware {
     if (_filterList.isEmpty && availableSoccerPlayers.length == _allSoccerPlayers.length)
       return;
 
-    // Partimos siempre de la lista original de todos los players menos los seleccionados
-    availableSoccerPlayers = _allSoccerPlayers.where( (soccerPlayer) => !lineupSlots.contains(soccerPlayer)).toList();
+    // Partimos siempre de la lista original de todos los players menos los ya seleccionados en el lineup
+    availableSoccerPlayers = _allSoccerPlayers.where((soccerPlayer) => !lineupSlots.contains(soccerPlayer)).toList();
 
     // Recorremos la lista de filtros y aplicamos los que no sean nulos
     _filterList.forEach((String clave, String valor) {
@@ -319,7 +301,6 @@ class EnterContestCtrl implements DetachAware {
     }
 
     if (_secondarySort != "" && compResult == 0) {
-      //print('Orden primario: ${_primarySort} | Orden secundario: ${_secondarySort}');
       switch(_secondarySort) {
         case "Pos":
           compResult = playerB["fieldPos"].sortOrder - playerA["fieldPos"].sortOrder;
@@ -400,12 +381,22 @@ class EnterContestCtrl implements DetachAware {
     return false;
   }
 
+  List<dynamic> initAllSoccerPlayers() {
+    contest.instanceSoccerPlayers.forEach((templateSoccerId, instanceSoccerPlayer) {
+      _insertSoccerPlayer(instanceSoccerPlayer.soccerTeam.matchEvent, instanceSoccerPlayer.soccerTeam, instanceSoccerPlayer);
+    });
+
+    return new List<dynamic>.from(_allSoccerPlayers);
+  }
+
   void _insertSoccerPlayer(MatchEvent matchEvent, SoccerTeam soccerTeam, InstanceSoccerPlayer instanceSoccerPlayer) {
+
     String shortNameTeamA = matchEvent.soccerTeamA.shortName;
     String shortNameTeamB = matchEvent.soccerTeamB.shortName;
+
     var matchEventName = (instanceSoccerPlayer.soccerTeam.templateSoccerTeamId == matchEvent.soccerTeamA.templateSoccerTeamId)
-        ? "<strong>$shortNameTeamA</strong> - $shortNameTeamB"
-        : "$shortNameTeamA - <strong>$shortNameTeamB</strong>";
+         ? "<strong>$shortNameTeamA</strong> - $shortNameTeamB"
+         : "$shortNameTeamA - <strong>$shortNameTeamB</strong>";
 
     _allSoccerPlayers.add({
       "instanceSoccerPlayer": instanceSoccerPlayer,
@@ -419,23 +410,6 @@ class EnterContestCtrl implements DetachAware {
       "playedMatches": instanceSoccerPlayer.soccerPlayer.playedMatches,
       "salary": instanceSoccerPlayer.salary
     });
-  }
-
-  void initAllSoccerPlayers() {
-    contest.instanceSoccerPlayers.forEach((templateSoccerId, instanceSoccerPlayer) {
-      _insertSoccerPlayer(instanceSoccerPlayer.soccerTeam.matchEvent, instanceSoccerPlayer.soccerTeam, instanceSoccerPlayer);
-    });
-
-    // generamos los partidos para el filtro de partidos
-    availableMatchEvents.clear();
-
-    List<MatchEvent> matchEvents = contest.matchEvents;
-    for (MatchEvent match in matchEvents) {
-      availableMatchEvents.add({
-          "id": match.templateMatchEventId,
-          "texto": match.soccerTeamA.shortName + '-' + match.soccerTeamB.shortName + "<br>" + DateTimeService.formatDateTimeShort(match.startDate)
-        });
-    }
   }
 
   void alertDismiss() {
@@ -498,10 +472,9 @@ class EnterContestCtrl implements DetachAware {
 
     fieldPosFilter = null;
     nameFilter = null;
+    matchFilter = null;
 
-    setMatchFilterClass(ALL_MATCHES);
-
-    _filterList={};
+    _filterList = {};
     _refreshFilter();
   }
 
@@ -573,7 +546,6 @@ class EnterContestCtrl implements DetachAware {
 
       // Con esto llamamos a funciones de jQuery
       JsUtils.runJavascript('#infoContestModal', 'modal', null);
-
     }
     else { // Resto de versiones => mostramos el componente soccer_player_info_comp
       DivElement enterContestWrapper = querySelector('.enter-contest-wrapper');

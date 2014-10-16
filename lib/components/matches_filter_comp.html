@@ -1,0 +1,10 @@
+
+<div id="matchTeamsFilterContainer" class="match-teams-filter"> <!-- ng-class="{'contest-info-tab-active': comp.isActiveContestInfoTab()}"> -->
+  <button class="btn btn-default button-filtro-team" id="match-all" ng-click="comp.selectedOption = comp.ALL_MATCHES">Todos los<br>partidos</button>
+  <button class="btn btn-default button-filtro-team" ng-repeat="match in comp.availableMatchEvents" ng-bind-html="match.texto" id="match-{{match.id}}" 
+          ng-click="comp.selectedOption = match.id"></button>
+</div>
+
+<select id="match-filter" class="match-selector-filter" ng-model="comp.selectedOption">
+  <option ng-repeat="match in comp.availableMatchEventsSelect" id="match-{{match.id}}" value="{{$index + 1}}" ng-value="match.id">{{match.texto}}</option>
+</select>

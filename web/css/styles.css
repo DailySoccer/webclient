@@ -5695,8 +5695,8 @@ button.close {
 .soccer-player-list-header-table:after,
 .soccer-players-list .soccer-players-list-slot:before,
 .soccer-players-list .soccer-players-list-slot:after,
-.matches-filter:before,
-.matches-filter:after,
+#matchesFilterWrapper .matches-filter:before,
+#matchesFilterWrapper .matches-filter:after,
 #loginRoot:before,
 #loginRoot:after,
 #joinRoot:before,
@@ -5786,7 +5786,7 @@ button.close {
 .enter-contest-actions-wrapper:after,
 .soccer-player-list-header-table:after,
 .soccer-players-list .soccer-players-list-slot:after,
-.matches-filter:after,
+#matchesFilterWrapper .matches-filter:after,
 #loginRoot:after,
 #joinRoot:after,
 #rememberPasswordRoot:after,
@@ -16140,13 +16140,13 @@ textarea.soccer-players-filter .name-player-input-filter {
     border-radius: 4px;
   }
 }
-.matches-filter {
+#matchesFilterWrapper .matches-filter {
   background-color: #ecf0f1;
   margin-left: 0;
   margin-right: 0;
   padding: -1px 5px 5px 5px;
 }
-.matches-filter .button-filtro-team {
+#matchesFilterWrapper .matches-filter .button-filtro-team {
   position: relative;
   min-height: 1px;
   padding-left: 15px;
@@ -16162,36 +16162,40 @@ textarea.soccer-players-filter .name-player-input-filter {
   line-height: 15px;
 }
 @media (max-width: 767px) {
-  .matches-filter .button-filtro-team {
+  #matchesFilterWrapper .matches-filter .button-filtro-team {
     display: none !important;
   }
 }
 @media (min-width: 768px) {
-  .matches-filter .button-filtro-team {
+  #matchesFilterWrapper .matches-filter .button-filtro-team {
     float: left;
     width: 8.33333333%;
   }
 }
-.matches-filter .button-filtro-team:active,
-.matches-filter .button-filtro-team:focus,
-.matches-filter .button-filtro-team:hover,
-.matches-filter .button-filtro-team:visited {
+#matchesFilterWrapper .matches-filter .button-filtro-team:active,
+#matchesFilterWrapper .matches-filter .button-filtro-team:focus,
+#matchesFilterWrapper .matches-filter .button-filtro-team:hover,
+#matchesFilterWrapper .matches-filter .button-filtro-team:visited {
   outline: none;
 }
-.matches-filter .active {
+#matchesFilterWrapper .matches-filter .active {
   background-color: #ffffff;
   color: #777777;
   box-shadow: none !important;
   outline: none !important;
 }
-.matches-filter .active:active,
-.matches-filter .active:hover,
-.matches-filter .active:focus,
-.matches-filter .active:visited {
+#matchesFilterWrapper .matches-filter .active:active,
+#matchesFilterWrapper .matches-filter .active:hover,
+#matchesFilterWrapper .matches-filter .active:focus,
+#matchesFilterWrapper .matches-filter .active:visited {
   color: #777777;
 }
-.matches-selector-filter {
-  margin: 10px 0px 0px 0px;
+@media (max-width: 767px) {
+  #matchesFilterWrapper {
+    padding: 10px 10px 0px 10px;
+  }
+}
+#matchesFilterWrapper .matches-selector-filter {
   display: block;
   width: 100%;
   height: 34px;
@@ -16208,44 +16212,44 @@ textarea.soccer-players-filter .name-player-input-filter {
   -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
-.matches-selector-filter:focus {
+#matchesFilterWrapper .matches-selector-filter:focus {
   border-color: #66afe9;
   outline: 0;
   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
   box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
 }
-.matches-selector-filter::-moz-placeholder {
+#matchesFilterWrapper .matches-selector-filter::-moz-placeholder {
   color: #999999;
   opacity: 1;
 }
-.matches-selector-filter:-ms-input-placeholder {
+#matchesFilterWrapper .matches-selector-filter:-ms-input-placeholder {
   color: #999999;
 }
-.matches-selector-filter::-webkit-input-placeholder {
+#matchesFilterWrapper .matches-selector-filter::-webkit-input-placeholder {
   color: #999999;
 }
-.matches-selector-filter[disabled],
-.matches-selector-filter[readonly],
-fieldset[disabled] .matches-selector-filter {
+#matchesFilterWrapper .matches-selector-filter[disabled],
+#matchesFilterWrapper .matches-selector-filter[readonly],
+fieldset[disabled] #matchesFilterWrapper .matches-selector-filter {
   cursor: not-allowed;
   background-color: #eeeeee;
   opacity: 1;
 }
-textarea.matches-selector-filter {
+textarea#matchesFilterWrapper .matches-selector-filter {
   height: auto;
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  .matches-selector-filter {
+  #matchesFilterWrapper .matches-selector-filter {
     display: none !important;
   }
 }
 @media (min-width: 992px) and (max-width: 1199px) {
-  .matches-selector-filter {
+  #matchesFilterWrapper .matches-selector-filter {
     display: none !important;
   }
 }
 @media (min-width: 1200px) {
-  .matches-selector-filter {
+  #matchesFilterWrapper .matches-selector-filter {
     display: none !important;
   }
 }

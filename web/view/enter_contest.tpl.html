@@ -9,13 +9,13 @@
       <li class="active"><a role="tab" data-toggle="tab" ng-click="ctrl.tabChange('lineup-tab-content')">Tu alineación</a></li>
       <li><a role="tab" data-toggle="tab" ng-click="ctrl.tabChange('contest-info-tab-content')">Info torneo</a></li>
     </ul>
-
-    <matches-filter contest="ctrl.contest" selected-option="ctrl.matchFilter"></matches-filter>
-  
+     
     <div id="enterContest">
       <!-- Version Desktop-->
       <div ng-if="ctrl.scrDet.isDesktop">
-
+      
+        <matches-filter contest="ctrl.contest" selected-option="ctrl.matchFilter"></matches-filter>
+      
         <div class="enter-contest-soccer-players-wrapper">
           <div class="enter-contest-soccer-players">
            <soccer-players-filter name-filter="ctrl.nameFilter" field-pos-filter="ctrl.fieldPosFilter"></soccer-players-filter>
@@ -54,6 +54,9 @@
           <div class="tab-content">
 
             <div class="tab-pane active" id="lineup-tab-content">
+            
+                <!-- Este sera el selector de partidos en "grande", con botones-->
+                <matches-filter contest="ctrl.contest" selected-option="ctrl.matchFilter" ng-if="ctrl.scrDet.isSmScreen"></matches-filter>
 
                 <div class="enter-contest-actions-wrapper">
                   <div class="total-salary"><span ng-class="ctrl.getMyTotalSalaryClasses()">{{ctrl.availableSalary}}€</span></div>
@@ -70,9 +73,13 @@
                     <lineup-selector ng-show="!ctrl.isSelectingSoccerPlayer || ctrl.scrDet.isSmScreen"></lineup-selector>
                   </div>
                 </div>
-                
+                                
                 <div class="enter-contest-soccer-players-wrapper" ng-show="ctrl.isSelectingSoccerPlayer || ctrl.scrDet.isSmScreen">
                   <div class="enter-contest-soccer-players">
+                  
+                    <!-- Este es el desplegable, para todas las versiones que moviles -->
+                    <matches-filter contest="ctrl.contest" selected-option="ctrl.matchFilter" ng-if="!ctrl.scrDet.isSmScreen"></matches-filter>
+                                                     
                     <soccer-players-filter name-filter="ctrl.nameFilter" field-pos-filter="ctrl.fieldPosFilter"></soccer-players-filter>
                     <soccer-players-list contest="ctrl.contest" on-row-click="ctrl.onRowClick(soccerPlayerId)"></soccer-players-list>
                   </div>

@@ -7,8 +7,6 @@ if [[ $1 != "" ]]
         mode=$1
 fi
 
-./compile_less.sh
-
 if [[ $mode=="release" ]]
     then
     # Aplicamos cambios de release
@@ -22,6 +20,7 @@ if [[ $mode=="release" ]]
     git push -f origin release
 fi
 
+./compile_less.sh
 
 # mode puede ser debug|relesae
 pub build --mode=$mode

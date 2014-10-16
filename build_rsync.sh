@@ -12,3 +12,5 @@ fi
 # mode puede ser debug|relesae
 pub build --mode=$mode
 rsync -r  -v --copy-unsafe-links build/web/. ../backend/public/
+
+git checkout -- .

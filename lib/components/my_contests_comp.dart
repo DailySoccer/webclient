@@ -12,7 +12,6 @@ import 'package:webclient/services/refresh_timers_service.dart';
 @Component(
   selector: 'my-contests',
   templateUrl: 'packages/webclient/components/my_contests_comp.html',
-  publishAs: 'comp',
   useShadowDom: false
 )
 

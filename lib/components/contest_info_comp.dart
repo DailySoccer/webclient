@@ -12,7 +12,6 @@ import 'package:webclient/services/flash_messages_service.dart';
 @Component(
   selector: 'contest-info',
   templateUrl: 'packages/webclient/components/contest_info_comp.html',
-  publishAs: 'comp',
   useShadowDom: false
 )
 class ContestInfoComp implements ShadowRootAware {
@@ -23,14 +22,15 @@ class ContestInfoComp implements ShadowRootAware {
 
   @NgTwoWay("contest-data")
   Contest get contestData => _contestData;
-  void set contestData(Contest value) {
+  void    set contestData(Contest value) {
     _contestData = value;
+
     if (value != null) {
       updateContestInfo(value.contestId);
     }
   }
 
-  ContestInfoComp(Scope scope, this._router, this._contestService, this._flashMessage) {
+  ContestInfoComp(this._router, this._contestService, this._flashMessage) {
 
     currentInfoData = {  /*  hay que utilizar esta variable para meter los datos de este componente  */
       'description'     : 'cargando datos...',
@@ -46,7 +46,7 @@ class ContestInfoComp implements ShadowRootAware {
     };
   }
 
-  void onShadowRoot(root) {
+  void onShadowRoot(emulatedRoot) {
     if (_router.activePath.length > 0) {
       if ( _router.activePath[0].name == 'lobby') {
         isPopUp = true;

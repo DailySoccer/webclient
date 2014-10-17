@@ -17,7 +17,7 @@ class SoccerTeam {
   SoccerTeam.referenceInit(this.templateSoccerTeamId);
 
   factory SoccerTeam.fromJsonObject(JsonObject json, ContestReferences references) {
-    SoccerTeam soccerTeam = references.getSoccerTeamById(json.containsKey("templateSoccerTeamId") ? json.templateSoccerTeamId : json._id);
+    SoccerTeam soccerTeam = references.getSoccerTeamById(json.containsKey("templateSoccerTeamId") ? json.templateSoccerTeamId : json["_id"]);
     return soccerTeam._initFromJsonObject(json, references);
   }
 

@@ -37,7 +37,6 @@ abstract class ServerService {
   Future<JsonObject> isSimulatorActivated();
   Future<JsonObject> getCurrentDate();
 
-
   Future<JsonObject> getScoringRules();
 }
 

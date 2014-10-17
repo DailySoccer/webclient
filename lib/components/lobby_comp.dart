@@ -14,10 +14,8 @@ import 'package:webclient/services/refresh_timers_service.dart';
 @Component(
   selector: 'lobby',
   templateUrl: 'packages/webclient/components/lobby_comp.html',
-  publishAs: 'comp',
   useShadowDom: false
 )
-
 class LobbyComp implements ShadowRootAware, DetachAware {
   static const String FILTER_CONTEST_NAME = "FILTER_CONTEST_NAME";
   static const String FILTER_ENTRY_FEE    = "FILTER_ENTRY_FEE";
@@ -182,20 +180,25 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     _freeContestCount   = activeContestsService.activeContests.where((contest) => contest.tournamentType == Contest.TOURNAMENT_FREE).toList().length;
   }
 
-  void onShadowRoot(root) {
+  void onShadowRoot(emulatedRoot) {
+
     // Metemos en la lista de botones de ordenación los elementos que ordenan la lista
     _sortingButtons = document.querySelectorAll('.sorting-button');
+
     // Nos guardamos la lista de clases por defecto que traen los botones de filtros.
     _sortingButtonClassesByDefault = _sortingButtons.first.classes.toList();
-    //capturamos el botón que abre el panel de filtros
+
+    // Capturamos el botón que abre el panel de filtros
     _filtersButtons = document.querySelectorAll('.filters-button');
     _filtersButtonClassesByDefault = _filtersButtons.first.classes.toList();
-    //Al iniciar, tiene está cerrado por lo tanto le añadimos la clase que pone la flecha hacia abajo
+
+    // Al iniciar, tiene está cerrado por lo tanto le añadimos la clase que pone la flecha hacia abajo
     _filtersButtons.forEach((value) => value.classes.add('toggleOff'));
+
     // Inicializamos el control que dibuja el slider para el filtro por entrada
     initSliderRange();
 
-    //Nos subscribimos a los eventos de apertura y cierre de los filtros
+    // Nos subscribimos a los eventos de apertura y cierre de los filtros
     JsUtils.runJavascript('#filtersPanel', 'on', {'hidden.bs.collapse': onCloseFiltersPanel});
     JsUtils.runJavascript('#filtersPanel', 'on', {'shown.bs.collapse': onOpenFiltersPanel});
   }

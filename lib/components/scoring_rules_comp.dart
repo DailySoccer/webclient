@@ -8,10 +8,8 @@ import 'package:webclient/models/soccer_player.dart';
 @Component(
   selector:     'scoring-rules',
   templateUrl:  'packages/webclient/components/scoring_rules_comp.html',
-  publishAs:    'comp',
   useShadowDom: false
 )
-
 class ScoringRulesComp {
 
   List<Map> AllPlayers;

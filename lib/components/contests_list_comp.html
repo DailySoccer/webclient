@@ -1,29 +1,29 @@
 <div class="contests-list-root">
-  <div class="contest-row" ng-repeat="contest in comp.currentPageList">
+  <div class="contest-row" ng-repeat="contest in currentPageList">
 
-    <div class="column-contest-name" ng-click="comp.onRow(contest)">
+    <div class="column-contest-name" ng-click="onRow(contest)">
       <div class="column-name">{{contest.name}}</div>
       <div class="column-description">{{contest.description}}</div>
     </div>
 
-    <div class="column-contest-empty" ng-click="comp.onRow(contest)" ng-if="contest.isLive"></div>
+    <div class="column-contest-empty" ng-click="onRow(contest)" ng-if="contest.isLive"></div>
 
-    <div class="column-contest-price" ng-click="comp.onRow(contest)" ng-if="!contest.isLive && !contest.isHistory">
+    <div class="column-contest-price" ng-click="onRow(contest)" ng-if="!contest.isLive && !contest.isHistory">
       <div class="column-contest-price-content"><span>{{contest.entryFee}}€</span></div>
       <div class="column-contest-price-header">ENTRADA</div>
       <!-- torneo gratis -->
-      <!--<div ng-if="comp.isFreeContest(contest)"><img src="images/iconFree.png" alt="GRATIS"></div>-->
+      <!--<div ng-if="isFreeContest(contest)"><img src="images/iconFree.png" alt="GRATIS"></div>-->
     </div>
 
-    <div class="column-contest-position" ng-click="comp.onRow(contest)" ng-if="contest.isLive || contest.isHistory">
-      <div class="column-contest-position-content"><span>{{comp.getMyPosition(contest)}}</span></div>
+    <div class="column-contest-position" ng-click="onRow(contest)" ng-if="contest.isLive || contest.isHistory">
+      <div class="column-contest-position-content"><span>{{getMyPosition(contest)}}</span></div>
       <div class="column-contest-position-header">DE {{contest.maxEntries}}</div>
     </div>
 
-    <div class="column-contest-prize" ng-click="comp.onRow(contest)" ng-if="!contest.isLive">
+    <div class="column-contest-prize" ng-click="onRow(contest)" ng-if="!contest.isLive">
       <div class="column-contest-prize-content">
         <span ng-if="!contest.isHistory">{{contest.prizePool}}€</span>
-        <span ng-if="contest.isHistory">{{comp.getMyPrize(contest)}}€</span>
+        <span ng-if="contest.isHistory">{{getMyPrize(contest)}}€</span>
       </div>
       <div class="column-contest-prize-header">
         <div class="column-contest-prize-header-title">PREMIO</div>
@@ -31,22 +31,22 @@
       </div>
     </div>
 
-    <div class="column-contest-points" ng-click="comp.onRow(contest)" ng-if="contest.isLive">
-      <div class="column-contest-points-content"><span>{{comp.getMyFantasyPoints(contest)}}</span></div>
+    <div class="column-contest-points" ng-click="onRow(contest)" ng-if="contest.isLive">
+      <div class="column-contest-points-content"><span>{{getMyFantasyPoints(contest)}}</span></div>
       <div class="column-contest-points-header">PUNTOS</div>
     </div>
 
-    <div class="column-contest-start-date" ng-click="comp.onRow(contest)" ng-if="!contest.isLive">
-      <div class="column-start-date-day">{{comp.dateInfo(contest.startDate)}}</div>
-      <div class="column-start-date-hour">{{comp.timeInfo(contest.startDate)}}</div>
+    <div class="column-contest-start-date" ng-click="onRow(contest)" ng-if="!contest.isLive">
+      <div class="column-start-date-day">{{dateInfo(contest.startDate)}}</div>
+      <div class="column-start-date-hour">{{timeInfo(contest.startDate)}}</div>
     </div>
 
     <div class="column-contest-action">
-      <button type="button" class="btn" ng-click="comp.onAction(contest)">{{comp.actionButtonTitle}}</button>
+      <button type="button" class="btn" ng-click="onAction(contest)">{{actionButtonTitle}}</button>
     </div>
 
   </div>
 
-  <paginator on-page-change="comp.onPageChange(currentPage, itemsPerPage)" list-length="comp.contestsListFiltered.length"></paginator>
+  <paginator on-page-change="onPageChange(currentPage, itemsPerPage)" list-length="contestsListFiltered.length"></paginator>
 
 </div>

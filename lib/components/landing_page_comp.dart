@@ -9,7 +9,6 @@ import 'package:webclient/services/screen_detector_service.dart';
 @Component(
    selector: 'landing-page',
    templateUrl: 'packages/webclient/components/landing_page_comp.html',
-   publishAs: 'comp',
    useShadowDom: false
 )
 class LandingPageComp implements ShadowRootAware, DetachAware {
@@ -40,7 +39,7 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
 */
   LandingPageComp(this._router, this._profileService, this.scrDet);
 
-  void onShadowRoot(var root) {
+  void onShadowRoot(emulatedRoot) {
 
     if (_profileService.isLoggedIn) {
       _router.go("lobby", {});

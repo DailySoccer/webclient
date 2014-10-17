@@ -1,0 +1,64 @@
+<div id="loginRoot">
+  <div id="loginBox" class="main-box">
+
+    <div class="panel window-slide-in">
+
+      <!-- Header -->
+      <div class="panel-heading">
+        <div class="panel-title">ENTRA</div>
+        <button type="button" class="close" ng-click="navigateTo('landing_page',{}, $event)">
+          <span class="glyphicon glyphicon-remove"></span>
+        </button>
+      </div>
+
+      <div class="panel-body" ng-cloak>
+
+        <form id="loginForm" class="form-horizontal" ng-submit="login()" data-toggle="validator" role="form" formAutofillFix>
+
+          <div class="form-description">Introduce tu cuenta de correo electrónico y tu contraseña para acceder a los torneos.</div>
+          <!-- MAIL -->
+          <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+            <input id="login-mail" type="email" ng-model="email" name="email" placeholder="Correo Electrónico" class="form-control" ng-focus="">
+          </div>
+          <!-- PÂSSWORD -->
+          <div class="input-group">
+            <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
+            <input id="login-password" type="password" ng-model="password" name="password" placeholder="password" class="form-control">
+          </div>
+          <!-- REMEMBER ME -->
+          <div class="remember-forgot-group">
+            <!--<div class="checkbox">
+              <label><input id="login-remember" type="checkbox" ng-model="rememberMe" name="rememberMe"> Recuerdame </label>
+            </div>-->
+            <div class="forget-pass">
+              <a ng-click="navigateTo('remember_password', {}, $event)">¿Olvidaste tu contraseña?</a>
+            </div>
+          </div>
+          <!-- BUTTONS -->
+          <div class="input-group">
+            <div class="new-row">
+              <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">ENTRAR</button>
+              <button id="btnCancelLogin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCELAR</button>
+            </div>
+          </div>
+          <!-- Error de login/password -->
+          <div class="input-group">
+            <div class="new-row">
+              <div id="mailPassError" class="login-err-text">ERROR DE LOGIN. El mail y/o la contraseña no son correctos.</div>
+            </div>
+          </div>
+          <!-- GOTO REGISTER -->
+          <div class="input-group">
+            <div class="new-row">
+              <div class="separator-top">¿Aún no tienes cuenta? <a ng-click="navigateTo('join', {}, $event)"> Regístrate aquí! </a></div>
+            </div>
+          </div>
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>

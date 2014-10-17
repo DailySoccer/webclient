@@ -1,11 +1,11 @@
- <div ng-if="comp.isPopUp">
+ <div ng-if="isPopUp">
     <div class="modal-info-head">
         <div class="contest-info-header-row">
 
             <div class="column-name">
                 <div class="inner-content">
-                    <span class="title-text">{{comp.currentInfoData['description']}}</span>
-                    <span class="content-text">{{comp.currentInfoData['name']}}</span>
+                    <span class="title-text">{{currentInfoData['description']}}</span>
+                    <span class="content-text">{{currentInfoData['name']}}</span>
                 </div>
             </div>
 
@@ -15,7 +15,7 @@
                 </div>
                 <div class="inner-content">
                     <span class="title-text">ENTRADA</span>
-                    <span class="content-text">{{comp.currentInfoData['entry']}}€</span>
+                    <span class="content-text">{{currentInfoData['entry']}}€</span>
                 </div>
             </div>
 
@@ -25,7 +25,7 @@
                 </div>
                 <div class="inner-content">
                     <span class="title-text">PREMIOS</span>
-                    <span class="content-text">{{comp.currentInfoData['prize']}}€</span>
+                    <span class="content-text">{{currentInfoData['prize']}}€</span>
                 </div>
             </div>
 
@@ -41,11 +41,11 @@
         <div class="tabs-background">
           <!-- Nav tabs -->
           <ul class="contest-info-tabs " id="modalInfoContestTabs">
-              <li class="tab active"><a  data-toggle="tab" ng-click="comp.tabChange('info')">INFORMACIÓN</a></li>
-              <li class="tab"><a  data-toggle="tab" ng-click="comp.tabChange('contestants')">PARTICIPANTES</a></li>
-              <li class="tab"><a  data-toggle="tab" ng-click="comp.tabChange('prizes')">PREMIOS</a></li>
+              <li class="tab active"><a  data-toggle="tab" ng-click="tabChange('info')">INFORMACIÓN</a></li>
+              <li class="tab"><a  data-toggle="tab" ng-click="tabChange('contestants')">PARTICIPANTES</a></li>
+              <li class="tab"><a  data-toggle="tab" ng-click="tabChange('prizes')">PREMIOS</a></li>
               <li class="buton-place">
-                <button id="btn-go-enter-contest" class="btn btn-primary" ng-click="comp.enterContest()">ENTRAR</button>
+                <button id="btn-go-enter-contest" class="btn btn-primary" ng-click="enterContest()">ENTRAR</button>
               </li>
           </ul>
         </div>
@@ -55,13 +55,13 @@
 
                 <!-- Tab panes -->
                 <div class="tab-pane active" id="info">
-                    <p class="instructions">{{comp.currentInfoData['rules']}}</p>
-                    <div class="start-date">COMIENZA EL {{comp.currentInfoData['startDateTime']}}</div>
+                    <p class="instructions">{{currentInfoData['rules']}}</p>
+                    <div class="start-date">COMIENZA EL {{currentInfoData['startDateTime']}}</div>
 
                     <div class="matches-involved">
-                        <div class="match"   ng-repeat="match in comp.currentInfoData['matchesInvolved']">
+                        <div class="match"   ng-repeat="match in currentInfoData['matchesInvolved']">
                             <p class="teams">{{match.soccerTeamA.shortName}} - {{match.soccerTeamB.shortName}}</p>
-                            <p class="date">{{comp.formatMatchDate(match.startDate)}}</p>
+                            <p class="date">{{formatMatchDate(match.startDate)}}</p>
                         </div>
                     </div>
                     <div class="clearfix"></div>
@@ -75,7 +75,7 @@
                 <div class="tab-pane" id="contestants">
                 <div class="contestant-list-wrapper ">
                   <div class="contestant-list">
-                    <div class="contestant-element"ng-repeat="contestant in comp.currentInfoData['contestants']">
+                    <div class="contestant-element"ng-repeat="contestant in currentInfoData['contestants']">
                         <div class="contestant-position">{{$index + 1}}º</div>
                         <div class="contestant-name">{{contestant.name}}</div>
                         <div class="contestant-points">{{contestant.wins + ' '}}<span class="prize-currency">Ganados</span></div>
@@ -85,7 +85,7 @@
                   <!--
                     <div class="list-wrapper">
                         <div class="contestant-list">
-                            <div class="contestant-element"ng-repeat="contestant in comp.currentInfoData['contestants']">
+                            <div class="contestant-element"ng-repeat="contestant in currentInfoData['contestants']">
                                 <div class="contestant-position">{{$index + 1}}º</div>
                                 <div class="contestant-name">{{contestant.name}}</div>
                                 <div class="contestant-points">{{contestant.wins + ' '}}<span class="prize-currency">Ganados</span></div>
@@ -98,11 +98,11 @@
                 <div class="tab-pane" id="prizes">
 
                   <div class="prizes-wrapper">
-                    <div ng-if="comp.currentInfoData['prizes'].length == 0" class="no-prizes">
+                    <div ng-if="currentInfoData['prizes'].length == 0" class="no-prizes">
                       Este concurso no tiene premios
                     </div>
                     <div id="prizes-list">
-                      <div class="prize-element-wrapper" ng-repeat="prize in comp.currentInfoData['prizes']">
+                      <div class="prize-element-wrapper" ng-repeat="prize in currentInfoData['prizes']">
                         <div class="prize-element">
                             {{$index + 1}}º &nbsp;&nbsp; {{prize.value | number: 0.00}}€
                         </div>
@@ -118,14 +118,13 @@
     </div>
 </div>
 
-<div ng-if="!comp.isPopUp">
+<div ng-if="!isPopUp">
   <div id="contestInfoTabbed">
-
-    <p class="title">{{comp.currentInfoData['rules']}}</p>
+    <p class="title">{{currentInfoData['rules']}}</p>
     <div class="matches-involved">
-        <div class="match"   ng-repeat="match in comp.currentInfoData['matchesInvolved']">
+        <div class="match"   ng-repeat="match in currentInfoData['matchesInvolved']">
             <p class="teams">{{match.soccerTeamA.shortName}} - {{match.soccerTeamB.shortName}}</p>
-            <p class="date">{{comp.formatMatchDate(match.startDate)}}</p>
+            <p class="date">{{formatMatchDate(match.startDate)}}</p>
         </div>
     </div>
     <div class="clearfix"></div>
@@ -142,10 +141,10 @@
     <p class="title">PREMIOS</p>
     <div class="prizes-wrapper">
         <div id="prizes-list">
-          <div ng-if="comp.currentInfoData['prizes'].length == 0" class="no-prizes">
+          <div ng-if="currentInfoData['prizes'].length == 0" class="no-prizes">
             Este concurso no tiene premios
           </div>
-          <div class="prize-element-wrapper" ng-repeat="prize in comp.currentInfoData['prizes']">
+          <div class="prize-element-wrapper" ng-repeat="prize in currentInfoData['prizes']">
             <div class="prize-element">
                 {{$index + 1}}º &nbsp;&nbsp; {{prize.value | number: 0.00}}€
             </div>
@@ -158,7 +157,7 @@
 
     <p class="title">JUGADORES</p>
     <div class="contestant-list">
-        <div class="contestant-element"ng-repeat="contestant in comp.currentInfoData['contestants']">
+        <div class="contestant-element"ng-repeat="contestant in currentInfoData['contestants']">
             <div class="contestant-position">{{$index + 1}}º</div>
             <div class="contestant-name">{{contestant.name}}</div>
             <div class="contestant-points">{{contestant.wins + ' '}}<span class="prize-currency">Ganados</span></div>

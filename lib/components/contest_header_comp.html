@@ -1,38 +1,33 @@
-<div id="headerContestWidget">
+<div id="headerContestWidget" ng-cloack>
 
-    <div class="contest-name">{{contestHeader.contestHeaderInfo['description']}}</div>
+    <div class="contest-name">{{contestHeaderInfo['description']}}</div>
 
-    <div class="contest-explanation">{{contestHeader.contestHeaderInfo['contestType']}} {{contestHeader.contestHeaderInfo['contestantCount']}}</div>
+    <div class="contest-explanation">{{contestHeaderInfo['contestType']}} {{contestHeaderInfo['contestantCount']}}</div>
 
     <div class="contest-coins">
 
       <div class="contest-price">
         <div class="contest-coins-header">ENTRADA</div>
-        <div class="contest-coins-content"><span>{{contestHeader.contestHeaderInfo['entryPrice']}}</span></div>
+        <div class="contest-coins-content"><span>{{contestHeaderInfo['entryPrice']}}</span></div>
       </div>
 
       <div class="contest-prize">
         <div class="contest-coins-header">
           <div class="contest-coins-header-title">PREMIOS</div>
-          <div class="contest-coins-header-prize-type">{{contestHeader.contestHeaderInfo['prizeType']}}</div>
+          <div class="contest-coins-header-prize-type">{{contestHeaderInfo['prizeType']}}</div>
         </div>
-        <div class="contest-coins-content"><span>{{contestHeader.contestHeaderInfo['prize']}}</span></div>
+        <div class="contest-coins-content"><span>{{contestHeaderInfo['prize']}}</span></div>
       </div>
 
     </div>
 
-    <div class="contest-start-date">{{contestHeader.contestHeaderInfo['startTime']}}&nbsp;</div>
-    <div class="countdown-text" ng-if="!contestHeader.scrDet.isDesktop">
-      <span class="time-countdown">{{contestHeader.contestHeaderInfo['countdownDate']}}</span><span class="text-countdown">{{contestHeader.contestHeaderInfo['textCountdownDate']}}</span>
+    <div class="contest-start-date">{{contestHeaderInfo['startTime']}}&nbsp;</div>
+    <div class="countdown-text">
+      <span class="time-countdown">{{contestHeaderInfo['countdownDate']}}</span><span class="text-countdown">{{contestHeaderInfo['textCountdownDate']}}</span>
     </div>
 
-    <div class="close-contest"><button type="button" class="close" ng-click="contestHeader.goToParent()"><span class="glyphicon glyphicon-remove"></span></button></div>
+    <div class="close-contest"><button type="button" class="close" ng-click="goToParent()"><span class="glyphicon glyphicon-remove"></span></button></div>
 
-</div>
-
-<div class="countdown-text" ng-if="contestHeader.scrDet.isDesktop && contestHeader.isEnterContestMode">
-  <span class="choose-player-text">ELIGE 11 JUGADORES</span>
-  <span class="time-countdown">{{contestHeader.contestHeaderInfo['countdownDate']}}</span><span class="text-countdown">{{contestHeader.contestHeaderInfo['textCountdownDate']}}</span>
 </div>
 
 <div class="clearfix"></div>

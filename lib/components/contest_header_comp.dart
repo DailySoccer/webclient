@@ -10,19 +10,9 @@ import 'package:webclient/services/refresh_timers_service.dart';
 @Component(
     selector: 'contest-header',
     templateUrl: 'packages/webclient/components/contest_header_comp.html',
-    publishAs: 'contestHeader',
     useShadowDom: false
 )
-class ContestHeaderComp implements DetachAware{
-
-  static const int ENTER_CONTEST = 0;
-  static const int VIEW_CONTEST = 1;
-  static const int VIEW_CONTEST_ENTRY = 2;
-
-  bool get isEnterContestMode => _mode == ENTER_CONTEST;
-
-  // torneo gratis
-  //bool isFreeContest = false;
+class ContestHeaderComp implements DetachAware {
 
   Map<String, dynamic> contestHeaderInfo = {
     'description':      'cargando datos...',
@@ -44,23 +34,6 @@ class ContestHeaderComp implements DetachAware{
 
     if (value != null) {
       _refreshHeader();
-      // torneo gratis
-      //isFreeContest = _contestInfo.entryFee == 0;
-    }
-  }
-
-  @NgOneWay("mode")
-  void set viewMode(String value) {
-    switch(value) {
-      case "ENTER_CONTEST":
-        _mode = ENTER_CONTEST;
-        break;
-      case "VIEW_CONTEST":
-        _mode = VIEW_CONTEST;
-        break;
-      case "VIEW_CONTEST_ENTRY":
-        _mode = VIEW_CONTEST_ENTRY;
-        break;
     }
   }
 
@@ -122,5 +95,4 @@ class ContestHeaderComp implements DetachAware{
   RouteProvider _routeProvider;
 
   Contest _contestInfo;
-  int _mode;
 }

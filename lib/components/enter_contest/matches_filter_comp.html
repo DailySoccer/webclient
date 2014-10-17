@@ -1,0 +1,11 @@
+<div id="matchesFilterWrapper">
+  <div id="matchesFilter" class="matches-filter">
+    <button class="btn btn-default button-filtro-team" ng-repeat="match in availableMatchEvents" ng-bind-html="match.texto" id="match-{{match.id}}" 
+            ng-click="optionsSelectorValue = match.id">
+    </button>
+  </div>
+  
+  <select id="matchesSelectorFilter" class="matches-selector-filter" ng-model="optionsSelectorValue">
+    <option ng-repeat="match in availableMatchEventsSelect" id="option-match-{{match.id}}" value="{{$index + 1}}" ng-value="match.id">{{match.texto}}</option>
+  </select>
+</div>

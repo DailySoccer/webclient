@@ -3,76 +3,76 @@
 
 <!-- Barra azul de información -->
 <div id="lobbyTopInfobar">
-  <p>{{comp.infoBarText}}</p>
+  <p>{{infoBarText}}</p>
 </div>
 
 <!-- filtros para las versiones a partir de SM -->
 <div id="infoAndFilterHeader">
-  <div id="contestSortsFilters" ng-show="comp.sortsAndFiltersVisibles()">
-    <div class="choosed-filters-container" ng-show="comp.scrDet.isXsScreen">
-        <div class="competition-filter-name" ng-bind-html="comp.xsFilterResume">
+  <div id="contestSortsFilters" ng-show="sortsAndFiltersVisibles()">
+    <div class="choosed-filters-container" ng-show="scrDet.isXsScreen">
+        <div class="competition-filter-name" ng-bind-html="xsFilterResume">
         </div>
 
         <div class="filterToggler">
-          <div id="filtersButtonMobile" type="button" class="btn filters-button" ng-click="comp.toggleFilterMenu()" data-toggle="collapse" data-target="#filtersPanel">Filtros</div>
+          <div id="filtersButtonMobile" type="button" class="btn filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse" data-target="#filtersPanel">Filtros</div>
         </div>
         <!--<div class="filter-list">
-          <span class="filter-choosed" ng-repeat="filter in comp.xsFilterList">{{filter}}</span>
+          <span class="filter-choosed" ng-repeat="filter in xsFilterList">{{filter}}</span>
         </div>-->
     </div>
 
     <div id="contestFastSort">
       <span class="filter-text">Ordenar por: </span>
       <div class="btn-group" >
-        <div id="sortContestName"      type="button" class="btn sorting-button" ng-click="comp.sortListByField('sortContestName', 'contest-name')">Nombre</div>
-        <div id="sortContestEntryFee"  type="button" class="btn sorting-button" ng-click="comp.sortListByField('sortContestEntryFee', 'contest-entry-fee')">Entrada</div>
-        <div id="sortContestStartTime" type="button" class="btn sorting-button" ng-click="comp.sortListByField('sortContestStartTime', 'contest-start-time')">Comienzo</div>
+        <div id="sortContestName"      type="button" class="btn sorting-button" ng-click="sortListByField('sortContestName', 'contest-name')">Nombre</div>
+        <div id="sortContestEntryFee"  type="button" class="btn sorting-button" ng-click="sortListByField('sortContestEntryFee', 'contest-entry-fee')">Entrada</div>
+        <div id="sortContestStartTime" type="button" class="btn sorting-button" ng-click="sortListByField('sortContestStartTime', 'contest-start-time')">Comienzo</div>
       </div>
     </div>
 
     <div id="contestFastSearch">
-        <input class="searcher" type="text" placeholder="Buscar torneo" ng-model="comp.filterContestName" ng-keyUp="comp.filterByContestName()">
+        <input class="searcher" type="text" placeholder="Buscar torneo" ng-model="filterContestName" ng-keyUp="filterByContestName()">
     </div>
 
-    <div class="filterToggler"  ng-show="!comp.scrDet.isXsScreen">
-        <div id="filtersButtonDesktop" type="button" class="btn filters-button" ng-click="comp.toggleFilterMenu()" data-toggle="collapse">Filtros</div>
+    <div class="filterToggler"  ng-show="!scrDet.isXsScreen">
+        <div id="filtersButtonDesktop" type="button" class="btn filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse">Filtros</div>
     </div>
 
   </div>
 
   <div id="filtersPanel" class="collapse">
       <!-- Comentado temporalmente hasta que se utilice --
-      <div class="filter-column-competition" ng-if="!comp.scrDet.isXsScreen")>
+      <div class="filter-column-competition" ng-if="!scrDet.isXsScreen")>
         <p class="filter-title">COMPETICIÓN</p>
         <div class="filter-content">
           <div class="check-group-wrapper">
 
             <div class="button-check-ESP">
-              <input id="filtroleagueEsp" type="checkbox" ng-disabled="!comp.hasCompetitionsOf('leagueEsp')">
+              <input id="filtroleagueEsp" type="checkbox" ng-disabled="!hasCompetitionsOf('leagueEsp')">
               <label for="filtroleagueEsp">league Española</label>
             </div>
             <div class="button-check-UK">
-              <input id="filtroleagueUK" type="checkbox" ng-disabled="!comp.hasCompetitionsOf('leagueUK')">
+              <input id="filtroleagueUK" type="checkbox" ng-disabled="!hasCompetitionsOf('leagueUK')">
               <label for="filtroleagueUK">league Inglesa</label>
             </div>
             <div class="button-check-GER">
-              <input id="filtroleagueGER" type="checkbox" ng-disabled="!comp.hasCompetitionsOf('leagueGER')">
+              <input id="filtroleagueGER" type="checkbox" ng-disabled="!hasCompetitionsOf('leagueGER')">
               <label for="filtroleagueGER">league Alemana</label>
             </div>
             <div class="button-check-IT">
-              <input id="filtroleagueIT" type="checkbox" ng-disabled="!comp.hasCompetitionsOf('leagueIT')">
+              <input id="filtroleagueIT" type="checkbox" ng-disabled="!hasCompetitionsOf('leagueIT')">
               <label for="filtroleagueIT">league Italiana</label>
             </div>
             <div class="button-check-FR">
-              <input id="filtroleagueFR" type="checkbox" ng-disabled="!comp.hasCompetitionsOf('leagueFR')">
+              <input id="filtroleagueFR" type="checkbox" ng-disabled="!hasCompetitionsOf('leagueFR')">
               <label for="filtroleagueFR">league Francesa</label>
             </div>
             <div class="button-check-EU">
-              <input id="filtroleagueEUChampions" type="checkbox" ng-disabled="!comp.hasCompetitionsOf('leagueEUChampions')">
+              <input id="filtroleagueEUChampions" type="checkbox" ng-disabled="!hasCompetitionsOf('leagueEUChampions')">
               <label for="filtroleagueEUChampions">Europa Champions</label>
             </div>
             <div class="button-check-EU">
-              <input id="filtroleagueEUleague" type="checkbox" ng-disabled="!comp.hasCompetitionsOf('leagueEUleague')">
+              <input id="filtroleagueEUleague" type="checkbox" ng-disabled="!hasCompetitionsOf('leagueEUleague')">
               <label for="filtroleagueEUleague">Europa league</label>
             </div>
 
@@ -87,23 +87,23 @@
         <div class="filter-content">
             <div class="check-group-wrapper">
               <div class="button-check">
-                <input id="filtroFree" type="checkbox"  ng-disabled="!comp.hasTournamentsFree"
-                                                        ng-model="comp.isFreeTournamentChecked">
+                <input id="filtroFree" type="checkbox"  ng-disabled="!hasTournamentsFree"
+                                                        ng-model="isFreeTournamentChecked">
                 <label for="filtroFree">Gratis</label>
               </div>
               <div class="button-check">
-                <input id="filtroleague" type="checkbox"  ng-disabled="!comp.hasTournamentsLeague"
-                                                        ng-model="comp.isleagueTournamentChecked">
+                <input id="filtroleague" type="checkbox"  ng-disabled="!hasTournamentsLeague"
+                                                        ng-model="isleagueTournamentChecked">
                 <label for="filtroleague">league</label>
               </div>
               <div class="button-check">
-                <input id="filtroFiftyFifty" type="checkbox"  ng-disabled="!comp.hasTournamentsFiftyFifty"
-                                                              ng-model="comp.isFiftyFiftyTournamentChecked">
+                <input id="filtroFiftyFifty" type="checkbox"  ng-disabled="!hasTournamentsFiftyFifty"
+                                                              ng-model="isFiftyFiftyTournamentChecked">
                 <label for="filtroFiftyFifty">50/50</label>
               </div>
               <div class="button-check">
-                <input id="filtroHeadToHead" type="checkbox"  ng-disabled="!comp.hasTournamentsHeadToHead"
-                                                              ng-model="comp.isHeadToHeadTournamentChecked">
+                <input id="filtroHeadToHead" type="checkbox"  ng-disabled="!hasTournamentsHeadToHead"
+                                                              ng-model="isHeadToHeadTournamentChecked">
                 <label for="filtroHeadToHead">1 contra 1</label>
               </div>
             </div>
@@ -115,21 +115,21 @@
         <div class="filter-content">
             <div class="check-group-wrapper">
               <div class="button-check">
-                <input id="filtroPrincipiante" type="checkbox"  ng-disabled="!comp.hasBegginerTier"
-                                                                ng-model="comp.isBeginnerTierChecked"
-                                                                ng-click="comp.refreshTierFilter()">
+                <input id="filtroPrincipiante" type="checkbox"  ng-disabled="!hasBegginerTier"
+                                                                ng-model="isBeginnerTierChecked"
+                                                                ng-click="refreshTierFilter()">
                 <label for="filtroPrincipiante">Principiante</label>
               </div>
               <div class="button-check">
-                <input id="filtroEstandar" type="checkbox" ng-disabled="!comp.hasStandardTier"
-                                                           ng-model="comp.isStandardTierChecked"
-                                                           ng-click="comp.refreshTierFilter()">
+                <input id="filtroEstandar" type="checkbox" ng-disabled="!hasStandardTier"
+                                                           ng-model="isStandardTierChecked"
+                                                           ng-click="refreshTierFilter()">
                 <label for="filtroEstandar">Estandar</label>
               </div>
               <div class="button-check">
-                <input id="filtroExperto" type="checkbox" ng-disabled="!comp.hasSkilledTier"
-                                                          ng-model="comp.isSkilledTierChecked"
-                                                          ng-click="comp.refreshTierFilter()">
+                <input id="filtroExperto" type="checkbox" ng-disabled="!hasSkilledTier"
+                                                          ng-model="isSkilledTierChecked"
+                                                          ng-click="refreshTierFilter()">
                 <label for="filtroExperto">Experto</label>
               </div>
           </div>
@@ -139,8 +139,8 @@
       <div class="filter-column-entry-fee">
         <p class="filter-title">ENTRADA</p>
         <div class="filter-content">
-           <div class="entry-fee-value-min">MIN: {{comp.filterEntryFeeRangeMin | number:0}}€ </div>
-           <div class="entry-fee-value-max">MAX: {{comp.filterEntryFeeRangeMax | number:0}}€ </div>
+           <div class="entry-fee-value-min">MIN: {{filterEntryFeeRangeMin | number:0}}€ </div>
+           <div class="entry-fee-value-max">MAX: {{filterEntryFeeRangeMax | number:0}}€ </div>
             <div class="slider-wrapper">
               <div id="slider-range"></div>
             </div>
@@ -148,41 +148,41 @@
       </div>
 
       <div class="reset-button-wrapper">
-        <button type="button" class="btn-reset" ng-click="comp.resetAllFilters()">LIMPIAR FILTROS</button>
+        <button type="button" class="btn-reset" ng-click="resetAllFilters()">LIMPIAR FILTROS</button>
       </div>
       <div class="confirm-button-wrapper">
-        <button type="button" class="btn-confirm" ng-click="comp.toggleFilterMenu()">ACEPTAR</button>
+        <button type="button" class="btn-confirm" ng-click="toggleFilterMenu()">ACEPTAR</button>
       </div>
   </div>
 
 </div>
 
 <!-- Lista de concursos DESKTOP -->
-<div ng-if="!comp.scrDet.isXsScreen">
-  <contests-list  sorted-by="comp.sortType"
-                  filter-by="comp.lobbyFilters"
-                  contests-list="comp.activeContestsService.activeContests"
+<div ng-if="!scrDet.isXsScreen">
+  <contests-list  sorted-by="sortType"
+                  filter-by="lobbyFilters"
+                  contests-list="activeContestsService.activeContests"
                   action-button-title='"Jugar"'
-                  on-row-click="comp.onRowClick(contest)"
-                  on-action-click='comp.onActionClick(contest)'
-                  on-list-change="comp.onListChange(itemsCount)">
+                  on-row-click="onRowClick(contest)"
+                  on-action-click='onActionClick(contest)'
+                  on-list-change="onListChange(itemsCount)">
   </contests-list>
 </div>
 
 <!-- Lista de concursos XS -->
-<div id="lobbyContestListMenuXS" ng-if="comp.scrDet.isXsScreen">
-  <div ng-switch="comp.currentXsLobbyState">
+<div id="lobbyContestListMenuXS" ng-if="scrDet.isXsScreen">
+  <div ng-switch="currentXsLobbyState">
     <!-- Selecciona ver TODOS LOS TORNEOS / MIS TORNEOS -->
     <div ng-switch-when="0">
       <div class="pre-filter-row">
-        <div id="lobby_AllContests" class="pre-filter-row-content" ng-click="comp.filterXsLobbyClick(0)">
+        <div id="lobby_AllContests" class="pre-filter-row-content" ng-click="filterXsLobbyClick(0)">
           <div class="column-info-trophy">Todos los torneos</div>
           <div class="globo">
           </div>
         </div>
       </div>
       <div class="pre-filter-row">
-        <div id="lobby_MyContests" class="pre-filter-row-content" ng-click="comp.filterXsLobbyClick(1)">
+        <div id="lobby_MyContests" class="pre-filter-row-content" ng-click="filterXsLobbyClick(1)">
           <div class="column-info-shield">Mis torneos</div>
           <div class="globo">
           </div>
@@ -193,31 +193,31 @@
     <!-- Selecciona TORNEOS CON PREMIOS / TORNEOS GRATUITOS -->
     <div ng-switch-when="1">
       <div class="pre-filter-row">
-        <div id="lobby_PrizedContests" class="pre-filter-row-content" ng-click="comp.filterXsLobbyClick(2)">
+        <div id="lobby_PrizedContests" class="pre-filter-row-content" ng-click="filterXsLobbyClick(2)">
           <div class="column-info-prized">Juegos con premio</div>
           <div class="globo">
-            <span class="badge-content">{{comp.prizedTournamentsCount}}</span>
+            <span class="badge-content">{{prizedTournamentsCount}}</span>
           </div>
         </div>
       </div>
       <div class="pre-filter-row">
-        <div id="lobby_FreeContests" class="pre-filter-row-content" ng-click="comp.filterXsLobbyClick(3)">
+        <div id="lobby_FreeContests" class="pre-filter-row-content" ng-click="filterXsLobbyClick(3)">
           <div class="column-info">Juegos sin premio</div>
           <div class="globo">
-            <span class="badge-content">{{comp.freeTournamentsCount}}</span>
+            <span class="badge-content">{{freeTournamentsCount}}</span>
           </div>
         </div>
       </div>
     </div>
     <!-- VISTA FILTRADA DE LOS TORNEOS -->
     <div ng-switch-when="2">
-      <contests-list  sorted-by="comp.sortType"
-                      filter-by="comp.lobbyFilters"
-                      contests-list="comp.activeContestsService.activeContests"
+      <contests-list  sorted-by="sortType"
+                      filter-by="lobbyFilters"
+                      contests-list="activeContestsService.activeContests"
                       action-button-title='"Jugar"'
-                      on-row-click="comp.onRowClick(contest)"
-                      on-action-click='comp.onActionClick(contest)'
-                      on-list-change="comp.onListChange(itemsCount)">
+                      on-row-click="onRowClick(contest)"
+                      on-action-click='onActionClick(contest)'
+                      on-list-change="onListChange(itemsCount)">
       </contests-list>
     </div>
   </div>
@@ -228,7 +228,7 @@
 <div  id="infoContestModal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div id="infoContent" class="modal-content">
-        <contest-info contest-data="comp.selectedContest"></contest-info>
+        <contest-info contest-data="selectedContest"></contest-info>
       </div>
     </div>
 </div>

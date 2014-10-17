@@ -1,6 +1,6 @@
-<div id="desktopContent" ng-if="!comp.scrDet.isXsScreen">
+<div id="desktopContent" ng-if="!scrDet.isXsScreen">
 
-    <div id="screen1" class="first-screen" style="height:{{comp.screenHeight}}px">
+    <div id="screen1" class="first-screen" style="height:{{screenHeight}}px">
       <div class="screen-pattern" src="images/pattern.png"></div>
       <div class="main-title-wrapper">
 
@@ -28,7 +28,7 @@
         </div>
 
         <div class="button-wrap">
-          <button type="button" class="button-play"  ng-click="comp.buttonPressed('join')" id="playButton1">JUGAR</button>
+          <button type="button" class="button-play"  ng-click="buttonPressed('join')" id="playButton1">JUGAR</button>
         </div>
 
       </div>
@@ -59,7 +59,7 @@
               <p class="description-text">
                   Liga, Champions, Europa League: cada día te ofrecemos torneos de las competiciones más importantes. Puedes participar en tantos como quieras
               </p>
-              <button type="button" class="button-play"  ng-click="comp.buttonPressed('join')" id="playButton2">JUGAR</button>
+              <button type="button" class="button-play"  ng-click="buttonPressed('join')" id="playButton2">JUGAR</button>
             </div>
           </div>
         </div>
@@ -87,7 +87,7 @@
               <p class="description-text">
                   Cada jugador tienen un salario acorde a su rendimiento en la vida real. Elige bien, deberás mantenerte por debajo del límite de presupuesto.
               </p>
-              <button type="button" class="button-play"  ng-click="comp.buttonPressed('join')" id="playButton3">JUGAR</button>
+              <button type="button" class="button-play"  ng-click="buttonPressed('join')" id="playButton3">JUGAR</button>
             </div>
           </div>
         </div>
@@ -115,7 +115,7 @@
               <p class="description-text">
                   Cuando comiencen los partidos en la vida real, tus jugadores acumularán puntos en función de sus acciones. Podrás seguir su puntuación en tiempo real desde donde quieras y compararla con los equipos rivales.
               </p>
-              <button type="button" class="button-play"  ng-click="comp.buttonPressed('join')" id="playButton4">JUGAR</button>
+              <button type="button" class="button-play"  ng-click="buttonPressed('join')" id="playButton4">JUGAR</button>
             </div>
           </div>
         </div>
@@ -124,7 +124,7 @@
 </div>
 
 <!-- Versión Móvil -->
-<div id="mobileContent"  ng-if="comp.scrDet.isXsScreen">
+<div id="mobileContent"  ng-if="scrDet.isXsScreen">
     <div id="screenMobile1" class="screen">
 
       <div class="slider-wrapper">
@@ -138,7 +138,7 @@
         <p class="title-sup-text-mobile">CREA TU EQUIPO EN SEGUNDOS</p>
         <p class="title-sup-text-mobile">COMPITE EN TANTAS LIGAS COMO QUIERAS</p>
         <p class="title-sup-text-mobile">SIGUE LOS PARTIDOS EN DIRECTO</p>
-        <button type="button" class="button-play-mobile" ng-click="comp.buttonPressed('join')" id="playButtonMobile">JUGAR</button>
+        <button type="button" class="button-play-mobile" ng-click="buttonPressed('join')" id="playButtonMobile">JUGAR</button>
       </div>
     </div>
 </div>

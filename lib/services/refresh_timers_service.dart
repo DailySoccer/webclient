@@ -2,6 +2,7 @@ library refresh_timers_service;
 
 import 'dart:async';
 import 'package:angular/angular.dart';
+import 'package:logging/logging.dart';
 
 @Injectable()
 class RefreshTimersService{
@@ -32,19 +33,18 @@ class RefreshTimersService{
     _instance = this;
   }
 
-  // Puede que alguna vez necesite crear un timer especificando segundos que no estén definidos aqui,
-  // asique lo pasamos como parametro opcional.
+  // Puede que alguna vez se necesite crear un timer especificando segundos que no estén definidos aqui,
+  // asi que lo pasamos como parametro opcional.
   static Timer addRefreshTimer(String name, Function updateFunction, [int seconds] ) {
 
     Timer tmpTimer = new Timer.periodic(new Duration(seconds: (seconds == null) ? timersDef[name] : seconds), (Timer t) => updateFunction());
 
-    if (_instance._timers.containsKey(name)) {
-      _instance._timers[name].cancel();
-      _instance._timers[name] = tmpTimer;
+    if (_instance._timers.containsKey(name) && _instance._timers[name].isActive) {
+        Logger.root.warning("Timer: $name cancelled");
+        _instance._timers[name].cancel();
     }
-    else {
-      _instance._timers.addAll({name : tmpTimer});
-    }
+
+    _instance._timers[name] = tmpTimer;
     return tmpTimer;
   }
 

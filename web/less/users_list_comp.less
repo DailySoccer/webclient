@@ -60,6 +60,11 @@
 		#gradient.vertical(@orangeHeaderLight, @orangeHeaderDark, 49%, 51%);
 		color: @white;
 	}
+	@media (max-width: @screen-xs-max) {
+		.users-header, .users-header-next  h1 {
+			.hidden();
+		} 
+	}
 	@media (min-width: @screen-sm-min) {
 		.make-border(1px, solid, @greyDark, @globalBoxesRadius);
 		.make-percent-box(50%, 2%);

@@ -17485,6 +17485,13 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffba61a', endColorstr='#ffec990e', GradientType=0);
   color: #ffffff;
 }
+@media (max-width: 767px) {
+  #usersListRoot .users-header,
+  #usersListRoot .users-header-next h1 {
+    display: none !important;
+    visibility: hidden !important;
+  }
+}
 @media (min-width: 768px) {
   #usersListRoot {
     border-width: 1px;

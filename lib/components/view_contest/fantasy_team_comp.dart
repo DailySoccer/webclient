@@ -10,7 +10,7 @@ import 'dart:math';
 @Component(selector: 'fantasy-team',
            templateUrl: 'packages/webclient/components/view_contest/fantasy_team_comp.html',
            useShadowDom: false)
-class FantasyTeamComp implements ShadowRootAware {
+class FantasyTeamComp {
 
     List<dynamic> slots = null;
 
@@ -48,17 +48,10 @@ class FantasyTeamComp implements ShadowRootAware {
 
     bool get isViewContestEntryMode => _routeProvider.route.name.contains("view_contest_entry");
 
-    FantasyTeamComp(this._routeProvider, this._router);
-
-    void onShadowRoot(emulatedRoot) {
-      _rootElement = querySelector("#fantasyTeamRoot");
-
-      if (slots == null)
-        _refreshTeam();
-    }
+    FantasyTeamComp(this._routeProvider, this._router, this._rootElement);
 
     void _refreshTeam() {
-      if (_rootElement == null || _contestEntry == null)
+      if (_contestEntry == null)
         return;
 
       if (slots == null) {
@@ -133,8 +126,7 @@ class FantasyTeamComp implements ShadowRootAware {
         onClose();
     }
 
-    HtmlElement _rootElement;
-
+    Element _rootElement;
     ContestEntry _contestEntry;
 
     RouteProvider _routeProvider;

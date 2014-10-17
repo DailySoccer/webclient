@@ -14,7 +14,6 @@ import 'dart:html';
 @Component(
    selector: 'view-contest-entry',
    templateUrl: 'packages/webclient/components/view_contest_entry_comp.html',
-   publishAs: 'viewContestEntry',
    useShadowDom: false
 )
 class ViewContestEntryComp {

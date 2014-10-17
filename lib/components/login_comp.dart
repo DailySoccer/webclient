@@ -7,7 +7,6 @@ import 'package:webclient/services/profile_service.dart';
 @Component(
     selector: 'login',
     templateUrl: 'packages/webclient/components/login_comp.html',
-    publishAs: 'comp',
     useShadowDom: false
 )
 class LoginComp implements ShadowRootAware  {
@@ -48,9 +47,8 @@ class LoginComp implements ShadowRootAware  {
   Element _errSection;
   bool _enabledSubmit = true;
 
-  @override
-  void onShadowRoot(root) {
-    var rootElement = root as HtmlElement;
+  @override void onShadowRoot(emulatedRoot) {
+    var rootElement = querySelector("#loginRoot");
     _errSection = rootElement.querySelector("#mailPassError");
     _errSection.parent.parent.style.display = 'none';
     rootElement.querySelector('#login-mail').focus();

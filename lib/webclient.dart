@@ -20,8 +20,6 @@ import 'package:webclient/utils/form-autofill-fix.dart';
 
 import 'package:webclient/components/flash_messages_comp.dart';
 import 'package:webclient/components/landing_page_comp.dart';
-import 'package:webclient/components/main_menu_comp.dart';
-import 'package:webclient/components/main_menu_slide_comp.dart';
 import 'package:webclient/components/contest_info_comp.dart';
 import 'package:webclient/components/scoring_rules_comp.dart';
 import 'package:webclient/components/contest_header_comp.dart';
@@ -31,7 +29,6 @@ import 'package:webclient/components/users_list_comp.dart';
 import 'package:webclient/components/my_contests_comp.dart';
 import 'package:webclient/components/contests_list_comp.dart';
 import 'package:webclient/components/promos_comp.dart';
-import 'package:webclient/components/footer_comp.dart';
 import 'package:webclient/components/paginator_comp.dart';
 import 'package:webclient/components/view_contest_entry_comp.dart';
 import 'package:webclient/components/view_contest_comp.dart';
@@ -55,12 +52,15 @@ import 'package:webclient/components/remember_password_comp.dart';
 import 'package:webclient/components/login_comp.dart';
 import 'package:webclient/components/join_comp.dart';
 
+import 'package:webclient/components/navigation/main_menu_comp.dart';
+import 'package:webclient/components/navigation/main_menu_slide_comp.dart';
+import 'package:webclient/components/navigation/footer_comp.dart';
+
 
 class WebClientApp extends Module {
   WebClientApp() {
 
     bind(ExceptionHandler, toImplementation: LoggerExceptionHandler);
-
     bind(ServerService, toImplementation: DailySoccerServer);
 
     bind(DateTimeService);

@@ -1,21 +1,21 @@
 <div class="lineup-selector">
-  <div class="lineup-selector-slot" ng-repeat="slot in comp.enterContestComp.lineupSlots" ng-click="comp.enterContestComp.onSlotSelected($index)" ng-class="comp.getSlotClassColor($index)">
-    <div class="column-fieldpos" ng-if="!comp.isEmptySlot(slot)">{{slot.fieldPos.abrevName}}</div>
-    <div class="column-fieldpos" ng-if="comp.isEmptySlot(slot)">{{comp.getSlotPosition($index)}}</div>
-    <div class="column-primary-info" ng-if="!comp.isEmptySlot(slot)">
+  <div class="lineup-selector-slot" ng-repeat="slot in enterContestComp.lineupSlots" ng-click="enterContestComp.onSlotSelected($index)" ng-class="getSlotClassColor($index)">
+    <div class="column-fieldpos" ng-if="!isEmptySlot(slot)">{{slot.fieldPos.abrevName}}</div>
+    <div class="column-fieldpos" ng-if="isEmptySlot(slot)">{{getSlotPosition($index)}}</div>
+    <div class="column-primary-info" ng-if="!isEmptySlot(slot)">
         <span class="soccer-player-name">{{slot.fullName | limitToDot : 19}}</span>
         <span class="match-event-name" ng-bind-html="slot.matchEventName"></span>
     </div>
-    <div class="column-empty-slot" ng-if="comp.isEmptySlot(slot)">{{comp.getSlotDescription($index)}}</div>
-    <div class="column-salary" ng-if="!comp.isEmptySlot(slot)">{{slot.salary}}€</div>
+    <div class="column-empty-slot" ng-if="isEmptySlot(slot)">{{getSlotDescription($index)}}</div>
+    <div class="column-salary" ng-if="!isEmptySlot(slot)">{{slot.salary}}€</div>
     <div class="column-action">
-        <a class="iconButtonSelect" ng-if="comp.isEmptySlot(slot)"><span class="glyphicon glyphicon-chevron-right"></span></a>
-        <a class="iconButtonRemove" ng-if="!comp.isEmptySlot(slot)"><span class="glyphicon glyphicon-remove"></span></a>
+        <a class="iconButtonSelect" ng-if="isEmptySlot(slot)"><span class="glyphicon glyphicon-chevron-right"></span></a>
+        <a class="iconButtonRemove" ng-if="!isEmptySlot(slot)"><span class="glyphicon glyphicon-remove"></span></a>
     </div>
   </div>
 
   <div class="alert alert-danger alert-dismissible alert-red-numbers" role="alert">
-    <button type="button" class="close" ng-click="comp.enterContestComp.alertDismiss()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <button type="button" class="close" ng-click="enterContestComp.alertDismiss()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
     <strong>Te has pasado del límite salarial</strong><br> Por favor, elige jugadores que se ajusten al presupuesto
   </div>
 

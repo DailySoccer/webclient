@@ -9,7 +9,6 @@ import 'dart:math';
 
 @Component(selector: 'fantasy-team',
            templateUrl: 'packages/webclient/components/fantasy_team_comp.html',
-           publishAs: 'fantasyTeam',
            useShadowDom: false)
 class FantasyTeamComp implements ShadowRootAware {
 
@@ -51,8 +50,8 @@ class FantasyTeamComp implements ShadowRootAware {
 
     FantasyTeamComp(this._routeProvider, this._router);
 
-    void onShadowRoot(var shadowRoot) {
-      _rootElement = shadowRoot as HtmlElement;
+    void onShadowRoot(emulatedRoot) {
+      _rootElement = querySelector("#fantasyTeamRoot");
 
       if (slots == null)
         _refreshTeam();

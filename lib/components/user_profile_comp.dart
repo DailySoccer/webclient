@@ -9,7 +9,6 @@ import 'dart:html';
 @Component(
     selector: 'user-profile',
     templateUrl: 'packages/webclient/components/user_profile_comp.html',
-    publishAs: 'comp',
     useShadowDom: false
 )
 class UserProfileComp implements ShadowRootAware, DetachAware {
@@ -44,13 +43,12 @@ class UserProfileComp implements ShadowRootAware, DetachAware {
 
   void updateUserProfileContent() {
 
-    elmntViewProfile.style.display = isEditingProfile ? 'none' : '';
+    _elmntViewProfile.style.display = isEditingProfile ? 'none' : '';
     editContent();
   }
 
   void editContent() {
     if (isEditingProfile) {
-
       //La versión Desktop para editar los datos personales se muestran en una ventana modal
       if (_scrDet.isDesktop) {
         Element modal = querySelector ('#editPersonalDataModal');
@@ -59,12 +57,12 @@ class UserProfileComp implements ShadowRootAware, DetachAware {
         JsUtils.runJavascript('#editPersonalDataModal', 'modal', null);
       }
       else { // Resto de versiones para editar los datos personales se muestran en pantalla completa
-        elmntEditProfile.style.display = '';
+        _elmntEditProfile.style.display = '';
         JsUtils.runJavascript('#editPersonalDataModal', 'modal', 'hide');
       }
     }
     else {
-      elmntEditProfile.style.display = 'none';
+      _elmntEditProfile.style.display = 'none';
       JsUtils.runJavascript('#editPersonalDataModal', 'modal', 'hide');
     }
   }
@@ -78,24 +76,21 @@ class UserProfileComp implements ShadowRootAware, DetachAware {
     editedRepeatPassword = "";
   }
 
-  @override
-  void onShadowRoot(root) {
-    HtmlElement rootElement = root as HtmlElement;
-    elmntViewProfile = root.querySelector('#viewProfileContent');
-    elmntEditProfile = root.querySelector('#editProfileContent');
+  @override void onShadowRoot(emulatedRoot) {
+
+    _elmntViewProfile = querySelector('#viewProfileContent');
+    _elmntEditProfile = querySelector('#editProfileContent');
 
     setUserVariables();
     updateUserProfileContent();
   }
 
-  @override
-  void detach() {
+  @override void detach() {
     _streamListener.cancel();
   }
 
-  Element elmntViewProfile;
-  Element elmntEditProfile;
-
+  Element _elmntViewProfile;
+  Element _elmntEditProfile;
 
   ScreenDetectorService _scrDet;
   ProfileService _profileManager;

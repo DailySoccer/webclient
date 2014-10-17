@@ -1,6 +1,6 @@
 import 'package:angular/application_factory.dart';
-import 'package:angular/routing/static_keys.dart';
-import 'package:angular/core_dom/static_keys.dart';
+//import 'package:angular/routing/static_keys.dart';
+//import 'package:angular/core_dom/static_keys.dart';
 
 import 'package:webclient/webclient.dart';
 import 'package:webclient/logger_exception_handler.dart';
@@ -23,6 +23,7 @@ void setUpCache(injector) {
   //
   // Precacheamos lost html de las vistas para que no los cargue luego al entrar en las pantallas
   //
+  /*
   var cache = injector.getByKey(VIEW_CACHE_KEY);
 
   cache.fromUrl("packages/webclient/components/fantasy_team_comp.html", injector.getByKey(DIRECTIVE_MAP_KEY));
@@ -57,6 +58,7 @@ void setUpCache(injector) {
   cache.fromUrl("packages/webclient/components/enter_contest/soccer_players_filter_comp.html", injector.getByKey(DIRECTIVE_MAP_KEY));
   cache.fromUrl("packages/webclient/components/enter_contest/matches_filter_comp.html", injector.getByKey(DIRECTIVE_MAP_KEY));
   cache.fromUrl("packages/webclient/components/enter_contest/soccer_player_info_comp.html", injector.getByKey(DIRECTIVE_MAP_KEY));
+  */
 
   /*
    * Estos quiza mejor no gastar al principio

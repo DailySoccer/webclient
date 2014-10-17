@@ -1,25 +1,25 @@
 <div id="usersListRoot" ng-cloak>
 
-  <div ng-class="{'users-header-next': comp.isViewContestEntryMode, 'users-header' : !comp.isViewContestEntryMode}">
+  <div ng-class="{'users-header-next': isViewContestEntryMode, 'users-header' : !isViewContestEntryMode}">
     <h1>USUARIOS EN ESTE TORNEO</h1>
-    <h2 ng-if="!comp.isViewContestEntryMode">Selecciona un usuario de esta lista para ver y comparar su alineacion con la tuya:</h2>
+    <h2 ng-if="!isViewContestEntryMode">Selecciona un usuario de esta lista para ver y comparar su alineacion con la tuya:</h2>
   </div>
 
   <div class="users-table-header">
     <div class="pos">POS</div>
-    <div class="name" ng-class="{'name-view-contest-entry-mode': comp.isViewContestEntryMode}">JUGADOR</div>
-    <div class="remaining-time" ng-if="!comp.isViewContestEntryMode">T.R.</div>
+    <div class="name" ng-class="{'name-view-contest-entry-mode': isViewContestEntryMode}">JUGADOR</div>
+    <div class="remaining-time" ng-if="!isViewContestEntryMode">T.R.</div>
     <div class="score">PUNTOS</div>
-    <div class="prize" ng-if="!comp.isViewContestEntryMode">PREMIOS</div>
+    <div class="prize" ng-if="!isViewContestEntryMode">PREMIOS</div>
   </div>
 
   <div class="users-table-rows">
-    <div class="user-row" ng-repeat="user in comp.users" ng-click="comp.onUserClick(user)" ng-class="{'user-main': comp.isMainPlayer(user)}">
+    <div class="user-row" ng-repeat="user in users" ng-click="onUserClick(user)" ng-class="{'user-main': isMainPlayer(user)}">
       <div class="pos">{{$index + 1}}</div>
-      <div class="name" ng-class="{'name-view-contest-entry-mode': comp.isViewContestEntryMode}">{{user.name}}</div>
-      <div class="remaining-time" ng-if="!comp.isViewContestEntryMode">{{user.remainingTime}}</div>
+      <div class="name" ng-class="{'name-view-contest-entry-mode': isViewContestEntryMode}">{{user.name}}</div>
+      <div class="remaining-time" ng-if="!isViewContestEntryMode">{{user.remainingTime}}</div>
       <div class="score"><span>{{user.score}}</span></div>
-      <div class="prize" ng-if="!comp.isViewContestEntryMode">{{comp.getPrize($index)}}</div>
+      <div class="prize" ng-if="!isViewContestEntryMode">{{getPrize($index)}}</div>
     </div>
   </div>
 

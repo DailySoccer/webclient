@@ -8,7 +8,6 @@ import 'package:webclient/services/server_service.dart';
 @Component(
     selector: 'remember-password',
     templateUrl: 'packages/webclient/components/remember_password_comp.html',
-    publishAs: 'comp',
     useShadowDom: false
 )
 class RememberPasswordComp implements ShadowRootAware {
@@ -40,9 +39,7 @@ class RememberPasswordComp implements ShadowRootAware {
     );
   }
 
-  @override
-  void onShadowRoot(root) {
-    var rootElement = root as HtmlElement;
+  @override void onShadowRoot(emulatedRoot) {
  //   _errSection = rootElement.querySelector("#errLabel");
  //   _errSection.parent.parent.style.display = 'none';
  //   rootElement.querySelector('#email').focus();

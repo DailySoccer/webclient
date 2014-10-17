@@ -6,8 +6,8 @@
 
   <!-- Nav tabs -->
   <ul class="help-info-tabs" role="tablist">
-    <li class="active"><a role="tab" data-toggle="tab" ng-click="helpInfo.tabChange('how-works-content')">CÓMO FUNCIONA</a></li>
-    <li><a role="tab" data-toggle="tab" ng-click="helpInfo.tabChange('rules-scores-content')">PUNTUACIONES Y REGLAS</a></li>
+    <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('how-works-content')">CÓMO FUNCIONA</a></li>
+    <li><a role="tab" data-toggle="tab" ng-click="tabChange('rules-scores-content')">PUNTUACIONES Y REGLAS</a></li>
   </ul>
 
   <div class="tab-pane active" id="how-works-content">
@@ -15,33 +15,33 @@
       <div class="title">ELIGE UN TORNEO</div>
       <div class="description">Configura tu equipo siguiendo estas sencillas indicaciones: <br>En primer lugar, debes seleccionar el torneo en el que quieras participar. <br>Haz clic en la competición deseada y a continuación podrás elegir tus jugadores.</div>
       <div class="img-wrapper">
-        <img src="images/help01.jpg" ng-if="!helpInfo.scrDet.isXsScreen">
-        <img src="images/help01-xs.jpg" ng-if="helpInfo.scrDet.isXsScreen">
+        <img src="images/help01.jpg" ng-if="!scrDet.isXsScreen">
+        <img src="images/help01-xs.jpg" ng-if="scrDet.isXsScreen">
       </div>
       <div class="description">Puedes filtrar los torneos según la competición, el límite salarial de que dispones <br>para confeccionar tu equipo o el tipo de torneo en el que quieras participar. </div>
       <div class="img-wrapper">
-        <img src="images/help02.jpg" ng-if="!helpInfo.scrDet.isXsScreen">
-        <img src="images/help02-xs.jpg" ng-if="helpInfo.scrDet.isXsScreen">
+        <img src="images/help02.jpg" ng-if="!scrDet.isXsScreen">
+        <img src="images/help02-xs.jpg" ng-if="scrDet.isXsScreen">
       </div>
     </div>
     <div class="block-dark">
       <div class="title">HAZ TU EQUIPO</div>
       <div class="description">A continuación, selecciona los 11 jugadores que quieras que participen <br>en el torneo que has elegido. Recuerda que debes ceñirte al <br>límite salarial que marque cada torneo.</div>
       <div class="img-wrapper">
-        <img src="images/help03.jpg" ng-if="!helpInfo.scrDet.isXsScreen">
-        <img src="images/help03-xs.jpg" ng-if="helpInfo.scrDet.isXsScreen">
+        <img src="images/help03.jpg" ng-if="!scrDet.isXsScreen">
+        <img src="images/help03-xs.jpg" ng-if="scrDet.isXsScreen">
       </div>
       <div class="description">No olvides que puedes consultar las estadísticas de los jugadores que has elegido <br>en tiempo real y comparar los resultados de tu alineación con las de otros usuarios.</div>
       <div class="img-wrapper">
-        <img src="images/help04.jpg" ng-if="!helpInfo.scrDet.isXsScreen">
-        <img src="images/help04-xs.jpg" ng-if="helpInfo.scrDet.isXsScreen">
+        <img src="images/help04.jpg" ng-if="!scrDet.isXsScreen">
+        <img src="images/help04-xs.jpg" ng-if="scrDet.isXsScreen">
       </div>
     </div>
     <div class="block-light">
       <div class="title">CONSIGUE EL MÁXIMO DE PUNTOS Y GANA</div>
       <div class="description">En EPIC 11 ser un buen estratega del fútbol tiene recompensa. <br>Confecciona tu alineación para cada torneo en el que quieras participar <br>y observa las estadísticas de los jugadores. Demuestra que eres el mejor, <br>porque próximamente podrás ganar fantásticos premios en metálico.</div>
       <div class="img-wrapper">
-        <img src="images/help05.jpg" ng-if="!helpInfo.scrDet.isXsScreen">
+        <img src="images/help05.jpg" ng-if="!scrDet.isXsScreen">
         <p class="img-footer">Compara tu alineación con las de otros usuarios en directo.</p>
       </div>
     </div>
@@ -53,7 +53,7 @@
         </div>
         <div class="description-right">
           <p>Comprueba lo sencillo que es participar en los torneos de EPIC 11 desde dónde quieras. Podrás seguir en directo las estadísticas de tus jugadores desde tu ordenador, tablet o smartphone con interfaces adaptadas a cada tipo de dispositivo para optimizar la usabilidad.</p>
-          <button type="button" class="button-play" ng-click="helpInfo.goTo('lobby')">JUGAR AHORA</button>
+          <button type="button" class="button-play" ng-click="goTo('lobby')">JUGAR AHORA</button>
         </div>
       </div>
     </div>
@@ -71,7 +71,7 @@
         <input type="checkbox" id="rule1" class="toggle">
         <label for="rule1">LEGALIDAD</label>
         <div>
-          <p>Para efectuar jugar en cualquiera de nuestros torneos, debes tener 18 años o más y ser residente en España. Para más información sobre bases legales, por favor, consulta nuestros <a ng-click="helpInfo.goTo('terminus_info')">Términos y Condiciones de Uso</a>.</p>
+          <p>Para efectuar jugar en cualquiera de nuestros torneos, debes tener 18 años o más y ser residente en España. Para más información sobre bases legales, por favor, consulta nuestros <a ng-click="goTo('terminus_info')">Términos y Condiciones de Uso</a>.</p>
         </div>
       </div>
       <div class="toogle-block">

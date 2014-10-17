@@ -6,25 +6,25 @@
       <!-- Header -->
       <div class="panel-heading">
         <div class="panel-title">ENTRA</div>
-        <button type="button" class="close" ng-click="comp.navigateTo('landing_page',{}, $event)">
+        <button type="button" class="close" ng-click="navigateTo('landing_page',{}, $event)">
           <span class="glyphicon glyphicon-remove"></span>
         </button>
       </div>
 
       <div class="panel-body" ng-cloak>
 
-        <form id="loginForm" class="form-horizontal" ng-submit="comp.login()" data-toggle="validator" role="form" formAutofillFix>
+        <form id="loginForm" class="form-horizontal" ng-submit="login()" data-toggle="validator" role="form" formAutofillFix>
 
           <div class="form-description">Introduce tu cuenta de correo electrónico y tu contraseña para acceder a los torneos.</div>
           <!-- MAIL -->
           <div class="input-group">
             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-            <input id="login-mail" type="email" ng-model="comp.email" name="email" placeholder="Correo Electrónico" class="form-control" ng-focus="">
+            <input id="login-mail" type="email" ng-model="email" name="email" placeholder="Correo Electrónico" class="form-control" ng-focus="">
           </div>
           <!-- PÂSSWORD -->
           <div class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-            <input id="login-password" type="password" ng-model="comp.password" name="password" placeholder="password" class="form-control">
+            <input id="login-password" type="password" ng-model="password" name="password" placeholder="password" class="form-control">
           </div>
           <!-- REMEMBER ME -->
           <div class="remember-forgot-group">
@@ -32,14 +32,14 @@
               <label><input id="login-remember" type="checkbox" ng-model="rememberMe" name="rememberMe"> Recuerdame </label>
             </div>-->
             <div class="forget-pass">
-              <a ng-click="comp.navigateTo('remember_password', {}, $event)">¿Olvidaste tu contraseña?</a>
+              <a ng-click="navigateTo('remember_password', {}, $event)">¿Olvidaste tu contraseña?</a>
             </div>
           </div>
           <!-- BUTTONS -->
           <div class="input-group">
             <div class="new-row">
-              <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!comp.enabledSubmit" class="enter-button-half">ENTRAR</button>
-              <button id="btnCancelLogin" ng-click="comp.navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCELAR</button>
+              <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">ENTRAR</button>
+              <button id="btnCancelLogin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCELAR</button>
             </div>
           </div>
           <!-- Error de login/password -->
@@ -51,7 +51,7 @@
           <!-- GOTO REGISTER -->
           <div class="input-group">
             <div class="new-row">
-              <div class="separator-top">¿Aún no tienes cuenta? <a ng-click="comp.navigateTo('join', {}, $event)"> Regístrate aquí! </a></div>
+              <div class="separator-top">¿Aún no tienes cuenta? <a ng-click="navigateTo('join', {}, $event)"> Regístrate aquí! </a></div>
             </div>
           </div>
         </form>

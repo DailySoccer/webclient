@@ -9,10 +9,9 @@ import 'dart:async';
 @Component(
     selector: 'contest-header',
     templateUrl: 'packages/webclient/components/contest_header_comp.html',
-    publishAs: 'contestHeader',
     useShadowDom: false
 )
-class ContestHeaderComp implements DetachAware{
+class ContestHeaderComp implements DetachAware {
 
   Map<String, dynamic> contestHeaderInfo = {
     'description':      'cargando datos...',

@@ -20,7 +20,6 @@ import 'package:webclient/utils/string_utils.dart';
 @Component(
     selector: 'enter-contest',
     templateUrl: 'packages/webclient/components/enter_contest/enter_contest_comp.html',
-    publishAs: 'comp',
     useShadowDom: false
 )
 class EnterContestComp implements DetachAware {
@@ -430,7 +429,6 @@ class EnterContestComp implements DetachAware {
   }
 
   void removeAllFilters() {
-
     fieldPosFilter = null;
     nameFilter = null;
     matchFilter = null;

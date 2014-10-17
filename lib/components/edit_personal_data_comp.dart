@@ -9,7 +9,6 @@ import 'dart:html';
 @Component(
     selector: 'edit-personal-data',
     templateUrl: 'packages/webclient/components/edit_personal_data_comp.html',
-    publishAs: 'comp',
     useShadowDom: false
 )
 class EditPersonalDataComp implements ShadowRootAware {
@@ -52,10 +51,7 @@ class EditPersonalDataComp implements ShadowRootAware {
   EditPersonalDataComp(this._profileManager, this.parent);
 
   @override
-  void onShadowRoot(root) {
-    HtmlElement htmlRoot = root as HtmlElement;
-
-
+  void onShadowRoot(emulatedRoot) {
     //switch NEWSLETTER/OFERTAS ESPECIALES
     JsUtils.runJavascript("[name='switchNewsletter']", 'bootstrapSwitch', {         'size'          : 'mini',
                                                                                     'state'         : acceptNewsletter,
@@ -82,6 +78,8 @@ class EditPersonalDataComp implements ShadowRootAware {
                                                                                     'offColor'      : 'default',
                                                                                     'onSwitchChange': onSoccerPlayerAlertsSwitchChange
                                                                                   });
+
+      HtmlElement htmlRoot = querySelector("#personalDataContent");
 
       nicknameError = htmlRoot.querySelector('#nickNameError');
       emailError    = htmlRoot.querySelector('#emailError');
@@ -126,57 +124,58 @@ class EditPersonalDataComp implements ShadowRootAware {
   }
 
   void saveChanges() {
-      hideErrors();
+    hideErrors();
 
-      if(!validatePassword() ) {
-        return;
-      }
-      //_enabledSubmit = false;
-      String firstName = _profileManager.user.firstName  != parent.editedFirstName ? parent.editedFirstName  : "";
-      String lastName  = _profileManager.user.lastName   != parent.editedLastName  ? parent.editedLastName   : "";
-      String email     = _profileManager.user.email      != parent.editedEmail     ? parent.editedEmail      : "";
-      // El nickname de momento no sabemos si le daremos permisos al usuario para que lo cambie a placer.
-      String nickName  = "";
-      String password  = parent.editedPassword;
+    if (!validatePassword()) {
+      return;
+    }
 
+    //_enabledSubmit = false;
+    String firstName = _profileManager.user.firstName  != parent.editedFirstName ? parent.editedFirstName  : "";
+    String lastName  = _profileManager.user.lastName   != parent.editedLastName  ? parent.editedLastName   : "";
+    String email     = _profileManager.user.email      != parent.editedEmail     ? parent.editedEmail      : "";
 
-        _profileManager.changeUserProfile(firstName, lastName, email, nickName, password)
-        //Not implemented yet //.then((_) => _profileManager.saveUserData(firstName, lastName,acceptGameAlerts, /* nickName, */ email, password))
-            .then((_) => closeModal())
-            .catchError((Map error) {
+    // El nickname de momento no sabemos si le daremos permisos al usuario para que lo cambie a placer.
+    String nickName  = "";
+    String password  = parent.editedPassword;
 
-             // print("keys: ${error.keys.length} - ${error.keys.toString()}");
+    _profileManager.changeUserProfile(firstName, lastName, email, nickName, password)
+    //Not implemented yet //.then((_) => _profileManager.saveUserData(firstName, lastName,acceptGameAlerts, /* nickName, */ email, password))
+        .then((_) => closeModal())
+        .catchError((Map error) {
 
-              error.keys.forEach( (key) {
-                switch (key)
-                {
-                  case "nickName":
-                    nicknameError
-                      ..text = error[key][0]
-                      ..classes.remove("errorDetected")
-                      ..classes.add("errorDetected")
-                      ..parent.style.display = "";
+         // print("keys: ${error.keys.length} - ${error.keys.toString()}");
 
-                  break;
-                  case "email":
-                    emailError
-                      ..text = error[key][0]
-                      ..classes.remove("errorDetected")
-                      ..classes.add("errorDetected")
-                      ..parent.style.display = "";
-                  break;
-                  case "password":
-                    passwordError
-                      ..text = error[key][0]
-                      ..classes.remove("errorDetected")
-                      ..classes.add("errorDetected")
-                      ..parent.style.display = "";
-                  break;
-                }
-             //   print("-EDIT_PERSONAL_DATA_COMP-: Error recibido: ${key}");
-              });
-             //_enabledSubmit = true;
-            });
+          error.keys.forEach( (key) {
+            switch (key)
+            {
+              case "nickName":
+                nicknameError
+                  ..text = error[key][0]
+                  ..classes.remove("errorDetected")
+                  ..classes.add("errorDetected")
+                  ..parent.style.display = "";
+
+              break;
+              case "email":
+                emailError
+                  ..text = error[key][0]
+                  ..classes.remove("errorDetected")
+                  ..classes.add("errorDetected")
+                  ..parent.style.display = "";
+              break;
+              case "password":
+                passwordError
+                  ..text = error[key][0]
+                  ..classes.remove("errorDetected")
+                  ..classes.add("errorDetected")
+                  ..parent.style.display = "";
+              break;
+            }
+         //   print("-EDIT_PERSONAL_DATA_COMP-: Error recibido: ${key}");
+          });
+         //_enabledSubmit = true;
+        });
   }
 
   void closeModal() {

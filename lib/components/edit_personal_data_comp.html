@@ -1,15 +1,15 @@
 <div id="personalDataContent">
 
-  <div class="edit-personal-data-modal-header" ng-if="comp.isPopUp">
+  <div class="edit-personal-data-modal-header" ng-if="isPopUp">
     <span class="header-title">EDITAR CUENTA</span>
-    <button type="button" class="close" ng-click="comp.closeModal()" aria-hidden="true">
+    <button type="button" class="close" ng-click="closeModal()" aria-hidden="true">
       <span class="glyphicon glyphicon-remove"></span>
     </button>
   </div>
 
-  <div class="header"  ng-if="!comp.isPopUp">
+  <div class="header"  ng-if="!isPopUp">
     <span class="header-title">EDITAR CUENTA</span>
-    <button type="button" class="close" ng-click="comp.closeModal()" aria-hidden="true">
+    <button type="button" class="close" ng-click="closeModal()" aria-hidden="true">
       <span class="glyphicon glyphicon-remove"></span>
     </button>
   </div>
@@ -17,15 +17,15 @@
   <div class="content">
     <!-- Nombre -->
     <div class="content-field">
-      <div class="control-wrapper"><input id="txtName" type="text" ng-model="comp.parent.editedFirstName" name="firstName" placeholder="Nombre" class="form-control"></div>
+      <div class="control-wrapper"><input id="txtName" type="text" ng-model="parent.editedFirstName" name="firstName" placeholder="Nombre" class="form-control"></div>
     </div>
     <!-- Apelidos -->
     <div class="content-field">
-      <div class="control-wrapper"><input id="txtLastName" type="text" ng-model="comp.parent.editedLastName" name="lastName" placeholder="Apellidos" class="form-control"></div>
+      <div class="control-wrapper"><input id="txtLastName" type="text" ng-model="parent.editedLastName" name="lastName" placeholder="Apellidos" class="form-control"></div>
     </div>
     <!-- Nickname -->
     <div class="content-field">
-      <div class="control-wrapper"><input id="txtNickName" type="text" ng-model="comp.parent.editedNickName" name="nickName" placeholder="Nombre de usuario" class="form-control" disabled></div>
+      <div class="control-wrapper"><input id="txtNickName" type="text" ng-model="parent.editedNickName" name="nickName" placeholder="Nombre de usuario" class="form-control" disabled></div>
       <!-- Error de mail -->
       <div class="content-field">
         <div id="nickNameError" class="join-err-text">Error en el nick</div>
@@ -34,7 +34,7 @@
 
     <!-- Correo Electrónico -->
     <div class="content-field">
-      <div class="control-wrapper"><input id="txtEmail" type="email" ng-model="comp.parent.editedEmail" name="email" placeholder="Email" class="form-control"></div>
+      <div class="control-wrapper"><input id="txtEmail" type="email" ng-model="parent.editedEmail" name="email" placeholder="Email" class="form-control"></div>
       <!-- Error de mail -->
       <div class="content-field">
         <div id="emailError" class="join-err-text">Error de mail</div>
@@ -47,7 +47,7 @@
     </div>
     <!-- Contraseña -->
     <div class="content-field">
-      <div class="control-wrapper"><input id="txtPassword" type="password" ng-model="comp.parent.editedPassword" name="password" placeholder="Contraseña" class="form-control"></div>
+      <div class="control-wrapper"><input id="txtPassword" type="password" ng-model="parent.editedPassword" name="password" placeholder="Contraseña" class="form-control"></div>
       <!-- Error de contraseñas -->
       <div class="content-field-block">
         <div id="passwordError" class="join-err-text">Los passwords no coinciden.</div>
@@ -55,7 +55,7 @@
     </div>
     <!-- Repetir Contraseña -->
     <div class="content-field">
-      <div class="control-wrapper"><input id="txtRepeatPassword" type="password" ng-model="comp.parent.editedRepeatPassword" name="repeatPassword" placeholder="Repetir Contraseña" class="form-control"></div>
+      <div class="control-wrapper"><input id="txtRepeatPassword" type="password" ng-model="parent.editedRepeatPassword" name="repeatPassword" placeholder="Repetir Contraseña" class="form-control"></div>
     </div>
 
     <!-- Label Instrucciones contraseña -->
@@ -64,15 +64,15 @@
     </div>
     <!-- Pais, Region y Ciudad
     <div class="content-field">
-      <div class="control-wrapper"><input id="txtCountry" type="text" ng-model="comp.country" name="contry" placeholder="País" class="form-control"></div>
+      <div class="control-wrapper"><input id="txtCountry" type="text" ng-model="country" name="contry" placeholder="País" class="form-control"></div>
     </div>
 
     <div class="content-field">
-      <div class="control-wrapper"><input id="txtRegion" type="text" ng-model="comp.region" name="region" placeholder="Región" class="form-control"></div>
+      <div class="control-wrapper"><input id="txtRegion" type="text" ng-model="region" name="region" placeholder="Región" class="form-control"></div>
     </div>
 
     <div class="content-field">
-      <div class="control-wrapper"><input id="txtCity" type="text" ng-model="comp.city" name="city" placeholder="Ciudad" class="form-control"></div>
+      <div class="control-wrapper"><input id="txtCity" type="text" ng-model="city" name="city" placeholder="Ciudad" class="form-control"></div>
     </div>
      -->
   </div>
@@ -103,7 +103,7 @@
     </div>
 
     <div class="save-changes-content">
-      <button class="action-button" ng-click="comp.saveChanges()">GUARDAR CAMBIOS</button>
+      <button class="action-button" ng-click="saveChanges()">GUARDAR CAMBIOS</button>
     </div>
 
 </div>

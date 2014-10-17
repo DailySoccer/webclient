@@ -7,7 +7,6 @@ import 'package:webclient/services/profile_service.dart';
 @Component(
     selector: 'join',
     templateUrl: 'packages/webclient/components/join_comp.html',
-    publishAs: 'comp',
     useShadowDom: false
 )
 class JoinComp implements ShadowRootAware {
@@ -78,9 +77,8 @@ class JoinComp implements ShadowRootAware {
     _router.go(routePath, parameters);
   }
 
-  @override
-  void onShadowRoot(root) {
-    var rootElement = root as HtmlElement;
+  @override void onShadowRoot(emulatedRoot) {
+    var rootElement = querySelector("#joinRoot");
     nicknameError = rootElement.querySelector("#nickNameError");
     nicknameError.parent.style.display = 'none';
 

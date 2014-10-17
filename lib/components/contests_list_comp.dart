@@ -10,7 +10,6 @@ import 'package:webclient/services/screen_detector_service.dart';
 @Component(
     selector: 'contests-list',
     templateUrl: 'packages/webclient/components/contests_list_comp.html',
-    publishAs: 'comp',
     useShadowDom: false
 )
 class ContestsListComp {

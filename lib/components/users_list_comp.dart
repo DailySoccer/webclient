@@ -8,7 +8,6 @@ import 'package:webclient/services/profile_service.dart';
 @Component(
    selector: 'users-list',
    templateUrl: 'packages/webclient/components/users_list_comp.html',
-   publishAs: 'comp',
    useShadowDom: false
 )
 class UsersListComp {

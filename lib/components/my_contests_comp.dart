@@ -11,7 +11,6 @@ import 'package:webclient/models/contest.dart';
 @Component(
   selector: 'my-contests',
   templateUrl: 'packages/webclient/components/my_contests_comp.html',
-  publishAs: 'comp',
   useShadowDom: false
 )
 

@@ -6,8 +6,7 @@ import 'package:webclient/services/datetime_service.dart';
 
 @Component(
    selector: 'footer',
-   templateUrl: 'packages/webclient/components/footer_comp.html',
-   publishAs: 'footer',
+   templateUrl: 'packages/webclient/components/navigation/footer_comp.html',
    useShadowDom: false
 )
 class FooterComp {

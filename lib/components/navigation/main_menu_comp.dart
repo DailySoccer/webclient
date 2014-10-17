@@ -9,11 +9,9 @@ import 'package:webclient/services/screen_detector_service.dart';
 
 @Component(
     selector: 'main-menu',
-    templateUrl: 'packages/webclient/components/main_menu_comp.html',
-    publishAs: 'mainMenu',
+    templateUrl: 'packages/webclient/components/navigation/main_menu_comp.html',
     useShadowDom: false
 )
-
 class MainMenuComp {
   bool   isLoggedIn = false;
   //String fullName = "";

@@ -17,7 +17,6 @@ import 'package:intl/intl.dart';
 @Component(
     selector: 'soccer-player-info',
     templateUrl: 'packages/webclient/components/enter_contest/soccer_player_info_comp.html',
-    publishAs: 'soccerPlayerInfo',
     useShadowDom: false
 )
 class SoccerPlayerInfoComp {

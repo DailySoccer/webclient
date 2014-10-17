@@ -7,7 +7,6 @@ import 'package:webclient/services/screen_detector_service.dart';
 @Component(
    selector: 'help-info',
    templateUrl: 'packages/webclient/components/legalese_and_help/help_info_comp.html',
-   publishAs: 'helpInfo',
    useShadowDom: false
 )
 class HelpInfoComp {

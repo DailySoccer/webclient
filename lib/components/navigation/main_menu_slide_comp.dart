@@ -8,12 +8,10 @@ import 'package:webclient/services/screen_detector_service.dart';
 
 @Component(
     selector: 'main-menu-slide',
-    templateUrl: 'packages/webclient/components/main_menu_slide_comp.html',
-    publishAs: 'comp',
+    templateUrl: 'packages/webclient/components/navigation/main_menu_slide_comp.html',
     useShadowDom: false
 )
-
-class MainMenuSlideComp implements ShadowRootAware{
+class MainMenuSlideComp implements ShadowRootAware {
   ProfileService profileService;
   ScreenDetectorService scrDet;
 
@@ -35,7 +33,7 @@ class MainMenuSlideComp implements ShadowRootAware{
           updateActiveElement(currentRouteName);
         }
         else {
-              currentRouteName = null;
+          currentRouteName = null;
         }
       });
     });
@@ -74,9 +72,8 @@ class MainMenuSlideComp implements ShadowRootAware{
     }
   }
 
-  @override
-  void onShadowRoot(root) {
-   _rootElement = root as HtmlElement;
+  @override void onShadowRoot(emulatedRoot) {
+    _rootElement = querySelector("#mainMenu");
   }
 
   HtmlElement _rootElement;

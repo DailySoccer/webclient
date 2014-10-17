@@ -1,7 +1,6 @@
 library my_contests_comp;
 
 import 'dart:html';
-import 'dart:async';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/my_contests_service.dart';

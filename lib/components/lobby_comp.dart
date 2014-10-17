@@ -1,7 +1,6 @@
 library active_contest_list_comp;
 
 import 'dart:html';
-import 'dart:async';
 import 'dart:math';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/active_contests_service.dart';

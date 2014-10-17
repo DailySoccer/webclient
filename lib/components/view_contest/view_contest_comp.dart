@@ -1,7 +1,6 @@
 library view_contest_comp;
 
 import 'package:angular/angular.dart';
-import 'dart:async';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/profile_service.dart';

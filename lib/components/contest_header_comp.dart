@@ -4,7 +4,6 @@ import 'package:angular/angular.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import "package:webclient/models/contest.dart";
-import 'dart:async';
 import 'package:webclient/services/refresh_timers_service.dart';
 
 @Component(

@@ -27,6 +27,14 @@ class HostServer {
     return (window.location.hostname.contains("127.") || window.location.hostname.contains("localhost"));
   }
 
+  static bool isDev() {
+    return _isLocalHost();
+  }
+
+  static bool isProd() {
+    return !isDev();
+  }
+
   static String _url;
 }
 

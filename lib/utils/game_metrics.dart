@@ -1,4 +1,5 @@
 import 'package:webclient/utils/js_utils.dart';
+import 'package:webclient/utils/host_server.dart';
 
 class GameMetrics {
 
@@ -6,6 +7,8 @@ class GameMetrics {
   static String LOGIN_ATTEMPTED = "Login attempted";
 
   static void logEvent(String eventName) {
-    JsUtils.runJavascript(null, "track", eventName, false, "mixpanel");
+    if (HostServer.isProd()) {
+      JsUtils.runJavascript(null, "track", eventName, false, "mixpanel");
+    }
   }
 }

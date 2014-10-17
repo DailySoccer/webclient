@@ -165,6 +165,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   LobbyComp(this._router, this.activeContestsService, this.scrDet) {
     activeContestsService.refreshActiveContests();
     RefreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_CONTEST_LIST, refreshActiveContest);
+
     calculateInfoBarText();
     RefreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_NEXT_TOURNAMENT_INFO, calculateInfoBarText);
 
@@ -183,13 +184,13 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   void onShadowRoot(emulatedRoot) {
 
     // Metemos en la lista de botones de ordenación los elementos que ordenan la lista
-    _sortingButtons = document.querySelectorAll('.sorting-button');
+    _sortingButtons = querySelectorAll('.sorting-button');
 
     // Nos guardamos la lista de clases por defecto que traen los botones de filtros.
     _sortingButtonClassesByDefault = _sortingButtons.first.classes.toList();
 
     // Capturamos el botón que abre el panel de filtros
-    _filtersButtons = document.querySelectorAll('.filters-button');
+    _filtersButtons = querySelectorAll('.filters-button');
     _filtersButtonClassesByDefault = _filtersButtons.first.classes.toList();
 
     // Al iniciar, tiene está cerrado por lo tanto le añadimos la clase que pone la flecha hacia abajo

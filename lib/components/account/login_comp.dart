@@ -10,17 +10,25 @@ import 'package:webclient/utils/game_metrics.dart';
     templateUrl: 'packages/webclient/components/account/login_comp.html',
     useShadowDom: false
 )
-class LoginComp implements ShadowRootAware  {
+class LoginComp implements ShadowRootAware {
 
   String email = "";
   String password = "";
   String rememberMe;
 
-  LoginComp(this._router, this._profileManager);
+  bool get enabledSubmit => email.isNotEmpty && password.isNotEmpty && _enabledSubmit;
+
+  LoginComp(this._router, this._profileManager, this._rootElement);
+
+  @override void onShadowRoot(emulatedRoot) {
+    _errSection = _rootElement.querySelector("#mailPassError");
+    _errSection.parent.parent.style.display = 'none';
+    _rootElement.querySelector('#login-mail').focus();
+  }
 
   void login() {
-    // Ejemplo de llamadas a mixpanel
     GameMetrics.logEvent(GameMetrics.LOGIN_ATTEMPTED);
+
     _errSection.parent.parent.style.display = "none";
     _enabledSubmit = false;
 
@@ -36,24 +44,18 @@ class LoginComp implements ShadowRootAware  {
         });
   }
 
-  bool get enabledSubmit => email.isNotEmpty && password.isNotEmpty && _enabledSubmit;
-
   void navigateTo(String routePath, Map parameters, event) {
     if (event.target.id != "btnSubmit") {
       event.preventDefault();
     }
+
     _router.go(routePath, parameters);
-   }
+ }
 
   Router _router;
   ProfileService _profileManager;
+  Element _rootElement;
   Element _errSection;
-  bool _enabledSubmit = true;
 
-  @override void onShadowRoot(emulatedRoot) {
-    var rootElement = querySelector("#loginRoot");
-    _errSection = rootElement.querySelector("#mailPassError");
-    _errSection.parent.parent.style.display = 'none';
-    rootElement.querySelector('#login-mail').focus();
-  }
+  bool _enabledSubmit = true;
 }

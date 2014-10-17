@@ -11,25 +11,19 @@ import 'package:webclient/services/screen_detector_service.dart';
     templateUrl: 'packages/webclient/components/navigation/main_menu_slide_comp.html',
     useShadowDom: false
 )
-class MainMenuSlideComp implements ShadowRootAware {
+class MainMenuSlideComp {
+
   ProfileService profileService;
   ScreenDetectorService scrDet;
 
-  void logOut() {
-    JsUtils.runJavascript('.navbar-offcanvas.navmenu-fixed', 'offcanvas', 'hide');
-    _router.go('landing_page', {});
-    profileService.logout();
-    _currentActiveElement = null;
-  }
-
   String currentRouteName;
 
-  MainMenuSlideComp(this._router, this.profileService, this.scrDet) {
+  MainMenuSlideComp(this._router, this.profileService, this.scrDet, this._rootElement) {
+
     _router.onRouteStart.listen((RouteStartEvent event) {
       event.completed.then((_) {
         if (_router.activePath.length > 0) {
           currentRouteName = _router.activePath[0].name;
-         // print("MAIN_MENU_SLIDE-: Estoy en ${currentRouteName}");
           updateActiveElement(currentRouteName);
         }
         else {
@@ -57,7 +51,7 @@ class MainMenuSlideComp implements ShadowRootAware {
   }
 
   void navigateTo(event, [Map params]) {
-    if ( params == null) {
+    if (params == null) {
       params = {};
     }
 
@@ -72,11 +66,15 @@ class MainMenuSlideComp implements ShadowRootAware {
     }
   }
 
-  @override void onShadowRoot(emulatedRoot) {
-    _rootElement = querySelector("#mainMenu");
+  void logOut() {
+    JsUtils.runJavascript('.navbar-offcanvas.navmenu-fixed', 'offcanvas', 'hide');
+    _router.go('landing_page', {});
+    profileService.logout();
+    _currentActiveElement = null;
   }
 
-  HtmlElement _rootElement;
+
+  Element _rootElement;
   LIElement _currentActiveElement;
   Router _router;
 

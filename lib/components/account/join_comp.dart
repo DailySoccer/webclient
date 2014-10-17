@@ -23,7 +23,19 @@ class JoinComp implements ShadowRootAware {
 
   bool get enabledSubmit => nickName.isNotEmpty && email.isNotEmpty && password.isNotEmpty && _enabledSubmit;
 
-  JoinComp(this._router, this._profileService);
+  JoinComp(this._router, this._profileService, this._rootElement);
+
+  void onShadowRoot(emulatedRoot) {
+    nicknameError = _rootElement.querySelector("#nickNameError");
+    nicknameError.parent.style.display = 'none';
+
+    emailError = _rootElement.querySelector("#emailError");
+    emailError.parent.style.display = 'none';
+
+    passwordError = _rootElement.querySelector("#passwordError");
+    passwordError.parent.style.display = 'none';
+    _rootElement.querySelector('#nickName').focus();
+  }
 
   void submitSignup() {
 
@@ -77,21 +89,9 @@ class JoinComp implements ShadowRootAware {
     _router.go(routePath, parameters);
   }
 
-  @override void onShadowRoot(emulatedRoot) {
-    var rootElement = querySelector("#joinRoot");
-    nicknameError = rootElement.querySelector("#nickNameError");
-    nicknameError.parent.style.display = 'none';
-
-    emailError = rootElement.querySelector("#emailError");
-    emailError.parent.style.display = 'none';
-
-    passwordError = rootElement.querySelector("#passwordError");
-    passwordError.parent.style.display = 'none';
-    rootElement.querySelector('#nickName').focus();
-  }
-
   Router _router;
   ProfileService _profileService;
-  bool _enabledSubmit = true;
+  Element _rootElement;
 
+  bool _enabledSubmit = true;
 }

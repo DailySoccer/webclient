@@ -15,7 +15,7 @@ import 'dart:html';
 
 @Component(
     selector: 'view-contest',
-    templateUrl: 'packages/webclient/components/view_contest_comp.html',
+    templateUrl: 'packages/webclient/components/view_contest/view_contest_comp.html',
     useShadowDom: false)
 class ViewContestComp implements DetachAware {
 

@@ -6,7 +6,7 @@ import 'package:webclient/services/profile_service.dart';
 
 @Component(
     selector: 'login',
-    templateUrl: 'packages/webclient/components/login_comp.html',
+    templateUrl: 'packages/webclient/components/account/login_comp.html',
     useShadowDom: false
 )
 class LoginComp implements ShadowRootAware  {

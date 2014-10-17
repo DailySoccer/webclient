@@ -3,12 +3,12 @@ library edit_personal_data_comp;
 import 'package:angular/angular.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/js_utils.dart';
-import 'package:webclient/components/user_profile_comp.dart';
+import 'package:webclient/components/account/user_profile_comp.dart';
 import 'dart:html';
 
 @Component(
     selector: 'edit-personal-data',
-    templateUrl: 'packages/webclient/components/edit_personal_data_comp.html',
+    templateUrl: 'packages/webclient/components/account/edit_personal_data_comp.html',
     useShadowDom: false
 )
 class EditPersonalDataComp implements ShadowRootAware {

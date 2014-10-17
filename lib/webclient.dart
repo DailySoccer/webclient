@@ -24,14 +24,21 @@ import 'package:webclient/components/contest_info_comp.dart';
 import 'package:webclient/components/scoring_rules_comp.dart';
 import 'package:webclient/components/contest_header_comp.dart';
 import 'package:webclient/components/lobby_comp.dart';
-import 'package:webclient/components/fantasy_team_comp.dart';
-import 'package:webclient/components/users_list_comp.dart';
 import 'package:webclient/components/my_contests_comp.dart';
 import 'package:webclient/components/contests_list_comp.dart';
 import 'package:webclient/components/promos_comp.dart';
 import 'package:webclient/components/paginator_comp.dart';
-import 'package:webclient/components/view_contest_entry_comp.dart';
-import 'package:webclient/components/view_contest_comp.dart';
+
+import 'package:webclient/components/account/user_profile_comp.dart';
+import 'package:webclient/components/account/edit_personal_data_comp.dart';
+import 'package:webclient/components/account/remember_password_comp.dart';
+import 'package:webclient/components/account/login_comp.dart';
+import 'package:webclient/components/account/join_comp.dart';
+
+import 'package:webclient/components/view_contest/fantasy_team_comp.dart';
+import 'package:webclient/components/view_contest/users_list_comp.dart';
+import 'package:webclient/components/view_contest/view_contest_entry_comp.dart';
+import 'package:webclient/components/view_contest/view_contest_comp.dart';
 
 import 'package:webclient/components/enter_contest/enter_contest_comp.dart';
 import 'package:webclient/components/enter_contest/lineup_selector_comp.dart';
@@ -45,12 +52,6 @@ import 'package:webclient/components/legalese_and_help/legal_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/terminus_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/policy_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/beta_info_comp.dart';
-
-import 'package:webclient/components/user_profile_comp.dart';
-import 'package:webclient/components/edit_personal_data_comp.dart';
-import 'package:webclient/components/remember_password_comp.dart';
-import 'package:webclient/components/login_comp.dart';
-import 'package:webclient/components/join_comp.dart';
 
 import 'package:webclient/components/navigation/main_menu_comp.dart';
 import 'package:webclient/components/navigation/main_menu_slide_comp.dart';

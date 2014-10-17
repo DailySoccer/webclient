@@ -6,7 +6,7 @@ import 'package:webclient/services/profile_service.dart';
 
 @Component(
     selector: 'join',
-    templateUrl: 'packages/webclient/components/join_comp.html',
+    templateUrl: 'packages/webclient/components/account/join_comp.html',
     useShadowDom: false
 )
 class JoinComp implements ShadowRootAware {

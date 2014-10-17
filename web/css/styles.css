@@ -9528,11 +9528,21 @@ fieldset[disabled] .landing-wrapper .button-play {
   position: relative;
   background-image: url('../images/landingBackground.jpg');
   background-size: cover;
+  white-space: nowrap;
+  font-size: 0;
+  text-align: center;
 }
 @media (max-height: 850px) {
   .first-screen {
     min-height: 700px;
   }
+}
+.first-screen:before {
+  vertical-align: middle;
+  display: inline-block;
+  white-space: normal;
+  height: 100%;
+  content: "";
 }
 .first-screen .main-title {
   font-family: 'Exo', sans-serif;
@@ -9563,8 +9573,10 @@ fieldset[disabled] .landing-wrapper .button-play {
   position: relative;
   width: 90%;
   max-width: 960px;
-  bottom: -20%;
   margin: 0 auto;
+  display: inline-block;
+  vertical-align: middle;
+  white-space: normal;
 }
 @media (max-height: 850px) {
   .first-screen .main-title-wrapper {
@@ -9642,7 +9654,8 @@ fieldset[disabled] .landing-wrapper .button-play {
   margin-left: 0;
   margin-right: 0;
   position: absolute;
-  bottom: 0px;
+  bottom: 0;
+  left: 0;
   width: 100%;
 }
 .info-and-social-bar {

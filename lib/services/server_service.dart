@@ -4,8 +4,9 @@ import 'dart:async';
 import 'dart:convert' show JSON;
 import 'package:angular/angular.dart';
 import 'package:json_object/json_object.dart';
-import 'package:webclient/utils/host_server.dart';
 import 'package:logging/logging.dart';
+import 'package:webclient/utils/host_server.dart';
+import 'package:webclient/services/refresh_timers_service.dart';
 
 abstract class ServerService {
   static final String URL = "url";
@@ -52,7 +53,7 @@ abstract class ServerService {
 
 @Injectable()
 class DailySoccerServer implements ServerService {
-  DailySoccerServer(this._http);
+  DailySoccerServer(this._http, this._refreshTimersService);
 
   void setSessionToken(String sessionToken) { _sessionToken = sessionToken; }
 
@@ -169,7 +170,10 @@ class DailySoccerServer implements ServerService {
 
             Logger.root.severe("_innerServerCall error: $error, url: $url, retry: $retryTimes");
             if ((retryTimes == -1) || (retryTimes > 0)) {
-              new Timer(const Duration(seconds:3), () => _callLoop(url, queryString, postData, headers, completer, (retryTimes > 0) ? retryTimes-1 : retryTimes));
+              _refreshTimersService.addRefreshTimer(
+                  url,
+                  () => _callLoop(url, queryString, postData, headers, completer, (retryTimes > 0) ? retryTimes-1 : retryTimes),
+                  RefreshTimersService.SECONDS_TO_RETRY_SERVER_CALL);
             }
             else {
               _processError(error, url, completer);
@@ -211,6 +215,7 @@ class DailySoccerServer implements ServerService {
   }
 
   Http _http;
+  RefreshTimersService _refreshTimersService;
   String _sessionToken;
 
   List<Map> _subscribers = new List<Map>();

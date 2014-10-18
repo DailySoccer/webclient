@@ -59,7 +59,7 @@ class ActiveContestsService {
   }
 
   Future refreshContest(String contestId) {
-    return _server.getContestInfo(contestId)
+    return _server.getPublicContest(contestId)
       .then((jsonObject) {
         lastContest = Contest.loadContestsFromJsonObject(jsonObject).first;
       });

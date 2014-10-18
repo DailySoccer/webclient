@@ -65,7 +65,7 @@ class MyContestsService {
   Future refreshContest(String contestId) {
     var completer = new Completer();
 
-    _server.getContest(contestId)
+    _server.getFullContest(contestId)
         .then((jsonObject) {
           lastContest = Contest.loadContestsFromJsonObject(jsonObject).first;
           completer.complete(jsonObject);

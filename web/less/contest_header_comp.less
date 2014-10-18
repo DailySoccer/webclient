@@ -119,13 +119,39 @@
 	// Fecha comienzo contest
 	.contest-start-date {
 		.make-xs-column(6, 0);
-		.make-md-column(12, 0);
+		margin-top: 10px;
 		.opensans_bold(10pt, @blueMed);
 		@media (max-width: @screen-xs-max) {
 			.opensans_bold(8pt, @blueMed);
 			margin-top: 15px;
 		}
 	}
+
+
+	// Contador para comienzo de contest
+	.countdown-text {
+		.make-xs-column(6, 0);
+		margin-top: 10px;
+		text-align: right;
+		
+		@media (max-width: @screen-sm-max) {
+			.text-countdown {
+				.opensans_bold(8pt, @blueMed);
+			}
+			.time-countdown {
+				.opensans_bold(8pt, @blueLight);	
+			}
+		}
+		@media (min-width: @screen-sm-min) {
+			.text-countdown {
+				.opensans_bold(10pt, @blueMed);
+			}
+			.time-countdown {
+				.opensans_bold(10pt, @blueLight);	
+			}
+		}
+	}
+
 
 	// Botón de cerrar
 	.close-contest {
@@ -143,44 +169,4 @@
 		}
 	}
 	
-}
-
-// Contador para comienzo de contest
-.countdown-text {
-	@media (max-width: @screen-sm-max){
-		.make-xs-column(6, 0);
-		.opensans_bold(10pt, @blueMed);
-	}
-
-	@media (min-width: @screen-md-min) {
-		#gradient.vertical(@blueGradientLight, @blueGradientDark, 49%, 51%);
-		padding: 10px;
-	}
-
-	@media (max-width: @screen-xs-max) {
-		.opensans_bold(8pt, @blueMed);
-		margin-top: 15px;
-	}
-
-	.choose-player-text {
-		display: inline-block;
-		.exo_bold(16pt, @white);
-	}
-	.time-countdown{
-		@media (min-width: @screen-md-min) {
-			.exo_light(18pt, @blueLight);
-		}
-		.opensans_bold(8pt, @blueDark);
-		.pull-right();
-	}
-	.text-countdown {
-		@media (min-width: @screen-md-min) {
-			.exo_bold(10pt, @white);
-			margin: 9px 5px 0;
-		}
-		.opensans_bold(8pt, @blueDark);
-		.pull-right();
-		margin-right: 5px;
-	}
-		
 }

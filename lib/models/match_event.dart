@@ -58,7 +58,7 @@ class MatchEvent {
   }
 
   factory MatchEvent.fromJsonObject(JsonObject json, ContestReferences references) {
-    MatchEvent matchEvent = references.getMatchEventById(json.containsKey("templateMatchEventId") ? json.templateMatchEventId : json._id);
+    MatchEvent matchEvent = references.getMatchEventById(json.containsKey("templateMatchEventId") ? json.templateMatchEventId : json["_id"]);
     return matchEvent._initFromJsonObject(json, references);
   }
 

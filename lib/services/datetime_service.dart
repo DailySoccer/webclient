@@ -4,7 +4,8 @@ import 'dart:async';
 import 'package:intl/intl.dart';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/server_service.dart';
-
+import 'package:webclient/services/refresh_timers_service.dart';
+import 'package:webclient/utils/host_server.dart';
 
 @Injectable()
 class DateTimeService {
@@ -16,16 +17,18 @@ class DateTimeService {
   // recibiendo la hora desde el servidor, cambia un poco mas lento (cada 3 segundos)
   DateTime get nowEverySecond => _nowEverySecond;
 
-  DateTimeService(this._server) {
+  DateTimeService(this._server, RefreshTimersService rts) {
     if (_instance != null)
       throw new Exception("WTF 1233");
 
     _instance = this;
 
-    _timerVerifySimulatorActivated = new Timer.periodic(const Duration(seconds:3), (Timer t) => _verifySimulatorActivated());
-    _verifySimulatorActivated();
+    if (HostServer.isDev) {
+      _verifySimulatorActivated();
+      RefreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_VERIFY_SIMULATOR_ACTIVATED, _verifySimulatorActivated);
+    }
 
-    new Timer.periodic(new Duration(seconds:1), (t) => _nowEverySecond = now);
+    RefreshTimersService.addRefreshTimer(RefreshTimersService.EVERY_SECOND, () => _nowEverySecond = now);
   }
 
   static bool isToday(DateTime date) {
@@ -80,13 +83,13 @@ class DateTimeService {
           print("Simulator Activated");
 
           // Cancelamos el timer de verificacion (asumimos que siempre estará ejecutándose)
-          _timerVerifySimulatorActivated.cancel();
+          RefreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_VERIFY_SIMULATOR_ACTIVATED);
 
           // Timer para solicitar el "currentDate"
           _timerUpdateFromServer = (_simulatorActivated)
-              ? new Timer.periodic(const Duration(seconds:3), (Timer t) => _updateDateFromServer())
+              ? RefreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_UPDATE_FROM_SERVER, _updateDateFromServer)
               : null;
-        }
+          }
       });
   }
 
@@ -105,8 +108,6 @@ class DateTimeService {
     return _UTC? new DateTime.now().toUtc() : new DateTime.now();
   }
 
-
-  Timer _timerVerifySimulatorActivated;
   Timer _timerUpdateFromServer;
   DateTime _fakeDateTime;
   DateTime _nowEverySecond;

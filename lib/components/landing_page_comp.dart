@@ -9,15 +9,11 @@ import 'package:webclient/services/screen_detector_service.dart';
 @Component(
    selector: 'landing-page',
    templateUrl: 'packages/webclient/components/landing_page_comp.html',
-   publishAs: 'comp',
    useShadowDom: false
 )
 class LandingPageComp implements ShadowRootAware, DetachAware {
 
   String content;
-  Element _bodyObj;
-  Element _mainWrapper;
-  Element _mainContent;
   ScreenDetectorService scrDet;
 
   int get screenHeight => window.innerHeight;
@@ -40,7 +36,7 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
 */
   LandingPageComp(this._router, this._profileService, this.scrDet);
 
-  void onShadowRoot(var root) {
+  void onShadowRoot(emulatedRoot) {
 
     if (_profileService.isLoggedIn) {
       _router.go("lobby", {});
@@ -59,23 +55,24 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
 
     _mainContent.classes.clear();
     _mainContent.classes.add('unlogged-margin');
-
   }
 
   void detach() {
-    if (_bodyObj !=null) {
+
+    if (_bodyObj != null) {
       _bodyObj.classes.remove('fondo-negro');
     }
-    if ( _mainWrapper != null) {
+
+    if (_mainWrapper != null) {
       _mainWrapper.classes
         ..clear()
         ..add('wrapper-content-container');
     }
+
     if (_mainContent != null) {
       _mainContent.classes.clear();
       _mainContent.classes.add('main-content-container');
     }
-
   }
 
   void buttonPressed(String route) {
@@ -84,4 +81,8 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
 
   Router _router;
   ProfileService _profileService;
+
+  Element _bodyObj;
+  Element _mainWrapper;
+  Element _mainContent;
 }

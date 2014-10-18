@@ -38,7 +38,7 @@ class ContestEntry {
   ContestEntry(this.contestEntryId, this.user, this.instanceSoccerPlayers);
 
   ContestEntry.initFromJsonObject(JsonObject json, ContestReferences references, Contest theContest) {
-    contestEntryId = json._id;
+    contestEntryId = json["_id"];
     user = references.getUserById(json.userId);
 
     // Enviado únicamente cuando se envíe usando jsonView.FullContest

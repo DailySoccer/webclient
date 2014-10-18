@@ -10,7 +10,6 @@ import 'package:webclient/services/screen_detector_service.dart';
 @Component(
     selector: 'contests-list',
     templateUrl: 'packages/webclient/components/contests_list_comp.html',
-    publishAs: 'comp',
     useShadowDom: false
 )
 class ContestsListComp {
@@ -211,7 +210,7 @@ class ContestsListComp {
   void updateCurrentPageList(int currentPage, int itemsPerPage) {
     // Determinamos que elementos se mostrarán en la pagina actual
     int rangeStart = currentPage * itemsPerPage;
-    int rangeEnd =  (rangeStart + itemsPerPage < contestsListFiltered.length) ? rangeStart + itemsPerPage : contestsListFiltered.length;
+    int rangeEnd =  (contestsListFiltered == null) ? rangeStart : (rangeStart + itemsPerPage < contestsListFiltered.length) ? rangeStart + itemsPerPage : contestsListFiltered.length;
     currentPageList = contestsListFiltered.getRange(rangeStart, rangeEnd).toList();
   }
   // Lista original de los contest

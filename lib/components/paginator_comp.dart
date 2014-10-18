@@ -8,7 +8,6 @@ import 'package:webclient/services/screen_detector_service.dart';
 @Component(
     selector: 'paginator',
     templateUrl: 'packages/webclient/components/paginator_comp.html',
-    publishAs: 'comp',
     useShadowDom: false
 )
 class PaginatorComp implements DetachAware, ShadowRootAware {
@@ -44,10 +43,8 @@ class PaginatorComp implements DetachAware, ShadowRootAware {
     _streamListener.cancel();
   }
 
-  void onShadowRoot(root) {
-    var rootElement = root as HtmlElement;
-
-    _paginatorContainer = rootElement.querySelector(".paginator-box");
+  void onShadowRoot(emulatedRoot) {
+    _paginatorContainer = querySelector(".paginator-box");
 
     goToPage(_currentPage);
   }

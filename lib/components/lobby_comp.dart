@@ -1,7 +1,6 @@
 library active_contest_list_comp;
 
 import 'dart:html';
-import 'dart:async';
 import 'dart:math';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/active_contests_service.dart';
@@ -9,14 +8,13 @@ import 'package:webclient/models/contest.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/services/datetime_service.dart';
+import 'package:webclient/services/refresh_timers_service.dart';
 
 @Component(
   selector: 'lobby',
   templateUrl: 'packages/webclient/components/lobby_comp.html',
-  publishAs: 'comp',
   useShadowDom: false
 )
-
 class LobbyComp implements ShadowRootAware, DetachAware {
   static const String FILTER_CONTEST_NAME = "FILTER_CONTEST_NAME";
   static const String FILTER_ENTRY_FEE    = "FILTER_ENTRY_FEE";
@@ -165,13 +163,10 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   //CONTRUCTOR
   LobbyComp(this._router, this.activeContestsService, this.scrDet) {
     activeContestsService.refreshActiveContests();
-    refreshActiveContest();
+    RefreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_CONTEST_LIST, refreshActiveContest);
 
-    const refreshListSeconds = const Duration(seconds: 10);
-    _refresListTimer = new Timer.periodic(refreshListSeconds, (Timer t) =>  refreshActiveContest());
-
-    const refrestNextoTournamentInfoSeconds = const Duration(seconds: 1);
-    _refreshNextTournamentInfoTimer = new Timer.periodic(refrestNextoTournamentInfoSeconds, (Timer t) =>  calculateInfoBarText());
+    calculateInfoBarText();
+    RefreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_NEXT_TOURNAMENT_INFO, calculateInfoBarText);
 
     _streamListener = scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
   }
@@ -181,23 +176,29 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     if ( _amIATest != true ) {
       activeContestsService.refreshActiveContests();
     }
+    print('refrescando lista de concursos');
     _freeContestCount   = activeContestsService.activeContests.where((contest) => contest.tournamentType == Contest.TOURNAMENT_FREE).toList().length;
   }
 
-  void onShadowRoot(root) {
+  void onShadowRoot(emulatedRoot) {
+
     // Metemos en la lista de botones de ordenación los elementos que ordenan la lista
-    _sortingButtons = document.querySelectorAll('.sorting-button');
+    _sortingButtons = querySelectorAll('.sorting-button');
+
     // Nos guardamos la lista de clases por defecto que traen los botones de filtros.
     _sortingButtonClassesByDefault = _sortingButtons.first.classes.toList();
-    //capturamos el botón que abre el panel de filtros
-    _filtersButtons = document.querySelectorAll('.filters-button');
+
+    // Capturamos el botón que abre el panel de filtros
+    _filtersButtons = querySelectorAll('.filters-button');
     _filtersButtonClassesByDefault = _filtersButtons.first.classes.toList();
-    //Al iniciar, tiene está cerrado por lo tanto le añadimos la clase que pone la flecha hacia abajo
+
+    // Al iniciar, tiene está cerrado por lo tanto le añadimos la clase que pone la flecha hacia abajo
     _filtersButtons.forEach((value) => value.classes.add('toggleOff'));
+
     // Inicializamos el control que dibuja el slider para el filtro por entrada
     initSliderRange();
 
-    //Nos subscribimos a los eventos de apertura y cierre de los filtros
+    // Nos subscribimos a los eventos de apertura y cierre de los filtros
     JsUtils.runJavascript('#filtersPanel', 'on', {'hidden.bs.collapse': onCloseFiltersPanel});
     JsUtils.runJavascript('#filtersPanel', 'on', {'shown.bs.collapse': onOpenFiltersPanel});
   }
@@ -209,8 +210,9 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   }
 
   void detach() {
-    _refresListTimer.cancel();
-    _refreshNextTournamentInfoTimer.cancel();
+   // _refresListTimer.cancel();
+    RefreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_CONTEST_LIST);
+    RefreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_NEXT_TOURNAMENT_INFO);
     _streamListener.cancel();
   }
 
@@ -570,8 +572,6 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     });
   }
 
-  Timer _refresListTimer;
-  Timer _refreshNextTournamentInfoTimer;
   Router _router;
 
   List<Element> _sortingButtons = [];

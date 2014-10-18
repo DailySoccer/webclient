@@ -1,0 +1,69 @@
+<div id="joinRoot">
+  <div id="signupbox" class="main-box">
+
+    <div class="panel window-slide-in">
+
+      <div class="panel-heading">
+        <div class="panel-title">REGÍSTRATE</div>
+        <button type="button" class="close" ng-click="navigateTo('landing_page', {}, $event)">
+          <span class="glyphicon glyphicon-remove"></span>
+        </button>
+      </div>
+
+      <div class="panel-body" >
+
+        <form id="signupForm" class="form-horizontal" ng-submit="submitSignup()" data-toggle="validator" role="form" formAutofillFix>
+          <div class="form-description">¿Todavía no tienes cuenta en EPIC 11? Rellena los campos de este formulario para completar el registro. ¡Es muy sencillo!</div>
+          <!-- USERNAME  -->
+          <div class="input-group">
+            <span class="input-group-addon"><div class="glyphicon glyphicon-user"></div></span>
+            <input id="nickName" name="NickName" type="text" ng-model="nickName" placeholder="Nombre de usuario" class="form-control" data-toggle="validator" required="">
+          </div>
+          <!-- Error de username -->
+          <div class="new-row">
+            <div id="nickNameError" class="join-err-text">ERROR DE REGISTRO. El user name no es válido.</div>
+          </div>
+          <!-- EMAIL -->
+          <div class="input-group">
+            <span class="input-group-addon"><div class="glyphicon glyphicon-envelope"></div></span>
+            <input id="email" name="Email" type="email" ng-model="email" placeholder="Correo electrónico" class="form-control" data-toggle="validator" required="">
+          </div>
+          <!-- Error de mail -->
+          <div class="new-row">
+            <div id="emailError" class="join-err-text">ERROR DE REGISTRO. El mail no es válido.</div>
+          </div>
+          <!-- PASSWORD -->
+          <div class="input-group">
+            <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
+            <input id="password" name="Password" type="password" ng-model="password" placeholder="Password (mínimo 8 caracteres)" class="form-control" data-toggle="validator" required="" data-minlength="8" ng-minlength="8">
+          </div>
+          <!-- Error de password -->
+          <div class="new-row">
+            <div id="passwordError" class="join-err-text">ERROR DE REGISTRO. El password no es válido.</div>
+          </div>
+          <!-- BUTTONS -->
+          <div class="input-group">
+            <div class="new-row">
+              <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">REGÍSTRATE</button>
+              <button id="btnCancelJoin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCELAR</button>
+            </div>
+          </div>
+          <!-- GOTO REGISTER -->
+          <div class="input-group">
+            <div class="new-row">
+              <div class="separator-top">¿Ya tienes cuenta? <a ng-click="navigateTo('login', {}, $event)"> Entra por aquí! </a></div>
+            </div>
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+
+

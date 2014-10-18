@@ -218,7 +218,7 @@ class Contest {
    * Factorias de creacion de un Contest
    */
   factory Contest.fromJsonObject(JsonObject json, ContestReferences references) {
-    return references.getContestById(json._id)._initFromJsonObject(json, references);
+    return references.getContestById(json["_id"])._initFromJsonObject(json, references);
   }
 
   /*

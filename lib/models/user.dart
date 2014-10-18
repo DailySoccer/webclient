@@ -25,9 +25,10 @@ class User {
       references = new ContestReferences();
 
     // TODO: storedSessionToken almacena un user sin "_id" (por lo que, sin esta comprobacion, lanza una excepcion)
-    String userId = (jsonObject.containsKey("_id"))      ? jsonObject._id
+    String userId = (jsonObject.containsKey("_id"))      ? jsonObject["_id"]
                   : ((jsonObject.containsKey("userId"))  ? jsonObject.userId
                   : "<userId: null>");
+
     User user = references.getUserById(userId);
     return user._initFromJsonObject(jsonObject, references);
   }

@@ -1,0 +1,130 @@
+<div class="soccer-player-info-header">
+  <div class="actions-header">
+    <div class="text-header">Estadísticas de jugador</div>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+      <span class="glyphicon glyphicon-remove"></span>
+    </button>
+    <div class="button-wrapper">
+      <button class="btn-cancel-soccer-player-info" ng-click="enterContestComp.closePlayerInfo()">CANCELAR</button>
+    </div>
+    <div class="button-wrapper">
+      <span class="next-match">PRÓXIMO PARTIDO:</span> <span class="next-match" ng-bind-html="currentInfoData['nextMatchEvent']"></span>
+      <button class="btn-add-soccer-player-info" ng-click="enterContestComp.addSoccerPlayerToLineup(currentInfoData['id'])">AÑADIR</button>
+    </div>
+  </div>
+  <div class="description-header">
+    <div class="soccer-player-description">
+      <div class="soccer-player-pos-team">
+        <span>{{currentInfoData['fieldPos']}}</span> | <span>{{currentInfoData['team']}}</span>
+      </div>
+      <div class="soccer-player-name">{{currentInfoData['name']}}</div>
+    </div>
+    <div class="soccer-player-info-stats">
+      <div class="soccer-player-fantasy-points"><span>DFP</span><span>{{currentInfoData['fantasyPoints']}}</span></div>
+      <div class="soccer-player-matches"><span>PARTIDOS</span><span>{{currentInfoData['matches']}}</span></div>
+      <div class="soccer-player-salary"><span>SALARIO</span><span>{{currentInfoData['salary']}}</span></div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="soccer-player-info-content">
+    <!-- Nav tabs -->
+    <ul class="soccer-player-info-tabs" role="tablist">
+      <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('season-info-tab-content')">Datos de Temporada</a></li>
+      <li><a role="tab" data-toggle="tab" ng-click="tabChange('match-info-tab-content')">Partido a Partido</a></li>
+    </ul>
+
+    <div class="tabs">
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <!--SEASON-->
+        <div class="tab-pane active" id="season-info-tab-content">
+          <div class="next-match">PRÓXIMO PARTIDO: <span ng-bind-html="currentInfoData['nextMatchEvent']"></span></div>
+          <!--<div class="date-season">15/05 19:00</div>-->
+          <!-- MEDIAS -->
+          <div class="season-header">Estadísticas de temporada <span>(datos por partido)</span></div>
+          <div class="season-stats">
+            <div class="season-stats-wrapper">
+              <div class="season-stats-row" ng-repeat="stat in medias">
+                <div class="season-stats-header">{{stat['nombre']}}</div>
+                <div class="season-stats-info">{{stat['valor']}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--END SEASON-->
+        <!--MATCH-->
+        <div class="tab-pane" id="match-info-tab-content">
+          <div class="match-header">Partido a partido</div>
+          <div class="match-stats" ng-if="matchesPlayed">
+            <!--HEADER-->
+            <div ng-if="isGoalkeeper()" class="match-stats-header">
+              <div><span ng-if="enterContestComp.scrDet.isDesktop || enterContestComp.scrDet.isSmScreen">FECHA</span>&nbsp;</div>
+              <div ng-if="enterContestComp.scrDet.isXsScreen">DÍA</div>
+              <div>OP</div>
+              <div>DFP</div>
+              <div>MIN</div>
+              <div>GE</div>
+              <div>PA</div>
+              <div>D</div>
+              <div>P</div>
+              <div>RE</div>
+              <div>PB</div>
+              <div>PD</div>
+              <div>FC</div>
+              <div>TA</div>
+              <div>TR</div>
+            </div>
+            <div ng-if="!isGoalkeeper()" class="match-stats-header">
+              <div><span ng-if="enterContestComp.scrDet.isDesktop || enterContestComp.scrDet.isSmScreen">FECHA</span>&nbsp;</div>
+              <div ng-if="enterContestComp.scrDet.isXsScreen">DÍA</div>
+              <div>OP</div>
+              <div>DFP</div>
+              <div>MIN</div>
+              <div>G</div>
+              <div>T</div>
+              <div>P</div>
+              <div>A</div>
+              <div>R</div>
+              <div>RE</div>
+              <div>E</div>
+              <div>PB</div>
+              <div>FJ</div>
+              <div>TA</div>
+              <div>TR</div>
+            </div>
+            <!--CONTENT-->
+            <div class="match-stats-content">
+                <div class="match-stats-data">
+                  <!-- Los datos con un ng-repeat por año -->
+                  <div ng-repeat="slot in seasons">
+                      <div class="match-year">{{slot["año"]}}</div>
+                      <div class="data" ng-repeat="match in slot['value']">
+                        <div ng-repeat="data in match">{{data}}<span ng-if="$index == 0 && scrDet.isDesktop">/{{slot["año"]}}</span></div>
+                      </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="noMatchesPlayed" ng-if="!matchesPlayed">
+              <span>NO HA JUGADO NINGÚN PARTIDO ESTA TEMPORADA</span>
+          </div>
+        </div>
+        <!--END MATCH-->
+      </div>
+    </div>
+    <!--BUTTONS-->
+    <div class="action-buttons">
+      <div class="button-wrapper">
+        <button class="btn-cancel-soccer-player-info" ng-click="enterContestComp.closePlayerInfo()">CANCELAR</button>
+      </div>
+      <div class="button-wrapper">
+        <button class="btn-add-soccer-player-info" ng-click="enterContestComp.addSoccerPlayerToLineup(currentInfoData['id'])">AÑADIR</button>
+      </div>
+    </div>
+</div>
+
+
+

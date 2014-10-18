@@ -23,9 +23,9 @@ class HostServer {
     return _url;
   }
 
-  static bool _isLocalHost() {
-    return (window.location.hostname.contains("127.") || window.location.hostname.contains("localhost"));
-  }
+  static bool _isLocalHost() => (window.location.hostname.contains("127.") || window.location.hostname.contains("localhost"));
+  static bool get isDev      => _isLocalHost();
+  static bool get isProd     => !isDev;
 
   static String _url;
 }
@@ -39,8 +39,7 @@ class HostServer {
   * NO hay que cambiar nada en el codigo.
   *
   CONTRA:
-  * Funcionan todos los browsers en CORS. En general, problemas con CORS potenciales.
-  * Tener incrementa la complejidad, en general.
+  * En general, problemas con CORS: Preflights.
 
 - Opcion 2
 
@@ -49,12 +48,10 @@ class HostServer {
 
  PRO:
  * No nos liamos con el CORS.
- * Nos podemos dejar cosas sin meter el CDN. Hay que acordarse!!!
  * Si queremos saltar el CDN, podemos saltarlo... puede ser util quiza?
 
  CON:
+ * Nos podemos dejar cosas sin meter el CDN. Hay que acordarse!!!
  * Hay que cambiar todos los assets en el codigo.
  * Que pasa los assets que estan en el CSS??
 */
-
-

@@ -13,7 +13,7 @@ import 'package:webclient/services/refresh_timers_service.dart';
 )
 class ContestHeaderComp implements DetachAware {
 
-  Map<String, dynamic> contestHeaderInfo = {
+  Map<String, String> contestHeaderInfo = {
     'description':      'cargando datos...',
     'startTime':        '',
     'countdownDate':    '',
@@ -33,6 +33,7 @@ class ContestHeaderComp implements DetachAware {
 
     if (value != null) {
       _refreshHeader();
+      _refreshCountdownDate();
     }
   }
 
@@ -66,8 +67,8 @@ class ContestHeaderComp implements DetachAware {
         RefreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_UPDATE_COUNTDOWN_DATE);
       }
       else {
-        contestHeaderInfo["textCountdownDate"] = (scrDet.isDesktop) ? "EL CONCURSO COMENZARÁ EN: " : "FALTAN";
         contestHeaderInfo["countdownDate"] = DateTimeService.formatTimeLeft(tiempoRestante);
+        contestHeaderInfo["textCountdownDate"] = (scrDet.isDesktop) ? "EL CONCURSO COMENZARÁ EN: " : "FALTAN";
       }
     }
   }

@@ -5,7 +5,7 @@ import 'package:angular/angular.dart';
 import 'package:logging/logging.dart';
 
 @Injectable()
-class RefreshTimersService{
+class RefreshTimersService {
 
   static Map<String, int> timersDef = {
     'EVERY_SECOND'                              : 1

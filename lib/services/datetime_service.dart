@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/server_service.dart';
 import 'package:webclient/services/refresh_timers_service.dart';
+import 'package:webclient/utils/host_server.dart';
 
 @Injectable()
 class DateTimeService {
@@ -22,9 +23,11 @@ class DateTimeService {
 
     _instance = this;
 
-    RefreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_VERIFY_SIMULATOR_ACTIVATED, _verifySimulatorActivated);
+    if (HostServer.isDev) {
+      _verifySimulatorActivated();
+      RefreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_VERIFY_SIMULATOR_ACTIVATED, _verifySimulatorActivated);
+    }
 
-    _verifySimulatorActivated();
     RefreshTimersService.addRefreshTimer(RefreshTimersService.EVERY_SECOND, () => _nowEverySecond = now);
   }
 

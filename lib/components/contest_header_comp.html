@@ -18,14 +18,15 @@
         </div>
         <div class="contest-coins-content"><span>{{contestHeaderInfo['prize']}}</span></div>
       </div>
-
+      
     </div>
 
     <div class="contest-start-date">{{contestHeaderInfo['startTime']}}&nbsp;</div>
     <div class="countdown-text">
-      <span class="time-countdown">{{contestHeaderInfo['countdownDate']}}</span><span class="text-countdown">{{contestHeaderInfo['textCountdownDate']}}</span>
+      <span class="text-countdown">{{contestHeaderInfo['textCountdownDate']}}&nbsp;</span>
+      <span class="time-countdown">{{contestHeaderInfo['countdownDate']}}&nbsp;</span>
     </div>
-
+    
     <div class="close-contest"><button type="button" class="close" ng-click="goToParent()"><span class="glyphicon glyphicon-remove"></span></button></div>
 
 </div>

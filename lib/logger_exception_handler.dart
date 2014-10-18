@@ -41,8 +41,11 @@ class LoggerExceptionHandler extends ExceptionHandler {
   static void logExceptionToServer(dynamic exc, dynamic stackTrace, [String reason = '']) {
     // Las excepciones siempre las mandamos con SHOUT para que el servidor pueda distinguirlas de todos los Levels menores
     Logger.root.shout("$exc $reason \nORIGINAL STACKTRACE:\n$stackTrace");
+
+    /*
     if (HostServer.isDev()) {
       window.alert(stackTrace.toString());
     }
+    */
   }
 }

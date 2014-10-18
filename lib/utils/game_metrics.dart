@@ -7,7 +7,7 @@ class GameMetrics {
   static String LOGIN_ATTEMPTED = "Login attempted";
 
   static void logEvent(String eventName) {
-    if (HostServer.isProd()) {
+    if (HostServer.isProd) {
       JsUtils.runJavascript(null, "track", eventName, false, "mixpanel");
     }
   }

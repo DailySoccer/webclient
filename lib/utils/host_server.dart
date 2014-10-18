@@ -7,7 +7,10 @@ class HostServer {
   static String get url {
 
     if (_url == null) {
-      if (_isLocalHost()) {
+      if (window.location.href.contains("live=true")) {
+        _url = "http://backend.epiceleven.com";
+      }
+      else if (_isLocalHost()) {
         _url = "http://localhost:9000";
       }
       else if (window.location.origin.contains("epiceleven.com")) {

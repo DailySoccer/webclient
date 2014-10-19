@@ -34,7 +34,10 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
     return {"position":"absolute", "top":"${(wrapper_height - container_height)*0.5}px;"};
   }
 */
-  LandingPageComp(this._router, this._profileService, this.scrDet);
+  LandingPageComp(this._router, this._profileService, this.scrDet) {
+    // Este parece el mejor momento para quitar el icono de carga, justo antes de que se inserte por primera vez la landing page.
+    querySelector("#loadingIcon").remove();
+  }
 
   void onShadowRoot(emulatedRoot) {
 

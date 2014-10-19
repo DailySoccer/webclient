@@ -55,7 +55,6 @@ import 'package:webclient/components/legalese_and_help/terminus_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/policy_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/beta_info_comp.dart';
 
-import 'package:webclient/components/navigation/main_menu_comp.dart';
 import 'package:webclient/components/navigation/main_menu_slide_comp.dart';
 import 'package:webclient/components/navigation/footer_comp.dart';
 
@@ -83,7 +82,6 @@ class WebClientApp extends Module {
 
     bind(FlashMessageComp);
     bind(LandingPageComp);
-    bind(MainMenuComp);
     bind(MainMenuSlideComp);
     bind(ContestInfoComp);
     bind(ScoringRulesComp);

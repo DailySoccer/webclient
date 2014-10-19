@@ -24,7 +24,7 @@ void setUpCache(injector) {
   // Precacheamos lost html de las vistas para que no los cargue luego al entrar en las pantallas
   //
   /*
-  var cache = injector.getByKey(VIEW_CACHE_KEY);
+  TemplateCache cache = injector.getByKey(TEMPLATE_CACHE_KEY);
 
   cache.fromUrl("packages/webclient/components/fantasy_team_comp.html", injector.getByKey(DIRECTIVE_MAP_KEY));
   cache.fromUrl("packages/webclient/components/users_list_comp.html", injector.getByKey(DIRECTIVE_MAP_KEY));

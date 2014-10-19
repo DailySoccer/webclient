@@ -4,16 +4,11 @@ import 'package:angular/application_factory.dart';
 
 import 'package:webclient/webclient.dart';
 import 'package:webclient/logger_exception_handler.dart';
-import 'dart:html';
 
 void main() {
 
   try {
     LoggerExceptionHandler.setUpLogger();
-
-    // Este parece el mejor momento para quitar el icono de carga. Si lo ponemos mas tarde, se queda congelado durante
-    // todo el proceso de angular.
-    querySelector("#loadingIcon").remove();
 
     var injector = applicationFactory().addModule(new WebClientApp()).run();
     setUpCache(injector);

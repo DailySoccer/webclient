@@ -41,7 +41,7 @@
           <span>Fantasy Sports Games.com</span>
       </a>-->
 
-      <div class="footer-count">{{dateTimeService.nowEverySecond}}</div>
+      <div class="footer-count" ng-if="isDev">{{dateTimeService.nowEverySecond}}</div>
     </div>
   </div>
 </div>

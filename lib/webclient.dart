@@ -22,6 +22,10 @@ import 'package:webclient/utils/form-autofill-fix.dart';
 
 import 'package:webclient/components/flash_messages_comp.dart';
 import 'package:webclient/components/landing_page_comp.dart';
+import 'package:webclient/components/navigation/main_menu_slide_comp.dart';
+import 'package:webclient/components/navigation/footer_comp.dart';
+
+/*
 import 'package:webclient/components/contest_info_comp.dart';
 import 'package:webclient/components/scoring_rules_comp.dart';
 import 'package:webclient/components/contest_header_comp.dart';
@@ -54,47 +58,45 @@ import 'package:webclient/components/legalese_and_help/legal_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/terminus_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/policy_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/beta_info_comp.dart';
-
-import 'package:webclient/components/navigation/main_menu_slide_comp.dart';
-import 'package:webclient/components/navigation/footer_comp.dart';
+ *
+ */
 
 
 class WebClientApp extends Module {
   WebClientApp() {
 
     bind(ExceptionHandler, toImplementation: LoggerExceptionHandler);
-
-    bind(RefreshTimersService);
-
     bind(ServerService, toImplementation: DailySoccerServer);
 
+    bind(ScreenDetectorService);
+    bind(RefreshTimersService);
     bind(DateTimeService);
     bind(ProfileService);
     bind(ActiveContestsService);
     bind(MyContestsService);
     bind(SoccerPlayerService);
     bind(FlashMessagesService);
-    bind(ScreenDetectorService);
     bind(ScoringRulesService);
 
     bind(LimitToDot);
     bind(FormAutofillDecorator);
 
-    bind(FlashMessageComp);
     bind(LandingPageComp);
     bind(MainMenuSlideComp);
+    bind(FooterComp);
+    bind(FlashMessageComp);
+
+    /*
     bind(ContestInfoComp);
     bind(ScoringRulesComp);
     bind(ContestHeaderComp);
     bind(FantasyTeamComp);
     bind(UsersListComp);
-
     bind(ViewContestComp);
     bind(MyContestsComp);
     bind(ContestsListComp);
     bind(LobbyComp);
     bind(PromosComp);
-    bind(FooterComp);
     bind(PaginatorComp);
     bind(LoginComp);
     bind(JoinComp);
@@ -116,6 +118,8 @@ class WebClientApp extends Module {
     bind(UserProfileComp);
     bind(EditPersonalDataComp);
     bind(ViewContestEntryComp);
+    *
+     */
 
     bind(RouteInitializerFn, toValue: webClientRouteInitializer);
     bind(NgRoutingUsePushState, toValue: new NgRoutingUsePushState.value(false));

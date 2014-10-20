@@ -160,7 +160,6 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   int get freeTournamentsCount    => _freeContestCount;
   int get prizedTournamentsCount  => activeContestsService.activeContests.length - _freeContestCount;
 
-  //CONTRUCTOR
   LobbyComp(this._router, this.activeContestsService, this.scrDet) {
     activeContestsService.refreshActiveContests();
     RefreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_CONTEST_LIST, refreshActiveContest);

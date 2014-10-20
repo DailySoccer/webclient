@@ -208,9 +208,10 @@ class ContestsListComp {
   }
 
   void updateCurrentPageList(int currentPage, int itemsPerPage) {
+    currentPage = 0;
     // Determinamos que elementos se mostrarán en la pagina actual
-    int rangeStart = currentPage * itemsPerPage;
-    int rangeEnd =  (contestsListFiltered == null) ? rangeStart : (rangeStart + itemsPerPage < contestsListFiltered.length) ? rangeStart + itemsPerPage : contestsListFiltered.length;
+    int rangeStart =  (contestsListFiltered == null || contestsListFiltered.length == 0) ? 0 : currentPage * itemsPerPage;
+    int rangeEnd   =  (contestsListFiltered == null) ? 0 : (rangeStart + itemsPerPage < contestsListFiltered.length) ? rangeStart + itemsPerPage : contestsListFiltered.length;
     currentPageList = contestsListFiltered.getRange(rangeStart, rangeEnd).toList();
   }
   // Lista original de los contest

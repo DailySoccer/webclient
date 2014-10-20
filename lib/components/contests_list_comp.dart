@@ -136,8 +136,8 @@ class ContestsListComp {
   }
 
   void refreshList() {
-    refreshFilters();
     refreshSort();
+    refreshFilters();
     onListChange({"itemsCount": contestsListFiltered.length});
   }
 
@@ -150,7 +150,11 @@ class ContestsListComp {
     if (sortParams.length != 2) {
       print("-CONTEST_LIST-: El número de parametros no se ha establecido correctamente. La forma correcta es \'campo\'_\'dirección\'. Pon atención a la barra baja \'_\'");
     }
-
+   /*
+    List<Contest> listClone = [];
+    listClone.addAll(contestsListFiltered);
+    contestsListFiltered.clear();
+   */
     switch(sortParams[0]) {
       case "contest-name":
         contestsListFiltered.sort(( contest1, contest2) => ( sortParams[1] == "asc" ? contest1.compareNameTo(contest2) : contest2.compareNameTo(contest1)) );
@@ -168,8 +172,9 @@ class ContestsListComp {
         print('-CONTEST_LIST-: No se ha encontrado el campo para ordenar');
       break;
     }
+
     // Forzamos el refresco la lista.
-   // updateCurrentPageList(_currentPage, _itemsPerPage);
+    updateList();
   }
 
   void refreshFilters() {
@@ -205,6 +210,12 @@ class ContestsListComp {
     _itemsPerPage = itemsPerPage;
     //Actualizamos la página actual de la lista.
     updateCurrentPageList(_currentPage, _itemsPerPage);
+  }
+
+  void updateList() {
+
+    if (_itemsPerPage > 0 )
+     updateCurrentPageList(_currentPage, _itemsPerPage);
   }
 
   void updateCurrentPageList(int currentPage, int itemsPerPage) {

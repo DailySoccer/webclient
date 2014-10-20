@@ -214,6 +214,9 @@ class PaginatorComp implements DetachAware, ShadowRootAware {
  }
 
   void goToPage(int pageNum) {
+    _totalPages = (_listLength / _options["itemsPerPage"]).ceil();
+
+    print('-PAGINATOR-:La lista tiene ${_totalPages} elementos.');
     if (_totalPages == 0) {
       onPageChange({"currentPage":0, "itemsPerPage":_options["itemsPerPage"]});
       if (_paginatorContainer != null) {

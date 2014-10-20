@@ -170,9 +170,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
 
   // Rutina que refresca la lista de concursos
   void refreshActiveContest() {
-    if ( _amIATest != true ) {
-      activeContestsService.refreshActiveContests();
-    }
+    activeContestsService.refreshActiveContests();
     print('refrescando lista de concursos');
     _freeContestCount   = activeContestsService.activeContests.where((contest) => contest.tournamentType == Contest.TOURNAMENT_FREE).toList().length;
   }
@@ -598,10 +596,4 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   var _streamListener;
   bool isFirstTimeListFill = true;
   bool _firstTime;
-
-  bool _amIATest = false;
-  @NgOneWay("test")
-  set watch(dynamic value) {
-    _amIATest = value;
-  }
 }

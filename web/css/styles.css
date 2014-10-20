@@ -17285,7 +17285,8 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
   border-radius: 0;
   background-color: #ecf0f1;
   text-align: center;
-  line-height: 45px;
+  cursor: pointer;
+  padding: 10px 0;
 }
 #usersListRoot .user-row .pos {
   position: relative;
@@ -17335,7 +17336,7 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
 }
 #usersListRoot .user-row .score span {
   background-color: #ffffff;
-  padding: 12px 5px 12px 5px;
+  padding: 6px 5px;
   border-radius: 5px;
 }
 #usersListRoot .user-row .prize {

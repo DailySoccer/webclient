@@ -28,8 +28,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   static const int XS_LOBBY_ACTION_GOTO_FULL_TOURNAMENTS_LIST = 4;
 
   //Utiles para definir si queremos secuencia de filtros en el lobby o no. Para la BETA no.
-  static const int XS_LOBBY_STATE_SEQUENCE_ORIGINAL = 0;
-  static const int XS_LOBBY_STATE_NO_SEQUENCE       = 2;
+  static const int XS_LOBBY_START_SEQUENCE_POINT = 0;
 
   // Mapa para traducir los filtros a lenguaje Human readable
   Map filtersFriendlyName = {
@@ -67,8 +66,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   List<String> xsFilterList = [];
 
   // estado actual del lobby en XS
-  //int currentXsLobbyState = XS_LOBBY_STATE_SEQUENCE_ORIGINAL;
-  int currentXsLobbyState = XS_LOBBY_STATE_NO_SEQUENCE;
+  int currentXsLobbyState = XS_LOBBY_START_SEQUENCE_POINT;
 
   // numero de torneos listados actualmente
   int contestsCount = 0;
@@ -527,8 +525,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   }
 
   void ResetXsLobby() {
-    //currentXsLobbyState = XS_LOBBY_STATE_SEQUENCE_ORIGINAL;
-    currentXsLobbyState = XS_LOBBY_STATE_NO_SEQUENCE;
+    currentXsLobbyState = XS_LOBBY_START_SEQUENCE_POINT;
     refreshActiveContest();
     resetAllFilters();
     xsFilterList = [];

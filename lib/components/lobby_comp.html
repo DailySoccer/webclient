@@ -8,7 +8,7 @@
 
 <!-- filtros para las versiones a partir de SM -->
 <div id="infoAndFilterHeader">
-  <div id="contestSortsFilters" ng-show="sortsAndFiltersVisibles()">
+  <div id="contestSortsFilters" ng-show="true">
     <div class="choosed-filters-container" ng-show="scrDet.isXsScreen">
         <div class="competition-filter-name" ng-bind-html="xsFilterResume">
         </div>
@@ -16,9 +16,12 @@
         <div class="filterToggler">
           <div id="filtersButtonMobile" type="button" class="btn filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse" data-target="#filtersPanel">Filtros</div>
         </div>
-        <!--<div class="filter-list">
+        <!--
+        <!- - Resumen de filtros usados en XS - ->
+        <div class="filter-list">
           <span class="filter-choosed" ng-repeat="filter in xsFilterList">{{filter}}</span>
-        </div>-->
+        </div>
+        -->
     </div>
 
     <div id="contestFastSort">
@@ -80,7 +83,6 @@
         </div>
       </div>
       -->
-
 
       <div class="filter-column-tournaments">
         <p class="filter-title">TORNEOS</p>
@@ -158,7 +160,7 @@
 </div>
 
 <!-- Lista de concursos DESKTOP -->
-<div ng-if="!scrDet.isXsScreen">
+<div>
   <contests-list  sorted-by="sortType"
                   filter-by="lobbyFilters"
                   contests-list="activeContestsService.activeContests"
@@ -169,10 +171,12 @@
   </contests-list>
 </div>
 
-<!-- Lista de concursos XS -->
+<!--
+
+<!- - Lista de concursos XS con sequencia de acceso - ->
 <div id="lobbyContestListMenuXS" ng-if="scrDet.isXsScreen">
   <div ng-switch="currentXsLobbyState">
-    <!-- Selecciona ver TODOS LOS TORNEOS / MIS TORNEOS -->
+    <!- - Selecciona ver TODOS LOS TORNEOS / MIS TORNEOS - ->
     <div ng-switch-when="0">
       <div class="pre-filter-row">
         <div id="lobby_AllContests" class="pre-filter-row-content" ng-click="filterXsLobbyClick(0)">
@@ -190,7 +194,7 @@
       </div>
     </div>
 
-    <!-- Selecciona TORNEOS CON PREMIOS / TORNEOS GRATUITOS -->
+    <!- - Selecciona TORNEOS CON PREMIOS / TORNEOS GRATUITOS - ->
     <div ng-switch-when="1">
       <div class="pre-filter-row">
         <div id="lobby_PrizedContests" class="pre-filter-row-content" ng-click="filterXsLobbyClick(2)">
@@ -209,7 +213,8 @@
         </div>
       </div>
     </div>
-    <!-- VISTA FILTRADA DE LOS TORNEOS -->
+
+    <!- - VISTA FILTRADA DE LOS TORNEOS - ->
     <div ng-switch-when="2">
       <contests-list  sorted-by="sortType"
                       filter-by="lobbyFilters"
@@ -222,7 +227,7 @@
     </div>
   </div>
 </div>
-
+-->
 
 <!-- Modal Window que envuelve la informacion de concurso, mostrada cuando clickamos en cualquiera de los campos de la fila -->
 <div  id="infoContestModal" class="modal fade" tabindex="-1" role="dialog">

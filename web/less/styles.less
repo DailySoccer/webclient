@@ -146,18 +146,21 @@ html { overflow-y: scroll; }
 		background-position: center top;
 		background-repeat: no-repeat;
 
-		margin: 0 auto -152px;
+		margin: 0 auto -146px;
 	}
 
 	@media (max-width: @screen-xs-max) {
-		margin: 0 auto -152px;
+		margin: 0 auto -204px;
 	}
 	#wrapper-push {
-		height: 150px;
+		height: 146px;
+		@media (max-width: @screen-xs-max) {
+			height: 204px;
+		}
 	}
-	footer {
+	/*footer {
 		height: 150px;
-	}
+	}*/
 }
 
 

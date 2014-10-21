@@ -12,11 +12,11 @@ import 'package:webclient/services/server_service.dart';
 )
 class RememberPasswordComp{
 
-  int STATE_REQUEST   = 0;
-  int STATE_REQUESTED = 1;
+  static const String STATE_REQUEST   = 'STATE_REQUEST';
+  String STATE_REQUESTED = 'STATE_REQUESTED';
 
   String email = "";
-  int state = 0;
+  String state = STATE_REQUEST;
   bool get enabledSubmit => isValidEmail(email) && _enabledSubmit;
   bool errorDetected = false;
 

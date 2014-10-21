@@ -22,6 +22,14 @@ class UserProfileComp implements ShadowRootAware, DetachAware {
   String editedPassword;
   String editedRepeatPassword;
 
+  bool hasNicknameError;
+  bool hasEmailError;
+  bool hasPasswordError;
+
+  String nicknameErrorText;
+  String emailErrorText;
+  String passwordErrorText;
+
   dynamic get userData => _profileManager.user;
 
   UserProfileComp(this._profileManager, this._scrDet) {
@@ -64,16 +72,25 @@ class UserProfileComp implements ShadowRootAware, DetachAware {
     else {
       _elmntEditProfile.style.display = 'none';
       JsUtils.runJavascript('#editPersonalDataModal', 'modal', 'hide');
+      setUserVariables();
     }
   }
 
   void setUserVariables() {
-    editedFirstName = _profileManager.user.firstName;
-    editedLastName = _profileManager.user.lastName;
-    editedNickName = _profileManager.user.nickName;
-    editedEmail = _profileManager.user.email;
-    editedPassword = "";
-    editedRepeatPassword = "";
+    editedFirstName       = _profileManager.user.firstName;
+    editedLastName        = _profileManager.user.lastName;
+    editedNickName        = _profileManager.user.nickName;
+    editedEmail           = _profileManager.user.email;
+    editedPassword        = "";
+    editedRepeatPassword  = "";
+
+    hasNicknameError      = false;
+    hasEmailError         = false;
+    hasPasswordError      = false;
+
+    nicknameErrorText     = "";
+    emailErrorText        = "";
+    passwordErrorText     = "";
   }
 
   @override void onShadowRoot(emulatedRoot) {

@@ -7743,6 +7743,104 @@ fieldset[disabled] #personalDataContent .save-changes-content .action-button {
     left: 25%;
   }
 }
+.error {
+  position: relative;
+  -webkit-animation: errDetectionFrames  0.5s;
+  -moz-animation: errDetectionFrames  0.5s;
+  -ms-keyframes: errDetectionFrames 0.5s;
+  -o-keyframes: errDetectionFrames 0.5s;
+  animation: errDetectionFrames  0.5s;
+}
+@-webkit-keyframes errDetectionFrames {
+  0% {
+    left: 100px;
+    opacity: 0;
+  }
+  100% {
+    left: 0px;
+    opacity: 1;
+  }
+  0% {
+    left: 100px;
+    opacity: 0;
+  }
+  100% {
+    left: 0px;
+    opacity: 1;
+  }
+}
+@-moz-keyframes errDetectionFrames {
+  0% {
+    left: 100px;
+    opacity: 0;
+  }
+  100% {
+    left: 0px;
+    opacity: 1;
+  }
+  0% {
+    left: 100px;
+    opacity: 0;
+  }
+  100% {
+    left: 0px;
+    opacity: 1;
+  }
+}
+@-ms-keyframes errDetectionFrames {
+  0% {
+    left: 100px;
+    opacity: 0;
+  }
+  100% {
+    left: 0px;
+    opacity: 1;
+  }
+  0% {
+    left: 100px;
+    opacity: 0;
+  }
+  100% {
+    left: 0px;
+    opacity: 1;
+  }
+}
+@-o-keyframes errDetectionFrames {
+  0% {
+    left: 100px;
+    opacity: 0;
+  }
+  100% {
+    left: 0px;
+    opacity: 1;
+  }
+  0% {
+    left: 100px;
+    opacity: 0;
+  }
+  100% {
+    left: 0px;
+    opacity: 1;
+  }
+}
+@keyframes errDetectionFrames {
+  0% {
+    left: 100px;
+    opacity: 0;
+  }
+  100% {
+    left: 0px;
+    opacity: 1;
+  }
+  0% {
+    left: 100px;
+    opacity: 0;
+  }
+  100% {
+    left: 0px;
+    opacity: 1;
+  }
+}
 @media (max-width: 767px) {
   .header-view-contest-entry-mode {
     margin-top: 70px;
@@ -17217,8 +17315,24 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
     left: 0px;
     opacity: 1;
   }
+  0% {
+    left: 100px;
+    opacity: 0;
+  }
+  100% {
+    left: 0px;
+    opacity: 1;
+  }
 }
 @-moz-keyframes errDetectionFrames {
+  0% {
+    left: 100px;
+    opacity: 0;
+  }
+  100% {
+    left: 0px;
+    opacity: 1;
+  }
   0% {
     left: 100px;
     opacity: 0;
@@ -17237,6 +17351,14 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
     left: 0px;
     opacity: 1;
   }
+  0% {
+    left: 100px;
+    opacity: 0;
+  }
+  100% {
+    left: 0px;
+    opacity: 1;
+  }
 }
 @-o-keyframes errDetectionFrames {
   0% {
@@ -17247,8 +17369,24 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
     left: 0px;
     opacity: 1;
   }
+  0% {
+    left: 100px;
+    opacity: 0;
+  }
+  100% {
+    left: 0px;
+    opacity: 1;
+  }
 }
 @keyframes errDetectionFrames {
+  0% {
+    left: 100px;
+    opacity: 0;
+  }
+  100% {
+    left: 0px;
+    opacity: 1;
+  }
   0% {
     left: 100px;
     opacity: 0;

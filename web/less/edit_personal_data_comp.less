@@ -138,10 +138,28 @@
 			//.make-xs-column-push();
 			.make-sm-column(6);
 			.make-sm-column-push(3);
-
-
 			//margin: 0 5px;
 		}
 	}
-
 }
+
+.error{
+	position: relative;
+	-webkit-animation: errDetectionFrames  0.5s;
+  	-moz-animation: errDetectionFrames  0.5s;
+  	-ms-keyframes: errDetectionFrames 0.5s;
+	-o-keyframes: errDetectionFrames 0.5s;
+	animation: errDetectionFrames  0.5s;
+}
+
+// aparece creciendo a la vez que con opacidad
+.unvanish-keyframes() {
+	0%   { left: 100px; opacity: 0; }
+    100% { left: 0px;   opacity: 1; }
+}
+
+@-webkit-keyframes 	errDetectionFrames{ .unvanish-keyframes() };
+@-moz-keyframes 	errDetectionFrames{ .unvanish-keyframes() };
+@-ms-keyframes 		errDetectionFrames{ .unvanish-keyframes() };
+@-o-keyframes 		errDetectionFrames{ .unvanish-keyframes() };
+@keyframes 			errDetectionFrames{ .unvanish-keyframes() };

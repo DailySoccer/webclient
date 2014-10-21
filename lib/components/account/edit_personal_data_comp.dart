@@ -19,10 +19,6 @@ class EditPersonalDataComp {
 
   UserProfileComp parent;
 
-  Element nicknameError;
-  Element emailError;
-  Element passwordError;
-
   bool isPopUp;
 
   bool get acceptNewsletter => _acceptNewsletter;
@@ -82,12 +78,7 @@ class EditPersonalDataComp {
 
       HtmlElement htmlRoot = element.querySelector("#personalDataContent");
 
-      nicknameError = htmlRoot.querySelector('#nickNameError');
-      emailError    = htmlRoot.querySelector('#emailError');
-      passwordError = htmlRoot.querySelector('#passwordError');
-
       hideErrors();
-
       isPopUp = htmlRoot.id == 'modalEditPersonalDataForm';
   }
 
@@ -103,21 +94,14 @@ class EditPersonalDataComp {
     acceptSoccerPlayerAlerts = state;
   }
 
-  void hideErrors() {
-    nicknameError.parent.style.display  = "none";
-    emailError.parent.style.display     = "none";
-    passwordError.parent.style.display  = "none";
-  }
 
   bool validatePassword() {
     bool retorno = true;
     // Verificación del password
     if (parent.editedPassword != parent.editedRepeatPassword) {
-        passwordError
-          ..text = "Los passwords no coinciden"
-          ..classes.remove("errorDetected")
-          ..classes.add("errorDetected")
-          ..parent.style.display = "";
+        parent
+          ..passwordErrorText = "Los passwords no coinciden"
+          ..hasPasswordError = true;
         retorno = false;
       }
 
@@ -125,6 +109,7 @@ class EditPersonalDataComp {
   }
 
   void saveChanges() {
+
       hideErrors();
 
       if (!validatePassword() ) {
@@ -134,49 +119,48 @@ class EditPersonalDataComp {
       String firstName = _profileManager.user.firstName  != parent.editedFirstName ? parent.editedFirstName  : "";
       String lastName  = _profileManager.user.lastName   != parent.editedLastName  ? parent.editedLastName   : "";
       String email     = _profileManager.user.email      != parent.editedEmail     ? parent.editedEmail      : "";
+
       // El nickname de momento no sabemos si le daremos permisos al usuario para que lo cambie a placer.
       String nickName  = "";
       String password  = parent.editedPassword;
 
-
-        _profileManager.changeUserProfile(firstName, lastName, email, nickName, password)
+      _profileManager.changeUserProfile(firstName, lastName, email, nickName, password)
         //Not implemented yet //.then((_) => _profileManager.saveUserData(firstName, lastName,acceptGameAlerts, /* nickName, */ email, password))
-            .then((_) => closeModal())
-            .catchError((Map error) {
+        .then((_) => closeModal())
+        .catchError((Map error) {
 
-             // print("keys: ${error.keys.length} - ${error.keys.toString()}");
+          error.keys.forEach( (key) {
+            switch (key)
+            {
+              case "nickName":
+                parent
+                  ..nicknameErrorText = error[key][0]
+                  ..hasNicknameError = true;
 
-              error.keys.forEach( (key) {
-                switch (key)
-                {
-                  case "nickName":
-                    nicknameError
-                      ..text = error[key][0]
-                      ..classes.remove("errorDetected")
-                      ..classes.add("errorDetected")
-                      ..parent.style.display = "";
+              break;
+              case "email":
+                parent
+                  ..emailErrorText = error[key][0]
+                  ..hasEmailError = true;
+              break;
+              case "password":
+                parent
+                  ..passwordErrorText = error[key][0]
+                ..hasPasswordError = true;
+              break;
+            }
+          });
 
-                  break;
-                  case "email":
-                    emailError
-                      ..text = error[key][0]
-                      ..classes.remove("errorDetected")
-                      ..classes.add("errorDetected")
-                      ..parent.style.display = "";
-                  break;
-                  case "password":
-                    passwordError
-                      ..text = error[key][0]
-                      ..classes.remove("errorDetected")
-                      ..classes.add("errorDetected")
-                      ..parent.style.display = "";
-                  break;
-                }
-             //   print("-EDIT_PERSONAL_DATA_COMP-: Error recibido: ${key}");
-              });
-             //_enabledSubmit = true;
-            });
+        });
   }
+
+  void hideErrors() {
+    parent
+    ..hasNicknameError  = false
+    ..hasEmailError     = false
+    ..hasPasswordError  = false;
+  }
+
 
   void closeModal() {
     _profileManager.refreshUserProfile();

@@ -8,7 +8,7 @@ import 'package:webclient/utils/host_server.dart';
 
 @Component(
    selector: 'footer',
-   templateUrl: '/packages/webclient/components/navigation/footer_comp.html',
+   templateUrl: 'packages/webclient/components/navigation/footer_comp.html',
    useShadowDom: false
 )
 class FooterComp {

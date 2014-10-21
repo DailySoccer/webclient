@@ -8,9 +8,9 @@ void main() {
 	var flush = generator.main(['--out=lib/generated.dart',
 	                            "--sdk-path="+path.dirname(path.dirname(Platform.environment["_"])),
 	                            '--package-root=packages',
+	                            '--skip-classes=FooterComp,LandingPageComp,MainMenuSlideComp,FlashMessageComp',
                               'web/main.dart',
 	                            'template_cache']);
-
 
 	flush.then((_) {
 	  print("generated.dart done");

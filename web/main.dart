@@ -15,10 +15,7 @@ void main() {
 
     var injector = applicationFactory().addModule(new WebClientApp()).run();
 
-    if (HostServer.isProd) {
-      setUpCache(injector);
-    }
-
+    setUpCache(injector);
   }
   catch (exc, stackTrace) {
     LoggerExceptionHandler.logExceptionToServer(exc, stackTrace);

@@ -6,7 +6,7 @@ import 'package:webclient/webclient.dart';
 import 'package:webclient/logger_exception_handler.dart';
 import 'package:webclient/generated.dart';
 import 'package:angular/angular.dart';
-import 'package:webclient/utils/host_server.dart';
+//import 'package:webclient/utils/host_server.dart';
 
 void main() {
 

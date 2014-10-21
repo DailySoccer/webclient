@@ -24,6 +24,9 @@ class ContestsListComp {
 
   @NgOneWay("contests-list")
   void set contestsList(List<Contest> value) {
+    if (value == null || value.isEmpty) {
+      return;
+    }
     _contestsListOriginal = value;
     contestsListFiltered = _contestsListOriginal;
     refreshList();
@@ -32,7 +35,7 @@ class ContestsListComp {
   //Setter de los filtros, Recibe la lista de los filtros aplicados.
   @NgOneWay("filter-by")
   void set filterBy(Map<String,dynamic> value) {
-    if (value == null) {
+    if (value == null || value.isEmpty) {
       return;
     }
     filterList = value;
@@ -138,7 +141,7 @@ class ContestsListComp {
   void refreshList() {
     refreshSort();
     refreshFilters();
-    onListChange({"itemsCount": contestsListFiltered.length});
+   // onListChange({"itemsCount": contestsListFiltered.length});
   }
 
   void refreshSort() {

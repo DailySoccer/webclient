@@ -162,6 +162,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     activeContestsService.refreshActiveContests()
       .then((_) {
         _freeContestCount = activeContestsService.activeContests.where((contest) => contest.tournamentType == Contest.TOURNAMENT_FREE).toList().length;
+        onListChange();
       });
   }
 
@@ -240,8 +241,8 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     }
   }
 
-  void onListChange(int itemsCount) {
-     contestsCount = itemsCount;
+  void onListChange() {
+     contestsCount = activeContestsService.activeContests.length;
      //La primera vez que la lista se rellene con los torneos, actualizamos el rango de selección del filtro de EntryFee
      if (isFirstTimeListFill && contestsCount > 0) {
        isFirstTimeListFill = false;

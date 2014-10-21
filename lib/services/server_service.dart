@@ -53,7 +53,7 @@ abstract class ServerService {
 
 @Injectable()
 class DailySoccerServer implements ServerService {
-  DailySoccerServer(this._http, this._refreshTimersService);
+  DailySoccerServer(this._http);
 
   void setSessionToken(String sessionToken) { _sessionToken = sessionToken; }
 
@@ -170,10 +170,7 @@ class DailySoccerServer implements ServerService {
 
             Logger.root.severe("_innerServerCall error: $error, url: $url, retry: $retryTimes");
             if ((retryTimes == -1) || (retryTimes > 0)) {
-              _refreshTimersService.addRefreshTimer(
-                  url,
-                  () => _callLoop(url, queryString, postData, headers, completer, (retryTimes > 0) ? retryTimes-1 : retryTimes),
-                  RefreshTimersService.SECONDS_TO_RETRY_SERVER_CALL);
+              new Timer(const Duration(seconds: 3), () => _callLoop(url, queryString, postData, headers, completer, (retryTimes > 0) ? retryTimes-1 : retryTimes));
             }
             else {
               _processError(error, url, completer);
@@ -215,7 +212,6 @@ class DailySoccerServer implements ServerService {
   }
 
   Http _http;
-  RefreshTimersService _refreshTimersService;
   String _sessionToken;
 
   List<Map> _subscribers = new List<Map>();

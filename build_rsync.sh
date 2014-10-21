@@ -7,34 +7,24 @@ if [[ $1 != "" ]]
         mode=$1
 fi
 
-: <<'END'
 if [[ "$mode" == "release" ]]
     then
     # Aplicamos cambios de release
-    client_branch_name="$(git symbolic-ref HEAD 2>/dev/null)" ||
-    client_branch_name="(unnamed branch)"     # detached HEAD
-    client_branch_name=${branch_name##refs/heads/}
-
-    git fetch
-    git checkout release
-    git rebase $client_branch_name
-    git push -f origin release
+    sed -i".bak" '/<!--/{ N; N; s/.*\n\(.*main.dart.js.*\)\n.*-->.*/\1/; }' web/index.html
+    sed -i".bak" '/src="main.dart"/d' web/index.html
+    sed -i".bak" '/src="packages\/browser\/dart.js"/d' web/index.html
+    rm web/index.html.bak
 fi
-END
 
 ./compile_less.sh
 
-# mode puede ser debug|relesae
+# mode puede ser debug|release
 echo "Client compilation mode is: $mode"
 pub build --mode=$mode
 rsync -r  -v --copy-unsafe-links build/web/. ../backend/public/
 
-: <<'END'
 if [[ "$mode" == "release" ]]
     then
-        # Volvemos a la rama original
-        git checkout $client_branch_name
+    # Revertimos los cambios hechos en release
+    git checkout -- web/index.html
 fi
-
-git checkout -- .
-END

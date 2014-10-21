@@ -2,9 +2,8 @@
             
   <div class="filter-by-position">
     <span>JUGADORES</span>
-    <button class="btn btn-default button-filtro-position active" ng-click="fieldPosFilter = null">TODOS</button>
     <button class="btn btn-default button-filtro-position" ng-click="fieldPosFilter = fieldPos" 
-            ng-repeat="fieldPos in posFilterList" ng-bind-html="fieldPos.abrevName"></button>
+            ng-repeat="fieldPos in posFilterList" ng-bind-html="getTextForFieldPos(fieldPos)" ng-class="getClassForFieldPos(fieldPos)"></button>
   </div>
   
   <input type="text" class="name-player-input-filter" placeholder="Buscar jugador" ng-model="nameFilter" />

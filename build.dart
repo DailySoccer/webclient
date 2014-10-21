@@ -1,5 +1,4 @@
 //import 'package:web_ui/component_build.dart';
-import 'dart:io';
 import 'cache_gen.dart';
 
 void main(List<String> args) {

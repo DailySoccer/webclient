@@ -4,7 +4,6 @@ import 'package:angular/angular.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/components/account/user_profile_comp.dart';
-import 'dart:html';
 
 @Component(
     selector: 'edit-personal-data',

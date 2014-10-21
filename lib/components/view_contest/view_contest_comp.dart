@@ -39,7 +39,7 @@ class ViewContestComp implements DetachAware {
 
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
 
-    _myContestsService.refreshContest(_contestId)
+    _myContestsService.refreshFullContest(_contestId)
       .then((jsonObject) {
         mainPlayer = contest.getContestEntryWithUser(_profileService.user.userId);
 

@@ -26,7 +26,6 @@ class MyContestsComp implements DetachAware {
     myContestsService.clear();
 
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE, _updateLive);
-    _updateLive();
   }
 
   void onWaitingRowClick(Contest contest) {

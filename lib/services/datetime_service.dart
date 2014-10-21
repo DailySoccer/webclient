@@ -25,7 +25,6 @@ class DateTimeService {
 
     if (HostServer.isDev) {
       _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_VERIFY_SIMULATOR_ACTIVATED, _verifySimulatorActivated);
-      _verifySimulatorActivated();
     }
 
     new Timer.periodic(new Duration(seconds:1), (t) => _nowEverySecond = now);

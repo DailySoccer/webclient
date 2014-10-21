@@ -150,7 +150,6 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     activeContestsService.clear();
 
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_CONTEST_LIST, refreshActiveContest);
-    refreshActiveContest();
 
     _refreshNextTournamentInfoTimer = new Timer.periodic(new Duration(seconds: 1), (Timer t) =>  _calculateInfoBarText());
     _calculateInfoBarText();

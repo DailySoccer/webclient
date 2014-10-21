@@ -31,6 +31,10 @@ class RefreshTimersService {
     }
 
     _timers[name] = timer;
+
+    // Realizamos la primera llamada a la función solicitada
+    updateFunction();
+
     return timer;
   }
 

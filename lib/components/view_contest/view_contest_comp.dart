@@ -57,7 +57,6 @@ class ViewContestComp implements DetachAware {
         if (_myContestsService.lastContest.isLive) {
           // Comenzamos a actualizar la información
           _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE, _updateLive);
-          _updateLive();
         }
 
       })

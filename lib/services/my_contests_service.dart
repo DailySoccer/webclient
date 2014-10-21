@@ -26,6 +26,12 @@ class MyContestsService {
 
   MyContestsService(this._server);
 
+  void clear() {
+    waitingContests.clear();
+    liveContests.clear();
+    historyContests.clear();
+  }
+
   Future cancelContestEntry(String contestEntryId) {
     var completer = new Completer();
 

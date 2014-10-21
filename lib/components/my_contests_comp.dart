@@ -23,6 +23,8 @@ class MyContestsComp implements DetachAware {
   String historySortType = "contest-start-time_desc";
 
   MyContestsComp(this._profileService, this.myContestsService, this._router, this._flashMessage) {
+    myContestsService.clear();
+
     _updateLive();
     RefreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE, _updateLive);
   }

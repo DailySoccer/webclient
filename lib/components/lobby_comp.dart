@@ -92,19 +92,6 @@ class LobbyComp implements ShadowRootAware, DetachAware {
 
   String infoBarText = "";
 
-  void calculateInfoBarText() {
-    Contest nextContest = activeContestsService.getAvailableNextContest();
-    String tmp = nextContest == null ? "Pronto habrá nuevos Torneos disponibles" : "SIGUIENTE TORNEO: ${nextContest.name.toUpperCase()} - ${calculateTimeToNextTournament()}";
-    if (tmp.compareTo(infoBarText) != 0) {
-      infoBarText = tmp;
-    }
-  }
-
-  String calculateTimeToNextTournament() {
-    String timeToNextTournament =  DateTimeService.formatTimeLeft(DateTimeService.getTimeLeft( activeContestsService.getAvailableNextContest().startDate ) );
-    return timeToNextTournament;
-  }
-
   /*
   * TODO: Mientras no tengamos los datos de a que competición pertenece el torneo, esta función
   *       devolverá siempre "false" para que los botones del filtro de competición estén deshabilitados.
@@ -159,20 +146,23 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   int get prizedTournamentsCount  => activeContestsService.activeContests.length - _freeContestCount;
 
   LobbyComp(this._router, this.activeContestsService, this.scrDet) {
-    activeContestsService.refreshActiveContests();
-    RefreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_CONTEST_LIST, refreshActiveContest);
+    activeContestsService.clear();
 
-    calculateInfoBarText();
-    RefreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_NEXT_TOURNAMENT_INFO, calculateInfoBarText);
+    RefreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_CONTEST_LIST, refreshActiveContest);
+    refreshActiveContest();
+
+    RefreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_NEXT_TOURNAMENT_INFO, _calculateInfoBarText);
+    _calculateInfoBarText();
 
     _streamListener = scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
   }
 
   // Rutina que refresca la lista de concursos
   void refreshActiveContest() {
-    activeContestsService.refreshActiveContests();
-    print('refrescando lista de concursos');
-    _freeContestCount   = activeContestsService.activeContests.where((contest) => contest.tournamentType == Contest.TOURNAMENT_FREE).toList().length;
+    activeContestsService.refreshActiveContests()
+      .then((_) {
+        _freeContestCount = activeContestsService.activeContests.where((contest) => contest.tournamentType == Contest.TOURNAMENT_FREE).toList().length;
+      });
   }
 
   void onShadowRoot(emulatedRoot) {
@@ -564,6 +554,18 @@ class LobbyComp implements ShadowRootAware, DetachAware {
           break;
       }
     });
+  }
+
+  void _calculateInfoBarText() {
+    Contest nextContest = activeContestsService.getAvailableNextContest();
+    String tmp = nextContest == null ? "Pronto habrá nuevos Torneos disponibles" : "SIGUIENTE TORNEO: ${nextContest.name.toUpperCase()} - ${_calculateTimeToNextTournament()}";
+    if (tmp.compareTo(infoBarText) != 0) {
+      infoBarText = tmp;
+    }
+  }
+
+  String _calculateTimeToNextTournament() {
+    return DateTimeService.formatTimeLeft(DateTimeService.getTimeLeft( activeContestsService.getAvailableNextContest().startDate ) );
   }
 
   Router _router;

@@ -17273,8 +17273,8 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
   user-select: none;
 }
 #usersListRoot .user-row {
-  margin-left: 0px;
-  margin-right: 0px;
+  margin-left: 0;
+  margin-right: 0;
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 10pt;
@@ -17355,24 +17355,24 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
   font-weight: 700;
   font-size: 8pt;
   color: #ffffff;
-  margin-left: 0px;
-  margin-right: 0px;
+  margin-left: 0;
+  margin-right: 0;
 }
 #usersListRoot .users-table-header .pos {
   position: relative;
   float: left;
   width: 8.33333333%;
   min-height: 1px;
-  padding-left: 0px;
-  padding-right: 0px;
+  padding-left: 2px;
+  padding-right: 2px;
 }
 #usersListRoot .users-table-header .name {
   position: relative;
   float: left;
   width: 33.33333333%;
   min-height: 1px;
-  padding-left: 0px;
-  padding-right: 0px;
+  padding-left: 2px;
+  padding-right: 2px;
   text-align: left;
 }
 #usersListRoot .users-table-header .name-view-contest-entry-mode {
@@ -17380,8 +17380,8 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
   float: left;
   width: 75%;
   min-height: 1px;
-  padding-left: 0px;
-  padding-right: 0px;
+  padding-left: 2px;
+  padding-right: 2px;
   text-align: left;
 }
 #usersListRoot .users-table-header .remaining-time {
@@ -17389,24 +17389,24 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
   float: left;
   width: 25%;
   min-height: 1px;
-  padding-left: 0px;
-  padding-right: 0px;
+  padding-left: 2px;
+  padding-right: 2px;
 }
 #usersListRoot .users-table-header .score {
   position: relative;
   float: left;
   width: 16.66666667%;
   min-height: 1px;
-  padding-left: 0px;
-  padding-right: 0px;
+  padding-left: 2px;
+  padding-right: 2px;
 }
 #usersListRoot .users-table-header .prize {
   position: relative;
   float: left;
   width: 16.66666667%;
   min-height: 1px;
-  padding-left: 0px;
-  padding-right: 0px;
+  padding-left: 2px;
+  padding-right: 2px;
 }
 #usersListRoot .top-separator {
   position: relative;

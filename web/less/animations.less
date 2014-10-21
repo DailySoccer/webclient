@@ -1,0 +1,41 @@
+// aparece creciendo a la vez que con opacidad
+.appear-from-right-animation {
+	position: relative;
+	-webkit-animation: appear-from-right-keyframes  0.5s;
+  	-moz-animation: appear-from-right-keyframes  0.5s;
+  	-ms-keyframes: appear-from-right-keyframes 0.5s;
+	-o-keyframes: appear-from-right-keyframes 0.5s;
+	animation: appear-from-right-keyframes 0.5s;
+}
+
+@-webkit-keyframes 	appear-from-right-keyframes { .appear-from-right() };
+@-moz-keyframes 	appear-from-right-keyframes { .appear-from-right() };
+@-ms-keyframes 		appear-from-right-keyframes { .appear-from-right() };
+@-o-keyframes 		appear-from-right-keyframes { .appear-from-right() };
+@keyframes 			appear-from-right-keyframes { .appear-from-right() };
+
+.appear-from-right() {
+	0%   { left: 100px; opacity: 0; }
+    100% { left: 0px;   opacity: 1; }
+}
+
+//animacion slide in from bottom
+.slide-in-from-bottom-animation {
+	position: relative;
+	-webkit-animation: slide-in-from-bottom-keyframes  0.4s;
+  	-moz-animation: slide-in-from-bottom-keyframes 0.4s;
+  	-ms-keyframes: slide-in-from-bottom-keyframes 0.4s;
+	-o-keyframes: slide-in-from-bottom-keyframes 0.4s;
+	animation: slide-in-from-bottom-keyframes 0.4s;
+}
+
+@-webkit-keyframes 	slide-in-from-bottom-keyframes { .slide-in-from-bottom() };
+@-moz-keyframes 	slide-in-from-bottom-keyframes { .slide-in-from-bottom() };
+@-ms-keyframes 		slide-in-from-bottom-keyframes { .slide-in-from-bottom() };
+@-o-keyframes 		slide-in-from-bottom-keyframes { .slide-in-from-bottom() };
+@keyframes 			slide-in-from-bottom-keyframes { .slide-in-from-bottom() };
+
+.slide-in-from-bottom() {
+	0%   { top: 300px; opacity: 0; }
+    100% { top: 0px;   opacity: 1; }
+}

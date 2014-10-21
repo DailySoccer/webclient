@@ -5962,21 +5962,13 @@ button.close {
 }
 .appear-from-right-animation {
   position: relative;
-  -webkit-animation: appear-from-right 0.5s;
-  -moz-animation: appear-from-right 0.5s;
-  -ms-keyframes: appear-from-right 0.5s;
-  -o-keyframes: appear-from-right 0.5s;
-  animation: appear-from-right 0.5s;
+  -webkit-animation: appear-from-right-keyframes 0.5s;
+  -moz-animation: appear-from-right-keyframes 0.5s;
+  -ms-keyframes: appear-from-right-keyframes 0.5s;
+  -o-keyframes: appear-from-right-keyframes 0.5s;
+  animation: appear-from-right-keyframes 0.5s;
 }
-@-webkit-keyframes appear-from-right {
-  0% {
-    left: 100px;
-    opacity: 0;
-  }
-  100% {
-    left: 0px;
-    opacity: 1;
-  }
+@-webkit-keyframes appear-from-right-keyframes {
   0% {
     left: 100px;
     opacity: 0;
@@ -5986,33 +5978,7 @@ button.close {
     opacity: 1;
   }
 }
-@-moz-keyframes appear-from-right {
-  0% {
-    left: 100px;
-    opacity: 0;
-  }
-  100% {
-    left: 0px;
-    opacity: 1;
-  }
-  0% {
-    left: 100px;
-    opacity: 0;
-  }
-  100% {
-    left: 0px;
-    opacity: 1;
-  }
-}
-@-ms-keyframes appear-from-right {
-  0% {
-    left: 100px;
-    opacity: 0;
-  }
-  100% {
-    left: 0px;
-    opacity: 1;
-  }
+@-moz-keyframes appear-from-right-keyframes {
   0% {
     left: 100px;
     opacity: 0;
@@ -6022,15 +5988,7 @@ button.close {
     opacity: 1;
   }
 }
-@-o-keyframes appear-from-right {
-  0% {
-    left: 100px;
-    opacity: 0;
-  }
-  100% {
-    left: 0px;
-    opacity: 1;
-  }
+@-ms-keyframes appear-from-right-keyframes {
   0% {
     left: 100px;
     opacity: 0;
@@ -6040,7 +5998,7 @@ button.close {
     opacity: 1;
   }
 }
-@keyframes appear-from-right {
+@-o-keyframes appear-from-right-keyframes {
   0% {
     left: 100px;
     opacity: 0;
@@ -6049,12 +6007,72 @@ button.close {
     left: 0px;
     opacity: 1;
   }
+}
+@keyframes appear-from-right-keyframes {
   0% {
     left: 100px;
     opacity: 0;
   }
   100% {
     left: 0px;
+    opacity: 1;
+  }
+}
+.slide-in-from-bottom-animation {
+  position: relative;
+  -webkit-animation: slide-in-from-bottom-keyframes 0.4s;
+  -moz-animation: slide-in-from-bottom-keyframes 0.4s;
+  -ms-keyframes: slide-in-from-bottom-keyframes 0.4s;
+  -o-keyframes: slide-in-from-bottom-keyframes 0.4s;
+  animation: slide-in-from-bottom-keyframes 0.4s;
+}
+@-webkit-keyframes slide-in-from-bottom-keyframes {
+  0% {
+    top: 300px;
+    opacity: 0;
+  }
+  100% {
+    top: 0px;
+    opacity: 1;
+  }
+}
+@-moz-keyframes slide-in-from-bottom-keyframes {
+  0% {
+    top: 300px;
+    opacity: 0;
+  }
+  100% {
+    top: 0px;
+    opacity: 1;
+  }
+}
+@-ms-keyframes slide-in-from-bottom-keyframes {
+  0% {
+    top: 300px;
+    opacity: 0;
+  }
+  100% {
+    top: 0px;
+    opacity: 1;
+  }
+}
+@-o-keyframes slide-in-from-bottom-keyframes {
+  0% {
+    top: 300px;
+    opacity: 0;
+  }
+  100% {
+    top: 0px;
+    opacity: 1;
+  }
+}
+@keyframes slide-in-from-bottom-keyframes {
+  0% {
+    top: 300px;
+    opacity: 0;
+  }
+  100% {
+    top: 0px;
     opacity: 1;
   }
 }
@@ -7873,13 +7891,13 @@ fieldset[disabled] #personalDataContent .save-changes-content .action-button {
     left: 25%;
   }
 }
-.error {
+.errorDetected {
   position: relative;
-  -webkit-animation: appear-from-right 0.5s;
-  -moz-animation: appear-from-right 0.5s;
-  -ms-keyframes: appear-from-right 0.5s;
-  -o-keyframes: appear-from-right 0.5s;
-  animation: appear-from-right 0.5s;
+  -webkit-animation: appear-from-right-keyframes 0.5s;
+  -moz-animation: appear-from-right-keyframes 0.5s;
+  -ms-keyframes: appear-from-right-keyframes 0.5s;
+  -o-keyframes: appear-from-right-keyframes 0.5s;
+  animation: appear-from-right-keyframes 0.5s;
 }
 @media (max-width: 767px) {
   .header-view-contest-entry-mode {
@@ -16622,15 +16640,13 @@ textarea#matchesFilterWrapper .matches-selector-filter {
   }
 }
 .main-box .panel {
+  position: relative;
+  -webkit-animation: slide-in-from-bottom-keyframes 0.4s;
+  -moz-animation: slide-in-from-bottom-keyframes 0.4s;
+  -ms-keyframes: slide-in-from-bottom-keyframes 0.4s;
+  -o-keyframes: slide-in-from-bottom-keyframes 0.4s;
+  animation: slide-in-from-bottom-keyframes 0.4s;
   border-width: 0px;
-}
-.main-box .panel 0% {
-  top: 300px;
-  opacity: 0;
-}
-.main-box .panel 100% {
-  top: 0px;
-  opacity: 1;
 }
 .main-box .panel .panel-heading {
   background-color: #214a5f;
@@ -17288,161 +17304,13 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
 .error-visible {
   display: none;
 }
-@-webkit-keyframes window-come-in {
-  0% {
-    top: 300px;
-    opacity: 0;
-  }
-  100% {
-    top: 0px;
-    opacity: 1;
-  }
-}
-@-moz-keyframes window-come-in {
-  0% {
-    top: 300px;
-    opacity: 0;
-  }
-  100% {
-    top: 0px;
-    opacity: 1;
-  }
-}
-@-ms-keyframes window-come-in {
-  0% {
-    top: 300px;
-    opacity: 0;
-  }
-  100% {
-    top: 0px;
-    opacity: 1;
-  }
-}
-@-o-keyframes window-come-in {
-  0% {
-    top: 300px;
-    opacity: 0;
-  }
-  100% {
-    top: 0px;
-    opacity: 1;
-  }
-}
-@keyframes window-come-in {
-  0% {
-    top: 300px;
-    opacity: 0;
-  }
-  100% {
-    top: 0px;
-    opacity: 1;
-  }
-}
-.window-slide-in {
-  position: relative;
-  -webkit-animation: window-come-in 0.4s;
-  -moz-animation: window-come-in 0.4s;
-  -ms-keyframes: window-come-in 0.4s;
-  -o-keyframes: window-come-in 0.4s;
-  animation: window-come-in 0.4s;
-}
-@-webkit-keyframes errDetectionFrames {
-  0% {
-    left: 100px;
-    opacity: 0;
-  }
-  100% {
-    left: 0px;
-    opacity: 1;
-  }
-  0% {
-    left: 100px;
-    opacity: 0;
-  }
-  100% {
-    left: 0px;
-    opacity: 1;
-  }
-}
-@-moz-keyframes errDetectionFrames {
-  0% {
-    left: 100px;
-    opacity: 0;
-  }
-  100% {
-    left: 0px;
-    opacity: 1;
-  }
-  0% {
-    left: 100px;
-    opacity: 0;
-  }
-  100% {
-    left: 0px;
-    opacity: 1;
-  }
-}
-@-ms-keyframes errDetectionFrames {
-  0% {
-    left: 100px;
-    opacity: 0;
-  }
-  100% {
-    left: 0px;
-    opacity: 1;
-  }
-  0% {
-    left: 100px;
-    opacity: 0;
-  }
-  100% {
-    left: 0px;
-    opacity: 1;
-  }
-}
-@-o-keyframes errDetectionFrames {
-  0% {
-    left: 100px;
-    opacity: 0;
-  }
-  100% {
-    left: 0px;
-    opacity: 1;
-  }
-  0% {
-    left: 100px;
-    opacity: 0;
-  }
-  100% {
-    left: 0px;
-    opacity: 1;
-  }
-}
-@keyframes errDetectionFrames {
-  0% {
-    left: 100px;
-    opacity: 0;
-  }
-  100% {
-    left: 0px;
-    opacity: 1;
-  }
-  0% {
-    left: 100px;
-    opacity: 0;
-  }
-  100% {
-    left: 0px;
-    opacity: 1;
-  }
-}
 .errorDetected {
   position: relative;
-  -webkit-animation: errDetectionFrames  0.5s;
-  -moz-animation: errDetectionFrames  0.5s;
-  -ms-keyframes: errDetectionFrames 0.5s;
-  -o-keyframes: errDetectionFrames 0.5s;
-  animation: errDetectionFrames  0.5s;
+  -webkit-animation: appear-from-right-keyframes 0.5s;
+  -moz-animation: appear-from-right-keyframes 0.5s;
+  -ms-keyframes: appear-from-right-keyframes 0.5s;
+  -o-keyframes: appear-from-right-keyframes 0.5s;
+  animation: appear-from-right-keyframes 0.5s;
 }
 #usersListRoot {
   -webkit-user-select: none;

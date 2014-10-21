@@ -1,13 +1,6 @@
 <div id="personalDataContent">
 
-  <div class="edit-personal-data-modal-header" ng-if="isPopUp">
-    <span class="header-title">EDITAR CUENTA</span>
-    <button type="button" class="close" ng-click="closeModal()" aria-hidden="true">
-      <span class="glyphicon glyphicon-remove"></span>
-    </button>
-  </div>
-
-  <div class="header" ng-if="!isPopUp">
+  <div class="edit-personal-data-modal-header">
     <span class="header-title">EDITAR CUENTA</span>
     <button type="button" class="close" ng-click="closeModal()" aria-hidden="true">
       <span class="glyphicon glyphicon-remove"></span>
@@ -85,7 +78,7 @@
 
         <div class="subscription-wrapper">
           <div class="subscription-label">NEWSLETTER/OFERTAS ESPECIALES</div>
-          <div class="check-wrapper"> <input type="checkbox" name="switchNewsletter"> </div>
+          <div class="check-wrapper"> <input type="checkbox" name="switchNewsletter" id="inputNewsletter"> </div>
         </div>
 
         <div class="subscription-wrapper">

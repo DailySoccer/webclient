@@ -5960,6 +5960,104 @@ button.close {
     display: none !important;
   }
 }
+.appear-from-right-animation {
+  position: relative;
+  -webkit-animation: appear-from-right 0.5s;
+  -moz-animation: appear-from-right 0.5s;
+  -ms-keyframes: appear-from-right 0.5s;
+  -o-keyframes: appear-from-right 0.5s;
+  animation: appear-from-right 0.5s;
+}
+@-webkit-keyframes appear-from-right {
+  0% {
+    left: 100px;
+    opacity: 0;
+  }
+  100% {
+    left: 0px;
+    opacity: 1;
+  }
+  0% {
+    left: 100px;
+    opacity: 0;
+  }
+  100% {
+    left: 0px;
+    opacity: 1;
+  }
+}
+@-moz-keyframes appear-from-right {
+  0% {
+    left: 100px;
+    opacity: 0;
+  }
+  100% {
+    left: 0px;
+    opacity: 1;
+  }
+  0% {
+    left: 100px;
+    opacity: 0;
+  }
+  100% {
+    left: 0px;
+    opacity: 1;
+  }
+}
+@-ms-keyframes appear-from-right {
+  0% {
+    left: 100px;
+    opacity: 0;
+  }
+  100% {
+    left: 0px;
+    opacity: 1;
+  }
+  0% {
+    left: 100px;
+    opacity: 0;
+  }
+  100% {
+    left: 0px;
+    opacity: 1;
+  }
+}
+@-o-keyframes appear-from-right {
+  0% {
+    left: 100px;
+    opacity: 0;
+  }
+  100% {
+    left: 0px;
+    opacity: 1;
+  }
+  0% {
+    left: 100px;
+    opacity: 0;
+  }
+  100% {
+    left: 0px;
+    opacity: 1;
+  }
+}
+@keyframes appear-from-right {
+  0% {
+    left: 100px;
+    opacity: 0;
+  }
+  100% {
+    left: 0px;
+    opacity: 1;
+  }
+  0% {
+    left: 100px;
+    opacity: 0;
+  }
+  100% {
+    left: 0px;
+    opacity: 1;
+  }
+}
 #headerContestWidget {
   margin-left: -7.5;
   margin-right: -7.5;
@@ -7535,6 +7633,22 @@ button#personalDataContent .header button.close {
   color: #777777;
   padding-bottom: 10px;
 }
+#personalDataContent .content-field-block:before,
+#personalDataContent .content-field-block:after {
+  content: " ";
+  display: table;
+}
+#personalDataContent .content-field-block:after {
+  clear: both;
+}
+#personalDataContent .content-field-block:before,
+#personalDataContent .content-field-block:after {
+  content: " ";
+  display: table;
+}
+#personalDataContent .content-field-block:after {
+  clear: both;
+}
 #personalDataContent .join-err-text {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
@@ -7564,6 +7678,22 @@ button#personalDataContent .header button.close {
   line-height: 25px;
   padding-top: 5px;
   padding-bottom: 5px;
+}
+#personalDataContent .subscription-wrapper:before,
+#personalDataContent .subscription-wrapper:after {
+  content: " ";
+  display: table;
+}
+#personalDataContent .subscription-wrapper:after {
+  clear: both;
+}
+#personalDataContent .subscription-wrapper:before,
+#personalDataContent .subscription-wrapper:after {
+  content: " ";
+  display: table;
+}
+#personalDataContent .subscription-wrapper:after {
+  clear: both;
 }
 #personalDataContent .subscription-label {
   font-family: 'Open Sans', sans-serif;
@@ -7745,101 +7875,11 @@ fieldset[disabled] #personalDataContent .save-changes-content .action-button {
 }
 .error {
   position: relative;
-  -webkit-animation: errDetectionFrames  0.5s;
-  -moz-animation: errDetectionFrames  0.5s;
-  -ms-keyframes: errDetectionFrames 0.5s;
-  -o-keyframes: errDetectionFrames 0.5s;
-  animation: errDetectionFrames  0.5s;
-}
-@-webkit-keyframes errDetectionFrames {
-  0% {
-    left: 100px;
-    opacity: 0;
-  }
-  100% {
-    left: 0px;
-    opacity: 1;
-  }
-  0% {
-    left: 100px;
-    opacity: 0;
-  }
-  100% {
-    left: 0px;
-    opacity: 1;
-  }
-}
-@-moz-keyframes errDetectionFrames {
-  0% {
-    left: 100px;
-    opacity: 0;
-  }
-  100% {
-    left: 0px;
-    opacity: 1;
-  }
-  0% {
-    left: 100px;
-    opacity: 0;
-  }
-  100% {
-    left: 0px;
-    opacity: 1;
-  }
-}
-@-ms-keyframes errDetectionFrames {
-  0% {
-    left: 100px;
-    opacity: 0;
-  }
-  100% {
-    left: 0px;
-    opacity: 1;
-  }
-  0% {
-    left: 100px;
-    opacity: 0;
-  }
-  100% {
-    left: 0px;
-    opacity: 1;
-  }
-}
-@-o-keyframes errDetectionFrames {
-  0% {
-    left: 100px;
-    opacity: 0;
-  }
-  100% {
-    left: 0px;
-    opacity: 1;
-  }
-  0% {
-    left: 100px;
-    opacity: 0;
-  }
-  100% {
-    left: 0px;
-    opacity: 1;
-  }
-}
-@keyframes errDetectionFrames {
-  0% {
-    left: 100px;
-    opacity: 0;
-  }
-  100% {
-    left: 0px;
-    opacity: 1;
-  }
-  0% {
-    left: 100px;
-    opacity: 0;
-  }
-  100% {
-    left: 0px;
-    opacity: 1;
-  }
+  -webkit-animation: appear-from-right 0.5s;
+  -moz-animation: appear-from-right 0.5s;
+  -ms-keyframes: appear-from-right 0.5s;
+  -o-keyframes: appear-from-right 0.5s;
+  animation: appear-from-right 0.5s;
 }
 @media (max-width: 767px) {
   .header-view-contest-entry-mode {

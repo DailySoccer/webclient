@@ -11,15 +11,13 @@ import 'dart:html';
     templateUrl: 'packages/webclient/components/account/edit_personal_data_comp.html',
     useShadowDom: false
 )
-class EditPersonalDataComp {
+class EditPersonalDataComp implements ShadowRootAware{
 
   String country;
   String region;
   String city;
 
   UserProfileComp parent;
-
-  bool isPopUp;
 
   bool get acceptNewsletter => _acceptNewsletter;
   void set acceptNewsletter(bool value) {
@@ -45,10 +43,9 @@ class EditPersonalDataComp {
   //bool get enabledSubmit => parent.editedNickName.isNotEmpty && parent.editedEmail.isNotEmpty && parent.editedRepeatPassword.isNotEmpty && parent.editedPassword.isNotEmpty && _enabledSubmit;
 
   EditPersonalDataComp(this._profileManager, this.parent) {
-    //init(element);
   }
 
-  void init(element) {
+  void init() {
     //switch NEWSLETTER/OFERTAS ESPECIALES
     JsUtils.runJavascript("[name='switchNewsletter']", 'bootstrapSwitch', {         'size'          : 'mini',
                                                                                     'state'         : acceptNewsletter,
@@ -75,11 +72,8 @@ class EditPersonalDataComp {
                                                                                     'offColor'      : 'default',
                                                                                     'onSwitchChange': onSoccerPlayerAlertsSwitchChange
                                                                                   });
-
-      HtmlElement htmlRoot = element.querySelector("#personalDataContent");
-
       hideErrors();
-      isPopUp = htmlRoot.id == 'modalEditPersonalDataForm';
+
   }
 
   void onNewsLetterSwitchChange(event, state) {
@@ -174,4 +168,9 @@ class EditPersonalDataComp {
   bool _acceptSoccerPlayerAlerts;
   bool _enabledSubmit = false;
   bool _popUpStyle;
+
+  @override
+  void onShadowRoot(emulatedRoot) {
+    init();
+  }
 }

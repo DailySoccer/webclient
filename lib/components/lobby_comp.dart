@@ -1,6 +1,7 @@
 library active_contest_list_comp;
 
 import 'dart:html';
+import 'dart:async';
 import 'dart:math';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/active_contests_service.dart';
@@ -145,13 +146,13 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   int get freeTournamentsCount    => _freeContestCount;
   int get prizedTournamentsCount  => activeContestsService.activeContests.length - _freeContestCount;
 
-  LobbyComp(this._router, this.activeContestsService, this.scrDet) {
+  LobbyComp(this._router, this._refreshTimersService, this.activeContestsService, this.scrDet) {
     activeContestsService.clear();
 
-    RefreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_CONTEST_LIST, refreshActiveContest);
+    _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_CONTEST_LIST, refreshActiveContest);
     refreshActiveContest();
 
-    RefreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_NEXT_TOURNAMENT_INFO, _calculateInfoBarText);
+    _refreshNextTournamentInfoTimer = new Timer.periodic(new Duration(seconds: 1), (Timer t) =>  _calculateInfoBarText());
     _calculateInfoBarText();
 
     _streamListener = scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
@@ -195,9 +196,8 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   }
 
   void detach() {
-   // _refresListTimer.cancel();
-    RefreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_CONTEST_LIST);
-    RefreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_NEXT_TOURNAMENT_INFO);
+    _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_CONTEST_LIST);
+    _refreshNextTournamentInfoTimer.cancel();
     _streamListener.cancel();
   }
 
@@ -569,6 +569,8 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   }
 
   Router _router;
+  RefreshTimersService _refreshTimersService;
+  Timer _refreshNextTournamentInfoTimer;
 
   List<Element> _sortingButtons = [];
   List<String> _butonState = ['asc', 'desc'];

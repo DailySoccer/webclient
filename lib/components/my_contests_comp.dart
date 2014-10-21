@@ -22,11 +22,11 @@ class MyContestsComp implements DetachAware {
   String waitingSortType = "contest-start-time_asc";
   String historySortType = "contest-start-time_desc";
 
-  MyContestsComp(this._profileService, this.myContestsService, this._router, this._flashMessage) {
+  MyContestsComp(this._profileService, this._refreshTimersService, this.myContestsService, this._router, this._flashMessage) {
     myContestsService.clear();
 
+    _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE, _updateLive);
     _updateLive();
-    RefreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE, _updateLive);
   }
 
   void onWaitingRowClick(Contest contest) {
@@ -58,7 +58,7 @@ class MyContestsComp implements DetachAware {
   }
 
   void detach() {
-    RefreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE);
+    _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE);
   }
 
   void _updateLive() {
@@ -85,4 +85,5 @@ class MyContestsComp implements DetachAware {
   Router _router;
   FlashMessagesService _flashMessage;
   ProfileService _profileService;
+  RefreshTimersService _refreshTimersService;
 }

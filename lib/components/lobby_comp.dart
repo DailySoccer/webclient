@@ -172,7 +172,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   void refreshActiveContest() {
     activeContestsService.refreshActiveContests();
     print('refrescando lista de concursos');
-    _freeContestCount   = activeContestsService.activeContests.where((contest) => contest.tournamentType == Contest.TOURNAMENT_FREE).toList().length;
+    _freeContestCount = activeContestsService.activeContests.where((contest) => contest.tournamentType == Contest.TOURNAMENT_FREE).toList().length;
   }
 
   void onShadowRoot(emulatedRoot) {

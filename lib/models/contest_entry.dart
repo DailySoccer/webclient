@@ -22,6 +22,9 @@ class ContestEntry {
   int get currentLivePoints => instanceSoccerPlayers != null ? instanceSoccerPlayers.fold(0, (prev, instanceSoccerPlayer) => prev + instanceSoccerPlayer.soccerPlayer.currentLivePoints ) : 0;
 
   int get percentLeft {
+    if (instanceSoccerPlayers.isEmpty) {
+      return 100;
+    }
     final int TOTAL = instanceSoccerPlayers.length * 90;
     int time = timeLeft;
     int percent = (time * 100) ~/ TOTAL;

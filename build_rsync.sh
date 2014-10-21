@@ -20,6 +20,7 @@ fi
 
 # mode puede ser debug|release
 echo "Client compilation mode is: $mode"
+dart cache_gen.dart
 pub build --mode=$mode
 rsync -r  -v --copy-unsafe-links build/web/. ../backend/public/
 

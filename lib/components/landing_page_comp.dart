@@ -8,7 +8,7 @@ import 'package:webclient/services/screen_detector_service.dart';
 
 @Component(
    selector: 'landing-page',
-   templateUrl: 'packages/webclient/components/landing_page_comp.html',
+   templateUrl: '/packages/webclient/components/landing_page_comp.html',
    useShadowDom: false
 )
 class LandingPageComp implements ShadowRootAware, DetachAware {

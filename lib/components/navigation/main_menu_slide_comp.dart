@@ -8,7 +8,7 @@ import 'package:webclient/services/screen_detector_service.dart';
 
 @Component(
     selector: 'main-menu-slide',
-    templateUrl: 'packages/webclient/components/navigation/main_menu_slide_comp.html',
+    templateUrl: '/packages/webclient/components/navigation/main_menu_slide_comp.html',
     useShadowDom: false
 )
 class MainMenuSlideComp {

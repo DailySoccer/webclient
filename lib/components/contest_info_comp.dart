@@ -11,7 +11,7 @@ import 'package:webclient/services/flash_messages_service.dart';
 
 @Component(
   selector: 'contest-info',
-  templateUrl: 'packages/webclient/components/contest_info_comp.html',
+  templateUrl: '/packages/webclient/components/contest_info_comp.html',
   useShadowDom: false
 )
 class ContestInfoComp implements ShadowRootAware {

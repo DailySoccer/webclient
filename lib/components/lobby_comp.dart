@@ -13,7 +13,7 @@ import 'package:webclient/services/refresh_timers_service.dart';
 
 @Component(
   selector: 'lobby',
-  templateUrl: 'packages/webclient/components/lobby_comp.html',
+  templateUrl: '/packages/webclient/components/lobby_comp.html',
   useShadowDom: false
 )
 class LobbyComp implements ShadowRootAware, DetachAware {

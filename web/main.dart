@@ -1,9 +1,11 @@
 import 'package:angular/application_factory.dart';
 //import 'package:angular/routing/static_keys.dart';
-//import 'package:angular/core_dom/static_keys.dart';
+import 'package:angular/core_dom/static_keys.dart';
 
 import 'package:webclient/webclient.dart';
 import 'package:webclient/logger_exception_handler.dart';
+import 'package:webclient/generated.dart';
+import 'package:angular/angular.dart';
 
 void main() {
 
@@ -19,6 +21,8 @@ void main() {
 }
 
 void setUpCache(injector) {
+  TemplateCache cache = injector.getByKey(TEMPLATE_CACHE_KEY);
+  primeTemplateCache(cache);
 
   //
   // Precacheamos lost html de las vistas para que no los cargue luego al entrar en las pantallas

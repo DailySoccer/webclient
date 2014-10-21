@@ -118,12 +118,5 @@ class WebClientApp extends Module {
     bind(RouteInitializerFn, toValue: webClientRouteInitializer);
     bind(NgRoutingUsePushState, toValue: new NgRoutingUsePushState.value(false));
 
-    Map<Key,Binding> bindings = this.bindings;
-    for (Binding binding in bindings) {
-      if (binding.key.annotation is Component) {
-        print(binding.toString());
-      }
-
-    }
   }
 }

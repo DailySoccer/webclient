@@ -7,7 +7,7 @@ import 'package:webclient/services/server_service.dart';
 
 @Component(
     selector: 'remember-password',
-    templateUrl: 'packages/webclient/components/account/remember_password_comp.html',
+    templateUrl: '/packages/webclient/components/account/remember_password_comp.html',
     useShadowDom: false
 )
 class RememberPasswordComp{

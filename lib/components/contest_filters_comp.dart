@@ -47,10 +47,10 @@ class ContestFiltersComp implements ShadowRootAware {
   String filterContestName = "";
 
   // Lista de tipos de concurso.
-  List<Map> contestTypeList = [];
+  List<Map> contestTypeFilterList = [];
 
   // Lista de tipos de Limites de salarios.
-  List<Map> salaryCapList = [];
+  List<Map> salaryCapFilterList = [];
 
   // Valores para el rango de Entry Fee
   List<int> entryFeeSliderRange = [];
@@ -123,7 +123,7 @@ class ContestFiltersComp implements ShadowRootAware {
     filterContestName = "";
 
     // Lista de tipos de concurso.
-    contestTypeList = [
+    contestTypeFilterList = [
        {'name':"FREE",        'checked':false, 'disabled':true}
       ,{'name':"HEAD_TO_HEAD",'checked':false, 'disabled':true}
       ,{'name':"LEAGUE",      'checked':false, 'disabled':true}
@@ -131,7 +131,7 @@ class ContestFiltersComp implements ShadowRootAware {
     ];
 
     // Lista de tipos de Limites de salarios.
-    salaryCapList = [
+    salaryCapFilterList = [
        {'name':"BEGGINER", 'checked':false, 'disabled':true}
       ,{'name':"STANDARD", 'checked':false, 'disabled':true}
       ,{'name':"SKILLEDS", 'checked':false, 'disabled':true}
@@ -146,10 +146,10 @@ class ContestFiltersComp implements ShadowRootAware {
 
       _contestList.forEach( (contest) {
         // Seteo de los "tipos de concursos"
-        contestTypeList.where( (map) => map['name'] == contest.tournamentType).first['disabled'] = false;
+        contestTypeFilterList.where( (map) => map['name'] == contest.tournamentType).first['disabled'] = false;
 
         // Seteo de los "salary caps"
-        salaryCapList.where( (map) => map['name'] == contest.tier).first["disabled"] = false;
+        salaryCapFilterList.where( (map) => map['name'] == contest.tier).first["disabled"] = false;
 
       });
 
@@ -158,7 +158,7 @@ class ContestFiltersComp implements ShadowRootAware {
   }
 
   // Actualiza los valores del contro range-slider
- setEntryFeeFilterValues() {
+  void setEntryFeeFilterValues() {
     entryFeeSliderRange = getFilterEntryFeeRange();
     JsUtils.runJavascript('#slider-range','noUiSlider', {'range': {'min': entryFeeSliderRange[ENTRY_FEE_MIN_RANGE], 'max': entryFeeSliderRange[ENTRY_FEE_MAX_RANGE]}}, true);
     JsUtils.runJavascript('#slider-range','val', entryFeeSliderRange);
@@ -173,6 +173,14 @@ class ContestFiltersComp implements ShadowRootAware {
       });
     }
     return [0, maxLimit];
+  }
+
+  void filterByType() {
+    addFilter(FILTER_TOURNAMENT, contestTypeFilterList.where((element) => element['checked'] == true).map((element) => element['name']).toList());
+  }
+
+  void filterByTier() {
+    addFilter(FILTER_TIER, salaryCapFilterList.where((element) => element['checked'] == true ).map((element) => element['name']).toList());
   }
 
   void filterByEntryFee(){
@@ -192,6 +200,8 @@ class ContestFiltersComp implements ShadowRootAware {
     newFilterList[key] = value;
 
     filterList.addAll(newFilterList);
+
+    print('Lista de filtros ${filterList.toString()}');
   }
 
   // Elimina los filtros e inicializa sus valores

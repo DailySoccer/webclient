@@ -37,8 +37,8 @@
         <div class="filter-content">
             <div class="check-group-wrapper">
 
-              <div class="button-check" ng-repeat="contestType in contestTypeList">
-                <input id="filtroTipo_{{$index}}" type="checkbox" ng-model="contestType['checked']" ng-disabled="contestType['disabled']"  ng-click="whatFilterIsClicked(contestType)">
+              <div class="button-check" ng-repeat="contestType in contestTypeFilterList">
+                <input id="filtroTipo_{{$index}}" type="checkbox" ng-model="contestType['checked']" ng-disabled="contestType['disabled']"  ng-click="filterByType()">
                 <label for="filtroTipo_{{$index}}">{{filtersFriendlyName["FILTER_TOURNAMENT"][contestType["name"]].toUpperCase()}}</label>
               </div>
 
@@ -52,8 +52,8 @@
         <div class="filter-content">
             <div class="check-group-wrapper">
 
-              <div class="button-check" ng-repeat="tier in salaryCapList">
-                <input id="filtroSalary_{{$index}}" type="checkbox" ng-model="tier['checked']" ng-disabled="tier['disabled']" ng-click="whatFilterIsClicked(tier)">
+              <div class="button-check" ng-repeat="tier in salaryCapFilterList">
+                <input id="filtroSalary_{{$index}}" type="checkbox" ng-model="tier['checked']" ng-disabled="tier['disabled']" ng-click="filterByTier()">
                 <label for="filtroSalary_{{$index}}">{{filtersFriendlyName["FILTER_TIER"][tier["name"]].toUpperCase()}}</label>
               </div>
               <!--
@@ -66,7 +66,7 @@
               <div class="button-check">
                 <input id="filtroExperto" type="checkbox" ng-disabled="!hasSkilledTier"
                                                           ng-model="isSkilledTierChecked"
-                                                          ng-click="refreshTierFilter()">
+                                                          ng-click="filterByTier()">
                 <label for="filtroExperto">Experto</label>
               </div>
               -->

@@ -13,9 +13,12 @@
     <div id="contestFastSort">
       <span class="filter-text">Ordenar por: </span>
       <div class="btn-group" >
-        <div id="sortContestName"      type="button" class="btn sorting-button"><!-- ng-click="sortListByField('sortContestName', 'contest-name')">            -->Nombre</div>
-        <div id="sortContestEntryFee"  type="button" class="btn sorting-button"><!-- ng-click="sortListByField('sortContestEntryFee', 'contest-entry-fee')">   -->Entrada</div>
-        <div id="sortContestStartTime" type="button" class="btn sorting-button"><!-- ng-click="sortListByField('sortContestStartTime', 'contest-start-time')"> -->Comienzo</div>
+        <div ng-repeat="button in sortingButtons" id="{{button['id']}}" type="button" class="btn sorting-button" ng-class="button['state']">{{button["name"]}}</div>
+       <!--
+        <div id="sortContestName"  type="button" class="btn sorting-button" ng-click="sortListByField('sortContestName', 'contest-name')">Nombre</div>
+        <div id="sortContestEntryFee"  type="button" class="btn sorting-button" ng-click="sortListByField('sortContestEntryFee', 'contest-entry-fee')">Entrada</div>
+        <div id="sortContestStartTime" type="button" class="btn sorting-button" ng-click="sortListByField('sortContestStartTime', 'contest-start-time')">Comienzo</div>
+       -->
       </div>
     </div>
 
@@ -38,8 +41,8 @@
             <div class="check-group-wrapper">
 
               <div class="button-check" ng-repeat="contestType in contestTypeFilterList">
-                <input id="filtroTipo_{{$index}}" type="checkbox" ng-model="contestType['checked']" ng-disabled="contestType['disabled']"  ng-click="filterByType()">
-                <label for="filtroTipo_{{$index}}">{{filtersFriendlyName["FILTER_TOURNAMENT"][contestType["name"]].toUpperCase()}}</label>
+                <input id="{{contestType['id']}}" type="checkbox" ng-model="contestType['checked']" ng-disabled="contestType['disabled']"  ng-click="filterByType()">
+                <label for="{{contestType['id']}}">{{filtersFriendlyName["FILTER_TOURNAMENT"][contestType["name"]].toUpperCase()}}</label>
               </div>
 
             </div>

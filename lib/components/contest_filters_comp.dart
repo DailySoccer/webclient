@@ -53,6 +53,9 @@ class ContestFiltersComp implements ShadowRootAware {
   // Valores para el rango de Entry Fee
   List<int> entryFeeSliderRange = [];
 
+  // Valores para los botones de orden
+  List<Map> sortingButtons = [];
+
   //Lista de filtros
   Map<String, dynamic> filterList = {};
 
@@ -70,8 +73,8 @@ class ContestFiltersComp implements ShadowRootAware {
     setFilterValues();
   }
 
-  @NgTwoWay("sorting")
-  String sort;
+  @NgTwoWay("on-sort-order-change")
+  Function onSortOrderChange;
 
   @NgCallback('on-filter-change')
   Function onFilterChange;
@@ -86,18 +89,19 @@ class ContestFiltersComp implements ShadowRootAware {
 
   ContestFiltersComp(this.scrDet) {
     initializeFilterValues();
+    initializeSortValues();
   }
 
   /********* HANDLERS */
   void onOpenFiltersPanel(dynamic sender) {
-    _filtersButtons.forEach((value) => value.classes.remove('toggleOff'));
-    _filtersButtons.forEach((value) => value.classes.add('toggleOn'));
+    _filtersPanelButtons.forEach((value) => value.classes.remove('toggleOff'));
+    _filtersPanelButtons.forEach((value) => value.classes.add('toggleOn'));
     _isFiltersPanelOpen = true;
   }
 
   void onCloseFiltersPanel(dynamic sender) {
-    _filtersButtons.forEach((value) => value.classes.remove('toggleOn'));
-    _filtersButtons.forEach((value) => value.classes.add('toggleOff'));
+    _filtersPanelButtons.forEach((value) => value.classes.remove('toggleOn'));
+    _filtersPanelButtons.forEach((value) => value.classes.add('toggleOff'));
     _isFiltersPanelOpen = false;
   }
 
@@ -127,10 +131,10 @@ class ContestFiltersComp implements ShadowRootAware {
 
     // Lista de tipos de concurso.
     contestTypeFilterList = [
-       {'name':"FREE",        'checked':false, 'disabled':true}
-      ,{'name':"HEAD_TO_HEAD",'checked':false, 'disabled':true}
-      ,{'name':"LEAGUE",      'checked':false, 'disabled':true}
-      ,{'name':"FIFTY_FIFTY", 'checked':false, 'disabled':true}
+       {'name':"FREE",        'checked':false, 'disabled':true, 'id':'filterTournamentTypeFree'}
+      ,{'name':"HEAD_TO_HEAD",'checked':false, 'disabled':true, 'id':'filterTournamentTypeHeadToHead'}
+      ,{'name':"LEAGUE",      'checked':false, 'disabled':true, 'id':'filterTournamentTypeLeague'}
+      ,{'name':"FIFTY_FIFTY", 'checked':false, 'disabled':true, 'id':'filterTournamentTypeFiftyFifty'}
     ];
 
     // Lista de tipos de Limites de salarios.
@@ -142,6 +146,15 @@ class ContestFiltersComp implements ShadowRootAware {
 
     // Rango de Entry Fee
     entryFeeSliderRange = [0, 1];
+  }
+
+  //TODO: Crear los botones de filtrado con un ng-repeat
+  void initializeSortValues(){
+    sortingButtons = [
+       {'name':"Nombre", 'state':'', 'id':'orderByName'}
+      ,{'name':"Entrada", 'state':'', 'id':'orderByEntryFee'}
+      ,{'name':"Comienzo", 'state':'', 'id':'orderByStartDate'}
+    ];
   }
 
   // Establece los valores que tendrán los filtros
@@ -217,10 +230,10 @@ class ContestFiltersComp implements ShadowRootAware {
   void onShadowRoot(emulatedRoot) {
 
     // Capturamos los botones que abren/cierran el panel de filtros
-    _filtersButtons = querySelectorAll('.filters-button');
+    _filtersPanelButtons = querySelectorAll('.filters-button');
 
     // Como el panel inicial cerrado, le añadimos la clase que pone la flecha hacia abajo
-    _filtersButtons.forEach((value) => value.classes.add('toggleOff'));
+    _filtersPanelButtons.forEach((value) => value.classes.add('toggleOff'));
 
     // Nos subscribimos a los eventos de apertura y cierre de los filtros
     JsUtils.runJavascript('#filtersPanel', 'on', {'hidden.bs.collapse': onCloseFiltersPanel});
@@ -247,7 +260,7 @@ class ContestFiltersComp implements ShadowRootAware {
 
   /********* PRIVATE DECLARATIONS */
   bool _isFiltersPanelOpen = false;
-  List<Element> _filtersButtons;
+  List<Element> _filtersPanelButtons;
 
   String _filterEntryFeeMin;
   String _filterEntryFeeMax;

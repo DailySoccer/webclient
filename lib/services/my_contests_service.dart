@@ -26,6 +26,12 @@ class MyContestsService {
 
   MyContestsService(this._server);
 
+  void clear() {
+    waitingContests.clear();
+    liveContests.clear();
+    historyContests.clear();
+  }
+
   Future cancelContestEntry(String contestEntryId) {
     var completer = new Completer();
 
@@ -62,7 +68,19 @@ class MyContestsService {
     return completer.future;
   }
 
-  Future refreshContest(String contestId) {
+  Future refreshMyContest(String contestId) {
+    var completer = new Completer();
+
+    _server.getMyContest(contestId)
+        .then((jsonObject) {
+          lastContest = Contest.loadContestsFromJsonObject(jsonObject).first;
+          completer.complete(jsonObject);
+        });
+
+    return completer.future;
+  }
+
+  Future refreshFullContest(String contestId) {
     var completer = new Completer();
 
     _server.getFullContest(contestId)

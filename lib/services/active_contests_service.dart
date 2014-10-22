@@ -21,26 +21,17 @@ class ActiveContestsService {
 
   ActiveContestsService(this._server, this._profileService);
 
+  void clear() {
+    activeContests.clear();
+    myContests.clear();
+  }
+
   Future refreshActiveContests() {
     return _server.getActiveContests()
       .then((jsonObject) {
         activeContests = Contest.loadContestsFromJsonObject(jsonObject);
 
-
         if (_profileService.isLoggedIn) {
-          // Quitar los contests en los que esté inscrito el usuario
-          /*
-           * myContests.clear();
-          activeContests.clear();
-               contests.forEach((contest) {
-              if (contest.containsContestEntryWithUser(_profileService.user.userId)) {
-                myContests.add(contest);
-              }
-              else {
-                activeContests.add(contest);
-              }
-          });
-          */
           myContests = activeContests.where((contest) => contest.containsContestEntryWithUser(_profileService.user.userId)).toList();
           activeContests.removeWhere((contest) => contest.containsContestEntryWithUser(_profileService.user.userId));
 

@@ -33,13 +33,13 @@ class ViewContestComp implements DetachAware {
   List<ContestEntry> get contestEntries => (contest != null) ? contest.contestEntries : null;
   List<ContestEntry> get contestEntriesOrderByPoints => (contest != null) ? contest.contestEntriesOrderByPoints : null;
 
-  ViewContestComp(this._routeProvider, this.scrDet, this._myContestsService, this._profileService, this._flashMessage) {
+  ViewContestComp(this._routeProvider, this.scrDet, this._refreshTimersService, this._myContestsService, this._profileService, this._flashMessage) {
 
     _contestId = _routeProvider.route.parameters['contestId'];
 
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
 
-    _myContestsService.refreshContest(_contestId)
+    _myContestsService.refreshFullContest(_contestId)
       .then((jsonObject) {
         mainPlayer = contest.getContestEntryWithUser(_profileService.user.userId);
 
@@ -55,10 +55,8 @@ class ViewContestComp implements DetachAware {
 
         // Únicamente actualizamos los contests que estén en "live"
         if (_myContestsService.lastContest.isLive) {
-          _updateLive();
-
           // Comenzamos a actualizar la información
-          RefreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE, _updateLive);
+          _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE, _updateLive);
         }
 
       })
@@ -76,7 +74,7 @@ class ViewContestComp implements DetachAware {
   }
 
   void detach() {
-    RefreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE);
+    _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE);
     _streamListener.cancel();
   }
 
@@ -183,6 +181,7 @@ class ViewContestComp implements DetachAware {
   FlashMessagesService _flashMessage;
   RouteProvider _routeProvider;
   ProfileService _profileService;
+  RefreshTimersService _refreshTimersService;
   MyContestsService _myContestsService;
 
   String _contestId;

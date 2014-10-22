@@ -94,6 +94,7 @@
 		.make-xs-column(12);
 		.opensans_normal(8pt, @greyDark);
 		padding-bottom: 10px;
+		.clearfix();
 	}	
 	.join-err-text {
 		.opensans_normal(10pt, @red);
@@ -111,6 +112,7 @@
 		line-height: 25px;
 		padding-top: 5px;
 		padding-bottom: 5px;
+		.clearfix();
 	}
 	.subscription-label {
 		.opensans_bold(8pt, @white);
@@ -135,13 +137,12 @@
 			.btn-block();
 			.opensans_normal(10pt, @white);
 			.make-xs-column(12);
-			//.make-xs-column-push();
 			.make-sm-column(6);
 			.make-sm-column-push(3);
-
-
-			//margin: 0 5px;
 		}
 	}
+}
 
+.errorDetected{
+	.appear-from-right-animation();
 }

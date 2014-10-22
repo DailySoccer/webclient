@@ -17,18 +17,17 @@ class DateTimeService {
   // recibiendo la hora desde el servidor, cambia un poco mas lento (cada 3 segundos)
   DateTime get nowEverySecond => _nowEverySecond;
 
-  DateTimeService(this._server, RefreshTimersService rts) {
+  DateTimeService(this._server, this._refreshTimersService) {
     if (_instance != null)
       throw new Exception("WTF 1233");
 
     _instance = this;
 
     if (HostServer.isDev) {
-      _verifySimulatorActivated();
-      RefreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_VERIFY_SIMULATOR_ACTIVATED, _verifySimulatorActivated);
+      _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_VERIFY_SIMULATOR_ACTIVATED, _verifySimulatorActivated);
     }
 
-    RefreshTimersService.addRefreshTimer(RefreshTimersService.EVERY_SECOND, () => _nowEverySecond = now);
+    new Timer.periodic(new Duration(seconds:1), (t) => _nowEverySecond = now);
   }
 
   static bool isToday(DateTime date) {
@@ -83,11 +82,11 @@ class DateTimeService {
           print("Simulator Activated");
 
           // Cancelamos el timer de verificacion (asumimos que siempre estará ejecutándose)
-          RefreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_VERIFY_SIMULATOR_ACTIVATED);
+          _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_VERIFY_SIMULATOR_ACTIVATED);
 
           // Timer para solicitar el "currentDate"
           _timerUpdateFromServer = (_simulatorActivated)
-              ? RefreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_UPDATE_FROM_SERVER, _updateDateFromServer)
+              ? _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_DATE_FROM_SERVER, _updateDateFromServer)
               : null;
           }
       });
@@ -114,6 +113,7 @@ class DateTimeService {
   bool _simulatorActivated = false;
 
   ServerService _server;
+  RefreshTimersService _refreshTimersService;
 
   static DateTimeService _instance;
   static final bool _UTC = false;

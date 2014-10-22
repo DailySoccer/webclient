@@ -4,26 +4,19 @@ import 'package:angular/angular.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/components/account/user_profile_comp.dart';
-import 'dart:html';
 
 @Component(
     selector: 'edit-personal-data',
     templateUrl: 'packages/webclient/components/account/edit_personal_data_comp.html',
     useShadowDom: false
 )
-class EditPersonalDataComp {
+class EditPersonalDataComp implements ShadowRootAware{
 
   String country;
   String region;
   String city;
 
   UserProfileComp parent;
-
-  Element nicknameError;
-  Element emailError;
-  Element passwordError;
-
-  bool isPopUp;
 
   bool get acceptNewsletter => _acceptNewsletter;
   void set acceptNewsletter(bool value) {
@@ -49,10 +42,9 @@ class EditPersonalDataComp {
   //bool get enabledSubmit => parent.editedNickName.isNotEmpty && parent.editedEmail.isNotEmpty && parent.editedRepeatPassword.isNotEmpty && parent.editedPassword.isNotEmpty && _enabledSubmit;
 
   EditPersonalDataComp(this._profileManager, this.parent) {
-    //init(element);
   }
 
-  void init(element) {
+  void init() {
     //switch NEWSLETTER/OFERTAS ESPECIALES
     JsUtils.runJavascript("[name='switchNewsletter']", 'bootstrapSwitch', {         'size'          : 'mini',
                                                                                     'state'         : acceptNewsletter,
@@ -79,16 +71,8 @@ class EditPersonalDataComp {
                                                                                     'offColor'      : 'default',
                                                                                     'onSwitchChange': onSoccerPlayerAlertsSwitchChange
                                                                                   });
-
-      HtmlElement htmlRoot = element.querySelector("#personalDataContent");
-
-      nicknameError = htmlRoot.querySelector('#nickNameError');
-      emailError    = htmlRoot.querySelector('#emailError');
-      passwordError = htmlRoot.querySelector('#passwordError');
-
       hideErrors();
 
-      isPopUp = htmlRoot.id == 'modalEditPersonalDataForm';
   }
 
   void onNewsLetterSwitchChange(event, state) {
@@ -103,21 +87,14 @@ class EditPersonalDataComp {
     acceptSoccerPlayerAlerts = state;
   }
 
-  void hideErrors() {
-    nicknameError.parent.style.display  = "none";
-    emailError.parent.style.display     = "none";
-    passwordError.parent.style.display  = "none";
-  }
 
   bool validatePassword() {
     bool retorno = true;
     // Verificación del password
     if (parent.editedPassword != parent.editedRepeatPassword) {
-        passwordError
-          ..text = "Los passwords no coinciden"
-          ..classes.remove("errorDetected")
-          ..classes.add("errorDetected")
-          ..parent.style.display = "";
+        parent
+          ..passwordErrorText = "Los passwords no coinciden"
+          ..hasPasswordError = true;
         retorno = false;
       }
 
@@ -125,6 +102,7 @@ class EditPersonalDataComp {
   }
 
   void saveChanges() {
+
       hideErrors();
 
       if (!validatePassword() ) {
@@ -134,49 +112,48 @@ class EditPersonalDataComp {
       String firstName = _profileManager.user.firstName  != parent.editedFirstName ? parent.editedFirstName  : "";
       String lastName  = _profileManager.user.lastName   != parent.editedLastName  ? parent.editedLastName   : "";
       String email     = _profileManager.user.email      != parent.editedEmail     ? parent.editedEmail      : "";
+
       // El nickname de momento no sabemos si le daremos permisos al usuario para que lo cambie a placer.
       String nickName  = "";
       String password  = parent.editedPassword;
 
-
-        _profileManager.changeUserProfile(firstName, lastName, email, nickName, password)
+      _profileManager.changeUserProfile(firstName, lastName, email, nickName, password)
         //Not implemented yet //.then((_) => _profileManager.saveUserData(firstName, lastName,acceptGameAlerts, /* nickName, */ email, password))
-            .then((_) => closeModal())
-            .catchError((Map error) {
+        .then((_) => closeModal())
+        .catchError((Map error) {
 
-             // print("keys: ${error.keys.length} - ${error.keys.toString()}");
+          error.keys.forEach( (key) {
+            switch (key)
+            {
+              case "nickName":
+                parent
+                  ..nicknameErrorText = error[key][0]
+                  ..hasNicknameError = true;
 
-              error.keys.forEach( (key) {
-                switch (key)
-                {
-                  case "nickName":
-                    nicknameError
-                      ..text = error[key][0]
-                      ..classes.remove("errorDetected")
-                      ..classes.add("errorDetected")
-                      ..parent.style.display = "";
+              break;
+              case "email":
+                parent
+                  ..emailErrorText = error[key][0]
+                  ..hasEmailError = true;
+              break;
+              case "password":
+                parent
+                  ..passwordErrorText = error[key][0]
+                ..hasPasswordError = true;
+              break;
+            }
+          });
 
-                  break;
-                  case "email":
-                    emailError
-                      ..text = error[key][0]
-                      ..classes.remove("errorDetected")
-                      ..classes.add("errorDetected")
-                      ..parent.style.display = "";
-                  break;
-                  case "password":
-                    passwordError
-                      ..text = error[key][0]
-                      ..classes.remove("errorDetected")
-                      ..classes.add("errorDetected")
-                      ..parent.style.display = "";
-                  break;
-                }
-             //   print("-EDIT_PERSONAL_DATA_COMP-: Error recibido: ${key}");
-              });
-             //_enabledSubmit = true;
-            });
+        });
   }
+
+  void hideErrors() {
+    parent
+    ..hasNicknameError  = false
+    ..hasEmailError     = false
+    ..hasPasswordError  = false;
+  }
+
 
   void closeModal() {
     _profileManager.refreshUserProfile();
@@ -190,4 +167,9 @@ class EditPersonalDataComp {
   bool _acceptSoccerPlayerAlerts;
   bool _enabledSubmit = false;
   bool _popUpStyle;
+
+  @override
+  void onShadowRoot(emulatedRoot) {
+    init();
+  }
 }

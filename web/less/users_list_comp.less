@@ -1,16 +1,15 @@
 #usersListRoot {
 	.user-select(none);
 	.user-row {
-		.make-row(0px);
+		.make-row(0);
 		.opensans_bold(10pt, @greyDark);
 		.make-border(1px, none none solid none, @white);
 		background-color: @tramaBlue;
 		text-align: center;
 		cursor: pointer;
 		padding: 10px 0;
-
-		@grid-columns-gutter: 4px;
-		
+			
+		@grid-columns-gutter: 4px;		
 		.pos { .make-xs-column(1, @grid-columns-gutter); }
 		.name {	.make-xs-column(4, @grid-columns-gutter); text-align: left;	}
 		.name-view-contest-entry-mode {	.make-xs-column(9, @grid-columns-gutter); text-align: left;	}
@@ -34,8 +33,8 @@
 		text-align: center;
 		.opensans_bold(8pt, @white);
 
-		@grid-table-header-gutter: 0px;
-		.make-row(0px);
+		@grid-table-header-gutter: 4px;
+		.make-row(0);
 		.pos {.make-xs-column(1, @grid-table-header-gutter);}
 		.name {.make-xs-column(4, @grid-table-header-gutter); text-align: left;}
 		.name-view-contest-entry-mode {.make-xs-column(9, @grid-table-header-gutter); text-align: left;}

@@ -60,9 +60,13 @@ class EnterContestComp implements DetachAware {
     // Nos subscribimos al evento de cambio de tamañano de ventana
     _streamListener = scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
 
-    _activeContestService.refreshContest(_routeProvider.route.parameters['contestId'])
+    Future refreshContest = _editingContestEntry
+        ? _myContestService.refreshMyContest(_routeProvider.route.parameters['contestId'])
+        : _activeContestService.refreshContest(_routeProvider.route.parameters['contestId']);
+
+    refreshContest
       .then((_) {
-        contest = _activeContestService.lastContest;
+        contest = _editingContestEntry ? _myContestService.lastContest : _activeContestService.lastContest;
 
         // Al principio, todos disponibles
         availableSoccerPlayers = initAllSoccerPlayers();
@@ -74,14 +78,12 @@ class EnterContestComp implements DetachAware {
         if (_editingContestEntry) {
           contestEntryId = _routeProvider.route.parameters['contestEntryId'];
 
-          if (contestEntryId != null) {
-            ContestEntry contestEntry = _myContestService.lastContest.getContestEntry(contestEntryId);
+          ContestEntry contestEntry = _myContestService.lastContest.getContestEntry(contestEntryId);
 
-            // Insertamos en el lineup el jugador
-            contestEntry.instanceSoccerPlayers.forEach((instanceSoccerPlayer) {
-              onSoccerPlayerSelected(_allSoccerPlayers.firstWhere((slot) => slot["id"] == instanceSoccerPlayer.id));
-            });
-          }
+          // Insertamos en el lineup el jugador
+          contestEntry.instanceSoccerPlayers.forEach((instanceSoccerPlayer) {
+            onSoccerPlayerSelected(_allSoccerPlayers.firstWhere((slot) => slot["id"] == instanceSoccerPlayer.id));
+          });
         }
 
         // Cuando se inicializa la lista de jugadores, esta se ordena por posicion

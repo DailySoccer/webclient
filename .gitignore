@@ -4,4 +4,5 @@ webclient.iml
 /packages/
 /build/
 /node_modules/
+.buildlog
 *.DS_Store

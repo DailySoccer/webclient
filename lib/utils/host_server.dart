@@ -1,3 +1,5 @@
+library host_server;
+
 import 'dart:html';
 import 'package:logging/logging.dart';
 

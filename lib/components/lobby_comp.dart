@@ -1,6 +1,7 @@
 library active_contest_list_comp;
 
 import 'dart:html';
+import 'dart:async';
 import 'dart:math';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/active_contests_service.dart';
@@ -92,19 +93,6 @@ class LobbyComp implements ShadowRootAware, DetachAware {
 
   String infoBarText = "";
 
-  void calculateInfoBarText() {
-    Contest nextContest = activeContestsService.getAvailableNextContest();
-    String tmp = nextContest == null ? "Pronto habrá nuevos Torneos disponibles" : "SIGUIENTE TORNEO: ${nextContest.name.toUpperCase()} - ${calculateTimeToNextTournament()}";
-    if (tmp.compareTo(infoBarText) != 0) {
-      infoBarText = tmp;
-    }
-  }
-
-  String calculateTimeToNextTournament() {
-    String timeToNextTournament =  DateTimeService.formatTimeLeft(DateTimeService.getTimeLeft( activeContestsService.getAvailableNextContest().startDate ) );
-    return timeToNextTournament;
-  }
-
   /*
   * TODO: Mientras no tengamos los datos de a que competición pertenece el torneo, esta función
   *       devolverá siempre "false" para que los botones del filtro de competición estén deshabilitados.
@@ -158,21 +146,24 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   int get freeTournamentsCount    => _freeContestCount;
   int get prizedTournamentsCount  => activeContestsService.activeContests.length - _freeContestCount;
 
-  LobbyComp(this._router, this.activeContestsService, this.scrDet) {
-    activeContestsService.refreshActiveContests();
-    RefreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_CONTEST_LIST, refreshActiveContest);
+  LobbyComp(this._router, this._refreshTimersService, this.activeContestsService, this.scrDet) {
+    activeContestsService.clear();
 
-    calculateInfoBarText();
-    RefreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_NEXT_TOURNAMENT_INFO, calculateInfoBarText);
+    _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_CONTEST_LIST, refreshActiveContest);
+
+    _refreshNextTournamentInfoTimer = new Timer.periodic(new Duration(seconds: 1), (Timer t) =>  _calculateInfoBarText());
+    _calculateInfoBarText();
 
     _streamListener = scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
   }
 
   // Rutina que refresca la lista de concursos
   void refreshActiveContest() {
-    activeContestsService.refreshActiveContests();
-    print('refrescando lista de concursos');
-    _freeContestCount = activeContestsService.activeContests.where((contest) => contest.tournamentType == Contest.TOURNAMENT_FREE).toList().length;
+    activeContestsService.refreshActiveContests()
+      .then((_) {
+        _freeContestCount = activeContestsService.activeContests.where((contest) => contest.tournamentType == Contest.TOURNAMENT_FREE).toList().length;
+        onListChange();
+      });
   }
 
   void onShadowRoot(emulatedRoot) {
@@ -205,9 +196,8 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   }
 
   void detach() {
-   // _refresListTimer.cancel();
-    RefreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_CONTEST_LIST);
-    RefreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_NEXT_TOURNAMENT_INFO);
+    _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_CONTEST_LIST);
+    _refreshNextTournamentInfoTimer.cancel();
     _streamListener.cancel();
   }
 
@@ -251,8 +241,8 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     }
   }
 
-  void onListChange(int itemsCount) {
-     contestsCount = itemsCount;
+  void onListChange() {
+     contestsCount = activeContestsService.activeContests.length;
      //La primera vez que la lista se rellene con los torneos, actualizamos el rango de selección del filtro de EntryFee
      if (isFirstTimeListFill && contestsCount > 0) {
        isFirstTimeListFill = false;
@@ -566,7 +556,21 @@ class LobbyComp implements ShadowRootAware, DetachAware {
     });
   }
 
+  void _calculateInfoBarText() {
+    Contest nextContest = activeContestsService.getAvailableNextContest();
+    String tmp = nextContest == null ? "Pronto habrá nuevos Torneos disponibles" : "SIGUIENTE TORNEO: ${nextContest.name.toUpperCase()} - ${_calculateTimeToNextTournament()}";
+    if (tmp.compareTo(infoBarText) != 0) {
+      infoBarText = tmp;
+    }
+  }
+
+  String _calculateTimeToNextTournament() {
+    return DateTimeService.formatTimeLeft(DateTimeService.getTimeLeft( activeContestsService.getAvailableNextContest().startDate ) );
+  }
+
   Router _router;
+  RefreshTimersService _refreshTimersService;
+  Timer _refreshNextTournamentInfoTimer;
 
   List<Element> _sortingButtons = [];
   List<String> _butonState = ['asc', 'desc'];

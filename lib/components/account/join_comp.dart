@@ -68,7 +68,7 @@ class JoinComp implements ShadowRootAware {
                   ..classes.add("errorDetected")
                   ..parent.style.display = "";
               break;
-              case "email":
+              case "password":
                 passwordError
                   ..text = error[key][0]
                   ..classes.remove("errorDetected")

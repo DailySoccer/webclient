@@ -1,21 +1,25 @@
+import 'package:angular/angular.dart';
 import 'package:angular/application_factory.dart';
-//import 'package:angular/routing/static_keys.dart';
 import 'package:angular/core_dom/static_keys.dart';
 
 import 'package:webclient/webclient.dart';
 import 'package:webclient/logger_exception_handler.dart';
-import 'package:webclient/generated.dart';
-import 'package:angular/angular.dart';
-//import 'package:webclient/utils/host_server.dart';
+import 'package:webclient/template_cache.dart';
+import 'package:webclient/utils/host_server.dart';
 
 void main() {
 
   try {
     LoggerExceptionHandler.setUpLogger();
 
-    var injector = applicationFactory().addModule(new WebClientApp()).run();
+    var app = applicationFactory().addModule(new WebClientApp());
+    var injector = app.run();
 
-    setUpCache(injector);
+    // El cache de templates solo lo primeamos en produccion, pq es donde tenemos garantizado que se habra
+    // hecho una build y por lo tanto el fichero lib/template_cache.dart tendra todos los contenidos
+    if (HostServer.isProd) {
+      setUpCache(injector);
+    }
   }
   catch (exc, stackTrace) {
     LoggerExceptionHandler.logExceptionToServer(exc, stackTrace);

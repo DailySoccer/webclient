@@ -5,7 +5,7 @@ import 'package:webclient/services/screen_detector_service.dart';
 
 @Component(
     selector: 'promos',
-    templateUrl: '/packages/webclient/components/promos_comp.html',
+    templateUrl: 'packages/webclient/components/promos_comp.html',
     useShadowDom: false
 )
 class PromosComp {

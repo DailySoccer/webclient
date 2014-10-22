@@ -4,6 +4,5 @@ webclient.iml
 /packages/
 /build/
 /node_modules/
-lib/generated.dart
 .buildlog
 *.DS_Store

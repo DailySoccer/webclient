@@ -13,7 +13,7 @@ import 'dart:html';
 
 @Component(
    selector: 'view-contest-entry',
-   templateUrl: '/packages/webclient/components/view_contest/view_contest_entry_comp.html',
+   templateUrl: 'packages/webclient/components/view_contest/view_contest_entry_comp.html',
    useShadowDom: false
 )
 class ViewContestEntryComp {

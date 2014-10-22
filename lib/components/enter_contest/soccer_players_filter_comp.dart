@@ -5,7 +5,7 @@ import 'package:webclient/models/field_pos.dart';
 
 @Component(
     selector: 'soccer-players-filter',
-    templateUrl: '/packages/webclient/components/enter_contest/soccer_players_filter_comp.html',
+    templateUrl: 'packages/webclient/components/enter_contest/soccer_players_filter_comp.html',
     useShadowDom: false
 )
 class SoccerPlayersFilterComp {

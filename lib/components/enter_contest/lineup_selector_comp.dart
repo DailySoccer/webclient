@@ -7,7 +7,7 @@ import 'package:webclient/models/field_pos.dart';
 
 @Component(
     selector: 'lineup-selector',
-    templateUrl: '/packages/webclient/components/enter_contest/lineup_selector_comp.html',
+    templateUrl: 'packages/webclient/components/enter_contest/lineup_selector_comp.html',
     useShadowDom: false
 )
 class LineupSelectorComp {

@@ -7,7 +7,7 @@ import 'package:webclient/components/account/user_profile_comp.dart';
 
 @Component(
     selector: 'edit-personal-data',
-    templateUrl: '/packages/webclient/components/account/edit_personal_data_comp.html',
+    templateUrl: 'packages/webclient/components/account/edit_personal_data_comp.html',
     useShadowDom: false
 )
 class EditPersonalDataComp implements ShadowRootAware{

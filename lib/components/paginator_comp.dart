@@ -7,7 +7,7 @@ import 'package:webclient/services/screen_detector_service.dart';
 
 @Component(
     selector: 'paginator',
-    templateUrl: '/packages/webclient/components/paginator_comp.html',
+    templateUrl: 'packages/webclient/components/paginator_comp.html',
     useShadowDom: false
 )
 class PaginatorComp implements DetachAware, ShadowRootAware {

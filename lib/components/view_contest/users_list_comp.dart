@@ -7,7 +7,7 @@ import 'package:webclient/services/profile_service.dart';
 
 @Component(
    selector: 'users-list',
-   templateUrl: '/packages/webclient/components/view_contest/users_list_comp.html',
+   templateUrl: 'packages/webclient/components/view_contest/users_list_comp.html',
    useShadowDom: false
 )
 class UsersListComp {

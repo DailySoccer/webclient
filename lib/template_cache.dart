@@ -4,7 +4,7 @@ library template_cache;
 import 'package:angular/angular.dart';
 
 primeTemplateCache(TemplateCache tc) {
-tc.put("/packages/webclient/components/account/edit_personal_data_comp.html", new HttpResponse(200, r"""<div id="personalDataContent">
+tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new HttpResponse(200, r"""<div id="personalDataContent">
 
   <div class="edit-personal-data-modal-header">
     <span class="header-title">EDITAR CUENTA</span>
@@ -106,7 +106,7 @@ tc.put("/packages/webclient/components/account/edit_personal_data_comp.html", ne
     </div>
 
 </div>"""));
-tc.put("/packages/webclient/components/account/join_comp.html", new HttpResponse(200, r"""<div id="joinRoot">
+tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(200, r"""<div id="joinRoot">
   <div id="signupbox" class="main-box">
 
     <div class="panel window-slide-in">
@@ -176,7 +176,7 @@ tc.put("/packages/webclient/components/account/join_comp.html", new HttpResponse
 
 
 """));
-tc.put("/packages/webclient/components/account/login_comp.html", new HttpResponse(200, r"""<div id="loginRoot">
+tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse(200, r"""<div id="loginRoot">
   <div id="loginBox" class="main-box">
 
     <div class="panel window-slide-in">
@@ -240,7 +240,7 @@ tc.put("/packages/webclient/components/account/login_comp.html", new HttpRespons
 
   </div>
 </div>"""));
-tc.put("/packages/webclient/components/account/remember_password_comp.html", new HttpResponse(200, r"""<div id="rememberPasswordRoot">
+tc.put("packages/webclient/components/account/remember_password_comp.html", new HttpResponse(200, r"""<div id="rememberPasswordRoot">
   <div id="loginBox" class="main-box">
 
     <div class="panel window-slide-in">
@@ -300,7 +300,7 @@ tc.put("/packages/webclient/components/account/remember_password_comp.html", new
 
   </div>
 </div>"""));
-tc.put("/packages/webclient/components/account/user_profile_comp.html", new HttpResponse(200, r"""<div id="viewProfileContent">
+tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpResponse(200, r"""<div id="viewProfileContent">
   <div class="profile-head"> MI CUENTA </div>
   <div class="profile-content">
 
@@ -373,7 +373,7 @@ tc.put("/packages/webclient/components/account/user_profile_comp.html", new Http
 
 
 """));
-tc.put("/packages/webclient/components/contest_header_comp.html", new HttpResponse(200, r"""<div id="headerContestWidget" ng-cloak>
+tc.put("packages/webclient/components/contest_header_comp.html", new HttpResponse(200, r"""<div id="headerContestWidget" ng-cloak>
 
     <div class="contest-name">{{contestHeaderInfo['description']}}</div>
 
@@ -408,7 +408,7 @@ tc.put("/packages/webclient/components/contest_header_comp.html", new HttpRespon
 
 <div class="clearfix"></div>
 """));
-tc.put("/packages/webclient/components/contest_info_comp.html", new HttpResponse(200, r""" <div ng-if="isPopUp">
+tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(200, r""" <div ng-if="isPopUp">
     <div class="modal-info-head">
         <div class="contest-info-header-row">
 
@@ -578,7 +578,7 @@ tc.put("/packages/webclient/components/contest_info_comp.html", new HttpResponse
   </div>
 
 </div>"""));
-tc.put("/packages/webclient/components/contests_list_comp.html", new HttpResponse(200, r"""<div class="contests-list-root">
+tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse(200, r"""<div class="contests-list-root">
   <div class="contest-row" ng-repeat="contest in currentPageList">
 
     <div class="column-contest-name" ng-click="onRow(contest)">
@@ -630,7 +630,7 @@ tc.put("/packages/webclient/components/contests_list_comp.html", new HttpRespons
   <paginator on-page-change="onPageChange(currentPage, itemsPerPage)" list-length="contestsListFiltered.length"></paginator>
 
 </div>"""));
-tc.put("/packages/webclient/components/enter_contest/enter_contest_comp.html", new HttpResponse(200, r"""<div class="enter-contest-wrapper">
+tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", new HttpResponse(200, r"""<div class="enter-contest-wrapper">
 
   <contest-header contestData="contest"></contest-header>
 
@@ -720,7 +720,7 @@ tc.put("/packages/webclient/components/enter_contest/enter_contest_comp.html", n
     </div>
   </div>
 </div>"""));
-tc.put("/packages/webclient/components/enter_contest/lineup_selector_comp.html", new HttpResponse(200, r"""<div class="lineup-selector">
+tc.put("packages/webclient/components/enter_contest/lineup_selector_comp.html", new HttpResponse(200, r"""<div class="lineup-selector">
   <div class="lineup-selector-slot" ng-repeat="slot in enterContestComp.lineupSlots" ng-click="enterContestComp.onSlotSelected($index)" ng-class="getSlotClassColor($index)">
     <div class="column-fieldpos" ng-if="!isEmptySlot(slot)">{{slot.fieldPos.abrevName}}</div>
     <div class="column-fieldpos" ng-if="isEmptySlot(slot)">{{getSlotPosition($index)}}</div>
@@ -742,7 +742,7 @@ tc.put("/packages/webclient/components/enter_contest/lineup_selector_comp.html",
   </div>
 
 </div>"""));
-tc.put("/packages/webclient/components/enter_contest/matches_filter_comp.html", new HttpResponse(200, r"""<div id="matchesFilterWrapper">
+tc.put("packages/webclient/components/enter_contest/matches_filter_comp.html", new HttpResponse(200, r"""<div id="matchesFilterWrapper">
   <div id="matchesFilter" class="matches-filter">
     <button class="btn btn-default button-filtro-team" ng-repeat="match in matchEvents" ng-bind-html="match.texto" id="match-{{match.id}}" 
             ng-click="optionsSelectorValue = match.id" ng-class="getClassForMatchId(match.id)">
@@ -753,7 +753,7 @@ tc.put("/packages/webclient/components/enter_contest/matches_filter_comp.html", 
     <option ng-repeat="match in matchEvents" id="option-match-{{match.id}}" value="{{$index + 1}}" ng-value="match.id">{{match.textoSelector}}</option>
   </select>
 </div>"""));
-tc.put("/packages/webclient/components/enter_contest/soccer_player_info_comp.html", new HttpResponse(200, r"""<div class="soccer-player-info-header">
+tc.put("packages/webclient/components/enter_contest/soccer_player_info_comp.html", new HttpResponse(200, r"""<div class="soccer-player-info-header">
   <div class="actions-header">
     <div class="text-header">Estadísticas de jugador</div>
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -884,7 +884,7 @@ tc.put("/packages/webclient/components/enter_contest/soccer_player_info_comp.htm
 
 
 """));
-tc.put("/packages/webclient/components/enter_contest/soccer_players_filter_comp.html", new HttpResponse(200, r"""<div class="soccer-players-filter">
+tc.put("packages/webclient/components/enter_contest/soccer_players_filter_comp.html", new HttpResponse(200, r"""<div class="soccer-players-filter">
             
   <div class="filter-by-position">
     <span>JUGADORES</span>
@@ -894,7 +894,7 @@ tc.put("/packages/webclient/components/enter_contest/soccer_players_filter_comp.
   
   <input type="text" class="name-player-input-filter" placeholder="Buscar jugador" ng-model="nameFilter" />
 </div>"""));
-tc.put("/packages/webclient/components/enter_contest/soccer_players_list_comp.html", new HttpResponse(200, r"""
+tc.put("packages/webclient/components/enter_contest/soccer_players_list_comp.html", new HttpResponse(200, r"""
 <div class="soccer-player-list-header-table">
   <div class="filterOrderPos"><a ng-click="enterContestComp.sortListByField('Pos')">Pos.</a></div>
   <div class="filterOrderName"><a ng-click="enterContestComp.sortListByField('Name')">Nombre</a></div>
@@ -920,7 +920,167 @@ tc.put("/packages/webclient/components/enter_contest/soccer_players_list_comp.ht
   </div>
 
 </div>"""));
-tc.put("/packages/webclient/components/legalese_and_help/beta_info_comp.html", new HttpResponse(200, r"""<div id="betaComp">
+tc.put("packages/webclient/components/flash_messages_comp.html", new HttpResponse(200, r"""<div>
+  <div ng-repeat="msg in messages" id="flash-messages">
+      <div class="alert alert-{{msg.type}} alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <span class="">{{msg.text}}</span>
+      </div>
+  </div>
+</div>
+"""));
+tc.put("packages/webclient/components/landing_page_comp.html", new HttpResponse(200, r"""<div id="desktopContent" ng-if="!scrDet.isXsScreen" ng-cloak>
+
+    <div id="screen1" class="first-screen" style="height:{{screenHeight}}px">
+      <div class="screen-pattern" src="images/pattern.png"></div>
+        <div class="beta-label"><img src="images/beta.png"/></div>
+        <div class="main-title-wrapper">
+
+          <div class="main-title">LIGAS FANTÁSTICAS DIARIAS</div>
+          <div class="separator-wrapper">
+            <img src="images/separator.png"/>
+          </div>
+          <div class="modules-wrapper">
+
+            <div class="module-column">
+              <img class="icono" src="images/icon1.png"/>
+              <p class="icono-text">Crea tu equipo en segundos</p>
+            </div>
+
+            <div class="module-column">
+              <img class="icono" src="images/icon2.png"/>
+              <p class="icono-text">Compite en tantas ligas como quieras</p>
+            </div>
+
+            <div class="module-column">
+              <img class="icono" src="images/icon3.png"/>
+              <p class="icono-text">Sigue los partidos en directo</p>
+            </div>
+
+          </div>
+
+          <div class="button-wrap">
+            <button type="button" class="button-play"  ng-click="buttonPressed('join')" id="playButton1">JUGAR</button>
+          </div>
+
+
+        </div>
+
+
+
+      <!-- Separador -->
+      <a class="wrapping-link" href="#screen2">
+        <span id="screenSeparator1" class="more-info-section-light">
+          <span>SABER MÁS</span>
+          <span class="go-down-icon"></span>
+        </span>
+      </a>
+    </div>
+
+
+
+    <div id="screen2" class="screen">
+        <div class="slider-wrapper">
+          <img class="screen-background" src="images/landing02.jpg" />
+          <div class="screen-pattern"></div>
+        </div>
+        <div class="content-wrapper">
+          <div class="content-container">
+            <div class="screen-image-block">
+              <img class="screen-logo" src="images/landingLogo1.png" />
+            </div>
+            <div class="screen-text-block">
+              <p class="title-text-dark">CADA DÍA NUEVOS TORNEOS</p>
+              <p class="description-text">
+                  Liga, Champions, Europa League: cada día te ofrecemos torneos de las competiciones más importantes. Puedes participar en tantos como quieras
+              </p>
+              <button type="button" class="button-play"  ng-click="buttonPressed('join')" id="playButton2">JUGAR</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <a class="wrapping-link" href="#screen3">
+      <span id="screenSeparator2" class="more-info-section-light">
+        <span>SABER MÁS</span>
+        <span class="go-down-icon"></span>
+      </span>
+    </a>
+
+    <div id="screen3" class="screen">
+        <div class="slider-wrapper">
+          <img class="screen-background" src="images/landing03.jpg" />
+          <div class="screen-pattern"></div>
+        </div>
+        <div class="content-wrapper">
+          <div class="content-container">
+            <div class="screen-image-block">
+              <img class="screen-logo" src="images/landingLogo2.png" />
+            </div>
+            <div class="screen-text-block">
+              <p class="title-text-dark">CREA TU EQUIPO IDEAL</p>
+              <p class="description-text">
+                  Cada jugador tienen un salario acorde a su rendimiento en la vida real. Elige bien, deberás mantenerte por debajo del límite de presupuesto.
+              </p>
+              <button type="button" class="button-play"  ng-click="buttonPressed('join')" id="playButton3">JUGAR</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <a class="wrapping-link" href="#screen4">
+      <span id="screenSeparator3" class="more-info-section-dark">
+        <span>SABER MÁS</span>
+        <span class="go-down-icon"></span>
+      </span>
+    </a>
+
+    <div id="screen4" class="screen">
+        <div class="slider-wrapper">
+          <img class="screen-background" src="images/landing04.jpg" />
+          <div class="screen-pattern"></div>
+        </div>
+        <div class="content-wrapper">
+          <div class="content-container">
+            <div class="screen-image-block">
+              <img class="screen-logo" src="images/landingLogo3.jpg" />
+            </div>
+            <div class="screen-text-block">
+              <p class="title-text-dark">PUNTÚA Y GANA</p>
+              <p class="description-text">
+                  Cuando comiencen los partidos en la vida real, tus jugadores acumularán puntos en función de sus acciones. Podrás seguir su puntuación en tiempo real desde donde quieras y compararla con los equipos rivales.
+              </p>
+              <button type="button" class="button-play"  ng-click="buttonPressed('join')" id="playButton4">JUGAR</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Versión Móvil -->
+<div id="mobileContent"  ng-if="scrDet.isXsScreen">
+    <div id="screenMobile1" class="screen">
+
+      <div class="slider-wrapper">
+        <img class="background" src="images/xsLandingBackground.jpg" />
+      </div>
+
+      <div class="content">
+        <p class="main-title-mobile">LIGAS FANTÁSTICAS <br> DIARIAS</p>
+       <!-- <img class="banner-top" src="images/separator.png" /> -->
+        <!--<p class="highlight-text"><span class="stars"></span>CADA SEMANA,<span class="stars"></span><BR> UNA NUEVA TEMPORADA</p>-->
+        <p class="title-sup-text-mobile">CREA TU EQUIPO EN SEGUNDOS</p>
+        <p class="title-sup-text-mobile">COMPITE EN TANTAS LIGAS COMO QUIERAS</p>
+        <p class="title-sup-text-mobile">SIGUE LOS PARTIDOS EN DIRECTO</p>
+        <button type="button" class="button-play-mobile" ng-click="buttonPressed('join')" id="playButtonMobile">JUGAR</button>
+      </div>
+    </div>
+</div>
+
+
+"""));
+tc.put("packages/webclient/components/legalese_and_help/beta_info_comp.html", new HttpResponse(200, r"""<div id="betaComp">
    <div class="block-dark-header">
     <div class="title">EPIC ELEVEN: VERSIÓN BETA</div>
   </div>
@@ -938,7 +1098,7 @@ tc.put("/packages/webclient/components/legalese_and_help/beta_info_comp.html", n
 
   </div>
 </div>"""));
-tc.put("/packages/webclient/components/legalese_and_help/help_info_comp.html", new HttpResponse(200, r"""<div id="helpInfo">
+tc.put("packages/webclient/components/legalese_and_help/help_info_comp.html", new HttpResponse(200, r"""<div id="helpInfo">
 
   <div class="block-dark-header">
     <div class="title">AYUDA</div>
@@ -1106,7 +1266,7 @@ tc.put("/packages/webclient/components/legalese_and_help/help_info_comp.html", n
 
 </div>
 """));
-tc.put("/packages/webclient/components/legalese_and_help/legal_info_comp.html", new HttpResponse(200, r"""<div id="staticInfo">
+tc.put("packages/webclient/components/legalese_and_help/legal_info_comp.html", new HttpResponse(200, r"""<div id="staticInfo">
 
   <div class="block-dark-header">
     <div class="title">LEGAL</div>
@@ -1135,7 +1295,7 @@ tc.put("/packages/webclient/components/legalese_and_help/legal_info_comp.html", 
 	  <p>Esta Web se rige por la legislación española. EPIC ELEVEN y el Usuario, con renuncia expresa a su propio fuero, si lo tuvieren, se someten a la jurisdicción de los juzgados y tribunales de la ciudad de Madrid (España). Esto siempre que este no sea un usuario final, siendo el foro que la ley estipula el domicilio del demandado.</p>
   </div>
 </div>"""));
-tc.put("/packages/webclient/components/legalese_and_help/policy_info_comp.html", new HttpResponse(200, r"""<div id="staticInfo">
+tc.put("packages/webclient/components/legalese_and_help/policy_info_comp.html", new HttpResponse(200, r"""<div id="staticInfo">
 
   <div class="block-dark-header">
     <div class="title">POLÍTICA DE PRIVACIDAD</div>
@@ -1210,7 +1370,7 @@ tc.put("/packages/webclient/components/legalese_and_help/policy_info_comp.html",
 </div>
 
 """));
-tc.put("/packages/webclient/components/legalese_and_help/terminus_info_comp.html", new HttpResponse(200, r"""<div id="staticInfo">
+tc.put("packages/webclient/components/legalese_and_help/terminus_info_comp.html", new HttpResponse(200, r"""<div id="staticInfo">
 
   <div class="block-dark-header">
     <div class="title">TÉRMINOS Y CONDICIONES</div>
@@ -1783,7 +1943,7 @@ tc.put("/packages/webclient/components/legalese_and_help/terminus_info_comp.html
     </p>
   </div>
 </div>"""));
-tc.put("/packages/webclient/components/lobby_comp.html", new HttpResponse(200, r"""<!-- Header de Promociones -->
+tc.put("packages/webclient/components/lobby_comp.html", new HttpResponse(200, r"""<!-- Header de Promociones -->
 <promos></promos>
 
 <!-- Barra azul de información -->
@@ -2022,7 +2182,7 @@ tc.put("/packages/webclient/components/lobby_comp.html", new HttpResponse(200, r
       </div>
     </div>
 </div>"""));
-tc.put("/packages/webclient/components/my_contests_comp.html", new HttpResponse(200, r"""<div id="myContest" ng-cloak>
+tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(200, r"""<div id="myContest" ng-cloak>
   <div class="my-contest-title-tab">MIS TORNEOS</div>
   <!-- Nav tabs -->
   <ul  id="myContestMenuTabs" class="my-contest-tabs" role="tablist">
@@ -2175,12 +2335,109 @@ tc.put("/packages/webclient/components/my_contests_comp.html", new HttpResponse(
   </div>
 </div>
 """));
-tc.put("/packages/webclient/components/paginator_comp.html", new HttpResponse(200, r"""<div class="paginator-wrapper">
+tc.put("packages/webclient/components/navigation/footer_comp.html", new HttpResponse(200, r"""<div id="mainFooter" ng-cloak>
+
+   <div class="sup-footer-wrapper">
+    <div class="user-info-sup-footer" ng-show="profileService.isLoggedIn">
+        <a id="footerProfile" href="#" class="goto-link" ng-click="gotoProfile()"><span class="username-link">{{profileService.user.nickName}}</span></a>
+        <a id="footerLogOut" href="#" class="goto-link" ng-click="profileService.logout()"><span class="logout-link">Salir</span></a>
+        <!--<button id="footerAddFunds" class="add-funds-button">AÑADIR FONDOS</button>-->
+    </div>
+  </div>
+
+  <div class="sub-footer-wrapper">
+    <div class="sub-footer">
+
+      <div class="logo-wrapper">
+        <img src="images/logoLobbyFooter.png" alt="EPIC ELEVEN">
+      </div>
+
+      <div class="data-wrapper">
+          <a class="goto-link" id="footerHelp" ng-click="goTo('help_info')"><span class="sub-footer-help-link">AYUDA</span></a>
+          <a class="goto-link" id="footerLegal" ng-click="goTo('legal_info')"><span class="sub-footer-legal-link">LEGAL</span></a>
+          <a class="goto-link" id="footerTermsOfUse" ng-click="goTo('terminus_info')"><span class="sub-footer-terms-link">TERMINOS<span> DE USO</span></span></a>
+          <a class="goto-link" id="footerPrivacyPolicy" ng-click="goTo('policy_info')"><span class="sub-footer-policy-link"><span>POLÍTICA DE </span>PRIVACIDAD</span></a>
+      </div>
+
+      <!--<div class="credit-cards">
+          <img src="images/creditCards.png" />
+      </div>-->
+
+      <div class="opta">
+        <div>Datos suministrados por: <span>OPTA</span></div>
+        <div>A <strong>PERFORM</strong> GROUP COMPANY</div>
+      </div>
+
+      <div class="copyright">@ Copyright 2014 Epic Eleven</div>
+
+      <div class="social">
+          <a href="https://www.facebook.com/pages/Epic-Eleven/582891628483988?fref=ts"><img src="images/social.png"/></a>
+      </div>
+
+      <!--<a href="#" class="url-link">
+          <span>Fantasy Sports Games.com</span>
+      </a>-->
+
+      <div class="footer-count" ng-if="isDev">{{dateTimeService.nowEverySecond}}</div>
+    </div>
+  </div>
+</div>
+"""));
+tc.put("packages/webclient/components/navigation/main_menu_slide_comp.html", new HttpResponse(200, r"""<nav id="mainMenu" ng-class="{'image-background':profileService.isLoggedIn == true}" class="navbar navbar-default" role="navigation">
+  <div class="inner-wrapper">
+
+    <div id="menuLoggedIn">
+      <!-- lcabecera when logeado -->
+      <div class="navbar-header"  ng-show="profileService.isLoggedIn">
+        <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target="#menuSlide" data-canvas="body" id="toggleSlideMenu">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <div id="brandLogoLogged" class="navbar-brand" ng-click="navigateTo($event)" destination="lobby" ng-class="['loggedIn-brand']"></div>
+      </div>
+      <!-- Opciones del menu -->
+      <div id="menuSlide" class="navbar-offcanvas navmenu-fixed offcanvas" ng-if="profileService.isLoggedIn">
+        <ul class="nav navbar-nav">
+          <li class="active" highlights="lobby"> <a  id="menuLobby"                ng-click="navigateTo($event)" destination="lobby">Buscar Torneos</a></li>
+          <li highlights="my_contests">          <a  id="menuMy_Contest"           ng-click="navigateTo($event)" destination="my_contests">Mis torneos</a></li>
+          <li highlights="">                     <a  id="menuPromos"               ng-click="navigateTo($event)" destination="beta_info">Promos</a></li>
+          <li highlights="user" class="right-menu">
+            <a id="menuUser" class="dropdown-toggle" data-toggle="dropdown">{{profileService.user.nickName}}</a>
+            <ul class="dropdown-menu">
+              <li>                    <a  id="menuUserMyAccount"        ng-click="navigateTo($event)" destination="user_profile">Mi cuenta</a></li>
+              <li>                    <a  id="menuUserAddFunds"         ng-click="navigateTo($event)" destination="beta_info">Añadir fondos</a></li>
+              <li>                    <a  id="menuUserHistory"          ng-click="navigateTo($event)" destination="beta_info">Historial de transacciones</a></li>
+              <li>                    <a  id="menuUserReferencesCenter" ng-click="navigateTo($event)" destination="beta_info">Centro de referencias</a></li>
+              <li>                    <a  id="menuUserClassification"   ng-click="navigateTo($event)" destination="beta_info">Clasificación</a></li>
+              <li>                    <a  id="menuUserAyuda"            ng-click="navigateTo($event)" destination="help_info">Ayuda</a></li>
+              <!-- <li class="divider"></li> -->
+              <li>                    <a  id="menuUserLogOut"           ng-click="logOut()"           destination="beta_info">Salir</a></li>
+            </ul>
+          </li>
+         <!--  <li class="right-menu"><span class="current-balance">35.000€</span><button class="add-funds-button">AÑADIR FONDOS</button></li> -->
+        </ul>
+      </div>
+    </div>
+
+    <!-- lcabecera when NO logeado -->
+    <div class="navbar-header-unloggin" ng-if="!profileService.isLoggedIn">
+      <div id="brandLogoNotLogged" class="navbar-brand" ng-click="navigateTo($event)" destination="landing_page"></div>
+      <div class="button-wrapper">
+        <a id="joinButton"  type="button" class="button-join"  ng-click="navigateTo($event)" destination="join">REGISTRO</a>
+        <a id="loginButton" type="button" class="button-login" ng-click="navigateTo($event)" destination="login">ENTRAR</a>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+
+  </div>
+</nav>"""));
+tc.put("packages/webclient/components/paginator_comp.html", new HttpResponse(200, r"""<div class="paginator-wrapper">
   <div class="paginator-box">
     <!-- Aqui van los botones -->
   </div>
 </div>"""));
-tc.put("/packages/webclient/components/promos_comp.html", new HttpResponse(200, r"""<div id="promosComponent">
+tc.put("packages/webclient/components/promos_comp.html", new HttpResponse(200, r"""<div id="promosComponent">
   <img ng-if="!scrDet.isXsScreen" src="images/bannerPromoDesktop.jpg" class="promoDesktop" />
   <!--<div class="beta-version-desktop" ng-if="!scrDet.isXsScreen">
     <span class="beta-version-text">VERSIÓN BETA</span>
@@ -2191,7 +2448,7 @@ tc.put("/packages/webclient/components/promos_comp.html", new HttpResponse(200, 
     <img src="images/betaHeaderXsTexto.png" class="betaVersionXs" />
   </div>-->
 </div>"""));
-tc.put("/packages/webclient/components/scoring_rules_comp.html", new HttpResponse(200, r"""<div id="scoringForAll" class="panel-points">
+tc.put("packages/webclient/components/scoring_rules_comp.html", new HttpResponse(200, r"""<div id="scoringForAll" class="panel-points">
   <div class="header">TODOS LOS JUGADORES</div>
   <div class="body">
     <div class="punctuation" ng-class="getClassesIsNegative(event['points'])" ng-repeat="event in AllPlayers">
@@ -2240,7 +2497,7 @@ tc.put("/packages/webclient/components/scoring_rules_comp.html", new HttpRespons
     </div>
   </div>
 </div>"""));
-tc.put("/packages/webclient/components/view_contest/fantasy_team_comp.html", new HttpResponse(200, r"""<div id="fantasyTeamRoot" class="fantasy-team-wrapper" ng-cloak>
+tc.put("packages/webclient/components/view_contest/fantasy_team_comp.html", new HttpResponse(200, r"""<div id="fantasyTeamRoot" class="fantasy-team-wrapper" ng-cloak>
 
   <div class="fantasy-team-header" ng-class="{'opponent-team-gradient': isOpponent, 'header-view-contest-entry-mode': isViewContestEntryMode}">
 
@@ -2292,7 +2549,7 @@ tc.put("/packages/webclient/components/view_contest/fantasy_team_comp.html", new
   </div>
 
 </div>"""));
-tc.put("/packages/webclient/components/view_contest/users_list_comp.html", new HttpResponse(200, r"""<div id="usersListRoot" ng-cloak>
+tc.put("packages/webclient/components/view_contest/users_list_comp.html", new HttpResponse(200, r"""<div id="usersListRoot" ng-cloak>
 
   <div ng-class="{'users-header-next': isViewContestEntryMode, 'users-header' : !isViewContestEntryMode}">
     <h1>USUARIOS EN ESTE TORNEO</h1>
@@ -2318,7 +2575,7 @@ tc.put("/packages/webclient/components/view_contest/users_list_comp.html", new H
   </div>
 
 </div>"""));
-tc.put("/packages/webclient/components/view_contest/view_contest_comp.html", new HttpResponse(200, r"""<section ng-show="updatedDate != null">
+tc.put("packages/webclient/components/view_contest/view_contest_comp.html", new HttpResponse(200, r"""<section ng-show="updatedDate != null">
 
   <contest-header contestData="contest"></contest-header>
 
@@ -2374,7 +2631,7 @@ tc.put("/packages/webclient/components/view_contest/view_contest_comp.html", new
 
 </section>
 """));
-tc.put("/packages/webclient/components/view_contest/view_contest_entry_comp.html", new HttpResponse(200, r"""<section ng-show="updatedDate != null">
+tc.put("packages/webclient/components/view_contest/view_contest_entry_comp.html", new HttpResponse(200, r"""<section ng-show="updatedDate != null">
 
   <contest-header contestData="contest"></contest-header>
 

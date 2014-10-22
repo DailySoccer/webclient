@@ -8,7 +8,7 @@ import 'dart:async';
 import 'dart:math';
 
 @Component(selector: 'fantasy-team',
-           templateUrl: '/packages/webclient/components/view_contest/fantasy_team_comp.html',
+           templateUrl: 'packages/webclient/components/view_contest/fantasy_team_comp.html',
            useShadowDom: false)
 class FantasyTeamComp {
 

@@ -8,7 +8,7 @@ import 'dart:async';
 
 @Component(
     selector: 'contest-header',
-    templateUrl: '/packages/webclient/components/contest_header_comp.html',
+    templateUrl: 'packages/webclient/components/contest_header_comp.html',
     useShadowDom: false
 )
 class ContestHeaderComp implements DetachAware {

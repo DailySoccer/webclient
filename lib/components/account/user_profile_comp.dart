@@ -8,7 +8,7 @@ import 'dart:html';
 
 @Component(
     selector: 'user-profile',
-    templateUrl: '/packages/webclient/components/account/user_profile_comp.html',
+    templateUrl: 'packages/webclient/components/account/user_profile_comp.html',
     useShadowDom: false
 )
 class UserProfileComp implements ShadowRootAware, DetachAware {

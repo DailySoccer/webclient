@@ -7,7 +7,7 @@ import 'package:webclient/models/soccer_player.dart';
 
 @Component(
   selector:     'scoring-rules',
-  templateUrl:  '/packages/webclient/components/scoring_rules_comp.html',
+  templateUrl:  'packages/webclient/components/scoring_rules_comp.html',
   useShadowDom: false
 )
 class ScoringRulesComp {

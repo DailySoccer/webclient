@@ -117,6 +117,5 @@ class WebClientApp extends Module {
 
     bind(RouteInitializerFn, toValue: webClientRouteInitializer);
     bind(NgRoutingUsePushState, toValue: new NgRoutingUsePushState.value(false));
-
   }
 }

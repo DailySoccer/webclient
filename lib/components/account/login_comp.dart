@@ -7,7 +7,7 @@ import 'package:webclient/utils/game_metrics.dart';
 
 @Component(
     selector: 'login',
-    templateUrl: '/packages/webclient/components/account/login_comp.html',
+    templateUrl: 'packages/webclient/components/account/login_comp.html',
     useShadowDom: false
 )
 class LoginComp implements ShadowRootAware {

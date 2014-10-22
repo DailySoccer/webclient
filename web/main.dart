@@ -16,7 +16,7 @@ void main() {
     var injector = app.run();
 
     // El cache de templates solo lo primeamos en produccion, pq es donde tenemos garantizado que se habra
-    // hecho una build y por lo tanto el fichero lib/template_cache.dart tendra todos los contenidos
+    // hecho una build y por lo tanto el fichero lib/template_cache.dart tendra todos los contenidos frescos
     if (HostServer.isProd) {
       setUpCache(injector);
     }

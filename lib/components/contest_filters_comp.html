@@ -3,7 +3,7 @@
 
     <!-- Resumen y Botón de filtros XS -->
     <div class="choosed-filters-container" ng-show="scrDet.isXsScreen">
-        <div class="competition-filter-name" ng-bind-html="filterResume"></div>
+        <div class="competition-filter-name"><!-- ng-bind-html="filterResume">--> </div>
         <div class="filterToggler">
           <div id="filtersButtonMobile" type="button" class="btn filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse" data-target="#filtersPanel">Filtros</div>
         </div>
@@ -13,15 +13,15 @@
     <div id="contestFastSort">
       <span class="filter-text">Ordenar por: </span>
       <div class="btn-group" >
-        <div id="sortContestName"      type="button" class="btn sorting-button" ng-click="sortListByField('sortContestName', 'contest-name')">Nombre</div>
-        <div id="sortContestEntryFee"  type="button" class="btn sorting-button" ng-click="sortListByField('sortContestEntryFee', 'contest-entry-fee')">Entrada</div>
-        <div id="sortContestStartTime" type="button" class="btn sorting-button" ng-click="sortListByField('sortContestStartTime', 'contest-start-time')">Comienzo</div>
+        <div id="sortContestName"      type="button" class="btn sorting-button"><!-- ng-click="sortListByField('sortContestName', 'contest-name')">            -->Nombre</div>
+        <div id="sortContestEntryFee"  type="button" class="btn sorting-button"><!-- ng-click="sortListByField('sortContestEntryFee', 'contest-entry-fee')">   -->Entrada</div>
+        <div id="sortContestStartTime" type="button" class="btn sorting-button"><!-- ng-click="sortListByField('sortContestStartTime', 'contest-start-time')"> -->Comienzo</div>
       </div>
     </div>
 
     <!-- Filtro por nombre -->
     <div id="contestFastSearch">
-        <input class="searcher" type="text" placeholder="Buscar torneo" ng-model="filterContestName" ng-keyUp="updateFilterByName()">
+        <input class="searcher" type="text" placeholder="Buscar torneo" ng-model="filterContestName" ng-keyUp="filterByName()">
     </div>
 
     <div class="filterToggler" ng-show="!scrDet.isXsScreen">
@@ -38,8 +38,8 @@
             <div class="check-group-wrapper">
 
               <div class="button-check" ng-repeat="contestType in contestTypeList">
-                <input id="filtroFree" type="checkbox" ng-model="contestType['checked']" ng-disabled="contestType['disabled']">
-                <label for="filtroFree">{{filtersFriendlyName["FILTER_TOURNAMENT"][contestType["name"]].toUpperCase()}}</label>
+                <input id="filtroTipo_{{$index}}" type="checkbox" ng-model="contestType['checked']" ng-disabled="contestType['disabled']"  ng-click="whatFilterIsClicked(contestType)">
+                <label for="filtroTipo_{{$index}}">{{filtersFriendlyName["FILTER_TOURNAMENT"][contestType["name"]].toUpperCase()}}</label>
               </div>
 
             </div>
@@ -52,9 +52,9 @@
         <div class="filter-content">
             <div class="check-group-wrapper">
 
-              <div class="button-check" ng-repeat="tier in salaryCap">
-                <input id="filtroPrincipiante" type="checkbox" ng-model="tier['checked']" ng-disabled="tier['disabled']">
-                <label for="filtroPrincipiante">Principiante</label>
+              <div class="button-check" ng-repeat="tier in salaryCapList">
+                <input id="filtroSalary_{{$index}}" type="checkbox" ng-model="tier['checked']" ng-disabled="tier['disabled']" ng-click="whatFilterIsClicked(tier)">
+                <label for="filtroSalary_{{$index}}">{{filtersFriendlyName["FILTER_TIER"][tier["name"]].toUpperCase()}}</label>
               </div>
               <!--
               <div class="button-check">

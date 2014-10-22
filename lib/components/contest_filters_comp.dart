@@ -2,6 +2,7 @@ library contest_filters_comp;
 
 import 'package:angular/angular.dart';
 import 'dart:html';
+import 'dart:math';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/services/screen_detector_service.dart';
@@ -18,6 +19,9 @@ class ContestFiltersComp implements ShadowRootAware {
   static const String FILTER_ENTRY_FEE    = "FILTER_ENTRY_FEE";
   static const String FILTER_TOURNAMENT   = "FILTER_TOURNAMENT";
   static const String FILTER_TIER         = "FILTER_TIER";
+
+  static const int ENTRY_FEE_MIN_RANGE = 0;
+  static const int ENTRY_FEE_MAX_RANGE = 1;
 
   /********* DECLARATIONS */
   // Mapa para traducir los filtros a lenguaje Human readable
@@ -43,21 +47,14 @@ class ContestFiltersComp implements ShadowRootAware {
   String filterContestName = "";
 
   // Lista de tipos de concurso.
-  List<Map> contestTypeList = [
-     {'name':"FREE",        'checked':false, 'disabled':true}
-    ,{'name':"HEAD_TO_HEAD",'checked':false, 'disabled':true}
-    ,{'name':"LEAGUE",      'checked':false, 'disabled':true}
-    ,{'name':"FIFTY_FIFTY", 'checked':false, 'disabled':true}
-  ];
+  List<Map> contestTypeList = [];
 
   // Lista de tipos de Limites de salarios.
-  List<Map> salaryCap = [
-     {'name':"BEGGINER", 'checked':false, 'disabled':true}
-    ,{'name':"STANDARD", 'checked':false, 'disabled':true}
-    ,{'name':"SKILLEDS", 'checked':false, 'disabled':true}
-  ];
+  List<Map> salaryCapList = [];
 
-  // TODO: actualizar los filtros que se usan en una lista filtersList; y "updateFilterByName()"
+  // Valores para el rango de Entry Fee
+  List<int> entryFeeSliderRange = [];
+
 
   /********* BINDINGS */
   @NgOneWay("contests-list")
@@ -65,19 +62,19 @@ class ContestFiltersComp implements ShadowRootAware {
     if (value == null) {
       return;
     }
-    _contestsListOriginal = value;
-    refreshFilters();
+    _contestList = value;
+    setFilterValues();
   }
 
   @NgTwoWay("filters")
-  Map<String, dynamic> filtersList;
+  Map<String, dynamic> filterList;
 
   @NgTwoWay("sorting")
   String sort;
 
   /********* PROPERTIES */
   // Resumen de filtros seleccionados
-  String get filterResume => "";
+  //String get filterResume => "";
 
   // Rango minímo del filtro del EntryFee
   String get filterEntryFeeRangeMin => "0";
@@ -85,8 +82,9 @@ class ContestFiltersComp implements ShadowRootAware {
   // Rango máximo del filtro del EntryFee
   String get filterEntryFeeRangeMax => "1";
 
-
-  ContestFiltersComp(this.scrDet);
+  ContestFiltersComp(this.scrDet) {
+    initializeFilterValues();
+  }
 
   /********* HANDLERS */
   // Muestra/Oculta el panel de filtros avanzados
@@ -113,31 +111,140 @@ class ContestFiltersComp implements ShadowRootAware {
     _isFiltersPanelOpen = false;
   }
 
+  void onEntryFeeRangeChange(dynamic sender, dynamic data) {
+    _filterEntryFeeMin = data[ENTRY_FEE_MIN_RANGE];
+    _filterEntryFeeMax = data[ENTRY_FEE_MAX_RANGE];
+    filterByEntryFee();
+  }
+
   /********* METHODS */
-  void refreshFilters() {
-      print("-CONTEST_FILTERS_COMP-: Lista de concusos actualizada");
+  void initializeFilterValues() {
+    // Filtro por nombre
+    filterContestName = "";
+
+    // Lista de tipos de concurso.
+    contestTypeList = [
+       {'name':"FREE",        'checked':false, 'disabled':true}
+      ,{'name':"HEAD_TO_HEAD",'checked':false, 'disabled':true}
+      ,{'name':"LEAGUE",      'checked':false, 'disabled':true}
+      ,{'name':"FIFTY_FIFTY", 'checked':false, 'disabled':true}
+    ];
+
+    // Lista de tipos de Limites de salarios.
+    salaryCapList = [
+       {'name':"BEGGINER", 'checked':false, 'disabled':true}
+      ,{'name':"STANDARD", 'checked':false, 'disabled':true}
+      ,{'name':"SKILLEDS", 'checked':false, 'disabled':true}
+    ];
+
+    // Rango de Entry Fee
+    entryFeeSliderRange = [0, 1];
+  }
+
+  void setFilterValues() {
+      print("-CONTEST_FILTERS_COMP-: Lista de concusos actualizada... seteando filtros");
+
+      _contestList.forEach( (contest) {
+        // Seteo de los "tipos de concursos"
+        contestTypeList.where( (map) => map['name'] == contest.tournamentType).first['disabled'] = false;
+
+        // Seteo de los "salary caps"
+        salaryCapList.where( (map) => map['name'] == contest.tier).first["disabled"] = false;
+
+      });
+
+      // Seteo del rango de "entry fee"
+      setEntryFeeFilterValues();
+  }
+
+  // Actualiza los valores del contro range-slider
+ setEntryFeeFilterValues() {
+    entryFeeSliderRange = getFilterEntryFeeRange();
+    JsUtils.runJavascript('#slider-range','noUiSlider', {'range': {'min': entryFeeSliderRange[ENTRY_FEE_MIN_RANGE], 'max': entryFeeSliderRange[ENTRY_FEE_MAX_RANGE]}}, true);
+    JsUtils.runJavascript('#slider-range','val', entryFeeSliderRange);
+  }
+
+  // Devuelve los valores posibles para el filtro de rango de entrada MIN: 0 y MAX: maximo valor de entrada de un concurso ( ó 1).
+  List<int> getFilterEntryFeeRange() {
+    int maxLimit = 1;
+    if(_contestList != null) {
+      _contestList.forEach( (contest) {
+        maxLimit = max(contest.entryFee, maxLimit);
+      });
+    }
+    return [0, maxLimit];
+  }
+
+  void filterByEntryFee(){
+    addFilter(FILTER_ENTRY_FEE, [_filterEntryFeeMin, _filterEntryFeeMax]);
+  }
+
+  void filterByName(){
+    addFilter(FILTER_CONTEST_NAME, filterContestName);
+  }
+
+  void addFilter(String key, dynamic value) {
+    Map<String, dynamic> newFilterList = {};
+
+    newFilterList.addAll(filterList);
+    filterList.clear();
+
+    newFilterList[key] = value;
+
+    filterList.addAll(newFilterList);
+  }
+
+  // Elimina los filtros e inicializa sus valores
+  void resetAllFilters() {
+    filterList.clear();
+    initializeFilterValues();
+    setFilterValues();
   }
 
   /********* IMPLEMENTATIONS */
   void onShadowRoot(emulatedRoot) {
 
-    // Capturamos el botón que abre el panel de filtros
+    // Capturamos los botones que abren/cierran el panel de filtros
     _filtersButtons = querySelectorAll('.filters-button');
 
-    // Al iniciar, tiene está cerrado por lo tanto le añadimos la clase que pone la flecha hacia abajo
+    // Como el panel inicial cerrado, le añadimos la clase que pone la flecha hacia abajo
     _filtersButtons.forEach((value) => value.classes.add('toggleOff'));
-
-    // Inicializamos el control que dibuja el slider para el filtro por entrada
-   // initSliderRange();
 
     // Nos subscribimos a los eventos de apertura y cierre de los filtros
     JsUtils.runJavascript('#filtersPanel', 'on', {'hidden.bs.collapse': onCloseFiltersPanel});
     JsUtils.runJavascript('#filtersPanel', 'on', {'shown.bs.collapse': onOpenFiltersPanel});
+
+    // Inicializamos el control que dibuja el slider para el filtro por entrada
+    initSliderRange();
+  }
+
+  void initSliderRange()
+  {
+    //iniciamos slider-range
+    JsUtils.runJavascript('#slider-range', 'noUiSlider', {
+      'start'     : [0, 1],
+      'step'      : 1,
+      'behaviour' : 'drag',
+      'connect'   : true,
+      'range'     : {'min':entryFeeSliderRange[ENTRY_FEE_MIN_RANGE],'max':entryFeeSliderRange[ENTRY_FEE_MAX_RANGE]}
+    });
+
+    // Nos subscribimos al evento change para recibir los valores que elija en cuatro
+    JsUtils.runJavascript('#slider-range', 'on', {'set': onEntryFeeRangeChange});
   }
 
   /********* PRIVATE VARIABLES */
   bool _isFiltersPanelOpen = false;
   List<Element> _filtersButtons;
-  List<Contest> _contestsListOriginal;
+
+  String _filterEntryFeeMin;
+  String _filterEntryFeeMax;
+
+  List<Contest> _contestList;
+
+  /*********** HELPERS */
+  void whatFilterIsClicked(mapa) {
+    print("Se ha hecho click en el filtro ${mapa['name']}");
+  }
 
 }

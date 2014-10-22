@@ -152,8 +152,9 @@ class DailySoccerServer implements ServerService {
     Completer completer = null;
 
     // Cuando cambiamos de contexto no queremos reutilizar ningún completer "antiguo"
-    if (_context != pendingCallsContext) {
+    if (_context != _pendingCallsContext) {
       _pendingCalls.clear();
+      _pendingCallsContext = _context;
     }
 
     if (_pendingCalls.containsKey(url) && !_pendingCalls[url].isCompleted) {
@@ -180,7 +181,7 @@ class DailySoccerServer implements ServerService {
   void _callLoop(int callContext, String url, Map queryString, Map postData, var headers, Completer completer, int retryTimes) {
     // Evitamos las reentradas "antiguas" (de otros contextos)
     if (callContext != _context) {
-      Logger.root.info("Ignorando callLoop: context($callContext) != context($_context)");
+      Logger.root.info("Ignorando callLoop($url): context($callContext) != context($_context)");
       return;
     }
 
@@ -249,7 +250,7 @@ class DailySoccerServer implements ServerService {
   Http _http;
   String _sessionToken;
 
-  int pendingCallsContext = 0;
+  int _pendingCallsContext = 0;
   Map<String, Completer> _pendingCalls = new Map<String, Completer>();
   List<Map> _subscribers = new List<Map>();
 

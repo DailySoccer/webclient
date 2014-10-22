@@ -14,42 +14,53 @@ import 'package:webclient/services/screen_detector_service.dart';
 )
 class ContestsListComp {
 
-  // Lista copia de la original que guardará los contest tras aplicar los filtros
-  List<Contest> contestsListFiltered = [];
-
-  // Lista de filtros a aplicar
-  Map<String,dynamic> filterList;
-
+  /********* DECLARATIONS */
+  // Lista de concursos visible en el componente
   List<Contest> currentPageList = [];
 
+  // Lista de concursos filtrada
+  List<Contest> contestsListFiltered = [];
+
+
+  /********* BINDINGS */
   @NgOneWay("contests-list")
   void set contestsList(List<Contest> value) {
     if (value == null || value.isEmpty) {
       return;
     }
+    print ('-CONTEST_LIST-: Recibida la lista de concursos y contiene ${value.length.toString()} entradas');
     _contestsListOriginal = value;
-    contestsListFiltered = _contestsListOriginal;
-    //refreshList();
+    refreshListWithFilters();
   }
 
-  //Setter de los filtros, Recibe la lista de los filtros aplicados.
-  @NgOneWay("filter-by")
-  void set filterBy(Map<String, dynamic> value) {
-    if (value == null) {
-      return;
-    }
-    filterList = value;
-   // refreshList();
+  @NgOneWay("tournament-type-filter")
+    void set filterByType(value) {
+    print ('-CONTEST_LIST-: Recibido el filtro por tipo de concurso ${value.toString()}');
+    _filterList["FILTER_TOURNAMENT"] = value;
+    refreshListWithFilters();
   }
 
-  @NgOneWay("sorted-by")
-  void set sortedBy(String value) {
-    if (value == null) {
-      return;
-    }
-    _sortType = value;
-    //refreshList();
+  @NgOneWay("salary-cap-filter")
+    void set filterBySalaryCap(value) {
+    print ('-CONTEST_LIST-: Recibido el filtro por tipo de concurso ${value.toString()}');
+    _filterList["FILTER_TIER"] = value;
+    refreshListWithFilters();
   }
+
+  @NgOneWay("entry-fee-filter")
+    void set filterByEntryFee(value) {
+    print ('-CONTEST_LIST-: Recibido el filtro por tipo de concurso ${value.toString()}');
+    _filterList["FILTER_ENTRY_FEE"] = value;
+    refreshListWithFilters();
+  }
+
+  @NgOneWay("name-filter")
+    void set filterByName(value) {
+    print ('-CONTEST_LIST-: Recibido el filtro por tipo de concurso ${value.toString()}');
+    _filterList["FILTER_CONTEST_NAME"] = value;
+    refreshListWithFilters();
+  }
+
 
   @NgOneWay("action-button-title")
   String actionButtonTitle = "Ver";
@@ -65,9 +76,7 @@ class ContestsListComp {
 
   ContestsListComp(this._profileService, this._scrDet);
 
-  // torneo gratis
-  //bool isFreeContest(Contest contest) => contest.entryFee == 0;
-
+  /********* METHODS */
   String dateInfo(DateTime date) {
     // Avisamos cuando sea "Hoy"
     if (DateTimeService.isToday(date)) {
@@ -126,22 +135,11 @@ class ContestsListComp {
     return mainContestEntry.prize;
   }
 
-  void onRow(Contest contest) {
-    if (onRowClick != null) {
-      onRowClick({"contest":contest});
-    }
-  }
-
-  void onAction(Contest contest) {
-    if (onActionClick != null) {
-      onActionClick({"contest":contest});
-    }
-  }
-
-  void refreshList() {
-    refreshSort();
-    refreshFilters();
-    updateList();
+  void updateCurrentPageList(int currentPage, int itemsPerPage) {
+    // Determinamos que elementos se mostrarán en la pagina actual
+    int rangeStart =  (contestsListFiltered == null || contestsListFiltered.length == 0) ? 0 : currentPage * itemsPerPage;
+    int rangeEnd   =  (contestsListFiltered == null) ? 0 : (rangeStart + itemsPerPage < contestsListFiltered.length) ? rangeStart + itemsPerPage : contestsListFiltered.length;
+    currentPageList = contestsListFiltered.getRange(rangeStart, rangeEnd).toList();
   }
 
   void refreshSort() {
@@ -153,11 +151,7 @@ class ContestsListComp {
     if (sortParams.length != 2) {
       print("-CONTEST_LIST-: El número de parametros no se ha establecido correctamente. La forma correcta es \'campo\'_\'dirección\'. Pon atención a la barra baja \'_\'");
     }
-   /*
-    List<Contest> listClone = [];
-    listClone.addAll(contestsListFiltered);
-    contestsListFiltered.clear();
-   */
+
     switch(sortParams[0]) {
       case "contest-name":
         contestsListFiltered.sort(( contest1, contest2) => ( sortParams[1] == "asc" ? contest1.compareNameTo(contest2) : contest2.compareNameTo(contest1)) );
@@ -177,32 +171,46 @@ class ContestsListComp {
     }
   }
 
-  void refreshFilters() {
-    if (filterList == null) {
+  void refreshListWithFilters() {
+    if (_filterList == null || _contestsListOriginal == null) {
       return;
     }
-    // Partimos de la lista original.
-    contestsListFiltered = [];
-    contestsListFiltered.addAll(_contestsListOriginal);
 
+    contestsListFiltered = _contestsListOriginal;
     // Recorremos la lista de filtros
-    filterList.forEach((String key, dynamic value) {
-      switch(key) {
-        case "FILTER_CONTEST_NAME":
-          contestsListFiltered = contestsListFiltered.where((contest) => contest.name.toUpperCase().contains(value.toUpperCase())).toList();
-        break;
-        case "FILTER_ENTRY_FEE":
-          contestsListFiltered = contestsListFiltered.where((contest) =>  contest.entryFee >= int.parse(value[0].split('.')[0]) &&
-                                                                          contest.entryFee <= int.parse(value[1].split('.')[0])).toList();
-        break;
-        case "FILTER_TOURNAMENT":
-          contestsListFiltered = contestsListFiltered.where((contest) => value.contains(contest.tournamentType)).toList();
-        break;
-        case "FILTER_TIER":
-          contestsListFiltered = contestsListFiltered.where((contest) => value.contains(contest.tier)).toList();
-        break;
+    _filterList.forEach((String key, dynamic value) {
+      if (value != null && value.isNotEmpty) {
+        switch(key) {
+          case "FILTER_CONTEST_NAME":
+            contestsListFiltered = contestsListFiltered.where((contest) => contest.name.toUpperCase().contains(value.toUpperCase())).toList();
+          break;
+          case "FILTER_ENTRY_FEE":
+            contestsListFiltered = contestsListFiltered.where((contest) =>  contest.entryFee >= int.parse(value[0].split('.')[0]) &&
+                                                                            contest.entryFee <= int.parse(value[1].split('.')[0])).toList();
+          break;
+          case "FILTER_TOURNAMENT":
+            contestsListFiltered = contestsListFiltered.where((contest) => value.contains(contest.tournamentType)).toList();
+          break;
+          case "FILTER_TIER":
+            contestsListFiltered = contestsListFiltered.where((contest) => value.contains(contest.tier)).toList();
+          break;
+        }
       }
     });
+  }
+
+
+  /********* HANDLERS */
+  void onRow(Contest contest) {
+    if (onRowClick != null) {
+      onRowClick({"contest":contest});
+    }
+  }
+
+  void onAction(Contest contest) {
+    if (onActionClick != null) {
+      onActionClick({"contest":contest});
+    }
   }
 
   void onPageChange(int currentPage, int itemsPerPage) {
@@ -212,20 +220,12 @@ class ContestsListComp {
     updateCurrentPageList(_currentPage, _itemsPerPage);
   }
 
-  void updateList() {
-
-    if (_itemsPerPage > 0 )
-      updateCurrentPageList(_currentPage, _itemsPerPage);
-  }
-
-  void updateCurrentPageList(int currentPage, int itemsPerPage) {
-    // Determinamos que elementos se mostrarán en la pagina actual
-    int rangeStart =  (contestsListFiltered == null || contestsListFiltered.length == 0) ? 0 : currentPage * itemsPerPage;
-    int rangeEnd   =  (contestsListFiltered == null) ? 0 : (rangeStart + itemsPerPage < contestsListFiltered.length) ? rangeStart + itemsPerPage : contestsListFiltered.length;
-    currentPageList = contestsListFiltered.getRange(rangeStart, rangeEnd).toList();
-  }
+  /********* PRIVATE DECLARATIONS */
   // Lista original de los contest
   List<Contest> _contestsListOriginal;
+
+  // Lista de filtros a aplicar
+  Map<String,dynamic> _filterList = {};
 
   String _sortType;
   int _contestsCount  = 0;

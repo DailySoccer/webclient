@@ -41,8 +41,6 @@ class ContestFiltersComp implements ShadowRootAware {
     "FILTER_CONTEST_NAME":"Nombre "
   };
 
-  ScreenDetectorService scrDet;
-
   // Filtro por nombre
   String filterContestName = "";
 
@@ -55,6 +53,12 @@ class ContestFiltersComp implements ShadowRootAware {
   // Valores para el rango de Entry Fee
   List<int> entryFeeSliderRange = [];
 
+  //Lista de filtros
+  Map<String, dynamic> filterList = {};
+
+
+  ScreenDetectorService scrDet;
+
 
   /********* BINDINGS */
   @NgOneWay("contests-list")
@@ -66,16 +70,14 @@ class ContestFiltersComp implements ShadowRootAware {
     setFilterValues();
   }
 
-  @NgTwoWay("filters")
-  Map<String, dynamic> filterList;
-
   @NgTwoWay("sorting")
   String sort;
 
-  /********* PROPERTIES */
-  // Resumen de filtros seleccionados
-  //String get filterResume => "";
+  @NgCallback('on-filter-change')
+  Function onFilterChange;
 
+
+  /********* PROPERTIES */
   // Rango minímo del filtro del EntryFee
   String get filterEntryFeeRangeMin => "0";
 
@@ -87,18 +89,6 @@ class ContestFiltersComp implements ShadowRootAware {
   }
 
   /********* HANDLERS */
-  // Muestra/Oculta el panel de filtros avanzados
-  void toggleFilterMenu() {
-
-    // Abrimos el menú si está cerrado
-    if (_isFiltersPanelOpen) {
-      JsUtils.runJavascript('#filtersPanel', 'collapse', "hide");
-    }
-    else {
-      JsUtils.runJavascript('#filtersPanel', 'collapse', "show");
-    }
-  }
-
   void onOpenFiltersPanel(dynamic sender) {
     _filtersButtons.forEach((value) => value.classes.remove('toggleOff'));
     _filtersButtons.forEach((value) => value.classes.add('toggleOn'));
@@ -118,6 +108,19 @@ class ContestFiltersComp implements ShadowRootAware {
   }
 
   /********* METHODS */
+  // Muestra/Oculta el panel de filtros avanzados
+  void toggleFilterMenu() {
+
+    // Abrimos el menú si está cerrado
+    if (_isFiltersPanelOpen) {
+      JsUtils.runJavascript('#filtersPanel', 'collapse', "hide");
+    }
+    else {
+      JsUtils.runJavascript('#filtersPanel', 'collapse', "show");
+    }
+  }
+
+  // Inicia los valores por defecto de los filtros
   void initializeFilterValues() {
     // Filtro por nombre
     filterContestName = "";
@@ -141,16 +144,14 @@ class ContestFiltersComp implements ShadowRootAware {
     entryFeeSliderRange = [0, 1];
   }
 
+  // Establece los valores que tendrán los filtros
   void setFilterValues() {
-      print("-CONTEST_FILTERS_COMP-: Lista de concusos actualizada... seteando filtros");
-
       _contestList.forEach( (contest) {
         // Seteo de los "tipos de concursos"
         contestTypeFilterList.where( (map) => map['name'] == contest.tournamentType).first['disabled'] = false;
 
         // Seteo de los "salary caps"
         salaryCapFilterList.where( (map) => map['name'] == contest.tier).first["disabled"] = false;
-
       });
 
       // Seteo del rango de "entry fee"
@@ -201,14 +202,15 @@ class ContestFiltersComp implements ShadowRootAware {
 
     filterList.addAll(newFilterList);
 
-    print('Lista de filtros ${filterList.toString()}');
+    onFilterChange({'filterList':filterList});
   }
 
   // Elimina los filtros e inicializa sus valores
   void resetAllFilters() {
-    filterList.clear();
+    filterList = {"FILTER_TOURNAMENT":[], "FILTER_TIER":[], "FILTER_ENTRY_FEE":[], "FILTER_CONTEST_NAME":""};
     initializeFilterValues();
     setFilterValues();
+    onFilterChange({'filterList':filterList});
   }
 
   /********* IMPLEMENTATIONS */
@@ -243,7 +245,7 @@ class ContestFiltersComp implements ShadowRootAware {
     JsUtils.runJavascript('#slider-range', 'on', {'set': onEntryFeeRangeChange});
   }
 
-  /********* PRIVATE VARIABLES */
+  /********* PRIVATE DECLARATIONS */
   bool _isFiltersPanelOpen = false;
   List<Element> _filtersButtons;
 

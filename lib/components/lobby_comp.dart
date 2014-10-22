@@ -47,6 +47,7 @@ class LobbyComp implements DetachAware {
     _calculateInfoBarText();
   }
 
+  /********* METHODS */
   void _calculateInfoBarText() {
     Contest nextContest = activeContestsService.getAvailableNextContest();
     String tmp = nextContest == null ? "Pronto habrá nuevos Torneos disponibles" : "SIGUIENTE TORNEO: ${nextContest.name.toUpperCase()} - ${_calculateTimeToNextTournament()}";
@@ -88,6 +89,10 @@ class LobbyComp implements DetachAware {
     }
   }
 
+  void onFilterChange(filterList) {
+    lobbyFilters.addAll(filterList);
+  }
+
   // Handler que recibe cual es la nueva mediaquery aplicada según el ancho de la pantalla.
   void onScreenWidthChange(String msg) {
     if (msg != "desktop") {
@@ -106,7 +111,4 @@ class LobbyComp implements DetachAware {
   Router _router;
   RefreshTimersService _refreshTimersService;
   Timer _nextTournamentInfoTimer;
-
-  bool isFirstTimeListFill = true;
-  bool _firstTime;
 }

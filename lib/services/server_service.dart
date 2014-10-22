@@ -6,7 +6,6 @@ import 'package:angular/angular.dart';
 import 'package:json_object/json_object.dart';
 import 'package:logging/logging.dart';
 import 'package:webclient/utils/host_server.dart';
-import 'package:webclient/services/refresh_timers_service.dart';
 
 abstract class ServerService {
   static final String URL = "url";
@@ -53,6 +52,13 @@ abstract class ServerService {
 
 @Injectable()
 class DailySoccerServer implements ServerService {
+  static void startContext(String path) {
+    _context++;
+  }
+
+  static void endContext(String path) {
+  }
+
   DailySoccerServer(this._http);
 
   void setSessionToken(String sessionToken) { _sessionToken = sessionToken; }
@@ -141,27 +147,48 @@ class DailySoccerServer implements ServerService {
   /**
    * This is the only place where we call our server (except the LoggerExceptionHandler)
    */
-  Future<JsonObject> _innerServerCall(String url, {Map queryString:null, Map postData:null, int retryTimes: 3}) {
+  Future<JsonObject> _innerServerCall(String url, {Map queryString:null, Map postData:null, int retryTimes: -1}) {
 
-    var completer = new Completer<JsonObject>();
-    var theHeaders = {};
+    Completer completer = null;
 
-    // Nuestro sistema no funciona con cookies. Mandamos el sessionToken en una custom header.
-    if (_sessionToken != null) {
-      theHeaders["X-Session-Token"] = _sessionToken;
+    // Cuando cambiamos de contexto no queremos reutilizar ningún completer "antiguo"
+    if (_context != pendingCallsContext) {
+      _pendingCalls.clear();
     }
 
-    _callLoop(url, queryString, postData, theHeaders, completer, retryTimes);
+    if (_pendingCalls.containsKey(url) && !_pendingCalls[url].isCompleted) {
+      completer = _pendingCalls[url];
+      Logger.root.info("Reutilizando completer($url)");
+    }
+    else {
+      completer = new Completer<JsonObject>();
+      _pendingCalls[url]= completer;
+
+      var theHeaders = {};
+
+      // Nuestro sistema no funciona con cookies. Mandamos el sessionToken en una custom header.
+      if (_sessionToken != null) {
+        theHeaders["X-Session-Token"] = _sessionToken;
+      }
+
+      _callLoop(_context, url, queryString, postData, theHeaders, completer, retryTimes);
+    }
 
     return completer.future;
   }
 
-  void _callLoop(String url, Map queryString, Map postData, var headers, Completer completer, int retryTimes) {
+  void _callLoop(int callContext, String url, Map queryString, Map postData, var headers, Completer completer, int retryTimes) {
+    // Evitamos las reentradas "antiguas" (de otros contextos)
+    if (callContext != _context) {
+      Logger.root.info("Ignorando callLoop: context($callContext) != context($_context)");
+      return;
+    }
+
     Future<HttpResponse> http = ((postData != null) ? _http.post(url, postData, headers: headers, params: queryString) : _http.get(url, headers: headers, params: queryString))
         .then((httpResponse) {
           _notify(ServerService.onSuccess, {ServerService.URL: url});
 
-          _processSuccess(httpResponse, completer);
+          _processSuccess(url, httpResponse, completer);
         })
         .catchError((error) {
           ConnectionError connectionError = new ConnectionError.fromHttpResponse(error);
@@ -170,7 +197,7 @@ class DailySoccerServer implements ServerService {
 
             Logger.root.severe("_innerServerCall error: $error, url: $url, retry: $retryTimes");
             if ((retryTimes == -1) || (retryTimes > 0)) {
-              new Timer(const Duration(seconds: 3), () => _callLoop(url, queryString, postData, headers, completer, (retryTimes > 0) ? retryTimes-1 : retryTimes));
+              new Timer(const Duration(seconds: 3), () => _callLoop(callContext, url, queryString, postData, headers, completer, (retryTimes > 0) ? retryTimes-1 : retryTimes));
             }
             else {
               _processError(error, url, completer);
@@ -189,7 +216,9 @@ class DailySoccerServer implements ServerService {
     return parts.join('&');
   }
 
-  void _processSuccess(HttpResponse httpResponse, Completer completer) {
+  void _processSuccess(String url, HttpResponse httpResponse, Completer completer) {
+    _setFinishCompleterForUrl(url);
+
     // The response can be either a Map or a List. We should avoid this step by rewriting the HttpInterceptor and creating the
     // JsonObject directly from the JsonString.
     if (httpResponse.data is List) {
@@ -201,6 +230,8 @@ class DailySoccerServer implements ServerService {
   }
 
   void _processError(var error, String url, Completer completer) {
+    _setFinishCompleterForUrl(url);
+
     ConnectionError connectionError = new ConnectionError.fromHttpResponse(error);
     completer.completeError(connectionError);
   }
@@ -211,10 +242,18 @@ class DailySoccerServer implements ServerService {
       .forEach((subscribe) => subscribe[key](msg));
   }
 
+  void _setFinishCompleterForUrl(String url) {
+    _pendingCalls.remove(url);
+  }
+
   Http _http;
   String _sessionToken;
 
+  int pendingCallsContext = 0;
+  Map<String, Completer> _pendingCalls = new Map<String, Completer>();
   List<Map> _subscribers = new List<Map>();
+
+  static int _context = 0;
 }
 
 class ConnectionError {

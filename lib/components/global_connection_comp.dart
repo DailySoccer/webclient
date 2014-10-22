@@ -7,7 +7,7 @@ import 'package:webclient/services/server_service.dart';
 
 @Component(
   selector: 'global-connection',
-  templateUrl: '/packages/webclient/components/global_connection_comp.html',
+  templateUrl: 'packages/webclient/components/global_connection_comp.html',
   useShadowDom: false
 )
 class GlobalConnectionComp {

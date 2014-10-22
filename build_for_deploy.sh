@@ -24,3 +24,4 @@ rsync -r  -v --copy-unsafe-links build/web/. ../backend/public/
 
 # Revertimos los cambios hechos al index.html
 git checkout -- web/index.html
+git checkout -- css/styles.css

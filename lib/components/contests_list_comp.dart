@@ -29,26 +29,26 @@ class ContestsListComp {
     }
     _contestsListOriginal = value;
     contestsListFiltered = _contestsListOriginal;
-    refreshList();
+    //refreshList();
   }
 
   //Setter de los filtros, Recibe la lista de los filtros aplicados.
   @NgOneWay("filter-by")
-  void set filterBy(Map<String,dynamic> value) {
-    if (value == null || value.isEmpty) {
+  void set filterBy(Map<String, dynamic> value) {
+    if (value == null) {
       return;
     }
     filterList = value;
-    refreshList();
+   // refreshList();
   }
 
   @NgOneWay("sorted-by")
   void set sortedBy(String value) {
-    if (value == null || value.isEmpty) {
+    if (value == null) {
       return;
     }
     _sortType = value;
-    refreshList();
+    //refreshList();
   }
 
   @NgOneWay("action-button-title")
@@ -141,7 +141,7 @@ class ContestsListComp {
   void refreshList() {
     refreshSort();
     refreshFilters();
-   // onListChange({"itemsCount": contestsListFiltered.length});
+    updateList();
   }
 
   void refreshSort() {
@@ -175,9 +175,6 @@ class ContestsListComp {
         print('-CONTEST_LIST-: No se ha encontrado el campo para ordenar');
       break;
     }
-
-    // Forzamos el refresco la lista.
-    updateList();
   }
 
   void refreshFilters() {
@@ -218,7 +215,7 @@ class ContestsListComp {
   void updateList() {
 
     if (_itemsPerPage > 0 )
-     updateCurrentPageList(_currentPage, _itemsPerPage);
+      updateCurrentPageList(_currentPage, _itemsPerPage);
   }
 
   void updateCurrentPageList(int currentPage, int itemsPerPage) {

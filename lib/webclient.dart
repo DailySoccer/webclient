@@ -34,6 +34,7 @@ import 'package:webclient/components/my_contests_comp.dart';
 import 'package:webclient/components/contests_list_comp.dart';
 import 'package:webclient/components/promos_comp.dart';
 import 'package:webclient/components/paginator_comp.dart';
+import 'package:webclient/components/contest_filters_comp.dart';
 import 'package:webclient/components/global_connection_comp.dart';
 import 'package:webclient/components/loading_comp.dart';
 
@@ -97,6 +98,7 @@ class WebClientApp extends Module {
     bind(LobbyComp);
     bind(PromosComp);
     bind(PaginatorComp);
+    bind(ContestFiltersComp);
     bind(LoginComp);
     bind(JoinComp);
 

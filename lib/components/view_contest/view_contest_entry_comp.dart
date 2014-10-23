@@ -7,6 +7,7 @@ import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/my_contests_service.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
+import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/models/contest_entry.dart';
 import 'package:webclient/models/match_event.dart';
 import 'dart:html';
@@ -26,6 +27,7 @@ class ViewContestEntryComp {
 
   List<String> matchesInvolved = [];
 
+  bool get isLoaded => !LoadingService.loading;
   Contest get contest => _myContestsService.lastContest;
   List<ContestEntry> get contestEntries => (contest != null) ? contest.contestEntries : null;
   List<ContestEntry> get contestEntriesOrderByPoints => (contest != null) ? contest.contestEntriesOrderByPoints : null;
@@ -37,6 +39,7 @@ class ViewContestEntryComp {
   bool get isModeSwapped => _viewContestEntryMode == "swapped"; // Acabamos de crearla pero el servidor nos cambio a otro concurso pq el nuestro estaba lleno.
 
   ViewContestEntryComp(this._routeProvider, this.scrDet, this._myContestsService, this._profileService, this._flashMessage, this._router) {
+    LoadingService.loading = true;
 
     _viewContestEntryMode = _routeProvider.route.parameters['viewContestEntryMode'];
     _contestId = _routeProvider.route.parameters['contestId'];
@@ -45,6 +48,8 @@ class ViewContestEntryComp {
 
     _myContestsService.refreshMyContest(_contestId)
       .then((jsonObject) {
+        LoadingService.loading = false;
+
         mainPlayer = contest.getContestEntryWithUser(_profileService.user.userId);
 
         updatedDate = DateTimeService.now;

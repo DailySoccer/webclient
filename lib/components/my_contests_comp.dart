@@ -5,8 +5,9 @@ import 'package:angular/angular.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/my_contests_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
-import 'package:webclient/models/contest.dart';
 import 'package:webclient/services/refresh_timers_service.dart';
+import 'package:webclient/services/loading_service.dart';
+import 'package:webclient/models/contest.dart';
 
 @Component(
   selector: 'my-contests',
@@ -23,6 +24,8 @@ class MyContestsComp implements DetachAware {
   String historySortType = "contest-start-time_desc";
 
   MyContestsComp(this._profileService, this._refreshTimersService, this.myContestsService, this._router, this._flashMessage) {
+    LoadingService.loading = true;
+
     myContestsService.clear();
 
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE, _updateLive);
@@ -62,6 +65,7 @@ class MyContestsComp implements DetachAware {
 
   void _updateLive() {
     myContestsService.refreshMyContests()
+      .then((_) => LoadingService.loading = false)
       .catchError((error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW));
   }
 
@@ -73,6 +77,7 @@ class MyContestsComp implements DetachAware {
     contentTab.classes.add("active");
   }
 
+  bool get isLoaded => !LoadingService.loading;
   bool get hasLiveContests    => myContestsService.liveContests     == null ? false : myContestsService.liveContests.length     > 0;
   bool get hasWaitingContests => myContestsService.waitingContests  == null ? false : myContestsService.waitingContests.length  > 0;
   bool get hasHistoryContests => myContestsService.historyContests  == null ? false : myContestsService.historyContests.length  > 0;

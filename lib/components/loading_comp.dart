@@ -10,11 +10,7 @@ import 'package:webclient/services/loading_service.dart';
   useShadowDom: false
 )
 class LoadingComp {
-  bool get isLoading => LoadingService.loading;
+  bool get isLoading => LoadingService.enabled;
 
-  LoadingComp(this._loadingService) {
-    print("loading...");
-  }
-
-  LoadingService _loadingService;
+  LoadingComp();
 }

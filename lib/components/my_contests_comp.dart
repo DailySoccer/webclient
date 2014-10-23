@@ -24,7 +24,7 @@ class MyContestsComp implements DetachAware {
   String historySortType = "contest-start-time_desc";
 
   MyContestsComp(this._profileService, this._refreshTimersService, this.myContestsService, this._router, this._flashMessage) {
-    LoadingService.loading = true;
+    LoadingService.enabled = true;
 
     myContestsService.clear();
 
@@ -65,7 +65,7 @@ class MyContestsComp implements DetachAware {
 
   void _updateLive() {
     myContestsService.refreshMyContests()
-      .then((_) => LoadingService.loading = false)
+      .then((_) => LoadingService.enabled = false)
       .catchError((error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW));
   }
 
@@ -77,7 +77,7 @@ class MyContestsComp implements DetachAware {
     contentTab.classes.add("active");
   }
 
-  bool get isLoaded => !LoadingService.loading;
+  bool get isLoaded => !LoadingService.enabled;
   bool get hasLiveContests    => myContestsService.liveContests     == null ? false : myContestsService.liveContests.length     > 0;
   bool get hasWaitingContests => myContestsService.waitingContests  == null ? false : myContestsService.waitingContests.length  > 0;
   bool get hasHistoryContests => myContestsService.historyContests  == null ? false : myContestsService.historyContests.length  > 0;

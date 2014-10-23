@@ -77,7 +77,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   Contest selectedContest;
   ScreenDetectorService scrDet;
 
-  bool get isLoaded => !LoadingService.loading;
+  bool get isLoaded => !LoadingService.enabled;
 
   // Rango minímo del filtro del EntryFee
   String get filterEntryFeeRangeMin => getEntryFeeFilterRange()[0];
@@ -150,7 +150,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   int get prizedTournamentsCount  => activeContestsService.activeContests.length - _freeContestCount;
 
   LobbyComp(this._router, this._refreshTimersService, this.activeContestsService, this.scrDet) {
-    LoadingService.loading = true;
+    LoadingService.enabled = true;
     activeContestsService.clear();
 
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_CONTEST_LIST, refreshActiveContest);
@@ -165,7 +165,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   void refreshActiveContest() {
     activeContestsService.refreshActiveContests()
       .then((_) {
-      LoadingService.loading = false;
+      LoadingService.enabled = false;
         _freeContestCount = activeContestsService.activeContests.where((contest) => contest.tournamentType == Contest.TOURNAMENT_FREE).toList().length;
         onListChange();
       });

@@ -184,9 +184,16 @@ class ContestFiltersComp implements ShadowRootAware {
 
   // Actualiza los valores del contro range-slider
   void setEntryFeeFilterValues() {
+    _lastRangeMaxLimit = entryFeeSliderRange[ENTRY_FEE_MAX_RANGE];
+    _lastMaxRangeValue = double.parse(filterEntryFeeRangeMax).ceil();
+    int currentMinValue =  double.parse(filterEntryFeeRangeMin).floor();
+
     entryFeeSliderRange = getFilterEntryFeeRange();
     JsUtils.runJavascript('#slider-range','noUiSlider', {'range': {'min': entryFeeSliderRange[ENTRY_FEE_MIN_RANGE], 'max': entryFeeSliderRange[ENTRY_FEE_MAX_RANGE]}}, true);
-    JsUtils.runJavascript('#slider-range','val', [0,100]);
+
+    if ( _lastMaxRangeValue == _lastRangeMaxLimit && _lastMaxRangeValue < entryFeeSliderRange[ENTRY_FEE_MAX_RANGE]) {
+      JsUtils.runJavascript('#slider-range','val', [currentMinValue, entryFeeSliderRange[ENTRY_FEE_MAX_RANGE]]);
+    }
   }
 
   // Devuelve los valores posibles para el filtro de rango de entrada MIN: 0 y MAX: maximo valor de entrada de un concurso ( ó 1).
@@ -194,11 +201,6 @@ class ContestFiltersComp implements ShadowRootAware {
     int maxLimit = 1;
     if(_contestList != null) {
       _contestList.forEach( (contest) {
-        print(max(contest.entryFee, maxLimit));
-        if(contest.entryFee > maxLimit) {
-
-          print("Nuevo maximo Entry fee encontrado: ${contest.entryFee}");
-        }
         maxLimit = max(contest.entryFee, maxLimit);
       });
     }
@@ -301,6 +303,8 @@ class ContestFiltersComp implements ShadowRootAware {
 
   String _filterEntryFeeMin;
   String _filterEntryFeeMax;
+  int _lastRangeMaxLimit = 0;
+  int _lastMaxRangeValue = 0;
 
   List<Contest> _contestList;
   int _contestCount = 0;

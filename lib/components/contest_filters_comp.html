@@ -2,10 +2,10 @@
   <div id="contestSortsFilters">
 
     <!-- Resumen y Botón de filtros XS -->
-    <div class="choosed-filters-container" ng-if="scrDet.isXsScreen">
+    <div class="choosed-filters-container" ng-show="scrDet.isXsScreen">
         <div class="competition-filter-name" ng-bind-html="filterResume"></div>
         <div class="filterToggler">
-          <div id="filtersButtonMobile" type="button" class="btn filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse" data-target="#filtersPanel">FILTROS</div>
+          <div id="filtersButtonMobile" type="button" class="btn filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse" data-target="#filtersPanel">filtros</div>
         </div>
     </div>
 

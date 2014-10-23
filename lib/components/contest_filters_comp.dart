@@ -9,7 +9,7 @@ import 'package:webclient/services/screen_detector_service.dart';
 
 @Component(
     selector: 'contest-filters-comp',
-    templateUrl: '/packages/webclient/components/contest_filters_comp.html',
+    templateUrl: 'packages/webclient/components/contest_filters_comp.html',
     useShadowDom: false
 )
 class ContestFiltersComp implements ShadowRootAware {

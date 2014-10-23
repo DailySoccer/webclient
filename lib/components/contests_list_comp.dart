@@ -29,35 +29,35 @@ class ContestsListComp {
     }
     print ('-CONTEST_LIST-: Recibida la lista de concursos y contiene ${value.length.toString()} entradas');
     _contestsListOriginal = value;
-    refreshList();
+    refreshListWithFilters();
   }
 
   @NgOneWay("tournament-type-filter")
     void set filterByType(value) {
     print ('-CONTEST_LIST-: Recibido el filtro por tipo de concurso ${value.toString()}');
     _filterList["FILTER_TOURNAMENT"] = value;
-    refreshList();
+    refreshListWithFilters();
   }
 
   @NgOneWay("salary-cap-filter")
     void set filterBySalaryCap(value) {
     print ('-CONTEST_LIST-: Recibido el filtro por tipo de concurso ${value.toString()}');
     _filterList["FILTER_TIER"] = value;
-    refreshList();
+    refreshListWithFilters();
   }
 
   @NgOneWay("entry-fee-filter")
     void set filterByEntryFee(value) {
     print ('-CONTEST_LIST-: Recibido el filtro por tipo de concurso ${value.toString()}');
     _filterList["FILTER_ENTRY_FEE"] = value;
-    refreshList();
+    refreshListWithFilters();
   }
 
   @NgOneWay("name-filter")
     void set filterByName(value) {
     print ('-CONTEST_LIST-: Recibido el filtro por tipo de concurso ${value.toString()}');
     _filterList["FILTER_CONTEST_NAME"] = value;
-    refreshList();
+    refreshListWithFilters();
   }
 
   @NgOneWay("sorting")
@@ -140,19 +140,27 @@ class ContestsListComp {
     return mainContestEntry.prize;
   }
 
-  void updatePageList(int pageNum, int itemsPerPage) {
+  void updatePage(int pageNum, int itemsPerPage) {
+    if (contestsListFiltered == null || itemsPerPage == 0) {
+      return;
+    }
     // Determinamos que elementos se mostrarán en la pagina actual
+    int lastPosiblePage = (contestsListFiltered.length / itemsPerPage).floor();
+    int tmpLastViewedPage = pageNum;
+    pageNum = pageNum > lastPosiblePage? lastPosiblePage : pageNum;
     int rangeStart =  (contestsListFiltered == null || contestsListFiltered.length == 0) ? 0 : pageNum * itemsPerPage;
     int rangeEnd   =  (contestsListFiltered == null) ? 0 : (rangeStart + itemsPerPage < contestsListFiltered.length) ? rangeStart + itemsPerPage : contestsListFiltered.length;
+    print("Actualizando la página ${pageNum +1}.\n Hay un máximo de ${lastPosiblePage +1}, y estamos en la página ${tmpLastViewedPage+1}. El rango de concursos es [${rangeStart}-${rangeEnd}] que corresponde con la página ${pageNum+1}");
+
+
     currentPageList.clear();
     currentPageList = contestsListFiltered.getRange(rangeStart, rangeEnd).toList();
   }
 
 
   void refreshList() {
-    refreshListWithFilters();
     refreshListOrder();
-    updatePageList(_currentPage, _itemsPerPage);
+    updatePage(_currentPage, _itemsPerPage);
   }
 
   void refreshListOrder() {
@@ -235,7 +243,7 @@ class ContestsListComp {
     _currentPage = currentPage;
     _itemsPerPage = itemsPerPage;
     //Actualizamos la página actual de la lista.
-    updatePageList(_currentPage, _itemsPerPage);
+    updatePage(_currentPage, _itemsPerPage);
   }
 
   /********* PRIVATE DECLARATIONS */

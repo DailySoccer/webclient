@@ -228,6 +228,7 @@ class ContestsListComp {
         }
       }
     });
+    refreshListOrder();
     contestCount = contestsListFiltered.length;
   }
 

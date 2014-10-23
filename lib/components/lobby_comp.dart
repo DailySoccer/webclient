@@ -35,6 +35,9 @@ class LobbyComp implements DetachAware {
   // Tipo de ordenación de la lista de partidos
   String lobbySorting = "";
 
+  // Concursos listados actualmente
+  int contestCount = 0;
+
   LobbyComp(this._router, this._refreshTimersService, this.activeContestsService, this.scrDet) {
     LoadingService.enabled = true;
     activeContestsService.clear();

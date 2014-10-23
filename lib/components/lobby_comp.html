@@ -9,13 +9,13 @@
   </div>
 
   <!-- Filtros y Ordenación -->
-  <contest-filters-comp contests-list="activeContestsService.activeContests" on-sort-order-change="onSortOrderChange(fieldName)" on-filter-change="onFilterChange(filterList)"></contest-filters-comp>
+  <contest-filters-comp contests-list="activeContestsService.activeContests" on-sort-order-change="onSortOrderChange(fieldName)" on-filter-change="onFilterChange(filterList)" contest-count="contestCount"></contest-filters-comp>
 
   <!-- Lista de concursos DESKTOP -->
   <contests-list  contests-list="activeContestsService.activeContests"
                   tournament-type-filter="lobbyFilters['FILTER_TOURNAMENT']" salary-cap-filter="lobbyFilters['FILTER_TIER']"
                   entry-fee-filter="lobbyFilters['FILTER_ENTRY_FEE']" name-filter="lobbyFilters['FILTER_CONTEST_NAME']"
-                  sorting="lobbySorting"
+                  sorting="lobbySorting" contest-count="contestCount"
                   action-button-title="'Jugar'" on-row-click="onRowClick(contest)"
                   on-action-click='onActionClick(contest)'>
   </contests-list>

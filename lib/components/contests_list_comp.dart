@@ -27,48 +27,54 @@ class ContestsListComp {
     if (value == null || value.isEmpty) {
       return;
     }
-    print ('-CONTEST_LIST-: Recibida la lista de concursos y contiene ${value.length.toString()} entradas');
+    //print ('-CONTEST_LIST-: Recibida la lista de concursos y contiene ${value.length.toString()} entradas');
     _contestsListOriginal = value;
     refreshListWithFilters();
   }
 
   @NgOneWay("tournament-type-filter")
     void set filterByType(value) {
-    print ('-CONTEST_LIST-: Recibido el filtro por tipo de concurso ${value.toString()}');
+    //print ('-CONTEST_LIST-: Recibido el filtro por tipo de concurso ${value.toString()}');
     _filterList["FILTER_TOURNAMENT"] = value;
     refreshListWithFilters();
   }
 
   @NgOneWay("salary-cap-filter")
     void set filterBySalaryCap(value) {
-    print ('-CONTEST_LIST-: Recibido el filtro por tipo de concurso ${value.toString()}');
+    //print ('-CONTEST_LIST-: Recibido el filtro por tipo de concurso ${value.toString()}');
     _filterList["FILTER_TIER"] = value;
     refreshListWithFilters();
   }
 
   @NgOneWay("entry-fee-filter")
     void set filterByEntryFee(value) {
-    print ('-CONTEST_LIST-: Recibido el filtro por tipo de concurso ${value.toString()}');
+    //print ('-CONTEST_LIST-: Recibido el filtro por tipo de concurso ${value.toString()}');
     _filterList["FILTER_ENTRY_FEE"] = value;
     refreshListWithFilters();
   }
 
   @NgOneWay("name-filter")
     void set filterByName(value) {
-    print ('-CONTEST_LIST-: Recibido el filtro por tipo de concurso ${value.toString()}');
+    //print ('-CONTEST_LIST-: Recibido el filtro por tipo de concurso ${value.toString()}');
     _filterList["FILTER_CONTEST_NAME"] = value;
     refreshListWithFilters();
   }
 
   @NgOneWay("sorting")
     void set sorting(value) {
-    print("-CONTEST_LIST-: Orden de la lista ${value}");
+    //print("-CONTEST_LIST-: Orden de la lista ${value}");
     _sortOrder = value;
     refreshList();
   }
 
   @NgOneWay("action-button-title")
   String actionButtonTitle = "Ver";
+
+  @NgTwoWay("contest-count")
+  void set contestCount(int value) {
+    _contestCount = value;
+  }
+  int get contestCount => _contestCount;
 
   @NgCallback('on-list-change')
   Function onListChange;
@@ -146,12 +152,11 @@ class ContestsListComp {
     }
     // Determinamos que elementos se mostrarán en la pagina actual
     int lastPosiblePage = (contestsListFiltered.length / itemsPerPage).floor();
-    int tmpLastViewedPage = pageNum;
+    //int tmpLastViewedPage = pageNum;
     pageNum = pageNum > lastPosiblePage? lastPosiblePage : pageNum;
     int rangeStart =  (contestsListFiltered == null || contestsListFiltered.length == 0) ? 0 : pageNum * itemsPerPage;
     int rangeEnd   =  (contestsListFiltered == null) ? 0 : (rangeStart + itemsPerPage < contestsListFiltered.length) ? rangeStart + itemsPerPage : contestsListFiltered.length;
-    print("Actualizando la página ${pageNum +1}.\n Hay un máximo de ${lastPosiblePage +1}, y estamos en la página ${tmpLastViewedPage+1}. El rango de concursos es [${rangeStart}-${rangeEnd}] que corresponde con la página ${pageNum+1}");
-
+    //print("-CONTEST_LIST-: Actualizando la página ${pageNum +1}.\n Hay un máximo de ${lastPosiblePage +1}, y estamos en la página ${tmpLastViewedPage+1}. El rango de concursos es [${rangeStart}-${rangeEnd}] que corresponde con la página ${pageNum+1}");
 
     currentPageList.clear();
     currentPageList = contestsListFiltered.getRange(rangeStart, rangeEnd).toList();
@@ -164,7 +169,7 @@ class ContestsListComp {
   }
 
   void refreshListOrder() {
-    if (_sortOrder == null) {
+    if (_sortOrder == null || _sortOrder.isEmpty) {
       return;
     }
 
@@ -223,6 +228,7 @@ class ContestsListComp {
         }
       }
     });
+    contestCount = contestsListFiltered.length;
   }
 
 
@@ -255,7 +261,7 @@ class ContestsListComp {
 
   String _sortOrder = "";
 
-  int _contestsCount  = 0;
+  int _contestCount   = 0;
   int _itemsPerPage   = 0;
   int _currentPage    = 0;
 

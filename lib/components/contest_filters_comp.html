@@ -2,10 +2,10 @@
   <div id="contestSortsFilters">
 
     <!-- Resumen y Botón de filtros XS -->
-    <div class="choosed-filters-container" ng-show="scrDet.isXsScreen">
-        <div class="competition-filter-name"><!-- ng-bind-html="filterResume">--> </div>
+    <div class="choosed-filters-container" ng-if="scrDet.isXsScreen">
+        <div class="competition-filter-name" ng-bind-html="filterResume"></div>
         <div class="filterToggler">
-          <div id="filtersButtonMobile" type="button" class="btn filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse" data-target="#filtersPanel">Filtros</div>
+          <div id="filtersButtonMobile" type="button" class="btn filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse" data-target="#filtersPanel">FILTROS</div>
         </div>
     </div>
 
@@ -13,7 +13,7 @@
     <div id="contestFastSort">
       <span class="filter-text">Ordenar por: </span>
       <div class="btn-group" >
-        <div ng-repeat="button in sortingButtons" id="{{button['id']}}" type="button" class="btn sorting-button" ng-class="button['state']" ng-click="sortListByField(button['field-name'])">{{button["name"]}}</div>
+        <div ng-repeat="button in sortingButtons" id="{{button['id']}}" type="button" class="btn sorting-button" ng-class="button['state']" ng-click="sortListByField(button['field-name'])">{{button["name"].toUpperCase()}}</div>
       </div>
     </div>
 
@@ -23,7 +23,7 @@
     </div>
 
     <div class="filterToggler" ng-show="!scrDet.isXsScreen">
-        <div id="filtersButtonDesktop" type="button" class="btn filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse">Filtros</div>
+        <div id="filtersButtonDesktop" type="button" class="btn filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse">FILTROS</div>
     </div>
 
   </div>
@@ -37,7 +37,7 @@
 
               <div class="button-check" ng-repeat="contestType in contestTypeFilterList">
                 <input id="{{contestType['id']}}" type="checkbox" ng-model="contestType['checked']" ng-disabled="contestType['disabled']"  ng-click="filterByType()">
-                <label for="{{contestType['id']}}">{{filtersFriendlyName["FILTER_TOURNAMENT"][contestType["name"]].toUpperCase()}}</label>
+                <label for="{{contestType['id']}}">{{contestType["text"].toUpperCase()}}</label>
               </div>
 
             </div>
@@ -52,7 +52,7 @@
 
               <div class="button-check" ng-repeat="tier in salaryCapFilterList">
                 <input id="filtroSalary_{{$index}}" type="checkbox" ng-model="tier['checked']" ng-disabled="tier['disabled']" ng-click="filterByTier()">
-                <label for="filtroSalary_{{$index}}">{{filtersFriendlyName["FILTER_TIER"][tier["name"]].toUpperCase()}}</label>
+                <label for="filtroSalary_{{$index}}">{{tier["text"].toUpperCase()}}</label>
               </div>
               <!--
               <div class="button-check">

@@ -59,11 +59,15 @@ class ContestFiltersComp implements ShadowRootAware {
   //Lista de filtros
   Map<String, dynamic> filterList = {};
 
-
   ScreenDetectorService scrDet;
 
 
   /********* BINDINGS */
+  @NgOneWay("contest-count")
+  void set contestsCount(int value) {
+    _contestCount = value;
+  }
+
   @NgOneWay("contests-list")
    void set contestsList(List<Contest> value) {
     if (value == null) {
@@ -92,6 +96,9 @@ class ContestFiltersComp implements ShadowRootAware {
 
   // Rango máximo del filtro del EntryFee
   String get filterEntryFeeRangeMax => "1";
+
+  // Bloque HTML con el resumen de los filtros aplicados
+  String get filterResume =>/* xsFilterList.join("<br>") + */"<div>Torneos disponibles <span class='contest-count'>" + _contestCount.toString() + "</span></div>";
 
   ContestFiltersComp(this.scrDet) {
     initializeFilterValues();
@@ -137,17 +144,17 @@ class ContestFiltersComp implements ShadowRootAware {
 
     // Lista de tipos de concurso.
     contestTypeFilterList = [
-       {'name':"FREE",        'checked':false, 'disabled':true, 'id':'filterTournamentTypeFree'}
-      ,{'name':"HEAD_TO_HEAD",'checked':false, 'disabled':true, 'id':'filterTournamentTypeHeadToHead'}
-      ,{'name':"LEAGUE",      'checked':false, 'disabled':true, 'id':'filterTournamentTypeLeague'}
-      ,{'name':"FIFTY_FIFTY", 'checked':false, 'disabled':true, 'id':'filterTournamentTypeFiftyFifty'}
+       {'name':"FREE",        'text':'Gratuitos', 'checked':false, 'disabled':true, 'id':'filterTournamentTypeFree'}
+      ,{'name':"HEAD_TO_HEAD",'text':'1 contra 1','checked':false, 'disabled':true, 'id':'filterTournamentTypeHeadToHead'}
+      ,{'name':"LEAGUE",      'text':'Liga',      'checked':false, 'disabled':true, 'id':'filterTournamentTypeLeague'}
+      ,{'name':"FIFTY_FIFTY", 'text':'50 / 50',   'checked':false, 'disabled':true, 'id':'filterTournamentTypeFiftyFifty'}
     ];
 
     // Lista de tipos de Limites de salarios.
     salaryCapFilterList = [
-       {'name':"BEGGINER", 'checked':false, 'disabled':true}
-      ,{'name':"STANDARD", 'checked':false, 'disabled':true}
-      ,{'name':"SKILLEDS", 'checked':false, 'disabled':true}
+       {'name':"BEGGINER", 'text':'Principiante', 'checked':false, 'disabled':true}
+      ,{'name':"STANDARD", 'text':'Estandar',     'checked':false, 'disabled':true}
+      ,{'name':"SKILLEDS", 'text':'Experto',      'checked':false, 'disabled':true}
     ];
 
     // Rango de Entry Fee
@@ -285,15 +292,10 @@ class ContestFiltersComp implements ShadowRootAware {
   String _filterEntryFeeMax;
 
   List<Contest> _contestList;
+  int _contestCount = 0;
 
   String _sortField;
   bool _minToMaxSortDir = false;
 
   bool isFirstTime = true;
-
-  /*********** HELPERS */
-  void whatFilterIsClicked(mapa) {
-    print("Se ha hecho click en el filtro ${mapa['name']}");
-  }
-
 }

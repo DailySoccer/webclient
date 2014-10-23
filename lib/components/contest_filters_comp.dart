@@ -152,9 +152,9 @@ class ContestFiltersComp implements ShadowRootAware {
 
     // Lista de tipos de Limites de salarios.
     salaryCapFilterList = [
-       {'name':"BEGGINER", 'text':'Principiante', 'checked':false, 'disabled':true}
-      ,{'name':"STANDARD", 'text':'Estandar',     'checked':false, 'disabled':true}
-      ,{'name':"SKILLEDS", 'text':'Experto',      'checked':false, 'disabled':true}
+       {'name':"BEGGINER", 'text':'Principiante', 'checked':false, 'disabled':true, 'id':'filterTournamentTierBegginer'}
+      ,{'name':"STANDARD", 'text':'Estandar',     'checked':false, 'disabled':true, 'id':'filterTournamentTierStandard'}
+      ,{'name':"SKILLEDS", 'text':'Experto',      'checked':false, 'disabled':true, 'id':'filterTournamentTierSkilled'}
     ];
 
     // Rango de Entry Fee
@@ -212,11 +212,22 @@ class ContestFiltersComp implements ShadowRootAware {
     return ( range == null || range == "" ) ? ["0","1"] : range;
   }
 
-  void filterByType() {
+  void filterByType(Map m) {
+    contestTypeFilterList.forEach((elem) {
+      if (elem['name'] == m['name']) {
+        elem['checked'] = !elem['checked'];
+      }
+    });
+
     addFilter(FILTER_TOURNAMENT, contestTypeFilterList.where((element) => element['checked'] == true).map((element) => element['name']).toList());
   }
 
-  void filterByTier() {
+  void filterByTier(Map m) {
+    contestTypeFilterList.forEach((elem) {
+      if (elem['name'] == m['name']) {
+        elem['checked'] = !elem['checked'];
+      }
+    });
     addFilter(FILTER_TIER, salaryCapFilterList.where((element) => element['checked'] == true ).map((element) => element['name']).toList());
   }
 

@@ -71,9 +71,15 @@ class ContestFiltersComp implements ShadowRootAware {
     }
     _contestList = value;
     setFilterValues();
+    //La primera vez, el orden por defecto es por fecha de mas asc
+    if (isFirstTime) {
+      _sortField = 'contest-start-time';
+      sortListByField('contest-start-time');
+      isFirstTime = false;
+    }
   }
 
-  @NgTwoWay("on-sort-order-change")
+  @NgCallback("on-sort-order-change")
   Function onSortOrderChange;
 
   @NgCallback('on-filter-change')
@@ -148,12 +154,11 @@ class ContestFiltersComp implements ShadowRootAware {
     entryFeeSliderRange = [0, 1];
   }
 
-  //TODO: Crear los botones de filtrado con un ng-repeat
   void initializeSortValues(){
     sortingButtons = [
-       {'name':"Nombre", 'state':'', 'id':'orderByName'}
-      ,{'name':"Entrada", 'state':'', 'id':'orderByEntryFee'}
-      ,{'name':"Comienzo", 'state':'', 'id':'orderByStartDate'}
+       {'name':"Nombre", 'state':'', 'id':'orderByName', 'field-name':'contest-name'}
+      ,{'name':"Entrada", 'state':'', 'id':'orderByEntryFee', 'field-name':'contest-entry-fee'}
+      ,{'name':"Comienzo", 'state':'', 'id':'orderByStartDate', 'field-name':'contest-start-time'}
     ];
   }
 
@@ -162,7 +167,6 @@ class ContestFiltersComp implements ShadowRootAware {
       _contestList.forEach( (contest) {
         // Seteo de los "tipos de concursos"
         contestTypeFilterList.where( (map) => map['name'] == contest.tournamentType).first['disabled'] = false;
-
         // Seteo de los "salary caps"
         salaryCapFilterList.where( (map) => map['name'] == contest.tier).first["disabled"] = false;
       });
@@ -226,6 +230,21 @@ class ContestFiltersComp implements ShadowRootAware {
     onFilterChange({'filterList':filterList});
   }
 
+  void sortListByField(String fieldName) {
+    if (_sortField != fieldName) {
+      _minToMaxSortDir = true;
+      _sortField = fieldName;
+    }
+    else {
+      _minToMaxSortDir = !_minToMaxSortDir;
+    }
+    sortingButtons.forEach((element) {
+      element["state"] = _sortField != element['field-name'] ? "" : _minToMaxSortDir ? "asc" : "desc";
+    });
+
+    onSortOrderChange({'fieldName': _sortField + (_minToMaxSortDir ? "_asc" : "_desc")});
+  }
+
   /********* IMPLEMENTATIONS */
   void onShadowRoot(emulatedRoot) {
 
@@ -266,6 +285,11 @@ class ContestFiltersComp implements ShadowRootAware {
   String _filterEntryFeeMax;
 
   List<Contest> _contestList;
+
+  String _sortField;
+  bool _minToMaxSortDir = false;
+
+  bool isFirstTime = true;
 
   /*********** HELPERS */
   void whatFilterIsClicked(mapa) {

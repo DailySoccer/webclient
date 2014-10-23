@@ -9,7 +9,7 @@
   </div>
 
   <!-- Filtros y Ordenación -->
-  <contest-filters-comp contests-list="activeContestsService.activeContests" on-sorting-change="onShortChange(sort)" on-filter-change="onFilterChange(filterList)"></contest-filters-comp>
+  <contest-filters-comp contests-list="activeContestsService.activeContests" on-sort-order-change="onSortOrderChange(fieldName)" on-filter-change="onFilterChange(filterList)"></contest-filters-comp>
 
   <!-- Lista de concursos DESKTOP -->
   <contests-list  contests-list="activeContestsService.activeContests"

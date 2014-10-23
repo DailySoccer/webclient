@@ -21,7 +21,6 @@ class ContestsListComp {
   // Lista de concursos filtrada
   List<Contest> contestsListFiltered = [];
 
-
   /********* BINDINGS */
   @NgOneWay("contests-list")
   void set contestsList(List<Contest> value) {
@@ -30,37 +29,43 @@ class ContestsListComp {
     }
     print ('-CONTEST_LIST-: Recibida la lista de concursos y contiene ${value.length.toString()} entradas');
     _contestsListOriginal = value;
-    refreshListWithFilters();
+    refreshList();
   }
 
   @NgOneWay("tournament-type-filter")
     void set filterByType(value) {
     print ('-CONTEST_LIST-: Recibido el filtro por tipo de concurso ${value.toString()}');
     _filterList["FILTER_TOURNAMENT"] = value;
-    refreshListWithFilters();
+    refreshList();
   }
 
   @NgOneWay("salary-cap-filter")
     void set filterBySalaryCap(value) {
     print ('-CONTEST_LIST-: Recibido el filtro por tipo de concurso ${value.toString()}');
     _filterList["FILTER_TIER"] = value;
-    refreshListWithFilters();
+    refreshList();
   }
 
   @NgOneWay("entry-fee-filter")
     void set filterByEntryFee(value) {
     print ('-CONTEST_LIST-: Recibido el filtro por tipo de concurso ${value.toString()}');
     _filterList["FILTER_ENTRY_FEE"] = value;
-    refreshListWithFilters();
+    refreshList();
   }
 
   @NgOneWay("name-filter")
     void set filterByName(value) {
     print ('-CONTEST_LIST-: Recibido el filtro por tipo de concurso ${value.toString()}');
     _filterList["FILTER_CONTEST_NAME"] = value;
-    refreshListWithFilters();
+    refreshList();
   }
 
+  @NgOneWay("sorting")
+    void set sorting(value) {
+    print("-CONTEST_LIST-: Orden de la lista ${value}");
+    _sortOrder = value;
+    refreshList();
+  }
 
   @NgOneWay("action-button-title")
   String actionButtonTitle = "Ver";
@@ -135,47 +140,60 @@ class ContestsListComp {
     return mainContestEntry.prize;
   }
 
-  void updateCurrentPageList(int currentPage, int itemsPerPage) {
+  void updatePageList(int pageNum, int itemsPerPage) {
     // Determinamos que elementos se mostrarán en la pagina actual
-    int rangeStart =  (contestsListFiltered == null || contestsListFiltered.length == 0) ? 0 : currentPage * itemsPerPage;
+    int rangeStart =  (contestsListFiltered == null || contestsListFiltered.length == 0) ? 0 : pageNum * itemsPerPage;
     int rangeEnd   =  (contestsListFiltered == null) ? 0 : (rangeStart + itemsPerPage < contestsListFiltered.length) ? rangeStart + itemsPerPage : contestsListFiltered.length;
+    currentPageList.clear();
     currentPageList = contestsListFiltered.getRange(rangeStart, rangeEnd).toList();
   }
 
-  void refreshSort() {
-    if (_sortType == null) {
+
+  void refreshList() {
+    refreshListWithFilters();
+    refreshListOrder();
+    updatePageList(_currentPage, _itemsPerPage);
+  }
+
+  void refreshListOrder() {
+    if (_sortOrder == null) {
       return;
     }
 
-    List<String> sortParams = _sortType.split('_');
+    List<String> sortParams = _sortOrder.split('_');
     if (sortParams.length != 2) {
       print("-CONTEST_LIST-: El número de parametros no se ha establecido correctamente. La forma correcta es \'campo\'_\'dirección\'. Pon atención a la barra baja \'_\'");
     }
 
+    List<Contest> tmp = [];
+    tmp.addAll(contestsListFiltered);
+    contestsListFiltered = [];
+
+
     switch(sortParams[0]) {
       case "contest-name":
-        contestsListFiltered.sort(( contest1, contest2) => ( sortParams[1] == "asc" ? contest1.compareNameTo(contest2) : contest2.compareNameTo(contest1)) );
+        tmp.sort(( contest1, contest2) => ( sortParams[1] == "asc" ? contest1.compareNameTo(contest2) : contest2.compareNameTo(contest1)) );
       break;
 
       case "contest-entry-fee":
-        contestsListFiltered.sort((contest1, contest2) => ( sortParams[1] == "asc"? contest1.compareEntryFeeTo(contest2) : contest2.compareEntryFeeTo(contest1)) );
+        tmp.sort((contest1, contest2) => ( sortParams[1] == "asc"? contest1.compareEntryFeeTo(contest2) : contest2.compareEntryFeeTo(contest1)) );
       break;
 
       case "contest-start-time":
-        contestsListFiltered.sort((contest1, contest2) => ( sortParams[1] == "asc"? contest1.compareStartDateTo(contest2) : contest2.compareStartDateTo(contest1)) );
+        tmp.sort((contest1, contest2) => ( sortParams[1] == "asc"? contest1.compareStartDateTo(contest2) : contest2.compareStartDateTo(contest1)) );
       break;
 
       default:
         print('-CONTEST_LIST-: No se ha encontrado el campo para ordenar');
       break;
     }
+    contestsListFiltered.addAll(tmp);
   }
 
   void refreshListWithFilters() {
     if (_filterList == null || _contestsListOriginal == null) {
       return;
     }
-
     contestsListFiltered = _contestsListOriginal;
     // Recorremos la lista de filtros
     _filterList.forEach((String key, dynamic value) {
@@ -217,7 +235,7 @@ class ContestsListComp {
     _currentPage = currentPage;
     _itemsPerPage = itemsPerPage;
     //Actualizamos la página actual de la lista.
-    updateCurrentPageList(_currentPage, _itemsPerPage);
+    updatePageList(_currentPage, _itemsPerPage);
   }
 
   /********* PRIVATE DECLARATIONS */
@@ -227,7 +245,8 @@ class ContestsListComp {
   // Lista de filtros a aplicar
   Map<String,dynamic> _filterList = {};
 
-  String _sortType;
+  String _sortOrder = "";
+
   int _contestsCount  = 0;
   int _itemsPerPage   = 0;
   int _currentPage    = 0;

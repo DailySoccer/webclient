@@ -373,7 +373,105 @@ tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpR
 
 
 """));
+<<<<<<< HEAD
 tc.put("packages/webclient/components/contest_header_comp.html", new HttpResponse(200, r"""<div id="headerContestWidget" ng-cloak>
+=======
+tc.put("/packages/webclient/components/contest_filters_comp.html", new HttpResponse(200, r"""<div id="contestFiltersRoot">
+  <div id="contestSortsFilters">
+
+    <!-- Resumen y Botón de filtros XS -->
+    <div class="choosed-filters-container" ng-show="scrDet.isXsScreen">
+        <div class="competition-filter-name"><!-- ng-bind-html="filterResume">--> </div>
+        <div class="filterToggler">
+          <div id="filtersButtonMobile" type="button" class="btn filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse" data-target="#filtersPanel">Filtros</div>
+        </div>
+    </div>
+
+    <!-- Ordenación -->
+    <div id="contestFastSort">
+      <span class="filter-text">Ordenar por: </span>
+      <div class="btn-group" >
+        <div ng-repeat="button in sortingButtons" id="{{button['id']}}" type="button" class="btn sorting-button" ng-class="button['state']" ng-click="sortListByField(button['field-name'])">{{button["name"]}}</div>
+      </div>
+    </div>
+
+    <!-- Filtro por nombre -->
+    <div id="contestFastSearch">
+        <input class="searcher" type="text" placeholder="Buscar torneo" ng-model="filterContestName" ng-keyUp="filterByName()">
+    </div>
+
+    <div class="filterToggler" ng-show="!scrDet.isXsScreen">
+        <div id="filtersButtonDesktop" type="button" class="btn filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse">Filtros</div>
+    </div>
+
+  </div>
+
+  <div id="filtersPanel" class="collapse">
+      <!-- Filtro x tipos de concurso -->
+      <div class="filter-column-tournaments">
+        <p class="filter-title">TORNEOS</p>
+        <div class="filter-content">
+            <div class="check-group-wrapper">
+
+              <div class="button-check" ng-repeat="contestType in contestTypeFilterList">
+                <input id="{{contestType['id']}}" type="checkbox" ng-model="contestType['checked']" ng-disabled="contestType['disabled']"  ng-click="filterByType()">
+                <label for="{{contestType['id']}}">{{filtersFriendlyName["FILTER_TOURNAMENT"][contestType["name"]].toUpperCase()}}</label>
+              </div>
+
+            </div>
+        </div>
+      </div>
+
+      <!-- Filtro x dificultad -->
+      <div class="filter-column-salary-limit">
+        <p class="filter-title">LÍMITE DE SALARIO</p>
+        <div class="filter-content">
+            <div class="check-group-wrapper">
+
+              <div class="button-check" ng-repeat="tier in salaryCapFilterList">
+                <input id="filtroSalary_{{$index}}" type="checkbox" ng-model="tier['checked']" ng-disabled="tier['disabled']" ng-click="filterByTier()">
+                <label for="filtroSalary_{{$index}}">{{filtersFriendlyName["FILTER_TIER"][tier["name"]].toUpperCase()}}</label>
+              </div>
+              <!--
+              <div class="button-check">
+                <input id="filtroEstandar" type="checkbox" ng-disabled="!hasStandardTier"
+                                                           ng-model="isStandardTierChecked"
+                                                           ng-click="refreshTierFilter()">
+                <label for="filtroEstandar">Estandar</label>
+              </div>
+              <div class="button-check">
+                <input id="filtroExperto" type="checkbox" ng-disabled="!hasSkilledTier"
+                                                          ng-model="isSkilledTierChecked"
+                                                          ng-click="filterByTier()">
+                <label for="filtroExperto">Experto</label>
+              </div>
+              -->
+          </div>
+        </div>
+      </div>
+
+      <div class="filter-column-entry-fee">
+        <p class="filter-title">ENTRADA</p>
+        <div class="filter-content">
+           <div class="entry-fee-value-min">MIN: {{filterEntryFeeRangeMin | number:0}}€ </div>
+           <div class="entry-fee-value-max">MAX: {{filterEntryFeeRangeMax | number:0}}€ </div>
+            <div class="slider-wrapper">
+              <div id="slider-range"></div>
+            </div>
+        </div>
+      </div>
+
+      <div class="reset-button-wrapper">
+        <button type="button" class="btn-reset" ng-click="resetAllFilters()">LIMPIAR FILTROS</button>
+      </div>
+      <div class="confirm-button-wrapper">
+        <button type="button" class="btn-confirm" ng-click="toggleFilterMenu()">ACEPTAR</button>
+      </div>
+  </div>
+
+</div>"""));
+tc.put("/packages/webclient/components/contest_header_comp.html", new HttpResponse(200, r"""<div id="headerContestWidget" ng-cloak>
+>>>>>>> 17416cb... Creación del componente "contest_filters_comp".
 
     <div class="contest-name">{{contestHeaderInfo['description']}}</div>
 
@@ -2004,6 +2102,7 @@ tc.put("packages/webclient/components/lobby_comp.html", new HttpResponse(200, r"
 
   </div>
 
+<<<<<<< HEAD
   <div id="filtersPanel" class="collapse">
       <!-- Comentado temporalmente hasta que se utilice --
       <div class="filter-column-competition" ng-if="!scrDet.isXsScreen")>
@@ -2044,6 +2143,10 @@ tc.put("packages/webclient/components/lobby_comp.html", new HttpResponse(200, r"
         </div>
       </div>
       -->
+=======
+  <!-- Filtros y Ordenación -->
+  <contest-filters-comp contests-list="activeContestsService.activeContests" on-sort-order-change="onSortOrderChange(fieldName)" on-filter-change="onFilterChange(filterList)"></contest-filters-comp>
+>>>>>>> 17416cb... Creación del componente "contest_filters_comp".
 
       <div class="filter-column-tournaments">
         <p class="filter-title">TORNEOS</p>

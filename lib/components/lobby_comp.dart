@@ -89,8 +89,12 @@ class LobbyComp implements DetachAware {
     }
   }
 
-  void onFilterChange(filterList) {
+  void onFilterChange(Map filterList) {
     lobbyFilters.addAll(filterList);
+  }
+
+  void onSortOrderChange(String fieldName) {
+    lobbySorting = fieldName;
   }
 
   // Handler que recibe cual es la nueva mediaquery aplicada según el ancho de la pantalla.

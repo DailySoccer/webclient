@@ -13,12 +13,7 @@
     <div id="contestFastSort">
       <span class="filter-text">Ordenar por: </span>
       <div class="btn-group" >
-        <div ng-repeat="button in sortingButtons" id="{{button['id']}}" type="button" class="btn sorting-button" ng-class="button['state']">{{button["name"]}}</div>
-       <!--
-        <div id="sortContestName"  type="button" class="btn sorting-button" ng-click="sortListByField('sortContestName', 'contest-name')">Nombre</div>
-        <div id="sortContestEntryFee"  type="button" class="btn sorting-button" ng-click="sortListByField('sortContestEntryFee', 'contest-entry-fee')">Entrada</div>
-        <div id="sortContestStartTime" type="button" class="btn sorting-button" ng-click="sortListByField('sortContestStartTime', 'contest-start-time')">Comienzo</div>
-       -->
+        <div ng-repeat="button in sortingButtons" id="{{button['id']}}" type="button" class="btn sorting-button" ng-class="button['state']" ng-click="sortListByField(button['field-name'])">{{button["name"]}}</div>
       </div>
     </div>
 

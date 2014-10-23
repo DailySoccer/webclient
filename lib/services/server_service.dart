@@ -11,8 +11,6 @@ abstract class ServerService {
   static final String URL = "url";
   static final String TIMES = "times";
   static final String SECONDS_TO_RETRY = "secondsToRetry";
-  static final String onSuccess = "onSuccess";
-  static final String onError   = "onError";
 
   void               setSessionToken(String sessionToken);
   Future<JsonObject> signup(String firstName, String lastName, String email, String nickName, String password);
@@ -43,7 +41,7 @@ abstract class ServerService {
   Future<JsonObject> getScoringRules();
 
   // Suscripción a eventos
-  void               subscribe(dynamic id, Map callbacks);
+  void               subscribe(dynamic id, {Function onSuccess, Function onError});
 
   // Debug
   Future<JsonObject> isSimulatorActivated();
@@ -52,6 +50,9 @@ abstract class ServerService {
 
 @Injectable()
 class DailySoccerServer implements ServerService {
+  static final String ON_SUCCESS = "onSuccess";
+  static final String ON_ERROR   = "onError";
+
   static void startContext(String path) {
     _context++;
   }
@@ -137,9 +138,18 @@ class DailySoccerServer implements ServerService {
     return _innerServerCall("${HostServer.url}/get_scoring_rules", retryTimes: -1);
   }
 
-  void subscribe(dynamic id, Map callbacks) {
-    // Incluimos el identificador en el propio Map
+  void subscribe(dynamic id, {Function onSuccess, Function onError}) {
+    Map callbacks = new Map();
+
     callbacks['_id'] = id;
+
+    if (onSuccess != null) {
+      callbacks[ON_SUCCESS] = onSuccess;
+    }
+
+    if (onError != null) {
+      callbacks[ON_ERROR] = onError;
+    }
 
     _subscribers.add(callbacks);
   }
@@ -187,14 +197,14 @@ class DailySoccerServer implements ServerService {
 
     Future<HttpResponse> http = ((postData != null) ? _http.post(url, postData, headers: headers, params: queryString) : _http.get(url, headers: headers, params: queryString))
         .then((httpResponse) {
-          _notify(ServerService.onSuccess, {ServerService.URL: url});
+          _notify(ON_SUCCESS, {ServerService.URL: url});
 
           _processSuccess(url, httpResponse, completer);
         })
         .catchError((error) {
           ConnectionError connectionError = new ConnectionError.fromHttpResponse(error);
           if (connectionError.isConnectionError || connectionError.isServerError) {
-            _notify(ServerService.onError, {ServerService.URL: url, ServerService.TIMES: retryTimes, ServerService.SECONDS_TO_RETRY: 3});
+            _notify(ON_ERROR, {ServerService.URL: url, ServerService.TIMES: retryTimes, ServerService.SECONDS_TO_RETRY: 3});
 
             Logger.root.severe("_innerServerCall error: $error, url: $url, retry: $retryTimes");
             if ((retryTimes == -1) || (retryTimes > 0)) {

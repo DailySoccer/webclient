@@ -14,7 +14,7 @@ class GlobalConnectionComp {
   String msg = "";
 
   GlobalConnectionComp(ServerService serverService) {
-    serverService.subscribe("GlobalConnection", {'onSuccess': onServerSuccess, 'onError': onServerError});
+    serverService.subscribe("GlobalConnection", onSuccess: onServerSuccess, onError: onServerError);
 
     Logger.root.info("GlobalConnection initialized");
   }

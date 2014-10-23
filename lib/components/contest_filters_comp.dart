@@ -51,7 +51,7 @@ class ContestFiltersComp implements ShadowRootAware {
   List<Map> salaryCapFilterList = [];
 
   // Valores para el rango de Entry Fee
-  List<int> entryFeeSliderRange = [];
+  List<int> entryFeeSliderRange = [0,1];
 
   // Valores para los botones de orden
   List<Map> sortingButtons = [];
@@ -92,10 +92,10 @@ class ContestFiltersComp implements ShadowRootAware {
 
   /********* PROPERTIES */
   // Rango minímo del filtro del EntryFee
-  String get filterEntryFeeRangeMin => "0";
+  String get filterEntryFeeRangeMin => getEntryFeeFilterRange()[ENTRY_FEE_MIN_RANGE].toString();
 
   // Rango máximo del filtro del EntryFee
-  String get filterEntryFeeRangeMax => "1";
+  String get filterEntryFeeRangeMax => getEntryFeeFilterRange()[ENTRY_FEE_MAX_RANGE].toString();
 
   // Bloque HTML con el resumen de los filtros aplicados
   String get filterResume =>/* xsFilterList.join("<br>") + */"<div>Torneos disponibles <span class='contest-count'>" + _contestCount.toString() + "</span></div>";
@@ -186,7 +186,7 @@ class ContestFiltersComp implements ShadowRootAware {
   void setEntryFeeFilterValues() {
     entryFeeSliderRange = getFilterEntryFeeRange();
     JsUtils.runJavascript('#slider-range','noUiSlider', {'range': {'min': entryFeeSliderRange[ENTRY_FEE_MIN_RANGE], 'max': entryFeeSliderRange[ENTRY_FEE_MAX_RANGE]}}, true);
-    JsUtils.runJavascript('#slider-range','val', entryFeeSliderRange);
+    JsUtils.runJavascript('#slider-range','val', [0,100]);
   }
 
   // Devuelve los valores posibles para el filtro de rango de entrada MIN: 0 y MAX: maximo valor de entrada de un concurso ( ó 1).
@@ -194,10 +194,20 @@ class ContestFiltersComp implements ShadowRootAware {
     int maxLimit = 1;
     if(_contestList != null) {
       _contestList.forEach( (contest) {
+        print(max(contest.entryFee, maxLimit));
+        if(contest.entryFee > maxLimit) {
+
+          print("Nuevo maximo Entry fee encontrado: ${contest.entryFee}");
+        }
         maxLimit = max(contest.entryFee, maxLimit);
       });
     }
     return [0, maxLimit];
+  }
+
+  dynamic getEntryFeeFilterRange(){
+    var range = JsUtils.runJavascript("#slider-range", 'val', null);
+    return ( range == null || range == "" ) ? ["0","1"] : range;
   }
 
   void filterByType() {
@@ -282,6 +292,7 @@ class ContestFiltersComp implements ShadowRootAware {
 
     // Nos subscribimos al evento change para recibir los valores que elija en cuatro
     JsUtils.runJavascript('#slider-range', 'on', {'set': onEntryFeeRangeChange});
+
   }
 
   /********* PRIVATE DECLARATIONS */

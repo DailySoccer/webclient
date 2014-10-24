@@ -5667,14 +5667,14 @@ button.close {
 .section-container:after,
 #lobbyTopInfobar:before,
 #lobbyTopInfobar:after,
-#infoAndFilterHeader #contestSortsFilters:before,
-#infoAndFilterHeader #contestSortsFilters:after,
-#infoAndFilterHeader #contestSortsFilters .choosed-filters-container:before,
-#infoAndFilterHeader #contestSortsFilters .choosed-filters-container:after,
-#infoAndFilterHeader #contestSortsFilters .choosed-filters-container:before,
-#infoAndFilterHeader #contestSortsFilters .choosed-filters-container:after,
-#infoAndFilterHeader #filtersPanel:before,
-#infoAndFilterHeader #filtersPanel:after,
+#contestFiltersRoot #contestSortsFilters:before,
+#contestFiltersRoot #contestSortsFilters:after,
+#contestFiltersRoot #contestSortsFilters .choosed-filters-container:before,
+#contestFiltersRoot #contestSortsFilters .choosed-filters-container:after,
+#contestFiltersRoot #contestSortsFilters .choosed-filters-container:before,
+#contestFiltersRoot #contestSortsFilters .choosed-filters-container:after,
+#contestFiltersRoot #filtersPanel:before,
+#contestFiltersRoot #filtersPanel:after,
 .pre-filter-row:before,
 .pre-filter-row:after,
 #mainMenu .inner-wrapper:before,
@@ -5779,10 +5779,10 @@ button.close {
 .contest-id-bar:after,
 .section-container:after,
 #lobbyTopInfobar:after,
-#infoAndFilterHeader #contestSortsFilters:after,
-#infoAndFilterHeader #contestSortsFilters .choosed-filters-container:after,
-#infoAndFilterHeader #contestSortsFilters .choosed-filters-container:after,
-#infoAndFilterHeader #filtersPanel:after,
+#contestFiltersRoot #contestSortsFilters:after,
+#contestFiltersRoot #contestSortsFilters .choosed-filters-container:after,
+#contestFiltersRoot #contestSortsFilters .choosed-filters-container:after,
+#contestFiltersRoot #filtersPanel:after,
 .pre-filter-row:after,
 #mainMenu .inner-wrapper:after,
 .my-contest-title-tab:after,
@@ -6258,26 +6258,21 @@ button.close {
   }
 }
 @media (min-width: 768px) {
-  #headerContestWidget .contest-coins .contest-price span::before {
-    content: " ";
-    background-image: url("../images/iconPrice.png");
-    width: 26px;
-    height: 24px;
-    display: inline-block;
-    position: absolute;
-    top: 3px;
-    left: 0;
+  #headerContestWidget .contest-coins {
+    /*.contest-price span::before {
+				.addIcon("iconPrice.png");
+			}*/
   }
   #headerContestWidget .contest-coins .contest-prize span::before {
     content: " ";
     background-image: url("../images/iconPrize.png");
-    width: 26px;
-    height: 24px;
+    width: 32px;
+    height: 26px;
     display: inline-block;
     position: absolute;
     top: 3px;
     left: 0;
-    left: -5px;
+    left: -10px;
   }
 }
 #headerContestWidget .contest-start-date {
@@ -7238,6 +7233,9 @@ button#infoContent .modal-info-head button.close {
     padding-left: 28px;
   }
 }
+.contests-list-root .contest-row .column-contest-prize-header-title {
+  padding-left: 10px;
+}
 @media (max-width: 767px) {
   .contests-list-root .contest-row .column-contest-prize-header-title {
     display: none !important;
@@ -7276,6 +7274,12 @@ button#infoContent .modal-info-head button.close {
     padding: 0 0 0 28px;
   }
 }
+.contests-list-root .contest-row .column-contest-price-content .prize,
+.contests-list-root .contest-row .column-contest-prize-content .prize,
+.contests-list-root .contest-row .column-contest-points-content .prize,
+.contests-list-root .contest-row .column-contest-position-content .prize {
+  padding-left: 10px;
+}
 .contests-list-root .contest-row .column-contest-price-content > span,
 .contests-list-root .contest-row .column-contest-prize-content > span,
 .contests-list-root .contest-row .column-contest-points-content > span,
@@ -7301,22 +7305,16 @@ button#infoContent .modal-info-head button.close {
   }
 }
 @media (min-width: 768px) {
-  .contests-list-root .contest-row .column-contest-price span::before {
-    content: " ";
-    background-image: url("../images/iconPrice.png");
-    width: 26px;
-    height: 24px;
-    display: inline-block;
-    vertical-align: middle;
-    position: absolute;
-    left: 5px;
-    top: 3px;
+  .contests-list-root .contest-row {
+    /*.column-contest-price span::before {
+				.addAbsoluteIcon("iconPrice.png", 32px, 26px, 5px, 3px);
+			}*/
   }
   .contests-list-root .contest-row .column-contest-prize span::before {
     content: " ";
     background-image: url("../images/iconPrize.png");
-    width: 26px;
-    height: 24px;
+    width: 32px;
+    height: 26px;
     display: inline-block;
     vertical-align: middle;
     position: absolute;
@@ -10177,7 +10175,7 @@ fieldset[disabled] .landing-wrapper .button-play {
   line-height: 50px;
   text-align: center;
 }
-#infoAndFilterHeader #contestSortsFilters {
+#contestFiltersRoot #contestSortsFilters {
   margin-left: -15px;
   margin-right: -15px;
   background-color: #ffffff;
@@ -10185,79 +10183,79 @@ fieldset[disabled] .landing-wrapper .button-play {
   padding-bottom: 15px;
 }
 @media (max-width: 991px) {
-  #infoAndFilterHeader #contestSortsFilters {
+  #contestFiltersRoot #contestSortsFilters {
     margin-right: auto;
     margin-left: auto;
     padding-left: 15px;
     padding-right: 15px;
   }
-  #infoAndFilterHeader #contestSortsFilters > .navbar-header,
-  #infoAndFilterHeader #contestSortsFilters > .navbar-collapse {
+  #contestFiltersRoot #contestSortsFilters > .navbar-header,
+  #contestFiltersRoot #contestSortsFilters > .navbar-collapse {
     margin-right: -15px;
     margin-left: -15px;
   }
 }
 @media (max-width: 991px) and (min-width: 768px) {
-  #infoAndFilterHeader #contestSortsFilters > .navbar-header,
-  #infoAndFilterHeader #contestSortsFilters > .navbar-collapse {
+  #contestFiltersRoot #contestSortsFilters > .navbar-header,
+  #contestFiltersRoot #contestSortsFilters > .navbar-collapse {
     margin-right: 0;
     margin-left: 0;
   }
 }
 @media (min-width: 992px) {
-  #infoAndFilterHeader #contestSortsFilters {
+  #contestFiltersRoot #contestSortsFilters {
     margin-right: auto;
     margin-left: auto;
     padding-left: 15px;
     padding-right: 15px;
   }
-  #infoAndFilterHeader #contestSortsFilters > .navbar-header,
-  #infoAndFilterHeader #contestSortsFilters > .navbar-collapse {
+  #contestFiltersRoot #contestSortsFilters > .navbar-header,
+  #contestFiltersRoot #contestSortsFilters > .navbar-collapse {
     margin-right: -15px;
     margin-left: -15px;
   }
 }
 @media (min-width: 992px) and (min-width: 768px) {
-  #infoAndFilterHeader #contestSortsFilters {
+  #contestFiltersRoot #contestSortsFilters {
     width: 750px;
   }
 }
 @media (min-width: 992px) and (min-width: 992px) {
-  #infoAndFilterHeader #contestSortsFilters {
+  #contestFiltersRoot #contestSortsFilters {
     width: 970px;
   }
 }
 @media (min-width: 992px) and (min-width: 1200px) {
-  #infoAndFilterHeader #contestSortsFilters {
+  #contestFiltersRoot #contestSortsFilters {
     width: 970px;
   }
 }
 @media (min-width: 992px) and (min-width: 768px) {
-  #infoAndFilterHeader #contestSortsFilters > .navbar-header,
-  #infoAndFilterHeader #contestSortsFilters > .navbar-collapse {
+  #contestFiltersRoot #contestSortsFilters > .navbar-header,
+  #contestFiltersRoot #contestSortsFilters > .navbar-collapse {
     margin-right: 0;
     margin-left: 0;
   }
 }
 @media (max-width: 767px) {
-  #infoAndFilterHeader #contestSortsFilters {
+  #contestFiltersRoot #contestSortsFilters {
     padding: 0;
   }
 }
-#infoAndFilterHeader #contestSortsFilters .left-separator {
+#contestFiltersRoot #contestSortsFilters .left-separator {
   border-left: 1px solid #434343;
 }
 @media (max-width: 991px) {
-  #infoAndFilterHeader #contestSortsFilters .left-separator {
+  #contestFiltersRoot #contestSortsFilters .left-separator {
     border-width: 0;
   }
 }
 @media (min-width: 992px) {
-  #infoAndFilterHeader #contestSortsFilters .left-separator {
+  #contestFiltersRoot #contestSortsFilters .left-separator {
     padding-left: 20px;
   }
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSort {
+#contestFiltersRoot #contestSortsFilters #contestFastSort {
   float: left;
   width: 100%;
   position: relative;
@@ -10266,19 +10264,19 @@ fieldset[disabled] .landing-wrapper .button-play {
   padding-right: 15px;
 }
 @media (min-width: 768px) {
-  #infoAndFilterHeader #contestSortsFilters #contestFastSort {
+  #contestFiltersRoot #contestSortsFilters #contestFastSort {
     float: left;
     width: 50%;
   }
 }
 @media (min-width: 992px) {
-  #infoAndFilterHeader #contestSortsFilters #contestFastSort {
+  #contestFiltersRoot #contestSortsFilters #contestFastSort {
     float: left;
     width: 50%;
   }
 }
 @media (max-width: 767px) {
-  #infoAndFilterHeader #contestSortsFilters #contestFastSort {
+  #contestFiltersRoot #contestSortsFilters #contestFastSort {
     padding-bottom: 10px;
     padding-top: 10px;
     padding-left: 0;
@@ -10290,49 +10288,49 @@ fieldset[disabled] .landing-wrapper .button-play {
     border-radius: 0;
   }
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .filter-text {
+#contestFiltersRoot #contestSortsFilters #contestFastSort .filter-text {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 8pt;
   color: #434343;
 }
 @media (max-width: 991px) {
-  #infoAndFilterHeader #contestSortsFilters #contestFastSort .filter-text {
+  #contestFiltersRoot #contestSortsFilters #contestFastSort .filter-text {
     display: none !important;
     visibility: hidden !important;
   }
 }
 @media (max-width: 767px) {
-  #infoAndFilterHeader #contestSortsFilters #contestFastSort .filter-text {
+  #contestFiltersRoot #contestSortsFilters #contestFastSort .filter-text {
     padding: 0 10px;
   }
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .btn-group {
+#contestFiltersRoot #contestSortsFilters #contestFastSort .btn-group {
   position: relative;
   display: inline-block;
   vertical-align: middle;
   padding-left: 13px;
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .btn-group > .btn {
+#contestFiltersRoot #contestSortsFilters #contestFastSort .btn-group > .btn {
   position: relative;
   float: left;
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .btn-group > .btn:hover,
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .btn-group > .btn:focus,
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .btn-group > .btn:active,
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .btn-group > .btn.active {
+#contestFiltersRoot #contestSortsFilters #contestFastSort .btn-group > .btn:hover,
+#contestFiltersRoot #contestSortsFilters #contestFastSort .btn-group > .btn:focus,
+#contestFiltersRoot #contestSortsFilters #contestFastSort .btn-group > .btn:active,
+#contestFiltersRoot #contestSortsFilters #contestFastSort .btn-group > .btn.active {
   z-index: 2;
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .btn-group > .btn:focus {
+#contestFiltersRoot #contestSortsFilters #contestFastSort .btn-group > .btn:focus {
   outline: none;
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .btn-group .btn + .btn,
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .btn-group .btn + .btn-group,
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .btn-group .btn-group + .btn,
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .btn-group .btn-group + .btn-group {
+#contestFiltersRoot #contestSortsFilters #contestFastSort .btn-group .btn + .btn,
+#contestFiltersRoot #contestSortsFilters #contestFastSort .btn-group .btn + .btn-group,
+#contestFiltersRoot #contestSortsFilters #contestFastSort .btn-group .btn-group + .btn,
+#contestFiltersRoot #contestSortsFilters #contestFastSort .btn-group .btn-group + .btn-group {
   margin-left: -1px;
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button {
+#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button {
   color: #ffffff;
   background-color: #59add5;
   border-color: #cccccc;
@@ -10348,74 +10346,74 @@ fieldset[disabled] .landing-wrapper .button-play {
   color: #777777;
   padding: 6px 23px;
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button:hover,
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button:focus,
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button:active,
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button.active,
-.open .dropdown-toggle#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button {
+#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:hover,
+#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:focus,
+#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:active,
+#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button.active,
+.open .dropdown-toggle#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button {
   color: #ffffff;
   background-color: #389dcd;
   border-color: #adadad;
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button:active,
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button.active,
-.open .dropdown-toggle#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button {
+#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:active,
+#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button.active,
+.open .dropdown-toggle#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button {
   background-image: none;
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button.disabled,
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button[disabled],
-fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button,
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button.disabled:hover,
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button[disabled]:hover,
-fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button:hover,
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button.disabled:focus,
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button[disabled]:focus,
-fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button:focus,
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button.disabled:active,
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button[disabled]:active,
-fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button:active,
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button.disabled.active,
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button[disabled].active,
-fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button.active {
+#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button.disabled,
+#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button[disabled],
+fieldset[disabled] #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button,
+#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button.disabled:hover,
+#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button[disabled]:hover,
+fieldset[disabled] #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:hover,
+#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button.disabled:focus,
+#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button[disabled]:focus,
+fieldset[disabled] #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:focus,
+#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button.disabled:active,
+#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button[disabled]:active,
+fieldset[disabled] #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:active,
+#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button.disabled.active,
+#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button[disabled].active,
+fieldset[disabled] #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button.active {
   background-color: #59add5;
   border-color: #cccccc;
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button .badge {
+#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button .badge {
   color: #59add5;
   background-color: #ffffff;
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button[disabled] {
+#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button[disabled] {
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button:active,
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button[disabled],
-fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button {
+#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:active,
+#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button[disabled],
+fieldset[disabled] #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .sorting-button:hover {
+#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:hover {
   background-color: transparent;
   border-width: 1px;
   color: #434343;
   border-color: #434343;
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .asc::after {
+#contestFiltersRoot #contestSortsFilters #contestFastSort .asc::after {
   font-family: 'Glyphicons Halflings';
   content: "\E113";
   font-size: 5pt;
   color: #434343;
   margin-left: 5px;
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSort .desc::after {
+#contestFiltersRoot #contestSortsFilters #contestFastSort .desc::after {
   font-family: 'Glyphicons Halflings';
   content: "\E114";
   font-size: 5pt;
   color: #434343;
   margin-left: 5px;
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSearch {
+#contestFiltersRoot #contestSortsFilters #contestFastSearch {
   position: relative;
   min-height: 1px;
   padding-left: 15px;
@@ -10423,33 +10421,33 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #contestFastSort .s
   border-left: 1px solid #434343;
 }
 @media (min-width: 768px) {
-  #infoAndFilterHeader #contestSortsFilters #contestFastSearch {
+  #contestFiltersRoot #contestSortsFilters #contestFastSearch {
     float: left;
     width: 41.66666667%;
   }
 }
 @media (min-width: 992px) {
-  #infoAndFilterHeader #contestSortsFilters #contestFastSearch {
+  #contestFiltersRoot #contestSortsFilters #contestFastSearch {
     float: left;
     width: 41.66666667%;
   }
 }
 @media (max-width: 767px) {
-  #infoAndFilterHeader #contestSortsFilters #contestFastSearch {
+  #contestFiltersRoot #contestSortsFilters #contestFastSearch {
     display: none !important;
   }
 }
 @media (max-width: 991px) {
-  #infoAndFilterHeader #contestSortsFilters #contestFastSearch {
+  #contestFiltersRoot #contestSortsFilters #contestFastSearch {
     border-width: 0;
   }
 }
 @media (min-width: 992px) {
-  #infoAndFilterHeader #contestSortsFilters #contestFastSearch {
+  #contestFiltersRoot #contestSortsFilters #contestFastSearch {
     padding-left: 20px;
   }
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSearch .searcher {
+#contestFiltersRoot #contestSortsFilters #contestFastSearch .searcher {
   display: block;
   width: 100%;
   height: 34px;
@@ -10472,33 +10470,33 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #contestFastSort .s
   box-shadow: none;
   border-width: 0;
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSearch .searcher:focus {
+#contestFiltersRoot #contestSortsFilters #contestFastSearch .searcher:focus {
   border-color: #66afe9;
   outline: 0;
   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
   box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSearch .searcher::-moz-placeholder {
+#contestFiltersRoot #contestSortsFilters #contestFastSearch .searcher::-moz-placeholder {
   color: #999999;
   opacity: 1;
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSearch .searcher:-ms-input-placeholder {
+#contestFiltersRoot #contestSortsFilters #contestFastSearch .searcher:-ms-input-placeholder {
   color: #999999;
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSearch .searcher::-webkit-input-placeholder {
+#contestFiltersRoot #contestSortsFilters #contestFastSearch .searcher::-webkit-input-placeholder {
   color: #999999;
 }
-#infoAndFilterHeader #contestSortsFilters #contestFastSearch .searcher[disabled],
-#infoAndFilterHeader #contestSortsFilters #contestFastSearch .searcher[readonly],
-fieldset[disabled] #infoAndFilterHeader #contestSortsFilters #contestFastSearch .searcher {
+#contestFiltersRoot #contestSortsFilters #contestFastSearch .searcher[disabled],
+#contestFiltersRoot #contestSortsFilters #contestFastSearch .searcher[readonly],
+fieldset[disabled] #contestFiltersRoot #contestSortsFilters #contestFastSearch .searcher {
   cursor: not-allowed;
   background-color: #eeeeee;
   opacity: 1;
 }
-textarea#infoAndFilterHeader #contestSortsFilters #contestFastSearch .searcher {
+textarea#contestFiltersRoot #contestSortsFilters #contestFastSearch .searcher {
   height: auto;
 }
-#infoAndFilterHeader #contestSortsFilters .choosed-filters-container {
+#contestFiltersRoot #contestSortsFilters .choosed-filters-container {
   margin-right: auto;
   margin-left: auto;
   padding-left: 15px;
@@ -10508,33 +10506,33 @@ textarea#infoAndFilterHeader #contestSortsFilters #contestFastSearch .searcher {
   padding: 10px 0px;
 }
 @media (min-width: 768px) {
-  #infoAndFilterHeader #contestSortsFilters .choosed-filters-container {
+  #contestFiltersRoot #contestSortsFilters .choosed-filters-container {
     width: 750px;
   }
 }
 @media (min-width: 992px) {
-  #infoAndFilterHeader #contestSortsFilters .choosed-filters-container {
+  #contestFiltersRoot #contestSortsFilters .choosed-filters-container {
     width: 970px;
   }
 }
 @media (min-width: 1200px) {
-  #infoAndFilterHeader #contestSortsFilters .choosed-filters-container {
+  #contestFiltersRoot #contestSortsFilters .choosed-filters-container {
     width: 970px;
   }
 }
-#infoAndFilterHeader #contestSortsFilters .choosed-filters-container > .navbar-header,
-#infoAndFilterHeader #contestSortsFilters .choosed-filters-container > .navbar-collapse {
+#contestFiltersRoot #contestSortsFilters .choosed-filters-container > .navbar-header,
+#contestFiltersRoot #contestSortsFilters .choosed-filters-container > .navbar-collapse {
   margin-right: -15px;
   margin-left: -15px;
 }
 @media (min-width: 768px) {
-  #infoAndFilterHeader #contestSortsFilters .choosed-filters-container > .navbar-header,
-  #infoAndFilterHeader #contestSortsFilters .choosed-filters-container > .navbar-collapse {
+  #contestFiltersRoot #contestSortsFilters .choosed-filters-container > .navbar-header,
+  #contestFiltersRoot #contestSortsFilters .choosed-filters-container > .navbar-collapse {
     margin-right: 0;
     margin-left: 0;
   }
 }
-#infoAndFilterHeader #contestSortsFilters .competition-filter-name {
+#contestFiltersRoot #contestSortsFilters .competition-filter-name {
   position: relative;
   float: left;
   width: 66.66666667%;
@@ -10547,7 +10545,7 @@ textarea#infoAndFilterHeader #contestSortsFilters #contestFastSearch .searcher {
   color: #214a5f;
   line-height: 20px;
 }
-#infoAndFilterHeader #contestSortsFilters .competition-filter-name .contest-count {
+#contestFiltersRoot #contestSortsFilters .competition-filter-name .contest-count {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 8pt;
@@ -10557,7 +10555,7 @@ textarea#infoAndFilterHeader #contestSortsFilters #contestFastSearch .searcher {
   padding: 2px 6px;
   margin-left: 5px;
 }
-#infoAndFilterHeader #contestSortsFilters .filter-list {
+#contestFiltersRoot #contestSortsFilters .filter-list {
   position: relative;
   float: left;
   width: 100%;
@@ -10566,7 +10564,7 @@ textarea#infoAndFilterHeader #contestSortsFilters #contestFastSearch .searcher {
   padding-right: 15px;
   padding: 10px 15px;
 }
-#infoAndFilterHeader #contestSortsFilters .filter-list .filter-choosed {
+#contestFiltersRoot #contestSortsFilters .filter-list .filter-choosed {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 8pt;
@@ -10575,7 +10573,7 @@ textarea#infoAndFilterHeader #contestSortsFilters #contestFastSearch .searcher {
   border-radius: 20px;
   padding: 2px 5px;
 }
-#infoAndFilterHeader #contestSortsFilters .filterToggler {
+#contestFiltersRoot #contestSortsFilters .filterToggler {
   position: relative;
   float: left;
   width: 33.33333333%;
@@ -10585,81 +10583,81 @@ textarea#infoAndFilterHeader #contestSortsFilters #contestFastSearch .searcher {
   border-left: 1px solid #434343;
 }
 @media (min-width: 768px) {
-  #infoAndFilterHeader #contestSortsFilters .filterToggler {
+  #contestFiltersRoot #contestSortsFilters .filterToggler {
     float: left;
     width: 8.33333333%;
   }
 }
 @media (max-width: 991px) {
-  #infoAndFilterHeader #contestSortsFilters .filterToggler {
+  #contestFiltersRoot #contestSortsFilters .filterToggler {
     border-width: 0;
   }
 }
 @media (min-width: 992px) {
-  #infoAndFilterHeader #contestSortsFilters .filterToggler {
+  #contestFiltersRoot #contestSortsFilters .filterToggler {
     padding-left: 20px;
   }
 }
 @media (max-width: 767px) {
-  #infoAndFilterHeader #contestSortsFilters .filterToggler {
+  #contestFiltersRoot #contestSortsFilters .filterToggler {
     text-align: right;
   }
 }
-#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button {
+#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button {
   color: #ffffff;
   background-color: #59add5;
   border-color: #cccccc;
   box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
 }
-#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button:hover,
-#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button:focus,
-#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button:active,
-#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button.active,
-.open .dropdown-toggle#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button {
+#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:hover,
+#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:focus,
+#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:active,
+#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button.active,
+.open .dropdown-toggle#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button {
   color: #ffffff;
   background-color: #389dcd;
   border-color: #adadad;
 }
-#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button:active,
-#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button.active,
-.open .dropdown-toggle#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button {
+#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:active,
+#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button.active,
+.open .dropdown-toggle#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button {
   background-image: none;
 }
-#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button.disabled,
-#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button[disabled],
-fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button,
-#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button.disabled:hover,
-#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button[disabled]:hover,
-fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button:hover,
-#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button.disabled:focus,
-#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button[disabled]:focus,
-fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button:focus,
-#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button.disabled:active,
-#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button[disabled]:active,
-fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button:active,
-#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button.disabled.active,
-#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button[disabled].active,
-fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button.active {
+#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button.disabled,
+#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button[disabled],
+fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button,
+#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button.disabled:hover,
+#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button[disabled]:hover,
+fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:hover,
+#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button.disabled:focus,
+#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button[disabled]:focus,
+fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:focus,
+#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button.disabled:active,
+#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button[disabled]:active,
+fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:active,
+#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button.disabled.active,
+#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button[disabled].active,
+fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button.active {
   background-color: #59add5;
   border-color: #cccccc;
 }
-#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button .badge {
+#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button .badge {
   color: #59add5;
   background-color: #ffffff;
 }
-#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button[disabled] {
+#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button[disabled] {
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
 }
-#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button:active,
-#infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button[disabled],
-fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button {
+#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:active,
+#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button[disabled],
+fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
 @media (min-width: 768px) {
-  #infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button {
+  #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
     font-size: 8pt;
@@ -10671,13 +10669,13 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
     color: #777777;
     padding: 0;
   }
-  #infoAndFilterHeader #contestSortsFilters .filterToggler .filters-button:hover {
+  #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:hover {
     background-color: transparent;
     color: #434343;
     border-color: #434343;
   }
 }
-#infoAndFilterHeader #contestSortsFilters .toggleOff::after {
+#contestFiltersRoot #contestSortsFilters .toggleOff::after {
   font-family: 'Glyphicons Halflings';
   content: "\E114";
   font-size: 8pt;
@@ -10687,14 +10685,14 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   line-height: 1;
 }
 @media (max-width: 767px) {
-  #infoAndFilterHeader #contestSortsFilters .toggleOff::after {
+  #contestFiltersRoot #contestSortsFilters .toggleOff::after {
     font-family: 'Glyphicons Halflings';
     content: "\E114";
     font-size: 8pt;
     color: #ffffff;
   }
 }
-#infoAndFilterHeader #contestSortsFilters .toggleOn::after {
+#contestFiltersRoot #contestSortsFilters .toggleOn::after {
   font-family: 'Glyphicons Halflings';
   content: "\E113";
   font-size: 8pt;
@@ -10704,91 +10702,91 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   line-height: 1;
 }
 @media (max-width: 767px) {
-  #infoAndFilterHeader #contestSortsFilters .toggleOn::after {
+  #contestFiltersRoot #contestSortsFilters .toggleOn::after {
     font-family: 'Glyphicons Halflings';
     content: "\E113";
     font-size: 8pt;
     color: #ffffff;
   }
 }
-#infoAndFilterHeader #filtersPanel {
+#contestFiltersRoot #filtersPanel {
   margin-left: -15px;
   margin-right: -15px;
   background-color: #ffffff;
 }
 @media (max-width: 991px) {
-  #infoAndFilterHeader #filtersPanel {
+  #contestFiltersRoot #filtersPanel {
     margin-right: auto;
     margin-left: auto;
     padding-left: 15px;
     padding-right: 15px;
   }
-  #infoAndFilterHeader #filtersPanel > .navbar-header,
-  #infoAndFilterHeader #filtersPanel > .navbar-collapse {
+  #contestFiltersRoot #filtersPanel > .navbar-header,
+  #contestFiltersRoot #filtersPanel > .navbar-collapse {
     margin-right: -15px;
     margin-left: -15px;
   }
 }
 @media (max-width: 991px) and (min-width: 768px) {
-  #infoAndFilterHeader #filtersPanel > .navbar-header,
-  #infoAndFilterHeader #filtersPanel > .navbar-collapse {
+  #contestFiltersRoot #filtersPanel > .navbar-header,
+  #contestFiltersRoot #filtersPanel > .navbar-collapse {
     margin-right: 0;
     margin-left: 0;
   }
 }
 @media (min-width: 992px) {
-  #infoAndFilterHeader #filtersPanel {
+  #contestFiltersRoot #filtersPanel {
     margin-right: auto;
     margin-left: auto;
     padding-left: 15px;
     padding-right: 15px;
   }
-  #infoAndFilterHeader #filtersPanel > .navbar-header,
-  #infoAndFilterHeader #filtersPanel > .navbar-collapse {
+  #contestFiltersRoot #filtersPanel > .navbar-header,
+  #contestFiltersRoot #filtersPanel > .navbar-collapse {
     margin-right: -15px;
     margin-left: -15px;
   }
 }
 @media (min-width: 992px) and (min-width: 768px) {
-  #infoAndFilterHeader #filtersPanel {
+  #contestFiltersRoot #filtersPanel {
     width: 750px;
   }
 }
 @media (min-width: 992px) and (min-width: 992px) {
-  #infoAndFilterHeader #filtersPanel {
+  #contestFiltersRoot #filtersPanel {
     width: 970px;
   }
 }
 @media (min-width: 992px) and (min-width: 1200px) {
-  #infoAndFilterHeader #filtersPanel {
+  #contestFiltersRoot #filtersPanel {
     width: 970px;
   }
 }
 @media (min-width: 992px) and (min-width: 768px) {
-  #infoAndFilterHeader #filtersPanel > .navbar-header,
-  #infoAndFilterHeader #filtersPanel > .navbar-collapse {
+  #contestFiltersRoot #filtersPanel > .navbar-header,
+  #contestFiltersRoot #filtersPanel > .navbar-collapse {
     margin-right: 0;
     margin-left: 0;
   }
 }
-#infoAndFilterHeader #filtersPanel .filter-title {
+#contestFiltersRoot #filtersPanel .filter-title {
   font-family: 'Exo', sans-serif;
   font-weight: 300;
   font-size: 16pt;
   color: #214a5f;
 }
 @media (max-width: 767px) {
-  #infoAndFilterHeader #filtersPanel .filter-title {
+  #contestFiltersRoot #filtersPanel .filter-title {
     border-top: 1px dashed #000;
     padding-top: 10px;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  #infoAndFilterHeader #filtersPanel .centered-sm-text {
+  #contestFiltersRoot #filtersPanel .centered-sm-text {
     text-align: center;
   }
 }
-#infoAndFilterHeader #filtersPanel .filter-column-base {
+#contestFiltersRoot #filtersPanel .filter-column-base {
   float: left;
   width: 100%;
   position: relative;
@@ -10799,24 +10797,24 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   padding-top: 20px;
 }
 @media (min-width: 768px) {
-  #infoAndFilterHeader #filtersPanel .filter-column-base {
+  #contestFiltersRoot #filtersPanel .filter-column-base {
     float: left;
     width: 50%;
   }
 }
 @media (min-width: 992px) {
-  #infoAndFilterHeader #filtersPanel .filter-column-base {
+  #contestFiltersRoot #filtersPanel .filter-column-base {
     float: left;
     width: 33.33333333%;
   }
 }
 @media (max-width: 991px) {
-  #infoAndFilterHeader #filtersPanel .filter-column-base {
+  #contestFiltersRoot #filtersPanel .filter-column-base {
     padding-bottom: 20px;
     min-height: 50px;
   }
 }
-#infoAndFilterHeader #filtersPanel .filter-column-competition {
+#contestFiltersRoot #filtersPanel .filter-column-competition {
   float: left;
   width: 100%;
   position: relative;
@@ -10827,7 +10825,7 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   padding-top: 20px;
 }
 @media (min-width: 992px) {
-  #infoAndFilterHeader #filtersPanel .filter-column-competition {
+  #contestFiltersRoot #filtersPanel .filter-column-competition {
     border-width: 1px;
     border-style: dotted none dotted dotted;
     border-color: #434343;
@@ -10835,7 +10833,7 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  #infoAndFilterHeader #filtersPanel .filter-column-competition {
+  #contestFiltersRoot #filtersPanel .filter-column-competition {
     border-width: 1px;
     border-style: dashed dashed none none;
     border-color: #434343;
@@ -10843,24 +10841,24 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   }
 }
 @media (min-width: 768px) {
-  #infoAndFilterHeader #filtersPanel .filter-column-competition {
+  #contestFiltersRoot #filtersPanel .filter-column-competition {
     float: left;
     width: 50%;
   }
 }
 @media (min-width: 992px) {
-  #infoAndFilterHeader #filtersPanel .filter-column-competition {
+  #contestFiltersRoot #filtersPanel .filter-column-competition {
     float: left;
     width: 33.33333333%;
   }
 }
 @media (max-width: 991px) {
-  #infoAndFilterHeader #filtersPanel .filter-column-competition {
+  #contestFiltersRoot #filtersPanel .filter-column-competition {
     padding-bottom: 20px;
     min-height: 50px;
   }
 }
-#infoAndFilterHeader #filtersPanel .filter-column-tournaments {
+#contestFiltersRoot #filtersPanel .filter-column-tournaments {
   float: left;
   width: 100%;
   position: relative;
@@ -10871,25 +10869,25 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   padding-top: 20px;
 }
 @media (min-width: 768px) {
-  #infoAndFilterHeader #filtersPanel .filter-column-tournaments {
+  #contestFiltersRoot #filtersPanel .filter-column-tournaments {
     float: left;
     width: 50%;
   }
 }
 @media (min-width: 992px) {
-  #infoAndFilterHeader #filtersPanel .filter-column-tournaments {
+  #contestFiltersRoot #filtersPanel .filter-column-tournaments {
     float: left;
     width: 33.33333333%;
   }
 }
 @media (max-width: 991px) {
-  #infoAndFilterHeader #filtersPanel .filter-column-tournaments {
+  #contestFiltersRoot #filtersPanel .filter-column-tournaments {
     padding-bottom: 20px;
     min-height: 50px;
   }
 }
 @media (min-width: 992px) {
-  #infoAndFilterHeader #filtersPanel .filter-column-tournaments {
+  #contestFiltersRoot #filtersPanel .filter-column-tournaments {
     border-width: 1px;
     border-style: dotted none dotted dotted;
     border-color: #434343;
@@ -10897,7 +10895,7 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  #infoAndFilterHeader #filtersPanel .filter-column-tournaments {
+  #contestFiltersRoot #filtersPanel .filter-column-tournaments {
     border-width: 1px;
     border-style: dashed dashed none none;
     border-color: #434343;
@@ -10905,7 +10903,7 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
     min-height: 340px;
   }
 }
-#infoAndFilterHeader #filtersPanel .filter-column-salary-limit {
+#contestFiltersRoot #filtersPanel .filter-column-salary-limit {
   float: left;
   width: 100%;
   position: relative;
@@ -10916,7 +10914,7 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   padding-top: 20px;
 }
 @media (min-width: 992px) {
-  #infoAndFilterHeader #filtersPanel .filter-column-salary-limit {
+  #contestFiltersRoot #filtersPanel .filter-column-salary-limit {
     border-width: 1px;
     border-style: dotted none dotted dotted;
     border-color: #434343;
@@ -10924,7 +10922,7 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  #infoAndFilterHeader #filtersPanel .filter-column-salary-limit {
+  #contestFiltersRoot #filtersPanel .filter-column-salary-limit {
     border-width: 1px;
     border-style: dashed none none none;
     border-color: #434343;
@@ -10932,24 +10930,24 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   }
 }
 @media (min-width: 768px) {
-  #infoAndFilterHeader #filtersPanel .filter-column-salary-limit {
+  #contestFiltersRoot #filtersPanel .filter-column-salary-limit {
     float: left;
     width: 50%;
   }
 }
 @media (min-width: 992px) {
-  #infoAndFilterHeader #filtersPanel .filter-column-salary-limit {
+  #contestFiltersRoot #filtersPanel .filter-column-salary-limit {
     float: left;
     width: 33.33333333%;
   }
 }
 @media (max-width: 991px) {
-  #infoAndFilterHeader #filtersPanel .filter-column-salary-limit {
+  #contestFiltersRoot #filtersPanel .filter-column-salary-limit {
     padding-bottom: 20px;
     min-height: 50px;
   }
 }
-#infoAndFilterHeader #filtersPanel .filter-column-entry-fee {
+#contestFiltersRoot #filtersPanel .filter-column-entry-fee {
   padding-top: 20px;
   float: left;
   width: 100%;
@@ -10959,7 +10957,7 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   padding-right: 15px;
 }
 @media (min-width: 992px) {
-  #infoAndFilterHeader #filtersPanel .filter-column-entry-fee {
+  #contestFiltersRoot #filtersPanel .filter-column-entry-fee {
     border-width: 1px;
     border-style: dotted dotted dotted dotted;
     border-color: #434343;
@@ -10968,7 +10966,7 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  #infoAndFilterHeader #filtersPanel .filter-column-entry-fee {
+  #contestFiltersRoot #filtersPanel .filter-column-entry-fee {
     border-width: 1px;
     border-style: dashed none dashed none;
     border-color: #434343;
@@ -10977,36 +10975,36 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   }
 }
 @media (max-width: 991px) {
-  #infoAndFilterHeader #filtersPanel .filter-column-entry-fee {
+  #contestFiltersRoot #filtersPanel .filter-column-entry-fee {
     padding-bottom: 20px;
     min-height: 50px;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  #infoAndFilterHeader #filtersPanel .filter-column-entry-fee {
+  #contestFiltersRoot #filtersPanel .filter-column-entry-fee {
     text-align: center;
   }
 }
 @media (min-width: 768px) {
-  #infoAndFilterHeader #filtersPanel .filter-column-entry-fee {
+  #contestFiltersRoot #filtersPanel .filter-column-entry-fee {
     float: left;
     width: 100%;
   }
 }
 @media (min-width: 992px) {
-  #infoAndFilterHeader #filtersPanel .filter-column-entry-fee {
+  #contestFiltersRoot #filtersPanel .filter-column-entry-fee {
     float: left;
     width: 33.33333333%;
   }
 }
-#infoAndFilterHeader #filtersPanel .filter-content {
+#contestFiltersRoot #filtersPanel .filter-content {
   /* estilod para la colmna del filtro con slider */
   /******** Sobreescritura de los estilos de noUiSlider ********/
   /* Slider size and handle placement */
   /* Handle stripes */
   /* Styling */
 }
-#infoAndFilterHeader #filtersPanel .filter-content .slider-wrapper {
+#contestFiltersRoot #filtersPanel .filter-content .slider-wrapper {
   position: relative;
   float: left;
   width: 100%;
@@ -11015,14 +11013,14 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   padding-right: 15px;
   padding: 15px 5px;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .range-font {
+#contestFiltersRoot #filtersPanel .filter-content .range-font {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 12px;
   color: #0d75a6;
   padding: 0px;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .entry-fee-value-max {
+#contestFiltersRoot #filtersPanel .filter-content .entry-fee-value-max {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 12px;
@@ -11038,7 +11036,7 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   text-align: right;
   padding-right: 0px;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .entry-fee-value-min {
+#contestFiltersRoot #filtersPanel .filter-content .entry-fee-value-min {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 12px;
@@ -11054,7 +11052,7 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   text-align: left;
   padding-left: 0px;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check {
   position: relative;
   float: left;
   width: 100%;
@@ -11064,10 +11062,10 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   padding-left: 0px;
   padding-right: 0px;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check input[type=checkbox] {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check input[type=checkbox] {
   display: none;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check input[type=checkbox] + label {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check input[type=checkbox] + label {
   display: block;
   background-color: #ffffff;
   border: 1px solid #afafaf;
@@ -11082,10 +11080,10 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   transition: all 1s ease;
   cursor: pointer;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check input[type=checkbox]:checked + label {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check input[type=checkbox]:checked + label {
   background-color: #f8f0f0;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check input[type=checkbox] + label::after {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check input[type=checkbox] + label::after {
   font-family: 'Glyphicons Halflings';
   content: "\E013";
   font-size: 0pt;
@@ -11093,12 +11091,12 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   float: right !important;
   transition: all 0.5s ease-in-out;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check input[type=checkbox]:checked + label::after {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check input[type=checkbox]:checked + label::after {
   font-family: 'Glyphicons Halflings';
   content: "\E013";
   font-size: 12pt;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check input[type=checkbox]:disabled + label {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check input[type=checkbox]:disabled + label {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
@@ -11106,7 +11104,7 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   border: 1px solid #dcdcdc;
   background-color: #f8f8f8;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-with-flag {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-with-flag {
   position: relative;
   float: left;
   width: 100%;
@@ -11116,10 +11114,10 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   padding-left: 0px;
   padding-right: 0px;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox] {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox] {
   display: none;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox] + label {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox] + label {
   display: block;
   background-color: #ffffff;
   border: 1px solid #afafaf;
@@ -11134,10 +11132,10 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   transition: all 1s ease;
   cursor: pointer;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox]:checked + label {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox]:checked + label {
   background-color: #f8f0f0;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox] + label::after {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox] + label::after {
   font-family: 'Glyphicons Halflings';
   content: "\E013";
   font-size: 0pt;
@@ -11145,12 +11143,12 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   float: right !important;
   transition: all 0.5s ease-in-out;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox]:checked + label::after {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox]:checked + label::after {
   font-family: 'Glyphicons Halflings';
   content: "\E013";
   font-size: 12pt;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox]:disabled + label {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox]:disabled + label {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
@@ -11158,10 +11156,10 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   border: 1px solid #dcdcdc;
   background-color: #f8f8f8;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox] + label {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox] + label {
   padding-left: 15px;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox] + label::before {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox] + label::before {
   content: " ";
   height: 11px;
   background: url(../flags/flags.png) no-repeat;
@@ -11169,7 +11167,7 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   margin-right: 10px;
   display: inline-block;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-ESP {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-ESP {
   position: relative;
   float: left;
   width: 100%;
@@ -11179,10 +11177,10 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   padding-left: 0px;
   padding-right: 0px;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox] {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox] {
   display: none;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox] + label {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox] + label {
   display: block;
   background-color: #ffffff;
   border: 1px solid #afafaf;
@@ -11197,10 +11195,10 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   transition: all 1s ease;
   cursor: pointer;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox]:checked + label {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox]:checked + label {
   background-color: #f8f0f0;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox] + label::after {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox] + label::after {
   font-family: 'Glyphicons Halflings';
   content: "\E013";
   font-size: 0pt;
@@ -11208,12 +11206,12 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   float: right !important;
   transition: all 0.5s ease-in-out;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox]:checked + label::after {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox]:checked + label::after {
   font-family: 'Glyphicons Halflings';
   content: "\E013";
   font-size: 12pt;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox]:disabled + label {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox]:disabled + label {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
@@ -11221,10 +11219,10 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   border: 1px solid #dcdcdc;
   background-color: #f8f8f8;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox] + label {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox] + label {
   padding-left: 15px;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox] + label::before {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox] + label::before {
   content: " ";
   height: 11px;
   background: url(../flags/flags.png) no-repeat;
@@ -11232,10 +11230,10 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   margin-right: 10px;
   display: inline-block;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox] + label::before {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox] + label::before {
   background-position: -32px 0;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-UK {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-UK {
   position: relative;
   float: left;
   width: 100%;
@@ -11245,10 +11243,10 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   padding-left: 0px;
   padding-right: 0px;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox] {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox] {
   display: none;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox] + label {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox] + label {
   display: block;
   background-color: #ffffff;
   border: 1px solid #afafaf;
@@ -11263,10 +11261,10 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   transition: all 1s ease;
   cursor: pointer;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox]:checked + label {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox]:checked + label {
   background-color: #f8f0f0;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox] + label::after {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox] + label::after {
   font-family: 'Glyphicons Halflings';
   content: "\E013";
   font-size: 0pt;
@@ -11274,12 +11272,12 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   float: right !important;
   transition: all 0.5s ease-in-out;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox]:checked + label::after {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox]:checked + label::after {
   font-family: 'Glyphicons Halflings';
   content: "\E013";
   font-size: 12pt;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox]:disabled + label {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox]:disabled + label {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
@@ -11287,10 +11285,10 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   border: 1px solid #dcdcdc;
   background-color: #f8f8f8;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox] + label {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox] + label {
   padding-left: 15px;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox] + label::before {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox] + label::before {
   content: " ";
   height: 11px;
   background: url(../flags/flags.png) no-repeat;
@@ -11298,10 +11296,10 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   margin-right: 10px;
   display: inline-block;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox] + label::before {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox] + label::before {
   background-position: -32px -11px;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-GER {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-GER {
   position: relative;
   float: left;
   width: 100%;
@@ -11311,10 +11309,10 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   padding-left: 0px;
   padding-right: 0px;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox] {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox] {
   display: none;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox] + label {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox] + label {
   display: block;
   background-color: #ffffff;
   border: 1px solid #afafaf;
@@ -11329,10 +11327,10 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   transition: all 1s ease;
   cursor: pointer;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox]:checked + label {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox]:checked + label {
   background-color: #f8f0f0;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox] + label::after {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox] + label::after {
   font-family: 'Glyphicons Halflings';
   content: "\E013";
   font-size: 0pt;
@@ -11340,12 +11338,12 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   float: right !important;
   transition: all 0.5s ease-in-out;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox]:checked + label::after {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox]:checked + label::after {
   font-family: 'Glyphicons Halflings';
   content: "\E013";
   font-size: 12pt;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox]:disabled + label {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox]:disabled + label {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
@@ -11353,10 +11351,10 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   border: 1px solid #dcdcdc;
   background-color: #f8f8f8;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox] + label {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox] + label {
   padding-left: 15px;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox] + label::before {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox] + label::before {
   content: " ";
   height: 11px;
   background: url(../flags/flags.png) no-repeat;
@@ -11364,10 +11362,10 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   margin-right: 10px;
   display: inline-block;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox] + label::before {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox] + label::before {
   background-position: -16px 0;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-IT {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-IT {
   position: relative;
   float: left;
   width: 100%;
@@ -11377,10 +11375,10 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   padding-left: 0px;
   padding-right: 0px;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox] {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox] {
   display: none;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox] + label {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox] + label {
   display: block;
   background-color: #ffffff;
   border: 1px solid #afafaf;
@@ -11395,10 +11393,10 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   transition: all 1s ease;
   cursor: pointer;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox]:checked + label {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox]:checked + label {
   background-color: #f8f0f0;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox] + label::after {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox] + label::after {
   font-family: 'Glyphicons Halflings';
   content: "\E013";
   font-size: 0pt;
@@ -11406,12 +11404,12 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   float: right !important;
   transition: all 0.5s ease-in-out;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox]:checked + label::after {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox]:checked + label::after {
   font-family: 'Glyphicons Halflings';
   content: "\E013";
   font-size: 12pt;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox]:disabled + label {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox]:disabled + label {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
@@ -11419,10 +11417,10 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   border: 1px solid #dcdcdc;
   background-color: #f8f8f8;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox] + label {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox] + label {
   padding-left: 15px;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox] + label::before {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox] + label::before {
   content: " ";
   height: 11px;
   background: url(../flags/flags.png) no-repeat;
@@ -11430,10 +11428,10 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   margin-right: 10px;
   display: inline-block;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox] + label::before {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox] + label::before {
   background-position: 0 -22px;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-FR {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-FR {
   position: relative;
   float: left;
   width: 100%;
@@ -11443,10 +11441,10 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   padding-left: 0px;
   padding-right: 0px;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox] {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox] {
   display: none;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox] + label {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox] + label {
   display: block;
   background-color: #ffffff;
   border: 1px solid #afafaf;
@@ -11461,10 +11459,10 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   transition: all 1s ease;
   cursor: pointer;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox]:checked + label {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox]:checked + label {
   background-color: #f8f0f0;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox] + label::after {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox] + label::after {
   font-family: 'Glyphicons Halflings';
   content: "\E013";
   font-size: 0pt;
@@ -11472,12 +11470,12 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   float: right !important;
   transition: all 0.5s ease-in-out;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox]:checked + label::after {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox]:checked + label::after {
   font-family: 'Glyphicons Halflings';
   content: "\E013";
   font-size: 12pt;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox]:disabled + label {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox]:disabled + label {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
@@ -11485,10 +11483,10 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   border: 1px solid #dcdcdc;
   background-color: #f8f8f8;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox] + label {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox] + label {
   padding-left: 15px;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox] + label::before {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox] + label::before {
   content: " ";
   height: 11px;
   background: url(../flags/flags.png) no-repeat;
@@ -11496,10 +11494,10 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   margin-right: 10px;
   display: inline-block;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox] + label::before {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox] + label::before {
   background-position: -16px -11px;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-EU {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-EU {
   position: relative;
   float: left;
   width: 100%;
@@ -11509,10 +11507,10 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   padding-left: 0px;
   padding-right: 0px;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox] {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox] {
   display: none;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox] + label {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox] + label {
   display: block;
   background-color: #ffffff;
   border: 1px solid #afafaf;
@@ -11527,10 +11525,10 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   transition: all 1s ease;
   cursor: pointer;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox]:checked + label {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox]:checked + label {
   background-color: #f8f0f0;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox] + label::after {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox] + label::after {
   font-family: 'Glyphicons Halflings';
   content: "\E013";
   font-size: 0pt;
@@ -11538,12 +11536,12 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   float: right !important;
   transition: all 0.5s ease-in-out;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox]:checked + label::after {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox]:checked + label::after {
   font-family: 'Glyphicons Halflings';
   content: "\E013";
   font-size: 12pt;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox]:disabled + label {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox]:disabled + label {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
@@ -11551,10 +11549,10 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   border: 1px solid #dcdcdc;
   background-color: #f8f8f8;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox] + label {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox] + label {
   padding-left: 15px;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox] + label::before {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox] + label::before {
   content: " ";
   height: 11px;
   background: url(../flags/flags.png) no-repeat;
@@ -11562,24 +11560,24 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   margin-right: 10px;
   display: inline-block;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox] + label::before {
+#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox] + label::before {
   background-position: 0 -11px;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .noUi-horizontal .noUi-handle {
+#contestFiltersRoot #filtersPanel .filter-content .noUi-horizontal .noUi-handle {
   width: 30px;
   height: 30px;
   left: -17px;
   top: -7px;
   border-radius: 15px;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .noUi-handle:before,
-#infoAndFilterHeader #filtersPanel .filter-content .noUi-handle:after {
+#contestFiltersRoot #filtersPanel .filter-content .noUi-handle:before,
+#contestFiltersRoot #filtersPanel .filter-content .noUi-handle:after {
   content: none;
 }
-#infoAndFilterHeader #filtersPanel .filter-content .noUi-connect {
+#contestFiltersRoot #filtersPanel .filter-content .noUi-connect {
   background: #0d75a6;
 }
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper {
+#contestFiltersRoot #filtersPanel .reset-button-wrapper {
   float: left;
   width: 100%;
   position: relative;
@@ -11589,28 +11587,28 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   padding: 10px 0 15px 0;
 }
 @media (min-width: 768px) {
-  #infoAndFilterHeader #filtersPanel .reset-button-wrapper {
+  #contestFiltersRoot #filtersPanel .reset-button-wrapper {
     float: left;
     width: 25%;
   }
 }
 @media (min-width: 768px) {
-  #infoAndFilterHeader #filtersPanel .reset-button-wrapper {
+  #contestFiltersRoot #filtersPanel .reset-button-wrapper {
     left: 25%;
   }
 }
 @media (min-width: 768px) {
-  #infoAndFilterHeader #filtersPanel .reset-button-wrapper {
+  #contestFiltersRoot #filtersPanel .reset-button-wrapper {
     margin: 0 10px 0 0;
   }
 }
 @media (max-width: 767px) {
-  #infoAndFilterHeader #filtersPanel .reset-button-wrapper {
+  #contestFiltersRoot #filtersPanel .reset-button-wrapper {
     border-top: 1px dashed #000;
     padding-top: 10px;
   }
 }
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset {
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset {
   display: block;
   width: 100%;
   padding-left: 0;
@@ -11638,28 +11636,28 @@ fieldset[disabled] #infoAndFilterHeader #contestSortsFilters .filterToggler .fil
   border-color: #cccccc;
   box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
 }
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:focus,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:active:focus,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.active:focus {
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:focus,
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:active:focus,
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.active:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:hover,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:focus {
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:hover,
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:focus {
   color: #ffffff;
   text-decoration: none;
 }
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:active,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.active {
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:active,
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.disabled,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset[disabled],
-fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset {
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.disabled,
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset[disabled],
+fieldset[disabled] #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -11667,28 +11665,28 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:focus,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:active:focus,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.active:focus {
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:focus,
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:active:focus,
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.active:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:hover,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:focus {
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:hover,
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:focus {
   color: #ffffff;
   text-decoration: none;
 }
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:active,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.active {
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:active,
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.disabled,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset[disabled],
-fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset {
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.disabled,
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset[disabled],
+fieldset[disabled] #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -11696,28 +11694,28 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:focus,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:active:focus,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.active:focus {
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:focus,
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:active:focus,
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.active:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:hover,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:focus {
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:hover,
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:focus {
   color: #ffffff;
   text-decoration: none;
 }
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:active,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.active {
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:active,
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.disabled,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset[disabled],
-fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset {
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.disabled,
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset[disabled],
+fieldset[disabled] #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -11725,28 +11723,28 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:focus,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:active:focus,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.active:focus {
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:focus,
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:active:focus,
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.active:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:hover,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:focus {
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:hover,
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:focus {
   color: #ffffff;
   text-decoration: none;
 }
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:active,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.active {
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:active,
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.disabled,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset[disabled],
-fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset {
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.disabled,
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset[disabled],
+fieldset[disabled] #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -11754,49 +11752,49 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:hover,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:focus,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:active,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.active,
-.open .dropdown-toggle#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset {
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:hover,
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:focus,
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:active,
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.active,
+.open .dropdown-toggle#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset {
   color: #ffffff;
   background-color: #9b9b9b;
   border-color: #adadad;
 }
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:active,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.active,
-.open .dropdown-toggle#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset {
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:active,
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.active,
+.open .dropdown-toggle#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset {
   background-image: none;
 }
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.disabled,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset[disabled],
-fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.disabled:hover,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset[disabled]:hover,
-fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:hover,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.disabled:focus,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset[disabled]:focus,
-fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:focus,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.disabled:active,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset[disabled]:active,
-fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:active,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.disabled.active,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset[disabled].active,
-fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset.active {
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.disabled,
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset[disabled],
+fieldset[disabled] #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset,
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.disabled:hover,
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset[disabled]:hover,
+fieldset[disabled] #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:hover,
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.disabled:focus,
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset[disabled]:focus,
+fieldset[disabled] #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:focus,
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.disabled:active,
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset[disabled]:active,
+fieldset[disabled] #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:active,
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.disabled.active,
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset[disabled].active,
+fieldset[disabled] #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.active {
   background-color: #afafaf;
   border-color: #cccccc;
 }
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset .badge {
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset .badge {
   color: #afafaf;
   background-color: #ffffff;
 }
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset:active,
-#infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset[disabled],
-fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn-reset {
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:active,
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset[disabled],
+fieldset[disabled] #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper {
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper {
   float: left;
   width: 100%;
   position: relative;
@@ -11806,22 +11804,22 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
   padding: 10px 0 15px 0;
 }
 @media (min-width: 768px) {
-  #infoAndFilterHeader #filtersPanel .confirm-button-wrapper {
+  #contestFiltersRoot #filtersPanel .confirm-button-wrapper {
     float: left;
     width: 25%;
   }
 }
 @media (min-width: 768px) {
-  #infoAndFilterHeader #filtersPanel .confirm-button-wrapper {
+  #contestFiltersRoot #filtersPanel .confirm-button-wrapper {
     left: 25%;
   }
 }
 @media (min-width: 768px) {
-  #infoAndFilterHeader #filtersPanel .confirm-button-wrapper {
+  #contestFiltersRoot #filtersPanel .confirm-button-wrapper {
     margin: 0 0 0 10px;
   }
 }
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm {
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm {
   display: inline-block;
   margin-bottom: 0;
   font-weight: normal;
@@ -11849,28 +11847,28 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .reset-button-wrapper .btn
   border-color: #91b42c;
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
 }
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm:focus,
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm:active:focus,
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm.active:focus {
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:focus,
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:active:focus,
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.active:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm:hover,
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm:focus {
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:hover,
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:focus {
   color: #ffffff;
   text-decoration: none;
 }
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm:active,
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm.active {
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:active,
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm.disabled,
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm[disabled],
-fieldset[disabled] #infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm {
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.disabled,
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm[disabled],
+fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -11878,28 +11876,28 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .confirm-button-wrapper .b
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm:focus,
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm:active:focus,
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm.active:focus {
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:focus,
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:active:focus,
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.active:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm:hover,
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm:focus {
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:hover,
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:focus {
   color: #ffffff;
   text-decoration: none;
 }
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm:active,
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm.active {
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:active,
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm.disabled,
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm[disabled],
-fieldset[disabled] #infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm {
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.disabled,
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm[disabled],
+fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -11907,50 +11905,50 @@ fieldset[disabled] #infoAndFilterHeader #filtersPanel .confirm-button-wrapper .b
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm:hover,
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm:focus,
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm:active,
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm.active,
-.open .dropdown-toggle#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm {
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:hover,
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:focus,
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:active,
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.active,
+.open .dropdown-toggle#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm {
   color: #ffffff;
   background-color: #87a829;
   border-color: #698320;
 }
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm:active,
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm.active,
-.open .dropdown-toggle#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm {
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:active,
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.active,
+.open .dropdown-toggle#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm {
   background-image: none;
 }
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm.disabled,
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm[disabled],
-fieldset[disabled] #infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm,
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm.disabled:hover,
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm[disabled]:hover,
-fieldset[disabled] #infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm:hover,
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm.disabled:focus,
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm[disabled]:focus,
-fieldset[disabled] #infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm:focus,
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm.disabled:active,
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm[disabled]:active,
-fieldset[disabled] #infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm:active,
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm.disabled.active,
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm[disabled].active,
-fieldset[disabled] #infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm.active {
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.disabled,
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm[disabled],
+fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm,
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.disabled:hover,
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm[disabled]:hover,
+fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:hover,
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.disabled:focus,
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm[disabled]:focus,
+fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:focus,
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.disabled:active,
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm[disabled]:active,
+fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:active,
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.disabled.active,
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm[disabled].active,
+fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.active {
   background-color: #a1c931;
   border-color: #91b42c;
 }
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm .badge {
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm .badge {
   color: #a1c931;
   background-color: #ffffff;
 }
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm[disabled] {
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm[disabled] {
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
 }
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm:active,
-#infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm[disabled],
-fieldset[disabled] #infoAndFilterHeader #filtersPanel .confirm-button-wrapper .btn-confirm {
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:active,
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm[disabled],
+fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
@@ -19983,8 +19981,8 @@ html {
 }
 .prize-icon {
   background-image: url("../images/iconPrize.png");
-  width: 26px;
-  height: 24px;
+  width: 32px;
+  height: 26px;
   display: inline-block;
 }
 .pink-bg {

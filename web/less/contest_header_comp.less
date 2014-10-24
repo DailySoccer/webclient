@@ -96,18 +96,18 @@
 		}
 		// Iconos de precio y premio
 		@media (min-width: @screen-sm-min) {
-			.contest-price span::before {
+			/*.contest-price span::before {
 				.addIcon("iconPrice.png");
-			}
+			}*/
 			.contest-prize span::before {
 				.addIcon("iconPrize.png");
-				left: -5px;
+				left: -10px;
 			}
 			.addIcon(@IconName){
 				content: " ";
 				background-image: url("@{images}/@{IconName}");
-				width: 26px;
-				height: 24px;
+				width: 32px;
+				height: 26px;
 				display: inline-block;
 				position: absolute;
 				top: 3px;

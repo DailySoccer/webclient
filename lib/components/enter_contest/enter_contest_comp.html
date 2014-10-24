@@ -1,4 +1,4 @@
-<div class="enter-contest-wrapper">
+<div class="enter-contest-wrapper" ng-show="isLoaded">
 
   <contest-header contestData="contest"></contest-header>
 
@@ -7,13 +7,13 @@
     <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('lineup-tab-content')">Tu alineación</a></li>
     <li><a role="tab" data-toggle="tab" ng-click="tabChange('contest-info-tab-content')">Info torneo</a></li>
   </ul>
-   
+
   <div id="enterContest">
     <div class="tabs">
       <!-- Tab panes -->
       <div class="tab-content">
         <div class="tab-pane active" id="lineup-tab-content">
-        
+
             <!-- Este sera el selector de partidos en "grande", con botones-->
             <matches-filter contest="contest" selected-option="matchFilter" ng-if="isBigScreenVersion"></matches-filter>
 
@@ -21,7 +21,7 @@
               <div class="total-salary"><span ng-class="getMyTotalSalaryClasses()">{{availableSalary}}€</span></div>
               <button id="cancelSoccerPlayerSelection" type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer">CANCELAR</button>
             </div>
-            
+
             <div class="enter-contest-lineup-wrapper">
               <div class="enter-contest-lineup">
                 <div class="enter-contest-total-salary">
@@ -29,14 +29,14 @@
                     <span class="total-salary"><span class="total-salary-text">DINERO RESTANTE:</span>
                     <span ng-class="getMyTotalSalaryClasses()">{{availableSalary}}€</span></span>
                 </div>
-                
+
                 <lineup-selector ng-show="!isSelectingSoccerPlayer || isBigScreenVersion"></lineup-selector>
               </div>
             </div>
 
             <div class="enter-contest-soccer-players-wrapper" ng-show="isSelectingSoccerPlayer || isBigScreenVersion">
               <div class="enter-contest-soccer-players">
-              
+
                 <!-- Este es el desplegable, para todas las versiones que sean moviles -->
                 <matches-filter contest="contest" selected-option="matchFilter" ng-if="isSmallScreenVersion"></matches-filter>
 
@@ -46,9 +46,9 @@
             </div>
 
             <div class="enter-contest-actions-wrapper">
-              
+
               <button type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer" ng-if="isSmallScreenVersion">CANCELAR</button>
-              
+
               <div ng-if="!isSelectingSoccerPlayer || isBigScreenVersion">
                 <div class="button-wrapper">
                   <button type="button" class="btn-clean-lineup-list" ng-click="deleteFantasyTeam()" ng-disabled="isPlayerSelected()">BORRAR TODO</button>
@@ -65,10 +65,10 @@
         <div class="tab-pane" id="contest-info-tab-content">
           <contest-info contest-data="contest"></contest-info>
         </div>
-        
+
       </div>
     </div>
-    
+
     <div class="contest-id-bar">
       <div class="contest-id">ID: {{contest.contestId.toUpperCase()}}</div>
     </div>

@@ -22,7 +22,7 @@
     <script src="packages/web_components/platform.js"></script>
     <script src="packages/web_components/dart_support.js"></script>
     -->
-    
+
     <!-- Utilidad para recompilar less al vuelo al recargar la pagina (o incluso monitorizado, leer documentacion). Solo permitido durante desarrollo.
     <link rel="stylesheet/less" type="text/css" href="less/styles.less" />
     <script src="js/less-1.7.0.min.js" type="text/javascript"></script>-->
@@ -30,16 +30,16 @@
     <!-- start Mixpanel -->
     <script type="text/javascript">(function(f,b){if(!b.__SV){var a,e,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
 for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;a.src="//cdn.mxpnl.com/libs/mixpanel-2.2.min.js";e=f.getElementsByTagName("script")[0];e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
-mixpanel.init("a1889b53bda6b6348f60a570f658c157");</script>
+    </script>
     <!-- end Mixpanel -->
   </head>
 
-  <body>  
-    <div id="spinnerIcon"></div>  
+  <body>
+    <div id="spinnerIcon"></div>
     <script>
         var spinner = null;
         var spinnerDiv = null;
-        
+
         function showSpinner() {
           var opts = {
             lines: 13, // The number of lines to draw
@@ -62,18 +62,20 @@ mixpanel.init("a1889b53bda6b6348f60a570f658c157");</script>
           spinnerDiv = document.querySelector('#spinnerIcon');
           spinner = new Spinner(opts).spin(spinnerDiv);
         }
-        
+
         function hideSpinner() {
           spinner.stop(spinnerDiv);
         }
     </script>
     <script src="js/spin.min.js" onload="showSpinner()"></script>
-               
+
     <div id="mainWrapper" class="wrapper-content-container">
       <main-menu-slide></main-menu-slide>
       <div id="mainContent" class="main-content-container">
         <flash-messages></flash-messages>
         <ng-view></ng-view>
+        <global-connection></global-connection>
+        <loading></loading>
       </div>
       <div id="wrapper-push"></div>
     </div>
@@ -86,22 +88,22 @@ mixpanel.init("a1889b53bda6b6348f60a570f658c157");</script>
     <!-- Atencion al defer
     <script src="main.dart.js" defer onload="hideSpinner()"></script>
      -->
-    
+
     <!-- Nuestros estilos compilados con less. Cuando compilamos nuestro styles.less (para dar nuestro styles.css) arrastramos
          todo bootstrap.css, asi que no nos hace falta incluirlo otra vez.
          Tambien incluimos los css de los plugins (jasny, nouislider...) -->
     <link rel="stylesheet" type="text/css" href="css/styles.css">
-             
+
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    
+
     <script src="nouislider/jquery.nouislider.min.js"></script>
     <script src="jasny/js/jasny-bootstrap.min.js"></script>
-    <script src="bootstrap-switch/js/bootstrap-switch.min.js"></script>    
-            
+    <script src="bootstrap-switch/js/bootstrap-switch.min.js"></script>
+
     <!-- Fuentes -->
     <link href='http://fonts.googleapis.com/css?family=Exo:300,600' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    
+
   </body>
 </html>

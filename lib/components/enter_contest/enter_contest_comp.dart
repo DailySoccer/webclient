@@ -4,16 +4,17 @@ import 'dart:html';
 import 'dart:async';
 import 'package:angular/angular.dart';
 import "package:json_object/json_object.dart";
-import 'package:webclient/services/screen_detector_service.dart';
-import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/services/active_contests_service.dart';
 import 'package:webclient/services/my_contests_service.dart';
+import 'package:webclient/services/flash_messages_service.dart';
+import 'package:webclient/services/screen_detector_service.dart';
+import 'package:webclient/services/loading_service.dart';
+import 'package:webclient/models/field_pos.dart';
 import "package:webclient/models/soccer_team.dart";
 import 'package:webclient/models/match_event.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/contest_entry.dart';
 import "package:webclient/models/instance_soccer_player.dart";
-import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/utils/string_utils.dart';
 
@@ -44,11 +45,13 @@ class EnterContestComp implements DetachAware {
 
   int availableSalary = 0;
 
+  bool get isLoaded => !LoadingService.enabled;
   bool get isBigScreenVersion   => scrDet.isSmScreen || scrDet.isDesktop;
   bool get isSmallScreenVersion => !isBigScreenVersion;
 
 
   EnterContestComp(this._routeProvider, this._router, this.scrDet, this._activeContestService, this._myContestService, this._flashMessage) {
+    LoadingService.enabled = true;
 
     // Creamos los slots iniciales, todos vacios
     FieldPos.LINEUP.forEach((pos) {
@@ -66,6 +69,8 @@ class EnterContestComp implements DetachAware {
 
     refreshContest
       .then((_) {
+        LoadingService.enabled = false;
+
         contest = _editingContestEntry ? _myContestService.lastContest : _activeContestService.lastContest;
 
         // Al principio, todos disponibles

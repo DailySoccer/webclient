@@ -1,6 +1,5 @@
 library loading_comp;
 
-import 'dart:async';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/loading_service.dart';
 

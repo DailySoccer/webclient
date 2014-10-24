@@ -4,6 +4,7 @@ import 'package:angular/angular.dart';
 import 'dart:html';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/game_metrics.dart';
+import 'package:webclient/services/server_service.dart';
 
 @Component(
     selector: 'login',
@@ -34,10 +35,10 @@ class LoginComp implements ShadowRootAware {
 
     _profileManager.login(email, password)
         .then((_) => _router.go('lobby', {}))
-        .catchError( (error) {
+        .catchError( (ConnectionError error) {
           _enabledSubmit = true;
           _errSection
-            ..text = error["email"][0]
+            ..text = error.toJson()["email"][0]
             ..classes.remove("errorDetected")
             ..classes.add("errorDetected")
             ..parent.parent.style.display = '';

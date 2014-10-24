@@ -4,6 +4,7 @@ import 'package:angular/angular.dart';
 import 'dart:html';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/server_service.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 @Component(
     selector: 'remember-password',
@@ -17,7 +18,7 @@ class RememberPasswordComp{
 
   String email = "";
   String state = STATE_REQUEST;
-  bool get enabledSubmit => isValidEmail(email) && _enabledSubmit;
+  bool get enabledSubmit => StringUtils.isValidEmail(email) && _enabledSubmit;
   bool errorDetected = false;
 
   RememberPasswordComp(this._router, this._profileManager, this._serverService);
@@ -46,12 +47,7 @@ class RememberPasswordComp{
     );
   }
 
-  bool isValidEmail(String email) {
-    String p = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
 
-    RegExp regExp = new RegExp(p);
-    return regExp.hasMatch(email);
-  }
 
   bool _enabledSubmit = true;
   Router _router;

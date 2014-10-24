@@ -23,6 +23,8 @@ class LobbyComp implements DetachAware {
   Contest selectedContest;
   ScreenDetectorService scrDet;
 
+  bool get isLoaded => !LoadingService.enabled;
+
   // numero de torneos listados actualmente
   int contestsCount = 0;
 

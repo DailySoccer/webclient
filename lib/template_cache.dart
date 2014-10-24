@@ -630,7 +630,7 @@ tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse
   <paginator on-page-change="onPageChange(currentPage, itemsPerPage)" list-length="contestsListFiltered.length"></paginator>
 
 </div>"""));
-tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", new HttpResponse(200, r"""<div class="enter-contest-wrapper">
+tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", new HttpResponse(200, r"""<div class="enter-contest-wrapper" ng-show="isLoaded">
 
   <contest-header contestData="contest"></contest-header>
 
@@ -639,13 +639,13 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
     <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('lineup-tab-content')">Tu alineación</a></li>
     <li><a role="tab" data-toggle="tab" ng-click="tabChange('contest-info-tab-content')">Info torneo</a></li>
   </ul>
-   
+
   <div id="enterContest">
     <div class="tabs">
       <!-- Tab panes -->
       <div class="tab-content">
         <div class="tab-pane active" id="lineup-tab-content">
-        
+
             <!-- Este sera el selector de partidos en "grande", con botones-->
             <matches-filter contest="contest" selected-option="matchFilter" ng-if="isBigScreenVersion"></matches-filter>
 
@@ -653,7 +653,7 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
               <div class="total-salary"><span ng-class="getMyTotalSalaryClasses()">{{availableSalary}}€</span></div>
               <button id="cancelSoccerPlayerSelection" type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer">CANCELAR</button>
             </div>
-            
+
             <div class="enter-contest-lineup-wrapper">
               <div class="enter-contest-lineup">
                 <div class="enter-contest-total-salary">
@@ -661,14 +661,14 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
                     <span class="total-salary"><span class="total-salary-text">DINERO RESTANTE:</span>
                     <span ng-class="getMyTotalSalaryClasses()">{{availableSalary}}€</span></span>
                 </div>
-                
+
                 <lineup-selector ng-show="!isSelectingSoccerPlayer || isBigScreenVersion"></lineup-selector>
               </div>
             </div>
 
             <div class="enter-contest-soccer-players-wrapper" ng-show="isSelectingSoccerPlayer || isBigScreenVersion">
               <div class="enter-contest-soccer-players">
-              
+
                 <!-- Este es el desplegable, para todas las versiones que sean moviles -->
                 <matches-filter contest="contest" selected-option="matchFilter" ng-if="isSmallScreenVersion"></matches-filter>
 
@@ -678,9 +678,9 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
             </div>
 
             <div class="enter-contest-actions-wrapper">
-              
+
               <button type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer" ng-if="isSmallScreenVersion">CANCELAR</button>
-              
+
               <div ng-if="!isSelectingSoccerPlayer || isBigScreenVersion">
                 <div class="button-wrapper">
                   <button type="button" class="btn-clean-lineup-list" ng-click="deleteFantasyTeam()" ng-disabled="isPlayerSelected()">BORRAR TODO</button>
@@ -697,10 +697,10 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
         <div class="tab-pane" id="contest-info-tab-content">
           <contest-info contest-data="contest"></contest-info>
         </div>
-        
+
       </div>
     </div>
-    
+
     <div class="contest-id-bar">
       <div class="contest-id">ID: {{contest.contestId.toUpperCase()}}</div>
     </div>
@@ -927,6 +927,10 @@ tc.put("packages/webclient/components/flash_messages_comp.html", new HttpRespons
           <span class="">{{msg.text}}</span>
       </div>
   </div>
+</div>
+"""));
+tc.put("packages/webclient/components/global_connection_comp.html", new HttpResponse(200, r"""<div class="alert-danger" ng-show="msg.isNotEmpty" style="padding: 1em; position: fixed; top: 10%; left: 50%; transform: translateX(-50%);">
+  {{msg}}
 </div>
 """));
 tc.put("packages/webclient/components/landing_page_comp.html", new HttpResponse(200, r"""<div id="desktopContent" ng-if="!scrDet.isXsScreen" ng-cloak>
@@ -1943,7 +1947,19 @@ tc.put("packages/webclient/components/legalese_and_help/terminus_info_comp.html"
     </p>
   </div>
 </div>"""));
-tc.put("packages/webclient/components/lobby_comp.html", new HttpResponse(200, r"""<!-- Header de Promociones -->
+tc.put("packages/webclient/components/loading_comp.html", new HttpResponse(200, r"""<section ng-show="isLoading">
+
+<div class="alert-danger" style="padding: 1em; position: fixed; top: 20%; left: 50%; transform: translateX(-50%);">
+  Loading...
+</div>
+<div style="width:100%; height:100%; min-height: 992px; background-color: rgba(255,255,255,0.5);">
+</div>
+
+</section>
+"""));
+tc.put("packages/webclient/components/lobby_comp.html", new HttpResponse(200, r"""<section ng-show="isLoaded">
+
+<!-- Header de Promociones -->
 <promos></promos>
 
 <!-- Barra azul de información -->
@@ -2181,8 +2197,10 @@ tc.put("packages/webclient/components/lobby_comp.html", new HttpResponse(200, r"
         <contest-info contest-data="selectedContest"></contest-info>
       </div>
     </div>
-</div>"""));
-tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(200, r"""<div id="myContest" ng-cloak>
+</div>
+
+</section>"""));
+tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(200, r"""<div id="myContest" ng-cloak">
   <div class="my-contest-title-tab">MIS TORNEOS</div>
   <!-- Nav tabs -->
   <ul  id="myContestMenuTabs" class="my-contest-tabs" role="tablist">
@@ -2575,7 +2593,7 @@ tc.put("packages/webclient/components/view_contest/users_list_comp.html", new Ht
   </div>
 
 </div>"""));
-tc.put("packages/webclient/components/view_contest/view_contest_comp.html", new HttpResponse(200, r"""<section ng-show="updatedDate != null">
+tc.put("packages/webclient/components/view_contest/view_contest_comp.html", new HttpResponse(200, r"""<section ng-show="isLoaded">
 
   <contest-header contestData="contest"></contest-header>
 
@@ -2631,7 +2649,7 @@ tc.put("packages/webclient/components/view_contest/view_contest_comp.html", new 
 
 </section>
 """));
-tc.put("packages/webclient/components/view_contest/view_contest_entry_comp.html", new HttpResponse(200, r"""<section ng-show="updatedDate != null">
+tc.put("packages/webclient/components/view_contest/view_contest_entry_comp.html", new HttpResponse(200, r"""<section ng-show="isLoaded">
 
   <contest-header contestData="contest"></contest-header>
 

@@ -69,6 +69,7 @@ class LobbyComp implements DetachAware {
   void refreshActiveContest() {
     activeContestsService.refreshActiveContests()
       .then((_) {
+        LoadingService.enabled = false;
         contestsCount = activeContestsService.activeContests.length;
       });
   }

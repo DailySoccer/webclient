@@ -13,10 +13,10 @@ void main() {
   try {
     LoggerExceptionHandler.setUpLogger();
 
+    GameMetrics.initMixpanel();
+
     var app = applicationFactory().addModule(new WebClientApp());
     var injector = app.run();
-
-    GameMetrics.initMixpanel();
 
     // El cache de templates solo lo primeamos en produccion, pq es donde tenemos garantizado que se habra
     // hecho una build y por lo tanto el fichero lib/template_cache.dart tendra todos los contenidos frescos

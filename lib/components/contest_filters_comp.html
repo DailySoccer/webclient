@@ -34,10 +34,13 @@
         <p class="filter-title">TORNEOS</p>
         <div class="filter-content">
             <div class="check-group-wrapper">
+
+              <!-- Botones -->
               <div class="button-check" ng-repeat="contestType in contestTypeFilterList">
                 <input id="{{contestType['id']}}" type="checkbox" ng-disabled="contestType['disabled']"
                        ng-click="filterByType(contestType)">
                 <label for="{{contestType['id']}}">{{contestType["text"].toUpperCase()}}</label>
+
               </div>
             </div>
         </div>
@@ -49,26 +52,13 @@
         <div class="filter-content">
             <div class="check-group-wrapper">
 
+              <!-- Botones -->
               <div class="button-check" ng-repeat="tier in salaryCapFilterList">
                 <input id="{{tier['id']}}" type="checkbox" ng-disabled="tier['disabled']"
                        ng-click="filterByTier(tier)">
                 <label for="{{tier['id']}}">{{tier["text"].toUpperCase()}}</label>
               </div>
 
-              <!--
-              <div class="button-check">
-                <input id="filtroEstandar" type="checkbox" ng-disabled="!hasStandardTier"
-                                                           ng-model="isStandardTierChecked"
-                                                           ng-click="refreshTierFilter()">
-                <label for="filtroEstandar">Estandar</label>
-              </div>
-              <div class="button-check">
-                <input id="filtroExperto" type="checkbox" ng-disabled="!hasSkilledTier"
-                                                          ng-model="isSkilledTierChecked"
-                                                          ng-click="filterByTier()">
-                <label for="filtroExperto">Experto</label>
-              </div>
-              -->
           </div>
         </div>
       </div>

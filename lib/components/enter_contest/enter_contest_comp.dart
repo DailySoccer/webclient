@@ -229,8 +229,9 @@ class EnterContestComp implements DetachAware {
           case FILTER_POSITION:
             availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => soccerPlayer["fieldPos"].value == valor && !lineupSlots.contains(soccerPlayer)).toList();
           break;
+          //TODO: Acentos
           case FILTER_NAME:
-            availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => soccerPlayer["fullName"].toUpperCase().contains(valor.toUpperCase())).toList();
+            availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => StringUtils.normalize(soccerPlayer["fullName"]).toUpperCase().contains(StringUtils.normalize(valor).toUpperCase())).toList();
           break;
           case FILTER_MATCH:
             availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => soccerPlayer["matchId"] == valor).toList();

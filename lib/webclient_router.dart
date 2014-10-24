@@ -4,6 +4,7 @@ import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/server_service.dart';
+import 'package:webclient/services/loading_service.dart';
 
 void webClientRouteInitializer(Router router, RouteViewFactory views) {
   views.configure({
@@ -144,6 +145,8 @@ void enterPage(RouteEnterEvent event) {
 
 // Funcion que ejecutamos nada más salir de la página
 void leavePage(RouteLeaveEvent event) {
+  LoadingService.enabled = false;
+
   // Reseteamos las modales en el caso de que hubiera (bug de modal abierta y vuelta atrás)
   _closeModal();
 }

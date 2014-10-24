@@ -5,11 +5,12 @@ import 'dart:async';
 import 'dart:math';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/active_contests_service.dart';
-import 'package:webclient/models/contest.dart';
-import 'package:webclient/services/screen_detector_service.dart';
-import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/refresh_timers_service.dart';
+import 'package:webclient/services/screen_detector_service.dart';
+import 'package:webclient/services/loading_service.dart';
+import 'package:webclient/models/contest.dart';
+import 'package:webclient/utils/js_utils.dart';
 
 @Component(
   selector: 'lobby',
@@ -75,6 +76,8 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   ActiveContestsService activeContestsService;
   Contest selectedContest;
   ScreenDetectorService scrDet;
+
+  bool get isLoaded => !LoadingService.enabled;
 
   // Rango minímo del filtro del EntryFee
   String get filterEntryFeeRangeMin => getEntryFeeFilterRange()[0];
@@ -147,6 +150,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   int get prizedTournamentsCount  => activeContestsService.activeContests.length - _freeContestCount;
 
   LobbyComp(this._router, this._refreshTimersService, this.activeContestsService, this.scrDet) {
+    LoadingService.enabled = true;
     activeContestsService.clear();
 
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_CONTEST_LIST, refreshActiveContest);
@@ -161,6 +165,7 @@ class LobbyComp implements ShadowRootAware, DetachAware {
   void refreshActiveContest() {
     activeContestsService.refreshActiveContests()
       .then((_) {
+      LoadingService.enabled = false;
         _freeContestCount = activeContestsService.activeContests.where((contest) => contest.tournamentType == Contest.TOURNAMENT_FREE).toList().length;
         onListChange();
       });

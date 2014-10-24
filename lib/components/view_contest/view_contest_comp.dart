@@ -5,13 +5,14 @@ import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/my_contests_service.dart';
+import 'package:webclient/services/flash_messages_service.dart';
+import 'package:webclient/services/refresh_timers_service.dart';
+import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/contest_entry.dart';
-import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/models/match_event.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'dart:html';
-import 'package:webclient/services/refresh_timers_service.dart';
 
 @Component(
     selector: 'view-contest',
@@ -29,11 +30,13 @@ class ViewContestComp implements DetachAware {
 
   List<String> matchesInvolved = [];
 
+  bool get isLoaded => !LoadingService.enabled;
   Contest get contest => _myContestsService.lastContest;
   List<ContestEntry> get contestEntries => (contest != null) ? contest.contestEntries : null;
   List<ContestEntry> get contestEntriesOrderByPoints => (contest != null) ? contest.contestEntriesOrderByPoints : null;
 
   ViewContestComp(this._routeProvider, this.scrDet, this._refreshTimersService, this._myContestsService, this._profileService, this._flashMessage) {
+    LoadingService.enabled = true;
 
     _contestId = _routeProvider.route.parameters['contestId'];
 
@@ -41,6 +44,8 @@ class ViewContestComp implements DetachAware {
 
     _myContestsService.refreshFullContest(_contestId)
       .then((jsonObject) {
+        LoadingService.enabled = false;
+
         mainPlayer = contest.getContestEntryWithUser(_profileService.user.userId);
 
         updatedDate = DateTimeService.now;

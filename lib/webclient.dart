@@ -5,6 +5,7 @@ import 'package:angular/routing/module.dart';
 import 'package:webclient/webclient_router.dart';
 
 import 'package:webclient/services/refresh_timers_service.dart';
+import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/active_contests_service.dart';
@@ -34,6 +35,7 @@ import 'package:webclient/components/contests_list_comp.dart';
 import 'package:webclient/components/promos_comp.dart';
 import 'package:webclient/components/paginator_comp.dart';
 import 'package:webclient/components/global_connection_comp.dart';
+import 'package:webclient/components/loading_comp.dart';
 
 import 'package:webclient/components/account/user_profile_comp.dart';
 import 'package:webclient/components/account/edit_personal_data_comp.dart';
@@ -66,6 +68,7 @@ class WebClientApp extends Module {
     bind(ServerService, toImplementation: DailySoccerServer);
 
     bind(ScreenDetectorService);
+    bind(LoadingService);
     bind(RefreshTimersService);
     bind(DateTimeService);
     bind(ProfileService);
@@ -103,6 +106,7 @@ class WebClientApp extends Module {
     bind(PolicyInfoComp);
     bind(BetaInfoComp);
     bind(GlobalConnectionComp);
+    bind(LoadingComp);
 
     bind(EnterContestComp);
     bind(SoccerPlayersListComp);

@@ -85,6 +85,7 @@
 		.column-contest-prize-header-title {
 			// La cabecera de premios la ocultamos para la versión xs
 			.hidden-xs();
+			padding-left: 10px;
 		}
 		.column-contest-prize-header-prize-type {
 			// A partir de 480px desaparece el tipo de premio	
@@ -99,6 +100,9 @@
 			.make-sm-column(12, 5px);
 			@media (min-width: @screen-sm-min) {
 				padding: 0 0 0 28px;
+			}
+			.prize {
+				padding-left: 10px;
 			}
 			> span {
 				.opensans_bold(16pt, @blueDark);
@@ -115,11 +119,11 @@
 
 		// Iconos de precio y premio
 		@media (min-width: @screen-sm-min) {
-			.column-contest-price span::before {
-				.addAbsoluteIcon("iconPrice.png", 26px, 24px, 5px, 3px);
-			}
+			/*.column-contest-price span::before {
+				.addAbsoluteIcon("iconPrice.png", 32px, 26px, 5px, 3px);
+			}*/
 			.column-contest-prize span::before {
-				.addAbsoluteIcon("iconPrize.png", 26px, 24px, 0, 3px);
+				.addAbsoluteIcon("iconPrize.png", 32px, 26px, 0, 3px);
 			}
 		}
 		

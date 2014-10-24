@@ -6258,26 +6258,21 @@ button.close {
   }
 }
 @media (min-width: 768px) {
-  #headerContestWidget .contest-coins .contest-price span::before {
-    content: " ";
-    background-image: url("../images/iconPrice.png");
-    width: 26px;
-    height: 24px;
-    display: inline-block;
-    position: absolute;
-    top: 3px;
-    left: 0;
+  #headerContestWidget .contest-coins {
+    /*.contest-price span::before {
+				.addIcon("iconPrice.png");
+			}*/
   }
   #headerContestWidget .contest-coins .contest-prize span::before {
     content: " ";
     background-image: url("../images/iconPrize.png");
-    width: 26px;
-    height: 24px;
+    width: 32px;
+    height: 26px;
     display: inline-block;
     position: absolute;
     top: 3px;
     left: 0;
-    left: -5px;
+    left: -10px;
   }
 }
 #headerContestWidget .contest-start-date {
@@ -7238,6 +7233,9 @@ button#infoContent .modal-info-head button.close {
     padding-left: 28px;
   }
 }
+.contests-list-root .contest-row .column-contest-prize-header-title {
+  padding-left: 10px;
+}
 @media (max-width: 767px) {
   .contests-list-root .contest-row .column-contest-prize-header-title {
     display: none !important;
@@ -7276,6 +7274,12 @@ button#infoContent .modal-info-head button.close {
     padding: 0 0 0 28px;
   }
 }
+.contests-list-root .contest-row .column-contest-price-content .prize,
+.contests-list-root .contest-row .column-contest-prize-content .prize,
+.contests-list-root .contest-row .column-contest-points-content .prize,
+.contests-list-root .contest-row .column-contest-position-content .prize {
+  padding-left: 10px;
+}
 .contests-list-root .contest-row .column-contest-price-content > span,
 .contests-list-root .contest-row .column-contest-prize-content > span,
 .contests-list-root .contest-row .column-contest-points-content > span,
@@ -7301,22 +7305,16 @@ button#infoContent .modal-info-head button.close {
   }
 }
 @media (min-width: 768px) {
-  .contests-list-root .contest-row .column-contest-price span::before {
-    content: " ";
-    background-image: url("../images/iconPrice.png");
-    width: 26px;
-    height: 24px;
-    display: inline-block;
-    vertical-align: middle;
-    position: absolute;
-    left: 5px;
-    top: 3px;
+  .contests-list-root .contest-row {
+    /*.column-contest-price span::before {
+				.addAbsoluteIcon("iconPrice.png", 32px, 26px, 5px, 3px);
+			}*/
   }
   .contests-list-root .contest-row .column-contest-prize span::before {
     content: " ";
     background-image: url("../images/iconPrize.png");
-    width: 26px;
-    height: 24px;
+    width: 32px;
+    height: 26px;
     display: inline-block;
     vertical-align: middle;
     position: absolute;
@@ -19983,8 +19981,8 @@ html {
 }
 .prize-icon {
   background-image: url("../images/iconPrize.png");
-  width: 26px;
-  height: 24px;
+  width: 32px;
+  height: 26px;
   display: inline-block;
 }
 .pink-bg {

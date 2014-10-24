@@ -3,6 +3,7 @@ library join_comp;
 import 'package:angular/angular.dart';
 import 'dart:html';
 import 'package:webclient/services/profile_service.dart';
+import 'package:webclient/services/server_service.dart';
 
 @Component(
     selector: 'join',
@@ -47,15 +48,15 @@ class JoinComp implements ShadowRootAware {
     _profileService.signup(firstName, lastName, email, nickName, password)
         .then((_) => _profileService.login(email, password))
         .then((_) => _router.go('lobby', {}))
-        .catchError((Map error) {
+        .catchError((ConnectionError error) {
        //   print("keys: ${error.keys.length} - ${error.keys.toString()}");
 
-          error.keys.forEach( (key) {
+          error.toJson().forEach( (key, value) {
             switch (key)
             {
               case "nickName":
                 nicknameError
-                  ..text = error[key][0]
+                  ..text = value[0]
                   ..classes.remove("errorDetected")
                   ..classes.add("errorDetected")
                   ..parent.style.display = "";
@@ -63,14 +64,14 @@ class JoinComp implements ShadowRootAware {
               break;
               case "email":
                 emailError
-                  ..text = error[key][0]
+                  ..text = value[0]
                   ..classes.remove("errorDetected")
                   ..classes.add("errorDetected")
                   ..parent.style.display = "";
               break;
               case "password":
                 passwordError
-                  ..text = error[key][0]
+                  ..text = value[0]
                   ..classes.remove("errorDetected")
                   ..classes.add("errorDetected")
                   ..parent.style.display = "";

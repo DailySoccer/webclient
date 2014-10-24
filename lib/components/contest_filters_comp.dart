@@ -182,18 +182,6 @@ class ContestFiltersComp implements ShadowRootAware {
       setEntryFeeFilterValues();
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
   // Actualiza los valores del contro range-slider
   void setEntryFeeFilterValues() {
     _lastRangeMaxLimit = entryFeeSliderRange[ENTRY_FEE_MAX_RANGE];
@@ -201,28 +189,14 @@ class ContestFiltersComp implements ShadowRootAware {
     int currentMinValue =  double.parse(filterEntryFeeRangeMin).floor();
 
     entryFeeSliderRange = getFilterEntryFeeRange();
-    JsUtils.runJavascript('#slider-range','noUiSlider', {'range': {'min': entryFeeSliderRange[ENTRY_FEE_MIN_RANGE], 'max': entryFeeSliderRange[ENTRY_FEE_MAX_RANGE]}}, true);
+    if (_lastRangeMaxLimit != entryFeeSliderRange[ENTRY_FEE_MAX_RANGE]) {
+      JsUtils.runJavascript('#slider-range','noUiSlider', {'range': {'min': entryFeeSliderRange[ENTRY_FEE_MIN_RANGE], 'max': entryFeeSliderRange[ENTRY_FEE_MAX_RANGE]}}, true);
+    }
 
     if ( _lastMaxRangeValue == _lastRangeMaxLimit && _lastMaxRangeValue < entryFeeSliderRange[ENTRY_FEE_MAX_RANGE]) {
-      print('Voy a poner los valores a ${currentMinValue} - ${entryFeeSliderRange[ENTRY_FEE_MAX_RANGE]}');
       JsUtils.runJavascript('#slider-range','val', [currentMinValue, entryFeeSliderRange[ENTRY_FEE_MAX_RANGE]]);
     }
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   // Devuelve los valores posibles para el filtro de rango de entrada MIN: 0 y MAX: maximo valor de entrada de un concurso ( ó 1).
   List<int> getFilterEntryFeeRange() {
@@ -285,6 +259,8 @@ class ContestFiltersComp implements ShadowRootAware {
     filterList = {"FILTER_TOURNAMENT":[], "FILTER_TIER":[], "FILTER_ENTRY_FEE":[], "FILTER_CONTEST_NAME":""};
     initializeFilterValues();
     setFilterValues();
+    //Fuerzo el reset del slider
+    JsUtils.runJavascript('#slider-range','val', [0, entryFeeSliderRange[ENTRY_FEE_MAX_RANGE]]);
     onFilterChange({'filterList':filterList});
   }
 

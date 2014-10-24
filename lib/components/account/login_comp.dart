@@ -5,6 +5,7 @@ import 'dart:html';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/server_service.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 @Component(
     selector: 'login',
@@ -17,7 +18,7 @@ class LoginComp implements ShadowRootAware {
   String password = "";
   String rememberMe;
 
-  bool get enabledSubmit => email.isNotEmpty && password.isNotEmpty && _enabledSubmit;
+  bool get enabledSubmit => StringUtils.isValidEmail(email) && password.isNotEmpty && _enabledSubmit;
 
   LoginComp(this._router, this._profileManager, this._rootElement);
 

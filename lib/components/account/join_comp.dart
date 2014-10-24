@@ -4,6 +4,7 @@ import 'package:angular/angular.dart';
 import 'dart:html';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/server_service.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 @Component(
     selector: 'join',
@@ -22,7 +23,7 @@ class JoinComp implements ShadowRootAware {
   Element emailError;
   Element passwordError;
 
-  bool get enabledSubmit => nickName.isNotEmpty && email.isNotEmpty && password.isNotEmpty && _enabledSubmit;
+  bool get enabledSubmit => nickName.isNotEmpty && StringUtils.isValidEmail(email) && password.isNotEmpty && _enabledSubmit;
 
   JoinComp(this._router, this._profileService, this._rootElement);
 

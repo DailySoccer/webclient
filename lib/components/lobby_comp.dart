@@ -84,10 +84,10 @@ class LobbyComp implements DetachAware {
   void onRowClick(Contest contest) {
     if (scrDet.isDesktop) {
       selectedContest = contest;
+
       // Esto soluciona el bug por el que no se muestra la ventana modal en Firefox;
       var modal = querySelector('#infoContestModal');
       modal.style.display = "block";
-      // Con esto llamamos a funciones de jQuery
       JsUtils.runJavascript('#infoContestModal', 'modal', null);
     }
     else {

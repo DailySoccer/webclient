@@ -12,7 +12,6 @@ void main() {
 
   try {
     LoggerExceptionHandler.setUpLogger();
-
     GameMetrics.initMixpanel();
 
     var app = applicationFactory().addModule(new WebClientApp());

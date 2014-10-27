@@ -101,35 +101,35 @@ void webClientRouteInitializer(Router router, RouteViewFactory views) {
         viewHtml: '<my-contests></my-contests>'
     )
     ,'live_contest': ngRoute(
-        path: '/:parent/live_contest/:contestId',
+        path: '/live_contest/:parent/:contestId',
         preEnter: (RoutePreEnterEvent e) => preEnterPage(e, router, verifyAllowEnter: true),
         enter: (RouteEnterEvent e) => enterPage(e),
         leave: (RouteLeaveEvent e) => leavePage(e),
         viewHtml: '<view-contest></view-contest>'
     )
     ,'history_contest': ngRoute(
-        path: '/:parent/history_contest/:contestId',
+        path: '/history_contest/:parent/:contestId',
         preEnter: (RoutePreEnterEvent e) => preEnterPage(e, router, verifyAllowEnter: true),
         enter: (RouteEnterEvent e) => enterPage(e),
         leave: (RouteLeaveEvent e) => leavePage(e),
         viewHtml: '<view-contest></view-contest>'
     )
     ,'enter_contest': ngRoute(
-        path: '/:parent/enter_contest/:contestId',
+        path: '/enter_contest/:parent/:contestId',
         preEnter: (RoutePreEnterEvent e) => preEnterPage(e, router, verifyAllowEnter: true),
         enter: (RouteEnterEvent e) => enterPage(e),
         leave: (RouteLeaveEvent e) => leavePage(e),
         viewHtml: '<enter-contest></enter-contest>'
     )
     ,'edit_contest': ngRoute(
-        path: '/:parent/edit_contest/:contestId/:contestEntryId',
+        path: '/edit_contest/:parent/:contestId/:contestEntryId',
         preEnter: (RoutePreEnterEvent e) => preEnterPage(e, router, verifyAllowEnter: true),
         enter: (RouteEnterEvent e) => enterPage(e),
         leave: (RouteLeaveEvent e) => leavePage(e),
         viewHtml: '<enter-contest></enter-contest>'
     )
     ,'view_contest_entry': ngRoute(
-        path: '/:parent/view_contest_entry/:viewContestEntryMode/:contestId',
+        path: '/view_contest_entry/:parent/:viewContestEntryMode/:contestId',
         preEnter: (RoutePreEnterEvent e) => preEnterPage(e, router, verifyAllowEnter: true),
         enter: (RouteEnterEvent e) => enterPage(e),
         leave: (RouteLeaveEvent e) => leavePage(e),
@@ -140,19 +140,18 @@ void webClientRouteInitializer(Router router, RouteViewFactory views) {
 
 void preEnterPage(RoutePreEnterEvent event, Router theRouter, {bool verifyAllowEnter : false}) {
   var uri_location = document.window.location.toString();
-  print("uri_location " + uri_location);
 
-    if (uri_location.contains('change_password') && uri_location.contains('?')) {
-      List<String> uriParam = uri_location.split('?');
-      var par = "";
-      if (uriParam[1] != null) {
-        var par = uriParam[1].split('=');
-        if (par[1] != null) {
-            theRouter.go('change_password', {"tokenId":(par[1])});
-           return;
-        }
+  if (uri_location.contains('change_password') && uri_location.contains('?')) {
+    List<String> uriParam = uri_location.split('?');
+    var par = "";
+    if (uriParam[1] != null) {
+      var par = uriParam[1].split('=');
+      if (par[1] != null) {
+          theRouter.go('change_password', {"tokenId":(par[1])});
+         return;
       }
     }
+  }
 
   DailySoccerServer.startContext(event.path);
 

@@ -18,12 +18,13 @@ class JoinComp implements ShadowRootAware {
   String email      = "";
   String nickName   = "";
   String password   = "";
+  String rePassword   = "";
 
   Element nicknameError;
   Element emailError;
   Element passwordError;
 
-  bool get enabledSubmit => nickName.isNotEmpty && StringUtils.isValidEmail(email) && password.isNotEmpty && _enabledSubmit;
+  bool get enabledSubmit => nickName.isNotEmpty && StringUtils.isValidEmail(email) && password.isNotEmpty && rePassword.isNotEmpty && _enabledSubmit;
 
   JoinComp(this._router, this._profileService, this._rootElement);
 
@@ -45,6 +46,15 @@ class JoinComp implements ShadowRootAware {
     emailError.parent.style.display = "none";
     passwordError.parent.style.display = "none";
     _enabledSubmit = false;
+
+    if (password != rePassword) {
+      passwordError
+        ..text = "Las contraseñas no coinciden. Revisa la ortografía"
+        ..classes.remove("errorDetected")
+        ..classes.add("errorDetected")
+        ..parent.style.display = "";
+      return;
+    }
 
     _profileService.signup(firstName, lastName, email, nickName, password)
         .then((_) => _profileService.login(email, password))

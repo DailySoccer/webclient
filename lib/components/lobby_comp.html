@@ -9,16 +9,18 @@
   </div>
 
   <!-- Filtros y Ordenación -->
-  <contest-filters-comp contests-list="activeContestsService.activeContests" contest-count="contestCount" 
+  <contest-filters-comp contests-list="activeContestsService.activeContests" contest-count="contestCount"
                         on-sort-order-change="onSortOrderChange(fieldName)" on-filter-change="onFilterChange(filterList)"></contest-filters-comp>
 
   <!-- Lista de concursos DESKTOP -->
-  <contests-list  contests-list="activeContestsService.activeContests"
+  <contests-list  id="activeContestLive"
+                  sorting="lobbySorting"
+                  contests-list="activeContestsService.activeContests"
+                  on-action-click='onActionClick(contest)'
+                  on-row-click="onRowClick(contest)" action-button-title="'Jugar'"
                   tournament-type-filter="lobbyFilters['FILTER_TOURNAMENT']" salary-cap-filter="lobbyFilters['FILTER_TIER']"
                   entry-fee-filter="lobbyFilters['FILTER_ENTRY_FEE']" name-filter="lobbyFilters['FILTER_CONTEST_NAME']"
-                  sorting="lobbySorting" contest-count="contestCount"
-                  action-button-title="'Jugar'" on-row-click="onRowClick(contest)"
-                  on-action-click='onActionClick(contest)'>
+                  contest-count="contestCount">
   </contests-list>
 
   <!-- Modal Window que envuelve la informacion de concurso, mostrada cuando clickamos en cualquiera de los campos de la fila -->

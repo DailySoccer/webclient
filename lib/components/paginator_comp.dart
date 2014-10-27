@@ -10,7 +10,7 @@ import 'package:webclient/services/screen_detector_service.dart';
     templateUrl: 'packages/webclient/components/paginator_comp.html',
     useShadowDom: false
 )
-class PaginatorComp implements DetachAware, ShadowRootAware {
+class PaginatorComp implements DetachAware {
 
   @NgCallback('on-page-change')
   Function onPageChange;
@@ -29,7 +29,7 @@ class PaginatorComp implements DetachAware, ShadowRootAware {
     goToPage(_currentPage);
   }
 
-  PaginatorComp(this._scrDet) {
+  PaginatorComp(this._scrDet, this._rootElement) {
     _originalPageLinksCount = _options["numPageLinksToDisplay"];
 
     // Si empezamos desde la versión XS el numero de botones es menor.
@@ -43,11 +43,13 @@ class PaginatorComp implements DetachAware, ShadowRootAware {
     _streamListener.cancel();
   }
 
-  void onShadowRoot(emulatedRoot) {
-    _paginatorContainer = querySelector(".paginator-box");
+  void buildMe() {
+    if(_paginatorContainer == null) {
+        _paginatorContainer = _rootElement.querySelector(".paginator-box");
 
-    goToPage(_currentPage);
-  }
+        goToPage(_currentPage);
+      }
+    }
 
   void onScreenWidthChange(msg) {
 
@@ -258,6 +260,7 @@ class PaginatorComp implements DetachAware, ShadowRootAware {
    int _originalPageLinksCount;
    int _listLength;
 
+   Element _rootElement;
    Element _paginatorContainer;
 
    ScreenDetectorService _scrDet;

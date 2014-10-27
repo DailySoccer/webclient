@@ -42,7 +42,6 @@ class RememberPasswordComp{
      .catchError( (error) {
         errorDetected = true;
         _enabledSubmit = true;
-        print('-REMEMBER_PASSWORD-: error');
       }
     );
   }

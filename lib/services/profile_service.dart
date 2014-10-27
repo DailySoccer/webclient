@@ -21,6 +21,12 @@ class ProfileService {
     _tryProfileLoad();
   }
 
+  Future<JsonObject> verifyPasswordResetToken(String password, String stormPathTokenId) {
+    return _server.verifyPasswordResetToken(password, stormPathTokenId);
+  }
+
+
+
   Future<JsonObject> signup(String firstName, String lastName, String email, String nickName, String password) {
 
     if (isLoggedIn)

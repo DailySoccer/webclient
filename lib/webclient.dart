@@ -43,6 +43,7 @@ import 'package:webclient/components/account/edit_personal_data_comp.dart';
 import 'package:webclient/components/account/remember_password_comp.dart';
 import 'package:webclient/components/account/login_comp.dart';
 import 'package:webclient/components/account/join_comp.dart';
+import 'package:webclient/components/account/change_password_comp.dart';
 
 import 'package:webclient/components/view_contest/fantasy_team_comp.dart';
 import 'package:webclient/components/view_contest/users_list_comp.dart';
@@ -101,6 +102,7 @@ class WebClientApp extends Module {
     bind(ContestFiltersComp);
     bind(LoginComp);
     bind(JoinComp);
+    bind(ChangePasswordComp);
 
     bind(HelpInfoComp);
     bind(LegalInfoComp);

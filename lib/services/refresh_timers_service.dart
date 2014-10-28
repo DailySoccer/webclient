@@ -39,7 +39,9 @@ class RefreshTimersService {
   }
 
   void cancelTimer(String name) {
-    _timers[name].cancel();
+    if (_timers.containsKey(name)) {
+      _timers[name].cancel();
+    }
   }
 
   Map<String, Timer> _timers = {};

@@ -164,6 +164,26 @@ html { overflow-y: scroll; }
 	}*/
 }
 
+.default-header-text {
+	.make-row(0);
+	.exo_light(20pt, @blueDark);
+	padding: 30px 15px 30px 15px;
+	background-color: @greyUltraLight;
+	text-align: center;
+	@media (max-width: @screen-xs-max) {
+		padding: 10px 5px 10px 5px;
+	}
+}
+.default-info-text {
+	.exo_light(20pt, @blueMed);
+	text-align: center;
+	margin: 0 auto;
+	padding: 15px 0;
+	@media (max-width: @screen-sm-max) {
+		.opensans_bold(14pt, @blueMed);
+	}
+}
+
 
 // Contenedor interior que envuelve al contenido. Fijamos el width con el.
 .main-content-container {

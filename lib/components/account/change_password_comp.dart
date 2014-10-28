@@ -53,7 +53,6 @@ class ChangePasswordComp implements ShadowRootAware {
        .then((_) {
           state = STATE_CHANGE_PASSWORD;
           LoadingService.enabled = false;
-          _rootElement.querySelector('#password').focus();
        })
        .catchError( (ConnectionError error) {
           state = STATE_INVALID_TOKEN;

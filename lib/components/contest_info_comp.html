@@ -73,32 +73,24 @@
                 </div>
 
                 <div class="tab-pane" id="contestants">
-                <div class="contestant-list-wrapper ">
-                  <div class="contestant-list">
-                    <div class="contestant-element"ng-repeat="contestant in currentInfoData['contestants']">
+                  <div class="contestant-list-wrapper ">
+                    <div ng-if="currentInfoData['contestants'].length == 0" class="default-info-text">
+                      Todavía no hay participantes en este concurso. <br> Anímate a ser el primero.
+                    </div>
+                    <div class="contestant-list">
+                      <div class="contestant-element"ng-repeat="contestant in currentInfoData['contestants']">
                         <div class="contestant-position">{{$index + 1}}º</div>
                         <div class="contestant-name">{{contestant.name}}</div>
                         <div class="contestant-points">{{contestant.wins + ' '}}<span class="prize-currency">Ganados</span></div>
+                      </div>
                     </div>
                   </div>
-                  </div>
-                  <!--
-                    <div class="list-wrapper">
-                        <div class="contestant-list">
-                            <div class="contestant-element"ng-repeat="contestant in currentInfoData['contestants']">
-                                <div class="contestant-position">{{$index + 1}}º</div>
-                                <div class="contestant-name">{{contestant.name}}</div>
-                                <div class="contestant-points">{{contestant.wins + ' '}}<span class="prize-currency">Ganados</span></div>
-                            </div>
-                        </div>
-                    </div>
-                  -->
                 </div>
 
                 <div class="tab-pane" id="prizes">
 
                   <div class="prizes-wrapper">
-                    <div ng-if="currentInfoData['prizes'].length == 0" class="no-prizes">
+                    <div ng-if="currentInfoData['prizes'].length == 0" class="default-info-text">
                       Este concurso no tiene premios
                     </div>
                     <div id="prizes-list">
@@ -141,7 +133,7 @@
     <p class="title">PREMIOS</p>
     <div class="prizes-wrapper">
         <div id="prizes-list">
-          <div ng-if="currentInfoData['prizes'].length == 0" class="no-prizes">
+          <div ng-if="currentInfoData['prizes'].length == 0" class=default-info-text>
             Este concurso no tiene premios
           </div>
           <div class="prize-element-wrapper" ng-repeat="prize in currentInfoData['prizes']">
@@ -156,6 +148,9 @@
     <div class="info-section"></div>
 
     <p class="title">JUGADORES</p>
+    <div ng-if="currentInfoData['prizes'].length == 0" class="default-info-text">
+      Todavía no hay participantes en este concurso. <br> Anímate a ser el primero.
+    </div>
     <div class="contestant-list">
         <div class="contestant-element"ng-repeat="contestant in currentInfoData['contestants']">
             <div class="contestant-position">{{$index + 1}}º</div>

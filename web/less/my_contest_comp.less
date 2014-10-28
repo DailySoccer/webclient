@@ -10,19 +10,6 @@
 	}
 }
 
-.my-contest-title-tab {
-	.make-row(0);
-	.exo_light(20pt, @blueDark);
-
-	//padding-left: 15px;
-	padding: 30px 15px 30px 15px;
-	background-color: @white;
-	text-align: center;
-	@media (max-width: @screen-xs-max) {
-		padding: 10px 5px 10px 5px;
-	}
-}
-
 .resume-bar{
 	.make-row(0);
 	background-color: @blueDark;
@@ -118,16 +105,11 @@
 	@media (max-width: @screen-xs-max) {
 		padding-bottom: 30px;
 	}
-	.no-contests-title {
-		.exo_light(20pt, @blueMed);
-		max-width: 500px;
-		margin: 0 auto;
-		padding-bottom: 20px;
-	}
 	.no-contests-text {
 		.opensans_bold(8pt, @greyMed);
 		strong {
 			color: @blueDark;
+			cursor: pointer;
 		}
 	}
 }

@@ -5679,8 +5679,6 @@ button.close {
 .pre-filter-row:after,
 #mainMenu .inner-wrapper:before,
 #mainMenu .inner-wrapper:after,
-.my-contest-title-tab:before,
-.my-contest-title-tab:after,
 .resume-bar:before,
 .resume-bar:after,
 .no-contest .my-no-contest-bottom-row:before,
@@ -5729,6 +5727,8 @@ button.close {
 .view-contest-entry-actions-wrapper:after,
 #helpInfo .scores-wrapper:before,
 #helpInfo .scores-wrapper:after,
+.default-header-text:before,
+.default-header-text:after,
 .main-content-container:before,
 .main-content-container:after,
 .lineup-selector .lineup-selector-slot:before,
@@ -5785,7 +5785,6 @@ button.close {
 #contestFiltersRoot #filtersPanel:after,
 .pre-filter-row:after,
 #mainMenu .inner-wrapper:after,
-.my-contest-title-tab:after,
 .resume-bar:after,
 .no-contest .my-no-contest-bottom-row:after,
 #promosComponent:after,
@@ -5810,6 +5809,7 @@ button.close {
 .info-complete-bar:after,
 .view-contest-entry-actions-wrapper:after,
 #helpInfo .scores-wrapper:after,
+.default-header-text:after,
 .main-content-container:after,
 .lineup-selector .lineup-selector-slot:after {
   clear: both;
@@ -6826,22 +6826,6 @@ button#infoContent .modal-info-head button.close {
 @media (min-width: 992px) {
   .rules-description {
     overflow-x: hidden;
-  }
-}
-.prizes-wrapper .no-prizes {
-  font-family: 'Exo', sans-serif;
-  font-weight: 300;
-  font-size: 20pt;
-  color: #0d75a6;
-  text-align: center;
-  padding: 15px 0;
-}
-@media (max-width: 991px) {
-  .prizes-wrapper .no-prizes {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 700;
-    font-size: 10pt;
-    color: #777777;
   }
 }
 .prizes-wrapper .prize-element-wrapper {
@@ -12989,22 +12973,6 @@ fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-login {
     margin-left: 0;
   }
 }
-.my-contest-title-tab {
-  margin-left: 0;
-  margin-right: 0;
-  font-family: 'Exo', sans-serif;
-  font-weight: 300;
-  font-size: 20pt;
-  color: #214a5f;
-  padding: 30px 15px 30px 15px;
-  background-color: #ffffff;
-  text-align: center;
-}
-@media (max-width: 767px) {
-  .my-contest-title-tab {
-    padding: 10px 5px 10px 5px;
-  }
-}
 .resume-bar {
   margin-left: 0;
   margin-right: 0;
@@ -13555,15 +13523,6 @@ fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest {
     padding-bottom: 30px;
   }
 }
-.no-contests-wrapper .no-contests-title {
-  font-family: 'Exo', sans-serif;
-  font-weight: 300;
-  font-size: 20pt;
-  color: #0d75a6;
-  max-width: 500px;
-  margin: 0 auto;
-  padding-bottom: 20px;
-}
 .no-contests-wrapper .no-contests-text {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
@@ -13572,6 +13531,7 @@ fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest {
 }
 .no-contests-wrapper .no-contests-text strong {
   color: #214a5f;
+  cursor: pointer;
 }
 .list-container {
   min-height: 539px;
@@ -19927,6 +19887,39 @@ html {
 @media (max-width: 767px) {
   .wrapper-content-container #wrapper-push {
     height: 204px;
+  }
+}
+.default-header-text {
+  margin-left: 0;
+  margin-right: 0;
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 20pt;
+  color: #214a5f;
+  padding: 30px 15px 30px 15px;
+  background-color: #f8f8f8;
+  text-align: center;
+}
+@media (max-width: 767px) {
+  .default-header-text {
+    padding: 10px 5px 10px 5px;
+  }
+}
+.default-info-text {
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 20pt;
+  color: #0d75a6;
+  text-align: center;
+  margin: 0 auto;
+  padding: 15px 0;
+}
+@media (max-width: 991px) {
+  .default-info-text {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14pt;
+    color: #0d75a6;
   }
 }
 .main-content-container {

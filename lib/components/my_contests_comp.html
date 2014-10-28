@@ -1,5 +1,5 @@
 <div id="myContest" ng-cloak">
-  <div class="my-contest-title-tab">MIS TORNEOS</div>
+  <div class="default-header-text">MIS TORNEOS</div>
   <!-- Nav tabs -->
   <ul  id="myContestMenuTabs" class="my-contest-tabs" role="tablist">
 
@@ -36,8 +36,8 @@
         <!-- Banner de información de lista vacía -->
         <div class="no-contest" ng-if="!hasLiveContests">
           <div class="no-contests-wrapper">
-            <div class="no-contests-title">
-             EN ESTE MOMENTO, NO ESTÁS JUGANDO NINGÚN TORNEO
+            <div class="default-info-text">
+             EN ESTE MOMENTO, NO ESTÁS JUGANDO<br>NINGÚN TORNEO
             </div>
             <div class="no-contests-text">
               CONSULTA LA LISTA DE TUS <strong data-toggle="tab" ng-click="tabChange('waiting-contest-content')">PRÓXIMOS TORNEOS</strong> PARA VER CUÁNDO EMPIEZAN
@@ -77,8 +77,8 @@
         <!-- Banner de información de lista vacía -->
         <div class="no-contest" ng-if="!hasWaitingContests">
           <div class="no-contests-wrapper">
-            <div class="no-contests-title">
-             EN ESTE MOMENTO, NO TIENES UN EQUIPO CREADO PARA NINGÚN TORNEO
+            <div class="default-info-text">
+             EN ESTE MOMENTO, NO TIENES UN<br>EQUIPO CREADO PARA NINGÚN TORNEO
             </div>
             <div class="no-contests-text">
               VE A LA LISTA DE TORNEOS, ELIGE UNO Y EMPIEZA A JUGAR
@@ -122,7 +122,7 @@
           <!-- Banner de información de lista vacía -->
           <div class="no-contest" ng-if="!hasHistoryContests">
             <div class="no-contests-wrapper">
-              <div class="no-contests-title">
+              <div class="default-info-text">
                TODAVÍA NO HAS JUGADO NINGÚN TORNEO
               </div>
               <div class="no-contests-text">

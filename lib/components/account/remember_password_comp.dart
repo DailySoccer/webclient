@@ -14,7 +14,7 @@ import 'package:webclient/utils/string_utils.dart';
 class RememberPasswordComp{
 
   static const String STATE_REQUEST   = 'STATE_REQUEST';
-  String STATE_REQUESTED = 'STATE_REQUESTED';
+  static const String STATE_REQUESTED = 'STATE_REQUESTED';
 
   String email = "";
   String state = STATE_REQUEST;

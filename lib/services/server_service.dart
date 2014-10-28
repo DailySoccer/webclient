@@ -13,7 +13,8 @@ abstract class ServerService {
   static final String SECONDS_TO_RETRY = "secondsToRetry";
 
   void               setSessionToken(String sessionToken);
-  Future<JsonObject> verifyPasswordResetToken(String password, String stormPathTokenId);
+  Future<JsonObject> verifyPasswordResetToken(String token);
+  Future<JsonObject> resetPassword(String password, String stormPathTokenId);
   Future<JsonObject> signup(String firstName, String lastName, String email, String nickName, String password);
   Future<JsonObject> login(String email, String password);
   Future<JsonObject> getUserProfile();
@@ -65,8 +66,12 @@ class DailySoccerServer implements ServerService {
 
   void setSessionToken(String sessionToken) { _sessionToken = sessionToken; }
 
-  Future<JsonObject> verifyPasswordResetToken(String password, String stormPathTokenId) {
-    return _innerServerCall("${HostServer.url}/verify_password_reset_token", postData: {'password':password, 'stormPathTokenId':stormPathTokenId});
+  Future<JsonObject> verifyPasswordResetToken(String token) {
+    return _innerServerCall("${HostServer.url}/verify_password_reset_token", postData: {'token':token});
+  }
+
+  Future<JsonObject> resetPassword(String password, String stormPathTokenId) {
+    return _innerServerCall("${HostServer.url}/reset_password", postData: {'password':password, 'token':stormPathTokenId});
   }
 
   Future<JsonObject> signup(String firstName, String lastName, String email, String nickName, String password) {

@@ -5,6 +5,7 @@ import 'dart:html';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/server_service.dart';
+import 'package:webclient/services/loading_service.dart';
 
 @Component(
     selector: 'change-password',
@@ -12,6 +13,12 @@ import 'package:webclient/services/server_service.dart';
     useShadowDom: false
 )
 class ChangePasswordComp implements ShadowRootAware {
+  static const String STATE_ENTERING        = 'STATE_ENTERING';
+  static const String STATE_INVALID_URL     = 'STATE_INVALID_URL';
+  static const String STATE_INVALID_TOKEN   = 'STATE_INVALID_TOKEN';
+  static const String STATE_CHANGE_PASSWORD = 'STATE_CHANGE_PASSWORD';
+
+  String state = STATE_ENTERING;
 
   String password = "";
   String rePassword = "";
@@ -22,25 +29,40 @@ class ChangePasswordComp implements ShadowRootAware {
   String errorMessage ="HA OCURRIDO UN ERROR. La contraseña no es válida.";
 
   ChangePasswordComp(this._router, this._routeProvider, this._profileManager, this._rootElement) {
+    LoadingService.enabled = true;
     GameMetrics.logEvent(GameMetrics.CHANGE_PASSWORD_ATTEMPTED);
     //_stormPathTokenId = _routeProvider.route.parameters['tokenId'];
   }
 
   @override void onShadowRoot(emulatedRoot) {
-    _rootElement.querySelector('#password').focus();
-
-
     //Cogemos los parametros de la querystring esperando encontrar el parametro del token de stormPath
     String querystring = window.location.toString().substring(window.location.toString().indexOf('?') + 1);
     Map<String,String> params = Uri.splitQueryString(querystring);
 
     if (params != null) {
-      _stormPathTokenId = params.containsKey('sptoken') ? params["sptoken"] : "inválido";
+      _stormPathTokenId = params.containsKey('sptoken') ? params["sptoken"] : "";
       print("Encontrado el parámetro del token ${_stormPathTokenId}");
+
+      if(_stormPathTokenId.isEmpty) {
+        state = STATE_INVALID_URL;
+        LoadingService.enabled = false;
+        return;
+      }
+
+      _profileManager.verifyPasswordResetToken(_stormPathTokenId)
+       .then((_) {
+          state = STATE_CHANGE_PASSWORD;
+          LoadingService.enabled = false;
+          _rootElement.querySelector('#password').focus();
+       })
+       .catchError( (ConnectionError error) {
+          state = STATE_INVALID_TOKEN;
+          LoadingService.enabled = false;
+       });
     }
   }
 
-  void verifyPasswordResetToken() {
+  void changePassword() {
 
     _enabledSubmit = false;
     if (password != rePassword) {
@@ -50,13 +72,13 @@ class ChangePasswordComp implements ShadowRootAware {
       return;
     }
 
-    _profileManager.verifyPasswordResetToken(password, _stormPathTokenId)
-        .then((_) => _router.go('lobby', {}))
-        .catchError( (ConnectionError error) {
-          _enabledSubmit = true;
-          errorDetected = true;
-          errorMessage = error.toJson()["error"];
-        });
+    _profileManager.verifyPasswordResetToken(_stormPathTokenId)
+      .then((_) => _router.go('lobby', {}))
+      .catchError( (ConnectionError error) {
+        _enabledSubmit = true;
+        errorDetected = true;
+        errorMessage = error.toJson()["error"];
+    });
   }
 
   void navigateTo(String routePath, Map parameters, event) {

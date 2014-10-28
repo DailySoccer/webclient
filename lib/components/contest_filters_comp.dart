@@ -225,7 +225,7 @@ class ContestFiltersComp implements ShadowRootAware {
   }
 
   void filterByTier(Map m) {
-    contestTypeFilterList.forEach((elem) {
+    salaryCapFilterList.forEach((elem) {
       if (elem['name'] == m['name']) {
         elem['checked'] = !elem['checked'];
       }

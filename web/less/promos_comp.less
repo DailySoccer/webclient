@@ -2,17 +2,20 @@
 	position: relative;
 	background-color: @white;
 	overflow: hidden;
+	display: block;		// Para que funcione la reserva de espacio
 
 	.make-row();
 
-	//Tipo de contenedor que contendrá el contenido
+	// Tipo de contenedor que contendrá el contenido
 	@media (min-width: @screen-md-min) {
 		.container();
 		.clean-paddings();
+		min-height: 230px;		// Reservamos espacio
 	}
 	@media (max-width: @screen-sm-max) {
 		.container-fluid();
 		.clean-paddings();
+		min-height: 147px;
 	}
 	//a la version > XS le ponemos un fondo blanco
 	@media (min-width: @screen-sm-min) {
@@ -25,9 +28,9 @@
 		left: 50%;
 		margin-left: -@widthImage/2px;
 	}
-	.promoDesktop{
+	.promoDesktop {
 		//.centerImage(970);
-		.img-responsive();	
+		.img-responsive();
 	}
 	.promoXs {
 		.centerImage(768);

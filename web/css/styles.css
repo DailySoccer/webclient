@@ -13608,6 +13608,7 @@ fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest {
   position: relative;
   background-color: #ffffff;
   overflow: hidden;
+  display: block;
   margin-left: -15px;
   margin-right: -15px;
 }
@@ -13619,6 +13620,7 @@ fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest {
     padding-right: 15px;
     padding-left: 0px;
     padding-right: 0px;
+    min-height: 230px;
   }
   #promosComponent > .navbar-header,
   #promosComponent > .navbar-collapse {
@@ -13656,6 +13658,7 @@ fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest {
     padding-right: 15px;
     padding-left: 0px;
     padding-right: 0px;
+    min-height: 147px;
   }
   #promosComponent > .navbar-header,
   #promosComponent > .navbar-collapse {

@@ -11,126 +11,126 @@ void webClientRouteInitializer(Router router, RouteViewFactory views) {
     'landing_page': ngRoute(
         defaultRoute: true,
         path: '/landing_page',
-        preEnter: (RoutePreEnterEvent e) => preEnterPage(e, router),
+        preEnter: (RoutePreEnterEvent e) => preEnterPage(e),
         enter: (RouteEnterEvent e) => enterPage(e),
         leave: (RouteLeaveEvent e) => leavePage(e),
         viewHtml: '<landing-page></landing-page>'
     )
     ,'beta_info': ngRoute(
         path: '/beta_info',
-        preEnter: (RoutePreEnterEvent e) => preEnterPage(e, router),
+        preEnter: (RoutePreEnterEvent e) => preEnterPage(e),
         enter: (RouteEnterEvent e) => enterPage(e),
         leave: (RouteLeaveEvent e) => leavePage(e),
         viewHtml: '<beta-info></beta-info>'
     )
     ,'login': ngRoute(
         path: '/login',
-        preEnter: (RoutePreEnterEvent e) => preEnterPage(e, router),
+        preEnter: (RoutePreEnterEvent e) => preEnterPage(e),
         enter: (RouteEnterEvent e) => enterPage(e),
         leave: (RouteLeaveEvent e) => leavePage(e),
         viewHtml: '<login></login>'
     )
     ,'join': ngRoute(
         path: '/join',
-        preEnter: (RoutePreEnterEvent e) => preEnterPage(e, router),
+        preEnter: (RoutePreEnterEvent e) => preEnterPage(e),
         enter: (RouteEnterEvent e) => enterPage(e),
         leave: (RouteLeaveEvent e) => leavePage(e),
         viewHtml: '<join></join>'
     )
     ,'change_password': ngRoute(
-        path: '/change_password/:tokenId',
-        preEnter: (RoutePreEnterEvent e) => preEnterPage(e, router),
+        path: '/change_password',
+        preEnter: (RoutePreEnterEvent e) => preEnterPage(e),
         enter: (RouteEnterEvent e) => enterPage(e),
         leave: (RouteLeaveEvent e) => leavePage(e),
         viewHtml: '<change-password></change-password>'
     )
     ,'help_info': ngRoute(
         path: '/help-info',
-        preEnter: (RoutePreEnterEvent e) => preEnterPage(e, router),
+        preEnter: (RoutePreEnterEvent e) => preEnterPage(e),
         enter: (RouteEnterEvent e) => enterPage(e),
         leave: (RouteLeaveEvent e) => leavePage(e),
         viewHtml: '<help-info></help-info>'
     )
     ,'legal_info': ngRoute(
         path: '/legal_info',
-        preEnter: (RoutePreEnterEvent e) => preEnterPage(e, router),
+        preEnter: (RoutePreEnterEvent e) => preEnterPage(e),
         enter: (RouteEnterEvent e) => enterPage(e),
         leave: (RouteLeaveEvent e) => leavePage(e),
         viewHtml: '<legal-info></legal-info>'
     )
     ,'terminus_info': ngRoute(
         path: '/terminus_info',
-        preEnter: (RoutePreEnterEvent e) => preEnterPage(e, router),
+        preEnter: (RoutePreEnterEvent e) => preEnterPage(e),
         enter: (RouteEnterEvent e) => enterPage(e),
         leave: (RouteLeaveEvent e) => leavePage(e),
         viewHtml: '<terminus-info></terminus-info>'
     )
     ,'policy_info': ngRoute(
         path: '/policy_info',
-        preEnter: (RoutePreEnterEvent e) => preEnterPage(e, router),
+        preEnter: (RoutePreEnterEvent e) => preEnterPage(e),
         enter: (RouteEnterEvent e) => enterPage(e),
         leave: (RouteLeaveEvent e) => leavePage(e),
         viewHtml: '<policy-info></policy-info>'
     )
     ,'remember_password': ngRoute(
         path: '/remember_password',
-        preEnter: (RoutePreEnterEvent e) => preEnterPage(e, router),
+        preEnter: (RoutePreEnterEvent e) => preEnterPage(e),
         enter: (RouteEnterEvent e) => enterPage(e),
         leave: (RouteLeaveEvent e) => leavePage(e),
         viewHtml: '<remember-password></remember-password>'
     )
     ,'user_profile': ngRoute(
         path: '/user_profile',
-        preEnter: (RoutePreEnterEvent e) => preEnterPage(e, router, verifyAllowEnter: true),
+        preEnter: (RoutePreEnterEvent e) => preEnterPage(e, verifyAllowEnter: true),
         enter: (RouteEnterEvent e) => enterPage(e),
         leave: (RouteLeaveEvent e) => leavePage(e),
         viewHtml: '<user-profile></user-profile>'
     )
     ,'lobby': ngRoute(
         path: '/lobby',
-        preEnter: (RoutePreEnterEvent e) => preEnterPage(e, router, verifyAllowEnter: true),
+        preEnter: (RoutePreEnterEvent e) => preEnterPage(e, verifyAllowEnter: true),
         enter: (RouteEnterEvent e) => enterPage(e),
         leave: (RouteLeaveEvent e) => leavePage(e),
         viewHtml: '<lobby></lobby>'
     )
     ,'my_contests': ngRoute(
         path: '/my_contests',
-        preEnter: (RoutePreEnterEvent e) => preEnterPage(e, router, verifyAllowEnter: true),
+        preEnter: (RoutePreEnterEvent e) => preEnterPage(e, verifyAllowEnter: true),
         enter: (RouteEnterEvent e) => enterPage(e),
         leave: (RouteLeaveEvent e) => leavePage(e),
         viewHtml: '<my-contests></my-contests>'
     )
     ,'live_contest': ngRoute(
         path: '/live_contest/:parent/:contestId',
-        preEnter: (RoutePreEnterEvent e) => preEnterPage(e, router, verifyAllowEnter: true),
+        preEnter: (RoutePreEnterEvent e) => preEnterPage(e, verifyAllowEnter: true),
         enter: (RouteEnterEvent e) => enterPage(e),
         leave: (RouteLeaveEvent e) => leavePage(e),
         viewHtml: '<view-contest></view-contest>'
     )
     ,'history_contest': ngRoute(
         path: '/history_contest/:parent/:contestId',
-        preEnter: (RoutePreEnterEvent e) => preEnterPage(e, router, verifyAllowEnter: true),
+        preEnter: (RoutePreEnterEvent e) => preEnterPage(e, verifyAllowEnter: true),
         enter: (RouteEnterEvent e) => enterPage(e),
         leave: (RouteLeaveEvent e) => leavePage(e),
         viewHtml: '<view-contest></view-contest>'
     )
     ,'enter_contest': ngRoute(
         path: '/enter_contest/:parent/:contestId',
-        preEnter: (RoutePreEnterEvent e) => preEnterPage(e, router, verifyAllowEnter: true),
+        preEnter: (RoutePreEnterEvent e) => preEnterPage(e, verifyAllowEnter: true),
         enter: (RouteEnterEvent e) => enterPage(e),
         leave: (RouteLeaveEvent e) => leavePage(e),
         viewHtml: '<enter-contest></enter-contest>'
     )
     ,'edit_contest': ngRoute(
         path: '/edit_contest/:parent/:contestId/:contestEntryId',
-        preEnter: (RoutePreEnterEvent e) => preEnterPage(e, router, verifyAllowEnter: true),
+        preEnter: (RoutePreEnterEvent e) => preEnterPage(e, verifyAllowEnter: true),
         enter: (RouteEnterEvent e) => enterPage(e),
         leave: (RouteLeaveEvent e) => leavePage(e),
         viewHtml: '<enter-contest></enter-contest>'
     )
     ,'view_contest_entry': ngRoute(
         path: '/view_contest_entry/:parent/:viewContestEntryMode/:contestId',
-        preEnter: (RoutePreEnterEvent e) => preEnterPage(e, router, verifyAllowEnter: true),
+        preEnter: (RoutePreEnterEvent e) => preEnterPage(e, verifyAllowEnter: true),
         enter: (RouteEnterEvent e) => enterPage(e),
         leave: (RouteLeaveEvent e) => leavePage(e),
         viewHtml: '<view-contest-entry></view-contest-entry>'
@@ -138,20 +138,7 @@ void webClientRouteInitializer(Router router, RouteViewFactory views) {
   });
 }
 
-void preEnterPage(RoutePreEnterEvent event, Router theRouter, {bool verifyAllowEnter : false}) {
-  var uri_location = document.window.location.toString();
-
-  if (uri_location.contains('change_password') && uri_location.contains('?')) {
-    List<String> uriParam = uri_location.split('?');
-    var par = "";
-    if (uriParam[1] != null) {
-      var par = uriParam[1].split('=');
-      if (par[1] != null) {
-          theRouter.go('change_password', {"tokenId":(par[1])});
-         return;
-      }
-    }
-  }
+void preEnterPage(RoutePreEnterEvent event, {bool verifyAllowEnter : false}) {
 
   DailySoccerServer.startContext(event.path);
 

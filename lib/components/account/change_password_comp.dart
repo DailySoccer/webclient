@@ -19,14 +19,25 @@ class ChangePasswordComp implements ShadowRootAware {
   bool get enabledSubmit => rePassword.isNotEmpty && password.isNotEmpty && _enabledSubmit;
 
   bool errorDetected = false;
+  String errorMessage ="HA OCURRIDO UN ERROR. La contraseña no es válida.";
 
   ChangePasswordComp(this._router, this._routeProvider, this._profileManager, this._rootElement) {
     GameMetrics.logEvent(GameMetrics.CHANGE_PASSWORD_ATTEMPTED);
-    _stormPathTokenId = _routeProvider.route.parameters['tokenId'];
+    //_stormPathTokenId = _routeProvider.route.parameters['tokenId'];
   }
 
   @override void onShadowRoot(emulatedRoot) {
     _rootElement.querySelector('#password').focus();
+
+
+    //Cogemos los parametros de la querystring esperando encontrar el parametro del token de stormPath
+    String querystring = window.location.toString().substring(window.location.toString().indexOf('?') + 1);
+    Map<String,String> params = Uri.splitQueryString(querystring);
+
+    if (params != null) {
+      _stormPathTokenId = params.containsKey('sptoken') ? params["sptoken"] : "inválido";
+      print("Encontrado el parámetro del token ${_stormPathTokenId}");
+    }
   }
 
   void verifyPasswordResetToken() {
@@ -35,7 +46,8 @@ class ChangePasswordComp implements ShadowRootAware {
     if (password != rePassword) {
       _enabledSubmit = true;
       errorDetected = true;
-      _errSection.text = "Los passwords no coinciden. Revisa la ortografía";
+      errorMessage = "Los passwords no coinciden. Revisa la ortografía";
+      return;
     }
 
     _profileManager.verifyPasswordResetToken(password, _stormPathTokenId)
@@ -43,7 +55,7 @@ class ChangePasswordComp implements ShadowRootAware {
         .catchError( (ConnectionError error) {
           _enabledSubmit = true;
           errorDetected = true;
-          _errSection.text = error.toJson()["error"][0];
+          errorMessage = error.toJson()["error"];
         });
   }
 
@@ -51,7 +63,6 @@ class ChangePasswordComp implements ShadowRootAware {
     if (event.target.id != "btnSubmit") {
       event.preventDefault();
     }
-
     _router.go(routePath, parameters);
  }
 

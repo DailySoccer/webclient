@@ -17305,6 +17305,13 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
   color: #ff0000;
   text-align: center;
 }
+.main-box .panel .panel-body .new-row .pass-err-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #ff0000;
+  text-align: left;
+}
 .error-visible {
   display: none;
 }

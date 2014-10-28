@@ -72,7 +72,7 @@ class ChangePasswordComp implements ShadowRootAware {
       return;
     }
 
-    _profileManager.verifyPasswordResetToken(_stormPathTokenId)
+    _profileManager.resetPassword(password, _stormPathTokenId)
       .then((_) => _router.go('lobby', {}))
       .catchError( (ConnectionError error) {
         _enabledSubmit = true;

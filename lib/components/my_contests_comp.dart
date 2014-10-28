@@ -32,7 +32,7 @@ class MyContestsComp implements DetachAware {
 
     myContestsService.clear();
 
-    _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE, _updateLive);
+    _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS, _updateLive);
   }
 
   void onWaitingRowClick(Contest contest) {
@@ -64,7 +64,7 @@ class MyContestsComp implements DetachAware {
   }
 
   void detach() {
-    _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE);
+    _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS);
   }
 
   void tabChange(String tab) {

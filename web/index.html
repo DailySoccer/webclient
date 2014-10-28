@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app>
+<html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -34,7 +34,7 @@ for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElemen
     <!-- end Mixpanel -->
   </head>
 
-  <body>
+  <body ng-app>
     <div id="spinnerIcon"></div>
     <script>
         var spinner = null;
@@ -75,7 +75,6 @@ for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElemen
         <flash-messages></flash-messages>
         <ng-view></ng-view>
         <global-connection></global-connection>
-        <loading></loading>
       </div>
       <div id="wrapper-push"></div>
     </div>

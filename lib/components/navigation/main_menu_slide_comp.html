@@ -41,9 +41,38 @@
       <div class="button-wrapper">
         <a id="joinButton"  type="button" class="button-join"  ng-click="navigateTo($event)" destination="join">REGISTRO</a>
         <a id="loginButton" type="button" class="button-login" ng-click="navigateTo($event)" destination="login">ENTRAR</a>
+        <!--Facebook stuff-->
+        <fb:login-button scope="public_profile,email" data-size="xlarge" onlogin="response()">
+        </fb:login-button>
+        <!--/Facebookstuff-->
       </div>
       <div class="clearfix"></div>
     </div>
 
   </div>
 </nav>
+
+ <script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '732983533416791',
+      xfbml      : true,
+      version    : 'v2.1'
+    });
+
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/es_ES/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+  // This function is called when someone finishes with the Login
+  // Button.  See the onlogin handler attached to it in the sample
+  // code below.
+
+
+</script>

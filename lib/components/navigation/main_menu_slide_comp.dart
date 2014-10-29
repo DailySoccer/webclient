@@ -23,8 +23,6 @@ class MainMenuSlideComp {
 
   MainMenuSlideComp(this._router, this.profileService, this.scrDet, this._rootElement) {
 
-    context["response"] = new JsFunction.withThis((arg1) => checkLoginState());
-
     _router.onRouteStart.listen((RouteStartEvent event) {
       event.completed.then((_) {
         _elementActivated = false;
@@ -95,14 +93,6 @@ class MainMenuSlideComp {
     _router.go('landing_page', {});
     profileService.logout();
     _currentActiveElement = null;
-  }
-
-  void checkLoginState() {
-    JsUtils.runJavascript(null, "getLoginStatus", (JsObject response) {
-      profileService.facebookLogin(response["authResponse"]["accessToken"])
-        .then((_) => _router.go("lobby", {}));
-      },
-      false, "FB");
   }
 
 

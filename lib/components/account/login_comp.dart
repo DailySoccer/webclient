@@ -4,9 +4,12 @@ import 'package:angular/angular.dart';
 import 'dart:html';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/game_metrics.dart';
+import 'package:webclient/services/server_service.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/models/connection_error.dart';
+import 'package:webclient/utils/js_utils.dart';
+import 'dart:js';
 
 @Component(
     selector: 'login',
@@ -28,6 +31,17 @@ class LoginComp implements ShadowRootAware {
   @override void onShadowRoot(emulatedRoot) {
     _errSection = _rootElement.querySelector("#mailPassError");
     _errSection.parent.parent.style.display = 'none';
+  }
+
+  void loginFB() {
+    JsUtils.runJavascript(null, "login", (JsObject response) { //=>checkLoginStatus();
+      if (response["status"]=="connected") {
+        _profileManager.facebookLogin(response["authResponse"]["accessToken"])
+              .then((_) => _router.go("lobby", {})
+              .catchError((error) => print(error))
+              );
+      }
+    } , false, "FB");
   }
 
   void login() {

@@ -39,6 +39,9 @@ class EnterContestComp implements DetachAware {
   final List<dynamic> lineupSlots = [];
   List<dynamic> availableSoccerPlayers = [];
 
+  FieldPos fieldPosFilter;
+  String nameFilter;
+  String matchFilter;
 
 
   InstanceSoccerPlayer selectedInstanceSoccerPlayer;
@@ -309,23 +312,12 @@ class EnterContestComp implements DetachAware {
     }
   }
 
-  bool isFantasyTeamValid() {
-    for (dynamic player in lineupSlots) {
-      if (player == null) {
-        return false;
-      }
-    }
-
-    return true;
-  }
+  bool isFantasyTeamValid() => !lineupSlots.any((player) => player == null);
 
   void removeAllFilters() {
     fieldPosFilter = null;
     nameFilter = null;
     matchFilter = null;
-
-    _filterList = {};
-    _refreshFilter();
   }
 
   void deleteFantasyTeam() {

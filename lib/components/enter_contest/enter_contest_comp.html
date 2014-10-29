@@ -41,7 +41,9 @@
                 <matches-filter contest="contest" selected-option="matchFilter" ng-if="isSmallScreenVersion"></matches-filter>
 
                 <soccer-players-filter name-filter="nameFilter" field-pos-filter="fieldPosFilter"></soccer-players-filter>
-                <soccer-players-list soccer-players="availableSoccerPlayers" filter-list="filterList"
+                
+                <soccer-players-list soccer-players="availableSoccerPlayers"
+                                     field-pos-filter="fieldPosFilter" name-filter="nameFilter" match-filter="matchFilter"
                                      on-row-click="onRowClick(soccerPlayerId)"
                                      on-add-click="onSoccerPlayerSelected(soccerPlayer)"></soccer-players-list>
               </div>

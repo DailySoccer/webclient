@@ -49,7 +49,7 @@ class SoccerPlayersListComp {
 
   void _setFilter(String key, String valor) {
     _filterList[key] = valor;
-    _refreshFilter();
+    _refreshFilter();         // TODO: Hacer esto en el digest o algo asi?
   }
 
   SoccerPlayersListComp(this.scrDet);

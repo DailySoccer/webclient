@@ -26,7 +26,13 @@ class SoccerPlayersListComp {
   List<dynamic> get soccerPlayers => _soccerPlayers;
   void          set soccerPlayers(List<dynamic> sp) {
     _soccerPlayers = sp;
-    _refreshFilter();     // TODO ?
+
+    // TODO ?
+    _refreshFilter();
+
+    // Cuando se inicializa la lista de jugadores, esta se ordena por posicion
+    // TODO: Doble trabajo?
+    sortListByField('Pos', invert: false);
   }
 
   @NgCallback("on-row-click")
@@ -49,7 +55,7 @@ class SoccerPlayersListComp {
 
   void _setFilter(String key, String valor) {
     _filterList[key] = valor;
-    _refreshFilter();         // TODO: Hacer esto en el digest o algo asi?
+    _refreshFilter();         // TODO: Hacer esto en el digest o algo asi? Por ejemplo, en removeAllFilters se hace esto 3 veces?
   }
 
   SoccerPlayersListComp(this.scrDet);

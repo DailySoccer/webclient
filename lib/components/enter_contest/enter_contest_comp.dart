@@ -43,13 +43,16 @@ class EnterContestComp implements DetachAware {
   String nameFilter;
   String matchFilter;
 
-
   InstanceSoccerPlayer selectedInstanceSoccerPlayer;
 
   int availableSalary = 0;
 
   bool get isBigScreenVersion   => scrDet.isSmScreen || scrDet.isDesktop;
   bool get isSmallScreenVersion => !isBigScreenVersion;
+
+  String getMyTotalSalaryClasses() => (availableSalary < 0)? "total-salary-money red-numbers" : "total-salary-money";
+
+  bool isFantasyTeamValid() => !lineupSlots.any((player) => player == null);
 
 
   EnterContestComp(this._routeProvider, this._router, this.scrDet, this._activeContestService, this._myContestService, this._flashMessage, this.loadingService) {
@@ -92,9 +95,6 @@ class EnterContestComp implements DetachAware {
             onSoccerPlayerSelected(_allSoccerPlayers.firstWhere((slot) => slot["id"] == instanceSoccerPlayer.id));
           });
         }
-
-        // Cuando se inicializa la lista de jugadores, esta se ordena por posicion
-        sortListByField('Pos', invert: false);
       })
       .catchError((error) {
         _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
@@ -121,8 +121,9 @@ class EnterContestComp implements DetachAware {
     // Resetamos todos los filtros
     removeAllFilters();
 
+    // TODO
     // Cuando se inicializa la lista de jugadores, esta se ordena por posicion
-    sortListByField("Pos", invert: false);
+    //sortListByField("Pos", invert: false);
 
     // Para que en la versión móvil aparezca la pantalla de lineup
     isSelectingSoccerPlayer = false;
@@ -154,8 +155,9 @@ class EnterContestComp implements DetachAware {
       // Lo quitamos del slot
       lineupSlots[slotIndex] = null;
 
+      // TODO
       // Refrescamos los filtros para volver a mostrarlo entre los disponibles
-      _refreshFilter();
+      //_refreshFilter();
 
       // Quitamos la modal de números rojos si no hay salario disponible
       if (availableSalary >= 0) {
@@ -312,8 +314,6 @@ class EnterContestComp implements DetachAware {
     }
   }
 
-  bool isFantasyTeamValid() => !lineupSlots.any((player) => player == null);
-
   void removeAllFilters() {
     fieldPosFilter = null;
     nameFilter = null;
@@ -335,8 +335,9 @@ class EnterContestComp implements DetachAware {
     // Resetamos todos los filtros
     removeAllFilters();
 
+    // TODO
     // Cuando se inicializa la lista de jugadores, esta se ordena por posicion
-    sortListByField("Pos", invert: false);
+    //sortListByField("Pos", invert: false);
 
     // Quito la modal de alerta de números rojos
     alertDismiss();
@@ -412,17 +413,6 @@ class EnterContestComp implements DetachAware {
     }
   }
 
-  String getMyTotalSalaryClasses() {
-
-    String clases = null;
-
-    if (availableSalary < 0)
-      clases = "total-salary-money red-numbers";
-    else
-      clases = "total-salary-money";
-
-    return clases;
-  }
 
   Router _router;
   RouteProvider _routeProvider;

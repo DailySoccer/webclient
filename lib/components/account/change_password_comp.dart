@@ -76,7 +76,7 @@ class ChangePasswordComp implements ShadowRootAware {
       .catchError( (ConnectionError error) {
         _enabledSubmit = true;
         errorDetected = true;
-        errorMessage = error.toJson()["error"];
+        errorMessage = error.toJson().containsKey("password")? error.toJson()["password"] : error.toJson()["error"];
     });
   }
 

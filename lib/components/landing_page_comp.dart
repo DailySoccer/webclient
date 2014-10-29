@@ -4,6 +4,7 @@ import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
+import 'package:webclient/services/loading_service.dart';
 
 
 @Component(
@@ -15,8 +16,11 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
 
   String content;
   ScreenDetectorService scrDet;
+  LoadingService loadingService;
 
   int get screenHeight => window.innerHeight;
+  bool readyToShow = false;
+
 /*
   String getBounds(String elemId) {
     Element elem = querySelector('#' + elemId + ' .screen-text-block');
@@ -34,7 +38,9 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
     return {"position":"absolute", "top":"${(wrapper_height - container_height)*0.5}px;"};
   }
 */
-  LandingPageComp(this._router, this._profileService, this.scrDet);
+  LandingPageComp(this._router, this._profileService, this.scrDet, this.loadingService) {
+    loadingService.isLoading = true;
+  }
 
   void onShadowRoot(emulatedRoot) {
 
@@ -42,6 +48,9 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
       _router.go("lobby", {});
       return;
     }
+
+    // No mostramos hasta que estamos seguro de que no redirigimos
+    loadingService.isLoading = false;
 
     // Capturamos los elementos envolventes, porque el layout en landing page es diferente al del resto de la web.
     _bodyObj     = querySelector('body');

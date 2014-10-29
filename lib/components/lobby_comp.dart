@@ -22,8 +22,7 @@ class LobbyComp implements DetachAware {
   ActiveContestsService activeContestsService;
   Contest selectedContest;
   ScreenDetectorService scrDet;
-
-  bool get isLoaded => !LoadingService.enabled;
+  LoadingService loadingService;
 
   // numero de torneos listados actualmente
   int contestsCount = 0;
@@ -40,8 +39,8 @@ class LobbyComp implements DetachAware {
   // Concursos listados actualmente
   int contestCount = 0;
 
-  LobbyComp(this._router, this._refreshTimersService, this.activeContestsService, this.scrDet) {
-    LoadingService.enabled = true;
+  LobbyComp(this._router, this._refreshTimersService, this.activeContestsService, this.scrDet, this.loadingService) {
+    loadingService.isLoading = true;
     activeContestsService.clear();
 
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_CONTEST_LIST, refreshActiveContest);
@@ -66,7 +65,7 @@ class LobbyComp implements DetachAware {
   void refreshActiveContest() {
     activeContestsService.refreshActiveContests()
       .then((_) {
-        LoadingService.enabled = false;
+        loadingService.isLoading = false;
         contestsCount = activeContestsService.activeContests.length;
       });
   }

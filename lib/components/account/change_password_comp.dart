@@ -28,8 +28,8 @@ class ChangePasswordComp implements ShadowRootAware {
   bool errorDetected = false;
   String errorMessage ="HA OCURRIDO UN ERROR. La contraseña no es válida.";
 
-  ChangePasswordComp(this._router, this._routeProvider, this._profileManager, this._rootElement) {
-    LoadingService.enabled = true;
+  ChangePasswordComp(this._router, this._routeProvider, this._profileManager, this._rootElement, this._loadingService) {
+    _loadingService.isLoading = true;
     GameMetrics.logEvent(GameMetrics.CHANGE_PASSWORD_ATTEMPTED);
     //_stormPathTokenId = _routeProvider.route.parameters['tokenId'];
   }
@@ -45,18 +45,18 @@ class ChangePasswordComp implements ShadowRootAware {
 
       if(_stormPathTokenId.isEmpty) {
         state = STATE_INVALID_URL;
-        LoadingService.enabled = false;
+        _loadingService.isLoading = false;
         return;
       }
 
       _profileManager.verifyPasswordResetToken(_stormPathTokenId)
        .then((_) {
           state = STATE_CHANGE_PASSWORD;
-          LoadingService.enabled = false;
+          _loadingService.isLoading = false;
        })
        .catchError( (ConnectionError error) {
           state = STATE_INVALID_TOKEN;
-          LoadingService.enabled = false;
+          _loadingService.isLoading = false;
        });
     }
   }
@@ -90,6 +90,8 @@ class ChangePasswordComp implements ShadowRootAware {
   Router _router;
   RouteProvider _routeProvider;
   ProfileService _profileManager;
+  LoadingService _loadingService;
+
   Element _rootElement;
   Element _errSection;
 

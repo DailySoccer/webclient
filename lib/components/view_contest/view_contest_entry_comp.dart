@@ -19,6 +19,7 @@ import 'dart:html';
 )
 class ViewContestEntryComp {
   ScreenDetectorService scrDet;
+  LoadingService loadingService;
 
   ContestEntry mainPlayer;
   dynamic selectedOpponent;
@@ -27,7 +28,6 @@ class ViewContestEntryComp {
 
   List<String> matchesInvolved = [];
 
-  bool get isLoaded => !LoadingService.enabled;
   Contest get contest => _myContestsService.lastContest;
   List<ContestEntry> get contestEntries => (contest != null) ? contest.contestEntries : null;
   List<ContestEntry> get contestEntriesOrderByPoints => (contest != null) ? contest.contestEntriesOrderByPoints : null;
@@ -38,8 +38,8 @@ class ViewContestEntryComp {
   bool get isModeEdited  => _viewContestEntryMode == "edited";  // Venimos de editarla a traves de enter_contest.
   bool get isModeSwapped => _viewContestEntryMode == "swapped"; // Acabamos de crearla pero el servidor nos cambio a otro concurso pq el nuestro estaba lleno.
 
-  ViewContestEntryComp(this._routeProvider, this.scrDet, this._myContestsService, this._profileService, this._flashMessage, this._router) {
-    LoadingService.enabled = true;
+  ViewContestEntryComp(this._routeProvider, this.scrDet, this._myContestsService, this._profileService, this._flashMessage, this._router, this.loadingService) {
+    loadingService.isLoading = true;
 
     _viewContestEntryMode = _routeProvider.route.parameters['viewContestEntryMode'];
     _contestId = _routeProvider.route.parameters['contestId'];
@@ -48,7 +48,7 @@ class ViewContestEntryComp {
 
     _myContestsService.refreshMyContest(_contestId)
       .then((jsonObject) {
-        LoadingService.enabled = false;
+        loadingService.isLoading = false;
 
         mainPlayer = contest.getContestEntryWithUser(_profileService.user.userId);
 

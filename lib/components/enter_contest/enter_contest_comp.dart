@@ -32,6 +32,7 @@ class EnterContestComp implements DetachAware {
   static const String FILTER_MATCH = "FILTER_MATCH";
 
   ScreenDetectorService scrDet;
+  LoadingService loadingService;
 
   Contest contest;
   String contestEntryId = null;
@@ -45,13 +46,12 @@ class EnterContestComp implements DetachAware {
 
   int availableSalary = 0;
 
-  bool get isLoaded => !LoadingService.enabled;
   bool get isBigScreenVersion   => scrDet.isSmScreen || scrDet.isDesktop;
   bool get isSmallScreenVersion => !isBigScreenVersion;
 
 
-  EnterContestComp(this._routeProvider, this._router, this.scrDet, this._activeContestService, this._myContestService, this._flashMessage) {
-    LoadingService.enabled = true;
+  EnterContestComp(this._routeProvider, this._router, this.scrDet, this._activeContestService, this._myContestService, this._flashMessage, this.loadingService) {
+    loadingService.isLoading = true;
 
     // Creamos los slots iniciales, todos vacios
     FieldPos.LINEUP.forEach((pos) {
@@ -69,7 +69,7 @@ class EnterContestComp implements DetachAware {
 
     refreshContest
       .then((_) {
-        LoadingService.enabled = false;
+        loadingService.isLoading = false;
 
         contest = _editingContestEntry ? _myContestService.lastContest : _activeContestService.lastContest;
 

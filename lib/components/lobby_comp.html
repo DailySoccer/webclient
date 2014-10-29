@@ -9,11 +9,12 @@
   </div>
 
   <!-- Filtros y Ordenación -->
-  <contest-filters-comp contests-list="activeContestsService.activeContests" contest-count="contestCount"
+  <contest-filters-comp id="contestFiltersRoot"
+                        contests-list="activeContestsService.activeContests" contest-count="contestCount"
                         on-sort-order-change="onSortOrderChange(fieldName)" on-filter-change="onFilterChange(filterList)"></contest-filters-comp>
 
-  <!-- Lista de concursos DESKTOP -->
-  <contests-list  id="activeContestLive"
+  <!-- Lista de concursos -->
+  <contests-list  id="activeContestList"
                   sorting="lobbySorting"
                   contests-list="activeContestsService.activeContests"
                   on-action-click='onActionClick(contest)'

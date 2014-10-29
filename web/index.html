@@ -34,13 +34,16 @@ for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElemen
     <!-- end Mixpanel -->
   </head>
 
-  <body ng-app ng-cloak>
+  <body ng-app>
     <div id="spinnerIcon"></div>
     <script>
         var spinner = null;
         var spinnerDiv = null;
 
         function showSpinner() {
+          if (spinner != null)
+            spinner.stop(spinnerDiv);
+          
           var opts = {
             lines: 13, // The number of lines to draw
             length: 6, // The length of each line
@@ -82,7 +85,7 @@ for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElemen
 
 <!---->
     <script type="application/dart" src="main.dart"></script>
-    <script src="packages/browser/dart.js" onload="hideSpinner()"></script>
+    <script src="packages/browser/dart.js"></script>
 
     <!-- Atencion al defer
     <script src="main.dart.js" defer onload="hideSpinner()"></script>

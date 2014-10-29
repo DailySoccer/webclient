@@ -154,7 +154,8 @@ void enterPage(RouteEnterEvent event) {
 
 // Funcion que ejecutamos nada más salir de la página
 void leavePage(RouteLeaveEvent event) {
-  LoadingService.enabled = false;
+
+  LoadingService.disable();
 
   // Reseteamos las modales en el caso de que hubiera (bug de modal abierta y vuelta atrás)
   _closeModal();

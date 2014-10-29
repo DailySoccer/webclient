@@ -1,4 +1,4 @@
-<div id="desktopContent" ng-if="!scrDet.isXsScreen">
+<div id="desktopContent" ng-if="!scrDet.isXsScreen" ng-show="!loadingService.isLoading">
 
     <div id="screen1" class="first-screen" style="height:{{screenHeight}}px">
       <div class="screen-pattern" src="images/pattern.png"></div>
@@ -32,11 +32,8 @@
             <button type="button" class="button-play"  ng-click="buttonPressed('join')" id="playButton1">JUGAR</button>
           </div>
 
-
         </div>
-
-
-
+        
       <!-- Separador -->
       <a class="wrapping-link" href="#screen2">
         <span id="screenSeparator1" class="more-info-section-light">
@@ -128,7 +125,7 @@
 </div>
 
 <!-- Versión Móvil -->
-<div id="mobileContent" ng-if="scrDet.isXsScreen" ng-cloak>
+<div id="mobileContent" ng-if="scrDet.isXsScreen" ng-show="!loadingService.isLoading">
     <div id="screenMobile1" class="screen">
 
       <div class="slider-wrapper">

@@ -5663,20 +5663,20 @@ button.close {
 .info-and-social-bar .teams-container:after,
 .contest-id-bar:before,
 .contest-id-bar:after,
-.section-container:before,
-.section-container:after,
-#lobbyTopInfobar:before,
-#lobbyTopInfobar:after,
-#contestFiltersRoot #contestSortsFilters:before,
-#contestFiltersRoot #contestSortsFilters:after,
-#contestFiltersRoot #contestSortsFilters .choosed-filters-container:before,
-#contestFiltersRoot #contestSortsFilters .choosed-filters-container:after,
-#contestFiltersRoot #contestSortsFilters .choosed-filters-container:before,
-#contestFiltersRoot #contestSortsFilters .choosed-filters-container:after,
-#contestFiltersRoot #filtersPanel:before,
-#contestFiltersRoot #filtersPanel:after,
-.pre-filter-row:before,
-.pre-filter-row:after,
+#lobbyRoot .section-container:before,
+#lobbyRoot .section-container:after,
+#lobbyRoot #lobbyTopInfobar:before,
+#lobbyRoot #lobbyTopInfobar:after,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters:before,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters:after,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters .choosed-filters-container:before,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters .choosed-filters-container:after,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters .choosed-filters-container:before,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters .choosed-filters-container:after,
+#lobbyRoot #contestFiltersRoot #filtersPanel:before,
+#lobbyRoot #contestFiltersRoot #filtersPanel:after,
+#lobbyRoot .pre-filter-row:before,
+#lobbyRoot .pre-filter-row:after,
 #mainMenu .inner-wrapper:before,
 #mainMenu .inner-wrapper:after,
 .resume-bar:before,
@@ -5777,13 +5777,13 @@ button.close {
 .info-and-social-bar:after,
 .info-and-social-bar .teams-container:after,
 .contest-id-bar:after,
-.section-container:after,
-#lobbyTopInfobar:after,
-#contestFiltersRoot #contestSortsFilters:after,
-#contestFiltersRoot #contestSortsFilters .choosed-filters-container:after,
-#contestFiltersRoot #contestSortsFilters .choosed-filters-container:after,
-#contestFiltersRoot #filtersPanel:after,
-.pre-filter-row:after,
+#lobbyRoot .section-container:after,
+#lobbyRoot #lobbyTopInfobar:after,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters:after,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters .choosed-filters-container:after,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters .choosed-filters-container:after,
+#lobbyRoot #contestFiltersRoot #filtersPanel:after,
+#lobbyRoot .pre-filter-row:after,
 #mainMenu .inner-wrapper:after,
 .resume-bar:after,
 .no-contest .my-no-contest-bottom-row:after,
@@ -10029,66 +10029,71 @@ fieldset[disabled] .landing-wrapper .button-play {
   width: 100%;
   height: 15px;
 }
-.section-container {
+#lobbyRoot #activeContestList {
+  display: block;
+  min-height: 750px;
+  background-color: #ffffff;
+}
+#lobbyRoot .section-container {
   margin-left: -15px;
   margin-right: -15px;
 }
 @media (max-width: 991px) {
-  .section-container {
+  #lobbyRoot .section-container {
     margin-right: auto;
     margin-left: auto;
     padding-left: 15px;
     padding-right: 15px;
   }
-  .section-container > .navbar-header,
-  .section-container > .navbar-collapse {
+  #lobbyRoot .section-container > .navbar-header,
+  #lobbyRoot .section-container > .navbar-collapse {
     margin-right: -15px;
     margin-left: -15px;
   }
 }
 @media (max-width: 991px) and (min-width: 768px) {
-  .section-container > .navbar-header,
-  .section-container > .navbar-collapse {
+  #lobbyRoot .section-container > .navbar-header,
+  #lobbyRoot .section-container > .navbar-collapse {
     margin-right: 0;
     margin-left: 0;
   }
 }
 @media (min-width: 992px) {
-  .section-container {
+  #lobbyRoot .section-container {
     margin-right: auto;
     margin-left: auto;
     padding-left: 15px;
     padding-right: 15px;
   }
-  .section-container > .navbar-header,
-  .section-container > .navbar-collapse {
+  #lobbyRoot .section-container > .navbar-header,
+  #lobbyRoot .section-container > .navbar-collapse {
     margin-right: -15px;
     margin-left: -15px;
   }
 }
 @media (min-width: 992px) and (min-width: 768px) {
-  .section-container {
+  #lobbyRoot .section-container {
     width: 750px;
   }
 }
 @media (min-width: 992px) and (min-width: 992px) {
-  .section-container {
+  #lobbyRoot .section-container {
     width: 970px;
   }
 }
 @media (min-width: 992px) and (min-width: 1200px) {
-  .section-container {
+  #lobbyRoot .section-container {
     width: 970px;
   }
 }
 @media (min-width: 992px) and (min-width: 768px) {
-  .section-container > .navbar-header,
-  .section-container > .navbar-collapse {
+  #lobbyRoot .section-container > .navbar-header,
+  #lobbyRoot .section-container > .navbar-collapse {
     margin-right: 0;
     margin-left: 0;
   }
 }
-#lobbyTopInfobar {
+#lobbyRoot #lobbyTopInfobar {
   margin-left: -15px;
   margin-right: -15px;
   height: 50px;
@@ -10098,66 +10103,66 @@ fieldset[disabled] .landing-wrapper .button-play {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff1a3949', endColorstr='#ff0f2630', GradientType=0);
 }
 @media (max-width: 991px) {
-  #lobbyTopInfobar {
+  #lobbyRoot #lobbyTopInfobar {
     margin-right: auto;
     margin-left: auto;
     padding-left: 15px;
     padding-right: 15px;
   }
-  #lobbyTopInfobar > .navbar-header,
-  #lobbyTopInfobar > .navbar-collapse {
+  #lobbyRoot #lobbyTopInfobar > .navbar-header,
+  #lobbyRoot #lobbyTopInfobar > .navbar-collapse {
     margin-right: -15px;
     margin-left: -15px;
   }
 }
 @media (max-width: 991px) and (min-width: 768px) {
-  #lobbyTopInfobar > .navbar-header,
-  #lobbyTopInfobar > .navbar-collapse {
+  #lobbyRoot #lobbyTopInfobar > .navbar-header,
+  #lobbyRoot #lobbyTopInfobar > .navbar-collapse {
     margin-right: 0;
     margin-left: 0;
   }
 }
 @media (min-width: 992px) {
-  #lobbyTopInfobar {
+  #lobbyRoot #lobbyTopInfobar {
     margin-right: auto;
     margin-left: auto;
     padding-left: 15px;
     padding-right: 15px;
   }
-  #lobbyTopInfobar > .navbar-header,
-  #lobbyTopInfobar > .navbar-collapse {
+  #lobbyRoot #lobbyTopInfobar > .navbar-header,
+  #lobbyRoot #lobbyTopInfobar > .navbar-collapse {
     margin-right: -15px;
     margin-left: -15px;
   }
 }
 @media (min-width: 992px) and (min-width: 768px) {
-  #lobbyTopInfobar {
+  #lobbyRoot #lobbyTopInfobar {
     width: 750px;
   }
 }
 @media (min-width: 992px) and (min-width: 992px) {
-  #lobbyTopInfobar {
+  #lobbyRoot #lobbyTopInfobar {
     width: 970px;
   }
 }
 @media (min-width: 992px) and (min-width: 1200px) {
-  #lobbyTopInfobar {
+  #lobbyRoot #lobbyTopInfobar {
     width: 970px;
   }
 }
 @media (min-width: 992px) and (min-width: 768px) {
-  #lobbyTopInfobar > .navbar-header,
-  #lobbyTopInfobar > .navbar-collapse {
+  #lobbyRoot #lobbyTopInfobar > .navbar-header,
+  #lobbyRoot #lobbyTopInfobar > .navbar-collapse {
     margin-right: 0;
     margin-left: 0;
   }
 }
 @media (max-width: 767px) {
-  #lobbyTopInfobar {
+  #lobbyRoot #lobbyTopInfobar {
     display: none !important;
   }
 }
-#lobbyTopInfobar p {
+#lobbyRoot #lobbyTopInfobar p {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 8pt;
@@ -10165,7 +10170,7 @@ fieldset[disabled] .landing-wrapper .button-play {
   line-height: 50px;
   text-align: center;
 }
-#contestFiltersRoot #contestSortsFilters {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters {
   margin-left: -15px;
   margin-right: -15px;
   background-color: #ffffff;
@@ -10173,79 +10178,79 @@ fieldset[disabled] .landing-wrapper .button-play {
   padding-bottom: 15px;
 }
 @media (max-width: 991px) {
-  #contestFiltersRoot #contestSortsFilters {
+  #lobbyRoot #contestFiltersRoot #contestSortsFilters {
     margin-right: auto;
     margin-left: auto;
     padding-left: 15px;
     padding-right: 15px;
   }
-  #contestFiltersRoot #contestSortsFilters > .navbar-header,
-  #contestFiltersRoot #contestSortsFilters > .navbar-collapse {
+  #lobbyRoot #contestFiltersRoot #contestSortsFilters > .navbar-header,
+  #lobbyRoot #contestFiltersRoot #contestSortsFilters > .navbar-collapse {
     margin-right: -15px;
     margin-left: -15px;
   }
 }
 @media (max-width: 991px) and (min-width: 768px) {
-  #contestFiltersRoot #contestSortsFilters > .navbar-header,
-  #contestFiltersRoot #contestSortsFilters > .navbar-collapse {
+  #lobbyRoot #contestFiltersRoot #contestSortsFilters > .navbar-header,
+  #lobbyRoot #contestFiltersRoot #contestSortsFilters > .navbar-collapse {
     margin-right: 0;
     margin-left: 0;
   }
 }
 @media (min-width: 992px) {
-  #contestFiltersRoot #contestSortsFilters {
+  #lobbyRoot #contestFiltersRoot #contestSortsFilters {
     margin-right: auto;
     margin-left: auto;
     padding-left: 15px;
     padding-right: 15px;
   }
-  #contestFiltersRoot #contestSortsFilters > .navbar-header,
-  #contestFiltersRoot #contestSortsFilters > .navbar-collapse {
+  #lobbyRoot #contestFiltersRoot #contestSortsFilters > .navbar-header,
+  #lobbyRoot #contestFiltersRoot #contestSortsFilters > .navbar-collapse {
     margin-right: -15px;
     margin-left: -15px;
   }
 }
 @media (min-width: 992px) and (min-width: 768px) {
-  #contestFiltersRoot #contestSortsFilters {
+  #lobbyRoot #contestFiltersRoot #contestSortsFilters {
     width: 750px;
   }
 }
 @media (min-width: 992px) and (min-width: 992px) {
-  #contestFiltersRoot #contestSortsFilters {
+  #lobbyRoot #contestFiltersRoot #contestSortsFilters {
     width: 970px;
   }
 }
 @media (min-width: 992px) and (min-width: 1200px) {
-  #contestFiltersRoot #contestSortsFilters {
+  #lobbyRoot #contestFiltersRoot #contestSortsFilters {
     width: 970px;
   }
 }
 @media (min-width: 992px) and (min-width: 768px) {
-  #contestFiltersRoot #contestSortsFilters > .navbar-header,
-  #contestFiltersRoot #contestSortsFilters > .navbar-collapse {
+  #lobbyRoot #contestFiltersRoot #contestSortsFilters > .navbar-header,
+  #lobbyRoot #contestFiltersRoot #contestSortsFilters > .navbar-collapse {
     margin-right: 0;
     margin-left: 0;
   }
 }
 @media (max-width: 767px) {
-  #contestFiltersRoot #contestSortsFilters {
+  #lobbyRoot #contestFiltersRoot #contestSortsFilters {
     padding: 0;
   }
 }
-#contestFiltersRoot #contestSortsFilters .left-separator {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters .left-separator {
   border-left: 1px solid #434343;
 }
 @media (max-width: 991px) {
-  #contestFiltersRoot #contestSortsFilters .left-separator {
+  #lobbyRoot #contestFiltersRoot #contestSortsFilters .left-separator {
     border-width: 0;
   }
 }
 @media (min-width: 992px) {
-  #contestFiltersRoot #contestSortsFilters .left-separator {
+  #lobbyRoot #contestFiltersRoot #contestSortsFilters .left-separator {
     padding-left: 20px;
   }
 }
-#contestFiltersRoot #contestSortsFilters #contestFastSort {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort {
   float: left;
   width: 100%;
   position: relative;
@@ -10254,19 +10259,19 @@ fieldset[disabled] .landing-wrapper .button-play {
   padding-right: 15px;
 }
 @media (min-width: 768px) {
-  #contestFiltersRoot #contestSortsFilters #contestFastSort {
+  #lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort {
     float: left;
     width: 50%;
   }
 }
 @media (min-width: 992px) {
-  #contestFiltersRoot #contestSortsFilters #contestFastSort {
+  #lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort {
     float: left;
     width: 50%;
   }
 }
 @media (max-width: 767px) {
-  #contestFiltersRoot #contestSortsFilters #contestFastSort {
+  #lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort {
     padding-bottom: 10px;
     padding-top: 10px;
     padding-left: 0;
@@ -10278,49 +10283,49 @@ fieldset[disabled] .landing-wrapper .button-play {
     border-radius: 0;
   }
 }
-#contestFiltersRoot #contestSortsFilters #contestFastSort .filter-text {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .filter-text {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 8pt;
   color: #434343;
 }
 @media (max-width: 991px) {
-  #contestFiltersRoot #contestSortsFilters #contestFastSort .filter-text {
+  #lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .filter-text {
     display: none !important;
     visibility: hidden !important;
   }
 }
 @media (max-width: 767px) {
-  #contestFiltersRoot #contestSortsFilters #contestFastSort .filter-text {
+  #lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .filter-text {
     padding: 0 10px;
   }
 }
-#contestFiltersRoot #contestSortsFilters #contestFastSort .btn-group {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .btn-group {
   position: relative;
   display: inline-block;
   vertical-align: middle;
   padding-left: 13px;
 }
-#contestFiltersRoot #contestSortsFilters #contestFastSort .btn-group > .btn {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .btn-group > .btn {
   position: relative;
   float: left;
 }
-#contestFiltersRoot #contestSortsFilters #contestFastSort .btn-group > .btn:hover,
-#contestFiltersRoot #contestSortsFilters #contestFastSort .btn-group > .btn:focus,
-#contestFiltersRoot #contestSortsFilters #contestFastSort .btn-group > .btn:active,
-#contestFiltersRoot #contestSortsFilters #contestFastSort .btn-group > .btn.active {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .btn-group > .btn:hover,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .btn-group > .btn:focus,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .btn-group > .btn:active,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .btn-group > .btn.active {
   z-index: 2;
 }
-#contestFiltersRoot #contestSortsFilters #contestFastSort .btn-group > .btn:focus {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .btn-group > .btn:focus {
   outline: none;
 }
-#contestFiltersRoot #contestSortsFilters #contestFastSort .btn-group .btn + .btn,
-#contestFiltersRoot #contestSortsFilters #contestFastSort .btn-group .btn + .btn-group,
-#contestFiltersRoot #contestSortsFilters #contestFastSort .btn-group .btn-group + .btn,
-#contestFiltersRoot #contestSortsFilters #contestFastSort .btn-group .btn-group + .btn-group {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .btn-group .btn + .btn,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .btn-group .btn + .btn-group,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .btn-group .btn-group + .btn,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .btn-group .btn-group + .btn-group {
   margin-left: -1px;
 }
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button {
   color: #ffffff;
   background-color: #59add5;
   border-color: #cccccc;
@@ -10336,74 +10341,74 @@ fieldset[disabled] .landing-wrapper .button-play {
   color: #777777;
   padding: 6px 23px;
 }
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:hover,
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:focus,
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:active,
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button.active,
-.open .dropdown-toggle#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:hover,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:focus,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:active,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button.active,
+.open .dropdown-toggle#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button {
   color: #ffffff;
   background-color: #389dcd;
   border-color: #adadad;
 }
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:active,
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button.active,
-.open .dropdown-toggle#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:active,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button.active,
+.open .dropdown-toggle#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button {
   background-image: none;
 }
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button.disabled,
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button[disabled],
-fieldset[disabled] #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button,
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button.disabled:hover,
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button[disabled]:hover,
-fieldset[disabled] #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:hover,
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button.disabled:focus,
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button[disabled]:focus,
-fieldset[disabled] #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:focus,
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button.disabled:active,
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button[disabled]:active,
-fieldset[disabled] #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:active,
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button.disabled.active,
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button[disabled].active,
-fieldset[disabled] #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button.active {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button.disabled,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button[disabled],
+fieldset[disabled] #lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button.disabled:hover,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button[disabled]:hover,
+fieldset[disabled] #lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:hover,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button.disabled:focus,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button[disabled]:focus,
+fieldset[disabled] #lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:focus,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button.disabled:active,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button[disabled]:active,
+fieldset[disabled] #lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:active,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button.disabled.active,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button[disabled].active,
+fieldset[disabled] #lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button.active {
   background-color: #59add5;
   border-color: #cccccc;
 }
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button .badge {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button .badge {
   color: #59add5;
   background-color: #ffffff;
 }
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button[disabled] {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button[disabled] {
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
 }
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:active,
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button[disabled],
-fieldset[disabled] #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:active,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button[disabled],
+fieldset[disabled] #lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:hover {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:hover {
   background-color: transparent;
   border-width: 1px;
   color: #434343;
   border-color: #434343;
 }
-#contestFiltersRoot #contestSortsFilters #contestFastSort .asc::after {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .asc::after {
   font-family: 'Glyphicons Halflings';
   content: "\E113";
   font-size: 5pt;
   color: #434343;
   margin-left: 5px;
 }
-#contestFiltersRoot #contestSortsFilters #contestFastSort .desc::after {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSort .desc::after {
   font-family: 'Glyphicons Halflings';
   content: "\E114";
   font-size: 5pt;
   color: #434343;
   margin-left: 5px;
 }
-#contestFiltersRoot #contestSortsFilters #contestFastSearch {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSearch {
   position: relative;
   min-height: 1px;
   padding-left: 15px;
@@ -10411,33 +10416,33 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters #contestFastSort .so
   border-left: 1px solid #434343;
 }
 @media (min-width: 768px) {
-  #contestFiltersRoot #contestSortsFilters #contestFastSearch {
+  #lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSearch {
     float: left;
     width: 41.66666667%;
   }
 }
 @media (min-width: 992px) {
-  #contestFiltersRoot #contestSortsFilters #contestFastSearch {
+  #lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSearch {
     float: left;
     width: 41.66666667%;
   }
 }
 @media (max-width: 767px) {
-  #contestFiltersRoot #contestSortsFilters #contestFastSearch {
+  #lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSearch {
     display: none !important;
   }
 }
 @media (max-width: 991px) {
-  #contestFiltersRoot #contestSortsFilters #contestFastSearch {
+  #lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSearch {
     border-width: 0;
   }
 }
 @media (min-width: 992px) {
-  #contestFiltersRoot #contestSortsFilters #contestFastSearch {
+  #lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSearch {
     padding-left: 20px;
   }
 }
-#contestFiltersRoot #contestSortsFilters #contestFastSearch .searcher {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSearch .searcher {
   display: block;
   width: 100%;
   height: 34px;
@@ -10460,33 +10465,33 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters #contestFastSort .so
   box-shadow: none;
   border-width: 0;
 }
-#contestFiltersRoot #contestSortsFilters #contestFastSearch .searcher:focus {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSearch .searcher:focus {
   border-color: #66afe9;
   outline: 0;
   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
   box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
 }
-#contestFiltersRoot #contestSortsFilters #contestFastSearch .searcher::-moz-placeholder {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSearch .searcher::-moz-placeholder {
   color: #999999;
   opacity: 1;
 }
-#contestFiltersRoot #contestSortsFilters #contestFastSearch .searcher:-ms-input-placeholder {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSearch .searcher:-ms-input-placeholder {
   color: #999999;
 }
-#contestFiltersRoot #contestSortsFilters #contestFastSearch .searcher::-webkit-input-placeholder {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSearch .searcher::-webkit-input-placeholder {
   color: #999999;
 }
-#contestFiltersRoot #contestSortsFilters #contestFastSearch .searcher[disabled],
-#contestFiltersRoot #contestSortsFilters #contestFastSearch .searcher[readonly],
-fieldset[disabled] #contestFiltersRoot #contestSortsFilters #contestFastSearch .searcher {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSearch .searcher[disabled],
+#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSearch .searcher[readonly],
+fieldset[disabled] #lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSearch .searcher {
   cursor: not-allowed;
   background-color: #eeeeee;
   opacity: 1;
 }
-textarea#contestFiltersRoot #contestSortsFilters #contestFastSearch .searcher {
+textarea#lobbyRoot #contestFiltersRoot #contestSortsFilters #contestFastSearch .searcher {
   height: auto;
 }
-#contestFiltersRoot #contestSortsFilters .choosed-filters-container {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters .choosed-filters-container {
   margin-right: auto;
   margin-left: auto;
   padding-left: 15px;
@@ -10496,33 +10501,33 @@ textarea#contestFiltersRoot #contestSortsFilters #contestFastSearch .searcher {
   padding: 10px 0px;
 }
 @media (min-width: 768px) {
-  #contestFiltersRoot #contestSortsFilters .choosed-filters-container {
+  #lobbyRoot #contestFiltersRoot #contestSortsFilters .choosed-filters-container {
     width: 750px;
   }
 }
 @media (min-width: 992px) {
-  #contestFiltersRoot #contestSortsFilters .choosed-filters-container {
+  #lobbyRoot #contestFiltersRoot #contestSortsFilters .choosed-filters-container {
     width: 970px;
   }
 }
 @media (min-width: 1200px) {
-  #contestFiltersRoot #contestSortsFilters .choosed-filters-container {
+  #lobbyRoot #contestFiltersRoot #contestSortsFilters .choosed-filters-container {
     width: 970px;
   }
 }
-#contestFiltersRoot #contestSortsFilters .choosed-filters-container > .navbar-header,
-#contestFiltersRoot #contestSortsFilters .choosed-filters-container > .navbar-collapse {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters .choosed-filters-container > .navbar-header,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters .choosed-filters-container > .navbar-collapse {
   margin-right: -15px;
   margin-left: -15px;
 }
 @media (min-width: 768px) {
-  #contestFiltersRoot #contestSortsFilters .choosed-filters-container > .navbar-header,
-  #contestFiltersRoot #contestSortsFilters .choosed-filters-container > .navbar-collapse {
+  #lobbyRoot #contestFiltersRoot #contestSortsFilters .choosed-filters-container > .navbar-header,
+  #lobbyRoot #contestFiltersRoot #contestSortsFilters .choosed-filters-container > .navbar-collapse {
     margin-right: 0;
     margin-left: 0;
   }
 }
-#contestFiltersRoot #contestSortsFilters .competition-filter-name {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters .competition-filter-name {
   position: relative;
   float: left;
   width: 66.66666667%;
@@ -10535,7 +10540,7 @@ textarea#contestFiltersRoot #contestSortsFilters #contestFastSearch .searcher {
   color: #214a5f;
   line-height: 20px;
 }
-#contestFiltersRoot #contestSortsFilters .competition-filter-name .contest-count {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters .competition-filter-name .contest-count {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 8pt;
@@ -10545,7 +10550,7 @@ textarea#contestFiltersRoot #contestSortsFilters #contestFastSearch .searcher {
   padding: 2px 6px;
   margin-left: 5px;
 }
-#contestFiltersRoot #contestSortsFilters .filter-list {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters .filter-list {
   position: relative;
   float: left;
   width: 100%;
@@ -10554,7 +10559,7 @@ textarea#contestFiltersRoot #contestSortsFilters #contestFastSearch .searcher {
   padding-right: 15px;
   padding: 10px 15px;
 }
-#contestFiltersRoot #contestSortsFilters .filter-list .filter-choosed {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters .filter-list .filter-choosed {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 8pt;
@@ -10563,7 +10568,7 @@ textarea#contestFiltersRoot #contestSortsFilters #contestFastSearch .searcher {
   border-radius: 20px;
   padding: 2px 5px;
 }
-#contestFiltersRoot #contestSortsFilters .filterToggler {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters .filterToggler {
   position: relative;
   float: left;
   width: 33.33333333%;
@@ -10573,81 +10578,81 @@ textarea#contestFiltersRoot #contestSortsFilters #contestFastSearch .searcher {
   border-left: 1px solid #434343;
 }
 @media (min-width: 768px) {
-  #contestFiltersRoot #contestSortsFilters .filterToggler {
+  #lobbyRoot #contestFiltersRoot #contestSortsFilters .filterToggler {
     float: left;
     width: 8.33333333%;
   }
 }
 @media (max-width: 991px) {
-  #contestFiltersRoot #contestSortsFilters .filterToggler {
+  #lobbyRoot #contestFiltersRoot #contestSortsFilters .filterToggler {
     border-width: 0;
   }
 }
 @media (min-width: 992px) {
-  #contestFiltersRoot #contestSortsFilters .filterToggler {
+  #lobbyRoot #contestFiltersRoot #contestSortsFilters .filterToggler {
     padding-left: 20px;
   }
 }
 @media (max-width: 767px) {
-  #contestFiltersRoot #contestSortsFilters .filterToggler {
+  #lobbyRoot #contestFiltersRoot #contestSortsFilters .filterToggler {
     text-align: right;
   }
 }
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button {
   color: #ffffff;
   background-color: #59add5;
   border-color: #cccccc;
   box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
 }
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:hover,
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:focus,
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:active,
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button.active,
-.open .dropdown-toggle#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:hover,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:focus,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:active,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button.active,
+.open .dropdown-toggle#lobbyRoot #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button {
   color: #ffffff;
   background-color: #389dcd;
   border-color: #adadad;
 }
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:active,
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button.active,
-.open .dropdown-toggle#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:active,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button.active,
+.open .dropdown-toggle#lobbyRoot #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button {
   background-image: none;
 }
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button.disabled,
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button[disabled],
-fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button,
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button.disabled:hover,
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button[disabled]:hover,
-fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:hover,
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button.disabled:focus,
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button[disabled]:focus,
-fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:focus,
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button.disabled:active,
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button[disabled]:active,
-fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:active,
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button.disabled.active,
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button[disabled].active,
-fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button.active {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button.disabled,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button[disabled],
+fieldset[disabled] #lobbyRoot #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button.disabled:hover,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button[disabled]:hover,
+fieldset[disabled] #lobbyRoot #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:hover,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button.disabled:focus,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button[disabled]:focus,
+fieldset[disabled] #lobbyRoot #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:focus,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button.disabled:active,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button[disabled]:active,
+fieldset[disabled] #lobbyRoot #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:active,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button.disabled.active,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button[disabled].active,
+fieldset[disabled] #lobbyRoot #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button.active {
   background-color: #59add5;
   border-color: #cccccc;
 }
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button .badge {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button .badge {
   color: #59add5;
   background-color: #ffffff;
 }
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button[disabled] {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button[disabled] {
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
 }
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:active,
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button[disabled],
-fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:active,
+#lobbyRoot #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button[disabled],
+fieldset[disabled] #lobbyRoot #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
 @media (min-width: 768px) {
-  #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button {
+  #lobbyRoot #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
     font-size: 8pt;
@@ -10659,13 +10664,13 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
     color: #777777;
     padding: 0;
   }
-  #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:hover {
+  #lobbyRoot #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:hover {
     background-color: transparent;
     color: #434343;
     border-color: #434343;
   }
 }
-#contestFiltersRoot #contestSortsFilters .toggleOff::after {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters .toggleOff::after {
   font-family: 'Glyphicons Halflings';
   content: "\E114";
   font-size: 8pt;
@@ -10675,14 +10680,14 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   line-height: 1;
 }
 @media (max-width: 767px) {
-  #contestFiltersRoot #contestSortsFilters .toggleOff::after {
+  #lobbyRoot #contestFiltersRoot #contestSortsFilters .toggleOff::after {
     font-family: 'Glyphicons Halflings';
     content: "\E114";
     font-size: 8pt;
     color: #ffffff;
   }
 }
-#contestFiltersRoot #contestSortsFilters .toggleOn::after {
+#lobbyRoot #contestFiltersRoot #contestSortsFilters .toggleOn::after {
   font-family: 'Glyphicons Halflings';
   content: "\E113";
   font-size: 8pt;
@@ -10692,91 +10697,91 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   line-height: 1;
 }
 @media (max-width: 767px) {
-  #contestFiltersRoot #contestSortsFilters .toggleOn::after {
+  #lobbyRoot #contestFiltersRoot #contestSortsFilters .toggleOn::after {
     font-family: 'Glyphicons Halflings';
     content: "\E113";
     font-size: 8pt;
     color: #ffffff;
   }
 }
-#contestFiltersRoot #filtersPanel {
+#lobbyRoot #contestFiltersRoot #filtersPanel {
   margin-left: -15px;
   margin-right: -15px;
   background-color: #ffffff;
 }
 @media (max-width: 991px) {
-  #contestFiltersRoot #filtersPanel {
+  #lobbyRoot #contestFiltersRoot #filtersPanel {
     margin-right: auto;
     margin-left: auto;
     padding-left: 15px;
     padding-right: 15px;
   }
-  #contestFiltersRoot #filtersPanel > .navbar-header,
-  #contestFiltersRoot #filtersPanel > .navbar-collapse {
+  #lobbyRoot #contestFiltersRoot #filtersPanel > .navbar-header,
+  #lobbyRoot #contestFiltersRoot #filtersPanel > .navbar-collapse {
     margin-right: -15px;
     margin-left: -15px;
   }
 }
 @media (max-width: 991px) and (min-width: 768px) {
-  #contestFiltersRoot #filtersPanel > .navbar-header,
-  #contestFiltersRoot #filtersPanel > .navbar-collapse {
+  #lobbyRoot #contestFiltersRoot #filtersPanel > .navbar-header,
+  #lobbyRoot #contestFiltersRoot #filtersPanel > .navbar-collapse {
     margin-right: 0;
     margin-left: 0;
   }
 }
 @media (min-width: 992px) {
-  #contestFiltersRoot #filtersPanel {
+  #lobbyRoot #contestFiltersRoot #filtersPanel {
     margin-right: auto;
     margin-left: auto;
     padding-left: 15px;
     padding-right: 15px;
   }
-  #contestFiltersRoot #filtersPanel > .navbar-header,
-  #contestFiltersRoot #filtersPanel > .navbar-collapse {
+  #lobbyRoot #contestFiltersRoot #filtersPanel > .navbar-header,
+  #lobbyRoot #contestFiltersRoot #filtersPanel > .navbar-collapse {
     margin-right: -15px;
     margin-left: -15px;
   }
 }
 @media (min-width: 992px) and (min-width: 768px) {
-  #contestFiltersRoot #filtersPanel {
+  #lobbyRoot #contestFiltersRoot #filtersPanel {
     width: 750px;
   }
 }
 @media (min-width: 992px) and (min-width: 992px) {
-  #contestFiltersRoot #filtersPanel {
+  #lobbyRoot #contestFiltersRoot #filtersPanel {
     width: 970px;
   }
 }
 @media (min-width: 992px) and (min-width: 1200px) {
-  #contestFiltersRoot #filtersPanel {
+  #lobbyRoot #contestFiltersRoot #filtersPanel {
     width: 970px;
   }
 }
 @media (min-width: 992px) and (min-width: 768px) {
-  #contestFiltersRoot #filtersPanel > .navbar-header,
-  #contestFiltersRoot #filtersPanel > .navbar-collapse {
+  #lobbyRoot #contestFiltersRoot #filtersPanel > .navbar-header,
+  #lobbyRoot #contestFiltersRoot #filtersPanel > .navbar-collapse {
     margin-right: 0;
     margin-left: 0;
   }
 }
-#contestFiltersRoot #filtersPanel .filter-title {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-title {
   font-family: 'Exo', sans-serif;
   font-weight: 300;
   font-size: 16pt;
   color: #214a5f;
 }
 @media (max-width: 767px) {
-  #contestFiltersRoot #filtersPanel .filter-title {
+  #lobbyRoot #contestFiltersRoot #filtersPanel .filter-title {
     border-top: 1px dashed #000;
     padding-top: 10px;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  #contestFiltersRoot #filtersPanel .centered-sm-text {
+  #lobbyRoot #contestFiltersRoot #filtersPanel .centered-sm-text {
     text-align: center;
   }
 }
-#contestFiltersRoot #filtersPanel .filter-column-base {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-column-base {
   float: left;
   width: 100%;
   position: relative;
@@ -10787,24 +10792,24 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   padding-top: 20px;
 }
 @media (min-width: 768px) {
-  #contestFiltersRoot #filtersPanel .filter-column-base {
+  #lobbyRoot #contestFiltersRoot #filtersPanel .filter-column-base {
     float: left;
     width: 50%;
   }
 }
 @media (min-width: 992px) {
-  #contestFiltersRoot #filtersPanel .filter-column-base {
+  #lobbyRoot #contestFiltersRoot #filtersPanel .filter-column-base {
     float: left;
     width: 33.33333333%;
   }
 }
 @media (max-width: 991px) {
-  #contestFiltersRoot #filtersPanel .filter-column-base {
+  #lobbyRoot #contestFiltersRoot #filtersPanel .filter-column-base {
     padding-bottom: 20px;
     min-height: 50px;
   }
 }
-#contestFiltersRoot #filtersPanel .filter-column-competition {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-column-competition {
   float: left;
   width: 100%;
   position: relative;
@@ -10815,7 +10820,7 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   padding-top: 20px;
 }
 @media (min-width: 992px) {
-  #contestFiltersRoot #filtersPanel .filter-column-competition {
+  #lobbyRoot #contestFiltersRoot #filtersPanel .filter-column-competition {
     border-width: 1px;
     border-style: dotted none dotted dotted;
     border-color: #434343;
@@ -10823,7 +10828,7 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  #contestFiltersRoot #filtersPanel .filter-column-competition {
+  #lobbyRoot #contestFiltersRoot #filtersPanel .filter-column-competition {
     border-width: 1px;
     border-style: dashed dashed none none;
     border-color: #434343;
@@ -10831,24 +10836,24 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   }
 }
 @media (min-width: 768px) {
-  #contestFiltersRoot #filtersPanel .filter-column-competition {
+  #lobbyRoot #contestFiltersRoot #filtersPanel .filter-column-competition {
     float: left;
     width: 50%;
   }
 }
 @media (min-width: 992px) {
-  #contestFiltersRoot #filtersPanel .filter-column-competition {
+  #lobbyRoot #contestFiltersRoot #filtersPanel .filter-column-competition {
     float: left;
     width: 33.33333333%;
   }
 }
 @media (max-width: 991px) {
-  #contestFiltersRoot #filtersPanel .filter-column-competition {
+  #lobbyRoot #contestFiltersRoot #filtersPanel .filter-column-competition {
     padding-bottom: 20px;
     min-height: 50px;
   }
 }
-#contestFiltersRoot #filtersPanel .filter-column-tournaments {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-column-tournaments {
   float: left;
   width: 100%;
   position: relative;
@@ -10859,25 +10864,25 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   padding-top: 20px;
 }
 @media (min-width: 768px) {
-  #contestFiltersRoot #filtersPanel .filter-column-tournaments {
+  #lobbyRoot #contestFiltersRoot #filtersPanel .filter-column-tournaments {
     float: left;
     width: 50%;
   }
 }
 @media (min-width: 992px) {
-  #contestFiltersRoot #filtersPanel .filter-column-tournaments {
+  #lobbyRoot #contestFiltersRoot #filtersPanel .filter-column-tournaments {
     float: left;
     width: 33.33333333%;
   }
 }
 @media (max-width: 991px) {
-  #contestFiltersRoot #filtersPanel .filter-column-tournaments {
+  #lobbyRoot #contestFiltersRoot #filtersPanel .filter-column-tournaments {
     padding-bottom: 20px;
     min-height: 50px;
   }
 }
 @media (min-width: 992px) {
-  #contestFiltersRoot #filtersPanel .filter-column-tournaments {
+  #lobbyRoot #contestFiltersRoot #filtersPanel .filter-column-tournaments {
     border-width: 1px;
     border-style: dotted none dotted dotted;
     border-color: #434343;
@@ -10885,7 +10890,7 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  #contestFiltersRoot #filtersPanel .filter-column-tournaments {
+  #lobbyRoot #contestFiltersRoot #filtersPanel .filter-column-tournaments {
     border-width: 1px;
     border-style: dashed dashed none none;
     border-color: #434343;
@@ -10893,7 +10898,7 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
     min-height: 340px;
   }
 }
-#contestFiltersRoot #filtersPanel .filter-column-salary-limit {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-column-salary-limit {
   float: left;
   width: 100%;
   position: relative;
@@ -10904,7 +10909,7 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   padding-top: 20px;
 }
 @media (min-width: 992px) {
-  #contestFiltersRoot #filtersPanel .filter-column-salary-limit {
+  #lobbyRoot #contestFiltersRoot #filtersPanel .filter-column-salary-limit {
     border-width: 1px;
     border-style: dotted none dotted dotted;
     border-color: #434343;
@@ -10912,7 +10917,7 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  #contestFiltersRoot #filtersPanel .filter-column-salary-limit {
+  #lobbyRoot #contestFiltersRoot #filtersPanel .filter-column-salary-limit {
     border-width: 1px;
     border-style: dashed none none none;
     border-color: #434343;
@@ -10920,24 +10925,24 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   }
 }
 @media (min-width: 768px) {
-  #contestFiltersRoot #filtersPanel .filter-column-salary-limit {
+  #lobbyRoot #contestFiltersRoot #filtersPanel .filter-column-salary-limit {
     float: left;
     width: 50%;
   }
 }
 @media (min-width: 992px) {
-  #contestFiltersRoot #filtersPanel .filter-column-salary-limit {
+  #lobbyRoot #contestFiltersRoot #filtersPanel .filter-column-salary-limit {
     float: left;
     width: 33.33333333%;
   }
 }
 @media (max-width: 991px) {
-  #contestFiltersRoot #filtersPanel .filter-column-salary-limit {
+  #lobbyRoot #contestFiltersRoot #filtersPanel .filter-column-salary-limit {
     padding-bottom: 20px;
     min-height: 50px;
   }
 }
-#contestFiltersRoot #filtersPanel .filter-column-entry-fee {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-column-entry-fee {
   padding-top: 20px;
   float: left;
   width: 100%;
@@ -10947,7 +10952,7 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   padding-right: 15px;
 }
 @media (min-width: 992px) {
-  #contestFiltersRoot #filtersPanel .filter-column-entry-fee {
+  #lobbyRoot #contestFiltersRoot #filtersPanel .filter-column-entry-fee {
     border-width: 1px;
     border-style: dotted dotted dotted dotted;
     border-color: #434343;
@@ -10956,7 +10961,7 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  #contestFiltersRoot #filtersPanel .filter-column-entry-fee {
+  #lobbyRoot #contestFiltersRoot #filtersPanel .filter-column-entry-fee {
     border-width: 1px;
     border-style: dashed none dashed none;
     border-color: #434343;
@@ -10965,36 +10970,36 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   }
 }
 @media (max-width: 991px) {
-  #contestFiltersRoot #filtersPanel .filter-column-entry-fee {
+  #lobbyRoot #contestFiltersRoot #filtersPanel .filter-column-entry-fee {
     padding-bottom: 20px;
     min-height: 50px;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  #contestFiltersRoot #filtersPanel .filter-column-entry-fee {
+  #lobbyRoot #contestFiltersRoot #filtersPanel .filter-column-entry-fee {
     text-align: center;
   }
 }
 @media (min-width: 768px) {
-  #contestFiltersRoot #filtersPanel .filter-column-entry-fee {
+  #lobbyRoot #contestFiltersRoot #filtersPanel .filter-column-entry-fee {
     float: left;
     width: 100%;
   }
 }
 @media (min-width: 992px) {
-  #contestFiltersRoot #filtersPanel .filter-column-entry-fee {
+  #lobbyRoot #contestFiltersRoot #filtersPanel .filter-column-entry-fee {
     float: left;
     width: 33.33333333%;
   }
 }
-#contestFiltersRoot #filtersPanel .filter-content {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content {
   /* estilod para la colmna del filtro con slider */
   /******** Sobreescritura de los estilos de noUiSlider ********/
   /* Slider size and handle placement */
   /* Handle stripes */
   /* Styling */
 }
-#contestFiltersRoot #filtersPanel .filter-content .slider-wrapper {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .slider-wrapper {
   position: relative;
   float: left;
   width: 100%;
@@ -11003,14 +11008,14 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   padding-right: 15px;
   padding: 15px 5px;
 }
-#contestFiltersRoot #filtersPanel .filter-content .range-font {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .range-font {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 12px;
   color: #0d75a6;
   padding: 0px;
 }
-#contestFiltersRoot #filtersPanel .filter-content .entry-fee-value-max {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .entry-fee-value-max {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 12px;
@@ -11026,7 +11031,7 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   text-align: right;
   padding-right: 0px;
 }
-#contestFiltersRoot #filtersPanel .filter-content .entry-fee-value-min {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .entry-fee-value-min {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 12px;
@@ -11042,7 +11047,7 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   text-align: left;
   padding-left: 0px;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check {
   position: relative;
   float: left;
   width: 100%;
@@ -11052,10 +11057,10 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   padding-left: 0px;
   padding-right: 0px;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check input[type=checkbox] {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check input[type=checkbox] {
   display: none;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check input[type=checkbox] + label {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check input[type=checkbox] + label {
   display: block;
   background-color: #ffffff;
   border: 1px solid #afafaf;
@@ -11070,10 +11075,10 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   transition: all 1s ease;
   cursor: pointer;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check input[type=checkbox]:checked + label {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check input[type=checkbox]:checked + label {
   background-color: #f8f0f0;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check input[type=checkbox] + label::after {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check input[type=checkbox] + label::after {
   font-family: 'Glyphicons Halflings';
   content: "\E013";
   font-size: 0pt;
@@ -11081,12 +11086,12 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   float: right !important;
   transition: all 0.5s ease-in-out;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check input[type=checkbox]:checked + label::after {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check input[type=checkbox]:checked + label::after {
   font-family: 'Glyphicons Halflings';
   content: "\E013";
   font-size: 12pt;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check input[type=checkbox]:disabled + label {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check input[type=checkbox]:disabled + label {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
@@ -11094,7 +11099,7 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   border: 1px solid #dcdcdc;
   background-color: #f8f8f8;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-with-flag {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-with-flag {
   position: relative;
   float: left;
   width: 100%;
@@ -11104,10 +11109,10 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   padding-left: 0px;
   padding-right: 0px;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox] {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox] {
   display: none;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox] + label {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox] + label {
   display: block;
   background-color: #ffffff;
   border: 1px solid #afafaf;
@@ -11122,10 +11127,10 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   transition: all 1s ease;
   cursor: pointer;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox]:checked + label {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox]:checked + label {
   background-color: #f8f0f0;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox] + label::after {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox] + label::after {
   font-family: 'Glyphicons Halflings';
   content: "\E013";
   font-size: 0pt;
@@ -11133,12 +11138,12 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   float: right !important;
   transition: all 0.5s ease-in-out;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox]:checked + label::after {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox]:checked + label::after {
   font-family: 'Glyphicons Halflings';
   content: "\E013";
   font-size: 12pt;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox]:disabled + label {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox]:disabled + label {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
@@ -11146,10 +11151,10 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   border: 1px solid #dcdcdc;
   background-color: #f8f8f8;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox] + label {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox] + label {
   padding-left: 15px;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox] + label::before {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-with-flag input[type=checkbox] + label::before {
   content: " ";
   height: 11px;
   background: url(../flags/flags.png) no-repeat;
@@ -11157,7 +11162,7 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   margin-right: 10px;
   display: inline-block;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-ESP {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-ESP {
   position: relative;
   float: left;
   width: 100%;
@@ -11167,10 +11172,10 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   padding-left: 0px;
   padding-right: 0px;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox] {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox] {
   display: none;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox] + label {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox] + label {
   display: block;
   background-color: #ffffff;
   border: 1px solid #afafaf;
@@ -11185,10 +11190,10 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   transition: all 1s ease;
   cursor: pointer;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox]:checked + label {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox]:checked + label {
   background-color: #f8f0f0;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox] + label::after {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox] + label::after {
   font-family: 'Glyphicons Halflings';
   content: "\E013";
   font-size: 0pt;
@@ -11196,12 +11201,12 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   float: right !important;
   transition: all 0.5s ease-in-out;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox]:checked + label::after {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox]:checked + label::after {
   font-family: 'Glyphicons Halflings';
   content: "\E013";
   font-size: 12pt;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox]:disabled + label {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox]:disabled + label {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
@@ -11209,10 +11214,10 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   border: 1px solid #dcdcdc;
   background-color: #f8f8f8;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox] + label {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox] + label {
   padding-left: 15px;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox] + label::before {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox] + label::before {
   content: " ";
   height: 11px;
   background: url(../flags/flags.png) no-repeat;
@@ -11220,10 +11225,10 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   margin-right: 10px;
   display: inline-block;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox] + label::before {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-ESP input[type=checkbox] + label::before {
   background-position: -32px 0;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-UK {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-UK {
   position: relative;
   float: left;
   width: 100%;
@@ -11233,10 +11238,10 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   padding-left: 0px;
   padding-right: 0px;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox] {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox] {
   display: none;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox] + label {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox] + label {
   display: block;
   background-color: #ffffff;
   border: 1px solid #afafaf;
@@ -11251,10 +11256,10 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   transition: all 1s ease;
   cursor: pointer;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox]:checked + label {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox]:checked + label {
   background-color: #f8f0f0;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox] + label::after {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox] + label::after {
   font-family: 'Glyphicons Halflings';
   content: "\E013";
   font-size: 0pt;
@@ -11262,12 +11267,12 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   float: right !important;
   transition: all 0.5s ease-in-out;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox]:checked + label::after {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox]:checked + label::after {
   font-family: 'Glyphicons Halflings';
   content: "\E013";
   font-size: 12pt;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox]:disabled + label {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox]:disabled + label {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
@@ -11275,10 +11280,10 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   border: 1px solid #dcdcdc;
   background-color: #f8f8f8;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox] + label {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox] + label {
   padding-left: 15px;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox] + label::before {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox] + label::before {
   content: " ";
   height: 11px;
   background: url(../flags/flags.png) no-repeat;
@@ -11286,10 +11291,10 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   margin-right: 10px;
   display: inline-block;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox] + label::before {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-UK input[type=checkbox] + label::before {
   background-position: -32px -11px;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-GER {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-GER {
   position: relative;
   float: left;
   width: 100%;
@@ -11299,10 +11304,10 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   padding-left: 0px;
   padding-right: 0px;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox] {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox] {
   display: none;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox] + label {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox] + label {
   display: block;
   background-color: #ffffff;
   border: 1px solid #afafaf;
@@ -11317,10 +11322,10 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   transition: all 1s ease;
   cursor: pointer;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox]:checked + label {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox]:checked + label {
   background-color: #f8f0f0;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox] + label::after {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox] + label::after {
   font-family: 'Glyphicons Halflings';
   content: "\E013";
   font-size: 0pt;
@@ -11328,12 +11333,12 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   float: right !important;
   transition: all 0.5s ease-in-out;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox]:checked + label::after {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox]:checked + label::after {
   font-family: 'Glyphicons Halflings';
   content: "\E013";
   font-size: 12pt;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox]:disabled + label {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox]:disabled + label {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
@@ -11341,10 +11346,10 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   border: 1px solid #dcdcdc;
   background-color: #f8f8f8;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox] + label {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox] + label {
   padding-left: 15px;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox] + label::before {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox] + label::before {
   content: " ";
   height: 11px;
   background: url(../flags/flags.png) no-repeat;
@@ -11352,10 +11357,10 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   margin-right: 10px;
   display: inline-block;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox] + label::before {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-GER input[type=checkbox] + label::before {
   background-position: -16px 0;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-IT {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-IT {
   position: relative;
   float: left;
   width: 100%;
@@ -11365,10 +11370,10 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   padding-left: 0px;
   padding-right: 0px;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox] {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox] {
   display: none;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox] + label {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox] + label {
   display: block;
   background-color: #ffffff;
   border: 1px solid #afafaf;
@@ -11383,10 +11388,10 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   transition: all 1s ease;
   cursor: pointer;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox]:checked + label {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox]:checked + label {
   background-color: #f8f0f0;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox] + label::after {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox] + label::after {
   font-family: 'Glyphicons Halflings';
   content: "\E013";
   font-size: 0pt;
@@ -11394,12 +11399,12 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   float: right !important;
   transition: all 0.5s ease-in-out;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox]:checked + label::after {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox]:checked + label::after {
   font-family: 'Glyphicons Halflings';
   content: "\E013";
   font-size: 12pt;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox]:disabled + label {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox]:disabled + label {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
@@ -11407,10 +11412,10 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   border: 1px solid #dcdcdc;
   background-color: #f8f8f8;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox] + label {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox] + label {
   padding-left: 15px;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox] + label::before {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox] + label::before {
   content: " ";
   height: 11px;
   background: url(../flags/flags.png) no-repeat;
@@ -11418,10 +11423,10 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   margin-right: 10px;
   display: inline-block;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox] + label::before {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-IT input[type=checkbox] + label::before {
   background-position: 0 -22px;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-FR {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-FR {
   position: relative;
   float: left;
   width: 100%;
@@ -11431,10 +11436,10 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   padding-left: 0px;
   padding-right: 0px;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox] {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox] {
   display: none;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox] + label {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox] + label {
   display: block;
   background-color: #ffffff;
   border: 1px solid #afafaf;
@@ -11449,10 +11454,10 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   transition: all 1s ease;
   cursor: pointer;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox]:checked + label {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox]:checked + label {
   background-color: #f8f0f0;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox] + label::after {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox] + label::after {
   font-family: 'Glyphicons Halflings';
   content: "\E013";
   font-size: 0pt;
@@ -11460,12 +11465,12 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   float: right !important;
   transition: all 0.5s ease-in-out;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox]:checked + label::after {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox]:checked + label::after {
   font-family: 'Glyphicons Halflings';
   content: "\E013";
   font-size: 12pt;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox]:disabled + label {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox]:disabled + label {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
@@ -11473,10 +11478,10 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   border: 1px solid #dcdcdc;
   background-color: #f8f8f8;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox] + label {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox] + label {
   padding-left: 15px;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox] + label::before {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox] + label::before {
   content: " ";
   height: 11px;
   background: url(../flags/flags.png) no-repeat;
@@ -11484,10 +11489,10 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   margin-right: 10px;
   display: inline-block;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox] + label::before {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-FR input[type=checkbox] + label::before {
   background-position: -16px -11px;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-EU {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-EU {
   position: relative;
   float: left;
   width: 100%;
@@ -11497,10 +11502,10 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   padding-left: 0px;
   padding-right: 0px;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox] {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox] {
   display: none;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox] + label {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox] + label {
   display: block;
   background-color: #ffffff;
   border: 1px solid #afafaf;
@@ -11515,10 +11520,10 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   transition: all 1s ease;
   cursor: pointer;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox]:checked + label {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox]:checked + label {
   background-color: #f8f0f0;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox] + label::after {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox] + label::after {
   font-family: 'Glyphicons Halflings';
   content: "\E013";
   font-size: 0pt;
@@ -11526,12 +11531,12 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   float: right !important;
   transition: all 0.5s ease-in-out;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox]:checked + label::after {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox]:checked + label::after {
   font-family: 'Glyphicons Halflings';
   content: "\E013";
   font-size: 12pt;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox]:disabled + label {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox]:disabled + label {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
@@ -11539,10 +11544,10 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   border: 1px solid #dcdcdc;
   background-color: #f8f8f8;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox] + label {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox] + label {
   padding-left: 15px;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox] + label::before {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox] + label::before {
   content: " ";
   height: 11px;
   background: url(../flags/flags.png) no-repeat;
@@ -11550,24 +11555,24 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   margin-right: 10px;
   display: inline-block;
 }
-#contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox] + label::before {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .check-group-wrapper .button-check-EU input[type=checkbox] + label::before {
   background-position: 0 -11px;
 }
-#contestFiltersRoot #filtersPanel .filter-content .noUi-horizontal .noUi-handle {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .noUi-horizontal .noUi-handle {
   width: 30px;
   height: 30px;
   left: -17px;
   top: -7px;
   border-radius: 15px;
 }
-#contestFiltersRoot #filtersPanel .filter-content .noUi-handle:before,
-#contestFiltersRoot #filtersPanel .filter-content .noUi-handle:after {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .noUi-handle:before,
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .noUi-handle:after {
   content: none;
 }
-#contestFiltersRoot #filtersPanel .filter-content .noUi-connect {
+#lobbyRoot #contestFiltersRoot #filtersPanel .filter-content .noUi-connect {
   background: #0d75a6;
 }
-#contestFiltersRoot #filtersPanel .reset-button-wrapper {
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper {
   float: left;
   width: 100%;
   position: relative;
@@ -11577,28 +11582,28 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   padding: 10px 0 15px 0;
 }
 @media (min-width: 768px) {
-  #contestFiltersRoot #filtersPanel .reset-button-wrapper {
+  #lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper {
     float: left;
     width: 25%;
   }
 }
 @media (min-width: 768px) {
-  #contestFiltersRoot #filtersPanel .reset-button-wrapper {
+  #lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper {
     left: 25%;
   }
 }
 @media (min-width: 768px) {
-  #contestFiltersRoot #filtersPanel .reset-button-wrapper {
+  #lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper {
     margin: 0 10px 0 0;
   }
 }
 @media (max-width: 767px) {
-  #contestFiltersRoot #filtersPanel .reset-button-wrapper {
+  #lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper {
     border-top: 1px dashed #000;
     padding-top: 10px;
   }
 }
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset {
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset {
   display: block;
   width: 100%;
   padding-left: 0;
@@ -11626,28 +11631,28 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   border-color: #cccccc;
   box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
 }
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:focus,
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:active:focus,
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.active:focus {
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:focus,
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:active:focus,
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.active:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:hover,
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:focus {
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:hover,
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:focus {
   color: #ffffff;
   text-decoration: none;
 }
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:active,
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.active {
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:active,
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.disabled,
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset[disabled],
-fieldset[disabled] #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset {
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.disabled,
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset[disabled],
+fieldset[disabled] #lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -11655,28 +11660,28 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:focus,
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:active:focus,
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.active:focus {
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:focus,
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:active:focus,
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.active:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:hover,
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:focus {
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:hover,
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:focus {
   color: #ffffff;
   text-decoration: none;
 }
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:active,
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.active {
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:active,
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.disabled,
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset[disabled],
-fieldset[disabled] #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset {
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.disabled,
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset[disabled],
+fieldset[disabled] #lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -11684,28 +11689,28 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:focus,
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:active:focus,
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.active:focus {
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:focus,
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:active:focus,
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.active:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:hover,
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:focus {
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:hover,
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:focus {
   color: #ffffff;
   text-decoration: none;
 }
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:active,
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.active {
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:active,
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.disabled,
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset[disabled],
-fieldset[disabled] #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset {
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.disabled,
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset[disabled],
+fieldset[disabled] #lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -11713,28 +11718,28 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:focus,
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:active:focus,
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.active:focus {
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:focus,
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:active:focus,
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.active:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:hover,
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:focus {
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:hover,
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:focus {
   color: #ffffff;
   text-decoration: none;
 }
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:active,
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.active {
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:active,
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.disabled,
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset[disabled],
-fieldset[disabled] #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset {
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.disabled,
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset[disabled],
+fieldset[disabled] #lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -11742,49 +11747,49 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:hover,
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:focus,
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:active,
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.active,
-.open .dropdown-toggle#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset {
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:hover,
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:focus,
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:active,
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.active,
+.open .dropdown-toggle#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset {
   color: #ffffff;
   background-color: #9b9b9b;
   border-color: #adadad;
 }
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:active,
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.active,
-.open .dropdown-toggle#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset {
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:active,
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.active,
+.open .dropdown-toggle#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset {
   background-image: none;
 }
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.disabled,
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset[disabled],
-fieldset[disabled] #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset,
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.disabled:hover,
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset[disabled]:hover,
-fieldset[disabled] #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:hover,
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.disabled:focus,
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset[disabled]:focus,
-fieldset[disabled] #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:focus,
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.disabled:active,
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset[disabled]:active,
-fieldset[disabled] #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:active,
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.disabled.active,
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset[disabled].active,
-fieldset[disabled] #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.active {
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.disabled,
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset[disabled],
+fieldset[disabled] #lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset,
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.disabled:hover,
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset[disabled]:hover,
+fieldset[disabled] #lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:hover,
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.disabled:focus,
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset[disabled]:focus,
+fieldset[disabled] #lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:focus,
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.disabled:active,
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset[disabled]:active,
+fieldset[disabled] #lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:active,
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.disabled.active,
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset[disabled].active,
+fieldset[disabled] #lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.active {
   background-color: #afafaf;
   border-color: #cccccc;
 }
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset .badge {
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset .badge {
   color: #afafaf;
   background-color: #ffffff;
 }
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:active,
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset[disabled],
-fieldset[disabled] #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset {
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:active,
+#lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset[disabled],
+fieldset[disabled] #lobbyRoot #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper {
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper {
   float: left;
   width: 100%;
   position: relative;
@@ -11794,22 +11799,22 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-
   padding: 10px 0 15px 0;
 }
 @media (min-width: 768px) {
-  #contestFiltersRoot #filtersPanel .confirm-button-wrapper {
+  #lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper {
     float: left;
     width: 25%;
   }
 }
 @media (min-width: 768px) {
-  #contestFiltersRoot #filtersPanel .confirm-button-wrapper {
+  #lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper {
     left: 25%;
   }
 }
 @media (min-width: 768px) {
-  #contestFiltersRoot #filtersPanel .confirm-button-wrapper {
+  #lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper {
     margin: 0 0 0 10px;
   }
 }
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm {
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm {
   display: inline-block;
   margin-bottom: 0;
   font-weight: normal;
@@ -11837,28 +11842,28 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-
   border-color: #91b42c;
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
 }
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:focus,
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:active:focus,
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.active:focus {
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:focus,
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:active:focus,
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.active:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:hover,
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:focus {
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:hover,
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:focus {
   color: #ffffff;
   text-decoration: none;
 }
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:active,
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.active {
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:active,
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.disabled,
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm[disabled],
-fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm {
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.disabled,
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm[disabled],
+fieldset[disabled] #lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -11866,28 +11871,28 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .bt
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:focus,
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:active:focus,
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.active:focus {
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:focus,
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:active:focus,
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.active:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:hover,
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:focus {
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:hover,
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:focus {
   color: #ffffff;
   text-decoration: none;
 }
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:active,
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.active {
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:active,
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.disabled,
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm[disabled],
-fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm {
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.disabled,
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm[disabled],
+fieldset[disabled] #lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -11895,54 +11900,54 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .bt
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:hover,
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:focus,
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:active,
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.active,
-.open .dropdown-toggle#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm {
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:hover,
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:focus,
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:active,
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.active,
+.open .dropdown-toggle#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm {
   color: #ffffff;
   background-color: #87a829;
   border-color: #698320;
 }
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:active,
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.active,
-.open .dropdown-toggle#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm {
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:active,
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.active,
+.open .dropdown-toggle#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm {
   background-image: none;
 }
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.disabled,
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm[disabled],
-fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm,
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.disabled:hover,
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm[disabled]:hover,
-fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:hover,
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.disabled:focus,
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm[disabled]:focus,
-fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:focus,
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.disabled:active,
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm[disabled]:active,
-fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:active,
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.disabled.active,
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm[disabled].active,
-fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.active {
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.disabled,
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm[disabled],
+fieldset[disabled] #lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm,
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.disabled:hover,
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm[disabled]:hover,
+fieldset[disabled] #lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:hover,
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.disabled:focus,
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm[disabled]:focus,
+fieldset[disabled] #lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:focus,
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.disabled:active,
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm[disabled]:active,
+fieldset[disabled] #lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:active,
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.disabled.active,
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm[disabled].active,
+fieldset[disabled] #lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.active {
   background-color: #a1c931;
   border-color: #91b42c;
 }
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm .badge {
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm .badge {
   color: #a1c931;
   background-color: #ffffff;
 }
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm[disabled] {
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm[disabled] {
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
 }
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:active,
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm[disabled],
-fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm {
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:active,
+#lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm[disabled],
+fieldset[disabled] #lobbyRoot #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-.pre-filter-row {
+#lobbyRoot .pre-filter-row {
   margin-left: 0;
   margin-right: 0;
   border-width: 1px;
@@ -11952,10 +11957,10 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .bt
   position: relative;
   background-color: #f8f8f8;
 }
-.pre-filter-row-content {
+#lobbyRoot .pre-filter-row-content {
   cursor: pointer;
 }
-.column-info-trophy {
+#lobbyRoot .column-info-trophy {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 10pt;
@@ -11968,7 +11973,7 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .bt
   padding-right: 15px;
   line-height: 50px;
 }
-.column-info-trophy::before {
+#lobbyRoot .column-info-trophy::before {
   content: " ";
   background-image: url("../images/iconTrophy.png");
   width: 17px;
@@ -11977,7 +11982,7 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .bt
   vertical-align: middle;
   margin-right: 10px;
 }
-.column-info-shield {
+#lobbyRoot .column-info-shield {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 10pt;
@@ -11990,7 +11995,7 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .bt
   padding-right: 15px;
   line-height: 50px;
 }
-.column-info-shield::before {
+#lobbyRoot .column-info-shield::before {
   content: " ";
   background-image: url("../images/iconShield.png");
   width: 17px;
@@ -11999,7 +12004,7 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .bt
   vertical-align: middle;
   margin-right: 10px;
 }
-.column-info-prized {
+#lobbyRoot .column-info-prized {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 10pt;
@@ -12012,7 +12017,7 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .bt
   padding-right: 15px;
   line-height: 50px;
 }
-.column-info-prized::after {
+#lobbyRoot .column-info-prized::after {
   content: " ";
   background-image: url("../images/iconPrize.png");
   width: 26px;
@@ -12021,7 +12026,7 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .bt
   vertical-align: middle;
   margin-left: 10px;
 }
-.column-info {
+#lobbyRoot .column-info {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 10pt;
@@ -12034,7 +12039,7 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .bt
   padding-right: 15px;
   line-height: 50px;
 }
-.globo {
+#lobbyRoot .globo {
   position: relative;
   float: left;
   width: 16.66666667%;
@@ -12049,7 +12054,7 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .bt
   height: 50px;
   text-align: center;
 }
-.globo .badge-content {
+#lobbyRoot .globo .badge-content {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 10pt;
@@ -12059,7 +12064,7 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .bt
   padding: 2px 6px;
   margin-right: 20px;
 }
-.globo::after {
+#lobbyRoot .globo::after {
   color: #214a5f;
   font-family: 'Glyphicons Halflings';
   content: "\E080";

@@ -5,10 +5,22 @@ import 'package:webclient/utils/js_utils.dart';
 
 @Injectable()
 class LoadingService {
-  static bool get enabled => _enabled;
-  static void set enabled(bool value) {
-    _enabled = value;
 
+  bool get isLoading => _enabled;
+  void set isLoading(bool value) {
+    _enabled = value;
+    _refresh();
+  }
+
+  static void disable() {
+    _instance.isLoading = false;
+  }
+
+  LoadingService() {
+    _instance = this;
+  }
+
+  void _refresh() {
     if (_enabled) {
       JsUtils.runJavascript(null, "showSpinner", null);
     }
@@ -17,7 +29,6 @@ class LoadingService {
     }
   }
 
-  LoadingService();
-
-  static bool _enabled;
+  static LoadingService _instance;
+  bool _enabled = true; // Desde JS nos dejan con el spinner activado
 }

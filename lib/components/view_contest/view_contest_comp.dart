@@ -21,6 +21,8 @@ import 'dart:html';
 class ViewContestComp implements DetachAware {
 
   ScreenDetectorService scrDet;
+  LoadingService loadingService;
+
   ContestEntry mainPlayer;
   ContestEntry selectedOpponent;
 
@@ -30,13 +32,12 @@ class ViewContestComp implements DetachAware {
 
   List<String> matchesInvolved = [];
 
-  bool get isLoaded => !LoadingService.enabled;
   Contest get contest => _myContestsService.lastContest;
   List<ContestEntry> get contestEntries => (contest != null) ? contest.contestEntries : null;
   List<ContestEntry> get contestEntriesOrderByPoints => (contest != null) ? contest.contestEntriesOrderByPoints : null;
 
-  ViewContestComp(this._routeProvider, this.scrDet, this._refreshTimersService, this._myContestsService, this._profileService, this._flashMessage) {
-    LoadingService.enabled = true;
+  ViewContestComp(this._routeProvider, this.scrDet, this._refreshTimersService, this._myContestsService, this._profileService, this._flashMessage, this.loadingService) {
+    loadingService.isLoading = true;
 
     _contestId = _routeProvider.route.parameters['contestId'];
 
@@ -44,7 +45,7 @@ class ViewContestComp implements DetachAware {
 
     _myContestsService.refreshFullContest(_contestId)
       .then((jsonObject) {
-        LoadingService.enabled = false;
+        loadingService.isLoading = false;
 
         mainPlayer = contest.getContestEntryWithUser(_profileService.user.userId);
 

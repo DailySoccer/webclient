@@ -16,7 +16,6 @@ import 'package:webclient/utils/js_utils.dart';
   templateUrl: 'packages/webclient/components/lobby_comp.html',
   useShadowDom: false
 )
-
 class LobbyComp implements DetachAware {
 
   ActiveContestsService activeContestsService;

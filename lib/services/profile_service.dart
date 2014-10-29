@@ -26,7 +26,7 @@ class ProfileService {
   }
 
   Future<JsonObject>resetPassword(String password, String stormPathTokenId) {
-    return _server.resetPassword(password, stormPathTokenId);
+    return _server.resetPassword(password, stormPathTokenId).then(_onLoginResponse);
   }
 
 

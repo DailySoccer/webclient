@@ -43,7 +43,7 @@ class ViewContestComp implements DetachAware {
 
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
 
-    _myContestsService.refreshFullContest(_contestId)
+    _myContestsService.refreshViewContest(_contestId)
       .then((jsonObject) {
         loadingService.isLoading = false;
 

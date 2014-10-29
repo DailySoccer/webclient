@@ -16,7 +16,8 @@ import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/contest_entry.dart';
 import "package:webclient/models/instance_soccer_player.dart";
 import 'package:webclient/utils/js_utils.dart';
-import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/components/enter_contest/soccer_players_list_comp.dart';
+
 
 @Component(
     selector: 'enter-contest',
@@ -26,10 +27,6 @@ import 'package:webclient/utils/string_utils.dart';
 class EnterContestComp implements DetachAware {
 
   static final String ERROR_RETRY_OP = "ERROR_RETRY_OP";
-
-  static const String FILTER_POSITION = "FILTER_POSITION";
-  static const String FILTER_NAME = "FILTER_NAME";
-  static const String FILTER_MATCH = "FILTER_MATCH";
 
   ScreenDetectorService scrDet;
   LoadingService loadingService;
@@ -41,6 +38,8 @@ class EnterContestComp implements DetachAware {
 
   final List<dynamic> lineupSlots = [];
   List<dynamic> availableSoccerPlayers = [];
+
+
 
   InstanceSoccerPlayer selectedInstanceSoccerPlayer;
 
@@ -200,121 +199,6 @@ class EnterContestComp implements DetachAware {
       calculateAvailableSalary(soccerPlayer["salary"]);
     }
   }
-
-  FieldPos get fieldPosFilter => new FieldPos(_filterList[FILTER_POSITION]);
-  void     set fieldPosFilter(FieldPos fieldPos) => setFilter(FILTER_POSITION, fieldPos != null? fieldPos.value : null);
-
-  String get nameFilter => _filterList[FILTER_NAME];
-  void   set nameFilter(String val) => setFilter(FILTER_NAME, val);
-
-  String get matchFilter => _filterList[FILTER_MATCH];
-  void   set matchFilter(String matchId) => setFilter(FILTER_MATCH, matchId);
-
-  void setFilter(String key, String valor) {
-    _filterList[key] = valor;
-    _refreshFilter();
-  }
-
-  void _refreshFilter() {
-    if (_filterList.isEmpty && availableSoccerPlayers.length == _allSoccerPlayers.length)
-      return;
-
-    // Partimos siempre de la lista original de todos los players menos los ya seleccionados en el lineup
-    availableSoccerPlayers = _allSoccerPlayers.where((soccerPlayer) => !lineupSlots.contains(soccerPlayer)).toList();
-
-    // Recorremos la lista de filtros y aplicamos los que no sean nulos
-    _filterList.forEach((String clave, String valor) {
-      if (valor != null) {
-        switch(clave) {
-          case FILTER_POSITION:
-            availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => soccerPlayer["fieldPos"].value == valor && !lineupSlots.contains(soccerPlayer)).toList();
-          break;
-          case FILTER_NAME:
-            availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => StringUtils.normalize(soccerPlayer["fullName"]).toUpperCase().contains(StringUtils.normalize(valor).toUpperCase())).toList();
-          break;
-          case FILTER_MATCH:
-            availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => soccerPlayer["matchId"] == valor).toList();
-          break;
-        }
-      }
-    });
-    _refreshOrder();
-  }
-
-  void sortListByField(String fieldName, {bool invert : true}) {
-    if (fieldName != _primarySort) {
-      _sortDir = false;
-      _secondarySort = _primarySort;
-      _primarySort = fieldName;
-    }
-    else if (invert) {
-      _sortDir = !_sortDir;
-    }
-    _refreshOrder();
-  }
-
-  dynamic compare(String field, var playerA, var playerB) {
-    int compResult;
-    switch(field) {
-      case "fieldPos":
-        compResult = playerA["fieldPos"].sortOrder - playerB["fieldPos"].sortOrder;
-      break;
-      case "Name":
-        compResult = compareNameTo(playerA, playerB);
-      break;
-      default:
-        compResult = playerA[field].compareTo(playerB[field]);
-      break;
-    }
-
-    if (_secondarySort != "" && compResult == 0) {
-      switch(_secondarySort) {
-        case "Pos":
-          compResult = playerB["fieldPos"].sortOrder - playerA["fieldPos"].sortOrder;
-        break;
-        case "Name":
-          compResult = compareNameTo(playerA, playerB);
-        break;
-        case "DFP":
-          compResult = playerA["fantasyPoints"].compareTo(playerB["fantasyPoints"]);
-        break;
-        case "Played":
-          compResult = playerA["playedMatches"].compareTo(playerB["playedMatches"]);
-        break;
-        case "Salary":
-          compResult = playerA["salary"].compareTo(playerB["salary"]);
-        break;
-      }
-    }
-    return compResult;
-  }
-
-  void _refreshOrder() {
-    switch(_primarySort)
-      {
-        case "Pos":
-          availableSoccerPlayers.sort((player1, player2) => _sortDir? compare("fieldPos", player2, player1) : compare("fieldPos", player1, player2));
-        break;
-        case "Name":
-          availableSoccerPlayers.sort((player1, player2) => _sortDir? compare("Name", player2, player1) : compare("Name", player1, player2));
-        break;
-        case "DFP":
-          availableSoccerPlayers.sort((player1, player2) => !_sortDir? compare("fantasyPoints", player2, player1): compare("fantasyPoints", player1, player2));
-        break;
-        case "Played":
-          availableSoccerPlayers.sort((player1, player2) => !_sortDir? compare("playedMatches", player2, player1): compare("playedMatches", player1, player2));
-        break;
-        case "Salary":
-          availableSoccerPlayers.sort((player1, player2) => !_sortDir? compare("salary", player2, player1): compare("salary", player1, player2));
-        break;
-      }
-  }
-
-
-  int compareNameTo(playerA, playerB){
-     int comp = StringUtils.normalize(playerA["fullName"]).compareTo(StringUtils.normalize(playerB["fullName"]));
-     return comp != 0 ? comp : playerA["id"].compareTo(playerB["id"]);
-   }
 
   bool availableSoccerPlayer(var soccerPlayer) {
     FieldPos theFieldPos = soccerPlayer["fieldPos"];
@@ -557,15 +441,9 @@ class EnterContestComp implements DetachAware {
 
   List<dynamic> _allSoccerPlayers = new List();
 
-  bool _sortDir = false;
-  String _primarySort = "";
-  String _secondarySort = "";
-
   int _selectedLineupPosIndex = 0;
   bool _editingContestEntry = false;
 
-  // Lista de filtros a aplicar
-  Map<String, String> _filterList = {};
   var _streamListener;
 
   Timer _retryOpTimer;

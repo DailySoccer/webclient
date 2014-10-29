@@ -8,7 +8,7 @@ class StringUtils {
     Map map = {};
 
     for (int i = 0; i < from.length; i++ ) {
-      map[  from[i] ] = to[i];
+      map[ from[i] ] = to[i];
     }
 
     String ret = '';

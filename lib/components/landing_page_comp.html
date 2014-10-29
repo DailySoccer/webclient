@@ -1,6 +1,6 @@
-<div id="desktopContent" ng-if="!scrDet.isXsScreen" ng-show="!loadingService.isLoading">
-
-    <div id="screen1" class="first-screen" style="height:{{screenHeight}}px">
+<div>
+    <!-- Portada Versión Desktop -->
+    <div id="desktopContent" ng-if="!scrDet.isXsScreen" ng-show="!loadingService.isLoading" class="first-screen" style="height:{{screenHeight}}px">
       <div class="screen-pattern" src="images/pattern.png"></div>
         <div class="beta-label"><img src="images/beta.png"/></div>
         <div class="main-title-wrapper">
@@ -33,7 +33,7 @@
           </div>
 
         </div>
-        
+
       <!-- Separador -->
       <a class="wrapping-link" href="#screen2">
         <span id="screenSeparator1" class="more-info-section-light">
@@ -42,9 +42,25 @@
         </span>
       </a>
     </div>
+    <!-- END Portada Versión Desktop -->
+    <!-- Portada Versión Móvil -->
+    <div id="mobileContent" ng-if="scrDet.isXsScreen" ng-show="!loadingService.isLoading" class="screen">
 
+      <div class="slider-wrapper">
+        <img class="background" src="images/xsLandingBackground.jpg" />
+      </div>
 
-
+      <div class="content">
+        <p class="main-title-mobile">LIGAS FANTÁSTICAS <br> DIARIAS</p>
+       <!-- <img class="banner-top" src="images/separator.png" /> -->
+        <!--<p class="highlight-text"><span class="stars"></span>CADA SEMANA,<span class="stars"></span><BR> UNA NUEVA TEMPORADA</p>-->
+        <p class="title-sup-text-mobile">CREA TU EQUIPO EN SEGUNDOS</p>
+        <p class="title-sup-text-mobile">COMPITE EN TANTAS LIGAS COMO QUIERAS</p>
+        <p class="title-sup-text-mobile">SIGUE LOS PARTIDOS EN DIRECTO</p>
+        <button type="button" class="button-play-mobile" ng-click="buttonPressed('join')" id="playButtonMobile">JUGAR</button>
+      </div>
+    </div>
+    <!-- END Portada Versión Móvil -->
     <div id="screen2" class="screen">
         <div class="slider-wrapper">
           <img class="screen-background" src="images/landing02.jpg" />
@@ -123,25 +139,3 @@
     </div>
 
 </div>
-
-<!-- Versión Móvil -->
-<div id="mobileContent" ng-if="scrDet.isXsScreen" ng-show="!loadingService.isLoading">
-    <div id="screenMobile1" class="screen">
-
-      <div class="slider-wrapper">
-        <img class="background" src="images/xsLandingBackground.jpg" />
-      </div>
-
-      <div class="content">
-        <p class="main-title-mobile">LIGAS FANTÁSTICAS <br> DIARIAS</p>
-       <!-- <img class="banner-top" src="images/separator.png" /> -->
-        <!--<p class="highlight-text"><span class="stars"></span>CADA SEMANA,<span class="stars"></span><BR> UNA NUEVA TEMPORADA</p>-->
-        <p class="title-sup-text-mobile">CREA TU EQUIPO EN SEGUNDOS</p>
-        <p class="title-sup-text-mobile">COMPITE EN TANTAS LIGAS COMO QUIERAS</p>
-        <p class="title-sup-text-mobile">SIGUE LOS PARTIDOS EN DIRECTO</p>
-        <button type="button" class="button-play-mobile" ng-click="buttonPressed('join')" id="playButtonMobile">JUGAR</button>
-      </div>
-    </div>
-</div>
-
-

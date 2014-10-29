@@ -9117,49 +9117,6 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button {
   widht: 100%;
   height: 58px;
 }
-#desktopContent .wrapping-link {
-  text-decoration: none;
-}
-#desktopContent .more-info-section-dark {
-  display: block;
-  background-color: #214a5f;
-  margin: 0;
-  padding: 15px;
-}
-#desktopContent .more-info-section-dark > span {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-  font-size: 9pt;
-  color: #ffffff;
-  display: block;
-  text-align: center;
-}
-#desktopContent .more-info-section-dark .go-down-icon {
-  background-image: url("../images/goDownLight.png");
-  width: 15px;
-  height: 15px;
-  margin: 0 auto;
-}
-#desktopContent .more-info-section-light {
-  display: block;
-  background-color: #dcdcdc;
-  margin: 0;
-  padding: 15px;
-}
-#desktopContent .more-info-section-light > span {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-  font-size: 9pt;
-  color: #214a5f;
-  display: block;
-  text-align: center;
-}
-#desktopContent .more-info-section-light .go-down-icon {
-  background-image: url("../images/goDownDark.png");
-  width: 15px;
-  height: 15px;
-  margin: 0 auto;
-}
 #desktopContent .screen-content {
   max-width: 410px;
   position: absolute;
@@ -9444,6 +9401,8 @@ fieldset[disabled] #mobileContent .content .button-play-mobile {
   }
 }
 .landing-wrapper .screen .content-wrapper .content-container .screen-image-block {
+  float: left;
+  width: 100%;
   position: relative;
   min-height: 1px;
   padding-left: 15px;
@@ -9459,9 +9418,12 @@ fieldset[disabled] #mobileContent .content .button-play-mobile {
   display: block;
   max-width: 100%;
   height: auto;
+  margin: 0 auto;
 }
 .landing-wrapper .screen .content-wrapper .content-container .screen-text-block {
   position: relative;
+  float: left;
+  width: 100%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
@@ -9495,11 +9457,17 @@ fieldset[disabled] #mobileContent .content .button-play-mobile {
 }
 .landing-wrapper .screen .content-wrapper .content-container .screen-text-block > p {
   padding-bottom: 15px;
+  margin: 0 auto;
 }
 .landing-wrapper .slider-wrapper {
   position: relative;
   overflow: hidden;
   max-height: 340px;
+}
+@media (max-width: 767px) {
+  .landing-wrapper .slider-wrapper {
+    display: none !important;
+  }
 }
 .landing-wrapper .button-play {
   display: inline-block;
@@ -9525,6 +9493,7 @@ fieldset[disabled] #mobileContent .content .button-play-mobile {
   border-color: #91b42c;
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   padding: 10px 60px;
+  margin: 0 auto;
 }
 .landing-wrapper .button-play:focus,
 .landing-wrapper .button-play:active:focus,
@@ -9630,6 +9599,54 @@ fieldset[disabled] .landing-wrapper .button-play.active {
 fieldset[disabled] .landing-wrapper .button-play {
   -webkit-box-shadow: none;
   box-shadow: none;
+}
+@media (max-width: 1199px) {
+  .landing-wrapper .button-play {
+    display: block;
+  }
+}
+.wrapping-link {
+  text-decoration: none;
+}
+.more-info-section-dark {
+  display: block;
+  background-color: #214a5f;
+  margin: 0;
+  padding: 15px;
+}
+.more-info-section-dark > span {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 9pt;
+  color: #ffffff;
+  display: block;
+  text-align: center;
+}
+.more-info-section-dark .go-down-icon {
+  background-image: url("../images/goDownLight.png");
+  width: 15px;
+  height: 15px;
+  margin: 0 auto;
+}
+.more-info-section-light {
+  display: block;
+  background-color: #dcdcdc;
+  margin: 0;
+  padding: 15px;
+}
+.more-info-section-light > span {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 9pt;
+  color: #214a5f;
+  display: block;
+  text-align: center;
+}
+.more-info-section-light .go-down-icon {
+  background-image: url("../images/goDownDark.png");
+  width: 15px;
+  height: 15px;
+  margin: 0 auto;
 }
 .screen-pattern {
   position: absolute;

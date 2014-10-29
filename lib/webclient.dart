@@ -20,6 +20,7 @@ import 'package:webclient/logger_exception_handler.dart';
 
 import 'package:webclient/utils/limit_to_dot.dart';
 import 'package:webclient/utils/form-autofill-fix.dart';
+import 'package:webclient/utils/element-autofocus.dart';
 
 import 'package:webclient/components/flash_messages_comp.dart';
 import 'package:webclient/components/landing_page_comp.dart';
@@ -81,6 +82,7 @@ class WebClientApp extends Module {
 
     bind(LimitToDot);
     bind(FormAutofillDecorator);
+    bind(AutoFocusDecorator);
 
     bind(LandingPageComp);
     bind(MainMenuSlideComp);

@@ -25,7 +25,6 @@ class LoginComp implements ShadowRootAware {
   @override void onShadowRoot(emulatedRoot) {
     _errSection = _rootElement.querySelector("#mailPassError");
     _errSection.parent.parent.style.display = 'none';
-    _rootElement.querySelector('#login-mail').focus();
   }
 
   void login() {

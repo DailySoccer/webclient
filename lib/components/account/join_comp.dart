@@ -37,7 +37,6 @@ class JoinComp implements ShadowRootAware {
 
     passwordError = _rootElement.querySelector("#passwordError");
     passwordError.parent.style.display = 'none';
-    _rootElement.querySelector('#nickName').focus();
   }
 
   void submitSignup() {

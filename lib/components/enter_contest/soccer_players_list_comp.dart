@@ -21,18 +21,17 @@ class SoccerPlayersListComp {
   static const String FILTER_MATCH = "FILTER_MATCH";
 
   ScreenDetectorService scrDet;
+  List<dynamic> filteredSoccerPlayers = [];
 
-  @NgTwoWay("soccer-players")
-  List<dynamic> get soccerPlayers => _soccerPlayers;
-  void          set soccerPlayers(List<dynamic> sp) {
+  @NgOneWay("soccer-players")
+  void set soccerPlayers(List<dynamic> sp) {
     _soccerPlayers = sp;
+
+    // Cuando se inicializa la lista de jugadores, esta se ordena por posicion
+    _changeSort('Pos', false);
 
     // TODO ?
     _refreshFilter();
-
-    // Cuando se inicializa la lista de jugadores, esta se ordena por posicion
-    // TODO: Doble trabajo?
-    sortListByField('Pos', invert: false);
   }
 
   @NgCallback("on-row-click")
@@ -80,51 +79,35 @@ class SoccerPlayersListComp {
 
   void _refreshFilter() {
 
-    if (_supressRefresh) {
-      return;
-    }
-
-    // TODO
-    /*
-    if (_filterList.isEmpty && availableSoccerPlayers.length == _allSoccerPlayers.length)
-       return;
-    */
-
     // TODO
     // Partimos siempre de la lista original de todos los players menos los ya seleccionados en el lineup
     //availableSoccerPlayers = _allSoccerPlayers.where((soccerPlayer) => !lineupSlots.contains(soccerPlayer)).toList();
 
-    Iterable<dynamic> iterable = _soccerPlayers;
+    filteredSoccerPlayers.clear();
 
-    // Recorremos la lista de filtros y aplicamos los que no sean nulos
-    _filterList.forEach((String clave, String valor) {
-      if (valor != null) {
-        switch(clave) {
-          case FILTER_POSITION:
-            iterable = iterable.where((soccerPlayer) => soccerPlayer["fieldPos"].value == valor);
-          break;
-          case FILTER_NAME:
-            iterable = iterable.where((soccerPlayer) => StringUtils.normalize(soccerPlayer["fullName"]).toUpperCase().contains(StringUtils.normalize(valor).toUpperCase()));
-          break;
-          case FILTER_MATCH:
-            iterable = iterable.where((soccerPlayer) => soccerPlayer["matchId"] == valor);
-          break;
-        }
+    var pos = _filterList[FILTER_POSITION];
+    var name = _filterList[FILTER_NAME];
+    var matchId = _filterList[FILTER_MATCH];
+
+    if (name != null) {
+      name = StringUtils.normalize(name).toUpperCase();
+    }
+
+    for (int c = 0; c < _soccerPlayers.length; ++c) {
+      var player = _soccerPlayers[c];
+
+      if ((pos == null || player["fieldPos"].value == pos) &&
+          (matchId == null || player["matchId"] == matchId) &&
+          (name == null || name.isEmpty ||
+          StringUtils.normalize(player["fullName"]).toUpperCase().contains(name))) {
+        filteredSoccerPlayers.add(player);
       }
-    });
+    }
 
-    _soccerPlayers = iterable.toList();
-    _refreshOrder();
-
-    /* TODO: Se detecta desde fuera?
-    _supressRefresh = true;
-    soccerPlayers = _soccerPlayers;
-    _supressRefresh = false;
-    */
+    _refreshSort();
   }
 
-
-  void sortListByField(String fieldName, {bool invert : true}) {
+  void _changeSort(String fieldName, invert) {
     if (fieldName != _primarySort) {
       _sortDir = false;
       _secondarySort = _primarySort;
@@ -133,7 +116,11 @@ class SoccerPlayersListComp {
     else if (invert) {
       _sortDir = !_sortDir;
     }
-    _refreshOrder();
+  }
+
+  void sortListByField(String fieldName, {bool invert : true}) {
+    _changeSort(fieldName, invert);
+    _refreshSort();
   }
 
   dynamic compare(String field, var playerA, var playerB) {
@@ -173,22 +160,22 @@ class SoccerPlayersListComp {
   }
 
   // TODO: Pasar el sortDir como parametro
-  void _refreshOrder() {
+  void _refreshSort() {
     switch(_primarySort) {
       case "Pos":
-        _soccerPlayers.sort((player1, player2) => _sortDir? compare("fieldPos", player2, player1) : compare("fieldPos", player1, player2));
+        filteredSoccerPlayers.sort((player1, player2) => _sortDir? compare("fieldPos", player2, player1) : compare("fieldPos", player1, player2));
       break;
       case "Name":
-        _soccerPlayers.sort((player1, player2) => _sortDir? compare("Name", player2, player1) : compare("Name", player1, player2));
+        filteredSoccerPlayers.sort((player1, player2) => _sortDir? compare("Name", player2, player1) : compare("Name", player1, player2));
       break;
       case "DFP":
-        _soccerPlayers.sort((player1, player2) => !_sortDir? compare("fantasyPoints", player2, player1): compare("fantasyPoints", player1, player2));
+        filteredSoccerPlayers.sort((player1, player2) => !_sortDir? compare("fantasyPoints", player2, player1): compare("fantasyPoints", player1, player2));
       break;
       case "Played":
-        _soccerPlayers.sort((player1, player2) => !_sortDir? compare("playedMatches", player2, player1): compare("playedMatches", player1, player2));
+        filteredSoccerPlayers.sort((player1, player2) => !_sortDir? compare("playedMatches", player2, player1): compare("playedMatches", player1, player2));
       break;
       case "Salary":
-        _soccerPlayers.sort((player1, player2) => !_sortDir? compare("salary", player2, player1): compare("salary", player1, player2));
+        filteredSoccerPlayers.sort((player1, player2) => !_sortDir? compare("salary", player2, player1): compare("salary", player1, player2));
       break;
     }
   }
@@ -204,8 +191,6 @@ class SoccerPlayersListComp {
   bool _sortDir = false;
   String _primarySort = "";
   String _secondarySort = "";
-
-  bool _supressRefresh = false;
 
   static final Map<String, String> _POS_CLASS_NAMES = { "POR": "posPOR", "DEF": "posDEF", "MED": "posMED", "DEL": "posDEL" };
 }

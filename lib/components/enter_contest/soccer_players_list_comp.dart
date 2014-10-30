@@ -22,11 +22,11 @@ class SoccerPlayersListComp {
   static const String FILTER_MATCH = "FILTER_MATCH";
 
   ScreenDetectorService scrDet;
-  List<dynamic> filteredSoccerPlayers = [];
+  List<dynamic> sortedSoccerPlayers = [];
 
   @NgOneWay("soccer-players")
   void set soccerPlayers(List<dynamic> sp) {
-    filteredSoccerPlayers = sp;
+    sortedSoccerPlayers = sp;
 
     // Cuando se inicializa la lista de jugadores, esta se ordena por posicion
     sortListByField('Pos', invert: false);
@@ -52,7 +52,7 @@ class SoccerPlayersListComp {
 
   void _setFilter(String key, String valor) {
     _filterList[key] = valor;
-    _refreshFilter();         // TODO: Hacer esto en el digest o algo asi? Por ejemplo, en removeAllFilters se hace esto 3 veces?
+    _refreshFilter();         // TODO: Hacer esto en el digest o algo asi? Por ejemplo, en removeAllFilters se hace 3 veces
   }
 
   SoccerPlayersListComp(this.scrDet);
@@ -75,6 +75,7 @@ class SoccerPlayersListComp {
     }
   }
 
+  // En vez de cambiar la lista que se renderiza con ng-repeat, es mucho mas rapido tocar el hidden
   void _refreshFilter() {
 
     // Cuando todavia la lista no esta rellena...
@@ -94,21 +95,25 @@ class SoccerPlayersListComp {
       name = StringUtils.normalize(name).toUpperCase();
     }
 
-    for (int c = 0; c < filteredSoccerPlayers.length; ++c) {
-      var player = filteredSoccerPlayers[c];
+    for (int c = 0; c < sortedSoccerPlayers.length; ++c) {
+      var player = sortedSoccerPlayers[c];
 
       var elem = document.querySelector("#soccerPlayer${c}");
 
-      if ((pos == null || player["fieldPos"].value == pos) &&
-          (matchId == null || player["matchId"] == matchId) &&
-          (name == null || name.isEmpty ||
-          StringUtils.normalize(player["fullName"]).toUpperCase().contains(name))) {
+      if (_shouldBeVisible(player, pos, matchId, name)) {
         elem.classes.remove("hidden");
       }
       else {
         elem.classes.add("hidden");
       }
     }
+  }
+
+  bool _shouldBeVisible(player, pos, matchId, name) {
+    return (pos == null || player["fieldPos"].value == pos) &&
+           (matchId == null || player["matchId"] == matchId) &&
+           (name == null || name.isEmpty ||
+           StringUtils.normalize(player["fullName"]).toUpperCase().contains(name));
   }
 
   dynamic compare(String field, var playerA, var playerB) {
@@ -151,19 +156,19 @@ class SoccerPlayersListComp {
   void _refreshSort() {
     switch(_primarySort) {
       case "Pos":
-        filteredSoccerPlayers.sort((player1, player2) => _sortDir? compare("fieldPos", player2, player1) : compare("fieldPos", player1, player2));
+        sortedSoccerPlayers.sort((player1, player2) => _sortDir? compare("fieldPos", player2, player1) : compare("fieldPos", player1, player2));
       break;
       case "Name":
-        filteredSoccerPlayers.sort((player1, player2) => _sortDir? compare("Name", player2, player1) : compare("Name", player1, player2));
+        sortedSoccerPlayers.sort((player1, player2) => _sortDir? compare("Name", player2, player1) : compare("Name", player1, player2));
       break;
       case "DFP":
-        filteredSoccerPlayers.sort((player1, player2) => !_sortDir? compare("fantasyPoints", player2, player1): compare("fantasyPoints", player1, player2));
+        sortedSoccerPlayers.sort((player1, player2) => !_sortDir? compare("fantasyPoints", player2, player1): compare("fantasyPoints", player1, player2));
       break;
       case "Played":
-        filteredSoccerPlayers.sort((player1, player2) => !_sortDir? compare("playedMatches", player2, player1): compare("playedMatches", player1, player2));
+        sortedSoccerPlayers.sort((player1, player2) => !_sortDir? compare("playedMatches", player2, player1): compare("playedMatches", player1, player2));
       break;
       case "Salary":
-        filteredSoccerPlayers.sort((player1, player2) => !_sortDir? compare("salary", player2, player1): compare("salary", player1, player2));
+        sortedSoccerPlayers.sort((player1, player2) => !_sortDir? compare("salary", player2, player1): compare("salary", player1, player2));
       break;
     }
   }

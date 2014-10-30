@@ -65,7 +65,7 @@ class SoccerPlayersListComp {
 
   void onRow(dynamic slot) {
     if (onRowClick != null) {
-      onRowClick({"soccerPlayerId": slot.id});
+      onRowClick({"soccerPlayerId": slot['id']});
     }
   }
 

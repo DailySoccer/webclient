@@ -80,6 +80,18 @@ class MyContestsService {
     return completer.future;
   }
 
+  Future refreshMyContestEntry(String contestId) {
+    var completer = new Completer();
+
+    _server.getMyContestEntry(contestId)
+        .then((jsonObject) {
+          lastContest = Contest.loadContestsFromJsonObject(jsonObject).first;
+          completer.complete(jsonObject);
+        });
+
+    return completer.future;
+  }
+
   Future refreshFullContest(String contestId) {
     var completer = new Completer();
 

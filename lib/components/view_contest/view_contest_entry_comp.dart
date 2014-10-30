@@ -46,7 +46,7 @@ class ViewContestEntryComp {
 
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
 
-    _myContestsService.refreshMyContest(_contestId)
+    _myContestsService.refreshMyContestEntry(_contestId)
       .then((jsonObject) {
         loadingService.isLoading = false;
 

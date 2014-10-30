@@ -24,6 +24,7 @@ abstract class ServerService {
   // Conseguir la lista de Contests Active/Live/History en los que esté inscrito el User
   Future<JsonObject> getMyContests();
   Future<JsonObject> getMyContest(String contestId);
+  Future<JsonObject> getMyContestEntry(String contestId);
   Future<JsonObject> getFullContest(String contestId);
   Future<JsonObject> getViewContest(String contestId);
 
@@ -101,6 +102,10 @@ class DailySoccerServer implements ServerService {
 
   Future<JsonObject> getMyContest(String contestId) {
     return _innerServerCall("${HostServer.url}/get_my_contest/$contestId");
+  }
+
+  Future<JsonObject> getMyContestEntry(String contestId) {
+    return _innerServerCall("${HostServer.url}/get_my_contest_entry/$contestId");
   }
 
   Future<JsonObject> getFullContest(String contestId) {

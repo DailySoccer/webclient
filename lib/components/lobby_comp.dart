@@ -19,7 +19,7 @@ import 'package:webclient/utils/js_utils.dart';
 class LobbyComp implements DetachAware {
 
   ActiveContestsService activeContestsService;
-  Contest selectedContest;
+  String selectedContestId;
   ScreenDetectorService scrDet;
   LoadingService loadingService;
 
@@ -77,7 +77,7 @@ class LobbyComp implements DetachAware {
   // Mostramos la ventana modal con la información de ese torneo, si no es la versión movil.
   void onRowClick(Contest contest) {
     if (scrDet.isDesktop) {
-      selectedContest = contest;
+      selectedContestId = contest.contestId;
 
       // Esto soluciona el bug por el que no se muestra la ventana modal en Firefox;
       var modal = querySelector('#infoContestModal');

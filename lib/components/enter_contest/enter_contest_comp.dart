@@ -35,6 +35,7 @@ class EnterContestComp implements DetachAware {
   LoadingService loadingService;
 
   Contest contest;
+  String contestId;
   String contestEntryId = null;
 
   bool isSelectingSoccerPlayer = false;
@@ -58,14 +59,15 @@ class EnterContestComp implements DetachAware {
       lineupSlots.add(null);
     });
 
+    contestId = _routeProvider.route.parameters['contestId'];
     _editingContestEntry = (_routeProvider.route.parameters['contestEntryId'] != null);
 
     // Nos subscribimos al evento de cambio de tamañano de ventana
     _streamListener = scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
 
     Future refreshContest = _editingContestEntry
-        ? _myContestService.refreshMyContest(_routeProvider.route.parameters['contestId'])
-        : _activeContestService.refreshContest(_routeProvider.route.parameters['contestId']);
+        ? _myContestService.refreshMyContest(contestId)
+        : _activeContestService.refreshContest(contestId);
 
     refreshContest
       .then((_) {

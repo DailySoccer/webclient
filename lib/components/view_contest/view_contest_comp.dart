@@ -31,10 +31,12 @@ class ViewContestComp implements DetachAware {
   bool isOpponentSelected = false;
 
   List<String> matchesInvolved = [];
+  List<String> periods = [];
 
   Contest get contest => _myContestsService.lastContest;
   List<ContestEntry> get contestEntries => (contest != null) ? contest.contestEntries : null;
   List<ContestEntry> get contestEntriesOrderByPoints => (contest != null) ? contest.contestEntriesOrderByPoints : null;
+  List<MatchEvent> matchEventsSorted;
 
   ViewContestComp(this._routeProvider, this.scrDet, this._refreshTimersService, this._myContestsService, this._profileService, this._flashMessage, this.loadingService) {
     loadingService.isLoading = true;
@@ -51,13 +53,19 @@ class ViewContestComp implements DetachAware {
 
         updatedDate = DateTimeService.now;
 
+////////////////// Componente pastillas de partidos
+
         // generamos los partidos para el filtro de partidos
         matchesInvolved.clear();
-        List<MatchEvent> matchEventsSorted = new List<MatchEvent>.from(contest.matchEvents)
+        matchEventsSorted = new List<MatchEvent>.from(contest.matchEvents)
             .. sort((entry1, entry2) => entry1.startDate.compareTo(entry2.startDate))
             .. forEach( (match) {
-              matchesInvolved.add(match.soccerTeamA.shortName + '-' + match.soccerTeamB.shortName + "<br>" + DateTimeService.formatDateTimeShort(match.startDate));
+              matchesInvolved.add(match.soccerTeamA.shortName + '-' + match.soccerTeamB.shortName +
+                                  "<br>" + DateTimeService.formatDateTimeShort(match.startDate) + "<br>");
             });
+////////////////// Componente pastillas de partidos
+
+
 
         // Únicamente actualizamos los contests que estén en "live"
         if (_myContestsService.lastContest.isLive) {
@@ -155,6 +163,9 @@ class ViewContestComp implements DetachAware {
     }
   }
 
+
+
+////////////////// Componente pastillas de partidos
   void toggleTeamsPanel() {
     if (!_togglerEventsInitialized) {
       JsUtils.runJavascript('#teamsPanel', 'on', {'shown.bs.collapse': onOpenTeamsPanel});
@@ -184,6 +195,27 @@ class ViewContestComp implements DetachAware {
     _isTeamsPanelOpen = false;
   }
 
+  String getMatchAndPeriodInfo(int id, String teamsInfo) {
+    MatchEvent match = matchEventsSorted[id];
+    if (match == null){
+      return teamsInfo + '';
+    }
+
+    if (!match.isStarted) {
+      return teamsInfo +'No jugado';
+    }
+    else {
+      if (match.isFinished) {
+        return teamsInfo +'Finalizado';
+      }
+      else {
+        //print (' - Van ${match.minutesPlayed} y quedan ${match.minutesLeft}');
+        return teamsInfo + (match.isFirstHalf ? '1ª Parte - ' : match.isSecondHalf ? '2ª Parte - ' : '-Err-') + match.minutesPlayed.toString() + '&quot;';
+      }
+    }
+    return 'otras causas';
+  }
+////////////////// Componente pastillas de partidos
   FlashMessagesService _flashMessage;
   RouteProvider _routeProvider;
   ProfileService _profileService;
@@ -197,3 +229,4 @@ class ViewContestComp implements DetachAware {
 
   List<int> get _prizes => (contest != null) ? contest.prizes : [];
 }
+

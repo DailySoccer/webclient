@@ -7,7 +7,7 @@
     <!--<div class="social"><img src="images/socialBig.png"></div>-->
     <div class="teams-container">
       <div class="teams-box" ng-repeat="match in matchesInvolved">
-        <div class="teams-info" ng-bind-html="match"></div>
+        <div class="teams-info" ng-bind-html="getMatchAndPeriodInfo($index, match)"></div>
       </div>
     </div>
   </div>
@@ -19,7 +19,7 @@
     <div id="teamsPanel" class="teams-container collapse">
       <div class="top-border"></div>
       <div class="teams-box" ng-repeat="match in matchesInvolved">
-        <div class="teams-info" ng-bind-html="match"></div>
+        <div class="teams-info" ng-bind-html="getMatchAndPeriodInfo($index, match)"></div>
       </div>
       <div class="bottom-border"></div>
     </div>

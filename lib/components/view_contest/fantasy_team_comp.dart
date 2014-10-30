@@ -10,7 +10,7 @@ import 'dart:math';
 @Component(selector: 'fantasy-team',
            templateUrl: 'packages/webclient/components/view_contest/fantasy_team_comp.html',
            useShadowDom: false)
-class FantasyTeamComp {
+class FantasyTeamComp implements DetachAware {
 
     List<dynamic> slots = null;
 
@@ -91,6 +91,8 @@ class FantasyTeamComp {
 
       var random = new Random();
 
+      removeInactiveTimers();
+
       _contestEntry.instanceSoccerPlayers.forEach((instanceSoccerPlayer) {
         SoccerPlayer soccerPlayer = instanceSoccerPlayer.soccerPlayer;
 
@@ -102,14 +104,14 @@ class FantasyTeamComp {
           // Un pequeño efecto visual: como que nos vienen unas antes que otras
           int startDelay = random.nextInt(4000);
 
-          new Timer(new Duration(milliseconds: startDelay), () {
+          createTimer(new Duration(milliseconds: startDelay), () {
             scoreElement.innerHtml = instanceSoccerPlayer.printableCurrentLivePoints;
 
             // Refrescamos el array completo de stats. A medida que lleguen nuevas stats se iran rellenando nuevas rows.
             slots.firstWhere((slot) => slot['id'] == soccerPlayer.templateSoccerPlayerId)["stats"] = instanceSoccerPlayer.printableLivePointsPerOptaEvent;
 
             scoreElement.classes.add("changed");
-            new Timer(new Duration(seconds: 1), () => scoreElement.classes.remove("changed"));
+            createTimer(new Duration(seconds: 1), () => scoreElement.classes.remove("changed"));
           });
         }
       });
@@ -126,6 +128,25 @@ class FantasyTeamComp {
         onClose();
     }
 
+    @override
+    void detach() {
+      stopTimers();
+    }
+
+    void createTimer(Duration duration, Function callback) {
+      _timers.add(new Timer(duration, callback));
+    }
+
+    void removeInactiveTimers () {
+      _timers.removeWhere((timer) => !timer.isActive);
+    }
+
+    void stopTimers() {
+      _timers.where((timer) => timer.isActive).forEach((timer) => timer.cancel());
+      _timers.clear();
+    }
+
+    List<Timer> _timers = new List<Timer>();
     Element _rootElement;
     ContestEntry _contestEntry;
 

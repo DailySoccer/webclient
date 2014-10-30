@@ -127,13 +127,7 @@ class EnterContestComp implements DetachAware {
     // Para que en la versión móvil aparezca la pantalla de lineup
     isSelectingSoccerPlayer = false;
 
-    if (value == "desktop") {
-        // Reseteo las pestañas
-        List<dynamic> allTabs = document.querySelectorAll(".enter-contest-tabs li");
-        allTabs.forEach((element) => element.classes.remove('active'));
-        allTabs[0].classes.add('active');
-    }
-    else if (value != "sm") {
+    if (value != "sm") {
       // hacemos una llamada de jQuery para ocultar la ventana modal
       JsUtils.runJavascript('#infoContestModal','modal', 'hide');
       // Para cerrar el soccer player info una vez que cambiamos a otra resolución

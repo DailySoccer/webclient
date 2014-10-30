@@ -70,7 +70,14 @@ class Contest {
 
   DateTime startDate;
 
-  String get description => "${tournamentTypeName}: ${numEntries} de ${maxEntries} jugadores - Límite de salario: ${salaryCap}";
+  String get description  {
+   // print("estado del concurso: ${state}");
+    /* los partidos en vivo o en history no continen los participantes que tiene el concurso */
+    if(isLive || isHistory) {
+      return "${tournamentTypeName} - Límite de salario: ${salaryCap}";
+    }
+    return "${tournamentTypeName}: ${numEntries} de ${maxEntries} jugadores - Límite de salario: ${salaryCap}";
+  }
 
   List<ContestEntry> get contestEntriesOrderByPoints {
     List<ContestEntry> entries = new List<ContestEntry>.from(contestEntries);
@@ -83,7 +90,7 @@ class Contest {
   Contest.referenceInit(this.contestId);
 
   bool get isActive => state == "ACTIVE";
-  bool get isLive => state == "LIVE";
+  bool get isLive   => state == "LIVE";
   bool get isHistory => state == "HISTORY";
 
   Map<String, String> prizeTypeNames = {

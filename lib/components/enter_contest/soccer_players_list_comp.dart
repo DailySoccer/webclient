@@ -78,15 +78,6 @@ class SoccerPlayersListComp {
   // En vez de cambiar la lista que se renderiza con ng-repeat, es mucho mas rapido tocar el hidden
   void _refreshFilter() {
 
-    // Cuando todavia la lista no esta rellena...
-    if (document.querySelector("#soccerPlayer0") == null) {
-      return;
-    }
-
-    // TODO
-    // Partimos siempre de la lista original de todos los players menos los ya seleccionados en el lineup
-    //availableSoccerPlayers = _allSoccerPlayers.where((soccerPlayer) => !lineupSlots.contains(soccerPlayer)).toList();
-
     var pos = _filterList[FILTER_POSITION];
     var name = _filterList[FILTER_NAME];
     var matchId = _filterList[FILTER_MATCH];
@@ -99,6 +90,10 @@ class SoccerPlayersListComp {
       var player = sortedSoccerPlayers[c];
 
       var elem = document.querySelector("#soccerPlayer${c}");
+
+      if (elem == null) {
+        continue;
+      }
 
       if (_shouldBeVisible(player, pos, matchId, name)) {
         elem.classes.remove("hidden");

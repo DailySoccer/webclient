@@ -151,14 +151,13 @@ class EnterContestComp implements DetachAware {
 
       isSelectingSoccerPlayer = false;
 
+      // Vuelve a estar entre los disponibles...
+      availableSoccerPlayers.add(lineupSlots[slotIndex]);
+
       // Lo quitamos del slot
       lineupSlots[slotIndex] = null;
 
-      // TODO
-      // Refrescamos los filtros para volver a mostrarlo entre los disponibles
-      //_refreshFilter();
-
-      // Quitamos la modal de números rojos si no hay salario disponible
+      // Quitamos la modal de números rojos si no hay salario disponible. TODO: CHAPUZA
       if (availableSalary >= 0) {
         alertDismiss();
       }
@@ -197,9 +196,11 @@ class EnterContestComp implements DetachAware {
     bool wasAdded = tryToAddSoccerPlayer(soccerPlayer);
 
     if (wasAdded) {
-      // Comprobar cuantos jugadores me quedan por añadir de esa posicion
       isSelectingSoccerPlayer = false;
+
+      // Ya no esta disponible
       availableSoccerPlayers.remove(soccerPlayer);
+
       calculateAvailableSalary(soccerPlayer["salary"]);
     }
   }
@@ -324,19 +325,16 @@ class EnterContestComp implements DetachAware {
     for (int i = 0; i < lineupSlots.length; ++i) {
       lineupSlots[i] = null;
     }
-    // Reseteamos la lista para que aparezcan todos los jugadores borrados otra vez en la lista de disponibles
-    availableSoccerPlayers = new List<dynamic>.from(_allSoccerPlayers);
 
-    // Reseteamos el salario disponible
-    availableSalary = contest.salaryCap;
-    updateTextAvailableSalary(availableSalary.toString());
+    // Todos los jugadores disponibles. Esto ademas resetea el sorting
+    availableSoccerPlayers = new List<dynamic>.from(_allSoccerPlayers);
 
     // Resetamos todos los filtros
     removeAllFilters();
 
-    // TODO
-    // Cuando se inicializa la lista de jugadores, esta se ordena por posicion
-    //sortListByField("Pos", invert: false);
+    // Reseteamos el salario disponible
+    availableSalary = contest.salaryCap;
+    updateTextAvailableSalary(availableSalary.toString());
 
     // Quito la modal de alerta de números rojos
     alertDismiss();

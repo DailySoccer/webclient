@@ -259,8 +259,6 @@ class EnterContestComp implements DetachAware {
       "fieldPos": instanceSoccerPlayer.fieldPos,
       "fullName": instanceSoccerPlayer.soccerPlayer.name,
       "matchId" : matchEvent.templateMatchEventId,
-      "matchEventName": matchEventName,
-      "remainingMatchTime": "-",
       "fantasyPoints": instanceSoccerPlayer.soccerPlayer.fantasyPoints,
       "playedMatches": instanceSoccerPlayer.soccerPlayer.playedMatches,
       "salary": instanceSoccerPlayer.salary

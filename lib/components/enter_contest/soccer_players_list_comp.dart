@@ -1,6 +1,7 @@
 library soccer_players_list_comp;
 
 import 'package:angular/angular.dart';
+import 'dart:html';
 import 'package:webclient/components/enter_contest/enter_contest_comp.dart';
 import 'package:webclient/services/active_contests_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
@@ -25,13 +26,10 @@ class SoccerPlayersListComp {
 
   @NgOneWay("soccer-players")
   void set soccerPlayers(List<dynamic> sp) {
-    _soccerPlayers = sp;
+    filteredSoccerPlayers = sp;
 
     // Cuando se inicializa la lista de jugadores, esta se ordena por posicion
-    _changeSort('Pos', false);
-
-    // TODO ?
-    _refreshFilter();
+    sortListByField('Pos', invert: false);
   }
 
   @NgCallback("on-row-click")
@@ -79,11 +77,14 @@ class SoccerPlayersListComp {
 
   void _refreshFilter() {
 
+    // Cuando todavia la lista no esta rellena...
+    if (document.querySelector("#soccerPlayer0") == null) {
+      return;
+    }
+
     // TODO
     // Partimos siempre de la lista original de todos los players menos los ya seleccionados en el lineup
     //availableSoccerPlayers = _allSoccerPlayers.where((soccerPlayer) => !lineupSlots.contains(soccerPlayer)).toList();
-
-    filteredSoccerPlayers.clear();
 
     var pos = _filterList[FILTER_POSITION];
     var name = _filterList[FILTER_NAME];
@@ -93,34 +94,21 @@ class SoccerPlayersListComp {
       name = StringUtils.normalize(name).toUpperCase();
     }
 
-    for (int c = 0; c < _soccerPlayers.length; ++c) {
-      var player = _soccerPlayers[c];
+    for (int c = 0; c < filteredSoccerPlayers.length; ++c) {
+      var player = filteredSoccerPlayers[c];
+
+      var elem = document.querySelector("#soccerPlayer${c}");
 
       if ((pos == null || player["fieldPos"].value == pos) &&
           (matchId == null || player["matchId"] == matchId) &&
           (name == null || name.isEmpty ||
           StringUtils.normalize(player["fullName"]).toUpperCase().contains(name))) {
-        filteredSoccerPlayers.add(player);
+        elem.classes.remove("hidden");
+      }
+      else {
+        elem.classes.add("hidden");
       }
     }
-
-    _refreshSort();
-  }
-
-  void _changeSort(String fieldName, invert) {
-    if (fieldName != _primarySort) {
-      _sortDir = false;
-      _secondarySort = _primarySort;
-      _primarySort = fieldName;
-    }
-    else if (invert) {
-      _sortDir = !_sortDir;
-    }
-  }
-
-  void sortListByField(String fieldName, {bool invert : true}) {
-    _changeSort(fieldName, invert);
-    _refreshSort();
   }
 
   dynamic compare(String field, var playerA, var playerB) {
@@ -180,12 +168,27 @@ class SoccerPlayersListComp {
     }
   }
 
+  void _changeSort(String fieldName, invert) {
+    if (fieldName != _primarySort) {
+      _sortDir = false;
+      _secondarySort = _primarySort;
+      _primarySort = fieldName;
+    }
+    else if (invert) {
+      _sortDir = !_sortDir;
+    }
+  }
+
+  void sortListByField(String fieldName, {bool invert : true}) {
+    _changeSort(fieldName, invert);
+    _refreshSort();
+  }
+
   int compareNameTo(playerA, playerB) {
     int comp = StringUtils.normalize(playerA["fullName"]).compareTo(StringUtils.normalize(playerB["fullName"]));
     return comp != 0 ? comp : playerA["id"].compareTo(playerB["id"]);
   }
 
-  List<dynamic> _soccerPlayers;
   Map<String, String> _filterList = {};
 
   bool _sortDir = false;

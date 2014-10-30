@@ -52,7 +52,9 @@ class SoccerPlayersListComp {
 
   void _setFilter(String key, String valor) {
     _filterList[key] = valor;
-    _refreshFilter();         // TODO: Hacer esto en el digest o algo asi? Por ejemplo, en removeAllFilters se hace 3 veces
+
+    // TODO: Hacer esto en el digest o algo asi? Por ejemplo, en removeAllFilters se hace 3 veces
+    _refreshFilter();
   }
 
   SoccerPlayersListComp(this.scrDet);

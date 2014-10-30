@@ -118,13 +118,6 @@ class EnterContestComp implements DetachAware {
 
   void onScreenWidthChange(String value) {
 
-    // Resetamos todos los filtros
-    removeAllFilters();
-
-    // TODO
-    // Cuando se inicializa la lista de jugadores, esta se ordena por posicion
-    //sortListByField("Pos", invert: false);
-
     // Para que en la versión móvil aparezca la pantalla de lineup
     isSelectingSoccerPlayer = false;
 
@@ -158,7 +151,7 @@ class EnterContestComp implements DetachAware {
       // Lo quitamos del slot
       lineupSlots[slotIndex] = null;
 
-      // Quitamos la modal de números rojos si no hay salario disponible. TODO: CHAPUZA
+      // Quitamos la modal de números rojos si no hay salario disponible
       if (availableSalary >= 0) {
         alertDismiss();
       }

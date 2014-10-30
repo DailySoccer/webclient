@@ -132,6 +132,11 @@ class EnterContestComp implements DetachAware {
 
   void onSlotSelected(int slotIndex) {
 
+    // Si todavia no tenemos concurso (esta cargando), rechazamos el click
+    if (contest == null) {
+      return;
+    }
+
     _selectedLineupPosIndex = slotIndex;
 
     if (lineupSlots[slotIndex] != null) {
@@ -402,7 +407,6 @@ class EnterContestComp implements DetachAware {
       closePlayerInfo();
     }
   }
-
 
   Router _router;
   RouteProvider _routeProvider;

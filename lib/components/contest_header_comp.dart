@@ -14,7 +14,7 @@ import 'package:webclient/services/active_contests_service.dart';
 )
 class ContestHeaderComp implements DetachAware {
 
-  Map<String, String> contestHeaderInfo = {
+  Map<String, String> info = {
     'description':      '',
     'startTime':        '',
     'countdownDate':    '',
@@ -57,33 +57,33 @@ class ContestHeaderComp implements DetachAware {
   }
 
   void _refreshCountdownDate() {
-    contestHeaderInfo["textCountdownDate"] = "";
-    contestHeaderInfo["countdownDate"] = "";
+    info["textCountdownDate"] = "";
+    info["countdownDate"] = "";
 
     if (_contest == null) {
       return;
     }
 
     if (_contest.isHistory) {
-      contestHeaderInfo["startTime"] = "FINALIZADO";
+      info["startTime"] = "FINALIZADO";
       _count.cancel();
     }
     else if (_contest.isLive) {
-      contestHeaderInfo["startTime"] = "COMENZÓ EL ${DateTimeService.formatDateTimeShort(_contest.startDate).toUpperCase()}";
+      info["startTime"] = "COMENZÓ EL ${DateTimeService.formatDateTimeShort(_contest.startDate).toUpperCase()}";
       _count.cancel();
     }
     else {
-      contestHeaderInfo["startTime"] = "COMIENZA EL ${DateTimeService.formatDateTimeShort(_contest.startDate).toUpperCase()}";
+      info["startTime"] = "COMIENZA EL ${DateTimeService.formatDateTimeShort(_contest.startDate).toUpperCase()}";
 
       Duration tiempoRestante = DateTimeService.getTimeLeft(_contest.startDate);
 
       if (tiempoRestante.inSeconds <= 0) {
-        contestHeaderInfo["startTime"] = "EN BREVE";
+        info["startTime"] = "EN BREVE";
         _count.cancel();
       }
       else {
-        contestHeaderInfo["countdownDate"] = DateTimeService.formatTimeLeft(tiempoRestante);
-        contestHeaderInfo["textCountdownDate"] = (scrDet.isDesktop) ? "EL CONCURSO COMENZARÁ EN: " : "FALTAN";
+        info["countdownDate"] = DateTimeService.formatTimeLeft(tiempoRestante);
+        info["textCountdownDate"] = (scrDet.isDesktop) ? "EL CONCURSO COMENZARÁ EN: " : "FALTAN";
       }
     }
   }
@@ -93,13 +93,13 @@ class ContestHeaderComp implements DetachAware {
       return;
     }
 
-    contestHeaderInfo["description"] = "${_contest.name}";
-    contestHeaderInfo['contestType'] = "${_contest.tournamentTypeName}: ";
-    contestHeaderInfo["entryPrice"] = "${_contest.entryFee}€";
-    contestHeaderInfo["prize"] = "${_contest.prizePool}€";
-    contestHeaderInfo["prizeType"] = "${_contest.prizeTypeName}";
-    contestHeaderInfo["startTime"] = "";
-    contestHeaderInfo["contestantCount"] = "${_contest.contestEntries.length} de ${_contest.maxEntries} jugadores  - Límite de salario: ${_contest.salaryCap}";
+    info["description"] = "${_contest.name}";
+    info['contestType'] = "${_contest.tournamentTypeName}: ";
+    info["entryPrice"] = "${_contest.entryFee}€";
+    info["prize"] = "${_contest.prizePool}€";
+    info["prizeType"] = "${_contest.prizeTypeName}";
+    info["startTime"] = "";
+    info["contestantCount"] = "${_contest.contestEntries.length} de ${_contest.maxEntries} jugadores  - Límite de salario: ${_contest.salaryCap}";
   }
 
   void goToParent() {

@@ -9,7 +9,8 @@
 
 <div class="soccer-players-list">
 
-  <div id="soccerPlayer{{$index}}" class="soccer-players-list-slot" ng-repeat="slot in sortedSoccerPlayers" ng-class="getSlotClassColor(slot.fieldPos.abrevName)">
+  <div id="soccerPlayer{{slot['intId']}}" class="soccer-players-list-slot" ng-repeat="slot in sortedSoccerPlayers | orderBy:sortList" 
+       ng-class="getSlotClassColor(slot.fieldPos.abrevName)">
     <div class="column-fieldpos" ng-click="onRow(slot)">{{slot.fieldPos.abrevName}}</div>
     <div class="column-primary-info">
       <span class="soccer-player-name" ng-click="onRow(slot)">{{slot.fullName | limitToDot : showWidth(slot.fullName)}}</span>

@@ -16,6 +16,7 @@ import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/contest_entry.dart';
 import "package:webclient/models/instance_soccer_player.dart";
 import 'package:webclient/utils/js_utils.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 
 @Component(
@@ -238,34 +239,38 @@ class EnterContestComp implements DetachAware {
   }
 
   List<dynamic> initAllSoccerPlayers() {
+
+    int intId = 0;
+
     contest.instanceSoccerPlayers.forEach((templateSoccerId, instanceSoccerPlayer) {
-      _insertSoccerPlayer(instanceSoccerPlayer.soccerTeam.matchEvent, instanceSoccerPlayer.soccerTeam, instanceSoccerPlayer);
+      MatchEvent matchEvent = instanceSoccerPlayer.soccerTeam.matchEvent;
+      SoccerTeam soccerTeam = instanceSoccerPlayer.soccerTeam;
+
+      String shortNameTeamA = matchEvent.soccerTeamA.shortName;
+      String shortNameTeamB = matchEvent.soccerTeamB.shortName;
+
+      var matchEventName = (instanceSoccerPlayer.soccerTeam.templateSoccerTeamId == matchEvent.soccerTeamA.templateSoccerTeamId)
+           ? "<strong>$shortNameTeamA</strong> - $shortNameTeamB"
+           : "$shortNameTeamA - <strong>$shortNameTeamB</strong>";
+
+      _allSoccerPlayers.add({
+        "instanceSoccerPlayer": instanceSoccerPlayer,
+        "id": instanceSoccerPlayer.id,
+        "intId": intId++,
+        "fieldPos": instanceSoccerPlayer.fieldPos,
+        "fieldPosSortOrder": instanceSoccerPlayer.fieldPos.sortOrder,
+        "fullName": instanceSoccerPlayer.soccerPlayer.name,
+        "fullNameNormalized": StringUtils.normalize(instanceSoccerPlayer.soccerPlayer.name).toUpperCase(),
+        "matchId" : matchEvent.templateMatchEventId,
+        "matchEventName": matchEventName,
+        "remainingMatchTime": "-",
+        "fantasyPoints": instanceSoccerPlayer.soccerPlayer.fantasyPoints,
+        "playedMatches": instanceSoccerPlayer.soccerPlayer.playedMatches,
+        "salary": instanceSoccerPlayer.salary
+      });
     });
 
     return new List<dynamic>.from(_allSoccerPlayers);
-  }
-
-  void _insertSoccerPlayer(MatchEvent matchEvent, SoccerTeam soccerTeam, InstanceSoccerPlayer instanceSoccerPlayer) {
-
-    String shortNameTeamA = matchEvent.soccerTeamA.shortName;
-    String shortNameTeamB = matchEvent.soccerTeamB.shortName;
-
-    var matchEventName = (instanceSoccerPlayer.soccerTeam.templateSoccerTeamId == matchEvent.soccerTeamA.templateSoccerTeamId)
-         ? "<strong>$shortNameTeamA</strong> - $shortNameTeamB"
-         : "$shortNameTeamA - <strong>$shortNameTeamB</strong>";
-
-    _allSoccerPlayers.add({
-      "instanceSoccerPlayer": instanceSoccerPlayer,
-      "id": instanceSoccerPlayer.id,
-      "fieldPos": instanceSoccerPlayer.fieldPos,
-      "fullName": instanceSoccerPlayer.soccerPlayer.name,
-      "matchId" : matchEvent.templateMatchEventId,
-      "matchEventName": matchEventName,
-      "remainingMatchTime": "-",
-      "fantasyPoints": instanceSoccerPlayer.soccerPlayer.fantasyPoints,
-      "playedMatches": instanceSoccerPlayer.soccerPlayer.playedMatches,
-      "salary": instanceSoccerPlayer.salary
-    });
   }
 
   void alertDismiss() {

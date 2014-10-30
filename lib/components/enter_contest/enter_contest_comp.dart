@@ -18,6 +18,7 @@ import "package:webclient/models/instance_soccer_player.dart";
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/utils/string_utils.dart';
 
+
 @Component(
     selector: 'enter-contest',
     templateUrl: 'packages/webclient/components/enter_contest/enter_contest_comp.html',
@@ -26,10 +27,6 @@ import 'package:webclient/utils/string_utils.dart';
 class EnterContestComp implements DetachAware {
 
   static final String ERROR_RETRY_OP = "ERROR_RETRY_OP";
-
-  static const String FILTER_POSITION = "FILTER_POSITION";
-  static const String FILTER_NAME = "FILTER_NAME";
-  static const String FILTER_MATCH = "FILTER_MATCH";
 
   ScreenDetectorService scrDet;
   LoadingService loadingService;
@@ -43,12 +40,20 @@ class EnterContestComp implements DetachAware {
   final List<dynamic> lineupSlots = [];
   List<dynamic> availableSoccerPlayers = [];
 
+  FieldPos fieldPosFilter;
+  String nameFilter;
+  String matchFilter;
+
   InstanceSoccerPlayer selectedInstanceSoccerPlayer;
 
   int availableSalary = 0;
 
   bool get isBigScreenVersion   => scrDet.isSmScreen || scrDet.isDesktop;
   bool get isSmallScreenVersion => !isBigScreenVersion;
+
+  String getMyTotalSalaryClasses() => (availableSalary < 0)? "total-salary-money red-numbers" : "total-salary-money";
+
+  bool isFantasyTeamValid() => !lineupSlots.any((player) => player == null);
 
 
   EnterContestComp(this._routeProvider, this._router, this.scrDet, this._activeContestService, this._myContestService, this._flashMessage, this.loadingService) {
@@ -92,9 +97,6 @@ class EnterContestComp implements DetachAware {
             onSoccerPlayerSelected(_allSoccerPlayers.firstWhere((slot) => slot["id"] == instanceSoccerPlayer.id));
           });
         }
-
-        // Cuando se inicializa la lista de jugadores, esta se ordena por posicion
-        sortListByField('Pos', invert: false);
       })
       .catchError((error) {
         _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
@@ -118,12 +120,6 @@ class EnterContestComp implements DetachAware {
 
   void onScreenWidthChange(String value) {
 
-    // Resetamos todos los filtros
-    removeAllFilters();
-
-    // Cuando se inicializa la lista de jugadores, esta se ordena por posicion
-    sortListByField("Pos", invert: false);
-
     // Para que en la versión móvil aparezca la pantalla de lineup
     isSelectingSoccerPlayer = false;
 
@@ -145,11 +141,11 @@ class EnterContestComp implements DetachAware {
 
       isSelectingSoccerPlayer = false;
 
+      // Vuelve a estar entre los disponibles...
+      availableSoccerPlayers.add(lineupSlots[slotIndex]);
+
       // Lo quitamos del slot
       lineupSlots[slotIndex] = null;
-
-      // Refrescamos los filtros para volver a mostrarlo entre los disponibles
-      _refreshFilter();
 
       // Quitamos la modal de números rojos si no hay salario disponible
       if (availableSalary >= 0) {
@@ -190,127 +186,14 @@ class EnterContestComp implements DetachAware {
     bool wasAdded = tryToAddSoccerPlayer(soccerPlayer);
 
     if (wasAdded) {
-      // Comprobar cuantos jugadores me quedan por añadir de esa posicion
       isSelectingSoccerPlayer = false;
+
+      // Ya no esta disponible
       availableSoccerPlayers.remove(soccerPlayer);
+
       calculateAvailableSalary(soccerPlayer["salary"]);
     }
   }
-
-  FieldPos get fieldPosFilter => new FieldPos(_filterList[FILTER_POSITION]);
-  void     set fieldPosFilter(FieldPos fieldPos) => setFilter(FILTER_POSITION, fieldPos != null? fieldPos.value : null);
-
-  String get nameFilter => _filterList[FILTER_NAME];
-  void   set nameFilter(String val) => setFilter(FILTER_NAME, val);
-
-  String get matchFilter => _filterList[FILTER_MATCH];
-  void   set matchFilter(String matchId) => setFilter(FILTER_MATCH, matchId);
-
-  void setFilter(String key, String valor) {
-    _filterList[key] = valor;
-    _refreshFilter();
-  }
-
-  void _refreshFilter() {
-    if (_filterList.isEmpty && availableSoccerPlayers.length == _allSoccerPlayers.length)
-      return;
-
-    // Partimos siempre de la lista original de todos los players menos los ya seleccionados en el lineup
-    availableSoccerPlayers = _allSoccerPlayers.where((soccerPlayer) => !lineupSlots.contains(soccerPlayer)).toList();
-
-    // Recorremos la lista de filtros y aplicamos los que no sean nulos
-    _filterList.forEach((String clave, String valor) {
-      if (valor != null) {
-        switch(clave) {
-          case FILTER_POSITION:
-            availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => soccerPlayer["fieldPos"].value == valor && !lineupSlots.contains(soccerPlayer)).toList();
-          break;
-          case FILTER_NAME:
-            availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => StringUtils.normalize(soccerPlayer["fullName"]).toUpperCase().contains(StringUtils.normalize(valor).toUpperCase())).toList();
-          break;
-          case FILTER_MATCH:
-            availableSoccerPlayers = availableSoccerPlayers.where((soccerPlayer) => soccerPlayer["matchId"] == valor).toList();
-          break;
-        }
-      }
-    });
-    _refreshOrder();
-  }
-
-  void sortListByField(String fieldName, {bool invert : true}) {
-    if (fieldName != _primarySort) {
-      _sortDir = false;
-      _secondarySort = _primarySort;
-      _primarySort = fieldName;
-    }
-    else if (invert) {
-      _sortDir = !_sortDir;
-    }
-    _refreshOrder();
-  }
-
-  dynamic compare(String field, var playerA, var playerB) {
-    int compResult;
-    switch(field) {
-      case "fieldPos":
-        compResult = playerA["fieldPos"].sortOrder - playerB["fieldPos"].sortOrder;
-      break;
-      case "Name":
-        compResult = compareNameTo(playerA, playerB);
-      break;
-      default:
-        compResult = playerA[field].compareTo(playerB[field]);
-      break;
-    }
-
-    if (_secondarySort != "" && compResult == 0) {
-      switch(_secondarySort) {
-        case "Pos":
-          compResult = playerB["fieldPos"].sortOrder - playerA["fieldPos"].sortOrder;
-        break;
-        case "Name":
-          compResult = compareNameTo(playerA, playerB);
-        break;
-        case "DFP":
-          compResult = playerA["fantasyPoints"].compareTo(playerB["fantasyPoints"]);
-        break;
-        case "Played":
-          compResult = playerA["playedMatches"].compareTo(playerB["playedMatches"]);
-        break;
-        case "Salary":
-          compResult = playerA["salary"].compareTo(playerB["salary"]);
-        break;
-      }
-    }
-    return compResult;
-  }
-
-  void _refreshOrder() {
-    switch(_primarySort)
-      {
-        case "Pos":
-          availableSoccerPlayers.sort((player1, player2) => _sortDir? compare("fieldPos", player2, player1) : compare("fieldPos", player1, player2));
-        break;
-        case "Name":
-          availableSoccerPlayers.sort((player1, player2) => _sortDir? compare("Name", player2, player1) : compare("Name", player1, player2));
-        break;
-        case "DFP":
-          availableSoccerPlayers.sort((player1, player2) => !_sortDir? compare("fantasyPoints", player2, player1): compare("fantasyPoints", player1, player2));
-        break;
-        case "Played":
-          availableSoccerPlayers.sort((player1, player2) => !_sortDir? compare("playedMatches", player2, player1): compare("playedMatches", player1, player2));
-        break;
-        case "Salary":
-          availableSoccerPlayers.sort((player1, player2) => !_sortDir? compare("salary", player2, player1): compare("salary", player1, player2));
-        break;
-      }
-  }
-
-
-  int compareNameTo(playerA, playerB){
-     int comp = StringUtils.normalize(playerA["fullName"]).compareTo(StringUtils.normalize(playerB["fullName"]));
-     return comp != 0 ? comp : playerA["id"].compareTo(playerB["id"]);
-   }
 
   bool availableSoccerPlayer(var soccerPlayer) {
     FieldPos theFieldPos = soccerPlayer["fieldPos"];
@@ -345,34 +228,38 @@ class EnterContestComp implements DetachAware {
   }
 
   List<dynamic> initAllSoccerPlayers() {
+
+    int intId = 0;
+
     contest.instanceSoccerPlayers.forEach((templateSoccerId, instanceSoccerPlayer) {
-      _insertSoccerPlayer(instanceSoccerPlayer.soccerTeam.matchEvent, instanceSoccerPlayer.soccerTeam, instanceSoccerPlayer);
+      MatchEvent matchEvent = instanceSoccerPlayer.soccerTeam.matchEvent;
+      SoccerTeam soccerTeam = instanceSoccerPlayer.soccerTeam;
+
+      String shortNameTeamA = matchEvent.soccerTeamA.shortName;
+      String shortNameTeamB = matchEvent.soccerTeamB.shortName;
+
+      var matchEventName = (instanceSoccerPlayer.soccerTeam.templateSoccerTeamId == matchEvent.soccerTeamA.templateSoccerTeamId)
+           ? "<strong>$shortNameTeamA</strong> - $shortNameTeamB"
+           : "$shortNameTeamA - <strong>$shortNameTeamB</strong>";
+
+      _allSoccerPlayers.add({
+        "instanceSoccerPlayer": instanceSoccerPlayer,
+        "id": instanceSoccerPlayer.id,
+        "intId": intId++,
+        "fieldPos": instanceSoccerPlayer.fieldPos,
+        "fieldPosSortOrder": instanceSoccerPlayer.fieldPos.sortOrder,
+        "fullName": instanceSoccerPlayer.soccerPlayer.name,
+        "fullNameNormalized": StringUtils.normalize(instanceSoccerPlayer.soccerPlayer.name).toUpperCase(),
+        "matchId" : matchEvent.templateMatchEventId,
+        "matchEventName": matchEventName,
+        "remainingMatchTime": "-",
+        "fantasyPoints": instanceSoccerPlayer.soccerPlayer.fantasyPoints,
+        "playedMatches": instanceSoccerPlayer.soccerPlayer.playedMatches,
+        "salary": instanceSoccerPlayer.salary
+      });
     });
 
     return new List<dynamic>.from(_allSoccerPlayers);
-  }
-
-  void _insertSoccerPlayer(MatchEvent matchEvent, SoccerTeam soccerTeam, InstanceSoccerPlayer instanceSoccerPlayer) {
-
-    String shortNameTeamA = matchEvent.soccerTeamA.shortName;
-    String shortNameTeamB = matchEvent.soccerTeamB.shortName;
-
-    var matchEventName = (instanceSoccerPlayer.soccerTeam.templateSoccerTeamId == matchEvent.soccerTeamA.templateSoccerTeamId)
-         ? "<strong>$shortNameTeamA</strong> - $shortNameTeamB"
-         : "$shortNameTeamA - <strong>$shortNameTeamB</strong>";
-
-    _allSoccerPlayers.add({
-      "instanceSoccerPlayer": instanceSoccerPlayer,
-      "id": instanceSoccerPlayer.id,
-      "fieldPos": instanceSoccerPlayer.fieldPos,
-      "fullName": instanceSoccerPlayer.soccerPlayer.name,
-      "matchId" : matchEvent.templateMatchEventId,
-      "matchEventName": matchEventName,
-      "remainingMatchTime": "-",
-      "fantasyPoints": instanceSoccerPlayer.soccerPlayer.fantasyPoints,
-      "playedMatches": instanceSoccerPlayer.soccerPlayer.playedMatches,
-      "salary": instanceSoccerPlayer.salary
-    });
   }
 
   void alertDismiss() {
@@ -421,23 +308,10 @@ class EnterContestComp implements DetachAware {
     }
   }
 
-  bool isFantasyTeamValid() {
-    for (dynamic player in lineupSlots) {
-      if (player == null) {
-        return false;
-      }
-    }
-
-    return true;
-  }
-
   void removeAllFilters() {
     fieldPosFilter = null;
     nameFilter = null;
     matchFilter = null;
-
-    _filterList = {};
-    _refreshFilter();
   }
 
   void deleteFantasyTeam() {
@@ -445,18 +319,16 @@ class EnterContestComp implements DetachAware {
     for (int i = 0; i < lineupSlots.length; ++i) {
       lineupSlots[i] = null;
     }
-    // Reseteamos la lista para que aparezcan todos los jugadores borrados otra vez en la lista de disponibles
-    availableSoccerPlayers = new List<dynamic>.from(_allSoccerPlayers);
 
-    // Reseteamos el salario disponible
-    availableSalary = contest.salaryCap;
-    updateTextAvailableSalary(availableSalary.toString());
+    // Todos los jugadores disponibles. Esto ademas resetea el sorting
+    availableSoccerPlayers = new List<dynamic>.from(_allSoccerPlayers);
 
     // Resetamos todos los filtros
     removeAllFilters();
 
-    // Cuando se inicializa la lista de jugadores, esta se ordena por posicion
-    sortListByField("Pos", invert: false);
+    // Reseteamos el salario disponible
+    availableSalary = contest.salaryCap;
+    updateTextAvailableSalary(availableSalary.toString());
 
     // Quito la modal de alerta de números rojos
     alertDismiss();
@@ -532,17 +404,6 @@ class EnterContestComp implements DetachAware {
     }
   }
 
-  String getMyTotalSalaryClasses() {
-
-    String clases = null;
-
-    if (availableSalary < 0)
-      clases = "total-salary-money red-numbers";
-    else
-      clases = "total-salary-money";
-
-    return clases;
-  }
 
   Router _router;
   RouteProvider _routeProvider;
@@ -553,15 +414,9 @@ class EnterContestComp implements DetachAware {
 
   List<dynamic> _allSoccerPlayers = new List();
 
-  bool _sortDir = false;
-  String _primarySort = "";
-  String _secondarySort = "";
-
   int _selectedLineupPosIndex = 0;
   bool _editingContestEntry = false;
 
-  // Lista de filtros a aplicar
-  Map<String, String> _filterList = {};
   var _streamListener;
 
   Timer _retryOpTimer;

@@ -1,25 +1,26 @@
 
 <div class="soccer-player-list-header-table">
-  <div class="filterOrderPos"><a ng-click="enterContestComp.sortListByField('Pos')">Pos.</a></div>
-  <div class="filterOrderName"><a ng-click="enterContestComp.sortListByField('Name')">Nombre</a></div>
-  <div class="filterOrderDFP"><a ng-click="enterContestComp.sortListByField('DFP')">DFP</a></div>
-  <div class="filterOrderPlayed"><a ng-click="enterContestComp.sortListByField('Played')">Jugados</a></div>
-  <div class="filterOrderSalary"><a ng-click="enterContestComp.sortListByField('Salary')">Sueldo</a></div>
+  <div class="filterOrderPos"><a ng-click="sortListByField('Pos')">Pos.</a></div>
+  <div class="filterOrderName"><a ng-click="sortListByField('Name')">Nombre</a></div>
+  <div class="filterOrderDFP"><a ng-click="sortListByField('DFP')">DFP</a></div>
+  <div class="filterOrderPlayed"><a ng-click="sortListByField('Played')">Jugados</a></div>
+  <div class="filterOrderSalary"><a ng-click="sortListByField('Salary')">Sueldo</a></div>
 </div>
 
 <div class="soccer-players-list">
 
-  <div class="soccer-players-list-slot" ng-repeat="slot in enterContestComp.availableSoccerPlayers" ng-class="getSlotClassColor(slot.fieldPos.abrevName)">
-    <div class="column-fieldpos" ng-click="onRow(slot.id)">{{slot.fieldPos.abrevName}}</div>
+  <div id="soccerPlayer{{slot['intId']}}" class="soccer-players-list-slot" ng-repeat="slot in sortedSoccerPlayers | orderBy:sortList" 
+       ng-class="getSlotClassColor(slot.fieldPos.abrevName)">
+    <div class="column-fieldpos" ng-click="onRow(slot)">{{slot.fieldPos.abrevName}}</div>
     <div class="column-primary-info">
-      <span class="soccer-player-name" ng-click="onRow(slot.id)">{{slot.fullName | limitToDot : showWidth(slot.fullName)}}</span>
-      <span class="match-event-name" ng-click="onRow(slot.id)" ng-bind-html="slot.matchEventName"></span>
+      <span class="soccer-player-name" ng-click="onRow(slot)">{{slot.fullName | limitToDot : showWidth(slot.fullName)}}</span>
+      <span class="match-event-name" ng-click="onRow(slot)" ng-bind-html="slot.matchEventName"></span>
     </div>
-    <div class="column-dfp" ng-click="onRow(slot.id)">{{slot.fantasyPoints}}</div>
-    <div class="column-played" ng-click="onRow(slot.id)">{{slot.playedMatches}}</div>
-    <div class="column-salary" ng-click="onRow(slot.id)">{{slot.salary}}€</div>
+    <div class="column-dfp" ng-click="onRow(slot)">{{slot.fantasyPoints}}</div>
+    <div class="column-played" ng-click="onRow(slot)">{{slot.playedMatches}}</div>
+    <div class="column-salary" ng-click="onRow(slot)">{{slot.salary}}€</div>
     <div class="column-add">
-      <button type="button" class="btn" ng-click="enterContestComp.onSoccerPlayerSelected(slot)">Añadir</button>
+      <button type="button" class="btn" ng-click="onAdd(slot)">Añadir</button>
     </div>
   </div>
 

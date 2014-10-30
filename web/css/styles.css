@@ -5609,8 +5609,8 @@ button.close {
 .panel-body:after,
 .modal-footer:before,
 .modal-footer:after,
-#headerContestWidget:before,
-#headerContestWidget:after,
+#contestHeaderWrapper:before,
+#contestHeaderWrapper:after,
 #infoContent .modal-info-head .contest-info-header-row:before,
 #infoContent .modal-info-head .contest-info-header-row:after,
 #infoContent .modal-info-content .contest-info-tabs:before,
@@ -5750,7 +5750,7 @@ button.close {
 .pager:after,
 .panel-body:after,
 .modal-footer:after,
-#headerContestWidget:after,
+#contestHeaderWrapper:after,
 #infoContent .modal-info-head .contest-info-header-row:after,
 #infoContent .modal-info-content .contest-info-tabs:after,
 #infoContent .modal-info-content .info-options:after,
@@ -6076,19 +6076,32 @@ button.close {
     opacity: 1;
   }
 }
-#headerContestWidget {
+#contestHeader {
+  background-color: #ecf0f1;
+  display: block;
+}
+@media (max-width: 991px) {
+  #contestHeader {
+    min-height: 120px;
+  }
+}
+@media (min-width: 992px) {
+  #contestHeader {
+    min-height: 140px;
+  }
+}
+#contestHeaderWrapper {
   margin-left: -7.5;
   margin-right: -7.5;
   position: relative;
-  background-color: #ecf0f1;
   padding: 10px 5px;
 }
 @media (min-width: 768px) {
-  #headerContestWidget {
+  #contestHeaderWrapper {
     padding: 10px;
   }
 }
-#headerContestWidget .contest-name {
+#contestHeaderWrapper .contest-name {
   position: relative;
   float: left;
   width: 100%;
@@ -6101,14 +6114,14 @@ button.close {
   color: #214a5f;
 }
 @media (max-width: 767px) {
-  #headerContestWidget .contest-name {
+  #contestHeaderWrapper .contest-name {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
     font-size: 10pt;
     color: #214a5f;
   }
 }
-#headerContestWidget .contest-explanation {
+#contestHeaderWrapper .contest-explanation {
   float: left;
   width: 100%;
   position: relative;
@@ -6122,13 +6135,13 @@ button.close {
   margin: 0 0 5px;
 }
 @media (min-width: 768px) {
-  #headerContestWidget .contest-explanation {
+  #contestHeaderWrapper .contest-explanation {
     float: left;
     width: 66.66666667%;
   }
 }
 @media (min-width: 768px) {
-  #headerContestWidget .contest-explanation {
+  #contestHeaderWrapper .contest-explanation {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
     font-size: 11pt;
@@ -6137,16 +6150,16 @@ button.close {
   }
 }
 @media (max-width: 991px) {
-  #headerContestWidget .contest-explanation {
+  #contestHeaderWrapper .contest-explanation {
     margin: 10px 0 0;
   }
 }
 @media (max-width: 767px) {
-  #headerContestWidget .contest-explanation {
+  #contestHeaderWrapper .contest-explanation {
     max-width: 70%;
   }
 }
-#headerContestWidget .contest-coins {
+#contestHeaderWrapper .contest-coins {
   float: left;
   width: 100%;
   position: relative;
@@ -6156,12 +6169,12 @@ button.close {
   margin-top: 5px;
 }
 @media (min-width: 768px) {
-  #headerContestWidget .contest-coins {
+  #contestHeaderWrapper .contest-coins {
     float: left;
     width: 33.33333333%;
   }
 }
-#headerContestWidget .contest-coins .contest-price {
+#contestHeaderWrapper .contest-coins .contest-price {
   float: left;
   width: 41.66666667%;
   position: relative;
@@ -6170,12 +6183,12 @@ button.close {
   padding-right: 0;
 }
 @media (min-width: 768px) {
-  #headerContestWidget .contest-coins .contest-price {
+  #contestHeaderWrapper .contest-coins .contest-price {
     float: left;
     width: 50%;
   }
 }
-#headerContestWidget .contest-coins .contest-prize {
+#contestHeaderWrapper .contest-coins .contest-prize {
   float: left;
   width: 58.33333333%;
   position: relative;
@@ -6184,12 +6197,12 @@ button.close {
   padding-right: 0;
 }
 @media (min-width: 768px) {
-  #headerContestWidget .contest-coins .contest-prize {
+  #contestHeaderWrapper .contest-coins .contest-prize {
     float: left;
     width: 50%;
   }
 }
-#headerContestWidget .contest-coins .contest-coins-header {
+#contestHeaderWrapper .contest-coins .contest-coins-header {
   display: inline-block;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
@@ -6197,12 +6210,12 @@ button.close {
   color: #777777;
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  #headerContestWidget .contest-coins .contest-coins-header {
+  #contestHeaderWrapper .contest-coins .contest-coins-header {
     display: none !important;
   }
 }
 @media (min-width: 768px) {
-  #headerContestWidget .contest-coins .contest-coins-header {
+  #contestHeaderWrapper .contest-coins .contest-coins-header {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
     font-size: 9pt;
@@ -6211,17 +6224,17 @@ button.close {
   }
 }
 @media (max-width: 767px) {
-  #headerContestWidget .contest-coins .contest-coins-header-title {
+  #contestHeaderWrapper .contest-coins .contest-coins-header-title {
     display: none !important;
   }
 }
 @media (min-width: 768px) {
-  #headerContestWidget .contest-coins .contest-coins-header-prize-type {
+  #contestHeaderWrapper .contest-coins .contest-coins-header-prize-type {
     display: none !important;
     visibility: hidden !important;
   }
 }
-#headerContestWidget .contest-coins .contest-coins-content {
+#contestHeaderWrapper .contest-coins .contest-coins-content {
   float: left !important;
   position: relative;
   min-height: 1px;
@@ -6229,24 +6242,24 @@ button.close {
   padding-right: 0;
 }
 @media (min-width: 768px) {
-  #headerContestWidget .contest-coins .contest-coins-content {
+  #contestHeaderWrapper .contest-coins .contest-coins-content {
     float: left;
     width: 100%;
   }
 }
 @media (min-width: 768px) {
-  #headerContestWidget .contest-coins .contest-coins-content {
+  #contestHeaderWrapper .contest-coins .contest-coins-content {
     padding: 0 0 0 28px;
   }
 }
-#headerContestWidget .contest-coins .contest-coins-content > span {
+#contestHeaderWrapper .contest-coins .contest-coins-content > span {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 16pt;
   color: #214a5f;
 }
 @media (max-width: 767px) {
-  #headerContestWidget .contest-coins .contest-coins-content > span {
+  #contestHeaderWrapper .contest-coins .contest-coins-content > span {
     background-color: #dcdcdc;
     border-radius: 20px;
     font-family: 'Open Sans', sans-serif;
@@ -6258,12 +6271,12 @@ button.close {
   }
 }
 @media (min-width: 768px) {
-  #headerContestWidget .contest-coins {
+  #contestHeaderWrapper .contest-coins {
     /*.contest-price span::before {
 				.addIcon("iconPrice.png");
 			}*/
   }
-  #headerContestWidget .contest-coins .contest-prize span::before {
+  #contestHeaderWrapper .contest-coins .contest-prize span::before {
     content: " ";
     background-image: url("../images/iconPrize.png");
     width: 32px;
@@ -6275,7 +6288,7 @@ button.close {
     left: -10px;
   }
 }
-#headerContestWidget .contest-start-date {
+#contestHeaderWrapper .contest-start-date {
   position: relative;
   float: left;
   width: 50%;
@@ -6289,7 +6302,7 @@ button.close {
   color: #0d75a6;
 }
 @media (max-width: 767px) {
-  #headerContestWidget .contest-start-date {
+  #contestHeaderWrapper .contest-start-date {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
     font-size: 8pt;
@@ -6297,7 +6310,7 @@ button.close {
     margin-top: 15px;
   }
 }
-#headerContestWidget .countdown-text {
+#contestHeaderWrapper .countdown-text {
   position: relative;
   float: left;
   width: 50%;
@@ -6308,13 +6321,13 @@ button.close {
   text-align: right;
 }
 @media (max-width: 991px) {
-  #headerContestWidget .countdown-text .text-countdown {
+  #contestHeaderWrapper .countdown-text .text-countdown {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
     font-size: 8pt;
     color: #0d75a6;
   }
-  #headerContestWidget .countdown-text .time-countdown {
+  #contestHeaderWrapper .countdown-text .time-countdown {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
     font-size: 8pt;
@@ -6322,31 +6335,31 @@ button.close {
   }
 }
 @media (min-width: 768px) {
-  #headerContestWidget .countdown-text .text-countdown {
+  #contestHeaderWrapper .countdown-text .text-countdown {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
     font-size: 10pt;
     color: #0d75a6;
   }
-  #headerContestWidget .countdown-text .time-countdown {
+  #contestHeaderWrapper .countdown-text .time-countdown {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
     font-size: 10pt;
     color: #59add5;
   }
 }
-#headerContestWidget .close-contest {
+#contestHeaderWrapper .close-contest {
   position: absolute;
   right: 10px;
   top: 10px;
 }
 @media (max-width: 767px) {
-  #headerContestWidget .close-contest {
+  #contestHeaderWrapper .close-contest {
     right: 5px;
     top: 8px;
   }
 }
-#headerContestWidget .close-contest .btn::after {
+#contestHeaderWrapper .close-contest .btn::after {
   font-family: 'Glyphicons Halflings';
   content: "\E014";
   font-size: 9pt;

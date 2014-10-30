@@ -23,6 +23,7 @@ class ViewContestEntryComp {
 
   ContestEntry mainPlayer;
   dynamic selectedOpponent;
+  String contestId;
 
   DateTime updatedDate;
 
@@ -42,11 +43,11 @@ class ViewContestEntryComp {
     loadingService.isLoading = true;
 
     _viewContestEntryMode = _routeProvider.route.parameters['viewContestEntryMode'];
-    _contestId = _routeProvider.route.parameters['contestId'];
+    contestId = _routeProvider.route.parameters['contestId'];
 
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
 
-    _myContestsService.refreshMyContestEntry(_contestId)
+    _myContestsService.refreshMyContestEntry(contestId)
       .then((jsonObject) {
         loadingService.isLoading = false;
 
@@ -92,6 +93,5 @@ class ViewContestEntryComp {
   ProfileService _profileService;
   MyContestsService _myContestsService;
 
-  String _contestId;
   String _viewContestEntryMode;
 }

@@ -33,7 +33,9 @@ class ViewContestComp implements DetachAware {
   List<String> matchesInvolved = [];
   List<String> periods = [];
 
+  String contestId;
   Contest get contest => _myContestsService.lastContest;
+
   List<ContestEntry> get contestEntries => (contest != null) ? contest.contestEntries : null;
   List<ContestEntry> get contestEntriesOrderByPoints => (contest != null) ? contest.contestEntriesOrderByPoints : null;
   List<MatchEvent> matchEventsSorted;
@@ -41,11 +43,11 @@ class ViewContestComp implements DetachAware {
   ViewContestComp(this._routeProvider, this.scrDet, this._refreshTimersService, this._myContestsService, this._profileService, this._flashMessage, this.loadingService) {
     loadingService.isLoading = true;
 
-    _contestId = _routeProvider.route.parameters['contestId'];
+    contestId = _routeProvider.route.parameters['contestId'];
 
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
 
-    _myContestsService.refreshViewContest(_contestId)
+    _myContestsService.refreshViewContest(contestId)
       .then((jsonObject) {
         loadingService.isLoading = false;
 
@@ -222,7 +224,6 @@ class ViewContestComp implements DetachAware {
   RefreshTimersService _refreshTimersService;
   MyContestsService _myContestsService;
 
-  String _contestId;
   bool _isTeamsPanelOpen  = false;
   bool _togglerEventsInitialized = false;
   var _streamListener;

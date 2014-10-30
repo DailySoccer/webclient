@@ -1,6 +1,6 @@
-<div id="#landingPageRoot">
+<div id="#landingPageRoot" ng-show="!loadingService.isLoading">
     <!-- Portada Versión Desktop -->
-    <div id="desktopContent" ng-if="!scrDet.isXsScreen" ng-show="!loadingService.isLoading" class="first-screen" style="height:{{screenHeight}}px">
+    <div id="desktopContent" ng-if="!scrDet.isXsScreen" class="first-screen" style="height:{{screenHeight}}px">
       <div class="screen-pattern" src="images/pattern.png"></div>
       <div class="beta-label"><img src="images/beta.png"/></div>
       <div class="main-title-wrapper">
@@ -45,7 +45,7 @@
     <!-- END Portada Versión Desktop -->
 
     <!-- Portada Versión Móvil -->
-    <div id="mobileContent" ng-if="scrDet.isXsScreen" ng-show="!loadingService.isLoading" class="screen">
+    <div id="mobileContent" ng-if="scrDet.isXsScreen" class="screen">
       <div class="slider-wrapper-mobile">
         <img class="background" src="images/xsLandingBackground.jpg" />
       </div>

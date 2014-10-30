@@ -25,6 +25,7 @@ abstract class ServerService {
   Future<JsonObject> getMyContests();
   Future<JsonObject> getMyContest(String contestId);
   Future<JsonObject> getFullContest(String contestId);
+  Future<JsonObject> getViewContest(String contestId);
 
   // Active Contests
   Future<JsonObject> getActiveContests();
@@ -104,6 +105,10 @@ class DailySoccerServer implements ServerService {
 
   Future<JsonObject> getFullContest(String contestId) {
     return _innerServerCall("${HostServer.url}/get_full_contest/$contestId");
+  }
+
+  Future<JsonObject> getViewContest(String contestId) {
+    return _innerServerCall("${HostServer.url}/get_view_contest/$contestId");
   }
 
   Future<JsonObject> getActiveContests() {

@@ -92,6 +92,18 @@ class MyContestsService {
     return completer.future;
   }
 
+  Future refreshViewContest(String contestId) {
+    var completer = new Completer();
+
+    _server.getViewContest(contestId)
+        .then((jsonObject) {
+          lastContest = Contest.loadContestsFromJsonObject(jsonObject).first;
+          completer.complete(jsonObject);
+        });
+
+    return completer.future;
+  }
+
   Future refreshLiveMatchEvents(String templateContestId) {
     var completer = new Completer();
 

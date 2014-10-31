@@ -95,7 +95,7 @@ class TeamsPanelComp implements DetachAware{
         ret += (match.isFirstHalf ? '1ª Parte - ' : match.isSecondHalf ? '2ª Parte - ' : '-Err-') + match.minutesPlayed.toString() + "'";
       }
     }
-    ret += "</div> ${contest != null? contest.name : ''}";
+    ret += "</div>";
     return ret;
   }
 

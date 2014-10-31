@@ -140,6 +140,7 @@ void webClientRouteInitializer(Router router, RouteViewFactory views) {
 
 void preEnterPage(RoutePreEnterEvent event, {bool verifyAllowEnter : false}) {
 
+  LoadingService.disable();
   DailySoccerServer.startContext(event.path);
 
   if (verifyAllowEnter) {
@@ -154,8 +155,6 @@ void enterPage(RouteEnterEvent event) {
 
 // Funcion que ejecutamos nada más salir de la página
 void leavePage(RouteLeaveEvent event) {
-
-  LoadingService.disable();
 
   // Reseteamos las modales en el caso de que hubiera (bug de modal abierta y vuelta atrás)
   _closeModal();

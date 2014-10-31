@@ -1,0 +1,27 @@
+<div id="teamsPanelRoot">
+
+  <!-- this will be a component -->
+  <div class="teams-comp-bar" ng-if="!scrDet.isXsScreen">
+    <div class="teams-container">
+      <div class="teams-box" ng-repeat="match in matchesInvolved">
+        <div class="teams-info" ng-bind-html="getMatchAndPeriodInfo($index, match)"></div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="teams-comp-bar" ng-if="scrDet.isXsScreen">
+      <div class="teams-toggler-wrapper">
+        <div id="teamsToggler" type="button" class="teams-toggler toggleOff" ng-click="toggleTeamsPanel()" data-target="#teamsPanel">PARTIDOS</div>
+      </div>
+      <div id="teamsPanel" class="teams-container collapse">
+        <div class="top-border"></div>
+        <div class="teams-box" ng-repeat="match in matchesInvolved">
+          <div class="teams-info" ng-bind-html="getMatchAndPeriodInfo($index, match)"></div>
+        </div>
+        <div class="bottom-border"></div>
+      </div>
+    </div>
+  </div>
+  <!-- END this will be a component -->
+</div>

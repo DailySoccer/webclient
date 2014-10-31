@@ -30,6 +30,7 @@ import 'package:webclient/components/navigation/footer_comp.dart';
 import 'package:webclient/components/contest_info_comp.dart';
 import 'package:webclient/components/scoring_rules_comp.dart';
 import 'package:webclient/components/contest_header_comp.dart';
+import 'package:webclient/components/teams_panel_comp.dart';
 import 'package:webclient/components/lobby_comp.dart';
 import 'package:webclient/components/my_contests_comp.dart';
 import 'package:webclient/components/contests_list_comp.dart';
@@ -103,6 +104,7 @@ class WebClientApp extends Module {
     bind(ContestInfoComp);
     bind(ScoringRulesComp);
     bind(ContestHeaderComp);
+    bind(TeamsPanelComp);
     bind(FantasyTeamComp);
     bind(UsersListComp);
     bind(ViewContestComp);

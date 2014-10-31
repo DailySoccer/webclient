@@ -62,9 +62,20 @@ import 'package:webclient/components/legalese_and_help/legal_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/terminus_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/policy_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/beta_info_comp.dart';
+import 'package:webclient/template_cache.dart';
+import 'package:webclient/utils/host_server.dart';
 
 class WebClientApp extends Module {
+
   WebClientApp() {
+    // El cache de templates solo lo primeamos en produccion, pq es donde tenemos garantizado que se habra
+    // hecho una build y por lo tanto el fichero lib/template_cache.dart tendra todos los contenidos frescos
+    if (HostServer.isProd) {
+      TemplateCache cache = new TemplateCache();
+      primeTemplateCache(cache);
+
+      bind(TemplateCache, toValue: cache);
+    }
 
     bind(ExceptionHandler, toImplementation: LoggerExceptionHandler);
     bind(ServerService, toImplementation: DailySoccerServer);

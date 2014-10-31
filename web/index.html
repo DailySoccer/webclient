@@ -30,48 +30,48 @@
     <!-- start Mixpanel -->
     <script type="text/javascript">(function(f,b){if(!b.__SV){var a,e,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
 for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;a.src="//cdn.mxpnl.com/libs/mixpanel-2.2.min.js";e=f.getElementsByTagName("script")[0];e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
-    </script>
+    </script>    
     <!-- end Mixpanel -->
   </head>
 
   <body ng-app>
     <div id="spinnerIcon"></div>
     <script>
-        var spinner = null;
-        var spinnerDiv = null;
+      var spinner = null;
+      var spinnerDiv = null;
 
-        function showSpinner() {
-          if (spinner != null)
-            spinner.stop(spinnerDiv);
-          
-          var opts = {
-            lines: 13, // The number of lines to draw
-            length: 6, // The length of each line
-            width: 2, // The line thickness
-            radius: 7, // The radius of the inner circle
-            corners: 1, // Corner roundness (0..1)
-            rotate: 0, // The rotation offset
-            direction: 1, // 1: clockwise, -1: counterclockwise
-            color: '#000', // #rgb or #rrggbb or array of colors
-            speed: 1, // Rounds per second
-            trail: 60, // Afterglow percentage
-            shadow: false, // Whether to render a shadow
-            hwaccel: false, // Whether to use hardware acceleration
-            className: 'spinner', // The CSS class to assign to the spinner
-            zIndex: 2e9, // The z-index (defaults to 2000000000)
-            top: '50%', // Top position relative to parent
-            left: '50%' // Left position relative to parent
-          };
-          spinnerDiv = document.querySelector('#spinnerIcon');
-          spinner = new Spinner(opts).spin(spinnerDiv);
-        }
-
-        function hideSpinner() {
+      function showSpinner() {
+        if (spinner != null)
           spinner.stop(spinnerDiv);
-        }
+        
+        var opts = {
+          lines: 13, // The number of lines to draw
+          length: 6, // The length of each line
+          width: 2, // The line thickness
+          radius: 7, // The radius of the inner circle
+          corners: 1, // Corner roundness (0..1)
+          rotate: 0, // The rotation offset
+          direction: 1, // 1: clockwise, -1: counterclockwise
+          color: '#000', // #rgb or #rrggbb or array of colors
+          speed: 1, // Rounds per second
+          trail: 60, // Afterglow percentage
+          shadow: false, // Whether to render a shadow
+          hwaccel: false, // Whether to use hardware acceleration
+          className: 'spinner', // The CSS class to assign to the spinner
+          zIndex: 2e9, // The z-index (defaults to 2000000000)
+          top: '50%', // Top position relative to parent
+          left: '50%' // Left position relative to parent
+        };
+        spinnerDiv = document.querySelector('#spinnerIcon');
+        spinner = new Spinner(opts).spin(spinnerDiv);
+      }
+
+      function hideSpinner() {
+        spinner.stop(spinnerDiv);
+      }
     </script>
     <script src="js/spin.min.js" onload="showSpinner()"></script>
-
+    
     <div id="mainWrapper" class="wrapper-content-container">
       <main-menu-slide></main-menu-slide>
       <div id="mainContent" class="main-content-container">
@@ -89,8 +89,8 @@ for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElemen
 
     <!-- Atencion al defer
     <script src="main.dart.js" defer onload="hideSpinner()"></script>
-     -->
-
+    -->
+  
     <!-- Nuestros estilos compilados con less. Cuando compilamos nuestro styles.less (para dar nuestro styles.css) arrastramos
          todo bootstrap.css, asi que no nos hace falta incluirlo otra vez.
          Tambien incluimos los css de los plugins (jasny, nouislider...) -->
@@ -106,6 +106,6 @@ for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElemen
     <!-- Fuentes -->
     <link href='http://fonts.googleapis.com/css?family=Exo:300,600' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-
+    
   </body>
 </html>

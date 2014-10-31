@@ -47,7 +47,7 @@ class MatchEvent {
       else if (isSecondHalf) {
         // Cuando los minutos superan al tiempo asignado a un partido, devolvemos un "tiempo extra" fijo de 1 minuto
         // que permanecerá tanto tiempo como se prolongue el partido
-        minutes += (minutesPlayed <= TOTAL_TIEMPO_PARTIDO) ? (TOTAL_TIEMPO_PARTIDO - minutesPlayed) : 1;
+        minutes += (minutesPlayed < TOTAL_TIEMPO_PARTIDO) ? (TOTAL_TIEMPO_PARTIDO - minutesPlayed) : 1;
       }
     }
     else {

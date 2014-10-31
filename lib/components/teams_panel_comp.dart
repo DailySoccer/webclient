@@ -15,18 +15,19 @@ import 'package:webclient/services/active_contests_service.dart';
     useShadowDom: false
 )
 class TeamsPanelComp implements DetachAware{
-
-  bool isCollapsable = false;
-
   List<String> matchesInvolved = [];
   List<MatchEvent> matchEventsSorted = [];
 
   ScreenDetectorService scrDet;
 
   @NgOneWay('collapsable')
-  void set collapsable(bool value) {
-    isCollapsable = value;
-    toggleTeamsPanel();
+  bool get isCollapsable => _collapsable;
+  void set isCollapsable(bool value) {
+    _collapsable = value;
+
+    if(_collapsable && _isTeamsPanelOpen) {
+      toggleTeamsPanel();
+    }
   }
 
   @NgOneWay("contest")
@@ -144,6 +145,7 @@ class TeamsPanelComp implements DetachAware{
   var _streamListener;
   Contest _contest;
   String _contestId = '';
+  bool _collapsable = false;
 
   ActiveContestsService _activeContestsService;
 

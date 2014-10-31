@@ -2,21 +2,7 @@
 
   <contest-header id="contestHeader" contest="contest" contest-id="contestId"></contest-header>
 
-  <!-- this will be a component -->
-
-  <div class="teams-comp-bar">
-    <!--<div class="social"><img src="images/socialBig.png"></div>-->
-    <!-- Chapu hasta que convierta esto en un componente -->
-    <div id="teamsPanel" class="teams-container">
-      <div class="top-border"></div>
-      <div class="teams-box" ng-repeat="match in matchesInvolved">
-        <div class="teams-info" ng-bind-html="match"></div>
-      </div>
-      <div class="bottom-border"></div>
-    </div>
-  </div>
-<!-- <teams-panel id="teamsPanelRoot" contest="contest" collapsable="true"></teams-panel> -->
-  <!--END this will be a component -->
+  <teams-panel id="teamsPanelRoot" contest="contest" contest-id="contestId" collapsable="false"></teams-panel>
 
   <div class="separator-bar"></div>
   <div class="info-complete-bar" ng-if="!isModeViewing">

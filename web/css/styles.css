@@ -10760,7 +10760,6 @@ fieldset[disabled] .landing-wrapper .button-play {
   position: relative;
   display: inline-block;
   vertical-align: middle;
-  padding-left: 13px;
 }
 #contestFiltersRoot #contestSortsFilters #contestFastSort .btn-group > .btn {
   position: relative;
@@ -10843,6 +10842,14 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters #contestFastSort .so
 fieldset[disabled] #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button {
   -webkit-box-shadow: none;
   box-shadow: none;
+}
+@media (max-width: 767px) {
+  #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 7pt;
+    color: #434343;
+  }
 }
 #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:hover {
   background-color: transparent;

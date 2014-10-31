@@ -10,6 +10,7 @@ import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/models/connection_error.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'dart:js';
+import 'package:logging/logging.dart';
 
 @Component(
     selector: 'login',
@@ -34,14 +35,30 @@ class LoginComp implements ShadowRootAware {
   }
 
   void loginFB() {
-    JsUtils.runJavascript(null, "login", (JsObject response) { //=>checkLoginStatus();
-      if (response["status"]=="connected") {
-        _profileManager.facebookLogin(response["authResponse"]["accessToken"])
-              .then((_) => _router.go("lobby", {})
-              .catchError((error) => print(error))
-              );
+    JsUtils.runJavascript(null, "getLoginStatus", [(JsObject statusResponse) {
+      if (statusResponse["status"]=="connected") {
+        loginCallback(statusResponse);
       }
-    } , false, "FB");
+      else if (statusResponse["status"] == 'not_authorized') {
+        // El usuario no ha autorizado el uso de su facebook.
+      }
+      else {
+        JsUtils.runJavascript(null, "login", (JsObject loginResponse) {
+              if (loginResponse["status"]=="connected") {
+                loginCallback(loginResponse);
+              }
+            }, false, "FB");
+      }
+    }, true],
+    false, "FB");
+  }
+
+  void loginCallback(loginResponse) {
+    _profileManager.facebookLogin(loginResponse["authResponse"]["accessToken"])
+                          .then((_) => _router.go("lobby", {}))
+                          .catchError((error) {
+                              Logger.root.severe(error);
+                              });
   }
 
   void login() {

@@ -9,6 +9,8 @@ import 'package:webclient/models/user.dart';
 import 'package:webclient/services/server_service.dart';
 import 'package:logging/logging.dart';
 import 'package:webclient/utils/game_metrics.dart';
+import 'package:webclient/services/datetime_service.dart';
+import 'package:webclient/utils/js_utils.dart';
 
 
 @Injectable()
@@ -20,7 +22,7 @@ class ProfileService {
   static ProfileService get instance => _instance;  // Si te peta en esta linea te obliga a pensar, lo que es Una Buena Cosa@.
                                                     // Una pista... quiza te ha pasado pq has quitado componentes del index?
 
-  ProfileService(this._server) {
+  ProfileService(this._server, this._dateTimeService) {
     _instance = this;
     _tryProfileLoad();
   }
@@ -143,6 +145,10 @@ class ProfileService {
     }
   }
 
+  static Future<bool> allowEnter() {
+    return new Future<bool>(() => allowAccess);
+  }
+  
   static ProfileService _instance;
 
   ServerService _server;

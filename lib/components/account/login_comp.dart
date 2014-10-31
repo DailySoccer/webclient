@@ -6,6 +6,7 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/server_service.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/services/loading_service.dart';
 
 @Component(
     selector: 'login',
@@ -18,9 +19,11 @@ class LoginComp implements ShadowRootAware {
   String password = "";
   String rememberMe;
 
+
+
   bool get enabledSubmit => StringUtils.isValidEmail(email) && password.isNotEmpty && _enabledSubmit;
 
-  LoginComp(this._router, this._profileManager, this._rootElement);
+  LoginComp(this._router, this._profileManager,this.loadingService, this._rootElement);
 
   @override void onShadowRoot(emulatedRoot) {
     _errSection = _rootElement.querySelector("#mailPassError");
@@ -28,14 +31,19 @@ class LoginComp implements ShadowRootAware {
   }
 
   void login() {
+    loadingService.isLoading = true;
     GameMetrics.logEvent(GameMetrics.LOGIN_ATTEMPTED);
 
     _errSection.parent.parent.style.display = "none";
     _enabledSubmit = false;
 
     _profileManager.login(email, password)
-        .then((_) => _router.go('lobby', {}))
+        .then((_) {
+          loadingService.isLoading = false;
+          _router.go('lobby', {});
+        })
         .catchError( (ConnectionError error) {
+          loadingService.isLoading = false;
           _enabledSubmit = true;
           _errSection
             ..text = error.toJson()["email"][0]
@@ -59,4 +67,6 @@ class LoginComp implements ShadowRootAware {
   Element _errSection;
 
   bool _enabledSubmit = true;
+
+  LoadingService loadingService;
 }

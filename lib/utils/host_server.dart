@@ -9,14 +9,15 @@ class HostServer {
   static String get url {
 
     if (_url == null) {
-      if (window.location.href.contains("live=true")) {
+      if (window.location.protocol.contains("file")) {
+        _url = "http://backend.epiceleven.com";
+      }
+      else if(window.location.href.contains("live=true") ||
+              window.location.origin.contains("epiceleven.com")) {
         _url = "http://backend.epiceleven.com";
       }
       else if (_isLocalHost()) {
         _url = "http://localhost:9000";
-      }
-      else if (window.location.origin.contains("epiceleven.com")) {
-        _url = "http://backend.epiceleven.com";
       }
       else {
         _url = window.location.origin;

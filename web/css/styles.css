@@ -9479,7 +9479,7 @@ fieldset[disabled] #mobileContent .content .button-play-mobile {
     display: none !important;
   }
 }
-.landing-wrapper .slider-wrapper {
+.landing-wrapper .slider-wrapper-mobile {
   position: relative;
   overflow: hidden;
   min-height: 480px;

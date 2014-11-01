@@ -26,17 +26,19 @@ import 'package:webclient/components/flash_messages_comp.dart';
 import 'package:webclient/components/landing_page_comp.dart';
 import 'package:webclient/components/navigation/main_menu_slide_comp.dart';
 import 'package:webclient/components/navigation/footer_comp.dart';
+import 'package:webclient/components/global_connection_comp.dart';
 
 import 'package:webclient/components/contest_info_comp.dart';
 import 'package:webclient/components/scoring_rules_comp.dart';
 import 'package:webclient/components/contest_header_comp.dart';
-import 'package:webclient/components/lobby_comp.dart';
+
 import 'package:webclient/components/my_contests_comp.dart';
-import 'package:webclient/components/contests_list_comp.dart';
-import 'package:webclient/components/promos_comp.dart';
+
 import 'package:webclient/components/paginator_comp.dart';
 import 'package:webclient/components/contest_filters_comp.dart';
-import 'package:webclient/components/global_connection_comp.dart';
+import 'package:webclient/components/lobby_comp.dart';
+import 'package:webclient/components/promos_comp.dart';
+import 'package:webclient/components/contests_list_comp.dart';
 
 import 'package:webclient/components/account/user_profile_comp.dart';
 import 'package:webclient/components/account/edit_personal_data_comp.dart';
@@ -62,8 +64,9 @@ import 'package:webclient/components/legalese_and_help/legal_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/terminus_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/policy_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/beta_info_comp.dart';
-import 'package:webclient/template_cache.dart';
+
 import 'package:webclient/utils/host_server.dart';
+import 'package:webclient/template_cache.dart';
 
 class WebClientApp extends Module {
 
@@ -85,10 +88,11 @@ class WebClientApp extends Module {
     bind(RefreshTimersService);
     bind(DateTimeService);
     bind(ProfileService);
+    bind(FlashMessagesService);
+
     bind(ActiveContestsService);
     bind(MyContestsService);
     bind(SoccerPlayerService);
-    bind(FlashMessagesService);
     bind(ScoringRulesService);
 
     bind(LimitToDot);
@@ -96,32 +100,35 @@ class WebClientApp extends Module {
     bind(AutoFocusDecorator);
 
     bind(LandingPageComp);
+
     bind(MainMenuSlideComp);
     bind(FooterComp);
     bind(FlashMessageComp);
+    bind(GlobalConnectionComp);
 
-    bind(ContestInfoComp);
-    bind(ScoringRulesComp);
-    bind(ContestHeaderComp);
-    bind(FantasyTeamComp);
-    bind(UsersListComp);
-    bind(ViewContestComp);
-    bind(MyContestsComp);
+    bind(LoginComp);
+    bind(JoinComp);
+
     bind(ContestsListComp);
     bind(LobbyComp);
     bind(PromosComp);
     bind(PaginatorComp);
     bind(ContestFiltersComp);
-    bind(LoginComp);
-    bind(JoinComp);
-    bind(ChangePasswordComp);
+
+    bind(MyContestsComp);
+    bind(ViewContestComp);
+    bind(ViewContestEntryComp);
+    bind(ContestHeaderComp);
+    bind(ContestInfoComp);
+    bind(ScoringRulesComp);
+    bind(FantasyTeamComp);
+    bind(UsersListComp);
 
     bind(HelpInfoComp);
     bind(LegalInfoComp);
     bind(TerminusInfoComp);
     bind(PolicyInfoComp);
     bind(BetaInfoComp);
-    bind(GlobalConnectionComp);
 
     bind(EnterContestComp);
     bind(SoccerPlayersListComp);
@@ -130,10 +137,10 @@ class WebClientApp extends Module {
     bind(LineupSelectorComp);
     bind(SoccerPlayerInfoComp);
 
+    bind(ChangePasswordComp);
     bind(RememberPasswordComp);
     bind(UserProfileComp);
     bind(EditPersonalDataComp);
-    bind(ViewContestEntryComp);
 
     bind(RouteInitializerFn, toValue: webClientRouteInitializer);
     bind(NgRoutingUsePushState, toValue: new NgRoutingUsePushState.value(false));

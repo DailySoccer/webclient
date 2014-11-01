@@ -16,8 +16,10 @@
 		margin-top:100px;
 		background-color: transparent;
 	}
-	.panel {	
-		.slide-in-from-bottom-animation();
+	.panel {
+		@media (min-width: @screen-md-min) {
+			.slide-in-from-bottom-animation();
+		}
 		border-width: 0px;
 		.panel-heading {	
 			@media (max-width: @screen-xs-max) {

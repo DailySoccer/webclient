@@ -16950,13 +16950,17 @@ textarea#matchesFilterWrapper .matches-selector-filter {
   }
 }
 .main-box .panel {
-  position: relative;
-  -webkit-animation: slide-in-from-bottom-keyframes 0.4s;
-  -moz-animation: slide-in-from-bottom-keyframes 0.4s;
-  -ms-keyframes: slide-in-from-bottom-keyframes 0.4s;
-  -o-keyframes: slide-in-from-bottom-keyframes 0.4s;
-  animation: slide-in-from-bottom-keyframes 0.4s;
   border-width: 0px;
+}
+@media (min-width: 992px) {
+  .main-box .panel {
+    position: relative;
+    -webkit-animation: slide-in-from-bottom-keyframes 0.4s;
+    -moz-animation: slide-in-from-bottom-keyframes 0.4s;
+    -ms-keyframes: slide-in-from-bottom-keyframes 0.4s;
+    -o-keyframes: slide-in-from-bottom-keyframes 0.4s;
+    animation: slide-in-from-bottom-keyframes 0.4s;
+  }
 }
 .main-box .panel .panel-heading {
   background-color: #214a5f;

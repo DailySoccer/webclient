@@ -7728,6 +7728,9 @@ fieldset[disabled] .contests-list-root .contest-row .column-contest-action .btn 
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+.contests-list-root .contest-row .column-contest-action .btn:focus {
+  outline: none !important;
+}
 @media (max-width: 767px) {
   .contests-list-root .contest-row .column-contest-action {
     position: absolute;
@@ -8175,6 +8178,9 @@ fieldset[disabled] #personalDataContent .save-changes-content .action-button {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+#personalDataContent .save-changes-content .action-button:focus {
+  outline: none !important;
+}
 @media (min-width: 768px) {
   #personalDataContent .save-changes-content .action-button {
     float: left;
@@ -8473,6 +8479,9 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team.active {
 fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   -webkit-box-shadow: none;
   box-shadow: none;
+}
+.fantasy-team-header .edit-team .btn-edit-team:focus {
+  outline: none !important;
 }
 @media (max-width: 767px) {
   .fantasy-team-header .edit-team {
@@ -9167,6 +9176,9 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+#mainFooter .user-info-sup-footer .add-funds-button:focus {
+  outline: none !important;
+}
 @media (max-width: 991px) {
   #mainFooter .user-info-sup-footer .add-funds-button {
     padding: 4px 12px;
@@ -9634,6 +9646,9 @@ fieldset[disabled] #mobileContent .content .button-play-mobile {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+#mobileContent .content .button-play-mobile:focus {
+  outline: none !important;
+}
 #mobileContent .content .main-title-mobile {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
@@ -9913,6 +9928,9 @@ fieldset[disabled] .landing-wrapper .button-play.active {
 fieldset[disabled] .landing-wrapper .button-play {
   -webkit-box-shadow: none;
   box-shadow: none;
+}
+.landing-wrapper .button-play:focus {
+  outline: none !important;
 }
 @media (max-width: 1199px) {
   .landing-wrapper .button-play {
@@ -10282,6 +10300,9 @@ fieldset[disabled] .landing-wrapper .button-play {
   fieldset[disabled] #liveContestRoot .btn {
     -webkit-box-shadow: none;
     box-shadow: none;
+  }
+  #liveContestRoot .btn:focus {
+    outline: none !important;
   }
 }
 #liveContestRoot .live-contest-tabs {
@@ -10843,6 +10864,9 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters #contestFastSort .so
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:focus {
+  outline: none !important;
+}
 @media (max-width: 767px) {
   #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button {
     font-family: 'Open Sans', sans-serif;
@@ -11113,6 +11137,9 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
 fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button {
   -webkit-box-shadow: none;
   box-shadow: none;
+}
+#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:focus {
+  outline: none !important;
 }
 @media (min-width: 768px) {
   #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button {
@@ -12252,6 +12279,9 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:focus {
+  outline: none !important;
+}
 #contestFiltersRoot #filtersPanel .confirm-button-wrapper {
   float: left;
   width: 100%;
@@ -12409,6 +12439,9 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .bt
 fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm {
   -webkit-box-shadow: none;
   box-shadow: none;
+}
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:focus {
+  outline: none !important;
 }
 .background-header {
   background-image: url("../images/headerBackground.jpg");
@@ -12787,6 +12820,9 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .bt
     -webkit-box-shadow: none;
     box-shadow: none;
   }
+  #mainMenu .add-funds-button:focus {
+    outline: none !important;
+  }
   #mainMenu .dropdown-menu {
     margin-left: -115px;
     margin-top: 7px;
@@ -13127,6 +13163,9 @@ fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-join {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+.navbar-header-unloggin .button-wrapper .button-join:focus {
+  outline: none !important;
+}
 .navbar-header-unloggin .button-wrapper .button-login {
   display: inline-block;
   margin-bottom: 0;
@@ -13256,6 +13295,9 @@ fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-login.active 
 fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-login {
   -webkit-box-shadow: none;
   box-shadow: none;
+}
+.navbar-header-unloggin .button-wrapper .button-login:focus {
+  outline: none !important;
 }
 @media (max-width: 991px) {
   #myContest {
@@ -13520,6 +13562,9 @@ fieldset[disabled] .resume-bar .data-to-csv .btn-data-to-csv {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+.resume-bar .data-to-csv .btn-data-to-csv:focus {
+  outline: none !important;
+}
 .resume-bar .change-player {
   text-align: center;
   margin: 2px 0 16px 0;
@@ -13652,6 +13697,9 @@ fieldset[disabled] .resume-bar .change-player .btn-change-player.active {
 fieldset[disabled] .resume-bar .change-player .btn-change-player {
   -webkit-box-shadow: none;
   box-shadow: none;
+}
+.resume-bar .change-player .btn-change-player:focus {
+  outline: none !important;
 }
 #myContestMenuTabs {
   list-style-type: none;
@@ -13848,6 +13896,9 @@ fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest.acti
 fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest {
   -webkit-box-shadow: none;
   box-shadow: none;
+}
+.no-contest .my-no-contest-bottom-row .btn-go-to-contest:focus {
+  outline: none !important;
 }
 .no-contests-wrapper {
   position: relative;
@@ -14338,6 +14389,9 @@ fieldset[disabled] .soccer-player-info-header .btn-cancel-soccer-player-info {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+.soccer-player-info-header .btn-cancel-soccer-player-info:focus {
+  outline: none !important;
+}
 @media (min-width: 768px) and (max-width: 991px) {
   .soccer-player-info-header .btn-cancel-soccer-player-info {
     display: none !important;
@@ -14488,6 +14542,9 @@ fieldset[disabled] .soccer-player-info-header .btn-add-soccer-player-info {
   fieldset[disabled] .soccer-player-info-header .btn-add-soccer-player-info {
     -webkit-box-shadow: none;
     box-shadow: none;
+  }
+  .soccer-player-info-header .btn-add-soccer-player-info:focus {
+    outline: none !important;
   }
 }
 @media (min-width: 768px) {
@@ -15381,6 +15438,9 @@ fieldset[disabled] .soccer-player-info-content .action-buttons .button-wrapper .
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+.soccer-player-info-content .action-buttons .button-wrapper .btn-cancel-soccer-player-info:focus {
+  outline: none !important;
+}
 .soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info {
   display: inline-block;
   margin-bottom: 0;
@@ -15513,6 +15573,9 @@ fieldset[disabled] .soccer-player-info-content .action-buttons .button-wrapper .
 fieldset[disabled] .soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info {
   -webkit-box-shadow: none;
   box-shadow: none;
+}
+.soccer-player-info-content .action-buttons .button-wrapper .btn-add-soccer-player-info:focus {
+  outline: none !important;
 }
 #enterContest {
   margin-left: -15px;
@@ -15775,6 +15838,9 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-cancel-player-selection {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+.enter-contest-actions-wrapper .btn-cancel-player-selection:focus {
+  outline: none !important;
+}
 .enter-contest-actions-wrapper .button-wrapper {
   padding: 10px;
   position: relative;
@@ -15912,6 +15978,9 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-clean-lineup-list {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+.enter-contest-actions-wrapper .btn-clean-lineup-list:focus {
+  outline: none !important;
+}
 .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   display: inline-block;
   margin-bottom: 0;
@@ -16044,6 +16113,9 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list.activ
 fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   -webkit-box-shadow: none;
   box-shadow: none;
+}
+.enter-contest-actions-wrapper .btn-confirm-lineup-list:focus {
+  outline: none !important;
 }
 .enter-contest-actions-wrapper p {
   position: relative;
@@ -16555,6 +16627,9 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .b
 fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .btn {
   -webkit-box-shadow: none;
   box-shadow: none;
+}
+.soccer-players-list .soccer-players-list-slot .column-add .btn:focus {
+  outline: none !important;
 }
 @media (min-width: 768px) {
   .soccer-players-list .soccer-players-list-slot .column-add .btn {
@@ -17261,6 +17336,9 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+.main-box .panel .panel-body .new-row .enter-button:focus {
+  outline: none !important;
+}
 .main-box .panel .panel-body .new-row .enter-button-half {
   display: inline-block;
   margin-bottom: 0;
@@ -17396,6 +17474,9 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button-half.acti
 fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button-half {
   -webkit-box-shadow: none;
   box-shadow: none;
+}
+.main-box .panel .panel-body .new-row .enter-button-half:focus {
+  outline: none !important;
 }
 .main-box .panel .panel-body .new-row .cancel-button-half {
   display: inline-block;
@@ -17585,6 +17666,9 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half.act
 fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
   -webkit-box-shadow: none;
   box-shadow: none;
+}
+.main-box .panel .panel-body .new-row .cancel-button-half:focus {
+  outline: none !important;
 }
 .main-box .panel .panel-body .new-row .separator-top {
   font-family: 'Open Sans', sans-serif;
@@ -18031,6 +18115,9 @@ fieldset[disabled] .profile-content .action-button {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+.profile-content .action-button:focus {
+  outline: none !important;
+}
 .profile-content .add-funds-button {
   display: inline-block;
   margin-bottom: 0;
@@ -18163,6 +18250,9 @@ fieldset[disabled] .profile-content .add-funds-button.active {
 fieldset[disabled] .profile-content .add-funds-button {
   -webkit-box-shadow: none;
   box-shadow: none;
+}
+.profile-content .add-funds-button:focus {
+  outline: none !important;
 }
 .profile-content .data-key {
   font-family: 'Open Sans', sans-serif;
@@ -18355,6 +18445,9 @@ fieldset[disabled] .profile-content .add-funds-button {
   fieldset[disabled] .profile-content .personal-data .action-button {
     -webkit-box-shadow: none;
     box-shadow: none;
+  }
+  .profile-content .personal-data .action-button:focus {
+    outline: none !important;
   }
 }
 @media (min-width: 768px) {
@@ -18557,6 +18650,9 @@ fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+.profile-content .pocket-data .button-wrapper .action-button-transaction:focus {
+  outline: none !important;
+}
 .profile-content .pocket-data .button-wrapper .action-button-get-funds {
   display: inline-block;
   margin-bottom: 0;
@@ -18690,6 +18786,9 @@ fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-
 fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-get-funds {
   -webkit-box-shadow: none;
   box-shadow: none;
+}
+.profile-content .pocket-data .button-wrapper .action-button-get-funds:focus {
+  outline: none !important;
 }
 @media (max-width: 991px) {
   .profile-content .pocket-data .button-wrapper {
@@ -18968,6 +19067,9 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-cancel-contest {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+.view-contest-entry-actions-wrapper .btn-cancel-contest:focus {
+  outline: none !important;
+}
 @media (max-width: 767px) {
   .view-contest-entry-actions-wrapper .btn-cancel-contest {
     display: block;
@@ -19105,6 +19207,9 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-back-contest.active 
 fieldset[disabled] .view-contest-entry-actions-wrapper .btn-back-contest {
   -webkit-box-shadow: none;
   box-shadow: none;
+}
+.view-contest-entry-actions-wrapper .btn-back-contest:focus {
+  outline: none !important;
 }
 @media (max-width: 767px) {
   .view-contest-entry-actions-wrapper .btn-back-contest {
@@ -19386,6 +19491,9 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play.active 
 fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   -webkit-box-shadow: none;
   box-shadow: none;
+}
+#helpInfo .block-last .description-right .button-play:focus {
+  outline: none !important;
 }
 #helpInfo .toogle-block {
   max-width: 808px;
@@ -19915,6 +20023,9 @@ fieldset[disabled] .btn-default {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+.btn-default:focus {
+  outline: none !important;
+}
 .btn-primary {
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
 }
@@ -19928,6 +20039,9 @@ fieldset[disabled] .btn-default {
 fieldset[disabled] .btn-primary {
   -webkit-box-shadow: none;
   box-shadow: none;
+}
+.btn-primary:focus {
+  outline: none !important;
 }
 .btn-cancel {
   display: inline-block;
@@ -20052,6 +20166,9 @@ fieldset[disabled] .btn-cancel.active {
 fieldset[disabled] .btn-cancel {
   -webkit-box-shadow: none;
   box-shadow: none;
+}
+.btn-cancel:focus {
+  outline: none !important;
 }
 .btn-orange {
   display: inline-block;

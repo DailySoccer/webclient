@@ -1,4 +1,18 @@
 //barra que muestra los partidos que intervienen en el concurso y los encales sociales
+#teamsPanel {
+	display: block;
+
+	// Reserva de sitio
+	@media (max-width: @screen-sm-max) {
+		background-color: @white;
+		min-height: 45px;
+	}
+	@media (min-width: @screen-md-min) {
+		background-color: @tramaBlue;
+		min-height: 83px;
+	}
+}
+
 .teams-comp-bar{
 	.make-row(0);
 	background-color: @tramaBlue;

@@ -12,10 +12,10 @@ import 'package:webclient/services/datetime_service.dart';
 
 @Injectable()
 class ProfileService {
+
   User user = null;
   bool get isLoggedIn => user != null;
-
-  static bool allowAccess = false;
+  static bool isLoggedInStatic = false;
 
   ProfileService(this._server, this._dateTimeService) {
     _tryProfileLoad();
@@ -29,7 +29,6 @@ class ProfileService {
     return _server.resetPassword(password, stormPathTokenId).then(_onLoginResponse);
   }
 
-
   Future<JsonObject> signup(String firstName, String lastName, String email, String nickName, String password) {
 
     if (isLoggedIn)
@@ -41,8 +40,6 @@ class ProfileService {
   Future<JsonObject> login(String email, String password) {
     return _server.login(email, password).then(_onLoginResponse);
   }
-
-
 
   Future<JsonObject> _onLoginResponse(JsonObject loginResponseJson) {
     _server.setSessionToken(loginResponseJson.sessionToken); // to make the getUserProfile call succeed
@@ -76,7 +73,7 @@ class ProfileService {
     _sessionToken = theSessionToken;
     _server.setSessionToken(_sessionToken);
     user = theUser;
-    allowAccess = theUser != null;
+    isLoggedInStatic = theUser != null;
 
     if (bSave) {
       _saveProfile();
@@ -89,11 +86,6 @@ class ProfileService {
 
     if (storedSessionToken != null && storedUser != null) {
       _setProfile(storedSessionToken, new User.fromJsonObject(new JsonObject.fromJsonString(storedUser)), false);
-
-      // TODO: Hacemos un "login" a escondidas... (los "usuarios" pueden haber sido eliminados por el simulador)
-      login(user.email, "<no password>")
-        .then((jsonObject) => print("profile load ok"))
-        .catchError((error) => print("login error..."));
     }
   }
 
@@ -106,10 +98,6 @@ class ProfileService {
       window.localStorage.remove('sessionToken');
       window.localStorage.remove('user');
     }
-  }
-
-  static Future<bool> allowEnter() {
-    return new Future<bool>(() => allowAccess);
   }
 
   ServerService _server;

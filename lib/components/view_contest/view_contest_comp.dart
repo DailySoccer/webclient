@@ -28,13 +28,8 @@ class ViewContestComp implements DetachAware {
   String lastOpponentSelected = "Adversario";
   bool isOpponentSelected = false;
 
-
-  List<String> periods = [];
-
   String contestId;
-  Contest get contest {
-   return _myContestsService.lastContest;
-  }
+  Contest get contest => _myContestsService.lastContest;
 
   List<ContestEntry> get contestEntries => (contest != null) ? contest.contestEntries : null;
   List<ContestEntry> get contestEntriesOrderByPoints => (contest != null) ? contest.contestEntriesOrderByPoints : null;
@@ -57,10 +52,8 @@ class ViewContestComp implements DetachAware {
 
         // Únicamente actualizamos los contests que estén en "live"
         if (_myContestsService.lastContest.isLive) {
-          // Comenzamos a actualizar la información
           _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE, _updateLive);
         }
-
       })
       .catchError((error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW));
   }
@@ -147,7 +140,6 @@ class ViewContestComp implements DetachAware {
   RefreshTimersService _refreshTimersService;
   MyContestsService _myContestsService;
 
-
-  List<int> get _prizes => (contest != null) ? contest.prizes : [];
+  List<int> get _prizes => (contest != null) ? contest.prizes : []; // TODO: Chapucioso, no crear un array nuevo
 }
 

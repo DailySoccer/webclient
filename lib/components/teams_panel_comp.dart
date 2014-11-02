@@ -14,7 +14,7 @@ import 'package:webclient/services/active_contests_service.dart';
     templateUrl: 'packages/webclient/components/teams_panel_comp.html',
     useShadowDom: false
 )
-class TeamsPanelComp implements DetachAware{
+class TeamsPanelComp implements DetachAware {
   List<String> matchesInvolved = [];
   List<MatchEvent> matchEventsSorted = [];
 
@@ -34,7 +34,7 @@ class TeamsPanelComp implements DetachAware{
   Contest get contest => _contest;
   void set contest(Contest value) {
     if (value != null) {
-      if(_contestId == value.contestId){
+      if(_contestId == value.contestId) {
         _contest = value;
         generateMatchesList();
       }
@@ -53,7 +53,7 @@ class TeamsPanelComp implements DetachAware{
   }
 
   TeamsPanelComp(this.scrDet, this._activeContestsService) {
-    _streamListener = scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
+    _streamListener = scrDet.mediaScreenWidth.listen(onScreenWidthChange);
   }
 
   /** Methods **/
@@ -77,26 +77,24 @@ class TeamsPanelComp implements DetachAware{
       return '';
     }
 
-    String ret = teamsInfo + "<div class=period>";
+    String content = "";
     MatchEvent match = matchEventsSorted[id];
-    if (match == null) {
-      ret += '';
-    }
 
-    if (!match.isStarted) {
-      ret += 'No jugado';
-    }
-    else {
-      if (match.isFinished) {
-        ret += 'Finalizado';
+    if (match != null) {
+      if (!match.isStarted) {
+        content = 'No jugado';
       }
       else {
-        //print (' - Van ${match.minutesPlayed} y quedan ${match.minutesLeft}');
-        ret += (match.isFirstHalf ? '1ª Parte - ' : match.isSecondHalf ? '2ª Parte - ' : '-Err-') + match.minutesPlayed.toString() + "'";
+        if (match.isFinished) {
+          content = 'Finalizado';
+        }
+        else {
+          content = (match.isFirstHalf ? '1ª Parte - ' : match.isSecondHalf ? '2ª Parte - ' : '-Err-') + match.minutesPlayed.toString() + "'";
+        }
       }
     }
-    ret += "</div>";
-    return ret;
+
+    return "${teamsInfo}<div class=period>${content}</div>";
   }
 
   void toggleTeamsPanel() {
@@ -148,5 +146,4 @@ class TeamsPanelComp implements DetachAware{
   bool _collapsable = false;
 
   ActiveContestsService _activeContestsService;
-
 }

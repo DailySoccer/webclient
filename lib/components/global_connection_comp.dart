@@ -1,7 +1,5 @@
 library global_connection_comp;
 
-import 'dart:async';
-import 'package:logging/logging.dart';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/server_service.dart';
 
@@ -15,8 +13,6 @@ class GlobalConnectionComp {
 
   GlobalConnectionComp(ServerService serverService) {
     serverService.subscribe("GlobalConnection", onSuccess: onServerSuccess, onError: onServerError);
-
-    Logger.root.info("GlobalConnection initialized");
   }
 
   void onServerSuccess(Map aMsg) {
@@ -24,7 +20,8 @@ class GlobalConnectionComp {
   }
 
   void onServerError(Map aMsg) {
-    _secondsToRetry = aMsg['secondsToRetry'];
+    // _secondsToRetry = aMsg['secondsToRetry'];
+
     msg = "Error en la conexión...";
 
     /*
@@ -39,6 +36,6 @@ class GlobalConnectionComp {
      */
   }
 
-  Timer secondsTimer;
-  int _secondsToRetry;
+  //Timer secondsTimer;
+  //int _secondsToRetry;
 }

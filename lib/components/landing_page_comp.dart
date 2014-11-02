@@ -16,41 +16,16 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
 
   String content;
   ScreenDetectorService scrDet;
-  LoadingService loadingService;
 
   int get screenHeight => window.innerHeight;
-  bool readyToShow = false;
 
-/*
-  String getBounds(String elemId) {
-    Element elem = querySelector('#' + elemId + ' .screen-text-block');
-    double container_height = elem.getBoundingClientRect().height;
-    double wrapper_height = elem.parent.parent.getBoundingClientRect().height;
 
-    return "wrapper: ${wrapper_height} - container: ${container_height}";
-  }
-
-  Map getStyle(String elemId) {
-    Element elem = querySelector('#' + elemId + ' .screen-text-block');
-    double container_height = elem.getBoundingClientRect().height;
-    double wrapper_height = elem.parent.parent.getBoundingClientRect().height;
-
-    return {"position":"absolute", "top":"${(wrapper_height - container_height)*0.5}px;"};
-  }
-*/
-  LandingPageComp(this._router, this._profileService, this.scrDet, this.loadingService) {
-    loadingService.isLoading = true;
-  }
+  LandingPageComp(this._router, this._profileService, this.scrDet, this._loadingService);
 
   void onShadowRoot(emulatedRoot) {
 
-    if (_profileService.isLoggedIn) {
-      _router.go("lobby", {});
-      return;
-    }
-
-    // No mostramos hasta que estamos seguro de que no redirigimos
-    loadingService.isLoading = false;
+    // Nos deberia venir con el loading activo, ahora lo quitamos
+    _loadingService.isLoading = false;
 
     // Capturamos los elementos envolventes, porque el layout en landing page es diferente al del resto de la web.
     _bodyObj     = querySelector('body');
@@ -90,6 +65,7 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
 
   Router _router;
   ProfileService _profileService;
+  LoadingService _loadingService;
 
   Element _bodyObj;
   Element _mainWrapper;

@@ -13,7 +13,12 @@ class LoadingService {
   }
 
   static void disable() {
-    _instance.isLoading = false;
+    if (_instance != null) {
+      _instance.isLoading = false;
+    }
+    else {
+      print("TODO: Llega un disable demasiado pronto");
+    }
   }
 
   LoadingService() {

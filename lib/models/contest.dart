@@ -283,7 +283,8 @@ class Contest {
       .replaceAll("%MaxEntries", "$maxEntries")
       .replaceAll("%SalaryCap", "${(salaryCap ~/ 1000)}")
       .replaceAll("%PrizeType", prizeTypeName)
-      .replaceAll("%EntryFee", "${entryFee}");
+      .replaceAll("%EntryFee", "${entryFee}")
+      .replaceAll("%MockUsers", "");
   }
 
   String _name;

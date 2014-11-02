@@ -13,6 +13,6 @@ class AutoFocusDecorator implements AttachAware{
   void attach() {
     //inputElement.autofocus = true;
     inputElement.focus();
-    print('Focus en: ${inputElement.id}');
+    //print('Focus en: ${inputElement.id}');
   }
 }

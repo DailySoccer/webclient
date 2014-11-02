@@ -1,4 +1,4 @@
-<div id="loginRoot">
+<div id="loginRoot" ng-show="!loadingService.isLoading">
   <div id="loginBox" class="main-box">
 
     <div class="panel window-slide-in">
@@ -19,12 +19,12 @@
           <!-- MAIL -->
           <div class="input-group">
             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-            <input id="login-mail" auto-focus type="email" ng-model="email" name="email" placeholder="Correo Electrónico" class="form-control">
+            <input id="login-mail" auto-focus type="email" ng-model="email" name="email" placeholder="Correo Electrónico" class="form-control" tabindex="1">
           </div>
           <!-- PÂSSWORD -->
           <div class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-            <input id="login-password" type="password" ng-model="password" name="password" placeholder="password" class="form-control">
+            <input id="login-password" type="password" ng-model="password" name="password" placeholder="password" class="form-control" tabindex="2">
           </div>
           <!-- REMEMBER ME -->
           <div class="remember-forgot-group">

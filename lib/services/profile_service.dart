@@ -7,17 +7,19 @@ import 'package:angular/angular.dart';
 import 'package:json_object/json_object.dart';
 import 'package:webclient/models/user.dart';
 import 'package:webclient/services/server_service.dart';
-import 'package:webclient/services/datetime_service.dart';
 
 
 @Injectable()
 class ProfileService {
+
   User user = null;
   bool get isLoggedIn => user != null;
 
-  static bool allowAccess = false;
+  static bool get isLoggedInStatic => _instance.isLoggedIn;  // Si te peta en esta linea te obliga a pensar, lo que es Una Buena Cosa@.
+                                                             // Una pista... quiza te ha pasado pq has quitado componentes del index?
 
-  ProfileService(this._server, this._dateTimeService) {
+  ProfileService(this._server) {
+    _instance = this;
     _tryProfileLoad();
   }
 
@@ -28,7 +30,6 @@ class ProfileService {
   Future<JsonObject>resetPassword(String password, String stormPathTokenId) {
     return _server.resetPassword(password, stormPathTokenId).then(_onLoginResponse);
   }
-
 
   Future<JsonObject> signup(String firstName, String lastName, String email, String nickName, String password) {
 
@@ -41,8 +42,6 @@ class ProfileService {
   Future<JsonObject> login(String email, String password) {
     return _server.login(email, password).then(_onLoginResponse);
   }
-
-
 
   Future<JsonObject> _onLoginResponse(JsonObject loginResponseJson) {
     _server.setSessionToken(loginResponseJson.sessionToken); // to make the getUserProfile call succeed
@@ -76,7 +75,6 @@ class ProfileService {
     _sessionToken = theSessionToken;
     _server.setSessionToken(_sessionToken);
     user = theUser;
-    allowAccess = theUser != null;
 
     if (bSave) {
       _saveProfile();
@@ -89,11 +87,6 @@ class ProfileService {
 
     if (storedSessionToken != null && storedUser != null) {
       _setProfile(storedSessionToken, new User.fromJsonObject(new JsonObject.fromJsonString(storedUser)), false);
-
-      // TODO: Hacemos un "login" a escondidas... (los "usuarios" pueden haber sido eliminados por el simulador)
-      login(user.email, "<no password>")
-        .then((jsonObject) => print("profile load ok"))
-        .catchError((error) => print("login error..."));
     }
   }
 
@@ -108,11 +101,8 @@ class ProfileService {
     }
   }
 
-  static Future<bool> allowEnter() {
-    return new Future<bool>(() => allowAccess);
-  }
+  static ProfileService _instance;
 
   ServerService _server;
-  DateTimeService _dateTimeService;
   String _sessionToken;
 }

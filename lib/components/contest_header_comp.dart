@@ -31,7 +31,6 @@ class ContestHeaderComp implements DetachAware {
   @NgOneWay("contest")
   Contest get contest => _contest;
   void set contest(Contest value) {
-
     if (value != null) {
       _contest = value;
 

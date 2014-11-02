@@ -57,11 +57,13 @@
 			}
 			.btn-group{
 				.btn-group();
-				padding-left: 13px;
 			}
 			.sorting-button{
 				.btn-default();				
 				.opensans_bold(8pt, @greyUltraDark);
+				@media (max-width: @screen-xs-max) {
+					.opensans_bold(7pt, @greyUltraDark);
+				}
 				box-shadow: none;
 				background-color: transparent;
 				border-width: 1px;
@@ -73,7 +75,7 @@
 					border-width: 1px;
 					color: @greyUltraDark;
 					border-color: @greyUltraDark;
-				} 
+				}
 			} 
 			//flechitas que indican el orden de filtrado
 			.asc::after{

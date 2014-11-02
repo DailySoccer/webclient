@@ -1,8 +1,12 @@
 library webclient;
 
+import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:angular/routing/module.dart';
-import 'package:webclient/webclient_router.dart';
+
+import 'package:webclient/logger_exception_handler.dart';
+import 'package:webclient/services/server_service.dart';
+import 'package:webclient/services/screen_detector_service.dart';
 
 import 'package:webclient/services/refresh_timers_service.dart';
 import 'package:webclient/services/loading_service.dart';
@@ -11,44 +15,42 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/active_contests_service.dart';
 import 'package:webclient/services/my_contests_service.dart';
 import 'package:webclient/services/soccer_player_service.dart';
-import 'package:webclient/services/server_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
-import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/scoring_rules_service.dart';
 
-import 'package:webclient/logger_exception_handler.dart';
+import 'package:webclient/components/landing_page_comp.dart';
 
 import 'package:webclient/utils/limit_to_dot.dart';
 import 'package:webclient/utils/form-autofill-fix.dart';
 import 'package:webclient/utils/element-autofocus.dart';
 
-import 'package:webclient/components/flash_messages_comp.dart';
-import 'package:webclient/components/landing_page_comp.dart';
 import 'package:webclient/components/navigation/main_menu_slide_comp.dart';
 import 'package:webclient/components/navigation/footer_comp.dart';
+import 'package:webclient/components/global_connection_comp.dart';
+import 'package:webclient/components/flash_messages_comp.dart';
+
+import 'package:webclient/components/paginator_comp.dart';
+import 'package:webclient/components/contest_filters_comp.dart';
+import 'package:webclient/components/lobby_comp.dart';
+import 'package:webclient/components/promos_comp.dart';
+import 'package:webclient/components/contests_list_comp.dart';
 
 import 'package:webclient/components/contest_info_comp.dart';
 import 'package:webclient/components/scoring_rules_comp.dart';
 import 'package:webclient/components/contest_header_comp.dart';
-import 'package:webclient/components/lobby_comp.dart';
-import 'package:webclient/components/my_contests_comp.dart';
-import 'package:webclient/components/contests_list_comp.dart';
-import 'package:webclient/components/promos_comp.dart';
-import 'package:webclient/components/paginator_comp.dart';
-import 'package:webclient/components/contest_filters_comp.dart';
-import 'package:webclient/components/global_connection_comp.dart';
 
+import 'package:webclient/components/account/login_comp.dart';
+import 'package:webclient/components/account/join_comp.dart';
 import 'package:webclient/components/account/user_profile_comp.dart';
 import 'package:webclient/components/account/edit_personal_data_comp.dart';
 import 'package:webclient/components/account/remember_password_comp.dart';
-import 'package:webclient/components/account/login_comp.dart';
-import 'package:webclient/components/account/join_comp.dart';
 import 'package:webclient/components/account/change_password_comp.dart';
 
-import 'package:webclient/components/view_contest/fantasy_team_comp.dart';
-import 'package:webclient/components/view_contest/users_list_comp.dart';
+import 'package:webclient/components/my_contests_comp.dart';
 import 'package:webclient/components/view_contest/view_contest_entry_comp.dart';
 import 'package:webclient/components/view_contest/view_contest_comp.dart';
+import 'package:webclient/components/view_contest/fantasy_team_comp.dart';
+import 'package:webclient/components/view_contest/users_list_comp.dart';
 
 import 'package:webclient/components/enter_contest/enter_contest_comp.dart';
 import 'package:webclient/components/enter_contest/lineup_selector_comp.dart';
@@ -62,8 +64,10 @@ import 'package:webclient/components/legalese_and_help/legal_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/terminus_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/policy_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/beta_info_comp.dart';
-import 'package:webclient/template_cache.dart';
+
 import 'package:webclient/utils/host_server.dart';
+import 'package:webclient/template_cache.dart';
+import 'dart:async';
 
 class WebClientApp extends Module {
 
@@ -73,7 +77,6 @@ class WebClientApp extends Module {
     if (HostServer.isProd) {
       TemplateCache cache = new TemplateCache();
       primeTemplateCache(cache);
-
       bind(TemplateCache, toValue: cache);
     }
 
@@ -81,14 +84,17 @@ class WebClientApp extends Module {
     bind(ServerService, toImplementation: DailySoccerServer);
 
     bind(ScreenDetectorService);
+
     bind(LoadingService);
     bind(RefreshTimersService);
     bind(DateTimeService);
     bind(ProfileService);
+    bind(FlashMessagesService);
+
     bind(ActiveContestsService);
+
     bind(MyContestsService);
     bind(SoccerPlayerService);
-    bind(FlashMessagesService);
     bind(ScoringRulesService);
 
     bind(LimitToDot);
@@ -96,32 +102,35 @@ class WebClientApp extends Module {
     bind(AutoFocusDecorator);
 
     bind(LandingPageComp);
+
     bind(MainMenuSlideComp);
     bind(FooterComp);
     bind(FlashMessageComp);
+    bind(GlobalConnectionComp);
 
-    bind(ContestInfoComp);
-    bind(ScoringRulesComp);
-    bind(ContestHeaderComp);
-    bind(FantasyTeamComp);
-    bind(UsersListComp);
-    bind(ViewContestComp);
-    bind(MyContestsComp);
-    bind(ContestsListComp);
+    bind(LoginComp);
+    bind(JoinComp);
+
     bind(LobbyComp);
+    bind(ContestsListComp);
     bind(PromosComp);
     bind(PaginatorComp);
     bind(ContestFiltersComp);
-    bind(LoginComp);
-    bind(JoinComp);
-    bind(ChangePasswordComp);
+
+    bind(MyContestsComp);
+    bind(ViewContestComp);
+    bind(ViewContestEntryComp);
+    bind(ContestHeaderComp);
+    bind(ContestInfoComp);
+    bind(ScoringRulesComp);
+    bind(FantasyTeamComp);
+    bind(UsersListComp);
 
     bind(HelpInfoComp);
     bind(LegalInfoComp);
     bind(TerminusInfoComp);
     bind(PolicyInfoComp);
     bind(BetaInfoComp);
-    bind(GlobalConnectionComp);
 
     bind(EnterContestComp);
     bind(SoccerPlayersListComp);
@@ -130,12 +139,191 @@ class WebClientApp extends Module {
     bind(LineupSelectorComp);
     bind(SoccerPlayerInfoComp);
 
+    bind(ChangePasswordComp);
     bind(RememberPasswordComp);
     bind(UserProfileComp);
     bind(EditPersonalDataComp);
-    bind(ViewContestEntryComp);
 
     bind(RouteInitializerFn, toValue: webClientRouteInitializer);
     bind(NgRoutingUsePushState, toValue: new NgRoutingUsePushState.value(false));
+  }
+
+  void webClientRouteInitializer(Router router, RouteViewFactory views) {
+    views.configure({
+      'landing_page': ngRoute(
+          defaultRoute: true,
+          path: '/landing_page',
+          preEnter: (RoutePreEnterEvent e) => _onLandingPage(e, router),
+          enter: (RouteEnterEvent e) => _enterPage(e),
+          leave: (RouteLeaveEvent e) => _leavePage(e),
+          viewHtml: '<landing-page></landing-page>'
+      )
+      ,'beta_info': ngRoute(
+          path: '/beta_info',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
+          enter: (RouteEnterEvent e) => _enterPage(e),
+          leave: (RouteLeaveEvent e) => _leavePage(e),
+          viewHtml: '<beta-info></beta-info>'
+      )
+      ,'login': ngRoute(
+          path: '/login',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
+          enter: (RouteEnterEvent e) => _enterPage(e),
+          leave: (RouteLeaveEvent e) => _leavePage(e),
+          viewHtml: '<login></login>'
+      )
+      ,'join': ngRoute(
+          path: '/join',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
+          enter: (RouteEnterEvent e) => _enterPage(e),
+          leave: (RouteLeaveEvent e) => _leavePage(e),
+          viewHtml: '<join></join>'
+      )
+      ,'change_password': ngRoute(
+          path: '/change_password',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
+          enter: (RouteEnterEvent e) => _enterPage(e),
+          leave: (RouteLeaveEvent e) => _leavePage(e),
+          viewHtml: '<change-password></change-password>'
+      )
+      ,'help_info': ngRoute(
+          path: '/help-info',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
+          enter: (RouteEnterEvent e) => _enterPage(e),
+          leave: (RouteLeaveEvent e) => _leavePage(e),
+          viewHtml: '<help-info></help-info>'
+      )
+      ,'legal_info': ngRoute(
+          path: '/legal_info',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
+          enter: (RouteEnterEvent e) => _enterPage(e),
+          leave: (RouteLeaveEvent e) => _leavePage(e),
+          viewHtml: '<legal-info></legal-info>'
+      )
+      ,'terminus_info': ngRoute(
+          path: '/terminus_info',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
+          enter: (RouteEnterEvent e) => _enterPage(e),
+          leave: (RouteLeaveEvent e) => _leavePage(e),
+          viewHtml: '<terminus-info></terminus-info>'
+      )
+      ,'policy_info': ngRoute(
+          path: '/policy_info',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
+          enter: (RouteEnterEvent e) => _enterPage(e),
+          leave: (RouteLeaveEvent e) => _leavePage(e),
+          viewHtml: '<policy-info></policy-info>'
+      )
+      ,'remember_password': ngRoute(
+          path: '/remember_password',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
+          enter: (RouteEnterEvent e) => _enterPage(e),
+          leave: (RouteLeaveEvent e) => _leavePage(e),
+          viewHtml: '<remember-password></remember-password>'
+      )
+      ,'user_profile': ngRoute(
+          path: '/user_profile',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
+          enter: (RouteEnterEvent e) => _enterPage(e),
+          leave: (RouteLeaveEvent e) => _leavePage(e),
+          viewHtml: '<user-profile></user-profile>'
+      )
+      ,'lobby': ngRoute(
+          path: '/lobby',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
+          enter: (RouteEnterEvent e) => _enterPage(e),
+          leave: (RouteLeaveEvent e) => _leavePage(e),
+          viewHtml: '<lobby></lobby>'
+      )
+      ,'my_contests': ngRoute(
+          path: '/my_contests',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
+          enter: (RouteEnterEvent e) => _enterPage(e),
+          leave: (RouteLeaveEvent e) => _leavePage(e),
+          viewHtml: '<my-contests></my-contests>'
+      )
+      ,'live_contest': ngRoute(
+          path: '/live_contest/:parent/:contestId',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
+          enter: (RouteEnterEvent e) => _enterPage(e),
+          leave: (RouteLeaveEvent e) => _leavePage(e),
+          viewHtml: '<view-contest></view-contest>'
+      )
+      ,'history_contest': ngRoute(
+          path: '/history_contest/:parent/:contestId',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
+          enter: (RouteEnterEvent e) => _enterPage(e),
+          leave: (RouteLeaveEvent e) => _leavePage(e),
+          viewHtml: '<view-contest></view-contest>'
+      )
+      ,'enter_contest': ngRoute(
+          path: '/enter_contest/:parent/:contestId',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
+          enter: (RouteEnterEvent e) => _enterPage(e),
+          leave: (RouteLeaveEvent e) => _leavePage(e),
+          viewHtml: '<enter-contest></enter-contest>'
+      )
+      ,'edit_contest': ngRoute(
+          path: '/edit_contest/:parent/:contestId/:contestEntryId',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
+          enter: (RouteEnterEvent e) => _enterPage(e),
+          leave: (RouteLeaveEvent e) => _leavePage(e),
+          viewHtml: '<enter-contest></enter-contest>'
+      )
+      ,'view_contest_entry': ngRoute(
+          path: '/view_contest_entry/:parent/:viewContestEntryMode/:contestId',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
+          enter: (RouteEnterEvent e) => _enterPage(e),
+          leave: (RouteLeaveEvent e) => _leavePage(e),
+          viewHtml: '<view-contest-entry></view-contest-entry>'
+      )
+    });
+  }
+
+  // En la landing queremos reroutar al lobby en caso de estar logeados, pero queremos hacerlo
+  // antes de que se llegue a ver o parsear por una cuestion de rendimiento.
+  void _onLandingPage(RoutePreEnterEvent event, Router router) {
+    if (ProfileService.isLoggedInStatic) {
+      router.go("lobby", {}, replace:true);
+
+      // Denegar la entrada evita un flashazo. Si no la deniegas, llega a ir a la landing antes de ir al lobby
+      event.allowEnter(new Future<bool>(() => false));
+    }
+  }
+
+  void _preEnterPage(RoutePreEnterEvent event, Router router, {bool verifyAllowEnter : false}) {
+
+    LoadingService.disable();
+    DailySoccerServer.startContext(event.path);
+
+    if (verifyAllowEnter) {
+      event.allowEnter(new Future<bool>(() {
+
+        if (!ProfileService.isLoggedInStatic) {
+          router.go("landing_page", {}, replace:true);
+        }
+
+        return ProfileService.isLoggedInStatic;
+      }));
+    }
+  }
+
+  // Funcion que ejecutamos nada más entrar en la página
+  void _enterPage(RouteEnterEvent event) {
+  }
+
+  // Funcion que ejecutamos nada más salir de la página
+  void _leavePage(RouteLeaveEvent event) {
+
+    // Reseteamos las modales en el caso de que hubiera (bug de modal abierta y vuelta atrás)
+    _closeModal();
+  }
+
+  void _closeModal() {
+    bool isModalOpen = (document.querySelector('body').classes.contains('modal-open'));
+    if (isModalOpen) {
+      document.querySelector('body').classes.remove('modal-open');
+      document.querySelector('.modal-backdrop').remove();
+    }
   }
 }

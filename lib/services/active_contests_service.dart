@@ -44,8 +44,17 @@ class ActiveContestsService {
   Future addContestEntry(String contestId, List<String> soccerPlayerIds) {
     return _server.addContestEntry(contestId, soccerPlayerIds)
       .then((jsonObject) {
+        String contestId = jsonObject.contestId;
+
+        // Actualizar las listas de activeContests (quitando el contest) y myContests (añadiendo el contest)
+        Contest contest = activeContests.firstWhere((contest) => contest.contestId == contestId, orElse: null);
+        if (contest != null) {
+          activeContests.removeWhere((contest) => contest.contestId == contestId);
+          myContests.add(contest);
+        }
+
         //print("response: " + jsonObject.toString());
-        return jsonObject.contestId;
+        return contestId;
       });
   }
 

@@ -18,7 +18,6 @@ import 'package:webclient/services/soccer_player_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/scoring_rules_service.dart';
 
-import 'package:webclient/components/root_comp.dart';
 import 'package:webclient/components/landing_page_comp.dart';
 
 import 'package:webclient/utils/limit_to_dot.dart';
@@ -102,7 +101,6 @@ class WebClientApp extends Module {
     bind(FormAutofillDecorator);
     bind(AutoFocusDecorator);
 
-    bind(RootComp);
     bind(LandingPageComp);
 
     bind(MainMenuSlideComp);
@@ -152,136 +150,129 @@ class WebClientApp extends Module {
 
   void webClientRouteInitializer(Router router, RouteViewFactory views) {
     views.configure({
-      'root': ngRoute(
+      'landing_page': ngRoute(
           defaultRoute: true,
-          path: '/root',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e),
-          enter: (RouteEnterEvent e) => _enterPage(e),
-          leave: (RouteLeaveEvent e) => _leavePage(e),
-          viewHtml: '<root></root>'
-      )
-      ,'landing_page': ngRoute(
           path: '/landing_page',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e),
+          preEnter: (RoutePreEnterEvent e) => _onLandingPage(e, router),
           enter: (RouteEnterEvent e) => _enterPage(e),
           leave: (RouteLeaveEvent e) => _leavePage(e),
           viewHtml: '<landing-page></landing-page>'
       )
       ,'beta_info': ngRoute(
           path: '/beta_info',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
           enter: (RouteEnterEvent e) => _enterPage(e),
           leave: (RouteLeaveEvent e) => _leavePage(e),
           viewHtml: '<beta-info></beta-info>'
       )
       ,'login': ngRoute(
           path: '/login',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
           enter: (RouteEnterEvent e) => _enterPage(e),
           leave: (RouteLeaveEvent e) => _leavePage(e),
           viewHtml: '<login></login>'
       )
       ,'join': ngRoute(
           path: '/join',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
           enter: (RouteEnterEvent e) => _enterPage(e),
           leave: (RouteLeaveEvent e) => _leavePage(e),
           viewHtml: '<join></join>'
       )
       ,'change_password': ngRoute(
           path: '/change_password',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
           enter: (RouteEnterEvent e) => _enterPage(e),
           leave: (RouteLeaveEvent e) => _leavePage(e),
           viewHtml: '<change-password></change-password>'
       )
       ,'help_info': ngRoute(
           path: '/help-info',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
           enter: (RouteEnterEvent e) => _enterPage(e),
           leave: (RouteLeaveEvent e) => _leavePage(e),
           viewHtml: '<help-info></help-info>'
       )
       ,'legal_info': ngRoute(
           path: '/legal_info',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
           enter: (RouteEnterEvent e) => _enterPage(e),
           leave: (RouteLeaveEvent e) => _leavePage(e),
           viewHtml: '<legal-info></legal-info>'
       )
       ,'terminus_info': ngRoute(
           path: '/terminus_info',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
           enter: (RouteEnterEvent e) => _enterPage(e),
           leave: (RouteLeaveEvent e) => _leavePage(e),
           viewHtml: '<terminus-info></terminus-info>'
       )
       ,'policy_info': ngRoute(
           path: '/policy_info',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
           enter: (RouteEnterEvent e) => _enterPage(e),
           leave: (RouteLeaveEvent e) => _leavePage(e),
           viewHtml: '<policy-info></policy-info>'
       )
       ,'remember_password': ngRoute(
           path: '/remember_password',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
           enter: (RouteEnterEvent e) => _enterPage(e),
           leave: (RouteLeaveEvent e) => _leavePage(e),
           viewHtml: '<remember-password></remember-password>'
       )
       ,'user_profile': ngRoute(
           path: '/user_profile',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, verifyAllowEnter: true),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
           enter: (RouteEnterEvent e) => _enterPage(e),
           leave: (RouteLeaveEvent e) => _leavePage(e),
           viewHtml: '<user-profile></user-profile>'
       )
       ,'lobby': ngRoute(
           path: '/lobby',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, verifyAllowEnter: true),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
           enter: (RouteEnterEvent e) => _enterPage(e),
           leave: (RouteLeaveEvent e) => _leavePage(e),
           viewHtml: '<lobby></lobby>'
       )
       ,'my_contests': ngRoute(
           path: '/my_contests',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, verifyAllowEnter: true),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
           enter: (RouteEnterEvent e) => _enterPage(e),
           leave: (RouteLeaveEvent e) => _leavePage(e),
           viewHtml: '<my-contests></my-contests>'
       )
       ,'live_contest': ngRoute(
           path: '/live_contest/:parent/:contestId',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, verifyAllowEnter: true),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
           enter: (RouteEnterEvent e) => _enterPage(e),
           leave: (RouteLeaveEvent e) => _leavePage(e),
           viewHtml: '<view-contest></view-contest>'
       )
       ,'history_contest': ngRoute(
           path: '/history_contest/:parent/:contestId',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, verifyAllowEnter: true),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
           enter: (RouteEnterEvent e) => _enterPage(e),
           leave: (RouteLeaveEvent e) => _leavePage(e),
           viewHtml: '<view-contest></view-contest>'
       )
       ,'enter_contest': ngRoute(
           path: '/enter_contest/:parent/:contestId',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, verifyAllowEnter: true),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
           enter: (RouteEnterEvent e) => _enterPage(e),
           leave: (RouteLeaveEvent e) => _leavePage(e),
           viewHtml: '<enter-contest></enter-contest>'
       )
       ,'edit_contest': ngRoute(
           path: '/edit_contest/:parent/:contestId/:contestEntryId',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, verifyAllowEnter: true),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
           enter: (RouteEnterEvent e) => _enterPage(e),
           leave: (RouteLeaveEvent e) => _leavePage(e),
           viewHtml: '<enter-contest></enter-contest>'
       )
       ,'view_contest_entry': ngRoute(
           path: '/view_contest_entry/:parent/:viewContestEntryMode/:contestId',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, verifyAllowEnter: true),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
           enter: (RouteEnterEvent e) => _enterPage(e),
           leave: (RouteLeaveEvent e) => _leavePage(e),
           viewHtml: '<view-contest-entry></view-contest-entry>'
@@ -289,13 +280,27 @@ class WebClientApp extends Module {
     });
   }
 
-  void _preEnterPage(RoutePreEnterEvent event, {bool verifyAllowEnter : false}) {
+  void _onLandingPage(RoutePreEnterEvent event, Router router) {
+    if (ProfileService.isLoggedInStatic) {
+      router.go("lobby", {}, replace:true);
+      event.allowEnter(new Future<bool>(() => false));
+    }
+  }
+
+  void _preEnterPage(RoutePreEnterEvent event, Router router, {bool verifyAllowEnter : false}) {
 
     LoadingService.disable();
     DailySoccerServer.startContext(event.path);
 
     if (verifyAllowEnter) {
-      event.allowEnter(new Future<bool>(() => ProfileService.isLoggedInStatic));
+      event.allowEnter(new Future<bool>(() {
+
+        if (!ProfileService.isLoggedInStatic) {
+          router.go("landing_page", {}, replace:true);
+        }
+
+        return ProfileService.isLoggedInStatic;
+      }));
     }
   }
 

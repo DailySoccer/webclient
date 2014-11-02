@@ -15,9 +15,12 @@ class ProfileService {
 
   User user = null;
   bool get isLoggedIn => user != null;
-  static bool isLoggedInStatic = false;
+
+  static bool get isLoggedInStatic => _instance.isLoggedIn;  // Si te peta en esta linea te obliga a pensar, lo que es Una Buena Cosa@.
+                                                             // Una pista... quiza te ha pasado pq has quitado componentes del index?
 
   ProfileService(this._server, this._dateTimeService) {
+    _instance = this;
     _tryProfileLoad();
   }
 
@@ -73,7 +76,6 @@ class ProfileService {
     _sessionToken = theSessionToken;
     _server.setSessionToken(_sessionToken);
     user = theUser;
-    isLoggedInStatic = theUser != null;
 
     if (bSave) {
       _saveProfile();
@@ -100,7 +102,10 @@ class ProfileService {
     }
   }
 
+  static ProfileService _instance;
+
   ServerService _server;
   DateTimeService _dateTimeService;
+
   String _sessionToken;
 }

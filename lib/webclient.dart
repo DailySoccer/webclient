@@ -287,7 +287,7 @@ class WebClientApp extends Module {
       router.go("lobby", {}, replace:true);
 
       // Denegar la entrada evita un flashazo. Si no la deniegas, llega a ir a la landing antes de ir al lobby
-      event.allowEnter(new Future<bool>(() => false));
+      event.allowEnter(new Future.value(false));
     }
   }
 
@@ -297,14 +297,11 @@ class WebClientApp extends Module {
     DailySoccerServer.startContext(event.path);
 
     if (verifyAllowEnter) {
-      event.allowEnter(new Future<bool>(() {
-
-        if (!ProfileService.isLoggedInStatic) {
-          router.go("landing_page", {}, replace:true);
-        }
-
-        return ProfileService.isLoggedInStatic;
-      }));
+      // Si no estamos logeados, redirigimos a la landing
+      if (!ProfileService.isLoggedInStatic) {
+        router.go("landing_page", {}, replace:true);
+      }
+      event.allowEnter(new Future.value(ProfileService.isLoggedInStatic));
     }
   }
 

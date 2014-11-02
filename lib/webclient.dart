@@ -51,6 +51,7 @@ import 'package:webclient/components/view_contest/view_contest_entry_comp.dart';
 import 'package:webclient/components/view_contest/view_contest_comp.dart';
 import 'package:webclient/components/view_contest/fantasy_team_comp.dart';
 import 'package:webclient/components/view_contest/users_list_comp.dart';
+import 'package:webclient/components/view_contest/teams_panel_comp.dart';
 
 import 'package:webclient/components/enter_contest/enter_contest_comp.dart';
 import 'package:webclient/components/enter_contest/lineup_selector_comp.dart';
@@ -117,14 +118,16 @@ class WebClientApp extends Module {
     bind(PaginatorComp);
     bind(ContestFiltersComp);
 
-    bind(MyContestsComp);
-    bind(ViewContestComp);
-    bind(ViewContestEntryComp);
     bind(ContestHeaderComp);
     bind(ContestInfoComp);
     bind(ScoringRulesComp);
+
+    bind(MyContestsComp);
+    bind(ViewContestComp);
+    bind(ViewContestEntryComp);
     bind(FantasyTeamComp);
     bind(UsersListComp);
+    bind(TeamsPanelComp);
 
     bind(HelpInfoComp);
     bind(LegalInfoComp);

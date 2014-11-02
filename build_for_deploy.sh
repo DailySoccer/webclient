@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source build.sh
+source build.sh $mode
 rsync -r  -v --copy-unsafe-links build/web/. ../backend/public/
 
 # Revertimos los cambios hechos a distintos ficheros

@@ -16,7 +16,7 @@ transformers:
     minify: true
     verbose: true
     analyzeAll: false
-    commandLineOptions: [ --show-package-warnings, --dump-info]
+    commandLineOptions: [ --show-package-warnings ] #, --dump-info]
     suppressWarnings: false
     suppressHints: false
     terse: true

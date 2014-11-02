@@ -280,9 +280,13 @@ class WebClientApp extends Module {
     });
   }
 
+  // En la landing queremos reroutar al lobby en caso de estar logeados, pero queremos hacerlo
+  // antes de que se llegue a ver o parsear por una cuestion de rendimiento.
   void _onLandingPage(RoutePreEnterEvent event, Router router) {
     if (ProfileService.isLoggedInStatic) {
       router.go("lobby", {}, replace:true);
+
+      // Denegar la entrada evita un flashazo. Si no la deniegas, llega a ir a la landing antes de ir al lobby
       event.allowEnter(new Future<bool>(() => false));
     }
   }

@@ -16,16 +16,16 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
 
   String content;
   ScreenDetectorService scrDet;
-  LoadingService loadingService;
 
   int get screenHeight => window.innerHeight;
 
-  LandingPageComp(this._router, this._profileService, this.scrDet, this.loadingService);
+
+  LandingPageComp(this._router, this._profileService, this.scrDet, this._loadingService);
 
   void onShadowRoot(emulatedRoot) {
 
     // Nos deberia venir con el loading activo, ahora lo quitamos
-    loadingService.isLoading = false;
+    _loadingService.isLoading = false;
 
     // Capturamos los elementos envolventes, porque el layout en landing page es diferente al del resto de la web.
     _bodyObj     = querySelector('body');
@@ -65,6 +65,7 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
 
   Router _router;
   ProfileService _profileService;
+  LoadingService _loadingService;
 
   Element _bodyObj;
   Element _mainWrapper;

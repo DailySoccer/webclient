@@ -1,148 +1,146 @@
-<div id="landingPageRoot" ng-cloak>
-  <div id="desktopContent" ng-if="!scrDet.isXsScreen">
-  
-      <div id="screen1" class="first-screen" style="height:{{screenHeight}}px">
-        <div class="screen-pattern" src="images/pattern.png"></div>
-          <div class="beta-label"><img src="images/beta.png"/></div>
-          <div class="main-title-wrapper">
-  
-            <div class="main-title">LIGAS FANTÁSTICAS DIARIAS</div>
-            <div class="separator-wrapper">
-              <img src="images/separator.png"/>
-            </div>
-            <div class="modules-wrapper">
-  
-              <div class="module-column">
-                <img class="icono" src="images/icon1.png"/>
-                <p class="icono-text">Crea tu equipo en segundos</p>
-              </div>
-  
-              <div class="module-column">
-                <img class="icono" src="images/icon2.png"/>
-                <p class="icono-text">Compite en tantas ligas como quieras</p>
-              </div>
-  
-              <div class="module-column">
-                <img class="icono" src="images/icon3.png"/>
-                <p class="icono-text">Sigue los partidos en directo</p>
-              </div>
-  
-            </div>
-  
-            <div class="button-wrap">
-              <button type="button" class="button-play"  ng-click="buttonPressed('join')" id="playButton1">JUGAR</button>
-            </div>
-  
-          </div>
-          
-        <!-- Separador -->
-        <a class="wrapping-link" href="#screen2">
-          <span id="screenSeparator1" class="more-info-section-light">
-            <span>SABER MÁS</span>
-            <span class="go-down-icon"></span>
-          </span>
-        </a>
-      </div>
-  
-  
-  
-      <div id="screen2" class="screen">
-          <div class="slider-wrapper">
-            <img class="screen-background" src="images/landing02.jpg" />
-            <div class="screen-pattern"></div>
-          </div>
-          <div class="content-wrapper">
-            <div class="content-container">
-              <div class="screen-image-block">
-                <img class="screen-logo" src="images/landingLogo1.png" />
-              </div>
-              <div class="screen-text-block">
-                <p class="title-text-dark">CADA DÍA NUEVOS TORNEOS</p>
-                <p class="description-text">
-                    Liga, Champions, Europa League: cada día te ofrecemos torneos de las competiciones más importantes. Puedes participar en tantos como quieras
-                </p>
-                <button type="button" class="button-play"  ng-click="buttonPressed('join')" id="playButton2">JUGAR</button>
-              </div>
-            </div>
-          </div>
-      </div>
-  
-      <a class="wrapping-link" href="#screen3">
-        <span id="screenSeparator2" class="more-info-section-light">
-          <span>SABER MÁS</span>
-          <span class="go-down-icon"></span>
-        </span>
-      </a>
-  
-      <div id="screen3" class="screen">
-          <div class="slider-wrapper">
-            <img class="screen-background" src="images/landing03.jpg" />
-            <div class="screen-pattern"></div>
-          </div>
-          <div class="content-wrapper">
-            <div class="content-container">
-              <div class="screen-image-block">
-                <img class="screen-logo" src="images/landingLogo2.png" />
-              </div>
-              <div class="screen-text-block">
-                <p class="title-text-dark">CREA TU EQUIPO IDEAL</p>
-                <p class="description-text">
-                    Cada jugador tienen un salario acorde a su rendimiento en la vida real. Elige bien, deberás mantenerte por debajo del límite de presupuesto.
-                </p>
-                <button type="button" class="button-play"  ng-click="buttonPressed('join')" id="playButton3">JUGAR</button>
-              </div>
-            </div>
-          </div>
-      </div>
-  
-      <a class="wrapping-link" href="#screen4">
-        <span id="screenSeparator3" class="more-info-section-dark">
-          <span>SABER MÁS</span>
-          <span class="go-down-icon"></span>
-        </span>
-      </a>
-  
-      <div id="screen4" class="screen">
-          <div class="slider-wrapper">
-            <img class="screen-background" src="images/landing04.jpg" />
-            <div class="screen-pattern"></div>
-          </div>
-          <div class="content-wrapper">
-            <div class="content-container">
-              <div class="screen-image-block">
-                <img class="screen-logo" src="images/landingLogo3.jpg" />
-              </div>
-              <div class="screen-text-block">
-                <p class="title-text-dark">PUNTÚA Y GANA</p>
-                <p class="description-text">
-                    Cuando comiencen los partidos en la vida real, tus jugadores acumularán puntos en función de sus acciones. Podrás seguir su puntuación en tiempo real desde donde quieras y compararla con los equipos rivales.
-                </p>
-                <button type="button" class="button-play"  ng-click="buttonPressed('join')" id="playButton4">JUGAR</button>
-              </div>
-            </div>
-          </div>
-      </div>
-  
-  </div>
-  
-  <!-- Versión Móvil -->
-  <div id="mobileContent" ng-if="scrDet.isXsScreen" ng-show="!loadingService.isLoading">
-      <div id="screenMobile1" class="screen">
-  
-        <div class="slider-wrapper">
-          <img class="background" src="images/xsLandingBackground.jpg" />
-        </div>
-  
-        <div class="content">
-          <p class="main-title-mobile">LIGAS FANTÁSTICAS <br> DIARIAS</p>
-         <!-- <img class="banner-top" src="images/separator.png" /> -->
-          <!--<p class="highlight-text"><span class="stars"></span>CADA SEMANA,<span class="stars"></span><BR> UNA NUEVA TEMPORADA</p>-->
-          <p class="title-sup-text-mobile">CREA TU EQUIPO EN SEGUNDOS</p>
-          <p class="title-sup-text-mobile">COMPITE EN TANTAS LIGAS COMO QUIERAS</p>
-          <p class="title-sup-text-mobile">SIGUE LOS PARTIDOS EN DIRECTO</p>
-          <button type="button" class="button-play-mobile" ng-click="buttonPressed('join')" id="playButtonMobile">JUGAR</button>
-        </div>
-      </div>
-  </div>
-</div>
+<div id="#landingPageRoot">
+  <!-- Portada Versión Desktop -->
+  <div id="desktopContent" ng-if="!scrDet.isXsScreen" class="first-screen" style="height:{{screenHeight}}px">
+    <div class="screen-pattern" src="images/pattern.png"></div>
+    <div class="beta-label"><img src="images/beta.png"/></div>
+    <div class="main-title-wrapper">
 
+      <div class="main-title">LIGAS FANTÁSTICAS DIARIAS</div>
+      <div class="separator-wrapper">
+        <img src="images/separator.png"/>
+      </div>
+      <div class="modules-wrapper">
+
+        <div class="module-column">
+          <img class="icono" src="images/icon1.png"/>
+          <p class="icono-text">Crea tu equipo en segundos</p>
+        </div>
+
+        <div class="module-column">
+          <img class="icono" src="images/icon2.png"/>
+          <p class="icono-text">Compite en tantas ligas como quieras</p>
+        </div>
+
+        <div class="module-column">
+          <img class="icono" src="images/icon3.png"/>
+          <p class="icono-text">Sigue los partidos en directo</p>
+        </div>
+
+      </div>
+
+      <div class="button-wrap">
+        <button type="button" class="button-play"  ng-click="buttonPressed('join')" id="playButton1">JUGAR</button>
+      </div>
+
+    </div>
+
+    <!-- Separador -->
+    <a class="wrapping-link" href="#screen2">
+      <span id="screenSeparator1" class="more-info-section-light">
+        <span>SABER MÁS</span>
+        <span class="go-down-icon"></span>
+      </span>
+    </a>
+  </div>
+  <!-- END Portada Versión Desktop -->
+
+  <!-- Portada Versión Móvil -->
+  <div id="mobileContent" ng-if="scrDet.isXsScreen" class="screen">
+    <div class="slider-wrapper-mobile">
+      <img class="background" src="images/xsLandingBackground.jpg" />
+    </div>
+    <div class="beta-label"><img src="images/beta.png"/></div>
+    <div class="content">
+      <p class="main-title-mobile">LIGAS FANTÁSTICAS <br> DIARIAS</p>
+      <p class="title-sup-text-mobile">CREA TU EQUIPO EN SEGUNDOS</p>
+      <p class="title-sup-text-mobile">COMPITE EN TANTAS LIGAS COMO QUIERAS</p>
+      <p class="title-sup-text-mobile">SIGUE LOS PARTIDOS EN DIRECTO</p>
+      <button type="button" class="button-play-mobile" ng-click="buttonPressed('join')" id="playButtonMobile">JUGAR</button>
+    </div>
+    <!-- Separador -->
+    <a class="wrapping-link" href="#screen2">
+      <span id="screenSeparator1" class="more-info-section-light">
+        <span>SABER MÁS</span>
+        <span class="go-down-icon"></span>
+      </span>
+    </a>
+  </div>
+  <!-- END Portada Versión Móvil -->
+  <div id="screen2" class="screen">
+      <div class="slider-wrapper">
+        <img class="screen-background" src="images/landing02.jpg" />
+        <div class="screen-pattern"></div>
+      </div>
+      <div class="content-wrapper">
+        <div class="content-container">
+          <div class="screen-image-block">
+            <img class="screen-logo" src="images/landingLogo1.png" />
+          </div>
+          <div class="screen-text-block">
+            <p class="title-text-dark">CADA DÍA NUEVOS TORNEOS</p>
+            <p class="description-text">
+                Liga, Champions, Europa League: cada día te ofrecemos torneos de las competiciones más importantes. Puedes participar en tantos como quieras
+            </p>
+            <button type="button" class="button-play"  ng-click="buttonPressed('join')" id="playButton2">JUGAR</button>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <a class="wrapping-link" href="#screen3">
+    <span id="screenSeparator2" class="more-info-section-light">
+      <span>SABER MÁS</span>
+      <span class="go-down-icon"></span>
+    </span>
+  </a>
+
+  <div id="screen3" class="screen">
+      <div class="slider-wrapper">
+        <img class="screen-background" src="images/landing03.jpg" />
+        <div class="screen-pattern"></div>
+      </div>
+      <div class="content-wrapper">
+        <div class="content-container">
+          <div class="screen-image-block">
+            <img class="screen-logo" src="images/landingLogo2.png" />
+          </div>
+          <div class="screen-text-block">
+            <p class="title-text-dark">CREA TU EQUIPO IDEAL</p>
+            <p class="description-text">
+                Cada jugador tienen un salario acorde a su rendimiento en la vida real. Elige bien, deberás mantenerte por debajo del límite de presupuesto.
+            </p>
+            <button type="button" class="button-play"  ng-click="buttonPressed('join')" id="playButton3">JUGAR</button>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <a class="wrapping-link" href="#screen4">
+    <span id="screenSeparator3" class="more-info-section-dark">
+      <span>SABER MÁS</span>
+      <span class="go-down-icon"></span>
+    </span>
+  </a>
+
+  <div id="screen4" class="screen">
+      <div class="slider-wrapper">
+        <img class="screen-background" src="images/landing04.jpg" />
+        <div class="screen-pattern"></div>
+      </div>
+      <div class="content-wrapper">
+        <div class="content-container">
+          <div class="screen-image-block">
+            <img class="screen-logo" src="images/landingLogo3.jpg" />
+          </div>
+          <div class="screen-text-block">
+            <p class="title-text-dark">PUNTÚA Y GANA</p>
+            <p class="description-text">
+                Cuando comiencen los partidos en la vida real, tus jugadores acumularán puntos en función de sus acciones. Podrás seguir su puntuación en tiempo real desde donde quieras y compararla con los equipos rivales.
+            </p>
+            <button type="button" class="button-play"  ng-click="buttonPressed('join')" id="playButton4">JUGAR</button>
+          </div>
+        </div>
+      </div>
+  </div>
+
+</div>

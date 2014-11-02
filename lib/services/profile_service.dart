@@ -7,7 +7,6 @@ import 'package:angular/angular.dart';
 import 'package:json_object/json_object.dart';
 import 'package:webclient/models/user.dart';
 import 'package:webclient/services/server_service.dart';
-import 'package:webclient/services/datetime_service.dart';
 
 
 @Injectable()
@@ -19,7 +18,7 @@ class ProfileService {
   static bool get isLoggedInStatic => _instance.isLoggedIn;  // Si te peta en esta linea te obliga a pensar, lo que es Una Buena Cosa@.
                                                              // Una pista... quiza te ha pasado pq has quitado componentes del index?
 
-  ProfileService(this._server, this._dateTimeService) {
+  ProfileService(this._server) {
     _instance = this;
     _tryProfileLoad();
   }
@@ -105,7 +104,5 @@ class ProfileService {
   static ProfileService _instance;
 
   ServerService _server;
-  DateTimeService _dateTimeService;
-
   String _sessionToken;
 }

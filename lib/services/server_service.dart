@@ -297,6 +297,8 @@ class ConnectionError {
   String type;
   dynamic httpError;
 
+  int get hashCode => type.hashCode;
+
   bool operator == (other) {
     if (other is! ConnectionError) return false;
     return (other as ConnectionError).type == type;

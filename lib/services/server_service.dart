@@ -3,7 +3,6 @@ library server_service;
 import 'dart:async';
 import 'dart:convert' show JSON;
 import 'package:angular/angular.dart';
-import 'package:json_object/json_object.dart';
 import 'package:logging/logging.dart';
 import 'package:webclient/utils/host_server.dart';
 
@@ -13,43 +12,43 @@ abstract class ServerService {
   static final String SECONDS_TO_RETRY = "secondsToRetry";
 
   void               setSessionToken(String sessionToken);
-  Future<JsonObject> verifyPasswordResetToken(String token);
-  Future<JsonObject> resetPassword(String password, String stormPathTokenId);
-  Future<JsonObject> signup(String firstName, String lastName, String email, String nickName, String password);
-  Future<JsonObject> login(String email, String password);
-  Future<JsonObject> getUserProfile();
-  Future<JsonObject> changeUserProfile(String firstName, String lastName, String email, String nickName, String password);
-  Future<JsonObject> askForPasswordReset(String email);
+  Future<Map> verifyPasswordResetToken(String token);
+  Future<Map> resetPassword(String password, String stormPathTokenId);
+  Future<Map> signup(String firstName, String lastName, String email, String nickName, String password);
+  Future<Map> login(String email, String password);
+  Future<Map> getUserProfile();
+  Future<Map> changeUserProfile(String firstName, String lastName, String email, String nickName, String password);
+  Future<Map> askForPasswordReset(String email);
 
   // Conseguir la lista de Contests Active/Live/History en los que esté inscrito el User
-  Future<JsonObject> getMyContests();
-  Future<JsonObject> getMyContest(String contestId);
-  Future<JsonObject> getMyContestEntry(String contestId);
-  Future<JsonObject> getFullContest(String contestId);
-  Future<JsonObject> getViewContest(String contestId);
+  Future<Map> getMyContests();
+  Future<Map> getMyContest(String contestId);
+  Future<Map> getMyContestEntry(String contestId);
+  Future<Map> getFullContest(String contestId);
+  Future<Map> getViewContest(String contestId);
 
   // Active Contests
-  Future<JsonObject> getActiveContests();
-  Future<JsonObject> addContestEntry(String contestId, List<String> soccerPlayers);
-  Future<JsonObject> editContestEntry(String contestEntryId, List<String> soccerPlayers);
-  Future<JsonObject> cancelContestEntry(String contestEntryId);
-  Future<JsonObject> getPublicContest(String contestId);
+  Future<Map> getActiveContests();
+  Future<Map> addContestEntry(String contestId, List<String> soccerPlayers);
+  Future<Map> editContestEntry(String contestEntryId, List<String> soccerPlayers);
+  Future<Map> cancelContestEntry(String contestEntryId);
+  Future<Map> getPublicContest(String contestId);
 
   // Live Contests
-  Future<JsonObject> getLiveMatchEventsFromTemplateContest(String templateContestId);
+  Future<Map> getLiveMatchEventsFromTemplateContest(String templateContestId);
 
   // Estadísticas SoccerPlayer
-  Future<JsonObject> getSoccerPlayerInfo(String templateSoccerPlayerId);
+  Future<Map> getSoccerPlayerInfo(String templateSoccerPlayerId);
 
   // Puntuaciones
-  Future<JsonObject> getScoringRules();
+  Future<Map> getScoringRules();
 
   // Suscripción a eventos
   void               subscribe(dynamic id, {Function onSuccess, Function onError});
 
   // Debug
-  Future<JsonObject> isSimulatorActivated();
-  Future<JsonObject> getCurrentDate();
+  Future<Map> isSimulatorActivated();
+  Future<Map> getCurrentDate();
 }
 
 @Injectable()
@@ -68,93 +67,93 @@ class DailySoccerServer implements ServerService {
 
   void setSessionToken(String sessionToken) { _sessionToken = sessionToken; }
 
-  Future<JsonObject> verifyPasswordResetToken(String token) {
+  Future<Map> verifyPasswordResetToken(String token) {
     return _innerServerCall("${HostServer.url}/verify_password_reset_token", postData: {'token':token});
   }
 
-  Future<JsonObject> resetPassword(String password, String stormPathTokenId) {
+  Future<Map> resetPassword(String password, String stormPathTokenId) {
     return _innerServerCall("${HostServer.url}/reset_password", postData: {'password':password, 'token':stormPathTokenId});
   }
 
-  Future<JsonObject> signup(String firstName, String lastName, String email, String nickName, String password) {
+  Future<Map> signup(String firstName, String lastName, String email, String nickName, String password) {
     return _innerServerCall("${HostServer.url}/signup", postData: {'firstName': firstName, 'lastName': lastName, 'email': email, 'nickName': nickName, 'password': password});
   }
 
-  Future<JsonObject> login(String email, String password) {
+  Future<Map> login(String email, String password) {
     return _innerServerCall("${HostServer.url}/login", postData: {'email': email, 'password': password});
   }
 
-  Future<JsonObject> askForPasswordReset(String email) {
+  Future<Map> askForPasswordReset(String email) {
     return _innerServerCall("${HostServer.url}/ask_for_password_reset", postData: {'email': email});
   }
 
-  Future<JsonObject> getUserProfile() {
+  Future<Map> getUserProfile() {
     return _innerServerCall("${HostServer.url}/get_user_profile");
   }
 
-  Future<JsonObject> changeUserProfile(String firstName, String lastName, String email, String nickName, String password) {
+  Future<Map> changeUserProfile(String firstName, String lastName, String email, String nickName, String password) {
     return _innerServerCall("${HostServer.url}/change_user_profile", postData: {'firstName': firstName, 'lastName': lastName, 'email': email, 'nickName': nickName, 'password': password});
   }
 
-  Future<JsonObject> getMyContests() {
+  Future<Map> getMyContests() {
     return _innerServerCall("${HostServer.url}/get_my_contests");
   }
 
-  Future<JsonObject> getMyContest(String contestId) {
+  Future<Map> getMyContest(String contestId) {
     return _innerServerCall("${HostServer.url}/get_my_contest/$contestId");
   }
 
-  Future<JsonObject> getMyContestEntry(String contestId) {
+  Future<Map> getMyContestEntry(String contestId) {
     return _innerServerCall("${HostServer.url}/get_my_contest_entry/$contestId");
   }
 
-  Future<JsonObject> getFullContest(String contestId) {
+  Future<Map> getFullContest(String contestId) {
     return _innerServerCall("${HostServer.url}/get_full_contest/$contestId");
   }
 
-  Future<JsonObject> getViewContest(String contestId) {
+  Future<Map> getViewContest(String contestId) {
     return _innerServerCall("${HostServer.url}/get_view_contest/$contestId");
   }
 
-  Future<JsonObject> getActiveContests() {
+  Future<Map> getActiveContests() {
     return _innerServerCall("${HostServer.url}/get_active_contests");
   }
 
-  Future<JsonObject> addContestEntry(String contestId, List<String> soccerPlayers) {
+  Future<Map> addContestEntry(String contestId, List<String> soccerPlayers) {
     String jsonSoccerPlayers = JSON.encode(soccerPlayers);
     return _innerServerCall("${HostServer.url}/add_contest_entry", postData: {'contestId': contestId, 'soccerTeam': jsonSoccerPlayers});
   }
 
-  Future<JsonObject> editContestEntry(String contestEntryId, List<String> soccerPlayers) {
+  Future<Map> editContestEntry(String contestEntryId, List<String> soccerPlayers) {
     String jsonSoccerPlayers = JSON.encode(soccerPlayers);
     return _innerServerCall("${HostServer.url}/edit_contest_entry", postData: {'contestEntryId': contestEntryId, 'soccerTeam': jsonSoccerPlayers});
   }
 
-  Future<JsonObject> cancelContestEntry(String contestEntryId) {
+  Future<Map> cancelContestEntry(String contestEntryId) {
     return _innerServerCall("${HostServer.url}/cancel_contest_entry", postData: {'contestEntryId': contestEntryId});
   }
 
-  Future<JsonObject> getPublicContest(String contestId) {
+  Future<Map> getPublicContest(String contestId) {
     return _innerServerCall("${HostServer.url}/get_public_contest/$contestId");
   }
 
-  Future<JsonObject> getLiveMatchEventsFromTemplateContest(String templateContestId) {
+  Future<Map> getLiveMatchEventsFromTemplateContest(String templateContestId) {
     return _innerServerCall("${HostServer.url}/get_live_match_events/template_contest/$templateContestId");
   }
 
-  Future<JsonObject> getSoccerPlayerInfo(String templateSoccerPlayerId) {
+  Future<Map> getSoccerPlayerInfo(String templateSoccerPlayerId) {
     return _innerServerCall("${HostServer.url}/get_soccer_player_info/$templateSoccerPlayerId");
   }
 
-  Future<JsonObject> isSimulatorActivated() {
+  Future<Map> isSimulatorActivated() {
     return _innerServerCall("${HostServer.url}/admin/is_simulator_activated", retryTimes: 0);
   }
 
-  Future<JsonObject> getCurrentDate() {
+  Future<Map> getCurrentDate() {
     return _innerServerCall("${HostServer.url}/current_date", retryTimes: 0);
   }
 
-  Future<JsonObject> getScoringRules() {
+  Future<Map> getScoringRules() {
     return _innerServerCall("${HostServer.url}/get_scoring_rules", retryTimes: -1);
   }
 
@@ -177,7 +176,7 @@ class DailySoccerServer implements ServerService {
   /**
    * This is the only place where we call our server (except the LoggerExceptionHandler)
    */
-  Future<JsonObject> _innerServerCall(String url, {Map queryString:null, Map postData:null, int retryTimes: -1}) {
+  Future<Map> _innerServerCall(String url, {Map queryString:null, Map postData:null, int retryTimes: -1}) {
 
     Completer completer = null;
 
@@ -192,7 +191,7 @@ class DailySoccerServer implements ServerService {
       Logger.root.info("Reutilizando completer($url)");
     }
     else {
-      completer = new Completer<JsonObject>();
+      completer = new Completer<Map>();
       _pendingCalls[url]= completer;
 
       var theHeaders = {};
@@ -253,10 +252,10 @@ class DailySoccerServer implements ServerService {
     // The response can be either a Map or a List. We should avoid this step by rewriting the HttpInterceptor and creating the
     // JsonObject directly from the JsonString.
     if (httpResponse.data is List) {
-      completer.complete(new JsonObject.fromMap(new Map<String, List>()..putIfAbsent("content", () => httpResponse.data)));
+      completer.complete(new Map<String, List>()..putIfAbsent("content", () => httpResponse.data));
     }
     else {
-      completer.complete(new JsonObject.fromMap(httpResponse.data));
+      completer.complete(httpResponse.data);
     }
   }
 
@@ -308,21 +307,21 @@ class ConnectionError {
     return type;
   }
 
-  JsonObject toJson() {
-    JsonObject jsonError = new JsonObject();
+  Map toJson() {
+    Map jsonMap = {};
 
     if (isResponseError) {
       HttpResponse httpResponse = httpError as HttpResponse;
-      jsonError = new JsonObject.fromJsonString(httpResponse.data);
+      jsonMap = httpResponse.data;
     }
     else if (isServerError) {
-      jsonError = new JsonObject.fromJsonString(SERVER_ERROR_JSON);
+      jsonMap = SERVER_ERROR_JSON;
     }
     else if (isConnectionError) {
-      jsonError = new JsonObject.fromJsonString(CONNECTION_ERROR_JSON);
+      jsonMap = CONNECTION_ERROR_JSON;
     }
 
-    return jsonError;
+    return jsonMap;
   }
 
   factory ConnectionError.fromHttpResponse(var error) {

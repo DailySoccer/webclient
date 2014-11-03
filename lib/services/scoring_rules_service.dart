@@ -4,7 +4,6 @@ import 'dart:async';
 import 'package:angular/angular.dart';
 
 import "package:webclient/services/server_service.dart";
-import 'package:json_object/json_object.dart';
 
 
 @Injectable()
@@ -24,8 +23,8 @@ class ScoringRulesService {
     else {
       // Solicitamos al server la tabla de puntos
       _server.getScoringRules()
-        .then((jsonRoot) {
-            initFromJsonObject(jsonRoot.scoring_rules);
+        .then((jsonMapRoot) {
+            initFromJsonObject(jsonMapRoot["scoring_rules"]);
             completer.complete();
           });
     }
@@ -33,8 +32,8 @@ class ScoringRulesService {
     return completer.future;
   }
 
-  void initFromJsonObject(List<JsonObject> jsonRoot) {
-    scoringRules = new Map.fromIterable(jsonRoot, key: (v) => v.eventName, value: (v) => v.points);
+  void initFromJsonObject(List<Map> jsonMapRoot) {
+    scoringRules = new Map.fromIterable(jsonMapRoot, key: (v) => v["eventName"], value: (v) => v["points"]);
   }
 
   ServerService _server;

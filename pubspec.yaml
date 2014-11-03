@@ -1,12 +1,10 @@
 name: webclient
 description: Epic Eleven
 dependencies:
-    angular: '>=1.0.0 <1.1.0'
-    browser: '>=0.10.0 <0.11.0'
-    json_object: 1.0.18+2
-        
+  angular: '>=1.0.0 <1.1.0'
+  browser: '>=0.10.0 <0.11.0'
 dev_dependencies:
-    unittest: any
+  unittest: any
 
 transformers:
 - angular

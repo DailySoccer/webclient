@@ -15,6 +15,8 @@ class MainMenuSlideComp {
 
   ProfileService profileService;
   ScreenDetectorService scrDet;
+  int maxNicknameLength = 30;
+  String get userNickName => profileService.user.nickName.length > maxNicknameLength ? profileService.user.nickName.substring(0, maxNicknameLength-3) + "..." : profileService.user.nickName;
 
   String currentRouteName;
 

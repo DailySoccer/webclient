@@ -18,7 +18,7 @@
           <li highlights="my_contests">          <a  id="menuMy_Contest"           ng-click="navigateTo($event)" destination="my_contests">Mis torneos</a></li>
           <li highlights="">                     <a  id="menuPromos"               ng-click="navigateTo($event)" destination="beta_info">Promos</a></li>
           <li highlights="user" class="right-menu">
-            <a id="menuUser" class="dropdown-toggle" data-toggle="dropdown">{{profileService.user.nickName}}</a>
+            <a id="menuUser" class="dropdown-toggle" data-toggle="dropdown">{{userNickName}}</a>
             <ul class="dropdown-menu">
               <li>                    <a  id="menuUserMyAccount"        ng-click="navigateTo($event)" destination="user_profile">Mi cuenta</a></li>
               <li>                    <a  id="menuUserAddFunds"         ng-click="navigateTo($event)" destination="beta_info">Añadir fondos</a></li>

@@ -1,6 +1,5 @@
 library instance_soccer_player;
 
-import "package:json_object/json_object.dart";
 import "package:webclient/models/soccer_player.dart";
 import "package:webclient/models/soccer_team.dart";
 import "package:webclient/models/field_pos.dart";
@@ -24,10 +23,10 @@ class InstanceSoccerPlayer {
     return stats;
   }
 
-  InstanceSoccerPlayer.initFromJsonObject(JsonObject json, ContestReferences references) {
-    soccerPlayer = references.getSoccerPlayerById(json.templateSoccerPlayerId);
-    fieldPos = json.containsKey("fieldPos") ? new FieldPos(json.fieldPos) : null;
-    salary = json.containsKey("salary") ? json.salary : 0;
-    soccerTeam = references.getSoccerTeamById(json.templateSoccerTeamId);
+  InstanceSoccerPlayer.initFromJsonObject(Map jsonMap, ContestReferences references) {
+    soccerPlayer = references.getSoccerPlayerById(jsonMap["templateSoccerPlayerId"]);
+    fieldPos = jsonMap.containsKey("fieldPos") ? new FieldPos(jsonMap["fieldPos"]) : null;
+    salary = jsonMap.containsKey("salary") ? jsonMap["salary"] : 0;
+    soccerTeam = references.getSoccerTeamById(jsonMap["templateSoccerTeamId"]);
   }
 }

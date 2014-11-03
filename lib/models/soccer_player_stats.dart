@@ -1,6 +1,5 @@
 library soccer_player_stats;
 
-import "package:json_object/json_object.dart";
 import "package:webclient/models/soccer_team.dart";
 import 'package:webclient/services/contest_references.dart';
 import 'package:webclient/services/datetime_service.dart';
@@ -28,14 +27,14 @@ class SoccerPlayerStats {
   int despejes;
   int penaltisDetenidos;
 
-  SoccerPlayerStats.fromJsonObject(JsonObject json, ContestReferences references) {
-    startDate = json.containsKey("startDate") ? DateTimeService.fromMillisecondsSinceEpoch(json.startDate) : DateTimeService.now;
-    opponentTeam = json.containsKey("opponentTeamId") ? references.getSoccerTeamById(json.opponentTeamId) : "???";
+  SoccerPlayerStats.fromJsonObject(Map jsonMap, ContestReferences references) {
+    startDate = jsonMap.containsKey("startDate") ? DateTimeService.fromMillisecondsSinceEpoch(jsonMap["startDate"]) : DateTimeService.now;
+    opponentTeam = jsonMap.containsKey("opponentTeamId") ? references.getSoccerTeamById(jsonMap["opponentTeamId"]) : "???";
 
-    fantasyPoints = json.fantasyPoints;
-    playedMinutes = json.playedMinutes;
+    fantasyPoints = jsonMap["fantasyPoints"];
+    playedMinutes = jsonMap["playedMinutes"];
 
-    int _getIntValue(String key) => (json.statsCount.containsKey(key)) ? json.statsCount[key] : 0;
+    int _getIntValue(String key) => (jsonMap["statsCount"].containsKey(key)) ? jsonMap["statsCount"][key] : 0;
 
     goles = _getIntValue("GOLES");
     tiros = _getIntValue("TIROS");

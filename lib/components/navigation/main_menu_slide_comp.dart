@@ -24,6 +24,7 @@ class MainMenuSlideComp {
 
     _router.onRouteStart.listen((RouteStartEvent event) {
       event.completed.then((_) {
+        _elementActivated = false;
         if (_router.activePath.length > 0) {
           currentRouteName = _router.activePath[0].name;
           updateActiveElement(currentRouteName);
@@ -35,19 +36,37 @@ class MainMenuSlideComp {
     });
   }
 
+  void checkForActiveElement() {
+    if(_elementActivated) {
+      return;
+    }
+    if (_router.activePath.length > 0) {
+      currentRouteName = _router.activePath[0].name;
+      updateActiveElement(currentRouteName);
+    }
+    else
+    {
+      updateActiveElement('lobby');
+    }
+  }
+
   void updateActiveElement(String name) {
-      LIElement oldLi = querySelector("#mainMenu li.active");
+      LIElement oldLi = _rootElement.querySelector("#mainMenu li.active");
       if (oldLi != null) {
         oldLi.classes.remove('active');
       }
       LIElement li = querySelector("[highlights=${name}]");
       if (li != null ) {
         li.classes.add('active');
+        _elementActivated = true;
       }
       else {
         if ( name.contains('user') || name == 'help_info') {
-          LIElement li = querySelector('[highlights="user"]');
-          li.classes.add('active');
+          LIElement li = _rootElement.querySelector('[highlights="user"]');
+          if (li != null ) {
+            li.classes.add('active');
+            _elementActivated = true;
+          }
         }
       }
   }
@@ -81,4 +100,5 @@ class MainMenuSlideComp {
   Router _router;
 
   bool _linkActualizado = false;
+  bool _elementActivated = false;
 }

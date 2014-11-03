@@ -5,6 +5,7 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/components/account/user_profile_comp.dart';
 import 'package:webclient/services/loading_service.dart';
+import 'package:webclient/services/server_service.dart';
 
 @Component(
     selector: 'edit-personal-data',
@@ -128,25 +129,25 @@ class EditPersonalDataComp implements ShadowRootAware{
           parent.editedNickName   = nickName  == "" ? parent.editedNickName   : nickName;
           loadingService.isLoading = false;
         })
-        .catchError((Map error) {
+        .catchError((ConnectionError error) {
 
-          error.keys.forEach( (key) {
+          error.toJson().forEach( (key, value) {
             switch (key)
             {
               case "nickName":
                 parent
-                  ..nicknameErrorText = error[key][0]
+                  ..nicknameErrorText = value[0]
                   ..hasNicknameError = true;
 
               break;
               case "email":
                 parent
-                  ..emailErrorText = error[key][0]
+                  ..emailErrorText = value[0]
                   ..hasEmailError = true;
               break;
               case "password":
                 parent
-                  ..passwordErrorText = error[key][0]
+                  ..passwordErrorText = value[0]
                 ..hasPasswordError = true;
               break;
             }

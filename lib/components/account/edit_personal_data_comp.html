@@ -21,7 +21,7 @@
         <div class="control-wrapper"><input id="txtNickName" type="text" ng-model="parent.editedNickName" name="nickName" placeholder="Nombre de usuario" class="form-control" tabindex="3"></div>
         <!-- Error de mail -->
         <div class="content-field"       ng-class="{'hidden':!parent.hasNicknameError}">
-          <div id="nickNameError" class="join-err-text" ng-class="{'errorDetected':parent.hasNicknameError}">Error en el nick</div>
+          <div id="nickNameError" class="join-err-text" ng-class="{'errorDetected':parent.hasNicknameError}">{{parent.nicknameErrorText}}</div>
         </div>
       </div>
 
@@ -30,7 +30,7 @@
         <div class="control-wrapper"><input id="txtEmail" type="email" ng-model="parent.editedEmail" name="email" placeholder="Email" class="form-control" tabindex="4"></div>
         <!-- Error de mail -->
         <div class="content-field"       ng-class="{'hidden':!parent.hasEmailError}">
-          <div id="emailError" class="join-err-text" ng-class="{'errorDetected':!parent.hasEmailError}">Error de mail</div>
+          <div id="emailError" class="join-err-text" ng-class="{'errorDetected':!parent.hasEmailError}">{{parent.emailErrorText}}</div>
         </div>
       </div>
 
@@ -43,7 +43,7 @@
         <div class="control-wrapper"><input id="txtPassword" type="password" ng-model="parent.editedPassword" name="password" placeholder="Contraseña" class="form-control" tabindex="5"></div>
         <!-- Error de contraseñas -->
         <div class="content-field-block" ng-class="{'hidden':!parent.hasPasswordError}">
-          <div id="passwordError" class="join-err-text"  ng-class="{'errorDetected':parent.hasPasswordError}">Los passwords no coinciden.</div>
+          <div id="passwordError" class="join-err-text"  ng-class="{'errorDetected':parent.hasPasswordError}">{{parent.passwordErrorText}}</div>
         </div>
       </div>
       <!-- Repetir Contraseña -->

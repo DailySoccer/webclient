@@ -5,7 +5,6 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'dart:html';
 import 'package:webclient/services/screen_detector_service.dart';
-import 'dart:js';
 
 @Component(
     selector: 'main-menu-slide',

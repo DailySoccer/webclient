@@ -3,7 +3,6 @@ library enter_contest_comp;
 import 'dart:html';
 import 'dart:async';
 import 'package:angular/angular.dart';
-import "package:json_object/json_object.dart";
 import 'package:webclient/services/active_contests_service.dart';
 import 'package:webclient/services/my_contests_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
@@ -100,9 +99,20 @@ class EnterContestComp implements DetachAware {
       .catchError((error) {
         _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
       });
+
+    _routeHandle = _routeProvider.route.newHandle();
+    _routeHandle.onPreLeave.listen((RoutePreLeaveEvent event) {
+      event.route.dontLeaveOnParamChanges;
+      bool decision = window.confirm('Estas seguro que quieres salir? Si pulsas en aceptar perderas los cambios realizados en esta alineación y abandonaras el torneo.');
+      event.allowLeave(new Future.value(decision));
+    });
+    //_routeHandle.onPreLeave.listen((RoutePreLeaveEvent event) => onRoutePrelive(event, _routeHandle));
+
   }
 
   void detach() {
+    _routeHandle.discard();
+
     if (_retryOpTimer != null && _retryOpTimer.isActive) {
       _retryOpTimer.cancel();
     }
@@ -301,13 +311,13 @@ class EnterContestComp implements DetachAware {
     }
   }
 
-  void _errorCreating(JsonObject jsonObject) {
-    if (jsonObject.containsKey("error")) {
-      if (jsonObject.error.contains(ERROR_RETRY_OP)) {
+  void _errorCreating(Map jsonMap) {
+    if (jsonMap.containsKey("error")) {
+      if (jsonMap["error"].contains(ERROR_RETRY_OP)) {
         _retryOpTimer = new Timer(const Duration(seconds:3), () => createFantasyTeam());
       }
       else {
-        _flashMessage.error("$jsonObject", context: FlashMessagesService.CONTEXT_VIEW);
+        _flashMessage.error("$jsonMap", context: FlashMessagesService.CONTEXT_VIEW);
       }
     }
   }
@@ -408,6 +418,8 @@ class EnterContestComp implements DetachAware {
     }
   }
 
+
+
   Router _router;
   RouteProvider _routeProvider;
 
@@ -423,4 +435,5 @@ class EnterContestComp implements DetachAware {
   var _streamListener;
 
   Timer _retryOpTimer;
+  RouteHandle _routeHandle;
 }

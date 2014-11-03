@@ -2,6 +2,7 @@ library form_autofill_decorator;
 
 import 'package:angular/angular.dart';
 import 'dart:html';
+import 'package:webclient/utils/js_utils.dart';
 
 /*
  *  Actualizar los campos asociados ("ng-model") a los inputs de los formularios
@@ -52,6 +53,9 @@ class FormAutofillDecorator implements AttachAware{
     else {
       print("Autofill: .btn-primary not found");
     }
+
+    //reset del botón
+    JsUtils.runJavascript('[type=submit]', 'button', 'reset');
 
     /*
     // El evento 'submit' llega tarde para avisar a los 'inputs

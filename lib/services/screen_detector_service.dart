@@ -24,8 +24,7 @@ class ScreenDetectorService {
   void _detectNow(num theTime) {
 
     String message = '';
-    if (window.matchMedia("(min-width: 992px)").matches)
-    {
+    if (window.matchMedia("(min-width: 992px)").matches) {
       message = 'desktop';
     }
     else if (window.matchMedia("(min-width: 768px)").matches && !isSmScreen) {
@@ -41,7 +40,7 @@ class ScreenDetectorService {
 
       Logger.root.info('ScreenDetectorService: ScreenWidth is ' + message.toUpperCase());
 
-      switch(message){
+      switch(message) {
         case "xs":
           isXsScreen = true;
           isSmScreen = false;

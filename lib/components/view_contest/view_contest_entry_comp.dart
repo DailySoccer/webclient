@@ -27,8 +27,6 @@ class ViewContestEntryComp {
 
   DateTime updatedDate;
 
-  List<String> matchesInvolved = [];
-
   Contest get contest => _myContestsService.lastContest;
   List<ContestEntry> get contestEntries => (contest != null) ? contest.contestEntries : null;
   List<ContestEntry> get contestEntriesOrderByPoints => (contest != null) ? contest.contestEntriesOrderByPoints : null;
@@ -48,21 +46,12 @@ class ViewContestEntryComp {
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
 
     _myContestsService.refreshMyContestEntry(contestId)
-      .then((jsonObject) {
+      .then((jsonMap) {
         loadingService.isLoading = false;
 
         mainPlayer = contest.getContestEntryWithUser(_profileService.user.userId);
 
         updatedDate = DateTimeService.now;
-
-        // generamos los partidos para el filtro de partidos
-        matchesInvolved.clear();
-        List<MatchEvent> matchEventsSorted = new List<MatchEvent>.from(contest.matchEvents)
-            .. sort((entry1, entry2) => entry1.startDate.compareTo(entry2.startDate))
-            .. forEach( (match) {
-              matchesInvolved.add(match.soccerTeamA.shortName + '-' + match.soccerTeamB.shortName + "<br>" + DateTimeService.formatDateTimeShort(match.startDate));
-            });
-
       })
       .catchError((error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW));
   }

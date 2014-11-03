@@ -72,7 +72,7 @@ tc.put("packages/webclient/components/account/change_password_comp.html", new Ht
 
   </div>
 </div>"""));
-tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new HttpResponse(200, r"""<div id="personalDataContent">
+tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new HttpResponse(200, r"""<div id="personalDataContent" ng-show="!loadingService.isLoading">
 
   <div class="edit-personal-data-modal-header">
     <span class="header-title">EDITAR CUENTA</span>
@@ -92,10 +92,10 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
       </div>
       <!-- Nickname -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtNickName" type="text" ng-model="parent.editedNickName" name="nickName" placeholder="Nombre de usuario" class="form-control" disabled tabindex="3"></div>
+        <div class="control-wrapper"><input id="txtNickName" type="text" ng-model="parent.editedNickName" name="nickName" placeholder="Nombre de usuario" class="form-control" tabindex="3"></div>
         <!-- Error de mail -->
         <div class="content-field"       ng-class="{'hidden':!parent.hasNicknameError}">
-          <div id="nickNameError" class="join-err-text" ng-class="{'errorDetected':parent.hasNicknameError}">Error en el nick</div>
+          <div id="nickNameError" class="join-err-text" ng-class="{'errorDetected':parent.hasNicknameError}">{{parent.nicknameErrorText}}</div>
         </div>
       </div>
 
@@ -104,7 +104,7 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
         <div class="control-wrapper"><input id="txtEmail" type="email" ng-model="parent.editedEmail" name="email" placeholder="Email" class="form-control" tabindex="4"></div>
         <!-- Error de mail -->
         <div class="content-field"       ng-class="{'hidden':!parent.hasEmailError}">
-          <div id="emailError" class="join-err-text" ng-class="{'errorDetected':!parent.hasEmailError}">Error de mail</div>
+          <div id="emailError" class="join-err-text" ng-class="{'errorDetected':!parent.hasEmailError}">{{parent.emailErrorText}}</div>
         </div>
       </div>
 
@@ -117,7 +117,7 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
         <div class="control-wrapper"><input id="txtPassword" type="password" ng-model="parent.editedPassword" name="password" placeholder="Contraseña" class="form-control" tabindex="5"></div>
         <!-- Error de contraseñas -->
         <div class="content-field-block" ng-class="{'hidden':!parent.hasPasswordError}">
-          <div id="passwordError" class="join-err-text"  ng-class="{'errorDetected':parent.hasPasswordError}">Los passwords no coinciden.</div>
+          <div id="passwordError" class="join-err-text"  ng-class="{'errorDetected':parent.hasPasswordError}">{{parent.passwordErrorText}}</div>
         </div>
       </div>
       <!-- Repetir Contraseña -->
@@ -173,7 +173,7 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
     </div>
   </form>
 </div>"""));
-tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(200, r"""<div id="joinRoot">
+tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(200, r"""<div id="joinRoot" ng-show="!loadingService.isLoading">
   <div id="signupbox" class="main-box">
 
     <div class="panel window-slide-in">
@@ -312,7 +312,7 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
 
   </div>
 </div>"""));
-tc.put("packages/webclient/components/account/remember_password_comp.html", new HttpResponse(200, r"""<div id="rememberPasswordRoot">
+tc.put("packages/webclient/components/account/remember_password_comp.html", new HttpResponse(200, r"""<div id="rememberPasswordRoot" ng-show="!loadingService.isLoading">
   <div id="loginBox" class="main-box">
 
     <div class="panel window-slide-in">
@@ -2342,16 +2342,16 @@ tc.put("packages/webclient/components/navigation/main_menu_slide_comp.html", new
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <div id="brandLogoLogged" class="navbar-brand" ng-click="navigateTo($event)" destination="lobby" ng-class="['loggedIn-brand']"></div>
+        <div id="brandLogoLogged" class="navbar-brand" ng-click="navigateTo($event)" destination="lobby" ng-class="['loggedIn-brand']" ng-model="checkForActiveElement()"></div>
       </div>
       <!-- Opciones del menu -->
       <div id="menuSlide" class="navbar-offcanvas navmenu-fixed offcanvas" ng-if="profileService.isLoggedIn">
         <ul class="nav navbar-nav">
-          <li class="active" highlights="lobby"> <a  id="menuLobby"                ng-click="navigateTo($event)" destination="lobby">Buscar Torneos</a></li>
+          <li highlights="lobby"> <a  id="menuLobby"                ng-click="navigateTo($event)" destination="lobby">Buscar Torneos</a></li>
           <li highlights="my_contests">          <a  id="menuMy_Contest"           ng-click="navigateTo($event)" destination="my_contests">Mis torneos</a></li>
           <li highlights="">                     <a  id="menuPromos"               ng-click="navigateTo($event)" destination="beta_info">Promos</a></li>
           <li highlights="user" class="right-menu">
-            <a id="menuUser" class="dropdown-toggle" data-toggle="dropdown">{{profileService.user.nickName}}</a>
+            <a id="menuUser" class="dropdown-toggle" data-toggle="dropdown">{{userNickName}}</a>
             <ul class="dropdown-menu">
               <li>                    <a  id="menuUserMyAccount"        ng-click="navigateTo($event)" destination="user_profile">Mi cuenta</a></li>
               <li>                    <a  id="menuUserAddFunds"         ng-click="navigateTo($event)" destination="beta_info">Añadir fondos</a></li>
@@ -2495,6 +2495,31 @@ tc.put("packages/webclient/components/view_contest/fantasy_team_comp.html", new 
   </div>
 
 </div>"""));
+tc.put("packages/webclient/components/view_contest/teams_panel_comp.html", new HttpResponse(200, r"""<div id="teamsPanelRoot" ng-show="contest != null">
+
+  <div class="teams-comp-bar" ng-if="!scrDet.isXsScreen">
+    <div class="teams-container">
+      <div class="teams-box" ng-repeat="match in matchesInvolved">
+        <div class="teams-info" ng-bind-html="getMatchAndPeriodInfo($index, match)"></div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="teams-comp-bar" ng-if="scrDet.isXsScreen">
+      <div class="teams-toggler-wrapper" ng-if="isCollapsable">
+        <div id="teamsToggler" type="button" class="teams-toggler toggleOff" ng-click="toggleTeamsPanel()" data-target="#teamsPanel">PARTIDOS</div>
+      </div>
+      <div id="teamsPanel" class="teams-container" ng-class="{'collapse':isCollapsable}">
+        <div class="top-border"></div>
+        <div class="teams-box" ng-repeat="match in matchesInvolved">
+          <div class="teams-info" ng-bind-html="getMatchAndPeriodInfo($index, match)"></div>
+        </div>
+        <div class="bottom-border"></div>
+      </div>
+    </div>
+  </div>
+</div>"""));
 tc.put("packages/webclient/components/view_contest/users_list_comp.html", new HttpResponse(200, r"""<div id="usersListRoot" ng-cloak>
 
   <div ng-class="{'users-header-next': isViewContestEntryMode, 'users-header' : !isViewContestEntryMode}">
@@ -2525,31 +2550,7 @@ tc.put("packages/webclient/components/view_contest/view_contest_comp.html", new 
 
   <contest-header id="contestHeader" contest="contest" contest-id="contestId"></contest-header>
 
-<!-- this will be a component -->
-  <div class="info-and-social-bar" ng-if="!scrDet.isXsScreen">
-    <!--<div class="social"><img src="images/socialBig.png"></div>-->
-    <div class="teams-container">
-      <div class="teams-box" ng-repeat="match in matchesInvolved">
-        <div class="teams-info" ng-bind-html="getMatchAndPeriodInfo($index, match)"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="info-and-social-bar" ng-if="scrDet.isXsScreen">
-    <div class="teams-toggler-wrapper">
-      <div id="teamsToggler" type="button" class="teams-toggler toggleOff" ng-click="toggleTeamsPanel()" data-target="#teamsPanel">PARTIDOS</div>
-    </div>
-    <div id="teamsPanel" class="teams-container collapse">
-      <div class="top-border"></div>
-      <div class="teams-box" ng-repeat="match in matchesInvolved">
-        <div class="teams-info" ng-bind-html="getMatchAndPeriodInfo($index, match)"></div>
-      </div>
-      <div class="bottom-border"></div>
-    </div>
-  </div>
-<!-- END this will be a component -->
-
-
+  <teams-panel id="teamsPanelRoot" contest="contest" contest-id="contestId" collapsable="true"></teams-panel>
 
   <div id="liveContestRoot" ng-switch="scrDet.isXsScreen" ng-cloak>
     <div ng-switch-when="true">
@@ -2585,21 +2586,7 @@ tc.put("packages/webclient/components/view_contest/view_contest_entry_comp.html"
 
   <contest-header id="contestHeader" contest="contest" contest-id="contestId"></contest-header>
 
-  <!-- this will be a component -->
-
-  <div class="info-and-social-bar">
-    <!--<div class="social"><img src="images/socialBig.png"></div>-->
-    <!-- Chapu hasta que convierta esto en un componente -->
-    <div id="teamsPanel" class="teams-container">
-      <div class="top-border"></div>
-      <div class="teams-box" ng-repeat="match in matchesInvolved">
-        <div class="teams-info" ng-bind-html="match"></div>
-      </div>
-      <div class="bottom-border"></div>
-    </div>
-  </div>
-
-  <!--END this will be a component -->
+  <teams-panel id="teamsPanel" contest="contest" contest-id="contestId" collapsable="false"></teams-panel>
 
   <div class="separator-bar"></div>
   <div class="info-complete-bar" ng-if="!isModeViewing">

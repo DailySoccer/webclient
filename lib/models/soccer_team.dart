@@ -1,6 +1,5 @@
 library soccer_team;
 
-import "package:json_object/json_object.dart";
 import "package:webclient/models/soccer_player.dart";
 import "package:webclient/models/match_event.dart";
 import 'package:webclient/services/contest_references.dart';
@@ -16,18 +15,18 @@ class SoccerTeam {
 
   SoccerTeam.referenceInit(this.templateSoccerTeamId);
 
-  factory SoccerTeam.fromJsonObject(JsonObject json, ContestReferences references) {
-    SoccerTeam soccerTeam = references.getSoccerTeamById(json.containsKey("templateSoccerTeamId") ? json.templateSoccerTeamId : json["_id"]);
-    return soccerTeam._initFromJsonObject(json, references);
+  factory SoccerTeam.fromJsonObject(Map jsonMap, ContestReferences references) {
+    SoccerTeam soccerTeam = references.getSoccerTeamById(jsonMap.containsKey("templateSoccerTeamId") ? jsonMap["templateSoccerTeamId"] : jsonMap["_id"]);
+    return soccerTeam._initFromJsonObject(jsonMap, references);
   }
 
-  SoccerTeam _initFromJsonObject(JsonObject json, ContestReferences references) {
+  SoccerTeam _initFromJsonObject(Map jsonMap, ContestReferences references) {
     assert(templateSoccerTeamId.isNotEmpty);
-    name = json.containsKey("name") ? json.name : "";
-    shortName = json.containsKey("shortName") ? json.shortName : "";
+    name = jsonMap.containsKey("name") ? jsonMap["name"] : "";
+    shortName = jsonMap.containsKey("shortName") ? jsonMap["shortName"] : "";
 
-    if (json.containsKey("soccerPlayers")) {
-      for (var x in json.soccerPlayers) {
+    if (jsonMap.containsKey("soccerPlayers")) {
+      for (var x in jsonMap["soccerPlayers"]) {
         SoccerPlayer soccerPlayer = references.getSoccerPlayerById(x)
           .. soccerTeam = this;
 

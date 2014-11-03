@@ -5,6 +5,7 @@ import 'dart:html';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/server_service.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/services/loading_service.dart';
 
 @Component(
     selector: 'remember-password',
@@ -21,7 +22,7 @@ class RememberPasswordComp{
   bool get enabledSubmit => StringUtils.isValidEmail(email) && _enabledSubmit;
   bool errorDetected = false;
 
-  RememberPasswordComp(this._router, this._profileManager, this._serverService);
+  RememberPasswordComp(this._router, this._profileManager, this.loadingService, this._serverService);
 
   void navigateTo(String route, Map parameters, event)
   {
@@ -32,16 +33,19 @@ class RememberPasswordComp{
   }
 
   void rememberMyPassword() {
+    loadingService.isLoading = true;
     errorDetected = false;
     _enabledSubmit = false;
 
     _serverService.askForPasswordReset(email)
      .then((_) {
         state = STATE_REQUESTED;
+        loadingService.isLoading = false;
     })
      .catchError( (error) {
         errorDetected = true;
         _enabledSubmit = true;
+        loadingService.isLoading = false;
       }
     );
   }
@@ -53,4 +57,6 @@ class RememberPasswordComp{
   ProfileService _profileManager;
   Element _errSection;
   ServerService _serverService;
+
+  LoadingService loadingService;
 }

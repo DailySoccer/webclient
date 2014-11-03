@@ -1,6 +1,5 @@
 library contest_entry;
 
-import "package:json_object/json_object.dart";
 import "package:webclient/models/user.dart";
 import "package:webclient/models/soccer_player.dart";
 import "package:webclient/models/contest.dart";
@@ -40,18 +39,18 @@ class ContestEntry {
 
   ContestEntry(this.contestEntryId, this.user, this.instanceSoccerPlayers);
 
-  ContestEntry.initFromJsonObject(JsonObject json, ContestReferences references, Contest theContest) {
-    contestEntryId = json["_id"];
-    user = references.getUserById(json.userId);
+  ContestEntry.initFromJsonObject(Map jsonMap, ContestReferences references, Contest theContest) {
+    contestEntryId = jsonMap["_id"];
+    user = references.getUserById(jsonMap["userId"]);
 
     // Enviado únicamente cuando se envíe usando jsonView.FullContest
-    if (json.containsKey("soccerIds")) {
-      instanceSoccerPlayers = json.soccerIds.map((soccerPlayerId) => theContest.getInstanceSoccerPlayer(soccerPlayerId)).toList();
+    if (jsonMap.containsKey("soccerIds")) {
+      instanceSoccerPlayers = jsonMap["soccerIds"].map((soccerPlayerId) => theContest.getInstanceSoccerPlayer(soccerPlayerId)).toList();
     }
 
-    position = (json.containsKey("position")) ? json.position : 0;
-    prize = (json.containsKey("prize")) ? json.prize : 0;
-    fantasyPoints = (json.containsKey("fantasyPoints")) ? json.fantasyPoints : 0;
+    position = (jsonMap.containsKey("position")) ? jsonMap["position"] : 0;
+    prize = (jsonMap.containsKey("prize")) ? jsonMap["prize"] : 0;
+    fantasyPoints = (jsonMap.containsKey("fantasyPoints")) ? jsonMap["fantasyPoints"] : 0;
 
     contest = theContest;
 

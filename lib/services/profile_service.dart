@@ -6,6 +6,8 @@ import 'dart:convert';
 import 'package:angular/angular.dart';
 import 'package:webclient/models/user.dart';
 import 'package:webclient/services/server_service.dart';
+import 'package:webclient/utils/host_server.dart';
+import 'package:logging/logging.dart';
 
 
 @Injectable()
@@ -43,15 +45,14 @@ class ProfileService {
   }
 
   Future<Map> _onLoginResponse(Map loginResponseJson) {
-
     _server.setSessionToken(loginResponseJson["sessionToken"]); // to make the getUserProfile call succeed
     return _server.getUserProfile()
-                      .then((jsonMap) => _setProfile(loginResponseJson["sessionToken"], new User.fromJsonObject(jsonMap), true));
+                      .then((jsonMap) => _setProfile(loginResponseJson["sessionToken"], jsonMap, true));
   }
 
   Future<Map> refreshUserProfile() {
     return _server.getUserProfile()
-                      .then((jsonMap) => _setProfile(_sessionToken, new User.fromJsonObject(jsonMap), true));
+                      .then((jsonMap) => _setProfile(_sessionToken, jsonMap, true));
   }
 
   Future<Map> changeUserProfile(String firstName, String lastName, String email, String nickName, String password) {
@@ -64,21 +65,30 @@ class ProfileService {
 
   Future<Map> logout() {
 
-    if (!isLoggedIn)
+    if (!isLoggedIn) {
       throw new Exception("WTF 444 - We should be logged in when loging out");
+    }
 
-    _setProfile(null, null, true);
-    return new Future.value();
+    return new Future.value(_setProfile(null, null, true));
   }
 
-  void _setProfile(String theSessionToken, User theUser, bool bSave) {
+  Map _setProfile(String theSessionToken, Map jsonMap, bool bSave) {
+
+    if (theSessionToken != null && jsonMap != null) {
+      user = new User.fromJsonObject(jsonMap);
+    }
+    else {
+      user = null;
+    }
+
     _sessionToken = theSessionToken;
     _server.setSessionToken(_sessionToken);
-    user = theUser;
 
     if (bSave) {
       _saveProfile();
     }
+
+    return jsonMap;
   }
 
   void _tryProfileLoad() {
@@ -86,7 +96,26 @@ class ProfileService {
     var storedUser = window.localStorage['user'];
 
     if (storedSessionToken != null && storedUser != null) {
-      _setProfile(storedSessionToken, new User.fromJsonObject(JSON.decode(storedUser)), false);
+      _setProfile(storedSessionToken, JSON.decode(storedUser), false);
+
+      // Cuando se resetea la DB, los logins siguen siendo validos (stormpath) pero se vuelven a crear los usuarios.
+      // Esto quiere decir que tanto nuestro token como nuestro user.UserId (que es directamente el ObjectId de mongo)
+      // no es valido ya. Ademas, durante desarrollo, podemos borrar la DB. El token seguira siendo valido (puesto que
+      // es el email), pero el userId no.
+      _server.getUserProfile().then((jsonMap) {
+        // Si nuestro usuario ya no es el mismo pero no ha dado un error, el sessionToken sigue siendo valido y lo
+        // unico que tenemos que hacer es anotar el nuevo User
+        if (jsonMap["_id"] != user.userId) {
+          Logger.root.info("ProfileService: Se borro la DB y pudimos reusar el sessionToken.");
+          _setProfile(storedSessionToken, jsonMap, true);
+        }
+      })
+      .catchError((error) {
+        // No se ha podido refrescar: Tenemos que salir y pedir que vuelva a hacer login
+        window.localStorage.clear();
+        Logger.root.severe("ProfileService: Se borro la DB y necesitamos volver a hacer login.");
+        window.location.reload();
+      });
     }
   }
 

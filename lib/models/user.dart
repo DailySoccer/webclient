@@ -23,7 +23,9 @@ class User {
     if (references == null)
       references = new ContestReferences();
 
-    // TODO: storedSessionToken almacena un user sin "_id" (por lo que, sin esta comprobacion, lanza una excepcion)
+    // En nuestro localStorage se almacena un user serializado directamente de esta clase, asi que tendra
+    // un campo userId. Sin embargo, del servidor los ids siempre nos llegan en el campo _id. Asi que tenemos
+    // que hacer esta comprobacion, pq a veces el user nos llega desde el servidor y otras desde el localStorage
     String userId = (jsonMap.containsKey("_id"))      ? jsonMap["_id"]
                   : ((jsonMap.containsKey("userId"))  ? jsonMap["userId"]
                   : "<userId: null>");

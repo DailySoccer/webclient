@@ -76,7 +76,7 @@ class Contest {
     if(isLive || isHistory) {
       return "${tournamentTypeName} - Límite de salario: ${salaryCap}";
     }
-    return "${tournamentTypeName}: ${numEntries} de ${maxEntries} jugadores - Límite de salario: ${salaryCap}";
+    return "${tournamentTypeName}: ${numEntries} de ${maxEntries} participantes - Límite de salario: ${salaryCap}";
   }
 
   List<ContestEntry> get contestEntriesOrderByPoints {

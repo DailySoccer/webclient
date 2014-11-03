@@ -100,9 +100,20 @@ class EnterContestComp implements DetachAware {
       .catchError((error) {
         _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
       });
+
+    _routeHandle = _routeProvider.route.newHandle();
+    _routeHandle.onPreLeave.listen((RoutePreLeaveEvent event) {
+      event.route.dontLeaveOnParamChanges;
+      bool decision = window.confirm('Estas seguro que quieres salir? Si pulsas en aceptar perderas los cambios realizados en esta alineación y abandonaras el torneo.');
+      event.allowLeave(new Future.value(decision));
+    });
+    //_routeHandle.onPreLeave.listen((RoutePreLeaveEvent event) => onRoutePrelive(event, _routeHandle));
+
   }
 
   void detach() {
+    _routeHandle.discard();
+
     if (_retryOpTimer != null && _retryOpTimer.isActive) {
       _retryOpTimer.cancel();
     }
@@ -408,6 +419,8 @@ class EnterContestComp implements DetachAware {
     }
   }
 
+
+
   Router _router;
   RouteProvider _routeProvider;
 
@@ -423,4 +436,5 @@ class EnterContestComp implements DetachAware {
   var _streamListener;
 
   Timer _retryOpTimer;
+  RouteHandle _routeHandle;
 }

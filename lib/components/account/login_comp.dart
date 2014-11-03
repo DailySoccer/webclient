@@ -23,7 +23,7 @@ class LoginComp implements ShadowRootAware {
 
   bool get enabledSubmit => StringUtils.isValidEmail(email) && password.isNotEmpty && _enabledSubmit;
 
-  LoginComp(this._router, this._profileManager,this.loadingService, this._rootElement);
+  LoginComp(this._router, this._profileManager, this.loadingService, this._rootElement);
 
   @override void onShadowRoot(emulatedRoot) {
     _errSection = _rootElement.querySelector("#mailPassError");

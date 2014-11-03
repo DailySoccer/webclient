@@ -4,6 +4,7 @@ import 'package:angular/angular.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/components/account/user_profile_comp.dart';
+import 'package:webclient/services/loading_service.dart';
 
 @Component(
     selector: 'edit-personal-data',
@@ -41,7 +42,7 @@ class EditPersonalDataComp implements ShadowRootAware{
   //TODO: pensar si Esto debería estar siempre habilitado y hacerlas comprobaciones antes de enviar los cambios.
   //bool get enabledSubmit => parent.editedNickName.isNotEmpty && parent.editedEmail.isNotEmpty && parent.editedRepeatPassword.isNotEmpty && parent.editedPassword.isNotEmpty && _enabledSubmit;
 
-  EditPersonalDataComp(this._profileManager, this.parent) {
+  EditPersonalDataComp(this._profileManager, this.loadingService, this.parent) {
   }
 
   void init() {
@@ -108,6 +109,7 @@ class EditPersonalDataComp implements ShadowRootAware{
       if (!validatePassword() ) {
         return;
       }
+      loadingService.isLoading = true;
       //_enabledSubmit = false;
       String firstName = _profileManager.user.firstName  != parent.editedFirstName ? parent.editedFirstName  : "";
       String lastName  = _profileManager.user.lastName   != parent.editedLastName  ? parent.editedLastName   : "";
@@ -119,7 +121,10 @@ class EditPersonalDataComp implements ShadowRootAware{
 
       _profileManager.changeUserProfile(firstName, lastName, email, nickName, password)
         //Not implemented yet //.then((_) => _profileManager.saveUserData(firstName, lastName,acceptGameAlerts, /* nickName, */ email, password))
-        .then((_) => closeModal())
+        .then((_) {
+          closeModal();
+          loadingService.isLoading = false;
+        })
         .catchError((Map error) {
 
           error.keys.forEach( (key) {
@@ -143,7 +148,7 @@ class EditPersonalDataComp implements ShadowRootAware{
               break;
             }
           });
-
+          loadingService.isLoading = false;
         });
   }
 
@@ -161,6 +166,12 @@ class EditPersonalDataComp implements ShadowRootAware{
     JsUtils.runJavascript('#editPersonalDataModal', 'modal', 'hide');
   }
 
+
+  @override void onShadowRoot(emulatedRoot) {
+    init();
+  }
+
+
   ProfileService _profileManager;
   bool _acceptNewsletter;
   bool _acceptGameAlerts;
@@ -168,8 +179,5 @@ class EditPersonalDataComp implements ShadowRootAware{
   bool _enabledSubmit = false;
   bool _popUpStyle;
 
-  @override
-  void onShadowRoot(emulatedRoot) {
-    init();
-  }
+  LoadingService loadingService;
 }

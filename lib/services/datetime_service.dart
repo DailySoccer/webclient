@@ -74,8 +74,8 @@ class DateTimeService {
 
   void _verifySimulatorActivated() {
     _server.isSimulatorActivated()
-      .then((jsonObject) {
-        _simulatorActivated = jsonObject.simulator_activated;
+      .then((jsonMap) {
+        _simulatorActivated = jsonMap["simulator_activated"];
 
         // Cuando se active el simulador...
         if (_simulatorActivated) {
@@ -94,8 +94,8 @@ class DateTimeService {
 
   void _updateDateFromServer () {
     _server.getCurrentDate()
-      .then((jsonObject) {
-        _fakeDateTime = fromMillisecondsSinceEpoch(jsonObject.currentDate);
+      .then((jsonMap) {
+        _fakeDateTime = fromMillisecondsSinceEpoch(jsonMap["currentDate"]);
       });
   }
 

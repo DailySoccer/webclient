@@ -3,7 +3,6 @@ library enter_contest_comp;
 import 'dart:html';
 import 'dart:async';
 import 'package:angular/angular.dart';
-import "package:json_object/json_object.dart";
 import 'package:webclient/services/active_contests_service.dart';
 import 'package:webclient/services/my_contests_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
@@ -301,13 +300,13 @@ class EnterContestComp implements DetachAware {
     }
   }
 
-  void _errorCreating(JsonObject jsonObject) {
-    if (jsonObject.containsKey("error")) {
-      if (jsonObject.error.contains(ERROR_RETRY_OP)) {
+  void _errorCreating(Map jsonMap) {
+    if (jsonMap.containsKey("error")) {
+      if (jsonMap["error"].contains(ERROR_RETRY_OP)) {
         _retryOpTimer = new Timer(const Duration(seconds:3), () => createFantasyTeam());
       }
       else {
-        _flashMessage.error("$jsonObject", context: FlashMessagesService.CONTEXT_VIEW);
+        _flashMessage.error("$jsonMap", context: FlashMessagesService.CONTEXT_VIEW);
       }
     }
   }

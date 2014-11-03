@@ -22,13 +22,13 @@ class SoccerPlayerService {
     var completer = new Completer();
 
     _server.getSoccerPlayerInfo(templateSoccerPlayerId)
-        .then((jsonObject) {
+        .then((jsonMap) {
           ContestReferences contestReferences = new ContestReferences();
 
-          nextMatchEvent = jsonObject.containsKey("match_event") ? new MatchEvent.fromJsonObject(jsonObject.match_event, contestReferences) : null;
-          jsonObject.soccer_teams.forEach( (jsonTeam) =>
+          nextMatchEvent = jsonMap.containsKey("match_event") ? new MatchEvent.fromJsonObject(jsonMap["match_event"], contestReferences) : null;
+          jsonMap["soccer_teams"].forEach( (jsonTeam) =>
               new SoccerTeam.fromJsonObject(jsonTeam, contestReferences) );
-          soccerPlayer = new SoccerPlayer.fromJsonObject(jsonObject.soccer_player, contestReferences);
+          soccerPlayer = new SoccerPlayer.fromJsonObject(jsonMap["soccer_player"], contestReferences);
           completer.complete();
         });
 

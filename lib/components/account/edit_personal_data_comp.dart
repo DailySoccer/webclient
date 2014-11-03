@@ -111,18 +111,21 @@ class EditPersonalDataComp implements ShadowRootAware{
       }
       loadingService.isLoading = true;
       //_enabledSubmit = false;
+      String nickName  = _profileManager.user.nickName   != parent.editedNickName  ? parent.editedNickName   : "";
       String firstName = _profileManager.user.firstName  != parent.editedFirstName ? parent.editedFirstName  : "";
       String lastName  = _profileManager.user.lastName   != parent.editedLastName  ? parent.editedLastName   : "";
       String email     = _profileManager.user.email      != parent.editedEmail     ? parent.editedEmail      : "";
 
-      // El nickname de momento no sabemos si le daremos permisos al usuario para que lo cambie a placer.
-      String nickName  = "";
       String password  = parent.editedPassword;
 
       _profileManager.changeUserProfile(firstName, lastName, email, nickName, password)
         //Not implemented yet //.then((_) => _profileManager.saveUserData(firstName, lastName,acceptGameAlerts, /* nickName, */ email, password))
         .then((_) {
           closeModal();
+          parent.editedEmail      = email     == "" ? parent.editedEmail      : email;
+          parent.editedFirstName  = firstName == "" ? parent.editedFirstName  : firstName;
+          parent.editedLastName   = lastName  == "" ? parent.editedLastName   : lastName;
+          parent.editedNickName   = nickName  == "" ? parent.editedNickName   : nickName;
           loadingService.isLoading = false;
         })
         .catchError((Map error) {

@@ -39,7 +39,10 @@ class LobbyComp implements DetachAware {
   int contestCount = 0;
 
   LobbyComp(this._router, this._refreshTimersService, this.activeContestsService, this.scrDet, this.loadingService) {
-    loadingService.isLoading = true;
+
+    if (activeContestsService.activeContests.isEmpty) {
+      loadingService.isLoading = true;
+    }
 
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_CONTEST_LIST, refreshActiveContest);
     _nextTournamentInfoTimer = new Timer.periodic(new Duration(seconds: 1), (Timer t) =>  _calculateInfoBarText());

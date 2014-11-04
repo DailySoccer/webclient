@@ -27,42 +27,36 @@ class ContestsListComp {
     if (value == null || value.isEmpty) {
       return;
     }
-    //print ('-CONTEST_LIST-: Recibida la lista de concursos y contiene ${value.length.toString()} entradas');
     _contestsListOriginal = value;
     refreshListWithFilters();
   }
 
   @NgOneWay("tournament-type-filter")
-    void set filterByType(value) {
-    //print ('-CONTEST_LIST-: Recibido el filtro por tipo de concurso ${value.toString()}');
+  void set filterByType(value) {
     _filterList["FILTER_TOURNAMENT"] = value;
     refreshListWithFilters();
   }
 
   @NgOneWay("salary-cap-filter")
-    void set filterBySalaryCap(value) {
-    //print ('-CONTEST_LIST-: Recibido el filtro por tipo de concurso ${value.toString()}');
+  void set filterBySalaryCap(value) {
     _filterList["FILTER_TIER"] = value;
     refreshListWithFilters();
   }
 
   @NgOneWay("entry-fee-filter")
-    void set filterByEntryFee(value) {
-    //print ('-CONTEST_LIST-: Recibido el filtro por tipo de concurso ${value.toString()}');
+  void set filterByEntryFee(value) {
     _filterList["FILTER_ENTRY_FEE"] = value;
     refreshListWithFilters();
   }
 
   @NgOneWay("name-filter")
-    void set filterByName(value) {
-    //print ('-CONTEST_LIST-: Recibido el filtro por tipo de concurso ${value.toString()}');
+  void set filterByName(value) {
     _filterList["FILTER_CONTEST_NAME"] = value;
     refreshListWithFilters();
   }
 
   @NgOneWay("sorting")
-    void set sorting(value) {
-    //print("-CONTEST_LIST-: Orden de la lista ${value}");
+  void set sorting(value) {
     _sortOrder = value;
     refreshList();
   }
@@ -268,6 +262,4 @@ class ContestsListComp {
 
   ProfileService _profileService;
   ScreenDetectorService _scrDet;
-
-
 }

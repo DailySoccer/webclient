@@ -103,11 +103,9 @@ class EnterContestComp implements DetachAware {
     _routeHandle = _routeProvider.route.newHandle();
     _routeHandle.onPreLeave.listen((RoutePreLeaveEvent event) {
       event.route.dontLeaveOnParamChanges;
-      bool decision = window.confirm('Estas seguro que quieres salir? Si pulsas en aceptar perderas los cambios realizados en esta alineación y abandonaras el torneo.');
-      event.allowLeave(new Future.value(decision));
+      //bool decision = window.confirm('Estas seguro que quieres salir? Si pulsas en aceptar perderas los cambios realizados en esta alineación y abandonaras el torneo.');
+      //event.allowLeave(new Future.value(decision));
     });
-    //_routeHandle.onPreLeave.listen((RoutePreLeaveEvent event) => onRoutePrelive(event, _routeHandle));
-
   }
 
   void detach() {

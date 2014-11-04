@@ -11,7 +11,7 @@ abstract class ServerService {
   static final String TIMES = "times";
   static final String SECONDS_TO_RETRY = "secondsToRetry";
 
-  void               setSessionToken(String sessionToken);
+  void        setSessionToken(String sessionToken);
   Future<Map> verifyPasswordResetToken(String token);
   Future<Map> resetPassword(String password, String stormPathTokenId);
   Future<Map> signup(String firstName, String lastName, String email, String nickName, String password);
@@ -44,7 +44,7 @@ abstract class ServerService {
   Future<Map> getScoringRules();
 
   // Suscripción a eventos
-  void               subscribe(dynamic id, {Function onSuccess, Function onError});
+  void        subscribe(dynamic id, {Function onSuccess, Function onError});
 
   // Debug
   Future<Map> isSimulatorActivated();
@@ -290,11 +290,14 @@ class ConnectionError {
   bool get isResponseError => (type == RESPONSE_ERROR);
   bool get isServerError => (type == SERVER_ERROR);
   bool get isConnectionError => (type == CONNECTION_ERROR);
+  bool get isUnauthorizedError => (type == UNAUTHORIZED_ERROR);
 
   ConnectionError(this.type, this.httpError);
 
   String type;
   dynamic httpError;
+
+  String toString() => type;
 
   int get hashCode => type.hashCode;
 
@@ -303,25 +306,24 @@ class ConnectionError {
     return (other as ConnectionError).type == type;
   }
 
-  String toString() {
-    return type;
-  }
-
   Map toJson() {
-    Map jsonMap = {};
+    String errorString = UNKNOWN_ERROR_JSON;
 
     if (isResponseError) {
       HttpResponse httpResponse = httpError as HttpResponse;
-      jsonMap = httpResponse.data;
+      errorString = httpResponse.data;
     }
     else if (isServerError) {
-      jsonMap = SERVER_ERROR_JSON;
+      errorString = SERVER_ERROR_JSON;
+    }
+    else if (isUnauthorizedError) {
+      errorString = UNAUTHORIZED_ERROR_JSON;
     }
     else if (isConnectionError) {
-      jsonMap = CONNECTION_ERROR_JSON;
+      errorString = CONNECTION_ERROR_JSON;
     }
 
-    return jsonMap;
+    return JSON.decode(errorString);
   }
 
   factory ConnectionError.fromHttpResponse(var error) {
@@ -338,6 +340,9 @@ class ConnectionError {
       else if (httpResponse.status == 500 || httpResponse.status == 404) {
         type = SERVER_ERROR;
       }
+      else if (httpResponse.status == 401) {
+        type = UNAUTHORIZED_ERROR;
+      }
       else {
         type = CONNECTION_ERROR;
       }
@@ -353,7 +358,10 @@ class ConnectionError {
   static const String RESPONSE_ERROR = "RESPONSE_ERROR";
   static const String SERVER_ERROR = "SERVER_ERROR";
   static const String CONNECTION_ERROR = "CONNECTION_ERROR";
+  static const String UNAUTHORIZED_ERROR = "UNAUTHORIZED_ERROR";
 
+  static const UNKNOWN_ERROR_JSON = "{\"error\": \"Unknown error\"}";
   static const CONNECTION_ERROR_JSON = "{\"error\": \"Connection error\"}";
   static const SERVER_ERROR_JSON = "{\"error\": \"Server error\"}";
+  static const UNAUTHORIZED_ERROR_JSON = "{\"error\": \"Unauthorized error\"}";
 }

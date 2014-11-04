@@ -56,9 +56,6 @@ class ContestHeaderComp implements DetachAware {
   }
 
   void _refreshCountdownDate() {
-    info["textCountdownDate"] = "";
-    info["countdownDate"] = "";
-
     if (_contest == null) {
       return;
     }

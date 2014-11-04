@@ -6,7 +6,6 @@ import 'dart:convert';
 import 'package:angular/angular.dart';
 import 'package:webclient/models/user.dart';
 import 'package:webclient/services/server_service.dart';
-import 'package:webclient/utils/host_server.dart';
 import 'package:logging/logging.dart';
 
 
@@ -16,8 +15,8 @@ class ProfileService {
   User user = null;
   bool get isLoggedIn => user != null;
 
-  static bool get isLoggedInStatic => _instance.isLoggedIn;  // Si te peta en esta linea te obliga a pensar, lo que es Una Buena Cosa@.
-                                                             // Una pista... quiza te ha pasado pq has quitado componentes del index?
+  static ProfileService get instance => _instance;  // Si te peta en esta linea te obliga a pensar, lo que es Una Buena Cosa@.
+                                                    // Una pista... quiza te ha pasado pq has quitado componentes del index?
 
   ProfileService(this._server) {
     _instance = this;

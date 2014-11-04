@@ -286,7 +286,7 @@ class WebClientApp extends Module {
   // En la landing queremos reroutar al lobby en caso de estar logeados, pero queremos hacerlo
   // antes de que se llegue a ver o parsear por una cuestion de rendimiento.
   void _onLandingPage(RoutePreEnterEvent event, Router router) {
-    if (ProfileService.isLoggedInStatic) {
+    if (ProfileService.instance.isLoggedIn) {
       router.go("lobby", {}, replace:true);
 
       // Denegar la entrada evita un flashazo. Si no la deniegas, llega a ir a la landing antes de ir al lobby
@@ -301,10 +301,10 @@ class WebClientApp extends Module {
 
     if (verifyAllowEnter) {
       // Si no estamos logeados, redirigimos a la landing
-      if (!ProfileService.isLoggedInStatic) {
+      if (!ProfileService.instance.isLoggedIn) {
         router.go("landing_page", {}, replace:true);
       }
-      event.allowEnter(new Future.value(ProfileService.isLoggedInStatic));
+      event.allowEnter(new Future.value(ProfileService.instance.isLoggedIn));
     }
   }
 

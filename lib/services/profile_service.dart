@@ -105,14 +105,14 @@ class ProfileService {
         // Si nuestro usuario ya no es el mismo pero no ha dado un error, el sessionToken sigue siendo valido y lo
         // unico que tenemos que hacer es anotar el nuevo User
         if (jsonMap["_id"] != user.userId) {
-          Logger.root.info("ProfileService: Se borro la DB y pudimos reusar el sessionToken.");
+          Logger.root.warning("ProfileService: Se borro la DB y pudimos reusar el sessionToken.");
           _setProfile(storedSessionToken, jsonMap, true);
         }
       })
       .catchError((error) {
         // No se ha podido refrescar: Tenemos que salir y pedir que vuelva a hacer login
         window.localStorage.clear();
-        Logger.root.severe("ProfileService: Se borro la DB y necesitamos volver a hacer login.");
+        Logger.root.warning("ProfileService: Se borro la DB y necesitamos volver a hacer login.");
         window.location.reload();
       });
     }

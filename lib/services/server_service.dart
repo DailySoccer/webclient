@@ -44,7 +44,7 @@ abstract class ServerService {
   Future<Map> getScoringRules();
 
   // Suscripción a eventos
-  void               subscribe(dynamic id, {Function onSuccess, Function onError});
+  void        subscribe(dynamic id, {Function onSuccess, Function onError});
 
   // Debug
   Future<Map> isSimulatorActivated();
@@ -307,7 +307,6 @@ class ConnectionError {
   }
 
   Map toJson() {
-
     String errorString = UNKNOWN_ERROR_JSON;
 
     if (isResponseError) {

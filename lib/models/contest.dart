@@ -64,6 +64,7 @@ class Contest {
   String prizeType;
   List<int> prizes;
 
+  String optaCompetitionId;
   List<MatchEvent> matchEvents;
   Map<String, InstanceSoccerPlayer> instanceSoccerPlayers = new Map<String, InstanceSoccerPlayer>();
 
@@ -243,6 +244,7 @@ class Contest {
     prizeType = jsonMap["prizeType"];
     prizes = jsonMap.containsKey("prizes") ? jsonMap["prizes"] : [];
     startDate = DateTimeService.fromMillisecondsSinceEpoch(jsonMap["startDate"]);
+    optaCompetitionId = jsonMap.containsKey("optaCompetitionId") ? jsonMap["optaCompetitionId"] : "";
     matchEvents = jsonMap.containsKey("templateMatchEventIds") ? jsonMap["templateMatchEventIds"].map( (matchEventId) => references.getMatchEventById(matchEventId) ).toList() : [];
 
     instanceSoccerPlayers = {};

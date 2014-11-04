@@ -96,7 +96,7 @@ class Contest {
     ,COMPETITION_LEAGUE_UCL_ID: "CHAMPIONS"
     ,COMPETITION_WORLDCUP_ID:   "WORLDCUP"
   };
-  String get competitionType => optaCompetitionId.isNotEmpty ? competitionTypeValues[optaCompetitionId] : "";
+  String get competitionType => ""; //optaCompetitionId.isNotEmpty ? competitionTypeValues[optaCompetitionId] : "";
 
   Contest(this.contestId, this.contestEntries);
 

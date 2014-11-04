@@ -15,7 +15,7 @@
         <div class="tab-pane active" id="lineup-tab-content">
 
             <!-- Este sera el selector de partidos en "grande", con botones-->
-            <matches-filter contest="contest" selected-option="matchFilter" ng-if="isBigScreenVersion"></matches-filter>
+            <matches-filter id="matchesFilterBig" contest="contest" selected-option="matchFilter" ng-if="isBigScreenVersion"></matches-filter>
 
             <div class="enter-contest-actions-wrapper" ng-if="isSmallScreenVersion">
               <div class="total-salary"><span ng-class="getMyTotalSalaryClasses()">{{availableSalary}}€</span></div>

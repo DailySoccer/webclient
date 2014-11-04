@@ -2130,7 +2130,7 @@ tc.put("packages/webclient/components/lobby_comp.html", new HttpResponse(200, r"
   </div>
 
 </div>"""));
-tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(200, r"""<div id="myContest" ng-cloak">
+tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(200, r"""<div id="myContest" ng-cloak>
   <div class="default-header-text">MIS TORNEOS</div>
   <!-- Nav tabs -->
   <ul  id="myContestMenuTabs" class="my-contest-tabs" role="tablist">

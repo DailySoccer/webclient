@@ -26,7 +26,7 @@ class ViewContestEntryComp {
 
   DateTime updatedDate;
 
-  Contest get contest => _myContestsService.lastContest;
+  Contest contest;
   List<ContestEntry> get contestEntries => (contest != null) ? contest.contestEntries : null;
   List<ContestEntry> get contestEntriesOrderByPoints => (contest != null) ? contest.contestEntriesOrderByPoints : null;
 
@@ -47,7 +47,7 @@ class ViewContestEntryComp {
     _myContestsService.refreshMyContestEntry(contestId)
       .then((jsonMap) {
         loadingService.isLoading = false;
-
+        contest = _myContestsService.lastContest;
         mainPlayer = contest.getContestEntryWithUser(_profileService.user.userId);
 
         updatedDate = DateTimeService.now;

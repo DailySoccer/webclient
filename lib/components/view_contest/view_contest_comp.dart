@@ -29,7 +29,7 @@ class ViewContestComp implements DetachAware {
   bool isOpponentSelected = false;
 
   String contestId;
-  Contest get contest => _myContestsService.lastContest;
+  Contest contest;
 
   List<ContestEntry> get contestEntries => (contest != null) ? contest.contestEntries : null;
   List<ContestEntry> get contestEntriesOrderByPoints => (contest != null) ? contest.contestEntriesOrderByPoints : null;
@@ -45,7 +45,7 @@ class ViewContestComp implements DetachAware {
     _myContestsService.refreshViewContest(contestId)
       .then((jsonMap) {
         loadingService.isLoading = false;
-
+        contest = _myContestsService.lastContest;
         mainPlayer = contest.getContestEntryWithUser(_profileService.user.userId);
 
         updatedDate = DateTimeService.now;

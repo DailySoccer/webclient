@@ -4,6 +4,7 @@ import 'dart:async';
 import 'dart:convert' show JSON;
 import 'package:angular/angular.dart';
 import 'package:logging/logging.dart';
+import 'package:webclient/models/connection_error.dart';
 import 'package:webclient/utils/host_server.dart';
 
 abstract class ServerService {
@@ -284,84 +285,4 @@ class DailySoccerServer implements ServerService {
   List<Map> _subscribers = new List<Map>();
 
   static int _context = 0;
-}
-
-class ConnectionError {
-  bool get isResponseError => (type == RESPONSE_ERROR);
-  bool get isServerError => (type == SERVER_ERROR);
-  bool get isConnectionError => (type == CONNECTION_ERROR);
-  bool get isUnauthorizedError => (type == UNAUTHORIZED_ERROR);
-
-  ConnectionError(this.type, this.httpError);
-
-  String type;
-  dynamic httpError;
-
-  String toString() => type;
-
-  int get hashCode => type.hashCode;
-
-  bool operator == (other) {
-    if (other is! ConnectionError) return false;
-    return (other as ConnectionError).type == type;
-  }
-
-  Map toJson() {
-    String errorString = UNKNOWN_ERROR_JSON;
-
-    if (isResponseError) {
-      HttpResponse httpResponse = httpError as HttpResponse;
-      errorString = httpResponse.data;
-    }
-    else if (isServerError) {
-      errorString = SERVER_ERROR_JSON;
-    }
-    else if (isUnauthorizedError) {
-      errorString = UNAUTHORIZED_ERROR_JSON;
-    }
-    else if (isConnectionError) {
-      errorString = CONNECTION_ERROR_JSON;
-    }
-
-    return JSON.decode(errorString);
-  }
-
-  factory ConnectionError.fromHttpResponse(var error) {
-    String type = UNKNOWN_ERROR;
-
-    if (error is HttpResponse) {
-      HttpResponse httpResponse = error as HttpResponse;
-
-      if (httpResponse.status == 400) {
-        if (httpResponse.data != null && httpResponse.data != "") {
-          type = RESPONSE_ERROR;
-        }
-      }
-      else if (httpResponse.status == 500 || httpResponse.status == 404) {
-        type = SERVER_ERROR;
-      }
-      else if (httpResponse.status == 401) {
-        type = UNAUTHORIZED_ERROR;
-      }
-      else {
-        type = CONNECTION_ERROR;
-      }
-    }
-    else {
-      type = SERVER_ERROR;
-    }
-
-    return new ConnectionError(type, error);
-  }
-
-  static const String UNKNOWN_ERROR = "UNKNOWN_ERROR";
-  static const String RESPONSE_ERROR = "RESPONSE_ERROR";
-  static const String SERVER_ERROR = "SERVER_ERROR";
-  static const String CONNECTION_ERROR = "CONNECTION_ERROR";
-  static const String UNAUTHORIZED_ERROR = "UNAUTHORIZED_ERROR";
-
-  static const UNKNOWN_ERROR_JSON = "{\"error\": \"Unknown error\"}";
-  static const CONNECTION_ERROR_JSON = "{\"error\": \"Connection error\"}";
-  static const SERVER_ERROR_JSON = "{\"error\": \"Server error\"}";
-  static const UNAUTHORIZED_ERROR_JSON = "{\"error\": \"Unauthorized error\"}";
 }

@@ -8,6 +8,7 @@ import 'package:webclient/services/my_contests_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/loading_service.dart';
+import 'package:webclient/models/connection_error.dart';
 import 'package:webclient/models/field_pos.dart';
 import "package:webclient/models/soccer_team.dart";
 import 'package:webclient/models/match_event.dart';
@@ -24,8 +25,6 @@ import 'package:webclient/utils/string_utils.dart';
     useShadowDom: false
 )
 class EnterContestComp implements DetachAware {
-
-  static final String ERROR_RETRY_OP = "ERROR_RETRY_OP";
 
   ScreenDetectorService scrDet;
   LoadingService loadingService;
@@ -283,14 +282,12 @@ class EnterContestComp implements DetachAware {
     }
   }
 
-  void _errorCreating(Map jsonMap) {
-    if (jsonMap.containsKey("error")) {
-      if (jsonMap["error"].contains(ERROR_RETRY_OP)) {
-        _retryOpTimer = new Timer(const Duration(seconds:3), () => createFantasyTeam());
-      }
-      else {
-        _flashMessage.error("$jsonMap", context: FlashMessagesService.CONTEXT_VIEW);
-      }
+  void _errorCreating(ConnectionError error) {
+    if (error.isRetryOpError) {
+      _retryOpTimer = new Timer(const Duration(seconds:3), () => createFantasyTeam());
+    }
+    else {
+      _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
     }
   }
 

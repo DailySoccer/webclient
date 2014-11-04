@@ -7,6 +7,7 @@ import 'package:webclient/services/datetime_service.dart';
 class SoccerPlayerStats {
   DateTime startDate;
   SoccerTeam opponentTeam;
+  String optaCompetitionId;
 
   int fantasyPoints;
   int playedMinutes;
@@ -29,12 +30,13 @@ class SoccerPlayerStats {
 
   SoccerPlayerStats.fromJsonObject(Map jsonMap, ContestReferences references) {
     startDate = jsonMap.containsKey("startDate") ? DateTimeService.fromMillisecondsSinceEpoch(jsonMap["startDate"]) : DateTimeService.now;
-    opponentTeam = jsonMap.containsKey("opponentTeamId") ? references.getSoccerTeamById(jsonMap["opponentTeamId"]) : "???";
+    optaCompetitionId = jsonMap.containsKey("optaCompetitionId") ? jsonMap["optaCompetitionId"] : "";
+    opponentTeam = jsonMap.containsKey("opponentTeamId") ? references.getSoccerTeamById(jsonMap["opponentTeamId"]) : null;
 
     fantasyPoints = jsonMap["fantasyPoints"];
     playedMinutes = jsonMap["playedMinutes"];
 
-    int _getIntValue(String key) => (jsonMap["statsCount"].containsKey(key)) ? jsonMap["statsCount"][key] : 0;
+    int _getIntValue(String key) => (jsonMap.containsKey("statsCount") && jsonMap["statsCount"].containsKey(key)) ? jsonMap["statsCount"][key] : 0;
 
     goles = _getIntValue("GOLES");
     tiros = _getIntValue("TIROS");

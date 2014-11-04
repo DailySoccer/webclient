@@ -239,8 +239,8 @@ class EnterContestComp implements DetachAware {
         "matchId" : matchEvent.templateMatchEventId,
         "matchEventName": matchEventName,
         "remainingMatchTime": "-",
-        "fantasyPoints": instanceSoccerPlayer.soccerPlayer.fantasyPoints,
-        "playedMatches": instanceSoccerPlayer.soccerPlayer.playedMatches,
+        "fantasyPoints": instanceSoccerPlayer.soccerPlayer.getFantasyPointsForCompetition(contest.optaCompetitionId),
+        "playedMatches": instanceSoccerPlayer.soccerPlayer.getPlayedMatchesForCompetition(contest.optaCompetitionId),
         "salary": instanceSoccerPlayer.salary
       });
     });

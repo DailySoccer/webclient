@@ -5962,8 +5962,8 @@ button.close {
   position: relative;
   -webkit-animation: appear-from-right-keyframes 0.5s;
   -moz-animation: appear-from-right-keyframes 0.5s;
-  -ms-keyframes: appear-from-right-keyframes 0.5s;
-  -o-keyframes: appear-from-right-keyframes 0.5s;
+  -ms-animation: appear-from-right-keyframes 0.5s;
+  -o-animation: appear-from-right-keyframes 0.5s;
   animation: appear-from-right-keyframes 0.5s;
 }
 @-webkit-keyframes appear-from-right-keyframes {
@@ -6020,8 +6020,8 @@ button.close {
   position: relative;
   -webkit-animation: slide-in-from-bottom-keyframes 0.4s;
   -moz-animation: slide-in-from-bottom-keyframes 0.4s;
-  -ms-keyframes: slide-in-from-bottom-keyframes 0.4s;
-  -o-keyframes: slide-in-from-bottom-keyframes 0.4s;
+  -ms-animation: slide-in-from-bottom-keyframes 0.4s;
+  -o-animation: slide-in-from-bottom-keyframes 0.4s;
   animation: slide-in-from-bottom-keyframes 0.4s;
 }
 @-webkit-keyframes slide-in-from-bottom-keyframes {
@@ -6073,6 +6073,52 @@ button.close {
     top: 0px;
     opacity: 1;
   }
+}
+@-webkit-keyframes fadein-animation-keyframes {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fadein-animation-keyframes {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-ms-keyframes fadein-animation-keyframes {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-o-keyframes fadein-animation-keyframes {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadein-animation-keyframes {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.fadein from {
+  opacity: 0;
+}
+.fadein to {
+  opacity: 1;
 }
 #contestHeader {
   background-color: #ecf0f1;
@@ -8029,8 +8075,8 @@ fieldset[disabled] #personalDataContent .save-changes-content .action-button {
   position: relative;
   -webkit-animation: appear-from-right-keyframes 0.5s;
   -moz-animation: appear-from-right-keyframes 0.5s;
-  -ms-keyframes: appear-from-right-keyframes 0.5s;
-  -o-keyframes: appear-from-right-keyframes 0.5s;
+  -ms-animation: appear-from-right-keyframes 0.5s;
+  -o-animation: appear-from-right-keyframes 0.5s;
   animation: appear-from-right-keyframes 0.5s;
 }
 @media (max-width: 767px) {
@@ -16476,8 +16522,6 @@ textarea.soccer-players-filter .name-player-input-filter {
   margin: 10px 4px;
   text-align: center;
   line-height: 15px;
-  opacity: 1;
-  transition: opacity linear 300ms;
 }
 @media (max-width: 767px) {
   #matchesFilterWrapper .matches-filter .button-filtro-team {
@@ -16490,8 +16534,12 @@ textarea.soccer-players-filter .name-player-input-filter {
     width: 8.33333333%;
   }
 }
-#matchesFilterWrapper .matches-filter .button-filtro-team.transparent {
-  opacity: 0;
+#matchesFilterWrapper .matches-filter .button-filtro-team.fadein {
+  -webkit-animation: fadein-animation-keyframes 200ms;
+  -moz-animation: fadein-animation-keyframes 200ms;
+  -ms-animation: fadein-animation-keyframes 200ms;
+  -o-animation: fadein-animation-keyframes 200ms;
+  animation: fadein-animation-keyframes 200ms;
 }
 #matchesFilterWrapper .matches-filter .button-filtro-team:active,
 #matchesFilterWrapper .matches-filter .button-filtro-team:focus,
@@ -16760,8 +16808,8 @@ textarea#matchesFilterWrapper .matches-selector-filter {
     position: relative;
     -webkit-animation: slide-in-from-bottom-keyframes 0.4s;
     -moz-animation: slide-in-from-bottom-keyframes 0.4s;
-    -ms-keyframes: slide-in-from-bottom-keyframes 0.4s;
-    -o-keyframes: slide-in-from-bottom-keyframes 0.4s;
+    -ms-animation: slide-in-from-bottom-keyframes 0.4s;
+    -o-animation: slide-in-from-bottom-keyframes 0.4s;
     animation: slide-in-from-bottom-keyframes 0.4s;
   }
 }
@@ -17441,8 +17489,8 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
   position: relative;
   -webkit-animation: appear-from-right-keyframes 0.5s;
   -moz-animation: appear-from-right-keyframes 0.5s;
-  -ms-keyframes: appear-from-right-keyframes 0.5s;
-  -o-keyframes: appear-from-right-keyframes 0.5s;
+  -ms-animation: appear-from-right-keyframes 0.5s;
+  -o-animation: appear-from-right-keyframes 0.5s;
   animation: appear-from-right-keyframes 0.5s;
 }
 #usersListRoot {

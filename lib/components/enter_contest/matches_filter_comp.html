@@ -6,7 +6,7 @@
   
   <div id="matchesFilter" class="matches-filter" ng-switch-when="false">
     <button class="btn btn-default button-filtro-team" ng-repeat="match in matchEvents" ng-bind-html="match.texto" id="match-{{match.id}}" 
-            ng-click="optionsSelectorValue = match.id" ng-class="{'active': optionsSelectorValue == match.id, 'transparent': match.isTransparent }">
+            ng-click="optionsSelectorValue = match.id" ng-class="{'active': optionsSelectorValue == match.id, 'fadein': $index != 0 }">
     </button>
   </div>
 </div>

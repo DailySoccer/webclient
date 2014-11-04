@@ -29,27 +29,36 @@ class MatchesFilterComp {
   void set contest(Contest theContest) {
 
     matchEvents.clear();
-    matchEvents.add({"id": _ALL_MATCHES, "texto": "Todos los<br>partidos", "textoSelector": "Todos los partidos", "isTransparent": false});
+    matchEvents.add({"id": _ALL_MATCHES, "texto": "Todos los<br>partidos", "textoSelector": "Todos los partidos"});
 
     if (theContest == null) {
       return;
     }
 
-    int timeDelay = 300;
-    for (MatchEvent match in theContest.matchEvents) {
-      var dynamicMatch = {"id": match.templateMatchEventId,
-                          "texto": match.soccerTeamA.shortName + '-' + match.soccerTeamB.shortName + "<br>" + DateTimeService.formatDateTimeShort(match.startDate),
-                          "textoSelector": match.soccerTeamA.shortName + "-" + match.soccerTeamB.shortName,
-                          "isTransparent": !srcDet.isXsScreen};
+    // En Xs se pinta el selector en vez de los botones, asi que como no queremos cargar el movil evitamos los timers con este if
+    if (!srcDet.isXsScreen) {
+      int timeDelay = 200;
 
-      matchEvents.add(dynamicMatch);
-
-      // En Xs se pinta el selector en vez de los botones, asi que como no queremos cargar el movil evitamos los timers con este if
-      if (!srcDet.isXsScreen) {
-        new Timer(new Duration(milliseconds: timeDelay), () => dynamicMatch["isTransparent"] = false);
-        timeDelay += 300;
-      }
+      theContest.matchEvents.forEach((match) {
+        new Timer(new Duration(milliseconds: timeDelay), () {
+          _addMatchEvent(match);
+        });
+        timeDelay += 200;
+      });
     }
+    else {
+      theContest.matchEvents.forEach((match) => _addMatchEvent(match));
+    }
+  }
+
+  Map _addMatchEvent(MatchEvent match) {
+    var ret = {"id": match.templateMatchEventId,
+               "texto": match.soccerTeamA.shortName + '-' + match.soccerTeamB.shortName + "<br>" + DateTimeService.formatDateTimeShort(match.startDate),
+               "textoSelector": match.soccerTeamA.shortName + "-" + match.soccerTeamB.shortName};
+
+    matchEvents.add(ret);
+
+    return ret;
   }
 
   // La idea es esconder ALL_MATCHES aqui dentro. Siempre que seleccionamos ALL_MATCHES desde fuera se vera null.

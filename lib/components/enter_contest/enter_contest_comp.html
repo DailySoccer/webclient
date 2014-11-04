@@ -1,4 +1,4 @@
-<div class="enter-contest-wrapper" ng-cloak>
+<div id="enter-contest-wrapper" ng-cloak>
 
   <contest-header id="contestHeader" contest="contest" contest-id="contestId"></contest-header>
 
@@ -18,7 +18,7 @@
             <matches-filter id="matchesFilterBig" contest="contest" selected-option="matchFilter" ng-if="isBigScreenVersion"></matches-filter>
 
             <div class="enter-contest-actions-wrapper" ng-if="isSmallScreenVersion">
-              <div class="total-salary"><span ng-class="getMyTotalSalaryClasses()">{{availableSalary}}€</span></div>
+              <div class="total-salary"><span class="total-salary-money" ng-class="{'red-numbers': availableSalary < 0 }" ng-show="contest != null">{{availableSalary}}€</span></div>
               <button id="cancelSoccerPlayerSelection" type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer">CANCELAR</button>
             </div>
 
@@ -26,8 +26,10 @@
               <div class="enter-contest-lineup">
                 <div class="enter-contest-total-salary">
                     <span class="total-salary-text">TU ALINEACIÓN</span>
-                    <span class="total-salary"><span class="total-salary-text">DINERO RESTANTE:</span>
-                    <span ng-class="getMyTotalSalaryClasses()">{{availableSalary}}€</span></span>
+                    <div class="total-salary">
+                      <span class="total-salary-text">DINERO RESTANTE:</span>
+                      <span class="total-salary-money" ng-class="{'red-numbers': availableSalary < 0 }" ng-show="contest != null">{{availableSalary}}€</span>
+                    </div>
                 </div>
 
                 <lineup-selector ng-show="!isSelectingSoccerPlayer || isBigScreenVersion"></lineup-selector>
@@ -50,7 +52,6 @@
             </div>
 
             <div class="enter-contest-actions-wrapper">
-
               <button type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer" ng-if="isSmallScreenVersion">CANCELAR</button>
 
               <div ng-if="!isSelectingSoccerPlayer || isBigScreenVersion">
@@ -80,7 +81,7 @@
 
 </div>
 
-<div class="soccer-player-info-wrapper" ng-if="scrDet.isXsScreen">
+<div id="soccer-player-info-wrapper" ng-if="scrDet.isXsScreen">
   <soccer-player-info instance-soccer-player="selectedInstanceSoccerPlayer"></soccer-player-info>
 </div>
 

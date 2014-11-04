@@ -35,14 +35,11 @@ class MatchesFilterComp {
       return;
     }
 
-    // En Xs se pinta el selector en vez de los botones, asi que como no queremos cargar el movil evitamos los timers con este if
+    // En Xs se pinta el selector en vez de los botones, asi que evitamos los timers
     if (!srcDet.isXsScreen) {
       int timeDelay = 200;
-
       theContest.matchEvents.forEach((match) {
-        new Timer(new Duration(milliseconds: timeDelay), () {
-          _addMatchEvent(match);
-        });
+        new Timer(new Duration(milliseconds: timeDelay), () => _addMatchEvent(match));
         timeDelay += 200;
       });
     }

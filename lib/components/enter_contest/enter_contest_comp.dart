@@ -50,8 +50,6 @@ class EnterContestComp implements DetachAware {
   bool get isBigScreenVersion   => scrDet.isSmScreen || scrDet.isDesktop;
   bool get isSmallScreenVersion => !isBigScreenVersion;
 
-  String getMyTotalSalaryClasses() => (availableSalary < 0)? "total-salary-money red-numbers" : "total-salary-money";
-
   bool isFantasyTeamValid() => !lineupSlots.any((player) => player == null);
 
 
@@ -71,7 +69,6 @@ class EnterContestComp implements DetachAware {
 
     Future refreshContest = _editingContestEntry ? _myContestService.refreshMyContest(contestId) :
                                                    _activeContestService.refreshContest(contestId);
-
     refreshContest
       .then((_) {
         loadingService.isLoading = false;
@@ -118,7 +115,7 @@ class EnterContestComp implements DetachAware {
   }
 
   void tabChange(String tab) {
-    List<dynamic> allContentTab = document.querySelectorAll(".enter-contest-wrapper .tab-pane");
+    List<dynamic> allContentTab = document.querySelectorAll("#enter-contest-wrapper .tab-pane");
     allContentTab.forEach((element) => element.classes.remove('active'));
 
     Element contentTab = document.querySelector("#" + tab);
@@ -149,7 +146,7 @@ class EnterContestComp implements DetachAware {
 
     if (lineupSlots[slotIndex] != null) {
       // Al borrar el jugador seleccionado en el lineup, sumamos su salario al total
-      calculateAvailableSalary(-lineupSlots[slotIndex]["salary"]);
+      availableSalary += lineupSlots[slotIndex]["salary"];
 
       isSelectingSoccerPlayer = false;
 
@@ -159,7 +156,7 @@ class EnterContestComp implements DetachAware {
       // Lo quitamos del slot
       lineupSlots[slotIndex] = null;
 
-      // Quitamos la modal de números rojos si no hay salario disponible
+      // Quitamos la modal de números rojos si ya hay salario disponible
       if (availableSalary >= 0) {
         alertDismiss();
       }
@@ -174,36 +171,13 @@ class EnterContestComp implements DetachAware {
     }
   }
 
-  void updateTextAvailableSalary(String availableSalaryText) {
-    List<SpanElement> totalSalary = querySelectorAll(".total-salary-money");
-
-    totalSalary.forEach((element) {
-      element.text = availableSalaryText + "€";
-      if (int.parse(availableSalaryText) < 0) {
-        element.classes.add("red-numbers");
-      }
-      else {
-        element.classes.remove("red-numbers");
-      }
-    });
-  }
-
-  void calculateAvailableSalary(int soccerPrice) {
-    availableSalary = availableSalary - soccerPrice;
-    // Pintamos en la caja de texto el total
-    updateTextAvailableSalary(availableSalary.toString());
-  }
-
   void onSoccerPlayerSelected(var soccerPlayer) {
     bool wasAdded = tryToAddSoccerPlayer(soccerPlayer);
 
     if (wasAdded) {
       isSelectingSoccerPlayer = false;
-
-      // Ya no esta disponible
       availableSoccerPlayers.remove(soccerPlayer);
-
-      calculateAvailableSalary(soccerPlayer["salary"]);
+      availableSalary -= soccerPlayer["salary"];
     }
   }
 
@@ -340,7 +314,6 @@ class EnterContestComp implements DetachAware {
 
     // Reseteamos el salario disponible
     availableSalary = contest.salaryCap;
-    updateTextAvailableSalary(availableSalary.toString());
 
     // Quito la modal de alerta de números rojos
     alertDismiss();
@@ -360,11 +333,13 @@ class EnterContestComp implements DetachAware {
   }
 
   void closePlayerInfo() {
-    DivElement enterContestWrapper = querySelector('.enter-contest-wrapper');
+    DivElement enterContestWrapper = querySelector('#enter-contest-wrapper');
     enterContestWrapper.style.display = "block";
-    DivElement soccerPlayerInfoWrapper = querySelector('.soccer-player-info-wrapper');
-    if (soccerPlayerInfoWrapper != null)
+
+    DivElement soccerPlayerInfoWrapper = querySelector('#soccer-player-info-wrapper');
+    if (soccerPlayerInfoWrapper != null) {
       soccerPlayerInfoWrapper.style.display = "none";
+    }
   }
 
   // Mostramos la ventana modal con la información de ese torneo, si no es la versión movil.
@@ -394,9 +369,9 @@ class EnterContestComp implements DetachAware {
       JsUtils.runJavascript('#infoContestModal', 'modal', null);
     }
     else { // Resto de versiones => mostramos el componente soccer_player_info_comp
-      DivElement enterContestWrapper = querySelector('.enter-contest-wrapper');
+      DivElement enterContestWrapper = querySelector('#enter-contest-wrapper');
       enterContestWrapper.style.display = "none";
-      DivElement soccerPlayerInfoWrapper = querySelector('.soccer-player-info-wrapper');
+      DivElement soccerPlayerInfoWrapper = querySelector('#soccer-player-info-wrapper');
       soccerPlayerInfoWrapper.style.display = "block";
     }
   }
@@ -415,8 +390,6 @@ class EnterContestComp implements DetachAware {
       closePlayerInfo();
     }
   }
-
-
 
   Router _router;
   RouteProvider _routeProvider;

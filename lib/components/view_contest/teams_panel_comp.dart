@@ -29,8 +29,6 @@ class TeamsPanelComp implements DetachAware {
     }
   }
 
-  bool parentIsLive;
-
   // Cuando nos pasan el contestId, ya podemos empezar a mostrar informacion antes de que quien sea (enter_contest, view_contest...)
   // refresque su informacion de concurso (que siempre es mas completa que muchas (o todas) las cosas que necesitamos mostrar aqui)
   @NgOneWay("contest-id")

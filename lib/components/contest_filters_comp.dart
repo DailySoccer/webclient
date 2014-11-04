@@ -183,18 +183,17 @@ class ContestFiltersComp implements ShadowRootAware {
   void setFilterValues() {
       _contestList.forEach( (contest) {
         // Seteo de los "tipos de concursos"
-       var competition = competitionFilterList.firstWhere( (map) => map['name'] == contest.competitionType, orElse: null);
+       Map competition = competitionFilterList.firstWhere( (map) => map['name'] == contest.competitionType , orElse: () => null);
        if (competition != null) {
          competition['disabled'] = false;
        }
-
         // Seteo de los "tipos de concursos"
-        Map contestType = contestTypeFilterList.firstWhere( (map) => map['name'] == contest.tournamentType, orElse: null);
+        Map contestType = contestTypeFilterList.firstWhere( (map) => map['name'] == contest.tournamentType, orElse: () => null);
         if (contestType != null) {
           contestType['disabled'] = false;
         }
         // Seteo de los "salary caps"
-        Map salaryCap = salaryCapFilterList.firstWhere( (map) => map['name'] == contest.tier, orElse: null);
+        Map salaryCap = salaryCapFilterList.firstWhere( (map) => map['name'] == contest.tier, orElse: () => null);
         if (salaryCap != null) {
           salaryCap["disabled"] = false;
         }

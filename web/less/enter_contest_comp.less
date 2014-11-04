@@ -1,17 +1,14 @@
-#enterContest {
-	.make-row();
-	@media (max-width: @screen-sm-max) {
-		.container-fluid();
-		.clean-paddings();
+@media (min-width: @screen-sm-min) {
+	#enter-contest-wrapper {
+		display: block !important; 
 	}
-	@media (min-width: @screen-md-min) {
-		.container();
-		.clean-paddings();
+}	
+#soccer-player-info-wrapper {
+	display: none;
+	@media (min-width: @screen-sm-min) {
+		background-color: #fff;
+		display: none !important;
 	}
-	background-color: @white;
-	// Bordes redondeados
-	//border-bottom-right-radius: 10px;
-	//border-bottom-left-radius: 10px;
 }
 
 // Tabs menu
@@ -37,6 +34,20 @@
 	}
 }
 
+
+#enterContest {
+	.make-row();
+	@media (max-width: @screen-sm-max) {
+		.container-fluid();
+		.clean-paddings();
+	}
+	@media (min-width: @screen-md-min) {
+		.container();
+		.clean-paddings();
+	}
+	background-color: @white;
+}
+
 // Botones de cancelar seleccion, borrar seleccion y confirmar equipo
 .enter-contest-actions-wrapper {
 	clear: both;
@@ -54,6 +65,7 @@
 		text-align: center;
 		border-radius: 3px;
 		margin-top: 10px;
+		min-height: 34px;
 		.red-numbers {
 			color: @white;
 		}
@@ -126,9 +138,8 @@
 		padding: 10px 10px 10px 5px;
 	}
 	.enter-contest-total-salary {
-		@media (max-width: @screen-xs-max) {
-			.hidden-xs();
-		}
+		.hidden-xs();
+
 		.exo_bold(20px, @white);
 		padding-left: 10px;
 		padding-right: 2px;
@@ -140,11 +151,8 @@
 			float: right;
 			background-color: @white;
 			line-height: 43px;
-			display: block;
-			width: 208px;
-			@media (min-width: @screen-sm-min) {
-				width: 198px;
-			}
+			width: 198px;
+			min-height: 70px;
 			.make-border(1px, solid, @white, @globalBoxesRadius);
 			.exo_bold(30px, @greyDark);
 			margin-top: 3px;
@@ -155,21 +163,12 @@
 				display: block;
 				line-height: 25px;
 			}
+			.total-salary-money {
+				.fadein-animation(400ms);
+			}
 			.red-numbers {
 				color: red;
 			}
 		}
-	}
-}
-@media (min-width: @screen-sm-min) {
-	.enter-contest-wrapper {
-		display: block !important; 
-	}
-}	
-.soccer-player-info-wrapper {
-	display: none;
-	@media (min-width: @screen-sm-min) {
-		background-color: #fff;
-		display: none !important;
 	}
 }

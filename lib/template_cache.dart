@@ -794,7 +794,7 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
         <div class="tab-pane active" id="lineup-tab-content">
 
             <!-- Este sera el selector de partidos en "grande", con botones-->
-            <matches-filter contest="contest" selected-option="matchFilter" ng-if="isBigScreenVersion"></matches-filter>
+            <matches-filter id="matchesFilterBig" contest="contest" selected-option="matchFilter" ng-if="isBigScreenVersion"></matches-filter>
 
             <div class="enter-contest-actions-wrapper" ng-if="isSmallScreenVersion">
               <div class="total-salary"><span ng-class="getMyTotalSalaryClasses()">{{availableSalary}}€</span></div>
@@ -893,16 +893,17 @@ tc.put("packages/webclient/components/enter_contest/lineup_selector_comp.html", 
   </div>
 
 </div>"""));
-tc.put("packages/webclient/components/enter_contest/matches_filter_comp.html", new HttpResponse(200, r"""<div id="matchesFilterWrapper">
-  <div id="matchesFilter" class="matches-filter">
-    <button class="btn btn-default button-filtro-team" ng-repeat="match in matchEvents" ng-bind-html="match.texto" id="match-{{match.id}}" 
-            ng-click="optionsSelectorValue = match.id" ng-class="getClassForMatchId(match.id)">
-    </button>
-  </div>
+tc.put("packages/webclient/components/enter_contest/matches_filter_comp.html", new HttpResponse(200, r"""<div id="matchesFilterWrapper" ng-switch="srcDet.isXsScreen">
   
-  <select id="matchesSelectorFilter" class="matches-selector-filter" ng-model="optionsSelectorValue">
+  <select id="matchesSelectorFilter" ng-switch-when="true" class="matches-selector-filter" ng-model="optionsSelectorValue" >
     <option ng-repeat="match in matchEvents" id="option-match-{{match.id}}" value="{{$index + 1}}" ng-value="match.id">{{match.textoSelector}}</option>
   </select>
+  
+  <div id="matchesFilter" class="matches-filter" ng-switch-when="false">
+    <button class="btn btn-default button-filtro-team" ng-repeat="match in matchEvents" ng-bind-html="match.texto" id="match-{{match.id}}" 
+            ng-click="optionsSelectorValue = match.id" ng-class="{'active': optionsSelectorValue == match.id, 'transparent': match.isTransparent }">
+    </button>
+  </div>
 </div>"""));
 tc.put("packages/webclient/components/enter_contest/soccer_player_info_comp.html", new HttpResponse(200, r"""<div class="soccer-player-info-header">
   <div class="actions-header">
@@ -2130,7 +2131,7 @@ tc.put("packages/webclient/components/lobby_comp.html", new HttpResponse(200, r"
   </div>
 
 </div>"""));
-tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(200, r"""<div id="myContest" ng-cloak">
+tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(200, r"""<div id="myContest" ng-cloak>
   <div class="default-header-text">MIS TORNEOS</div>
   <!-- Nav tabs -->
   <ul  id="myContestMenuTabs" class="my-contest-tabs" role="tablist">

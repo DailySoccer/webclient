@@ -1,3 +1,9 @@
+// Reserva de sitio (para reservar sitio, nuestro padre (por ejemplo enter_contest) siempre nos da este id)
+#matchesFilterBig {
+	min-height: 60px;
+	display: block;
+}
+
 #matchesFilterWrapper {
 	.matches-filter {
 		background-color: @tramaBlue;
@@ -13,6 +19,9 @@
 			margin: 10px 4px;
 			text-align: center;
 			line-height: 15px;
+		}
+		.button-filtro-team.fadein {
+			.fadein-animation(200ms);
 		}
 		.button-filtro-team:active, .button-filtro-team:focus, .button-filtro-team:hover, .button-filtro-team:visited {
 			outline: none;

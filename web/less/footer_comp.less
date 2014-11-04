@@ -8,8 +8,19 @@ footer {
 		.clean-paddings();
 	}
 }
-
 #mainFooter{
+	
+	@media (max-width: @screen-sm-max) {
+		background-color: @black;
+		min-height: 204px;
+	}
+	@media (min-width: @screen-md-min) {
+		background-color: @black;
+		min-height: 146px;
+	}
+}
+
+#footerRoot{
 	position: relative;
 	bottom: 0;	
 	@media (max-width: @screen-sm-max) {

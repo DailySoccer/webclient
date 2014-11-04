@@ -5937,12 +5937,12 @@ button.close {
 .fantasy-team-list .soccer-player-row:after,
 .statistic:before,
 .statistic:after,
-#mainFooter:before,
-#mainFooter:after,
-#mainFooter .sup-footer-wrapper:before,
-#mainFooter .sup-footer-wrapper:after,
-#mainFooter .sub-footer:before,
-#mainFooter .sub-footer:after,
+#footerRoot:before,
+#footerRoot:after,
+#footerRoot .sup-footer-wrapper:before,
+#footerRoot .sup-footer-wrapper:after,
+#footerRoot .sub-footer:before,
+#footerRoot .sub-footer:after,
 .landing-wrapper .screen .content-wrapper .content-container:before,
 .landing-wrapper .screen .content-wrapper .content-container:after,
 .landing-wrapper .screen .content-wrapper .content-container:before,
@@ -6061,9 +6061,9 @@ button.close {
 #personalDataContent .save-changes-content:after,
 .fantasy-team-list .soccer-player-row:after,
 .statistic:after,
-#mainFooter:after,
-#mainFooter .sup-footer-wrapper:after,
-#mainFooter .sub-footer:after,
+#footerRoot:after,
+#footerRoot .sup-footer-wrapper:after,
+#footerRoot .sub-footer:after,
 .landing-wrapper .screen .content-wrapper .content-container:after,
 .landing-wrapper .screen .content-wrapper .content-container:after,
 .first-screen:after,
@@ -8986,7 +8986,19 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
     margin-left: 0;
   }
 }
-#mainFooter {
+@media (max-width: 991px) {
+  #mainFooter {
+    background-color: #000000;
+    min-height: 204px;
+  }
+}
+@media (min-width: 992px) {
+  #mainFooter {
+    background-color: #000000;
+    min-height: 146px;
+  }
+}
+#footerRoot {
   position: relative;
   bottom: 0;
   padding-left: 0px;
@@ -8996,23 +9008,23 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   background: #000000;
 }
 @media (max-width: 991px) {
-  #mainFooter {
+  #footerRoot {
     padding-left: 0px;
     padding-right: 0px;
     width: 100%;
   }
 }
 @media (min-width: 992px) {
-  #mainFooter {
+  #footerRoot {
     padding-left: 0px;
     padding-right: 0px;
     width: 100%;
   }
 }
-#mainFooter .goto-link {
+#footerRoot .goto-link {
   text-decoration: none;
 }
-#mainFooter .footer-link {
+#footerRoot .footer-link {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 10pt;
@@ -9020,7 +9032,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   line-height: 35px;
   padding: 0;
 }
-#mainFooter .username-link {
+#footerRoot .username-link {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 10pt;
@@ -9029,7 +9041,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   padding: 0;
   padding-right: 5px;
 }
-#mainFooter .logout-link {
+#footerRoot .logout-link {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 10pt;
@@ -9041,7 +9053,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   border-left: 2px solid #ffffff;
   padding-left: 10px;
 }
-#mainFooter .sub-footer-link {
+#footerRoot .sub-footer-link {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 10pt;
@@ -9052,7 +9064,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   padding-right: 5px;
 }
 @media (max-width: 767px) {
-  #mainFooter .sub-footer-link {
+  #footerRoot .sub-footer-link {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     font-size: 10pt;
@@ -9061,7 +9073,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
     padding-right: 5px;
   }
 }
-#mainFooter .sub-footer-help-link {
+#footerRoot .sub-footer-help-link {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 10pt;
@@ -9075,7 +9087,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   padding-right: 10px;
 }
 @media (max-width: 767px) {
-  #mainFooter .sub-footer-help-link {
+  #footerRoot .sub-footer-help-link {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     font-size: 10pt;
@@ -9085,11 +9097,11 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   }
 }
 @media (max-width: 767px) {
-  #mainFooter .sub-footer-help-link {
+  #footerRoot .sub-footer-help-link {
     display: none !important;
   }
 }
-#mainFooter .sub-footer-legal-link {
+#footerRoot .sub-footer-legal-link {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 10pt;
@@ -9101,7 +9113,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   padding-left: 10px;
 }
 @media (max-width: 767px) {
-  #mainFooter .sub-footer-legal-link {
+  #footerRoot .sub-footer-legal-link {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     font-size: 10pt;
@@ -9111,12 +9123,12 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   }
 }
 @media (max-width: 767px) {
-  #mainFooter .sub-footer-legal-link {
+  #footerRoot .sub-footer-legal-link {
     border: none;
     padding-left: 0;
   }
 }
-#mainFooter .sub-footer-terms-link {
+#footerRoot .sub-footer-terms-link {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 10pt;
@@ -9128,7 +9140,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   padding-left: 10px;
 }
 @media (max-width: 767px) {
-  #mainFooter .sub-footer-terms-link {
+  #footerRoot .sub-footer-terms-link {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     font-size: 10pt;
@@ -9138,11 +9150,11 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   }
 }
 @media (max-width: 767px) {
-  #mainFooter .sub-footer-terms-link span {
+  #footerRoot .sub-footer-terms-link span {
     display: none !important;
   }
 }
-#mainFooter .sub-footer-policy-link {
+#footerRoot .sub-footer-policy-link {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 10pt;
@@ -9155,7 +9167,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   padding-left: 10px;
 }
 @media (max-width: 767px) {
-  #mainFooter .sub-footer-policy-link {
+  #footerRoot .sub-footer-policy-link {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     font-size: 10pt;
@@ -9165,29 +9177,29 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   }
 }
 @media (max-width: 767px) {
-  #mainFooter .sub-footer-policy-link span {
+  #footerRoot .sub-footer-policy-link span {
     display: none !important;
   }
 }
-#mainFooter .sup-footer-wrapper {
+#footerRoot .sup-footer-wrapper {
   margin-right: auto;
   margin-left: auto;
   padding-left: 15px;
   padding-right: 15px;
 }
-#mainFooter .sup-footer-wrapper > .navbar-header,
-#mainFooter .sup-footer-wrapper > .navbar-collapse {
+#footerRoot .sup-footer-wrapper > .navbar-header,
+#footerRoot .sup-footer-wrapper > .navbar-collapse {
   margin-right: -15px;
   margin-left: -15px;
 }
 @media (min-width: 768px) {
-  #mainFooter .sup-footer-wrapper > .navbar-header,
-  #mainFooter .sup-footer-wrapper > .navbar-collapse {
+  #footerRoot .sup-footer-wrapper > .navbar-header,
+  #footerRoot .sup-footer-wrapper > .navbar-collapse {
     margin-right: 0;
     margin-left: 0;
   }
 }
-#mainFooter .user-info-sup-footer {
+#footerRoot .user-info-sup-footer {
   position: relative;
   float: left;
   width: 100%;
@@ -9197,21 +9209,21 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   padding: 10px 0;
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  #mainFooter .user-info-sup-footer {
+  #footerRoot .user-info-sup-footer {
     display: none !important;
   }
 }
 @media (min-width: 992px) and (max-width: 1199px) {
-  #mainFooter .user-info-sup-footer {
+  #footerRoot .user-info-sup-footer {
     display: none !important;
   }
 }
 @media (min-width: 1200px) {
-  #mainFooter .user-info-sup-footer {
+  #footerRoot .user-info-sup-footer {
     display: none !important;
   }
 }
-#mainFooter .user-info-sup-footer .add-funds-button {
+#footerRoot .user-info-sup-footer .add-funds-button {
   display: inline-block;
   margin-bottom: 0;
   font-weight: normal;
@@ -9241,28 +9253,28 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   padding: 10px 20px;
   float: right !important;
 }
-#mainFooter .user-info-sup-footer .add-funds-button:focus,
-#mainFooter .user-info-sup-footer .add-funds-button:active:focus,
-#mainFooter .user-info-sup-footer .add-funds-button.active:focus {
+#footerRoot .user-info-sup-footer .add-funds-button:focus,
+#footerRoot .user-info-sup-footer .add-funds-button:active:focus,
+#footerRoot .user-info-sup-footer .add-funds-button.active:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-#mainFooter .user-info-sup-footer .add-funds-button:hover,
-#mainFooter .user-info-sup-footer .add-funds-button:focus {
+#footerRoot .user-info-sup-footer .add-funds-button:hover,
+#footerRoot .user-info-sup-footer .add-funds-button:focus {
   color: #ffffff;
   text-decoration: none;
 }
-#mainFooter .user-info-sup-footer .add-funds-button:active,
-#mainFooter .user-info-sup-footer .add-funds-button.active {
+#footerRoot .user-info-sup-footer .add-funds-button:active,
+#footerRoot .user-info-sup-footer .add-funds-button.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-#mainFooter .user-info-sup-footer .add-funds-button.disabled,
-#mainFooter .user-info-sup-footer .add-funds-button[disabled],
-fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button {
+#footerRoot .user-info-sup-footer .add-funds-button.disabled,
+#footerRoot .user-info-sup-footer .add-funds-button[disabled],
+fieldset[disabled] #footerRoot .user-info-sup-footer .add-funds-button {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -9270,28 +9282,28 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-#mainFooter .user-info-sup-footer .add-funds-button:focus,
-#mainFooter .user-info-sup-footer .add-funds-button:active:focus,
-#mainFooter .user-info-sup-footer .add-funds-button.active:focus {
+#footerRoot .user-info-sup-footer .add-funds-button:focus,
+#footerRoot .user-info-sup-footer .add-funds-button:active:focus,
+#footerRoot .user-info-sup-footer .add-funds-button.active:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-#mainFooter .user-info-sup-footer .add-funds-button:hover,
-#mainFooter .user-info-sup-footer .add-funds-button:focus {
+#footerRoot .user-info-sup-footer .add-funds-button:hover,
+#footerRoot .user-info-sup-footer .add-funds-button:focus {
   color: #ffffff;
   text-decoration: none;
 }
-#mainFooter .user-info-sup-footer .add-funds-button:active,
-#mainFooter .user-info-sup-footer .add-funds-button.active {
+#footerRoot .user-info-sup-footer .add-funds-button:active,
+#footerRoot .user-info-sup-footer .add-funds-button.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-#mainFooter .user-info-sup-footer .add-funds-button.disabled,
-#mainFooter .user-info-sup-footer .add-funds-button[disabled],
-fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button {
+#footerRoot .user-info-sup-footer .add-funds-button.disabled,
+#footerRoot .user-info-sup-footer .add-funds-button[disabled],
+fieldset[disabled] #footerRoot .user-info-sup-footer .add-funds-button {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -9299,58 +9311,58 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-#mainFooter .user-info-sup-footer .add-funds-button:hover,
-#mainFooter .user-info-sup-footer .add-funds-button:focus,
-#mainFooter .user-info-sup-footer .add-funds-button:active,
-#mainFooter .user-info-sup-footer .add-funds-button.active,
-.open .dropdown-toggle#mainFooter .user-info-sup-footer .add-funds-button {
+#footerRoot .user-info-sup-footer .add-funds-button:hover,
+#footerRoot .user-info-sup-footer .add-funds-button:focus,
+#footerRoot .user-info-sup-footer .add-funds-button:active,
+#footerRoot .user-info-sup-footer .add-funds-button.active,
+.open .dropdown-toggle#footerRoot .user-info-sup-footer .add-funds-button {
   color: #ffffff;
   background-color: #87a829;
   border-color: #698320;
 }
-#mainFooter .user-info-sup-footer .add-funds-button:active,
-#mainFooter .user-info-sup-footer .add-funds-button.active,
-.open .dropdown-toggle#mainFooter .user-info-sup-footer .add-funds-button {
+#footerRoot .user-info-sup-footer .add-funds-button:active,
+#footerRoot .user-info-sup-footer .add-funds-button.active,
+.open .dropdown-toggle#footerRoot .user-info-sup-footer .add-funds-button {
   background-image: none;
 }
-#mainFooter .user-info-sup-footer .add-funds-button.disabled,
-#mainFooter .user-info-sup-footer .add-funds-button[disabled],
-fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button,
-#mainFooter .user-info-sup-footer .add-funds-button.disabled:hover,
-#mainFooter .user-info-sup-footer .add-funds-button[disabled]:hover,
-fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button:hover,
-#mainFooter .user-info-sup-footer .add-funds-button.disabled:focus,
-#mainFooter .user-info-sup-footer .add-funds-button[disabled]:focus,
-fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button:focus,
-#mainFooter .user-info-sup-footer .add-funds-button.disabled:active,
-#mainFooter .user-info-sup-footer .add-funds-button[disabled]:active,
-fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button:active,
-#mainFooter .user-info-sup-footer .add-funds-button.disabled.active,
-#mainFooter .user-info-sup-footer .add-funds-button[disabled].active,
-fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button.active {
+#footerRoot .user-info-sup-footer .add-funds-button.disabled,
+#footerRoot .user-info-sup-footer .add-funds-button[disabled],
+fieldset[disabled] #footerRoot .user-info-sup-footer .add-funds-button,
+#footerRoot .user-info-sup-footer .add-funds-button.disabled:hover,
+#footerRoot .user-info-sup-footer .add-funds-button[disabled]:hover,
+fieldset[disabled] #footerRoot .user-info-sup-footer .add-funds-button:hover,
+#footerRoot .user-info-sup-footer .add-funds-button.disabled:focus,
+#footerRoot .user-info-sup-footer .add-funds-button[disabled]:focus,
+fieldset[disabled] #footerRoot .user-info-sup-footer .add-funds-button:focus,
+#footerRoot .user-info-sup-footer .add-funds-button.disabled:active,
+#footerRoot .user-info-sup-footer .add-funds-button[disabled]:active,
+fieldset[disabled] #footerRoot .user-info-sup-footer .add-funds-button:active,
+#footerRoot .user-info-sup-footer .add-funds-button.disabled.active,
+#footerRoot .user-info-sup-footer .add-funds-button[disabled].active,
+fieldset[disabled] #footerRoot .user-info-sup-footer .add-funds-button.active {
   background-color: #a1c931;
   border-color: #91b42c;
 }
-#mainFooter .user-info-sup-footer .add-funds-button .badge {
+#footerRoot .user-info-sup-footer .add-funds-button .badge {
   color: #a1c931;
   background-color: #ffffff;
 }
-#mainFooter .user-info-sup-footer .add-funds-button[disabled] {
+#footerRoot .user-info-sup-footer .add-funds-button[disabled] {
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
 }
-#mainFooter .user-info-sup-footer .add-funds-button:active,
-#mainFooter .user-info-sup-footer .add-funds-button[disabled],
-fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button {
+#footerRoot .user-info-sup-footer .add-funds-button:active,
+#footerRoot .user-info-sup-footer .add-funds-button[disabled],
+fieldset[disabled] #footerRoot .user-info-sup-footer .add-funds-button {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-#mainFooter .user-info-sup-footer .add-funds-button:focus {
+#footerRoot .user-info-sup-footer .add-funds-button:focus {
   outline: none !important;
 }
 @media (max-width: 991px) {
-  #mainFooter .user-info-sup-footer .add-funds-button {
+  #footerRoot .user-info-sup-footer .add-funds-button {
     padding: 4px 12px;
     font-size: 8pt;
     line-height: 1.5em;
@@ -9358,12 +9370,12 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button {
     margin-top: 5px;
   }
 }
-#mainFooter .sub-footer-wrapper {
+#footerRoot .sub-footer-wrapper {
   width: 100%;
   background: #000000;
 }
 @media (max-width: 767px) {
-  #mainFooter .sub-footer-wrapper {
+  #footerRoot .sub-footer-wrapper {
     background: #434343;
     padding: 10px 0px;
     border-width: 1px;
@@ -9372,7 +9384,7 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button {
     border-radius: 0;
   }
 }
-#mainFooter .sub-footer {
+#footerRoot .sub-footer {
   margin-right: auto;
   margin-left: auto;
   padding-left: 15px;
@@ -9380,39 +9392,39 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button {
   float: none;
 }
 @media (min-width: 768px) {
-  #mainFooter .sub-footer {
+  #footerRoot .sub-footer {
     width: 750px;
   }
 }
 @media (min-width: 992px) {
-  #mainFooter .sub-footer {
+  #footerRoot .sub-footer {
     width: 970px;
   }
 }
 @media (min-width: 1200px) {
-  #mainFooter .sub-footer {
+  #footerRoot .sub-footer {
     width: 970px;
   }
 }
-#mainFooter .sub-footer > .navbar-header,
-#mainFooter .sub-footer > .navbar-collapse {
+#footerRoot .sub-footer > .navbar-header,
+#footerRoot .sub-footer > .navbar-collapse {
   margin-right: -15px;
   margin-left: -15px;
 }
 @media (min-width: 768px) {
-  #mainFooter .sub-footer > .navbar-header,
-  #mainFooter .sub-footer > .navbar-collapse {
+  #footerRoot .sub-footer > .navbar-header,
+  #footerRoot .sub-footer > .navbar-collapse {
     margin-right: 0;
     margin-left: 0;
   }
 }
 @media (min-width: 768px) {
-  #mainFooter .sub-footer {
+  #footerRoot .sub-footer {
     width: 100%;
     padding-bottom: 15px;
   }
 }
-#mainFooter .sub-footer .logo-wrapper {
+#footerRoot .sub-footer .logo-wrapper {
   height: 45px;
   margin-top: 5px;
   border-width: 1px;
@@ -9421,11 +9433,11 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button {
   border-radius: 0;
 }
 @media (max-width: 767px) {
-  #mainFooter .sub-footer .logo-wrapper {
+  #footerRoot .sub-footer .logo-wrapper {
     text-align: center;
   }
 }
-#mainFooter .sub-footer .data-wrapper {
+#footerRoot .sub-footer .data-wrapper {
   float: left;
   width: 100%;
   position: relative;
@@ -9436,20 +9448,20 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button {
   padding-right: 0px;
 }
 @media (min-width: 768px) {
-  #mainFooter .sub-footer .data-wrapper {
+  #footerRoot .sub-footer .data-wrapper {
     float: left;
     width: 66.66666667%;
   }
 }
 @media (max-width: 767px) {
-  #mainFooter .sub-footer .data-wrapper {
+  #footerRoot .sub-footer .data-wrapper {
     text-align: center;
   }
 }
-#mainFooter .sub-footer .data-wrapper a {
+#footerRoot .sub-footer .data-wrapper a {
   cursor: pointer;
 }
-#mainFooter .sub-footer .credit-cards {
+#footerRoot .sub-footer .credit-cards {
   position: relative;
   min-height: 1px;
   padding-left: 15px;
@@ -9460,17 +9472,17 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button {
   float: right !important;
 }
 @media (max-width: 767px) {
-  #mainFooter .sub-footer .credit-cards {
+  #footerRoot .sub-footer .credit-cards {
     display: none !important;
   }
 }
 @media (min-width: 768px) {
-  #mainFooter .sub-footer .credit-cards {
+  #footerRoot .sub-footer .credit-cards {
     float: left;
     width: 33.33333333%;
   }
 }
-#mainFooter .sub-footer .opta {
+#footerRoot .sub-footer .opta {
   position: relative;
   min-height: 1px;
   padding-left: 15px;
@@ -9485,26 +9497,26 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button {
   line-height: 20px;
 }
 @media (max-width: 767px) {
-  #mainFooter .sub-footer .opta {
+  #footerRoot .sub-footer .opta {
     display: none !important;
   }
 }
 @media (min-width: 768px) {
-  #mainFooter .sub-footer .opta {
+  #footerRoot .sub-footer .opta {
     float: left;
     width: 33.33333333%;
   }
 }
-#mainFooter .sub-footer .opta div {
+#footerRoot .sub-footer .opta div {
   text-align: right;
   padding-right: 58px;
 }
-#mainFooter .sub-footer .opta div span {
+#footerRoot .sub-footer .opta div span {
   text-indent: -9999px;
   overflow: hidden;
   display: inline-block;
 }
-#mainFooter .sub-footer .opta div span::after {
+#footerRoot .sub-footer .opta div span::after {
   content: url("../images/logoOpta.png");
   display: inline-block;
   width: 48px;
@@ -9513,7 +9525,7 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button {
   top: 5px;
   right: 0;
 }
-#mainFooter .sub-footer .opta div + div {
+#footerRoot .sub-footer .opta div + div {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 11pt;
@@ -9521,12 +9533,12 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button {
   padding-right: 0;
   padding-top: 10px;
 }
-#mainFooter .sub-footer .opta div + div strong {
+#footerRoot .sub-footer .opta div + div strong {
   background-image: url("../images/performBg.png");
   background-repeat: no-repeat;
   background-position: 31px -4px;
 }
-#mainFooter .sub-footer .copyright {
+#footerRoot .sub-footer .copyright {
   float: left;
   width: 100%;
   position: relative;
@@ -9542,13 +9554,13 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button {
   padding-top: 5px;
 }
 @media (min-width: 768px) {
-  #mainFooter .sub-footer .copyright {
+  #footerRoot .sub-footer .copyright {
     float: left;
     width: 25%;
   }
 }
 @media (max-width: 767px) {
-  #mainFooter .sub-footer .copyright {
+  #footerRoot .sub-footer .copyright {
     text-align: center;
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
@@ -9557,11 +9569,11 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button {
   }
 }
 @media (max-width: 767px) {
-  #mainFooter .sub-footer .social {
+  #footerRoot .sub-footer .social {
     display: none !important;
   }
 }
-#mainFooter .sub-footer .url-link {
+#footerRoot .sub-footer .url-link {
   text-decoration: none;
   position: relative;
   min-height: 1px;
@@ -9576,17 +9588,17 @@ fieldset[disabled] #mainFooter .user-info-sup-footer .add-funds-button {
   line-height: 21px;
 }
 @media (max-width: 767px) {
-  #mainFooter .sub-footer .url-link {
+  #footerRoot .sub-footer .url-link {
     display: none !important;
   }
 }
 @media (min-width: 768px) {
-  #mainFooter .sub-footer .url-link {
+  #footerRoot .sub-footer .url-link {
     float: left;
     width: 29.16666667%;
   }
 }
-#mainFooter .sub-footer .footer-count {
+#footerRoot .sub-footer .footer-count {
   clear: both;
   margin-top: 5px;
 }
@@ -20384,9 +20396,6 @@ html {
   min-height: 100%;
   height: auto !important;
   height: 100%;
-  /*footer {
-		height: 150px;
-	}*/
 }
 @media (min-width: 768px) {
   .wrapper-content-container {
@@ -20403,12 +20412,12 @@ html {
     margin: 0 auto -204px;
   }
 }
-.wrapper-content-container #wrapper-push {
-  height: 146px;
+.wrapper-content-container #mainContent:after {
+  min-height: 146px;
 }
 @media (max-width: 767px) {
-  .wrapper-content-container #wrapper-push {
-    height: 204px;
+  .wrapper-content-container #mainContent:after {
+    min-height: 204px;
   }
 }
 .default-header-text {

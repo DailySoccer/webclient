@@ -165,15 +165,12 @@ html { overflow-y: scroll; }
 	@media (max-width: @screen-xs-max) {
 		margin: 0 auto -204px;
 	}
-	#wrapper-push {
-		height: 146px;
+    #mainContent:after{
+		min-height: 146px;
 		@media (max-width: @screen-xs-max) {
-			height: 204px;
+			min-height: 204px;
 		}
 	}
-	/*footer {
-		height: 150px;
-	}*/
 }
 
 .default-header-text {

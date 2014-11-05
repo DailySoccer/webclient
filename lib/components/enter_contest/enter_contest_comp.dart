@@ -177,6 +177,7 @@ class EnterContestComp implements DetachAware {
       isSelectingSoccerPlayer = false;
       availableSoccerPlayers.remove(soccerPlayer);
       availableSalary -= soccerPlayer["salary"];
+      nameFilter = "";
     }
   }
 

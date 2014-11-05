@@ -359,12 +359,8 @@ class EnterContestComp implements DetachAware {
 
     // Version Small or Desktop => sacamos la modal
     if (scrDet.isSmScreen || scrDet.isDesktop) {
-
-      // Esto soluciona el bug por el que no se muestra la ventana modal en Firefox;
       var modal = querySelector('#infoContestModal');
       modal.style.display = "block";
-
-      // Con esto llamamos a funciones de jQuery
       JsUtils.runJavascript('#infoContestModal', 'modal', null);
     }
     else { // Resto de versiones => mostramos el componente soccer_player_info_comp

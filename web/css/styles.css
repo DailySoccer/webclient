@@ -8995,16 +8995,6 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   bottom: 0;
   background: #000000;
 }
-@media (max-width: 991px) {
-  #rootFooter {
-    width: 100%;
-  }
-}
-@media (min-width: 992px) {
-  #rootFooter {
-    width: 100%;
-  }
-}
 #rootFooter .goto-link {
   text-decoration: none;
 }
@@ -9191,6 +9181,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   padding-left: 15px;
   padding-right: 15px;
   padding: 10px 0;
+  min-height: 55px;
 }
 @media (min-width: 768px) and (max-width: 991px) {
   #rootFooter .user-info-sup-footer {

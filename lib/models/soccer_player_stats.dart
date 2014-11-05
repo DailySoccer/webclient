@@ -30,7 +30,7 @@ class SoccerPlayerStats {
 
   SoccerPlayerStats.fromJsonObject(Map jsonMap, ContestReferences references) {
     startDate = jsonMap.containsKey("startDate") ? DateTimeService.fromMillisecondsSinceEpoch(jsonMap["startDate"]) : DateTimeService.now;
-    optaCompetitionId = jsonMap.containsKey("optaCompetitionId") ? jsonMap["optaCompetitionId"] : "";
+    optaCompetitionId = jsonMap.containsKey("optaCompetitionId") && (jsonMap["optaCompetitionId"] != null) ? jsonMap["optaCompetitionId"] : "";
     opponentTeam = jsonMap.containsKey("opponentTeamId") ? references.getSoccerTeamById(jsonMap["opponentTeamId"]) : null;
 
     fantasyPoints = jsonMap["fantasyPoints"];

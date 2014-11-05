@@ -96,7 +96,7 @@ class Contest {
     ,COMPETITION_LEAGUE_UCL_ID: "CHAMPIONS"
     ,COMPETITION_WORLDCUP_ID:   "WORLDCUP"
   };
-  String get competitionType => ""; //optaCompetitionId.isNotEmpty ? competitionTypeValues[optaCompetitionId] : "";
+  String get competitionType => optaCompetitionId.isNotEmpty ? competitionTypeValues[optaCompetitionId] : "";
 
   Contest(this.contestId, this.contestEntries);
 
@@ -257,7 +257,7 @@ class Contest {
     prizeType = jsonMap["prizeType"];
     prizes = jsonMap.containsKey("prizes") ? jsonMap["prizes"] : [];
     startDate = DateTimeService.fromMillisecondsSinceEpoch(jsonMap["startDate"]);
-    optaCompetitionId = jsonMap.containsKey("optaCompetitionId") ? jsonMap["optaCompetitionId"] : "";
+    optaCompetitionId = jsonMap.containsKey("optaCompetitionId") && (jsonMap["optaCompetitionId"] != null) ? jsonMap["optaCompetitionId"] : "";
     matchEvents = jsonMap.containsKey("templateMatchEventIds") ? jsonMap["templateMatchEventIds"].map( (matchEventId) => references.getMatchEventById(matchEventId) ).toList() : [];
 
     instanceSoccerPlayers = {};

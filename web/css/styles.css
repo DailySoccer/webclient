@@ -20302,6 +20302,16 @@ html {
     color: #0d75a6;
   }
 }
+.blue-separator {
+  width: 100%;
+  height: 40px;
+  background-color: #59add5;
+}
+@media (max-width: 767px) {
+  .blue-separator {
+    height: 5px;
+  }
+}
 .center-text {
   text-align: center;
 }

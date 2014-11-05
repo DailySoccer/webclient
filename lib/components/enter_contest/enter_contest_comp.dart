@@ -162,7 +162,7 @@ class EnterContestComp implements DetachAware {
     }
     else {
       isSelectingSoccerPlayer = true;
-
+      scrollToElement('.enter-contest-tabs');
       // Cuando seleccionan un slot del lineup cambiamos siempre el filtro de la soccer-player-list, especialmente
       // en movil que cambiamos de vista a "solo ella".
       // El componente hijo se entera de que le hemos cambiado el filtro a traves del two-way binding.
@@ -178,6 +178,7 @@ class EnterContestComp implements DetachAware {
       availableSoccerPlayers.remove(soccerPlayer);
       availableSalary -= soccerPlayer["salary"];
       nameFilter = "";
+      scrollToElement('.enter-contest-tabs');
     }
   }
 
@@ -388,6 +389,12 @@ class EnterContestComp implements DetachAware {
       closePlayerInfo();
     }
   }
+
+  void scrollToElement(String selector) {
+      window.scrollTo(0, querySelector(selector).offsetTop);
+  }
+
+
 
   Router _router;
   RouteProvider _routeProvider;

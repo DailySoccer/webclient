@@ -82,6 +82,9 @@ class WebClientApp extends Module {
       bind(TemplateCache, toValue: cache);
     }
 
+    // No usamos animacion -> podemos quitar esto
+    bind(CompilerConfig, toValue:new CompilerConfig.withOptions(elementProbeEnabled: false));
+
     bind(ExceptionHandler, toImplementation: LoggerExceptionHandler);
     bind(ServerService, toImplementation: DailySoccerServer);
 

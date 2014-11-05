@@ -7,6 +7,7 @@ import 'package:angular/angular.dart';
 import 'package:webclient/models/user.dart';
 import 'package:webclient/services/server_service.dart';
 import 'package:logging/logging.dart';
+import 'package:webclient/utils/game_metrics.dart';
 
 
 @Injectable()
@@ -35,12 +36,16 @@ class ProfileService {
 
     if (isLoggedIn)
       throw new Exception("WTF 4234 - We shouldn't be logged in when signing up");
-
+    GameMetrics.aliasMixpanel(email);
     return _server.signup(firstName, lastName, email, nickName, password);
    }
 
   Future<Map> login(String email, String password) {
-    return _server.login(email, password).then(_onLoginResponse);
+    Completer completer = new Completer();
+    _server.login(email, password).then((loginResponseJson) {
+      _onLoginResponse(loginResponseJson).then((jsonMap) => completer.complete(jsonMap));
+      });
+    return completer.future;
   }
 
   Future<Map> _onLoginResponse(Map loginResponseJson) {
@@ -75,6 +80,7 @@ class ProfileService {
 
     if (theSessionToken != null && jsonMap != null) {
       user = new User.fromJsonObject(jsonMap);
+      GameMetrics.identifyMixpanel(user.email);
     }
     else {
       user = null;
@@ -108,6 +114,8 @@ class ProfileService {
           Logger.root.warning("ProfileService: Se borro la DB y pudimos reusar el sessionToken.");
           _setProfile(storedSessionToken, jsonMap, true);
         }
+        //identificamos al usuario en Mixpanel:
+        GameMetrics.identifyMixpanel(user.email);
       })
       .catchError((error) {
         // No se ha podido refrescar: Tenemos que salir y pedir que vuelva a hacer login

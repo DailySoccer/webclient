@@ -69,6 +69,7 @@ import 'package:webclient/components/legalese_and_help/beta_info_comp.dart';
 import 'package:webclient/utils/host_server.dart';
 import 'package:webclient/template_cache.dart';
 import 'dart:async';
+import 'package:webclient/utils/game_metrics.dart';
 
 class WebClientApp extends Module {
 
@@ -149,6 +150,7 @@ class WebClientApp extends Module {
 
     bind(RouteInitializerFn, toValue: webClientRouteInitializer);
     bind(NgRoutingUsePushState, toValue: new NgRoutingUsePushState.value(false));
+
   }
 
   void webClientRouteInitializer(Router router, RouteViewFactory views) {
@@ -310,6 +312,13 @@ class WebClientApp extends Module {
 
   // Funcion que ejecutamos nada más entrar en la página
   void _enterPage(RouteEnterEvent event) {
+    Uri uri = Uri.parse(window.location.toString());
+    // Limpiamos la uri si viene con Query Strings (utm_campaign...)
+    if (uri.hasQuery) {
+      window.location.replace(uri.path+"#"+event.path);
+    }
+    GameMetrics.logEvent(event.route.name);
+
   }
 
   // Funcion que ejecutamos nada más salir de la página

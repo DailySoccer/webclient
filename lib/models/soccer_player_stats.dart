@@ -33,8 +33,8 @@ class SoccerPlayerStats {
     optaCompetitionId = jsonMap.containsKey("optaCompetitionId") && (jsonMap["optaCompetitionId"] != null) ? jsonMap["optaCompetitionId"] : "";
     opponentTeam = jsonMap.containsKey("opponentTeamId") ? references.getSoccerTeamById(jsonMap["opponentTeamId"]) : null;
 
-    fantasyPoints = jsonMap["fantasyPoints"];
-    playedMinutes = jsonMap["playedMinutes"];
+    fantasyPoints = jsonMap.containsKey("fantasyPoints") && (jsonMap["fantasyPoints"]!=null)? jsonMap["fantasyPoints"] : 0;
+    playedMinutes = jsonMap.containsKey("playedMinutes") && (jsonMap["playedMinutes"]!=null)? jsonMap["playedMinutes"] : 0;
 
     int _getIntValue(String key) => (jsonMap.containsKey("statsCount") && jsonMap["statsCount"].containsKey(key)) ? jsonMap["statsCount"][key] : 0;
 
@@ -55,4 +55,6 @@ class SoccerPlayerStats {
     penaltisDetenidos = _getIntValue("PENALTIS_DETENIDOS");
   }
 
+  bool hasPlayed() => (playedMinutes > 0) || (fantasyPoints != 0);
+  bool hasPlayedInCompetition(String competitionId) => (optaCompetitionId == competitionId) && hasPlayed();
 }

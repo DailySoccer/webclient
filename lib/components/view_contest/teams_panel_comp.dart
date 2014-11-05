@@ -50,14 +50,13 @@ class TeamsPanelComp implements DetachAware {
       return;
     }
 
-    // generamos los partidos para el filtro de partidos
     matchesInvolved.clear();
     matchEventsSorted = new List<MatchEvent>.from(contest.matchEvents)
-    .. sort((entry1, entry2) => entry1.startDate.compareTo(entry2.startDate))
-    .. forEach( (match) {
-      matchesInvolved.add(match.soccerTeamA.shortName + '-' + match.soccerTeamB.shortName +
-      "<br>" + DateTimeService.formatDateTimeShort(match.startDate) + "<br>");
-   });
+      .. sort((entry1, entry2) => entry1.startDate.compareTo(entry2.startDate))
+      .. forEach( (match) {
+        matchesInvolved.add(match.soccerTeamA.shortName + '-' + match.soccerTeamB.shortName +
+        "<br>" + DateTimeService.formatDateTimeShort(match.startDate) + "<br>");
+     });
   }
 
   String getMatchAndPeriodInfo(int id, String teamsInfo) {

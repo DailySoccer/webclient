@@ -1,11 +1,13 @@
 library matches_filter_comp;
 
+import 'dart:html';
+import 'dart:async';
 import 'package:angular/angular.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/match_event.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
-import 'dart:async';
+
 
 
 @Component(
@@ -35,16 +37,12 @@ class MatchesFilterComp {
       return;
     }
 
-    // En Xs se pinta el selector en vez de los botones, asi que evitamos los timers
+    theContest.matchEvents.forEach((match) => _addMatchEvent(match));
+
     if (!srcDet.isXsScreen) {
-      int timeDelay = 200;
-      theContest.matchEvents.forEach((match) {
-        new Timer(new Duration(milliseconds: timeDelay), () => _addMatchEvent(match));
-        timeDelay += 200;
+      new Timer(new Duration(milliseconds: 500), () {
+        querySelector(".matches-filter-buttons").classes.add("animate");
       });
-    }
-    else {
-      theContest.matchEvents.forEach((match) => _addMatchEvent(match));
     }
   }
 

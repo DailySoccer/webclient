@@ -21,8 +21,8 @@ class MyContestsComp implements DetachAware {
   String waitingSortType = "contest-start-time_asc";
   String historySortType = "contest-start-time_desc";
 
-  bool get hasLiveContests    => myContestsService.liveContests     == null ? false : myContestsService.liveContests.length     > 0;
   bool liveDataLoaded = false;
+  bool get hasLiveContests    => myContestsService.liveContests     == null ? false : myContestsService.liveContests.length     > 0;
   bool get hasWaitingContests => myContestsService.waitingContests  == null ? false : myContestsService.waitingContests.length  > 0;
   bool get hasHistoryContests => myContestsService.historyContests  == null ? false : myContestsService.historyContests.length  > 0;
 

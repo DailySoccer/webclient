@@ -477,6 +477,24 @@ tc.put("packages/webclient/components/contest_filters_comp.html", new HttpRespon
 </div>
 
 <div id="filtersPanel" class="collapse">
+
+    <!-- Filtro x tipos de concurso -->
+    <div class="filter-column-tournaments">
+      <p class="filter-title">COMPETICION</p>
+      <div class="filter-content">
+        <div class="check-group-wrapper">
+
+          <!-- Botones -->
+          <div class="button-check-{{competitionType.flag}}" ng-repeat="competitionType in competitionFilterList">
+            <input id="{{competitionType['id']}}" type="checkbox" ng-disabled="competitionType['disabled']"
+                   ng-click="filterByCompetitionType(competitionType)">
+            <label for="{{competitionType['id']}}">{{competitionType["text"].toUpperCase()}}</label>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
     <!-- Filtro x tipos de concurso -->
     <div class="filter-column-tournaments">
       <p class="filter-title">TORNEOS</p>
@@ -486,7 +504,7 @@ tc.put("packages/webclient/components/contest_filters_comp.html", new HttpRespon
             <!-- Botones -->
             <div class="button-check" ng-repeat="contestType in contestTypeFilterList">
               <input id="{{contestType['id']}}" type="checkbox" ng-disabled="contestType['disabled']"
-                     ng-click="filterByType(contestType)">
+                     ng-click="filterByTournamentType(contestType)">
               <label for="{{contestType['id']}}">{{contestType["text"].toUpperCase()}}</label>
 
             </div>
@@ -777,7 +795,7 @@ tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse
   <paginator on-page-change="onPageChange(currentPage, itemsPerPage)" list-length="contestsListFiltered.length"></paginator>
 
 </div>"""));
-tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", new HttpResponse(200, r"""<div class="enter-contest-wrapper" ng-cloak>
+tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", new HttpResponse(200, r"""<div id="enter-contest-wrapper" ng-cloak>
 
   <contest-header id="contestHeader" contest="contest" contest-id="contestId"></contest-header>
 
@@ -797,7 +815,7 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
             <matches-filter id="matchesFilterBig" contest="contest" selected-option="matchFilter" ng-if="isBigScreenVersion"></matches-filter>
 
             <div class="enter-contest-actions-wrapper" ng-if="isSmallScreenVersion">
-              <div class="total-salary"><span ng-class="getMyTotalSalaryClasses()">{{availableSalary}}€</span></div>
+              <div class="total-salary"><span class="total-salary-money" ng-class="{'red-numbers': availableSalary < 0 }" ng-show="contest != null">{{availableSalary}}€</span></div>
               <button id="cancelSoccerPlayerSelection" type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer">CANCELAR</button>
             </div>
 
@@ -805,8 +823,10 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
               <div class="enter-contest-lineup">
                 <div class="enter-contest-total-salary">
                     <span class="total-salary-text">TU ALINEACIÓN</span>
-                    <span class="total-salary"><span class="total-salary-text">DINERO RESTANTE:</span>
-                    <span ng-class="getMyTotalSalaryClasses()">{{availableSalary}}€</span></span>
+                    <div class="total-salary">
+                      <span class="total-salary-text">DINERO RESTANTE:</span>
+                      <span class="total-salary-money" ng-class="{'red-numbers': availableSalary < 0 }" ng-show="contest != null">{{availableSalary}}€</span>
+                    </div>
                 </div>
 
                 <lineup-selector ng-show="!isSelectingSoccerPlayer || isBigScreenVersion"></lineup-selector>
@@ -829,7 +849,6 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
             </div>
 
             <div class="enter-contest-actions-wrapper">
-
               <button type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer" ng-if="isSmallScreenVersion">CANCELAR</button>
 
               <div ng-if="!isSelectingSoccerPlayer || isBigScreenVersion">
@@ -859,7 +878,7 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
 
 </div>
 
-<div class="soccer-player-info-wrapper" ng-if="scrDet.isXsScreen">
+<div id="soccer-player-info-wrapper" ng-if="scrDet.isXsScreen">
   <soccer-player-info instance-soccer-player="selectedInstanceSoccerPlayer"></soccer-player-info>
 </div>
 
@@ -899,9 +918,9 @@ tc.put("packages/webclient/components/enter_contest/matches_filter_comp.html", n
     <option ng-repeat="match in matchEvents" id="option-match-{{match.id}}" value="{{$index + 1}}" ng-value="match.id">{{match.textoSelector}}</option>
   </select>
   
-  <div id="matchesFilter" class="matches-filter" ng-switch-when="false">
+  <div id="matchesFilterButtons" class="matches-filter-buttons" ng-switch-when="false">
     <button class="btn btn-default button-filtro-team" ng-repeat="match in matchEvents" ng-bind-html="match.texto" id="match-{{match.id}}" 
-            ng-click="optionsSelectorValue = match.id" ng-class="{'active': optionsSelectorValue == match.id, 'transparent': match.isTransparent }">
+            ng-click="optionsSelectorValue = match.id" ng-class="{'active': optionsSelectorValue == match.id }">
     </button>
   </div>
 </div>"""));
@@ -2116,6 +2135,7 @@ tc.put("packages/webclient/components/lobby_comp.html", new HttpResponse(200, r"
                   contests-list="activeContestsService.activeContests"
                   on-action-click='onActionClick(contest)'
                   on-row-click="onRowClick(contest)" action-button-title="'Jugar'"
+                  competition-type-filter="lobbyFilters['FILTER_COMPETITION']"
                   tournament-type-filter="lobbyFilters['FILTER_TOURNAMENT']" salary-cap-filter="lobbyFilters['FILTER_TIER']"
                   entry-fee-filter="lobbyFilters['FILTER_ENTRY_FEE']" name-filter="lobbyFilters['FILTER_CONTEST_NAME']"
                   contest-count="contestCount">
@@ -2284,7 +2304,8 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
   </div>
 </div>
 """));
-tc.put("packages/webclient/components/navigation/footer_comp.html", new HttpResponse(200, r"""<div id="mainFooter" ng-show="!loadingService.isLoading">
+tc.put("packages/webclient/components/navigation/footer_comp.html", new HttpResponse(200, r"""<!--<div id="footerRoot" ng-show="!loadingService.isLoading" ng-cloak>-->
+<div id="footerRoot" ng-show="false" ng-cloak>
 
    <div class="sup-footer-wrapper">
     <div class="user-info-sup-footer" ng-show="profileService.isLoggedIn">
@@ -2496,9 +2517,22 @@ tc.put("packages/webclient/components/view_contest/fantasy_team_comp.html", new 
   </div>
 
 </div>"""));
-tc.put("packages/webclient/components/view_contest/teams_panel_comp.html", new HttpResponse(200, r"""<div id="teamsPanelRoot" ng-show="contest != null">
+tc.put("packages/webclient/components/view_contest/teams_panel_comp.html", new HttpResponse(200, r"""<div id="teamsPanelRoot" ng-show="contest != null" ng-switch="scrDet.isXsScreen" class="animate">
 
-  <div class="teams-comp-bar" ng-if="!scrDet.isXsScreen">
+  <div class="teams-comp-bar" ng-switch-when="true">
+    <div class="teams-toggler-wrapper">
+      <div id="teamsToggler" type="button" class="teams-toggler toggleOff" ng-click="toggleTeamsPanel()"  data-toggle="collapse" data-target="#teamsPanel">PARTIDOS EN ESTE TORNEO</div>
+    </div>
+    <div id="teamsPanel" class="teams-container collapse">
+      <div class="top-border"></div>
+      <div class="teams-box" ng-repeat="match in matchesInvolved">
+        <div class="teams-info" ng-bind-html="getMatchAndPeriodInfo($index, match)"></div>
+      </div>
+      <div class="bottom-border"></div>
+    </div>
+  </div>
+
+  <div class="teams-comp-bar" ng-switch-when="false">
     <div class="teams-container">
       <div class="teams-box" ng-repeat="match in matchesInvolved">
         <div class="teams-info" ng-bind-html="getMatchAndPeriodInfo($index, match)"></div>
@@ -2506,20 +2540,6 @@ tc.put("packages/webclient/components/view_contest/teams_panel_comp.html", new H
     </div>
   </div>
 
-  <div>
-    <div class="teams-comp-bar" ng-if="scrDet.isXsScreen">
-      <div class="teams-toggler-wrapper" ng-if="isCollapsable">
-        <div id="teamsToggler" type="button" class="teams-toggler toggleOff" ng-click="toggleTeamsPanel()" data-target="#teamsPanel">PARTIDOS</div>
-      </div>
-      <div id="teamsPanel" class="teams-container" ng-class="{'collapse':isCollapsable}">
-        <div class="top-border"></div>
-        <div class="teams-box" ng-repeat="match in matchesInvolved">
-          <div class="teams-info" ng-bind-html="getMatchAndPeriodInfo($index, match)"></div>
-        </div>
-        <div class="bottom-border"></div>
-      </div>
-    </div>
-  </div>
 </div>"""));
 tc.put("packages/webclient/components/view_contest/users_list_comp.html", new HttpResponse(200, r"""<div id="usersListRoot" ng-cloak>
 
@@ -2550,8 +2570,7 @@ tc.put("packages/webclient/components/view_contest/users_list_comp.html", new Ht
 tc.put("packages/webclient/components/view_contest/view_contest_comp.html", new HttpResponse(200, r"""<section>
 
   <contest-header id="contestHeader" contest="contest" contest-id="contestId"></contest-header>
-
-  <teams-panel id="teamsPanelRoot" contest="contest" contest-id="contestId" collapsable="true"></teams-panel>
+  <teams-panel id="teamsPanelComp" contest="contest" contest-id="contestId"></teams-panel>
 
   <div id="liveContestRoot" ng-switch="scrDet.isXsScreen" ng-cloak>
     <div ng-switch-when="true">
@@ -2587,7 +2606,7 @@ tc.put("packages/webclient/components/view_contest/view_contest_entry_comp.html"
 
   <contest-header id="contestHeader" contest="contest" contest-id="contestId"></contest-header>
 
-  <teams-panel id="teamsPanel" contest="contest" contest-id="contestId" collapsable="false"></teams-panel>
+  <teams-panel id="teamsPanelComp" contest="contest" contest-id="contestId"></teams-panel>
 
   <div class="separator-bar"></div>
   <div class="info-complete-bar" ng-if="!isModeViewing">

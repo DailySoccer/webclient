@@ -13799,6 +13799,10 @@ fieldset[disabled] .resume-bar .change-player .btn-change-player {
   padding: 1px 6px;
   margin-left: 5px;
 }
+.tab-content-wrapper {
+  min-height: 539px;
+  background-color: #ffffff;
+}
 .no-contest > img {
   display: block;
   max-width: 100%;
@@ -13975,7 +13979,6 @@ fieldset[disabled] .no-contest .my-no-contest-bottom-row .btn-go-to-contest {
   cursor: pointer;
 }
 .list-container {
-  min-height: 539px;
   background-color: #ffffff;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;

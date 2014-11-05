@@ -163,6 +163,7 @@ class EnterContestComp implements DetachAware {
     else {
       isSelectingSoccerPlayer = true;
       scrollToElement('.enter-contest-tabs');
+
       // Cuando seleccionan un slot del lineup cambiamos siempre el filtro de la soccer-player-list, especialmente
       // en movil que cambiamos de vista a "solo ella".
       // El componente hijo se entera de que le hemos cambiado el filtro a traves del two-way binding.
@@ -177,12 +178,18 @@ class EnterContestComp implements DetachAware {
       isSelectingSoccerPlayer = false;
       availableSoccerPlayers.remove(soccerPlayer);
       availableSalary -= soccerPlayer["salary"];
-      nameFilter = "";
+      nameFilter = null;
       scrollToElement('.enter-contest-tabs');
     }
   }
 
-  bool availableSoccerPlayer(var soccerPlayer) {
+  bool isSlotAvailableForSoccerPlayer(String soccerPlayerId) {
+    if (soccerPlayerId == null || soccerPlayerId.isEmpty || _allSoccerPlayers.isEmpty) {
+      return false;
+    }
+
+    var soccerPlayer = _allSoccerPlayers.firstWhere((sp) => sp["id"] == soccerPlayerId);
+
     FieldPos theFieldPos = soccerPlayer["fieldPos"];
     int c = 0;
     if (lineupSlots.contains(soccerPlayer)) {
@@ -347,13 +354,6 @@ class EnterContestComp implements DetachAware {
     var selectedSoccerPlayer = availableSoccerPlayers.firstWhere((soccerPlayer) => soccerPlayer["id"] == soccerPlayerId,
                                                                  orElse: () => null);
     if (selectedSoccerPlayer != null) {
-      List<ButtonElement> btnAdd = querySelectorAll('.btn-add-soccer-player-info');
-
-      if (availableSoccerPlayer(selectedSoccerPlayer))
-        btnAdd.forEach((element) => element.disabled = false);
-      else
-        btnAdd.forEach((element) => element.disabled = true);
-
       selectedInstanceSoccerPlayer = selectedSoccerPlayer["instanceSoccerPlayer"];
     }
 
@@ -391,10 +391,8 @@ class EnterContestComp implements DetachAware {
   }
 
   void scrollToElement(String selector) {
-      window.scrollTo(0, querySelector(selector).offsetTop);
+    //window.scrollTo(0, querySelector(selector).offsetTop);
   }
-
-
 
   Router _router;
   RouteProvider _routeProvider;

@@ -1,4 +1,4 @@
-footer {
+#mainFooter {
 	@media (min-width: @screen-sm-min) {
 		.container-fluid();
 		.clean-paddings();
@@ -9,24 +9,19 @@ footer {
 	}
 }
 
-#footerRoot{
-	position: relative;
-	bottom: 0;	
+#rootFooter{
 	@media (max-width: @screen-sm-max) {
-		//.container-fluid();
-		.clean-paddings();
 		width:100%;
-
 	}
 	@media (min-width: @screen-md-min) {
-		.clean-paddings();
 		width:100%;
 	}
-	padding-left: 0px;
-	padding-right: 0px;
-
 	.make-row(0);
+	.clean-paddings();
+	position: relative;
+	bottom: 0;	
 	background: @black;
+	
 	.goto-link{
 		text-decoration: none;
 	}

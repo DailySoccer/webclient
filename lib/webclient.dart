@@ -317,13 +317,6 @@ class WebClientApp extends Module {
 
   // Funcion que ejecutamos nada más entrar en la página
   void _enterPage(RouteEnterEvent event) {
-    Uri uri = Uri.parse(window.location.toString());
-    // Limpiamos la uri si viene con Query Strings (utm_campaign...)
-    if (uri.hasQuery) {
-      window.location.replace(uri.path+"#"+event.path);
-    }
-    GameMetrics.logEvent(event.route.name);
-
   }
 
   // Funcion que ejecutamos nada más salir de la página

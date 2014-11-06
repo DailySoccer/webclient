@@ -41,7 +41,10 @@ class MatchesFilterComp {
 
     if (!srcDet.isXsScreen) {
       new Timer(new Duration(milliseconds: 500), () {
-        querySelector(".matches-filter-buttons").classes.add("animate");
+        var filterButtons = querySelector(".matches-filter-buttons");
+        if (filterButtons != null) {          // Pueden haber navegado rapidamente hacia atras
+          filterButtons.classes.add("animate");
+        }
       });
     }
   }

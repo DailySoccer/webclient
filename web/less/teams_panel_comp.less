@@ -1,5 +1,5 @@
 //barra que muestra los partidos que intervienen en el concurso y los encales sociales
-#teamsPanel {
+#teamsPanelComp {
 	display: block;
 
 	// Reserva de sitio
@@ -9,73 +9,85 @@
 	}
 	@media (min-width: @screen-md-min) {
 		background-color: @tramaBlue;
-		min-height: 83px;
+		min-height: 50px;
+		overflow: hidden;
+
+		// Animacion para cuando hay mas de una linea (solo en desktop)
+		.animate {
+			#doKeyFrames(teamspanel-height-keyframes, {
+				 from { max-height: 50px; opacity: 0;}
+				 to { max-height: 300px; opacity: 1;}
+				});
+			.animateWithKeyFrames(teamspanel-height-keyframes, 1s);
+		}
 	}
 }
 
-.teams-comp-bar{
-	.make-row(0);
-	background-color: @tramaBlue;
-	.social{
-		.make-xs-column(0);
-		width: 150px;
-		padding: 9px 20px;
-	}
-	.teams-toggler-wrapper {
-		background-color: @white;
-		.teams-toggler {
-			.opensans_bold(8pt, @greyDark);
-			.user-select(none);
-			padding: 15px;
-		}
-		.toggleOff::after{
-			.create-glyph("\E114", 8pt, @greyUltraDark);
-			position: absolute;
-			right: 15px;
-		}
-		.toggleOn::after{
-			.create-glyph("\E113", 8pt, @greyUltraDark);
-			position: absolute;
-			right: 15px;
-		}
-	}
-	.teams-container {
+#teamsPanelRoot {
+	.teams-comp-bar{
 		.make-row(0);
-		padding: 10px 5px;
-		@media (max-width: @screen-xs-max) {			
-			background-color: @greyLight;
-			padding: 0;
-			.top-border {
-				.make-border(2px, solid none none none, @greyDark);
-				height: 10px;
+		background-color: @tramaBlue;
+		.social{
+			.make-xs-column(0);
+			width: 150px;
+			padding: 9px 20px;
+		}
+		.teams-toggler-wrapper {
+			background-color: @white;
+			.teams-toggler {
+				.opensans_bold(8pt, @greyDark);
+				.user-select(none);
+				padding: 15px;
 			}
-			.bottom-border {
-				.make-border(2px, none none solid none, @greyDark);
-				height: 10px;
-				clear: both;
+			.toggleOff::after{
+				.create-glyph("\E114", 8pt, @greyUltraDark);
+				position: absolute;
+				right: 15px;
+			}
+			.toggleOn::after{
+				.create-glyph("\E113", 8pt, @greyUltraDark);
+				position: absolute;
+				right: 15px;
 			}
 		}
-
-		.teams-box{
-			.make-xs-column(4);
-			.make-sm-column(3);
-			.make-md-column(2);
-			.clean-paddings();
-			.teams-info{
-				.opensans_bold(9pt, @greyMed);
-				min-width: 90px;
-				background-color: @white;		
-				border-radius: 10px;
-				padding: 5px 0;
-				margin: 0 4px 8px 4px;
-				@media (max-width: @screen-xs-max) {
-					margin: 4px;
+		.teams-container {
+			.make-row(0);
+			padding: 0px 5px;
+			@media (max-width: @screen-xs-max) {			
+				background-color: @greyLight;
+				padding: 0;
+				.top-border {
+					.make-border(2px, solid none none none, @greyDark);
+					height: 10px;
 				}
-				text-align: center;
-				line-height: 15px;
+				.bottom-border {
+					.make-border(2px, none none solid none, @greyDark);
+					height: 10px;
+					clear: both;
+				}
 			}
-			.period {
-				color: @blueMed;
+
+			.teams-box{
+				.make-xs-column(4);
+				.make-sm-column(3);
+				.make-md-column(2);
+				.clean-paddings();
+				.teams-info{
+					.opensans_bold(9pt, @greyMed);
+					min-width: 90px;
+					background-color: @white;		
+					border-radius: 10px;
+					padding: 5px 0;
+					margin: 0 4px 8px 4px;
+					@media (max-width: @screen-xs-max) {
+						margin: 4px;
+					}
+					text-align: center;
+					line-height: 15px;
+				}
+				.period {
+					color: @blueMed;
+				}
 			}
 		}
 	}

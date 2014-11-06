@@ -5,7 +5,7 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/components/account/user_profile_comp.dart';
 import 'package:webclient/services/loading_service.dart';
-import 'package:webclient/services/server_service.dart';
+import 'package:webclient/models/connection_error.dart';
 
 @Component(
     selector: 'edit-personal-data',

@@ -15,10 +15,11 @@ import 'package:webclient/services/screen_detector_service.dart';
 class ContestFiltersComp implements ShadowRootAware {
 
   /********* CONSTANTS */
+  static const String FILTER_COMPETITION  = "FILTER_COMPETITION";
   static const String FILTER_CONTEST_NAME = "FILTER_CONTEST_NAME";
   static const String FILTER_ENTRY_FEE    = "FILTER_ENTRY_FEE";
-  static const String FILTER_TOURNAMENT   = "FILTER_TOURNAMENT";
   static const String FILTER_TIER         = "FILTER_TIER";
+  static const String FILTER_TOURNAMENT   = "FILTER_TOURNAMENT";
 
   static const int ENTRY_FEE_MIN_RANGE = 0;
   static const int ENTRY_FEE_MAX_RANGE = 1;
@@ -43,6 +44,8 @@ class ContestFiltersComp implements ShadowRootAware {
 
   // Filtro por nombre
   String filterContestName = "";
+  //Lista de tipos de competición
+  List<Map> competitionFilterList = [];
 
   // Lista de tipos de concurso.
   List<Map> contestTypeFilterList = [];
@@ -143,6 +146,13 @@ class ContestFiltersComp implements ShadowRootAware {
     filterContestName = "";
 
     // Lista de tipos de concurso.
+    competitionFilterList = [
+       {'name': "LEAGUE_ES",  'flag':"ESP", 'text':'Liga Española',   'checked':false, 'disabled':true, 'id':'filtroleagueEsp'}
+      ,{'name': "LEAGUE_UK",  'flag':"UK",  'text':'Premier League',  'checked':false, 'disabled':true, 'id':'filtroleagueUK'}
+      ,{'name': "CHAMPIONS",'flag':"EU",  'text':'Champions League','checked':false, 'disabled':true, 'id':'filtroUCL'}
+    ];
+
+    // Lista de tipos de concurso.
     contestTypeFilterList = [
        {'name':"FREE",        'text':'Gratuitos', 'checked':false, 'disabled':true, 'id':'filterTournamentTypeFree'}
       ,{'name':"HEAD_TO_HEAD",'text':'1 contra 1','checked':false, 'disabled':true, 'id':'filterTournamentTypeHeadToHead'}
@@ -173,9 +183,20 @@ class ContestFiltersComp implements ShadowRootAware {
   void setFilterValues() {
       _contestList.forEach( (contest) {
         // Seteo de los "tipos de concursos"
-        contestTypeFilterList.where( (map) => map['name'] == contest.tournamentType).first['disabled'] = false;
+       Map competition = competitionFilterList.firstWhere( (map) => map['name'] == contest.competitionType , orElse: () => null);
+       if (competition != null) {
+         competition['disabled'] = false;
+       }
+        // Seteo de los "tipos de concursos"
+        Map contestType = contestTypeFilterList.firstWhere( (map) => map['name'] == contest.tournamentType, orElse: () => null);
+        if (contestType != null) {
+          contestType['disabled'] = false;
+        }
         // Seteo de los "salary caps"
-        salaryCapFilterList.where( (map) => map['name'] == contest.tier).first["disabled"] = false;
+        Map salaryCap = salaryCapFilterList.firstWhere( (map) => map['name'] == contest.tier, orElse: () => null);
+        if (salaryCap != null) {
+          salaryCap["disabled"] = false;
+        }
       });
 
       // Seteo del rango de "entry fee"
@@ -214,7 +235,17 @@ class ContestFiltersComp implements ShadowRootAware {
     return ( range == null || range == "" ) ? ["0","1"] : range;
   }
 
-  void filterByType(Map m) {
+  void filterByCompetitionType(Map m) {
+    competitionFilterList.forEach((elem) {
+      if (elem['name'] == m['name']) {
+        elem['checked'] = !elem['checked'];
+      }
+    });
+
+    addFilter(FILTER_COMPETITION, competitionFilterList.where((element) => element['checked'] == true).map((element) => element['name']).toList());
+  }
+
+  void filterByTournamentType(Map m) {
     contestTypeFilterList.forEach((elem) {
       if (elem['name'] == m['name']) {
         elem['checked'] = !elem['checked'];
@@ -256,7 +287,7 @@ class ContestFiltersComp implements ShadowRootAware {
 
   // Elimina los filtros e inicializa sus valores
   void resetAllFilters() {
-    filterList = {"FILTER_TOURNAMENT":[], "FILTER_TIER":[], "FILTER_ENTRY_FEE":[], "FILTER_CONTEST_NAME":""};
+    filterList = {"FILTER_COMPETITION":[], "FILTER_TOURNAMENT":[], "FILTER_TIER":[], "FILTER_ENTRY_FEE":[], "FILTER_CONTEST_NAME":""};
     initializeFilterValues();
     setFilterValues();
     //Fuerzo el reset del slider

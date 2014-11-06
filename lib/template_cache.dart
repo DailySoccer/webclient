@@ -376,6 +376,7 @@ tc.put("packages/webclient/components/account/remember_password_comp.html", new 
 </div>"""));
 tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpResponse(200, r"""<div id="viewProfileContent">
   <div class="default-header-text"> MI CUENTA </div>
+  <div class="blue-separator"></div>
   <div class="profile-content">
 
     <div class="personal-data">
@@ -477,6 +478,24 @@ tc.put("packages/webclient/components/contest_filters_comp.html", new HttpRespon
 </div>
 
 <div id="filtersPanel" class="collapse">
+
+    <!-- Filtro x tipos de concurso -->
+    <div class="filter-column-tournaments">
+      <p class="filter-title">COMPETICION</p>
+      <div class="filter-content">
+        <div class="check-group-wrapper">
+
+          <!-- Botones -->
+          <div class="button-check-{{competitionType.flag}}" ng-repeat="competitionType in competitionFilterList">
+            <input id="{{competitionType['id']}}" type="checkbox" ng-disabled="competitionType['disabled']"
+                   ng-click="filterByCompetitionType(competitionType)">
+            <label for="{{competitionType['id']}}">{{competitionType["text"].toUpperCase()}}</label>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
     <!-- Filtro x tipos de concurso -->
     <div class="filter-column-tournaments">
       <p class="filter-title">TORNEOS</p>
@@ -486,7 +505,7 @@ tc.put("packages/webclient/components/contest_filters_comp.html", new HttpRespon
             <!-- Botones -->
             <div class="button-check" ng-repeat="contestType in contestTypeFilterList">
               <input id="{{contestType['id']}}" type="checkbox" ng-disabled="contestType['disabled']"
-                     ng-click="filterByType(contestType)">
+                     ng-click="filterByTournamentType(contestType)">
               <label for="{{contestType['id']}}">{{contestType["text"].toUpperCase()}}</label>
 
             </div>
@@ -658,7 +677,7 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
                     <div id="prizes-list">
                       <div class="prize-element-wrapper" ng-repeat="prize in currentInfoData['prizes']">
                         <div class="prize-element">
-                            {{$index + 1}}º &nbsp;&nbsp; {{prize.value | number: 0.00}}€
+                            {{$index + 1}}º &nbsp;&nbsp; {{prize.value}}€
                         </div>
                       </div>
                       <div class="clearfix"></div>
@@ -700,7 +719,7 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
           </div>
           <div class="prize-element-wrapper" ng-repeat="prize in currentInfoData['prizes']">
             <div class="prize-element">
-                {{$index + 1}}º &nbsp;&nbsp; {{prize.value | number: 0.00}}€
+                {{$index + 1}}º &nbsp;&nbsp; {{prize.value}}€
             </div>
           </div>
           <div class="clearfix"></div>
@@ -777,7 +796,7 @@ tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse
   <paginator on-page-change="onPageChange(currentPage, itemsPerPage)" list-length="contestsListFiltered.length"></paginator>
 
 </div>"""));
-tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", new HttpResponse(200, r"""<div class="enter-contest-wrapper" ng-cloak>
+tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", new HttpResponse(200, r"""<div id="enter-contest-wrapper" ng-cloak>
 
   <contest-header id="contestHeader" contest="contest" contest-id="contestId"></contest-header>
 
@@ -789,15 +808,16 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
 
   <div id="enterContest">
     <div class="tabs">
-      <!-- Tab panes -->
       <div class="tab-content">
+      
+        <!-- Tab del contenido normal de seleccion de lineup -->      
         <div class="tab-pane active" id="lineup-tab-content">
 
             <!-- Este sera el selector de partidos en "grande", con botones-->
             <matches-filter id="matchesFilterBig" contest="contest" selected-option="matchFilter" ng-if="isBigScreenVersion"></matches-filter>
 
             <div class="enter-contest-actions-wrapper" ng-if="isSmallScreenVersion">
-              <div class="total-salary"><span ng-class="getMyTotalSalaryClasses()">{{availableSalary}}€</span></div>
+              <div class="total-salary"><span class="total-salary-money" ng-class="{'red-numbers': availableSalary < 0 }" ng-show="contest != null">{{availableSalary}}€</span></div>
               <button id="cancelSoccerPlayerSelection" type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer">CANCELAR</button>
             </div>
 
@@ -805,8 +825,10 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
               <div class="enter-contest-lineup">
                 <div class="enter-contest-total-salary">
                     <span class="total-salary-text">TU ALINEACIÓN</span>
-                    <span class="total-salary"><span class="total-salary-text">DINERO RESTANTE:</span>
-                    <span ng-class="getMyTotalSalaryClasses()">{{availableSalary}}€</span></span>
+                    <div class="total-salary">
+                      <span class="total-salary-text">DINERO RESTANTE:</span>
+                      <span class="total-salary-money" ng-class="{'red-numbers': availableSalary < 0 }" ng-show="contest != null">{{availableSalary}}€</span>
+                    </div>
                 </div>
 
                 <lineup-selector ng-show="!isSelectingSoccerPlayer || isBigScreenVersion"></lineup-selector>
@@ -829,7 +851,6 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
             </div>
 
             <div class="enter-contest-actions-wrapper">
-
               <button type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer" ng-if="isSmallScreenVersion">CANCELAR</button>
 
               <div ng-if="!isSelectingSoccerPlayer || isBigScreenVersion">
@@ -845,6 +866,7 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
 
         </div>
 
+        <!-- El otro tab, el del contest-info  -->
         <div class="tab-pane" id="contest-info-tab-content">
           <contest-info contest-id-data="contestId"></contest-info>
         </div>
@@ -859,7 +881,7 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
 
 </div>
 
-<div class="soccer-player-info-wrapper" ng-if="scrDet.isXsScreen">
+<div id="soccer-player-info-wrapper" ng-if="scrDet.isXsScreen">
   <soccer-player-info instance-soccer-player="selectedInstanceSoccerPlayer"></soccer-player-info>
 </div>
 
@@ -899,9 +921,9 @@ tc.put("packages/webclient/components/enter_contest/matches_filter_comp.html", n
     <option ng-repeat="match in matchEvents" id="option-match-{{match.id}}" value="{{$index + 1}}" ng-value="match.id">{{match.textoSelector}}</option>
   </select>
   
-  <div id="matchesFilter" class="matches-filter" ng-switch-when="false">
+  <div id="matchesFilterButtons" class="matches-filter-buttons" ng-switch-when="false">
     <button class="btn btn-default button-filtro-team" ng-repeat="match in matchEvents" ng-bind-html="match.texto" id="match-{{match.id}}" 
-            ng-click="optionsSelectorValue = match.id" ng-class="{'active': optionsSelectorValue == match.id, 'transparent': match.isTransparent }">
+            ng-click="optionsSelectorValue = match.id" ng-class="{'active': optionsSelectorValue == match.id }">
     </button>
   </div>
 </div>"""));
@@ -916,7 +938,8 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_info_comp.html
     </div>
     <div class="button-wrapper">
       <span class="next-match">PRÓXIMO PARTIDO:</span> <span class="next-match" ng-bind-html="currentInfoData['nextMatchEvent']"></span>
-      <button class="btn-add-soccer-player-info" ng-click="enterContestComp.addSoccerPlayerToLineup(currentInfoData['id'])">AÑADIR</button>
+      <button class="btn-add-soccer-player-info" ng-click="enterContestComp.addSoccerPlayerToLineup(currentInfoData['id'])"
+                                                 ng-disabled="!enterContestComp.isSlotAvailableForSoccerPlayer(currentInfoData['id'])">AÑADIR</button>
     </div>
   </div>
   <div class="description-header">
@@ -1057,19 +1080,7 @@ tc.put("packages/webclient/components/enter_contest/soccer_players_list_comp.htm
 
 <div class="soccer-players-list">
 
-  <div id="soccerPlayer{{slot['intId']}}" class="soccer-players-list-slot" ng-repeat="slot in sortedSoccerPlayers | orderBy:sortList" 
-       ng-class="getSlotClassColor(slot.fieldPos.abrevName)">
-    <div class="column-fieldpos" ng-click="onRow(slot)">{{slot.fieldPos.abrevName}}</div>
-    <div class="column-primary-info">
-      <span class="soccer-player-name" ng-click="onRow(slot)">{{slot.fullName | limitToDot : showWidth(slot.fullName)}}</span>
-      <span class="match-event-name" ng-click="onRow(slot)" ng-bind-html="slot.matchEventName"></span>
-    </div>
-    <div class="column-dfp" ng-click="onRow(slot)">{{slot.fantasyPoints}}</div>
-    <div class="column-played" ng-click="onRow(slot)">{{slot.playedMatches}}</div>
-    <div class="column-salary" ng-click="onRow(slot)">{{slot.salary}}€</div>
-    <div class="column-add">
-      <button type="button" class="btn" ng-click="onAdd(slot)">Añadir</button>
-    </div>
+  <div class="soccer-players-list-slot" ng-repeat="slot in sortedSoccerPlayers | orderBy:sortList" fast-player-slot="slot" ng-non-bindable>
   </div>
 
 </div>"""));
@@ -1422,6 +1433,7 @@ tc.put("packages/webclient/components/legalese_and_help/legal_info_comp.html", n
 
   <div class="block-dark-header">
     <div class="default-header-text">LEGAL</div>
+    <div class="blue-separator"></div>
   </div>
 
   <div class="info-wrapper">
@@ -1451,6 +1463,7 @@ tc.put("packages/webclient/components/legalese_and_help/policy_info_comp.html", 
 
   <div class="block-dark-header">
     <div class="default-header-text">POLÍTICA DE PRIVACIDAD</div>
+    <div class="blue-separator"></div>
   </div>
 
   <div class="info-wrapper">
@@ -1526,6 +1539,7 @@ tc.put("packages/webclient/components/legalese_and_help/terminus_info_comp.html"
 
   <div class="block-dark-header">
     <div class="default-header-text">TÉRMINOS Y CONDICIONES</div>
+    <div class="blue-separator"></div>
   </div>
 
   <div class="info-wrapper">
@@ -2116,6 +2130,7 @@ tc.put("packages/webclient/components/lobby_comp.html", new HttpResponse(200, r"
                   contests-list="activeContestsService.activeContests"
                   on-action-click='onActionClick(contest)'
                   on-row-click="onRowClick(contest)" action-button-title="'Jugar'"
+                  competition-type-filter="lobbyFilters['FILTER_COMPETITION']"
                   tournament-type-filter="lobbyFilters['FILTER_TOURNAMENT']" salary-cap-filter="lobbyFilters['FILTER_TIER']"
                   entry-fee-filter="lobbyFilters['FILTER_ENTRY_FEE']" name-filter="lobbyFilters['FILTER_CONTEST_NAME']"
                   contest-count="contestCount">
@@ -2162,33 +2177,34 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
       <div class="tab-pane active" id="live-contest-content">
 
         <!-- Barra de resumen de actividad -->
-        <div class="resume-bar" ng-if="!hasLiveContests">
+        <div class="resume-bar" ng-if="!hasLiveContests && liveDataLoaded">
              <span class="information-no-contest">AQUÍ PODRÁS CONSULTAR EN TIEMPO REAL LOS TORNEOS QUE TENGAS ACTIVOS</span>
         </div>
-
-        <!-- Banner de información de lista vacía -->
-        <div class="no-contest" ng-if="!hasLiveContests">
-          <div class="no-contests-wrapper">
-            <div class="default-info-text">
-             EN ESTE MOMENTO, NO ESTÁS JUGANDO<br>NINGÚN TORNEO
+        <div class="tab-content-wrapper">
+          <!-- Banner de información de lista vacía -->
+          <div class="no-contest" ng-if="!hasLiveContests  && liveDataLoaded">
+            <div class="no-contests-wrapper">
+              <div class="default-info-text">
+               EN ESTE MOMENTO, NO ESTÁS JUGANDO<br>NINGÚN TORNEO
+              </div>
+              <div class="no-contests-text">
+                CONSULTA LA LISTA DE TUS <strong data-toggle="tab" ng-click="tabChange('waiting-contest-content')">PRÓXIMOS TORNEOS</strong> PARA VER CUÁNDO EMPIEZAN
+              </div>
             </div>
-            <div class="no-contests-text">
-              CONSULTA LA LISTA DE TUS <strong data-toggle="tab" ng-click="tabChange('waiting-contest-content')">PRÓXIMOS TORNEOS</strong> PARA VER CUÁNDO EMPIEZAN
+            <div class="my-no-contest-bottom-row">
+              <button class="btn-go-to-contest" ng-click="gotoLobby()">IR A LOS TORNEOS</button>
             </div>
           </div>
-          <div class="my-no-contest-bottom-row">
-            <button class="btn-go-to-contest" ng-click="gotoLobby()">IR A LOS TORNEOS</button>
-          </div>
-        </div>
 
-        <!-- lista de concursos -->
-        <div class="list-container" ng-if="hasLiveContests">
-          <contests-list id="liveContests"
-                         sorting="liveSortType"
-                         contests-list="myContestsService.liveContests"
-                         on-action-click='onLiveActionClick(contest)'
-                         on-row-click='onLiveRowClick(contest)'>
-          </contests-list>
+          <!-- lista de concursos -->
+          <div class="list-container" ng-if="hasLiveContests && liveDataLoaded">
+            <contests-list id="liveContests"
+                           sorting="liveSortType"
+                           contests-list="myContestsService.liveContests"
+                           on-action-click='onLiveActionClick(contest)'
+                           on-row-click='onLiveRowClick(contest)'>
+            </contests-list>
+          </div>
         </div>
       </div>
 
@@ -2196,7 +2212,7 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
       <div class="tab-pane" id="waiting-contest-content">
 
         <!-- Barra de resumen de actividad sin registros-->
-        <div class="resume-bar" ng-if="!hasWaitingContests">
+        <div class="resume-bar" ng-if="!hasWaitingContests && liveDataLoaded">
           <span class="information-no-contest">EN ESTE ESPACIO PODRÁS CONSULTAR Y MODIFICAR LOS EQUIPOS QUE TIENES PENDIENTES DE JUGAR EN UN TORNEO</span>
         </div>
 
@@ -2206,54 +2222,56 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
             <button class="btn-change-player" ng-click="">CAMBIO RÁPIDO DE JUGADOR</button>
           </div>
         </div>-->
-
-        <!-- Banner de información de lista vacía -->
-        <div class="no-contest" ng-if="!hasWaitingContests">
-          <div class="no-contests-wrapper">
-            <div class="default-info-text">
-             EN ESTE MOMENTO, NO TIENES UN<br>EQUIPO CREADO PARA NINGÚN TORNEO
+        <div class="tab-content-wrapper">
+          <!-- Banner de información de lista vacía -->
+          <div class="no-contest" ng-if="!hasWaitingContests && liveDataLoaded">
+            <div class="no-contests-wrapper">
+              <div class="default-info-text">
+               EN ESTE MOMENTO, NO TIENES UN<br>EQUIPO CREADO PARA NINGÚN TORNEO
+              </div>
+              <div class="no-contests-text">
+                VE A LA LISTA DE TORNEOS, ELIGE UNO Y EMPIEZA A JUGAR
+              </div>
             </div>
-            <div class="no-contests-text">
-              VE A LA LISTA DE TORNEOS, ELIGE UNO Y EMPIEZA A JUGAR
+            <div class="my-no-contest-bottom-row">
+              <button class="btn-go-to-contest" ng-click="gotoLobby()">IR A LOS TORNEOS</button>
             </div>
           </div>
-          <div class="my-no-contest-bottom-row">
-            <button class="btn-go-to-contest" ng-click="gotoLobby()">IR A LOS TORNEOS</button>
-          </div>
-        </div>
 
-        <!-- lista de concursos -->
-        <div class="list-container" ng-if="hasWaitingContests">
-          <contests-list id="waitingContests"
-                         sorting="waitingSortType"
-                         contests-list='myContestsService.waitingContests'
-                         on-action-click='onWaitingActionClick(contest)'
-                         on-row-click='onWaitingRowClick(contest)'>
-          </contests-list>
+          <!-- lista de concursos -->
+          <div class="list-container" ng-if="hasWaitingContests && liveDataLoaded">
+            <contests-list id="waitingContests"
+                           sorting="waitingSortType"
+                           contests-list='myContestsService.waitingContests'
+                           on-action-click='onWaitingActionClick(contest)'
+                           on-row-click='onWaitingRowClick(contest)'>
+            </contests-list>
+          </div>
         </div>
       </div>
 
       <!-- HISTORY CONTESTS CONTENT-->
       <div class="tab-pane" id="history-contest-content">
-          <!-- Barra de resumen de actividad sin registros-->
-          <div class="resume-bar" ng-if="!hasHistoryContests">
-            <span class="information-no-contest">AQUÍ PODRÁS CONSULTAR Y REPASAR TODOS LOS TORNEOS QUE HAS JUGADO: TUS EQUIPOS, RIVALES PUNTUACIONES…</span>
+        <!-- Barra de resumen de actividad sin registros-->
+        <div class="resume-bar" ng-if="!hasHistoryContests">
+          <span class="information-no-contest">AQUÍ PODRÁS CONSULTAR Y REPASAR TODOS LOS TORNEOS QUE HAS JUGADO: TUS EQUIPOS, RIVALES PUNTUACIONES…</span>
+        </div>
+        <!-- Barra de resumen de actividad con registros-->
+        <div class="resume-bar" ng-if="hasHistoryContests">
+          <!--<div class="refresh-text">Actualizado cada 24 horas</div>-->
+          <div class="info">
+            <span class="info-registers-count">{{myContestsService.historyContests.length}} REGISTROS</span>
+            <span class="info-wins-count">{{totalHistoryContestsWinner}} GANADOS</span>
+            <!--<span class="info-available-money">{{totalHistoryContestsPrizes}} €</span>-->
           </div>
-          <!-- Barra de resumen de actividad con registros-->
-          <div class="resume-bar" ng-if="hasHistoryContests">
-            <!--<div class="refresh-text">Actualizado cada 24 horas</div>-->
-            <div class="info">
-              <span class="info-registers-count">{{myContestsService.historyContests.length}} REGISTROS</span>
-              <span class="info-wins-count">{{totalHistoryContestsWinner}} GANADOS</span>
-              <!--<span class="info-available-money">{{totalHistoryContestsPrizes}} €</span>-->
-            </div>
-            <!--<div class="data-to-csv">
-              <button class="btn-data-to-csv" ng-click="">DESCARGAR COMO CSV</button>
-            </div>-->
-          </div>
+          <!--<div class="data-to-csv">
+            <button class="btn-data-to-csv" ng-click="">DESCARGAR COMO CSV</button>
+          </div>-->
+        </div>
 
-          <!-- Banner de información de lista vacía -->
-          <div class="no-contest" ng-if="!hasHistoryContests">
+        <div class="tab-content-wrapper">
+        <!-- Banner de información de lista vacía -->
+          <div class="no-contest" ng-if="!hasHistoryContests && liveDataLoaded">
             <div class="no-contests-wrapper">
               <div class="default-info-text">
                TODAVÍA NO HAS JUGADO NINGÚN TORNEO
@@ -2268,7 +2286,7 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
           </div>
 
           <!-- lista de concursos -->
-          <div class="list-container" ng-if="hasHistoryContests">
+          <div class="list-container" ng-if="hasHistoryContests && liveDataLoaded">
             <!--<div class="text-refresh-history">Actualizado cada 24 horas</div>-->
             <contests-list id="historyContests"
                            sorting="historySortType"
@@ -2277,19 +2295,18 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
                            on-row-click='onHistoryRowClick(contest)'>
             </contests-list>
           </div>
+        </div>
       </div>
-
     </div>
-
   </div>
 </div>
 """));
-tc.put("packages/webclient/components/navigation/footer_comp.html", new HttpResponse(200, r"""<div id="mainFooter" ng-show="!loadingService.isLoading">
+tc.put("packages/webclient/components/navigation/footer_comp.html", new HttpResponse(200, r"""<div id="rootFooter" ng-cloak>
 
    <div class="sup-footer-wrapper">
-    <div class="user-info-sup-footer" ng-show="profileService.isLoggedIn">
-        <a id="footerProfile" href="#" class="goto-link" ng-click="gotoProfile()"><span class="username-link">{{profileService.user.nickName}}</span></a>
-        <a id="footerLogOut" href="#" class="goto-link" ng-click="profileService.logout()"><span class="logout-link">Salir</span></a>
+    <div class="user-info-sup-footer">
+        <a id="footerProfile"  ng-show="profileService.isLoggedIn" href="#" class="goto-link" ng-click="gotoProfile()"><span class="username-link">{{profileService.user.nickName}}</span></a>
+        <a id="footerLogOut"  ng-show="profileService.isLoggedIn" href="#" class="goto-link" ng-click="profileService.logout()"><span class="logout-link">Salir</span></a>
         <!--<button id="footerAddFunds" class="add-funds-button">AÑADIR FONDOS</button>-->
     </div>
   </div>
@@ -2496,9 +2513,22 @@ tc.put("packages/webclient/components/view_contest/fantasy_team_comp.html", new 
   </div>
 
 </div>"""));
-tc.put("packages/webclient/components/view_contest/teams_panel_comp.html", new HttpResponse(200, r"""<div id="teamsPanelRoot" ng-show="contest != null">
+tc.put("packages/webclient/components/view_contest/teams_panel_comp.html", new HttpResponse(200, r"""<div id="teamsPanelRoot" ng-show="contest != null" ng-switch="scrDet.isXsScreen" class="animate">
 
-  <div class="teams-comp-bar" ng-if="!scrDet.isXsScreen">
+  <div class="teams-comp-bar" ng-switch-when="true">
+    <div class="teams-toggler-wrapper">
+      <div id="teamsToggler" type="button" class="teams-toggler toggleOff" ng-click="toggleTeamsPanel()"  data-toggle="collapse" data-target="#teamsPanel">PARTIDOS EN ESTE TORNEO</div>
+    </div>
+    <div id="teamsPanel" class="teams-container collapse">
+      <div class="top-border"></div>
+      <div class="teams-box" ng-repeat="match in matchesInvolved">
+        <div class="teams-info" ng-bind-html="getMatchAndPeriodInfo($index, match)"></div>
+      </div>
+      <div class="bottom-border"></div>
+    </div>
+  </div>
+
+  <div class="teams-comp-bar" ng-switch-when="false">
     <div class="teams-container">
       <div class="teams-box" ng-repeat="match in matchesInvolved">
         <div class="teams-info" ng-bind-html="getMatchAndPeriodInfo($index, match)"></div>
@@ -2506,20 +2536,6 @@ tc.put("packages/webclient/components/view_contest/teams_panel_comp.html", new H
     </div>
   </div>
 
-  <div>
-    <div class="teams-comp-bar" ng-if="scrDet.isXsScreen">
-      <div class="teams-toggler-wrapper" ng-if="isCollapsable">
-        <div id="teamsToggler" type="button" class="teams-toggler toggleOff" ng-click="toggleTeamsPanel()" data-target="#teamsPanel">PARTIDOS</div>
-      </div>
-      <div id="teamsPanel" class="teams-container" ng-class="{'collapse':isCollapsable}">
-        <div class="top-border"></div>
-        <div class="teams-box" ng-repeat="match in matchesInvolved">
-          <div class="teams-info" ng-bind-html="getMatchAndPeriodInfo($index, match)"></div>
-        </div>
-        <div class="bottom-border"></div>
-      </div>
-    </div>
-  </div>
 </div>"""));
 tc.put("packages/webclient/components/view_contest/users_list_comp.html", new HttpResponse(200, r"""<div id="usersListRoot" ng-cloak>
 
@@ -2550,8 +2566,7 @@ tc.put("packages/webclient/components/view_contest/users_list_comp.html", new Ht
 tc.put("packages/webclient/components/view_contest/view_contest_comp.html", new HttpResponse(200, r"""<section>
 
   <contest-header id="contestHeader" contest="contest" contest-id="contestId"></contest-header>
-
-  <teams-panel id="teamsPanelRoot" contest="contest" contest-id="contestId" collapsable="true"></teams-panel>
+  <teams-panel id="teamsPanelComp" contest="contest" contest-id="contestId"></teams-panel>
 
   <div id="liveContestRoot" ng-switch="scrDet.isXsScreen" ng-cloak>
     <div ng-switch-when="true">
@@ -2587,7 +2602,7 @@ tc.put("packages/webclient/components/view_contest/view_contest_entry_comp.html"
 
   <contest-header id="contestHeader" contest="contest" contest-id="contestId"></contest-header>
 
-  <teams-panel id="teamsPanel" contest="contest" contest-id="contestId" collapsable="false"></teams-panel>
+  <teams-panel id="teamsPanelComp" contest="contest" contest-id="contestId"></teams-panel>
 
   <div class="separator-bar"></div>
   <div class="info-complete-bar" ng-if="!isModeViewing">

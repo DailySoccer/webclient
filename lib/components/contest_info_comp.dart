@@ -64,7 +64,7 @@ class ContestInfoComp implements ShadowRootAware {
         currentInfoData["prize"]          = contest.prizePool.toString();
         currentInfoData["startDateTime"]  = DateTimeService.formatDateTimeLong(contest.startDate).toUpperCase();
         currentInfoData["contestants"]    = contestants;
-        currentInfoData["prizes"]         = contest.prizes.map((value) => {'value' : value}).toList();
+        currentInfoData["prizes"]         = contest.prizes.map((value) => {'value' : value.toString()}).toList();
         currentInfoData["matchesInvolved"]= contest.matchEvents;
 
         contestants.clear();

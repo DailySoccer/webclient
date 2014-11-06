@@ -32,6 +32,11 @@ class Contest {
   static const TIER_STANDARD              = "STANDARD";
   static const TIER_SKILLED               = "SKILLEDS";
 
+  static const COMPETITION_LEAGUE_ES_ID     = "23";
+  static const COMPETITION_LEAGUE_UK_ID     = "8";
+  static const COMPETITION_LEAGUE_UCL_ID    = "5";
+  static const COMPETITION_WORLDCUP_ID      = "4";
+
   String contestId;
   String templateContestId;
 
@@ -64,6 +69,7 @@ class Contest {
   String prizeType;
   List<int> prizes;
 
+  String optaCompetitionId;
   List<MatchEvent> matchEvents;
   Map<String, InstanceSoccerPlayer> instanceSoccerPlayers = new Map<String, InstanceSoccerPlayer>();
 
@@ -84,13 +90,21 @@ class Contest {
     return entries;
   }
 
+  Map<String, String> competitionTypeValues = {
+    COMPETITION_LEAGUE_ES_ID:   "LEAGUE_ES"
+    ,COMPETITION_LEAGUE_UK_ID:  "LEAGUE_UK"
+    ,COMPETITION_LEAGUE_UCL_ID: "CHAMPIONS"
+    ,COMPETITION_WORLDCUP_ID:   "WORLDCUP"
+  };
+  String get competitionType => optaCompetitionId.isNotEmpty ? competitionTypeValues[optaCompetitionId] : "";
+
   Contest(this.contestId, this.contestEntries);
 
   Contest.referenceInit(this.contestId);
 
-  bool get isActive => state == "ACTIVE";
-  bool get isLive   => state == "LIVE";
-  bool get isHistory => state == "HISTORY";
+  bool get isActive   => state == "ACTIVE";
+  bool get isLive     => state == "LIVE";
+  bool get isHistory  => state == "HISTORY";
 
   Map<String, String> prizeTypeNames = {
     PRIZE_FREE: "Free",
@@ -243,6 +257,7 @@ class Contest {
     prizeType = jsonMap["prizeType"];
     prizes = jsonMap.containsKey("prizes") ? jsonMap["prizes"] : [];
     startDate = DateTimeService.fromMillisecondsSinceEpoch(jsonMap["startDate"]);
+    optaCompetitionId = jsonMap.containsKey("optaCompetitionId") && (jsonMap["optaCompetitionId"] != null) ? jsonMap["optaCompetitionId"] : "";
     matchEvents = jsonMap.containsKey("templateMatchEventIds") ? jsonMap["templateMatchEventIds"].map( (matchEventId) => references.getMatchEventById(matchEventId) ).toList() : [];
 
     instanceSoccerPlayers = {};

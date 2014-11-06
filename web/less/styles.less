@@ -1,6 +1,6 @@
 @import "../bootstrap-3.1.1/less/bootstrap.less";
 //@import "../bootstrap-3.1.1/less/navbar.less";
-
+ 
 @import "color_palette.less";
 @import "fonts.less";
 @import "animations.less";
@@ -41,7 +41,7 @@
 
 // Otros css del proyecto, para incluirlos todos en nuestro .css principal
 @import "../flags/flags.less";
-@import (inline) "../jasny/css/jasny-bootstrap.css";
+@import "../jasny/css/jasny-bootstrap.css";
 @import (inline) "../nouislider/jquery.nouislider.css";
 @import "../bootstrap-switch/less/bootstrap3/bootstrap-switch.less";
 
@@ -60,7 +60,7 @@ html, body{
 // Path Definitions
 @images: "../images"; // No ponemos / al final para separar mejor donde realmente se define la imagen
 
-@icon-font-path: "//netdna.bootstrapcdn.com/bootstrap/3.0.0/fonts/";
+@icon-font-path: "../bootstrap-3.1.1/fonts/";
 
 
 // Por ejemplo, el color del boton "Añadir fondos", al que consideramos un btn-primary
@@ -69,6 +69,8 @@ html, body{
 // Color y borde del boton default (por ejemplo, el "Entrar" en un concurso)
 @btn-default-bg: @blueLight;
 @btn-default-color: @white;
+
+
 
 .btn {
 	.btn();
@@ -165,15 +167,12 @@ html { overflow-y: scroll; }
 	@media (max-width: @screen-xs-max) {
 		margin: 0 auto -204px;
 	}
-	#wrapper-push {
+	#mainContent:after {
 		height: 146px;
 		@media (max-width: @screen-xs-max) {
 			height: 204px;
 		}
 	}
-	/*footer {
-		height: 150px;
-	}*/
 }
 
 .default-header-text {
@@ -193,6 +192,14 @@ html { overflow-y: scroll; }
 	padding: 15px 0;
 	@media (max-width: @screen-sm-max) {
 		.opensans_bold(14pt, @blueMed);
+	}
+}
+.blue-separator {
+	width: 100%;
+	height: 40px;
+	background-color: @blueLight;
+	@media (max-width: @screen-xs-max) {
+		height: 5px;
 	}
 }
 

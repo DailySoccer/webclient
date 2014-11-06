@@ -8,6 +8,7 @@ import 'package:webclient/services/my_contests_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/loading_service.dart';
+import 'package:webclient/models/connection_error.dart';
 import 'package:webclient/models/field_pos.dart';
 import "package:webclient/models/soccer_team.dart";
 import 'package:webclient/models/match_event.dart';
@@ -24,8 +25,6 @@ import 'package:webclient/utils/string_utils.dart';
     useShadowDom: false
 )
 class EnterContestComp implements DetachAware {
-
-  static final String ERROR_RETRY_OP = "ERROR_RETRY_OP";
 
   ScreenDetectorService scrDet;
   LoadingService loadingService;
@@ -163,6 +162,7 @@ class EnterContestComp implements DetachAware {
     }
     else {
       isSelectingSoccerPlayer = true;
+      scrollToElement('.enter-contest-tabs');
 
       // Cuando seleccionan un slot del lineup cambiamos siempre el filtro de la soccer-player-list, especialmente
       // en movil que cambiamos de vista a "solo ella".
@@ -178,10 +178,18 @@ class EnterContestComp implements DetachAware {
       isSelectingSoccerPlayer = false;
       availableSoccerPlayers.remove(soccerPlayer);
       availableSalary -= soccerPlayer["salary"];
+      nameFilter = null;
+      scrollToElement('.enter-contest-tabs');
     }
   }
 
-  bool availableSoccerPlayer(var soccerPlayer) {
+  bool isSlotAvailableForSoccerPlayer(String soccerPlayerId) {
+    if (soccerPlayerId == null || soccerPlayerId.isEmpty || _allSoccerPlayers.isEmpty) {
+      return false;
+    }
+
+    var soccerPlayer = _allSoccerPlayers.firstWhere((sp) => sp["id"] == soccerPlayerId);
+
     FieldPos theFieldPos = soccerPlayer["fieldPos"];
     int c = 0;
     if (lineupSlots.contains(soccerPlayer)) {
@@ -239,8 +247,8 @@ class EnterContestComp implements DetachAware {
         "matchId" : matchEvent.templateMatchEventId,
         "matchEventName": matchEventName,
         "remainingMatchTime": "-",
-        "fantasyPoints": instanceSoccerPlayer.soccerPlayer.fantasyPoints,
-        "playedMatches": instanceSoccerPlayer.soccerPlayer.playedMatches,
+        "fantasyPoints": instanceSoccerPlayer.soccerPlayer.getFantasyPointsForCompetition(contest.optaCompetitionId),
+        "playedMatches": instanceSoccerPlayer.soccerPlayer.getPlayedMatchesForCompetition(contest.optaCompetitionId),
         "salary": instanceSoccerPlayer.salary
       });
     });
@@ -283,14 +291,12 @@ class EnterContestComp implements DetachAware {
     }
   }
 
-  void _errorCreating(Map jsonMap) {
-    if (jsonMap.containsKey("error")) {
-      if (jsonMap["error"].contains(ERROR_RETRY_OP)) {
-        _retryOpTimer = new Timer(const Duration(seconds:3), () => createFantasyTeam());
-      }
-      else {
-        _flashMessage.error("$jsonMap", context: FlashMessagesService.CONTEXT_VIEW);
-      }
+  void _errorCreating(ConnectionError error) {
+    if (error.isRetryOpError) {
+      _retryOpTimer = new Timer(const Duration(seconds:3), () => createFantasyTeam());
+    }
+    else {
+      _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
     }
   }
 
@@ -348,24 +354,13 @@ class EnterContestComp implements DetachAware {
     var selectedSoccerPlayer = availableSoccerPlayers.firstWhere((soccerPlayer) => soccerPlayer["id"] == soccerPlayerId,
                                                                  orElse: () => null);
     if (selectedSoccerPlayer != null) {
-      List<ButtonElement> btnAdd = querySelectorAll('.btn-add-soccer-player-info');
-
-      if (availableSoccerPlayer(selectedSoccerPlayer))
-        btnAdd.forEach((element) => element.disabled = false);
-      else
-        btnAdd.forEach((element) => element.disabled = true);
-
       selectedInstanceSoccerPlayer = selectedSoccerPlayer["instanceSoccerPlayer"];
     }
 
     // Version Small or Desktop => sacamos la modal
     if (scrDet.isSmScreen || scrDet.isDesktop) {
-
-      // Esto soluciona el bug por el que no se muestra la ventana modal en Firefox;
       var modal = querySelector('#infoContestModal');
       modal.style.display = "block";
-
-      // Con esto llamamos a funciones de jQuery
       JsUtils.runJavascript('#infoContestModal', 'modal', null);
     }
     else { // Resto de versiones => mostramos el componente soccer_player_info_comp
@@ -389,6 +384,10 @@ class EnterContestComp implements DetachAware {
     else {
       closePlayerInfo();
     }
+  }
+
+  void scrollToElement(String selector) {
+    //window.scrollTo(0, querySelector(selector).offsetTop);
   }
 
   Router _router;

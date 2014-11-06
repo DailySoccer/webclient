@@ -28,6 +28,24 @@
 </div>
 
 <div id="filtersPanel" class="collapse">
+
+    <!-- Filtro x tipos de concurso -->
+    <div class="filter-column-tournaments">
+      <p class="filter-title">COMPETICION</p>
+      <div class="filter-content">
+        <div class="check-group-wrapper">
+
+          <!-- Botones -->
+          <div class="button-check-{{competitionType.flag}}" ng-repeat="competitionType in competitionFilterList">
+            <input id="{{competitionType['id']}}" type="checkbox" ng-disabled="competitionType['disabled']"
+                   ng-click="filterByCompetitionType(competitionType)">
+            <label for="{{competitionType['id']}}">{{competitionType["text"].toUpperCase()}}</label>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
     <!-- Filtro x tipos de concurso -->
     <div class="filter-column-tournaments">
       <p class="filter-title">TORNEOS</p>
@@ -37,7 +55,7 @@
             <!-- Botones -->
             <div class="button-check" ng-repeat="contestType in contestTypeFilterList">
               <input id="{{contestType['id']}}" type="checkbox" ng-disabled="contestType['disabled']"
-                     ng-click="filterByType(contestType)">
+                     ng-click="filterByTournamentType(contestType)">
               <label for="{{contestType['id']}}">{{contestType["text"].toUpperCase()}}</label>
 
             </div>

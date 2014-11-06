@@ -4,8 +4,8 @@ import 'package:angular/angular.dart';
 import 'dart:html';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/game_metrics.dart';
-import 'package:webclient/services/server_service.dart';
 import 'package:webclient/services/loading_service.dart';
+import 'package:webclient/models/connection_error.dart';
 
 @Component(
     selector: 'change-password',

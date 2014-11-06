@@ -9,7 +9,8 @@
     </div>
     <div class="button-wrapper">
       <span class="next-match">PRÓXIMO PARTIDO:</span> <span class="next-match" ng-bind-html="currentInfoData['nextMatchEvent']"></span>
-      <button class="btn-add-soccer-player-info" ng-click="enterContestComp.addSoccerPlayerToLineup(currentInfoData['id'])">AÑADIR</button>
+      <button class="btn-add-soccer-player-info" ng-click="enterContestComp.addSoccerPlayerToLineup(currentInfoData['id'])"
+                                                 ng-disabled="!enterContestComp.isSlotAvailableForSoccerPlayer(currentInfoData['id'])">AÑADIR</button>
     </div>
   </div>
   <div class="description-header">

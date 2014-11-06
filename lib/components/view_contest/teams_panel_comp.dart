@@ -20,24 +20,12 @@ class TeamsPanelComp implements DetachAware {
 
   ScreenDetectorService scrDet;
 
-  @NgOneWay('collapsable')
-  bool get isCollapsable => _collapsable;
-  void set isCollapsable(bool value) {
-    _collapsable = value;
-
-    if(_collapsable && _isTeamsPanelOpen) {
-      toggleTeamsPanel();
-    }
-  }
-
   @NgOneWay("contest")
   Contest get contest => _contest;
   void set contest(Contest value) {
     if (value != null) {
-      if(_contestId == value.contestId) {
-        _contest = value;
-        generateMatchesList();
-      }
+      _contest = value;
+      generateMatchesList();
     }
   }
 
@@ -52,7 +40,7 @@ class TeamsPanelComp implements DetachAware {
     }
   }
 
-  TeamsPanelComp(this.scrDet, this._activeContestsService) {
+  TeamsPanelComp(this.scrDet, this._activeContestsService, this._routeProvider) {
     _streamListener = scrDet.mediaScreenWidth.listen(onScreenWidthChange);
   }
 
@@ -62,14 +50,13 @@ class TeamsPanelComp implements DetachAware {
       return;
     }
 
-    // generamos los partidos para el filtro de partidos
     matchesInvolved.clear();
     matchEventsSorted = new List<MatchEvent>.from(contest.matchEvents)
-    .. sort((entry1, entry2) => entry1.startDate.compareTo(entry2.startDate))
-    .. forEach( (match) {
-      matchesInvolved.add(match.soccerTeamA.shortName + '-' + match.soccerTeamB.shortName +
-      "<br>" + DateTimeService.formatDateTimeShort(match.startDate) + "<br>");
-   });
+      .. sort((entry1, entry2) => entry1.startDate.compareTo(entry2.startDate))
+      .. forEach( (match) {
+        matchesInvolved.add(match.soccerTeamA.shortName + '-' + match.soccerTeamB.shortName +
+        "<br>" + DateTimeService.formatDateTimeShort(match.startDate) + "<br>");
+     });
   }
 
   String getMatchAndPeriodInfo(int id, String teamsInfo) {
@@ -79,17 +66,18 @@ class TeamsPanelComp implements DetachAware {
 
     String content = "";
     MatchEvent match = matchEventsSorted[id];
-
-    if (match != null) {
-      if (!match.isStarted) {
-        content = 'No jugado';
-      }
-      else {
-        if (match.isFinished) {
-          content = 'Finalizado';
+    if(contest.state == "LIVE") {
+      if (match != null) {
+        if (!match.isStarted) {
+          content = 'No jugado';
         }
         else {
-          content = (match.isFirstHalf ? '1ª Parte - ' : match.isSecondHalf ? '2ª Parte - ' : '-Err-') + match.minutesPlayed.toString() + "'";
+          if (match.isFinished) {
+            content = 'Finalizado';
+          }
+          else {
+            content = (match.isFirstHalf ? '1ª Parte - ' : match.isSecondHalf ? '2ª Parte - ' : '-Err-') + match.minutesPlayed.toString() + "'";
+          }
         }
       }
     }
@@ -143,7 +131,7 @@ class TeamsPanelComp implements DetachAware {
   var _streamListener;
   Contest _contest;
   String _contestId = '';
-  bool _collapsable = false;
+  RouteProvider _routeProvider;
 
   ActiveContestsService _activeContestsService;
 }

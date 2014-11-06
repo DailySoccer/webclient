@@ -20,9 +20,9 @@ import 'package:webclient/services/scoring_rules_service.dart';
 
 import 'package:webclient/components/landing_page_comp.dart';
 
-import 'package:webclient/utils/limit_to_dot.dart';
 import 'package:webclient/utils/form-autofill-fix.dart';
 import 'package:webclient/utils/element-autofocus.dart';
+import 'package:webclient/utils/limit_to_dot.dart';
 
 import 'package:webclient/components/navigation/main_menu_slide_comp.dart';
 import 'package:webclient/components/navigation/footer_comp.dart';
@@ -59,6 +59,7 @@ import 'package:webclient/components/enter_contest/soccer_players_list_comp.dart
 import 'package:webclient/components/enter_contest/soccer_players_filter_comp.dart';
 import 'package:webclient/components/enter_contest/matches_filter_comp.dart';
 import 'package:webclient/components/enter_contest/soccer_player_info_comp.dart';
+import 'package:webclient/components/enter_contest/fast_player_slot_dec.dart';
 
 import 'package:webclient/components/legalese_and_help/help_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/legal_info_comp.dart';
@@ -69,6 +70,7 @@ import 'package:webclient/components/legalese_and_help/beta_info_comp.dart';
 import 'package:webclient/utils/host_server.dart';
 import 'package:webclient/template_cache.dart';
 import 'dart:async';
+import 'package:webclient/utils/game_metrics.dart';
 
 class WebClientApp extends Module {
 
@@ -80,6 +82,9 @@ class WebClientApp extends Module {
       primeTemplateCache(cache);
       bind(TemplateCache, toValue: cache);
     }
+
+    // No usamos animacion -> podemos quitar esto
+    bind(CompilerConfig, toValue:new CompilerConfig.withOptions(elementProbeEnabled: false));
 
     bind(ExceptionHandler, toImplementation: LoggerExceptionHandler);
     bind(ServerService, toImplementation: DailySoccerServer);
@@ -98,9 +103,9 @@ class WebClientApp extends Module {
     bind(SoccerPlayerService);
     bind(ScoringRulesService);
 
-    bind(LimitToDot);
     bind(FormAutofillDecorator);
     bind(AutoFocusDecorator);
+    bind(LimitToDot);
 
     bind(LandingPageComp);
 
@@ -141,6 +146,7 @@ class WebClientApp extends Module {
     bind(MatchesFilterComp);
     bind(LineupSelectorComp);
     bind(SoccerPlayerInfoComp);
+    bind(FastPlayerSlotDec);
 
     bind(ChangePasswordComp);
     bind(RememberPasswordComp);
@@ -149,6 +155,7 @@ class WebClientApp extends Module {
 
     bind(RouteInitializerFn, toValue: webClientRouteInitializer);
     bind(NgRoutingUsePushState, toValue: new NgRoutingUsePushState.value(false));
+
   }
 
   void webClientRouteInitializer(Router router, RouteViewFactory views) {
@@ -310,6 +317,13 @@ class WebClientApp extends Module {
 
   // Funcion que ejecutamos nada más entrar en la página
   void _enterPage(RouteEnterEvent event) {
+    Uri uri = Uri.parse(window.location.toString());
+    // Limpiamos la uri si viene con Query Strings (utm_campaign...)
+    if (uri.hasQuery) {
+      window.location.replace(uri.path+"#"+event.path);
+    }
+    GameMetrics.logEvent(event.route.name);
+
   }
 
   // Funcion que ejecutamos nada más salir de la página

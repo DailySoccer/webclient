@@ -59,12 +59,6 @@ class SoccerPlayersListComp {
 
   SoccerPlayersListComp(this.scrDet);
 
-  // Para pintar el color correspondiente segun la posicion del jugador
-  String getSlotClassColor(String abrevName) => _POS_CLASS_NAMES[abrevName];
-
-  // Numero de caracteres a partir del cual cortamos el nombre y mostramos 3 puntos
-  int showWidth(String playerName) => 19;
-
   void onRow(dynamic slot) {
     if (onRowClick != null) {
       onRowClick({"soccerPlayerId": slot['id']});

@@ -20,9 +20,9 @@ import 'package:webclient/services/scoring_rules_service.dart';
 
 import 'package:webclient/components/landing_page_comp.dart';
 
-import 'package:webclient/utils/limit_to_dot.dart';
 import 'package:webclient/utils/form-autofill-fix.dart';
 import 'package:webclient/utils/element-autofocus.dart';
+import 'package:webclient/utils/limit_to_dot.dart';
 
 import 'package:webclient/components/navigation/main_menu_slide_comp.dart';
 import 'package:webclient/components/navigation/footer_comp.dart';
@@ -59,6 +59,7 @@ import 'package:webclient/components/enter_contest/soccer_players_list_comp.dart
 import 'package:webclient/components/enter_contest/soccer_players_filter_comp.dart';
 import 'package:webclient/components/enter_contest/matches_filter_comp.dart';
 import 'package:webclient/components/enter_contest/soccer_player_info_comp.dart';
+import 'package:webclient/components/enter_contest/fast_player_slot_dec.dart';
 
 import 'package:webclient/components/legalese_and_help/help_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/legal_info_comp.dart';
@@ -102,9 +103,9 @@ class WebClientApp extends Module {
     bind(SoccerPlayerService);
     bind(ScoringRulesService);
 
-    bind(LimitToDot);
     bind(FormAutofillDecorator);
     bind(AutoFocusDecorator);
+    bind(LimitToDot);
 
     bind(LandingPageComp);
 
@@ -145,6 +146,7 @@ class WebClientApp extends Module {
     bind(MatchesFilterComp);
     bind(LineupSelectorComp);
     bind(SoccerPlayerInfoComp);
+    bind(FastPlayerSlotDec);
 
     bind(ChangePasswordComp);
     bind(RememberPasswordComp);

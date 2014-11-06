@@ -4,13 +4,10 @@ import 'dart:async';
 import 'dart:html';
 import 'dart:convert';
 import 'package:angular/angular.dart';
-import 'package:json_object/json_object.dart';
 import 'package:webclient/models/user.dart';
 import 'package:webclient/services/server_service.dart';
 import 'package:logging/logging.dart';
 import 'package:webclient/utils/game_metrics.dart';
-import 'package:webclient/services/datetime_service.dart';
-import 'package:webclient/utils/js_utils.dart';
 
 
 @Injectable()
@@ -22,7 +19,7 @@ class ProfileService {
   static ProfileService get instance => _instance;  // Si te peta en esta linea te obliga a pensar, lo que es Una Buena Cosa@.
                                                     // Una pista... quiza te ha pasado pq has quitado componentes del index?
 
-  ProfileService(this._server, this._dateTimeService) {
+  ProfileService(this._server) {
     _instance = this;
     _tryProfileLoad();
   }
@@ -51,10 +48,9 @@ class ProfileService {
     return completer.future;
   }
 
-  Future<JsonObject> facebookLogin(String accessToken) {
+  Future<Map> facebookLogin(String accessToken) {
     return _server.facebookLogin(accessToken).then(_onLoginResponse);
   }
-
 
   Future<Map> _onLoginResponse(Map loginResponseJson) {
     _server.setSessionToken(loginResponseJson["sessionToken"]); // to make the getUserProfile call succeed
@@ -145,10 +141,6 @@ class ProfileService {
     }
   }
 
-  static Future<bool> allowEnter() {
-    return new Future<bool>(() => allowAccess);
-  }
-  
   static ProfileService _instance;
 
   ServerService _server;

@@ -8,9 +8,7 @@ class JsUtils {
 
     // Si tenemos el contexto lo llamamos directamente
     if (contexto != null) {
-
       return js.context[contexto].callMethod(method, (params is List)?params:[params]);
-      //return js.context[contexto].callMethod(method, [new js.JsObject.jsify(params), true]);
     }
 
     // Si tenemos el tercer parametro

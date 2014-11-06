@@ -2,7 +2,7 @@ library form_autofill_decorator;
 
 import 'package:angular/angular.dart';
 import 'dart:html';
-import 'package:webclient/utils/js_utils.dart';
+import 'dart:async';
 
 /*
  *  Actualizar los campos asociados ("ng-model") a los inputs de los formularios
@@ -10,14 +10,11 @@ import 'package:webclient/utils/js_utils.dart';
  *
  * Problema:
  *  - Los inputs se autorellenan (automáticamente por parte de los browsers)
- *  - Se pulsa "submit"
  *  - Los campos asociados ("ng-model") no se han enterado del cambio automático (producido por el autofill)
- *  - El formulario es considerado valido (sin datos válidos)
+ *  - El botón submit no se entera de que se tiene que activar, porque las variables bindeadas por el atributo ng-model no actualizan su valor.
  *
  * Solucion:
- *  - El evento "click" se produce antes del "submit"
- *  - Detectar cuando se produce el evento "click" sobre el boton de "submit"
- *  - Informar a los "inputs" del formulario que "han cambiado" (para que actualicen correctamente las variables "ng-model" asociadas)
+ *  -al instanciarse el componente, decimos a los inputs que "han cambiado" para que reaccionen los ng-model
  *
  * Fuentes:
  *  - http://victorblog.com/2014/01/12/fixing-autocomplete-autofill-on-angularjs-form-submit/
@@ -26,59 +23,24 @@ import 'package:webclient/utils/js_utils.dart';
   */
 
 @Decorator(selector: '[formAutofillFix]')
-class FormAutofillDecorator implements AttachAware{
+class FormAutofillDecorator {
   Element formElement;
 
-  FormAutofillDecorator(Element this.formElement);
+  FormAutofillDecorator(Element this.formElement){
+   _activateButtonTimer = new Timer(const Duration(seconds:0), () => forceInputActivity());
+  }
 
-  @override
-  void attach() {
-    // Buscamos el button principal del form
-    ButtonElement button = formElement.querySelector('[type=submit]');
-    if (button != null) {
-      // Si alguien lo pulsa (para 'submit')
-      button.onClick.listen( (e) {
-        //print("onClick ${button.className}");
-        // Buscar todos los controles 'inputs'
-        List<InputElement> inputs = formElement.querySelectorAll('input');
-        for (var input in inputs) {
-          // Indicar al input que ha cambiado (por si acaso = "autocomplete form")
-          //print("event Change: ${input.id}");
-          input.dispatchEvent(new Event('input'));
-          input.dispatchEvent(new Event('change'));
-          input.dispatchEvent(new Event('keydown'));
-        }
-      });
-    }
-    else {
-      print("Autofill: .btn-primary not found");
-    }
-
-    //reset del botón
-    JsUtils.runJavascript('[type=submit]', 'button', 'reset');
-
-    /*
-    // El evento 'submit' llega tarde para avisar a los 'inputs
-    formElement.onSubmit.listen( (e) {
-      print("onSubmit ${formElement.className}");
-      List<InputElement> inputs = formElement.querySelectorAll('input');
-      for (var input in inputs) {
-        input.dispatchEvent(new Event('input'));
-        input.dispatchEvent(new Event('change'));
-        input.dispatchEvent(new Event('keydown'));
-        print("event Change: ${input.id}");
-      }
-    });
-    */
-
-    /*
-    // Verificar que los distintos 'inputs' reciben la solicitu de 'change'
+  void forceInputActivity() {
+    // Buscar todos los controles 'inputs'
     List<InputElement> inputs = formElement.querySelectorAll('input');
     for (var input in inputs) {
-      input.onChange.listen( (e) {
-        print("changed: ${input.id}");
-      });
+      // Indicar al input que ha cambiado (por si acaso = "autocomplete form")
+      //print("event Change: ${input.id}");
+      input.dispatchEvent(new Event('input'));
+      input.dispatchEvent(new Event('change'));
+      input.dispatchEvent(new Event('keydown'));
     }
-    */
+    _activateButtonTimer.cancel();
   }
+  Timer _activateButtonTimer;
 }

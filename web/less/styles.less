@@ -281,6 +281,7 @@ html { overflow-y: scroll; }
 	> li {
 		.make-xs-column(12/@columns);
 		background-color: @blueLight;
+		.clean-paddings();
 		.make-border(4px, none none solid none, @blueDark);
 		a {
 			cursor: pointer;
@@ -289,6 +290,8 @@ html { overflow-y: scroll; }
 			color: @white;
 			display: block;
 			text-decoration: none;
+			overflow: hidden;
+			white-space: nowrap;
 		}
 		&[disabled] {
 			background-color: @blueMenu;

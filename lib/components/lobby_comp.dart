@@ -50,6 +50,8 @@ class LobbyComp implements DetachAware {
     _streamListener = scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
 
     _calculateInfoBarText();
+
+    querySelector('.wrapper-content-container').style.backgroundColor = '#FFF';
   }
 
   /********* METHODS */

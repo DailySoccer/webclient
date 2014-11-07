@@ -41,11 +41,7 @@ class ProfileService {
    }
 
   Future<Map> login(String email, String password) {
-    Completer completer = new Completer();
-    _server.login(email, password).then((loginResponseJson) {
-      _onLoginResponse(loginResponseJson).then((jsonMap) => completer.complete(jsonMap));
-      });
-    return completer.future;
+    return _server.login(email, password).then(_onLoginResponse);
   }
 
   Future<Map> facebookLogin(String accessToken) {

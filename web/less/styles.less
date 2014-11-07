@@ -1,11 +1,12 @@
 @import "../bootstrap-3.1.1/less/bootstrap.less";
 //@import "../bootstrap-3.1.1/less/navbar.less";
-
+ 
 @import "color_palette.less";
 @import "fonts.less";
 @import "animations.less";
 
 @import "contest_header_comp.less";
+@import "teams_panel_comp.less";
 @import "contest_info_comp.less";
 @import "scoring_rules_comp.less";
 @import "contest_list_comp.less";
@@ -17,6 +18,7 @@
 
 @import "live_contest_comp.less";
 @import "lobby_comp.less";
+@import "contest_filters_comp.less";
 @import "main_menu_slide_comp.less";
 @import "my_contest_comp.less";
 @import "paginator_comp.less";
@@ -39,12 +41,13 @@
 
 // Otros css del proyecto, para incluirlos todos en nuestro .css principal
 @import "../flags/flags.less";
-@import "../jasny/css/jasny-bootstrap.css";
-@import "../nouislider/jquery.nouislider.css";
+@import (inline) "../jasny/css/jasny-bootstrap.css";
+@import (inline) "../nouislider/jquery.nouislider.css";
 @import "../bootstrap-switch/less/bootstrap3/bootstrap-switch.less";
 
 html, body{     
     height: 100%; 
+   // overflow-y:scroll;
    // background-color: @black;
 }
 
@@ -57,7 +60,7 @@ html, body{
 // Path Definitions
 @images: "../images"; // No ponemos / al final para separar mejor donde realmente se define la imagen
 
-@icon-font-path: "//netdna.bootstrapcdn.com/bootstrap/3.0.0/fonts/";
+@icon-font-path: "../bootstrap-3.1.1/fonts/";
 
 
 // Por ejemplo, el color del boton "Añadir fondos", al que consideramos un btn-primary
@@ -66,6 +69,8 @@ html, body{
 // Color y borde del boton default (por ejemplo, el "Entrar" en un concurso)
 @btn-default-bg: @blueLight;
 @btn-default-color: @white;
+
+
 
 .btn {
 	.btn();
@@ -86,6 +91,9 @@ html, body{
 		cursor: not-allowed !important;
 	}	
 	.btn-pressed();
+	&:focus{
+		outline: none !important;
+	}
 }
 
 .btn-primary {
@@ -96,6 +104,9 @@ html, body{
 		cursor: not-allowed !important;
 	}
 	.btn-pressed();
+	&:focus{
+		outline: none !important;
+	}
 }
 
 // Color y borde del boton cancel (no esta definido en el bootstrap)
@@ -104,6 +115,9 @@ html, body{
 	.button-variant(@btn-default-color; @greyMed; @btn-default-border);
 	box-shadow: 0px 5px 0px rgba(red(@greyMed), green(@greyMed), blue(@greyMed), 0.5);
 	.btn-pressed();
+	&:focus{
+		outline: none !important;
+	}
 }
 
 // Color y borde del boton naranja (no esta definido en el bootstrap)
@@ -153,18 +167,45 @@ html { overflow-y: scroll; }
 	@media (max-width: @screen-xs-max) {
 		margin: 0 auto -204px;
 	}
-	#wrapper-push {
+	#mainContent:after {
 		height: 146px;
 		@media (max-width: @screen-xs-max) {
 			height: 204px;
 		}
 	}
-	/*footer {
-		height: 150px;
-	}*/
 }
 
+.default-header-text {
+	.make-row(0);
+	.exo_light(20pt, @blueDark);
+	padding: 30px 15px 30px 15px;
+	background-color: @greyUltraLight;
+	text-align: center;
+	@media (max-width: @screen-xs-max) {
+		padding: 10px 5px 10px 5px;
+	}
+}
+.default-info-text {
+	.exo_light(20pt, @blueMed);
+	text-align: center;
+	margin: 0 auto;
+	padding: 15px 0;
+	@media (max-width: @screen-sm-max) {
+		.opensans_bold(14pt, @blueMed);
+	}
+}
+.blue-separator {
+	width: 100%;
+	height: 40px;
+	background-color: @blueLight;
+	@media (max-width: @screen-xs-max) {
+		height: 5px;
+	}
+}
 
+.center-text {
+	text-align: center;
+}
 // Contenedor interior que envuelve al contenido. Fijamos el width con el.
 .main-content-container {
 	.container-fluid();

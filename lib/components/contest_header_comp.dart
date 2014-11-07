@@ -5,6 +5,7 @@ import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import "package:webclient/models/contest.dart";
 import 'dart:async';
+import 'package:webclient/services/active_contests_service.dart';
 
 @Component(
     selector: 'contest-header',
@@ -13,8 +14,8 @@ import 'dart:async';
 )
 class ContestHeaderComp implements DetachAware {
 
-  Map<String, String> contestHeaderInfo = {
-    'description':      'cargando datos...',
+  Map<String, String> info = {
+    'description':      '',
     'startTime':        '',
     'countdownDate':    '',
     'textCountdownDate':'',
@@ -27,60 +28,74 @@ class ContestHeaderComp implements DetachAware {
 
   ScreenDetectorService scrDet;
 
-  @NgOneWay("contestData")
-  void set contestData(Contest value) {
-    _contestInfo = value;
-
+  @NgOneWay("contest")
+  Contest get contest => _contest;
+  void set contest(Contest value) {
     if (value != null) {
+      _contest = value;
+
       _refreshHeader();
       _refreshCountdownDate();
     }
   }
 
-  ContestHeaderComp(this._router, this._routeProvider, this.scrDet) {
+  // Cuando nos pasan el contestId, ya podemos empezar a mostrar informacion antes de que quien sea (enter_contest, view_contest...)
+  // refresque su informacion de concurso (que siempre es mas completa que muchas (o todas) las cosas que necesitamos mostrar aqui)
+  @NgOneWay("contest-id")
+  void set contestId(String value) {
+    if (value != null) {
+      _contest = _activeContestsService.getContestById(value);
+
+      _refreshHeader();
+      _refreshCountdownDate();
+    }
+  }
+
+  ContestHeaderComp(this._router, this._routeProvider, this.scrDet, this._activeContestsService) {
     _count = new Timer.periodic(new Duration(seconds: 1), (Timer timer) => _refreshCountdownDate());
   }
 
   void _refreshCountdownDate() {
-    contestHeaderInfo["textCountdownDate"] = "";
-    contestHeaderInfo["countdownDate"] = "";
-
-    if (_contestInfo == null) {
+    if (_contest == null) {
       return;
     }
 
-    if (_contestInfo.isHistory) {
-      contestHeaderInfo["startTime"] = "FINALIZADO";
+    if (_contest.isHistory) {
+      info["startTime"] = "FINALIZADO";
       _count.cancel();
     }
-    else if (_contestInfo.isLive) {
-      contestHeaderInfo["startTime"] = "COMENZÓ EL ${DateTimeService.formatDateTimeShort(_contestInfo.startDate).toUpperCase()}";
+    else if (_contest.isLive) {
+      info["startTime"] = "COMENZÓ EL ${DateTimeService.formatDateTimeShort(_contest.startDate).toUpperCase()}";
       _count.cancel();
     }
     else {
-      contestHeaderInfo["startTime"] = "COMIENZA EL ${DateTimeService.formatDateTimeShort(_contestInfo.startDate).toUpperCase()}";
+      info["startTime"] = "COMIENZA EL ${DateTimeService.formatDateTimeShort(_contest.startDate).toUpperCase()}";
 
-      Duration tiempoRestante = DateTimeService.getTimeLeft(_contestInfo.startDate);
+      Duration tiempoRestante = DateTimeService.getTimeLeft(_contest.startDate);
 
       if (tiempoRestante.inSeconds <= 0) {
-        contestHeaderInfo["startTime"] = "EN BREVE";
+        info["startTime"] = "EN BREVE";
         _count.cancel();
       }
       else {
-        contestHeaderInfo["countdownDate"] = DateTimeService.formatTimeLeft(tiempoRestante);
-        contestHeaderInfo["textCountdownDate"] = (scrDet.isDesktop) ? "EL CONCURSO COMENZARÁ EN: " : "FALTAN";
+        info["countdownDate"] = DateTimeService.formatTimeLeft(tiempoRestante);
+        info["textCountdownDate"] = (scrDet.isDesktop) ? "EL CONCURSO COMENZARÁ EN: " : "FALTAN";
       }
     }
   }
 
   void _refreshHeader() {
-    contestHeaderInfo["description"] = "${_contestInfo.name}";
-    contestHeaderInfo['contestType'] = "${_contestInfo.tournamentTypeName}: ";
-    contestHeaderInfo["entryPrice"] = "${_contestInfo.entryFee}€";
-    contestHeaderInfo["prize"] = "${_contestInfo.prizePool}€";
-    contestHeaderInfo["prizeType"] = "${_contestInfo.prizeTypeName}";
-    contestHeaderInfo["startTime"] = "";
-    contestHeaderInfo["contestantCount"] = "${_contestInfo.contestEntries.length} de ${_contestInfo.maxEntries} jugadores  - Límite de salario: ${_contestInfo.salaryCap}";
+    if (_contest == null) {
+      return;
+    }
+
+    info["description"] = "${_contest.name}";
+    info['contestType'] = "${_contest.tournamentTypeName}: ";
+    info["entryPrice"] = "${_contest.entryFee}€";
+    info["prize"] = "${_contest.prizePool}€";
+    info["prizeType"] = "${_contest.prizeTypeName}";
+    info["startTime"] = "";
+    info["contestantCount"] = "${_contest.contestEntries.length} de ${_contest.maxEntries} jugadores  - Límite de salario: ${_contest.salaryCap}";
   }
 
   void goToParent() {
@@ -93,7 +108,8 @@ class ContestHeaderComp implements DetachAware {
 
   Router _router;
   RouteProvider _routeProvider;
+  ActiveContestsService _activeContestsService;
 
   Timer _count;
-  Contest _contestInfo;
+  Contest _contest;
 }

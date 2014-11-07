@@ -1,9 +1,9 @@
-<div id="mainFooter" ng-cloak>
+<div id="rootFooter" ng-cloak>
 
    <div class="sup-footer-wrapper">
-    <div class="user-info-sup-footer" ng-show="profileService.isLoggedIn">
-        <a id="footerProfile" href="#" class="goto-link" ng-click="gotoProfile()"><span class="username-link">{{profileService.user.nickName}}</span></a>
-        <a id="footerLogOut" href="#" class="goto-link" ng-click="profileService.logout()"><span class="logout-link">Salir</span></a>
+    <div class="user-info-sup-footer">
+        <a id="footerProfile"  ng-show="profileService.isLoggedIn" href="#" class="goto-link" ng-click="gotoProfile()"><span class="username-link">{{profileService.user.nickName}}</span></a>
+        <a id="footerLogOut"  ng-show="profileService.isLoggedIn" href="#" class="goto-link" ng-click="profileService.logout()"><span class="logout-link">Salir</span></a>
         <!--<button id="footerAddFunds" class="add-funds-button">AÑADIR FONDOS</button>-->
     </div>
   </div>

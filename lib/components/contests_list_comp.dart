@@ -27,42 +27,42 @@ class ContestsListComp {
     if (value == null || value.isEmpty) {
       return;
     }
-    //print ('-CONTEST_LIST-: Recibida la lista de concursos y contiene ${value.length.toString()} entradas');
     _contestsListOriginal = value;
     refreshListWithFilters();
   }
 
+  @NgOneWay("competition-type-filter")
+  void set filterByCompetition(value) {
+    _filterList["FILTER_COMPETITION"] = value;
+    refreshListWithFilters();
+  }
+
   @NgOneWay("tournament-type-filter")
-    void set filterByType(value) {
-    //print ('-CONTEST_LIST-: Recibido el filtro por tipo de concurso ${value.toString()}');
+  void set filterByType(value) {
     _filterList["FILTER_TOURNAMENT"] = value;
     refreshListWithFilters();
   }
 
   @NgOneWay("salary-cap-filter")
-    void set filterBySalaryCap(value) {
-    //print ('-CONTEST_LIST-: Recibido el filtro por tipo de concurso ${value.toString()}');
+  void set filterBySalaryCap(value) {
     _filterList["FILTER_TIER"] = value;
     refreshListWithFilters();
   }
 
   @NgOneWay("entry-fee-filter")
-    void set filterByEntryFee(value) {
-    //print ('-CONTEST_LIST-: Recibido el filtro por tipo de concurso ${value.toString()}');
+  void set filterByEntryFee(value) {
     _filterList["FILTER_ENTRY_FEE"] = value;
     refreshListWithFilters();
   }
 
   @NgOneWay("name-filter")
-    void set filterByName(value) {
-    //print ('-CONTEST_LIST-: Recibido el filtro por tipo de concurso ${value.toString()}');
+  void set filterByName(value) {
     _filterList["FILTER_CONTEST_NAME"] = value;
     refreshListWithFilters();
   }
 
   @NgOneWay("sorting")
-    void set sorting(value) {
-    //print("-CONTEST_LIST-: Orden de la lista ${value}");
+  void set sorting(value) {
     _sortOrder = value;
     refreshList();
   }
@@ -212,6 +212,9 @@ class ContestsListComp {
     _filterList.forEach((String key, dynamic value) {
       if (value != null && value.isNotEmpty) {
         switch(key) {
+          case "FILTER_COMPETITION":
+            contestsListFiltered = contestsListFiltered.where((contest) => value.contains(contest.competitionType)).toList();
+          break;
           case "FILTER_CONTEST_NAME":
             contestsListFiltered = contestsListFiltered.where((contest) => contest.name.toUpperCase().contains(value.toUpperCase())).toList();
           break;
@@ -219,11 +222,11 @@ class ContestsListComp {
             contestsListFiltered = contestsListFiltered.where((contest) =>  contest.entryFee >= int.parse(value[0].split('.')[0]) &&
                                                                             contest.entryFee <= int.parse(value[1].split('.')[0])).toList();
           break;
-          case "FILTER_TOURNAMENT":
-            contestsListFiltered = contestsListFiltered.where((contest) => value.contains(contest.tournamentType)).toList();
-          break;
           case "FILTER_TIER":
             contestsListFiltered = contestsListFiltered.where((contest) => value.contains(contest.tier)).toList();
+          break;
+          case "FILTER_TOURNAMENT":
+            contestsListFiltered = contestsListFiltered.where((contest) => value.contains(contest.tournamentType)).toList();
           break;
         }
       }
@@ -268,6 +271,4 @@ class ContestsListComp {
 
   ProfileService _profileService;
   ScreenDetectorService _scrDet;
-
-
 }

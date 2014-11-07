@@ -1,41 +1,61 @@
-// aparece creciendo a la vez que con opacidad
+// Utilidades para generar con comodidad todos los prefijos. 
+.animateWithKeyFrames(@name, @time) {
+	-webkit-animation: @name @time; 
+  	-moz-animation: @name @time;
+  	-ms-animation: @name @time;
+	-o-animation: @name @time;
+	animation: @name @time;
+}
+
+#doKeyFrames(@name; @frames) {
+    @-webkit-keyframes @name { @frames(); }
+    @-moz-keyframes @name { @frames(); }
+    @-o-keyframes @name { @frames(); } 
+    @keyframes @name { @frames();  }
+}
+
+// Viene desde unos pixeles mas a la derecha haciendo fadein
 .appear-from-right-animation {
 	position: relative;
-	-webkit-animation: appear-from-right-keyframes  0.5s;
-  	-moz-animation: appear-from-right-keyframes  0.5s;
-  	-ms-keyframes: appear-from-right-keyframes 0.5s;
-	-o-keyframes: appear-from-right-keyframes 0.5s;
-	animation: appear-from-right-keyframes 0.5s;
+
+	#doKeyFrames(appear-from-right-keyframes, {
+			0%   { left: 100px; opacity: 0; }
+    		100% { left: 0px;   opacity: 1; }
+		});
+	.animateWithKeyFrames(appear-from-right-keyframes, 0.5s);
 }
 
-@-webkit-keyframes 	appear-from-right-keyframes { .appear-from-right() };
-@-moz-keyframes 	appear-from-right-keyframes { .appear-from-right() };
-@-ms-keyframes 		appear-from-right-keyframes { .appear-from-right() };
-@-o-keyframes 		appear-from-right-keyframes { .appear-from-right() };
-@keyframes 			appear-from-right-keyframes { .appear-from-right() };
-
-.appear-from-right() {
-	0%   { left: 100px; opacity: 0; }
-    100% { left: 0px;   opacity: 1; }
-}
-
-//animacion slide in from bottom
+// Viene de unos pixeles mas abajo haciendo fadein. Por ejemplo para los formularios.
 .slide-in-from-bottom-animation {
 	position: relative;
-	-webkit-animation: slide-in-from-bottom-keyframes  0.4s;
-  	-moz-animation: slide-in-from-bottom-keyframes 0.4s;
-  	-ms-keyframes: slide-in-from-bottom-keyframes 0.4s;
-	-o-keyframes: slide-in-from-bottom-keyframes 0.4s;
-	animation: slide-in-from-bottom-keyframes 0.4s;
+
+	#doKeyFrames(slide-in-from-bottom-keyframes, {
+			0%   { top: 300px; opacity: 0; }
+    		100% { top: 0px;   opacity: 1; }
+		});
+	.animateWithKeyFrames(slide-in-from-bottom-keyframes, 0.4s);
 }
 
-@-webkit-keyframes 	slide-in-from-bottom-keyframes { .slide-in-from-bottom() };
-@-moz-keyframes 	slide-in-from-bottom-keyframes { .slide-in-from-bottom() };
-@-ms-keyframes 		slide-in-from-bottom-keyframes { .slide-in-from-bottom() };
-@-o-keyframes 		slide-in-from-bottom-keyframes { .slide-in-from-bottom() };
-@keyframes 			slide-in-from-bottom-keyframes { .slide-in-from-bottom() };
-
-.slide-in-from-bottom() {
-	0%   { top: 300px; opacity: 0; }
-    100% { top: 0px;   opacity: 1; }
+// Fadein clasico
+.fadein-animation(@time) {
+	#doKeyFrames(fadein-keyframes, {
+			from { opacity: 0; }
+			to { opacity: 1; }
+		});
+	.animateWithKeyFrames(fadein-keyframes, @time);
 }
+
+// Animacion de altura basada en el max-height. Tienes que asegurarte de que siempre es mas
+// que el maximo que puede llegar a ser el div.
+/* 
+	No funciona probablemente por la generacion del nombre "height-keyframes". 
+	Requiere leer mas.
+
+.height-animation(@fromHeight, @toHeight, @time) {
+	#doKeyFrames(height-keyframes, { 
+				from { max-height: @fromHeight; }
+				to { max-height: @toHeight; }
+				});
+	.animateWithKeyFrames(height-keyframes, @time);
+}
+*/

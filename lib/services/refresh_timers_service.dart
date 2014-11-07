@@ -10,12 +10,14 @@ class RefreshTimersService {
   static Map<String, int> timersDef = {
     'SECONDS_TO_REFRESH_CONTEST_LIST'         : 10
     ,'SECONDS_TO_REFRESH_LIVE'                : 3
+    ,'SECONDS_TO_REFRESH_MY_CONTESTS'         : 3
     ,'SECONDS_TO_REFRESH_DATE_FROM_SERVER'    : 3
     ,'SECONDS_TO_VERIFY_SIMULATOR_ACTIVATED'  : 3
   };
 
   static const String SECONDS_TO_REFRESH_CONTEST_LIST         = "SECONDS_TO_REFRESH_CONTEST_LIST";
   static const String SECONDS_TO_REFRESH_LIVE                 = "SECONDS_TO_REFRESH_LIVE";
+  static const String SECONDS_TO_REFRESH_MY_CONTESTS          = "SECONDS_TO_REFRESH_MY_CONTESTS";
   static const String SECONDS_TO_VERIFY_SIMULATOR_ACTIVATED   = "SECONDS_TO_VERIFY_SIMULATOR_ACTIVATED";
   static const String SECONDS_TO_REFRESH_DATE_FROM_SERVER     = "SECONDS_TO_REFRESH_DATE_FROM_SERVER";
 
@@ -39,7 +41,9 @@ class RefreshTimersService {
   }
 
   void cancelTimer(String name) {
-    _timers[name].cancel();
+    if (_timers.containsKey(name)) {
+      _timers[name].cancel();
+    }
   }
 
   Map<String, Timer> _timers = {};

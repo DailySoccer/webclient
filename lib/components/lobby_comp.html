@@ -1,7 +1,7 @@
 <div id="lobbyRoot">
 
   <!-- Header de Promociones -->
-  <promos></promos>
+  <promos id="promosComponent"></promos>
 
   <!-- Barra azul de información -->
   <div id="lobbyTopInfobar">
@@ -9,23 +9,27 @@
   </div>
 
   <!-- Filtros y Ordenación -->
-  <contest-filters-comp contests-list="activeContestsService.activeContests" contest-count="contestCount" 
+  <contest-filters-comp id="contestFiltersRoot"
+                        contests-list="activeContestsService.activeContests" contest-count="contestCount"
                         on-sort-order-change="onSortOrderChange(fieldName)" on-filter-change="onFilterChange(filterList)"></contest-filters-comp>
 
-  <!-- Lista de concursos DESKTOP -->
-  <contests-list  contests-list="activeContestsService.activeContests"
+  <!-- Lista de concursos -->
+  <contests-list  id="activeContestList"
+                  sorting="lobbySorting"
+                  contests-list="activeContestsService.activeContests"
+                  on-action-click='onActionClick(contest)'
+                  on-row-click="onRowClick(contest)" action-button-title="'Jugar'"
+                  competition-type-filter="lobbyFilters['FILTER_COMPETITION']"
                   tournament-type-filter="lobbyFilters['FILTER_TOURNAMENT']" salary-cap-filter="lobbyFilters['FILTER_TIER']"
                   entry-fee-filter="lobbyFilters['FILTER_ENTRY_FEE']" name-filter="lobbyFilters['FILTER_CONTEST_NAME']"
-                  sorting="lobbySorting" contest-count="contestCount"
-                  action-button-title="'Jugar'" on-row-click="onRowClick(contest)"
-                  on-action-click='onActionClick(contest)'>
+                  contest-count="contestCount">
   </contests-list>
 
   <!-- Modal Window que envuelve la informacion de concurso, mostrada cuando clickamos en cualquiera de los campos de la fila -->
   <div  id="infoContestModal" class="modal fade" tabindex="-1" role="dialog">
       <div class="modal-dialog modal-lg">
         <div id="infoContent" class="modal-content">
-          <contest-info contest-data="selectedContest"></contest-info>
+          <contest-info contest-id-data="selectedContestId"></contest-info>
         </div>
       </div>
   </div>

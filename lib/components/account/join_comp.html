@@ -1,4 +1,4 @@
-<div id="joinRoot">
+<div id="joinRoot" ng-show="!loadingService.isLoading">
   <div id="signupbox" class="main-box">
 
     <div class="panel window-slide-in">
@@ -17,7 +17,7 @@
           <!-- USERNAME  -->
           <div class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-user"></div></span>
-            <input id="nickName" name="NickName" type="text" ng-model="nickName" placeholder="Nombre de usuario" class="form-control" data-toggle="validator" required="">
+            <input id="nickName" auto-focus name="NickName" type="text" ng-model="nickName" placeholder="Nombre de usuario" class="form-control" data-toggle="validator" required=""  tabindex="1">
           </div>
           <!-- Error de username -->
           <div class="new-row">
@@ -26,7 +26,7 @@
           <!-- EMAIL -->
           <div class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-envelope"></div></span>
-            <input id="email" name="Email" type="email" ng-model="email" placeholder="Correo electrónico" class="form-control" data-toggle="validator" required="">
+            <input id="email" name="Email" type="email" ng-model="email" placeholder="Correo electrónico" class="form-control" data-toggle="validator" required=""  tabindex="2">
           </div>
           <!-- Error de mail -->
           <div class="new-row">
@@ -35,7 +35,12 @@
           <!-- PASSWORD -->
           <div class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-            <input id="password" name="Password" type="password" ng-model="password" placeholder="Password (mínimo 8 caracteres)" class="form-control" data-toggle="validator" required="" data-minlength="8" ng-minlength="8">
+            <input id="password" name="Password" type="password" ng-model="password" placeholder="Contraseña" class="form-control" data-toggle="validator" required="" data-minlength="8" ng-minlength="8"  tabindex="3">
+          </div>
+
+          <div class="input-group">
+            <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
+            <input id="rePassword" name="RePassword" type="password" ng-model="rePassword" placeholder="Repite la contraseña " class="form-control" data-toggle="validator" required="" data-minlength="8" ng-minlength="8" tabindex="4">
           </div>
           <!-- Error de password -->
           <div class="new-row">

@@ -1,0 +1,429 @@
+.section-container {
+	//Este es el contenedor que se aplica al contenido
+	.make-row();
+	@media (max-width: @screen-sm-max) {
+		.container-fluid();
+	}
+	@media (min-width: @screen-md-min) {
+		.container();
+	}
+}
+#contestFiltersRoot{
+	//Barra de filtro de ordenación de la lista
+	#contestSortsFilters{
+		.section-container();
+		
+		background-color: @white;
+		padding-top: 15px;
+		padding-bottom: 15px;
+		@media (max-width: @screen-xs-max) {
+			padding: 0;
+		}
+
+		.left-separator{
+			@media (max-width: @screen-sm-max) {
+				border-width: 0;
+			}
+			//los separadores solo son visibles en la versión desktop
+			@media (min-width: @screen-md-min) {
+				padding-left: 20px;
+			}
+			border-left: 1px solid @greyUltraDark;
+			
+		}
+		//botonera de ordenado
+		#contestFastSort{
+			.make-xs-column(12);
+			.make-sm-column(6);
+			.make-md-column(6);
+
+			//ajustes para la versión movil
+			@media (max-width: @screen-xs-max) {
+				padding-bottom: 10px;
+				padding-top: 10px;
+				padding-left: 0;
+				padding-right: 0;
+				text-align: center;
+				.make-border(1px, solid none none none, @greyLight);
+			}
+			.filter-text{
+				.opensans_bold(8pt, @greyUltraDark);
+				@media (max-width: @screen-sm-max) {
+					.hidden();
+				}
+				@media (max-width: @screen-xs-max) {
+					padding: 0 10px;
+				}
+			}
+			.btn-group{
+				.btn-group();
+			}
+			.sorting-button{
+				.btn-default();				
+				.opensans_bold(8pt, @greyUltraDark);
+				@media (max-width: @screen-xs-max) {
+					.opensans_bold(7pt, @greyUltraDark);
+				}
+				box-shadow: none;
+				background-color: transparent;
+				border-width: 1px;
+				border-color: @greyUltraDark;
+				color: @greyDark;
+				padding: 6px 23px;
+				&:hover{
+					background-color: transparent;
+					border-width: 1px;
+					color: @greyUltraDark;
+					border-color: @greyUltraDark;
+				}
+			} 
+			//flechitas que indican el orden de filtrado
+			.asc::after{
+				.create-glyph("\E113", 5pt, @greyUltraDark);
+				margin-left: 5px;
+			}	
+			.desc::after{
+				.create-glyph("\E114", 5pt, @greyUltraDark);
+				margin-left: 5px;
+			}
+		}
+		//búsqueda por nombre
+		#contestFastSearch{
+			.make-sm-column(5);	
+			.make-md-column(5);		
+			.hidden-xs();
+
+			.left-separator();
+			.searcher{
+				.form-control();
+				padding-left: 30px;
+				background: url('../images/searchIcon.png') no-repeat 10px center;
+				padding: 1px 0 0 30px;
+				height: 29px;
+				box-shadow: none;
+				border-width: 0;
+			}
+		}
+		//Contenedor de los filtro en XS
+		.choosed-filters-container{
+			.container();
+			.make-row(0);
+			padding: 10px 0px;
+		}
+		//filtro por tipo de competicion
+		.competition-filter-name {
+			.make-xs-column(8);
+			.opensans_bold(9pt, @blueDark);
+			line-height: 20px;
+			.contest-count {
+				.opensans_bold(8pt, @white);	
+				background-color: @orange;
+				border-radius: 20px;
+				padding: 2px 6px;
+				margin-left: 5px;
+			}
+		}
+		// Globos de los filtros seleccionados
+		.filter-list {
+			.make-xs-column(12);
+			padding: 10px 15px;
+			.filter-choosed {
+				.opensans_bold(8pt, @white);	
+				background-color: @blueLight;
+				border-radius: 20px;
+				padding: 2px 5px;
+			}
+		}
+
+		//botón para activar el panel de filtros avanzados
+		.filterToggler {
+			.make-sm-column(1);
+			.make-xs-column(4);
+			.left-separator();
+			@media (max-width: @screen-xs-max) {
+				text-align: right;
+			}
+			.filters-button{
+				.btn-default();
+				@media (min-width:  @screen-sm-min) {
+					.opensans_bold(8pt, @greyUltraDark);
+					line-height: 29px;
+					box-shadow: none;
+					background-color: transparent;
+					border-color: @greyUltraDark;
+					color: @greyDark;
+					padding:0;
+					&:hover{
+						background-color: transparent;
+						color: @greyUltraDark;
+						border-color: @greyUltraDark;
+					}
+				} 
+			}
+		}
+		.toggleOff::after{
+			.create-glyph("\E114", 8pt, @greyUltraDark);
+			@media (max-width:  @screen-xs-max) {
+				.create-glyph("\E114", 8pt, @white);
+			}
+			margin-left: 7px;
+			display: inline-block;
+			line-height: 1;
+
+		}
+		.toggleOn::after{
+			.create-glyph("\E113", 8pt, @greyUltraDark);
+			@media (max-width:  @screen-xs-max) {
+				.create-glyph("\E113", 8pt, @white);
+			}
+			margin-left: 7px;
+			display: inline-block;
+			line-height: 1;
+		}
+	}
+
+	#filtersPanel{
+		//Panel de filtros avanzados
+		.section-container();
+		background-color: @white;
+
+		.filter-title{
+			.exo_light(16pt, @blueDark);
+			@media (max-width: @screen-xs-max) {
+				border-top: 1px dashed #000;
+				padding-top: 10px;
+			}
+		}
+		.centered-sm-text{
+			@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max)  {
+				text-align: center;
+			}
+		}
+		.filter-column-base {
+			.make-xs-column(12);
+			.make-sm-column(4);
+			.make-md-column(3);
+			min-height: 330px;
+			padding-top: 20px;
+			@media (max-width: @screen-sm-max)  {
+				padding-bottom: 20px;
+				min-height: 50px;
+			}
+		}
+		.filter-column-competition{
+			@media (min-width: @screen-md-min) {
+				.make-border(1px, dotted none dotted dotted, @greyUltraDark);
+			}
+			@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+				.make-border(1px, dashed dashed none none, @greyUltraDark);
+			}
+			.filter-column-base();
+		}
+		.filter-column-tournaments{
+			.filter-column-base();
+			@media (min-width: @screen-md-min) {
+				.make-border(1px, dotted none dotted dotted, @greyUltraDark);
+			}
+			@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+				.make-border(1px, dashed dashed none none, @greyUltraDark);
+				min-height: 340px;
+			}
+			
+
+		}
+		.filter-column-salary-limit{
+			@media (min-width: @screen-md-min) {
+				.make-border(1px, dotted none dotted dotted, @greyUltraDark);
+			}
+			@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+				.make-border(1px, dashed none none none, @greyUltraDark);
+			}
+			.filter-column-base();
+		}
+		.filter-column-entry-fee{
+			padding-top: 20px;
+			@media (min-width: @screen-md-min) {
+				.make-border(1px, dotted dotted dotted dotted, @greyUltraDark);
+				min-height: 330px;
+			}
+			@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+				.make-border(1px, dashed none dashed none, @greyUltraDark);
+				min-height: 100px;
+			}			
+			@media (max-width: @screen-sm-max)  {
+				padding-bottom: 20px;
+				min-height: 50px;
+			}
+			//el texto de esta columna esta centrado en sm
+			.centered-sm-text();
+			.make-xs-column(12);			
+			.make-sm-column(12);
+			.make-md-column(3);
+		}
+		.filter-content{
+			/* estilod para la colmna del filtro con slider */
+			.slider-wrapper{
+				.make-xs-column(12);
+				padding: 15px 5px;
+			}
+			.range-font{
+				.opensans_bold(12px, @blueMed);
+				padding: 0px;
+			}
+			.entry-fee-value-max{
+				.range-font();
+				.make-xs-column(6);
+				.pull-right();
+				text-align: right;
+				padding-right: 0px;
+			}
+			.entry-fee-value-min{
+				.range-font();
+				.make-xs-column(6);
+				.pull-left();
+				text-align: left;
+				padding-left: 0px;
+			}
+			// grupo de botones del filtro sin banderas
+			.check-group-wrapper{
+				.button-check{
+					.make-xs-column(12);
+					.clean-paddings();
+					input[type=checkbox]{
+						display: none;
+					}
+					input[type=checkbox] + label {
+						display: block;
+						background-color: @white;
+						border: 1px solid @greyMed;
+						border-radius: 5px;
+						line-height: 36px;
+						margin: 1px 0px;
+						padding: 0 10px;
+						.opensans_normal(10pt, @greyUltraDark);
+						transition: all 1s ease;
+						cursor:pointer;
+					}
+					input[type=checkbox]:checked + label {
+						background-color: @tramaRed;
+					}
+					input[type=checkbox] + label::after {
+						.create-glyph("\E013", 0pt);
+						color: @greyMed;
+						.pull-right();
+						transition: all .5s ease-in-out;
+					} 
+					input[type=checkbox]:checked + label::after {
+						.create-glyph("\E013", 12pt);
+					}
+					input[type=checkbox]:disabled + label {
+						.opensans_normal(10pt, @greyLight);
+						border: 1px solid @greyLight;
+						background-color: @greyUltraLight;
+					}				
+				}
+				.button-with-flag {
+					.button-check();
+					input[type=checkbox] + label {
+						padding-left: 15px;
+					}					
+					input[type=checkbox] + label::before{
+						content: " ";
+						.flag();
+						width: 16px;
+						margin-right: 10px;
+						display: inline-block;
+					}	
+				}
+				.button-check-ESP{
+					.button-with-flag();
+					input[type=checkbox] + label::before{
+						.flag.flag-es();
+					}		
+				}
+				.button-check-UK{
+					.button-with-flag();
+					input[type=checkbox] + label::before{
+						.flag.flag-gb();
+					}		
+				}
+				.button-check-GER{
+					.button-with-flag();
+					input[type=checkbox] + label::before{
+						.flag.flag-de();
+					}		
+				}
+				.button-check-IT{
+					.button-with-flag();
+					input[type=checkbox] + label::before{
+						.flag.flag-it();
+					}		
+				}
+				.button-check-FR{
+					.button-with-flag();
+					input[type=checkbox] + label::before{
+						.flag.flag-fr();
+					}		
+				}
+				.button-check-EU{
+					.button-with-flag();
+					input[type=checkbox] + label::before{
+						.flag.flag-eu();
+					}		
+				}
+			}
+
+			/******** Sobreescritura de los estilos de noUiSlider ********/
+			/* Slider size and handle placement */
+			.noUi-horizontal .noUi-handle {
+				width: 30px;
+				height: 30px;
+				left: -17px;
+				top: -7px;
+				border-radius: 15px;
+			}
+			/* Handle stripes */
+			.noUi-handle:before,
+			.noUi-handle:after {
+				content: none;
+			}
+			/* Styling */
+			.noUi-connect {
+				background: @blueMed;
+			}
+		}
+		.reset-button-wrapper{
+			.make-xs-column(12);
+			.make-sm-column(3);
+			.make-sm-column-push(3);
+			padding: 10px 0 15px 0;
+			@media (min-width: @screen-sm-min) {
+				margin: 0 10px 0 0;	
+			}
+			@media (max-width: @screen-xs-max) {
+				border-top: 1px dashed #000;
+				padding-top: 10px;
+			}
+
+			.btn-reset {
+				.btn();
+				.btn-block();
+				.btn-cancel();
+			}
+		}
+		.confirm-button-wrapper{
+			.make-xs-column(12);
+			.make-sm-column(3);
+			.make-sm-column-push(3);
+			padding: 10px 0 15px 0;
+			@media (min-width: @screen-sm-min) {
+				margin: 0 0 0 10px;	
+			}
+			.btn-confirm {
+				.btn();
+				.btn-block();
+				.btn-primary();
+			}
+		}
+	}
+}

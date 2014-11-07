@@ -1,6 +1,5 @@
 library soccer_player;
 
-import "package:json_object/json_object.dart";
 import 'package:logging/logging.dart';
 import "package:webclient/models/soccer_team.dart";
 import "package:webclient/models/soccer_player_stats.dart";
@@ -11,9 +10,9 @@ class LiveEventInfo {
   int count;
   int points;
 
-  LiveEventInfo.initFromJsonObject(JsonObject json) {
-    count = json.count;
-    points = json.points;
+  LiveEventInfo.initFromJsonObject(Map jsonMap) {
+    count = jsonMap["count"];
+    points = jsonMap["points"];
   }
 }
 
@@ -28,6 +27,15 @@ class SoccerPlayer {
   // Fantasy Points (actualizado por liveMatchEvent)
   int currentLivePoints = 0;
 
+  int getFantasyPointsForCompetition(String competitionId) {
+    List matchsForCompetition = stats.where((stat) => stat.hasPlayedInCompetition(competitionId)).toList();
+    return matchsForCompetition.isNotEmpty ? matchsForCompetition.fold(0, (prev, stat) => prev + stat.fantasyPoints ) ~/ matchsForCompetition.length : 0;
+  }
+
+  int getPlayedMatchesForCompetition(String competitionId) {
+    return stats.where((stat) => stat.hasPlayedInCompetition(competitionId)).length;
+  }
+
   // Estadisticas: Nombre del evento segun el enumerado OptaEventType => puntos obtenidos gracias a ese evento
   Map<String, LiveEventInfo> currentLivePointsPerOptaEvent = new Map<String, LiveEventInfo>();
 
@@ -38,27 +46,29 @@ class SoccerPlayer {
 
   SoccerPlayer.referenceInit(this.templateSoccerPlayerId);
 
-  factory SoccerPlayer.fromJsonObject(JsonObject json, ContestReferences references) {
-    SoccerPlayer soccerPlayer = references.getSoccerPlayerById(json.containsKey("templateSoccerPlayerId") ? json.templateSoccerPlayerId : json["_id"]);
-    return soccerPlayer._initFromJsonObject(json, references);
+  factory SoccerPlayer.fromJsonObject(Map jsonMap, ContestReferences references) {
+    SoccerPlayer soccerPlayer = references.getSoccerPlayerById(jsonMap.containsKey("templateSoccerPlayerId") ? jsonMap["templateSoccerPlayerId"] : jsonMap["_id"]);
+    return soccerPlayer._initFromJsonObject(jsonMap, references);
   }
 
-  SoccerPlayer _initFromJsonObject(JsonObject json, ContestReferences references) {
+  SoccerPlayer _initFromJsonObject(Map jsonMap, ContestReferences references) {
     assert(templateSoccerPlayerId.isNotEmpty);
-    name = json.containsKey("name") ? json.name : "";
-    // fieldPos = json.containsKey("fieldPos") ? new FieldPos(json.fieldPos) : null;
-    fantasyPoints = json.containsKey("fantasyPoints") ? json.fantasyPoints : 0;
-    playedMatches = json.containsKey("playedMatches") ? json.playedMatches : 0;
-    // salary = json.containsKey("salary") ? json.salary : 0;
+    name = jsonMap.containsKey("name") ? jsonMap["name"] : "";
+    // fieldPos = jsonMap.containsKey("fieldPos") ? new FieldPos(json["fieldPos"]) : null;
+    fantasyPoints = jsonMap.containsKey("fantasyPoints") ? jsonMap["fantasyPoints"] : 0;
+    playedMatches = jsonMap.containsKey("playedMatches") ? jsonMap["playedMatches"] : 0;
+    // salary = jsonMap.containsKey("salary") ? jsonMap["salary"] : 0;
 
-    if (json.containsKey("stats")) {
+    if (jsonMap.containsKey("stats")) {
       stats = [];
-      for (var x in json.stats) {
+      for (var x in jsonMap["stats"]) {
         stats.add(new SoccerPlayerStats.fromJsonObject(x, references));
       }
+      // Eliminar las estadísticas vacías
+      stats.removeWhere((stat) => !stat.hasPlayed());
     }
 
-    soccerTeam = references.getSoccerTeamById(json.templateTeamId);
+    soccerTeam = references.getSoccerTeamById(jsonMap["templateTeamId"]);
     soccerTeam.addSoccerPlayer(this);
     return this;
   }

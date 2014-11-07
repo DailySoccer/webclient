@@ -3,6 +3,7 @@ import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:logging/logging.dart';
 import 'package:webclient/utils/host_server.dart';
+import 'package:webclient/services/profile_service.dart';
 
 //
 // Nuestro handler sera inyectado en Angular. Angular nos llamara entonces cada vez que se produzca una excepcion
@@ -32,7 +33,14 @@ class LoggerExceptionHandler extends ExceptionHandler {
 
       // Por convenio, si se quiere mandar un mensaje al servidor, basta usar el Logger.root con Level == SEVERE.
       if (r.level >= Level.SEVERE) {
-        HttpRequest.postFormData("${HostServer.url}/log", {"message": "${r.message}", "level": "${r.level}", "time": "${r.time}"})
+
+        String userEmail = "unknown@email.com";
+
+        if (ProfileService.instance != null && ProfileService.instance.user != null && ProfileService.instance.user.email != null) {
+          userEmail = ProfileService.instance.user.email;
+        }
+
+        HttpRequest.postFormData("${HostServer.url}/log", {"message": "${r.message}", "level": "${r.level}", "email": "${userEmail}" })
               .catchError((error) => print(error));
       }
     });

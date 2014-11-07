@@ -7,13 +7,11 @@ class LimitToDot implements Function {
 
   String call(String items, int limit) {
 
-    int j = items.length;
-
-    if (j > limit) {
+    if (items.length > limit) {
       return items.substring(0, limit) + '…';
     }
     else {
-      return items.substring(0, j);
+      return items;
     }
   }
 }

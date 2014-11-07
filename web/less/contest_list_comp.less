@@ -18,7 +18,7 @@
 		.make-border(1px, solid none none none, @greyLight);
 		padding-bottom: 10px;
 
-		// El cursor cambia, porque la linea entera lika al modal en formato Desktop
+		// El cursor cambia, porque la linea entera clika al modal en formato Desktop
 		cursor: pointer;
 
 		.column-contest-name {
@@ -122,8 +122,14 @@
 			/*.column-contest-price span::before {
 				.addAbsoluteIcon("iconPrice.png", 32px, 26px, 5px, 3px);
 			}*/
-			.column-contest-prize span::before {
-				.addAbsoluteIcon("iconPrize.png", 32px, 26px, 0, 3px);
+			.column-contest-prize-content span {
+				padding-left: 10px;
+			}
+			.column-contest-prize span {
+				padding-left: 10px;
+				&::before {
+					.addAbsoluteIcon("iconPrize.png", 32px, 26px, -10px, 3px);
+				}
 			}
 		}
 		

@@ -16,14 +16,12 @@ import 'package:webclient/utils/js_utils.dart';
   templateUrl: 'packages/webclient/components/lobby_comp.html',
   useShadowDom: false
 )
-
 class LobbyComp implements DetachAware {
 
   ActiveContestsService activeContestsService;
-  Contest selectedContest;
+  String selectedContestId;
   ScreenDetectorService scrDet;
-
-  bool get isLoaded => !LoadingService.enabled;
+  LoadingService loadingService;
 
   // numero de torneos listados actualmente
   int contestsCount = 0;
@@ -40,9 +38,11 @@ class LobbyComp implements DetachAware {
   // Concursos listados actualmente
   int contestCount = 0;
 
-  LobbyComp(this._router, this._refreshTimersService, this.activeContestsService, this.scrDet) {
-    LoadingService.enabled = true;
-    activeContestsService.clear();
+  LobbyComp(this._router, this._refreshTimersService, this.activeContestsService, this.scrDet, this.loadingService) {
+
+    if (activeContestsService.activeContests.isEmpty) {
+      loadingService.isLoading = true;
+    }
 
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_CONTEST_LIST, refreshActiveContest);
     _nextTournamentInfoTimer = new Timer.periodic(new Duration(seconds: 1), (Timer t) =>  _calculateInfoBarText());
@@ -55,10 +55,7 @@ class LobbyComp implements DetachAware {
   /********* METHODS */
   void _calculateInfoBarText() {
     Contest nextContest = activeContestsService.getAvailableNextContest();
-    String tmp = nextContest == null ? "Pronto habrá nuevos Torneos disponibles" : "SIGUIENTE TORNEO: ${nextContest.name.toUpperCase()} - ${_calculateTimeToNextTournament()}";
-    if (tmp.compareTo(infoBarText) != 0) {
-      infoBarText = tmp;
-    }
+    infoBarText = nextContest == null? "" : "SIGUIENTE TORNEO: ${nextContest.name.toUpperCase()} - ${_calculateTimeToNextTournament()}";
   }
 
   String _calculateTimeToNextTournament() {
@@ -69,25 +66,24 @@ class LobbyComp implements DetachAware {
   void refreshActiveContest() {
     activeContestsService.refreshActiveContests()
       .then((_) {
-        LoadingService.enabled = false;
+        loadingService.isLoading = false;
         contestsCount = activeContestsService.activeContests.length;
       });
   }
 
   // Handler para el evento de entrar en un concurso
   void onActionClick(Contest contest) {
-    selectedContest = contest;
     _router.go('enter_contest', { "contestId": contest.contestId, "parent": "lobby" });
   }
 
   // Mostramos la ventana modal con la información de ese torneo, si no es la versión movil.
   void onRowClick(Contest contest) {
     if (scrDet.isDesktop) {
-      selectedContest = contest;
+      selectedContestId = contest.contestId;
+
       // Esto soluciona el bug por el que no se muestra la ventana modal en Firefox;
       var modal = querySelector('#infoContestModal');
       modal.style.display = "block";
-      // Con esto llamamos a funciones de jQuery
       JsUtils.runJavascript('#infoContestModal', 'modal', null);
     }
     else {

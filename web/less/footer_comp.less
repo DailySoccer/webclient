@@ -1,4 +1,4 @@
-footer {
+#mainFooter {
 	@media (min-width: @screen-sm-min) {
 		.container-fluid();
 		.clean-paddings();
@@ -9,24 +9,13 @@ footer {
 	}
 }
 
-#mainFooter{
+#rootFooter{
+	.make-row(0);
+	.clean-paddings();
 	position: relative;
 	bottom: 0;	
-	@media (max-width: @screen-sm-max) {
-		//.container-fluid();
-		.clean-paddings();
-		width:100%;
-
-	}
-	@media (min-width: @screen-md-min) {
-		.clean-paddings();
-		width:100%;
-	}
-	padding-left: 0px;
-	padding-right: 0px;
-
-	.make-row(0);
 	background: @black;
+	
 	.goto-link{
 		text-decoration: none;
 	}
@@ -106,6 +95,7 @@ footer {
 		.hidden-lg();
 		.make-xs-column(12);
 		padding: @own-gutter 0;
+		min-height: 55px;
 
 		.add-funds-button {
 			.btn();
@@ -115,7 +105,6 @@ footer {
 			padding: 10px 20px;
 			.pull-right();
     		@media (max-width: @screen-sm-max) {
-			 // .button-size(@padding-vertical; @padding-horizontal; @font-size; @line-height; @border-radius)
 				.button-size(4px, 12px, 8pt, 1.5em, 4px); 
 				margin-top: 5px;
 			}
@@ -124,7 +113,6 @@ footer {
 
 	.sub-footer-wrapper{
 		width: 100%;
-		//height: 150px;
 
 		@media (max-width: @screen-xs-max) {
 			background: @greyUltraDark;

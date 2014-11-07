@@ -4,6 +4,8 @@ import 'package:angular/angular.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/components/account/user_profile_comp.dart';
+import 'package:webclient/services/loading_service.dart';
+import 'package:webclient/models/connection_error.dart';
 
 @Component(
     selector: 'edit-personal-data',
@@ -41,7 +43,7 @@ class EditPersonalDataComp implements ShadowRootAware{
   //TODO: pensar si Esto debería estar siempre habilitado y hacerlas comprobaciones antes de enviar los cambios.
   //bool get enabledSubmit => parent.editedNickName.isNotEmpty && parent.editedEmail.isNotEmpty && parent.editedRepeatPassword.isNotEmpty && parent.editedPassword.isNotEmpty && _enabledSubmit;
 
-  EditPersonalDataComp(this._profileManager, this.parent) {
+  EditPersonalDataComp(this._profileManager, this.loadingService, this.parent) {
   }
 
   void init() {
@@ -108,42 +110,49 @@ class EditPersonalDataComp implements ShadowRootAware{
       if (!validatePassword() ) {
         return;
       }
+      loadingService.isLoading = true;
       //_enabledSubmit = false;
+      String nickName  = _profileManager.user.nickName   != parent.editedNickName  ? parent.editedNickName   : "";
       String firstName = _profileManager.user.firstName  != parent.editedFirstName ? parent.editedFirstName  : "";
       String lastName  = _profileManager.user.lastName   != parent.editedLastName  ? parent.editedLastName   : "";
       String email     = _profileManager.user.email      != parent.editedEmail     ? parent.editedEmail      : "";
 
-      // El nickname de momento no sabemos si le daremos permisos al usuario para que lo cambie a placer.
-      String nickName  = "";
       String password  = parent.editedPassword;
 
       _profileManager.changeUserProfile(firstName, lastName, email, nickName, password)
         //Not implemented yet //.then((_) => _profileManager.saveUserData(firstName, lastName,acceptGameAlerts, /* nickName, */ email, password))
-        .then((_) => closeModal())
-        .catchError((Map error) {
+        .then((_) {
+          closeModal();
+          parent.editedEmail      = email     == "" ? parent.editedEmail      : email;
+          parent.editedFirstName  = firstName == "" ? parent.editedFirstName  : firstName;
+          parent.editedLastName   = lastName  == "" ? parent.editedLastName   : lastName;
+          parent.editedNickName   = nickName  == "" ? parent.editedNickName   : nickName;
+          loadingService.isLoading = false;
+        })
+        .catchError((ConnectionError error) {
 
-          error.keys.forEach( (key) {
+          error.toJson().forEach( (key, value) {
             switch (key)
             {
               case "nickName":
                 parent
-                  ..nicknameErrorText = error[key][0]
+                  ..nicknameErrorText = value[0]
                   ..hasNicknameError = true;
 
               break;
               case "email":
                 parent
-                  ..emailErrorText = error[key][0]
+                  ..emailErrorText = value[0]
                   ..hasEmailError = true;
               break;
               case "password":
                 parent
-                  ..passwordErrorText = error[key][0]
+                  ..passwordErrorText = value[0]
                 ..hasPasswordError = true;
               break;
             }
           });
-
+          loadingService.isLoading = false;
         });
   }
 
@@ -161,6 +170,12 @@ class EditPersonalDataComp implements ShadowRootAware{
     JsUtils.runJavascript('#editPersonalDataModal', 'modal', 'hide');
   }
 
+
+  @override void onShadowRoot(emulatedRoot) {
+    init();
+  }
+
+
   ProfileService _profileManager;
   bool _acceptNewsletter;
   bool _acceptGameAlerts;
@@ -168,8 +183,5 @@ class EditPersonalDataComp implements ShadowRootAware{
   bool _enabledSubmit = false;
   bool _popUpStyle;
 
-  @override
-  void onShadowRoot(emulatedRoot) {
-    init();
-  }
+  LoadingService loadingService;
 }

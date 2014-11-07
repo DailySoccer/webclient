@@ -28,8 +28,8 @@ class ActiveContestsService {
 
   Future refreshActiveContests() {
     return _server.getActiveContests()
-      .then((jsonObject) {
-        activeContests = Contest.loadContestsFromJsonObject(jsonObject);
+      .then((jsonMap) {
+        activeContests = Contest.loadContestsFromJsonObject(jsonMap);
 
         if (_profileService.isLoggedIn) {
           myContests = activeContests.where((contest) => contest.containsContestEntryWithUser(_profileService.user.userId)).toList();
@@ -43,16 +43,25 @@ class ActiveContestsService {
 
   Future addContestEntry(String contestId, List<String> soccerPlayerIds) {
     return _server.addContestEntry(contestId, soccerPlayerIds)
-      .then((jsonObject) {
-        //print("response: " + jsonObject.toString());
-        return jsonObject.contestId;
+      .then((jsonMap) {
+        String contestId = jsonMap["contestId"];
+
+        // Actualizar las listas de activeContests (quitando el contest) y myContests (añadiendo el contest)
+        Contest contest = activeContests.firstWhere((contest) => contest.contestId == contestId, orElse: null);
+        if (contest != null) {
+          activeContests.removeWhere((contest) => contest.contestId == contestId);
+          myContests.add(contest);
+        }
+
+        //print("response: " + jsonMap.toString());
+        return contestId;
       });
   }
 
   Future refreshContest(String contestId) {
     return _server.getPublicContest(contestId)
-      .then((jsonObject) {
-        lastContest = Contest.loadContestsFromJsonObject(jsonObject).first;
+      .then((jsonMap) {
+        lastContest = Contest.loadContestsFromJsonObject(jsonMap).first;
       });
   }
 

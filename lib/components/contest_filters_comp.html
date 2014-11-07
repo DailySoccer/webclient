@@ -1,85 +1,100 @@
-<div id="contestFiltersRoot">
-  <div id="contestSortsFilters">
+<div id="contestSortsFilters">
 
-    <!-- Resumen y Botón de filtros XS -->
-    <div class="choosed-filters-container" ng-show="scrDet.isXsScreen">
-        <div class="competition-filter-name" ng-bind-html="filterResume"></div>
-        <div class="filterToggler">
-          <div id="filtersButtonMobile" type="button" class="btn filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse" data-target="#filtersPanel">filtros</div>
-        </div>
-    </div>
-
-    <!-- Ordenación -->
-    <div id="contestFastSort">
-      <span class="filter-text">Ordenar por: </span>
-      <div class="btn-group" >
-        <div ng-repeat="button in sortingButtons" id="{{button['id']}}" type="button" class="btn sorting-button" ng-class="button['state']" ng-click="sortListByField(button['field-name'])">{{button["name"].toUpperCase()}}</div>
+  <!-- Resumen y Botón de filtros XS -->
+  <div class="choosed-filters-container" ng-show="scrDet.isXsScreen">
+      <div class="competition-filter-name" ng-bind-html="filterResume"></div>
+      <div class="filterToggler">
+        <div id="filtersButtonMobile" type="button" class="btn filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse" data-target="#filtersPanel">filtros</div>
       </div>
-    </div>
-
-    <!-- Filtro por nombre -->
-    <div id="contestFastSearch">
-        <input class="searcher" type="text" placeholder="Buscar torneo" ng-model="filterContestName" ng-keyUp="filterByName()">
-    </div>
-
-    <div class="filterToggler" ng-show="!scrDet.isXsScreen">
-        <div id="filtersButtonDesktop" type="button" class="btn filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse">FILTROS</div>
-    </div>
-
   </div>
 
-  <div id="filtersPanel" class="collapse">
-      <!-- Filtro x tipos de concurso -->
-      <div class="filter-column-tournaments">
-        <p class="filter-title">TORNEOS</p>
-        <div class="filter-content">
-            <div class="check-group-wrapper">
+  <!-- Ordenación -->
+  <div id="contestFastSort">
+    <span class="filter-text">Ordenar por: </span>
+    <div class="btn-group" >
+      <div ng-repeat="button in sortingButtons" id="{{button['id']}}" type="button" class="btn sorting-button" ng-class="button['state']" ng-click="sortListByField(button['field-name'])">{{button["name"].toUpperCase()}}</div>
+    </div>
+  </div>
 
-              <!-- Botones -->
-              <div class="button-check" ng-repeat="contestType in contestTypeFilterList">
-                <input id="{{contestType['id']}}" type="checkbox" ng-disabled="contestType['disabled']"
-                       ng-click="filterByType(contestType)">
-                <label for="{{contestType['id']}}">{{contestType["text"].toUpperCase()}}</label>
+  <!-- Filtro por nombre -->
+  <div id="contestFastSearch">
+      <input class="searcher" type="text" placeholder="Buscar torneo" ng-model="filterContestName" ng-keyUp="filterByName()">
+  </div>
 
-              </div>
-            </div>
-        </div>
-      </div>
+  <div class="filterToggler" ng-show="!scrDet.isXsScreen">
+      <div id="filtersButtonDesktop" type="button" class="btn filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse">FILTROS</div>
+  </div>
 
-      <!-- Filtro x dificultad -->
-      <div class="filter-column-salary-limit">
-        <p class="filter-title">LÍMITE DE SALARIO</p>
-        <div class="filter-content">
-            <div class="check-group-wrapper">
+</div>
 
-              <!-- Botones -->
-              <div class="button-check" ng-repeat="tier in salaryCapFilterList">
-                <input id="{{tier['id']}}" type="checkbox" ng-disabled="tier['disabled']"
-                       ng-click="filterByTier(tier)">
-                <label for="{{tier['id']}}">{{tier["text"].toUpperCase()}}</label>
-              </div>
+<div id="filtersPanel" class="collapse">
 
+    <!-- Filtro x tipos de concurso -->
+    <div class="filter-column-tournaments">
+      <p class="filter-title">COMPETICION</p>
+      <div class="filter-content">
+        <div class="check-group-wrapper">
+
+          <!-- Botones -->
+          <div class="button-check-{{competitionType.flag}}" ng-repeat="competitionType in competitionFilterList">
+            <input id="{{competitionType['id']}}" type="checkbox" ng-disabled="competitionType['disabled']"
+                   ng-click="filterByCompetitionType(competitionType)">
+            <label for="{{competitionType['id']}}">{{competitionType["text"].toUpperCase()}}</label>
           </div>
+
         </div>
       </div>
+    </div>
 
-      <div class="filter-column-entry-fee">
-        <p class="filter-title">ENTRADA</p>
-        <div class="filter-content">
-           <div class="entry-fee-value-min">MIN: {{filterEntryFeeRangeMin | number:0}}€ </div>
-           <div class="entry-fee-value-max">MAX: {{filterEntryFeeRangeMax | number:0}}€ </div>
-            <div class="slider-wrapper">
-              <div id="slider-range"></div>
+    <!-- Filtro x tipos de concurso -->
+    <div class="filter-column-tournaments">
+      <p class="filter-title">TORNEOS</p>
+      <div class="filter-content">
+          <div class="check-group-wrapper">
+
+            <!-- Botones -->
+            <div class="button-check" ng-repeat="contestType in contestTypeFilterList">
+              <input id="{{contestType['id']}}" type="checkbox" ng-disabled="contestType['disabled']"
+                     ng-click="filterByTournamentType(contestType)">
+              <label for="{{contestType['id']}}">{{contestType["text"].toUpperCase()}}</label>
+
             </div>
+          </div>
+      </div>
+    </div>
+
+    <!-- Filtro x dificultad -->
+    <div class="filter-column-salary-limit">
+      <p class="filter-title">LÍMITE DE SALARIO</p>
+      <div class="filter-content">
+          <div class="check-group-wrapper">
+
+            <!-- Botones -->
+            <div class="button-check" ng-repeat="tier in salaryCapFilterList">
+              <input id="{{tier['id']}}" type="checkbox" ng-disabled="tier['disabled']"
+                     ng-click="filterByTier(tier)">
+              <label for="{{tier['id']}}">{{tier["text"].toUpperCase()}}</label>
+            </div>
+
         </div>
       </div>
+    </div>
 
-      <div class="reset-button-wrapper">
-        <button type="button" class="btn-reset" ng-click="resetAllFilters()">LIMPIAR FILTROS</button>
+    <div class="filter-column-entry-fee">
+      <p class="filter-title">ENTRADA</p>
+      <div class="filter-content">
+         <div class="entry-fee-value-min">MIN: {{filterEntryFeeRangeMin | number:0}}€ </div>
+         <div class="entry-fee-value-max">MAX: {{filterEntryFeeRangeMax | number:0}}€ </div>
+          <div class="slider-wrapper">
+            <div id="slider-range"></div>
+          </div>
       </div>
-      <div class="confirm-button-wrapper">
-        <button type="button" class="btn-confirm" ng-click="toggleFilterMenu()">ACEPTAR</button>
-      </div>
-  </div>
+    </div>
 
+    <div class="reset-button-wrapper">
+      <button type="button" class="btn-reset" ng-click="resetAllFilters()">LIMPIAR FILTROS</button>
+    </div>
+    <div class="confirm-button-wrapper">
+      <button type="button" class="btn-confirm" ng-click="toggleFilterMenu()">ACEPTAR</button>
+    </div>
 </div>

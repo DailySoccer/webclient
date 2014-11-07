@@ -3,8 +3,9 @@ library join_comp;
 import 'package:angular/angular.dart';
 import 'dart:html';
 import 'package:webclient/services/profile_service.dart';
-import 'package:webclient/services/server_service.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/services/loading_service.dart';
+import 'package:webclient/models/connection_error.dart';
 
 @Component(
     selector: 'join',
@@ -18,14 +19,15 @@ class JoinComp implements ShadowRootAware {
   String email      = "";
   String nickName   = "";
   String password   = "";
+  String rePassword   = "";
 
   Element nicknameError;
   Element emailError;
   Element passwordError;
 
-  bool get enabledSubmit => nickName.isNotEmpty && StringUtils.isValidEmail(email) && password.isNotEmpty && _enabledSubmit;
+  bool get enabledSubmit => nickName.isNotEmpty && StringUtils.isValidEmail(email) && password.isNotEmpty && rePassword.isNotEmpty && _enabledSubmit;
 
-  JoinComp(this._router, this._profileService, this._rootElement);
+  JoinComp(this._router, this._profileService, this.loadingService, this._rootElement);
 
   void onShadowRoot(emulatedRoot) {
     nicknameError = _rootElement.querySelector("#nickNameError");
@@ -36,22 +38,32 @@ class JoinComp implements ShadowRootAware {
 
     passwordError = _rootElement.querySelector("#passwordError");
     passwordError.parent.style.display = 'none';
-    _rootElement.querySelector('#nickName').focus();
   }
 
   void submitSignup() {
-
     nicknameError.parent.style.display = "none";
     emailError.parent.style.display = "none";
     passwordError.parent.style.display = "none";
     _enabledSubmit = false;
 
-    _profileService.signup(firstName, lastName, email, nickName, password)
-        .then((_) => _profileService.login(email, password))
-        .then((_) => _router.go('lobby', {}))
-        .catchError((ConnectionError error) {
-       //   print("keys: ${error.keys.length} - ${error.keys.toString()}");
+    if (password != rePassword) {
+      passwordError
+        ..text = "Las contraseñas no coinciden. Revisa la ortografía"
+        ..classes.remove("errorDetected")
+        ..classes.add("errorDetected")
+        ..parent.style.display = "";
+        _enabledSubmit = true;
+      return;
+    }
 
+    loadingService.isLoading = true;
+    _profileService.signup(firstName, lastName, email, nickName, password)
+        .then((_) =>  _profileService.login(email, password))
+          .then((_) {
+            loadingService.isLoading = false;
+            _router.go('lobby', {});
+        })
+        .catchError((ConnectionError error) {
           error.toJson().forEach( (key, value) {
             switch (key)
             {
@@ -77,10 +89,14 @@ class JoinComp implements ShadowRootAware {
                   ..classes.add("errorDetected")
                   ..parent.style.display = "";
               break;
+              default:
+                print('WTF: 1212:Houston, ha pasado algo al hacer join');
+              break;
             }
           });
-
           _enabledSubmit = true;
+          loadingService.isLoading = false;
+
         });
   }
 
@@ -96,4 +112,6 @@ class JoinComp implements ShadowRootAware {
   Element _rootElement;
 
   bool _enabledSubmit = true;
+
+  LoadingService loadingService;
 }

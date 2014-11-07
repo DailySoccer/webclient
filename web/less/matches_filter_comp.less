@@ -1,12 +1,42 @@
+// Reserva de sitio (para reservar sitio, nuestro padre (por ejemplo enter_contest) siempre nos da este id)
+#matchesFilterBig {
+	min-height: 60px;
+	display: block;
+}
+
 #matchesFilterWrapper {
-	.matches-filter {
+
+	:after {
+		.clearfix();
+	}
+
+	.matches-filter-buttons {
 		background-color: @tramaBlue;
-		.make-row(0);
 		padding: -1px 5px 5px 5px;
+		float: left;
+		width: 100%;
+						
+		// Animacion de entrada
+		@media (min-width: @screen-md-min) {
+			max-height: 60px;
+			overflow: hidden;
+			transition: max-height 1s ease-in;
+
+			.button-filtro-team:nth-child(n+2) {
+				transition: opacity 200ms linear;
+				opacity: 0;
+			}
+
+			&.animate {
+				max-height: 300px;
+				.button-filtro-team:nth-child(n+2) {
+					opacity: 1;
+				}
+			}
+		}
 		
 		.button-filtro-team {
 			.hidden-xs();
-			.make-sm-column(1);
 			.opensans_bold(9pt, @white);
 			min-width: 120px;		
 			padding: 5px 0;
@@ -14,6 +44,7 @@
 			text-align: center;
 			line-height: 15px;
 		}
+
 		.button-filtro-team:active, .button-filtro-team:focus, .button-filtro-team:hover, .button-filtro-team:visited {
 			outline: none;
 		}

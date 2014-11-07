@@ -1,6 +1,6 @@
-<div class="enter-contest-wrapper" ng-show="isLoaded">
+<div id="enter-contest-wrapper" ng-cloak>
 
-  <contest-header contestData="contest"></contest-header>
+  <contest-header id="contestHeader" contest="contest" contest-id="contestId"></contest-header>
 
   <!-- Nav tabs -->
   <ul class="enter-contest-tabs" role="tablist">
@@ -10,15 +10,16 @@
 
   <div id="enterContest">
     <div class="tabs">
-      <!-- Tab panes -->
       <div class="tab-content">
+      
+        <!-- Tab del contenido normal de seleccion de lineup -->      
         <div class="tab-pane active" id="lineup-tab-content">
 
             <!-- Este sera el selector de partidos en "grande", con botones-->
-            <matches-filter contest="contest" selected-option="matchFilter" ng-if="isBigScreenVersion"></matches-filter>
+            <matches-filter id="matchesFilterBig" contest="contest" selected-option="matchFilter" ng-if="isBigScreenVersion"></matches-filter>
 
             <div class="enter-contest-actions-wrapper" ng-if="isSmallScreenVersion">
-              <div class="total-salary"><span ng-class="getMyTotalSalaryClasses()">{{availableSalary}}€</span></div>
+              <div class="total-salary"><span class="total-salary-money" ng-class="{'red-numbers': availableSalary < 0 }" ng-show="contest != null">{{availableSalary}}€</span></div>
               <button id="cancelSoccerPlayerSelection" type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer">CANCELAR</button>
             </div>
 
@@ -26,8 +27,10 @@
               <div class="enter-contest-lineup">
                 <div class="enter-contest-total-salary">
                     <span class="total-salary-text">TU ALINEACIÓN</span>
-                    <span class="total-salary"><span class="total-salary-text">DINERO RESTANTE:</span>
-                    <span ng-class="getMyTotalSalaryClasses()">{{availableSalary}}€</span></span>
+                    <div class="total-salary">
+                      <span class="total-salary-text">DINERO RESTANTE:</span>
+                      <span class="total-salary-money" ng-class="{'red-numbers': availableSalary < 0 }" ng-show="contest != null">{{availableSalary}}€</span>
+                    </div>
                 </div>
 
                 <lineup-selector ng-show="!isSelectingSoccerPlayer || isBigScreenVersion"></lineup-selector>
@@ -41,12 +44,15 @@
                 <matches-filter contest="contest" selected-option="matchFilter" ng-if="isSmallScreenVersion"></matches-filter>
 
                 <soccer-players-filter name-filter="nameFilter" field-pos-filter="fieldPosFilter"></soccer-players-filter>
-                <soccer-players-list contest="contest" on-row-click="onRowClick(soccerPlayerId)"></soccer-players-list>
+                
+                <soccer-players-list soccer-players="availableSoccerPlayers"
+                                     field-pos-filter="fieldPosFilter" name-filter="nameFilter" match-filter="matchFilter"
+                                     on-row-click="onRowClick(soccerPlayerId)"
+                                     on-add-click="onSoccerPlayerSelected(soccerPlayer)"></soccer-players-list>
               </div>
             </div>
 
             <div class="enter-contest-actions-wrapper">
-
               <button type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer" ng-if="isSmallScreenVersion">CANCELAR</button>
 
               <div ng-if="!isSelectingSoccerPlayer || isBigScreenVersion">
@@ -62,8 +68,9 @@
 
         </div>
 
+        <!-- El otro tab, el del contest-info  -->
         <div class="tab-pane" id="contest-info-tab-content">
-          <contest-info contest-data="contest"></contest-info>
+          <contest-info contest-id-data="contestId"></contest-info>
         </div>
 
       </div>
@@ -76,7 +83,7 @@
 
 </div>
 
-<div class="soccer-player-info-wrapper" ng-if="scrDet.isXsScreen">
+<div id="soccer-player-info-wrapper" ng-if="scrDet.isXsScreen">
   <soccer-player-info instance-soccer-player="selectedInstanceSoccerPlayer"></soccer-player-info>
 </div>
 

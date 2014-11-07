@@ -1,6 +1,5 @@
 library user;
 
-import 'package:json_object/json_object.dart';
 import 'package:webclient/services/contest_references.dart';
 
 class User {
@@ -20,27 +19,29 @@ class User {
   User.referenceInit(this.userId);
 
   // TODO: El User para el jugador principal es cargado sin necesidad de ContestReferences
-  factory User.fromJsonObject(JsonObject jsonObject, [ContestReferences references]) {
+  factory User.fromJsonObject(Map jsonMap, [ContestReferences references]) {
     if (references == null)
       references = new ContestReferences();
 
-    // TODO: storedSessionToken almacena un user sin "_id" (por lo que, sin esta comprobacion, lanza una excepcion)
-    String userId = (jsonObject.containsKey("_id"))      ? jsonObject["_id"]
-                  : ((jsonObject.containsKey("userId"))  ? jsonObject.userId
+    // En nuestro localStorage se almacena un user serializado directamente de esta clase, asi que tendra
+    // un campo userId. Sin embargo, del servidor los ids siempre nos llegan en el campo _id. Asi que tenemos
+    // que hacer esta comprobacion, pq a veces el user nos llega desde el servidor y otras desde el localStorage
+    String userId = (jsonMap.containsKey("_id"))      ? jsonMap["_id"]
+                  : ((jsonMap.containsKey("userId"))  ? jsonMap["userId"]
                   : "<userId: null>");
 
     User user = references.getUserById(userId);
-    return user._initFromJsonObject(jsonObject, references);
+    return user._initFromJsonObject(jsonMap, references);
   }
 
-  User _initFromJsonObject(JsonObject jsonObject, ContestReferences references) {
+  User _initFromJsonObject(Map jsonMap, ContestReferences references) {
     assert(userId.isNotEmpty);
-    firstName = jsonObject.firstName;
-    lastName = jsonObject.lastName;
-    nickName = jsonObject.nickName;
+    firstName = jsonMap["firstName"];
+    lastName = jsonMap["lastName"];
+    nickName = jsonMap["nickName"];
 
-    email = (jsonObject.containsKey("email")) ? jsonObject.email : "<email: null>";
-    wins = (jsonObject.containsKey("wins")) ? jsonObject.wins : 0;
+    email = (jsonMap.containsKey("email")) ? jsonMap["email"] : "<email: null>";
+    wins = (jsonMap.containsKey("wins")) ? jsonMap["wins"] : 0;
     return this;
   }
 }

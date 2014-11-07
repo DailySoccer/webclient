@@ -36,8 +36,8 @@ class MyContestsService {
     var completer = new Completer();
 
     _server.cancelContestEntry(contestEntryId)
-      .then((jsonObject) {
-        print("response: " + jsonObject.toString());
+      .then((jsonMap) {
+        print("response: " + jsonMap.toString());
         completer.complete();
       });
 
@@ -48,8 +48,8 @@ class MyContestsService {
     var completer = new Completer();
 
     _server.editContestEntry(contestId, soccerPlayerIds)
-      .then((jsonObject) {
-        print("response: " + jsonObject.toString());
+      .then((jsonMap) {
+        print("response: " + jsonMap.toString());
         completer.complete();
       });
 
@@ -60,9 +60,9 @@ class MyContestsService {
     var completer = new Completer();
 
     _server.getMyContests()
-        .then((jsonObject) {
-          _initContests (Contest.loadContestsFromJsonObject(jsonObject));
-          completer.complete(jsonObject);
+        .then((jsonMap) {
+          _initContests (Contest.loadContestsFromJsonObject(jsonMap));
+          completer.complete(jsonMap);
         });
 
     return completer.future;
@@ -72,9 +72,21 @@ class MyContestsService {
     var completer = new Completer();
 
     _server.getMyContest(contestId)
-        .then((jsonObject) {
-          lastContest = Contest.loadContestsFromJsonObject(jsonObject).first;
-          completer.complete(jsonObject);
+        .then((jsonMap) {
+          lastContest = Contest.loadContestsFromJsonObject(jsonMap).first;
+          completer.complete(jsonMap);
+        });
+
+    return completer.future;
+  }
+
+  Future refreshMyContestEntry(String contestId) {
+    var completer = new Completer();
+
+    _server.getMyContestEntry(contestId)
+        .then((jsonMap) {
+          lastContest = Contest.loadContestsFromJsonObject(jsonMap).first;
+          completer.complete(jsonMap);
         });
 
     return completer.future;
@@ -84,9 +96,21 @@ class MyContestsService {
     var completer = new Completer();
 
     _server.getFullContest(contestId)
-        .then((jsonObject) {
-          lastContest = Contest.loadContestsFromJsonObject(jsonObject).first;
-          completer.complete(jsonObject);
+        .then((jsonMap) {
+          lastContest = Contest.loadContestsFromJsonObject(jsonMap).first;
+          completer.complete(jsonMap);
+        });
+
+    return completer.future;
+  }
+
+  Future refreshViewContest(String contestId) {
+    var completer = new Completer();
+
+    _server.getViewContest(contestId)
+        .then((jsonMap) {
+          lastContest = Contest.loadContestsFromJsonObject(jsonMap).first;
+          completer.complete(jsonMap);
         });
 
     return completer.future;
@@ -96,12 +120,12 @@ class MyContestsService {
     var completer = new Completer();
 
     _server.getLiveMatchEventsFromTemplateContest(templateContestId)
-      .then((jsonObject) {
-        jsonObject.content.forEach((jsonObject) {
-            lastContest.matchEvents.firstWhere((matchEvent) => matchEvent.templateMatchEventId == (jsonObject.containsKey("templateMatchEventId") ? jsonObject.templateMatchEventId : jsonObject["_id"]))
-                .. updateLiveInfo(jsonObject);
+      .then((jsonMap) {
+          jsonMap["content"].forEach((jsonMap) {
+            lastContest.matchEvents.firstWhere((matchEvent) => matchEvent.templateMatchEventId == (jsonMap.containsKey("templateMatchEventId") ? jsonMap["templateMatchEventId"] : jsonMap["_id"]))
+                .. updateLiveInfo(jsonMap);
         });
-        completer.complete(jsonObject);
+        completer.complete(jsonMap);
       });
 
     return completer.future;

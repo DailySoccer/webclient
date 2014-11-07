@@ -4,49 +4,62 @@ import 'dart:async';
 import 'dart:html';
 import 'dart:convert';
 import 'package:angular/angular.dart';
-import 'package:json_object/json_object.dart';
 import 'package:webclient/models/user.dart';
 import 'package:webclient/services/server_service.dart';
-import 'package:webclient/services/datetime_service.dart';
+import 'package:logging/logging.dart';
+import 'package:webclient/utils/game_metrics.dart';
 
 
 @Injectable()
 class ProfileService {
+
   User user = null;
   bool get isLoggedIn => user != null;
 
-  static bool allowAccess = false;
+  static ProfileService get instance => _instance;  // Si te peta en esta linea te obliga a pensar, lo que es Una Buena Cosa@.
+                                                    // Una pista... quiza te ha pasado pq has quitado componentes del index?
 
-  ProfileService(this._server, this._dateTimeService) {
+  ProfileService(this._server) {
+    _instance = this;
     _tryProfileLoad();
   }
 
-  Future<JsonObject> signup(String firstName, String lastName, String email, String nickName, String password) {
+  Future<Map> verifyPasswordResetToken(String stormPathTokenId) {
+    return _server.verifyPasswordResetToken(stormPathTokenId);
+  }
+
+  Future<Map>resetPassword(String password, String stormPathTokenId) {
+    return _server.resetPassword(password, stormPathTokenId).then(_onLoginResponse);
+  }
+
+  Future<Map> signup(String firstName, String lastName, String email, String nickName, String password) {
 
     if (isLoggedIn)
       throw new Exception("WTF 4234 - We shouldn't be logged in when signing up");
-
+    GameMetrics.aliasMixpanel(email);
     return _server.signup(firstName, lastName, email, nickName, password);
    }
 
-  Future<JsonObject> login(String email, String password) {
-    return _server.login(email, password).then(_onLoginResponse);
+  Future<Map> login(String email, String password) {
+    Completer completer = new Completer();
+    _server.login(email, password).then((loginResponseJson) {
+      _onLoginResponse(loginResponseJson).then((jsonMap) => completer.complete(jsonMap));
+      });
+    return completer.future;
   }
 
-
-
-  Future<JsonObject> _onLoginResponse(JsonObject loginResponseJson) {
-    _server.setSessionToken(loginResponseJson.sessionToken); // to make the getUserProfile call succeed
+  Future<Map> _onLoginResponse(Map loginResponseJson) {
+    _server.setSessionToken(loginResponseJson["sessionToken"]); // to make the getUserProfile call succeed
     return _server.getUserProfile()
-                      .then((jsonObject) => _setProfile(loginResponseJson.sessionToken, new User.fromJsonObject(jsonObject), true));
+                      .then((jsonMap) => _setProfile(loginResponseJson["sessionToken"], jsonMap, true));
   }
 
-  Future<JsonObject> refreshUserProfile() {
+  Future<Map> refreshUserProfile() {
     return _server.getUserProfile()
-                      .then((jsonObject) => _setProfile(_sessionToken, new User.fromJsonObject(jsonObject), true));
+                      .then((jsonMap) => _setProfile(_sessionToken, jsonMap, true));
   }
 
-  Future<JsonObject> changeUserProfile(String firstName, String lastName, String email, String nickName, String password) {
+  Future<Map> changeUserProfile(String firstName, String lastName, String email, String nickName, String password) {
 
     if (!isLoggedIn)
       throw new Exception("WTF 4288 - We should be logged in when change User Profile");
@@ -54,24 +67,33 @@ class ProfileService {
     return _server.changeUserProfile(firstName, lastName, email, nickName, password);
   }
 
-  Future<JsonObject> logout() {
+  Future<Map> logout() {
 
-    if (!isLoggedIn)
+    if (!isLoggedIn) {
       throw new Exception("WTF 444 - We should be logged in when loging out");
+    }
 
-    _setProfile(null, null, true);
-    return new Future.value();
+    return new Future.value(_setProfile(null, null, true));
   }
 
-  void _setProfile(String theSessionToken, User theUser, bool bSave) {
+  Map _setProfile(String theSessionToken, Map jsonMap, bool bSave) {
+
+    if (theSessionToken != null && jsonMap != null) {
+      user = new User.fromJsonObject(jsonMap);
+      GameMetrics.identifyMixpanel(user.email);
+    }
+    else {
+      user = null;
+    }
+
     _sessionToken = theSessionToken;
     _server.setSessionToken(_sessionToken);
-    user = theUser;
-    allowAccess = theUser != null;
 
     if (bSave) {
       _saveProfile();
     }
+
+    return jsonMap;
   }
 
   void _tryProfileLoad() {
@@ -79,12 +101,28 @@ class ProfileService {
     var storedUser = window.localStorage['user'];
 
     if (storedSessionToken != null && storedUser != null) {
-      _setProfile(storedSessionToken, new User.fromJsonObject(new JsonObject.fromJsonString(storedUser)), false);
+      _setProfile(storedSessionToken, JSON.decode(storedUser), false);
 
-      // TODO: Hacemos un "login" a escondidas... (los "usuarios" pueden haber sido eliminados por el simulador)
-      login(user.email, "<no password>")
-        .then((jsonObject) => print("profile load ok"))
-        .catchError((error) => print("login error..."));
+      // Cuando se resetea la DB, los logins siguen siendo validos (stormpath) pero se vuelven a crear los usuarios.
+      // Esto quiere decir que tanto nuestro token como nuestro user.UserId (que es directamente el ObjectId de mongo)
+      // no es valido ya. Ademas, durante desarrollo, podemos borrar la DB. El token seguira siendo valido (puesto que
+      // es el email), pero el userId no.
+      _server.getUserProfile().then((jsonMap) {
+        // Si nuestro usuario ya no es el mismo pero no ha dado un error, el sessionToken sigue siendo valido y lo
+        // unico que tenemos que hacer es anotar el nuevo User
+        if (jsonMap["_id"] != user.userId) {
+          Logger.root.warning("ProfileService: Se borro la DB y pudimos reusar el sessionToken.");
+          _setProfile(storedSessionToken, jsonMap, true);
+        }
+        //identificamos al usuario en Mixpanel:
+        GameMetrics.identifyMixpanel(user.email);
+      })
+      .catchError((error) {
+        // No se ha podido refrescar: Tenemos que salir y pedir que vuelva a hacer login
+        window.localStorage.clear();
+        Logger.root.warning("ProfileService: Se borro la DB y necesitamos volver a hacer login.");
+        window.location.reload();
+      });
     }
   }
 
@@ -99,11 +137,8 @@ class ProfileService {
     }
   }
 
-  static Future<bool> allowEnter() {
-    return new Future<bool>(() => allowAccess);
-  }
+  static ProfileService _instance;
 
   ServerService _server;
-  DateTimeService _dateTimeService;
   String _sessionToken;
 }

@@ -1,28 +1,7 @@
-<section ng-show="isLoaded">
+<section>
 
-  <contest-header contestData="contest"></contest-header>
-
-  <div class="info-and-social-bar" ng-if="!scrDet.isXsScreen">
-    <!--<div class="social"><img src="images/socialBig.png"></div>-->
-    <div class="teams-container">
-      <div class="teams-box" ng-repeat="match in matchesInvolved">
-        <div class="teams-info" ng-bind-html="match"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="info-and-social-bar" ng-if="scrDet.isXsScreen">
-    <div class="teams-toggler-wrapper">
-      <div id="teamsToggler" type="button" class="teams-toggler toggleOff" ng-click="toggleTeamsPanel()" data-target="#teamsPanel">PARTIDOS</div>
-    </div>
-    <div id="teamsPanel" class="teams-container collapse">
-      <div class="top-border"></div>
-      <div class="teams-box" ng-repeat="match in matchesInvolved">
-        <div class="teams-info" ng-bind-html="match"></div>
-      </div>
-      <div class="bottom-border"></div>
-    </div>
-  </div>
+  <contest-header id="contestHeader" contest="contest" contest-id="contestId"></contest-header>
+  <teams-panel id="teamsPanelComp" contest="contest" contest-id="contestId"></teams-panel>
 
   <div id="liveContestRoot" ng-switch="scrDet.isXsScreen" ng-cloak>
     <div ng-switch-when="true">

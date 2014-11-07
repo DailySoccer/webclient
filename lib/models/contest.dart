@@ -1,6 +1,5 @@
 library contest;
 
-import "package:json_object/json_object.dart";
 import "package:webclient/models/match_event.dart";
 import "package:webclient/models/user.dart";
 import "package:webclient/models/contest_entry.dart";
@@ -32,6 +31,11 @@ class Contest {
   static const TIER_BEGGINER              = "BEGGINER";
   static const TIER_STANDARD              = "STANDARD";
   static const TIER_SKILLED               = "SKILLEDS";
+
+  static const COMPETITION_LEAGUE_ES_ID     = "23";
+  static const COMPETITION_LEAGUE_UK_ID     = "8";
+  static const COMPETITION_LEAGUE_UCL_ID    = "5";
+  static const COMPETITION_WORLDCUP_ID      = "4";
 
   String contestId;
   String templateContestId;
@@ -65,12 +69,20 @@ class Contest {
   String prizeType;
   List<int> prizes;
 
+  String optaCompetitionId;
   List<MatchEvent> matchEvents;
   Map<String, InstanceSoccerPlayer> instanceSoccerPlayers = new Map<String, InstanceSoccerPlayer>();
 
   DateTime startDate;
 
-  String get description => "${tournamentTypeName}: ${numEntries} de ${maxEntries} jugadores - Límite de salario: ${salaryCap}";
+  String get description  {
+   // print("estado del concurso: ${state}");
+    /* los partidos en vivo o en history no continen los participantes que tiene el concurso */
+    if(isLive || isHistory) {
+      return "${tournamentTypeName} - Límite de salario: ${salaryCap}";
+    }
+    return "${tournamentTypeName}: ${numEntries} de ${maxEntries} participantes - Límite de salario: ${salaryCap}";
+  }
 
   List<ContestEntry> get contestEntriesOrderByPoints {
     List<ContestEntry> entries = new List<ContestEntry>.from(contestEntries);
@@ -78,13 +90,21 @@ class Contest {
     return entries;
   }
 
+  Map<String, String> competitionTypeValues = {
+    COMPETITION_LEAGUE_ES_ID:   "LEAGUE_ES"
+    ,COMPETITION_LEAGUE_UK_ID:  "LEAGUE_UK"
+    ,COMPETITION_LEAGUE_UCL_ID: "CHAMPIONS"
+    ,COMPETITION_WORLDCUP_ID:   "WORLDCUP"
+  };
+  String get competitionType => optaCompetitionId.isNotEmpty ? competitionTypeValues[optaCompetitionId] : "";
+
   Contest(this.contestId, this.contestEntries);
 
   Contest.referenceInit(this.contestId);
 
-  bool get isActive => state == "ACTIVE";
-  bool get isLive => state == "LIVE";
-  bool get isHistory => state == "HISTORY";
+  bool get isActive   => state == "ACTIVE";
+  bool get isLive     => state == "LIVE";
+  bool get isHistory  => state == "HISTORY";
 
   Map<String, String> prizeTypeNames = {
     PRIZE_FREE: "Free",
@@ -169,45 +189,45 @@ class Contest {
   /*
    * Carga o un Contest o una LISTA de Contests a partir de JsonObjects
    */
-  static List<Contest> loadContestsFromJsonObject(JsonObject jsonRoot) {
+  static List<Contest> loadContestsFromJsonObject(Map jsonMapRoot) {
     var contests = new List<Contest>();
 
     ContestReferences contestReferences = new ContestReferences();
 
     // Solo 1 contest
-    if (jsonRoot.containsKey("contest")) {
-      contests.add(new Contest.fromJsonObject(jsonRoot.contest, contestReferences));
+    if (jsonMapRoot.containsKey("contest")) {
+      contests.add(new Contest.fromJsonObject(jsonMapRoot["contest"], contestReferences));
     }
     // Array de contests
     else {
-      contests = jsonRoot.containsKey("contests") ? jsonRoot.contests.map((jsonObject) => new Contest.fromJsonObject(jsonObject, contestReferences)).toList() : [];
+      contests = jsonMapRoot.containsKey("contests") ? jsonMapRoot["contests"].map((jsonObject) => new Contest.fromJsonObject(jsonObject, contestReferences)).toList() : [];
 
       // Aceptamos múltiples listas de contests (con mayor o menor información)
-      for (int view=0; view<10 && jsonRoot.containsKey("contests_$view"); view++) {
-          contests.addAll( jsonRoot["contests_$view"].map((jsonObject) => new Contest.fromJsonObject(jsonObject, contestReferences)).toList() );
+      for (int view=0; view<10 && jsonMapRoot.containsKey("contests_$view"); view++) {
+          contests.addAll( jsonMapRoot["contests_$view"].map((jsonObject) => new Contest.fromJsonObject(jsonObject, contestReferences)).toList() );
       }
     }
 
-    if (jsonRoot.containsKey("soccer_teams")) {
-      jsonRoot.soccer_teams.map((jsonObject) => new SoccerTeam.fromJsonObject(jsonObject, contestReferences)).toList();
+    if (jsonMapRoot.containsKey("soccer_teams")) {
+      jsonMapRoot["soccer_teams"].map((jsonMap) => new SoccerTeam.fromJsonObject(jsonMap, contestReferences)).toList();
     }
 
-    if (jsonRoot.containsKey("soccer_players")) {
-      jsonRoot.soccer_players.map((jsonObject) => new SoccerPlayer.fromJsonObject(jsonObject, contestReferences)).toList();
+    if (jsonMapRoot.containsKey("soccer_players")) {
+      jsonMapRoot["soccer_players"].map((jsonMap) => new SoccerPlayer.fromJsonObject(jsonMap, contestReferences)).toList();
     }
 
-    if (jsonRoot.containsKey("users_info")) {
-      jsonRoot.users_info.map((jsonObject) => new User.fromJsonObject(jsonObject, contestReferences)).toList();
+    if (jsonMapRoot.containsKey("users_info")) {
+      jsonMapRoot["users_info"].map((jsonMap) => new User.fromJsonObject(jsonMap, contestReferences)).toList();
     }
 
     // < FINAL > : Los partidos incluyen información ("liveFantasyPoints") que actualizarán a los futbolistas ("soccer_players")
-    if (jsonRoot.containsKey("match_events")) {
-      jsonRoot.match_events.map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject, contestReferences)).toList();
+    if (jsonMapRoot.containsKey("match_events")) {
+      jsonMapRoot["match_events"].map((jsonMap) => new MatchEvent.fromJsonObject(jsonMap, contestReferences)).toList();
     }
     else {
       // Aceptamos múltiples listas de partidos (con mayor o menor información)
-      for (int view=0; view<10 && jsonRoot.containsKey("match_events_$view"); view++) {
-          jsonRoot["match_events_$view"].map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject, contestReferences)).toList();
+      for (int view=0; view<10 && jsonMapRoot.containsKey("match_events_$view"); view++) {
+        jsonMapRoot["match_events_$view"].map((jsonMap) => new MatchEvent.fromJsonObject(jsonMap, contestReferences)).toList();
       }
     }
 
@@ -217,39 +237,40 @@ class Contest {
   /*
    * Factorias de creacion de un Contest
    */
-  factory Contest.fromJsonObject(JsonObject json, ContestReferences references) {
-    return references.getContestById(json["_id"])._initFromJsonObject(json, references);
+  factory Contest.fromJsonObject(Map jsonMap, ContestReferences references) {
+    return references.getContestById(jsonMap["_id"])._initFromJsonObject(jsonMap, references);
   }
 
   /*
    * Inicializacion de los contenidos de un Contest
    */
-  Contest _initFromJsonObject(JsonObject json, ContestReferences references) {
+  Contest _initFromJsonObject(Map jsonMap, ContestReferences references) {
     assert(contestId.isNotEmpty);
 
-    templateContestId = json.templateContestId;
+    templateContestId = jsonMap["templateContestId"];
 
-    state = json.containsKey("state") ? json.state : "ACTIVE";
-    _namePattern = json.name;
-    maxEntries = json.maxEntries;
-    salaryCap = json.salaryCap;
-    entryFee = json.entryFee;
-    prizeType = json.prizeType;
-    prizes = json.containsKey("prizes") ? json.prizes : [];
-    startDate = DateTimeService.fromMillisecondsSinceEpoch(json.startDate);
-    matchEvents = json.containsKey("templateMatchEventIds") ? json.templateMatchEventIds.map( (matchEventId) => references.getMatchEventById(matchEventId) ).toList() : [];
+    state = jsonMap.containsKey("state") ? jsonMap["state"] : "ACTIVE";
+    _namePattern = jsonMap["name"];
+    maxEntries = jsonMap["maxEntries"];
+    salaryCap = jsonMap["salaryCap"];
+    entryFee = jsonMap["entryFee"];
+    prizeType = jsonMap["prizeType"];
+    prizes = jsonMap.containsKey("prizes") ? jsonMap["prizes"] : [];
+    startDate = DateTimeService.fromMillisecondsSinceEpoch(jsonMap["startDate"]);
+    optaCompetitionId = jsonMap.containsKey("optaCompetitionId") && (jsonMap["optaCompetitionId"] != null) ? jsonMap["optaCompetitionId"] : "";
+    matchEvents = jsonMap.containsKey("templateMatchEventIds") ? jsonMap["templateMatchEventIds"].map( (matchEventId) => references.getMatchEventById(matchEventId) ).toList() : [];
 
     instanceSoccerPlayers = {};
-    if (json.containsKey("instanceSoccerPlayers")) {
-      json.instanceSoccerPlayers.forEach((jsonObject) {
+    if (jsonMap.containsKey("instanceSoccerPlayers")) {
+      jsonMap["instanceSoccerPlayers"].forEach((jsonObject) {
         InstanceSoccerPlayer instanceSoccerPlayer =  new InstanceSoccerPlayer.initFromJsonObject(jsonObject, references);
         instanceSoccerPlayers[instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId] = instanceSoccerPlayer;
       });
     }
 
     // <FINAL> : Necesita acceso a los instanceSoccerPlayers
-    contestEntries = json.containsKey("contestEntries") ? json.contestEntries.map((jsonObject) => new ContestEntry.initFromJsonObject(jsonObject, references, this) ).toList() : [];
-    numEntries = json.containsKey("numEntries") ? json.numEntries : contestEntries.length;
+    contestEntries = jsonMap.containsKey("contestEntries") ? jsonMap["contestEntries"].map((jsonMap) => new ContestEntry.initFromJsonObject(jsonMap, references, this) ).toList() : [];
+    numEntries = jsonMap.containsKey("numEntries") ? jsonMap["numEntries"] : contestEntries.length;
 
     // print("Contest: id($contestId) name($name) currentUserIds($currentUserIds) templateContestId($templateContestId)");
     return this;
@@ -276,7 +297,8 @@ class Contest {
       .replaceAll("%MaxEntries", "$maxEntries")
       .replaceAll("%SalaryCap", "${(salaryCap ~/ 1000)}")
       .replaceAll("%PrizeType", prizeTypeName)
-      .replaceAll("%EntryFee", "${entryFee}");
+      .replaceAll("%EntryFee", "${entryFee}")
+      .replaceAll("%MockUsers", "");
   }
 
   String _name;

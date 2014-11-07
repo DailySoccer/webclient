@@ -7,6 +7,15 @@ class GameMetrics {
 
   static String LIVE_CONTEST_VISITED = "Visitado Live Contest";
   static String LOGIN_ATTEMPTED = "Login attempted";
+  static String CHANGE_PASSWORD_ATTEMPTED = "Change Password attempted";
+  static String SUCCESSFUL_SIGNUP = "Sign up successful";
+
+  static void aliasMixpanel(String email) {
+    JsUtils.runJavascript(null, "alias", email, false, "mixpanel");
+  }
+  static void identifyMixpanel(String email) {
+    JsUtils.runJavascript(null, "identify", email, false, "mixpanel");
+  }
 
   static void logEvent(String eventName) {
     JsUtils.runJavascript(null, "track", eventName, false, "mixpanel");

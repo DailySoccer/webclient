@@ -61,8 +61,8 @@
   			color: @blueMenu;
 	  	}
 	  	.navbar-nav > .right-menu {
-	  		float: right;
-	  		width: 120px;
+	  		.pull-right();
+	  		//width: 120px;
 	  		text-align: right;
 	  		.current-balance {
 	  			display: block;
@@ -101,6 +101,9 @@
 			.btn-primary();
 			.opensans_bold(8pt, @white);
 			.button-size(4px, 12px, 8pt, 1.5em, 4px);
+		}
+		.dropdown-toggle {
+			white-space: nowrap;
 		}
     	// elementos del sub-menu
         .dropdown-menu {

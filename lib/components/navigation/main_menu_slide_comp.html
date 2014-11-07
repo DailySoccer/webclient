@@ -9,16 +9,16 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <div id="brandLogoLogged" class="navbar-brand" ng-click="navigateTo($event)" destination="lobby" ng-class="['loggedIn-brand']"></div>
+        <div id="brandLogoLogged" class="navbar-brand" ng-click="navigateTo($event)" destination="lobby" ng-class="['loggedIn-brand']" ng-model="checkForActiveElement()"></div>
       </div>
       <!-- Opciones del menu -->
       <div id="menuSlide" class="navbar-offcanvas navmenu-fixed offcanvas" ng-if="profileService.isLoggedIn">
         <ul class="nav navbar-nav">
-          <li class="active" highlights="lobby"> <a  id="menuLobby"                ng-click="navigateTo($event)" destination="lobby">Buscar Torneos</a></li>
+          <li highlights="lobby"> <a  id="menuLobby"                ng-click="navigateTo($event)" destination="lobby">Buscar Torneos</a></li>
           <li highlights="my_contests">          <a  id="menuMy_Contest"           ng-click="navigateTo($event)" destination="my_contests">Mis torneos</a></li>
           <li highlights="">                     <a  id="menuPromos"               ng-click="navigateTo($event)" destination="beta_info">Promos</a></li>
           <li highlights="user" class="right-menu">
-            <a id="menuUser" class="dropdown-toggle" data-toggle="dropdown">{{profileService.user.nickName}}</a>
+            <a id="menuUser" class="dropdown-toggle" data-toggle="dropdown">{{userNickName}}</a>
             <ul class="dropdown-menu">
               <li>                    <a  id="menuUserMyAccount"        ng-click="navigateTo($event)" destination="user_profile">Mi cuenta</a></li>
               <li>                    <a  id="menuUserAddFunds"         ng-click="navigateTo($event)" destination="beta_info">Añadir fondos</a></li>

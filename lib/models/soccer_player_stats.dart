@@ -1,6 +1,5 @@
 library soccer_player_stats;
 
-import "package:json_object/json_object.dart";
 import "package:webclient/models/soccer_team.dart";
 import 'package:webclient/services/contest_references.dart';
 import 'package:webclient/services/datetime_service.dart';
@@ -8,6 +7,7 @@ import 'package:webclient/services/datetime_service.dart';
 class SoccerPlayerStats {
   DateTime startDate;
   SoccerTeam opponentTeam;
+  String optaCompetitionId;
 
   int fantasyPoints;
   int playedMinutes;
@@ -28,14 +28,15 @@ class SoccerPlayerStats {
   int despejes;
   int penaltisDetenidos;
 
-  SoccerPlayerStats.fromJsonObject(JsonObject json, ContestReferences references) {
-    startDate = json.containsKey("startDate") ? DateTimeService.fromMillisecondsSinceEpoch(json.startDate) : DateTimeService.now;
-    opponentTeam = json.containsKey("opponentTeamId") ? references.getSoccerTeamById(json.opponentTeamId) : "???";
+  SoccerPlayerStats.fromJsonObject(Map jsonMap, ContestReferences references) {
+    startDate = jsonMap.containsKey("startDate") ? DateTimeService.fromMillisecondsSinceEpoch(jsonMap["startDate"]) : DateTimeService.now;
+    optaCompetitionId = jsonMap.containsKey("optaCompetitionId") && (jsonMap["optaCompetitionId"] != null) ? jsonMap["optaCompetitionId"] : "";
+    opponentTeam = jsonMap.containsKey("opponentTeamId") ? references.getSoccerTeamById(jsonMap["opponentTeamId"]) : null;
 
-    fantasyPoints = json.fantasyPoints;
-    playedMinutes = json.playedMinutes;
+    fantasyPoints = jsonMap.containsKey("fantasyPoints") && (jsonMap["fantasyPoints"]!=null)? jsonMap["fantasyPoints"] : 0;
+    playedMinutes = jsonMap.containsKey("playedMinutes") && (jsonMap["playedMinutes"]!=null)? jsonMap["playedMinutes"] : 0;
 
-    int _getIntValue(String key) => (json.statsCount.containsKey(key)) ? json.statsCount[key] : 0;
+    int _getIntValue(String key) => (jsonMap.containsKey("statsCount") && jsonMap["statsCount"].containsKey(key)) ? jsonMap["statsCount"][key] : 0;
 
     goles = _getIntValue("GOLES");
     tiros = _getIntValue("TIROS");
@@ -54,4 +55,6 @@ class SoccerPlayerStats {
     penaltisDetenidos = _getIntValue("PENALTIS_DETENIDOS");
   }
 
+  bool hasPlayed() => (playedMinutes > 0) || (fantasyPoints != 0);
+  bool hasPlayedInCompetition(String competitionId) => (optaCompetitionId == competitionId) && hasPlayed();
 }

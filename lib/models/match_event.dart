@@ -1,6 +1,5 @@
 library template_match_event;
 
-import "package:json_object/json_object.dart";
 import "package:webclient/models/soccer_team.dart";
 import 'package:webclient/services/contest_references.dart';
 import "package:webclient/models/soccer_player.dart";
@@ -47,7 +46,7 @@ class MatchEvent {
       else if (isSecondHalf) {
         // Cuando los minutos superan al tiempo asignado a un partido, devolvemos un "tiempo extra" fijo de 1 minuto
         // que permanecerá tanto tiempo como se prolongue el partido
-        minutes += (minutesPlayed <= TOTAL_TIEMPO_PARTIDO) ? (TOTAL_TIEMPO_PARTIDO - minutesPlayed) : 1;
+        minutes += (minutesPlayed < TOTAL_TIEMPO_PARTIDO) ? (TOTAL_TIEMPO_PARTIDO - minutesPlayed) : 1;
       }
     }
     else {
@@ -57,9 +56,9 @@ class MatchEvent {
     return minutes;
   }
 
-  factory MatchEvent.fromJsonObject(JsonObject json, ContestReferences references) {
-    MatchEvent matchEvent = references.getMatchEventById(json.containsKey("templateMatchEventId") ? json.templateMatchEventId : json["_id"]);
-    return matchEvent._initFromJsonObject(json, references);
+  factory MatchEvent.fromJsonObject(Map jsonMap, ContestReferences references) {
+    MatchEvent matchEvent = references.getMatchEventById(jsonMap.containsKey("templateMatchEventId") ? jsonMap["templateMatchEventId"] : jsonMap["_id"]);
+    return matchEvent._initFromJsonObject(jsonMap, references);
   }
 
   SoccerPlayer findSoccerPlayer(String soccerPlayerId) {
@@ -70,43 +69,43 @@ class MatchEvent {
     return soccerPlayer;
   }
 
-  void updateLiveInfo(JsonObject jsonObject) {
-    _updateFantasyPoints(jsonObject.liveFantasyPoints);
+  void updateLiveInfo(Map jsonMap) {
+    _updateFantasyPoints(jsonMap["liveFantasyPoints"]);
 
-    period = jsonObject.period;
-    minutesPlayed = jsonObject.minutesPlayed;
+    period = jsonMap["period"];
+    minutesPlayed = jsonMap["minutesPlayed"];
   }
 
-  void _updateFantasyPoints(Map<String, JsonObject> soccerFantasyPoints) {
+  void _updateFantasyPoints(Map<String, Map> soccerFantasyPoints) {
     [soccerTeamA, soccerTeamB].forEach((team) => team.soccerPlayers.forEach((soccerPlayer) {
       if (soccerFantasyPoints.containsKey(soccerPlayer.templateSoccerPlayerId)) {
-        JsonObject jsonObject = soccerFantasyPoints[soccerPlayer.templateSoccerPlayerId];
-        soccerPlayer.currentLivePoints = jsonObject.points;
+        Map jsonMap = soccerFantasyPoints[soccerPlayer.templateSoccerPlayerId];
+        soccerPlayer.currentLivePoints = jsonMap["points"];
         soccerPlayer.currentLivePointsPerOptaEvent = new Map<String, LiveEventInfo>();
 
-        if (jsonObject.containsKey("events")) {
-          jsonObject.events.forEach((key, jsonEventInfo) => soccerPlayer.currentLivePointsPerOptaEvent[key] = new LiveEventInfo.initFromJsonObject(jsonEventInfo));
+        if (jsonMap.containsKey("events")) {
+          jsonMap["events"].forEach((key, jsonEventInfo) => soccerPlayer.currentLivePointsPerOptaEvent[key] = new LiveEventInfo.initFromJsonObject(jsonEventInfo));
         }
       }
     }));
   }
 
-  MatchEvent _initFromJsonObject(JsonObject json, ContestReferences references) {
+  MatchEvent _initFromJsonObject(Map jsonMap, ContestReferences references) {
     assert(templateMatchEventId.isNotEmpty);
-    soccerTeamA = references.getSoccerTeamById(json.templateSoccerTeamAId)
+    soccerTeamA = references.getSoccerTeamById(jsonMap["templateSoccerTeamAId"])
       .. matchEvent = this;
 
-    soccerTeamB = references.getSoccerTeamById(json.templateSoccerTeamBId)
+    soccerTeamB = references.getSoccerTeamById(jsonMap["templateSoccerTeamBId"])
       .. matchEvent = this;
 
-    period = json.containsKey("period") ? json.period : "PRE_GAME";
-    minutesPlayed = json.containsKey("minutesPlayed") ? json.minutesPlayed : 0;
+    period = jsonMap.containsKey("period") ? jsonMap["period"] : "PRE_GAME";
+    minutesPlayed = jsonMap.containsKey("minutesPlayed") ? jsonMap["minutesPlayed"] : 0;
 
-    startDate = json.containsKey("startDate") ? DateTimeService.fromMillisecondsSinceEpoch(json.startDate) : null;
+    startDate = jsonMap.containsKey("startDate") ? DateTimeService.fromMillisecondsSinceEpoch(jsonMap["startDate"]) : null;
 
     // Si el templateMatchEvent incluye la información "live", la actualizamos
-    if (json.containsKey("liveFantasyPoints")) {
-      _updateFantasyPoints(json.liveFantasyPoints);
+    if (jsonMap.containsKey("liveFantasyPoints")) {
+      _updateFantasyPoints(jsonMap["liveFantasyPoints"]);
     }
 
     return this;

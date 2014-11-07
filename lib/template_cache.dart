@@ -4,7 +4,75 @@ library template_cache;
 import 'package:angular/angular.dart';
 
 primeTemplateCache(TemplateCache tc) {
-tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new HttpResponse(200, r"""<div id="personalDataContent">
+tc.put("packages/webclient/components/account/change_password_comp.html", new HttpResponse(200, r"""<div id="changePasswordRoot">
+  <div id="loginBox" class="main-box">
+
+    <div class="panel window-slide-in">
+
+      <!-- Header -->
+      <div class="panel-heading">
+        <div ng-switch="state">
+          <!-- SI ES INVALID URL -->
+          <div ng-if="state=='STATE_INVALID_URL'"     class="panel-title">Error 404</div>
+          <!-- SI ES TOKEN INVALIDO -->
+          <div ng-if="state=='STATE_INVALID_TOKEN'"   class="panel-title">CAMBIO DE CONTRASEÑA</div>
+          <!-- SI ES TOKEN VALIDO/INVALIDO -->
+          <div ng-if="state=='STATE_CHANGE_PASSWORD'" class="panel-title">CAMBIO DE CONTRASEÑA</div>
+        </div>
+
+        <button type="button" class="close" ng-click="navigateTo('landing_page',{}, $event)">
+          <span class="glyphicon glyphicon-remove"></span>
+        </button>
+
+      </div>
+      <div class="panel-body" ng-cloak>
+        <div ng-if="state=='STATE_INVALID_URL'">
+          La página solicitada no está disponible
+        </div>
+        <div ng-if="state=='STATE_INVALID_TOKEN'">
+          El token proporcionado no es válido o ha expirado.
+        </div>
+        <form  ng-if="state=='STATE_CHANGE_PASSWORD'" id="loginForm" class="form-horizontal" ng-submit="changePassword()" data-toggle="validator" role="form" formAutofillFix>
+
+          <div class="form-description">Introduce tu cuenta de correo electrónico y tu contraseña para acceder a los torneos.</div>
+
+          <!-- PÂSSWORD -->
+          <div class="input-group">
+            <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
+            <input id="password" type="password" ng-model="password" name="password" placeholder="password" autofocus class="form-control" tabindex="1">
+          </div>
+
+          <!-- RE PASSWORD -->
+          <div class="input-group">
+            <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
+            <input id="rePassword" type="password" ng-model="rePassword" name="password" placeholder="repetir password" class="form-control" tabindex="2">
+          </div>
+
+          <!-- Error de password -->
+          <div class="input-group"  ng-class="{'error-visible' : !errorDetected}">
+            <div class="new-row">
+              <div id="passError" class="pass-err-text ">{{errorMessage}}</div>
+            </div>
+          </div>
+
+          <!-- BUTTONS -->
+
+          <div class="input-group">
+            <div class="new-row">
+              <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">ENTRAR</button>
+              <button id="btnCancelLogin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCELAR</button>
+            </div>
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>"""));
+tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new HttpResponse(200, r"""<div id="personalDataContent" ng-show="!loadingService.isLoading">
 
   <div class="edit-personal-data-modal-header">
     <span class="header-title">EDITAR CUENTA</span>
@@ -12,70 +80,69 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
       <span class="glyphicon glyphicon-remove"></span>
     </button>
   </div>
-
-  <div class="content">
-    <!-- Nombre -->
-    <div class="content-field">
-      <div class="control-wrapper"><input id="txtName" type="text" ng-model="parent.editedFirstName" name="firstName" placeholder="Nombre" class="form-control"></div>
-    </div>
-    <!-- Apelidos -->
-    <div class="content-field">
-      <div class="control-wrapper"><input id="txtLastName" type="text" ng-model="parent.editedLastName" name="lastName" placeholder="Apellidos" class="form-control"></div>
-    </div>
-    <!-- Nickname -->
-    <div class="content-field">
-      <div class="control-wrapper"><input id="txtNickName" type="text" ng-model="parent.editedNickName" name="nickName" placeholder="Nombre de usuario" class="form-control" disabled></div>
-      <!-- Error de mail -->
-      <div class="content-field"       ng-class="{'hidden':!parent.hasNicknameError}">
-        <div id="nickNameError" class="join-err-text" ng-class="{'errorDetected':parent.hasNicknameError}">Error en el nick</div>
+  <form id="editPersonalDataForm" class="form-horizontal" ng-submit="saveChanges()" data-toggle="validator" role="form" formAutofillFix>
+    <div class="content">
+      <!-- Nombre -->
+      <div class="content-field">
+        <div class="control-wrapper"><input id="txtName" auto-focus type="text" ng-model="parent.editedFirstName" name="firstName" placeholder="Nombre" class="form-control"  tabindex="1"></div>
       </div>
-    </div>
-
-    <!-- Correo Electrónico -->
-    <div class="content-field">
-      <div class="control-wrapper"><input id="txtEmail" type="email" ng-model="parent.editedEmail" name="email" placeholder="Email" class="form-control"></div>
-      <!-- Error de mail -->
-      <div class="content-field"       ng-class="{'hidden':!parent.hasEmailError}">
-        <div id="emailError" class="join-err-text" ng-class="{'errorDetected':!parent.hasEmailError}">Error de mail</div>
+      <!-- Apelidos -->
+      <div class="content-field">
+        <div class="control-wrapper"><input id="txtLastName" type="text" ng-model="parent.editedLastName" name="lastName" placeholder="Apellidos" class="form-control" tabindex="2"></div>
       </div>
-    </div>
-
-    <!-- Label Contraseña -->
-    <div class="content-field-block">
-      <div class="control-wrapper"><span id="lblPassword" class="text-label">Contraseña: Rellena los campos de contraseña para actualizar tu contraseña</span></div>
-    </div>
-    <!-- Contraseña -->
-    <div class="content-field">
-      <div class="control-wrapper"><input id="txtPassword" type="password" ng-model="parent.editedPassword" name="password" placeholder="Contraseña" class="form-control"></div>
-      <!-- Error de contraseñas -->
-      <div class="content-field-block" ng-class="{'hidden':!parent.hasPasswordError}">
-        <div id="passwordError" class="join-err-text"  ng-class="{'errorDetected':parent.hasPasswordError}">Los passwords no coinciden.</div>
+      <!-- Nickname -->
+      <div class="content-field">
+        <div class="control-wrapper"><input id="txtNickName" type="text" ng-model="parent.editedNickName" name="nickName" placeholder="Nombre de usuario" class="form-control" tabindex="3"></div>
+        <!-- Error de mail -->
+        <div class="content-field"       ng-class="{'hidden':!parent.hasNicknameError}">
+          <div id="nickNameError" class="join-err-text" ng-class="{'errorDetected':parent.hasNicknameError}">{{parent.nicknameErrorText}}</div>
+        </div>
       </div>
-    </div>
-    <!-- Repetir Contraseña -->
-    <div class="content-field">
-      <div class="control-wrapper"><input id="txtRepeatPassword" type="password" ng-model="parent.editedRepeatPassword" name="repeatPassword" placeholder="Repetir Contraseña" class="form-control"></div>
-    </div>
 
-    <!-- Label Instrucciones contraseña -->
-    <div class="content-field-block">
-      <div class="control-wrapper"><span id="lblPasswordIntructions" class="text-label">Asegúrate al menos que tiene 8 caracteres y que no contiene espacios</span></div>
-    </div>
-    <!-- Pais, Region y Ciudad
-    <div class="content-field">
-      <div class="control-wrapper"><input id="txtCountry" type="text" ng-model="country" name="contry" placeholder="País" class="form-control"></div>
-    </div>
+      <!-- Correo Electrónico -->
+      <div class="content-field">
+        <div class="control-wrapper"><input id="txtEmail" type="email" ng-model="parent.editedEmail" name="email" placeholder="Email" class="form-control" tabindex="4"></div>
+        <!-- Error de mail -->
+        <div class="content-field"       ng-class="{'hidden':!parent.hasEmailError}">
+          <div id="emailError" class="join-err-text" ng-class="{'errorDetected':!parent.hasEmailError}">{{parent.emailErrorText}}</div>
+        </div>
+      </div>
 
-    <div class="content-field">
-      <div class="control-wrapper"><input id="txtRegion" type="text" ng-model="region" name="region" placeholder="Región" class="form-control"></div>
-    </div>
+      <!-- Label Contraseña -->
+      <div class="content-field-block">
+        <div class="control-wrapper"><span id="lblPassword" class="text-label">Contraseña: Rellena los campos de contraseña para actualizar tu contraseña</span></div>
+      </div>
+      <!-- Contraseña -->
+      <div class="content-field">
+        <div class="control-wrapper"><input id="txtPassword" type="password" ng-model="parent.editedPassword" name="password" placeholder="Contraseña" class="form-control" tabindex="5"></div>
+        <!-- Error de contraseñas -->
+        <div class="content-field-block" ng-class="{'hidden':!parent.hasPasswordError}">
+          <div id="passwordError" class="join-err-text"  ng-class="{'errorDetected':parent.hasPasswordError}">{{parent.passwordErrorText}}</div>
+        </div>
+      </div>
+      <!-- Repetir Contraseña -->
+      <div class="content-field">
+        <div class="control-wrapper"><input id="txtRepeatPassword" type="password" ng-model="parent.editedRepeatPassword" name="repeatPassword" placeholder="Repetir Contraseña" class="form-control" tabindex="6"></div>
+      </div>
 
-    <div class="content-field">
-      <div class="control-wrapper"><input id="txtCity" type="text" ng-model="city" name="city" placeholder="Ciudad" class="form-control"></div>
-    </div>
-     -->
-  </div>
+      <!-- Label Instrucciones contraseña -->
+      <div class="content-field-block">
+        <div class="control-wrapper"><span id="lblPasswordIntructions" class="text-label">Asegúrate al menos que tiene 8 caracteres y que no contiene espacios</span></div>
+      </div>
+      <!-- Pais, Region y Ciudad
+      <div class="content-field">
+        <div class="control-wrapper"><input id="txtCountry" type="text" ng-model="country" name="contry" placeholder="País" class="form-control"></div>
+      </div>
 
+      <div class="content-field">
+        <div class="control-wrapper"><input id="txtRegion" type="text" ng-model="region" name="region" placeholder="Región" class="form-control"></div>
+      </div>
+
+      <div class="content-field">
+        <div class="control-wrapper"><input id="txtCity" type="text" ng-model="city" name="city" placeholder="Ciudad" class="form-control"></div>
+      </div>
+       -->
+    </div>
   <!-- Notificaciones -->
     <div class="header">NOTIFICACIONES</div>
     <div class="subscriptions-content">
@@ -102,11 +169,11 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
     </div>
 
     <div class="save-changes-content">
-      <button class="action-button" ng-click="saveChanges()">GUARDAR CAMBIOS</button>
+      <button id="btnSubmit" class="action-button" type="submit">GUARDAR CAMBIOS</button>
     </div>
-
+  </form>
 </div>"""));
-tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(200, r"""<div id="joinRoot">
+tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(200, r"""<div id="joinRoot" ng-show="!loadingService.isLoading">
   <div id="signupbox" class="main-box">
 
     <div class="panel window-slide-in">
@@ -125,7 +192,7 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
           <!-- USERNAME  -->
           <div class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-user"></div></span>
-            <input id="nickName" name="NickName" type="text" ng-model="nickName" placeholder="Nombre de usuario" class="form-control" data-toggle="validator" required="">
+            <input id="nickName" auto-focus name="NickName" type="text" ng-model="nickName" placeholder="Nombre de usuario" class="form-control" data-toggle="validator" required=""  tabindex="1">
           </div>
           <!-- Error de username -->
           <div class="new-row">
@@ -134,7 +201,7 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
           <!-- EMAIL -->
           <div class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-envelope"></div></span>
-            <input id="email" name="Email" type="email" ng-model="email" placeholder="Correo electrónico" class="form-control" data-toggle="validator" required="">
+            <input id="email" name="Email" type="email" ng-model="email" placeholder="Correo electrónico" class="form-control" data-toggle="validator" required=""  tabindex="2">
           </div>
           <!-- Error de mail -->
           <div class="new-row">
@@ -143,7 +210,12 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
           <!-- PASSWORD -->
           <div class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-            <input id="password" name="Password" type="password" ng-model="password" placeholder="Password (mínimo 8 caracteres)" class="form-control" data-toggle="validator" required="" data-minlength="8" ng-minlength="8">
+            <input id="password" name="Password" type="password" ng-model="password" placeholder="Contraseña" class="form-control" data-toggle="validator" required="" data-minlength="8" ng-minlength="8"  tabindex="3">
+          </div>
+
+          <div class="input-group">
+            <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
+            <input id="rePassword" name="RePassword" type="password" ng-model="rePassword" placeholder="Repite la contraseña " class="form-control" data-toggle="validator" required="" data-minlength="8" ng-minlength="8" tabindex="4">
           </div>
           <!-- Error de password -->
           <div class="new-row">
@@ -176,7 +248,7 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
 
 
 """));
-tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse(200, r"""<div id="loginRoot">
+tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse(200, r"""<div id="loginRoot" ng-show="!loadingService.isLoading">
   <div id="loginBox" class="main-box">
 
     <div class="panel window-slide-in">
@@ -197,12 +269,12 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
           <!-- MAIL -->
           <div class="input-group">
             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-            <input id="login-mail" type="email" ng-model="email" name="email" placeholder="Correo Electrónico" class="form-control" ng-focus="">
+            <input id="login-mail" auto-focus type="email" ng-model="email" name="email" placeholder="Correo Electrónico" class="form-control" tabindex="1">
           </div>
           <!-- PÂSSWORD -->
           <div class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-            <input id="login-password" type="password" ng-model="password" name="password" placeholder="password" class="form-control">
+            <input id="login-password" type="password" ng-model="password" name="password" placeholder="password" class="form-control" tabindex="2">
           </div>
           <!-- REMEMBER ME -->
           <div class="remember-forgot-group">
@@ -240,28 +312,30 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
 
   </div>
 </div>"""));
-tc.put("packages/webclient/components/account/remember_password_comp.html", new HttpResponse(200, r"""<div id="rememberPasswordRoot">
+tc.put("packages/webclient/components/account/remember_password_comp.html", new HttpResponse(200, r"""<div id="rememberPasswordRoot" ng-show="!loadingService.isLoading">
   <div id="loginBox" class="main-box">
 
     <div class="panel window-slide-in">
 
       <!-- Header -->
       <div class="panel-heading">
-        <div class="panel-title">RECORDAR CONTRASEÑA</div>
-        <button type="button" class="close" ng-click="navigateTo('login', {}, $event)">
+        <div class="panel-title" ng-class="{'center-text':state=='STATE_REQUESTED'}">RECORDAR CONTRASEÑA</div>
+        <button ng-if="state=='STATE_REQUEST'" type="button" class="close" ng-click="navigateTo('login', {}, $event)">
           <span class="glyphicon glyphicon-remove"></span>
         </button>
       </div>
 
       <div class="panel-body" ng-cloak>
         <div ng-if="state=='STATE_REQUESTED'">
-          Se ha enviado tu petición. Revisa tu correo
-           <!-- GOTO REGISTER -->
+          <div class="form-description">Se ha enviado tu petición. Revisa tu correo. <br><br>Ya puedes cerrar esta ventana.</div>
+          <!-- GOTO REGISTER -->
+          <!-- Esta ventana es el final del flow y queda muerta. por lo tanto no damos opción de linkar a otra parte.
           <div class="input-group">
             <div class="new-row">
               <a ng-click="navigateTo('join', {}, $event)"> Volver al inicio! </a>
             </div>
           </div>
+          -->
         </div>
         <form ng-if="state=='STATE_REQUEST'" id="loginForm" class="form-horizontal" ng-submit="rememberMyPassword()" data-toggle="validator" role="form" formAutofillFix>
 
@@ -269,7 +343,7 @@ tc.put("packages/webclient/components/account/remember_password_comp.html", new 
           <!-- MAIL -->
           <div class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-envelope"></div></span>
-            <input id="email" name="Email" type="email" ng-model="email" placeholder="Correo electrónico" class="form-control" data-toggle="validator" ng-focus="true">
+            <input id="email" auto-focus name="Email" type="email" ng-model="email" placeholder="Correo electrónico" class="form-control" data-toggle="validator"  tabindex="1">
           </div>
           <!-- Error de login/password -->
           <div class="input-group" ng-class="{'error-visible' : !errorDetected}">
@@ -301,7 +375,8 @@ tc.put("packages/webclient/components/account/remember_password_comp.html", new 
   </div>
 </div>"""));
 tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpResponse(200, r"""<div id="viewProfileContent">
-  <div class="profile-head"> MI CUENTA </div>
+  <div class="default-header-text"> MI CUENTA </div>
+  <div class="blue-separator"></div>
   <div class="profile-content">
 
     <div class="personal-data">
@@ -373,122 +448,133 @@ tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpR
 
 
 """));
-tc.put("packages/webclient/components/contest_filters_comp.html", new HttpResponse(200, r"""<div id="contestFiltersRoot">
-  <div id="contestSortsFilters">
+tc.put("packages/webclient/components/contest_filters_comp.html", new HttpResponse(200, r"""<div id="contestSortsFilters">
 
-    <!-- Resumen y Botón de filtros XS -->
-    <div class="choosed-filters-container" ng-show="scrDet.isXsScreen">
-        <div class="competition-filter-name" ng-bind-html="filterResume"></div>
-        <div class="filterToggler">
-          <div id="filtersButtonMobile" type="button" class="btn filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse" data-target="#filtersPanel">filtros</div>
-        </div>
-    </div>
-
-    <!-- Ordenación -->
-    <div id="contestFastSort">
-      <span class="filter-text">Ordenar por: </span>
-      <div class="btn-group" >
-        <div ng-repeat="button in sortingButtons" id="{{button['id']}}" type="button" class="btn sorting-button" ng-class="button['state']" ng-click="sortListByField(button['field-name'])">{{button["name"].toUpperCase()}}</div>
+  <!-- Resumen y Botón de filtros XS -->
+  <div class="choosed-filters-container" ng-show="scrDet.isXsScreen">
+      <div class="competition-filter-name" ng-bind-html="filterResume"></div>
+      <div class="filterToggler">
+        <div id="filtersButtonMobile" type="button" class="btn filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse" data-target="#filtersPanel">filtros</div>
       </div>
-    </div>
-
-    <!-- Filtro por nombre -->
-    <div id="contestFastSearch">
-        <input class="searcher" type="text" placeholder="Buscar torneo" ng-model="filterContestName" ng-keyUp="filterByName()">
-    </div>
-
-    <div class="filterToggler" ng-show="!scrDet.isXsScreen">
-        <div id="filtersButtonDesktop" type="button" class="btn filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse">FILTROS</div>
-    </div>
-
   </div>
 
-  <div id="filtersPanel" class="collapse">
-      <!-- Filtro x tipos de concurso -->
-      <div class="filter-column-tournaments">
-        <p class="filter-title">TORNEOS</p>
-        <div class="filter-content">
-            <div class="check-group-wrapper">
+  <!-- Ordenación -->
+  <div id="contestFastSort">
+    <span class="filter-text">Ordenar por: </span>
+    <div class="btn-group" >
+      <div ng-repeat="button in sortingButtons" id="{{button['id']}}" type="button" class="btn sorting-button" ng-class="button['state']" ng-click="sortListByField(button['field-name'])">{{button["name"].toUpperCase()}}</div>
+    </div>
+  </div>
 
-              <!-- Botones -->
-              <div class="button-check" ng-repeat="contestType in contestTypeFilterList">
-                <input id="{{contestType['id']}}" type="checkbox" ng-disabled="contestType['disabled']"
-                       ng-click="filterByType(contestType)">
-                <label for="{{contestType['id']}}">{{contestType["text"].toUpperCase()}}</label>
+  <!-- Filtro por nombre -->
+  <div id="contestFastSearch">
+      <input class="searcher" type="text" placeholder="Buscar torneo" ng-model="filterContestName" ng-keyUp="filterByName()">
+  </div>
 
-              </div>
-            </div>
-        </div>
-      </div>
+  <div class="filterToggler" ng-show="!scrDet.isXsScreen">
+      <div id="filtersButtonDesktop" type="button" class="btn filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse">FILTROS</div>
+  </div>
 
-      <!-- Filtro x dificultad -->
-      <div class="filter-column-salary-limit">
-        <p class="filter-title">LÍMITE DE SALARIO</p>
-        <div class="filter-content">
-            <div class="check-group-wrapper">
+</div>
 
-              <!-- Botones -->
-              <div class="button-check" ng-repeat="tier in salaryCapFilterList">
-                <input id="{{tier['id']}}" type="checkbox" ng-disabled="tier['disabled']"
-                       ng-click="filterByTier(tier)">
-                <label for="{{tier['id']}}">{{tier["text"].toUpperCase()}}</label>
-              </div>
+<div id="filtersPanel" class="collapse">
 
+    <!-- Filtro x tipos de concurso -->
+    <div class="filter-column-tournaments">
+      <p class="filter-title">COMPETICION</p>
+      <div class="filter-content">
+        <div class="check-group-wrapper">
+
+          <!-- Botones -->
+          <div class="button-check-{{competitionType.flag}}" ng-repeat="competitionType in competitionFilterList">
+            <input id="{{competitionType['id']}}" type="checkbox" ng-disabled="competitionType['disabled']"
+                   ng-click="filterByCompetitionType(competitionType)">
+            <label for="{{competitionType['id']}}">{{competitionType["text"].toUpperCase()}}</label>
           </div>
+
         </div>
       </div>
+    </div>
 
-      <div class="filter-column-entry-fee">
-        <p class="filter-title">ENTRADA</p>
-        <div class="filter-content">
-           <div class="entry-fee-value-min">MIN: {{filterEntryFeeRangeMin | number:0}}€ </div>
-           <div class="entry-fee-value-max">MAX: {{filterEntryFeeRangeMax | number:0}}€ </div>
-            <div class="slider-wrapper">
-              <div id="slider-range"></div>
+    <!-- Filtro x tipos de concurso -->
+    <div class="filter-column-tournaments">
+      <p class="filter-title">TORNEOS</p>
+      <div class="filter-content">
+          <div class="check-group-wrapper">
+
+            <!-- Botones -->
+            <div class="button-check" ng-repeat="contestType in contestTypeFilterList">
+              <input id="{{contestType['id']}}" type="checkbox" ng-disabled="contestType['disabled']"
+                     ng-click="filterByTournamentType(contestType)">
+              <label for="{{contestType['id']}}">{{contestType["text"].toUpperCase()}}</label>
+
             </div>
+          </div>
+      </div>
+    </div>
+
+    <!-- Filtro x dificultad -->
+    <div class="filter-column-salary-limit">
+      <p class="filter-title">LÍMITE DE SALARIO</p>
+      <div class="filter-content">
+          <div class="check-group-wrapper">
+
+            <!-- Botones -->
+            <div class="button-check" ng-repeat="tier in salaryCapFilterList">
+              <input id="{{tier['id']}}" type="checkbox" ng-disabled="tier['disabled']"
+                     ng-click="filterByTier(tier)">
+              <label for="{{tier['id']}}">{{tier["text"].toUpperCase()}}</label>
+            </div>
+
         </div>
       </div>
+    </div>
 
-      <div class="reset-button-wrapper">
-        <button type="button" class="btn-reset" ng-click="resetAllFilters()">LIMPIAR FILTROS</button>
+    <div class="filter-column-entry-fee">
+      <p class="filter-title">ENTRADA</p>
+      <div class="filter-content">
+         <div class="entry-fee-value-min">MIN: {{filterEntryFeeRangeMin | number:0}}€ </div>
+         <div class="entry-fee-value-max">MAX: {{filterEntryFeeRangeMax | number:0}}€ </div>
+          <div class="slider-wrapper">
+            <div id="slider-range"></div>
+          </div>
       </div>
-      <div class="confirm-button-wrapper">
-        <button type="button" class="btn-confirm" ng-click="toggleFilterMenu()">ACEPTAR</button>
+    </div>
+
+    <div class="reset-button-wrapper">
+      <button type="button" class="btn-reset" ng-click="resetAllFilters()">LIMPIAR FILTROS</button>
+    </div>
+    <div class="confirm-button-wrapper">
+      <button type="button" class="btn-confirm" ng-click="toggleFilterMenu()">ACEPTAR</button>
+    </div>
+</div>"""));
+tc.put("packages/webclient/components/contest_header_comp.html", new HttpResponse(200, r"""<div id="contestHeaderWrapper" ng-cloak ng-show="contest != null">
+
+  <div class="contest-name">{{info['description']}}</div>
+  <div class="contest-explanation">{{info['contestType']}} {{info['contestantCount']}}</div>
+  
+  <div class="contest-coins">
+    <div class="contest-price">
+      <div class="contest-coins-header">ENTRADA</div>
+      <div class="contest-coins-content"><span>{{info['entryPrice']}}</span></div>
+    </div>
+
+    <div class="contest-prize">
+      <div class="contest-coins-header">
+        <div class="contest-coins-header-title">PREMIOS</div>
+        <div class="contest-coins-header-prize-type">{{info['prizeType']}}</div>
       </div>
+      <div class="contest-coins-content"><span>{{info['prize']}}</span></div>
+    </div>      
   </div>
 
-</div>"""));
-tc.put("packages/webclient/components/contest_header_comp.html", new HttpResponse(200, r"""<div id="headerContestWidget" ng-cloak>
-
-    <div class="contest-name">{{contestHeaderInfo['description']}}</div>
-
-    <div class="contest-explanation">{{contestHeaderInfo['contestType']}} {{contestHeaderInfo['contestantCount']}}</div>
-
-    <div class="contest-coins">
-
-      <div class="contest-price">
-        <div class="contest-coins-header">ENTRADA</div>
-        <div class="contest-coins-content"><span>{{contestHeaderInfo['entryPrice']}}</span></div>
-      </div>
-
-      <div class="contest-prize">
-        <div class="contest-coins-header">
-          <div class="contest-coins-header-title">PREMIOS</div>
-          <div class="contest-coins-header-prize-type">{{contestHeaderInfo['prizeType']}}</div>
-        </div>
-        <div class="contest-coins-content"><span>{{contestHeaderInfo['prize']}}</span></div>
-      </div>
-      
-    </div>
-
-    <div class="contest-start-date">{{contestHeaderInfo['startTime']}}&nbsp;</div>
-    <div class="countdown-text">
-      <span class="text-countdown">{{contestHeaderInfo['textCountdownDate']}}&nbsp;</span>
-      <span class="time-countdown">{{contestHeaderInfo['countdownDate']}}&nbsp;</span>
-    </div>
-    
-    <div class="close-contest"><button type="button" class="close" ng-click="goToParent()"><span class="glyphicon glyphicon-remove"></span></button></div>
-
+  <div class="contest-start-date">{{info['startTime']}}&nbsp;</div>
+  <div class="countdown-text">
+    <span class="text-countdown">{{info['textCountdownDate']}}&nbsp;</span>
+    <span class="time-countdown">{{info['countdownDate']}}&nbsp;</span>
+  </div>
+  
+  <div class="close-contest"><button type="button" class="close" ng-click="goToParent()"><span class="glyphicon glyphicon-remove"></span></button></div>
 </div>
 
 <div class="clearfix"></div>
@@ -505,9 +591,9 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
             </div>
 
             <div class="column-entry-fee">
-                <div class="inner-icon">
+                <!--<div class="inner-icon">
                     <span class="price-icon"></span>
-                </div>
+                </div>-->
                 <div class="inner-content">
                     <span class="title-text">ENTRADA</span>
                     <span class="content-text">{{currentInfoData['entry']}}€</span>
@@ -568,38 +654,30 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
                 </div>
 
                 <div class="tab-pane" id="contestants">
-                <div class="contestant-list-wrapper ">
-                  <div class="contestant-list">
-                    <div class="contestant-element"ng-repeat="contestant in currentInfoData['contestants']">
+                  <div class="contestant-list-wrapper ">
+                    <div ng-if="currentInfoData['contestants'].isEmpty" class="default-info-text">
+                      Todavía no hay participantes en este concurso. <br> Anímate a ser el primero.
+                    </div>
+                    <div class="contestant-list">
+                      <div class="contestant-element"ng-repeat="contestant in currentInfoData['contestants']">
                         <div class="contestant-position">{{$index + 1}}º</div>
                         <div class="contestant-name">{{contestant.name}}</div>
                         <div class="contestant-points">{{contestant.wins + ' '}}<span class="prize-currency">Ganados</span></div>
+                      </div>
                     </div>
                   </div>
-                  </div>
-                  <!--
-                    <div class="list-wrapper">
-                        <div class="contestant-list">
-                            <div class="contestant-element"ng-repeat="contestant in currentInfoData['contestants']">
-                                <div class="contestant-position">{{$index + 1}}º</div>
-                                <div class="contestant-name">{{contestant.name}}</div>
-                                <div class="contestant-points">{{contestant.wins + ' '}}<span class="prize-currency">Ganados</span></div>
-                            </div>
-                        </div>
-                    </div>
-                  -->
                 </div>
 
                 <div class="tab-pane" id="prizes">
 
                   <div class="prizes-wrapper">
-                    <div ng-if="currentInfoData['prizes'].length == 0" class="no-prizes">
+                    <div ng-if="currentInfoData['prizes'].isEmpty" class="default-info-text">
                       Este concurso no tiene premios
                     </div>
                     <div id="prizes-list">
                       <div class="prize-element-wrapper" ng-repeat="prize in currentInfoData['prizes']">
                         <div class="prize-element">
-                            {{$index + 1}}º &nbsp;&nbsp; {{prize.value | number: 0.00}}€
+                            {{$index + 1}}º &nbsp;&nbsp; {{prize.value}}€
                         </div>
                       </div>
                       <div class="clearfix"></div>
@@ -636,12 +714,12 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
     <p class="title">PREMIOS</p>
     <div class="prizes-wrapper">
         <div id="prizes-list">
-          <div ng-if="currentInfoData['prizes'].length == 0" class="no-prizes">
+          <div ng-if="currentInfoData['prizes'].isEmpty" class=default-info-text>
             Este concurso no tiene premios
           </div>
           <div class="prize-element-wrapper" ng-repeat="prize in currentInfoData['prizes']">
             <div class="prize-element">
-                {{$index + 1}}º &nbsp;&nbsp; {{prize.value | number: 0.00}}€
+                {{$index + 1}}º &nbsp;&nbsp; {{prize.value}}€
             </div>
           </div>
           <div class="clearfix"></div>
@@ -651,6 +729,9 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
     <div class="info-section"></div>
 
     <p class="title">JUGADORES</p>
+    <div ng-if="currentInfoData['contestants'].isEmpty" class="default-info-text">
+      Todavía no hay participantes en este concurso. <br> Anímate a ser el primero.
+    </div>
     <div class="contestant-list">
         <div class="contestant-element"ng-repeat="contestant in currentInfoData['contestants']">
             <div class="contestant-position">{{$index + 1}}º</div>
@@ -687,7 +768,7 @@ tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse
 
     <div class="column-contest-prize" ng-click="onRow(contest)" ng-if="!contest.isLive">
       <div class="column-contest-prize-content">
-        <span ng-if="!contest.isHistory">{{contest.prizePool}}€</span>
+        <span ng-if="!contest.isHistory"class="prize">{{contest.prizePool}}€</span>
         <span ng-if="contest.isHistory">{{getMyPrize(contest)}}€</span>
       </div>
       <div class="column-contest-prize-header">
@@ -715,9 +796,9 @@ tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse
   <paginator on-page-change="onPageChange(currentPage, itemsPerPage)" list-length="contestsListFiltered.length"></paginator>
 
 </div>"""));
-tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", new HttpResponse(200, r"""<div class="enter-contest-wrapper" ng-show="isLoaded">
+tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", new HttpResponse(200, r"""<div id="enter-contest-wrapper" ng-cloak>
 
-  <contest-header contestData="contest"></contest-header>
+  <contest-header id="contestHeader" contest="contest" contest-id="contestId"></contest-header>
 
   <!-- Nav tabs -->
   <ul class="enter-contest-tabs" role="tablist">
@@ -727,15 +808,16 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
 
   <div id="enterContest">
     <div class="tabs">
-      <!-- Tab panes -->
       <div class="tab-content">
+      
+        <!-- Tab del contenido normal de seleccion de lineup -->      
         <div class="tab-pane active" id="lineup-tab-content">
 
             <!-- Este sera el selector de partidos en "grande", con botones-->
-            <matches-filter contest="contest" selected-option="matchFilter" ng-if="isBigScreenVersion"></matches-filter>
+            <matches-filter id="matchesFilterBig" contest="contest" selected-option="matchFilter" ng-if="isBigScreenVersion"></matches-filter>
 
             <div class="enter-contest-actions-wrapper" ng-if="isSmallScreenVersion">
-              <div class="total-salary"><span ng-class="getMyTotalSalaryClasses()">{{availableSalary}}€</span></div>
+              <div class="total-salary"><span class="total-salary-money" ng-class="{'red-numbers': availableSalary < 0 }" ng-show="contest != null">{{availableSalary}}€</span></div>
               <button id="cancelSoccerPlayerSelection" type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer">CANCELAR</button>
             </div>
 
@@ -743,8 +825,10 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
               <div class="enter-contest-lineup">
                 <div class="enter-contest-total-salary">
                     <span class="total-salary-text">TU ALINEACIÓN</span>
-                    <span class="total-salary"><span class="total-salary-text">DINERO RESTANTE:</span>
-                    <span ng-class="getMyTotalSalaryClasses()">{{availableSalary}}€</span></span>
+                    <div class="total-salary">
+                      <span class="total-salary-text">DINERO RESTANTE:</span>
+                      <span class="total-salary-money" ng-class="{'red-numbers': availableSalary < 0 }" ng-show="contest != null">{{availableSalary}}€</span>
+                    </div>
                 </div>
 
                 <lineup-selector ng-show="!isSelectingSoccerPlayer || isBigScreenVersion"></lineup-selector>
@@ -758,12 +842,15 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
                 <matches-filter contest="contest" selected-option="matchFilter" ng-if="isSmallScreenVersion"></matches-filter>
 
                 <soccer-players-filter name-filter="nameFilter" field-pos-filter="fieldPosFilter"></soccer-players-filter>
-                <soccer-players-list contest="contest" on-row-click="onRowClick(soccerPlayerId)"></soccer-players-list>
+                
+                <soccer-players-list soccer-players="availableSoccerPlayers"
+                                     field-pos-filter="fieldPosFilter" name-filter="nameFilter" match-filter="matchFilter"
+                                     on-row-click="onRowClick(soccerPlayerId)"
+                                     on-add-click="onSoccerPlayerSelected(soccerPlayer)"></soccer-players-list>
               </div>
             </div>
 
             <div class="enter-contest-actions-wrapper">
-
               <button type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer" ng-if="isSmallScreenVersion">CANCELAR</button>
 
               <div ng-if="!isSelectingSoccerPlayer || isBigScreenVersion">
@@ -779,8 +866,9 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
 
         </div>
 
+        <!-- El otro tab, el del contest-info  -->
         <div class="tab-pane" id="contest-info-tab-content">
-          <contest-info contest-data="contest"></contest-info>
+          <contest-info contest-id-data="contestId"></contest-info>
         </div>
 
       </div>
@@ -793,7 +881,7 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
 
 </div>
 
-<div class="soccer-player-info-wrapper" ng-if="scrDet.isXsScreen">
+<div id="soccer-player-info-wrapper" ng-if="scrDet.isXsScreen">
   <soccer-player-info instance-soccer-player="selectedInstanceSoccerPlayer"></soccer-player-info>
 </div>
 
@@ -827,16 +915,17 @@ tc.put("packages/webclient/components/enter_contest/lineup_selector_comp.html", 
   </div>
 
 </div>"""));
-tc.put("packages/webclient/components/enter_contest/matches_filter_comp.html", new HttpResponse(200, r"""<div id="matchesFilterWrapper">
-  <div id="matchesFilter" class="matches-filter">
-    <button class="btn btn-default button-filtro-team" ng-repeat="match in matchEvents" ng-bind-html="match.texto" id="match-{{match.id}}" 
-            ng-click="optionsSelectorValue = match.id" ng-class="getClassForMatchId(match.id)">
-    </button>
-  </div>
+tc.put("packages/webclient/components/enter_contest/matches_filter_comp.html", new HttpResponse(200, r"""<div id="matchesFilterWrapper" ng-switch="srcDet.isXsScreen">
   
-  <select id="matchesSelectorFilter" class="matches-selector-filter" ng-model="optionsSelectorValue">
+  <select id="matchesSelectorFilter" ng-switch-when="true" class="matches-selector-filter" ng-model="optionsSelectorValue" >
     <option ng-repeat="match in matchEvents" id="option-match-{{match.id}}" value="{{$index + 1}}" ng-value="match.id">{{match.textoSelector}}</option>
   </select>
+  
+  <div id="matchesFilterButtons" class="matches-filter-buttons" ng-switch-when="false">
+    <button class="btn btn-default button-filtro-team" ng-repeat="match in matchEvents" ng-bind-html="match.texto" id="match-{{match.id}}" 
+            ng-click="optionsSelectorValue = match.id" ng-class="{'active': optionsSelectorValue == match.id }">
+    </button>
+  </div>
 </div>"""));
 tc.put("packages/webclient/components/enter_contest/soccer_player_info_comp.html", new HttpResponse(200, r"""<div class="soccer-player-info-header">
   <div class="actions-header">
@@ -849,7 +938,8 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_info_comp.html
     </div>
     <div class="button-wrapper">
       <span class="next-match">PRÓXIMO PARTIDO:</span> <span class="next-match" ng-bind-html="currentInfoData['nextMatchEvent']"></span>
-      <button class="btn-add-soccer-player-info" ng-click="enterContestComp.addSoccerPlayerToLineup(currentInfoData['id'])">AÑADIR</button>
+      <button class="btn-add-soccer-player-info" ng-click="enterContestComp.addSoccerPlayerToLineup(currentInfoData['id'])"
+                                                 ng-disabled="!enterContestComp.isSlotAvailableForSoccerPlayer(currentInfoData['id'])">AÑADIR</button>
     </div>
   </div>
   <div class="description-header">
@@ -981,27 +1071,16 @@ tc.put("packages/webclient/components/enter_contest/soccer_players_filter_comp.h
 </div>"""));
 tc.put("packages/webclient/components/enter_contest/soccer_players_list_comp.html", new HttpResponse(200, r"""
 <div class="soccer-player-list-header-table">
-  <div class="filterOrderPos"><a ng-click="enterContestComp.sortListByField('Pos')">Pos.</a></div>
-  <div class="filterOrderName"><a ng-click="enterContestComp.sortListByField('Name')">Nombre</a></div>
-  <div class="filterOrderDFP"><a ng-click="enterContestComp.sortListByField('DFP')">DFP</a></div>
-  <div class="filterOrderPlayed"><a ng-click="enterContestComp.sortListByField('Played')">Jugados</a></div>
-  <div class="filterOrderSalary"><a ng-click="enterContestComp.sortListByField('Salary')">Sueldo</a></div>
+  <div class="filterOrderPos"><a ng-click="sortListByField('Pos')">Pos.</a></div>
+  <div class="filterOrderName"><a ng-click="sortListByField('Name')">Nombre</a></div>
+  <div class="filterOrderDFP"><a ng-click="sortListByField('DFP')">DFP</a></div>
+  <div class="filterOrderPlayed"><a ng-click="sortListByField('Played')">Jugados</a></div>
+  <div class="filterOrderSalary"><a ng-click="sortListByField('Salary')">Sueldo</a></div>
 </div>
 
 <div class="soccer-players-list">
 
-  <div class="soccer-players-list-slot" ng-repeat="slot in enterContestComp.availableSoccerPlayers" ng-class="getSlotClassColor(slot.fieldPos.abrevName)">
-    <div class="column-fieldpos" ng-click="onRow(slot.id)">{{slot.fieldPos.abrevName}}</div>
-    <div class="column-primary-info">
-      <span class="soccer-player-name" ng-click="onRow(slot.id)">{{slot.fullName | limitToDot : showWidth(slot.fullName)}}</span>
-      <span class="match-event-name" ng-click="onRow(slot.id)" ng-bind-html="slot.matchEventName"></span>
-    </div>
-    <div class="column-dfp" ng-click="onRow(slot.id)">{{slot.fantasyPoints}}</div>
-    <div class="column-played" ng-click="onRow(slot.id)">{{slot.playedMatches}}</div>
-    <div class="column-salary" ng-click="onRow(slot.id)">{{slot.salary}}€</div>
-    <div class="column-add">
-      <button type="button" class="btn" ng-click="enterContestComp.onSoccerPlayerSelected(slot)">Añadir</button>
-    </div>
+  <div class="soccer-players-list-slot" ng-repeat="slot in sortedSoccerPlayers | orderBy:sortList" fast-player-slot="slot" ng-non-bindable>
   </div>
 
 </div>"""));
@@ -1018,160 +1097,155 @@ tc.put("packages/webclient/components/global_connection_comp.html", new HttpResp
   {{msg}}
 </div>
 """));
-tc.put("packages/webclient/components/landing_page_comp.html", new HttpResponse(200, r"""<div id="desktopContent" ng-if="!scrDet.isXsScreen" ng-cloak>
+tc.put("packages/webclient/components/landing_page_comp.html", new HttpResponse(200, r"""<div id="#landingPageRoot">
+  <!-- Portada Versión Desktop -->
+  <div id="desktopContent" ng-if="!scrDet.isXsScreen" class="first-screen" style="height:{{screenHeight}}px">
+    <div class="screen-pattern" src="images/pattern.png"></div>
+    <div class="beta-label"><img src="images/beta.png"/></div>
+    <div class="main-title-wrapper">
 
-    <div id="screen1" class="first-screen" style="height:{{screenHeight}}px">
-      <div class="screen-pattern" src="images/pattern.png"></div>
-        <div class="beta-label"><img src="images/beta.png"/></div>
-        <div class="main-title-wrapper">
+      <div class="main-title">LIGAS FANTÁSTICAS DIARIAS</div>
+      <div class="separator-wrapper">
+        <img src="images/separator.png"/>
+      </div>
+      <div class="modules-wrapper">
 
-          <div class="main-title">LIGAS FANTÁSTICAS DIARIAS</div>
-          <div class="separator-wrapper">
-            <img src="images/separator.png"/>
-          </div>
-          <div class="modules-wrapper">
-
-            <div class="module-column">
-              <img class="icono" src="images/icon1.png"/>
-              <p class="icono-text">Crea tu equipo en segundos</p>
-            </div>
-
-            <div class="module-column">
-              <img class="icono" src="images/icon2.png"/>
-              <p class="icono-text">Compite en tantas ligas como quieras</p>
-            </div>
-
-            <div class="module-column">
-              <img class="icono" src="images/icon3.png"/>
-              <p class="icono-text">Sigue los partidos en directo</p>
-            </div>
-
-          </div>
-
-          <div class="button-wrap">
-            <button type="button" class="button-play"  ng-click="buttonPressed('join')" id="playButton1">JUGAR</button>
-          </div>
-
-
+        <div class="module-column">
+          <img class="icono" src="images/icon1.png"/>
+          <p class="icono-text">Crea tu equipo en segundos</p>
         </div>
 
+        <div class="module-column">
+          <img class="icono" src="images/icon2.png"/>
+          <p class="icono-text">Compite en tantas ligas como quieras</p>
+        </div>
 
+        <div class="module-column">
+          <img class="icono" src="images/icon3.png"/>
+          <p class="icono-text">Sigue los partidos en directo</p>
+        </div>
 
-      <!-- Separador -->
-      <a class="wrapping-link" href="#screen2">
-        <span id="screenSeparator1" class="more-info-section-light">
-          <span>SABER MÁS</span>
-          <span class="go-down-icon"></span>
-        </span>
-      </a>
+      </div>
+
+      <div class="button-wrap">
+        <button type="button" class="button-play"  ng-click="buttonPressed('join')" id="playButton1">JUGAR</button>
+      </div>
+
     </div>
 
-
-
-    <div id="screen2" class="screen">
-        <div class="slider-wrapper">
-          <img class="screen-background" src="images/landing02.jpg" />
-          <div class="screen-pattern"></div>
-        </div>
-        <div class="content-wrapper">
-          <div class="content-container">
-            <div class="screen-image-block">
-              <img class="screen-logo" src="images/landingLogo1.png" />
-            </div>
-            <div class="screen-text-block">
-              <p class="title-text-dark">CADA DÍA NUEVOS TORNEOS</p>
-              <p class="description-text">
-                  Liga, Champions, Europa League: cada día te ofrecemos torneos de las competiciones más importantes. Puedes participar en tantos como quieras
-              </p>
-              <button type="button" class="button-play"  ng-click="buttonPressed('join')" id="playButton2">JUGAR</button>
-            </div>
-          </div>
-        </div>
-    </div>
-
-    <a class="wrapping-link" href="#screen3">
-      <span id="screenSeparator2" class="more-info-section-light">
+    <!-- Separador -->
+    <a class="wrapping-link" href="#screen2">
+      <span id="screenSeparator1" class="more-info-section-light">
         <span>SABER MÁS</span>
         <span class="go-down-icon"></span>
       </span>
     </a>
+  </div>
+  <!-- END Portada Versión Desktop -->
 
-    <div id="screen3" class="screen">
-        <div class="slider-wrapper">
-          <img class="screen-background" src="images/landing03.jpg" />
-          <div class="screen-pattern"></div>
-        </div>
-        <div class="content-wrapper">
-          <div class="content-container">
-            <div class="screen-image-block">
-              <img class="screen-logo" src="images/landingLogo2.png" />
-            </div>
-            <div class="screen-text-block">
-              <p class="title-text-dark">CREA TU EQUIPO IDEAL</p>
-              <p class="description-text">
-                  Cada jugador tienen un salario acorde a su rendimiento en la vida real. Elige bien, deberás mantenerte por debajo del límite de presupuesto.
-              </p>
-              <button type="button" class="button-play"  ng-click="buttonPressed('join')" id="playButton3">JUGAR</button>
-            </div>
-          </div>
-        </div>
+  <!-- Portada Versión Móvil -->
+  <div id="mobileContent" ng-if="scrDet.isXsScreen" class="screen">
+    <div class="slider-wrapper-mobile">
+      <img class="background" src="images/xsLandingBackground.jpg" />
     </div>
-
-    <a class="wrapping-link" href="#screen4">
-      <span id="screenSeparator3" class="more-info-section-dark">
+    <div class="beta-label"><img src="images/beta.png"/></div>
+    <div class="content">
+      <p class="main-title-mobile">LIGAS FANTÁSTICAS <br> DIARIAS</p>
+      <p class="title-sup-text-mobile">CREA TU EQUIPO EN SEGUNDOS</p>
+      <p class="title-sup-text-mobile">COMPITE EN TANTAS LIGAS COMO QUIERAS</p>
+      <p class="title-sup-text-mobile">SIGUE LOS PARTIDOS EN DIRECTO</p>
+      <button type="button" class="button-play-mobile" ng-click="buttonPressed('join')" id="playButtonMobile">JUGAR</button>
+    </div>
+    <!-- Separador -->
+    <a class="wrapping-link" href="#screen2">
+      <span id="screenSeparator1" class="more-info-section-light">
         <span>SABER MÁS</span>
         <span class="go-down-icon"></span>
       </span>
     </a>
-
-    <div id="screen4" class="screen">
-        <div class="slider-wrapper">
-          <img class="screen-background" src="images/landing04.jpg" />
-          <div class="screen-pattern"></div>
-        </div>
-        <div class="content-wrapper">
-          <div class="content-container">
-            <div class="screen-image-block">
-              <img class="screen-logo" src="images/landingLogo3.jpg" />
-            </div>
-            <div class="screen-text-block">
-              <p class="title-text-dark">PUNTÚA Y GANA</p>
-              <p class="description-text">
-                  Cuando comiencen los partidos en la vida real, tus jugadores acumularán puntos en función de sus acciones. Podrás seguir su puntuación en tiempo real desde donde quieras y compararla con los equipos rivales.
-              </p>
-              <button type="button" class="button-play"  ng-click="buttonPressed('join')" id="playButton4">JUGAR</button>
-            </div>
-          </div>
-        </div>
-    </div>
-
-</div>
-
-<!-- Versión Móvil -->
-<div id="mobileContent"  ng-if="scrDet.isXsScreen">
-    <div id="screenMobile1" class="screen">
-
+  </div>
+  <!-- END Portada Versión Móvil -->
+  <div id="screen2" class="screen">
       <div class="slider-wrapper">
-        <img class="background" src="images/xsLandingBackground.jpg" />
+        <img class="screen-background" src="images/landing02.jpg" />
+        <div class="screen-pattern"></div>
       </div>
-
-      <div class="content">
-        <p class="main-title-mobile">LIGAS FANTÁSTICAS <br> DIARIAS</p>
-       <!-- <img class="banner-top" src="images/separator.png" /> -->
-        <!--<p class="highlight-text"><span class="stars"></span>CADA SEMANA,<span class="stars"></span><BR> UNA NUEVA TEMPORADA</p>-->
-        <p class="title-sup-text-mobile">CREA TU EQUIPO EN SEGUNDOS</p>
-        <p class="title-sup-text-mobile">COMPITE EN TANTAS LIGAS COMO QUIERAS</p>
-        <p class="title-sup-text-mobile">SIGUE LOS PARTIDOS EN DIRECTO</p>
-        <button type="button" class="button-play-mobile" ng-click="buttonPressed('join')" id="playButtonMobile">JUGAR</button>
+      <div class="content-wrapper">
+        <div class="content-container">
+          <div class="screen-image-block">
+            <img class="screen-logo" src="images/landingLogo1.png" />
+          </div>
+          <div class="screen-text-block">
+            <p class="title-text-dark">CADA DÍA NUEVOS TORNEOS</p>
+            <p class="description-text">
+                Liga, Champions, Europa League: cada día te ofrecemos torneos de las competiciones más importantes. Puedes participar en tantos como quieras
+            </p>
+            <button type="button" class="button-play"  ng-click="buttonPressed('join')" id="playButton2">JUGAR</button>
+          </div>
+        </div>
       </div>
-    </div>
-</div>
+  </div>
 
+  <a class="wrapping-link" href="#screen3">
+    <span id="screenSeparator2" class="more-info-section-light">
+      <span>SABER MÁS</span>
+      <span class="go-down-icon"></span>
+    </span>
+  </a>
 
-"""));
+  <div id="screen3" class="screen">
+      <div class="slider-wrapper">
+        <img class="screen-background" src="images/landing03.jpg" />
+        <div class="screen-pattern"></div>
+      </div>
+      <div class="content-wrapper">
+        <div class="content-container">
+          <div class="screen-image-block">
+            <img class="screen-logo" src="images/landingLogo2.png" />
+          </div>
+          <div class="screen-text-block">
+            <p class="title-text-dark">CREA TU EQUIPO IDEAL</p>
+            <p class="description-text">
+                Cada jugador tienen un salario acorde a su rendimiento en la vida real. Elige bien, deberás mantenerte por debajo del límite de presupuesto.
+            </p>
+            <button type="button" class="button-play"  ng-click="buttonPressed('join')" id="playButton3">JUGAR</button>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <a class="wrapping-link" href="#screen4">
+    <span id="screenSeparator3" class="more-info-section-dark">
+      <span>SABER MÁS</span>
+      <span class="go-down-icon"></span>
+    </span>
+  </a>
+
+  <div id="screen4" class="screen">
+      <div class="slider-wrapper">
+        <img class="screen-background" src="images/landing04.jpg" />
+        <div class="screen-pattern"></div>
+      </div>
+      <div class="content-wrapper">
+        <div class="content-container">
+          <div class="screen-image-block">
+            <img class="screen-logo" src="images/landingLogo3.jpg" />
+          </div>
+          <div class="screen-text-block">
+            <p class="title-text-dark">PUNTÚA Y GANA</p>
+            <p class="description-text">
+                Cuando comiencen los partidos en la vida real, tus jugadores acumularán puntos en función de sus acciones. Podrás seguir su puntuación en tiempo real desde donde quieras y compararla con los equipos rivales.
+            </p>
+            <button type="button" class="button-play"  ng-click="buttonPressed('join')" id="playButton4">JUGAR</button>
+          </div>
+        </div>
+      </div>
+  </div>
+
+</div>"""));
 tc.put("packages/webclient/components/legalese_and_help/beta_info_comp.html", new HttpResponse(200, r"""<div id="betaComp">
    <div class="block-dark-header">
-    <div class="title">EPIC ELEVEN: VERSIÓN BETA</div>
+    <div class="default-header-text">EPIC ELEVEN: VERSIÓN BETA</div>
   </div>
   <div class="block-blue-header">
     <div class="title_white">ESTA SECCIÓN NO ESTA DISPONIBLE</div>
@@ -1190,7 +1264,7 @@ tc.put("packages/webclient/components/legalese_and_help/beta_info_comp.html", ne
 tc.put("packages/webclient/components/legalese_and_help/help_info_comp.html", new HttpResponse(200, r"""<div id="helpInfo">
 
   <div class="block-dark-header">
-    <div class="title">AYUDA</div>
+    <div class="default-header-text">AYUDA</div>
   </div>
 
   <!-- Nav tabs -->
@@ -1358,7 +1432,8 @@ tc.put("packages/webclient/components/legalese_and_help/help_info_comp.html", ne
 tc.put("packages/webclient/components/legalese_and_help/legal_info_comp.html", new HttpResponse(200, r"""<div id="staticInfo">
 
   <div class="block-dark-header">
-    <div class="title">LEGAL</div>
+    <div class="default-header-text">LEGAL</div>
+    <div class="blue-separator"></div>
   </div>
 
   <div class="info-wrapper">
@@ -1387,7 +1462,8 @@ tc.put("packages/webclient/components/legalese_and_help/legal_info_comp.html", n
 tc.put("packages/webclient/components/legalese_and_help/policy_info_comp.html", new HttpResponse(200, r"""<div id="staticInfo">
 
   <div class="block-dark-header">
-    <div class="title">POLÍTICA DE PRIVACIDAD</div>
+    <div class="default-header-text">POLÍTICA DE PRIVACIDAD</div>
+    <div class="blue-separator"></div>
   </div>
 
   <div class="info-wrapper">
@@ -1462,7 +1538,8 @@ tc.put("packages/webclient/components/legalese_and_help/policy_info_comp.html", 
 tc.put("packages/webclient/components/legalese_and_help/terminus_info_comp.html", new HttpResponse(200, r"""<div id="staticInfo">
 
   <div class="block-dark-header">
-    <div class="title">TÉRMINOS Y CONDICIONES</div>
+    <div class="default-header-text">TÉRMINOS Y CONDICIONES</div>
+    <div class="blue-separator"></div>
   </div>
 
   <div class="info-wrapper">
@@ -2032,20 +2109,10 @@ tc.put("packages/webclient/components/legalese_and_help/terminus_info_comp.html"
     </p>
   </div>
 </div>"""));
-tc.put("packages/webclient/components/loading_comp.html", new HttpResponse(200, r"""<section ng-show="isLoading">
-
-<div class="alert-danger" style="padding: 1em; position: fixed; top: 20%; left: 50%; transform: translateX(-50%);">
-  Loading...
-</div>
-<div style="width:100%; height:100%; min-height: 992px; background-color: rgba(255,255,255,0.5);">
-</div>
-
-</section>
-"""));
 tc.put("packages/webclient/components/lobby_comp.html", new HttpResponse(200, r"""<div id="lobbyRoot">
 
   <!-- Header de Promociones -->
-  <promos></promos>
+  <promos id="promosComponent"></promos>
 
   <!-- Barra azul de información -->
   <div id="lobbyTopInfobar">
@@ -2053,30 +2120,34 @@ tc.put("packages/webclient/components/lobby_comp.html", new HttpResponse(200, r"
   </div>
 
   <!-- Filtros y Ordenación -->
-  <contest-filters-comp contests-list="activeContestsService.activeContests" contest-count="contestCount" 
+  <contest-filters-comp id="contestFiltersRoot"
+                        contests-list="activeContestsService.activeContests" contest-count="contestCount"
                         on-sort-order-change="onSortOrderChange(fieldName)" on-filter-change="onFilterChange(filterList)"></contest-filters-comp>
 
-  <!-- Lista de concursos DESKTOP -->
-  <contests-list  contests-list="activeContestsService.activeContests"
+  <!-- Lista de concursos -->
+  <contests-list  id="activeContestList"
+                  sorting="lobbySorting"
+                  contests-list="activeContestsService.activeContests"
+                  on-action-click='onActionClick(contest)'
+                  on-row-click="onRowClick(contest)" action-button-title="'Jugar'"
+                  competition-type-filter="lobbyFilters['FILTER_COMPETITION']"
                   tournament-type-filter="lobbyFilters['FILTER_TOURNAMENT']" salary-cap-filter="lobbyFilters['FILTER_TIER']"
                   entry-fee-filter="lobbyFilters['FILTER_ENTRY_FEE']" name-filter="lobbyFilters['FILTER_CONTEST_NAME']"
-                  sorting="lobbySorting" contest-count="contestCount"
-                  action-button-title="'Jugar'" on-row-click="onRowClick(contest)"
-                  on-action-click='onActionClick(contest)'>
+                  contest-count="contestCount">
   </contests-list>
 
   <!-- Modal Window que envuelve la informacion de concurso, mostrada cuando clickamos en cualquiera de los campos de la fila -->
   <div  id="infoContestModal" class="modal fade" tabindex="-1" role="dialog">
       <div class="modal-dialog modal-lg">
         <div id="infoContent" class="modal-content">
-          <contest-info contest-data="selectedContest"></contest-info>
+          <contest-info contest-id-data="selectedContestId"></contest-info>
         </div>
       </div>
   </div>
 
 </div>"""));
-tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(200, r"""<div id="myContest" ng-cloak">
-  <div class="my-contest-title-tab">MIS TORNEOS</div>
+tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(200, r"""<div id="myContest" ng-cloak>
+  <div class="default-header-text">MIS TORNEOS</div>
   <!-- Nav tabs -->
   <ul  id="myContestMenuTabs" class="my-contest-tabs" role="tablist">
 
@@ -2106,33 +2177,34 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
       <div class="tab-pane active" id="live-contest-content">
 
         <!-- Barra de resumen de actividad -->
-        <div class="resume-bar" ng-if="!hasLiveContests">
+        <div class="resume-bar" ng-if="!hasLiveContests && liveDataLoaded">
              <span class="information-no-contest">AQUÍ PODRÁS CONSULTAR EN TIEMPO REAL LOS TORNEOS QUE TENGAS ACTIVOS</span>
         </div>
-
-        <!-- Banner de información de lista vacía -->
-        <div class="no-contest" ng-if="!hasLiveContests">
-          <div class="no-contests-wrapper">
-            <div class="no-contests-title">
-             EN ESTE MOMENTO, NO ESTÁS JUGANDO NINGÚN TORNEO
+        <div class="tab-content-wrapper">
+          <!-- Banner de información de lista vacía -->
+          <div class="no-contest" ng-if="!hasLiveContests  && liveDataLoaded">
+            <div class="no-contests-wrapper">
+              <div class="default-info-text">
+               EN ESTE MOMENTO, NO ESTÁS JUGANDO<br>NINGÚN TORNEO
+              </div>
+              <div class="no-contests-text">
+                CONSULTA LA LISTA DE TUS <strong data-toggle="tab" ng-click="tabChange('waiting-contest-content')">PRÓXIMOS TORNEOS</strong> PARA VER CUÁNDO EMPIEZAN
+              </div>
             </div>
-            <div class="no-contests-text">
-              CONSULTA LA LISTA DE TUS <strong data-toggle="tab" ng-click="tabChange('waiting-contest-content')">PRÓXIMOS TORNEOS</strong> PARA VER CUÁNDO EMPIEZAN
+            <div class="my-no-contest-bottom-row">
+              <button class="btn-go-to-contest" ng-click="gotoLobby()">IR A LOS TORNEOS</button>
             </div>
           </div>
-          <div class="my-no-contest-bottom-row">
-            <button class="btn-go-to-contest" ng-click="gotoLobby()">IR A LOS TORNEOS</button>
-          </div>
-        </div>
 
-        <!-- lista de concursos -->
-        <div class="list-container" ng-if="hasLiveContests">
-          <contests-list id="liveContests"
-                         sorted-by="liveSortType"
-                         contests-list="myContestsService.liveContests"
-                         on-action-click='onLiveActionClick(contest)'
-                         on-row-click='onLiveRowClick(contest)'>
-          </contests-list>
+          <!-- lista de concursos -->
+          <div class="list-container" ng-if="hasLiveContests && liveDataLoaded">
+            <contests-list id="liveContests"
+                           sorting="liveSortType"
+                           contests-list="myContestsService.liveContests"
+                           on-action-click='onLiveActionClick(contest)'
+                           on-row-click='onLiveRowClick(contest)'>
+            </contests-list>
+          </div>
         </div>
       </div>
 
@@ -2140,7 +2212,7 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
       <div class="tab-pane" id="waiting-contest-content">
 
         <!-- Barra de resumen de actividad sin registros-->
-        <div class="resume-bar" ng-if="!hasWaitingContests">
+        <div class="resume-bar" ng-if="!hasWaitingContests && liveDataLoaded">
           <span class="information-no-contest">EN ESTE ESPACIO PODRÁS CONSULTAR Y MODIFICAR LOS EQUIPOS QUE TIENES PENDIENTES DE JUGAR EN UN TORNEO</span>
         </div>
 
@@ -2150,56 +2222,58 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
             <button class="btn-change-player" ng-click="">CAMBIO RÁPIDO DE JUGADOR</button>
           </div>
         </div>-->
-
-        <!-- Banner de información de lista vacía -->
-        <div class="no-contest" ng-if="!hasWaitingContests">
-          <div class="no-contests-wrapper">
-            <div class="no-contests-title">
-             EN ESTE MOMENTO, NO TIENES UN EQUIPO CREADO PARA NINGÚN TORNEO
+        <div class="tab-content-wrapper">
+          <!-- Banner de información de lista vacía -->
+          <div class="no-contest" ng-if="!hasWaitingContests && liveDataLoaded">
+            <div class="no-contests-wrapper">
+              <div class="default-info-text">
+               EN ESTE MOMENTO, NO TIENES UN<br>EQUIPO CREADO PARA NINGÚN TORNEO
+              </div>
+              <div class="no-contests-text">
+                VE A LA LISTA DE TORNEOS, ELIGE UNO Y EMPIEZA A JUGAR
+              </div>
             </div>
-            <div class="no-contests-text">
-              VE A LA LISTA DE TORNEOS, ELIGE UNO Y EMPIEZA A JUGAR
+            <div class="my-no-contest-bottom-row">
+              <button class="btn-go-to-contest" ng-click="gotoLobby()">IR A LOS TORNEOS</button>
             </div>
           </div>
-          <div class="my-no-contest-bottom-row">
-            <button class="btn-go-to-contest" ng-click="gotoLobby()">IR A LOS TORNEOS</button>
-          </div>
-        </div>
 
-        <!-- lista de concursos -->
-        <div class="list-container" ng-if="hasWaitingContests">
-          <contests-list id="waitingContests"
-                         sorted-by="waitingSortType"
-                         contests-list='myContestsService.waitingContests'
-                         on-action-click='onWaitingActionClick(contest)'
-                         on-row-click='onWaitingRowClick(contest)'>
-          </contests-list>
+          <!-- lista de concursos -->
+          <div class="list-container" ng-if="hasWaitingContests && liveDataLoaded">
+            <contests-list id="waitingContests"
+                           sorting="waitingSortType"
+                           contests-list='myContestsService.waitingContests'
+                           on-action-click='onWaitingActionClick(contest)'
+                           on-row-click='onWaitingRowClick(contest)'>
+            </contests-list>
+          </div>
         </div>
       </div>
 
       <!-- HISTORY CONTESTS CONTENT-->
       <div class="tab-pane" id="history-contest-content">
-          <!-- Barra de resumen de actividad sin registros-->
-          <div class="resume-bar" ng-if="!hasHistoryContests">
-            <span class="information-no-contest">AQUÍ PODRÁS CONSULTAR Y REPASAR TODOS LOS TORNEOS QUE HAS JUGADO: TUS EQUIPOS, RIVALES PUNTUACIONES…</span>
+        <!-- Barra de resumen de actividad sin registros-->
+        <div class="resume-bar" ng-if="!hasHistoryContests">
+          <span class="information-no-contest">AQUÍ PODRÁS CONSULTAR Y REPASAR TODOS LOS TORNEOS QUE HAS JUGADO: TUS EQUIPOS, RIVALES PUNTUACIONES…</span>
+        </div>
+        <!-- Barra de resumen de actividad con registros-->
+        <div class="resume-bar" ng-if="hasHistoryContests">
+          <!--<div class="refresh-text">Actualizado cada 24 horas</div>-->
+          <div class="info">
+            <span class="info-registers-count">{{myContestsService.historyContests.length}} REGISTROS</span>
+            <span class="info-wins-count">{{totalHistoryContestsWinner}} GANADOS</span>
+            <!--<span class="info-available-money">{{totalHistoryContestsPrizes}} €</span>-->
           </div>
-          <!-- Barra de resumen de actividad con registros-->
-          <div class="resume-bar" ng-if="hasHistoryContests">
-            <!--<div class="refresh-text">Actualizado cada 24 horas</div>-->
-            <div class="info">
-              <span class="info-registers-count">{{myContestsService.historyContests.length}} REGISTROS</span>
-              <span class="info-wins-count">{{totalHistoryContestsWinner}} GANADOS</span>
-              <!--<span class="info-available-money">{{totalHistoryContestsPrizes}} €</span>-->
-            </div>
-            <!--<div class="data-to-csv">
-              <button class="btn-data-to-csv" ng-click="">DESCARGAR COMO CSV</button>
-            </div>-->
-          </div>
+          <!--<div class="data-to-csv">
+            <button class="btn-data-to-csv" ng-click="">DESCARGAR COMO CSV</button>
+          </div>-->
+        </div>
 
-          <!-- Banner de información de lista vacía -->
-          <div class="no-contest" ng-if="!hasHistoryContests">
+        <div class="tab-content-wrapper">
+        <!-- Banner de información de lista vacía -->
+          <div class="no-contest" ng-if="!hasHistoryContests && liveDataLoaded">
             <div class="no-contests-wrapper">
-              <div class="no-contests-title">
+              <div class="default-info-text">
                TODAVÍA NO HAS JUGADO NINGÚN TORNEO
               </div>
               <div class="no-contests-text">
@@ -2212,28 +2286,27 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
           </div>
 
           <!-- lista de concursos -->
-          <div class="list-container" ng-if="hasHistoryContests">
+          <div class="list-container" ng-if="hasHistoryContests && liveDataLoaded">
             <!--<div class="text-refresh-history">Actualizado cada 24 horas</div>-->
             <contests-list id="historyContests"
-                           sorted-by="historySortType"
+                           sorting="historySortType"
                            contests-list="myContestsService.historyContests"
                            on-action-click='onHistoryActionClick(contest)'
                            on-row-click='onHistoryRowClick(contest)'>
             </contests-list>
           </div>
+        </div>
       </div>
-
     </div>
-
   </div>
 </div>
 """));
-tc.put("packages/webclient/components/navigation/footer_comp.html", new HttpResponse(200, r"""<div id="mainFooter" ng-cloak>
+tc.put("packages/webclient/components/navigation/footer_comp.html", new HttpResponse(200, r"""<div id="rootFooter" ng-cloak>
 
    <div class="sup-footer-wrapper">
-    <div class="user-info-sup-footer" ng-show="profileService.isLoggedIn">
-        <a id="footerProfile" href="#" class="goto-link" ng-click="gotoProfile()"><span class="username-link">{{profileService.user.nickName}}</span></a>
-        <a id="footerLogOut" href="#" class="goto-link" ng-click="profileService.logout()"><span class="logout-link">Salir</span></a>
+    <div class="user-info-sup-footer">
+        <a id="footerProfile"  ng-show="profileService.isLoggedIn" href="#" class="goto-link" ng-click="gotoProfile()"><span class="username-link">{{profileService.user.nickName}}</span></a>
+        <a id="footerLogOut"  ng-show="profileService.isLoggedIn" href="#" class="goto-link" ng-click="profileService.logout()"><span class="logout-link">Salir</span></a>
         <!--<button id="footerAddFunds" class="add-funds-button">AÑADIR FONDOS</button>-->
     </div>
   </div>
@@ -2287,16 +2360,16 @@ tc.put("packages/webclient/components/navigation/main_menu_slide_comp.html", new
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <div id="brandLogoLogged" class="navbar-brand" ng-click="navigateTo($event)" destination="lobby" ng-class="['loggedIn-brand']"></div>
+        <div id="brandLogoLogged" class="navbar-brand" ng-click="navigateTo($event)" destination="lobby" ng-class="['loggedIn-brand']" ng-model="checkForActiveElement()"></div>
       </div>
       <!-- Opciones del menu -->
       <div id="menuSlide" class="navbar-offcanvas navmenu-fixed offcanvas" ng-if="profileService.isLoggedIn">
         <ul class="nav navbar-nav">
-          <li class="active" highlights="lobby"> <a  id="menuLobby"                ng-click="navigateTo($event)" destination="lobby">Buscar Torneos</a></li>
+          <li highlights="lobby"> <a  id="menuLobby"                ng-click="navigateTo($event)" destination="lobby">Buscar Torneos</a></li>
           <li highlights="my_contests">          <a  id="menuMy_Contest"           ng-click="navigateTo($event)" destination="my_contests">Mis torneos</a></li>
           <li highlights="">                     <a  id="menuPromos"               ng-click="navigateTo($event)" destination="beta_info">Promos</a></li>
           <li highlights="user" class="right-menu">
-            <a id="menuUser" class="dropdown-toggle" data-toggle="dropdown">{{profileService.user.nickName}}</a>
+            <a id="menuUser" class="dropdown-toggle" data-toggle="dropdown">{{userNickName}}</a>
             <ul class="dropdown-menu">
               <li>                    <a  id="menuUserMyAccount"        ng-click="navigateTo($event)" destination="user_profile">Mi cuenta</a></li>
               <li>                    <a  id="menuUserAddFunds"         ng-click="navigateTo($event)" destination="beta_info">Añadir fondos</a></li>
@@ -2326,21 +2399,19 @@ tc.put("packages/webclient/components/navigation/main_menu_slide_comp.html", new
   </div>
 </nav>"""));
 tc.put("packages/webclient/components/paginator_comp.html", new HttpResponse(200, r"""<div class="paginator-wrapper">
-  <div class="paginator-box">
+  <div class="paginator-box" ng-model="buildMe()">
     <!-- Aqui van los botones -->
   </div>
 </div>"""));
-tc.put("packages/webclient/components/promos_comp.html", new HttpResponse(200, r"""<div id="promosComponent">
-  <img ng-if="!scrDet.isXsScreen" src="images/bannerPromoDesktop.jpg" class="promoDesktop" />
-  <!--<div class="beta-version-desktop" ng-if="!scrDet.isXsScreen">
-    <span class="beta-version-text">VERSIÓN BETA</span>
-  </div>-->
-  <img ng-if="scrDet.isXsScreen" src="images/betaHeaderXsBg.jpg" class="promoXs" />
-  <!--<div class="beta-version-xs" ng-if="scrDet.isXsScreen">
-    <span class="beta-version-text">BETA</span>
-    <img src="images/betaHeaderXsTexto.png" class="betaVersionXs" />
-  </div>-->
-</div>"""));
+tc.put("packages/webclient/components/promos_comp.html", new HttpResponse(200, r"""<img ng-if="!scrDet.isXsScreen" src="images/bannerPromoDesktop.jpg" class="promoDesktop" />
+<!--<div class="beta-version-desktop" ng-if="!scrDet.isXsScreen">
+  <span class="beta-version-text">VERSIÓN BETA</span>
+</div>-->
+<img ng-if="scrDet.isXsScreen" src="images/betaHeaderXsBg.jpg" class="promoXs" />
+<!--<div class="beta-version-xs" ng-if="scrDet.isXsScreen">
+  <span class="beta-version-text">BETA</span>
+  <img src="images/betaHeaderXsTexto.png" class="betaVersionXs" />
+</div>-->"""));
 tc.put("packages/webclient/components/scoring_rules_comp.html", new HttpResponse(200, r"""<div id="scoringForAll" class="panel-points">
   <div class="header">TODOS LOS JUGADORES</div>
   <div class="body">
@@ -2442,6 +2513,30 @@ tc.put("packages/webclient/components/view_contest/fantasy_team_comp.html", new 
   </div>
 
 </div>"""));
+tc.put("packages/webclient/components/view_contest/teams_panel_comp.html", new HttpResponse(200, r"""<div id="teamsPanelRoot" ng-show="contest != null" ng-switch="scrDet.isXsScreen" class="animate">
+
+  <div class="teams-comp-bar" ng-switch-when="true">
+    <div class="teams-toggler-wrapper">
+      <div id="teamsToggler" type="button" class="teams-toggler toggleOff" ng-click="toggleTeamsPanel()"  data-toggle="collapse" data-target="#teamsPanel">PARTIDOS EN ESTE TORNEO</div>
+    </div>
+    <div id="teamsPanel" class="teams-container collapse">
+      <div class="top-border"></div>
+      <div class="teams-box" ng-repeat="match in matchesInvolved">
+        <div class="teams-info" ng-bind-html="getMatchAndPeriodInfo($index, match)"></div>
+      </div>
+      <div class="bottom-border"></div>
+    </div>
+  </div>
+
+  <div class="teams-comp-bar" ng-switch-when="false">
+    <div class="teams-container">
+      <div class="teams-box" ng-repeat="match in matchesInvolved">
+        <div class="teams-info" ng-bind-html="getMatchAndPeriodInfo($index, match)"></div>
+      </div>
+    </div>
+  </div>
+
+</div>"""));
 tc.put("packages/webclient/components/view_contest/users_list_comp.html", new HttpResponse(200, r"""<div id="usersListRoot" ng-cloak>
 
   <div ng-class="{'users-header-next': isViewContestEntryMode, 'users-header' : !isViewContestEntryMode}">
@@ -2468,31 +2563,10 @@ tc.put("packages/webclient/components/view_contest/users_list_comp.html", new Ht
   </div>
 
 </div>"""));
-tc.put("packages/webclient/components/view_contest/view_contest_comp.html", new HttpResponse(200, r"""<section ng-show="isLoaded">
+tc.put("packages/webclient/components/view_contest/view_contest_comp.html", new HttpResponse(200, r"""<section>
 
-  <contest-header contestData="contest"></contest-header>
-
-  <div class="info-and-social-bar" ng-if="!scrDet.isXsScreen">
-    <!--<div class="social"><img src="images/socialBig.png"></div>-->
-    <div class="teams-container">
-      <div class="teams-box" ng-repeat="match in matchesInvolved">
-        <div class="teams-info" ng-bind-html="match"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="info-and-social-bar" ng-if="scrDet.isXsScreen">
-    <div class="teams-toggler-wrapper">
-      <div id="teamsToggler" type="button" class="teams-toggler toggleOff" ng-click="toggleTeamsPanel()" data-target="#teamsPanel">PARTIDOS</div>
-    </div>
-    <div id="teamsPanel" class="teams-container collapse">
-      <div class="top-border"></div>
-      <div class="teams-box" ng-repeat="match in matchesInvolved">
-        <div class="teams-info" ng-bind-html="match"></div>
-      </div>
-      <div class="bottom-border"></div>
-    </div>
-  </div>
+  <contest-header id="contestHeader" contest="contest" contest-id="contestId"></contest-header>
+  <teams-panel id="teamsPanelComp" contest="contest" contest-id="contestId"></teams-panel>
 
   <div id="liveContestRoot" ng-switch="scrDet.isXsScreen" ng-cloak>
     <div ng-switch-when="true">
@@ -2524,21 +2598,11 @@ tc.put("packages/webclient/components/view_contest/view_contest_comp.html", new 
 
 </section>
 """));
-tc.put("packages/webclient/components/view_contest/view_contest_entry_comp.html", new HttpResponse(200, r"""<section ng-show="isLoaded">
+tc.put("packages/webclient/components/view_contest/view_contest_entry_comp.html", new HttpResponse(200, r"""<section ng-show="!loadingService.isLoading">
 
-  <contest-header contestData="contest"></contest-header>
+  <contest-header id="contestHeader" contest="contest" contest-id="contestId"></contest-header>
 
-  <div class="info-and-social-bar">
-    <!--<div class="social"><img src="images/socialBig.png"></div>-->
-    <!-- Chapu hasta que convierta esto en un componente -->
-    <div id="teamsPanel" class="teams-container">
-      <div class="top-border"></div>
-      <div class="teams-box" ng-repeat="match in matchesInvolved">
-        <div class="teams-info" ng-bind-html="match"></div>
-      </div>
-      <div class="bottom-border"></div>
-    </div>
-  </div>
+  <teams-panel id="teamsPanelComp" contest="contest" contest-id="contestId"></teams-panel>
 
   <div class="separator-bar"></div>
   <div class="info-complete-bar" ng-if="!isModeViewing">

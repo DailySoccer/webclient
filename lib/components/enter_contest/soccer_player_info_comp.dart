@@ -63,8 +63,6 @@ class SoccerPlayerInfoComp {
       });
   }
 
-
-
   void updateSoccerPlayerInfoFromService() {
     var matchEventName = "", matchEventDate = "";
 

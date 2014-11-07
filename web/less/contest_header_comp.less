@@ -1,7 +1,19 @@
-#headerContestWidget {
+#contestHeader {
+	background-color: @tramaBlue;
+	display: block;
+
+	// Reserva de sitio
+	@media (max-width: @screen-sm-max) {
+		min-height: 120px;
+	}
+	@media (min-width: @screen-md-min) {
+		min-height: 140px;
+	}
+}
+
+#contestHeaderWrapper {
 	.make-row(15);
 	position: relative;
-	background-color: @tramaBlue;
 	padding: 10px 5px;
 	// Padding para todas las versiones excepto xs
 	@media (min-width: @screen-sm-min) {
@@ -30,9 +42,6 @@
 		}
 		@media (max-width: @screen-sm-max) {
 			margin: 10px 0 0;
-		}
-		@media (max-width: @screen-xs-max) {
-			max-width: 70%;
 		}
 	}
 

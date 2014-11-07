@@ -21,6 +21,7 @@ class MyContestsComp implements DetachAware {
   String waitingSortType = "contest-start-time_asc";
   String historySortType = "contest-start-time_desc";
 
+  bool liveDataLoaded = false;
   bool get hasLiveContests    => myContestsService.liveContests     == null ? false : myContestsService.liveContests.length     > 0;
   bool get hasWaitingContests => myContestsService.waitingContests  == null ? false : myContestsService.waitingContests.length  > 0;
   bool get hasHistoryContests => myContestsService.historyContests  == null ? false : myContestsService.historyContests.length  > 0;
@@ -32,7 +33,7 @@ class MyContestsComp implements DetachAware {
 
     myContestsService.clear();
 
-    _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE, _updateLive);
+    _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS, _updateLive);
   }
 
   void onWaitingRowClick(Contest contest) {
@@ -64,7 +65,7 @@ class MyContestsComp implements DetachAware {
   }
 
   void detach() {
-    _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE);
+    _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS);
   }
 
   void tabChange(String tab) {
@@ -78,7 +79,9 @@ class MyContestsComp implements DetachAware {
 
   void _updateLive() {
     myContestsService.refreshMyContests()
-      .then((_) {})
+      .then((_) {
+        liveDataLoaded = true;
+      })
       .catchError((error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW));
   }
 

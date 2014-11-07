@@ -9,14 +9,15 @@ class HostServer {
   static String get url {
 
     if (_url == null) {
-      if (window.location.href.contains("live=true")) {
+      if (window.location.protocol.contains("file") || window.location.protocol.contains("chrome-extension")) {
         _url = "http://backend.epiceleven.com";
       }
-      else if (_isLocalHost()) {
+      else if(window.location.href.contains("live=true") ||
+              window.location.origin.contains("epiceleven.com")) {
+        _url = "http://backend.epiceleven.com";
+      }
+      else if (_isLocalHost) {
         _url = "http://localhost:9000";
-      }
-      else if (window.location.origin.contains("epiceleven.com")) {
-        _url = "http://backend.epiceleven.com";
       }
       else {
         _url = window.location.origin;
@@ -28,9 +29,10 @@ class HostServer {
     return _url;
   }
 
-  static bool _isLocalHost() => (window.location.hostname.contains("127.") || window.location.hostname.contains("localhost"));
-  static bool get isDev      => _isLocalHost();
-  static bool get isProd     => !isDev;
+  static bool get _isLocalHost => (window.location.hostname.contains("127.") || window.location.hostname.contains("localhost"));
+  static bool get _isForcedProd => window.location.href.contains("prod=true");
+  static bool get isDev => _isLocalHost && !_isForcedProd;
+  static bool get isProd => !isDev;
 
   static String _url;
 }

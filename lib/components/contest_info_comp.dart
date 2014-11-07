@@ -20,13 +20,12 @@ class ContestInfoComp implements ShadowRootAware {
   Map currentInfoData;
   List contestants  = [];
 
-  @NgTwoWay("contest-data")
-  Contest get contestData => _contestData;
-  void    set contestData(Contest value) {
-    _contestData = value;
+  @NgOneWay("contest-id-data")
+  void    set contestData(String contestId) {
+    _contestId = contestId;
 
-    if (value != null) {
-      updateContestInfo(value.contestId);
+    if (_contestId != null) {
+      updateContestInfo(_contestId);
     }
   }
 
@@ -65,7 +64,7 @@ class ContestInfoComp implements ShadowRootAware {
         currentInfoData["prize"]          = contest.prizePool.toString();
         currentInfoData["startDateTime"]  = DateTimeService.formatDateTimeLong(contest.startDate).toUpperCase();
         currentInfoData["contestants"]    = contestants;
-        currentInfoData["prizes"]         = contest.prizes.map((value) => {'value' : value}).toList();
+        currentInfoData["prizes"]         = contest.prizes.map((value) => {'value' : value.toString()}).toList();
         currentInfoData["matchesInvolved"]= contest.matchEvents;
 
         contestants.clear();
@@ -83,13 +82,13 @@ class ContestInfoComp implements ShadowRootAware {
 
   void goToEnterContest(obj) {
     if (_goToEnterContest) {
-      _router.go('enter_contest', { "contestId": contestData.contestId, "parent": "lobby" });
+      _router.go('enter_contest', { "contestId": _contestId, "parent": "lobby" });
     }
   }
 
   void enterContest() {
     _goToEnterContest = true;
-    _router.go('enter_contest', { "contestId": contestData.contestId, "parent": "lobby" });
+    _router.go('enter_contest', { "contestId": _contestId, "parent": "lobby" });
   }
 
   String formatMatchDate(DateTime date) {
@@ -112,6 +111,6 @@ class ContestInfoComp implements ShadowRootAware {
 
   Timer _timer;
 
-  Contest _contestData;
+  String _contestId;
   bool _goToEnterContest = false;
 }

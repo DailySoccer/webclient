@@ -20,16 +20,9 @@ class ContestInfoComp implements ShadowRootAware {
   Map currentInfoData;
   List contestants  = [];
 
-  @NgOneWay("contest-id-data")
-  void    set contestData(String contestId) {
-    _contestId = contestId;
+  ContestInfoComp(this._routeProvider, this._router, this._contestService, this._flashMessage) {
 
-    if (_contestId != null) {
-      updateContestInfo(_contestId);
-    }
-  }
-
-  ContestInfoComp(this._router, this._contestService, this._flashMessage) {
+    isPopUp = (_router.activePath.length > 0) && (_router.activePath.first.name == 'lobby');
 
     currentInfoData = {  /*  hay que utilizar esta variable para meter los datos de este componente  */
       'description'     : 'cargando datos...',
@@ -43,14 +36,12 @@ class ContestInfoComp implements ShadowRootAware {
       'contestants'     : contestants,
       'prizes'          : []
     };
+
+    _contestId = _routeProvider.route.parameters['contestId'];
+    updateContestInfo(_contestId);
   }
 
   void onShadowRoot(emulatedRoot) {
-    if (_router.activePath.length > 0) {
-      if ( _router.activePath[0].name == 'lobby') {
-        isPopUp = true;
-      }
-    }
   }
 
   void updateContestInfo(String contestId) {
@@ -106,6 +97,8 @@ class ContestInfoComp implements ShadowRootAware {
   }
 
   Router _router;
+  RouteProvider _routeProvider;
+
   ActiveContestsService _contestService;
   FlashMessagesService _flashMessage;
 

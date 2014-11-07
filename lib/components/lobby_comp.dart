@@ -1,6 +1,5 @@
 library lobby_comp;
 
-import 'dart:html';
 import 'dart:async';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/active_contests_service.dart';
@@ -9,7 +8,6 @@ import 'package:webclient/services/refresh_timers_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/models/contest.dart';
-import 'package:webclient/utils/js_utils.dart';
 
 @Component(
   selector: 'lobby',
@@ -19,7 +17,6 @@ import 'package:webclient/utils/js_utils.dart';
 class LobbyComp implements DetachAware {
 
   ActiveContestsService activeContestsService;
-  String selectedContestId;
   ScreenDetectorService scrDet;
   LoadingService loadingService;
 
@@ -79,12 +76,7 @@ class LobbyComp implements DetachAware {
   // Mostramos la ventana modal con la información de ese torneo, si no es la versión movil.
   void onRowClick(Contest contest) {
     if (scrDet.isDesktop) {
-      selectedContestId = contest.contestId;
-
-      // Esto soluciona el bug por el que no se muestra la ventana modal en Firefox;
-      var modal = querySelector('#infoContestModal');
-      modal.style.display = "block";
-      JsUtils.runJavascript('#infoContestModal', 'modal', null);
+      _router.go('lobby.contest-info', { "contestId": contest.contestId });
     }
     else {
       onActionClick(contest);
@@ -101,10 +93,6 @@ class LobbyComp implements DetachAware {
 
   // Handler que recibe cual es la nueva mediaquery aplicada según el ancho de la pantalla.
   void onScreenWidthChange(String msg) {
-    if (msg != "desktop") {
-      // Ocultamos la ventana modal
-      JsUtils.runJavascript('#infoContestModal', 'modal', 'hide');
-    }
   }
 
   void detach() {

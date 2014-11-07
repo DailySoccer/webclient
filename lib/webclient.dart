@@ -28,6 +28,7 @@ import 'package:webclient/components/navigation/main_menu_slide_comp.dart';
 import 'package:webclient/components/navigation/footer_comp.dart';
 import 'package:webclient/components/global_connection_comp.dart';
 import 'package:webclient/components/flash_messages_comp.dart';
+import 'package:webclient/components/modal_comp.dart';
 
 import 'package:webclient/components/paginator_comp.dart';
 import 'package:webclient/components/contest_filters_comp.dart';
@@ -112,6 +113,7 @@ class WebClientApp extends Module {
     bind(FooterComp);
     bind(FlashMessageComp);
     bind(GlobalConnectionComp);
+    bind(ModalComp);
 
     bind(LoginComp);
     bind(JoinComp);
@@ -242,7 +244,12 @@ class WebClientApp extends Module {
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
           enter: (RouteEnterEvent e) => _enterPage(e),
           leave: (RouteLeaveEvent e) => _leavePage(e),
-          viewHtml: '<lobby></lobby>'
+          viewHtml: '<lobby></lobby>',
+          mount: {
+            'contest-info': ngRoute(
+                path: '/contest-info/:contestId',
+                viewHtml: '<contest-info></contest-info>')
+          }
       )
       ,'my_contests': ngRoute(
           path: '/my_contests',

@@ -1,115 +1,112 @@
 <modal ng-if="isPopUp">
-  <div>
-    <div class="modal-info-head">
-        <div class="contest-info-header-row">
+  <div class="modal-info-head">
+      <div class="contest-info-header-row">
 
-            <div class="column-name">
-                <div class="inner-content">
-                    <span class="title-text">{{currentInfoData['description']}}</span>
-                    <span class="content-text">{{currentInfoData['name']}}</span>
+          <div class="column-name">
+              <div class="inner-content">
+                  <span class="title-text">{{currentInfoData['description']}}</span>
+                  <span class="content-text">{{currentInfoData['name']}}</span>
+              </div>
+          </div>
+
+          <div class="column-entry-fee">
+              <!--<div class="inner-icon">
+                  <span class="price-icon"></span>
+              </div>-->
+              <div class="inner-content">
+                  <span class="title-text">ENTRADA</span>
+                  <span class="content-text">{{currentInfoData['entry']}}€</span>
+              </div>
+          </div>
+
+          <div class="column-prize">
+              <div class="inner-icon">
+                  <span class="prize-icon"></span>
+              </div>
+              <div class="inner-content">
+                  <span class="title-text">PREMIOS</span>
+                  <span class="content-text">{{currentInfoData['prize']}}€</span>
+              </div>
+          </div>
+
+      </div>
+
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+        <span class="glyphicon glyphicon-remove"></span>
+      </button>
+  </div>
+
+  <div class="modal-info-content">
+
+      <div class="tabs-background">
+        <!-- Nav tabs -->
+        <ul class="contest-info-tabs " id="modalInfoContestTabs">
+            <li class="tab active"><a  data-toggle="tab" ng-click="tabChange('info')">INFORMACIÓN</a></li>
+            <li class="tab"><a  data-toggle="tab" ng-click="tabChange('contestants')">PARTICIPANTES</a></li>
+            <li class="tab"><a  data-toggle="tab" ng-click="tabChange('prizes')">PREMIOS</a></li>
+            <li class="buton-place">
+              <button id="btn-go-enter-contest" class="btn btn-primary" ng-click="enterContest()">ENTRAR</button>
+            </li>
+        </ul>
+      </div>
+
+      <div class="contest-info-content" id="modalInfoContestTabContent">
+          <div class=" tab-content">
+
+              <!-- Tab panes -->
+              <div class="tab-pane active" id="info">
+                  <p class="instructions">{{currentInfoData['rules']}}</p>
+                  <div class="start-date">COMIENZA EL {{currentInfoData['startDateTime']}}</div>
+
+                  <div class="matches-involved">
+                      <div class="match"   ng-repeat="match in currentInfoData['matchesInvolved']">
+                          <p class="teams">{{match.soccerTeamA.shortName}} - {{match.soccerTeamB.shortName}}</p>
+                          <p class="date">{{formatMatchDate(match.startDate)}}</p>
+                      </div>
+                  </div>
+                  <div class="clearfix"></div>
+                  <p class="bases-title">REGLAS DE PUNTUACIÓN</p>
+
+                  <div class="rules-description">
+                    <scoring-rules></scoring-rules>
+                  </div>
+              </div>
+
+              <div class="tab-pane" id="contestants">
+                <div class="contestant-list-wrapper ">
+                  <div ng-if="currentInfoData['contestants'].isEmpty" class="default-info-text">
+                    Todavía no hay participantes en este concurso. <br> Anímate a ser el primero.
+                  </div>
+                  <div class="contestant-list">
+                    <div class="contestant-element"ng-repeat="contestant in currentInfoData['contestants']">
+                      <div class="contestant-position">{{$index + 1}}º</div>
+                      <div class="contestant-name">{{contestant.name}}</div>
+                      <div class="contestant-points">{{contestant.wins + ' '}}<span class="prize-currency">Ganados</span></div>
+                    </div>
+                  </div>
                 </div>
-            </div>
+              </div>
 
-            <div class="column-entry-fee">
-                <!--<div class="inner-icon">
-                    <span class="price-icon"></span>
-                </div>-->
-                <div class="inner-content">
-                    <span class="title-text">ENTRADA</span>
-                    <span class="content-text">{{currentInfoData['entry']}}€</span>
-                </div>
-            </div>
+              <div class="tab-pane" id="prizes">
 
-            <div class="column-prize">
-                <div class="inner-icon">
-                    <span class="prize-icon"></span>
-                </div>
-                <div class="inner-content">
-                    <span class="title-text">PREMIOS</span>
-                    <span class="content-text">{{currentInfoData['prize']}}€</span>
-                </div>
-            </div>
-
-        </div>
-
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-          <span class="glyphicon glyphicon-remove"></span>
-        </button>
-    </div>
-
-    <div class="modal-info-content">
-
-        <div class="tabs-background">
-          <!-- Nav tabs -->
-          <ul class="contest-info-tabs " id="modalInfoContestTabs">
-              <li class="tab active"><a  data-toggle="tab" ng-click="tabChange('info')">INFORMACIÓN</a></li>
-              <li class="tab"><a  data-toggle="tab" ng-click="tabChange('contestants')">PARTICIPANTES</a></li>
-              <li class="tab"><a  data-toggle="tab" ng-click="tabChange('prizes')">PREMIOS</a></li>
-              <li class="buton-place">
-                <button id="btn-go-enter-contest" class="btn btn-primary" ng-click="enterContest()">ENTRAR</button>
-              </li>
-          </ul>
-        </div>
-
-        <div class="contest-info-content" id="modalInfoContestTabContent">
-            <div class=" tab-content">
-
-                <!-- Tab panes -->
-                <div class="tab-pane active" id="info">
-                    <p class="instructions">{{currentInfoData['rules']}}</p>
-                    <div class="start-date">COMIENZA EL {{currentInfoData['startDateTime']}}</div>
-
-                    <div class="matches-involved">
-                        <div class="match"   ng-repeat="match in currentInfoData['matchesInvolved']">
-                            <p class="teams">{{match.soccerTeamA.shortName}} - {{match.soccerTeamB.shortName}}</p>
-                            <p class="date">{{formatMatchDate(match.startDate)}}</p>
-                        </div>
+                <div class="prizes-wrapper">
+                  <div ng-if="currentInfoData['prizes'].isEmpty" class="default-info-text">
+                    Este concurso no tiene premios
+                  </div>
+                  <div id="prizes-list">
+                    <div class="prize-element-wrapper" ng-repeat="prize in currentInfoData['prizes']">
+                      <div class="prize-element">
+                          {{$index + 1}}º &nbsp;&nbsp; {{prize.value}}€
+                      </div>
                     </div>
                     <div class="clearfix"></div>
-                    <p class="bases-title">REGLAS DE PUNTUACIÓN</p>
-
-                    <div class="rules-description">
-                      <scoring-rules></scoring-rules>
-                    </div>
-                </div>
-
-                <div class="tab-pane" id="contestants">
-                  <div class="contestant-list-wrapper ">
-                    <div ng-if="currentInfoData['contestants'].isEmpty" class="default-info-text">
-                      Todavía no hay participantes en este concurso. <br> Anímate a ser el primero.
-                    </div>
-                    <div class="contestant-list">
-                      <div class="contestant-element"ng-repeat="contestant in currentInfoData['contestants']">
-                        <div class="contestant-position">{{$index + 1}}º</div>
-                        <div class="contestant-name">{{contestant.name}}</div>
-                        <div class="contestant-points">{{contestant.wins + ' '}}<span class="prize-currency">Ganados</span></div>
-                      </div>
-                    </div>
                   </div>
                 </div>
 
-                <div class="tab-pane" id="prizes">
-
-                  <div class="prizes-wrapper">
-                    <div ng-if="currentInfoData['prizes'].isEmpty" class="default-info-text">
-                      Este concurso no tiene premios
-                    </div>
-                    <div id="prizes-list">
-                      <div class="prize-element-wrapper" ng-repeat="prize in currentInfoData['prizes']">
-                        <div class="prize-element">
-                            {{$index + 1}}º &nbsp;&nbsp; {{prize.value}}€
-                        </div>
-                      </div>
-                      <div class="clearfix"></div>
-                    </div>
-                  </div>
-
-                </div>
-            </div>
-        </div>
-
-    </div>
-    </div>
+              </div>
+          </div>
+      </div>
+  </div>
 </modal>
 
 <div ng-if="!isPopUp">

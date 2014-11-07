@@ -30,8 +30,10 @@ class ModalComp implements DetachAware, ShadowRootAware {
 
   void onShadowRoot(emulatedRoot) {
     _element.style.display = "block";
-    JsUtils.runJavascript('#modal', 'modal', null);
-    JsUtils.runJavascript('#modal', 'on', {'hidden.bs.modal': onHidden});
+    new Timer(new Duration(seconds:0), () {
+      JsUtils.runJavascript('#modal', 'modal', null);
+      JsUtils.runJavascript('#modal', 'on', {'hidden.bs.modal': onHidden});
+      });
   }
 
   void onHidden(dynamic sender) {

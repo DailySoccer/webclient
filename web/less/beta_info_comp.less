@@ -18,6 +18,9 @@
 	.title_white {
 		.title();
 		color: @white;
+		@media (max-width: @screen-xs-max) {
+			.exo_light(16pt, @white);
+		}
 	}
 	.beta-info-wrapper {
 		//.make-xs-column(12);

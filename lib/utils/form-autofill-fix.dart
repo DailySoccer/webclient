@@ -27,7 +27,7 @@ class FormAutofillDecorator {
   Element formElement;
 
   FormAutofillDecorator(Element this.formElement){
-   _activateButtonTimer = new Timer(const Duration(seconds:0), () => forceInputActivity());
+   new Timer(const Duration(seconds:0), () => forceInputActivity());
   }
 
   void forceInputActivity() {
@@ -40,7 +40,6 @@ class FormAutofillDecorator {
       input.dispatchEvent(new Event('change'));
       input.dispatchEvent(new Event('keydown'));
     }
-    _activateButtonTimer.cancel();
+
   }
-  Timer _activateButtonTimer;
 }

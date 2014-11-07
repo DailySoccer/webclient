@@ -306,15 +306,15 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
             </div>
           </div>
         </form>
-        <!--Facebook stuff-->
+        <!--Facebook stuff
         <div class="input-group">
         <div class="new-row" style="padding-left:10%;padding-right:10%;margin-bottom:20px;">
         <button class="button-join btn btn-default btn-block" id="fblogin" ng-click="loginFB()" style="background-color:#4a65a0;">
         <img src="images/iconFacebook.png"></img>
         Entra con Facebook</button>
         </div>
-        </div>
-        <!--/Facebookstuff-->
+        </div>-->
+
 
       </div>
 
@@ -322,7 +322,7 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
 
   </div>
 </div>
-
+<!--/Facebookstuff
  <script id='facebook-jssdk' src="//connect.facebook.net/es_ES/sdk.js"></script>
  <script>
  window.fbAsyncInit = function() {
@@ -333,7 +333,7 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
    });
  };
  </script>
-"""));
+-->"""));
 tc.put("packages/webclient/components/account/remember_password_comp.html", new HttpResponse(200, r"""<div id="rememberPasswordRoot" ng-show="!loadingService.isLoading">
   <div id="loginBox" class="main-box">
 

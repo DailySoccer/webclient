@@ -75,6 +75,16 @@
       showSpinner();
     </script>
 
+    <!--
+    <script src="http://google.github.io/tracing-framework/bin/wtf_trace_web_js_compiled.js"></script>
+    <script>
+      wtf.remote.connect({
+        'wtf.remote.target': 'ws://localhost:8084'
+      });
+      wtf.trace.start();
+    </script>
+    -->
+
     <div id="mainWrapper" class="wrapper-content-container">
       <main-menu-slide></main-menu-slide>
       <div id="mainContent" class="main-content-container">
@@ -85,17 +95,17 @@
     </div>
     <footer id="mainFooter"></footer>
 
-    <script>
+    <script defer="defer">
       (function() {
         var script = document.createElement('script');
         if (navigator.userAgent.indexOf('(Dart)') === -1) {
           script.src = "main.dart.js";
+          script.setAttribute("defer", "defer");
         }
         else {
           script.src = "main.dart";
           script.type = "application/dart";
         }
-        //script.setAttribute("defer", "defer");
         document.body.appendChild(script);
       })();
     </script>

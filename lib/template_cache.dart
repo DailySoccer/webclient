@@ -286,6 +286,7 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
             </div>
           </div>
           <!-- BUTTONS -->
+
           <div class="input-group">
             <div class="new-row">
               <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">ENTRAR</button>
@@ -305,13 +306,34 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
             </div>
           </div>
         </form>
+        <!--Facebook stuff-->
+        <div class="input-group">
+        <div class="new-row" style="padding-left:10%;padding-right:10%;margin-bottom:20px;">
+        <button class="button-join btn btn-default btn-block" id="fblogin" ng-click="loginFB()" style="background-color:#4a65a0;">
+        <img src="images/iconFacebook.png"></img>
+        Entra con Facebook</button>
+        </div>
+        </div>
+        <!--/Facebookstuff-->
 
       </div>
 
     </div>
 
   </div>
-</div>"""));
+</div>
+
+ <script id='facebook-jssdk' src="//connect.facebook.net/es_ES/sdk.js"></script>
+ <script>
+ window.fbAsyncInit = function() {
+   FB.init({
+     appId      : '732983533416791',
+     xfbml      : true,
+     version    : 'v2.1'
+   });
+ };
+ </script>
+"""));
 tc.put("packages/webclient/components/account/remember_password_comp.html", new HttpResponse(200, r"""<div id="rememberPasswordRoot" ng-show="!loadingService.isLoading">
   <div id="loginBox" class="main-box">
 
@@ -1080,7 +1102,7 @@ tc.put("packages/webclient/components/enter_contest/soccer_players_list_comp.htm
 
 <div class="soccer-players-list">
 
-  <div class="soccer-players-list-slot" ng-repeat="slot in sortedSoccerPlayers | orderBy:sortList" fast-player-slot="slot" ng-non-bindable>
+  <div class="soccer-players-list-slot" ng-repeat="slotSP in sortedSoccerPlayers | orderBy:sortList" fast-player-slot="slotSP" ng-non-bindable>
   </div>
 
 </div>"""));
@@ -1250,7 +1272,7 @@ tc.put("packages/webclient/components/legalese_and_help/beta_info_comp.html", ne
   <div class="block-blue-header">
     <div class="title_white">ESTA SECCIÓN NO ESTA DISPONIBLE</div>
   </div>
-  <div class="info-wrapper">
+  <div class="beta-info-wrapper">
     <div class="texto">
       Lo sentimos, esta es una versión beta de Epic Eleven.<br>
       Próximamente podrás jugar y ganar premios en metálico y tendrás habilitadas<br>
@@ -2148,151 +2170,98 @@ tc.put("packages/webclient/components/lobby_comp.html", new HttpResponse(200, r"
 </div>"""));
 tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(200, r"""<div id="myContest" ng-cloak>
   <div class="default-header-text">MIS TORNEOS</div>
+
   <!-- Nav tabs -->
   <ul  id="myContestMenuTabs" class="my-contest-tabs" role="tablist">
-
-    <li class="active"> <!-- LIVE CONTESTS CONTENT-->
-      <a role="tab" data-toggle="tab" ng-click="tabChange('live-contest-content')">
-        En Vivo
-        <span class="contest-count" ng-if="hasLiveContests">
-          {{myContestsService.liveContests.length}}
-        </span>
-      </a>
-    </li>
-
-    <li> <!-- WAITING CONTESTS TAB-->
-      <a role="tab" data-toggle="tab" ng-click="tabChange('waiting-contest-content')">Próximos</a>
-    </li>
-
-    <li> <!-- HISTORY CONTESTS TAB-->
-      <a role="tab" data-toggle="tab" ng-click="tabChange('history-contest-content')">Historial</a>
-    </li>
+    <!-- LIVE CONTESTS CONTENT-->
+    <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('live-contest-content')"> En Vivo <span class="contest-count" ng-if="hasLiveContests">{{myContestsService.liveContests.length}}</span></a></li>
+     <!-- WAITING CONTESTS TAB-->
+    <li><a role="tab" data-toggle="tab" ng-click="tabChange('waiting-contest-content')">Próximos</a></li>
+    <!-- HISTORY CONTESTS TAB-->
+    <li><a role="tab" data-toggle="tab" ng-click="tabChange('history-contest-content')">Historial</a></li>
   </ul>
 
+  <!-- Tab panes -->
   <div class="tabs">
-    <!-- Tab panes -->
     <div class="tab-content">
 
       <!-- LIVE CONTESTS CONTENT-->
       <div class="tab-pane active" id="live-contest-content">
 
-        <!-- Barra de resumen de actividad -->
-        <div class="resume-bar" ng-if="!hasLiveContests && liveDataLoaded">
-             <span class="information-no-contest">AQUÍ PODRÁS CONSULTAR EN TIEMPO REAL LOS TORNEOS QUE TENGAS ACTIVOS</span>
-        </div>
-        <div class="tab-content-wrapper">
+        <div class="tab-content-wrapper" ng-switch="!hasLiveContests  && dataLoaded">
+          <!-- Barra de resumen de actividad -->
+          <div class="resume-bar"><span class="information-no-contest">{{hasLiveContests ? "TIENES " + myContestsService.liveContests.length + " TORNEOS ACTIVOS" : "AQUÍ PODRÁS CONSULTAR EN TIEMPO REAL LOS TORNEOS QUE TENGAS ACTIVOS"}}</span></div>
+
           <!-- Banner de información de lista vacía -->
-          <div class="no-contest" ng-if="!hasLiveContests  && liveDataLoaded">
-            <div class="no-contests-wrapper">
-              <div class="default-info-text">
-               EN ESTE MOMENTO, NO ESTÁS JUGANDO<br>NINGÚN TORNEO
-              </div>
-              <div class="no-contests-text">
-                CONSULTA LA LISTA DE TUS <strong data-toggle="tab" ng-click="tabChange('waiting-contest-content')">PRÓXIMOS TORNEOS</strong> PARA VER CUÁNDO EMPIEZAN
-              </div>
+          <div class="no-contests-wrapper" ng-switch-when="true">
+            <div class="no-contests-content">
+              <div class="default-info-text">EN ESTE MOMENTO, NO ESTÁS JUGANDO<br>NINGÚN TORNEO</div>
+              <div class="no-contests-text">CONSULTA LA LISTA DE TUS <strong data-toggle="tab" ng-click="tabChange('waiting-contest-content')">PRÓXIMOS TORNEOS</strong> PARA VER CUÁNDO EMPIEZAN</div>
             </div>
-            <div class="my-no-contest-bottom-row">
+            <div class="no-contest-bottom-row">
               <button class="btn-go-to-contest" ng-click="gotoLobby()">IR A LOS TORNEOS</button>
             </div>
           </div>
-
           <!-- lista de concursos -->
-          <div class="list-container" ng-if="hasLiveContests && liveDataLoaded">
-            <contests-list id="liveContests"
-                           sorting="liveSortType"
-                           contests-list="myContestsService.liveContests"
-                           on-action-click='onLiveActionClick(contest)'
-                           on-row-click='onLiveRowClick(contest)'>
+          <div class="list-container" ng-switch-when="false">
+            <contests-list id="liveContests" contests-list="myContestsService.liveContests"
+                           sorting="liveSortType" on-action-click='onLiveActionClick(contest)' on-row-click='onLiveRowClick(contest)'>
             </contests-list>
           </div>
         </div>
+
       </div>
 
       <!-- WAITING CONTESTS CONTENT-->
       <div class="tab-pane" id="waiting-contest-content">
 
+        <div class="tab-content-wrapper" ng-switch="!hasWaitingContests && dataLoaded">
         <!-- Barra de resumen de actividad sin registros-->
-        <div class="resume-bar" ng-if="!hasWaitingContests && liveDataLoaded">
-          <span class="information-no-contest">EN ESTE ESPACIO PODRÁS CONSULTAR Y MODIFICAR LOS EQUIPOS QUE TIENES PENDIENTES DE JUGAR EN UN TORNEO</span>
-        </div>
-
-        <!-- Barra de resumen de actividad con registros-->
-        <!--<div class="resume-bar" ng-if="hasWaitingContests">
-          <div class="change-player">
-            <button class="btn-change-player" ng-click="">CAMBIO RÁPIDO DE JUGADOR</button>
-          </div>
-        </div>-->
-        <div class="tab-content-wrapper">
+        <div class="resume-bar"><span class="information-no-contest">{{hasWaitingContests ? "TE HAS INSCRITO EN " + myContestsService.waitingContests.length + " TORNEOS" : "AQUÍ PODRÁS CONSULTAR Y MODIFICAR LOS EQUIPOS QUE TIENES PENDIENTES DE JUGAR EN UN TORNEO"}}</span></div>
           <!-- Banner de información de lista vacía -->
-          <div class="no-contest" ng-if="!hasWaitingContests && liveDataLoaded">
-            <div class="no-contests-wrapper">
-              <div class="default-info-text">
-               EN ESTE MOMENTO, NO TIENES UN<br>EQUIPO CREADO PARA NINGÚN TORNEO
-              </div>
-              <div class="no-contests-text">
-                VE A LA LISTA DE TORNEOS, ELIGE UNO Y EMPIEZA A JUGAR
-              </div>
+          <div class="no-contests-wrapper" ng-switch-when="true">
+            <div class="no-contests-content">
+              <div class="default-info-text">EN ESTE MOMENTO, NO TIENES UN<br>EQUIPO CREADO PARA NINGÚN TORNEO</div>
+              <div class="no-contests-text">VE A LA LISTA DE TORNEOS, ELIGE UNO Y EMPIEZA A JUGAR</div>
             </div>
-            <div class="my-no-contest-bottom-row">
+            <div class="no-contest-bottom-row">
               <button class="btn-go-to-contest" ng-click="gotoLobby()">IR A LOS TORNEOS</button>
             </div>
           </div>
-
           <!-- lista de concursos -->
-          <div class="list-container" ng-if="hasWaitingContests && liveDataLoaded">
-            <contests-list id="waitingContests"
-                           sorting="waitingSortType"
-                           contests-list='myContestsService.waitingContests'
-                           on-action-click='onWaitingActionClick(contest)'
-                           on-row-click='onWaitingRowClick(contest)'>
+          <div class="list-container" ng-switch-when="false">
+            <contests-list id="waitingContests" contests-list='myContestsService.waitingContests'
+                           sorting="waitingSortType" on-action-click='onWaitingActionClick(contest)' on-row-click='onWaitingRowClick(contest)'>
             </contests-list>
           </div>
         </div>
+
       </div>
 
       <!-- HISTORY CONTESTS CONTENT-->
-      <div class="tab-pane" id="history-contest-content">
-        <!-- Barra de resumen de actividad sin registros-->
-        <div class="resume-bar" ng-if="!hasHistoryContests">
-          <span class="information-no-contest">AQUÍ PODRÁS CONSULTAR Y REPASAR TODOS LOS TORNEOS QUE HAS JUGADO: TUS EQUIPOS, RIVALES PUNTUACIONES…</span>
-        </div>
-        <!-- Barra de resumen de actividad con registros-->
-        <div class="resume-bar" ng-if="hasHistoryContests">
-          <!--<div class="refresh-text">Actualizado cada 24 horas</div>-->
-          <div class="info">
-            <span class="info-registers-count">{{myContestsService.historyContests.length}} REGISTROS</span>
-            <span class="info-wins-count">{{totalHistoryContestsWinner}} GANADOS</span>
-            <!--<span class="info-available-money">{{totalHistoryContestsPrizes}} €</span>-->
-          </div>
-          <!--<div class="data-to-csv">
-            <button class="btn-data-to-csv" ng-click="">DESCARGAR COMO CSV</button>
-          </div>-->
-        </div>
-
+      <div class="tab-pane" id="history-contest-content" ng-switch="!hasHistoryContests && dataLoaded">
         <div class="tab-content-wrapper">
-        <!-- Banner de información de lista vacía -->
-          <div class="no-contest" ng-if="!hasHistoryContests && liveDataLoaded">
-            <div class="no-contests-wrapper">
-              <div class="default-info-text">
-               TODAVÍA NO HAS JUGADO NINGÚN TORNEO
-              </div>
-              <div class="no-contests-text">
-                VE A LA LISTA DE TORNEOS, ELIGE UNO Y EMPIEZA A JUGAR
-              </div>
+          <!-- Barra de resumen de actividad sin registros-->
+          <div class="resume-bar">
+            <span class="information-no-contest">
+              {{hasHistoryContests ? myContestsService.historyContests.length + " REGISTROS " + totalHistoryContestsWinner + " GANADOS" : "AQUÍ PODRÁS REPASAR TODOS LOS TORNEOS QUE HAS JUGADO: TUS EQUIPOS, RIVALES, PUNTUACIONES…"}}
+            </span>
+          </div>
+          <!-- Banner de información de lista vacía -->
+          <div class="no-contests-wrapper" ng-switch-when="true">
+            <div class="no-contests-content">
+              <div class="default-info-text">TODAVÍA NO HAS JUGADO NINGÚN TORNEO</div>
+              <div class="no-contests-text">VE A LA LISTA DE TORNEOS, ELIGE UNO Y EMPIEZA A JUGAR</div>
             </div>
-            <div class="my-no-contest-bottom-row">
+            <div class="no-contest-bottom-row">
               <button class="btn-go-to-contest" ng-click="gotoLobby()">IR A LOS TORNEOS</button>
             </div>
           </div>
 
           <!-- lista de concursos -->
-          <div class="list-container" ng-if="hasHistoryContests && liveDataLoaded">
-            <!--<div class="text-refresh-history">Actualizado cada 24 horas</div>-->
-            <contests-list id="historyContests"
-                           sorting="historySortType"
-                           contests-list="myContestsService.historyContests"
-                           on-action-click='onHistoryActionClick(contest)'
-                           on-row-click='onHistoryRowClick(contest)'>
+          <div class="list-container" ng-switch-when="false">
+            <contests-list id="historyContests" contests-list="myContestsService.historyContests"
+                           sorting="historySortType" on-action-click='onHistoryActionClick(contest)' on-row-click='onHistoryRowClick(contest)'>
             </contests-list>
           </div>
         </div>

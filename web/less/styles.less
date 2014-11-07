@@ -167,11 +167,19 @@ html { overflow-y: scroll; }
 	@media (max-width: @screen-xs-max) {
 		margin: 0 auto -204px;
 	}
-	#mainContent:after {
-		height: 146px;
-		@media (max-width: @screen-xs-max) {
-			height: 204px;
-		}
+}
+// Contenedor interior que envuelve al contenido. Fijamos el width con el.
+.main-content-container {
+	.container-fluid();
+	.clean-paddings();
+	@media (min-width: @screen-md-min) {
+		.container();
+		.clean-paddings();
+	}
+	
+	padding-bottom: 146px;
+	@media (max-width: @screen-xs-max) {
+		padding-bottom: 204px;
 	}
 }
 
@@ -205,16 +213,6 @@ html { overflow-y: scroll; }
 
 .center-text {
 	text-align: center;
-}
-// Contenedor interior que envuelve al contenido. Fijamos el width con el.
-.main-content-container {
-	.container-fluid();
-	.clean-paddings();
-	
-	@media (min-width: @screen-md-min) {
-		.container();
-		.clean-paddings();
-	}
 }
 
 .price-icon {

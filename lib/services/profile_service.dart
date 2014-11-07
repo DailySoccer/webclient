@@ -48,6 +48,10 @@ class ProfileService {
     return completer.future;
   }
 
+  Future<Map> facebookLogin(String accessToken) {
+    return _server.facebookLogin(accessToken).then(_onLoginResponse);
+  }
+
   Future<Map> _onLoginResponse(Map loginResponseJson) {
     _server.setSessionToken(loginResponseJson["sessionToken"]); // to make the getUserProfile call succeed
     return _server.getUserProfile()

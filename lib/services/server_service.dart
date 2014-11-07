@@ -17,6 +17,7 @@ abstract class ServerService {
   Future<Map> resetPassword(String password, String stormPathTokenId);
   Future<Map> signup(String firstName, String lastName, String email, String nickName, String password);
   Future<Map> login(String email, String password);
+  Future<Map> facebookLogin(String accessToken);
   Future<Map> getUserProfile();
   Future<Map> changeUserProfile(String firstName, String lastName, String email, String nickName, String password);
   Future<Map> askForPasswordReset(String email);
@@ -82,6 +83,10 @@ class DailySoccerServer implements ServerService {
 
   Future<Map> login(String email, String password) {
     return _innerServerCall("${HostServer.url}/login", postData: {'email': email, 'password': password});
+  }
+  
+  Future<Map> facebookLogin(String accessToken) {
+    return _innerServerCall("${HostServer.url}/facebooklogin", postData: {'accessToken': accessToken});
   }
 
   Future<Map> askForPasswordReset(String email) {

@@ -36,6 +36,7 @@
             </div>
           </div>
           <!-- BUTTONS -->
+
           <div class="input-group">
             <div class="new-row">
               <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">ENTRAR</button>
@@ -55,6 +56,15 @@
             </div>
           </div>
         </form>
+        <!--Facebook stuff-->
+        <div class="input-group">
+        <div class="new-row" style="padding-left:10%;padding-right:10%;margin-bottom:20px;">
+        <button class="button-join btn btn-default btn-block" id="fblogin" ng-click="loginFB()" style="background-color:#4a65a0;">
+        <img src="images/iconFacebook.png"></img>
+        Entra con Facebook</button>
+        </div>
+        </div>
+        <!--/Facebookstuff-->
 
       </div>
 
@@ -62,3 +72,14 @@
 
   </div>
 </div>
+
+ <script id='facebook-jssdk' src="//connect.facebook.net/es_ES/sdk.js"></script>
+ <script>
+ window.fbAsyncInit = function() {
+   FB.init({
+     appId      : '732983533416791',
+     xfbml      : true,
+     version    : 'v2.1'
+   });
+ };
+ </script>

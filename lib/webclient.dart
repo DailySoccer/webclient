@@ -70,7 +70,6 @@ import 'package:webclient/components/legalese_and_help/beta_info_comp.dart';
 import 'package:webclient/utils/host_server.dart';
 import 'package:webclient/template_cache.dart';
 import 'dart:async';
-import 'package:webclient/utils/game_metrics.dart';
 
 class WebClientApp extends Module {
 

@@ -879,19 +879,6 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
     </div>
   </div>
 
-</div>
-
-<div id="soccer-player-info-wrapper" ng-if="scrDet.isXsScreen">
-  <soccer-player-info instance-soccer-player="selectedInstanceSoccerPlayer"></soccer-player-info>
-</div>
-
-<!-- Modal Window que envuelve la informacion de concurso, mostrada cuando clickamos en cualquiera de los campos de la fila -->
-<div  id="infoContestModal" class="modal fade" tabindex="-1" role="dialog" ng-if="!scrDet.isXsScreen">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content-soccer-player-info">
-      <soccer-player-info instance-soccer-player="selectedInstanceSoccerPlayer"></soccer-player-info>
-    </div>
-  </div>
 </div>"""));
 tc.put("packages/webclient/components/enter_contest/lineup_selector_comp.html", new HttpResponse(200, r"""<div class="lineup-selector">
   <div class="lineup-selector-slot" ng-repeat="slot in enterContestComp.lineupSlots" ng-click="enterContestComp.onSlotSelected($index)" ng-class="getSlotClassColor($index)">
@@ -1080,7 +1067,7 @@ tc.put("packages/webclient/components/enter_contest/soccer_players_list_comp.htm
 
 <div class="soccer-players-list">
 
-  <div class="soccer-players-list-slot" ng-repeat="slot in sortedSoccerPlayers | orderBy:sortList" fast-player-slot="slot" ng-non-bindable>
+  <div class="soccer-players-list-slot" ng-repeat="slotSP in sortedSoccerPlayers | orderBy:sortList" fast-player-slot="slotSP" ng-non-bindable>
   </div>
 
 </div>"""));
@@ -2135,15 +2122,6 @@ tc.put("packages/webclient/components/lobby_comp.html", new HttpResponse(200, r"
                   entry-fee-filter="lobbyFilters['FILTER_ENTRY_FEE']" name-filter="lobbyFilters['FILTER_CONTEST_NAME']"
                   contest-count="contestCount">
   </contests-list>
-
-  <!-- Modal Window que envuelve la informacion de concurso, mostrada cuando clickamos en cualquiera de los campos de la fila -->
-  <div  id="infoContestModal" class="modal fade" tabindex="-1" role="dialog">
-      <div class="modal-dialog modal-lg">
-        <div id="infoContent" class="modal-content">
-          <contest-info contest-id-data="selectedContestId"></contest-info>
-        </div>
-      </div>
-  </div>
 
 </div>"""));
 tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(200, r"""<div id="myContest" ng-cloak>

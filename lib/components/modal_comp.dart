@@ -1,10 +1,10 @@
 library modal_comp;
 
 import 'dart:html';
-import 'dart:async';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/js_utils.dart';
+import 'dart:async';
 
 @Component(
   selector: 'modal',
@@ -13,24 +13,26 @@ import 'package:webclient/utils/js_utils.dart';
 )
 class ModalComp implements DetachAware, ShadowRootAware {
 
-  ModalComp(this._router, this._scrDet, this._element) {
-    _streamListener = _scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
+  ModalComp(this._router, this._element, ScreenDetectorService scrDet) {
+    _streamListener = scrDet.mediaScreenWidth.listen(onScreenWidthChange);
   }
 
-  // Handler que recibe cual es la nueva mediaquery aplicada según el ancho de la pantalla.
-  void onScreenWidthChange(String msg) {
-    if (msg != "desktop") {
-      // Ocultamos la ventana modal
-      JsUtils.runJavascript('#modal', 'modal', 'hide');
-    }
-  }
+  @override void onShadowRoot(emulatedRoot) {
+    // _view.domRead(() {
+    new Timer(new Duration(seconds: 0), () {
+      _element.style.display = "block";
 
-  void onShadowRoot(emulatedRoot) {
-    _element.style.display = "block";
-    new Timer(new Duration(seconds:0), () {
       JsUtils.runJavascript('#modal', 'modal', null);
       JsUtils.runJavascript('#modal', 'on', {'hidden.bs.modal': onHidden});
-      });
+    });
+  }
+
+  void onScreenWidthChange(String msg) {
+    // La ventana modal siempre se auto oculta cuando pasamos de una resolucion a otra, salvo que la
+    // resolucion destino sea dekstop
+    if (msg != "desktop") {
+      JsUtils.runJavascript('#modal', 'modal', 'hide');
+    }
   }
 
   void onHidden(dynamic sender) {
@@ -43,7 +45,7 @@ class ModalComp implements DetachAware, ShadowRootAware {
   }
 
   void _closeModal() {
-    bool isModalOpen = (document.querySelector('body').classes.contains('modal-open'));
+    bool isModalOpen = document.querySelector('body').classes.contains('modal-open');
     if (isModalOpen) {
       document.querySelector('body').classes.remove('modal-open');
       document.querySelector('.modal-backdrop').remove();
@@ -54,5 +56,4 @@ class ModalComp implements DetachAware, ShadowRootAware {
 
   Element _element;
   var _streamListener;
-  ScreenDetectorService _scrDet;
 }

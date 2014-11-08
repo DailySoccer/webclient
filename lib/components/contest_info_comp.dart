@@ -14,7 +14,7 @@ import 'package:webclient/services/flash_messages_service.dart';
   templateUrl: 'packages/webclient/components/contest_info_comp.html',
   useShadowDom: false
 )
-class ContestInfoComp implements ShadowRootAware {
+class ContestInfoComp {
 
   bool isPopUp = false;
   Map currentInfoData;
@@ -39,9 +39,6 @@ class ContestInfoComp implements ShadowRootAware {
 
     _contestId = _routeProvider.route.parameters['contestId'];
     updateContestInfo(_contestId);
-  }
-
-  void onShadowRoot(emulatedRoot) {
   }
 
   void updateContestInfo(String contestId) {

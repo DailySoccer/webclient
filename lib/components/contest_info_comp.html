@@ -25,13 +25,13 @@
               </div>
               <div class="inner-content">
                   <span class="title-text">PREMIOS</span>
-                  <span class="content-text">{{currentInfoData['prize']}}€</span>
+                  <span class="content-text">{{currentInfoData['prize']}}€</span>-
               </div>
           </div>
 
       </div>
 
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+      <button type="button" class="close" data-dismiss="modal">
         <span class="glyphicon glyphicon-remove"></span>
       </button>
   </div>
@@ -41,9 +41,9 @@
       <div class="tabs-background">
         <!-- Nav tabs -->
         <ul class="contest-info-tabs " id="modalInfoContestTabs">
-            <li class="tab active"><a  data-toggle="tab" ng-click="tabChange('info')">INFORMACIÓN</a></li>
-            <li class="tab"><a  data-toggle="tab" ng-click="tabChange('contestants')">PARTICIPANTES</a></li>
-            <li class="tab"><a  data-toggle="tab" ng-click="tabChange('prizes')">PREMIOS</a></li>
+            <li class="tab active"><a data-toggle="tab" ng-click="tabChange('info')">INFORMACIÓN</a></li>
+            <li class="tab"><a data-toggle="tab" ng-click="tabChange('contestants')">PARTICIPANTES</a></li>
+            <li class="tab"><a data-toggle="tab" ng-click="tabChange('prizes')">PREMIOS</a></li>
             <li class="buton-place">
               <button id="btn-go-enter-contest" class="btn btn-primary" ng-click="enterContest()">ENTRAR</button>
             </li>
@@ -59,7 +59,7 @@
                   <div class="start-date">COMIENZA EL {{currentInfoData['startDateTime']}}</div>
 
                   <div class="matches-involved">
-                      <div class="match"   ng-repeat="match in currentInfoData['matchesInvolved']">
+                      <div class="match" ng-repeat="match in currentInfoData['matchesInvolved']">
                           <p class="teams">{{match.soccerTeamA.shortName}} - {{match.soccerTeamB.shortName}}</p>
                           <p class="date">{{formatMatchDate(match.startDate)}}</p>
                       </div>

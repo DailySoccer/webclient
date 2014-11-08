@@ -146,7 +146,9 @@ class EnterContestComp implements DetachAware {
     }
     else {
       isSelectingSoccerPlayer = true;
-      scrollToElement('.enter-contest-tabs');
+      if (scrDet.isXsScreen) {
+        scrollToElement('.enter-contest-tabs');
+      }
 
       // Cuando seleccionan un slot del lineup cambiamos siempre el filtro de la soccer-player-list, especialmente
       // en movil que cambiamos de vista a "solo ella".
@@ -317,7 +319,7 @@ class EnterContestComp implements DetachAware {
   }
 
   void scrollToElement(String selector) {
-    //window.scrollTo(0, querySelector(selector).offsetTop);
+    window.scrollTo(0, querySelector(selector).offsetTop);
   }
 
   Router _router;

@@ -50,9 +50,6 @@ class LobbyComp implements DetachAware {
     _streamListener = scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
 
     _calculateInfoBarText();
-
-    // Como lobby es la url por defecto, hay que ponerle el fondo blanco al wrapper para que no sea transparente todo el espacio entre el contenido y el footer.
-    querySelector('.wrapper-content-container').style.backgroundColor = 'white';
   }
 
   /********* METHODS */

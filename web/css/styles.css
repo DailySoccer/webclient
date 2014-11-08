@@ -20242,7 +20242,6 @@ html {
   min-height: 100%;
   height: auto !important;
   height: 100%;
-  max-width: 970px;
 }
 @media (min-width: 768px) {
   .wrapper-content-container {
@@ -20253,6 +20252,10 @@ html {
   .wrapper-content-container {
     margin: 0 auto -204px;
   }
+}
+.bleach {
+  max-width: 970px;
+  background-color: #ffffff;
 }
 .main-content-container {
   margin-right: auto;

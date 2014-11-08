@@ -20,8 +20,9 @@ import 'package:webclient/services/scoring_rules_service.dart';
 
 import 'package:webclient/components/landing_page_comp.dart';
 
-import 'package:webclient/utils/form-autofill-fix.dart';
-import 'package:webclient/utils/element-autofocus.dart';
+import 'package:webclient/components/decorators/form-autofill-dec.dart';
+import 'package:webclient/components/decorators/element-autofocus_dec.dart';
+import 'package:webclient/components/decorators/bleach_dec.dart';
 import 'package:webclient/utils/limit_to_dot.dart';
 
 import 'package:webclient/components/navigation/main_menu_slide_comp.dart';
@@ -104,6 +105,7 @@ class WebClientApp extends Module {
 
     bind(FormAutofillDecorator);
     bind(AutoFocusDecorator);
+    bind(BleachDecorator);
     bind(LimitToDot);
 
     bind(LandingPageComp);
@@ -172,7 +174,7 @@ class WebClientApp extends Module {
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
           enter: (RouteEnterEvent e) => _enterPage(e),
           leave: (RouteLeaveEvent e) => _leavePage(e),
-          viewHtml: '<beta-info></beta-info>'
+          viewHtml: '<beta-info bleach></beta-info>'
       )
       ,'login': ngRoute(
           path: '/login',
@@ -200,91 +202,91 @@ class WebClientApp extends Module {
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
           enter: (RouteEnterEvent e) => _enterPage(e),
           leave: (RouteLeaveEvent e) => _leavePage(e),
-          viewHtml: '<help-info></help-info>'
+          viewHtml: '<help-info bleach></help-info>'
       )
       ,'legal_info': ngRoute(
           path: '/legal_info',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
           enter: (RouteEnterEvent e) => _enterPage(e),
           leave: (RouteLeaveEvent e) => _leavePage(e),
-          viewHtml: '<legal-info></legal-info>'
+          viewHtml: '<legal-info bleach></legal-info>'
       )
       ,'terminus_info': ngRoute(
           path: '/terminus_info',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
           enter: (RouteEnterEvent e) => _enterPage(e),
           leave: (RouteLeaveEvent e) => _leavePage(e),
-          viewHtml: '<terminus-info></terminus-info>'
+          viewHtml: '<terminus-info bleach></terminus-info>'
       )
       ,'policy_info': ngRoute(
           path: '/policy_info',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
           enter: (RouteEnterEvent e) => _enterPage(e),
           leave: (RouteLeaveEvent e) => _leavePage(e),
-          viewHtml: '<policy-info></policy-info>'
+          viewHtml: '<policy-info bleach></policy-info>'
       )
       ,'remember_password': ngRoute(
           path: '/remember_password',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
           enter: (RouteEnterEvent e) => _enterPage(e),
           leave: (RouteLeaveEvent e) => _leavePage(e),
-          viewHtml: '<remember-password></remember-password>'
+          viewHtml: '<remember-password bleach></remember-password>'
       )
       ,'user_profile': ngRoute(
           path: '/user_profile',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
           enter: (RouteEnterEvent e) => _enterPage(e),
           leave: (RouteLeaveEvent e) => _leavePage(e),
-          viewHtml: '<user-profile></user-profile>'
+          viewHtml: '<user-profile bleach></user-profile>'
       )
       ,'lobby': ngRoute(
           path: '/lobby',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
           enter: (RouteEnterEvent e) => _enterPage(e),
           leave: (RouteLeaveEvent e) => _leavePage(e),
-          viewHtml: '<lobby></lobby>'
+          viewHtml: '<lobby bleach></lobby>'
       )
       ,'my_contests': ngRoute(
           path: '/my_contests',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
           enter: (RouteEnterEvent e) => _enterPage(e),
           leave: (RouteLeaveEvent e) => _leavePage(e),
-          viewHtml: '<my-contests></my-contests>'
+          viewHtml: '<my-contests bleach></my-contests>'
       )
       ,'live_contest': ngRoute(
           path: '/live_contest/:parent/:contestId',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
           enter: (RouteEnterEvent e) => _enterPage(e),
           leave: (RouteLeaveEvent e) => _leavePage(e),
-          viewHtml: '<view-contest></view-contest>'
+          viewHtml: '<view-contest bleach></view-contest>'
       )
       ,'history_contest': ngRoute(
           path: '/history_contest/:parent/:contestId',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
           enter: (RouteEnterEvent e) => _enterPage(e),
           leave: (RouteLeaveEvent e) => _leavePage(e),
-          viewHtml: '<view-contest></view-contest>'
+          viewHtml: '<view-contest bleach></view-contest>'
       )
       ,'enter_contest': ngRoute(
           path: '/enter_contest/:parent/:contestId',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
           enter: (RouteEnterEvent e) => _enterPage(e),
           leave: (RouteLeaveEvent e) => _leavePage(e),
-          viewHtml: '<enter-contest></enter-contest>'
+          viewHtml: '<enter-contest bleach></enter-contest>'
       )
       ,'edit_contest': ngRoute(
           path: '/edit_contest/:parent/:contestId/:contestEntryId',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
           enter: (RouteEnterEvent e) => _enterPage(e),
           leave: (RouteLeaveEvent e) => _leavePage(e),
-          viewHtml: '<enter-contest></enter-contest>'
+          viewHtml: '<enter-contest bleach></enter-contest>'
       )
       ,'view_contest_entry': ngRoute(
           path: '/view_contest_entry/:parent/:viewContestEntryMode/:contestId',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
           enter: (RouteEnterEvent e) => _enterPage(e),
           leave: (RouteLeaveEvent e) => _leavePage(e),
-          viewHtml: '<view-contest-entry></view-contest-entry>'
+          viewHtml: '<view-contest-entry bleach></view-contest-entry>'
       )
     });
   }

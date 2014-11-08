@@ -2,7 +2,6 @@ library contest_info_comp;
 
 import 'package:angular/angular.dart';
 import 'dart:html';
-import 'dart:async';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/contest_entry.dart';
 import 'package:webclient/services/datetime_service.dart';
@@ -20,7 +19,7 @@ class ContestInfoComp {
   Map currentInfoData;
   List contestants  = [];
 
-  ContestInfoComp(this._routeProvider, this._router, this._contestService, this._flashMessage) {
+  ContestInfoComp(RouteProvider routeProvider, this._router, this._contestService, this._flashMessage) {
 
     isPopUp = (_router.activePath.length > 0) && (_router.activePath.first.name == 'lobby');
 
@@ -37,7 +36,7 @@ class ContestInfoComp {
       'prizes'          : []
     };
 
-    _contestId = _routeProvider.route.parameters['contestId'];
+    _contestId = routeProvider.route.parameters['contestId'];
     updateContestInfo(_contestId);
   }
 
@@ -68,14 +67,7 @@ class ContestInfoComp {
       });
   }
 
-  void goToEnterContest(obj) {
-    if (_goToEnterContest) {
-      _router.go('enter_contest', { "contestId": _contestId, "parent": "lobby" });
-    }
-  }
-
   void enterContest() {
-    _goToEnterContest = true;
     _router.go('enter_contest', { "contestId": _contestId, "parent": "lobby" });
   }
 
@@ -84,23 +76,18 @@ class ContestInfoComp {
   }
 
   void tabChange(String tab) {
-    List<dynamic> allContentTab = document.querySelectorAll(".tab-pane");
-    allContentTab.forEach((element) => element.classes.remove('active'));
+    querySelectorAll(".tab-pane").classes.remove('active');
 
-    Element contentTab = document.querySelector("#" + tab);
+    Element contentTab = querySelector("#" + tab);
     if (contentTab != null) {
       contentTab.classes.add("active");
     }
   }
 
   Router _router;
-  RouteProvider _routeProvider;
 
   ActiveContestsService _contestService;
   FlashMessagesService _flashMessage;
 
-  Timer _timer;
-
   String _contestId;
-  bool _goToEnterContest = false;
 }

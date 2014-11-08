@@ -42,9 +42,7 @@ class LobbyComp implements DetachAware {
     }
 
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_CONTEST_LIST, refreshActiveContest);
-    _nextTournamentInfoTimer = new Timer.periodic(new Duration(seconds: 1), (Timer t) =>  _calculateInfoBarText());
-
-    _streamListener = scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
+    _nextTournamentInfoTimer = new Timer.periodic(new Duration(seconds: 1), (Timer t) => _calculateInfoBarText());
 
     _calculateInfoBarText();
   }
@@ -91,17 +89,11 @@ class LobbyComp implements DetachAware {
     lobbySorting = fieldName;
   }
 
-  // Handler que recibe cual es la nueva mediaquery aplicada según el ancho de la pantalla.
-  void onScreenWidthChange(String msg) {
-  }
-
   void detach() {
     _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_CONTEST_LIST);
     _nextTournamentInfoTimer.cancel();
-    _streamListener.cancel();
   }
 
-  dynamic _streamListener;
   Router _router;
   RefreshTimersService _refreshTimersService;
   Timer _nextTournamentInfoTimer;

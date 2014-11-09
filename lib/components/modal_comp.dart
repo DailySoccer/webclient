@@ -13,9 +13,7 @@ import 'dart:async';
 )
 class ModalComp implements DetachAware, ShadowRootAware {
 
-  ModalComp(this._router, this._element, ScreenDetectorService scrDet) {
-    _streamListener = scrDet.mediaScreenWidth.listen(onScreenWidthChange);
-  }
+  ModalComp(this._router, this._element);
 
   @override void onShadowRoot(emulatedRoot) {
     // _view.domRead(() {
@@ -27,20 +25,11 @@ class ModalComp implements DetachAware, ShadowRootAware {
     });
   }
 
-  void onScreenWidthChange(String msg) {
-    // La ventana modal siempre se auto oculta cuando pasamos de una resolucion a otra, salvo que la
-    // resolucion destino sea dekstop
-    if (msg != "desktop") {
-      JsUtils.runJavascript('#modal', 'modal', 'hide');
-    }
-  }
-
   void onHidden(dynamic sender) {
     _router.go(_router.activePath.first.name, {});
   }
 
   void detach() {
-    _streamListener.cancel();
     _closeModal();
   }
 
@@ -53,7 +42,5 @@ class ModalComp implements DetachAware, ShadowRootAware {
   }
 
   Router _router;
-
   Element _element;
-  var _streamListener;
 }

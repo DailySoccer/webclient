@@ -174,8 +174,8 @@ class Contest {
     return (numOwners * 100 / contestEntries.length).truncate();
   }
 
-  InstanceSoccerPlayer getInstanceSoccerPlayer(String templateSoccerPlayerId) {
-    return instanceSoccerPlayers.containsKey(templateSoccerPlayerId) ? instanceSoccerPlayers[templateSoccerPlayerId] : null;
+  InstanceSoccerPlayer getInstanceSoccerPlayer(String instanceSoccerPlayerId) {
+    return instanceSoccerPlayers.containsKey(instanceSoccerPlayerId) ? instanceSoccerPlayers[instanceSoccerPlayerId] : null;
   }
 
   String getPrize(int index) {

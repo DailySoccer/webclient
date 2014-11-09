@@ -12,6 +12,26 @@
 	}
 }
 
+.action-buttons {
+	.visible-xs();
+	.make-xs-column(12, 5px);
+	padding-top: 5px;
+	padding-bottom: 10px;
+	background-color: @greyUltraDark;
+	&.bottom { background-color: @white; }
+
+	.btn-cancel {
+		.make-xs-column(5.8);
+		.btn-cancel();
+	}
+	.btn-add {
+		.make-xs-column(5.8);
+		.pull-right();
+		.btn();
+		.btn-primary();
+	}
+}
+
 .soccer-player-info-header {
 	@media (max-width: @screen-xs-max) {
 		.make-border(1px, solid none none none, @orangeHeaderLight);
@@ -33,15 +53,18 @@
 		top: 15px;
 		right: 15px;
 	}
-	.button-wrapper {
-		.make-xs-column(6);
+	.next-match-wrapper {
+		.hidden-xs();
 		.make-sm-column(12);
-		@media (min-width: @screen-sm-min) {
-			display: none;
-		}
-		padding: 15px 5px;
+	
+		#gradient.vertical(@blueGradientLight, @blueGradientDark, 49%, 51%);
+		display: block;
+		position: absolute;
+		top: 148px;
+		z-index: 999;
+		padding: 5px 5px 10px;
+		
 		.next-match {
-			.hidden-xs();
 			.opensans_bold(9pt, @blueLight);
 			display: inline-block;
 			margin-top: 10px;
@@ -49,37 +72,15 @@
 				color: @white;
 			}
 		}
-	}
-	@media (min-width: @screen-sm-min) {
-		.button-wrapper + .button-wrapper {
-			#gradient.vertical(@blueGradientLight, @blueGradientDark, 49%, 51%);
-			display: block;
-			position: absolute;
-			top: 148px;
-			z-index: 999;
-			padding: 5px 5px 10px;
-		}
-	}
-	.btn-cancel-soccer-player-info {
-		.btn-cancel();
-		.btn-block();
-		.hidden-sm();
-		.hidden-md();
-		.hidden-lg();
-	}
-	.btn-add-soccer-player-info {
-		.btn();
-		@media (max-width: @screen-xs-max) {
-			.btn-primary();
-			.btn-block();
-		}
-		@media (min-width: @screen-sm-min) {
+
+		.btn-add {
 			.btn-orange();
 			.pull-right();
 			padding-left: 40px;
 			padding-right: 40px;
 		}
 	}
+
 	.description-header {
 		@media (min-width: @screen-sm-min) {
 			background-color: @greyUltraDark;
@@ -404,30 +405,6 @@
 			height: 80px;
 			padding: 10px;
 			text-align: left;
-		}
-	}
-	
-	.action-buttons {
-		.hidden-sm();
-		.hidden-md();
-		.hidden-lg();
-		.make-xs-column(12, 5px);
-		padding-top: 5px;
-		padding-bottom: 10px;
-		background-color: @white;
-		.button-wrapper {
-			.make-xs-column(6);
-			padding: 15px 5px;
-
-			.btn-cancel-soccer-player-info {
-				.btn-cancel();
-				.btn-block();
-			}
-			.btn-add-soccer-player-info {
-				.btn();
-				.btn-primary();
-				.btn-block();
-			}
 		}
 	}
 }

@@ -1,4 +1,4 @@
-<modal ng-if="isPopUp">
+<modal id="contestInfoModal" ng-if="isModal">
   <div class="modal-info-head">
       <div class="contest-info-header-row">
 
@@ -109,11 +109,11 @@
   </div>
 </modal>
 
-<div ng-if="!isPopUp">
+<div ng-if="!isModal">
   <div id="contestInfoTabbed">
     <p class="title">{{currentInfoData['rules']}}</p>
     <div class="matches-involved">
-        <div class="match"   ng-repeat="match in currentInfoData['matchesInvolved']">
+        <div class="match" ng-repeat="match in currentInfoData['matchesInvolved']">
             <p class="teams">{{match.soccerTeamA.shortName}} - {{match.soccerTeamB.shortName}}</p>
             <p class="date">{{formatMatchDate(match.startDate)}}</p>
         </div>

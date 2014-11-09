@@ -2,7 +2,6 @@ library modal_comp;
 
 import 'dart:html';
 import 'package:angular/angular.dart';
-import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'dart:async';
 
@@ -30,15 +29,15 @@ class ModalComp implements DetachAware, ShadowRootAware {
   }
 
   void detach() {
-    _closeModal();
-  }
-
-  void _closeModal() {
     bool isModalOpen = document.querySelector('body').classes.contains('modal-open');
     if (isModalOpen) {
       document.querySelector('body').classes.remove('modal-open');
       document.querySelector('.modal-backdrop').remove();
     }
+  }
+
+  static void close() {
+    JsUtils.runJavascript('#modal', 'modal', 'hide');
   }
 
   Router _router;

@@ -12,6 +12,7 @@ import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/components/enter_contest/enter_contest_comp.dart';
 import 'package:intl/intl.dart';
+import 'package:webclient/components/modal_comp.dart';
 
 
 @Component(
@@ -25,36 +26,38 @@ class SoccerPlayerInfoComp {
 
   EnterContestComp enterContestComp;
 
-  @NgOneWay("instance-soccer-player")
-  void set instanceSoccerPlayerData(InstanceSoccerPlayer value) {
-    _instanceSoccerPlayer = value;
-    if (value != null) {
-      updateSoccerPlayerInfo(_instanceSoccerPlayer.id);
-    }
-  }
-
   List<Map> medias;
   Map currentInfoData;
   List partidos  = new List();
   List seasons = [];
   List tempSeasons = [];
   bool matchesPlayed;
+  bool cannotAddPlayer;
 
-  SoccerPlayerInfoComp(this._router, this._soccerPlayerService, this._flashMessage, this.enterContestComp, this.scrDet) {
+  SoccerPlayerInfoComp(this._flashMessage, this.enterContestComp, this.scrDet, this._soccerPlayerService, RouteProvider routeProvider, Router router) {
+
+    var instanceSoccerPlayerId = routeProvider.route.parameters['instanceSoccerPlayerId'];
+    _instanceSoccerPlayer = _soccerPlayerService.getInstanceSoccerPlayer(routeProvider.route.parent.parameters["contestId"], instanceSoccerPlayerId);
+
+    // TODO: Nos vienen recargando.
+    if (_instanceSoccerPlayer == null) {
+      return;
+    }
+
     currentInfoData = {
-      'id'              : '',
-      'fieldPos'        : '',
-      'team'            : '',
-      'name'            : '',
-      'fantasyPoints'   : '',
+      'id'              : _instanceSoccerPlayer.id,
+      'fieldPos'        : _instanceSoccerPlayer.fieldPos.abrevName,
+      'team'            : _instanceSoccerPlayer.soccerTeam.name.toUpperCase(),
+      'name'            : _instanceSoccerPlayer.soccerPlayer.name.toUpperCase(),
+      'fantasyPoints'   : _instanceSoccerPlayer.soccerPlayer.fantasyPoints,
       'matches'         : '',
-      'salary'          : '',
+      'salary'          : _instanceSoccerPlayer.salary,
       'nextMatchEvent'  : ''
     };
-  }
 
-  void updateSoccerPlayerInfo(String soccerPlayerId) {
-    _soccerPlayerService.refreshSoccerPlayerInfo(soccerPlayerId)
+    cannotAddPlayer = !enterContestComp.isSlotAvailableForSoccerPlayer(currentInfoData['id']);
+
+    _soccerPlayerService.refreshSoccerPlayerInfo(instanceSoccerPlayerId)
       .then((_) {
         updateSoccerPlayerInfoFromService();
       })
@@ -77,13 +80,7 @@ class SoccerPlayerInfoComp {
     }
 
     SoccerPlayer soccerPlayer = _soccerPlayerService.soccerPlayer;
-    currentInfoData['id'] = _instanceSoccerPlayer.id;
-    currentInfoData['fieldPos'] = _instanceSoccerPlayer.fieldPos.abrevName;
-    currentInfoData['team'] = _instanceSoccerPlayer.soccerTeam.name.toUpperCase();
-    currentInfoData['name'] = soccerPlayer.name.toUpperCase();
-    currentInfoData['fantasyPoints'] = soccerPlayer.fantasyPoints;
     currentInfoData['matches'] = soccerPlayer.stats.length;
-    currentInfoData['salary'] = _instanceSoccerPlayer.salary;
     currentInfoData['nextMatchEvent'] = matchEventName + matchEventDate;
 
     partidos.clear();
@@ -248,8 +245,7 @@ class SoccerPlayerInfoComp {
   }
 
   void tabChange(String tab) {
-    List<dynamic> allContentTab = document.querySelectorAll(".soccer-player-info-content .tab-pane");
-    allContentTab.forEach((element) => element.classes.remove('active'));
+    querySelectorAll(".soccer-player-info-content .tab-pane").classes.remove('active');
 
     Element contentTab = document.querySelector("#" + tab);
     if (contentTab != null) {
@@ -257,7 +253,11 @@ class SoccerPlayerInfoComp {
     }
   }
 
-  Router _router;
+  void onAddClicked() {
+    enterContestComp.addSoccerPlayerToLineup(currentInfoData['id']);
+    ModalComp.close();
+  }
+
   SoccerPlayerService _soccerPlayerService;
   FlashMessagesService _flashMessage;
 

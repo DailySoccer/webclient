@@ -7,21 +7,25 @@ import 'package:webclient/models/contest_entry.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/active_contests_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
+import 'package:webclient/services/screen_detector_service.dart';
+import 'package:webclient/components/modal_comp.dart';
 
 @Component(
   selector: 'contest-info',
   templateUrl: 'packages/webclient/components/contest_info_comp.html',
   useShadowDom: false
 )
-class ContestInfoComp {
+class ContestInfoComp implements DetachAware {
 
-  bool isPopUp = false;
+  bool isModal = false;
   Map currentInfoData;
   List contestants  = [];
 
-  ContestInfoComp(RouteProvider routeProvider, this._router, this._contestService, this._flashMessage) {
+  ContestInfoComp(ScreenDetectorService scrDet, RouteProvider routeProvider, this._router, this._contestService, this._flashMessage) {
 
-    isPopUp = (_router.activePath.length > 0) && (_router.activePath.first.name == 'lobby');
+    _streamListener = scrDet.mediaScreenWidth.listen(onScreenWidthChange);
+
+    isModal = (_router.activePath.length > 0) && (_router.activePath.first.name == 'lobby');
 
     currentInfoData = {  /*  hay que utilizar esta variable para meter los datos de este componente  */
       'description'     : 'cargando datos...',
@@ -38,6 +42,17 @@ class ContestInfoComp {
 
     _contestId = routeProvider.route.parameters['contestId'];
     updateContestInfo(_contestId);
+  }
+
+  void detach() {
+    _streamListener.cancel();
+  }
+
+  void onScreenWidthChange(String msg) {
+    // Solo nos mostramos como modal en desktop
+    if (isModal) {
+      ModalComp.close();
+    }
   }
 
   void updateContestInfo(String contestId) {
@@ -84,6 +99,7 @@ class ContestInfoComp {
     }
   }
 
+  var _streamListener;
   Router _router;
 
   ActiveContestsService _contestService;

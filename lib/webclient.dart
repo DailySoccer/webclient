@@ -98,7 +98,6 @@ class WebClientApp extends Module {
     bind(FlashMessagesService);
 
     bind(ActiveContestsService);
-
     bind(MyContestsService);
     bind(SoccerPlayerService);
     bind(ScoringRulesService);
@@ -246,8 +245,8 @@ class WebClientApp extends Module {
           leave: (RouteLeaveEvent e) => _leavePage(e),
           viewHtml: '<lobby></lobby>',
           mount: {
-            'contest-info': ngRoute(
-                path: '/contest-info/:contestId',
+            'contest_info': ngRoute(
+                path: '/contest_info/:contestId',
                 viewHtml: '<contest-info></contest-info>')
           }
       )
@@ -277,7 +276,12 @@ class WebClientApp extends Module {
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
           enter: (RouteEnterEvent e) => _enterPage(e),
           leave: (RouteLeaveEvent e) => _leavePage(e),
-          viewHtml: '<enter-contest></enter-contest>'
+          viewHtml: '<enter-contest></enter-contest>',
+          mount: {
+            'soccer_player_info': ngRoute(
+              path: '/soccer_player_info/:instanceSoccerPlayerId',
+              viewHtml: '<soccer-player-info></soccer-player-info>')
+          }
       )
       ,'edit_contest': ngRoute(
           path: '/edit_contest/:parent/:contestId/:contestEntryId',

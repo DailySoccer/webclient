@@ -15,7 +15,6 @@ import 'package:webclient/models/match_event.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/contest_entry.dart';
 import "package:webclient/models/instance_soccer_player.dart";
-import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/utils/string_utils.dart';
 
 
@@ -82,9 +81,7 @@ class EnterContestComp implements DetachAware {
 
         // Si nos viene el torneo para editar la alineación
         if (_editingContestEntry) {
-          contestEntryId = _routeProvider.route.parameters['contestEntryId'];
-
-          ContestEntry contestEntry = _myContestService.lastContest.getContestEntry(contestEntryId);
+          ContestEntry contestEntry = _myContestService.lastContest.getContestEntry(_routeProvider.route.parameters['contestEntryId']);
 
           // Insertamos en el lineup el jugador
           contestEntry.instanceSoccerPlayers.forEach((instanceSoccerPlayer) {
@@ -114,24 +111,13 @@ class EnterContestComp implements DetachAware {
   }
 
   void tabChange(String tab) {
-    List<dynamic> allContentTab = document.querySelectorAll("#enter-contest-wrapper .tab-pane");
-    allContentTab.forEach((element) => element.classes.remove('active'));
-
-    Element contentTab = document.querySelector("#" + tab);
-    contentTab.classes.add("active");
+    querySelectorAll("#enter-contest-wrapper .tab-pane").classes.remove('active');
+    querySelector("#${tab}").classes.add("active");
   }
 
   void onScreenWidthChange(String value) {
-
     // Para que en la versión móvil aparezca la pantalla de lineup
     isSelectingSoccerPlayer = false;
-
-    if (value != "sm") {
-      // hacemos una llamada de jQuery para ocultar la ventana modal
-      JsUtils.runJavascript('#infoContestModal','modal', 'hide');
-      // Para cerrar el soccer player info una vez que cambiamos a otra resolución
-      closePlayerInfo();
-    }
   }
 
   void onSlotSelected(int slotIndex) {
@@ -338,37 +324,8 @@ class EnterContestComp implements DetachAware {
     isSelectingSoccerPlayer = false;
   }
 
-  void closePlayerInfo() {
-    DivElement enterContestWrapper = querySelector('#enter-contest-wrapper');
-    enterContestWrapper.style.display = "block";
-
-    DivElement soccerPlayerInfoWrapper = querySelector('#soccer-player-info-wrapper');
-    if (soccerPlayerInfoWrapper != null) {
-      soccerPlayerInfoWrapper.style.display = "none";
-    }
-  }
-
-  // Mostramos la ventana modal con la información de ese torneo, si no es la versión movil.
   void onRowClick(String soccerPlayerId) {
-    // Permitimos añadir el jugador solo en el caso de que exista hueco en el lineup (disabilitamos el botón de añadir)
-    var selectedSoccerPlayer = availableSoccerPlayers.firstWhere((soccerPlayer) => soccerPlayer["id"] == soccerPlayerId,
-                                                                 orElse: () => null);
-    if (selectedSoccerPlayer != null) {
-      selectedInstanceSoccerPlayer = selectedSoccerPlayer["instanceSoccerPlayer"];
-    }
-
-    // Version Small or Desktop => sacamos la modal
-    if (scrDet.isSmScreen || scrDet.isDesktop) {
-      var modal = querySelector('#infoContestModal');
-      modal.style.display = "block";
-      JsUtils.runJavascript('#infoContestModal', 'modal', null);
-    }
-    else { // Resto de versiones => mostramos el componente soccer_player_info_comp
-      DivElement enterContestWrapper = querySelector('#enter-contest-wrapper');
-      enterContestWrapper.style.display = "none";
-      DivElement soccerPlayerInfoWrapper = querySelector('#soccer-player-info-wrapper');
-      soccerPlayerInfoWrapper.style.display = "block";
-    }
+    _router.go("enter_contest.soccer_player_info",  { "instanceSoccerPlayerId": soccerPlayerId });
   }
 
   void addSoccerPlayerToLineup(String soccerPlayerId) {
@@ -376,13 +333,6 @@ class EnterContestComp implements DetachAware {
                                                                  orElse: () => null);
     if (selectedSoccerPlayer != null) {
       onSoccerPlayerSelected(selectedSoccerPlayer);
-    }
-
-    if (scrDet.isSmScreen || scrDet.isDesktop) {
-      JsUtils.runJavascript('#infoContestModal', 'modal', 'hide');
-    }
-    else {
-      closePlayerInfo();
     }
   }
 

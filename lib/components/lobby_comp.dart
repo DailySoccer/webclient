@@ -74,7 +74,7 @@ class LobbyComp implements DetachAware {
   // Mostramos la ventana modal con la información de ese torneo, si no es la versión movil.
   void onRowClick(Contest contest) {
     if (scrDet.isDesktop) {
-      _router.go('lobby.contest-info', { "contestId": contest.contestId });
+      _router.go('lobby.contest_info', { "contestId": contest.contestId });
     }
     else {
       onActionClick(contest);

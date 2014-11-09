@@ -4,6 +4,7 @@ import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'dart:async';
+import 'package:webclient/services/screen_detector_service.dart';
 
 @Component(
   selector: 'modal',
@@ -12,15 +13,20 @@ import 'dart:async';
 )
 class ModalComp implements DetachAware, ShadowRootAware {
 
-  ModalComp(this._router, this._element);
+  ModalComp(this._router, this._element, this._scrDet);
 
   @override void onShadowRoot(emulatedRoot) {
-    // _view.domRead(() {
-    new Timer(new Duration(seconds: 0), () {
+
+    // EL fade vamos a hacerlo solo donde hay potencia
+    if (_scrDet.isDesktop) {
+      _element.querySelector("#modalRoot").classes.add("fade");
+    }
+
+    new Timer(new Duration(seconds: 0), () {     // _view.domRead(() {
       _element.style.display = "block";
 
-      JsUtils.runJavascript('#modal', 'modal', null);
-      JsUtils.runJavascript('#modal', 'on', {'hidden.bs.modal': onHidden});
+      JsUtils.runJavascript('#modalRoot', 'modal', null);
+      JsUtils.runJavascript('#modalRoot', 'on', {'hidden.bs.modal': onHidden});
     });
   }
 
@@ -37,9 +43,10 @@ class ModalComp implements DetachAware, ShadowRootAware {
   }
 
   static void close() {
-    JsUtils.runJavascript('#modal', 'modal', 'hide');
+    JsUtils.runJavascript('#modalRoot', 'modal', 'hide');
   }
 
+  ScreenDetectorService _scrDet;
   Router _router;
   Element _element;
 }

@@ -45,16 +45,29 @@
 @import (inline) "../nouislider/jquery.nouislider.css";
 @import "../bootstrap-switch/less/bootstrap3/bootstrap-switch.less";
 
-html, body{     
+html, body {     
     height: 100%; 
    // overflow-y:scroll;
    // background-color: @black;
 }
 
+
+// Forzamos a que siempre aparezca la scrollbar vertical para que no haya saltos
+html { overflow-y: scroll; }
+
+// En pantallas > 1200 nos limitamos a > 992px
+@container-lg: @container-md;
+
  
 // Con esto le damos un minimo de altura a todo lo que no es el footer
 #injectedContainer {
 	min-height: 400px;
+}
+
+// El modal viene en boostrap como overflow-y: scroll (siempre se ve barra). Preferimos
+// que solo se vea si realmente se necesita.
+#modalRoot {
+	overflow-y: auto;
 }
 
 // Path Definitions
@@ -127,12 +140,6 @@ html, body{
 	box-shadow: 0px 5px 0px rgba(red(@orange), green(@orange), blue(@orange), 0.5);
 	.btn-pressed();
 }
-
-// Forzamos a que siempre aparezca la scrollbar vertical para que no haya saltos
-html { overflow-y: scroll; }
-
-// En pantallas > 1200 nos limitamos a > 992px
-@container-lg: @container-md;
 
 //Funcion para quitar paddings al container
 .clean-paddings {

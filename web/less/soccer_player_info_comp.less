@@ -1,410 +1,423 @@
-.modal-content-soccer-player-info {
-	.modal-content();
-	.container-fluid();
-	.clean-paddings();
-	background-color: @greyLight;
-}
+#modalSoccerPlayerInfo {
+	@media (min-width: @screen-sm-min) {
+		background-color: @greyLight;
 
-@media (max-width: @screen-sm-max) {
-	// El ancho de la modal en la versión Sm es liquido
-	.modal-dialog {
-		width: 96%;
+		.modal-dialog {
+			width: 96%; 		// Fluido
+			max-width: 1200px;	// Pero con un maximo. La chapuza del portero "para cuadrar" hace
+								// que no quede bien. Arreglar chapuza -> quedar bien.
+		}
 	}
-}
 
-.action-buttons {
-	.visible-xs();
-	.make-xs-column(12, 5px);
-	padding-top: 5px;
-	padding-bottom: 10px;
-	background-color: @greyUltraDark;
-	&.bottom { background-color: @white; }
-
-	.btn-cancel {
-		.make-xs-column(5.8);
-		.btn-cancel();
-	}
-	.btn-add {
-		.make-xs-column(5.8);
-		.pull-right();
-		.btn();
-		.btn-primary();
-	}
-}
-
-.soccer-player-info-header {
 	@media (max-width: @screen-xs-max) {
-		.make-border(1px, solid none none none, @orangeHeaderLight);
+		#modalRoot {
+			top: 68px;
+			background-color: @white;
+
+			.modal-dialog {
+				margin: 0px;
+			
+				.modal-content {
+					border: none;
+					border-radius: 0;
+					box-shadow: none;
+				}
+			}
+		}
+	}
+
+	.action-buttons {
+		.visible-xs();
+		.make-xs-column(12, 5px);
+		padding-top: 5px;
+		padding-bottom: 10px;
 		background-color: @greyUltraDark;
-		color: @white;
-		padding: 0 5px;
-	}
-	.container-fluid();
-	.clean-paddings();
-	.text-header {
-		.hidden-xs();
-		.opensans_normal(14pt, @greyDark);
-		line-height: 66px;
-		margin-left: 5px;
-	}
-	.close {
-		.hidden-xs();
-		position: absolute;
-		top: 15px;
-		right: 15px;
-	}
-	.next-match-wrapper {
-		.hidden-xs();
-		.make-sm-column(12);
-	
-		#gradient.vertical(@blueGradientLight, @blueGradientDark, 49%, 51%);
-		display: block;
-		position: absolute;
-		top: 148px;
-		z-index: 999;
-		padding: 5px 5px 10px;
-		
-		.next-match {
-			.opensans_bold(9pt, @blueLight);
-			display: inline-block;
-			margin-top: 10px;
-			strong {
-				color: @white;
-			}
-		}
+		&.bottom { background-color: @white; }
 
+		.btn-cancel {
+			.make-xs-column(5.8);
+			.btn-cancel();
+		}
 		.btn-add {
-			.btn-orange();
+			.make-xs-column(5.8);
 			.pull-right();
-			padding-left: 40px;
-			padding-right: 40px;
+			.btn();
+			.btn-primary();
 		}
 	}
 
-	.description-header {
-		@media (min-width: @screen-sm-min) {
-			background-color: @greyUltraDark;
-			margin-bottom: 49px;
-		}
-		.make-xs-column(12);
-		.clean-paddings();
-		padding: 10px 0;
-		.soccer-player-description {
-			.make-xs-column(12, 10px);
-			.make-sm-column(7, 10px);
-			.make-md-column(8, 10px);
-			.soccer-player-pos-team {
-				.make-xs-column(12, 0px);			
-				.opensans_bold(10pt, @greyMed);
-				span + span {
-					color: @white;
-				}
-			}
-			.soccer-player-name {
-				.make-xs-column(12, 0px);
-				.exo_light(20pt, @orangeHeaderLight);
-				margin-bottom: 5px;
-			}
-		}
-		.soccer-player-info-stats {
-			.make-xs-column(12);
-			.make-sm-column(5, 10px);
-			.make-md-column(4, 10px);
-			.clean-paddings();
-			.soccer-player-fantasy-points, .soccer-player-matches, .soccer-player-salary {
-				.make-xs-column(4, 10px);
-				text-align: center;
-				@media (min-width: @screen-sm-min) {
-					text-align: right;
-				}
-				span {
-					display: block;
-					.opensans_bold(9pt, @white);
-					padding-top: 5px;
-					@media (max-width: @screen-xs-max) {
-						background-color: @greyDark;
-						color: @greyLight;
-						border-top-right-radius: 4px;
-						border-top-left-radius: 4px;
-					}
-				}
-				span + span {
-					.exo_light(18pt, @greyLight);
-					padding-top: 0;
-					@media (max-width: @screen-xs-max) {
-						color: @white;
-						border-radius: 0;
-						border-bottom-right-radius: 4px;
-						border-bottom-left-radius: 4px;
-					}
-				}
-			}
-		}
-	}
-}
-
-.soccer-player-info-content {
-	// Color de fondo para las versiones Sm y Desktop
-	background-color: @white;
-	border-bottom-right-radius: 5px;
-	border-bottom-left-radius: 5px;
-	// Tabs menu
-	.soccer-player-info-tabs {
-		@tabheight: 50px;
-		.make-border(1px, solid none none none, @white);
-		.hidden-sm();
-		.hidden-md();
-		.hidden-lg();
-		.reset-list();
-		height: @tabheight;
-		> li {
-			.make-xs-column(6, 0px);
-			background-color: @greyMed;
-			.make-border(4px, none none solid none, @greyDark);
-			a {
-				cursor: pointer;
-				line-height: @tabheight;
-				text-align: center;
-				color: @white;
-				display: block;
-				text-decoration: none;
-			}
-		}
-		.active {
-			background-color: @greyDark;
-		}
-	}
-
-	.next-match, .date-season {
-		.hidden-sm();
-		.hidden-md();
-		.hidden-lg();
-		.opensans_bold(10pt, @greyDark);
-		strong {
-			color: @blueMed;
-		}
-	}
-	.next-match {
-		margin: 25px 10px 20px;
-	}
-
-	.season-header {
-		.hidden-xs();
-		.make-row(0);
-		padding: 20px 10px 10px;
-		.opensans_normal(16pt, @greyDark);
-		span {
-			font-size: 12pt;
-		}
-	}
-
-	.season-stats {
+	.soccer-player-info-header {
 		@media (max-width: @screen-xs-max) {
-			.make-border(1px, solid none solid none, @greyDark);
-			background-color: @greyUltraLight;
-			.make-xs-column(12, 0px);
-				.season-stats-row {
-					.make-xs-column(6, 0px);
-					.make-border(1px, dotted none none none, @greyDark);
-					line-height: 30px;
+			.make-border(1px, solid none none none, @orangeHeaderLight);
+			background-color: @greyUltraDark;
+			color: @white;
+			padding: 0 5px;
+		}
+		.container-fluid();
+		.clean-paddings();
+		.text-header {
+			.hidden-xs();
+			.opensans_normal(14pt, @greyDark);
+			line-height: 66px;
+			margin-left: 5px;
+		}
+		.close {
+			.hidden-xs();
+			position: absolute;
+			top: 15px;
+			right: 15px;
+		}
+		
+		.description-header {
+			@media (min-width: @screen-sm-min) {
+				background-color: @greyUltraDark;
+			}
+			.make-xs-column(12);
+			.clean-paddings();
+			padding-top: 10px;
 
-					.season-stats-header {
-						.opensans_normal(10pt, @greyDark);
-						.make-xs-column(2, 15px);
+			@media (max-width: @screen-sm-max) {
+				padding-bottom: 10px;
+			}
+
+			.soccer-player-description {
+				.make-xs-column(12, 10px);
+				.make-sm-column(7, 10px);
+				.make-md-column(8, 10px);
+				.soccer-player-pos-team {
+					.make-xs-column(12, 0px);			
+					.opensans_bold(10pt, @greyMed);
+					span + span {
+						color: @white;
 					}
-					.season-stats-info {
-						.exo_bold(14pt,  @greyDark);
-						.make-xs-column(10, 15px);
+				}
+				.soccer-player-name {
+					.make-xs-column(12, 0px);
+					.exo_light(20pt, @orangeHeaderLight);
+					margin-bottom: 5px;
+				}
+			}
+			.soccer-player-info-stats {
+				.make-xs-column(12);
+				.make-sm-column(5, 10px);
+				.make-md-column(4, 10px);
+				.clean-paddings();
+				.soccer-player-fantasy-points, .soccer-player-matches, .soccer-player-salary {
+					.make-xs-column(4, 10px);
+					text-align: center;
+					@media (min-width: @screen-sm-min) {
 						text-align: right;
 					}
-					.season-stats-info:last-child {
+					span {
+						display: block;
+						.opensans_bold(9pt, @white);
+						padding-top: 5px;
+						@media (max-width: @screen-xs-max) {
+							background-color: @greyDark;
+							color: @greyLight;
+							border-top-right-radius: 4px;
+							border-top-left-radius: 4px;
+						}
+					}
+					span + span {
+						.exo_light(18pt, @greyLight);
+						padding-top: 0;
+						@media (max-width: @screen-xs-max) {
+							color: @white;
+							border-radius: 0;
+							border-bottom-right-radius: 4px;
+							border-bottom-left-radius: 4px;
+						}
+					}
+				}
+			}
+
+			.next-match-wrapper {
+				.hidden-xs();
+				.make-sm-column(12);
+
+				#gradient.vertical(@blueGradientLight, @blueGradientDark, 49%, 51%);
+				display: block;
+				padding: 5px 5px 10px;
+				
+				.next-match {
+					.opensans_bold(9pt, @blueLight);
+					display: inline-block;
+					margin-top: 10px;
+					strong {
+						color: @white;
+					}
+				}
+
+				.btn-add {
+					.btn-orange();
+					.pull-right();
+					padding-left: 40px;
+					padding-right: 40px;
+				}
+			}
+		}
+	}
+
+	.soccer-player-info-content {
+		// Color de fondo para las versiones Sm y Desktop
+		background-color: @white;
+		border-bottom-right-radius: 5px;
+		border-bottom-left-radius: 5px;
+		// Tabs menu
+		.soccer-player-info-tabs {
+			@tabheight: 50px;
+			.make-border(1px, solid none none none, @white);
+			.hidden-sm();
+			.hidden-md();
+			.hidden-lg();
+			.reset-list();
+			height: @tabheight;
+			> li {
+				.make-xs-column(6, 0px);
+				background-color: @greyMed;
+				.make-border(4px, none none solid none, @greyDark);
+				a {
+					cursor: pointer;
+					line-height: @tabheight;
+					text-align: center;
+					color: @white;
+					display: block;
+					text-decoration: none;
+				}
+			}
+			.active {
+				background-color: @greyDark;
+			}
+		}
+
+		.next-match {
+			.visible-xs();
+			.opensans_bold(10pt, @greyDark);
+			padding: 25px 10px 20px;
+			strong {
+				color: @blueMed;
+			}
+		}
+		
+		.season-header {
+			.hidden-xs();
+			.make-row(0);
+			padding: 20px 10px 10px;
+			.opensans_normal(16pt, @greyDark);
+			span {
+				font-size: 12pt;
+			}
+		}
+
+		.season-stats {
+			@media (max-width: @screen-xs-max) {
+				.make-border(1px, solid none solid none, @greyDark);
+				background-color: @greyUltraLight;
+				.make-xs-column(12, 0px);
+					.season-stats-row {
+						.make-xs-column(6, 0px);
+						.make-border(1px, dotted none none none, @greyDark);
+						line-height: 30px;
+
+						.season-stats-header {
+							.opensans_normal(10pt, @greyDark);
+							.make-xs-column(2, 15px);
+						}
+						.season-stats-info {
+							.exo_bold(14pt,  @greyDark);
+							.make-xs-column(10, 15px);
+							text-align: right;
+						}
+						.season-stats-info:last-child {
+							border: none;
+						}
+					}
+					.season-stats-row:first-child {
 						border: none;
 					}
-				}
-				.season-stats-row:first-child {
-					border: none;
-				}
-				.season-stats-row:first-child + .season-stats-row {
-					border: none;
-				}
-				.season-stats-row:nth-child(odd) {
-					border-right: 1px dotted @greyDark;
-				}
-		}
-		@media (min-width: @screen-sm-min) {
-			.make-row(0);
-			overflow-x: scroll;
-			padding-bottom: 5px;
-			.season-stats-wrapper {
-				width: 1200px;
-				.season-stats-row {
-					.make-sm-column(1, 0px);
-					.make-border(1px, none none none dotted, @greyDark);
-					background-color: @white;
-					padding: 0 15px;
-					margin-bottom: 5px;
-					.season-stats-header {
-						.opensans_bold(9pt, @greyDark);
+					.season-stats-row:first-child + .season-stats-row {
+						border: none;
 					}
-					.season-stats-info {
-						margin-left: -2px;
-						.exo_light(24pt,  @blueMed);
-						
+					.season-stats-row:nth-child(odd) {
+						border-right: 1px dotted @greyDark;
 					}
-				}
-				.season-stats-row:first-child {
-					border-left: none;
-				}
 			}
-		}
-	}
-
-	@media (min-width: @screen-sm-min) {
-		#match-info-tab-content {
-			display: block;
-		}
-	}
-	
-	.match-header {
-		.hidden-xs();
-		.make-row(0);
-		padding: 20px 10px 10px;
-		.opensans_normal(16pt, @greyDark);
-	}
-
-	.match-stats {
-		@media (max-width: @screen-xs-max) {
-			.make-xs-column(12, 0px);
-			background-color: @white;
-			.opensans_bold(10pt, @greyDark);
-			.match-stats-header {
-				.make-xs-column(1.5, 0px);
-				display: inline-table;
-				float: left;
-				.make-border(1px, none none solid none, @greyDark);
-				div {
-					.make-border(1px, dotted solid none none, @greyDark);
-					line-height: 30px;
-					text-align: center;
-				}
-				div:nth-child(even) {
-					background-color: @tramaBlue;
-				}
-				div:first-child {
-					.make-border(1px, none none solid none, @greyDark);
-					line-height: 40px;
-				}
-				div:first-child + div {
-					border-top: none;
-					color: @blueDark;
-				}
-				div:first-child + div + div {
-					color: @blueMed;
-				}
-			}
-			.match-stats-content {
-				.make-xs-column(10.5, 0px);
-				.opensans_normal(10pt, @greyDark);
+			@media (min-width: @screen-sm-min) {
+				.make-row(0);
 				overflow-x: scroll;
-				.match-stats-data {
-					width: 99999px;
-					.match-year {
-						float: left;
-						line-height: 40px;
+				padding-bottom: 5px;
+				.season-stats-wrapper {
+					width: 1200px;
+					.season-stats-row {
+						.make-sm-column(1, 0px);
+						.make-border(1px, none none none dotted, @greyDark);
+						background-color: @white;
+						padding: 0 15px;
+						margin-bottom: 5px;
+						.season-stats-header {
+							.opensans_bold(9pt, @greyDark);
+						}
+						.season-stats-info {
+							margin-left: -2px;
+							.exo_light(24pt,  @blueMed);
+							
+						}
+					}
+					.season-stats-row:first-child {
+						border-left: none;
+					}
+				}
+			}
+		}
+
+		@media (min-width: @screen-sm-min) {
+			#match-info-tab-content {
+				display: block;
+			}
+		}
+		
+		.match-header {
+			.hidden-xs();
+			.make-row(0);
+			padding: 20px 10px 10px;
+			.opensans_normal(16pt, @greyDark);
+		}
+
+		.match-stats {
+			@media (max-width: @screen-xs-max) {
+				.make-xs-column(12, 0px);
+				background-color: @white;
+				.opensans_bold(10pt, @greyDark);
+				.match-stats-header {
+					.make-xs-column(1.5, 0px);
+					display: inline-table;
+					float: left;
+					.make-border(1px, none none solid none, @greyDark);
+					div {
+						.make-border(1px, dotted solid none none, @greyDark);
+						line-height: 30px;
 						text-align: center;
-						.opensans_bold(10pt, @blueDark);
 					}
-					.match-year + .data {
-						margin-left: -33px;
-						border-left: 1px solid @greyDark;
+					div:nth-child(even) {
+						background-color: @tramaBlue;
 					}
-					.data {
-						margin: 40px 0 0 0;
-						.make-border(1px, solid none solid none, @greyDark);
-						display: inline-table;
-						float: left;
-						div {
-							.make-border(1px, dotted solid none none, @greyDark);
-							line-height: 30px;
-							width: 50px;
+					div:first-child {
+						.make-border(1px, none none solid none, @greyDark);
+						line-height: 40px;
+					}
+					div:first-child + div {
+						border-top: none;
+						color: @blueDark;
+					}
+					div:first-child + div + div {
+						color: @blueMed;
+					}
+				}
+				.match-stats-content {
+					.make-xs-column(10.5, 0px);
+					.opensans_normal(10pt, @greyDark);
+					overflow-x: scroll;
+					.match-stats-data {
+						width: 99999px;
+						.match-year {
+							float: left;
+							line-height: 40px;
 							text-align: center;
-						}
-						div:nth-child(odd) {
-							background-color: @tramaBlue;
-						}
-						div:first-child {
-							.make-border(1px, none solid none none, @greyDark);
 							.opensans_bold(10pt, @blueDark);
 						}
-						div:first-child + div {
-							.opensans_bold(10pt, @blueMed);
+						.match-year + .data {
+							margin-left: -33px;
+							border-left: 1px solid @greyDark;
+						}
+						.data {
+							margin: 40px 0 0 0;
+							.make-border(1px, solid none solid none, @greyDark);
+							display: inline-table;
+							float: left;
+							div {
+								.make-border(1px, dotted solid none none, @greyDark);
+								line-height: 30px;
+								width: 50px;
+								text-align: center;
+							}
+							div:nth-child(odd) {
+								background-color: @tramaBlue;
+							}
+							div:first-child {
+								.make-border(1px, none solid none none, @greyDark);
+								.opensans_bold(10pt, @blueDark);
+							}
+							div:first-child + div {
+								.opensans_bold(10pt, @blueMed);
+							}
 						}
 					}
 				}
 			}
-		}
-		@media (min-width: @screen-sm-min) {
-			background-color: @white;
-			margin: 0 10px;
-			.match-stats-header {
-				.make-row(0);
-				margin-right: 15px;
-				div {
-					.make-border(1px, solid solid dotted none, @greyDark);
-					.make-sm-column(0.8, 0px);
-					text-align: center;
-					.opensans_bold(8pt, @black);
-					line-height: 40px;
-				}
-				div:first-child {
-					border-left: 1px solid @greyDark;
-					text-align: left;
-					padding-left: 5px;
-				}
-			}
-			.match-stats-content {
-				.make-row(0);
-				height: 287px;
-				overflow-y: scroll;
-				clear: both;
-				.match-year {
-					.hidden();
-				}
-				.data {
+			@media (min-width: @screen-sm-min) {
+				background-color: @white;
+				margin: 0 10px;
+				.match-stats-header {
+					.make-row(0);
+					margin-right: 15px;
 					div {
-						.make-border(1px, none solid dotted none, @greyDark);
+						.make-border(1px, solid solid dotted none, @greyDark);
 						.make-sm-column(0.8, 0px);
 						text-align: center;
-						.opensans_bold(8pt, @greyDark);
+						.opensans_bold(8pt, @black);
 						line-height: 40px;
 					}
 					div:first-child {
 						border-left: 1px solid @greyDark;
 						text-align: left;
-						padding-left: 3px;
-						clear: both;
-						color: @blueMed;
-						font-size: 7pt;
-					}
-					div:first-child + div {
-						color: @blueMed;
+						padding-left: 5px;
 					}
 				}
-				.data:nth-child(even) div {
-					background-color: @tramaBlue;
+				.match-stats-content {
+					.make-row(0);
+					height: 287px;
+					overflow-y: scroll;
+					clear: both;
+					.match-year {
+						.hidden();
+					}
+					.data {
+						div {
+							.make-border(1px, none solid dotted none, @greyDark);
+							.make-sm-column(0.8, 0px);
+							text-align: center;
+							.opensans_bold(8pt, @greyDark);
+							line-height: 40px;
+						}
+						div:first-child {
+							border-left: 1px solid @greyDark;
+							text-align: left;
+							padding-left: 3px;
+							clear: both;
+							color: @blueMed;
+							font-size: 7pt;
+						}
+						div:first-child + div {
+							color: @blueMed;
+						}
+					}
+					.data:nth-child(even) div {
+						background-color: @tramaBlue;
+					}
 				}
 			}
 		}
-	}
-	.noMatchesPlayed {
-		.opensans_bold(10pt, @greyDark);
-		height: 268px;
-		padding-top: 134px;
-		text-align: center;
-		@media (min-width: @screen-sm-min) {
-			height: 80px;
-			padding: 10px;
-			text-align: left;
+		.noMatchesPlayed {
+			.opensans_bold(10pt, @greyDark);
+			height: 268px;
+			padding-top: 134px;
+			text-align: center;
+			@media (min-width: @screen-sm-min) {
+				height: 80px;
+				padding: 10px;
+				text-align: left;
+			}
 		}
 	}
 }

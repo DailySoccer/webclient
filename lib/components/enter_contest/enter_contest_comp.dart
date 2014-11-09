@@ -127,8 +127,6 @@ class EnterContestComp implements DetachAware {
       return;
     }
 
-    _selectedLineupPosIndex = slotIndex;
-
     if (lineupSlots[slotIndex] != null) {
       // Al borrar el jugador seleccionado en el lineup, sumamos su salario al total
       availableSalary += lineupSlots[slotIndex]["salary"];
@@ -349,7 +347,6 @@ class EnterContestComp implements DetachAware {
 
   List<dynamic> _allSoccerPlayers = new List();
 
-  int _selectedLineupPosIndex = 0;
   bool _editingContestEntry = false;
 
   var _streamListener;

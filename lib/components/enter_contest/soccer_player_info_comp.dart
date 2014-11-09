@@ -50,8 +50,8 @@ class SoccerPlayerInfoComp {
       'team'            : _instanceSoccerPlayer.soccerTeam.name.toUpperCase(),
       'name'            : _instanceSoccerPlayer.soccerPlayer.name.toUpperCase(),
       'fantasyPoints'   : _instanceSoccerPlayer.soccerPlayer.fantasyPoints,
-      'matches'         : '',
       'salary'          : _instanceSoccerPlayer.salary,
+      'matches'         : '',
       'nextMatchEvent'  : ''
     };
 
@@ -92,6 +92,7 @@ class SoccerPlayerInfoComp {
     // Limpiamos las estadísticas partido a partido
     seasons.clear();
     tempSeasons.clear();
+
     // Calculo de estadisticas de jugador
     calculateStadistics(soccerPlayer);
   }

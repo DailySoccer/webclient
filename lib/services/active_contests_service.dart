@@ -12,18 +12,17 @@ import "package:webclient/models/contest.dart";
 class ActiveContestsService {
 
   List<Contest> activeContests = new List<Contest>();
-  List<Contest> myContests = new List<Contest>();
+
+  // El ultimo concurso que hemos cargado a traves de refreshContest
+  Contest lastContest;
 
   Contest getContestById(String id) => activeContests.firstWhere((contest) => contest.contestId == id, orElse: () => null);
-
-  // El ultimo concurso que hemos cargado a traves de getContest
-  Contest lastContest;
 
   ActiveContestsService(this._server, this._profileService);
 
   void clear() {
     activeContests.clear();
-    myContests.clear();
+    _myEnteredActiveContests.clear();
   }
 
   Future refreshActiveContests() {
@@ -32,10 +31,10 @@ class ActiveContestsService {
         activeContests = Contest.loadContestsFromJsonObject(jsonMap);
 
         if (_profileService.isLoggedIn) {
-          myContests = activeContests.where((contest) => contest.containsContestEntryWithUser(_profileService.user.userId)).toList();
+          _myEnteredActiveContests = activeContests.where((contest) => contest.containsContestEntryWithUser(_profileService.user.userId)).toList();
           activeContests.removeWhere((contest) => contest.containsContestEntryWithUser(_profileService.user.userId));
 
-          myContests.sort((A,B) => A.compareStartDateTo(B));
+          _myEnteredActiveContests.sort((A,B) => A.compareStartDateTo(B));
           activeContests.sort((A,B) => A.compareStartDateTo(B));
         }
       });
@@ -50,7 +49,7 @@ class ActiveContestsService {
         Contest contest = activeContests.firstWhere((contest) => contest.contestId == contestId, orElse: null);
         if (contest != null) {
           activeContests.removeWhere((contest) => contest.contestId == contestId);
-          myContests.add(contest);
+          _myEnteredActiveContests.add(contest);
         }
 
         //print("response: " + jsonMap.toString());
@@ -66,8 +65,8 @@ class ActiveContestsService {
   }
 
   Contest getAvailableNextContest() {
-    if (myContests.isNotEmpty) {
-      return myContests.first;
+    if (_myEnteredActiveContests.isNotEmpty) {
+      return _myEnteredActiveContests.first;
     }
 
     return activeContests.isNotEmpty ? activeContests.first : null;
@@ -75,4 +74,6 @@ class ActiveContestsService {
 
   ServerService _server;
   ProfileService _profileService;
+
+  List<Contest> _myEnteredActiveContests = new List<Contest>();
 }

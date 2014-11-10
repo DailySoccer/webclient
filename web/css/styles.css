@@ -14300,7 +14300,7 @@ fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .btn-add {
     background-color: #434343;
   }
 }
-@media (max-width: 991px) {
+@media (max-width: 767px) {
   #modalSoccerPlayerInfo .soccer-player-info-header .description-header {
     padding-bottom: 10px;
   }

@@ -27,7 +27,7 @@
         <div class="soccer-player-matches"><span>PARTIDOS</span><span>{{currentInfoData['matches']}}</span></div>
         <div class="soccer-player-salary"><span>SALARIO</span><span>{{currentInfoData['salary']}}</span></div>
       </div>
-      <div class="next-match-wrapper" ng-if="!scrDet.isXsScreen">
+      <div class="next-match-wrapper" ng-if="scrDet.isNotXsScreen">
         <span class="next-match">PRÓXIMO PARTIDO:</span> <span class="next-match" ng-bind-html="currentInfoData['nextMatchEvent']"></span>
         <button class="btn-add" ng-click="onAddClicked()" ng-disabled="cannotAddPlayer">AÑADIR</button>
       </div>
@@ -65,7 +65,7 @@
             <div class="match-stats" ng-if="matchesPlayed">
               <!--HEADER-->
               <div ng-if="isGoalkeeper()" class="match-stats-header">
-                <div><span ng-if="scrDet.isDesktop || scrDet.isSmScreen">FECHA</span>&nbsp;</div>
+                <div><span ng-if="scrDet.isNotXsScreen">FECHA</span>&nbsp;</div>
                 <div ng-if="scrDet.isXsScreen">DÍA</div>
                 <div>OP</div>
                 <div>DFP</div>
@@ -82,7 +82,7 @@
                 <div>TR</div>
               </div>
               <div ng-if="!isGoalkeeper()" class="match-stats-header">
-                <div><span ng-if="scrDet.isDesktop || scrDet.isSmScreen">FECHA</span>&nbsp;</div>
+                <div><span ng-if="scrDet.isNotXsScreen">FECHA</span>&nbsp;</div>
                 <div ng-if="scrDet.isXsScreen">DÍA</div>
                 <div>OP</div>
                 <div>DFP</div>

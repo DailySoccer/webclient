@@ -32,8 +32,6 @@ class EnterContestComp implements DetachAware {
   String contestId;
   String contestEntryId = null;
 
-  bool isSelectingSoccerPlayer = false;
-
   final List<dynamic> lineupSlots = [];
   List<dynamic> availableSoccerPlayers = [];
 
@@ -41,12 +39,9 @@ class EnterContestComp implements DetachAware {
   String nameFilter;
   String matchFilter;
 
+  bool isSelectingSoccerPlayer = false;
   InstanceSoccerPlayer selectedInstanceSoccerPlayer;
-
   int availableSalary = 0;
-
-  bool get isBigScreenVersion   => scrDet.isSmScreen || scrDet.isDesktop;
-  bool get isSmallScreenVersion => !isBigScreenVersion;
 
   bool isFantasyTeamValid() => !lineupSlots.any((player) => player == null);
 

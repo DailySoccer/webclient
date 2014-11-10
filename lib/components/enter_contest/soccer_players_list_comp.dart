@@ -86,6 +86,10 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
   SoccerPlayersListComp(this._scrDet, this._element);
 
   void _onLineupFilterChanged(changes, _) {
+    if (_soccerPlayerListRoot == null) {
+      return;
+    }
+
     if (changes != null && changes is CollectionChangeRecord) {
 
       void inner(changedItem) {
@@ -96,7 +100,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
 
           // Quiza nos mandan quitar un portero pero estamos filtrando por defensas....
           if (elem != null) {
-            elem.setInnerHtml(getHtmlForSlot(soccerPlayer, changedItem.previousIndex != null));
+            elem.setInnerHtml(getHtmlForSlot(soccerPlayer, !lineupFilter.contains(soccerPlayer)));
           }
         }
       }

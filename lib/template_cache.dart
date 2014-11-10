@@ -832,7 +832,7 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
         <div class="tab-pane active" id="lineup-tab-content">
 
             <!-- Este sera el selector de partidos en "grande", con botones-->
-            <matches-filter id="matchesFilterBig" contest="contest" selected-option="matchFilter" ng-if="scrDet.isNotXsScreen"></matches-filter>
+            <matches-filter contest="contest" selected-option="matchFilter" ng-if="scrDet.isNotXsScreen"></matches-filter>
 
             <div class="enter-contest-actions-wrapper" ng-if="scrDet.isXsScreen">
               <div class="total-salary"><span class="total-salary-money" ng-class="{'red-numbers': availableSalary < 0 }" ng-show="contest != null">{{availableSalary}}€</span></div>
@@ -886,7 +886,7 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
 
         <!-- El otro tab, el del contest-info  -->
         <div class="tab-pane" id="contest-info-tab-content">
-          <contest-info id="contestInfo" ng-if="contestInfoFirstTimeActivation"></contest-info>
+          <contest-info ng-if="contestInfoFirstTimeActivation"></contest-info>
         </div>
 
       </div>
@@ -902,17 +902,21 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
 <ng-view></ng-view>"""));
 tc.put("packages/webclient/components/enter_contest/lineup_selector_comp.html", new HttpResponse(200, r"""<div class="lineup-selector">
   <div class="lineup-selector-slot" ng-repeat="slot in enterContestComp.lineupSlots" ng-click="enterContestComp.onSlotSelected($index)" ng-class="getSlotClassColor($index)">
-    <div class="column-fieldpos" ng-if="!isEmptySlot(slot)">{{slot.fieldPos.abrevName}}</div>
-    <div class="column-fieldpos" ng-if="isEmptySlot(slot)">{{getSlotPosition($index)}}</div>
-    <div class="column-primary-info" ng-if="!isEmptySlot(slot)">
+
+    <div ng-if="slot == null">
+      <div class="column-fieldpos">{{getSlotPosition($index)}}</div>
+      <div class="column-empty-slot">{{getSlotDescription($index)}}</div>
+      <div class="column-action"><a class="iconButtonSelect"><span class="glyphicon glyphicon-chevron-right"></span></a></div>
+    </div>
+    
+    <div ng-if="slot != null">
+      <div class="column-fieldpos">{{slot.fieldPos.abrevName}}</div>    
+      <div class="column-primary-info">
         <span class="soccer-player-name">{{slot.fullName | limitToDot : 19}}</span>
         <span class="match-event-name" ng-bind-html="slot.matchEventName"></span>
-    </div>
-    <div class="column-empty-slot" ng-if="isEmptySlot(slot)">{{getSlotDescription($index)}}</div>
-    <div class="column-salary" ng-if="!isEmptySlot(slot)">{{slot.salary}}€</div>
-    <div class="column-action">
-        <a class="iconButtonSelect" ng-if="isEmptySlot(slot)"><span class="glyphicon glyphicon-chevron-right"></span></a>
-        <a class="iconButtonRemove" ng-if="!isEmptySlot(slot)"><span class="glyphicon glyphicon-remove"></span></a>
+      </div>    
+      <div class="column-salary">{{slot.salary}}€</div>
+      <div class="column-action"><a class="iconButtonRemove"><span class="glyphicon glyphicon-remove"></span></a></div>
     </div>
   </div>
 
@@ -1083,12 +1087,7 @@ tc.put("packages/webclient/components/enter_contest/soccer_players_list_comp.htm
   <div class="filterOrderSalary"><a ng-click="sortListByField('Salary')">Sueldo</a></div>
 </div>
 
-<div class="soccer-players-list">
-
-  <div class="soccer-players-list-slot" ng-repeat="slotSP in sortedSoccerPlayers | orderBy:sortList" fast-player-slot="slotSP" ng-non-bindable>
-  </div>
-
-</div>"""));
+<!-- La lista se genera dinamica 100% -->"""));
 tc.put("packages/webclient/components/flash_messages_comp.html", new HttpResponse(200, r"""<div>
   <div ng-repeat="msg in messages" id="flash-messages">
       <div class="alert alert-{{msg.type}} alert-dismissable">

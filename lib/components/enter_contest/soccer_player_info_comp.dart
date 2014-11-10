@@ -51,7 +51,7 @@ class SoccerPlayerInfoComp {
       'name'            : _instanceSoccerPlayer.soccerPlayer.name.toUpperCase(),
       'fantasyPoints'   : _instanceSoccerPlayer.soccerPlayer.fantasyPoints,
       'salary'          : _instanceSoccerPlayer.salary,
-      'matches'         : '',
+      'matches'         : '-',
       'nextMatchEvent'  : ''
     };
 

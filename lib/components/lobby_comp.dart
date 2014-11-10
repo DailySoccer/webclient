@@ -68,7 +68,7 @@ class LobbyComp implements DetachAware {
 
   // Handler para el evento de entrar en un concurso
   void onActionClick(Contest contest) {
-    _router.go('enter_contest', { "contestId": contest.contestId, "parent": "lobby" });
+    _router.go('enter_contest', { "contestId": contest.contestId, "parent": "lobby", "contestEntryId": "none" });
   }
 
   // Mostramos la ventana modal con la información de ese torneo, si no es la versión movil.

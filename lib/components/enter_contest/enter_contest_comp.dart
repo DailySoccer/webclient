@@ -44,7 +44,7 @@ class EnterContestComp implements DetachAware {
   int availableSalary = 0;
 
   bool get isInvalidFantasyTeam => lineupSlots.any((player) => player == null);
-  bool get editingContestEntry => contestEntryId != null;
+  bool get editingContestEntry => contestEntryId != "none";
 
   EnterContestComp(this._routeProvider, this._router, this.scrDet, this._activeContestService, this._myContestService, this._flashMessage, this.loadingService) {
     loadingService.isLoading = true;
@@ -55,7 +55,7 @@ class EnterContestComp implements DetachAware {
     });
 
     contestId = _routeProvider.route.parameters['contestId'];
-    contestEntryId = _routeProvider.route.parameters['contestEntryId'] == "null"? null : _routeProvider.route.parameters['contestEntryId'];
+    contestEntryId = _routeProvider.route.parameters['contestEntryId'];
 
     // Nos subscribimos al evento de cambio de tamañano de ventana
     _streamListener = scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));

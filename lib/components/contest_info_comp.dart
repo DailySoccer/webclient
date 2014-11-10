@@ -2,34 +2,30 @@ library contest_info_comp;
 
 import 'package:angular/angular.dart';
 import 'dart:html';
-import 'dart:async';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/contest_entry.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/active_contests_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
+import 'package:webclient/services/screen_detector_service.dart';
+import 'package:webclient/components/modal_comp.dart';
 
 @Component(
   selector: 'contest-info',
   templateUrl: 'packages/webclient/components/contest_info_comp.html',
   useShadowDom: false
 )
-class ContestInfoComp implements ShadowRootAware {
+class ContestInfoComp implements DetachAware {
 
-  bool isPopUp = false;
+  bool isModal = false;
   Map currentInfoData;
   List contestants  = [];
 
-  @NgOneWay("contest-id-data")
-  void    set contestData(String contestId) {
-    _contestId = contestId;
+  ContestInfoComp(ScreenDetectorService scrDet, RouteProvider routeProvider, this._router, this._contestService, this._flashMessage) {
 
-    if (_contestId != null) {
-      updateContestInfo(_contestId);
-    }
-  }
+    _streamListener = scrDet.mediaScreenWidth.listen(onScreenWidthChange);
 
-  ContestInfoComp(this._router, this._contestService, this._flashMessage) {
+    isModal = (_router.activePath.length > 0) && (_router.activePath.first.name == 'lobby');
 
     currentInfoData = {  /*  hay que utilizar esta variable para meter los datos de este componente  */
       'description'     : 'cargando datos...',
@@ -43,13 +39,19 @@ class ContestInfoComp implements ShadowRootAware {
       'contestants'     : contestants,
       'prizes'          : []
     };
+
+    _contestId = routeProvider.route.parameters['contestId'];
+    updateContestInfo(_contestId);
   }
 
-  void onShadowRoot(emulatedRoot) {
-    if (_router.activePath.length > 0) {
-      if ( _router.activePath[0].name == 'lobby') {
-        isPopUp = true;
-      }
+  void detach() {
+    _streamListener.cancel();
+  }
+
+  void onScreenWidthChange(String msg) {
+    // Solo nos mostramos como modal en desktop
+    if (isModal) {
+      ModalComp.close();
     }
   }
 
@@ -80,14 +82,7 @@ class ContestInfoComp implements ShadowRootAware {
       });
   }
 
-  void goToEnterContest(obj) {
-    if (_goToEnterContest) {
-      _router.go('enter_contest', { "contestId": _contestId, "parent": "lobby" });
-    }
-  }
-
   void enterContest() {
-    _goToEnterContest = true;
     _router.go('enter_contest', { "contestId": _contestId, "parent": "lobby" });
   }
 
@@ -96,21 +91,19 @@ class ContestInfoComp implements ShadowRootAware {
   }
 
   void tabChange(String tab) {
-    List<dynamic> allContentTab = document.querySelectorAll(".tab-pane");
-    allContentTab.forEach((element) => element.classes.remove('active'));
+    querySelectorAll(".tab-pane").classes.remove('active');
 
-    Element contentTab = document.querySelector("#" + tab);
+    Element contentTab = querySelector("#" + tab);
     if (contentTab != null) {
       contentTab.classes.add("active");
     }
   }
 
+  var _streamListener;
   Router _router;
+
   ActiveContestsService _contestService;
   FlashMessagesService _flashMessage;
 
-  Timer _timer;
-
   String _contestId;
-  bool _goToEnterContest = false;
 }

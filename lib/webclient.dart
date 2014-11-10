@@ -28,6 +28,7 @@ import 'package:webclient/components/navigation/main_menu_slide_comp.dart';
 import 'package:webclient/components/navigation/footer_comp.dart';
 import 'package:webclient/components/global_connection_comp.dart';
 import 'package:webclient/components/flash_messages_comp.dart';
+import 'package:webclient/components/modal_comp.dart';
 
 import 'package:webclient/components/paginator_comp.dart';
 import 'package:webclient/components/contest_filters_comp.dart';
@@ -97,7 +98,6 @@ class WebClientApp extends Module {
     bind(FlashMessagesService);
 
     bind(ActiveContestsService);
-
     bind(MyContestsService);
     bind(SoccerPlayerService);
     bind(ScoringRulesService);
@@ -112,6 +112,7 @@ class WebClientApp extends Module {
     bind(FooterComp);
     bind(FlashMessageComp);
     bind(GlobalConnectionComp);
+    bind(ModalComp);
 
     bind(LoginComp);
     bind(JoinComp);
@@ -163,127 +164,96 @@ class WebClientApp extends Module {
           defaultRoute: true,
           path: '/landing_page',
           preEnter: (RoutePreEnterEvent e) => _onLandingPage(e, router),
-          enter: (RouteEnterEvent e) => _enterPage(e),
-          leave: (RouteLeaveEvent e) => _leavePage(e),
           viewHtml: '<landing-page></landing-page>'
       )
       ,'beta_info': ngRoute(
           path: '/beta_info',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
-          enter: (RouteEnterEvent e) => _enterPage(e),
-          leave: (RouteLeaveEvent e) => _leavePage(e),
           viewHtml: '<beta-info></beta-info>'
       )
       ,'login': ngRoute(
           path: '/login',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
-          enter: (RouteEnterEvent e) => _enterPage(e),
-          leave: (RouteLeaveEvent e) => _leavePage(e),
           viewHtml: '<login></login>'
       )
       ,'join': ngRoute(
           path: '/join',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
-          enter: (RouteEnterEvent e) => _enterPage(e),
-          leave: (RouteLeaveEvent e) => _leavePage(e),
           viewHtml: '<join></join>'
       )
       ,'change_password': ngRoute(
           path: '/change_password',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
-          enter: (RouteEnterEvent e) => _enterPage(e),
-          leave: (RouteLeaveEvent e) => _leavePage(e),
           viewHtml: '<change-password></change-password>'
       )
       ,'help_info': ngRoute(
           path: '/help-info',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
-          enter: (RouteEnterEvent e) => _enterPage(e),
-          leave: (RouteLeaveEvent e) => _leavePage(e),
           viewHtml: '<help-info></help-info>'
       )
       ,'legal_info': ngRoute(
           path: '/legal_info',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
-          enter: (RouteEnterEvent e) => _enterPage(e),
-          leave: (RouteLeaveEvent e) => _leavePage(e),
           viewHtml: '<legal-info></legal-info>'
       )
       ,'terminus_info': ngRoute(
           path: '/terminus_info',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
-          enter: (RouteEnterEvent e) => _enterPage(e),
-          leave: (RouteLeaveEvent e) => _leavePage(e),
           viewHtml: '<terminus-info></terminus-info>'
       )
       ,'policy_info': ngRoute(
           path: '/policy_info',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
-          enter: (RouteEnterEvent e) => _enterPage(e),
-          leave: (RouteLeaveEvent e) => _leavePage(e),
           viewHtml: '<policy-info></policy-info>'
       )
       ,'remember_password': ngRoute(
           path: '/remember_password',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
-          enter: (RouteEnterEvent e) => _enterPage(e),
-          leave: (RouteLeaveEvent e) => _leavePage(e),
           viewHtml: '<remember-password></remember-password>'
       )
       ,'user_profile': ngRoute(
           path: '/user_profile',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
-          enter: (RouteEnterEvent e) => _enterPage(e),
-          leave: (RouteLeaveEvent e) => _leavePage(e),
           viewHtml: '<user-profile></user-profile>'
       )
       ,'lobby': ngRoute(
           path: '/lobby',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
-          enter: (RouteEnterEvent e) => _enterPage(e),
-          leave: (RouteLeaveEvent e) => _leavePage(e),
-          viewHtml: '<lobby></lobby>'
+          viewHtml: '<lobby></lobby>',
+          mount: {
+            'contest_info': ngRoute(
+                path: '/contest_info/:contestId',
+                viewHtml: '<contest-info></contest-info>')
+          }
       )
       ,'my_contests': ngRoute(
           path: '/my_contests',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
-          enter: (RouteEnterEvent e) => _enterPage(e),
-          leave: (RouteLeaveEvent e) => _leavePage(e),
           viewHtml: '<my-contests></my-contests>'
       )
       ,'live_contest': ngRoute(
           path: '/live_contest/:parent/:contestId',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
-          enter: (RouteEnterEvent e) => _enterPage(e),
-          leave: (RouteLeaveEvent e) => _leavePage(e),
           viewHtml: '<view-contest></view-contest>'
       )
       ,'history_contest': ngRoute(
           path: '/history_contest/:parent/:contestId',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
-          enter: (RouteEnterEvent e) => _enterPage(e),
-          leave: (RouteLeaveEvent e) => _leavePage(e),
           viewHtml: '<view-contest></view-contest>'
       )
       ,'enter_contest': ngRoute(
-          path: '/enter_contest/:parent/:contestId',
+          path: '/enter_contest/:parent/:contestId/:contestEntryId',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
-          enter: (RouteEnterEvent e) => _enterPage(e),
-          leave: (RouteLeaveEvent e) => _leavePage(e),
-          viewHtml: '<enter-contest></enter-contest>'
-      )
-      ,'edit_contest': ngRoute(
-          path: '/edit_contest/:parent/:contestId/:contestEntryId',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
-          enter: (RouteEnterEvent e) => _enterPage(e),
-          leave: (RouteLeaveEvent e) => _leavePage(e),
-          viewHtml: '<enter-contest></enter-contest>'
+          viewHtml: '<enter-contest></enter-contest>',
+          mount: {
+            'soccer_player_info': ngRoute(
+              path: '/soccer_player_info/:instanceSoccerPlayerId',
+              viewHtml: '<soccer-player-info></soccer-player-info>')
+          }
       )
       ,'view_contest_entry': ngRoute(
           path: '/view_contest_entry/:parent/:viewContestEntryMode/:contestId',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
-          enter: (RouteEnterEvent e) => _enterPage(e),
-          leave: (RouteLeaveEvent e) => _leavePage(e),
           viewHtml: '<view-contest-entry></view-contest-entry>'
       )
     });
@@ -311,25 +281,6 @@ class WebClientApp extends Module {
         router.go("landing_page", {}, replace:true);
       }
       event.allowEnter(new Future.value(ProfileService.instance.isLoggedIn));
-    }
-  }
-
-  // Funcion que ejecutamos nada más entrar en la página
-  void _enterPage(RouteEnterEvent event) {
-  }
-
-  // Funcion que ejecutamos nada más salir de la página
-  void _leavePage(RouteLeaveEvent event) {
-
-    // Reseteamos las modales en el caso de que hubiera (bug de modal abierta y vuelta atrás)
-    _closeModal();
-  }
-
-  void _closeModal() {
-    bool isModalOpen = (document.querySelector('body').classes.contains('modal-open'));
-    if (isModalOpen) {
-      document.querySelector('body').classes.remove('modal-open');
-      document.querySelector('.modal-backdrop').remove();
     }
   }
 }

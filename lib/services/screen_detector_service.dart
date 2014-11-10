@@ -13,6 +13,8 @@ class ScreenDetectorService {
   bool isSmScreen = false;
   bool isDesktop  = false;
 
+  bool get isNotXsScreen => !isXsScreen;
+
   Stream get mediaScreenWidth => mediaScreenWidthChangeController.stream;
 
   ScreenDetectorService() {

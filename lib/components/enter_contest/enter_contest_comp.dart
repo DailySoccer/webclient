@@ -15,7 +15,6 @@ import 'package:webclient/models/match_event.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/contest_entry.dart';
 import "package:webclient/models/instance_soccer_player.dart";
-import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/utils/string_utils.dart';
 
 
@@ -31,9 +30,7 @@ class EnterContestComp implements DetachAware {
 
   Contest contest;
   String contestId;
-  String contestEntryId = null;
-
-  bool isSelectingSoccerPlayer = false;
+  String contestEntryId;
 
   final List<dynamic> lineupSlots = [];
   List<dynamic> availableSoccerPlayers = [];
@@ -42,15 +39,12 @@ class EnterContestComp implements DetachAware {
   String nameFilter;
   String matchFilter;
 
+  bool isSelectingSoccerPlayer = false;
   InstanceSoccerPlayer selectedInstanceSoccerPlayer;
-
   int availableSalary = 0;
 
-  bool get isBigScreenVersion   => scrDet.isSmScreen || scrDet.isDesktop;
-  bool get isSmallScreenVersion => !isBigScreenVersion;
-
-  bool isFantasyTeamValid() => !lineupSlots.any((player) => player == null);
-
+  bool get isInvalidFantasyTeam => lineupSlots.any((player) => player == null);
+  bool get editingContestEntry => contestEntryId != "none";
 
   EnterContestComp(this._routeProvider, this._router, this.scrDet, this._activeContestService, this._myContestService, this._flashMessage, this.loadingService) {
     loadingService.isLoading = true;
@@ -61,18 +55,18 @@ class EnterContestComp implements DetachAware {
     });
 
     contestId = _routeProvider.route.parameters['contestId'];
-    _editingContestEntry = (_routeProvider.route.parameters['contestEntryId'] != null);
+    contestEntryId = _routeProvider.route.parameters['contestEntryId'];
 
     // Nos subscribimos al evento de cambio de tamañano de ventana
     _streamListener = scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
 
-    Future refreshContest = _editingContestEntry ? _myContestService.refreshMyContest(contestId) :
-                                                   _activeContestService.refreshContest(contestId);
+    Future refreshContest = editingContestEntry? _myContestService.refreshMyContest(contestId) :
+                                                 _activeContestService.refreshContest(contestId);
     refreshContest
       .then((_) {
         loadingService.isLoading = false;
 
-        contest = _editingContestEntry ? _myContestService.lastContest : _activeContestService.lastContest;
+        contest = editingContestEntry ? _myContestService.lastContest : _activeContestService.lastContest;
 
         // Al principio, todos disponibles
         availableSoccerPlayers = initAllSoccerPlayers();
@@ -81,9 +75,7 @@ class EnterContestComp implements DetachAware {
         availableSalary = contest.salaryCap;
 
         // Si nos viene el torneo para editar la alineación
-        if (_editingContestEntry) {
-          contestEntryId = _routeProvider.route.parameters['contestEntryId'];
-
+        if (editingContestEntry) {
           ContestEntry contestEntry = _myContestService.lastContest.getContestEntry(contestEntryId);
 
           // Insertamos en el lineup el jugador
@@ -114,24 +106,13 @@ class EnterContestComp implements DetachAware {
   }
 
   void tabChange(String tab) {
-    List<dynamic> allContentTab = document.querySelectorAll("#enter-contest-wrapper .tab-pane");
-    allContentTab.forEach((element) => element.classes.remove('active'));
-
-    Element contentTab = document.querySelector("#" + tab);
-    contentTab.classes.add("active");
+    querySelectorAll("#enter-contest-wrapper .tab-pane").classes.remove('active');
+    querySelector("#${tab}").classes.add("active");
   }
 
   void onScreenWidthChange(String value) {
-
     // Para que en la versión móvil aparezca la pantalla de lineup
     isSelectingSoccerPlayer = false;
-
-    if (value != "sm") {
-      // hacemos una llamada de jQuery para ocultar la ventana modal
-      JsUtils.runJavascript('#infoContestModal','modal', 'hide');
-      // Para cerrar el soccer player info una vez que cambiamos a otra resolución
-      closePlayerInfo();
-    }
   }
 
   void onSlotSelected(int slotIndex) {
@@ -140,8 +121,6 @@ class EnterContestComp implements DetachAware {
     if (contest == null) {
       return;
     }
-
-    _selectedLineupPosIndex = slotIndex;
 
     if (lineupSlots[slotIndex] != null) {
       // Al borrar el jugador seleccionado en el lineup, sumamos su salario al total
@@ -273,7 +252,7 @@ class EnterContestComp implements DetachAware {
 
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
 
-    if (_editingContestEntry) {
+    if (editingContestEntry) {
       _myContestService.editContestEntry(contestEntryId, lineupSlots.map((player) => player["id"]).toList())
         .then((_) => _router.go('view_contest_entry', {"contestId": contest.contestId, "parent":
                                                        _routeProvider.parameters["parent"],
@@ -338,37 +317,8 @@ class EnterContestComp implements DetachAware {
     isSelectingSoccerPlayer = false;
   }
 
-  void closePlayerInfo() {
-    DivElement enterContestWrapper = querySelector('#enter-contest-wrapper');
-    enterContestWrapper.style.display = "block";
-
-    DivElement soccerPlayerInfoWrapper = querySelector('#soccer-player-info-wrapper');
-    if (soccerPlayerInfoWrapper != null) {
-      soccerPlayerInfoWrapper.style.display = "none";
-    }
-  }
-
-  // Mostramos la ventana modal con la información de ese torneo, si no es la versión movil.
   void onRowClick(String soccerPlayerId) {
-    // Permitimos añadir el jugador solo en el caso de que exista hueco en el lineup (disabilitamos el botón de añadir)
-    var selectedSoccerPlayer = availableSoccerPlayers.firstWhere((soccerPlayer) => soccerPlayer["id"] == soccerPlayerId,
-                                                                 orElse: () => null);
-    if (selectedSoccerPlayer != null) {
-      selectedInstanceSoccerPlayer = selectedSoccerPlayer["instanceSoccerPlayer"];
-    }
-
-    // Version Small or Desktop => sacamos la modal
-    if (scrDet.isSmScreen || scrDet.isDesktop) {
-      var modal = querySelector('#infoContestModal');
-      modal.style.display = "block";
-      JsUtils.runJavascript('#infoContestModal', 'modal', null);
-    }
-    else { // Resto de versiones => mostramos el componente soccer_player_info_comp
-      DivElement enterContestWrapper = querySelector('#enter-contest-wrapper');
-      enterContestWrapper.style.display = "none";
-      DivElement soccerPlayerInfoWrapper = querySelector('#soccer-player-info-wrapper');
-      soccerPlayerInfoWrapper.style.display = "block";
-    }
+    _router.go("enter_contest.soccer_player_info",  { "instanceSoccerPlayerId": soccerPlayerId });
   }
 
   void addSoccerPlayerToLineup(String soccerPlayerId) {
@@ -376,13 +326,6 @@ class EnterContestComp implements DetachAware {
                                                                  orElse: () => null);
     if (selectedSoccerPlayer != null) {
       onSoccerPlayerSelected(selectedSoccerPlayer);
-    }
-
-    if (scrDet.isSmScreen || scrDet.isDesktop) {
-      JsUtils.runJavascript('#infoContestModal', 'modal', 'hide');
-    }
-    else {
-      closePlayerInfo();
     }
   }
 
@@ -398,9 +341,6 @@ class EnterContestComp implements DetachAware {
   FlashMessagesService _flashMessage;
 
   List<dynamic> _allSoccerPlayers = new List();
-
-  int _selectedLineupPosIndex = 0;
-  bool _editingContestEntry = false;
 
   var _streamListener;
 

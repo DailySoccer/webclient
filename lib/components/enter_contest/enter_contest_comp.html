@@ -45,10 +45,11 @@
 
                 <soccer-players-filter name-filter="nameFilter" field-pos-filter="fieldPosFilter"></soccer-players-filter>
                 
-                <soccer-players-list soccer-players="availableSoccerPlayers"
+                <soccer-players-list soccer-players="allSoccerPlayers"
+                                     lineup-filter="lineupSlots"
                                      field-pos-filter="fieldPosFilter" name-filter="nameFilter" match-filter="matchFilter"
                                      on-row-click="onRowClick(soccerPlayerId)"
-                                     on-add-click="onSoccerPlayerSelected(soccerPlayer)"></soccer-players-list>
+                                     on-action-click="onSoccerPlayerActionButton(soccerPlayer)"></soccer-players-list>
               </div>
             </div>
 

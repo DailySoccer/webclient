@@ -109,14 +109,13 @@
 			padding-right: 10px;
 			text-align: right;
 		}
-		.column-add {
+		.column-action {
 			.make-xs-column(2, @soccer-players-list-gutter);
 			.make-md-column(2, @soccer-players-list-gutter);
 			text-align: right;
 			padding-right: 3px;
 
 			.btn {
-				.btn-primary();
 				margin-top: 4px;
 				padding-left: 15%;
 				padding-right: 15%;
@@ -125,6 +124,9 @@
 					padding-right: 15px;
 				}
 				font-size: 9pt;
+
+				&.add { .btn-primary(); }
+				&.remove { .btn-default(); }
 			}
 		}
 	}

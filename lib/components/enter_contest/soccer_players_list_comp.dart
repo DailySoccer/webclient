@@ -22,14 +22,11 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
 
   ScreenDetectorService scrDet;
 
-  List<dynamic> sortedSoccerPlayers = [];
-  List<Map> sortList = [_SORT_FIELDS["Pos"], _SORT_FIELDS["Name"]];
-
   @NgCallback("on-row-click")
   Function onRowClick;
 
-  @NgCallback("on-add-click")
-  Function onAddClick;
+  @NgCallback("on-action-click")
+  Function onActionClick;
 
   @NgOneWay("field-pos-filter")
   FieldPos get fieldPosFilter => new FieldPos(_filterList[FILTER_POSITION]);
@@ -44,37 +41,54 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
   void   set matchFilter(String matchId) => _setFilter(FILTER_MATCH, matchId);
 
   void _setFilter(String key, String valor) {
+
+    // En movil no permitimos nunca poner el filtro vacio!
+    if (scrDet.isXsScreen && key == FILTER_POSITION && valor == null) {
+      return;
+    }
+
     _filterList[key] = valor;
     _isDirty = true;
   }
 
-  @NgOneWay("soccer-players")
-  void set soccerPlayers(List<dynamic> sp) {
-    sortedSoccerPlayers = sp;
-    sortListByField('Pos', invert: false);
-    _isDirty = true;
-
-    if (_soccerPlayersWatch != null) {
-      _soccerPlayersWatch.remove();
-      _soccerPlayersWatch = null;
+  @NgOneWayOneTime("soccer-players")
+  void set setSoccerPlayers(List<dynamic> sp) {
+    if (sp == _sortedSoccerPlayers) {
+      return;
     }
-    _soccerPlayersWatch = _scope.watch("sortedSoccerPlayers", _onSoccerPlayersChanged, canChangeModel: false, collection:true);
+    _sortedSoccerPlayers = sp;
+    _refreshSort();
   }
+
+  @NgOneWay("lineup-filter")
+  void set setLineupFilter(List<dynamic> sp) {
+    if (sp == lineupFilter) {
+      return;
+    }
+
+    lineupFilter = sp;
+
+    if (_lineupFilterWatch != null) {
+      _lineupFilterWatch.remove();
+      _lineupFilterWatch = null;
+    }
+    _lineupFilterWatch = _scope.watch("lineupFilter", _onLineupFilterChanged, canChangeModel: false, collection:true);
+
+    // Siempre que reseteen la lista, empezamos ordenados por posicion
+    sortListByField('Pos', invert: false);
+
+    // En movil podemos empezar directamente filtrados
+    if (scrDet.isXsScreen) {
+      _filterList["FILTER_POSITION"] = new FieldPos("GOALKEEPER").value;
+    }
+  }
+
+  List<dynamic> lineupFilter;
 
   SoccerPlayersListComp(this.scrDet, this._element);
 
-  void _onSoccerPlayersChanged(changes, other) {
+  void _onLineupFilterChanged(changes, other) {
     if (changes != null && changes is CollectionChangeRecord) {
-      /*
-      changes.forEachRemoval((changedItem) {
-        querySelector("#soccerPlayer${changedItem.item['intId']}").remove();
-      });
-      changes.forEachAddition((changedItem) {
-        if (_shouldBeVisible(changedItem.item)) {
-          _soccerPlayerListRoot.appendHtml(getHtmlForSlot(changedItem.item));
-        }
-      });
-      */
       _isDirty = true;
     }
   }
@@ -88,8 +102,8 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
   }
 
   @override void detach() {
-    if (_soccerPlayersWatch != null) {
-      _soccerPlayersWatch.remove();
+    if (_lineupFilterWatch != null) {
+      _lineupFilterWatch.remove();
     }
   }
 
@@ -113,6 +127,10 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
 
     _removeSlots();
 
+    if (_sortedSoccerPlayers == null) {
+      return;
+    }
+
     _soccerPlayerListRoot = new DivElement();
     _soccerPlayerListRoot.classes.add("soccer-players-list");
 
@@ -122,15 +140,15 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
 
     StringBuffer allHtml = new StringBuffer();
 
-    int length = sortedSoccerPlayers.length;
+    int length = _sortedSoccerPlayers.length;
     for (int c = 0; c < length; ++c) {
-      var slot = sortedSoccerPlayers[c];
+      var slot = _sortedSoccerPlayers[c];
 
-      if (!_shouldBeVisibleWithFilters(slot, filterPosVal, filterMatchIdVal, filterNameVal)) {
+      if (!_isVisibleWithFilters(slot, filterPosVal, filterMatchIdVal, filterNameVal)) {
         continue;
       }
 
-      allHtml.write(getHtmlForSlot(slot));
+      allHtml.write(getHtmlForSlot(slot, !lineupFilter.contains(slot)));
     }
 
     _soccerPlayerListRoot.appendHtml(allHtml.toString());
@@ -141,7 +159,11 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
     print("Ha tardado: ${sw.elapsedMilliseconds}");
   }
 
-  String getHtmlForSlot(var slot) {
+  String getHtmlForSlot(var slot, bool addButton) {
+
+    String strAddButton = addButton? '<div class="column-action"><button type="button" class="btn add">Añadir</button></div>' :
+                                     '<div class="column-action"><button type="button" class="btn remove">Quitar</button></div>';
+
     return '''
       <div id="soccerPlayer${slot["intId"]}" class="soccer-players-list-slot ${_POS_CLASS_NAMES[slot["fieldPos"].abrevName]}">
         <div class="column-fieldpos">${slot["fieldPos"].abrevName}</div>
@@ -152,20 +174,18 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
         <div class="column-dfp">${slot["fantasyPoints"]}</div>
         <div class="column-played">${slot["playedMatches"]}</div>
         <div class="column-salary">${slot["salary"]}€</div>
-        <div class="column-add">
-          <button type="button" class="btn">Añadir</button>
-        </div>
+        ${strAddButton}
       </div>
     ''';
   }
 
   void _onMouseEvent(MouseEvent e) {
     int divId = int.parse((e.currentTarget as DivElement).id.replaceFirst("soccerPlayer", ""));
-    var clickedSlot = sortedSoccerPlayers.firstWhere((slot) => slot['intId'] == divId);
+    var clickedSlot = _sortedSoccerPlayers.firstWhere((slot) => slot['intId'] == divId);
 
     if (e.target is ButtonElement) {
-      if (onAddClick != null) {
-        onAddClick({"soccerPlayer": clickedSlot});
+      if (onActionClick != null) {
+        onActionClick({"soccerPlayer": clickedSlot});
       }
     }
     else if (onRowClick != null) {
@@ -173,57 +193,69 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
     }
   }
 
-  static bool _shouldBeVisibleWithFilters(player, pos, matchId, name) {
+  static bool _isVisibleWithFilters(player, pos, matchId, name) {
     return (pos == null || player["fieldPos"].value == pos) &&
            (matchId == null || player["matchId"] == matchId) &&
            (name == null || name.isEmpty || player["fullNameNormalized"].contains(name));
   }
 
-  bool _shouldBeVisible(player) => !_shouldBeVisibleWithFilters(player, _filterList[FILTER_POSITION], _filterList[FILTER_MATCH], _filterList[FILTER_NAME]);
+  bool _isVisible(player) => !_isVisibleWithFilters(player, _filterList[FILTER_POSITION], _filterList[FILTER_MATCH], _filterList[FILTER_NAME]);
 
 
   void sortListByField(String fieldName, {bool invert : true}) {
+
     var newSortField = _SORT_FIELDS[fieldName];
 
     // Vamos memorizando todos los campos por los que ordenamos
-    if (newSortField["field"] != sortList[0]["field"]) {
-      sortList.insert(0, newSortField);
+    if (newSortField["field"] != _sortList[0]["field"]) {
+      _sortList.insert(0, newSortField);
 
-      if (sortList.length > _SORT_FIELDS.length) {
-        sortList.removeLast();
+      if (_sortList.length > _SORT_FIELDS.length) {
+        _sortList.removeLast();
       }
     }
     else if (invert) {
-      sortList[0]['order'] = -sortList[0]['order'];
+      _sortList[0]['order'] = -_sortList[0]['order'];
     }
 
-    sortedSoccerPlayers.sort((player1, player2) {
+    _refreshSort();
+  }
+
+  void _refreshSort() {
+
+    if (_sortedSoccerPlayers == null) {
+      return;
+    }
+
+    _sortedSoccerPlayers.sort((player1, player2) {
       int compResult = 0;
       int fieldIndex = 0;
 
       // Ordenamos por todos los campos uno tras otro
       do {
-        String currField = sortList[fieldIndex]["field"];
-        int currOrder = sortList[fieldIndex]["order"];
+        String currField = _sortList[fieldIndex]["field"];
+        int currOrder = _sortList[fieldIndex]["order"];
         compResult = currOrder * player1[currField].compareTo(player2[currField]);
         fieldIndex++;
-      } while(compResult == 0 && fieldIndex < sortList.length);
+      } while(compResult == 0 && fieldIndex < _sortList.length);
 
       return compResult;
     });
 
-    // Al ordenar se dispara un cambio en la lista, no hace falta marcar aqui _isDirty = true
+    _isDirty = true;
   }
 
-  String get _normalizedNameFilter => _filterList[FILTER_MATCH] == null? null : StringUtils.normalize(_filterList[FILTER_MATCH]).toUpperCase();
+  String get _normalizedNameFilter => _filterList[FILTER_NAME] == null? null : StringUtils.normalize(_filterList[FILTER_NAME]).toUpperCase();
 
   Element _element;
   DivElement _soccerPlayerListRoot;
   bool _shadowRoot = false;
   bool _isDirty = false;
   Scope _scope;
-  Watch _soccerPlayersWatch;
+  Watch _lineupFilterWatch;
 
+  List<dynamic> _sortedSoccerPlayers = null;
+  List<Map> _sortList = [_SORT_FIELDS["Pos"], _SORT_FIELDS["Name"]];
   Map<String, String> _filterList = {};
 
   static final Map<String, String> _POS_CLASS_NAMES = { "POR": "posPOR", "DEF": "posDEF", "MED": "posMED", "DEL": "posDEL" };

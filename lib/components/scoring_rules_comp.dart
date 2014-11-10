@@ -17,12 +17,11 @@ class ScoringRulesComp {
   List<Map> Defenders;
   List<Map> MidFielders;
   List<Map> Forwards;
-  Map<String, int> scoringPoints;
 
   ScoringRulesComp(ScoringRulesService scoringRulesService, FlashMessagesService _flashMessage) {
     scoringRulesService.refreshScoringRules()
       .then((_) {
-        scoringPoints = scoringRulesService.scoringRules;
+        _scoringPoints = scoringRulesService.scoringRules;
         _init();
       })
       .catchError((error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW));
@@ -33,12 +32,14 @@ class ScoringRulesComp {
   }
 
   void _init() {
-    AllPlayers = _allPlayerEvents.map((event)   => {"name": SoccerPlayer.getEventName(event), "points": scoringPoints[event]}).toList();
-    GoalKeepers = _goalKeeperEvents.map((event) => {"name": SoccerPlayer.getEventName(event), "points": scoringPoints[event]}).toList();
-    Defenders = _defendersEvents.map((event)    => {"name": SoccerPlayer.getEventName(event), "points": scoringPoints[event]}).toList();
-    MidFielders = _midFieldersEvents.map((event)=> {"name": SoccerPlayer.getEventName(event), "points": scoringPoints[event]}).toList();
-    Forwards = _forwardEvents.map((event)       => {"name": SoccerPlayer.getEventName(event), "points": scoringPoints[event]}).toList();
+    AllPlayers = _allPlayerEvents.map((event)   => {"name": SoccerPlayer.getEventName(event), "points": _scoringPoints[event]}).toList();
+    GoalKeepers = _goalKeeperEvents.map((event) => {"name": SoccerPlayer.getEventName(event), "points": _scoringPoints[event]}).toList();
+    Defenders = _defendersEvents.map((event)    => {"name": SoccerPlayer.getEventName(event), "points": _scoringPoints[event]}).toList();
+    MidFielders = _midFieldersEvents.map((event)=> {"name": SoccerPlayer.getEventName(event), "points": _scoringPoints[event]}).toList();
+    Forwards = _forwardEvents.map((event)       => {"name": SoccerPlayer.getEventName(event), "points": _scoringPoints[event]}).toList();
   }
+
+  Map<String, int> _scoringPoints;
 
   List _allPlayerEvents   = [
                             "PASS_SUCCESSFUL"

@@ -30,7 +30,7 @@ class EnterContestComp implements DetachAware {
 
   Contest contest;
   String contestId;
-  String contestEntryId = null;
+  String contestEntryId;
 
   final List<dynamic> lineupSlots = [];
   List<dynamic> availableSoccerPlayers = [];
@@ -43,8 +43,8 @@ class EnterContestComp implements DetachAware {
   InstanceSoccerPlayer selectedInstanceSoccerPlayer;
   int availableSalary = 0;
 
-  bool isFantasyTeamValid() => !lineupSlots.any((player) => player == null);
-
+  bool get isInvalidFantasyTeam => lineupSlots.any((player) => player == null);
+  bool get editingContestEntry => contestEntryId != null;
 
   EnterContestComp(this._routeProvider, this._router, this.scrDet, this._activeContestService, this._myContestService, this._flashMessage, this.loadingService) {
     loadingService.isLoading = true;
@@ -55,18 +55,18 @@ class EnterContestComp implements DetachAware {
     });
 
     contestId = _routeProvider.route.parameters['contestId'];
-    _editingContestEntry = (_routeProvider.route.parameters['contestEntryId'] != null);
+    contestEntryId = _routeProvider.route.parameters['contestEntryId'] == "null"? null : _routeProvider.route.parameters['contestEntryId'];
 
     // Nos subscribimos al evento de cambio de tamañano de ventana
     _streamListener = scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
 
-    Future refreshContest = _editingContestEntry ? _myContestService.refreshMyContest(contestId) :
-                                                   _activeContestService.refreshContest(contestId);
+    Future refreshContest = editingContestEntry? _myContestService.refreshMyContest(contestId) :
+                                                 _activeContestService.refreshContest(contestId);
     refreshContest
       .then((_) {
         loadingService.isLoading = false;
 
-        contest = _editingContestEntry ? _myContestService.lastContest : _activeContestService.lastContest;
+        contest = editingContestEntry ? _myContestService.lastContest : _activeContestService.lastContest;
 
         // Al principio, todos disponibles
         availableSoccerPlayers = initAllSoccerPlayers();
@@ -75,8 +75,8 @@ class EnterContestComp implements DetachAware {
         availableSalary = contest.salaryCap;
 
         // Si nos viene el torneo para editar la alineación
-        if (_editingContestEntry) {
-          ContestEntry contestEntry = _myContestService.lastContest.getContestEntry(_routeProvider.route.parameters['contestEntryId']);
+        if (editingContestEntry) {
+          ContestEntry contestEntry = _myContestService.lastContest.getContestEntry(contestEntryId);
 
           // Insertamos en el lineup el jugador
           contestEntry.instanceSoccerPlayers.forEach((instanceSoccerPlayer) {
@@ -252,7 +252,7 @@ class EnterContestComp implements DetachAware {
 
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
 
-    if (_editingContestEntry) {
+    if (editingContestEntry) {
       _myContestService.editContestEntry(contestEntryId, lineupSlots.map((player) => player["id"]).toList())
         .then((_) => _router.go('view_contest_entry', {"contestId": contest.contestId, "parent":
                                                        _routeProvider.parameters["parent"],
@@ -341,8 +341,6 @@ class EnterContestComp implements DetachAware {
   FlashMessagesService _flashMessage;
 
   List<dynamic> _allSoccerPlayers = new List();
-
-  bool _editingContestEntry = false;
 
   var _streamListener;
 

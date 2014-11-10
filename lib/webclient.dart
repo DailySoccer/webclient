@@ -272,7 +272,7 @@ class WebClientApp extends Module {
           viewHtml: '<view-contest></view-contest>'
       )
       ,'enter_contest': ngRoute(
-          path: '/enter_contest/:parent/:contestId',
+          path: '/enter_contest/:parent/:contestId/:contestEntryId',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
           enter: (RouteEnterEvent e) => _enterPage(e),
           leave: (RouteLeaveEvent e) => _leavePage(e),
@@ -282,13 +282,6 @@ class WebClientApp extends Module {
               path: '/soccer_player_info/:instanceSoccerPlayerId',
               viewHtml: '<soccer-player-info></soccer-player-info>')
           }
-      )
-      ,'edit_contest': ngRoute(
-          path: '/edit_contest/:parent/:contestId/:contestEntryId',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
-          enter: (RouteEnterEvent e) => _enterPage(e),
-          leave: (RouteLeaveEvent e) => _leavePage(e),
-          viewHtml: '<enter-contest></enter-contest>'
       )
       ,'view_contest_entry': ngRoute(
           path: '/view_contest_entry/:parent/:viewContestEntryMode/:contestId',

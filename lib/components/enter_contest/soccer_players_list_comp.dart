@@ -20,8 +20,6 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
   static const String FILTER_NAME = "FILTER_NAME";
   static const String FILTER_MATCH = "FILTER_MATCH";
 
-  ScreenDetectorService scrDet;
-
   @NgCallback("on-row-click")
   Function onRowClick;
 
@@ -43,7 +41,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
   void _setFilter(String key, String valor) {
 
     // En movil no permitimos nunca poner el filtro vacio!
-    if (scrDet.isXsScreen && key == FILTER_POSITION && valor == null) {
+    if (_scrDet.isXsScreen && key == FILTER_POSITION && valor == null) {
       return;
     }
 
@@ -56,7 +54,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
     if (sp == _sortedSoccerPlayers) {
       return;
     }
-    _sortedSoccerPlayers = sp;
+    _sortedSoccerPlayers = sp;  // Nos quedamos directamente con la lista sin hacer copias y la ordenaremos.
     _refreshSort();
   }
 
@@ -78,14 +76,14 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
     sortListByField('Pos', invert: false);
 
     // En movil podemos empezar directamente filtrados
-    if (scrDet.isXsScreen) {
+    if (_scrDet.isXsScreen) {
       _filterList["FILTER_POSITION"] = new FieldPos("GOALKEEPER").value;
     }
   }
 
   List<dynamic> lineupFilter;
 
-  SoccerPlayersListComp(this.scrDet, this._element);
+  SoccerPlayersListComp(this._scrDet, this._element);
 
   void _onLineupFilterChanged(changes, _) {
     if (changes != null && changes is CollectionChangeRecord) {
@@ -258,6 +256,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
 
   String get _normalizedNameFilter => _filterList[FILTER_NAME] == null? null : StringUtils.normalize(_filterList[FILTER_NAME]).toUpperCase();
 
+  ScreenDetectorService _scrDet;
   Element _element;
   DivElement _soccerPlayerListRoot;
   bool _shadowRoot = false;

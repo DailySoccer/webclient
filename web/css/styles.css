@@ -15739,7 +15739,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
     width: 16.66666667%;
   }
 }
-.soccer-players-list .soccer-players-list-slot .column-add {
+.soccer-players-list .soccer-players-list-slot .column-action {
   float: left;
   width: 16.66666667%;
   position: relative;
@@ -15750,76 +15750,134 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   padding-right: 3px;
 }
 @media (min-width: 992px) {
-  .soccer-players-list .soccer-players-list-slot .column-add {
+  .soccer-players-list .soccer-players-list-slot .column-action {
     float: left;
     width: 16.66666667%;
   }
 }
-.soccer-players-list .soccer-players-list-slot .column-add .btn {
-  color: #ffffff;
-  background-color: #a1c931;
-  border-color: #91b42c;
-  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+.soccer-players-list .soccer-players-list-slot .column-action .btn {
   margin-top: 4px;
   padding-left: 15%;
   padding-right: 15%;
   font-size: 9pt;
 }
-.soccer-players-list .soccer-players-list-slot .column-add .btn:hover,
-.soccer-players-list .soccer-players-list-slot .column-add .btn:focus,
-.soccer-players-list .soccer-players-list-slot .column-add .btn:active,
-.soccer-players-list .soccer-players-list-slot .column-add .btn.active,
-.open .dropdown-toggle.soccer-players-list .soccer-players-list-slot .column-add .btn {
+@media (min-width: 768px) {
+  .soccer-players-list .soccer-players-list-slot .column-action .btn {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+.soccer-players-list .soccer-players-list-slot .column-action .btn.add {
+  color: #ffffff;
+  background-color: #a1c931;
+  border-color: #91b42c;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+}
+.soccer-players-list .soccer-players-list-slot .column-action .btn.add:hover,
+.soccer-players-list .soccer-players-list-slot .column-action .btn.add:focus,
+.soccer-players-list .soccer-players-list-slot .column-action .btn.add:active,
+.soccer-players-list .soccer-players-list-slot .column-action .btn.add.active,
+.open .dropdown-toggle.soccer-players-list .soccer-players-list-slot .column-action .btn.add {
   color: #ffffff;
   background-color: #87a829;
   border-color: #698320;
 }
-.soccer-players-list .soccer-players-list-slot .column-add .btn:active,
-.soccer-players-list .soccer-players-list-slot .column-add .btn.active,
-.open .dropdown-toggle.soccer-players-list .soccer-players-list-slot .column-add .btn {
+.soccer-players-list .soccer-players-list-slot .column-action .btn.add:active,
+.soccer-players-list .soccer-players-list-slot .column-action .btn.add.active,
+.open .dropdown-toggle.soccer-players-list .soccer-players-list-slot .column-action .btn.add {
   background-image: none;
 }
-.soccer-players-list .soccer-players-list-slot .column-add .btn.disabled,
-.soccer-players-list .soccer-players-list-slot .column-add .btn[disabled],
-fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .btn,
-.soccer-players-list .soccer-players-list-slot .column-add .btn.disabled:hover,
-.soccer-players-list .soccer-players-list-slot .column-add .btn[disabled]:hover,
-fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .btn:hover,
-.soccer-players-list .soccer-players-list-slot .column-add .btn.disabled:focus,
-.soccer-players-list .soccer-players-list-slot .column-add .btn[disabled]:focus,
-fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .btn:focus,
-.soccer-players-list .soccer-players-list-slot .column-add .btn.disabled:active,
-.soccer-players-list .soccer-players-list-slot .column-add .btn[disabled]:active,
-fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .btn:active,
-.soccer-players-list .soccer-players-list-slot .column-add .btn.disabled.active,
-.soccer-players-list .soccer-players-list-slot .column-add .btn[disabled].active,
-fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .btn.active {
+.soccer-players-list .soccer-players-list-slot .column-action .btn.add.disabled,
+.soccer-players-list .soccer-players-list-slot .column-action .btn.add[disabled],
+fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action .btn.add,
+.soccer-players-list .soccer-players-list-slot .column-action .btn.add.disabled:hover,
+.soccer-players-list .soccer-players-list-slot .column-action .btn.add[disabled]:hover,
+fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action .btn.add:hover,
+.soccer-players-list .soccer-players-list-slot .column-action .btn.add.disabled:focus,
+.soccer-players-list .soccer-players-list-slot .column-action .btn.add[disabled]:focus,
+fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action .btn.add:focus,
+.soccer-players-list .soccer-players-list-slot .column-action .btn.add.disabled:active,
+.soccer-players-list .soccer-players-list-slot .column-action .btn.add[disabled]:active,
+fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action .btn.add:active,
+.soccer-players-list .soccer-players-list-slot .column-action .btn.add.disabled.active,
+.soccer-players-list .soccer-players-list-slot .column-action .btn.add[disabled].active,
+fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action .btn.add.active {
   background-color: #a1c931;
   border-color: #91b42c;
 }
-.soccer-players-list .soccer-players-list-slot .column-add .btn .badge {
+.soccer-players-list .soccer-players-list-slot .column-action .btn.add .badge {
   color: #a1c931;
   background-color: #ffffff;
 }
-.soccer-players-list .soccer-players-list-slot .column-add .btn[disabled] {
+.soccer-players-list .soccer-players-list-slot .column-action .btn.add[disabled] {
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
 }
-.soccer-players-list .soccer-players-list-slot .column-add .btn:active,
-.soccer-players-list .soccer-players-list-slot .column-add .btn[disabled],
-fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-add .btn {
+.soccer-players-list .soccer-players-list-slot .column-action .btn.add:active,
+.soccer-players-list .soccer-players-list-slot .column-action .btn.add[disabled],
+fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action .btn.add {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-.soccer-players-list .soccer-players-list-slot .column-add .btn:focus {
+.soccer-players-list .soccer-players-list-slot .column-action .btn.add:focus {
   outline: none !important;
 }
-@media (min-width: 768px) {
-  .soccer-players-list .soccer-players-list-slot .column-add .btn {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
+.soccer-players-list .soccer-players-list-slot .column-action .btn.remove {
+  color: #ffffff;
+  background-color: #59add5;
+  border-color: #cccccc;
+  box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
+}
+.soccer-players-list .soccer-players-list-slot .column-action .btn.remove:hover,
+.soccer-players-list .soccer-players-list-slot .column-action .btn.remove:focus,
+.soccer-players-list .soccer-players-list-slot .column-action .btn.remove:active,
+.soccer-players-list .soccer-players-list-slot .column-action .btn.remove.active,
+.open .dropdown-toggle.soccer-players-list .soccer-players-list-slot .column-action .btn.remove {
+  color: #ffffff;
+  background-color: #389dcd;
+  border-color: #adadad;
+}
+.soccer-players-list .soccer-players-list-slot .column-action .btn.remove:active,
+.soccer-players-list .soccer-players-list-slot .column-action .btn.remove.active,
+.open .dropdown-toggle.soccer-players-list .soccer-players-list-slot .column-action .btn.remove {
+  background-image: none;
+}
+.soccer-players-list .soccer-players-list-slot .column-action .btn.remove.disabled,
+.soccer-players-list .soccer-players-list-slot .column-action .btn.remove[disabled],
+fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action .btn.remove,
+.soccer-players-list .soccer-players-list-slot .column-action .btn.remove.disabled:hover,
+.soccer-players-list .soccer-players-list-slot .column-action .btn.remove[disabled]:hover,
+fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action .btn.remove:hover,
+.soccer-players-list .soccer-players-list-slot .column-action .btn.remove.disabled:focus,
+.soccer-players-list .soccer-players-list-slot .column-action .btn.remove[disabled]:focus,
+fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action .btn.remove:focus,
+.soccer-players-list .soccer-players-list-slot .column-action .btn.remove.disabled:active,
+.soccer-players-list .soccer-players-list-slot .column-action .btn.remove[disabled]:active,
+fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action .btn.remove:active,
+.soccer-players-list .soccer-players-list-slot .column-action .btn.remove.disabled.active,
+.soccer-players-list .soccer-players-list-slot .column-action .btn.remove[disabled].active,
+fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action .btn.remove.active {
+  background-color: #59add5;
+  border-color: #cccccc;
+}
+.soccer-players-list .soccer-players-list-slot .column-action .btn.remove .badge {
+  color: #59add5;
+  background-color: #ffffff;
+}
+.soccer-players-list .soccer-players-list-slot .column-action .btn.remove[disabled] {
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #f8f8f8 !important;
+  cursor: not-allowed !important;
+}
+.soccer-players-list .soccer-players-list-slot .column-action .btn.remove:active,
+.soccer-players-list .soccer-players-list-slot .column-action .btn.remove[disabled],
+fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action .btn.remove {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.soccer-players-list .soccer-players-list-slot .column-action .btn.remove:focus {
+  outline: none !important;
 }
 @media (max-width: 767px) {
   .soccer-players-filter {

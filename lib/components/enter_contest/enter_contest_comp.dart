@@ -32,8 +32,8 @@ class EnterContestComp implements DetachAware {
   String contestId;
   String contestEntryId;
 
-  final List<dynamic> lineupSlots = [];
-  List<dynamic> availableSoccerPlayers = [];
+  List<dynamic> allSoccerPlayers;
+  List<dynamic> lineupSlots;
 
   FieldPos fieldPosFilter;
   String nameFilter;
@@ -51,10 +51,7 @@ class EnterContestComp implements DetachAware {
   EnterContestComp(this._routeProvider, this._router, this.scrDet, this._activeContestService, this._myContestService, this._flashMessage, this.loadingService) {
     loadingService.isLoading = true;
 
-    // Creamos los slots iniciales, todos vacios
-    FieldPos.LINEUP.forEach((pos) {
-      lineupSlots.add(null);
-    });
+    resetLineup();
 
     contestId = _routeProvider.route.parameters['contestId'];
     contestEntryId = _routeProvider.route.parameters['contestEntryId'];
@@ -69,12 +66,9 @@ class EnterContestComp implements DetachAware {
         loadingService.isLoading = false;
 
         contest = editingContestEntry ? _myContestService.lastContest : _activeContestService.lastContest;
-
-        // Al principio, todos disponibles
-        availableSoccerPlayers = initAllSoccerPlayers();
-
-        // Saldo disponible
         availableSalary = contest.salaryCap;
+
+        initAllSoccerPlayers();
 
         // Si nos viene el torneo para editar la alineación
         if (editingContestEntry) {
@@ -82,7 +76,7 @@ class EnterContestComp implements DetachAware {
 
           // Insertamos en el lineup el jugador
           contestEntry.instanceSoccerPlayers.forEach((instanceSoccerPlayer) {
-            onSoccerPlayerSelected(_allSoccerPlayers.firstWhere((slot) => slot["id"] == instanceSoccerPlayer.id));
+            addSoccerPlayerToLineup(instanceSoccerPlayer.id);
           });
         }
       })
@@ -95,6 +89,15 @@ class EnterContestComp implements DetachAware {
       event.route.dontLeaveOnParamChanges;
       //bool decision = window.confirm('Estas seguro que quieres salir? Si pulsas en aceptar perderas los cambios realizados en esta alineación y abandonaras el torneo.');
       //event.allowLeave(new Future.value(decision));
+    });
+  }
+
+  void resetLineup() {
+    lineupSlots = new List<dynamic>();
+
+    // Creamos los slots iniciales, todos vacios
+    FieldPos.LINEUP.forEach((pos) {
+      lineupSlots.add(null);
     });
   }
 
@@ -122,7 +125,7 @@ class EnterContestComp implements DetachAware {
     isSelectingSoccerPlayer = false;
   }
 
-  void onSlotSelected(int slotIndex) {
+  void onLineupSlotSelected(int slotIndex) {
 
     // Si todavia no tenemos concurso (esta cargando), rechazamos el click
     if (contest == null) {
@@ -132,11 +135,6 @@ class EnterContestComp implements DetachAware {
     if (lineupSlots[slotIndex] != null) {
       // Al borrar el jugador seleccionado en el lineup, sumamos su salario al total
       availableSalary += lineupSlots[slotIndex]["salary"];
-
-      isSelectingSoccerPlayer = false;
-
-      // Vuelve a estar entre los disponibles...
-      availableSoccerPlayers.add(lineupSlots[slotIndex]);
 
       // Lo quitamos del slot
       lineupSlots[slotIndex] = null;
@@ -157,24 +155,46 @@ class EnterContestComp implements DetachAware {
     }
   }
 
-  void onSoccerPlayerSelected(var soccerPlayer) {
-    bool wasAdded = tryToAddSoccerPlayer(soccerPlayer);
+  void addSoccerPlayerToLineup(String soccerPlayerId) {
+    _tryToAddSoccerPlayerToLineup(allSoccerPlayers.firstWhere((soccerPlayer) => soccerPlayer["id"] == soccerPlayerId));
+  }
 
-    if (wasAdded) {
-      isSelectingSoccerPlayer = false;
-      availableSoccerPlayers.remove(soccerPlayer);
-      availableSalary -= soccerPlayer["salary"];
-      nameFilter = null;
-      scrollToElement('.enter-contest-tabs');
+  void onSoccerPlayerActionButton(var soccerPlayer) {
+
+    int indexOfPlayer = lineupSlots.indexOf(soccerPlayer);
+    if (indexOfPlayer != -1) {
+      onLineupSlotSelected(indexOfPlayer);  // Esto se encarga de quitarlo del lineup
+    }
+    else {
+      _tryToAddSoccerPlayerToLineup(soccerPlayer);
     }
   }
 
+  void _tryToAddSoccerPlayerToLineup(var soccerPlayer) {
+    // Buscamos el primer slot libre para la posicion que ocupa el soccer player
+    FieldPos theFieldPos = soccerPlayer["fieldPos"];
+
+    for (int c = 0; c < lineupSlots.length; ++c) {
+       if (lineupSlots[c] == null && FieldPos.LINEUP[c] == theFieldPos.value) {
+
+         lineupSlots[c] = soccerPlayer;
+
+         isSelectingSoccerPlayer = false;
+         availableSalary -= soccerPlayer["salary"];
+         nameFilter = null;
+         scrollToElement('.enter-contest-tabs');
+
+         break;
+       }
+     }
+  }
+
   bool isSlotAvailableForSoccerPlayer(String soccerPlayerId) {
-    if (soccerPlayerId == null || soccerPlayerId.isEmpty || _allSoccerPlayers.isEmpty) {
+    if (soccerPlayerId == null || soccerPlayerId.isEmpty || allSoccerPlayers.isEmpty) {
       return false;
     }
 
-    var soccerPlayer = _allSoccerPlayers.firstWhere((sp) => sp["id"] == soccerPlayerId);
+    var soccerPlayer = allSoccerPlayers.firstWhere((sp) => sp["id"] == soccerPlayerId);
 
     FieldPos theFieldPos = soccerPlayer["fieldPos"];
     int c = 0;
@@ -188,28 +208,10 @@ class EnterContestComp implements DetachAware {
     return false;
   }
 
-  // Añade un futbolista a nuestro lineup si hay algun slot libre de su misma fieldPos. Retorna false si no pudo añadir
-  bool tryToAddSoccerPlayer(var soccerPlayer) {
-
-    // Buscamos el primer slot libre para la posicion que ocupa el soccer player
-    FieldPos theFieldPos = soccerPlayer["fieldPos"];
-    int c = 0;
-    if (lineupSlots.contains(soccerPlayer)) {
-      return false;
-    }
-    for ( ; c < lineupSlots.length; ++c) {
-      if (lineupSlots[c] == null && FieldPos.LINEUP[c] == theFieldPos.value) {
-        lineupSlots[c] = soccerPlayer;
-        return true;
-      }
-    }
-
-    return false;
-  }
-
-  List<dynamic> initAllSoccerPlayers() {
+  void initAllSoccerPlayers() {
 
     int intId = 0;
+    allSoccerPlayers = new List<dynamic>();
 
     contest.instanceSoccerPlayers.forEach((templateSoccerId, instanceSoccerPlayer) {
       MatchEvent matchEvent = instanceSoccerPlayer.soccerTeam.matchEvent;
@@ -222,7 +224,7 @@ class EnterContestComp implements DetachAware {
            ? "<strong>$shortNameTeamA</strong> - $shortNameTeamB"
            : "$shortNameTeamA - <strong>$shortNameTeamB</strong>";
 
-      _allSoccerPlayers.add({
+      allSoccerPlayers.add({
         "instanceSoccerPlayer": instanceSoccerPlayer,
         "id": instanceSoccerPlayer.id,
         "intId": intId++,
@@ -238,8 +240,6 @@ class EnterContestComp implements DetachAware {
         "salary": instanceSoccerPlayer.salary
       });
     });
-
-    return new List<dynamic>.from(_allSoccerPlayers);
   }
 
   void alertDismiss() {
@@ -293,21 +293,9 @@ class EnterContestComp implements DetachAware {
   }
 
   void deleteFantasyTeam() {
-
-    for (int i = 0; i < lineupSlots.length; ++i) {
-      lineupSlots[i] = null;
-    }
-
-    // Todos los jugadores disponibles. Esto ademas resetea el sorting
-    availableSoccerPlayers = new List<dynamic>.from(_allSoccerPlayers);
-
-    // Resetamos todos los filtros
+    resetLineup();
     removeAllFilters();
-
-    // Reseteamos el salario disponible
     availableSalary = contest.salaryCap;
-
-    // Quito la modal de alerta de números rojos
     alertDismiss();
   }
 
@@ -328,14 +316,6 @@ class EnterContestComp implements DetachAware {
     _router.go("enter_contest.soccer_player_info",  { "instanceSoccerPlayerId": soccerPlayerId });
   }
 
-  void addSoccerPlayerToLineup(String soccerPlayerId) {
-    var selectedSoccerPlayer = availableSoccerPlayers.firstWhere((soccerPlayer) => soccerPlayer["id"] == soccerPlayerId,
-                                                                 orElse: () => null);
-    if (selectedSoccerPlayer != null) {
-      onSoccerPlayerSelected(selectedSoccerPlayer);
-    }
-  }
-
   void scrollToElement(String selector) {
     //window.scrollTo(0, querySelector(selector).offsetTop);
   }
@@ -346,8 +326,6 @@ class EnterContestComp implements DetachAware {
   ActiveContestsService _activeContestService;
   MyContestsService _myContestService;
   FlashMessagesService _flashMessage;
-
-  List<dynamic> _allSoccerPlayers = new List();
 
   var _streamListener;
 

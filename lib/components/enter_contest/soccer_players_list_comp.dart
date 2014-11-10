@@ -12,7 +12,7 @@ import 'package:angular/change_detection/change_detection.dart';
     selector: 'soccer-players-list',
     templateUrl: 'packages/webclient/components/enter_contest/soccer_players_list_comp.html',
     useShadowDom: false,
-    exportExpressions: const ["sortedSoccerPlayers"]
+    exportExpressions: const ["lineupFilter"]
 )
 class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware {
 

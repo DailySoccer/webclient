@@ -861,10 +861,11 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
 
                 <soccer-players-filter name-filter="nameFilter" field-pos-filter="fieldPosFilter"></soccer-players-filter>
                 
-                <soccer-players-list soccer-players="availableSoccerPlayers"
+                <soccer-players-list soccer-players="allSoccerPlayers"
+                                     lineup-filter="lineupSlots"
                                      field-pos-filter="fieldPosFilter" name-filter="nameFilter" match-filter="matchFilter"
                                      on-row-click="onRowClick(soccerPlayerId)"
-                                     on-add-click="onSoccerPlayerSelected(soccerPlayer)"></soccer-players-list>
+                                     on-action-click="onSoccerPlayerActionButton(soccerPlayer)"></soccer-players-list>
               </div>
             </div>
 
@@ -901,7 +902,7 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
 
 <ng-view></ng-view>"""));
 tc.put("packages/webclient/components/enter_contest/lineup_selector_comp.html", new HttpResponse(200, r"""<div class="lineup-selector">
-  <div class="lineup-selector-slot" ng-repeat="slot in enterContestComp.lineupSlots" ng-click="enterContestComp.onSlotSelected($index)" ng-class="getSlotClassColor($index)">
+  <div class="lineup-selector-slot" ng-repeat="slot in enterContestComp.lineupSlots" ng-click="enterContestComp.onLineupSlotSelected($index)" ng-class="getSlotClassColor($index)">
 
     <div ng-if="slot == null">
       <div class="column-fieldpos">{{getSlotPosition($index)}}</div>

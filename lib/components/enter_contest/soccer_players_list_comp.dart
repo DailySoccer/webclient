@@ -93,7 +93,11 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
 
         if (soccerPlayer != null) {
           var elem = _soccerPlayerListRoot.querySelector("#soccerPlayer${soccerPlayer['intId']}");
-          elem.setInnerHtml(getHtmlForSlot(soccerPlayer, changedItem.previousIndex != null));
+
+          // Quiza nos mandan quitar un portero pero estamos filtrando por defensas....
+          if (elem != null) {
+            elem.setInnerHtml(getHtmlForSlot(soccerPlayer, changedItem.previousIndex != null));
+          }
         }
       }
 

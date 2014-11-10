@@ -601,171 +601,167 @@ tc.put("packages/webclient/components/contest_header_comp.html", new HttpRespons
 
 <div class="clearfix"></div>
 """));
-tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(200, r""" <div ng-if="isPopUp">
-    <div class="modal-info-head">
-        <div class="contest-info-header-row">
+tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(200, r"""<modal id="contestInfoModal" ng-if="isModal">
+  <div class="modal-info-head">
+      <div class="contest-info-header-row">
 
-            <div class="column-name">
-                <div class="inner-content">
-                    <span class="title-text">{{currentInfoData['description']}}</span>
-                    <span class="content-text">{{currentInfoData['name']}}</span>
-                </div>
-            </div>
-
-            <div class="column-entry-fee">
-                <!--<div class="inner-icon">
-                    <span class="price-icon"></span>
-                </div>-->
-                <div class="inner-content">
-                    <span class="title-text">ENTRADA</span>
-                    <span class="content-text">{{currentInfoData['entry']}}€</span>
-                </div>
-            </div>
-
-            <div class="column-prize">
-                <div class="inner-icon">
-                    <span class="prize-icon"></span>
-                </div>
-                <div class="inner-content">
-                    <span class="title-text">PREMIOS</span>
-                    <span class="content-text">{{currentInfoData['prize']}}€</span>
-                </div>
-            </div>
-
-        </div>
-
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-          <span class="glyphicon glyphicon-remove"></span>
-        </button>
-    </div>
-
-    <div class="modal-info-content">
-
-        <div class="tabs-background">
-          <!-- Nav tabs -->
-          <ul class="contest-info-tabs " id="modalInfoContestTabs">
-              <li class="tab active"><a  data-toggle="tab" ng-click="tabChange('info')">INFORMACIÓN</a></li>
-              <li class="tab"><a  data-toggle="tab" ng-click="tabChange('contestants')">PARTICIPANTES</a></li>
-              <li class="tab"><a  data-toggle="tab" ng-click="tabChange('prizes')">PREMIOS</a></li>
-              <li class="buton-place">
-                <button id="btn-go-enter-contest" class="btn btn-primary" ng-click="enterContest()">ENTRAR</button>
-              </li>
-          </ul>
-        </div>
-
-        <div class="contest-info-content" id="modalInfoContestTabContent">
-            <div class=" tab-content">
-
-                <!-- Tab panes -->
-                <div class="tab-pane active" id="info">
-                    <p class="instructions">{{currentInfoData['rules']}}</p>
-                    <div class="start-date">COMIENZA EL {{currentInfoData['startDateTime']}}</div>
-
-                    <div class="matches-involved">
-                        <div class="match"   ng-repeat="match in currentInfoData['matchesInvolved']">
-                            <p class="teams">{{match.soccerTeamA.shortName}} - {{match.soccerTeamB.shortName}}</p>
-                            <p class="date">{{formatMatchDate(match.startDate)}}</p>
-                        </div>
-                    </div>
-                    <div class="clearfix"></div>
-                    <p class="bases-title">REGLAS DE PUNTUACIÓN</p>
-
-                    <div class="rules-description">
-                      <scoring-rules></scoring-rules>
-                    </div>
-                </div>
-
-                <div class="tab-pane" id="contestants">
-                  <div class="contestant-list-wrapper ">
-                    <div ng-if="currentInfoData['contestants'].isEmpty" class="default-info-text">
-                      Todavía no hay participantes en este concurso. <br> Anímate a ser el primero.
-                    </div>
-                    <div class="contestant-list">
-                      <div class="contestant-element"ng-repeat="contestant in currentInfoData['contestants']">
-                        <div class="contestant-position">{{$index + 1}}º</div>
-                        <div class="contestant-name">{{contestant.name}}</div>
-                        <div class="contestant-points">{{contestant.wins + ' '}}<span class="prize-currency">Ganados</span></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="tab-pane" id="prizes">
-
-                  <div class="prizes-wrapper">
-                    <div ng-if="currentInfoData['prizes'].isEmpty" class="default-info-text">
-                      Este concurso no tiene premios
-                    </div>
-                    <div id="prizes-list">
-                      <div class="prize-element-wrapper" ng-repeat="prize in currentInfoData['prizes']">
-                        <div class="prize-element">
-                            {{$index + 1}}º &nbsp;&nbsp; {{prize.value}}€
-                        </div>
-                      </div>
-                      <div class="clearfix"></div>
-                    </div>
-                  </div>
-
-                </div>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-<div ng-if="!isPopUp">
-  <div id="contestInfoTabbed">
-    <p class="title">{{currentInfoData['rules']}}</p>
-    <div class="matches-involved">
-        <div class="match"   ng-repeat="match in currentInfoData['matchesInvolved']">
-            <p class="teams">{{match.soccerTeamA.shortName}} - {{match.soccerTeamB.shortName}}</p>
-            <p class="date">{{formatMatchDate(match.startDate)}}</p>
-        </div>
-    </div>
-    <div class="clearfix"></div>
-    <div class="info-section"></div>
-
-    <p class="title">REGLAS DE PUNTUACIÓN</p>
-    <div class="rules-description">
-      <scoring-rules></scoring-rules>
-    </div>
-    <div class="clearfix"></div>
-    <div class="info-section"></div>
-
-
-    <p class="title">PREMIOS</p>
-    <div class="prizes-wrapper">
-        <div id="prizes-list">
-          <div ng-if="currentInfoData['prizes'].isEmpty" class=default-info-text>
-            Este concurso no tiene premios
+          <div class="column-name">
+              <div class="inner-content">
+                  <span class="title-text">{{currentInfoData['description']}}</span>
+                  <span class="content-text">{{currentInfoData['name']}}</span>
+              </div>
           </div>
-          <div class="prize-element-wrapper" ng-repeat="prize in currentInfoData['prizes']">
-            <div class="prize-element">
-                {{$index + 1}}º &nbsp;&nbsp; {{prize.value}}€
-            </div>
+
+          <div class="column-entry-fee">
+              <!--<div class="inner-icon">
+                  <span class="price-icon"></span>
+              </div>-->
+              <div class="inner-content">
+                  <span class="title-text">ENTRADA</span>
+                  <span class="content-text">{{currentInfoData['entry']}}€</span>
+              </div>
           </div>
-          <div class="clearfix"></div>
-        </div>
-    </div>
-    <div class="clearfix"></div>
-    <div class="info-section"></div>
 
-    <p class="title">JUGADORES</p>
-    <div ng-if="currentInfoData['contestants'].isEmpty" class="default-info-text">
-      Todavía no hay participantes en este concurso. <br> Anímate a ser el primero.
-    </div>
-    <div class="contestant-list">
-        <div class="contestant-element"ng-repeat="contestant in currentInfoData['contestants']">
-            <div class="contestant-position">{{$index + 1}}º</div>
-            <div class="contestant-name">{{contestant.name}}</div>
-            <div class="contestant-points">{{contestant.wins + ' '}}<span class="prize-currency">Ganados</span></div>
-        </div>
-    </div>
-    <div class="clearfix"></div>
+          <div class="column-prize">
+              <div class="inner-icon">
+                  <span class="prize-icon"></span>
+              </div>
+              <div class="inner-content">
+                  <span class="title-text">PREMIOS</span>
+                  <span class="content-text">{{currentInfoData['prize']}}€</span>-
+              </div>
+          </div>
 
+      </div>
+
+      <button type="button" class="close" data-dismiss="modal">
+        <span class="glyphicon glyphicon-remove"></span>
+      </button>
   </div>
 
-</div>"""));
+  <div class="modal-info-content">
+
+      <div class="tabs-background">
+        <!-- Nav tabs -->
+        <ul class="contest-info-tabs " id="modalInfoContestTabs">
+            <li class="tab active"><a data-toggle="tab" ng-click="tabChange('info')">INFORMACIÓN</a></li>
+            <li class="tab"><a data-toggle="tab" ng-click="tabChange('contestants')">PARTICIPANTES</a></li>
+            <li class="tab"><a data-toggle="tab" ng-click="tabChange('prizes')">PREMIOS</a></li>
+            <li class="buton-place">
+              <button id="btn-go-enter-contest" class="btn btn-primary" ng-click="enterContest()">ENTRAR</button>
+            </li>
+        </ul>
+      </div>
+
+      <div class="contest-info-content" id="modalInfoContestTabContent">
+          <div class=" tab-content">
+
+              <!-- Tab panes -->
+              <div class="tab-pane active" id="info">
+                  <p class="instructions">{{currentInfoData['rules']}}</p>
+                  <div class="start-date">COMIENZA EL {{currentInfoData['startDateTime']}}</div>
+
+                  <div class="matches-involved">
+                      <div class="match" ng-repeat="match in currentInfoData['matchesInvolved']">
+                          <p class="teams">{{match.soccerTeamA.shortName}} - {{match.soccerTeamB.shortName}}</p>
+                          <p class="date">{{formatMatchDate(match.startDate)}}</p>
+                      </div>
+                  </div>
+                  <div class="clearfix"></div>
+                  <p class="bases-title">REGLAS DE PUNTUACIÓN</p>
+
+                  <div class="rules-description">
+                    <scoring-rules></scoring-rules>
+                  </div>
+              </div>
+
+              <div class="tab-pane" id="contestants">
+                <div class="contestant-list-wrapper ">
+                  <div ng-if="currentInfoData['contestants'].isEmpty" class="default-info-text">
+                    Todavía no hay participantes en este concurso. <br> Anímate a ser el primero.
+                  </div>
+                  <div class="contestant-list">
+                    <div class="contestant-element"ng-repeat="contestant in currentInfoData['contestants']">
+                      <div class="contestant-position">{{$index + 1}}º</div>
+                      <div class="contestant-name">{{contestant.name}}</div>
+                      <div class="contestant-points">{{contestant.wins + ' '}}<span class="prize-currency">Ganados</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tab-pane" id="prizes">
+
+                <div class="prizes-wrapper">
+                  <div ng-if="currentInfoData['prizes'].isEmpty" class="default-info-text">
+                    Este concurso no tiene premios
+                  </div>
+                  <div id="prizes-list">
+                    <div class="prize-element-wrapper" ng-repeat="prize in currentInfoData['prizes']">
+                      <div class="prize-element">
+                          {{$index + 1}}º &nbsp;&nbsp; {{prize.value}}€
+                      </div>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                </div>
+
+              </div>
+          </div>
+      </div>
+  </div>
+</modal>
+
+<div id="contestInfoTabbed" ng-if="!isModal" ng-show="contest != null">
+  <p class="title">{{currentInfoData['rules']}}</p>
+  <div class="matches-involved">
+      <div class="match" ng-repeat="match in currentInfoData['matchesInvolved']">
+          <p class="teams">{{match.soccerTeamA.shortName}} - {{match.soccerTeamB.shortName}}</p>
+          <p class="date">{{formatMatchDate(match.startDate)}}</p>
+      </div>
+  </div>
+  <div class="clearfix"></div>
+  <div class="info-section"></div>
+
+  <p class="title">REGLAS DE PUNTUACIÓN</p>
+  <div class="rules-description">
+    <scoring-rules></scoring-rules>
+  </div>
+  <div class="clearfix"></div>
+  <div class="info-section"></div>
+
+  <p class="title">PREMIOS</p>
+  <div class="prizes-wrapper">
+      <div id="prizes-list">
+        <div ng-if="currentInfoData['prizes'].isEmpty" class=default-info-text>
+          Este concurso no tiene premios
+        </div>
+        <div class="prize-element-wrapper" ng-repeat="prize in currentInfoData['prizes']">
+          <div class="prize-element">
+              {{$index + 1}}º &nbsp;&nbsp; {{prize.value}}€
+          </div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+  </div>
+  <div class="clearfix"></div>
+  <div class="info-section"></div>
+
+  <p class="title">JUGADORES</p>
+  <div ng-if="currentInfoData['contestants'].isEmpty" class="default-info-text">
+    Todavía no hay participantes en este concurso. <br> Anímate a ser el primero.
+  </div>
+  <div class="contestant-list">
+      <div class="contestant-element"ng-repeat="contestant in currentInfoData['contestants']">
+          <div class="contestant-position">{{$index + 1}}º</div>
+          <div class="contestant-name">{{contestant.name}}</div>
+          <div class="contestant-points">{{contestant.wins + ' '}}<span class="prize-currency">Ganados</span></div>
+      </div>
+  </div>
+  <div class="clearfix"></div>
+</div>
+
+"""));
 tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse(200, r"""<div class="contests-list-root">
   <div class="contest-row" ng-repeat="contest in currentPageList">
 
@@ -836,9 +832,9 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
         <div class="tab-pane active" id="lineup-tab-content">
 
             <!-- Este sera el selector de partidos en "grande", con botones-->
-            <matches-filter id="matchesFilterBig" contest="contest" selected-option="matchFilter" ng-if="isBigScreenVersion"></matches-filter>
+            <matches-filter id="matchesFilterBig" contest="contest" selected-option="matchFilter" ng-if="scrDet.isNotXsScreen"></matches-filter>
 
-            <div class="enter-contest-actions-wrapper" ng-if="isSmallScreenVersion">
+            <div class="enter-contest-actions-wrapper" ng-if="scrDet.isXsScreen">
               <div class="total-salary"><span class="total-salary-money" ng-class="{'red-numbers': availableSalary < 0 }" ng-show="contest != null">{{availableSalary}}€</span></div>
               <button id="cancelSoccerPlayerSelection" type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer">CANCELAR</button>
             </div>
@@ -853,15 +849,15 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
                     </div>
                 </div>
 
-                <lineup-selector ng-show="!isSelectingSoccerPlayer || isBigScreenVersion"></lineup-selector>
+                <lineup-selector ng-show="!isSelectingSoccerPlayer || scrDet.isNotXsScreen"></lineup-selector>
               </div>
             </div>
 
-            <div class="enter-contest-soccer-players-wrapper" ng-show="isSelectingSoccerPlayer || isBigScreenVersion">
+            <div class="enter-contest-soccer-players-wrapper" ng-show="isSelectingSoccerPlayer || scrDet.isNotXsScreen">
               <div class="enter-contest-soccer-players">
 
-                <!-- Este es el desplegable, para todas las versiones que sean moviles -->
-                <matches-filter contest="contest" selected-option="matchFilter" ng-if="isSmallScreenVersion"></matches-filter>
+                <!-- Este es el desplegable para el movil -->
+                <matches-filter contest="contest" selected-option="matchFilter" ng-if="scrDet.isXsScreen"></matches-filter>
 
                 <soccer-players-filter name-filter="nameFilter" field-pos-filter="fieldPosFilter"></soccer-players-filter>
                 
@@ -873,14 +869,14 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
             </div>
 
             <div class="enter-contest-actions-wrapper">
-              <button type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer" ng-if="isSmallScreenVersion">CANCELAR</button>
+              <button type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer" ng-if="scrDet.isXsScreen">CANCELAR</button>
 
-              <div ng-if="!isSelectingSoccerPlayer || isBigScreenVersion">
+              <div ng-if="!isSelectingSoccerPlayer || scrDet.isNotXsScreen">
                 <div class="button-wrapper">
                   <button type="button" class="btn-clean-lineup-list" ng-click="deleteFantasyTeam()" ng-disabled="isPlayerSelected()">BORRAR TODO</button>
                 </div>
                 <div class="button-wrapper">
-                  <button type="button" class="btn-confirm-lineup-list" ng-click="createFantasyTeam()" ng-disabled="!isFantasyTeamValid()">CONFIRMAR</button>
+                  <button type="button" class="btn-confirm-lineup-list" ng-click="createFantasyTeam()" ng-disabled="isInvalidFantasyTeam">CONFIRMAR</button>
                 </div>
                 <p>Recuerda que puedes editar tu equipo cuantas veces quieras hasta que comience la competición</p>
               </div>
@@ -890,7 +886,7 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
 
         <!-- El otro tab, el del contest-info  -->
         <div class="tab-pane" id="contest-info-tab-content">
-          <contest-info contest-id-data="contestId"></contest-info>
+          <contest-info id="contestInfo" ng-if="contestInfoFirstTimeActivation"></contest-info>
         </div>
 
       </div>
@@ -900,21 +896,10 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
       <div class="contest-id">ID: {{contest.contestId.toUpperCase()}}</div>
     </div>
   </div>
-
+  
 </div>
 
-<div id="soccer-player-info-wrapper" ng-if="scrDet.isXsScreen">
-  <soccer-player-info instance-soccer-player="selectedInstanceSoccerPlayer"></soccer-player-info>
-</div>
-
-<!-- Modal Window que envuelve la informacion de concurso, mostrada cuando clickamos en cualquiera de los campos de la fila -->
-<div  id="infoContestModal" class="modal fade" tabindex="-1" role="dialog" ng-if="!scrDet.isXsScreen">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content-soccer-player-info">
-      <soccer-player-info instance-soccer-player="selectedInstanceSoccerPlayer"></soccer-player-info>
-    </div>
-  </div>
-</div>"""));
+<ng-view></ng-view>"""));
 tc.put("packages/webclient/components/enter_contest/lineup_selector_comp.html", new HttpResponse(200, r"""<div class="lineup-selector">
   <div class="lineup-selector-slot" ng-repeat="slot in enterContestComp.lineupSlots" ng-click="enterContestComp.onSlotSelected($index)" ng-class="getSlotClassColor($index)">
     <div class="column-fieldpos" ng-if="!isEmptySlot(slot)">{{slot.fieldPos.abrevName}}</div>
@@ -949,136 +934,134 @@ tc.put("packages/webclient/components/enter_contest/matches_filter_comp.html", n
     </button>
   </div>
 </div>"""));
-tc.put("packages/webclient/components/enter_contest/soccer_player_info_comp.html", new HttpResponse(200, r"""<div class="soccer-player-info-header">
-  <div class="actions-header">
-    <div class="text-header">Estadísticas de jugador</div>
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-      <span class="glyphicon glyphicon-remove"></span>
-    </button>
-    <div class="button-wrapper">
-      <button class="btn-cancel-soccer-player-info" ng-click="enterContestComp.closePlayerInfo()">CANCELAR</button>
-    </div>
-    <div class="button-wrapper">
-      <span class="next-match">PRÓXIMO PARTIDO:</span> <span class="next-match" ng-bind-html="currentInfoData['nextMatchEvent']"></span>
-      <button class="btn-add-soccer-player-info" ng-click="enterContestComp.addSoccerPlayerToLineup(currentInfoData['id'])"
-                                                 ng-disabled="!enterContestComp.isSlotAvailableForSoccerPlayer(currentInfoData['id'])">AÑADIR</button>
-    </div>
-  </div>
-  <div class="description-header">
-    <div class="soccer-player-description">
-      <div class="soccer-player-pos-team">
-        <span>{{currentInfoData['fieldPos']}}</span> | <span>{{currentInfoData['team']}}</span>
+tc.put("packages/webclient/components/enter_contest/soccer_player_info_comp.html", new HttpResponse(200, r"""<modal id="modalSoccerPlayerInfo">
+
+  <div class="soccer-player-info-header">
+    <div class="actions-header">
+      <div class="text-header">Estadísticas de jugador</div>
+      
+      <button type="button" class="close" data-dismiss="modal">
+        <span class="glyphicon glyphicon-remove"></span>
+      </button>
+
+      <!-- Esta seccion con boton de cancelar & añadir se repite 2 veces, solo en movil, arriba y abajo -->
+      <div class="action-buttons">
+          <button class="btn-cancel" data-dismiss="modal">CANCELAR</button>      
+          <button class="btn-add" ng-click="onAddClicked()" ng-disabled="cannotAddPlayer">AÑADIR</button>
       </div>
-      <div class="soccer-player-name">{{currentInfoData['name']}}</div>
+      
     </div>
-    <div class="soccer-player-info-stats">
-      <div class="soccer-player-fantasy-points"><span>DFP</span><span>{{currentInfoData['fantasyPoints']}}</span></div>
-      <div class="soccer-player-matches"><span>PARTIDOS</span><span>{{currentInfoData['matches']}}</span></div>
-      <div class="soccer-player-salary"><span>SALARIO</span><span>{{currentInfoData['salary']}}</span></div>
+    <div class="description-header">
+      <div class="soccer-player-description">
+        <div class="soccer-player-pos-team">
+          <span>{{currentInfoData['fieldPos']}}</span> | <span>{{currentInfoData['team']}}</span>
+        </div>
+        <div class="soccer-player-name">{{currentInfoData['name']}}</div>
+      </div>
+      <div class="soccer-player-info-stats">
+        <div class="soccer-player-fantasy-points"><span>DFP</span><span>{{currentInfoData['fantasyPoints']}}</span></div>
+        <div class="soccer-player-matches"><span>PARTIDOS</span><span>{{currentInfoData['matches']}}</span></div>
+        <div class="soccer-player-salary"><span>SALARIO</span><span>{{currentInfoData['salary']}}</span></div>
+      </div>
+      <div class="next-match-wrapper" ng-if="scrDet.isNotXsScreen">
+        <span class="next-match">PRÓXIMO PARTIDO:</span> <span class="next-match" ng-bind-html="currentInfoData['nextMatchEvent']"></span>
+        <button class="btn-add" ng-click="onAddClicked()" ng-disabled="cannotAddPlayer">AÑADIR</button>
+      </div>
     </div>
   </div>
-</div>
-
-
-
-<div class="soccer-player-info-content">
-    <!-- Nav tabs -->
-    <ul class="soccer-player-info-tabs" role="tablist">
-      <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('season-info-tab-content')">Datos de Temporada</a></li>
-      <li><a role="tab" data-toggle="tab" ng-click="tabChange('match-info-tab-content')">Partido a Partido</a></li>
-    </ul>
-
-    <div class="tabs">
-      <!-- Tab panes -->
-      <div class="tab-content">
-        <!--SEASON-->
-        <div class="tab-pane active" id="season-info-tab-content">
-          <div class="next-match">PRÓXIMO PARTIDO: <span ng-bind-html="currentInfoData['nextMatchEvent']"></span></div>
-          <!--<div class="date-season">15/05 19:00</div>-->
-          <!-- MEDIAS -->
-          <div class="season-header">Estadísticas de temporada <span>(datos por partido)</span></div>
-          <div class="season-stats">
-            <div class="season-stats-wrapper">
-              <div class="season-stats-row" ng-repeat="stat in medias">
-                <div class="season-stats-header">{{stat['nombre']}}</div>
-                <div class="season-stats-info">{{stat['valor']}}</div>
+  
+  <div class="soccer-player-info-content">
+      <!-- Nav tabs -->
+      <ul class="soccer-player-info-tabs" role="tablist">
+        <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('season-info-tab-content')">Datos de Temporada</a></li>
+        <li><a role="tab" data-toggle="tab" ng-click="tabChange('match-info-tab-content')">Partido a Partido</a></li>
+      </ul>
+  
+      <div class="tabs">
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <!--SEASON-->
+          <div class="tab-pane active" id="season-info-tab-content">
+            <div class="next-match">PRÓXIMO PARTIDO: <span ng-bind-html="currentInfoData['nextMatchEvent']"></span></div>
+            <!-- MEDIAS -->
+            <div class="season-header">Estadísticas de temporada <span>(datos por partido)</span></div>
+            <div class="season-stats">
+              <div class="season-stats-wrapper">
+                <div class="season-stats-row" ng-repeat="stat in medias">
+                  <div class="season-stats-header">{{stat['nombre']}}</div>
+                  <div class="season-stats-info">{{stat['valor']}}</div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <!--END SEASON-->
-        <!--MATCH-->
-        <div class="tab-pane" id="match-info-tab-content">
-          <div class="match-header">Partido a partido</div>
-          <div class="match-stats" ng-if="matchesPlayed">
-            <!--HEADER-->
-            <div ng-if="isGoalkeeper()" class="match-stats-header">
-              <div><span ng-if="enterContestComp.scrDet.isDesktop || enterContestComp.scrDet.isSmScreen">FECHA</span>&nbsp;</div>
-              <div ng-if="enterContestComp.scrDet.isXsScreen">DÍA</div>
-              <div>OP</div>
-              <div>DFP</div>
-              <div>MIN</div>
-              <div>GE</div>
-              <div>PA</div>
-              <div>D</div>
-              <div>P</div>
-              <div>RE</div>
-              <div>PB</div>
-              <div>PD</div>
-              <div>FC</div>
-              <div>TA</div>
-              <div>TR</div>
-            </div>
-            <div ng-if="!isGoalkeeper()" class="match-stats-header">
-              <div><span ng-if="enterContestComp.scrDet.isDesktop || enterContestComp.scrDet.isSmScreen">FECHA</span>&nbsp;</div>
-              <div ng-if="enterContestComp.scrDet.isXsScreen">DÍA</div>
-              <div>OP</div>
-              <div>DFP</div>
-              <div>MIN</div>
-              <div>G</div>
-              <div>T</div>
-              <div>P</div>
-              <div>A</div>
-              <div>R</div>
-              <div>RE</div>
-              <div>E</div>
-              <div>PB</div>
-              <div>FJ</div>
-              <div>TA</div>
-              <div>TR</div>
-            </div>
-            <!--CONTENT-->
-            <div class="match-stats-content">
-                <div class="match-stats-data">
-                  <!-- Los datos con un ng-repeat por año -->
-                  <div ng-repeat="slot in seasons">
-                      <div class="match-year">{{slot["año"]}}</div>
-                      <div class="data" ng-repeat="match in slot['value']">
-                        <div ng-repeat="data in match">{{data}}<span ng-if="$index == 0 && scrDet.isDesktop">/{{slot["año"]}}</span></div>
-                      </div>
+          <!--END SEASON-->
+          <!--MATCH-->
+          <div class="tab-pane" id="match-info-tab-content">
+            <div class="match-header">Partido a partido</div>
+            <div class="match-stats" ng-if="matchesPlayed">
+              <!--HEADER-->
+              <div ng-if="isGoalkeeper()" class="match-stats-header">
+                <div><span ng-if="scrDet.isNotXsScreen">FECHA</span>&nbsp;</div>
+                <div ng-if="scrDet.isXsScreen">DÍA</div>
+                <div>OP</div>
+                <div>DFP</div>
+                <div>MIN</div>
+                <div>GE</div>
+                <div>PA</div>
+                <div>D</div>
+                <div>P</div>
+                <div>RE</div>
+                <div>PB</div>
+                <div>PD</div>
+                <div>FC</div>
+                <div>TA</div>
+                <div>TR</div>
+              </div>
+              <div ng-if="!isGoalkeeper()" class="match-stats-header">
+                <div><span ng-if="scrDet.isNotXsScreen">FECHA</span>&nbsp;</div>
+                <div ng-if="scrDet.isXsScreen">DÍA</div>
+                <div>OP</div>
+                <div>DFP</div>
+                <div>MIN</div>
+                <div>G</div>
+                <div>T</div>
+                <div>P</div>
+                <div>A</div>
+                <div>R</div>
+                <div>RE</div>
+                <div>E</div>
+                <div>PB</div>
+                <div>FJ</div>
+                <div>TA</div>
+                <div>TR</div>
+              </div>
+              <!--CONTENT-->
+              <div class="match-stats-content">
+                  <div class="match-stats-data">
+                    <!-- Los datos con un ng-repeat por año -->
+                    <div ng-repeat="slot in seasons">
+                        <div class="match-year">{{slot["año"]}}</div>
+                        <div class="data" ng-repeat="match in slot['value']">
+                          <div ng-repeat="data in match">{{data}}<span ng-if="$index == 0 && scrDet.isDesktop">/{{slot["año"]}}</span></div>
+                        </div>
+                    </div>
                   </div>
-                </div>
+              </div>
+            </div>
+            <div class="noMatchesPlayed" ng-if="!matchesPlayed">
+                <span>NO HA JUGADO NINGÚN PARTIDO ESTA TEMPORADA</span>
             </div>
           </div>
-          <div class="noMatchesPlayed" ng-if="!matchesPlayed">
-              <span>NO HA JUGADO NINGÚN PARTIDO ESTA TEMPORADA</span>
-          </div>
+          <!--END MATCH-->
         </div>
-        <!--END MATCH-->
       </div>
-    </div>
-    <!--BUTTONS-->
-    <div class="action-buttons">
-      <div class="button-wrapper">
-        <button class="btn-cancel-soccer-player-info" ng-click="enterContestComp.closePlayerInfo()">CANCELAR</button>
+      
+      <div class="action-buttons bottom">
+        <button class="btn-cancel" data-dismiss="modal">CANCELAR</button>
+        <button class="btn-add" ng-click="onAddClicked()" ng-disabled="cannotAddPlayer">AÑADIR</button>
       </div>
-      <div class="button-wrapper">
-        <button class="btn-add-soccer-player-info" ng-click="enterContestComp.addSoccerPlayerToLineup(currentInfoData['id'])">AÑADIR</button>
-      </div>
-    </div>
-</div>
-
-
+  </div>
+</modal>
 
 """));
 tc.put("packages/webclient/components/enter_contest/soccer_players_filter_comp.html", new HttpResponse(200, r"""<div class="soccer-players-filter">
@@ -2157,17 +2140,18 @@ tc.put("packages/webclient/components/lobby_comp.html", new HttpResponse(200, r"
                   entry-fee-filter="lobbyFilters['FILTER_ENTRY_FEE']" name-filter="lobbyFilters['FILTER_CONTEST_NAME']"
                   contest-count="contestCount">
   </contests-list>
+</div>
 
-  <!-- Modal Window que envuelve la informacion de concurso, mostrada cuando clickamos en cualquiera de los campos de la fila -->
-  <div  id="infoContestModal" class="modal fade" tabindex="-1" role="dialog">
-      <div class="modal-dialog modal-lg">
-        <div id="infoContent" class="modal-content">
-          <contest-info contest-id-data="selectedContestId"></contest-info>
-        </div>
-      </div>
+<!-- Punto de insercion de nuestra ruta hija contest-info -->
+<ng-view></ng-view>"""));
+tc.put("packages/webclient/components/modal_comp.html", new HttpResponse(200, r"""<div id="modalRoot" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <content></content>
+    </div>
   </div>
-
-</div>"""));
+</div>
+"""));
 tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(200, r"""<div id="myContest" ng-cloak>
   <div class="default-header-text">MIS TORNEOS</div>
 
@@ -2270,12 +2254,12 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
   </div>
 </div>
 """));
-tc.put("packages/webclient/components/navigation/footer_comp.html", new HttpResponse(200, r"""<div id="rootFooter" ng-cloak>
+tc.put("packages/webclient/components/navigation/footer_comp.html", new HttpResponse(200, r"""<div id="rootFooter" ng-cloak ng-show="!loadingService.isLoading">
 
-   <div class="sup-footer-wrapper">
+   <div class="sup-footer-wrapper" ng-if="profileService.isLoggedIn">
     <div class="user-info-sup-footer">
-        <a id="footerProfile"  ng-show="profileService.isLoggedIn" href="#" class="goto-link" ng-click="gotoProfile()"><span class="username-link">{{profileService.user.nickName}}</span></a>
-        <a id="footerLogOut"  ng-show="profileService.isLoggedIn" href="#" class="goto-link" ng-click="profileService.logout()"><span class="logout-link">Salir</span></a>
+        <a id="footerProfile" href="#" class="goto-link" ng-click="gotoProfile()"><span class="username-link">{{profileService.user.nickName}}</span></a>
+        <a id="footerLogOut" href="#" class="goto-link" ng-click="profileService.logout()"><span class="logout-link">Salir</span></a>
         <!--<button id="footerAddFunds" class="add-funds-button">AÑADIR FONDOS</button>-->
     </div>
   </div>

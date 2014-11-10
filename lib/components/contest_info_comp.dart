@@ -19,7 +19,7 @@ class ContestInfoComp implements DetachAware {
 
   bool isModal = false;
   Map currentInfoData;
-  List contestants  = [];
+  Contest contest = null;
 
   ContestInfoComp(ScreenDetectorService scrDet, RouteProvider routeProvider, this._router, this._contestService, this._flashMessage) {
 
@@ -27,21 +27,34 @@ class ContestInfoComp implements DetachAware {
 
     isModal = (_router.activePath.length > 0) && (_router.activePath.first.name == 'lobby');
 
-    currentInfoData = {  /*  hay que utilizar esta variable para meter los datos de este componente  */
-      'description'     : 'cargando datos...',
+    currentInfoData = {
+      'description'     : '',
       'name'            : '',
       'entry'           : '',
       'prize'           : '',
-      'rules'           : 'Elige un equipo de 11 jugadores a partir de los siguientes partidos',         // 'Elige un equipo de 11 jugadores a partir de los siguientes partidos',
+      'rules'           : 'Elige un equipo de 11 jugadores a partir de los siguientes partidos',
       'startDateTime'   : '', // 'COMIENZA EL DOM. 15/05 19:00',
       'matchesInvolved' : null,
       'legals'          : '',
-      'contestants'     : contestants,
+      'contestants'     : [],
       'prizes'          : []
     };
 
     _contestId = routeProvider.route.parameters['contestId'];
-    updateContestInfo(_contestId);
+
+    // Solo refrescamos del servidor en caso de que no este ya cargado
+    if (_contestService.lastContest == null || _contestService.lastContest.contestId != _contestId) {
+      _contestService.refreshContest(_contestId)
+        .then((_) {
+          updateContestInfo();
+        })
+        .catchError((error) {
+          _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
+        });
+    }
+    else {
+      updateContestInfo();
+    }
   }
 
   void detach() {
@@ -55,31 +68,26 @@ class ContestInfoComp implements DetachAware {
     }
   }
 
-  void updateContestInfo(String contestId) {
-    _contestService.refreshContest(contestId)
-      .then((_) {
-        Contest contest = _contestService.lastContest;
+  void updateContestInfo() {
 
-        currentInfoData["name"]           = contest.name;
-        currentInfoData["description"]    = contest.description;
-        currentInfoData["entry"]          = contest.entryFee.toString();
-        currentInfoData["prize"]          = contest.prizePool.toString();
-        currentInfoData["startDateTime"]  = DateTimeService.formatDateTimeLong(contest.startDate).toUpperCase();
-        currentInfoData["contestants"]    = contestants;
-        currentInfoData["prizes"]         = contest.prizes.map((value) => {'value' : value.toString()}).toList();
-        currentInfoData["matchesInvolved"]= contest.matchEvents;
+    contest = _contestService.lastContest;
+    List contestants = [];
 
-        contestants.clear();
-        for (ContestEntry contestEntry in contest.contestEntries) {
-          contestants.add({
-            'name'  : contestEntry.user.nickName,
-            'wins'  : contestEntry.user.wins
-          });
-        }
-      })
-      .catchError((error) {
-        _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
+    for (ContestEntry contestEntry in contest.contestEntries) {
+      contestants.add({
+        'name'  : contestEntry.user.nickName,
+        'wins'  : contestEntry.user.wins
       });
+    }
+
+    currentInfoData["name"]           = contest.name;
+    currentInfoData["description"]    = contest.description;
+    currentInfoData["entry"]          = contest.entryFee.toString();
+    currentInfoData["prize"]          = contest.prizePool.toString();
+    currentInfoData["startDateTime"]  = DateTimeService.formatDateTimeLong(contest.startDate).toUpperCase();
+    currentInfoData["contestants"]    = contestants;
+    currentInfoData["prizes"]         = contest.prizes.map((value) => {'value' : value.toString()}).toList();
+    currentInfoData["matchesInvolved"]= contest.matchEvents;
   }
 
   void enterContest() {

@@ -46,6 +46,8 @@ class EnterContestComp implements DetachAware {
   bool get isInvalidFantasyTeam => lineupSlots.any((player) => player == null);
   bool get editingContestEntry => contestEntryId != "none";
 
+  bool contestInfoFirstTimeActivation = false;  // Optimizacion para no compilar el contest_info hasta que no sea visible la primera vez
+
   EnterContestComp(this._routeProvider, this._router, this.scrDet, this._activeContestService, this._myContestService, this._flashMessage, this.loadingService) {
     loadingService.isLoading = true;
 
@@ -106,6 +108,11 @@ class EnterContestComp implements DetachAware {
   }
 
   void tabChange(String tab) {
+
+    if (!contestInfoFirstTimeActivation && tab == "contest-info-tab-content") {
+      contestInfoFirstTimeActivation = true;
+    }
+
     querySelectorAll("#enter-contest-wrapper .tab-pane").classes.remove('active');
     querySelector("#${tab}").classes.add("active");
   }

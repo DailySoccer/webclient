@@ -52,7 +52,6 @@ class ActiveContestsService {
           _myEnteredActiveContests.add(contest);
         }
 
-        //print("response: " + jsonMap.toString());
         return contestId;
       });
   }

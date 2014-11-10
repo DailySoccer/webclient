@@ -45,9 +45,6 @@ class LobbyComp implements DetachAware {
     _nextTournamentInfoTimer = new Timer.periodic(new Duration(seconds: 1), (Timer t) => _calculateInfoBarText());
 
     _calculateInfoBarText();
-
-    // Como lobby es la url por defecto, hay que ponerle el fondo blanco al wrapper para que no sea transparente todo el espacio entre el contenido y el footer.
-    querySelector('.wrapper-content-container').style.backgroundColor = 'white';
   }
 
   /********* METHODS */

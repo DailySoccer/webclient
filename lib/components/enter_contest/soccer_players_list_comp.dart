@@ -87,9 +87,20 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
 
   SoccerPlayersListComp(this.scrDet, this._element);
 
-  void _onLineupFilterChanged(changes, other) {
+  void _onLineupFilterChanged(changes, _) {
     if (changes != null && changes is CollectionChangeRecord) {
-      _isDirty = true;
+
+      void inner(changedItem) {
+        var soccerPlayer = changedItem.item;
+
+        if (soccerPlayer != null) {
+          var elem = _soccerPlayerListRoot.querySelector("#soccerPlayer${soccerPlayer['intId']}");
+          elem.setInnerHtml(getHtmlForSlot(soccerPlayer, changedItem.previousIndex != null));
+        }
+      }
+
+      changes.forEachAddition(inner);
+      changes.forEachRemoval(inner);
     }
   }
 

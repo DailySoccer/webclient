@@ -5,7 +5,6 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/utils/host_server.dart';
 import 'package:webclient/services/loading_service.dart';
-import 'dart:html';
 
 @Component(
    selector: 'footer',

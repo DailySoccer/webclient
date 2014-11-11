@@ -17,9 +17,13 @@ class MyContestsComp implements DetachAware {
 
   MyContestsService myContestsService;
 
-  String liveSortType = "contest-start-time_asc";
-  String waitingSortType = "contest-start-time_asc";
-  String historySortType = "contest-start-time_desc";
+  Map liveSortType    = {'fieldName':'contest-start-time', 'order': -1};
+  Map waitingSortType = {'fieldName':'contest-start-time', 'order': -1};
+  Map historySortType = {'fieldName':'contest-start-time', 'order':  1};
+
+  String noLiveContestsMessage    = "";
+  String noWaittingContestsMessage    = "";
+  String noHistoryContestsMessage = "";
 
   bool dataLoaded = false;
   bool get hasLiveContests    => myContestsService.liveContests     == null ? false : myContestsService.liveContests.length     > 0;
@@ -81,6 +85,9 @@ class MyContestsComp implements DetachAware {
     myContestsService.refreshMyContests()
       .then((_) {
         dataLoaded = true;
+        noLiveContestsMessage = "AQUÍ PODRÁS CONSULTAR EN TIEMPO REAL LOS TORNEOS QUE TENGAS ACTIVOS";
+        noWaittingContestsMessage = "AQUÍ PODRÁS CONSULTAR Y MODIFICAR LOS EQUIPOS QUE TIENES PENDIENTES DE JUGAR EN UN TORNEO";
+        noHistoryContestsMessage = "AQUÍ PODRÁS REPASAR TODOS LOS TORNEOS QUE HAS JUGADO: TUS EQUIPOS, RIVALES, PUNTUACIONES…";
       })
       .catchError((error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW));
   }

@@ -38,7 +38,7 @@ class ContestsListComp {
   }
 
   @NgOneWay("sorting")
-  void set sorting(value) {
+  void set sorting(Map value) {
     _sortOrder = value;
     refreshList();
   }

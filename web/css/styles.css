@@ -13461,6 +13461,7 @@ fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-login {
   color: #ffffff;
   padding: 10px 10px 12px;
   text-align: center;
+  min-height: 39px;
 }
 .contest-count {
   background-color: #fa9c19;

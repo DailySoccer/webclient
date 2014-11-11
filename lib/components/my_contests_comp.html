@@ -20,7 +20,7 @@
 
         <div class="tab-content-wrapper" ng-switch="!hasLiveContests  && dataLoaded">
           <!-- Barra de resumen de actividad -->
-          <div class="resume-bar"><span class="information-no-contest">{{hasLiveContests ? "TIENES " + myContestsService.liveContests.length + " TORNEOS ACTIVOS" : "AQUÍ PODRÁS CONSULTAR EN TIEMPO REAL LOS TORNEOS QUE TENGAS ACTIVOS"}}</span></div>
+          <div class="resume-bar"><span class="information-no-contest">{{hasLiveContests ? "TIENES " + myContestsService.liveContests.length + " TORNEOS ACTIVOS" : noLiveContestsMessage}}</span></div>
 
           <!-- Banner de información de lista vacía -->
           <div class="no-contests-wrapper" ng-switch-when="true">
@@ -47,7 +47,7 @@
 
         <div class="tab-content-wrapper" ng-switch="!hasWaitingContests && dataLoaded">
         <!-- Barra de resumen de actividad sin registros-->
-        <div class="resume-bar"><span class="information-no-contest">{{hasWaitingContests ? "TE HAS INSCRITO EN " + myContestsService.waitingContests.length + " TORNEOS" : "AQUÍ PODRÁS CONSULTAR Y MODIFICAR LOS EQUIPOS QUE TIENES PENDIENTES DE JUGAR EN UN TORNEO"}}</span></div>
+        <div class="resume-bar"><span class="information-no-contest">{{hasWaitingContests ? "TE HAS INSCRITO EN " + myContestsService.waitingContests.length + " TORNEOS" : noWaittingContestsMessage}}</span></div>
           <!-- Banner de información de lista vacía -->
           <div class="no-contests-wrapper" ng-switch-when="true">
             <div class="no-contests-content">
@@ -74,13 +74,13 @@
           <!-- Barra de resumen de actividad sin registros-->
           <div class="resume-bar">
             <span class="information-no-contest">
-              {{hasHistoryContests ? myContestsService.historyContests.length + " REGISTROS " + totalHistoryContestsWinner + " GANADOS" : "AQUÍ PODRÁS REPASAR TODOS LOS TORNEOS QUE HAS JUGADO: TUS EQUIPOS, RIVALES, PUNTUACIONES…"}}
+              {{hasHistoryContests ? myContestsService.historyContests.length + " REGISTROS " + totalHistoryContestsWinner + " GANADOS" : noHistoryContestsMessage}}
             </span>
           </div>
           <!-- Banner de información de lista vacía -->
           <div class="no-contests-wrapper" ng-switch-when="true">
             <div class="no-contests-content">
-              <div class="default-info-text">TODAVÍA NO HAS JUGADO NINGÚN TORNEO</div>
+              <div class="default-info-text">TODAVÍA NO HAS JUGADO NINGÚN TORNEO<br>¿A QUE ESPERAS PARA EMPEZAR A GANAR?</div>
               <div class="no-contests-text">VE A LA LISTA DE TORNEOS, ELIGE UNO Y EMPIEZA A JUGAR</div>
             </div>
             <div class="no-contest-bottom-row">

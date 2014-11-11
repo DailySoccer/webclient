@@ -5,7 +5,7 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/utils/host_server.dart';
 import 'package:webclient/services/loading_service.dart';
-
+import 'dart:html';
 
 @Component(
    selector: 'footer',
@@ -19,7 +19,11 @@ class FooterComp {
 
   bool get isDev => HostServer.isDev;
 
-  FooterComp(this.profileService, this.dateTimeService,  this._router, this.loadingService);
+  FooterComp(this.profileService, this.dateTimeService,  this._router, this.loadingService) {
+    // Queremos que durante la carga se vea la imagen de fondo. Por eso esperamos hasta este punto
+    // para cambiarlo.
+    querySelector("ng-view").style.backgroundColor = "#FFF";
+  }
 
   void goTo(String routePath) {
     _router.go(routePath, {});

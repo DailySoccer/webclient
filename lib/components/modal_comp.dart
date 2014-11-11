@@ -3,7 +3,6 @@ library modal_comp;
 import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:webclient/utils/js_utils.dart';
-import 'dart:async';
 import 'package:webclient/services/screen_detector_service.dart';
 
 @Component(
@@ -13,7 +12,7 @@ import 'package:webclient/services/screen_detector_service.dart';
 )
 class ModalComp implements DetachAware, ShadowRootAware {
 
-  ModalComp(this._router, this._element, this._scrDet);
+  ModalComp(this._router, this._element, this._scrDet, this._view);
 
   @override void onShadowRoot(emulatedRoot) {
 
@@ -22,7 +21,7 @@ class ModalComp implements DetachAware, ShadowRootAware {
       _element.querySelector("#modalRoot").classes.add("fade");
     }
 
-    new Timer(new Duration(seconds: 0), () {     // _view.domRead(() {
+    _view.domRead(() {
       _element.style.display = "block";
 
       JsUtils.runJavascript('#modalRoot', 'modal', null);
@@ -49,4 +48,5 @@ class ModalComp implements DetachAware, ShadowRootAware {
   ScreenDetectorService _scrDet;
   Router _router;
   Element _element;
+  View _view;
 }

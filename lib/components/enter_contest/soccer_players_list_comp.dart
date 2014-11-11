@@ -140,7 +140,6 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
   }
 
   void _generateSlots() {
-    Stopwatch sw = new Stopwatch()..start();
 
     _removeSlots();
 
@@ -172,8 +171,6 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
     _element.append(_soccerPlayerListRoot);
 
     _element.querySelectorAll(".soccer-players-list-slot").onClick.listen(_onMouseEvent);
-
-    print("Ha tardado: ${sw.elapsedMilliseconds}");
   }
 
   String getHtmlForSlot(var slot, bool addButton) {

@@ -61,6 +61,7 @@ class ContestFiltersComp implements ShadowRootAware {
 
   //Lista de filtros
   Map<String, dynamic> filterList = {};
+  Map sorting = {};
 
   ScreenDetectorService scrDet;
 
@@ -297,17 +298,18 @@ class ContestFiltersComp implements ShadowRootAware {
 
   void sortListByField(String fieldName) {
     if (_sortField != fieldName) {
-      _minToMaxSortDir = true;
+      _order = 1;
       _sortField = fieldName;
     }
     else {
-      _minToMaxSortDir = !_minToMaxSortDir;
+      _order = -1 * _order;
     }
     sortingButtons.forEach((element) {
-      element["state"] = _sortField != element['field-name'] ? "" : _minToMaxSortDir ? "asc" : "desc";
+      element["state"] = _sortField != element['field-name'] ? "" : _order == -1 ? "desc" : "asc";
     });
 
-    onSortOrderChange({'fieldName': _sortField + (_minToMaxSortDir ? "_asc" : "_desc")});
+
+    onSortOrderChange({'sortParams':{"fieldName": _sortField, "order" : _order}});
   }
 
   /********* IMPLEMENTATIONS */
@@ -356,7 +358,7 @@ class ContestFiltersComp implements ShadowRootAware {
   int _contestCount = 0;
 
   String _sortField;
-  bool _minToMaxSortDir = false;
+  int _order = -1;
 
   bool isFirstTime = true;
 }

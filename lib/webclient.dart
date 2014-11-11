@@ -257,9 +257,22 @@ class WebClientApp extends Module {
     });
   }
 
+  // Ponemos el wrapper de todo nuestro contenido selectivamente en blanco
+  void _bleach(Route route) {
+    if (["landing_page", "join", "login"].contains(route.name)) {
+      querySelector("#mainWrapper").classes.remove("bleach");
+    }
+    else {
+      querySelector("#mainWrapper").classes.add("bleach");
+    }
+  }
+
   // En la landing queremos reroutar al lobby en caso de estar logeados, pero queremos hacerlo
   // antes de que se llegue a ver o parsear por una cuestion de rendimiento.
   void _onLandingPage(RoutePreEnterEvent event, Router router) {
+
+    _bleach(event.route);
+
     if (ProfileService.instance.isLoggedIn) {
       router.go("lobby", {}, replace:true);
 
@@ -269,6 +282,8 @@ class WebClientApp extends Module {
   }
 
   void _preEnterPage(RoutePreEnterEvent event, Router router, {bool verifyAllowEnter : false}) {
+
+    _bleach(event.route);
 
     LoadingService.disable();
     DailySoccerServer.startContext(event.path);

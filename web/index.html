@@ -78,7 +78,7 @@
 <!--
     <script src="http://google.github.io/tracing-framework/bin/wtf_trace_web_js_compiled.js"></script>
     <script>
-      wtf.remote.connect({
+      wtf.remote.connect(
         'wtf.remote.target': 'ws://localhost:8084'
       });
       wtf.trace.start();
@@ -92,8 +92,8 @@
         <ng-view></ng-view>
         <global-connection></global-connection>
       </div>
-      <footer id="mainFooter"></footer>
     </div>
+    <footer id="mainFooter"></footer>
     
     <script defer="defer">
       (function() {

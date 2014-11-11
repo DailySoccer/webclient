@@ -5641,6 +5641,8 @@ button.close {
 .fantasy-team-list .soccer-player-row:after,
 .statistic:before,
 .statistic:after,
+#rootFooter:before,
+#rootFooter:after,
 #rootFooter .sup-footer-wrapper:before,
 #rootFooter .sup-footer-wrapper:after,
 #rootFooter .sub-footer:before,
@@ -5757,6 +5759,7 @@ button.close {
 #personalDataContent .save-changes-content:after,
 .fantasy-team-list .soccer-player-row:after,
 .statistic:after,
+#rootFooter:after,
 #rootFooter .sup-footer-wrapper:after,
 #rootFooter .sub-footer:after,
 .landing-wrapper .screen .content-wrapper .content-container:after,
@@ -8653,7 +8656,72 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   color: #777777;
   text-align: right;
 }
+@media (min-width: 768px) {
+  #mainFooter {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  #mainFooter > .navbar-header,
+  #mainFooter > .navbar-collapse {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+}
+@media (min-width: 768px) and (min-width: 768px) {
+  #mainFooter > .navbar-header,
+  #mainFooter > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+@media (min-width: 992px) {
+  #mainFooter {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  #mainFooter > .navbar-header,
+  #mainFooter > .navbar-collapse {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+}
+@media (min-width: 992px) and (min-width: 768px) {
+  #mainFooter {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) and (min-width: 992px) {
+  #mainFooter {
+    width: 970px;
+  }
+}
+@media (min-width: 992px) and (min-width: 1200px) {
+  #mainFooter {
+    width: 970px;
+  }
+}
+@media (min-width: 992px) and (min-width: 768px) {
+  #mainFooter > .navbar-header,
+  #mainFooter > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
 #rootFooter {
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0px;
+  padding-right: 0px;
+  position: relative;
+  bottom: 0;
   background-color: #000000;
 }
 #rootFooter .goto-link {
@@ -19887,10 +19955,8 @@ fieldset[disabled] .btn-orange {
   }
 }
 .wrapper-content-container {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 970px;
   min-height: 100%;
+  margin: 0 auto -146px;
 }
 @media (max-width: 991px) {
   .wrapper-content-container .main-content-container {
@@ -19900,6 +19966,7 @@ fieldset[disabled] .btn-orange {
     padding-right: 15px;
     padding-left: 0px;
     padding-right: 0px;
+    padding-bottom: 204px;
   }
   .wrapper-content-container .main-content-container > .navbar-header,
   .wrapper-content-container .main-content-container > .navbar-collapse {
@@ -19922,6 +19989,7 @@ fieldset[disabled] .btn-orange {
     padding-right: 15px;
     padding-left: 0px;
     padding-right: 0px;
+    padding-bottom: 146px;
   }
   .wrapper-content-container .main-content-container > .navbar-header,
   .wrapper-content-container .main-content-container > .navbar-collapse {
@@ -19950,6 +20018,10 @@ fieldset[disabled] .btn-orange {
     margin-right: 0;
     margin-left: 0;
   }
+}
+.bleach {
+  max-width: 970px;
+  background-color: #ffffff;
 }
 .default-header-text {
   margin-left: 0;

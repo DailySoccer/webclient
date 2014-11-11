@@ -43,18 +43,13 @@ class ContestInfoComp implements DetachAware {
     _contestId = routeProvider.route.parameters['contestId'];
 
     // Solo refrescamos del servidor en caso de que no este ya cargado
-    if (_contestService.lastContest == null || _contestService.lastContest.contestId != _contestId) {
-      _contestService.refreshContest(_contestId)
-        .then((_) {
-          updateContestInfo();
-        })
-        .catchError((error) {
-          _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
-        });
-    }
-    else {
-      updateContestInfo();
-    }
+    _contestService.refreshContest(_contestId)
+      .then((_) {
+        updateContestInfo();
+      })
+      .catchError((error) {
+        _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
+      });
   }
 
   void detach() {

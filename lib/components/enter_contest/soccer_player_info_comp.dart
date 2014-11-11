@@ -41,6 +41,7 @@ class SoccerPlayerInfoComp {
 
     // TODO: Nos vienen recargando.
     if (_instanceSoccerPlayer == null) {
+      ModalComp.close();
       return;
     }
 

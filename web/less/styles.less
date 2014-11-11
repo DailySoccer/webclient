@@ -47,8 +47,6 @@
 
 html, body {     
     height: 100%; 
-   // overflow-y:scroll;
-   // background-color: @black;
 }
 
 
@@ -59,11 +57,6 @@ html { overflow-y: scroll; }
 @container-lg: @container-md;
 
  
-// Con esto le damos un minimo de altura a todo lo que no es el footer
-#injectedContainer {
-	min-height: 400px;
-}
-
 // El modal viene en boostrap como overflow-y: scroll (siempre se ve barra). Preferimos
 // que solo se vea si realmente se necesita.
 #modalRoot {
@@ -82,7 +75,6 @@ html { overflow-y: scroll; }
 @btn-default-bg: @blueLight;
 
 @btn-default-color: @white;
-
 
 
 .btn {
@@ -162,33 +154,32 @@ body {
 		background-repeat: no-repeat;
 	}
 }
-// Contenedor exterior que envuelve a todo el contenido. Lo usamos para fijar el background.
+// Contenedor exterior que envuelve a todo el contenido.
 .wrapper-content-container {
-	min-height: 100%; 
-	height: auto !important; 
-	height: 100%; 
+	margin-left: auto;
+	margin-right: auto;
 	max-width: 970px;
-
-	@media (min-width: @screen-sm-min) {
-		margin: 0 auto -146px;
-	}
-
-	@media (max-width: @screen-xs-max) {
-		margin: 0 auto -204px;
-	}
-}
-// Contenedor interior que envuelve al contenido. Fijamos el width con el.
-.main-content-container {
-	.container-fluid();
-	.clean-paddings();
-	@media (min-width: @screen-md-min) {
-		.container();
-		.clean-paddings();
-	}
+	min-height: 100%;
+	display: flex;
 	
-	padding-bottom: 146px;
-	@media (max-width: @screen-xs-max) {
-		padding-bottom: 204px;
+	// Contenedor interior que envuelve al contenido. Fijamos el width con el.
+	.main-content-container {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+				
+		@media (max-width: @screen-sm-max) {
+			.container-fluid();
+			.clean-paddings();
+		}
+		@media (min-width: @screen-md-min) {
+			.container();
+			.clean-paddings();
+		}
+
+		ng-view {
+			flex: 1;
+		}
 	}
 }
 

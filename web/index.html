@@ -86,15 +86,15 @@
 -->
     
     <div id="mainWrapper" class="wrapper-content-container">
-      <main-menu-slide></main-menu-slide>
       <div id="mainContent" class="main-content-container">
+        <main-menu-slide></main-menu-slide>
         <flash-messages></flash-messages>
-        <ng-view></ng-view>
         <global-connection></global-connection>
-      </div>
+        <ng-view></ng-view>
+        <footer id="mainFooter"></footer>
+      </div>      
     </div>
-    <footer id="mainFooter"></footer>
-
+    
     <script defer="defer">
       (function() {
         var script = document.createElement('script');

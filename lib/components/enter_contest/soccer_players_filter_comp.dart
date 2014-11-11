@@ -2,6 +2,7 @@ library soccer_players_filter_comp;
 
 import 'package:angular/angular.dart';
 import 'package:webclient/models/field_pos.dart';
+import 'package:webclient/services/screen_detector_service.dart';
 
 @Component(
     selector: 'soccer-players-filter',
@@ -9,6 +10,8 @@ import 'package:webclient/models/field_pos.dart';
     useShadowDom: false
 )
 class SoccerPlayersFilterComp {
+
+  ScreenDetectorService scrDet;
 
   List<FieldPos> posFilterList = [
       null,
@@ -26,6 +29,8 @@ class SoccerPlayersFilterComp {
   void     set fieldPosFilter(FieldPos value) {
     _fieldPosFilter = value;
   }
+
+  SoccerPlayersFilterComp(this.scrDet);
 
   String getClassForFieldPos(FieldPos fieldPos) => fieldPos == fieldPosFilter? "active" : "";
   String getTextForFieldPos(FieldPos fieldPos)  => fieldPos == null? "TODOS" : fieldPos.abrevName;

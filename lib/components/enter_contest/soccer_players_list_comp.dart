@@ -10,7 +10,6 @@ import 'package:angular/change_detection/change_detection.dart';
 
 @Component(
     selector: 'soccer-players-list',
-    templateUrl: 'packages/webclient/components/enter_contest/soccer_players_list_comp.html',
     useShadowDom: false,
     exportExpressions: const ["lineupFilter"]
 )
@@ -111,6 +110,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
   }
 
   @override void onShadowRoot(emulated) {
+    _createSortHeader();
     window.animationFrame.then(_onAnimationFrame);
   }
 
@@ -139,8 +139,24 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
     }
   }
 
+  void _createSortHeader() {
+    var text = '''
+      <div class="soccer-player-list-header-table">
+        <div class="filter filterOrderPos"><a id="Pos">Pos.</a></div>
+        <div class="filter filterOrderName"><a id="Name">Nombre</a></div>
+        <div class="filter filterOrderDFP"><a id="DFP">DFP</a></div>
+        <div class="filter filterOrderPlayed"><a id="Played">Jugados</a></div>
+        <div class="filter filterOrderSalary"><a id="Salary">Sueldo</a></div>
+      </div>
+      ''';
+
+    _element.appendHtml(text);
+    _element.querySelectorAll(".filter a").onClick.listen((MouseEvent e) {
+      sortListByField((e.currentTarget as Element).id);
+    });
+  }
+
   void _generateSlots() {
-    Stopwatch sw = new Stopwatch()..start();
 
     _removeSlots();
 
@@ -172,8 +188,6 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
     _element.append(_soccerPlayerListRoot);
 
     _element.querySelectorAll(".soccer-players-list-slot").onClick.listen(_onMouseEvent);
-
-    print("Ha tardado: ${sw.elapsedMilliseconds}");
   }
 
   String getHtmlForSlot(var slot, bool addButton) {

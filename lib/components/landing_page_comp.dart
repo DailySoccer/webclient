@@ -30,13 +30,13 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
     // Capturamos los elementos envolventes, porque el layout en landing page es diferente al del resto de la web.
     _bodyObj     = querySelector('body');
     _mainWrapper = querySelector('#mainWrapper');
-    _mainContent = querySelector('#mainContent');
 
     _bodyObj.classes.add('fondo-negro');
     _mainWrapper.classes
       ..clear()
       ..add('landing-wrapper');
 
+    _mainContent = querySelector('#mainContent');
     _mainContent.classes.clear();
     _mainContent.classes.add('unlogged-margin');
   }

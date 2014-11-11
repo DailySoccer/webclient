@@ -19,11 +19,7 @@ class FooterComp {
 
   bool get isDev => HostServer.isDev;
 
-  FooterComp(this.profileService, this.dateTimeService,  this._router, this.loadingService) {
-    // Queremos que durante la carga se vea la imagen de fondo. Por eso esperamos hasta este punto
-    // para cambiarlo.
-    querySelector("ng-view").style.backgroundColor = "#FFF";
-  }
+  FooterComp(this.profileService, this.dateTimeService,  this._router, this.loadingService);
 
   void goTo(String routePath) {
     _router.go(routePath, {});

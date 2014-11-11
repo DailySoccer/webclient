@@ -156,31 +156,27 @@ body {
 }
 // Contenedor exterior que envuelve a todo el contenido.
 .wrapper-content-container {
-	margin-left: auto;
-	margin-right: auto;
-	max-width: 970px;
-	min-height: 100%;
-	display: flex;
-	
+	min-height: 100%; 
+	margin: 0 auto -146px; 	// Para dar cabida al footer
+
 	// Contenedor interior que envuelve al contenido. Fijamos el width con el.
 	.main-content-container {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-				
 		@media (max-width: @screen-sm-max) {
 			.container-fluid();
 			.clean-paddings();
+			padding-bottom: 204px; // Footer
 		}
 		@media (min-width: @screen-md-min) {
 			.container();
 			.clean-paddings();
-		}
-
-		ng-view {
-			flex: 1;
-		}
+			padding-bottom: 146px; // Footer
+		}		
 	}
+}
+
+.bleach {
+	max-width: 970px;
+	background-color: @white;
 }
 
 .default-header-text {

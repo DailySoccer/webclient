@@ -9302,10 +9302,6 @@ fieldset[disabled] #rootFooter .user-info-sup-footer .add-funds-button {
     width: 29.16666667%;
   }
 }
-#rootFooter .sub-footer .footer-count {
-  clear: both;
-  margin-top: 5px;
-}
 .fondo-negro {
   background-color: #000000;
 }
@@ -19956,7 +19952,7 @@ fieldset[disabled] .btn-orange {
 }
 .wrapper-content-container {
   min-height: 100%;
-  margin: 0 auto -146px;
+  margin: 0 auto -122px;
 }
 @media (max-width: 991px) {
   .wrapper-content-container .main-content-container {
@@ -19966,7 +19962,7 @@ fieldset[disabled] .btn-orange {
     padding-right: 15px;
     padding-left: 0px;
     padding-right: 0px;
-    padding-bottom: 204px;
+    padding-bottom: 129px;
   }
   .wrapper-content-container .main-content-container > .navbar-header,
   .wrapper-content-container .main-content-container > .navbar-collapse {
@@ -19989,7 +19985,7 @@ fieldset[disabled] .btn-orange {
     padding-right: 15px;
     padding-left: 0px;
     padding-right: 0px;
-    padding-bottom: 146px;
+    padding-bottom: 122px;
   }
   .wrapper-content-container .main-content-container > .navbar-header,
   .wrapper-content-container .main-content-container > .navbar-collapse {

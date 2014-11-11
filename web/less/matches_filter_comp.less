@@ -16,8 +16,16 @@ matches-filter {
 		float: left;
 		width: 100%;
 						
-		// Animacion de entrada
+		// Animacion para cuando hay mas de una linea (solo en desktop)
 		@media (min-width: @screen-md-min) {
+			min-height: 60px;
+			overflow: hidden;
+
+			&.animate {
+				.fadein-animation(1s);
+			}
+
+			/*
 			max-height: 60px;
 			overflow: hidden;
 			transition: max-height 1s ease-in;
@@ -33,6 +41,7 @@ matches-filter {
 					opacity: 1;
 				}
 			}
+			*/
 		}
 		
 		.button-filtro-team {

@@ -306,14 +306,14 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
             </div>
           </div>
         </form>
-        <!--Facebook stuff
+        <!--Facebook stuff-->
         <div class="input-group">
         <div class="new-row" style="padding-left:10%;padding-right:10%;margin-bottom:20px;">
         <button class="button-join btn btn-default btn-block" id="fblogin" ng-click="loginFB()" style="background-color:#4a65a0;">
         <img src="images/iconFacebook.png"></img>
         Entra con Facebook</button>
         </div>
-        </div>-->
+        </div>
 
 
       </div>
@@ -322,18 +322,18 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
 
   </div>
 </div>
-<!--/Facebookstuff
+<!--/Facebookstuff-->
  <script id='facebook-jssdk' src="//connect.facebook.net/es_ES/sdk.js"></script>
  <script>
  window.fbAsyncInit = function() {
    FB.init({
-     appId      : '732983533416791',
+     appId      : '865176766847011',
      xfbml      : true,
      version    : 'v2.1'
    });
  };
  </script>
--->"""));
+"""));
 tc.put("packages/webclient/components/account/remember_password_comp.html", new HttpResponse(200, r"""<div id="rememberPasswordRoot" ng-show="!loadingService.isLoading">
   <div id="loginBox" class="main-box">
 
@@ -570,7 +570,7 @@ tc.put("packages/webclient/components/contest_filters_comp.html", new HttpRespon
       <button type="button" class="btn-confirm" ng-click="toggleFilterMenu()">ACEPTAR</button>
     </div>
 </div>"""));
-tc.put("packages/webclient/components/contest_header_comp.html", new HttpResponse(200, r"""<div id="contestHeaderWrapper" ng-cloak ng-show="contest != null">
+tc.put("packages/webclient/components/contest_header_comp.html", new HttpResponse(200, r"""<div id="contestHeaderWrapper">
 
   <div class="contest-name">{{info['description']}}</div>
   <div class="contest-explanation">{{info['contestType']}} {{info['contestantCount']}}</div>
@@ -2117,7 +2117,7 @@ tc.put("packages/webclient/components/lobby_comp.html", new HttpResponse(200, r"
   <!-- Filtros y Ordenación -->
   <contest-filters-comp id="contestFiltersRoot"
                         contests-list="activeContestsService.activeContests" contest-count="contestCount"
-                        on-sort-order-change="onSortOrderChange(fieldName)" on-filter-change="onFilterChange(filterList)"></contest-filters-comp>
+                        on-sort-order-change="onSortOrderChange(sortParams)" on-filter-change="onFilterChange(filterList)"></contest-filters-comp>
 
   <!-- Lista de concursos -->
   <contests-list  id="activeContestList"
@@ -2125,9 +2125,7 @@ tc.put("packages/webclient/components/lobby_comp.html", new HttpResponse(200, r"
                   contests-list="activeContestsService.activeContests"
                   on-action-click='onActionClick(contest)'
                   on-row-click="onRowClick(contest)" action-button-title="'Jugar'"
-                  competition-type-filter="lobbyFilters['FILTER_COMPETITION']"
-                  tournament-type-filter="lobbyFilters['FILTER_TOURNAMENT']" salary-cap-filter="lobbyFilters['FILTER_TIER']"
-                  entry-fee-filter="lobbyFilters['FILTER_ENTRY_FEE']" name-filter="lobbyFilters['FILTER_CONTEST_NAME']"
+                  lobby-filters="lobbyFilters"
                   contest-count="contestCount">
   </contests-list>
 </div>
@@ -2164,7 +2162,7 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
 
         <div class="tab-content-wrapper" ng-switch="!hasLiveContests  && dataLoaded">
           <!-- Barra de resumen de actividad -->
-          <div class="resume-bar"><span class="information-no-contest">{{hasLiveContests ? "TIENES " + myContestsService.liveContests.length + " TORNEOS ACTIVOS" : "AQUÍ PODRÁS CONSULTAR EN TIEMPO REAL LOS TORNEOS QUE TENGAS ACTIVOS"}}</span></div>
+          <div class="resume-bar"><span class="information-no-contest">{{hasLiveContests ? "TIENES " + myContestsService.liveContests.length + " TORNEOS ACTIVOS" : noLiveContestsMessage}}</span></div>
 
           <!-- Banner de información de lista vacía -->
           <div class="no-contests-wrapper" ng-switch-when="true">
@@ -2191,7 +2189,7 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
 
         <div class="tab-content-wrapper" ng-switch="!hasWaitingContests && dataLoaded">
         <!-- Barra de resumen de actividad sin registros-->
-        <div class="resume-bar"><span class="information-no-contest">{{hasWaitingContests ? "TE HAS INSCRITO EN " + myContestsService.waitingContests.length + " TORNEOS" : "AQUÍ PODRÁS CONSULTAR Y MODIFICAR LOS EQUIPOS QUE TIENES PENDIENTES DE JUGAR EN UN TORNEO"}}</span></div>
+        <div class="resume-bar"><span class="information-no-contest">{{hasWaitingContests ? "TE HAS INSCRITO EN " + myContestsService.waitingContests.length + " TORNEOS" : noWaittingContestsMessage}}</span></div>
           <!-- Banner de información de lista vacía -->
           <div class="no-contests-wrapper" ng-switch-when="true">
             <div class="no-contests-content">
@@ -2218,13 +2216,13 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
           <!-- Barra de resumen de actividad sin registros-->
           <div class="resume-bar">
             <span class="information-no-contest">
-              {{hasHistoryContests ? myContestsService.historyContests.length + " REGISTROS " + totalHistoryContestsWinner + " GANADOS" : "AQUÍ PODRÁS REPASAR TODOS LOS TORNEOS QUE HAS JUGADO: TUS EQUIPOS, RIVALES, PUNTUACIONES…"}}
+              {{hasHistoryContests ? myContestsService.historyContests.length + " REGISTROS " + totalHistoryContestsWinner + " GANADOS" : noHistoryContestsMessage}}
             </span>
           </div>
           <!-- Banner de información de lista vacía -->
           <div class="no-contests-wrapper" ng-switch-when="true">
             <div class="no-contests-content">
-              <div class="default-info-text">TODAVÍA NO HAS JUGADO NINGÚN TORNEO</div>
+              <div class="default-info-text">TODAVÍA NO HAS JUGADO NINGÚN TORNEO<br>¿A QUE ESPERAS PARA EMPEZAR A GANAR?</div>
               <div class="no-contests-text">VE A LA LISTA DE TORNEOS, ELIGE UNO Y EMPIEZA A JUGAR</div>
             </div>
             <div class="no-contest-bottom-row">

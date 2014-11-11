@@ -95,11 +95,11 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
         var soccerPlayer = changedItem.item;
 
         if (soccerPlayer != null) {
-          var elem = _soccerPlayerListRoot.querySelector("#soccerPlayer${soccerPlayer['intId']}");
+          var elem = _soccerPlayerListRoot.querySelector("#soccerPlayer${soccerPlayer['intId']} .column-action");
 
           // Quiza nos mandan quitar un portero pero estamos filtrando por defensas....
           if (elem != null) {
-            elem.setInnerHtml(getHtmlForSlot(soccerPlayer, !lineupFilter.contains(soccerPlayer)));
+            elem.setInnerHtml(getActionButton(!lineupFilter.contains(soccerPlayer)));
           }
         }
       }
@@ -192,8 +192,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
 
   String getHtmlForSlot(var slot, bool addButton) {
 
-    String strAddButton = addButton? '<div class="column-action"><button type="button" class="btn add">Añadir</button></div>' :
-                                     '<div class="column-action"><button type="button" class="btn remove">Quitar</button></div>';
+    String strAddButton = getActionButton(addButton);
 
     return '''
       <div id="soccerPlayer${slot["intId"]}" class="soccer-players-list-slot ${_POS_CLASS_NAMES[slot["fieldPos"].abrevName]}">
@@ -205,9 +204,16 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
         <div class="column-dfp">${slot["fantasyPoints"]}</div>
         <div class="column-played">${slot["playedMatches"]}</div>
         <div class="column-salary">${slot["salary"]}€</div>
-        ${strAddButton}
+        <div class="column-action">
+          ${strAddButton}
+        </div>
       </div>
     ''';
+  }
+
+  String getActionButton(bool addButton) {
+    return addButton? '<button type="button" class="btn add">Añadir</button>' :
+                      '<button type="button" class="btn remove">Quitar</button>';
   }
 
   void _onMouseEvent(MouseEvent e) {

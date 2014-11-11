@@ -1071,7 +1071,7 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_info_comp.html
 """));
 tc.put("packages/webclient/components/enter_contest/soccer_players_filter_comp.html", new HttpResponse(200, r"""<div class="soccer-players-filter">
             
-  <div class="filter-by-position">
+  <div class="filter-by-position" ng-if="scrDet.isNotXsScreen">
     <span>JUGADORES</span>
     <button class="btn btn-default button-filtro-position" ng-click="fieldPosFilter = fieldPos" 
             ng-repeat="fieldPos in posFilterList" ng-bind-html="getTextForFieldPos(fieldPos)" ng-class="getClassForFieldPos(fieldPos)"></button>
@@ -1079,16 +1079,6 @@ tc.put("packages/webclient/components/enter_contest/soccer_players_filter_comp.h
   
   <input type="text" class="name-player-input-filter" placeholder="Buscar jugador" ng-model="nameFilter" />
 </div>"""));
-tc.put("packages/webclient/components/enter_contest/soccer_players_list_comp.html", new HttpResponse(200, r"""
-<div class="soccer-player-list-header-table">
-  <div class="filterOrderPos"><a ng-click="sortListByField('Pos')">Pos.</a></div>
-  <div class="filterOrderName"><a ng-click="sortListByField('Name')">Nombre</a></div>
-  <div class="filterOrderDFP"><a ng-click="sortListByField('DFP')">DFP</a></div>
-  <div class="filterOrderPlayed"><a ng-click="sortListByField('Played')">Jugados</a></div>
-  <div class="filterOrderSalary"><a ng-click="sortListByField('Salary')">Sueldo</a></div>
-</div>
-
-<!-- La lista se genera dinamica 100% -->"""));
 tc.put("packages/webclient/components/flash_messages_comp.html", new HttpResponse(200, r"""<div>
   <div ng-repeat="msg in messages" id="flash-messages">
       <div class="alert alert-{{msg.type}} alert-dismissable">

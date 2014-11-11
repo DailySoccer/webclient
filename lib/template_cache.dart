@@ -2244,16 +2244,7 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
   </div>
 </div>
 """));
-tc.put("packages/webclient/components/navigation/footer_comp.html", new HttpResponse(200, r"""<div id="rootFooter" ng-cloak ng-show="!loadingService.isLoading">
-
-   <div class="sup-footer-wrapper" ng-if="profileService.isLoggedIn">
-    <div class="user-info-sup-footer">
-        <a id="footerProfile" href="#" class="goto-link" ng-click="gotoProfile()"><span class="username-link">{{profileService.user.nickName}}</span></a>
-        <a id="footerLogOut" href="#" class="goto-link" ng-click="profileService.logout()"><span class="logout-link">Salir</span></a>
-        <!--<button id="footerAddFunds" class="add-funds-button">AÑADIR FONDOS</button>-->
-    </div>
-  </div>
-
+tc.put("packages/webclient/components/navigation/footer_comp.html", new HttpResponse(200, r"""<div id="rootFooter" ng-cloak>
   <div class="sub-footer-wrapper">
     <div class="sub-footer">
 
@@ -2287,7 +2278,7 @@ tc.put("packages/webclient/components/navigation/footer_comp.html", new HttpResp
           <span>Fantasy Sports Games.com</span>
       </a>-->
 
-      <div class="footer-count" ng-if="isDev">{{dateTimeService.nowEverySecond}}</div>
+      <span class="footer-count" ng-if="isDev">{{dateTimeService.nowEverySecond}}&nbsp;</span>
     </div>
   </div>
 </div>

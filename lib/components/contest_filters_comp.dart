@@ -6,6 +6,7 @@ import 'dart:math';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/services/screen_detector_service.dart';
+import 'dart:async';
 
 @Component(
     selector: 'contest-filters-comp',
@@ -326,6 +327,8 @@ class ContestFiltersComp implements ShadowRootAware {
     JsUtils.runJavascript('#filtersPanel', 'on', {'shown.bs.collapse': onOpenFiltersPanel});
 
     // Inicializamos el control que dibuja el slider para el filtro por entrada
+    // Temporalmente le meto un retraso para pasar los test has que que se resuelva lo del defer y el jQuery ready.
+    //new Timer(const Duration(seconds:0), () => initSliderRange());
     initSliderRange();
   }
 
@@ -358,7 +361,7 @@ class ContestFiltersComp implements ShadowRootAware {
   int _contestCount = 0;
 
   String _sortField;
-  int _order = 1;
+  int _order = -1;
 
   bool isFirstTime = true;
 }

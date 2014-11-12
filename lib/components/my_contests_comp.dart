@@ -52,7 +52,7 @@ class MyContestsComp implements DetachAware {
   int get totalHistoryContestsWinner => myContestsService.historyContests.fold(0, (prev, contest) => (contest.getContestEntryWithUser(_profileService.user.userId).position == 0) ? prev+1 : prev);
   int get totalHistoryContestsPrizes => myContestsService.historyContests.fold(0, (prev, contest) => prev + contest.getContestEntryWithUser(_profileService.user.userId).prize);
 
-  MyContestsComp(this.loadingService, this._refreshTimersService, this.myContestsService, this._router, this._flashMessage) {
+  MyContestsComp(this.loadingService, this._profileService, this._refreshTimersService, this.myContestsService, this._router, this._flashMessage) {
 
     loadingService.isLoading = true;
 

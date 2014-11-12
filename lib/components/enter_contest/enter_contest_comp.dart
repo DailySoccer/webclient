@@ -3,8 +3,7 @@ library enter_contest_comp;
 import 'dart:html';
 import 'dart:async';
 import 'package:angular/angular.dart';
-import 'package:webclient/services/active_contests_service.dart';
-import 'package:webclient/services/my_contests_service.dart';
+import 'package:webclient/services/contests_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/loading_service.dart';
@@ -48,7 +47,7 @@ class EnterContestComp implements DetachAware {
 
   bool contestInfoFirstTimeActivation = false;  // Optimizacion para no compilar el contest_info hasta que no sea visible la primera vez
 
-  EnterContestComp(this._routeProvider, this._router, this.scrDet, this._activeContestService, this._myContestService, this._flashMessage, this.loadingService) {
+  EnterContestComp(this._routeProvider, this._router, this.scrDet, this._contestsService, this._flashMessage, this.loadingService) {
     loadingService.isLoading = true;
 
     resetLineup();
@@ -59,20 +58,19 @@ class EnterContestComp implements DetachAware {
     // Nos subscribimos al evento de cambio de tamañano de ventana
     _streamListener = scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
 
-    Future refreshContest = editingContestEntry? _myContestService.refreshMyContest(contestId) :
-                                                 _activeContestService.refreshContest(contestId);
+    Future refreshContest = editingContestEntry? _contestsService.refreshMyContest(contestId) : _contestsService.refreshContest(contestId);
     refreshContest
       .then((_) {
         loadingService.isLoading = false;
 
-        contest = editingContestEntry ? _myContestService.lastContest : _activeContestService.lastContest;
+        contest = editingContestEntry ? _contestsService.lastContest : _contestsService.lastContest;
         availableSalary = contest.salaryCap;
 
         initAllSoccerPlayers();
 
         // Si nos viene el torneo para editar la alineación
         if (editingContestEntry) {
-          ContestEntry contestEntry = _myContestService.lastContest.getContestEntry(contestEntryId);
+          ContestEntry contestEntry = _contestsService.lastContest.getContestEntry(contestEntryId);
 
           // Insertamos en el lineup el jugador
           contestEntry.instanceSoccerPlayers.forEach((instanceSoccerPlayer) {
@@ -261,7 +259,7 @@ class EnterContestComp implements DetachAware {
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
 
     if (editingContestEntry) {
-      _myContestService.editContestEntry(contestEntryId, lineupSlots.map((player) => player["id"]).toList())
+      _contestsService.editContestEntry(contestEntryId, lineupSlots.map((player) => player["id"]).toList())
         .then((_) => _router.go('view_contest_entry', {"contestId": contest.contestId, "parent":
                                                        _routeProvider.parameters["parent"],
                                                        "viewContestEntryMode": "edited"
@@ -269,7 +267,7 @@ class EnterContestComp implements DetachAware {
         .catchError((error) => _errorCreating(error));
     }
     else {
-      _activeContestService.addContestEntry(contest.contestId, lineupSlots.map((player) => player["id"]).toList())
+      _contestsService.addContestEntry(contest.contestId, lineupSlots.map((player) => player["id"]).toList())
         .then((contestId) => _router.go('view_contest_entry', {"contestId": contestId,
                                         "parent": _routeProvider.parameters["parent"],
                                         "viewContestEntryMode": contestId == contest.contestId? "created" : "swapped"
@@ -326,8 +324,7 @@ class EnterContestComp implements DetachAware {
   Router _router;
   RouteProvider _routeProvider;
 
-  ActiveContestsService _activeContestService;
-  MyContestsService _myContestService;
+  ContestsService _contestsService;
   FlashMessagesService _flashMessage;
 
   var _streamListener;

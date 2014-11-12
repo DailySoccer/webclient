@@ -3,7 +3,7 @@ library view_contest_comp;
 import 'package:angular/angular.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/profile_service.dart';
-import 'package:webclient/services/my_contests_service.dart';
+import 'package:webclient/services/contests_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/refresh_timers_service.dart';
 import 'package:webclient/services/loading_service.dart';
@@ -143,7 +143,7 @@ class ViewContestComp implements DetachAware {
   RouteProvider _routeProvider;
   ProfileService _profileService;
   RefreshTimersService _refreshTimersService;
-  MyContestsService _myContestsService;
+  ContestsService _myContestsService;
 
   List<int> get _prizes => (contest != null) ? contest.prizes : []; // TODO: Chapucioso, no crear un array nuevo
 }

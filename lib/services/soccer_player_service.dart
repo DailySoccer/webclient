@@ -9,8 +9,7 @@ import "package:webclient/models/soccer_team.dart";
 import "package:webclient/models/soccer_player.dart";
 import "package:webclient/models/match_event.dart";
 import 'package:webclient/models/instance_soccer_player.dart';
-import 'package:webclient/services/active_contests_service.dart';
-import 'package:webclient/services/my_contests_service.dart';
+import 'package:webclient/services/contests_service.dart';
 
 
 @Injectable()
@@ -55,6 +54,6 @@ class SoccerPlayerService {
 
   ServerService _server;
 
-  ActiveContestsService _activeContestsService;
-  MyContestsService _myContestsService;
+  ContestsService _activeContestsService;
+  ContestsService _myContestsService;
 }

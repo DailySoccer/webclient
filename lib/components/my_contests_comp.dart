@@ -3,7 +3,7 @@ library my_contests_comp;
 import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/profile_service.dart';
-import 'package:webclient/services/my_contests_service.dart';
+import 'package:webclient/services/contests_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/refresh_timers_service.dart';
 import 'package:webclient/models/contest.dart';
@@ -16,7 +16,7 @@ import 'package:webclient/services/loading_service.dart';
 )
 class MyContestsComp implements DetachAware {
 
-  MyContestsService myContestsService;
+  ContestsService myContestsService;
   LoadingService loadingService;
 
   Map liveSortType    = {'fieldName':'contest-start-time', 'order': 1};

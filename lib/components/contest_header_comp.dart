@@ -5,7 +5,7 @@ import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import "package:webclient/models/contest.dart";
 import 'dart:async';
-import 'package:webclient/services/active_contests_service.dart';
+import 'package:webclient/services/contests_service.dart';
 
 @Component(
     selector: 'contest-header',
@@ -109,7 +109,7 @@ class ContestHeaderComp implements DetachAware {
 
   Router _router;
   RouteProvider _routeProvider;
-  ActiveContestsService _activeContestsService;
+  ContestsService _activeContestsService;
 
   Timer _count;
 }

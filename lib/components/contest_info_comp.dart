@@ -5,7 +5,7 @@ import 'dart:html';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/contest_entry.dart';
 import 'package:webclient/services/datetime_service.dart';
-import 'package:webclient/services/active_contests_service.dart';
+import 'package:webclient/services/contests_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/components/modal_comp.dart';
@@ -105,7 +105,7 @@ class ContestInfoComp implements DetachAware {
   var _streamListener;
   Router _router;
 
-  ActiveContestsService _contestService;
+  ContestsService _contestService;
   FlashMessagesService _flashMessage;
 
   String _contestId;

@@ -4,7 +4,7 @@ import 'package:angular/angular.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/datetime_service.dart';
-import 'package:webclient/services/my_contests_service.dart';
+import 'package:webclient/services/contests_service.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/loading_service.dart';
@@ -79,7 +79,7 @@ class ViewContestEntryComp {
 
   FlashMessagesService _flashMessage;
   ProfileService _profileService;
-  MyContestsService _myContestsService;
+  ContestsService _myContestsService;
 
   String _viewContestEntryMode;
 }

@@ -74,10 +74,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
     // Siempre que reseteen la lista, empezamos ordenados por posicion
     sortListByField('Pos', invert: false);
 
-    // En movil podemos empezar directamente filtrados
-    if (_scrDet.isXsScreen) {
-      _filterList["FILTER_POSITION"] = new FieldPos("GOALKEEPER").value;
-    }
+    _isDirty = true;
   }
 
   List<dynamic> lineupFilter;

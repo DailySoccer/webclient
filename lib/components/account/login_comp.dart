@@ -44,7 +44,7 @@ class LoginComp implements ShadowRootAware {
               if (loginResponse["status"]=="connected") {
                 loginCallback(loginResponse);
               }
-            }, {"scope": 'email'}],
+            }, {"scope": 'public_profile,email'}],
             false, "FB");
       }
     }, true],

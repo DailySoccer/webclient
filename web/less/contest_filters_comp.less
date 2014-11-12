@@ -76,6 +76,9 @@
 					color: @greyUltraDark;
 					border-color: @greyUltraDark;
 				}
+				&:active{
+					margin: 0;
+				}
 			} 
 			//flechitas que indican el orden de filtrado
 			.asc::after{
@@ -142,6 +145,7 @@
 			.left-separator();
 			@media (max-width: @screen-xs-max) {
 				text-align: right;
+				height: 32px;
 			}
 			.filters-button{
 				.btn-default();
@@ -158,6 +162,7 @@
 						color: @greyUltraDark;
 						border-color: @greyUltraDark;
 					}
+					&:active {margin: 0;}
 				} 
 			}
 		}
@@ -396,6 +401,7 @@
 			.make-xs-column(12);
 			.make-sm-column(3);
 			.make-sm-column-push(3);
+			height: 61px;
 			padding: 10px 0 15px 0;
 			@media (min-width: @screen-sm-min) {
 				margin: 0 10px 0 0;	
@@ -415,6 +421,7 @@
 			.make-xs-column(12);
 			.make-sm-column(3);
 			.make-sm-column-push(3);
+			height: 61px;
 			padding: 10px 0 15px 0;
 			@media (min-width: @screen-sm-min) {
 				margin: 0 0 0 10px;	

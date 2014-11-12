@@ -1,7 +1,6 @@
 library matches_filter_comp;
 
 import 'dart:html';
-import 'dart:async';
 import 'package:angular/angular.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/match_event.dart';

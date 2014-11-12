@@ -3,7 +3,6 @@ library edit_personal_data_comp;
 import 'package:angular/angular.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/js_utils.dart';
-import 'package:webclient/components/account/user_profile_comp.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/models/connection_error.dart';
 
@@ -18,7 +17,20 @@ class EditPersonalDataComp implements ShadowRootAware{
   String region;
   String city;
 
-  UserProfileComp parent;
+  String editedFirstName;
+  String editedLastName;
+  String editedNickName;
+  String editedEmail;
+  String editedPassword;
+  String editedRepeatPassword;
+
+  bool hasNicknameError;
+  bool hasEmailError;
+  bool hasPasswordError;
+
+  String nicknameErrorText;
+  String emailErrorText;
+  String passwordErrorText;
 
   bool get acceptNewsletter => _acceptNewsletter;
   void set acceptNewsletter(bool value) {
@@ -40,11 +52,7 @@ class EditPersonalDataComp implements ShadowRootAware{
 
   dynamic get userData => _profileManager.user;
 
-  //TODO: pensar si Esto debería estar siempre habilitado y hacerlas comprobaciones antes de enviar los cambios.
-  //bool get enabledSubmit => parent.editedNickName.isNotEmpty && parent.editedEmail.isNotEmpty && parent.editedRepeatPassword.isNotEmpty && parent.editedPassword.isNotEmpty && _enabledSubmit;
-
-  EditPersonalDataComp(this._profileManager, this.loadingService, this.parent) {
-  }
+  EditPersonalDataComp(this._profileManager, this.loadingService, this._router);
 
   void init() {
     //switch NEWSLETTER/OFERTAS ESPECIALES
@@ -73,8 +81,12 @@ class EditPersonalDataComp implements ShadowRootAware{
                                                                                     'offColor'      : 'default',
                                                                                     'onSwitchChange': onSoccerPlayerAlertsSwitchChange
                                                                                   });
-      hideErrors();
+    editedEmail     = _profileManager.user.email;
+    editedFirstName = _profileManager.user.firstName;
+    editedLastName  = _profileManager.user.lastName;
+    editedNickName  = _profileManager.user.nickName;
 
+    hideErrors();
   }
 
   void onNewsLetterSwitchChange(event, state) {
@@ -89,66 +101,64 @@ class EditPersonalDataComp implements ShadowRootAware{
     acceptSoccerPlayerAlerts = state;
   }
 
-
   bool validatePassword() {
     bool retorno = true;
     // Verificación del password
-    if (parent.editedPassword != parent.editedRepeatPassword) {
-        parent
-          ..passwordErrorText = "Los passwords no coinciden"
-          ..hasPasswordError = true;
+    if (editedPassword != editedRepeatPassword) {
+        passwordErrorText = "Los passwords no coinciden";
+        hasPasswordError = true;
         retorno = false;
-      }
-
+    }
     return retorno;
   }
 
   void saveChanges() {
-
       hideErrors();
 
       if (!validatePassword() ) {
         return;
       }
+
+
+
+      String nickName  = (_profileManager.user.nickName   != editedNickName)  ? editedNickName   : "";
+      String firstName = (_profileManager.user.firstName  != editedFirstName) ? editedFirstName  : "";
+      String lastName  = (_profileManager.user.lastName   != editedLastName)  ? editedLastName   : "";
+      String email     = (_profileManager.user.email      != editedEmail)     ? editedEmail      : "";
+
+      String password  = editedPassword;
+
+      if (nickName  == "" &&  firstName == "" &&
+          lastName  == "" &&  email     == "" && password == "") {
+          exit(null);
+       }
+
       loadingService.isLoading = true;
-      //_enabledSubmit = false;
-      String nickName  = _profileManager.user.nickName   != parent.editedNickName  ? parent.editedNickName   : "";
-      String firstName = _profileManager.user.firstName  != parent.editedFirstName ? parent.editedFirstName  : "";
-      String lastName  = _profileManager.user.lastName   != parent.editedLastName  ? parent.editedLastName   : "";
-      String email     = _profileManager.user.email      != parent.editedEmail     ? parent.editedEmail      : "";
-
-      String password  = parent.editedPassword;
-
       _profileManager.changeUserProfile(firstName, lastName, email, nickName, password)
-        //Not implemented yet //.then((_) => _profileManager.saveUserData(firstName, lastName,acceptGameAlerts, /* nickName, */ email, password))
-        .then((_) {
-          closeModal();
-          parent.editedEmail      = email     == "" ? parent.editedEmail      : email;
-          parent.editedFirstName  = firstName == "" ? parent.editedFirstName  : firstName;
-          parent.editedLastName   = lastName  == "" ? parent.editedLastName   : lastName;
-          parent.editedNickName   = nickName  == "" ? parent.editedNickName   : nickName;
+        .then( (_) {
+          editedEmail      = email     == "" ? editedEmail      : email;
+          editedFirstName  = firstName == "" ? editedFirstName  : firstName;
+          editedLastName   = lastName  == "" ? editedLastName   : lastName;
+          editedNickName   = nickName  == "" ? editedNickName   : nickName;
           loadingService.isLoading = false;
+          exit(null);
         })
         .catchError((ConnectionError error) {
-
           error.toJson().forEach( (key, value) {
             switch (key)
             {
               case "nickName":
-                parent
-                  ..nicknameErrorText = value[0]
-                  ..hasNicknameError = true;
+                nicknameErrorText = value[0];
+                hasNicknameError = true;
 
               break;
               case "email":
-                parent
-                  ..emailErrorText = value[0]
-                  ..hasEmailError = true;
+                emailErrorText = value[0];
+                hasEmailError = true;
               break;
               case "password":
-                parent
-                  ..passwordErrorText = value[0]
-                ..hasPasswordError = true;
+                passwordErrorText = value[0];
+                hasPasswordError = true;
               break;
             }
           });
@@ -157,31 +167,28 @@ class EditPersonalDataComp implements ShadowRootAware{
   }
 
   void hideErrors() {
-    parent
-    ..hasNicknameError  = false
-    ..hasEmailError     = false
-    ..hasPasswordError  = false;
+    hasNicknameError  = false;
+    hasEmailError     = false;
+    hasPasswordError  = false;
   }
 
-
-  void closeModal() {
-    _profileManager.refreshUserProfile();
-    parent.endEditPersonalData();
-    JsUtils.runJavascript('#editPersonalDataModal', 'modal', 'hide');
+  void exit(event) {
+    if(event != null) {
+      event.preventDefault();
+    }
+    _router.go('user_profile', {});
   }
-
 
   @override void onShadowRoot(emulatedRoot) {
     init();
   }
 
-
   ProfileService _profileManager;
+  Router _router;
   bool _acceptNewsletter;
   bool _acceptGameAlerts;
   bool _acceptSoccerPlayerAlerts;
   bool _enabledSubmit = false;
-  bool _popUpStyle;
 
   LoadingService loadingService;
 }

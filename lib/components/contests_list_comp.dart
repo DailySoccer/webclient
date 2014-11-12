@@ -31,10 +31,44 @@ class ContestsListComp {
     refreshListWithFilters();
   }
 
-  @NgOneWay("lobby-filter")
-  void set filterList(value) {
-    _filterList = value;
-    refreshListWithFilters();
+  @NgOneWay("competition-type-filter")
+  void set filterByCompetition(value) {
+    if(value != null) {
+      _filterList["FILTER_COMPETITION"] = value;
+      refreshListWithFilters();
+    }
+  }
+
+  @NgOneWay("tournament-type-filter")
+  void set filterByType(value) {
+    if(value != null) {
+      _filterList["FILTER_TOURNAMENT"] = value;
+      refreshListWithFilters();
+    }
+  }
+
+  @NgOneWay("salary-cap-filter")
+  void set filterBySalaryCap(value) {
+    if(value != null) {
+      _filterList["FILTER_TIER"] = value;
+      refreshListWithFilters();
+    }
+  }
+
+  @NgOneWay("entry-fee-filter")
+  void set filterByEntryFee(value) {
+    if(value != null) {
+      _filterList["FILTER_ENTRY_FEE"] = value;
+      refreshListWithFilters();
+    }
+  }
+
+  @NgOneWay("name-filter")
+  void set filterByName(value) {
+    if(value != null) {
+      _filterList["FILTER_CONTEST_NAME"] = value;
+      refreshListWithFilters();
+    }
   }
 
   @NgOneWay("sorting")
@@ -234,6 +268,7 @@ class ContestsListComp {
   // Lista de filtros a aplicar
   Map<String,dynamic> _filterList = {};
 
+  // Parametros de ordenación
   Map _sortOrder = {};
 
   int _contestCount   = 0;

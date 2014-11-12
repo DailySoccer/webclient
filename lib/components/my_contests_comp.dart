@@ -19,9 +19,9 @@ class MyContestsComp implements DetachAware {
   MyContestsService myContestsService;
   LoadingService loadingService;
 
-  Map liveSortType    = {'fieldName':'contest-start-time', 'order': -1};
-  Map waitingSortType = {'fieldName':'contest-start-time', 'order': -1};
-  Map historySortType = {'fieldName':'contest-start-time', 'order':  1};
+  Map liveSortType    = {'fieldName':'contest-start-time', 'order': 1};
+  Map waitingSortType = {'fieldName':'contest-start-time', 'order': 1};
+  Map historySortType = {'fieldName':'contest-start-time', 'order': 1};
 
   String get liveContestsMessage {
     if (loadingService.isLoading)
@@ -88,8 +88,15 @@ class MyContestsComp implements DetachAware {
   }
 
   void tabChange(String tab) {
+
     querySelectorAll(".tab-pane").classes.remove("active");
     querySelector("#" + tab).classes.add("active");
+
+    List<dynamic> allContentTab = document.querySelectorAll(".tab-pane");
+    allContentTab.forEach((element) => element.classes.remove('active'));
+
+    Element contentTab = document.querySelector("#" + tab);
+    contentTab.classes.add("active");
   }
 
   Router _router;

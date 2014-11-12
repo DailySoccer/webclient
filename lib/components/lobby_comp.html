@@ -17,9 +17,13 @@
   <contests-list  id="activeContestList"
                   sorting="lobbySorting"
                   contests-list="activeContestsService.activeContests"
+                  competition-type-filter="lobbyFilters['FILTER_COMPETITION']"
+                  tournament-type-filter="lobbyFilters['FILTER_TOURNAMENT']"
+                  salary-cap-filter="lobbyFilters['FILTER_TIER']"
+                  entry-fee-filter="lobbyFilters['FILTER_ENTRY_FEE']"
+                  name-filter="lobbyFilters['FILTER_CONTEST_NAME']"
                   on-action-click='onActionClick(contest)'
                   on-row-click="onRowClick(contest)" action-button-title="'Jugar'"
-                  lobby-filters="lobbyFilters"
                   contest-count="contestCount">
   </contests-list>
 </div>

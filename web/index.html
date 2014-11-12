@@ -97,6 +97,12 @@
 
     <script src="js/jquery.min.js"></script>
     <script>
+      function facebookLogin() {
+        FB.login(function(response) {
+           console.log("response de login "+response);
+         }, {scope: 'email,user_likes'});
+      }
+
       function onjQueryReady(dartCallback) {
         $().ready(function() {
           dartCallback();

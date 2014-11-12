@@ -34,16 +34,7 @@ class ContestsService {
   Future refreshActiveContests() {
     return _server.getActiveContests()
       .then((jsonMap) {
-        activeContests = Contest.loadContestsFromJsonObject(jsonMap);
-        activeContests.forEach((contest) => _registerContest(contest));
-
-        if (_profileService.isLoggedIn) {
-          _myEnteredActiveContests = activeContests.where((contest) => contest.containsContestEntryWithUser(_profileService.user.userId)).toList();
-          activeContests.removeWhere((contest) => contest.containsContestEntryWithUser(_profileService.user.userId));
-
-          _myEnteredActiveContests.sort((A,B) => A.compareStartDateTo(B));
-          activeContests.sort((A,B) => A.compareStartDateTo(B));
-        }
+        _initActiveContests(Contest.loadContestsFromJsonObject(jsonMap));
       });
   }
 
@@ -99,7 +90,7 @@ class ContestsService {
 
     _server.getMyContests()
         .then((jsonMap) {
-          _initContests (Contest.loadContestsFromJsonObject(jsonMap));
+          _initMyContests(Contest.loadContestsFromJsonObject(jsonMap));
           completer.complete(jsonMap);
         });
 
@@ -177,7 +168,22 @@ class ContestsService {
     return activeContests.isNotEmpty ? activeContests.first : null;
   }
 
-  void _initContests(List<Contest> contests) {
+  void _initActiveContests(List<Contest> contests) {
+    activeContests = contests;
+    activeContests.forEach((contest) => _registerContest(contest));
+
+    if (_profileService.isLoggedIn) {
+      _myEnteredActiveContests = activeContests.where((contest) => contest.containsContestEntryWithUser(_profileService.user.userId)).toList();
+      activeContests.removeWhere((contest) => contest.containsContestEntryWithUser(_profileService.user.userId));
+
+      _myEnteredActiveContests.sort((A,B) => A.compareStartDateTo(B));
+      activeContests.sort((A,B) => A.compareStartDateTo(B));
+    }
+  }
+
+  void _initMyContests(List<Contest> contests) {
+    contests.forEach((contest) => _registerContest(contest));
+
     waitingContests = contests.where((contest) => contest.isActive).toList();
     liveContests = contests.where((contest) => contest.isLive).toList();
     historyContests = contests.where((contest) => contest.isHistory).toList();

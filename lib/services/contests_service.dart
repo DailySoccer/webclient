@@ -6,6 +6,7 @@ import 'package:angular/angular.dart';
 import "package:webclient/services/server_service.dart";
 import "package:webclient/services/profile_service.dart";
 import "package:webclient/models/contest.dart";
+import 'package:logging/logging.dart';
 
 
 @Injectable()
@@ -66,7 +67,7 @@ class ContestsService {
 
     _server.cancelContestEntry(contestEntryId)
       .then((jsonMap) {
-        print("response: " + jsonMap.toString());
+        Logger.root.info("response: " + jsonMap.toString());
         completer.complete();
       });
 
@@ -78,7 +79,7 @@ class ContestsService {
 
     _server.editContestEntry(contestId, soccerPlayerIds)
       .then((jsonMap) {
-        print("response: " + jsonMap.toString());
+        Logger.root.info("response: " + jsonMap.toString());
         completer.complete();
       });
 

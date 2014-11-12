@@ -1,4 +1,5 @@
-#mainFooter {
+footer {
+	
 	@media (min-width: @screen-sm-min) {
 		.container-fluid();
 		.clean-paddings();
@@ -7,13 +8,20 @@
 		.container();
 		.clean-paddings();
 	}
+
+	// Reserva de sitio. En ambas resoluciones con el contenido actual es algo menos que esto,
+	// 129px en movil y 122px en desktop, pero mejor lo fijamos a algo mas y asi en el hack del
+	// bleach usamos este height siempre.
+	min-height: 130px;
+	display: block;
 }
 
 #rootFooter {
 	.make-row(0);
 	.clean-paddings();
 	background-color: @black;
-	
+	min-height: 130px;
+		
 	.goto-link{
 		text-decoration: none;
 	}

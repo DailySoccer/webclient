@@ -7025,10 +7025,10 @@ button#contestInfoModal .modal-info-head button.close {
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  padding-top: 7px;
 }
 #contestInfoModal .modal-info-content .contest-info-tabs .buton-place > button {
   float: right !important;
-  margin-top: 7px;
 }
 #contestInfoModal .modal-info-content .info-options {
   margin-bottom: 0;
@@ -7881,6 +7881,7 @@ fieldset[disabled] .contests-list-root .contest-row .column-contest-action .btn.
 fieldset[disabled] .contests-list-root .contest-row .column-contest-action .btn {
   -webkit-box-shadow: none;
   box-shadow: none;
+  margin-top: 4px;
 }
 .contests-list-root .contest-row .column-contest-action .btn:focus {
   outline: none !important;
@@ -8180,6 +8181,7 @@ button#personalDataContent .header button.close {
 #personalDataContent .save-changes-content {
   margin-left: 0;
   margin-right: 0;
+  height: 50px;
 }
 @media (min-width: 768px) {
   #personalDataContent .save-changes-content {
@@ -8331,6 +8333,7 @@ fieldset[disabled] #personalDataContent .save-changes-content .action-button.act
 fieldset[disabled] #personalDataContent .save-changes-content .action-button {
   -webkit-box-shadow: none;
   box-shadow: none;
+  margin-top: 4px;
 }
 #personalDataContent .save-changes-content .action-button:focus {
   outline: none !important;
@@ -8673,6 +8676,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team.active {
 fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   -webkit-box-shadow: none;
   box-shadow: none;
+  margin-top: 4px;
 }
 .fantasy-team-header .edit-team .btn-edit-team:focus {
   outline: none !important;
@@ -9354,6 +9358,7 @@ fieldset[disabled] #rootFooter .user-info-sup-footer .add-funds-button.active {
 fieldset[disabled] #rootFooter .user-info-sup-footer .add-funds-button {
   -webkit-box-shadow: none;
   box-shadow: none;
+  margin-top: 4px;
 }
 #rootFooter .user-info-sup-footer .add-funds-button:focus {
   outline: none !important;
@@ -9820,6 +9825,7 @@ fieldset[disabled] #mobileContent .content .button-play-mobile.active {
 fieldset[disabled] #mobileContent .content .button-play-mobile {
   -webkit-box-shadow: none;
   box-shadow: none;
+  margin-top: 4px;
 }
 #mobileContent .content .button-play-mobile:focus {
   outline: none !important;
@@ -10103,6 +10109,7 @@ fieldset[disabled] .landing-wrapper .button-play.active {
 fieldset[disabled] .landing-wrapper .button-play {
   -webkit-box-shadow: none;
   box-shadow: none;
+  margin-top: 4px;
 }
 .landing-wrapper .button-play:focus {
   outline: none !important;
@@ -10363,6 +10370,7 @@ fieldset[disabled] .landing-wrapper .button-play {
   fieldset[disabled] #liveContestRoot .btn {
     -webkit-box-shadow: none;
     box-shadow: none;
+    margin-top: 4px;
   }
   #liveContestRoot .btn:focus {
     outline: none !important;
@@ -10921,6 +10929,7 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters #contestFastSort .so
 fieldset[disabled] #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button {
   -webkit-box-shadow: none;
   box-shadow: none;
+  margin-top: 4px;
 }
 #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:focus {
   outline: none !important;
@@ -10938,6 +10947,9 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters #contestFastSort .so
   border-width: 1px;
   color: #434343;
   border-color: #434343;
+}
+#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:active {
+  margin: 0;
 }
 #contestFiltersRoot #contestSortsFilters #contestFastSort .asc::after {
   font-family: 'Glyphicons Halflings';
@@ -11141,6 +11153,7 @@ textarea#contestFiltersRoot #contestSortsFilters #contestFastSearch .searcher {
 @media (max-width: 767px) {
   #contestFiltersRoot #contestSortsFilters .filterToggler {
     text-align: right;
+    height: 32px;
   }
 }
 #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button {
@@ -11195,6 +11208,7 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
 fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button {
   -webkit-box-shadow: none;
   box-shadow: none;
+  margin-top: 4px;
 }
 #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:focus {
   outline: none !important;
@@ -11216,6 +11230,9 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
     background-color: transparent;
     color: #434343;
     border-color: #434343;
+  }
+  #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:active {
+    margin: 0;
   }
 }
 #contestFiltersRoot #contestSortsFilters .toggleOff::after {
@@ -12127,6 +12144,7 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  height: 61px;
   padding: 10px 0 15px 0;
 }
 @media (min-width: 768px) {
@@ -12336,6 +12354,7 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-
 fieldset[disabled] #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset {
   -webkit-box-shadow: none;
   box-shadow: none;
+  margin-top: 4px;
 }
 #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:focus {
   outline: none !important;
@@ -12347,6 +12366,7 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  height: 61px;
   padding: 10px 0 15px 0;
 }
 @media (min-width: 768px) {
@@ -12497,6 +12517,7 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .bt
 fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm {
   -webkit-box-shadow: none;
   box-shadow: none;
+  margin-top: 4px;
 }
 #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:focus {
   outline: none !important;
@@ -12876,6 +12897,7 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .bt
   fieldset[disabled] #mainMenu .add-funds-button {
     -webkit-box-shadow: none;
     box-shadow: none;
+    margin-top: 4px;
   }
   #mainMenu .add-funds-button:focus {
     outline: none !important;
@@ -13222,6 +13244,7 @@ fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-join.active {
 fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-join {
   -webkit-box-shadow: none;
   box-shadow: none;
+  margin-top: 4px;
 }
 .navbar-header-unloggin .button-wrapper .button-join:focus {
   outline: none !important;
@@ -13355,6 +13378,7 @@ fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-login.active 
 fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-login {
   -webkit-box-shadow: none;
   box-shadow: none;
+  margin-top: 4px;
 }
 .navbar-header-unloggin .button-wrapper .button-login:focus {
   outline: none !important;
@@ -13658,6 +13682,7 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
 fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contest {
   -webkit-box-shadow: none;
   box-shadow: none;
+  margin-top: 4px;
 }
 .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contest:focus {
   outline: none !important;
@@ -14066,6 +14091,7 @@ fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .btn-cancel.active {
 fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .btn-cancel {
   -webkit-box-shadow: none;
   box-shadow: none;
+  margin-top: 4px;
 }
 #modalSoccerPlayerInfo .action-buttons .btn-cancel:focus {
   outline: none !important;
@@ -14205,6 +14231,7 @@ fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .btn-add.active {
 fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .btn-add {
   -webkit-box-shadow: none;
   box-shadow: none;
+  margin-top: 4px;
 }
 #modalSoccerPlayerInfo .action-buttons .btn-add:focus {
   outline: none !important;
@@ -14573,6 +14600,7 @@ fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .descriptio
 fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .btn-add {
   -webkit-box-shadow: none;
   box-shadow: none;
+  margin-top: 4px;
 }
 #modalSoccerPlayerInfo .soccer-player-info-content {
   background-color: #ffffff;
@@ -15282,6 +15310,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-cancel-player-selection.a
 fieldset[disabled] .enter-contest-actions-wrapper .btn-cancel-player-selection {
   -webkit-box-shadow: none;
   box-shadow: none;
+  margin-top: 4px;
 }
 .enter-contest-actions-wrapper .btn-cancel-player-selection:focus {
   outline: none !important;
@@ -15422,6 +15451,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-clean-lineup-list.active 
 fieldset[disabled] .enter-contest-actions-wrapper .btn-clean-lineup-list {
   -webkit-box-shadow: none;
   box-shadow: none;
+  margin-top: 4px;
 }
 .enter-contest-actions-wrapper .btn-clean-lineup-list:focus {
   outline: none !important;
@@ -15558,6 +15588,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list.activ
 fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   -webkit-box-shadow: none;
   box-shadow: none;
+  margin-top: 4px;
 }
 .enter-contest-actions-wrapper .btn-confirm-lineup-list:focus {
   outline: none !important;
@@ -16097,6 +16128,7 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
 fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action .btn.add {
   -webkit-box-shadow: none;
   box-shadow: none;
+  margin-top: 4px;
 }
 .soccer-players-list .soccer-players-list-slot .column-action .btn.add:focus {
   outline: none !important;
@@ -16153,6 +16185,7 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
 fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action .btn.remove {
   -webkit-box-shadow: none;
   box-shadow: none;
+  margin-top: 4px;
 }
 .soccer-players-list .soccer-players-list-slot .column-action .btn.remove:focus {
   outline: none !important;
@@ -16367,21 +16400,32 @@ textarea.soccer-players-filter .name-player-input-filter {
     }
   }
 }
+#matchesFilterWrapper .matches-filter-buttons .button-filtro-wrapper {
+  height: 45px;
+  float: left;
+  display: inline-block;
+  padding: 0 5px;
+  margin: 0px 0 15px 0;
+  position: relative;
+  top: 8px;
+}
+@media (max-width: 767px) {
+  #matchesFilterWrapper .matches-filter-buttons .button-filtro-wrapper {
+    display: none !important;
+  }
+}
+#matchesFilterWrapper .matches-filter-buttons:after {
+  clear: both;
+}
 #matchesFilterWrapper .matches-filter-buttons .button-filtro-team {
+  min-width: 120px;
+  padding: 5px 0;
+  text-align: center;
+  line-height: 15px;
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 9pt;
   color: #ffffff;
-  min-width: 120px;
-  padding: 5px 0;
-  margin: 10px 4px;
-  text-align: center;
-  line-height: 15px;
-}
-@media (max-width: 767px) {
-  #matchesFilterWrapper .matches-filter-buttons .button-filtro-team {
-    display: none !important;
-  }
 }
 #matchesFilterWrapper .matches-filter-buttons .button-filtro-team:active,
 #matchesFilterWrapper .matches-filter-buttons .button-filtro-team:focus,
@@ -16998,6 +17042,7 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button.active {
 fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button {
   -webkit-box-shadow: none;
   box-shadow: none;
+  margin-top: 4px;
 }
 .main-box .panel .panel-body .new-row .enter-button:focus {
   outline: none !important;
@@ -17137,6 +17182,7 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button-half.acti
 fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button-half {
   -webkit-box-shadow: none;
   box-shadow: none;
+  margin-top: 4px;
 }
 .main-box .panel .panel-body .new-row .enter-button-half:focus {
   outline: none !important;
@@ -17329,6 +17375,7 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half.act
 fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
   -webkit-box-shadow: none;
   box-shadow: none;
+  margin-top: 4px;
 }
 .main-box .panel .panel-body .new-row .cancel-button-half:focus {
   outline: none !important;
@@ -17817,6 +17864,7 @@ fieldset[disabled] .profile-content .action-button.active {
 fieldset[disabled] .profile-content .action-button {
   -webkit-box-shadow: none;
   box-shadow: none;
+  margin-top: 4px;
 }
 .profile-content .action-button:focus {
   outline: none !important;
@@ -17953,6 +18001,7 @@ fieldset[disabled] .profile-content .add-funds-button.active {
 fieldset[disabled] .profile-content .add-funds-button {
   -webkit-box-shadow: none;
   box-shadow: none;
+  margin-top: 4px;
 }
 .profile-content .add-funds-button:focus {
   outline: none !important;
@@ -18148,6 +18197,7 @@ fieldset[disabled] .profile-content .add-funds-button {
   fieldset[disabled] .profile-content .personal-data .action-button {
     -webkit-box-shadow: none;
     box-shadow: none;
+    margin-top: 4px;
   }
   .profile-content .personal-data .action-button:focus {
     outline: none !important;
@@ -18352,6 +18402,7 @@ fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-
 fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-transaction {
   -webkit-box-shadow: none;
   box-shadow: none;
+  margin-top: 4px;
 }
 .profile-content .pocket-data .button-wrapper .action-button-transaction:focus {
   outline: none !important;
@@ -18489,6 +18540,7 @@ fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-
 fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-get-funds {
   -webkit-box-shadow: none;
   box-shadow: none;
+  margin-top: 4px;
 }
 .profile-content .pocket-data .button-wrapper .action-button-get-funds:focus {
   outline: none !important;
@@ -18769,6 +18821,7 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-cancel-contest.activ
 fieldset[disabled] .view-contest-entry-actions-wrapper .btn-cancel-contest {
   -webkit-box-shadow: none;
   box-shadow: none;
+  margin-top: 4px;
 }
 .view-contest-entry-actions-wrapper .btn-cancel-contest:focus {
   outline: none !important;
@@ -18910,6 +18963,7 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-back-contest.active 
 fieldset[disabled] .view-contest-entry-actions-wrapper .btn-back-contest {
   -webkit-box-shadow: none;
   box-shadow: none;
+  margin-top: 4px;
 }
 .view-contest-entry-actions-wrapper .btn-back-contest:focus {
   outline: none !important;
@@ -19194,6 +19248,7 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play.active 
 fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   -webkit-box-shadow: none;
   box-shadow: none;
+  margin-top: 4px;
 }
 #helpInfo .block-last .description-right .button-play:focus {
   outline: none !important;
@@ -19715,6 +19770,7 @@ fieldset[disabled] .btn {
 fieldset[disabled] .btn-pressed {
   -webkit-box-shadow: none;
   box-shadow: none;
+  margin-top: 4px;
 }
 .btn-default {
   box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
@@ -19729,6 +19785,7 @@ fieldset[disabled] .btn-pressed {
 fieldset[disabled] .btn-default {
   -webkit-box-shadow: none;
   box-shadow: none;
+  margin-top: 4px;
 }
 .btn-default:focus {
   outline: none !important;
@@ -19746,6 +19803,7 @@ fieldset[disabled] .btn-default {
 fieldset[disabled] .btn-primary {
   -webkit-box-shadow: none;
   box-shadow: none;
+  margin-top: 4px;
 }
 .btn-primary:focus {
   outline: none !important;
@@ -19873,6 +19931,7 @@ fieldset[disabled] .btn-cancel.active {
 fieldset[disabled] .btn-cancel {
   -webkit-box-shadow: none;
   box-shadow: none;
+  margin-top: 4px;
 }
 .btn-cancel:focus {
   outline: none !important;
@@ -20000,6 +20059,7 @@ fieldset[disabled] .btn-orange.active {
 fieldset[disabled] .btn-orange {
   -webkit-box-shadow: none;
   box-shadow: none;
+  margin-top: 4px;
 }
 .clean-paddings {
   padding-left: 0px;

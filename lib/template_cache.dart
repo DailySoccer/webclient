@@ -940,7 +940,7 @@ tc.put("packages/webclient/components/enter_contest/matches_filter_comp.html", n
   </select>
 
   <div id="matchesFilterButtons" class="matches-filter-buttons" ng-switch-when="false">
-    <div class="button-filtro-wrapper"  ng-repeat="match in matchEvents" >
+    <div class="button-filtro-wrapper" ng-repeat="match in matchEvents" >
       <button class="btn btn-default button-filtro-team"ng-bind-html="match.texto" id="match-{{match.id}}"
               ng-click="optionsSelectorValue = match.id" ng-class="{'active': optionsSelectorValue == match.id }">
       </button>

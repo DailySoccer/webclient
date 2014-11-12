@@ -6,7 +6,7 @@ import 'dart:math';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/services/screen_detector_service.dart';
-import 'dart:async';
+
 
 @Component(
     selector: 'contest-filters-comp',

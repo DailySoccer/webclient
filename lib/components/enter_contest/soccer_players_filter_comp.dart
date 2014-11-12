@@ -40,7 +40,7 @@ class SoccerPlayersFilterComp implements AttachAware {
     }
     else {
       // Tentativamente vamos a empezar con los delanteros en desktop
-      _fieldPosFilter = new FieldPos("FORWARD");
+      //_fieldPosFilter = new FieldPos("FORWARD");
     }
   }
 

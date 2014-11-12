@@ -318,5 +318,5 @@ class WebClientApp extends Module {
     }));
   }
 
-  static bool _jQueryReady = false;
+  bool _jQueryReady = false;
 }

@@ -358,7 +358,7 @@ class ContestFiltersComp implements ShadowRootAware {
   int _contestCount = 0;
 
   String _sortField;
-  int _order = -1;
+  int _order = 1;
 
   bool isFirstTime = true;
 }

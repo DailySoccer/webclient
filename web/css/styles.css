@@ -8777,9 +8777,6 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   margin: 20px 5px 0 0;
 }
 .fantasy-team-header .edit-team .btn-edit-team {
-  color: #ffffff;
-  background-color: #59add5;
-  border-color: #cccccc;
   display: inline-block;
   margin-bottom: 0;
   font-weight: normal;
@@ -8798,6 +8795,9 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
+  color: #ffffff;
+  background-color: #59add5;
+  border-color: #cccccc;
   box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
   line-height: 25px;
 }
@@ -8894,64 +8894,6 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team.active {
 .fantasy-team-header .edit-team .btn-edit-team .badge {
   color: #59add5;
   background-color: #ffffff;
-}
-.fantasy-team-header .edit-team .btn-edit-team:focus,
-.fantasy-team-header .edit-team .btn-edit-team:active:focus,
-.fantasy-team-header .edit-team .btn-edit-team.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-.fantasy-team-header .edit-team .btn-edit-team:hover,
-.fantasy-team-header .edit-team .btn-edit-team:focus {
-  color: #ffffff;
-  text-decoration: none;
-}
-.fantasy-team-header .edit-team .btn-edit-team:active,
-.fantasy-team-header .edit-team .btn-edit-team.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-.fantasy-team-header .edit-team .btn-edit-team.disabled,
-.fantasy-team-header .edit-team .btn-edit-team[disabled],
-fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-.fantasy-team-header .edit-team .btn-edit-team:focus,
-.fantasy-team-header .edit-team .btn-edit-team:active:focus,
-.fantasy-team-header .edit-team .btn-edit-team.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-.fantasy-team-header .edit-team .btn-edit-team:hover,
-.fantasy-team-header .edit-team .btn-edit-team:focus {
-  color: #ffffff;
-  text-decoration: none;
-}
-.fantasy-team-header .edit-team .btn-edit-team:active,
-.fantasy-team-header .edit-team .btn-edit-team.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-.fantasy-team-header .edit-team .btn-edit-team.disabled,
-.fantasy-team-header .edit-team .btn-edit-team[disabled],
-fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
 }
 .fantasy-team-header .edit-team .btn-edit-team[disabled] {
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
@@ -10782,24 +10724,6 @@ fieldset[disabled] .landing-wrapper .button-play {
     color: #ffffff;
     background-color: #59add5;
     border-color: #cccccc;
-    display: inline-block;
-    margin-bottom: 0;
-    font-weight: normal;
-    text-align: center;
-    vertical-align: middle;
-    cursor: pointer;
-    background-image: none;
-    border: 1px solid transparent;
-    white-space: nowrap;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    border-radius: 4px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    border-width: 0;
     box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
     margin: 10px;
   }
@@ -10838,64 +10762,6 @@ fieldset[disabled] .landing-wrapper .button-play {
   #liveContestRoot .btn .badge {
     color: #59add5;
     background-color: #ffffff;
-  }
-  #liveContestRoot .btn:focus,
-  #liveContestRoot .btn:active:focus,
-  #liveContestRoot .btn.active:focus {
-    outline: thin dotted;
-    outline: 5px auto -webkit-focus-ring-color;
-    outline-offset: -2px;
-  }
-  #liveContestRoot .btn:hover,
-  #liveContestRoot .btn:focus {
-    color: #ffffff;
-    text-decoration: none;
-  }
-  #liveContestRoot .btn:active,
-  #liveContestRoot .btn.active {
-    outline: 0;
-    background-image: none;
-    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  }
-  #liveContestRoot .btn.disabled,
-  #liveContestRoot .btn[disabled],
-  fieldset[disabled] #liveContestRoot .btn {
-    cursor: not-allowed;
-    pointer-events: none;
-    opacity: 0.65;
-    filter: alpha(opacity=65);
-    -webkit-box-shadow: none;
-    box-shadow: none;
-  }
-  #liveContestRoot .btn:focus,
-  #liveContestRoot .btn:active:focus,
-  #liveContestRoot .btn.active:focus {
-    outline: thin dotted;
-    outline: 5px auto -webkit-focus-ring-color;
-    outline-offset: -2px;
-  }
-  #liveContestRoot .btn:hover,
-  #liveContestRoot .btn:focus {
-    color: #ffffff;
-    text-decoration: none;
-  }
-  #liveContestRoot .btn:active,
-  #liveContestRoot .btn.active {
-    outline: 0;
-    background-image: none;
-    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  }
-  #liveContestRoot .btn.disabled,
-  #liveContestRoot .btn[disabled],
-  fieldset[disabled] #liveContestRoot .btn {
-    cursor: not-allowed;
-    pointer-events: none;
-    opacity: 0.65;
-    filter: alpha(opacity=65);
-    -webkit-box-shadow: none;
-    box-shadow: none;
   }
   #liveContestRoot .btn[disabled] {
     box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
@@ -11408,24 +11274,6 @@ fieldset[disabled] .landing-wrapper .button-play {
   color: #ffffff;
   background-color: #59add5;
   border-color: #cccccc;
-  display: inline-block;
-  margin-bottom: 0;
-  font-weight: normal;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  background-image: none;
-  border: 1px solid transparent;
-  white-space: nowrap;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  border-radius: 4px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  border-width: 0;
   box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
@@ -11473,64 +11321,6 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters #contestFastSort .so
 #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button .badge {
   color: #59add5;
   background-color: #ffffff;
-}
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:focus,
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:active:focus,
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:hover,
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:focus {
-  color: #ffffff;
-  text-decoration: none;
-}
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:active,
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button.disabled,
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button[disabled],
-fieldset[disabled] #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:focus,
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:active:focus,
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:hover,
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:focus {
-  color: #ffffff;
-  text-decoration: none;
-}
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:active,
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button.disabled,
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button[disabled],
-fieldset[disabled] #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
 }
 #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button[disabled] {
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
@@ -11773,24 +11563,6 @@ textarea#contestFiltersRoot #contestSortsFilters #contestFastSearch .searcher {
   color: #ffffff;
   background-color: #59add5;
   border-color: #cccccc;
-  display: inline-block;
-  margin-bottom: 0;
-  font-weight: normal;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  background-image: none;
-  border: 1px solid transparent;
-  white-space: nowrap;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  border-radius: 4px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  border-width: 0;
   box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
 }
 #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:hover,
@@ -11828,64 +11600,6 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
 #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button .badge {
   color: #59add5;
   background-color: #ffffff;
-}
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:focus,
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:active:focus,
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:hover,
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:focus {
-  color: #ffffff;
-  text-decoration: none;
-}
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:active,
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button.disabled,
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button[disabled],
-fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:focus,
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:active:focus,
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:hover,
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:focus {
-  color: #ffffff;
-  text-decoration: none;
-}
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:active,
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button.disabled,
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button[disabled],
-fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
 }
 #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button[disabled] {
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
@@ -13921,9 +13635,6 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .bt
   float: right !important;
 }
 .navbar-header-unloggin .button-wrapper .button-join {
-  color: #ffffff;
-  background-color: #59add5;
-  border-color: #cccccc;
   display: inline-block;
   margin-bottom: 0;
   font-weight: normal;
@@ -13942,6 +13653,9 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .bt
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
+  color: #ffffff;
+  background-color: #59add5;
+  border-color: #cccccc;
   box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
   font-size: 9pt;
 }
@@ -14038,64 +13752,6 @@ fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-join.active {
 .navbar-header-unloggin .button-wrapper .button-join .badge {
   color: #59add5;
   background-color: #ffffff;
-}
-.navbar-header-unloggin .button-wrapper .button-join:focus,
-.navbar-header-unloggin .button-wrapper .button-join:active:focus,
-.navbar-header-unloggin .button-wrapper .button-join.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-.navbar-header-unloggin .button-wrapper .button-join:hover,
-.navbar-header-unloggin .button-wrapper .button-join:focus {
-  color: #ffffff;
-  text-decoration: none;
-}
-.navbar-header-unloggin .button-wrapper .button-join:active,
-.navbar-header-unloggin .button-wrapper .button-join.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-.navbar-header-unloggin .button-wrapper .button-join.disabled,
-.navbar-header-unloggin .button-wrapper .button-join[disabled],
-fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-join {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-.navbar-header-unloggin .button-wrapper .button-join:focus,
-.navbar-header-unloggin .button-wrapper .button-join:active:focus,
-.navbar-header-unloggin .button-wrapper .button-join.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-.navbar-header-unloggin .button-wrapper .button-join:hover,
-.navbar-header-unloggin .button-wrapper .button-join:focus {
-  color: #ffffff;
-  text-decoration: none;
-}
-.navbar-header-unloggin .button-wrapper .button-join:active,
-.navbar-header-unloggin .button-wrapper .button-join.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-.navbar-header-unloggin .button-wrapper .button-join.disabled,
-.navbar-header-unloggin .button-wrapper .button-join[disabled],
-fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-join {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
 }
 .navbar-header-unloggin .button-wrapper .button-join[disabled] {
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
@@ -17308,24 +16964,6 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
   color: #ffffff;
   background-color: #59add5;
   border-color: #cccccc;
-  display: inline-block;
-  margin-bottom: 0;
-  font-weight: normal;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  background-image: none;
-  border: 1px solid transparent;
-  white-space: nowrap;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  border-radius: 4px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  border-width: 0;
   box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
 }
 .soccer-players-list .soccer-players-list-slot .column-action .btn.remove:hover,
@@ -17363,64 +17001,6 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
 .soccer-players-list .soccer-players-list-slot .column-action .btn.remove .badge {
   color: #59add5;
   background-color: #ffffff;
-}
-.soccer-players-list .soccer-players-list-slot .column-action .btn.remove:focus,
-.soccer-players-list .soccer-players-list-slot .column-action .btn.remove:active:focus,
-.soccer-players-list .soccer-players-list-slot .column-action .btn.remove.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-.soccer-players-list .soccer-players-list-slot .column-action .btn.remove:hover,
-.soccer-players-list .soccer-players-list-slot .column-action .btn.remove:focus {
-  color: #ffffff;
-  text-decoration: none;
-}
-.soccer-players-list .soccer-players-list-slot .column-action .btn.remove:active,
-.soccer-players-list .soccer-players-list-slot .column-action .btn.remove.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-.soccer-players-list .soccer-players-list-slot .column-action .btn.remove.disabled,
-.soccer-players-list .soccer-players-list-slot .column-action .btn.remove[disabled],
-fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action .btn.remove {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-.soccer-players-list .soccer-players-list-slot .column-action .btn.remove:focus,
-.soccer-players-list .soccer-players-list-slot .column-action .btn.remove:active:focus,
-.soccer-players-list .soccer-players-list-slot .column-action .btn.remove.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-.soccer-players-list .soccer-players-list-slot .column-action .btn.remove:hover,
-.soccer-players-list .soccer-players-list-slot .column-action .btn.remove:focus {
-  color: #ffffff;
-  text-decoration: none;
-}
-.soccer-players-list .soccer-players-list-slot .column-action .btn.remove:active,
-.soccer-players-list .soccer-players-list-slot .column-action .btn.remove.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-.soccer-players-list .soccer-players-list-slot .column-action .btn.remove.disabled,
-.soccer-players-list .soccer-players-list-slot .column-action .btn.remove[disabled],
-fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action .btn.remove {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
 }
 .soccer-players-list .soccer-players-list-slot .column-action .btn.remove[disabled] {
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
@@ -19096,8 +18676,6 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
   }
 }
 .profile-content .action-button {
-  background-color: #59add5;
-  border-color: #cccccc;
   display: inline-block;
   margin-bottom: 0;
   font-weight: normal;
@@ -19116,6 +18694,8 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
+  background-color: #59add5;
+  border-color: #cccccc;
   box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
   float: right !important;
   font-family: 'Open Sans', sans-serif;
@@ -19216,64 +18796,6 @@ fieldset[disabled] .profile-content .action-button.active {
 .profile-content .action-button .badge {
   color: #59add5;
   background-color: #ffffff;
-}
-.profile-content .action-button:focus,
-.profile-content .action-button:active:focus,
-.profile-content .action-button.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-.profile-content .action-button:hover,
-.profile-content .action-button:focus {
-  color: #ffffff;
-  text-decoration: none;
-}
-.profile-content .action-button:active,
-.profile-content .action-button.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-.profile-content .action-button.disabled,
-.profile-content .action-button[disabled],
-fieldset[disabled] .profile-content .action-button {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-.profile-content .action-button:focus,
-.profile-content .action-button:active:focus,
-.profile-content .action-button.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-.profile-content .action-button:hover,
-.profile-content .action-button:focus {
-  color: #ffffff;
-  text-decoration: none;
-}
-.profile-content .action-button:active,
-.profile-content .action-button.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-.profile-content .action-button.disabled,
-.profile-content .action-button[disabled],
-fieldset[disabled] .profile-content .action-button {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
 }
 .profile-content .action-button[disabled] {
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
@@ -19544,8 +19066,6 @@ fieldset[disabled] .profile-content .add-funds-button {
 }
 @media (max-width: 767px) {
   .profile-content .personal-data .action-button {
-    background-color: #59add5;
-    border-color: #cccccc;
     display: inline-block;
     margin-bottom: 0;
     font-weight: normal;
@@ -19564,6 +19084,8 @@ fieldset[disabled] .profile-content .add-funds-button {
     -ms-user-select: none;
     user-select: none;
     border-width: 0;
+    background-color: #59add5;
+    border-color: #cccccc;
     box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
     float: right !important;
     font-family: 'Open Sans', sans-serif;
@@ -19666,64 +19188,6 @@ fieldset[disabled] .profile-content .add-funds-button {
     color: #59add5;
     background-color: #ffffff;
   }
-  .profile-content .personal-data .action-button:focus,
-  .profile-content .personal-data .action-button:active:focus,
-  .profile-content .personal-data .action-button.active:focus {
-    outline: thin dotted;
-    outline: 5px auto -webkit-focus-ring-color;
-    outline-offset: -2px;
-  }
-  .profile-content .personal-data .action-button:hover,
-  .profile-content .personal-data .action-button:focus {
-    color: #ffffff;
-    text-decoration: none;
-  }
-  .profile-content .personal-data .action-button:active,
-  .profile-content .personal-data .action-button.active {
-    outline: 0;
-    background-image: none;
-    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  }
-  .profile-content .personal-data .action-button.disabled,
-  .profile-content .personal-data .action-button[disabled],
-  fieldset[disabled] .profile-content .personal-data .action-button {
-    cursor: not-allowed;
-    pointer-events: none;
-    opacity: 0.65;
-    filter: alpha(opacity=65);
-    -webkit-box-shadow: none;
-    box-shadow: none;
-  }
-  .profile-content .personal-data .action-button:focus,
-  .profile-content .personal-data .action-button:active:focus,
-  .profile-content .personal-data .action-button.active:focus {
-    outline: thin dotted;
-    outline: 5px auto -webkit-focus-ring-color;
-    outline-offset: -2px;
-  }
-  .profile-content .personal-data .action-button:hover,
-  .profile-content .personal-data .action-button:focus {
-    color: #ffffff;
-    text-decoration: none;
-  }
-  .profile-content .personal-data .action-button:active,
-  .profile-content .personal-data .action-button.active {
-    outline: 0;
-    background-image: none;
-    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  }
-  .profile-content .personal-data .action-button.disabled,
-  .profile-content .personal-data .action-button[disabled],
-  fieldset[disabled] .profile-content .personal-data .action-button {
-    cursor: not-allowed;
-    pointer-events: none;
-    opacity: 0.65;
-    filter: alpha(opacity=65);
-    -webkit-box-shadow: none;
-    box-shadow: none;
-  }
   .profile-content .personal-data .action-button[disabled] {
     box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
     color: #f8f8f8 !important;
@@ -19806,8 +19270,6 @@ fieldset[disabled] .profile-content .add-funds-button {
   float: right;
 }
 .profile-content .pocket-data .button-wrapper .action-button-transaction {
-  background-color: #59add5;
-  border-color: #cccccc;
   display: inline-block;
   margin-bottom: 0;
   font-weight: normal;
@@ -19826,6 +19288,8 @@ fieldset[disabled] .profile-content .add-funds-button {
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
+  background-color: #59add5;
+  border-color: #cccccc;
   box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
   float: right !important;
   font-family: 'Open Sans', sans-serif;
@@ -19929,64 +19393,6 @@ fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-
   color: #59add5;
   background-color: #ffffff;
 }
-.profile-content .pocket-data .button-wrapper .action-button-transaction:focus,
-.profile-content .pocket-data .button-wrapper .action-button-transaction:active:focus,
-.profile-content .pocket-data .button-wrapper .action-button-transaction.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-.profile-content .pocket-data .button-wrapper .action-button-transaction:hover,
-.profile-content .pocket-data .button-wrapper .action-button-transaction:focus {
-  color: #ffffff;
-  text-decoration: none;
-}
-.profile-content .pocket-data .button-wrapper .action-button-transaction:active,
-.profile-content .pocket-data .button-wrapper .action-button-transaction.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-.profile-content .pocket-data .button-wrapper .action-button-transaction.disabled,
-.profile-content .pocket-data .button-wrapper .action-button-transaction[disabled],
-fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-transaction {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-.profile-content .pocket-data .button-wrapper .action-button-transaction:focus,
-.profile-content .pocket-data .button-wrapper .action-button-transaction:active:focus,
-.profile-content .pocket-data .button-wrapper .action-button-transaction.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-.profile-content .pocket-data .button-wrapper .action-button-transaction:hover,
-.profile-content .pocket-data .button-wrapper .action-button-transaction:focus {
-  color: #ffffff;
-  text-decoration: none;
-}
-.profile-content .pocket-data .button-wrapper .action-button-transaction:active,
-.profile-content .pocket-data .button-wrapper .action-button-transaction.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-.profile-content .pocket-data .button-wrapper .action-button-transaction.disabled,
-.profile-content .pocket-data .button-wrapper .action-button-transaction[disabled],
-fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-transaction {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
 .profile-content .pocket-data .button-wrapper .action-button-transaction[disabled] {
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
@@ -20003,8 +19409,6 @@ fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-
   outline: none !important;
 }
 .profile-content .pocket-data .button-wrapper .action-button-get-funds {
-  background-color: #59add5;
-  border-color: #cccccc;
   display: inline-block;
   margin-bottom: 0;
   font-weight: normal;
@@ -20023,6 +19427,8 @@ fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
+  background-color: #59add5;
+  border-color: #cccccc;
   box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
   float: right !important;
   font-family: 'Open Sans', sans-serif;
@@ -20124,64 +19530,6 @@ fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-
 .profile-content .pocket-data .button-wrapper .action-button-get-funds .badge {
   color: #59add5;
   background-color: #ffffff;
-}
-.profile-content .pocket-data .button-wrapper .action-button-get-funds:focus,
-.profile-content .pocket-data .button-wrapper .action-button-get-funds:active:focus,
-.profile-content .pocket-data .button-wrapper .action-button-get-funds.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-.profile-content .pocket-data .button-wrapper .action-button-get-funds:hover,
-.profile-content .pocket-data .button-wrapper .action-button-get-funds:focus {
-  color: #ffffff;
-  text-decoration: none;
-}
-.profile-content .pocket-data .button-wrapper .action-button-get-funds:active,
-.profile-content .pocket-data .button-wrapper .action-button-get-funds.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-.profile-content .pocket-data .button-wrapper .action-button-get-funds.disabled,
-.profile-content .pocket-data .button-wrapper .action-button-get-funds[disabled],
-fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-get-funds {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-.profile-content .pocket-data .button-wrapper .action-button-get-funds:focus,
-.profile-content .pocket-data .button-wrapper .action-button-get-funds:active:focus,
-.profile-content .pocket-data .button-wrapper .action-button-get-funds.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-.profile-content .pocket-data .button-wrapper .action-button-get-funds:hover,
-.profile-content .pocket-data .button-wrapper .action-button-get-funds:focus {
-  color: #ffffff;
-  text-decoration: none;
-}
-.profile-content .pocket-data .button-wrapper .action-button-get-funds:active,
-.profile-content .pocket-data .button-wrapper .action-button-get-funds.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-.profile-content .pocket-data .button-wrapper .action-button-get-funds.disabled,
-.profile-content .pocket-data .button-wrapper .action-button-get-funds[disabled],
-fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-get-funds {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
 }
 .profile-content .pocket-data .button-wrapper .action-button-get-funds[disabled] {
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
@@ -21542,83 +20890,7 @@ fieldset[disabled] .btn-pressed {
   margin-top: 4px;
 }
 .btn-default {
-  display: inline-block;
-  margin-bottom: 0;
-  font-weight: normal;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  background-image: none;
-  border: 1px solid transparent;
-  white-space: nowrap;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  border-radius: 4px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  border-width: 0;
   box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
-}
-.btn-default:focus,
-.btn-default:active:focus,
-.btn-default.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-.btn-default:hover,
-.btn-default:focus {
-  color: #ffffff;
-  text-decoration: none;
-}
-.btn-default:active,
-.btn-default.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-.btn-default.disabled,
-.btn-default[disabled],
-fieldset[disabled] .btn-default {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-.btn-default:focus,
-.btn-default:active:focus,
-.btn-default.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-.btn-default:hover,
-.btn-default:focus {
-  color: #ffffff;
-  text-decoration: none;
-}
-.btn-default:active,
-.btn-default.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-.btn-default.disabled,
-.btn-default[disabled],
-fieldset[disabled] .btn-default {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
 }
 .btn-default[disabled] {
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);

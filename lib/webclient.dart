@@ -268,41 +268,55 @@ class WebClientApp extends Module {
     }
   }
 
+  Future _waitingjQueryReady(Function cb) {
+    var completer = new Completer<bool>();
+    if (_jQueryReady) {
+      completer.complete( cb() );
+    }
+    else {
+      JsUtils.runJavascript(null, "onjQueryReady", [() {
+        _jQueryReady = true;
+        completer.complete( cb() );
+      }]);
+    }
+    return completer.future;
+  }
+
   // En la landing queremos reroutar al lobby en caso de estar logeados, pero queremos hacerlo
   // antes de que se llegue a ver o parsear por una cuestion de rendimiento.
   void _onLandingPage(RoutePreEnterEvent event, Router router) {
 
-    _bleach(event.route);
-
-    var completer = new Completer<bool>();
-    event.allowEnter(completer.future);
-
-    JsUtils.runJavascript(null, "onjQueryReady", [() {
+    event.allowEnter(_waitingjQueryReady(() {
       if (ProfileService.instance.isLoggedIn) {
         router.go("lobby", {}, replace:true);
 
         // Denegar la entrada evita un flashazo. Si no la deniegas, llega a ir a la landing antes de ir al lobby
-        completer.complete(false);
+        return false;
       }
       else {
-        completer.complete(true);
+        _bleach(event.route);
+        return true;
       }
-    }]);
+    }));
   }
 
   void _preEnterPage(RoutePreEnterEvent event, Router router, {bool verifyAllowEnter : false}) {
 
-    _bleach(event.route);
-
     LoadingService.disable();
     DailySoccerServer.startContext(event.path);
 
-    if (verifyAllowEnter) {
-      // Si no estamos logeados, redirigimos a la landing
-      if (!ProfileService.instance.isLoggedIn) {
+    event.allowEnter(_waitingjQueryReady(() {
+      bool enter = !verifyAllowEnter || ProfileService.instance.isLoggedIn;
+      if (!enter) {
+        // Si no estamos logeados, redirigimos a la landing
         router.go("landing_page", {}, replace:true);
       }
-      event.allowEnter(new Future.value(ProfileService.instance.isLoggedIn));
-    }
+      else {
+        _bleach(event.route);
+      }
+      return enter;
+    }));
   }
+
+  static bool _jQueryReady = false;
 }

@@ -215,6 +215,11 @@ class WebClientApp extends Module {
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
           viewHtml: '<user-profile></user-profile>'
       )
+      ,'edit_profile': ngRoute(
+          path: '/edit_profile',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
+          viewHtml: '<edit-personal-data></edit-personal-data>'
+      )
       ,'lobby': ngRoute(
           path: '/lobby',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),

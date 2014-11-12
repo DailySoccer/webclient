@@ -25,7 +25,7 @@ tc.put("packages/webclient/components/account/change_password_comp.html", new Ht
         </button>
 
       </div>
-      <div class="panel-body" ng-cloak>
+      <div class="panel-body" >
         <div ng-if="state=='STATE_INVALID_URL'">
           La página solicitada no está disponible
         </div>
@@ -267,7 +267,7 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
         </button>
       </div>
 
-      <div class="panel-body" ng-cloak>
+      <div class="panel-body" >
 
         <form id="loginForm" class="form-horizontal" ng-submit="login()" data-toggle="validator" role="form" formAutofillFix>
 
@@ -353,7 +353,7 @@ tc.put("packages/webclient/components/account/remember_password_comp.html", new 
         </button>
       </div>
 
-      <div class="panel-body" ng-cloak>
+      <div class="panel-body" >
         <div ng-if="state=='STATE_REQUESTED'">
           <div class="form-description">Se ha enviado tu petición. Revisa tu correo. <br><br>Ya puedes cerrar esta ventana.</div>
           <!-- GOTO REGISTER -->
@@ -820,7 +820,7 @@ tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse
   <paginator on-page-change="onPageChange(currentPage, itemsPerPage)" list-length="contestsListFiltered.length"></paginator>
 
 </div>"""));
-tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", new HttpResponse(200, r"""<div id="enter-contest-wrapper" ng-cloak>
+tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", new HttpResponse(200, r"""<div id="enter-contest-wrapper" >
 
   <contest-header id="contestHeader" contest="contest" contest-id="contestId"></contest-header>
 
@@ -1087,7 +1087,7 @@ tc.put("packages/webclient/components/enter_contest/soccer_players_filter_comp.h
   
   <input type="text" class="name-player-input-filter" placeholder="Buscar jugador" ng-model="nameFilter" />
 </div>"""));
-tc.put("packages/webclient/components/flash_messages_comp.html", new HttpResponse(200, r"""<div ng-cloak>
+tc.put("packages/webclient/components/flash_messages_comp.html", new HttpResponse(200, r"""<div>
   <div ng-repeat="msg in messages" id="flash-messages">
       <div class="alert alert-{{msg.type}} alert-dismissable">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -1096,7 +1096,7 @@ tc.put("packages/webclient/components/flash_messages_comp.html", new HttpRespons
   </div>
 </div>
 """));
-tc.put("packages/webclient/components/global_connection_comp.html", new HttpResponse(200, r"""<div class="alert-danger" ng-show="msg.isNotEmpty" style="padding: 1em; position: fixed; top: 10%; left: 50%; transform: translateX(-50%);" ng-cloak>
+tc.put("packages/webclient/components/global_connection_comp.html", new HttpResponse(200, r"""<div class="alert-danger" ng-show="msg.isNotEmpty" style="padding: 1em; position: fixed; top: 10%; left: 50%; transform: translateX(-50%);">
   {{msg}}
 </div>
 """));
@@ -2152,7 +2152,7 @@ tc.put("packages/webclient/components/modal_comp.html", new HttpResponse(200, r"
   </div>
 </div>
 """));
-tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(200, r"""<div id="myContest" ng-cloak>
+tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(200, r"""<div id="myContest" >
   <div class="default-header-text">MIS TORNEOS</div>
 
   <!-- Nav tabs -->
@@ -2243,7 +2243,7 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
   </div>
 </div>
 """));
-tc.put("packages/webclient/components/navigation/footer_comp.html", new HttpResponse(200, r"""<div id="rootFooter" ng-cloak>
+tc.put("packages/webclient/components/navigation/footer_comp.html", new HttpResponse(200, r"""<div id="rootFooter" >
   <div class="sub-footer-wrapper">
     <div class="sub-footer">
 
@@ -2280,7 +2280,7 @@ tc.put("packages/webclient/components/navigation/footer_comp.html", new HttpResp
   </div>
 </div>
 """));
-tc.put("packages/webclient/components/navigation/main_menu_slide_comp.html", new HttpResponse(200, r"""<nav id="mainMenu" ng-class="{'image-background':profileService.isLoggedIn == true}" class="navbar navbar-default" role="navigation" ng-cloak>
+tc.put("packages/webclient/components/navigation/main_menu_slide_comp.html", new HttpResponse(200, r"""<nav id="mainMenu" ng-class="{'image-background':profileService.isLoggedIn == true}" class="navbar navbar-default" role="navigation">
   <div class="inner-wrapper">
 
     <div id="menuLoggedIn">
@@ -2392,7 +2392,7 @@ tc.put("packages/webclient/components/scoring_rules_comp.html", new HttpResponse
     </div>
   </div>
 </div>"""));
-tc.put("packages/webclient/components/view_contest/fantasy_team_comp.html", new HttpResponse(200, r"""<div id="fantasyTeamRoot" class="fantasy-team-wrapper" ng-cloak>
+tc.put("packages/webclient/components/view_contest/fantasy_team_comp.html", new HttpResponse(200, r"""<div id="fantasyTeamRoot" class="fantasy-team-wrapper" >
 
   <div class="fantasy-team-header" ng-class="{'opponent-team-gradient': isOpponent, 'header-view-contest-entry-mode': isViewContestEntryMode}">
 
@@ -2468,7 +2468,7 @@ tc.put("packages/webclient/components/view_contest/teams_panel_comp.html", new H
   </div>
 
 </div>"""));
-tc.put("packages/webclient/components/view_contest/users_list_comp.html", new HttpResponse(200, r"""<div id="usersListRoot" ng-cloak>
+tc.put("packages/webclient/components/view_contest/users_list_comp.html", new HttpResponse(200, r"""<div id="usersListRoot" >
 
   <div ng-class="{'users-header-next': isViewContestEntryMode, 'users-header' : !isViewContestEntryMode}">
     <h1>USUARIOS EN ESTE TORNEO</h1>
@@ -2499,7 +2499,7 @@ tc.put("packages/webclient/components/view_contest/view_contest_comp.html", new 
   <contest-header id="contestHeader" contest="contest" contest-id="contestId"></contest-header>
   <teams-panel id="teamsPanelComp" contest="contest" contest-id="contestId"></teams-panel>
 
-  <div id="liveContestRoot" ng-switch="scrDet.isXsScreen" ng-cloak>
+  <div id="liveContestRoot" ng-switch="scrDet.isXsScreen" >
     <div ng-switch-when="true">
      <!-- Tabs de la versión XS -->
       <ul class="live-contest-tabs" id="liveContestTab" >
@@ -2543,7 +2543,7 @@ tc.put("packages/webclient/components/view_contest/view_contest_entry_comp.html"
     <p>Recuerda que puedes editar tu equipo cuantas veces quieras hasta que comience la competición</p>
   </div>
 
-  <div id="viewContestEntry" ng-switch="scrDet.isXsScreen" ng-cloak>
+  <div id="viewContestEntry" ng-switch="scrDet.isXsScreen" >
     <div ng-switch-when="true">
       <!-- Tabs de la versión XS -->
       <ul class="view-contest-entry-tabs" id="viewContestEntryTab" >

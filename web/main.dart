@@ -4,7 +4,6 @@ import 'dart:html';
 import 'package:webclient/webclient.dart';
 import 'package:webclient/logger_exception_handler.dart';
 import 'package:webclient/utils/game_metrics.dart';
-import 'package:webclient/utils/js_utils.dart';
 
 
 void main() {
@@ -15,11 +14,7 @@ void main() {
 
     clearQueryStrings();
 
-    var app = applicationFactory().addModule(new WebClientApp());
-
-    JsUtils.runJavascript(null, "onjQueryReady", [() {
-      app.run();
-    }]);
+    applicationFactory().addModule(new WebClientApp()).run();
   }
   catch (exc, stackTrace) {
     LoggerExceptionHandler.logExceptionToServer(exc, stackTrace);

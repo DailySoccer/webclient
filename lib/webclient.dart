@@ -70,6 +70,7 @@ import 'package:webclient/components/legalese_and_help/beta_info_comp.dart';
 import 'package:webclient/utils/host_server.dart';
 import 'package:webclient/template_cache.dart';
 import 'dart:async';
+import 'package:webclient/utils/js_utils.dart';
 
 class WebClientApp extends Module {
 
@@ -273,12 +274,20 @@ class WebClientApp extends Module {
 
     _bleach(event.route);
 
-    if (ProfileService.instance.isLoggedIn) {
-      router.go("lobby", {}, replace:true);
+    var completer = new Completer<bool>();
+    event.allowEnter(completer.future);
 
-      // Denegar la entrada evita un flashazo. Si no la deniegas, llega a ir a la landing antes de ir al lobby
-      event.allowEnter(new Future.value(false));
-    }
+    JsUtils.runJavascript(null, "onjQueryReady", [() {
+      if (ProfileService.instance.isLoggedIn) {
+        router.go("lobby", {}, replace:true);
+
+        // Denegar la entrada evita un flashazo. Si no la deniegas, llega a ir a la landing antes de ir al lobby
+        completer.complete(false);
+      }
+      else {
+        completer.complete(true);
+      }
+    }]);
   }
 
   void _preEnterPage(RoutePreEnterEvent event, Router router, {bool verifyAllowEnter : false}) {

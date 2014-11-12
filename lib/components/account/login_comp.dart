@@ -40,11 +40,12 @@ class LoginComp implements ShadowRootAware {
         // El usuario no ha autorizado el uso de su facebook.
       }
       else {
-        JsUtils.runJavascript(null, "login", (JsObject loginResponse) {
+        JsUtils.runJavascript(null, "login", [(JsObject loginResponse) {
               if (loginResponse["status"]=="connected") {
                 loginCallback(loginResponse);
               }
-            }, false, "FB");
+            }, ['email']],
+            false, "FB");
       }
     }, true],
     false, "FB");

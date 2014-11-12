@@ -146,9 +146,8 @@ class EnterContestComp implements DetachAware {
     }
     else {
       isSelectingSoccerPlayer = true;
-      if (scrDet.isXsScreen) {
-        scrollToElement('.enter-contest-tabs');
-      }
+
+      scrollToElement('.enter-contest-tabs', scrDet.isXsScreen);
 
       // Cuando seleccionan un slot del lineup cambiamos siempre el filtro de la soccer-player-list, especialmente
       // en movil que cambiamos de vista a "solo ella".
@@ -184,7 +183,7 @@ class EnterContestComp implements DetachAware {
          isSelectingSoccerPlayer = false;
          availableSalary -= soccerPlayer["salary"];
          nameFilter = null;
-         scrollToElement('.enter-contest-tabs');
+         scrollToElement('.enter-contest-tabs', scrDet.isXsScreen);
 
          break;
        }
@@ -318,8 +317,10 @@ class EnterContestComp implements DetachAware {
     _router.go("enter_contest.soccer_player_info",  { "instanceSoccerPlayerId": soccerPlayerId });
   }
 
-  void scrollToElement(String selector) {
-    window.scrollTo(0, querySelector(selector).offsetTop);
+  void scrollToElement(String selector, bool bResolutionFilter) {
+    if (bResolutionFilter) {
+      window.scrollTo(0, querySelector(selector).offsetTop);
+    }
   }
 
   Router _router;

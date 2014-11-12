@@ -293,7 +293,12 @@ class WebClientApp extends Module {
 
     event.allowEnter(_waitingjQueryReady(() {
       if (ProfileService.instance.isLoggedIn) {
-        router.go("lobby", {}, replace:true);
+
+        // Antes de redirigir al lobby, miramos que vengamos desde 0. Esto evita un flashazo en el que si estas
+        // por ejemplo en my_contest e intentas ir a la landing, se ve brevemente el lobby
+        if (router.activePath.isEmpty) {
+          router.go("lobby", {}, replace:true);
+        }
 
         // Denegar la entrada evita un flashazo. Si no la deniegas, llega a ir a la landing antes de ir al lobby
         return false;

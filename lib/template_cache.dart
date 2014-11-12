@@ -72,7 +72,7 @@ tc.put("packages/webclient/components/account/change_password_comp.html", new Ht
 
   </div>
 </div>"""));
-tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new HttpResponse(200, r"""<div id="personalDataContent" ng-show="!loadingService.isLoading">
+tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new HttpResponse(200, r"""<div id="personalDataContent" ng-show="!loadingService.isLoading" >
 
   <div class="edit-personal-data-modal-header">
     <span class="header-title">EDITAR CUENTA</span>
@@ -84,27 +84,27 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
     <div class="content">
       <!-- Nombre -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtName" auto-focus type="text" ng-model="parent.editedFirstName" name="firstName" placeholder="Nombre" class="form-control"  tabindex="1"></div>
+        <div class="control-wrapper"><input id="txtName" auto-focus type="text" ng-model="editedFirstName" name="firstName" placeholder="Nombre" class="form-control"  tabindex="1"></div>
       </div>
       <!-- Apelidos -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtLastName" type="text" ng-model="parent.editedLastName" name="lastName" placeholder="Apellidos" class="form-control" tabindex="2"></div>
+        <div class="control-wrapper"><input id="txtLastName" type="text" ng-model="editedLastName" name="lastName" placeholder="Apellidos" class="form-control" tabindex="2"></div>
       </div>
       <!-- Nickname -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtNickName" type="text" ng-model="parent.editedNickName" name="nickName" placeholder="Nombre de usuario" class="form-control" tabindex="3"></div>
+        <div class="control-wrapper"><input id="txtNickName" type="text" ng-model="editedNickName" name="nickName" placeholder="Nombre de usuario" class="form-control" tabindex="3"></div>
         <!-- Error de mail -->
-        <div class="content-field"       ng-class="{'hidden':!parent.hasNicknameError}">
-          <div id="nickNameError" class="join-err-text" ng-class="{'errorDetected':parent.hasNicknameError}">{{parent.nicknameErrorText}}</div>
+        <div class="content-field"       ng-class="{'hidden':!hasNicknameError}">
+          <div id="nickNameError" class="join-err-text" ng-class="{'errorDetected':hasNicknameError}">{{nicknameErrorText}}</div>
         </div>
       </div>
 
       <!-- Correo Electrónico -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtEmail" type="email" ng-model="parent.editedEmail" name="email" placeholder="Email" class="form-control" tabindex="4"></div>
+        <div class="control-wrapper"><input id="txtEmail" type="email" ng-model="editedEmail" name="email" placeholder="Email" class="form-control" tabindex="4"></div>
         <!-- Error de mail -->
-        <div class="content-field"       ng-class="{'hidden':!parent.hasEmailError}">
-          <div id="emailError" class="join-err-text" ng-class="{'errorDetected':!parent.hasEmailError}">{{parent.emailErrorText}}</div>
+        <div class="content-field"       ng-class="{'hidden':!hasEmailError}">
+          <div id="emailError" class="join-err-text" ng-class="{'errorDetected':!hasEmailError}">{{emailErrorText}}</div>
         </div>
       </div>
 
@@ -114,15 +114,15 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
       </div>
       <!-- Contraseña -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtPassword" type="password" ng-model="parent.editedPassword" name="password" placeholder="Contraseña" class="form-control" tabindex="5"></div>
+        <div class="control-wrapper"><input id="txtPassword" type="password" ng-model="editedPassword" name="password" placeholder="Contraseña" class="form-control" tabindex="5"></div>
         <!-- Error de contraseñas -->
-        <div class="content-field-block" ng-class="{'hidden':!parent.hasPasswordError}">
-          <div id="passwordError" class="join-err-text"  ng-class="{'errorDetected':parent.hasPasswordError}">{{parent.passwordErrorText}}</div>
+        <div class="content-field-block" ng-class="{'hidden':!hasPasswordError}">
+          <div id="passwordError" class="join-err-text"  ng-class="{'errorDetected':hasPasswordError}">{{passwordErrorText}}</div>
         </div>
       </div>
       <!-- Repetir Contraseña -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtRepeatPassword" type="password" ng-model="parent.editedRepeatPassword" name="repeatPassword" placeholder="Repetir Contraseña" class="form-control" tabindex="6"></div>
+        <div class="control-wrapper"><input id="txtRepeatPassword" type="password" ng-model="editedRepeatPassword" name="repeatPassword" placeholder="Repetir Contraseña" class="form-control" tabindex="6"></div>
       </div>
 
       <!-- Label Instrucciones contraseña -->
@@ -169,8 +169,14 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
     </div>
 
     <div class="save-changes-content">
-      <button id="btnSubmit" class="action-button" type="submit">GUARDAR CAMBIOS</button>
+      <div class="forms-wrapper-button">
+        <button id="btnSubmit" class="action-button-save" type="submit">GUARDAR CAMBIOS</button>
+      </div>
+      <div class="forms-wrapper-button">
+        <button id="btnSubmit" class="action-button-cancel" ng-click="exit($event)">CANCELAR</button>
+      </div>
     </div>
+
   </form>
 </div>"""));
 tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(200, r"""<div id="joinRoot" ng-show="!loadingService.isLoading">
@@ -329,7 +335,7 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
    FB.init({
      appId      : '865176766847011',
      xfbml      : true,
-     version    : 'v2.1'
+     version    : 'v2.2'
    });
  };
  </script>
@@ -454,12 +460,12 @@ tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpR
   </div>
 </div>
 
-<!-- Edit personal data fullScreen -->
+<!-- Edit personal data fullScreen
 <div id="editProfileContent">
   <edit-personal-data id="fullscreenEditPersonalDataForm"></edit-personal-data>
 </div>
-
-<!-- Edit personal data Modal -->
+-->
+<!-- Edit personal data Modal
 <div  id="editPersonalDataModal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div id="infoContent" class="modal-content">
@@ -467,7 +473,7 @@ tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpR
       </div>
     </div>
 </div>
-
+-->
 
 """));
 tc.put("packages/webclient/components/contest_filters_comp.html", new HttpResponse(200, r"""<div id="contestSortsFilters">
@@ -928,15 +934,17 @@ tc.put("packages/webclient/components/enter_contest/lineup_selector_comp.html", 
 
 </div>"""));
 tc.put("packages/webclient/components/enter_contest/matches_filter_comp.html", new HttpResponse(200, r"""<div id="matchesFilterWrapper" ng-switch="srcDet.isXsScreen">
-  
+
   <select id="matchesSelectorFilter" ng-switch-when="true" class="matches-selector-filter" ng-model="optionsSelectorValue" >
     <option ng-repeat="match in matchEvents" id="option-match-{{match.id}}" value="{{$index + 1}}" ng-value="match.id">{{match.textoSelector}}</option>
   </select>
-  
+
   <div id="matchesFilterButtons" class="matches-filter-buttons" ng-switch-when="false">
-    <button class="btn btn-default button-filtro-team" ng-repeat="match in matchEvents" ng-bind-html="match.texto" id="match-{{match.id}}" 
-            ng-click="optionsSelectorValue = match.id" ng-class="{'active': optionsSelectorValue == match.id }">
-    </button>
+    <div class="button-filtro-wrapper"  ng-repeat="match in matchEvents" >
+      <button class="btn btn-default button-filtro-team"ng-bind-html="match.texto" id="match-{{match.id}}"
+              ng-click="optionsSelectorValue = match.id" ng-class="{'active': optionsSelectorValue == match.id }">
+      </button>
+    </div>
   </div>
 </div>"""));
 tc.put("packages/webclient/components/enter_contest/soccer_player_info_comp.html", new HttpResponse(200, r"""<modal id="modalSoccerPlayerInfo">
@@ -2123,9 +2131,13 @@ tc.put("packages/webclient/components/lobby_comp.html", new HttpResponse(200, r"
   <contests-list  id="activeContestList"
                   sorting="lobbySorting"
                   contests-list="activeContestsService.activeContests"
+                  competition-type-filter="lobbyFilters['FILTER_COMPETITION']"
+                  tournament-type-filter="lobbyFilters['FILTER_TOURNAMENT']"
+                  salary-cap-filter="lobbyFilters['FILTER_TIER']"
+                  entry-fee-filter="lobbyFilters['FILTER_ENTRY_FEE']"
+                  name-filter="lobbyFilters['FILTER_CONTEST_NAME']"
                   on-action-click='onActionClick(contest)'
                   on-row-click="onRowClick(contest)" action-button-title="'Jugar'"
-                  lobby-filters="lobbyFilters"
                   contest-count="contestCount">
   </contests-list>
 </div>
@@ -2236,7 +2248,7 @@ tc.put("packages/webclient/components/navigation/footer_comp.html", new HttpResp
     <div class="sub-footer">
 
       <div class="logo-wrapper">
-        <img src="images/logoLobbyFooter.png" alt="EPIC ELEVEN">
+        <img src="images/logoLobbyFooter.png" alt="EPIC ELEVEN"> <span class="footer-count" ng-if="isDev">{{dateTimeService.nowEverySecond}}&nbsp;</span>
       </div>
 
       <div class="data-wrapper">
@@ -2264,8 +2276,6 @@ tc.put("packages/webclient/components/navigation/footer_comp.html", new HttpResp
       <!--<a href="#" class="url-link">
           <span>Fantasy Sports Games.com</span>
       </a>-->
-
-      <span class="footer-count" ng-if="isDev">{{dateTimeService.nowEverySecond}}&nbsp;</span>
     </div>
   </div>
 </div>

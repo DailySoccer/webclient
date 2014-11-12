@@ -22,7 +22,12 @@ matches-filter {
 			overflow: hidden;
 
 			&.animate {
-				.fadein-animation(1s);
+				#doKeyFrames(teamspanel-height-keyframes, {
+					 from { max-height: 60px; opacity: 0;}
+					 30% { max-height: 60px; opacity: 1;}
+					 to { max-height: 180px; opacity: 1;}
+					});
+				.animateWithKeyFrames(teamspanel-height-keyframes, 1s);
 			}
 
 			/*

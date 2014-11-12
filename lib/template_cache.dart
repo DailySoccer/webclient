@@ -1087,7 +1087,7 @@ tc.put("packages/webclient/components/enter_contest/soccer_players_filter_comp.h
   
   <input type="text" class="name-player-input-filter" placeholder="Buscar jugador" ng-model="nameFilter" />
 </div>"""));
-tc.put("packages/webclient/components/flash_messages_comp.html", new HttpResponse(200, r"""<div>
+tc.put("packages/webclient/components/flash_messages_comp.html", new HttpResponse(200, r"""<div ng-cloak>
   <div ng-repeat="msg in messages" id="flash-messages">
       <div class="alert alert-{{msg.type}} alert-dismissable">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -1096,7 +1096,7 @@ tc.put("packages/webclient/components/flash_messages_comp.html", new HttpRespons
   </div>
 </div>
 """));
-tc.put("packages/webclient/components/global_connection_comp.html", new HttpResponse(200, r"""<div class="alert-danger" ng-show="msg.isNotEmpty" style="padding: 1em; position: fixed; top: 10%; left: 50%; transform: translateX(-50%);">
+tc.put("packages/webclient/components/global_connection_comp.html", new HttpResponse(200, r"""<div class="alert-danger" ng-show="msg.isNotEmpty" style="padding: 1em; position: fixed; top: 10%; left: 50%; transform: translateX(-50%);" ng-cloak>
   {{msg}}
 </div>
 """));
@@ -2280,7 +2280,7 @@ tc.put("packages/webclient/components/navigation/footer_comp.html", new HttpResp
   </div>
 </div>
 """));
-tc.put("packages/webclient/components/navigation/main_menu_slide_comp.html", new HttpResponse(200, r"""<nav id="mainMenu" ng-class="{'image-background':profileService.isLoggedIn == true}" class="navbar navbar-default" role="navigation">
+tc.put("packages/webclient/components/navigation/main_menu_slide_comp.html", new HttpResponse(200, r"""<nav id="mainMenu" ng-class="{'image-background':profileService.isLoggedIn == true}" class="navbar navbar-default" role="navigation" ng-cloak>
   <div class="inner-wrapper">
 
     <div id="menuLoggedIn">

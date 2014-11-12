@@ -260,15 +260,17 @@ class EnterContestComp implements DetachAware {
 
     if (editingContestEntry) {
       _contestsService.editContestEntry(contestEntryId, lineupSlots.map((player) => player["id"]).toList())
-        .then((_) => _router.go('view_contest_entry', {"contestId": contest.contestId, "parent":
-                                                       _routeProvider.parameters["parent"],
-                                                       "viewContestEntryMode": "edited"
-                                                      }))
+        .then((_) => _router.go('view_contest_entry', {
+                                        "contestId": contest.contestId,
+                                        "parent": _routeProvider.parameters["parent"],
+                                        "viewContestEntryMode": "edited"
+                                        }))
         .catchError((error) => _errorCreating(error));
     }
     else {
       _contestsService.addContestEntry(contest.contestId, lineupSlots.map((player) => player["id"]).toList())
-        .then((contestId) => _router.go('view_contest_entry', {"contestId": contestId,
+        .then((contestId) => _router.go('view_contest_entry', {
+                                        "contestId": contestId,
                                         "parent": _routeProvider.parameters["parent"],
                                         "viewContestEntryMode": contestId == contest.contestId? "created" : "swapped"
                                          }))

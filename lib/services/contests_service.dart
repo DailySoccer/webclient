@@ -24,14 +24,6 @@ class ContestsService {
 
   ContestsService(this._server, this._profileService);
 
-  void clear() {
-    activeContests.clear();
-    waitingContests.clear();
-    liveContests.clear();
-    historyContests.clear();
-    _myEnteredActiveContests.clear();
-  }
-
   Future refreshActiveContests() {
     return _server.getActiveContests()
       .then((jsonMap) {

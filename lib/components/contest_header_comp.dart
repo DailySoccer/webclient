@@ -14,6 +14,8 @@ import 'package:webclient/services/active_contests_service.dart';
 )
 class ContestHeaderComp implements DetachAware {
 
+  ScreenDetectorService scrDet;
+
   Map<String, String> info = {
     'description':      '',
     'startTime':        '',
@@ -26,13 +28,12 @@ class ContestHeaderComp implements DetachAware {
     'prizeType':        ''
   };
 
-  ScreenDetectorService scrDet;
+  Contest contest;
 
   @NgOneWay("contest")
-  Contest get contest => _contest;
-  void set contest(Contest value) {
+  void set oneWayContest(Contest value) {
     if (value != null) {
-      _contest = value;
+      contest = value;
 
       _refreshHeader();
       _refreshCountdownDate();
@@ -44,7 +45,7 @@ class ContestHeaderComp implements DetachAware {
   @NgOneWay("contest-id")
   void set contestId(String value) {
     if (value != null) {
-      _contest = _activeContestsService.getContestById(value);
+      contest = _activeContestsService.getContestById(value);
 
       _refreshHeader();
       _refreshCountdownDate();
@@ -56,22 +57,22 @@ class ContestHeaderComp implements DetachAware {
   }
 
   void _refreshCountdownDate() {
-    if (_contest == null) {
+    if (contest == null) {
       return;
     }
 
-    if (_contest.isHistory) {
+    if (contest.isHistory) {
       info["startTime"] = "FINALIZADO";
       _count.cancel();
     }
-    else if (_contest.isLive) {
-      info["startTime"] = "COMENZÓ EL ${DateTimeService.formatDateTimeShort(_contest.startDate).toUpperCase()}";
+    else if (contest.isLive) {
+      info["startTime"] = "COMENZÓ EL ${DateTimeService.formatDateTimeShort(contest.startDate).toUpperCase()}";
       _count.cancel();
     }
     else {
-      info["startTime"] = "COMIENZA EL ${DateTimeService.formatDateTimeShort(_contest.startDate).toUpperCase()}";
+      info["startTime"] = "COMIENZA EL ${DateTimeService.formatDateTimeShort(contest.startDate).toUpperCase()}";
 
-      Duration tiempoRestante = DateTimeService.getTimeLeft(_contest.startDate);
+      Duration tiempoRestante = DateTimeService.getTimeLeft(contest.startDate);
 
       if (tiempoRestante.inSeconds <= 0) {
         info["startTime"] = "EN BREVE";
@@ -85,17 +86,17 @@ class ContestHeaderComp implements DetachAware {
   }
 
   void _refreshHeader() {
-    if (_contest == null) {
+    if (contest == null) {
       return;
     }
 
-    info["description"] = "${_contest.name}";
-    info['contestType'] = "${_contest.tournamentTypeName}: ";
-    info["entryPrice"] = "${_contest.entryFee}€";
-    info["prize"] = "${_contest.prizePool}€";
-    info["prizeType"] = "${_contest.prizeTypeName}";
+    info["description"] = "${contest.name}";
+    info['contestType'] = "${contest.tournamentTypeName}: ";
+    info["entryPrice"] = "${contest.entryFee}€";
+    info["prize"] = "${contest.prizePool}€";
+    info["prizeType"] = "${contest.prizeTypeName}";
     info["startTime"] = "";
-    info["contestantCount"] = "${_contest.contestEntries.length} de ${_contest.maxEntries} jugadores  - Límite de salario: ${_contest.salaryCap}";
+    info["contestantCount"] = "${contest.contestEntries.length} de ${contest.maxEntries} jugadores  - Límite de salario: ${contest.salaryCap}";
   }
 
   void goToParent() {
@@ -111,5 +112,4 @@ class ContestHeaderComp implements DetachAware {
   ActiveContestsService _activeContestsService;
 
   Timer _count;
-  Contest _contest;
 }

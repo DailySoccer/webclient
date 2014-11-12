@@ -30,7 +30,7 @@ class LobbyComp implements DetachAware {
   Map<String, dynamic> lobbyFilters = {};
 
   // Tipo de ordenación de la lista de partidos
-  String lobbySorting = "";
+  Map lobbySorting = {};
 
   // Concursos listados actualmente
   int contestCount = 0;
@@ -85,7 +85,7 @@ class LobbyComp implements DetachAware {
     lobbyFilters.addAll(filterList);
   }
 
-  void onSortOrderChange(String fieldName) {
+  void onSortOrderChange(Map fieldName) {
     lobbySorting = fieldName;
   }
 

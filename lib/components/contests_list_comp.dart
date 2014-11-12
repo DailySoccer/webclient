@@ -31,38 +31,14 @@ class ContestsListComp {
     refreshListWithFilters();
   }
 
-  @NgOneWay("competition-type-filter")
-  void set filterByCompetition(value) {
-    _filterList["FILTER_COMPETITION"] = value;
-    refreshListWithFilters();
-  }
-
-  @NgOneWay("tournament-type-filter")
-  void set filterByType(value) {
-    _filterList["FILTER_TOURNAMENT"] = value;
-    refreshListWithFilters();
-  }
-
-  @NgOneWay("salary-cap-filter")
-  void set filterBySalaryCap(value) {
-    _filterList["FILTER_TIER"] = value;
-    refreshListWithFilters();
-  }
-
-  @NgOneWay("entry-fee-filter")
-  void set filterByEntryFee(value) {
-    _filterList["FILTER_ENTRY_FEE"] = value;
-    refreshListWithFilters();
-  }
-
-  @NgOneWay("name-filter")
-  void set filterByName(value) {
-    _filterList["FILTER_CONTEST_NAME"] = value;
+  @NgOneWay("lobby-filter")
+  void set filterList(value) {
+    _filterList = value;
     refreshListWithFilters();
   }
 
   @NgOneWay("sorting")
-  void set sorting(value) {
+  void set sorting(Map value) {
     _sortOrder = value;
     refreshList();
   }
@@ -173,27 +149,22 @@ class ContestsListComp {
       return;
     }
 
-    List<String> sortParams = _sortOrder.split('_');
-    if (sortParams.length != 2) {
-      print("-CONTEST_LIST-: El número de parametros no se ha establecido correctamente. La forma correcta es \'campo\'_\'dirección\'. Pon atención a la barra baja \'_\'");
-    }
-
     List<Contest> tmp = [];
     tmp.addAll(contestsListFiltered);
     contestsListFiltered = [];
 
 
-    switch(sortParams[0]) {
+    switch(_sortOrder['fieldName']) {
       case "contest-name":
-        tmp.sort(( contest1, contest2) => ( sortParams[1] == "asc" ? contest1.compareNameTo(contest2) : contest2.compareNameTo(contest1)) );
+        tmp.sort((contest1, contest2) => ( _sortOrder['order'] * contest1.compareNameTo(contest2)) );
       break;
 
       case "contest-entry-fee":
-        tmp.sort((contest1, contest2) => ( sortParams[1] == "asc"? contest1.compareEntryFeeTo(contest2) : contest2.compareEntryFeeTo(contest1)) );
+        tmp.sort((contest1, contest2) => ( _sortOrder['order'] * contest1.compareEntryFeeTo(contest2)) );
       break;
 
       case "contest-start-time":
-        tmp.sort((contest1, contest2) => ( sortParams[1] == "asc"? contest1.compareStartDateTo(contest2) : contest2.compareStartDateTo(contest1)) );
+        tmp.sort((contest1, contest2) => ( _sortOrder['order'] * contest1.compareStartDateTo(contest2)) );
       break;
 
       default:
@@ -263,7 +234,7 @@ class ContestsListComp {
   // Lista de filtros a aplicar
   Map<String,dynamic> _filterList = {};
 
-  String _sortOrder = "";
+  Map _sortOrder = {};
 
   int _contestCount   = 0;
   int _itemsPerPage   = 0;

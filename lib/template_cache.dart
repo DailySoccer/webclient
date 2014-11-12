@@ -306,14 +306,14 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
             </div>
           </div>
         </form>
-        <!--Facebook stuff
+        <!--Facebook stuff-->
         <div class="input-group">
         <div class="new-row" style="padding-left:10%;padding-right:10%;margin-bottom:20px;">
         <button class="button-join btn btn-default btn-block" id="fblogin" ng-click="loginFB()" style="background-color:#4a65a0;">
         <img src="images/iconFacebook.png"></img>
         Entra con Facebook</button>
         </div>
-        </div>-->
+        </div>
 
 
       </div>
@@ -322,18 +322,18 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
 
   </div>
 </div>
-<!--/Facebookstuff
+<!--/Facebookstuff-->
  <script id='facebook-jssdk' src="//connect.facebook.net/es_ES/sdk.js"></script>
  <script>
  window.fbAsyncInit = function() {
    FB.init({
-     appId      : '732983533416791',
+     appId      : '865176766847011',
      xfbml      : true,
      version    : 'v2.1'
    });
  };
  </script>
--->"""));
+"""));
 tc.put("packages/webclient/components/account/remember_password_comp.html", new HttpResponse(200, r"""<div id="rememberPasswordRoot" ng-show="!loadingService.isLoading">
   <div id="loginBox" class="main-box">
 
@@ -570,7 +570,7 @@ tc.put("packages/webclient/components/contest_filters_comp.html", new HttpRespon
       <button type="button" class="btn-confirm" ng-click="toggleFilterMenu()">ACEPTAR</button>
     </div>
 </div>"""));
-tc.put("packages/webclient/components/contest_header_comp.html", new HttpResponse(200, r"""<div id="contestHeaderWrapper" ng-cloak ng-show="contest != null">
+tc.put("packages/webclient/components/contest_header_comp.html", new HttpResponse(200, r"""<div id="contestHeaderWrapper">
 
   <div class="contest-name">{{info['description']}}</div>
   <div class="contest-explanation">{{info['contestType']}} {{info['contestantCount']}}</div>
@@ -2117,7 +2117,7 @@ tc.put("packages/webclient/components/lobby_comp.html", new HttpResponse(200, r"
   <!-- Filtros y Ordenación -->
   <contest-filters-comp id="contestFiltersRoot"
                         contests-list="activeContestsService.activeContests" contest-count="contestCount"
-                        on-sort-order-change="onSortOrderChange(fieldName)" on-filter-change="onFilterChange(filterList)"></contest-filters-comp>
+                        on-sort-order-change="onSortOrderChange(sortParams)" on-filter-change="onFilterChange(filterList)"></contest-filters-comp>
 
   <!-- Lista de concursos -->
   <contests-list  id="activeContestList"
@@ -2125,9 +2125,7 @@ tc.put("packages/webclient/components/lobby_comp.html", new HttpResponse(200, r"
                   contests-list="activeContestsService.activeContests"
                   on-action-click='onActionClick(contest)'
                   on-row-click="onRowClick(contest)" action-button-title="'Jugar'"
-                  competition-type-filter="lobbyFilters['FILTER_COMPETITION']"
-                  tournament-type-filter="lobbyFilters['FILTER_TOURNAMENT']" salary-cap-filter="lobbyFilters['FILTER_TIER']"
-                  entry-fee-filter="lobbyFilters['FILTER_ENTRY_FEE']" name-filter="lobbyFilters['FILTER_CONTEST_NAME']"
+                  lobby-filters="lobbyFilters"
                   contest-count="contestCount">
   </contests-list>
 </div>
@@ -2146,12 +2144,9 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
   <div class="default-header-text">MIS TORNEOS</div>
 
   <!-- Nav tabs -->
-  <ul  id="myContestMenuTabs" class="my-contest-tabs" role="tablist">
-    <!-- LIVE CONTESTS CONTENT-->
+  <ul  id="myContestMenuTabs" class="my-contest-tabs" role="tablist">   
     <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('live-contest-content')"> En Vivo <span class="contest-count" ng-if="hasLiveContests">{{myContestsService.liveContests.length}}</span></a></li>
-     <!-- WAITING CONTESTS TAB-->
     <li><a role="tab" data-toggle="tab" ng-click="tabChange('waiting-contest-content')">Próximos</a></li>
-    <!-- HISTORY CONTESTS TAB-->
     <li><a role="tab" data-toggle="tab" ng-click="tabChange('history-contest-content')">Historial</a></li>
   </ul>
 
@@ -2159,15 +2154,14 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
   <div class="tabs">
     <div class="tab-content">
 
-      <!-- LIVE CONTESTS CONTENT-->
+      <!-- LIVE CONTESTS -->
       <div class="tab-pane active" id="live-contest-content">
+        <!-- Barra de resumen de actividad -->
+        <div class="resume-bar"><span class="information-no-contest">{{liveContestsMessage}}</span></div>
 
-        <div class="tab-content-wrapper" ng-switch="!hasLiveContests  && dataLoaded">
-          <!-- Barra de resumen de actividad -->
-          <div class="resume-bar"><span class="information-no-contest">{{hasLiveContests ? "TIENES " + myContestsService.liveContests.length + " TORNEOS ACTIVOS" : "AQUÍ PODRÁS CONSULTAR EN TIEMPO REAL LOS TORNEOS QUE TENGAS ACTIVOS"}}</span></div>
-
-          <!-- Banner de información de lista vacía -->
-          <div class="no-contests-wrapper" ng-switch-when="true">
+        <section ng-unless="loadingService.isLoading" ng-switch="hasLiveContests">
+          <!-- lista vacía -->
+          <div class="no-contests-wrapper" ng-switch-when="false">
             <div class="no-contests-content">
               <div class="default-info-text">EN ESTE MOMENTO, NO ESTÁS JUGANDO<br>NINGÚN TORNEO</div>
               <div class="no-contests-text">CONSULTA LA LISTA DE TUS <strong data-toggle="tab" ng-click="tabChange('waiting-contest-content')">PRÓXIMOS TORNEOS</strong> PARA VER CUÁNDO EMPIEZAN</div>
@@ -2177,23 +2171,21 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
             </div>
           </div>
           <!-- lista de concursos -->
-          <div class="list-container" ng-switch-when="false">
+          <div class="list-container" ng-switch-when="true">
             <contests-list id="liveContests" contests-list="myContestsService.liveContests"
-                           sorting="liveSortType" on-action-click='onLiveActionClick(contest)' on-row-click='onLiveRowClick(contest)'>
+                           sorting="liveSortType" on-action-click='onLiveActionClick(contest)' on-row-click='onLiveActionClick(contest)'>
             </contests-list>
           </div>
-        </div>
-
+        </section>
       </div>
 
-      <!-- WAITING CONTESTS CONTENT-->
+      <!-- WAITING CONTESTS -->
       <div class="tab-pane" id="waiting-contest-content">
-
-        <div class="tab-content-wrapper" ng-switch="!hasWaitingContests && dataLoaded">
-        <!-- Barra de resumen de actividad sin registros-->
-        <div class="resume-bar"><span class="information-no-contest">{{hasWaitingContests ? "TE HAS INSCRITO EN " + myContestsService.waitingContests.length + " TORNEOS" : "AQUÍ PODRÁS CONSULTAR Y MODIFICAR LOS EQUIPOS QUE TIENES PENDIENTES DE JUGAR EN UN TORNEO"}}</span></div>
-          <!-- Banner de información de lista vacía -->
-          <div class="no-contests-wrapper" ng-switch-when="true">
+        <div class="resume-bar"><span class="information-no-contest">{{waitingContestsMessage}}</span></div>
+        
+        <section ng-unless="loadingService.isLoading" ng-switch="hasWaitingContests">
+          <!-- lista vacía -->
+          <div class="no-contests-wrapper" ng-switch-when="false">
             <div class="no-contests-content">
               <div class="default-info-text">EN ESTE MOMENTO, NO TIENES UN<br>EQUIPO CREADO PARA NINGÚN TORNEO</div>
               <div class="no-contests-text">VE A LA LISTA DE TORNEOS, ELIGE UNO Y EMPIEZA A JUGAR</div>
@@ -2203,43 +2195,38 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
             </div>
           </div>
           <!-- lista de concursos -->
-          <div class="list-container" ng-switch-when="false">
+          <div class="list-container" ng-switch-when="true">
             <contests-list id="waitingContests" contests-list='myContestsService.waitingContests'
-                           sorting="waitingSortType" on-action-click='onWaitingActionClick(contest)' on-row-click='onWaitingRowClick(contest)'>
+                           sorting="waitingSortType" on-action-click='onWaitingActionClick(contest)' on-row-click='onWaitingActionClick(contest)'>
             </contests-list>
           </div>
-        </div>
-
+        </section>
       </div>
 
-      <!-- HISTORY CONTESTS CONTENT-->
-      <div class="tab-pane" id="history-contest-content" ng-switch="!hasHistoryContests && dataLoaded">
-        <div class="tab-content-wrapper">
-          <!-- Barra de resumen de actividad sin registros-->
-          <div class="resume-bar">
-            <span class="information-no-contest">
-              {{hasHistoryContests ? myContestsService.historyContests.length + " REGISTROS " + totalHistoryContestsWinner + " GANADOS" : "AQUÍ PODRÁS REPASAR TODOS LOS TORNEOS QUE HAS JUGADO: TUS EQUIPOS, RIVALES, PUNTUACIONES…"}}
-            </span>
-          </div>
-          <!-- Banner de información de lista vacía -->
-          <div class="no-contests-wrapper" ng-switch-when="true">
+      <!-- HISTORY CONTESTS -->
+      <div class="tab-pane" id="history-contest-content">
+        <div class="resume-bar"><span class="information-no-contest">{{historyContestsMessage}}</span></div>
+
+        <section ng-unless="loadingService.isLoading" ng-switch="hasHistoryContests">
+          <!-- lista vacía -->
+          <div class="no-contests-wrapper" ng-switch-when="false">
             <div class="no-contests-content">
-              <div class="default-info-text">TODAVÍA NO HAS JUGADO NINGÚN TORNEO</div>
+              <div class="default-info-text">TODAVÍA NO HAS JUGADO NINGÚN TORNEO<br>¿A QUE ESPERAS PARA EMPEZAR A GANAR?</div>
               <div class="no-contests-text">VE A LA LISTA DE TORNEOS, ELIGE UNO Y EMPIEZA A JUGAR</div>
             </div>
             <div class="no-contest-bottom-row">
               <button class="btn-go-to-contest" ng-click="gotoLobby()">IR A LOS TORNEOS</button>
             </div>
-          </div>
-
+          </div>  
           <!-- lista de concursos -->
-          <div class="list-container" ng-switch-when="false">
+          <div class="list-container" ng-switch-when="true">
             <contests-list id="historyContests" contests-list="myContestsService.historyContests"
-                           sorting="historySortType" on-action-click='onHistoryActionClick(contest)' on-row-click='onHistoryRowClick(contest)'>
+                           sorting="historySortType" on-action-click='onHistoryActionClick(contest)' on-row-click='onHistoryActionClick(contest)'>
             </contests-list>
           </div>
-        </div>
+        </section>
       </div>
+      
     </div>
   </div>
 </div>
@@ -2538,7 +2525,7 @@ tc.put("packages/webclient/components/view_contest/view_contest_entry_comp.html"
 
   <teams-panel id="teamsPanelComp" contest="contest" contest-id="contestId"></teams-panel>
 
-  <div class="separator-bar"></div>
+  <!--<div class="separator-bar"></div>-->
   <div class="info-complete-bar" ng-if="!isModeViewing">
     <p ng-if="isModeCreated">¡PERFECTO! HAS COMPLETADO TU ALINEACIÓN CON ÉXITO</p>
     <p ng-if="isModeEdited">¡PERFECTO! HAS EDITADO TU ALINEACIÓN CON ÉXITO</p>

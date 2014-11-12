@@ -14,7 +14,7 @@ import 'package:webclient/services/screen_detector_service.dart';
     selector: 'matches-filter',
     templateUrl: 'packages/webclient/components/enter_contest/matches_filter_comp.html',
     useShadowDom: false)
-class MatchesFilterComp {
+class MatchesFilterComp implements ShadowRootAware {
 
   ScreenDetectorService srcDet;
   List<Map<String, String>> matchEvents = [];
@@ -30,20 +30,37 @@ class MatchesFilterComp {
   @NgOneWay("contest")
   void set contest(Contest theContest) {
 
-    matchEvents.clear();
-    matchEvents.add({"id": _ALL_MATCHES, "texto": "Todos los<br>partidos", "textoSelector": "Todos los partidos"});
-
     if (theContest == null) {
       return;
     }
 
-    theContest.matchEvents.forEach((match) => _addMatchEvent(match));
+    matchEvents.clear();
+    matchEvents.add({"id": _ALL_MATCHES, "texto": "Todos los<br>partidos", "textoSelector": "Todos los partidos"});
 
-    if (!srcDet.isXsScreen) {
-      new Timer(new Duration(milliseconds: 100), () {
+    theContest.matchEvents.forEach((match) => _addMatchEvent(match));
+    runAnimation();
+  }
+
+  @override onShadowRoot(emulatedRoot) {
+    runAnimation();
+  }
+
+  void runAnimation() {
+    if (srcDet.isDesktop && matchEvents.length > 1) {
+      _view.domRead(() {
         var filterButtons = querySelector(".matches-filter-buttons");
-        if (filterButtons != null) {          // Pueden haber navegado rapidamente hacia atras
-          filterButtons.classes.add("animate");
+
+        if (filterButtons != null && !filterButtons.classes.contains("animate-once")) {
+          filterButtons.classes.add("animate animate-once");
+
+          // No queremos que cuando cambiemos de tab, vuelva a animar
+          filterButtons.on["animationend"].listen((data) {
+            filterButtons = querySelector(".matches-filter-buttons");
+
+            if (filterButtons != null) {
+              filterButtons.classes.remove("animate");
+            }
+          });
         }
       });
     }
@@ -63,8 +80,9 @@ class MatchesFilterComp {
   String get optionsSelectorValue => selectedOption == null? _ALL_MATCHES : selectedOption;
   void   set optionsSelectorValue(String val) {  selectedOption = (val == _ALL_MATCHES)? null : val;  }
 
-  MatchesFilterComp(this.srcDet);
+  MatchesFilterComp(this.srcDet, this._view);
 
+  View _view;
   static final String _ALL_MATCHES = "all";
   String _selectedOption;
 }

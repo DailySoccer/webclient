@@ -1,25 +1,20 @@
 import 'package:angular/application_factory.dart';
 
+import 'dart:html';
 import 'package:webclient/webclient.dart';
 import 'package:webclient/logger_exception_handler.dart';
 import 'package:webclient/utils/game_metrics.dart';
-import 'dart:html';
+
 
 void main() {
 
   try {
-    Stopwatch sw = new Stopwatch()..start();
-
     LoggerExceptionHandler.setUpLogger();
     GameMetrics.initMixpanel();
 
     clearQueryStrings();
 
-    var app = applicationFactory().addModule(new WebClientApp());
-    print("Init00 ${sw.elapsedMilliseconds}");
-
-    app.run();
-    print("Init01: ${sw.elapsedMilliseconds}");
+    applicationFactory().addModule(new WebClientApp()).run();
   }
   catch (exc, stackTrace) {
     LoggerExceptionHandler.logExceptionToServer(exc, stackTrace);

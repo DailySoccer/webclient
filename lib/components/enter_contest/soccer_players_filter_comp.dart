@@ -9,7 +9,7 @@ import 'package:webclient/services/screen_detector_service.dart';
     templateUrl: 'packages/webclient/components/enter_contest/soccer_players_filter_comp.html',
     useShadowDom: false
 )
-class SoccerPlayersFilterComp {
+class SoccerPlayersFilterComp implements AttachAware {
 
   ScreenDetectorService scrDet;
 
@@ -31,6 +31,18 @@ class SoccerPlayersFilterComp {
   }
 
   SoccerPlayersFilterComp(this.scrDet);
+
+
+  @override void attach() {
+    // En movil podemos empezar directamente filtrados
+    if (scrDet.isXsScreen) {
+      _fieldPosFilter = new FieldPos("GOALKEEPER");
+    }
+    else {
+      // Tentativamente vamos a empezar con los delanteros en desktop
+      _fieldPosFilter = new FieldPos("FORWARD");
+    }
+  }
 
   String getClassForFieldPos(FieldPos fieldPos) => fieldPos == fieldPosFilter? "active" : "";
   String getTextForFieldPos(FieldPos fieldPos)  => fieldPos == null? "TODOS" : fieldPos.abrevName;

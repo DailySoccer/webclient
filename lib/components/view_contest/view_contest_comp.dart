@@ -53,6 +53,11 @@ class ViewContestComp implements DetachAware {
         // Únicamente actualizamos los contests que estén en "live"
         if (_myContestsService.lastContest.isLive) {
           _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE, _updateLive);
+
+          //if(_myContestsService.lastContest.competitionType == Contest.TOURNAMENT_HEAD_TO_HEAD) {
+            // TODO: Es un partido headh to seleccionar como oponente al adversario
+            //print("TOURNAMENT_HEAD_TO_HEAD: " + (_myContestsService.lastContest.tournamentType == Contest.TOURNAMENT_HEAD_TO_HEAD).toString());
+          //}
         }
       })
       .catchError((error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW));

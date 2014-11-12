@@ -35,12 +35,12 @@ class TeamsPanelComp implements DetachAware {
   void set contestId(String value) {
     if (value != null) {
       _contestId = value;
-      _contest = _activeContestsService.getContestById(value);
+      _contest = _contestsService.getContestById(value);
       generateMatchesList();
     }
   }
 
-  TeamsPanelComp(this.scrDet, this._activeContestsService, this._routeProvider) {
+  TeamsPanelComp(this.scrDet, this._contestsService, this._routeProvider) {
     _streamListener = scrDet.mediaScreenWidth.listen(onScreenWidthChange);
   }
 
@@ -133,5 +133,5 @@ class TeamsPanelComp implements DetachAware {
   String _contestId = '';
   RouteProvider _routeProvider;
 
-  ContestsService _activeContestsService;
+  ContestsService _contestsService;
 }

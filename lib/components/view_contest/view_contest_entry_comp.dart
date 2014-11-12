@@ -36,7 +36,7 @@ class ViewContestEntryComp {
   bool get isModeEdited  => _viewContestEntryMode == "edited";  // Venimos de editarla a traves de enter_contest.
   bool get isModeSwapped => _viewContestEntryMode == "swapped"; // Acabamos de crearla pero el servidor nos cambio a otro concurso pq el nuestro estaba lleno.
 
-  ViewContestEntryComp(this._routeProvider, this.scrDet, this._myContestsService, this._profileService, this._flashMessage, this._router, this.loadingService) {
+  ViewContestEntryComp(this._routeProvider, this.scrDet, this._contestsService, this._profileService, this._flashMessage, this._router, this.loadingService) {
     loadingService.isLoading = true;
 
     _viewContestEntryMode = _routeProvider.route.parameters['viewContestEntryMode'];
@@ -44,10 +44,10 @@ class ViewContestEntryComp {
 
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
 
-    _myContestsService.refreshMyContestEntry(contestId)
+    _contestsService.refreshMyContestEntry(contestId)
       .then((jsonMap) {
         loadingService.isLoading = false;
-        contest = _myContestsService.lastContest;
+        contest = _contestsService.lastContest;
         mainPlayer = contest.getContestEntryWithUser(_profileService.user.userId);
 
         updatedDate = DateTimeService.now;
@@ -68,7 +68,7 @@ class ViewContestEntryComp {
   }
 
   void cancelContestEntry() {
-    _myContestsService.cancelContestEntry(mainPlayer.contestEntryId)
+    _contestsService.cancelContestEntry(mainPlayer.contestEntryId)
       .then((jsonObject) {
         goToParent();
       });
@@ -79,7 +79,7 @@ class ViewContestEntryComp {
 
   FlashMessagesService _flashMessage;
   ProfileService _profileService;
-  ContestsService _myContestsService;
+  ContestsService _contestsService;
 
   String _viewContestEntryMode;
 }

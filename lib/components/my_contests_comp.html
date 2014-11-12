@@ -2,8 +2,8 @@
   <div class="default-header-text">MIS TORNEOS</div>
 
   <!-- Nav tabs -->
-  <ul  id="myContestMenuTabs" class="my-contest-tabs" role="tablist">   
-    <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('live-contest-content')"> En Vivo <span class="contest-count" ng-if="hasLiveContests">{{myContestsService.liveContests.length}}</span></a></li>
+  <ul  id="myContestMenuTabs" class="my-contest-tabs" role="tablist">
+    <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('live-contest-content')"> En Vivo <span class="contest-count" ng-if="hasLiveContests">{{contestsService.liveContests.length}}</span></a></li>
     <li><a role="tab" data-toggle="tab" ng-click="tabChange('waiting-contest-content')">Próximos</a></li>
     <li><a role="tab" data-toggle="tab" ng-click="tabChange('history-contest-content')">Historial</a></li>
   </ul>
@@ -30,7 +30,7 @@
           </div>
           <!-- lista de concursos -->
           <div class="list-container" ng-switch-when="true">
-            <contests-list id="liveContests" contests-list="myContestsService.liveContests"
+            <contests-list id="liveContests" contests-list="contestsService.liveContests"
                            sorting="liveSortType" on-action-click='onLiveActionClick(contest)' on-row-click='onLiveActionClick(contest)'>
             </contests-list>
           </div>
@@ -40,7 +40,7 @@
       <!-- WAITING CONTESTS -->
       <div class="tab-pane" id="waiting-contest-content">
         <div class="resume-bar"><span class="information-no-contest">{{waitingContestsMessage}}</span></div>
-        
+
         <section ng-unless="loadingService.isLoading" ng-switch="hasWaitingContests">
           <!-- lista vacía -->
           <div class="no-contests-wrapper" ng-switch-when="false">
@@ -54,7 +54,7 @@
           </div>
           <!-- lista de concursos -->
           <div class="list-container" ng-switch-when="true">
-            <contests-list id="waitingContests" contests-list='myContestsService.waitingContests'
+            <contests-list id="waitingContests" contests-list='contestsService.waitingContests'
                            sorting="waitingSortType" on-action-click='onWaitingActionClick(contest)' on-row-click='onWaitingActionClick(contest)'>
             </contests-list>
           </div>
@@ -75,16 +75,16 @@
             <div class="no-contest-bottom-row">
               <button class="btn-go-to-contest" ng-click="gotoLobby()">IR A LOS TORNEOS</button>
             </div>
-          </div>  
+          </div>
           <!-- lista de concursos -->
           <div class="list-container" ng-switch-when="true">
-            <contests-list id="historyContests" contests-list="myContestsService.historyContests"
+            <contests-list id="historyContests" contests-list="contestsService.historyContests"
                            sorting="historySortType" on-action-click='onHistoryActionClick(contest)' on-row-click='onHistoryActionClick(contest)'>
             </contests-list>
           </div>
         </section>
       </div>
-      
+
     </div>
   </div>
 </div>

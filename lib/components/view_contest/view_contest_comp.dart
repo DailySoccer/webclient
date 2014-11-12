@@ -35,28 +35,28 @@ class ViewContestComp implements DetachAware {
   List<ContestEntry> get contestEntriesOrderByPoints => (contest != null) ? contest.contestEntriesOrderByPoints : null;
 
 
-  ViewContestComp(this._routeProvider, this.scrDet, this._refreshTimersService, this._myContestsService, this._profileService, this._flashMessage, this.loadingService) {
+  ViewContestComp(this._routeProvider, this.scrDet, this._refreshTimersService, this._contestsService, this._profileService, this._flashMessage, this.loadingService) {
     loadingService.isLoading = true;
 
     contestId = _routeProvider.route.parameters['contestId'];
 
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
 
-    _myContestsService.refreshViewContest(contestId)
+    _contestsService.refreshViewContest(contestId)
       .then((jsonMap) {
         loadingService.isLoading = false;
-        contest = _myContestsService.lastContest;
+        contest = _contestsService.lastContest;
         mainPlayer = contest.getContestEntryWithUser(_profileService.user.userId);
 
         updatedDate = DateTimeService.now;
 
         // Únicamente actualizamos los contests que estén en "live"
-        if (_myContestsService.lastContest.isLive) {
+        if (_contestsService.lastContest.isLive) {
           _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE, _updateLive);
 
-          //if(_myContestsService.lastContest.competitionType == Contest.TOURNAMENT_HEAD_TO_HEAD) {
+          //if(_contestsService.lastContest.competitionType == Contest.TOURNAMENT_HEAD_TO_HEAD) {
             // TODO: Es un partido headh to seleccionar como oponente al adversario
-            //print("TOURNAMENT_HEAD_TO_HEAD: " + (_myContestsService.lastContest.tournamentType == Contest.TOURNAMENT_HEAD_TO_HEAD).toString());
+            //print("TOURNAMENT_HEAD_TO_HEAD: " + (_contestsService.lastContest.tournamentType == Contest.TOURNAMENT_HEAD_TO_HEAD).toString());
           //}
         }
       })
@@ -77,7 +77,7 @@ class ViewContestComp implements DetachAware {
 
   void _updateLive() {
     // Actualizamos únicamente la lista de live MatchEvents
-    _myContestsService.refreshLiveMatchEvents(_myContestsService.lastContest.templateContestId)
+    _contestsService.refreshLiveMatchEvents(_contestsService.lastContest.templateContestId)
         .then((jsonObject) {
           updatedDate = DateTimeService.now;
         })
@@ -143,7 +143,7 @@ class ViewContestComp implements DetachAware {
   RouteProvider _routeProvider;
   ProfileService _profileService;
   RefreshTimersService _refreshTimersService;
-  ContestsService _myContestsService;
+  ContestsService _contestsService;
 
   List<int> get _prizes => (contest != null) ? contest.prizes : []; // TODO: Chapucioso, no crear un array nuevo
 }

@@ -10,13 +10,13 @@
 
   <!-- Filtros y Ordenación -->
   <contest-filters-comp id="contestFiltersRoot"
-                        contests-list="activeContestsService.activeContests" contest-count="contestCount"
+                        contests-list="contestsService.activeContests" contest-count="contestCount"
                         on-sort-order-change="onSortOrderChange(sortParams)" on-filter-change="onFilterChange(filterList)"></contest-filters-comp>
 
   <!-- Lista de concursos -->
   <contests-list  id="activeContestList"
                   sorting="lobbySorting"
-                  contests-list="activeContestsService.activeContests"
+                  contests-list="contestsService.activeContests"
                   competition-type-filter="lobbyFilters['FILTER_COMPETITION']"
                   tournament-type-filter="lobbyFilters['FILTER_TOURNAMENT']"
                   salary-cap-filter="lobbyFilters['FILTER_TIER']"

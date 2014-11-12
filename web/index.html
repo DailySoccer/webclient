@@ -94,18 +94,26 @@
       </div>
     </div>
     <footer id="mainFooter"></footer>
-    
+
+    <script src="js/jquery.min.js"></script>
     <script>
+      function onjQueryReady(dartCallback) {
+        $().ready(function() {
+          dartCallback();
+        });
+      }
+    </script>
+
+    <script src="main.dart.js" id="mainDart"></script>    
+    <script>      
       (function() {
-        var script = document.createElement('script');
-        if (navigator.userAgent.indexOf('(Dart)') === -1) {
-          script.src = "main.dart.js";          
-        }
-        else {
+        var mainDart = document.getElementById("mainDart");
+        if (navigator.userAgent.indexOf('(Dart)') !== -1) {
+          var script = document.createElement('script');
           script.src = "main.dart";
           script.type = "application/dart";
+          document.body.replaceChild(script, mainDart);
         }
-        document.body.appendChild(script);
       })();
     </script>
     
@@ -113,14 +121,13 @@
          todo bootstrap.css, asi que no nos hace falta incluirlo otra vez.
          Tambien incluimos los css de los plugins (jasny, nouislider...) -->
     <link rel="stylesheet" type="text/css" href="css/styles.css">
-
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
     
+    <!-- El resto de js -->
+    <script src="js/bootstrap.min.js"></script>        
     <script src="nouislider/jquery.nouislider.min.js"></script>
     <script src="jasny/js/jasny-bootstrap.min.js"></script>
     <script src="bootstrap-switch/js/bootstrap-switch.min.js"></script>
-    
+            
     <!-- Fuentes -->
     <link href='http://fonts.googleapis.com/css?family=Exo:300,600' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>

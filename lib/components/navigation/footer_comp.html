@@ -3,7 +3,7 @@
     <div class="sub-footer">
 
       <div class="logo-wrapper">
-        <img src="images/logoLobbyFooter.png" alt="EPIC ELEVEN">
+        <img src="images/logoLobbyFooter.png" alt="EPIC ELEVEN"> <span class="footer-count" ng-if="isDev">{{dateTimeService.nowEverySecond}}&nbsp;</span>
       </div>
 
       <div class="data-wrapper">
@@ -31,8 +31,6 @@
       <!--<a href="#" class="url-link">
           <span>Fantasy Sports Games.com</span>
       </a>-->
-
-      <span class="footer-count" ng-if="isDev">{{dateTimeService.nowEverySecond}}&nbsp;</span>
     </div>
   </div>
 </div>

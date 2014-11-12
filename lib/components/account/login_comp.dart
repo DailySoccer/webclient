@@ -41,6 +41,7 @@ class LoginComp implements ShadowRootAware {
       }
       else {
         JsUtils.runJavascript(null, "facebookLogin", (JsObject loginResponse) {
+          print("facebook login: $loginResponse");
           if (loginResponse["status"]=="connected") {
             loginCallback(loginResponse);
           }

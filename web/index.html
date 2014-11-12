@@ -98,6 +98,7 @@
     <script src="js/jquery.min.js"></script>
     <script>
       function facebookLogin(callback) {
+        console.log("js facebook login");
         FB.login(callback, {scope: 'email,user_likes'});
       }
 

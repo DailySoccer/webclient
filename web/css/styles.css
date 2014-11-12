@@ -16009,13 +16009,13 @@ textarea.soccer-players-filter .name-player-input-filter {
 			*/
   }
   #matchesFilterWrapper .matches-filter-buttons.animate {
-    -webkit-animation: teamspanel-height-keyframes 1s;
-    -moz-animation: teamspanel-height-keyframes 1s;
-    -ms-animation: teamspanel-height-keyframes 1s;
-    -o-animation: teamspanel-height-keyframes 1s;
-    animation: teamspanel-height-keyframes 1s;
+    -webkit-animation: matchesfilter-height-keyframes 1s;
+    -moz-animation: matchesfilter-height-keyframes 1s;
+    -ms-animation: matchesfilter-height-keyframes 1s;
+    -o-animation: matchesfilter-height-keyframes 1s;
+    animation: matchesfilter-height-keyframes 1s;
   }
-  @-webkit-keyframes teamspanel-height-keyframes {
+  @-webkit-keyframes matchesfilter-height-keyframes {
     from {
       max-height: 60px;
       opacity: 0;
@@ -16029,7 +16029,7 @@ textarea.soccer-players-filter .name-player-input-filter {
       opacity: 1;
     }
   }
-  @-moz-keyframes teamspanel-height-keyframes {
+  @-moz-keyframes matchesfilter-height-keyframes {
     from {
       max-height: 60px;
       opacity: 0;
@@ -16043,7 +16043,7 @@ textarea.soccer-players-filter .name-player-input-filter {
       opacity: 1;
     }
   }
-  @-o-keyframes teamspanel-height-keyframes {
+  @-o-keyframes matchesfilter-height-keyframes {
     from {
       max-height: 60px;
       opacity: 0;
@@ -16057,7 +16057,7 @@ textarea.soccer-players-filter .name-player-input-filter {
       opacity: 1;
     }
   }
-  @keyframes teamspanel-height-keyframes {
+  @keyframes matchesfilter-height-keyframes {
     from {
       max-height: 60px;
       opacity: 0;

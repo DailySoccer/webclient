@@ -58,19 +58,19 @@ class EnterContestComp implements DetachAware {
     // Nos subscribimos al evento de cambio de tamañano de ventana
     _streamListener = scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
 
-    Future refreshContest = editingContestEntry? _contestsService.refreshMyContest(contestId) : _contestsService.refreshContest(contestId);
+    Future refreshContest = editingContestEntry? _contestsService.refreshMyContest(contestId) : _contestsService.refreshPublicContest(contestId);
     refreshContest
       .then((_) {
         loadingService.isLoading = false;
 
-        contest = editingContestEntry ? _contestsService.lastContest : _contestsService.lastContest;
+        contest = _contestsService.lastContest;
         availableSalary = contest.salaryCap;
 
         initAllSoccerPlayers();
 
         // Si nos viene el torneo para editar la alineación
         if (editingContestEntry) {
-          ContestEntry contestEntry = _contestsService.lastContest.getContestEntry(contestEntryId);
+          ContestEntry contestEntry = contest.getContestEntry(contestEntryId);
 
           // Insertamos en el lineup el jugador
           contestEntry.instanceSoccerPlayers.forEach((instanceSoccerPlayer) {

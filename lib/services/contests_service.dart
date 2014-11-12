@@ -63,11 +63,10 @@ class ContestsService {
       });
   }
 
-  Future refreshContest(String contestId) {
+  Future refreshPublicContest(String contestId) {
     return _server.getPublicContest(contestId)
       .then((jsonMap) {
-        lastContest = Contest.loadContestsFromJsonObject(jsonMap).first;
-        _registerContest(lastContest);
+        _registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
       });
   }
 
@@ -112,7 +111,7 @@ class ContestsService {
 
     _server.getMyContest(contestId)
         .then((jsonMap) {
-          lastContest = Contest.loadContestsFromJsonObject(jsonMap).first;
+          _registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
           completer.complete(jsonMap);
         });
 
@@ -124,7 +123,7 @@ class ContestsService {
 
     _server.getMyContestEntry(contestId)
         .then((jsonMap) {
-          lastContest = Contest.loadContestsFromJsonObject(jsonMap).first;
+          _registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
           completer.complete(jsonMap);
         });
 
@@ -136,7 +135,7 @@ class ContestsService {
 
     _server.getFullContest(contestId)
         .then((jsonMap) {
-          lastContest = Contest.loadContestsFromJsonObject(jsonMap).first;
+          _registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
           completer.complete(jsonMap);
         });
 
@@ -148,7 +147,7 @@ class ContestsService {
 
     _server.getViewContest(contestId)
         .then((jsonMap) {
-          lastContest = Contest.loadContestsFromJsonObject(jsonMap).first;
+          _registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
           completer.complete(jsonMap);
         });
 
@@ -186,6 +185,7 @@ class ContestsService {
 
   void _registerContest(Contest contest) {
     _contests[contest.contestId] = contest;
+    lastContest = contest;
   }
 
   ServerService _server;

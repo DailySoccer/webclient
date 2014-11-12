@@ -43,7 +43,7 @@ class ContestInfoComp implements DetachAware {
     _contestId = routeProvider.route.parameters['contestId'];
 
     // Solo refrescamos del servidor en caso de que no este ya cargado
-    _contestService.refreshContest(_contestId)
+    _contestService.refreshPublicContest(_contestId)
       .then((_) {
         updateContestInfo();
       })

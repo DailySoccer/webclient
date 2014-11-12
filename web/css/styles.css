@@ -8889,8 +8889,12 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   color: #777777;
   text-align: right;
 }
+footer {
+  min-height: 130px;
+  display: block;
+}
 @media (min-width: 768px) {
-  #mainFooter {
+  footer {
     margin-right: auto;
     margin-left: auto;
     padding-left: 15px;
@@ -8898,21 +8902,21 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
     padding-left: 0px;
     padding-right: 0px;
   }
-  #mainFooter > .navbar-header,
-  #mainFooter > .navbar-collapse {
+  footer > .navbar-header,
+  footer > .navbar-collapse {
     margin-right: -15px;
     margin-left: -15px;
   }
 }
 @media (min-width: 768px) and (min-width: 768px) {
-  #mainFooter > .navbar-header,
-  #mainFooter > .navbar-collapse {
+  footer > .navbar-header,
+  footer > .navbar-collapse {
     margin-right: 0;
     margin-left: 0;
   }
 }
 @media (min-width: 992px) {
-  #mainFooter {
+  footer {
     margin-right: auto;
     margin-left: auto;
     padding-left: 15px;
@@ -8920,30 +8924,30 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
     padding-left: 0px;
     padding-right: 0px;
   }
-  #mainFooter > .navbar-header,
-  #mainFooter > .navbar-collapse {
+  footer > .navbar-header,
+  footer > .navbar-collapse {
     margin-right: -15px;
     margin-left: -15px;
   }
 }
 @media (min-width: 992px) and (min-width: 768px) {
-  #mainFooter {
+  footer {
     width: 750px;
   }
 }
 @media (min-width: 992px) and (min-width: 992px) {
-  #mainFooter {
+  footer {
     width: 970px;
   }
 }
 @media (min-width: 992px) and (min-width: 1200px) {
-  #mainFooter {
+  footer {
     width: 970px;
   }
 }
 @media (min-width: 992px) and (min-width: 768px) {
-  #mainFooter > .navbar-header,
-  #mainFooter > .navbar-collapse {
+  footer > .navbar-header,
+  footer > .navbar-collapse {
     margin-right: 0;
     margin-left: 0;
   }
@@ -8954,6 +8958,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   padding-left: 0px;
   padding-right: 0px;
   background-color: #000000;
+  min-height: 130px;
 }
 #rootFooter .goto-link {
   text-decoration: none;
@@ -12696,6 +12701,10 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .bt
   border-color: #fa9c19;
   border-width: 0px 0px 2px 0px;
   border-radius: 0px;
+  height: 70px;
+}
+main-menu-slide {
+  display: block;
   height: 70px;
 }
 #mainMenu {
@@ -21273,10 +21282,11 @@ fieldset[disabled] .btn-orange {
 }
 .wrapper-content-container {
   min-height: 100%;
-  margin: -70px auto -122px;
+  margin: -70px auto -130px;
 }
 .wrapper-content-container .main-content-container {
   padding-top: 70px;
+  padding-bottom: 130px;
 }
 @media (max-width: 991px) {
   .wrapper-content-container .main-content-container {
@@ -21286,7 +21296,6 @@ fieldset[disabled] .btn-orange {
     padding-right: 15px;
     padding-left: 0px;
     padding-right: 0px;
-    padding-bottom: 129px;
   }
   .wrapper-content-container .main-content-container > .navbar-header,
   .wrapper-content-container .main-content-container > .navbar-collapse {
@@ -21309,7 +21318,6 @@ fieldset[disabled] .btn-orange {
     padding-right: 15px;
     padding-left: 0px;
     padding-right: 0px;
-    padding-bottom: 122px;
   }
   .wrapper-content-container .main-content-container > .navbar-header,
   .wrapper-content-container .main-content-container > .navbar-collapse {

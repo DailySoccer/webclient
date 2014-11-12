@@ -159,20 +159,21 @@ body {
 // Contenedor exterior que envuelve a todo el contenido.
 .wrapper-content-container {
 	min-height: 100%; 
-	margin: -70px auto -122px; 	// Para dar cabida al footer
+	margin: -70px auto -130px; 	// Para dar cabida al footer (teniendo en cuenta el menu)
+
 	// Contenedor interior que envuelve al contenido. Fijamos el width con el.
 	.main-content-container {
 		padding-top: 70px;
+		padding-bottom: 130px;
+
 		@media (max-width: @screen-sm-max) {
 			.container-fluid();
 			.clean-paddings();
-			padding-bottom: 129px; // Footer
 
 		}
 		@media (min-width: @screen-md-min) {
 			.container();
 			.clean-paddings();
-			padding-bottom: 122px; // Footer
 		}		
 	}
 }

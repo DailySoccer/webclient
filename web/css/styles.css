@@ -10330,10 +10330,7 @@ fieldset[disabled] .landing-wrapper .button-play {
   position: relative;
   width: 100%;
   margin-top: 15px;
-}
-.first-screen .button-wrap .button-play {
-  margin: 0 auto;
-  display: block;
+  height: 40px;
 }
 .first-screen .wrapping-link {
   margin-left: 0;
@@ -12945,8 +12942,61 @@ main-menu-slide {
   }
 }
 .navbar-header-unloggin .button-wrapper {
-  margin: 15px auto;
+  line-height: 4;
   float: right !important;
+}
+.navbar-header-unloggin .button-wrapper .button-base {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  font-size: 9pt;
+}
+.navbar-header-unloggin .button-wrapper .button-base:focus,
+.navbar-header-unloggin .button-wrapper .button-base:active:focus,
+.navbar-header-unloggin .button-wrapper .button-base.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.navbar-header-unloggin .button-wrapper .button-base:hover,
+.navbar-header-unloggin .button-wrapper .button-base:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+.navbar-header-unloggin .button-wrapper .button-base:active,
+.navbar-header-unloggin .button-wrapper .button-base.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.navbar-header-unloggin .button-wrapper .button-base.disabled,
+.navbar-header-unloggin .button-wrapper .button-base[disabled],
+fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-base {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.navbar-header-unloggin .button-wrapper .button-base:active {
+  margin-top: 10px !important;
 }
 .navbar-header-unloggin .button-wrapper .button-join {
   display: inline-block;
@@ -12967,11 +13017,11 @@ main-menu-slide {
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
+  font-size: 9pt;
   color: #ffffff;
   background-color: #59add5;
   border-color: #cccccc;
   box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
-  font-size: 9pt;
 }
 .navbar-header-unloggin .button-wrapper .button-join:focus,
 .navbar-header-unloggin .button-wrapper .button-join:active:focus,
@@ -13001,6 +13051,9 @@ fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-join {
   filter: alpha(opacity=65);
   -webkit-box-shadow: none;
   box-shadow: none;
+}
+.navbar-header-unloggin .button-wrapper .button-join:active {
+  margin-top: 10px !important;
 }
 .navbar-header-unloggin .button-wrapper .button-join:hover,
 .navbar-header-unloggin .button-wrapper .button-join:focus,
@@ -13072,11 +13125,11 @@ fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-join {
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
+  font-size: 9pt;
   color: #ffffff;
   background-color: #a1c931;
   border-color: #91b42c;
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
-  font-size: 9pt;
 }
 .navbar-header-unloggin .button-wrapper .button-login:focus,
 .navbar-header-unloggin .button-wrapper .button-login:active:focus,
@@ -13106,6 +13159,9 @@ fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-login {
   filter: alpha(opacity=65);
   -webkit-box-shadow: none;
   box-shadow: none;
+}
+.navbar-header-unloggin .button-wrapper .button-login:active {
+  margin-top: 10px !important;
 }
 .navbar-header-unloggin .button-wrapper .button-login:hover,
 .navbar-header-unloggin .button-wrapper .button-login:focus,
@@ -16479,6 +16535,10 @@ button.main-box .panel .panel-heading button.close {
   padding-left: 0;
   padding-right: 0;
 }
+.main-box .panel .panel-body .new-row .buttons-wapper {
+  height: 45px;
+  text-align: center;
+}
 .main-box .panel .panel-body .new-row .enter-button {
   display: inline-block;
   margin-bottom: 0;
@@ -19054,6 +19114,127 @@ fieldset[disabled] .btn-orange {
   -webkit-box-shadow: none;
   box-shadow: none;
   margin-top: 4px;
+}
+.button-fb {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  color: #ffffff;
+  background-color: #59add5;
+  border-color: #cccccc;
+  box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
+  padding-left: 30px;
+  padding-right: 30px;
+  background-color: #4a65a0;
+}
+.button-fb:focus,
+.button-fb:active:focus,
+.button-fb.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.button-fb:hover,
+.button-fb:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+.button-fb:active,
+.button-fb.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.button-fb.disabled,
+.button-fb[disabled],
+fieldset[disabled] .button-fb {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.button-fb:hover,
+.button-fb:focus,
+.button-fb:active,
+.button-fb.active,
+.open .dropdown-toggle.button-fb {
+  color: #ffffff;
+  background-color: #389dcd;
+  border-color: #adadad;
+}
+.button-fb:active,
+.button-fb.active,
+.open .dropdown-toggle.button-fb {
+  background-image: none;
+}
+.button-fb.disabled,
+.button-fb[disabled],
+fieldset[disabled] .button-fb,
+.button-fb.disabled:hover,
+.button-fb[disabled]:hover,
+fieldset[disabled] .button-fb:hover,
+.button-fb.disabled:focus,
+.button-fb[disabled]:focus,
+fieldset[disabled] .button-fb:focus,
+.button-fb.disabled:active,
+.button-fb[disabled]:active,
+fieldset[disabled] .button-fb:active,
+.button-fb.disabled.active,
+.button-fb[disabled].active,
+fieldset[disabled] .button-fb.active {
+  background-color: #59add5;
+  border-color: #cccccc;
+}
+.button-fb .badge {
+  color: #59add5;
+  background-color: #ffffff;
+}
+.button-fb[disabled] {
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #f8f8f8 !important;
+  cursor: not-allowed !important;
+}
+.button-fb:active,
+.button-fb[disabled],
+fieldset[disabled] .button-fb {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  margin-top: 4px;
+}
+.button-fb:focus {
+  outline: none !important;
+}
+.button-fb:hover,
+.button-fb:active,
+.button-fb:focus {
+  background-color: #374b76;
+  background-position: 0 -15px;
+}
+.button-fb::before {
+  content: " ";
+  background-image: url("../images/iconFacebook.png");
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  vertical-align: middle;
 }
 .clean-paddings {
   padding-left: 0px;

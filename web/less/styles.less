@@ -131,6 +131,21 @@ html { overflow-y: scroll; }
 	.btn-pressed();
 }
 
+.button-fb {
+	.btn();
+	.btn-default();
+	padding-left: 30px;
+	padding-right: 30px;
+	background-color: @blueFB;
+	&:hover, &:active, &:focus  {
+		background-color: darken(@blueFB, 12%);
+		background-position: 0 -15px;
+	}
+	&::before {
+		.addIcon("iconFacebook.png", 24px, 24px);
+	}
+}
+
 //Funcion para quitar paddings al container
 .clean-paddings {
 	padding-left: 0px;

@@ -13,7 +13,7 @@ tc.put("packages/webclient/components/account/change_password_comp.html", new Ht
       <div class="panel-heading">
         <div ng-switch="state">
           <!-- SI ES INVALID URL -->
-          <div ng-if="state=='STATE_INVALID_URL'"     class="panel-title">Error 404</div>
+          <div ng-if="state=='STATE_INVALID_URL'"     class="panel-title">Error 503</div>
           <!-- SI ES TOKEN INVALIDO -->
           <div ng-if="state=='STATE_INVALID_TOKEN'"   class="panel-title">CAMBIO DE CONTRASEÑA</div>
           <!-- SI ES TOKEN VALIDO/INVALIDO -->
@@ -59,8 +59,10 @@ tc.put("packages/webclient/components/account/change_password_comp.html", new Ht
 
           <div class="input-group">
             <div class="new-row">
-              <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">ENTRAR</button>
-              <button id="btnCancelLogin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCELAR</button>
+              <div class="buttons-wapper">
+                <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">ENTRAR</button>
+                <button id="btnCancelLogin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCELAR</button>
+              </div>
             </div>
           </div>
 
@@ -230,8 +232,10 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
           <!-- BUTTONS -->
           <div class="input-group">
             <div class="new-row">
-              <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">REGÍSTRATE</button>
-              <button id="btnCancelJoin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCELAR</button>
+              <div class="buttons-wapper">
+                <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">REGÍSTRATE</button>
+                <button id="btnCancelJoin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCELAR</button>
+             </div>
             </div>
           </div>
           <!-- GOTO REGISTER -->
@@ -295,8 +299,10 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
 
           <div class="input-group">
             <div class="new-row">
-              <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">ENTRAR</button>
-              <button id="btnCancelLogin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCELAR</button>
+              <div class="buttons-wapper">
+                <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">ENTRAR</button>
+                <button id="btnCancelLogin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCELAR</button>
+              </div>
             </div>
           </div>
           <!-- Error de login/password -->
@@ -314,11 +320,11 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
         </form>
         <!--Facebook stuff-->
         <div class="input-group">
-        <div class="new-row" style="padding-left:10%;padding-right:10%;margin-bottom:20px;">
-        <button class="button-join btn btn-default btn-block" id="fblogin" ng-click="loginFB()" style="background-color:#4a65a0;">
-        <img src="images/iconFacebook.png"></img>
-        Entra con Facebook</button>
-        </div>
+          <div class="new-row">
+            <div class="buttons-wapper">
+              <button class="button-fb" id="fblogin" ng-click="loginFB()">Entra con Facebook</button>
+            </div>
+          </div>
         </div>
 
 
@@ -382,8 +388,10 @@ tc.put("packages/webclient/components/account/remember_password_comp.html", new 
           <!-- BUTTONS -->
           <div class="input-group">
             <div class="new-row">
-              <button type="submit" id="btnSubmit" name="RememberPassword" ng-disabled="!enabledSubmit" class="enter-button-half">ENVIAR</button>
-              <button id="btnCancelRemember" ng-click="navigateTo('login', {}, $event)" class="cancel-button-half">CANCELAR</button>
+              <div class="buttons-wapper">
+                <button type="submit" id="btnSubmit" name="RememberPassword" ng-disabled="!enabledSubmit" class="enter-button-half">ENVIAR</button>
+                <button id="btnCancelRemember" ng-click="navigateTo('login', {}, $event)" class="cancel-button-half">CANCELAR</button>
+              </div>
             </div>
           </div>
 
@@ -739,7 +747,7 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
   <p class="title">PREMIOS</p>
   <div class="prizes-wrapper">
       <div id="prizes-list">
-        <div ng-if="currentInfoData['prizes'].isEmpty" class=default-info-text>
+        <div ng-if="currentInfoData['prizes'].isEmpty" class="default-info-text">
           Este concurso no tiene premios
         </div>
         <div class="prize-element-wrapper" ng-repeat="prize in currentInfoData['prizes']">
@@ -812,7 +820,7 @@ tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse
     </div>
 
     <div class="column-contest-action">
-      <button type="button" class="btn" ng-click="onAction(contest)">{{actionButtonTitle}}</button>
+      <button type="button" class="action-button" ng-click="onAction(contest)">{{actionButtonTitle}}</button>
     </div>
 
   </div>
@@ -1157,7 +1165,9 @@ tc.put("packages/webclient/components/landing_page_comp.html", new HttpResponse(
       <p class="title-sup-text-mobile">CREA TU EQUIPO EN SEGUNDOS</p>
       <p class="title-sup-text-mobile">COMPITE EN TANTAS LIGAS COMO QUIERAS</p>
       <p class="title-sup-text-mobile">SIGUE LOS PARTIDOS EN DIRECTO</p>
-      <button type="button" class="button-play-mobile" ng-click="buttonPressed('join')" id="playButtonMobile">JUGAR</button>
+      <div class="button-wrap">
+        <button type="button" class="button-play-mobile" ng-click="buttonPressed('join')" id="playButtonMobile">JUGAR</button>
+      </div>
     </div>
     <!-- Separador -->
     <a class="wrapping-link" href="#screen2">
@@ -1183,7 +1193,9 @@ tc.put("packages/webclient/components/landing_page_comp.html", new HttpResponse(
             <p class="description-text">
                 Liga, Champions, Europa League: cada día te ofrecemos torneos de las competiciones más importantes. Puedes participar en tantos como quieras
             </p>
-            <button type="button" class="button-play"  ng-click="buttonPressed('join')" id="playButton2">JUGAR</button>
+            <div class="button-wrap">
+              <button type="button" class="button-play"  ng-click="buttonPressed('join')" id="playButton2">JUGAR</button>
+            </div>
           </div>
         </div>
       </div>
@@ -1211,7 +1223,9 @@ tc.put("packages/webclient/components/landing_page_comp.html", new HttpResponse(
             <p class="description-text">
                 Cada jugador tienen un salario acorde a su rendimiento en la vida real. Elige bien, deberás mantenerte por debajo del límite de presupuesto.
             </p>
-            <button type="button" class="button-play"  ng-click="buttonPressed('join')" id="playButton3">JUGAR</button>
+            <div class="button-wrap">
+              <button type="button" class="button-play"  ng-click="buttonPressed('join')" id="playButton3">JUGAR</button>
+            </div>
           </div>
         </div>
       </div>
@@ -1239,7 +1253,9 @@ tc.put("packages/webclient/components/landing_page_comp.html", new HttpResponse(
             <p class="description-text">
                 Cuando comiencen los partidos en la vida real, tus jugadores acumularán puntos en función de sus acciones. Podrás seguir su puntuación en tiempo real desde donde quieras y compararla con los equipos rivales.
             </p>
-            <button type="button" class="button-play"  ng-click="buttonPressed('join')" id="playButton4">JUGAR</button>
+            <div class="button-wrap">
+              <button type="button" class="button-play"  ng-click="buttonPressed('join')" id="playButton4">JUGAR</button>
+            </div>
           </div>
         </div>
       </div>
@@ -2499,10 +2515,10 @@ tc.put("packages/webclient/components/view_contest/view_contest_comp.html", new 
   <contest-header id="contestHeader" contest="contest" contest-id="contestId"></contest-header>
   <teams-panel id="teamsPanelComp" contest="contest" contest-id="contestId"></teams-panel>
 
-  <div id="liveContestRoot" ng-switch="scrDet.isXsScreen" >
+  <div id="viewContestRoot" ng-switch="scrDet.isXsScreen" >
     <div ng-switch-when="true">
      <!-- Tabs de la versión XS -->
-      <ul class="live-contest-tabs" id="liveContestTab" >
+      <ul class="view-contest-tabs" id="liveContestTab" >
         <li class="active"> <a id="userFantasyTeamTab" ng-click="tabChange('userFantasyTeam')" data-toggle="tab">Tu alineación</a></li>
         <li>                <a id="usersListTab" ng-click="tabChange('usersList')" data-toggle="tab">Usuarios</a></li>
         <li ng-disabled="!isOpponentSelected"><a id="opponentFantasyTeamTab" ng-click="tabChange('opponentFantasyTeam')" data-toggle="tab">{{lastOpponentSelected}}</a></li>

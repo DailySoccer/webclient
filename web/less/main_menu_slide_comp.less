@@ -288,17 +288,22 @@ main-menu-slide {
 	}
     // Botones de login y join: ;
     .button-wrapper {
-      	margin: 15px auto;
+      	line-height: 4;
       	.pull-right();
-      	.button-join {
-        	.btn();
-        	.btn-default();
+      	.button-base {
+      		.btn();
         	font-size: 9pt;
+        	&:active {
+        		margin-top: 10px !important; 
+        	}
+      	}
+      	.button-join {
+        	.button-base();
+        	.btn-default();
       	}
       	.button-login {
-        	.btn();
+        	.button-base();
         	.btn-primary();
-        	font-size: 9pt;
       	}
     }
 }

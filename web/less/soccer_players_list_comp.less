@@ -114,21 +114,18 @@
 			.make-md-column(2, @soccer-players-list-gutter);
 			text-align: right;
 			padding-right: 3px;
-
-			.btn {
-				margin-top: 4px;
+			margin-top: 4px;
+			.action-button {
 				padding-left: 15%;
 				padding-right: 15%;
 				@media (min-width: @screen-sm-min) {
-					padding-left: 15px;
-					padding-right: 15px;
+					font-size: 9pt;
 				}
-				font-size: 9pt;
-
+				.btn();
 				&.add { .btn-primary(); }
 				&.remove { .btn-default(); }
+				font-size: 8pt;
 			}
 		}
-	}
-	
+	}	
 }

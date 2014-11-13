@@ -39,8 +39,10 @@
 
           <div class="input-group">
             <div class="new-row">
-              <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">ENTRAR</button>
-              <button id="btnCancelLogin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCELAR</button>
+              <div class="buttons-wapper">
+                <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">ENTRAR</button>
+                <button id="btnCancelLogin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCELAR</button>
+              </div>
             </div>
           </div>
           <!-- Error de login/password -->
@@ -58,11 +60,11 @@
         </form>
         <!--Facebook stuff-->
         <div class="input-group">
-        <div class="new-row" style="padding-left:10%;padding-right:10%;margin-bottom:20px;">
-        <button class="button-join btn btn-default btn-block" id="fblogin" ng-click="loginFB()" style="background-color:#4a65a0;">
-        <img src="images/iconFacebook.png"></img>
-        Entra con Facebook</button>
-        </div>
+          <div class="new-row">
+            <div class="buttons-wapper">
+              <button class="button-fb" id="fblogin" ng-click="loginFB()">Entra con Facebook</button>
+            </div>
+          </div>
         </div>
 
 

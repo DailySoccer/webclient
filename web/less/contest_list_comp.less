@@ -160,7 +160,10 @@
 		// Botón de entrar al concurso
 		.column-contest-action {
 			.make-sm-column(1, 0);
-			.btn { .btn-primary(); }
+			.action-button { 
+				.btn();
+				.btn-primary(); 
+			}
 			margin-top: 25px;
 			padding-left: 5px;
 			// Posición para versión xs
@@ -168,20 +171,20 @@
 				position: absolute;
 				right: 10px;
 				margin-top: 65px;
-				.btn{
+				.action-button{
 					background-color: transparent;
 					padding: 0;
 					overflow: hidden;
 					width: 12px;
 					box-shadow: none;
-				}
-				.btn::before {
-					color: @blueDark;
-					.create-glyph("\E080", 10pt);
-					padding: 0;
-				}
-				.btn:focus, .btn:active, .btn:hover {
-					background-color: transparent;
+					&::before {
+						color: @blueDark;
+						.create-glyph("\E080", 10pt);
+						padding: 0;
+					}
+					&:focus, &:active, &:hover {
+						background-color: transparent;	
+					}
 				}
 			}
 		}

@@ -40,6 +40,7 @@ abstract class ServerService {
   Future<Map> getLiveMatchEventsFromTemplateContest(String templateContestId);
 
   // Estadísticas SoccerPlayer
+  Future<Map> getInstancePlayerInfo(String contestId, String instanceSoccerPlayerId);
   Future<Map> getSoccerPlayerInfo(String templateSoccerPlayerId);
 
   // Puntuaciones
@@ -84,7 +85,7 @@ class DailySoccerServer implements ServerService {
   Future<Map> login(String email, String password) {
     return _innerServerCall("${HostServer.url}/login", postData: {'email': email, 'password': password});
   }
-  
+
   Future<Map> facebookLogin(String accessToken) {
     return _innerServerCall("${HostServer.url}/facebooklogin", postData: {'accessToken': accessToken});
   }
@@ -145,6 +146,10 @@ class DailySoccerServer implements ServerService {
 
   Future<Map> getLiveMatchEventsFromTemplateContest(String templateContestId) {
     return _innerServerCall("${HostServer.url}/get_live_match_events/template_contest/$templateContestId");
+  }
+
+  Future<Map> getInstancePlayerInfo(String contestId, String instanceSoccerPlayerId) {
+    return _innerServerCall("${HostServer.url}/get_instance_soccer_player_info/$contestId/$instanceSoccerPlayerId");
   }
 
   Future<Map> getSoccerPlayerInfo(String templateSoccerPlayerId) {

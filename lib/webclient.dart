@@ -12,8 +12,7 @@ import 'package:webclient/services/refresh_timers_service.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/profile_service.dart';
-import 'package:webclient/services/active_contests_service.dart';
-import 'package:webclient/services/my_contests_service.dart';
+import 'package:webclient/services/contests_service.dart';
 import 'package:webclient/services/soccer_player_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/scoring_rules_service.dart';
@@ -96,8 +95,7 @@ class WebClientApp extends Module {
     bind(ProfileService);
     bind(FlashMessagesService);
 
-    bind(ActiveContestsService);
-    bind(MyContestsService);
+    bind(ContestsService);
     bind(SoccerPlayerService);
     bind(ScoringRulesService);
 
@@ -263,7 +261,7 @@ class WebClientApp extends Module {
 
   // Ponemos el wrapper de todo nuestro contenido selectivamente en blanco
   void _bleach(Route route) {
-    if (["landing_page", "join", "login"].contains(route.name)) {
+    if (["landing_page", "join", "login", "remember_password", "change_password"].contains(route.name)) {
       querySelector("#mainWrapper").classes.remove("bleach");
     }
     else {

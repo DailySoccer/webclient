@@ -16,12 +16,13 @@ import 'package:webclient/services/contests_service.dart';
 @Injectable()
 class SoccerPlayerService {
 
+  InstanceSoccerPlayer instanceSoccerPlayer;
   SoccerPlayer soccerPlayer;
   MatchEvent nextMatchEvent;
 
   SoccerPlayerService(this._server, this._contestsService);
 
-  // InstanceSoccerPlayer en cualquiera de los ultimos concursos recibidos, tanto Active como My.
+  // InstanceSoccerPlayer en cualquiera de los ultimos concursos recibidos
   InstanceSoccerPlayer getInstanceSoccerPlayer(String contestId, String instanceSoccerPlayerId) {
 
     InstanceSoccerPlayer ret = null;
@@ -34,10 +35,10 @@ class SoccerPlayerService {
     return ret;
   }
 
-  Future refreshSoccerPlayerInfo(String templateSoccerPlayerId) {
+  Future refreshInstancePlayerInfo(String contestId, String instanceSoccerPlayerId) {
     var completer = new Completer();
 
-    _server.getSoccerPlayerInfo(templateSoccerPlayerId)
+    _server.getInstancePlayerInfo(contestId, instanceSoccerPlayerId)
         .then((jsonMap) {
           ContestReferences contestReferences = new ContestReferences();
 
@@ -45,6 +46,7 @@ class SoccerPlayerService {
           jsonMap["soccer_teams"].forEach( (jsonTeam) =>
               new SoccerTeam.fromJsonObject(jsonTeam, contestReferences) );
           soccerPlayer = new SoccerPlayer.fromJsonObject(jsonMap["soccer_player"], contestReferences);
+          instanceSoccerPlayer = new InstanceSoccerPlayer.initFromJsonObject(jsonMap["instance_soccer_player"], contestReferences);
           completer.complete();
         });
 

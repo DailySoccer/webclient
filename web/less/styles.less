@@ -16,7 +16,7 @@
 @import "footer_comp.less";
 @import "landing_page_comp.less";
 
-@import "live_contest_comp.less";
+@import "view_contest_comp.less";
 @import "lobby_comp.less";
 @import "contest_filters_comp.less";
 @import "main_menu_slide_comp.less";
@@ -78,7 +78,6 @@ html { overflow-y: scroll; }
 
 
 .btn {
-	.btn();
 	border-width: 0;
 }
 .btn-pressed {
@@ -103,7 +102,6 @@ html { overflow-y: scroll; }
 }
 
 .btn-primary {
-	.btn();
 	box-shadow: 0px 5px 0px rgba(red(@green), green(@green), blue(@green), 0.5);
 	&[disabled] {
 		box-shadow: 0px 5px 0px rgba(red(@green), green(@green), blue(@green), 0.5);
@@ -118,7 +116,6 @@ html { overflow-y: scroll; }
 
 // Color y borde del boton cancel (no esta definido en el bootstrap)
 .btn-cancel {
-	.btn();
 	.button-variant(@btn-default-color; @greyMed; @btn-default-border);
 	box-shadow: 0px 5px 0px rgba(red(@greyMed), green(@greyMed), blue(@greyMed), 0.5);
 	.btn-pressed();
@@ -129,7 +126,6 @@ html { overflow-y: scroll; }
 
 // Color y borde del boton naranja (no esta definido en el bootstrap)
 .btn-orange {
-	.btn();
 	.button-variant(@btn-default-color; @orange; @btn-default-border);
 	box-shadow: 0px 5px 0px rgba(red(@orange), green(@orange), blue(@orange), 0.5);
 	.btn-pressed();

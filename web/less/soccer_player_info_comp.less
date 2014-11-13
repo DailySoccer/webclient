@@ -35,8 +35,9 @@
 		&.bottom { background-color: @white; }
 
 		.btn-cancel {
+			.btn();
 			.make-xs-column(5.8);
-			.btn-cancel();
+			
 		}
 		.btn-add {
 			.make-xs-column(5.8);
@@ -135,7 +136,7 @@
 			.next-match-wrapper {
 				.hidden-xs();
 				.make-sm-column(12);
-
+				height: 47px;
 				#gradient.vertical(@blueGradientLight, @blueGradientDark, 49%, 51%);
 				display: block;
 				padding: 5px 5px 10px;
@@ -150,6 +151,7 @@
 				}
 
 				.btn-add {
+					.btn();
 					.btn-orange();
 					.pull-right();
 					padding-left: 40px;

@@ -2,7 +2,7 @@ library lobby_comp;
 
 import 'dart:async';
 import 'package:angular/angular.dart';
-import 'package:webclient/services/active_contests_service.dart';
+import 'package:webclient/services/contests_service.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/refresh_timers_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
@@ -16,7 +16,7 @@ import 'package:webclient/models/contest.dart';
 )
 class LobbyComp implements DetachAware {
 
-  ActiveContestsService activeContestsService;
+  ContestsService contestsService;
   ScreenDetectorService scrDet;
   LoadingService loadingService;
 
@@ -35,9 +35,9 @@ class LobbyComp implements DetachAware {
   // Concursos listados actualmente
   int contestCount = 0;
 
-  LobbyComp(this._router, this._refreshTimersService, this.activeContestsService, this.scrDet, this.loadingService) {
+  LobbyComp(this._router, this._refreshTimersService, this.contestsService, this.scrDet, this.loadingService) {
 
-    if (activeContestsService.activeContests.isEmpty) {
+    if (contestsService.activeContests.isEmpty) {
       loadingService.isLoading = true;
     }
 
@@ -49,20 +49,20 @@ class LobbyComp implements DetachAware {
 
   /********* METHODS */
   void _calculateInfoBarText() {
-    Contest nextContest = activeContestsService.getAvailableNextContest();
+    Contest nextContest = contestsService.getAvailableNextContest();
     infoBarText = nextContest == null? "" : "SIGUIENTE TORNEO: ${nextContest.name.toUpperCase()} - ${_calculateTimeToNextTournament()}";
   }
 
   String _calculateTimeToNextTournament() {
-    return DateTimeService.formatTimeLeft(DateTimeService.getTimeLeft( activeContestsService.getAvailableNextContest().startDate ) );
+    return DateTimeService.formatTimeLeft(DateTimeService.getTimeLeft( contestsService.getAvailableNextContest().startDate ) );
   }
 
   // Rutina que refresca la lista de concursos
   void refreshActiveContest() {
-    activeContestsService.refreshActiveContests()
+    contestsService.refreshActiveContests()
       .then((_) {
         loadingService.isLoading = false;
-        contestsCount = activeContestsService.activeContests.length;
+        contestsCount = contestsService.activeContests.length;
       });
   }
 

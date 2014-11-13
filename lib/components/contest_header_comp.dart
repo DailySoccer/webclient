@@ -5,7 +5,7 @@ import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import "package:webclient/models/contest.dart";
 import 'dart:async';
-import 'package:webclient/services/active_contests_service.dart';
+import 'package:webclient/services/contests_service.dart';
 
 @Component(
     selector: 'contest-header',
@@ -45,14 +45,14 @@ class ContestHeaderComp implements DetachAware {
   @NgOneWay("contest-id")
   void set contestId(String value) {
     if (value != null) {
-      contest = _activeContestsService.getContestById(value);
+      contest = _contestsService.getContestById(value);
 
       _refreshHeader();
       _refreshCountdownDate();
     }
   }
 
-  ContestHeaderComp(this._router, this._routeProvider, this.scrDet, this._activeContestsService) {
+  ContestHeaderComp(this._router, this._routeProvider, this.scrDet, this._contestsService) {
     _count = new Timer.periodic(new Duration(seconds: 1), (Timer timer) => _refreshCountdownDate());
   }
 
@@ -109,7 +109,7 @@ class ContestHeaderComp implements DetachAware {
 
   Router _router;
   RouteProvider _routeProvider;
-  ActiveContestsService _activeContestsService;
+  ContestsService _contestsService;
 
   Timer _count;
 }

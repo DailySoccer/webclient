@@ -5,7 +5,7 @@ import 'dart:html';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/contest_entry.dart';
 import 'package:webclient/services/datetime_service.dart';
-import 'package:webclient/services/active_contests_service.dart';
+import 'package:webclient/services/contests_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/components/modal_comp.dart';
@@ -21,7 +21,7 @@ class ContestInfoComp implements DetachAware {
   Map currentInfoData;
   Contest contest = null;
 
-  ContestInfoComp(ScreenDetectorService scrDet, RouteProvider routeProvider, this._router, this._contestService, this._flashMessage) {
+  ContestInfoComp(ScreenDetectorService scrDet, RouteProvider routeProvider, this._router, this._contestsService, this._flashMessage) {
 
     _streamListener = scrDet.mediaScreenWidth.listen(onScreenWidthChange);
 
@@ -43,7 +43,7 @@ class ContestInfoComp implements DetachAware {
     _contestId = routeProvider.route.parameters['contestId'];
 
     // Solo refrescamos del servidor en caso de que no este ya cargado
-    _contestService.refreshContest(_contestId)
+    _contestsService.refreshPublicContest(_contestId)
       .then((_) {
         updateContestInfo();
       })
@@ -65,7 +65,7 @@ class ContestInfoComp implements DetachAware {
 
   void updateContestInfo() {
 
-    contest = _contestService.lastContest;
+    contest = _contestsService.lastContest;
     List contestants = [];
 
     for (ContestEntry contestEntry in contest.contestEntries) {
@@ -105,7 +105,7 @@ class ContestInfoComp implements DetachAware {
   var _streamListener;
   Router _router;
 
-  ActiveContestsService _contestService;
+  ContestsService _contestsService;
   FlashMessagesService _flashMessage;
 
   String _contestId;

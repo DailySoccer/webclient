@@ -5,12 +5,12 @@ import 'package:angular/angular.dart';
 
 import "package:webclient/services/server_service.dart";
 import 'package:webclient/services/contest_references.dart';
+import "package:webclient/models/contest.dart";
 import "package:webclient/models/soccer_team.dart";
 import "package:webclient/models/soccer_player.dart";
 import "package:webclient/models/match_event.dart";
 import 'package:webclient/models/instance_soccer_player.dart';
-import 'package:webclient/services/active_contests_service.dart';
-import 'package:webclient/services/my_contests_service.dart';
+import 'package:webclient/services/contests_service.dart';
 
 
 @Injectable()
@@ -19,18 +19,16 @@ class SoccerPlayerService {
   SoccerPlayer soccerPlayer;
   MatchEvent nextMatchEvent;
 
-  SoccerPlayerService(this._server, this._activeContestsService, this._myContestsService);
+  SoccerPlayerService(this._server, this._contestsService);
 
   // InstanceSoccerPlayer en cualquiera de los ultimos concursos recibidos, tanto Active como My.
   InstanceSoccerPlayer getInstanceSoccerPlayer(String contestId, String instanceSoccerPlayerId) {
 
     InstanceSoccerPlayer ret = null;
 
-    if (_activeContestsService.lastContest != null && _activeContestsService.lastContest.contestId == contestId) {
-      ret = _activeContestsService.lastContest.getInstanceSoccerPlayer(instanceSoccerPlayerId);
-    }
-    else if (_myContestsService.lastContest != null && _myContestsService.lastContest.contestId == contestId) {
-      ret = _myContestsService.lastContest.getInstanceSoccerPlayer(instanceSoccerPlayerId);
+    Contest contest = _contestsService.getContestById(contestId);
+    if (contest != null) {
+      ret = contest.getInstanceSoccerPlayer(instanceSoccerPlayerId);
     }
 
     return ret;
@@ -55,6 +53,5 @@ class SoccerPlayerService {
 
   ServerService _server;
 
-  ActiveContestsService _activeContestsService;
-  MyContestsService _myContestsService;
+  ContestsService _contestsService;
 }

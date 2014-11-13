@@ -16,6 +16,7 @@ import 'package:webclient/services/contests_service.dart';
 import 'package:webclient/services/soccer_player_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/scoring_rules_service.dart';
+import 'package:webclient/services/payment_service.dart';
 
 import 'package:webclient/components/landing_page_1_slide_comp.dart';
 
@@ -44,6 +45,7 @@ import 'package:webclient/components/account/user_profile_comp.dart';
 import 'package:webclient/components/account/edit_personal_data_comp.dart';
 import 'package:webclient/components/account/remember_password_comp.dart';
 import 'package:webclient/components/account/change_password_comp.dart';
+import 'package:webclient/components/account/payment_comp.dart';
 
 import 'package:webclient/components/my_contests_comp.dart';
 import 'package:webclient/components/view_contest/view_contest_entry_comp.dart';
@@ -98,6 +100,7 @@ class WebClientApp extends Module {
     bind(ContestsService);
     bind(SoccerPlayerService);
     bind(ScoringRulesService);
+    bind(PaymentService);
 
     bind(FormAutofillDecorator);
     bind(AutoFocusDecorator);
@@ -147,6 +150,7 @@ class WebClientApp extends Module {
     bind(RememberPasswordComp);
     bind(UserProfileComp);
     bind(EditPersonalDataComp);
+    bind(PaymentComp);
 
     bind(RouteInitializerFn, toValue: webClientRouteInitializer);
     bind(NgRoutingUsePushState, toValue: new NgRoutingUsePushState.value(false));
@@ -215,6 +219,11 @@ class WebClientApp extends Module {
           path: '/edit_profile',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
           viewHtml: '<edit-personal-data></edit-personal-data>'
+      )
+      ,'payment': ngRoute(
+          path: '/payment',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
+          viewHtml: '<payment></payment>'
       )
       ,'lobby': ngRoute(
           path: '/lobby',

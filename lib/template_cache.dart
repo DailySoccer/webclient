@@ -254,7 +254,7 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
 
 
 """));
-tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse(200, r"""<div id="loginRoot" ng-show="!loadingService.isLoading">
+tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse(200, r"""<div id="loginRoot">
   <div id="loginBox" class="main-box">
 
     <div class="panel window-slide-in">
@@ -1095,9 +1095,9 @@ tc.put("packages/webclient/components/flash_messages_comp.html", new HttpRespons
       </div>
   </div>
 </div>
-"""));
-tc.put("packages/webclient/components/global_connection_comp.html", new HttpResponse(200, r"""<div class="alert-danger" ng-show="msg.isNotEmpty" style="padding: 1em; position: fixed; top: 10%; left: 50%; transform: translateX(-50%);">
-  {{msg}}
+
+<div class="alert-danger" ng-show="globalMessage.isNotEmpty" style="padding: 1em; position: fixed; top: 10%; left: 50%; transform: translateX(-50%); z-index:99999;">
+  {{globalMessage}}
 </div>
 """));
 tc.put("packages/webclient/components/landing_page_comp.html", new HttpResponse(200, r"""<div id="#landingPageRoot">
@@ -2243,7 +2243,7 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
   </div>
 </div>
 """));
-tc.put("packages/webclient/components/navigation/footer_comp.html", new HttpResponse(200, r"""<div id="rootFooter" >
+tc.put("packages/webclient/components/navigation/footer_comp.html", new HttpResponse(200, r"""<div id="rootFooter">
   <div class="sub-footer-wrapper">
     <div class="sub-footer">
 

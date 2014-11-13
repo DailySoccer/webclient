@@ -36,12 +36,10 @@ class SoccerPlayerInfoComp {
 
   SoccerPlayerInfoComp(this._flashMessage, this.enterContestComp, this.scrDet, this._soccerPlayerService, RouteProvider routeProvider, Router router) {
 
-    var instanceSoccerPlayerId = routeProvider.route.parameters['instanceSoccerPlayerId'];
     var contestId = routeProvider.route.parent.parameters["contestId"];
+    var instanceSoccerPlayerId = routeProvider.route.parameters['instanceSoccerPlayerId'];
+
     setInstancePlayerInfo(_soccerPlayerService.getInstanceSoccerPlayer(contestId, instanceSoccerPlayerId));
-
-    cannotAddPlayer = !enterContestComp.isSlotAvailableForSoccerPlayer(currentInfoData['id']);
-
     _soccerPlayerService.refreshInstancePlayerInfo(contestId, instanceSoccerPlayerId)
       .then((_) {
         updateSoccerPlayerInfoFromService();
@@ -65,14 +63,15 @@ class SoccerPlayerInfoComp {
         'matches'         : '-',
         'nextMatchEvent'  : ''
       };
+
+      cannotAddPlayer = !enterContestComp.isSlotAvailableForSoccerPlayer(currentInfoData['id']);
     }
   }
 
   void updateSoccerPlayerInfoFromService() {
-    var matchEventName = "", matchEventDate = "";
-
     setInstancePlayerInfo(_soccerPlayerService.instanceSoccerPlayer);
 
+    var matchEventName = "", matchEventDate = "";
     MatchEvent nextMatchEvent = _soccerPlayerService.nextMatchEvent;
     if (nextMatchEvent != null) {
       String shortNameTeamA = nextMatchEvent.soccerTeamA.name;

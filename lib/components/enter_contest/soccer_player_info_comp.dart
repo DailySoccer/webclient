@@ -37,28 +37,12 @@ class SoccerPlayerInfoComp {
   SoccerPlayerInfoComp(this._flashMessage, this.enterContestComp, this.scrDet, this._soccerPlayerService, RouteProvider routeProvider, Router router) {
 
     var instanceSoccerPlayerId = routeProvider.route.parameters['instanceSoccerPlayerId'];
-    _instanceSoccerPlayer = _soccerPlayerService.getInstanceSoccerPlayer(routeProvider.route.parent.parameters["contestId"], instanceSoccerPlayerId);
-
-    // TODO: Nos vienen recargando.
-    if (_instanceSoccerPlayer == null) {
-      ModalComp.close();
-      return;
-    }
-
-    currentInfoData = {
-      'id'              : _instanceSoccerPlayer.id,
-      'fieldPos'        : _instanceSoccerPlayer.fieldPos.abrevName,
-      'team'            : _instanceSoccerPlayer.soccerTeam.name.toUpperCase(),
-      'name'            : _instanceSoccerPlayer.soccerPlayer.name.toUpperCase(),
-      'fantasyPoints'   : _instanceSoccerPlayer.soccerPlayer.fantasyPoints,
-      'salary'          : _instanceSoccerPlayer.salary,
-      'matches'         : '-',
-      'nextMatchEvent'  : ''
-    };
+    var contestId = routeProvider.route.parent.parameters["contestId"];
+    setInstancePlayerInfo(_soccerPlayerService.getInstanceSoccerPlayer(contestId, instanceSoccerPlayerId));
 
     cannotAddPlayer = !enterContestComp.isSlotAvailableForSoccerPlayer(currentInfoData['id']);
 
-    _soccerPlayerService.refreshSoccerPlayerInfo(instanceSoccerPlayerId)
+    _soccerPlayerService.refreshInstancePlayerInfo(contestId, instanceSoccerPlayerId)
       .then((_) {
         updateSoccerPlayerInfoFromService();
       })
@@ -67,8 +51,27 @@ class SoccerPlayerInfoComp {
       });
   }
 
+  void setInstancePlayerInfo(InstanceSoccerPlayer instanceSoccerPlayer) {
+    _instanceSoccerPlayer = instanceSoccerPlayer;
+
+    if (_instanceSoccerPlayer != null) {
+      currentInfoData = {
+        'id'              : _instanceSoccerPlayer.id,
+        'fieldPos'        : _instanceSoccerPlayer.fieldPos.abrevName,
+        'team'            : _instanceSoccerPlayer.soccerTeam.name.toUpperCase(),
+        'name'            : _instanceSoccerPlayer.soccerPlayer.name.toUpperCase(),
+        'fantasyPoints'   : _instanceSoccerPlayer.soccerPlayer.fantasyPoints,
+        'salary'          : _instanceSoccerPlayer.salary,
+        'matches'         : '-',
+        'nextMatchEvent'  : ''
+      };
+    }
+  }
+
   void updateSoccerPlayerInfoFromService() {
     var matchEventName = "", matchEventDate = "";
+
+    setInstancePlayerInfo(_soccerPlayerService.instanceSoccerPlayer);
 
     MatchEvent nextMatchEvent = _soccerPlayerService.nextMatchEvent;
     if (nextMatchEvent != null) {

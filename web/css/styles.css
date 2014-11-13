@@ -7309,6 +7309,14 @@ button#contestInfoModal .modal-info-head button.close {
   border-radius: 20px;
   text-align: center;
 }
+@media (max-width: 991px) {
+  .prizes-wrapper #prizes-list .default-info-text {
+    font-family: 'Exo', sans-serif;
+    font-weight: 300;
+    font-size: 14pt;
+    color: #0d75a6;
+  }
+}
 #contestInfoTabbed {
   margin-right: auto;
   margin-left: auto;

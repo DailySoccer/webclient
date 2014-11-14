@@ -7,6 +7,14 @@
 	animation: @name @time;
 }
 
+.transition(@property, @time, @curve) {
+	-webkit-transition: @property @time @curve; 
+  	-moz-transition: @property @time @curve;
+  	-ms-transition: @property @time @curve;
+	-o-transition: @property @time @curve;
+	transition: @property @time @curve;
+}
+
 #doKeyFrames(@name; @frames) {
     @-webkit-keyframes @name { @frames(); }
     @-moz-keyframes @name { @frames(); }

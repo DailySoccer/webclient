@@ -7856,11 +7856,11 @@ button#contestInfoModal .modal-info-head button.close {
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
-  -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
-  -ms-transition: all 0.1s ease-out;
-  -o-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
   color: #ffffff;
   background-color: #a1c931;
   border-color: #91b42c;
@@ -7935,6 +7935,14 @@ fieldset[disabled] .contests-list-root .contest-row .column-contest-action .acti
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
+}
+.contests-list-root .contest-row .column-contest-action .action-button:hover {
+  background-color: #b1d44f;
+  box-shadow: 0px 5px 0px rgba(177, 212, 79, 0.5);
+}
+.contests-list-root .contest-row .column-contest-action .action-button:hover:active {
+  background-color: #87a829;
+  box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
 }
 .contests-list-root .contest-row .column-contest-action .action-button:active,
 .contests-list-root .contest-row .column-contest-action .action-button[disabled],
@@ -8286,11 +8294,11 @@ button#personalDataContent .header button.close {
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
-  -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
-  -ms-transition: all 0.1s ease-out;
-  -o-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
   display: block;
   width: 100%;
   padding-left: 0;
@@ -8374,6 +8382,14 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
 }
+#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save:hover {
+  background-color: #b1d44f;
+  box-shadow: 0px 5px 0px rgba(177, 212, 79, 0.5);
+}
+#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save:hover:active {
+  background-color: #87a829;
+  box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
+}
 #personalDataContent .save-changes-content .forms-wrapper-button .action-button-save:active,
 #personalDataContent .save-changes-content .forms-wrapper-button .action-button-save[disabled],
 fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-button .action-button-save {
@@ -8413,11 +8429,11 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
-  -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
-  -ms-transition: all 0.1s ease-out;
-  -o-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
   display: block;
   width: 100%;
   padding-left: 0;
@@ -8495,6 +8511,14 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
 #personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel .badge {
   color: #afafaf;
   background-color: #ffffff;
+}
+#personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel:hover {
+  background-color: #c3c3c3;
+  box-shadow: 0px 5px 0px rgba(195, 195, 195, 0.5);
+}
+#personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel:hover:active {
+  background-color: #9b9b9b;
+  box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
 }
 #personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel:active,
 #personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel[disabled],
@@ -8728,11 +8752,11 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
-  -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
-  -ms-transition: all 0.1s ease-out;
-  -o-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
   color: #ffffff;
   background-color: #59add5;
   border-color: #cccccc;
@@ -8808,6 +8832,14 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team.active {
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
+}
+.fantasy-team-header .edit-team .btn-edit-team:hover {
+  background-color: #7abddd;
+  box-shadow: 0px 5px 0px rgba(122, 189, 221, 0.5);
+}
+.fantasy-team-header .edit-team .btn-edit-team:hover:active {
+  background-color: #389dcd;
+  box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
 }
 .fantasy-team-header .edit-team .btn-edit-team:active,
 .fantasy-team-header .edit-team .btn-edit-team[disabled],
@@ -9386,11 +9418,11 @@ footer {
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
-  -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
-  -ms-transition: all 0.1s ease-out;
-  -o-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
   background-color: #a1c931;
   border-color: #91b42c;
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
@@ -9471,6 +9503,14 @@ fieldset[disabled] #rootFooter .user-info-sup-footer .add-funds-button.active {
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
+}
+#rootFooter .user-info-sup-footer .add-funds-button:hover {
+  background-color: #b1d44f;
+  box-shadow: 0px 5px 0px rgba(177, 212, 79, 0.5);
+}
+#rootFooter .user-info-sup-footer .add-funds-button:hover:active {
+  background-color: #87a829;
+  box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
 }
 #rootFooter .user-info-sup-footer .add-funds-button:active,
 #rootFooter .user-info-sup-footer .add-funds-button[disabled],
@@ -10170,11 +10210,11 @@ fieldset[disabled] #rootFooter .user-info-sup-footer .add-funds-button {
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
-  -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
-  -ms-transition: all 0.1s ease-out;
-  -o-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
   color: #ffffff;
   background-color: #a1c931;
   border-color: #91b42c;
@@ -10252,6 +10292,14 @@ fieldset[disabled] .button-play-base.active {
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
 }
+.button-play-base:hover {
+  background-color: #b1d44f;
+  box-shadow: 0px 5px 0px rgba(177, 212, 79, 0.5);
+}
+.button-play-base:hover:active {
+  background-color: #87a829;
+  box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
+}
 .button-play-base:active,
 .button-play-base[disabled],
 fieldset[disabled] .button-play-base {
@@ -10291,11 +10339,11 @@ fieldset[disabled] .button-play-base {
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
-  -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
-  -ms-transition: all 0.1s ease-out;
-  -o-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
   color: #ffffff;
   background-color: #a1c931;
   border-color: #91b42c;
@@ -10375,6 +10423,14 @@ fieldset[disabled] .button-wrap .button-play.active {
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
 }
+.button-wrap .button-play:hover {
+  background-color: #b1d44f;
+  box-shadow: 0px 5px 0px rgba(177, 212, 79, 0.5);
+}
+.button-wrap .button-play:hover:active {
+  background-color: #87a829;
+  box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
+}
 .button-wrap .button-play:active,
 .button-wrap .button-play[disabled],
 fieldset[disabled] .button-wrap .button-play {
@@ -10408,11 +10464,11 @@ fieldset[disabled] .button-wrap .button-play {
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
-  -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
-  -ms-transition: all 0.1s ease-out;
-  -o-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
   color: #ffffff;
   background-color: #a1c931;
   border-color: #91b42c;
@@ -10491,6 +10547,14 @@ fieldset[disabled] .button-wrap .button-play-mobile.active {
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
+}
+.button-wrap .button-play-mobile:hover {
+  background-color: #b1d44f;
+  box-shadow: 0px 5px 0px rgba(177, 212, 79, 0.5);
+}
+.button-wrap .button-play-mobile:hover:active {
+  background-color: #87a829;
+  box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
 }
 .button-wrap .button-play-mobile:active,
 .button-wrap .button-play-mobile[disabled],
@@ -11061,6 +11125,14 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters #contestFastSort .so
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
 }
+#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:hover {
+  background-color: #7abddd;
+  box-shadow: 0px 5px 0px rgba(122, 189, 221, 0.5);
+}
+#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:hover:active {
+  background-color: #389dcd;
+  box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
+}
 #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:active,
 #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button[disabled],
 fieldset[disabled] #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button {
@@ -11338,6 +11410,14 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
+}
+#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:hover {
+  background-color: #7abddd;
+  box-shadow: 0px 5px 0px rgba(122, 189, 221, 0.5);
+}
+#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:hover:active {
+  background-color: #389dcd;
+  box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
 }
 #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:active,
 #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button[disabled],
@@ -12323,11 +12403,11 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
-  -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
-  -ms-transition: all 0.1s ease-out;
-  -o-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
   display: block;
   width: 100%;
   padding-left: 0;
@@ -12402,6 +12482,14 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-
   color: #afafaf;
   background-color: #ffffff;
 }
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:hover {
+  background-color: #c3c3c3;
+  box-shadow: 0px 5px 0px rgba(195, 195, 195, 0.5);
+}
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:hover:active {
+  background-color: #9b9b9b;
+  box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
+}
 #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:active,
 #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset[disabled],
 fieldset[disabled] #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset {
@@ -12456,11 +12544,11 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
-  -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
-  -ms-transition: all 0.1s ease-out;
-  -o-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
   display: block;
   width: 100%;
   padding-left: 0;
@@ -12539,6 +12627,14 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .bt
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
+}
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:hover {
+  background-color: #b1d44f;
+  box-shadow: 0px 5px 0px rgba(177, 212, 79, 0.5);
+}
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:hover:active {
+  background-color: #87a829;
+  box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
 }
 #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:active,
 #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm[disabled],
@@ -12813,11 +12909,11 @@ main-menu-slide {
     -ms-user-select: none;
     user-select: none;
     border-width: 0;
-    -webkit-transition: all 0.1s ease-out;
-    -moz-transition: all 0.1s ease-out;
-    -ms-transition: all 0.1s ease-out;
-    -o-transition: all 0.1s ease-out;
-    transition: all 0.1s ease-out;
+    -webkit-transition: all 0.15s linear;
+    -moz-transition: all 0.15s linear;
+    -ms-transition: all 0.15s linear;
+    -o-transition: all 0.15s linear;
+    transition: all 0.15s linear;
     background-color: #a1c931;
     border-color: #91b42c;
     box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
@@ -12898,6 +12994,14 @@ main-menu-slide {
     box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
     color: #f8f8f8 !important;
     cursor: not-allowed !important;
+  }
+  #mainMenu .add-funds-button:hover {
+    background-color: #b1d44f;
+    box-shadow: 0px 5px 0px rgba(177, 212, 79, 0.5);
+  }
+  #mainMenu .add-funds-button:hover:active {
+    background-color: #87a829;
+    box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   }
   #mainMenu .add-funds-button:active,
   #mainMenu .add-funds-button[disabled],
@@ -13140,11 +13244,11 @@ main-menu-slide {
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
-  -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
-  -ms-transition: all 0.1s ease-out;
-  -o-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
   font-size: 9pt;
 }
 .navbar-header-unloggin .button-wrapper .button-base:focus,
@@ -13198,11 +13302,11 @@ fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-base {
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
-  -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
-  -ms-transition: all 0.1s ease-out;
-  -o-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
   font-size: 9pt;
   color: #ffffff;
   background-color: #59add5;
@@ -13282,6 +13386,14 @@ fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-join.active {
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
 }
+.navbar-header-unloggin .button-wrapper .button-join:hover {
+  background-color: #7abddd;
+  box-shadow: 0px 5px 0px rgba(122, 189, 221, 0.5);
+}
+.navbar-header-unloggin .button-wrapper .button-join:hover:active {
+  background-color: #389dcd;
+  box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
+}
 .navbar-header-unloggin .button-wrapper .button-join:active,
 .navbar-header-unloggin .button-wrapper .button-join[disabled],
 fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-join {
@@ -13310,11 +13422,11 @@ fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-join {
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
-  -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
-  -ms-transition: all 0.1s ease-out;
-  -o-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
   font-size: 9pt;
   color: #ffffff;
   background-color: #a1c931;
@@ -13393,6 +13505,14 @@ fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-login.active 
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
+}
+.navbar-header-unloggin .button-wrapper .button-login:hover {
+  background-color: #b1d44f;
+  box-shadow: 0px 5px 0px rgba(177, 212, 79, 0.5);
+}
+.navbar-header-unloggin .button-wrapper .button-login:hover:active {
+  background-color: #87a829;
+  box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
 }
 .navbar-header-unloggin .button-wrapper .button-login:active,
 .navbar-header-unloggin .button-wrapper .button-login[disabled],
@@ -13590,11 +13710,11 @@ fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-login {
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
-  -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
-  -ms-transition: all 0.1s ease-out;
-  -o-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
   color: #ffffff;
   background-color: #a1c931;
   border-color: #91b42c;
@@ -13672,6 +13792,14 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
+}
+.no-contests-wrapper .no-contest-bottom-row .btn-go-to-contest:hover {
+  background-color: #b1d44f;
+  box-shadow: 0px 5px 0px rgba(177, 212, 79, 0.5);
+}
+.no-contests-wrapper .no-contest-bottom-row .btn-go-to-contest:hover:active {
+  background-color: #87a829;
+  box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
 }
 .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contest:active,
 .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contest[disabled],
@@ -13976,11 +14104,11 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
-  -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
-  -ms-transition: all 0.1s ease-out;
-  -o-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
   position: relative;
   float: left;
   width: 48.33333333%;
@@ -14043,11 +14171,11 @@ fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .btn-cancel {
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
-  -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
-  -ms-transition: all 0.1s ease-out;
-  -o-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
   color: #ffffff;
   background-color: #a1c931;
   border-color: #91b42c;
@@ -14122,6 +14250,14 @@ fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .btn-add.active {
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
+}
+#modalSoccerPlayerInfo .action-buttons .btn-add:hover {
+  background-color: #b1d44f;
+  box-shadow: 0px 5px 0px rgba(177, 212, 79, 0.5);
+}
+#modalSoccerPlayerInfo .action-buttons .btn-add:hover:active {
+  background-color: #87a829;
+  box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
 }
 #modalSoccerPlayerInfo .action-buttons .btn-add:active,
 #modalSoccerPlayerInfo .action-buttons .btn-add[disabled],
@@ -14390,11 +14526,11 @@ fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .btn-add {
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
-  -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
-  -ms-transition: all 0.1s ease-out;
-  -o-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
   color: #ffffff;
   background-color: #fa9c19;
   border-color: #cccccc;
@@ -14467,6 +14603,14 @@ fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .descriptio
 #modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .btn-add .badge {
   color: #fa9c19;
   background-color: #ffffff;
+}
+#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .btn-add:hover {
+  background-color: #fbad41;
+  box-shadow: 0px 5px 0px rgba(251, 173, 65, 0.5);
+}
+#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .btn-add:hover:active {
+  background-color: #e58805;
+  box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
 }
 #modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .btn-add:active,
 #modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .btn-add[disabled],
@@ -15071,11 +15215,11 @@ fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .descriptio
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
-  -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
-  -ms-transition: all 0.1s ease-out;
-  -o-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
   color: #ffffff;
   background-color: #afafaf;
   border-color: #cccccc;
@@ -15153,6 +15297,14 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-cancel-player-selection.a
   color: #afafaf;
   background-color: #ffffff;
 }
+.enter-contest-actions-wrapper .btn-cancel-player-selection:hover {
+  background-color: #c3c3c3;
+  box-shadow: 0px 5px 0px rgba(195, 195, 195, 0.5);
+}
+.enter-contest-actions-wrapper .btn-cancel-player-selection:hover:active {
+  background-color: #9b9b9b;
+  box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
+}
 .enter-contest-actions-wrapper .btn-cancel-player-selection:active,
 .enter-contest-actions-wrapper .btn-cancel-player-selection[disabled],
 fieldset[disabled] .enter-contest-actions-wrapper .btn-cancel-player-selection {
@@ -15190,11 +15342,11 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-cancel-player-selection {
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
-  -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
-  -ms-transition: all 0.1s ease-out;
-  -o-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
   display: block;
   width: 100%;
   padding-left: 0;
@@ -15269,6 +15421,14 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-clean-lineup-list.active 
   color: #afafaf;
   background-color: #ffffff;
 }
+.enter-contest-actions-wrapper .btn-clean-lineup-list:hover {
+  background-color: #c3c3c3;
+  box-shadow: 0px 5px 0px rgba(195, 195, 195, 0.5);
+}
+.enter-contest-actions-wrapper .btn-clean-lineup-list:hover:active {
+  background-color: #9b9b9b;
+  box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
+}
 .enter-contest-actions-wrapper .btn-clean-lineup-list:active,
 .enter-contest-actions-wrapper .btn-clean-lineup-list[disabled],
 fieldset[disabled] .enter-contest-actions-wrapper .btn-clean-lineup-list {
@@ -15297,11 +15457,11 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-clean-lineup-list {
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
-  -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
-  -ms-transition: all 0.1s ease-out;
-  -o-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
   display: block;
   width: 100%;
   padding-left: 0;
@@ -15380,6 +15540,14 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list.activ
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
+}
+.enter-contest-actions-wrapper .btn-confirm-lineup-list:hover {
+  background-color: #b1d44f;
+  box-shadow: 0px 5px 0px rgba(177, 212, 79, 0.5);
+}
+.enter-contest-actions-wrapper .btn-confirm-lineup-list:hover:active {
+  background-color: #87a829;
+  box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
 }
 .enter-contest-actions-wrapper .btn-confirm-lineup-list:active,
 .enter-contest-actions-wrapper .btn-confirm-lineup-list[disabled],
@@ -15883,11 +16051,11 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
-  -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
-  -ms-transition: all 0.1s ease-out;
-  -o-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
   font-size: 8pt;
 }
 @media (min-width: 768px) {
@@ -15971,6 +16139,14 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
 }
+.soccer-players-list .soccer-players-list-slot .column-action .action-button.add:hover {
+  background-color: #b1d44f;
+  box-shadow: 0px 5px 0px rgba(177, 212, 79, 0.5);
+}
+.soccer-players-list .soccer-players-list-slot .column-action .action-button.add:hover:active {
+  background-color: #87a829;
+  box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
+}
 .soccer-players-list .soccer-players-list-slot .column-action .action-button.add:active,
 .soccer-players-list .soccer-players-list-slot .column-action .action-button.add[disabled],
 fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action .action-button.add {
@@ -16026,6 +16202,14 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
+}
+.soccer-players-list .soccer-players-list-slot .column-action .action-button.remove:hover {
+  background-color: #7abddd;
+  box-shadow: 0px 5px 0px rgba(122, 189, 221, 0.5);
+}
+.soccer-players-list .soccer-players-list-slot .column-action .action-button.remove:hover:active {
+  background-color: #389dcd;
+  box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
 }
 .soccer-players-list .soccer-players-list-slot .column-action .action-button.remove:active,
 .soccer-players-list .soccer-players-list-slot .column-action .action-button.remove[disabled],
@@ -16779,11 +16963,11 @@ button.main-box .panel .panel-heading button.close {
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
-  -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
-  -ms-transition: all 0.1s ease-out;
-  -o-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
   display: block;
   width: 100%;
   padding-left: 0;
@@ -16863,6 +17047,14 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button.active {
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
 }
+.main-box .panel .panel-body .new-row .enter-button:hover {
+  background-color: #b1d44f;
+  box-shadow: 0px 5px 0px rgba(177, 212, 79, 0.5);
+}
+.main-box .panel .panel-body .new-row .enter-button:hover:active {
+  background-color: #87a829;
+  box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
+}
 .main-box .panel .panel-body .new-row .enter-button:active,
 .main-box .panel .panel-body .new-row .enter-button[disabled],
 fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button {
@@ -16891,11 +17083,11 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button {
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
-  -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
-  -ms-transition: all 0.1s ease-out;
-  -o-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
   color: #ffffff;
   background-color: #a1c931;
   border-color: #91b42c;
@@ -16978,6 +17170,14 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button-half.acti
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
 }
+.main-box .panel .panel-body .new-row .enter-button-half:hover {
+  background-color: #b1d44f;
+  box-shadow: 0px 5px 0px rgba(177, 212, 79, 0.5);
+}
+.main-box .panel .panel-body .new-row .enter-button-half:hover:active {
+  background-color: #87a829;
+  box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
+}
 .main-box .panel .panel-body .new-row .enter-button-half:active,
 .main-box .panel .panel-body .new-row .enter-button-half[disabled],
 fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button-half {
@@ -17006,11 +17206,11 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button-half {
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
-  -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
-  -ms-transition: all 0.1s ease-out;
-  -o-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
   color: #ffffff;
   background-color: #afafaf;
   border-color: #cccccc;
@@ -17087,6 +17287,14 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half.act
 .main-box .panel .panel-body .new-row .cancel-button-half .badge {
   color: #afafaf;
   background-color: #ffffff;
+}
+.main-box .panel .panel-body .new-row .cancel-button-half:hover {
+  background-color: #c3c3c3;
+  box-shadow: 0px 5px 0px rgba(195, 195, 195, 0.5);
+}
+.main-box .panel .panel-body .new-row .cancel-button-half:hover:active {
+  background-color: #9b9b9b;
+  box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
 }
 .main-box .panel .panel-body .new-row .cancel-button-half:active,
 .main-box .panel .panel-body .new-row .cancel-button-half[disabled],
@@ -17468,11 +17676,11 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
-  -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
-  -ms-transition: all 0.1s ease-out;
-  -o-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
   background-color: #59add5;
   border-color: #cccccc;
   box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
@@ -17552,6 +17760,14 @@ fieldset[disabled] .profile-content .action-button.active {
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
 }
+.profile-content .action-button:hover {
+  background-color: #7abddd;
+  box-shadow: 0px 5px 0px rgba(122, 189, 221, 0.5);
+}
+.profile-content .action-button:hover:active {
+  background-color: #389dcd;
+  box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
+}
 .profile-content .action-button:active,
 .profile-content .action-button[disabled],
 fieldset[disabled] .profile-content .action-button {
@@ -17580,11 +17796,11 @@ fieldset[disabled] .profile-content .action-button {
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
-  -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
-  -ms-transition: all 0.1s ease-out;
-  -o-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
   background-color: #a1c931;
   border-color: #91b42c;
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
@@ -17663,6 +17879,14 @@ fieldset[disabled] .profile-content .add-funds-button.active {
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
+}
+.profile-content .add-funds-button:hover {
+  background-color: #b1d44f;
+  box-shadow: 0px 5px 0px rgba(177, 212, 79, 0.5);
+}
+.profile-content .add-funds-button:hover:active {
+  background-color: #87a829;
+  box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
 }
 .profile-content .add-funds-button:active,
 .profile-content .add-funds-button[disabled],
@@ -17750,11 +17974,11 @@ fieldset[disabled] .profile-content .add-funds-button {
     -ms-user-select: none;
     user-select: none;
     border-width: 0;
-    -webkit-transition: all 0.1s ease-out;
-    -moz-transition: all 0.1s ease-out;
-    -ms-transition: all 0.1s ease-out;
-    -o-transition: all 0.1s ease-out;
-    transition: all 0.1s ease-out;
+    -webkit-transition: all 0.15s linear;
+    -moz-transition: all 0.15s linear;
+    -ms-transition: all 0.15s linear;
+    -o-transition: all 0.15s linear;
+    transition: all 0.15s linear;
     background-color: #59add5;
     border-color: #cccccc;
     box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
@@ -17834,6 +18058,14 @@ fieldset[disabled] .profile-content .add-funds-button {
     box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
     color: #f8f8f8 !important;
     cursor: not-allowed !important;
+  }
+  .profile-content .personal-data .action-button:hover {
+    background-color: #7abddd;
+    box-shadow: 0px 5px 0px rgba(122, 189, 221, 0.5);
+  }
+  .profile-content .personal-data .action-button:hover:active {
+    background-color: #389dcd;
+    box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   }
   .profile-content .personal-data .action-button:active,
   .profile-content .personal-data .action-button[disabled],
@@ -17929,11 +18161,11 @@ fieldset[disabled] .profile-content .add-funds-button {
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
-  -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
-  -ms-transition: all 0.1s ease-out;
-  -o-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
   background-color: #59add5;
   border-color: #cccccc;
   box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
@@ -18015,6 +18247,14 @@ fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
 }
+.profile-content .pocket-data .button-wrapper .action-button-transaction:hover {
+  background-color: #7abddd;
+  box-shadow: 0px 5px 0px rgba(122, 189, 221, 0.5);
+}
+.profile-content .pocket-data .button-wrapper .action-button-transaction:hover:active {
+  background-color: #389dcd;
+  box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
+}
 .profile-content .pocket-data .button-wrapper .action-button-transaction:active,
 .profile-content .pocket-data .button-wrapper .action-button-transaction[disabled],
 fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-transaction {
@@ -18043,11 +18283,11 @@ fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
-  -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
-  -ms-transition: all 0.1s ease-out;
-  -o-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
   background-color: #59add5;
   border-color: #cccccc;
   box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
@@ -18127,6 +18367,14 @@ fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
+}
+.profile-content .pocket-data .button-wrapper .action-button-get-funds:hover {
+  background-color: #7abddd;
+  box-shadow: 0px 5px 0px rgba(122, 189, 221, 0.5);
+}
+.profile-content .pocket-data .button-wrapper .action-button-get-funds:hover:active {
+  background-color: #389dcd;
+  box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
 }
 .profile-content .pocket-data .button-wrapper .action-button-get-funds:active,
 .profile-content .pocket-data .button-wrapper .action-button-get-funds[disabled],
@@ -18308,11 +18556,11 @@ fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
-  -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
-  -ms-transition: all 0.1s ease-out;
-  -o-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
   color: #ffffff;
   background-color: #afafaf;
   border-color: #cccccc;
@@ -18392,6 +18640,14 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-cancel-contest.activ
   color: #afafaf;
   background-color: #ffffff;
 }
+.view-contest-entry-actions-wrapper .btn-cancel-contest:hover {
+  background-color: #c3c3c3;
+  box-shadow: 0px 5px 0px rgba(195, 195, 195, 0.5);
+}
+.view-contest-entry-actions-wrapper .btn-cancel-contest:hover:active {
+  background-color: #9b9b9b;
+  box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
+}
 .view-contest-entry-actions-wrapper .btn-cancel-contest:active,
 .view-contest-entry-actions-wrapper .btn-cancel-contest[disabled],
 fieldset[disabled] .view-contest-entry-actions-wrapper .btn-cancel-contest {
@@ -18420,11 +18676,11 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-cancel-contest {
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
-  -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
-  -ms-transition: all 0.1s ease-out;
-  -o-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
   color: #ffffff;
   background-color: #a1c931;
   border-color: #91b42c;
@@ -18500,6 +18756,14 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-back-contest.active 
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
+}
+.view-contest-entry-actions-wrapper .btn-back-contest:hover {
+  background-color: #b1d44f;
+  box-shadow: 0px 5px 0px rgba(177, 212, 79, 0.5);
+}
+.view-contest-entry-actions-wrapper .btn-back-contest:hover:active {
+  background-color: #87a829;
+  box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
 }
 .view-contest-entry-actions-wrapper .btn-back-contest:active,
 .view-contest-entry-actions-wrapper .btn-back-contest[disabled],
@@ -18679,11 +18943,11 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-back-contest {
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
-  -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
-  -ms-transition: all 0.1s ease-out;
-  -o-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
   color: #ffffff;
   background-color: #a1c931;
   border-color: #91b42c;
@@ -18760,6 +19024,14 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play.active 
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
+}
+#helpInfo .block-last .description-right .button-play:hover {
+  background-color: #b1d44f;
+  box-shadow: 0px 5px 0px rgba(177, 212, 79, 0.5);
+}
+#helpInfo .block-last .description-right .button-play:hover:active {
+  background-color: #87a829;
+  box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
 }
 #helpInfo .block-last .description-right .button-play:active,
 #helpInfo .block-last .description-right .button-play[disabled],
@@ -19235,11 +19507,11 @@ html {
 }
 .btn {
   border-width: 0;
-  -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
-  -ms-transition: all 0.1s ease-out;
-  -o-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
 }
 .btn-pressed:active,
 .btn-pressed[disabled],
@@ -19254,6 +19526,14 @@ fieldset[disabled] .btn-pressed {
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
+}
+.btn-default:hover {
+  background-color: #7abddd;
+  box-shadow: 0px 5px 0px rgba(122, 189, 221, 0.5);
+}
+.btn-default:hover:active {
+  background-color: #389dcd;
+  box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
 }
 .btn-default:active,
 .btn-default[disabled],
@@ -19271,6 +19551,14 @@ fieldset[disabled] .btn-default {
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
+}
+.btn-primary:hover {
+  background-color: #b1d44f;
+  box-shadow: 0px 5px 0px rgba(177, 212, 79, 0.5);
+}
+.btn-primary:hover:active {
+  background-color: #87a829;
+  box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
 }
 .btn-primary:active,
 .btn-primary[disabled],
@@ -19323,6 +19611,14 @@ fieldset[disabled] .btn-cancel.active {
   color: #afafaf;
   background-color: #ffffff;
 }
+.btn-cancel:hover {
+  background-color: #c3c3c3;
+  box-shadow: 0px 5px 0px rgba(195, 195, 195, 0.5);
+}
+.btn-cancel:hover:active {
+  background-color: #9b9b9b;
+  box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
+}
 .btn-cancel:active,
 .btn-cancel[disabled],
 fieldset[disabled] .btn-cancel {
@@ -19374,6 +19670,14 @@ fieldset[disabled] .btn-orange.active {
   color: #fa9c19;
   background-color: #ffffff;
 }
+.btn-orange:hover {
+  background-color: #fbad41;
+  box-shadow: 0px 5px 0px rgba(251, 173, 65, 0.5);
+}
+.btn-orange:hover:active {
+  background-color: #e58805;
+  box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
+}
 .btn-orange:active,
 .btn-orange[disabled],
 fieldset[disabled] .btn-orange {
@@ -19399,15 +19703,16 @@ fieldset[disabled] .btn-orange {
   -ms-user-select: none;
   user-select: none;
   border-width: 0;
-  -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
-  -ms-transition: all 0.1s ease-out;
-  -o-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
   color: #ffffff;
   background-color: #59add5;
   border-color: #cccccc;
   box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
+  box-shadow: 0px 5px 0px rgba(94, 121, 181, 0.5);
   padding-left: 30px;
   padding-right: 30px;
   background-color: #4a65a0;
@@ -19482,6 +19787,14 @@ fieldset[disabled] .button-fb.active {
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
 }
+.button-fb:hover {
+  background-color: #7abddd;
+  box-shadow: 0px 5px 0px rgba(122, 189, 221, 0.5);
+}
+.button-fb:hover:active {
+  background-color: #389dcd;
+  box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
+}
 .button-fb:active,
 .button-fb[disabled],
 fieldset[disabled] .button-fb {
@@ -19491,10 +19804,17 @@ fieldset[disabled] .button-fb {
 .button-fb:focus {
   outline: none !important;
 }
-.button-fb:hover,
+.button-fb:hover {
+  background-color: #5e79b5;
+  box-shadow: 0px 5px 0px rgba(94, 121, 181, 0.5);
+}
+.button-fb:hover:active {
+  background-color: #3d5384;
+  box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
+}
 .button-fb:active,
 .button-fb:focus {
-  background-color: #374b76;
+  background-color: #3d5384;
   background-position: 0 -15px;
 }
 .button-fb::before {

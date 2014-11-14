@@ -79,7 +79,7 @@ html { overflow-y: scroll; }
 
 .btn {
 	border-width: 0;
-    .transition(all, 0.1s, ease-out);
+    .transition(all, 0.15s, linear);
 }
 .btn-pressed {
 	&:active,
@@ -96,6 +96,14 @@ html { overflow-y: scroll; }
 		color: @greyUltraLight !important;
 		cursor: not-allowed !important;
 	}	
+	&:hover {
+		background-color: lighten(@blueLight, 8%);
+	    box-shadow: 0px 5px 0px rgba(red(lighten(@blueLight, 8%)), green(lighten(@blueLight, 8%)), blue(lighten(@blueLight, 8%)), 0.5);
+        &:active {
+		    background-color: darken(@blueLight, 8%);
+		    box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
+        }
+    }
 	.btn-pressed();
 	&:focus{
 		outline: none !important;
@@ -109,6 +117,14 @@ html { overflow-y: scroll; }
 		color: @greyUltraLight !important;
 		cursor: not-allowed !important;
 	}
+	&:hover {
+		background-color: lighten(@green, 8%);
+	    box-shadow: 0px 5px 0px rgba(red(lighten(@green, 8%)), green(lighten(@green, 8%)), blue(lighten(@green, 8%)), 0.5);
+        &:active {
+		    background-color: darken(@green, 8%);
+		    box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
+        }
+    }
 	.btn-pressed();
 	&:focus{
 		outline: none !important;
@@ -119,6 +135,14 @@ html { overflow-y: scroll; }
 .btn-cancel {
 	.button-variant(@btn-default-color; @greyMed; @btn-default-border);
 	box-shadow: 0px 5px 0px rgba(red(@greyMed), green(@greyMed), blue(@greyMed), 0.5);
+	&:hover {
+		background-color: lighten(@greyMed, 8%);
+	    box-shadow: 0px 5px 0px rgba(red(lighten(@greyMed, 8%)), green(lighten(@greyMed, 8%)), blue(lighten(@greyMed, 8%)), 0.5);
+        &:active {
+		    background-color: darken(@greyMed, 8%);
+		    box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
+        }
+    }
 	.btn-pressed();
 	&:focus{
 		outline: none !important;
@@ -129,17 +153,34 @@ html { overflow-y: scroll; }
 .btn-orange {
 	.button-variant(@btn-default-color; @orange; @btn-default-border);
 	box-shadow: 0px 5px 0px rgba(red(@orange), green(@orange), blue(@orange), 0.5);
+	&:hover {
+		background-color: lighten(@orange, 8%);
+	    box-shadow: 0px 5px 0px rgba(red(lighten(@orange, 8%)), green(lighten(@orange, 8%)), blue(lighten(@orange, 8%)), 0.5);
+        &:active {
+		    background-color: darken(@orange, 8%);
+		    box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
+        }
+    }
 	.btn-pressed();
 }
 
 .button-fb {
 	.btn();
 	.btn-default();
+	box-shadow: 0px 5px 0px rgba(red(lighten(@blueFB, 8%)), green(lighten(@blueFB, 8%)), blue(lighten(@blueFB, 8%)), 0.5);
 	padding-left: 30px;
 	padding-right: 30px;
 	background-color: @blueFB;
-	&:hover, &:active, &:focus  {
-		background-color: darken(@blueFB, 12%);
+	&:hover {
+		background-color: lighten(@blueFB, 8%);
+	    box-shadow: 0px 5px 0px rgba(red(lighten(@blueFB, 8%)), green(lighten(@blueFB, 8%)), blue(lighten(@blueFB, 8%)), 0.5);
+        &:active {
+		    background-color: darken(@blueFB, 8%);
+		    box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
+        }
+    }
+    &:active, &:focus  {
+		background-color: darken(@blueFB, 8%);
 		background-position: 0 -15px;
 	}
 	&::before {

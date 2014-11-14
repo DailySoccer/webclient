@@ -1112,7 +1112,7 @@ tc.put("packages/webclient/components/landing_page_comp.html", new HttpResponse(
   <!-- Portada Versión Desktop -->
   <div id="desktopContent" ng-if="!scrDet.isXsScreen" class="first-screen" style="height:{{screenHeight}}px">
     <div class="screen-pattern" src="images/pattern.png"></div>
-    <div class="beta-label"><img src="images/beta.png"/></div>
+
     <div class="main-title-wrapper">
 
       <div class="main-title">LIGAS FANTÁSTICAS DIARIAS</div>
@@ -1143,6 +1143,7 @@ tc.put("packages/webclient/components/landing_page_comp.html", new HttpResponse(
       </div>
 
     </div>
+    <div class="beta-label"><img src="images/beta.png"/></div>
 
     <!-- Separador -->
     <a class="wrapping-link" href="#screen2">
@@ -1152,6 +1153,7 @@ tc.put("packages/webclient/components/landing_page_comp.html", new HttpResponse(
       </span>
     </a>
   </div>
+
   <!-- END Portada Versión Desktop -->
 
   <!-- Portada Versión Móvil -->

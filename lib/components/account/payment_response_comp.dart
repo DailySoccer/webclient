@@ -10,8 +10,13 @@ import 'package:webclient/services/payment_service.dart';
 )
 class PaymentResponseComp {
 
-  PaymentResponseComp(this._router, this._paymentService);
+  String result;
+
+  PaymentResponseComp(this._routeProvider, this._router, this._paymentService) {
+    result = _routeProvider.route.parameters['result'];
+  }
 
   PaymentService _paymentService;
+  RouteProvider _routeProvider;
   Router _router;
 }

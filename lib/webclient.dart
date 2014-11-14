@@ -46,6 +46,7 @@ import 'package:webclient/components/account/edit_personal_data_comp.dart';
 import 'package:webclient/components/account/remember_password_comp.dart';
 import 'package:webclient/components/account/change_password_comp.dart';
 import 'package:webclient/components/account/payment_comp.dart';
+import 'package:webclient/components/account/payment_response_comp.dart';
 
 import 'package:webclient/components/my_contests_comp.dart';
 import 'package:webclient/components/view_contest/view_contest_entry_comp.dart';
@@ -151,6 +152,7 @@ class WebClientApp extends Module {
     bind(UserProfileComp);
     bind(EditPersonalDataComp);
     bind(PaymentComp);
+    bind(PaymentResponseComp);
 
     bind(RouteInitializerFn, toValue: webClientRouteInitializer);
     bind(NgRoutingUsePushState, toValue: new NgRoutingUsePushState.value(false));

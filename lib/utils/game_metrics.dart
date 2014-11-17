@@ -48,8 +48,9 @@ class GameMetrics {
                               }
                             );
 
-    JsUtils.runJavascript(null, "google_trackConversion", trackParameters,
-                          false, "window");
+
+    //JsUtils.runJavascript(null, "google_trackConversion", trackParameters,
+    //                      false, "window");
   }
 
 }

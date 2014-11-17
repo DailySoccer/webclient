@@ -2302,7 +2302,8 @@ tc.put("packages/webclient/components/navigation/main_menu_slide_comp.html", new
   <div class="inner-wrapper">
 
     <div id="menuLoggedIn">
-      <!-- lcabecera when logeado -->
+      
+      <!-- Cabecera when logeado -->
       <div class="navbar-header"  ng-show="profileService.isLoggedIn">
         <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target="#menuSlide" data-canvas="body" id="toggleSlideMenu">
           <span class="icon-bar"></span>
@@ -2311,12 +2312,13 @@ tc.put("packages/webclient/components/navigation/main_menu_slide_comp.html", new
         </button>
         <div id="brandLogoLogged" class="navbar-brand" ng-click="navigateTo($event)" destination="lobby" ng-class="['loggedIn-brand']" ng-model="checkForActiveElement()"></div>
       </div>
+      
       <!-- Opciones del menu -->
       <div id="menuSlide" class="navbar-offcanvas navmenu-fixed offcanvas" ng-if="profileService.isLoggedIn">
         <ul class="nav navbar-nav">
-          <li highlights="lobby"> <a  id="menuLobby"                ng-click="navigateTo($event)" destination="lobby">Buscar Torneos</a></li>
-          <li highlights="my_contests">          <a  id="menuMy_Contest"           ng-click="navigateTo($event)" destination="my_contests">Mis torneos</a></li>
-          <li highlights="">                     <a  id="menuPromos"               ng-click="navigateTo($event)" destination="beta_info">Promos</a></li>
+          <li highlights="lobby">      <a  id="menuLobby"      ng-click="navigateTo($event)" destination="lobby">Buscar Torneos</a></li>
+          <li highlights="my_contests"><a  id="menuMy_Contest" ng-click="navigateTo($event)" destination="my_contests">Mis torneos</a></li>
+          <li highlights="">           <a  id="menuPromos"     ng-click="navigateTo($event)" destination="beta_info">Promos</a></li>
           <li highlights="user" class="right-menu">
             <a id="menuUser" class="dropdown-toggle" data-toggle="dropdown">{{userNickName}}</a>
             <ul class="dropdown-menu">
@@ -2333,9 +2335,10 @@ tc.put("packages/webclient/components/navigation/main_menu_slide_comp.html", new
          <!--  <li class="right-menu"><span class="current-balance">35.000€</span><button class="add-funds-button">AÑADIR FONDOS</button></li> -->
         </ul>
       </div>
+      
     </div>
 
-    <!-- lcabecera when NO logeado -->
+    <!-- Cabecera when NO logeado -->
     <div class="navbar-header-unloggin" ng-if="!profileService.isLoggedIn">
       <div id="brandLogoNotLogged" class="navbar-brand" ng-click="navigateTo($event)" destination="landing_page"></div>
       <div class="button-wrapper">

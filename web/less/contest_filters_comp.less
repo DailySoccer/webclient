@@ -70,24 +70,28 @@
 				border-color: @greyUltraDark;
 				color: @greyDark;
 				padding: 6px 23px;
-				&:hover{
+				&:hover, &:active, &:focus{
 					background-color: transparent;
 					border-width: 1px;
 					color: @greyUltraDark;
 					border-color: @greyUltraDark;
-				}
-				&:active{
 					margin: 0;
 				}
-			} 
+
+			}
+
 			//flechitas que indican el orden de filtrado
 			.asc::after{
 				.create-glyph("\E113", 5pt, @greyUltraDark);
 				margin-left: 5px;
+				background-color: transparent;
+				color: @greyUltraDark;
 			}	
 			.desc::after{
 				.create-glyph("\E114", 5pt, @greyUltraDark);
 				margin-left: 5px;
+				background-color: transparent;
+				color: @greyUltraDark;
 			}
 		}
 		//búsqueda por nombre
@@ -148,8 +152,10 @@
 				height: 32px;
 			}
 			.filters-button{
+				.btn();
 				.btn-default();
 				@media (min-width:  @screen-sm-min) {
+
 					.opensans_bold(8pt, @greyUltraDark);
 					line-height: 29px;
 					box-shadow: none;
@@ -157,12 +163,12 @@
 					border-color: @greyUltraDark;
 					color: @greyDark;
 					padding:0;
-					&:hover{
+					&:hover, &:active, &:focus {
+						margin: 0;
 						background-color: transparent;
 						color: @greyUltraDark;
 						border-color: @greyUltraDark;
 					}
-					&:active {margin: 0;}
 				} 
 			}
 		}

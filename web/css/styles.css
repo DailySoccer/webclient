@@ -11078,28 +11078,30 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters #contestFastSort .so
     color: #434343;
   }
 }
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:hover {
+#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:hover,
+#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:active,
+#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:focus {
   background-color: transparent;
   border-width: 1px;
   color: #434343;
   border-color: #434343;
-}
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:active {
   margin: 0;
 }
 #contestFiltersRoot #contestSortsFilters #contestFastSort .asc::after {
   font-family: 'Glyphicons Halflings';
   content: "\E113";
   font-size: 5pt;
-  color: #434343;
   margin-left: 5px;
+  background-color: transparent;
+  color: #434343;
 }
 #contestFiltersRoot #contestSortsFilters #contestFastSort .desc::after {
   font-family: 'Glyphicons Halflings';
   content: "\E114";
   font-size: 5pt;
-  color: #434343;
   margin-left: 5px;
+  background-color: transparent;
+  color: #434343;
 }
 #contestFiltersRoot #contestSortsFilters #contestFastSearch {
   position: relative;
@@ -11293,10 +11295,62 @@ textarea#contestFiltersRoot #contestSortsFilters #contestFastSearch .searcher {
   }
 }
 #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  -webkit-transition: all 0.1s ease-out;
+  -moz-transition: all 0.1s ease-out;
+  -ms-transition: all 0.1s ease-out;
+  -o-transition: all 0.1s ease-out;
+  transition: all 0.1s ease-out;
   color: #ffffff;
   background-color: #59add5;
   border-color: #cccccc;
   box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
+}
+#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:focus,
+#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:active:focus,
+#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:hover,
+#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:active,
+#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button.disabled,
+#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button[disabled],
+fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:hover,
 #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:focus,
@@ -11361,13 +11415,13 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
     color: #777777;
     padding: 0;
   }
-  #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:hover {
+  #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:hover,
+  #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:active,
+  #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:focus {
+    margin: 0;
     background-color: transparent;
     color: #434343;
     border-color: #434343;
-  }
-  #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:active {
-    margin: 0;
   }
 }
 #contestFiltersRoot #contestSortsFilters .toggleOff::after {

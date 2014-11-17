@@ -117,10 +117,6 @@ main-menu-slide {
 	  	.navbar-nav .active a::after {
 	  		color: @white;
 	  	}
-	  	.navbar-nav .right-menu + .right-menu {
-	  		text-align: center;
-	  	}
-
 	  	.add-funds-button {
 			.btn();
 			.btn-primary();
@@ -160,108 +156,93 @@ main-menu-slide {
 	    }
   	}
 
-	// elementos del menu reducido:
-    @media (max-width: @screen-xs-max) {        
-        .navbar-offcanvas {
-        	background-color: @greyUltraDark;
-        	//caja menu ppal.
-			& ul {
+	// Elementos del menu reducido:
+    @media (max-width: @screen-xs-max) {
+
+		// Icono que abre el menu
+		#toggleSlideMenu {
+		  	.make-border(0px, none none none none, @black);
+			.icon-bar {
 				background-color: @white;
-				// li activo
-				& > .active, li {
-					background-color: transparent;
-					//anchor del activo
-					& > a {	
-						background-color: transparent;
-						.opensans_bold(10pt, @black);
-					}
-					// li del activo en hover
-					&:hover {
-						background-color: transparent;
-						//anchor del activo en hover
-						& > a {
-							background-color: transparent;
-							.opensans_bold(10pt, @black);
-						}
-					}
-				}
-				// Elementos li no activos
-				& >li {
+				height: 3px;
+			}
+		  	margin-top: 15px;
+		  	margin-right: 0;
+		    &:hover, &:focus {
+	    		background-color: transparent;
+		 	}
+		}
+
+		// Sistema de animacion
+		.offcanvas-start {
+			// Estado inicial
+			.translateX(0px);
+			right: -300px;
+
+			.transition(.3s ease all);			
+
+    		// Estado "dentro" (final)
+    		&.in {
+    			.translateX(-300px);
+			}
+		}
+
+        #menuSlide {
+			background-color: @greyUltraDark;
+
+			position: fixed;
+			width: 300px;
+			top: 70px;
+			bottom: 0px;
+			
+	    	// Caja menu ppal.
+			.navbar-nav {
+				background-color: @white;
+				margin: 0px;
+
+				li {
 					.make-border(1px, solid none none none, @greyLight);
-					//anchor de los elementos no activos
-					& > a {
-						.opensans_normal(10pt, @greyDark);
-						cursor: pointer;
-					}
-					& > a::after {
-	        			//.create-glyph("\E080", 9pt, @black);
+					.opensans_normal(10pt, @greyDark);
+					cursor: pointer;
+
+					// Flechita cerrada/abierta del menu dropdown de usuario
+					> .dropdown-toggle::after {
+	        			.create-glyph("\E080", 9pt, #999999);
 	        			position: absolute;
 	        			top: 12px;
 	        			right: 12px;
 	        		}
-					// Elementos li en no activos en hover
-					&:hover {
-						background-color: @greyLight;
-						//anchor de los elementos li no activos en hover
-						> a {
-							.opensans_normal(10pt, @greyDark);
-						}
-						& > a::after {
-	        				color: #999 ;
-	        			}
+	        		&.active {
+						.opensans_bold(10pt, @black);
 					}
-        		}
+					// Submenu de usuario
+					&.right-menu.open {
+						> a, > a:focus, > a:hover {
+							background-color: @greyLight;
+							color: @black;
+						}
+						// Cambiamos la flechita a abierto
+						> a::after {
+				  			.create-glyph("\E114", 9pt, #999999) !important;
+				  		}
+					}
+	    		}
 			}
-			//submenu de usuario abierto
-			.navbar-nav > .open {
-				& > a, & > a:focus, & > a:hover {
-					background-color: @greyLight;
-					color: @black;
-				}
-				.dropdown-menu > li {
-					& > a:hover, & > a:focus {
+
+	  		ul.dropdown-menu {
+				padding: 0px;
+		        > li {
+		        	> a {
+			            cursor:pointer;
+			            padding: 10px 0px 10px 40px;
+			        }
+					> a:hover, > a:focus {
 						color:@black;
 						background-color: @greyLight;
 					}
 				}
-			}
-
-			.navbar-nav .right-menu > a::after {
-	  			.create-glyph("\E080", 9pt, #999999);
-	  			margin-left: 5px;
-	  		}
-	  		.open > a::after {
-	  			.create-glyph("\E114", 9pt, #999999) !important;
-	  			margin-left: 5px;
-	  		}
-		    .navbar-nav .right-menu + .right-menu {
-		    	display: none;
-		    }
-	  		.dropdown-menu {
-				padding: 0px;
-		        & li > a {
-		            cursor:pointer;
-		            padding: 10px 0px 10px 40px;
-		        }
 		    }
         }
-
-		// Icono que abre el menu
-        .navbar-toggle {
-        	margin-right: 0;
-			     &:hover, &:focus {
-		    	 background-color: transparent;
-			 }
-		}
-		#toggleSlideMenu {
-		  	.make-border(0px, none none none none, @black);
-			.icon-bar {
-				height: 3px;
-			}
-			float: right;
-		  	background-color: transparent;
-		  	margin-top: 15px;
-		}
     }
 
 

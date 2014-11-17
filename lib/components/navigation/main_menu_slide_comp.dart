@@ -2,7 +2,6 @@ library main_menu_slide_comp;
 
 import 'package:angular/angular.dart';
 import 'package:webclient/services/profile_service.dart';
-import 'package:webclient/utils/js_utils.dart';
 import 'dart:html';
 import 'package:webclient/services/screen_detector_service.dart';
 
@@ -11,64 +10,68 @@ import 'package:webclient/services/screen_detector_service.dart';
     templateUrl: 'packages/webclient/components/navigation/main_menu_slide_comp.html',
     useShadowDom: false
 )
-class MainMenuSlideComp {
+class MainMenuSlideComp implements ShadowRootAware {
 
   ProfileService profileService;
   ScreenDetectorService scrDet;
   int maxNicknameLength = 30;
   String get userNickName => profileService.user.nickName.length > maxNicknameLength ? profileService.user.nickName.substring(0, maxNicknameLength-3) + "..." : profileService.user.nickName;
 
-  String currentRouteName;
-
-  MainMenuSlideComp(this._router, this.profileService, this.scrDet, this._rootElement) {
+  MainMenuSlideComp(this._router, this.profileService, this.scrDet, this._rootElement, this._view) {
 
     _router.onRouteStart.listen((RouteStartEvent event) {
       event.completed.then((_) {
-        _elementActivated = false;
         if (_router.activePath.length > 0) {
-          currentRouteName = _router.activePath[0].name;
-          updateActiveElement(currentRouteName);
-        }
-        else {
-          currentRouteName = null;
+          _updateActiveElement(_router.activePath[0].name);
         }
       });
     });
   }
 
-  void checkForActiveElement() {
-    if(_elementActivated) {
-      return;
+  @override void onShadowRoot(emulatedRoot) {
+    _view.domRead(() {
+      _rootElement.querySelector("#toggleSlideMenu").onClick.listen(_onToggleSlideMenuClick);
+      _menuSlideElement = _rootElement.querySelector("#menuSlide");
+    });
+  }
+
+  void _onToggleSlideMenuClick(MouseEvent e) {
+
+    if (_slideState == "hidden") {
+      _menuSlideElement.classes.remove("hidden-xs");
+      _slideState = "slid";
+
+      // Tenemos que dar un frame al browser para que calcule la posicion inicial
+      window.animationFrame.then((_) {
+        _menuSlideElement.classes.add("in");
+      });
     }
-    if (_router.activePath.length > 0) {
-      currentRouteName = _router.activePath[0].name;
-      updateActiveElement(currentRouteName);
-    }
-    else
-    {
-      updateActiveElement('lobby');
+    else {
+      _menuSlideElement.classes.remove("in");
+      _slideState = "hidden";
     }
   }
 
-  void updateActiveElement(String name) {
-      LIElement oldLi = _rootElement.querySelector("#mainMenu li.active");
-      if (oldLi != null) {
-        oldLi.classes.remove('active');
-      }
-      LIElement li = querySelector("[highlights=${name}]");
-      if (li != null ) {
-        li.classes.add('active');
-        _elementActivated = true;
-      }
-      else {
-        if ( name.contains('user') || name == 'help_info') {
-          LIElement li = _rootElement.querySelector('[highlights="user"]');
-          if (li != null ) {
-            li.classes.add('active');
-            _elementActivated = true;
-          }
-        }
-      }
+  void _updateActiveElement(String name) {
+
+    LIElement li = _rootElement.querySelector("#mainMenu li.active");
+    if (li != null) {
+      li.classes.remove('active');
+    }
+
+    li = querySelector("[highlights=${name}]");
+
+    if (li == null && _isRouteNameInsideUserMenu(name)) {
+      li = _rootElement.querySelector('[highlights="user"]');
+    }
+
+    if (li != null) {
+      li.classes.add('active');
+    }
+  }
+
+  bool _isRouteNameInsideUserMenu(String name) {
+    return name.contains('user') || name == 'help_info';
   }
 
   void navigateTo(event, [Map params]) {
@@ -78,9 +81,11 @@ class MainMenuSlideComp {
 
     String destination = event.target.attributes["destination"];
 
+    /*
     if (profileService.isLoggedIn && scrDet.isXsScreen && !event.target.id.contains("brandLogo")){
          JsUtils.runJavascript('.navbar-offcanvas.navmenu-fixed', 'offcanvas', 'toggle');
     }
+    */
 
     if (destination.isNotEmpty) {
       _router.go(destination, params);
@@ -88,17 +93,16 @@ class MainMenuSlideComp {
   }
 
   void logOut() {
-    JsUtils.runJavascript('.navbar-offcanvas.navmenu-fixed', 'offcanvas', 'hide');
+    //JsUtils.runJavascript('.navbar-offcanvas.navmenu-fixed', 'offcanvas', 'hide');
     _router.go('landing_page', {});
     profileService.logout();
-    _currentActiveElement = null;
   }
 
 
   Element _rootElement;
-  LIElement _currentActiveElement;
+  Element _menuSlideElement;
   Router _router;
+  View _view;
 
-  bool _linkActualizado = false;
-  bool _elementActivated = false;
+  String _slideState = "hidden";
 }

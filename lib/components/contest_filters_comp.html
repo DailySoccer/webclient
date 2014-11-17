@@ -29,8 +29,10 @@
 
 <div id="filtersPanel" class="collapse">
 
+  <div class="filters-panel-row">
+
     <!-- Filtro x tipos de concurso -->
-    <div class="filter-column-tournaments">
+    <div class="filter-column-competition">
       <p class="filter-title">COMPETICION</p>
       <div class="filter-content">
         <div class="check-group-wrapper">
@@ -91,10 +93,15 @@
       </div>
     </div>
 
-    <div class="reset-button-wrapper">
-      <button type="button" class="btn-reset" ng-click="resetAllFilters()">LIMPIAR FILTROS</button>
-    </div>
-    <div class="confirm-button-wrapper">
-      <button type="button" class="btn-confirm" ng-click="toggleFilterMenu()">ACEPTAR</button>
-    </div>
+  </div>
+  <div class="filters-panel-row">
+
+      <div class="reset-button-wrapper">
+        <button type="button" class="btn-reset" ng-click="resetAllFilters()">LIMPIAR FILTROS</button>
+      </div>
+      <div class="confirm-button-wrapper">
+        <button type="button" class="btn-confirm" ng-click="toggleFilterMenu()">ACEPTAR</button>
+      </div>
+
+  </div>
 </div>

@@ -5,10 +5,16 @@ import 'package:webclient/utils/host_server.dart';
 
 class GameMetrics {
 
-  static String LIVE_CONTEST_VISITED = "Visitado Live Contest";
+  static String SIGNUP_ATTEMPTED = "Sign up attempted";
+  static String SIGNUP_SUCCESSFUL = "Sign up successful";
   static String LOGIN_ATTEMPTED = "Login attempted";
+  static String LOGIN_SUCCESSFUL = "Login successful";
   static String CHANGE_PASSWORD_ATTEMPTED = "Change Password attempted";
-  static String SUCCESSFUL_SIGNUP = "Sign up successful";
+  static String LOBBY = "Lobby";
+  static String VIEW_CONTEST = "View contest";
+  static String ENTER_CONTEST = "Entered enter contest";
+  static String TEAM_CREATED = "Created a team";
+  static String LIVE_CONTEST_VISITED = "Visitado Live Contest";
 
   static void aliasMixpanel(String email) {
     JsUtils.runJavascript(null, "alias", email, false, "mixpanel");

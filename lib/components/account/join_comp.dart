@@ -6,6 +6,7 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/models/connection_error.dart';
+import 'package:webclient/utils/game_metrics.dart';
 
 @Component(
     selector: 'join',
@@ -41,6 +42,8 @@ class JoinComp implements ShadowRootAware {
   }
 
   void submitSignup() {
+    GameMetrics.logEvent(GameMetrics.SIGNUP_ATTEMPTED);
+
     nicknameError.parent.style.display = "none";
     emailError.parent.style.display = "none";
     passwordError.parent.style.display = "none";
@@ -60,6 +63,7 @@ class JoinComp implements ShadowRootAware {
     _profileService.signup(firstName, lastName, email, nickName, password)
         .then((_) =>  _profileService.login(email, password))
           .then((_) {
+            GameMetrics.logEvent(GameMetrics.SIGNUP_SUCCESSFUL);
             loadingService.isLoading = false;
             _router.go('lobby', {});
         })

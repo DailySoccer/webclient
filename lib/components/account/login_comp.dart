@@ -75,6 +75,7 @@ class LoginComp implements ShadowRootAware {
 
     _profileManager.login(email, password)
         .then((_) {
+          GameMetrics.logEvent(GameMetrics.LOGIN_SUCCESSFUL);
           loadingService.isLoading = false;
           _router.go('lobby', {});
         })

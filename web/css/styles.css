@@ -1,298 +1,3 @@
-/*!
- * Jasny Bootstrap v3.1.3 (http://jasny.github.io/bootstrap)
- * Copyright 2012-2014 Arnold Daniels
- * Licensed under Apache-2.0 (https://github.com/jasny/bootstrap/blob/master/LICENSE)
- */
-.navmenu,
-.navbar-offcanvas {
-  width: 300px;
-  height: auto;
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 4px;
-}
-.navmenu-fixed-left,
-.navmenu-fixed-right,
-.navbar-offcanvas {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  z-index: 1030;
-  overflow-y: auto;
-  border-radius: 0;
-}
-.navmenu-fixed-left,
-.navbar-offcanvas.navmenu-fixed-left {
-  right: auto;
-  left: 0;
-  border-width: 0 1px 0 0;
-}
-.navmenu-fixed-right,
-.navbar-offcanvas {
-  right: 0;
-  left: auto;
-  border-width: 0 0 0 1px;
-}
-.navmenu-nav {
-  margin-bottom: 10px;
-}
-.navmenu-nav.dropdown-menu {
-  position: static;
-  float: none;
-  padding-top: 0;
-  margin: 0;
-  border: none;
-  border-radius: 0;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-}
-.navbar-offcanvas .navbar-nav {
-  margin: 0;
-}
-@media (min-width: 768px) {
-  .navbar-offcanvas {
-    width: auto;
-    border-top: 0;
-    box-shadow: none;
-  }
-  .navbar-offcanvas.offcanvas {
-    position: static;
-    display: block !important;
-    height: auto !important;
-    padding-bottom: 0;
-    overflow: visible !important;
-  }
-  .navbar-offcanvas .navbar-nav.navbar-left:first-child {
-    margin-left: -15px;
-  }
-  .navbar-offcanvas .navbar-nav.navbar-right:last-child {
-    margin-right: -15px;
-  }
-  .navbar-offcanvas .navmenu-brand {
-    display: none;
-  }
-}
-.offcanvas {
-  display: none;
-}
-.offcanvas.in {
-  display: block;
-}
-@media (max-width: 767px) {
-  .offcanvas-xs {
-    display: none;
-  }
-  .offcanvas-xs.in {
-    display: block;
-  }
-}
-@media (max-width: 991px) {
-  .offcanvas-sm {
-    display: none;
-  }
-  .offcanvas-sm.in {
-    display: block;
-  }
-}
-@media (max-width: 1199px) {
-  .offcanvas-md {
-    display: none;
-  }
-  .offcanvas-md.in {
-    display: block;
-  }
-}
-.offcanvas-lg {
-  display: none;
-}
-.offcanvas-lg.in {
-  display: block;
-}
-.canvas-sliding {
-  -webkit-transition: top .35s, left .35s, bottom .35s, right .35s;
-          transition: top .35s, left .35s, bottom .35s, right .35s;
-}
-.offcanvas-clone {
-  position: absolute !important;
-  top: auto !important;
-  right: 0 !important;
-  bottom: 0 !important;
-  left: auto !important;
-  width: 0 !important;
-  height: 0 !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  overflow: hidden !important;
-  border: none !important;
-  opacity: 0 !important;
-}
-
-
-/* Functional styling;
- * These styles are required for noUiSlider to function.
- * You don't need to change these rules to apply your design.
- */
-.noUi-target,
-.noUi-target * {
--webkit-touch-callout: none;
--webkit-user-select: none;
--ms-touch-action: none;
--ms-user-select: none;
--moz-user-select: none;
--moz-box-sizing: border-box;
-	box-sizing: border-box;
-}
-.noUi-base {
-	width: 100%;
-	height: 100%;
-	position: relative;
-}
-.noUi-origin {
-	position: absolute;
-	right: 0;
-	top: 0;
-	left: 0;
-	bottom: 0;
-}
-.noUi-handle {
-	position: relative;
-	z-index: 1;
-}
-.noUi-stacking .noUi-handle {
-/* This class is applied to the lower origin when
-   its values is > 50%. */
-	z-index: 10;
-}
-.noUi-stacking + .noUi-origin {
-/* Fix stacking order in IE7, which incorrectly
-   creates a new context for the origins. */
-	*z-index: -1;
-}
-.noUi-state-tap .noUi-origin {
--webkit-transition: left 0.3s, top 0.3s;
-	transition: left 0.3s, top 0.3s;
-}
-.noUi-state-drag * {
-	cursor: inherit !important;
-}
-
-/* Slider size and handle placement;
- */
-.noUi-horizontal {
-	height: 18px;
-}
-.noUi-horizontal .noUi-handle {
-	width: 34px;
-	height: 28px;
-	left: -17px;
-	top: -6px;
-}
-.noUi-horizontal.noUi-extended {
-	padding: 0 15px;
-}
-.noUi-horizontal.noUi-extended .noUi-origin  {
-	right: -15px;
-}
-.noUi-vertical {
-	width: 18px;
-}
-.noUi-vertical .noUi-handle {
-	width: 28px;
-	height: 34px;
-	left: -6px;
-	top: -17px;
-}
-.noUi-vertical.noUi-extended {
-	padding: 15px 0;
-}
-.noUi-vertical.noUi-extended .noUi-origin  {
-	bottom: -15px;
-}
-
-/* Styling;
- */
-.noUi-background {
-	background: #FAFAFA;
-	box-shadow: inset 0 1px 1px #f0f0f0;
-}
-.noUi-connect {
-	background: #3FB8AF;
-	box-shadow: inset 0 0 3px rgba(51,51,51,0.45);
--webkit-transition: background 450ms;
-	transition: background 450ms;
-}
-.noUi-origin {
-	border-radius: 2px;
-}
-.noUi-target {
-	border-radius: 4px;
-	border: 1px solid #D3D3D3;
-	box-shadow: inset 0 1px 1px #F0F0F0, 0 3px 6px -5px #BBB;
-}
-.noUi-target.noUi-connect {
-	box-shadow: inset 0 0 3px rgba(51,51,51,0.45), 0 3px 6px -5px #BBB;
-}
-
-/* Handles and cursors;
- */
-.noUi-dragable {
-	cursor: w-resize;
-}
-.noUi-vertical .noUi-dragable {
-	cursor: n-resize;
-}
-.noUi-handle {
-	border: 1px solid #D9D9D9;
-	border-radius: 3px;
-	background: #FFF;
-	cursor: default;
-	box-shadow: inset 0 0 1px #FFF,
-				inset 0 1px 7px #EBEBEB,
-				0 3px 6px -3px #BBB;
-}
-.noUi-active {
-	box-shadow: inset 0 0 1px #FFF,
-				inset 0 1px 7px #DDD,
-				0 3px 6px -3px #BBB;
-}
-
-/* Handle stripes;
- */
-.noUi-handle:before,
-.noUi-handle:after {
-	content: "";
-	display: block;
-	position: absolute;
-	height: 14px;
-	width: 1px;
-	background: #E8E7E6;
-	left: 14px;
-	top: 6px;
-}
-.noUi-handle:after {
-	left: 17px;
-}
-.noUi-vertical .noUi-handle:before,
-.noUi-vertical .noUi-handle:after {
-	width: 14px;
-	height: 1px;
-	left: 6px;
-	top: 14px;
-}
-.noUi-vertical .noUi-handle:after {
-	top: 17px;
-}
-
-/* Disabled state;
- */
-[disabled].noUi-connect,
-[disabled] .noUi-connect {
-	background: #B8B8B8;
-}
-[disabled] .noUi-handle {
-	cursor: not-allowed;
-}
-
 /*! normalize.css v3.0.0 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
@@ -5970,8 +5675,6 @@ button.close {
 #contestFiltersRoot #contestSortsFilters .choosed-filters-container:after,
 #contestFiltersRoot #filtersPanel:before,
 #contestFiltersRoot #filtersPanel:after,
-#mainMenu .inner-wrapper:before,
-#mainMenu .inner-wrapper:after,
 .resume-bar:before,
 .resume-bar:after,
 .no-contests-wrapper .no-contest-bottom-row:before,
@@ -6071,7 +5774,6 @@ button.close {
 #contestFiltersRoot #contestSortsFilters .choosed-filters-container:after,
 #contestFiltersRoot #contestSortsFilters .choosed-filters-container:after,
 #contestFiltersRoot #filtersPanel:after,
-#mainMenu .inner-wrapper:after,
 .resume-bar:after,
 .no-contests-wrapper .no-contest-bottom-row:after,
 #promosComponent:after,
@@ -12549,170 +12251,21 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .bt
 #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:focus {
   outline: none !important;
 }
-.background-header {
-  background-image: url("../images/headerBackground.jpg");
-  background-repeat: no-repeat;
-  background-position: center 4px;
-  background-color: #000000;
-  border-color: #fa9c19;
-  border-width: 0px 0px 2px 0px;
-  border-radius: 0px;
-  height: 70px;
-}
 main-menu-slide {
   display: block;
   height: 70px;
 }
 #mainMenu {
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+  border-style: none;
+  border-bottom: 2px solid #fa9c19;
+  padding-left: 8px;
+  padding-right: 8px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  background-color: #222222;
-  border-color: #080808;
-  background-color: rgba(0, 0, 0, 0.7);
-  z-index: 999;
-  border-bottom: 2px solid #fa9c19;
-}
-#mainMenu .navbar-brand {
-  color: #999999;
-}
-#mainMenu .navbar-brand:hover,
-#mainMenu .navbar-brand:focus {
-  color: #ffffff;
-  background-color: transparent;
-}
-#mainMenu .navbar-text {
-  color: #999999;
-}
-#mainMenu .navbar-nav > li > a {
-  color: #999999;
-}
-#mainMenu .navbar-nav > li > a:hover,
-#mainMenu .navbar-nav > li > a:focus {
-  color: #ffffff;
-  background-color: transparent;
-}
-#mainMenu .navbar-nav > .active > a,
-#mainMenu .navbar-nav > .active > a:hover,
-#mainMenu .navbar-nav > .active > a:focus {
-  color: #ffffff;
-  background-color: #080808;
-}
-#mainMenu .navbar-nav > .disabled > a,
-#mainMenu .navbar-nav > .disabled > a:hover,
-#mainMenu .navbar-nav > .disabled > a:focus {
-  color: #444444;
-  background-color: transparent;
-}
-#mainMenu .navbar-toggle {
-  border-color: #333333;
-}
-#mainMenu .navbar-toggle:hover,
-#mainMenu .navbar-toggle:focus {
-  background-color: #333333;
-}
-#mainMenu .navbar-toggle .icon-bar {
-  background-color: #ffffff;
-}
-#mainMenu .navbar-collapse,
-#mainMenu .navbar-form {
-  border-color: #101010;
-}
-#mainMenu .navbar-nav > .open > a,
-#mainMenu .navbar-nav > .open > a:hover,
-#mainMenu .navbar-nav > .open > a:focus {
-  background-color: #080808;
-  color: #ffffff;
-}
-@media (max-width: 767px) {
-  #mainMenu .navbar-nav .open .dropdown-menu > .dropdown-header {
-    border-color: #080808;
-  }
-  #mainMenu .navbar-nav .open .dropdown-menu .divider {
-    background-color: #080808;
-  }
-  #mainMenu .navbar-nav .open .dropdown-menu > li > a {
-    color: #999999;
-  }
-  #mainMenu .navbar-nav .open .dropdown-menu > li > a:hover,
-  #mainMenu .navbar-nav .open .dropdown-menu > li > a:focus {
-    color: #ffffff;
-    background-color: transparent;
-  }
-  #mainMenu .navbar-nav .open .dropdown-menu > .active > a,
-  #mainMenu .navbar-nav .open .dropdown-menu > .active > a:hover,
-  #mainMenu .navbar-nav .open .dropdown-menu > .active > a:focus {
-    color: #ffffff;
-    background-color: #080808;
-  }
-  #mainMenu .navbar-nav .open .dropdown-menu > .disabled > a,
-  #mainMenu .navbar-nav .open .dropdown-menu > .disabled > a:hover,
-  #mainMenu .navbar-nav .open .dropdown-menu > .disabled > a:focus {
-    color: #444444;
-    background-color: transparent;
-  }
-}
-#mainMenu .navbar-link {
-  color: #999999;
-}
-#mainMenu .navbar-link:hover {
-  color: #ffffff;
-}
-#mainMenu .inner-wrapper {
-  margin-right: auto;
-  margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-left: 8px;
-  padding-right: 8px;
-}
-#mainMenu .inner-wrapper > .navbar-header,
-#mainMenu .inner-wrapper > .navbar-collapse {
-  margin-right: -15px;
-  margin-left: -15px;
-}
-@media (min-width: 768px) {
-  #mainMenu .inner-wrapper > .navbar-header,
-  #mainMenu .inner-wrapper > .navbar-collapse {
-    margin-right: 0;
-    margin-left: 0;
-  }
-}
-@media (min-width: 992px) {
-  #mainMenu .inner-wrapper {
-    margin-right: auto;
-    margin-left: auto;
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-  #mainMenu .inner-wrapper > .navbar-header,
-  #mainMenu .inner-wrapper > .navbar-collapse {
-    margin-right: -15px;
-    margin-left: -15px;
-  }
-}
-@media (min-width: 992px) and (min-width: 768px) {
-  #mainMenu .inner-wrapper {
-    width: 750px;
-  }
-}
-@media (min-width: 992px) and (min-width: 992px) {
-  #mainMenu .inner-wrapper {
-    width: 970px;
-  }
-}
-@media (min-width: 992px) and (min-width: 1200px) {
-  #mainMenu .inner-wrapper {
-    width: 970px;
-  }
-}
-@media (min-width: 992px) and (min-width: 768px) {
-  #mainMenu .inner-wrapper > .navbar-header,
-  #mainMenu .inner-wrapper > .navbar-collapse {
-    margin-right: 0;
-    margin-left: 0;
-  }
 }
 #mainMenu.image-background {
   background-image: url("../images/headerBackground.jpg");
@@ -12723,6 +12276,88 @@ main-menu-slide {
   border-width: 0px 0px 2px 0px;
   border-radius: 0px;
   height: 70px;
+}
+@media (max-width: 991px) {
+  #mainMenu #menuLoggedIn,
+  #mainMenu #menuNotLoggedIn {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  #mainMenu #menuLoggedIn > .navbar-header,
+  #mainMenu #menuNotLoggedIn > .navbar-header,
+  #mainMenu #menuLoggedIn > .navbar-collapse,
+  #mainMenu #menuNotLoggedIn > .navbar-collapse {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+}
+@media (max-width: 991px) and (min-width: 768px) {
+  #mainMenu #menuLoggedIn > .navbar-header,
+  #mainMenu #menuNotLoggedIn > .navbar-header,
+  #mainMenu #menuLoggedIn > .navbar-collapse,
+  #mainMenu #menuNotLoggedIn > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+@media (min-width: 992px) {
+  #mainMenu #menuLoggedIn,
+  #mainMenu #menuNotLoggedIn {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  #mainMenu #menuLoggedIn > .navbar-header,
+  #mainMenu #menuNotLoggedIn > .navbar-header,
+  #mainMenu #menuLoggedIn > .navbar-collapse,
+  #mainMenu #menuNotLoggedIn > .navbar-collapse {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+}
+@media (min-width: 992px) and (min-width: 768px) {
+  #mainMenu #menuLoggedIn,
+  #mainMenu #menuNotLoggedIn {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) and (min-width: 992px) {
+  #mainMenu #menuLoggedIn,
+  #mainMenu #menuNotLoggedIn {
+    width: 970px;
+  }
+}
+@media (min-width: 992px) and (min-width: 1200px) {
+  #mainMenu #menuLoggedIn,
+  #mainMenu #menuNotLoggedIn {
+    width: 970px;
+  }
+}
+@media (min-width: 992px) and (min-width: 768px) {
+  #mainMenu #menuLoggedIn > .navbar-header,
+  #mainMenu #menuNotLoggedIn > .navbar-header,
+  #mainMenu #menuLoggedIn > .navbar-collapse,
+  #mainMenu #menuNotLoggedIn > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+#mainMenu .navbar-brand {
+  width: 99px;
+  height: 52px;
+  background-image: url("../images/logoEpic11.png");
+  background-repeat: no-repeat;
+  margin-top: 10px;
+  cursor: pointer;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  #mainMenu .navbar-brand {
+    background-image: url("../images/logoEpic11-2x.png");
+    background-size: 99px 52px;
+  }
 }
 @media (min-width: 768px) {
   #mainMenu .navbar-header {
@@ -13052,76 +12687,30 @@ main-menu-slide {
     height: 3px;
   }
 }
-.navbar {
-  margin-bottom: 0px;
-}
-@media (min-width: 768px) {
-  .navbar {
-    padding-right: 15px;
-  }
-  .navbar .navbar > .container .navbar-brand {
-    margin-left: 0px;
-  }
-}
-.brand-style {
-  background-image: url("../images/logoEpic11.png");
-  background-repeat: no-repeat;
-  width: 99px;
-  height: 52px;
-  margin-top: 10px;
-  cursor: pointer;
-}
-@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  .brand-style {
-    background-image: url("../images/logoEpic11-2x.png");
-    background-size: 99px 52px;
-  }
-}
-.navbar-brand {
-  background-image: url("../images/logoEpic11.png");
-  background-repeat: no-repeat;
-  width: 99px;
-  height: 52px;
-  margin-top: 10px;
-  cursor: pointer;
-  margin-left: 0px;
-}
-@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  .navbar-brand {
-    background-image: url("../images/logoEpic11-2x.png");
-    background-size: 99px 52px;
-  }
-}
-@media (max-width: 767px) {
-  .loggedIn-brand {
-    margin: 10px 0;
-    float: none;
-  }
-}
-.navbar-header-unloggin {
+#mainMenu #menuNotLoggedIn {
   overflow: hidden;
 }
-.navbar-header-unloggin .navbar-brand {
-  background-image: url("../images/logoEpic11.png");
-  background-repeat: no-repeat;
+#mainMenu #menuNotLoggedIn .navbar-brand {
   width: 99px;
   height: 52px;
+  background-image: url("../images/logoEpic11.png");
+  background-repeat: no-repeat;
   margin-top: 10px;
   cursor: pointer;
   height: 60px;
   margin-top: 8px;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  .navbar-header-unloggin .navbar-brand {
+  #mainMenu #menuNotLoggedIn .navbar-brand {
     background-image: url("../images/logoEpic11-2x.png");
     background-size: 99px 52px;
   }
 }
-.navbar-header-unloggin .button-wrapper {
+#mainMenu #menuNotLoggedIn .button-wrapper {
   line-height: 4;
   float: right !important;
 }
-.navbar-header-unloggin .button-wrapper .button-base {
+#mainMenu #menuNotLoggedIn .button-wrapper .button-base {
   display: inline-block;
   margin-bottom: 0;
   font-weight: normal;
@@ -13147,28 +12736,28 @@ main-menu-slide {
   transition: all 0.1s ease-out;
   font-size: 9pt;
 }
-.navbar-header-unloggin .button-wrapper .button-base:focus,
-.navbar-header-unloggin .button-wrapper .button-base:active:focus,
-.navbar-header-unloggin .button-wrapper .button-base.active:focus {
+#mainMenu #menuNotLoggedIn .button-wrapper .button-base:focus,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-base:active:focus,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-base.active:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-.navbar-header-unloggin .button-wrapper .button-base:hover,
-.navbar-header-unloggin .button-wrapper .button-base:focus {
+#mainMenu #menuNotLoggedIn .button-wrapper .button-base:hover,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-base:focus {
   color: #ffffff;
   text-decoration: none;
 }
-.navbar-header-unloggin .button-wrapper .button-base:active,
-.navbar-header-unloggin .button-wrapper .button-base.active {
+#mainMenu #menuNotLoggedIn .button-wrapper .button-base:active,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-base.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-.navbar-header-unloggin .button-wrapper .button-base.disabled,
-.navbar-header-unloggin .button-wrapper .button-base[disabled],
-fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-base {
+#mainMenu #menuNotLoggedIn .button-wrapper .button-base.disabled,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-base[disabled],
+fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-base {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -13176,10 +12765,10 @@ fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-base {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-.navbar-header-unloggin .button-wrapper .button-base:active {
+#mainMenu #menuNotLoggedIn .button-wrapper .button-base:active {
   margin-top: 10px !important;
 }
-.navbar-header-unloggin .button-wrapper .button-join {
+#mainMenu #menuNotLoggedIn .button-wrapper .button-join {
   display: inline-block;
   margin-bottom: 0;
   font-weight: normal;
@@ -13209,28 +12798,28 @@ fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-base {
   border-color: #cccccc;
   box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
 }
-.navbar-header-unloggin .button-wrapper .button-join:focus,
-.navbar-header-unloggin .button-wrapper .button-join:active:focus,
-.navbar-header-unloggin .button-wrapper .button-join.active:focus {
+#mainMenu #menuNotLoggedIn .button-wrapper .button-join:focus,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-join:active:focus,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-join.active:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-.navbar-header-unloggin .button-wrapper .button-join:hover,
-.navbar-header-unloggin .button-wrapper .button-join:focus {
+#mainMenu #menuNotLoggedIn .button-wrapper .button-join:hover,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-join:focus {
   color: #ffffff;
   text-decoration: none;
 }
-.navbar-header-unloggin .button-wrapper .button-join:active,
-.navbar-header-unloggin .button-wrapper .button-join.active {
+#mainMenu #menuNotLoggedIn .button-wrapper .button-join:active,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-join.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-.navbar-header-unloggin .button-wrapper .button-join.disabled,
-.navbar-header-unloggin .button-wrapper .button-join[disabled],
-fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-join {
+#mainMenu #menuNotLoggedIn .button-wrapper .button-join.disabled,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-join[disabled],
+fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -13238,60 +12827,60 @@ fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-join {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-.navbar-header-unloggin .button-wrapper .button-join:active {
+#mainMenu #menuNotLoggedIn .button-wrapper .button-join:active {
   margin-top: 10px !important;
 }
-.navbar-header-unloggin .button-wrapper .button-join:hover,
-.navbar-header-unloggin .button-wrapper .button-join:focus,
-.navbar-header-unloggin .button-wrapper .button-join:active,
-.navbar-header-unloggin .button-wrapper .button-join.active,
-.open .dropdown-toggle.navbar-header-unloggin .button-wrapper .button-join {
+#mainMenu #menuNotLoggedIn .button-wrapper .button-join:hover,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-join:focus,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-join:active,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-join.active,
+.open .dropdown-toggle#mainMenu #menuNotLoggedIn .button-wrapper .button-join {
   color: #ffffff;
   background-color: #389dcd;
   border-color: #adadad;
 }
-.navbar-header-unloggin .button-wrapper .button-join:active,
-.navbar-header-unloggin .button-wrapper .button-join.active,
-.open .dropdown-toggle.navbar-header-unloggin .button-wrapper .button-join {
+#mainMenu #menuNotLoggedIn .button-wrapper .button-join:active,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-join.active,
+.open .dropdown-toggle#mainMenu #menuNotLoggedIn .button-wrapper .button-join {
   background-image: none;
 }
-.navbar-header-unloggin .button-wrapper .button-join.disabled,
-.navbar-header-unloggin .button-wrapper .button-join[disabled],
-fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-join,
-.navbar-header-unloggin .button-wrapper .button-join.disabled:hover,
-.navbar-header-unloggin .button-wrapper .button-join[disabled]:hover,
-fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-join:hover,
-.navbar-header-unloggin .button-wrapper .button-join.disabled:focus,
-.navbar-header-unloggin .button-wrapper .button-join[disabled]:focus,
-fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-join:focus,
-.navbar-header-unloggin .button-wrapper .button-join.disabled:active,
-.navbar-header-unloggin .button-wrapper .button-join[disabled]:active,
-fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-join:active,
-.navbar-header-unloggin .button-wrapper .button-join.disabled.active,
-.navbar-header-unloggin .button-wrapper .button-join[disabled].active,
-fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-join.active {
+#mainMenu #menuNotLoggedIn .button-wrapper .button-join.disabled,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-join[disabled],
+fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-join.disabled:hover,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-join[disabled]:hover,
+fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join:hover,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-join.disabled:focus,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-join[disabled]:focus,
+fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join:focus,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-join.disabled:active,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-join[disabled]:active,
+fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join:active,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-join.disabled.active,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-join[disabled].active,
+fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join.active {
   background-color: #59add5;
   border-color: #cccccc;
 }
-.navbar-header-unloggin .button-wrapper .button-join .badge {
+#mainMenu #menuNotLoggedIn .button-wrapper .button-join .badge {
   color: #59add5;
   background-color: #ffffff;
 }
-.navbar-header-unloggin .button-wrapper .button-join[disabled] {
+#mainMenu #menuNotLoggedIn .button-wrapper .button-join[disabled] {
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
 }
-.navbar-header-unloggin .button-wrapper .button-join:active,
-.navbar-header-unloggin .button-wrapper .button-join[disabled],
-fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-join {
+#mainMenu #menuNotLoggedIn .button-wrapper .button-join:active,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-join[disabled],
+fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
 }
-.navbar-header-unloggin .button-wrapper .button-join:focus {
+#mainMenu #menuNotLoggedIn .button-wrapper .button-join:focus {
   outline: none !important;
 }
-.navbar-header-unloggin .button-wrapper .button-login {
+#mainMenu #menuNotLoggedIn .button-wrapper .button-login {
   display: inline-block;
   margin-bottom: 0;
   font-weight: normal;
@@ -13321,28 +12910,28 @@ fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-join {
   border-color: #91b42c;
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
 }
-.navbar-header-unloggin .button-wrapper .button-login:focus,
-.navbar-header-unloggin .button-wrapper .button-login:active:focus,
-.navbar-header-unloggin .button-wrapper .button-login.active:focus {
+#mainMenu #menuNotLoggedIn .button-wrapper .button-login:focus,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-login:active:focus,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-login.active:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-.navbar-header-unloggin .button-wrapper .button-login:hover,
-.navbar-header-unloggin .button-wrapper .button-login:focus {
+#mainMenu #menuNotLoggedIn .button-wrapper .button-login:hover,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-login:focus {
   color: #ffffff;
   text-decoration: none;
 }
-.navbar-header-unloggin .button-wrapper .button-login:active,
-.navbar-header-unloggin .button-wrapper .button-login.active {
+#mainMenu #menuNotLoggedIn .button-wrapper .button-login:active,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-login.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-.navbar-header-unloggin .button-wrapper .button-login.disabled,
-.navbar-header-unloggin .button-wrapper .button-login[disabled],
-fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-login {
+#mainMenu #menuNotLoggedIn .button-wrapper .button-login.disabled,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-login[disabled],
+fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-login {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -13350,57 +12939,57 @@ fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-login {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-.navbar-header-unloggin .button-wrapper .button-login:active {
+#mainMenu #menuNotLoggedIn .button-wrapper .button-login:active {
   margin-top: 10px !important;
 }
-.navbar-header-unloggin .button-wrapper .button-login:hover,
-.navbar-header-unloggin .button-wrapper .button-login:focus,
-.navbar-header-unloggin .button-wrapper .button-login:active,
-.navbar-header-unloggin .button-wrapper .button-login.active,
-.open .dropdown-toggle.navbar-header-unloggin .button-wrapper .button-login {
+#mainMenu #menuNotLoggedIn .button-wrapper .button-login:hover,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-login:focus,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-login:active,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-login.active,
+.open .dropdown-toggle#mainMenu #menuNotLoggedIn .button-wrapper .button-login {
   color: #ffffff;
   background-color: #87a829;
   border-color: #698320;
 }
-.navbar-header-unloggin .button-wrapper .button-login:active,
-.navbar-header-unloggin .button-wrapper .button-login.active,
-.open .dropdown-toggle.navbar-header-unloggin .button-wrapper .button-login {
+#mainMenu #menuNotLoggedIn .button-wrapper .button-login:active,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-login.active,
+.open .dropdown-toggle#mainMenu #menuNotLoggedIn .button-wrapper .button-login {
   background-image: none;
 }
-.navbar-header-unloggin .button-wrapper .button-login.disabled,
-.navbar-header-unloggin .button-wrapper .button-login[disabled],
-fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-login,
-.navbar-header-unloggin .button-wrapper .button-login.disabled:hover,
-.navbar-header-unloggin .button-wrapper .button-login[disabled]:hover,
-fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-login:hover,
-.navbar-header-unloggin .button-wrapper .button-login.disabled:focus,
-.navbar-header-unloggin .button-wrapper .button-login[disabled]:focus,
-fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-login:focus,
-.navbar-header-unloggin .button-wrapper .button-login.disabled:active,
-.navbar-header-unloggin .button-wrapper .button-login[disabled]:active,
-fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-login:active,
-.navbar-header-unloggin .button-wrapper .button-login.disabled.active,
-.navbar-header-unloggin .button-wrapper .button-login[disabled].active,
-fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-login.active {
+#mainMenu #menuNotLoggedIn .button-wrapper .button-login.disabled,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-login[disabled],
+fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-login,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-login.disabled:hover,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-login[disabled]:hover,
+fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-login:hover,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-login.disabled:focus,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-login[disabled]:focus,
+fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-login:focus,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-login.disabled:active,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-login[disabled]:active,
+fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-login:active,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-login.disabled.active,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-login[disabled].active,
+fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-login.active {
   background-color: #a1c931;
   border-color: #91b42c;
 }
-.navbar-header-unloggin .button-wrapper .button-login .badge {
+#mainMenu #menuNotLoggedIn .button-wrapper .button-login .badge {
   color: #a1c931;
   background-color: #ffffff;
 }
-.navbar-header-unloggin .button-wrapper .button-login[disabled] {
+#mainMenu #menuNotLoggedIn .button-wrapper .button-login[disabled] {
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #f8f8f8 !important;
   cursor: not-allowed !important;
 }
-.navbar-header-unloggin .button-wrapper .button-login:active,
-.navbar-header-unloggin .button-wrapper .button-login[disabled],
-fieldset[disabled] .navbar-header-unloggin .button-wrapper .button-login {
+#mainMenu #menuNotLoggedIn .button-wrapper .button-login:active,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-login[disabled],
+fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-login {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
 }
-.navbar-header-unloggin .button-wrapper .button-login:focus {
+#mainMenu #menuNotLoggedIn .button-wrapper .button-login:focus {
   outline: none !important;
 }
 @media (max-width: 991px) {
@@ -19038,6 +18627,301 @@ Banderas usadas hasta la fecha:
 .flag.flag-it {
   background-position: 0 -22px;
 }
+/*!
+ * Jasny Bootstrap v3.1.3 (http://jasny.github.io/bootstrap)
+ * Copyright 2012-2014 Arnold Daniels
+ * Licensed under Apache-2.0 (https://github.com/jasny/bootstrap/blob/master/LICENSE)
+ */
+.navmenu,
+.navbar-offcanvas {
+  width: 300px;
+  height: auto;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 4px;
+}
+.navmenu-fixed-left,
+.navmenu-fixed-right,
+.navbar-offcanvas {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  z-index: 1030;
+  overflow-y: auto;
+  border-radius: 0;
+}
+.navmenu-fixed-left,
+.navbar-offcanvas.navmenu-fixed-left {
+  right: auto;
+  left: 0;
+  border-width: 0 1px 0 0;
+}
+.navmenu-fixed-right,
+.navbar-offcanvas {
+  right: 0;
+  left: auto;
+  border-width: 0 0 0 1px;
+}
+.navmenu-nav {
+  margin-bottom: 10px;
+}
+.navmenu-nav.dropdown-menu {
+  position: static;
+  float: none;
+  padding-top: 0;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+.navbar-offcanvas .navbar-nav {
+  margin: 0;
+}
+@media (min-width: 768px) {
+  .navbar-offcanvas {
+    width: auto;
+    border-top: 0;
+    box-shadow: none;
+  }
+  .navbar-offcanvas.offcanvas {
+    position: static;
+    display: block !important;
+    height: auto !important;
+    padding-bottom: 0;
+    overflow: visible !important;
+  }
+  .navbar-offcanvas .navbar-nav.navbar-left:first-child {
+    margin-left: -15px;
+  }
+  .navbar-offcanvas .navbar-nav.navbar-right:last-child {
+    margin-right: -15px;
+  }
+  .navbar-offcanvas .navmenu-brand {
+    display: none;
+  }
+}
+.offcanvas {
+  display: none;
+}
+.offcanvas.in {
+  display: block;
+}
+@media (max-width: 767px) {
+  .offcanvas-xs {
+    display: none;
+  }
+  .offcanvas-xs.in {
+    display: block;
+  }
+}
+@media (max-width: 991px) {
+  .offcanvas-sm {
+    display: none;
+  }
+  .offcanvas-sm.in {
+    display: block;
+  }
+}
+@media (max-width: 1199px) {
+  .offcanvas-md {
+    display: none;
+  }
+  .offcanvas-md.in {
+    display: block;
+  }
+}
+.offcanvas-lg {
+  display: none;
+}
+.offcanvas-lg.in {
+  display: block;
+}
+.canvas-sliding {
+  -webkit-transition: top .35s, left .35s, bottom .35s, right .35s;
+          transition: top .35s, left .35s, bottom .35s, right .35s;
+}
+.offcanvas-clone {
+  position: absolute !important;
+  top: auto !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: auto !important;
+  width: 0 !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  border: none !important;
+  opacity: 0 !important;
+}
+
+
+/* Functional styling;
+ * These styles are required for noUiSlider to function.
+ * You don't need to change these rules to apply your design.
+ */
+.noUi-target,
+.noUi-target * {
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-ms-touch-action: none;
+-ms-user-select: none;
+-moz-user-select: none;
+-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.noUi-base {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+.noUi-origin {
+	position: absolute;
+	right: 0;
+	top: 0;
+	left: 0;
+	bottom: 0;
+}
+.noUi-handle {
+	position: relative;
+	z-index: 1;
+}
+.noUi-stacking .noUi-handle {
+/* This class is applied to the lower origin when
+   its values is > 50%. */
+	z-index: 10;
+}
+.noUi-stacking + .noUi-origin {
+/* Fix stacking order in IE7, which incorrectly
+   creates a new context for the origins. */
+	*z-index: -1;
+}
+.noUi-state-tap .noUi-origin {
+-webkit-transition: left 0.3s, top 0.3s;
+	transition: left 0.3s, top 0.3s;
+}
+.noUi-state-drag * {
+	cursor: inherit !important;
+}
+
+/* Slider size and handle placement;
+ */
+.noUi-horizontal {
+	height: 18px;
+}
+.noUi-horizontal .noUi-handle {
+	width: 34px;
+	height: 28px;
+	left: -17px;
+	top: -6px;
+}
+.noUi-horizontal.noUi-extended {
+	padding: 0 15px;
+}
+.noUi-horizontal.noUi-extended .noUi-origin  {
+	right: -15px;
+}
+.noUi-vertical {
+	width: 18px;
+}
+.noUi-vertical .noUi-handle {
+	width: 28px;
+	height: 34px;
+	left: -6px;
+	top: -17px;
+}
+.noUi-vertical.noUi-extended {
+	padding: 15px 0;
+}
+.noUi-vertical.noUi-extended .noUi-origin  {
+	bottom: -15px;
+}
+
+/* Styling;
+ */
+.noUi-background {
+	background: #FAFAFA;
+	box-shadow: inset 0 1px 1px #f0f0f0;
+}
+.noUi-connect {
+	background: #3FB8AF;
+	box-shadow: inset 0 0 3px rgba(51,51,51,0.45);
+-webkit-transition: background 450ms;
+	transition: background 450ms;
+}
+.noUi-origin {
+	border-radius: 2px;
+}
+.noUi-target {
+	border-radius: 4px;
+	border: 1px solid #D3D3D3;
+	box-shadow: inset 0 1px 1px #F0F0F0, 0 3px 6px -5px #BBB;
+}
+.noUi-target.noUi-connect {
+	box-shadow: inset 0 0 3px rgba(51,51,51,0.45), 0 3px 6px -5px #BBB;
+}
+
+/* Handles and cursors;
+ */
+.noUi-dragable {
+	cursor: w-resize;
+}
+.noUi-vertical .noUi-dragable {
+	cursor: n-resize;
+}
+.noUi-handle {
+	border: 1px solid #D9D9D9;
+	border-radius: 3px;
+	background: #FFF;
+	cursor: default;
+	box-shadow: inset 0 0 1px #FFF,
+				inset 0 1px 7px #EBEBEB,
+				0 3px 6px -3px #BBB;
+}
+.noUi-active {
+	box-shadow: inset 0 0 1px #FFF,
+				inset 0 1px 7px #DDD,
+				0 3px 6px -3px #BBB;
+}
+
+/* Handle stripes;
+ */
+.noUi-handle:before,
+.noUi-handle:after {
+	content: "";
+	display: block;
+	position: absolute;
+	height: 14px;
+	width: 1px;
+	background: #E8E7E6;
+	left: 14px;
+	top: 6px;
+}
+.noUi-handle:after {
+	left: 17px;
+}
+.noUi-vertical .noUi-handle:before,
+.noUi-vertical .noUi-handle:after {
+	width: 14px;
+	height: 1px;
+	left: 6px;
+	top: 14px;
+}
+.noUi-vertical .noUi-handle:after {
+	top: 17px;
+}
+
+/* Disabled state;
+ */
+[disabled].noUi-connect,
+[disabled] .noUi-connect {
+	background: #B8B8B8;
+}
+[disabled] .noUi-handle {
+	cursor: not-allowed;
+}
+
 .bootstrap-switch {
   display: inline-block;
   cursor: pointer;

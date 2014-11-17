@@ -1,5 +1,11 @@
-// Funcion para pintar el fondo de la cabecera  
-.background-header {
+// Reserva de sitio
+main-menu-slide {
+	display: block;
+	height: 70px;
+}
+
+// Mixin para pintar el fondo de la cabecera  
+.background-header() {
     background-image: url("@{images}/headerBackground.jpg");
     background-repeat: no-repeat;
     background-position: center 4px;
@@ -10,30 +16,43 @@
     height: 70px;
 }
 
-// Reserva de sitio
-main-menu-slide {
-	display: block;
-	height: 70px;
+// Mixin para el logo
+.brand-style() {
+	.size(99px, 52px);
+  	.img-retina("@{images}/logoEpic11.png", "@{images}/logoEpic11-2x.png", 99px, 52px);
+  	background-repeat: no-repeat;
+  	margin-top: 10px;
+  	cursor: pointer;
 }
 
+
 #mainMenu {
-	.user-select(none);
-    // Partimos de la navbar-inverse y vamos cambiando: ;
-    .navbar-inverse();
-	background-color: fade(@black, 70%);
-	z-index: 999;
-	border-bottom: 2px solid @orange;
-  	.inner-wrapper { 
-	  	.container-fluid();
-	  	padding-left: 8px;
-	  	padding-right: 8px;
-		@media (min-width: @screen-md-min) {
-			.container();
-		}
-  	}
+
 	&.image-background {		
 		.background-header();		
 	}
+
+	background-color: fade(@black, 70%);
+	z-index: 999;
+	border-style: none;						// Esto quita el de la navbar de bootstrap
+	border-bottom: 2px solid @orange;		// Y ahora le damos el que nos interesa
+	padding-left: 8px;
+  	padding-right: 8px;
+  	.user-select(none);
+
+  	#menuLoggedIn, #menuNotLoggedIn {
+		@media (max-width: @screen-sm-max) {
+			.container-fluid();
+		}
+		@media (min-width: @screen-md-min) {
+			.container();
+		}
+	}
+
+	.navbar-brand {
+ 	 	.brand-style();
+	}
+
    	// Version no XS (SM y Desktop)
   	@media (min-width: @screen-sm-min) {
   		.navbar-header {
@@ -140,6 +159,7 @@ main-menu-slide {
 	        }
 	    }
   	}
+
 	// elementos del menu reducido:
     @media (max-width: @screen-xs-max) {        
         .navbar-offcanvas {
@@ -244,66 +264,38 @@ main-menu-slide {
 		}
     }
 
-}
-.navbar {
-    margin-bottom: 0px;
-    @media (min-width: @screen-sm-min) {
-    	padding-right: 15px;
-    	.navbar > .container .navbar-brand {
-  			margin-left: 0px;
-  		}
-  	}
-}
 
-.brand-style {
-	// Retina display: ;
-  	.img-retina("@{images}/logoEpic11.png", "@{images}/logoEpic11-2x.png", 99px, 52px);
-  	background-repeat: no-repeat;
-  	.size(99px, 52px);
-  	margin-top: 10px;
-  	cursor: pointer;
-}
 
-.navbar-brand {
-  	.brand-style();
-  	margin-left: 0px;
-}
-.loggedIn-brand{
-  	@media (max-width: @screen-xs-max) {
-  		margin: 10px 0;
-  		float: none;
-  	}
-}
-
-// Menu sin logear: ;
-.navbar-header-unloggin {   
-	overflow: hidden;
-	.navbar-brand {
-  		.brand-style();
-  		height: 60px;
-  		margin-top: 8px;
-  		@media (max-width: @screen-xs-max) {
-		  	//.hidden-xs();
+	// Menu sin logear:
+	#menuNotLoggedIn {   
+		overflow: hidden;
+		
+		.navbar-brand {
+	  		.brand-style();
+	  		height: 60px;
+	  		margin-top: 8px;
 		}
+
+	    // Botones de login y join: ;
+	    .button-wrapper {
+	      	line-height: 4;
+	      	.pull-right();
+	      	.button-base {
+	      		.btn();
+	        	font-size: 9pt;
+	        	&:active {
+	        		margin-top: 10px !important; 
+	        	}
+	      	}
+	      	.button-join {
+	        	.button-base();
+	        	.btn-default();
+	      	}
+	      	.button-login {
+	        	.button-base();
+	        	.btn-primary();
+	      	}
+	    }
 	}
-    // Botones de login y join: ;
-    .button-wrapper {
-      	line-height: 4;
-      	.pull-right();
-      	.button-base {
-      		.btn();
-        	font-size: 9pt;
-        	&:active {
-        		margin-top: 10px !important; 
-        	}
-      	}
-      	.button-join {
-        	.button-base();
-        	.btn-default();
-      	}
-      	.button-login {
-        	.button-base();
-        	.btn-primary();
-      	}
-    }
+
 }

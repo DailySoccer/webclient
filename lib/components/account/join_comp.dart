@@ -64,6 +64,8 @@ class JoinComp implements ShadowRootAware {
         .then((_) =>  _profileService.login(email, password))
           .then((_) {
             GameMetrics.logEvent(GameMetrics.SIGNUP_SUCCESSFUL);
+            GameMetrics.trackConversion(true);
+
             loadingService.isLoading = false;
             _router.go('lobby', {});
         })

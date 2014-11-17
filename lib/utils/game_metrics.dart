@@ -33,4 +33,23 @@ class GameMetrics {
     JsUtils.runJavascript(null, "init", mixpanelCode, false, "mixpanel");
   }
 
+  static void trackConversion(bool remarketing_only) {
+
+    dynamic trackParameters = {"google_conversion_id": 957611754,
+                               "google_remarketing_only": remarketing_only};
+
+      trackParameters.addAll(remarketing_only?
+                              {"google_custom_params": {}} :
+                              {
+                                "google_conversion_language": "en",
+                                "google_conversion_format": "2",
+                                "google_conversion_color": "ffffff",
+                                "google_conversion_label": "ouQSCJrYx1cQ6v3PyAM"
+                              }
+                            );
+
+    JsUtils.runJavascript(null, "google_trackConversion", trackParameters,
+                          false, "window");
+  }
+
 }

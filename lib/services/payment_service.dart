@@ -12,8 +12,8 @@ class PaymentService {
 
   PaymentService(this._profileService, this._server);
 
-  void expressCheckoutWithPaypal(int money) {
-    window.location.assign(PAYPAL_APPROVAL_URL + "/${_profileService.user.userId}" + "/$money");
+  void expressCheckoutWithPaypal(String productId) {
+    window.location.assign(PAYPAL_APPROVAL_URL + "/${_profileService.user.userId}" + "/$productId");
   }
 
   ServerService _server;

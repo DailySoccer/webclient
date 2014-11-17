@@ -33,13 +33,15 @@ void clearQueryStrings() {
         key: (item) => item,
         value: (item) => uri.queryParameters[item]);
 
-    window.location.replace(new Uri(
+    window.history.replaceState(null, //Pasamos null porque el getter de state no funciona en Dart:
+                                      // https://groups.google.com/a/dartlang.org/forum/#!msg/bugs/zvNSxQMQ5FY/6D4mo0IAbxcJ
+        window.document.documentElement.title, new Uri(
         scheme: uri.scheme,
         userInfo: uri.userInfo,
         host: uri.host,
         port: uri.port,
         path: uri.path,
         queryParameters: (newQueryParams.length > 0)? newQueryParams : null,
-        fragment: uri.fragment).toString());
+        fragment: (uri.fragment.length > 0)? uri.fragment : null ).toString());
   }
 }

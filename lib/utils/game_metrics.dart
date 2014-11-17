@@ -5,10 +5,16 @@ import 'package:webclient/utils/host_server.dart';
 
 class GameMetrics {
 
-  static String LIVE_CONTEST_VISITED = "Visitado Live Contest";
+  static String SIGNUP_ATTEMPTED = "Sign up attempted";
+  static String SIGNUP_SUCCESSFUL = "Sign up successful";
   static String LOGIN_ATTEMPTED = "Login attempted";
+  static String LOGIN_SUCCESSFUL = "Login successful";
   static String CHANGE_PASSWORD_ATTEMPTED = "Change Password attempted";
-  static String SUCCESSFUL_SIGNUP = "Sign up successful";
+  static String LOBBY = "Lobby";
+  static String VIEW_CONTEST = "View contest";
+  static String ENTER_CONTEST = "Entered enter contest";
+  static String TEAM_CREATED = "Created a team";
+  static String LIVE_CONTEST_VISITED = "Visitado Live Contest";
 
   static void aliasMixpanel(String email) {
     JsUtils.runJavascript(null, "alias", email, false, "mixpanel");
@@ -25,6 +31,25 @@ class GameMetrics {
     String mixpanelCode = HostServer.isProd? "a1889b53bda6b6348f60a570f658c157":
                                              "f627312247ce937f807ce4b9d786314b";
     JsUtils.runJavascript(null, "init", mixpanelCode, false, "mixpanel");
+  }
+
+  static void trackConversion(bool remarketing_only) {
+
+    dynamic trackParameters = {"google_conversion_id": 957611754,
+                               "google_remarketing_only": remarketing_only};
+
+      trackParameters.addAll(remarketing_only?
+                              {"google_custom_params": {}} :
+                              {
+                                "google_conversion_language": "en",
+                                "google_conversion_format": "2",
+                                "google_conversion_color": "ffffff",
+                                "google_conversion_label": "ouQSCJrYx1cQ6v3PyAM"
+                              }
+                            );
+
+    JsUtils.runJavascript(null, "google_trackConversion", trackParameters,
+                          false, "window");
   }
 
 }

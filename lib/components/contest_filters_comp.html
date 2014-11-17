@@ -4,7 +4,7 @@
   <div class="choosed-filters-container" ng-show="scrDet.isXsScreen">
       <div class="competition-filter-name" ng-bind-html="filterResume"></div>
       <div class="filterToggler">
-        <div id="filtersButtonMobile" type="button" class="btn filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse" data-target="#filtersPanel">filtros</div>
+        <div id="filtersButtonMobile" type="button" class="filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse" data-target="#filtersPanel">filtros</div>
       </div>
   </div>
 
@@ -22,15 +22,17 @@
   </div>
 
   <div class="filterToggler" ng-show="!scrDet.isXsScreen">
-      <div id="filtersButtonDesktop" type="button" class="btn filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse">FILTROS</div>
+      <div id="filtersButtonDesktop" type="button" class="filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse">FILTROS</div>
   </div>
 
 </div>
 
 <div id="filtersPanel" class="collapse">
 
+  <div class="filters-panel-row">
+
     <!-- Filtro x tipos de concurso -->
-    <div class="filter-column-tournaments">
+    <div class="filter-column-competition">
       <p class="filter-title">COMPETICION</p>
       <div class="filter-content">
         <div class="check-group-wrapper">
@@ -91,10 +93,15 @@
       </div>
     </div>
 
-    <div class="reset-button-wrapper">
-      <button type="button" class="btn-reset" ng-click="resetAllFilters()">LIMPIAR FILTROS</button>
-    </div>
-    <div class="confirm-button-wrapper">
-      <button type="button" class="btn-confirm" ng-click="toggleFilterMenu()">ACEPTAR</button>
-    </div>
+  </div>
+  <div class="filters-panel-row">
+
+      <div class="reset-button-wrapper">
+        <button type="button" class="btn-reset" ng-click="resetAllFilters()">LIMPIAR FILTROS</button>
+      </div>
+      <div class="confirm-button-wrapper">
+        <button type="button" class="btn-confirm" ng-click="toggleFilterMenu()">ACEPTAR</button>
+      </div>
+
+  </div>
 </div>

@@ -8575,6 +8575,9 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   background-image: linear-gradient(to bottom, #fba61a 49%, #ec990e 51%);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffba61a', endColorstr='#ffec990e', GradientType=0);
+  /*@media (min-width: @screen-sm-min) {
+		.border-top-radius(@globalBoxesRadius);
+	}*/
 }
 .fantasy-team-header .ranking-box {
   width: 70px;
@@ -8701,12 +8704,6 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
 }
 .fantasy-team-header .close-team:hover {
   color: #dcdcdc;
-}
-@media (min-width: 768px) {
-  .fantasy-team-header {
-    border-top-right-radius: 8px;
-    border-top-left-radius: 8px;
-  }
 }
 .fantasy-team-header .edit-team {
   float: right !important;
@@ -9021,6 +9018,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
 @media (min-width: 768px) {
   .fantasy-team-wrapper {
     min-height: 574px;
+    overflow: hidden;
     width: 48%;
     float: left;
     margin-left: 1%;

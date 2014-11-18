@@ -5,6 +5,7 @@ import 'package:webclient/utils/host_server.dart';
 
 class GameMetrics {
 
+  static String LANDING_PAGE = "Landing Page";
   static String SIGNUP_ATTEMPTED = "Sign up attempted";
   static String SIGNUP_SUCCESSFUL = "Sign up successful";
   static String LOGIN_ATTEMPTED = "Login attempted";
@@ -28,13 +29,15 @@ class GameMetrics {
   }
 
   static void initMixpanel() {
-    String mixpanelCode = HostServer.isProd? "a1889b53bda6b6348f60a570f658c157":
-                                             "f627312247ce937f807ce4b9d786314b";
+    String mixpanelCode = HostServer.isEpicEleven? "a1889b53bda6b6348f60a570f658c157":
+                                                   "f627312247ce937f807ce4b9d786314b";
     JsUtils.runJavascript(null, "init", mixpanelCode, false, "mixpanel");
   }
 
   static void trackConversion(bool remarketing_only) {
+    if (HostServer.isEpicEleven) {
       JsUtils.runJavascript(null, "conversion", [remarketing_only]);
+    }
   }
 
 }

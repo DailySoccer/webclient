@@ -301,7 +301,8 @@ class WebClientApp extends Module {
         return false;
       }
       else {
-        GameMetrics.trackConversion(false);
+        GameMetrics.logEvent(GameMetrics.LANDING_PAGE);
+        GameMetrics.trackConversion(true);
         _bleach(event.route);
         return true;
       }

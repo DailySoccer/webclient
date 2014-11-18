@@ -33,6 +33,7 @@ class HostServer {
   static bool get _isForcedProd => window.location.href.contains("prod=true");
   static bool get isDev => _isLocalHost && !_isForcedProd;
   static bool get isProd => !isDev;
+  static bool get isEpicEleven => window.location.hostname.contains("epiceleven");
 
   static String _url;
 }

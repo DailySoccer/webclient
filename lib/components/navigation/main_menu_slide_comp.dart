@@ -44,9 +44,12 @@ class MainMenuSlideComp implements ShadowRootAware {
 
       _menuSlideElement = _rootElement.querySelector("#menuSlide");
 
+      // Tanto el menuSlide como el backdrop estan ocultos fuera de la pantalla en xs
+      _menuSlideElement.classes.add("hidden-xs");
+
       // El backdrop es la cortinilla traslucida que atenua todo el contenido
       _backdropElement = new DivElement();
-      _backdropElement.classes.add("backdrop");
+      _backdropElement.classes.add("backdrop hidden-xs");
 
       // La insertamos en 0 para que no pise al #menuSlide
       _menuSlideElement.parent.children.insert(0, _backdropElement);
@@ -58,13 +61,13 @@ class MainMenuSlideComp implements ShadowRootAware {
   void _setUpAnimationControl() {
     _menuSlideElement.onTransitionEnd.listen((_) {
       if (_slideState == "hidden") {
-        _menuSlideElement.style.display = "none";
+        _menuSlideElement.classes.add("hidden-xs");
       }
     });
 
     _backdropElement.onTransitionEnd.listen((_) {
       if (_slideState == "hidden") {
-        _backdropElement.style.display = "none";
+        _backdropElement.classes.add("hidden-xs");
       }
     });
 
@@ -85,11 +88,16 @@ class MainMenuSlideComp implements ShadowRootAware {
   void _show() {
     _slideState = "slid";
 
-    // Desactivamos la barra de scroll
+    // Desactivamos el scroll del body
+    // TODO: Esto por supuesto hay q hacerlo, pero tiene los siguientes problemas:
+    //       En todas los browsers, se va al principio del contenido.
+    //       En chrome, al volver a bajar la barra de direcciones, el menuSlide tarda en moverse.
+    //       En safari, el salto al ir al principio del contenido se ve acompaña de una redimension
+    //       de la barra de redirecciones (detecta que te se ha ido al principio).
     querySelector("body").style.overflowY = "hidden";
 
-    _menuSlideElement.style.display = "block";
-    _backdropElement.style.display = "block";
+    _menuSlideElement.classes.remove("hidden-xs");
+    _backdropElement.classes.remove("hidden-xs");
 
     // Tenemos que dar un frame al browser para que calcule la posicion inicial
     window.animationFrame.then((_) {

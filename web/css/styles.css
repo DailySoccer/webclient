@@ -12590,7 +12590,6 @@ main-menu-slide {
     background-color: transparent;
   }
   #mainMenu .offcanvas {
-    display: none;
     right: -250px;
     -moz-transform: translateX(6px);
     -ms-transform: translateX(6px);
@@ -12629,7 +12628,6 @@ main-menu-slide {
     transform: translate3d(-250px, 0, 0);
   }
   #mainMenu .backdrop {
-    display: none;
     background-color: #000000;
     opacity: 0;
     position: fixed;

@@ -29,12 +29,13 @@ main-menu-slide {
 
 #mainMenu {
 
-	position: fixed;
-	top: 0px;
-	width: 100%;
+	&.logged-in {		
+		.background-header();
 
-	&.image-background {		
-		.background-header();		
+		// Menu siempre arriba fijo
+		position: fixed;
+		top: 0px;
+		width: 100%;
 	}
 
 	background-color: fade(@black, 70%);

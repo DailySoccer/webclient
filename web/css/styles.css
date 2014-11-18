@@ -12257,9 +12257,6 @@ main-menu-slide {
   width: 100%;
 }
 #mainMenu {
-  position: fixed;
-  top: 0px;
-  width: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 999;
   border-style: none;
@@ -12271,7 +12268,7 @@ main-menu-slide {
   -ms-user-select: none;
   user-select: none;
 }
-#mainMenu.image-background {
+#mainMenu.logged-in {
   background-image: url("../images/headerBackground.jpg");
   background-repeat: no-repeat;
   background-position: center 4px;
@@ -12280,6 +12277,9 @@ main-menu-slide {
   border-width: 0px 0px 2px 0px;
   border-radius: 0px;
   height: 70px;
+  position: fixed;
+  top: 0px;
+  width: 100%;
 }
 @media (max-width: 991px) {
   #mainMenu #menuLoggedIn,

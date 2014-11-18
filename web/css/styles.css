@@ -11740,7 +11740,7 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   }
 }
 #contestFiltersRoot #filtersPanel .filter-content {
-  /* estilod para la colmna del filtro con slider */
+  /* estilos para la colmna del filtro con slider */
   /******** Sobreescritura de los estilos de noUiSlider ********/
   /* Slider size and handle placement */
   /* Handle stripes */
@@ -16215,13 +16215,13 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
     display: none !important;
   }
 }
-.soccer-players-filter .filter-by-position .button-filtro-position {
+.soccer-players-filter .filter-by-position .button-filter-position {
   font-size: 9pt;
   margin: 0 2px;
   box-shadow: none;
 }
-.soccer-players-filter .filter-by-position .button-filtro-position:active,
-.soccer-players-filter .filter-by-position .button-filtro-position:focus {
+.soccer-players-filter .filter-by-position .button-filter-position:active,
+.soccer-players-filter .filter-by-position .button-filter-position:focus {
   outline: none;
 }
 .soccer-players-filter .filter-by-position .active {
@@ -16316,23 +16316,6 @@ textarea.soccer-players-filter .name-player-input-filter {
   #matchesFilterWrapper .matches-filter-buttons {
     min-height: 60px;
     overflow: hidden;
-    /*
-			max-height: 60px;
-			overflow: hidden;
-			transition: max-height 1s ease-in;
-
-			.button-filtro-team:nth-child(n+2) {
-				transition: opacity 200ms linear;
-				opacity: 0;
-			}
-
-			&.animate {
-				max-height: 300px;
-				.button-filtro-team:nth-child(n+2) {
-					opacity: 1;
-				}
-			}
-			*/
   }
   #matchesFilterWrapper .matches-filter-buttons.animate {
     -webkit-animation: matchesfilter-height-keyframes 1s;
@@ -16398,7 +16381,7 @@ textarea.soccer-players-filter .name-player-input-filter {
     }
   }
 }
-#matchesFilterWrapper .matches-filter-buttons .button-filtro-wrapper {
+#matchesFilterWrapper .matches-filter-buttons .button-filter-wrapper {
   height: 45px;
   float: left;
   display: inline-block;
@@ -16408,14 +16391,14 @@ textarea.soccer-players-filter .name-player-input-filter {
   top: 8px;
 }
 @media (max-width: 767px) {
-  #matchesFilterWrapper .matches-filter-buttons .button-filtro-wrapper {
+  #matchesFilterWrapper .matches-filter-buttons .button-filter-wrapper {
     display: none !important;
   }
 }
 #matchesFilterWrapper .matches-filter-buttons:after {
   clear: both;
 }
-#matchesFilterWrapper .matches-filter-buttons .button-filtro-team {
+#matchesFilterWrapper .matches-filter-buttons .button-filter-team {
   min-width: 120px;
   padding: 5px 0;
   text-align: center;
@@ -16425,10 +16408,10 @@ textarea.soccer-players-filter .name-player-input-filter {
   font-size: 9pt;
   color: #ffffff;
 }
-#matchesFilterWrapper .matches-filter-buttons .button-filtro-team:active,
-#matchesFilterWrapper .matches-filter-buttons .button-filtro-team:focus,
-#matchesFilterWrapper .matches-filter-buttons .button-filtro-team:hover,
-#matchesFilterWrapper .matches-filter-buttons .button-filtro-team:visited {
+#matchesFilterWrapper .matches-filter-buttons .button-filter-team:active,
+#matchesFilterWrapper .matches-filter-buttons .button-filter-team:focus,
+#matchesFilterWrapper .matches-filter-buttons .button-filter-team:hover,
+#matchesFilterWrapper .matches-filter-buttons .button-filter-team:visited {
   outline: none;
 }
 #matchesFilterWrapper .matches-filter-buttons .active {

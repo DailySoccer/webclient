@@ -24,11 +24,11 @@ class Contest {
   static const TOURNAMENT_LEAGUE          = "LEAGUE";
   static const TOURNAMENT_FIFTY_FIFTY     = "FIFTY_FIFTY";
 
-  static const SALARY_LIMIT_FOR_BEGGINERS = 70000;
+  static const SALARY_LIMIT_FOR_BEGINNERS = 70000;
   static const SALARY_LIMIT_FOR_STANDARDS = 65000;
   static const SALARY_LIMIT_FOR_SKILLEDS  = 60000;
 
-  static const TIER_BEGGINER              = "BEGGINER";
+  static const TIER_BEGINNER              = "BEGINNER";
   static const TIER_STANDARD              = "STANDARD";
   static const TIER_SKILLED               = "SKILLEDS";
 
@@ -57,9 +57,9 @@ class Contest {
   int salaryCap;
 
   String get tier {
-    if (salaryCap >= SALARY_LIMIT_FOR_BEGGINERS)
-      return TIER_BEGGINER;
-    else if (salaryCap < SALARY_LIMIT_FOR_BEGGINERS && salaryCap > SALARY_LIMIT_FOR_SKILLEDS)
+    if (salaryCap >= SALARY_LIMIT_FOR_BEGINNERS)
+      return TIER_BEGINNER;
+    else if (salaryCap < SALARY_LIMIT_FOR_BEGINNERS && salaryCap > SALARY_LIMIT_FOR_SKILLEDS)
       return TIER_STANDARD;
     else
       return TIER_SKILLED;

@@ -149,9 +149,9 @@ class ContestFiltersComp implements ShadowRootAware {
 
     // Lista de tipos de concurso.
     competitionFilterList = [
-       {'name': "LEAGUE_ES",  'flag':"ESP", 'text':'Liga Española',   'checked':false, 'disabled':true, 'id':'filterleagueEsp'}
-      ,{'name': "LEAGUE_UK",  'flag':"UK",  'text':'Premier League',  'checked':false, 'disabled':true, 'id':'filterleagueUK'}
-      ,{'name': "CHAMPIONS",'flag':"EU",  'text':'Champions League','checked':false, 'disabled':true, 'id':'filterUCL'}
+       {'name': "LEAGUE_ES",  'flag':"ESP", 'text':'Liga Española',   'checked':false, 'disabled':true, 'id':'filterLeagueEsp'}
+      ,{'name': "LEAGUE_UK",  'flag':"UK",  'text':'Premier League',  'checked':false, 'disabled':true, 'id':'filterLeagueUK'}
+      ,{'name': "CHAMPIONS",  'flag':"EU",  'text':'Champions League','checked':false, 'disabled':true, 'id':'filterUCL'}
     ];
 
     // Lista de tipos de concurso.

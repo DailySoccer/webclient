@@ -15,7 +15,17 @@ class MainMenuSlideComp implements ShadowRootAware {
   ProfileService profileService;
   ScreenDetectorService scrDet;
   int maxNicknameLength = 30;
-  String get userNickName => profileService.user.nickName.length > maxNicknameLength ? profileService.user.nickName.substring(0, maxNicknameLength-3) + "..." : profileService.user.nickName;
+
+  String get userNickName {
+    if (profileService.isLoggedIn) {
+      return profileService.user.nickName.length > maxNicknameLength ? profileService.user.nickName.substring(0, maxNicknameLength-3) + "..." :
+                                                                       profileService.user.nickName;
+    }
+    else {
+      return "";
+    }
+  }
+
 
   MainMenuSlideComp(this._router, this.profileService, this.scrDet, this._rootElement, this._view) {
 
@@ -31,25 +41,70 @@ class MainMenuSlideComp implements ShadowRootAware {
   @override void onShadowRoot(emulatedRoot) {
     _view.domRead(() {
       _rootElement.querySelector("#toggleSlideMenu").onClick.listen(_onToggleSlideMenuClick);
+
       _menuSlideElement = _rootElement.querySelector("#menuSlide");
+
+      // El backdrop es la cortinilla traslucida que atenua todo el contenido
+      _backdropElement = new DivElement();
+      _backdropElement.classes.add("backdrop");
+
+      // La insertamos en 0 para que no pise al #menuSlide
+      _menuSlideElement.parent.children.insert(0, _backdropElement);
+
+      _setUpAnimationControl();
+    });
+  }
+
+  void _setUpAnimationControl() {
+    _menuSlideElement.onTransitionEnd.listen((_) {
+      if (_slideState == "hidden") {
+        _menuSlideElement.style.display = "none";
+      }
+    });
+
+    _backdropElement.onTransitionEnd.listen((_) {
+      if (_slideState == "hidden") {
+        _backdropElement.style.display = "none";
+      }
+    });
+
+    _backdropElement.onClick.listen((_) {
+      _hide();
     });
   }
 
   void _onToggleSlideMenuClick(MouseEvent e) {
-
     if (_slideState == "hidden") {
-      _menuSlideElement.classes.remove("hidden-xs");
-      _slideState = "slid";
-
-      // Tenemos que dar un frame al browser para que calcule la posicion inicial
-      window.animationFrame.then((_) {
-        _menuSlideElement.classes.add("in");
-      });
+      _show();
     }
     else {
-      _menuSlideElement.classes.remove("in");
-      _slideState = "hidden";
+      _hide();
     }
+  }
+
+  void _show() {
+    _slideState = "slid";
+
+    // Desactivamos la barra de scroll
+    querySelector("body").style.overflowY = "hidden";
+
+    _menuSlideElement.style.display = "block";
+    _backdropElement.style.display = "block";
+
+    // Tenemos que dar un frame al browser para que calcule la posicion inicial
+    window.animationFrame.then((_) {
+      _menuSlideElement.classes.add("in");
+      _backdropElement.classes.add("in");
+    });
+  }
+
+  void _hide() {
+    _slideState = "hidden";
+
+    querySelector("body").style.overflowY = "visible";
+
+    _menuSlideElement.classes.remove("in");
+    _backdropElement.classes.remove("in");
   }
 
   void _updateActiveElement(String name) {
@@ -88,12 +143,13 @@ class MainMenuSlideComp implements ShadowRootAware {
     */
 
     if (destination.isNotEmpty) {
+      _hide();
       _router.go(destination, params);
     }
   }
 
   void logOut() {
-    //JsUtils.runJavascript('.navbar-offcanvas.navmenu-fixed', 'offcanvas', 'hide');
+    _hide();
     _router.go('landing_page', {});
     profileService.logout();
   }
@@ -101,6 +157,7 @@ class MainMenuSlideComp implements ShadowRootAware {
 
   Element _rootElement;
   Element _menuSlideElement;
+  Element _backdropElement;
   Router _router;
   View _view;
 

@@ -112,6 +112,22 @@
           dartCallback();
         });
       }
+
+      function conversion(remarketing_only) {
+        window.google_trackConversion(remarketing_only?
+                                      { google_conversion_id: 957611754,
+                                        google_custom_params: {},
+                                        google_remarketing_only: true
+                                      } :
+                                      { google_conversion_id: 957611754,
+                                        google_conversion_language: "en",
+                                        google_conversion_format: "2",
+                                        google_conversion_color: "ffffff",
+                                        google_conversion_label: "ouQSCJrYx1cQ6v3PyAM",
+                                        google_remarketing_only: false
+                                      }
+                                      );
+      }
     </script>
 
     <script src="main.dart.js" id="mainDart"></script>
@@ -133,8 +149,10 @@
     <script src="jasny/js/jasny-bootstrap.min.js"></script>
     <script src="bootstrap-switch/js/bootstrap-switch.min.js"></script>
 
+
     <!-- Google Remarketing codes -->
     <script type="text/javascript" src="http://www.googleadservices.com/pagead/conversion_async.js" charset="utf-8"></script>
+
 
     <!-- Original google codes -->
 

@@ -69,6 +69,7 @@ import 'package:webclient/utils/host_server.dart';
 import 'package:webclient/template_cache.dart';
 import 'dart:async';
 import 'package:webclient/utils/js_utils.dart';
+import 'package:webclient/utils/game_metrics.dart';
 
 class WebClientApp extends Module {
 
@@ -300,6 +301,7 @@ class WebClientApp extends Module {
         return false;
       }
       else {
+        GameMetrics.trackConversion(false);
         _bleach(event.route);
         return true;
       }

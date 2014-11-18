@@ -114,19 +114,21 @@
       }
 
       function conversion(remarketing_only) {
-        window.google_trackConversion(remarketing_only?
-                                      { google_conversion_id: 957611754,
-                                        google_custom_params: {},
-                                        google_remarketing_only: true
-                                      } :
-                                      { google_conversion_id: 957611754,
-                                        google_conversion_language: "en",
-                                        google_conversion_format: "2",
-                                        google_conversion_color: "ffffff",
-                                        google_conversion_label: "ouQSCJrYx1cQ6v3PyAM",
-                                        google_remarketing_only: false
-                                      }
-                                      );
+        if (typeof window.google_trackConversion == 'function') {
+          window.google_trackConversion(remarketing_only?
+                                        { google_conversion_id: 957611754,
+                                          google_custom_params: {},
+                                          google_remarketing_only: true
+                                        } :
+                                        { google_conversion_id: 957611754,
+                                          google_conversion_language: "en",
+                                          google_conversion_format: "2",
+                                          google_conversion_color: "ffffff",
+                                          google_conversion_label: "ouQSCJrYx1cQ6v3PyAM",
+                                          google_remarketing_only: false
+                                        }
+                                        );
+        }
       }
     </script>
 

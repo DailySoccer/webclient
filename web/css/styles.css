@@ -12254,8 +12254,12 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .bt
 main-menu-slide {
   display: block;
   height: 70px;
+  width: 100%;
 }
 #mainMenu {
+  position: fixed;
+  top: 0px;
+  width: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 999;
   border-style: none;

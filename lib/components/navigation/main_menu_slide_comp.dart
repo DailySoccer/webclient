@@ -5,6 +5,7 @@ import 'package:angular/angular.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/html_utils.dart';
+import 'dart:async';
 
 
 @Component(
@@ -12,7 +13,6 @@ import 'package:webclient/utils/html_utils.dart';
     useShadowDom: false
 )
 class MainMenuSlideComp implements ShadowRootAware {
-
 
   MainMenuSlideComp(this._router, this._profileService, this._scrDet, this._rootElement) {
     _router.onRouteStart.listen((RouteStartEvent event) {
@@ -44,6 +44,12 @@ class MainMenuSlideComp implements ShadowRootAware {
     // Basta con asignar a null puesto que recreamos de 0 el HTML
     _menuSlideElement = null;
     _backdropElement = null;
+
+    // Nos pueden haber deslogeado con el menu desplegado
+    if (_scrollCancelationListener != null) {
+      _scrollCancelationListener.cancel();
+      _scrollCancelationListener = null;
+    }
 
     _slideState = "hidden";
   }
@@ -137,13 +143,10 @@ class MainMenuSlideComp implements ShadowRootAware {
   void _show() {
     _slideState = "slid";
 
-    // Desactivamos el scroll del body
-    // TODO: Esto por supuesto hay q hacerlo, pero tiene los siguientes problemas:
-    //       En todas los browsers, se va al principio del contenido.
-    //       En chrome, al volver a bajar la barra de direcciones, el menuSlide tarda en moverse.
-    //       En safari, el salto al ir al principio del contenido se ve acompaña de una redimension
-    //       de la barra de redirecciones (detecta que se te ha ido al principio).
-    querySelector("body").style.overflowY = "hidden";
+    // Desactivamos el scroll del body (solo en Touch, en desktop nos da igual)
+    _scrollCancelationListener = querySelector("body").onTouchMove.listen((event) {
+      event.preventDefault();
+    });
 
     _menuSlideElement.classes.remove("hidden-xs");
     _backdropElement.classes.remove("hidden-xs");
@@ -159,10 +162,12 @@ class MainMenuSlideComp implements ShadowRootAware {
     if (_menuSlideElement != null) {
       _slideState = "hidden";
 
-      querySelector("body").style.overflowY = "visible";
-
       _menuSlideElement.classes.remove("in");
       _backdropElement.classes.remove("in");
+    }
+
+    if (_scrollCancelationListener != null) {
+      _scrollCancelationListener.cancel();
     }
   }
 
@@ -256,6 +261,8 @@ class MainMenuSlideComp implements ShadowRootAware {
 
   String _slideState = "hidden";
   bool _isLoggedIn;
+
+  StreamSubscription _scrollCancelationListener;
 
   static final int _maxNicknameLength = 30;
 }

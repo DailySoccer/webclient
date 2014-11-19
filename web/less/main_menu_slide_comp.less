@@ -32,7 +32,7 @@ main-menu-slide {
 	&.logged-in {		
 		.background-header();
 
-		// Menu siempre arriba fijo
+		// Menu siempre arriba fijo cuando estamos logeados
 		position: fixed;
 		top: 0px;
 		width: 100%;
@@ -166,6 +166,7 @@ main-menu-slide {
     @media (max-width: @screen-xs-max) {
 
     	@offcanvas-width: 250px;	// Cuanto ancho necesitamos para que quepan incluso los submenus
+    	@fixed-top: 70px;
 
 		// Icono que abre el menu
 		#toggleSlideMenu {
@@ -200,7 +201,7 @@ main-menu-slide {
 			background-color: @black;
 			opacity: 0;
 			position: fixed;
-			top:70px;
+			top: @fixed-top;
 			left: 0px;
 			right: 0px;
 			bottom: 0px;
@@ -218,7 +219,7 @@ main-menu-slide {
 
 			position: fixed;
 			width: @offcanvas-width;
-			top: 70px;
+			top: @fixed-top;
 			bottom: 0px;
 			
 	    	// Caja menu ppal.
@@ -270,7 +271,6 @@ main-menu-slide {
 		    }
         }
     }
-
 
 
 	// Menu sin logear:

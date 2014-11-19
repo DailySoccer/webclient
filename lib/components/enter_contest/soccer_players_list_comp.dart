@@ -1,11 +1,12 @@
 library soccer_players_list_comp;
 
-import 'package:angular/angular.dart';
 import 'dart:html';
+import 'package:angular/angular.dart';
+import 'package:angular/change_detection/change_detection.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/models/field_pos.dart';
-import 'package:angular/change_detection/change_detection.dart';
+import 'package:webclient/utils/html_utils.dart';
 
 
 @Component(
@@ -96,7 +97,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
 
           // Quiza nos mandan quitar un portero pero estamos filtrando por defensas....
           if (elem != null) {
-            elem.setInnerHtml(getActionButton(!lineupFilter.contains(soccerPlayer)));
+            elem.setInnerHtml(getActionButton(!lineupFilter.contains(soccerPlayer)), treeSanitizer: NULL_TREE_SANITIZER);
           }
         }
       }

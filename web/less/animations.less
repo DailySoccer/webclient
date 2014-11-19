@@ -15,6 +15,27 @@
 	transition: @property @time @curve;
 }
 
+// Translacion en X acelerada por HW y compatible con browsers que no tienen el translate 3d
+.translateX(@amount) {
+    -moz-transform: translateX(@amount);
+    -ms-transform: translateX(@amount);
+    -o-transform: translateX(@amount);
+    -webkit-transform: translateX(@amount);
+    transform: translateX(@amount);
+
+    -moz-transform: translateZ(@amount) translateX(@amount);
+    -ms-transform: translateZ(@amount) translateX(@amount);
+    -o-transform: translateZ(@amount) translateX(@amount);
+    -webkit-transform: translateZ(@amount) translateX(@amount);
+    transform: translateZ(@amount) translateX(@amount);
+
+    -moz-transform: translate3d(@amount, 0, 0);
+    -ms-transform: translate3d(@amount, 0, 0);
+    -o-transform: translate3d(@amount, 0, 0);
+    -webkit-transform: translate3d(@amount, 0, 0);
+    transform: translate3d(@amount, 0, 0);
+}
+
 #doKeyFrames(@name; @frames) {
     @-webkit-keyframes @name { @frames(); }
     @-moz-keyframes @name { @frames(); }

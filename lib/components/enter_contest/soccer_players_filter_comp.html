@@ -2,7 +2,7 @@
 
   <div class="filter-by-position" ng-if="scrDet.isNotXsScreen">
     <span>JUGADORES</span>
-    <button class="btn btn-default button-filter-position" ng-click="fieldPosFilter = fieldPos"
+    <button class="button-filter-position" ng-click="fieldPosFilter = fieldPos"
             ng-repeat="fieldPos in posFilterList" ng-bind-html="getTextForFieldPos(fieldPos)" ng-class="getClassForFieldPos(fieldPos)"></button>
   </div>
 

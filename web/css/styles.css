@@ -5853,6 +5853,8 @@ scoring-rules:after,
 #promosComponent:after,
 #modalSoccerPlayerInfo .soccer-player-info-header:before,
 #modalSoccerPlayerInfo .soccer-player-info-header:after,
+#modalSoccerPlayerInfo .soccer-player-info-content .tab:before,
+#modalSoccerPlayerInfo .soccer-player-info-content .tab:after,
 #modalSoccerPlayerInfo .soccer-player-info-content .season-header:before,
 #modalSoccerPlayerInfo .soccer-player-info-content .season-header:after,
 #modalSoccerPlayerInfo .soccer-player-info-content .match-header:before,
@@ -5950,6 +5952,7 @@ scoring-rules:after,
 .no-contests-wrapper .no-contest-bottom-row:after,
 #promosComponent:after,
 #modalSoccerPlayerInfo .soccer-player-info-header:after,
+#modalSoccerPlayerInfo .soccer-player-info-content .tab:after,
 #modalSoccerPlayerInfo .soccer-player-info-content .season-header:after,
 #modalSoccerPlayerInfo .soccer-player-info-content .match-header:after,
 #enterContest:after,
@@ -7103,9 +7106,6 @@ button#contestInfoModal .modal-info-head button.close {
     float: left;
     width: 100%;
   }
-}
-#contestInfoModal .tabs .tab-content {
-  padding: 0 15px;
 }
 .matches-involved {
   margin: 10px auto 0;
@@ -13903,6 +13903,7 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
   min-height: 1px;
   padding-left: 2.5px;
   padding-right: 2.5px;
+  height: 47px;
   padding-top: 5px;
   padding-bottom: 10px;
   background-color: #434343;
@@ -14452,6 +14453,41 @@ fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .descriptio
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
 }
+#modalSoccerPlayerInfo .soccer-player-info-content .tab {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+@media (min-width: 768px) {
+  #modalSoccerPlayerInfo .soccer-player-info-content .tab {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  #modalSoccerPlayerInfo .soccer-player-info-content .tab {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  #modalSoccerPlayerInfo .soccer-player-info-content .tab {
+    width: 970px;
+  }
+}
+#modalSoccerPlayerInfo .soccer-player-info-content .tab > .navbar-header,
+#modalSoccerPlayerInfo .soccer-player-info-content .tab > .navbar-collapse {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+@media (min-width: 768px) {
+  #modalSoccerPlayerInfo .soccer-player-info-content .tab > .navbar-header,
+  #modalSoccerPlayerInfo .soccer-player-info-content .tab > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
 #modalSoccerPlayerInfo .soccer-player-info-content .tab-content {
   padding: 15px;
 }
@@ -14990,12 +15026,14 @@ fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .descriptio
     margin-left: 0;
   }
 }
+.allocate-space {
+  height: 96px;
+}
 .enter-contest-actions-wrapper {
   clear: both;
   margin-left: -7.5;
   margin-right: -7.5;
   padding: 10px;
-  padding-top: 0;
 }
 @media (min-width: 768px) {
   .enter-contest-actions-wrapper {
@@ -15017,6 +15055,7 @@ fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .descriptio
   text-align: center;
   border-radius: 3px;
   margin-top: 10px;
+  margin-bottom: 10px;
   min-height: 34px;
 }
 @media (min-width: 768px) and (max-width: 991px) {
@@ -15061,7 +15100,6 @@ fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .descriptio
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  margin-top: 10px;
 }
 .enter-contest-actions-wrapper .btn-cancel-player-selection:focus,
 .enter-contest-actions-wrapper .btn-cancel-player-selection:active:focus,
@@ -15142,6 +15180,15 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-cancel-player-selection {
   position: relative;
   float: left;
   width: 50%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.enter-contest-actions-wrapper .button-wrapper-block {
+  height: 52px;
+  position: relative;
+  float: left;
+  width: 100%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;

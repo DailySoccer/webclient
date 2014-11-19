@@ -32,6 +32,7 @@
 	.action-buttons {
 		.visible-xs();
 		.make-xs-column(12, 5px);
+		height: 47px;
 		padding-top: 5px;
 		padding-bottom: 10px;
 		background-color: @greyUltraDark;
@@ -173,6 +174,10 @@
 		background-color: @white;
 		border-bottom-right-radius: 5px;
 		border-bottom-left-radius: 5px;
+		.tab {
+			.container();
+			.clean-paddings();
+		}
 		.tab-content {
 			padding: 15px;
 		}

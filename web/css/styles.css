@@ -13925,6 +13925,7 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
 }
 #modalSoccerPlayerInfo .action-buttons.bottom {
   background-color: #ffffff;
+  padding: 10px;
 }
 #modalSoccerPlayerInfo .action-buttons .btn-cancel {
   display: inline-block;

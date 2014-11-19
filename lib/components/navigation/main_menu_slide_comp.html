@@ -2,7 +2,7 @@
   <div class="inner-wrapper">
 
     <div id="menuLoggedIn">
-      
+
       <!-- Cabecera when logeado -->
       <div class="navbar-header"  ng-show="profileService.isLoggedIn">
         <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target="#menuSlide" data-canvas="body" id="toggleSlideMenu">
@@ -12,7 +12,7 @@
         </button>
         <div id="brandLogoLogged" class="navbar-brand" ng-click="navigateTo($event)" destination="lobby" ng-class="['loggedIn-brand']" ng-model="checkForActiveElement()"></div>
       </div>
-      
+
       <!-- Opciones del menu -->
       <div id="menuSlide" class="navbar-offcanvas navmenu-fixed offcanvas" ng-if="profileService.isLoggedIn">
         <ul class="nav navbar-nav">
@@ -23,7 +23,7 @@
             <a id="menuUser" class="dropdown-toggle" data-toggle="dropdown">{{userNickName}}</a>
             <ul class="dropdown-menu">
               <li>                    <a  id="menuUserMyAccount"        ng-click="navigateTo($event)" destination="user_profile">Mi cuenta</a></li>
-              <li>                    <a  id="menuUserAddFunds"         ng-click="navigateTo($event)" destination="payment">Añadir fondos</a></li>
+              <li>                    <a  id="menuUserAddFunds"         ng-click="navigateTo($event)" destination="beta_info">Añadir fondos</a></li>
               <li>                    <a  id="menuUserHistory"          ng-click="navigateTo($event)" destination="beta_info">Historial de transacciones</a></li>
               <li>                    <a  id="menuUserReferencesCenter" ng-click="navigateTo($event)" destination="beta_info">Centro de referencias</a></li>
               <li>                    <a  id="menuUserClassification"   ng-click="navigateTo($event)" destination="beta_info">Clasificación</a></li>
@@ -35,7 +35,7 @@
          <!--  <li class="right-menu"><span class="current-balance">35.000€</span><button class="add-funds-button">AÑADIR FONDOS</button></li> -->
         </ul>
       </div>
-      
+
     </div>
 
     <!-- Cabecera when NO logeado -->

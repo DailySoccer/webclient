@@ -35,7 +35,7 @@ class ContestFiltersComp implements ShadowRootAware {
       "FIFTY_FIFTY"   :"Torneos 50 / 50"
     },
     "FILTER_TIER":{
-      "BEGGINER" :"Dificultad principiante",
+      "BEGINNER" :"Dificultad principiante",
       "STANDARD" :"Dificultad Estandar",
       "SKILLEDS" :"Dificultad Experto"
     },
@@ -149,9 +149,9 @@ class ContestFiltersComp implements ShadowRootAware {
 
     // Lista de tipos de concurso.
     competitionFilterList = [
-       {'name': "LEAGUE_ES",  'flag':"ESP", 'text':'Liga Española',   'checked':false, 'disabled':true, 'id':'filtroleagueEsp'}
-      ,{'name': "LEAGUE_UK",  'flag':"UK",  'text':'Premier League',  'checked':false, 'disabled':true, 'id':'filtroleagueUK'}
-      ,{'name': "CHAMPIONS",'flag':"EU",  'text':'Champions League','checked':false, 'disabled':true, 'id':'filtroUCL'}
+       {'name': "LEAGUE_ES",  'flag':"ESP", 'text':'Liga Española',   'checked':false, 'disabled':true, 'id':'filterLeagueEsp'}
+      ,{'name': "LEAGUE_UK",  'flag':"UK",  'text':'Premier League',  'checked':false, 'disabled':true, 'id':'filterLeagueUK'}
+      ,{'name': "CHAMPIONS",  'flag':"EU",  'text':'Champions League','checked':false, 'disabled':true, 'id':'filterUCL'}
     ];
 
     // Lista de tipos de concurso.
@@ -164,7 +164,7 @@ class ContestFiltersComp implements ShadowRootAware {
 
     // Lista de tipos de Limites de salarios.
     salaryCapFilterList = [
-       {'name':"BEGGINER", 'text':'Principiante', 'checked':false, 'disabled':true, 'id':'filterTournamentTierBegginer'}
+       {'name':"BEGINNER", 'text':'Principiante', 'checked':false, 'disabled':true, 'id':'filterTournamentTierBeginner'}
       ,{'name':"STANDARD", 'text':'Estandar',     'checked':false, 'disabled':true, 'id':'filterTournamentTierStandard'}
       ,{'name':"SKILLEDS", 'text':'Experto',      'checked':false, 'disabled':true, 'id':'filterTournamentTierSkilled'}
     ];

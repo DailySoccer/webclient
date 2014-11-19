@@ -8,6 +8,7 @@ import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/contests_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
+import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/components/modal_comp.dart';
 
 @Component(
@@ -20,8 +21,9 @@ class ContestInfoComp implements DetachAware {
   bool isModal = false;
   Map currentInfoData;
   Contest contest = null;
+  LoadingService loadingService;
 
-  ContestInfoComp(ScreenDetectorService scrDet, RouteProvider routeProvider, this._router, this._contestsService, this._flashMessage) {
+  ContestInfoComp(ScreenDetectorService scrDet, RouteProvider routeProvider, this.loadingService, this._router, this._contestsService, this._flashMessage) {
 
     _streamListener = scrDet.mediaScreenWidth.listen(onScreenWidthChange);
 
@@ -42,7 +44,8 @@ class ContestInfoComp implements DetachAware {
 
     _contestId = routeProvider.route.parameters['contestId'];
 
-    // Solo refrescamos del servidor en caso de que no este ya cargado
+    loadingService.isLoading = true;
+
     _contestsService.refreshPublicContest(_contestId)
       .then((_) {
         updateContestInfo();
@@ -64,6 +67,8 @@ class ContestInfoComp implements DetachAware {
   }
 
   void updateContestInfo() {
+
+    loadingService.isLoading = false;
 
     contest = _contestsService.lastContest;
     List contestants = [];

@@ -8,6 +8,7 @@ import 'package:webclient/services/refresh_timers_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/models/contest.dart';
+import 'package:webclient/utils/game_metrics.dart';
 
 @Component(
   selector: 'lobby',
@@ -36,6 +37,8 @@ class LobbyComp implements DetachAware {
   int contestCount = 0;
 
   LobbyComp(this._router, this._refreshTimersService, this.contestsService, this.scrDet, this.loadingService) {
+
+    GameMetrics.logEvent(GameMetrics.LOBBY);
 
     if (contestsService.activeContests.isEmpty) {
       loadingService.isLoading = true;

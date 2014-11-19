@@ -29,26 +29,8 @@ matches-filter {
 					});
 				.animateWithKeyFrames(matchesfilter-height-keyframes, 1s);
 			}
-
-			/*
-			max-height: 60px;
-			overflow: hidden;
-			transition: max-height 1s ease-in;
-
-			.button-filtro-team:nth-child(n+2) {
-				transition: opacity 200ms linear;
-				opacity: 0;
-			}
-
-			&.animate {
-				max-height: 300px;
-				.button-filtro-team:nth-child(n+2) {
-					opacity: 1;
-				}
-			}
-			*/
 		}
-		.button-filtro-wrapper {
+		.button-filter-wrapper {
 			.hidden-xs();			
 			height: 45px;
 			float: left;
@@ -59,14 +41,14 @@ matches-filter {
 			top: 8px;
 		}
 		&:after { clear:both;}
-		.button-filtro-team {
+		.button-filter-team {
 			min-width: 120px;		
 			padding: 5px 0;			
 			text-align: center;			
 			line-height: 15px;
 			.opensans_bold(9pt, @white);
 		}
-		.button-filtro-team:active, .button-filtro-team:focus, .button-filtro-team:hover, .button-filtro-team:visited {
+		.button-filter-team:active, .button-filter-team:focus, .button-filter-team:hover, .button-filter-team:visited {
 			outline: none;
 		}
 		.active {

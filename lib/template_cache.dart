@@ -253,10 +253,6 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
 
   </div>
 </div>
-
-
-
-
 """));
 tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse(200, r"""<div id="loginRoot" ng-show="!loadingService.isLoading">
   <div id="loginBox" class="main-box">
@@ -490,7 +486,7 @@ tc.put("packages/webclient/components/contest_filters_comp.html", new HttpRespon
   <div class="choosed-filters-container" ng-show="scrDet.isXsScreen">
       <div class="competition-filter-name" ng-bind-html="filterResume"></div>
       <div class="filterToggler">
-        <div id="filtersButtonMobile" type="button" class="btn filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse" data-target="#filtersPanel">filtros</div>
+        <div id="filtersButtonMobile" type="button" class="filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse" data-target="#filtersPanel">filtros</div>
       </div>
   </div>
 
@@ -508,15 +504,17 @@ tc.put("packages/webclient/components/contest_filters_comp.html", new HttpRespon
   </div>
 
   <div class="filterToggler" ng-show="!scrDet.isXsScreen">
-      <div id="filtersButtonDesktop" type="button" class="btn filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse">FILTROS</div>
+      <div id="filtersButtonDesktop" type="button" class="filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse">FILTROS</div>
   </div>
 
 </div>
 
 <div id="filtersPanel" class="collapse">
 
+  <div class="filters-panel-row">
+
     <!-- Filtro x tipos de concurso -->
-    <div class="filter-column-tournaments">
+    <div class="filter-column-competition">
       <p class="filter-title">COMPETICION</p>
       <div class="filter-content">
         <div class="check-group-wrapper">
@@ -577,12 +575,17 @@ tc.put("packages/webclient/components/contest_filters_comp.html", new HttpRespon
       </div>
     </div>
 
-    <div class="reset-button-wrapper">
-      <button type="button" class="btn-reset" ng-click="resetAllFilters()">LIMPIAR FILTROS</button>
-    </div>
-    <div class="confirm-button-wrapper">
-      <button type="button" class="btn-confirm" ng-click="toggleFilterMenu()">ACEPTAR</button>
-    </div>
+  </div>
+  <div class="filters-panel-row">
+
+      <div class="reset-button-wrapper">
+        <button type="button" class="btn-reset" ng-click="resetAllFilters()">LIMPIAR FILTROS</button>
+      </div>
+      <div class="confirm-button-wrapper">
+        <button type="button" class="btn-confirm" ng-click="toggleFilterMenu()">ACEPTAR</button>
+      </div>
+
+  </div>
 </div>"""));
 tc.put("packages/webclient/components/contest_header_comp.html", new HttpResponse(200, r"""<div id="contestHeaderWrapper">
 
@@ -948,8 +951,8 @@ tc.put("packages/webclient/components/enter_contest/matches_filter_comp.html", n
   </select>
 
   <div id="matchesFilterButtons" class="matches-filter-buttons" ng-switch-when="false">
-    <div class="button-filtro-wrapper" ng-repeat="match in matchEvents" >
-      <button class="btn btn-default button-filtro-team"ng-bind-html="match.texto" id="match-{{match.id}}"
+    <div class="button-filter-wrapper" ng-repeat="match in matchEvents" >
+      <button class="btn btn-default button-filter-team"ng-bind-html="match.texto" id="match-{{match.id}}"
               ng-click="optionsSelectorValue = match.id" ng-class="{'active': optionsSelectorValue == match.id }">
       </button>
     </div>
@@ -1086,13 +1089,13 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_info_comp.html
 
 """));
 tc.put("packages/webclient/components/enter_contest/soccer_players_filter_comp.html", new HttpResponse(200, r"""<div class="soccer-players-filter">
-            
+
   <div class="filter-by-position" ng-if="scrDet.isNotXsScreen">
     <span>JUGADORES</span>
-    <button class="button-filtro-position" ng-click="fieldPosFilter = fieldPos" 
+    <button class="btn btn-default button-filter-position" ng-click="fieldPosFilter = fieldPos"
             ng-repeat="fieldPos in posFilterList" ng-bind-html="getTextForFieldPos(fieldPos)" ng-class="getClassForFieldPos(fieldPos)"></button>
   </div>
-  
+
   <input type="text" class="name-player-input-filter" placeholder="Buscar jugador" ng-model="nameFilter" />
 </div>"""));
 tc.put("packages/webclient/components/flash_messages_comp.html", new HttpResponse(200, r"""<div>
@@ -2298,6 +2301,58 @@ tc.put("packages/webclient/components/navigation/footer_comp.html", new HttpResp
   </div>
 </div>
 """));
+tc.put("packages/webclient/components/navigation/main_menu_slide_comp.html", new HttpResponse(200, r"""<nav id="mainMenu" ng-class="{'image-background':profileService.isLoggedIn == true}" class="navbar navbar-default" role="navigation">
+  <div class="inner-wrapper">
+
+    <div id="menuLoggedIn">
+      
+      <!-- Cabecera when logeado -->
+      <div class="navbar-header"  ng-show="profileService.isLoggedIn">
+        <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target="#menuSlide" data-canvas="body" id="toggleSlideMenu">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <div id="brandLogoLogged" class="navbar-brand" ng-click="navigateTo($event)" destination="lobby" ng-class="['loggedIn-brand']" ng-model="checkForActiveElement()"></div>
+      </div>
+      
+      <!-- Opciones del menu -->
+      <div id="menuSlide" class="navbar-offcanvas navmenu-fixed offcanvas" ng-if="profileService.isLoggedIn">
+        <ul class="nav navbar-nav">
+          <li highlights="lobby">      <a  id="menuLobby"      ng-click="navigateTo($event)" destination="lobby">Buscar Torneos</a></li>
+          <li highlights="my_contests"><a  id="menuMy_Contest" ng-click="navigateTo($event)" destination="my_contests">Mis torneos</a></li>
+          <li highlights="">           <a  id="menuPromos"     ng-click="navigateTo($event)" destination="beta_info">Promos</a></li>
+          <li highlights="user" class="right-menu">
+            <a id="menuUser" class="dropdown-toggle" data-toggle="dropdown">{{userNickName}}</a>
+            <ul class="dropdown-menu">
+              <li>                    <a  id="menuUserMyAccount"        ng-click="navigateTo($event)" destination="user_profile">Mi cuenta</a></li>
+              <li>                    <a  id="menuUserAddFunds"         ng-click="navigateTo($event)" destination="beta_info">Añadir fondos</a></li>
+              <li>                    <a  id="menuUserHistory"          ng-click="navigateTo($event)" destination="beta_info">Historial de transacciones</a></li>
+              <li>                    <a  id="menuUserReferencesCenter" ng-click="navigateTo($event)" destination="beta_info">Centro de referencias</a></li>
+              <li>                    <a  id="menuUserClassification"   ng-click="navigateTo($event)" destination="beta_info">Clasificación</a></li>
+              <li>                    <a  id="menuUserAyuda"            ng-click="navigateTo($event)" destination="help_info">Ayuda</a></li>
+              <!-- <li class="divider"></li> -->
+              <li>                    <a  id="menuUserLogOut"           ng-click="logOut()"           destination="beta_info">Salir</a></li>
+            </ul>
+          </li>
+         <!--  <li class="right-menu"><span class="current-balance">35.000€</span><button class="add-funds-button">AÑADIR FONDOS</button></li> -->
+        </ul>
+      </div>
+      
+    </div>
+
+    <!-- Cabecera when NO logeado -->
+    <div class="navbar-header-unloggin" ng-if="!profileService.isLoggedIn">
+      <div id="brandLogoNotLogged" class="navbar-brand" ng-click="navigateTo($event)" destination="landing_page"></div>
+      <div class="button-wrapper">
+        <a id="joinButton"  type="button" class="button-join"  ng-click="navigateTo($event)" destination="join">REGISTRO</a>
+        <a id="loginButton" type="button" class="button-login" ng-click="navigateTo($event)" destination="login">ENTRAR</a>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+
+  </div>
+</nav>"""));
 tc.put("packages/webclient/components/paginator_comp.html", new HttpResponse(200, r"""<div class="paginator-wrapper">
   <div class="paginator-box" ng-model="buildMe()">
     <!-- Aqui van los botones -->

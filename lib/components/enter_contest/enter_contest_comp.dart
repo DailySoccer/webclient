@@ -15,6 +15,7 @@ import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/contest_entry.dart';
 import "package:webclient/models/instance_soccer_player.dart";
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/utils/game_metrics.dart';
 
 
 @Component(
@@ -54,6 +55,8 @@ class EnterContestComp implements DetachAware {
 
     contestId = _routeProvider.route.parameters['contestId'];
     contestEntryId = _routeProvider.route.parameters['contestEntryId'];
+
+    GameMetrics.logEvent(GameMetrics.ENTER_CONTEST);
 
     // Nos subscribimos al evento de cambio de tamañano de ventana
     _streamListener = scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
@@ -269,11 +272,14 @@ class EnterContestComp implements DetachAware {
     }
     else {
       _contestsService.addContestEntry(contest.contestId, lineupSlots.map((player) => player["id"]).toList())
-        .then((contestId) => _router.go('view_contest_entry', {
-                                        "contestId": contestId,
-                                        "parent": _routeProvider.parameters["parent"],
-                                        "viewContestEntryMode": contestId == contest.contestId? "created" : "swapped"
-                                         }))
+        .then((contestId) {
+          GameMetrics.logEvent(GameMetrics.TEAM_CREATED);
+          _router.go('view_contest_entry', {
+                              "contestId": contestId,
+                              "parent": _routeProvider.parameters["parent"],
+                              "viewContestEntryMode": contestId == contest.contestId? "created" : "swapped"
+                               });
+        })
         .catchError((error) => _errorCreating(error));
     }
   }

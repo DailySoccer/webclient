@@ -11,6 +11,7 @@ import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/contest_entry.dart';
 import 'dart:html';
 import 'package:webclient/services/screen_detector_service.dart';
+import 'package:webclient/utils/game_metrics.dart';
 
 @Component(
     selector: 'view-contest',
@@ -53,11 +54,15 @@ class ViewContestComp implements DetachAware {
         // Únicamente actualizamos los contests que estén en "live"
         if (_contestsService.lastContest.isLive) {
           _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE, _updateLive);
+          GameMetrics.logEvent(GameMetrics.LIVE_CONTEST_VISITED);
 
           //if(_contestsService.lastContest.competitionType == Contest.TOURNAMENT_HEAD_TO_HEAD) {
             // TODO: Es un partido headh to seleccionar como oponente al adversario
             //print("TOURNAMENT_HEAD_TO_HEAD: " + (_contestsService.lastContest.tournamentType == Contest.TOURNAMENT_HEAD_TO_HEAD).toString());
           //}
+        }
+        else {
+          GameMetrics.logEvent(GameMetrics.VIEW_CONTEST);
         }
       })
       .catchError((error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW));

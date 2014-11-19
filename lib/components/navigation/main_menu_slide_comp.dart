@@ -13,19 +13,8 @@ import 'package:webclient/utils/html_utils.dart';
 )
 class MainMenuSlideComp implements ShadowRootAware {
 
-  ProfileService profileService;
-  ScreenDetectorService scrDet;
 
-  String get userNickName {
-    if (!profileService.isLoggedIn) {
-      return "";
-    }
-
-    return profileService.user.nickName.length > _maxNicknameLength ? profileService.user.nickName.substring(0, _maxNicknameLength-3) + "..." :
-                                                                      profileService.user.nickName;
-  }
-
-  MainMenuSlideComp(this._router, this.profileService, this.scrDet, this._rootElement) {
+  MainMenuSlideComp(this._router, this._profileService, this._scrDet, this._rootElement) {
     _router.onRouteStart.listen((RouteStartEvent event) {
       event.completed.then((_) {
         if (_router.activePath.length > 0) {
@@ -40,9 +29,9 @@ class MainMenuSlideComp implements ShadowRootAware {
   }
 
   void _monitorChanges(_) {
-    if (_isLoggedIn != profileService.isLoggedIn) {
+    if (_isLoggedIn != _profileService.isLoggedIn) {
       _reset();
-      _isLoggedIn = profileService.isLoggedIn;
+      _isLoggedIn = _profileService.isLoggedIn;
       _createHtml();
       _setUpSlidingMenu();
       _setUpClicks();
@@ -129,7 +118,7 @@ class MainMenuSlideComp implements ShadowRootAware {
 
     if (destination == "logout") {
       _router.go('landing_page', {});
-      profileService.logout();
+      _profileService.logout();
     }
     else {
       _router.go(destination, {});
@@ -199,6 +188,15 @@ class MainMenuSlideComp implements ShadowRootAware {
     return name.contains('user') || name == 'help_info';
   }
 
+  String get _userNickName {
+    if (!_profileService.isLoggedIn) {
+      return "";
+    }
+
+    return _profileService.user.nickName.length > _maxNicknameLength ? _profileService.user.nickName.substring(0, _maxNicknameLength-3) + "..." :
+                                                                      _profileService.user.nickName;
+  }
+
   String _getNotLoggedInHtml() {
     return '''
     <div id="menuNotLoggedIn">
@@ -230,7 +228,7 @@ class MainMenuSlideComp implements ShadowRootAware {
           <li highlights="">           <a  id="menuPromos"     destination="beta_info">Promos</a></li>
           
           <li highlights="user" class="right-menu">
-            <a id="menuUser" class="dropdown-toggle" data-toggle="dropdown">${userNickName}</a>
+            <a id="menuUser" class="dropdown-toggle" data-toggle="dropdown">${_userNickName}</a>
             <ul class="dropdown-menu">
               <li><a id="menuUserMyAccount"        destination="user_profile">Mi cuenta</a></li>
               <li><a id="menuUserAddFunds"         destination="beta_info">Añadir fondos</a></li>
@@ -248,6 +246,8 @@ class MainMenuSlideComp implements ShadowRootAware {
     ''';
   }
 
+  ProfileService _profileService;
+  ScreenDetectorService _scrDet;
 
   Element _rootElement;
   Element _menuSlideElement;

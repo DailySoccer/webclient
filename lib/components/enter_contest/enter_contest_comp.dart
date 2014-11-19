@@ -192,7 +192,7 @@ class EnterContestComp implements DetachAware {
   }
 
   bool isSlotAvailableForSoccerPlayer(String soccerPlayerId) {
-    if (soccerPlayerId == null || soccerPlayerId.isEmpty || allSoccerPlayers.isEmpty) {
+    if (soccerPlayerId == null || soccerPlayerId.isEmpty || allSoccerPlayers == null || allSoccerPlayers.isEmpty) {
       return false;
     }
 

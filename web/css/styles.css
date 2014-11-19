@@ -7104,6 +7104,9 @@ button#contestInfoModal .modal-info-head button.close {
     width: 100%;
   }
 }
+#contestInfoModal .tabs .tab-content {
+  padding: 0 15px;
+}
 .matches-involved {
   margin: 10px auto 0;
 }
@@ -13874,6 +13877,9 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
     width: 96%;
     max-width: 1200px;
   }
+  #modalSoccerPlayerInfo .actions-header {
+    padding: 0 10px;
+  }
 }
 @media (max-width: 767px) {
   #modalSoccerPlayerInfo #modalRoot {
@@ -13881,7 +13887,7 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
     background-color: #ffffff;
   }
   #modalSoccerPlayerInfo #modalRoot .modal-dialog {
-    margin: 0px;
+    margin: 0;
   }
   #modalSoccerPlayerInfo #modalRoot .modal-dialog .modal-content {
     border: none;
@@ -14110,7 +14116,7 @@ fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .btn-add {
     border-radius: 0;
     background-color: #434343;
     color: #ffffff;
-    padding: 0 5px;
+    padding: 5px;
   }
 }
 #modalSoccerPlayerInfo .soccer-player-info-header > .navbar-header,
@@ -14172,10 +14178,13 @@ fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .btn-add {
 #modalSoccerPlayerInfo .soccer-player-info-header .description-header .soccer-player-description {
   float: left;
   width: 100%;
-  position: relative;
-  min-height: 1px;
   padding-left: 5px;
   padding-right: 5px;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 0 10px;
 }
 @media (min-width: 768px) {
   #modalSoccerPlayerInfo .soccer-player-info-header .description-header .soccer-player-description {
@@ -14220,14 +14229,11 @@ fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .btn-add {
 #modalSoccerPlayerInfo .soccer-player-info-header .description-header .soccer-player-info-stats {
   float: left;
   width: 100%;
-  padding-left: 15px;
-  padding-right: 15px;
   position: relative;
   min-height: 1px;
-  padding-left: 5px;
-  padding-right: 5px;
-  padding-left: 0px;
-  padding-right: 0px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 0 10px;
 }
 @media (min-width: 768px) {
   #modalSoccerPlayerInfo .soccer-player-info-header .description-header .soccer-player-info-stats {
@@ -14239,6 +14245,11 @@ fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .btn-add {
   #modalSoccerPlayerInfo .soccer-player-info-header .description-header .soccer-player-info-stats {
     float: left;
     width: 33.33333333%;
+  }
+}
+@media (max-width: 767px) {
+  #modalSoccerPlayerInfo .soccer-player-info-header .description-header .soccer-player-info-stats {
+    padding: 0;
   }
 }
 #modalSoccerPlayerInfo .soccer-player-info-header .description-header .soccer-player-info-stats .soccer-player-fantasy-points,
@@ -14309,7 +14320,7 @@ fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .btn-add {
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff1a3949', endColorstr='#ff0f2630', GradientType=0);
   display: block;
-  padding: 5px 5px 10px;
+  padding: 5px 10px;
 }
 @media (max-width: 767px) {
   #modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper {
@@ -14441,6 +14452,9 @@ fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .descriptio
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
 }
+#modalSoccerPlayerInfo .soccer-player-info-content .tab-content {
+  padding: 15px;
+}
 #modalSoccerPlayerInfo .soccer-player-info-content .soccer-player-info-tabs {
   border-width: 1px;
   border-style: solid none none none;
@@ -14519,7 +14533,7 @@ fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .descriptio
 #modalSoccerPlayerInfo .soccer-player-info-content .season-header {
   margin-left: 0;
   margin-right: 0;
-  padding: 20px 10px 10px;
+  padding: 0;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 16pt;
@@ -14652,7 +14666,7 @@ fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .descriptio
 #modalSoccerPlayerInfo .soccer-player-info-content .match-header {
   margin-left: 0;
   margin-right: 0;
-  padding: 20px 10px 10px;
+  padding: 10px 0;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 16pt;
@@ -14692,7 +14706,7 @@ fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .descriptio
   }
   #modalSoccerPlayerInfo .soccer-player-info-content .match-stats .match-stats-header div {
     border-width: 1px;
-    border-style: dotted solid none none;
+    border-style: dotted solid none solid;
     border-color: #777777;
     border-radius: 0;
     line-height: 30px;
@@ -14785,7 +14799,6 @@ fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .descriptio
 @media (min-width: 768px) {
   #modalSoccerPlayerInfo .soccer-player-info-content .match-stats {
     background-color: #ffffff;
-    margin: 0 10px;
   }
   #modalSoccerPlayerInfo .soccer-player-info-content .match-stats .match-stats-header {
     margin-left: 0;

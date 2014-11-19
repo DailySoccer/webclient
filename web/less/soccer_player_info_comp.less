@@ -1,11 +1,14 @@
 #modalSoccerPlayerInfo {
+
 	@media (min-width: @screen-sm-min) {
 		background-color: @greyLight;
-
 		.modal-dialog {
 			width: 96%; 		// Fluido
 			max-width: 1200px;	// Pero con un maximo. La chapuza del portero "para cuadrar" hace
 								// que no quede bien. Arreglar chapuza -> quedar bien.
+		}
+		.actions-header {
+			padding: 0 10px;
 		}
 	}
 
@@ -15,7 +18,7 @@
 			background-color: @white;
 
 			.modal-dialog {
-				margin: 0px;
+				margin: 0;
 			
 				.modal-content {
 					border: none;
@@ -52,7 +55,7 @@
 			.make-border(1px, solid none none none, @orangeHeaderLight);
 			background-color: @greyUltraDark;
 			color: @white;
-			padding: 0 5px;
+			padding: 5px;
 		}
 		.container-fluid();
 		.clean-paddings();
@@ -84,7 +87,8 @@
 			.soccer-player-description {
 				.make-xs-column(12, 10px);
 				.make-sm-column(7, 10px);
-				.make-md-column(8, 10px);
+				.make-md-column(8);
+				padding: 0 10px;
 				.soccer-player-pos-team {
 					.make-xs-column(12, 0px);			
 					.opensans_bold(10pt, @greyMed);
@@ -100,9 +104,12 @@
 			}
 			.soccer-player-info-stats {
 				.make-xs-column(12);
-				.make-sm-column(5, 10px);
-				.make-md-column(4, 10px);
-				.clean-paddings();
+				.make-sm-column(5);
+				.make-md-column(4);
+				padding: 0 10px;
+				@media (max-width: @screen-xs-max) {
+					padding: 0;
+				}
 				.soccer-player-fantasy-points, .soccer-player-matches, .soccer-player-salary {
 					.make-xs-column(4, 10px);
 					text-align: center;
@@ -139,7 +146,7 @@
 				height: 47px;
 				#gradient.vertical(@blueGradientLight, @blueGradientDark, 49%, 51%);
 				display: block;
-				padding: 5px 5px 10px;
+				padding: 5px 10px;
 				
 				.next-match {
 					.opensans_bold(9pt, @blueLight);
@@ -166,6 +173,9 @@
 		background-color: @white;
 		border-bottom-right-radius: 5px;
 		border-bottom-left-radius: 5px;
+		.tab-content {
+			padding: 15px;
+		}
 		// Tabs menu
 		.soccer-player-info-tabs {
 			@tabheight: 50px;
@@ -205,7 +215,7 @@
 		.season-header {
 			.hidden-xs();
 			.make-row(0);
-			padding: 20px 10px 10px;
+			padding: 0;
 			.opensans_normal(16pt, @greyDark);
 			span {
 				font-size: 12pt;
@@ -278,11 +288,11 @@
 				display: block;
 			}
 		}
-		
+
 		.match-header {
 			.hidden-xs();
 			.make-row(0);
-			padding: 20px 10px 10px;
+			padding: 10px 0;
 			.opensans_normal(16pt, @greyDark);
 		}
 
@@ -297,7 +307,7 @@
 					float: left;
 					.make-border(1px, none none solid none, @greyDark);
 					div {
-						.make-border(1px, dotted solid none none, @greyDark);
+						.make-border(1px, dotted solid none solid, @greyDark);
 						line-height: 30px;
 						text-align: center;
 					}
@@ -359,7 +369,6 @@
 			}
 			@media (min-width: @screen-sm-min) {
 				background-color: @white;
-				margin: 0 10px;
 				.match-stats-header {
 					.make-row(0);
 					margin-right: 15px;

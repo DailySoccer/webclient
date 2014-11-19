@@ -44,8 +44,8 @@ class MainMenuSlideComp implements ShadowRootAware {
       _reset();
       _isLoggedIn = profileService.isLoggedIn;
       _createHtml();
-      _setUpClicks();
       _setUpSlidingMenu();
+      _setUpClicks();
     }
 
     window.animationFrame.then(_monitorChanges);
@@ -100,10 +100,7 @@ class MainMenuSlideComp implements ShadowRootAware {
     // La insertamos en 0 para que no pise al #menuSlide
     _menuSlideElement.parent.children.insert(0, _backdropElement);
 
-    _setUpAnimationControl();
-  }
-
-  void _setUpAnimationControl() {
+    // Control de animacion
     _menuSlideElement.onTransitionEnd.listen((_) {
       if (_slideState == "hidden") {
         _menuSlideElement.classes.add("hidden-xs");
@@ -115,14 +112,14 @@ class MainMenuSlideComp implements ShadowRootAware {
         _backdropElement.classes.add("hidden-xs");
       }
     });
-
-    _backdropElement.onClick.listen((_) {
-      _hide();
-    });
   }
 
   void _setUpClicks() {
     querySelectorAll("[destination]").onClick.listen(_onElementWithDestinationClick);
+
+    if (_backdropElement != null) {
+      _backdropElement.onClick.listen((_) => _hide());
+    }
   }
 
   void _onElementWithDestinationClick(event) {

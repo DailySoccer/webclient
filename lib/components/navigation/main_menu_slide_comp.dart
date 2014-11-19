@@ -1,34 +1,31 @@
 library main_menu_slide_comp;
 
+import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/profile_service.dart';
-import 'dart:html';
 import 'package:webclient/services/screen_detector_service.dart';
+import 'package:webclient/utils/html_utils.dart';
+
 
 @Component(
     selector: 'main-menu-slide',
-    templateUrl: 'packages/webclient/components/navigation/main_menu_slide_comp.html',
     useShadowDom: false
 )
 class MainMenuSlideComp implements ShadowRootAware {
 
   ProfileService profileService;
   ScreenDetectorService scrDet;
-  int maxNicknameLength = 30;
 
   String get userNickName {
-    if (profileService.isLoggedIn) {
-      return profileService.user.nickName.length > maxNicknameLength ? profileService.user.nickName.substring(0, maxNicknameLength-3) + "..." :
-                                                                       profileService.user.nickName;
-    }
-    else {
+    if (!profileService.isLoggedIn) {
       return "";
     }
+
+    return profileService.user.nickName.length > _maxNicknameLength ? profileService.user.nickName.substring(0, _maxNicknameLength-3) + "..." :
+                                                                      profileService.user.nickName;
   }
 
-
-  MainMenuSlideComp(this._router, this.profileService, this.scrDet, this._rootElement, this._view) {
-
+  MainMenuSlideComp(this._router, this.profileService, this.scrDet, this._rootElement) {
     _router.onRouteStart.listen((RouteStartEvent event) {
       event.completed.then((_) {
         if (_router.activePath.length > 0) {
@@ -39,23 +36,71 @@ class MainMenuSlideComp implements ShadowRootAware {
   }
 
   @override void onShadowRoot(emulatedRoot) {
-    _view.domRead(() {
-      _rootElement.querySelector("#toggleSlideMenu").onClick.listen(_onToggleSlideMenuClick);
+    _monitorChanges(0);
+  }
 
-      _menuSlideElement = _rootElement.querySelector("#menuSlide");
+  void _monitorChanges(_) {
+    if (_isLoggedIn != profileService.isLoggedIn) {
+      _reset();
+      _isLoggedIn = profileService.isLoggedIn;
+      _createHtml();
+      _setUpClicks();
+      _setUpSlidingMenu();
+    }
 
-      // Tanto el menuSlide como el backdrop estan ocultos fuera de la pantalla en xs
-      _menuSlideElement.classes.add("hidden-xs");
+    window.animationFrame.then(_monitorChanges);
+  }
 
-      // El backdrop es la cortinilla traslucida que atenua todo el contenido
-      _backdropElement = new DivElement();
-      _backdropElement.classes.add("backdrop hidden-xs");
+  void _reset() {
+    // Basta con asignar a null puesto que recreamos de 0 el HTML
+    _menuSlideElement = null;
+    _backdropElement = null;
 
-      // La insertamos en 0 para que no pise al #menuSlide
-      _menuSlideElement.parent.children.insert(0, _backdropElement);
+    _slideState = "hidden";
+  }
 
-      _setUpAnimationControl();
-    });
+  void _createHtml() {
+
+    String navClass = "navbar navbar-default", innerHtml;
+
+    if (_isLoggedIn) {
+      innerHtml = _getLoggedInHtml();
+      navClass += " logged-in";
+    }
+    else {
+      innerHtml = _getNotLoggedInHtml();
+    }
+
+    String finalHtml =
+    '''
+    <nav id="mainMenu" class="${navClass}" role="navigation">
+      ${innerHtml}
+    </nav>
+    ''';
+
+    _rootElement.setInnerHtml(finalHtml, treeSanitizer: NULL_TREE_SANITIZER);
+  }
+
+  void _setUpSlidingMenu() {
+
+    if (!_isLoggedIn) {
+      return;
+    }
+
+    _rootElement.querySelector("#toggleSlideMenu").onClick.listen(_onToggleSlidingMenuClick);
+    _menuSlideElement = _rootElement.querySelector("#menuSlide");
+
+    // Tanto el menuSlide como el backdrop estan ocultos fuera de la pantalla en xs
+    _menuSlideElement.classes.add("hidden-xs");
+
+    // El backdrop es la cortinilla traslucida que atenua todo el contenido
+    _backdropElement = new DivElement();
+    _backdropElement.classes.add("backdrop hidden-xs");
+
+    // La insertamos en 0 para que no pise al #menuSlide
+    _menuSlideElement.parent.children.insert(0, _backdropElement);
+
+    _setUpAnimationControl();
   }
 
   void _setUpAnimationControl() {
@@ -76,7 +121,25 @@ class MainMenuSlideComp implements ShadowRootAware {
     });
   }
 
-  void _onToggleSlideMenuClick(MouseEvent e) {
+  void _setUpClicks() {
+    querySelectorAll("[destination]").onClick.listen(_onElementWithDestinationClick);
+  }
+
+  void _onElementWithDestinationClick(event) {
+    String destination = event.currentTarget.attributes["destination"];
+
+    _hide();
+
+    if (destination == "logout") {
+      _router.go('landing_page', {});
+      profileService.logout();
+    }
+    else {
+      _router.go(destination, {});
+    }
+  }
+
+  void _onToggleSlidingMenuClick(MouseEvent e) {
     if (_slideState == "hidden") {
       _show();
     }
@@ -93,7 +156,7 @@ class MainMenuSlideComp implements ShadowRootAware {
     //       En todas los browsers, se va al principio del contenido.
     //       En chrome, al volver a bajar la barra de direcciones, el menuSlide tarda en moverse.
     //       En safari, el salto al ir al principio del contenido se ve acompaña de una redimension
-    //       de la barra de redirecciones (detecta que te se ha ido al principio).
+    //       de la barra de redirecciones (detecta que se te ha ido al principio).
     querySelector("body").style.overflowY = "hidden";
 
     _menuSlideElement.classes.remove("hidden-xs");
@@ -107,12 +170,14 @@ class MainMenuSlideComp implements ShadowRootAware {
   }
 
   void _hide() {
-    _slideState = "hidden";
+    if (_menuSlideElement != null) {
+      _slideState = "hidden";
 
-    querySelector("body").style.overflowY = "visible";
+      querySelector("body").style.overflowY = "visible";
 
-    _menuSlideElement.classes.remove("in");
-    _backdropElement.classes.remove("in");
+      _menuSlideElement.classes.remove("in");
+      _backdropElement.classes.remove("in");
+    }
   }
 
   void _updateActiveElement(String name) {
@@ -137,29 +202,53 @@ class MainMenuSlideComp implements ShadowRootAware {
     return name.contains('user') || name == 'help_info';
   }
 
-  void navigateTo(event, [Map params]) {
-    if (params == null) {
-      params = {};
-    }
-
-    String destination = event.target.attributes["destination"];
-
-    /*
-    if (profileService.isLoggedIn && scrDet.isXsScreen && !event.target.id.contains("brandLogo")){
-         JsUtils.runJavascript('.navbar-offcanvas.navmenu-fixed', 'offcanvas', 'toggle');
-    }
-    */
-
-    if (destination.isNotEmpty) {
-      _hide();
-      _router.go(destination, params);
-    }
+  String _getNotLoggedInHtml() {
+    return '''
+    <div id="menuNotLoggedIn">
+      <div id="brandLogoNotLogged" class="navbar-brand" destination="landing_page"></div>
+      <div class="button-wrapper">
+        <a id="joinButton"  type="button" class="button-join" destination="join">REGISTRO</a>
+        <a id="loginButton" type="button" class="button-login" destination="login">ENTRAR</a>
+      </div>
+    </div>
+    ''';
   }
 
-  void logOut() {
-    _hide();
-    _router.go('landing_page', {});
-    profileService.logout();
+  String _getLoggedInHtml() {
+    return '''
+    <div id="menuLoggedIn">
+      <div class="navbar-header">
+        <button type="button" id="toggleSlideMenu" class="navbar-toggle">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <div id="brandLogoLogged" class="navbar-brand" destination="lobby"></div>
+      </div>
+  
+      <div id="menuSlide" class="offcanvas">
+        <ul class="nav navbar-nav">
+          <li highlights="lobby">      <a  id="menuLobby"      destination="lobby">Buscar Torneos</a></li>
+          <li highlights="my_contests"><a  id="menuMyContests" destination="my_contests">Mis torneos</a></li>
+          <li highlights="">           <a  id="menuPromos"     destination="beta_info">Promos</a></li>
+          
+          <li highlights="user" class="right-menu">
+            <a id="menuUser" class="dropdown-toggle" data-toggle="dropdown">${userNickName}</a>
+            <ul class="dropdown-menu">
+              <li><a id="menuUserMyAccount"        destination="user_profile">Mi cuenta</a></li>
+              <li><a id="menuUserAddFunds"         destination="beta_info">Añadir fondos</a></li>
+              <li><a id="menuUserHistory"          destination="beta_info">Historial de transacciones</a></li>
+              <li><a id="menuUserReferencesCenter" destination="beta_info">Centro de referencias</a></li>
+              <li><a id="menuUserClassification"   destination="beta_info">Clasificación</a></li>
+              <li><a id="menuUserAyuda"            destination="help_info">Ayuda</a></li>
+              <li><a id="menuUserLogOut"           destination="logout">Salir</a></li>
+            </ul>
+          </li>
+         <!--  <li class="right-menu"><span class="current-balance">35.000€</span><button class="add-funds-button">AÑADIR FONDOS</button></li> -->
+        </ul>
+      </div>
+    </div>
+    ''';
   }
 
 
@@ -167,7 +256,9 @@ class MainMenuSlideComp implements ShadowRootAware {
   Element _menuSlideElement;
   Element _backdropElement;
   Router _router;
-  View _view;
 
   String _slideState = "hidden";
+  bool _isLoggedIn;
+
+  static final int _maxNicknameLength = 30;
 }

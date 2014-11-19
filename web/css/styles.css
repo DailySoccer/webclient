@@ -10828,6 +10828,11 @@ fieldset[disabled] .button-wrap .button-play-mobile {
     padding: 0;
   }
 }
+@media (min-width: 768px) {
+  #contestFiltersRoot #contestSortsFilters {
+    padding-left: 0;
+  }
+}
 #contestFiltersRoot #contestSortsFilters .left-separator {
   border-left: 1px solid #434343;
 }
@@ -11005,6 +11010,8 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters #contestFastSort .so
   margin-left: 5px;
   background-color: transparent;
   color: #434343;
+  position: relative;
+  top: -1px;
 }
 #contestFiltersRoot #contestSortsFilters #contestFastSort .desc::after {
   font-family: 'Glyphicons Halflings';
@@ -11013,6 +11020,8 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters #contestFastSort .so
   margin-left: 5px;
   background-color: transparent;
   color: #434343;
+  position: relative;
+  top: -1px;
 }
 #contestFiltersRoot #contestSortsFilters #contestFastSearch {
   position: relative;
@@ -11179,8 +11188,8 @@ textarea#contestFiltersRoot #contestSortsFilters #contestFastSearch .searcher {
   float: left;
   width: 33.33333333%;
   min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 7.5px;
+  padding-right: 7.5px;
   border-left: 1px solid #434343;
 }
 @media (min-width: 768px) {
@@ -11338,35 +11347,41 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
 #contestFiltersRoot #contestSortsFilters .toggleOff::after {
   font-family: 'Glyphicons Halflings';
   content: "\E114";
-  font-size: 8pt;
+  font-size: 7pt;
   color: #434343;
   margin-left: 7px;
   display: inline-block;
   line-height: 1;
+  position: relative;
+  top: 1px;
 }
 @media (max-width: 767px) {
   #contestFiltersRoot #contestSortsFilters .toggleOff::after {
     font-family: 'Glyphicons Halflings';
     content: "\E114";
-    font-size: 8pt;
+    font-size: 7pt;
     color: #ffffff;
+    top: -1px;
   }
 }
 #contestFiltersRoot #contestSortsFilters .toggleOn::after {
   font-family: 'Glyphicons Halflings';
   content: "\E113";
-  font-size: 8pt;
+  font-size: 7pt;
   color: #434343;
   margin-left: 7px;
   display: inline-block;
   line-height: 1;
+  position: relative;
+  top: 1px;
 }
 @media (max-width: 767px) {
   #contestFiltersRoot #contestSortsFilters .toggleOn::after {
     font-family: 'Glyphicons Halflings';
     content: "\E113";
-    font-size: 8pt;
+    font-size: 7pt;
     color: #ffffff;
+    top: -1px;
   }
 }
 #contestFiltersRoot #filtersPanel {

@@ -37,7 +37,7 @@ class ContestsService {
         String contestId = jsonMap["contestId"];
 
         // Actualizar las listas de activeContests (quitando el contest) y myContests (añadiendo el contest)
-        Contest contest = activeContests.firstWhere((contest) => contest.contestId == contestId, orElse: null);
+        Contest contest = activeContests.firstWhere((contest) => contest.contestId == contestId, orElse: () => null);
         if (contest != null) {
           activeContests.removeWhere((contest) => contest.contestId == contestId);
           _myEnteredActiveContests.add(contest);

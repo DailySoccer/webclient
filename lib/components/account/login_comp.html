@@ -24,7 +24,7 @@
           <!-- PÂSSWORD -->
           <div class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-            <input id="login-password" type="password" ng-model="password" name="password" placeholder="password" class="form-control" tabindex="2">
+            <input id="login-password" type="password" ng-model="password" name="password" placeholder="contraseña" class="form-control" tabindex="2">
           </div>
           <!-- REMEMBER ME -->
           <div class="remember-forgot-group">
@@ -52,10 +52,8 @@
             </div>
           </div>
           <!-- GOTO REGISTER -->
-          <div class="input-group">
-            <div class="new-row">
-              <div class="separator-top">¿Aún no tienes cuenta? <a ng-click="navigateTo('join', {}, $event)"> Regístrate aquí! </a></div>
-            </div>
+          <div class="new-row">
+            <div class="small-text">¿Aún no tienes cuenta? <a ng-click="navigateTo('join', {}, $event)"> Regístrate aquí! </a></div>
           </div>
         </form>
         <!--Facebook stuff-->

@@ -35,33 +35,27 @@ class LoginComp implements ShadowRootAware {
 
 
   void loginFB() {
-    JsUtils.runJavascript(null, "getLoginStatus", [(js.JsObject statusResponse) {
-      if (statusResponse["status"]=="connected") {
-        loginCallback(statusResponse);
-      }
-      else if (statusResponse["status"] == 'not_authorized') {
-        // El usuario no ha autorizado el uso de su facebook.
-      }
-      else {
-        JsUtils.runJavascript(null, "facebookLogin", [(js.JsObject loginResponse) {
-          print("facebook login: $loginResponse");
-          if (loginResponse["status"]=="connected") {
-            loginCallback(loginResponse);
-          }
-        }]);
-
-        /*
-        JsUtils.runJavascript(null, "login", {"cb": , "opts": {"scope": 'public_profile,email'}},
-            false, "FB");
-
-        */
-
-      }
-    }, true],
-    false, "FB");
+    //js.JsObject fb = js.context["FB"];
+    //fb.callMethod("getLoginStatus", [onGetLoginStatus]);
+    JsUtils.runJavascript(null, "getLoginStatus", [onGetLoginStatus], false, "FB");
   }
 
 
+  void onGetLoginStatus(statusResponse) {
+    if (statusResponse["status"]=="connected") {
+      loginCallback(statusResponse);
+    }
+    else if (statusResponse["status"] == 'not_authorized') {
+      // El usuario no ha autorizado el uso de su facebook.
+    }
+    else {
+      JsUtils.runJavascript(null, "facebookLogin", [(js.JsObject loginResponse) {
+        if (loginResponse["status"]=="connected") {
+          loginCallback(loginResponse);
+        }
+      }]);
+    }
+  }
 
 
   void loginCallback(loginResponse) {

@@ -17251,7 +17251,7 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
   color: #ff0000;
   text-align: left;
 }
-.valid-pass:after {
+.valid:after {
   font-family: 'Glyphicons Halflings';
   content: "\e013";
   font-size: 12pt;
@@ -17298,7 +17298,7 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
     opacity: 1;
   }
 }
-.not-valid-pass:after {
+.not-valid:after {
   font-family: 'Glyphicons Halflings';
   content: "\e014";
   font-size: 12pt;

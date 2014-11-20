@@ -14,19 +14,25 @@
 
         <form id="signupForm" class="form-horizontal" ng-submit="submitSignup()" data-toggle="validator" role="form" formAutofillFix>
           <div class="form-description">¿Todavía no tienes cuenta en EPIC ELEVEN?<br>Rellena este formulario para completar el registro.<br>¡Es muy sencillo!</div>
-          <!-- USERNAME  -->
-          <div class="input-group">
+          <!-- NICKNAME  -->
+          <div class="new-row top-separation-20">
+            <div class="small-text-centered">Tu nombre de usuario debe tener al menos {{MIN_NICKNAME_LENGTH}} caracteres.</div>
+          </div>
+          <div id="groupNickName" class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-user"></div></span>
-            <input id="nickName" auto-focus name="NickName" type="text" ng-model="nickName" placeholder="Nombre de usuario" class="form-control" data-toggle="validator" required=""  tabindex="1">
+            <input id="nickName" auto-focus name="NickName" type="text" ng-model="theNickName" placeholder="Nombre de usuario" class="form-control" data-toggle="validator" required=""  tabindex="1">
           </div>
           <!-- Error de username -->
           <div class="new-row">
             <div id="nickNameError" class="join-err-text">ERROR DE REGISTRO. El user name no es válido.</div>
           </div>
           <!-- EMAIL -->
-          <div class="input-group">
+          <div class="new-row top-separation-20">
+            <div class="small-text-centered">Introduce un email válido. Es necesario para validar tu cuenta.</div>
+          </div>
+          <div id="groupEmail" class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-envelope"></div></span>
-            <input id="email" name="Email" type="email" ng-model="email" placeholder="Correo electrónico" class="form-control" data-toggle="validator" required=""  tabindex="2">
+            <input id="email" name="Email" type="email" ng-model="theEmail" placeholder="Correo electrónico" class="form-control" data-toggle="validator" required=""  tabindex="2">
           </div>
           <!-- Error de mail -->
           <div class="new-row">
@@ -36,7 +42,7 @@
           <div class="new-row top-separation-20">
             <div class="small-text-centered">El único requisito para la contraseña es que tenga al menos {{MIN_PASSWORD_LENGTH}} caracteres. Y por seguridad debes teclearla dos veces.</div>
           </div>
-          <div id="groupPassword" class="input-group faded">
+          <div id="groupPassword" class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
             <input id="password" name="Password" type="password" ng-model="thePassword" placeholder="Contraseña" class="form-control" data-toggle="validator" required="" data-minlength="MIN_PASSWORD_LENGTH" ng-minlength="MIN_PASSWORD_LENGTH"  tabindex="3">
           </div>

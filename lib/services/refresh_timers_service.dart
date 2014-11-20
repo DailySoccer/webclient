@@ -9,8 +9,8 @@ class RefreshTimersService {
 
   static Map<String, int> timersDef = {
     'SECONDS_TO_REFRESH_CONTEST_LIST'         : 10
-    ,'SECONDS_TO_REFRESH_LIVE'                : 3
-    ,'SECONDS_TO_REFRESH_MY_CONTESTS'         : 3
+    ,'SECONDS_TO_REFRESH_LIVE'                : 10
+    ,'SECONDS_TO_REFRESH_MY_CONTESTS'         : 10
     ,'SECONDS_TO_REFRESH_DATE_FROM_SERVER'    : 3
     ,'SECONDS_TO_VERIFY_SIMULATOR_ACTIVATED'  : 3
   };

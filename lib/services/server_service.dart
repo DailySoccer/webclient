@@ -6,6 +6,7 @@ import 'package:angular/angular.dart';
 import 'package:logging/logging.dart';
 import 'package:webclient/models/connection_error.dart';
 import 'package:webclient/utils/host_server.dart';
+import 'dart:html';
 
 abstract class ServerService {
   static final String URL = "url";
@@ -227,11 +228,14 @@ class DailySoccerServer implements ServerService {
 
     Future<HttpResponse> http = ((postData != null) ? _http.post(url, postData, headers: headers, params: queryString) : _http.get(url, headers: headers, params: queryString))
         .then((httpResponse) {
+          _checkServerVersion(httpResponse);
           _notify(ON_SUCCESS, {ServerService.URL: url});
 
           _processSuccess(url, httpResponse, completer);
         })
         .catchError((error) {
+          _checkServerVersion(error);
+
           ConnectionError connectionError = new ConnectionError.fromHttpResponse(error);
           if (connectionError.isConnectionError || connectionError.isServerError) {
             _notify(ON_ERROR, {ServerService.URL: url, ServerService.TIMES: retryTimes, ServerService.SECONDS_TO_RETRY: 3});
@@ -248,6 +252,29 @@ class DailySoccerServer implements ServerService {
             _processError(error, url, completer);
           }
         });
+  }
+
+  // Cuando se produce una actualizacion del servidor, forzamos una recarga de la pagina en el cliente para asegurarnos
+  // de que siempre tenemos la ultima version
+  void _checkServerVersion(var httpResponse) {
+
+    // Como chequeamos tanto en success como en error, es posible que lo que nos llega no sea siempre un HttpResponse
+    if (httpResponse is! HttpResponse) {
+      Logger.root.severe("WTF 201 Aqui podriamos llegar en SERVER_ERROR, verificalo: " + httpResponse.toString());
+      window.location.reload(); // Bye. La llamada del cliente causo un problema en el servidor, le forzamos a recargar.
+      return;
+    }
+
+    var serverVersion = httpResponse.headers("Release-Version");
+
+    if (_currentVersion != null) {
+      if (_currentVersion != serverVersion) {
+        window.location.reload();
+      }
+    }
+    else {
+      _currentVersion = serverVersion;
+    }
   }
 
   // Por si queremos volver al sistema de mandar todos nuestros posts en form-urlencoded
@@ -289,6 +316,7 @@ class DailySoccerServer implements ServerService {
 
   Http _http;
   String _sessionToken;
+  String _currentVersion;
 
   int _pendingCallsContext = 0;
   Map<String, Completer> _pendingCalls = new Map<String, Completer>();

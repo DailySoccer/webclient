@@ -36,9 +36,9 @@
 
   <div class="soccer-player-info-content">
       <!-- Nav tabs -->
-      <ul class="soccer-player-info-tabs" role="tablist">
-        <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('season-info-tab-content')">Datos de Temporada</a></li>
-        <li><a role="tab" data-toggle="tab" ng-click="tabChange('match-info-tab-content')">Partido a Partido</a></li>
+      <ul id="soccer-player-info" class="soccer-player-info-tabs" role="tablist">
+        <li id="seasonTab" class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('season-info-tab-content')">Datos de Temporada</a></li>
+        <li id="matchTab" ><a role="tab" data-toggle="tab" ng-click="tabChange('match-info-tab-content')">Partido a Partido</a></li>
       </ul>
 
       <div class="tabs">

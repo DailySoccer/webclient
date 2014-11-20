@@ -13,6 +13,7 @@ import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/components/enter_contest/enter_contest_comp.dart';
 import 'package:intl/intl.dart';
 import 'package:webclient/components/modal_comp.dart';
+import 'package:webclient/utils/js_utils.dart';
 
 
 @Component(
@@ -20,7 +21,7 @@ import 'package:webclient/components/modal_comp.dart';
     templateUrl: 'packages/webclient/components/enter_contest/soccer_player_info_comp.html',
     useShadowDom: false
 )
-class SoccerPlayerInfoComp {
+class SoccerPlayerInfoComp implements DetachAware {
 
   ScreenDetectorService scrDet;
 
@@ -47,6 +48,17 @@ class SoccerPlayerInfoComp {
       .catchError((error) {
         _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
       });
+
+    // Nos subscribimos al evento de cambio de tamañano de ventana (Necesario para volver al primer tab al cambiar el tamaño).
+    _streamListener = scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
+  }
+
+  void detach() {
+    _streamListener.cancel();
+  }
+
+  void onScreenWidthChange(String msg) {
+    tabChange('season-info-tab-content', 'seasonTab');
   }
 
   void setInstancePlayerInfo(InstanceSoccerPlayer instanceSoccerPlayer) {
@@ -248,12 +260,16 @@ class SoccerPlayerInfoComp {
     }
   }
 
-  void tabChange(String tab) {
+  void tabChange(String tab,[String LItabName = null]) {
     querySelectorAll(".soccer-player-info-content .tab-pane").classes.remove('active');
 
     Element contentTab = document.querySelector("#" + tab);
     if (contentTab != null) {
       contentTab.classes.add("active");
+    }
+    if (LItabName!= null) {
+      querySelectorAll('#soccer-player-info li').classes.remove('active');
+      querySelector('#' + LItabName).classes.add("active");
     }
   }
 
@@ -266,4 +282,6 @@ class SoccerPlayerInfoComp {
   FlashMessagesService _flashMessage;
 
   InstanceSoccerPlayer _instanceSoccerPlayer;
+
+  var _streamListener;
 }

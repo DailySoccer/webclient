@@ -60,7 +60,9 @@
         <div class="input-group">
           <div class="new-row">
             <div class="buttons-wapper">
-              <button class="button-fb" id="fblogin" ng-click="loginFB()">Entra con Facebook</button>
+              <fb:login-button scope="public_profile,email" size="xlarge" onlogin="jsLoginFB;">
+              </fb:login-button>
+              <!--button class="button-fb" id="fblogin" ng-click="loginFB()">Entra con Facebook</button-->
             </div>
           </div>
         </div>
@@ -82,4 +84,5 @@
      version    : 'v2.2'
    });
  };
+
  </script>

@@ -226,7 +226,7 @@ class DailySoccerServer implements ServerService {
       return;
     }
 
-    Future<HttpResponse> http = ((postData != null) ? _http.post(url, postData, headers: headers, params: queryString) : _http.get(url, headers: headers, params: queryString))
+    ((postData != null) ? _http.post(url, postData, headers: headers, params: queryString) : _http.get(url, headers: headers, params: queryString))
         .then((httpResponse) {
           _checkServerVersion(httpResponse);
           _notify(ON_SUCCESS, {ServerService.URL: url});
@@ -265,7 +265,7 @@ class DailySoccerServer implements ServerService {
       return;
     }
 
-    var serverVersion = httpResponse.headers("Release-Version");
+    var serverVersion = httpResponse.headers("release-version");
 
     if (_currentVersion != null) {
       if (_currentVersion != serverVersion) {

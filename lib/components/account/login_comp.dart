@@ -18,11 +18,11 @@ import 'package:logging/logging.dart';
 )
 class LoginComp implements ShadowRootAware {
 
-  String email = "";
+  String emailOrUsername = "";
   String password = "";
   String rememberMe;
 
-  bool get enabledSubmit => StringUtils.isValidEmail(email) && password.isNotEmpty && _enabledSubmit;
+  bool get enabledSubmit => emailOrUsername.isNotEmpty && password.isNotEmpty && _enabledSubmit;
 
   LoginComp(this._router, this._profileManager, this.loadingService, this._rootElement) {
     js.context['jsLoginFB'] = loginFB;
@@ -73,7 +73,7 @@ class LoginComp implements ShadowRootAware {
     _errSection.parent.parent.style.display = "none";
     _enabledSubmit = false;
 
-    _profileManager.login(email, password)
+    _profileManager.login(emailOrUsername, password)
         .then((_) {
           GameMetrics.logEvent(GameMetrics.LOGIN_SUCCESSFUL);
           loadingService.isLoading = false;

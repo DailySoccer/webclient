@@ -73,8 +73,8 @@
               </div>
 
               <div class="tab-pane" id="contestants">
-                <div class="contestant-list-wrapper ">
-                  <div ng-if="currentInfoData['contestants'].isEmpty" class="default-info-text">
+                <div class="contestant-list-wrapper">
+                  <div ng-if="!loadingService.isLoading && currentInfoData['contestants'].isEmpty" class="default-info-text">
                     Todavía no hay participantes en este concurso. <br> Anímate a ser el primero.
                   </div>
                   <div class="contestant-list">
@@ -90,7 +90,7 @@
               <div class="tab-pane" id="prizes">
 
                 <div class="prizes-wrapper">
-                  <div ng-if="currentInfoData['prizes'].isEmpty" class="default-info-text">
+                  <div ng-if="!loadingService.isLoading && currentInfoData['prizes'].isEmpty" class="default-info-text">
                     Este concurso no tiene premios
                   </div>
                   <div id="prizes-list">
@@ -130,7 +130,7 @@
   <p class="title">PREMIOS</p>
   <div class="prizes-wrapper">
       <div id="prizes-list">
-        <div ng-if="currentInfoData['prizes'].isEmpty" class="default-info-text">
+        <div ng-if="!loadingService.isLoading && currentInfoData['prizes'].isEmpty" class="default-info-text">
           Este concurso no tiene premios
         </div>
         <div class="prize-element-wrapper" ng-repeat="prize in currentInfoData['prizes']">
@@ -145,7 +145,7 @@
   <div class="info-section"></div>
 
   <p class="title">JUGADORES</p>
-  <div ng-if="currentInfoData['contestants'].isEmpty" class="default-info-text">
+  <div ng-if="!loadingService.isLoading && currentInfoData['contestants'].isEmpty" class="default-info-text">
     Todavía no hay participantes en este concurso. <br> Anímate a ser el primero.
   </div>
   <div class="contestant-list">

@@ -19,6 +19,9 @@
 		@media (max-width: @screen-xs-max) {
 			padding: 0;
 		}
+		@media (min-width: @screen-sm-min) {
+			padding-left: 0;
+		}
 
 		.left-separator{
 			@media (max-width: @screen-sm-max) {
@@ -86,12 +89,16 @@
 				margin-left: 5px;
 				background-color: transparent;
 				color: @greyUltraDark;
+				position: relative;
+				top: -1px;
 			}	
 			.desc::after{
 				.create-glyph("\E114", 5pt, @greyUltraDark);
 				margin-left: 5px;
 				background-color: transparent;
 				color: @greyUltraDark;
+				position: relative;
+				top: -1px;
 			}
 		}
 		//búsqueda por nombre
@@ -144,8 +151,8 @@
 
 		//botón para activar el panel de filtros avanzados
 		.filterToggler {
-			.make-sm-column(1);
-			.make-xs-column(4);
+			.make-sm-column(1, 15px);
+			.make-xs-column(4, 15px);
 			.left-separator();
 			@media (max-width: @screen-xs-max) {
 				text-align: right;
@@ -173,23 +180,29 @@
 			}
 		}
 		.toggleOff::after{
-			.create-glyph("\E114", 8pt, @greyUltraDark);
+			.create-glyph("\E114", 7pt, @greyUltraDark);
 			@media (max-width:  @screen-xs-max) {
-				.create-glyph("\E114", 8pt, @white);
+				.create-glyph("\E114", 7pt, @white);
+				top: -1px;
 			}
 			margin-left: 7px;
 			display: inline-block;
 			line-height: 1;
+			position: relative;
+			top: 1px;
 
 		}
 		.toggleOn::after{
-			.create-glyph("\E113", 8pt, @greyUltraDark);
+			.create-glyph("\E113", 7pt, @greyUltraDark);
 			@media (max-width:  @screen-xs-max) {
-				.create-glyph("\E113", 8pt, @white);
+				.create-glyph("\E113", 7pt, @white);
+				top: -1px;
 			}
 			margin-left: 7px;
 			display: inline-block;
 			line-height: 1;
+			position: relative;
+			top: 1px;
 		}
 	}
 

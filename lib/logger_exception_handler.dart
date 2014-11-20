@@ -35,13 +35,19 @@ class LoggerExceptionHandler extends ExceptionHandler {
       if (r.level >= Level.SEVERE) {
 
         String userEmail = "unknown@email.com";
+        String userAgent = "Unknown user agent";
 
-        if (ProfileService.instance != null && ProfileService.instance.user != null && ProfileService.instance.user.email != null) {
-          userEmail = ProfileService.instance.user.email;
+        try {
+          if (ProfileService.instance != null && ProfileService.instance.user != null && ProfileService.instance.user.email != null) {
+            userEmail = ProfileService.instance.user.email;
+          }
+
+          userAgent = window.navigator.userAgent;
         }
+        catch(exc) {}
 
-        HttpRequest.postFormData("${HostServer.url}/log", {"message": "${r.message}", "level": "${r.level}", "email": "${userEmail}" })
-              .catchError((error) => print(error));
+        HttpRequest.postFormData("${HostServer.url}/log", {"message": "${r.message}", "level": "${r.level}", "email": "${userEmail}", "userAgent": "${userAgent}" })
+                   .catchError((error) => print(error));
       }
     });
   }

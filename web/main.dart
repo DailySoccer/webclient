@@ -23,6 +23,7 @@ void main() {
 
 void clearQueryStrings() {
   Uri uri = Uri.parse(window.location.toString());
+
   // Limpiamos la uri si viene con Query Strings (utm_campaign...)
   if (uri.hasQuery && uri.queryParameters.keys.any((param) => param.startsWith("utm"))) {
 
@@ -33,7 +34,7 @@ void clearQueryStrings() {
         key: (item) => item,
         value: (item) => uri.queryParameters[item]);
 
-    window.history.replaceState(null, //Pasamos null porque el getter de state no funciona en Dart:
+    window.history.replaceState(null, // Pasamos null porque el getter de state no funciona en Dart:
                                       // https://groups.google.com/a/dartlang.org/forum/#!msg/bugs/zvNSxQMQ5FY/6D4mo0IAbxcJ
         window.document.documentElement.title, new Uri(
         scheme: uri.scheme,

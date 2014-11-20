@@ -78,9 +78,6 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
 
   <div class="edit-personal-data-modal-header">
     <span class="header-title">EDITAR CUENTA</span>
-    <button type="button" class="close" ng-click="closeModal()" aria-hidden="true">
-      <span class="glyphicon glyphicon-remove"></span>
-    </button>
   </div>
   <form id="editPersonalDataForm" class="form-horizontal" ng-submit="saveChanges()" data-toggle="validator" role="form" formAutofillFix>
     <div class="content">
@@ -196,7 +193,7 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
       <div class="panel-body" >
 
         <form id="signupForm" class="form-horizontal" ng-submit="submitSignup()" data-toggle="validator" role="form" formAutofillFix>
-          <div class="form-description">¿Todavía no tienes cuenta en EPIC ELEVEN? Rellena los campos de este formulario para completar el registro. ¡Es muy sencillo!</div>
+          <div class="form-description">¿Todavía no tienes cuenta en EPIC ELEVEN?<br>Rellena este formulario para completar el registro.<br>¡Es muy sencillo!</div>
           <!-- USERNAME  -->
           <div class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-user"></div></span>
@@ -216,14 +213,16 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
             <div id="emailError" class="join-err-text">ERROR DE REGISTRO. El mail no es válido.</div>
           </div>
           <!-- PASSWORD -->
-          <div class="input-group">
-            <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-            <input id="password" name="Password" type="password" ng-model="password" placeholder="Contraseña" class="form-control" data-toggle="validator" required="" data-minlength="8" ng-minlength="8"  tabindex="3">
+          <div class="new-row top-separation-20">
+            <div class="small-text-centered">El único requisito para la contraseña es que tenga al menos {{MIN_PASSWORD_LENGTH}} caracteres. Y por seguridad debes teclearla dos veces.</div>
           </div>
-
-          <div class="input-group">
+          <div id="groupPassword" class="input-group faded">
             <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-            <input id="rePassword" name="RePassword" type="password" ng-model="rePassword" placeholder="Repite la contraseña " class="form-control" data-toggle="validator" required="" data-minlength="8" ng-minlength="8" tabindex="4">
+            <input id="password" name="Password" type="password" ng-model="thePassword" placeholder="Contraseña" class="form-control" data-toggle="validator" required="" data-minlength="MIN_PASSWORD_LENGTH" ng-minlength="MIN_PASSWORD_LENGTH"  tabindex="3">
+          </div>
+          <div id="groupRePassword" class="input-group">
+            <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
+            <input id="rePassword" name="RePassword" type="password" ng-model="theRePassword" placeholder="Repite la contraseña " class="form-control" data-toggle="validator" required="" data-minlength="8" ng-minlength="8" tabindex="4">
           </div>
           <!-- Error de password -->
           <div class="new-row">
@@ -239,12 +238,9 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
             </div>
           </div>
           <!-- GOTO REGISTER -->
-          <div class="input-group">
-            <div class="new-row">
-              <div class="separator-top">¿Ya tienes cuenta? <a ng-click="navigateTo('login', {}, $event)"> Entra por aquí! </a></div>
-            </div>
+          <div class="new-row">
+            <div class="small-text">¿Ya tienes cuenta? <a ng-click="navigateTo('login', {}, $event)"> Entra por aquí! </a></div>
           </div>
-
         </form>
 
       </div>
@@ -280,7 +276,7 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
           <!-- PÂSSWORD -->
           <div class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-            <input id="login-password" type="password" ng-model="password" name="password" placeholder="password" class="form-control" tabindex="2">
+            <input id="login-password" type="password" ng-model="password" name="password" placeholder="contraseña" class="form-control" tabindex="2">
           </div>
           <!-- REMEMBER ME -->
           <div class="remember-forgot-group">
@@ -308,17 +304,17 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
             </div>
           </div>
           <!-- GOTO REGISTER -->
-          <div class="input-group">
-            <div class="new-row">
-              <div class="separator-top">¿Aún no tienes cuenta? <a ng-click="navigateTo('join', {}, $event)"> Regístrate aquí! </a></div>
-            </div>
+          <div class="new-row">
+            <div class="small-text">¿Aún no tienes cuenta? <a ng-click="navigateTo('join', {}, $event)"> Regístrate aquí! </a></div>
           </div>
         </form>
         <!--Facebook stuff-->
         <div class="input-group">
           <div class="new-row">
             <div class="buttons-wapper">
-              <button class="button-fb" id="fblogin" ng-click="loginFB()">Entra con Facebook</button>
+              <fb:login-button scope="public_profile,email" size="medium" onlogin="jsLoginFB();">
+              </fb:login-button>
+              <!--button class="button-fb" id="fblogin" ng-click="loginFB()">Entra con Facebook</button-->
             </div>
           </div>
         </div>
@@ -340,6 +336,7 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
      version    : 'v2.2'
    });
  };
+
  </script>
 """));
 tc.put("packages/webclient/components/account/remember_password_comp.html", new HttpResponse(200, r"""<div id="rememberPasswordRoot" ng-show="!loadingService.isLoading">
@@ -392,10 +389,8 @@ tc.put("packages/webclient/components/account/remember_password_comp.html", new 
           </div>
 
           <!-- GOTO REGISTER -->
-          <div class="input-group">
-            <div class="new-row">
-              <div class="separator-top">¿Aún no tienes cuenta? <a ng-click="navigateTo('join', {}, $event)"> Regístrate aquí! </a></div>
-            </div>
+          <div class="new-row">
+            <div class="small-text">¿Aún no tienes cuenta? <a ng-click="navigateTo('join', {}, $event)"> Regístrate aquí! </a></div>
           </div>
 
         </form>
@@ -462,31 +457,14 @@ tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpR
     -->
 
   </div>
-</div>
-
-<!-- Edit personal data fullScreen
-<div id="editProfileContent">
-  <edit-personal-data id="fullscreenEditPersonalDataForm"></edit-personal-data>
-</div>
--->
-<!-- Edit personal data Modal
-<div  id="editPersonalDataModal" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div id="infoContent" class="modal-content">
-        <edit-personal-data id="modalEditPersonalDataForm"></edit-personal-data>
-      </div>
-    </div>
-</div>
--->
-
-"""));
+</div>"""));
 tc.put("packages/webclient/components/contest_filters_comp.html", new HttpResponse(200, r"""<div id="contestSortsFilters">
 
   <!-- Resumen y Botón de filtros XS -->
   <div class="choosed-filters-container" ng-show="scrDet.isXsScreen">
       <div class="competition-filter-name" ng-bind-html="filterResume"></div>
       <div class="filterToggler">
-        <div id="filtersButtonMobile" type="button" class="filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse" data-target="#filtersPanel">filtros</div>
+        <div id="filtersButtonMobile" type="button" class="filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse" data-target="#filtersPanel">FILTROS</div>
       </div>
   </div>
 
@@ -693,8 +671,8 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
               </div>
 
               <div class="tab-pane" id="contestants">
-                <div class="contestant-list-wrapper ">
-                  <div ng-if="currentInfoData['contestants'].isEmpty" class="default-info-text">
+                <div class="contestant-list-wrapper">
+                  <div ng-if="!loadingService.isLoading && currentInfoData['contestants'].isEmpty" class="default-info-text">
                     Todavía no hay participantes en este concurso. <br> Anímate a ser el primero.
                   </div>
                   <div class="contestant-list">
@@ -710,7 +688,7 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
               <div class="tab-pane" id="prizes">
 
                 <div class="prizes-wrapper">
-                  <div ng-if="currentInfoData['prizes'].isEmpty" class="default-info-text">
+                  <div ng-if="!loadingService.isLoading && currentInfoData['prizes'].isEmpty" class="default-info-text">
                     Este concurso no tiene premios
                   </div>
                   <div id="prizes-list">
@@ -750,7 +728,7 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
   <p class="title">PREMIOS</p>
   <div class="prizes-wrapper">
       <div id="prizes-list">
-        <div ng-if="currentInfoData['prizes'].isEmpty" class="default-info-text">
+        <div ng-if="!loadingService.isLoading && currentInfoData['prizes'].isEmpty" class="default-info-text">
           Este concurso no tiene premios
         </div>
         <div class="prize-element-wrapper" ng-repeat="prize in currentInfoData['prizes']">
@@ -765,7 +743,7 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
   <div class="info-section"></div>
 
   <p class="title">JUGADORES</p>
-  <div ng-if="currentInfoData['contestants'].isEmpty" class="default-info-text">
+  <div ng-if="!loadingService.isLoading && currentInfoData['contestants'].isEmpty" class="default-info-text">
     Todavía no hay participantes en este concurso. <br> Anímate a ser el primero.
   </div>
   <div class="contestant-list">
@@ -844,14 +822,14 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
   <div id="enterContest">
     <div class="tabs">
       <div class="tab-content">
-      
-        <!-- Tab del contenido normal de seleccion de lineup -->      
+
+        <!-- Tab del contenido normal de seleccion de lineup -->
         <div class="tab-pane active" id="lineup-tab-content">
 
             <!-- Este sera el selector de partidos en "grande", con botones-->
             <matches-filter contest="contest" selected-option="matchFilter" ng-if="scrDet.isNotXsScreen"></matches-filter>
 
-            <div class="enter-contest-actions-wrapper" ng-if="scrDet.isXsScreen">
+            <div class="enter-contest-actions-wrapper" ng-if="scrDet.isXsScreen" ng-class="{'allocate-space':isSelectingSoccerPlayer}">
               <div class="total-salary"><span class="total-salary-money" ng-class="{'red-numbers': availableSalary < 0 }" ng-show="contest != null">{{availableSalary}}€</span></div>
               <button id="cancelSoccerPlayerSelection" type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer">CANCELAR</button>
             </div>
@@ -877,7 +855,7 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
                 <matches-filter contest="contest" selected-option="matchFilter" ng-if="scrDet.isXsScreen"></matches-filter>
 
                 <soccer-players-filter name-filter="nameFilter" field-pos-filter="fieldPosFilter"></soccer-players-filter>
-                
+
                 <soccer-players-list soccer-players="allSoccerPlayers"
                                      lineup-filter="lineupSlots"
                                      field-pos-filter="fieldPosFilter" name-filter="nameFilter" match-filter="matchFilter"
@@ -887,8 +865,9 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
             </div>
 
             <div class="enter-contest-actions-wrapper">
-              <button type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer" ng-if="scrDet.isXsScreen">CANCELAR</button>
-
+              <div class="button-wrapper-block" ng-if="isSelectingSoccerPlayer && scrDet.isXsScreen">
+                <button type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer" >CANCELAR</button>
+              </div>
               <div ng-if="!isSelectingSoccerPlayer || scrDet.isNotXsScreen">
                 <div class="button-wrapper">
                   <button type="button" class="btn-clean-lineup-list" ng-click="deleteFantasyTeam()" ng-disabled="isPlayerSelected()">BORRAR TODO</button>
@@ -914,7 +893,7 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
       <div class="contest-id">ID: {{contest.contestId.toUpperCase()}}</div>
     </div>
   </div>
-  
+
 </div>
 
 <ng-view></ng-view>"""));
@@ -963,17 +942,17 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_info_comp.html
   <div class="soccer-player-info-header">
     <div class="actions-header">
       <div class="text-header">Estadísticas de jugador</div>
-      
+
       <button type="button" class="close" data-dismiss="modal">
         <span class="glyphicon glyphicon-remove"></span>
       </button>
 
       <!-- Esta seccion con boton de cancelar & añadir se repite 2 veces, solo en movil, arriba y abajo -->
       <div class="action-buttons">
-          <button class="btn-cancel" data-dismiss="modal">CANCELAR</button>      
+          <button class="btn-cancel" data-dismiss="modal">CANCELAR</button>
           <button class="btn-add" ng-click="onAddClicked()" ng-disabled="cannotAddPlayer">AÑADIR</button>
       </div>
-      
+
     </div>
     <div class="description-header">
       <div class="soccer-player-description">
@@ -993,14 +972,14 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_info_comp.html
       </div>
     </div>
   </div>
-  
-  <div class="soccer-player-info-content">
+
+  <div class="soccer-player-info-content" ng-class="{'container':!scrDet.isNotXsScreen}">
       <!-- Nav tabs -->
       <ul class="soccer-player-info-tabs" role="tablist">
         <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('season-info-tab-content')">Datos de Temporada</a></li>
         <li><a role="tab" data-toggle="tab" ng-click="tabChange('match-info-tab-content')">Partido a Partido</a></li>
       </ul>
-  
+
       <div class="tabs">
         <!-- Tab panes -->
         <div class="tab-content">
@@ -1079,7 +1058,7 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_info_comp.html
           <!--END MATCH-->
         </div>
       </div>
-      
+
       <div class="action-buttons bottom">
         <button class="btn-cancel" data-dismiss="modal">CANCELAR</button>
         <button class="btn-add" ng-click="onAddClicked()" ng-disabled="cannotAddPlayer">AÑADIR</button>
@@ -1092,7 +1071,7 @@ tc.put("packages/webclient/components/enter_contest/soccer_players_filter_comp.h
 
   <div class="filter-by-position" ng-if="scrDet.isNotXsScreen">
     <span>JUGADORES</span>
-    <button class="btn btn-default button-filter-position" ng-click="fieldPosFilter = fieldPos"
+    <button class="button-filter-position" ng-click="fieldPosFilter = fieldPos"
             ng-repeat="fieldPos in posFilterList" ng-bind-html="getTextForFieldPos(fieldPos)" ng-class="getClassForFieldPos(fieldPos)"></button>
   </div>
 
@@ -2301,58 +2280,6 @@ tc.put("packages/webclient/components/navigation/footer_comp.html", new HttpResp
   </div>
 </div>
 """));
-tc.put("packages/webclient/components/navigation/main_menu_slide_comp.html", new HttpResponse(200, r"""<nav id="mainMenu" ng-class="{'image-background':profileService.isLoggedIn == true}" class="navbar navbar-default" role="navigation">
-  <div class="inner-wrapper">
-
-    <div id="menuLoggedIn">
-      
-      <!-- Cabecera when logeado -->
-      <div class="navbar-header"  ng-show="profileService.isLoggedIn">
-        <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target="#menuSlide" data-canvas="body" id="toggleSlideMenu">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <div id="brandLogoLogged" class="navbar-brand" ng-click="navigateTo($event)" destination="lobby" ng-class="['loggedIn-brand']" ng-model="checkForActiveElement()"></div>
-      </div>
-      
-      <!-- Opciones del menu -->
-      <div id="menuSlide" class="navbar-offcanvas navmenu-fixed offcanvas" ng-if="profileService.isLoggedIn">
-        <ul class="nav navbar-nav">
-          <li highlights="lobby">      <a  id="menuLobby"      ng-click="navigateTo($event)" destination="lobby">Buscar Torneos</a></li>
-          <li highlights="my_contests"><a  id="menuMy_Contest" ng-click="navigateTo($event)" destination="my_contests">Mis torneos</a></li>
-          <li highlights="">           <a  id="menuPromos"     ng-click="navigateTo($event)" destination="beta_info">Promos</a></li>
-          <li highlights="user" class="right-menu">
-            <a id="menuUser" class="dropdown-toggle" data-toggle="dropdown">{{userNickName}}</a>
-            <ul class="dropdown-menu">
-              <li>                    <a  id="menuUserMyAccount"        ng-click="navigateTo($event)" destination="user_profile">Mi cuenta</a></li>
-              <li>                    <a  id="menuUserAddFunds"         ng-click="navigateTo($event)" destination="beta_info">Añadir fondos</a></li>
-              <li>                    <a  id="menuUserHistory"          ng-click="navigateTo($event)" destination="beta_info">Historial de transacciones</a></li>
-              <li>                    <a  id="menuUserReferencesCenter" ng-click="navigateTo($event)" destination="beta_info">Centro de referencias</a></li>
-              <li>                    <a  id="menuUserClassification"   ng-click="navigateTo($event)" destination="beta_info">Clasificación</a></li>
-              <li>                    <a  id="menuUserAyuda"            ng-click="navigateTo($event)" destination="help_info">Ayuda</a></li>
-              <!-- <li class="divider"></li> -->
-              <li>                    <a  id="menuUserLogOut"           ng-click="logOut()"           destination="beta_info">Salir</a></li>
-            </ul>
-          </li>
-         <!--  <li class="right-menu"><span class="current-balance">35.000€</span><button class="add-funds-button">AÑADIR FONDOS</button></li> -->
-        </ul>
-      </div>
-      
-    </div>
-
-    <!-- Cabecera when NO logeado -->
-    <div class="navbar-header-unloggin" ng-if="!profileService.isLoggedIn">
-      <div id="brandLogoNotLogged" class="navbar-brand" ng-click="navigateTo($event)" destination="landing_page"></div>
-      <div class="button-wrapper">
-        <a id="joinButton"  type="button" class="button-join"  ng-click="navigateTo($event)" destination="join">REGISTRO</a>
-        <a id="loginButton" type="button" class="button-login" ng-click="navigateTo($event)" destination="login">ENTRAR</a>
-      </div>
-      <div class="clearfix"></div>
-    </div>
-
-  </div>
-</nav>"""));
 tc.put("packages/webclient/components/paginator_comp.html", new HttpResponse(200, r"""<div class="paginator-wrapper">
   <div class="paginator-box" ng-model="buildMe()">
     <!-- Aqui van los botones -->

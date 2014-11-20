@@ -80,7 +80,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
 
   List<dynamic> lineupFilter;
 
-  SoccerPlayersListComp(this._scrDet, this._element);
+  SoccerPlayersListComp(this._scrDet, this._element, this._turnZone);
 
   void _onLineupFilterChanged(changes, _) {
     if (_soccerPlayerListRoot == null) {
@@ -109,7 +109,8 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
 
   @override void onShadowRoot(emulated) {
     _createSortHeader();
-    window.animationFrame.then(_onAnimationFrame);
+
+    _turnZone.runOutsideAngular(() => _onAnimationFrame(0));
   }
 
   @override void set scope(Scope theScope) {
@@ -127,6 +128,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
       _generateSlots();
       _isDirty = false;
     }
+
     window.animationFrame.then(_onAnimationFrame);
   }
 
@@ -282,6 +284,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
 
   String get _normalizedNameFilter => _filterList[FILTER_NAME] == null? null : StringUtils.normalize(_filterList[FILTER_NAME]).toUpperCase();
 
+  VmTurnZone _turnZone;
   ScreenDetectorService _scrDet;
   Element _element;
   DivElement _soccerPlayerListRoot;

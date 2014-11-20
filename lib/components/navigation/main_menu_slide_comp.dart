@@ -14,7 +14,7 @@ import 'dart:async';
 )
 class MainMenuSlideComp implements ShadowRootAware {
 
-  MainMenuSlideComp(this._router, this._profileService, this._scrDet, this._rootElement) {
+  MainMenuSlideComp(this._router, this._profileService, this._scrDet, this._rootElement, this._turnZone) {
     _router.onRouteStart.listen((RouteStartEvent event) {
       event.completed.then((_) {
         if (_router.activePath.length > 0) {
@@ -25,7 +25,7 @@ class MainMenuSlideComp implements ShadowRootAware {
   }
 
   @override void onShadowRoot(emulatedRoot) {
-    _monitorChanges(0);
+    _turnZone.runOutsideAngular(() => _monitorChanges(0));
   }
 
   void _monitorChanges(_) {
@@ -258,6 +258,7 @@ class MainMenuSlideComp implements ShadowRootAware {
   Element _menuSlideElement;
   Element _backdropElement;
   Router _router;
+  VmTurnZone _turnZone;
 
   String _slideState = "hidden";
   bool _isLoggedIn;

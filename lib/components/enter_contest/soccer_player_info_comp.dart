@@ -13,7 +13,6 @@ import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/components/enter_contest/enter_contest_comp.dart';
 import 'package:intl/intl.dart';
 import 'package:webclient/components/modal_comp.dart';
-import 'package:webclient/utils/js_utils.dart';
 
 
 @Component(

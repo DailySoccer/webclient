@@ -59,7 +59,7 @@ class EnterContestComp implements DetachAware {
     GameMetrics.logEvent(GameMetrics.ENTER_CONTEST);
 
     // Nos subscribimos al evento de cambio de tamañano de ventana
-    _streamListener = scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
+    _streamListener = scrDet.mediaScreenWidth.listen(onScreenWidthChange);
 
     Future refreshContest = editingContestEntry? _contestsService.refreshMyContest(contestId) : _contestsService.refreshPublicContest(contestId);
     refreshContest

@@ -7250,14 +7250,6 @@ button#contestInfoModal .modal-info-head button.close {
   border-radius: 20px;
   text-align: center;
 }
-@media (max-width: 991px) {
-  .prizes-wrapper #prizes-list .default-info-text {
-    font-family: 'Exo', sans-serif;
-    font-weight: 300;
-    font-size: 14pt;
-    color: #0d75a6;
-  }
-}
 #contestInfoTabbed {
   margin-right: auto;
   margin-left: auto;
@@ -13730,8 +13722,6 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
   padding-right: 15px;
   background-color: #ffffff;
   text-align: center;
-  padding-top: 30px;
-  padding-bottom: 60px;
 }
 @media (max-width: 767px) {
   .no-contests-wrapper .no-contests-content {
@@ -15162,8 +15152,8 @@ fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .descriptio
     display: none !important;
   }
 }
-.enter-contest-actions-wrapper .total-salary .red-numbers {
-  color: #ffffff;
+.enter-contest-actions-wrapper .red-numbers {
+  background-color: #ff0000;
 }
 .enter-contest-actions-wrapper .btn-cancel-player-selection {
   display: inline-block;
@@ -19938,10 +19928,10 @@ fieldset[disabled] .button-fb {
 }
 @media (max-width: 991px) {
   .default-info-text {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 700;
+    font-family: 'Exo', sans-serif;
+    font-weight: 300;
     font-size: 14pt;
-    color: #ffffff;
+    color: #0d75a6;
   }
 }
 .blue-separator {

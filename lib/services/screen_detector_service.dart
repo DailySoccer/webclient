@@ -5,7 +5,6 @@ import 'package:angular/angular.dart';
 import 'dart:async';
 import 'package:logging/logging.dart';
 
-
 @Injectable()
 class ScreenDetectorService {
 
@@ -17,8 +16,9 @@ class ScreenDetectorService {
 
   Stream get mediaScreenWidth => mediaScreenWidthChangeController.stream;
 
-  ScreenDetectorService() {
-    _detectNow(0);
+  ScreenDetectorService(this._turnZone) {
+    // Necesitamos que corra fuera de la zona para que no provoque automaticamente un digest
+    _turnZone.runOutsideAngular(() => _detectNow(0));
   }
 
   // La otra aproximacion, usando dart:js para capturar el evento, falló (ver historico en git si es necesario).
@@ -32,39 +32,43 @@ class ScreenDetectorService {
     else if (window.matchMedia("(min-width: 768px)").matches && !isSmScreen) {
       message = 'sm';
     }
-    else if (window.matchMedia("(max-width: 767px)").matches && !isXsScreen){
+    else if (window.matchMedia("(max-width: 767px)").matches && !isXsScreen) {
       message = 'xs';
     }
 
     if (message != _lastMessage && message != '') {
-      mediaScreenWidthChangeController.add(message);
-      _lastMessage = message;
+      // Tenemos que volver a la zona de angular para asegurarnos de que hay un auto-digest
+      _turnZone.run(() {
+        mediaScreenWidthChangeController.add(message);
+        _lastMessage = message;
 
-      Logger.root.info('ScreenDetectorService: ScreenWidth is ' + message.toUpperCase());
+        Logger.root.info('ScreenDetectorService: ScreenWidth is ' + message.toUpperCase());
 
-      switch(message) {
-        case "xs":
-          isXsScreen = true;
-          isSmScreen = false;
-          isDesktop = false;
-        break;
-        case "sm":
-          isXsScreen = false;
-          isSmScreen = true;
-          isDesktop = false;
-        break;
-        case "desktop":
-          isXsScreen = false;
-          isSmScreen = false;
-          isDesktop = true;
-        break;
-      }
+        switch(message) {
+          case "xs":
+            isXsScreen = true;
+            isSmScreen = false;
+            isDesktop = false;
+          break;
+          case "sm":
+            isXsScreen = false;
+            isSmScreen = true;
+            isDesktop = false;
+          break;
+          case "desktop":
+            isXsScreen = false;
+            isSmScreen = false;
+            isDesktop = true;
+          break;
+        }
+      });
     }
 
+    // Seguimos detectando sin auto-digest
     window.animationFrame.then(_detectNow);
   }
 
-
+  VmTurnZone _turnZone;
   StreamController mediaScreenWidthChangeController = new StreamController.broadcast();
   String _lastMessage;
 }

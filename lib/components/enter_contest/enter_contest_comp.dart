@@ -58,9 +58,6 @@ class EnterContestComp implements DetachAware {
 
     GameMetrics.logEvent(GameMetrics.ENTER_CONTEST);
 
-    // Nos subscribimos al evento de cambio de tamañano de ventana
-    _streamListener = scrDet.mediaScreenWidth.listen(onScreenWidthChange);
-
     Future refreshContest = editingContestEntry? _contestsService.refreshMyContest(contestId) : _contestsService.refreshPublicContest(contestId);
     refreshContest
       .then((_) {
@@ -108,7 +105,6 @@ class EnterContestComp implements DetachAware {
     if (_retryOpTimer != null && _retryOpTimer.isActive) {
       _retryOpTimer.cancel();
     }
-    _streamListener.cancel();
   }
 
   void tabChange(String tab) {
@@ -119,11 +115,6 @@ class EnterContestComp implements DetachAware {
 
     querySelectorAll("#enter-contest-wrapper .tab-pane").classes.remove('active');
     querySelector("#${tab}").classes.add("active");
-  }
-
-  void onScreenWidthChange(String value) {
-    // Para que en la versión móvil aparezca la pantalla de lineup
-    isSelectingSoccerPlayer = false;
   }
 
   void onLineupSlotSelected(int slotIndex) {
@@ -334,8 +325,6 @@ class EnterContestComp implements DetachAware {
 
   ContestsService _contestsService;
   FlashMessagesService _flashMessage;
-
-  var _streamListener;
 
   Timer _retryOpTimer;
   RouteHandle _routeHandle;

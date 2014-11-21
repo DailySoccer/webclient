@@ -7,14 +7,16 @@ import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/html_utils.dart';
 import 'dart:async';
 
-
 @Component(
     selector: 'main-menu-slide',
-    useShadowDom: false
+    useShadowDom: false,
+    exportExpressions: const ["profileService.isLoggedIn"]
 )
-class MainMenuSlideComp implements ShadowRootAware {
+class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
 
-  MainMenuSlideComp(this._router, this._profileService, this._scrDet, this._rootElement, this._turnZone) {
+  ProfileService profileService;
+
+  MainMenuSlideComp(this._router, this.profileService, this._scrDet, this._rootElement) {
     _router.onRouteStart.listen((RouteStartEvent event) {
       event.completed.then((_) {
         if (_router.activePath.length > 0) {
@@ -24,20 +26,19 @@ class MainMenuSlideComp implements ShadowRootAware {
     });
   }
 
-  @override void onShadowRoot(emulatedRoot) {
-    _turnZone.runOutsideAngular(() => _monitorChanges(0));
+  @override void set scope(Scope theScope) {
+    _scope = theScope;
   }
 
-  void _monitorChanges(_) {
-    if (_isLoggedIn != _profileService.isLoggedIn) {
-      _reset();
-      _isLoggedIn = _profileService.isLoggedIn;
-      _createHtml();
-      _setUpSlidingMenu();
-      _setUpClicks();
-    }
+  @override void onShadowRoot(emulatedRoot) {
+    _scope.watch("profileService.isLoggedIn", _monitorChanges, canChangeModel: false);
+  }
 
-    window.animationFrame.then(_monitorChanges);
+  void _monitorChanges(currentVal, prevVal) {
+    _reset();
+    _createHtml();
+    _setUpSlidingMenu();
+    _setUpClicks();
   }
 
   void _reset() {
@@ -58,7 +59,7 @@ class MainMenuSlideComp implements ShadowRootAware {
 
     String navClass = "navbar navbar-default", innerHtml;
 
-    if (_isLoggedIn) {
+    if (profileService.isLoggedIn) {
       innerHtml = _getLoggedInHtml();
       navClass += " logged-in";
     }
@@ -78,7 +79,7 @@ class MainMenuSlideComp implements ShadowRootAware {
 
   void _setUpSlidingMenu() {
 
-    if (!_isLoggedIn) {
+    if (!profileService.isLoggedIn) {
       return;
     }
 
@@ -118,13 +119,14 @@ class MainMenuSlideComp implements ShadowRootAware {
   }
 
   void _onElementWithDestinationClick(event) {
+
     String destination = event.currentTarget.attributes["destination"];
 
     _hide();
 
     if (destination == "logout") {
       _router.go('landing_page', {});
-      _profileService.logout();
+      profileService.logout();
     }
     else {
       _router.go(destination, {});
@@ -194,12 +196,12 @@ class MainMenuSlideComp implements ShadowRootAware {
   }
 
   String get _userNickName {
-    if (!_profileService.isLoggedIn) {
+    if (!profileService.isLoggedIn) {
       return "";
     }
 
-    return _profileService.user.nickName.length > _maxNicknameLength ? _profileService.user.nickName.substring(0, _maxNicknameLength-3) + "..." :
-                                                                      _profileService.user.nickName;
+    return profileService.user.nickName.length > _maxNicknameLength ? profileService.user.nickName.substring(0, _maxNicknameLength-3) + "..." :
+                                                                      profileService.user.nickName;
   }
 
   String _getNotLoggedInHtml() {
@@ -251,18 +253,15 @@ class MainMenuSlideComp implements ShadowRootAware {
     ''';
   }
 
-  ProfileService _profileService;
   ScreenDetectorService _scrDet;
+  Scope _scope;
 
   Element _rootElement;
   Element _menuSlideElement;
   Element _backdropElement;
   Router _router;
-  VmTurnZone _turnZone;
 
   String _slideState = "hidden";
-  bool _isLoggedIn;
-
   StreamSubscription _scrollCancelationListener;
 
   static final int _maxNicknameLength = 30;

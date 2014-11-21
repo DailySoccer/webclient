@@ -57,7 +57,7 @@
               <div class="button-wrapper-block" ng-if="isSelectingSoccerPlayer && scrDet.isXsScreen">
                 <button type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer" >CANCELAR</button>
               </div>
-              <div ng-if="!isSelectingSoccerPlayer || scrDet.isNotXsScreen">
+              <div  class="bottom-content" ng-if="!isSelectingSoccerPlayer || scrDet.isNotXsScreen">
                 <div class="button-wrapper">
                   <button type="button" class="btn-clean-lineup-list" ng-click="deleteFantasyTeam()" ng-disabled="isPlayerSelected()">BORRAR TODO</button>
                 </div>

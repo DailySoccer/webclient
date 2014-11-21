@@ -5853,6 +5853,10 @@ scoring-rules:after,
 #promosComponent:after,
 #modalSoccerPlayerInfo .soccer-player-info-header:before,
 #modalSoccerPlayerInfo .soccer-player-info-header:after,
+#modalSoccerPlayerInfo .soccer-player-info-content:before,
+#modalSoccerPlayerInfo .soccer-player-info-content:after,
+#modalSoccerPlayerInfo .soccer-player-info-content .tab:before,
+#modalSoccerPlayerInfo .soccer-player-info-content .tab:after,
 #modalSoccerPlayerInfo .soccer-player-info-content .season-header:before,
 #modalSoccerPlayerInfo .soccer-player-info-content .season-header:after,
 #modalSoccerPlayerInfo .soccer-player-info-content .match-header:before,
@@ -5950,6 +5954,8 @@ scoring-rules:after,
 .no-contests-wrapper .no-contest-bottom-row:after,
 #promosComponent:after,
 #modalSoccerPlayerInfo .soccer-player-info-header:after,
+#modalSoccerPlayerInfo .soccer-player-info-content:after,
+#modalSoccerPlayerInfo .soccer-player-info-content .tab:after,
 #modalSoccerPlayerInfo .soccer-player-info-content .season-header:after,
 #modalSoccerPlayerInfo .soccer-player-info-content .match-header:after,
 #enterContest:after,
@@ -14461,22 +14467,66 @@ fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .descriptio
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
 }
-#modalSoccerPlayerInfo .container {
-  padding-bottom: 20px;
+#modalSoccerPlayerInfo .soccer-player-info-content {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 100%;
   padding-left: 0;
   padding-right: 0;
-}
-#modalSoccerPlayerInfo .soccer-player-info-content {
+  margin: 0;
   background-color: #ffffff;
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
+  padding-bottom: 20px;
+}
+#modalSoccerPlayerInfo .soccer-player-info-content > .navbar-header,
+#modalSoccerPlayerInfo .soccer-player-info-content > .navbar-collapse {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+@media (min-width: 768px) {
+  #modalSoccerPlayerInfo .soccer-player-info-content > .navbar-header,
+  #modalSoccerPlayerInfo .soccer-player-info-content > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
 }
 #modalSoccerPlayerInfo .soccer-player-info-content .tab {
-  padding-bottom: 20px;
-  padding-left: 0;
-  padding-right: 0;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
   padding-left: 0px;
   padding-right: 0px;
+}
+@media (min-width: 768px) {
+  #modalSoccerPlayerInfo .soccer-player-info-content .tab {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  #modalSoccerPlayerInfo .soccer-player-info-content .tab {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  #modalSoccerPlayerInfo .soccer-player-info-content .tab {
+    width: 970px;
+  }
+}
+#modalSoccerPlayerInfo .soccer-player-info-content .tab > .navbar-header,
+#modalSoccerPlayerInfo .soccer-player-info-content .tab > .navbar-collapse {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+@media (min-width: 768px) {
+  #modalSoccerPlayerInfo .soccer-player-info-content .tab > .navbar-header,
+  #modalSoccerPlayerInfo .soccer-player-info-content .tab > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
 }
 #modalSoccerPlayerInfo .soccer-player-info-content .tab-content {
   padding: 15px;
@@ -17251,7 +17301,7 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
   color: #ff0000;
   text-align: left;
 }
-.valid-pass:after {
+.valid:after {
   font-family: 'Glyphicons Halflings';
   content: "\e013";
   font-size: 12pt;
@@ -17298,7 +17348,7 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
     opacity: 1;
   }
 }
-.not-valid-pass:after {
+.not-valid:after {
   font-family: 'Glyphicons Halflings';
   content: "\e014";
   font-size: 12pt;

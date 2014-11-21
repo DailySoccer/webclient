@@ -16,6 +16,7 @@ import 'package:webclient/utils/game_metrics.dart';
 class JoinComp implements ShadowRootAware {
 
   int MIN_PASSWORD_LENGTH = 8;
+  int MIN_NICKNAME_LENGTH = 4;
 
   String firstName  = "";
   String lastName   = "";
@@ -24,6 +25,8 @@ class JoinComp implements ShadowRootAware {
   String password   = "";
   String rePassword   = "";
 
+  Element nickNameElement;
+  Element emailElement;
   Element passwordElement;
   Element rePasswordElement;
 
@@ -31,29 +34,38 @@ class JoinComp implements ShadowRootAware {
   Element emailError;
   Element passwordError;
 
+  String get theNickName => nickName;
+  void set theNickName (String value) {
+    nickName = value;
+    validateNickName();
+  }
 
+  String get theEmail => email;
+  void set theEmail (String value) {
+    email = value;
+    validateEmail();
+  }
 
   String get thePassword => password;
   void set thePassword (String value) {
-    //TODO: Valida si el pass cumple los requisitos
     password = value;
-    validatePass(false);
+    validatePassword();
   }
 
   String get theRePassword => rePassword;
   void set theRePassword (String value) {
-    //TODO: Valida si el rePass cumple los requisitos
     rePassword = value;
-    validatePass(false);
-
+    validateRePassword();
   }
 
-  bool get enabledSubmit => nickName.isNotEmpty && StringUtils.isValidEmail(email) && password.isNotEmpty && rePassword.isNotEmpty && _enabledSubmit;
+  bool get enabledSubmit => nickName.length >= MIN_NICKNAME_LENGTH && StringUtils.isValidEmail(email) && password.length >= MIN_PASSWORD_LENGTH && password == rePassword && _enabledSubmit;
 
   JoinComp(this._router, this._profileService, this.loadingService, this._rootElement);
 
   void onShadowRoot(emulatedRoot) {
-    passwordElement = _rootElement.querySelector("#groupPassword");
+    nickNameElement   = _rootElement.querySelector("#groupNickName");
+    emailElement      = _rootElement.querySelector("#groupEmail");
+    passwordElement   = _rootElement.querySelector("#groupPassword");
     rePasswordElement = _rootElement.querySelector("#groupRePassword");
 
     nicknameError = _rootElement.querySelector("#nickNameError");
@@ -65,33 +77,48 @@ class JoinComp implements ShadowRootAware {
     passwordError = _rootElement.querySelector("#passwordError");
     passwordError.parent.style.display = 'none';
   }
-  void validatePass(bool ignoreMinLength) {
-    passwordElement.classes.removeAll(['valid-pass', 'not-valid-pass']);
-    rePasswordElement.classes.removeAll(['valid-pass', 'not-valid-pass']);
 
+  void validateNickName() {
+    nickNameElement.classes.removeAll(['valid', 'not-valid']);
+    // Validación del password
+    if (nickName.length >= MIN_NICKNAME_LENGTH) {
+      nickNameElement.classes.add('valid');
+    }
+    else {
+      nickNameElement.classes.add('not-valid');
+    }
+  }
+
+  void validateEmail() {
+    emailElement.classes.removeAll(['valid', 'not-valid']);
+    // Validación del password
+    if (StringUtils.isValidEmail(email)) {
+      emailElement.classes.add('valid');
+    }
+    else {
+      emailElement.classes.add('not-valid');
+    }
+  }
+
+  void validatePassword() {
+    passwordElement.classes.removeAll(['valid', 'not-valid']);
     // Validación del password
     if (password.length >= MIN_PASSWORD_LENGTH) {
-      passwordElement.classes.add('valid-pass');
+      passwordElement.classes.add('valid');
     }
     else {
-      if(ignoreMinLength) {
-        passwordElement.classes.add('not-valid-pass');
-      }
+      passwordElement.classes.add('not-valid');
     }
+  }
 
+  void validateRePassword() {
+    rePasswordElement.classes.removeAll(['valid', 'not-valid']);
     //Validación de la confirmación del password
-    if (rePassword.length >= MIN_PASSWORD_LENGTH) {
-      if (password == rePassword) {
-        rePasswordElement.classes.add('valid-pass');
-      }
-      else {
-        rePasswordElement.classes.add('not-valid-pass');
-      }
+    if (password == rePassword) {
+      rePasswordElement.classes.add('valid');
     }
     else {
-      if(ignoreMinLength) {
-        rePasswordElement.classes.add('not-valid-pass');
-      }
+      rePasswordElement.classes.add('not-valid');
     }
   }
 
@@ -103,7 +130,6 @@ class JoinComp implements ShadowRootAware {
     passwordError.parent.style.display = "none";
     _enabledSubmit = false;
 
-    validatePass(true);
     if (password.length < MIN_PASSWORD_LENGTH) {
       _enabledSubmit = true;
       return;

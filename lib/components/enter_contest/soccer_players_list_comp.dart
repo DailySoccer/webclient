@@ -110,6 +110,9 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
   @override void onShadowRoot(emulated) {
     _createSortHeader();
 
+    // El proceso de generacion de slots corre fuera de la zona de angular. Los clicks que se capturan en los slots por lo tanto tb.
+    // Es decir, hacer un click en un boton de por si no genera un digest. Sin embargo, el click bublea al body (HtmlBodyClick) y ahi
+    // si que se genera un digest.
     _turnZone.runOutsideAngular(() => _onAnimationFrame(0));
   }
 
@@ -124,6 +127,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
   }
 
   void _onAnimationFrame(elapsed) {
+
     if (_isDirty) {
       _generateSlots();
       _isDirty = false;
@@ -217,6 +221,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
   }
 
   void _onMouseEvent(MouseEvent e) {
+
     int divId = int.parse((e.currentTarget as DivElement).id.replaceFirst("soccerPlayer", ""));
     var clickedSlot = _sortedSoccerPlayers.firstWhere((slot) => slot['intId'] == divId);
 

@@ -1,21 +1,23 @@
 <div id="contestHeaderWrapper">
 
-  <div class="contest-name">{{info['description']}}</div>
-  <div class="contest-explanation">{{info['contestType']}} {{info['contestantCount']}}</div>
-  
-  <div class="contest-coins">
+  <div class="contest-relevatn-data">
+    <div class="contest-name-description">
+      <div class="contest-name">{{info['description']}}</div>
+      <div class="contest-explanation">{{info['contestType']}} {{info['contestantCount']}}</div>
+   </div>
     <div class="contest-price">
-      <div class="contest-coins-header">ENTRADA</div>
       <div class="contest-coins-content"><span>{{info['entryPrice']}}</span></div>
+      <div class="contest-coins-header">ENTRADA</div>
     </div>
 
     <div class="contest-prize">
+      <div class="contest-coins-content"><span>{{info['prize']}}</span></div>
       <div class="contest-coins-header">
         <div class="contest-coins-header-title">PREMIOS</div>
         <div class="contest-coins-header-prize-type">{{info['prizeType']}}</div>
       </div>
-      <div class="contest-coins-content"><span>{{info['prize']}}</span></div>
-    </div>      
+
+    </div>
   </div>
 
   <div class="contest-start-date">{{info['startTime']}}&nbsp;</div>
@@ -23,7 +25,7 @@
     <span class="text-countdown">{{info['textCountdownDate']}}&nbsp;</span>
     <span class="time-countdown">{{info['countdownDate']}}&nbsp;</span>
   </div>
-  
+
   <div class="close-contest"><button type="button" class="close" ng-click="goToParent()"><span class="glyphicon glyphicon-remove"></span></button></div>
 </div>
 

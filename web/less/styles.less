@@ -129,6 +129,9 @@ html { overflow-y: scroll; }
 	.button-variant(@btn-default-color; @orange; @btn-default-border);
 	box-shadow: 0px 5px 0px rgba(red(@orange), green(@orange), blue(@orange), 0.5);
 	.btn-pressed();
+	&:focus{
+		outline: none !important;
+	}
 }
 
 .button-fb {

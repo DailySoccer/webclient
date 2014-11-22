@@ -5865,6 +5865,8 @@ scoring-rules:after,
 #enterContest:after,
 .enter-contest-actions-wrapper:before,
 .enter-contest-actions-wrapper:after,
+.enter-contest-actions-wrapper .bottom-content:before,
+.enter-contest-actions-wrapper .bottom-content:after,
 .soccer-player-list-header-table:before,
 .soccer-player-list-header-table:after,
 .soccer-players-list .soccer-players-list-slot:before,
@@ -5960,6 +5962,7 @@ scoring-rules:after,
 #modalSoccerPlayerInfo .soccer-player-info-content .match-header:after,
 #enterContest:after,
 .enter-contest-actions-wrapper:after,
+.enter-contest-actions-wrapper .bottom-content:after,
 .soccer-player-list-header-table:after,
 .soccer-players-list .soccer-players-list-slot:after,
 #loginRoot:after,
@@ -14467,6 +14470,9 @@ fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .descriptio
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
 }
+#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .btn-add:focus {
+  outline: none !important;
+}
 #modalSoccerPlayerInfo .soccer-player-info-content {
   margin-right: auto;
   margin-left: auto;
@@ -15216,13 +15222,15 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-cancel-player-selection {
   outline: none !important;
 }
 .enter-contest-actions-wrapper .button-wrapper {
-  padding: 10px;
   position: relative;
   float: left;
   width: 50%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  padding: 0 10px;
+  height: 32px;
+  margin-top: 10px;
 }
 .enter-contest-actions-wrapper .button-wrapper-block {
   height: 52px;
@@ -15232,6 +15240,10 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-cancel-player-selection {
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+}
+.enter-contest-actions-wrapper .bottom-content {
+  margin-left: 0;
+  margin-right: 0;
 }
 .enter-contest-actions-wrapper .btn-clean-lineup-list {
   display: inline-block;
@@ -15464,6 +15476,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   font-size: 9pt;
   color: #777777;
   text-align: center;
+  margin-top: 20px;
 }
 @media (min-width: 768px) {
   .enter-contest-soccer-players-wrapper {
@@ -18523,33 +18536,21 @@ fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-
   color: #777777;
 }
 .view-contest-entry-actions-wrapper {
+  margin-left: 0;
+  margin-right: 0;
   clear: both;
-  margin-left: -7.5;
-  margin-right: -7.5;
+  padding: 0 15px;
 }
 .view-contest-entry-actions-wrapper .button-wrapper {
-  padding: 40px 0 20px;
-  text-align: right;
-  float: left;
-  width: 100%;
   position: relative;
+  float: left;
+  width: 50%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-}
-@media (max-width: 767px) {
-  .view-contest-entry-actions-wrapper .button-wrapper {
-    padding: 10px;
-  }
-}
-@media (min-width: 768px) {
-  .view-contest-entry-actions-wrapper .button-wrapper {
-    float: left;
-    width: 50%;
-  }
-}
-.view-contest-entry-actions-wrapper .button-wrapper + .button-wrapper {
-  text-align: left;
+  padding: 0 10px;
+  height: 32px;
+  margin-top: 10px;
 }
 .view-contest-entry-actions-wrapper .btn-cancel-contest {
   display: inline-block;
@@ -18575,11 +18576,14 @@ fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-
   -ms-transition: all 0.1s ease-out;
   -o-transition: all 0.1s ease-out;
   transition: all 0.1s ease-out;
+  display: block;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
   color: #ffffff;
   background-color: #afafaf;
   border-color: #cccccc;
   box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
-  width: 70%;
 }
 .view-contest-entry-actions-wrapper .btn-cancel-contest:focus,
 .view-contest-entry-actions-wrapper .btn-cancel-contest:active:focus,
@@ -18609,14 +18613,6 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-cancel-contest {
   filter: alpha(opacity=65);
   -webkit-box-shadow: none;
   box-shadow: none;
-}
-@media (max-width: 767px) {
-  .view-contest-entry-actions-wrapper .btn-cancel-contest {
-    display: block;
-    width: 100%;
-    padding-left: 0;
-    padding-right: 0;
-  }
 }
 .view-contest-entry-actions-wrapper .btn-cancel-contest:hover,
 .view-contest-entry-actions-wrapper .btn-cancel-contest:focus,
@@ -18687,11 +18683,14 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-cancel-contest {
   -ms-transition: all 0.1s ease-out;
   -o-transition: all 0.1s ease-out;
   transition: all 0.1s ease-out;
+  display: block;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
   color: #ffffff;
   background-color: #a1c931;
   border-color: #91b42c;
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
-  width: 70%;
 }
 .view-contest-entry-actions-wrapper .btn-back-contest:focus,
 .view-contest-entry-actions-wrapper .btn-back-contest:active:focus,
@@ -18771,14 +18770,6 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-back-contest {
 }
 .view-contest-entry-actions-wrapper .btn-back-contest:focus {
   outline: none !important;
-}
-@media (max-width: 767px) {
-  .view-contest-entry-actions-wrapper .btn-back-contest {
-    display: block;
-    width: 100%;
-    padding-left: 0;
-    padding-right: 0;
-  }
 }
 @media (min-width: 768px) {
   #viewContestEntry {
@@ -19641,6 +19632,9 @@ fieldset[disabled] .btn-orange.active {
 fieldset[disabled] .btn-orange {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
+}
+.btn-orange:focus {
+  outline: none !important;
 }
 .button-fb {
   display: inline-block;

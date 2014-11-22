@@ -194,19 +194,25 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
 
         <form id="signupForm" class="form-horizontal" ng-submit="submitSignup()" data-toggle="validator" role="form" formAutofillFix>
           <div class="form-description">¿Todavía no tienes cuenta en EPIC ELEVEN?<br>Rellena este formulario para completar el registro.<br>¡Es muy sencillo!</div>
-          <!-- USERNAME  -->
-          <div class="input-group">
+          <!-- NICKNAME  -->
+          <div class="new-row top-separation-20">
+            <div class="small-text-centered">Tu nombre de usuario debe tener al menos {{MIN_NICKNAME_LENGTH}} caracteres.</div>
+          </div>
+          <div id="groupNickName" class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-user"></div></span>
-            <input id="nickName" auto-focus name="NickName" type="text" ng-model="nickName" placeholder="Nombre de usuario" class="form-control" data-toggle="validator" required=""  tabindex="1">
+            <input id="nickName" auto-focus name="NickName" type="text" ng-model="theNickName" placeholder="Nombre de usuario" class="form-control" data-toggle="validator" required=""  tabindex="1">
           </div>
           <!-- Error de username -->
           <div class="new-row">
             <div id="nickNameError" class="join-err-text">ERROR DE REGISTRO. El user name no es válido.</div>
           </div>
           <!-- EMAIL -->
-          <div class="input-group">
+          <div class="new-row top-separation-20">
+            <div class="small-text-centered">Introduce un email válido.</div>
+          </div>
+          <div id="groupEmail" class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-envelope"></div></span>
-            <input id="email" name="Email" type="email" ng-model="email" placeholder="Correo electrónico" class="form-control" data-toggle="validator" required=""  tabindex="2">
+            <input id="email" name="Email" type="email" ng-model="theEmail" placeholder="Correo electrónico" class="form-control" data-toggle="validator" required=""  tabindex="2">
           </div>
           <!-- Error de mail -->
           <div class="new-row">
@@ -216,7 +222,7 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
           <div class="new-row top-separation-20">
             <div class="small-text-centered">El único requisito para la contraseña es que tenga al menos {{MIN_PASSWORD_LENGTH}} caracteres. Y por seguridad debes teclearla dos veces.</div>
           </div>
-          <div id="groupPassword" class="input-group faded">
+          <div id="groupPassword" class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
             <input id="password" name="Password" type="password" ng-model="thePassword" placeholder="Contraseña" class="form-control" data-toggle="validator" required="" data-minlength="MIN_PASSWORD_LENGTH" ng-minlength="MIN_PASSWORD_LENGTH"  tabindex="3">
           </div>
@@ -271,7 +277,7 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
           <!-- MAIL -->
           <div class="input-group">
             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-            <input id="login-mail" auto-focus type="email" ng-model="email" name="email" placeholder="Correo Electrónico" class="form-control" tabindex="1">
+            <input id="login-mail" auto-focus ng-model="emailOrUsername" name="email" placeholder="Nombre de usuario / Email" class="form-control" tabindex="1">
           </div>
           <!-- PÂSSWORD -->
           <div class="input-group">
@@ -312,7 +318,7 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
         <div class="input-group">
           <div class="new-row">
             <div class="buttons-wapper">
-              <fb:login-button scope="public_profile,email" size="medium" onlogin="jsLoginFB();">
+              <fb:login-button scope="public_profile,email" size="medium" onlogin="jsLoginFB()">
               </fb:login-button>
               <!--button class="button-fb" id="fblogin" ng-click="loginFB()">Entra con Facebook</button-->
             </div>
@@ -868,7 +874,7 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
               <div class="button-wrapper-block" ng-if="isSelectingSoccerPlayer && scrDet.isXsScreen">
                 <button type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer" >CANCELAR</button>
               </div>
-              <div ng-if="!isSelectingSoccerPlayer || scrDet.isNotXsScreen">
+              <div  class="bottom-content" ng-if="!isSelectingSoccerPlayer || scrDet.isNotXsScreen">
                 <div class="button-wrapper">
                   <button type="button" class="btn-clean-lineup-list" ng-click="deleteFantasyTeam()" ng-disabled="isPlayerSelected()">BORRAR TODO</button>
                 </div>
@@ -973,11 +979,11 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_info_comp.html
     </div>
   </div>
 
-  <div class="soccer-player-info-content" ng-class="{'container':!scrDet.isNotXsScreen}">
+  <div class="soccer-player-info-content">
       <!-- Nav tabs -->
-      <ul class="soccer-player-info-tabs" role="tablist">
-        <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('season-info-tab-content')">Datos de Temporada</a></li>
-        <li><a role="tab" data-toggle="tab" ng-click="tabChange('match-info-tab-content')">Partido a Partido</a></li>
+      <ul id="soccer-player-info" class="soccer-player-info-tabs" role="tablist">
+        <li id="seasonTab" class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('season-info-tab-content')">Datos de Temporada</a></li>
+        <li id="matchTab" ><a role="tab" data-toggle="tab" ng-click="tabChange('match-info-tab-content')">Partido a Partido</a></li>
       </ul>
 
       <div class="tabs">

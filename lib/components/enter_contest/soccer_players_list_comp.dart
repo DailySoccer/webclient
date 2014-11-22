@@ -97,7 +97,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
 
           // Quiza nos mandan quitar un portero pero estamos filtrando por defensas....
           if (elem != null) {
-            elem.setInnerHtml(getActionButton(!lineupFilter.contains(soccerPlayer)), treeSanitizer: NULL_TREE_SANITIZER);
+            elem.setInnerHtml(_getActionButton(!lineupFilter.contains(soccerPlayer)), treeSanitizer: NULL_TREE_SANITIZER);
           }
         }
       }
@@ -185,7 +185,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
         continue;
       }
 
-      allHtml.write(getHtmlForSlot(slot, !lineupFilter.contains(slot)));
+      allHtml.write(_getHtmlForSlot(slot, !lineupFilter.contains(slot)));
     }
 
     _soccerPlayerListRoot.appendHtml(allHtml.toString());
@@ -194,9 +194,9 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
     _element.querySelectorAll(".soccer-players-list-slot").onClick.listen(_onMouseEvent);
   }
 
-  String getHtmlForSlot(var slot, bool addButton) {
+  String _getHtmlForSlot(var slot, bool addButton) {
 
-    String strAddButton = getActionButton(addButton);
+    String strAddButton = _getActionButton(addButton);
 
     return '''
       <div id="soccerPlayer${slot["intId"]}" class="soccer-players-list-slot ${_POS_CLASS_NAMES[slot["fieldPos"].abrevName]}">
@@ -215,7 +215,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
     ''';
   }
 
-  String getActionButton(bool addButton) {
+  String _getActionButton(bool addButton) {
     return addButton? '<button type="button" class="action-button add">Añadir</button>' :
                       '<button type="button" class="action-button remove">Quitar</button>';
   }

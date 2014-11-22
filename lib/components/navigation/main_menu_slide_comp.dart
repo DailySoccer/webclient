@@ -91,7 +91,8 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
 
     // El backdrop es la cortinilla traslucida que atenua todo el contenido
     _backdropElement = new DivElement();
-    _backdropElement.classes.add("backdrop hidden-xs");
+    _backdropElement.id = "backdrop";
+    _backdropElement.classes.add("hidden-xs");
 
     // La insertamos en 0 para que no pise al #menuSlide
     _menuSlideElement.parent.children.insert(0, _backdropElement);
@@ -228,7 +229,7 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
         <div id="brandLogoLogged" class="navbar-brand" destination="lobby"></div>
       </div>
   
-      <div id="menuSlide" class="offcanvas">
+      <div id="menuSlide">
         <ul class="nav navbar-nav">
           <li highlights="lobby">      <a  id="menuLobby"      destination="lobby">Buscar Torneos</a></li>
           <li highlights="my_contests"><a  id="menuMyContests" destination="my_contests">Mis torneos</a></li>

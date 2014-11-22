@@ -111,7 +111,7 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
   }
 
   void _setUpClicks() {
-    querySelectorAll("[destination]").onClick.listen(_onElementWithDestinationClick);
+    _rootElement.querySelectorAll("[destination]").onClick.listen(_onElementWithDestinationClick);
 
     if (_backdropElement != null) {
       _backdropElement.onClick.listen((_) => _hide());
@@ -180,7 +180,7 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
       li.classes.remove('active');
     }
 
-    li = querySelector("[highlights=${name}]");
+    li = _rootElement.querySelector("[highlights=${name}]");
 
     if (li == null && _isRouteNameInsideUserMenu(name)) {
       li = _rootElement.querySelector('[highlights="user"]');

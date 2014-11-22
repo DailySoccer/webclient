@@ -13,10 +13,6 @@ class DateTimeService {
   static DateTime get now => _instance._internalNow;
   static DateTime fromMillisecondsSinceEpoch(int millisecondsSinceEpoch) => new DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch, isUtc: _UTC);
 
-  // Hora actual que cambia cada segundo, util para imprimir el reloj directamente desde una vista con binding. Si estamos
-  // recibiendo la hora desde el servidor, cambia un poco mas lento (cada 3 segundos)
-  DateTime get nowEverySecond => _nowEverySecond;
-
   DateTimeService(this._server, this._refreshTimersService) {
     if (_instance != null)
       throw new Exception("WTF 1233");
@@ -26,8 +22,6 @@ class DateTimeService {
     if (HostServer.isDev) {
       _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_VERIFY_SIMULATOR_ACTIVATED, _verifySimulatorActivated);
     }
-
-    new Timer.periodic(new Duration(seconds:1), (t) => _nowEverySecond = now);
   }
 
   static bool isToday(DateTime date) {
@@ -109,7 +103,6 @@ class DateTimeService {
 
   Timer _timerUpdateFromServer;
   DateTime _fakeDateTime;
-  DateTime _nowEverySecond;
   bool _simulatorActivated = false;
 
   ServerService _server;

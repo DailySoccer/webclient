@@ -44,10 +44,16 @@
 @import (inline) "../nouislider/jquery.nouislider.css";
 @import "../bootstrap-switch/less/bootstrap3/bootstrap-switch.less";
 
-html, body {     
+
+// Path Definitions
+@images: "../images"; // No ponemos / al final para separar mejor donde realmente se define la imagen
+
+@icon-font-path: "../bootstrap-3.1.1/fonts/";
+
+
+html, body {
     height: 100%; 
 }
-
 
 // Forzamos a que siempre aparezca la scrollbar vertical para que no haya saltos
 html { overflow-y: scroll; }
@@ -55,17 +61,53 @@ html { overflow-y: scroll; }
 // En pantallas > 1200 nos limitamos a > 992px
 @container-lg: @container-md;
 
- 
 // El modal viene en boostrap como overflow-y: scroll (siempre se ve barra). Preferimos
 // que solo se vea si realmente se necesita.
 #modalRoot {
 	overflow-y: auto;
 }
 
-// Path Definitions
-@images: "../images"; // No ponemos / al final para separar mejor donde realmente se define la imagen
+#mainApp {
+	height: 100%;
+}
 
-@icon-font-path: "../bootstrap-3.1.1/fonts/";
+body {
+	@media (min-width: @screen-sm-min) {
+		background-color: @black;
+		background-image: url("@{images}/backgroundPlayersAction.jpg");
+
+		background-position: center top;
+		background-repeat: no-repeat;
+	}
+}
+
+// Contenedor exterior que envuelve a todo el contenido.
+.wrapper-content-container {
+	min-height: 100%; 
+	margin: -70px auto -130px; 	// Para que el footer se ponga encima nuestra (teniendo en cuenta el menu)
+
+	// Contenedor interior que envuelve al contenido. Fijamos el width con el.
+	.main-content-container {
+		padding-top: 70px;
+		padding-bottom: 130px;
+
+		@media (max-width: @screen-sm-max) {
+			.container-fluid();
+			.clean-paddings();
+
+		}
+		@media (min-width: @screen-md-min) {
+			.container();
+			.clean-paddings();
+		}		
+	}
+}
+
+.bleach {
+	max-width: 970px;
+	background-color: @white;
+}
+
 
 // Por ejemplo, el color del boton "Añadir fondos", al que consideramos un btn-primary
 @brand-primary: @green;
@@ -74,7 +116,6 @@ html { overflow-y: scroll; }
 @btn-default-bg: @blueLight;
 
 @btn-default-color: @white;
-
 
 .btn {
 	border-width: 0;
@@ -159,42 +200,6 @@ html { overflow-y: scroll; }
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
-}
-
-body {
-	@media (min-width: @screen-sm-min) {
-		background-color: @black;
-		background-image: url("@{images}/backgroundPlayersAction.jpg");
-
-		background-position: center top;
-		background-repeat: no-repeat;
-	}
-}
-// Contenedor exterior que envuelve a todo el contenido.
-.wrapper-content-container {
-	min-height: 100%; 
-	margin: -70px auto -130px; 	// Para dar cabida al footer (teniendo en cuenta el menu)
-
-	// Contenedor interior que envuelve al contenido. Fijamos el width con el.
-	.main-content-container {
-		padding-top: 70px;
-		padding-bottom: 130px;
-
-		@media (max-width: @screen-sm-max) {
-			.container-fluid();
-			.clean-paddings();
-
-		}
-		@media (min-width: @screen-md-min) {
-			.container();
-			.clean-paddings();
-		}		
-	}
-}
-
-.bleach {
-	max-width: 970px;
-	background-color: @white;
 }
 
 .default-header-text {

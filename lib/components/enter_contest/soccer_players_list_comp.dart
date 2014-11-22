@@ -4,7 +4,7 @@ import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:angular/change_detection/change_detection.dart';
 import 'package:webclient/services/screen_detector_service.dart';
-import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/utils/unusual_utils.dart';
 import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/utils/html_utils.dart';
 
@@ -287,7 +287,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
     _isDirty = true;
   }
 
-  String get _normalizedNameFilter => _filterList[FILTER_NAME] == null? null : StringUtils.normalize(_filterList[FILTER_NAME]).toUpperCase();
+  String get _normalizedNameFilter => _filterList[FILTER_NAME] == null? null : UnusualUtils.normalize(_filterList[FILTER_NAME]).toUpperCase();
 
   VmTurnZone _turnZone;
   ScreenDetectorService _scrDet;

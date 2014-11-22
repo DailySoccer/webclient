@@ -8,7 +8,7 @@ import "package:webclient/models/soccer_team.dart";
 import "package:webclient/models/instance_soccer_player.dart";
 import 'package:webclient/services/contest_references.dart';
 import 'package:webclient/services/datetime_service.dart';
-import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/utils/unusual_utils.dart';
 
 class Contest {
   // Tipos de Premios (obtenidos del backend)
@@ -277,7 +277,7 @@ class Contest {
   }
 
   int compareNameTo(Contest contest){
-    int comp = StringUtils.normalize(name).compareTo(StringUtils.normalize(contest.name));
+    int comp = UnusualUtils.normalize(name).compareTo(UnusualUtils.normalize(contest.name));
     return comp != 0 ? comp : contestId.compareTo(contest.contestId);
   }
 

@@ -1,4 +1,4 @@
-<div id="#landingPageRoot">
+<div id="landingPageRoot">
   <!-- Portada Versión Desktop -->
   <div id="desktopContent" ng-if="!scrDet.isXsScreen" class="first-screen" style="height:{{screenHeight}}px">
     <div class="screen-pattern" src="images/pattern.png"></div>
@@ -36,7 +36,7 @@
     <div class="beta-label"><img src="images/beta.png"/></div>
 
     <!-- Separador -->
-    <a class="wrapping-link" href="#screen2">
+    <a class="wrapping-link" ng-click="smoothScrollTo('#screen2')">
       <span id="screenSeparator1" class="more-info-section-light">
         <span>SABER MÁS</span>
         <span class="go-down-icon"></span>
@@ -62,7 +62,7 @@
       </div>
     </div>
     <!-- Separador -->
-    <a class="wrapping-link" href="#screen2">
+    <a class="wrapping-link"  ng-click="smoothScrollTo('#screen2')">
       <span id="screenSeparator1" class="more-info-section-light">
         <span>SABER MÁS</span>
         <span class="go-down-icon"></span>
@@ -93,7 +93,7 @@
       </div>
   </div>
 
-  <a class="wrapping-link" href="#screen3">
+  <a class="wrapping-link" ng-click="smoothScrollTo('#screen3')">
     <span id="screenSeparator2" class="more-info-section-light">
       <span>SABER MÁS</span>
       <span class="go-down-icon"></span>
@@ -123,7 +123,7 @@
       </div>
   </div>
 
-  <a class="wrapping-link" href="#screen4">
+  <a class="wrapping-link" ng-click="smoothScrollTo('#screen4')">
     <span id="screenSeparator3" class="more-info-section-dark">
       <span>SABER MÁS</span>
       <span class="go-down-icon"></span>

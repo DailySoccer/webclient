@@ -14,9 +14,9 @@ import 'package:webclient/models/match_event.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/contest_entry.dart';
 import "package:webclient/models/instance_soccer_player.dart";
-import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/utils/unusual_utils.dart';
 import 'package:webclient/utils/game_metrics.dart';
-import 'dart:math';
+import 'package:webclient/utils/html_utils.dart';
 
 @Component(
     selector: 'enter-contest',
@@ -102,7 +102,7 @@ class EnterContestComp implements DetachAware {
           });
         }
 
-        scrollTo('#mainWrapper');
+       UnusualUtils.scrollTo('#mainWrapper');
       })
       .catchError((error) {
         _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
@@ -164,8 +164,7 @@ class EnterContestComp implements DetachAware {
     }
     else {
       isSelectingSoccerPlayer = true;
-      scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('main-menu-slide').offsetHeight, ignoreInDesktop: true);
-
+      UnusualUtils.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('main-menu-slide').offsetHeight, ignoreInDesktop: true, screenDetector: scrDet);
       // Cuando seleccionan un slot del lineup cambiamos siempre el filtro de la soccer-player-list, especialmente
       // en movil que cambiamos de vista a "solo ella".
       // El componente hijo se entera de que le hemos cambiado el filtro a traves del two-way binding.
@@ -204,7 +203,7 @@ class EnterContestComp implements DetachAware {
 
     //Si ya no estamos en modo seleción, scrolleamos hasta la altura del dinero que nos queda disponible.
     if (!isSelectingSoccerPlayer) {
-      scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('main-menu-slide').offsetHeight, ignoreInDesktop: true);
+      UnusualUtils.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('main-menu-slide').offsetHeight, ignoreInDesktop: true, screenDetector: scrDet);
     }
   }
 
@@ -250,7 +249,7 @@ class EnterContestComp implements DetachAware {
         "fieldPos": instanceSoccerPlayer.fieldPos,
         "fieldPosSortOrder": instanceSoccerPlayer.fieldPos.sortOrder,
         "fullName": instanceSoccerPlayer.soccerPlayer.name,
-        "fullNameNormalized": StringUtils.normalize(instanceSoccerPlayer.soccerPlayer.name).toUpperCase(),
+        "fullNameNormalized": UnusualUtils.normalize(instanceSoccerPlayer.soccerPlayer.name).toUpperCase(),
         "matchId" : matchEvent.templateMatchEventId,
         "matchEventName": matchEventName,
         "remainingMatchTime": "-",
@@ -334,58 +333,12 @@ class EnterContestComp implements DetachAware {
 
   void cancelPlayerSelection() {
     isSelectingSoccerPlayer = false;
-    scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('main-menu-slide').offsetHeight, ignoreInDesktop: true);
+    UnusualUtils.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('main-menu-slide').offsetHeight, ignoreInDesktop: true, screenDetector: scrDet);
   }
 
   void onRowClick(String soccerPlayerId) {
     _router.go("enter_contest.soccer_player_info",  { "instanceSoccerPlayerId": soccerPlayerId });
   }
-
-  void scrollTo(String selector, {int offset: 0, int duration: 500, bool smooth : false, bool ignoreInDesktop: false}) {
-    // Por defecto (salvo que se especifique TRUE), el scroll se ignorará en las versiones de Desktop.
-    if(ignoreInDesktop && scrDet.isNotXsScreen) {
-      return;
-    }
-
-    int targetPosition = querySelector(selector).offsetTop + offset;
-
-    if(!smooth) {
-      window.scroll(0, targetPosition);
-    }
-    else {
-      int currentFrame = 0;
-      // Total de Frames
-      int totalFrames = ( duration / (1000 / 60) ).round();
-      // Posicion inicial de donde partimemos
-      int basePosition = window.scrollY;
-
-      int currentPosition = window.scrollY;
-      // variable puente para para sumar los decimales (El scroll necesita un parametro Int).
-      double incremented = 0.0;
-       // Distancia total a recorer por el Scroll
-      int distanceBetween =  targetPosition - currentPosition;
-
-      void animation(num frame) {
-        if ( totalFrames >= currentFrame ) {
-          // Movimiento deceleradoacelerado
-          incremented = pow((currentFrame/totalFrames), 2) * distanceBetween;
-          currentPosition = incremented.toInt() + basePosition;
-
-          window.scrollTo( 0, currentPosition );
-          currentFrame++;
-
-          // Cuando este termina el frame (16.66 ms) inmediatamente empezamos el siguiente.
-          window.animationFrame.then(animation);
-        }
-      }
-
-      // Llamamos a la función anidada de animación por primera vez.
-      window.animationFrame.then(animation);
-    }
-  }
-
-
-
 
   int _availableSalary = 0;
 
@@ -400,4 +353,6 @@ class EnterContestComp implements DetachAware {
 
   Timer _retryOpTimer;
   RouteHandle _routeHandle;
+  ScreenDetectorService _scrDet;
+
 }

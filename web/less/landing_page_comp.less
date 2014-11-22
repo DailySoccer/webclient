@@ -1,6 +1,9 @@
 .fondo-negro{
 	background-color: @black;
 }
+#landingPageRoot {
+	overflow: hidden;
+}
 #desktopContent{
 	.hidden-xs();
 	.vertical-separator-big{
@@ -161,7 +164,7 @@
 	background-color: @bgColor,;
 	margin:0;
 	padding: 15px;
-	
+	cursor: pointer;
 	> span{
 		.opensans_bold(9pt, @textColor);
 		display: block;
@@ -193,9 +196,9 @@
 	position: relative;
 	//background-image: url('@{images}/landingBackground.jpg');
 	background-size: cover;
-	@media (max-height: 850px) {
+
 		min-height: 700px;
-	}
+
 	white-space: nowrap;
 	font-size: 0;
 	text-align: center;
@@ -228,11 +231,7 @@
 		position: relative;
 		width: 90%;
 		max-width: 960px;
-		//bottom: -20%;
 		margin: 0 auto;
-		@media (max-height: 850px) {
-			margin: -50px auto 0 auto;
-		}		
 		display: inline-block;
 		vertical-align: middle;
 		white-space: normal;
@@ -276,6 +275,7 @@
 		bottom: 0;
 		left: 0;
 		width: 100%;
+		cursor: pointer;
 	}
 }	
 	

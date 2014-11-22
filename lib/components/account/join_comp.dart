@@ -3,7 +3,7 @@ library join_comp;
 import 'package:angular/angular.dart';
 import 'dart:html';
 import 'package:webclient/services/profile_service.dart';
-import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/utils/unusual_utils.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/models/connection_error.dart';
 import 'package:webclient/utils/game_metrics.dart';
@@ -58,7 +58,7 @@ class JoinComp implements ShadowRootAware {
     validateRePassword();
   }
 
-  bool get enabledSubmit => nickName.length >= MIN_NICKNAME_LENGTH && StringUtils.isValidEmail(email) && password.length >= MIN_PASSWORD_LENGTH && password == rePassword && _enabledSubmit;
+  bool get enabledSubmit => nickName.length >= MIN_NICKNAME_LENGTH && UnusualUtils.isValidEmail(email) && password.length >= MIN_PASSWORD_LENGTH && password == rePassword && _enabledSubmit;
 
   JoinComp(this._router, this._profileService, this.loadingService, this._rootElement);
 
@@ -92,7 +92,7 @@ class JoinComp implements ShadowRootAware {
   void validateEmail() {
     emailElement.classes.removeAll(['valid', 'not-valid']);
     // Validación del password
-    if (StringUtils.isValidEmail(email)) {
+    if (UnusualUtils.isValidEmail(email)) {
       emailElement.classes.add('valid');
     }
     else {

@@ -1,4 +1,5 @@
 library html_utils;
+
 import 'dart:html';
 
 class _NullTreeSanitizer implements NodeTreeSanitizer {

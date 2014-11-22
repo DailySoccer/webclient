@@ -1083,19 +1083,6 @@ tc.put("packages/webclient/components/enter_contest/soccer_players_filter_comp.h
 
   <input type="text" class="name-player-input-filter" placeholder="Buscar jugador" ng-model="nameFilter" />
 </div>"""));
-tc.put("packages/webclient/components/flash_messages_comp.html", new HttpResponse(200, r"""<div>
-  <div ng-repeat="msg in messages" id="flash-messages">
-      <div class="alert alert-{{msg.type}} alert-dismissable">
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-          <span class="">{{msg.text}}</span>
-      </div>
-  </div>
-</div>
-
-<div class="alert-danger" ng-show="globalMessage.isNotEmpty" style="padding: 1em; position: fixed; top: 10%; left: 50%; transform: translateX(-50%); z-index:99999;">
-  {{globalMessage}}
-</div>
-"""));
 tc.put("packages/webclient/components/landing_page_comp.html", new HttpResponse(200, r"""<div id="#landingPageRoot">
   <!-- Portada Versión Desktop -->
   <div id="desktopContent" ng-if="!scrDet.isXsScreen" class="first-screen" style="height:{{screenHeight}}px">
@@ -2245,43 +2232,6 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
         </section>
       </div>
 
-    </div>
-  </div>
-</div>
-"""));
-tc.put("packages/webclient/components/navigation/footer_comp.html", new HttpResponse(200, r"""<div id="rootFooter">
-  <div class="sub-footer-wrapper">
-    <div class="sub-footer">
-
-      <div class="logo-wrapper">
-        <img src="images/logoLobbyFooter.png" alt="EPIC ELEVEN"> <span class="footer-count" ng-if="isDev">{{dateTimeService.nowEverySecond}}&nbsp;</span>
-      </div>
-
-      <div class="data-wrapper">
-          <a class="goto-link" id="footerHelp" ng-click="goTo('help_info')"><span class="sub-footer-help-link">AYUDA</span></a>
-          <a class="goto-link" id="footerLegal" ng-click="goTo('legal_info')"><span class="sub-footer-legal-link">LEGAL</span></a>
-          <a class="goto-link" id="footerTermsOfUse" ng-click="goTo('terminus_info')"><span class="sub-footer-terms-link">TERMINOS<span> DE USO</span></span></a>
-          <a class="goto-link" id="footerPrivacyPolicy" ng-click="goTo('policy_info')"><span class="sub-footer-policy-link"><span>POLÍTICA DE </span>PRIVACIDAD</span></a>
-      </div>
-
-      <!--<div class="credit-cards">
-          <img src="images/creditCards.png" />
-      </div>-->
-
-      <div class="opta">
-        <div>Datos suministrados por: <span>OPTA</span></div>
-        <div>A <strong>PERFORM</strong> GROUP COMPANY</div>
-      </div>
-
-      <div class="copyright">@ Copyright 2014 Epic Eleven</div>
-
-      <div class="social">
-          <a href="https://www.facebook.com/pages/Epic-Eleven/582891628483988?fref=ts"><img src="images/social.png"/></a>
-      </div>
-
-      <!--<a href="#" class="url-link">
-          <span>Fantasy Sports Games.com</span>
-      </a>-->
     </div>
   </div>
 </div>

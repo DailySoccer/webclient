@@ -5,7 +5,6 @@ import 'package:angular/angular.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/html_utils.dart';
-import 'dart:async';
 
 @Component(
     selector: 'main-menu-slide',
@@ -47,10 +46,7 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
     _backdropElement = null;
 
     // Nos pueden haber deslogeado con el menu desplegado
-    if (_scrollCancelationListener != null) {
-      _scrollCancelationListener.cancel();
-      _scrollCancelationListener = null;
-    }
+    querySelector("body").classes.remove("main-menu-slide-in");
 
     _slideState = "hidden";
   }
@@ -101,11 +97,6 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
     _menuSlideElement.onTransitionEnd.listen((_) {
       if (_slideState == "hidden") {
         _menuSlideElement.classes.add("hidden-xs");
-      }
-    });
-
-    _backdropElement.onTransitionEnd.listen((_) {
-      if (_slideState == "hidden") {
         _backdropElement.classes.add("hidden-xs");
       }
     });
@@ -146,13 +137,10 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
   void _show() {
     _slideState = "slid";
 
-    // Desactivamos el scroll del body (solo en Touch, en desktop nos da igual)
-    _scrollCancelationListener = querySelector("body").onTouchMove.listen((event) {
-      event.preventDefault();
-    });
-
     _menuSlideElement.classes.remove("hidden-xs");
     _backdropElement.classes.remove("hidden-xs");
+
+    querySelector("body").classes.add("main-menu-slide-in");
 
     // Tenemos que dar un frame al browser para que calcule la posicion inicial
     window.animationFrame.then((_) {
@@ -169,9 +157,7 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
       _backdropElement.classes.remove("in");
     }
 
-    if (_scrollCancelationListener != null) {
-      _scrollCancelationListener.cancel();
-    }
+    querySelector("body").classes.remove("main-menu-slide-in");
   }
 
   void _updateActiveElement(String name) {
@@ -263,7 +249,6 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
   Router _router;
 
   String _slideState = "hidden";
-  StreamSubscription _scrollCancelationListener;
 
   static final int _maxNicknameLength = 30;
 }

@@ -186,6 +186,7 @@ main-menu-slide {
 			background-color: @black;
 			opacity: 0;
 			position: fixed;
+			z-index: 1000;
 			top: @fixed-top;
 			left: 0px;
 			right: 0px;
@@ -205,6 +206,8 @@ main-menu-slide {
 			width: @offcanvas-width;
 			top: @fixed-top;
 			bottom: 0px;
+			z-index: 1001;
+			overflow-y: auto;
 
 			// Estado inicial
 			right: -@offcanvas-width;
@@ -268,7 +271,6 @@ main-menu-slide {
         }
     }
 
-
 	// Menu sin logear:
 	#menuNotLoggedIn {   
 		overflow: hidden;
@@ -300,5 +302,12 @@ main-menu-slide {
 	      	}
 	    }
 	}
+}
 
+.main-menu-slide-in {
+	position: fixed;
+	left: 0px;
+	right: 0px;
+	top: 0px;
+	bottom: 0px;
 }

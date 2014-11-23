@@ -5,6 +5,7 @@ import 'package:angular/angular.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/html_utils.dart';
+import 'dart:async';
 
 @Component(
     selector: 'main-menu-slide',
@@ -45,8 +46,13 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
     _menuSlideElement = null;
     _backdropElement = null;
 
+    //querySelector("body").classes.remove("main-menu-slide-in");
+
     // Nos pueden haber deslogeado con el menu desplegado
-    querySelector("body").classes.remove("main-menu-slide-in");
+    if (_scrollCancelationListener != null) {
+      _scrollCancelationListener.cancel();
+      _scrollCancelationListener = null;
+    }
 
     _slideState = "hidden";
   }
@@ -140,7 +146,15 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
     _menuSlideElement.classes.remove("hidden-xs");
     _backdropElement.classes.remove("hidden-xs");
 
-    querySelector("body").classes.add("main-menu-slide-in");
+    //querySelector("body").classes.add("main-menu-slide-in");
+
+    // Desactivamos el scroll del body (solo en Touch, en desktop nos da igual)
+    _scrollCancelationListener = querySelector("body").onTouchMove.listen((event) {
+      var elem = event.target as Element;
+      if (elem != null && !elem.matchesWithAncestors("#menuSlide ul")) {
+        event.preventDefault();
+      }
+    });
 
     // Tenemos que dar un frame al browser para que calcule la posicion inicial
     window.animationFrame.then((_) {
@@ -157,7 +171,11 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
       _backdropElement.classes.remove("in");
     }
 
-    querySelector("body").classes.remove("main-menu-slide-in");
+    //querySelector("body").classes.remove("main-menu-slide-in");
+
+    if (_scrollCancelationListener != null) {
+      _scrollCancelationListener.cancel();
+    }
   }
 
   void _updateActiveElement(String name) {
@@ -242,6 +260,7 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
 
   ScreenDetectorService _scrDet;
   Scope _scope;
+  StreamSubscription _scrollCancelationListener;
 
   Element _rootElement;
   Element _menuSlideElement;

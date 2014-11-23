@@ -46,13 +46,10 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
     _menuSlideElement = null;
     _backdropElement = null;
 
-    //querySelector("body").classes.remove("main-menu-slide-in");
+    querySelector("body").classes.remove("main-menu-slide-in");
 
     // Nos pueden haber deslogeado con el menu desplegado
-    if (_scrollCancelationListener != null) {
-      _scrollCancelationListener.cancel();
-      _scrollCancelationListener = null;
-    }
+    _cancelListeners();
 
     _slideState = "hidden";
   }
@@ -146,20 +143,28 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
     _menuSlideElement.classes.remove("hidden-xs");
     _backdropElement.classes.remove("hidden-xs");
 
-    //querySelector("body").classes.add("main-menu-slide-in");
+    querySelector("body").classes.add("main-menu-slide-in");
 
-    // Desactivamos el scroll del body (solo en Touch, en desktop nos da igual)
-    _scrollCancelationListener = querySelector("body").onTouchMove.listen((event) {
+    int lastY = -1;
+    _scrollMoveListener = querySelector("body").onTouchMove.listen((event) {
       var elem = event.target as Element;
-      if (elem != null && !elem.matchesWithAncestors("#menuSlide ul")) {
-        event.preventDefault();
+
+      if (elem.matchesWithAncestors("#menuSlide ul") && lastY != -1) {
+        int diff = lastY - event.touches.first.client.y;
+        // Aqui claramente se podria hacer con aceleracion
+        _menuSlideElement.scrollTop = _menuSlideElement.scrollTop + diff;
       }
+
+      lastY = event.touches.first.client.y;
+      event.preventDefault();
     });
+
+    _scrollEndListener = querySelector("body").onTouchEnd.listen((_) => lastY = -1);
 
     // Tenemos que dar un frame al browser para que calcule la posicion inicial
     window.animationFrame.then((_) {
-      _menuSlideElement.classes.add("in");
-      _backdropElement.classes.add("in");
+      _menuSlideElement.classes.add("slide-in");
+      _backdropElement.classes.add("slide-in");
     });
   }
 
@@ -167,15 +172,13 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
     if (_menuSlideElement != null) {
       _slideState = "hidden";
 
-      _menuSlideElement.classes.remove("in");
-      _backdropElement.classes.remove("in");
+      _menuSlideElement.classes.remove("slide-in");
+      _backdropElement.classes.remove("slide-in");
     }
 
-    //querySelector("body").classes.remove("main-menu-slide-in");
+    querySelector("body").classes.remove("main-menu-slide-in");
 
-    if (_scrollCancelationListener != null) {
-      _scrollCancelationListener.cancel();
-    }
+    _cancelListeners();
   }
 
   void _updateActiveElement(String name) {
@@ -258,9 +261,19 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
     ''';
   }
 
+  void _cancelListeners() {
+    if (_scrollMoveListener != null) {
+      _scrollMoveListener.cancel();
+      _scrollEndListener.cancel();
+      _scrollMoveListener = null;
+      _scrollEndListener = null;
+    }
+  }
+
   ScreenDetectorService _scrDet;
   Scope _scope;
-  StreamSubscription _scrollCancelationListener;
+  StreamSubscription _scrollMoveListener;
+  StreamSubscription _scrollEndListener;
 
   Element _rootElement;
   Element _menuSlideElement;

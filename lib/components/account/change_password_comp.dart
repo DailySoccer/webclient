@@ -34,20 +34,33 @@ class ChangePasswordComp implements ShadowRootAware {
     //_stormPathTokenId = _routeProvider.route.parameters['tokenId'];
   }
 
+
+  void replaceUri(Uri uri) {
+    Map<String, String> newQueryParams = new Map.fromIterable(
+        uri.queryParameters.keys.where((param) => !param.startsWith("sptoken")),
+        key: (item) => item,
+        value: (item) => uri.queryParameters[item]);
+
+    window.history.replaceState(null, // Pasamos null porque el getter de state no funciona en Dart:
+                                      // https://groups.google.com/a/dartlang.org/forum/#!msg/bugs/zvNSxQMQ5FY/6D4mo0IAbxcJ
+        window.document.documentElement.title, new Uri(
+        scheme: uri.scheme,
+        userInfo: uri.userInfo,
+        host: uri.host,
+        port: uri.port,
+        path: uri.path,
+        queryParameters: (newQueryParams.length > 0)? newQueryParams : null,
+        fragment: (uri.fragment.length > 0)? uri.fragment : null ).toString());
+  }
+
+
   @override void onShadowRoot(emulatedRoot) {
     //Cogemos los parametros de la querystring esperando encontrar el parametro del token de stormPath
-    String querystring = window.location.toString().substring(window.location.toString().indexOf('?') + 1);
-    Map<String,String> params = Uri.splitQueryString(querystring);
+    Uri uri = Uri.parse(window.location.toString());
+    if (uri.queryParameters.containsKey("sptoken")) {
+      _stormPathTokenId = uri.queryParameters["sptoken"];
 
-    if (params != null) {
-      _stormPathTokenId = params.containsKey('sptoken') ? params["sptoken"] : "";
-      print("Encontrado el parámetro del token ${_stormPathTokenId}");
-
-      if(_stormPathTokenId.isEmpty) {
-        state = STATE_INVALID_URL;
-        _loadingService.isLoading = false;
-        return;
-      }
+      replaceUri(uri);
 
       _profileManager.verifyPasswordResetToken(_stormPathTokenId)
        .then((_) {

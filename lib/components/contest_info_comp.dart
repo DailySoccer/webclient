@@ -21,6 +21,7 @@ class ContestInfoComp implements DetachAware {
   bool isModal = false;
   Map currentInfoData;
   Contest contest = null;
+  String contestId;
   LoadingService loadingService;
 
   ContestInfoComp(ScreenDetectorService scrDet, RouteProvider routeProvider, this.loadingService, this._router, this._contestsService, this._flashMessage) {
@@ -42,11 +43,11 @@ class ContestInfoComp implements DetachAware {
       'prizes'          : []
     };
 
-    _contestId = routeProvider.route.parameters['contestId'];
+    contestId = routeProvider.route.parameters['contestId'];
 
     loadingService.isLoading = true;
 
-    _contestsService.refreshPublicContest(_contestId)
+    _contestsService.refreshPublicContest(contestId)
       .then((_) {
         updateContestInfo();
       })
@@ -91,7 +92,7 @@ class ContestInfoComp implements DetachAware {
   }
 
   void enterContest() {
-    _router.go('enter_contest', { "contestId": _contestId, "parent": "lobby", "contestEntryId": "none" });
+    _router.go('enter_contest', { "contestId": contestId, "parent": "lobby", "contestEntryId": "none" });
   }
 
   String formatMatchDate(DateTime date) {
@@ -112,6 +113,4 @@ class ContestInfoComp implements DetachAware {
 
   ContestsService _contestsService;
   FlashMessagesService _flashMessage;
-
-  String _contestId;
 }

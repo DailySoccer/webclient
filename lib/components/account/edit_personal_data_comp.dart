@@ -85,7 +85,8 @@ class EditPersonalDataComp implements ShadowRootAware{
     editedFirstName = _profileManager.user.firstName;
     editedLastName  = _profileManager.user.lastName;
     editedNickName  = _profileManager.user.nickName;
-
+    editedPassword       = "";
+    editedRepeatPassword = "";
     hideErrors();
   }
 
@@ -118,8 +119,6 @@ class EditPersonalDataComp implements ShadowRootAware{
       if (!validatePassword() ) {
         return;
       }
-
-
 
       String nickName  = (_profileManager.user.nickName   != editedNickName)  ? editedNickName   : "";
       String firstName = (_profileManager.user.firstName  != editedFirstName) ? editedFirstName  : "";

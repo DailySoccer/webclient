@@ -1,9 +1,9 @@
-<div id="personalDataContent" ng-show="!loadingService.isLoading" >
+<div id="personalDataContent" ng-show="!loadingService.isLoading" ng-cloack>
 
   <div class="edit-personal-data-modal-header">
     <span class="header-title">EDITAR CUENTA</span>
   </div>
-  <form id="editPersonalDataForm" class="form-horizontal" ng-submit="saveChanges()" data-toggle="validator" role="form" formAutofillFix>
+  <form id="editPersonalDataForm" class="form-horizontal" ng-submit="saveChanges()" data-toggle="validator" role="form" autocomplete="off">
     <div class="content">
       <!-- Nombre -->
       <div class="content-field">
@@ -15,7 +15,7 @@
       </div>
       <!-- Nickname -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtNickName" type="text" ng-model="editedNickName" name="nickName" placeholder="Nombre de usuario" class="form-control" tabindex="3"></div>
+        <div class="control-wrapper"><input id="txtNickName" type="text" ng-model="editedNickName" name="nickName" placeholder="Nombre de usuario" class="form-control" tabindex="3" autocapitalize="off"></div>
         <!-- Error de mail -->
         <div class="content-field"       ng-class="{'hidden':!hasNicknameError}">
           <div id="nickNameError" class="join-err-text" ng-class="{'errorDetected':hasNicknameError}">{{nicknameErrorText}}</div>
@@ -24,7 +24,7 @@
 
       <!-- Correo Electrónico -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtEmail" type="email" ng-model="editedEmail" name="email" placeholder="Email" class="form-control" tabindex="4"></div>
+        <div class="control-wrapper"><input id="txtEmail" type="email" ng-model="editedEmail" name="email" placeholder="Email" class="form-control" tabindex="4" autocapitalize="off"></div>
         <!-- Error de mail -->
         <div class="content-field"       ng-class="{'hidden':!hasEmailError}">
           <div id="emailError" class="join-err-text" ng-class="{'errorDetected':!hasEmailError}">{{emailErrorText}}</div>
@@ -37,7 +37,7 @@
       </div>
       <!-- Contraseña -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtPassword" type="password" ng-model="editedPassword" name="password" placeholder="Contraseña" class="form-control" tabindex="5"></div>
+        <div class="control-wrapper"><input id="txtPassword" type="password" ng-model="editedPassword" name="password" placeholder="Contraseña" class="form-control" tabindex="5" autocapitalize="off"></div>
         <!-- Error de contraseñas -->
         <div class="content-field-block" ng-class="{'hidden':!hasPasswordError}">
           <div id="passwordError" class="join-err-text"  ng-class="{'errorDetected':hasPasswordError}">{{passwordErrorText}}</div>
@@ -45,7 +45,7 @@
       </div>
       <!-- Repetir Contraseña -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtRepeatPassword" type="password" ng-model="editedRepeatPassword" name="repeatPassword" placeholder="Repetir Contraseña" class="form-control" tabindex="6"></div>
+        <div class="control-wrapper"><input id="txtRepeatPassword" type="password" ng-model="editedRepeatPassword" name="repeatPassword" placeholder="Repetir Contraseña" class="form-control" tabindex="6" autocapitalize="off"></div>
       </div>
 
       <!-- Label Instrucciones contraseña -->

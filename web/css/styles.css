@@ -6251,6 +6251,9 @@ contest-header {
     min-height: 135px;
   }
 }
+.rounded-borders {
+  border-radius: 5px 5px 0 0;
+}
 #contestHeaderWrapper {
   margin-right: auto;
   margin-left: auto;

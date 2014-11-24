@@ -6,13 +6,14 @@ import 'package:webclient/services/screen_detector_service.dart';
 import "package:webclient/models/contest.dart";
 import 'dart:async';
 import 'package:webclient/services/contests_service.dart';
+import 'dart:html';
 
 @Component(
     selector: 'contest-header',
     templateUrl: 'packages/webclient/components/contest_header_comp.html',
     useShadowDom: false
 )
-class ContestHeaderComp implements DetachAware {
+class ContestHeaderComp implements DetachAware, ShadowRootAware {
 
   ScreenDetectorService scrDet;
 
@@ -27,7 +28,7 @@ class ContestHeaderComp implements DetachAware {
     'prize':            '',
     'prizeType':        ''
   };
-
+  bool isInsideAModal = false;
   Contest contest;
 
   @NgOneWay("contest")
@@ -52,8 +53,9 @@ class ContestHeaderComp implements DetachAware {
     }
   }
 
-  ContestHeaderComp(this._router, this._routeProvider, this.scrDet, this._contestsService) {
+  ContestHeaderComp(this._router, this._routeProvider, this.scrDet, this._contestsService, this._rootElement) {
     _count = new Timer.periodic(new Duration(seconds: 1), (Timer timer) => _refreshCountdownDate());
+    isInsideAModal = (_router.activePath.length > 0) && (_router.activePath.first.name == 'lobby');
   }
 
   void _refreshCountdownDate() {
@@ -107,9 +109,15 @@ class ContestHeaderComp implements DetachAware {
     _count.cancel();
   }
 
+  void onShadowRoot(emulatedRoot) {
+    if (isInsideAModal) {
+      _rootElement.classes.add('rounded-borders');
+    }
+  }
   Router _router;
   RouteProvider _routeProvider;
   ContestsService _contestsService;
+  Element _rootElement;
 
   Timer _count;
 }

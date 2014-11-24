@@ -74,12 +74,12 @@ tc.put("packages/webclient/components/account/change_password_comp.html", new Ht
 
   </div>
 </div>"""));
-tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new HttpResponse(200, r"""<div id="personalDataContent" ng-show="!loadingService.isLoading" >
+tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new HttpResponse(200, r"""<div id="personalDataContent" ng-show="!loadingService.isLoading" ng-cloack>
 
   <div class="edit-personal-data-modal-header">
     <span class="header-title">EDITAR CUENTA</span>
   </div>
-  <form id="editPersonalDataForm" class="form-horizontal" ng-submit="saveChanges()" data-toggle="validator" role="form" formAutofillFix>
+  <form id="editPersonalDataForm" class="form-horizontal" ng-submit="saveChanges()" data-toggle="validator" role="form">
     <div class="content">
       <!-- Nombre -->
       <div class="content-field">

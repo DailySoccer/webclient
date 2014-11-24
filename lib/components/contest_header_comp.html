@@ -1,6 +1,6 @@
 <div id="contestHeaderWrapper">
 
-  <div class="contest-relevatn-data">
+  <div class="contest-relevant-data">
     <div class="contest-name-description">
       <div class="contest-name">{{info['description']}}</div>
       <div class="contest-explanation">{{info['contestType']}} {{info['contestantCount']}}</div>
@@ -20,13 +20,18 @@
     </div>
   </div>
 
-  <div class="contest-start-date">{{info['startTime']}}&nbsp;</div>
-  <div class="countdown-text">
-    <span class="text-countdown">{{info['textCountdownDate']}}&nbsp;</span>
-    <span class="time-countdown">{{info['countdownDate']}}&nbsp;</span>
+  <div class="date-time-data">
+    <div class="contest-start-date">
+      <span>{{info['startTime']}}&nbsp;</span>
+    </div>
+    <div class="contest-countdown-text">
+      <span class="text-countdown">{{info['textCountdownDate']}}&nbsp;</span>
+      <span class="time-countdown">{{info['countdownDate']}}&nbsp;</span>
+    </div>
   </div>
 
   <div class="close-contest"><button type="button" class="close" ng-click="goToParent()"><span class="glyphicon glyphicon-remove"></span></button></div>
+
 </div>
 
 <div class="clearfix"></div>

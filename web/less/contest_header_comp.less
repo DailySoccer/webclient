@@ -2,137 +2,64 @@
 contest-header {
 	background-color: @tramaBlue;
 	display: block;
-
-	@media (max-width: @screen-sm-max) {
-		min-height: 120px;
-	}
-	@media (min-width: @screen-md-min) {
-		min-height: 140px;
+	min-height: 131px;
+	@media (min-width: @screen-sm-min) {
+		min-height: 135px;
 	}
 }
 #contestHeaderWrapper {
 	.container-fluid();
-	
-	.contest-relevatn-data {
-		.make-row();
-		
+	position: relative;
+	padding: 0;
+	.contest-relevant-data {
+		.make-row(0);		
+		padding: 20px 0;
 		.contest-name-description {
-			.make-xm-column(12);
-			.make-sm-column(8);
-			.exo_bold(18pt, @blueDark);
+			.make-xs-column(12, 0);
+			.make-sm-column(8, 0);
+			.opensans_bold(10pt, @blueDark);
+			padding: 0 15px 10px 15px;
 			// Tamaño para la versión móvil
-			@media (max-width: @screen-xs-max) {
-				.opensans_bold(10pt, @blueDark);
+			@media (min-width: @screen-sm-min) {
+				.exo_bold(18pt, @blueDark);
 			}
 		}
 		.contest-price, .contest-prize {
 			.make-xs-column(6);
 			.make-sm-column(2);
-			.exo_bold(18pt, @blueDark);
+			.opensans_normal(9pt, @greyDark);
+			
 			// Tamaño para la versión móvil
-			@media (max-width: @screen-xs-max) {
-				.opensans_bold(10pt, @blueDark);
+			@media (min-width: @screen-sm-min) {
+				.exo_bold(18pt, @blueDark);	
+			}
+		}
+		// Iconos de precio y premio
+		@media (min-width: @screen-sm-min) {
+			.contest-prize span::before {
+				.addAbsoluteIcon("iconPrize.png", 32px, 26px, -10px, 3px) 
 			}
 		}
 		.contest-explanation, .contest-coins-header  {
-			.opensans_bold(11pt, @greyDark);
+			.opensans_normal(9pt, @blueDark);
+			@media (min-width: @screen-sm-min) {
+				.opensans_bold(11pt, @greyDark);
+			}
 		}
 		.contest-coins-header-title {
 			// La cabecera de premios la ocultamos para la versión xs
 			.hidden-xs();
-			.opensans_bold(11pt, @greyDark);
+			.opensans_normal(9pt, @blueDark);
+			@media (min-width: @screen-sm-min) {
+				.opensans_bold(11pt, @greyDark);	
+			}
 		}
 		.contest-coins-header-prize-type {			
 			.visible-xs();
 			.hidden-lg();
 			.hidden-md();
 			.hidden-sm();
-			.opensans_bold(11pt, @greyDark);
-		}
-	}
-}
-/*
-
-
-
-
-
-
-
-
-
-#contestHeaderWrapper {
-	.make-row();
-	position: relative;
-	padding: 10px 5px;
-	// Padding para todas las versiones excepto xs
-	@media (min-width: @screen-sm-min) {
-		padding: 10px;
-	}
-
-	.contest-name {
-		.make-xs-column(12, 0);
-		.exo_bold(18pt, @blueDark);
-		// Tamaño para la versión móvil
-		@media (max-width: @screen-xs-max) {
-			.opensans_bold(10pt, @blueDark);
-		}
-	}
-
-	.contest-explanation {
-		// 12 columnas en xs y 8 en el resto -> flota a la izaquierda con el contest-coins
-		.make-xs-column(12, 0);
-		.make-sm-column(8, 0);
-		.opensans_normal(9pt, @greyDark);
-		margin: 0 0 5px;
-		// Tamaño para todas las versiones excepto xs
-		@media (min-width: @screen-sm-min) {
-			.opensans_bold(11pt, @greyDark);
-			margin: 30px 0 0;
-		}
-		@media (max-width: @screen-sm-max) {
-			margin: 10px 0 0;
-		}
-	}
-
-	.contest-coins {
-		// Una fila entera para la versión xs y 4 columnas para el resto
-		.make-xs-column(12, 0);
-		.make-sm-column(4, 0);
-		margin-top: 5px;
-
-		.contest-price {
-			// 5 columnas xs y 6 para el resto
-			.make-xs-column(5, 0);
-			.make-sm-column(6, 0);
-		}
-
-		.contest-prize {
-			// 7 columnas xs y 6 para el resto
-			.make-xs-column(7, 0);
-			.make-sm-column(6, 0);
-		}
-		.contest-coins-header {
-			// Ocultamos las cabeceras en la version sm 
-			.hidden-sm();
-			// Inversion para header y content
-			display: inline-block;
-			.opensans_normal(9pt, @greyDark);
-			// Tamaño para todas las versiones excepto xs
-			@media (min-width: @screen-sm-min) {
-				.opensans_bold(9pt, @greyDark);
-				padding-left: 28px;
-			}
-		}
-		.contest-coins-header-title {
-			// La cabecera de premios la ocultamos para la versión xs
-			.hidden-xs();
-		}
-		.contest-coins-header-prize-type {
-			// A partir de 480px desaparece el tipo de premio	
-			 @media (min-width: @screen-sm-min) {
-				.hidden();
-			}
+			.opensans_normal(9pt, @blueDark);
 		}
 		.contest-coins-content {
 			// Inversion para header y content
@@ -152,69 +79,37 @@ contest-header {
 					margin-right: 5px;
 				}
 			}
+			
 		}
-		// Iconos de precio y premio
-		@media (min-width: @screen-sm-min) {
-			/ *.contest-price span::before {
-				.addIcon("iconPrice.png");
-			}* /
-			.contest-prize span::before {
-				.addIcon("iconPrize.png");
-				left: -10px;
-			}
-			.addIcon(@IconName){
-				content: " ";
-				background-image: url("@{images}/@{IconName}");
-				width: 32px;
-				height: 26px;
-				display: inline-block;
-				position: absolute;
-				top: 3px;
-				left: 0;
+	}
+	.span-text{
+		span {
+			.opensans_bold(9pt, @white);
+			@media (min-width: @screen-sm-min) {
+				.opensans_bold(11pt, @white);
 			}
 		}
 	}
+	.date-time-data {
+		.make-row(0);
+		background-color: @greyUltraDark;
+		line-height: 2;
+		// Fecha comienzo contest
+		.contest-start-date {
+			.make-xs-column(6);
+			.span-text();
+			text-align: left;			
+		}
 
-	// Fecha comienzo contest
-	.contest-start-date {
-		.make-xs-column(6, 0);
-		margin-top: 10px;
-		.opensans_bold(10pt, @blueMed);
-		@media (max-width: @screen-xs-max) {
-			.opensans_bold(8pt, @blueMed);
-			margin-top: 15px;
+		// Contador para comienzo de contest
+		.contest-countdown-text {
+			.make-xs-column(6);
+			.span-text();
+			text-align: right;
 		}
 	}
-
-
-	// Contador para comienzo de contest
-	.countdown-text {
-		.make-xs-column(6, 0);
-		margin-top: 10px;
-		text-align: right;
-		
-		@media (max-width: @screen-sm-max) {
-			.text-countdown {
-				.opensans_bold(8pt, @blueMed);
-			}
-			.time-countdown {
-				.opensans_bold(8pt, @blueLight);	
-			}
-		}
-		@media (min-width: @screen-sm-min) {
-			.text-countdown {
-				.opensans_bold(10pt, @blueMed);
-			}
-			.time-countdown {
-				.opensans_bold(10pt, @blueLight);	
-			}
-		}
-	}
-
-
 	// Botón de cerrar
-	.close-contest {
-		
+	.close-contest {		
 		position: absolute;
 		right: 10px;
 		top: 10px;
@@ -227,6 +122,4 @@ contest-header {
 			.create-glyph("\E014", 9pt);
 		}
 	}
-	
 }
-*/

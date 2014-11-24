@@ -79,7 +79,7 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
   <div class="edit-personal-data-modal-header">
     <span class="header-title">EDITAR CUENTA</span>
   </div>
-  <form id="editPersonalDataForm" class="form-horizontal" ng-submit="saveChanges()" data-toggle="validator" role="form">
+  <form id="editPersonalDataForm" class="form-horizontal" ng-submit="saveChanges()" data-toggle="validator" role="form" autocomplete="off">
     <div class="content">
       <!-- Nombre -->
       <div class="content-field">
@@ -413,7 +413,10 @@ tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpR
   <div class="profile-content">
 
     <div class="personal-data">
-      <div class="data-header"><span class="data-header-title">INFORMACION PERSONAL</span><button class="action-button" ng-click="editPersonalData()">EDITAR</button></div>
+      <div class="data-header">
+        <span class="data-header-title">INFORMACION PERSONAL</span>
+        <div class="button-wrapper"><button class="action-button" ng-click="editPersonalData()">EDITAR</button></div>
+      </div>
       <div class="bloque-sm">
         <div class="data-row"><span class="data-key">Nombre:</span><span class="data-value">{{userData.firstName + ' ' + userData.lastName}}</span></div>
         <div class="data-row"><span class="data-key">Nombre de usuario:</span><span class="data-value">{{userData.nickName}}</span></div>
@@ -1199,7 +1202,7 @@ tc.put("packages/webclient/components/landing_page_comp.html", new HttpResponse(
       <div class="content-wrapper">
         <div class="content-container">
           <div class="screen-image-block">
-            <img class="screen-logo" src="images/landingLogo3.jpg" />
+            <img class="screen-logo" src="images/landingLogo3.png" />
           </div>
           <div class="screen-text-block">
             <p class="title-text-dark">PUNTÚA Y GANA</p>

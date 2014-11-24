@@ -4,7 +4,7 @@ contest-header {
 	display: block;
 	min-height: 131px;
 	@media (min-width: @screen-sm-min) {
-		min-height: 135px;
+		min-height: 132px;
 	}
 }
 .rounded-borders {
@@ -20,7 +20,7 @@ contest-header {
 		.contest-name-description {
 			.make-xs-column(12, 0);
 			.make-sm-column(8, 0);
-			.opensans_bold(10pt, @blueDark);
+			.opensans_bold(9pt, @blueDark);
 			padding: 0 15px 10px 15px;
 			// Tamaño para la versión móvil
 			@media (min-width: @screen-sm-min) {
@@ -46,7 +46,7 @@ contest-header {
 		.contest-explanation, .contest-coins-header  {
 			.opensans_normal(9pt, @blueDark);
 			@media (min-width: @screen-sm-min) {
-				.opensans_bold(11pt, @greyDark);
+				.opensans_bold(9pt, @greyDark);
 			}
 		}
 		.contest-coins-header-title {
@@ -54,7 +54,7 @@ contest-header {
 			.hidden-xs();
 			.opensans_normal(9pt, @blueDark);
 			@media (min-width: @screen-sm-min) {
-				.opensans_bold(11pt, @greyDark);	
+				.opensans_bold(9pt, @greyDark);	
 			}
 		}
 		.contest-coins-header-prize-type {			
@@ -68,9 +68,6 @@ contest-header {
 			// Inversion para header y content
 			.pull-left();
 			.make-sm-column(12, 0);
-			@media (min-width: @screen-sm-min) {
-				padding: 0 0 0 28px;
-			}
 			> span {
 				.opensans_bold(16pt, @blueDark);
 				// Formato de los precios para versión xs
@@ -81,13 +78,18 @@ contest-header {
 					padding: 0px 10px;
 					margin-right: 5px;
 				}
+			}			
+		}
+		.contest-coins-content-with-icon {
+			.contest-coins-content();
+			@media (min-width: @screen-sm-min) {
+				padding: 0 0 0 28px;
 			}
-			
 		}
 	}
 	.span-text{
 		span {
-			.opensans_bold(9pt, @white);
+			.opensans_bold(8pt, @white);
 			@media (min-width: @screen-sm-min) {
 				.opensans_bold(11pt, @white);
 			}
@@ -109,6 +111,12 @@ contest-header {
 			.make-xs-column(6);
 			.span-text();
 			text-align: right;
+		}
+		&:after {
+			height: 1px;
+			width: 100%;
+			background-color: white;
+			content: "";
 		}
 	}
 	// Botón de cerrar

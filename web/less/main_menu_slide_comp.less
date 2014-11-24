@@ -182,37 +182,21 @@ main-menu-slide {
 		 	}
 		}
 
-		// Sistema de animacion
-		.offcanvas {
-			// Estado inicial
-			right: -@offcanvas-width;
-			.translateX(6px);	// Para que llegue a irse la sombra
-			box-shadow: -3px 0px 3px 0px @greyUltraDark;
-			
-			.transition(.4s ease all);
-
-    		// Estado "dentro" (final)
-    		&.in {
-    			.translateX(-@offcanvas-width);
-			}
-		}
-
-		.backdrop {
+		#backdrop {
 			background-color: @black;
 			opacity: 0;
 			position: fixed;
 			top: @fixed-top;
 			left: 0px;
 			right: 0px;
-			bottom: 0px;
+			height: 100%;
+			
+			.transition(.4s ease opacity);
 
-			.transition(.4s ease all);
-
-			&.in {
+			&.slide-in {
 				opacity: 0.5;
 			}
 		}
-
 
         #menuSlide {
 			background-color: @greyUltraDark;
@@ -221,6 +205,19 @@ main-menu-slide {
 			width: @offcanvas-width;
 			top: @fixed-top;
 			bottom: 0px;
+			overflow-y: auto;
+
+			// Estado inicial
+			right: -@offcanvas-width;
+			.translateX(6px);	// Para que llegue a irse la sombra
+			box-shadow: -3px 0px 3px 0px @greyUltraDark;
+			
+			.transition(.4s ease all);
+
+    		// Estado "dentro" (final)
+    		&.slide-in {
+    			.translateX(-@offcanvas-width);
+			}
 			
 	    	// Caja menu ppal.
 			.navbar-nav {
@@ -245,8 +242,8 @@ main-menu-slide {
 					// Submenu de usuario
 					&.right-menu.open {
 						> a, > a:focus, > a:hover {
-							background-color: @greyLight;
 							color: @black;
+							background-color: @greyLight;
 						}
 						// Cambiamos la flechita a abierto
 						> a::after {
@@ -263,7 +260,7 @@ main-menu-slide {
 			            cursor:pointer;
 			            padding: 10px 0px 10px 40px;
 			        }
-					> a:hover, > a:focus {
+					> a:focus {
 						color:@black;
 						background-color: @greyLight;
 					}
@@ -271,7 +268,6 @@ main-menu-slide {
 		    }
         }
     }
-
 
 	// Menu sin logear:
 	#menuNotLoggedIn {   
@@ -304,5 +300,7 @@ main-menu-slide {
 	      	}
 	    }
 	}
+}
 
+.main-menu-slide-in {
 }

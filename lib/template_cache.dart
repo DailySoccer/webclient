@@ -39,13 +39,13 @@ tc.put("packages/webclient/components/account/change_password_comp.html", new Ht
           <!-- PÂSSWORD -->
           <div class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-            <input id="password" type="password" ng-model="password" name="password" placeholder="password" autofocus class="form-control" tabindex="1">
+            <input id="password" type="password" ng-model="password" name="password" placeholder="password" autofocus class="form-control" tabindex="1" autocapitalize="off">
           </div>
 
           <!-- RE PASSWORD -->
           <div class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-            <input id="rePassword" type="password" ng-model="rePassword" name="password" placeholder="repetir password" class="form-control" tabindex="2">
+            <input id="rePassword" type="password" ng-model="rePassword" name="password" placeholder="repetir password" class="form-control" tabindex="2" autocapitalize="off">
           </div>
 
           <!-- Error de password -->
@@ -91,7 +91,7 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
       </div>
       <!-- Nickname -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtNickName" type="text" ng-model="editedNickName" name="nickName" placeholder="Nombre de usuario" class="form-control" tabindex="3"></div>
+        <div class="control-wrapper"><input id="txtNickName" type="text" ng-model="editedNickName" name="nickName" placeholder="Nombre de usuario" class="form-control" tabindex="3" autocapitalize="off"></div>
         <!-- Error de mail -->
         <div class="content-field"       ng-class="{'hidden':!hasNicknameError}">
           <div id="nickNameError" class="join-err-text" ng-class="{'errorDetected':hasNicknameError}">{{nicknameErrorText}}</div>
@@ -100,7 +100,7 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
 
       <!-- Correo Electrónico -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtEmail" type="email" ng-model="editedEmail" name="email" placeholder="Email" class="form-control" tabindex="4"></div>
+        <div class="control-wrapper"><input id="txtEmail" type="email" ng-model="editedEmail" name="email" placeholder="Email" class="form-control" tabindex="4" autocapitalize="off"></div>
         <!-- Error de mail -->
         <div class="content-field"       ng-class="{'hidden':!hasEmailError}">
           <div id="emailError" class="join-err-text" ng-class="{'errorDetected':!hasEmailError}">{{emailErrorText}}</div>
@@ -113,7 +113,7 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
       </div>
       <!-- Contraseña -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtPassword" type="password" ng-model="editedPassword" name="password" placeholder="Contraseña" class="form-control" tabindex="5"></div>
+        <div class="control-wrapper"><input id="txtPassword" type="password" ng-model="editedPassword" name="password" placeholder="Contraseña" class="form-control" tabindex="5" autocapitalize="off"></div>
         <!-- Error de contraseñas -->
         <div class="content-field-block" ng-class="{'hidden':!hasPasswordError}">
           <div id="passwordError" class="join-err-text"  ng-class="{'errorDetected':hasPasswordError}">{{passwordErrorText}}</div>
@@ -121,7 +121,7 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
       </div>
       <!-- Repetir Contraseña -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtRepeatPassword" type="password" ng-model="editedRepeatPassword" name="repeatPassword" placeholder="Repetir Contraseña" class="form-control" tabindex="6"></div>
+        <div class="control-wrapper"><input id="txtRepeatPassword" type="password" ng-model="editedRepeatPassword" name="repeatPassword" placeholder="Repetir Contraseña" class="form-control" tabindex="6" autocapitalize="off"></div>
       </div>
 
       <!-- Label Instrucciones contraseña -->
@@ -200,7 +200,7 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
           </div>
           <div id="groupNickName" class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-user"></div></span>
-            <input id="nickName" auto-focus name="NickName" type="text" ng-model="theNickName" placeholder="Nombre de usuario" class="form-control" data-toggle="validator" required=""  tabindex="1">
+            <input id="nickName" auto-focus name="NickName" type="text" ng-model="theNickName" placeholder="Nombre de usuario" class="form-control" data-toggle="validator" required=""  tabindex="1" autocapitalize="off">
           </div>
           <!-- Error de username -->
           <div class="new-row">
@@ -212,7 +212,7 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
           </div>
           <div id="groupEmail" class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-envelope"></div></span>
-            <input id="email" name="Email" type="email" ng-model="theEmail" placeholder="Correo electrónico" class="form-control" data-toggle="validator" required=""  tabindex="2">
+            <input id="email" name="Email" type="email" ng-model="theEmail" placeholder="Correo electrónico" class="form-control" data-toggle="validator" required=""  tabindex="2" autocapitalize="off">
           </div>
           <!-- Error de mail -->
           <div class="new-row">
@@ -224,11 +224,11 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
           </div>
           <div id="groupPassword" class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-            <input id="password" name="Password" type="password" ng-model="thePassword" placeholder="Contraseña" class="form-control" data-toggle="validator" required="" data-minlength="MIN_PASSWORD_LENGTH" ng-minlength="MIN_PASSWORD_LENGTH"  tabindex="3">
+            <input id="password" name="Password" type="password" ng-model="thePassword" placeholder="Contraseña" class="form-control" data-toggle="validator" required="" data-minlength="MIN_PASSWORD_LENGTH" ng-minlength="MIN_PASSWORD_LENGTH"  tabindex="3" autocapitalize="off">
           </div>
           <div id="groupRePassword" class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-            <input id="rePassword" name="RePassword" type="password" ng-model="theRePassword" placeholder="Repite la contraseña " class="form-control" data-toggle="validator" required="" data-minlength="8" ng-minlength="8" tabindex="4">
+            <input id="rePassword" name="RePassword" type="password" ng-model="theRePassword" placeholder="Repite la contraseña " class="form-control" data-toggle="validator" required="" data-minlength="8" ng-minlength="8" tabindex="4" autocapitalize="off">
           </div>
           <!-- Error de password -->
           <div class="new-row">
@@ -277,12 +277,12 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
           <!-- MAIL -->
           <div class="input-group">
             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-            <input id="login-mail" auto-focus ng-model="emailOrUsername" name="email" placeholder="Nombre de usuario / Email" class="form-control" tabindex="1">
+            <input id="login-mail" auto-focus ng-model="emailOrUsername" name="email" placeholder="Nombre de usuario / Email" class="form-control" tabindex="1" autocapitalize="off">
           </div>
           <!-- PÂSSWORD -->
           <div class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-            <input id="login-password" type="password" ng-model="password" name="password" placeholder="contraseña" class="form-control" tabindex="2">
+            <input id="login-password" type="password" ng-model="password" name="password" placeholder="contraseña" class="form-control" tabindex="2" autocapitalize="off">
           </div>
           <!-- REMEMBER ME -->
           <div class="remember-forgot-group">
@@ -376,7 +376,7 @@ tc.put("packages/webclient/components/account/remember_password_comp.html", new 
           <!-- MAIL -->
           <div class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-envelope"></div></span>
-            <input id="email" auto-focus name="Email" type="email" ng-model="email" placeholder="Correo electrónico" class="form-control" data-toggle="validator"  tabindex="1">
+            <input id="email" auto-focus name="Email" type="email" ng-model="email" placeholder="Correo electrónico" class="form-control" data-toggle="validator"  tabindex="1" autocapitalize="off">
           </div>
           <!-- Error de login/password -->
           <div class="input-group" ng-class="{'error-visible' : !errorDetected}">
@@ -572,73 +572,49 @@ tc.put("packages/webclient/components/contest_filters_comp.html", new HttpRespon
   </div>
 </div>"""));
 tc.put("packages/webclient/components/contest_header_comp.html", new HttpResponse(200, r"""<div id="contestHeaderWrapper">
-
-  <div class="contest-name">{{info['description']}}</div>
-  <div class="contest-explanation">{{info['contestType']}} {{info['contestantCount']}}</div>
-  
-  <div class="contest-coins">
+  <div ng-if="isInsideAModal" class="border-top"></div>
+  <div class="contest-relevant-data">
+    <div class="contest-name-description">
+      <div class="contest-name">{{info['description']}}</div>
+      <div class="contest-explanation">{{info['contestType']}} {{info['contestantCount']}}</div>
+   </div>
     <div class="contest-price">
-      <div class="contest-coins-header">ENTRADA</div>
       <div class="contest-coins-content"><span>{{info['entryPrice']}}</span></div>
+      <div class="contest-coins-header">ENTRADA</div>
     </div>
 
     <div class="contest-prize">
+      <div class="contest-coins-content-with-icon"><span>{{info['prize']}}</span></div>
       <div class="contest-coins-header">
         <div class="contest-coins-header-title">PREMIOS</div>
         <div class="contest-coins-header-prize-type">{{info['prizeType']}}</div>
       </div>
-      <div class="contest-coins-content"><span>{{info['prize']}}</span></div>
-    </div>      
+
+    </div>
   </div>
 
-  <div class="contest-start-date">{{info['startTime']}}&nbsp;</div>
-  <div class="countdown-text">
-    <span class="text-countdown">{{info['textCountdownDate']}}&nbsp;</span>
-    <span class="time-countdown">{{info['countdownDate']}}&nbsp;</span>
+  <div class="date-time-data">
+    <div class="contest-start-date">
+      <span>{{info['startTime']}}&nbsp;</span>
+    </div>
+    <div class="contest-countdown-text">
+      <span class="text-countdown">{{info['textCountdownDate']}}&nbsp;</span>
+      <span class="time-countdown">{{info['countdownDate']}}&nbsp;</span>
+    </div>
   </div>
-  
-  <div class="close-contest"><button type="button" class="close" ng-click="goToParent()"><span class="glyphicon glyphicon-remove"></span></button></div>
+
+  <div class="close-contest" >
+    <button type="button" ng-if="isInsideAModal"  class="close" data-dismiss="modal">   <span class="glyphicon glyphicon-remove"></span></button>
+    <button type="button" ng-if="!isInsideAModal" class="close" ng-click="goToParent()"><span class="glyphicon glyphicon-remove"></span></button>
+  </div>
+
 </div>
 
 <div class="clearfix"></div>
 """));
 tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(200, r"""<modal id="contestInfoModal" ng-if="isModal">
-  <div class="modal-info-head">
-      <div class="contest-info-header-row">
 
-          <div class="column-name">
-              <div class="inner-content">
-                  <span class="title-text">{{currentInfoData['description']}}</span>
-                  <span class="content-text">{{currentInfoData['name']}}</span>
-              </div>
-          </div>
-
-          <div class="column-entry-fee">
-              <!--<div class="inner-icon">
-                  <span class="price-icon"></span>
-              </div>-->
-              <div class="inner-content">
-                  <span class="title-text">ENTRADA</span>
-                  <span class="content-text">{{currentInfoData['entry']}}€</span>
-              </div>
-          </div>
-
-          <div class="column-prize">
-              <div class="inner-icon">
-                  <span class="prize-icon"></span>
-              </div>
-              <div class="inner-content">
-                  <span class="title-text">PREMIOS</span>
-                  <span class="content-text">{{currentInfoData['prize']}}€</span>-
-              </div>
-          </div>
-
-      </div>
-
-      <button type="button" class="close" data-dismiss="modal">
-        <span class="glyphicon glyphicon-remove"></span>
-      </button>
-  </div>
+  <contest-header id="contestInfoHeader" contest="contest" contest-id="contestId"></contest-header>
 
   <div class="modal-info-content">
 

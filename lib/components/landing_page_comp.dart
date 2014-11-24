@@ -5,7 +5,6 @@ import 'package:angular/angular.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/loading_service.dart';
-import 'package:webclient/utils/unusual_utils.dart';
 
 
 @Component(
@@ -24,7 +23,7 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
   LandingPageComp(this._router, this._profileService, this.scrDet, this._loadingService);
 
   void smoothScrollTo(String selector) {
-    UnusualUtils.scrollTo(selector, offset: 0, duration:  500, smooth: true, ignoreInDesktop: false, screenDetector: scrDet);
+    scrDet.scrollTo(selector, offset: 0, duration:  500, smooth: true, ignoreInDesktop: false);
   }
 
   void onShadowRoot(emulatedRoot) {
@@ -68,6 +67,7 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
 
   void buttonPressed(String route) {
     _router.go(route, {});
+    smoothScrollTo('#mainWrapper');
   }
 
   int _windowHeigtht;

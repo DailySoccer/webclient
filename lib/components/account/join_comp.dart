@@ -3,10 +3,11 @@ library join_comp;
 import 'package:angular/angular.dart';
 import 'dart:html';
 import 'package:webclient/services/profile_service.dart';
-import 'package:webclient/utils/unusual_utils.dart';
+import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/models/connection_error.dart';
 import 'package:webclient/utils/game_metrics.dart';
+import 'package:webclient/services/screen_detector_service.dart';
 
 @Component(
     selector: 'join',
@@ -58,9 +59,9 @@ class JoinComp implements ShadowRootAware {
     validateRePassword();
   }
 
-  bool get enabledSubmit => nickName.length >= MIN_NICKNAME_LENGTH && UnusualUtils.isValidEmail(email) && password.length >= MIN_PASSWORD_LENGTH && password == rePassword && _enabledSubmit;
+  bool get enabledSubmit => nickName.length >= MIN_NICKNAME_LENGTH && StringUtils.isValidEmail(email) && password.length >= MIN_PASSWORD_LENGTH && password == rePassword && _enabledSubmit;
 
-  JoinComp(this._router, this._profileService, this.loadingService, this._rootElement);
+  JoinComp(this._router, this._profileService, this.loadingService, this._rootElement, this._scrDet);
 
   void onShadowRoot(emulatedRoot) {
     nickNameElement   = _rootElement.querySelector("#groupNickName");
@@ -76,6 +77,7 @@ class JoinComp implements ShadowRootAware {
 
     passwordError = _rootElement.querySelector("#passwordError");
     passwordError.parent.style.display = 'none';
+    _scrDet.scrollTo('.panel-heading', offset: 0, duration:  500, smooth: true, ignoreInDesktop: false);
   }
 
   void validateNickName() {
@@ -92,7 +94,7 @@ class JoinComp implements ShadowRootAware {
   void validateEmail() {
     emailElement.classes.removeAll(['valid', 'not-valid']);
     // Validación del password
-    if (UnusualUtils.isValidEmail(email)) {
+    if (StringUtils.isValidEmail(email)) {
       emailElement.classes.add('valid');
     }
     else {
@@ -202,6 +204,7 @@ class JoinComp implements ShadowRootAware {
   ProfileService _profileService;
   Element _rootElement;
 
+  ScreenDetectorService _scrDet;
   bool _enabledSubmit = true;
 
   LoadingService loadingService;

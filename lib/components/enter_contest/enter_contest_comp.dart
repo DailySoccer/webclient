@@ -14,7 +14,7 @@ import 'package:webclient/models/match_event.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/contest_entry.dart';
 import "package:webclient/models/instance_soccer_player.dart";
-import 'package:webclient/utils/unusual_utils.dart';
+import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/utils/html_utils.dart';
 
@@ -102,7 +102,7 @@ class EnterContestComp implements DetachAware {
           });
         }
 
-       UnusualUtils.scrollTo('#mainWrapper');
+        scrDet.scrollTo('#mainWrapper');
       })
       .catchError((error) {
         _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
@@ -164,7 +164,7 @@ class EnterContestComp implements DetachAware {
     }
     else {
       isSelectingSoccerPlayer = true;
-      UnusualUtils.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('main-menu-slide').offsetHeight, ignoreInDesktop: true, screenDetector: scrDet);
+      scrDet.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('main-menu-slide').offsetHeight, ignoreInDesktop: true);
       // Cuando seleccionan un slot del lineup cambiamos siempre el filtro de la soccer-player-list, especialmente
       // en movil que cambiamos de vista a "solo ella".
       // El componente hijo se entera de que le hemos cambiado el filtro a traves del two-way binding.
@@ -203,7 +203,7 @@ class EnterContestComp implements DetachAware {
 
     //Si ya no estamos en modo seleción, scrolleamos hasta la altura del dinero que nos queda disponible.
     if (!isSelectingSoccerPlayer) {
-      UnusualUtils.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('main-menu-slide').offsetHeight, ignoreInDesktop: true, screenDetector: scrDet);
+      scrDet.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('main-menu-slide').offsetHeight, ignoreInDesktop: true);
     }
   }
 
@@ -249,7 +249,7 @@ class EnterContestComp implements DetachAware {
         "fieldPos": instanceSoccerPlayer.fieldPos,
         "fieldPosSortOrder": instanceSoccerPlayer.fieldPos.sortOrder,
         "fullName": instanceSoccerPlayer.soccerPlayer.name,
-        "fullNameNormalized": UnusualUtils.normalize(instanceSoccerPlayer.soccerPlayer.name).toUpperCase(),
+        "fullNameNormalized": StringUtils.normalize(instanceSoccerPlayer.soccerPlayer.name).toUpperCase(),
         "matchId" : matchEvent.templateMatchEventId,
         "matchEventName": matchEventName,
         "remainingMatchTime": "-",
@@ -333,7 +333,7 @@ class EnterContestComp implements DetachAware {
 
   void cancelPlayerSelection() {
     isSelectingSoccerPlayer = false;
-    UnusualUtils.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('main-menu-slide').offsetHeight, ignoreInDesktop: true, screenDetector: scrDet);
+    scrDet.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('main-menu-slide').offsetHeight, ignoreInDesktop: true);
   }
 
   void onRowClick(String soccerPlayerId) {

@@ -4,7 +4,7 @@ import 'package:angular/angular.dart';
 import 'dart:html';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/server_service.dart';
-import 'package:webclient/utils/unusual_utils.dart';
+import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/services/loading_service.dart';
 
 @Component(
@@ -19,7 +19,7 @@ class RememberPasswordComp{
 
   String email = "";
   String state = STATE_REQUEST;
-  bool get enabledSubmit => UnusualUtils.isValidEmail(email) && _enabledSubmit;
+  bool get enabledSubmit => StringUtils.isValidEmail(email) && _enabledSubmit;
   bool errorDetected = false;
 
   RememberPasswordComp(this._router, this._profileManager, this.loadingService, this._serverService);

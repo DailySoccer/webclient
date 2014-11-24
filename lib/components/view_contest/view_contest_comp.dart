@@ -44,7 +44,7 @@ class ViewContestComp implements DetachAware {
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
 
     _contestsService.refreshViewContest(contestId)
-      .then((jsonMap) {
+      .then((_) {
         loadingService.isLoading = false;
         contest = _contestsService.lastContest;
         mainPlayer = contest.getContestEntryWithUser(_profileService.user.userId);
@@ -83,7 +83,7 @@ class ViewContestComp implements DetachAware {
   void _updateLive() {
     // Actualizamos únicamente la lista de live MatchEvents
     _contestsService.refreshLiveMatchEvents(_contestsService.lastContest.templateContestId)
-        .then((jsonObject) {
+        .then((_) {
           updatedDate = DateTimeService.now;
         })
         .catchError((error) {

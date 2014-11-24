@@ -45,7 +45,7 @@ class ViewContestEntryComp {
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
 
     _contestsService.refreshMyContestEntry(contestId)
-      .then((jsonMap) {
+      .then((_) {
         loadingService.isLoading = false;
         contest = _contestsService.lastContest;
         mainPlayer = contest.getContestEntryWithUser(_profileService.user.userId);

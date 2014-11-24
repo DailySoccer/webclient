@@ -72,7 +72,6 @@ class ContestsService {
     return _server.getMyContests()
         .then((jsonMap) {
           _initMyContests(Contest.loadContestsFromJsonObject(jsonMap));
-          return jsonMap;
         });
   }
 
@@ -80,7 +79,6 @@ class ContestsService {
     return _server.getMyContest(contestId)
         .then((jsonMap) {
           _registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
-          return jsonMap;
         });
   }
 
@@ -88,7 +86,6 @@ class ContestsService {
     return _server.getMyContestEntry(contestId)
         .then((jsonMap) {
           _registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
-          return jsonMap;
         });
   }
 
@@ -96,7 +93,6 @@ class ContestsService {
     return _server.getFullContest(contestId)
         .then((jsonMap) {
           _registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
-          return jsonMap;
         });
   }
 
@@ -104,7 +100,6 @@ class ContestsService {
     return _server.getViewContest(contestId)
         .then((jsonMap) {
           _registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
-          return jsonMap;
         });
   }
 
@@ -115,7 +110,6 @@ class ContestsService {
             lastContest.matchEvents.firstWhere((matchEvent) => matchEvent.templateMatchEventId == (jsonMap.containsKey("templateMatchEventId") ? jsonMap["templateMatchEventId"] : jsonMap["_id"]))
                 .. updateLiveInfo(jsonMap);
           });
-          return jsonMap;
       });
   }
 

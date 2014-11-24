@@ -85,7 +85,8 @@ class EditPersonalDataComp implements ShadowRootAware{
     editedFirstName = _profileManager.user.firstName;
     editedLastName  = _profileManager.user.lastName;
     editedNickName  = _profileManager.user.nickName;
-
+    editedPassword       = "";
+    editedRepeatPassword = "";
     hideErrors();
   }
 

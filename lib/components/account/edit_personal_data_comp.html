@@ -1,9 +1,9 @@
-<div id="personalDataContent" ng-show="!loadingService.isLoading" >
+<div id="personalDataContent" ng-show="!loadingService.isLoading" ng-cloack>
 
   <div class="edit-personal-data-modal-header">
     <span class="header-title">EDITAR CUENTA</span>
   </div>
-  <form id="editPersonalDataForm" class="form-horizontal" ng-submit="saveChanges()" data-toggle="validator" role="form" formAutofillFix>
+  <form id="editPersonalDataForm" class="form-horizontal" ng-submit="saveChanges()" data-toggle="validator" role="form">
     <div class="content">
       <!-- Nombre -->
       <div class="content-field">

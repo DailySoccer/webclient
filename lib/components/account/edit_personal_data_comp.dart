@@ -120,8 +120,6 @@ class EditPersonalDataComp implements ShadowRootAware{
         return;
       }
 
-
-
       String nickName  = (_profileManager.user.nickName   != editedNickName)  ? editedNickName   : "";
       String firstName = (_profileManager.user.firstName  != editedFirstName) ? editedFirstName  : "";
       String lastName  = (_profileManager.user.lastName   != editedLastName)  ? editedLastName   : "";

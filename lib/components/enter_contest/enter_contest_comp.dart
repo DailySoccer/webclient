@@ -259,7 +259,7 @@ class EnterContestComp implements DetachAware {
                                         "parent": _routeProvider.parameters["parent"],
                                         "viewContestEntryMode": "edited"
                                         }))
-        .catchError((error) => _errorCreating(error));
+        .catchError((error) => _errorCreating);
     }
     else {
       _contestsService.addContestEntry(contest.contestId, lineupSlots.map((player) => player["id"]).toList())
@@ -271,7 +271,7 @@ class EnterContestComp implements DetachAware {
                               "viewContestEntryMode": contestId == contest.contestId? "created" : "swapped"
                                });
         })
-        .catchError((error) => _errorCreating(error));
+        .catchError((error) => _errorCreating);
     }
   }
 

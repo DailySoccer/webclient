@@ -6649,7 +6649,7 @@ contest-header {
 #teamsPanelRoot .teams-comp-bar .teams-container {
   margin-left: 0;
   margin-right: 0;
-  padding: 0px 5px;
+  padding: 8px 5px 0px 5px;
 }
 @media (max-width: 767px) {
   #teamsPanelRoot .teams-comp-bar .teams-container {

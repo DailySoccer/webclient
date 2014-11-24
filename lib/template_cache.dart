@@ -353,13 +353,13 @@ tc.put("packages/webclient/components/account/remember_password_comp.html", new 
       <!-- Header -->
       <div class="panel-heading">
         <div class="panel-title" ng-class="{'center-text':state=='STATE_REQUESTED'}">RECORDAR CONTRASEÑA</div>
-        <button ng-if="state=='STATE_REQUEST'" type="button" class="close" ng-click="navigateTo('login', {}, $event)">
+        <button ng-show="state=='STATE_REQUEST'" type="button" class="close" ng-click="navigateTo('login', {}, $event)">
           <span class="glyphicon glyphicon-remove"></span>
         </button>
       </div>
 
       <div class="panel-body" >
-        <div ng-if="state=='STATE_REQUESTED'">
+        <div ng-show="state=='STATE_REQUESTED'">
           <div class="form-description">Se ha enviado tu petición. Revisa tu correo. <br><br>Ya puedes cerrar esta ventana.</div>
           <!-- GOTO REGISTER -->
           <!-- Esta ventana es el final del flow y queda muerta. por lo tanto no damos opción de linkar a otra parte.
@@ -370,13 +370,13 @@ tc.put("packages/webclient/components/account/remember_password_comp.html", new 
           </div>
           -->
         </div>
-        <form ng-if="state=='STATE_REQUEST'" id="loginForm" class="form-horizontal" ng-submit="rememberMyPassword()" data-toggle="validator" role="form" formAutofillFix>
+        <form ng-show="state=='STATE_REQUEST'" id="loginForm" class="form-horizontal" ng-submit="rememberMyPassword()" data-toggle="validator" role="form" formAutofillFix>
 
           <div class="form-description">¿Olvidaste tu contraseña? Introduce tu dirección de correo electrónico y recibirás un email para recuperar tu cuenta.</div>
           <!-- MAIL -->
           <div class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-envelope"></div></span>
-            <input id="email" auto-focus name="Email" type="email" ng-model="email" placeholder="Correo electrónico" class="form-control" data-toggle="validator"  tabindex="1" autocapitalize="off">
+            <input id="rememberEmail" auto-focus name="Email" type="email" ng-model="email" required="true" placeholder="Correo electrónico" class="form-control" data-toggle="validator"  tabindex="1" autocapitalize="off">
           </div>
           <!-- Error de login/password -->
           <div class="input-group" ng-class="{'error-visible' : !errorDetected}">

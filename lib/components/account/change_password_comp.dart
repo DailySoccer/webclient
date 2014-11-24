@@ -6,6 +6,7 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/models/connection_error.dart';
+import 'package:webclient/utils/uri_utils.dart';
 
 @Component(
     selector: 'change-password',
@@ -60,7 +61,7 @@ class ChangePasswordComp implements ShadowRootAware {
     if (uri.queryParameters.containsKey("sptoken")) {
       _stormPathTokenId = uri.queryParameters["sptoken"];
 
-      replaceUri(uri);
+      UriUtils.removeQueryParameters(uri, ["sptoken"]);
 
       _profileManager.verifyPasswordResetToken(_stormPathTokenId)
        .then((_) {

@@ -194,19 +194,25 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
 
         <form id="signupForm" class="form-horizontal" ng-submit="submitSignup()" data-toggle="validator" role="form" formAutofillFix>
           <div class="form-description">¿Todavía no tienes cuenta en EPIC ELEVEN?<br>Rellena este formulario para completar el registro.<br>¡Es muy sencillo!</div>
-          <!-- USERNAME  -->
-          <div class="input-group">
+          <!-- NICKNAME  -->
+          <div class="new-row top-separation-20">
+            <div class="small-text-centered">Tu nombre de usuario debe tener al menos {{MIN_NICKNAME_LENGTH}} caracteres.</div>
+          </div>
+          <div id="groupNickName" class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-user"></div></span>
-            <input id="nickName" auto-focus name="NickName" type="text" ng-model="nickName" placeholder="Nombre de usuario" class="form-control" data-toggle="validator" required=""  tabindex="1">
+            <input id="nickName" auto-focus name="NickName" type="text" ng-model="theNickName" placeholder="Nombre de usuario" class="form-control" data-toggle="validator" required=""  tabindex="1">
           </div>
           <!-- Error de username -->
           <div class="new-row">
             <div id="nickNameError" class="join-err-text">ERROR DE REGISTRO. El user name no es válido.</div>
           </div>
           <!-- EMAIL -->
-          <div class="input-group">
+          <div class="new-row top-separation-20">
+            <div class="small-text-centered">Introduce un email válido.</div>
+          </div>
+          <div id="groupEmail" class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-envelope"></div></span>
-            <input id="email" name="Email" type="email" ng-model="email" placeholder="Correo electrónico" class="form-control" data-toggle="validator" required=""  tabindex="2">
+            <input id="email" name="Email" type="email" ng-model="theEmail" placeholder="Correo electrónico" class="form-control" data-toggle="validator" required=""  tabindex="2">
           </div>
           <!-- Error de mail -->
           <div class="new-row">
@@ -216,7 +222,7 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
           <div class="new-row top-separation-20">
             <div class="small-text-centered">El único requisito para la contraseña es que tenga al menos {{MIN_PASSWORD_LENGTH}} caracteres. Y por seguridad debes teclearla dos veces.</div>
           </div>
-          <div id="groupPassword" class="input-group faded">
+          <div id="groupPassword" class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
             <input id="password" name="Password" type="password" ng-model="thePassword" placeholder="Contraseña" class="form-control" data-toggle="validator" required="" data-minlength="MIN_PASSWORD_LENGTH" ng-minlength="MIN_PASSWORD_LENGTH"  tabindex="3">
           </div>
@@ -271,7 +277,7 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
           <!-- MAIL -->
           <div class="input-group">
             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-            <input id="login-mail" auto-focus type="email" ng-model="email" name="email" placeholder="Correo Electrónico" class="form-control" tabindex="1">
+            <input id="login-mail" auto-focus ng-model="emailOrUsername" name="email" placeholder="Nombre de usuario / Email" class="form-control" tabindex="1">
           </div>
           <!-- PÂSSWORD -->
           <div class="input-group">
@@ -312,7 +318,7 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
         <div class="input-group">
           <div class="new-row">
             <div class="buttons-wapper">
-              <fb:login-button scope="public_profile,email" size="medium" onlogin="jsLoginFB();">
+              <fb:login-button scope="public_profile,email" size="medium" onlogin="jsLoginFB()">
               </fb:login-button>
               <!--button class="button-fb" id="fblogin" ng-click="loginFB()">Entra con Facebook</button-->
             </div>
@@ -868,7 +874,7 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
               <div class="button-wrapper-block" ng-if="isSelectingSoccerPlayer && scrDet.isXsScreen">
                 <button type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer" >CANCELAR</button>
               </div>
-              <div ng-if="!isSelectingSoccerPlayer || scrDet.isNotXsScreen">
+              <div  class="bottom-content" ng-if="!isSelectingSoccerPlayer || scrDet.isNotXsScreen">
                 <div class="button-wrapper">
                   <button type="button" class="btn-clean-lineup-list" ng-click="deleteFantasyTeam()" ng-disabled="isPlayerSelected()">BORRAR TODO</button>
                 </div>
@@ -973,11 +979,11 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_info_comp.html
     </div>
   </div>
 
-  <div class="soccer-player-info-content" ng-class="{'container':!scrDet.isNotXsScreen}">
+  <div class="soccer-player-info-content">
       <!-- Nav tabs -->
-      <ul class="soccer-player-info-tabs" role="tablist">
-        <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('season-info-tab-content')">Datos de Temporada</a></li>
-        <li><a role="tab" data-toggle="tab" ng-click="tabChange('match-info-tab-content')">Partido a Partido</a></li>
+      <ul id="soccer-player-info" class="soccer-player-info-tabs" role="tablist">
+        <li id="seasonTab" class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('season-info-tab-content')">Datos de Temporada</a></li>
+        <li id="matchTab" ><a role="tab" data-toggle="tab" ng-click="tabChange('match-info-tab-content')">Partido a Partido</a></li>
       </ul>
 
       <div class="tabs">
@@ -1077,19 +1083,6 @@ tc.put("packages/webclient/components/enter_contest/soccer_players_filter_comp.h
 
   <input type="text" class="name-player-input-filter" placeholder="Buscar jugador" ng-model="nameFilter" />
 </div>"""));
-tc.put("packages/webclient/components/flash_messages_comp.html", new HttpResponse(200, r"""<div>
-  <div ng-repeat="msg in messages" id="flash-messages">
-      <div class="alert alert-{{msg.type}} alert-dismissable">
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-          <span class="">{{msg.text}}</span>
-      </div>
-  </div>
-</div>
-
-<div class="alert-danger" ng-show="globalMessage.isNotEmpty" style="padding: 1em; position: fixed; top: 10%; left: 50%; transform: translateX(-50%); z-index:99999;">
-  {{globalMessage}}
-</div>
-"""));
 tc.put("packages/webclient/components/landing_page_comp.html", new HttpResponse(200, r"""<div id="#landingPageRoot">
   <!-- Portada Versión Desktop -->
   <div id="desktopContent" ng-if="!scrDet.isXsScreen" class="first-screen" style="height:{{screenHeight}}px">
@@ -2239,43 +2232,6 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
         </section>
       </div>
 
-    </div>
-  </div>
-</div>
-"""));
-tc.put("packages/webclient/components/navigation/footer_comp.html", new HttpResponse(200, r"""<div id="rootFooter">
-  <div class="sub-footer-wrapper">
-    <div class="sub-footer">
-
-      <div class="logo-wrapper">
-        <img src="images/logoLobbyFooter.png" alt="EPIC ELEVEN"> <span class="footer-count" ng-if="isDev">{{dateTimeService.nowEverySecond}}&nbsp;</span>
-      </div>
-
-      <div class="data-wrapper">
-          <a class="goto-link" id="footerHelp" ng-click="goTo('help_info')"><span class="sub-footer-help-link">AYUDA</span></a>
-          <a class="goto-link" id="footerLegal" ng-click="goTo('legal_info')"><span class="sub-footer-legal-link">LEGAL</span></a>
-          <a class="goto-link" id="footerTermsOfUse" ng-click="goTo('terminus_info')"><span class="sub-footer-terms-link">TERMINOS<span> DE USO</span></span></a>
-          <a class="goto-link" id="footerPrivacyPolicy" ng-click="goTo('policy_info')"><span class="sub-footer-policy-link"><span>POLÍTICA DE </span>PRIVACIDAD</span></a>
-      </div>
-
-      <!--<div class="credit-cards">
-          <img src="images/creditCards.png" />
-      </div>-->
-
-      <div class="opta">
-        <div>Datos suministrados por: <span>OPTA</span></div>
-        <div>A <strong>PERFORM</strong> GROUP COMPANY</div>
-      </div>
-
-      <div class="copyright">@ Copyright 2014 Epic Eleven</div>
-
-      <div class="social">
-          <a href="https://www.facebook.com/pages/Epic-Eleven/582891628483988?fref=ts"><img src="images/social.png"/></a>
-      </div>
-
-      <!--<a href="#" class="url-link">
-          <span>Fantasy Sports Games.com</span>
-      </a>-->
     </div>
   </div>
 </div>

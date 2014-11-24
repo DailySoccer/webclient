@@ -1,169 +1,3 @@
-
-/* Functional styling;
- * These styles are required for noUiSlider to function.
- * You don't need to change these rules to apply your design.
- */
-.noUi-target,
-.noUi-target * {
--webkit-touch-callout: none;
--webkit-user-select: none;
--ms-touch-action: none;
--ms-user-select: none;
--moz-user-select: none;
--moz-box-sizing: border-box;
-	box-sizing: border-box;
-}
-.noUi-base {
-	width: 100%;
-	height: 100%;
-	position: relative;
-}
-.noUi-origin {
-	position: absolute;
-	right: 0;
-	top: 0;
-	left: 0;
-	bottom: 0;
-}
-.noUi-handle {
-	position: relative;
-	z-index: 1;
-}
-.noUi-stacking .noUi-handle {
-/* This class is applied to the lower origin when
-   its values is > 50%. */
-	z-index: 10;
-}
-.noUi-stacking + .noUi-origin {
-/* Fix stacking order in IE7, which incorrectly
-   creates a new context for the origins. */
-	*z-index: -1;
-}
-.noUi-state-tap .noUi-origin {
--webkit-transition: left 0.3s, top 0.3s;
-	transition: left 0.3s, top 0.3s;
-}
-.noUi-state-drag * {
-	cursor: inherit !important;
-}
-
-/* Slider size and handle placement;
- */
-.noUi-horizontal {
-	height: 18px;
-}
-.noUi-horizontal .noUi-handle {
-	width: 34px;
-	height: 28px;
-	left: -17px;
-	top: -6px;
-}
-.noUi-horizontal.noUi-extended {
-	padding: 0 15px;
-}
-.noUi-horizontal.noUi-extended .noUi-origin  {
-	right: -15px;
-}
-.noUi-vertical {
-	width: 18px;
-}
-.noUi-vertical .noUi-handle {
-	width: 28px;
-	height: 34px;
-	left: -6px;
-	top: -17px;
-}
-.noUi-vertical.noUi-extended {
-	padding: 15px 0;
-}
-.noUi-vertical.noUi-extended .noUi-origin  {
-	bottom: -15px;
-}
-
-/* Styling;
- */
-.noUi-background {
-	background: #FAFAFA;
-	box-shadow: inset 0 1px 1px #f0f0f0;
-}
-.noUi-connect {
-	background: #3FB8AF;
-	box-shadow: inset 0 0 3px rgba(51,51,51,0.45);
--webkit-transition: background 450ms;
-	transition: background 450ms;
-}
-.noUi-origin {
-	border-radius: 2px;
-}
-.noUi-target {
-	border-radius: 4px;
-	border: 1px solid #D3D3D3;
-	box-shadow: inset 0 1px 1px #F0F0F0, 0 3px 6px -5px #BBB;
-}
-.noUi-target.noUi-connect {
-	box-shadow: inset 0 0 3px rgba(51,51,51,0.45), 0 3px 6px -5px #BBB;
-}
-
-/* Handles and cursors;
- */
-.noUi-dragable {
-	cursor: w-resize;
-}
-.noUi-vertical .noUi-dragable {
-	cursor: n-resize;
-}
-.noUi-handle {
-	border: 1px solid #D9D9D9;
-	border-radius: 3px;
-	background: #FFF;
-	cursor: default;
-	box-shadow: inset 0 0 1px #FFF,
-				inset 0 1px 7px #EBEBEB,
-				0 3px 6px -3px #BBB;
-}
-.noUi-active {
-	box-shadow: inset 0 0 1px #FFF,
-				inset 0 1px 7px #DDD,
-				0 3px 6px -3px #BBB;
-}
-
-/* Handle stripes;
- */
-.noUi-handle:before,
-.noUi-handle:after {
-	content: "";
-	display: block;
-	position: absolute;
-	height: 14px;
-	width: 1px;
-	background: #E8E7E6;
-	left: 14px;
-	top: 6px;
-}
-.noUi-handle:after {
-	left: 17px;
-}
-.noUi-vertical .noUi-handle:before,
-.noUi-vertical .noUi-handle:after {
-	width: 14px;
-	height: 1px;
-	left: 6px;
-	top: 14px;
-}
-.noUi-vertical .noUi-handle:after {
-	top: 17px;
-}
-
-/* Disabled state;
- */
-[disabled].noUi-connect,
-[disabled] .noUi-connect {
-	background: #B8B8B8;
-}
-[disabled] .noUi-handle {
-	cursor: not-allowed;
-}
-
 /*! normalize.css v3.0.0 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
@@ -9030,10 +8864,6 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   color: #777777;
   text-align: right;
 }
-footer {
-  min-height: 130px;
-  display: block;
-}
 @media (min-width: 768px) {
   footer {
     margin-right: auto;
@@ -12993,7 +12823,27 @@ main-menu-slide {
   #mainMenu #toggleSlideMenu:focus {
     background-color: transparent;
   }
-  #mainMenu .offcanvas {
+  #mainMenu #backdrop {
+    background-color: #000000;
+    opacity: 0;
+    position: fixed;
+    top: 70px;
+    left: 0px;
+    right: 0px;
+    height: 100%;
+    -webkit-transition: 0.4s ease opacity;
+    transition: 0.4s ease opacity;
+  }
+  #mainMenu #backdrop.slide-in {
+    opacity: 0.5;
+  }
+  #mainMenu #menuSlide {
+    background-color: #434343;
+    position: fixed;
+    width: 250px;
+    top: 70px;
+    bottom: 0px;
+    overflow-y: auto;
     right: -250px;
     -moz-transform: translateX(6px);
     -ms-transform: translateX(6px);
@@ -13014,7 +12864,7 @@ main-menu-slide {
     -webkit-transition: 0.4s ease all;
     transition: 0.4s ease all;
   }
-  #mainMenu .offcanvas.in {
+  #mainMenu #menuSlide.slide-in {
     -moz-transform: translateX(-250px);
     -ms-transform: translateX(-250px);
     -o-transform: translateX(-250px);
@@ -13030,27 +12880,6 @@ main-menu-slide {
     -o-transform: translate3d(-250px, 0, 0);
     -webkit-transform: translate3d(-250px, 0, 0);
     transform: translate3d(-250px, 0, 0);
-  }
-  #mainMenu .backdrop {
-    background-color: #000000;
-    opacity: 0;
-    position: fixed;
-    top: 70px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    -webkit-transition: 0.4s ease all;
-    transition: 0.4s ease all;
-  }
-  #mainMenu .backdrop.in {
-    opacity: 0.5;
-  }
-  #mainMenu #menuSlide {
-    background-color: #434343;
-    position: fixed;
-    width: 250px;
-    top: 70px;
-    bottom: 0px;
   }
   #mainMenu #menuSlide .navbar-nav {
     background-color: #ffffff;
@@ -13085,8 +12914,8 @@ main-menu-slide {
   #mainMenu #menuSlide .navbar-nav li.right-menu.open > a,
   #mainMenu #menuSlide .navbar-nav li.right-menu.open > a:focus,
   #mainMenu #menuSlide .navbar-nav li.right-menu.open > a:hover {
-    background-color: #dcdcdc;
     color: #000000;
+    background-color: #dcdcdc;
   }
   #mainMenu #menuSlide .navbar-nav li.right-menu.open > a::after {
     font-family: 'Glyphicons Halflings' !important;
@@ -13101,7 +12930,6 @@ main-menu-slide {
     cursor: pointer;
     padding: 10px 0px 10px 40px;
   }
-  #mainMenu #menuSlide ul.dropdown-menu > li > a:hover,
   #mainMenu #menuSlide ul.dropdown-menu > li > a:focus {
     color: #000000;
     background-color: #dcdcdc;
@@ -19314,6 +19142,172 @@ Banderas usadas hasta la fecha:
 .flag.flag-it {
   background-position: 0 -22px;
 }
+
+/* Functional styling;
+ * These styles are required for noUiSlider to function.
+ * You don't need to change these rules to apply your design.
+ */
+.noUi-target,
+.noUi-target * {
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-ms-touch-action: none;
+-ms-user-select: none;
+-moz-user-select: none;
+-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.noUi-base {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+.noUi-origin {
+	position: absolute;
+	right: 0;
+	top: 0;
+	left: 0;
+	bottom: 0;
+}
+.noUi-handle {
+	position: relative;
+	z-index: 1;
+}
+.noUi-stacking .noUi-handle {
+/* This class is applied to the lower origin when
+   its values is > 50%. */
+	z-index: 10;
+}
+.noUi-stacking + .noUi-origin {
+/* Fix stacking order in IE7, which incorrectly
+   creates a new context for the origins. */
+	*z-index: -1;
+}
+.noUi-state-tap .noUi-origin {
+-webkit-transition: left 0.3s, top 0.3s;
+	transition: left 0.3s, top 0.3s;
+}
+.noUi-state-drag * {
+	cursor: inherit !important;
+}
+
+/* Slider size and handle placement;
+ */
+.noUi-horizontal {
+	height: 18px;
+}
+.noUi-horizontal .noUi-handle {
+	width: 34px;
+	height: 28px;
+	left: -17px;
+	top: -6px;
+}
+.noUi-horizontal.noUi-extended {
+	padding: 0 15px;
+}
+.noUi-horizontal.noUi-extended .noUi-origin  {
+	right: -15px;
+}
+.noUi-vertical {
+	width: 18px;
+}
+.noUi-vertical .noUi-handle {
+	width: 28px;
+	height: 34px;
+	left: -6px;
+	top: -17px;
+}
+.noUi-vertical.noUi-extended {
+	padding: 15px 0;
+}
+.noUi-vertical.noUi-extended .noUi-origin  {
+	bottom: -15px;
+}
+
+/* Styling;
+ */
+.noUi-background {
+	background: #FAFAFA;
+	box-shadow: inset 0 1px 1px #f0f0f0;
+}
+.noUi-connect {
+	background: #3FB8AF;
+	box-shadow: inset 0 0 3px rgba(51,51,51,0.45);
+-webkit-transition: background 450ms;
+	transition: background 450ms;
+}
+.noUi-origin {
+	border-radius: 2px;
+}
+.noUi-target {
+	border-radius: 4px;
+	border: 1px solid #D3D3D3;
+	box-shadow: inset 0 1px 1px #F0F0F0, 0 3px 6px -5px #BBB;
+}
+.noUi-target.noUi-connect {
+	box-shadow: inset 0 0 3px rgba(51,51,51,0.45), 0 3px 6px -5px #BBB;
+}
+
+/* Handles and cursors;
+ */
+.noUi-dragable {
+	cursor: w-resize;
+}
+.noUi-vertical .noUi-dragable {
+	cursor: n-resize;
+}
+.noUi-handle {
+	border: 1px solid #D9D9D9;
+	border-radius: 3px;
+	background: #FFF;
+	cursor: default;
+	box-shadow: inset 0 0 1px #FFF,
+				inset 0 1px 7px #EBEBEB,
+				0 3px 6px -3px #BBB;
+}
+.noUi-active {
+	box-shadow: inset 0 0 1px #FFF,
+				inset 0 1px 7px #DDD,
+				0 3px 6px -3px #BBB;
+}
+
+/* Handle stripes;
+ */
+.noUi-handle:before,
+.noUi-handle:after {
+	content: "";
+	display: block;
+	position: absolute;
+	height: 14px;
+	width: 1px;
+	background: #E8E7E6;
+	left: 14px;
+	top: 6px;
+}
+.noUi-handle:after {
+	left: 17px;
+}
+.noUi-vertical .noUi-handle:before,
+.noUi-vertical .noUi-handle:after {
+	width: 14px;
+	height: 1px;
+	left: 6px;
+	top: 14px;
+}
+.noUi-vertical .noUi-handle:after {
+	top: 17px;
+}
+
+/* Disabled state;
+ */
+[disabled].noUi-connect,
+[disabled] .noUi-connect {
+	background: #B8B8B8;
+}
+[disabled] .noUi-handle {
+	cursor: not-allowed;
+}
+
 .bootstrap-switch {
   display: inline-block;
   cursor: pointer;
@@ -19508,6 +19502,88 @@ html {
 }
 #modalRoot {
   overflow-y: auto;
+}
+#mainApp {
+  height: 100%;
+}
+@media (min-width: 768px) {
+  body {
+    background-color: #000000;
+    background-image: url("../images/backgroundPlayersAction.jpg");
+    background-position: center top;
+    background-repeat: no-repeat;
+  }
+}
+.wrapper-content-container {
+  min-height: 100%;
+  margin: -70px auto -130px;
+}
+.wrapper-content-container .main-content-container {
+  padding-top: 70px;
+  padding-bottom: 130px;
+}
+@media (max-width: 991px) {
+  .wrapper-content-container .main-content-container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .wrapper-content-container .main-content-container > .navbar-header,
+  .wrapper-content-container .main-content-container > .navbar-collapse {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+}
+@media (max-width: 991px) and (min-width: 768px) {
+  .wrapper-content-container .main-content-container > .navbar-header,
+  .wrapper-content-container .main-content-container > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+@media (min-width: 992px) {
+  .wrapper-content-container .main-content-container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .wrapper-content-container .main-content-container > .navbar-header,
+  .wrapper-content-container .main-content-container > .navbar-collapse {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+}
+@media (min-width: 992px) and (min-width: 768px) {
+  .wrapper-content-container .main-content-container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) and (min-width: 992px) {
+  .wrapper-content-container .main-content-container {
+    width: 970px;
+  }
+}
+@media (min-width: 992px) and (min-width: 1200px) {
+  .wrapper-content-container .main-content-container {
+    width: 970px;
+  }
+}
+@media (min-width: 992px) and (min-width: 768px) {
+  .wrapper-content-container .main-content-container > .navbar-header,
+  .wrapper-content-container .main-content-container > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+.bleach {
+  max-width: 970px;
+  background-color: #ffffff;
 }
 .btn {
   border-width: 0;
@@ -19792,85 +19868,6 @@ fieldset[disabled] .button-fb {
   list-style-type: none;
   margin: 0;
   padding: 0;
-}
-@media (min-width: 768px) {
-  body {
-    background-color: #000000;
-    background-image: url("../images/backgroundPlayersAction.jpg");
-    background-position: center top;
-    background-repeat: no-repeat;
-  }
-}
-.wrapper-content-container {
-  min-height: 100%;
-  margin: -70px auto -130px;
-}
-.wrapper-content-container .main-content-container {
-  padding-top: 70px;
-  padding-bottom: 130px;
-}
-@media (max-width: 991px) {
-  .wrapper-content-container .main-content-container {
-    margin-right: auto;
-    margin-left: auto;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-  .wrapper-content-container .main-content-container > .navbar-header,
-  .wrapper-content-container .main-content-container > .navbar-collapse {
-    margin-right: -15px;
-    margin-left: -15px;
-  }
-}
-@media (max-width: 991px) and (min-width: 768px) {
-  .wrapper-content-container .main-content-container > .navbar-header,
-  .wrapper-content-container .main-content-container > .navbar-collapse {
-    margin-right: 0;
-    margin-left: 0;
-  }
-}
-@media (min-width: 992px) {
-  .wrapper-content-container .main-content-container {
-    margin-right: auto;
-    margin-left: auto;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-  .wrapper-content-container .main-content-container > .navbar-header,
-  .wrapper-content-container .main-content-container > .navbar-collapse {
-    margin-right: -15px;
-    margin-left: -15px;
-  }
-}
-@media (min-width: 992px) and (min-width: 768px) {
-  .wrapper-content-container .main-content-container {
-    width: 750px;
-  }
-}
-@media (min-width: 992px) and (min-width: 992px) {
-  .wrapper-content-container .main-content-container {
-    width: 970px;
-  }
-}
-@media (min-width: 992px) and (min-width: 1200px) {
-  .wrapper-content-container .main-content-container {
-    width: 970px;
-  }
-}
-@media (min-width: 992px) and (min-width: 768px) {
-  .wrapper-content-container .main-content-container > .navbar-header,
-  .wrapper-content-container .main-content-container > .navbar-collapse {
-    margin-right: 0;
-    margin-left: 0;
-  }
-}
-.bleach {
-  max-width: 970px;
-  background-color: #ffffff;
 }
 .default-header-text {
   margin-left: 0;

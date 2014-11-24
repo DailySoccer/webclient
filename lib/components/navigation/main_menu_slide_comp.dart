@@ -46,11 +46,10 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
     _menuSlideElement = null;
     _backdropElement = null;
 
+    querySelector("body").classes.remove("main-menu-slide-in");
+
     // Nos pueden haber deslogeado con el menu desplegado
-    if (_scrollCancelationListener != null) {
-      _scrollCancelationListener.cancel();
-      _scrollCancelationListener = null;
-    }
+    _cancelListeners();
 
     _slideState = "hidden";
   }
@@ -91,7 +90,8 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
 
     // El backdrop es la cortinilla traslucida que atenua todo el contenido
     _backdropElement = new DivElement();
-    _backdropElement.classes.add("backdrop hidden-xs");
+    _backdropElement.id = "backdrop";
+    _backdropElement.classes.add("hidden-xs");
 
     // La insertamos en 0 para que no pise al #menuSlide
     _menuSlideElement.parent.children.insert(0, _backdropElement);
@@ -100,18 +100,13 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
     _menuSlideElement.onTransitionEnd.listen((_) {
       if (_slideState == "hidden") {
         _menuSlideElement.classes.add("hidden-xs");
-      }
-    });
-
-    _backdropElement.onTransitionEnd.listen((_) {
-      if (_slideState == "hidden") {
         _backdropElement.classes.add("hidden-xs");
       }
     });
   }
 
   void _setUpClicks() {
-    querySelectorAll("[destination]").onClick.listen(_onElementWithDestinationClick);
+    _rootElement.querySelectorAll("[destination]").onClick.listen(_onElementWithDestinationClick);
 
     if (_backdropElement != null) {
       _backdropElement.onClick.listen((_) => _hide());
@@ -145,18 +140,31 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
   void _show() {
     _slideState = "slid";
 
-    // Desactivamos el scroll del body (solo en Touch, en desktop nos da igual)
-    _scrollCancelationListener = querySelector("body").onTouchMove.listen((event) {
-      event.preventDefault();
-    });
-
     _menuSlideElement.classes.remove("hidden-xs");
     _backdropElement.classes.remove("hidden-xs");
 
+    querySelector("body").classes.add("main-menu-slide-in");
+
+    int lastY = -1;
+    _scrollMoveListener = querySelector("body").onTouchMove.listen((event) {
+      var elem = event.target as Element;
+
+      if (elem.matchesWithAncestors("#menuSlide ul") && lastY != -1) {
+        int diff = lastY - event.touches.first.client.y;
+        // Aqui claramente se podria hacer con aceleracion
+        _menuSlideElement.scrollTop = _menuSlideElement.scrollTop + diff;
+      }
+
+      lastY = event.touches.first.client.y;
+      event.preventDefault();
+    });
+
+    _scrollEndListener = querySelector("body").onTouchEnd.listen((_) => lastY = -1);
+
     // Tenemos que dar un frame al browser para que calcule la posicion inicial
     window.animationFrame.then((_) {
-      _menuSlideElement.classes.add("in");
-      _backdropElement.classes.add("in");
+      _menuSlideElement.classes.add("slide-in");
+      _backdropElement.classes.add("slide-in");
     });
   }
 
@@ -164,13 +172,13 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
     if (_menuSlideElement != null) {
       _slideState = "hidden";
 
-      _menuSlideElement.classes.remove("in");
-      _backdropElement.classes.remove("in");
+      _menuSlideElement.classes.remove("slide-in");
+      _backdropElement.classes.remove("slide-in");
     }
 
-    if (_scrollCancelationListener != null) {
-      _scrollCancelationListener.cancel();
-    }
+    querySelector("body").classes.remove("main-menu-slide-in");
+
+    _cancelListeners();
   }
 
   void _updateActiveElement(String name) {
@@ -180,7 +188,7 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
       li.classes.remove('active');
     }
 
-    li = querySelector("[highlights=${name}]");
+    li = _rootElement.querySelector("[highlights=${name}]");
 
     if (li == null && _isRouteNameInsideUserMenu(name)) {
       li = _rootElement.querySelector('[highlights="user"]');
@@ -228,7 +236,7 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
         <div id="brandLogoLogged" class="navbar-brand" destination="lobby"></div>
       </div>
   
-      <div id="menuSlide" class="offcanvas">
+      <div id="menuSlide">
         <ul class="nav navbar-nav">
           <li highlights="lobby">      <a  id="menuLobby"      destination="lobby">Buscar Torneos</a></li>
           <li highlights="my_contests"><a  id="menuMyContests" destination="my_contests">Mis torneos</a></li>
@@ -253,8 +261,19 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
     ''';
   }
 
+  void _cancelListeners() {
+    if (_scrollMoveListener != null) {
+      _scrollMoveListener.cancel();
+      _scrollEndListener.cancel();
+      _scrollMoveListener = null;
+      _scrollEndListener = null;
+    }
+  }
+
   ScreenDetectorService _scrDet;
   Scope _scope;
+  StreamSubscription _scrollMoveListener;
+  StreamSubscription _scrollEndListener;
 
   Element _rootElement;
   Element _menuSlideElement;
@@ -262,7 +281,6 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
   Router _router;
 
   String _slideState = "hidden";
-  StreamSubscription _scrollCancelationListener;
 
   static final int _maxNicknameLength = 30;
 }

@@ -55,102 +55,68 @@ class ContestsService {
   }
 
   Future cancelContestEntry(String contestEntryId) {
-    var completer = new Completer();
-
-    _server.cancelContestEntry(contestEntryId)
+    return _server.cancelContestEntry(contestEntryId)
       .then((jsonMap) {
         Logger.root.info("response: " + jsonMap.toString());
-        completer.complete();
       });
-
-    return completer.future;
   }
 
   Future editContestEntry(String contestId, List<String> soccerPlayerIds) {
-    var completer = new Completer();
-
-    _server.editContestEntry(contestId, soccerPlayerIds)
+    return _server.editContestEntry(contestId, soccerPlayerIds)
       .then((jsonMap) {
         Logger.root.info("response: " + jsonMap.toString());
-        completer.complete();
       });
-
-    return completer.future;
   }
 
   Future refreshMyContests() {
-    var completer = new Completer();
-
-    _server.getMyContests()
+    return _server.getMyContests()
         .then((jsonMap) {
           _initMyContests(Contest.loadContestsFromJsonObject(jsonMap));
-          completer.complete(jsonMap);
+          return jsonMap;
         });
-
-    return completer.future;
   }
 
   Future refreshMyContest(String contestId) {
-    var completer = new Completer();
-
-    _server.getMyContest(contestId)
+    return _server.getMyContest(contestId)
         .then((jsonMap) {
           _registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
-          completer.complete(jsonMap);
+          return jsonMap;
         });
-
-    return completer.future;
   }
 
   Future refreshMyContestEntry(String contestId) {
-    var completer = new Completer();
-
-    _server.getMyContestEntry(contestId)
+    return _server.getMyContestEntry(contestId)
         .then((jsonMap) {
           _registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
-          completer.complete(jsonMap);
+          return jsonMap;
         });
-
-    return completer.future;
   }
 
   Future refreshFullContest(String contestId) {
-    var completer = new Completer();
-
-    _server.getFullContest(contestId)
+    return _server.getFullContest(contestId)
         .then((jsonMap) {
           _registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
-          completer.complete(jsonMap);
+          return jsonMap;
         });
-
-    return completer.future;
   }
 
   Future refreshViewContest(String contestId) {
-    var completer = new Completer();
-
-    _server.getViewContest(contestId)
+    return _server.getViewContest(contestId)
         .then((jsonMap) {
           _registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
-          completer.complete(jsonMap);
+          return jsonMap;
         });
-
-    return completer.future;
   }
 
   Future refreshLiveMatchEvents(String templateContestId) {
-    var completer = new Completer();
-
-    _server.getLiveMatchEventsFromTemplateContest(templateContestId)
+    return _server.getLiveMatchEventsFromTemplateContest(templateContestId)
       .then((jsonMap) {
           jsonMap["content"].forEach((jsonMap) {
             lastContest.matchEvents.firstWhere((matchEvent) => matchEvent.templateMatchEventId == (jsonMap.containsKey("templateMatchEventId") ? jsonMap["templateMatchEventId"] : jsonMap["_id"]))
                 .. updateLiveInfo(jsonMap);
-        });
-        completer.complete(jsonMap);
+          });
+          return jsonMap;
       });
-
-    return completer.future;
   }
 
   Contest getAvailableNextContest() {

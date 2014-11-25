@@ -28,7 +28,7 @@ class ContestHeaderComp implements DetachAware, ShadowRootAware {
     'prize':            '',
     'prizeType':        ''
   };
-  bool isInsideAModal = false;
+
   Contest contest;
 
   @NgOneWay("contest")
@@ -40,6 +40,17 @@ class ContestHeaderComp implements DetachAware, ShadowRootAware {
       _refreshCountdownDate();
     }
   }
+
+  bool isInsideAModal = false;
+  @NgAttr('modal')
+  void set modalModel(String value) {
+    if(value != null) {
+      if(value == "true") {
+        isInsideAModal = true;
+      }
+    }
+  }
+  String get modalModel => isInsideAModal.toString();
 
   // Cuando nos pasan el contestId, ya podemos empezar a mostrar informacion antes de que quien sea (enter_contest, view_contest...)
   // refresque su informacion de concurso (que siempre es mas completa que muchas (o todas) las cosas que necesitamos mostrar aqui)
@@ -55,7 +66,7 @@ class ContestHeaderComp implements DetachAware, ShadowRootAware {
 
   ContestHeaderComp(this._router, this._routeProvider, this.scrDet, this._contestsService, this._rootElement) {
     _count = new Timer.periodic(new Duration(seconds: 1), (Timer timer) => _refreshCountdownDate());
-    isInsideAModal = (_router.activePath.length > 0) && (_router.activePath.first.name == 'lobby');
+    //isInsideAModal = (_router.activePath.length > 0) && (_router.activePath.first.name == 'lobby');
   }
 
   void _refreshCountdownDate() {
@@ -114,10 +125,10 @@ class ContestHeaderComp implements DetachAware, ShadowRootAware {
       _rootElement.classes.add('rounded-borders');
     }
   }
+
   Router _router;
   RouteProvider _routeProvider;
   ContestsService _contestsService;
   Element _rootElement;
-
   Timer _count;
 }

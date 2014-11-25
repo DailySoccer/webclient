@@ -16752,6 +16752,13 @@ lineup-selector {
     background-color: transparent;
   }
 }
+.main-box .text-form {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #777777;
+  text-align: center;
+}
 .main-box .panel {
   border-width: 0px;
 }
@@ -16856,27 +16863,21 @@ button.main-box .panel .panel-heading button.close {
   color: #ffffff;
   opacity: 1;
 }
-.main-box .panel .text-form {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-  font-size: 8pt;
-  color: #777777;
-  text-align: center;
-}
 .main-box .panel .form-horizontal {
   margin-left: 0;
   margin-right: 0;
 }
 .main-box .panel .panel-body {
-  padding: 15px 15%;
+  padding: 15px 12%;
 }
 .main-box .panel .panel-body .form-description {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
-  font-size: 8pt;
   color: #777777;
   text-align: center;
-  font-size: 9pt;
+  font-size: 8pt;
+  padding: 0;
+  margin-bottom: 10px;
 }
 .main-box .panel .panel-body label {
   font-family: 'Open Sans', sans-serif;
@@ -16897,7 +16898,7 @@ button.main-box .panel .panel-heading button.close {
   min-height: 1px;
   padding-left: 0px;
   padding-right: 0px;
-  margin-top: 20px;
+  margin-bottom: 20px;
 }
 .main-box .panel .panel-body .input-group input {
   line-height: 20px;
@@ -16956,6 +16957,8 @@ button.main-box .panel .panel-heading button.close {
   padding-left: 0px;
   padding-right: 0px;
   text-align: right;
+  margin-top: -20px;
+  margin-bottom: 20px;
 }
 .main-box .panel .panel-body .remember-forgot-group .forget-pass a {
   cursor: pointer;
@@ -16967,6 +16970,9 @@ button.main-box .panel .panel-heading button.close {
 .main-box .panel .panel-body .top-separation-20 {
   margin-top: 20px;
 }
+.main-box .panel .panel-body .bottom-separation-10 {
+  margin-bottom: 10px;
+}
 .main-box .panel .panel-body .new-row {
   position: relative;
   float: left;
@@ -16976,7 +16982,6 @@ button.main-box .panel .panel-heading button.close {
   padding-right: 0;
 }
 .main-box .panel .panel-body .new-row .buttons-wapper {
-  height: 45px;
   text-align: center;
 }
 .main-box .panel .panel-body .new-row .enter-button {

@@ -19545,14 +19545,12 @@ html {
 #mainApp {
   height: 100%;
 }
-@media (min-width: 768px) {
-  body {
-    background-color: #000000;
-    background-image: url("../images/landingBackground.jpg");
-    background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
-  }
+body {
+  background-color: #000000;
+  background-image: url("../images/landingBackground.jpg");
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
 }
 .wrapper-content-container {
   min-height: 100%;

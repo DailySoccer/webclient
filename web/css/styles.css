@@ -19548,7 +19548,8 @@ html {
 @media (min-width: 768px) {
   body {
     background-color: #000000;
-    background-image: url("../images/backgroundPlayersAction.jpg");
+    background-image: url("../images/landingBackground.jpg");
+    background-size: cover;
     background-position: center top;
     background-repeat: no-repeat;
   }

@@ -42,14 +42,16 @@ class EnterContestComp implements DetachAware {
   bool isSelectingSoccerPlayer = false;
   InstanceSoccerPlayer selectedInstanceSoccerPlayer;
 
-  int get theAvailableSalary {
+  int availableSalary = 0;
+
+  /*int get theAvailableSalary {
    // Poner el fondo de las cajas de version movil en rojo si estoy en numeros rojos.
     _totalSalaryTexts = scrDet.isXsScreen? querySelectorAll('.total-salary') : querySelectorAll('.total-salary .total-salary-money');
 
     _totalSalaryTexts.forEach( (element) { updateRedNumbers(element);});
-    /*if (_totalSalaryTexts != null && _totalSalaryTexts.isNotEmpty) {
+    if (_totalSalaryTexts != null && _totalSalaryTexts.isNotEmpty) {
       updateRedNumbers(_totalSalaryTexts);
-    }*/
+    }
     return _availableSalary;
   }
 
@@ -65,7 +67,7 @@ class EnterContestComp implements DetachAware {
         elem.classes.remove('red-numbers');
       }
     }
-  }
+  }*/
 
   bool get isInvalidFantasyTeam => lineupSlots.any((player) => player == null);
   bool get editingContestEntry => contestEntryId != "none";
@@ -88,7 +90,7 @@ class EnterContestComp implements DetachAware {
         loadingService.isLoading = false;
 
         contest = _contestsService.lastContest;
-        _availableSalary = contest.salaryCap;
+        availableSalary = contest.salaryCap;
 
         initAllSoccerPlayers();
 
@@ -152,13 +154,13 @@ class EnterContestComp implements DetachAware {
 
     if (lineupSlots[slotIndex] != null) {
       // Al borrar el jugador seleccionado en el lineup, sumamos su salario al total
-      _availableSalary += lineupSlots[slotIndex]["salary"];
+      availableSalary += lineupSlots[slotIndex]["salary"];
 
       // Lo quitamos del slot
       lineupSlots[slotIndex] = null;
 
       // Quitamos la modal de números rojos si ya hay salario disponible
-      if (_availableSalary >= 0) {
+      if (availableSalary >= 0) {
         alertDismiss();
       }
     }
@@ -195,7 +197,7 @@ class EnterContestComp implements DetachAware {
        if (lineupSlots[c] == null && FieldPos.LINEUP[c] == theFieldPos.value) {
          lineupSlots[c] = soccerPlayer;
          isSelectingSoccerPlayer = false;
-         _availableSalary -= soccerPlayer["salary"];
+         availableSalary -= soccerPlayer["salary"];
          nameFilter = null;
          break;
        }
@@ -265,7 +267,7 @@ class EnterContestComp implements DetachAware {
   }
 
   void createFantasyTeam() {
-    if (_availableSalary < 0) {
+    if (availableSalary < 0) {
       (querySelector(".alert-red-numbers") as DivElement).classes.add('active');
       return;
     }
@@ -318,7 +320,7 @@ class EnterContestComp implements DetachAware {
   void deleteFantasyTeam() {
     resetLineup();
     removeAllFilters();
-    _availableSalary = contest.salaryCap;
+    availableSalary = contest.salaryCap;
     alertDismiss();
   }
 
@@ -339,8 +341,6 @@ class EnterContestComp implements DetachAware {
   void onRowClick(String soccerPlayerId) {
     _router.go("enter_contest.soccer_player_info",  { "instanceSoccerPlayerId": soccerPlayerId });
   }
-
-  int _availableSalary = 0;
 
   Router _router;
   RouteProvider _routeProvider;

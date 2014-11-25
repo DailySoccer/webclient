@@ -7,10 +7,9 @@ import 'package:webclient/services/screen_detector_service.dart';
 
 @Component(
     selector: 'paginator',
-    templateUrl: 'packages/webclient/components/paginator_comp.html',
     useShadowDom: false
 )
-class PaginatorComp implements DetachAware {
+class PaginatorComp implements DetachAware, ShadowRootAware {
 
   @NgCallback('on-page-change')
   Function onPageChange;
@@ -37,6 +36,24 @@ class PaginatorComp implements DetachAware {
       _options["numPageLinksToDisplay"] = _options["numPageLinksToDisplayXs"];
     }
     _streamListener = _scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
+  }
+
+  @override void onShadowRoot(emulated) {
+    _createTemplate();
+
+   }
+
+  void _createTemplate() {
+    var text = '''
+    <div class="paginator-wrapper">
+      <div class="paginator-box">
+        <!-- Aqui van los botones -->
+      </div>
+    </div>
+    ''';
+
+    _rootElement.appendHtml(text);
+    buildMe();
   }
 
   void detach() {

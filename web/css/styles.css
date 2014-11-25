@@ -7250,14 +7250,6 @@ button#contestInfoModal .modal-info-head button.close {
   border-radius: 20px;
   text-align: center;
 }
-@media (max-width: 991px) {
-  .prizes-wrapper #prizes-list .default-info-text {
-    font-family: 'Exo', sans-serif;
-    font-weight: 300;
-    font-size: 14pt;
-    color: #0d75a6;
-  }
-}
 #contestInfoTabbed {
   margin-right: auto;
   margin-left: auto;
@@ -9691,6 +9683,9 @@ fieldset[disabled] #rootFooter .user-info-sup-footer .add-funds-button {
 .fondo-negro {
   background-color: #000000;
 }
+#landingPageRoot {
+  overflow: hidden;
+}
 @media (max-width: 767px) {
   #desktopContent {
     display: none !important;
@@ -9938,6 +9933,7 @@ fieldset[disabled] #rootFooter .user-info-sup-footer .add-funds-button {
   background-color: #214a5f;
   margin: 0;
   padding: 15px;
+  cursor: pointer;
 }
 .more-info-section-dark > span {
   font-family: 'Open Sans', sans-serif;
@@ -9958,6 +9954,7 @@ fieldset[disabled] #rootFooter .user-info-sup-footer .add-funds-button {
   background-color: #dcdcdc;
   margin: 0;
   padding: 15px;
+  cursor: pointer;
 }
 .more-info-section-light > span {
   font-family: 'Open Sans', sans-serif;
@@ -9986,14 +9983,10 @@ fieldset[disabled] #rootFooter .user-info-sup-footer .add-funds-button {
   margin-right: 0;
   position: relative;
   background-size: cover;
+  min-height: 700px;
   white-space: nowrap;
   font-size: 0;
   text-align: center;
-}
-@media (max-height: 850px) {
-  .first-screen {
-    min-height: 700px;
-  }
 }
 .first-screen:before {
   vertical-align: middle;
@@ -10049,11 +10042,6 @@ fieldset[disabled] #rootFooter .user-info-sup-footer .add-funds-button {
   -ms-transform: translate(-50%, -45%);
   -o-transform: translate(-50%, -45%);
   transform: translate(-50%, -45%);
-}
-@media (max-height: 850px) {
-  .first-screen .main-title-wrapper {
-    margin: -50px auto 0 auto;
-  }
 }
 .first-screen .modules-wrapper,
 .first-screen .separator-wrapper {
@@ -10119,6 +10107,7 @@ fieldset[disabled] #rootFooter .user-info-sup-footer .add-funds-button {
   bottom: 0;
   left: 0;
   width: 100%;
+  cursor: pointer;
 }
 .button-play-base {
   display: inline-block;
@@ -13730,8 +13719,6 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
   padding-right: 15px;
   background-color: #ffffff;
   text-align: center;
-  padding-top: 30px;
-  padding-bottom: 60px;
 }
 @media (max-width: 767px) {
   .no-contests-wrapper .no-contests-content {
@@ -15162,8 +15149,8 @@ fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .descriptio
     display: none !important;
   }
 }
-.enter-contest-actions-wrapper .total-salary .red-numbers {
-  color: #ffffff;
+.enter-contest-actions-wrapper .red-numbers {
+  background-color: #ff0000;
 }
 .enter-contest-actions-wrapper .btn-cancel-player-selection {
   display: inline-block;
@@ -16982,7 +16969,13 @@ button.main-box .panel .panel-heading button.close {
   padding-right: 0;
 }
 .main-box .panel .panel-body .new-row .buttons-wapper {
+  height: 45px;
   text-align: center;
+}
+.main-box .panel .panel-body .new-row .fb-button-wapper {
+  height: 15px;
+  text-align: center;
+  margin-top: 20px;
 }
 .main-box .panel .panel-body .new-row .enter-button {
   display: inline-block;
@@ -19943,10 +19936,10 @@ fieldset[disabled] .button-fb {
 }
 @media (max-width: 991px) {
   .default-info-text {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 700;
+    font-family: 'Exo', sans-serif;
+    font-weight: 300;
     font-size: 14pt;
-    color: #ffffff;
+    color: #0d75a6;
   }
 }
 .blue-separator {

@@ -40,7 +40,6 @@ class LoginComp implements ShadowRootAware {
     JsUtils.runJavascript(null, "getLoginStatus", [onGetLoginStatus], false, "FB");
   }
 
-
   void onGetLoginStatus(statusResponse) {
     if (statusResponse["status"]=="connected") {
       loginCallback(statusResponse);
@@ -56,7 +55,6 @@ class LoginComp implements ShadowRootAware {
       }]);
     }
   }
-
 
   void loginCallback(loginResponse) {
     _profileManager.facebookLogin(loginResponse["authResponse"]["accessToken"])

@@ -67,6 +67,19 @@
           <div class="new-row bottom-separation-10">
             <div class="small-text">¿Ya tienes cuenta? <a ng-click="navigateTo('login', {}, $event)"> Entra por aquí! </a></div>
           </div>
+
+          <!--
+          Facebook stuff
+          <div class="input-group">
+            <div class="new-row">
+              <div class="fb-button-wapper">
+                <fb:login-button scope="public_profile,email" size="medium" onlogin="jsJoinWithFB()">
+                </fb:login-button>
+              </div>
+            </div>
+          </div>
+          -->
+
         </form>
 
       </div>
@@ -75,3 +88,14 @@
 
   </div>
 </div>
+<!--/Facebookstuff
+ <script id='facebook-jssdk' src="//connect.facebook.net/es_ES/sdk.js"></script>
+ <script>
+ window.fbAsyncInit = function() {
+   FB.init({
+     appId      : '865176766847011',
+     xfbml      : true,
+     version    : 'v2.2'
+   });
+ };
+ </script>-->

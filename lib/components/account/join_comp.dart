@@ -7,6 +7,9 @@ import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/models/connection_error.dart';
 import 'package:webclient/utils/game_metrics.dart';
+import 'package:webclient/utils/js_utils.dart';
+import 'package:logging/logging.dart';
+import 'dart:js' as js;
 import 'package:webclient/services/screen_detector_service.dart';
 
 @Component(
@@ -61,7 +64,9 @@ class JoinComp implements ShadowRootAware {
 
   bool get enabledSubmit => nickName.length >= MIN_NICKNAME_LENGTH && StringUtils.isValidEmail(email) && password.length >= MIN_PASSWORD_LENGTH && password == rePassword && _enabledSubmit;
 
-  JoinComp(this._router, this._profileService, this.loadingService, this._rootElement, this._scrDet);
+  JoinComp(this._router, this._profileService, this.loadingService, this._rootElement, this._scrDet) {
+    js.context['jsJoinWithFB()'] = loginFB;
+  }
 
   void onShadowRoot(emulatedRoot) {
     nickNameElement   = _rootElement.querySelector("#groupNickName");
@@ -78,6 +83,36 @@ class JoinComp implements ShadowRootAware {
     passwordError = _rootElement.querySelector("#passwordError");
     passwordError.parent.style.display = 'none';
     _scrDet.scrollTo('.panel-heading', offset: 0, duration:  500, smooth: true, ignoreInDesktop: false);
+  }
+
+  void loginFB() {
+    //js.JsObject fb = js.context["FB"];
+    //fb.callMethod("getLoginStatus", [onGetLoginStatus]);
+    JsUtils.runJavascript(null, "getLoginStatus", [onGetLoginStatus], false, "FB");
+  }
+
+  void onGetLoginStatus(statusResponse) {
+    if (statusResponse["status"]=="connected") {
+      loginCallback(statusResponse);
+    }
+    else if (statusResponse["status"] == 'not_authorized') {
+      // El usuario no ha autorizado el uso de su facebook.
+    }
+    else {
+      JsUtils.runJavascript(null, "facebookLogin", [(js.JsObject loginResponse) {
+        if (loginResponse["status"]=="connected") {
+          loginCallback(loginResponse);
+        }
+      }]);
+    }
+  }
+
+  void loginCallback(loginResponse) {
+    _profileService.facebookLogin(loginResponse["authResponse"]["accessToken"])
+                          .then((_) => _router.go("lobby", {}))
+                          .catchError((error) {
+                              Logger.root.severe(error);
+                              });
   }
 
   void validateNickName() {

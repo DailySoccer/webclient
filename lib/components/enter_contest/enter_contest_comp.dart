@@ -44,31 +44,6 @@ class EnterContestComp implements DetachAware {
 
   int availableSalary = 0;
 
-  /*int get theAvailableSalary {
-   // Poner el fondo de las cajas de version movil en rojo si estoy en numeros rojos.
-    _totalSalaryTexts = scrDet.isXsScreen? querySelectorAll('.total-salary') : querySelectorAll('.total-salary .total-salary-money');
-
-    _totalSalaryTexts.forEach( (element) { updateRedNumbers(element);});
-    if (_totalSalaryTexts != null && _totalSalaryTexts.isNotEmpty) {
-      updateRedNumbers(_totalSalaryTexts);
-    }
-    return _availableSalary;
-  }
-
-  void updateRedNumbers(elem) {
-    if (_availableSalary < 0)
-    {
-      if (!elem.classes.contains('red-numbers')) {
-        elem.classes.add('red-numbers');
-      }
-    }
-    else {
-      if (elem.classes.contains('red-numbers')) {
-        elem.classes.remove('red-numbers');
-      }
-    }
-  }*/
-
   bool get isInvalidFantasyTeam => lineupSlots.any((player) => player == null);
   bool get editingContestEntry => contestEntryId != "none";
 

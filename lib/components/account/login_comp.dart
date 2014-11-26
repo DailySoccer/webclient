@@ -9,6 +9,7 @@ import 'package:webclient/models/connection_error.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'dart:js' as js;
 import 'package:logging/logging.dart';
+import 'package:webclient/services/screen_detector_service.dart';
 
 @Component(
     selector: 'login',
@@ -23,15 +24,15 @@ class LoginComp implements ShadowRootAware {
 
   bool get enabledSubmit => emailOrUsername.isNotEmpty && password.isNotEmpty && _enabledSubmit;
 
-  LoginComp(this._router, this._profileManager, this.loadingService, this._rootElement) {
+  LoginComp(this._router, this._profileManager, this.loadingService, this._rootElement, this._scrDet) {
     js.context['jsLoginFB'] = loginFB;
   }
 
   @override void onShadowRoot(emulatedRoot) {
     _errSection = _rootElement.querySelector("#mailPassError");
     _errSection.parent.parent.style.display = 'none';
+    _scrDet.scrollTo('.panel-heading', offset: 0, duration:  500, smooth: true, ignoreInDesktop: false);
   }
-
 
   void loginFB() {
     //js.JsObject fb = js.context["FB"];
@@ -93,9 +94,8 @@ class LoginComp implements ShadowRootAware {
     if (event.target.id != "btnSubmit") {
       event.preventDefault();
     }
-
     _router.go(routePath, parameters);
- }
+  }
 
   Router _router;
   ProfileService _profileManager;
@@ -103,6 +103,6 @@ class LoginComp implements ShadowRootAware {
   Element _errSection;
 
   bool _enabledSubmit = true;
-
+  ScreenDetectorService _scrDet;
   LoadingService loadingService;
 }

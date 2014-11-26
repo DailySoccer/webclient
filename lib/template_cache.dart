@@ -39,7 +39,7 @@ tc.put("packages/webclient/components/account/change_password_comp.html", new Ht
           <!-- PÂSSWORD -->
           <div class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-            <input id="password" type="password" ng-model="password" name="password" placeholder="password" autofocus class="form-control" tabindex="1" autocapitalize="off">
+            <input id="password" type="password" ng-model="password" name="password" placeholder="password" auto-focus class="form-control" tabindex="1" autocapitalize="off">
           </div>
 
           <!-- RE PASSWORD -->
@@ -277,7 +277,7 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
           <!-- MAIL -->
           <div class="input-group">
             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-            <input id="login-mail" auto-focus ng-model="emailOrUsername" type="email" name="Email" placeholder="Nombre de usuario / Email" class="form-control" tabindex="1" autocapitalize="off">
+            <input id="login-mail" auto-focus ng-model="emailOrUsername" name="Email" placeholder="Nombre de usuario / Email" class="form-control" tabindex="1" autocapitalize="off">
           </div>
           <!-- PÂSSWORD -->
           <div class="input-group">
@@ -606,9 +606,9 @@ tc.put("packages/webclient/components/contest_header_comp.html", new HttpRespons
     </div>
   </div>
 
-  <div class="close-contest" >
-    <button type="button" ng-if="isInsideAModal"  class="close" data-dismiss="modal">   <span class="glyphicon glyphicon-remove"></span></button>
-    <button type="button" ng-if="!isInsideAModal" class="close" ng-click="goToParent()"><span class="glyphicon glyphicon-remove"></span></button>
+  <div class="close-contest" ng-switch="isInsideAModal">
+    <button type="button" ng-switch-when="true"  class="close" data-dismiss="modal">   <span class="glyphicon glyphicon-remove"></span></button>
+    <button type="button" ng-switch-when="false" class="close" ng-click="goToParent()"><span class="glyphicon glyphicon-remove"></span></button>
   </div>
 
 </div>
@@ -617,7 +617,7 @@ tc.put("packages/webclient/components/contest_header_comp.html", new HttpRespons
 """));
 tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(200, r"""<modal id="contestInfoModal" ng-if="isModal">
 
-  <contest-header id="contestInfoHeader" contest="contest" contest-id="contestId"></contest-header>
+  <contest-header id="contestInfoHeader" contest="contest" contest-id="contestId"  modal="true"></contest-header>
 
   <div class="modal-info-content">
 
@@ -815,7 +815,7 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
             <matches-filter contest="contest" selected-option="matchFilter" ng-if="scrDet.isNotXsScreen"></matches-filter>
 
             <div class="enter-contest-actions-wrapper" ng-if="scrDet.isXsScreen" ng-class="{'allocate-space':isSelectingSoccerPlayer}">
-              <div class="total-salary"><span class="total-salary-money" ng-class="{'red-numbers': availableSalary < 0 }" ng-show="contest != null">{{availableSalary}}€</span></div>
+              <div class="total-salary" ng-class="{'red-numbers':availableSalary < 0}"><span class="total-salary-money" ng-show="contest != null">{{availableSalary}}€</span></div>
               <button id="cancelSoccerPlayerSelection" type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer">CANCELAR</button>
             </div>
 
@@ -1062,7 +1062,7 @@ tc.put("packages/webclient/components/enter_contest/soccer_players_filter_comp.h
 
   <input type="text" class="name-player-input-filter" placeholder="Buscar jugador" ng-model="nameFilter" />
 </div>"""));
-tc.put("packages/webclient/components/landing_page_comp.html", new HttpResponse(200, r"""<div id="#landingPageRoot">
+tc.put("packages/webclient/components/landing_page_comp.html", new HttpResponse(200, r"""<div id="landingPageRoot">
   <!-- Portada Versión Desktop -->
   <div id="desktopContent" ng-if="!scrDet.isXsScreen" class="first-screen" style="height:{{screenHeight}}px">
     <div class="screen-pattern" src="images/pattern.png"></div>
@@ -1100,7 +1100,7 @@ tc.put("packages/webclient/components/landing_page_comp.html", new HttpResponse(
     <div class="beta-label"><img src="images/beta.png"/></div>
 
     <!-- Separador -->
-    <a class="wrapping-link" href="#screen2">
+    <a class="wrapping-link" ng-click="smoothScrollTo('#screen2')">
       <span id="screenSeparator1" class="more-info-section-light">
         <span>SABER MÁS</span>
         <span class="go-down-icon"></span>
@@ -1113,7 +1113,7 @@ tc.put("packages/webclient/components/landing_page_comp.html", new HttpResponse(
   <!-- Portada Versión Móvil -->
   <div id="mobileContent" ng-if="scrDet.isXsScreen" class="screen">
     <div class="slider-wrapper-mobile">
-      <img class="background" src="images/xsLandingBackground.jpg" />
+      <!--<img class="background" src="images/xsLandingBackground.jpg" />-->
     </div>
     <div class="beta-label"><img src="images/beta.png"/></div>
     <div class="content">
@@ -1126,7 +1126,7 @@ tc.put("packages/webclient/components/landing_page_comp.html", new HttpResponse(
       </div>
     </div>
     <!-- Separador -->
-    <a class="wrapping-link" href="#screen2">
+    <a class="wrapping-link"  ng-click="smoothScrollTo('#screen2')">
       <span id="screenSeparator1" class="more-info-section-light">
         <span>SABER MÁS</span>
         <span class="go-down-icon"></span>
@@ -1157,7 +1157,7 @@ tc.put("packages/webclient/components/landing_page_comp.html", new HttpResponse(
       </div>
   </div>
 
-  <a class="wrapping-link" href="#screen3">
+  <a class="wrapping-link" ng-click="smoothScrollTo('#screen3')">
     <span id="screenSeparator2" class="more-info-section-light">
       <span>SABER MÁS</span>
       <span class="go-down-icon"></span>
@@ -1187,7 +1187,7 @@ tc.put("packages/webclient/components/landing_page_comp.html", new HttpResponse(
       </div>
   </div>
 
-  <a class="wrapping-link" href="#screen4">
+  <a class="wrapping-link" ng-click="smoothScrollTo('#screen4')">
     <span id="screenSeparator3" class="more-info-section-dark">
       <span>SABER MÁS</span>
       <span class="go-down-icon"></span>

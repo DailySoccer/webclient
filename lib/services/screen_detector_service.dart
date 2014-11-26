@@ -1,6 +1,7 @@
 library screen_detector_service;
 
 import 'dart:html';
+import 'dart:math';
 import 'package:angular/angular.dart';
 import 'dart:async';
 import 'package:logging/logging.dart';
@@ -66,6 +67,53 @@ class ScreenDetectorService {
 
     // Seguimos detectando sin auto-digest
     window.animationFrame.then(_detectNow);
+  }
+
+  void scrollTo(String selector, {int offset: 0, int duration: 500, bool smooth : false, bool ignoreInDesktop: false}) {
+    // Por defecto NO se ignora en desktop, es decir, se hace en todas las versiones
+    if (ignoreInDesktop && isNotXsScreen) {
+      return;
+    }
+
+    int targetPosition = querySelector(selector).offsetTop + offset;
+
+    if (!smooth) {
+      window.scroll(0, targetPosition);
+    }
+    else {
+      int currentFrame = 0;
+
+      // Total de Frames
+      int totalFrames = ( duration / (1000 / 60) ).round();
+
+      // Posicion inicial de donde partimemos
+      int basePosition = window.scrollY;
+      int currentPosition = window.scrollY;
+
+      // Variable puente para no perder decimales (el scroll necesita un parametro Int).
+      double incremented = 0.0;
+
+      // Distancia total a recorer por el Scroll
+      int distanceBetween =  targetPosition - currentPosition;
+
+      void animation(num elapsedTime) {
+
+        if (totalFrames >= currentFrame) {
+          // Movimiento acelerado
+          incremented = pow((currentFrame/totalFrames), 2) * distanceBetween;
+          currentPosition = incremented.toInt() + basePosition;
+
+          window.scrollTo(0, currentPosition);
+          currentFrame++;
+
+          // Cuando este termina el frame (16.66 ms) inmediatamente empezamos el siguiente.
+          window.animationFrame.then(animation);
+        }
+      }
+
+      // Llamamos a la función anidada de animación por primera vez.
+      _turnZone.runOutsideAngular(() => animation(0));
+    }
   }
 
   VmTurnZone _turnZone;

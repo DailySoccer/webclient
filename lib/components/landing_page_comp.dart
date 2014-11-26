@@ -17,10 +17,14 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
   String content;
   ScreenDetectorService scrDet;
 
-  int get screenHeight => window.innerHeight;
+  int get screenHeight => _windowHeigtht;
 
 
   LandingPageComp(this._router, this._profileService, this.scrDet, this._loadingService);
+
+  void smoothScrollTo(String selector) {
+    scrDet.scrollTo(selector, offset: 0, duration:  500, smooth: true, ignoreInDesktop: false);
+  }
 
   void onShadowRoot(emulatedRoot) {
 
@@ -39,6 +43,8 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
     _mainContent = querySelector('#mainContent');
     _mainContent.classes.clear();
     _mainContent.classes.add('unlogged-margin');
+
+    _windowHeigtht = window.innerHeight;
   }
 
   void detach() {
@@ -61,7 +67,10 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
 
   void buttonPressed(String route) {
     _router.go(route, {});
+    smoothScrollTo('#mainWrapper');
   }
+
+  int _windowHeigtht;
 
   Router _router;
   ProfileService _profileService;

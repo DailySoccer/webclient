@@ -16,7 +16,7 @@ import 'package:webclient/models/contest_entry.dart';
 import "package:webclient/models/instance_soccer_player.dart";
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/utils/game_metrics.dart';
-
+import 'package:webclient/utils/html_utils.dart';
 
 @Component(
     selector: 'enter-contest',
@@ -41,6 +41,7 @@ class EnterContestComp implements DetachAware {
 
   bool isSelectingSoccerPlayer = false;
   InstanceSoccerPlayer selectedInstanceSoccerPlayer;
+
   int availableSalary = 0;
 
   bool get isInvalidFantasyTeam => lineupSlots.any((player) => player == null);
@@ -77,6 +78,8 @@ class EnterContestComp implements DetachAware {
             addSoccerPlayerToLineup(instanceSoccerPlayer.id);
           });
         }
+
+        scrDet.scrollTo('#mainWrapper');
       })
       .catchError((error) {
         _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
@@ -138,9 +141,7 @@ class EnterContestComp implements DetachAware {
     }
     else {
       isSelectingSoccerPlayer = true;
-
-      scrollToElement('.enter-contest-tabs', scrDet.isXsScreen);
-
+      scrDet.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('main-menu-slide').offsetHeight, ignoreInDesktop: true);
       // Cuando seleccionan un slot del lineup cambiamos siempre el filtro de la soccer-player-list, especialmente
       // en movil que cambiamos de vista a "solo ella".
       // El componente hijo se entera de que le hemos cambiado el filtro a traves del two-way binding.
@@ -169,17 +170,18 @@ class EnterContestComp implements DetachAware {
 
     for (int c = 0; c < lineupSlots.length; ++c) {
        if (lineupSlots[c] == null && FieldPos.LINEUP[c] == theFieldPos.value) {
-
          lineupSlots[c] = soccerPlayer;
-
          isSelectingSoccerPlayer = false;
          availableSalary -= soccerPlayer["salary"];
          nameFilter = null;
-         scrollToElement('.enter-contest-tabs', scrDet.isXsScreen);
-
          break;
        }
      }
+
+    //Si ya no estamos en modo seleción, scrolleamos hasta la altura del dinero que nos queda disponible.
+    if (!isSelectingSoccerPlayer) {
+      scrDet.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('main-menu-slide').offsetHeight, ignoreInDesktop: true);
+    }
   }
 
   bool isSlotAvailableForSoccerPlayer(String soccerPlayerId) {
@@ -308,16 +310,11 @@ class EnterContestComp implements DetachAware {
 
   void cancelPlayerSelection() {
     isSelectingSoccerPlayer = false;
+    scrDet.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('main-menu-slide').offsetHeight, ignoreInDesktop: true);
   }
 
   void onRowClick(String soccerPlayerId) {
     _router.go("enter_contest.soccer_player_info",  { "instanceSoccerPlayerId": soccerPlayerId });
-  }
-
-  void scrollToElement(String selector, bool bResolutionFilter) {
-    if (bResolutionFilter) {
-      window.scrollTo(0, querySelector(selector).offsetTop);
-    }
   }
 
   Router _router;
@@ -326,6 +323,11 @@ class EnterContestComp implements DetachAware {
   ContestsService _contestsService;
   FlashMessagesService _flashMessage;
 
+  var _streamListener;
+  ElementList<dynamic> _totalSalaryTexts;
+
   Timer _retryOpTimer;
   RouteHandle _routeHandle;
+  ScreenDetectorService _scrDet;
+
 }

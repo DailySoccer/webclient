@@ -6941,7 +6941,7 @@ button#contestInfoModal .modal-info-head button.close {
   padding: 0;
 }
 #contestInfoModal .modal-info-content .tabs-navigation #modalInfoContestTabs li:last-child {
-  width: 33.33433333%;
+  width: 33.33444333%;
 }
 #contestInfoModal .modal-info-content .tabs-navigation #modalInfoContestTabs > li {
   position: relative;
@@ -10523,7 +10523,7 @@ fieldset[disabled] .button-wrap .button-play-mobile {
   }
 }
 #viewContestRoot .view-contest-tabs li:last-child {
-  width: 33.33433333%;
+  width: 33.33444333%;
 }
 #viewContestRoot .view-contest-tabs > li {
   position: relative;
@@ -13611,7 +13611,7 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-login {
   padding: 0;
 }
 #myContestMenuTabs li:last-child {
-  width: 33.33433333%;
+  width: 33.33444333%;
 }
 #myContestMenuTabs > li {
   position: relative;

@@ -6242,7 +6242,6 @@ scoring-rules:after,
 }
 */
 contest-header {
-  background-color: #ecf0f1;
   display: block;
   min-height: 131px;
 }
@@ -6491,20 +6490,19 @@ contest-header {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 8pt;
-  color: #ffffff;
+  color: #59add5;
 }
 @media (min-width: 768px) {
   #contestHeaderWrapper .span-text span {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
     font-size: 11pt;
-    color: #ffffff;
+    color: #59add5;
   }
 }
 #contestHeaderWrapper .date-time-data {
   margin-left: 0;
   margin-right: 0;
-  background-color: #434343;
   line-height: 2;
 }
 #contestHeaderWrapper .date-time-data .contest-start-date {
@@ -6520,14 +6518,14 @@ contest-header {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 8pt;
-  color: #ffffff;
+  color: #59add5;
 }
 @media (min-width: 768px) {
   #contestHeaderWrapper .date-time-data .contest-start-date span {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
     font-size: 11pt;
-    color: #ffffff;
+    color: #59add5;
   }
 }
 #contestHeaderWrapper .date-time-data .contest-countdown-text {
@@ -6543,20 +6541,20 @@ contest-header {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 8pt;
-  color: #ffffff;
+  color: #59add5;
 }
 @media (min-width: 768px) {
   #contestHeaderWrapper .date-time-data .contest-countdown-text span {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
     font-size: 11pt;
-    color: #ffffff;
+    color: #59add5;
   }
 }
 #contestHeaderWrapper .date-time-data:after {
   height: 1px;
   width: 100%;
-  background-color: white;
+  background-color: #afafaf;
   content: "";
 }
 #contestHeaderWrapper .close-contest {
@@ -6690,18 +6688,18 @@ contest-header {
 }
 @media (max-width: 767px) {
   #teamsPanelRoot .teams-comp-bar .teams-container {
-    background-color: #dcdcdc;
+    background-color: #ecf0f1;
     padding: 0;
   }
   #teamsPanelRoot .teams-comp-bar .teams-container .top-border {
-    border-width: 2px;
+    border-width: 1px;
     border-style: solid none none none;
     border-color: #777777;
     border-radius: 0;
     height: 10px;
   }
   #teamsPanelRoot .teams-comp-bar .teams-container .bottom-border {
-    border-width: 2px;
+    border-width: 1px;
     border-style: none none solid none;
     border-color: #777777;
     border-radius: 0;

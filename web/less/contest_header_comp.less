@@ -1,6 +1,6 @@
 // Reserva de sitio
 contest-header {
-	background-color: @tramaBlue;
+	//background-color: @tramaBlue;
 	display: block;
 	min-height: 131px;
 	@media (min-width: @screen-sm-min) {
@@ -89,15 +89,15 @@ contest-header {
 	}
 	.span-text{
 		span {
-			.opensans_bold(8pt, @white);
+			.opensans_bold(8pt, @blueLight);
 			@media (min-width: @screen-sm-min) {
-				.opensans_bold(11pt, @white);
+				.opensans_bold(11pt, @blueLight);
 			}
 		}
 	}
 	.date-time-data {
 		.make-row(0);
-		background-color: @greyUltraDark;
+		//background-color: @greyUltraDark;
 		line-height: 2;
 		// Fecha comienzo contest
 		.contest-start-date {
@@ -115,7 +115,7 @@ contest-header {
 		&:after {
 			height: 1px;
 			width: 100%;
-			background-color: white;
+			background-color: @greyMed;
 			content: "";
 		}
 	}

@@ -32,7 +32,7 @@ tc.put("packages/webclient/components/account/change_password_comp.html", new Ht
         <div ng-if="state=='STATE_INVALID_TOKEN'">
           El token proporcionado no es válido o ha expirado.
         </div>
-        <form  ng-if="state=='STATE_CHANGE_PASSWORD'" id="loginForm" class="form-horizontal" ng-submit="changePassword()" data-toggle="validator" role="form" formAutofillFix>
+        <form  ng-if="state=='STATE_CHANGE_PASSWORD'" id="loginForm" class="form-horizontal" ng-submit="changePassword()" role="form" formAutofillFix>
 
           <div class="form-description">Introduce tu cuenta de correo electrónico y tu contraseña para acceder a los torneos.</div>
 
@@ -79,19 +79,19 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
   <div class="edit-personal-data-modal-header">
     <span class="header-title">EDITAR CUENTA</span>
   </div>
-  <form id="editPersonalDataForm" class="form-horizontal" ng-submit="saveChanges()" data-toggle="validator" role="form" autocomplete="off">
+  <form id="editPersonalDataForm" class="form-horizontal" ng-submit="saveChanges()" role="form" autocomplete="off">
     <div class="content">
       <!-- Nombre -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtName" auto-focus type="text" ng-model="editedFirstName" name="firstName" placeholder="Nombre" class="form-control"  tabindex="1"></div>
+        <div class="control-wrapper"><input id="txtName" auto-focus type="text" ng-model="editedFirstName" placeholder="Nombre" class="form-control"  tabindex="1"></div>
       </div>
       <!-- Apelidos -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtLastName" type="text" ng-model="editedLastName" name="lastName" placeholder="Apellidos" class="form-control" tabindex="2"></div>
+        <div class="control-wrapper"><input id="txtLastName" type="text" ng-model="editedLastName" placeholder="Apellidos" class="form-control" tabindex="2"></div>
       </div>
       <!-- Nickname -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtNickName" type="text" ng-model="editedNickName" name="nickName" placeholder="Nombre de usuario" class="form-control" tabindex="3" autocapitalize="off"></div>
+        <div class="control-wrapper"><input id="txtNickName" type="text" ng-model="editedNickName" placeholder="Nombre de usuario" class="form-control" tabindex="3" autocapitalize="off"></div>
         <!-- Error de mail -->
         <div class="content-field"       ng-class="{'hidden':!hasNicknameError}">
           <div id="nickNameError" class="join-err-text" ng-class="{'errorDetected':hasNicknameError}">{{nicknameErrorText}}</div>
@@ -100,7 +100,7 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
 
       <!-- Correo Electrónico -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtEmail" type="email" ng-model="editedEmail" name="email" placeholder="Email" class="form-control" tabindex="4" autocapitalize="off"></div>
+        <div class="control-wrapper"><input id="txtEmail" type="email" ng-model="editedEmail" placeholder="Email" class="form-control" tabindex="4" autocapitalize="off"></div>
         <!-- Error de mail -->
         <div class="content-field"       ng-class="{'hidden':!hasEmailError}">
           <div id="emailError" class="join-err-text" ng-class="{'errorDetected':!hasEmailError}">{{emailErrorText}}</div>
@@ -113,7 +113,7 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
       </div>
       <!-- Contraseña -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtPassword" type="password" ng-model="editedPassword" name="password" placeholder="Contraseña" class="form-control" tabindex="5" autocapitalize="off"></div>
+        <div class="control-wrapper"><input id="txtPassword" type="password" ng-model="editedPassword" placeholder="Contraseña" class="form-control" tabindex="5" autocapitalize="off"></div>
         <!-- Error de contraseñas -->
         <div class="content-field-block" ng-class="{'hidden':!hasPasswordError}">
           <div id="passwordError" class="join-err-text"  ng-class="{'errorDetected':hasPasswordError}">{{passwordErrorText}}</div>
@@ -121,7 +121,7 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
       </div>
       <!-- Repetir Contraseña -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtRepeatPassword" type="password" ng-model="editedRepeatPassword" name="repeatPassword" placeholder="Repetir Contraseña" class="form-control" tabindex="6" autocapitalize="off"></div>
+        <div class="control-wrapper"><input id="txtRepeatPassword" type="password" ng-model="editedRepeatPassword" placeholder="Repetir Contraseña" class="form-control" tabindex="6" autocapitalize="off"></div>
       </div>
 
       <!-- Label Instrucciones contraseña -->
@@ -130,15 +130,15 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
       </div>
       <!-- Pais, Region y Ciudad
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtCountry" type="text" ng-model="country" name="contry" placeholder="País" class="form-control"></div>
+        <div class="control-wrapper"><input id="txtCountry" type="text" ng-model="country" placeholder="País" class="form-control"></div>
       </div>
 
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtRegion" type="text" ng-model="region" name="region" placeholder="Región" class="form-control"></div>
+        <div class="control-wrapper"><input id="txtRegion" type="text" ng-model="region" placeholder="Región" class="form-control"></div>
       </div>
 
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtCity" type="text" ng-model="city" name="city" placeholder="Ciudad" class="form-control"></div>
+        <div class="control-wrapper"><input id="txtCity" type="text" ng-model="city" placeholder="Ciudad" class="form-control"></div>
       </div>
        -->
     </div>
@@ -150,17 +150,17 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
 
         <div class="subscription-wrapper">
           <div class="subscription-label">NEWSLETTER/OFERTAS ESPECIALES</div>
-          <div class="check-wrapper"> <input type="checkbox" name="switchNewsletter" id="inputNewsletter"> </div>
+          <div class="check-wrapper"> <input type="checkbox" id="inputNewsletter"> </div>
         </div>
 
         <div class="subscription-wrapper">
           <div class="subscription-label">NOTIFICACIONES DE JUEGO</div>
-          <div class="check-wrapper"> <input type="checkbox" name="switchGameAlerts"> </div>
+          <div class="check-wrapper"> <input type="checkbox"> </div>
         </div>
 
         <div class="subscription-wrapper">
           <div class="subscription-label">NOTIFICACIONES DE TUS FICHAJES</div>
-          <div class="check-wrapper"> <input type="checkbox" name="switchsoccerPlayerAlerts"> </div>
+          <div class="check-wrapper"> <input type="checkbox"> </div>
         </div>
 
       </div>
@@ -192,43 +192,43 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
 
       <div class="panel-body" >
 
-        <form id="signupForm" class="form-horizontal" ng-submit="submitSignup()" data-toggle="validator" role="form" formAutofillFix>
-          <div class="form-description">¿Todavía no tienes cuenta en EPIC ELEVEN?<br>Rellena este formulario para completar el registro.<br>¡Es muy sencillo!</div>
+        <form id="signupForm" class="form-horizontal" ng-submit="submitSignup()" role="form" formAutofillFix>
+          <div class="form-description">¿Todavía no tienes cuenta en EPIC ELEVEN?<br>Rellena este formulario para completar el registro.</div>
           <!-- NICKNAME  -->
-          <div class="new-row top-separation-20">
-            <div class="small-text-centered">Tu nombre de usuario debe tener al menos {{MIN_NICKNAME_LENGTH}} caracteres.</div>
+          <div class="new-row bottom-separation-10">
+            <div class="small-text">Tu nombre de usuario debe tener al menos {{MIN_NICKNAME_LENGTH}} caracteres.</div>
           </div>
           <div id="groupNickName" class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-user"></div></span>
-            <input id="nickName" auto-focus name="NickName" type="text" ng-model="theNickName" placeholder="Nombre de usuario" class="form-control" data-toggle="validator" required=""  tabindex="1" autocapitalize="off">
+            <input id="nickName" auto-focus name="NickName" type="text" ng-model="theNickName" placeholder="Nombre de usuario" class="form-control" tabindex="1" autocapitalize="off">
           </div>
           <!-- Error de username -->
           <div class="new-row">
             <div id="nickNameError" class="join-err-text">ERROR DE REGISTRO. El user name no es válido.</div>
           </div>
           <!-- EMAIL -->
-          <div class="new-row top-separation-20">
-            <div class="small-text-centered">Introduce un email válido.</div>
+          <div class="new-row bottom-separation-10">
+            <div class="small-text">Introduce un email válido.</div>
           </div>
           <div id="groupEmail" class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-envelope"></div></span>
-            <input id="email" name="Email" type="email" ng-model="theEmail" placeholder="Correo electrónico" class="form-control" data-toggle="validator" required=""  tabindex="2" autocapitalize="off">
+            <input id="email" name="Email" type="email" ng-model="theEmail" placeholder="Correo electrónico" class="form-control" tabindex="2" autocapitalize="off">
           </div>
           <!-- Error de mail -->
           <div class="new-row">
             <div id="emailError" class="join-err-text">ERROR DE REGISTRO. El mail no es válido.</div>
           </div>
           <!-- PASSWORD -->
-          <div class="new-row top-separation-20">
-            <div class="small-text-centered">El único requisito para la contraseña es que tenga al menos {{MIN_PASSWORD_LENGTH}} caracteres. Y por seguridad debes teclearla dos veces.</div>
+          <div class="new-row bottom-separation-10">
+            <div class="small-text">Contraseña: Al menos {{MIN_PASSWORD_LENGTH}}. (Escríbela dos veces).</div>
           </div>
           <div id="groupPassword" class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-            <input id="password" name="Password" type="password" ng-model="thePassword" placeholder="Contraseña" class="form-control" data-toggle="validator" required="" data-minlength="MIN_PASSWORD_LENGTH" ng-minlength="MIN_PASSWORD_LENGTH"  tabindex="3" autocapitalize="off">
+            <input id="password" name="Password" type="password" ng-model="thePassword" placeholder="Contraseña" class="form-control" data-minlength="MIN_PASSWORD_LENGTH" ng-minlength="MIN_PASSWORD_LENGTH"  tabindex="3" autocapitalize="off">
           </div>
           <div id="groupRePassword" class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-            <input id="rePassword" name="RePassword" type="password" ng-model="theRePassword" placeholder="Repite la contraseña " class="form-control" data-toggle="validator" required="" data-minlength="8" ng-minlength="8" tabindex="4" autocapitalize="off">
+            <input id="rePassword" name="RePassword" type="password" ng-model="theRePassword" placeholder="Repite la contraseña " class="form-control" tabindex="4" autocapitalize="off">
           </div>
           <!-- Error de password -->
           <div class="new-row">
@@ -244,9 +244,22 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
             </div>
           </div>
           <!-- GOTO REGISTER -->
-          <div class="new-row">
+          <div class="new-row bottom-separation-10">
             <div class="small-text">¿Ya tienes cuenta? <a ng-click="navigateTo('login', {}, $event)"> Entra por aquí! </a></div>
           </div>
+
+          <!--
+          Facebook stuff
+          <div class="input-group">
+            <div class="new-row">
+              <div class="fb-button-wapper">
+                <fb:login-button scope="public_profile,email" size="medium" onlogin="jsJoinWithFB()">
+                </fb:login-button>
+              </div>
+            </div>
+          </div>
+          -->
+
         </form>
 
       </div>
@@ -255,6 +268,17 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
 
   </div>
 </div>
+<!--/Facebookstuff
+ <script id='facebook-jssdk' src="//connect.facebook.net/es_ES/sdk.js"></script>
+ <script>
+ window.fbAsyncInit = function() {
+   FB.init({
+     appId      : '865176766847011',
+     xfbml      : true,
+     version    : 'v2.2'
+   });
+ };
+ </script>-->
 """));
 tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse(200, r"""<div id="loginRoot" ng-show="!loadingService.isLoading">
   <div id="loginBox" class="main-box">
@@ -271,7 +295,7 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
 
       <div class="panel-body" >
 
-        <form id="loginForm" class="form-horizontal" ng-submit="login()" data-toggle="validator" role="form" formAutofillFix>
+        <form id="loginForm" class="form-horizontal" ng-submit="login()" role="form" formAutofillFix>
 
           <div class="form-description">Introduce tu cuenta de correo electrónico y tu contraseña para acceder a los torneos.</div>
           <!-- MAIL -->
@@ -314,17 +338,17 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
             <div class="small-text">¿Aún no tienes cuenta? <a ng-click="navigateTo('join', {}, $event)"> Regístrate aquí! </a></div>
           </div>
         </form>
+
         <!--Facebook stuff-->
         <div class="input-group">
           <div class="new-row">
-            <div class="buttons-wapper">
+            <div class="fb-button-wapper">
               <fb:login-button scope="public_profile,email" size="medium" onlogin="jsLoginFB()">
               </fb:login-button>
               <!--button class="button-fb" id="fblogin" ng-click="loginFB()">Entra con Facebook</button-->
             </div>
           </div>
         </div>
-
 
       </div>
 
@@ -342,7 +366,6 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
      version    : 'v2.2'
    });
  };
-
  </script>
 """));
 tc.put("packages/webclient/components/account/remember_password_comp.html", new HttpResponse(200, r"""<div id="rememberPasswordRoot" ng-show="!loadingService.isLoading">
@@ -370,13 +393,13 @@ tc.put("packages/webclient/components/account/remember_password_comp.html", new 
           </div>
           -->
         </div>
-        <form ng-show="state=='STATE_REQUEST'" id="loginForm" class="form-horizontal" ng-submit="rememberMyPassword()" data-toggle="validator" role="form" formAutofillFix>
+        <form ng-show="state=='STATE_REQUEST'" id="loginForm" class="form-horizontal" ng-submit="rememberMyPassword()" role="form" formAutofillFix>
 
           <div class="form-description">¿Olvidaste tu contraseña? Introduce tu dirección de correo electrónico y recibirás un email para recuperar tu cuenta.</div>
           <!-- MAIL -->
           <div class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-envelope"></div></span>
-            <input id="rememberEmail" auto-focus name="Email" type="email" ng-model="email" required="true" placeholder="Correo electrónico" class="form-control" data-toggle="validator"  tabindex="1" autocapitalize="off">
+            <input id="rememberEmail" auto-focus name="Email" type="email" ng-model="email" placeholder="Correo electrónico" class="form-control" tabindex="1" autocapitalize="off">
           </div>
           <!-- Error de login/password -->
           <div class="input-group" ng-class="{'error-visible' : !errorDetected}">
@@ -395,7 +418,7 @@ tc.put("packages/webclient/components/account/remember_password_comp.html", new 
           </div>
 
           <!-- GOTO REGISTER -->
-          <div class="new-row">
+          <div class="new-row bottom-separation-10">
             <div class="small-text">¿Aún no tienes cuenta? <a ng-click="navigateTo('join', {}, $event)"> Regístrate aquí! </a></div>
           </div>
 
@@ -1113,7 +1136,6 @@ tc.put("packages/webclient/components/landing_page_comp.html", new HttpResponse(
   <!-- Portada Versión Móvil -->
   <div id="mobileContent" ng-if="scrDet.isXsScreen" class="screen">
     <div class="slider-wrapper-mobile">
-      <!--<img class="background" src="images/xsLandingBackground.jpg" />-->
     </div>
     <div class="beta-label"><img src="images/beta.png"/></div>
     <div class="content">

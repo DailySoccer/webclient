@@ -51,6 +51,7 @@ class EnterContestComp implements DetachAware {
 
   EnterContestComp(this._routeProvider, this._router, this.scrDet, this._contestsService, this._flashMessage, this.loadingService) {
     loadingService.isLoading = true;
+    scrDet.scrollTo('#mainWrapper');
 
     resetLineup();
 
@@ -78,12 +79,11 @@ class EnterContestComp implements DetachAware {
             addSoccerPlayerToLineup(instanceSoccerPlayer.id);
           });
         }
-
-        scrDet.scrollTo('#mainWrapper');
       })
       .catchError((error) {
         _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
       });
+
 
     _routeHandle = _routeProvider.route.newHandle();
     _routeHandle.onPreLeave.listen((RoutePreLeaveEvent event) {

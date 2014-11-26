@@ -66,7 +66,7 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
 
   void buttonPressed(String route) {
     _router.go(route, {});
-    smoothScrollTo('#mainWrapper');
+    scrDet.scrollTo('#mainWrapper', offset: 0, duration:  500, smooth: false, ignoreInDesktop: false);
   }
 
   int _windowHeigtht;

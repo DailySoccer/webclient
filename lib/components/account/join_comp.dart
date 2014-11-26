@@ -80,7 +80,7 @@ class JoinComp implements ShadowRootAware {
 
     passwordError = _rootElement.querySelector("#passwordError");
     passwordError.parent.style.display = 'none';
-    _scrDet.scrollTo('.panel-heading', offset: 0, duration:  500, smooth: true, ignoreInDesktop: false);
+    //_scrDet.scrollTo('.panel-heading', offset: 0, duration:  500, smooth: true, ignoreInDesktop: false);
   }
 
   void validateNickName() {

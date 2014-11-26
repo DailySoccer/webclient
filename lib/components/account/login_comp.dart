@@ -29,7 +29,7 @@ class LoginComp implements ShadowRootAware {
   @override void onShadowRoot(emulatedRoot) {
     _errSection = _rootElement.querySelector("#mailPassError");
     _errSection.parent.parent.style.display = 'none';
-    _scrDet.scrollTo('.panel-heading', offset: 0, duration:  500, smooth: true, ignoreInDesktop: false);
+    //_scrDet.scrollTo('.panel-heading', offset: 0, duration:  500, smooth: true, ignoreInDesktop: false);
   }
 
   void login() {

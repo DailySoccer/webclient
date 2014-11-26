@@ -1123,23 +1123,25 @@ tc.put("packages/webclient/components/landing_page_comp.html", new HttpResponse(
       </span>
     </a>
   </div>
-
   <!-- END Portada Versión Desktop -->
 
   <!-- Portada Versión Móvil -->
-  <div id="mobileContent" ng-if="scrDet.isXsScreen" class="screen">
-    <div class="slider-wrapper-mobile">
-    </div>
-    <div class="beta-label"><img src="images/beta.png"/></div>
-    <div class="content">
-      <p class="main-title-mobile">LIGAS FANTÁSTICAS <br> DIARIAS</p>
-      <p class="title-sup-text-mobile">CREA TU EQUIPO EN SEGUNDOS</p>
-      <p class="title-sup-text-mobile">COMPITE EN TANTAS LIGAS COMO QUIERAS</p>
-      <p class="title-sup-text-mobile">SIGUE LOS PARTIDOS EN DIRECTO</p>
-      <div class="button-wrap">
-        <button type="button" class="button-play-mobile" ng-click="buttonPressed('join')" id="playButtonMobile">JUGAR</button>
+  <div id="mobileContent" ng-if="scrDet.isXsScreen" class="first-screen" style="height:{{screenHeight}}px">
+    <div class="main-title-wrapper">
+      <div class="content">
+        <p class="main-title-mobile">LIGAS FANTÁSTICAS <br> DIARIAS</p>
+        <p class="title-sup-text-mobile">CREA TU EQUIPO EN SEGUNDOS</p>
+        <p class="title-sup-text-mobile">COMPITE EN TANTAS LIGAS COMO QUIERAS</p>
+        <p class="title-sup-text-mobile">SIGUE LOS PARTIDOS EN DIRECTO</p>
+        <div class="button-wrap">
+          <button type="button" class="button-play-mobile" ng-click="buttonPressed('join')" id="playButtonMobile">JUGAR</button>
+        </div>
       </div>
     </div>
+    <div class="beta-label"><img src="images/beta.png"/></div>
+   <!-- END Portada Versión Móvil -->
+
+
     <!-- Separador -->
     <a class="wrapping-link"  ng-click="smoothScrollTo('#screen2')">
       <span id="screenSeparator1" class="more-info-section-light">

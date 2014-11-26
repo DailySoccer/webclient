@@ -192,43 +192,43 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
 
       <div class="panel-body" >
 
-        <form id="signupForm" class="form-horizontal" ng-submit="submitSignup()" data-toggle="validator" role="form" formAutofillFix>
-          <div class="form-description">¿Todavía no tienes cuenta en EPIC ELEVEN?<br>Rellena este formulario para completar el registro.<br>¡Es muy sencillo!</div>
+        <form id="signupForm" class="form-horizontal" ng-submit="submitSignup()" role="form" formAutofillFix>
+          <div class="form-description">¿Todavía no tienes cuenta en EPIC ELEVEN?<br>Rellena este formulario para completar el registro.</div>
           <!-- NICKNAME  -->
-          <div class="new-row top-separation-20">
-            <div class="small-text-centered">Tu nombre de usuario debe tener al menos {{MIN_NICKNAME_LENGTH}} caracteres.</div>
+          <div class="new-row bottom-separation-10">
+            <div class="small-text">Tu nombre de usuario debe tener al menos {{MIN_NICKNAME_LENGTH}} caracteres.</div>
           </div>
           <div id="groupNickName" class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-user"></div></span>
-            <input id="nickName" auto-focus name="NickName" type="text" ng-model="theNickName" placeholder="Nombre de usuario" class="form-control" data-toggle="validator" required=""  tabindex="1" autocapitalize="off">
+            <input id="nickName" auto-focus name="NickName" type="text" ng-model="theNickName" placeholder="Nombre de usuario" class="form-control" tabindex="1" autocapitalize="off">
           </div>
           <!-- Error de username -->
           <div class="new-row">
             <div id="nickNameError" class="join-err-text">ERROR DE REGISTRO. El user name no es válido.</div>
           </div>
           <!-- EMAIL -->
-          <div class="new-row top-separation-20">
-            <div class="small-text-centered">Introduce un email válido.</div>
+          <div class="new-row bottom-separation-10">
+            <div class="small-text">Introduce un email válido.</div>
           </div>
           <div id="groupEmail" class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-envelope"></div></span>
-            <input id="email" name="Email" type="email" ng-model="theEmail" placeholder="Correo electrónico" class="form-control" data-toggle="validator" required=""  tabindex="2" autocapitalize="off">
+            <input id="email" name="Email" type="email" ng-model="theEmail" placeholder="Correo electrónico" class="form-control" tabindex="2" autocapitalize="off">
           </div>
           <!-- Error de mail -->
           <div class="new-row">
             <div id="emailError" class="join-err-text">ERROR DE REGISTRO. El mail no es válido.</div>
           </div>
           <!-- PASSWORD -->
-          <div class="new-row top-separation-20">
-            <div class="small-text-centered">El único requisito para la contraseña es que tenga al menos {{MIN_PASSWORD_LENGTH}} caracteres. Y por seguridad debes teclearla dos veces.</div>
+          <div class="new-row bottom-separation-10">
+            <div class="small-text">Contraseña: Al menos {{MIN_PASSWORD_LENGTH}}. (Escríbela dos veces).</div>
           </div>
           <div id="groupPassword" class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-            <input id="password" name="Password" type="password" ng-model="thePassword" placeholder="Contraseña" class="form-control" data-toggle="validator" required="" data-minlength="MIN_PASSWORD_LENGTH" ng-minlength="MIN_PASSWORD_LENGTH"  tabindex="3" autocapitalize="off">
+            <input id="password" name="Password" type="password" ng-model="thePassword" placeholder="Contraseña" class="form-control" data-minlength="MIN_PASSWORD_LENGTH" ng-minlength="MIN_PASSWORD_LENGTH"  tabindex="3" autocapitalize="off">
           </div>
           <div id="groupRePassword" class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-            <input id="rePassword" name="RePassword" type="password" ng-model="theRePassword" placeholder="Repite la contraseña " class="form-control" data-toggle="validator" required="" data-minlength="8" ng-minlength="8" tabindex="4" autocapitalize="off">
+            <input id="rePassword" name="RePassword" type="password" ng-model="theRePassword" placeholder="Repite la contraseña " class="form-control" tabindex="4" autocapitalize="off">
           </div>
           <!-- Error de password -->
           <div class="new-row">
@@ -244,7 +244,7 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
             </div>
           </div>
           <!-- GOTO REGISTER -->
-          <div class="new-row">
+          <div class="new-row bottom-separation-10">
             <div class="small-text">¿Ya tienes cuenta? <a ng-click="navigateTo('login', {}, $event)"> Entra por aquí! </a></div>
           </div>
         </form>
@@ -370,13 +370,13 @@ tc.put("packages/webclient/components/account/remember_password_comp.html", new 
           </div>
           -->
         </div>
-        <form ng-show="state=='STATE_REQUEST'" id="loginForm" class="form-horizontal" ng-submit="rememberMyPassword()" data-toggle="validator" role="form" formAutofillFix>
+        <form ng-show="state=='STATE_REQUEST'" id="loginForm" class="form-horizontal" ng-submit="rememberMyPassword()" role="form" formAutofillFix>
 
           <div class="form-description">¿Olvidaste tu contraseña? Introduce tu dirección de correo electrónico y recibirás un email para recuperar tu cuenta.</div>
           <!-- MAIL -->
           <div class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-envelope"></div></span>
-            <input id="rememberEmail" auto-focus name="Email" type="email" ng-model="email" required="true" placeholder="Correo electrónico" class="form-control" data-toggle="validator"  tabindex="1" autocapitalize="off">
+            <input id="rememberEmail" auto-focus name="Email" type="email" ng-model="email" placeholder="Correo electrónico" class="form-control" tabindex="1" autocapitalize="off">
           </div>
           <!-- Error de login/password -->
           <div class="input-group" ng-class="{'error-visible' : !errorDetected}">
@@ -395,7 +395,7 @@ tc.put("packages/webclient/components/account/remember_password_comp.html", new 
           </div>
 
           <!-- GOTO REGISTER -->
-          <div class="new-row">
+          <div class="new-row bottom-separation-10">
             <div class="small-text">¿Aún no tienes cuenta? <a ng-click="navigateTo('join', {}, $event)"> Regístrate aquí! </a></div>
           </div>
 

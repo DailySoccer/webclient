@@ -70,46 +70,49 @@ class ScreenDetectorService {
   }
 
   void scrollTo(String selector, {int offset: 0, int duration: 500, bool smooth : false, bool ignoreInDesktop: false}) {
-    // Por defecto (salvo que se especifique TRUE), el scroll se ignorará en las versiones de Desktop.
-    if(ignoreInDesktop && isNotXsScreen) {
+    // Por defecto NO se ignora en desktop, es decir, se hace en todas las versiones
+    if (ignoreInDesktop && isNotXsScreen) {
       return;
     }
 
     int targetPosition = querySelector(selector).offsetTop + offset;
 
-    if(!smooth) {
+    if (!smooth) {
       window.scroll(0, targetPosition);
     }
     else {
       int currentFrame = 0;
+
       // Total de Frames
       int totalFrames = ( duration / (1000 / 60) ).round();
+
       // Posicion inicial de donde partimemos
       int basePosition = window.scrollY;
-
       int currentPosition = window.scrollY;
-      // variable puente para para sumar los decimales (El scroll necesita un parametro Int).
+
+      // Variable puente para no perder decimales (el scroll necesita un parametro Int).
       double incremented = 0.0;
+
       // Distancia total a recorer por el Scroll
       int distanceBetween =  targetPosition - currentPosition;
 
-      void animation(num frame) {
+      void animation(num elapsedTime) {
 
-        if ( totalFrames >= currentFrame ) {
-          // Movimiento deceleradoacelerado
+        if (totalFrames >= currentFrame) {
+          // Movimiento acelerado
           incremented = pow((currentFrame/totalFrames), 2) * distanceBetween;
           currentPosition = incremented.toInt() + basePosition;
 
-          window.scrollTo( 0, currentPosition );
+          window.scrollTo(0, currentPosition);
           currentFrame++;
 
           // Cuando este termina el frame (16.66 ms) inmediatamente empezamos el siguiente.
           window.animationFrame.then(animation);
-
         }
       }
+
       // Llamamos a la función anidada de animación por primera vez.
-      _turnZone.runOutsideAngular(() =>animation(0));
+      _turnZone.runOutsideAngular(() => animation(0));
     }
   }
 

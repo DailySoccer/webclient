@@ -219,6 +219,15 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
       <div class="button-wrapper">
         <a id="joinButton"  type="button" class="button-join" destination="join">REGISTRO</a>
         <a id="loginButton" type="button" class="button-login" destination="login">ENTRAR</a>
+        <!--span>
+          <fb:login-button scope="public_profile,email" size="medium" onlogin="jsLoginFB()">
+          </fb:login-button>
+          <script>
+             if (typeof FB !== "undefined" && FB != null) {
+               FB.XFBML.parse();
+             }
+          </script>
+        </span-->
       </div>
     </div>
     ''';

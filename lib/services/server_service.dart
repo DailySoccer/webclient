@@ -8,6 +8,9 @@ import 'package:webclient/models/connection_error.dart';
 import 'package:webclient/utils/host_server.dart';
 import 'dart:html';
 
+class FutureCancelled implements Exception {
+}
+
 abstract class ServerService {
   static final String URL = "url";
   static final String TIMES = "times";
@@ -96,7 +99,7 @@ class DailySoccerServer implements ServerService {
   }
 
   Future<Map> getUserProfile() {
-    return _innerServerCall("${HostServer.url}/get_user_profile");
+    return _innerServerCall("${HostServer.url}/get_user_profile", cancelIfChangeContext: false);
   }
 
   Future<Map> changeUserProfile(String firstName, String lastName, String email, String nickName, String password) {
@@ -188,7 +191,7 @@ class DailySoccerServer implements ServerService {
   /**
    * This is the only place where we call our server (except the LoggerExceptionHandler)
    */
-  Future<Map> _innerServerCall(String url, {Map queryString:null, Map postData:null, int retryTimes: -1}) {
+  Future<Map> _innerServerCall(String url, {Map queryString:null, Map postData:null, int retryTimes: -1, bool cancelIfChangeContext: true}) {
 
     Completer completer = null;
 
@@ -213,13 +216,13 @@ class DailySoccerServer implements ServerService {
         theHeaders["X-Session-Token"] = _sessionToken;
       }
 
-      _callLoop(_context, url, queryString, postData, theHeaders, completer, retryTimes);
+      _callLoop(_context, url, queryString, postData, theHeaders, completer, retryTimes, cancelIfChangeContext);
     }
 
     return completer.future;
   }
 
-  void _callLoop(int callContext, String url, Map queryString, Map postData, var headers, Completer completer, int retryTimes) {
+  void _callLoop(int callContext, String url, Map queryString, Map postData, var headers, Completer completer, int retryTimes, bool cancelIfChangeContext) {
     // Evitamos las reentradas "antiguas" (de otros contextos)
     if (callContext != _context) {
       Logger.root.info("Ignorando callLoop($url): context($callContext) != context($_context)");
@@ -228,11 +231,17 @@ class DailySoccerServer implements ServerService {
 
     ((postData != null) ? _http.post(url, postData, headers: headers, params: queryString) : _http.get(url, headers: headers, params: queryString))
         .then((httpResponse) {
+          return (callContext == _context || !cancelIfChangeContext) ? httpResponse : new Future.error(new FutureCancelled());
+        })
+        .then((httpResponse) {
           _checkServerVersion(httpResponse);
           _notify(ON_SUCCESS, {ServerService.URL: url});
 
           _processSuccess(url, httpResponse, completer);
         })
+        .catchError((error) {
+          Logger.root.warning("Future cancelled: $url");
+        }, test: (e) => e is FutureCancelled)
         .catchError((error) {
           _checkServerVersion(error);
 
@@ -242,7 +251,7 @@ class DailySoccerServer implements ServerService {
 
             Logger.root.severe("_innerServerCall error: $error, url: $url, retry: $retryTimes");
             if ((retryTimes == -1) || (retryTimes > 0)) {
-              new Timer(const Duration(seconds: 3), () => _callLoop(callContext, url, queryString, postData, headers, completer, (retryTimes > 0) ? retryTimes-1 : retryTimes));
+              new Timer(const Duration(seconds: 3), () => _callLoop(callContext, url, queryString, postData, headers, completer, (retryTimes > 0) ? retryTimes-1 : retryTimes, cancelIfChangeContext));
             }
             else {
               _processError(error, url, completer);

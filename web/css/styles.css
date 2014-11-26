@@ -5785,8 +5785,8 @@ button.close {
 #teamsPanelRoot .teams-comp-bar .teams-container:after,
 #contestInfoModal .modal-info-head .contest-info-header-row:before,
 #contestInfoModal .modal-info-head .contest-info-header-row:after,
-#contestInfoModal .modal-info-content .contest-info-tabs:before,
-#contestInfoModal .modal-info-content .contest-info-tabs:after,
+#contestInfoModal .modal-info-content .tabs-navigation:before,
+#contestInfoModal .modal-info-content .tabs-navigation:after,
 #contestInfoModal .modal-info-content .info-options:before,
 #contestInfoModal .modal-info-content .info-options:after,
 #contestInfoTabbed:before,
@@ -5926,7 +5926,7 @@ scoring-rules:after,
 #teamsPanelRoot .teams-comp-bar:after,
 #teamsPanelRoot .teams-comp-bar .teams-container:after,
 #contestInfoModal .modal-info-head .contest-info-header-row:after,
-#contestInfoModal .modal-info-content .contest-info-tabs:after,
+#contestInfoModal .modal-info-content .tabs-navigation:after,
 #contestInfoModal .modal-info-content .info-options:after,
 #contestInfoTabbed:after,
 .contestant-list .contestant-element:after,
@@ -6919,53 +6919,75 @@ button#contestInfoModal .modal-info-head button.close {
 }
 #contestInfoModal .modal-info-content .tabs-background {
   width: 100%;
-  height: 51px;
+  height: 54px;
   background-image: -webkit-linear-gradient(top, #1a3949 49%, #0f2630 51%);
   background-image: linear-gradient(to bottom, #1a3949 49%, #0f2630 51%);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff1a3949', endColorstr='#ff0f2630', GradientType=0);
 }
-#contestInfoModal .modal-info-content .contest-info-tabs {
-  height: 46px;
-  list-style: none;
-  padding: 0;
+#contestInfoModal .modal-info-content .tabs-navigation {
   margin-left: 0;
   margin-right: 0;
 }
-#contestInfoModal .modal-info-content .contest-info-tabs .tab {
-  position: relative;
-  float: left;
-  width: 16.66666667%;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  background-color: #59add5;
-  border-width: 4px;
-  border-style: none none solid none;
-  border-color: #214a5f;
-  border-radius: 0;
-}
-#contestInfoModal .modal-info-content .contest-info-tabs .tab a {
-  cursor: pointer;
-  line-height: 46px;
-  text-align: center;
-  color: #ffffff;
-  display: block;
-  text-decoration: none;
-}
-#contestInfoModal .modal-info-content .contest-info-tabs .active {
-  background-color: #214a5f;
-}
-#contestInfoModal .modal-info-content .contest-info-tabs .buton-place {
+#contestInfoModal .modal-info-content .tabs-navigation #modalInfoContestTabs {
   position: relative;
   float: left;
   width: 50%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  padding-top: 7px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
-#contestInfoModal .modal-info-content .contest-info-tabs .buton-place > button {
+#contestInfoModal .modal-info-content .tabs-navigation #modalInfoContestTabs > li {
+  position: relative;
+  float: left;
+  width: 33.33333333%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: #59add5;
+  padding-left: 0px;
+  padding-right: 0px;
+  border-width: 4px;
+  border-style: none none solid none;
+  border-color: #214a5f;
+  border-radius: 0;
+}
+#contestInfoModal .modal-info-content .tabs-navigation #modalInfoContestTabs > li a {
+  cursor: pointer;
+  line-height: 50px;
+  text-align: center;
+  color: #ffffff;
+  display: block;
+  text-decoration: none;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 11pt;
+}
+#contestInfoModal .modal-info-content .tabs-navigation #modalInfoContestTabs > li[disabled] {
+  background-color: #afd3e4;
+  cursor: no-drop;
+}
+#contestInfoModal .modal-info-content .tabs-navigation #modalInfoContestTabs > li[disabled] > a {
+  cursor: no-drop;
+  color: #afafaf;
+}
+#contestInfoModal .modal-info-content .tabs-navigation #modalInfoContestTabs .active {
+  background-color: #214a5f;
+}
+#contestInfoModal .modal-info-content .tabs-navigation #enterContestButton {
+  position: relative;
+  float: left;
+  width: 50%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: transparent;
+  padding-top: 8px;
+}
+#contestInfoModal .modal-info-content .tabs-navigation #enterContestButton > button {
   float: right !important;
 }
 #contestInfoModal .modal-info-content .info-options {
@@ -7518,6 +7540,12 @@ scoring-rules > .navbar-collapse {
   border-radius: 0;
   padding-bottom: 10px;
   cursor: pointer;
+}
+.contests-list-root .contest-row:nth-last-child(2) {
+  border-width: 1px;
+  border-style: solid none solid none;
+  border-color: #dcdcdc;
+  border-radius: 0;
 }
 .contests-list-root .contest-row .column-contest-name {
   float: left;
@@ -10470,7 +10498,6 @@ fieldset[disabled] .button-wrap .button-play-mobile {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  height: 54px;
 }
 @media (min-width: 992px) and (max-width: 1199px) {
   #viewContestRoot .view-contest-tabs {
@@ -10506,6 +10533,7 @@ fieldset[disabled] .button-wrap .button-play-mobile {
   text-decoration: none;
   overflow: hidden;
   white-space: nowrap;
+  font-size: 11pt;
 }
 #viewContestRoot .view-contest-tabs > li[disabled] {
   background-color: #afd3e4;
@@ -13544,7 +13572,6 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-login {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  height: 54px;
 }
 #myContestMenuTabs > li {
   position: relative;
@@ -13570,6 +13597,7 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-login {
   text-decoration: none;
   overflow: hidden;
   white-space: nowrap;
+  font-size: 11pt;
 }
 #myContestMenuTabs > li[disabled] {
   background-color: #afd3e4;
@@ -13771,6 +13799,7 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
   cursor: pointer;
   color: #59add5;
   width: 45px;
+  font-size: 11pt;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -15018,7 +15047,6 @@ fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .descriptio
   list-style-type: none;
   margin: 0;
   padding: 0;
-  height: 50px;
 }
 .enter-contest-tabs > li {
   position: relative;
@@ -15028,6 +15056,8 @@ fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .descriptio
   padding-left: 15px;
   padding-right: 15px;
   background-color: #59add5;
+  padding-left: 0px;
+  padding-right: 0px;
   border-width: 4px;
   border-style: none none solid none;
   border-color: #214a5f;
@@ -15040,6 +15070,17 @@ fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .descriptio
   color: #ffffff;
   display: block;
   text-decoration: none;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 11pt;
+}
+.enter-contest-tabs > li[disabled] {
+  background-color: #afd3e4;
+  cursor: no-drop;
+}
+.enter-contest-tabs > li[disabled] > a {
+  cursor: no-drop;
+  color: #afafaf;
 }
 .enter-contest-tabs .active {
   background-color: #214a5f;
@@ -18832,7 +18873,6 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-back-contest {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  height: 54px;
 }
 @media (min-width: 992px) and (max-width: 1199px) {
   #viewContestEntry .view-contest-entry-tabs {
@@ -18868,6 +18908,7 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-back-contest {
   text-decoration: none;
   overflow: hidden;
   white-space: nowrap;
+  font-size: 11pt;
 }
 #viewContestEntry .view-contest-entry-tabs > li[disabled] {
   background-color: #afd3e4;
@@ -19147,31 +19188,54 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   margin: 0 auto 30px auto;
 }
 #helpInfo .help-info-tabs {
+  /*@tabheight: 50px;
+		.reset-list();
+		height: @tabheight;
+		> li {
+			.make-xs-column(5);
+			.make-sm-column(6);
+			.clean-paddings();
+			background-color: @blueLight;
+			.make-border(4px, none none solid none, @blueDark);
+			a {
+				cursor: pointer;
+				line-height: @tabheight;
+				text-align: center;
+				color: @white;
+				display: block;
+				text-decoration: none;
+				padding: 0;
+				@media (max-width: @screen-xs-max) {
+					font-size: 9pt;
+				}
+			}
+		}
+		li + li {
+			.make-xs-column(7);
+			.make-sm-column(6);
+		}
+		.active {
+			background-color: @blueDark;
+		}
+		*/
   list-style-type: none;
   margin: 0;
   padding: 0;
-  height: 50px;
 }
 #helpInfo .help-info-tabs > li {
-  float: left;
-  width: 41.66666667%;
   position: relative;
+  float: left;
+  width: 50%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  background-color: #59add5;
   padding-left: 0px;
   padding-right: 0px;
-  background-color: #59add5;
   border-width: 4px;
   border-style: none none solid none;
   border-color: #214a5f;
   border-radius: 0;
-}
-@media (min-width: 768px) {
-  #helpInfo .help-info-tabs > li {
-    float: left;
-    width: 50%;
-  }
 }
 #helpInfo .help-info-tabs > li a {
   cursor: pointer;
@@ -19180,26 +19244,17 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   color: #ffffff;
   display: block;
   text-decoration: none;
-  padding: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 11pt;
 }
-@media (max-width: 767px) {
-  #helpInfo .help-info-tabs > li a {
-    font-size: 9pt;
-  }
+#helpInfo .help-info-tabs > li[disabled] {
+  background-color: #afd3e4;
+  cursor: no-drop;
 }
-#helpInfo .help-info-tabs li + li {
-  float: left;
-  width: 58.33333333%;
-  position: relative;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-@media (min-width: 768px) {
-  #helpInfo .help-info-tabs li + li {
-    float: left;
-    width: 50%;
-  }
+#helpInfo .help-info-tabs > li[disabled] > a {
+  cursor: no-drop;
+  color: #afafaf;
 }
 #helpInfo .help-info-tabs .active {
   background-color: #214a5f;

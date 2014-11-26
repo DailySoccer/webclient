@@ -1,24 +1,6 @@
 // Tabs menu
 .enter-contest-tabs {
-	@tabheight: 50px;
-	.reset-list();
-	height: @tabheight;
-	> li {
-		.make-xs-column(6);
-		background-color: @blueLight;
-		.make-border(4px, none none solid none, @blueDark);
-		a {
-			cursor: pointer;
-			line-height: @tabheight;
-			text-align: center;
-			color: @white;
-			display: block;
-			text-decoration: none;
-		}
-	}
-	.active {
-		background-color: @blueDark;
-	}
+	.tabs-navigation(2);
 }
 
 

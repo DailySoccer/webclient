@@ -289,7 +289,7 @@ body {
 .tabs-navigation(@columns) {
 	@tabheight: 50px;
 	.reset-list();
-	height: 54px;
+	//height: 54px;
 	> li {
 		.make-xs-column(12/@columns);
 		background-color: @blueLight;
@@ -304,6 +304,7 @@ body {
 			text-decoration: none;
 			overflow: hidden;
 			white-space: nowrap;
+			font-size: 11pt;
 		}
 		&[disabled] {
 			background-color: @blueMenu;

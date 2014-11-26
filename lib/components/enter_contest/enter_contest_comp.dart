@@ -16,7 +16,7 @@ import 'package:webclient/models/contest_entry.dart';
 import "package:webclient/models/instance_soccer_player.dart";
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/utils/game_metrics.dart';
-import 'package:webclient/utils/html_utils.dart';
+
 
 @Component(
     selector: 'enter-contest',

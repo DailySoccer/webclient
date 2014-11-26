@@ -249,16 +249,16 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
           </div>
 
           <!--
-          Facebook stuff
+          Facebook stuff-->
           <div class="input-group">
             <div class="new-row">
               <div class="fb-button-wapper">
-                <fb:login-button scope="public_profile,email" size="medium" onlogin="jsJoinWithFB()">
+                <fb:login-button scope="public_profile,email" size="large" onlogin="jsLoginFB()">
                 </fb:login-button>
               </div>
             </div>
           </div>
-          -->
+          <!-- -->
 
         </form>
 
@@ -268,17 +268,11 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
 
   </div>
 </div>
-<!--/Facebookstuff
- <script id='facebook-jssdk' src="//connect.facebook.net/es_ES/sdk.js"></script>
  <script>
- window.fbAsyncInit = function() {
-   FB.init({
-     appId      : '865176766847011',
-     xfbml      : true,
-     version    : 'v2.2'
-   });
- };
- </script>-->
+ if (typeof FB !== "undefined" && FB != null) {
+   FB.XFBML.parse();
+ }
+ </script>
 """));
 tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse(200, r"""<div id="loginRoot" ng-show="!loadingService.isLoading">
   <div id="loginBox" class="main-box">
@@ -343,9 +337,8 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
         <div class="input-group">
           <div class="new-row">
             <div class="fb-button-wapper">
-              <fb:login-button scope="public_profile,email" size="medium" onlogin="jsLoginFB()">
+              <fb:login-button scope="public_profile,email" size="large" onlogin="jsLoginFB()">
               </fb:login-button>
-              <!--button class="button-fb" id="fblogin" ng-click="loginFB()">Entra con Facebook</button-->
             </div>
           </div>
         </div>
@@ -356,16 +349,10 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
 
   </div>
 </div>
-<!--/Facebookstuff-->
- <script id='facebook-jssdk' src="//connect.facebook.net/es_ES/sdk.js"></script>
  <script>
- window.fbAsyncInit = function() {
-   FB.init({
-     appId      : '865176766847011',
-     xfbml      : true,
-     version    : 'v2.2'
-   });
- };
+   if (typeof FB !== "undefined" && FB != null) {
+     FB.XFBML.parse();
+   }
  </script>
 """));
 tc.put("packages/webclient/components/account/remember_password_comp.html", new HttpResponse(200, r"""<div id="rememberPasswordRoot" ng-show="!loadingService.isLoading">
@@ -598,7 +585,7 @@ tc.put("packages/webclient/components/contest_filters_comp.html", new HttpRespon
   </div>
 </div>"""));
 tc.put("packages/webclient/components/contest_header_comp.html", new HttpResponse(200, r"""<div id="contestHeaderWrapper">
-  <div ng-if="isInsideAModal" class="border-top"></div>
+  <div ng-if="isInsideModal" class="border-top"></div>
   <div class="contest-relevant-data">
     <div class="contest-name-description">
       <div class="contest-name">{{info['description']}}</div>
@@ -629,7 +616,7 @@ tc.put("packages/webclient/components/contest_header_comp.html", new HttpRespons
     </div>
   </div>
 
-  <div class="close-contest" ng-switch="isInsideAModal">
+  <div class="close-contest" ng-switch="isInsideModal">
     <button type="button" ng-switch-when="true"  class="close" data-dismiss="modal">   <span class="glyphicon glyphicon-remove"></span></button>
     <button type="button" ng-switch-when="false" class="close" ng-click="goToParent()"><span class="glyphicon glyphicon-remove"></span></button>
   </div>
@@ -646,14 +633,20 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
 
       <div class="tabs-background">
         <!-- Nav tabs -->
-        <ul class="contest-info-tabs " id="modalInfoContestTabs">
-            <li class="tab active"><a data-toggle="tab" ng-click="tabChange('info')">INFORMACIÓN</a></li>
-            <li class="tab"><a data-toggle="tab" ng-click="tabChange('contestants')">PARTICIPANTES</a></li>
-            <li class="tab"><a data-toggle="tab" ng-click="tabChange('prizes')">PREMIOS</a></li>
-            <li class="buton-place">
-              <button id="btn-go-enter-contest" class="btn btn-primary" ng-click="enterContest()">ENTRAR</button>
-            </li>
-        </ul>
+        <div class="tabs-navigation">
+          <ul class="contest-info-tabs " id="modalInfoContestTabs">
+              <li class="tab active"><a data-toggle="tab" ng-click="tabChange('info')">INFORMACIÓN</a></li>
+              <li class="tab"><a data-toggle="tab" ng-click="tabChange('contestants')">PARTICIPANTES</a></li>
+              <li class="tab"><a data-toggle="tab" ng-click="tabChange('prizes')">PREMIOS</a></li>
+              <!--<li class="buton-place">
+                <button id="btn-go-enter-contest" class="btn btn-primary" ng-click="enterContest()">ENTRAR</button>
+              </li>-->
+          </ul>
+
+          <div id="enterContestButton">
+            <button id="btn-go-enter-contest" class="btn btn-primary" ng-click="enterContest()">ENTRAR</button>
+          </div>
+        </div>
       </div>
 
       <div class="contest-info-content" id="modalInfoContestTabContent">
@@ -1092,7 +1085,7 @@ tc.put("packages/webclient/components/landing_page_comp.html", new HttpResponse(
 
     <div class="main-title-wrapper">
 
-      <div class="main-title">LIGAS FANTÁSTICAS DIARIAS</div>
+      <div class="main-title">LIGAS FANTÁSTICAS<br>DIARIAS</div>
       <div class="separator-wrapper">
         <img src="images/separator.png"/>
       </div>

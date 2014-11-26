@@ -7902,6 +7902,9 @@ fieldset[disabled] .contests-list-root .contest-row .column-contest-action .acti
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+.contests-list-root .contest-row .column-contest-action .action-button:focus {
+  outline: none !important;
+}
 .contests-list-root .contest-row .column-contest-action .action-button:hover,
 .contests-list-root .contest-row .column-contest-action .action-button:focus,
 .contests-list-root .contest-row .column-contest-action .action-button:active,
@@ -7948,9 +7951,6 @@ fieldset[disabled] .contests-list-root .contest-row .column-contest-action .acti
 fieldset[disabled] .contests-list-root .contest-row .column-contest-action .action-button {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
-}
-.contests-list-root .contest-row .column-contest-action .action-button:focus {
-  outline: none !important;
 }
 @media (max-width: 767px) {
   .contests-list-root .contest-row .column-contest-action {
@@ -8340,6 +8340,9 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save:focus {
+  outline: none !important;
+}
 #personalDataContent .save-changes-content .forms-wrapper-button .action-button-save:hover,
 #personalDataContent .save-changes-content .forms-wrapper-button .action-button-save:focus,
 #personalDataContent .save-changes-content .forms-wrapper-button .action-button-save:active,
@@ -8386,9 +8389,6 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
 fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-button .action-button-save {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
-}
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save:focus {
-  outline: none !important;
 }
 @media (min-width: 992px) {
   #personalDataContent .save-changes-content .forms-wrapper-button .action-button-save {
@@ -8467,6 +8467,9 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+#personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel:focus {
+  outline: none !important;
+}
 #personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel:hover,
 #personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel:focus,
 #personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel:active,
@@ -8508,9 +8511,6 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
 fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
-}
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel:focus {
-  outline: none !important;
 }
 @media (min-width: 992px) {
   #personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel {
@@ -8772,6 +8772,9 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+.fantasy-team-header .edit-team .btn-edit-team:focus {
+  outline: none !important;
+}
 .fantasy-team-header .edit-team .btn-edit-team:hover,
 .fantasy-team-header .edit-team .btn-edit-team:focus,
 .fantasy-team-header .edit-team .btn-edit-team:active,
@@ -8818,9 +8821,6 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team.active {
 fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
-}
-.fantasy-team-header .edit-team .btn-edit-team:focus {
-  outline: none !important;
 }
 @media (max-width: 767px) {
   .fantasy-team-header .edit-team {
@@ -9432,6 +9432,9 @@ fieldset[disabled] #rootFooter .user-info-sup-footer .add-funds-button {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+#rootFooter .user-info-sup-footer .add-funds-button:focus {
+  outline: none !important;
+}
 #rootFooter .user-info-sup-footer .add-funds-button:hover,
 #rootFooter .user-info-sup-footer .add-funds-button:focus,
 #rootFooter .user-info-sup-footer .add-funds-button:active,
@@ -9478,9 +9481,6 @@ fieldset[disabled] #rootFooter .user-info-sup-footer .add-funds-button.active {
 fieldset[disabled] #rootFooter .user-info-sup-footer .add-funds-button {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
-}
-#rootFooter .user-info-sup-footer .add-funds-button:focus {
-  outline: none !important;
 }
 @media (max-width: 991px) {
   #rootFooter .user-info-sup-footer .add-funds-button {
@@ -10205,6 +10205,9 @@ fieldset[disabled] .button-play-base {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+.button-play-base:focus {
+  outline: none !important;
+}
 .button-play-base:hover,
 .button-play-base:focus,
 .button-play-base:active,
@@ -10251,9 +10254,6 @@ fieldset[disabled] .button-play-base.active {
 fieldset[disabled] .button-play-base {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
-}
-.button-play-base:focus {
-  outline: none !important;
 }
 @media (max-width: 767px) {
   .button-play-base {
@@ -10328,6 +10328,9 @@ fieldset[disabled] .button-wrap .button-play {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+.button-wrap .button-play:focus {
+  outline: none !important;
+}
 .button-wrap .button-play:hover,
 .button-wrap .button-play:focus,
 .button-wrap .button-play:active,
@@ -10374,9 +10377,6 @@ fieldset[disabled] .button-wrap .button-play.active {
 fieldset[disabled] .button-wrap .button-play {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
-}
-.button-wrap .button-play:focus {
-  outline: none !important;
 }
 @media (max-width: 767px) {
   .button-wrap .button-play {
@@ -10445,6 +10445,9 @@ fieldset[disabled] .button-wrap .button-play-mobile {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+.button-wrap .button-play-mobile:focus {
+  outline: none !important;
+}
 .button-wrap .button-play-mobile:hover,
 .button-wrap .button-play-mobile:focus,
 .button-wrap .button-play-mobile:active,
@@ -10491,9 +10494,6 @@ fieldset[disabled] .button-wrap .button-play-mobile.active {
 fieldset[disabled] .button-wrap .button-play-mobile {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
-}
-.button-wrap .button-play-mobile:focus {
-  outline: none !important;
 }
 @media (max-width: 767px) {
   .button-wrap .button-play-mobile {
@@ -11079,9 +11079,6 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters #contestFastSort .so
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
 }
-#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:focus {
-  outline: none !important;
-}
 @media (max-width: 767px) {
   #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button {
     font-family: 'Open Sans', sans-serif;
@@ -11371,6 +11368,9 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:focus {
+  outline: none !important;
+}
 #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:hover,
 #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:focus,
 #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:active,
@@ -11417,9 +11417,6 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
 fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
-}
-#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:focus {
-  outline: none !important;
 }
 @media (min-width: 768px) {
   #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button {
@@ -12542,6 +12539,9 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:focus {
+  outline: none !important;
+}
 #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:hover,
 #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:focus,
 #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:active,
@@ -12583,9 +12583,6 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-
 fieldset[disabled] #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
-}
-#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:focus {
-  outline: none !important;
 }
 #contestFiltersRoot #filtersPanel .confirm-button-wrapper {
   float: left;
@@ -12675,6 +12672,9 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .bt
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:focus {
+  outline: none !important;
+}
 #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:hover,
 #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:focus,
 #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:active,
@@ -12721,9 +12721,6 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .bt
 fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
-}
-#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:focus {
-  outline: none !important;
 }
 main-menu-slide {
   display: block;
@@ -12972,6 +12969,9 @@ main-menu-slide {
     -webkit-box-shadow: none;
     box-shadow: none;
   }
+  #mainMenu .add-funds-button:focus {
+    outline: none !important;
+  }
   #mainMenu .add-funds-button:hover,
   #mainMenu .add-funds-button:focus,
   #mainMenu .add-funds-button:active,
@@ -13018,9 +13018,6 @@ main-menu-slide {
   fieldset[disabled] #mainMenu .add-funds-button {
     box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
     margin-top: 4px;
-  }
-  #mainMenu .add-funds-button:focus {
-    outline: none !important;
   }
   #mainMenu .dropdown-toggle {
     white-space: nowrap;
@@ -13257,6 +13254,9 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-base {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+#mainMenu #menuNotLoggedIn .button-wrapper .button-base:focus {
+  outline: none !important;
+}
 #mainMenu #menuNotLoggedIn .button-wrapper .button-base:active {
   margin-top: 10px !important;
 }
@@ -13319,6 +13319,9 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+#mainMenu #menuNotLoggedIn .button-wrapper .button-join:focus {
+  outline: none !important;
+}
 #mainMenu #menuNotLoggedIn .button-wrapper .button-join:active {
   margin-top: 10px !important;
 }
@@ -13368,9 +13371,6 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join.activ
 fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
-}
-#mainMenu #menuNotLoggedIn .button-wrapper .button-join:focus {
-  outline: none !important;
 }
 #mainMenu #menuNotLoggedIn .button-wrapper .button-login {
   display: inline-block;
@@ -13431,6 +13431,9 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-login {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+#mainMenu #menuNotLoggedIn .button-wrapper .button-login:focus {
+  outline: none !important;
+}
 #mainMenu #menuNotLoggedIn .button-wrapper .button-login:active {
   margin-top: 10px !important;
 }
@@ -13480,9 +13483,6 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-login.acti
 fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-login {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
-}
-#mainMenu #menuNotLoggedIn .button-wrapper .button-login:focus {
-  outline: none !important;
 }
 @media (max-width: 991px) {
   #myContest {
@@ -13765,6 +13765,9 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+.no-contests-wrapper .no-contest-bottom-row .btn-go-to-contest:focus {
+  outline: none !important;
+}
 .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contest:hover,
 .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contest:focus,
 .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contest:active,
@@ -13811,9 +13814,6 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
 fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contest {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
-}
-.no-contests-wrapper .no-contest-bottom-row .btn-go-to-contest:focus {
-  outline: none !important;
 }
 .list-container {
   background-color: #ffffff;
@@ -14129,6 +14129,9 @@ fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .btn-cancel {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+#modalSoccerPlayerInfo .action-buttons .btn-cancel:focus {
+  outline: none !important;
+}
 #modalSoccerPlayerInfo .action-buttons .btn-add {
   position: relative;
   float: left;
@@ -14194,6 +14197,9 @@ fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .btn-add {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+#modalSoccerPlayerInfo .action-buttons .btn-add:focus {
+  outline: none !important;
+}
 #modalSoccerPlayerInfo .action-buttons .btn-add:hover,
 #modalSoccerPlayerInfo .action-buttons .btn-add:focus,
 #modalSoccerPlayerInfo .action-buttons .btn-add:active,
@@ -14240,9 +14246,6 @@ fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .btn-add.active {
 fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .btn-add {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
-}
-#modalSoccerPlayerInfo .action-buttons .btn-add:focus {
-  outline: none !important;
 }
 #modalSoccerPlayerInfo .soccer-player-info-header {
   margin-right: auto;
@@ -14549,6 +14552,9 @@ fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .descriptio
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .btn-add:focus {
+  outline: none !important;
+}
 #modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .btn-add:hover,
 #modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .btn-add:focus,
 #modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .btn-add:active,
@@ -14590,9 +14596,6 @@ fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .descriptio
 fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .btn-add {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
-}
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .btn-add:focus {
-  outline: none !important;
 }
 #modalSoccerPlayerInfo .soccer-player-info-content {
   margin-right: auto;
@@ -15319,6 +15322,9 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-cancel-player-selection {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+.enter-contest-actions-wrapper .btn-cancel-player-selection:focus {
+  outline: none !important;
+}
 .enter-contest-actions-wrapper .btn-cancel-player-selection:hover,
 .enter-contest-actions-wrapper .btn-cancel-player-selection:focus,
 .enter-contest-actions-wrapper .btn-cancel-player-selection:active,
@@ -15360,9 +15366,6 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-cancel-player-selection.a
 fieldset[disabled] .enter-contest-actions-wrapper .btn-cancel-player-selection {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
-}
-.enter-contest-actions-wrapper .btn-cancel-player-selection:focus {
-  outline: none !important;
 }
 .enter-contest-actions-wrapper .button-wrapper {
   position: relative;
@@ -15450,6 +15453,9 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-clean-lineup-list {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+.enter-contest-actions-wrapper .btn-clean-lineup-list:focus {
+  outline: none !important;
+}
 .enter-contest-actions-wrapper .btn-clean-lineup-list:hover,
 .enter-contest-actions-wrapper .btn-clean-lineup-list:focus,
 .enter-contest-actions-wrapper .btn-clean-lineup-list:active,
@@ -15491,9 +15497,6 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-clean-lineup-list.active 
 fieldset[disabled] .enter-contest-actions-wrapper .btn-clean-lineup-list {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
-}
-.enter-contest-actions-wrapper .btn-clean-lineup-list:focus {
-  outline: none !important;
 }
 .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   display: inline-block;
@@ -15557,6 +15560,9 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+.enter-contest-actions-wrapper .btn-confirm-lineup-list:focus {
+  outline: none !important;
+}
 .enter-contest-actions-wrapper .btn-confirm-lineup-list:hover,
 .enter-contest-actions-wrapper .btn-confirm-lineup-list:focus,
 .enter-contest-actions-wrapper .btn-confirm-lineup-list:active,
@@ -15603,9 +15609,6 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list.activ
 fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
-}
-.enter-contest-actions-wrapper .btn-confirm-lineup-list:focus {
-  outline: none !important;
 }
 .enter-contest-actions-wrapper p {
   position: relative;
@@ -16142,6 +16145,9 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+.soccer-players-list .soccer-players-list-slot .column-action .action-button:focus {
+  outline: none !important;
+}
 .soccer-players-list .soccer-players-list-slot .column-action .action-button.add {
   color: #ffffff;
   background-color: #a1c931;
@@ -16195,9 +16201,6 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
 }
-.soccer-players-list .soccer-players-list-slot .column-action .action-button.add:focus {
-  outline: none !important;
-}
 .soccer-players-list .soccer-players-list-slot .column-action .action-button.remove {
   color: #ffffff;
   background-color: #59add5;
@@ -16250,9 +16253,6 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
 fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action .action-button.remove {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
-}
-.soccer-players-list .soccer-players-list-slot .column-action .action-button.remove:focus {
-  outline: none !important;
 }
 @media (max-width: 767px) {
   .soccer-players-filter {
@@ -16344,6 +16344,9 @@ fieldset[disabled] .soccer-players-filter .filter-by-position .button-filter-pos
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+.soccer-players-filter .filter-by-position .button-filter-position:focus {
+  outline: none !important;
+}
 .soccer-players-filter .filter-by-position .button-filter-position:hover,
 .soccer-players-filter .filter-by-position .button-filter-position:focus,
 .soccer-players-filter .filter-by-position .button-filter-position:active,
@@ -16390,9 +16393,6 @@ fieldset[disabled] .soccer-players-filter .filter-by-position .button-filter-pos
 fieldset[disabled] .soccer-players-filter .filter-by-position .button-filter-position {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
-}
-.soccer-players-filter .filter-by-position .button-filter-position:focus {
-  outline: none !important;
 }
 .soccer-players-filter .filter-by-position .button-filter-position.active {
   background-color: #ffffff;
@@ -17142,6 +17142,9 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+.main-box .panel .panel-body .new-row .enter-button:focus {
+  outline: none !important;
+}
 .main-box .panel .panel-body .new-row .enter-button:hover,
 .main-box .panel .panel-body .new-row .enter-button:focus,
 .main-box .panel .panel-body .new-row .enter-button:active,
@@ -17188,9 +17191,6 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button.active {
 fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
-}
-.main-box .panel .panel-body .new-row .enter-button:focus {
-  outline: none !important;
 }
 .main-box .panel .panel-body .new-row .enter-button-half {
   display: inline-block;
@@ -17257,6 +17257,9 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button-half {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+.main-box .panel .panel-body .new-row .enter-button-half:focus {
+  outline: none !important;
+}
 .main-box .panel .panel-body .new-row .enter-button-half:hover,
 .main-box .panel .panel-body .new-row .enter-button-half:focus,
 .main-box .panel .panel-body .new-row .enter-button-half:active,
@@ -17303,9 +17306,6 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button-half.acti
 fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button-half {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
-}
-.main-box .panel .panel-body .new-row .enter-button-half:focus {
-  outline: none !important;
 }
 .main-box .panel .panel-body .new-row .cancel-button-half {
   display: inline-block;
@@ -17372,6 +17372,9 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+.main-box .panel .panel-body .new-row .cancel-button-half:focus {
+  outline: none !important;
+}
 .main-box .panel .panel-body .new-row .cancel-button-half:hover,
 .main-box .panel .panel-body .new-row .cancel-button-half:focus,
 .main-box .panel .panel-body .new-row .cancel-button-half:active,
@@ -17413,9 +17416,6 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half.act
 fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
-}
-.main-box .panel .panel-body .new-row .cancel-button-half:focus {
-  outline: none !important;
 }
 .main-box .panel .panel-body .new-row .small-text {
   font-family: 'Open Sans', sans-serif;
@@ -17943,6 +17943,9 @@ fieldset[disabled] .profile-content .action-button {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+.profile-content .action-button:focus {
+  outline: none !important;
+}
 .profile-content .action-button:hover,
 .profile-content .action-button:focus,
 .profile-content .action-button:active,
@@ -17989,9 +17992,6 @@ fieldset[disabled] .profile-content .action-button.active {
 fieldset[disabled] .profile-content .action-button {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
-}
-.profile-content .action-button:focus {
-  outline: none !important;
 }
 .profile-content .add-funds-button {
   display: inline-block;
@@ -18055,6 +18055,9 @@ fieldset[disabled] .profile-content .add-funds-button {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+.profile-content .add-funds-button:focus {
+  outline: none !important;
+}
 .profile-content .add-funds-button:hover,
 .profile-content .add-funds-button:focus,
 .profile-content .add-funds-button:active,
@@ -18101,9 +18104,6 @@ fieldset[disabled] .profile-content .add-funds-button.active {
 fieldset[disabled] .profile-content .add-funds-button {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
-}
-.profile-content .add-funds-button:focus {
-  outline: none !important;
 }
 .profile-content .data-key {
   font-family: 'Open Sans', sans-serif;
@@ -18226,6 +18226,9 @@ fieldset[disabled] .profile-content .add-funds-button {
     -webkit-box-shadow: none;
     box-shadow: none;
   }
+  .profile-content .personal-data .action-button:focus {
+    outline: none !important;
+  }
   .profile-content .personal-data .action-button:hover,
   .profile-content .personal-data .action-button:focus,
   .profile-content .personal-data .action-button:active,
@@ -18272,9 +18275,6 @@ fieldset[disabled] .profile-content .add-funds-button {
   fieldset[disabled] .profile-content .personal-data .action-button {
     box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
     margin-top: 4px;
-  }
-  .profile-content .personal-data .action-button:focus {
-    outline: none !important;
   }
 }
 @media (min-width: 768px) {
@@ -18406,6 +18406,9 @@ fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+.profile-content .pocket-data .button-wrapper .action-button-transaction:focus {
+  outline: none !important;
+}
 .profile-content .pocket-data .button-wrapper .action-button-transaction:hover,
 .profile-content .pocket-data .button-wrapper .action-button-transaction:focus,
 .profile-content .pocket-data .button-wrapper .action-button-transaction:active,
@@ -18452,9 +18455,6 @@ fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-
 fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-transaction {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
-}
-.profile-content .pocket-data .button-wrapper .action-button-transaction:focus {
-  outline: none !important;
 }
 .profile-content .pocket-data .button-wrapper .action-button-get-funds {
   display: inline-block;
@@ -18519,6 +18519,9 @@ fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+.profile-content .pocket-data .button-wrapper .action-button-get-funds:focus {
+  outline: none !important;
+}
 .profile-content .pocket-data .button-wrapper .action-button-get-funds:hover,
 .profile-content .pocket-data .button-wrapper .action-button-get-funds:focus,
 .profile-content .pocket-data .button-wrapper .action-button-get-funds:active,
@@ -18565,9 +18568,6 @@ fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-
 fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-get-funds {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
-}
-.profile-content .pocket-data .button-wrapper .action-button-get-funds:focus {
-  outline: none !important;
 }
 @media (max-width: 991px) {
   .profile-content .pocket-data .button-wrapper {
@@ -18771,6 +18771,9 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-cancel-contest {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+.view-contest-entry-actions-wrapper .btn-cancel-contest:focus {
+  outline: none !important;
+}
 .view-contest-entry-actions-wrapper .btn-cancel-contest:hover,
 .view-contest-entry-actions-wrapper .btn-cancel-contest:focus,
 .view-contest-entry-actions-wrapper .btn-cancel-contest:active,
@@ -18812,9 +18815,6 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-cancel-contest.activ
 fieldset[disabled] .view-contest-entry-actions-wrapper .btn-cancel-contest {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
-}
-.view-contest-entry-actions-wrapper .btn-cancel-contest:focus {
-  outline: none !important;
 }
 .view-contest-entry-actions-wrapper .btn-back-contest {
   display: inline-block;
@@ -18878,6 +18878,9 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-back-contest {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+.view-contest-entry-actions-wrapper .btn-back-contest:focus {
+  outline: none !important;
+}
 .view-contest-entry-actions-wrapper .btn-back-contest:hover,
 .view-contest-entry-actions-wrapper .btn-back-contest:focus,
 .view-contest-entry-actions-wrapper .btn-back-contest:active,
@@ -18924,9 +18927,6 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-back-contest.active 
 fieldset[disabled] .view-contest-entry-actions-wrapper .btn-back-contest {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
-}
-.view-contest-entry-actions-wrapper .btn-back-contest:focus {
-  outline: none !important;
 }
 @media (min-width: 768px) {
   #viewContestEntry {
@@ -19140,6 +19140,9 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+#helpInfo .block-last .description-right .button-play:focus {
+  outline: none !important;
+}
 #helpInfo .block-last .description-right .button-play:hover,
 #helpInfo .block-last .description-right .button-play:focus,
 #helpInfo .block-last .description-right .button-play:active,
@@ -19186,9 +19189,6 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play.active 
 fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
-}
-#helpInfo .block-last .description-right .button-play:focus {
-  outline: none !important;
 }
 #helpInfo .toogle-block {
   max-width: 808px;
@@ -19767,6 +19767,9 @@ body {
   -o-transition: all 0.1s ease-out;
   transition: all 0.1s ease-out;
 }
+.btn:focus {
+  outline: none !important;
+}
 .btn-pressed:active,
 .btn-pressed[disabled],
 fieldset[disabled] .btn-pressed {
@@ -19787,9 +19790,6 @@ fieldset[disabled] .btn-default {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
 }
-.btn-default:focus {
-  outline: none !important;
-}
 .btn-primary {
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
 }
@@ -19803,9 +19803,6 @@ fieldset[disabled] .btn-default {
 fieldset[disabled] .btn-primary {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
-}
-.btn-primary:focus {
-  outline: none !important;
 }
 .btn-cancel {
   color: #ffffff;
@@ -19855,9 +19852,6 @@ fieldset[disabled] .btn-cancel {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
 }
-.btn-cancel:focus {
-  outline: none !important;
-}
 .btn-orange {
   color: #ffffff;
   background-color: #fa9c19;
@@ -19906,134 +19900,46 @@ fieldset[disabled] .btn-orange {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
 }
-.btn-orange:focus {
+button .close:focus {
   outline: none !important;
 }
-.button-fb {
-  display: inline-block;
-  margin-bottom: 0;
-  font-weight: normal;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  background-image: none;
-  border: 1px solid transparent;
-  white-space: nowrap;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  border-radius: 4px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  border-width: 0;
-  -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
-  -ms-transition: all 0.1s ease-out;
-  -o-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
-  color: #ffffff;
-  background-color: #59add5;
-  border-color: #cccccc;
-  box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
-  padding-left: 30px;
-  padding-right: 30px;
-  background-color: #4a65a0;
+.btn-fb-span {
+  background-color: transparent;
+  border: none;
+  transform: translateX(7px) translateY(-19px) scale(1.45);
+  height: 63px;
 }
-.button-fb:focus,
-.button-fb:active:focus,
-.button-fb.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
+@media (max-width: 767px) {
+  .btn-fb-span {
+    display: none !important;
+  }
 }
-.button-fb:hover,
-.button-fb:focus {
-  color: #ffffff;
-  text-decoration: none;
+.btn-fb-span .fb_iframe_widget {
+  border-radius: 0 0 5px 5px;
+  box-shadow: 0px 2px 0px rgba(89, 173, 213, 0.5);
 }
-.button-fb:active,
-.button-fb.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-.button-fb.disabled,
-.button-fb[disabled],
-fieldset[disabled] .button-fb {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-.button-fb:hover,
-.button-fb:focus,
-.button-fb:active,
-.button-fb.active,
-.open .dropdown-toggle.button-fb {
-  color: #ffffff;
-  background-color: #389dcd;
-  border-color: #adadad;
-}
-.button-fb:active,
-.button-fb.active,
-.open .dropdown-toggle.button-fb {
-  background-image: none;
-}
-.button-fb.disabled,
-.button-fb[disabled],
-fieldset[disabled] .button-fb,
-.button-fb.disabled:hover,
-.button-fb[disabled]:hover,
-fieldset[disabled] .button-fb:hover,
-.button-fb.disabled:focus,
-.button-fb[disabled]:focus,
-fieldset[disabled] .button-fb:focus,
-.button-fb.disabled:active,
-.button-fb[disabled]:active,
-fieldset[disabled] .button-fb:active,
-.button-fb.disabled.active,
-.button-fb[disabled].active,
-fieldset[disabled] .button-fb.active {
-  background-color: #59add5;
-  border-color: #cccccc;
-}
-.button-fb .badge {
-  color: #59add5;
-  background-color: #ffffff;
-}
-.button-fb[disabled] {
-  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
-  color: #f8f8f8 !important;
-  cursor: not-allowed !important;
-}
-.button-fb:active,
-.button-fb[disabled],
-fieldset[disabled] .button-fb {
+.btn-fb-span .fb_iframe_widget:active,
+.btn-fb-span .fb_iframe_widget[disabled],
+fieldset[disabled] .btn-fb-span .fb_iframe_widget {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
-  margin-top: 4px;
+  margin-top: 1.2px;
 }
-.button-fb:focus {
-  outline: none !important;
+/*
+.button-fb {
+	.btn();
+	.btn-default();
+	padding-left: 30px;
+	padding-right: 30px;
+	background-color: @blueFB;
+	&:hover, &:active, &:focus  {
+		background-color: darken(@blueFB, 12%);
+		background-position: 0 -15px;
+	}
+	&::before {
+		.addIcon("iconFacebook.png", 24px, 24px);
+	}
 }
-.button-fb:hover,
-.button-fb:active,
-.button-fb:focus {
-  background-color: #374b76;
-  background-position: 0 -15px;
-}
-.button-fb::before {
-  content: " ";
-  background-image: url("../images/iconFacebook.png");
-  width: 24px;
-  height: 24px;
-  display: inline-block;
-  vertical-align: middle;
-}
+*/
 .clean-paddings {
   padding-left: 0px;
   padding-right: 0px;

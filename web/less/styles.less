@@ -114,6 +114,9 @@ body {
 .btn {
 	border-width: 0;
     .transition(all, 0.1s, ease-out);
+    &:focus{
+		outline: none !important;
+	}
 }
 .btn-pressed {
 	&:active,
@@ -131,9 +134,6 @@ body {
 		cursor: not-allowed !important;
 	}	
 	.btn-pressed();
-	&:focus{
-		outline: none !important;
-	}
 }
 
 .btn-primary {
@@ -144,9 +144,6 @@ body {
 		cursor: not-allowed !important;
 	}
 	.btn-pressed();
-	&:focus{
-		outline: none !important;
-	}
 }
 
 // Color y borde del boton cancel (no esta definido en el bootstrap)
@@ -154,9 +151,6 @@ body {
 	.button-variant(@btn-default-color; @greyMed; @btn-default-border);
 	box-shadow: 0px 5px 0px rgba(red(@greyMed), green(@greyMed), blue(@greyMed), 0.5);
 	.btn-pressed();
-	&:focus{
-		outline: none !important;
-	}
 }
 
 // Color y borde del boton naranja (no esta definido en el bootstrap)
@@ -164,11 +158,31 @@ body {
 	.button-variant(@btn-default-color; @orange; @btn-default-border);
 	box-shadow: 0px 5px 0px rgba(red(@orange), green(@orange), blue(@orange), 0.5);
 	.btn-pressed();
+}
+
+button .close {
 	&:focus{
 		outline: none !important;
 	}
 }
-
+.btn-fb-span {
+	.hidden-xs();
+	background-color: transparent;
+	border: none;
+	transform: translateX(7px) translateY(-19px) scale(1.45);
+	height: 63px;
+   .fb_iframe_widget{
+		border-radius: 0 0 5px 5px;
+		box-shadow: 0px 2px 0px rgba(red(@blueLight), green(@blueLight), blue(@blueLight), 0.5);
+		&:active,
+		&[disabled],
+		fieldset[disabled] & {
+			box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
+			margin-top: 1.2px;
+		}
+	}	
+}
+/*
 .button-fb {
 	.btn();
 	.btn-default();
@@ -183,7 +197,7 @@ body {
 		.addIcon("iconFacebook.png", 24px, 24px);
 	}
 }
-
+*/
 //Funcion para quitar paddings al container
 .clean-paddings {
 	padding-left: 0px;

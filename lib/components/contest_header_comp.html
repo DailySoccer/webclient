@@ -1,5 +1,5 @@
 <div id="contestHeaderWrapper">
-  <div ng-if="isInsideAModal" class="border-top"></div>
+  <div ng-if="isInsideModal" class="border-top"></div>
   <div class="contest-relevant-data">
     <div class="contest-name-description">
       <div class="contest-name">{{info['description']}}</div>
@@ -31,8 +31,8 @@
   </div>
 
   <div class="close-contest" >
-    <button type="button" ng-if="isInsideAModal"  class="close" data-dismiss="modal">   <span class="glyphicon glyphicon-remove"></span></button>
-    <button type="button" ng-if="!isInsideAModal" class="close" ng-click="goToParent()"><span class="glyphicon glyphicon-remove"></span></button>
+    <button type="button" ng-if="isInsideModal"  class="close" data-dismiss="modal">   <span class="glyphicon glyphicon-remove"></span></button>
+    <button type="button" ng-if="!isInsideModal" class="close" ng-click="goToParent()"><span class="glyphicon glyphicon-remove"></span></button>
   </div>
 
 </div>

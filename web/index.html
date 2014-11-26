@@ -152,8 +152,8 @@
     <script src="bootstrap-switch/js/bootstrap-switch.min.js"></script>
 
     <!-- Facebook Stuff -->
-
-     <script id='facebook-jssdk' src="//connect.facebook.net/es_ES/sdk.js"></script>
+     <!-- probando con defer para que no se quede pillado al cargar -->
+     <script id='facebook-jssdk' src="//connect.facebook.net/es_ES/sdk.js" defer></script>
      <script>
      window.fbAsyncInit = function() {
        FB.init({

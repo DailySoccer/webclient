@@ -5851,8 +5851,8 @@ scoring-rules:after,
 #contestFiltersRoot #filtersPanel .filters-panel-row:after,
 .resume-bar:before,
 .resume-bar:after,
-.no-contests-wrapper .no-contest-bottom-row:before,
-.no-contests-wrapper .no-contest-bottom-row:after,
+.no-contests-wrapper:before,
+.no-contests-wrapper:after,
 #promosComponent:before,
 #promosComponent:after,
 #modalSoccerPlayerInfo .soccer-player-info-header:before,
@@ -5959,7 +5959,7 @@ scoring-rules:after,
 #contestFiltersRoot #filtersPanel:after,
 #contestFiltersRoot #filtersPanel .filters-panel-row:after,
 .resume-bar:after,
-.no-contests-wrapper .no-contest-bottom-row:after,
+.no-contests-wrapper:after,
 #promosComponent:after,
 #modalSoccerPlayerInfo .soccer-player-info-header:after,
 #modalSoccerPlayerInfo .soccer-player-info-content:after,
@@ -6940,6 +6940,9 @@ button#contestInfoModal .modal-info-head button.close {
   margin: 0;
   padding: 0;
 }
+#contestInfoModal .modal-info-content .tabs-navigation #modalInfoContestTabs li:last-child {
+  width: 33.33433333%;
+}
 #contestInfoModal .modal-info-content .tabs-navigation #modalInfoContestTabs > li {
   position: relative;
   float: left;
@@ -6959,12 +6962,22 @@ button#contestInfoModal .modal-info-head button.close {
   cursor: pointer;
   line-height: 50px;
   text-align: center;
-  color: #ffffff;
   display: block;
   text-decoration: none;
   overflow: hidden;
   white-space: nowrap;
-  font-size: 11pt;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #ffffff;
+}
+@media (max-width: 767px) {
+  #contestInfoModal .modal-info-content .tabs-navigation #modalInfoContestTabs > li a {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 8pt;
+    color: #ffffff;
+  }
 }
 #contestInfoModal .modal-info-content .tabs-navigation #modalInfoContestTabs > li[disabled] {
   background-color: #afd3e4;
@@ -10509,6 +10522,9 @@ fieldset[disabled] .button-wrap .button-play-mobile {
     display: none !important;
   }
 }
+#viewContestRoot .view-contest-tabs li:last-child {
+  width: 33.33433333%;
+}
 #viewContestRoot .view-contest-tabs > li {
   position: relative;
   float: left;
@@ -10528,12 +10544,22 @@ fieldset[disabled] .button-wrap .button-play-mobile {
   cursor: pointer;
   line-height: 50px;
   text-align: center;
-  color: #ffffff;
   display: block;
   text-decoration: none;
   overflow: hidden;
   white-space: nowrap;
-  font-size: 11pt;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #ffffff;
+}
+@media (max-width: 767px) {
+  #viewContestRoot .view-contest-tabs > li a {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 8pt;
+    color: #ffffff;
+  }
 }
 #viewContestRoot .view-contest-tabs > li[disabled] {
   background-color: #afd3e4;
@@ -11308,10 +11334,13 @@ textarea#contestFiltersRoot #contestSortsFilters #contestFastSearch .searcher {
   -ms-transition: all 0.1s ease-out;
   -o-transition: all 0.1s ease-out;
   transition: all 0.1s ease-out;
-  color: #ffffff;
   background-color: #59add5;
   border-color: #cccccc;
   box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #ffffff;
 }
 #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:focus,
 #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:active:focus,
@@ -13559,6 +13588,14 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-login {
   text-align: center;
   min-height: 39px;
 }
+@media (max-width: 767px) {
+  .resume-bar .information-no-contest {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 7pt;
+    color: #ffffff;
+  }
+}
 .contest-count {
   background-color: #fa9c19;
   border-width: 1px;
@@ -13572,6 +13609,9 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-login {
   list-style-type: none;
   margin: 0;
   padding: 0;
+}
+#myContestMenuTabs li:last-child {
+  width: 33.33433333%;
 }
 #myContestMenuTabs > li {
   position: relative;
@@ -13592,12 +13632,22 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-login {
   cursor: pointer;
   line-height: 50px;
   text-align: center;
-  color: #ffffff;
   display: block;
   text-decoration: none;
   overflow: hidden;
   white-space: nowrap;
-  font-size: 11pt;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #ffffff;
+}
+@media (max-width: 767px) {
+  #myContestMenuTabs > li a {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 8pt;
+    color: #ffffff;
+  }
 }
 #myContestMenuTabs > li[disabled] {
   background-color: #afd3e4;
@@ -13610,15 +13660,46 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-login {
 #myContestMenuTabs .active {
   background-color: #214a5f;
 }
-.no-contests-wrapper > img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-.no-contests-wrapper .no-contest-bottom-row {
-  background-color: #ffffff;
+.no-contests-wrapper {
   margin-left: 0;
   margin-right: 0;
+}
+.no-contests-wrapper .no-contests-content {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: #ffffff;
+  text-align: center;
+}
+.no-contests-wrapper .no-contests-content .no-contests-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #afafaf;
+}
+@media (max-width: 767px) {
+  .no-contests-wrapper .no-contests-content .no-contests-text {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 7pt;
+    color: #afafaf;
+  }
+}
+.no-contests-wrapper .no-contests-content .no-contests-text strong {
+  color: #214a5f;
+  cursor: pointer;
+}
+.no-contests-wrapper .no-contest-bottom-row {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: #ffffff;
   padding-top: 30px;
   padding-bottom: 30px;
   border-radius: 0 0 10px 10px;
@@ -13733,31 +13814,6 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
 }
 .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contest:focus {
   outline: none !important;
-}
-.no-contests-wrapper .no-contests-content {
-  position: relative;
-  float: left;
-  width: 100%;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  background-color: #ffffff;
-  text-align: center;
-}
-@media (max-width: 767px) {
-  .no-contests-wrapper .no-contests-content {
-    padding-bottom: 30px;
-  }
-}
-.no-contests-wrapper .no-contests-content .no-contests-text {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-  font-size: 8pt;
-  color: #afafaf;
-}
-.no-contests-wrapper .no-contests-content .no-contests-text strong {
-  color: #214a5f;
-  cursor: pointer;
 }
 .list-container {
   background-color: #ffffff;
@@ -15067,12 +15123,22 @@ fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .descriptio
   cursor: pointer;
   line-height: 50px;
   text-align: center;
-  color: #ffffff;
   display: block;
   text-decoration: none;
   overflow: hidden;
   white-space: nowrap;
-  font-size: 11pt;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #ffffff;
+}
+@media (max-width: 767px) {
+  .enter-contest-tabs > li a {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 8pt;
+    color: #ffffff;
+  }
 }
 .enter-contest-tabs > li[disabled] {
   background-color: #afd3e4;
@@ -18903,12 +18969,22 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-back-contest {
   cursor: pointer;
   line-height: 50px;
   text-align: center;
-  color: #ffffff;
   display: block;
   text-decoration: none;
   overflow: hidden;
   white-space: nowrap;
-  font-size: 11pt;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #ffffff;
+}
+@media (max-width: 767px) {
+  #viewContestEntry .view-contest-entry-tabs > li a {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 8pt;
+    color: #ffffff;
+  }
 }
 #viewContestEntry .view-contest-entry-tabs > li[disabled] {
   background-color: #afd3e4;
@@ -19241,12 +19317,22 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   cursor: pointer;
   line-height: 50px;
   text-align: center;
-  color: #ffffff;
   display: block;
   text-decoration: none;
   overflow: hidden;
   white-space: nowrap;
-  font-size: 11pt;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #ffffff;
+}
+@media (max-width: 767px) {
+  #helpInfo .help-info-tabs > li a {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 8pt;
+    color: #ffffff;
+  }
 }
 #helpInfo .help-info-tabs > li[disabled] {
   background-color: #afd3e4;
@@ -19990,7 +20076,7 @@ fieldset[disabled] .button-fb {
   .default-info-text {
     font-family: 'Exo', sans-serif;
     font-weight: 300;
-    font-size: 14pt;
+    font-size: 12pt;
     color: #0d75a6;
   }
 }

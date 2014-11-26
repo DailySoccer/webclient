@@ -17,7 +17,7 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
   String content;
   ScreenDetectorService scrDet;
 
-  int get screenHeight => _windowHeigtht;
+  int get screenHeight => window.innerHeight -70;
 
 
   LandingPageComp(this._router, this._profileService, this.scrDet, this._loadingService);
@@ -35,16 +35,14 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
     _bodyObj     = querySelector('body');
     _mainWrapper = querySelector('#mainWrapper');
 
-    _bodyObj.classes.add('fondo-negro');
+    //_bodyObj.classes.add('fondo-negro');
     _mainWrapper.classes
-      ..clear()
+      ..remove('wrapper-content-container')
       ..add('landing-wrapper');
 
     _mainContent = querySelector('#mainContent');
-    _mainContent.classes.clear();
-    _mainContent.classes.add('unlogged-margin');
-
-    _windowHeigtht = window.innerHeight;
+    _mainContent.classes
+      ..remove('main-content-container');
   }
 
   void detach() {
@@ -55,13 +53,14 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
 
     if (_mainWrapper != null) {
       _mainWrapper.classes
-        ..clear()
+        ..remove('landing-wrapper')
         ..add('wrapper-content-container');
     }
 
     if (_mainContent != null) {
-      _mainContent.classes.clear();
-      _mainContent.classes.add('main-content-container');
+      _mainContent.classes
+        ..remove('unlogged-margin')
+        ..add('main-content-container');
     }
   }
 

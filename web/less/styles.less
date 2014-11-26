@@ -63,20 +63,16 @@ html { overflow-y: scroll; }
 
 // El modal viene en boostrap como overflow-y: scroll (siempre se ve barra). Preferimos
 // que solo se vea si realmente se necesita.
-#modalRoot {
-	overflow-y: auto;
-}
+#modalRoot { overflow-y: auto; }
 
-#mainApp {
-	height: 100%;
-}
+#mainApp { height: 100%; }
 
 body {
-		background-color: @black;
-		background-image: url("@{images}/landingBackground.jpg");
-		background-size: cover;
-		background-position: center top;
-		background-repeat: no-repeat;
+	background-color: @black;
+	background-image: url("@{images}/landingBackground.jpg");
+	background-size: cover;
+	background-position: center top;
+	background-repeat: no-repeat;
 }
 
 // Contenedor exterior que envuelve a todo el contenido.
@@ -92,7 +88,6 @@ body {
 		@media (max-width: @screen-sm-max) {
 			.container-fluid();
 			.clean-paddings();
-
 		}
 		@media (min-width: @screen-md-min) {
 			.container();

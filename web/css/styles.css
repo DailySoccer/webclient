@@ -9796,9 +9796,6 @@ fieldset[disabled] #rootFooter .user-info-sup-footer .add-funds-button {
   margin-bottom: 5px;
   padding-bottom: 5px;
 }
-.unlogged-margin {
-  margin-top: -70px;
-}
 .landing-wrapper .screen .screen-background {
   position: relative;
   display: block;
@@ -9999,7 +9996,7 @@ fieldset[disabled] #rootFooter .user-info-sup-footer .add-funds-button {
   width: 100%;
   text-align: center;
   position: absolute;
-  top: 70px;
+  top: 0px;
 }
 .first-screen .main-title {
   font-family: 'Exo', sans-serif;

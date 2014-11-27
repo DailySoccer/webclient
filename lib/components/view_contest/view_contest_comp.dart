@@ -115,8 +115,6 @@ class ViewContestComp implements DetachAware {
     List<dynamic> allContentTab = document.querySelectorAll(".tab-pane");
     allContentTab.forEach((element) => element.classes.remove('active'));
 
-
-
     Element contentTab = document.querySelector("#" + tab);
     contentTab.classes.add("active");
 

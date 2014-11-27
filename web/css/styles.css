@@ -7415,6 +7415,19 @@ scoring-rules > .navbar-collapse {
     margin-left: 0;
   }
 }
+scoring-rules #scoringForAll .body {
+  height: 506px;
+}
+scoring-rules #scoringForGoalKeepers .body {
+  height: 154px;
+}
+scoring-rules #scoringForDefenders .body {
+  height: 66px;
+}
+scoring-rules #scoringForMidFielders .body,
+scoring-rules #scoringForForwards .body {
+  height: 22px;
+}
 .panel-points {
   float: left;
   width: 100%;

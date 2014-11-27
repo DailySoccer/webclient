@@ -6243,7 +6243,7 @@ scoring-rules:after,
 */
 contest-header {
   display: block;
-  min-height: 131px;
+  min-height: 125px;
 }
 @media (min-width: 768px) {
   contest-header {
@@ -6653,6 +6653,10 @@ contest-header {
 }
 #teamsPanelRoot .teams-comp-bar .teams-toggler-wrapper {
   background-color: #ffffff;
+  border-width: 1px;
+  border-style: none none solid none;
+  border-color: #777777;
+  border-radius: 0;
 }
 #teamsPanelRoot .teams-comp-bar .teams-toggler-wrapper .teams-toggler {
   font-family: 'Open Sans', sans-serif;
@@ -6692,10 +6696,6 @@ contest-header {
     padding: 0;
   }
   #teamsPanelRoot .teams-comp-bar .teams-container .top-border {
-    border-width: 1px;
-    border-style: solid none none none;
-    border-color: #777777;
-    border-radius: 0;
     height: 10px;
   }
   #teamsPanelRoot .teams-comp-bar .teams-container .bottom-border {
@@ -6975,7 +6975,7 @@ button#contestInfoModal .modal-info-head button.close {
   #contestInfoModal .modal-info-content .tabs-navigation #modalInfoContestTabs > li a {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
-    font-size: 8pt;
+    font-size: 9pt;
     color: #ffffff;
   }
 }
@@ -10502,6 +10502,7 @@ fieldset[disabled] .button-wrap .button-play-mobile {
   list-style-type: none;
   margin: 0;
   padding: 0;
+  height: 54px;
 }
 @media (min-width: 992px) and (max-width: 1199px) {
   #viewContestRoot .view-contest-tabs {
@@ -10548,7 +10549,7 @@ fieldset[disabled] .button-wrap .button-play-mobile {
   #viewContestRoot .view-contest-tabs > li a {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
-    font-size: 8pt;
+    font-size: 9pt;
     color: #ffffff;
   }
 }
@@ -13636,7 +13637,7 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-login {
   #myContestMenuTabs > li a {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
-    font-size: 8pt;
+    font-size: 9pt;
     color: #ffffff;
   }
 }
@@ -15130,7 +15131,7 @@ fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .descriptio
   .enter-contest-tabs > li a {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
-    font-size: 8pt;
+    font-size: 9pt;
     color: #ffffff;
   }
 }
@@ -18922,6 +18923,7 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-back-contest {
   list-style-type: none;
   margin: 0;
   padding: 0;
+  height: 54px;
 }
 @media (min-width: 992px) and (max-width: 1199px) {
   #viewContestEntry .view-contest-entry-tabs {
@@ -18965,7 +18967,7 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-back-contest {
   #viewContestEntry .view-contest-entry-tabs > li a {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
-    font-size: 8pt;
+    font-size: 9pt;
     color: #ffffff;
   }
 }
@@ -19313,7 +19315,7 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   #helpInfo .help-info-tabs > li a {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
-    font-size: 8pt;
+    font-size: 9pt;
     color: #ffffff;
   }
 }

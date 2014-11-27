@@ -18,8 +18,10 @@
             <!-- Este sera el selector de partidos en "grande", con botones-->
             <matches-filter contest="contest" selected-option="matchFilter" ng-if="scrDet.isNotXsScreen"></matches-filter>
 
-            <div class="enter-contest-actions-wrapper" ng-if="scrDet.isXsScreen" ng-class="{'allocate-space':isSelectingSoccerPlayer}">
-              <div class="total-salary" ng-class="{'red-numbers':availableSalary < 0}"><span class="total-salary-money" ng-show="contest != null">{{availableSalary}}€</span></div>
+            <div class="enter-contest-actions-wrapper" ng-if="scrDet.isXsScreen">
+              <div class="total-salary" ng-class="{'red-numbers':availableSalary < 0}">
+                <span class="total-salary-money" ng-show="contest != null">{{availableSalary}}€</span>
+              </div>
               <button id="cancelSoccerPlayerSelection" type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer">CANCELAR</button>
             </div>
 

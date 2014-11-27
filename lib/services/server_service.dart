@@ -237,7 +237,7 @@ class DailySoccerServer implements ServerService {
           _checkServerVersion(error);
 
           ConnectionError connectionError = new ConnectionError.fromHttpResponse(error);
-          if (connectionError.isConnectionError || connectionError.isServerError) {
+          if (connectionError.isConnectionError || connectionError.isServerNotFoundError) {
             _notify(ON_ERROR, {ServerService.URL: url, ServerService.TIMES: retryTimes, ServerService.SECONDS_TO_RETRY: 3});
 
             Logger.root.severe("_innerServerCall error: $error, url: $url, retry: $retryTimes");
@@ -247,6 +247,11 @@ class DailySoccerServer implements ServerService {
             else {
               _processError(error, url, completer);
             }
+          }
+          else if (connectionError.isServerExceptionError) {
+            // Si se ha producido una excepcion en el servidor, navegaremos a la landing/lobby
+            Uri uri = Uri.parse(window.location.toString());
+            window.location.assign(uri.path);
           }
           else {
             _processError(error, url, completer);
@@ -261,19 +266,19 @@ class DailySoccerServer implements ServerService {
     // Como chequeamos tanto en success como en error, es posible que lo que nos llega no sea siempre un HttpResponse
     if (httpResponse is! HttpResponse) {
       Logger.root.severe("WTF 201 Aqui podriamos llegar en SERVER_ERROR, verificalo: " + httpResponse.toString());
-      window.location.reload(); // Bye. La llamada del cliente causo un problema en el servidor, le forzamos a recargar.
       return;
     }
 
     var serverVersion = httpResponse.headers("release-version");
-
-    if (_currentVersion != null) {
-      if (_currentVersion != serverVersion) {
-        window.location.reload();
+    if (serverVersion != null) {
+      if (_currentVersion != null) {
+        if (_currentVersion != serverVersion) {
+          window.location.reload();
+        }
       }
-    }
-    else {
-      _currentVersion = serverVersion;
+      else {
+        _currentVersion = serverVersion;
+      }
     }
   }
 

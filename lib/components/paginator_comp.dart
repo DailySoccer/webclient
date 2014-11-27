@@ -26,9 +26,10 @@ class PaginatorComp implements DetachAware, ShadowRootAware {
     _totalPages = (_listLength / _options["itemsPerPage"]).ceil();
 
     goToPage(_currentPage);
+    _isDirty = true;
   }
 
-  PaginatorComp(this._scrDet, this._rootElement) {
+  PaginatorComp(this._scrDet, this._rootElement, this._turnZone) {
     _originalPageLinksCount = _options["numPageLinksToDisplay"];
 
     // Si empezamos desde la versión XS el numero de botones es menor.
@@ -40,30 +41,39 @@ class PaginatorComp implements DetachAware, ShadowRootAware {
 
   @override void onShadowRoot(emulated) {
     _createTemplate();
-
    }
 
   void _createTemplate() {
     var text = '''
     <div class="paginator-wrapper">
-      <div class="paginator-box">
-        <!-- Aqui van los botones -->
-      </div>
+      <div class="paginator-box"></div>
     </div>
     ''';
 
     _rootElement.appendHtml(text);
-    buildMe();
+    // El proceso de generacion de slots corre fuera de la zona de angular. Los clicks que se capturan en los slots por lo tanto tb.
+    // Es decir, hacer un click en un boton de por si no genera un digest. Sin embargo, el click bublea al body (HtmlBodyClick) y ahi
+    // si que se genera un digest.
+    _turnZone.runOutsideAngular(() => _onAnimationFrame(0));
   }
 
   void detach() {
     _streamListener.cancel();
   }
 
+  void _onAnimationFrame(elapsed) {
+
+     if (_isDirty) {
+       buildMe();
+       _isDirty = false;
+     }
+
+     window.animationFrame.then(_onAnimationFrame);
+   }
+
   void buildMe() {
     if(_paginatorContainer == null) {
         _paginatorContainer = _rootElement.querySelector(".paginator-box");
-
         goToPage(_currentPage);
       }
     }
@@ -283,4 +293,6 @@ class PaginatorComp implements DetachAware, ShadowRootAware {
    ScreenDetectorService _scrDet;
 
    var _streamListener;
+   VmTurnZone _turnZone;
+   bool _isDirty = false;
 }

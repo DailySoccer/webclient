@@ -8,6 +8,7 @@ import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/models/connection_error.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/fblogin.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 @Component(
     selector: 'login',
@@ -20,7 +21,7 @@ class LoginComp implements ShadowRootAware {
   String password = "";
   String rememberMe;
 
-  bool get enabledSubmit => emailOrUsername.isNotEmpty && password.isNotEmpty && _enabledSubmit;
+  bool get enabledSubmit => StringUtils.isValidEmail(emailOrUsername) && password.isNotEmpty && _enabledSubmit;
 
   LoginComp(this._router, this._profileManager, this.loadingService, this._rootElement, this._scrDet) {
     _fbLogin = new FBLogin(_router, _profileManager);

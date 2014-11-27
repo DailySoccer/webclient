@@ -8,6 +8,7 @@ import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/models/connection_error.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/screen_detector_service.dart';
+import 'package:webclient/utils/fblogin.dart';
 
 @Component(
     selector: 'join',
@@ -61,7 +62,9 @@ class JoinComp implements ShadowRootAware {
 
   bool get enabledSubmit => nickName.length >= MIN_NICKNAME_LENGTH && StringUtils.isValidEmail(email) && password.length >= MIN_PASSWORD_LENGTH && password == rePassword && _enabledSubmit;
 
-  JoinComp(this._router, this._profileService, this.loadingService, this._rootElement, this._scrDet);
+  JoinComp(this._router, this._profileService, this.loadingService, this._rootElement, this._scrDet) {
+    _fbLogin = new FBLogin(_router, _profileService);
+  }
 
   void onShadowRoot(emulatedRoot) {
     nickNameElement   = _rootElement.querySelector("#groupNickName");
@@ -77,7 +80,7 @@ class JoinComp implements ShadowRootAware {
 
     passwordError = _rootElement.querySelector("#passwordError");
     passwordError.parent.style.display = 'none';
-    _scrDet.scrollTo('.panel-heading', offset: 0, duration:  500, smooth: true, ignoreInDesktop: false);
+    //_scrDet.scrollTo('.panel-heading', offset: 0, duration:  500, smooth: true, ignoreInDesktop: false);
   }
 
   void validateNickName() {
@@ -199,6 +202,8 @@ class JoinComp implements ShadowRootAware {
     }
     _router.go(routePath, parameters);
   }
+
+  FBLogin _fbLogin;
 
   Router _router;
   ProfileService _profileService;

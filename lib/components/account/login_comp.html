@@ -1,7 +1,7 @@
 <div id="loginRoot" ng-show="!loadingService.isLoading">
   <div id="loginBox" class="main-box">
 
-    <div class="panel window-slide-in">
+    <div class="panel">
 
       <!-- Header -->
       <div class="panel-heading">
@@ -13,13 +13,13 @@
 
       <div class="panel-body" >
 
-        <form id="loginForm" class="form-horizontal" ng-submit="login()" data-toggle="validator" role="form" formAutofillFix>
+        <form id="loginForm" class="form-horizontal" ng-submit="login()" role="form" formAutofillFix>
 
           <div class="form-description">Introduce tu cuenta de correo electrónico y tu contraseña para acceder a los torneos.</div>
           <!-- MAIL -->
           <div class="input-group">
             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-            <input id="login-mail" auto-focus ng-model="emailOrUsername" name="Email" placeholder="Nombre de usuario / Email" class="form-control" tabindex="1" autocapitalize="off">
+            <input id="login-mail" auto-focus ng-model="emailOrUsername" name="Email" placeholder="Email" class="form-control" tabindex="1" autocapitalize="off">
           </div>
           <!-- PÂSSWORD -->
           <div class="input-group">
@@ -56,17 +56,16 @@
             <div class="small-text">¿Aún no tienes cuenta? <a ng-click="navigateTo('join', {}, $event)"> Regístrate aquí! </a></div>
           </div>
         </form>
+
         <!--Facebook stuff-->
         <div class="input-group">
           <div class="new-row">
-            <div class="buttons-wapper">
-              <fb:login-button scope="public_profile,email" size="medium" onlogin="jsLoginFB()">
+            <div class="fb-button-wapper">
+              <fb:login-button scope="public_profile,email" size="large" onlogin="jsLoginFB()">
               </fb:login-button>
-              <!--button class="button-fb" id="fblogin" ng-click="loginFB()">Entra con Facebook</button-->
             </div>
           </div>
         </div>
-
 
       </div>
 
@@ -74,15 +73,8 @@
 
   </div>
 </div>
-<!--/Facebookstuff-->
- <script id='facebook-jssdk' src="//connect.facebook.net/es_ES/sdk.js"></script>
  <script>
- window.fbAsyncInit = function() {
-   FB.init({
-     appId      : '865176766847011',
-     xfbml      : true,
-     version    : 'v2.2'
-   });
- };
-
+   if (typeof FB !== "undefined" && FB != null) {
+     FB.XFBML.parse();
+   }
  </script>

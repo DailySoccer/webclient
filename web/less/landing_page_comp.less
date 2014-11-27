@@ -44,13 +44,7 @@
 	.hidden-sm();
 	.hidden-md();
 	.hidden-lg();
-	.background{
-		display: block;
-	 	margin-left: -438px;
-	 	position: relative;
-		left: 50%;
-		max-height: 520px;
-	}
+	background-image: url('@{images}/pattern.png');
 	.screen{
 		position: relative;
 	}
@@ -64,8 +58,10 @@
 		width: 100%;
 		text-align: center;
 		margin: 0 auto;
-		position: absolute;
-		top: 80px;
+		position: relative;
+		top: 20px;
+		overflow: hidden;
+		min-height: 380px;
 		.banner-top {
 			margin-bottom: 40px;
 		}
@@ -81,17 +77,11 @@
 			.opensans_bold(11pt, @white);
 			text-shadow: 2px 2px @black;
 			margin-bottom: 5px;
-
 			padding-bottom: 5px;
 		}
 	}
 }
 
-
-//la primera pantalla se pome por debajo del menu
-.unlogged-margin {
-	margin-top: -70px;
-}
 //wrapper que se añade por código dart a la web sólo para la landing
 .landing-wrapper{
 	.screen{
@@ -147,17 +137,10 @@
 		overflow: hidden;
 		max-height: 340px;
 	}
-	.slider-wrapper-mobile {
-		position: relative;
-		overflow: hidden;
-		min-height: 480px;
-		max-height: 480px;
-		width: 100%;
-		display: inline-block;
-	}
 }
 .wrapping-link {
 	text-decoration: none;
+	position: relative;
 }
 .more-info-section(@bgColor, @textColor, @imageName){
 	display: block;
@@ -194,7 +177,6 @@
 .first-screen {
 	.make-row(0);
 	position: relative;
-	//background-image: url('@{images}/landingBackground.jpg');
 	background-size: cover;
 
 		min-height: 700px;
@@ -213,7 +195,7 @@
 		width: 100%;
 		text-align: center;
 		position: absolute;
-		top: 70px;
+		top: 0px;
 	}
 	.main-title {
 		.exo_bold(72pt, @white);
@@ -238,11 +220,11 @@
 		left: 50%; 
 		top: 50%; 
 		position: absolute; 
-		-webkit-transform: translate(-50%, -45%);
-	  	-moz-transform: translate(-50%, -45%);
-	  	-ms-transform: translate(-50%, -45%);
-		-o-transform: translate(-50%, -45%);
-		transform: translate(-50%, -45%);
+		-webkit-transform: translate(-50%, -50%);
+	  	-moz-transform: translate(-50%, -50%);
+	  	-ms-transform: translate(-50%, -50%);
+		-o-transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%);
 	}
 	.modules-wrapper, .separator-wrapper {
 		.make-row(0);		

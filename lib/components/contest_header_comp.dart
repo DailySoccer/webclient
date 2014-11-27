@@ -31,8 +31,8 @@ class ContestHeaderComp implements DetachAware, ShadowRootAware {
 
   Contest contest;
 
-  @NgOneWay("contest")
-  void set oneWayContest(Contest value) {
+  @NgOneWayOneTime("contest")
+  void set setContest(Contest value) {
     if (value != null) {
       contest = value;
 
@@ -41,21 +41,18 @@ class ContestHeaderComp implements DetachAware, ShadowRootAware {
     }
   }
 
-  bool isInsideAModal = false;
+  bool isInsideModal = false;
   @NgAttr('modal')
-  void set modalModel(String value) {
-    if(value != null) {
-      if(value == "true") {
-        isInsideAModal = true;
-      }
+  void set setModal(String value) {
+    if (value != null) {
+      isInsideModal = value == "true";
     }
   }
-  String get modalModel => isInsideAModal.toString();
 
   // Cuando nos pasan el contestId, ya podemos empezar a mostrar informacion antes de que quien sea (enter_contest, view_contest...)
   // refresque su informacion de concurso (que siempre es mas completa que muchas (o todas) las cosas que necesitamos mostrar aqui)
-  @NgOneWay("contest-id")
-  void set contestId(String value) {
+  @NgOneWayOneTime("contest-id")
+  void set setContestId(String value) {
     if (value != null) {
       contest = _contestsService.getContestById(value);
 
@@ -66,7 +63,6 @@ class ContestHeaderComp implements DetachAware, ShadowRootAware {
 
   ContestHeaderComp(this._router, this._routeProvider, this.scrDet, this._contestsService, this._rootElement) {
     _count = new Timer.periodic(new Duration(seconds: 1), (Timer timer) => _refreshCountdownDate());
-    //isInsideAModal = (_router.activePath.length > 0) && (_router.activePath.first.name == 'lobby');
   }
 
   void _refreshCountdownDate() {
@@ -121,7 +117,7 @@ class ContestHeaderComp implements DetachAware, ShadowRootAware {
   }
 
   void onShadowRoot(emulatedRoot) {
-    if (isInsideAModal) {
+    if (isInsideModal) {
       _rootElement.classes.add('rounded-borders');
     }
   }

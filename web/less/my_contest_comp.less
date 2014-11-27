@@ -29,6 +29,9 @@
 		padding: 10px 10px 12px;
 		text-align: center;
 		min-height: 39px;
+		@media (max-width: @screen-xs-max) {
+			.opensans_bold(7pt, @white);
+		}
 	}
 }
 
@@ -44,42 +47,37 @@
 }
 
 .no-contests-wrapper{
-	> img {
-		.img-responsive();	
-	}
-	.no-contest-bottom-row {
-		background-color: @white;
-		.make-row(0);
-		padding-top: 30px;
-		padding-bottom: 30px;
-		border-radius: 0 0 10px 10px; 
-		
-		.btn-go-to-contest{
-			.btn();
-			.btn-primary();
-			
-			margin: 0 auto;
-			padding: 5px 60px;
-			display: block;
-		}
-	}	
+	.make-row(0);
 	.no-contests-content {
 		.make-xs-column(12);
 		background-color: @white;
 		text-align: center;
-		//padding-top: 30px;
-		//padding-bottom: 60px;
-		@media (max-width: @screen-xs-max) {
-			padding-bottom: 30px;
-		}
 		.no-contests-text {
 			.opensans_bold(8pt, @greyMed);
+			@media (max-width: @screen-xs-max) {
+				.opensans_bold(7pt, @greyMed);
+			}
 			strong {
 				color: @blueDark;
 				cursor: pointer;
 			}
 		}
 	}
+	.no-contest-bottom-row {
+		.make-xs-column(12);
+		background-color: @white;
+		padding-top: 30px;
+		padding-bottom: 30px;
+		border-radius: 0 0 10px 10px; 
+		
+		.btn-go-to-contest{
+			.btn();
+			.btn-primary();			
+			margin: 0 auto;
+			padding: 5px 60px;
+			display: block;
+		}
+	}	
 }
 
 .list-container {

@@ -9,7 +9,7 @@
       });
       wtf.trace.start();
     </script>
-  -->   
+  -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -100,7 +100,7 @@
       </div>
       <footer></footer>
     </div>
-    
+
     <script src="js/jquery.min.js"></script>
     <script>
       function facebookLogin(callback) {
@@ -150,6 +150,19 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="nouislider/jquery.nouislider.min.js"></script>
     <script src="bootstrap-switch/js/bootstrap-switch.min.js"></script>
+
+    <!-- Facebook Stuff -->
+     <!-- probando con defer para que no se quede pillado al cargar -->
+     <script id='facebook-jssdk' src="//connect.facebook.net/es_ES/sdk.js" defer></script>
+     <script>
+     window.fbAsyncInit = function() {
+       FB.init({
+         appId      : '865176766847011',
+         xfbml      : true,
+         version    : 'v2.2'
+       });
+     };
+     </script>
 
 
     <!-- Google Remarketing codes -->

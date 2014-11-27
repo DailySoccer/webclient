@@ -1,7 +1,7 @@
 <div id="joinRoot" ng-show="!loadingService.isLoading">
   <div id="signupbox" class="main-box">
 
-    <div class="panel window-slide-in">
+    <div class="panel">
 
       <div class="panel-heading">
         <div class="panel-title">REGÍSTRATE</div>
@@ -40,7 +40,7 @@
           </div>
           <!-- PASSWORD -->
           <div class="new-row bottom-separation-10">
-            <div class="small-text">Contraseña: Al menos {{MIN_PASSWORD_LENGTH}}. (Escríbela dos veces).</div>
+            <div class="small-text">Contraseña: Al menos {{MIN_PASSWORD_LENGTH}} caracteres. (Escríbela dos veces).</div>
           </div>
           <div id="groupPassword" class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
@@ -67,6 +67,19 @@
           <div class="new-row bottom-separation-10">
             <div class="small-text">¿Ya tienes cuenta? <a ng-click="navigateTo('login', {}, $event)"> Entra por aquí! </a></div>
           </div>
+
+          <!--
+          Facebook stuff-->
+          <div class="input-group">
+            <div class="new-row">
+              <div class="fb-button-wapper">
+                <fb:login-button scope="public_profile,email" size="large" onlogin="jsLoginFB()">
+                </fb:login-button>
+              </div>
+            </div>
+          </div>
+          <!-- -->
+
         </form>
 
       </div>
@@ -75,3 +88,8 @@
 
   </div>
 </div>
+ <script>
+ if (typeof FB !== "undefined" && FB != null) {
+   FB.XFBML.parse();
+ }
+ </script>

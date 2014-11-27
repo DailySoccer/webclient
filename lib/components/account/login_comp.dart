@@ -6,10 +6,9 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/models/connection_error.dart';
-import 'package:webclient/utils/js_utils.dart';
-import 'dart:js' as js;
-import 'package:logging/logging.dart';
 import 'package:webclient/services/screen_detector_service.dart';
+import 'package:webclient/utils/fblogin.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 @Component(
     selector: 'login',
@@ -22,48 +21,16 @@ class LoginComp implements ShadowRootAware {
   String password = "";
   String rememberMe;
 
-  bool get enabledSubmit => emailOrUsername.isNotEmpty && password.isNotEmpty && _enabledSubmit;
+  bool get enabledSubmit => StringUtils.isValidEmail(emailOrUsername) && password.isNotEmpty && _enabledSubmit;
 
   LoginComp(this._router, this._profileManager, this.loadingService, this._rootElement, this._scrDet) {
-    js.context['jsLoginFB'] = loginFB;
+    _fbLogin = new FBLogin(_router, _profileManager);
   }
 
   @override void onShadowRoot(emulatedRoot) {
     _errSection = _rootElement.querySelector("#mailPassError");
     _errSection.parent.parent.style.display = 'none';
-    _scrDet.scrollTo('.panel-heading', offset: 0, duration:  500, smooth: true, ignoreInDesktop: false);
-  }
-
-  void loginFB() {
-    //js.JsObject fb = js.context["FB"];
-    //fb.callMethod("getLoginStatus", [onGetLoginStatus]);
-    JsUtils.runJavascript(null, "getLoginStatus", [onGetLoginStatus], false, "FB");
-  }
-
-
-  void onGetLoginStatus(statusResponse) {
-    if (statusResponse["status"]=="connected") {
-      loginCallback(statusResponse);
-    }
-    else if (statusResponse["status"] == 'not_authorized') {
-      // El usuario no ha autorizado el uso de su facebook.
-    }
-    else {
-      JsUtils.runJavascript(null, "facebookLogin", [(js.JsObject loginResponse) {
-        if (loginResponse["status"]=="connected") {
-          loginCallback(loginResponse);
-        }
-      }]);
-    }
-  }
-
-
-  void loginCallback(loginResponse) {
-    _profileManager.facebookLogin(loginResponse["authResponse"]["accessToken"])
-                          .then((_) => _router.go("lobby", {}))
-                          .catchError((error) {
-                              Logger.root.severe(error);
-                              });
+    //_scrDet.scrollTo('.panel-heading', offset: 0, duration:  500, smooth: true, ignoreInDesktop: false);
   }
 
   void login() {
@@ -96,6 +63,8 @@ class LoginComp implements ShadowRootAware {
     }
     _router.go(routePath, parameters);
   }
+
+  FBLogin _fbLogin;
 
   Router _router;
   ProfileService _profileManager;

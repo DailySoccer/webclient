@@ -23,9 +23,12 @@
 	}
 	
 	.panel {
+		/*
 		@media (min-width: @screen-md-min) {
 			.slide-in-from-bottom-animation();
 		}
+		*/
+		.fadein-animation(0.5s);
 		border-width: 0px;
 		.panel-heading {	
 			@media (max-width: @screen-xs-max) {
@@ -108,7 +111,8 @@
 			.bottom-separation-10 { margin-bottom: 10px; }
 			.new-row {
 				.make-xs-column(12, 0);
-				.buttons-wapper { text-align: center; }
+				.buttons-wapper { height: 45px; text-align: center; }
+				.fb-button-wapper { height: 15px; text-align: center; margin-top: 20px; }
 				.enter-button {
    					.btn();
    					.btn-block();

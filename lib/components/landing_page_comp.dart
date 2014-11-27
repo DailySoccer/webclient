@@ -17,10 +17,12 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
   String content;
   ScreenDetectorService scrDet;
 
-  int get screenHeight => _windowHeigtht;
+  int get screenHeight => window.innerHeight -70;
 
 
-  LandingPageComp(this._router, this._profileService, this.scrDet, this._loadingService);
+  LandingPageComp(this._router, this._profileService, this.scrDet, this._loadingService) {
+    _streamListener = scrDet.mediaScreenWidth.listen(onScreenWidthChange);
+  }
 
   void smoothScrollTo(String selector) {
     scrDet.scrollTo(selector, offset: 0, duration:  500, smooth: true, ignoreInDesktop: false);
@@ -35,19 +37,22 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
     _bodyObj     = querySelector('body');
     _mainWrapper = querySelector('#mainWrapper');
 
-    _bodyObj.classes.add('fondo-negro');
+    //_bodyObj.classes.add('fondo-negro');
     _mainWrapper.classes
-      ..clear()
+      ..remove('wrapper-content-container')
       ..add('landing-wrapper');
 
     _mainContent = querySelector('#mainContent');
-    _mainContent.classes.clear();
-    _mainContent.classes.add('unlogged-margin');
+    _mainContent.classes
+      ..remove('main-content-container');
 
-    _windowHeigtht = window.innerHeight;
+    if(scrDet.isXsScreen) {
+      onScreenWidthChange("xs");
+    }
   }
 
   void detach() {
+    _streamListener.cancel();
 
     if (_bodyObj != null) {
       _bodyObj.classes.remove('fondo-negro');
@@ -55,20 +60,33 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
 
     if (_mainWrapper != null) {
       _mainWrapper.classes
-        ..clear()
+        ..remove('landing-wrapper')
         ..add('wrapper-content-container');
     }
 
     if (_mainContent != null) {
-      _mainContent.classes.clear();
-      _mainContent.classes.add('main-content-container');
+      _mainContent.classes
+        ..remove('unlogged-margin')
+        ..add('main-content-container');
+    }
+  }
+
+  void onScreenWidthChange(String msg) {
+    // Solo nos mostramos como modal en desktop
+    if (msg == "xs") {
+      Element container = querySelector('#mobileContent .content');
+      if (container != null) {
+        container.style.height = ('${window.innerHeight -130}px');
+      }
     }
   }
 
   void buttonPressed(String route) {
     _router.go(route, {});
-    smoothScrollTo('#mainWrapper');
+    scrDet.scrollTo('#mainWrapper', offset: 0, duration:  0, smooth: false, ignoreInDesktop: false);
   }
+
+  var _streamListener;
 
   int _windowHeigtht;
 

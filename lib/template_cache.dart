@@ -7,7 +7,7 @@ primeTemplateCache(TemplateCache tc) {
 tc.put("packages/webclient/components/account/change_password_comp.html", new HttpResponse(200, r"""<div id="changePasswordRoot">
   <div id="loginBox" class="main-box">
 
-    <div class="panel window-slide-in">
+    <div class="panel">
 
       <!-- Header -->
       <div class="panel-heading">
@@ -32,7 +32,7 @@ tc.put("packages/webclient/components/account/change_password_comp.html", new Ht
         <div ng-if="state=='STATE_INVALID_TOKEN'">
           El token proporcionado no es válido o ha expirado.
         </div>
-        <form  ng-if="state=='STATE_CHANGE_PASSWORD'" id="loginForm" class="form-horizontal" ng-submit="changePassword()" data-toggle="validator" role="form" formAutofillFix>
+        <form  ng-if="state=='STATE_CHANGE_PASSWORD'" id="loginForm" class="form-horizontal" ng-submit="changePassword()" role="form" formAutofillFix>
 
           <div class="form-description">Introduce tu cuenta de correo electrónico y tu contraseña para acceder a los torneos.</div>
 
@@ -79,19 +79,19 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
   <div class="edit-personal-data-modal-header">
     <span class="header-title">EDITAR CUENTA</span>
   </div>
-  <form id="editPersonalDataForm" class="form-horizontal" ng-submit="saveChanges()" data-toggle="validator" role="form" autocomplete="off">
+  <form id="editPersonalDataForm" class="form-horizontal" ng-submit="saveChanges()" role="form" autocomplete="off">
     <div class="content">
       <!-- Nombre -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtName" auto-focus type="text" ng-model="editedFirstName" name="firstName" placeholder="Nombre" class="form-control"  tabindex="1"></div>
+        <div class="control-wrapper"><input id="txtName" auto-focus type="text" ng-model="editedFirstName" placeholder="Nombre" class="form-control"  tabindex="1"></div>
       </div>
       <!-- Apelidos -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtLastName" type="text" ng-model="editedLastName" name="lastName" placeholder="Apellidos" class="form-control" tabindex="2"></div>
+        <div class="control-wrapper"><input id="txtLastName" type="text" ng-model="editedLastName" placeholder="Apellidos" class="form-control" tabindex="2"></div>
       </div>
       <!-- Nickname -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtNickName" type="text" ng-model="editedNickName" name="nickName" placeholder="Nombre de usuario" class="form-control" tabindex="3" autocapitalize="off"></div>
+        <div class="control-wrapper"><input id="txtNickName" type="text" ng-model="editedNickName" placeholder="Nombre de usuario" class="form-control" tabindex="3" autocapitalize="off"></div>
         <!-- Error de mail -->
         <div class="content-field"       ng-class="{'hidden':!hasNicknameError}">
           <div id="nickNameError" class="join-err-text" ng-class="{'errorDetected':hasNicknameError}">{{nicknameErrorText}}</div>
@@ -100,7 +100,7 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
 
       <!-- Correo Electrónico -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtEmail" type="email" ng-model="editedEmail" name="email" placeholder="Email" class="form-control" tabindex="4" autocapitalize="off"></div>
+        <div class="control-wrapper"><input id="txtEmail" type="email" ng-model="editedEmail" placeholder="Email" class="form-control" tabindex="4" autocapitalize="off"></div>
         <!-- Error de mail -->
         <div class="content-field"       ng-class="{'hidden':!hasEmailError}">
           <div id="emailError" class="join-err-text" ng-class="{'errorDetected':!hasEmailError}">{{emailErrorText}}</div>
@@ -113,7 +113,7 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
       </div>
       <!-- Contraseña -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtPassword" type="password" ng-model="editedPassword" name="password" placeholder="Contraseña" class="form-control" tabindex="5" autocapitalize="off"></div>
+        <div class="control-wrapper"><input id="txtPassword" type="password" ng-model="editedPassword" placeholder="Contraseña" class="form-control" tabindex="5" autocapitalize="off"></div>
         <!-- Error de contraseñas -->
         <div class="content-field-block" ng-class="{'hidden':!hasPasswordError}">
           <div id="passwordError" class="join-err-text"  ng-class="{'errorDetected':hasPasswordError}">{{passwordErrorText}}</div>
@@ -121,7 +121,7 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
       </div>
       <!-- Repetir Contraseña -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtRepeatPassword" type="password" ng-model="editedRepeatPassword" name="repeatPassword" placeholder="Repetir Contraseña" class="form-control" tabindex="6" autocapitalize="off"></div>
+        <div class="control-wrapper"><input id="txtRepeatPassword" type="password" ng-model="editedRepeatPassword" placeholder="Repetir Contraseña" class="form-control" tabindex="6" autocapitalize="off"></div>
       </div>
 
       <!-- Label Instrucciones contraseña -->
@@ -130,15 +130,15 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
       </div>
       <!-- Pais, Region y Ciudad
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtCountry" type="text" ng-model="country" name="contry" placeholder="País" class="form-control"></div>
+        <div class="control-wrapper"><input id="txtCountry" type="text" ng-model="country" placeholder="País" class="form-control"></div>
       </div>
 
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtRegion" type="text" ng-model="region" name="region" placeholder="Región" class="form-control"></div>
+        <div class="control-wrapper"><input id="txtRegion" type="text" ng-model="region" placeholder="Región" class="form-control"></div>
       </div>
 
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtCity" type="text" ng-model="city" name="city" placeholder="Ciudad" class="form-control"></div>
+        <div class="control-wrapper"><input id="txtCity" type="text" ng-model="city" placeholder="Ciudad" class="form-control"></div>
       </div>
        -->
     </div>
@@ -150,17 +150,17 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
 
         <div class="subscription-wrapper">
           <div class="subscription-label">NEWSLETTER/OFERTAS ESPECIALES</div>
-          <div class="check-wrapper"> <input type="checkbox" name="switchNewsletter" id="inputNewsletter"> </div>
+          <div class="check-wrapper"> <input type="checkbox" id="inputNewsletter"> </div>
         </div>
 
         <div class="subscription-wrapper">
           <div class="subscription-label">NOTIFICACIONES DE JUEGO</div>
-          <div class="check-wrapper"> <input type="checkbox" name="switchGameAlerts"> </div>
+          <div class="check-wrapper"> <input type="checkbox"> </div>
         </div>
 
         <div class="subscription-wrapper">
           <div class="subscription-label">NOTIFICACIONES DE TUS FICHAJES</div>
-          <div class="check-wrapper"> <input type="checkbox" name="switchsoccerPlayerAlerts"> </div>
+          <div class="check-wrapper"> <input type="checkbox"> </div>
         </div>
 
       </div>
@@ -181,7 +181,7 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
 tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(200, r"""<div id="joinRoot" ng-show="!loadingService.isLoading">
   <div id="signupbox" class="main-box">
 
-    <div class="panel window-slide-in">
+    <div class="panel">
 
       <div class="panel-heading">
         <div class="panel-title">REGÍSTRATE</div>
@@ -220,7 +220,7 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
           </div>
           <!-- PASSWORD -->
           <div class="new-row bottom-separation-10">
-            <div class="small-text">Contraseña: Al menos {{MIN_PASSWORD_LENGTH}}. (Escríbela dos veces).</div>
+            <div class="small-text">Contraseña: Al menos {{MIN_PASSWORD_LENGTH}} caracteres. (Escríbela dos veces).</div>
           </div>
           <div id="groupPassword" class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
@@ -247,6 +247,19 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
           <div class="new-row bottom-separation-10">
             <div class="small-text">¿Ya tienes cuenta? <a ng-click="navigateTo('login', {}, $event)"> Entra por aquí! </a></div>
           </div>
+
+          <!--
+          Facebook stuff-->
+          <div class="input-group">
+            <div class="new-row">
+              <div class="fb-button-wapper">
+                <fb:login-button scope="public_profile,email" size="large" onlogin="jsLoginFB()">
+                </fb:login-button>
+              </div>
+            </div>
+          </div>
+          <!-- -->
+
         </form>
 
       </div>
@@ -255,11 +268,16 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
 
   </div>
 </div>
+ <script>
+ if (typeof FB !== "undefined" && FB != null) {
+   FB.XFBML.parse();
+ }
+ </script>
 """));
 tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse(200, r"""<div id="loginRoot" ng-show="!loadingService.isLoading">
   <div id="loginBox" class="main-box">
 
-    <div class="panel window-slide-in">
+    <div class="panel">
 
       <!-- Header -->
       <div class="panel-heading">
@@ -271,13 +289,13 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
 
       <div class="panel-body" >
 
-        <form id="loginForm" class="form-horizontal" ng-submit="login()" data-toggle="validator" role="form" formAutofillFix>
+        <form id="loginForm" class="form-horizontal" ng-submit="login()" role="form" formAutofillFix>
 
           <div class="form-description">Introduce tu cuenta de correo electrónico y tu contraseña para acceder a los torneos.</div>
           <!-- MAIL -->
           <div class="input-group">
             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-            <input id="login-mail" auto-focus ng-model="emailOrUsername" name="Email" placeholder="Nombre de usuario / Email" class="form-control" tabindex="1" autocapitalize="off">
+            <input id="login-mail" auto-focus ng-model="emailOrUsername" name="Email" placeholder="Email" class="form-control" tabindex="1" autocapitalize="off">
           </div>
           <!-- PÂSSWORD -->
           <div class="input-group">
@@ -314,17 +332,16 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
             <div class="small-text">¿Aún no tienes cuenta? <a ng-click="navigateTo('join', {}, $event)"> Regístrate aquí! </a></div>
           </div>
         </form>
+
         <!--Facebook stuff-->
         <div class="input-group">
           <div class="new-row">
-            <div class="buttons-wapper">
-              <fb:login-button scope="public_profile,email" size="medium" onlogin="jsLoginFB()">
+            <div class="fb-button-wapper">
+              <fb:login-button scope="public_profile,email" size="large" onlogin="jsLoginFB()">
               </fb:login-button>
-              <!--button class="button-fb" id="fblogin" ng-click="loginFB()">Entra con Facebook</button-->
             </div>
           </div>
         </div>
-
 
       </div>
 
@@ -332,23 +349,16 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
 
   </div>
 </div>
-<!--/Facebookstuff-->
- <script id='facebook-jssdk' src="//connect.facebook.net/es_ES/sdk.js"></script>
  <script>
- window.fbAsyncInit = function() {
-   FB.init({
-     appId      : '865176766847011',
-     xfbml      : true,
-     version    : 'v2.2'
-   });
- };
-
+   if (typeof FB !== "undefined" && FB != null) {
+     FB.XFBML.parse();
+   }
  </script>
 """));
 tc.put("packages/webclient/components/account/remember_password_comp.html", new HttpResponse(200, r"""<div id="rememberPasswordRoot" ng-show="!loadingService.isLoading">
   <div id="loginBox" class="main-box">
 
-    <div class="panel window-slide-in">
+    <div class="panel">
 
       <!-- Header -->
       <div class="panel-heading">
@@ -575,7 +585,7 @@ tc.put("packages/webclient/components/contest_filters_comp.html", new HttpRespon
   </div>
 </div>"""));
 tc.put("packages/webclient/components/contest_header_comp.html", new HttpResponse(200, r"""<div id="contestHeaderWrapper">
-  <div ng-if="isInsideAModal" class="border-top"></div>
+  <div ng-if="isInsideModal" class="border-top"></div>
   <div class="contest-relevant-data">
     <div class="contest-name-description">
       <div class="contest-name">{{info['description']}}</div>
@@ -606,7 +616,7 @@ tc.put("packages/webclient/components/contest_header_comp.html", new HttpRespons
     </div>
   </div>
 
-  <div class="close-contest" ng-switch="isInsideAModal">
+  <div class="close-contest" ng-switch="isInsideModal">
     <button type="button" ng-switch-when="true"  class="close" data-dismiss="modal">   <span class="glyphicon glyphicon-remove"></span></button>
     <button type="button" ng-switch-when="false" class="close" ng-click="goToParent()"><span class="glyphicon glyphicon-remove"></span></button>
   </div>
@@ -623,14 +633,20 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
 
       <div class="tabs-background">
         <!-- Nav tabs -->
-        <ul class="contest-info-tabs " id="modalInfoContestTabs">
-            <li class="tab active"><a data-toggle="tab" ng-click="tabChange('info')">INFORMACIÓN</a></li>
-            <li class="tab"><a data-toggle="tab" ng-click="tabChange('contestants')">PARTICIPANTES</a></li>
-            <li class="tab"><a data-toggle="tab" ng-click="tabChange('prizes')">PREMIOS</a></li>
-            <li class="buton-place">
-              <button id="btn-go-enter-contest" class="btn btn-primary" ng-click="enterContest()">ENTRAR</button>
-            </li>
-        </ul>
+        <div class="tabs-navigation">
+          <ul class="contest-info-tabs " id="modalInfoContestTabs">
+              <li class="tab active"><a data-toggle="tab" ng-click="tabChange('info')">INFORMACIÓN</a></li>
+              <li class="tab"><a data-toggle="tab" ng-click="tabChange('contestants')">PARTICIPANTES</a></li>
+              <li class="tab"><a data-toggle="tab" ng-click="tabChange('prizes')">PREMIOS</a></li>
+              <!--<li class="buton-place">
+                <button id="btn-go-enter-contest" class="btn btn-primary" ng-click="enterContest()">ENTRAR</button>
+              </li>-->
+          </ul>
+
+          <div id="enterContestButton">
+            <button id="btn-go-enter-contest" class="btn btn-primary" ng-click="enterContest()">ENTRAR</button>
+          </div>
+        </div>
       </div>
 
       <div class="contest-info-content" id="modalInfoContestTabContent">
@@ -1069,7 +1085,7 @@ tc.put("packages/webclient/components/landing_page_comp.html", new HttpResponse(
 
     <div class="main-title-wrapper">
 
-      <div class="main-title">LIGAS FANTÁSTICAS DIARIAS</div>
+      <div class="main-title">LIGAS FANTÁSTICAS<br>DIARIAS</div>
       <div class="separator-wrapper">
         <img src="images/separator.png"/>
       </div>
@@ -1107,15 +1123,12 @@ tc.put("packages/webclient/components/landing_page_comp.html", new HttpResponse(
       </span>
     </a>
   </div>
-
   <!-- END Portada Versión Desktop -->
 
+
   <!-- Portada Versión Móvil -->
-  <div id="mobileContent" ng-if="scrDet.isXsScreen" class="screen">
-    <div class="slider-wrapper-mobile">
-      <!--<img class="background" src="images/xsLandingBackground.jpg" />-->
-    </div>
-    <div class="beta-label"><img src="images/beta.png"/></div>
+  <div id="mobileContent" class="screen">
+    <div class="screen-pattern" src="images/pattern.png"></div>
     <div class="content">
       <p class="main-title-mobile">LIGAS FANTÁSTICAS <br> DIARIAS</p>
       <p class="title-sup-text-mobile">CREA TU EQUIPO EN SEGUNDOS</p>
@@ -1132,8 +1145,12 @@ tc.put("packages/webclient/components/landing_page_comp.html", new HttpResponse(
         <span class="go-down-icon"></span>
       </span>
     </a>
+    <div class="beta-label"><img src="images/beta.png"/></div>
   </div>
   <!-- END Portada Versión Móvil -->
+
+
+
   <div id="screen2" class="screen">
       <div class="slider-wrapper">
         <img class="screen-background" src="images/landing02.jpg" />

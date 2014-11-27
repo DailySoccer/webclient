@@ -15,7 +15,10 @@
 	// Fila de contest
 	.contest-row {
 		.make-row();
-		.make-border(1px, solid none none none, @greyLight);
+		.make-border(1px, solid none none  none, @greyLight);
+		&:nth-last-child(2) {
+			.make-border(1px, solid none solid  none, @greyLight);
+		}
 		padding-bottom: 10px;
 
 		// El cursor cambia, porque la linea entera clika al modal en formato Desktop

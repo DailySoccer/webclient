@@ -20,7 +20,9 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
   int get screenHeight => window.innerHeight -70;
 
 
-  LandingPageComp(this._router, this._profileService, this.scrDet, this._loadingService);
+  LandingPageComp(this._router, this._profileService, this.scrDet, this._loadingService) {
+    _streamListener = scrDet.mediaScreenWidth.listen(onScreenWidthChange);
+  }
 
   void smoothScrollTo(String selector) {
     scrDet.scrollTo(selector, offset: 0, duration:  500, smooth: true, ignoreInDesktop: false);
@@ -43,9 +45,14 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
     _mainContent = querySelector('#mainContent');
     _mainContent.classes
       ..remove('main-content-container');
+
+    if(scrDet.isXsScreen) {
+      onScreenWidthChange("xs");
+    }
   }
 
   void detach() {
+    _streamListener.cancel();
 
     if (_bodyObj != null) {
       _bodyObj.classes.remove('fondo-negro');
@@ -64,10 +71,22 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
     }
   }
 
+  void onScreenWidthChange(String msg) {
+    // Solo nos mostramos como modal en desktop
+    if (msg == "xs") {
+      Element container = querySelector('#mobileContent .content');
+      if (container != null) {
+        container.style.height = ('${window.innerHeight -130}px');
+      }
+    }
+  }
+
   void buttonPressed(String route) {
     _router.go(route, {});
     scrDet.scrollTo('#mainWrapper', offset: 0, duration:  0, smooth: false, ignoreInDesktop: false);
   }
+
+  var _streamListener;
 
   int _windowHeigtht;
 

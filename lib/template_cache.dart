@@ -7,7 +7,7 @@ primeTemplateCache(TemplateCache tc) {
 tc.put("packages/webclient/components/account/change_password_comp.html", new HttpResponse(200, r"""<div id="changePasswordRoot">
   <div id="loginBox" class="main-box">
 
-    <div class="panel window-slide-in">
+    <div class="panel">
 
       <!-- Header -->
       <div class="panel-heading">
@@ -181,7 +181,7 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
 tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(200, r"""<div id="joinRoot" ng-show="!loadingService.isLoading">
   <div id="signupbox" class="main-box">
 
-    <div class="panel window-slide-in">
+    <div class="panel">
 
       <div class="panel-heading">
         <div class="panel-title">REGÍSTRATE</div>
@@ -220,7 +220,7 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
           </div>
           <!-- PASSWORD -->
           <div class="new-row bottom-separation-10">
-            <div class="small-text">Contraseña: Al menos {{MIN_PASSWORD_LENGTH}}. (Escríbela dos veces).</div>
+            <div class="small-text">Contraseña: Al menos {{MIN_PASSWORD_LENGTH}} caracteres. (Escríbela dos veces).</div>
           </div>
           <div id="groupPassword" class="input-group">
             <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
@@ -277,7 +277,7 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
 tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse(200, r"""<div id="loginRoot" ng-show="!loadingService.isLoading">
   <div id="loginBox" class="main-box">
 
-    <div class="panel window-slide-in">
+    <div class="panel">
 
       <!-- Header -->
       <div class="panel-heading">
@@ -295,7 +295,7 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
           <!-- MAIL -->
           <div class="input-group">
             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-            <input id="login-mail" auto-focus ng-model="emailOrUsername" name="Email" placeholder="Nombre de usuario / Email" class="form-control" tabindex="1" autocapitalize="off">
+            <input id="login-mail" auto-focus ng-model="emailOrUsername" name="Email" placeholder="Email" class="form-control" tabindex="1" autocapitalize="off">
           </div>
           <!-- PÂSSWORD -->
           <div class="input-group">
@@ -358,7 +358,7 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
 tc.put("packages/webclient/components/account/remember_password_comp.html", new HttpResponse(200, r"""<div id="rememberPasswordRoot" ng-show="!loadingService.isLoading">
   <div id="loginBox" class="main-box">
 
-    <div class="panel window-slide-in">
+    <div class="panel">
 
       <!-- Header -->
       <div class="panel-heading">
@@ -1125,23 +1125,19 @@ tc.put("packages/webclient/components/landing_page_comp.html", new HttpResponse(
   </div>
   <!-- END Portada Versión Desktop -->
 
+
   <!-- Portada Versión Móvil -->
-  <div id="mobileContent" ng-if="scrDet.isXsScreen" class="first-screen" style="height:{{screenHeight}}px">
-    <div class="main-title-wrapper">
-      <div class="content">
-        <p class="main-title-mobile">LIGAS FANTÁSTICAS <br> DIARIAS</p>
-        <p class="title-sup-text-mobile">CREA TU EQUIPO EN SEGUNDOS</p>
-        <p class="title-sup-text-mobile">COMPITE EN TANTAS LIGAS COMO QUIERAS</p>
-        <p class="title-sup-text-mobile">SIGUE LOS PARTIDOS EN DIRECTO</p>
-        <div class="button-wrap">
-          <button type="button" class="button-play-mobile" ng-click="buttonPressed('join')" id="playButtonMobile">JUGAR</button>
-        </div>
+  <div id="mobileContent" class="screen">
+    <div class="screen-pattern" src="images/pattern.png"></div>
+    <div class="content">
+      <p class="main-title-mobile">LIGAS FANTÁSTICAS <br> DIARIAS</p>
+      <p class="title-sup-text-mobile">CREA TU EQUIPO EN SEGUNDOS</p>
+      <p class="title-sup-text-mobile">COMPITE EN TANTAS LIGAS COMO QUIERAS</p>
+      <p class="title-sup-text-mobile">SIGUE LOS PARTIDOS EN DIRECTO</p>
+      <div class="button-wrap">
+        <button type="button" class="button-play-mobile" ng-click="buttonPressed('join')" id="playButtonMobile">JUGAR</button>
       </div>
     </div>
-    <div class="beta-label"><img src="images/beta.png"/></div>
-   <!-- END Portada Versión Móvil -->
-
-
     <!-- Separador -->
     <a class="wrapping-link"  ng-click="smoothScrollTo('#screen2')">
       <span id="screenSeparator1" class="more-info-section-light">
@@ -1149,8 +1145,12 @@ tc.put("packages/webclient/components/landing_page_comp.html", new HttpResponse(
         <span class="go-down-icon"></span>
       </span>
     </a>
+    <div class="beta-label"><img src="images/beta.png"/></div>
   </div>
   <!-- END Portada Versión Móvil -->
+
+
+
   <div id="screen2" class="screen">
       <div class="slider-wrapper">
         <img class="screen-background" src="images/landing02.jpg" />

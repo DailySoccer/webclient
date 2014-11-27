@@ -44,13 +44,7 @@
 	.hidden-sm();
 	.hidden-md();
 	.hidden-lg();
-	.background{
-		display: block;
-	 	margin-left: -438px;
-	 	position: relative;
-		left: 50%;
-		max-height: 520px;
-	}
+	background-image: url('@{images}/pattern.png');
 	.screen{
 		position: relative;
 	}
@@ -64,8 +58,10 @@
 		width: 100%;
 		text-align: center;
 		margin: 0 auto;
-		position: absolute;
-		top: 80px;
+		position: relative;
+		top: 20px;
+		overflow: hidden;
+		min-height: 380px;
 		.banner-top {
 			margin-bottom: 40px;
 		}
@@ -81,7 +77,6 @@
 			.opensans_bold(11pt, @white);
 			text-shadow: 2px 2px @black;
 			margin-bottom: 5px;
-
 			padding-bottom: 5px;
 		}
 	}
@@ -142,17 +137,10 @@
 		overflow: hidden;
 		max-height: 340px;
 	}
-	.slider-wrapper-mobile {
-		position: relative;
-		overflow: hidden;
-		min-height: 480px;
-		max-height: 480px;
-		width: 100%;
-		display: inline-block;
-	}
 }
 .wrapping-link {
 	text-decoration: none;
+	position: relative;
 }
 .more-info-section(@bgColor, @textColor, @imageName){
 	display: block;

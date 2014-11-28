@@ -7,7 +7,7 @@ import 'package:webclient/services/contests_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/loading_service.dart';
-import 'package:webclient/models/connection_error.dart';
+import 'package:webclient/models/server_error.dart';
 import 'package:webclient/models/field_pos.dart';
 import "package:webclient/models/soccer_team.dart";
 import 'package:webclient/models/match_event.dart';
@@ -277,7 +277,7 @@ class EnterContestComp implements DetachAware {
     }
   }
 
-  void _errorCreating(ConnectionError error) {
+  void _errorCreating(ServerError error) {
     if (error.isRetryOpError) {
       _retryOpTimer = new Timer(const Duration(seconds:3), () => createFantasyTeam());
     }

@@ -3,7 +3,7 @@ library connection_error;
 import 'dart:convert' show JSON;
 import 'package:angular/angular.dart';
 
-class ConnectionError {
+class ServerError {
   static final String ERROR_RETRY_OP = "ERROR_RETRY_OP";
 
   bool get isResponseError => (type == RESPONSE_ERROR);
@@ -16,7 +16,7 @@ class ConnectionError {
 
   bool get isRetryOpError => responseError.contains(ERROR_RETRY_OP);
 
-  ConnectionError(this.type, this.httpError);
+  ServerError(this.type, this.httpError);
 
   String type;
   dynamic httpError;
@@ -26,8 +26,8 @@ class ConnectionError {
   int get hashCode => type.hashCode;
 
   bool operator == (other) {
-    if (other is! ConnectionError) return false;
-    return (other as ConnectionError).type == type;
+    if (other is! ServerError) return false;
+    return (other as ServerError).type == type;
   }
 
   Map toJson() {
@@ -53,7 +53,7 @@ class ConnectionError {
     return JSON.decode(errorString);
   }
 
-  factory ConnectionError.fromHttpResponse(var error) {
+  factory ServerError.fromHttpResponse(var error) {
     String type = UNKNOWN_ERROR;
 
     if (error is HttpResponse) {
@@ -81,7 +81,7 @@ class ConnectionError {
       type = SERVER_EXCEPTION_ERROR;
     }
 
-    return new ConnectionError(type, error);
+    return new ServerError(type, error);
   }
 
   static const String UNKNOWN_ERROR = "UNKNOWN_ERROR";

@@ -5,7 +5,7 @@ import 'dart:html';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/loading_service.dart';
-import 'package:webclient/models/connection_error.dart';
+import 'package:webclient/models/server_error.dart';
 import 'package:webclient/utils/uri_utils.dart';
 
 @Component(
@@ -68,7 +68,7 @@ class ChangePasswordComp implements ShadowRootAware {
           state = STATE_CHANGE_PASSWORD;
           _loadingService.isLoading = false;
        })
-       .catchError( (ConnectionError error) {
+       .catchError( (ServerError error) {
           state = STATE_INVALID_TOKEN;
           _loadingService.isLoading = false;
        });
@@ -87,7 +87,7 @@ class ChangePasswordComp implements ShadowRootAware {
 
     _profileManager.resetPassword(password, _stormPathTokenId)
       .then((_) => _router.go('lobby', {}))
-      .catchError( (ConnectionError error) {
+      .catchError( (ServerError error) {
         _enabledSubmit = true;
         errorDetected = true;
         errorMessage = error.toJson().containsKey("password")? error.toJson()["password"] : error.toJson()["error"];

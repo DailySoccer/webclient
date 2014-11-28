@@ -4,7 +4,7 @@ import 'dart:async';
 import 'dart:convert' show JSON;
 import 'package:angular/angular.dart';
 import 'package:logging/logging.dart';
-import 'package:webclient/models/connection_error.dart';
+import 'package:webclient/models/server_error.dart';
 import 'package:webclient/utils/host_server.dart';
 import 'dart:html';
 
@@ -245,8 +245,9 @@ class DailySoccerServer implements ServerService {
         .catchError((error) {
           _checkServerVersion(error);
 
-          ConnectionError connectionError = new ConnectionError.fromHttpResponse(error);
-          if (connectionError.isConnectionError || connectionError.isServerNotFoundError) {
+          ServerError serverError = new ServerError.fromHttpResponse(error);
+
+          if (serverError.isConnectionError || serverError.isServerNotFoundError) {
             _notify(ON_ERROR, {ServerService.URL: url, ServerService.TIMES: retryTimes, ServerService.SECONDS_TO_RETRY: 3});
 
             Logger.root.severe("_innerServerCall error: $error, url: $url, retry: $retryTimes");
@@ -257,10 +258,9 @@ class DailySoccerServer implements ServerService {
               _processError(error, url, completer);
             }
           }
-          else if (connectionError.isServerExceptionError) {
-            // Si se ha producido una excepcion en el servidor, navegaremos a la landing/lobby
-            Uri uri = Uri.parse(window.location.toString());
-            window.location.assign(uri.path);
+          else if (serverError.isServerExceptionError) {
+            // Si se ha producido una excepcion en el servidor, navegaremos a la landing/lobby para forzar "limpieza" en el cliente
+            window.location.assign(Uri.parse(window.location.toString()).path);
           }
           else {
             _processError(error, url, completer);
@@ -272,16 +272,10 @@ class DailySoccerServer implements ServerService {
   // de que siempre tenemos la ultima version
   void _checkServerVersion(var httpResponse) {
 
-    // Como chequeamos tanto en success como en error, es posible que lo que nos llega no sea siempre un HttpResponse
-    if (httpResponse is! HttpResponse) {
-      Logger.root.severe("WTF 201 Aqui podriamos llegar en SERVER_ERROR, verificalo: " + httpResponse.toString());
-      return;
-    }
-
     var serverVersion = httpResponse.headers("release-version");
+
     if (serverVersion != null) {
-      if (_currentVersion != null) {
-        if (_currentVersion != serverVersion) {
+      if (_currentVersion != null && _currentVersion != serverVersion) {
           window.location.reload();
         }
       }
@@ -314,7 +308,7 @@ class DailySoccerServer implements ServerService {
   void _processError(var error, String url, Completer completer) {
     _setFinishCompleterForUrl(url);
 
-    ConnectionError connectionError = new ConnectionError.fromHttpResponse(error);
+    ServerError connectionError = new ServerError.fromHttpResponse(error);
     completer.completeError(connectionError);
   }
 

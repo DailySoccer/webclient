@@ -2249,8 +2249,8 @@ tc.put("packages/webclient/components/promos_comp.html", new HttpResponse(200, r
   <img src="images/betaHeaderXsTexto.png" class="betaVersionXs" />
 </div>-->"""));
 tc.put("packages/webclient/components/scoring_rules_comp.html", new HttpResponse(200, r"""<div id="scoringForAll" class="panel-points">
-  <div class="header">TODOS LOS JUGADORES</div>
-  <div class="body">
+  <div class="rules-header">TODOS LOS JUGADORES</div>
+  <div class="rules-content">
     <div class="punctuation" ng-class="getClassesIsNegative(event['points'])" ng-repeat="event in AllPlayers">
       <span class="name">{{event["name"]}}</span>
       <span class="points"><b>{{event["points"]}}</b></span>
@@ -2259,8 +2259,8 @@ tc.put("packages/webclient/components/scoring_rules_comp.html", new HttpResponse
 </div>
 
 <div id="scoringForGoalKeepers" class="panel-points">
-  <div class="header">PORTEROS</div>
-  <div class="body">
+  <div class="rules-header">PORTEROS</div>
+  <div class="rules-content">
     <div class="punctuation" ng-class="getClassesIsNegative(event['points'])" ng-repeat="event in GoalKeepers">
       <span class="name">{{event["name"]}} </span>
       <span class="points"><b>{{event["points"]}}</b></span>
@@ -2269,8 +2269,8 @@ tc.put("packages/webclient/components/scoring_rules_comp.html", new HttpResponse
 </div>
 
 <div id="scoringForDefenders" class="panel-points">
-  <div class="header">DEFENSAS</div>
-  <div class="body">
+  <div class="rules-header">DEFENSAS</div>
+  <div class="rules-content">
     <div class="punctuation" ng-class="getClassesIsNegative(event['points'])" ng-repeat="event in Defenders ">
       <span class="name">{{event["name"]}} </span>
       <span class="points"><b>{{event["points"]}}</b></span>
@@ -2279,8 +2279,8 @@ tc.put("packages/webclient/components/scoring_rules_comp.html", new HttpResponse
 </div>
 
 <div id="scoringForMidFielders" class="panel-points">
-  <div class="header">CENTROCAMPISTAS</div>
-  <div class="body">
+  <div class="rules-header">CENTROCAMPISTAS</div>
+  <div class="rules-content">
     <div class="punctuation" ng-class="getClassesIsNegative(event['points'])" ng-repeat="event in MidFielders">
       <span class="name">{{event["name"]}} </span>
       <span class="points"><b>{{event["points"]}}</b></span>
@@ -2289,8 +2289,8 @@ tc.put("packages/webclient/components/scoring_rules_comp.html", new HttpResponse
 </div>
 
 <div id="scoringForForwards" class="panel-points">
-  <div class="header">DELANTEROS</div>
-  <div class="body">
+  <div class="rules-header">DELANTEROS</div>
+  <div class=rules-content>
     <div class="punctuation" ng-class="getClassesIsNegative(event['points'])" ng-repeat="event in Forwards">
       <span class="name">{{event["name"]}} </span>
       <span class="points"><b>{{event["points"]}}</b></span>

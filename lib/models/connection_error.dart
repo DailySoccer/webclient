@@ -7,7 +7,8 @@ class ConnectionError {
   static final String ERROR_RETRY_OP = "ERROR_RETRY_OP";
 
   bool get isResponseError => (type == RESPONSE_ERROR);
-  bool get isServerError => (type == SERVER_ERROR);
+  bool get isServerNotFoundError => (type == SERVER_NOT_FOUND_ERROR);
+  bool get isServerExceptionError => (type == SERVER_EXCEPTION_ERROR);
   bool get isConnectionError => (type == CONNECTION_ERROR);
   bool get isUnauthorizedError => (type == UNAUTHORIZED_ERROR);
 
@@ -36,8 +37,11 @@ class ConnectionError {
       HttpResponse httpResponse = httpError as HttpResponse;
       errorString = httpResponse.data;
     }
-    else if (isServerError) {
-      errorString = SERVER_ERROR_JSON;
+    else if (isServerNotFoundError) {
+      errorString = SERVER_NOT_FOUND_ERROR_JSON;
+    }
+    else if (isServerExceptionError) {
+      errorString = SERVER_EXCEPTION_ERROR_JSON;
     }
     else if (isUnauthorizedError) {
       errorString = UNAUTHORIZED_ERROR_JSON;
@@ -60,8 +64,11 @@ class ConnectionError {
           type = RESPONSE_ERROR;
         }
       }
-      else if (httpResponse.status == 500 || httpResponse.status == 404) {
-        type = SERVER_ERROR;
+      else if (httpResponse.status == 404) {
+        type = SERVER_NOT_FOUND_ERROR;
+      }
+      else if (httpResponse.status == 500) {
+        type = SERVER_EXCEPTION_ERROR;
       }
       else if (httpResponse.status == 401) {
         type = UNAUTHORIZED_ERROR;
@@ -71,7 +78,7 @@ class ConnectionError {
       }
     }
     else {
-      type = SERVER_ERROR;
+      type = SERVER_EXCEPTION_ERROR;
     }
 
     return new ConnectionError(type, error);
@@ -79,12 +86,14 @@ class ConnectionError {
 
   static const String UNKNOWN_ERROR = "UNKNOWN_ERROR";
   static const String RESPONSE_ERROR = "RESPONSE_ERROR";
-  static const String SERVER_ERROR = "SERVER_ERROR";
+  static const String SERVER_NOT_FOUND_ERROR = "SERVER_NOT_FOUND_ERROR";
+  static const String SERVER_EXCEPTION_ERROR = "SERVER_EXCEPTION_ERROR";
   static const String CONNECTION_ERROR = "CONNECTION_ERROR";
   static const String UNAUTHORIZED_ERROR = "UNAUTHORIZED_ERROR";
 
   static const UNKNOWN_ERROR_JSON = "{\"error\": \"Unknown error\"}";
+  static const SERVER_NOT_FOUND_ERROR_JSON = "{\"error\": \"Server not found error\"}";
+  static const SERVER_EXCEPTION_ERROR_JSON = "{\"error\": \"Server exception error\"}";
   static const CONNECTION_ERROR_JSON = "{\"error\": \"Connection error\"}";
-  static const SERVER_ERROR_JSON = "{\"error\": \"Server error\"}";
   static const UNAUTHORIZED_ERROR_JSON = "{\"error\": \"Unauthorized error\"}";
 }

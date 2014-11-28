@@ -41,6 +41,7 @@ class PaginatorComp implements DetachAware {
   }
 
   void _createTemplate() {
+    // Generamos y añadimos al root la estructura que necesita el paginator.
     _rootElement.children.add(
       _paginatorContainer =  new DivElement()
         ..classes.add('paginator-wrapper')

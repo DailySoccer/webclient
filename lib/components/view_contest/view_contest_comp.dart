@@ -47,12 +47,13 @@ class ViewContestComp implements DetachAware {
       .then((_) {
         loadingService.isLoading = false;
         contest = _contestsService.lastContest;
-        if(contest.competitionType == Contest.TOURNAMENT_HEAD_TO_HEAD) {
-          // TODO: Es un partido headh to seleccionar como oponente al adversario
-          print("TOURNAMENT_HEAD_TO_HEAD: " + (_contestsService.lastContest.tournamentType == Contest.TOURNAMENT_HEAD_TO_HEAD).toString());
-        }
-
         mainPlayer = contest.getContestEntryWithUser(_profileService.user.userId);
+
+        // En el caso de los tipos de torneo 1vs1 el oponente se autoselecciona
+        if(contest.tournamentType == Contest.TOURNAMENT_HEAD_TO_HEAD) {
+          selectedOpponent = contestEntries.where((contestEntry) => contestEntry.contestEntryId != mainPlayer.contestEntryId).first;
+          onUserClick(selectedOpponent, preventViewOpponent: true);
+        }
 
         updatedDate = DateTimeService.now;
 
@@ -91,7 +92,7 @@ class ViewContestComp implements DetachAware {
         });
   }
 
-  void onUserClick(ContestEntry contestEntry) {
+  void onUserClick(ContestEntry contestEntry, {preventViewOpponent: false}) {
     if (contestEntry.contestEntryId == mainPlayer.contestEntryId) {
       tabChange('userFantasyTeam');
     }
@@ -102,7 +103,15 @@ class ViewContestComp implements DetachAware {
         case "history_contest":
           selectedOpponent = contestEntry;
           isOpponentSelected = true;
-          setTabNameAndShowIt(contestEntry.user.nickName);
+          lastOpponentSelected = contestEntry.user.nickName;
+
+          AnchorElement tabLabel = querySelector("#opponentFantasyTeamTab");
+          if(tabLabel != null) {
+            tabLabel.text  = lastOpponentSelected;
+          }
+          if(!preventViewOpponent) {
+            tabChange('opponentFantasyTeam');
+         }
         break;
       }
     }
@@ -128,22 +137,6 @@ class ViewContestComp implements DetachAware {
     }
   }
 
-  void setTabNameAndShowIt(String name)
-  {
-    lastOpponentSelected = name;
-    Element anchor = querySelector("#opponentFantasyTeamTab");
-
-    if (anchor != null) {
-      anchor.text = lastOpponentSelected;
-      tabChange("opponentFantasyTeam");
-
-      // Tenemos que cambiar a mano tb la clase del tab para que aparezca con el estilo seleccionado.
-      List<Element> lis = querySelectorAll("#liveContestTab li");
-      lis.forEach( (element) => element.classes.remove('active'));
-      anchor.parent.classes.add("active");
-    }
-  }
-
   FlashMessagesService _flashMessage;
   RouteProvider _routeProvider;
   ProfileService _profileService;
@@ -151,8 +144,5 @@ class ViewContestComp implements DetachAware {
   ContestsService _contestsService;
 
   List<int> get _prizes => (contest != null) ? contest.prizes : []; // TODO: Chapucioso, no crear un array nuevo
-
-
-
 }
 

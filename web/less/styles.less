@@ -301,9 +301,9 @@ button .close {
 }
 
 .tabs-navigation(@columns) {
-	@tabheight: 50px;
+	height: 54px;
 	@tabs-count: 12/@columns;
-	@tabs-dueto-mod: mod(100%, @columns);
+	@tabs-dueto-mod: mod(100%, @columns);	
 	.reset-list();
 
 	& li:last-child when (@tabs-dueto-mod > 0) {

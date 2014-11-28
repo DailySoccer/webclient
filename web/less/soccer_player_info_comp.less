@@ -189,7 +189,7 @@
 		}
 		// Tabs menu
 		.soccer-player-info-tabs {
-			@tabheight: 50px;
+			@tabheight: 54px;
 			.make-border(1px, solid none none none, @white);
 			.hidden-sm();
 			.hidden-md();
@@ -207,6 +207,10 @@
 					color: @white;
 					display: block;
 					text-decoration: none;
+					.opensans_normal(10pt, @white);
+					@media (max-width: @screen-xs-max) {
+						.opensans_normal(9pt, @white);
+					}
 				}
 			}
 			.active {

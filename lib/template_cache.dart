@@ -295,7 +295,7 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
           <!-- MAIL -->
           <div class="input-group">
             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-            <input id="login-mail" auto-focus ng-model="emailOrUsername" name="Email" placeholder="Email" class="form-control" tabindex="1" autocapitalize="off">
+            <input id="login-mail" auto-focus ng-model="emailOrUsername" type="email" name="Email" placeholder="Email" class="form-control" tabindex="1" autocapitalize="off">
           </div>
           <!-- PÂSSWORD -->
           <div class="input-group">

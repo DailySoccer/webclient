@@ -295,7 +295,7 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
           <!-- MAIL -->
           <div class="input-group">
             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-            <input id="login-mail" auto-focus ng-model="emailOrUsername" name="Email" placeholder="Email" class="form-control" tabindex="1" autocapitalize="off">
+            <input id="login-mail" auto-focus ng-model="emailOrUsername" type="email" name="Email" placeholder="Email" class="form-control" tabindex="1" autocapitalize="off">
           </div>
           <!-- PÂSSWORD -->
           <div class="input-group">
@@ -830,8 +830,10 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
             <!-- Este sera el selector de partidos en "grande", con botones-->
             <matches-filter contest="contest" selected-option="matchFilter" ng-if="scrDet.isNotXsScreen"></matches-filter>
 
-            <div class="enter-contest-actions-wrapper" ng-if="scrDet.isXsScreen" ng-class="{'allocate-space':isSelectingSoccerPlayer}">
-              <div class="total-salary" ng-class="{'red-numbers':availableSalary < 0}"><span class="total-salary-money" ng-show="contest != null">{{availableSalary}}€</span></div>
+            <div class="enter-contest-actions-wrapper" ng-if="scrDet.isXsScreen">
+              <div class="total-salary" ng-class="{'red-numbers':availableSalary < 0}">
+                <span class="total-salary-money" ng-show="contest != null">{{availableSalary}}€</span>
+              </div>
               <button id="cancelSoccerPlayerSelection" type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer">CANCELAR</button>
             </div>
 
@@ -2247,8 +2249,8 @@ tc.put("packages/webclient/components/promos_comp.html", new HttpResponse(200, r
   <img src="images/betaHeaderXsTexto.png" class="betaVersionXs" />
 </div>-->"""));
 tc.put("packages/webclient/components/scoring_rules_comp.html", new HttpResponse(200, r"""<div id="scoringForAll" class="panel-points">
-  <div class="header">TODOS LOS JUGADORES</div>
-  <div class="body">
+  <div class="rules-header">TODOS LOS JUGADORES</div>
+  <div class="rules-content">
     <div class="punctuation" ng-class="getClassesIsNegative(event['points'])" ng-repeat="event in AllPlayers">
       <span class="name">{{event["name"]}}</span>
       <span class="points"><b>{{event["points"]}}</b></span>
@@ -2257,8 +2259,8 @@ tc.put("packages/webclient/components/scoring_rules_comp.html", new HttpResponse
 </div>
 
 <div id="scoringForGoalKeepers" class="panel-points">
-  <div class="header">PORTEROS</div>
-  <div class="body">
+  <div class="rules-header">PORTEROS</div>
+  <div class="rules-content">
     <div class="punctuation" ng-class="getClassesIsNegative(event['points'])" ng-repeat="event in GoalKeepers">
       <span class="name">{{event["name"]}} </span>
       <span class="points"><b>{{event["points"]}}</b></span>
@@ -2267,8 +2269,8 @@ tc.put("packages/webclient/components/scoring_rules_comp.html", new HttpResponse
 </div>
 
 <div id="scoringForDefenders" class="panel-points">
-  <div class="header">DEFENSAS</div>
-  <div class="body">
+  <div class="rules-header">DEFENSAS</div>
+  <div class="rules-content">
     <div class="punctuation" ng-class="getClassesIsNegative(event['points'])" ng-repeat="event in Defenders ">
       <span class="name">{{event["name"]}} </span>
       <span class="points"><b>{{event["points"]}}</b></span>
@@ -2277,8 +2279,8 @@ tc.put("packages/webclient/components/scoring_rules_comp.html", new HttpResponse
 </div>
 
 <div id="scoringForMidFielders" class="panel-points">
-  <div class="header">CENTROCAMPISTAS</div>
-  <div class="body">
+  <div class="rules-header">CENTROCAMPISTAS</div>
+  <div class="rules-content">
     <div class="punctuation" ng-class="getClassesIsNegative(event['points'])" ng-repeat="event in MidFielders">
       <span class="name">{{event["name"]}} </span>
       <span class="points"><b>{{event["points"]}}</b></span>
@@ -2287,8 +2289,8 @@ tc.put("packages/webclient/components/scoring_rules_comp.html", new HttpResponse
 </div>
 
 <div id="scoringForForwards" class="panel-points">
-  <div class="header">DELANTEROS</div>
-  <div class="body">
+  <div class="rules-header">DELANTEROS</div>
+  <div class=rules-content>
     <div class="punctuation" ng-class="getClassesIsNegative(event['points'])" ng-repeat="event in Forwards">
       <span class="name">{{event["name"]}} </span>
       <span class="points"><b>{{event["points"]}}</b></span>
@@ -2406,9 +2408,9 @@ tc.put("packages/webclient/components/view_contest/view_contest_comp.html", new 
     <div ng-switch-when="true">
      <!-- Tabs de la versión XS -->
       <ul class="view-contest-tabs" id="liveContestTab" >
-        <li class="active"> <a id="userFantasyTeamTab" ng-click="tabChange('userFantasyTeam')" data-toggle="tab">Tu alineación</a></li>
-        <li>                <a id="usersListTab" ng-click="tabChange('usersList')" data-toggle="tab">Usuarios</a></li>
-        <li ng-disabled="!isOpponentSelected"><a id="opponentFantasyTeamTab" ng-click="tabChange('opponentFantasyTeam')" data-toggle="tab">{{lastOpponentSelected}}</a></li>
+        <li class="active"> <a id="userFantasyTeamTab" ng-click="tabChange('userFantasyTeam')">Tu alineación</a></li>
+        <li>                <a id="usersListTab" ng-click="tabChange('usersList')">Usuarios</a></li>
+        <li ng-disabled="!isOpponentSelected"><a id="opponentFantasyTeamTab" ng-click="tabChange('opponentFantasyTeam')">{{lastOpponentSelected}}</a></li>
       </ul>
 
       <div class="tab-content" id="liveContestTabContent">

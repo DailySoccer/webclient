@@ -5,7 +5,7 @@ import 'dart:html';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/loading_service.dart';
-import 'package:webclient/models/connection_error.dart';
+import 'package:webclient/models/server_error.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/fblogin.dart';
 import 'package:webclient/utils/string_utils.dart';
@@ -46,7 +46,7 @@ class LoginComp implements ShadowRootAware {
           loadingService.isLoading = false;
           _router.go('lobby', {});
         })
-        .catchError( (ConnectionError error) {
+        .catchError( (ServerError error) {
           loadingService.isLoading = false;
           _enabledSubmit = true;
           _errSection

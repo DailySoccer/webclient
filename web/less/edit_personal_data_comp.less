@@ -92,7 +92,6 @@
 	}
 	.content-field-block {
 		.make-xs-column(12);
-		.opensans_normal(8pt, @greyDark);
 		padding-bottom: 10px;
 		.clearfix();
 	}	
@@ -158,7 +157,17 @@
 		}
 	}
 }
+.control-wrapper-bottom-space {
+	padding-bottom: 10px;
+}
+
+.text-label {
+	.opensans_normal(8pt, @greyDark);
+}
+
 
 .errorDetected{
 	.appear-from-right-animation();
+	.opensans_normal(8pt, @red);
+
 }

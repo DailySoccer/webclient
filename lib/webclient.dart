@@ -262,7 +262,7 @@ class WebClientApp extends Module {
 
   // Ponemos el wrapper de todo nuestro contenido selectivamente en blanco
   void _bleach(Route route) {
-    if (["landing_page", "join", "login", "remember_password", "change_password"].contains(route.name)) {
+    if (_logOutPageViews.contains(route.name)) {
       querySelector("#mainWrapper").classes.remove("bleach");
     }
     else {
@@ -310,6 +310,10 @@ class WebClientApp extends Module {
   }
 
   void _preEnterPage(RoutePreEnterEvent event, Router router, {bool verifyAllowEnter : false}) {
+    //Si estamos logeados evitamos que el usuario pueda entrar en las páginas que sólo se ven al estar sin logear. P.E.: login, join,
+    if (_logOutPageViews.contains(event.route.name) && ProfileService.instance.isLoggedIn) {
+      event.allowEnter(new Future.value(false));
+    }
 
     LoadingService.disable();
     DailySoccerServer.startContext(event.path);
@@ -318,7 +322,7 @@ class WebClientApp extends Module {
       bool enter = !verifyAllowEnter || ProfileService.instance.isLoggedIn;
       if (!enter) {
         // Si no estamos logeados, redirigimos a la landing
-        router.go("landing_page", {}, replace:true);
+        router.go("landing_page", {}, replace: true);
       }
       else {
         _bleach(event.route);
@@ -328,4 +332,5 @@ class WebClientApp extends Module {
   }
 
   bool _jQueryReady = false;
+  List<String> _logOutPageViews = ["landing_page", "join", "login", "remember_password", "change_password"];
 }

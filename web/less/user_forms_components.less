@@ -5,6 +5,41 @@
 	}	
 }
 
+// Estilos de los textos de estos formularios.
+.small-text {
+	.opensans_normal(8pt, @greyDark);
+	border-top: 1px @black;
+	text-align: left;
+	a {
+		cursor: pointer;
+		.opensans_normal(8pt, @blueLight);
+	}
+}
+.small-text-centered {
+	.small-text();
+	text-align: center;
+}
+.error-text {
+	.opensans_normal(9pt, @red);
+	text-align: left;
+	margin-top: 5px;
+}
+.join-err-text {
+	.error-text()
+}
+.login-err-text {
+	.error-text()   					
+}
+.pass-err-text {
+	.error-text();
+}
+.small-link-righted {
+	.opensans_normal(8pt, @blueLight); 
+	margin-bottom: 10px;
+	text-align: right;
+	cursor: pointer;
+}
+
 .main-box {	
 	.make-sm-column(8);
 	.make-sm-column-push(2);
@@ -72,11 +107,17 @@
 		 		.opensans_normal(8pt, @greyDark);
 		 		.make-xs-column(3);
 		 	}
-			
+			.user-form-field {
+				.make-xs-column(12, 0px);
+			 	margin-bottom: 20px;
+			 	text-align: center;
+			}
+			.user-form-field-righted {
+				.user-form-field();
+				text-align: right;
+			}
 			// Inputs
 			.input-group {
-			 	.make-xs-column(12, 0px);
-			 	margin-bottom: 20px;
 			 	input {
 			 		line-height: 20px;
 			 		&::-webkit-input-placeholder { .text-form(); }
@@ -111,7 +152,7 @@
 			.bottom-separation-10 { margin-bottom: 10px; }
 			.new-row {
 				.make-xs-column(12, 0);
-				.buttons-wapper { height: 45px; text-align: center; }
+				.buttons-wapper { height: 36px; text-align: center; }
 				.fb-button-wapper { height: 15px; text-align: center; margin-top: 20px; }
 				.enter-button {
    					.btn();
@@ -131,31 +172,6 @@
    					.make-xs-column(5.9);
    					.pull-left();
    				}
-   				.small-text {
-   					.opensans_normal(8pt, @greyDark);
-					border-top: 1px @black;
-					text-align: left;
-					a {
-						cursor: pointer;
-						.opensans_normal(8pt, @blueLight);
-					}
-   				}
-   				.small-text-centered {
-   					.small-text();
-   					text-align: center;
-   				}
-   				.join-err-text {
-   					.opensans_normal(10pt, @red);
-   				}
-   				 .login-err-text {
-   					.opensans_normal(10pt, @red);
-   					text-align: center;
-   				}
-   				.pass-err-text {
-   					.opensans_normal(10pt, @red);
-   					text-align: left;
-   				}
-
 			}
 		}
 	}

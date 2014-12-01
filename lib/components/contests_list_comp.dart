@@ -78,7 +78,7 @@ class ContestsListComp {
   }
 
   @NgOneWay("action-button-title")
-  String actionButtonTitle = "Ver";
+  String actionButtonTitle = "VER";
 
   @NgTwoWay("contest-count")
   void set contestCount(int value) {

@@ -8,9 +8,9 @@
         <!-- Nav tabs -->
         <div class="tabs-navigation">
           <ul class="contest-info-tabs " id="modalInfoContestTabs">
-              <li class="tab active"><a data-toggle="tab" ng-click="tabChange('info')">INFORMACIÓN</a></li>
-              <li class="tab"><a data-toggle="tab" ng-click="tabChange('contestants')">PARTICIPANTES</a></li>
-              <li class="tab"><a data-toggle="tab" ng-click="tabChange('prizes')">PREMIOS</a></li>
+              <li class="tab active"><a data-toggle="tab" ng-click="tabChange('info')">Información</a></li>
+              <li class="tab"><a data-toggle="tab" ng-click="tabChange('contestants')">Participantes</a></li>
+              <li class="tab"><a data-toggle="tab" ng-click="tabChange('prizes')">Premios</a></li>
               <!--<li class="buton-place">
                 <button id="btn-go-enter-contest" class="btn btn-primary" ng-click="enterContest()">ENTRAR</button>
               </li>-->
@@ -28,8 +28,6 @@
               <!-- Tab panes -->
               <div class="tab-pane active" id="info">
                   <p class="instructions">{{currentInfoData['rules']}}</p>
-                  <div class="start-date">COMIENZA EL {{currentInfoData['startDateTime']}}</div>
-
                   <div class="matches-involved">
                       <div class="match" ng-repeat="match in currentInfoData['matchesInvolved']">
                           <p class="teams">{{match.soccerTeamA.shortName}} - {{match.soccerTeamB.shortName}}</p>
@@ -118,7 +116,7 @@
 
   <p class="title">JUGADORES</p>
   <div ng-if="!loadingService.isLoading && currentInfoData['contestants'].isEmpty" class="default-info-text">
-    Todavía no hay participantes en este concurso. <br> Anímate a ser el primero.
+    Todavía no hay participantes en este concurso.<br>Anímate a ser el primero.
   </div>
   <div class="contestant-list">
       <div class="contestant-element"ng-repeat="contestant in currentInfoData['contestants']">

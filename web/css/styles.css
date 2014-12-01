@@ -7149,39 +7149,8 @@ button#contestInfoModal .modal-info-head button.close {
 @media (min-width: 768px) {
   #contestInfoModal .modal-info-content .contest-info-content .instructions {
     float: left;
-    width: 66.66666667%;
+    width: 100%;
   }
-}
-#contestInfoModal .modal-info-content .contest-info-content .start-date {
-  position: relative;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-  font-size: 8pt;
-  color: #777777;
-  min-height: 20px;
-  padding: 19px;
-  margin-bottom: 20px;
-  background-color: #f5f5f5;
-  border: 1px solid #e3e3e3;
-  border-radius: 4px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-  padding: 9px;
-  border-radius: 3px;
-  text-align: center;
-}
-@media (min-width: 768px) {
-  #contestInfoModal .modal-info-content .contest-info-content .start-date {
-    float: left;
-    width: 33.33333333%;
-  }
-}
-#contestInfoModal .modal-info-content .contest-info-content .start-date blockquote {
-  border-color: #ddd;
-  border-color: rgba(0, 0, 0, 0.15);
 }
 #contestInfoModal .modal-info-content .contest-info-content .bases-title {
   font-family: 'Open Sans', sans-serif;
@@ -7710,11 +7679,6 @@ scoring-rules #scoringForForwards .rules-content {
 .contests-list-root .contest-row .column-contest-prize-header-title {
   padding-left: 10px;
 }
-@media (max-width: 767px) {
-  .contests-list-root .contest-row .column-contest-prize-header-title {
-    display: none !important;
-  }
-}
 @media (min-width: 768px) {
   .contests-list-root .contest-row .column-contest-prize-header-prize-type {
     display: none !important;
@@ -7966,6 +7930,9 @@ fieldset[disabled] .contests-list-root .contest-row .column-contest-action .acti
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
 }
+.contests-list-root .contest-row .column-contest-action .action-button:hover {
+  background-color: #b5d657;
+}
 @media (max-width: 767px) {
   .contests-list-root .contest-row .column-contest-action {
     position: absolute;
@@ -8178,10 +8145,6 @@ button#personalDataContent .header button.close {
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 8pt;
-  color: #777777;
   padding-bottom: 10px;
 }
 #personalDataContent .content-field-block:before,
@@ -8404,6 +8367,9 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
 }
+#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save:hover {
+  background-color: #b5d657;
+}
 @media (min-width: 992px) {
   #personalDataContent .save-changes-content .forms-wrapper-button .action-button-save {
     float: left;
@@ -8526,11 +8492,23 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
 }
+#personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel:hover {
+  background-color: #c9c9c9;
+}
 @media (min-width: 992px) {
   #personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel {
     float: left;
     width: 50%;
   }
+}
+.control-wrapper-bottom-space {
+  padding-bottom: 10px;
+}
+.text-label {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 8pt;
+  color: #777777;
 }
 .errorDetected {
   position: relative;
@@ -8539,6 +8517,10 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   -ms-animation: appear-from-right-keyframes 0.5s;
   -o-animation: appear-from-right-keyframes 0.5s;
   animation: appear-from-right-keyframes 0.5s;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 8pt;
+  color: #ff0000;
 }
 @-webkit-keyframes appear-from-right-keyframes {
   0% {
@@ -8835,6 +8817,9 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team.active {
 fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
+}
+.fantasy-team-header .edit-team .btn-edit-team:hover {
+  background-color: #82c1df;
 }
 @media (max-width: 767px) {
   .fantasy-team-header .edit-team {
@@ -9498,6 +9483,9 @@ fieldset[disabled] #rootFooter .user-info-sup-footer .add-funds-button.active {
 fieldset[disabled] #rootFooter .user-info-sup-footer .add-funds-button {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
+}
+#rootFooter .user-info-sup-footer .add-funds-button:hover {
+  background-color: #b5d657;
 }
 @media (max-width: 991px) {
   #rootFooter .user-info-sup-footer .add-funds-button {
@@ -10263,6 +10251,9 @@ fieldset[disabled] .button-play-base {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
 }
+.button-play-base:hover {
+  background-color: #b5d657;
+}
 @media (max-width: 767px) {
   .button-play-base {
     text-align: center;
@@ -10386,6 +10377,9 @@ fieldset[disabled] .button-wrap .button-play {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
 }
+.button-wrap .button-play:hover {
+  background-color: #b5d657;
+}
 @media (max-width: 767px) {
   .button-wrap .button-play {
     text-align: center;
@@ -10502,6 +10496,9 @@ fieldset[disabled] .button-wrap .button-play-mobile.active {
 fieldset[disabled] .button-wrap .button-play-mobile {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
+}
+.button-wrap .button-play-mobile:hover {
+  background-color: #b5d657;
 }
 @media (max-width: 767px) {
   .button-wrap .button-play-mobile {
@@ -11088,6 +11085,9 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters #contestFastSort .so
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
 }
+#contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button:hover {
+  background-color: #82c1df;
+}
 @media (max-width: 767px) {
   #contestFiltersRoot #contestSortsFilters #contestFastSort .sorting-button {
     font-family: 'Open Sans', sans-serif;
@@ -11426,6 +11426,9 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
 fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
+}
+#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:hover {
+  background-color: #82c1df;
 }
 @media (min-width: 768px) {
   #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button {
@@ -12593,6 +12596,9 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
 }
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:hover {
+  background-color: #c9c9c9;
+}
 #contestFiltersRoot #filtersPanel .confirm-button-wrapper {
   float: left;
   width: 100%;
@@ -12730,6 +12736,9 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .bt
 fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
+}
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:hover {
+  background-color: #b5d657;
 }
 main-menu-slide {
   display: block;
@@ -13027,6 +13036,9 @@ main-menu-slide {
   fieldset[disabled] #mainMenu .add-funds-button {
     box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
     margin-top: 4px;
+  }
+  #mainMenu .add-funds-button:hover {
+    background-color: #b5d657;
   }
   #mainMenu .dropdown-toggle {
     white-space: nowrap;
@@ -13381,6 +13393,9 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
 }
+#mainMenu #menuNotLoggedIn .button-wrapper .button-join:hover {
+  background-color: #82c1df;
+}
 #mainMenu #menuNotLoggedIn .button-wrapper .button-login {
   display: inline-block;
   margin-bottom: 0;
@@ -13492,6 +13507,9 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-login.acti
 fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-login {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
+}
+#mainMenu #menuNotLoggedIn .button-wrapper .button-login:hover {
+  background-color: #b5d657;
 }
 @media (max-width: 991px) {
   #myContest {
@@ -13824,6 +13842,9 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
 fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contest {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
+}
+.no-contests-wrapper .no-contest-bottom-row .btn-go-to-contest:hover {
+  background-color: #b5d657;
 }
 .list-container {
   background-color: #ffffff;
@@ -14257,6 +14278,9 @@ fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .btn-add {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
 }
+#modalSoccerPlayerInfo .action-buttons .btn-add:hover {
+  background-color: #b5d657;
+}
 #modalSoccerPlayerInfo .soccer-player-info-header {
   margin-right: auto;
   margin-left: auto;
@@ -14526,9 +14550,9 @@ fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .btn-add {
   -o-transition: all 0.1s ease-out;
   transition: all 0.1s ease-out;
   color: #ffffff;
-  background-color: #fa9c19;
-  border-color: #cccccc;
-  box-shadow: 0px 5px 0px rgba(250, 156, 25, 0.5);
+  background-color: #a1c931;
+  border-color: #91b42c;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   float: right !important;
   padding-left: 40px;
   padding-right: 40px;
@@ -14571,8 +14595,8 @@ fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .descriptio
 #modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .btn-add.active,
 .open .dropdown-toggle#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .btn-add {
   color: #ffffff;
-  background-color: #e58805;
-  border-color: #adadad;
+  background-color: #87a829;
+  border-color: #698320;
 }
 #modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .btn-add:active,
 #modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .btn-add.active,
@@ -14594,18 +14618,26 @@ fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .descriptio
 #modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .btn-add.disabled.active,
 #modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .btn-add[disabled].active,
 fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .btn-add.active {
-  background-color: #fa9c19;
-  border-color: #cccccc;
+  background-color: #a1c931;
+  border-color: #91b42c;
 }
 #modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .btn-add .badge {
-  color: #fa9c19;
+  color: #a1c931;
   background-color: #ffffff;
+}
+#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .btn-add[disabled] {
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #f8f8f8 !important;
+  cursor: not-allowed !important;
 }
 #modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .btn-add:active,
 #modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .btn-add[disabled],
 fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .btn-add {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
+}
+#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .btn-add:hover {
+  background-color: #b5d657;
 }
 #modalSoccerPlayerInfo .soccer-player-info-content {
   margin-right: auto;
@@ -14765,6 +14797,7 @@ fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .descriptio
   font-weight: 400;
   font-size: 16pt;
   color: #777777;
+  padding-bottom: 20px;
 }
 @media (max-width: 767px) {
   #modalSoccerPlayerInfo .soccer-player-info-content .season-header {
@@ -14893,7 +14926,7 @@ fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .descriptio
 #modalSoccerPlayerInfo .soccer-player-info-content .match-header {
   margin-left: 0;
   margin-right: 0;
-  padding: 10px 0;
+  padding: 20px 0;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 16pt;
@@ -15386,6 +15419,9 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-cancel-player-selection {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
 }
+.enter-contest-actions-wrapper .btn-cancel-player-selection:hover {
+  background-color: #c9c9c9;
+}
 .enter-contest-actions-wrapper .button-wrapper {
   position: relative;
   float: left;
@@ -15517,6 +15553,9 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-clean-lineup-list {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
 }
+.enter-contest-actions-wrapper .btn-clean-lineup-list:hover {
+  background-color: #c9c9c9;
+}
 .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   display: inline-block;
   margin-bottom: 0;
@@ -15628,6 +15667,9 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list.activ
 fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
+}
+.enter-contest-actions-wrapper .btn-confirm-lineup-list:hover {
+  background-color: #b5d657;
 }
 .enter-contest-actions-wrapper p {
   position: relative;
@@ -16220,6 +16262,9 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
 }
+.soccer-players-list .soccer-players-list-slot .column-action .action-button.add:hover {
+  background-color: #b5d657;
+}
 .soccer-players-list .soccer-players-list-slot .column-action .action-button.remove {
   color: #ffffff;
   background-color: #59add5;
@@ -16272,6 +16317,9 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
 fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action .action-button.remove {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
+}
+.soccer-players-list .soccer-players-list-slot .column-action .action-button.remove:hover {
+  background-color: #82c1df;
 }
 @media (max-width: 767px) {
   .soccer-players-filter {
@@ -16412,6 +16460,9 @@ fieldset[disabled] .soccer-players-filter .filter-by-position .button-filter-pos
 fieldset[disabled] .soccer-players-filter .filter-by-position .button-filter-position {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
+}
+.soccer-players-filter .filter-by-position .button-filter-position:hover {
+  background-color: #82c1df;
 }
 .soccer-players-filter .filter-by-position .button-filter-position.active {
   background-color: #ffffff;
@@ -16824,6 +16875,78 @@ lineup-selector {
     min-height: 750px;
   }
 }
+.small-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 8pt;
+  color: #777777;
+  border-top: 1px #000000;
+  text-align: left;
+}
+.small-text a {
+  cursor: pointer;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 8pt;
+  color: #59add5;
+}
+.small-text-centered {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 8pt;
+  color: #777777;
+  border-top: 1px #000000;
+  text-align: left;
+  text-align: center;
+}
+.small-text-centered a {
+  cursor: pointer;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 8pt;
+  color: #59add5;
+}
+.error-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 9pt;
+  color: #ff0000;
+  text-align: left;
+  margin-top: 5px;
+}
+.join-err-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 9pt;
+  color: #ff0000;
+  text-align: left;
+  margin-top: 5px;
+}
+.login-err-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 9pt;
+  color: #ff0000;
+  text-align: left;
+  margin-top: 5px;
+}
+.pass-err-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 9pt;
+  color: #ff0000;
+  text-align: left;
+  margin-top: 5px;
+}
+.small-link-righted {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 8pt;
+  color: #59add5;
+  margin-bottom: 10px;
+  text-align: right;
+  cursor: pointer;
+}
 .main-box {
   padding-left: 15px;
   padding-right: 15px;
@@ -16993,7 +17116,7 @@ button.main-box .panel .panel-heading button.close {
   padding-left: 15px;
   padding-right: 15px;
 }
-.main-box .panel .panel-body .input-group {
+.main-box .panel .panel-body .user-form-field {
   position: relative;
   float: left;
   width: 100%;
@@ -17001,6 +17124,18 @@ button.main-box .panel .panel-heading button.close {
   padding-left: 0px;
   padding-right: 0px;
   margin-bottom: 20px;
+  text-align: center;
+}
+.main-box .panel .panel-body .user-form-field-righted {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-bottom: 20px;
+  text-align: center;
+  text-align: right;
 }
 .main-box .panel .panel-body .input-group input {
   line-height: 20px;
@@ -17084,7 +17219,7 @@ button.main-box .panel .panel-heading button.close {
   padding-right: 0;
 }
 .main-box .panel .panel-body .new-row .buttons-wapper {
-  height: 45px;
+  height: 36px;
   text-align: center;
 }
 .main-box .panel .panel-body .new-row .fb-button-wapper {
@@ -17204,6 +17339,9 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
 }
+.main-box .panel .panel-body .new-row .enter-button:hover {
+  background-color: #b5d657;
+}
 .main-box .panel .panel-body .new-row .enter-button-half {
   display: inline-block;
   margin-bottom: 0;
@@ -17319,6 +17457,9 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button-half {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
 }
+.main-box .panel .panel-body .new-row .enter-button-half:hover {
+  background-color: #b5d657;
+}
 .main-box .panel .panel-body .new-row .cancel-button-half {
   display: inline-block;
   margin-bottom: 0;
@@ -17429,56 +17570,8 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
 }
-.main-box .panel .panel-body .new-row .small-text {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 8pt;
-  color: #777777;
-  border-top: 1px #000000;
-  text-align: left;
-}
-.main-box .panel .panel-body .new-row .small-text a {
-  cursor: pointer;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 8pt;
-  color: #59add5;
-}
-.main-box .panel .panel-body .new-row .small-text-centered {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 8pt;
-  color: #777777;
-  border-top: 1px #000000;
-  text-align: left;
-  text-align: center;
-}
-.main-box .panel .panel-body .new-row .small-text-centered a {
-  cursor: pointer;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 8pt;
-  color: #59add5;
-}
-.main-box .panel .panel-body .new-row .join-err-text {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 10pt;
-  color: #ff0000;
-}
-.main-box .panel .panel-body .new-row .login-err-text {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 10pt;
-  color: #ff0000;
-  text-align: center;
-}
-.main-box .panel .panel-body .new-row .pass-err-text {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 10pt;
-  color: #ff0000;
-  text-align: left;
+.main-box .panel .panel-body .new-row .cancel-button-half:hover {
+  background-color: #c9c9c9;
 }
 .valid:after {
   font-family: 'Glyphicons Halflings';
@@ -18005,6 +18098,9 @@ fieldset[disabled] .profile-content .action-button {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
 }
+.profile-content .action-button:hover {
+  background-color: #82c1df;
+}
 .profile-content .add-funds-button {
   display: inline-block;
   margin-bottom: 0;
@@ -18116,6 +18212,9 @@ fieldset[disabled] .profile-content .add-funds-button.active {
 fieldset[disabled] .profile-content .add-funds-button {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
+}
+.profile-content .add-funds-button:hover {
+  background-color: #b5d657;
 }
 .profile-content .data-key {
   font-family: 'Open Sans', sans-serif;
@@ -18287,6 +18386,9 @@ fieldset[disabled] .profile-content .add-funds-button {
   fieldset[disabled] .profile-content .personal-data .action-button {
     box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
     margin-top: 4px;
+  }
+  .profile-content .personal-data .action-button:hover {
+    background-color: #82c1df;
   }
 }
 @media (min-width: 768px) {
@@ -18468,6 +18570,9 @@ fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
 }
+.profile-content .pocket-data .button-wrapper .action-button-transaction:hover {
+  background-color: #82c1df;
+}
 .profile-content .pocket-data .button-wrapper .action-button-get-funds {
   display: inline-block;
   margin-bottom: 0;
@@ -18580,6 +18685,9 @@ fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-
 fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-get-funds {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
+}
+.profile-content .pocket-data .button-wrapper .action-button-get-funds:hover {
+  background-color: #82c1df;
 }
 @media (max-width: 991px) {
   .profile-content .pocket-data .button-wrapper {
@@ -18828,6 +18936,9 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-cancel-contest {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
 }
+.view-contest-entry-actions-wrapper .btn-cancel-contest:hover {
+  background-color: #c9c9c9;
+}
 .view-contest-entry-actions-wrapper .btn-back-contest {
   display: inline-block;
   margin-bottom: 0;
@@ -18939,6 +19050,9 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-back-contest.active 
 fieldset[disabled] .view-contest-entry-actions-wrapper .btn-back-contest {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
+}
+.view-contest-entry-actions-wrapper .btn-back-contest:hover {
+  background-color: #b5d657;
 }
 @media (min-width: 768px) {
   #viewContestEntry {
@@ -19202,6 +19316,9 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play.active 
 fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
+}
+#helpInfo .block-last .description-right .button-play:hover {
+  background-color: #b5d657;
 }
 #helpInfo .toogle-block {
   max-width: 808px;
@@ -19774,6 +19891,9 @@ fieldset[disabled] .btn-default {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
 }
+.btn-default:hover {
+  background-color: #82c1df;
+}
 .btn-primary {
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
 }
@@ -19787,6 +19907,9 @@ fieldset[disabled] .btn-default {
 fieldset[disabled] .btn-primary {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
+}
+.btn-primary:hover {
+  background-color: #b5d657;
 }
 .btn-cancel {
   color: #ffffff;
@@ -19836,6 +19959,9 @@ fieldset[disabled] .btn-cancel {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
 }
+.btn-cancel:hover {
+  background-color: #c9c9c9;
+}
 .btn-orange {
   color: #ffffff;
   background-color: #fa9c19;
@@ -19883,6 +20009,9 @@ fieldset[disabled] .btn-orange.active {
 fieldset[disabled] .btn-orange {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
+}
+.btn-orange:hover {
+  background-color: #fbb14b;
 }
 button .close:focus {
   outline: none !important;

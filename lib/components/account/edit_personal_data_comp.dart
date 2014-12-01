@@ -5,6 +5,8 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/models/server_error.dart';
+import 'dart:html';
+import 'package:webclient/utils/string_utils.dart';
 
 @Component(
     selector: 'edit-personal-data',
@@ -12,6 +14,9 @@ import 'package:webclient/models/server_error.dart';
     useShadowDom: false
 )
 class EditPersonalDataComp implements ShadowRootAware{
+
+  int MIN_PASSWORD_LENGTH = 8;
+  int MIN_NICKNAME_LENGTH = 4;
 
   String country;
   String region;
@@ -23,10 +28,6 @@ class EditPersonalDataComp implements ShadowRootAware{
   String editedEmail;
   String editedPassword;
   String editedRepeatPassword;
-
-  bool hasNicknameError;
-  bool hasEmailError;
-  bool hasPasswordError;
 
   String nicknameErrorText;
   String emailErrorText;
@@ -52,7 +53,7 @@ class EditPersonalDataComp implements ShadowRootAware{
 
   dynamic get userData => _profileManager.user;
 
-  EditPersonalDataComp(this._profileManager, this.loadingService, this._router);
+  EditPersonalDataComp(this._profileManager, this.loadingService, this._router, this._rootElement);
 
   void init() {
     //switch NEWSLETTER/OFERTAS ESPECIALES
@@ -87,7 +88,6 @@ class EditPersonalDataComp implements ShadowRootAware{
     editedNickName  = _profileManager.user.nickName;
     editedPassword       = "";
     editedRepeatPassword = "";
-    hideErrors();
   }
 
   void onNewsLetterSwitchChange(event, state) {
@@ -105,9 +105,8 @@ class EditPersonalDataComp implements ShadowRootAware{
   bool validatePassword() {
     bool retorno = true;
     // Verificación del password
-    if (editedPassword != editedRepeatPassword) {
+    if (editedPassword != editedRepeatPassword && editedPassword.length < MIN_PASSWORD_LENGTH) {
         passwordErrorText = "Los passwords no coinciden";
-        hasPasswordError = true;
         retorno = false;
     }
     return retorno;
@@ -115,8 +114,38 @@ class EditPersonalDataComp implements ShadowRootAware{
 
   void saveChanges() {
       hideErrors();
+      bool valid_Data = true;
 
+      if (editedNickName != "" && editedNickName.length < MIN_NICKNAME_LENGTH) {
+         _nickNameErrorContainer
+           ..classes.remove("errorDetected")
+           ..classes.add("errorDetected")
+           ..style.display = '';
+
+         _nickNameErrorLabel.text = "El nombre de usuario debe tener al menos ${MIN_NICKNAME_LENGTH} caracteres";
+         valid_Data = false;
+       }
+
+       if (!StringUtils.isValidEmail(editedEmail)) {
+         _emailErrorContainer
+           ..classes.remove("errorDetected")
+           ..classes.add("errorDetected")
+           ..style.display = '';
+
+         _emailErrorLabel.text = "El correo electrónico no introducido no es válido.";
+         valid_Data = false;
+       }
       if (!validatePassword() ) {
+        _passwordErrorContainer
+          ..classes.remove("errorDetected")
+          ..classes.add("errorDetected")
+          ..style.display = '';
+
+        _passwordErrorLabel.text = "La contraseña debe tener al menos ${MIN_PASSWORD_LENGTH} caracteres.";
+        valid_Data = false;
+      }
+
+      if (!valid_Data) {
         return;
       }
 
@@ -147,17 +176,28 @@ class EditPersonalDataComp implements ShadowRootAware{
             switch (key)
             {
               case "nickName":
-                nicknameErrorText = value[0];
-                hasNicknameError = true;
+                _nickNameErrorContainer
+                  ..classes.remove("errorDetected")
+                  ..classes.add("errorDetected")
+                  ..style.display = '';
 
+                _nickNameErrorLabel = value[0];
               break;
               case "email":
-                emailErrorText = value[0];
-                hasEmailError = true;
+                _emailErrorContainer
+                  ..classes.remove("errorDetected")
+                  ..classes.add("errorDetected")
+                  ..style.display = '';
+
+                _emailErrorLabel = value[0];
               break;
               case "password":
-                passwordErrorText = value[0];
-                hasPasswordError = true;
+                _passwordErrorContainer
+                  ..classes.remove("errorDetected")
+                  ..classes.add("errorDetected")
+                  ..style.display = '';
+
+                _passwordErrorLabel = value[0];
               break;
             }
           });
@@ -166,9 +206,14 @@ class EditPersonalDataComp implements ShadowRootAware{
   }
 
   void hideErrors() {
-    hasNicknameError  = false;
-    hasEmailError     = false;
-    hasPasswordError  = false;
+    _nickNameErrorContainer.style.display = 'none';
+    _passwordErrorLabel.text = "";
+
+    _emailErrorContainer.style.display = 'none';
+    _emailErrorLabel.text = "";
+
+    _passwordErrorContainer.style.display = 'none';
+    _passwordErrorLabel.text = "";
   }
 
   void exit(event) {
@@ -180,6 +225,16 @@ class EditPersonalDataComp implements ShadowRootAware{
 
   @override void onShadowRoot(emulatedRoot) {
     init();
+    _nickNameErrorContainer = _rootElement.querySelector('#nickNameErrorContainer');
+    _nickNameErrorLabel     = _rootElement.querySelector('#nickNameErrorLabel');
+
+    _emailErrorContainer    = _rootElement.querySelector('#emailErrorContainer');
+    _emailErrorLabel        = _rootElement.querySelector('#emailErrorLabel');
+
+    _passwordErrorContainer = _rootElement.querySelector('#passwordErrorContainer');
+    _passwordErrorLabel     = _rootElement.querySelector('#passwordErrorLabel');
+
+    hideErrors();
   }
 
   ProfileService _profileManager;
@@ -190,4 +245,12 @@ class EditPersonalDataComp implements ShadowRootAware{
   bool _enabledSubmit = false;
 
   LoadingService loadingService;
+
+  Element _rootElement;
+  Element _nickNameErrorContainer;
+  Element _nickNameErrorLabel;
+  Element _emailErrorContainer;
+  Element _emailErrorLabel;
+  Element _passwordErrorContainer;
+  Element _passwordErrorLabel;
 }

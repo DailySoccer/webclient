@@ -67,10 +67,10 @@ class JoinComp implements ShadowRootAware {
   }
 
   void onShadowRoot(emulatedRoot) {
-    nickNameElement   = _rootElement.querySelector("#groupNickName");
-    emailElement      = _rootElement.querySelector("#groupEmail");
-    passwordElement   = _rootElement.querySelector("#groupPassword");
-    rePasswordElement = _rootElement.querySelector("#groupRePassword");
+    nickNameElement   = _rootElement.querySelector("#nickNameInputGroup");
+    emailElement      = _rootElement.querySelector("#emailInputGroup");
+    passwordElement   = _rootElement.querySelector("#passwordInputGroup");
+    rePasswordElement = _rootElement.querySelector("#rePasswordInputGroup");
 
     nicknameError = _rootElement.querySelector("#nickNameError");
     nicknameError.parent.style.display = 'none';
@@ -83,7 +83,7 @@ class JoinComp implements ShadowRootAware {
     //_scrDet.scrollTo('.panel-heading', offset: 0, duration:  500, smooth: true, ignoreInDesktop: false);
   }
 
-  void validateNickName() {
+  void validateNickName({bool forceValidation: null}) {
     nickNameElement.classes.removeAll(['valid', 'not-valid']);
     // Validación del password
     if (nickName.length >= MIN_NICKNAME_LENGTH) {
@@ -92,9 +92,12 @@ class JoinComp implements ShadowRootAware {
     else {
       nickNameElement.classes.add('not-valid');
     }
+    if(forceValidation != null) {
+      (forceValidation) ? nickNameElement.classes.add('valid') : nickNameElement.classes.add('not-valid');
+    }
   }
 
-  void validateEmail() {
+  void validateEmail({bool forceValidation: null}) {
     emailElement.classes.removeAll(['valid', 'not-valid']);
     // Validación del password
     if (StringUtils.isValidEmail(email)) {
@@ -102,6 +105,9 @@ class JoinComp implements ShadowRootAware {
     }
     else {
       emailElement.classes.add('not-valid');
+    }
+    if(forceValidation != null) {
+      (forceValidation) ? emailElement.classes.add('valid') : emailElement.classes.add('not-valid');
     }
   }
 
@@ -169,6 +175,7 @@ class JoinComp implements ShadowRootAware {
                   ..classes.remove("errorDetected")
                   ..classes.add("errorDetected")
                   ..parent.style.display = "";
+                validateNickName(forceValidation: false);
 
               break;
               case "email":
@@ -177,6 +184,7 @@ class JoinComp implements ShadowRootAware {
                   ..classes.remove("errorDetected")
                   ..classes.add("errorDetected")
                   ..parent.style.display = "";
+                validateEmail(forceValidation: false);
               break;
               case "password":
                 passwordError

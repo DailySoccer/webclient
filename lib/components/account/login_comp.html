@@ -28,6 +28,12 @@
               <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
               <input id="login-password" type="password" ng-model="password" name="password" placeholder="Contraseña" class="form-control" tabindex="2" autocapitalize="off">
             </div>
+
+            <!-- Error de login/pass -->
+            <div id="loginErrorSection" class="new-row">
+              <div id="loginErrorLabel" class="login-err-text">ERROR DE LOGIN. Los datos inroducidos no son correctos.</div>
+            </div>
+
           </div>
 
           <!-- REMEMBER PASS -->
@@ -42,13 +48,6 @@
                 <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">ENTRAR</button>
                 <button id="btnCancelLogin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCELAR</button>
               </div>
-            </div>
-          </div>
-
-          <!-- Error de login/password -->
-          <div class="user-form-field">
-            <div class="new-row">
-              <div id="mailPassError" class="login-err-text">ERROR DE LOGIN. El mail y/o la contraseña no son correctos.</div>
             </div>
           </div>
 

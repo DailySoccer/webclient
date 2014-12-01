@@ -5,7 +5,7 @@
 	}	
 }
 
-
+// Estilos de los textos de estos formularios.
 .small-text {
 	.opensans_normal(8pt, @greyDark);
 	border-top: 1px @black;
@@ -24,10 +24,18 @@
 	text-align: left;
 	margin-top: 5px;
 }
-
+.join-err-text {
+	.error-text()
+}
+.login-err-text {
+	.error-text()   					
+}
+.pass-err-text {
+	.error-text();
+}
 .small-link-righted {
 	.opensans_normal(8pt, @blueLight); 
-	margin-top: 10px;
+	margin-bottom: 10px;
 	text-align: right;
 	cursor: pointer;
 }
@@ -164,16 +172,6 @@
    					.make-xs-column(5.9);
    					.pull-left();
    				}
-   				.join-err-text {
-   					.error-text()
-   				}
-   				 .login-err-text {
-   					.error-text()   					
-   				}
-   				.pass-err-text {
-   					.error-text();
-   				}
-
 			}
 		}
 	}

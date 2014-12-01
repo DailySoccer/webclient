@@ -16863,12 +16863,36 @@ lineup-selector {
   text-align: left;
   margin-top: 5px;
 }
+.join-err-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 9pt;
+  color: #ff0000;
+  text-align: left;
+  margin-top: 5px;
+}
+.login-err-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 9pt;
+  color: #ff0000;
+  text-align: left;
+  margin-top: 5px;
+}
+.pass-err-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 9pt;
+  color: #ff0000;
+  text-align: left;
+  margin-top: 5px;
+}
 .small-link-righted {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 8pt;
   color: #59add5;
-  margin-top: 10px;
+  margin-bottom: 10px;
   text-align: right;
   cursor: pointer;
 }
@@ -17488,30 +17512,6 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half.act
 fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
   box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
   margin-top: 4px;
-}
-.main-box .panel .panel-body .new-row .join-err-text {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 9pt;
-  color: #ff0000;
-  text-align: left;
-  margin-top: 5px;
-}
-.main-box .panel .panel-body .new-row .login-err-text {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 9pt;
-  color: #ff0000;
-  text-align: left;
-  margin-top: 5px;
-}
-.main-box .panel .panel-body .new-row .pass-err-text {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 9pt;
-  color: #ff0000;
-  text-align: left;
-  margin-top: 5px;
 }
 .valid:after {
   font-family: 'Glyphicons Halflings';

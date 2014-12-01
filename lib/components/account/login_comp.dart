@@ -28,8 +28,9 @@ class LoginComp implements ShadowRootAware {
   }
 
   @override void onShadowRoot(emulatedRoot) {
-    _errSection = _rootElement.querySelector("#mailPassError");
-    _errSection.parent.parent.style.display = 'none';
+    _loginErrorLabel = _rootElement.querySelector("#loginErrorLabel");
+    _loginErrorSection = _rootElement.querySelector("#loginErrorSection");
+    _loginErrorSection.style.display = 'none';
     //_scrDet.scrollTo('.panel-heading', offset: 0, duration:  500, smooth: true, ignoreInDesktop: false);
   }
 
@@ -37,7 +38,7 @@ class LoginComp implements ShadowRootAware {
     loadingService.isLoading = true;
     GameMetrics.logEvent(GameMetrics.LOGIN_ATTEMPTED);
 
-    _errSection.parent.parent.style.display = "none";
+    _loginErrorSection.style.display = "none";
     _enabledSubmit = false;
 
     _profileManager.login(emailOrUsername, password)
@@ -49,11 +50,12 @@ class LoginComp implements ShadowRootAware {
         .catchError( (ServerError error) {
           loadingService.isLoading = false;
           _enabledSubmit = true;
-          _errSection
+          _loginErrorSection.style.display = '';
+
+          _loginErrorLabel
             ..text = error.toJson()["email"][0]
             ..classes.remove("errorDetected")
-            ..classes.add("errorDetected")
-            ..parent.parent.style.display = '';
+            ..classes.add("errorDetected");
         });
   }
 
@@ -69,7 +71,8 @@ class LoginComp implements ShadowRootAware {
   Router _router;
   ProfileService _profileManager;
   Element _rootElement;
-  Element _errSection;
+  Element _loginErrorSection;
+  Element _loginErrorLabel;
 
   bool _enabledSubmit = true;
   ScreenDetectorService _scrDet;

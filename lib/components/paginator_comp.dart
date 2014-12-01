@@ -7,7 +7,6 @@ import 'package:webclient/services/screen_detector_service.dart';
 
 @Component(
     selector: 'paginator',
-    templateUrl: 'packages/webclient/components/paginator_comp.html',
     useShadowDom: false
 )
 class PaginatorComp implements DetachAware {
@@ -26,7 +25,7 @@ class PaginatorComp implements DetachAware {
     // Calculamos la páginas que habrá en total y determinamos si el paginador estará disponible o no.
     _totalPages = (_listLength / _options["itemsPerPage"]).ceil();
 
-    goToPage(_currentPage);
+    regenerate(_currentPage);
   }
 
   PaginatorComp(this._scrDet, this._rootElement) {
@@ -37,19 +36,25 @@ class PaginatorComp implements DetachAware {
       _options["numPageLinksToDisplay"] = _options["numPageLinksToDisplayXs"];
     }
     _streamListener = _scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
+
+    _createTemplate();
+  }
+
+  void _createTemplate() {
+    // Generamos y añadimos al root la estructura que necesita el paginator.
+    _rootElement.children.add(
+      _paginatorContainer =  new DivElement()
+        ..classes.add('paginator-wrapper')
+        ..children.add(
+            new DivElement()
+            ..classes.add('paginator-box')
+      )
+    );
   }
 
   void detach() {
     _streamListener.cancel();
   }
-
-  void buildMe() {
-    if(_paginatorContainer == null) {
-        _paginatorContainer = _rootElement.querySelector(".paginator-box");
-
-        goToPage(_currentPage);
-      }
-    }
 
   void onScreenWidthChange(msg) {
 
@@ -174,7 +179,7 @@ class PaginatorComp implements DetachAware {
       ..innerHtml = label;
 
     if (pageNum != null) {
-      a.on['click'].listen((event) => goToPage(pageNum));
+      a.on['click'].listen((event) => regenerate(pageNum));
     }
 
     if (pageNum == 0) {
@@ -215,7 +220,9 @@ class PaginatorComp implements DetachAware {
     return {"start":start, "end":end};
  }
 
-  void goToPage(int pageNum) {
+
+  void regenerate(int highlitedPage) {
+    _paginatorContainer = _rootElement.querySelector(".paginator-box");
     if (_totalPages == 0) {
       onPageChange({"currentPage":0, "itemsPerPage":_options["itemsPerPage"]});
       if (_paginatorContainer != null) {
@@ -224,7 +231,7 @@ class PaginatorComp implements DetachAware {
       return;
     }
 
-    _currentPage = pageNum;
+    _currentPage = highlitedPage;
 
     if (_currentPage < 0) {
       _currentPage = 0;

@@ -7,27 +7,35 @@
     <div class="content">
       <!-- Nombre -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtName" auto-focus type="text" ng-model="editedFirstName" placeholder="Nombre" class="form-control"  tabindex="1"></div>
+        <div class="control-wrapper">
+          <input id="txtName" auto-focus type="text" ng-model="editedFirstName" placeholder="Nombre" class="form-control"  tabindex="1">
+        </div>
       </div>
       <!-- Apelidos -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtLastName" type="text" ng-model="editedLastName" placeholder="Apellidos" class="form-control" tabindex="2"></div>
+        <div class="control-wrapper">
+          <input id="txtLastName" type="text" ng-model="editedLastName" placeholder="Apellidos" class="form-control" tabindex="2">
+        </div>
       </div>
       <!-- Nickname -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtNickName" type="text" ng-model="editedNickName" placeholder="Nombre de usuario" class="form-control" tabindex="3" autocapitalize="off"></div>
-        <!-- Error de mail -->
-        <div class="content-field"       ng-class="{'hidden':!hasNicknameError}">
-          <div id="nickNameError" class="join-err-text" ng-class="{'errorDetected':hasNicknameError}">{{nicknameErrorText}}</div>
+        <div class="control-wrapper">
+          <input id="txtNickName" type="text" ng-model="editedNickName" placeholder="Nombre de usuario" class="form-control" tabindex="3" autocapitalize="off">
+        </div>
+        <!-- Error de nickName -->
+        <div id="nickNameErrorContainer" class="content-field">
+          <div id="nickNameErrorLabel" class="join-err-text">{{nicknameErrorText}}</div>
         </div>
       </div>
 
       <!-- Correo Electrónico -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtEmail" type="email" ng-model="editedEmail" placeholder="Correo electrónico" class="form-control" tabindex="4" autocapitalize="off"></div>
+        <div class="control-wrapper">
+          <input id="txtEmail" type="email" ng-model="editedEmail" placeholder="Correo electrónico" class="form-control" tabindex="4" autocapitalize="off">
+        </div>
         <!-- Error de mail -->
-        <div class="content-field"       ng-class="{'hidden':!hasEmailError}">
-          <div id="emailError" class="join-err-text" ng-class="{'errorDetected':!hasEmailError}">{{emailErrorText}}</div>
+        <div id="emailErrorContainer" class="content-field">
+          <div id="emailErrorLabel" class="join-err-text">{{emailErrorText}}</div>
         </div>
       </div>
 
@@ -38,19 +46,16 @@
       <!-- Contraseña -->
       <div class="content-field">
         <div class="control-wrapper"><input id="txtPassword" type="password" ng-model="editedPassword" placeholder="Contraseña" class="form-control" tabindex="5" autocapitalize="off"></div>
-        <!-- Error de contraseñas -->
-        <div class="content-field-block" ng-class="{'hidden':!hasPasswordError}">
-          <div id="passwordError" class="join-err-text"  ng-class="{'errorDetected':hasPasswordError}">{{passwordErrorText}}</div>
-        </div>
       </div>
       <!-- Repetir Contraseña -->
       <div class="content-field">
         <div class="control-wrapper"><input id="txtRepeatPassword" type="password" ng-model="editedRepeatPassword" placeholder="Repite la contraseña" class="form-control" tabindex="6" autocapitalize="off"></div>
       </div>
 
-      <!-- Label Instrucciones contraseña -->
-      <div class="content-field-block">
-        <div class="control-wrapper"><span id="lblPasswordIntructions" class="text-label">Asegúrate al menos que tiene 8 caracteres y que no contiene espacios</span></div>
+      <!-- Error de contraseñas -->
+      <div id="passwordErrorContainer" class="content-field-block">
+        <div id="passwordErrorLabel" class="join-err-text">{{passwordErrorText}}</div>
+        <!--  WTF: delete <div class="control-wrapper"><span id="lblPasswordIntructions" class="text-label">Asegúrate al menos que tiene 8 caracteres y que no contiene espacios</span></div> -->
       </div>
       <!-- Pais, Region y Ciudad
       <div class="content-field">

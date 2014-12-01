@@ -134,6 +134,9 @@ body {
 		cursor: not-allowed !important;
 	}	
 	.btn-pressed();
+	&:hover {
+		background-color: lighten(@btn-default-bg, 10%);
+	}
 }
 
 .btn-primary {
@@ -144,6 +147,10 @@ body {
 		cursor: not-allowed !important;
 	}
 	.btn-pressed();
+	&:hover {
+		background-color: lighten(@brand-primary, 10%);
+	}
+
 }
 
 // Color y borde del boton cancel (no esta definido en el bootstrap)
@@ -151,6 +158,9 @@ body {
 	.button-variant(@btn-default-color; @greyMed; @btn-default-border);
 	box-shadow: 0px 5px 0px rgba(red(@greyMed), green(@greyMed), blue(@greyMed), 0.5);
 	.btn-pressed();
+	&:hover {
+		background-color: lighten(@greyMed, 10%);
+	}
 }
 
 // Color y borde del boton naranja (no esta definido en el bootstrap)
@@ -158,6 +168,9 @@ body {
 	.button-variant(@btn-default-color; @orange; @btn-default-border);
 	box-shadow: 0px 5px 0px rgba(red(@orange), green(@orange), blue(@orange), 0.5);
 	.btn-pressed();
+	&:hover {
+		background-color: lighten(@orange, 10%);
+	}
 }
 
 button .close {

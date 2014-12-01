@@ -8145,10 +8145,6 @@ button#personalDataContent .header button.close {
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 8pt;
-  color: #777777;
   padding-bottom: 10px;
 }
 #personalDataContent .content-field-block:before,
@@ -8505,6 +8501,15 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
     width: 50%;
   }
 }
+.control-wrapper-bottom-space {
+  padding-bottom: 10px;
+}
+.text-label {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 8pt;
+  color: #777777;
+}
 .errorDetected {
   position: relative;
   -webkit-animation: appear-from-right-keyframes 0.5s;
@@ -8512,6 +8517,10 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   -ms-animation: appear-from-right-keyframes 0.5s;
   -o-animation: appear-from-right-keyframes 0.5s;
   animation: appear-from-right-keyframes 0.5s;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 8pt;
+  color: #ff0000;
 }
 @-webkit-keyframes appear-from-right-keyframes {
   0% {

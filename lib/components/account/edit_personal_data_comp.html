@@ -7,41 +7,45 @@
     <div class="content">
       <!-- Nombre -->
       <div class="content-field">
+        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">Nombre</span></div>
         <div class="control-wrapper">
           <input id="txtName" auto-focus type="text" ng-model="editedFirstName" placeholder="Nombre" class="form-control"  tabindex="1">
         </div>
       </div>
       <!-- Apelidos -->
       <div class="content-field">
+        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">Apellidos</span></div>
         <div class="control-wrapper">
           <input id="txtLastName" type="text" ng-model="editedLastName" placeholder="Apellidos" class="form-control" tabindex="2">
         </div>
       </div>
       <!-- Nickname -->
       <div class="content-field">
+        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">Nombre de usuario</span></div>
         <div class="control-wrapper">
           <input id="txtNickName" type="text" ng-model="editedNickName" placeholder="Nombre de usuario" class="form-control" tabindex="3" autocapitalize="off">
         </div>
         <!-- Error de nickName -->
-        <div id="nickNameErrorContainer" class="content-field">
-          <div id="nickNameErrorLabel" class="join-err-text">{{nicknameErrorText}}</div>
+        <div id="nickNameErrorContainer" class="content-field-block">
+          <div id="nickNameErrorLabel" class="err-text"></div>
         </div>
       </div>
 
       <!-- Correo Electrónico -->
       <div class="content-field">
+        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">Correo electrónico</span></div>
         <div class="control-wrapper">
           <input id="txtEmail" type="email" ng-model="editedEmail" placeholder="Correo electrónico" class="form-control" tabindex="4" autocapitalize="off">
         </div>
         <!-- Error de mail -->
-        <div id="emailErrorContainer" class="content-field">
-          <div id="emailErrorLabel" class="join-err-text">{{emailErrorText}}</div>
+        <div id="emailErrorContainer" class="content-field-block">
+          <div id="emailErrorLabel" class="err-text"></div>
         </div>
       </div>
 
       <!-- Label Contraseña -->
       <div class="content-field-block">
-        <div class="control-wrapper"><span id="lblPassword" class="text-label">Contraseña: Rellena los campos de contraseña para actualizar tu contraseña</span></div>
+        <div class="control-wrapper"><span id="lblPassword" class="text-label">Contraseña (Rellena los campos de contraseña para actualizar tu contraseña)</span></div>
       </div>
       <!-- Contraseña -->
       <div class="content-field">
@@ -54,7 +58,7 @@
 
       <!-- Error de contraseñas -->
       <div id="passwordErrorContainer" class="content-field-block">
-        <div id="passwordErrorLabel" class="join-err-text">{{passwordErrorText}}</div>
+        <div id="passwordErrorLabel" class="err-text"></div>
         <!--  WTF: delete <div class="control-wrapper"><span id="lblPasswordIntructions" class="text-label">Asegúrate al menos que tiene 8 caracteres y que no contiene espacios</span></div> -->
       </div>
       <!-- Pais, Region y Ciudad

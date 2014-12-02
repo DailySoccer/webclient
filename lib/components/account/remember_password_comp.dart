@@ -40,10 +40,7 @@ class RememberPasswordComp implements ShadowRootAware{
     loadingService.isLoading = true;
     hideErrors();
     _enabledSubmit = false;
-    /***/
-    _numeroEnvio++;
-    print("Se ha hecho la petición por ${_numeroEnvio}º vez.");
-    /***/
+
     _serverService.askForPasswordReset(email)
       .then((_) {
         state = STATE_REQUESTED;
@@ -76,8 +73,6 @@ class RememberPasswordComp implements ShadowRootAware{
     _errLabel = _rootElement.querySelector('#errLabel');
     hideErrors();
   }
-
-  int _numeroEnvio = 0;
 
   bool _enabledSubmit = true;
   Router _router;

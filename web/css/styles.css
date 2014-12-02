@@ -16948,6 +16948,12 @@ lineup-selector {
   text-align: right;
   cursor: pointer;
 }
+.email-detail {
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  font-size: 10pt;
+  color: #59add5;
+}
 .main-box {
   padding-left: 15px;
   padding-right: 15px;

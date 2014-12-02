@@ -138,9 +138,10 @@
 		max-height: 340px;
 	}
 }
-.wrapping-link {
-	text-decoration: none;
-	position: relative;
+a {
+	&:hover, &:focus {
+		text-decoration: none;
+	}
 }
 .more-info-section(@bgColor, @textColor, @imageName){
 	display: block;
@@ -258,6 +259,7 @@
 		left: 0;
 		width: 100%;
 		cursor: pointer;
+		text-decoration: none;
 	}
 }	
 	

@@ -11,8 +11,7 @@ class AutoFocusDecorator implements AttachAware{
 
   @override
   void attach() {
-    //inputElement.autofocus = true;
+    // TODO: (A modo de test) Poner un timer que retarde en 500ms la acción de autofocus.
     inputElement.focus();
-    //print('Focus en: ${inputElement.id}');
   }
 }

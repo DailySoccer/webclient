@@ -9956,9 +9956,9 @@ fieldset[disabled] #rootFooter .user-info-sup-footer .add-funds-button {
     display: none !important;
   }
 }
-.wrapping-link {
+a:hover,
+a:focus {
   text-decoration: none;
-  position: relative;
 }
 .more-info-section-dark {
   display: block;
@@ -10140,6 +10140,7 @@ fieldset[disabled] #rootFooter .user-info-sup-footer .add-funds-button {
   left: 0;
   width: 100%;
   cursor: pointer;
+  text-decoration: none;
 }
 .button-play-base {
   display: inline-block;

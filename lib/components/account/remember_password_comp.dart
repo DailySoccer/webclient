@@ -56,7 +56,7 @@ class RememberPasswordComp implements ShadowRootAware{
               _errLabel
                 ..classes.remove("errorDetected")
                 ..classes.add("errorDetected")
-                ..text = value[0]; //"Algo ha ido mal, comprueba que la dirección esté bien escrita";
+                ..text = value; //"Algo ha ido mal, comprueba que la dirección esté bien escrita";
               _errSection.style.display = "";
             break;
           }

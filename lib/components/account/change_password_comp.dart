@@ -44,11 +44,7 @@ class ChangePasswordComp implements ShadowRootAware {
 
   ChangePasswordComp(this._router, this._routeProvider, this._profileManager, this._rootElement, this._loadingService) {
     _loadingService.isLoading = true;
-
-    //TODO: decomentar
-    //GameMetrics.logEvent(GameMetrics.CHANGE_PASSWORD_ATTEMPTED);
-
-
+    GameMetrics.logEvent(GameMetrics.CHANGE_PASSWORD_ATTEMPTED);
     //_stormPathTokenId = _routeProvider.route.parameters['tokenId'];
   }
 

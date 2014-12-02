@@ -34,9 +34,6 @@ class RememberPasswordComp implements ShadowRootAware{
   }
 
   void rememberMyPassword() {
-    //TODO: comprobar que sólo se llama una vaz cuando se hace click en el botón o se pulsa enter.
-    //Prevenir la propagación del evento si es necesario.
-
     loadingService.isLoading = true;
     hideErrors();
     _enabledSubmit = false;
@@ -77,7 +74,7 @@ class RememberPasswordComp implements ShadowRootAware{
   bool _enabledSubmit = true;
   Router _router;
   ProfileService _profileManager;
-  // TODO: Capturar los elementos que mostraran el error en el caso de que lo haya
+
   Element _rootElement;
   Element _errSection;
   Element _errLabel;

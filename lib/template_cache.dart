@@ -26,47 +26,51 @@ tc.put("packages/webclient/components/account/change_password_comp.html", new Ht
 
       </div>
       <div class="panel-body" >
-        <div ng-if="state=='STATE_INVALID_URL'">
-          La página solicitada no está disponible
-        </div>
-        <div ng-if="state=='STATE_INVALID_TOKEN'">
-          El token proporcionado no es válido o ha expirado.
-        </div>
-        <form  ng-if="state=='STATE_CHANGE_PASSWORD'" id="loginForm" class="form-horizontal" ng-submit="changePassword()" role="form" formAutofillFix>
-
-          <div class="form-description">Introduce tu cuenta de correo electrónico y tu contraseña para acceder a los torneos.</div>
-
-          <!-- PÂSSWORD -->
-          <div class="input-group">
-            <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-            <input id="password" type="password" ng-model="password" name="password" placeholder="Contraseña" auto-focus class="form-control" tabindex="1" autocapitalize="off">
+        <div ng-switch="state">
+          <div ng-switch-when="'STATE_INVALID_URL'">
+            La página solicitada no está disponible
+          </div>
+          <div ng-switch-when="'STATE_INVALID_TOKEN'">
+            El token proporcionado no es válido o ha expirado.
           </div>
 
-          <!-- RE PASSWORD -->
-          <div class="input-group">
-            <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-            <input id="rePassword" type="password" ng-model="rePassword" name="password" placeholder="Repite la contraseña" class="form-control" tabindex="2" autocapitalize="off">
-          </div>
+          <form ng-switch-when="'STATE_CHANGE_PASSWORD'" id="changePasswordForm" class="form-horizontal" ng-submit="changePassword()" role="form">
+            <div class="form-description">Crea una nueva contraseña.</div>
 
-          <!-- Error de password -->
-          <div class="input-group"  ng-class="{'error-visible' : !errorDetected}">
-            <div class="new-row">
-              <div id="passError" class="pass-err-text ">{{errorMessage}}</div>
-            </div>
-          </div>
-
-          <!-- BUTTONS -->
-
-          <div class="input-group">
-            <div class="new-row">
-              <div class="buttons-wapper">
-                <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">ENTRAR</button>
-                <button id="btnCancelLogin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCELAR</button>
+            <!-- PASSWORD -->
+            <div  class="user-form-field">
+              <!-- Description -->
+              <div class="new-row bottom-separation-10">
+                <div class="small-text">Contraseña: Al menos {{MIN_PASSWORD_LENGTH}} caracteres. (Escríbela dos veces).</div>
+              </div>
+              <!-- Field Input 1 -->
+              <div id="passwordInputGroup" class="input-group  bottom-separation-10">
+                <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
+                <input id="password" name="password" type="password"  placeholder="Contraseña" ng-model="Contraseña" data-minlength="MIN_PASSWORD_LENGTH" ng-minlength="MIN_PASSWORD_LENGTH" class="form-control" tabindex="1" autocapitalize="off" auto-focus>
+              </div>
+              <!-- Field Input 2 -->
+              <div id="rePasswordInputGroup" class="input-group">
+                <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
+                <input id="rePassword" name="password" type="password" placeholder="Repite la contraseña" ng-model="rePassword" data-minlength="MIN_PASSWORD_LENGTH" ng-minlength="MIN_PASSWORD_LENGTH" class="form-control" tabindex="2" autocapitalize="off">
+              </div>
+              <!-- Error de password -->
+              <div class="new-row">
+                <div id="passError" class="pass-err-text ">{{errorMessage}}</div>
               </div>
             </div>
-          </div>
 
-        </form>
+            <!-- BUTTONS -->
+            <div class="input-group user-form-field">
+              <div class="new-row">
+                <div class="buttons-wapper">
+                  <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">ENTRAR</button>
+                  <button id="btnCancelLogin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCELAR</button>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
 
       </div>
 
@@ -85,7 +89,7 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
       <div class="content-field">
         <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">Nombre</span></div>
         <div class="control-wrapper">
-          <input id="txtName" auto-focus type="text" ng-model="editedFirstName" placeholder="Nombre" class="form-control"  tabindex="1">
+          <input id="txtName" type="text" ng-model="editedFirstName" placeholder="Nombre" class="form-control"  tabindex="1" auto-focus>
         </div>
       </div>
       <!-- Apelidos -->
@@ -213,7 +217,7 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
             <!-- Field Input -->
             <div id="nickNameInputGroup" class="input-group">
               <span class="input-group-addon"><div class="glyphicon glyphicon-user"></div></span>
-              <input id="nickName" auto-focus name="NickName" type="text" ng-model="theNickName" placeholder="Nombre de usuario" class="form-control" tabindex="1" autocapitalize="off">
+              <input id="nickName" name="NickName" type="text" ng-model="theNickName" placeholder="Nombre de usuario" class="form-control" tabindex="1" autocapitalize="off" auto-focus>
             </div>
             <!-- Error label -->
             <div class="new-row">
@@ -319,7 +323,7 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
             <!-- MAIL -->
             <div class="input-group  bottom-separation-10">
               <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-              <input id="login-mail" auto-focus ng-model="emailOrUsername" type="email" name="Email" placeholder="Correo electrónico" class="form-control" tabindex="1" autocapitalize="off">
+              <input id="login-mail" ng-model="emailOrUsername" type="email" name="Email" placeholder="Correo electrónico" class="form-control" tabindex="1" autocapitalize="off" auto-focus>
             </div>
             <!-- PÂSSWORD -->
             <div class="input-group">
@@ -389,39 +393,41 @@ tc.put("packages/webclient/components/account/remember_password_comp.html", new 
         </button>
       </div>
 
-      <div class="panel-body" >
+      <div class="panel-body" ng-switch >
+        <!-- Mensaje cuando todo ha ido correctamente. -->
         <div ng-show="state=='STATE_REQUESTED'">
-          <div class="form-description">Se ha enviado tu petición. Revisa tu correo. <br><br>Ya puedes cerrar esta ventana.</div>
-          <!-- GOTO REGISTER -->
-          <!-- Esta ventana es el final del flow y queda muerta. por lo tanto no damos opción de linkar a otra parte.
-          <div class="input-group">
-            <div class="new-row">
-              <a ng-click="navigateTo('join', {}, $event)"> Volver al inicio! </a>
-            </div>
-          </div>
-          -->
+          <div class="form-description">Te hemos enviado un correo electrónicoa la dirección: <br><br><p class="email-detail">'{{email}}'</p>Revisa tu correo y sigue las instrucciones en el email que te hemos enviado.</div>
+          <div class="small-text-centered"><br><br>(Ya puedes cerrar esta ventana)</div>
         </div>
-        <form ng-show="state=='STATE_REQUEST'" id="loginForm" class="form-horizontal" ng-submit="rememberMyPassword()" role="form" formAutofillFix>
 
-          <div class="form-description">¿Olvidaste tu contraseña? Introduce tu dirección de correo electrónico y recibirás un email para recuperar tu cuenta.</div>
-          <!-- MAIL -->
-          <div class="input-group">
-            <span class="input-group-addon"><div class="glyphicon glyphicon-envelope"></div></span>
-            <input id="rememberEmail" auto-focus name="Email" type="email" ng-model="email" placeholder="Correo electrónico" class="form-control" tabindex="1" autocapitalize="off">
-          </div>
-          <!-- Error de login/password -->
-          <div class="input-group" ng-class="{'error-visible' : !errorDetected}">
-            <div class="new-row">
-              <div id="errLabel" class="login-err-text">Algo ha ido mal, revisa el correo electrónico que has introducido.</div>
+        <form ng-show="state=='STATE_REQUEST'" id="rememberPasswordForm" class="form-horizontal" ng-submit="rememberMyPassword()" role="form">
+
+          <div class="form-description">¿Olvidaste tu contraseña? Introduce la dirección de correo electrónico y recibirás un email para recuperar tu cuenta.</div>
+
+          <!-- EMAIL -->
+          <div  class="user-form-field" >
+            <!-- Description -->
+            <div class="new-row bottom-separation-10">
+              <div class="small-text">Introduce la dirección de correo electrónico con la que te registrarte:</div>
+            </div>
+            <!-- Field Input -->
+             <div id="emailInputGroup" class="input-group">
+              <span class="input-group-addon"><div class="glyphicon glyphicon-envelope"></div></span>
+              <input id="rememberEmail" name="Email" type="email" ng-model="email" placeholder="Correo electrónico" class="form-control" tabindex="1" autocapitalize="off"  auto-focus>
+            </div>
+            <!-- Error label -->
+            <div id="errContainer" class="new-row">
+              <div id="errLabel" class="login-err-text">...</div>
             </div>
           </div>
+
           <!-- BUTTONS -->
-          <div class="input-group">
+          <div class="input-group user-form-field">
             <div class="new-row">
               <div class="buttons-wapper">
                 <button type="submit" id="btnSubmit" name="RememberPassword" ng-disabled="!enabledSubmit" class="enter-button-half">ENVIAR</button>
                 <button id="btnCancelRemember" ng-click="navigateTo('login', {}, $event)" class="cancel-button-half">CANCELAR</button>
-              </div>
+             </div>
             </div>
           </div>
 
@@ -1149,7 +1155,7 @@ tc.put("packages/webclient/components/landing_page_comp.html", new HttpResponse(
 
   <!-- Portada Versión Móvil -->
   <div id="mobileContent" class="screen">
-    <div class="screen-pattern" src="images/pattern.png"></div>
+  <!--<div class="screen-pattern" src="images/pattern.png"></div>-->
     <div class="content">
       <p class="main-title-mobile">LIGAS FANTÁSTICAS <br> DIARIAS</p>
       <p class="title-sup-text-mobile">CREA TU EQUIPO EN SEGUNDOS</p>

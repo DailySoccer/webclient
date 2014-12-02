@@ -136,22 +136,30 @@ class JoinComp implements ShadowRootAware {
   void submitSignup() {
     GameMetrics.logEvent(GameMetrics.SIGNUP_ATTEMPTED);
 
+    bool errorDetected = false;
+
     nicknameError.parent.style.display = "none";
     emailError.parent.style.display = "none";
     passwordError.parent.style.display = "none";
     _enabledSubmit = false;
+    loadingService.isLoading = true;
 
     if (password.length < MIN_PASSWORD_LENGTH) {
-      _enabledSubmit = true;
-      return;
+      errorDetected =  true;
     }
+
     if (password != rePassword) {
       passwordError
         ..text = "Las contraseñas no coinciden. Revisa la ortografía"
         ..classes.remove("errorDetected")
         ..classes.add("errorDetected")
         ..parent.style.display = "";
-        _enabledSubmit = true;
+        errorDetected =  true;
+    }
+
+    if(errorDetected) {
+      _enabledSubmit = true;
+      loadingService.isLoading = false;
       return;
     }
 

@@ -26,8 +26,8 @@ class EditPersonalDataComp implements ShadowRootAware{
   String editedLastName;
   String editedNickName;
   String editedEmail;
-  String editedPassword;
-  String editedRepeatPassword;
+  String editedPassword = "";
+  String editedRepeatPassword = "";
 
   String nicknameErrorText;
   String emailErrorText;

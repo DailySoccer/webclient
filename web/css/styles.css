@@ -8163,10 +8163,10 @@ button#personalDataContent .header button.close {
 #personalDataContent .content-field-block:after {
   clear: both;
 }
-#personalDataContent .join-err-text {
+#personalDataContent .err-text {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
-  font-size: 10pt;
+  font-size: 8pt;
   color: #ff0000;
 }
 #personalDataContent .subscriptions-content {
@@ -8561,6 +8561,15 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
     left: 0px;
     opacity: 1;
   }
+}
+#changePasswordBox .form-description {
+  margin: 10px 0;
+}
+.panel-body {
+  min-height: 60px;
+}
+.panel-heading {
+  min-height: 59px;
 }
 @media (max-width: 767px) {
   .header-view-contest-entry-mode {
@@ -9165,7 +9174,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   padding-left: 0px;
   padding-right: 0px;
   background-color: #000000;
-  min-height: 130px;
+  min-height: 100px;
 }
 #rootFooter .goto-link {
   text-decoration: none;
@@ -9956,9 +9965,9 @@ fieldset[disabled] #rootFooter .user-info-sup-footer .add-funds-button {
     display: none !important;
   }
 }
-.wrapping-link {
+a:hover,
+a:focus {
   text-decoration: none;
-  position: relative;
 }
 .more-info-section-dark {
   display: block;
@@ -10140,6 +10149,7 @@ fieldset[disabled] #rootFooter .user-info-sup-footer .add-funds-button {
   left: 0;
   width: 100%;
   cursor: pointer;
+  text-decoration: none;
 }
 .button-play-base {
   display: inline-block;
@@ -16947,6 +16957,12 @@ lineup-selector {
   text-align: right;
   cursor: pointer;
 }
+.email-detail {
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  font-size: 10pt;
+  color: #59add5;
+}
 .main-box {
   padding-left: 15px;
   padding-right: 15px;
@@ -17717,6 +17733,9 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
     left: 0px;
     opacity: 1;
   }
+}
+.invisible {
+  display: none;
 }
 #usersListRoot {
   -webkit-user-select: none;

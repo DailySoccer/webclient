@@ -95,8 +95,8 @@
 		padding-bottom: 10px;
 		.clearfix();
 	}	
-	.join-err-text {
-		.opensans_normal(10pt, @red);
+	.err-text {
+		.opensans_normal(8pt, @red);
 	}
 	.subscriptions-content {
 		.content();
@@ -165,9 +165,20 @@
 	.opensans_normal(8pt, @greyDark);
 }
 
-
 .errorDetected{
 	.appear-from-right-animation();
 	.opensans_normal(8pt, @red);
+}
 
+// Reserva de espacio para el cuerpo de la ventana de formularios (change_password)
+#changePasswordBox {
+	.form-description { margin: 10px 0;}
+}
+
+.panel-body {
+	min-height: 60px;
+}
+// Reserva de espacio para el titulo de la ventana de formularios (todos los casos)
+.panel-heading {
+	min-height: 59px;
 }

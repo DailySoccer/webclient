@@ -26,47 +26,51 @@ tc.put("packages/webclient/components/account/change_password_comp.html", new Ht
 
       </div>
       <div class="panel-body" >
-        <div ng-if="state=='STATE_INVALID_URL'">
-          La página solicitada no está disponible
-        </div>
-        <div ng-if="state=='STATE_INVALID_TOKEN'">
-          El token proporcionado no es válido o ha expirado.
-        </div>
-        <form  ng-if="state=='STATE_CHANGE_PASSWORD'" id="loginForm" class="form-horizontal" ng-submit="changePassword()" role="form" formAutofillFix>
-
-          <div class="form-description">Introduce tu cuenta de correo electrónico y tu contraseña para acceder a los torneos.</div>
-
-          <!-- PÂSSWORD -->
-          <div class="input-group">
-            <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-            <input id="password" type="password" ng-model="password" name="password" placeholder="password" auto-focus class="form-control" tabindex="1" autocapitalize="off">
+        <div ng-switch="state">
+          <div ng-switch-when="'STATE_INVALID_URL'">
+            La página solicitada no está disponible
+          </div>
+          <div ng-switch-when="'STATE_INVALID_TOKEN'">
+            El token proporcionado no es válido o ha expirado.
           </div>
 
-          <!-- RE PASSWORD -->
-          <div class="input-group">
-            <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-            <input id="rePassword" type="password" ng-model="rePassword" name="password" placeholder="repetir password" class="form-control" tabindex="2" autocapitalize="off">
-          </div>
+          <form ng-switch-when="'STATE_CHANGE_PASSWORD'" id="changePasswordForm" class="form-horizontal" ng-submit="changePassword()" role="form">
+            <div class="form-description">Crea una nueva contraseña.</div>
 
-          <!-- Error de password -->
-          <div class="input-group"  ng-class="{'error-visible' : !errorDetected}">
-            <div class="new-row">
-              <div id="passError" class="pass-err-text ">{{errorMessage}}</div>
-            </div>
-          </div>
-
-          <!-- BUTTONS -->
-
-          <div class="input-group">
-            <div class="new-row">
-              <div class="buttons-wapper">
-                <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">ENTRAR</button>
-                <button id="btnCancelLogin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCELAR</button>
+            <!-- PASSWORD -->
+            <div  class="user-form-field">
+              <!-- Description -->
+              <div class="new-row bottom-separation-10">
+                <div class="small-text">Contraseña: Al menos {{MIN_PASSWORD_LENGTH}} caracteres. (Escríbela dos veces).</div>
+              </div>
+              <!-- Field Input 1 -->
+              <div id="passwordInputGroup" class="input-group  bottom-separation-10">
+                <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
+                <input id="password" name="password" type="password"  placeholder="Contraseña" ng-model="Contraseña" data-minlength="MIN_PASSWORD_LENGTH" ng-minlength="MIN_PASSWORD_LENGTH" class="form-control" tabindex="1" autocapitalize="off" auto-focus>
+              </div>
+              <!-- Field Input 2 -->
+              <div id="rePasswordInputGroup" class="input-group">
+                <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
+                <input id="rePassword" name="password" type="password" placeholder="Repite la contraseña" ng-model="rePassword" data-minlength="MIN_PASSWORD_LENGTH" ng-minlength="MIN_PASSWORD_LENGTH" class="form-control" tabindex="2" autocapitalize="off">
+              </div>
+              <!-- Error de password -->
+              <div class="new-row">
+                <div id="passError" class="pass-err-text ">{{errorMessage}}</div>
               </div>
             </div>
-          </div>
 
-        </form>
+            <!-- BUTTONS -->
+            <div class="input-group user-form-field">
+              <div class="new-row">
+                <div class="buttons-wapper">
+                  <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">ENTRAR</button>
+                  <button id="btnCancelLogin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCELAR</button>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
 
       </div>
 
@@ -83,50 +87,59 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
     <div class="content">
       <!-- Nombre -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtName" auto-focus type="text" ng-model="editedFirstName" placeholder="Nombre" class="form-control"  tabindex="1"></div>
+        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">Nombre</span></div>
+        <div class="control-wrapper">
+          <input id="txtName" type="text" ng-model="editedFirstName" placeholder="Nombre" class="form-control"  tabindex="1" auto-focus>
+        </div>
       </div>
       <!-- Apelidos -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtLastName" type="text" ng-model="editedLastName" placeholder="Apellidos" class="form-control" tabindex="2"></div>
+        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">Apellidos</span></div>
+        <div class="control-wrapper">
+          <input id="txtLastName" type="text" ng-model="editedLastName" placeholder="Apellidos" class="form-control" tabindex="2">
+        </div>
       </div>
       <!-- Nickname -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtNickName" type="text" ng-model="editedNickName" placeholder="Nombre de usuario" class="form-control" tabindex="3" autocapitalize="off"></div>
-        <!-- Error de mail -->
-        <div class="content-field"       ng-class="{'hidden':!hasNicknameError}">
-          <div id="nickNameError" class="join-err-text" ng-class="{'errorDetected':hasNicknameError}">{{nicknameErrorText}}</div>
+        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">Nombre de usuario</span></div>
+        <div class="control-wrapper">
+          <input id="txtNickName" type="text" ng-model="editedNickName" placeholder="Nombre de usuario" class="form-control" tabindex="3" autocapitalize="off">
+        </div>
+        <!-- Error de nickName -->
+        <div id="nickNameErrorContainer" class="content-field-block">
+          <div id="nickNameErrorLabel" class="err-text"></div>
         </div>
       </div>
 
       <!-- Correo Electrónico -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtEmail" type="email" ng-model="editedEmail" placeholder="Email" class="form-control" tabindex="4" autocapitalize="off"></div>
+        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">Correo electrónico</span></div>
+        <div class="control-wrapper">
+          <input id="txtEmail" type="email" ng-model="editedEmail" placeholder="Correo electrónico" class="form-control" tabindex="4" autocapitalize="off">
+        </div>
         <!-- Error de mail -->
-        <div class="content-field"       ng-class="{'hidden':!hasEmailError}">
-          <div id="emailError" class="join-err-text" ng-class="{'errorDetected':!hasEmailError}">{{emailErrorText}}</div>
+        <div id="emailErrorContainer" class="content-field-block">
+          <div id="emailErrorLabel" class="err-text"></div>
         </div>
       </div>
 
       <!-- Label Contraseña -->
       <div class="content-field-block">
-        <div class="control-wrapper"><span id="lblPassword" class="text-label">Contraseña: Rellena los campos de contraseña para actualizar tu contraseña</span></div>
+        <div class="control-wrapper"><span id="lblPassword" class="text-label">Contraseña (Rellena los campos de contraseña para actualizar tu contraseña)</span></div>
       </div>
       <!-- Contraseña -->
       <div class="content-field">
         <div class="control-wrapper"><input id="txtPassword" type="password" ng-model="editedPassword" placeholder="Contraseña" class="form-control" tabindex="5" autocapitalize="off"></div>
-        <!-- Error de contraseñas -->
-        <div class="content-field-block" ng-class="{'hidden':!hasPasswordError}">
-          <div id="passwordError" class="join-err-text"  ng-class="{'errorDetected':hasPasswordError}">{{passwordErrorText}}</div>
-        </div>
       </div>
       <!-- Repetir Contraseña -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtRepeatPassword" type="password" ng-model="editedRepeatPassword" placeholder="Repetir Contraseña" class="form-control" tabindex="6" autocapitalize="off"></div>
+        <div class="control-wrapper"><input id="txtRepeatPassword" type="password" ng-model="editedRepeatPassword" placeholder="Repite la contraseña" class="form-control" tabindex="6" autocapitalize="off"></div>
       </div>
 
-      <!-- Label Instrucciones contraseña -->
-      <div class="content-field-block">
-        <div class="control-wrapper"><span id="lblPasswordIntructions" class="text-label">Asegúrate al menos que tiene 8 caracteres y que no contiene espacios</span></div>
+      <!-- Error de contraseñas -->
+      <div id="passwordErrorContainer" class="content-field-block">
+        <div id="passwordErrorLabel" class="err-text"></div>
+        <!--  WTF: delete <div class="control-wrapper"><span id="lblPasswordIntructions" class="text-label">Asegúrate al menos que tiene 8 caracteres y que no contiene espacios</span></div> -->
       </div>
       <!-- Pais, Region y Ciudad
       <div class="content-field">
@@ -194,48 +207,65 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
 
         <form id="signupForm" class="form-horizontal" ng-submit="submitSignup()" role="form" formAutofillFix>
           <div class="form-description">¿Todavía no tienes cuenta en EPIC ELEVEN?<br>Rellena este formulario para completar el registro.</div>
+
           <!-- NICKNAME  -->
-          <div class="new-row bottom-separation-10">
-            <div class="small-text">Tu nombre de usuario debe tener al menos {{MIN_NICKNAME_LENGTH}} caracteres.</div>
+          <div class="user-form-field">
+            <!-- Description -->
+            <div class="new-row bottom-separation-10">
+              <div class="small-text">Tu nombre de usuario debe tener al menos {{MIN_NICKNAME_LENGTH}} caracteres.</div>
+            </div>
+            <!-- Field Input -->
+            <div id="nickNameInputGroup" class="input-group">
+              <span class="input-group-addon"><div class="glyphicon glyphicon-user"></div></span>
+              <input id="nickName" name="NickName" type="text" ng-model="theNickName" placeholder="Nombre de usuario" class="form-control" tabindex="1" autocapitalize="off" auto-focus>
+            </div>
+            <!-- Error label -->
+            <div class="new-row">
+              <div id="nickNameError" class="join-err-text">ERROR DE REGISTRO. El user name no es válido.</div>
+            </div>
           </div>
-          <div id="groupNickName" class="input-group">
-            <span class="input-group-addon"><div class="glyphicon glyphicon-user"></div></span>
-            <input id="nickName" auto-focus name="NickName" type="text" ng-model="theNickName" placeholder="Nombre de usuario" class="form-control" tabindex="1" autocapitalize="off">
-          </div>
-          <!-- Error de username -->
-          <div class="new-row">
-            <div id="nickNameError" class="join-err-text">ERROR DE REGISTRO. El user name no es válido.</div>
-          </div>
+
           <!-- EMAIL -->
-          <div class="new-row bottom-separation-10">
-            <div class="small-text">Introduce un email válido.</div>
+          <div  class="user-form-field" >
+            <!-- Description -->
+            <div class="new-row bottom-separation-10">
+              <div class="small-text">Introduce un email válido.</div>
+            </div>
+            <!-- Field Input -->
+            <div id="emailInputGroup" class="input-group">
+              <span class="input-group-addon"><div class="glyphicon glyphicon-envelope"></div></span>
+              <input id="email" name="Email" type="email" ng-model="theEmail" placeholder="Correo electrónico" class="form-control" tabindex="2" autocapitalize="off">
+            </div>
+            <!-- Error label -->
+            <div class="new-row">
+              <div id="emailError" class="join-err-text">ERROR DE REGISTRO. El mail no es válido.</div>
+            </div>
           </div>
-          <div id="groupEmail" class="input-group">
-            <span class="input-group-addon"><div class="glyphicon glyphicon-envelope"></div></span>
-            <input id="email" name="Email" type="email" ng-model="theEmail" placeholder="Correo electrónico" class="form-control" tabindex="2" autocapitalize="off">
-          </div>
-          <!-- Error de mail -->
-          <div class="new-row">
-            <div id="emailError" class="join-err-text">ERROR DE REGISTRO. El mail no es válido.</div>
-          </div>
+
           <!-- PASSWORD -->
-          <div class="new-row bottom-separation-10">
-            <div class="small-text">Contraseña: Al menos {{MIN_PASSWORD_LENGTH}} caracteres. (Escríbela dos veces).</div>
+          <div  class="user-form-field">
+            <!-- Description -->
+            <div class="new-row bottom-separation-10">
+              <div class="small-text">Contraseña: Al menos {{MIN_PASSWORD_LENGTH}} caracteres. (Escríbela dos veces).</div>
+            </div>
+            <!-- Field Input 1 -->
+            <div id="passwordInputGroup" class="input-group  bottom-separation-10">
+              <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
+              <input id="password" name="Password" type="password" ng-model="thePassword" placeholder="Contraseña" class="form-control" data-minlength="MIN_PASSWORD_LENGTH" ng-minlength="MIN_PASSWORD_LENGTH"  tabindex="3" autocapitalize="off">
+            </div>
+            <!-- Field Input 2 -->
+            <div id="rePasswordInputGroup" class="input-group">
+              <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
+              <input id="rePassword" name="RePassword" type="password" ng-model="theRePassword" placeholder="Repite la contraseña" class="form-control" tabindex="4" autocapitalize="off">
+            </div>
+            <!-- Error de password -->
+            <div class="new-row">
+              <div id="passwordError" class="join-err-text">ERROR DE REGISTRO. El password no es válido.</div>
+            </div>
           </div>
-          <div id="groupPassword" class="input-group">
-            <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-            <input id="password" name="Password" type="password" ng-model="thePassword" placeholder="Contraseña" class="form-control" data-minlength="MIN_PASSWORD_LENGTH" ng-minlength="MIN_PASSWORD_LENGTH"  tabindex="3" autocapitalize="off">
-          </div>
-          <div id="groupRePassword" class="input-group">
-            <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-            <input id="rePassword" name="RePassword" type="password" ng-model="theRePassword" placeholder="Repite la contraseña " class="form-control" tabindex="4" autocapitalize="off">
-          </div>
-          <!-- Error de password -->
-          <div class="new-row">
-            <div id="passwordError" class="join-err-text">ERROR DE REGISTRO. El password no es válido.</div>
-          </div>
+
           <!-- BUTTONS -->
-          <div class="input-group">
+          <div class="input-group user-form-field">
             <div class="new-row">
               <div class="buttons-wapper">
                 <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">REGÍSTRATE</button>
@@ -243,29 +273,25 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
              </div>
             </div>
           </div>
+
           <!-- GOTO REGISTER -->
-          <div class="new-row bottom-separation-10">
+          <div class="user-form-field">
             <div class="small-text">¿Ya tienes cuenta? <a ng-click="navigateTo('login', {}, $event)"> Entra por aquí! </a></div>
           </div>
 
           <!--
           Facebook stuff-->
-          <div class="input-group">
-            <div class="new-row">
-              <div class="fb-button-wapper">
-                <fb:login-button scope="public_profile,email" size="large" onlogin="jsLoginFB()">
-                </fb:login-button>
-              </div>
+          <div  class="user-form-field">
+            <div class="fb-button-wapper">
+              <fb:login-button scope="public_profile,email" size="large" onlogin="jsLoginFB()">
+              </fb:login-button>
             </div>
           </div>
           <!-- -->
 
         </form>
-
       </div>
-
     </div>
-
   </div>
 </div>
  <script>
@@ -290,30 +316,35 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
       <div class="panel-body" >
 
         <form id="loginForm" class="form-horizontal" ng-submit="login()" role="form" formAutofillFix>
-
           <div class="form-description">Introduce tu cuenta de correo electrónico y tu contraseña para acceder a los torneos.</div>
-          <!-- MAIL -->
-          <div class="input-group">
-            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-            <input id="login-mail" auto-focus ng-model="emailOrUsername" type="email" name="Email" placeholder="Email" class="form-control" tabindex="1" autocapitalize="off">
-          </div>
-          <!-- PÂSSWORD -->
-          <div class="input-group">
-            <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-            <input id="login-password" type="password" ng-model="password" name="password" placeholder="contraseña" class="form-control" tabindex="2" autocapitalize="off">
-          </div>
-          <!-- REMEMBER ME -->
-          <div class="remember-forgot-group">
-            <!--<div class="checkbox">
-              <label><input id="login-remember" type="checkbox" ng-model="rememberMe" name="rememberMe"> Recuerdame </label>
-            </div>-->
-            <div class="forget-pass">
-              <a ng-click="navigateTo('remember_password', {}, $event)">¿Olvidaste tu contraseña?</a>
-            </div>
-          </div>
-          <!-- BUTTONS -->
 
-          <div class="input-group">
+          <!-- LOGIN FIELDS -->
+          <div class="user-form-field">
+            <!-- MAIL -->
+            <div class="input-group  bottom-separation-10">
+              <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+              <input id="login-mail" ng-model="emailOrUsername" type="email" name="Email" placeholder="Correo electrónico" class="form-control" tabindex="1" autocapitalize="off" auto-focus>
+            </div>
+            <!-- PÂSSWORD -->
+            <div class="input-group">
+              <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
+              <input id="login-password" type="password" ng-model="password" name="password" placeholder="Contraseña" class="form-control" tabindex="2" autocapitalize="off">
+            </div>
+
+            <!-- Error de login/pass -->
+            <div id="loginErrorSection" class="new-row">
+              <div id="loginErrorLabel" class="login-err-text">ERROR DE LOGIN. Los datos inroducidos no son correctos.</div>
+            </div>
+
+          </div>
+
+          <!-- REMEMBER PASS -->
+          <div class="user-form-field-righted">
+            <a class="small-link-righted" ng-click="navigateTo('remember_password', {}, $event)">¿Olvidaste tu contraseña?</a>
+          </div>
+
+          <!-- BUTTONS -->
+          <div class="user-form-field">
             <div class="new-row">
               <div class="buttons-wapper">
                 <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">ENTRAR</button>
@@ -321,32 +352,26 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
               </div>
             </div>
           </div>
-          <!-- Error de login/password -->
-          <div class="input-group">
+
+          <!-- GOTO REGISTER -->
+          <div class="user-form-field">
             <div class="new-row">
-              <div id="mailPassError" class="login-err-text">ERROR DE LOGIN. El mail y/o la contraseña no son correctos.</div>
+              <div class="small-text">¿Aún no tienes cuenta? <a ng-click="navigateTo('join', {}, $event)"> Regístrate aquí! </a></div>
             </div>
           </div>
-          <!-- GOTO REGISTER -->
-          <div class="new-row">
-            <div class="small-text">¿Aún no tienes cuenta? <a ng-click="navigateTo('join', {}, $event)"> Regístrate aquí! </a></div>
-          </div>
-        </form>
 
-        <!--Facebook stuff-->
-        <div class="input-group">
-          <div class="new-row">
+          <!--Facebook stuff-->
+          <div  class="user-form-field">
             <div class="fb-button-wapper">
               <fb:login-button scope="public_profile,email" size="large" onlogin="jsLoginFB()">
               </fb:login-button>
             </div>
           </div>
-        </div>
+          <!-- -->
 
+        </form>
       </div>
-
     </div>
-
   </div>
 </div>
  <script>
@@ -368,39 +393,41 @@ tc.put("packages/webclient/components/account/remember_password_comp.html", new 
         </button>
       </div>
 
-      <div class="panel-body" >
+      <div class="panel-body" ng-switch >
+        <!-- Mensaje cuando todo ha ido correctamente. -->
         <div ng-show="state=='STATE_REQUESTED'">
-          <div class="form-description">Se ha enviado tu petición. Revisa tu correo. <br><br>Ya puedes cerrar esta ventana.</div>
-          <!-- GOTO REGISTER -->
-          <!-- Esta ventana es el final del flow y queda muerta. por lo tanto no damos opción de linkar a otra parte.
-          <div class="input-group">
-            <div class="new-row">
-              <a ng-click="navigateTo('join', {}, $event)"> Volver al inicio! </a>
-            </div>
-          </div>
-          -->
+          <div class="form-description">Te hemos enviado un correo electrónicoa la dirección: <br><br><p class="email-detail">'{{email}}'</p>Revisa tu correo y sigue las instrucciones en el email que te hemos enviado.</div>
+          <div class="small-text-centered"><br><br>(Ya puedes cerrar esta ventana)</div>
         </div>
-        <form ng-show="state=='STATE_REQUEST'" id="loginForm" class="form-horizontal" ng-submit="rememberMyPassword()" role="form" formAutofillFix>
 
-          <div class="form-description">¿Olvidaste tu contraseña? Introduce tu dirección de correo electrónico y recibirás un email para recuperar tu cuenta.</div>
-          <!-- MAIL -->
-          <div class="input-group">
-            <span class="input-group-addon"><div class="glyphicon glyphicon-envelope"></div></span>
-            <input id="rememberEmail" auto-focus name="Email" type="email" ng-model="email" placeholder="Correo electrónico" class="form-control" tabindex="1" autocapitalize="off">
-          </div>
-          <!-- Error de login/password -->
-          <div class="input-group" ng-class="{'error-visible' : !errorDetected}">
-            <div class="new-row">
-              <div id="errLabel" class="login-err-text">Algo ha ido mal, revisa el correo electrónico que has introducido.</div>
+        <form ng-show="state=='STATE_REQUEST'" id="rememberPasswordForm" class="form-horizontal" ng-submit="rememberMyPassword()" role="form">
+
+          <div class="form-description">¿Olvidaste tu contraseña? Introduce la dirección de correo electrónico y recibirás un email para recuperar tu cuenta.</div>
+
+          <!-- EMAIL -->
+          <div  class="user-form-field" >
+            <!-- Description -->
+            <div class="new-row bottom-separation-10">
+              <div class="small-text">Introduce la dirección de correo electrónico con la que te registrarte:</div>
+            </div>
+            <!-- Field Input -->
+             <div id="emailInputGroup" class="input-group">
+              <span class="input-group-addon"><div class="glyphicon glyphicon-envelope"></div></span>
+              <input id="rememberEmail" name="Email" type="email" ng-model="email" placeholder="Correo electrónico" class="form-control" tabindex="1" autocapitalize="off"  auto-focus>
+            </div>
+            <!-- Error label -->
+            <div id="errContainer" class="new-row">
+              <div id="errLabel" class="login-err-text">...</div>
             </div>
           </div>
+
           <!-- BUTTONS -->
-          <div class="input-group">
+          <div class="input-group user-form-field">
             <div class="new-row">
               <div class="buttons-wapper">
                 <button type="submit" id="btnSubmit" name="RememberPassword" ng-disabled="!enabledSubmit" class="enter-button-half">ENVIAR</button>
                 <button id="btnCancelRemember" ng-click="navigateTo('login', {}, $event)" class="cancel-button-half">CANCELAR</button>
-              </div>
+             </div>
             </div>
           </div>
 
@@ -428,7 +455,7 @@ tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpR
         <div class="button-wrapper"><button class="action-button" ng-click="editPersonalData()">EDITAR</button></div>
       </div>
       <div class="bloque-sm">
-        <div class="data-row"><span class="data-key">Nombre:</span><span class="data-value">{{userData.firstName + ' ' + userData.lastName}}</span></div>
+        <div class="data-row"><span class="data-key">Nombre personal:</span><span class="data-value">{{userData.firstName + ' ' + userData.lastName}}</span></div>
         <div class="data-row"><span class="data-key">Nombre de usuario:</span><span class="data-value">{{userData.nickName}}</span></div>
         <div class="data-row"><span class="data-key">Correo electrónico:</span><span class="data-value">{{userData.email}}</span></div>
         <div class="data-row"><span class="data-key">Contraseña:</span><span class="data-value">********</span></div>
@@ -635,9 +662,9 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
         <!-- Nav tabs -->
         <div class="tabs-navigation">
           <ul class="contest-info-tabs " id="modalInfoContestTabs">
-              <li class="tab active"><a data-toggle="tab" ng-click="tabChange('info')">INFORMACIÓN</a></li>
-              <li class="tab"><a data-toggle="tab" ng-click="tabChange('contestants')">PARTICIPANTES</a></li>
-              <li class="tab"><a data-toggle="tab" ng-click="tabChange('prizes')">PREMIOS</a></li>
+              <li class="tab active"><a data-toggle="tab" ng-click="tabChange('info')">Información</a></li>
+              <li class="tab"><a data-toggle="tab" ng-click="tabChange('contestants')">Participantes</a></li>
+              <li class="tab"><a data-toggle="tab" ng-click="tabChange('prizes')">Premios</a></li>
               <!--<li class="buton-place">
                 <button id="btn-go-enter-contest" class="btn btn-primary" ng-click="enterContest()">ENTRAR</button>
               </li>-->
@@ -655,8 +682,6 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
               <!-- Tab panes -->
               <div class="tab-pane active" id="info">
                   <p class="instructions">{{currentInfoData['rules']}}</p>
-                  <div class="start-date">COMIENZA EL {{currentInfoData['startDateTime']}}</div>
-
                   <div class="matches-involved">
                       <div class="match" ng-repeat="match in currentInfoData['matchesInvolved']">
                           <p class="teams">{{match.soccerTeamA.shortName}} - {{match.soccerTeamB.shortName}}</p>
@@ -745,7 +770,7 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
 
   <p class="title">JUGADORES</p>
   <div ng-if="!loadingService.isLoading && currentInfoData['contestants'].isEmpty" class="default-info-text">
-    Todavía no hay participantes en este concurso. <br> Anímate a ser el primero.
+    Todavía no hay participantes en este concurso.<br>Anímate a ser el primero.
   </div>
   <div class="contestant-list">
       <div class="contestant-element"ng-repeat="contestant in currentInfoData['contestants']">
@@ -787,7 +812,7 @@ tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse
       </div>
       <div class="column-contest-prize-header">
         <div class="column-contest-prize-header-title">PREMIO</div>
-        <div class="column-contest-prize-header-prize-type">{{contest.prizeTypeName}}</div>
+        <!-- <div class="column-contest-prize-header-prize-type">{{contest.prizeTypeName}}</div> -->
       </div>
     </div>
 
@@ -944,7 +969,7 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_info_comp.html
 
   <div class="soccer-player-info-header">
     <div class="actions-header">
-      <div class="text-header">Estadísticas de jugador</div>
+      <div class="text-header">ESTADÍSTICAS DEL JUGADOR</div>
 
       <button type="button" class="close" data-dismiss="modal">
         <span class="glyphicon glyphicon-remove"></span>
@@ -990,7 +1015,7 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_info_comp.html
           <div class="tab-pane active" id="season-info-tab-content">
             <div class="next-match">PRÓXIMO PARTIDO: <span ng-bind-html="currentInfoData['nextMatchEvent']"></span></div>
             <!-- MEDIAS -->
-            <div class="season-header">Estadísticas de temporada <span>(datos por partido)</span></div>
+            <div class="season-header">ESTADÍSTICAS DE TEMPORADA <span>(DATOS POR PARTIDO)</span></div>
             <div class="season-stats">
               <div class="season-stats-wrapper">
                 <div class="season-stats-row" ng-repeat="stat in medias">
@@ -1003,7 +1028,7 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_info_comp.html
           <!--END SEASON-->
           <!--MATCH-->
           <div class="tab-pane" id="match-info-tab-content">
-            <div class="match-header">Partido a partido</div>
+            <div class="match-header">PARTIDO A PARTIDO</div>
             <div class="match-stats" ng-if="matchesPlayed">
               <!--HEADER-->
               <div ng-if="isGoalkeeper()" class="match-stats-header">
@@ -1055,7 +1080,7 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_info_comp.html
               </div>
             </div>
             <div class="noMatchesPlayed" ng-if="!matchesPlayed">
-                <span>NO HA JUGADO NINGÚN PARTIDO ESTA TEMPORADA</span>
+                <span>No ha jugado ningún partido esta temporada</span>
             </div>
           </div>
           <!--END MATCH-->
@@ -1105,7 +1130,7 @@ tc.put("packages/webclient/components/landing_page_comp.html", new HttpResponse(
 
         <div class="module-column">
           <img class="icono" src="images/icon3.png"/>
-          <p class="icono-text">Sigue los partidos en directo</p>
+          <p class="icono-text">Y gana dinero</p>
         </div>
 
       </div>
@@ -1130,12 +1155,12 @@ tc.put("packages/webclient/components/landing_page_comp.html", new HttpResponse(
 
   <!-- Portada Versión Móvil -->
   <div id="mobileContent" class="screen">
-    <div class="screen-pattern" src="images/pattern.png"></div>
+  <!--<div class="screen-pattern" src="images/pattern.png"></div>-->
     <div class="content">
       <p class="main-title-mobile">LIGAS FANTÁSTICAS <br> DIARIAS</p>
       <p class="title-sup-text-mobile">CREA TU EQUIPO EN SEGUNDOS</p>
       <p class="title-sup-text-mobile">COMPITE EN TANTAS LIGAS COMO QUIERAS</p>
-      <p class="title-sup-text-mobile">SIGUE LOS PARTIDOS EN DIRECTO</p>
+      <p class="title-sup-text-mobile">Y GANA DINERO</p>
       <div class="button-wrap">
         <button type="button" class="button-play-mobile" ng-click="buttonPressed('join')" id="playButtonMobile">JUGAR</button>
       </div>
@@ -1263,8 +1288,8 @@ tc.put("packages/webclient/components/legalese_and_help/help_info_comp.html", ne
 
   <!-- Nav tabs -->
   <ul class="help-info-tabs" role="tablist">
-    <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('how-works-content')">CÓMO FUNCIONA</a></li>
-    <li><a role="tab" data-toggle="tab" ng-click="tabChange('rules-scores-content')">PUNTUACIONES Y REGLAS</a></li>
+    <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('how-works-content')">Cómo funciona</a></li>
+    <li><a role="tab" data-toggle="tab" ng-click="tabChange('rules-scores-content')">Puntuaciones y reglas</a></li>
   </ul>
 
   <div class="tab-pane active" id="how-works-content">
@@ -1436,7 +1461,7 @@ tc.put("packages/webclient/components/legalese_and_help/legal_info_comp.html", n
   	<h1>Aceptación del Usuario</h1>
   	<p>Este Aviso Legal regula el acceso y utilización de la página web www.epiceleven.com (en adelante la “Web”) que EPIC ELEVEN pone a disposición de los usuarios de Internet. El acceso a la misma implica la aceptación sin reservas del presente Aviso Legal. Asimismo, EPIC ELEVEN puede ofrecer a través de la Web, servicios que podrán encontrarse sometidos a unas condiciones particulares propias sobre las cuales se informará al Usuario en cada caso concreto.</p>
   	<h1>Acceso a la Web y Contraseñas</h1>
-  	<p>Al acceder a la página web de EPIC ELEVEN el usuario declara tener capacidad suficiente para navegar por la mencionada página web, esto es ser mayor de dieciocho años y no estar incapacitado. A su vez, de manera general no se exige la previa suscripción o registro como Usuario para el acceso y uso de la Web, sin perjuicio de que para la utilización de determinados servicios o contenidos de la misma se deba realizar dicha suscripción o registro. Los datos de los Usuarios obtenidos a través de la suscripción o registro a la presente Web, están protegidos mediante contraseñas elegidas por ellos mismos. El Usuario se compromete a mantener su contraseña en secreto y a protegerla de usos no autorizados por terceros. El Usuario deberá notificar a EPIC ELEVEN inmediatamente cualquier uso no consentido de su cuenta o cualquier violación de la seguridad relacionada con el servicio de la Web, de la que haya tenido conocimiento. EPIC ELEVEN adopta las medidas técnicas y organizativas necesarias para garantizar la protección de los datos de carácter personal y evitar su alteración, ida, tratamiento y/o acceso no autorizado, habida cuenta del estado de la técnica, la naturaleza de los datos almacenados y los riesgos a que están expuestos, todo ello, conforme a lo establecido por la legislación española de Protección de Datos de Carácter Personal. EPIC ELEVEN no se hace responsable frente a los Usuarios, por la revelación de sus datos personales a terceros que no sea debida a causas directamente imputables a EPIC ELEVEN, ni por el uso que de tales datos hagan terceros ajenos a EPIC ELEVEN.</p>
+  	<p>Al acceder a la página web de EPIC ELEVEN el usuario declara tener capacidad suficiente para navegar por la mencionada página web, esto es ser mayor de dieciocho años y no estar incapacitado. A su vez, de manera general no se exige la previa suscripción o registro como Usuario para el acceso y uso de la Web, sin perjuicio de que para la utilización de determinados servicios o contenidos de la misma se deba realizar dicha suscripción o registro. Los datos de los Usuarios obtenidos a través de la suscripción o registro a la presente Web, están protegidos mediante contraseñas elegidas por ellos mismos. El Usuario se compromete a mantener su contraseña en secreto y a protegerla de usos no autorizados por terceros. El Usuario deberá notificar a EPIC ELEVEN inmediatamente cualquier uso no consentido de su cuenta o cualquier violación de la seguridad relacionada con el servicio de la Web de la que haya tenido conocimiento. EPIC ELEVEN adopta las medidas técnicas y organizativas necesarias para garantizar la protección de los datos de carácter personal y evitar su alteración, ida, tratamiento y/o acceso no autorizado, habida cuenta del estado de la técnica, la naturaleza de los datos almacenados y los riesgos a que están expuestos, todo ello conforme a lo establecido por la legislación española de Protección de Datos de Carácter Personal. EPIC ELEVEN no se hace responsable frente a los Usuarios, por la revelación de sus datos personales a terceros que no sea debida a causas directamente imputables a EPIC ELEVEN, ni por el uso que de tales datos hagan terceros ajenos a EPIC ELEVEN.</p>
   	<h1>Uso correcto de la Web</h1>
   	<p>El Usuario se compromete a utilizar la Web, los contenidos y servicios de conformidad con la Ley, el presente Aviso Legal, las buenas costumbres y el orden público. Del mismo modo el Usuario se obliga a no utilizar la Web o los servicios que se presten a través de ésta con fines o efectos ilícitos o contrarios al contenido del presente Aviso Legal, lesivos de los intereses o derechos de terceros, o que de cualquier forma pueda dañar, inutilizar o deteriorar la Web o sus servicios o impedir un normal disfrute de la Web por otros Usuarios. Sin perjuicio de lo anterior, EPIC ELEVEN puede ofrecer a través de la web servicios adicionales que cuenten con su propia regulación adicional. En estos casos, se informará adecuadamente a los Usuarios en cada caso concreto. Asimismo, el Usuario se compromete expresamente a no destruir, alterar, inutilizar o, de cualquier otra forma, dañar los datos, programas o documentos electrónicos que se encuentren en la Web. El Usuario se compromete a no obstaculizar el acceso de otros Usuarios al servicio de acceso mediante el consumo masivo de los recursos informáticos a través de los cuales EPIC ELEVEN presta el servicio, así como realizar acciones que dañen, interrumpan o generen errores en dichos sistemas. El Usuario se compromete a no introducir programas, virus, macros, applets, controles ActiveX o cualquier otro dispositivo lógico o secuencia de caracteres que causen o sean susceptibles de causar cualquier tipo de alteración en los sistemas informáticos de EPIC ELEVEN o de terceros.</p>
   	<h1>Enlaces de terceros</h1>
@@ -1476,7 +1501,7 @@ tc.put("packages/webclient/components/legalese_and_help/policy_info_comp.html", 
     <p>
         Esta declaración tiene como finalidad informar a los usuarios de la Política general de Privacidad y Protección de Datos Personales seguida por EPIC
         ELEVEN. Esta Política de Privacidad podría variar en función del criterio empresarial o bien de aquellas modificaciones legislativas, por lo que se
-        aconseja a los usuarios que la visiten periódicamente.A su vez, informamos al usuario que EPIC ELEVEN realiza el tratamiento de los datos de acuerdo a las
+        aconseja a los usuarios que la visiten periódicamente. A su vez, informamos al usuario que EPIC ELEVEN realiza el tratamiento de los datos de acuerdo a las
         finalidades que el contenido de la web www.epiceleven.com requiera. Para ello, actuará de forma proporcionada, obteniendo datos que sean pertinentes,
         enviando solo comunicaciones comerciales a quién así lo haya permitido de manera expresa en los formularios arriba mencionados.
     </p>
@@ -2128,7 +2153,7 @@ tc.put("packages/webclient/components/lobby_comp.html", new HttpResponse(200, r"
                   entry-fee-filter="lobbyFilters['FILTER_ENTRY_FEE']"
                   name-filter="lobbyFilters['FILTER_CONTEST_NAME']"
                   on-action-click='onActionClick(contest)'
-                  on-row-click="onRowClick(contest)" action-button-title="'Jugar'"
+                  on-row-click="onRowClick(contest)" action-button-title="'JUGAR'"
                   contest-count="contestCount">
   </contests-list>
 </div>
@@ -2234,11 +2259,6 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
   </div>
 </div>
 """));
-tc.put("packages/webclient/components/paginator_comp.html", new HttpResponse(200, r"""<div class="paginator-wrapper">
-  <div class="paginator-box" ng-model="buildMe()">
-    <!-- Aqui van los botones -->
-  </div>
-</div>"""));
 tc.put("packages/webclient/components/promos_comp.html", new HttpResponse(200, r"""<img ng-if="!scrDet.isXsScreen" src="images/bannerPromoDesktop.jpg" class="promoDesktop" />
 <!--<div class="beta-version-desktop" ng-if="!scrDet.isXsScreen">
   <span class="beta-version-text">VERSIÓN BETA</span>

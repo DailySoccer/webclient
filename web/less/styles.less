@@ -50,7 +50,6 @@
 
 @icon-font-path: "../bootstrap-3.1.1/fonts/";
 
-
 html, body {
     height: 100%; 
     font-size: 0;
@@ -103,81 +102,73 @@ body {
 }
 
 
-// Por ejemplo, el color del boton "Añadir fondos", al que consideramos un btn-primary
-@brand-primary: @green;
 
-// Color y borde del boton default (por ejemplo, el "Entrar" en un concurso)
-@btn-default-bg: @blueLight;
-
-@btn-default-color: @white;
 
 .btn {
 	border-width: 0;
-    .transition(all, 0.1s, ease-out);
-    &:focus{
-		outline: none !important;
-	}
+    .transition(box-shadow, 0.1s, ease-out);
+    .transition(margin, 0.1s, ease-out);
+    .transition(padding, 0.1s, ease-out);
 }
-.btn-pressed {
-	&:active,
+
+.btn-bg-states(@theBgColor) {
+	.btn();
+	background-color: @theBgColor;
+	color: @white;
+	box-shadow: 0px 5px 0px rgba(red(@theBgColor), green(@theBgColor), blue(@theBgColor), 0.5);
+	.pressed {
+		background-color: @theBgColor;
+		box-shadow: none;
+		margin-top: 4px;
+		color: @white;
+	}
+	&:active {
+		.pressed();
+	}
+
 	&[disabled],
 	fieldset[disabled] & {
-		box-shadow: 0px 0px 0px rgba(128, 128, 128, 0.5);
-		margin-top: 4px;
-	}
-}
-.btn-default {
-	box-shadow: 0px 5px 0px rgba(red(@blueLight), green(@blueLight), blue(@blueLight), 0.5);
-	&[disabled] {
-		box-shadow: 0px 5px 0px rgba(red(@green), green(@green), blue(@green), 0.5);
-		color: @greyUltraLight !important;
+		.pressed();
 		cursor: not-allowed !important;
-	}	
-	.btn-pressed();
-	&:hover {
-		background-color: lighten(@btn-default-bg, 10%);
-	}
-}
-
-.btn-primary {
-	box-shadow: 0px 5px 0px rgba(red(@green), green(@green), blue(@green), 0.5);
-	&[disabled] {
-		box-shadow: 0px 5px 0px rgba(red(@green), green(@green), blue(@green), 0.5);
-		color: @greyUltraLight !important;
-		cursor: not-allowed !important;
-	}
-	.btn-pressed();
-	&:hover {
-		background-color: lighten(@brand-primary, 10%);
+		color: @white;
 	}
 
-}
-
-// Color y borde del boton cancel (no esta definido en el bootstrap)
-.btn-cancel {
-	.button-variant(@btn-default-color; @greyMed; @btn-default-border);
-	box-shadow: 0px 5px 0px rgba(red(@greyMed), green(@greyMed), blue(@greyMed), 0.5);
-	.btn-pressed();
-	&:hover {
-		background-color: lighten(@greyMed, 10%);
-	}
-}
-
-// Color y borde del boton naranja (no esta definido en el bootstrap)
-.btn-orange {
-	.button-variant(@btn-default-color; @orange; @btn-default-border);
-	box-shadow: 0px 5px 0px rgba(red(@orange), green(@orange), blue(@orange), 0.5);
-	.btn-pressed();
-	&:hover {
-		background-color: lighten(@orange, 10%);
-	}
-}
-
-button .close {
-	&:focus{
+	&:hover,
+	.open .dropdown-toggle& {
+		background-color: lighten(@theBgColor, 10%);
 		outline: none !important;
+		color: @white;
+	}
+
+	&:focus,
+	&:focus {
+		background-color: @theBgColor;
+		outline: none !important;
+		color: @white;
+	}
+	&.close {
+		background-color: @theBgColor;
+		outline: none !important;
+		color: @white;
 	}
 }
+//botones azules
+.btn-default {	
+	.btn-bg-states(@blueLight);
+}
+//botones verdes
+.btn-primary {
+	.btn-bg-states(@green);
+}
+//botones grises
+.btn-cancel {
+	.btn-bg-states(@greyMed);
+}
+//botones naranjas
+.btn-orange {
+	.btn-bg-states(@orange);
+}
+
 .btn-fb-span {
 	.hidden-xs();
 	background-color: transparent;

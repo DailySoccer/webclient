@@ -5,7 +5,7 @@ import 'package:angular/angular.dart';
 
 primeTemplateCache(TemplateCache tc) {
 tc.put("packages/webclient/components/account/change_password_comp.html", new HttpResponse(200, r"""<div id="changePasswordRoot">
-  <div id="loginBox" class="main-box">
+  <div id="changePasswordBox" class="main-box">
 
     <div class="panel">
 
@@ -13,11 +13,11 @@ tc.put("packages/webclient/components/account/change_password_comp.html", new Ht
       <div class="panel-heading">
         <div ng-switch="state">
           <!-- SI ES INVALID URL -->
-          <div ng-if="state=='STATE_INVALID_URL'"     class="panel-title">Error 503</div>
+          <div ng-switch-when="STATE_INVALID_URL"     class="panel-title">ERROR 503</div>
           <!-- SI ES TOKEN INVALIDO -->
-          <div ng-if="state=='STATE_INVALID_TOKEN'"   class="panel-title">CAMBIO DE CONTRASEÑA</div>
+          <div ng-switch-when="STATE_INVALID_TOKEN"   class="panel-title">CAMBIO DE CONTRASEÑA</div>
           <!-- SI ES TOKEN VALIDO/INVALIDO -->
-          <div ng-if="state=='STATE_CHANGE_PASSWORD'" class="panel-title">CAMBIO DE CONTRASEÑA</div>
+          <div ng-switch-when="STATE_CHANGE_PASSWORD" class="panel-title">CAMBIO DE CONTRASEÑA</div>
         </div>
 
         <button type="button" class="close" ng-click="navigateTo('landing_page',{}, $event)">
@@ -26,51 +26,53 @@ tc.put("packages/webclient/components/account/change_password_comp.html", new Ht
 
       </div>
       <div class="panel-body" >
-        <div ng-switch="state">
-          <div ng-switch-when="'STATE_INVALID_URL'">
-            La página solicitada no está disponible
-          </div>
-          <div ng-switch-when="'STATE_INVALID_TOKEN'">
-            El token proporcionado no es válido o ha expirado.
-          </div>
 
-          <form ng-switch-when="'STATE_CHANGE_PASSWORD'" id="changePasswordForm" class="form-horizontal" ng-submit="changePassword()" role="form">
-            <div class="form-description">Crea una nueva contraseña.</div>
-
-            <!-- PASSWORD -->
-            <div  class="user-form-field">
-              <!-- Description -->
-              <div class="new-row bottom-separation-10">
-                <div class="small-text">Contraseña: Al menos {{MIN_PASSWORD_LENGTH}} caracteres. (Escríbela dos veces).</div>
-              </div>
-              <!-- Field Input 1 -->
-              <div id="passwordInputGroup" class="input-group  bottom-separation-10">
-                <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-                <input id="password" name="password" type="password"  placeholder="Contraseña" ng-model="Contraseña" data-minlength="MIN_PASSWORD_LENGTH" ng-minlength="MIN_PASSWORD_LENGTH" class="form-control" tabindex="1" autocapitalize="off" auto-focus>
-              </div>
-              <!-- Field Input 2 -->
-              <div id="rePasswordInputGroup" class="input-group">
-                <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-                <input id="rePassword" name="password" type="password" placeholder="Repite la contraseña" ng-model="rePassword" data-minlength="MIN_PASSWORD_LENGTH" ng-minlength="MIN_PASSWORD_LENGTH" class="form-control" tabindex="2" autocapitalize="off">
-              </div>
-              <!-- Error de password -->
-              <div class="new-row">
-                <div id="passError" class="pass-err-text ">{{errorMessage}}</div>
-              </div>
-            </div>
-
-            <!-- BUTTONS -->
-            <div class="input-group user-form-field">
-              <div class="new-row">
-                <div class="buttons-wapper">
-                  <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">ENTRAR</button>
-                  <button id="btnCancelLogin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCELAR</button>
+        <form  id="changePasswordForm" class="form-horizontal" ng-submit="changePassword()" role="form">
+          <div ng-switch="state">
+                <div ng-switch-when="STATE_INVALID_URL" class="form-description">
+                  La página solicitada no está disponible
                 </div>
-              </div>
-            </div>
+                <div ng-switch-when="STATE_INVALID_TOKEN" class="form-description">
+                  El token proporcionado no es válido o ha expirado.
+                </div>
+                <div ng-switch-when="STATE_CHANGE_PASSWORD">
+                  <div class="form-description">
+                    Crea una nueva contraseña.
+                  </div>
+                  <!-- PASSWORD -->
+                  <div  class="user-form-field">
+                    <!-- Description -->
+                    <div class="new-row bottom-separation-10">
+                      <div class="small-text">Contraseña: Al menos {{MIN_PASSWORD_LENGTH}} caracteres. (Escríbela dos veces).</div>
+                    </div>
+                    <!-- Field Input 1 -->
+                    <div id="passwordInputGroup" class="input-group  bottom-separation-10">
+                      <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
+                      <input id="password" name="password" type="password"  placeholder="Contraseña"            ng-model="thePassword"   data-minlength="MIN_PASSWORD_LENGTH" ng-minlength="MIN_PASSWORD_LENGTH" class="form-control" tabindex="1" autocapitalize="off" auto-focus>
+                    </div>
+                    <!-- Field Input 2 -->
+                    <div id="rePasswordInputGroup" class="input-group">
+                      <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
+                      <input id="rePassword" name="password" type="password" placeholder="Repite la contraseña" ng-model="theRePassword" data-minlength="MIN_PASSWORD_LENGTH" ng-minlength="MIN_PASSWORD_LENGTH" class="form-control" tabindex="2" autocapitalize="off">
+                    </div>
+                    <!-- Error de password -->
+                    <div id="errorContainer" class="new-row">
+                      <div id="errorLabel" class="pass-err-text">{{errorMessage}}</div>
+                    </div>
+                  </div>
 
-          </form>
-        </div>
+                  <!-- BUTTONS -->
+                  <div class="input-group user-form-field">
+                    <div class="new-row">
+                      <div class="buttons-wapper">
+                        <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">ENTRAR</button>
+                        <button id="btnCancelLogin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCELAR</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+          </div>
+        </form>
 
       </div>
 
@@ -260,7 +262,7 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
             </div>
             <!-- Error de password -->
             <div class="new-row">
-              <div id="passwordError" class="join-err-text">ERROR DE REGISTRO. El password no es válido.</div>
+              <div id="passwordError" class="join-err-text">El password no es válido.</div>
             </div>
           </div>
 
@@ -977,8 +979,8 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_info_comp.html
 
       <!-- Esta seccion con boton de cancelar & añadir se repite 2 veces, solo en movil, arriba y abajo -->
       <div class="action-buttons">
-          <button class="btn-cancel" data-dismiss="modal">CANCELAR</button>
-          <button class="btn-add" ng-click="onAddClicked()" ng-disabled="cannotAddPlayer">AÑADIR</button>
+          <button class="button-cancel" data-dismiss="modal">CANCELAR</button>
+          <button class="button-add" ng-click="onAddClicked()" ng-disabled="cannotAddPlayer">AÑADIR</button>
       </div>
 
     </div>
@@ -996,7 +998,7 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_info_comp.html
       </div>
       <div class="next-match-wrapper" ng-if="scrDet.isNotXsScreen">
         <span class="next-match">PRÓXIMO PARTIDO:</span> <span class="next-match" ng-bind-html="currentInfoData['nextMatchEvent']"></span>
-        <button class="btn-add" ng-click="onAddClicked()" ng-disabled="cannotAddPlayer">AÑADIR</button>
+        <button class="button-add" ng-click="onAddClicked()" ng-disabled="cannotAddPlayer">AÑADIR</button>
       </div>
     </div>
   </div>
@@ -1088,8 +1090,8 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_info_comp.html
       </div>
 
       <div class="action-buttons bottom">
-        <button class="btn-cancel" data-dismiss="modal">CANCELAR</button>
-        <button class="btn-add" ng-click="onAddClicked()" ng-disabled="cannotAddPlayer">AÑADIR</button>
+        <button class="button-cancel" data-dismiss="modal">CANCELAR</button>
+        <button class="button-add" ng-click="onAddClicked()" ng-disabled="cannotAddPlayer">AÑADIR</button>
       </div>
   </div>
 </modal>
@@ -1155,7 +1157,6 @@ tc.put("packages/webclient/components/landing_page_comp.html", new HttpResponse(
 
   <!-- Portada Versión Móvil -->
   <div id="mobileContent" class="screen">
-  <!--<div class="screen-pattern" src="images/pattern.png"></div>-->
     <div class="content">
       <p class="main-title-mobile">LIGAS FANTÁSTICAS <br> DIARIAS</p>
       <p class="title-sup-text-mobile">CREA TU EQUIPO EN SEGUNDOS</p>

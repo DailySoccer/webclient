@@ -58,11 +58,8 @@
 					padding: 0 10px;
 				}
 			}
-			.btn-group{
-				.btn-group();
-			}
+			
 			.sorting-button{
-				.btn-default();				
 				.opensans_bold(8pt, @greyUltraDark);
 				@media (max-width: @screen-xs-max) {
 					.opensans_bold(7pt, @greyUltraDark);
@@ -71,14 +68,12 @@
 				background-color: transparent;
 				border-width: 1px;
 				border-color: @greyUltraDark;
-				color: @greyDark;
+				color: @greyUltraDark;
 				padding: 6px 23px;
 				&:hover, &:active, &:focus{
 					background-color: transparent;
-					border-width: 1px;
-					color: @greyUltraDark;
-					border-color: @greyUltraDark;
-					margin: 0;
+					color: @greyDark;
+					border-color: @greyDark;
 				}
 
 			}
@@ -159,7 +154,6 @@
 				height: 32px;
 			}
 			.filters-button{
-				.btn();
 				.btn-default();
 				.opensans_bold(8pt, @white);
 				@media (min-width:  @screen-sm-min) {
@@ -176,7 +170,10 @@
 						color: @greyUltraDark;
 						border-color: @greyUltraDark;
 					}
-				} 
+				}
+				&:focus{
+					background-color: @blueLight;
+				}
 			}
 		}
 		.toggleOff::after{
@@ -447,7 +444,6 @@
 				height: 41px;
 			}
 			.btn-reset {
-				.btn();
 				.btn-block();
 				.btn-cancel();
 			}
@@ -458,7 +454,6 @@
 				margin: 0 0 0 10px;	
 			}
 			.btn-confirm {
-				.btn();
 				.btn-block();
 				.btn-primary();
 			}

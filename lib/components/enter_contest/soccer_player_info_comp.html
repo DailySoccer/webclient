@@ -10,8 +10,8 @@
 
       <!-- Esta seccion con boton de cancelar & añadir se repite 2 veces, solo en movil, arriba y abajo -->
       <div class="action-buttons">
-          <button class="btn-cancel" data-dismiss="modal">CANCELAR</button>
-          <button class="btn-add" ng-click="onAddClicked()" ng-disabled="cannotAddPlayer">AÑADIR</button>
+          <button class="button-cancel" data-dismiss="modal">CANCELAR</button>
+          <button class="button-add" ng-click="onAddClicked()" ng-disabled="cannotAddPlayer">AÑADIR</button>
       </div>
 
     </div>
@@ -29,7 +29,7 @@
       </div>
       <div class="next-match-wrapper" ng-if="scrDet.isNotXsScreen">
         <span class="next-match">PRÓXIMO PARTIDO:</span> <span class="next-match" ng-bind-html="currentInfoData['nextMatchEvent']"></span>
-        <button class="btn-add" ng-click="onAddClicked()" ng-disabled="cannotAddPlayer">AÑADIR</button>
+        <button class="button-add" ng-click="onAddClicked()" ng-disabled="cannotAddPlayer">AÑADIR</button>
       </div>
     </div>
   </div>
@@ -121,8 +121,8 @@
       </div>
 
       <div class="action-buttons bottom">
-        <button class="btn-cancel" data-dismiss="modal">CANCELAR</button>
-        <button class="btn-add" ng-click="onAddClicked()" ng-disabled="cannotAddPlayer">AÑADIR</button>
+        <button class="button-cancel" data-dismiss="modal">CANCELAR</button>
+        <button class="button-add" ng-click="onAddClicked()" ng-disabled="cannotAddPlayer">AÑADIR</button>
       </div>
   </div>
 </modal>

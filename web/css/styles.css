@@ -7926,6 +7926,11 @@ fieldset[disabled] .contests-list-root .contest-row .column-contest-action .acti
   color: #ffffff;
   background-color: #b5d657;
 }
+.contests-list-root .contest-row .column-contest-action .action-button:active:hover,
+.contests-list-root .contest-row .column-contest-action .action-button.active:hover {
+  color: #ffffff;
+  background-color: #b5d657;
+}
 .contests-list-root .contest-row .column-contest-action .action-button:focus {
   background-color: #a1c931;
   color: #ffffff;
@@ -8394,6 +8399,11 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   color: #ffffff;
   background-color: #b5d657;
 }
+#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save:active:hover,
+#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save.active:hover {
+  color: #ffffff;
+  background-color: #b5d657;
+}
 #personalDataContent .save-changes-content .forms-wrapper-button .action-button-save:focus {
   background-color: #a1c931;
   color: #ffffff;
@@ -8514,6 +8524,11 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
 }
 #personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel:active:focus,
 #personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel.active:focus {
+  color: #ffffff;
+  background-color: #c9c9c9;
+}
+#personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel:active:hover,
+#personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel.active:hover {
   color: #ffffff;
   background-color: #c9c9c9;
 }
@@ -8881,6 +8896,11 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
 }
 .fantasy-team-header .edit-team .btn-edit-team:active:focus,
 .fantasy-team-header .edit-team .btn-edit-team.active:focus {
+  color: #ffffff;
+  background-color: #82c1df;
+}
+.fantasy-team-header .edit-team .btn-edit-team:active:hover,
+.fantasy-team-header .edit-team .btn-edit-team.active:hover {
   color: #ffffff;
   background-color: #82c1df;
 }
@@ -9577,6 +9597,11 @@ fieldset[disabled] #rootFooter .user-info-sup-footer .add-funds-button {
 }
 #rootFooter .user-info-sup-footer .add-funds-button:active:focus,
 #rootFooter .user-info-sup-footer .add-funds-button.active:focus {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+#rootFooter .user-info-sup-footer .add-funds-button:active:hover,
+#rootFooter .user-info-sup-footer .add-funds-button.active:hover {
   color: #ffffff;
   background-color: #b5d657;
 }
@@ -10379,6 +10404,11 @@ fieldset[disabled] .button-play-base {
   color: #ffffff;
   background-color: #b5d657;
 }
+.button-play-base:active:hover,
+.button-play-base.active:hover {
+  color: #ffffff;
+  background-color: #b5d657;
+}
 .button-play-base:focus {
   background-color: #a1c931;
   color: #ffffff;
@@ -10536,6 +10566,11 @@ fieldset[disabled] .button-wrap .button-play {
   color: #ffffff;
   background-color: #b5d657;
 }
+.button-wrap .button-play:active:hover,
+.button-wrap .button-play.active:hover {
+  color: #ffffff;
+  background-color: #b5d657;
+}
 .button-wrap .button-play:focus {
   background-color: #a1c931;
   color: #ffffff;
@@ -10685,6 +10720,11 @@ fieldset[disabled] .button-wrap .button-play-mobile {
 }
 .button-wrap .button-play-mobile:active:focus,
 .button-wrap .button-play-mobile.active:focus {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+.button-wrap .button-play-mobile:active:hover,
+.button-wrap .button-play-mobile.active:hover {
   color: #ffffff;
   background-color: #b5d657;
 }
@@ -11574,6 +11614,11 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
 }
 #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:active:focus,
 #contestFiltersRoot #contestSortsFilters .filterToggler .filters-button.active:focus {
+  color: #ffffff;
+  background-color: #82c1df;
+}
+#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button:active:hover,
+#contestFiltersRoot #contestSortsFilters .filterToggler .filters-button.active:hover {
   color: #ffffff;
   background-color: #82c1df;
 }
@@ -12747,6 +12792,11 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-
   color: #ffffff;
   background-color: #c9c9c9;
 }
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:active:hover,
+#contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset.active:hover {
+  color: #ffffff;
+  background-color: #c9c9c9;
+}
 #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-reset:focus {
   background-color: #afafaf;
   color: #ffffff;
@@ -12916,6 +12966,11 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .confirm-button-wrapper .bt
 }
 #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:active:focus,
 #contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.active:focus {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm:active:hover,
+#contestFiltersRoot #filtersPanel .confirm-button-wrapper .btn-confirm.active:hover {
   color: #ffffff;
   background-color: #b5d657;
 }
@@ -13246,6 +13301,11 @@ main-menu-slide {
   }
   #mainMenu .add-funds-button:active:focus,
   #mainMenu .add-funds-button.active:focus {
+    color: #ffffff;
+    background-color: #b5d657;
+  }
+  #mainMenu .add-funds-button:active:hover,
+  #mainMenu .add-funds-button.active:hover {
     color: #ffffff;
     background-color: #b5d657;
   }
@@ -13582,6 +13642,11 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
   color: #ffffff;
   background-color: #82c1df;
 }
+#mainMenu #menuNotLoggedIn .button-wrapper .button-join:active:hover,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-join.active:hover {
+  color: #ffffff;
+  background-color: #82c1df;
+}
 #mainMenu #menuNotLoggedIn .button-wrapper .button-join:focus {
   background-color: #59add5;
   color: #ffffff;
@@ -13725,6 +13790,11 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-login {
 }
 #mainMenu #menuNotLoggedIn .button-wrapper .button-login:active:focus,
 #mainMenu #menuNotLoggedIn .button-wrapper .button-login.active:focus {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+#mainMenu #menuNotLoggedIn .button-wrapper .button-login:active:hover,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-login.active:hover {
   color: #ffffff;
   background-color: #b5d657;
 }
@@ -14094,6 +14164,11 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
   color: #ffffff;
   background-color: #b5d657;
 }
+.no-contests-wrapper .no-contest-bottom-row .btn-go-to-contest:active:hover,
+.no-contests-wrapper .no-contest-bottom-row .btn-go-to-contest.active:hover {
+  color: #ffffff;
+  background-color: #b5d657;
+}
 .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contest:focus {
   background-color: #a1c931;
   color: #ffffff;
@@ -14458,6 +14533,11 @@ fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .button-cancel {
   color: #ffffff;
   background-color: #c9c9c9;
 }
+#modalSoccerPlayerInfo .action-buttons .button-cancel:active:hover,
+#modalSoccerPlayerInfo .action-buttons .button-cancel.active:hover {
+  color: #ffffff;
+  background-color: #c9c9c9;
+}
 #modalSoccerPlayerInfo .action-buttons .button-cancel:focus {
   background-color: #afafaf;
   color: #ffffff;
@@ -14604,6 +14684,11 @@ fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .button-add {
 }
 #modalSoccerPlayerInfo .action-buttons .button-add:active:focus,
 #modalSoccerPlayerInfo .action-buttons .button-add.active:focus {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+#modalSoccerPlayerInfo .action-buttons .button-add:active:hover,
+#modalSoccerPlayerInfo .action-buttons .button-add.active:hover {
   color: #ffffff;
   background-color: #b5d657;
 }
@@ -14993,6 +15078,11 @@ fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .descriptio
 }
 #modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add:active:focus,
 #modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add.active:focus {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add:active:hover,
+#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add.active:hover {
   color: #ffffff;
   background-color: #b5d657;
 }
@@ -15777,6 +15867,11 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-cancel-player-selection {
   color: #ffffff;
   background-color: #c9c9c9;
 }
+.enter-contest-actions-wrapper .btn-cancel-player-selection:active:hover,
+.enter-contest-actions-wrapper .btn-cancel-player-selection.active:hover {
+  color: #ffffff;
+  background-color: #c9c9c9;
+}
 .enter-contest-actions-wrapper .btn-cancel-player-selection:focus {
   background-color: #afafaf;
   color: #ffffff;
@@ -15906,6 +16001,11 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-clean-lineup-list {
 }
 .enter-contest-actions-wrapper .btn-clean-lineup-list:active:focus,
 .enter-contest-actions-wrapper .btn-clean-lineup-list.active:focus {
+  color: #ffffff;
+  background-color: #c9c9c9;
+}
+.enter-contest-actions-wrapper .btn-clean-lineup-list:active:hover,
+.enter-contest-actions-wrapper .btn-clean-lineup-list.active:hover {
   color: #ffffff;
   background-color: #c9c9c9;
 }
@@ -16052,6 +16152,11 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
 }
 .enter-contest-actions-wrapper .btn-confirm-lineup-list:active:focus,
 .enter-contest-actions-wrapper .btn-confirm-lineup-list.active:focus {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+.enter-contest-actions-wrapper .btn-confirm-lineup-list:active:hover,
+.enter-contest-actions-wrapper .btn-confirm-lineup-list.active:hover {
   color: #ffffff;
   background-color: #b5d657;
 }
@@ -16680,6 +16785,11 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
   color: #ffffff;
   background-color: #b5d657;
 }
+.soccer-players-list .soccer-players-list-slot .column-action .action-button.add:active:hover,
+.soccer-players-list .soccer-players-list-slot .column-action .action-button.add.active:hover {
+  color: #ffffff;
+  background-color: #b5d657;
+}
 .soccer-players-list .soccer-players-list-slot .column-action .action-button.add:focus {
   background-color: #a1c931;
   color: #ffffff;
@@ -16820,6 +16930,11 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
 }
 .soccer-players-list .soccer-players-list-slot .column-action .action-button.remove:active:focus,
 .soccer-players-list .soccer-players-list-slot .column-action .action-button.remove.active:focus {
+  color: #ffffff;
+  background-color: #82c1df;
+}
+.soccer-players-list .soccer-players-list-slot .column-action .action-button.remove:active:hover,
+.soccer-players-list .soccer-players-list-slot .column-action .action-button.remove.active:hover {
   color: #ffffff;
   background-color: #82c1df;
 }
@@ -16998,6 +17113,11 @@ fieldset[disabled] .soccer-players-filter .filter-by-position .button-filter-pos
   color: #ffffff;
   background-color: #82c1df;
 }
+.soccer-players-filter .filter-by-position .button-filter-position:active:hover,
+.soccer-players-filter .filter-by-position .button-filter-position.active:hover {
+  color: #ffffff;
+  background-color: #82c1df;
+}
 .soccer-players-filter .filter-by-position .button-filter-position:focus {
   background-color: #59add5;
   color: #ffffff;
@@ -17041,6 +17161,16 @@ fieldset[disabled] .soccer-players-filter .filter-by-position .button-filter-pos
   color: #434343;
   padding-bottom: 18px;
   box-shadow: none;
+}
+.soccer-players-filter .filter-by-position .button-filter-position.active:focus {
+  background-color: #ffffff;
+  color: #434343;
+  padding-bottom: 18px;
+  box-shadow: none;
+}
+.soccer-players-filter .filter-by-position .button-filter-position.active:hover {
+  background-color: #ffffff;
+  color: #434343;
 }
 .soccer-players-filter .name-player-input-filter {
   display: block;
@@ -17913,6 +18043,11 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button {
   color: #ffffff;
   background-color: #b5d657;
 }
+.main-box .panel .panel-body .new-row .enter-button:active:hover,
+.main-box .panel .panel-body .new-row .enter-button.active:hover {
+  color: #ffffff;
+  background-color: #b5d657;
+}
 .main-box .panel .panel-body .new-row .enter-button:focus {
   background-color: #a1c931;
   color: #ffffff;
@@ -18062,6 +18197,11 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button-half {
   color: #ffffff;
   background-color: #b5d657;
 }
+.main-box .panel .panel-body .new-row .enter-button-half:active:hover,
+.main-box .panel .panel-body .new-row .enter-button-half.active:hover {
+  color: #ffffff;
+  background-color: #b5d657;
+}
 .main-box .panel .panel-body .new-row .enter-button-half:focus {
   background-color: #a1c931;
   color: #ffffff;
@@ -18170,6 +18310,11 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
 }
 .main-box .panel .panel-body .new-row .cancel-button-half:active:focus,
 .main-box .panel .panel-body .new-row .cancel-button-half.active:focus {
+  color: #ffffff;
+  background-color: #c9c9c9;
+}
+.main-box .panel .panel-body .new-row .cancel-button-half:active:hover,
+.main-box .panel .panel-body .new-row .cancel-button-half.active:hover {
   color: #ffffff;
   background-color: #c9c9c9;
 }
@@ -18735,6 +18880,11 @@ fieldset[disabled] .profile-content .action-button {
   color: #ffffff;
   background-color: #82c1df;
 }
+.profile-content .action-button:active:hover,
+.profile-content .action-button.active:hover {
+  color: #ffffff;
+  background-color: #82c1df;
+}
 .profile-content .action-button:focus {
   background-color: #59add5;
   color: #ffffff;
@@ -18875,6 +19025,11 @@ fieldset[disabled] .profile-content .add-funds-button {
 }
 .profile-content .add-funds-button:active:focus,
 .profile-content .add-funds-button.active:focus {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+.profile-content .add-funds-button:active:hover,
+.profile-content .add-funds-button.active:hover {
   color: #ffffff;
   background-color: #b5d657;
 }
@@ -19078,6 +19233,11 @@ fieldset[disabled] .profile-content .add-funds-button {
   }
   .profile-content .personal-data .action-button:active:focus,
   .profile-content .personal-data .action-button.active:focus {
+    color: #ffffff;
+    background-color: #82c1df;
+  }
+  .profile-content .personal-data .action-button:active:hover,
+  .profile-content .personal-data .action-button.active:hover {
     color: #ffffff;
     background-color: #82c1df;
   }
@@ -19293,6 +19453,11 @@ fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-
   color: #ffffff;
   background-color: #82c1df;
 }
+.profile-content .pocket-data .button-wrapper .action-button-transaction:active:hover,
+.profile-content .pocket-data .button-wrapper .action-button-transaction.active:hover {
+  color: #ffffff;
+  background-color: #82c1df;
+}
 .profile-content .pocket-data .button-wrapper .action-button-transaction:focus {
   background-color: #59add5;
   color: #ffffff;
@@ -19435,6 +19600,11 @@ fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-
 }
 .profile-content .pocket-data .button-wrapper .action-button-get-funds:active:focus,
 .profile-content .pocket-data .button-wrapper .action-button-get-funds.active:focus {
+  color: #ffffff;
+  background-color: #82c1df;
+}
+.profile-content .pocket-data .button-wrapper .action-button-get-funds:active:hover,
+.profile-content .pocket-data .button-wrapper .action-button-get-funds.active:hover {
   color: #ffffff;
   background-color: #82c1df;
 }
@@ -19686,6 +19856,11 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-cancel-contest {
   color: #ffffff;
   background-color: #c9c9c9;
 }
+.view-contest-entry-actions-wrapper .btn-cancel-contest:active:hover,
+.view-contest-entry-actions-wrapper .btn-cancel-contest.active:hover {
+  color: #ffffff;
+  background-color: #c9c9c9;
+}
 .view-contest-entry-actions-wrapper .btn-cancel-contest:focus {
   background-color: #afafaf;
   color: #ffffff;
@@ -19829,6 +20004,11 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-back-contest {
 }
 .view-contest-entry-actions-wrapper .btn-back-contest:active:focus,
 .view-contest-entry-actions-wrapper .btn-back-contest.active:focus {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+.view-contest-entry-actions-wrapper .btn-back-contest:active:hover,
+.view-contest-entry-actions-wrapper .btn-back-contest.active:hover {
   color: #ffffff;
   background-color: #b5d657;
 }
@@ -20126,6 +20306,11 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
 }
 #helpInfo .block-last .description-right .button-play:active:focus,
 #helpInfo .block-last .description-right .button-play.active:focus {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+#helpInfo .block-last .description-right .button-play:active:hover,
+#helpInfo .block-last .description-right .button-play.active:hover {
   color: #ffffff;
   background-color: #b5d657;
 }
@@ -20781,6 +20966,11 @@ fieldset[disabled] .btn-default {
   color: #ffffff;
   background-color: #82c1df;
 }
+.btn-default:active:hover,
+.btn-default.active:hover {
+  color: #ffffff;
+  background-color: #82c1df;
+}
 .btn-default:focus {
   background-color: #59add5;
   color: #ffffff;
@@ -20882,6 +21072,11 @@ fieldset[disabled] .btn-primary {
 }
 .btn-primary:active:focus,
 .btn-primary.active:focus {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+.btn-primary:active:hover,
+.btn-primary.active:hover {
   color: #ffffff;
   background-color: #b5d657;
 }
@@ -20989,6 +21184,11 @@ fieldset[disabled] .btn-cancel {
   color: #ffffff;
   background-color: #c9c9c9;
 }
+.btn-cancel:active:hover,
+.btn-cancel.active:hover {
+  color: #ffffff;
+  background-color: #c9c9c9;
+}
 .btn-cancel:focus {
   background-color: #afafaf;
   color: #ffffff;
@@ -21090,6 +21290,11 @@ fieldset[disabled] .btn-orange {
 }
 .btn-orange:active:focus,
 .btn-orange.active:focus {
+  color: #ffffff;
+  background-color: #fbb14b;
+}
+.btn-orange:active:hover,
+.btn-orange.active:hover {
   color: #ffffff;
   background-color: #fbb14b;
 }

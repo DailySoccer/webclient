@@ -9,6 +9,7 @@ import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/utils/game_metrics.dart';
+import 'package:webclient/utils/html_utils.dart';
 
 @Component(
   selector: 'lobby',
@@ -95,6 +96,24 @@ class LobbyComp implements DetachAware {
   void detach() {
     _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_CONTEST_LIST);
     _nextTournamentInfoTimer.cancel();
+  }
+
+
+
+
+
+
+
+  void verModalTestOKCancel() {
+    modalShow("titulo","contenidodo", onYes: funcioCallback, onNo: funcioCallback, onOk: funcioCallback, onCancel: funcioCallback);
+  }
+
+
+
+
+
+  void funcioCallback(String name) {
+    print("Se ha pulsado ${name}");
   }
 
   Router _router;

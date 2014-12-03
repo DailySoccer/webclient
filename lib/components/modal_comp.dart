@@ -4,6 +4,7 @@ import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/services/screen_detector_service.dart';
+import 'package:webclient/utils/html_utils.dart';
 
 @Component(
   selector: 'modal',

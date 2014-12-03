@@ -155,7 +155,7 @@
 			}
 			.filters-button{
 				.btn-default();
-				.opensans_bold(8pt, @white);
+				&:active {color: @white;}
 				@media (min-width:  @screen-sm-min) {
 					.opensans_bold(8pt, @greyUltraDark);
 					line-height: 29px;
@@ -170,9 +170,6 @@
 						color: @greyUltraDark;
 						border-color: @greyUltraDark;
 					}
-				}
-				&:focus{
-					background-color: @blueLight;
 				}
 			}
 		}

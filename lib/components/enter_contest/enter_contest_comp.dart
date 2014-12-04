@@ -16,6 +16,7 @@ import 'package:webclient/models/contest_entry.dart';
 import "package:webclient/models/instance_soccer_player.dart";
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/utils/game_metrics.dart';
+import 'package:webclient/utils/html_utils.dart';
 
 
 @Component(
@@ -92,11 +93,18 @@ class EnterContestComp implements DetachAware {
 
 
     _routeHandle = _routeProvider.route.newHandle();
-    _routeHandle.onPreLeave.listen((RoutePreLeaveEvent event) {
-      event.route.dontLeaveOnParamChanges;
-      //bool decision = window.confirm('Estas seguro que quieres salir? Si pulsas en aceptar perderas los cambios realizados en esta alineación y abandonaras el torneo.');
-      //event.allowLeave(new Future.value(decision));
-    });
+    _routeHandle.onPreLeave.listen(allowLeaveThePage);
+  }
+
+
+
+  void allowLeaveThePage(RoutePreLeaveEvent event) {
+    event.allowLeave(_autoAllowLeavePage ? new Future<bool>.value(false) :
+      modalShow("Atención!",
+                "Estas a punto de salir.<br>Si continuas perderás los cambios en el equipo que estás configurando.<br><br>¿Estas seguro de querer abandonar?",
+                onYes: event.allowLeave,
+                onNo:event.allowLeave)
+      );
   }
 
   void resetLineup() {
@@ -106,6 +114,7 @@ class EnterContestComp implements DetachAware {
     FieldPos.LINEUP.forEach((pos) {
       lineupSlots.add(null);
     });
+    _autoAllowLeavePage = true;
   }
 
   void detach() {
@@ -182,7 +191,15 @@ class EnterContestComp implements DetachAware {
          nameFilter = null;
          break;
        }
-     }
+    }
+    // Verificamos si esta la lista llena o vacía por completo para permitir salir sin alertas.
+    int count = 0;
+    lineupSlots.forEach((soccerPlayer) {
+      if (soccerPlayer == null) {
+        count++;
+      }
+    });
+    _autoAllowLeavePage = count == 0 || count == lineupSlots.length;
 
     //Si ya no estamos en modo seleción, scrolleamos hasta la altura del dinero que nos queda disponible.
     if (!isSelectingSoccerPlayer) {
@@ -336,4 +353,5 @@ class EnterContestComp implements DetachAware {
   RouteHandle _routeHandle;
   ScreenDetectorService _scrDet;
 
+  bool _autoAllowLeavePage = true;
 }

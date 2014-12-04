@@ -2,6 +2,7 @@ library html_utils;
 
 import 'dart:html';
 import 'package:webclient/utils/js_utils.dart';
+import 'dart:async';
 
 class _NullTreeSanitizer implements NodeTreeSanitizer {
   void sanitizeTree(Node node) {}
@@ -9,17 +10,16 @@ class _NullTreeSanitizer implements NodeTreeSanitizer {
 
 final NodeTreeSanitizer NULL_TREE_SANITIZER = new _NullTreeSanitizer();
 
-void modalShow(String title, String content,{Function onYes: null, Function onNo: null, Function onOk: null, Function onCancel: null}) {
-
+Future<bool> modalShow(String title, String content,{Function onYes: null, Function onNo: null, Function onOk: null, Function onCancel: null, closeButton: false}) {
+ Completer completer = new Completer();
   Element parent = querySelector('ng-view');
 
   void onClose(dynamic sender) {
     print("Cerrandome... y limpiando mi rastro");
     parent.children.remove(parent.querySelector('#modalRoot'));
-
   }
 
-  void closeMe(dynamic Sender) {
+  void closeMe() {
     JsUtils.runJavascript('#modalRoot', 'modal', "hide");
   }
 
@@ -30,23 +30,20 @@ void modalShow(String title, String content,{Function onYes: null, Function onNo
 
   void onButtonClick(dynamic sender) {
     String eventCallback = sender.currentTarget.attributes["eventCallback"];
+    closeMe();
     switch(eventCallback){
       case "onYes":
-        onYes('Yes');
+      case "onOk":
+        //onOk(new Future<bool>.value(true));
+        completer.complete(true);
       break;
       case "onNo":
-        onNo('No');
-      break;
-      case "onOk":
-        onOk('Ok');
-      break;
       case "onCancel":
-        onCancel('Cancel');
-      break;
-      case "closeMe":
-        closeMe(null);
+        //onCancel(new Future<bool>.value(false));
+        completer.complete(false);
       break;
     }
+
   }
 
   String botonYes     = (onYes != null) ?    '''<button class="enter-button-half"   eventCallback="onYes">Si</button>'''       : '';
@@ -63,9 +60,11 @@ void modalShow(String title, String content,{Function onYes: null, Function onNo
                                     <!-- Header -->
                                     <div class="panel-heading">
                                       <div class="panel-title">${title}</div>
-                                      <button type="button" class="close" eventCallback="closeMe">
-                                        <span class="glyphicon glyphicon-remove"></span>
-                                      </button>
+                                      ${closeButton ? '''
+                                        <button type="button" class="close" eventCallback="closeMe">
+                                          <span class="glyphicon glyphicon-remove"></span>
+                                        </button> ''' : ''
+                                      }
                                     </div>            
                                     <!-- Content Message and Buttons-->
                                     <div class="panel-body" >            
@@ -99,4 +98,5 @@ void modalShow(String title, String content,{Function onYes: null, Function onNo
 
   JsUtils.runJavascript('#modalRoot', 'modal', null);
   JsUtils.runJavascript('#modalRoot', 'on', {'hidden.bs.modal': onClose});
+  return completer.future;
 }

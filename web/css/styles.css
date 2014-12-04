@@ -5883,6 +5883,8 @@ scoring-rules:after,
 #rememberPasswordRoot:after,
 .main-box .panel .form-horizontal:before,
 .main-box .panel .form-horizontal:after,
+#modalRoot .main-box .panel .form-horizontal:before,
+#modalRoot .main-box .panel .form-horizontal:after,
 #usersListRoot .user-row:before,
 #usersListRoot .user-row:after,
 #usersListRoot .users-table-header:before,
@@ -5975,6 +5977,7 @@ scoring-rules:after,
 #joinRoot:after,
 #rememberPasswordRoot:after,
 .main-box .panel .form-horizontal:after,
+#modalRoot .main-box .panel .form-horizontal:after,
 #usersListRoot .user-row:after,
 #usersListRoot .users-table-header:after,
 .profile-content:after,
@@ -18466,6 +18469,729 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
   background-color: #afafaf;
   outline: none !important;
   color: #ffffff;
+}
+#modalRoot .main-box {
+  padding-left: 15px;
+  padding-right: 15px;
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+@media (min-width: 768px) {
+  #modalRoot .main-box {
+    float: left;
+    width: 66.66666667%;
+  }
+}
+@media (min-width: 768px) {
+  #modalRoot .main-box {
+    left: 16.66666667%;
+  }
+}
+@media (min-width: 992px) {
+  #modalRoot .main-box {
+    float: left;
+    width: 50%;
+  }
+}
+@media (min-width: 992px) {
+  #modalRoot .main-box {
+    left: 25%;
+  }
+}
+@media (min-width: 768px) {
+  #modalRoot .main-box {
+    margin-top: 100px;
+    background-color: transparent;
+  }
+}
+#modalRoot .main-box .text-form {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #777777;
+  text-align: center;
+}
+#modalRoot .main-box .panel {
+  /*
+		@media (min-width: @screen-md-min) {
+			.slide-in-from-bottom-animation();
+		}
+		*/
+  -webkit-animation: fadein-keyframes 0.5s;
+  -moz-animation: fadein-keyframes 0.5s;
+  -ms-animation: fadein-keyframes 0.5s;
+  -o-animation: fadein-keyframes 0.5s;
+  animation: fadein-keyframes 0.5s;
+  border-width: 0px;
+}
+@-webkit-keyframes fadein-keyframes {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fadein-keyframes {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-o-keyframes fadein-keyframes {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadein-keyframes {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+#modalRoot .main-box .panel .panel-heading {
+  background-color: #214a5f;
+}
+@media (max-width: 767px) {
+  #modalRoot .main-box .panel .panel-heading {
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+  }
+}
+#modalRoot .main-box .panel .panel-heading .panel-title {
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 20pt;
+  color: #ffffff;
+}
+#modalRoot .main-box .panel .panel-heading button.close {
+  float: right;
+  font-size: 21px;
+  font-weight: bold;
+  line-height: 1;
+  color: #000000;
+  text-shadow: 0 1px 0 #ffffff;
+  opacity: 0.2;
+  filter: alpha(opacity=20);
+  color: #ffffff;
+  opacity: 0.5;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 20pt;
+}
+#modalRoot .main-box .panel .panel-heading button.close:hover,
+#modalRoot .main-box .panel .panel-heading button.close:focus {
+  color: #000000;
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+button#modalRoot .main-box .panel .panel-heading button.close {
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  -webkit-appearance: none;
+}
+#modalRoot .main-box .panel .panel-heading button.close:hover {
+  font-size: 20pt;
+  color: #ffffff;
+  opacity: 1;
+}
+#modalRoot .main-box .panel .form-horizontal {
+  margin-left: 0;
+  margin-right: 0;
+}
+#modalRoot .main-box .panel .panel-body {
+  padding: 15px 12%;
+}
+#modalRoot .main-box .panel .panel-body .form-description {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  color: #777777;
+  text-align: center;
+  font-size: 8pt;
+  padding: 0;
+  margin-bottom: 10px;
+}
+#modalRoot .main-box .panel .panel-body label {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 8pt;
+  color: #777777;
+  position: relative;
+  float: left;
+  width: 25%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+#modalRoot .main-box .panel .panel-body .user-form-field {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+#modalRoot .main-box .panel .panel-body .user-form-field-righted {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-bottom: 20px;
+  text-align: center;
+  text-align: right;
+}
+#modalRoot .main-box .panel .panel-body .input-group input {
+  line-height: 20px;
+  /* firefox 19+ */
+  /* ie */
+}
+#modalRoot .main-box .panel .panel-body .input-group input::-webkit-input-placeholder {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #777777;
+  text-align: center;
+}
+#modalRoot .main-box .panel .panel-body .input-group input::-moz-placeholder {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #777777;
+  text-align: center;
+}
+#modalRoot .main-box .panel .panel-body .input-group input::-ms-input-placeholder {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #777777;
+  text-align: center;
+}
+#modalRoot .main-box .panel .panel-body .input-group input:-webkit-autofill {
+  -webkit-box-shadow: 0px 0px 0px 1000px #ffffff inset;
+}
+#modalRoot .main-box .panel .panel-body .no-margin {
+  margin: 0;
+}
+#modalRoot .main-box .panel .panel-body .remember-forgot-group {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+#modalRoot .main-box .panel .panel-body .remember-forgot-group .checkbox {
+  position: relative;
+  float: left;
+  width: 50%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-left: 20px;
+}
+#modalRoot .main-box .panel .panel-body .remember-forgot-group .forget-pass {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 0px;
+  padding-right: 0px;
+  text-align: right;
+  margin-top: -20px;
+  margin-bottom: 20px;
+}
+#modalRoot .main-box .panel .panel-body .remember-forgot-group .forget-pass a {
+  cursor: pointer;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 8pt;
+  color: #59add5;
+}
+#modalRoot .main-box .panel .panel-body .top-separation-20 {
+  margin-top: 20px;
+}
+#modalRoot .main-box .panel .panel-body .bottom-separation-10 {
+  margin-bottom: 10px;
+}
+#modalRoot .main-box .panel .panel-body .new-row {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 0;
+  padding-right: 0;
+}
+#modalRoot .main-box .panel .panel-body .new-row .buttons-wrapper {
+  height: 36px;
+  text-align: center;
+}
+#modalRoot .main-box .panel .panel-body .new-row .fb-button-wrapper {
+  height: 15px;
+  text-align: center;
+  margin-top: 20px;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button {
+  display: block;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  background-color: #428bca;
+  border-color: #357ebd;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  -webkit-transition: All 0.08s ease-out;
+  -moz-transition: All 0.08s ease-out;
+  -ms-transition: All 0.08s ease-out;
+  -o-transition: All 0.08s ease-out;
+  transition: All 0.08s ease-out;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  background-color: #a1c931;
+  box-shadow: 0px 5px 0px #cae288;
+  color: #ffffff;
+  outline: none !important;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button:hover,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button:focus,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button:active,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button.active,
+.open .dropdown-toggle#modalRoot .main-box .panel .panel-body .new-row .enter-button {
+  color: #ffffff;
+  background-color: #3276b1;
+  border-color: #285e8e;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button:active,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button.active,
+.open .dropdown-toggle#modalRoot .main-box .panel .panel-body .new-row .enter-button {
+  background-image: none;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button.disabled,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button[disabled],
+fieldset[disabled] #modalRoot .main-box .panel .panel-body .new-row .enter-button,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button.disabled:hover,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button[disabled]:hover,
+fieldset[disabled] #modalRoot .main-box .panel .panel-body .new-row .enter-button:hover,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button.disabled:focus,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button[disabled]:focus,
+fieldset[disabled] #modalRoot .main-box .panel .panel-body .new-row .enter-button:focus,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button.disabled:active,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button[disabled]:active,
+fieldset[disabled] #modalRoot .main-box .panel .panel-body .new-row .enter-button:active,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button.disabled.active,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button[disabled].active,
+fieldset[disabled] #modalRoot .main-box .panel .panel-body .new-row .enter-button.active {
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button .badge {
+  color: #428bca;
+  background-color: #ffffff;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button:focus,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button:active:focus,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button:hover,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button:focus {
+  color: #333333;
+  text-decoration: none;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button:active,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button.disabled,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button[disabled],
+fieldset[disabled] #modalRoot .main-box .panel .panel-body .new-row .enter-button {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button:active:focus,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button.active:focus {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button:active:hover,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button.active:hover {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button:hover:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button:active,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button.active {
+  background-color: #a1c931;
+  margin-top: 4px;
+  box-shadow: none;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button.disabled,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button[disabled],
+fieldset[disabled] #modalRoot .main-box .panel .panel-body .new-row .enter-button {
+  background-color: #b5d657;
+  box-shadow: none;
+  margin-top: 4px;
+  color: #ebebeb;
+  cursor: not-allowed !important;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button.close {
+  background-color: #a1c931;
+  outline: none !important;
+  color: #ffffff;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half {
+  background-color: #428bca;
+  border-color: #357ebd;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  -webkit-transition: All 0.08s ease-out;
+  -moz-transition: All 0.08s ease-out;
+  -ms-transition: All 0.08s ease-out;
+  -o-transition: All 0.08s ease-out;
+  transition: All 0.08s ease-out;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  background-color: #a1c931;
+  box-shadow: 0px 5px 0px #cae288;
+  color: #ffffff;
+  outline: none !important;
+  position: relative;
+  float: left;
+  width: 49.16666667%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  float: right !important;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half:hover,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half:focus,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half:active,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half.active,
+.open .dropdown-toggle#modalRoot .main-box .panel .panel-body .new-row .enter-button-half {
+  color: #ffffff;
+  background-color: #3276b1;
+  border-color: #285e8e;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half:active,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half.active,
+.open .dropdown-toggle#modalRoot .main-box .panel .panel-body .new-row .enter-button-half {
+  background-image: none;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half.disabled,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half[disabled],
+fieldset[disabled] #modalRoot .main-box .panel .panel-body .new-row .enter-button-half,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half.disabled:hover,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half[disabled]:hover,
+fieldset[disabled] #modalRoot .main-box .panel .panel-body .new-row .enter-button-half:hover,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half.disabled:focus,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half[disabled]:focus,
+fieldset[disabled] #modalRoot .main-box .panel .panel-body .new-row .enter-button-half:focus,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half.disabled:active,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half[disabled]:active,
+fieldset[disabled] #modalRoot .main-box .panel .panel-body .new-row .enter-button-half:active,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half.disabled.active,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half[disabled].active,
+fieldset[disabled] #modalRoot .main-box .panel .panel-body .new-row .enter-button-half.active {
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half .badge {
+  color: #428bca;
+  background-color: #ffffff;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half:focus,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half:active:focus,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half:hover,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half:focus {
+  color: #333333;
+  text-decoration: none;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half:active,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half.disabled,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half[disabled],
+fieldset[disabled] #modalRoot .main-box .panel .panel-body .new-row .enter-button-half {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half:active:focus,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half.active:focus {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half:active:hover,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half.active:hover {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half:hover:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half:active,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half.active {
+  background-color: #a1c931;
+  margin-top: 4px;
+  box-shadow: none;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half.disabled,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half[disabled],
+fieldset[disabled] #modalRoot .main-box .panel .panel-body .new-row .enter-button-half {
+  background-color: #b5d657;
+  box-shadow: none;
+  margin-top: 4px;
+  color: #ebebeb;
+  cursor: not-allowed !important;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half.close {
+  background-color: #a1c931;
+  outline: none !important;
+  color: #ffffff;
+}
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  -webkit-transition: All 0.08s ease-out;
+  -moz-transition: All 0.08s ease-out;
+  -ms-transition: All 0.08s ease-out;
+  -o-transition: All 0.08s ease-out;
+  transition: All 0.08s ease-out;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  background-color: #afafaf;
+  box-shadow: 0px 5px 0px #e7e7e7;
+  color: #ffffff;
+  outline: none !important;
+  position: relative;
+  float: left;
+  width: 49.16666667%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  float: left !important;
+}
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half:focus,
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half:active:focus,
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half:hover,
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half:focus {
+  color: #333333;
+  text-decoration: none;
+}
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half:active,
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half.disabled,
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half[disabled],
+fieldset[disabled] #modalRoot .main-box .panel .panel-body .new-row .cancel-button-half {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half:active:focus,
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half.active:focus {
+  color: #ffffff;
+  background-color: #c9c9c9;
+}
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half:active:hover,
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half.active:hover {
+  color: #ffffff;
+  background-color: #c9c9c9;
+}
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half:focus {
+  background-color: #afafaf;
+  color: #ffffff;
+}
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half:hover {
+  background-color: #bcbcbc;
+  outline: none !important;
+  color: #ffffff;
+}
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half:hover:focus {
+  background-color: #afafaf;
+  color: #ffffff;
+}
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half:active,
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half.active {
+  background-color: #afafaf;
+  margin-top: 4px;
+  box-shadow: none;
+}
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half:hover {
+  background-color: #bcbcbc;
+  outline: none !important;
+  color: #ffffff;
+}
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half.disabled,
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half[disabled],
+fieldset[disabled] #modalRoot .main-box .panel .panel-body .new-row .cancel-button-half {
+  background-color: #c9c9c9;
+  box-shadow: none;
+  margin-top: 4px;
+  color: #ebebeb;
+  cursor: not-allowed !important;
+}
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half.close {
+  background-color: #afafaf;
+  outline: none !important;
+  color: #ffffff;
+}
+@media (min-width: 768px) {
+  #modalRoot .main-box {
+    float: left;
+    width: 100%;
+  }
+}
+@media (min-width: 768px) {
+  #modalRoot .main-box {
+    left: 0%;
+  }
+}
+@media (min-width: 992px) {
+  #modalRoot .main-box {
+    float: left;
+    width: 100%;
+  }
+}
+@media (min-width: 992px) {
+  #modalRoot .main-box {
+    left: 0%;
+  }
 }
 .valid:after {
   font-family: 'Glyphicons Halflings';

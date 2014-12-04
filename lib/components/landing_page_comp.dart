@@ -5,6 +5,7 @@ import 'package:angular/angular.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/loading_service.dart';
+import 'package:webclient/utils/game_metrics.dart';
 
 
 @Component(
@@ -22,6 +23,8 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
 
   LandingPageComp(this._router, this._profileService, this.scrDet, this._loadingService) {
     _streamListener = scrDet.mediaScreenWidth.listen(onScreenWidthChange);
+    GameMetrics.logEvent(GameMetrics.LANDING_PAGE);
+    GameMetrics.trackConversion(true);
   }
 
   void smoothScrollTo(String selector) {

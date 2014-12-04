@@ -4,6 +4,7 @@ import "package:webclient/models/soccer_player.dart";
 import "package:webclient/models/soccer_team.dart";
 import "package:webclient/models/field_pos.dart";
 import 'package:webclient/services/contest_references.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 class InstanceSoccerPlayer {
   SoccerPlayer soccerPlayer;
@@ -14,7 +15,7 @@ class InstanceSoccerPlayer {
 
   String get id => soccerPlayer.templateSoccerPlayerId;
 
-  String get printableCurrentLivePoints => (soccerTeam.matchEvent.isStarted) ? soccerPlayer.currentLivePoints.toString() : "-";
+  String get printableCurrentLivePoints => (soccerTeam.matchEvent.isStarted) ? StringUtils.decimalFormat.format(soccerPlayer.currentLivePoints * 0.1) : "-";
 
   List<Map> get printableLivePointsPerOptaEvent {
     List<Map> stats = new List<Map>();

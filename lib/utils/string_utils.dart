@@ -1,6 +1,9 @@
 library string_utils;
+import 'package:intl/intl.dart';
 
 class StringUtils {
+
+  static NumberFormat decimalFormat = new NumberFormat("0.#", "en_US");
 
   static String normalize(String txt) {
     String from = "ÃÀÁÄÂÈÉËÊÌÍÏÎÒÓÖÔÙÚÜÛãàáäâèéëêìíïîòóöôùúüûÑñÇç";

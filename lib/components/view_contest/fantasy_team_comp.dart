@@ -6,13 +6,15 @@ import 'package:webclient/models/contest_entry.dart';
 import "package:webclient/models/soccer_player.dart";
 import 'dart:async';
 import 'dart:math';
+import 'package:intl/intl.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 @Component(selector: 'fantasy-team',
            templateUrl: 'packages/webclient/components/view_contest/fantasy_team_comp.html',
            useShadowDom: false)
 class FantasyTeamComp implements DetachAware {
 
-    List<dynamic> slots = null;
+  List<dynamic> slots = null;
 
     String get owner => isOpponent? "opponent" : "me";
 
@@ -41,9 +43,10 @@ class FantasyTeamComp implements DetachAware {
     @NgCallback('on-close')
     Function onClose;
 
+
     String get userPosition => (_contestEntry != null) ? _contestEntry.contest.getUserPosition(_contestEntry).toString() : "-";
     String get userNickname => (_contestEntry != null) ? _contestEntry.user.nickName : "";
-    String get userScore => (_contestEntry != null) ? _contestEntry.currentLivePoints.toString() : "0";
+    String get userScore => (_contestEntry != null) ? (StringUtils.decimalFormat.format(_contestEntry.currentLivePoints * 0.1)) : "0";
     String get remainingTime => (_contestEntry != null) ? "${_contestEntry.percentLeft}%" : "-";
 
     bool get isViewContestEntryMode => _routeProvider.route.name.contains("view_contest_entry");

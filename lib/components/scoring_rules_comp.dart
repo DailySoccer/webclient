@@ -4,6 +4,7 @@ import 'package:angular/angular.dart';
 import 'package:webclient/services/scoring_rules_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/models/soccer_player.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 @Component(
   selector:     'scoring-rules',
@@ -27,16 +28,16 @@ class ScoringRulesComp {
       .catchError((error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW));
   }
 
-  String getClassesIsNegative(int points) {
-    return ( points == null || points < 0 ) ? "negative": "";
+  String getClassesIsNegative(String points) {
+    return ( points == null || num.parse(points) < 0 ) ? "negative": "";
   }
 
   void _init() {
-    AllPlayers = _allPlayerEvents.map((event)   => {"name": SoccerPlayer.getEventName(event), "points": _scoringPoints[event]}).toList();
-    GoalKeepers = _goalKeeperEvents.map((event) => {"name": SoccerPlayer.getEventName(event), "points": _scoringPoints[event]}).toList();
-    Defenders = _defendersEvents.map((event)    => {"name": SoccerPlayer.getEventName(event), "points": _scoringPoints[event]}).toList();
-    MidFielders = _midFieldersEvents.map((event)=> {"name": SoccerPlayer.getEventName(event), "points": _scoringPoints[event]}).toList();
-    Forwards = _forwardEvents.map((event)       => {"name": SoccerPlayer.getEventName(event), "points": _scoringPoints[event]}).toList();
+    AllPlayers = _allPlayerEvents.map((event)   => {"name": SoccerPlayer.getEventName(event), "points": StringUtils.decimalFormat.format(_scoringPoints[event] * 0.1)}).toList();
+    GoalKeepers = _goalKeeperEvents.map((event) => {"name": SoccerPlayer.getEventName(event), "points": StringUtils.decimalFormat.format(_scoringPoints[event] * 0.1)}).toList();
+    Defenders = _defendersEvents.map((event)    => {"name": SoccerPlayer.getEventName(event), "points": StringUtils.decimalFormat.format(_scoringPoints[event] * 0.1)}).toList();
+    MidFielders = _midFieldersEvents.map((event)=> {"name": SoccerPlayer.getEventName(event), "points": StringUtils.decimalFormat.format(_scoringPoints[event] * 0.1)}).toList();
+    Forwards = _forwardEvents.map((event)       => {"name": SoccerPlayer.getEventName(event), "points": StringUtils.decimalFormat.format(_scoringPoints[event] * 0.1)}).toList();
   }
 
   Map<String, int> _scoringPoints;

@@ -3,6 +3,8 @@
   <!-- Header de Promociones -->
   <promos id="promosComponent"></promos>
 
+  <button class="btn-default" ng-click="verModalTestOKCancel()" style="float: left;margin-top: 8px;margin-lefT: 8px;position: absolute;"> Click to try Modal</button>
+
   <!-- Barra azul de información -->
   <div id="lobbyTopInfobar">
     <p>{{infoBarText}}</p>
@@ -27,8 +29,5 @@
                   contest-count="contestCount">
   </contests-list>
 </div>
-
-<button class="btn-default" ng-click="verModalTestOKCancel()"> Click to try Modal</button>
-
 <!-- Punto de insercion de nuestra ruta hija contest-info -->
 <ng-view></ng-view>

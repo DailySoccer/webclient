@@ -105,7 +105,7 @@ class LobbyComp implements DetachAware {
 
 
   void verModalTestOKCancel() {
-    modalShow("titulo","contenidodo", onYes: funcioCallback, onNo: funcioCallback, onOk: funcioCallback, onCancel: funcioCallback);
+    modalShow("titulo","contenidodo", onYes: funcioCallback, onNo: funcioCallback);
   }
 
 

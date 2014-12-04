@@ -82,7 +82,7 @@ tc.put("packages/webclient/components/account/change_password_comp.html", new Ht
 </div>"""));
 tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new HttpResponse(200, r"""<div id="personalDataContent" ng-show="!loadingService.isLoading" ng-cloack>
 
-  <div class="edit-personal-data-modal-header">
+  <div class="edit-personal-data-header">
     <span class="header-title">EDITAR CUENTA</span>
   </div>
   <form id="editPersonalDataForm" class="form-horizontal" ng-submit="saveChanges()" role="form" autocomplete="off">
@@ -2066,6 +2066,8 @@ tc.put("packages/webclient/components/lobby_comp.html", new HttpResponse(200, r"
                   contest-count="contestCount">
   </contests-list>
 </div>
+
+<button class="btn-default" ng-click="verModalTestOKCancel()"> Click to try Modal</button>
 
 <!-- Punto de insercion de nuestra ruta hija contest-info -->
 <ng-view></ng-view>"""));

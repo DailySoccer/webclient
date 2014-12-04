@@ -91,20 +91,22 @@ class EnterContestComp implements DetachAware {
         }
       });
 
-
+    //Subscripción para controlar la salida
     _routeHandle = _routeProvider.route.newHandle();
     _routeHandle.onPreLeave.listen(allowLeaveThePage);
+
   }
 
-
-
   void allowLeaveThePage(RoutePreLeaveEvent event) {
-    event.allowLeave(_autoAllowLeavePage ? new Future<bool>.value(false) :
-      modalShow("Atención!",
-                "Estas a punto de salir.<br>Si continuas perderás los cambios en el equipo que estás configurando.<br><br>¿Estas seguro de querer abandonar?",
-                onYes: event.allowLeave,
-                onNo:event.allowLeave)
+    event.allowLeave( _allowUserLeavePage ? new Future<bool>.value(true)
+                                            : modalShow("Atención!",
+                                                        "Estas a punto de salir.<br>Si continuas perderás los cambios en el equipo que estás configurando.<br><br>¿Estas seguro de querer abandonar?",
+                                                        onYes:  event.allowLeave,
+                                                        onNo:   event.allowLeave
+                                              )
+
       );
+
   }
 
   void resetLineup() {
@@ -114,7 +116,7 @@ class EnterContestComp implements DetachAware {
     FieldPos.LINEUP.forEach((pos) {
       lineupSlots.add(null);
     });
-    _autoAllowLeavePage = true;
+    allowUserLeave();
   }
 
   void detach() {
@@ -162,6 +164,8 @@ class EnterContestComp implements DetachAware {
       // El componente hijo se entera de que le hemos cambiado el filtro a traves del two-way binding.
       fieldPosFilter = new FieldPos(FieldPos.LINEUP[slotIndex]);
     }
+
+    allowUserLeave();
   }
 
   void addSoccerPlayerToLineup(String soccerPlayerId) {
@@ -192,6 +196,15 @@ class EnterContestComp implements DetachAware {
          break;
        }
     }
+    //Si ya no estamos en modo seleción, scrolleamos hasta la altura del dinero que nos queda disponible.
+    if (!isSelectingSoccerPlayer) {
+      scrDet.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('main-menu-slide').offsetHeight, ignoreInDesktop: true);
+    }
+
+    allowUserLeave();
+  }
+
+  void allowUserLeave() {
     // Verificamos si esta la lista llena o vacía por completo para permitir salir sin alertas.
     int count = 0;
     lineupSlots.forEach((soccerPlayer) {
@@ -199,12 +212,7 @@ class EnterContestComp implements DetachAware {
         count++;
       }
     });
-    _autoAllowLeavePage = count == 0 || count == lineupSlots.length;
-
-    //Si ya no estamos en modo seleción, scrolleamos hasta la altura del dinero que nos queda disponible.
-    if (!isSelectingSoccerPlayer) {
-      scrDet.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('main-menu-slide').offsetHeight, ignoreInDesktop: true);
-    }
+    _allowUserLeavePage = count == 0 || count == lineupSlots.length;
   }
 
   bool isSlotAvailableForSoccerPlayer(String soccerPlayerId) {
@@ -353,5 +361,5 @@ class EnterContestComp implements DetachAware {
   RouteHandle _routeHandle;
   ScreenDetectorService _scrDet;
 
-  bool _autoAllowLeavePage = true;
+  bool _allowUserLeavePage = true;
 }

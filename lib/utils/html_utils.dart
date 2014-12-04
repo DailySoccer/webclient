@@ -11,11 +11,10 @@ class _NullTreeSanitizer implements NodeTreeSanitizer {
 final NodeTreeSanitizer NULL_TREE_SANITIZER = new _NullTreeSanitizer();
 
 Future<bool> modalShow(String title, String content,{Function onYes: null, Function onNo: null, Function onOk: null, Function onCancel: null, closeButton: false}) {
- Completer completer = new Completer();
+  Completer completer = new Completer();
   Element parent = querySelector('ng-view');
 
   void onClose(dynamic sender) {
-    print("Cerrandome... y limpiando mi rastro");
     parent.children.remove(parent.querySelector('#modalRoot'));
   }
 
@@ -34,22 +33,19 @@ Future<bool> modalShow(String title, String content,{Function onYes: null, Funct
     switch(eventCallback){
       case "onYes":
       case "onOk":
-        //onOk(new Future<bool>.value(true));
         completer.complete(true);
       break;
       case "onNo":
       case "onCancel":
-        //onCancel(new Future<bool>.value(false));
         completer.complete(false);
       break;
     }
-
   }
 
-  String botonYes     = (onYes != null) ?    '''<button class="enter-button-half"   eventCallback="onYes">Si</button>'''       : '';
-  String botonNo      = (onNo != null) ?     '''<button class="cancel-button-half"  eventCallback="onNo">No</button>'''         : '';
-  String botonOk      = (onOk != null) ?     '''<button class="enter-button-half"   eventCallback="onOk">Aceptar</button>'''         : '';
-  String botonCancel  = (onCancel != null) ? '''<button class="cancel-button-half"  eventCallback="onCancel">Cancelar</button>''' : '';
+  String botonYes     = (onYes != null) ?    '''<button class="enter-button-half"   eventCallback="onYes">    Si</button>'''        : '';
+  String botonNo      = (onNo != null) ?     '''<button class="cancel-button-half"  eventCallback="onNo">     No</button>'''        : '';
+  String botonOk      = (onOk != null) ?     '''<button class="enter-button-half"   eventCallback="onOk">     Aceptar</button>'''   : '';
+  String botonCancel  = (onCancel != null) ? '''<button class="cancel-button-half"  eventCallback="onCancel"> Cancelar</button>'''  : '';
   String modalBody =  ''' 
                         <div id="modalRoot" class="modal container fade" tabindex="-1" role="dialog" style="display: block;">
                           <div class="modal-dialog modal-lg">

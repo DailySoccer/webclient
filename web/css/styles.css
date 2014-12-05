@@ -7852,7 +7852,7 @@ scoring-rules #scoringForForwards .rules-content {
   font-weight: 400;
   font-size: 10pt;
   background-color: #a1c931;
-  box-shadow: 0px 5px 0px #cae288;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
   outline: none !important;
 }
@@ -8321,7 +8321,7 @@ button#personalDataContent .header button.close {
   font-weight: 400;
   font-size: 10pt;
   background-color: #a1c931;
-  box-shadow: 0px 5px 0px #cae288;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
   outline: none !important;
   position: relative;
@@ -8485,7 +8485,7 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   font-weight: 400;
   font-size: 10pt;
   background-color: #afafaf;
-  box-shadow: 0px 5px 0px #e7e7e7;
+  box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
   color: #ffffff;
   outline: none !important;
   position: relative;
@@ -8655,8 +8655,8 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
 .fantasy-team-header {
   height: 76px;
   position: relative;
-  background-image: -webkit-linear-gradient(top, #fba61a 49%, #ec990e 51%);
-  background-image: linear-gradient(to bottom, #fba61a 49%, #ec990e 51%);
+  background-image: -webkit-linear-gradient(top, #fba61a 50%, #ec990e 50%);
+  background-image: linear-gradient(to bottom, #fba61a 50%, #ec990e 50%);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffba61a', endColorstr='#ffec990e', GradientType=0);
   /*@media (min-width: @screen-sm-min) {
@@ -8664,7 +8664,7 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
 	}*/
 }
 .fantasy-team-header .ranking-box {
-  width: 70px;
+  min-width: 70px;
   height: 70px;
   border-radius: 5px;
   margin: 3px 3px 0px 3px;
@@ -8682,7 +8682,7 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   font-family: 'Exo', sans-serif;
   font-weight: 600;
   font-size: 11pt;
-  color: default;
+  color: #ffffff;
   padding-top: 5px;
 }
 .fantasy-team-header .ranking-box .content {
@@ -8691,17 +8691,20 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   font-family: 'Exo', sans-serif;
   font-weight: 300;
   font-size: 16pt;
-  color: default;
+  color: inherit;
+}
+.fantasy-team-header .ranking-box .title {
+  color: #434343;
 }
 .fantasy-team-header .ranking-box .content {
   font-family: 'Exo', sans-serif;
   font-weight: 300;
   font-size: 24pt;
-  color: default;
+  color: inherit;
   line-height: 1.1;
 }
 .fantasy-team-header .score-box {
-  width: 70px;
+  min-width: 70px;
   height: 70px;
   border-radius: 5px;
   margin: 3px 3px 0px 3px;
@@ -8718,7 +8721,7 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   font-family: 'Exo', sans-serif;
   font-weight: 600;
   font-size: 11pt;
-  color: default;
+  color: #ffffff;
   padding-top: 5px;
 }
 .fantasy-team-header .score-box .content {
@@ -8727,14 +8730,19 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   font-family: 'Exo', sans-serif;
   font-weight: 300;
   font-size: 16pt;
-  color: default;
+  color: inherit;
+}
+.fantasy-team-header .score-box .title {
+  color: #434343;
 }
 .fantasy-team-header .score-box .content {
   font-family: 'Exo', sans-serif;
   font-weight: 300;
   font-size: 20pt;
-  color: default;
+  color: inherit;
   line-height: 1.3;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 .fantasy-team-header .user-nickname {
   font-family: 'Exo', sans-serif;
@@ -8762,7 +8770,7 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
 .fantasy-team-header .close-team {
   cursor: pointer;
   position: absolute;
-  right: 80px;
+  right: 100px;
   top: 7px;
   color: #ffffff;
 }
@@ -8775,7 +8783,7 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 8pt;
-  color: default;
+  color: inherit;
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .fantasy-team-header .close-team .title {
@@ -8824,7 +8832,7 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   font-weight: 400;
   font-size: 10pt;
   background-color: #59add5;
-  box-shadow: 0px 5px 0px #b3d9ec;
+  box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
   color: #ffffff;
   outline: none !important;
   line-height: 25px;
@@ -9115,7 +9123,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   }
 }
 .header-box {
-  width: 70px;
+  min-width: 70px;
   height: 70px;
   border-radius: 5px;
   margin: 3px 3px 0px 3px;
@@ -9131,7 +9139,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   font-family: 'Exo', sans-serif;
   font-weight: 600;
   font-size: 11pt;
-  color: default;
+  color: #ffffff;
   padding-top: 5px;
 }
 .header-box .content {
@@ -9140,7 +9148,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   font-family: 'Exo', sans-serif;
   font-weight: 300;
   font-size: 16pt;
-  color: default;
+  color: inherit;
 }
 @media (min-width: 768px) {
   .fantasy-team-wrapper {
@@ -9520,7 +9528,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   font-weight: 400;
   font-size: 10pt;
   background-color: #a1c931;
-  box-shadow: 0px 5px 0px #cae288;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   outline: none !important;
   float: right;
   font-family: 'Open Sans', sans-serif;
@@ -10328,7 +10336,7 @@ a:focus {
   font-weight: 400;
   font-size: 10pt;
   background-color: #a1c931;
-  box-shadow: 0px 5px 0px #cae288;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
   outline: none !important;
   margin: 0 auto;
@@ -10488,7 +10496,7 @@ fieldset[disabled] .button-play-base {
   font-weight: 400;
   font-size: 10pt;
   background-color: #a1c931;
-  box-shadow: 0px 5px 0px #cae288;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
   outline: none !important;
   margin: 0 auto;
@@ -10644,7 +10652,7 @@ fieldset[disabled] .button-wrap .button-play {
   font-weight: 400;
   font-size: 10pt;
   background-color: #a1c931;
-  box-shadow: 0px 5px 0px #cae288;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
   outline: none !important;
   margin: 0 auto;
@@ -11543,7 +11551,7 @@ textarea#contestFiltersRoot #contestSortsFilters #contestFastSearch .searcher {
   font-weight: 400;
   font-size: 10pt;
   background-color: #59add5;
-  box-shadow: 0px 5px 0px #b3d9ec;
+  box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
   color: #ffffff;
   outline: none !important;
 }
@@ -12754,7 +12762,7 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   font-weight: 400;
   font-size: 10pt;
   background-color: #afafaf;
-  box-shadow: 0px 5px 0px #e7e7e7;
+  box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
   color: #ffffff;
   outline: none !important;
 }
@@ -12895,7 +12903,7 @@ fieldset[disabled] #contestFiltersRoot #filtersPanel .reset-button-wrapper .btn-
   font-weight: 400;
   font-size: 10pt;
   background-color: #a1c931;
-  box-shadow: 0px 5px 0px #cae288;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
   outline: none !important;
 }
@@ -13224,7 +13232,7 @@ main-menu-slide {
     font-weight: 400;
     font-size: 10pt;
     background-color: #a1c931;
-    box-shadow: 0px 5px 0px #cae288;
+    box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
     outline: none !important;
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
@@ -13565,7 +13573,7 @@ main-menu-slide {
   font-weight: 400;
   font-size: 10pt;
   background-color: #59add5;
-  box-shadow: 0px 5px 0px #b3d9ec;
+  box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
   color: #ffffff;
   outline: none !important;
 }
@@ -13716,7 +13724,7 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
   font-weight: 400;
   font-size: 10pt;
   background-color: #a1c931;
-  box-shadow: 0px 5px 0px #cae288;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
   outline: none !important;
 }
@@ -14087,7 +14095,7 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-login {
   font-weight: 400;
   font-size: 10pt;
   background-color: #a1c931;
-  box-shadow: 0px 5px 0px #cae288;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
   outline: none !important;
   margin: 0 auto;
@@ -14489,7 +14497,7 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
   font-weight: 400;
   font-size: 10pt;
   background-color: #afafaf;
-  box-shadow: 0px 5px 0px #e7e7e7;
+  box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
   color: #ffffff;
   outline: none !important;
   position: relative;
@@ -14606,7 +14614,7 @@ fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .button-cancel {
   font-weight: 400;
   font-size: 10pt;
   background-color: #a1c931;
-  box-shadow: 0px 5px 0px #cae288;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
   outline: none !important;
   position: relative;
@@ -15004,7 +15012,7 @@ fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .button-add {
   font-weight: 400;
   font-size: 10pt;
   background-color: #a1c931;
-  box-shadow: 0px 5px 0px #cae288;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
   outline: none !important;
   float: right !important;
@@ -15823,7 +15831,7 @@ fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .descriptio
   font-weight: 400;
   font-size: 10pt;
   background-color: #afafaf;
-  box-shadow: 0px 5px 0px #e7e7e7;
+  box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
   color: #ffffff;
   outline: none !important;
   position: relative;
@@ -15966,7 +15974,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-cancel-player-selection {
   font-weight: 400;
   font-size: 10pt;
   background-color: #afafaf;
-  box-shadow: 0px 5px 0px #e7e7e7;
+  box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
   color: #ffffff;
   outline: none !important;
 }
@@ -16081,7 +16089,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-clean-lineup-list {
   font-weight: 400;
   font-size: 10pt;
   background-color: #a1c931;
-  box-shadow: 0px 5px 0px #cae288;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
   outline: none !important;
 }
@@ -16711,7 +16719,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   font-weight: 400;
   font-size: 10pt;
   background-color: #a1c931;
-  box-shadow: 0px 5px 0px #cae288;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
   outline: none !important;
 }
@@ -16859,7 +16867,7 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
   font-weight: 400;
   font-size: 10pt;
   background-color: #59add5;
-  box-shadow: 0px 5px 0px #b3d9ec;
+  box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
   color: #ffffff;
   outline: none !important;
 }
@@ -17034,7 +17042,7 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
   font-weight: 400;
   font-size: 10pt;
   background-color: #59add5;
-  box-shadow: 0px 5px 0px #b3d9ec;
+  box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
   color: #ffffff;
   outline: none !important;
   -webkit-transition: none;
@@ -17969,7 +17977,7 @@ button.main-box .panel .panel-heading button.close {
   font-weight: 400;
   font-size: 10pt;
   background-color: #a1c931;
-  box-shadow: 0px 5px 0px #cae288;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
   outline: none !important;
 }
@@ -18116,7 +18124,7 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button {
   font-weight: 400;
   font-size: 10pt;
   background-color: #a1c931;
-  box-shadow: 0px 5px 0px #cae288;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
   outline: none !important;
   position: relative;
@@ -18268,7 +18276,7 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .enter-button-half {
   font-weight: 400;
   font-size: 10pt;
   background-color: #afafaf;
-  box-shadow: 0px 5px 0px #e7e7e7;
+  box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
   color: #ffffff;
   outline: none !important;
   position: relative;
@@ -18802,7 +18810,7 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
   -o-transition: All 0.08s ease-out;
   transition: All 0.08s ease-out;
   background-color: #59add5;
-  box-shadow: 0px 5px 0px #b3d9ec;
+  box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
   outline: none !important;
   float: right !important;
   font-family: 'Open Sans', sans-serif;
@@ -18950,7 +18958,7 @@ fieldset[disabled] .profile-content .action-button {
   -o-transition: All 0.08s ease-out;
   transition: All 0.08s ease-out;
   background-color: #a1c931;
-  box-shadow: 0px 5px 0px #cae288;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   outline: none !important;
   float: right !important;
   font-family: 'Open Sans', sans-serif;
@@ -19157,7 +19165,7 @@ fieldset[disabled] .profile-content .add-funds-button {
     -o-transition: All 0.08s ease-out;
     transition: All 0.08s ease-out;
     background-color: #59add5;
-    box-shadow: 0px 5px 0px #b3d9ec;
+    box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
     outline: none !important;
     float: right !important;
     font-family: 'Open Sans', sans-serif;
@@ -19373,7 +19381,7 @@ fieldset[disabled] .profile-content .add-funds-button {
   -o-transition: All 0.08s ease-out;
   transition: All 0.08s ease-out;
   background-color: #59add5;
-  box-shadow: 0px 5px 0px #b3d9ec;
+  box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
   outline: none !important;
   float: right !important;
   font-family: 'Open Sans', sans-serif;
@@ -19524,7 +19532,7 @@ fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-
   -o-transition: All 0.08s ease-out;
   transition: All 0.08s ease-out;
   background-color: #59add5;
-  box-shadow: 0px 5px 0px #b3d9ec;
+  box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
   outline: none !important;
   float: right !important;
   font-family: 'Open Sans', sans-serif;
@@ -19818,7 +19826,7 @@ fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-
   font-weight: 400;
   font-size: 10pt;
   background-color: #afafaf;
-  box-shadow: 0px 5px 0px #e7e7e7;
+  box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
   color: #ffffff;
   outline: none !important;
 }
@@ -19933,7 +19941,7 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-cancel-contest {
   font-weight: 400;
   font-size: 10pt;
   background-color: #a1c931;
-  box-shadow: 0px 5px 0px #cae288;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
   outline: none !important;
 }
@@ -20233,7 +20241,7 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-back-contest {
   font-weight: 400;
   font-size: 10pt;
   background-color: #a1c931;
-  box-shadow: 0px 5px 0px #cae288;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
   outline: none !important;
   margin-top: 5px;
@@ -20928,7 +20936,7 @@ body {
   font-weight: 400;
   font-size: 10pt;
   background-color: #59add5;
-  box-shadow: 0px 5px 0px #b3d9ec;
+  box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
   color: #ffffff;
   outline: none !important;
 }
@@ -21037,7 +21045,7 @@ fieldset[disabled] .btn-default {
   font-weight: 400;
   font-size: 10pt;
   background-color: #a1c931;
-  box-shadow: 0px 5px 0px #cae288;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
   outline: none !important;
 }
@@ -21146,7 +21154,7 @@ fieldset[disabled] .btn-primary {
   font-weight: 400;
   font-size: 10pt;
   background-color: #afafaf;
-  box-shadow: 0px 5px 0px #e7e7e7;
+  box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
   color: #ffffff;
   outline: none !important;
 }
@@ -21255,7 +21263,7 @@ fieldset[disabled] .btn-cancel {
   font-weight: 400;
   font-size: 10pt;
   background-color: #fa9c19;
-  box-shadow: 0px 5px 0px #fccb87;
+  box-shadow: 0px 5px 0px rgba(250, 156, 25, 0.5);
   color: #ffffff;
   outline: none !important;
 }

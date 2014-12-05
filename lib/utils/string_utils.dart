@@ -30,4 +30,8 @@ class StringUtils {
     RegExp regExp = new RegExp(p);
     return regExp.hasMatch(email);
   }
+
+  static String parseFantasyPoints(int fantasyPoints) {
+    return decimalFormat.format(fantasyPoints * 0.1);
+  }
 }

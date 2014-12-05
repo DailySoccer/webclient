@@ -33,11 +33,11 @@ class ScoringRulesComp {
   }
 
   void _init() {
-    AllPlayers = _allPlayerEvents.map((event)   => {"name": SoccerPlayer.getEventName(event), "points": StringUtils.decimalFormat.format(_scoringPoints[event] * 0.1)}).toList();
-    GoalKeepers = _goalKeeperEvents.map((event) => {"name": SoccerPlayer.getEventName(event), "points": StringUtils.decimalFormat.format(_scoringPoints[event] * 0.1)}).toList();
-    Defenders = _defendersEvents.map((event)    => {"name": SoccerPlayer.getEventName(event), "points": StringUtils.decimalFormat.format(_scoringPoints[event] * 0.1)}).toList();
-    MidFielders = _midFieldersEvents.map((event)=> {"name": SoccerPlayer.getEventName(event), "points": StringUtils.decimalFormat.format(_scoringPoints[event] * 0.1)}).toList();
-    Forwards = _forwardEvents.map((event)       => {"name": SoccerPlayer.getEventName(event), "points": StringUtils.decimalFormat.format(_scoringPoints[event] * 0.1)}).toList();
+    AllPlayers  = _allPlayerEvents.map((event)    => {"name": SoccerPlayer.getEventName(event), "points": StringUtils.parseFantasyPoints(_scoringPoints[event])}).toList();
+    GoalKeepers = _goalKeeperEvents.map((event)   => {"name": SoccerPlayer.getEventName(event), "points": StringUtils.parseFantasyPoints(_scoringPoints[event])}).toList();
+    Defenders   = _defendersEvents.map((event)    => {"name": SoccerPlayer.getEventName(event), "points": StringUtils.parseFantasyPoints(_scoringPoints[event])}).toList();
+    MidFielders = _midFieldersEvents.map((event)  => {"name": SoccerPlayer.getEventName(event), "points": StringUtils.parseFantasyPoints(_scoringPoints[event])}).toList();
+    Forwards    = _forwardEvents.map((event)      => {"name": SoccerPlayer.getEventName(event), "points": StringUtils.parseFantasyPoints(_scoringPoints[event])}).toList();
   }
 
   Map<String, int> _scoringPoints;

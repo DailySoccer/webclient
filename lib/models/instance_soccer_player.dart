@@ -15,7 +15,7 @@ class InstanceSoccerPlayer {
 
   String get id => soccerPlayer.templateSoccerPlayerId;
 
-  String get printableCurrentLivePoints => (soccerTeam.matchEvent.isStarted) ? StringUtils.decimalFormat.format(soccerPlayer.currentLivePoints * 0.1) : "-";
+  String get printableCurrentLivePoints => (soccerTeam.matchEvent.isStarted) ? StringUtils.parseFantasyPoints(soccerPlayer.currentLivePoints) : "-";
 
   List<Map> get printableLivePointsPerOptaEvent {
     List<Map> stats = new List<Map>();

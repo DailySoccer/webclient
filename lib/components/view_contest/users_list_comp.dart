@@ -49,7 +49,7 @@ class UsersListComp {
           "contestEntry" : contestEntry,
           "name": contestEntry.user.nickName,
           "remainingTime": "${contestEntry.percentLeft}%",
-          "score": StringUtils.decimalFormat.format(contestEntry.currentLivePoints/10)
+          "score": StringUtils.parseFantasyPoints(contestEntry.currentLivePoints)
         });
       }
     }

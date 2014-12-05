@@ -6,6 +6,7 @@ import 'package:webclient/models/contest_entry.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 @Component(
     selector: 'contests-list',
@@ -140,15 +141,15 @@ class ContestsListComp {
     return contest.getUserPosition(mainContestEntry);
   }
 
-  int getMyFantasyPoints(Contest contest) {
+  String getMyFantasyPoints(Contest contest) {
     ContestEntry mainContestEntry = contest.getContestEntryWithUser(_profileService.user.userId);
 
     // En los contest Históricos tendremos los fantasyPoints registrados en el propio ContestEntry
     if (contest.isHistory) {
-      return mainContestEntry.fantasyPoints;
+      return StringUtils.parseFantasyPoints(mainContestEntry.fantasyPoints);
     }
 
-    return mainContestEntry.currentLivePoints;
+    return StringUtils.parseFantasyPoints(mainContestEntry.currentLivePoints);
   }
 
   int getMyPrize(Contest contest) {

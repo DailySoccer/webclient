@@ -38,16 +38,15 @@
 		background-color: @greyUltraDark;
 		&.bottom { background-color: @white; padding: 10px;}
 
-		.btn-cancel {
-			.btn();
+		.button-cancel {
+			.btn-cancel();		
 			.make-xs-column(5.8);
 			
 		}
-		.btn-add {
-			.make-xs-column(5.8);
-			.pull-right();
-			.btn();
+		.button-add {
 			.btn-primary();
+			.make-xs-column(5.8);
+			.pull-right();			
 		}
 	}
 
@@ -158,8 +157,7 @@
 					}
 				}
 
-				.btn-add {
-					.btn();
+				.button-add {
 					.btn-primary();
 					.pull-right();
 					padding-left: 40px;

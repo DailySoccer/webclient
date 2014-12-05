@@ -4,6 +4,7 @@ import 'package:angular/angular.dart';
 import 'package:webclient/models/contest_entry.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/services/profile_service.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 @Component(
    selector: 'users-list',
@@ -48,7 +49,7 @@ class UsersListComp {
           "contestEntry" : contestEntry,
           "name": contestEntry.user.nickName,
           "remainingTime": "${contestEntry.percentLeft}%",
-          "score": contestEntry.currentLivePoints
+          "score": StringUtils.parseFantasyPoints(contestEntry.currentLivePoints)
         });
       }
     }

@@ -72,6 +72,8 @@ main-menu-slide {
 			width: 100%;
 			padding-left: 110px;
 			margin-left: 20px;
+			& a:hover {color: white}
+
 		}
 	  	// elementos del menu
 	  	.navbar-nav > .active > a {
@@ -104,16 +106,24 @@ main-menu-slide {
 	  			margin: 5px 0;
 	  		}
 	  	}
-	  	.navbar-nav .right-menu > a::after {
-	  		.create-glyph("\E114", 8pt, @blueMenu);
-	  		margin-left: 5px;
+	  	.navbar-nav .right-menu {
+	  		> a:hover {color: white}
+	  		> a::after {
+		  		.create-glyph("\E114", 10pt, @blueMenu);
+		  		margin-left: 5px;
+		  		position: relative;
+				top: 2px;
+			}
 	  	}
-	  	.open > a::after {
-	  		.create-glyph("\E113", 8pt, @blueMenu) !important;
-	  		margin-left: 5px;
-  		}
-  		.open > a::after{
-  			color: white !important;
+	  	.open {
+	  		> a:hover {color: white !important;}
+	  		> a::after {
+		  		.create-glyph("\E113", 10pt, @blueMenu) !important;
+		  		margin-left: 5px;
+	  			color: white !important;
+			    position: relative;
+				top: 2px;
+			}
   		}
 		.navbar-nav .right-menu a:hover {
             &::after {
@@ -127,10 +137,9 @@ main-menu-slide {
 	  		color: @white;
 	  	}
 	  	.add-funds-button {
-			.btn();
 			.btn-primary();
-			.opensans_bold(8pt, @white);
-			.button-size(4px, 12px, 8pt, 1.5em, 4px);
+			.opensans_bold(10pt, @white);
+			//.button-size(4px, 12px, 10pt, 1.5em, 4px);
 		}
 		.dropdown-toggle {
 			white-space: nowrap;
@@ -226,7 +235,7 @@ main-menu-slide {
 			.navbar-nav {
 				background-color: @white;
 				margin: 0px;
-
+				a {}
 				li {
 					.make-border(1px, solid none none none, @greyLight);
 					.opensans_normal(10pt, @greyDark);
@@ -234,10 +243,10 @@ main-menu-slide {
 
 					// Flechita cerrada/abierta del menu dropdown de usuario
 					> .dropdown-toggle::after {
-	        			.create-glyph("\E080", 9pt, #999999);
+	        			.create-glyph("\E080", 10pt, @greyDark);
 	        			position: absolute;
-	        			top: 12px;
-	        			right: 12px;
+	        			top: 11px;
+	        			right: 11px;
 	        		}
 	        		&.active {
 						.opensans_bold(10pt, @black);
@@ -250,7 +259,10 @@ main-menu-slide {
 						}
 						// Cambiamos la flechita a abierto
 						> a::after {
-				  			.create-glyph("\E114", 9pt, #999999) !important;
+				  			.create-glyph("\E114", 10pt,  @greyDark) !important;
+				  			position: absolute;
+	        				top: 12px;
+        					right: 11px;
 				  		}
 					}
 	    		}
@@ -284,11 +296,9 @@ main-menu-slide {
 
 	    // Botones de login y join: ;
 	    .button-wrapper {
-	      	line-height: 4;
+	      	line-height: 4.5;
 	      	.pull-right();
 	      	.button-base {
-	      		.btn();
-	        	font-size: 9pt;
 	        	&:active {
 	        		margin-top: 10px !important; 
 	        	}

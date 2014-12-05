@@ -13146,6 +13146,9 @@ main-menu-slide {
     padding-left: 110px;
     margin-left: 20px;
   }
+  #mainMenu .navbar-nav a:hover {
+    color: #ffffff;
+  }
   #mainMenu .navbar-nav > .active > a {
     background: none;
     color: #ffffff;
@@ -13178,22 +13181,30 @@ main-menu-slide {
     color: #ffffff;
     margin: 5px 0;
   }
+  #mainMenu .navbar-nav .right-menu > a:hover {
+    color: #ffffff;
+  }
   #mainMenu .navbar-nav .right-menu > a::after {
     font-family: 'Glyphicons Halflings';
     content: "\E114";
-    font-size: 8pt;
+    font-size: 10pt;
     color: #afd3e4;
     margin-left: 5px;
+    position: relative;
+    top: 2px;
+  }
+  #mainMenu .open > a:hover {
+    color: white !important;
   }
   #mainMenu .open > a::after {
     font-family: 'Glyphicons Halflings' !important;
     content: "\E113" !important;
-    font-size: 8pt !important;
+    font-size: 10pt !important;
     color: #afd3e4 !important;
     margin-left: 5px;
-  }
-  #mainMenu .open > a::after {
     color: white !important;
+    position: relative;
+    top: 2px;
   }
   #mainMenu .navbar-nav .right-menu a:hover::after {
     color: #ffffff;
@@ -13219,6 +13230,7 @@ main-menu-slide {
     padding: 6px 12px;
     font-size: 14px;
     line-height: 1.42857143;
+    border-radius: 4px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -13230,17 +13242,13 @@ main-menu-slide {
     -o-transition: All 0.08s ease-out;
     transition: All 0.08s ease-out;
     font-weight: 400;
-    font-size: 10pt;
     background-color: #a1c931;
     box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
     outline: none !important;
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
+    font-size: 10pt;
     color: #ffffff;
-    padding: 4px 12px;
-    font-size: 8pt;
-    line-height: 1.5em;
-    border-radius: 4px;
   }
   #mainMenu .add-funds-button:hover,
   #mainMenu .add-funds-button:focus,
@@ -13476,11 +13484,11 @@ main-menu-slide {
   #mainMenu #menuSlide .navbar-nav li > .dropdown-toggle::after {
     font-family: 'Glyphicons Halflings';
     content: "\E080";
-    font-size: 9pt;
-    color: #999999;
+    font-size: 10pt;
+    color: #777777;
     position: absolute;
-    top: 12px;
-    right: 12px;
+    top: 11px;
+    right: 11px;
   }
   #mainMenu #menuSlide .navbar-nav li.active {
     font-family: 'Open Sans', sans-serif;
@@ -13497,8 +13505,11 @@ main-menu-slide {
   #mainMenu #menuSlide .navbar-nav li.right-menu.open > a::after {
     font-family: 'Glyphicons Halflings' !important;
     content: "\E114" !important;
-    font-size: 9pt !important;
-    color: #999999 !important;
+    font-size: 10pt !important;
+    color: #777777 !important;
+    position: absolute;
+    top: 12px;
+    right: 11px;
   }
   #mainMenu #menuSlide ul.dropdown-menu {
     padding: 0px;
@@ -13532,17 +13543,13 @@ main-menu-slide {
   }
 }
 #mainMenu #menuNotLoggedIn .button-wrapper {
-  line-height: 4;
+  line-height: 4.5;
   float: right !important;
-}
-#mainMenu #menuNotLoggedIn .button-wrapper .button-base {
-  font-size: 9pt;
 }
 #mainMenu #menuNotLoggedIn .button-wrapper .button-base:active {
   margin-top: 10px !important;
 }
 #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
-  font-size: 9pt;
   color: #333333;
   background-color: #ffffff;
   border-color: #cccccc;
@@ -13694,7 +13701,6 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
   color: #ffffff;
 }
 #mainMenu #menuNotLoggedIn .button-wrapper .button-login {
-  font-size: 9pt;
   background-color: #428bca;
   border-color: #357ebd;
   display: inline-block;

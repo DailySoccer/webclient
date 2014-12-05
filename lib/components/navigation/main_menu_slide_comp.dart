@@ -37,6 +37,9 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
   void _monitorChanges(currentVal, prevVal) {
     _reset();
     _createHtml();
+    if (_router.activePath.length > 0) {
+      _updateActiveElement(_router.activePath[0].name);
+    }
     _setUpSlidingMenu();
     _setUpClicks();
   }

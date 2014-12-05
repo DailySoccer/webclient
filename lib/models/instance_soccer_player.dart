@@ -19,7 +19,7 @@ class InstanceSoccerPlayer {
 
   List<Map> get printableLivePointsPerOptaEvent {
     List<Map> stats = new List<Map>();
-    soccerPlayer.currentLivePointsPerOptaEvent.forEach((key, LiveEventInfo value) => stats.add({'name': SoccerPlayer.getEventName(key), 'count': value.count, 'points': value.points}));
+    soccerPlayer.currentLivePointsPerOptaEvent.forEach((key, LiveEventInfo value) => stats.add({'name': SoccerPlayer.getEventName(key), 'count': value.count, 'points': StringUtils.parseFantasyPoints(value.points)}));
     stats.sort((elem0, elem1) => elem0["name"].compareTo(elem1["name"]) );
     return stats;
   }

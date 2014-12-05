@@ -212,7 +212,7 @@ class EnterContestComp implements DetachAware {
         count++;
       }
     });
-    _allowUserLeavePage = count == 0 || count == lineupSlots.length;
+    _allowUserLeavePage = count == 0;
   }
 
   bool isSlotAvailableForSoccerPlayer(String soccerPlayerId) {
@@ -287,11 +287,14 @@ class EnterContestComp implements DetachAware {
 
     if (editingContestEntry) {
       _contestsService.editContestEntry(contestEntryId, lineupSlots.map((player) => player["id"]).toList())
-        .then((_) => _router.go('view_contest_entry', {
+        .then((_) {
+                      _allowUserLeavePage = true;
+                      _router.go('view_contest_entry', {
                                         "contestId": contest.contestId,
                                         "parent": _routeProvider.parameters["parent"],
                                         "viewContestEntryMode": "edited"
-                                        }))
+                                        });
+                   })
         .catchError((error) => _errorCreating);
     }
     else {

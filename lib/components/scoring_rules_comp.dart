@@ -29,7 +29,7 @@ class ScoringRulesComp {
   }
 
   String getClassesIsNegative(String points) {
-    return ( points == null || num.parse(points) < 0 ) ? "negative": "";
+    return ( points == null || num.parse(points.replaceFirst(",", ".")) < 0 ) ? "negative": "";
   }
 
   void _init() {

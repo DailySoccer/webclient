@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 
 class StringUtils {
 
-  static NumberFormat decimalFormat = new NumberFormat("0.#", "en_US");
+  static NumberFormat decimalFormat = new NumberFormat("0.#", "es_ES");
 
   static String normalize(String txt) {
     String from = "ÃÀÁÄÂÈÉËÊÌÍÏÎÒÓÖÔÙÚÜÛãàáäâèéëêìíïîòóöôùúüûÑñÇç";

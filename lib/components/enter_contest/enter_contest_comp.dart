@@ -208,7 +208,7 @@ class EnterContestComp implements DetachAware {
     // Verificamos si esta la lista llena o vacía por completo para permitir salir sin alertas.
     int count = 0;
     lineupSlots.forEach((soccerPlayer) {
-      if (soccerPlayer == null) {
+      if (soccerPlayer != null) {
         count++;
       }
     });
@@ -301,6 +301,7 @@ class EnterContestComp implements DetachAware {
       _contestsService.addContestEntry(contest.contestId, lineupSlots.map((player) => player["id"]).toList())
         .then((contestId) {
           GameMetrics.logEvent(GameMetrics.TEAM_CREATED);
+          _allowUserLeavePage = true;
           _router.go('view_contest_entry', {
                               "contestId": contestId,
                               "parent": _routeProvider.parameters["parent"],

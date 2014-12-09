@@ -1,3 +1,13 @@
+#usersList {
+	.make-xs-column(12);
+	.make-sm-column(6);
+	.clean-paddings();
+	@media (min-width: @screen-sm-min) {
+		padding-left: 5px;
+		padding-right: 0px;
+	}
+
+}
 #usersListRoot {
 	.user-select(none);
 	.user-row {
@@ -67,8 +77,10 @@
 	}
 	@media (min-width: @screen-sm-min) {
 		.make-border(1px, solid, @greyDark, @globalBoxesRadius);
-		.make-percent-box(50%, 2%);
-		height: 574px;		// Mismo tamaño que fantasy_team
+		//.make-percent-box(50%, 2%);
+		//.make-sm-column(6);
+		//.clean-paddings();
+		height: 532px;		// Mismo tamaño que fantasy_team
 		overflow: hidden;
 
 		.users-header {
@@ -84,7 +96,7 @@
 		}
 
 		.users-table-rows {
-			height: 453px;
+			height: 410px;
 			overflow-y: scroll;
 			overflow-x: hidden;
 		}

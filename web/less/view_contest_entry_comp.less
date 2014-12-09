@@ -11,8 +11,9 @@
 	text-align: center;
 	padding: 20px 5px 10px;
 	@media (min-width: @screen-sm-min) {
-		background-color: @tramaBlue;
+		background-color: @white;
 		padding: 30px 5px 15px;
+		.make-border(1px, solid none solid none, @greyMed);
 	}
 	p {
 		.exo_light(20pt, @blueMed);
@@ -45,8 +46,9 @@
 }
 #viewContestEntry {
 	@media (min-width: @screen-sm-min) {
-		padding-top: 20px;	// Quitar cuando haya mas componentes, usar un espaciador vertical
-		padding-bottom: 20px;
+		//padding-top: 20px;	// Quitar cuando haya mas componentes, usar un espaciador vertical
+		//padding-bottom: 20px;
+		padding: 10px;
 		background-color: @white;
 		//.border-bottom-radius(@globalBoxesRadius);
 	}

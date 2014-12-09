@@ -2,6 +2,7 @@ library element_autofocus_decorator;
 
 import 'package:angular/angular.dart';
 import 'dart:html';
+import 'dart:async';
 
 @Decorator(selector: '[auto-focus]')
 class AutoFocusDecorator implements AttachAware{
@@ -11,7 +12,6 @@ class AutoFocusDecorator implements AttachAware{
 
   @override
   void attach() {
-    // TODO: (A modo de test) Poner un timer que retarde en 500ms la acción de autofocus.
-    inputElement.focus();
+    new Timer(new Duration(seconds: 1), inputElement.focus);
   }
 }

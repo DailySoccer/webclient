@@ -108,10 +108,10 @@ class Contest {
 
   Map<String, String> prizeTypeNames = {
     PRIZE_FREE: "Concurso Gratuito. No hay premios a repartir", //"Free",
-    PRIZE_WINNER: "El ganador recibe toda la recaudación", //"Winner takes all",
+    PRIZE_WINNER: "Todo para el ganador", //"Winner takes all",
     PRIZE_TOP_3: "Los 3 primeros concursantes reciben premio", //"Top 3 get prizes",
-    PRIZE_TOP_THIRD: "El tercio superior de concursantes reciben premio", //Top third get prizes",
-    PRIZE_FIFTY_FIFTY: "La mitad superior de concursantes reciben premio", //"50/50"
+    PRIZE_TOP_THIRD: "Los # primeros reciben premio",// "El tercio superior de concursantes reciben premio", //Top third get prizes",
+    PRIZE_FIFTY_FIFTY: "Los # primeros reciben premio",// "La mitad superior de concursantes reciben premio", //"50/50"
   };
 
   int get prizePool => ((maxEntries * entryFee) * 0.90).toInt();

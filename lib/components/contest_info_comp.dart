@@ -2,6 +2,7 @@ library contest_info_comp;
 
 import 'package:angular/angular.dart';
 import 'dart:html';
+import 'dart:math';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/contest_entry.dart';
 import 'package:webclient/services/datetime_service.dart';
@@ -87,8 +88,33 @@ class ContestInfoComp implements DetachAware {
     currentInfoData["prize"]          = contest.prizePool.toString();
     currentInfoData["startDateTime"]  = DateTimeService.formatDateTimeLong(contest.startDate).toUpperCase();
     currentInfoData["contestants"]    = contestants;
+    currentInfoData["prizeType"]      = getThePrizeTypeName(contest.prizeTypeName, contest.prizeType);
     currentInfoData["prizes"]         = contest.prizes.map((value) => {'value' : value.toString()}).toList();
     currentInfoData["matchesInvolved"]= contest.matchEvents;
+  }
+
+  String getThePrizeTypeName(String prizeDesc, String prizeType) {
+    int count = 0;
+    String fullDesc = "";
+    switch(prizeType) {
+      case Contest.PRIZE_FREE:
+      case Contest.PRIZE_TOP_3:
+      case Contest.PRIZE_WINNER:
+        fullDesc = prizeDesc;
+      break;
+      case Contest.PRIZE_TOP_THIRD:
+        count = (contest.maxEntries / 3).floor();
+        fullDesc = count == 1 ? "El primero recibe todo el premio" : prizeDesc.replaceAll('#', count.toString());
+       break;
+
+      case Contest.PRIZE_FIFTY_FIFTY:
+        count = (contest.maxEntries / 2).floor();
+        fullDesc = count == 1 ? "El primero recibe todo el premio" : prizeDesc.replaceAll('#', count.toString());
+      break;
+    }
+
+    return fullDesc;
+
   }
 
   void enterContest() {

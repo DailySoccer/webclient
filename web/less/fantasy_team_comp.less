@@ -53,9 +53,17 @@
 		position: absolute;
 		right: 100px;
 		top: 7px;
-		color: @white; 
-		.title { .opensans_normal(8pt); .hidden-sm(); }
-		.glyphicon { font-size: 18pt; vertical-align: middle;}
+		color: @white;
+		.title { 
+			.opensans_normal(8pt, @white); 
+			.hidden-sm(); 
+			position: relative;
+			top: 3px;
+		}
+		.glyphicon { 
+			font-size: 18pt;
+			vertical-align: middle;
+		}
 
 		&:hover { color: @greyLight; }
 	}
@@ -109,7 +117,7 @@
 }
 
 .fantasy-team-list {
-	min-height: 481px;
+	min-height: 440px;
 	@fantasy-team-gutter: 0px; 		// Tiene que ser el mismo que soccer_players_list
 	
 	.soccer-player-row {
@@ -125,7 +133,7 @@
 		
 		
 		.column-fieldpos {
-			.make-xs-column(2, @fantasy-team-gutter);
+			.make-xs-column(1.5, @fantasy-team-gutter);
 			.opensans_bold(10pt, @greyDark);
 			text-align: center;
 			padding-top: 10px;
@@ -148,11 +156,11 @@
 			}
 		}
 		.column-score {
-			.make-xs-column(2, @fantasy-team-gutter);
-			.exo_light(18pt, @blueLight);
+			.make-xs-column(2.5, @fantasy-team-gutter);
+			.exo_light(19pt, @blueLight);
 			text-align: right;
 			padding-right: 10px;
-			margin-top: 5px;
+			//margin-top: 5px;
 			background-color: @white;
 
 			// Metemos el texto en una caja para tener mejor control sobre
@@ -160,7 +168,7 @@
 			span {
 				border-radius: 6px;
 				transition: background-color linear 150ms;
-				padding: 3px 10px 0px 10px;
+				//padding: 3px 10px 0px 10px;
 			}
 
 			.changed {
@@ -204,11 +212,22 @@
 	}
 }
 
-.fantasy-team-wrapper {
+#userFantasyTeam {
+	.make-xs-column(12);
+	.make-sm-column(6);
+	.clean-paddings();
 	@media (min-width: @screen-sm-min) {
-		min-height: 574px;		// Quitamos 1 pixel para comernos el borde final del slot
+		padding-left: 0px;
+		padding-right: 5px;
+	}
+}
+.fantasy-team-wrapper {
+
+	@media (min-width: @screen-sm-min) {
+		min-height: 532px;		// Quitamos 1 pixel para comernos el borde final del slot
 		overflow: hidden;		// Asi nos lo comemos
-		.make-percent-box(50%, 2%);
+		//.make-percent-box(50%, 2%);
+		//.clean-paddings();
 		.make-border(1px, solid, @orange, @globalBoxesRadius);
 	}
 }

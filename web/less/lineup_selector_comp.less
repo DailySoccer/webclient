@@ -18,6 +18,7 @@ lineup-selector {
 	.lineup-selector-slot {
 		// Heredamos los estilos de nuestro padre la lista soccer_players_list
 		&:extend(.soccer-players-list .soccer-players-list-slot);
+		&:nth-last-child(2){ border-width: 0;}
 		cursor: pointer;
 		
 		.column-fieldpos {

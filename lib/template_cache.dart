@@ -716,8 +716,11 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
               <div class="tab-pane" id="prizes">
 
                 <div class="prizes-wrapper">
-                  <div ng-if="!loadingService.isLoading && currentInfoData['prizes'].isEmpty" class="default-info-text">
+                  <!--<div ng-if="!loadingService.isLoading && currentInfoData['prizes'].isEmpty" class="default-info-text">
                     Este concurso no tiene premios
+                  </div>-->
+                  <div class="default-info-text">
+                    {{currentInfoData["prizeType"]}}
                   </div>
                   <div id="prizes-list">
                     <div class="prize-element-wrapper" ng-repeat="prize in currentInfoData['prizes']">
@@ -756,8 +759,11 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
   <p class="title">PREMIOS</p>
   <div class="prizes-wrapper">
       <div id="prizes-list">
-        <div ng-if="!loadingService.isLoading && currentInfoData['prizes'].isEmpty" class="default-info-text">
+        <!--<div ng-if="!loadingService.isLoading && currentInfoData['prizes'].isEmpty" class="default-info-text">
           Este concurso no tiene premios
+        </div> -->
+        <div class="default-info-text">
+          {{currentInfoData["prizeType"]}}
         </div>
         <div class="prize-element-wrapper" ng-repeat="prize in currentInfoData['prizes']">
           <div class="prize-element">

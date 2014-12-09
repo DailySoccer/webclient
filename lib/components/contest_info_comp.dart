@@ -87,6 +87,7 @@ class ContestInfoComp implements DetachAware {
     currentInfoData["prize"]          = contest.prizePool.toString();
     currentInfoData["startDateTime"]  = DateTimeService.formatDateTimeLong(contest.startDate).toUpperCase();
     currentInfoData["contestants"]    = contestants;
+    currentInfoData["prizeType"]      = contest.prizeTypeName;
     currentInfoData["prizes"]         = contest.prizes.map((value) => {'value' : value.toString()}).toList();
     currentInfoData["matchesInvolved"]= contest.matchEvents;
   }

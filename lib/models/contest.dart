@@ -107,11 +107,11 @@ class Contest {
   bool get isHistory  => state == "HISTORY";
 
   Map<String, String> prizeTypeNames = {
-    PRIZE_FREE: "Free",
-    PRIZE_WINNER: "Winner takes all",
-    PRIZE_TOP_3: "Top 3 get prizes",
-    PRIZE_TOP_THIRD: "Top third get prizes",
-    PRIZE_FIFTY_FIFTY: "50/50"
+    PRIZE_FREE: "Concurso Gratuito. No hay premios a repartir", //"Free",
+    PRIZE_WINNER: "El ganador recibe toda la recaudación", //"Winner takes all",
+    PRIZE_TOP_3: "Los 3 primeros concursantes reciben premio", //"Top 3 get prizes",
+    PRIZE_TOP_THIRD: "El tercio superior de concursantes reciben premio", //Top third get prizes",
+    PRIZE_FIFTY_FIFTY: "La mitad superior de concursantes reciben premio", //"50/50"
   };
 
   int get prizePool => ((maxEntries * entryFee) * 0.90).toInt();

@@ -205,7 +205,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
           <span class="soccer-player-name">${slot["fullName"]}</span>
           <span class="match-event-name">${slot["matchEventName"]}</span>
         </div>
-        <div class="column-dfp">${slot["fantasyPoints"]}</div>
+        <div class="column-dfp">${StringUtils.parseFantasyPoints(slot["fantasyPoints"])}</div>
         <div class="column-played">${slot["playedMatches"]}</div>
         <div class="column-salary">${slot["salary"]}€</div>
         <div class="column-action">

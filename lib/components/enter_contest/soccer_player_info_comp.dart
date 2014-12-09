@@ -13,6 +13,7 @@ import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/components/enter_contest/enter_contest_comp.dart';
 import 'package:intl/intl.dart';
 import 'package:webclient/components/modal_comp.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 
 @Component(
@@ -69,7 +70,7 @@ class SoccerPlayerInfoComp implements DetachAware {
         'fieldPos'        : _instanceSoccerPlayer.fieldPos.abrevName,
         'team'            : _instanceSoccerPlayer.soccerTeam.name.toUpperCase(),
         'name'            : _instanceSoccerPlayer.soccerPlayer.name.toUpperCase(),
-        'fantasyPoints'   : _instanceSoccerPlayer.soccerPlayer.fantasyPoints,
+        'fantasyPoints'   : StringUtils.parseFantasyPoints(_instanceSoccerPlayer.soccerPlayer.fantasyPoints),
         'salary'          : _instanceSoccerPlayer.salary,
         'matches'         : '-',
         'nextMatchEvent'  : ''
@@ -187,10 +188,10 @@ class SoccerPlayerInfoComp implements DetachAware {
 
         List<String> matchStats = [];
         if (isGoalkeeper()) {
-          matchStats.addAll([dayMonth, stat.opponentTeam.shortName, stat.fantasyPoints, stat.playedMinutes, stat.golesEncajados, stat.paradas, stat.despejes, stat.pases, stat.recuperaciones, stat.perdidasBalon, stat.penaltisDetenidos, stat.faltasCometidas, stat.tarjetasAmarillas, stat.tarjetasRojas]);
+          matchStats.addAll([dayMonth, stat.opponentTeam.shortName, StringUtils.parseFantasyPoints(stat.fantasyPoints), stat.playedMinutes, stat.golesEncajados, stat.paradas, stat.despejes, stat.pases, stat.recuperaciones, stat.perdidasBalon, stat.penaltisDetenidos, stat.faltasCometidas, stat.tarjetasAmarillas, stat.tarjetasRojas]);
         }
         else {
-          matchStats.addAll([dayMonth, stat.opponentTeam.shortName, stat.fantasyPoints, stat.playedMinutes, stat.goles, stat.tiros, stat.pases, stat.asistencias, stat.regates, stat.recuperaciones, stat.perdidasBalon, stat.faltasRecibidas, stat.faltasCometidas, stat.tarjetasAmarillas, stat.tarjetasRojas]);
+          matchStats.addAll([dayMonth, stat.opponentTeam.shortName, StringUtils.parseFantasyPoints(stat.fantasyPoints), stat.playedMinutes, stat.goles, stat.tiros, stat.pases, stat.asistencias, stat.regates, stat.recuperaciones, stat.perdidasBalon, stat.faltasRecibidas, stat.faltasCometidas, stat.tarjetasAmarillas, stat.tarjetasRojas]);
         }
         // Si no tenemos creadas las estadísticas partido a partido
         if (seasons.length == 0) {

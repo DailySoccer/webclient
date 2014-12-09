@@ -120,9 +120,9 @@ class SoccerPlayerInfoComp implements DetachAware {
       return zero;
     }
     else {
-      NumberFormat twoDecimals = new NumberFormat("0.00");
-      NumberFormat oneDecimals = new NumberFormat("00.0");
-      NumberFormat noDecimals = new NumberFormat("000");
+      NumberFormat twoDecimals = new NumberFormat("0.00", "es_ES");
+      NumberFormat oneDecimals = new NumberFormat("00.0", "es_ES");
+      NumberFormat noDecimals = new NumberFormat("000", "es_ES");
       var average = statSummatory/totalMatch;
       if (average >= 100) {
        return noDecimals.format(average).toString();

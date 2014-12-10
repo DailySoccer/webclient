@@ -626,10 +626,10 @@ tc.put("packages/webclient/components/contest_header_comp.html", new HttpRespons
     </div>
 
     <div class="contest-prize">
-      <div class="contest-coins-content-with-icon"><span>{{info['prize']}}</span></div>
+      <div class="contest-coins-content prize"><span>{{info['prize']}}</span></div>
       <div class="contest-coins-header">
         <div class="contest-coins-header-title">PREMIOS</div>
-        <div class="contest-coins-header-prize-type">{{info['prizeType']}}</div>
+        <!--<div class="contest-coins-header-prize-type">{{info['prizeType']}}</div>-->
       </div>
 
     </div>

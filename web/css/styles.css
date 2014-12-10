@@ -17478,6 +17478,9 @@ textarea.soccer-players-filter .name-player-input-filter {
   }
 }
 #matchesFilterWrapper .matches-filter-buttons .button-filter-wrapper {
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
   height: 45px;
   float: left;
   display: inline-block;
@@ -17491,11 +17494,17 @@ textarea.soccer-players-filter .name-player-input-filter {
     display: none !important;
   }
 }
+@media (min-width: 768px) {
+  #matchesFilterWrapper .matches-filter-buttons .button-filter-wrapper {
+    float: left;
+    width: 16.66666667%;
+  }
+}
 #matchesFilterWrapper .matches-filter-buttons:after {
   clear: both;
 }
 #matchesFilterWrapper .matches-filter-buttons .button-filter-team {
-  min-width: 120px;
+  width: 100%;
   padding: 5px 0;
   text-align: center;
   line-height: 15px;

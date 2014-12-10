@@ -796,13 +796,14 @@ tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse
 
     <div class="column-contest-name" ng-click="onRow(contest)">
       <div class="column-name">{{contest.name}}</div>
+      <div class="column-start-date-time-xs">{{dateInfo(contest.startDate)}} {{timeInfo(contest.startDate)}}</div>
       <div class="column-description">{{contest.description}}</div>
     </div>
 
     <div class="column-contest-empty" ng-click="onRow(contest)" ng-if="contest.isLive"></div>
 
     <div class="column-contest-price" ng-click="onRow(contest)" ng-if="!contest.isLive && !contest.isHistory">
-      <div class="column-contest-price-content"><span>{{contest.entryFee}}€</span></div>
+      <div class="column-contest-price-content">{{contest.entryFee}}€</div>
       <div class="column-contest-price-header">ENTRADA</div>
       <!-- torneo gratis -->
       <!--<div ng-if="isFreeContest(contest)"><img src="images/iconFree.png" alt="GRATIS"></div>-->
@@ -814,14 +815,9 @@ tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse
     </div>
 
     <div class="column-contest-prize" ng-click="onRow(contest)" ng-if="!contest.isLive">
-      <div class="column-contest-prize-content">
-        <span ng-if="!contest.isHistory"class="prize">{{contest.prizePool}}€</span>
-        <span ng-if="contest.isHistory">{{getMyPrize(contest)}}€</span>
-      </div>
-      <div class="column-contest-prize-header">
-        <div class="column-contest-prize-header-title">PREMIO</div>
-        <!-- <div class="column-contest-prize-header-prize-type">{{contest.prizeTypeName}}</div> -->
-      </div>
+      <div ng-if="!contest.isHistory" class="column-contest-prize-content prize">{{contest.prizePool}}€</div>
+      <div ng-if="contest.isHistory"  class="column-contest-prize-content prize">{{getMyPrize(contest)}}€</div>
+      <div class="column-contest-prize-header">PREMIO</div>
     </div>
 
     <div class="column-contest-points" ng-click="onRow(contest)" ng-if="contest.isLive">

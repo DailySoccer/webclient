@@ -1,71 +1,149 @@
 .contests-list-root {
-	@media (max-width: @screen-sm-max) {
-		.container-fluid();
-	}
-	@media (min-width: @screen-md-min) {
-		.container();
-		// Bordes redondeados para la version Desktop
-		//border-bottom-right-radius: 10px;
-		//border-bottom-left-radius: 10px;
-	}
+	.container-fluid();
 	background-color: @white;
 	position: relative;
 
 	
 	// Fila de contest
 	.contest-row {
+		cursor: pointer;
 		.make-row();
+		padding: 10px;
 		.make-border(1px, solid none none  none, @greyLight);
 		&:nth-last-child(2) {
 			.make-border(1px, solid none solid  none, @greyLight);
 		}
-		padding-bottom: 10px;
 
-		// El cursor cambia, porque la linea entera clika al modal en formato Desktop
-		cursor: pointer;
+		.big-text {
+			.exo_bold(18pt, @blueDark);
+			@media (max-width: @screen-xs-max) {
+				.opensans_bold(10pt, @blueDark);
+			}
+		}
+		.small-text {
+			.opensans_bold(10pt, @greyDark);
+			@media (max-width: @screen-xs-max) {
+				.opensans_normal(10pt, @greyDark);
+			}
+		}
 
 		.column-contest-name {
-			.make-xs-column(12, 10px);
-			.make-sm-column(6, 10px);
+			.make-xs-column(12);
+			.make-sm-column(6, 0);
+			
 			.column-name {
-				.exo_bold(18pt, @blueDark);
-				margin-top: 15px;
-				padding-left: 20px;
-				// Tamaño para la versión móvil
-				@media (max-width: @screen-xs-max) {
-					.opensans_bold(10pt, @blueDark);
-					padding-left: 0;
-					// Para que no se solape con la fecha
-					padding-right: 90px;
-				}
+				.make-xs-column(8.5);
+				.make-sm-column(12);	
+				.clean-paddings();
+				.big-text(); 
+			}
+			.column-start-date-time-xs {
+				.visible-xs();
+				.make-xs-column(3.5);
+				.clean-paddings();
+				.big-text();
+				text-align: right;
 			}
 			.column-description {
-				.opensans_bold(10pt, @greyDark);
-				margin-bottom: 15px;
-				padding-left: 20px;
-				// Tamaño para la versión móvil
+				.make-xs-column(12);
+				.clean-paddings();
+				.small-text();
 				@media (max-width: @screen-xs-max) {
-					.opensans_normal(9pt, @greyDark);
-					margin: 5px 0 10px;
-					padding-left: 0;
+					padding-top: 5px;
+					padding-bottom: 10px;
 				}
 			}
+		}
+
+		.column-contest-price, .column-contest-prize, .column-contest-position, .column-contest-points  {
+			.make-xs-column(5.5);
+			.make-sm-column(1.8, 0);
+
+			.column-contest-price-header, .column-contest-prize-header, .column-contest-position-header, .column-contest-points-header {
+				//.make-xs-column(6);
+				@media (max-width: @screen-xs-max) {
+					display: inline-block;
+				}
+				.make-sm-column(12);
+				.clean-paddings();
+				.small-text();	
+			}
+			.column-contest-price-content, .column-contest-prize-content, .column-contest-position-content, .column-contest-points-content {
+				//.make-xs-column(3);
+				@media (max-width: @screen-xs-max) {
+					display: inline-block;
+					margin-right: 10px;
+					.badge();
+					background-color: @greyLight;
+					
+				}
+				.make-sm-column(12);
+				.clean-paddings();
+				.big-text();
+			}
+
+			.column-contest-prize-content {
+				&::before {
+					.hidden-xs();
+					.addAbsoluteIcon("iconPrize.png", 32px, 26px, -34px, 2px);
+				}
+			}
+			
+		}
+
+		// Fecha comienzo de contest
+		.column-contest-start-date {
+			.make-sm-column(1.2, 0);
+			.hidden-xs();			
+			.column-start-date-day {
+				.make-sm-column(12);
+				.clean-paddings();
+				.big-text();
+			}
+			.column-start-date-hour {
+				.make-sm-column(12);
+				.clean-paddings();
+				.small-text();
+			}
+		}
+
+		.column-contest-action {
+			.make-xs-column(1,0);
+			.make-sm-column(1.2,0);
+			margin-top: 10px;
+			@media (max-width: @screen-xs-max) {
+				text-align: right;
+				margin-top: 0px;
+			}
+			.action-button { 
+				.make-sm-column(12);
+				.clean-paddings();
+				.btn-primary(); 
+				@media (max-width: @screen-xs-max) {
+					background-color: transparent;
+					padding: 0;
+					overflow: hidden;
+					width: 12px;
+					box-shadow: none;
+					&::before {
+						color: @blueDark;
+						.create-glyph("\E080", 10pt);
+						padding: 0;
+					}
+					&:focus, &:active, &:hover {
+						background-color: transparent;	
+					}
+				}
+			}
+			
 		}
 
 		.column-contest-empty {
 			.make-sm-column(1, 0);
 			.hidden-xs();
 		}
-
-		.column-contest-price, .column-contest-position {
-			// 5 columnas xs y 2 para el resto
-			.make-xs-column(5, 0);
-			.make-sm-column(2, 0);
-			@media (min-width: @screen-sm-min) {
-				margin-top: 24px;
-			}
-		}
-
+		
+		/*
 		.column-contest-prize, .column-contest-points {
 			// 7 columnas xs y 2 para el resto
 			.make-xs-column(7, 0);
@@ -90,6 +168,7 @@
 			//.hidden-xs();
 			padding-left: 10px;
 		}
+
 		.column-contest-prize-header-prize-type {
 			// A partir de 480px desaparece el tipo de premio	
 			 @media (min-width: @screen-sm-min) {
@@ -122,43 +201,18 @@
 
 		// Iconos de precio y premio
 		@media (min-width: @screen-sm-min) {
-			/*.column-contest-price span::before {
+			.column-contest-price span::before {
 				.addAbsoluteIcon("iconPrice.png", 32px, 26px, 5px, 3px);
-			}*/
+			}
 			.column-contest-prize-content span {
 				padding-left: 10px;
 			}
 			.column-contest-prize span {
 				padding-left: 10px;
-				&::before {
-					.addAbsoluteIcon("iconPrize.png", 32px, 26px, -10px, 3px);
-				}
+				
 			}
 		}
 		
-		// Fecha comienzo de contest
-		.column-contest-start-date {
-			.make-sm-column(1, 0);
-			.opensans_bold(9pt, @greyDark);
-			margin-top: 17px;
-			@media (min-width: @screen-sm-min) {
-				.column-start-date-day {
-					.exo_light(18pt, @blueDark);
-				}
-			}
-			@media (max-width: @screen-xs-max) {
-				position: absolute;
-				right: 10px;
-				.opensans_bold(9pt, @blueDark);
-				.column-start-date-day {
-					.pull-left();
-				}
-				.column-start-date-hour {
-					.pull-right();
-					margin-left: 5px;
-				}
-			}
-		}
 
 		// Botón de entrar al concurso
 		.column-contest-action {
@@ -190,6 +244,7 @@
 				}
 			}
 		}
+		*/
 	}
 }
 

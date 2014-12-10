@@ -19953,6 +19953,13 @@ fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-
   margin-right: 0;
   clear: both;
   padding: 0 15px;
+  padding-top: 15px;
+}
+@media (max-width: 767px) {
+  .view-contest-entry-actions-wrapper {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
 }
 .view-contest-entry-actions-wrapper .button-wrapper {
   position: relative;

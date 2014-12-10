@@ -11,7 +11,6 @@ void main() {
 
   try {
     LoggerExceptionHandler.setUpLogger();
-    GameMetrics.initMixpanel();
 
     clearQueryStrings();
 

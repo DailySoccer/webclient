@@ -26,8 +26,12 @@
 .view-contest-entry-actions-wrapper {
 	.make-row(0);
 	clear: both;	
-	padding: 0 15px;
-
+	padding: 0 15px;	
+	padding-top: 15px;
+	@media (max-width: @screen-xs-max) {
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
 	.button-wrapper {
 		.make-xs-column(6);
 		padding: 0 10px;

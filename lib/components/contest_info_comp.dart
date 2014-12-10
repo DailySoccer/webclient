@@ -114,7 +114,6 @@ class ContestInfoComp implements DetachAware {
     }
 
     return fullDesc;
-
   }
 
   void enterContest() {

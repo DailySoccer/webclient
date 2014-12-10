@@ -220,8 +220,11 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
     <div id="menuNotLoggedIn">
       <div id="brandLogoNotLogged" class="navbar-brand" destination="landing_page"></div>
       <div class="button-wrapper">
-        <button id="joinButton"  type="button" class="button-join" destination="join">REGISTRO</button>
-        <button id="loginButton" type="button" class="button-login" destination="login">ENTRAR</button>
+        <!--
+            <button id="joinButton"  type="button" class="button-join" destination="join">REGISTRO</button>
+            <button id="loginButton" type="button" class="button-login" destination="login">ENTRAR</button>
+        -->
+        <div id="loginButton" type="button" class="button-login-flat" destination="login">ENTRAR</div>
         <!--button class="btn-fb-span">
           <fb:login-button scope="public_profile,email" size="medium" onlogin="jsLoginFB()">
           </fb:login-button>

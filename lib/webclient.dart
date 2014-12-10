@@ -17,7 +17,8 @@ import 'package:webclient/services/soccer_player_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/scoring_rules_service.dart';
 
-import 'package:webclient/components/landing_page_comp.dart';
+//import 'package:webclient/components/landing_page_comp.dart';
+import 'package:webclient/components/landing_page_1_slide_comp.dart';
 
 import 'package:webclient/utils/form-autofill-fix.dart';
 import 'package:webclient/utils/element-autofocus.dart';
@@ -103,7 +104,8 @@ class WebClientApp extends Module {
     bind(AutoFocusDecorator);
     bind(LimitToDot);
 
-    bind(LandingPageComp);
+    //bind(LandingPageComp);
+    bind(LandingPage1SlideComp);
 
     bind(MainMenuSlideComp);
     bind(FooterComp);
@@ -159,7 +161,7 @@ class WebClientApp extends Module {
           defaultRoute: true,
           path: '/landing_page',
           preEnter: (RoutePreEnterEvent e) => _onLandingPage(e, router),
-          viewHtml: '<landing-page></landing-page>'
+          viewHtml: '<landing-page-1-slide></landing-page-1-slide>'
       )
       ,'beta_info': ngRoute(
           path: '/beta_info',
@@ -330,4 +332,5 @@ class WebClientApp extends Module {
 
   bool _jQueryReady = false;
   List<String> _logOutPageViews = ["landing_page", "join", "login", "remember_password", "change_password"];
+  //List<String> _autoScrollPageViews = [];
 }

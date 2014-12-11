@@ -626,7 +626,7 @@ tc.put("packages/webclient/components/contest_header_comp.html", new HttpRespons
     </div>
 
     <div class="contest-prize">
-      <div class="contest-coins-content prize"><span>{{info['prize']}}</span></div>
+      <div class="contest-coins-content prize-icon-big"><span>{{info['prize']}}</span></div>
       <div class="contest-coins-header">
         <div class="contest-coins-header-title">PREMIOS</div>
         <!--<div class="contest-coins-header-prize-type">{{info['prizeType']}}</div>-->
@@ -815,8 +815,8 @@ tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse
     </div>
 
     <div class="column-contest-prize" ng-click="onRow(contest)" ng-if="!contest.isLive">
-      <div ng-if="!contest.isHistory" class="column-contest-prize-content prize">{{contest.prizePool}}€</div>
-      <div ng-if="contest.isHistory"  class="column-contest-prize-content prize">{{getMyPrize(contest)}}€</div>
+      <div ng-if="!contest.isHistory" class="column-contest-prize-content prize-icon-big">{{contest.prizePool}}€</div>
+      <div ng-if="contest.isHistory"  class="column-contest-prize-content prize-icon-big">{{getMyPrize(contest)}}€</div>
       <div class="column-contest-prize-header">PREMIO</div>
     </div>
 
@@ -1109,161 +1109,67 @@ tc.put("packages/webclient/components/enter_contest/soccer_players_filter_comp.h
 
   <input type="text" class="name-player-input-filter" placeholder="Buscar jugador" ng-model="nameFilter" />
 </div>"""));
-tc.put("packages/webclient/components/landing_page_comp.html", new HttpResponse(200, r"""<div id="landingPageRoot">
+tc.put("packages/webclient/components/landing_page_1_slide_comp.html", new HttpResponse(200, r"""<div id="landingPageRoot">
   <!-- Portada Versión Desktop -->
   <div id="desktopContent" ng-if="!scrDet.isXsScreen" class="first-screen" style="height:{{screenHeight}}px">
     <div class="screen-pattern" src="images/pattern.png"></div>
 
     <div class="main-title-wrapper">
 
-      <div class="main-title">LIGAS FANTÁSTICAS<br>DIARIAS</div>
-      <div class="separator-wrapper">
-        <img src="images/separator.png"/>
+      <div class="main-title">LIGAS FANTÁSTICAS SEMANALES</div>
+      <div class="main-sub-title">
+        Juega y gana cuando quieras, sin esperar al final de la temporada.
+      </div>
+      <div class="button-wrap">
+        <button type="button" class="button-play"  ng-click="buttonPressed('join')" id="playButton1">ÚNETE Y JUEGA GRATIS</button>
+      </div>
+      <div class="text-wrapper">
+
+        <div class="module-column">
+          <p class="icono-text">Compite en tantos torneos como quieras de Liga, Premier y Champions</p>
+        </div>
+
+        <div class="module-column">
+          <p class="icono-text">Crea tu equipo en segundos desde cualquier dispositivo</p>
+        </div>
+
+        <div class="module-column">
+          <p class="icono-text">Podrás ganar dinero en efectivo con pagos inmediatos</p>
+        </div>
+
       </div>
       <div class="modules-wrapper">
-
         <div class="module-column">
-          <img class="icono" src="images/icon1.png"/>
-          <p class="icono-text">Crea tu equipo en segundos</p>
+          <img src="images/iconsLeagues.png">
         </div>
-
         <div class="module-column">
-          <img class="icono" src="images/icon2.png"/>
-          <p class="icono-text">Compite en tantas ligas como quieras</p>
+          <img src="images/iconsDevices.png">
         </div>
-
         <div class="module-column">
-          <img class="icono" src="images/icon3.png"/>
-          <p class="icono-text">Y gana dinero</p>
+          <img src="images/iconsPayment.png">
         </div>
-
-      </div>
-
-      <div class="button-wrap">
-        <button type="button" class="button-play"  ng-click="buttonPressed('join')" id="playButton1">JUGAR</button>
       </div>
 
     </div>
     <div class="beta-label"><img src="images/beta.png"/></div>
-
-    <!-- Separador -->
-    <a class="wrapping-link" ng-click="smoothScrollTo('#screen2')">
-      <span id="screenSeparator1" class="more-info-section-light">
-        <span>SABER MÁS</span>
-        <span class="go-down-icon"></span>
-      </span>
-    </a>
   </div>
   <!-- END Portada Versión Desktop -->
 
 
   <!-- Portada Versión Móvil -->
-  <div id="mobileContent" class="screen">
+  <div id="mobileContent" class="screen" style="height:{{screenHeight}}px">
     <div class="content">
-      <p class="main-title-mobile">LIGAS FANTÁSTICAS <br> DIARIAS</p>
+      <p class="main-title-mobile">LIGAS FANTÁSTICAS <br> SEMANALES</p>
+      <p class="title-sup-text-mobile">COMPITE EN TANTOS TORNEOS COMO QUIERAS</p>
       <p class="title-sup-text-mobile">CREA TU EQUIPO EN SEGUNDOS</p>
-      <p class="title-sup-text-mobile">COMPITE EN TANTAS LIGAS COMO QUIERAS</p>
       <p class="title-sup-text-mobile">Y GANA DINERO</p>
       <div class="button-wrap">
-        <button type="button" class="button-play-mobile" ng-click="buttonPressed('join')" id="playButtonMobile">JUGAR</button>
+        <button type="button" class="button-play-mobile" ng-click="buttonPressed('join')" id="playButtonMobile">ÚNETE Y JUEGA GRATIS</button>
       </div>
     </div>
-    <!-- Separador -->
-    <a class="wrapping-link"  ng-click="smoothScrollTo('#screen2')">
-      <span id="screenSeparator1" class="more-info-section-light">
-        <span>SABER MÁS</span>
-        <span class="go-down-icon"></span>
-      </span>
-    </a>
     <div class="beta-label"><img src="images/beta.png"/></div>
   </div>
   <!-- END Portada Versión Móvil -->
-
-
-
-  <div id="screen2" class="screen">
-      <div class="slider-wrapper">
-        <img class="screen-background" src="images/landing02.jpg" />
-        <div class="screen-pattern"></div>
-      </div>
-      <div class="content-wrapper">
-        <div class="content-container">
-          <div class="screen-image-block">
-            <img class="screen-logo" src="images/landingLogo1.png" />
-          </div>
-          <div class="screen-text-block">
-            <p class="title-text-dark">CADA DÍA NUEVOS TORNEOS</p>
-            <p class="description-text">
-                Liga, Champions, Europa League: cada día te ofrecemos torneos de las competiciones más importantes. Puedes participar en tantos como quieras
-            </p>
-            <div class="button-wrap">
-              <button type="button" class="button-play"  ng-click="buttonPressed('join')" id="playButton2">JUGAR</button>
-            </div>
-          </div>
-        </div>
-      </div>
-  </div>
-
-  <a class="wrapping-link" ng-click="smoothScrollTo('#screen3')">
-    <span id="screenSeparator2" class="more-info-section-light">
-      <span>SABER MÁS</span>
-      <span class="go-down-icon"></span>
-    </span>
-  </a>
-
-  <div id="screen3" class="screen">
-      <div class="slider-wrapper">
-        <img class="screen-background" src="images/landing03.jpg" />
-        <div class="screen-pattern"></div>
-      </div>
-      <div class="content-wrapper">
-        <div class="content-container">
-          <div class="screen-image-block">
-            <img class="screen-logo" src="images/landingLogo2.png" />
-          </div>
-          <div class="screen-text-block">
-            <p class="title-text-dark">CREA TU EQUIPO IDEAL</p>
-            <p class="description-text">
-                Cada jugador tienen un salario acorde a su rendimiento en la vida real. Elige bien, deberás mantenerte por debajo del límite de presupuesto.
-            </p>
-            <div class="button-wrap">
-              <button type="button" class="button-play"  ng-click="buttonPressed('join')" id="playButton3">JUGAR</button>
-            </div>
-          </div>
-        </div>
-      </div>
-  </div>
-
-  <a class="wrapping-link" ng-click="smoothScrollTo('#screen4')">
-    <span id="screenSeparator3" class="more-info-section-dark">
-      <span>SABER MÁS</span>
-      <span class="go-down-icon"></span>
-    </span>
-  </a>
-
-  <div id="screen4" class="screen">
-      <div class="slider-wrapper">
-        <img class="screen-background" src="images/landing04.jpg" />
-        <div class="screen-pattern"></div>
-      </div>
-      <div class="content-wrapper">
-        <div class="content-container">
-          <div class="screen-image-block">
-            <img class="screen-logo" src="images/landingLogo3.png" />
-          </div>
-          <div class="screen-text-block">
-            <p class="title-text-dark">PUNTÚA Y GANA</p>
-            <p class="description-text">
-                Cuando comiencen los partidos en la vida real, tus jugadores acumularán puntos en función de sus acciones. Podrás seguir su puntuación en tiempo real desde donde quieras y compararla con los equipos rivales.
-            </p>
-            <div class="button-wrap">
-              <button type="button" class="button-play"  ng-click="buttonPressed('join')" id="playButton4">JUGAR</button>
-            </div>
-          </div>
-        </div>
-      </div>
-  </div>
-
 </div>"""));
 tc.put("packages/webclient/components/legalese_and_help/beta_info_comp.html", new HttpResponse(200, r"""<div id="betaComp">
    <div class="block-dark-header">
@@ -2407,8 +2313,8 @@ tc.put("packages/webclient/components/view_contest/users_list_comp.html", new Ht
     <div class="pos">POS</div>
     <div class="name" ng-class="{'name-view-contest-entry-mode': isViewContestEntryMode}">JUGADOR</div>
     <div class="remaining-time" ng-if="!isViewContestEntryMode">T.R.</div>
-    <div class="score">PUNTOS</div>
-    <div class="prize" ng-if="!isViewContestEntryMode">PREMIOS</div>
+    <div class="score-container">PUNTOS</div>
+    <div class="prize-container" ng-if="!isViewContestEntryMode">PREMIOS</div>
   </div>
 
   <div class="users-table-rows">
@@ -2416,8 +2322,8 @@ tc.put("packages/webclient/components/view_contest/users_list_comp.html", new Ht
       <div class="pos">{{$index + 1}}</div>
       <div class="name" ng-class="{'name-view-contest-entry-mode': isViewContestEntryMode}">{{user.name}}</div>
       <div class="remaining-time" ng-if="!isViewContestEntryMode">{{user.remainingTime}}</div>
-      <div class="score"><span>{{user.score}}</span></div>
-      <div class="prize" ng-if="!isViewContestEntryMode">{{getPrize($index)}}</div>
+      <div class="score-container"><span>{{user.score}}</span></div>
+      <div class="prize-container" ng-if="!isViewContestEntryMode">{{getPrize($index)}}</div>
     </div>
   </div>
 

@@ -311,14 +311,16 @@ main-menu-slide {
 	        	.btn-default();
 	      	}
 	      	.button-login-flat {
+	      		.opensans_normal(10pt, @white);
 	        	background-color: transparent;
 	        	border: 1px solid @white;
-	        	.opensans_normal(10pt, @white);
 	        	border-radius: 10px;
 	        	padding: 10px 20px;
+	        	cursor: pointer;
 	        	&:hover, &:active {
-	        		background-color: rgba(red(@white), green(@white), blue(@white), 0.5);
-	        		.opensans_normal(10pt, @white);
+	        		border: 1px solid @green;
+	        		//background-color: rgba(red(@green), green(@green), blue(@green), 0.5);
+	        		.opensans_normal(10pt, @green);
 	        	}
 	      	}
 	    }

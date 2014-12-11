@@ -48,7 +48,7 @@
 			}
 		}
 		.main-sub-title {
-			padding: 2% 25%;
+			padding: 0 25% 6%;
 			.opensans_normal(16pt, @blueDark);
 			@media (max-width: @screen-sm-max) {
 				.opensans_normal(12pt, @blueDark);
@@ -61,6 +61,7 @@
 			.button-play {
 				.btn-primary();
 				.opensans_normal(12pt, @white);
+				cursor: pointer;
 				padding: 24px 60px;
 				text-align: center;
 			}
@@ -69,7 +70,7 @@
 			.make-row(0);		
 			margin-left: -40px;
 			margin-right: -40px; 
-			margin-top: 3%;
+			margin-top: 8%;
 			background-color: @white;
 			.module-column {
 				margin-top: 20px;
@@ -140,6 +141,7 @@
 	.hidden-md();
 	.hidden-lg();
 	background-image: url('@{images}/pattern.png');
+	min-height: 380px;
 	.screen{
 		position: relative;
 	}

@@ -10054,23 +10054,25 @@ fieldset[disabled] #rootFooter .user-info-sup-footer .add-funds-button {
   content: "";
 }
 #desktopContent .main-title-wrapper {
-  position: absolute;
+  position: relative;
   display: inline-block;
   max-width: 960px;
   width: 95%;
   margin: 0 auto;
-  vertical-align: middle;
   white-space: normal;
-  left: 50%;
-  top: 50%;
   padding: 40px;
+  top: 40px;
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 10px;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  /*left: 50%; 
+		top: 50%; 
+
+		
+		-webkit-transform: translate(-50%, -50%);
+	  	-moz-transform: translate(-50%, -50%);
+	  	-ms-transform: translate(-50%, -50%);
+		-o-transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%);*/
 }
 #desktopContent .main-title-wrapper .main-title {
   font-family: 'Exo', sans-serif;
@@ -10089,7 +10091,7 @@ fieldset[disabled] #rootFooter .user-info-sup-footer .add-funds-button {
   }
 }
 #desktopContent .main-title-wrapper .main-sub-title {
-  padding: 0 25% 6%;
+  padding: 0 25% 3%;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 16pt;
@@ -10262,11 +10264,11 @@ fieldset[disabled] #desktopContent .main-title-wrapper .button-wrap .button-play
   margin-right: 0;
   margin-left: -40px;
   margin-right: -40px;
-  margin-top: 8%;
+  margin-top: 4%;
   background-color: #ffffff;
 }
 #desktopContent .main-title-wrapper .text-wrapper .module-column {
-  margin-top: 20px;
+  margin-top: 10px;
   position: relative;
   min-height: 1px;
   padding-left: 15px;
@@ -10290,7 +10292,9 @@ fieldset[disabled] #desktopContent .main-title-wrapper .button-wrap .button-play
 #desktopContent .main-title-wrapper .modules-wrapper {
   margin-left: 0;
   margin-right: 0;
-  margin-top: 4%;
+  margin-top: 3%;
+  margin-left: -40px;
+  margin-right: -40px;
 }
 #desktopContent .main-title-wrapper .modules-wrapper .module-column {
   position: relative;

@@ -18582,7 +18582,7 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
   padding-left: 2px;
   padding-right: 2px;
 }
-#usersListRoot .user-row .score {
+#usersListRoot .user-row .score-container {
   position: relative;
   float: left;
   width: 16.66666667%;
@@ -18594,12 +18594,12 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
   font-size: 10pt;
   color: #214a5f;
 }
-#usersListRoot .user-row .score span {
+#usersListRoot .user-row .score-container span {
   background-color: #ffffff;
   padding: 6px 5px;
   border-radius: 5px;
 }
-#usersListRoot .user-row .prize {
+#usersListRoot .user-row .prize-container {
   position: relative;
   float: left;
   width: 16.66666667%;
@@ -18652,7 +18652,7 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
   padding-left: 2px;
   padding-right: 2px;
 }
-#usersListRoot .users-table-header .score {
+#usersListRoot .users-table-header .score-container {
   position: relative;
   float: left;
   width: 16.66666667%;
@@ -18660,7 +18660,7 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
   padding-left: 2px;
   padding-right: 2px;
 }
-#usersListRoot .users-table-header .prize {
+#usersListRoot .users-table-header .prize-container {
   position: relative;
   float: left;
   width: 16.66666667%;
@@ -21516,7 +21516,7 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
     color: #777777;
   }
 }
-.prize::before {
+.prize-icon-big::before {
   content: " ";
   background-image: url("../images/iconPrize.png");
   width: 32px;
@@ -21528,7 +21528,7 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
   top: 3px;
 }
 @media (max-width: 767px) {
-  .prize::before {
+  .prize-icon-big::before {
     display: none !important;
   }
 }

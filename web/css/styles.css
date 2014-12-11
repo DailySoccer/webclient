@@ -10089,7 +10089,7 @@ fieldset[disabled] #rootFooter .user-info-sup-footer .add-funds-button {
   }
 }
 #desktopContent .main-title-wrapper .main-sub-title {
-  padding: 2% 25%;
+  padding: 0 25% 6%;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 16pt;
@@ -10115,7 +10115,6 @@ fieldset[disabled] #rootFooter .user-info-sup-footer .add-funds-button {
   margin-bottom: 0;
   font-weight: normal;
   vertical-align: middle;
-  cursor: pointer;
   background-image: none;
   border: 1px solid transparent;
   white-space: nowrap;
@@ -10141,6 +10140,7 @@ fieldset[disabled] #rootFooter .user-info-sup-footer .add-funds-button {
   font-weight: 400;
   font-size: 12pt;
   color: #ffffff;
+  cursor: pointer;
   padding: 24px 60px;
   text-align: center;
 }
@@ -10262,7 +10262,7 @@ fieldset[disabled] #desktopContent .main-title-wrapper .button-wrap .button-play
   margin-right: 0;
   margin-left: -40px;
   margin-right: -40px;
-  margin-top: 3%;
+  margin-top: 8%;
   background-color: #ffffff;
 }
 #desktopContent .main-title-wrapper .text-wrapper .module-column {
@@ -10363,6 +10363,7 @@ fieldset[disabled] #desktopContent .main-title-wrapper .button-wrap .button-play
 }
 #mobileContent {
   background-image: url('../images/pattern.png');
+  min-height: 380px;
 }
 @media (min-width: 768px) and (max-width: 991px) {
   #mobileContent {
@@ -13804,22 +13805,23 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
   color: #ffffff;
 }
 #mainMenu #menuNotLoggedIn .button-wrapper .button-login-flat {
-  background-color: transparent;
-  border: 1px solid #ffffff;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
   color: #ffffff;
+  background-color: transparent;
+  border: 1px solid #ffffff;
   border-radius: 10px;
   padding: 10px 20px;
+  cursor: pointer;
 }
 #mainMenu #menuNotLoggedIn .button-wrapper .button-login-flat:hover,
 #mainMenu #menuNotLoggedIn .button-wrapper .button-login-flat:active {
-  background-color: rgba(255, 255, 255, 0.5);
+  border: 1px solid #a1c931;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
-  color: #ffffff;
+  color: #a1c931;
 }
 @media (max-width: 991px) {
   #myContest {
@@ -18580,7 +18582,7 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
   padding-left: 2px;
   padding-right: 2px;
 }
-#usersListRoot .user-row .score {
+#usersListRoot .user-row .score-container {
   position: relative;
   float: left;
   width: 16.66666667%;
@@ -18592,12 +18594,12 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
   font-size: 10pt;
   color: #214a5f;
 }
-#usersListRoot .user-row .score span {
+#usersListRoot .user-row .score-container span {
   background-color: #ffffff;
   padding: 6px 5px;
   border-radius: 5px;
 }
-#usersListRoot .user-row .prize {
+#usersListRoot .user-row .prize-container {
   position: relative;
   float: left;
   width: 16.66666667%;
@@ -18650,7 +18652,7 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
   padding-left: 2px;
   padding-right: 2px;
 }
-#usersListRoot .users-table-header .score {
+#usersListRoot .users-table-header .score-container {
   position: relative;
   float: left;
   width: 16.66666667%;
@@ -18658,7 +18660,7 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
   padding-left: 2px;
   padding-right: 2px;
 }
-#usersListRoot .users-table-header .prize {
+#usersListRoot .users-table-header .prize-container {
   position: relative;
   float: left;
   width: 16.66666667%;
@@ -21514,7 +21516,7 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
     color: #777777;
   }
 }
-.prize::before {
+.prize-icon-big::before {
   content: " ";
   background-image: url("../images/iconPrize.png");
   width: 32px;
@@ -21526,7 +21528,7 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
   top: 3px;
 }
 @media (max-width: 767px) {
-  .prize::before {
+  .prize-icon-big::before {
     display: none !important;
   }
 }

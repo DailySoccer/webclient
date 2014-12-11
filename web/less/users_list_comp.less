@@ -24,7 +24,7 @@
 		.name {	.make-xs-column(4, @grid-columns-gutter); text-align: left;	}
 		.name-view-contest-entry-mode {	.make-xs-column(9, @grid-columns-gutter); text-align: left;	}
 		.remaining-time { .make-xs-column(3, @grid-columns-gutter); }
-		.score {
+		.score-container {
 			.make-xs-column(2, @grid-columns-gutter);
 			.exo_bold(10pt, @blueDark);
 
@@ -34,7 +34,7 @@
 				border-radius: 5px;
 			}
 		}
-		.prize { .make-xs-column(2, @grid-columns-gutter); }
+		.prize-container { .make-xs-column(2, @grid-columns-gutter); }
 	}
 
 	.users-table-header {
@@ -49,8 +49,8 @@
 		.name {.make-xs-column(4, @grid-table-header-gutter); text-align: left;}
 		.name-view-contest-entry-mode {.make-xs-column(9, @grid-table-header-gutter); text-align: left;}
 		.remaining-time {.make-xs-column(3, @grid-table-header-gutter);}
-		.score {.make-xs-column(2, @grid-table-header-gutter);}
-		.prize {.make-xs-column(2, @grid-table-header-gutter);}
+		.score-container {.make-xs-column(2, @grid-table-header-gutter);}
+		.prize-container {.make-xs-column(2, @grid-table-header-gutter);}
 	}
 	
 	.top-separator {

@@ -2396,10 +2396,10 @@ tc.put("packages/webclient/components/view_contest/view_contest_entry_comp.html"
     </div>
     <div class="view-contest-entry-actions-wrapper">
       <div class="button-wrapper">
-        <button type="button" class="btn-cancel-contest" ng-click="cancelContestEntry()">CANCELAR ENTRADA</button>
+        <button type="button" class="btn-cancel-contest" ng-click="cancelContestEntry()">ABANDONAR</button>
       </div>
       <div class="button-wrapper">
-        <button type="button" class="btn-back-contest" ng-click="goToParent()">OTROS DESAFÍOS</button>
+        <button type="button" class="btn-back-contest" ng-click="goToParent()">GUARDAR</button>
       </div>
     </div>
     <div class="clear-fix-bottom"></div>

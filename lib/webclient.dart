@@ -288,7 +288,6 @@ class WebClientApp extends Module {
   // En la landing queremos reroutar al lobby en caso de estar logeados, pero queremos hacerlo
   // antes de que se llegue a ver o parsear por una cuestion de rendimiento.
   void _onLandingPage(RoutePreEnterEvent event, Router router) {
-
     event.allowEnter(_waitingjQueryReady(() {
       if (ProfileService.instance.isLoggedIn) {
 
@@ -326,6 +325,7 @@ class WebClientApp extends Module {
       else {
         _bleach(event.route);
       }
+      window.scroll(0, 0);
       return enter;
     }));
   }

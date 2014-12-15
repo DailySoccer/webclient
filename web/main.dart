@@ -11,7 +11,7 @@ import 'package:webclient/utils/uri_utils.dart';
 
 void main() {
 
-  if (!_isValidBrowser()) {
+  if (_isNotValidBrowser()) {
     // If browser is not valid, redirect to warning
     window.location.href = "unsupported.html";
     return;
@@ -41,9 +41,10 @@ void clearQueryStrings() {
   }
 }
 
-bool _isValidBrowser() {
-  return (browser.isIe && browser.version >= "10") ||
-         (browser.isFirefox && browser.version >= "24") ||
-         (browser.isChrome && browser.version >= "27") ||
-         (browser.isSafari && browser.version >= "8");
+bool _isNotValidBrowser() {
+  return (browser.isIe      && browser.version < "10") ||
+         (browser.isFirefox && browser.version < "24") ||
+         (browser.isChrome  && browser.version < "27") ||
+         (browser.isOpera   && browser.version < "24") ||
+         (browser.isSafari  && browser.version < "8");
 }

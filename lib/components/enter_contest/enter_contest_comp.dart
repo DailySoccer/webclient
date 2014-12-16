@@ -73,11 +73,12 @@ class EnterContestComp implements DetachAware {
         // Si nos viene el torneo para editar la alineación
         if (editingContestEntry) {
           ContestEntry contestEntry = contest.getContestEntry(contestEntryId);
-
-          // Insertamos en el lineup el jugador
-          contestEntry.instanceSoccerPlayers.forEach((instanceSoccerPlayer) {
-            addSoccerPlayerToLineup(instanceSoccerPlayer.id);
-          });
+          if (contestEntry != null) {
+            // Insertamos en el lineup el jugador
+            contestEntry.instanceSoccerPlayers.forEach((instanceSoccerPlayer) {
+              addSoccerPlayerToLineup(instanceSoccerPlayer.id);
+            });
+          }
         }
       })
       .catchError((error) {

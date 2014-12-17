@@ -3,6 +3,8 @@ description: Epic Eleven
 dependencies:
   angular: '>=1.0.0 <1.1.0'
   browser: '>=0.10.0 <0.11.0'
+  barback: ">=0.13.0 <0.16.0"
+
 dev_dependencies:
   unittest: any
 

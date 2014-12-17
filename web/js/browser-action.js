@@ -29,6 +29,5 @@ function isValidBrowser(userAgentDetected) {
 }
 
 if (!isValidBrowser(parser.getResult())) {
-    mixpanel.track("Unsupported Browser");
     window.location = "/unsupported.html";
 }

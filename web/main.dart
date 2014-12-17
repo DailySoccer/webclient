@@ -1,5 +1,4 @@
 import 'package:angular/application_factory.dart';
-import 'package:browser_detect/browser_detect.dart';
 
 import 'dart:html';
 import 'package:webclient/webclient.dart';
@@ -10,12 +9,6 @@ import 'package:webclient/utils/uri_utils.dart';
 
 
 void main() {
-
-  if (_isNotValidBrowser()) {
-    // If browser is not valid, redirect to warning
-    window.location.href = "unsupported.html";
-    return;
-  }
 
   try {
     LoggerExceptionHandler.setUpLogger();
@@ -39,12 +32,4 @@ void clearQueryStrings() {
 
     UriUtils.removeQueryParameters(uri, ["utm"]);
   }
-}
-
-bool _isNotValidBrowser() {
-  return (browser.isIe      && browser.version < "10") ||
-         (browser.isFirefox && browser.version < "24") ||
-         (browser.isChrome  && browser.version < "27") ||
-         (browser.isOpera   && browser.version < "24") ||
-         (browser.isSafari  && browser.version < "8");
 }

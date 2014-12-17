@@ -3,7 +3,6 @@ description: Epic Eleven
 dependencies:
   angular: '>=1.0.0 <1.1.0'
   browser: '>=0.10.0 <0.11.0'
-  browser_detect: '>=1.0.3 <2.0.0'
 dev_dependencies:
   unittest: any
 

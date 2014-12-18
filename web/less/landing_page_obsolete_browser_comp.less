@@ -26,6 +26,8 @@
     #desktopContent{
         display: block!important;
         .main-title-wrapper {
+            max-width: 915px;
+            width: auto;
             background-color: #FAFAFA;
             .main-title {
                 .exo_bold(34pt, @blueDark);
@@ -50,6 +52,10 @@
                     float: left;
                     display: inline-block;
                     vertical-align: bottom;
+                    
+                    &.safari {
+                        margin-top: -10px;
+                    }
                     
                     @media (max-width: @screen-xs-max) {
                         display: block;

@@ -9,7 +9,7 @@ function isValidBrowser(userAgentDetected) {
             break;
 
         case "Firefox":
-            valid = userAgentDetected.browser.version >= "15";
+            valid = userAgentDetected.browser.version >= "16";
             break;
 
         case "Chrome":
@@ -21,7 +21,7 @@ function isValidBrowser(userAgentDetected) {
             break;
 
         case "Opera":
-            valid = userAgentDetected.browser.version >= "11";
+            valid = userAgentDetected.browser.version >= "12";
             break;
     }
 

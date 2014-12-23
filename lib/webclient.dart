@@ -47,6 +47,7 @@ import 'package:webclient/components/account/remember_password_comp.dart';
 import 'package:webclient/components/account/change_password_comp.dart';
 import 'package:webclient/components/account/payment_comp.dart';
 import 'package:webclient/components/account/payment_response_comp.dart';
+import 'package:webclient/components/account/add_funds_comp.dart';
 
 import 'package:webclient/components/my_contests_comp.dart';
 import 'package:webclient/components/view_contest/view_contest_entry_comp.dart';
@@ -153,6 +154,7 @@ class WebClientApp extends Module {
     bind(EditPersonalDataComp);
     bind(PaymentComp);
     bind(PaymentResponseComp);
+    bind(AddFundsComp);
 
     bind(RouteInitializerFn, toValue: webClientRouteInitializer);
     bind(NgRoutingUsePushState, toValue: new NgRoutingUsePushState.value(false));
@@ -231,6 +233,11 @@ class WebClientApp extends Module {
                 path: '/response/:result',
                 viewHtml: '<payment-response></payment-response>')
           }
+      )
+      ,'add_funds': ngRoute(
+          path: '/add_funds',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
+          viewHtml: '<add-funds></add-funds>'
       )
       ,'lobby': ngRoute(
           path: '/lobby',

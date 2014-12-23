@@ -51,8 +51,10 @@ class ViewContestComp implements DetachAware {
 
         // En el caso de los tipos de torneo 1vs1 el oponente se autoselecciona
         if(contest.tournamentType == Contest.TOURNAMENT_HEAD_TO_HEAD) {
-          selectedOpponent = contestEntries.where((contestEntry) => contestEntry.contestEntryId != mainPlayer.contestEntryId).first;
-          onUserClick(selectedOpponent, preventViewOpponent: true);
+          selectedOpponent = contestEntries.firstWhere((contestEntry) => contestEntry.contestEntryId != mainPlayer.contestEntryId, orElse: () => null);
+          if (selectedOpponent != null) {
+            onUserClick(selectedOpponent, preventViewOpponent: true);
+          }
         }
 
         updatedDate = DateTimeService.now;

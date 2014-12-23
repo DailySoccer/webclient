@@ -21,7 +21,8 @@ class FantasyTeamComp implements DetachAware {
     set contestEntry(ContestEntry value) {
 
       if (_contestEntry != value) {
-        slots = null;       // Si nos mandan cambiar de ContestEntry, tenemos que resetear los slots
+        // Si nos mandan cambiar de ContestEntry, tenemos que resetear los slots
+        _resetSlots();
       }
 
       _contestEntry = value;
@@ -61,6 +62,11 @@ class FantasyTeamComp implements DetachAware {
       else {
         _refreshSlots();
       }
+    }
+
+    void _resetSlots() {
+      stopTimers();
+      slots = null;
     }
 
     void _createSlots() {
@@ -143,8 +149,10 @@ class FantasyTeamComp implements DetachAware {
     }
 
     void stopTimers() {
-      _timers.where((timer) => timer.isActive).forEach((timer) => timer.cancel());
-      _timers.clear();
+      if (_timers.isNotEmpty) {
+        _timers.where((timer) => timer.isActive).forEach((timer) => timer.cancel());
+        _timers.clear();
+      }
     }
 
     List<Timer> _timers = new List<Timer>();

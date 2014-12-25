@@ -236,12 +236,17 @@ class DailySoccerServer implements ServerService {
         .then((httpResponse) {
           _checkServerVersion(httpResponse);
           _notify(ON_SUCCESS, {ServerService.URL: url});
-
           _processSuccess(url, httpResponse, completer);
         })
+        //
+        // Cancelacion del futuro
+        //
         .catchError((error) {
           Logger.root.warning("Future cancelled: $url");
         }, test: (e) => e is FutureCancelled)
+        //
+        // Error general
+        //
         .catchError((error) {
           _checkServerVersion(error);
 
@@ -251,11 +256,12 @@ class DailySoccerServer implements ServerService {
             _notify(ON_ERROR, {ServerService.URL: url, ServerService.TIMES: retryTimes, ServerService.SECONDS_TO_RETRY: 3});
 
             Logger.root.severe("_innerServerCall error: $error, url: $url, retry: $retryTimes");
+
             if ((retryTimes == -1) || (retryTimes > 0)) {
-              new Timer(const Duration(seconds: 3), () => _callLoop(callContext, url, queryString, postData, headers, completer, (retryTimes > 0) ? retryTimes-1 : retryTimes, cancelIfChangeContext));
+              new Timer(const Duration(seconds: 5), () => _callLoop(callContext, url, queryString, postData, headers, completer, (retryTimes > 0) ? retryTimes-1 : retryTimes, cancelIfChangeContext));
             }
             else {
-              _processError(error, url, completer);
+              _processError(serverError, url, completer);
             }
           }
           else if (serverError.isServerExceptionError) {
@@ -263,9 +269,27 @@ class DailySoccerServer implements ServerService {
             window.location.assign(Uri.parse(window.location.toString()).path);
           }
           else {
-            _processError(error, url, completer);
+            _processError(serverError, url, completer);
           }
         });
+  }
+
+  void _processSuccess(String url, HttpResponse httpResponse, Completer completer) {
+    _setFinishCompleterForUrl(url);
+
+    // The response can be either a Map or a List. We should avoid this step by rewriting the HttpInterceptor and creating the
+    // JsonObject directly from the JsonString.
+    if (httpResponse.data is List) {
+      completer.complete(new Map<String, List>()..putIfAbsent("content", () => httpResponse.data));
+    }
+    else {
+      completer.complete(httpResponse.data);
+    }
+  }
+
+  void _processError(ServerError serverError, String url, Completer completer) {
+    _setFinishCompleterForUrl(url);
+    completer.completeError(serverError);
   }
 
   // Cuando se produce una actualizacion del servidor, forzamos una recarga de la pagina en el cliente para asegurarnos
@@ -289,26 +313,6 @@ class DailySoccerServer implements ServerService {
     var parts = [];
     postData.forEach((key, value) { parts.add('${Uri.encodeQueryComponent(key)}=''${Uri.encodeQueryComponent(value)}');});
     return parts.join('&');
-  }
-
-  void _processSuccess(String url, HttpResponse httpResponse, Completer completer) {
-    _setFinishCompleterForUrl(url);
-
-    // The response can be either a Map or a List. We should avoid this step by rewriting the HttpInterceptor and creating the
-    // JsonObject directly from the JsonString.
-    if (httpResponse.data is List) {
-      completer.complete(new Map<String, List>()..putIfAbsent("content", () => httpResponse.data));
-    }
-    else {
-      completer.complete(httpResponse.data);
-    }
-  }
-
-  void _processError(var error, String url, Completer completer) {
-    _setFinishCompleterForUrl(url);
-
-    ServerError connectionError = new ServerError.fromHttpResponse(error);
-    completer.completeError(connectionError);
   }
 
   void _notify(String key, Map msg) {

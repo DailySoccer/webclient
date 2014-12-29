@@ -10,3 +10,5 @@ dev_dependencies:
 
 transformers:
 - angular
+- webclient/transformer_test:
+    $include: "web/index.html"

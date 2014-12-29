@@ -12,3 +12,5 @@ transformers:
 - angular
 - webclient/transformer_test:
     $include: "web/index.html"
+- webclient/transformer_less:
+    $include: "web/less/styles.less"

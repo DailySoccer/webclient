@@ -39,17 +39,13 @@ class TransformerLess extends Transformer {
   }
 
   Future apply(Transform transform) {
-
-    compile(transform.primaryInput.id.path).then((output) {
+    return compile(transform.primaryInput.id.path).then((output) {
       transform.addOutput(new Asset.fromString(
-              new AssetId(transform.primaryInput.id.package,
-                  transform.primaryInput.id.changeExtension(".css").path
-                  .replaceFirst("/less/", "/css/")
-                  .replaceFirst("web/", "build/web/")),
-
-                  output)
-
-              );
+          new AssetId(transform.primaryInput.id.package,
+              transform.primaryInput.id.changeExtension(".css").path
+              .replaceFirst("/less/", "/css/")
+              ),
+              output));
     });
   }
 }

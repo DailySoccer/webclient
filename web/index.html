@@ -161,18 +161,8 @@
       }
     </script>
 
-    <script src="main.dart.js" id="mainDart"></script>
-    <script>
-      (function() {
-        var mainDart = document.getElementById("mainDart");
-        if (navigator.userAgent.indexOf('(Dart)') !== -1) {
-          var script = document.createElement('script');
-          script.src = "main.dart";
-          script.type = "application/dart";
-          document.body.replaceChild(script, mainDart);
-        }
-      })();
-    </script>
+    <!-- Script principal. Sera substituido por main.dart.js en el transformer -->
+    <script src="main.dart" id="mainDart" type="application/dart"></script>
 
     <!-- El resto de js -->
     <script src="js/bootstrap.min.js"></script>

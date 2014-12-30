@@ -3,9 +3,9 @@ library webclient;
 import 'package:barback/barback.dart';
 import 'dart:async';
 
-class TransformerTest extends Transformer {
+class TransformerMain extends Transformer {
 
-  TransformerTest.asPlugin();
+  TransformerMain.asPlugin();
 
   Future apply(Transform transform) {
     return transform.primaryInput.readAsString().then((content) {

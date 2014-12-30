@@ -18,7 +18,7 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
   String content;
   ScreenDetectorService scrDet;
 
-  int get screenHeight => window.innerHeight -70 - 122;
+  int screenHeight;
 
 
   LandingPage1SlideComp(this._router, this._profileService, this.scrDet, this._loadingService) {
@@ -32,6 +32,8 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
   }
 
   void onShadowRoot(emulatedRoot) {
+
+    screenHeight = window.innerHeight - 70 - 122;
 
     // Nos deberia venir con el loading activo, ahora lo quitamos
     _loadingService.isLoading = false;
@@ -90,8 +92,6 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
   }
 
   var _streamListener;
-
-  int _windowHeigtht;
 
   Router _router;
   ProfileService _profileService;

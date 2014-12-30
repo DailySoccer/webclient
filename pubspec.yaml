@@ -3,8 +3,14 @@ description: Epic Eleven
 dependencies:
   angular: '>=1.0.0 <1.1.0'
   browser: '>=0.10.0 <0.11.0'
+  barback: ">=0.13.0 <0.16.0"
+
 dev_dependencies:
   unittest: any
 
 transformers:
 - angular
+- webclient/transformer_main:
+    $include: "web/index.html"
+- webclient/transformer_less:
+    $include: ["web/css/styles.css", "web/less/styles.less"]

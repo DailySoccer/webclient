@@ -17,15 +17,7 @@ class HostServer {
         _url = "http://backend.epiceleven.com";
       }
       else if (_isLocalHost) {
-        Uri actualUrl = Uri.parse(window.location.origin);
-        if (actualUrl.port == 3030) {
-          _url = "http://localhost:9000";
-        }
-        else {
-          // Si no estamos viendo dart, vamos a usar el puerto que sea que
-          // estemos usando.
-          _url = window.location.origin;
-        }
+        _url = "http://localhost:9000";
       }
       else {
         _url = window.location.origin;

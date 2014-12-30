@@ -21,7 +21,7 @@ class MyContestsComp implements DetachAware {
 
   Map liveSortType    = {'fieldName':'contest-start-time', 'order': 1};
   Map waitingSortType = {'fieldName':'contest-start-time', 'order': 1};
-  Map historySortType = {'fieldName':'contest-start-time', 'order': 1};
+  Map historySortType = {'fieldName':'contest-start-time', 'order': -1};
 
   String get liveContestsMessage {
     if (loadingService.isLoading)

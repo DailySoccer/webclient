@@ -19,7 +19,7 @@
                         "f627312247ce937f807ce4b9d786314b";
 
     mixpanel.init(mixpanelCode, {api_host: "https://api.mixpanel.com"});
-    mixpanel.track("Unsupported Browser");
+    mixpanel.track("Unsupported Browser", {"UnsupportedBrowser": navigator.userAgent});
     console.log("Unsupported Browser");
     </script>
 

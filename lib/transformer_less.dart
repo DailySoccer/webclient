@@ -11,7 +11,7 @@ class TransformerLess extends Transformer {
 
   TransformerLess.asPlugin();
 
-  String get allowedExtensions => ".less";
+  String get allowedExtensions => ".less .css";
 
   final String executable = "./node_modules/less/bin/lessc";
 
@@ -39,13 +39,18 @@ class TransformerLess extends Transformer {
   }
 
   Future apply(Transform transform) {
-    return compile(transform.primaryInput.id.path).then((output) {
-      transform.addOutput(new Asset.fromString(
-          new AssetId(transform.primaryInput.id.package,
-              transform.primaryInput.id.changeExtension(".css").path
-              .replaceFirst("/less/", "/css/")
-              ),
-              output));
-    });
+    if (transform.primaryInput.id.extension == ".css") {
+      transform.consumePrimary();
+    }
+    else {
+      return compile(transform.primaryInput.id.path).then((output) {
+        transform.addOutput(new Asset.fromString(
+            new AssetId(transform.primaryInput.id.package,
+                transform.primaryInput.id.changeExtension(".css").path
+                .replaceFirst("/less/", "/css/")
+                ),
+                output));
+      });
+    }
   }
 }

@@ -39,8 +39,10 @@ class TransformerLess extends Transformer {
   }
 
   Future apply(Transform transform) {
-    if (transform.primaryInput.id.extension == ".css") {
+
+    if (transform.primaryInput.id.toString().contains(".css")) {
       transform.consumePrimary();
+      return null;
     }
     else {
       return compile(transform.primaryInput.id.path).then((output) {

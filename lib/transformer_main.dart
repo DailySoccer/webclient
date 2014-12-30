@@ -11,10 +11,8 @@ class TransformerTest extends Transformer {
     return transform.primaryInput.readAsString().then((content) {
       transform.addOutput(new Asset.fromString(transform.primaryInput.id,
                                                content.toString()
-                                                 .replaceFirst(
-                  "<script src=\"main.dart\" id=\"mainDart\"></script>\n",
-                  "<script src=\"main.dart.js\" id=\"mainDart\"></script>\n")));
+                                               .replaceFirst('<script src="main.dart" id="mainDart" type="application/dart"></script>',
+                                                             '<script src="main.dart.js" id="mainDart"></script>')));
     });
-    }
-
+  }
 }

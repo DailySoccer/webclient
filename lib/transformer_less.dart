@@ -41,5 +41,4 @@ class TransformerLess extends Transformer {
                     .replaceFirst("/less/", "/css/")
                     .replaceFirst("web/", "build/web/"));
   }
-
 }

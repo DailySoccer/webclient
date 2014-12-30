@@ -40,7 +40,7 @@ class TransformerLess extends Transformer {
 
   Future apply(Transform transform) {
 
-    if (transform.primaryInput.id.toString().contains(".css")) {
+    if (transform.primaryInput.id.toString().contains("styles.css")) {
       transform.consumePrimary();
       return null;
     }

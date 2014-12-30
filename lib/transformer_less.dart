@@ -15,8 +15,8 @@ class TransformerLess extends Transformer {
 
   final String executable = "./node_modules/less/bin/lessc";
 
-  Future compile(String inputPath, String outputPath) {
-    var flags = [inputPath, outputPath, "--compress", "--clean-css"];
+  Future<String> compile(String inputPath) {
+    var flags = [inputPath, "--compress", "--clean-css"];
 
     return Process.start(executable, flags).then((Process process) {
       StringBuffer errors = new StringBuffer();
@@ -29,6 +29,9 @@ class TransformerLess extends Transformer {
         if (exitCode != 0) {
           throw new Exception(errors.length != 0 ? errors.toString() : output.toString());
         }
+        else {
+          return output.toString();
+        }
       });
     }).catchError((ProcessException e) {
       throw new Exception(e.toString());
@@ -36,9 +39,17 @@ class TransformerLess extends Transformer {
   }
 
   Future apply(Transform transform) {
-    return compile(transform.primaryInput.id.path,
-                   transform.primaryInput.id.changeExtension(".css").path
-                    .replaceFirst("/less/", "/css/")
-                    .replaceFirst("web/", "build/web/"));
+
+    compile(transform.primaryInput.id.path).then((output) {
+      transform.addOutput(new Asset.fromString(
+              new AssetId(transform.primaryInput.id.package,
+                  transform.primaryInput.id.changeExtension(".css").path
+                  .replaceFirst("/less/", "/css/")
+                  .replaceFirst("web/", "build/web/")),
+
+                  output)
+
+              );
+    });
   }
 }

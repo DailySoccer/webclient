@@ -9,9 +9,11 @@ class TransformerTest extends Transformer {
 
   Future apply(Transform transform) {
     return transform.primaryInput.readAsString().then((content) {
-      String newContent = content.toString().replaceFirst("<script src=\"main.dart\" id=\"mainDart\"></script>\n",
-        "<script src=\"main.dart.js\" id=\"mainDart\"></script>\n");
-      transform.addOutput(new Asset.fromString(transform.primaryInput.id, newContent));
+      transform.addOutput(new Asset.fromString(transform.primaryInput.id,
+                                               content.toString()
+                                                 .replaceFirst(
+                  "<script src=\"main.dart\" id=\"mainDart\"></script>\n",
+                  "<script src=\"main.dart.js\" id=\"mainDart\"></script>\n")));
     });
     }
 

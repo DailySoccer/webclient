@@ -13,10 +13,10 @@ class TransformerLess extends Transformer {
 
   String get allowedExtensions => ".less";
 
-  static String executable = "./node_modules/less/bin/lessc";
+  final String executable = "./node_modules/less/bin/lessc";
 
-  static Future<String> transformee(String path, String outputPath) {
-    var flags = [path, outputPath, "--compress", "--clean-css"];
+  Future compile(String inputPath, String outputPath) {
+    var flags = [inputPath, outputPath, "--compress", "--clean-css"];
 
     return Process.start(executable, flags).then((Process process) {
       StringBuffer errors = new StringBuffer();
@@ -26,7 +26,7 @@ class TransformerLess extends Transformer {
       process.stderr.transform(new Utf8DecoderTransformer()).listen((str) => errors.write(str));
 
       return process.exitCode.then((exitCode) {
-        if (exitCode == 0) {
+        if (exitCode != 0) {
           throw new Exception(errors.length != 0 ? errors.toString() : output.toString());
         }
       });
@@ -35,25 +35,11 @@ class TransformerLess extends Transformer {
     }, test: (e) => e is ProcessException);
   }
 
-
-
-
   Future apply(Transform transform) {
-
-    AssetId primaryAssetId = transform.primaryInput.id;
-
-    var id = transform.primaryInput.id.changeExtension(".css");
-    //id.path = primaryAssetId.path.replaceFirst("less", "css");
-
-    String newPath = id.path.replaceFirst("/less/", "/css/");
-
-    print(newPath);
-
-    return TransformerLess.transformee(primaryAssetId.path, newPath);
-    /*.then( (result) {
-            transform.addOutput(new Asset.fromString(id, result));
-           });
-    */
+    return compile(transform.primaryInput.id.path,
+                   transform.primaryInput.id.changeExtension(".css").path
+                    .replaceFirst("/less/", "/css/")
+                    .replaceFirst("web/", "build/web/"));
   }
 
 }

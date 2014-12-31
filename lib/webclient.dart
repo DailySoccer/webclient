@@ -278,12 +278,7 @@ class WebClientApp extends Module {
     LoadingService.disable();
     DailySoccerServer.startContext(event.path);
 
-    if (ProfileService.instance.isLoggedIn) {
-      querySelector("#mainApp").classes.add("logged-in");
-    }
-    else {
-      querySelector("#mainApp").classes.remove("logged-in");
-    }
+    _addMainAppStyles(event.route.name);
 
     event.allowEnter(_waitingjQueryReady(() {
       bool bEnter = true;
@@ -311,6 +306,17 @@ class WebClientApp extends Module {
       // Denegar la entrada evita un flashazo. Si no la deniegas, llega a ir a la landing antes de ir al lobby
       return bEnter;
     }));
+  }
+
+  void _addMainAppStyles(String routeName) {
+    querySelector("#mainApp").classes.clear();
+
+    // Añadir este estilo nos permite hacer el "bleach" solo cuando estamos logeados
+    if (ProfileService.instance.isLoggedIn) {
+      querySelector("#mainApp").classes.add("logged-in");
+    }
+
+    querySelector("#mainApp").classes.add(routeName.replaceAll("_", "-"));
   }
 
   final int _ALWAYS = 0;

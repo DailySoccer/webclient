@@ -20,6 +20,7 @@ class GameMetrics {
   static void aliasMixpanel(String email) {
     JsUtils.runJavascript(null, "alias", email, false, "mixpanel");
   }
+
   static void identifyMixpanel(String email) {
     JsUtils.runJavascript(null, "identify", email, false, "mixpanel");
   }
@@ -28,16 +29,9 @@ class GameMetrics {
     JsUtils.runJavascript(null, "track", eventName, false, "mixpanel");
   }
 
-  static void initMixpanel() {
-    String mixpanelCode = HostServer.isEpicEleven? "a1889b53bda6b6348f60a570f658c157":
-                                                   "f627312247ce937f807ce4b9d786314b";
-    JsUtils.runJavascript(null, "init", mixpanelCode, false, "mixpanel");
-  }
-
   static void trackConversion(bool remarketing_only) {
     if (HostServer.isEpicEleven) {
       JsUtils.runJavascript(null, "conversion", [remarketing_only]);
     }
   }
-
 }

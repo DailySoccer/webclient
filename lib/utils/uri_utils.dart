@@ -1,4 +1,5 @@
 library uri_utils;
+
 import 'dart:html';
 
 class UriUtils {

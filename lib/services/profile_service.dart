@@ -28,15 +28,16 @@ class ProfileService {
     return _server.verifyPasswordResetToken(stormPathTokenId);
   }
 
-  Future<Map>resetPassword(String password, String stormPathTokenId) {
+  Future<Map> resetPassword(String password, String stormPathTokenId) {
     return _server.resetPassword(password, stormPathTokenId).then(_onLoginResponse);
   }
 
   Future<Map> signup(String firstName, String lastName, String email, String nickName, String password) {
-
     if (isLoggedIn)
       throw new Exception("WTF 4234 - We shouldn't be logged in when signing up");
+
     GameMetrics.aliasMixpanel(email);
+
     return _server.signup(firstName, lastName, email, nickName, password);
    }
 
@@ -114,8 +115,6 @@ class ProfileService {
           Logger.root.warning("ProfileService: Se borro la DB y pudimos reusar el sessionToken.");
           _setProfile(storedSessionToken, jsonMap, true);
         }
-        //identificamos al usuario en Mixpanel:
-        GameMetrics.identifyMixpanel(user.email);
       })
       .catchError((error) {
         // No se ha podido refrescar: Tenemos que salir y pedir que vuelva a hacer login

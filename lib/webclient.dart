@@ -17,7 +17,6 @@ import 'package:webclient/services/soccer_player_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/scoring_rules_service.dart';
 
-//import 'package:webclient/components/landing_page_comp.dart';
 import 'package:webclient/components/landing_page_1_slide_comp.dart';
 
 import 'package:webclient/utils/form-autofill-fix.dart';
@@ -104,7 +103,6 @@ class WebClientApp extends Module {
     bind(AutoFocusDecorator);
     bind(LimitToDot);
 
-    //bind(LandingPageComp);
     bind(LandingPage1SlideComp);
 
     bind(MainMenuSlideComp);
@@ -152,75 +150,75 @@ class WebClientApp extends Module {
 
     bind(RouteInitializerFn, toValue: webClientRouteInitializer);
     bind(NgRoutingUsePushState, toValue: new NgRoutingUsePushState.value(false));
-
   }
 
   void webClientRouteInitializer(Router router, RouteViewFactory views) {
+
     views.configure({
       'landing_page': ngRoute(
           defaultRoute: true,
           path: '/landing_page',
-          preEnter: (RoutePreEnterEvent e) => _onLandingPage(e, router),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_OUT),
           viewHtml: '<landing-page-1-slide></landing-page-1-slide>'
       )
       ,'beta_info': ngRoute(
           path: '/beta_info',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
           viewHtml: '<beta-info></beta-info>'
       )
       ,'login': ngRoute(
           path: '/login',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_OUT),
           viewHtml: '<login></login>'
       )
       ,'join': ngRoute(
           path: '/join',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_OUT),
           viewHtml: '<join></join>'
       )
       ,'change_password': ngRoute(
           path: '/change_password',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
           viewHtml: '<change-password></change-password>'
       )
       ,'help_info': ngRoute(
           path: '/help-info',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
           viewHtml: '<help-info></help-info>'
       )
       ,'legal_info': ngRoute(
           path: '/legal_info',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
           viewHtml: '<legal-info></legal-info>'
       )
       ,'terminus_info': ngRoute(
           path: '/terminus_info',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
           viewHtml: '<terminus-info></terminus-info>'
       )
       ,'policy_info': ngRoute(
           path: '/policy_info',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
           viewHtml: '<policy-info></policy-info>'
       )
       ,'remember_password': ngRoute(
           path: '/remember_password',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_OUT),
           viewHtml: '<remember-password></remember-password>'
       )
       ,'user_profile': ngRoute(
           path: '/user_profile',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
           viewHtml: '<user-profile></user-profile>'
       )
       ,'edit_profile': ngRoute(
           path: '/edit_profile',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
           viewHtml: '<edit-personal-data></edit-personal-data>'
       )
       ,'lobby': ngRoute(
           path: '/lobby',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
           viewHtml: '<lobby></lobby>',
           mount: {
             'contest_info': ngRoute(
@@ -230,22 +228,22 @@ class WebClientApp extends Module {
       )
       ,'my_contests': ngRoute(
           path: '/my_contests',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
           viewHtml: '<my-contests></my-contests>'
       )
       ,'live_contest': ngRoute(
           path: '/live_contest/:parent/:contestId',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
           viewHtml: '<view-contest></view-contest>'
       )
       ,'history_contest': ngRoute(
           path: '/history_contest/:parent/:contestId',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
           viewHtml: '<view-contest></view-contest>'
       )
       ,'enter_contest': ngRoute(
           path: '/enter_contest/:parent/:contestId/:contestEntryId',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
           viewHtml: '<enter-contest></enter-contest>',
           mount: {
             'soccer_player_info': ngRoute(
@@ -255,20 +253,10 @@ class WebClientApp extends Module {
       )
       ,'view_contest_entry': ngRoute(
           path: '/view_contest_entry/:parent/:viewContestEntryMode/:contestId',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
           viewHtml: '<view-contest-entry></view-contest-entry>'
       )
     });
-  }
-
-  // Ponemos el wrapper de todo nuestro contenido selectivamente en blanco
-  void _bleach(Route route) {
-    if (_logOutPageViews.contains(route.name)) {
-      querySelector("#mainWrapper").classes.remove("bleach");
-    }
-    else {
-      querySelector("#mainWrapper").classes.add("bleach");
-    }
   }
 
   Future _waitingjQueryReady(Function cb) {
@@ -285,52 +273,55 @@ class WebClientApp extends Module {
     return completer.future;
   }
 
-  // En la landing queremos reroutar al lobby en caso de estar logeados, pero queremos hacerlo
-  // antes de que se llegue a ver o parsear por una cuestion de rendimiento.
-  void _onLandingPage(RoutePreEnterEvent event, Router router) {
-    event.allowEnter(_waitingjQueryReady(() {
-      if (ProfileService.instance.isLoggedIn) {
-
-        // Antes de redirigir al lobby, miramos que vengamos desde 0. Esto evita un flashazo en el que si estas
-        // por ejemplo en my_contest e intentas ir a la landing, se ve brevemente el lobby
-        if (router.activePath.isEmpty) {
-          router.go("lobby", {}, replace:true);
-        }
-
-        // Denegar la entrada evita un flashazo. Si no la deniegas, llega a ir a la landing antes de ir al lobby
-        return false;
-      }
-      else {
-        _bleach(event.route);
-        return true;
-      }
-    }));
-  }
-
-  void _preEnterPage(RoutePreEnterEvent event, Router router, {bool verifyAllowEnter : false}) {
-    //Si estamos logeados evitamos que el usuario pueda entrar en las páginas que sólo se ven al estar sin logear. P.E.: login, join,
-    if (_logOutPageViews.contains(event.route.name) && ProfileService.instance.isLoggedIn) {
-      event.allowEnter(new Future.value(false));
-    }
+  void _preEnterPage(RoutePreEnterEvent event, Router router, {int visibility}) {
 
     LoadingService.disable();
     DailySoccerServer.startContext(event.path);
 
+    _addMainAppStyles(event.route.name);
+
     event.allowEnter(_waitingjQueryReady(() {
-      bool enter = !verifyAllowEnter || ProfileService.instance.isLoggedIn;
-      if (!enter) {
-        // Si no estamos logeados, redirigimos a la landing
-        router.go("landing_page", {}, replace: true);
+      bool bEnter = true;
+
+      if ((visibility == _ONLY_WHEN_LOGGED_IN && !ProfileService.instance.isLoggedIn) ||
+          (visibility == _ONLY_WHEN_LOGGED_OUT && ProfileService.instance.isLoggedIn)) {
+        bEnter = false;
       }
-      else {
-        _bleach(event.route);
+
+      if (!bEnter) {
+        if (ProfileService.instance.isLoggedIn) {
+          // Antes de redirigir al lobby, miramos que vengamos desde 0. Esto evita un flashazo en el que si estas
+          // por ejemplo en my_contest e intentas ir a la landing, se ve brevemente el lobby
+          if (router.activePath.isEmpty) {
+            router.go("lobby", {}, replace:true);
+          }
+        }
+        else {
+          router.go("landing_page", {}, replace: true);
+        }
       }
+
       window.scroll(0, 0);
-      return enter;
+
+      // Denegar la entrada evita un flashazo. Si no la deniegas, llega a ir a la landing antes de ir al lobby
+      return bEnter;
     }));
   }
 
+  void _addMainAppStyles(String routeName) {
+    querySelector("#mainApp").classes.clear();
+
+    // Añadir este estilo nos permite hacer el "bleach" solo cuando estamos logeados
+    if (ProfileService.instance.isLoggedIn) {
+      querySelector("#mainApp").classes.add("logged-in");
+    }
+
+    querySelector("#mainApp").classes.add(routeName.replaceAll("_", "-"));
+  }
+
+  final int _ALWAYS = 0;
+  final int _ONLY_WHEN_LOGGED_IN = 1;
+  final int _ONLY_WHEN_LOGGED_OUT = 2;
+
   bool _jQueryReady = false;
-  List<String> _logOutPageViews = ["landing_page", "join", "login", "remember_password", "change_password"];
-  //List<String> _autoScrollPageViews = [];
 }

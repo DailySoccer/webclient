@@ -40,12 +40,13 @@ class TransformerLess extends Transformer {
 
   Future apply(Transform transform) {
 
-    if (transform.primaryInput.id.toString().contains("styles.css")) {
+    if (!transform.primaryInput.id.toString().contains("styles.less")) {
       transform.consumePrimary();
       return null;
     }
     else {
       return compile(transform.primaryInput.id.path).then((output) {
+        transform.consumePrimary();
         transform.addOutput(new Asset.fromString(
             new AssetId(transform.primaryInput.id.package,
                 transform.primaryInput.id.changeExtension(".css").path

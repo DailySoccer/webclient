@@ -224,7 +224,7 @@ class WebClientApp extends Module {
       )
       ,'payment': ngRoute(
           path: '/payment',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, verifyAllowEnter: true),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
           viewHtml: '<payment></payment>',
           mount: {
             'response': ngRoute(

@@ -8,6 +8,7 @@ class User {
   String lastName;
   String nickName;
   String email;
+  double balance;
 
   // Numero de veces que el usuario ha ganado un contest
   int wins;
@@ -42,6 +43,7 @@ class User {
 
     email = (jsonMap.containsKey("email")) ? jsonMap["email"] : "<email: null>";
     wins = (jsonMap.containsKey("wins")) ? jsonMap["wins"] : 0;
+    balance = (jsonMap.containsKey("cachedBalance")) ? jsonMap["cachedBalance"] : 0.0;
     return this;
   }
 }

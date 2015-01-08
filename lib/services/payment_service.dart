@@ -8,12 +8,18 @@ import 'package:webclient/utils/host_server.dart';
 
 @Injectable()
 class PaymentService {
-  final String PAYPAL_APPROVAL_URL = "${HostServer.url}/paypal/approval_payment";
+  final String PAYPAL_APPROVAL_PAYMENT_URL = "${HostServer.url}/paypal/approval_payment";
+  final String PAYPAL_APPROVAL_BUY_URL = "${HostServer.url}/paypal/approval_buy";
 
   PaymentService(this._profileService, this._server);
 
-  void expressCheckoutWithPaypal(String productId) {
-    window.location.assign(PAYPAL_APPROVAL_URL + "/${_profileService.user.userId}" + "/$productId");
+  void expressCheckoutWithPaypal({String productId, int amount}) {
+    if (amount != null) {
+      window.location.assign(PAYPAL_APPROVAL_PAYMENT_URL + "/${_profileService.user.userId}" + "/$amount");
+    }
+    else {
+      window.location.assign(PAYPAL_APPROVAL_BUY_URL + "/${_profileService.user.userId}" + "/$productId");
+    }
   }
 
   ServerService _server;

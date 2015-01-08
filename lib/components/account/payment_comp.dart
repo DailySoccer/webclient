@@ -12,9 +12,14 @@ class PaymentComp {
 
   PaymentComp(this._router, this._paymentService);
 
+  void paymentWithPaypal(int amount) {
+    print("paymentWithPaypal");
+    _paymentService.expressCheckoutWithPaypal(amount: amount);
+  }
+
   void checkoutPaypal(String productId) {
-    print("checkOutPaypal");
-    _paymentService.expressCheckoutWithPaypal(productId);
+    print("checkoutPaypal");
+    _paymentService.expressCheckoutWithPaypal(productId: productId);
   }
 
   PaymentService _paymentService;

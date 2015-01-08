@@ -7,6 +7,7 @@ import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/models/server_error.dart';
 import 'package:webclient/utils/uri_utils.dart';
+import 'package:webclient/services/payment_service.dart';
 
 
 @Component(
@@ -16,7 +17,9 @@ import 'package:webclient/utils/uri_utils.dart';
 )
 class AddFundsComp implements ShadowRootAware {
   int selectedValue = 25;
-  
+
+  AddFundsComp(this._paymentService);
+
   @override void onShadowRoot(emulatedRoot) {
     querySelector("#firstOffer").onChange.listen(updateSelectedPrize);
     querySelector("#secondOffer").onChange.listen(updateSelectedPrize);
@@ -25,16 +28,16 @@ class AddFundsComp implements ShadowRootAware {
     querySelector("#customEurosAmount").onChange.listen(onCustomEurosAmountChange);
     querySelector("#customEurosAmount").onKeyUp.listen(updateSelectedPrize);
     querySelector("#customEurosAmount").onFocus.listen(checkCustom);
-    
+
     querySelector("#addFundsButton").onClick.listen(addFunds);
   }
-  
+
   /* Chequeos de los input */
-  
+
   void checkCustom(Event e){
     querySelector("#customEuros").click();
   }
-  
+
   void onCustomEurosAmountChange(Event e) {
     updateSelectedPrize(e);
     if (selectedValue < 10) {
@@ -43,22 +46,25 @@ class AddFundsComp implements ShadowRootAware {
     }
     (querySelector("#customEurosAmount") as InputElement).value = "$selectedValue";
   }
-  
+
   void updateSelectedPrize(Event e) {
     Element customEurosCheckBox = querySelector("#customEuros");
     InputElement input = (e.target != customEurosCheckBox? e.target : querySelector("#customEurosAmount")) as InputElement;
-    
+
     try {
       selectedValue = input.value == ""? 0 : int.parse(input.value).abs();
-    } on FormatException { 
+    } on FormatException {
       selectedValue = 0;
     }
     querySelector("#selectedAmountInfo").text = "$selectedValue €";
   }
-  
+
   /* Enviar la peticion */
-  
+
   void addFunds (Event e) {
     print("i want to add $selectedValue €");
+    _paymentService.expressCheckoutWithPaypal(amount: selectedValue);
   }
+
+  PaymentService _paymentService;
 }

@@ -58,6 +58,7 @@ class AddFundsComp implements ShadowRootAware {
 
   void addFunds (Event e) {
     print("i want to add $selectedValue €");
+    (querySelector("#addFundsButton") as ButtonElement).disabled = true;
     _paymentService.expressCheckoutWithPaypal(amount: selectedValue);
   }
 

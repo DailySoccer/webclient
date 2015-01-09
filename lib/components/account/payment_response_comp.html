@@ -1,3 +1,21 @@
 <modal>
-  <h1>Payment Response: {{result}}</h1>
+  <div id="paymentResponse" class="main-box">
+    <div class="panel">
+    
+      <div class="panel-heading" login="">
+        <div class="panel-title paypal-success" login="">Pago {{titleText}}</div>
+        <!--div class="panel-title paypal-cancel" login="">Pago cancelado</div-->
+        <button type="button" class="close ng-binding" ng-click="navigateTo('landing_page',{}, $event)" login="">
+          <span class="glyphicon glyphicon-remove" login=""></span>
+        </button>
+      </div>
+      <div class="panel-body">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+        Integer ornare blandit libero, a fringilla purus viverra et. 
+        Ut ac lorem enim. Ut finibus felis nulla, id maximus magna vulputate vitae. 
+        Sed vel venenatis metus. Curabitur fringilla lacus ultricies pulvinar convallis.
+      </div>
+    </div>
+  </div>
+  <!--h1>Payment Response: {{result}}</h1-->
 </modal>

@@ -1,0 +1,12 @@
+<div id="transactionHistory">
+  <div class="block-dark-header">
+    <div class="default-header-text">HISTORIAL DE TRANSACCIONES</div>
+  </div>
+  <div ng-repeat="transaction in transactions">
+    <div class="contest-small-light-text">
+      <span class="type">{{transaction.type}}</span>
+      <span class="value">{{transaction.value}}</span>
+      <span class="createdAt">{{transaction.createdAt}}</span>
+    </div>
+  </div>
+</div>

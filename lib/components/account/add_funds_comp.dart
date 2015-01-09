@@ -2,11 +2,6 @@ library add_funds_comp;
 
 import 'package:angular/angular.dart';
 import 'dart:html';
-import 'package:webclient/services/profile_service.dart';
-import 'package:webclient/utils/game_metrics.dart';
-import 'package:webclient/services/loading_service.dart';
-import 'package:webclient/models/server_error.dart';
-import 'package:webclient/utils/uri_utils.dart';
 import 'package:webclient/services/payment_service.dart';
 
 

@@ -262,7 +262,7 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
             <ul class="dropdown-menu">
               <li><a id="menuUserMyAccount"        destination="user_profile">Mi cuenta</a></li>
               <li><a id="menuUserAddFunds"         destination="add_funds">Añadir fondos</a></li>
-              <li><a id="menuUserHistory"          destination="beta_info">Historial de transacciones</a></li>
+              <li><a id="menuUserHistory"          destination="transaction_history">Historial de transacciones</a></li>
               <li><a id="menuUserReferencesCenter" destination="beta_info">Centro de referencias</a></li>
               <li><a id="menuUserClassification"   destination="beta_info">Clasificación</a></li>
               <li><a id="menuUserAyuda"            destination="help_info">Ayuda</a></li>

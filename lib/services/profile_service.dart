@@ -5,6 +5,7 @@ import 'dart:html';
 import 'dart:convert';
 import 'package:angular/angular.dart';
 import 'package:webclient/models/user.dart';
+import 'package:webclient/models/transaction_info.dart';
 import 'package:webclient/services/server_service.dart';
 import 'package:logging/logging.dart';
 import 'package:webclient/utils/game_metrics.dart';
@@ -77,6 +78,13 @@ class ProfileService {
     }
 
     return new Future.value(_setProfile(null, null, true));
+  }
+
+  Future<List<TransactionInfo>> getTransactionHistory() {
+    return _server.getTransactionHistory()
+        .then((jsonMap) {
+          return jsonMap["transactions"].map((jsonObject) => new TransactionInfo.fromJsonObject(jsonObject)).toList();
+        });
   }
 
   Map _setProfile(String theSessionToken, Map jsonMap, bool bSave) {

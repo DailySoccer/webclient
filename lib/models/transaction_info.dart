@@ -7,6 +7,8 @@ class TransactionInfo {
   String value;
   DateTime createdAt;
 
+  String get formattedDate => DateTimeService.formatDateTimeLong(createdAt);
+
   TransactionInfo.fromJsonObject(Map jsonMap) {
     type = jsonMap["type"];
     value = jsonMap["value"];

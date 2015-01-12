@@ -36,13 +36,11 @@ class ViewContestEntryComp {
   bool get isModeEdited  => _viewContestEntryMode == "edited";  // Venimos de editarla a traves de enter_contest.
   bool get isModeSwapped => _viewContestEntryMode == "swapped"; // Acabamos de crearla pero el servidor nos cambio a otro concurso pq el nuestro estaba lleno.
 
-  ViewContestEntryComp(this._routeProvider, this.scrDet, this._contestsService, this._profileService, this._flashMessage, this._router, this.loadingService) {
+  ViewContestEntryComp(this._routeProvider, this.scrDet, this._contestsService, this._profileService, this._router, this.loadingService) {
     loadingService.isLoading = true;
 
     _viewContestEntryMode = _routeProvider.route.parameters['viewContestEntryMode'];
     contestId = _routeProvider.route.parameters['contestId'];
-
-    _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
 
     _contestsService.refreshMyContestEntry(contestId)
       .then((_) {
@@ -52,7 +50,9 @@ class ViewContestEntryComp {
 
         updatedDate = DateTimeService.now;
       })
-      .catchError((error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW));
+      .catchError((error) {
+        _router.go("lobby", {});
+      });
   }
 
   void tabChange(String tab) {
@@ -77,7 +77,6 @@ class ViewContestEntryComp {
   Router _router;
   RouteProvider _routeProvider;
 
-  FlashMessagesService _flashMessage;
   ProfileService _profileService;
   ContestsService _contestsService;
 

@@ -65,7 +65,8 @@ class ProfileService {
     if (!isLoggedIn)
       throw new Exception("WTF 4288 - We should be logged in when change User Profile");
 
-    return _server.changeUserProfile(firstName, lastName, email, nickName, password);
+    return _server.changeUserProfile(firstName, lastName, email, nickName, password)
+        .then((jsonMap) => _setProfile(_sessionToken, jsonMap, true));
   }
 
   Future<Map> logout() {

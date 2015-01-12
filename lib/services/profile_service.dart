@@ -83,7 +83,16 @@ class ProfileService {
   Future<List<TransactionInfo>> getTransactionHistory() {
     return _server.getTransactionHistory()
         .then((jsonMap) {
-          return jsonMap["transactions"].map((jsonObject) => new TransactionInfo.fromJsonObject(jsonObject)).toList();
+          double balance = 0.0;
+          return jsonMap["transactions"].map((jsonObject) {
+            TransactionInfo transactionInfo = new TransactionInfo.fromJsonObject(jsonObject);
+
+            // Calcular el balance de la transaccion
+            balance += transactionInfo.value;
+            transactionInfo.balance = balance;
+
+            return transactionInfo;
+          }).toList();
         });
   }
 

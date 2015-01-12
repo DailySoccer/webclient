@@ -89,13 +89,6 @@ class ContestsService {
         });
   }
 
-  Future refreshFullContest(String contestId) {
-    return _server.getFullContest(contestId)
-        .then((jsonMap) {
-          _registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
-        });
-  }
-
   Future refreshViewContest(String contestId) {
     return _server.getViewContest(contestId)
         .then((jsonMap) {

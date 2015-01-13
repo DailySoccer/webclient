@@ -37,6 +37,7 @@ class ProfileService {
       throw new Exception("WTF 4234 - We shouldn't be logged in when signing up");
 
     GameMetrics.aliasMixpanel(email);
+    GameMetrics.peopleSet({"\$email": email, "\$created": new DateTime.now()});
 
     return _server.signup(firstName, lastName, email, nickName, password);
    }
@@ -83,6 +84,7 @@ class ProfileService {
     if (theSessionToken != null && jsonMap != null) {
       user = new User.fromJsonObject(jsonMap);
       GameMetrics.identifyMixpanel(user.email);
+      GameMetrics.peopleSet({"\$email": user.email, "\$last_login": new DateTime.now()});
     }
     else {
       user = null;

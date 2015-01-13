@@ -29,6 +29,15 @@ class GameMetrics {
     JsUtils.runJavascript(null, "track", eventName, "mixpanel");
   }
 
+  static void peopleSet(Map params) {
+    JsUtils.runJavascript(null, "set", params, ["mixpanel","people"]);
+  }
+
+  static void peopleCharge(double charge) {
+      JsUtils.runJavascript(null, "track_charge", charge, ["mixpanel","people"]);
+    }
+
+
   static void trackConversion(bool remarketing_only) {
     if (HostServer.isEpicEleven) {
       JsUtils.runJavascript(null, "conversion", [remarketing_only]);

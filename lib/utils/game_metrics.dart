@@ -18,15 +18,15 @@ class GameMetrics {
   static String LIVE_CONTEST_VISITED = "Visitado Live Contest";
 
   static void aliasMixpanel(String email) {
-    JsUtils.runJavascript(null, "alias", email, false, "mixpanel");
+    JsUtils.runJavascript(null, "alias", email, "mixpanel");
   }
 
   static void identifyMixpanel(String email) {
-    JsUtils.runJavascript(null, "identify", email, false, "mixpanel");
+    JsUtils.runJavascript(null, "identify", email, "mixpanel");
   }
 
   static void logEvent(String eventName) {
-    JsUtils.runJavascript(null, "track", eventName, false, "mixpanel");
+    JsUtils.runJavascript(null, "track", eventName, "mixpanel");
   }
 
   static void trackConversion(bool remarketing_only) {

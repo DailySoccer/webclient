@@ -213,7 +213,7 @@ class ContestFiltersComp implements ShadowRootAware {
 
     entryFeeSliderRange = getFilterEntryFeeRange();
     if (_lastRangeMaxLimit != entryFeeSliderRange[ENTRY_FEE_MAX_RANGE]) {
-      JsUtils.runJavascript('#slider-range','noUiSlider', {'range': {'min': entryFeeSliderRange[ENTRY_FEE_MIN_RANGE], 'max': entryFeeSliderRange[ENTRY_FEE_MAX_RANGE]}}, true);
+      JsUtils.runJavascript('#slider-range','noUiSlider', [{'range': {'min': entryFeeSliderRange[ENTRY_FEE_MIN_RANGE], 'max': entryFeeSliderRange[ENTRY_FEE_MAX_RANGE]}}, true]);
     }
 
     if ( _lastMaxRangeValue == _lastRangeMaxLimit && _lastMaxRangeValue < entryFeeSliderRange[ENTRY_FEE_MAX_RANGE]) {

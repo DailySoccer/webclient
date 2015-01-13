@@ -309,14 +309,14 @@ class WebClientApp extends Module {
   }
 
   void _addBodyStyles(String routeName) {
-    querySelector("body").classes.clear();
+    querySelector("body").classes.removeWhere((String theClass) => theClass.startsWith("global-"));
 
     // Añadir este estilo nos permite hacer el "bleach" solo cuando estamos logeados
     if (ProfileService.instance.isLoggedIn) {
-      querySelector("body").classes.add("logged-in");
+      querySelector("body").classes.add("global-logged-in");
     }
 
-    querySelector("body").classes.add(routeName.replaceAll("_", "-"));
+    querySelector("body").classes.add("global-" + routeName.replaceAll("_", "-"));
   }
 
   final int _ALWAYS = 0;

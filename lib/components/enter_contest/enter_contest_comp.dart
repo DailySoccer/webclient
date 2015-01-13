@@ -81,7 +81,13 @@ class EnterContestComp implements DetachAware {
         }
       })
       .catchError((error) {
-        _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
+        // Si estamos editando un contestEntry y el server nos indica un fallo (generalmente es porque el usuario "no tiene permiso"), nos saldremos de la pantalla
+        if (editingContestEntry) {
+          _router.go("lobby", {});
+        }
+        else {
+          _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
+        }
       });
 
 

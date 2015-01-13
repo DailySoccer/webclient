@@ -278,7 +278,7 @@ class WebClientApp extends Module {
     LoadingService.disable();
     DailySoccerServer.startContext(event.path);
 
-    _addMainAppStyles(event.route.name);
+    _addBodyStyles(event.route.name);
 
     event.allowEnter(_waitingjQueryReady(() {
       bool bEnter = true;
@@ -308,15 +308,15 @@ class WebClientApp extends Module {
     }));
   }
 
-  void _addMainAppStyles(String routeName) {
-    querySelector("#mainApp").classes.clear();
+  void _addBodyStyles(String routeName) {
+    querySelector("body").classes.removeWhere((String theClass) => theClass.startsWith("global-"));
 
     // Añadir este estilo nos permite hacer el "bleach" solo cuando estamos logeados
     if (ProfileService.instance.isLoggedIn) {
-      querySelector("#mainApp").classes.add("logged-in");
+      querySelector("body").classes.add("global-logged-in");
     }
 
-    querySelector("#mainApp").classes.add(routeName.replaceAll("_", "-"));
+    querySelector("body").classes.add("global-" + routeName.replaceAll("_", "-"));
   }
 
   final int _ALWAYS = 0;

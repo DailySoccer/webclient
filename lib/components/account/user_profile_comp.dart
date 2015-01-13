@@ -11,7 +11,7 @@ import 'package:webclient/services/profile_service.dart';
 class UserProfileComp {
 
   bool isEditingProfile = false;
-
+  
   dynamic get userData => _profileManager.user;
 
   UserProfileComp(this._router, this._profileManager);
@@ -30,6 +30,10 @@ class UserProfileComp {
   
   void goAddFounds() {
     _router.go('add_funds', {});
+  }
+  
+  void goWithdrawFounds() {
+    _router.go('withdraw_funds', {});
   }
   
   ProfileService _profileManager;

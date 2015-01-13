@@ -48,6 +48,7 @@ import 'package:webclient/components/account/change_password_comp.dart';
 import 'package:webclient/components/account/payment_comp.dart';
 import 'package:webclient/components/account/payment_response_comp.dart';
 import 'package:webclient/components/account/add_funds_comp.dart';
+import 'package:webclient/components/account/withdraw_funds_comp.dart';
 import 'package:webclient/components/account/transaction_history_comp.dart';
 
 import 'package:webclient/components/my_contests_comp.dart';
@@ -156,6 +157,7 @@ class WebClientApp extends Module {
     bind(PaymentComp);
     bind(PaymentResponseComp);
     bind(AddFundsComp);
+    bind(WithdrawFundsComp);
     bind(TransactionHistoryComp);
 
     bind(RouteInitializerFn, toValue: webClientRouteInitializer);
@@ -245,6 +247,11 @@ class WebClientApp extends Module {
                 path: '/response/:result',
                 viewHtml: '<payment-response></payment-response>')
           }
+      )
+      ,'withdraw_funds': ngRoute(
+          path: '/withdraw_funds',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
+          viewHtml: '<withdraw-funds></withdraw-funds>'
       )
       ,'transaction_history': ngRoute(
           path: '/transaction_history',

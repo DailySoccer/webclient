@@ -1,12 +1,18 @@
 <div id="viewProfileContent">
-  <div class="default-header-text"> MI CUENTA </div>
-  <div class="blue-separator"></div>
+  <!--div class="default-header-text"> MI CUENTA </div-->
+  <!--div class="blue-separator"></div-->
   <div class="profile-content">
 
     <div class="personal-data">
       <div class="data-header">
-        <span class="data-header-title">INFORMACION PERSONAL</span>
+        <span class="data-header-title">MI CUENTA</span>
+        <div class="close-profile">
+          <button type="button" class="close" ng-click="closeProfile()">
+            <span class="glyphicon glyphicon-remove"></span>
+          </button>
+        </div>
         <div class="button-wrapper"><button class="action-button" ng-click="editPersonalData()">EDITAR</button></div>
+        
       </div>
       <div class="bloque-sm">
         <div class="data-row"><span class="data-key">Nombre personal:</span><span class="data-value">{{userData.firstName + ' ' + userData.lastName}}</span></div>
@@ -23,22 +29,21 @@
       </div>
       -->
     </div>
-
-    <!--
+    
     <div class="pocket-data">
       <div class="data-header">
           <span class="data-header-title">MONEDERO</span>
           <div class="button-wrapper">
-            <button class="action-button-transaction">TRANSACCIONES</button>
+            <button class="action-button-transaction" ng-click="goTransactions()">TRANSACCIONES</button>
             <button class="action-button-get-funds">RETIRAR FONDOS</button>
           </div>
        </div>
       <div class="data-container-9">
-        <div class="data-row"><span class="data-key">Balance actual:</span><span class="data-value-balance">&lt;balance&gt;€</span></div>
-        <div class="data-row"><span class="data-key">Bonus pendientes:</span><span class="data-value">&lt;pending-bonuses&gt;€</span></div>
+        <div class="data-row"><span class="data-key">Balance actual:</span><span class="data-value-balance">{{userData.balance}} €</span></div>
+        <!--div class="data-row"><span class="data-key">Bonus pendientes:</span><span class="data-value">&lt;pending-bonuses&gt;€</span></div-->
       </div>
       <div class="data-container-3">
-        <button class="add-funds-button">AÑADIR FONDOS</button>
+        <button class="add-funds-button" ng-click="goAddFounds()">AÑADIR FONDOS</button>
       </div>
     </div>
 
@@ -54,7 +59,8 @@
         <div class="data-column"><a class="data-link" href="">¿Cómo gastar tus EPs?</a></div>
       </div>
     </div>
-    -->
-
   </div>
+  
+  
+  
 </div>

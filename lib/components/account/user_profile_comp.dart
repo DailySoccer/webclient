@@ -20,6 +20,18 @@ class UserProfileComp {
     _router.go('edit_profile', {});
   }
 
+  void closeProfile() {
+    _router.go('lobby', {});
+  }
+
+  void goTransactions() {
+    _router.go('transaction_history', {});
+  }
+  
+  void goAddFounds() {
+    _router.go('add_funds', {});
+  }
+  
   ProfileService _profileManager;
   Router _router;
 }

@@ -15,7 +15,7 @@ class FBLogin {
   void loginFB() {
     //js.JsObject fb = js.context["FB"];
     //fb.callMethod("getLoginStatus", [onGetLoginStatus]);
-    JsUtils.runJavascript(null, "getLoginStatus", [onGetLoginStatus], false, "FB");
+    JsUtils.runJavascript(null, "getLoginStatus", [onGetLoginStatus], "FB");
   }
 
   void onGetLoginStatus(statusResponse) {

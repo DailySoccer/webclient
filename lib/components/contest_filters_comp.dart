@@ -217,7 +217,7 @@ class ContestFiltersComp implements ShadowRootAware {
     }
 
     if ( _lastMaxRangeValue == _lastRangeMaxLimit && _lastMaxRangeValue < entryFeeSliderRange[ENTRY_FEE_MAX_RANGE]) {
-      JsUtils.runJavascript('#slider-range','val', [currentMinValue, entryFeeSliderRange[ENTRY_FEE_MAX_RANGE]]);
+      JsUtils.runJavascript('#slider-range','val', [[currentMinValue, entryFeeSliderRange[ENTRY_FEE_MAX_RANGE]]]);
     }
   }
 
@@ -293,7 +293,7 @@ class ContestFiltersComp implements ShadowRootAware {
     initializeFilterValues();
     setFilterValues();
     //Fuerzo el reset del slider
-    JsUtils.runJavascript('#slider-range','val', [0, entryFeeSliderRange[ENTRY_FEE_MAX_RANGE]]);
+    JsUtils.runJavascript('#slider-range','val', [[0, entryFeeSliderRange[ENTRY_FEE_MAX_RANGE]]]);
     onFilterChange({'filterList':filterList});
   }
 

@@ -133,8 +133,9 @@ class ProfileService {
         // unico que tenemos que hacer es anotar el nuevo User
         if (jsonMap["_id"] != user.userId) {
           Logger.root.warning("ProfileService: Se borro la DB y pudimos reusar el sessionToken.");
-          _setProfile(storedSessionToken, jsonMap, true);
         }
+        // En cualquier caso, refrescamos el profile para obtener el ultimo dinero
+        _setProfile(storedSessionToken, jsonMap, true);
       })
       .catchError((error) {
         // No se ha podido refrescar: Tenemos que salir y pedir que vuelva a hacer login

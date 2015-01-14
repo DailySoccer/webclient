@@ -23,7 +23,7 @@ class PaymentResponseComp implements ShadowRootAware {
     querySelector("#paymentResponse .panel-heading button").onClick.listen(closeModal);
   }
 
-  void closeModal(Event e){
+  void closeModal(Event e) {
     querySelector("#modalRoot").click();
   }
   

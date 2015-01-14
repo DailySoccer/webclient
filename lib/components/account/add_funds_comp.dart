@@ -33,10 +33,10 @@ class AddFundsComp implements ShadowRootAware, DetachAware {
 
   /* Chequeos de los input */
 
-  void checkCustom(Event e){
+  void checkCustom(Event e) {
     querySelector("#customEuros").click();
   }
-
+  
   void onCustomEurosAmountChange(Event e) {
     updateSelectedPrize(e);
     if (selectedValue < 10) {

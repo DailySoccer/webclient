@@ -11,7 +11,7 @@ import 'package:webclient/services/profile_service.dart';
     useShadowDom: false
 )
 class WithdrawFundsComp implements ShadowRootAware {
-  int selectedValue = 25;
+  int selectedValue = 0;
 
   dynamic get userData => _profileManager.user;
   
@@ -22,11 +22,13 @@ class WithdrawFundsComp implements ShadowRootAware {
       (querySelector("#withdrawFundsButton") as ButtonElement).disabled = true;
       (querySelector("#customEurosAmount") as NumberInputElement).valueAsNumber = 0;
       (querySelector("#customEurosAmount") as NumberInputElement).disabled = true;
+      selectedValue = 0;
     } else {
       querySelector("#customEurosAmount").onChange.listen(onCustomEurosAmountChange);
       querySelector("#customEurosAmount").onKeyUp.listen(updateSelectedPrize);
 
       querySelector("#withdrawFundsButton").onClick.listen(withdrawFunds);
+      onCustomEurosAmountChange(null);
     }
   }
 

@@ -245,6 +245,7 @@ class WebClientApp extends Module {
           mount: {
             'response': ngRoute(
                 path: '/response/:result',
+                preEnter: (RoutePreEnterEvent e) => _preEnterPagePayment(e, router),
                 viewHtml: '<payment-response></payment-response>')
           }
       )
@@ -313,6 +314,16 @@ class WebClientApp extends Module {
       }]);
     }
     return completer.future;
+  }
+
+  void _preEnterPagePayment(RoutePreEnterEvent event, Router router) {
+    if (event.parameters["result"] == 'success' && window.localStorage.containsKey("add_funds_success")) {
+      window.location.assign(window.localStorage["add_funds_success"]);
+
+      event.allowEnter(_waitingjQueryReady(() {
+        return false;
+      }));
+    }
   }
 
   void _preEnterPage(RoutePreEnterEvent event, Router router, {int visibility}) {

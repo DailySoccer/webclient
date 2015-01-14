@@ -10,7 +10,7 @@ import 'package:webclient/services/payment_service.dart';
     templateUrl: 'packages/webclient/components/account/add_funds_comp.html',
     useShadowDom: false
 )
-class AddFundsComp implements ShadowRootAware {
+class AddFundsComp implements ShadowRootAware, DetachAware {
   int selectedValue = 25;
 
   AddFundsComp(this._paymentService);
@@ -25,6 +25,10 @@ class AddFundsComp implements ShadowRootAware {
     querySelector("#customEurosAmount").onFocus.listen(checkCustom);
 
     querySelector("#addFundsButton").onClick.listen(addFunds);
+  }
+
+  void detach() {
+    window.localStorage.remove("add_funds_success");
   }
 
   /* Chequeos de los input */

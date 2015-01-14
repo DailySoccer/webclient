@@ -96,6 +96,13 @@ class ProfileService {
         });
   }
 
+  void updateProfileFromJson(Map jsonMap) {
+    var storedSessionToken = window.localStorage['sessionToken'];
+    if (storedSessionToken != null) {
+      _setProfile(storedSessionToken, jsonMap, true);
+    }
+  }
+
   Map _setProfile(String theSessionToken, Map jsonMap, bool bSave) {
 
     if (theSessionToken != null && jsonMap != null) {

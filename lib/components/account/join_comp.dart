@@ -36,6 +36,11 @@ class JoinComp implements ShadowRootAware {
   Element emailError;
   Element passwordError;
 
+  static const String STATE_BEFORE = 'STATE_BEFORE';
+  static const String STATE_AFTER   = 'STATE_AFTER';
+
+  String join_state = STATE_BEFORE;
+
   String get theNickName => nickName;
   void set theNickName (String value) {
     nickName = value;
@@ -165,13 +170,11 @@ class JoinComp implements ShadowRootAware {
 
     loadingService.isLoading = true;
     _profileService.signup(firstName, lastName, email, nickName, password)
-        .then((_) =>  _profileService.login(email, password))
-          .then((_) {
-            GameMetrics.logEvent(GameMetrics.SIGNUP_SUCCESSFUL);
-            GameMetrics.trackConversion(false);
-
-            loadingService.isLoading = false;
-            _router.go('lobby', {});
+        .then((_) {
+          join_state = STATE_AFTER;
+          GameMetrics.logEvent(GameMetrics.SIGNUP_SUCCESSFUL);
+          loadingService.isLoading = false;
+          _rootElement.querySelector("form").style.display = "none";
         })
         .catchError((ServerError error) {
           error.toJson().forEach( (key, value) {

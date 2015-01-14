@@ -1,0 +1,34 @@
+<div id="verifyAccountRoot" ng-if="!isLoading">
+  <div id="verifyAccountBox" class="main-box">
+
+    <div class="panel">
+
+      <!-- Header -->
+      <div class="panel-heading">
+        <div ng-switch="state">
+          <!-- SI ES INVALID URL -->
+          <div ng-switch-when="STATE_INVALID_URL"     class="panel-title">ERROR 503</div>
+          <!-- SI ES TOKEN INVALIDO -->
+          <div ng-switch-when="STATE_INVALID_TOKEN"   class="panel-title">VERIFICACIÓN DE CUENTA</div>
+        </div>
+
+      </div>
+      <div class="panel-body" >
+
+        <form id="delete-me" class="form-horizontal" role="form">
+          <div ng-switch="state">
+                <div ng-switch-when="STATE_INVALID_URL" class="form-description">
+                  La página solicitada no está disponible
+                </div>
+                <div ng-switch-when="STATE_INVALID_TOKEN" class="form-description">
+                  El token proporcionado no es válido o ha sido usado ya.
+                </div>
+          </div>
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>

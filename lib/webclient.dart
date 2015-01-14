@@ -44,6 +44,7 @@ import 'package:webclient/components/account/user_profile_comp.dart';
 import 'package:webclient/components/account/edit_personal_data_comp.dart';
 import 'package:webclient/components/account/remember_password_comp.dart';
 import 'package:webclient/components/account/change_password_comp.dart';
+import 'package:webclient/components/account/verify_account_comp.dart';
 
 import 'package:webclient/components/my_contests_comp.dart';
 import 'package:webclient/components/view_contest/view_contest_entry_comp.dart';
@@ -148,6 +149,9 @@ class WebClientApp extends Module {
     bind(UserProfileComp);
     bind(EditPersonalDataComp);
 
+    bind(VerifyAccountComp);
+
+
     bind(RouteInitializerFn, toValue: webClientRouteInitializer);
     bind(NgRoutingUsePushState, toValue: new NgRoutingUsePushState.value(false));
   }
@@ -175,6 +179,11 @@ class WebClientApp extends Module {
           path: '/join',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_OUT),
           viewHtml: '<join></join>'
+      )
+      ,'verify_account': ngRoute(
+          path: '/verify_account',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
+          viewHtml: '<verify-account></verify-account>'
       )
       ,'change_password': ngRoute(
           path: '/change_password',

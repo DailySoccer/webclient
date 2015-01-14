@@ -3,15 +3,20 @@
 
     <div class="panel">
 
-      <div class="panel-heading">
-        <div class="panel-title">REGÍSTRATE</div>
+      <div class="panel-heading" ng-switch="join_state">
+        <div class="panel-title" ng-switch-when="STATE_BEFORE">REGÍSTRATE</div>
+        <div class="panel-title" ng-switch-when="STATE_AFTER">REGISTRO COMPLETADO</div>
         <button type="button" class="close" ng-click="navigateTo('landing_page', {}, $event)">
           <span class="glyphicon glyphicon-remove"></span>
         </button>
       </div>
 
-      <div class="panel-body" >
-
+      <div class="panel-body" ng-switch="join_state">
+        <div ng-switch-when="STATE_AFTER" class="form-description">
+                  Te hemos enviado un email para verificar tu dirección de correo, sigue las instrucciones para entrar en Epic Eleven.
+                  <br>
+                  Ya puedes cerrar esta pestaña del navegador.
+        </div>
         <form id="signupForm" class="form-horizontal" ng-submit="submitSignup()" role="form" formAutofillFix>
           <div class="form-description">¿Todavía no tienes cuenta en EPIC ELEVEN?<br>Rellena este formulario para completar el registro.</div>
 

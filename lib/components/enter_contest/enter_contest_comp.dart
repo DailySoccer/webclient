@@ -91,18 +91,17 @@ class EnterContestComp implements DetachAware {
       });
 
     //Subscripción para controlar la salida
-   /*
     _routeHandle = _routeProvider.route.newHandle();
     _routeHandle.onPreLeave.listen(allowLeaveThePage);
-   */
+
   }
-  /*
+
   void allowLeaveThePage(RoutePreLeaveEvent event) {
     event.allowLeave( _allowUserLeavePage ? new Future<bool>.value(true)
                                             : modalShow("Atención!",
                                                         "Estas a punto de salir.<br>Si continuas perderás los cambios en el equipo que estás configurando.<br><br>¿Estas seguro de querer abandonar?",
-                                                        onYes:  event.allowLeave,
-                                                        onNo:   event.allowLeave
+                                                        onOk:  "Si",
+                                                        onCancel:   "Nor"
                                               ).then((resp){
                                                 if(resp) {
                                                   todoWhenSi();
@@ -116,7 +115,6 @@ class EnterContestComp implements DetachAware {
       );
 
   }
-  */
   void todoWhenSi(){
     print("has pulsado el boton del SI");
   }

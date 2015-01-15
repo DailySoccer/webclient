@@ -10,7 +10,7 @@ class _NullTreeSanitizer implements NodeTreeSanitizer {
 
 final NodeTreeSanitizer NULL_TREE_SANITIZER = new _NullTreeSanitizer();
 
-Future<bool> modalShow(String title, String content,{Function onYes: null, Function onNo: null, Function onOk: null, Function onCancel: null, closeButton: false}) {
+Future<bool> modalShow(String title, String content,{String onOk: null, String onCancel: null, closeButton: false}) {
   Completer completer = new Completer();
   Element parent = querySelector('ng-view');
 
@@ -23,8 +23,8 @@ Future<bool> modalShow(String title, String content,{Function onYes: null, Funct
   }
 
   // Si no se han especificado callBacks, declaramos como minimo el botón Aceptar.
-  if(onYes == null && onNo == null && onOk == null && onCancel == null) {
-    onOk = closeMe;
+  if(onOk == null && onCancel == null) {
+    onOk = "OK";
   }
 
   void onButtonClick(dynamic sender) {
@@ -43,10 +43,8 @@ Future<bool> modalShow(String title, String content,{Function onYes: null, Funct
     }
   }
 
-  String botonYes     = (onYes != null) ?    '''<button class="enter-button-half"   eventCallback="onYes">    Si</button>'''        : '';
-  String botonNo      = (onNo != null) ?     '''<button class="cancel-button-half"  eventCallback="onNo">     No</button>'''        : '';
-  String botonOk      = (onOk != null) ?     '''<button class="enter-button-half"   eventCallback="onOk">     Aceptar</button>'''   : '';
-  String botonCancel  = (onCancel != null) ? '''<button class="cancel-button-half"  eventCallback="onCancel"> Cancelar</button>'''  : '';
+  String botonOk      = (onOk != null) ?     '''<button class="enter-button-half"   eventCallback="onOk">     ${onOk}</button>'''   : '';
+  String botonCancel  = (onCancel != null) ? '''<button class="cancel-button-half"  eventCallback="onCancel"> ${onCancel}</button>'''  : '';
   String modalBody =  ''' 
                         <div id="modalRoot" class="modal container fade" tabindex="-1" role="dialog" style="display: block;">
                           <div class="modal-dialog modal-lg">
@@ -71,8 +69,6 @@ Future<bool> modalShow(String title, String content,{Function onYes: null, Funct
                                       <div class="input-group user-form-field">
                                         <div class="new-row">
                                           <div class="buttons-wrapper">
-                                            ${(onYes    != null) ? botonYes     : ""}
-                                            ${(onNo     != null) ? botonNo      : ""}
                                             ${(onOk     != null) ? botonOk      : ""}
                                             ${(onCancel != null) ? botonCancel  : ""}
                                           </div>

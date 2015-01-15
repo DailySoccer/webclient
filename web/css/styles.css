@@ -6292,6 +6292,7 @@ contest-header {
   font-weight: 600;
   font-size: 18pt;
   color: #214a5f;
+  text-transform: uppercase;
   padding: 0 15px 0px 15px;
 }
 @media (min-width: 768px) {
@@ -6320,6 +6321,7 @@ contest-header {
   font-weight: 300;
   font-size: 18pt;
   color: #214a5f;
+  text-transform: uppercase;
 }
 @media (min-width: 768px) {
   #contestHeaderWrapper .contest-relevant-data .contest-price,
@@ -6391,6 +6393,7 @@ contest-header {
   font-weight: 300;
   font-size: 18pt;
   color: #214a5f;
+  text-transform: uppercase;
 }
 @media (max-width: 767px) {
   #contestHeaderWrapper .contest-relevant-data .contest-coins-content > span {
@@ -7148,6 +7151,7 @@ button#contestInfoModal .modal-info-head button.close {
   font-weight: 300;
   font-size: 16pt;
   color: #0d75a6;
+  text-transform: uppercase;
 }
 @media (max-width: 767px) {
   .matches-involved .match .teams {
@@ -7191,6 +7195,7 @@ button#contestInfoModal .modal-info-head button.close {
   font-weight: 600;
   font-size: 12pt;
   color: #0d75a6;
+  text-transform: uppercase;
   background-color: #ecf0f1;
   padding: 5px 10px;
   margin: 10px auto;
@@ -7275,6 +7280,7 @@ button#contestInfoModal .modal-info-head button.close {
   font-weight: 300;
   font-size: 14pt;
   color: #777777;
+  text-transform: uppercase;
   text-align: right;
 }
 .contestant-list .prize-currency {
@@ -7362,6 +7368,7 @@ scoring-rules #scoringForForwards .rules-content {
   font-weight: 600;
   font-size: 10pt;
   color: #ffffff;
+  text-transform: uppercase;
   background-color: #434343;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
@@ -7386,6 +7393,7 @@ scoring-rules #scoringForForwards .rules-content {
   font-weight: 300;
   font-size: 9pt;
   color: #777777;
+  text-transform: uppercase;
   position: relative;
   float: left;
   width: 83.33333333%;
@@ -7400,6 +7408,7 @@ scoring-rules #scoringForForwards .rules-content {
   font-weight: 300;
   font-size: 9pt;
   color: #777777;
+  text-transform: uppercase;
   position: relative;
   float: left;
   width: 16.66666667%;
@@ -7477,6 +7486,7 @@ scoring-rules #scoringForForwards .rules-content {
   font-weight: 600;
   font-size: 18pt;
   color: #214a5f;
+  text-transform: uppercase;
 }
 @media (min-width: 768px) {
   .contests-list-root .contest-row .column-contest-name .column-name {
@@ -7506,6 +7516,7 @@ scoring-rules #scoringForForwards .rules-content {
   font-weight: 600;
   font-size: 18pt;
   color: #214a5f;
+  text-transform: uppercase;
   text-align: right;
 }
 @media (max-width: 767px) {
@@ -7698,6 +7709,7 @@ scoring-rules #scoringForForwards .rules-content {
   font-weight: 300;
   font-size: 18pt;
   color: #214a5f;
+  text-transform: uppercase;
 }
 @media (min-width: 768px) {
   .contests-list-root .contest-row .column-contest-price .column-contest-price-content,
@@ -7860,6 +7872,7 @@ scoring-rules #scoringForForwards .rules-content {
   font-weight: 300;
   font-size: 18pt;
   color: #214a5f;
+  text-transform: uppercase;
 }
 @media (min-width: 768px) {
   .contests-list-root .contest-row .column-contest-start-date .column-start-date-day {
@@ -8131,6 +8144,7 @@ fieldset[disabled] .contests-list-root .contest-row .column-contest-action .acti
   font-weight: 300;
   font-size: 20pt;
   color: #ffffff;
+  text-transform: uppercase;
   text-align: left;
   padding-left: 20px;
 }
@@ -8235,6 +8249,7 @@ button#personalDataContent .header button.close {
   font-weight: 300;
   font-size: 20pt;
   color: #ffffff;
+  text-transform: uppercase;
   text-align: left;
 }
 #personalDataContent .field-padding {
@@ -8807,6 +8822,7 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   font-weight: 600;
   font-size: 11pt;
   color: #ffffff;
+  text-transform: uppercase;
   padding-top: 5px;
 }
 .fantasy-team-header .ranking-box .content {
@@ -8816,6 +8832,7 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   font-weight: 300;
   font-size: 16pt;
   color: inherit;
+  text-transform: uppercase;
 }
 .fantasy-team-header .ranking-box .title {
   color: #434343;
@@ -8825,6 +8842,7 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   font-weight: 300;
   font-size: 24pt;
   color: inherit;
+  text-transform: uppercase;
   line-height: 1.1;
 }
 .fantasy-team-header .score-box {
@@ -8846,6 +8864,7 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   font-weight: 600;
   font-size: 11pt;
   color: #ffffff;
+  text-transform: uppercase;
   padding-top: 5px;
 }
 .fantasy-team-header .score-box .content {
@@ -8855,6 +8874,7 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   font-weight: 300;
   font-size: 16pt;
   color: inherit;
+  text-transform: uppercase;
 }
 .fantasy-team-header .score-box .title {
   color: #434343;
@@ -8864,6 +8884,7 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   font-weight: 300;
   font-size: 20pt;
   color: inherit;
+  text-transform: uppercase;
   line-height: 1.3;
   padding-left: 5px;
   padding-right: 5px;
@@ -8873,6 +8894,7 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   font-weight: 300;
   font-size: 14pt;
   color: #ffffff;
+  text-transform: uppercase;
   height: 45px;
   padding-top: 5px;
 }
@@ -8881,6 +8903,7 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   font-weight: 300;
   font-size: 20pt;
   color: #ffffff;
+  text-transform: uppercase;
   padding: 20px 0 0 10px;
 }
 .fantasy-team-header .total-remaining-matches-time {
@@ -9210,6 +9233,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   font-weight: 300;
   font-size: 19pt;
   color: #59add5;
+  text-transform: uppercase;
   text-align: right;
   padding-right: 10px;
   background-color: #ffffff;
@@ -9264,6 +9288,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   font-weight: 600;
   font-size: 11pt;
   color: #ffffff;
+  text-transform: uppercase;
   padding-top: 5px;
 }
 .header-box .content {
@@ -9273,6 +9298,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   font-weight: 300;
   font-size: 16pt;
   color: inherit;
+  text-transform: uppercase;
 }
 #userFantasyTeam {
   float: left;
@@ -9369,6 +9395,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   font-weight: 600;
   font-size: 12pt;
   color: #777777;
+  text-transform: uppercase;
   text-align: right;
 }
 @media (min-width: 768px) {
@@ -10082,6 +10109,7 @@ fieldset[disabled] #rootFooter .user-info-sup-footer .add-funds-button {
   font-weight: 600;
   font-size: 40pt;
   color: #214a5f;
+  text-transform: uppercase;
   text-align: center;
   line-height: 1.1em;
 }
@@ -10091,6 +10119,7 @@ fieldset[disabled] #rootFooter .user-info-sup-footer .add-funds-button {
     font-weight: 600;
     font-size: 30pt;
     color: #214a5f;
+    text-transform: uppercase;
   }
 }
 #desktopContent .main-title-wrapper .main-sub-title {
@@ -10351,6 +10380,7 @@ fieldset[disabled] #desktopContent .main-title-wrapper .button-wrap .button-play
   font-weight: 300;
   font-size: 25pt;
   color: #fa9c19;
+  text-transform: uppercase;
   margin: 0;
 }
 #desktopContent .description-text {
@@ -10666,6 +10696,7 @@ fieldset[disabled] #mobileContent .button-wrap .button-play-mobile {
   font-weight: 300;
   font-size: 25pt;
   color: #214a5f;
+  text-transform: uppercase;
   margin: 0;
 }
 .landing-wrapper .screen .content-wrapper .content-container .screen-text-block .description-text {
@@ -10904,6 +10935,7 @@ fieldset[disabled] .button-play-mobile {
   font-weight: 600;
   font-size: 34pt;
   color: #214a5f;
+  text-transform: uppercase;
 }
 @media (max-width: 991px) {
   #obsoleteBrowserPageRoot #desktopContent .main-title-wrapper .main-title {
@@ -10911,6 +10943,7 @@ fieldset[disabled] .button-play-mobile {
     font-weight: 600;
     font-size: 25pt;
     color: #214a5f;
+    text-transform: uppercase;
   }
 }
 #obsoleteBrowserPageRoot #desktopContent .main-title-wrapper .main-sub-title {
@@ -11996,6 +12029,7 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   font-weight: 300;
   font-size: 16pt;
   color: #214a5f;
+  text-transform: uppercase;
 }
 @media (max-width: 767px) {
   #contestFiltersRoot #filtersPanel .filter-title {
@@ -14501,6 +14535,7 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
   font-weight: 600;
   font-size: 10pt;
   color: #ffffff;
+  text-transform: uppercase;
   display: inline-block;
   background-color: #fa9c19;
   line-height: 31px;
@@ -14956,6 +14991,7 @@ fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .button-add {
   font-weight: 300;
   font-size: 20pt;
   color: #fba61a;
+  text-transform: uppercase;
   margin-bottom: 5px;
 }
 #modalSoccerPlayerInfo .soccer-player-info-header .description-header .soccer-player-info-stats {
@@ -15029,6 +15065,7 @@ fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .button-add {
   font-weight: 300;
   font-size: 18pt;
   color: #dcdcdc;
+  text-transform: uppercase;
   padding-top: 0;
 }
 @media (max-width: 767px) {
@@ -15438,6 +15475,7 @@ fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .descriptio
     font-weight: 600;
     font-size: 14pt;
     color: #777777;
+    text-transform: uppercase;
     position: relative;
     float: left;
     width: 83.33333333%;
@@ -15494,6 +15532,7 @@ fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .descriptio
     font-weight: 300;
     font-size: 24pt;
     color: #0d75a6;
+    text-transform: uppercase;
   }
   #modalSoccerPlayerInfo .soccer-player-info-content .season-stats .season-stats-wrapper .season-stats-row:first-child {
     border-left: none;
@@ -15882,6 +15921,7 @@ fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .descriptio
   font-weight: 300;
   font-size: 24px;
   color: #ffffff;
+  text-transform: uppercase;
   background-color: #fa9c19;
   text-align: center;
   border-radius: 3px;
@@ -16397,6 +16437,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   font-weight: 600;
   font-size: 20px;
   color: #ffffff;
+  text-transform: uppercase;
   padding-left: 10px;
   padding-right: 2px;
   background-image: -webkit-linear-gradient(top, #fba61a 49%, #ec990e 51%);
@@ -16428,6 +16469,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   font-weight: 600;
   font-size: 30px;
   color: #777777;
+  text-transform: uppercase;
   margin-top: 3px;
   overflow: hidden;
 }
@@ -17098,6 +17140,7 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
   font-weight: 600;
   font-size: 14pt;
   color: #777777;
+  text-transform: uppercase;
   padding: 0 10px 0 0;
 }
 @media (min-width: 768px) and (max-width: 991px) {
@@ -17768,6 +17811,7 @@ lineup-selector {
   font-weight: 600;
   font-size: 10pt;
   color: #59add5;
+  text-transform: uppercase;
 }
 .main-box {
   padding-left: 15px;
@@ -17873,6 +17917,7 @@ lineup-selector {
   font-weight: 300;
   font-size: 20pt;
   color: #ffffff;
+  text-transform: uppercase;
 }
 .main-box .panel .panel-heading button.close {
   float: right;
@@ -18574,6 +18619,7 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
   font-weight: 300;
   font-size: 20pt;
   color: #ffffff;
+  text-transform: uppercase;
 }
 #modalRoot .main-box .panel .panel-heading button.close {
   float: right;
@@ -19430,6 +19476,7 @@ fieldset[disabled] #modalRoot .main-box .panel .panel-body .new-row .cancel-butt
   font-weight: 600;
   font-size: 10pt;
   color: #214a5f;
+  text-transform: uppercase;
 }
 #usersListRoot .user-row .score-container span {
   background-color: #ffffff;
@@ -19560,6 +19607,7 @@ fieldset[disabled] #modalRoot .main-box .panel .panel-body .new-row .cancel-butt
     font-weight: 300;
     font-size: 14pt;
     color: #777777;
+    text-transform: uppercase;
     margin: 0px;
   }
   #usersListRoot .users-header h2 {
@@ -19578,6 +19626,7 @@ fieldset[disabled] #modalRoot .main-box .panel .panel-body .new-row .cancel-butt
     font-weight: 300;
     font-size: 16pt;
     color: #777777;
+    text-transform: uppercase;
     text-align: center;
   }
   #usersListRoot .users-table-rows {
@@ -19615,6 +19664,7 @@ fieldset[disabled] #modalRoot .main-box .panel .panel-body .new-row .cancel-butt
   font-weight: 300;
   font-size: 16pt;
   color: #214a5f;
+  text-transform: uppercase;
 }
 @media (min-width: 992px) {
   .profile-content .data-header .data-header-title {
@@ -19622,6 +19672,7 @@ fieldset[disabled] #modalRoot .main-box .panel .panel-body .new-row .cancel-butt
     font-weight: 600;
     font-size: 20pt;
     color: #214a5f;
+    text-transform: uppercase;
   }
 }
 .profile-content .button-wrapper {
@@ -20621,6 +20672,7 @@ fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-
   font-weight: 300;
   font-size: 20pt;
   color: #0d75a6;
+  text-transform: uppercase;
 }
 .info-complete-bar p + p {
   font-family: 'Open Sans', sans-serif;
@@ -21003,6 +21055,7 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-back-contest {
   font-weight: 300;
   font-size: 20pt;
   color: #214a5f;
+  text-transform: uppercase;
   padding: 16px 10px 12px;
   text-align: center;
 }
@@ -21226,6 +21279,7 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   font-weight: 600;
   font-size: 10pt;
   color: #777777;
+  text-transform: uppercase;
   display: block;
   height: 28px;
   padding: 5px 10px;
@@ -21363,6 +21417,7 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   font-weight: 300;
   font-size: 20pt;
   color: #214a5f;
+  text-transform: uppercase;
   padding: 16px 10px 12px;
   text-align: center;
 }
@@ -21412,6 +21467,7 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   font-weight: 300;
   font-size: 20pt;
   color: #214a5f;
+  text-transform: uppercase;
   padding: 16px 10px 12px;
   text-align: center;
 }
@@ -21420,6 +21476,7 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   font-weight: 300;
   font-size: 20pt;
   color: #214a5f;
+  text-transform: uppercase;
   padding: 16px 10px 12px;
   text-align: center;
   color: #ffffff;
@@ -21430,6 +21487,7 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
     font-weight: 300;
     font-size: 16pt;
     color: #ffffff;
+    text-transform: uppercase;
   }
 }
 #betaComp .beta-info-wrapper {
@@ -22254,6 +22312,7 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
   font-weight: 300;
   font-size: 20pt;
   color: #214a5f;
+  text-transform: uppercase;
   padding: 30px 15px 30px 15px;
   background-color: #f8f8f8;
   text-align: center;
@@ -22265,6 +22324,7 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
     font-weight: 300;
     font-size: 16pt;
     color: #214a5f;
+    text-transform: uppercase;
   }
 }
 .default-info-text {
@@ -22272,6 +22332,7 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
   font-weight: 300;
   font-size: 20pt;
   color: #0d75a6;
+  text-transform: uppercase;
   text-align: center;
   margin: 0 auto;
   padding: 15px 0;
@@ -22282,6 +22343,7 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
     font-weight: 300;
     font-size: 12pt;
     color: #0d75a6;
+    text-transform: uppercase;
   }
 }
 .blue-separator {
@@ -22302,6 +22364,7 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
   font-weight: 600;
   font-size: 18pt;
   color: #214a5f;
+  text-transform: uppercase;
 }
 @media (max-width: 767px) {
   .contest-big-bold-text {
@@ -22316,6 +22379,7 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
   font-weight: 300;
   font-size: 18pt;
   color: #214a5f;
+  text-transform: uppercase;
 }
 @media (max-width: 767px) {
   .contest-big-light-text {

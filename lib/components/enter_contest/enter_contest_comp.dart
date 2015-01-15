@@ -18,7 +18,6 @@ import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/utils/html_utils.dart';
 
-
 @Component(
     selector: 'enter-contest',
     templateUrl: 'packages/webclient/components/enter_contest/enter_contest_comp.html',
@@ -92,21 +91,37 @@ class EnterContestComp implements DetachAware {
       });
 
     //Subscripción para controlar la salida
+   /*
     _routeHandle = _routeProvider.route.newHandle();
     _routeHandle.onPreLeave.listen(allowLeaveThePage);
-
+   */
   }
-
+  /*
   void allowLeaveThePage(RoutePreLeaveEvent event) {
     event.allowLeave( _allowUserLeavePage ? new Future<bool>.value(true)
                                             : modalShow("Atención!",
                                                         "Estas a punto de salir.<br>Si continuas perderás los cambios en el equipo que estás configurando.<br><br>¿Estas seguro de querer abandonar?",
                                                         onYes:  event.allowLeave,
                                                         onNo:   event.allowLeave
-                                              )
+                                              ).then((resp){
+                                                if(resp) {
+                                                  todoWhenSi();
+                                                }
+                                                else {
+                                                  todoWhenNo();
+                                                }
+                                                return resp;
+                                              })
 
       );
 
+  }
+  */
+  void todoWhenSi(){
+    print("has pulsado el boton del SI");
+  }
+  void todoWhenNo(){
+    print("has pulsado el boton del No");
   }
 
   void resetLineup() {

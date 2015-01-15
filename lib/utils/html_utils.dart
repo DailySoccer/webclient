@@ -30,6 +30,7 @@ Future<bool> modalShow(String title, String content,{Function onYes: null, Funct
   void onButtonClick(dynamic sender) {
     String eventCallback = sender.currentTarget.attributes["eventCallback"];
     closeMe();
+    //Luego el true o false para cerrar la ventana.
     switch(eventCallback){
       case "onYes":
       case "onOk":
@@ -85,7 +86,6 @@ Future<bool> modalShow(String title, String content,{Function onYes: null, Funct
                           </div>
                         </div>
                       ''';
-
 
   parent.appendHtml(modalBody);
   // Aqui hago el setup de los botones. (que tiene que hacer cada botón al ser clickado... ver: main_menu_slide_comp).

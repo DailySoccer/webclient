@@ -54,6 +54,13 @@ class ContestsService {
       });
   }
 
+  Future refreshContestInfo(String contestId) {
+    return _server.getContestInfo(contestId)
+      .then((jsonMap) {
+        _registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
+      });
+  }
+
   Future cancelContestEntry(String contestEntryId) {
     return _server.cancelContestEntry(contestEntryId)
       .then((jsonMap) {

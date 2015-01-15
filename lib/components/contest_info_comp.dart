@@ -48,7 +48,7 @@ class ContestInfoComp implements DetachAware {
 
     loadingService.isLoading = true;
 
-    _contestsService.refreshPublicContest(contestId)
+    _contestsService.refreshContestInfo(contestId)
       .then((_) {
         updateContestInfo();
       })

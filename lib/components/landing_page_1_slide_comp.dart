@@ -30,9 +30,7 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
   String theDesktopHTML =
   '''
     <div id="landingPageRoot">
-      <div id="desktopContent" class="first-screen" style="height:{{screenHeight}}px">
-        <div class="screen-pattern" src="images/pattern.png"></div>
-    
+      <div id="desktopContent">    
         <div class="main-title-wrapper">
     
           <div class="main-title">LIGAS FANTÁSTICAS SEMANALES</div>
@@ -81,7 +79,7 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
     String theMobileHTML =
     '''
       <div id="landingPageRoot">
-        <div id="mobileContent" class="screen" style="height:{{screenHeight}}px">
+        <div id="mobileContent">
           <div class="content">
             <p class="main-title-mobile">LIGAS FANTÁSTICAS <br> SEMANALES</p>
             <p class="title-sup-text-mobile">COMPITE EN TANTOS TORNEOS COMO QUIERAS</p>
@@ -99,19 +97,9 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
   }
 
   void _createHTML(String theHTML) {
-    if(landingElement == null) {
-      landingElement = new Element.div();
-    }
-
-    landingElement.nodes.clear();
-
-    landingElement.appendHtml(theHTML);
-
-    //TODO: setear los clicks...
-    landingElement.querySelectorAll("[buttonOnclick]").onClick.listen(_buttonPressed);
-    if (!_rootElement.contains(landingElement)) {
-      _rootElement.nodes.add(landingElement);
-    }
+    _rootElement.nodes.clear();
+    _rootElement.appendHtml(theHTML);
+    _rootElement.querySelectorAll("[buttonOnclick]").onClick.listen(_buttonPressed);
   }
 
   void smoothScrollTo(String selector) {

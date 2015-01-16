@@ -3,6 +3,7 @@ library withdraw_funds_comp;
 import 'package:angular/angular.dart';
 import 'dart:html';
 import 'package:webclient/services/profile_service.dart';
+import 'package:webclient/services/payment_service.dart';
 
 
 @Component(
@@ -14,8 +15,8 @@ class WithdrawFundsComp implements ShadowRootAware {
   int selectedValue = 0;
 
   dynamic get userData => _profileManager.user;
-  
-  WithdrawFundsComp(this._profileManager);
+
+  WithdrawFundsComp(this._router, this._profileManager, this._paymentService);
 
   @override void onShadowRoot(emulatedRoot) {
     if (userData.balance < 20) {
@@ -44,7 +45,7 @@ class WithdrawFundsComp implements ShadowRootAware {
 
   void updateSelectedPrize(Event e) {
     NumberInputElement input = querySelector("#customEurosAmount") as NumberInputElement;
-    
+
     try {
       selectedValue = input.valueAsNumber.isNaN? 0 : input.valueAsNumber.toInt().abs();
     } on Exception {
@@ -60,7 +61,13 @@ class WithdrawFundsComp implements ShadowRootAware {
   void withdrawFunds (Event e) {
     print("i want to withdraw $selectedValue €");
     (querySelector("#withdrawFundsButton") as ButtonElement).disabled = true;
+    _paymentService.withdrawFunds(selectedValue)
+      .then((_) {
+        _router.go("user_profile", {});
+      });
   }
 
   ProfileService _profileManager;
+  PaymentService _paymentService;
+  Router _router;
 }

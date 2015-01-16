@@ -13,7 +13,9 @@ import 'package:webclient/services/payment_service.dart';
 class AddFundsComp implements ShadowRootAware, DetachAware {
   int selectedValue = 25;
 
-  AddFundsComp(this._paymentService);
+  AddFundsComp(this._routeProvider, this._paymentService) {
+    contestId = _routeProvider.route.parameters['contestId'];
+  }
 
   @override void onShadowRoot(emulatedRoot) {
     querySelector("#firstOffer").onChange.listen(updateSelectedPrize);
@@ -36,7 +38,7 @@ class AddFundsComp implements ShadowRootAware, DetachAware {
   void checkCustom(Event e) {
     querySelector("#customEuros").click();
   }
-  
+
   void onCustomEurosAmountChange(Event e) {
     updateSelectedPrize(e);
     if (selectedValue < 10) {
@@ -67,4 +69,7 @@ class AddFundsComp implements ShadowRootAware, DetachAware {
   }
 
   PaymentService _paymentService;
+  RouteProvider _routeProvider;
+
+  String contestId;
 }

@@ -1,6 +1,7 @@
 library payment_service;
 
 import 'dart:html';
+import 'dart:async';
 import 'package:angular/angular.dart';
 import "package:webclient/services/server_service.dart";
 import "package:webclient/services/profile_service.dart";
@@ -20,6 +21,10 @@ class PaymentService {
     else {
       window.location.assign(PAYPAL_APPROVAL_BUY_URL + "/${_profileService.user.userId}" + "/$productId");
     }
+  }
+
+  Future<Map> withdrawFunds(int amount) {
+    return _server.withdrawFunds(amount);
   }
 
   ServerService _server;

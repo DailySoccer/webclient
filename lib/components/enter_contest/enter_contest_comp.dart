@@ -90,36 +90,25 @@ class EnterContestComp implements DetachAware {
         }
       });
 
-    //Subscripción para controlar la salida
+    // Subscripción para controlar la salida
     _routeHandle = _routeProvider.route.newHandle();
     _routeHandle.onPreLeave.listen(allowLeaveThePage);
-
   }
 
   void allowLeaveThePage(RoutePreLeaveEvent event) {
-    event.allowLeave( _allowUserLeavePage ? new Future<bool>.value(true)
-                                            : modalShow("Atención!",
-                                                        "Estas a punto de salir.<br>Si continuas perderás los cambios en el equipo que estás configurando.<br><br>¿Estas seguro de querer abandonar?",
-                                                        onOk:  "Si",
-                                                        onCancel:   "Nor"
-                                              ).then((resp){
-                                                if(resp) {
-                                                  todoWhenSi();
-                                                }
-                                                else {
-                                                  todoWhenNo();
-                                                }
-                                                return resp;
-                                              })
+    // Verificamos si esta la lista vacía por completo para permitir salir sin alertas.
+    var isLineupEmpty = !lineupSlots.any((soccerPlayer) => soccerPlayer != null);
 
+    event.allowLeave(isLineupEmpty?
+                     new Future<bool>.value(true) :
+                     modalShow("Atención!",
+                               "Estas a punto de salir.<br>Si continuas perderás los cambios en el equipo que estás configurando.<br><br>¿Estás seguro de querer abandonar?",
+                                onOk:  "Si",
+                                onCancel: "No"
+                                ).then((resp) {
+                                  return resp;
+                                })
       );
-
-  }
-  void todoWhenSi(){
-    print("has pulsado el boton del SI");
-  }
-  void todoWhenNo(){
-    print("has pulsado el boton del No");
   }
 
   void resetLineup() {
@@ -129,7 +118,6 @@ class EnterContestComp implements DetachAware {
     FieldPos.LINEUP.forEach((pos) {
       lineupSlots.add(null);
     });
-    allowUserLeave();
   }
 
   void detach() {
@@ -177,8 +165,6 @@ class EnterContestComp implements DetachAware {
       // El componente hijo se entera de que le hemos cambiado el filtro a traves del two-way binding.
       fieldPosFilter = new FieldPos(FieldPos.LINEUP[slotIndex]);
     }
-
-    allowUserLeave();
   }
 
   void addSoccerPlayerToLineup(String soccerPlayerId) {
@@ -209,23 +195,10 @@ class EnterContestComp implements DetachAware {
          break;
        }
     }
-    //Si ya no estamos en modo seleción, scrolleamos hasta la altura del dinero que nos queda disponible.
+    // Si ya no estamos en modo seleción, scrolleamos hasta la altura del dinero que nos queda disponible.
     if (!isSelectingSoccerPlayer) {
       scrDet.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('main-menu-slide').offsetHeight, ignoreInDesktop: true);
     }
-
-    allowUserLeave();
-  }
-
-  void allowUserLeave() {
-    // Verificamos si esta la lista llena o vacía por completo para permitir salir sin alertas.
-    int count = 0;
-    lineupSlots.forEach((soccerPlayer) {
-      if (soccerPlayer != null) {
-        count++;
-      }
-    });
-    _allowUserLeavePage = count == 0;
   }
 
   bool isSlotAvailableForSoccerPlayer(String soccerPlayerId) {
@@ -301,25 +274,19 @@ class EnterContestComp implements DetachAware {
     if (editingContestEntry) {
       _contestsService.editContestEntry(contestEntryId, lineupSlots.map((player) => player["id"]).toList())
         .then((_) {
-                      _allowUserLeavePage = true;
-                      _router.go('view_contest_entry', {
-                                        "contestId": contest.contestId,
-                                        "parent": _routeProvider.parameters["parent"],
-                                        "viewContestEntryMode": "edited"
-                                        });
-                   })
+          _router.go('view_contest_entry', { "contestId": contest.contestId,
+                                             "parent": _routeProvider.parameters["parent"],
+                                             "viewContestEntryMode": "edited"});
+        })
         .catchError((error) => _errorCreating);
     }
     else {
       _contestsService.addContestEntry(contest.contestId, lineupSlots.map((player) => player["id"]).toList())
         .then((contestId) {
           GameMetrics.logEvent(GameMetrics.TEAM_CREATED);
-          _allowUserLeavePage = true;
-          _router.go('view_contest_entry', {
-                              "contestId": contestId,
-                              "parent": _routeProvider.parameters["parent"],
-                              "viewContestEntryMode": contestId == contest.contestId? "created" : "swapped"
-                               });
+          _router.go('view_contest_entry', { "contestId": contestId,
+                                             "parent": _routeProvider.parameters["parent"],
+                                             "viewContestEntryMode": contestId == contest.contestId? "created" : "swapped"});
         })
         .catchError((error) => _errorCreating);
     }
@@ -377,6 +344,4 @@ class EnterContestComp implements DetachAware {
   Timer _retryOpTimer;
   RouteHandle _routeHandle;
   ScreenDetectorService _scrDet;
-
-  bool _allowUserLeavePage = true;
 }

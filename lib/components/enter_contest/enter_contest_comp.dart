@@ -16,7 +16,7 @@ import 'package:webclient/models/contest_entry.dart';
 import "package:webclient/models/instance_soccer_player.dart";
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/utils/game_metrics.dart';
-
+import 'package:webclient/utils/html_utils.dart';
 
 @Component(
     selector: 'enter-contest',
@@ -90,13 +90,36 @@ class EnterContestComp implements DetachAware {
         }
       });
 
-
+    //Subscripción para controlar la salida
     _routeHandle = _routeProvider.route.newHandle();
-    _routeHandle.onPreLeave.listen((RoutePreLeaveEvent event) {
-      event.route.dontLeaveOnParamChanges;
-      //bool decision = window.confirm('Estas seguro que quieres salir? Si pulsas en aceptar perderas los cambios realizados en esta alineación y abandonaras el torneo.');
-      //event.allowLeave(new Future.value(decision));
-    });
+    _routeHandle.onPreLeave.listen(allowLeaveThePage);
+
+  }
+
+  void allowLeaveThePage(RoutePreLeaveEvent event) {
+    event.allowLeave( _allowUserLeavePage ? new Future<bool>.value(true)
+                                            : modalShow("Atención!",
+                                                        "Estas a punto de salir.<br>Si continuas perderás los cambios en el equipo que estás configurando.<br><br>¿Estas seguro de querer abandonar?",
+                                                        onOk:  "Si",
+                                                        onCancel:   "Nor"
+                                              ).then((resp){
+                                                if(resp) {
+                                                  todoWhenSi();
+                                                }
+                                                else {
+                                                  todoWhenNo();
+                                                }
+                                                return resp;
+                                              })
+
+      );
+
+  }
+  void todoWhenSi(){
+    print("has pulsado el boton del SI");
+  }
+  void todoWhenNo(){
+    print("has pulsado el boton del No");
   }
 
   void resetLineup() {
@@ -106,6 +129,7 @@ class EnterContestComp implements DetachAware {
     FieldPos.LINEUP.forEach((pos) {
       lineupSlots.add(null);
     });
+    allowUserLeave();
   }
 
   void detach() {
@@ -153,6 +177,8 @@ class EnterContestComp implements DetachAware {
       // El componente hijo se entera de que le hemos cambiado el filtro a traves del two-way binding.
       fieldPosFilter = new FieldPos(FieldPos.LINEUP[slotIndex]);
     }
+
+    allowUserLeave();
   }
 
   void addSoccerPlayerToLineup(String soccerPlayerId) {
@@ -182,12 +208,24 @@ class EnterContestComp implements DetachAware {
          nameFilter = null;
          break;
        }
-     }
-
+    }
     //Si ya no estamos en modo seleción, scrolleamos hasta la altura del dinero que nos queda disponible.
     if (!isSelectingSoccerPlayer) {
       scrDet.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('main-menu-slide').offsetHeight, ignoreInDesktop: true);
     }
+
+    allowUserLeave();
+  }
+
+  void allowUserLeave() {
+    // Verificamos si esta la lista llena o vacía por completo para permitir salir sin alertas.
+    int count = 0;
+    lineupSlots.forEach((soccerPlayer) {
+      if (soccerPlayer != null) {
+        count++;
+      }
+    });
+    _allowUserLeavePage = count == 0;
   }
 
   bool isSlotAvailableForSoccerPlayer(String soccerPlayerId) {
@@ -262,17 +300,21 @@ class EnterContestComp implements DetachAware {
 
     if (editingContestEntry) {
       _contestsService.editContestEntry(contestEntryId, lineupSlots.map((player) => player["id"]).toList())
-        .then((_) => _router.go('view_contest_entry', {
+        .then((_) {
+                      _allowUserLeavePage = true;
+                      _router.go('view_contest_entry', {
                                         "contestId": contest.contestId,
                                         "parent": _routeProvider.parameters["parent"],
                                         "viewContestEntryMode": "edited"
-                                        }))
+                                        });
+                   })
         .catchError((error) => _errorCreating);
     }
     else {
       _contestsService.addContestEntry(contest.contestId, lineupSlots.map((player) => player["id"]).toList())
         .then((contestId) {
           GameMetrics.logEvent(GameMetrics.TEAM_CREATED);
+          _allowUserLeavePage = true;
           _router.go('view_contest_entry', {
                               "contestId": contestId,
                               "parent": _routeProvider.parameters["parent"],
@@ -336,4 +378,5 @@ class EnterContestComp implements DetachAware {
   RouteHandle _routeHandle;
   ScreenDetectorService _scrDet;
 
+  bool _allowUserLeavePage = true;
 }

@@ -5883,6 +5883,8 @@ scoring-rules:after,
 #rememberPasswordRoot:after,
 .main-box .panel .form-horizontal:before,
 .main-box .panel .form-horizontal:after,
+#modalRoot .main-box .panel .form-horizontal:before,
+#modalRoot .main-box .panel .form-horizontal:after,
 #usersListRoot .user-row:before,
 #usersListRoot .user-row:after,
 #usersListRoot .users-table-header:before,
@@ -5975,6 +5977,7 @@ scoring-rules:after,
 #joinRoot:after,
 #rememberPasswordRoot:after,
 .main-box .panel .form-horizontal:after,
+#modalRoot .main-box .panel .form-horizontal:after,
 #usersListRoot .user-row:after,
 #usersListRoot .users-table-header:after,
 .profile-content:after,
@@ -6289,6 +6292,7 @@ contest-header {
   font-weight: 600;
   font-size: 18pt;
   color: #214a5f;
+  text-transform: uppercase;
   padding: 0 15px 0px 15px;
 }
 @media (min-width: 768px) {
@@ -6317,6 +6321,7 @@ contest-header {
   font-weight: 300;
   font-size: 18pt;
   color: #214a5f;
+  text-transform: uppercase;
 }
 @media (min-width: 768px) {
   #contestHeaderWrapper .contest-relevant-data .contest-price,
@@ -6388,6 +6393,7 @@ contest-header {
   font-weight: 300;
   font-size: 18pt;
   color: #214a5f;
+  text-transform: uppercase;
 }
 @media (max-width: 767px) {
   #contestHeaderWrapper .contest-relevant-data .contest-coins-content > span {
@@ -7145,6 +7151,7 @@ button#contestInfoModal .modal-info-head button.close {
   font-weight: 300;
   font-size: 16pt;
   color: #0d75a6;
+  text-transform: uppercase;
 }
 @media (max-width: 767px) {
   .matches-involved .match .teams {
@@ -7188,6 +7195,7 @@ button#contestInfoModal .modal-info-head button.close {
   font-weight: 600;
   font-size: 12pt;
   color: #0d75a6;
+  text-transform: uppercase;
   background-color: #ecf0f1;
   padding: 5px 10px;
   margin: 10px auto;
@@ -7272,6 +7280,7 @@ button#contestInfoModal .modal-info-head button.close {
   font-weight: 300;
   font-size: 14pt;
   color: #777777;
+  text-transform: uppercase;
   text-align: right;
 }
 .contestant-list .prize-currency {
@@ -7359,6 +7368,7 @@ scoring-rules #scoringForForwards .rules-content {
   font-weight: 600;
   font-size: 10pt;
   color: #ffffff;
+  text-transform: uppercase;
   background-color: #434343;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
@@ -7383,6 +7393,7 @@ scoring-rules #scoringForForwards .rules-content {
   font-weight: 300;
   font-size: 9pt;
   color: #777777;
+  text-transform: uppercase;
   position: relative;
   float: left;
   width: 83.33333333%;
@@ -7397,6 +7408,7 @@ scoring-rules #scoringForForwards .rules-content {
   font-weight: 300;
   font-size: 9pt;
   color: #777777;
+  text-transform: uppercase;
   position: relative;
   float: left;
   width: 16.66666667%;
@@ -7474,6 +7486,7 @@ scoring-rules #scoringForForwards .rules-content {
   font-weight: 600;
   font-size: 18pt;
   color: #214a5f;
+  text-transform: uppercase;
 }
 @media (min-width: 768px) {
   .contests-list-root .contest-row .column-contest-name .column-name {
@@ -7503,6 +7516,7 @@ scoring-rules #scoringForForwards .rules-content {
   font-weight: 600;
   font-size: 18pt;
   color: #214a5f;
+  text-transform: uppercase;
   text-align: right;
 }
 @media (max-width: 767px) {
@@ -7695,6 +7709,7 @@ scoring-rules #scoringForForwards .rules-content {
   font-weight: 300;
   font-size: 18pt;
   color: #214a5f;
+  text-transform: uppercase;
 }
 @media (min-width: 768px) {
   .contests-list-root .contest-row .column-contest-price .column-contest-price-content,
@@ -7857,6 +7872,7 @@ scoring-rules #scoringForForwards .rules-content {
   font-weight: 300;
   font-size: 18pt;
   color: #214a5f;
+  text-transform: uppercase;
 }
 @media (min-width: 768px) {
   .contests-list-root .contest-row .column-contest-start-date .column-start-date-day {
@@ -8128,6 +8144,7 @@ fieldset[disabled] .contests-list-root .contest-row .column-contest-action .acti
   font-weight: 300;
   font-size: 20pt;
   color: #ffffff;
+  text-transform: uppercase;
   text-align: left;
   padding-left: 20px;
 }
@@ -8232,6 +8249,7 @@ button#personalDataContent .header button.close {
   font-weight: 300;
   font-size: 20pt;
   color: #ffffff;
+  text-transform: uppercase;
   text-align: left;
 }
 #personalDataContent .field-padding {
@@ -8804,6 +8822,7 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   font-weight: 600;
   font-size: 11pt;
   color: #ffffff;
+  text-transform: uppercase;
   padding-top: 5px;
 }
 .fantasy-team-header .ranking-box .content {
@@ -8813,6 +8832,7 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   font-weight: 300;
   font-size: 16pt;
   color: inherit;
+  text-transform: uppercase;
 }
 .fantasy-team-header .ranking-box .title {
   color: #434343;
@@ -8822,6 +8842,7 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   font-weight: 300;
   font-size: 24pt;
   color: inherit;
+  text-transform: uppercase;
   line-height: 1.1;
 }
 .fantasy-team-header .score-box {
@@ -8843,6 +8864,7 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   font-weight: 600;
   font-size: 11pt;
   color: #ffffff;
+  text-transform: uppercase;
   padding-top: 5px;
 }
 .fantasy-team-header .score-box .content {
@@ -8852,6 +8874,7 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   font-weight: 300;
   font-size: 16pt;
   color: inherit;
+  text-transform: uppercase;
 }
 .fantasy-team-header .score-box .title {
   color: #434343;
@@ -8861,6 +8884,7 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   font-weight: 300;
   font-size: 20pt;
   color: inherit;
+  text-transform: uppercase;
   line-height: 1.3;
   padding-left: 5px;
   padding-right: 5px;
@@ -8870,6 +8894,7 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   font-weight: 300;
   font-size: 14pt;
   color: #ffffff;
+  text-transform: uppercase;
   height: 45px;
   padding-top: 5px;
 }
@@ -8878,6 +8903,7 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   font-weight: 300;
   font-size: 20pt;
   color: #ffffff;
+  text-transform: uppercase;
   padding: 20px 0 0 10px;
 }
 .fantasy-team-header .total-remaining-matches-time {
@@ -9207,6 +9233,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   font-weight: 300;
   font-size: 19pt;
   color: #59add5;
+  text-transform: uppercase;
   text-align: right;
   padding-right: 10px;
   background-color: #ffffff;
@@ -9261,6 +9288,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   font-weight: 600;
   font-size: 11pt;
   color: #ffffff;
+  text-transform: uppercase;
   padding-top: 5px;
 }
 .header-box .content {
@@ -9270,6 +9298,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   font-weight: 300;
   font-size: 16pt;
   color: inherit;
+  text-transform: uppercase;
 }
 #userFantasyTeam {
   float: left;
@@ -9366,6 +9395,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   font-weight: 600;
   font-size: 12pt;
   color: #777777;
+  text-transform: uppercase;
   text-align: right;
 }
 @media (min-width: 768px) {
@@ -10079,6 +10109,7 @@ fieldset[disabled] #rootFooter .user-info-sup-footer .add-funds-button {
   font-weight: 600;
   font-size: 40pt;
   color: #214a5f;
+  text-transform: uppercase;
   text-align: center;
   line-height: 1.1em;
 }
@@ -10088,6 +10119,7 @@ fieldset[disabled] #rootFooter .user-info-sup-footer .add-funds-button {
     font-weight: 600;
     font-size: 30pt;
     color: #214a5f;
+    text-transform: uppercase;
   }
 }
 #desktopContent .main-title-wrapper .main-sub-title {
@@ -10348,6 +10380,7 @@ fieldset[disabled] #desktopContent .main-title-wrapper .button-wrap .button-play
   font-weight: 300;
   font-size: 25pt;
   color: #fa9c19;
+  text-transform: uppercase;
   margin: 0;
 }
 #desktopContent .description-text {
@@ -10663,6 +10696,7 @@ fieldset[disabled] #mobileContent .button-wrap .button-play-mobile {
   font-weight: 300;
   font-size: 25pt;
   color: #214a5f;
+  text-transform: uppercase;
   margin: 0;
 }
 .landing-wrapper .screen .content-wrapper .content-container .screen-text-block .description-text {
@@ -10901,6 +10935,7 @@ fieldset[disabled] .button-play-mobile {
   font-weight: 600;
   font-size: 34pt;
   color: #214a5f;
+  text-transform: uppercase;
 }
 @media (max-width: 991px) {
   #obsoleteBrowserPageRoot #desktopContent .main-title-wrapper .main-title {
@@ -10908,6 +10943,7 @@ fieldset[disabled] .button-play-mobile {
     font-weight: 600;
     font-size: 25pt;
     color: #214a5f;
+    text-transform: uppercase;
   }
 }
 #obsoleteBrowserPageRoot #desktopContent .main-title-wrapper .main-sub-title {
@@ -11993,6 +12029,7 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   font-weight: 300;
   font-size: 16pt;
   color: #214a5f;
+  text-transform: uppercase;
 }
 @media (max-width: 767px) {
   #contestFiltersRoot #filtersPanel .filter-title {
@@ -14498,6 +14535,7 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
   font-weight: 600;
   font-size: 10pt;
   color: #ffffff;
+  text-transform: uppercase;
   display: inline-block;
   background-color: #fa9c19;
   line-height: 31px;
@@ -14953,6 +14991,7 @@ fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .button-add {
   font-weight: 300;
   font-size: 20pt;
   color: #fba61a;
+  text-transform: uppercase;
   margin-bottom: 5px;
 }
 #modalSoccerPlayerInfo .soccer-player-info-header .description-header .soccer-player-info-stats {
@@ -15026,6 +15065,7 @@ fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .button-add {
   font-weight: 300;
   font-size: 18pt;
   color: #dcdcdc;
+  text-transform: uppercase;
   padding-top: 0;
 }
 @media (max-width: 767px) {
@@ -15435,6 +15475,7 @@ fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .descriptio
     font-weight: 600;
     font-size: 14pt;
     color: #777777;
+    text-transform: uppercase;
     position: relative;
     float: left;
     width: 83.33333333%;
@@ -15491,6 +15532,7 @@ fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .descriptio
     font-weight: 300;
     font-size: 24pt;
     color: #0d75a6;
+    text-transform: uppercase;
   }
   #modalSoccerPlayerInfo .soccer-player-info-content .season-stats .season-stats-wrapper .season-stats-row:first-child {
     border-left: none;
@@ -15879,6 +15921,7 @@ fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .descriptio
   font-weight: 300;
   font-size: 24px;
   color: #ffffff;
+  text-transform: uppercase;
   background-color: #fa9c19;
   text-align: center;
   border-radius: 3px;
@@ -16394,6 +16437,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   font-weight: 600;
   font-size: 20px;
   color: #ffffff;
+  text-transform: uppercase;
   padding-left: 10px;
   padding-right: 2px;
   background-image: -webkit-linear-gradient(top, #fba61a 49%, #ec990e 51%);
@@ -16425,6 +16469,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   font-weight: 600;
   font-size: 30px;
   color: #777777;
+  text-transform: uppercase;
   margin-top: 3px;
   overflow: hidden;
 }
@@ -17095,6 +17140,7 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
   font-weight: 600;
   font-size: 14pt;
   color: #777777;
+  text-transform: uppercase;
   padding: 0 10px 0 0;
 }
 @media (min-width: 768px) and (max-width: 991px) {
@@ -17765,6 +17811,7 @@ lineup-selector {
   font-weight: 600;
   font-size: 10pt;
   color: #59add5;
+  text-transform: uppercase;
 }
 .main-box {
   padding-left: 15px;
@@ -17870,6 +17917,7 @@ lineup-selector {
   font-weight: 300;
   font-size: 20pt;
   color: #ffffff;
+  text-transform: uppercase;
 }
 .main-box .panel .panel-heading button.close {
   float: right;
@@ -18037,11 +18085,11 @@ button.main-box .panel .panel-heading button.close {
   padding-left: 0;
   padding-right: 0;
 }
-.main-box .panel .panel-body .new-row .buttons-wapper {
+.main-box .panel .panel-body .new-row .buttons-wrapper {
   height: 36px;
   text-align: center;
 }
-.main-box .panel .panel-body .new-row .fb-button-wapper {
+.main-box .panel .panel-body .new-row .fb-button-wrapper {
   height: 15px;
   text-align: center;
   margin-top: 20px;
@@ -18467,6 +18515,730 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
   outline: none !important;
   color: #ffffff;
 }
+#modalRoot .main-box {
+  padding-left: 15px;
+  padding-right: 15px;
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+@media (min-width: 768px) {
+  #modalRoot .main-box {
+    float: left;
+    width: 66.66666667%;
+  }
+}
+@media (min-width: 768px) {
+  #modalRoot .main-box {
+    left: 16.66666667%;
+  }
+}
+@media (min-width: 992px) {
+  #modalRoot .main-box {
+    float: left;
+    width: 50%;
+  }
+}
+@media (min-width: 992px) {
+  #modalRoot .main-box {
+    left: 25%;
+  }
+}
+@media (min-width: 768px) {
+  #modalRoot .main-box {
+    margin-top: 100px;
+    background-color: transparent;
+  }
+}
+#modalRoot .main-box .text-form {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #777777;
+  text-align: center;
+}
+#modalRoot .main-box .panel {
+  /*
+		@media (min-width: @screen-md-min) {
+			.slide-in-from-bottom-animation();
+		}
+		*/
+  -webkit-animation: fadein-keyframes 0.5s;
+  -moz-animation: fadein-keyframes 0.5s;
+  -ms-animation: fadein-keyframes 0.5s;
+  -o-animation: fadein-keyframes 0.5s;
+  animation: fadein-keyframes 0.5s;
+  border-width: 0px;
+}
+@-webkit-keyframes fadein-keyframes {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fadein-keyframes {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-o-keyframes fadein-keyframes {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadein-keyframes {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+#modalRoot .main-box .panel .panel-heading {
+  background-color: #214a5f;
+}
+@media (max-width: 767px) {
+  #modalRoot .main-box .panel .panel-heading {
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+  }
+}
+#modalRoot .main-box .panel .panel-heading .panel-title {
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 20pt;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+#modalRoot .main-box .panel .panel-heading button.close {
+  float: right;
+  font-size: 21px;
+  font-weight: bold;
+  line-height: 1;
+  color: #000000;
+  text-shadow: 0 1px 0 #ffffff;
+  opacity: 0.2;
+  filter: alpha(opacity=20);
+  color: #ffffff;
+  opacity: 0.5;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 20pt;
+}
+#modalRoot .main-box .panel .panel-heading button.close:hover,
+#modalRoot .main-box .panel .panel-heading button.close:focus {
+  color: #000000;
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+button#modalRoot .main-box .panel .panel-heading button.close {
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  -webkit-appearance: none;
+}
+#modalRoot .main-box .panel .panel-heading button.close:hover {
+  font-size: 20pt;
+  color: #ffffff;
+  opacity: 1;
+}
+#modalRoot .main-box .panel .form-horizontal {
+  margin-left: 0;
+  margin-right: 0;
+}
+#modalRoot .main-box .panel .panel-body {
+  padding: 15px 12%;
+}
+#modalRoot .main-box .panel .panel-body .form-description {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  color: #777777;
+  text-align: center;
+  font-size: 8pt;
+  padding: 0;
+  margin-bottom: 10px;
+}
+#modalRoot .main-box .panel .panel-body label {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 8pt;
+  color: #777777;
+  position: relative;
+  float: left;
+  width: 25%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+#modalRoot .main-box .panel .panel-body .user-form-field {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+#modalRoot .main-box .panel .panel-body .user-form-field-righted {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-bottom: 20px;
+  text-align: center;
+  text-align: right;
+}
+#modalRoot .main-box .panel .panel-body .input-group input {
+  line-height: 20px;
+  /* firefox 19+ */
+  /* ie */
+}
+#modalRoot .main-box .panel .panel-body .input-group input::-webkit-input-placeholder {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #777777;
+  text-align: center;
+}
+#modalRoot .main-box .panel .panel-body .input-group input::-moz-placeholder {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #777777;
+  text-align: center;
+}
+#modalRoot .main-box .panel .panel-body .input-group input::-ms-input-placeholder {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #777777;
+  text-align: center;
+}
+#modalRoot .main-box .panel .panel-body .input-group input:-webkit-autofill {
+  -webkit-box-shadow: 0px 0px 0px 1000px #ffffff inset;
+}
+#modalRoot .main-box .panel .panel-body .no-margin {
+  margin: 0;
+}
+#modalRoot .main-box .panel .panel-body .remember-forgot-group {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+#modalRoot .main-box .panel .panel-body .remember-forgot-group .checkbox {
+  position: relative;
+  float: left;
+  width: 50%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-left: 20px;
+}
+#modalRoot .main-box .panel .panel-body .remember-forgot-group .forget-pass {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 0px;
+  padding-right: 0px;
+  text-align: right;
+  margin-top: -20px;
+  margin-bottom: 20px;
+}
+#modalRoot .main-box .panel .panel-body .remember-forgot-group .forget-pass a {
+  cursor: pointer;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 8pt;
+  color: #59add5;
+}
+#modalRoot .main-box .panel .panel-body .top-separation-20 {
+  margin-top: 20px;
+}
+#modalRoot .main-box .panel .panel-body .bottom-separation-10 {
+  margin-bottom: 10px;
+}
+#modalRoot .main-box .panel .panel-body .new-row {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 0;
+  padding-right: 0;
+}
+#modalRoot .main-box .panel .panel-body .new-row .buttons-wrapper {
+  height: 36px;
+  text-align: center;
+}
+#modalRoot .main-box .panel .panel-body .new-row .fb-button-wrapper {
+  height: 15px;
+  text-align: center;
+  margin-top: 20px;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button {
+  display: block;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  background-color: #428bca;
+  border-color: #357ebd;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  -webkit-transition: All 0.08s ease-out;
+  -moz-transition: All 0.08s ease-out;
+  -ms-transition: All 0.08s ease-out;
+  -o-transition: All 0.08s ease-out;
+  transition: All 0.08s ease-out;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  background-color: #a1c931;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #ffffff;
+  outline: none !important;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button:hover,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button:focus,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button:active,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button.active,
+.open .dropdown-toggle#modalRoot .main-box .panel .panel-body .new-row .enter-button {
+  color: #ffffff;
+  background-color: #3276b1;
+  border-color: #285e8e;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button:active,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button.active,
+.open .dropdown-toggle#modalRoot .main-box .panel .panel-body .new-row .enter-button {
+  background-image: none;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button.disabled,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button[disabled],
+fieldset[disabled] #modalRoot .main-box .panel .panel-body .new-row .enter-button,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button.disabled:hover,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button[disabled]:hover,
+fieldset[disabled] #modalRoot .main-box .panel .panel-body .new-row .enter-button:hover,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button.disabled:focus,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button[disabled]:focus,
+fieldset[disabled] #modalRoot .main-box .panel .panel-body .new-row .enter-button:focus,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button.disabled:active,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button[disabled]:active,
+fieldset[disabled] #modalRoot .main-box .panel .panel-body .new-row .enter-button:active,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button.disabled.active,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button[disabled].active,
+fieldset[disabled] #modalRoot .main-box .panel .panel-body .new-row .enter-button.active {
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button .badge {
+  color: #428bca;
+  background-color: #ffffff;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button:focus,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button:active:focus,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button:hover,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button:focus {
+  color: #333333;
+  text-decoration: none;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button:active,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button.disabled,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button[disabled],
+fieldset[disabled] #modalRoot .main-box .panel .panel-body .new-row .enter-button {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button:active:focus,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button.active:focus {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button:active:hover,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button.active:hover {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button:hover:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button:active,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button.active {
+  background-color: #a1c931;
+  margin-top: 4px;
+  box-shadow: none;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button.disabled,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button[disabled],
+fieldset[disabled] #modalRoot .main-box .panel .panel-body .new-row .enter-button {
+  background-color: #b5d657;
+  box-shadow: none;
+  margin-top: 4px;
+  color: #ebebeb;
+  cursor: not-allowed !important;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button.close {
+  background-color: #a1c931;
+  outline: none !important;
+  color: #ffffff;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half {
+  background-color: #428bca;
+  border-color: #357ebd;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  -webkit-transition: All 0.08s ease-out;
+  -moz-transition: All 0.08s ease-out;
+  -ms-transition: All 0.08s ease-out;
+  -o-transition: All 0.08s ease-out;
+  transition: All 0.08s ease-out;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  background-color: #a1c931;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #ffffff;
+  outline: none !important;
+  position: relative;
+  float: left;
+  width: 49.16666667%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  float: right !important;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half:hover,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half:focus,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half:active,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half.active,
+.open .dropdown-toggle#modalRoot .main-box .panel .panel-body .new-row .enter-button-half {
+  color: #ffffff;
+  background-color: #3276b1;
+  border-color: #285e8e;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half:active,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half.active,
+.open .dropdown-toggle#modalRoot .main-box .panel .panel-body .new-row .enter-button-half {
+  background-image: none;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half.disabled,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half[disabled],
+fieldset[disabled] #modalRoot .main-box .panel .panel-body .new-row .enter-button-half,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half.disabled:hover,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half[disabled]:hover,
+fieldset[disabled] #modalRoot .main-box .panel .panel-body .new-row .enter-button-half:hover,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half.disabled:focus,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half[disabled]:focus,
+fieldset[disabled] #modalRoot .main-box .panel .panel-body .new-row .enter-button-half:focus,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half.disabled:active,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half[disabled]:active,
+fieldset[disabled] #modalRoot .main-box .panel .panel-body .new-row .enter-button-half:active,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half.disabled.active,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half[disabled].active,
+fieldset[disabled] #modalRoot .main-box .panel .panel-body .new-row .enter-button-half.active {
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half .badge {
+  color: #428bca;
+  background-color: #ffffff;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half:focus,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half:active:focus,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half:hover,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half:focus {
+  color: #333333;
+  text-decoration: none;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half:active,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half.disabled,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half[disabled],
+fieldset[disabled] #modalRoot .main-box .panel .panel-body .new-row .enter-button-half {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half:active:focus,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half.active:focus {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half:active:hover,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half.active:hover {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half:hover:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half:active,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half.active {
+  background-color: #a1c931;
+  margin-top: 4px;
+  box-shadow: none;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half.disabled,
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half[disabled],
+fieldset[disabled] #modalRoot .main-box .panel .panel-body .new-row .enter-button-half {
+  background-color: #b5d657;
+  box-shadow: none;
+  margin-top: 4px;
+  color: #ebebeb;
+  cursor: not-allowed !important;
+}
+#modalRoot .main-box .panel .panel-body .new-row .enter-button-half.close {
+  background-color: #a1c931;
+  outline: none !important;
+  color: #ffffff;
+}
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  -webkit-transition: All 0.08s ease-out;
+  -moz-transition: All 0.08s ease-out;
+  -ms-transition: All 0.08s ease-out;
+  -o-transition: All 0.08s ease-out;
+  transition: All 0.08s ease-out;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  background-color: #afafaf;
+  box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
+  color: #ffffff;
+  outline: none !important;
+  position: relative;
+  float: left;
+  width: 49.16666667%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  float: left !important;
+}
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half:focus,
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half:active:focus,
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half:hover,
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half:focus {
+  color: #333333;
+  text-decoration: none;
+}
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half:active,
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half.disabled,
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half[disabled],
+fieldset[disabled] #modalRoot .main-box .panel .panel-body .new-row .cancel-button-half {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half:active:focus,
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half.active:focus {
+  color: #ffffff;
+  background-color: #c9c9c9;
+}
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half:active:hover,
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half.active:hover {
+  color: #ffffff;
+  background-color: #c9c9c9;
+}
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half:focus {
+  background-color: #afafaf;
+  color: #ffffff;
+}
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half:hover {
+  background-color: #bcbcbc;
+  outline: none !important;
+  color: #ffffff;
+}
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half:hover:focus {
+  background-color: #afafaf;
+  color: #ffffff;
+}
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half:active,
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half.active {
+  background-color: #afafaf;
+  margin-top: 4px;
+  box-shadow: none;
+}
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half:hover {
+  background-color: #bcbcbc;
+  outline: none !important;
+  color: #ffffff;
+}
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half.disabled,
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half[disabled],
+fieldset[disabled] #modalRoot .main-box .panel .panel-body .new-row .cancel-button-half {
+  background-color: #c9c9c9;
+  box-shadow: none;
+  margin-top: 4px;
+  color: #ebebeb;
+  cursor: not-allowed !important;
+}
+#modalRoot .main-box .panel .panel-body .new-row .cancel-button-half.close {
+  background-color: #afafaf;
+  outline: none !important;
+  color: #ffffff;
+}
+@media (min-width: 768px) {
+  #modalRoot .main-box {
+    float: left;
+    width: 100%;
+  }
+}
+@media (min-width: 768px) {
+  #modalRoot .main-box {
+    left: 0%;
+  }
+}
+@media (min-width: 992px) {
+  #modalRoot .main-box {
+    float: left;
+    width: 100%;
+  }
+}
+@media (min-width: 992px) {
+  #modalRoot .main-box {
+    left: 0%;
+  }
+}
 .valid:after {
   font-family: 'Glyphicons Halflings';
   content: "\e013";
@@ -18704,6 +19476,7 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
   font-weight: 600;
   font-size: 10pt;
   color: #214a5f;
+  text-transform: uppercase;
 }
 #usersListRoot .user-row .score-container span {
   background-color: #ffffff;
@@ -18834,6 +19607,7 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
     font-weight: 300;
     font-size: 14pt;
     color: #777777;
+    text-transform: uppercase;
     margin: 0px;
   }
   #usersListRoot .users-header h2 {
@@ -18852,6 +19626,7 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
     font-weight: 300;
     font-size: 16pt;
     color: #777777;
+    text-transform: uppercase;
     text-align: center;
   }
   #usersListRoot .users-table-rows {
@@ -18889,6 +19664,7 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
   font-weight: 300;
   font-size: 16pt;
   color: #214a5f;
+  text-transform: uppercase;
 }
 @media (min-width: 992px) {
   .profile-content .data-header .data-header-title {
@@ -18896,6 +19672,7 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
     font-weight: 600;
     font-size: 20pt;
     color: #214a5f;
+    text-transform: uppercase;
   }
 }
 .profile-content .button-wrapper {
@@ -19895,6 +20672,7 @@ fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-
   font-weight: 300;
   font-size: 20pt;
   color: #0d75a6;
+  text-transform: uppercase;
 }
 .info-complete-bar p + p {
   font-family: 'Open Sans', sans-serif;
@@ -20277,6 +21055,7 @@ fieldset[disabled] .view-contest-entry-actions-wrapper .btn-back-contest {
   font-weight: 300;
   font-size: 20pt;
   color: #214a5f;
+  text-transform: uppercase;
   padding: 16px 10px 12px;
   text-align: center;
 }
@@ -20500,6 +21279,7 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   font-weight: 600;
   font-size: 10pt;
   color: #777777;
+  text-transform: uppercase;
   display: block;
   height: 28px;
   padding: 5px 10px;
@@ -20637,6 +21417,7 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   font-weight: 300;
   font-size: 20pt;
   color: #214a5f;
+  text-transform: uppercase;
   padding: 16px 10px 12px;
   text-align: center;
 }
@@ -20686,6 +21467,7 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   font-weight: 300;
   font-size: 20pt;
   color: #214a5f;
+  text-transform: uppercase;
   padding: 16px 10px 12px;
   text-align: center;
 }
@@ -20694,6 +21476,7 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   font-weight: 300;
   font-size: 20pt;
   color: #214a5f;
+  text-transform: uppercase;
   padding: 16px 10px 12px;
   text-align: center;
   color: #ffffff;
@@ -20704,6 +21487,7 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
     font-weight: 300;
     font-size: 16pt;
     color: #ffffff;
+    text-transform: uppercase;
   }
 }
 #betaComp .beta-info-wrapper {
@@ -21528,6 +22312,7 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
   font-weight: 300;
   font-size: 20pt;
   color: #214a5f;
+  text-transform: uppercase;
   padding: 30px 15px 30px 15px;
   background-color: #f8f8f8;
   text-align: center;
@@ -21539,6 +22324,7 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
     font-weight: 300;
     font-size: 16pt;
     color: #214a5f;
+    text-transform: uppercase;
   }
 }
 .default-info-text {
@@ -21546,6 +22332,7 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
   font-weight: 300;
   font-size: 20pt;
   color: #0d75a6;
+  text-transform: uppercase;
   text-align: center;
   margin: 0 auto;
   padding: 15px 0;
@@ -21556,6 +22343,7 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
     font-weight: 300;
     font-size: 12pt;
     color: #0d75a6;
+    text-transform: uppercase;
   }
 }
 .blue-separator {
@@ -21576,6 +22364,7 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
   font-weight: 600;
   font-size: 18pt;
   color: #214a5f;
+  text-transform: uppercase;
 }
 @media (max-width: 767px) {
   .contest-big-bold-text {
@@ -21590,6 +22379,7 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
   font-weight: 300;
   font-size: 18pt;
   color: #214a5f;
+  text-transform: uppercase;
 }
 @media (max-width: 767px) {
   .contest-big-light-text {

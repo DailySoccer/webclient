@@ -289,6 +289,8 @@ class EnterContestComp implements DetachAware {
         .then((contestId) {
           //_teamConfirmed = true;
           GameMetrics.logEvent(GameMetrics.TEAM_CREATED);
+          GameMetrics.peopleSet({"Last ${contest.competitionType} Created": new DateTime.now()});
+          GameMetrics.peopleSet({"Last Team Created": new DateTime.now()});
           _router.go('view_contest_entry', { "contestId": contestId,
                                              "parent": _routeProvider.parameters["parent"],
                                              "viewContestEntryMode": contestId == contest.contestId? "created" : "swapped"});

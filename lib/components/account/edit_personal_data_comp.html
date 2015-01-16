@@ -1,6 +1,6 @@
 <div id="personalDataContent" ng-show="!loadingService.isLoading" ng-cloack>
 
-  <div class="edit-personal-data-modal-header">
+  <div class="edit-personal-data-header">
     <span class="header-title">EDITAR CUENTA</span>
   </div>
   <form id="editPersonalDataForm" class="form-horizontal" ng-submit="saveChanges()" role="form" autocomplete="off">
@@ -9,7 +9,7 @@
       <div class="content-field">
         <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">Nombre</span></div>
         <div class="control-wrapper">
-          <input id="txtName" type="text" ng-model="editedFirstName" placeholder="Nombre" class="form-control"  tabindex="1" auto-focus>
+          <input id="txtName" type="text" ng-model="editedFirstName" placeholder="Nombre" class="form-control"  tabindex="1">
         </div>
       </div>
       <!-- Apelidos -->
@@ -83,17 +83,17 @@
 
         <div class="subscription-wrapper">
           <div class="subscription-label">NEWSLETTER/OFERTAS ESPECIALES</div>
-          <div class="check-wrapper"> <input type="checkbox" id="inputNewsletter"> </div>
+          <div class="check-wrapper"> <input type="checkbox" id="inputNewsletter" name="switchNewsletter"> </div>
         </div>
 
         <div class="subscription-wrapper">
           <div class="subscription-label">NOTIFICACIONES DE JUEGO</div>
-          <div class="check-wrapper"> <input type="checkbox"> </div>
+          <div class="check-wrapper"> <input type="checkbox" name="switchGameAlerts"> </div>
         </div>
 
         <div class="subscription-wrapper">
           <div class="subscription-label">NOTIFICACIONES DE TUS FICHAJES</div>
-          <div class="check-wrapper"> <input type="checkbox"> </div>
+          <div class="check-wrapper"> <input type="checkbox" name="switchsoccerPlayerAlerts"> </div>
         </div>
 
       </div>

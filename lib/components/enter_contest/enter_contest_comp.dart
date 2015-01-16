@@ -16,7 +16,7 @@ import 'package:webclient/models/contest_entry.dart';
 import "package:webclient/models/instance_soccer_player.dart";
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/utils/game_metrics.dart';
-
+import 'package:webclient/utils/html_utils.dart';
 
 @Component(
     selector: 'enter-contest',
@@ -90,13 +90,25 @@ class EnterContestComp implements DetachAware {
         }
       });
 
-
+    // Subscripción para controlar la salida
     _routeHandle = _routeProvider.route.newHandle();
-    _routeHandle.onPreLeave.listen((RoutePreLeaveEvent event) {
-      event.route.dontLeaveOnParamChanges;
-      //bool decision = window.confirm('Estas seguro que quieres salir? Si pulsas en aceptar perderas los cambios realizados en esta alineación y abandonaras el torneo.');
-      //event.allowLeave(new Future.value(decision));
-    });
+    _routeHandle.onPreLeave.listen(allowLeaveThePage);
+  }
+
+  void allowLeaveThePage(RoutePreLeaveEvent event) {
+    // Verificamos si esta la lista vacía por completo para permitir salir sin alertas.
+    var isLineupEmpty = !lineupSlots.any((soccerPlayer) => soccerPlayer != null);
+
+    event.allowLeave(isLineupEmpty?
+                     new Future<bool>.value(true) :
+                     modalShow("Atención!",
+                               "Estas a punto de salir.<br>Si continuas perderás los cambios en el equipo que estás configurando.<br><br>¿Estás seguro de querer abandonar?",
+                                onOk:  "Si",
+                                onCancel: "No"
+                                ).then((resp) {
+                                  return resp;
+                                })
+      );
   }
 
   void resetLineup() {
@@ -182,9 +194,8 @@ class EnterContestComp implements DetachAware {
          nameFilter = null;
          break;
        }
-     }
-
-    //Si ya no estamos en modo seleción, scrolleamos hasta la altura del dinero que nos queda disponible.
+    }
+    // Si ya no estamos en modo seleción, scrolleamos hasta la altura del dinero que nos queda disponible.
     if (!isSelectingSoccerPlayer) {
       scrDet.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('main-menu-slide').offsetHeight, ignoreInDesktop: true);
     }
@@ -262,22 +273,20 @@ class EnterContestComp implements DetachAware {
 
     if (editingContestEntry) {
       _contestsService.editContestEntry(contestEntryId, lineupSlots.map((player) => player["id"]).toList())
-        .then((_) => _router.go('view_contest_entry', {
-                                        "contestId": contest.contestId,
-                                        "parent": _routeProvider.parameters["parent"],
-                                        "viewContestEntryMode": "edited"
-                                        }))
+        .then((_) {
+          _router.go('view_contest_entry', { "contestId": contest.contestId,
+                                             "parent": _routeProvider.parameters["parent"],
+                                             "viewContestEntryMode": "edited"});
+        })
         .catchError((error) => _errorCreating);
     }
     else {
       _contestsService.addContestEntry(contest.contestId, lineupSlots.map((player) => player["id"]).toList())
         .then((contestId) {
           GameMetrics.logEvent(GameMetrics.TEAM_CREATED);
-          _router.go('view_contest_entry', {
-                              "contestId": contestId,
-                              "parent": _routeProvider.parameters["parent"],
-                              "viewContestEntryMode": contestId == contest.contestId? "created" : "swapped"
-                               });
+          _router.go('view_contest_entry', { "contestId": contestId,
+                                             "parent": _routeProvider.parameters["parent"],
+                                             "viewContestEntryMode": contestId == contest.contestId? "created" : "swapped"});
         })
         .catchError((error) => _errorCreating);
     }
@@ -335,5 +344,4 @@ class EnterContestComp implements DetachAware {
   Timer _retryOpTimer;
   RouteHandle _routeHandle;
   ScreenDetectorService _scrDet;
-
 }

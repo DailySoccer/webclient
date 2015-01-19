@@ -10,7 +10,6 @@ import 'package:webclient/utils/game_metrics.dart';
 
 @Component(
    selector: 'landing-page-1-slide',
-   templateUrl: 'packages/webclient/components/landing_page_1_slide_comp.html',
    useShadowDom: false
 )
 class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
@@ -21,10 +20,26 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
   int screenHeight;
 
 
-  LandingPage1SlideComp(this._router, this._profileService, this.scrDet, this._loadingService) {
+  LandingPage1SlideComp(this._router, this._profileService, this.scrDet, this._loadingService, this._rootElement) {
     _streamListener = scrDet.mediaScreenWidth.listen(onScreenWidthChange);
     GameMetrics.logEvent(GameMetrics.LANDING_PAGE);
     GameMetrics.trackConversion(true);
+  }
+
+  void _composeDesktopHtml() {
+    String html = _commonHTML.replaceAll('@HTMLContent', _theDesktopHTML);
+    _createHTML(html);
+  }
+
+  void _ComposeMobileHtml() {
+    String html = _commonHTML.replaceAll('@HTMLContent', _theMobileHTML);
+    _createHTML(html);
+  }
+
+  void _createHTML(String theHTML) {
+    _rootElement.nodes.clear();
+    _rootElement.appendHtml(theHTML);
+    _rootElement.querySelectorAll("[buttonOnclick]").onClick.listen(_buttonPressed);
   }
 
   void smoothScrollTo(String selector) {
@@ -32,72 +47,108 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
   }
 
   void onShadowRoot(emulatedRoot) {
-
-    screenHeight = window.innerHeight - 70 - 122;
-
     // Nos deberia venir con el loading activo, ahora lo quitamos
     _loadingService.isLoading = false;
 
-    // Capturamos los elementos envolventes, porque el layout en landing page es diferente al del resto de la web.
-    _bodyObj     = querySelector('body');
-    _mainWrapper = querySelector('#mainWrapper');
-
-    //_bodyObj.classes.add('fondo-negro');
-    _mainWrapper.classes
-      ..remove('wrapper-content-container')
-      ..add('landing-wrapper');
-
-    _mainContent = querySelector('#mainContent');
-    _mainContent.classes
-      ..remove('main-content-container');
-
     if(scrDet.isXsScreen) {
-      onScreenWidthChange("xs");
+      _ComposeMobileHtml();
+    }
+    else {
+      _composeDesktopHtml();
     }
   }
 
   void detach() {
     _streamListener.cancel();
-
-    if (_bodyObj != null) {
-      _bodyObj.classes.remove('fondo-negro');
-    }
-
-    if (_mainWrapper != null) {
-      _mainWrapper.classes
-        ..remove('landing-wrapper')
-        ..add('wrapper-content-container');
-    }
-
-    if (_mainContent != null) {
-      _mainContent.classes
-        ..remove('unlogged-margin')
-        ..add('main-content-container');
-    }
   }
 
   void onScreenWidthChange(String msg) {
-    // Solo nos mostramos como modal en desktop
-    if (msg == "xs") {
-      Element container = querySelector('#mobileContent .content');
-      if (container != null) {
-        container.style.height = ('${window.innerHeight -130}px');
-      }
+    if(scrDet.isXsScreen) {
+      _ComposeMobileHtml();
+    }
+    else {
+      _composeDesktopHtml();
     }
   }
 
-  void buttonPressed(String route) {
-    _router.go(route, {});
+  void _buttonPressed(event) {
+    String path = event.currentTarget.attributes["buttonOnclick"];
+    _router.go(path, {});
     scrDet.scrollTo('#mainWrapper', offset: 0, duration:  0, smooth: false, ignoreInDesktop: false);
   }
 
+  String _commonHTML =
+    '''
+      <div class="screen-pattern"></div>
+      <div id="landingPageRoot">
+        @HTMLContent
+        <div class="beta-label"><img src="images/beta.png"/></div>
+      </div>
+    ''';
+
+  String _theDesktopHTML =
+    '''
+      <div id="desktopContent">    
+        <div class="main-title-wrapper">
+    
+          <div class="main-title">LIGAS FANTÁSTICAS SEMANALES</div>
+          <div class="main-sub-title">
+            Juega y gana cuando quieras, sin esperar al final de la temporada.
+          </div>
+          <div class="button-wrap">
+            <button type="button" class="button-play" buttonOnclick="join" id="playButton1">ÚNETE Y JUEGA GRATIS</button>
+          </div>
+          <div class="text-wrapper">
+    
+            <div class="module-column">
+              <p class="icono-text">Compite en tantos torneos como quieras de Liga, Premier y Champions</p>
+            </div>
+    
+            <div class="module-column">
+              <p class="icono-text">Crea tu equipo en segundos desde cualquier dispositivo</p>
+            </div>
+    
+            <div class="module-column">
+              <p class="icono-text">Podrás ganar dinero en efectivo con pagos inmediatos</p>
+            </div>
+    
+          </div>
+          <div class="modules-wrapper">
+            <div class="module-column">
+              <img src="images/iconsLeagues.png">
+            </div>
+            <div class="module-column">
+              <img src="images/iconsDevices.png">
+            </div>
+            <div class="module-column">
+              <img src="images/iconsPayment.png">
+            </div>
+          </div>
+    
+        </div>
+        
+      </div>
+    ''';
+
+  String _theMobileHTML =
+  '''
+        <div id="mobileContent">
+          <div class="content">
+            <p class="main-title-mobile">LIGAS FANTÁSTICAS <br> SEMANALES</p>
+            <p class="title-sup-text-mobile">COMPITE EN TANTOS TORNEOS COMO QUIERAS</p>
+            <p class="title-sup-text-mobile">CREA TU EQUIPO EN SEGUNDOS</p>
+            <p class="title-sup-text-mobile">Y GANA DINERO</p>
+            <div class="button-wrap">
+              <button type="button" class="button-play-mobile" buttonOnclick="join" id="playButtonMobile">ÚNETE Y JUEGA GRATIS</button>
+            </div>
+          </div> 
+        </div>
+    ''';
   var _streamListener;
 
   Router _router;
   ProfileService _profileService;
   LoadingService _loadingService;
-
-  Element _bodyObj;
-  Element _mainWrapper;
-  Element _mainContent;
+  Element _rootElement;
+  Element landingElement;
 }

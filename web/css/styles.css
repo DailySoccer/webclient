@@ -10050,6 +10050,7 @@ fieldset[disabled] #rootFooter .user-info-sup-footer .add-funds-button {
   }
 }
 #landingPageRoot {
+  position: relative;
   overflow: hidden;
   height: 100%;
 }

@@ -29,6 +29,7 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
   void _composeDesktopHtml() {
   String theDesktopHTML =
   '''
+    <div class="screen-pattern"></div> 
     <div id="landingPageRoot">
       <div id="desktopContent">    
         <div class="main-title-wrapper">
@@ -78,6 +79,7 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
   void _ComposeMobileHtml() {
     String theMobileHTML =
     '''
+      <div class="screen-pattern"></div>
       <div id="landingPageRoot">
         <div id="mobileContent">
           <div class="content">

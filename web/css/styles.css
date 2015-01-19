@@ -10538,6 +10538,14 @@ fieldset[disabled] #mobileContent .button-wrap .button-play-mobile {
   margin-bottom: 5px;
   padding-bottom: 5px;
 }
+.screen-pattern {
+  position: absolute;
+  background-image: url('../images/pattern.png');
+  background-repeat: repeat;
+  width: 100%;
+  height: 100%;
+  bottom: 122px;
+}
 .beta-label {
   width: 100%;
   text-align: center;
@@ -21460,7 +21468,7 @@ body {
 }
 @media (max-width: 767px) {
   .global-landing-page .wrapper-content-container {
-    min-height: 540px;
+    min-height: 580px;
   }
 }
 .global-landing-page .wrapper-content-container > .main-content-container {

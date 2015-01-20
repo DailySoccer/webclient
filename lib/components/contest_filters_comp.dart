@@ -338,7 +338,6 @@ class ContestFiltersComp implements ShadowRootAware {
     JsUtils.runJavascript('#slider-range', 'noUiSlider', {
       'start'     : [entryFeeSliderRange[ENTRY_FEE_MIN_RANGE], entryFeeSliderRange[ENTRY_FEE_MAX_RANGE]],
       'step'      : 1,
-      'behaviour' : 'drag',
       'connect'   : true,
       'range'     : {'min':entryFeeSliderRange[ENTRY_FEE_MIN_RANGE],'max':entryFeeSliderRange[ENTRY_FEE_MAX_RANGE]}
     });

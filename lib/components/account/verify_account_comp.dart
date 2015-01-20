@@ -17,6 +17,8 @@ class VerifyAccountComp implements ShadowRootAware {
   static const String STATE_ENTERING        = 'STATE_ENTERING';
   static const String STATE_INVALID_URL     = 'STATE_INVALID_URL';
   static const String STATE_INVALID_TOKEN   = 'STATE_INVALID_TOKEN';
+  static const String STATE_VERIFIED        = 'STATE_VERIFIED';
+
 
   String state = STATE_ENTERING;
 
@@ -25,6 +27,7 @@ class VerifyAccountComp implements ShadowRootAware {
 
   bool get isLoading => _loadingService.isLoading;
 
+  bool get isVerified => state==STATE_VERIFIED;
 
 
   VerifyAccountComp(this._router, this._routeProvider, this._profileManager, this._rootElement, this._loadingService) {
@@ -42,7 +45,9 @@ class VerifyAccountComp implements ShadowRootAware {
       _profileManager.verifyAccountToken(_stormPathTokenId)
        .then((_) {
           GameMetrics.logEvent(GameMetrics.VERIFIED_ACCOUNT);
-          _router.go('login',{});
+          state = STATE_VERIFIED;
+          _loadingService.isLoading = false;
+          //_router.go('login',{});
       })
        .catchError( (ServerError error) {
           state = STATE_INVALID_TOKEN;

@@ -10,6 +10,8 @@
           <div ng-switch-when="STATE_INVALID_URL"     class="panel-title">ERROR 503</div>
           <!-- SI ES TOKEN INVALIDO -->
           <div ng-switch-when="STATE_INVALID_TOKEN"   class="panel-title">VERIFICACIÓN DE CUENTA</div>
+          <!-- SI ES TOKEN VALIDO -->
+          <div ng-switch-when="STATE_VERIFIED"   class="panel-title">VERIFICACIÓN DE CUENTA</div>
         </div>
 
       </div>
@@ -23,6 +25,18 @@
                 <div ng-switch-when="STATE_INVALID_TOKEN" class="form-description">
                   El token proporcionado no es válido o ha sido usado ya.
                 </div>
+                <div ng-switch-when="STATE_VERIFIED" class="form-description">
+                  Se ha validado correctamente tu cuenta.
+                </div>
+          </div>
+
+          <!-- BUTTONS -->
+          <div class="input-group user-form-field" ng-if="isVerified">
+            <div class="new-row">
+              <div class="buttons-wrapper">
+                <button type="submit" id="btnSubmit" class="enter-button" ng-click="navigateTo('login', {}, $event)">ENTRAR</button>
+              </div>
+            </div>
           </div>
         </form>
 

@@ -16219,7 +16219,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
 }
 .soccer-player-list-header-table .filterOrderName {
   float: left;
-  width: 47.5%;
+  width: 50.83333333%;
   position: relative;
   min-height: 1px;
   padding-left: 0px;
@@ -16229,7 +16229,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
 @media (min-width: 768px) {
   .soccer-player-list-header-table .filterOrderName {
     float: left;
-    width: 45%;
+    width: 53.33333333%;
   }
 }
 @media (min-width: 992px) {
@@ -16250,7 +16250,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
 .soccer-player-list-header-table .filterOrderPlayed {
   position: relative;
   float: left;
-  width: 15%;
+  width: 12.5%;
   min-height: 1px;
   padding-left: 0px;
   padding-right: 0px;
@@ -16271,6 +16271,11 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   font-weight: 700;
   font-size: 10pt;
   color: #ffffff;
+}
+@media (max-width: 767px) {
+  .soccer-player-list-header-table a {
+    font-size: 7pt;
+  }
 }
 .soccer-players-list {
   overflow: auto;
@@ -16339,7 +16344,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
 }
 .soccer-players-list .soccer-players-list-slot .column-primary-info {
   float: left;
-  width: 50%;
+  width: 54.16666667%;
   position: relative;
   min-height: 1px;
   padding-left: 0px;
@@ -16353,6 +16358,11 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
     width: 41.66666667%;
   }
 }
+@media (max-width: 767px) {
+  .soccer-players-list .soccer-players-list-slot .column-primary-info {
+    padding-left: 5px;
+  }
+}
 .soccer-players-list .soccer-players-list-slot .column-primary-info .soccer-player-name,
 .lineup-selector .lineup-selector-slot .column-primary-info .soccer-player-name {
   font-family: 'Open Sans', sans-serif;
@@ -16361,7 +16371,13 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   color: #777777;
   display: block;
   text-transform: uppercase;
-  padding-top: 9px;
+  padding-top: 10px;
+}
+@media (max-width: 767px) {
+  .soccer-players-list .soccer-players-list-slot .column-primary-info .soccer-player-name,
+  .lineup-selector .lineup-selector-slot .column-primary-info .soccer-player-name {
+    font-size: 7pt;
+  }
 }
 .soccer-players-list .soccer-players-list-slot .column-primary-info .match-event-name,
 .lineup-selector .lineup-selector-slot .column-primary-info .match-event-name {
@@ -16369,6 +16385,12 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   font-weight: 400;
   font-size: 9pt;
   color: #59add5;
+}
+@media (max-width: 767px) {
+  .soccer-players-list .soccer-players-list-slot .column-primary-info .match-event-name,
+  .lineup-selector .lineup-selector-slot .column-primary-info .match-event-name {
+    font-size: 7pt;
+  }
 }
 .soccer-players-list .soccer-players-list-slot .column-dfp {
   position: relative;
@@ -16379,15 +16401,20 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   padding-right: 0px;
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
-  font-size: 10pt;
+  font-size: 9pt;
   color: #777777;
   padding-top: 10px;
   text-align: center;
 }
+@media (max-width: 767px) {
+  .soccer-players-list .soccer-players-list-slot .column-dfp {
+    font-size: 8pt;
+  }
+}
 .soccer-players-list .soccer-players-list-slot .column-played {
   position: relative;
   float: left;
-  width: 16.66666667%;
+  width: 12.5%;
   min-height: 1px;
   padding-left: 0px;
   padding-right: 0px;
@@ -16397,6 +16424,11 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   color: #777777;
   padding-top: 10px;
   text-align: center;
+}
+@media (max-width: 767px) {
+  .soccer-players-list .soccer-players-list-slot .column-played {
+    font-size: 8pt;
+  }
 }
 .soccer-players-list .soccer-players-list-slot .column-salary,
 .lineup-selector .lineup-selector-slot .column-salary {
@@ -16410,8 +16442,15 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   font-weight: 700;
   font-size: 9pt;
   color: #777777;
-  padding-top: 11px;
+  padding-top: 10px;
   text-align: right;
+}
+@media (max-width: 767px) {
+  .soccer-players-list .soccer-players-list-slot .column-salary,
+  .lineup-selector .lineup-selector-slot .column-salary {
+    font-size: 8pt;
+    padding-right: 5px;
+  }
 }
 .soccer-players-list .soccer-players-list-slot .column-action {
   position: relative;
@@ -16429,11 +16468,6 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   padding-right: 15%;
   font-size: 10pt;
   width: 30px;
-}
-@media (min-width: 768px) {
-  .soccer-players-list .soccer-players-list-slot .column-action .action-button {
-    font-size: 9pt;
-  }
 }
 .soccer-players-list .soccer-players-list-slot .column-action .action-button.add {
   background-color: #428bca;
@@ -17224,6 +17258,11 @@ lineup-selector {
 }
 .lineup-selector .lineup-selector-slot:nth-last-child(2) {
   border-width: 0;
+}
+@media (max-width: 767px) {
+  .lineup-selector .lineup-selector-slot:nth-last-child(2) {
+    border-width: 1px;
+  }
 }
 .lineup-selector .lineup-selector-slot .column-fieldpos {
   line-height: 42px;

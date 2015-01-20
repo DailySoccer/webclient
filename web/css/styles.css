@@ -16241,7 +16241,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
 @media (min-width: 992px) {
   .soccer-player-list-header-table .filterOrderName {
     float: left;
-    width: 36.66666667%;
+    width: 43.33333333%;
   }
 }
 .soccer-player-list-header-table .filterOrderDFP {
@@ -16361,7 +16361,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
 @media (min-width: 992px) {
   .soccer-players-list .soccer-players-list-slot .column-primary-info {
     float: left;
-    width: 41.66666667%;
+    width: 45.83333333%;
   }
 }
 @media (max-width: 767px) {

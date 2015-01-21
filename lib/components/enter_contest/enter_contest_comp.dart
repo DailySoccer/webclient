@@ -25,6 +25,17 @@ import 'package:webclient/utils/html_utils.dart';
 )
 class EnterContestComp implements DetachAware {
 
+  static final String ERROR_RETRY_OP = "ERROR_RETRY_OP";
+  static final String ERROR_CONTEST_INVALID = "ERROR_CONTEST_INVALID";
+  static final String ERROR_CONTEST_NOT_ACTIVE = "ERROR_CONTEST_NOT_ACTIVE";
+  static final String ERROR_CONTEST_FULL = "ERROR_CONTEST_FULL";
+  static final String ERROR_FANTASY_TEAM_INCOMPLETE = "ERROR_FANTASY_TEAM_INCOMPLETE";
+  static final String ERROR_SALARYCAP_INVALID = "ERROR_SALARYCAP_INVALID";
+  static final String ERROR_FORMATION_INVALID = "ERROR_FORMATION_INVALID";
+  static final String ERROR_CONTEST_ENTRY_INVALID = "ERROR_CONTEST_ENTRY_INVALID";
+  static final String ERROR_OP_UNAUTHORIZED = "ERROR_OP_UNAUTHORIZED";
+  static final String ERROR_USER_ALREADY_INCLUDED = "ERROR_USER_ALREADY_INCLUDED";
+
   ScreenDetectorService scrDet;
   LoadingService loadingService;
 
@@ -272,8 +283,6 @@ class EnterContestComp implements DetachAware {
       return;
     }
 
-    _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
-
     if (editingContestEntry) {
       _contestsService.editContestEntry(contestEntryId, lineupSlots.map((player) => player["id"]).toList())
         .then((_) {
@@ -305,8 +314,13 @@ class EnterContestComp implements DetachAware {
     if (error.isRetryOpError) {
       _retryOpTimer = new Timer(const Duration(seconds:3), () => createFantasyTeam());
     }
+    else if (error.responseError.contains(ERROR_USER_ALREADY_INCLUDED)) {
+      _router.go('view_contest_entry', { "contestId": contestId,
+                                         "parent": _routeProvider.parameters["parent"],
+                                         "viewContestEntryMode": "created" });
+    }
     else {
-      _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
+      _showMsgError(error);
     }
   }
 
@@ -339,6 +353,39 @@ class EnterContestComp implements DetachAware {
 
   void onRowClick(String soccerPlayerId) {
     _router.go("enter_contest.soccer_player_info",  { "instanceSoccerPlayerId": soccerPlayerId });
+  }
+
+  Map<String, Map> errorMap = {
+    ERROR_CONTEST_NOT_ACTIVE: {
+        "title"   : "Torneo en vivo",
+        "generic" : "No es posible entrar en un torneo que ya ha comenzado.",
+        "editing" : "No es posible modificar un equipo cuando el torneo ha comenzado."
+    },
+    "ERROR": {
+        "title"   : "Aviso",
+        "generic" : "Ha sucedido un error. No es posible entrar en el torneo.",
+        "editing" : "Ha sucedido un error. No es posible modificar el equipo."
+    },
+  };
+
+  void _showMsgError(ServerError error) {
+    String title = "Aviso";
+    String info = "Ha sucedido un error.";
+
+    for (var key in errorMap.keys) {
+      if (error.responseError.contains(key)) {
+        title = errorMap[key]["title"];
+        info  = errorMap[key].containsKey("editing") ? errorMap[key]["editing"] : errorMap[key]["generic"];
+        break;
+      }
+    }
+
+    modalShow(
+        title,
+        info
+    )
+    .then((resp) {
+    });
   }
 
   Router _router;

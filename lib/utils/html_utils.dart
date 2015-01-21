@@ -87,8 +87,49 @@ Future<bool> modalShow(String title, String content,{String onOk: null, String o
   // Aqui hago el setup de los botones. (que tiene que hacer cada botón al ser clickado... ver: main_menu_slide_comp).
   parent.querySelectorAll("[eventCallback]").onClick.listen(onButtonClick);
 
-
   JsUtils.runJavascript('#modalRoot', 'modal', null);
   JsUtils.runJavascript('#modalRoot', 'on', {'hidden.bs.modal': onClose});
   return completer.future;
+}
+
+
+
+
+String trimStringToPx(Element elem, int maxWidthAllowed) {
+/*
+  // Función que compone un elemento que utilizamos para medir el ancho que ocupa.
+  Element composeRuler(Element elem) {
+   // String rulerCode = ''' <${elem.tagName} class="${elem.classes.join(' ')}" style="visibility: hidden; white-space: nowrap; position: absolute; top: -100; left: 0px;"></${elem.tagName}>''';
+
+    Element rulerElement = new Element.span();
+
+    rulerElement.style.setProperty('fontFamily', elem.style.fontFamily);
+    rulerElement.style.setProperty('fontSize', elem.style.fontSize);
+
+    rulerElement.style.fontStyle = elem.style.fontStyle;
+    rulerElement.style.fontStyle = elem.style.fontStyle;
+
+    return rulerElement;
+  }
+*/
+  int visualStringWidth(String theString) {
+
+    Element ruler = elem;
+    ruler.text = theString;
+
+    return ruler.client.width;
+  }
+
+  String tmpString = elem.text;
+  String trimmedString = elem.text;
+
+  int fullStringWidth = visualStringWidth(tmpString);
+  if (fullStringWidth > maxWidthAllowed) {
+    trimmedString += '...';
+    while(visualStringWidth(trimmedString) > maxWidthAllowed) {
+      tmpString = tmpString.substring(0, tmpString.length -1);
+      trimmedString = tmpString + '...';
+    }
+  }
+  return trimmedString;
 }

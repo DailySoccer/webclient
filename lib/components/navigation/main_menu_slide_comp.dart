@@ -78,19 +78,18 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
 
     _rootElement.setInnerHtml(finalHtml, treeSanitizer: NULL_TREE_SANITIZER);
 
-    restrictUserNameWidth();
+    if (profileService.isLoggedIn) {
+      restrictUserNameWidth();
+    }
   }
 
   void  restrictUserNameWidth() {
       Element userNameElement = _rootElement.querySelector('#menuUser');
       if (userNameElement != null ) {
-        int currElementWidth = userNameElement.client.width;
-        if(currElementWidth > 60 && userNameElement.text.length > _maxNicknameLength - 3) {
-          String texto = userNameElement.text.substring(0, _maxNicknameLength - 3) + '...';
-          userNameElement.text = texto;
-        }
+        userNameElement.text = trimStringToPx(userNameElement, _maxNicknameWidth);
       }
   }
+
 
   void _setUpSlidingMenu() {
 
@@ -223,9 +222,7 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
     if (!profileService.isLoggedIn) {
       return "";
     }
-
-    return profileService.user.nickName.length > _maxNicknameLength ? profileService.user.nickName.substring(0, _maxNicknameLength-3) + "..." :
-                                                                      profileService.user.nickName;
+    return profileService.user.nickName;
   }
 
   String _getNotLoggedInHtml() {
@@ -310,5 +307,5 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
 
   String _slideState = "hidden";
 
-  static final int _maxNicknameLength = 27;
+  static final int _maxNicknameWidth = 200;
 }

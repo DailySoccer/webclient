@@ -13256,8 +13256,9 @@ main-menu-slide {
     white-space: nowrap;
   }
   #mainMenu .dropdown-menu {
-    margin-left: -115px;
-    margin-top: 7px;
+    position: relative;
+    top: 6px;
+    left: -10px;
     padding: 0px;
   }
   #mainMenu .dropdown-menu > li > a {

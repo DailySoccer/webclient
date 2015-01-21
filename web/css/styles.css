@@ -17339,6 +17339,7 @@ lineup-selector {
   padding-right: 0px;
   font-size: 20pt;
   line-height: 30px;
+  text-align: center;
 }
 @media (min-width: 992px) {
   .lineup-selector .lineup-selector-slot .column-action {

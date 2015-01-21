@@ -7,11 +7,11 @@
       <div class="panel-heading">
         <div ng-switch="state">
           <!-- SI ES INVALID URL -->
-          <div ng-switch-when="STATE_INVALID_URL"     class="panel-title">ERROR 503</div>
+          <div ng-switch-when="STATE_INVALID_URL"     class="panel-title-centered">ERROR 503</div>
           <!-- SI ES TOKEN INVALIDO -->
-          <div ng-switch-when="STATE_INVALID_TOKEN"   class="panel-title">VERIFICACIÓN DE CUENTA</div>
+          <div ng-switch-when="STATE_INVALID_TOKEN"   class="panel-title-centered">VERIFICACIÓN DE CUENTA</div>
           <!-- SI ES TOKEN VALIDO -->
-          <div ng-switch-when="STATE_VERIFIED"   class="panel-title">VERIFICACIÓN DE CUENTA</div>
+          <div ng-switch-when="STATE_VERIFIED"   class="panel-title-centered">VERIFICACIÓN DE CUENTA</div>
         </div>
 
       </div>
@@ -19,13 +19,13 @@
 
         <form id="delete-me" class="form-horizontal" role="form">
           <div ng-switch="state">
-                <div ng-switch-when="STATE_INVALID_URL" class="form-description">
+                <div ng-switch-when="STATE_INVALID_URL" class="form-description-air">
                   La página solicitada no está disponible
                 </div>
-                <div ng-switch-when="STATE_INVALID_TOKEN" class="form-description">
+                <div ng-switch-when="STATE_INVALID_TOKEN" class="form-description-air">
                   El token proporcionado no es válido o ha sido usado ya.
                 </div>
-                <div ng-switch-when="STATE_VERIFIED" class="form-description">
+                <div ng-switch-when="STATE_VERIFIED" class="form-description-air">
                   Se ha validado correctamente tu cuenta.
                 </div>
           </div>
@@ -34,7 +34,7 @@
           <div class="input-group user-form-field" ng-if="isVerified">
             <div class="new-row">
               <div class="buttons-wrapper">
-                <button type="submit" id="btnSubmit" class="enter-button" ng-click="navigateTo('login', {}, $event)">ENTRAR</button>
+                <button type="submit" id="btnSubmit" class="btn-primary" ng-click="navigateTo('login', {}, $event)">ENTRAR</button>
               </div>
             </div>
           </div>

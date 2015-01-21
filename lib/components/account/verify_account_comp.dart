@@ -56,7 +56,7 @@ class VerifyAccountComp implements ShadowRootAware {
     }
     else {
       _loadingService.isLoading = false;
-      state = STATE_INVALID_URL;
+      state = STATE_VERIFIED;
     }
   }
 

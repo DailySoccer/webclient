@@ -92,43 +92,65 @@ Future<bool> modalShow(String title, String content,{String onOk: null, String o
   return completer.future;
 }
 
-
-
-
 String trimStringToPx(Element elem, int maxWidthAllowed) {
-/*
-  // Función que compone un elemento que utilizamos para medir el ancho que ocupa.
-  Element composeRuler(Element elem) {
-   // String rulerCode = ''' <${elem.tagName} class="${elem.classes.join(' ')}" style="visibility: hidden; white-space: nowrap; position: absolute; top: -100; left: 0px;"></${elem.tagName}>''';
 
-    Element rulerElement = new Element.span();
-
-    rulerElement.style.setProperty('fontFamily', elem.style.fontFamily);
-    rulerElement.style.setProperty('fontSize', elem.style.fontSize);
-
-    rulerElement.style.fontStyle = elem.style.fontStyle;
-    rulerElement.style.fontStyle = elem.style.fontStyle;
-
-    return rulerElement;
-  }
-*/
+  // Closure para calcular el ancho en pixels que tendría una cadena dentro del elemento.
   int visualStringWidth(String theString) {
+    var displayOriginal = elem.style.display;
+    Map OriginalStyle = {};
+    OriginalStyle.addAll(
+        {
+          'display': elem.style.display/*,
+          'padding': elem.style.padding,
+          'border' : elem.style.border,
+          'margin' : elem.style.margin*/
+        }
+    );
+    elem.style.setProperty("display", "inline-block");
+    /*elem.style.setProperty("padding", "0");
+    elem.style.setProperty("border",  "none");
+    elem.style.setProperty("margin",  "0");*/
 
-    Element ruler = elem;
-    ruler.text = theString;
+    elem.text = theString;
 
-    return ruler.client.width;
+    int result = elem.offsetWidth;
+    elem.style.setProperty("display", OriginalStyle["display"]);
+    /*elem.style.setProperty("padding", OriginalStyle["padding"]);
+    elem.style.setProperty("border",  OriginalStyle["border"]);
+    elem.style.setProperty("margin",  OriginalStyle["margin"]);*/
+
+    return result;
   }
 
   String tmpString = elem.text;
   String trimmedString = elem.text;
 
   int fullStringWidth = visualStringWidth(tmpString);
+
+  // Si la cadena cabe en el ancho, devolvemos la cadena
   if (fullStringWidth > maxWidthAllowed) {
     trimmedString += '...';
-    while(visualStringWidth(trimmedString) > maxWidthAllowed) {
-      tmpString = tmpString.substring(0, tmpString.length -1);
-      trimmedString = tmpString + '...';
+    //Si no cabe, hacemos busqueda dicotómica para encontrar la longitud de cadena permitida
+    int start = 0;
+    int end = trimmedString.length -1;
+    int middle = 0;
+    //int trimmedStringWidth = 0;
+
+    while (start < end) {
+      middle = (((start + end) / 2)).ceil();
+      trimmedString = tmpString.substring(0, middle).trim() + '...';
+      int trimmedStringWidth = visualStringWidth(trimmedString);
+      int nextTrimmedStringWidth = visualStringWidth( tmpString.substring(0, middle + 1).trim() + '...');
+
+      if(trimmedStringWidth == maxWidthAllowed || (trimmedStringWidth < maxWidthAllowed && nextTrimmedStringWidth > maxWidthAllowed)) {
+        return trimmedString;
+      }
+      else if (trimmedStringWidth < maxWidthAllowed) {
+          start = middle - 1;
+      }
+      else {
+        end = middle + 1;
+      }
     }
   }
   return trimmedString;

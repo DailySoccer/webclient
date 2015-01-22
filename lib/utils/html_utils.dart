@@ -127,13 +127,13 @@ String trimStringToPx(Element elem, int maxWidthAllowed) {
     int middle = 0;
 
     //Si no cabe, hacemos busqueda dicotómica para encontrar la longitud de cadena máxima permitida
-
     while (start < end) {
       middle = (((start + end) / 2)).ceil();
       trimmedString = tmpString.substring(0, middle).trim() + '...';
       int trimmedStringWidth = visualStringWidth(trimmedString);
       int nextTrimmedStringWidth = visualStringWidth( tmpString.substring(0, middle + 1).trim() + '...');
 
+      // Si el texto ocupa lo mismo Ó si la diferencia de poner un carcater de más nos hace pasarnos
       if(trimmedStringWidth == maxWidthAllowed || (trimmedStringWidth < maxWidthAllowed && nextTrimmedStringWidth > maxWidthAllowed)) {
         return trimmedString;
       }

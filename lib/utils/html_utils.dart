@@ -127,6 +127,7 @@ String trimStringToPx(Element elem, int maxWidthAllowed) {
     int middle = 0;
 
     //Si no cabe, hacemos busqueda dicotómica para encontrar la longitud de cadena máxima permitida
+
     while (start < end) {
       middle = (((start + end) / 2)).ceil();
       trimmedString = tmpString.substring(0, middle).trim() + '...';

@@ -377,23 +377,26 @@ class EnterContestComp implements DetachAware {
   };
 
   void _showMsgError(ServerError error) {
-    String title = "Aviso";
-    String info = "Ha sucedido un error.";
+    String keyError = null;
 
     for (var key in errorMap.keys) {
       if (error.responseError.contains(key)) {
-        title = errorMap[key]["title"];
-        info  = (editingContestEntry && errorMap[key].containsKey("editing")) ? errorMap[key]["editing"] : errorMap[key]["generic"];
+        keyError = key;
         break;
       }
     }
 
-    modalShow(
-        title,
-        info
-    )
-    .then((resp) {
-    });
+    if (keyError != null) {
+      modalShow(
+          errorMap[keyError]["title"],
+          (editingContestEntry && errorMap[keyError].containsKey("editing")) ? errorMap[keyError]["editing"] : errorMap[keyError]["generic"]
+      )
+      .then((resp) {
+        if (keyError == ERROR_CONTEST_NOT_ACTIVE) {
+          _router.go(_routeProvider.parameters["parent"], {});
+        }
+      });
+    }
   }
 
   Router _router;

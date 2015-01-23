@@ -26,15 +26,18 @@ import 'package:webclient/utils/html_utils.dart';
 class EnterContestComp implements DetachAware {
 
   static final String ERROR_RETRY_OP = "ERROR_RETRY_OP";
-  static final String ERROR_CONTEST_INVALID = "ERROR_CONTEST_INVALID";
   static final String ERROR_CONTEST_NOT_ACTIVE = "ERROR_CONTEST_NOT_ACTIVE";
+  static final String ERROR_USER_ALREADY_INCLUDED = "ERROR_USER_ALREADY_INCLUDED";
+  static final String ERROR_USER_BALANCE_NEGATIVE = "ERROR_USER_BALANCE_NEGATIVE";
+
+  // Errores de los que no tendríamos que informar
+  static final String ERROR_CONTEST_INVALID = "ERROR_CONTEST_INVALID";
   static final String ERROR_CONTEST_FULL = "ERROR_CONTEST_FULL";
   static final String ERROR_FANTASY_TEAM_INCOMPLETE = "ERROR_FANTASY_TEAM_INCOMPLETE";
   static final String ERROR_SALARYCAP_INVALID = "ERROR_SALARYCAP_INVALID";
   static final String ERROR_FORMATION_INVALID = "ERROR_FORMATION_INVALID";
-  static final String ERROR_CONTEST_ENTRY_INVALID = "ERROR_CONTEST_ENTRY_INVALID";
   static final String ERROR_OP_UNAUTHORIZED = "ERROR_OP_UNAUTHORIZED";
-  static final String ERROR_USER_ALREADY_INCLUDED = "ERROR_USER_ALREADY_INCLUDED";
+  static final String ERROR_CONTEST_ENTRY_INVALID = "ERROR_CONTEST_ENTRY_INVALID";
 
   ScreenDetectorService scrDet;
   LoadingService loadingService;
@@ -361,6 +364,11 @@ class EnterContestComp implements DetachAware {
         "generic" : "No es posible entrar en un torneo que ya ha comenzado.",
         "editing" : "No es posible modificar un equipo cuando el torneo ha comenzado."
     },
+    // TODO: Avisamos al usuario de que no dispone del dinero suficiente pero, cuando se integre la branch "paypal-ui", se le redirigirá a "añadir fondos"
+    ERROR_USER_BALANCE_NEGATIVE: {
+      "title"   : "Balance insuficiente",
+      "generic" : "Necesitas tener dinero suficiente en tu cuenta para poder participar en este torneo."
+    },
     "ERROR": {
         "title"   : "Aviso",
         "generic" : "Ha sucedido un error. No es posible entrar en el torneo.",
@@ -375,7 +383,7 @@ class EnterContestComp implements DetachAware {
     for (var key in errorMap.keys) {
       if (error.responseError.contains(key)) {
         title = errorMap[key]["title"];
-        info  = errorMap[key].containsKey("editing") ? errorMap[key]["editing"] : errorMap[key]["generic"];
+        info  = (editingContestEntry && errorMap[key].containsKey("editing")) ? errorMap[key]["editing"] : errorMap[key]["generic"];
         break;
       }
     }

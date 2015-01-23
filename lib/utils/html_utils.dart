@@ -43,8 +43,8 @@ Future<bool> modalShow(String title, String content,{String onOk: null, String o
     }
   }
 
-  String botonOk      = (onOk != null) ?     '''<button class="enter-button-half"   eventCallback="onOk">     ${onOk}</button>'''   : '';
-  String botonCancel  = (onCancel != null) ? '''<button class="cancel-button-half"  eventCallback="onCancel"> ${onCancel}</button>'''  : '';
+  String botonOk      = (onOk != null) ?     '''<button class="ok-button"   eventCallback="onOk">     ${onOk}</button>'''   : '';
+  String botonCancel  = (onCancel != null) ? '''<button class="cancel-button"  eventCallback="onCancel"> ${onCancel}</button>'''  : '';
   String modalBody =  ''' 
                         <div id="modalRoot" class="modal container fade" tabindex="-1" role="dialog" style="display: block;">
                           <div class="modal-dialog modal-lg">
@@ -68,9 +68,9 @@ Future<bool> modalShow(String title, String content,{String onOk: null, String o
                                       <!-- Alert Buttons -->
                                       <div class="input-group user-form-field">
                                         <div class="new-row">
-                                          <div class="buttons-wrapper">
-                                            ${(onOk     != null) ? botonOk      : ""}
+                                          <div class="autocentered-buttons-wrapper">
                                             ${(onCancel != null) ? botonCancel  : ""}
+                                            ${(onOk     != null) ? botonOk      : ""}
                                           </div>
                                         </div>
                                       </div>            

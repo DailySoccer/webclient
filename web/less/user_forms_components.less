@@ -185,6 +185,27 @@
 	.make-xs-column(12, 0px);
 }
 
+.modal-buttons-wrapper {
+	display:block;
+	text-align: center;
+
+	.button-properties {
+		dysplay:inline-block;
+		margin: 0 5px 0 5px;
+		min-width: 33%;
+	}
+	.ok-button {
+		.btn-primary();
+		.button-properties();
+	}
+	.cancel-button {
+		.btn-cancel();
+		.button-properties();
+	}
+}
+
+
+
 .input-validation(@glyphCode, @size, @color) {
 	.create-glyph(@glyphCode, @size, @color);
 	.fadein-animation(0.5s);

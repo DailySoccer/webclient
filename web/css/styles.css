@@ -18895,6 +18895,277 @@ fieldset[disabled] #modalRoot .main-box .panel .panel-body .new-row .cancel-butt
     left: 0%;
   }
 }
+.modal-buttons-wrapper {
+  display: block;
+  text-align: center;
+}
+.modal-buttons-wrapper .button-properties {
+  dysplay: inline-block;
+  margin: 0 5px 0 5px;
+  min-width: 33%;
+}
+.modal-buttons-wrapper .ok-button {
+  background-color: #428bca;
+  border-color: #357ebd;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  -webkit-transition: All 0.08s ease-out;
+  -moz-transition: All 0.08s ease-out;
+  -ms-transition: All 0.08s ease-out;
+  -o-transition: All 0.08s ease-out;
+  transition: All 0.08s ease-out;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  background-color: #a1c931;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #ffffff;
+  outline: none !important;
+  dysplay: inline-block;
+  margin: 0 5px 0 5px;
+  min-width: 33%;
+}
+.modal-buttons-wrapper .ok-button:hover,
+.modal-buttons-wrapper .ok-button:focus,
+.modal-buttons-wrapper .ok-button:active,
+.modal-buttons-wrapper .ok-button.active,
+.open .dropdown-toggle.modal-buttons-wrapper .ok-button {
+  color: #ffffff;
+  background-color: #3276b1;
+  border-color: #285e8e;
+}
+.modal-buttons-wrapper .ok-button:active,
+.modal-buttons-wrapper .ok-button.active,
+.open .dropdown-toggle.modal-buttons-wrapper .ok-button {
+  background-image: none;
+}
+.modal-buttons-wrapper .ok-button.disabled,
+.modal-buttons-wrapper .ok-button[disabled],
+fieldset[disabled] .modal-buttons-wrapper .ok-button,
+.modal-buttons-wrapper .ok-button.disabled:hover,
+.modal-buttons-wrapper .ok-button[disabled]:hover,
+fieldset[disabled] .modal-buttons-wrapper .ok-button:hover,
+.modal-buttons-wrapper .ok-button.disabled:focus,
+.modal-buttons-wrapper .ok-button[disabled]:focus,
+fieldset[disabled] .modal-buttons-wrapper .ok-button:focus,
+.modal-buttons-wrapper .ok-button.disabled:active,
+.modal-buttons-wrapper .ok-button[disabled]:active,
+fieldset[disabled] .modal-buttons-wrapper .ok-button:active,
+.modal-buttons-wrapper .ok-button.disabled.active,
+.modal-buttons-wrapper .ok-button[disabled].active,
+fieldset[disabled] .modal-buttons-wrapper .ok-button.active {
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+.modal-buttons-wrapper .ok-button .badge {
+  color: #428bca;
+  background-color: #ffffff;
+}
+.modal-buttons-wrapper .ok-button:focus,
+.modal-buttons-wrapper .ok-button:active:focus,
+.modal-buttons-wrapper .ok-button.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.modal-buttons-wrapper .ok-button:hover,
+.modal-buttons-wrapper .ok-button:focus {
+  color: #333333;
+  text-decoration: none;
+}
+.modal-buttons-wrapper .ok-button:active,
+.modal-buttons-wrapper .ok-button.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.modal-buttons-wrapper .ok-button.disabled,
+.modal-buttons-wrapper .ok-button[disabled],
+fieldset[disabled] .modal-buttons-wrapper .ok-button {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.modal-buttons-wrapper .ok-button:active:focus,
+.modal-buttons-wrapper .ok-button.active:focus {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+.modal-buttons-wrapper .ok-button:active:hover,
+.modal-buttons-wrapper .ok-button.active:hover {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+.modal-buttons-wrapper .ok-button:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+.modal-buttons-wrapper .ok-button:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+.modal-buttons-wrapper .ok-button:hover:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+.modal-buttons-wrapper .ok-button:active,
+.modal-buttons-wrapper .ok-button.active {
+  background-color: #a1c931;
+  margin-top: 4px;
+  box-shadow: none;
+}
+.modal-buttons-wrapper .ok-button:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+.modal-buttons-wrapper .ok-button.disabled,
+.modal-buttons-wrapper .ok-button[disabled],
+fieldset[disabled] .modal-buttons-wrapper .ok-button {
+  background-color: #b5d657;
+  box-shadow: none;
+  margin-top: 4px;
+  color: #ebebeb;
+  cursor: not-allowed !important;
+}
+.modal-buttons-wrapper .ok-button.close {
+  background-color: #a1c931;
+  outline: none !important;
+  color: #ffffff;
+}
+.modal-buttons-wrapper .cancel-button {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  -webkit-transition: All 0.08s ease-out;
+  -moz-transition: All 0.08s ease-out;
+  -ms-transition: All 0.08s ease-out;
+  -o-transition: All 0.08s ease-out;
+  transition: All 0.08s ease-out;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  background-color: #afafaf;
+  box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
+  color: #ffffff;
+  outline: none !important;
+  dysplay: inline-block;
+  margin: 0 5px 0 5px;
+  min-width: 33%;
+}
+.modal-buttons-wrapper .cancel-button:focus,
+.modal-buttons-wrapper .cancel-button:active:focus,
+.modal-buttons-wrapper .cancel-button.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.modal-buttons-wrapper .cancel-button:hover,
+.modal-buttons-wrapper .cancel-button:focus {
+  color: #333333;
+  text-decoration: none;
+}
+.modal-buttons-wrapper .cancel-button:active,
+.modal-buttons-wrapper .cancel-button.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.modal-buttons-wrapper .cancel-button.disabled,
+.modal-buttons-wrapper .cancel-button[disabled],
+fieldset[disabled] .modal-buttons-wrapper .cancel-button {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.modal-buttons-wrapper .cancel-button:active:focus,
+.modal-buttons-wrapper .cancel-button.active:focus {
+  color: #ffffff;
+  background-color: #c9c9c9;
+}
+.modal-buttons-wrapper .cancel-button:active:hover,
+.modal-buttons-wrapper .cancel-button.active:hover {
+  color: #ffffff;
+  background-color: #c9c9c9;
+}
+.modal-buttons-wrapper .cancel-button:focus {
+  background-color: #afafaf;
+  color: #ffffff;
+}
+.modal-buttons-wrapper .cancel-button:hover {
+  background-color: #bcbcbc;
+  outline: none !important;
+  color: #ffffff;
+}
+.modal-buttons-wrapper .cancel-button:hover:focus {
+  background-color: #afafaf;
+  color: #ffffff;
+}
+.modal-buttons-wrapper .cancel-button:active,
+.modal-buttons-wrapper .cancel-button.active {
+  background-color: #afafaf;
+  margin-top: 4px;
+  box-shadow: none;
+}
+.modal-buttons-wrapper .cancel-button:hover {
+  background-color: #bcbcbc;
+  outline: none !important;
+  color: #ffffff;
+}
+.modal-buttons-wrapper .cancel-button.disabled,
+.modal-buttons-wrapper .cancel-button[disabled],
+fieldset[disabled] .modal-buttons-wrapper .cancel-button {
+  background-color: #c9c9c9;
+  box-shadow: none;
+  margin-top: 4px;
+  color: #ebebeb;
+  cursor: not-allowed !important;
+}
+.modal-buttons-wrapper .cancel-button.close {
+  background-color: #afafaf;
+  outline: none !important;
+  color: #ffffff;
+}
 .valid:after {
   font-family: 'Glyphicons Halflings';
   content: "\e013";

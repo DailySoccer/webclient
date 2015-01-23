@@ -369,7 +369,7 @@ class EnterContestComp implements DetachAware {
       "title"   : "Balance insuficiente",
       "generic" : "Necesitas tener dinero suficiente en tu cuenta para poder participar en este torneo."
     },
-    "ERROR": {
+    "_ERROR_DEFAULT_": {
         "title"   : "Aviso",
         "generic" : "Ha sucedido un error. No es posible entrar en el torneo.",
         "editing" : "Ha sucedido un error. No es posible modificar el equipo."
@@ -377,26 +377,16 @@ class EnterContestComp implements DetachAware {
   };
 
   void _showMsgError(ServerError error) {
-    String keyError = null;
-
-    for (var key in errorMap.keys) {
-      if (error.responseError.contains(key)) {
-        keyError = key;
-        break;
+    String keyError = errorMap.keys.firstWhere( (key) => error.responseError.contains(key), orElse: () => "_ERROR_DEFAULT_" );
+    modalShow(
+        errorMap[keyError]["title"],
+        (editingContestEntry && errorMap[keyError].containsKey("editing")) ? errorMap[keyError]["editing"] : errorMap[keyError]["generic"]
+    )
+    .then((resp) {
+      if (keyError == ERROR_CONTEST_NOT_ACTIVE) {
+        _router.go(_routeProvider.parameters["parent"], {});
       }
-    }
-
-    if (keyError != null) {
-      modalShow(
-          errorMap[keyError]["title"],
-          (editingContestEntry && errorMap[keyError].containsKey("editing")) ? errorMap[keyError]["editing"] : errorMap[keyError]["generic"]
-      )
-      .then((resp) {
-        if (keyError == ERROR_CONTEST_NOT_ACTIVE) {
-          _router.go(_routeProvider.parameters["parent"], {});
-        }
-      });
-    }
+    });
   }
 
   Router _router;

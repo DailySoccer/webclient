@@ -36,8 +36,8 @@ class User {
 
   User _initFromJsonObject(Map jsonMap, ContestReferences references) {
     assert(userId.isNotEmpty);
-    firstName = jsonMap["firstName"];
-    lastName = jsonMap["lastName"];
+    firstName = (jsonMap.containsKey("firstName")) ? jsonMap["firstName"] : "";
+    lastName = (jsonMap.containsKey("lastName")) ? jsonMap["lastName"] : "";
     nickName = jsonMap["nickName"];
 
     email = (jsonMap.containsKey("email")) ? jsonMap["email"] : "<email: null>";

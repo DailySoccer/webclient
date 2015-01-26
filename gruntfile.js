@@ -4,6 +4,7 @@ module.exports = function(grunt) {
       development: {
         files: {
           "web/css/styles.css": "web/less/styles.less" // target.css: source.less
+          ,"build/web/css/styles.css": "web/less/styles.less" // target.css: source.less
         }
       },
       production: {

@@ -64,7 +64,7 @@ tc.put("packages/webclient/components/account/change_password_comp.html", new Ht
                   <!-- BUTTONS -->
                   <div class="input-group user-form-field">
                     <div class="new-row">
-                      <div class="buttons-wapper">
+                      <div class="buttons-wrapper">
                         <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">ENTRAR</button>
                         <button id="btnCancelLogin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCELAR</button>
                       </div>
@@ -91,7 +91,7 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
       <div class="content-field">
         <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">Nombre</span></div>
         <div class="control-wrapper">
-          <input id="txtName" type="text" ng-model="editedFirstName" placeholder="Nombre" class="form-control"  tabindex="1" auto-focus>
+          <input id="txtName" type="text" ng-model="editedFirstName" placeholder="Nombre" class="form-control"  tabindex="1">
         </div>
       </div>
       <!-- Apelidos -->
@@ -165,17 +165,17 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
 
         <div class="subscription-wrapper">
           <div class="subscription-label">NEWSLETTER/OFERTAS ESPECIALES</div>
-          <div class="check-wrapper"> <input type="checkbox" id="inputNewsletter"> </div>
+          <div class="check-wrapper"> <input type="checkbox" id="inputNewsletter" name="switchNewsletter"> </div>
         </div>
 
         <div class="subscription-wrapper">
           <div class="subscription-label">NOTIFICACIONES DE JUEGO</div>
-          <div class="check-wrapper"> <input type="checkbox"> </div>
+          <div class="check-wrapper"> <input type="checkbox" name="switchGameAlerts"> </div>
         </div>
 
         <div class="subscription-wrapper">
           <div class="subscription-label">NOTIFICACIONES DE TUS FICHAJES</div>
-          <div class="check-wrapper"> <input type="checkbox"> </div>
+          <div class="check-wrapper"> <input type="checkbox" name="switchsoccerPlayerAlerts"> </div>
         </div>
 
       </div>
@@ -269,7 +269,7 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
           <!-- BUTTONS -->
           <div class="input-group user-form-field">
             <div class="new-row">
-              <div class="buttons-wapper">
+              <div class="buttons-wrapper">
                 <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">REGÍSTRATE</button>
                 <button id="btnCancelJoin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCELAR</button>
              </div>
@@ -284,7 +284,7 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
           <!--
           Facebook stuff-->
           <div  class="user-form-field">
-            <div class="fb-button-wapper">
+            <div class="fb-button-wrapper">
               <fb:login-button scope="public_profile,email" size="large" onlogin="jsLoginFB()">
               </fb:login-button>
             </div>
@@ -348,7 +348,7 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
           <!-- BUTTONS -->
           <div class="user-form-field">
             <div class="new-row">
-              <div class="buttons-wapper">
+              <div class="buttons-wrapper">
                 <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">ENTRAR</button>
                 <button id="btnCancelLogin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCELAR</button>
               </div>
@@ -364,7 +364,7 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
 
           <!--Facebook stuff-->
           <div  class="user-form-field">
-            <div class="fb-button-wapper">
+            <div class="fb-button-wrapper">
               <fb:login-button scope="public_profile,email" size="large" onlogin="jsLoginFB()">
               </fb:login-button>
             </div>
@@ -426,7 +426,7 @@ tc.put("packages/webclient/components/account/remember_password_comp.html", new 
           <!-- BUTTONS -->
           <div class="input-group user-form-field">
             <div class="new-row">
-              <div class="buttons-wapper">
+              <div class="buttons-wrapper">
                 <button type="submit" id="btnSubmit" name="RememberPassword" ng-disabled="!enabledSubmit" class="enter-button-half">ENVIAR</button>
                 <button id="btnCancelRemember" ng-click="navigateTo('login', {}, $event)" class="cancel-button-half">CANCELAR</button>
              </div>
@@ -1108,68 +1108,6 @@ tc.put("packages/webclient/components/enter_contest/soccer_players_filter_comp.h
   </div>
 
   <input type="text" class="name-player-input-filter" placeholder="Buscar jugador" ng-model="nameFilter" />
-</div>"""));
-tc.put("packages/webclient/components/landing_page_1_slide_comp.html", new HttpResponse(200, r"""<div id="landingPageRoot">
-  <!-- Portada Versión Desktop -->
-  <div id="desktopContent" ng-if="!scrDet.isXsScreen" class="first-screen" style="height:{{screenHeight}}px">
-    <div class="screen-pattern" src="images/pattern.png"></div>
-
-    <div class="main-title-wrapper">
-
-      <div class="main-title">LIGAS FANTÁSTICAS SEMANALES</div>
-      <div class="main-sub-title">
-        Juega y gana cuando quieras, sin esperar al final de la temporada.
-      </div>
-      <div class="button-wrap">
-        <button type="button" class="button-play"  ng-click="buttonPressed('join')" id="playButton1">ÚNETE Y JUEGA GRATIS</button>
-      </div>
-      <div class="text-wrapper">
-
-        <div class="module-column">
-          <p class="icono-text">Compite en tantos torneos como quieras de Liga, Premier y Champions</p>
-        </div>
-
-        <div class="module-column">
-          <p class="icono-text">Crea tu equipo en segundos desde cualquier dispositivo</p>
-        </div>
-
-        <div class="module-column">
-          <p class="icono-text">Podrás ganar dinero en efectivo con pagos inmediatos</p>
-        </div>
-
-      </div>
-      <div class="modules-wrapper">
-        <div class="module-column">
-          <img src="images/iconsLeagues.png">
-        </div>
-        <div class="module-column">
-          <img src="images/iconsDevices.png">
-        </div>
-        <div class="module-column">
-          <img src="images/iconsPayment.png">
-        </div>
-      </div>
-
-    </div>
-    <div class="beta-label"><img src="images/beta.png"/></div>
-  </div>
-  <!-- END Portada Versión Desktop -->
-
-
-  <!-- Portada Versión Móvil -->
-  <div id="mobileContent" class="screen" style="height:{{screenHeight}}px">
-    <div class="content">
-      <p class="main-title-mobile">LIGAS FANTÁSTICAS <br> SEMANALES</p>
-      <p class="title-sup-text-mobile">COMPITE EN TANTOS TORNEOS COMO QUIERAS</p>
-      <p class="title-sup-text-mobile">CREA TU EQUIPO EN SEGUNDOS</p>
-      <p class="title-sup-text-mobile">Y GANA DINERO</p>
-      <div class="button-wrap">
-        <button type="button" class="button-play-mobile" ng-click="buttonPressed('join')" id="playButtonMobile">ÚNETE Y JUEGA GRATIS</button>
-      </div>
-    </div>
-    <div class="beta-label"><img src="images/beta.png"/></div>
-  </div>
-  <!-- END Portada Versión Móvil -->
 </div>"""));
 tc.put("packages/webclient/components/legalese_and_help/beta_info_comp.html", new HttpResponse(200, r"""<div id="betaComp">
    <div class="block-dark-header">
@@ -2066,9 +2004,6 @@ tc.put("packages/webclient/components/lobby_comp.html", new HttpResponse(200, r"
                   contest-count="contestCount">
   </contests-list>
 </div>
-
-<button class="btn-default" ng-click="verModalTestOKCancel()"> Click to try Modal</button>
-
 <!-- Punto de insercion de nuestra ruta hija contest-info -->
 <ng-view></ng-view>"""));
 tc.put("packages/webclient/components/modal_comp.html", new HttpResponse(200, r"""<div id="modalRoot" class="modal" tabindex="-1" role="dialog">

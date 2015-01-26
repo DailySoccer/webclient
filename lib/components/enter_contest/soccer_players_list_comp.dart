@@ -216,8 +216,8 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
   }
 
   String _getActionButton(bool addButton) {
-    return addButton? '<button type="button" class="action-button add">Añadir</button>' :
-                      '<button type="button" class="action-button remove">Quitar</button>';
+    return addButton? '<button type="button" class="action-button add">+</button>' :
+                      '<button type="button" class="action-button remove">-</button>';
   }
 
   void _onMouseEvent(MouseEvent e) {

@@ -25,6 +25,20 @@ import 'package:webclient/utils/html_utils.dart';
 )
 class EnterContestComp implements DetachAware {
 
+  static final String ERROR_RETRY_OP = "ERROR_RETRY_OP";
+  static final String ERROR_CONTEST_NOT_ACTIVE = "ERROR_CONTEST_NOT_ACTIVE";
+  static final String ERROR_USER_ALREADY_INCLUDED = "ERROR_USER_ALREADY_INCLUDED";
+  static final String ERROR_USER_BALANCE_NEGATIVE = "ERROR_USER_BALANCE_NEGATIVE";
+
+  // Errores de los que no tendríamos que informar
+  static final String ERROR_CONTEST_INVALID = "ERROR_CONTEST_INVALID";
+  static final String ERROR_CONTEST_FULL = "ERROR_CONTEST_FULL";
+  static final String ERROR_FANTASY_TEAM_INCOMPLETE = "ERROR_FANTASY_TEAM_INCOMPLETE";
+  static final String ERROR_SALARYCAP_INVALID = "ERROR_SALARYCAP_INVALID";
+  static final String ERROR_FORMATION_INVALID = "ERROR_FORMATION_INVALID";
+  static final String ERROR_OP_UNAUTHORIZED = "ERROR_OP_UNAUTHORIZED";
+  static final String ERROR_CONTEST_ENTRY_INVALID = "ERROR_CONTEST_ENTRY_INVALID";
+
   ScreenDetectorService scrDet;
   LoadingService loadingService;
 
@@ -272,8 +286,6 @@ class EnterContestComp implements DetachAware {
       return;
     }
 
-    _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
-
     if (editingContestEntry) {
       _contestsService.editContestEntry(contestEntryId, lineupSlots.map((player) => player["id"]).toList())
         .then((_) {
@@ -282,7 +294,7 @@ class EnterContestComp implements DetachAware {
                                              "parent": _routeProvider.parameters["parent"],
                                              "viewContestEntryMode": "edited"});
         })
-        .catchError((error) => _errorCreating);
+        .catchError((error) => _errorCreating(error));
     }
     else {
       _contestsService.addContestEntry(contest.contestId, lineupSlots.map((player) => player["id"]).toList())
@@ -296,7 +308,8 @@ class EnterContestComp implements DetachAware {
                                              "parent": _routeProvider.parameters["parent"],
                                              "viewContestEntryMode": contestId == contest.contestId? "created" : "swapped"});
         })
-        .catchError((error) => _errorCreating);
+        .catchError((error) => _errorCreating(error));
+
     }
   }
 
@@ -304,8 +317,13 @@ class EnterContestComp implements DetachAware {
     if (error.isRetryOpError) {
       _retryOpTimer = new Timer(const Duration(seconds:3), () => createFantasyTeam());
     }
+    else if (error.responseError.contains(ERROR_USER_ALREADY_INCLUDED)) {
+      _router.go('view_contest_entry', { "contestId": contestId,
+                                         "parent": _routeProvider.parameters["parent"],
+                                         "viewContestEntryMode": "created" });
+    }
     else {
-      _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
+      _showMsgError(error);
     }
   }
 
@@ -338,6 +356,37 @@ class EnterContestComp implements DetachAware {
 
   void onRowClick(String soccerPlayerId) {
     _router.go("enter_contest.soccer_player_info",  { "instanceSoccerPlayerId": soccerPlayerId });
+  }
+
+  Map<String, Map> errorMap = {
+    ERROR_CONTEST_NOT_ACTIVE: {
+        "title"   : "Torneo en vivo",
+        "generic" : "No es posible entrar en un torneo que ya ha comenzado.",
+        "editing" : "No es posible modificar un equipo cuando el torneo ha comenzado."
+    },
+    // TODO: Avisamos al usuario de que no dispone del dinero suficiente pero, cuando se integre la branch "paypal-ui", se le redirigirá a "añadir fondos"
+    ERROR_USER_BALANCE_NEGATIVE: {
+      "title"   : "Balance insuficiente",
+      "generic" : "Necesitas tener dinero suficiente en tu cuenta para poder participar en este torneo."
+    },
+    "_ERROR_DEFAULT_": {
+        "title"   : "Aviso",
+        "generic" : "Ha sucedido un error. No es posible entrar en el torneo.",
+        "editing" : "Ha sucedido un error. No es posible modificar el equipo."
+    },
+  };
+
+  void _showMsgError(ServerError error) {
+    String keyError = errorMap.keys.firstWhere( (key) => error.responseError.contains(key), orElse: () => "_ERROR_DEFAULT_" );
+    modalShow(
+        errorMap[keyError]["title"],
+        (editingContestEntry && errorMap[keyError].containsKey("editing")) ? errorMap[keyError]["editing"] : errorMap[keyError]["generic"]
+    )
+    .then((resp) {
+      if (keyError == ERROR_CONTEST_NOT_ACTIVE) {
+        _router.go(_routeProvider.parameters["parent"], {});
+      }
+    });
   }
 
   Router _router;

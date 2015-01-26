@@ -10049,6 +10049,12 @@ fieldset[disabled] #rootFooter .user-info-sup-footer .add-funds-button {
     width: 29.16666667%;
   }
 }
+landing-page-1-slide {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
 #landingPageRoot {
   position: relative;
   overflow: hidden;
@@ -10311,6 +10317,7 @@ fieldset[disabled] #desktopContent .main-title-wrapper .button-wrap .button-play
   margin-top: 3%;
   margin-left: -40px;
   margin-right: -40px;
+  min-height: 82px;
 }
 #desktopContent .main-title-wrapper .modules-wrapper .module-column {
   position: relative;
@@ -10545,7 +10552,6 @@ fieldset[disabled] #mobileContent .button-wrap .button-play-mobile {
   background-repeat: repeat;
   width: 100%;
   height: 100%;
-  bottom: 122px;
 }
 .beta-label {
   width: 100%;
@@ -16026,7 +16032,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
 @media (min-width: 768px) and (min-width: 768px) {
   .enter-contest-soccer-players-wrapper {
     float: left;
-    width: 50%;
+    width: 58.33333333%;
   }
 }
 @media (min-width: 992px) {
@@ -16065,7 +16071,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
 @media (min-width: 768px) and (min-width: 768px) {
   .enter-contest-lineup-wrapper {
     float: left;
-    width: 50%;
+    width: 41.66666667%;
   }
 }
 @media (min-width: 992px) {
@@ -16086,7 +16092,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
 .enter-contest-lineup-wrapper .enter-contest-total-salary {
   font-family: 'Exo', sans-serif;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 15pt;
   color: #ffffff;
   text-transform: uppercase;
   padding-left: 10px;
@@ -16102,10 +16108,16 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
     display: none !important;
   }
 }
+@media (max-width: 991px) {
+  .enter-contest-lineup-wrapper .enter-contest-total-salary {
+    font-family: 'Exo', sans-serif;
+    font-weight: 600;
+    font-size: 12pt;
+    color: #ffffff;
+    text-transform: uppercase;
+  }
+}
 .enter-contest-lineup-wrapper .enter-contest-total-salary .total-salary {
-  font-weight: 300;
-  font-size: 24px;
-  color: #ffffff;
   text-align: center;
   float: right;
   background-color: #ffffff;
@@ -16118,15 +16130,20 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   border-radius: 8px;
   font-family: 'Exo', sans-serif;
   font-weight: 600;
-  font-size: 30px;
+  font-size: 22pt;
   color: #777777;
   text-transform: uppercase;
   margin-top: 3px;
   overflow: hidden;
 }
+@media (max-width: 991px) {
+  .enter-contest-lineup-wrapper .enter-contest-total-salary .total-salary {
+    width: 160px;
+  }
+}
 .enter-contest-lineup-wrapper .enter-contest-total-salary .total-salary .total-salary-text {
   background-color: #dcdcdc;
-  font-size: 12px;
+  font-size: 9pt;
   display: block;
   line-height: 25px;
 }
@@ -16208,26 +16225,27 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
 }
 .soccer-player-list-header-table .filterOrderName {
   float: left;
-  width: 58.33333333%;
+  width: 51.66666667%;
   position: relative;
   min-height: 1px;
   padding-left: 0px;
   padding-right: 0px;
-  padding-left: 7px;
+  padding-left: 10px;
 }
 @media (min-width: 992px) {
   .soccer-player-list-header-table .filterOrderName {
     float: left;
-    width: 41.66666667%;
+    width: 44.16666667%;
   }
 }
 .soccer-player-list-header-table .filterOrderDFP {
   float: left;
-  width: 8.33333333%;
+  width: 10.33333333%;
   position: relative;
   min-height: 1px;
   padding-left: 0px;
   padding-right: 0px;
+  text-align: center;
 }
 @media (min-width: 992px) {
   .soccer-player-list-header-table .filterOrderDFP {
@@ -16237,41 +16255,21 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
 }
 .soccer-player-list-header-table .filterOrderPlayed {
   position: relative;
+  float: left;
+  width: 12.5%;
   min-height: 1px;
   padding-left: 0px;
   padding-right: 0px;
-}
-@media (max-width: 767px) {
-  .soccer-player-list-header-table .filterOrderPlayed {
-    display: none !important;
-  }
-}
-@media (min-width: 768px) and (max-width: 991px) {
-  .soccer-player-list-header-table .filterOrderPlayed {
-    display: none !important;
-  }
-}
-@media (min-width: 992px) {
-  .soccer-player-list-header-table .filterOrderPlayed {
-    float: left;
-    width: 8.33333333%;
-  }
+  text-align: center;
 }
 .soccer-player-list-header-table .filterOrderSalary {
-  float: left;
-  width: 16.66666667%;
   position: relative;
+  float: left;
+  width: 15.83333333%;
   min-height: 1px;
   padding-left: 0px;
   padding-right: 0px;
   text-align: right;
-  padding-right: 5px;
-}
-@media (min-width: 992px) {
-  .soccer-player-list-header-table .filterOrderSalary {
-    float: left;
-    width: 16.66666667%;
-  }
 }
 .soccer-player-list-header-table a {
   text-decoration: underline;
@@ -16279,6 +16277,11 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   font-weight: 700;
   font-size: 10pt;
   color: #ffffff;
+}
+@media (max-width: 767px) {
+  .soccer-player-list-header-table a {
+    font-size: 8pt;
+  }
 }
 .soccer-players-list {
   overflow: auto;
@@ -16347,7 +16350,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
 }
 .soccer-players-list .soccer-players-list-slot .column-primary-info {
   float: left;
-  width: 58.33333333%;
+  width: 54.16666667%;
   position: relative;
   min-height: 1px;
   padding-left: 0px;
@@ -16358,7 +16361,12 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
 @media (min-width: 992px) {
   .soccer-players-list .soccer-players-list-slot .column-primary-info {
     float: left;
-    width: 41.66666667%;
+    width: 45.83333333%;
+  }
+}
+@media (max-width: 767px) {
+  .soccer-players-list .soccer-players-list-slot .column-primary-info {
+    padding-left: 5px;
   }
 }
 .soccer-players-list .soccer-players-list-slot .column-primary-info .soccer-player-name,
@@ -16369,7 +16377,13 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   color: #777777;
   display: block;
   text-transform: uppercase;
-  padding-top: 9px;
+  padding-top: 10px;
+}
+@media (max-width: 767px) {
+  .soccer-players-list .soccer-players-list-slot .column-primary-info .soccer-player-name,
+  .lineup-selector .lineup-selector-slot .column-primary-info .soccer-player-name {
+    font-size: 7pt;
+  }
 }
 .soccer-players-list .soccer-players-list-slot .column-primary-info .match-event-name,
 .lineup-selector .lineup-selector-slot .column-primary-info .match-event-name {
@@ -16378,28 +16392,35 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   font-size: 9pt;
   color: #59add5;
 }
+@media (max-width: 767px) {
+  .soccer-players-list .soccer-players-list-slot .column-primary-info .match-event-name,
+  .lineup-selector .lineup-selector-slot .column-primary-info .match-event-name {
+    font-size: 7pt;
+  }
+}
 .soccer-players-list .soccer-players-list-slot .column-dfp {
+  position: relative;
   float: left;
   width: 8.33333333%;
-  position: relative;
   min-height: 1px;
   padding-left: 0px;
   padding-right: 0px;
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
-  font-size: 10pt;
+  font-size: 9pt;
   color: #777777;
   padding-top: 10px;
   text-align: center;
 }
-@media (min-width: 992px) {
+@media (max-width: 767px) {
   .soccer-players-list .soccer-players-list-slot .column-dfp {
-    float: left;
-    width: 8.33333333%;
+    font-size: 8pt;
   }
 }
 .soccer-players-list .soccer-players-list-slot .column-played {
   position: relative;
+  float: left;
+  width: 12.5%;
   min-height: 1px;
   padding-left: 0px;
   padding-right: 0px;
@@ -16412,25 +16433,14 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
 }
 @media (max-width: 767px) {
   .soccer-players-list .soccer-players-list-slot .column-played {
-    display: none !important;
-  }
-}
-@media (min-width: 768px) and (max-width: 991px) {
-  .soccer-players-list .soccer-players-list-slot .column-played {
-    display: none !important;
-  }
-}
-@media (min-width: 992px) {
-  .soccer-players-list .soccer-players-list-slot .column-played {
-    float: left;
-    width: 8.33333333%;
+    font-size: 8pt;
   }
 }
 .soccer-players-list .soccer-players-list-slot .column-salary,
 .lineup-selector .lineup-selector-slot .column-salary {
-  float: left;
-  width: 16.66666667%;
   position: relative;
+  float: left;
+  width: 15.83333333%;
   min-height: 1px;
   padding-left: 0px;
   padding-right: 0px;
@@ -16438,21 +16448,20 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   font-weight: 700;
   font-size: 9pt;
   color: #777777;
-  padding-top: 11px;
-  padding-right: 10px;
+  padding-top: 10px;
   text-align: right;
 }
-@media (min-width: 992px) {
+@media (max-width: 767px) {
   .soccer-players-list .soccer-players-list-slot .column-salary,
   .lineup-selector .lineup-selector-slot .column-salary {
-    float: left;
-    width: 16.66666667%;
+    font-size: 8pt;
+    padding-right: 5px;
   }
 }
 .soccer-players-list .soccer-players-list-slot .column-action {
-  float: left;
-  width: 16.66666667%;
   position: relative;
+  float: left;
+  width: 9.16666667%;
   min-height: 1px;
   padding-left: 0px;
   padding-right: 0px;
@@ -16460,21 +16469,11 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   padding-right: 3px;
   margin-top: 4px;
 }
-@media (min-width: 992px) {
-  .soccer-players-list .soccer-players-list-slot .column-action {
-    float: left;
-    width: 16.66666667%;
-  }
-}
 .soccer-players-list .soccer-players-list-slot .column-action .action-button {
   padding-left: 15%;
   padding-right: 15%;
-  font-size: 8pt;
-}
-@media (min-width: 768px) {
-  .soccer-players-list .soccer-players-list-slot .column-action .action-button {
-    font-size: 9pt;
-  }
+  font-size: 10pt;
+  width: 30px;
 }
 .soccer-players-list .soccer-players-list-slot .column-action .action-button.add {
   background-color: #428bca;
@@ -17266,6 +17265,11 @@ lineup-selector {
 .lineup-selector .lineup-selector-slot:nth-last-child(2) {
   border-width: 0;
 }
+@media (max-width: 767px) {
+  .lineup-selector .lineup-selector-slot:nth-last-child(2) {
+    border-width: 1px;
+  }
+}
 .lineup-selector .lineup-selector-slot .column-fieldpos {
   line-height: 42px;
   float: left;
@@ -17335,6 +17339,7 @@ lineup-selector {
   padding-right: 0px;
   font-size: 20pt;
   line-height: 30px;
+  text-align: center;
 }
 @media (min-width: 992px) {
   .lineup-selector .lineup-selector-slot .column-action {
@@ -18889,6 +18894,277 @@ fieldset[disabled] #modalRoot .main-box .panel .panel-body .new-row .cancel-butt
   #modalRoot .main-box {
     left: 0%;
   }
+}
+.modal-buttons-wrapper {
+  display: block;
+  text-align: center;
+}
+.modal-buttons-wrapper .button-properties {
+  dysplay: inline-block;
+  margin: 0 5px 0 5px;
+  min-width: 33%;
+}
+.modal-buttons-wrapper .ok-button {
+  background-color: #428bca;
+  border-color: #357ebd;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  -webkit-transition: All 0.08s ease-out;
+  -moz-transition: All 0.08s ease-out;
+  -ms-transition: All 0.08s ease-out;
+  -o-transition: All 0.08s ease-out;
+  transition: All 0.08s ease-out;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  background-color: #a1c931;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #ffffff;
+  outline: none !important;
+  dysplay: inline-block;
+  margin: 0 5px 0 5px;
+  min-width: 33%;
+}
+.modal-buttons-wrapper .ok-button:hover,
+.modal-buttons-wrapper .ok-button:focus,
+.modal-buttons-wrapper .ok-button:active,
+.modal-buttons-wrapper .ok-button.active,
+.open .dropdown-toggle.modal-buttons-wrapper .ok-button {
+  color: #ffffff;
+  background-color: #3276b1;
+  border-color: #285e8e;
+}
+.modal-buttons-wrapper .ok-button:active,
+.modal-buttons-wrapper .ok-button.active,
+.open .dropdown-toggle.modal-buttons-wrapper .ok-button {
+  background-image: none;
+}
+.modal-buttons-wrapper .ok-button.disabled,
+.modal-buttons-wrapper .ok-button[disabled],
+fieldset[disabled] .modal-buttons-wrapper .ok-button,
+.modal-buttons-wrapper .ok-button.disabled:hover,
+.modal-buttons-wrapper .ok-button[disabled]:hover,
+fieldset[disabled] .modal-buttons-wrapper .ok-button:hover,
+.modal-buttons-wrapper .ok-button.disabled:focus,
+.modal-buttons-wrapper .ok-button[disabled]:focus,
+fieldset[disabled] .modal-buttons-wrapper .ok-button:focus,
+.modal-buttons-wrapper .ok-button.disabled:active,
+.modal-buttons-wrapper .ok-button[disabled]:active,
+fieldset[disabled] .modal-buttons-wrapper .ok-button:active,
+.modal-buttons-wrapper .ok-button.disabled.active,
+.modal-buttons-wrapper .ok-button[disabled].active,
+fieldset[disabled] .modal-buttons-wrapper .ok-button.active {
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+.modal-buttons-wrapper .ok-button .badge {
+  color: #428bca;
+  background-color: #ffffff;
+}
+.modal-buttons-wrapper .ok-button:focus,
+.modal-buttons-wrapper .ok-button:active:focus,
+.modal-buttons-wrapper .ok-button.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.modal-buttons-wrapper .ok-button:hover,
+.modal-buttons-wrapper .ok-button:focus {
+  color: #333333;
+  text-decoration: none;
+}
+.modal-buttons-wrapper .ok-button:active,
+.modal-buttons-wrapper .ok-button.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.modal-buttons-wrapper .ok-button.disabled,
+.modal-buttons-wrapper .ok-button[disabled],
+fieldset[disabled] .modal-buttons-wrapper .ok-button {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.modal-buttons-wrapper .ok-button:active:focus,
+.modal-buttons-wrapper .ok-button.active:focus {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+.modal-buttons-wrapper .ok-button:active:hover,
+.modal-buttons-wrapper .ok-button.active:hover {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+.modal-buttons-wrapper .ok-button:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+.modal-buttons-wrapper .ok-button:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+.modal-buttons-wrapper .ok-button:hover:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+.modal-buttons-wrapper .ok-button:active,
+.modal-buttons-wrapper .ok-button.active {
+  background-color: #a1c931;
+  margin-top: 4px;
+  box-shadow: none;
+}
+.modal-buttons-wrapper .ok-button:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+.modal-buttons-wrapper .ok-button.disabled,
+.modal-buttons-wrapper .ok-button[disabled],
+fieldset[disabled] .modal-buttons-wrapper .ok-button {
+  background-color: #b5d657;
+  box-shadow: none;
+  margin-top: 4px;
+  color: #ebebeb;
+  cursor: not-allowed !important;
+}
+.modal-buttons-wrapper .ok-button.close {
+  background-color: #a1c931;
+  outline: none !important;
+  color: #ffffff;
+}
+.modal-buttons-wrapper .cancel-button {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  -webkit-transition: All 0.08s ease-out;
+  -moz-transition: All 0.08s ease-out;
+  -ms-transition: All 0.08s ease-out;
+  -o-transition: All 0.08s ease-out;
+  transition: All 0.08s ease-out;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  background-color: #afafaf;
+  box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
+  color: #ffffff;
+  outline: none !important;
+  dysplay: inline-block;
+  margin: 0 5px 0 5px;
+  min-width: 33%;
+}
+.modal-buttons-wrapper .cancel-button:focus,
+.modal-buttons-wrapper .cancel-button:active:focus,
+.modal-buttons-wrapper .cancel-button.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.modal-buttons-wrapper .cancel-button:hover,
+.modal-buttons-wrapper .cancel-button:focus {
+  color: #333333;
+  text-decoration: none;
+}
+.modal-buttons-wrapper .cancel-button:active,
+.modal-buttons-wrapper .cancel-button.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.modal-buttons-wrapper .cancel-button.disabled,
+.modal-buttons-wrapper .cancel-button[disabled],
+fieldset[disabled] .modal-buttons-wrapper .cancel-button {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.modal-buttons-wrapper .cancel-button:active:focus,
+.modal-buttons-wrapper .cancel-button.active:focus {
+  color: #ffffff;
+  background-color: #c9c9c9;
+}
+.modal-buttons-wrapper .cancel-button:active:hover,
+.modal-buttons-wrapper .cancel-button.active:hover {
+  color: #ffffff;
+  background-color: #c9c9c9;
+}
+.modal-buttons-wrapper .cancel-button:focus {
+  background-color: #afafaf;
+  color: #ffffff;
+}
+.modal-buttons-wrapper .cancel-button:hover {
+  background-color: #bcbcbc;
+  outline: none !important;
+  color: #ffffff;
+}
+.modal-buttons-wrapper .cancel-button:hover:focus {
+  background-color: #afafaf;
+  color: #ffffff;
+}
+.modal-buttons-wrapper .cancel-button:active,
+.modal-buttons-wrapper .cancel-button.active {
+  background-color: #afafaf;
+  margin-top: 4px;
+  box-shadow: none;
+}
+.modal-buttons-wrapper .cancel-button:hover {
+  background-color: #bcbcbc;
+  outline: none !important;
+  color: #ffffff;
+}
+.modal-buttons-wrapper .cancel-button.disabled,
+.modal-buttons-wrapper .cancel-button[disabled],
+fieldset[disabled] .modal-buttons-wrapper .cancel-button {
+  background-color: #c9c9c9;
+  box-shadow: none;
+  margin-top: 4px;
+  color: #ebebeb;
+  cursor: not-allowed !important;
+}
+.modal-buttons-wrapper .cancel-button.close {
+  background-color: #afafaf;
+  outline: none !important;
+  color: #ffffff;
 }
 .valid:after {
   font-family: 'Glyphicons Halflings';

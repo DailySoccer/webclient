@@ -36,11 +36,10 @@ class FooterComp implements ShadowRootAware {
           </div>
   
           <div class="data-wrapper">
-            <a class="goto-link" id="footerHelp" destination="help_info"><span class="sub-footer-help-link">Ayuda</span></a>
-            <a class="goto-link" id="footerLegal" destination="legal_info"><span class="sub-footer-legal-link">Legal</span></a>
-            <a class="goto-link" id="footerTermsOfUse" destination="terminus_info"><span class="sub-footer-terms-link">Términos<span> de Uso</span></span></a>
-            <a class="goto-link" id="footerPrivacyPolicy" destination="policy_info"><span class="sub-footer-policy-link"><span>Política de </span>Privacidad</span></a>
-            <a class="goto-link" id="footerBlog" target="_blank" href="http://halftime.epiceleven.com"><span class="sub-footer-blog-link">Blog</span></a>
+            <a class="goto-link" id="footerHelp" destination="help_info"><span class="sub-footer-help-link">AYUDA</span></a>
+            <a class="goto-link" id="footerLegal" destination="legal_info"><span class="sub-footer-legal-link">LEGAL</span></a>
+            <a class="goto-link" id="footerTermsOfUse" destination="terminus_info"><span class="sub-footer-terms-link">TERMINOS<span> DE USO</span></span></a>
+            <a class="goto-link" id="footerPrivacyPolicy" destination="policy_info"><span class="sub-footer-policy-link"><span>POLÍTICA DE </span>PRIVACIDAD</span></a>
           </div>
   
           <!--<div class="credit-cards">

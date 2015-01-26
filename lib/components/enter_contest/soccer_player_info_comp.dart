@@ -42,7 +42,7 @@ class SoccerPlayerInfoComp implements DetachAware, AttachAware, ShadowRootAware 
     var contestId = routeProvider.route.parent.parameters["contestId"];
     var instanceSoccerPlayerId = routeProvider.route.parameters['instanceSoccerPlayerId'];
 
-    setInstancePlayerInfo(_soccerPlayerService.getInstanceSoccerPlayer(contestId, instanceSoccerPlayerId));
+    //setInstancePlayerInfo(_soccerPlayerService.getInstanceSoccerPlayer(contestId, instanceSoccerPlayerId));
     _soccerPlayerService.refreshInstancePlayerInfo(contestId, instanceSoccerPlayerId)
       .then((_) {
         updateSoccerPlayerInfoFromService();
@@ -63,8 +63,8 @@ class SoccerPlayerInfoComp implements DetachAware, AttachAware, ShadowRootAware 
     tabChange('season-info-tab-content', 'seasonTab');
   }
 
-  void setInstancePlayerInfo(InstanceSoccerPlayer instanceSoccerPlayer) {
-    _instanceSoccerPlayer = instanceSoccerPlayer;
+  void setInstancePlayerInfo() {
+    _instanceSoccerPlayer = _soccerPlayerService.instanceSoccerPlayer;
 
     if (_instanceSoccerPlayer != null) {
       currentInfoData = {
@@ -83,7 +83,7 @@ class SoccerPlayerInfoComp implements DetachAware, AttachAware, ShadowRootAware 
   }
 
   void updateSoccerPlayerInfoFromService() {
-    setInstancePlayerInfo(_soccerPlayerService.instanceSoccerPlayer);
+    setInstancePlayerInfo();
 
     var matchEventName = "", matchEventDate = "";
     MatchEvent nextMatchEvent = _soccerPlayerService.nextMatchEvent;
@@ -99,13 +99,15 @@ class SoccerPlayerInfoComp implements DetachAware, AttachAware, ShadowRootAware 
     SoccerPlayer soccerPlayer = _soccerPlayerService.soccerPlayer;
     currentInfoData['matches'] = soccerPlayer.stats.length;
     currentInfoData['nextMatchEvent'] = matchEventName + matchEventDate;
-
+/*
     partidos.clear();
     for (SoccerPlayerStats stats in _soccerPlayerService.soccerPlayer.stats){
       partidos.add({
         'stats' : stats
       });
     }
+    *
+     */
     // Limpiamos las estadísticas partido a partido
     seasons.clear();
     tempSeasons.clear();

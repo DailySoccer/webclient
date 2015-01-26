@@ -15958,6 +15958,7 @@ fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .descriptio
     margin-right: 0;
     overflow-x: scroll;
     padding-bottom: 5px;
+    padding-top: 50px;
   }
   #modalSoccerPlayerInfo .soccer-player-info-content .season-stats .season-stats-wrapper {
     width: 1200px;

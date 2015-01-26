@@ -14,6 +14,8 @@ import 'package:webclient/components/enter_contest/enter_contest_comp.dart';
 import 'package:intl/intl.dart';
 import 'package:webclient/components/modal_comp.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/utils/js_utils.dart';
+import 'dart:async';
 
 
 @Component(
@@ -21,7 +23,7 @@ import 'package:webclient/utils/string_utils.dart';
     templateUrl: 'packages/webclient/components/enter_contest/soccer_player_info_comp.html',
     useShadowDom: false
 )
-class SoccerPlayerInfoComp implements DetachAware {
+class SoccerPlayerInfoComp implements DetachAware, AttachAware, ShadowRootAware {
 
   ScreenDetectorService scrDet;
 
@@ -35,7 +37,7 @@ class SoccerPlayerInfoComp implements DetachAware {
   bool matchesPlayed;
   bool cannotAddPlayer;
 
-  SoccerPlayerInfoComp(this._flashMessage, this.enterContestComp, this.scrDet, this._soccerPlayerService, RouteProvider routeProvider, Router router) {
+  SoccerPlayerInfoComp(this._flashMessage, this.enterContestComp, this.scrDet, this._soccerPlayerService, RouteProvider routeProvider, Router router, this._root) {
 
     var contestId = routeProvider.route.parent.parameters["contestId"];
     var instanceSoccerPlayerId = routeProvider.route.parameters['instanceSoccerPlayerId'];
@@ -224,34 +226,34 @@ class SoccerPlayerInfoComp implements DetachAware {
     if (isGoalkeeper()) {
       //añadimos las especificas del portero
       medias = [
-                {'nombre' : "MIN" , 'valor': calculateStatAverage(sumatorioMinutos, partidosTotales)},
-                {'nombre' : "PB" , 'valor': calculateStatAverage(sumatorioPerdidasBalon, partidosTotales)},
-                {'nombre' : "GE" , 'valor': calculateStatAverage(sumatorioGolesEncajados, partidosTotales)},
-                {'nombre' : "PD" , 'valor': calculateStatAverage(sumatorioPenaltisDetenidos, partidosTotales)},
-                {'nombre' : "PA" , 'valor': calculateStatAverage(sumatorioParadas, partidosTotales)},
-                {'nombre' : "FC" , 'valor': calculateStatAverage(sumatorioFaltasCometidas, partidosTotales)},
-                {'nombre' : "D" , 'valor': calculateStatAverage(sumatorioDespejes, partidosTotales)},
-                {'nombre' : "TA" , 'valor': calculateStatAverage(sumatorioTarjetasAmarillas, partidosTotales)},
-                {'nombre' : "P" , 'valor': calculateStatAverage(sumatorioPases, partidosTotales)},
-                {'nombre' : "TR" , 'valor': calculateStatAverage(sumatorioTarjetasRojas, partidosTotales)},
-                {'nombre' : "RE" , 'valor': calculateStatAverage(sumatorioRecuperaciones, partidosTotales)}
+                {'nombre' : "MIN" , 'valor': calculateStatAverage(sumatorioMinutos, partidosTotales), 'helpInfo': 'Minutos jugados'},
+                {'nombre' : "GE" , 'valor': calculateStatAverage(sumatorioGolesEncajados, partidosTotales), 'helpInfo': 'Goles Encajados'},
+                {'nombre' : "PA" , 'valor': calculateStatAverage(sumatorioParadas, partidosTotales), 'helpInfo': 'Paradas'},
+                {'nombre' : "D" , 'valor': calculateStatAverage(sumatorioDespejes, partidosTotales), 'helpInfo': 'Despejes'},
+                {'nombre' : "PD" , 'valor': calculateStatAverage(sumatorioPenaltisDetenidos, partidosTotales), 'helpInfo': 'Penaltis Detenidos'},
+                {'nombre' : "P" , 'valor': calculateStatAverage(sumatorioPases, partidosTotales), 'helpInfo': 'Pases'},
+                {'nombre' : "RE" , 'valor': calculateStatAverage(sumatorioRecuperaciones, partidosTotales), 'helpInfo': 'Recuperaciones'},
+                {'nombre' : "PB" , 'valor': calculateStatAverage(sumatorioPerdidasBalon, partidosTotales), 'helpInfo': 'Perdidas de Balón'},
+                //{'nombre' : "FC" , 'valor': calculateStatAverage(sumatorioFaltasCometidas, partidosTotales), 'helpInfo': 'Faltas Cometidas'},
+                {'nombre' : "TA" , 'valor': calculateStatAverage(sumatorioTarjetasAmarillas, partidosTotales), 'helpInfo': 'Tarjetas Amarillas'},
+                {'nombre' : "TR" , 'valor': calculateStatAverage(sumatorioTarjetasRojas, partidosTotales), 'helpInfo': 'Tarjetas Rojas'}
       ];
     }
     else {
       //añadimos las especificas del resto de jugadores
       medias = [
-                {'nombre' : "MIN" , 'valor': calculateStatAverage(sumatorioMinutos, partidosTotales)},
-                {'nombre' : "RE" , 'valor': calculateStatAverage(sumatorioRecuperaciones, partidosTotales)},
-                {'nombre' : "G" , 'valor': calculateStatAverage(sumatorioGoles, partidosTotales)},
-                {'nombre' : "PB" , 'valor': calculateStatAverage(sumatorioPerdidasBalon, partidosTotales)},
-                {'nombre' : "T" , 'valor': calculateStatAverage(sumatorioTiros, partidosTotales)},
-                {'nombre' : "FR" , 'valor': calculateStatAverage(sumatorioFaltasRecibidas, partidosTotales)},
-                {'nombre' : "P" , 'valor': calculateStatAverage(sumatorioPases, partidosTotales)},
-                {'nombre' : "FC" , 'valor': calculateStatAverage(sumatorioFaltasCometidas, partidosTotales)},
-                {'nombre' : "A" , 'valor': calculateStatAverage(sumatorioAsistencias, partidosTotales)},
-                {'nombre' : "TA" , 'valor': calculateStatAverage(sumatorioTarjetasAmarillas, partidosTotales)},
-                {'nombre' : "R" , 'valor': calculateStatAverage(sumatorioRegates, partidosTotales)},
-                {'nombre' : "TR" , 'valor': calculateStatAverage(sumatorioTarjetasRojas, partidosTotales)}
+                {'nombre' : "MIN" , 'valor': calculateStatAverage(sumatorioMinutos, partidosTotales), 'helpInfo': 'Minutos jugados'},
+                {'nombre' : "G" , 'valor': calculateStatAverage(sumatorioGoles, partidosTotales), 'helpInfo': 'Goles'},
+                {'nombre' : "T" , 'valor': calculateStatAverage(sumatorioTiros, partidosTotales), 'helpInfo': 'Tiros'},
+                {'nombre' : "P" , 'valor': calculateStatAverage(sumatorioPases, partidosTotales), 'helpInfo': 'Pases'},
+                {'nombre' : "A" , 'valor': calculateStatAverage(sumatorioAsistencias, partidosTotales), 'helpInfo': 'Asistencias'},
+                {'nombre' : "R" , 'valor': calculateStatAverage(sumatorioRegates, partidosTotales), 'helpInfo': 'Regates'},
+                {'nombre' : "RE" , 'valor': calculateStatAverage(sumatorioRecuperaciones, partidosTotales), 'helpInfo': 'Recuperaciones'},
+                {'nombre' : "PB" , 'valor': calculateStatAverage(sumatorioPerdidasBalon, partidosTotales), 'helpInfo': 'Perdidas de Balones'},
+                {'nombre' : "FC" , 'valor': calculateStatAverage(sumatorioFaltasCometidas, partidosTotales), 'helpInfo': 'Faltas Cometidas'},
+                {'nombre' : "FR" , 'valor': calculateStatAverage(sumatorioFaltasRecibidas, partidosTotales), 'helpInfo': 'Recibides'},
+                {'nombre' : "TA" , 'valor': calculateStatAverage(sumatorioTarjetasAmarillas, partidosTotales), 'helpInfo': 'Tarjetas Amarillas'},
+                {'nombre' : "TR" , 'valor': calculateStatAverage(sumatorioTarjetasRojas, partidosTotales), 'helpInfo': 'Tarjetas Rojas'}
       ];
     }
     // Añado una última columna en las medias de portero para que cuadre
@@ -278,10 +280,32 @@ class SoccerPlayerInfoComp implements DetachAware {
     ModalComp.close();
   }
 
+  void onShadowRoot(ShadowRoot shadowRoot) {
+    var lista = querySelectorAll('.tt-selector');
+
+    JsUtils.runJavascript(".tt-selector", 'tooltip', []);
+
+    new Timer(new Duration(seconds: 1), tooltipfy);
+  }
+
+  void tooltipfy() {
+    var lista = querySelectorAll('.tt-selector');
+
+    JsUtils.runJavascript(".tt-selector", 'tooltip', null);
+  }
+
+  @override
+  void attach() {
+    var lista = querySelectorAll('.tt-selector');
+
+    JsUtils.runJavascript(".tt-selector", 'tooltip', null);
+  }
+
   SoccerPlayerService _soccerPlayerService;
   FlashMessagesService _flashMessage;
 
   InstanceSoccerPlayer _instanceSoccerPlayer;
 
   var _streamListener;
+  Element _root;
 }

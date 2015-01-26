@@ -32,13 +32,13 @@ import 'package:webclient/components/modal_comp.dart';
 
 import 'package:webclient/components/paginator_comp.dart';
 import 'package:webclient/components/contest_filters_comp.dart';
-import 'package:webclient/components/lobby_comp.dart';
 import 'package:webclient/components/promos_comp.dart';
 import 'package:webclient/components/contests_list_comp.dart';
 
 import 'package:webclient/components/contest_info_comp.dart';
 import 'package:webclient/components/scoring_rules_comp.dart';
 import 'package:webclient/components/contest_header_comp.dart';
+import 'package:webclient/components/lobby_comp.dart';
 
 import 'package:webclient/components/account/login_comp.dart';
 import 'package:webclient/components/account/join_comp.dart';

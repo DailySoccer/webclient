@@ -98,11 +98,9 @@ class SoccerPlayerStatsComp implements DetachAware{
   }
 
   void updateSoccerPlayerInfoFromService() {
-    collectSoccerPlayerInfo(_instanceSoccerPlayer);
+    collectSoccerPlayerInfo(_soccerPlayerService.instanceSoccerPlayer);
     // Calculo de estadisticas de jugador
     calculateStatistics();
-    // Renderizamos el HTML
-  //  renderizeHTML();
   }
 
   String calculateStatAverage(int statSummatory, int totalMatch) {
@@ -124,40 +122,40 @@ class SoccerPlayerStatsComp implements DetachAware{
   }
 
   void initializaPlayerStats() {
-    seasonResumeStats.clear();
-    seasons["values"].clear();
-    if (isGoalkeeper()) {
-      seasons['headers'] = ['Fecha', 'Oponente', 'Daily Fantasy Points', 'Minutos', 'Goles Encajados', 'Paradas', 'Despejes', 'Penaltis Detenidos', 'Pases', 'Recuperaciones', 'Perdidas de Balón', 'Faltas Cometidas', 'Tarjetas Amarillas', 'Tarjetas Rojas'];
+    if(_instanceSoccerPlayer != null) {
+      seasonResumeStats.clear();
+      seasons["values"].clear();
+      if (isGoalkeeper()) {
+        seasons['headers'] = ['Fecha', 'Oponente', 'Daily Fantasy Points', 'Minutos', 'Goles Encajados', 'Paradas', 'Despejes', 'Penaltis Detenidos', 'Pases', 'Recuperaciones', 'Perdidas de Balón', 'Faltas Cometidas', 'Tarjetas Amarillas', 'Tarjetas Rojas'];
+      }
+      else {
+        seasons['headers'] = ['Fecha', 'Oponente', 'Daily Fantasy Points', 'Minutos', 'Goles', 'Tiros', 'Pases', 'Asistencias', 'Regates', 'Recuperaciones', 'Perdidas de Balones', 'Faltas Cometidas', 'Faltas Recibidas', 'Tarjetas Amarillas', 'Tarjetas Rojas'];
+      }
+      _totalMinutes        = 0;
+      _totalPasses         = 0;
+      _totalRetrievals     = 0;
+      _totalTurnovers      = 0;
+      _totalFoulsCommitted = 0;
+      _totalYellowCards    = 0;
+      _totalRedCards       = 0;
+      // Goalkeeper
+      _totalGoalsAgainst   = 0;
+      _totalSaves          = 0;
+      _totalClearances     = 0;
+      _totalSavedPenalties = 0;
+      // Player
+      _totalGoals          = 0;
+      _totalShoots         = 0;
+      _totalAssistances    = 0;
+      _totalDribbles       = 0;
+      _totalFoulsSuffered  = 0;
     }
-    else {
-      seasons['headers'] = ['Fecha', 'Oponente', 'Daily Fantasy Points', 'Minutos', 'Goles', 'Tiros', 'Pases', 'Asistencias', 'Regates', 'Recuperaciones', 'Perdidas de Balones', 'Faltas Cometidas', 'Faltas Recibidas', 'Tarjetas Amarillas', 'Tarjetas Rojas'];
-    }
-    _totalMinutes        = 0;
-    _totalPasses         = 0;
-    _totalRetrievals     = 0;
-    _totalTurnovers      = 0;
-    _totalFoulsCommitted = 0;
-    _totalYellowCards    = 0;
-    _totalRedCards       = 0;
-    // Goalkeeper
-    _totalGoalsAgainst   = 0;
-    _totalSaves          = 0;
-    _totalClearances     = 0;
-    _totalSavedPenalties = 0;
-    // Player
-    _totalGoals          = 0;
-    _totalShoots         = 0;
-    _totalAssistances    = 0;
-    _totalDribbles       = 0;
-    _totalFoulsSuffered  = 0;
   }
 
   void calculateStatistics() {
-    if(_instanceSoccerPlayer != null) {
       initializaPlayerStats();
       calculateSeasonStats();
       calculateSeasonResumeStats();
-    }
   }
 
   void calculateSeasonStats() {

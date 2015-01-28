@@ -28,40 +28,44 @@
         <div class="soccer-player-salary"><span>SALARIO</span><span>{{currentInfoData['salary']}}</span></div>
       </div>
     </div>
-    <div class="next-match-wrapper" ng-if="scrDet.isNotXsScreen">
+    <div class="next-match-wrapper">
       <div class="next-match"  ng-bind-html="currentInfoData['nextMatchEvent']"></div>
       <button class="button-add" ng-click="onAddClicked()" ng-disabled="cannotAddPlayer">AÑADIR</button>
     </div>
 
   </div>
-  <!--
-  <div class="soccer-player-info-content">
-      <!- - Nav tabs - ->
-      <ul id="soccer-player-info" class="soccer-player-info-tabs" role="tablist">
-        <li id="seasonTab" class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('season-info-tab-content')">Datos de Temporada</a></li>
-        <li id="matchTab" ><a role="tab" data-toggle="tab" ng-click="tabChange('match-info-tab-content')">Partido a Partido</a></li>
+
+  <div class="soccer-player-stats-content">
+      <!-- Nav tabs -->
+      <ul id="soccer-player-stats-tabs" class="soccer-player-stats-tabs" role="tablist">
+        <li id="seasonTab" class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('season-stats-tab-content')">Datos de Temporada</a></li>
+        <li id="matchTab" ><a role="tab" data-toggle="tab" ng-click="tabChange('match-stats-tab-content')">Partido a Partido</a></li>
       </ul>
 
       <div class="tabs">
-        <!- - Tab panes - ->
+        <!-- Tab panes -->
         <div class="tab-content">
-          <!- -SEASON- ->
-          <div class="tab-pane active" id="season-info-tab-content">
-            <div class="next-match">PRÓXIMO PARTIDO: <span ng-bind-html="currentInfoData['nextMatchEvent']"></span></div>
-            <!-- MEDIAS - ->
+          <!-- SEASON -->
+          <div class="tab-pane active" id="season-stats-tab-content">
+            <div class="next-match" ng-bind-html="currentInfoData['nextMatchEvent']"></div>
+            <!-- MEDIAS -->
             <div class="season-header">ESTADÍSTICAS DE TEMPORADA <span>(DATOS POR PARTIDO)</span></div>
             <div class="season-stats">
-              <div class="season-stats-wrapper">
+
                 <div class="season-stats-row" ng-repeat="stat in seasonResumeStats" >
                   <div class="tt-selector" data-toggle="tooltip" title="{{stat['helpInfo']}}">
                     <div class="season-stats-header">{{stat['nombre']}}</div>
                     <div class="season-stats-info">{{stat['valor']}}</div>
                   </div>
                 </div>
-              </div>
+
             </div>
           </div>
-          <!- -END SEASON- ->
+          <!-- END SEASON -->
+</div>
+</div>
+</div>
+<!--
           <!- -MATCH- ->
           <div class="tab-pane" id="match-info-tab-content">
             <div class="match-header">PARTIDO A PARTIDO</div>
@@ -127,7 +131,7 @@
         <button class="button-cancel" data-dismiss="modal">CANCELAR</button>
         <button class="button-add" ng-click="onAddClicked()" ng-disabled="cannotAddPlayer">AÑADIR</button>
       </div>
-  </div>
 -->
+
 </modal>
 

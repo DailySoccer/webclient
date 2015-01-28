@@ -236,7 +236,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
       }
     }
     //temp
-    else if ((e.target as Element  ).classes.contains('column-fieldpos') ) {
+    else if ((e.target as Element  ).classes.contains('column-salary') ) {
       onRowClick2({"soccerPlayerId": clickedSlot['id']});
     }
     ///////////

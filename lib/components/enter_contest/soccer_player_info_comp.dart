@@ -3,7 +3,6 @@ library soccer_player_info_comp;
 import 'package:angular/angular.dart';
 import 'dart:html';
 import 'package:webclient/models/soccer_player.dart';
-import 'package:webclient/models/soccer_player_stats.dart';
 import 'package:webclient/models/instance_soccer_player.dart';
 import 'package:webclient/models/match_event.dart';
 import 'package:webclient/services/soccer_player_service.dart';
@@ -42,7 +41,7 @@ class SoccerPlayerInfoComp implements DetachAware, AttachAware, ShadowRootAware 
     var contestId = routeProvider.route.parent.parameters["contestId"];
     var instanceSoccerPlayerId = routeProvider.route.parameters['instanceSoccerPlayerId'];
 
-    //setInstancePlayerInfo(_soccerPlayerService.getInstanceSoccerPlayer(contestId, instanceSoccerPlayerId));
+    setInstancePlayerInfo(_soccerPlayerService.getInstanceSoccerPlayer(contestId, instanceSoccerPlayerId));
     _soccerPlayerService.refreshInstancePlayerInfo(contestId, instanceSoccerPlayerId)
       .then((_) {
         updateSoccerPlayerInfoFromService();
@@ -63,8 +62,8 @@ class SoccerPlayerInfoComp implements DetachAware, AttachAware, ShadowRootAware 
     tabChange('season-info-tab-content', 'seasonTab');
   }
 
-  void setInstancePlayerInfo() {
-    _instanceSoccerPlayer = _soccerPlayerService.instanceSoccerPlayer;
+  void setInstancePlayerInfo(InstanceSoccerPlayer instanceSoccerPlayer) {
+     _instanceSoccerPlayer = instanceSoccerPlayer;
 
     if (_instanceSoccerPlayer != null) {
       currentInfoData = {
@@ -83,7 +82,7 @@ class SoccerPlayerInfoComp implements DetachAware, AttachAware, ShadowRootAware 
   }
 
   void updateSoccerPlayerInfoFromService() {
-    setInstancePlayerInfo();
+    setInstancePlayerInfo(_soccerPlayerService.instanceSoccerPlayer);
 
     var matchEventName = "", matchEventDate = "";
     MatchEvent nextMatchEvent = _soccerPlayerService.nextMatchEvent;

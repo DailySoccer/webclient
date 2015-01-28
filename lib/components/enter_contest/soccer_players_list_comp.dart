@@ -23,6 +23,11 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
   @NgCallback("on-row-click")
   Function onRowClick;
 
+  //TEMP
+  @NgCallback("on-row-click-2")
+  Function onRowClick2;
+
+
   @NgCallback("on-action-click")
   Function onActionClick;
 
@@ -230,6 +235,11 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
         onActionClick({"soccerPlayer": clickedSlot});
       }
     }
+    //temp
+    else if ((e.target as Element  ).classes.contains('column-fieldpos') ) {
+      onRowClick2({"soccerPlayerId": clickedSlot['id']});
+    }
+    ///////////
     else if (onRowClick != null) {
       onRowClick({"soccerPlayerId": clickedSlot['id']});
     }

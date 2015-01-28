@@ -65,6 +65,7 @@ import 'package:webclient/components/enter_contest/soccer_players_list_comp.dart
 import 'package:webclient/components/enter_contest/soccer_players_filter_comp.dart';
 import 'package:webclient/components/enter_contest/matches_filter_comp.dart';
 import 'package:webclient/components/enter_contest/soccer_player_info_comp.dart';
+import 'package:webclient/components/enter_contest/soccer_player_stats_comp.dart';
 
 import 'package:webclient/components/legalese_and_help/help_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/legal_info_comp.dart';
@@ -157,6 +158,7 @@ class WebClientApp extends Module {
     bind(MatchesFilterComp);
     bind(LineupSelectorComp);
     bind(SoccerPlayerInfoComp);
+    bind(SoccerPlayerStatsComp);
 
     bind(ChangePasswordComp);
     bind(RememberPasswordComp);
@@ -299,7 +301,10 @@ class WebClientApp extends Module {
           mount: {
             'soccer_player_info': ngRoute(
               path: '/soccer_player_info/:instanceSoccerPlayerId',
-              viewHtml: '<soccer-player-info></soccer-player-info>')
+              viewHtml: '<soccer-player-info></soccer-player-info>'),
+            'soccer_player_stats': ngRoute(
+              path: '/soccer_player_stats/:instanceSoccerPlayerId',
+              viewHtml: '<soccer-player-stats></soccer-player-stats>')
           }
       )
       ,'view_contest_entry': ngRoute(

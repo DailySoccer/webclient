@@ -1,7 +1,6 @@
 library soccer_player_stats_comp;
 
 import 'dart:html';
-import 'dart:async';
 
 import 'package:angular/angular.dart';
 import 'package:intl/intl.dart';
@@ -16,27 +15,30 @@ import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/utils/js_utils.dart';
+import 'package:webclient/models/instance_soccer_player.dart';
 
 @Component(
     selector: 'soccer-player-stats',
+    templateUrl: 'packages/webclient/components/enter_contest/soccer_player_stats_comp.html',
     useShadowDom: false
 )
 class SoccerPlayerStatsComp implements DetachAware{
 
   ScreenDetectorService scrDet;
 
-  List<Map> seasonResumeStats;
-  Map seasons = {'year': '', 'headers': ''};
+  List<Map> seasonResumeStats = [];
+  Map<String,dynamic> seasons = {'headers': [], 'values': {}};
   Map currentInfoData;
   bool cannotAddPlayer;
 
   bool isGoalkeeper() => currentInfoData['fieldPos'] == "POR";
 
-  SoccerPlayerStatsComp(this._flashMessage, this._enterContestComp, this.scrDet, this._soccerPlayerService, RouteProvider routeProvider, Router router, this._root) {
+  SoccerPlayerStatsComp(this._flashMessage, this._enterContestComp, this.scrDet, this._soccerPlayerService, RouteProvider routeProvider, Router router, this._rootElement) {
 
     var contestId = routeProvider.route.parent.parameters["contestId"];
     var instanceSoccerPlayerId = routeProvider.route.parameters['instanceSoccerPlayerId'];
 
+    collectSoccerPlayerInfo(_soccerPlayerService.getInstanceSoccerPlayer(contestId, instanceSoccerPlayerId));
     _soccerPlayerService.refreshInstancePlayerInfo(contestId, instanceSoccerPlayerId)
       .then((_) {
         updateSoccerPlayerInfoFromService();
@@ -54,20 +56,21 @@ class SoccerPlayerStatsComp implements DetachAware{
   }
 
   void onScreenWidthChange(String msg) {
-    tabChange('season-info-tab-content', 'seasonTab');
+    tabChange('season-stats-tab-content', 'seasonTab');
   }
 
-  void collectSoccerPlayerInfo() {
+  void collectSoccerPlayerInfo(InstanceSoccerPlayer _soccerPlayerInstance) {
+    _instanceSoccerPlayer = _soccerPlayerInstance;
 
-    if (_soccerPlayerService.instanceSoccerPlayer != null) {
+    if (_instanceSoccerPlayer != null) {
       currentInfoData = {
-        'id'              : _soccerPlayerService.instanceSoccerPlayer.id,
-        'fieldPos'        : _soccerPlayerService.instanceSoccerPlayer.fieldPos.abrevName,
-        'team'            : _soccerPlayerService.instanceSoccerPlayer.soccerTeam.name.toUpperCase(),
-        'name'            : _soccerPlayerService.instanceSoccerPlayer.soccerPlayer.name.toUpperCase(),
-        'fantasyPoints'   : StringUtils.parseFantasyPoints(_soccerPlayerService.instanceSoccerPlayer.soccerPlayer.fantasyPoints),
-        'salary'          : _soccerPlayerService.instanceSoccerPlayer.salary,
-        'matches'         : _soccerPlayerService.soccerPlayer.stats.length,
+        'id'              : _instanceSoccerPlayer.id,
+        'fieldPos'        : _instanceSoccerPlayer.fieldPos.abrevName,
+        'team'            : _instanceSoccerPlayer.soccerTeam.name.toUpperCase(),
+        'name'            : _instanceSoccerPlayer.soccerPlayer.name.toUpperCase(),
+        'fantasyPoints'   : StringUtils.parseFantasyPoints(_instanceSoccerPlayer.soccerPlayer.fantasyPoints),
+        'salary'          : _instanceSoccerPlayer.salary,
+        'matches'         : _instanceSoccerPlayer.soccerPlayer.stats != null ? _instanceSoccerPlayer.soccerPlayer.stats.length : 0,
         'nextMatchEvent'  : getNextMatchEvent(),
         'stats'           : {}
       };
@@ -86,21 +89,20 @@ class SoccerPlayerStatsComp implements DetachAware{
       String shortNameTeamB = nextMatchEvent.soccerTeamB.name;
 
       matchEventName = (_soccerPlayerService.soccerPlayer.soccerTeam.templateSoccerTeamId == nextMatchEvent.soccerTeamA.templateSoccerTeamId)
-                        ? "<strong>$shortNameTeamA</strong> vs $shortNameTeamB" : "$shortNameTeamA vs <strong>$shortNameTeamB</strong>";
+                        ? " <strong>$shortNameTeamA</strong> vs $shortNameTeamB" : " $shortNameTeamA vs <strong>$shortNameTeamB</strong>";
 
       matchEventDate = " (${DateTimeService.formatDateTimeShort(nextMatchEvent.startDate)})";
     }
 
-    return (matchEventName + matchEventDate);
+    return ("PRÓXIMO PARTIDO: " + matchEventName + matchEventDate);
   }
 
   void updateSoccerPlayerInfoFromService() {
-
-    collectSoccerPlayerInfo();
+    collectSoccerPlayerInfo(_instanceSoccerPlayer);
     // Calculo de estadisticas de jugador
     calculateStatistics();
     // Renderizamos el HTML
-    renderizeHTML();
+  //  renderizeHTML();
   }
 
   String calculateStatAverage(int statSummatory, int totalMatch) {
@@ -123,15 +125,13 @@ class SoccerPlayerStatsComp implements DetachAware{
 
   void initializaPlayerStats() {
     seasonResumeStats.clear();
-    seasons["year"].clear();
+    seasons["values"].clear();
     if (isGoalkeeper()) {
       seasons['headers'] = ['Fecha', 'Oponente', 'Daily Fantasy Points', 'Minutos', 'Goles Encajados', 'Paradas', 'Despejes', 'Penaltis Detenidos', 'Pases', 'Recuperaciones', 'Perdidas de Balón', 'Faltas Cometidas', 'Tarjetas Amarillas', 'Tarjetas Rojas'];
     }
     else {
       seasons['headers'] = ['Fecha', 'Oponente', 'Daily Fantasy Points', 'Minutos', 'Goles', 'Tiros', 'Pases', 'Asistencias', 'Regates', 'Recuperaciones', 'Perdidas de Balones', 'Faltas Cometidas', 'Faltas Recibidas', 'Tarjetas Amarillas', 'Tarjetas Rojas'];
     }
-
-
     _totalMinutes        = 0;
     _totalPasses         = 0;
     _totalRetrievals     = 0;
@@ -153,10 +153,11 @@ class SoccerPlayerStatsComp implements DetachAware{
   }
 
   void calculateStatistics() {
-
-    initializaPlayerStats();
-    calculateSeasonStats();
-    calculateSeasonResumeStats();
+    if(_instanceSoccerPlayer != null) {
+      initializaPlayerStats();
+      calculateSeasonStats();
+      calculateSeasonResumeStats();
+    }
   }
 
   void calculateSeasonStats() {
@@ -202,25 +203,24 @@ class SoccerPlayerStatsComp implements DetachAware{
         }
 
         // Buscamos el año que vamos a actualizar
-        var seasonYear = seasons['year'].where((year) => year == year);
+        Map seasonYear = seasons['values'];
 
         // Si no existe aún este año en la tabla de años, la generamos
-        if (seasonYear == null) {
+        if (seasonYear == null || !seasonYear.containsKey(year)) {
           // Si no tenemos creadas las estadísticas partido a partido
           Map newYear = {};
-          newYear.addAll({"year":year, "value":[].add(matchStatRows)});
-          seasons.addAll(newYear);
+          newYear.addAll({year:matchStatRows});
+          seasonYear.addAll(newYear);
         }
         else {
-          seasonYear["value"].add(matchStatRows);
+          seasonYear[year].add(matchStatRows);
         }
-
       });
 
     // No ha jugado ningún partido
     }
     else {
-      seasons['year'] = [];
+      seasons['values'] = [];
     }
   }
 
@@ -265,85 +265,6 @@ class SoccerPlayerStatsComp implements DetachAware{
     }
   }
 
-  void renderizeHTML() {
-    _theHTML =
-       '''
-       <modal id="modalSoccerPlayerInfo">
-      
-        <div class="soccer-player-info-header">
-          <div class="actions-header">
-            <div class="text-header">ESTADÍSTICAS DEL JUGADOR</div>
-      
-            <button type="button" class="close" data-dismiss="modal">
-              <span class="glyphicon glyphicon-remove"></span>
-            </button>
-      
-            <!-- Esta seccion con boton de cancelar & añadir se repite 2 veces, solo en movil, arriba y abajo -->
-            <div class="action-buttons">
-                <button class="button-cancel" data-dismiss="modal">CANCELAR</button>
-                <button class="button-add ${cannotAddPlayer ? "disabled":""}" do-function="onAddClicked">AÑADIR</button>
-            </div>
-      
-          </div>
-          <div class="description-header">
-            <div class="soccer-player-description">
-              <div class="soccer-player-pos-team">
-                <span>${currentInfoData['fieldPos']}</span> | <span>${currentInfoData['team']}</span>
-              </div>
-              <div class="soccer-player-name">${currentInfoData['name']}</div>
-            </div>
-            <div class="soccer-player-info-stats">
-              <div class="soccer-player-fantasy-points"><span>DFP</span><span>${currentInfoData['fantasyPoints']}</span></div>
-              <div class="soccer-player-matches"><span>PARTIDOS</span><span>${currentInfoData['matches']}</span></div>
-              <div class="soccer-player-salary"><span>SALARIO</span><span>${currentInfoData['salary']}</span></div>
-            </div>
-            ${scrDet.isNotXsScreen ? getNextMatchForDesktop() : ""}
-          </div>
-        </div>
-      
-        <div class="soccer-player-info-content">
-            <!-- Nav tabs -->
-            <ul id="soccer-player-info" class="soccer-player-info-tabs" role="tablist">
-              <li id="seasonTab" class="active"><a role="tab" data-toggle="tab" do-function="tabChange" do-function-paams="season-info-tab-content">Datos de Temporada</a></li>
-              <li id="matchTab" ><a role="tab" data-toggle="tab"  do-function="tabChange" do-function-paams="match-info-tab-content">Partido a Partido</a></li>
-            </ul>
-      
-            <div class="tabs">
-              <!-- Tab panes -->
-              <div class="tab-content">
-                <!--SEASON-->
-                <div class="tab-pane active" id="season-info-tab-content">
-                  <div class="next-match">PRÓXIMO PARTIDO: <span> ${currentInfoData['nextMatchEvent']}></span></div>
-                  <!-- MEDIAS -->
-                  <div class="season-header">ESTADÍSTICAS DE TEMPORADA <span>(DATOS POR PARTIDO)</span></div>
-                  <div class="season-stats">
-                    <div class="season-stats-wrapper">
-                      ${getSeasonResumeStats()}
-                    </div>
-                  </div>
-                </div>
-                <!--END SEASON-->
-                <!--MATCH-->
-                <div class="tab-pane" id="match-info-tab-content">
-                  <div class="match-header">PARTIDO A PARTIDO</div>
-                  ${getSeasonsStats()}
-                  
-                </div>
-                <!--END MATCH-->
-              </div>
-            </div>
-      
-            <div class="action-buttons bottom">
-              <button class="button-cancel" data-dismiss="modal">CANCELAR</button>
-              <button class="button-add" ng-click="onAddClicked()" ng-disabled="cannotAddPlayer">AÑADIR</button>
-            </div>
-        </div>
-      </modal>
-
-
-    ''';
-  }
-
   String getNextMatchForDesktop() {
     return  '''
               <div class="next-match-wrapper">
@@ -358,8 +279,8 @@ class SoccerPlayerStatsComp implements DetachAware{
     seasonResumeStats.forEach( (stat) {
       resumeStats += '''
         <div data-toggle="tooltip" title="${stat['helpInfo']}">
-        <div class="season-stats-header">${stat['nombre']}</div>
-        <div class="season-stats-info">${stat['valor']}</div>
+          <div class="season-stats-header">${stat['nombre']}</div>
+          <div class="season-stats-info">${stat['valor']}</div>
         </div>
       ''';
     });
@@ -369,107 +290,27 @@ class SoccerPlayerStatsComp implements DetachAware{
 
   String getSeasonsStats() {
     if (currentInfoData['matches'] > 0) {
-      return '''
-        <div class="noMatchesPlayed">
-            <span>No ha jugado ningún partido esta temporada</span>
-        </div>
-      ''';
+      return '''<div class="noMatchesPlayed"> <span>No ha jugado ningún partido esta temporada</span> </div>''';
     }
     else {
-      return '''
-        <div class="match-stats">
-            <div class="match-stats-header">
-               ${getSeasonHeaders()}
-        </div>
-      ''';
-
+      return '''<div class="match-stats"> ${getSeasonsDataTable()} </div>''';
     }
   }
 
-  String getSeasonHeaders() {
+  String getSeasonsDataTable() {
     String ret = "";
-    (seasons['headers'][0] as List).forEach( (head) {
-      if (scrDet.isNotXsScreen && head == "Fecha") {
-        ret += '''<div><span>${head}</span>&nbsp;</div>''';
-      }
-      else {
-        ret
-      }
-
-
-    });
-
     return ret;
   }
 
-
-/*
-      return '''
-      <div class="match-stats">
-                          <!--HEADER-->
-                          <div ng-if="isGoalkeeper()" class="match-stats-header">
-                            <div><span ng-if="scrDet.isNotXsScreen">FECHA</span>&nbsp;</div>
-                            <div ng-if="scrDet.isXsScreen">DÍA</div>
-                            <div>OP</div>
-                            <div>DFP</div>
-                            <div>MIN</div>
-                            <div>GE</div>
-                            <div>PA</div>
-                            <div>D</div>
-                            <div>P</div>
-                            <div>RE</div>
-                            <div>PB</div>
-                            <div>PD</div>
-                            <div>FC</div>
-                            <div>TA</div>
-                            <div>TR</div>
-                          </div>
-                          <div ng-if="!isGoalkeeper()" class="match-stats-header">
-                            <div><span ng-if="scrDet.isNotXsScreen">FECHA</span>&nbsp;</div>
-                            <div ng-if="scrDet.isXsScreen">DÍA</div>
-                            <div>OP</div>
-                            <div>DFP</div>
-                            <div>MIN</div>
-                            <div>G</div>
-                            <div>T</div>
-                            <div>P</div>
-                            <div>A</div>
-                            <div>R</div>
-                            <div>RE</div>
-                            <div>E</div>
-                            <div>PB</div>
-                            <div>FJ</div>
-                            <div>TA</div>
-                            <div>TR</div>
-                          </div>
-                          <!--CONTENT-->
-                          <div class="match-stats-content">
-                              <div class="match-stats-data">
-                                <!-- Los datos con un ng-repeat por año -->
-                                <div ng-repeat="slot in seasons">
-                                    <div class="match-year">{{slot["año"]}}</div>
-                                    <div class="data" ng-repeat="match in slot['value']">
-                                      <div ng-repeat="data in match">{{data}}<span ng-if="index == 0 && scrDet.isDesktop">/{{slot["año"]}}</span></div>
-                                    </div>
-                                </div>
-                              </div>
-                          </div>
-                        </div>
-
-                       ''';
-*/
-  }
-
-
   void tabChange(String tab,[String LItabName = null]) {
-    querySelectorAll(".soccer-player-info-content .tab-pane").classes.remove('active');
+    querySelectorAll(".soccer-player-stats-content .tab-pane").classes.remove('active');
 
     Element contentTab = document.querySelector("#" + tab);
     if (contentTab != null) {
       contentTab.classes.add("active");
     }
-    if (LItabName!= null) {
-      querySelectorAll('#soccer-player-info li').classes.remove('active');
+    if (querySelector('#' + LItabName)!= null) {
+      querySelectorAll('#soccer-player-stats li').classes.remove('active');
       querySelector('#' + LItabName).classes.add("active");
     }
   }
@@ -479,21 +320,14 @@ class SoccerPlayerStatsComp implements DetachAware{
     ModalComp.close();
   }
 
-  void onShadowRoot(ShadowRoot shadowRoot) {
-    var lista = querySelectorAll('.tt-selector');
-
-    JsUtils.runJavascript(".tt-selector", 'tooltip', []);
-
-    new Timer(new Duration(seconds: 1), JsUtils.runJavascript(".tt-selector", 'tooltip', null) );
-  }
-
-
   SoccerPlayerService _soccerPlayerService;
   FlashMessagesService _flashMessage;
 
+  InstanceSoccerPlayer _instanceSoccerPlayer;
+
   EnterContestComp _enterContestComp;
   var _streamListener;
-  Element _root;
+  Element _rootElement;
 
   // Common Stats
   int _totalMinutes, _totalPasses, _totalRetrievals, _totalTurnovers, _totalFoulsCommitted, _totalYellowCards, _totalRedCards = 0;
@@ -501,6 +335,4 @@ class SoccerPlayerStatsComp implements DetachAware{
   int _totalGoalsAgainst, _totalSaves, _totalClearances, _totalSavedPenalties = 0;
   // Players not goalkeepers Sta
   int _totalGoals, _totalShoots, _totalAssistances, _totalDribbles, _totalFoulsSuffered = 0;
-
-  String _theHTML;
 }

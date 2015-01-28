@@ -85,7 +85,7 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
 
   void  restrictUserNameWidth() {
       Element userNameElement = _rootElement.querySelector('#menuUser');
-      if (userNameElement != null ) {
+      if (userNameElement != null) {
         userNameElement.text = trimStringToPx(userNameElement, _maxNicknameWidth);
       }
   }
@@ -279,7 +279,7 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
               <li><a id="menuUserLogOut"           destination="logout">Salir</a></li>
             </ul>
           </li>
-         <!--  <li class="right-menu"><span class="current-balance">35.000€</span><button class="add-funds-button">AÑADIR FONDOS</button></li> -->
+         <li class="right-menu"><span class="current-balance">1.000€</span><!--<button class="add-funds-button">AÑADIR FONDOS</button>--></li>
         </ul>
       </div>
     </div>

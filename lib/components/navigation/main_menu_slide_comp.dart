@@ -77,7 +77,19 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
     ''';
 
     _rootElement.setInnerHtml(finalHtml, treeSanitizer: NULL_TREE_SANITIZER);
+
+    if (profileService.isLoggedIn) {
+      restrictUserNameWidth();
+    }
   }
+
+  void  restrictUserNameWidth() {
+      Element userNameElement = _rootElement.querySelector('#menuUser');
+      if (userNameElement != null ) {
+        userNameElement.text = trimStringToPx(userNameElement, _maxNicknameWidth);
+      }
+  }
+
 
   void _setUpSlidingMenu() {
 
@@ -210,9 +222,7 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
     if (!profileService.isLoggedIn) {
       return "";
     }
-
-    return profileService.user.nickName.length > _maxNicknameLength ? profileService.user.nickName.substring(0, _maxNicknameLength-3) + "..." :
-                                                                      profileService.user.nickName;
+    return profileService.user.nickName;
   }
 
   String _getNotLoggedInHtml() {
@@ -257,7 +267,7 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
           <li highlights="my_contests"><a  id="menuMyContests" destination="my_contests">Mis torneos</a></li>
           <li highlights="">           <a  id="menuPromos"     destination="beta_info">Promos</a></li>
           
-          <li highlights="user" class="right-menu">
+          <li highlights="user" class="right-menu username-dropdown-toggle" >
             <a id="menuUser" class="dropdown-toggle" data-toggle="dropdown">${_userNickName}</a>
             <ul class="dropdown-menu">
               <li><a id="menuUserMyAccount"        destination="user_profile">Mi cuenta</a></li>
@@ -297,5 +307,5 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
 
   String _slideState = "hidden";
 
-  static final int _maxNicknameLength = 30;
+  static final int _maxNicknameWidth = 200;
 }

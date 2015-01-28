@@ -87,8 +87,65 @@ Future<bool> modalShow(String title, String content,{String onOk: null, String o
   // Aqui hago el setup de los botones. (que tiene que hacer cada botón al ser clickado... ver: main_menu_slide_comp).
   parent.querySelectorAll("[eventCallback]").onClick.listen(onButtonClick);
 
-
   JsUtils.runJavascript('#modalRoot', 'modal', null);
   JsUtils.runJavascript('#modalRoot', 'on', {'hidden.bs.modal': onClose});
   return completer.future;
+}
+
+String trimStringToPx(Element elem, int maxWidthAllowed) {
+
+  // Closure para calcular el ancho en pixels que tendría una cadena dentro del elemento.
+  int visualStringWidth(String theString) {
+    var displayOriginal = elem.style.display;
+    Map OriginalStyle = {};
+    String OriginalDisplay =elem.style.display;
+    // Si el elemento es display:block, no lo puedo usar para cambiarle el ancho. Por siacaso guardo su display original
+    elem.style.setProperty("display", "inline-block");
+
+    elem.text = theString;
+
+    //guardo el ancho del elemento con el texto
+    int result = elem.offsetWidth;
+
+    //restauro el display del elemento
+    elem.style.setProperty("display", OriginalStyle["display"]);
+
+    return result;
+  }
+
+  String tmpString = elem.text;
+  String trimmedString = elem.text;
+
+  int fullStringWidth = visualStringWidth(tmpString);
+
+  // Si la cadena cabe en el ancho, devolvemos la cadena
+  if (fullStringWidth > maxWidthAllowed) {
+    trimmedString += '...';
+
+    int start = 0;
+    int end = trimmedString.length -1;
+    int middle = 0;
+
+    //Si no cabe, hacemos busqueda dicotómica para encontrar la longitud de cadena máxima permitida
+    while (start < end) {
+      middle = (((start + end) / 2)).ceil();
+      trimmedString = tmpString.substring(0, middle).trim() + '...';
+      int trimmedStringWidth = visualStringWidth(trimmedString);
+      int nextTrimmedStringWidth = visualStringWidth( tmpString.substring(0, middle + 1).trim() + '...');
+
+      // Si el texto ocupa lo mismo Ó si la diferencia de poner un carcater de más nos hace pasarnos
+      if(trimmedStringWidth == maxWidthAllowed || (trimmedStringWidth < maxWidthAllowed && nextTrimmedStringWidth > maxWidthAllowed)) {
+        return trimmedString;
+      }
+      else if (trimmedStringWidth < maxWidthAllowed) {
+          start = middle - 1;
+      }
+      else {
+        end = middle + 1;
+      }
+    }
+
+  }
+
+  return trimmedString;
 }

@@ -71,13 +71,7 @@ class ViewContestComp implements DetachAware {
       .catchError((error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW));
   }
 
-  String getPrize(int index) {
-    String prizeText = "-";
-    if (index < _prizes.length) {
-      prizeText = "${_prizes[index]}€";
-    }
-    return prizeText;
-  }
+  String getPrize(int index) => (contest != null) ? contest.getPrize(index) : "-";
 
   void detach() {
     _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE);
@@ -144,7 +138,5 @@ class ViewContestComp implements DetachAware {
   ProfileService _profileService;
   RefreshTimersService _refreshTimersService;
   ContestsService _contestsService;
-
-  List<int> get _prizes => (contest != null) ? contest.prizes : []; // TODO: Chapucioso, no crear un array nuevo
 }
 

@@ -1,0 +1,22 @@
+<div id="withdrawFundsContent">
+  <div class="block-dark-header">RETIRAR FONDOS</div>
+
+  <div>
+    <div class="withdraw-founds-box">
+      <div class="data-header">
+        <span class="data-header-title">TU SALDO ES DE <span class="money"><span id="moneyAmount">{{userData.balance}}</span> €</span></span>
+      </div>
+      
+      <p>¿Cuánto dinero deseas retirar?</p>
+      <div class="money-element">
+        <input type="number" id="customEurosAmount"><label for="customEuros">€</label>
+      </div>
+      <p class="paypal-info">Sólo puedes retirar cantidades superiores a 20 €</p>
+      <div class="button-wrapper"><button class="withdraw-funds-button" id="withdrawFundsButton">Retirar fondos</button></div>
+    </div>
+  </div>
+  <div class="need-help-box">
+    <p id="need-help-text">¿Necesitas ayuda?</p>
+    <p id="need-help-email">soporte@epiceleven.com</p>
+  </div>
+</div>

@@ -20,6 +20,7 @@ class Prize {
   int maxEntries;
   int entryFee;
   List<num> values = new List<num>();
+  List<num> multipliers = new List<num>();
 
   Prize() {
     prizeType = FREE;
@@ -29,10 +30,27 @@ class Prize {
     prizeType = jsonMap["prizeType"];
     maxEntries = jsonMap["maxEntries"];
     entryFee = jsonMap["entryFee"];
-    values = jsonMap["values"];
+    multipliers = jsonMap.containsKey("multipliers") ? jsonMap["multipliers"] : [];
+    values = jsonMap.containsKey("values") ? jsonMap["values"] : [];
   }
 
   String get key => getKey(prizeType, maxEntries, entryFee);
+
+  int get numPrizes {
+    int ret = 0;
+    if (prizeType == FREE) {
+    }
+    else if (prizeType == WINNER) {
+      ret = 1;
+    }
+    else if (prizeType == FIFTY_FIFTY) {
+      ret = (maxEntries ~/ 2);
+    }
+    else {
+      ret = values.length;
+    }
+    return ret;
+  }
 
   num getValue(int index) {
     if (prizeType == FREE) {

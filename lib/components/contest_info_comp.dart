@@ -104,12 +104,12 @@ class ContestInfoComp implements DetachAware {
         fullDesc = prizeDesc;
       break;
       case Prize.TOP_THIRD:
-        count = (contest.maxEntries / 3).floor();
+        count = contest.prize.numPrizes;
         fullDesc = count == 1 ? "El primero recibe todo el premio" : prizeDesc.replaceAll('#', count.toString());
        break;
 
       case Prize.FIFTY_FIFTY:
-        count = (contest.maxEntries / 2).floor();
+        count = contest.prize.numPrizes;
         fullDesc = count == 1 ? "El primero recibe todo el premio" : prizeDesc.replaceAll('#', count.toString());
       break;
     }

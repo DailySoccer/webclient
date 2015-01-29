@@ -151,7 +151,6 @@
 	//Contenido
 	.soccer-player-stats-content{
 		.make-row(0);
-		padding-bottom: 20px;
 		//Tabas de navegación para XS
 		.soccer-player-stats-tabs{
 			.visible-xs();
@@ -165,6 +164,12 @@
 			}
 			.active {
 				background-color: @greyDark;
+			}
+		}
+		.tab-pane {
+			.make-row(0);
+			@media (min-width: @screen-sm-min) {
+				.make-row(-30px);
 			}
 		}
 		// cartel de proximo partido que se ve en el contenido del tab de medias solo XS
@@ -187,41 +192,24 @@
 			}
 		}
 		.season-stats {
-			.make-row(0);
-			.make-border(1px, solid none solid none, @greyDark);
-			width: 100%;
+			.make-border(2px, solid none solid none, @greyDark);
+			.make-xs-column(12, 0);
 			background-color: @greyUltraLight;
-
+			text-align: center;
+			
 			@media (min-width: @screen-sm-min) {
-				padding: 0 15px;
+				.make-sm-column(12, 0);
 				border: none;
 				background-color: @white;
 				text-align: center;
-				display: block;
+				white-space: nowrap;
+				overflow-x: auto; 
 			}
 									
 			.season-stats-row { 
 				.make-xs-column(6, 0);
 				.make-sm-column(2, 0);
 				.make-border(1px, dotted none none  none, @greyDark);
-
-				@media (min-width: @screen-sm-min) {
-					.make-border(1px, none none none dotted, @greyDark);
-					display: inline-block;
-					float: none;
-				}
-				.season-stats-header {
-					.opensans_normal(10pt, @greyDark);
-					.make-xs-column(2);
-				}
-				.season-stats-info {
-					.exo_bold(14pt,  @greyDark);
-					.make-xs-column(10);
-					text-align: right;
-				}
-				.season-stats-info:last-child {
-					border: none;
-				}
 				@media (max-width: @screen-sm-max) {
 					&:first-child {
 						border: none;
@@ -233,42 +221,45 @@
 						border-right: 1px dotted @greyDark;
 					}
 				}
+				@media (min-width: @screen-sm-min) {
+					.make-border(1px, none none none dotted, @greyDark);
+					display: inline-block;
+					float: none;
 
+					&:nth-child(odd) {
+						border-right: 0px dotted @greyDark;
+						&:first-child {
+							border-right: 1px dotted @greyDark;
+						}
+					}
+				}
+				.season-stats-header {
+					.opensans_normal(10pt, @greyDark);
+					.make-xs-column(2);
+					@media (min-width: @screen-sm-min) {
+						.opensans_bold(9pt, @greyDark);
+					}
+				}
+				.season-stats-info {
+					.exo_bold(14pt,  @greyDark);
+					.make-xs-column(10);
+					text-align: right;
+					@media (min-width: @screen-sm-min) {
+						.exo_light(24pt,  @blueMed);
+					}
+				}
+				.season-stats-info:last-child {
+					border: none;
+				}
 			}
-			/*
-			@media (max-width: @screen-xs-max) {
-				.make-border(1px, solid none solid none, @greyDark);
-				background-color: @greyUltraLight;
-				.make-xs-column(12, 0px);
-					.season-stats-row {
-						.make-xs-column(6, 0px);
-						.make-border(1px, dotted none none none, @greyDark);
-						line-height: 30px;
-
-						.season-stats-header {
-							.opensans_normal(10pt, @greyDark);
-							.make-xs-column(2, 15px);
-						}
-						.season-stats-info {
-							.exo_bold(14pt,  @greyDark);
-							.make-xs-column(10, 15px);
-							text-align: right;
-						}
-						.season-stats-info:last-child {
-							border: none;
-						}
-					}
-					.season-stats-row:first-child {
-						border: none;
-					}
-					.season-stats-row:first-child + .season-stats-row {
-						border: none;
-					}
-					.season-stats-row:nth-child(odd) {
-						border-right: 1px dotted @greyDark;
-					}
-			}*/
 		}
 		//Contenido de la zona de datos por partido
+		
 	}
+	// El footer son los mismo botones de arriba, pero con el fondo blanco.
+	.actions-footer-xs {
+	 	.soccer-player-stats-header.actions-header-xs();
+	 	background-color: @white;
+		padding: 10px;
+	 }
 }

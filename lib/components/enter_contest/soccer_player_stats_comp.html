@@ -1,11 +1,13 @@
 <modal id="modalSoccerPlayerStats">
 
   <div class="soccer-player-stats-header">
+
     <!-- En XS mostramos botones de Añadir / Cancelar -->
     <div class="actions-header-xs">
         <button class="button-cancel" data-dismiss="modal">CANCELAR</button>
         <button class="button-add" ng-click="onAddClicked()" ng-disabled="cannotAddPlayer">AÑADIR</button>
     </div>
+
     <!-- En el resto de versiones título y cruz de cerrar -->
     <div class="actions-header-sm">
       <div class="text-header">ESTADÍSTICAS DEL JUGADOR</div>
@@ -28,6 +30,7 @@
         <div class="soccer-player-salary"><span>SALARIO</span><span>{{currentInfoData['salary']}}</span></div>
       </div>
     </div>
+
     <div class="next-match-wrapper">
       <div class="next-match"  ng-bind-html="currentInfoData['nextMatchEvent']"></div>
       <button class="button-add" ng-click="onAddClicked()" ng-disabled="cannotAddPlayer">AÑADIR</button>
@@ -50,21 +53,25 @@
             <div class="next-match" ng-bind-html="currentInfoData['nextMatchEvent']"></div>
             <!-- MEDIAS -->
             <div class="season-header">ESTADÍSTICAS DE TEMPORADA <span>(DATOS POR PARTIDO)</span></div>
-            <div class="season-stats">
 
+            <div class="season-stats">
                 <div class="season-stats-row" ng-repeat="stat in seasonResumeStats" >
                   <div class="tt-selector" data-toggle="tooltip" title="{{stat['helpInfo']}}">
                     <div class="season-stats-header">{{stat['nombre']}}</div>
                     <div class="season-stats-info">{{stat['valor']}}</div>
                   </div>
                 </div>
-
             </div>
+
           </div>
           <!-- END SEASON -->
 </div>
 </div>
 </div>
+      <div class="actions-footer-xs">
+        <button class="button-cancel" data-dismiss="modal">CANCELAR</button>
+        <button class="button-add" ng-click="onAddClicked()" ng-disabled="cannotAddPlayer">AÑADIR</button>
+      </div>
 <!--
           <!- -MATCH- ->
           <div class="tab-pane" id="match-info-tab-content">

@@ -18,7 +18,7 @@ class Prize {
 
   String prizeType;
   int maxEntries;
-  int prizePool;
+  int entryFee;
   List<num> values = new List<num>();
 
   Prize() {
@@ -28,11 +28,11 @@ class Prize {
   Prize.fromJsonObject(Map jsonMap) {
     prizeType = jsonMap["prizeType"];
     maxEntries = jsonMap["maxEntries"];
-    prizePool = jsonMap["prizePool"];
+    entryFee = jsonMap["entryFee"];
     values = jsonMap["values"];
   }
 
-  String get key => getKey(prizeType, maxEntries, prizePool);
+  String get key => getKey(prizeType, maxEntries, entryFee);
 
   num getValue(int index) {
     if (prizeType == FREE) {
@@ -62,13 +62,13 @@ class Prize {
     return ret;
   }
 
-  static String getKey(String prizeType, int maxEntries, int prizePool) {
+  static String getKey(String prizeType, int maxEntries, int entryFee) {
     if (prizeType == FREE) {
       return "${prizeType}";
     }
     else if (prizeType == WINNER || prizeType == FIFTY_FIFTY) {
-      return "${prizeType}_${prizePool}";
+      return "${prizeType}_${entryFee}";
     }
-    return "${prizeType}_${maxEntries}_${prizePool}";
+    return "${prizeType}_${maxEntries}_${entryFee}";
   }
 }

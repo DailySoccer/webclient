@@ -31,7 +31,9 @@ main-menu-slide {
 	margin-bottom: 0;
 }
 #mainMenu {
-
+	* {
+		.user-select(none);
+	}
 	&.logged-in {		
 		.background-header();
 
@@ -98,13 +100,20 @@ main-menu-slide {
 	  	}
 	  	.navbar-nav > .right-menu {
 	  		.pull-right();
-	  		//width: 120px;
 	  		text-align: right;
-	  		.current-balance {
-	  			display: block;
-	  			.opensans_bold(10pt, @white);
-	  			margin: 5px 0;
-	  		}
+			.balance {
+				.hidden-xs();
+				text-align: center;
+				.current-balance {
+	  				display: block;
+		  			.opensans_bold(10pt, @white);
+		  			margin: 5px 0;	
+		  		}
+		  		.add-funds-button {
+					.btn-primary();
+					.opensans_bold(7pt, @white);
+				}
+		  	}
 	  	}
 	  	.navbar-nav .right-menu {
 	  		> a:hover {color: white}
@@ -136,18 +145,19 @@ main-menu-slide {
 	  	.navbar-nav .active a::after {
 	  		color: @white;
 	  	}
-	  	.add-funds-button {
-			.btn-primary();
-			.opensans_bold(10pt, @white);
-			//.button-size(4px, 12px, 10pt, 1.5em, 4px);
+
+		//elemento nombre menu usuario
+		.username-dropdown-toggle {
+			width: 214px;
 		}
 		.dropdown-toggle {
 			white-space: nowrap;
 		}
     	// elementos del sub-menu
         .dropdown-menu {
-        	margin-left: -115px;
-        	margin-top: 7px;
+        	position: relative;
+        	top: 6px;
+        	left: -10px;
 			& {
 				padding: 0px;
 			}
@@ -160,16 +170,7 @@ main-menu-slide {
 
 	            &:hover {
 	            	background-color: @greyLight;
-	            	//&::after {
-	        			//color: #999 !important;
-	        		//}
 	            }
-	            /*&::after {
-	        		//.create-glyph("\E080", 9pt, @black) !important;
-	        		position: absolute;
-	        		top: 12px;
-	        		right: 12px;
-	        	}*/
 	        }
 	    }
   	}
@@ -179,7 +180,9 @@ main-menu-slide {
 
     	@offcanvas-width: 250px;	// Cuanto ancho necesitamos para que quepan incluso los submenus
     	@fixed-top: 70px;
-
+		#menuLoggedIn a:hover {
+			background-color: @greyLight;
+		}
 		// Icono que abre el menu
 		#toggleSlideMenu {
 		  	.make-border(0px, none none none none, @black);
@@ -319,33 +322,22 @@ main-menu-slide {
 	        	cursor: pointer;
 	        	&:hover, &:active {
 	        		border: 1px solid @green;
-	        		//background-color: rgba(red(@green), green(@green), blue(@green), 0.5);
 	        		.opensans_normal(10pt, @green);
 	        	}
 	      	}
 	    }
-
-
-		// ANTIGUOS Botones de login y join: ;
-		/*.button-wrapper {
-		  	line-height: 4.5;
-		  	.pull-right();
-		  	.button-base {
-		    	&:active {
-		    		margin-top: 10px !important; 
-		    	}
-		  	}
-		  	.button-join {
-		    	.button-base();
-		    	.btn-default();
-		  	}
-		  	.button-login {
-		    	.button-base();
-		    	.btn-primary();
-		  	}
-		}*/
 	}
 }
-
-.main-menu-slide-in {
+#userBalanceIn, #userBalanceOut-sm {
+	.hidden-xs();
+}
+#userBalanceOut-xs {
+	.visible-xs();
+	.current-balance {
+		.badge();
+		.pull-right();
+		background-color: @green;
+		padding-top: 5px;
+		padding-bottom: 5px;
+	}
 }

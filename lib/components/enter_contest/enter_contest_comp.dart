@@ -2,6 +2,7 @@ library enter_contest_comp;
 
 import 'dart:html';
 import 'dart:async';
+import 'dart:convert';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/contests_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
@@ -17,6 +18,7 @@ import "package:webclient/models/instance_soccer_player.dart";
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/utils/html_utils.dart';
+import 'package:webclient/services/profile_service.dart';
 
 @Component(
     selector: 'enter-contest',
@@ -63,7 +65,7 @@ class EnterContestComp implements DetachAware {
 
   bool contestInfoFirstTimeActivation = false;  // Optimizacion para no compilar el contest_info hasta que no sea visible la primera vez
 
-  EnterContestComp(this._routeProvider, this._router, this.scrDet, this._contestsService, this._flashMessage, this.loadingService) {
+  EnterContestComp(this._routeProvider, this._router, this.scrDet, this._contestsService, this.loadingService, this._profileService) {
     loadingService.isLoading = true;
     scrDet.scrollTo('#mainWrapper');
 
@@ -92,6 +94,10 @@ class EnterContestComp implements DetachAware {
           contestEntry.instanceSoccerPlayers.forEach((instanceSoccerPlayer) {
             addSoccerPlayerToLineup(instanceSoccerPlayer.id);
           });
+        }
+        else {
+          // TODO: ¿Únicamente restauramos el contestEntry anteriormente registrado si estamos creando uno nuevo?
+          restoreContestEntry();
         }
       })
       .catchError((error) {
@@ -286,6 +292,9 @@ class EnterContestComp implements DetachAware {
       return;
     }
 
+    // Actualizamos el contestEntry, independientemente que estemos editando o creando
+    saveContestEntry();
+
     if (editingContestEntry) {
       _contestsService.editContestEntry(contestEntryId, lineupSlots.map((player) => player["id"]).toList())
         .then((_) {
@@ -297,19 +306,23 @@ class EnterContestComp implements DetachAware {
         .catchError((error) => _errorCreating(error));
     }
     else {
-      _contestsService.addContestEntry(contest.contestId, lineupSlots.map((player) => player["id"]).toList())
-        .then((contestId) {
-          //_teamConfirmed = true;
-          GameMetrics.logEvent(GameMetrics.TEAM_CREATED);
-          GameMetrics.peopleSet({"Last Team Created": new DateTime.now()});
-          GameMetrics.peopleSet({"Last Team Created (${contest.competitionType})": new DateTime.now()});
-
-          _router.go('view_contest_entry', { "contestId": contestId,
-                                             "parent": _routeProvider.parameters["parent"],
-                                             "viewContestEntryMode": contestId == contest.contestId? "created" : "swapped"});
-        })
-        .catchError((error) => _errorCreating(error));
-
+      if (contest.entryFee <= _profileService.user.balance) {
+        _contestsService.addContestEntry(contest.contestId, lineupSlots.map((player) => player["id"]).toList())
+          .then((contestId) {
+            GameMetrics.logEvent(GameMetrics.TEAM_CREATED);
+            _router.go('view_contest_entry', {
+                                "contestId": contestId,
+                                "parent": _routeProvider.parameters["parent"],
+                                "viewContestEntryMode": contestId == contest.contestId? "created" : "swapped"
+                                 });
+          })
+          .catchError((error) => _errorCreating(error));
+      }
+      else {
+        // Registramos dónde tendría que navegar al tener éxito en "add_funds"
+        window.localStorage["add_funds_success"] = window.location.href;
+        _router.go("add_funds", {});
+      }
     }
   }
 
@@ -389,10 +402,25 @@ class EnterContestComp implements DetachAware {
     });
   }
 
+  void saveContestEntry() {
+    window.localStorage[contest.contestId] = JSON.encode(lineupSlots.map((player) => player["id"]).toList());
+  }
+
+  void restoreContestEntry() {
+    if (window.localStorage.containsKey(contest.contestId)) {
+      List contestEntry = JSON.decode(window.localStorage[contest.contestId]);
+      contestEntry.forEach((id) {
+        addSoccerPlayerToLineup(id);
+      });
+
+    }
+  }
+
   Router _router;
   RouteProvider _routeProvider;
 
   ContestsService _contestsService;
+  ProfileService _profileService;
   FlashMessagesService _flashMessage;
 
   var _streamListener;

@@ -5,6 +5,7 @@ import 'dart:html';
 import 'dart:convert';
 import 'package:angular/angular.dart';
 import 'package:webclient/models/user.dart';
+import 'package:webclient/models/transaction_info.dart';
 import 'package:webclient/services/server_service.dart';
 import 'package:logging/logging.dart';
 import 'package:webclient/utils/game_metrics.dart';
@@ -79,6 +80,29 @@ class ProfileService {
     return new Future.value(_setProfile(null, null, true));
   }
 
+  Future<List<TransactionInfo>> getTransactionHistory() {
+    return _server.getTransactionHistory()
+        .then((jsonMap) {
+          double balance = 0.0;
+          return jsonMap["transactions"].map((jsonObject) {
+            TransactionInfo transactionInfo = new TransactionInfo.fromJsonObject(jsonObject);
+
+            // Calcular el balance de la transaccion
+            balance += transactionInfo.value;
+            transactionInfo.balance = balance;
+
+            return transactionInfo;
+          }).toList();
+        });
+  }
+
+  void updateProfileFromJson(Map jsonMap) {
+    var storedSessionToken = window.localStorage['sessionToken'];
+    if (storedSessionToken != null) {
+      _setProfile(storedSessionToken, jsonMap, true);
+    }
+  }
+
   Map _setProfile(String theSessionToken, Map jsonMap, bool bSave) {
 
     if (theSessionToken != null && jsonMap != null) {
@@ -116,8 +140,9 @@ class ProfileService {
         // unico que tenemos que hacer es anotar el nuevo User
         if (jsonMap["_id"] != user.userId) {
           Logger.root.warning("ProfileService: Se borro la DB y pudimos reusar el sessionToken.");
-          _setProfile(storedSessionToken, jsonMap, true);
         }
+        // En cualquier caso, refrescamos el profile para obtener el ultimo dinero
+        _setProfile(storedSessionToken, jsonMap, true);
       })
       .catchError((error) {
         // No se ha podido refrescar: Tenemos que salir y pedir que vuelva a hacer login

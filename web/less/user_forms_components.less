@@ -185,14 +185,19 @@
 	.make-xs-column(12, 0px);
 }
 
-.modal-buttons-wrapper {
+.autocentered-buttons-wrapper {
 	display:block;
 	text-align: center;
-
-	.button-properties {
-		dysplay:inline-block;
-		margin: 0 5px 0 5px;
+	.button-box{
+		display:inline-block;
+		height: 30px;
 		min-width: 33%;
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+	.button-properties {
+		margin: 0 5px 0 5px;
+		.make-xs-column(12);
 	}
 	.ok-button {
 		.btn-primary();

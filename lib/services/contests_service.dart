@@ -43,6 +43,9 @@ class ContestsService {
           _myEnteredActiveContests.add(contest);
         }
 
+        if (jsonMap.containsKey("profile")) {
+          _profileService.updateProfileFromJson(jsonMap["profile"]);
+        }
         return contestId;
       });
   }
@@ -64,6 +67,10 @@ class ContestsService {
   Future cancelContestEntry(String contestEntryId) {
     return _server.cancelContestEntry(contestEntryId)
       .then((jsonMap) {
+        if (jsonMap.containsKey("profile")) {
+          _profileService.updateProfileFromJson(jsonMap["profile"]);
+        }
+
         Logger.root.info("response: " + jsonMap.toString());
       });
   }

@@ -150,5 +150,4 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
   ProfileService _profileService;
   LoadingService _loadingService;
   Element _rootElement;
-  Element landingElement;
 }

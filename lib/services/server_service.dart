@@ -50,6 +50,12 @@ abstract class ServerService {
   // Puntuaciones
   Future<Map> getScoringRules();
 
+  // Transaction History
+  Future<Map> getTransactionHistory();
+
+  // WithDraw Funds
+  Future<Map> withdrawFunds(int amount);
+
   // Suscripción a eventos
   void        subscribe(dynamic id, {Function onSuccess, Function onError});
 
@@ -170,6 +176,14 @@ class DailySoccerServer implements ServerService {
 
   Future<Map> getScoringRules() {
     return _innerServerCall("${HostServer.url}/get_scoring_rules", retryTimes: -1);
+  }
+
+  Future<Map> getTransactionHistory() {
+    return _innerServerCall("${HostServer.url}/get_transaction_history", retryTimes: -1);
+  }
+
+  Future<Map> withdrawFunds(int amount) {
+    return _innerServerCall("${HostServer.url}/paypal/withdraw_funds/$amount", retryTimes: -1);
   }
 
   void subscribe(dynamic id, {Function onSuccess, Function onError}) {

@@ -1,6 +1,7 @@
 library webclient;
 
 import 'dart:html';
+import 'dart:async';
 import 'package:angular/angular.dart';
 import 'package:angular/routing/module.dart';
 
@@ -66,9 +67,12 @@ import 'package:webclient/components/legalese_and_help/policy_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/beta_info_comp.dart';
 
 import 'package:webclient/utils/host_server.dart';
-import 'package:webclient/template_cache.dart';
-import 'dart:async';
 import 'package:webclient/utils/js_utils.dart';
+
+import 'package:webclient/utils/noshim.dart';
+import 'package:angular/core_dom/module_internal.dart';
+
+import 'package:webclient/template_cache.dart';
 
 class WebClientApp extends Module {
 
@@ -83,6 +87,10 @@ class WebClientApp extends Module {
 
     // No usamos animacion -> podemos quitar esto
     bind(CompilerConfig, toValue:new CompilerConfig.withOptions(elementProbeEnabled: false));
+
+    // Disable CSS shim
+    bind(PlatformJsBasedShim, toImplementation: PlatformJsBasedNoShim);
+    bind(DefaultPlatformShim, toImplementation: DefaultPlatformNoShim);
 
     bind(ExceptionHandler, toImplementation: LoggerExceptionHandler);
     bind(ServerService, toImplementation: DailySoccerServer);

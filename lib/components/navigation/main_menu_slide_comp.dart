@@ -225,6 +225,14 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
     return profileService.user.nickName;
   }
 
+  String get _userBalance {
+    if (profileService.user.balance != null) {
+      return "0";
+    }
+    return profileService.user.balance.toString();
+  }
+
+
   String _getNotLoggedInHtml() {
     return '''
     <div id="menuNotLoggedIn">
@@ -271,7 +279,7 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
             <a id="menuUser" class="dropdown-toggle" data-toggle="dropdown">${_userNickName}</a>
             <ul class="dropdown-menu">
               <li><a id="menuUserMyAccount"        destination="user_profile">Mi cuenta</a></li>
-              <li><a id="menuUserAddFunds"         destination="add_funds">Añadir fondos</a></li>
+              <li id="userBalanceIn"><a id="menuUserAddFunds-sm"         destination="add_funds">Añadir fondos</a></li>
               <li><a id="menuUserHistory"          destination="transaction_history">Historial de transacciones</a></li>
               <li><a id="menuUserReferencesCenter" destination="beta_info">Centro de referencias</a></li>
               <li><a id="menuUserClassification"   destination="beta_info">Clasificación</a></li>
@@ -279,7 +287,16 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
               <li><a id="menuUserLogOut"           destination="logout">Salir</a></li>
             </ul>
           </li>
-         <li class="right-menu"><span class="current-balance">1.000€</span><!--<button class="add-funds-button">AÑADIR FONDOS</button>--></li>
+          <li id="userBalanceOut-sm" class="right-menu">
+            <div class="balance">
+              <span class="current-balance">${_userBalance}€</span>
+              <button class="add-funds-button">AÑADIR FONDOS</button>
+            <div>
+          </li>
+          <li id="userBalanceOut-xs" class="right-menu">
+            <a id="menuUserAddFunds-xs" destination="add_funds">Añadir fondos <span class="current-balance">${_userBalance}€</span></a>
+            
+          </li>
         </ul>
       </div>
     </div>

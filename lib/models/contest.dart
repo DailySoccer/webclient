@@ -6,18 +6,13 @@ import "package:webclient/models/contest_entry.dart";
 import "package:webclient/models/soccer_player.dart";
 import "package:webclient/models/soccer_team.dart";
 import "package:webclient/models/instance_soccer_player.dart";
+import "package:webclient/models/prize.dart";
 import 'package:webclient/services/contest_references.dart';
 import 'package:webclient/services/datetime_service.dart';
+import 'package:webclient/services/prizes_service.dart';
 import 'package:webclient/utils/string_utils.dart';
 
 class Contest {
-  // Tipos de Premios (obtenidos del backend)
-  static const PRIZE_FREE                 = "FREE";
-  static const PRIZE_WINNER               = "WINNER_TAKES_ALL";
-  static const PRIZE_TOP_3                = "TOP_3_GET_PRIZES";
-  static const PRIZE_TOP_THIRD            = "TOP_THIRD_GET_PRIZES";
-  static const PRIZE_FIFTY_FIFTY          = "FIFTY_FIFTY";
-
   // Tipos de Torneos (deducidos por las características del Contest: maxEntries ~ premios)
   static const TOURNAMENT_FREE            = "FREE";
   static const TOURNAMENT_HEAD_TO_HEAD    = "HEAD_TO_HEAD";
@@ -67,7 +62,13 @@ class Contest {
 
   int entryFee;
   String prizeType;
-  List<int> prizes;
+
+  Prize get prize {
+    if (_prize == null) {
+      _prize = PrizesService.getPrize(Prize.getKey(prizeType, maxEntries, entryFee));
+    }
+    return _prize;
+  }
 
   String optaCompetitionId;
   List<MatchEvent> matchEvents;
@@ -106,16 +107,8 @@ class Contest {
   bool get isLive     => state == "LIVE";
   bool get isHistory  => state == "HISTORY";
 
-  Map<String, String> prizeTypeNames = {
-    PRIZE_FREE: "Concurso Gratuito. No hay premios a repartir", //"Free",
-    PRIZE_WINNER: "Todo para el ganador", //"Winner takes all",
-    PRIZE_TOP_3: "Los 3 primeros concursantes reciben premio", //"Top 3 get prizes",
-    PRIZE_TOP_THIRD: "Los # primeros reciben premio",// "El tercio superior de concursantes reciben premio", //Top third get prizes",
-    PRIZE_FIFTY_FIFTY: "Los # primeros reciben premio",// "La mitad superior de concursantes reciben premio", //"50/50"
-  };
-
   int get prizePool => ((maxEntries * entryFee) * 0.90).toInt();
-  String get prizeTypeName => prizeTypeNames[prizeType];
+  String get prizeTypeName => Prize.typeNames[prizeType];
 
   List get tournamentTypes => [TOURNAMENT_FREE, TOURNAMENT_HEAD_TO_HEAD, TOURNAMENT_LEAGUE, TOURNAMENT_FIFTY_FIFTY];
 
@@ -133,15 +126,15 @@ class Contest {
   String get tournamentType {
     String type;
     switch(prizeType) {
-      case Contest.PRIZE_FREE:
+      case Prize.FREE:
         type = (maxEntries == 2) ? TOURNAMENT_HEAD_TO_HEAD : TOURNAMENT_FREE;
         break;
-      case Contest.PRIZE_WINNER:
-      case Contest.PRIZE_TOP_3:
-      case Contest.PRIZE_TOP_THIRD:
+      case Prize.WINNER:
+      case Prize.TOP_3:
+      case Prize.TOP_THIRD:
         type = (maxEntries == 2) ? TOURNAMENT_HEAD_TO_HEAD : TOURNAMENT_LEAGUE;
         break;
-      case Contest.PRIZE_FIFTY_FIFTY:
+      case Prize.FIFTY_FIFTY:
         type = TOURNAMENT_FIFTY_FIFTY;
         break;
     }
@@ -179,11 +172,8 @@ class Contest {
   }
 
   String getPrize(int index) {
-    String prizeText = "-";
-    if (index < prizes.length) {
-      prizeText = "${prizes[index]}€";
-    }
-    return prizeText;
+    int prizeValue = prize.getValue(index);
+    return (prizeValue > 0) ? "${prizeValue}€" : "_";
   }
 
   /*
@@ -255,7 +245,6 @@ class Contest {
     salaryCap = jsonMap["salaryCap"];
     entryFee = jsonMap["entryFee"];
     prizeType = jsonMap["prizeType"];
-    prizes = jsonMap.containsKey("prizes") ? jsonMap["prizes"] : [];
     startDate = DateTimeService.fromMillisecondsSinceEpoch(jsonMap["startDate"]);
     optaCompetitionId = jsonMap.containsKey("optaCompetitionId") && (jsonMap["optaCompetitionId"] != null) ? jsonMap["optaCompetitionId"] : "";
     matchEvents = jsonMap.containsKey("templateMatchEventIds") ? jsonMap["templateMatchEventIds"].map( (matchEventId) => references.getMatchEventById(matchEventId) ).toList() : [];
@@ -303,4 +292,5 @@ class Contest {
 
   String _name;
   String _namePattern;
+  Prize _prize;
 }

@@ -27,7 +27,9 @@ class SoccerPlayerStatsComp implements DetachAware{
   ScreenDetectorService scrDet;
 
   List<Map> seasonResumeStats = [];
-  Map<String,dynamic> seasons = {'headers': [], 'values': {}};
+  List seasonTableHeaders = [];
+  List seasonsList = [];
+
   Map currentInfoData;
   bool cannotAddPlayer;
 
@@ -37,6 +39,7 @@ class SoccerPlayerStatsComp implements DetachAware{
 
     var contestId = routeProvider.route.parent.parameters["contestId"];
     var instanceSoccerPlayerId = routeProvider.route.parameters['instanceSoccerPlayerId'];
+    cannotAddPlayer = routeProvider.route.parent.parameters["selectable"];
 
     collectSoccerPlayerInfo(_soccerPlayerService.getInstanceSoccerPlayer(contestId, instanceSoccerPlayerId));
     _soccerPlayerService.refreshInstancePlayerInfo(contestId, instanceSoccerPlayerId)
@@ -124,12 +127,12 @@ class SoccerPlayerStatsComp implements DetachAware{
   void initializaPlayerStats() {
     if(_instanceSoccerPlayer != null) {
       seasonResumeStats.clear();
-      seasons["values"].clear();
+      seasonsList.clear();
       if (isGoalkeeper()) {
-        seasons['headers'] = ['Fecha', 'Oponente', 'Daily Fantasy Points', 'Minutos', 'Goles Encajados', 'Paradas', 'Despejes', 'Penaltis Detenidos', 'Pases', 'Recuperaciones', 'Perdidas de Balón', 'Faltas Cometidas', 'Tarjetas Amarillas', 'Tarjetas Rojas'];
+        seasonTableHeaders = ['Fecha', 'Oponente', 'Daily Fantasy Points', 'Minutos', 'Goles Encajados', 'Paradas', 'Despejes', 'Penaltis Detenidos', 'Pases', 'Recuperaciones', 'Perdidas de Balón', 'Faltas Cometidas', 'Tarjetas Amarillas', 'Tarjetas Rojas'];
       }
       else {
-        seasons['headers'] = ['Fecha', 'Oponente', 'Daily Fantasy Points', 'Minutos', 'Goles', 'Tiros', 'Pases', 'Asistencias', 'Regates', 'Recuperaciones', 'Perdidas de Balones', 'Faltas Cometidas', 'Faltas Recibidas', 'Tarjetas Amarillas', 'Tarjetas Rojas'];
+        seasonTableHeaders = ['Fecha', 'Oponente', 'Daily Fantasy Points', 'Minutos', 'Goles', 'Tiros', 'Pases', 'Asistencias', 'Regates', 'Recuperaciones', 'Perdidas de Balones', 'Faltas Cometidas', 'Faltas Recibidas', 'Tarjetas Amarillas', 'Tarjetas Rojas'];
       }
       _totalMinutes        = 0;
       _totalPasses         = 0;
@@ -184,13 +187,13 @@ class SoccerPlayerStatsComp implements DetachAware{
         _totalSavedPenalties  += stat.penaltisDetenidos;
 
         var matchDate = stat.startDate.toString().split("-");
-        var year = matchDate[0];
-        var month = matchDate[1];
+        String year = matchDate[0];
+        String month = matchDate[1];
         var day = matchDate[2].split(" ");
 
-        var dayMonth = day[0] + "/" + month;
+        String dayMonth = day[0] + "/" + month;
 
-        List<String> matchStatRows = [];
+        List matchStatRows = [];
         if (isGoalkeeper()) {
           //  campos en orden  ['Fecha', 'Oponente',                   'Daily Fantasy Points',                             'Minutos',          'Goles Encajados',   'Paradas',    'Despejes',    'Pases',    'Penaltis Detenidos',   'Recuperaciones',    'Perdidas de Balón','Faltas Cometidas',   'Tarjetas Amarillas',  'Tarjetas Rojas'];
           matchStatRows.addAll([dayMonth, stat.opponentTeam.shortName, StringUtils.parseFantasyPoints(stat.fantasyPoints), stat.playedMinutes, stat.golesEncajados, stat.paradas, stat.despejes, stat.pases, stat.penaltisDetenidos, stat.recuperaciones, stat.perdidasBalon, stat.faltasCometidas, stat.tarjetasAmarillas, stat.tarjetasRojas]);
@@ -201,24 +204,25 @@ class SoccerPlayerStatsComp implements DetachAware{
         }
 
         // Buscamos el año que vamos a actualizar
-        Map seasonYear = seasons['values'];
+        //Map seasonYear = seasons['values'];
 
         // Si no existe aún este año en la tabla de años, la generamos
-        if (seasonYear == null || !seasonYear.containsKey(year)) {
+        if (seasonsList.length == 0) {
           // Si no tenemos creadas las estadísticas partido a partido
-          Map newYear = {};
-          newYear.addAll({year:matchStatRows});
-          seasonYear.addAll(newYear);
+          Map newSeason = {};
+          newSeason.addAll({'year':year, 'stats':[]});
+          newSeason['stats'].add(matchStatRows);
+          seasonsList.add(newSeason);
         }
         else {
-          seasonYear[year].add(matchStatRows);
+          seasonsList.last['stats'].add(matchStatRows);
         }
       });
-
+      print("asdasdasdasd");
     // No ha jugado ningún partido
     }
     else {
-      seasons['values'] = [];
+      seasonsList = [];
     }
   }
 
@@ -272,34 +276,6 @@ class SoccerPlayerStatsComp implements DetachAware{
             ''';
   }
 
-  String getSeasonResumeStats() {
-    String resumeStats = "";
-    seasonResumeStats.forEach( (stat) {
-      resumeStats += '''
-        <div data-toggle="tooltip" title="${stat['helpInfo']}">
-          <div class="season-stats-header">${stat['nombre']}</div>
-          <div class="season-stats-info">${stat['valor']}</div>
-        </div>
-      ''';
-    });
-
-    return ''' <div class="season-stats-row"> ${resumeStats} </div> ''';
-  }
-
-  String getSeasonsStats() {
-    if (currentInfoData['matches'] > 0) {
-      return '''<div class="noMatchesPlayed"> <span>No ha jugado ningún partido esta temporada</span> </div>''';
-    }
-    else {
-      return '''<div class="match-stats"> ${getSeasonsDataTable()} </div>''';
-    }
-  }
-
-  String getSeasonsDataTable() {
-    String ret = "";
-    return ret;
-  }
-
   void tabChange(String tab,[String LItabName = null]) {
     querySelectorAll(".soccer-player-stats-content .tab-pane").classes.remove('active');
 
@@ -307,8 +283,8 @@ class SoccerPlayerStatsComp implements DetachAware{
     if (contentTab != null) {
       contentTab.classes.add("active");
     }
-    if (querySelector('#' + LItabName)!= null) {
-      querySelectorAll('#soccer-player-stats li').classes.remove('active');
+    if (LItabName != null) {
+      querySelectorAll('#soccer-player-stats-tabs li').classes.remove('active');
       querySelector('#' + LItabName).classes.add("active");
     }
   }

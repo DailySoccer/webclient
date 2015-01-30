@@ -299,11 +299,8 @@ class WebClientApp extends Module {
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
           viewHtml: '<enter-contest></enter-contest>',
           mount: {
-            'soccer_player_info': ngRoute(
-              path: '/soccer_player_info/:instanceSoccerPlayerId',
-              viewHtml: '<soccer-player-info></soccer-player-info>'),
             'soccer_player_stats': ngRoute(
-              path: '/soccer_player_stats/:instanceSoccerPlayerId',
+              path: '/soccer_player_stats/:instanceSoccerPlayerId/selectable/:selectable',
               viewHtml: '<soccer-player-stats></soccer-player-stats>')
           }
       )

@@ -170,6 +170,7 @@
 			.make-row(0);
 			@media (min-width: @screen-sm-min) {
 				.make-row(-30px);
+				display: block;
 			}
 		}
 		// cartel de proximo partido que se ve en el contenido del tab de medias solo XS
@@ -236,6 +237,8 @@
 				.season-stats-header {
 					.opensans_normal(10pt, @greyDark);
 					.make-xs-column(2);
+					text-align: left;
+					line-height: 2;
 					@media (min-width: @screen-sm-min) {
 						.opensans_bold(9pt, @greyDark);
 					}
@@ -254,7 +257,94 @@
 			}
 		}
 		//Contenido de la zona de datos por partido
-		
+		.match-header{
+			.season-header();
+		}
+		.noMatchesPlayed {
+			.make-xs-column(12);
+			.opensans_bold(10pt, @greyDark);
+			height: 268px;
+			padding-top: 134px;
+			text-align: center;
+			@media (min-width: @screen-sm-min) {
+				height: 80px;
+				padding: 10px;
+				text-align: left;
+			}
+		}
+		.match-stats-table-wrapper {
+			padding: 15px 5px;
+		}		
+		#statsTable {
+			display: inline-block;
+			.stats-headings {
+				.make-xs-column(4.2, 0);
+				.make-sm-column(2.4, 0);
+				display: inline-block;
+			}
+			.stats-rows {
+				.make-xs-column(7.8, 0);
+				.make-sm-column(9.6, 0);
+				display: inline-block;
+				overflow-x: auto;
+			}
+		}
+
+		.stat-field-header{
+			.make-border(1px, none solid solid solid, @greyDark);
+			.opensans_bold(8pt, @greyDark);
+			.make-xs-column(12, 0);
+			display: block;
+			padding: 5px;
+			&:first-child {
+				border-top: 1px solid @greyDark;
+			}
+		}
+		.head-of-headings {
+			.stat-field-header();
+			color: transparent;
+			.make-border(1px, none solid solid none, @greyDark);
+			&:first-child {
+				border-top-color: transparent;
+			}
+
+		}
+		.year-season {			
+			padding: 0;
+			background-color: @white;
+			border: none;
+			white-space: nowrap;
+			.year {
+				.opensans_bold(12pt, @blueDark);
+				padding-left: 2px;
+				padding-top: 2px;
+				padding-bottom: 2px;
+				.make-border(1px, none solid solid none, @greyDark);
+
+			}
+			.match-stats-block{
+				display: inline-block;
+				//border: 1px solid green;
+				&:nth-child(odd) {
+					background-color: @greyUltraLight;
+				}
+				.stat-col{
+					//border: 1px solid red;
+				}
+				.stats-of-year{
+					//border: 1px solid blue;
+				}
+			}
+		}
+		.match-block {
+			.make-border(1px, none solid solid none, @greyDark);
+			.opensans_bold(8pt, @greyDark);
+			padding: 5px;
+		}
+		.blue {
+			color: @blueDark;
+		}
+
 	}
 	// El footer son los mismo botones de arriba, pero con el fondo blanco.
 	.actions-footer-xs {

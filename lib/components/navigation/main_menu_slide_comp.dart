@@ -10,7 +10,7 @@ import 'dart:async';
 @Component(
     selector: 'main-menu-slide',
     useShadowDom: false,
-    exportExpressions: const ["profileService.isLoggedIn"]
+    exportExpressions: const ["profileService.user"]
 )
 class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
 
@@ -31,7 +31,7 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
   }
 
   @override void onShadowRoot(emulatedRoot) {
-    _scope.watch("profileService.isLoggedIn", _monitorChanges, canChangeModel: false);
+    _scope.watch("profileService.user", _monitorChanges, canChangeModel: false);
   }
 
   void _monitorChanges(currentVal, prevVal) {
@@ -226,7 +226,7 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
   }
 
   String get _userBalance {
-    if (profileService.user.balance != null) {
+    if (profileService.user == null) {
       return "0";
     }
     return profileService.user.balance.toString();
@@ -279,7 +279,7 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
             <a id="menuUser" class="dropdown-toggle" data-toggle="dropdown">${_userNickName}</a>
             <ul class="dropdown-menu">
               <li><a id="menuUserMyAccount"        destination="user_profile">Mi cuenta</a></li>
-              <li id="userBalanceIn"><a id="menuUserAddFunds-sm"         destination="add_funds">Añadir fondos</a></li>
+              <li id="userBalanceIn"><a id="menuUserAddFunds-sm" destination="add_funds">Añadir fondos</a></li>
               <li><a id="menuUserHistory"          destination="transaction_history">Historial de transacciones</a></li>
               <li><a id="menuUserReferencesCenter" destination="beta_info">Centro de referencias</a></li>
               <li><a id="menuUserClassification"   destination="beta_info">Clasificación</a></li>

@@ -20,7 +20,7 @@ class Prize {
   int maxEntries;
   int entryFee;
   List<num> values = new List<num>();
-  List<num> multipliers = new List<num>();
+  // List<num> multipliers = new List<num>();
 
   Prize() {
     prizeType = FREE;
@@ -30,7 +30,7 @@ class Prize {
     prizeType = jsonMap["prizeType"];
     maxEntries = jsonMap["maxEntries"];
     entryFee = jsonMap["entryFee"];
-    multipliers = jsonMap.containsKey("multipliers") ? jsonMap["multipliers"] : [];
+    // multipliers = jsonMap.containsKey("multipliers") ? jsonMap["multipliers"] : [];
     values = jsonMap.containsKey("values") ? jsonMap["values"] : [];
   }
 

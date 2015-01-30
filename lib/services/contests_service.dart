@@ -5,6 +5,7 @@ import 'package:angular/angular.dart';
 
 import "package:webclient/services/server_service.dart";
 import "package:webclient/services/profile_service.dart";
+import "package:webclient/services/prizes_service.dart";
 import "package:webclient/models/contest.dart";
 import 'package:logging/logging.dart';
 
@@ -22,7 +23,7 @@ class ContestsService {
 
   Contest getContestById(String id) => _contests.containsKey(id) ? _contests[id] : null;
 
-  ContestsService(this._server, this._profileService);
+  ContestsService(this._server, this._profileService, this._prizesService);
 
   Future refreshActiveContests() {
     return _server.getActiveContests()
@@ -61,6 +62,7 @@ class ContestsService {
     return _server.getContestInfo(contestId)
       .then((jsonMap) {
         _registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
+        _prizesService.loadFromJsonObject(jsonMap);
       });
   }
 
@@ -86,6 +88,7 @@ class ContestsService {
     return _server.getMyContests()
         .then((jsonMap) {
           _initMyContests(Contest.loadContestsFromJsonObject(jsonMap));
+          _prizesService.loadFromJsonObject(jsonMap);
         });
   }
 
@@ -107,6 +110,7 @@ class ContestsService {
     return _server.getViewContest(contestId)
         .then((jsonMap) {
           _registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
+          _prizesService.loadFromJsonObject(jsonMap);
         });
   }
 
@@ -156,6 +160,7 @@ class ContestsService {
 
   ServerService _server;
   ProfileService _profileService;
+  PrizesService _prizesService;
 
   List<Contest> _myEnteredActiveContests = new List<Contest>();
   Map<String, Contest> _contests = new Map<String, Contest>();

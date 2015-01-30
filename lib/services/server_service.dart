@@ -56,6 +56,9 @@ abstract class ServerService {
   // WithDraw Funds
   Future<Map> withdrawFunds(int amount);
 
+  // Premios
+  Future<Map> getPrizes();
+
   // Suscripción a eventos
   void        subscribe(dynamic id, {Function onSuccess, Function onError});
 
@@ -184,6 +187,10 @@ class DailySoccerServer implements ServerService {
 
   Future<Map> withdrawFunds(int amount) {
     return _innerServerCall("${HostServer.url}/paypal/withdraw_funds/$amount", retryTimes: -1);
+  }
+
+  Future<Map> getPrizes() {
+    return _innerServerCall("${HostServer.url}/get_prizes", retryTimes: -1);
   }
 
   void subscribe(dynamic id, {Function onSuccess, Function onError}) {

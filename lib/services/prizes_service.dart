@@ -1,6 +1,5 @@
 library prizes_service;
 
-import 'dart:async';
 import 'package:angular/angular.dart';
 
 import "package:webclient/services/server_service.dart";
@@ -24,25 +23,6 @@ class PrizesService {
       return _instance.prizes[key];
     }
     return new Prize();
-  }
-
-  Future refreshPrizes() {
-    var completer = new Completer();
-
-    // Tenemos cargada la tabla de premios?
-    if (prizes != null) {
-      completer.complete();
-    }
-    else {
-      // Solicitamos al server la tabla de premios
-      _server.getPrizes()
-        .then((jsonMapRoot) {
-            loadFromJsonObject(jsonMapRoot);
-            completer.complete();
-          });
-    }
-
-    return completer.future;
   }
 
   void loadFromJsonObject(Map jsonMapRoot) {

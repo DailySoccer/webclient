@@ -267,15 +267,6 @@ class SoccerPlayerStatsComp implements DetachAware{
     }
   }
 
-  String getNextMatchForDesktop() {
-    return  '''
-              <div class="next-match-wrapper">
-                <span class="next-match">PRÓXIMO PARTIDO:</span> <span class="next-match">${currentInfoData['nextMatchEvent']}></span>
-                <button class="button-add ${cannotAddPlayer ? "disabled":""}" do-function="onAddClicked">AÑADIR</button>
-              </div>
-            ''';
-  }
-
   void tabChange(String tab,[String LItabName = null]) {
     querySelectorAll(".soccer-player-stats-content .tab-pane").classes.remove('active');
 
@@ -289,7 +280,7 @@ class SoccerPlayerStatsComp implements DetachAware{
     }
   }
 
-  void onAddSoccerPlayerToFantasyTem() {
+  void onAddClicked() {
     _enterContestComp.addSoccerPlayerToLineup(currentInfoData['id']);
     ModalComp.close();
   }

@@ -130,15 +130,15 @@ class ContestsListComp {
     return DateTimeService.formatTimeShort(date);
   }
 
-  int getMyPosition(Contest contest) {
+  String printableMyPosition(Contest contest) {
     ContestEntry mainContestEntry = contest.getContestEntryWithUser(_profileService.user.userId);
 
     // En los contest Históricos tendremos la posición registrada en el propio ContestEntry
     if (contest.isHistory) {
-      return mainContestEntry.position + 1;
+      return (mainContestEntry.position >= 0) ? "${mainContestEntry.position + 1}" : "-";
     }
 
-    return contest.getUserPosition(mainContestEntry);
+    return "${contest.getUserPosition(mainContestEntry)}";
   }
 
   String getMyFantasyPoints(Contest contest) {

@@ -13,7 +13,6 @@ import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/string_utils.dart';
-import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/models/instance_soccer_player.dart';
 
 @Component(

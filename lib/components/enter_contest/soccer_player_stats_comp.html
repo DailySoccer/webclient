@@ -85,8 +85,8 @@
                     <td class="year-season">
                       <div class="year">{{year['year']}}</div>
                       <table class="match-stats-block" ng-repeat="stats in year['stats']">
-                        <tbody class="stats-of-year">
-                          <tr "stat-col" ng-repeat="stat in stats">
+                        <tbody>
+                          <tr ng-repeat="stat in stats">
                             <td class="match-block" ng-class="{'blue':$index == 1}">{{stat}} </td>
                           </tr>
                         </tbody>

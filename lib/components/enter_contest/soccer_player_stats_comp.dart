@@ -218,9 +218,7 @@ class SoccerPlayerStatsComp implements DetachAware{
           seasonsList.last['stats'].add(matchStatRows);
         }
       });
-      print("asdasdasdasd");
-    // No ha jugado ningún partido
-    }
+    }// No ha jugado ningún partido
     else {
       seasonsList = [];
     }

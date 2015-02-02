@@ -5819,6 +5819,10 @@ scoring-rules:after,
 #addFundsContent .scores-wrapper:after,
 #withdrawFundsContent .block-dark-header:before,
 #withdrawFundsContent .block-dark-header:after,
+#transactionHistoryRoot .transaction-headers:before,
+#transactionHistoryRoot .transaction-headers:after,
+#transactionHistoryRoot .transaction-row:before,
+#transactionHistoryRoot .transaction-row:after,
 .fantasy-team-list .soccer-player-row:before,
 .fantasy-team-list .soccer-player-row:after,
 .statistic:before,
@@ -5949,6 +5953,8 @@ scoring-rules:after,
 #addFundsContent .pay-faq-block .pay-faq-title:after,
 #addFundsContent .scores-wrapper:after,
 #withdrawFundsContent .block-dark-header:after,
+#transactionHistoryRoot .transaction-headers:after,
+#transactionHistoryRoot .transaction-row:after,
 .fantasy-team-list .soccer-player-row:after,
 .statistic:after,
 #rootFooter:after,
@@ -9575,6 +9581,300 @@ fieldset[disabled] #withdrawFundsContent .withdraw-founds-box button.withdraw-fu
   font-weight: 700;
   font-size: 10pt;
   color: #59add5;
+}
+#transactionHistoryRoot .transaction-date-col {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  #transactionHistoryRoot .transaction-date-col {
+    float: left;
+    width: 16.66666667%;
+  }
+}
+#transactionHistoryRoot .transaction-id-col {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  #transactionHistoryRoot .transaction-id-col {
+    float: left;
+    width: 25%;
+  }
+}
+#transactionHistoryRoot .transaction-concept-col {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  #transactionHistoryRoot .transaction-concept-col {
+    float: left;
+    width: 41.66666667%;
+  }
+}
+#transactionHistoryRoot .transaction-amount-col {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  #transactionHistoryRoot .transaction-amount-col {
+    float: left;
+    width: 8.33333333%;
+  }
+}
+#transactionHistoryRoot .transaction-balance-col {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  #transactionHistoryRoot .transaction-balance-col {
+    float: left;
+    width: 8.33333333%;
+  }
+}
+#transactionHistoryRoot .transaction-headers {
+  margin-left: 0;
+  margin-right: 0;
+  background-color: #ffffff;
+}
+#transactionHistoryRoot .transaction-headers .header-item {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #214a5f;
+  text-align: left;
+  line-height: 2;
+  padding: 10px;
+}
+#transactionHistoryRoot .transaction-headers .header-date {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #214a5f;
+  text-align: left;
+  line-height: 2;
+  padding: 10px;
+}
+@media (min-width: 768px) {
+  #transactionHistoryRoot .transaction-headers .header-date {
+    float: left;
+    width: 16.66666667%;
+  }
+}
+#transactionHistoryRoot .transaction-headers .header-id {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #214a5f;
+  text-align: left;
+  line-height: 2;
+  padding: 10px;
+}
+@media (min-width: 768px) {
+  #transactionHistoryRoot .transaction-headers .header-id {
+    float: left;
+    width: 25%;
+  }
+}
+#transactionHistoryRoot .transaction-headers .header-concept {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #214a5f;
+  text-align: left;
+  line-height: 2;
+  padding: 10px;
+}
+@media (min-width: 768px) {
+  #transactionHistoryRoot .transaction-headers .header-concept {
+    float: left;
+    width: 41.66666667%;
+  }
+}
+#transactionHistoryRoot .transaction-headers .header-amount {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #214a5f;
+  text-align: left;
+  line-height: 2;
+  padding: 10px;
+}
+@media (min-width: 768px) {
+  #transactionHistoryRoot .transaction-headers .header-amount {
+    float: left;
+    width: 8.33333333%;
+  }
+}
+#transactionHistoryRoot .transaction-headers .header-balance {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #214a5f;
+  text-align: left;
+  line-height: 2;
+  padding: 10px;
+}
+@media (min-width: 768px) {
+  #transactionHistoryRoot .transaction-headers .header-balance {
+    float: left;
+    width: 8.33333333%;
+  }
+}
+#transactionHistoryRoot .transaction-row {
+  margin-left: 0;
+  margin-right: 0;
+  background-color: #f8f8f8;
+  border-width: 1px;
+  border-style: solid none none none;
+  border-color: #ffffff;
+  border-radius: 0;
+}
+#transactionHistoryRoot .transaction-row .transacction-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #777777;
+  line-height: 2;
+  padding: 10px;
+}
+#transactionHistoryRoot .transaction-row .transacction-text .red-numbers {
+  color: #ff0000;
+}
+#transactionHistoryRoot .transaction-row .field-date {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #777777;
+  line-height: 2;
+  padding: 10px;
+}
+@media (min-width: 768px) {
+  #transactionHistoryRoot .transaction-row .field-date {
+    float: left;
+    width: 16.66666667%;
+  }
+}
+#transactionHistoryRoot .transaction-row .field-date .red-numbers {
+  color: #ff0000;
+}
+#transactionHistoryRoot .transaction-row .field-id {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #777777;
+  line-height: 2;
+  padding: 10px;
+}
+@media (min-width: 768px) {
+  #transactionHistoryRoot .transaction-row .field-id {
+    float: left;
+    width: 25%;
+  }
+}
+#transactionHistoryRoot .transaction-row .field-id .red-numbers {
+  color: #ff0000;
+}
+#transactionHistoryRoot .transaction-row .field-concept {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #777777;
+  line-height: 2;
+  padding: 10px;
+}
+@media (min-width: 768px) {
+  #transactionHistoryRoot .transaction-row .field-concept {
+    float: left;
+    width: 41.66666667%;
+  }
+}
+#transactionHistoryRoot .transaction-row .field-concept .red-numbers {
+  color: #ff0000;
+}
+#transactionHistoryRoot .transaction-row .field-amount {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #777777;
+  line-height: 2;
+  padding: 10px;
+}
+@media (min-width: 768px) {
+  #transactionHistoryRoot .transaction-row .field-amount {
+    float: left;
+    width: 8.33333333%;
+  }
+}
+#transactionHistoryRoot .transaction-row .field-amount .red-numbers {
+  color: #ff0000;
+}
+#transactionHistoryRoot .transaction-row .field-balance {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #777777;
+  line-height: 2;
+  padding: 10px;
+}
+@media (min-width: 768px) {
+  #transactionHistoryRoot .transaction-row .field-balance {
+    float: left;
+    width: 8.33333333%;
+  }
+}
+#transactionHistoryRoot .transaction-row .field-balance .red-numbers {
+  color: #ff0000;
 }
 @media (max-width: 767px) {
   .header-view-contest-entry-mode {

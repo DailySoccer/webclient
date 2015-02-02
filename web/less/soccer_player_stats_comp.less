@@ -197,7 +197,7 @@
 			.make-xs-column(12, 0);
 			background-color: @greyUltraLight;
 			text-align: center;
-			
+						
 			@media (min-width: @screen-sm-min) {
 				.make-sm-column(12, 0);
 				border: none;
@@ -205,6 +205,7 @@
 				text-align: center;
 				white-space: nowrap;
 				overflow-x: auto; 
+				height: 125px;
 			}
 									
 			.season-stats-row { 
@@ -212,6 +213,8 @@
 				.make-sm-column(2, 0);
 				.make-border(1px, dotted none none  none, @greyDark);
 				@media (max-width: @screen-sm-max) {
+					padding-left: 5px;
+					padding-right: 5px;
 					&:first-child {
 						border: none;
 					}
@@ -226,7 +229,7 @@
 					.make-border(1px, none none none dotted, @greyDark);
 					display: inline-block;
 					float: none;
-
+					bottom: -30px;
 					&:nth-child(odd) {
 						border-right: 0px dotted @greyDark;
 						&:first-child {
@@ -236,7 +239,8 @@
 				}
 				.season-stats-header {
 					.opensans_normal(10pt, @greyDark);
-					.make-xs-column(2);
+					.make-xs-column(2, 0);
+					.make-sm-column(12, 15px);
 					text-align: left;
 					line-height: 2;
 					@media (min-width: @screen-sm-min) {
@@ -245,7 +249,8 @@
 				}
 				.season-stats-info {
 					.exo_bold(14pt,  @greyDark);
-					.make-xs-column(10);
+					.make-xs-column(10, 0);
+					.make-sm-column(12, 15px);
 					text-align: right;
 					@media (min-width: @screen-sm-min) {
 						.exo_light(24pt,  @blueMed);
@@ -307,7 +312,6 @@
 			&:first-child {
 				border-top-color: transparent;
 			}
-
 		}
 		.year-season {			
 			padding: 0;

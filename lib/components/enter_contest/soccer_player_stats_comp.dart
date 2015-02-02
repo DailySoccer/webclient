@@ -14,13 +14,15 @@ import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/models/instance_soccer_player.dart';
+import 'package:webclient/utils/js_utils.dart';
+import 'dart:async';
 
 @Component(
     selector: 'soccer-player-stats',
     templateUrl: 'packages/webclient/components/enter_contest/soccer_player_stats_comp.html',
     useShadowDom: false
 )
-class SoccerPlayerStatsComp implements DetachAware{
+class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware{
 
   ScreenDetectorService scrDet;
 
@@ -54,6 +56,15 @@ class SoccerPlayerStatsComp implements DetachAware{
 
   void detach() {
     _streamListener.cancel();
+  }
+  void onShadowRoot(ShadowRoot shadowRoot) {
+    new Timer(new Duration(seconds: 1), tooltipfy);
+  }
+
+  void tooltipfy() {
+    var lista = querySelectorAll('.tt-selector');
+
+    JsUtils.runJavascript(".season-stats-row", 'tooltip', null);
   }
 
   void onScreenWidthChange(String msg) {

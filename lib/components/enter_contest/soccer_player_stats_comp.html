@@ -54,11 +54,9 @@
             <!-- MEDIAS -->
             <div class="season-header">ESTADÍSTICAS DE TEMPORADA <span>(DATOS POR PARTIDO)</span></div>
             <div class="season-stats">
-                <div class="season-stats-row" ng-repeat="stat in seasonResumeStats" >
-                  <div class="tt-selector" data-toggle="tooltip" title="{{stat['helpInfo']}}">
+                <div class="season-stats-row" ng-repeat="stat in seasonResumeStats"  data-toggle="tooltip" title="{{stat['helpInfo']}}">
                     <div class="season-stats-header">{{stat['nombre']}}</div>
                     <div class="season-stats-info">{{stat['valor']}}</div>
-                  </div>
                 </div>
             </div>
 

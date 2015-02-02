@@ -369,12 +369,7 @@ class EnterContestComp implements DetachAware {
   }
 
   void onRowClick(String soccerPlayerId) {
-    //_router.go("enter_contest.soccer_player_stats",  { "instanceSoccerPlayerId":soccerPlayerId, "selectable":!isSlotAvailableForSoccerPlayer(soccerPlayerId)});
-    ModalComp.open(_router, "enter_contest.soccer_player_stats", { "instanceSoccerPlayerId":soccerPlayerId, "selectable":isSlotAvailableForSoccerPlayer(soccerPlayerId)}, onCloseCallBack);
-  }
-
-  void onCloseCallBack( param){
-    addSoccerPlayerToLineup(param);
+    ModalComp.open(_router, "enter_contest.soccer_player_stats", { "instanceSoccerPlayerId":soccerPlayerId, "selectable":isSlotAvailableForSoccerPlayer(soccerPlayerId)}, addSoccerPlayerToLineup);
   }
 
   Map<String, Map> errorMap = {

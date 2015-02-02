@@ -22,6 +22,7 @@ class TransactionHistoryComp {
     _profileService.getTransactionHistory()
       .then((List<TransactionInfo> _transactions) {
         transactions = _transactions.reversed.toList();
+        updatePage(_currentPage, _itemsPerPage);
       });
   }
 

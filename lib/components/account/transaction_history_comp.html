@@ -12,7 +12,7 @@
     <span class="header-balance">SALDO</span>
   </div>
 
-  <div class="transaction-row" ng-repeat="transaction in transactions">
+  <div class="transaction-row" ng-repeat="transaction in currentPageList">
     <div class="field-date">{{transaction.formattedDate}}</div>
     <div class="field-id">{{$index}}</div>
     <div class="field-concept">{{transaction.type}}</div>

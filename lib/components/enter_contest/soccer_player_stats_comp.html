@@ -5,7 +5,7 @@
     <!-- En XS mostramos botones de Añadir / Cancelar -->
     <div class="actions-header-xs">
         <button class="button-cancel" data-dismiss="modal">CANCELAR</button>
-        <button class="button-add" ng-click="onAddClicked()" ng-disabled="cannotAddPlayer">AÑADIR</button>
+        <button class="button-add" ng-click="onAddClicked()" ng-disabled="!selectablePlayer">AÑADIR</button>
     </div>
 
     <!-- En el resto de versiones título y cruz de cerrar -->
@@ -33,7 +33,7 @@
 
     <div class="next-match-wrapper">
       <div class="next-match"  ng-bind-html="currentInfoData['nextMatchEvent']"></div>
-      <button class="button-add" ng-click="onAddClicked()" ng-disabled="cannotAddPlayer">AÑADIR</button>
+      <button class="button-add" ng-click="onAddClicked()" ng-disabled="!selectablePlayer">AÑADIR</button>
     </div>
 
   </div>
@@ -106,7 +106,7 @@
   </div>
   <div class="actions-footer-xs">
     <button class="button-cancel" data-dismiss="modal">CANCELAR</button>
-    <button class="button-add" ng-click="onAddClicked()" ng-disabled="cannotAddPlayer">AÑADIR</button>
+    <button class="button-add" ng-click="onAddClicked()" ng-disabled="!selectablePlayer">AÑADIR</button>
   </div>
 </modal>
 

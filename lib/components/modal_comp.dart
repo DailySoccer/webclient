@@ -42,12 +42,23 @@ class ModalComp implements DetachAware, ShadowRootAware {
     }
   }
 
-  static void close() {
+  static void open(Router route, String path, Map urlParams, [Function callback = null]) {
+    _returnCallback = callback;
+    route.go(path, urlParams);
+  }
+
+  // en params se pasan los aprametros que incluiran en el callback
+  static void close([params = null]) {
     JsUtils.runJavascript('#modalRoot', 'modal', 'hide');
+
+    if(_returnCallback != null) {
+      _returnCallback(params);
+    }
   }
 
   ScreenDetectorService _scrDet;
   Router _router;
   Element _element;
   View _view;
+  static Function _returnCallback;
 }

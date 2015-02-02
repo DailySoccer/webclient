@@ -64,7 +64,7 @@ import 'package:webclient/components/enter_contest/lineup_selector_comp.dart';
 import 'package:webclient/components/enter_contest/soccer_players_list_comp.dart';
 import 'package:webclient/components/enter_contest/soccer_players_filter_comp.dart';
 import 'package:webclient/components/enter_contest/matches_filter_comp.dart';
-import 'package:webclient/components/enter_contest/soccer_player_info_comp.dart';
+
 import 'package:webclient/components/enter_contest/soccer_player_stats_comp.dart';
 
 import 'package:webclient/components/legalese_and_help/help_info_comp.dart';
@@ -157,7 +157,7 @@ class WebClientApp extends Module {
     bind(SoccerPlayersFilterComp);
     bind(MatchesFilterComp);
     bind(LineupSelectorComp);
-    bind(SoccerPlayerInfoComp);
+
     bind(SoccerPlayerStatsComp);
 
     bind(ChangePasswordComp);

@@ -5,7 +5,6 @@ import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:intl/intl.dart';
 
-import 'package:webclient/components/enter_contest/enter_contest_comp.dart';
 import 'package:webclient/components/modal_comp.dart';
 import 'package:webclient/models/soccer_player.dart';
 import 'package:webclient/models/match_event.dart';
@@ -31,15 +30,15 @@ class SoccerPlayerStatsComp implements DetachAware{
   List seasonsList = [];
 
   Map currentInfoData;
-  bool cannotAddPlayer;
+  bool selectablePlayer;
 
   bool isGoalkeeper() => currentInfoData['fieldPos'] == "POR";
 
-  SoccerPlayerStatsComp(this._flashMessage, this._enterContestComp, this.scrDet, this._soccerPlayerService, RouteProvider routeProvider, Router router, this._rootElement) {
+  SoccerPlayerStatsComp(this._flashMessage, this.scrDet, this._soccerPlayerService, RouteProvider routeProvider, Router router, this._rootElement) {
 
     var contestId = routeProvider.route.parent.parameters["contestId"];
     var instanceSoccerPlayerId = routeProvider.route.parameters['instanceSoccerPlayerId'];
-    cannotAddPlayer = routeProvider.route.parent.parameters["selectable"];
+    selectablePlayer = routeProvider.route.parameters["selectable"] == "true";
 
     collectSoccerPlayerInfo(_soccerPlayerService.getInstanceSoccerPlayer(contestId, instanceSoccerPlayerId));
     _soccerPlayerService.refreshInstancePlayerInfo(contestId, instanceSoccerPlayerId)
@@ -78,7 +77,7 @@ class SoccerPlayerStatsComp implements DetachAware{
         'stats'           : {}
       };
 
-      cannotAddPlayer = !_enterContestComp.isSlotAvailableForSoccerPlayer(currentInfoData['id']);
+
     }
   }
 
@@ -279,8 +278,7 @@ class SoccerPlayerStatsComp implements DetachAware{
   }
 
   void onAddClicked() {
-    _enterContestComp.addSoccerPlayerToLineup(currentInfoData['id']);
-    ModalComp.close();
+    ModalComp.close(currentInfoData['id']);
   }
 
   SoccerPlayerService _soccerPlayerService;
@@ -288,7 +286,6 @@ class SoccerPlayerStatsComp implements DetachAware{
 
   InstanceSoccerPlayer _instanceSoccerPlayer;
 
-  EnterContestComp _enterContestComp;
   var _streamListener;
   Element _rootElement;
 

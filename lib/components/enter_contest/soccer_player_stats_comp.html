@@ -26,7 +26,7 @@
       </div>
       <div class="soccer-player-stats-info">
         <div class="soccer-player-fantasy-points"><span>DFP</span><span>{{currentInfoData['fantasyPoints']}}</span></div>
-        <div class="soccer-player-matches"><span>PARTIDOS</span><span>{{currentInfoData['matches']}}</span></div>
+        <div class="soccer-player-matches"><span>PARTIDOS</span><span>{{currentInfoData['matchesCount']}}</span></div>
         <div class="soccer-player-salary"><span>SALARIO</span><span>{{currentInfoData['salary']}}</span></div>
       </div>
     </div>
@@ -58,6 +58,10 @@
                     <div class="season-stats-header">{{stat['nombre']}}</div>
                     <div class="season-stats-info">{{stat['valor']}}</div>
                 </div>
+                <div div class="season-stats-row" ng-if="seasonResumeStats.length % 2 != 0"  data-toggle="" title="">
+                    <div class="season-stats-header"></div>
+                    <div class="season-stats-info"></div>
+                </div>
             </div>
 
           </div>
@@ -65,10 +69,10 @@
           <!-- START BY-MATCH-STATS-->
           <div class="tab-pane" id="match-by-match-stats-tab-content">
             <div class="match-header">PARTIDO A PARTIDO</div>
-            <div class="noMatchesPlayed" ng-class="{'hidden':currentInfoData['matches'] > 0}">
+            <div class="noMatchesPlayed" ng-class="{'hidden':currentInfoData['matchesCount'] > 0}">
                 <span>No ha jugado ningún partido esta temporada</span>
             </div>
-            <div class="match-stats-table-wrapper" ng-class="{'hidden':currentInfoData['matches'] == 0}">
+            <div class="match-stats-table-wrapper" ng-class="{'hidden':currentInfoData['matchesCount'] == 0}">
               <!--HEADER-->
               <table id="statsTable" class="table table-striped">
                 <thead class="stats-headings">
@@ -78,7 +82,6 @@
                   </tr>
                 </thead>
                 <tbody class="stats-rows">
-
                   <tr ng-repeat="year in seasonsList">
                     <td class="year-season">
                       <div class="year">{{year['year']}}</div>
@@ -91,10 +94,7 @@
                       </table>
                     </td>
                   </tr>
-
                 </tbody>
-
-
               </table>
             </div>
           </div>

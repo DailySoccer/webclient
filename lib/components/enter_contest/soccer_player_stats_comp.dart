@@ -22,7 +22,7 @@ import 'dart:async';
     templateUrl: 'packages/webclient/components/enter_contest/soccer_player_stats_comp.html',
     useShadowDom: false
 )
-class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware{
+class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
 
   ScreenDetectorService scrDet;
 
@@ -34,6 +34,27 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware{
   bool selectablePlayer;
 
   bool isGoalkeeper() => currentInfoData['fieldPos'] == "POR";
+
+  static List<String> goalKeeperStatsList   = ["PASES", "RECUPERACIONES", "PERDIDAS_BALON", "FALTAS_COMETIDAS", "TARJETAS_AMARILLAS", "TARJETAS_ROJAS", "GOLES_ENCAJADOS", "PARADAS", "DESPEJES", "PENALTIS_DETENIDOS"];
+  static List<String> commonPlayerStatsList = ["PASES", "RECUPERACIONES", "PERDIDAS_BALON", "FALTAS_COMETIDAS", "TARJETAS_AMARILLAS", "TARJETAS_ROJAS", "GOLES", "TIROS", "ASISTENCIAS", "REGATES", "FALTAS_RECIBIDAS"];
+
+  Map mappedFieldNames = {
+                "PASES"               : {"shortName" : "P",  "description" : 'Pases'},
+                "RECUPERACIONES"      : {"shortName" : "RE", "description" : 'Recuperaciones'},
+                "PERDIDAS_BALON"      : {"shortName" : "PB", "description" : 'Perdidas de Balón'},
+                "FALTAS_COMETIDAS"    : {"shortName" : "FC", "description" : 'Faltas Cometidas'},
+                "TARJETAS_AMARILLAS"  : {"shortName" : "TA", "description" : 'Tarjetas Amarillas'},
+                "TARJETAS_ROJAS"      : {"shortName" : "TR", "description" : 'Tarjetas Rojas'},
+                "GOLES_ENCAJADOS"     : {"shortName" : "GE", "description" : 'Goles Encajados'},
+                "PARADAS"             : {"shortName" : "PA", "description" : 'Paradas'},
+                "DESPEJES"            : {"shortName" : "D",  "description" : 'Despejes'},
+                "PENALTIS_DETENIDOS"  : {"shortName" : "PD", "description" : 'Penaltis Detenidos'},
+                "GOLES"               : {"shortName" : "G",  "description" : 'Goles'},
+                "TIROS"               : {"shortName" : "T",  "description" : 'Tiros'},
+                "ASISTENCIAS"         : {"shortName" : "A",  "description" : 'Asistencias'},
+                "REGATES"             : {"shortName" : "R",  "description" : 'Regates'},
+                "FALTAS_RECIBIDAS"    : {"shortName" : "FR", "description" : 'Faltas Recibidas'}
+  };
 
   SoccerPlayerStatsComp(this._flashMessage, this.scrDet, this._soccerPlayerService, RouteProvider routeProvider, Router router, this._rootElement) {
 
@@ -82,7 +103,7 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware{
         'name'            : _instanceSoccerPlayer.soccerPlayer.name.toUpperCase(),
         'fantasyPoints'   : StringUtils.parseFantasyPoints(_instanceSoccerPlayer.soccerPlayer.fantasyPoints),
         'salary'          : _instanceSoccerPlayer.salary,
-        'matches'         : _instanceSoccerPlayer.soccerPlayer.stats != null ? _instanceSoccerPlayer.soccerPlayer.stats.length : 0,
+        'matchesCount'    : _instanceSoccerPlayer.soccerPlayer.stats != null ? _instanceSoccerPlayer.soccerPlayer.stats.length : 0,
         'nextMatchEvent'  : getNextMatchEvent(),
         'stats'           : {}
       };
@@ -113,15 +134,21 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware{
     calculateStatistics();
   }
 
-  String calculateStatAverage(int statSummatory, int totalMatch) {
-    if (totalMatch == 0 || statSummatory == 0) {
+  String calculateStatAverage(String key) {
+    if (currentInfoData['matchesCount'] == 0 || _totalSums[key] == 0) {
       return "0";
     }
     else {
       NumberFormat twoDecimals = new NumberFormat("0.00", "es_ES");
       NumberFormat oneDecimals = new NumberFormat("00.0", "es_ES");
       NumberFormat noDecimals = new NumberFormat("000", "es_ES");
-      var average = statSummatory/totalMatch;
+      dynamic average;
+      if(key == "MIN") {
+        average = _totalMinutes / currentInfoData['matchesCount'];
+      }
+      else {
+        average = _totalSums[key] / currentInfoData['matchesCount'];
+      }
       if (average >= 100) {
        return noDecimals.format(average).toString();
       }
@@ -138,32 +165,20 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware{
 
     seasonResumeStats.clear();
     seasonsList.clear();
+    seasonTableHeaders = ['Fecha', 'Oponente', 'Daily Fantasy Points', 'Minutos'];
 
-    if (isGoalkeeper()) {
-      seasonTableHeaders = ['Fecha', 'Oponente', 'Daily Fantasy Points', 'Minutos', 'Goles Encajados', 'Paradas', 'Despejes', 'Penaltis Detenidos', 'Pases', 'Recuperaciones', 'Perdidas de Balón', 'Faltas Cometidas', 'Tarjetas Amarillas', 'Tarjetas Rojas'];
+    if(isGoalkeeper()) {
+      goalKeeperStatsList.forEach((key) {
+        _totalSums[key] = 0;
+      });
+      seasonTableHeaders.addAll(['Goles Encajados', 'Paradas', 'Despejes', 'Penaltis Detenidos', 'Pases', 'Recuperaciones', 'Perdidas de Balón', 'Faltas Cometidas', 'Tarjetas Amarillas', 'Tarjetas Rojas']);
     }
     else {
-      seasonTableHeaders = ['Fecha', 'Oponente', 'Daily Fantasy Points', 'Minutos', 'Goles', 'Tiros', 'Pases', 'Asistencias', 'Regates', 'Recuperaciones', 'Perdidas de Balones', 'Faltas Cometidas', 'Faltas Recibidas', 'Tarjetas Amarillas', 'Tarjetas Rojas'];
+      commonPlayerStatsList.forEach((key) {
+        _totalSums[key] = 0;
+      });
+      seasonTableHeaders.addAll(['Goles', 'Tiros', 'Pases', 'Asistencias', 'Regates', 'Recuperaciones', 'Perdidas de Balones', 'Faltas Cometidas', 'Faltas Recibidas', 'Tarjetas Amarillas', 'Tarjetas Rojas']);
     }
-
-    _totalMinutes        = 0;
-    _totalPasses         = 0;
-    _totalRetrievals     = 0;
-    _totalTurnovers      = 0;
-    _totalFoulsCommitted = 0;
-    _totalYellowCards    = 0;
-    _totalRedCards       = 0;
-    // Goalkeeper
-    _totalGoalsAgainst   = 0;
-    _totalSaves          = 0;
-    _totalClearances     = 0;
-    _totalSavedPenalties = 0;
-    // Player
-    _totalGoals          = 0;
-    _totalShoots         = 0;
-    _totalAssistances    = 0;
-    _totalDribbles       = 0;
-    _totalFoulsSuffered  = 0;
   }
 
   void calculateStatistics() {
@@ -177,45 +192,24 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware{
     SoccerPlayer soccerPlayer = _soccerPlayerService.soccerPlayer;
 
     // Si ha jugado partidos
-    if (currentInfoData['matches'] > 0) {
+    if (currentInfoData['matchesCount'] > 0) {
       soccerPlayer.stats.reversed.forEach((stat) {
-        // Sumatorios para las medias
-        _totalMinutes         += stat.playedMinutes;
-        _totalGoals           += stat.goles;
-        _totalShoots          += stat.tiros;
-        _totalPasses          += stat.pases;
-        _totalAssistances     += stat.asistencias;
-        _totalDribbles        += stat.regates;
-        _totalRetrievals      += stat.recuperaciones;
-        _totalTurnovers       += stat.perdidasBalon;
-        _totalFoulsCommitted  += stat.faltasCometidas;
-        _totalFoulsSuffered   += stat.faltasRecibidas;
-        _totalYellowCards     += stat.tarjetasAmarillas;
-        _totalRedCards        += stat.tarjetasRojas;
-        _totalGoalsAgainst    += stat.golesEncajados;
-        _totalSaves           += stat.paradas;
-        _totalClearances      += stat.despejes;
-        _totalSavedPenalties  += stat.penaltisDetenidos;
+        // Sumatorio de minutos
+        _totalMinutes       += stat.playedMinutes;
 
-        var matchDate = stat.startDate.toString().split("-");
-        String year = matchDate[0];
-        String month = matchDate[1];
-        var day = matchDate[2].split(" ");
+        String year         = DateTimeService.formatDateYear(stat.startDate);
+        String dayMonth     = DateTimeService.formatDateShort(stat.startDate);
+        List matchStatRows  = [];
 
-        String dayMonth = day[0] + "/" + month;
+        //Campos en orden    ['Fecha', 'Oponente',                  'Daily Fantasy Points',                             'Minutos',
+        matchStatRows.addAll([dayMonth, stat.opponentTeam.shortName, StringUtils.parseFantasyPoints(stat.fantasyPoints), stat.playedMinutes]);
 
-        List matchStatRows = [];
-        if (isGoalkeeper()) {
-          //  campos en orden  ['Fecha', 'Oponente',                   'Daily Fantasy Points',                             'Minutos',          'Goles Encajados',   'Paradas',    'Despejes',    'Pases',    'Penaltis Detenidos',   'Recuperaciones',    'Perdidas de Balón','Faltas Cometidas',   'Tarjetas Amarillas',  'Tarjetas Rojas'];
-          matchStatRows.addAll([dayMonth, stat.opponentTeam.shortName, StringUtils.parseFantasyPoints(stat.fantasyPoints), stat.playedMinutes, stat.golesEncajados, stat.paradas, stat.despejes, stat.pases, stat.penaltisDetenidos, stat.recuperaciones, stat.perdidasBalon, stat.faltasCometidas, stat.tarjetasAmarillas, stat.tarjetasRojas]);
-        }
-        else {
-          //  campos en orden  ['Fecha',  'Oponente',                  'Daily Fantasy Points',                             'Minutos',          'Goles',    'Tiros',    'Pases',    'Asistencias',    'Regates',    'Recuperaciones',    'Perdidas de Balones',  'Faltas Cometidas',   'Faltas Recibidas',   'Tarjetas Amarillas',   'Tarjetas Rojas'];
-          matchStatRows.addAll([dayMonth, stat.opponentTeam.shortName, StringUtils.parseFantasyPoints(stat.fantasyPoints), stat.playedMinutes, stat.goles, stat.tiros, stat.pases, stat.asistencias, stat.regates, stat.recuperaciones, stat.perdidasBalon,     stat.faltasCometidas, stat.faltasRecibidas, stat.tarjetasAmarillas, stat.tarjetasRojas]);
-        }
-
-        // Buscamos el año que vamos a actualizar
-        //Map seasonYear = seasons['values'];
+        _totalSums.keys.forEach((key) {
+          // Calculamos los sumatorios.
+          _totalSums[key] += stat.soccerPlayerStatValues[key];
+          // Añadimos las especificas a la lista de las estats por partido.
+          matchStatRows.add(stat.soccerPlayerStatValues[key]);
+        });
 
         // Si no existe aún este año en la tabla de años, la generamos
         if (seasonsList.length == 0) {
@@ -228,6 +222,7 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware{
         else {
           seasonsList.last['stats'].add(matchStatRows);
         }
+
       });
     } // No ha jugado ningún partido
     else {
@@ -237,43 +232,12 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware{
 
   void calculateSeasonResumeStats() {
 
-    if (isGoalkeeper()) {
       // Añadimos las especificas del portero
-      seasonResumeStats = [
-                {'nombre' : "MIN" , 'valor': calculateStatAverage(_totalMinutes, currentInfoData['matches']),       'helpInfo': 'Minutos jugados'},
-                {'nombre' : "GE"  , 'valor': calculateStatAverage(_totalGoalsAgainst, currentInfoData['matches']),  'helpInfo': 'Goles Encajados'},
-                {'nombre' : "PA"  , 'valor': calculateStatAverage(_totalSaves, currentInfoData['matches']),         'helpInfo': 'Paradas'},
-                {'nombre' : "D"   , 'valor': calculateStatAverage(_totalClearances, currentInfoData['matches']),    'helpInfo': 'Despejes'},
-                {'nombre' : "PD"  , 'valor': calculateStatAverage(_totalSavedPenalties, currentInfoData['matches']),'helpInfo': 'Penaltis Detenidos'},
-                {'nombre' : "P"   , 'valor': calculateStatAverage(_totalPasses, currentInfoData['matches']),        'helpInfo': 'Pases'},
-                {'nombre' : "RE"  , 'valor': calculateStatAverage(_totalRetrievals, currentInfoData['matches']),    'helpInfo': 'Recuperaciones'},
-                {'nombre' : "PB"  , 'valor': calculateStatAverage(_totalTurnovers, currentInfoData['matches']),     'helpInfo': 'Perdidas de Balón'},
-                {'nombre' : "TA"  , 'valor': calculateStatAverage(_totalYellowCards, currentInfoData['matches']),   'helpInfo': 'Tarjetas Amarillas'},
-                {'nombre' : "TR"  , 'valor': calculateStatAverage(_totalRedCards, currentInfoData['matches']),      'helpInfo': 'Tarjetas Rojas'}
-      ];
-    }
-    else {
-      // Añadimos las especificas del resto de jugadores
-      seasonResumeStats = [
-                {'nombre' : "MIN" , 'valor': calculateStatAverage(_totalMinutes, currentInfoData['matches']),       'helpInfo': 'Minutos jugados'},
-                {'nombre' : "G"   , 'valor': calculateStatAverage(_totalGoals, currentInfoData['matches']),         'helpInfo': 'Goles'},
-                {'nombre' : "T"   , 'valor': calculateStatAverage(_totalShoots, currentInfoData['matches']),        'helpInfo': 'Tiros'},
-                {'nombre' : "P"   , 'valor': calculateStatAverage(_totalPasses, currentInfoData['matches']),        'helpInfo': 'Pases'},
-                {'nombre' : "A"   , 'valor': calculateStatAverage(_totalAssistances, currentInfoData['matches']),   'helpInfo': 'Asistencias'},
-                {'nombre' : "R"   , 'valor': calculateStatAverage(_totalDribbles, currentInfoData['matches']),      'helpInfo': 'Regates'},
-                {'nombre' : "RE"  , 'valor': calculateStatAverage(_totalRetrievals, currentInfoData['matches']),    'helpInfo': 'Recuperaciones'},
-                {'nombre' : "PB"  , 'valor': calculateStatAverage(_totalTurnovers, currentInfoData['matches']),     'helpInfo': 'Perdidas de Balones'},
-                {'nombre' : "FC"  , 'valor': calculateStatAverage(_totalFoulsCommitted, currentInfoData['matches']),'helpInfo': 'Faltas Cometidas'},
-                {'nombre' : "FR"  , 'valor': calculateStatAverage(_totalFoulsSuffered, currentInfoData['matches']), 'helpInfo': 'Faltas Recibidas'},
-                {'nombre' : "TA"  , 'valor': calculateStatAverage(_totalYellowCards, currentInfoData['matches']),   'helpInfo': 'Tarjetas Amarillas'},
-                {'nombre' : "TR"  , 'valor': calculateStatAverage(_totalRedCards, currentInfoData['matches']),      'helpInfo': 'Tarjetas Rojas'}
-      ];
-    }
+      seasonResumeStats.add( {'nombre' : "MIN" , 'valor':  calculateStatAverage("MIN"),       'helpInfo': 'Minutos jugados'});
 
-    // Añado una última columna en las medias de portero para que cuadre en XS.
-    if (seasonResumeStats.length % 2 != 0) {
-      seasonResumeStats.add({"nombre":"","valor":""});
-    }
+      _totalSums.keys.forEach((key) {
+         seasonResumeStats.add({'nombre' : mappedFieldNames[key]["shortName"], 'valor' : calculateStatAverage(key), 'helpInfo': mappedFieldNames[key]["description"]});
+      });
   }
 
   void tabChange(String tab, [String LItabName = null]) {
@@ -302,9 +266,6 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware{
   Element _rootElement;
 
   // Common Stats
-  int _totalMinutes, _totalPasses, _totalRetrievals, _totalTurnovers, _totalFoulsCommitted, _totalYellowCards, _totalRedCards = 0;
-  // Goalkeeper Stats
-  int _totalGoalsAgainst, _totalSaves, _totalClearances, _totalSavedPenalties = 0;
-  // Players not goalkeepers Stats
-  int _totalGoals, _totalShoots, _totalAssistances, _totalDribbles, _totalFoulsSuffered = 0;
+  Map _totalSums = {};
+  int _totalMinutes = 0;
 }

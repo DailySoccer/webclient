@@ -50,8 +50,9 @@ class ModalComp implements DetachAware, ShadowRootAware {
   static void close([params = null]) {
     JsUtils.runJavascript('#modalRoot', 'modal', 'hide');
 
-    if(_returnCallback != null) {
+    if (_returnCallback != null) {
       _returnCallback(params);
+      _returnCallback = null;
     }
   }
 

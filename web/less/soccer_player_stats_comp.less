@@ -205,14 +205,15 @@
 				text-align: center;
 				white-space: nowrap;
 				overflow-x: auto; 
-				height: 125px;
+				height: 115px;
 			}
 									
 			.season-stats-row { 
 				.make-xs-column(6, 0);
-				.make-sm-column(2, 0);
-				.make-border(1px, dotted none none  none, @greyDark);
+				//.make-sm-column(1.5, 0);
+				
 				@media (max-width: @screen-sm-max) {
+					.make-border(1px, dotted none none  none, @greyDark);
 					padding-left: 5px;
 					padding-right: 5px;
 					&:first-child {
@@ -229,12 +230,13 @@
 					.make-border(1px, none none none dotted, @greyDark);
 					display: inline-block;
 					float: none;
-					bottom: -30px;
+					bottom: -35px;
+					width: 90px;
+					&:last-child {
+						border-right: 1px dotted @greyDark;
+					}
 					&:nth-child(odd) {
 						border-right: 0px dotted @greyDark;
-						&:first-child {
-							border-right: 1px dotted @greyDark;
-						}
 					}
 				}
 				.season-stats-header {
@@ -242,7 +244,6 @@
 					.make-xs-column(2, 0);
 					.make-sm-column(12, 15px);
 					text-align: left;
-					line-height: 2;
 					@media (min-width: @screen-sm-min) {
 						.opensans_bold(9pt, @greyDark);
 					}
@@ -256,9 +257,7 @@
 						.exo_light(24pt,  @blueMed);
 					}
 				}
-				.season-stats-info:last-child {
-					border: none;
-				}
+				
 			}
 		}
 		//Contenido de la zona de datos por partido

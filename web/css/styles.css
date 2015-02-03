@@ -15674,7 +15674,7 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .next-mat
     text-align: center;
     white-space: nowrap;
     overflow-x: auto;
-    height: 125px;
+    height: 115px;
   }
 }
 @media (min-width: 768px) and (min-width: 768px) {
@@ -15684,25 +15684,19 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .next-mat
   }
 }
 #modalSoccerPlayerStats .soccer-player-stats-content .season-stats .season-stats-row {
+  position: relative;
   float: left;
   width: 50%;
-  position: relative;
   min-height: 1px;
   padding-left: 0;
   padding-right: 0;
-  border-width: 1px;
-  border-style: dotted none none none;
-  border-color: #777777;
-  border-radius: 0;
-}
-@media (min-width: 768px) {
-  #modalSoccerPlayerStats .soccer-player-stats-content .season-stats .season-stats-row {
-    float: left;
-    width: 16.66666667%;
-  }
 }
 @media (max-width: 991px) {
   #modalSoccerPlayerStats .soccer-player-stats-content .season-stats .season-stats-row {
+    border-width: 1px;
+    border-style: dotted none none none;
+    border-color: #777777;
+    border-radius: 0;
     padding-left: 5px;
     padding-right: 5px;
   }
@@ -15724,13 +15718,14 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .next-mat
     border-radius: 0;
     display: inline-block;
     float: none;
-    bottom: -30px;
+    bottom: -35px;
+    width: 90px;
+  }
+  #modalSoccerPlayerStats .soccer-player-stats-content .season-stats .season-stats-row:last-child {
+    border-right: 1px dotted #777777;
   }
   #modalSoccerPlayerStats .soccer-player-stats-content .season-stats .season-stats-row:nth-child(odd) {
     border-right: 0px dotted #777777;
-  }
-  #modalSoccerPlayerStats .soccer-player-stats-content .season-stats .season-stats-row:nth-child(odd):first-child {
-    border-right: 1px dotted #777777;
   }
 }
 #modalSoccerPlayerStats .soccer-player-stats-content .season-stats .season-stats-row .season-stats-header {
@@ -15747,7 +15742,6 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .next-mat
   padding-left: 7.5px;
   padding-right: 7.5px;
   text-align: left;
-  line-height: 2;
 }
 @media (min-width: 768px) {
   #modalSoccerPlayerStats .soccer-player-stats-content .season-stats .season-stats-row .season-stats-header {
@@ -15793,9 +15787,6 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .next-mat
     color: #0d75a6;
     text-transform: uppercase;
   }
-}
-#modalSoccerPlayerStats .soccer-player-stats-content .season-stats .season-stats-row .season-stats-info:last-child {
-  border: none;
 }
 #modalSoccerPlayerStats .soccer-player-stats-content .match-header {
   position: relative;

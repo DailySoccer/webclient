@@ -46,7 +46,7 @@ class ModalComp implements DetachAware, ShadowRootAware {
     route.go(path, urlParams);
   }
 
-  // en params se pasan los aprametros que incluiran en el callback
+  // En params se pasan los parametros con los que llamaremos en el callback
   static void close([params = null]) {
     JsUtils.runJavascript('#modalRoot', 'modal', 'hide');
 

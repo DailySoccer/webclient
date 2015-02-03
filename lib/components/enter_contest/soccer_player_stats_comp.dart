@@ -50,13 +50,13 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware{
         _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
       });
 
-    // Nos subscribimos al evento de cambio de tamañano de ventana (Necesario para volver al primer tab al cambiar el tamaño).
     _streamListener = scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
   }
 
   void detach() {
     _streamListener.cancel();
   }
+
   void onShadowRoot(ShadowRoot shadowRoot) {
     new Timer(new Duration(seconds: 1), tooltipfy);
   }
@@ -86,8 +86,6 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware{
         'nextMatchEvent'  : getNextMatchEvent(),
         'stats'           : {}
       };
-
-
     }
   }
 
@@ -133,39 +131,43 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware{
     }
   }
 
-  void initializaPlayerStats() {
-    if(_instanceSoccerPlayer != null) {
-      seasonResumeStats.clear();
-      seasonsList.clear();
-      if (isGoalkeeper()) {
-        seasonTableHeaders = ['Fecha', 'Oponente', 'Daily Fantasy Points', 'Minutos', 'Goles Encajados', 'Paradas', 'Despejes', 'Penaltis Detenidos', 'Pases', 'Recuperaciones', 'Perdidas de Balón', 'Faltas Cometidas', 'Tarjetas Amarillas', 'Tarjetas Rojas'];
-      }
-      else {
-        seasonTableHeaders = ['Fecha', 'Oponente', 'Daily Fantasy Points', 'Minutos', 'Goles', 'Tiros', 'Pases', 'Asistencias', 'Regates', 'Recuperaciones', 'Perdidas de Balones', 'Faltas Cometidas', 'Faltas Recibidas', 'Tarjetas Amarillas', 'Tarjetas Rojas'];
-      }
-      _totalMinutes        = 0;
-      _totalPasses         = 0;
-      _totalRetrievals     = 0;
-      _totalTurnovers      = 0;
-      _totalFoulsCommitted = 0;
-      _totalYellowCards    = 0;
-      _totalRedCards       = 0;
-      // Goalkeeper
-      _totalGoalsAgainst   = 0;
-      _totalSaves          = 0;
-      _totalClearances     = 0;
-      _totalSavedPenalties = 0;
-      // Player
-      _totalGoals          = 0;
-      _totalShoots         = 0;
-      _totalAssistances    = 0;
-      _totalDribbles       = 0;
-      _totalFoulsSuffered  = 0;
+  void initializePlayerStats() {
+    if (_instanceSoccerPlayer == null) {
+      return;
     }
+
+    seasonResumeStats.clear();
+    seasonsList.clear();
+
+    if (isGoalkeeper()) {
+      seasonTableHeaders = ['Fecha', 'Oponente', 'Daily Fantasy Points', 'Minutos', 'Goles Encajados', 'Paradas', 'Despejes', 'Penaltis Detenidos', 'Pases', 'Recuperaciones', 'Perdidas de Balón', 'Faltas Cometidas', 'Tarjetas Amarillas', 'Tarjetas Rojas'];
+    }
+    else {
+      seasonTableHeaders = ['Fecha', 'Oponente', 'Daily Fantasy Points', 'Minutos', 'Goles', 'Tiros', 'Pases', 'Asistencias', 'Regates', 'Recuperaciones', 'Perdidas de Balones', 'Faltas Cometidas', 'Faltas Recibidas', 'Tarjetas Amarillas', 'Tarjetas Rojas'];
+    }
+
+    _totalMinutes        = 0;
+    _totalPasses         = 0;
+    _totalRetrievals     = 0;
+    _totalTurnovers      = 0;
+    _totalFoulsCommitted = 0;
+    _totalYellowCards    = 0;
+    _totalRedCards       = 0;
+    // Goalkeeper
+    _totalGoalsAgainst   = 0;
+    _totalSaves          = 0;
+    _totalClearances     = 0;
+    _totalSavedPenalties = 0;
+    // Player
+    _totalGoals          = 0;
+    _totalShoots         = 0;
+    _totalAssistances    = 0;
+    _totalDribbles       = 0;
+    _totalFoulsSuffered  = 0;
   }
 
   void calculateStatistics() {
-      initializaPlayerStats();
+      initializePlayerStats();
       calculateSeasonStats();
       calculateSeasonResumeStats();
   }
@@ -227,7 +229,7 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware{
           seasonsList.last['stats'].add(matchStatRows);
         }
       });
-    }// No ha jugado ningún partido
+    } // No ha jugado ningún partido
     else {
       seasonsList = [];
     }
@@ -236,7 +238,7 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware{
   void calculateSeasonResumeStats() {
 
     if (isGoalkeeper()) {
-      //añadimos las especificas del portero
+      // Añadimos las especificas del portero
       seasonResumeStats = [
                 {'nombre' : "MIN" , 'valor': calculateStatAverage(_totalMinutes, currentInfoData['matches']),       'helpInfo': 'Minutos jugados'},
                 {'nombre' : "GE"  , 'valor': calculateStatAverage(_totalGoalsAgainst, currentInfoData['matches']),  'helpInfo': 'Goles Encajados'},
@@ -251,7 +253,7 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware{
       ];
     }
     else {
-      //añadimos las especificas del resto de jugadores
+      // Añadimos las especificas del resto de jugadores
       seasonResumeStats = [
                 {'nombre' : "MIN" , 'valor': calculateStatAverage(_totalMinutes, currentInfoData['matches']),       'helpInfo': 'Minutos jugados'},
                 {'nombre' : "G"   , 'valor': calculateStatAverage(_totalGoals, currentInfoData['matches']),         'helpInfo': 'Goles'},
@@ -274,7 +276,7 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware{
     }
   }
 
-  void tabChange(String tab,[String LItabName = null]) {
+  void tabChange(String tab, [String LItabName = null]) {
     querySelectorAll(".soccer-player-stats-content .tab-pane").classes.remove('active');
 
     Element contentTab = document.querySelector("#" + tab);
@@ -303,6 +305,6 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware{
   int _totalMinutes, _totalPasses, _totalRetrievals, _totalTurnovers, _totalFoulsCommitted, _totalYellowCards, _totalRedCards = 0;
   // Goalkeeper Stats
   int _totalGoalsAgainst, _totalSaves, _totalClearances, _totalSavedPenalties = 0;
-  // Players not goalkeepers Sta
+  // Players not goalkeepers Stats
   int _totalGoals, _totalShoots, _totalAssistances, _totalDribbles, _totalFoulsSuffered = 0;
 }

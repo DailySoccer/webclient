@@ -1,19 +1,37 @@
 #transactionHistoryRoot {
 
-	.transaction-date-col{ .make-sm-column(2); }
-	.transaction-id-col{ .make-sm-column(3); }
-	.transaction-concept-col{ .make-sm-column(5); }
-	.transaction-amount-col{ .make-sm-column(1); }
-	.transaction-balance-col{ .make-sm-column(1); }
+	.transaction-date-col{
+		.make-xs-column(4);
+		.make-sm-column(1.7); 
+	}
+	.transaction-id-col{ 
+		.make-xs-column(8);
+		.make-sm-column(2.5); 
+	}
+	.transaction-concept-col{ 
+		.make-xs-column(12);
+		.make-sm-column(4.8); 
+	}
+	.transaction-amount-col, .transaction-balance-col{ 
+		.make-xs-column(4);
+		.make-sm-column(1.5); 
+		text-align: right;
+		@media(max-width: @screen-xs-max) {
+			text-align: left;
+			max-width: 150px;
+		}
+	}
 
 	.transaction-headers {
+		.hidden-xs();
 		.make-row(0);
 		background-color: @white;
 		.header-item {
 			.opensans_bold(10pt, @blueDark);
-			text-align: left;
+			//text-align: left;
 			line-height: 2;
 			padding: 10px;
+
 		}
 		.header-date {
 			.transaction-date-col();
@@ -39,27 +57,53 @@
 
 	.transaction-row{
 		.make-row(0);
-		background-color: @greyUltraLight;
 		.make-border(1px, solid none none none, @white);
+		background-color: @greyUltraLight;
+		
+		@media (max-width: @screen-xs-max) {
+			.make-border(1px, none none solid none, @greyDark);
+			background-color: @white;
+			padding: 10px 0;
+		}
 		.transacction-text {
 			.opensans_bold(8pt, @greyDark);
 			line-height: 2;
 			padding: 10px;
+			@media (max-width: @screen-xs-max) {
+				padding: 5px 10px;
+			}
 			& .red-numbers {
 				color: @red;
+			}
+		}
+		.money-label{
+			display: none;
+			.opensans_bold(8pt, @blueDark);
+			@media (max-width: @screen-xs-max) {
+				display: inline-block;
 			}
 		}
 		.field-date{
 			.transaction-date-col();
 			.transacction-text();
+			@media (max-width: @screen-xs-max) {
+				color: @blueDark;
+			}
 		}
 		.field-id{
 			.transaction-id-col();
 			.transacction-text();
+			@media (max-width: @screen-xs-max) {
+				text-align: right;
+			}
 		}
 		.field-concept{
 			.transaction-concept-col();
 			.transacction-text();
+			//font-size: 9pt;
+			@media (max-width: @screen-xs-max) {
+				padding: 0px 10px;
+			}
 		}
 		.field-amount{
 			.transaction-amount-col();

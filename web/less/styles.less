@@ -245,7 +245,17 @@ body {
 	margin: 0;
 	padding: 0;
 }
-
+.default-section-header{
+	.make-row(0);
+	.exo_light(20pt, @blueDark);
+	padding: 30px 15px 30px 15px;
+	background-color: @tramaBlue;
+	text-align: center;
+	@media (max-width: @screen-xs-max) {
+		padding: 10px 5px 10px 5px;
+		.exo_light(16pt, @blueDark);
+	}
+}
 .default-header-text {
 	.make-row(0);
 	.exo_light(20pt, @blueDark);

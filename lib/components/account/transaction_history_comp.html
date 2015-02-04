@@ -1,9 +1,5 @@
 <div id="transactionHistoryRoot">
-
-  <div class="block-dark-header">
-    <div class="default-header-text">HISTORIAL DE TRANSACCIONES</div>
-  </div>
-
+  <div class="default-section-header">HISTORIAL DE TRANSACCIONES</div>
   <div class="transaction-headers">
     <span class="header-date">FECHA</span>
     <span class="header-id">ID</span>
@@ -15,9 +11,9 @@
   <div class="transaction-row" ng-repeat="transaction in currentPageList">
     <div class="field-date">{{transaction.formattedDate}}</div>
     <div class="field-id">{{transaction.transactionID}}</div>
-    <div class="field-concept">{{transaction.type}}</div>
-    <div class="field-amount">{{transaction.value}}</div>
-    <div class="field-balance">{{transaction.balance}}</div>
+    <div class="field-concept">{{transaction.transactionDescription}}</div>
+    <div class="field-amount"><div class="money-label">IMPORTE: </div> {{transaction.value}}€ </div>
+    <div class="field-balance"><div class="money-label">SALDO: </div> {{transaction.balance}}€ </div>
   </div>
 
   <paginator on-page-change="onPageChange(currentPage, itemsPerPage)" items-per-page="20" list-length="transactions.length"></paginator>

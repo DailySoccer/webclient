@@ -49,9 +49,6 @@ class ChangePasswordComp implements ShadowRootAware {
   }
 
   @override void onShadowRoot(emulatedRoot) {
-    if (_profileManager.isLoggedIn) {
-      _profileManager.logout();
-    }
     //Cogemos los parametros de la querystring esperando encontrar el parametro del token de stormPath
     Uri uri = Uri.parse(window.location.toString());
     if (uri.queryParameters.containsKey("sptoken")) {

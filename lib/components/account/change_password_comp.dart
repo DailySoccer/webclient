@@ -45,11 +45,13 @@ class ChangePasswordComp implements ShadowRootAware {
   ChangePasswordComp(this._router, this._routeProvider, this._profileManager, this._rootElement, this._loadingService) {
     _loadingService.isLoading = true;
     GameMetrics.logEvent(GameMetrics.CHANGE_PASSWORD_ATTEMPTED);
-    _profileManager.logout();
     //_stormPathTokenId = _routeProvider.route.parameters['tokenId'];
   }
 
   @override void onShadowRoot(emulatedRoot) {
+    if (_profileManager.isLoggedIn) {
+      _profileManager.logout();
+    }
     //Cogemos los parametros de la querystring esperando encontrar el parametro del token de stormPath
     Uri uri = Uri.parse(window.location.toString());
     if (uri.queryParameters.containsKey("sptoken")) {

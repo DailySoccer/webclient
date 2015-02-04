@@ -1,6 +1,5 @@
 library date_service;
 
-import 'dart:async';
 import 'package:intl/intl.dart';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/server_service.dart';
@@ -20,7 +19,7 @@ class DateTimeService {
     _instance = this;
 
     if (HostServer.isDev) {
-      _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_VERIFY_SIMULATOR_ACTIVATED, _verifySimulatorActivated);
+      _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_UPDATE_SIMULATOR_STATE, _updateSimulatorState);
     }
   }
 
@@ -66,30 +65,26 @@ class DateTimeService {
                      : hours + ":" + minutes + ":" + seconds;
   }
 
-  void _verifySimulatorActivated() {
-    _server.isSimulatorActivated()
+  void _updateSimulatorState() {
+    _server.getSimulatorState()
       .then((jsonMap) {
-        _simulatorActivated = jsonMap["simulator_activated"];
+        bool activated = jsonMap["init"];
 
-        // Cuando se active el simulador...
-        if (_simulatorActivated) {
-          print("Simulator Activated");
+        if (activated != _simulatorActivated) {
+          _simulatorActivated = activated;
 
-          // Cancelamos el timer de verificacion (asumimos que siempre estará ejecutándose)
-          _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_VERIFY_SIMULATOR_ACTIVATED);
-
-          // Timer para solicitar el "currentDate"
-          _timerUpdateFromServer = (_simulatorActivated)
-              ? _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_DATE_FROM_SERVER, _updateDateFromServer)
-              : null;
+          if (_simulatorActivated) {
+            print("Simulator Activated");
           }
-      });
-  }
+          else {
+            print("Simulator Deactivated");
+            _fakeDateTime = null;
+          }
+        }
 
-  void _updateDateFromServer () {
-    _server.getCurrentDate()
-      .then((jsonMap) {
-        _fakeDateTime = fromMillisecondsSinceEpoch(jsonMap["currentDate"]);
+        if (_simulatorActivated) {
+          _fakeDateTime = fromMillisecondsSinceEpoch(jsonMap["currentDate"]);
+        }
       });
   }
 
@@ -101,7 +96,6 @@ class DateTimeService {
     return _UTC? new DateTime.now().toUtc() : new DateTime.now();
   }
 
-  Timer _timerUpdateFromServer;
   DateTime _fakeDateTime;
   bool _simulatorActivated = false;
 

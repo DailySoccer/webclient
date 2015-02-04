@@ -19,6 +19,7 @@ class JoinComp implements ShadowRootAware {
 
   int MIN_PASSWORD_LENGTH = 8;
   int MIN_NICKNAME_LENGTH = 4;
+  int MAX_NICKNAME_LENGTH = 30;
 
   String firstName  = "";
   String lastName   = "";

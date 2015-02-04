@@ -53,6 +53,10 @@ class DateTimeService {
     return "${new DateFormat("E, dd/MM/yy HH:mm", "es_ES").format(date)}h";
   }
 
+  static String formatDateTimeDayHour(DateTime date) {
+    return "${new DateFormat("dd/MM/yy HH:mm", "es_ES").format(date)}h";
+  }
+
   static String formatTimeLeft(Duration timeLeft) {
     NumberFormat nfDay = new NumberFormat("0");
     NumberFormat nfTime = new NumberFormat("00");

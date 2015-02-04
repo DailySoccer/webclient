@@ -17,7 +17,7 @@ class ProfileService {
   User user = null;
   bool get isLoggedIn => user != null;
 
-  static ProfileService get instance => _instance;  // Si te peta en esta linea te obliga a pensar, lo que es Una Buena Cosa@.
+  static ProfileService get instance => _instance;  // Si te peta en esta linea te obliga a pensar, lo que es Una Buena Cosa™.
                                                     // Una pista... quiza te ha pasado pq has quitado componentes del index?
 
   ProfileService(this._server) {

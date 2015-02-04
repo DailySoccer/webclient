@@ -14,7 +14,7 @@
 
   <div class="transaction-row" ng-repeat="transaction in currentPageList">
     <div class="field-date">{{transaction.formattedDate}}</div>
-    <div class="field-id">{{$index}}</div>
+    <div class="field-id">{{transaction.transactionID}}</div>
     <div class="field-concept">{{transaction.type}}</div>
     <div class="field-amount">{{transaction.value}}</div>
     <div class="field-balance">{{transaction.balance}}</div>

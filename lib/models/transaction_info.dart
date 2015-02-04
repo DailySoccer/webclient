@@ -6,6 +6,8 @@ class TransactionInfo {
   String type;
   double value;
   DateTime createdAt;
+  String transactionID;
+
 
   // Estado del balance después de aplicar la transaction
   double balance;
@@ -15,6 +17,7 @@ class TransactionInfo {
   TransactionInfo.fromJsonObject(Map jsonMap) {
     type = jsonMap["type"];
     value = double.parse(jsonMap["value"]);
+    transactionID = jsonMap["accountingTranId"];
     createdAt = DateTimeService.fromMillisecondsSinceEpoch(int.parse(jsonMap["createdAt"]));
   }
 }

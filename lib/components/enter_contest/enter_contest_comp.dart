@@ -19,6 +19,7 @@ import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/utils/html_utils.dart';
 import 'package:webclient/services/profile_service.dart';
+import 'package:webclient/components/modal_comp.dart';
 
 @Component(
     selector: 'enter-contest',
@@ -368,7 +369,7 @@ class EnterContestComp implements DetachAware {
   }
 
   void onRowClick(String soccerPlayerId) {
-    _router.go("enter_contest.soccer_player_info",  { "instanceSoccerPlayerId": soccerPlayerId });
+    ModalComp.open(_router, "enter_contest.soccer_player_stats", { "instanceSoccerPlayerId":soccerPlayerId, "selectable":isSlotAvailableForSoccerPlayer(soccerPlayerId)}, addSoccerPlayerToLineup);
   }
 
   Map<String, Map> errorMap = {

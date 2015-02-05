@@ -6,7 +6,6 @@ import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/contests_service.dart';
 import 'package:webclient/services/profile_service.dart';
-import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/models/contest_entry.dart';
 import 'dart:html';

@@ -1,0 +1,352 @@
+#modalSoccerPlayerStats {	
+	background-color: @greyUltraDark;
+	color: @white;
+	padding: 5px;
+	.modal-content {
+		.make-row(0);
+		.clean-paddings();
+	}
+	//Configuramos los tamaños de la modal...
+	@media (min-width: @screen-sm-min) {
+		background-color: @greyLight;
+		.modal-dialog {
+			width: 90%;
+			max-width: 900px;
+		}
+	}
+	//... en XS ocupa todo el ancho
+	@media (max-width: @screen-xs-max) {
+		#modalRoot {			
+			.make-border(1px, solid none none none, @orangeHeaderLight);
+			top: 68px;
+			background-color: @white;
+			.modal-dialog {
+				margin: 0;			
+				.modal-content {
+					border: none;
+					border-radius: 0;
+					box-shadow: none;
+				}
+			}
+		}
+	}
+	// Cabecera de la ventana modal
+	.soccer-player-stats-header {
+		.make-row(0);	
+		// Sección de información / botones de acción > SM	
+		.actions-header-sm {
+			.hidden-xs();
+			padding: 0 10px;
+			.text-header {
+				.opensans_normal(14pt, @greyDark);
+				line-height: 66px;
+				margin-left: 5px;
+			}
+			.close {
+				.hidden-xs();
+				position: absolute;
+				top: 15px;
+				right: 15px;
+			}
+		}
+		// Sección de información / botones de acción XS
+		.actions-header-xs {
+			.visible-xs();			
+			height: 47px;
+			padding:10px;
+			background-color: @greyUltraDark;
+			&.bottom { background-color: @white; padding: 10px;}
+
+			.button-cancel {
+				.btn-cancel();		
+				.make-xs-column(5.8);				
+			}
+			.button-add {
+				.btn-primary();
+				.make-xs-column(5.8);
+				.pull-right();			
+			}
+		}
+		//Extra info en la cabecera
+		.description-header{
+			.make-xs-column(12, 0);
+			background-color: @greyUltraDark;
+			padding: 10px;
+			@media (max-width: @screen-sm-max) {
+				padding: 10px 5px;
+			}			
+			.soccer-player-description {
+				.make-xs-column(12, 10px);
+				.make-sm-column(8, 10px);
+	
+				.soccer-player-pos-team {
+					.make-xs-column(12, 0);			
+					.opensans_bold(10pt, @greyMed);
+					span + span {
+						color: @white;
+					}
+				}
+				.soccer-player-name {
+					.make-xs-column(12, 0);
+					.exo_light(20pt, @orangeHeaderLight);
+					//margin-bottom: 5px;
+				}
+			}
+			.soccer-player-stats-info {
+				.make-xs-column(12, 0);
+				.make-sm-column(4, 0);
+				.soccer-player-fantasy-points, .soccer-player-matches, .soccer-player-salary {
+					.make-xs-column(4, 10px);
+					text-align: center;
+					@media (min-width: @screen-sm-min) {
+						text-align: right;
+					}
+					span {
+						display: block;
+						.opensans_bold(9pt, @white);
+						padding-top: 5px;
+						@media (max-width: @screen-xs-max) {
+							background-color: @greyDark;
+							color: @greyLight;
+							border-top-right-radius: 4px;
+							border-top-left-radius: 4px;
+						}
+					}
+					span + span {
+						.exo_light(18pt, @greyLight);
+						padding-top: 0;
+						@media (max-width: @screen-xs-max) {
+							color: @white;
+							border-radius: 0;
+							border-bottom-right-radius: 4px;
+							border-bottom-left-radius: 4px;
+						}
+					}
+				}
+			}
+		}
+		// Información de próximo partido
+		.next-match-wrapper {
+			.hidden-xs();
+			.make-xs-column(12);
+			#gradient.vertical(@blueGradientLight, @blueGradientDark, 49%, 51%);
+			height: 47px;
+			padding: 5px 10px;
+			.next-match {
+				.make-xs-column(10, 0);
+				.opensans_bold(9pt, @blueLight);
+				display: inline-block;
+				margin-top: 10px;
+				padding-right: 5px;
+				strong {
+					color: @white;
+				}
+			}
+			.button-add {
+				.btn-primary();
+				.make-xs-column(2, 0);
+			}
+		}
+	}
+	//Contenido
+	.soccer-player-stats-content{
+		.make-row(0);
+		//Tabas de navegación para XS
+		.soccer-player-stats-tabs{
+			.visible-xs();
+			.tabs-navigation(2);
+
+			background-color: @greyDark;
+			& li{		
+				background-color: @greyMed;
+				border-color: @greyDark;
+				color: @white;
+			}
+			.active {
+				background-color: @greyDark;
+			}
+		}
+		.tab-pane {
+			.make-row(0);
+			@media (min-width: @screen-sm-min) {
+				.make-row(-30px);
+				display: block;
+			}
+		}
+		// cartel de proximo partido que se ve en el contenido del tab de medias solo XS
+		.tab-pane .next-match { 
+			.visible-xs();
+			.opensans_bold(9pt, @greyDark);
+			padding: 20px 10px;
+			strong {
+				color: @blueMed;
+			}
+		}
+		//Contenido de la zona de datos por temporada
+		.season-header {
+			.hidden-xs();
+			.make-xs-column(12);
+			.opensans_normal(16pt, @greyDark);
+			padding: 10px;
+			> span {
+				font-size: 12pt;
+			}
+		}
+		.season-stats {
+			.make-border(2px, solid none solid none, @greyDark);
+			.make-xs-column(12, 0);
+			background-color: @greyUltraLight;
+			text-align: center;
+						
+			@media (min-width: @screen-sm-min) {
+				.make-sm-column(12, 0);
+				border: none;
+				background-color: @white;
+				text-align: center;
+				white-space: nowrap;
+				overflow-x: auto; 
+				height: 115px;
+			}
+									
+			.season-stats-row { 
+				.make-xs-column(6, 0);
+				//.make-sm-column(1.5, 0);
+				
+				@media (max-width: @screen-sm-max) {
+					.make-border(1px, dotted none none  none, @greyDark);
+					padding-left: 5px;
+					padding-right: 5px;
+					&:first-child {
+						border: none;
+					}
+					&:first-child + .season-stats-row {
+						border: none;
+					}
+					&:nth-child(odd) {
+						border-right: 1px dotted @greyDark;
+					}
+				}
+				@media (min-width: @screen-sm-min) {
+					.make-border(1px, none none none dotted, @greyDark);
+					display: inline-block;
+					float: none;
+					bottom: -35px;
+					width: 90px;
+					&:last-child {
+						border-right: 1px dotted @greyDark;
+					}
+					&:nth-child(odd) {
+						border-right: 0px dotted @greyDark;
+					}
+				}
+				.season-stats-header {
+					.opensans_normal(10pt, @greyDark);
+					.make-xs-column(2, 0);
+					.make-sm-column(12, 15px);
+					text-align: left;
+					@media (min-width: @screen-sm-min) {
+						.opensans_bold(9pt, @greyDark);
+					}
+				}
+				.season-stats-info {
+					.exo_bold(14pt,  @greyDark);
+					.make-xs-column(10, 0);
+					.make-sm-column(12, 15px);
+					text-align: right;
+					@media (min-width: @screen-sm-min) {
+						.exo_light(24pt,  @blueMed);
+					}
+				}
+				
+			}
+		}
+		//Contenido de la zona de datos por partido
+		.match-header{
+			.season-header();
+		}
+		.noMatchesPlayed {
+			.make-xs-column(12);
+			.opensans_bold(10pt, @greyDark);
+			height: 268px;
+			padding-top: 134px;
+			text-align: center;
+			@media (min-width: @screen-sm-min) {
+				height: 80px;
+				padding: 10px;
+				text-align: left;
+			}
+		}
+		.match-stats-table-wrapper {
+			padding: 15px 5px;
+		}		
+		#statsTable {
+			display: inline-block;
+			.stats-headings {
+				.make-xs-column(4.2, 0);
+				.make-sm-column(2.4, 0);
+				display: inline-block;
+			}
+			.stats-rows {
+				.make-xs-column(7.8, 0);
+				.make-sm-column(9.6, 0);
+				display: inline-block;
+				overflow-x: auto;
+			}
+		}
+
+		.stat-field-header{
+			.make-border(1px, none solid solid solid, @greyDark);
+			.opensans_bold(8pt, @greyDark);
+			.make-xs-column(12, 0);
+			display: block;
+			padding: 5px;
+			&:first-child {
+				border-top: 1px solid @greyDark;
+			}
+		}
+		.head-of-headings {
+			.stat-field-header();
+			color: transparent;
+			.make-border(1px, none solid solid none, @greyDark);
+			&:first-child {
+				border-top-color: transparent;
+			}
+		}
+		.year-season {			
+			padding: 0;
+			background-color: @white;
+			border: none;
+			white-space: nowrap;
+			.year {
+				.opensans_bold(12pt, @blueDark);
+				padding-left: 2px;
+				padding-top: 2px;
+				padding-bottom: 2px;
+				.make-border(1px, none solid solid none, @greyDark);
+
+			}
+			.match-stats-block{
+				display: inline-block;
+				//border: 1px solid green;
+				&:nth-child(odd) {
+					background-color: @greyUltraLight;
+				}
+			}
+		}
+		.match-block {
+			.make-border(1px, none solid solid none, @greyDark);
+			.opensans_bold(8pt, @greyDark);
+			padding: 5px;
+		}
+		.blue {
+			color: @blueDark;
+		}
+
+	}
+	// El footer son los mismo botones de arriba, pero con el fondo blanco.
+	.actions-footer-xs {
+	 	.soccer-player-stats-header.actions-header-xs();
+	 	background-color: @white;
+		padding: 10px;
+	 }
+}

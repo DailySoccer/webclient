@@ -6,13 +6,13 @@
       <div class="column-empty-slot">{{getSlotDescription($index)}}</div>
       <div class="column-action"><a class="iconButtonSelect"><span class="glyphicon glyphicon-chevron-right"></span></a></div>
     </div>
-    
+
     <div ng-if="slot != null">
-      <div class="column-fieldpos">{{slot.fieldPos.abrevName}}</div>    
+      <div class="column-fieldpos">{{slot.fieldPos.abrevName}}</div>
       <div class="column-primary-info">
         <span class="soccer-player-name">{{slot.fullName | limitToDot : 19}}</span>
         <span class="match-event-name" ng-bind-html="slot.matchEventName"></span>
-      </div>    
+      </div>
       <div class="column-salary">{{slot.salary}}€</div>
       <div class="column-action"><a class="iconButtonRemove"><span class="glyphicon glyphicon-remove"></span></a></div>
     </div>

@@ -4,7 +4,6 @@ import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/services/screen_detector_service.dart';
-import 'package:webclient/utils/html_utils.dart';
 
 @Component(
   selector: 'modal',
@@ -42,12 +41,24 @@ class ModalComp implements DetachAware, ShadowRootAware {
     }
   }
 
-  static void close() {
+  static void open(Router route, String path, Map urlParams, [Function callback = null]) {
+    _returnCallback = callback;
+    route.go(path, urlParams);
+  }
+
+  // En params se pasan los parametros con los que llamaremos en el callback
+  static void close([params = null]) {
     JsUtils.runJavascript('#modalRoot', 'modal', 'hide');
+
+    if (_returnCallback != null) {
+      _returnCallback(params);
+      _returnCallback = null;
+    }
   }
 
   ScreenDetectorService _scrDet;
   Router _router;
   Element _element;
   View _view;
+  static Function _returnCallback;
 }

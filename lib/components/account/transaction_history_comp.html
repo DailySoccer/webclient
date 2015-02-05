@@ -1,13 +1,21 @@
-<div id="transactionHistory">
-  <div class="block-dark-header">
-    <div class="default-header-text">HISTORIAL DE TRANSACCIONES</div>
+<div id="transactionHistoryRoot">
+  <div class="default-section-header">HISTORIAL DE TRANSACCIONES</div>
+  <div class="transaction-headers">
+    <span class="header-date">FECHA</span>
+    <span class="header-id">ID</span>
+    <span class="header-concept">CONCEPTO</span>
+    <span class="header-amount">IMPORTE</span>
+    <span class="header-balance">SALDO</span>
   </div>
-  <div ng-repeat="transaction in transactions">
-    <div class="contest-small-light-text">
-      <span class="type">{{transaction.type}}</span>
-      <span class="value">{{transaction.value}}</span>
-      <span class="createdAt">{{transaction.formattedDate}}</span>
-      <span class="balance">{{transaction.balance}}</span>
-    </div>
+
+  <div class="transaction-row" ng-repeat="transaction in currentPageList">
+    <div class="field-date">{{transaction.formattedDate}}</div>
+    <div class="field-id">{{transaction.transactionID}}</div>
+    <div class="field-concept">{{transaction.transactionDescription}}</div>
+    <div class="field-amount"><div class="money-label">IMPORTE: </div> {{transaction.value}}€ </div>
+    <div class="field-balance"><div class="money-label">SALDO: </div> {{transaction.balance}}€ </div>
   </div>
+
+  <paginator on-page-change="onPageChange(currentPage, itemsPerPage)" items-per-page="20" list-length="transactions.length"></paginator>
+
 </div>

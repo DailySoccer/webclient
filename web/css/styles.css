@@ -5783,8 +5783,6 @@ button.close {
 #teamsPanelRoot .teams-comp-bar:after,
 #teamsPanelRoot .teams-comp-bar .teams-container:before,
 #teamsPanelRoot .teams-comp-bar .teams-container:after,
-#contestInfoModal .modal-info-head .contest-info-header-row:before,
-#contestInfoModal .modal-info-head .contest-info-header-row:after,
 #contestInfoModal .modal-info-content .tabs-navigation:before,
 #contestInfoModal .modal-info-content .tabs-navigation:after,
 #contestInfoModal .modal-info-content .info-options:before,
@@ -5819,6 +5817,10 @@ scoring-rules:after,
 #addFundsContent .scores-wrapper:after,
 #withdrawFundsContent .block-dark-header:before,
 #withdrawFundsContent .block-dark-header:after,
+#transactionHistoryRoot .transaction-headers:before,
+#transactionHistoryRoot .transaction-headers:after,
+#transactionHistoryRoot .transaction-row:before,
+#transactionHistoryRoot .transaction-row:after,
 .fantasy-team-list .soccer-player-row:before,
 .fantasy-team-list .soccer-player-row:after,
 .statistic:before,
@@ -5859,16 +5861,14 @@ scoring-rules:after,
 .no-contests-wrapper:after,
 #promosComponent:before,
 #promosComponent:after,
-#modalSoccerPlayerInfo .soccer-player-info-header:before,
-#modalSoccerPlayerInfo .soccer-player-info-header:after,
-#modalSoccerPlayerInfo .soccer-player-info-content:before,
-#modalSoccerPlayerInfo .soccer-player-info-content:after,
-#modalSoccerPlayerInfo .soccer-player-info-content .tab:before,
-#modalSoccerPlayerInfo .soccer-player-info-content .tab:after,
-#modalSoccerPlayerInfo .soccer-player-info-content .season-header:before,
-#modalSoccerPlayerInfo .soccer-player-info-content .season-header:after,
-#modalSoccerPlayerInfo .soccer-player-info-content .match-header:before,
-#modalSoccerPlayerInfo .soccer-player-info-content .match-header:after,
+#modalSoccerPlayerStats .modal-content:before,
+#modalSoccerPlayerStats .modal-content:after,
+#modalSoccerPlayerStats .soccer-player-stats-header:before,
+#modalSoccerPlayerStats .soccer-player-stats-header:after,
+#modalSoccerPlayerStats .soccer-player-stats-content:before,
+#modalSoccerPlayerStats .soccer-player-stats-content:after,
+#modalSoccerPlayerStats .soccer-player-stats-content .tab-pane:before,
+#modalSoccerPlayerStats .soccer-player-stats-content .tab-pane:after,
 #enterContest:before,
 #enterContest:after,
 .enter-contest-actions-wrapper:before,
@@ -5905,6 +5905,8 @@ scoring-rules:after,
 .view-contest-entry-actions-wrapper:after,
 #helpInfo .scores-wrapper:before,
 #helpInfo .scores-wrapper:after,
+.default-section-header:before,
+.default-section-header:after,
 .default-header-text:before,
 .default-header-text:after,
 .lineup-selector .lineup-selector-slot:before,
@@ -5931,7 +5933,6 @@ scoring-rules:after,
 #contestHeaderWrapper .date-time-data:after,
 #teamsPanelRoot .teams-comp-bar:after,
 #teamsPanelRoot .teams-comp-bar .teams-container:after,
-#contestInfoModal .modal-info-head .contest-info-header-row:after,
 #contestInfoModal .modal-info-content .tabs-navigation:after,
 #contestInfoModal .modal-info-content .info-options:after,
 #contestInfoTabbed:after,
@@ -5949,6 +5950,8 @@ scoring-rules:after,
 #addFundsContent .pay-faq-block .pay-faq-title:after,
 #addFundsContent .scores-wrapper:after,
 #withdrawFundsContent .block-dark-header:after,
+#transactionHistoryRoot .transaction-headers:after,
+#transactionHistoryRoot .transaction-row:after,
 .fantasy-team-list .soccer-player-row:after,
 .statistic:after,
 #rootFooter:after,
@@ -5969,11 +5972,10 @@ scoring-rules:after,
 .resume-bar:after,
 .no-contests-wrapper:after,
 #promosComponent:after,
-#modalSoccerPlayerInfo .soccer-player-info-header:after,
-#modalSoccerPlayerInfo .soccer-player-info-content:after,
-#modalSoccerPlayerInfo .soccer-player-info-content .tab:after,
-#modalSoccerPlayerInfo .soccer-player-info-content .season-header:after,
-#modalSoccerPlayerInfo .soccer-player-info-content .match-header:after,
+#modalSoccerPlayerStats .modal-content:after,
+#modalSoccerPlayerStats .soccer-player-stats-header:after,
+#modalSoccerPlayerStats .soccer-player-stats-content:after,
+#modalSoccerPlayerStats .soccer-player-stats-content .tab-pane:after,
 #enterContest:after,
 .enter-contest-actions-wrapper:after,
 .enter-contest-actions-wrapper .bottom-content:after,
@@ -5992,6 +5994,7 @@ scoring-rules:after,
 .info-complete-bar:after,
 .view-contest-entry-actions-wrapper:after,
 #helpInfo .scores-wrapper:after,
+.default-section-header:after,
 .default-header-text:after,
 .lineup-selector .lineup-selector-slot:after {
   clear: both;
@@ -6704,167 +6707,6 @@ contest-header {
 }
 #contestInfoModal {
   background-color: #dcdcdc;
-}
-#contestInfoModal .modal-info-head {
-  padding: 15px;
-  border-bottom: 1px solid #e5e5e5;
-  min-height: 16.42857143px;
-  border-top-right-radius: 5px;
-  border-top-left-radius: 5px;
-  position: relative;
-  border-bottom: 1px solid #f8f8f8;
-}
-#contestInfoModal .modal-info-head .contest-info-header-row {
-  margin-left: -15px;
-  margin-right: -15px;
-}
-#contestInfoModal .modal-info-head .contest-info-header-row .column-name {
-  position: relative;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-@media (min-width: 768px) {
-  #contestInfoModal .modal-info-head .contest-info-header-row .column-name {
-    float: left;
-    width: 50%;
-  }
-}
-@media (max-width: 767px) {
-  #contestInfoModal .modal-info-head .contest-info-header-row .column-name .inner-icon {
-    display: none !important;
-  }
-}
-#contestInfoModal .modal-info-head .contest-info-header-row .column-entry-fee {
-  position: relative;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-@media (min-width: 768px) {
-  #contestInfoModal .modal-info-head .contest-info-header-row .column-entry-fee {
-    float: left;
-    width: 25%;
-  }
-}
-@media (max-width: 767px) {
-  #contestInfoModal .modal-info-head .contest-info-header-row .column-entry-fee .title-text {
-    display: none !important;
-  }
-}
-@media (max-width: 767px) {
-  #contestInfoModal .modal-info-head .contest-info-header-row .column-entry-fee {
-    display: inline-block;
-    padding: 0px;
-    margin: 0px 20px 0px 0px;
-  }
-  #contestInfoModal .modal-info-head .contest-info-header-row .column-entry-fee .inner-icon {
-    display: inline;
-  }
-  #contestInfoModal .modal-info-head .contest-info-header-row .column-entry-fee .inner-content {
-    display: inline-block;
-  }
-}
-#contestInfoModal .modal-info-head .contest-info-header-row .column-prize {
-  position: relative;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-@media (min-width: 768px) {
-  #contestInfoModal .modal-info-head .contest-info-header-row .column-prize {
-    float: left;
-    width: 25%;
-  }
-}
-@media (max-width: 767px) {
-  #contestInfoModal .modal-info-head .contest-info-header-row .column-prize .title-text {
-    display: none !important;
-  }
-}
-@media (max-width: 767px) {
-  #contestInfoModal .modal-info-head .contest-info-header-row .column-prize {
-    display: inline-block;
-    padding: 0px;
-    margin: 0px;
-  }
-  #contestInfoModal .modal-info-head .contest-info-header-row .column-prize .inner-icon {
-    display: inline;
-  }
-  #contestInfoModal .modal-info-head .contest-info-header-row .column-prize .inner-content {
-    display: inline-block;
-  }
-}
-#contestInfoModal .modal-info-head .contest-info-header-row .title-text {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 8pt;
-  color: #777777;
-  display: block;
-}
-@media (min-width: 992px) {
-  #contestInfoModal .modal-info-head .contest-info-header-row .content-text {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 700;
-    font-size: 16pt;
-    color: #214a5f;
-  }
-}
-@media (max-width: 991px) {
-  #contestInfoModal .modal-info-head .contest-info-header-row .content-text {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 700;
-    font-size: 14pt;
-    color: #214a5f;
-  }
-}
-@media (min-width: 768px) {
-  #contestInfoModal .modal-info-head .contest-info-header-row {
-    margin-left: 0px;
-    margin-right: 0px;
-  }
-  #contestInfoModal .modal-info-head .contest-info-header-row .inner-icon {
-    float: left;
-    padding: 0px 5px 0px 0px;
-    margin-top: 17px;
-  }
-}
-@media (max-width: 767px) {
-  #contestInfoModal .modal-info-head .contest-info-header-row {
-    padding: 10px 0px 10px 0px;
-  }
-  #contestInfoModal .modal-info-head .contest-info-header-row .inner-icon {
-    float: left;
-    padding: 0px 5px 0px 0px;
-  }
-}
-#contestInfoModal .modal-info-head button.close {
-  float: right;
-  font-size: 21px;
-  font-weight: bold;
-  line-height: 1;
-  color: #000000;
-  text-shadow: 0 1px 0 #ffffff;
-  opacity: 0.2;
-  filter: alpha(opacity=20);
-  position: absolute;
-  top: 10px;
-  right: 15px;
-}
-#contestInfoModal .modal-info-head button.close:hover,
-#contestInfoModal .modal-info-head button.close:focus {
-  color: #000000;
-  text-decoration: none;
-  cursor: pointer;
-  opacity: 0.5;
-  filter: alpha(opacity=50);
-}
-button#contestInfoModal .modal-info-head button.close {
-  padding: 0;
-  cursor: pointer;
-  background: transparent;
-  border: 0;
-  -webkit-appearance: none;
 }
 #contestInfoModal .modal-info-content {
   position: relative;
@@ -9575,6 +9417,420 @@ fieldset[disabled] #withdrawFundsContent .withdraw-founds-box button.withdraw-fu
   font-weight: 700;
   font-size: 10pt;
   color: #59add5;
+}
+#transactionHistoryRoot .transaction-date-col {
+  float: left;
+  width: 33.33333333%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  #transactionHistoryRoot .transaction-date-col {
+    float: left;
+    width: 14.16666667%;
+  }
+}
+#transactionHistoryRoot .transaction-id-col {
+  float: left;
+  width: 66.66666667%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  #transactionHistoryRoot .transaction-id-col {
+    float: left;
+    width: 20.83333333%;
+  }
+}
+#transactionHistoryRoot .transaction-concept-col {
+  float: left;
+  width: 100%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  #transactionHistoryRoot .transaction-concept-col {
+    float: left;
+    width: 40%;
+  }
+}
+#transactionHistoryRoot .transaction-amount-col,
+#transactionHistoryRoot .transaction-balance-col {
+  float: left;
+  width: 33.33333333%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: right;
+}
+@media (min-width: 768px) {
+  #transactionHistoryRoot .transaction-amount-col,
+  #transactionHistoryRoot .transaction-balance-col {
+    float: left;
+    width: 12.5%;
+  }
+}
+@media (max-width: 767px) {
+  #transactionHistoryRoot .transaction-amount-col,
+  #transactionHistoryRoot .transaction-balance-col {
+    text-align: left;
+    max-width: 150px;
+  }
+}
+#transactionHistoryRoot .transaction-headers {
+  margin-left: 0;
+  margin-right: 0;
+  background-color: #ffffff;
+}
+@media (max-width: 767px) {
+  #transactionHistoryRoot .transaction-headers {
+    display: none !important;
+  }
+}
+#transactionHistoryRoot .transaction-headers .header-item {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #214a5f;
+  line-height: 2;
+  padding: 10px;
+}
+#transactionHistoryRoot .transaction-headers .header-date {
+  float: left;
+  width: 33.33333333%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #214a5f;
+  line-height: 2;
+  padding: 10px;
+}
+@media (min-width: 768px) {
+  #transactionHistoryRoot .transaction-headers .header-date {
+    float: left;
+    width: 14.16666667%;
+  }
+}
+#transactionHistoryRoot .transaction-headers .header-id {
+  float: left;
+  width: 66.66666667%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #214a5f;
+  line-height: 2;
+  padding: 10px;
+}
+@media (min-width: 768px) {
+  #transactionHistoryRoot .transaction-headers .header-id {
+    float: left;
+    width: 20.83333333%;
+  }
+}
+#transactionHistoryRoot .transaction-headers .header-concept {
+  float: left;
+  width: 100%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #214a5f;
+  line-height: 2;
+  padding: 10px;
+}
+@media (min-width: 768px) {
+  #transactionHistoryRoot .transaction-headers .header-concept {
+    float: left;
+    width: 40%;
+  }
+}
+#transactionHistoryRoot .transaction-headers .header-amount {
+  float: left;
+  width: 33.33333333%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: right;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #214a5f;
+  line-height: 2;
+  padding: 10px;
+}
+@media (min-width: 768px) {
+  #transactionHistoryRoot .transaction-headers .header-amount {
+    float: left;
+    width: 12.5%;
+  }
+}
+@media (max-width: 767px) {
+  #transactionHistoryRoot .transaction-headers .header-amount {
+    text-align: left;
+    max-width: 150px;
+  }
+}
+#transactionHistoryRoot .transaction-headers .header-balance {
+  float: left;
+  width: 33.33333333%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: right;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #214a5f;
+  line-height: 2;
+  padding: 10px;
+}
+@media (min-width: 768px) {
+  #transactionHistoryRoot .transaction-headers .header-balance {
+    float: left;
+    width: 12.5%;
+  }
+}
+@media (max-width: 767px) {
+  #transactionHistoryRoot .transaction-headers .header-balance {
+    text-align: left;
+    max-width: 150px;
+  }
+}
+#transactionHistoryRoot .transaction-row {
+  margin-left: 0;
+  margin-right: 0;
+  border-width: 1px;
+  border-style: solid none none none;
+  border-color: #ffffff;
+  border-radius: 0;
+  background-color: #f8f8f8;
+}
+@media (max-width: 767px) {
+  #transactionHistoryRoot .transaction-row {
+    border-width: 1px;
+    border-style: none none solid none;
+    border-color: #777777;
+    border-radius: 0;
+    background-color: #ffffff;
+    padding: 10px 0;
+  }
+}
+#transactionHistoryRoot .transaction-row .transacction-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #777777;
+  line-height: 2;
+  padding: 10px;
+}
+@media (max-width: 767px) {
+  #transactionHistoryRoot .transaction-row .transacction-text {
+    padding: 5px 10px;
+  }
+}
+#transactionHistoryRoot .transaction-row .transacction-text .red-numbers {
+  color: #ff0000;
+}
+#transactionHistoryRoot .transaction-row .money-label {
+  display: none;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #214a5f;
+}
+@media (max-width: 767px) {
+  #transactionHistoryRoot .transaction-row .money-label {
+    display: inline-block;
+  }
+}
+#transactionHistoryRoot .transaction-row .field-date {
+  float: left;
+  width: 33.33333333%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #777777;
+  line-height: 2;
+  padding: 10px;
+}
+@media (min-width: 768px) {
+  #transactionHistoryRoot .transaction-row .field-date {
+    float: left;
+    width: 14.16666667%;
+  }
+}
+@media (max-width: 767px) {
+  #transactionHistoryRoot .transaction-row .field-date {
+    padding: 5px 10px;
+  }
+}
+#transactionHistoryRoot .transaction-row .field-date .red-numbers {
+  color: #ff0000;
+}
+@media (max-width: 767px) {
+  #transactionHistoryRoot .transaction-row .field-date {
+    color: #214a5f;
+  }
+}
+#transactionHistoryRoot .transaction-row .field-id {
+  float: left;
+  width: 66.66666667%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #777777;
+  line-height: 2;
+  padding: 10px;
+}
+@media (min-width: 768px) {
+  #transactionHistoryRoot .transaction-row .field-id {
+    float: left;
+    width: 20.83333333%;
+  }
+}
+@media (max-width: 767px) {
+  #transactionHistoryRoot .transaction-row .field-id {
+    padding: 5px 10px;
+  }
+}
+#transactionHistoryRoot .transaction-row .field-id .red-numbers {
+  color: #ff0000;
+}
+@media (max-width: 767px) {
+  #transactionHistoryRoot .transaction-row .field-id {
+    text-align: right;
+  }
+}
+#transactionHistoryRoot .transaction-row .field-concept {
+  float: left;
+  width: 100%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #777777;
+  line-height: 2;
+  padding: 10px;
+}
+@media (min-width: 768px) {
+  #transactionHistoryRoot .transaction-row .field-concept {
+    float: left;
+    width: 40%;
+  }
+}
+@media (max-width: 767px) {
+  #transactionHistoryRoot .transaction-row .field-concept {
+    padding: 5px 10px;
+  }
+}
+#transactionHistoryRoot .transaction-row .field-concept .red-numbers {
+  color: #ff0000;
+}
+@media (max-width: 767px) {
+  #transactionHistoryRoot .transaction-row .field-concept {
+    padding: 0px 10px;
+  }
+}
+#transactionHistoryRoot .transaction-row .field-amount {
+  float: left;
+  width: 33.33333333%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: right;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #777777;
+  line-height: 2;
+  padding: 10px;
+}
+@media (min-width: 768px) {
+  #transactionHistoryRoot .transaction-row .field-amount {
+    float: left;
+    width: 12.5%;
+  }
+}
+@media (max-width: 767px) {
+  #transactionHistoryRoot .transaction-row .field-amount {
+    text-align: left;
+    max-width: 150px;
+  }
+}
+@media (max-width: 767px) {
+  #transactionHistoryRoot .transaction-row .field-amount {
+    padding: 5px 10px;
+  }
+}
+#transactionHistoryRoot .transaction-row .field-amount .red-numbers {
+  color: #ff0000;
+}
+#transactionHistoryRoot .transaction-row .field-balance {
+  float: left;
+  width: 33.33333333%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: right;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #777777;
+  line-height: 2;
+  padding: 10px;
+}
+@media (min-width: 768px) {
+  #transactionHistoryRoot .transaction-row .field-balance {
+    float: left;
+    width: 12.5%;
+  }
+}
+@media (max-width: 767px) {
+  #transactionHistoryRoot .transaction-row .field-balance {
+    text-align: left;
+    max-width: 150px;
+  }
+}
+@media (max-width: 767px) {
+  #transactionHistoryRoot .transaction-row .field-balance {
+    padding: 5px 10px;
+  }
+}
+#transactionHistoryRoot .transaction-row .field-balance .red-numbers {
+  color: #ff0000;
 }
 @media (max-width: 767px) {
   .header-view-contest-entry-mode {
@@ -15046,65 +15302,100 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
   background-color: #fa9c19;
   line-height: 31px;
 }
+#modalSoccerPlayerStats {
+  background-color: #434343;
+  color: #ffffff;
+  padding: 5px;
+}
+#modalSoccerPlayerStats .modal-content {
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0px;
+  padding-right: 0px;
+}
 @media (min-width: 768px) {
-  #modalSoccerPlayerInfo {
+  #modalSoccerPlayerStats {
     background-color: #dcdcdc;
   }
-  #modalSoccerPlayerInfo .modal-dialog {
-    width: 96%;
-    max-width: 1200px;
-  }
-  #modalSoccerPlayerInfo .actions-header {
-    padding: 0 10px;
+  #modalSoccerPlayerStats .modal-dialog {
+    width: 90%;
+    max-width: 900px;
   }
 }
 @media (max-width: 767px) {
-  #modalSoccerPlayerInfo #modalRoot {
+  #modalSoccerPlayerStats #modalRoot {
+    border-width: 1px;
+    border-style: solid none none none;
+    border-color: #fba61a;
+    border-radius: 0;
     top: 68px;
     background-color: #ffffff;
   }
-  #modalSoccerPlayerInfo #modalRoot .modal-dialog {
+  #modalSoccerPlayerStats #modalRoot .modal-dialog {
     margin: 0;
   }
-  #modalSoccerPlayerInfo #modalRoot .modal-dialog .modal-content {
+  #modalSoccerPlayerStats #modalRoot .modal-dialog .modal-content {
     border: none;
     border-radius: 0;
     box-shadow: none;
   }
 }
-#modalSoccerPlayerInfo .action-buttons {
+#modalSoccerPlayerStats .soccer-player-stats-header {
+  margin-left: 0;
+  margin-right: 0;
+}
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-sm {
+  padding: 0 10px;
+}
+@media (max-width: 767px) {
+  #modalSoccerPlayerStats .soccer-player-stats-header .actions-header-sm {
+    display: none !important;
+  }
+}
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-sm .text-header {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14pt;
+  color: #777777;
+  line-height: 66px;
+  margin-left: 5px;
+}
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-sm .close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+@media (max-width: 767px) {
+  #modalSoccerPlayerStats .soccer-player-stats-header .actions-header-sm .close {
+    display: none !important;
+  }
+}
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs {
   display: none !important;
-  position: relative;
-  float: left;
-  width: 100%;
-  min-height: 1px;
-  padding-left: 2.5px;
-  padding-right: 2.5px;
   height: 47px;
-  padding-top: 5px;
-  padding-bottom: 10px;
+  padding: 10px;
   background-color: #434343;
 }
 @media (max-width: 767px) {
-  #modalSoccerPlayerInfo .action-buttons {
+  #modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs {
     display: block !important;
   }
-  table#modalSoccerPlayerInfo .action-buttons {
+  table#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs {
     display: table;
   }
-  tr#modalSoccerPlayerInfo .action-buttons {
+  tr#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs {
     display: table-row !important;
   }
-  th#modalSoccerPlayerInfo .action-buttons,
-  td#modalSoccerPlayerInfo .action-buttons {
+  th#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs,
+  td#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs {
     display: table-cell !important;
   }
 }
-#modalSoccerPlayerInfo .action-buttons.bottom {
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs.bottom {
   background-color: #ffffff;
   padding: 10px;
 }
-#modalSoccerPlayerInfo .action-buttons .button-cancel {
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-cancel {
   display: inline-block;
   margin-bottom: 0;
   font-weight: normal;
@@ -15142,28 +15433,28 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
   padding-left: 15px;
   padding-right: 15px;
 }
-#modalSoccerPlayerInfo .action-buttons .button-cancel:focus,
-#modalSoccerPlayerInfo .action-buttons .button-cancel:active:focus,
-#modalSoccerPlayerInfo .action-buttons .button-cancel.active:focus {
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-cancel:focus,
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-cancel:active:focus,
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-cancel.active:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-#modalSoccerPlayerInfo .action-buttons .button-cancel:hover,
-#modalSoccerPlayerInfo .action-buttons .button-cancel:focus {
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-cancel:hover,
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-cancel:focus {
   color: #333333;
   text-decoration: none;
 }
-#modalSoccerPlayerInfo .action-buttons .button-cancel:active,
-#modalSoccerPlayerInfo .action-buttons .button-cancel.active {
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-cancel:active,
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-cancel.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-#modalSoccerPlayerInfo .action-buttons .button-cancel.disabled,
-#modalSoccerPlayerInfo .action-buttons .button-cancel[disabled],
-fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .button-cancel {
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-cancel.disabled,
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-cancel[disabled],
+fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-cancel {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -15171,55 +15462,55 @@ fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .button-cancel {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-#modalSoccerPlayerInfo .action-buttons .button-cancel:active:focus,
-#modalSoccerPlayerInfo .action-buttons .button-cancel.active:focus {
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-cancel:active:focus,
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-cancel.active:focus {
   color: #ffffff;
   background-color: #c9c9c9;
 }
-#modalSoccerPlayerInfo .action-buttons .button-cancel:active:hover,
-#modalSoccerPlayerInfo .action-buttons .button-cancel.active:hover {
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-cancel:active:hover,
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-cancel.active:hover {
   color: #ffffff;
   background-color: #c9c9c9;
 }
-#modalSoccerPlayerInfo .action-buttons .button-cancel:focus {
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-cancel:focus {
   background-color: #afafaf;
   color: #ffffff;
 }
-#modalSoccerPlayerInfo .action-buttons .button-cancel:hover {
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-cancel:hover {
   background-color: #bcbcbc;
   outline: none !important;
   color: #ffffff;
 }
-#modalSoccerPlayerInfo .action-buttons .button-cancel:hover:focus {
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-cancel:hover:focus {
   background-color: #afafaf;
   color: #ffffff;
 }
-#modalSoccerPlayerInfo .action-buttons .button-cancel:active,
-#modalSoccerPlayerInfo .action-buttons .button-cancel.active {
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-cancel:active,
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-cancel.active {
   background-color: #afafaf;
   margin-top: 4px;
   box-shadow: none;
 }
-#modalSoccerPlayerInfo .action-buttons .button-cancel:hover {
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-cancel:hover {
   background-color: #bcbcbc;
   outline: none !important;
   color: #ffffff;
 }
-#modalSoccerPlayerInfo .action-buttons .button-cancel.disabled,
-#modalSoccerPlayerInfo .action-buttons .button-cancel[disabled],
-fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .button-cancel {
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-cancel.disabled,
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-cancel[disabled],
+fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-cancel {
   background-color: #c9c9c9;
   box-shadow: none;
   margin-top: 4px;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
-#modalSoccerPlayerInfo .action-buttons .button-cancel.close {
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-cancel.close {
   background-color: #afafaf;
   outline: none !important;
   color: #ffffff;
 }
-#modalSoccerPlayerInfo .action-buttons .button-add {
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add {
   background-color: #428bca;
   border-color: #357ebd;
   display: inline-block;
@@ -15260,64 +15551,64 @@ fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .button-cancel {
   padding-right: 15px;
   float: right !important;
 }
-#modalSoccerPlayerInfo .action-buttons .button-add:hover,
-#modalSoccerPlayerInfo .action-buttons .button-add:focus,
-#modalSoccerPlayerInfo .action-buttons .button-add:active,
-#modalSoccerPlayerInfo .action-buttons .button-add.active,
-.open .dropdown-toggle#modalSoccerPlayerInfo .action-buttons .button-add {
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add:hover,
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add:focus,
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add:active,
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add.active,
+.open .dropdown-toggle#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add {
   color: #ffffff;
   background-color: #3276b1;
   border-color: #285e8e;
 }
-#modalSoccerPlayerInfo .action-buttons .button-add:active,
-#modalSoccerPlayerInfo .action-buttons .button-add.active,
-.open .dropdown-toggle#modalSoccerPlayerInfo .action-buttons .button-add {
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add:active,
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add.active,
+.open .dropdown-toggle#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add {
   background-image: none;
 }
-#modalSoccerPlayerInfo .action-buttons .button-add.disabled,
-#modalSoccerPlayerInfo .action-buttons .button-add[disabled],
-fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .button-add,
-#modalSoccerPlayerInfo .action-buttons .button-add.disabled:hover,
-#modalSoccerPlayerInfo .action-buttons .button-add[disabled]:hover,
-fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .button-add:hover,
-#modalSoccerPlayerInfo .action-buttons .button-add.disabled:focus,
-#modalSoccerPlayerInfo .action-buttons .button-add[disabled]:focus,
-fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .button-add:focus,
-#modalSoccerPlayerInfo .action-buttons .button-add.disabled:active,
-#modalSoccerPlayerInfo .action-buttons .button-add[disabled]:active,
-fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .button-add:active,
-#modalSoccerPlayerInfo .action-buttons .button-add.disabled.active,
-#modalSoccerPlayerInfo .action-buttons .button-add[disabled].active,
-fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .button-add.active {
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add.disabled,
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add[disabled],
+fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add,
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add.disabled:hover,
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add[disabled]:hover,
+fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add:hover,
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add.disabled:focus,
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add[disabled]:focus,
+fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add:focus,
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add.disabled:active,
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add[disabled]:active,
+fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add:active,
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add.disabled.active,
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add[disabled].active,
+fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add.active {
   background-color: #428bca;
   border-color: #357ebd;
 }
-#modalSoccerPlayerInfo .action-buttons .button-add .badge {
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add .badge {
   color: #428bca;
   background-color: #ffffff;
 }
-#modalSoccerPlayerInfo .action-buttons .button-add:focus,
-#modalSoccerPlayerInfo .action-buttons .button-add:active:focus,
-#modalSoccerPlayerInfo .action-buttons .button-add.active:focus {
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add:focus,
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add:active:focus,
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add.active:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-#modalSoccerPlayerInfo .action-buttons .button-add:hover,
-#modalSoccerPlayerInfo .action-buttons .button-add:focus {
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add:hover,
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add:focus {
   color: #333333;
   text-decoration: none;
 }
-#modalSoccerPlayerInfo .action-buttons .button-add:active,
-#modalSoccerPlayerInfo .action-buttons .button-add.active {
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add:active,
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-#modalSoccerPlayerInfo .action-buttons .button-add.disabled,
-#modalSoccerPlayerInfo .action-buttons .button-add[disabled],
-fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .button-add {
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add.disabled,
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add[disabled],
+fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -15325,210 +15616,128 @@ fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .button-add {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-#modalSoccerPlayerInfo .action-buttons .button-add:active:focus,
-#modalSoccerPlayerInfo .action-buttons .button-add.active:focus {
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add:active:focus,
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add.active:focus {
   color: #ffffff;
   background-color: #b5d657;
 }
-#modalSoccerPlayerInfo .action-buttons .button-add:active:hover,
-#modalSoccerPlayerInfo .action-buttons .button-add.active:hover {
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add:active:hover,
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add.active:hover {
   color: #ffffff;
   background-color: #b5d657;
 }
-#modalSoccerPlayerInfo .action-buttons .button-add:focus {
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add:focus {
   background-color: #a1c931;
   color: #ffffff;
 }
-#modalSoccerPlayerInfo .action-buttons .button-add:hover {
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add:hover {
   background-color: #acd142;
   outline: none !important;
   color: #ffffff;
 }
-#modalSoccerPlayerInfo .action-buttons .button-add:hover:focus {
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add:hover:focus {
   background-color: #a1c931;
   color: #ffffff;
 }
-#modalSoccerPlayerInfo .action-buttons .button-add:active,
-#modalSoccerPlayerInfo .action-buttons .button-add.active {
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add:active,
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add.active {
   background-color: #a1c931;
   margin-top: 4px;
   box-shadow: none;
 }
-#modalSoccerPlayerInfo .action-buttons .button-add:hover {
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add:hover {
   background-color: #acd142;
   outline: none !important;
   color: #ffffff;
 }
-#modalSoccerPlayerInfo .action-buttons .button-add.disabled,
-#modalSoccerPlayerInfo .action-buttons .button-add[disabled],
-fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .button-add {
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add.disabled,
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add[disabled],
+fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add {
   background-color: #b5d657;
   box-shadow: none;
   margin-top: 4px;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
-#modalSoccerPlayerInfo .action-buttons .button-add.close {
+#modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add.close {
   background-color: #a1c931;
   outline: none !important;
   color: #ffffff;
 }
-#modalSoccerPlayerInfo .soccer-player-info-header {
-  margin-right: auto;
-  margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-left: 0px;
-  padding-right: 0px;
-}
-@media (max-width: 767px) {
-  #modalSoccerPlayerInfo .soccer-player-info-header {
-    border-width: 1px;
-    border-style: solid none none none;
-    border-color: #fba61a;
-    border-radius: 0;
-    background-color: #434343;
-    color: #ffffff;
-    padding: 5px;
-  }
-}
-#modalSoccerPlayerInfo .soccer-player-info-header > .navbar-header,
-#modalSoccerPlayerInfo .soccer-player-info-header > .navbar-collapse {
-  margin-right: -15px;
-  margin-left: -15px;
-}
-@media (min-width: 768px) {
-  #modalSoccerPlayerInfo .soccer-player-info-header > .navbar-header,
-  #modalSoccerPlayerInfo .soccer-player-info-header > .navbar-collapse {
-    margin-right: 0;
-    margin-left: 0;
-  }
-}
-#modalSoccerPlayerInfo .soccer-player-info-header .text-header {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 14pt;
-  color: #777777;
-  line-height: 66px;
-  margin-left: 5px;
-}
-@media (max-width: 767px) {
-  #modalSoccerPlayerInfo .soccer-player-info-header .text-header {
-    display: none !important;
-  }
-}
-#modalSoccerPlayerInfo .soccer-player-info-header .close {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-}
-@media (max-width: 767px) {
-  #modalSoccerPlayerInfo .soccer-player-info-header .close {
-    display: none !important;
-  }
-}
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header {
+#modalSoccerPlayerStats .soccer-player-stats-header .description-header {
   position: relative;
   float: left;
   width: 100%;
   min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-left: 0px;
-  padding-right: 0px;
-  padding-top: 10px;
+  padding-left: 0;
+  padding-right: 0;
+  background-color: #434343;
+  padding: 10px;
 }
-@media (min-width: 768px) {
-  #modalSoccerPlayerInfo .soccer-player-info-header .description-header {
-    background-color: #434343;
+@media (max-width: 991px) {
+  #modalSoccerPlayerStats .soccer-player-stats-header .description-header {
+    padding: 10px 5px;
   }
 }
-@media (max-width: 767px) {
-  #modalSoccerPlayerInfo .soccer-player-info-header .description-header {
-    padding-bottom: 10px;
-  }
-}
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .soccer-player-description {
+#modalSoccerPlayerStats .soccer-player-stats-header .description-header .soccer-player-description {
   float: left;
   width: 100%;
+  position: relative;
+  min-height: 1px;
   padding-left: 5px;
   padding-right: 5px;
-  position: relative;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding: 0 10px;
 }
 @media (min-width: 768px) {
-  #modalSoccerPlayerInfo .soccer-player-info-header .description-header .soccer-player-description {
-    float: left;
-    width: 58.33333333%;
-  }
-}
-@media (min-width: 992px) {
-  #modalSoccerPlayerInfo .soccer-player-info-header .description-header .soccer-player-description {
+  #modalSoccerPlayerStats .soccer-player-stats-header .description-header .soccer-player-description {
     float: left;
     width: 66.66666667%;
   }
 }
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .soccer-player-description .soccer-player-pos-team {
+#modalSoccerPlayerStats .soccer-player-stats-header .description-header .soccer-player-description .soccer-player-pos-team {
   position: relative;
   float: left;
   width: 100%;
   min-height: 1px;
-  padding-left: 0px;
-  padding-right: 0px;
+  padding-left: 0;
+  padding-right: 0;
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 10pt;
   color: #afafaf;
 }
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .soccer-player-description .soccer-player-pos-team span + span {
+#modalSoccerPlayerStats .soccer-player-stats-header .description-header .soccer-player-description .soccer-player-pos-team span + span {
   color: #ffffff;
 }
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .soccer-player-description .soccer-player-name {
+#modalSoccerPlayerStats .soccer-player-stats-header .description-header .soccer-player-description .soccer-player-name {
   position: relative;
   float: left;
   width: 100%;
   min-height: 1px;
-  padding-left: 0px;
-  padding-right: 0px;
+  padding-left: 0;
+  padding-right: 0;
   font-family: 'Exo', sans-serif;
   font-weight: 300;
   font-size: 20pt;
   color: #fba61a;
   text-transform: uppercase;
-  margin-bottom: 5px;
 }
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .soccer-player-info-stats {
+#modalSoccerPlayerStats .soccer-player-stats-header .description-header .soccer-player-stats-info {
   float: left;
   width: 100%;
   position: relative;
   min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding: 0 10px;
+  padding-left: 0;
+  padding-right: 0;
 }
 @media (min-width: 768px) {
-  #modalSoccerPlayerInfo .soccer-player-info-header .description-header .soccer-player-info-stats {
-    float: left;
-    width: 41.66666667%;
-  }
-}
-@media (min-width: 992px) {
-  #modalSoccerPlayerInfo .soccer-player-info-header .description-header .soccer-player-info-stats {
+  #modalSoccerPlayerStats .soccer-player-stats-header .description-header .soccer-player-stats-info {
     float: left;
     width: 33.33333333%;
   }
 }
-@media (max-width: 767px) {
-  #modalSoccerPlayerInfo .soccer-player-info-header .description-header .soccer-player-info-stats {
-    padding: 0;
-  }
-}
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .soccer-player-info-stats .soccer-player-fantasy-points,
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .soccer-player-info-stats .soccer-player-matches,
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .soccer-player-info-stats .soccer-player-salary {
+#modalSoccerPlayerStats .soccer-player-stats-header .description-header .soccer-player-stats-info .soccer-player-fantasy-points,
+#modalSoccerPlayerStats .soccer-player-stats-header .description-header .soccer-player-stats-info .soccer-player-matches,
+#modalSoccerPlayerStats .soccer-player-stats-header .description-header .soccer-player-stats-info .soccer-player-salary {
   position: relative;
   float: left;
   width: 33.33333333%;
@@ -15538,15 +15747,15 @@ fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .button-add {
   text-align: center;
 }
 @media (min-width: 768px) {
-  #modalSoccerPlayerInfo .soccer-player-info-header .description-header .soccer-player-info-stats .soccer-player-fantasy-points,
-  #modalSoccerPlayerInfo .soccer-player-info-header .description-header .soccer-player-info-stats .soccer-player-matches,
-  #modalSoccerPlayerInfo .soccer-player-info-header .description-header .soccer-player-info-stats .soccer-player-salary {
+  #modalSoccerPlayerStats .soccer-player-stats-header .description-header .soccer-player-stats-info .soccer-player-fantasy-points,
+  #modalSoccerPlayerStats .soccer-player-stats-header .description-header .soccer-player-stats-info .soccer-player-matches,
+  #modalSoccerPlayerStats .soccer-player-stats-header .description-header .soccer-player-stats-info .soccer-player-salary {
     text-align: right;
   }
 }
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .soccer-player-info-stats .soccer-player-fantasy-points span,
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .soccer-player-info-stats .soccer-player-matches span,
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .soccer-player-info-stats .soccer-player-salary span {
+#modalSoccerPlayerStats .soccer-player-stats-header .description-header .soccer-player-stats-info .soccer-player-fantasy-points span,
+#modalSoccerPlayerStats .soccer-player-stats-header .description-header .soccer-player-stats-info .soccer-player-matches span,
+#modalSoccerPlayerStats .soccer-player-stats-header .description-header .soccer-player-stats-info .soccer-player-salary span {
   display: block;
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
@@ -15555,18 +15764,18 @@ fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .button-add {
   padding-top: 5px;
 }
 @media (max-width: 767px) {
-  #modalSoccerPlayerInfo .soccer-player-info-header .description-header .soccer-player-info-stats .soccer-player-fantasy-points span,
-  #modalSoccerPlayerInfo .soccer-player-info-header .description-header .soccer-player-info-stats .soccer-player-matches span,
-  #modalSoccerPlayerInfo .soccer-player-info-header .description-header .soccer-player-info-stats .soccer-player-salary span {
+  #modalSoccerPlayerStats .soccer-player-stats-header .description-header .soccer-player-stats-info .soccer-player-fantasy-points span,
+  #modalSoccerPlayerStats .soccer-player-stats-header .description-header .soccer-player-stats-info .soccer-player-matches span,
+  #modalSoccerPlayerStats .soccer-player-stats-header .description-header .soccer-player-stats-info .soccer-player-salary span {
     background-color: #777777;
     color: #dcdcdc;
     border-top-right-radius: 4px;
     border-top-left-radius: 4px;
   }
 }
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .soccer-player-info-stats .soccer-player-fantasy-points span + span,
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .soccer-player-info-stats .soccer-player-matches span + span,
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .soccer-player-info-stats .soccer-player-salary span + span {
+#modalSoccerPlayerStats .soccer-player-stats-header .description-header .soccer-player-stats-info .soccer-player-fantasy-points span + span,
+#modalSoccerPlayerStats .soccer-player-stats-header .description-header .soccer-player-stats-info .soccer-player-matches span + span,
+#modalSoccerPlayerStats .soccer-player-stats-header .description-header .soccer-player-stats-info .soccer-player-salary span + span {
   font-family: 'Exo', sans-serif;
   font-weight: 300;
   font-size: 18pt;
@@ -15575,51 +15784,53 @@ fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .button-add {
   padding-top: 0;
 }
 @media (max-width: 767px) {
-  #modalSoccerPlayerInfo .soccer-player-info-header .description-header .soccer-player-info-stats .soccer-player-fantasy-points span + span,
-  #modalSoccerPlayerInfo .soccer-player-info-header .description-header .soccer-player-info-stats .soccer-player-matches span + span,
-  #modalSoccerPlayerInfo .soccer-player-info-header .description-header .soccer-player-info-stats .soccer-player-salary span + span {
+  #modalSoccerPlayerStats .soccer-player-stats-header .description-header .soccer-player-stats-info .soccer-player-fantasy-points span + span,
+  #modalSoccerPlayerStats .soccer-player-stats-header .description-header .soccer-player-stats-info .soccer-player-matches span + span,
+  #modalSoccerPlayerStats .soccer-player-stats-header .description-header .soccer-player-stats-info .soccer-player-salary span + span {
     color: #ffffff;
     border-radius: 0;
     border-bottom-right-radius: 4px;
     border-bottom-left-radius: 4px;
   }
 }
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper {
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper {
   position: relative;
+  float: left;
+  width: 100%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  height: 47px;
   background-image: -webkit-linear-gradient(top, #1a3949 49%, #0f2630 51%);
   background-image: linear-gradient(to bottom, #1a3949 49%, #0f2630 51%);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff1a3949', endColorstr='#ff0f2630', GradientType=0);
-  display: block;
+  height: 47px;
   padding: 5px 10px;
 }
 @media (max-width: 767px) {
-  #modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper {
+  #modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper {
     display: none !important;
   }
 }
-@media (min-width: 768px) {
-  #modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper {
-    float: left;
-    width: 100%;
-  }
-}
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .next-match {
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .next-match {
+  position: relative;
+  float: left;
+  width: 83.33333333%;
+  min-height: 1px;
+  padding-left: 0;
+  padding-right: 0;
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 9pt;
   color: #59add5;
   display: inline-block;
   margin-top: 10px;
+  padding-right: 5px;
 }
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .next-match strong {
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .next-match strong {
   color: #ffffff;
 }
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add {
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add {
   background-color: #428bca;
   border-color: #357ebd;
   display: inline-block;
@@ -15652,68 +15863,71 @@ fieldset[disabled] #modalSoccerPlayerInfo .action-buttons .button-add {
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
   outline: none !important;
-  float: right !important;
-  padding-left: 40px;
-  padding-right: 40px;
+  position: relative;
+  float: left;
+  width: 16.66666667%;
+  min-height: 1px;
+  padding-left: 0;
+  padding-right: 0;
 }
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add:hover,
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add:focus,
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add:active,
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add.active,
-.open .dropdown-toggle#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add {
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add:hover,
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add:focus,
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add:active,
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add.active,
+.open .dropdown-toggle#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add {
   color: #ffffff;
   background-color: #3276b1;
   border-color: #285e8e;
 }
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add:active,
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add.active,
-.open .dropdown-toggle#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add {
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add:active,
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add.active,
+.open .dropdown-toggle#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add {
   background-image: none;
 }
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add.disabled,
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add[disabled],
-fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add,
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add.disabled:hover,
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add[disabled]:hover,
-fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add:hover,
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add.disabled:focus,
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add[disabled]:focus,
-fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add:focus,
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add.disabled:active,
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add[disabled]:active,
-fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add:active,
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add.disabled.active,
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add[disabled].active,
-fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add.active {
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add.disabled,
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add[disabled],
+fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add,
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add.disabled:hover,
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add[disabled]:hover,
+fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add:hover,
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add.disabled:focus,
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add[disabled]:focus,
+fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add:focus,
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add.disabled:active,
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add[disabled]:active,
+fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add:active,
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add.disabled.active,
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add[disabled].active,
+fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add.active {
   background-color: #428bca;
   border-color: #357ebd;
 }
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add .badge {
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add .badge {
   color: #428bca;
   background-color: #ffffff;
 }
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add:focus,
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add:active:focus,
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add.active:focus {
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add:focus,
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add:active:focus,
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add.active:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add:hover,
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add:focus {
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add:hover,
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add:focus {
   color: #333333;
   text-decoration: none;
 }
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add:active,
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add.active {
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add:active,
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add.disabled,
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add[disabled],
-fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add {
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add.disabled,
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add[disabled],
+fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -15721,558 +15935,361 @@ fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .descriptio
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add:active:focus,
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add.active:focus {
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add:active:focus,
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add.active:focus {
   color: #ffffff;
   background-color: #b5d657;
 }
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add:active:hover,
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add.active:hover {
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add:active:hover,
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add.active:hover {
   color: #ffffff;
   background-color: #b5d657;
 }
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add:focus {
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add:focus {
   background-color: #a1c931;
   color: #ffffff;
 }
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add:hover {
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add:hover {
   background-color: #acd142;
   outline: none !important;
   color: #ffffff;
 }
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add:hover:focus {
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add:hover:focus {
   background-color: #a1c931;
   color: #ffffff;
 }
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add:active,
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add.active {
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add:active,
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add.active {
   background-color: #a1c931;
   margin-top: 4px;
   box-shadow: none;
 }
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add:hover {
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add:hover {
   background-color: #acd142;
   outline: none !important;
   color: #ffffff;
 }
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add.disabled,
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add[disabled],
-fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add {
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add.disabled,
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add[disabled],
+fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add {
   background-color: #b5d657;
   box-shadow: none;
   margin-top: 4px;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
-#modalSoccerPlayerInfo .soccer-player-info-header .description-header .next-match-wrapper .button-add.close {
+#modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add.close {
   background-color: #a1c931;
   outline: none !important;
   color: #ffffff;
 }
-#modalSoccerPlayerInfo .soccer-player-info-content {
-  margin-right: auto;
-  margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
-  width: 100%;
-  padding-left: 0;
-  padding-right: 0;
-  margin: 0;
-  background-color: #ffffff;
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 5px;
-  padding-bottom: 20px;
+#modalSoccerPlayerStats .soccer-player-stats-content {
+  margin-left: 0;
+  margin-right: 0;
 }
-#modalSoccerPlayerInfo .soccer-player-info-content > .navbar-header,
-#modalSoccerPlayerInfo .soccer-player-info-content > .navbar-collapse {
-  margin-right: -15px;
-  margin-left: -15px;
-}
-@media (min-width: 768px) {
-  #modalSoccerPlayerInfo .soccer-player-info-content > .navbar-header,
-  #modalSoccerPlayerInfo .soccer-player-info-content > .navbar-collapse {
-    margin-right: 0;
-    margin-left: 0;
-  }
-}
-#modalSoccerPlayerInfo .soccer-player-info-content .tab {
-  margin-right: auto;
-  margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-left: 0px;
-  padding-right: 0px;
-}
-@media (min-width: 768px) {
-  #modalSoccerPlayerInfo .soccer-player-info-content .tab {
-    width: 750px;
-  }
-}
-@media (min-width: 992px) {
-  #modalSoccerPlayerInfo .soccer-player-info-content .tab {
-    width: 970px;
-  }
-}
-@media (min-width: 1200px) {
-  #modalSoccerPlayerInfo .soccer-player-info-content .tab {
-    width: 970px;
-  }
-}
-#modalSoccerPlayerInfo .soccer-player-info-content .tab > .navbar-header,
-#modalSoccerPlayerInfo .soccer-player-info-content .tab > .navbar-collapse {
-  margin-right: -15px;
-  margin-left: -15px;
-}
-@media (min-width: 768px) {
-  #modalSoccerPlayerInfo .soccer-player-info-content .tab > .navbar-header,
-  #modalSoccerPlayerInfo .soccer-player-info-content .tab > .navbar-collapse {
-    margin-right: 0;
-    margin-left: 0;
-  }
-}
-#modalSoccerPlayerInfo .soccer-player-info-content .tab-content {
-  padding: 15px;
-}
-#modalSoccerPlayerInfo .soccer-player-info-content .soccer-player-info-tabs {
-  border-width: 1px;
-  border-style: solid none none none;
-  border-color: #ffffff;
-  border-radius: 0;
+#modalSoccerPlayerStats .soccer-player-stats-content .soccer-player-stats-tabs {
+  display: none !important;
+  height: 54px;
   list-style-type: none;
   margin: 0;
   padding: 0;
-  height: 54px;
+  background-color: #777777;
 }
-@media (min-width: 768px) and (max-width: 991px) {
-  #modalSoccerPlayerInfo .soccer-player-info-content .soccer-player-info-tabs {
-    display: none !important;
+@media (max-width: 767px) {
+  #modalSoccerPlayerStats .soccer-player-stats-content .soccer-player-stats-tabs {
+    display: block !important;
+  }
+  table#modalSoccerPlayerStats .soccer-player-stats-content .soccer-player-stats-tabs {
+    display: table;
+  }
+  tr#modalSoccerPlayerStats .soccer-player-stats-content .soccer-player-stats-tabs {
+    display: table-row !important;
+  }
+  th#modalSoccerPlayerStats .soccer-player-stats-content .soccer-player-stats-tabs,
+  td#modalSoccerPlayerStats .soccer-player-stats-content .soccer-player-stats-tabs {
+    display: table-cell !important;
   }
 }
-@media (min-width: 992px) and (max-width: 1199px) {
-  #modalSoccerPlayerInfo .soccer-player-info-content .soccer-player-info-tabs {
-    display: none !important;
-  }
-}
-@media (min-width: 1200px) {
-  #modalSoccerPlayerInfo .soccer-player-info-content .soccer-player-info-tabs {
-    display: none !important;
-  }
-}
-#modalSoccerPlayerInfo .soccer-player-info-content .soccer-player-info-tabs > li {
+#modalSoccerPlayerStats .soccer-player-stats-content .soccer-player-stats-tabs > li {
   position: relative;
   float: left;
   width: 50%;
   min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: #59add5;
   padding-left: 0px;
   padding-right: 0px;
-  background-color: #afafaf;
   border-width: 4px;
   border-style: none none solid none;
-  border-color: #777777;
+  border-color: #214a5f;
   border-radius: 0;
 }
-#modalSoccerPlayerInfo .soccer-player-info-content .soccer-player-info-tabs > li a {
+#modalSoccerPlayerStats .soccer-player-stats-content .soccer-player-stats-tabs > li a {
   cursor: pointer;
-  line-height: 54px;
+  line-height: 50px;
   text-align: center;
   display: block;
   text-decoration: none;
+  overflow: hidden;
+  white-space: nowrap;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
   color: #ffffff;
 }
 @media (max-width: 767px) {
-  #modalSoccerPlayerInfo .soccer-player-info-content .soccer-player-info-tabs > li a {
+  #modalSoccerPlayerStats .soccer-player-stats-content .soccer-player-stats-tabs > li a {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     font-size: 9pt;
     color: #ffffff;
   }
 }
-#modalSoccerPlayerInfo .soccer-player-info-content .soccer-player-info-tabs .active {
+#modalSoccerPlayerStats .soccer-player-stats-content .soccer-player-stats-tabs > li[disabled] {
+  background-color: #afd3e4;
+  cursor: no-drop;
+}
+#modalSoccerPlayerStats .soccer-player-stats-content .soccer-player-stats-tabs > li[disabled] > a {
+  cursor: no-drop;
+  color: #afafaf;
+}
+#modalSoccerPlayerStats .soccer-player-stats-content .soccer-player-stats-tabs .active {
+  background-color: #214a5f;
+}
+#modalSoccerPlayerStats .soccer-player-stats-content .soccer-player-stats-tabs li {
+  background-color: #afafaf;
+  border-color: #777777;
+  color: #ffffff;
+}
+#modalSoccerPlayerStats .soccer-player-stats-content .soccer-player-stats-tabs .active {
   background-color: #777777;
 }
-#modalSoccerPlayerInfo .soccer-player-info-content .next-match {
+#modalSoccerPlayerStats .soccer-player-stats-content .tab-pane {
+  margin-left: 0;
+  margin-right: 0;
+}
+@media (min-width: 768px) {
+  #modalSoccerPlayerStats .soccer-player-stats-content .tab-pane {
+    margin-left: 15px;
+    margin-right: 15px;
+    display: block;
+  }
+}
+#modalSoccerPlayerStats .soccer-player-stats-content .tab-pane .next-match {
   display: none !important;
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
-  font-size: 10pt;
+  font-size: 9pt;
   color: #777777;
-  padding: 25px 10px 20px;
+  padding: 20px 10px;
 }
 @media (max-width: 767px) {
-  #modalSoccerPlayerInfo .soccer-player-info-content .next-match {
+  #modalSoccerPlayerStats .soccer-player-stats-content .tab-pane .next-match {
     display: block !important;
   }
-  table#modalSoccerPlayerInfo .soccer-player-info-content .next-match {
+  table#modalSoccerPlayerStats .soccer-player-stats-content .tab-pane .next-match {
     display: table;
   }
-  tr#modalSoccerPlayerInfo .soccer-player-info-content .next-match {
+  tr#modalSoccerPlayerStats .soccer-player-stats-content .tab-pane .next-match {
     display: table-row !important;
   }
-  th#modalSoccerPlayerInfo .soccer-player-info-content .next-match,
-  td#modalSoccerPlayerInfo .soccer-player-info-content .next-match {
+  th#modalSoccerPlayerStats .soccer-player-stats-content .tab-pane .next-match,
+  td#modalSoccerPlayerStats .soccer-player-stats-content .tab-pane .next-match {
     display: table-cell !important;
   }
 }
-#modalSoccerPlayerInfo .soccer-player-info-content .next-match strong {
+#modalSoccerPlayerStats .soccer-player-stats-content .tab-pane .next-match strong {
   color: #0d75a6;
 }
-#modalSoccerPlayerInfo .soccer-player-info-content .season-header {
-  margin-left: 0;
-  margin-right: 0;
-  padding: 0;
+#modalSoccerPlayerStats .soccer-player-stats-content .season-header {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 16pt;
   color: #777777;
-  padding-bottom: 20px;
+  padding: 10px;
 }
 @media (max-width: 767px) {
-  #modalSoccerPlayerInfo .soccer-player-info-content .season-header {
+  #modalSoccerPlayerStats .soccer-player-stats-content .season-header {
     display: none !important;
   }
 }
-#modalSoccerPlayerInfo .soccer-player-info-content .season-header span {
+#modalSoccerPlayerStats .soccer-player-stats-content .season-header > span {
   font-size: 12pt;
 }
-@media (max-width: 767px) {
-  #modalSoccerPlayerInfo .soccer-player-info-content .season-stats {
-    border-width: 1px;
-    border-style: solid none solid none;
-    border-color: #777777;
-    border-radius: 0;
-    background-color: #f8f8f8;
+#modalSoccerPlayerStats .soccer-player-stats-content .season-stats {
+  border-width: 2px;
+  border-style: solid none solid none;
+  border-color: #777777;
+  border-radius: 0;
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 0;
+  padding-right: 0;
+  background-color: #f8f8f8;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  #modalSoccerPlayerStats .soccer-player-stats-content .season-stats {
     position: relative;
+    min-height: 1px;
+    padding-left: 0;
+    padding-right: 0;
+    border: none;
+    background-color: #ffffff;
+    text-align: center;
+    white-space: nowrap;
+    overflow-x: auto;
+    height: 115px;
+  }
+}
+@media (min-width: 768px) and (min-width: 768px) {
+  #modalSoccerPlayerStats .soccer-player-stats-content .season-stats {
     float: left;
     width: 100%;
-    min-height: 1px;
-    padding-left: 0px;
-    padding-right: 0px;
   }
-  #modalSoccerPlayerInfo .soccer-player-info-content .season-stats .season-stats-row {
-    position: relative;
-    float: left;
-    width: 50%;
-    min-height: 1px;
-    padding-left: 0px;
-    padding-right: 0px;
+}
+#modalSoccerPlayerStats .soccer-player-stats-content .season-stats .season-stats-row {
+  position: relative;
+  float: left;
+  width: 50%;
+  min-height: 1px;
+  padding-left: 0;
+  padding-right: 0;
+}
+@media (max-width: 991px) {
+  #modalSoccerPlayerStats .soccer-player-stats-content .season-stats .season-stats-row {
     border-width: 1px;
     border-style: dotted none none none;
     border-color: #777777;
     border-radius: 0;
-    line-height: 30px;
+    padding-left: 5px;
+    padding-right: 5px;
   }
-  #modalSoccerPlayerInfo .soccer-player-info-content .season-stats .season-stats-row .season-stats-header {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 400;
-    font-size: 10pt;
-    color: #777777;
-    position: relative;
-    float: left;
-    width: 16.66666667%;
-    min-height: 1px;
-    padding-left: 7.5px;
-    padding-right: 7.5px;
-  }
-  #modalSoccerPlayerInfo .soccer-player-info-content .season-stats .season-stats-row .season-stats-info {
-    font-family: 'Exo', sans-serif;
-    font-weight: 600;
-    font-size: 14pt;
-    color: #777777;
-    text-transform: uppercase;
-    position: relative;
-    float: left;
-    width: 83.33333333%;
-    min-height: 1px;
-    padding-left: 7.5px;
-    padding-right: 7.5px;
-    text-align: right;
-  }
-  #modalSoccerPlayerInfo .soccer-player-info-content .season-stats .season-stats-row .season-stats-info:last-child {
+  #modalSoccerPlayerStats .soccer-player-stats-content .season-stats .season-stats-row:first-child {
     border: none;
   }
-  #modalSoccerPlayerInfo .soccer-player-info-content .season-stats .season-stats-row:first-child {
+  #modalSoccerPlayerStats .soccer-player-stats-content .season-stats .season-stats-row:first-child + .season-stats-row {
     border: none;
   }
-  #modalSoccerPlayerInfo .soccer-player-info-content .season-stats .season-stats-row:first-child + .season-stats-row {
-    border: none;
-  }
-  #modalSoccerPlayerInfo .soccer-player-info-content .season-stats .season-stats-row:nth-child(odd) {
+  #modalSoccerPlayerStats .soccer-player-stats-content .season-stats .season-stats-row:nth-child(odd) {
     border-right: 1px dotted #777777;
   }
 }
 @media (min-width: 768px) {
-  #modalSoccerPlayerInfo .soccer-player-info-content .season-stats {
-    margin-left: 0;
-    margin-right: 0;
-    overflow-x: scroll;
-    padding-bottom: 5px;
-  }
-  #modalSoccerPlayerInfo .soccer-player-info-content .season-stats .season-stats-wrapper {
-    width: 1200px;
-  }
-  #modalSoccerPlayerInfo .soccer-player-info-content .season-stats .season-stats-wrapper .season-stats-row {
-    position: relative;
-    min-height: 1px;
-    padding-left: 0px;
-    padding-right: 0px;
+  #modalSoccerPlayerStats .soccer-player-stats-content .season-stats .season-stats-row {
     border-width: 1px;
     border-style: none none none dotted;
     border-color: #777777;
     border-radius: 0;
-    background-color: #ffffff;
-    padding: 0 15px;
-    margin-bottom: 5px;
+    display: inline-block;
+    float: none;
+    bottom: -35px;
+    width: 90px;
   }
-  #modalSoccerPlayerInfo .soccer-player-info-content .season-stats .season-stats-wrapper .season-stats-row .season-stats-header {
+  #modalSoccerPlayerStats .soccer-player-stats-content .season-stats .season-stats-row:last-child {
+    border-right: 1px dotted #777777;
+  }
+  #modalSoccerPlayerStats .soccer-player-stats-content .season-stats .season-stats-row:nth-child(odd) {
+    border-right: 0px dotted #777777;
+  }
+}
+#modalSoccerPlayerStats .soccer-player-stats-content .season-stats .season-stats-row .season-stats-header {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #777777;
+  float: left;
+  width: 16.66666667%;
+  padding-left: 0;
+  padding-right: 0;
+  position: relative;
+  min-height: 1px;
+  padding-left: 7.5px;
+  padding-right: 7.5px;
+  text-align: left;
+}
+@media (min-width: 768px) {
+  #modalSoccerPlayerStats .soccer-player-stats-content .season-stats .season-stats-row .season-stats-header {
+    float: left;
+    width: 100%;
+  }
+}
+@media (min-width: 768px) {
+  #modalSoccerPlayerStats .soccer-player-stats-content .season-stats .season-stats-row .season-stats-header {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
     font-size: 9pt;
     color: #777777;
   }
-  #modalSoccerPlayerInfo .soccer-player-info-content .season-stats .season-stats-wrapper .season-stats-row .season-stats-info {
-    margin-left: -2px;
+}
+#modalSoccerPlayerStats .soccer-player-stats-content .season-stats .season-stats-row .season-stats-info {
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  font-size: 14pt;
+  color: #777777;
+  text-transform: uppercase;
+  float: left;
+  width: 83.33333333%;
+  padding-left: 0;
+  padding-right: 0;
+  position: relative;
+  min-height: 1px;
+  padding-left: 7.5px;
+  padding-right: 7.5px;
+  text-align: right;
+}
+@media (min-width: 768px) {
+  #modalSoccerPlayerStats .soccer-player-stats-content .season-stats .season-stats-row .season-stats-info {
+    float: left;
+    width: 100%;
+  }
+}
+@media (min-width: 768px) {
+  #modalSoccerPlayerStats .soccer-player-stats-content .season-stats .season-stats-row .season-stats-info {
     font-family: 'Exo', sans-serif;
     font-weight: 300;
     font-size: 24pt;
     color: #0d75a6;
     text-transform: uppercase;
   }
-  #modalSoccerPlayerInfo .soccer-player-info-content .season-stats .season-stats-wrapper .season-stats-row:first-child {
-    border-left: none;
-  }
 }
-@media (min-width: 768px) and (min-width: 768px) {
-  #modalSoccerPlayerInfo .soccer-player-info-content .season-stats .season-stats-wrapper .season-stats-row {
-    float: left;
-    width: 8.33333333%;
-  }
-}
-@media (min-width: 768px) {
-  #modalSoccerPlayerInfo .soccer-player-info-content #match-info-tab-content {
-    display: block;
-  }
-}
-#modalSoccerPlayerInfo .soccer-player-info-content .match-header {
-  margin-left: 0;
-  margin-right: 0;
-  padding: 20px 0;
+#modalSoccerPlayerStats .soccer-player-stats-content .match-header {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 16pt;
   color: #777777;
+  padding: 10px;
 }
 @media (max-width: 767px) {
-  #modalSoccerPlayerInfo .soccer-player-info-content .match-header {
+  #modalSoccerPlayerStats .soccer-player-stats-content .match-header {
     display: none !important;
   }
 }
-@media (max-width: 767px) {
-  #modalSoccerPlayerInfo .soccer-player-info-content .match-stats {
-    position: relative;
-    float: left;
-    width: 100%;
-    min-height: 1px;
-    padding-left: 0px;
-    padding-right: 0px;
-    background-color: #ffffff;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 700;
-    font-size: 10pt;
-    color: #777777;
-  }
-  #modalSoccerPlayerInfo .soccer-player-info-content .match-stats .match-stats-header {
-    position: relative;
-    width: 12.5%;
-    min-height: 1px;
-    padding-left: 0px;
-    padding-right: 0px;
-    display: inline-table;
-    float: left;
-    border-width: 1px;
-    border-style: none none solid none;
-    border-color: #777777;
-    border-radius: 0;
-  }
-  #modalSoccerPlayerInfo .soccer-player-info-content .match-stats .match-stats-header div {
-    border-width: 1px;
-    border-style: dotted solid none solid;
-    border-color: #777777;
-    border-radius: 0;
-    line-height: 30px;
-    text-align: center;
-  }
-  #modalSoccerPlayerInfo .soccer-player-info-content .match-stats .match-stats-header div:nth-child(even) {
-    background-color: #ecf0f1;
-  }
-  #modalSoccerPlayerInfo .soccer-player-info-content .match-stats .match-stats-header div:first-child {
-    border-width: 1px;
-    border-style: none none solid none;
-    border-color: #777777;
-    border-radius: 0;
-    line-height: 40px;
-  }
-  #modalSoccerPlayerInfo .soccer-player-info-content .match-stats .match-stats-header div:first-child + div {
-    border-top: none;
-    color: #214a5f;
-  }
-  #modalSoccerPlayerInfo .soccer-player-info-content .match-stats .match-stats-header div:first-child + div + div {
-    color: #0d75a6;
-  }
-  #modalSoccerPlayerInfo .soccer-player-info-content .match-stats .match-stats-content {
-    position: relative;
-    float: left;
-    width: 87.5%;
-    min-height: 1px;
-    padding-left: 0px;
-    padding-right: 0px;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 400;
-    font-size: 10pt;
-    color: #777777;
-    overflow-x: scroll;
-  }
-  #modalSoccerPlayerInfo .soccer-player-info-content .match-stats .match-stats-content .match-stats-data {
-    width: 99999px;
-  }
-  #modalSoccerPlayerInfo .soccer-player-info-content .match-stats .match-stats-content .match-stats-data .match-year {
-    float: left;
-    line-height: 40px;
-    text-align: center;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 700;
-    font-size: 10pt;
-    color: #214a5f;
-  }
-  #modalSoccerPlayerInfo .soccer-player-info-content .match-stats .match-stats-content .match-stats-data .match-year + .data {
-    margin-left: -33px;
-    border-left: 1px solid #777777;
-  }
-  #modalSoccerPlayerInfo .soccer-player-info-content .match-stats .match-stats-content .match-stats-data .data {
-    margin: 40px 0 0 0;
-    border-width: 1px;
-    border-style: solid none solid none;
-    border-color: #777777;
-    border-radius: 0;
-    display: inline-table;
-    float: left;
-  }
-  #modalSoccerPlayerInfo .soccer-player-info-content .match-stats .match-stats-content .match-stats-data .data div {
-    border-width: 1px;
-    border-style: dotted solid none none;
-    border-color: #777777;
-    border-radius: 0;
-    line-height: 30px;
-    width: 50px;
-    text-align: center;
-  }
-  #modalSoccerPlayerInfo .soccer-player-info-content .match-stats .match-stats-content .match-stats-data .data div:nth-child(odd) {
-    background-color: #ecf0f1;
-  }
-  #modalSoccerPlayerInfo .soccer-player-info-content .match-stats .match-stats-content .match-stats-data .data div:first-child {
-    border-width: 1px;
-    border-style: none solid none none;
-    border-color: #777777;
-    border-radius: 0;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 700;
-    font-size: 10pt;
-    color: #214a5f;
-  }
-  #modalSoccerPlayerInfo .soccer-player-info-content .match-stats .match-stats-content .match-stats-data .data div:first-child + div {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 700;
-    font-size: 10pt;
-    color: #0d75a6;
-  }
+#modalSoccerPlayerStats .soccer-player-stats-content .match-header > span {
+  font-size: 12pt;
 }
-@media (min-width: 768px) {
-  #modalSoccerPlayerInfo .soccer-player-info-content .match-stats {
-    background-color: #ffffff;
-  }
-  #modalSoccerPlayerInfo .soccer-player-info-content .match-stats .match-stats-header {
-    margin-left: 0;
-    margin-right: 0;
-    margin-right: 15px;
-  }
-  #modalSoccerPlayerInfo .soccer-player-info-content .match-stats .match-stats-header div {
-    border-width: 1px;
-    border-style: solid solid dotted none;
-    border-color: #777777;
-    border-radius: 0;
-    position: relative;
-    min-height: 1px;
-    padding-left: 0px;
-    padding-right: 0px;
-    text-align: center;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 700;
-    font-size: 8pt;
-    color: #000000;
-    line-height: 40px;
-  }
-  #modalSoccerPlayerInfo .soccer-player-info-content .match-stats .match-stats-header div:first-child {
-    border-left: 1px solid #777777;
-    text-align: left;
-    padding-left: 5px;
-  }
-  #modalSoccerPlayerInfo .soccer-player-info-content .match-stats .match-stats-content {
-    margin-left: 0;
-    margin-right: 0;
-    height: 287px;
-    overflow-y: scroll;
-    clear: both;
-  }
-  #modalSoccerPlayerInfo .soccer-player-info-content .match-stats .match-stats-content .match-year {
-    display: none !important;
-    visibility: hidden !important;
-  }
-  #modalSoccerPlayerInfo .soccer-player-info-content .match-stats .match-stats-content .data div {
-    border-width: 1px;
-    border-style: none solid dotted none;
-    border-color: #777777;
-    border-radius: 0;
-    position: relative;
-    min-height: 1px;
-    padding-left: 0px;
-    padding-right: 0px;
-    text-align: center;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 700;
-    font-size: 8pt;
-    color: #777777;
-    line-height: 40px;
-  }
-  #modalSoccerPlayerInfo .soccer-player-info-content .match-stats .match-stats-content .data div:first-child {
-    border-left: 1px solid #777777;
-    text-align: left;
-    padding-left: 3px;
-    clear: both;
-    color: #0d75a6;
-    font-size: 7pt;
-  }
-  #modalSoccerPlayerInfo .soccer-player-info-content .match-stats .match-stats-content .data div:first-child + div {
-    color: #0d75a6;
-  }
-  #modalSoccerPlayerInfo .soccer-player-info-content .match-stats .match-stats-content .data:nth-child(even) div {
-    background-color: #ecf0f1;
-  }
-}
-@media (min-width: 768px) and (min-width: 768px) {
-  #modalSoccerPlayerInfo .soccer-player-info-content .match-stats .match-stats-header div {
-    float: left;
-    width: 6.66666667%;
-  }
-}
-@media (min-width: 768px) and (min-width: 768px) {
-  #modalSoccerPlayerInfo .soccer-player-info-content .match-stats .match-stats-content .data div {
-    float: left;
-    width: 6.66666667%;
-  }
-}
-#modalSoccerPlayerInfo .soccer-player-info-content .noMatchesPlayed {
+#modalSoccerPlayerStats .soccer-player-stats-content .noMatchesPlayed {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 10pt;
@@ -16282,11 +16299,429 @@ fieldset[disabled] #modalSoccerPlayerInfo .soccer-player-info-header .descriptio
   text-align: center;
 }
 @media (min-width: 768px) {
-  #modalSoccerPlayerInfo .soccer-player-info-content .noMatchesPlayed {
+  #modalSoccerPlayerStats .soccer-player-stats-content .noMatchesPlayed {
     height: 80px;
     padding: 10px;
     text-align: left;
   }
+}
+#modalSoccerPlayerStats .soccer-player-stats-content .match-stats-table-wrapper {
+  padding: 15px 5px;
+}
+#modalSoccerPlayerStats .soccer-player-stats-content #statsTable {
+  display: inline-block;
+}
+#modalSoccerPlayerStats .soccer-player-stats-content #statsTable .stats-headings {
+  float: left;
+  width: 35%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 0;
+  padding-right: 0;
+  display: inline-block;
+}
+@media (min-width: 768px) {
+  #modalSoccerPlayerStats .soccer-player-stats-content #statsTable .stats-headings {
+    float: left;
+    width: 20%;
+  }
+}
+#modalSoccerPlayerStats .soccer-player-stats-content #statsTable .stats-rows {
+  float: left;
+  width: 65%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 0;
+  padding-right: 0;
+  display: inline-block;
+  overflow-x: auto;
+}
+@media (min-width: 768px) {
+  #modalSoccerPlayerStats .soccer-player-stats-content #statsTable .stats-rows {
+    float: left;
+    width: 80%;
+  }
+}
+#modalSoccerPlayerStats .soccer-player-stats-content .stat-field-header {
+  border-width: 1px;
+  border-style: none solid solid solid;
+  border-color: #777777;
+  border-radius: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #777777;
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 0;
+  padding-right: 0;
+  display: block;
+  padding: 5px;
+}
+#modalSoccerPlayerStats .soccer-player-stats-content .stat-field-header:first-child {
+  border-top: 1px solid #777777;
+}
+#modalSoccerPlayerStats .soccer-player-stats-content .head-of-headings {
+  border-style: none solid solid solid;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #777777;
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 0;
+  padding-right: 0;
+  display: block;
+  padding: 5px;
+  color: transparent;
+  border-width: 1px;
+  border-style: none solid solid none;
+  border-color: #777777;
+  border-radius: 0;
+}
+#modalSoccerPlayerStats .soccer-player-stats-content .head-of-headings:first-child {
+  border-top: 1px solid #777777;
+}
+#modalSoccerPlayerStats .soccer-player-stats-content .head-of-headings:first-child {
+  border-top-color: transparent;
+}
+#modalSoccerPlayerStats .soccer-player-stats-content .year-season {
+  padding: 0;
+  background-color: #ffffff;
+  border: none;
+  white-space: nowrap;
+}
+#modalSoccerPlayerStats .soccer-player-stats-content .year-season .year {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 12pt;
+  color: #214a5f;
+  padding-left: 2px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border-width: 1px;
+  border-style: none solid solid none;
+  border-color: #777777;
+  border-radius: 0;
+}
+#modalSoccerPlayerStats .soccer-player-stats-content .year-season .match-stats-block {
+  display: inline-block;
+}
+#modalSoccerPlayerStats .soccer-player-stats-content .year-season .match-stats-block:nth-child(odd) {
+  background-color: #f8f8f8;
+}
+#modalSoccerPlayerStats .soccer-player-stats-content .match-block {
+  border-width: 1px;
+  border-style: none solid solid none;
+  border-color: #777777;
+  border-radius: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #777777;
+  padding: 5px;
+}
+#modalSoccerPlayerStats .soccer-player-stats-content .blue {
+  color: #214a5f;
+}
+#modalSoccerPlayerStats .actions-footer-xs {
+  display: none !important;
+  height: 47px;
+  background-color: #434343;
+  background-color: #ffffff;
+  padding: 10px;
+}
+@media (max-width: 767px) {
+  #modalSoccerPlayerStats .actions-footer-xs {
+    display: block !important;
+  }
+  table#modalSoccerPlayerStats .actions-footer-xs {
+    display: table;
+  }
+  tr#modalSoccerPlayerStats .actions-footer-xs {
+    display: table-row !important;
+  }
+  th#modalSoccerPlayerStats .actions-footer-xs,
+  td#modalSoccerPlayerStats .actions-footer-xs {
+    display: table-cell !important;
+  }
+}
+#modalSoccerPlayerStats .actions-footer-xs.bottom {
+  background-color: #ffffff;
+  padding: 10px;
+}
+#modalSoccerPlayerStats .actions-footer-xs .button-cancel {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  -webkit-transition: All 0.08s ease-out;
+  -moz-transition: All 0.08s ease-out;
+  -ms-transition: All 0.08s ease-out;
+  -o-transition: All 0.08s ease-out;
+  transition: All 0.08s ease-out;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  background-color: #afafaf;
+  box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
+  color: #ffffff;
+  outline: none !important;
+  position: relative;
+  float: left;
+  width: 48.33333333%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+#modalSoccerPlayerStats .actions-footer-xs .button-cancel:focus,
+#modalSoccerPlayerStats .actions-footer-xs .button-cancel:active:focus,
+#modalSoccerPlayerStats .actions-footer-xs .button-cancel.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+#modalSoccerPlayerStats .actions-footer-xs .button-cancel:hover,
+#modalSoccerPlayerStats .actions-footer-xs .button-cancel:focus {
+  color: #333333;
+  text-decoration: none;
+}
+#modalSoccerPlayerStats .actions-footer-xs .button-cancel:active,
+#modalSoccerPlayerStats .actions-footer-xs .button-cancel.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+#modalSoccerPlayerStats .actions-footer-xs .button-cancel.disabled,
+#modalSoccerPlayerStats .actions-footer-xs .button-cancel[disabled],
+fieldset[disabled] #modalSoccerPlayerStats .actions-footer-xs .button-cancel {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+#modalSoccerPlayerStats .actions-footer-xs .button-cancel:active:focus,
+#modalSoccerPlayerStats .actions-footer-xs .button-cancel.active:focus {
+  color: #ffffff;
+  background-color: #c9c9c9;
+}
+#modalSoccerPlayerStats .actions-footer-xs .button-cancel:active:hover,
+#modalSoccerPlayerStats .actions-footer-xs .button-cancel.active:hover {
+  color: #ffffff;
+  background-color: #c9c9c9;
+}
+#modalSoccerPlayerStats .actions-footer-xs .button-cancel:focus {
+  background-color: #afafaf;
+  color: #ffffff;
+}
+#modalSoccerPlayerStats .actions-footer-xs .button-cancel:hover {
+  background-color: #bcbcbc;
+  outline: none !important;
+  color: #ffffff;
+}
+#modalSoccerPlayerStats .actions-footer-xs .button-cancel:hover:focus {
+  background-color: #afafaf;
+  color: #ffffff;
+}
+#modalSoccerPlayerStats .actions-footer-xs .button-cancel:active,
+#modalSoccerPlayerStats .actions-footer-xs .button-cancel.active {
+  background-color: #afafaf;
+  margin-top: 4px;
+  box-shadow: none;
+}
+#modalSoccerPlayerStats .actions-footer-xs .button-cancel:hover {
+  background-color: #bcbcbc;
+  outline: none !important;
+  color: #ffffff;
+}
+#modalSoccerPlayerStats .actions-footer-xs .button-cancel.disabled,
+#modalSoccerPlayerStats .actions-footer-xs .button-cancel[disabled],
+fieldset[disabled] #modalSoccerPlayerStats .actions-footer-xs .button-cancel {
+  background-color: #c9c9c9;
+  box-shadow: none;
+  margin-top: 4px;
+  color: #ebebeb;
+  cursor: not-allowed !important;
+}
+#modalSoccerPlayerStats .actions-footer-xs .button-cancel.close {
+  background-color: #afafaf;
+  outline: none !important;
+  color: #ffffff;
+}
+#modalSoccerPlayerStats .actions-footer-xs .button-add {
+  background-color: #428bca;
+  border-color: #357ebd;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  -webkit-transition: All 0.08s ease-out;
+  -moz-transition: All 0.08s ease-out;
+  -ms-transition: All 0.08s ease-out;
+  -o-transition: All 0.08s ease-out;
+  transition: All 0.08s ease-out;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  background-color: #a1c931;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #ffffff;
+  outline: none !important;
+  position: relative;
+  float: left;
+  width: 48.33333333%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  float: right !important;
+}
+#modalSoccerPlayerStats .actions-footer-xs .button-add:hover,
+#modalSoccerPlayerStats .actions-footer-xs .button-add:focus,
+#modalSoccerPlayerStats .actions-footer-xs .button-add:active,
+#modalSoccerPlayerStats .actions-footer-xs .button-add.active,
+.open .dropdown-toggle#modalSoccerPlayerStats .actions-footer-xs .button-add {
+  color: #ffffff;
+  background-color: #3276b1;
+  border-color: #285e8e;
+}
+#modalSoccerPlayerStats .actions-footer-xs .button-add:active,
+#modalSoccerPlayerStats .actions-footer-xs .button-add.active,
+.open .dropdown-toggle#modalSoccerPlayerStats .actions-footer-xs .button-add {
+  background-image: none;
+}
+#modalSoccerPlayerStats .actions-footer-xs .button-add.disabled,
+#modalSoccerPlayerStats .actions-footer-xs .button-add[disabled],
+fieldset[disabled] #modalSoccerPlayerStats .actions-footer-xs .button-add,
+#modalSoccerPlayerStats .actions-footer-xs .button-add.disabled:hover,
+#modalSoccerPlayerStats .actions-footer-xs .button-add[disabled]:hover,
+fieldset[disabled] #modalSoccerPlayerStats .actions-footer-xs .button-add:hover,
+#modalSoccerPlayerStats .actions-footer-xs .button-add.disabled:focus,
+#modalSoccerPlayerStats .actions-footer-xs .button-add[disabled]:focus,
+fieldset[disabled] #modalSoccerPlayerStats .actions-footer-xs .button-add:focus,
+#modalSoccerPlayerStats .actions-footer-xs .button-add.disabled:active,
+#modalSoccerPlayerStats .actions-footer-xs .button-add[disabled]:active,
+fieldset[disabled] #modalSoccerPlayerStats .actions-footer-xs .button-add:active,
+#modalSoccerPlayerStats .actions-footer-xs .button-add.disabled.active,
+#modalSoccerPlayerStats .actions-footer-xs .button-add[disabled].active,
+fieldset[disabled] #modalSoccerPlayerStats .actions-footer-xs .button-add.active {
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+#modalSoccerPlayerStats .actions-footer-xs .button-add .badge {
+  color: #428bca;
+  background-color: #ffffff;
+}
+#modalSoccerPlayerStats .actions-footer-xs .button-add:focus,
+#modalSoccerPlayerStats .actions-footer-xs .button-add:active:focus,
+#modalSoccerPlayerStats .actions-footer-xs .button-add.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+#modalSoccerPlayerStats .actions-footer-xs .button-add:hover,
+#modalSoccerPlayerStats .actions-footer-xs .button-add:focus {
+  color: #333333;
+  text-decoration: none;
+}
+#modalSoccerPlayerStats .actions-footer-xs .button-add:active,
+#modalSoccerPlayerStats .actions-footer-xs .button-add.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+#modalSoccerPlayerStats .actions-footer-xs .button-add.disabled,
+#modalSoccerPlayerStats .actions-footer-xs .button-add[disabled],
+fieldset[disabled] #modalSoccerPlayerStats .actions-footer-xs .button-add {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+#modalSoccerPlayerStats .actions-footer-xs .button-add:active:focus,
+#modalSoccerPlayerStats .actions-footer-xs .button-add.active:focus {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+#modalSoccerPlayerStats .actions-footer-xs .button-add:active:hover,
+#modalSoccerPlayerStats .actions-footer-xs .button-add.active:hover {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+#modalSoccerPlayerStats .actions-footer-xs .button-add:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+#modalSoccerPlayerStats .actions-footer-xs .button-add:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+#modalSoccerPlayerStats .actions-footer-xs .button-add:hover:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+#modalSoccerPlayerStats .actions-footer-xs .button-add:active,
+#modalSoccerPlayerStats .actions-footer-xs .button-add.active {
+  background-color: #a1c931;
+  margin-top: 4px;
+  box-shadow: none;
+}
+#modalSoccerPlayerStats .actions-footer-xs .button-add:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+#modalSoccerPlayerStats .actions-footer-xs .button-add.disabled,
+#modalSoccerPlayerStats .actions-footer-xs .button-add[disabled],
+fieldset[disabled] #modalSoccerPlayerStats .actions-footer-xs .button-add {
+  background-color: #b5d657;
+  box-shadow: none;
+  margin-top: 4px;
+  color: #ebebeb;
+  cursor: not-allowed !important;
+}
+#modalSoccerPlayerStats .actions-footer-xs .button-add.close {
+  background-color: #a1c931;
+  outline: none !important;
+  color: #ffffff;
 }
 .enter-contest-tabs {
   height: 54px;
@@ -23155,6 +23590,28 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
   list-style-type: none;
   margin: 0;
   padding: 0;
+}
+.default-section-header {
+  margin-left: 0;
+  margin-right: 0;
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 20pt;
+  color: #214a5f;
+  text-transform: uppercase;
+  padding: 30px 15px 30px 15px;
+  background-color: #ecf0f1;
+  text-align: center;
+}
+@media (max-width: 767px) {
+  .default-section-header {
+    padding: 10px 5px 10px 5px;
+    font-family: 'Exo', sans-serif;
+    font-weight: 300;
+    font-size: 16pt;
+    color: #214a5f;
+    text-transform: uppercase;
+  }
 }
 .default-header-text {
   margin-left: 0;

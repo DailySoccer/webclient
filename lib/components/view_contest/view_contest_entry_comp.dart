@@ -10,6 +10,7 @@ import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/models/contest_entry.dart';
 import 'dart:html';
+import 'package:webclient/utils/game_metrics.dart';
 
 @Component(
    selector: 'view-contest-entry',
@@ -68,6 +69,7 @@ class ViewContestEntryComp {
   }
 
   void cancelContestEntry() {
+    GameMetrics.logEvent(GameMetrics.CANCEL_CONTEST_ENTRY, {"value": contest.entryFee});
     _contestsService.cancelContestEntry(mainPlayer.contestEntryId)
       .then((jsonObject) {
         goToParent();

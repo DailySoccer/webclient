@@ -3,6 +3,7 @@ library add_funds_comp;
 import 'package:angular/angular.dart';
 import 'dart:html';
 import 'package:webclient/services/payment_service.dart';
+import 'package:webclient/utils/game_metrics.dart';
 
 
 @Component(
@@ -64,6 +65,7 @@ class AddFundsComp implements ShadowRootAware, DetachAware {
 
   void addFunds (Event e) {
     print("i want to add $selectedValue €");
+    GameMetrics.logEvent(GameMetrics.ORDER, {"value": selectedValue});
     (querySelector("#addFundsButton") as ButtonElement).disabled = true;
     _paymentService.expressCheckoutWithPaypal(amount: selectedValue);
   }

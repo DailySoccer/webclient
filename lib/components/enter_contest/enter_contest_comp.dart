@@ -311,6 +311,7 @@ class EnterContestComp implements DetachAware {
         _contestsService.addContestEntry(contest.contestId, lineupSlots.map((player) => player["id"]).toList())
           .then((contestId) {
             GameMetrics.logEvent(GameMetrics.TEAM_CREATED);
+            GameMetrics.logEvent(GameMetrics.ENTRY_FEE, {"value": contest.entryFee});
             _router.go('view_contest_entry', {
                                 "contestId": contestId,
                                 "parent": _routeProvider.parameters["parent"],

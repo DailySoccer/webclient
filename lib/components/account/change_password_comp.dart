@@ -54,13 +54,13 @@ class ChangePasswordComp implements ShadowRootAware {
     if (uri.queryParameters.containsKey("sptoken")) {
       _stormPathTokenId = uri.queryParameters["sptoken"];
 
-      UriUtils.removeQueryParameters(uri, ["sptoken"]);
-
       _profileManager.verifyPasswordResetToken(_stormPathTokenId)
        .then((_) {
           state = STATE_CHANGE_PASSWORD;
           _loadingService.isLoading = false;
           print("El estado es [${state}]");
+          UriUtils.removeQueryParameters(uri, ["sptoken"]);
+
        })
        .catchError( (ServerError error) {
           state = STATE_INVALID_TOKEN;

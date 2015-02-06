@@ -60,7 +60,6 @@ class WithdrawFundsComp implements ShadowRootAware {
   /* Enviar la peticion */
 
   void withdrawFunds (Event e) {
-    print("i want to withdraw $selectedValue €");
     GameMetrics.logEvent(GameMetrics.REFUND, {"value": selectedValue});
     (querySelector("#withdrawFundsButton") as ButtonElement).disabled = true;
     _paymentService.withdrawFunds(selectedValue)

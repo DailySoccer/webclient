@@ -64,7 +64,6 @@ class AddFundsComp implements ShadowRootAware, DetachAware {
   /* Enviar la peticion */
 
   void addFunds (Event e) {
-    print("i want to add $selectedValue €");
     GameMetrics.logEvent(GameMetrics.ORDER, {"value": selectedValue});
     (querySelector("#addFundsButton") as ButtonElement).disabled = true;
     _paymentService.expressCheckoutWithPaypal(amount: selectedValue);

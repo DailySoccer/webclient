@@ -58,14 +58,12 @@ class ChangePasswordComp implements ShadowRootAware {
        .then((_) {
           state = STATE_CHANGE_PASSWORD;
           _loadingService.isLoading = false;
-          print("El estado es [${state}]");
           UriUtils.removeQueryParameters(uri, ["sptoken"]);
 
        })
        .catchError( (ServerError error) {
           state = STATE_INVALID_TOKEN;
           _loadingService.isLoading = false;
-          print("El estado es [${state}]");
        });
     }
     else {

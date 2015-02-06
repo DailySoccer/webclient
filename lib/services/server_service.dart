@@ -16,6 +16,7 @@ abstract class ServerService {
   static final String TIMES = "times";
   static final String SECONDS_TO_RETRY = "secondsToRetry";
 
+  void        cancelAllAndReload();
   void        setSessionToken(String sessionToken);
   Future<Map> verifyPasswordResetToken(String token);
   Future<Map> resetPassword(String password, String stormPathTokenId);
@@ -193,6 +194,11 @@ class DailySoccerServer implements ServerService {
     return _innerServerCall("${HostServer.url}/get_prizes", retryTimes: -1);
   }
 
+  void cancelAllAndReload() {
+    _allFuturesCancelled = true;
+    window.location.reload();
+  }
+
   void subscribe(dynamic id, {Function onSuccess, Function onError}) {
     Map callbacks = new Map();
 
@@ -252,7 +258,7 @@ class DailySoccerServer implements ServerService {
 
     ((postData != null) ? _http.post(url, postData, headers: headers, params: queryString) : _http.get(url, headers: headers, params: queryString))
         .then((httpResponse) {
-          return (callContext == _context || !cancelIfChangeContext) ? httpResponse : new Future.error(new FutureCancelled());
+          return (!_allFuturesCancelled && (callContext == _context || !cancelIfChangeContext)) ? httpResponse : new Future.error(new FutureCancelled());
         })
         .then((httpResponse) {
           _checkServerVersion(httpResponse);
@@ -349,6 +355,8 @@ class DailySoccerServer implements ServerService {
   Http _http;
   String _sessionToken;
   String _currentVersion;
+  bool _allFuturesCancelled = false;
+
 
   int _pendingCallsContext = 0;
   Map<String, Completer> _pendingCalls = new Map<String, Completer>();

@@ -4,6 +4,7 @@ import 'package:angular/angular.dart';
 import 'dart:html';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/payment_service.dart';
+import 'package:webclient/utils/game_metrics.dart';
 
 
 @Component(
@@ -60,6 +61,7 @@ class WithdrawFundsComp implements ShadowRootAware {
 
   void withdrawFunds (Event e) {
     print("i want to withdraw $selectedValue €");
+    GameMetrics.logEvent(GameMetrics.REFUND, {"value": selectedValue});
     (querySelector("#withdrawFundsButton") as ButtonElement).disabled = true;
     _paymentService.withdrawFunds(selectedValue)
       .then((_) {

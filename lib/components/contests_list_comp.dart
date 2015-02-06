@@ -7,6 +7,7 @@ import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/models/money.dart';
 
 @Component(
     selector: 'contests-list',
@@ -225,8 +226,8 @@ class ContestsListComp {
             contestsListFiltered = contestsListFiltered.where((contest) => contest.name.toUpperCase().contains(value.toUpperCase())).toList();
           break;
           case "FILTER_ENTRY_FEE":
-            contestsListFiltered = contestsListFiltered.where((contest) =>  contest.entryFee >= int.parse(value[0].split('.')[0]) &&
-                                                                            contest.entryFee <= int.parse(value[1].split('.')[0])).toList();
+            contestsListFiltered = contestsListFiltered.where((contest) =>  contest.entryFee >= new Money.fromValue(int.parse(value[0].split('.')[0])) &&
+                                                                            contest.entryFee <= new Money.fromValue(int.parse(value[1].split('.')[0]))).toList();
           break;
           case "FILTER_TIER":
             contestsListFiltered = contestsListFiltered.where((contest) => value.contains(contest.tier)).toList();

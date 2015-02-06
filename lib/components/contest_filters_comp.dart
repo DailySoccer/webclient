@@ -226,7 +226,7 @@ class ContestFiltersComp implements ShadowRootAware {
     int maxLimit = 1;
     if(_contestList != null) {
       _contestList.forEach( (contest) {
-        maxLimit = max(contest.entryFee, maxLimit);
+        maxLimit = max(contest.entryFee.toInt(), maxLimit);
       });
     }
     return [0, maxLimit];

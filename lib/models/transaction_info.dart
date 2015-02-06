@@ -1,6 +1,7 @@
 library transaction_info;
 
 import 'package:webclient/services/datetime_service.dart';
+import 'package:webclient/models/money.dart';
 
 class TransactionInfo {
 
@@ -16,19 +17,19 @@ class TransactionInfo {
 
   String transactionDescription;
   String type;
-  double value;
+  Money value;
   DateTime createdAt;
   String transactionID;
 
 
   // Estado del balance después de aplicar la transaction
-  double balance;
+  Money balance;
 
   String get formattedDate => DateTimeService.formatDateTimeDayHour(createdAt);
 
   TransactionInfo.fromJsonObject(Map jsonMap) {
     type = jsonMap["type"];
-    value = double.parse(jsonMap["value"]);
+    value = new Money.fromJsonObject(jsonMap["value"]);
     transactionDescription = transactionTypes[type];
     transactionID = jsonMap["accountingTranId"];
     createdAt = DateTimeService.fromMillisecondsSinceEpoch(int.parse(jsonMap["createdAt"]));

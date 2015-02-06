@@ -7,6 +7,7 @@ import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/contests_service.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/loading_service.dart';
+import 'package:webclient/utils/html_utils.dart';
 import 'package:webclient/models/contest_entry.dart';
 import 'dart:html';
 
@@ -64,6 +65,23 @@ class ViewContestEntryComp {
 
   void goToParent() {
     _router.go(_routeProvider.parameters["parent"] , {});
+  }
+
+  void confirmContestCancellation(){
+    modalShow(
+                "¡Atención!",
+                contest.entryFee > 0 ?
+                  "Vas a cancelar tu participación en el torneo<br><br>La cuota de inscripción de ${contest.entryFee}€ será devuelta a tu monedero si decides abandonar.<br><br>¿Estás seguro?<br><br>" :
+                  "Vas a cancelar tu participación en el torneo<br><br>¿Estás seguro?<br><br>",
+                onOk: "Si",
+                onCancel: "No"
+             )
+             .then((resp){
+                if(resp) {
+                  cancelContestEntry();
+                }
+              });
+
   }
 
   void cancelContestEntry() {

@@ -63,8 +63,7 @@ abstract class ServerService {
   void        subscribe(dynamic id, {Function onSuccess, Function onError});
 
   // Debug
-  Future<Map> isSimulatorActivated();
-  Future<Map> getCurrentDate();
+  Future<Map> getSimulatorState();
 }
 
 @Injectable()
@@ -169,12 +168,8 @@ class DailySoccerServer implements ServerService {
     return _innerServerCall("${HostServer.url}/get_soccer_player_info/$templateSoccerPlayerId");
   }
 
-  Future<Map> isSimulatorActivated() {
-    return _innerServerCall("${HostServer.url}/admin/is_simulator_activated", retryTimes: 0);
-  }
-
-  Future<Map> getCurrentDate() {
-    return _innerServerCall("${HostServer.url}/current_date", retryTimes: 0);
+  Future<Map> getSimulatorState() {
+    return _innerServerCall("${HostServer.url}/admin/get_simulator_state", retryTimes: 0);
   }
 
   Future<Map> getScoringRules() {

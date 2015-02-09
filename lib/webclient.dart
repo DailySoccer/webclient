@@ -1,6 +1,7 @@
 library webclient;
 
 import 'dart:html';
+import 'dart:async';
 import 'package:angular/angular.dart';
 import 'package:angular/routing/module.dart';
 
@@ -16,6 +17,8 @@ import 'package:webclient/services/contests_service.dart';
 import 'package:webclient/services/soccer_player_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/scoring_rules_service.dart';
+import 'package:webclient/services/payment_service.dart';
+import 'package:webclient/services/prizes_service.dart';
 
 import 'package:webclient/components/landing_page_1_slide_comp.dart';
 
@@ -45,6 +48,11 @@ import 'package:webclient/components/account/edit_personal_data_comp.dart';
 import 'package:webclient/components/account/remember_password_comp.dart';
 import 'package:webclient/components/account/change_password_comp.dart';
 import 'package:webclient/components/account/verify_account_comp.dart';
+import 'package:webclient/components/account/payment_comp.dart';
+import 'package:webclient/components/account/payment_response_comp.dart';
+import 'package:webclient/components/account/add_funds_comp.dart';
+import 'package:webclient/components/account/withdraw_funds_comp.dart';
+import 'package:webclient/components/account/transaction_history_comp.dart';
 
 import 'package:webclient/components/my_contests_comp.dart';
 import 'package:webclient/components/view_contest/view_contest_entry_comp.dart';
@@ -58,7 +66,8 @@ import 'package:webclient/components/enter_contest/lineup_selector_comp.dart';
 import 'package:webclient/components/enter_contest/soccer_players_list_comp.dart';
 import 'package:webclient/components/enter_contest/soccer_players_filter_comp.dart';
 import 'package:webclient/components/enter_contest/matches_filter_comp.dart';
-import 'package:webclient/components/enter_contest/soccer_player_info_comp.dart';
+
+import 'package:webclient/components/enter_contest/soccer_player_stats_comp.dart';
 
 import 'package:webclient/components/legalese_and_help/help_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/legal_info_comp.dart';
@@ -67,9 +76,12 @@ import 'package:webclient/components/legalese_and_help/policy_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/beta_info_comp.dart';
 
 import 'package:webclient/utils/host_server.dart';
-import 'package:webclient/template_cache.dart';
-import 'dart:async';
 import 'package:webclient/utils/js_utils.dart';
+
+import 'package:webclient/utils/noshim.dart';
+import 'package:angular/core_dom/module_internal.dart';
+
+import 'package:webclient/template_cache.dart';
 
 class WebClientApp extends Module {
 
@@ -85,6 +97,10 @@ class WebClientApp extends Module {
     // No usamos animacion -> podemos quitar esto
     bind(CompilerConfig, toValue:new CompilerConfig.withOptions(elementProbeEnabled: false));
 
+    // Disable CSS shim
+    bind(PlatformJsBasedShim, toImplementation: PlatformJsBasedNoShim);
+    bind(DefaultPlatformShim, toImplementation: DefaultPlatformNoShim);
+
     bind(ExceptionHandler, toImplementation: LoggerExceptionHandler);
     bind(ServerService, toImplementation: DailySoccerServer);
 
@@ -99,6 +115,8 @@ class WebClientApp extends Module {
     bind(ContestsService);
     bind(SoccerPlayerService);
     bind(ScoringRulesService);
+    bind(PaymentService);
+    bind(PrizesService);
 
     bind(FormAutofillDecorator);
     bind(AutoFocusDecorator);
@@ -142,12 +160,18 @@ class WebClientApp extends Module {
     bind(SoccerPlayersFilterComp);
     bind(MatchesFilterComp);
     bind(LineupSelectorComp);
-    bind(SoccerPlayerInfoComp);
+
+    bind(SoccerPlayerStatsComp);
 
     bind(ChangePasswordComp);
     bind(RememberPasswordComp);
     bind(UserProfileComp);
     bind(EditPersonalDataComp);
+    bind(PaymentComp);
+    bind(PaymentResponseComp);
+    bind(AddFundsComp);
+    bind(WithdrawFundsComp);
+    bind(TransactionHistoryComp);
 
     bind(VerifyAccountComp);
 
@@ -187,7 +211,12 @@ class WebClientApp extends Module {
       )
       ,'change_password': ngRoute(
           path: '/change_password',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
+          preEnter: (RoutePreEnterEvent e) {
+            if (ProfileService.instance.isLoggedIn) {
+              ProfileService.instance.logout();
+            }
+            _preEnterPage(e, router, visibility: _ALWAYS);
+          },
           viewHtml: '<change-password></change-password>'
       )
       ,'help_info': ngRoute(
@@ -225,6 +254,37 @@ class WebClientApp extends Module {
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
           viewHtml: '<edit-personal-data></edit-personal-data>'
       )
+      ,'payment': ngRoute(
+          path: '/payment',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
+          viewHtml: '<payment></payment>',
+          mount: {
+            'response': ngRoute(
+                path: '/response/:result',
+                viewHtml: '<payment-response></payment-response>')
+          }
+      )
+      ,'add_funds': ngRoute(
+          path: '/add_funds',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
+          viewHtml: '<add-funds></add-funds>',
+          mount: {
+            'response': ngRoute(
+                path: '/response/:result',
+                preEnter: (RoutePreEnterEvent e) => _preEnterPagePayment(e, router),
+                viewHtml: '<payment-response></payment-response>')
+          }
+      )
+      ,'withdraw_funds': ngRoute(
+          path: '/withdraw_funds',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
+          viewHtml: '<withdraw-funds></withdraw-funds>'
+      )
+      ,'transaction_history': ngRoute(
+          path: '/transaction_history',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
+          viewHtml: '<transaction-history></transaction-history>'
+      )
       ,'lobby': ngRoute(
           path: '/lobby',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
@@ -255,9 +315,9 @@ class WebClientApp extends Module {
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
           viewHtml: '<enter-contest></enter-contest>',
           mount: {
-            'soccer_player_info': ngRoute(
-              path: '/soccer_player_info/:instanceSoccerPlayerId',
-              viewHtml: '<soccer-player-info></soccer-player-info>')
+            'soccer_player_stats': ngRoute(
+              path: '/soccer_player_stats/:instanceSoccerPlayerId/selectable/:selectable',
+              viewHtml: '<soccer-player-stats></soccer-player-stats>')
           }
       )
       ,'view_contest_entry': ngRoute(
@@ -280,6 +340,16 @@ class WebClientApp extends Module {
       }]);
     }
     return completer.future;
+  }
+
+  void _preEnterPagePayment(RoutePreEnterEvent event, Router router) {
+    if (event.parameters["result"] == 'success' && window.localStorage.containsKey("add_funds_success")) {
+      window.location.assign(window.localStorage["add_funds_success"]);
+
+      event.allowEnter(_waitingjQueryReady(() {
+        return false;
+      }));
+    }
   }
 
   void _preEnterPage(RoutePreEnterEvent event, Router router, {int visibility}) {

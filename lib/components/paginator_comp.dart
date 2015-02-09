@@ -14,6 +14,13 @@ class PaginatorComp implements DetachAware {
   @NgCallback('on-page-change')
   Function onPageChange;
 
+  @NgOneWay('items-per-page')
+  void set itemsPerPageCount(int value) {
+    if(value == null) {
+      _options["itemsPerPage"] = value;
+    }
+  }
+
   @NgOneWay('list-length')
   void set listLength(int value) {
     if (value == null) {

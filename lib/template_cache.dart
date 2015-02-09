@@ -4,6 +4,125 @@ library template_cache;
 import 'package:angular/angular.dart';
 
 primeTemplateCache(TemplateCache tc) {
+tc.put("packages/webclient/components/account/add_funds_comp.html", new HttpResponse(200, r"""<div id="addFundsContent">
+
+  <div class="block-dark-header">AÑADIR FONDOS</div>
+
+  <div>
+    <div class="description">
+      <p id="descriptionTip1">Para jugar a Epic Eleven con dinero real, necesitas añadir fondos a tu cuenta.</p>
+      <p id="descriptionTip2">No te preocupes, prodrás retirarlo cuando quieras de forma gratuita.</p>
+    </div>
+    <div class="add-founds-box">
+      <p>Por favor, deposita al menos 10€ para continuar</p>
+      <div class="money-selector">
+        <div class="money-element">
+          <input type="radio" name="money-radio" id="firstOffer" value="10"><label for="firstOffer">10€</label>
+        </div>
+        <div class="money-element">
+          <input type="radio" name="money-radio" id="secondOffer" value="25" checked="checked"><label for="secondOffer">25€</label>
+        </div>
+        <div class="money-element">
+          <input type="radio" name="money-radio" id="thirdOffer" value="50"><label for="thirdOffer">50€</label>
+        </div>
+        <div class="money-element custom-money-element">
+          <input type="radio" name="money-radio" id="customEuros">
+          <input type="number" id="customEurosAmount" value="10"><label for="customEuros">€</label>
+        </div>
+      </div>
+      <h2 class="paypal-info">Depositar <span id="selectedAmountInfo">25€</span> a Fantasy Sports Games SL vía <img src="images/markPaypalMed.jpg"></h2>
+      <p class="paypal-info">Puedes usar tu tarjeta de crédito o tu cuenta de PayPal</p>
+      <div class="button-wrapper"><button class="add-funds-button" id="addFundsButton">Añadir fondos</button></div>
+    </div>
+  </div>
+  <div class="need-help-box">
+    <p id="need-help-text">¿Necesitas ayuda?</p>
+    <p id="need-help-email">soporte@epiceleven.com</p>
+  </div>
+  <div class="pay-faq-block">
+    <h1 class="pay-faq-title">Preguntas frecuentes sobre el pago</h1>
+    <div class="toogle-block">
+      <input type="checkbox" id="rule1" class="toggle">
+      <label for="rule1">Por qué estoy pagando exactamente</label>
+      <div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mollis placerat leo quis pellentesque. Proin sollicitudin vel felis vulputate varius. Aenean non ante nec dolor sagittis ornare sit amet vel diam. Etiam eu dui at odio tempor eleifend. Nunc urna justo, volutpat sed mollis efficitur, venenatis id purus. Fusce elementum tellus in ligula maximus, in aliquet erat tincidunt. Aenean mollis sollicitudin tincidunt. Etiam ac velit eu erat placerat condimentum. Donec lorem tortor, convallis pretium finibus eu, euismod eget dolor. </p>
+      </div>
+    </div>
+    <div class="toogle-block">
+      <input type="checkbox" id="rule2" class="toggle">
+      <label for="rule2">¿Cuánto puedo ganar?</label>
+      <div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mollis placerat leo quis pellentesque. Proin sollicitudin vel felis vulputate varius. Aenean non ante nec dolor sagittis ornare sit amet vel diam. Etiam eu dui at odio tempor eleifend. Nunc urna justo, volutpat sed mollis efficitur, venenatis id purus. Fusce elementum tellus in ligula maximus, in aliquet erat tincidunt. Aenean mollis sollicitudin tincidunt. Etiam ac velit eu erat placerat condimentum. Donec lorem tortor, convallis pretium finibus eu, euismod eget dolor. </p>
+      </div>
+    </div>
+    <div class="toogle-block">
+      <input type="checkbox" id="rule3" class="toggle">
+      <label for="rule3">¿Es este juego legal en España y la Unión Europea?</label>
+      <div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mollis placerat leo quis pellentesque. Proin sollicitudin vel felis vulputate varius. Aenean non ante nec dolor sagittis ornare sit amet vel diam. Etiam eu dui at odio tempor eleifend. Nunc urna justo, volutpat sed mollis efficitur, venenatis id purus. Fusce elementum tellus in ligula maximus, in aliquet erat tincidunt. Aenean mollis sollicitudin tincidunt. Etiam ac velit eu erat placerat condimentum. Donec lorem tortor, convallis pretium finibus eu, euismod eget dolor. </p>
+      </div>
+    </div>
+  </div>
+  <ng-view></ng-view>
+  <!--div class="default-header-text"> MI CUENTA </div>
+  <div class="blue-separator"></div>
+  <div class="profile-content">
+
+    <div class="personal-data">
+      <div class="data-header">
+        <span class="data-header-title">INFORMACION PERSONAL</span>
+        <div class="button-wrapper"><button class="action-button" ng-click="editPersonalData()">EDITAR</button></div>
+      </div>
+      <div class="bloque-sm">
+        <div class="data-row"><span class="data-key">Nombre personal:</span><span class="data-value">{{userData.firstName + ' ' + userData.lastName}}</span></div>
+        <div class="data-row"><span class="data-key">Nombre de usuario:</span><span class="data-value">{{userData.nickName}}</span></div>
+        <div class="data-row"><span class="data-key">Correo electrónico:</span><span class="data-value">{{userData.email}}</span></div>
+        <div class="data-row"><span class="data-key">Contraseña:</span><span class="data-value">********</span></div>
+      </div>
+      <!--
+      <div class="bloque-sm">
+        <div class="data-row"><span class="data-key">Pais:</span><span class="data-value">&lt; Pais &gt;</span></div>
+        <div class="data-row"><span class="data-key">Region:</span><span class="data-value">&lt; Region &gt;</span></div>
+        <div class="data-row"><span class="data-key">Ciudad:</span><span class="data-value">&lt; Ciudad &gt;</span></div>
+        <div class="data-row"><span class="data-key">Notificaciones:</span><span class="data-value">&lt; Notificaciones &gt;</span></div>
+      </div>
+      -->
+    <!--/div-->
+
+    <!--
+    <div class="pocket-data">
+      <div class="data-header">
+          <span class="data-header-title">MONEDERO</span>
+          <div class="button-wrapper">
+            <button class="action-button-transaction">TRANSACCIONES</button>
+            <button class="action-button-get-funds">RETIRAR FONDOS</button>
+          </div>
+       </div>
+      <div class="data-container-9">
+        <div class="data-row"><span class="data-key">Balance actual:</span><span class="data-value-balance">&lt;balance&gt;€</span></div>
+        <div class="data-row"><span class="data-key">Bonus pendientes:</span><span class="data-value">&lt;pending-bonuses&gt;€</span></div>
+      </div>
+      <div class="data-container-3">
+        <button class="add-funds-button">AÑADIR FONDOS</button>
+      </div>
+    </div>
+
+    <div class="epicpoints-data">
+      <div class="data-header"><span class="data-header-title">EPIC POINTS</span></div>
+      <div class="data-row">
+        <div class="data-column"><span class="data-key">E11P BALANCE:</span><span class="data-value">--€</span></div>
+        <div class="data-column"><span class="data-key">&lt;ulti-month&gt;:</span><span class="data-value">--€</span></div>
+      </div>
+      <div class="data-row">
+        <div class="data-column"><span class="data-key">THIS MONTH:</span><span class="data-value">--€</span></div>
+        <div class="data-column"><span class="data-key">&lt;penul-month&gt;:</span><span class="data-value">--€</span></div>
+        <div class="data-column"><a class="data-link" href="">¿Cómo gastar tus EPs?</a></div>
+      </div>
+    </div>
+    -->
+
+  <!--/div-->
+</div>"""));
 tc.put("packages/webclient/components/account/change_password_comp.html", new HttpResponse(200, r"""<div id="changePasswordRoot">
   <div id="changePasswordBox" class="main-box">
 
@@ -64,7 +183,7 @@ tc.put("packages/webclient/components/account/change_password_comp.html", new Ht
                   <!-- BUTTONS -->
                   <div class="input-group user-form-field">
                     <div class="new-row">
-                      <div class="buttons-wapper">
+                      <div class="buttons-wrapper">
                         <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">ENTRAR</button>
                         <button id="btnCancelLogin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCELAR</button>
                       </div>
@@ -91,7 +210,7 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
       <div class="content-field">
         <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">Nombre</span></div>
         <div class="control-wrapper">
-          <input id="txtName" type="text" ng-model="editedFirstName" placeholder="Nombre" class="form-control"  tabindex="1" auto-focus>
+          <input id="txtName" type="text" ng-model="editedFirstName" placeholder="Nombre" class="form-control"  tabindex="1">
         </div>
       </div>
       <!-- Apelidos -->
@@ -165,17 +284,17 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
 
         <div class="subscription-wrapper">
           <div class="subscription-label">NEWSLETTER/OFERTAS ESPECIALES</div>
-          <div class="check-wrapper"> <input type="checkbox" id="inputNewsletter"> </div>
+          <div class="check-wrapper"> <input type="checkbox" id="inputNewsletter" name="switchNewsletter"> </div>
         </div>
 
         <div class="subscription-wrapper">
           <div class="subscription-label">NOTIFICACIONES DE JUEGO</div>
-          <div class="check-wrapper"> <input type="checkbox"> </div>
+          <div class="check-wrapper"> <input type="checkbox" name="switchGameAlerts"> </div>
         </div>
 
         <div class="subscription-wrapper">
           <div class="subscription-label">NOTIFICACIONES DE TUS FICHAJES</div>
-          <div class="check-wrapper"> <input type="checkbox"> </div>
+          <div class="check-wrapper"> <input type="checkbox" name="switchsoccerPlayerAlerts"> </div>
         </div>
 
       </div>
@@ -269,7 +388,7 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
           <!-- BUTTONS -->
           <div class="input-group user-form-field">
             <div class="new-row">
-              <div class="buttons-wapper">
+              <div class="buttons-wrapper">
                 <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">REGÍSTRATE</button>
                 <button id="btnCancelJoin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCELAR</button>
              </div>
@@ -284,7 +403,7 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
           <!--
           Facebook stuff-->
           <div  class="user-form-field">
-            <div class="fb-button-wapper">
+            <div class="fb-button-wrapper">
               <fb:login-button scope="public_profile,email" size="large" onlogin="jsLoginFB()">
               </fb:login-button>
             </div>
@@ -348,7 +467,7 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
           <!-- BUTTONS -->
           <div class="user-form-field">
             <div class="new-row">
-              <div class="buttons-wapper">
+              <div class="buttons-wrapper">
                 <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">ENTRAR</button>
                 <button id="btnCancelLogin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCELAR</button>
               </div>
@@ -364,7 +483,7 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
 
           <!--Facebook stuff-->
           <div  class="user-form-field">
-            <div class="fb-button-wapper">
+            <div class="fb-button-wrapper">
               <fb:login-button scope="public_profile,email" size="large" onlogin="jsLoginFB()">
               </fb:login-button>
             </div>
@@ -381,6 +500,33 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
      FB.XFBML.parse();
    }
  </script>
+"""));
+tc.put("packages/webclient/components/account/payment_comp.html", new HttpResponse(200, r"""<div>
+  <a ng-click="checkoutPaypal('PRODUCT_1')"><img src="https://www.paypal.com/es_ES/ES/i/btn/btn_xpressCheckout.gif" align="left" style="margin-right:7px;"></a>
+  <ng-view></ng-view>
+</div>
+"""));
+tc.put("packages/webclient/components/account/payment_response_comp.html", new HttpResponse(200, r"""<modal>
+  <div id="paymentResponse" class="main-box">
+    <div class="panel">
+    
+      <div class="panel-heading">
+        <div class="panel-title paypal-success">Pago {{titleText}}</div>
+        <!--div class="panel-title paypal-cancel" login="">Pago cancelado</div-->
+        <button type="button" class="close">
+          <span class="glyphicon glyphicon-remove"></span>
+        </button>
+      </div>
+      <div class="panel-body">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+        Integer ornare blandit libero, a fringilla purus viverra et. 
+        Ut ac lorem enim. Ut finibus felis nulla, id maximus magna vulputate vitae. 
+        Sed vel venenatis metus. Curabitur fringilla lacus ultricies pulvinar convallis.
+      </div>
+    </div>
+  </div>
+  <!--h1>Payment Response: {{result}}</h1-->
+</modal>
 """));
 tc.put("packages/webclient/components/account/remember_password_comp.html", new HttpResponse(200, r"""<div id="rememberPasswordRoot" ng-show="!loadingService.isLoading">
   <div id="loginBox" class="main-box">
@@ -426,7 +572,7 @@ tc.put("packages/webclient/components/account/remember_password_comp.html", new 
           <!-- BUTTONS -->
           <div class="input-group user-form-field">
             <div class="new-row">
-              <div class="buttons-wapper">
+              <div class="buttons-wrapper">
                 <button type="submit" id="btnSubmit" name="RememberPassword" ng-disabled="!enabledSubmit" class="enter-button-half">ENVIAR</button>
                 <button id="btnCancelRemember" ng-click="navigateTo('login', {}, $event)" class="cancel-button-half">CANCELAR</button>
              </div>
@@ -446,15 +592,35 @@ tc.put("packages/webclient/components/account/remember_password_comp.html", new 
 
   </div>
 </div>"""));
+tc.put("packages/webclient/components/account/transaction_history_comp.html", new HttpResponse(200, r"""<div id="transactionHistory">
+  <div class="block-dark-header">
+    <div class="default-header-text">HISTORIAL DE TRANSACCIONES</div>
+  </div>
+  <div ng-repeat="transaction in transactions">
+    <div class="contest-small-light-text">
+      <span class="type">{{transaction.type}}</span>
+      <span class="value">{{transaction.value}}</span>
+      <span class="createdAt">{{transaction.formattedDate}}</span>
+      <span class="balance">{{transaction.balance}}</span>
+    </div>
+  </div>
+</div>
+"""));
 tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpResponse(200, r"""<div id="viewProfileContent">
-  <div class="default-header-text"> MI CUENTA </div>
-  <div class="blue-separator"></div>
+  <!--div class="default-header-text"> MI CUENTA </div-->
+  <!--div class="blue-separator"></div-->
   <div class="profile-content">
 
     <div class="personal-data">
       <div class="data-header">
-        <span class="data-header-title">INFORMACION PERSONAL</span>
+        <span class="data-header-title">MI CUENTA</span>
+        <div class="close-profile">
+          <button type="button" class="close" ng-click="closeProfile()">
+            <span class="glyphicon glyphicon-remove"></span>
+          </button>
+        </div>
         <div class="button-wrapper"><button class="action-button" ng-click="editPersonalData()">EDITAR</button></div>
+        
       </div>
       <div class="bloque-sm">
         <div class="data-row"><span class="data-key">Nombre personal:</span><span class="data-value">{{userData.firstName + ' ' + userData.lastName}}</span></div>
@@ -471,22 +637,21 @@ tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpR
       </div>
       -->
     </div>
-
-    <!--
+    
     <div class="pocket-data">
       <div class="data-header">
           <span class="data-header-title">MONEDERO</span>
           <div class="button-wrapper">
-            <button class="action-button-transaction">TRANSACCIONES</button>
-            <button class="action-button-get-funds">RETIRAR FONDOS</button>
+            <button class="action-button-transaction" ng-click="goTransactions()">TRANSACCIONES</button>
+            <button class="action-button-get-funds" ng-click="goWithdrawFounds()">RETIRAR FONDOS</button>
           </div>
        </div>
       <div class="data-container-9">
-        <div class="data-row"><span class="data-key">Balance actual:</span><span class="data-value-balance">&lt;balance&gt;€</span></div>
-        <div class="data-row"><span class="data-key">Bonus pendientes:</span><span class="data-value">&lt;pending-bonuses&gt;€</span></div>
+        <div class="data-row"><span class="data-key">Balance actual:</span><span class="data-value-balance">{{userData.balance}} €</span></div>
+        <!--div class="data-row"><span class="data-key">Bonus pendientes:</span><span class="data-value">&lt;pending-bonuses&gt;€</span></div-->
       </div>
       <div class="data-container-3">
-        <button class="add-funds-button">AÑADIR FONDOS</button>
+        <button class="add-funds-button" ng-click="goAddFounds()">AÑADIR FONDOS</button>
       </div>
     </div>
 
@@ -502,8 +667,31 @@ tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpR
         <div class="data-column"><a class="data-link" href="">¿Cómo gastar tus EPs?</a></div>
       </div>
     </div>
-    -->
+  </div>
+  
+  
+  
+</div>"""));
+tc.put("packages/webclient/components/account/withdraw_funds_comp.html", new HttpResponse(200, r"""<div id="withdrawFundsContent">
+  <div class="block-dark-header">RETIRAR FONDOS</div>
 
+  <div>
+    <div class="withdraw-founds-box">
+      <div class="data-header">
+        <span class="data-header-title">TU SALDO ES DE <span class="money"><span id="moneyAmount">{{userData.balance}}</span> €</span></span>
+      </div>
+      
+      <p>¿Cuánto dinero deseas retirar?</p>
+      <div class="money-element">
+        <input type="number" id="customEurosAmount"><label for="customEuros">€</label>
+      </div>
+      <p class="paypal-info">Sólo puedes retirar cantidades superiores a 20 €</p>
+      <div class="button-wrapper"><button class="withdraw-funds-button" id="withdrawFundsButton">Retirar fondos</button></div>
+    </div>
+  </div>
+  <div class="need-help-box">
+    <p id="need-help-text">¿Necesitas ayuda?</p>
+    <p id="need-help-email">soporte@epiceleven.com</p>
   </div>
 </div>"""));
 tc.put("packages/webclient/components/contest_filters_comp.html", new HttpResponse(200, r"""<div id="contestSortsFilters">
@@ -1108,68 +1296,6 @@ tc.put("packages/webclient/components/enter_contest/soccer_players_filter_comp.h
   </div>
 
   <input type="text" class="name-player-input-filter" placeholder="Buscar jugador" ng-model="nameFilter" />
-</div>"""));
-tc.put("packages/webclient/components/landing_page_1_slide_comp.html", new HttpResponse(200, r"""<div id="landingPageRoot">
-  <!-- Portada Versión Desktop -->
-  <div id="desktopContent" ng-if="!scrDet.isXsScreen" class="first-screen" style="height:{{screenHeight}}px">
-    <div class="screen-pattern" src="images/pattern.png"></div>
-
-    <div class="main-title-wrapper">
-
-      <div class="main-title">LIGAS FANTÁSTICAS SEMANALES</div>
-      <div class="main-sub-title">
-        Juega y gana cuando quieras, sin esperar al final de la temporada.
-      </div>
-      <div class="button-wrap">
-        <button type="button" class="button-play"  ng-click="buttonPressed('join')" id="playButton1">ÚNETE Y JUEGA GRATIS</button>
-      </div>
-      <div class="text-wrapper">
-
-        <div class="module-column">
-          <p class="icono-text">Compite en tantos torneos como quieras de Liga, Premier y Champions</p>
-        </div>
-
-        <div class="module-column">
-          <p class="icono-text">Crea tu equipo en segundos desde cualquier dispositivo</p>
-        </div>
-
-        <div class="module-column">
-          <p class="icono-text">Podrás ganar dinero en efectivo con pagos inmediatos</p>
-        </div>
-
-      </div>
-      <div class="modules-wrapper">
-        <div class="module-column">
-          <img src="images/iconsLeagues.png">
-        </div>
-        <div class="module-column">
-          <img src="images/iconsDevices.png">
-        </div>
-        <div class="module-column">
-          <img src="images/iconsPayment.png">
-        </div>
-      </div>
-
-    </div>
-    <div class="beta-label"><img src="images/beta.png"/></div>
-  </div>
-  <!-- END Portada Versión Desktop -->
-
-
-  <!-- Portada Versión Móvil -->
-  <div id="mobileContent" class="screen" style="height:{{screenHeight}}px">
-    <div class="content">
-      <p class="main-title-mobile">LIGAS FANTÁSTICAS <br> SEMANALES</p>
-      <p class="title-sup-text-mobile">COMPITE EN TANTOS TORNEOS COMO QUIERAS</p>
-      <p class="title-sup-text-mobile">CREA TU EQUIPO EN SEGUNDOS</p>
-      <p class="title-sup-text-mobile">Y GANA DINERO</p>
-      <div class="button-wrap">
-        <button type="button" class="button-play-mobile" ng-click="buttonPressed('join')" id="playButtonMobile">ÚNETE Y JUEGA GRATIS</button>
-      </div>
-    </div>
-    <div class="beta-label"><img src="images/beta.png"/></div>
-  </div>
-  <!-- END Portada Versión Móvil -->
 </div>"""));
 tc.put("packages/webclient/components/legalese_and_help/beta_info_comp.html", new HttpResponse(200, r"""<div id="betaComp">
    <div class="block-dark-header">
@@ -2066,9 +2192,6 @@ tc.put("packages/webclient/components/lobby_comp.html", new HttpResponse(200, r"
                   contest-count="contestCount">
   </contests-list>
 </div>
-
-<button class="btn-default" ng-click="verModalTestOKCancel()"> Click to try Modal</button>
-
 <!-- Punto de insercion de nuestra ruta hija contest-info -->
 <ng-view></ng-view>"""));
 tc.put("packages/webclient/components/modal_comp.html", new HttpResponse(200, r"""<div id="modalRoot" class="modal" tabindex="-1" role="dialog">

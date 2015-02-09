@@ -2,6 +2,7 @@ library enter_contest_comp;
 
 import 'dart:html';
 import 'dart:async';
+import 'dart:convert';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/contests_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
@@ -17,6 +18,8 @@ import "package:webclient/models/instance_soccer_player.dart";
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/utils/html_utils.dart';
+import 'package:webclient/services/profile_service.dart';
+import 'package:webclient/components/modal_comp.dart';
 
 @Component(
     selector: 'enter-contest',
@@ -24,6 +27,20 @@ import 'package:webclient/utils/html_utils.dart';
     useShadowDom: false
 )
 class EnterContestComp implements DetachAware {
+
+  static final String ERROR_RETRY_OP = "ERROR_RETRY_OP";
+  static final String ERROR_CONTEST_NOT_ACTIVE = "ERROR_CONTEST_NOT_ACTIVE";
+  static final String ERROR_USER_ALREADY_INCLUDED = "ERROR_USER_ALREADY_INCLUDED";
+  static final String ERROR_USER_BALANCE_NEGATIVE = "ERROR_USER_BALANCE_NEGATIVE";
+
+  // Errores de los que no tendríamos que informar
+  static final String ERROR_CONTEST_INVALID = "ERROR_CONTEST_INVALID";
+  static final String ERROR_CONTEST_FULL = "ERROR_CONTEST_FULL";
+  static final String ERROR_FANTASY_TEAM_INCOMPLETE = "ERROR_FANTASY_TEAM_INCOMPLETE";
+  static final String ERROR_SALARYCAP_INVALID = "ERROR_SALARYCAP_INVALID";
+  static final String ERROR_FORMATION_INVALID = "ERROR_FORMATION_INVALID";
+  static final String ERROR_OP_UNAUTHORIZED = "ERROR_OP_UNAUTHORIZED";
+  static final String ERROR_CONTEST_ENTRY_INVALID = "ERROR_CONTEST_ENTRY_INVALID";
 
   ScreenDetectorService scrDet;
   LoadingService loadingService;
@@ -49,7 +66,7 @@ class EnterContestComp implements DetachAware {
 
   bool contestInfoFirstTimeActivation = false;  // Optimizacion para no compilar el contest_info hasta que no sea visible la primera vez
 
-  EnterContestComp(this._routeProvider, this._router, this.scrDet, this._contestsService, this._flashMessage, this.loadingService) {
+  EnterContestComp(this._routeProvider, this._router, this.scrDet, this._contestsService, this.loadingService, this._profileService) {
     loadingService.isLoading = true;
     scrDet.scrollTo('#mainWrapper');
 
@@ -78,6 +95,10 @@ class EnterContestComp implements DetachAware {
           contestEntry.instanceSoccerPlayers.forEach((instanceSoccerPlayer) {
             addSoccerPlayerToLineup(instanceSoccerPlayer.id);
           });
+        }
+        else {
+          // TODO: ¿Únicamente restauramos el contestEntry anteriormente registrado si estamos creando uno nuevo?
+          restoreContestEntry();
         }
       })
       .catchError((error) {
@@ -272,7 +293,8 @@ class EnterContestComp implements DetachAware {
       return;
     }
 
-    _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
+    // Actualizamos el contestEntry, independientemente que estemos editando o creando
+    saveContestEntry();
 
     if (editingContestEntry) {
       _contestsService.editContestEntry(contestEntryId, lineupSlots.map((player) => player["id"]).toList())
@@ -285,19 +307,24 @@ class EnterContestComp implements DetachAware {
         .catchError((error) => _errorCreating(error));
     }
     else {
-      _contestsService.addContestEntry(contest.contestId, lineupSlots.map((player) => player["id"]).toList())
-        .then((contestId) {
-          //_teamConfirmed = true;
-          GameMetrics.logEvent(GameMetrics.TEAM_CREATED);
-          GameMetrics.peopleSet({"Last Team Created": new DateTime.now()});
-          GameMetrics.peopleSet({"Last Team Created (${contest.competitionType})": new DateTime.now()});
-
-          _router.go('view_contest_entry', { "contestId": contestId,
-                                             "parent": _routeProvider.parameters["parent"],
-                                             "viewContestEntryMode": contestId == contest.contestId? "created" : "swapped"});
-        })
-        .catchError((error) => _errorCreating(error));
-
+      if (contest.entryFee <= _profileService.user.balance) {
+        _contestsService.addContestEntry(contest.contestId, lineupSlots.map((player) => player["id"]).toList())
+          .then((contestId) {
+            GameMetrics.logEvent(GameMetrics.TEAM_CREATED);
+            GameMetrics.logEvent(GameMetrics.ENTRY_FEE, {"value": contest.entryFee});
+            _router.go('view_contest_entry', {
+                                "contestId": contestId,
+                                "parent": _routeProvider.parameters["parent"],
+                                "viewContestEntryMode": contestId == contest.contestId? "created" : "swapped"
+                                 });
+          })
+          .catchError((error) => _errorCreating(error));
+      }
+      else {
+        // Registramos dónde tendría que navegar al tener éxito en "add_funds"
+        window.localStorage["add_funds_success"] = window.location.href;
+        _router.go("add_funds", {});
+      }
     }
   }
 
@@ -305,8 +332,13 @@ class EnterContestComp implements DetachAware {
     if (error.isRetryOpError) {
       _retryOpTimer = new Timer(const Duration(seconds:3), () => createFantasyTeam());
     }
+    else if (error.responseError.contains(ERROR_USER_ALREADY_INCLUDED)) {
+      _router.go('view_contest_entry', { "contestId": contestId,
+                                         "parent": _routeProvider.parameters["parent"],
+                                         "viewContestEntryMode": "created" });
+    }
     else {
-      _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
+      _showMsgError(error);
     }
   }
 
@@ -338,13 +370,59 @@ class EnterContestComp implements DetachAware {
   }
 
   void onRowClick(String soccerPlayerId) {
-    _router.go("enter_contest.soccer_player_info",  { "instanceSoccerPlayerId": soccerPlayerId });
+    ModalComp.open(_router, "enter_contest.soccer_player_stats", { "instanceSoccerPlayerId":soccerPlayerId, "selectable":isSlotAvailableForSoccerPlayer(soccerPlayerId)}, addSoccerPlayerToLineup);
+  }
+
+  Map<String, Map> errorMap = {
+    ERROR_CONTEST_NOT_ACTIVE: {
+        "title"   : "Torneo en vivo",
+        "generic" : "No es posible entrar en un torneo que ya ha comenzado.",
+        "editing" : "No es posible modificar un equipo cuando el torneo ha comenzado."
+    },
+    // TODO: Avisamos al usuario de que no dispone del dinero suficiente pero, cuando se integre la branch "paypal-ui", se le redirigirá a "añadir fondos"
+    ERROR_USER_BALANCE_NEGATIVE: {
+      "title"   : "Balance insuficiente",
+      "generic" : "Necesitas tener dinero suficiente en tu cuenta para poder participar en este torneo."
+    },
+    "_ERROR_DEFAULT_": {
+        "title"   : "Aviso",
+        "generic" : "Ha sucedido un error. No es posible entrar en el torneo.",
+        "editing" : "Ha sucedido un error. No es posible modificar el equipo."
+    },
+  };
+
+  void _showMsgError(ServerError error) {
+    String keyError = errorMap.keys.firstWhere( (key) => error.responseError.contains(key), orElse: () => "_ERROR_DEFAULT_" );
+    modalShow(
+        errorMap[keyError]["title"],
+        (editingContestEntry && errorMap[keyError].containsKey("editing")) ? errorMap[keyError]["editing"] : errorMap[keyError]["generic"]
+    )
+    .then((resp) {
+      if (keyError == ERROR_CONTEST_NOT_ACTIVE) {
+        _router.go(_routeProvider.parameters["parent"], {});
+      }
+    });
+  }
+
+  void saveContestEntry() {
+    window.localStorage[contest.contestId] = JSON.encode(lineupSlots.map((player) => player["id"]).toList());
+  }
+
+  void restoreContestEntry() {
+    if (window.localStorage.containsKey(contest.contestId)) {
+      List contestEntry = JSON.decode(window.localStorage[contest.contestId]);
+      contestEntry.forEach((id) {
+        addSoccerPlayerToLineup(id);
+      });
+
+    }
   }
 
   Router _router;
   RouteProvider _routeProvider;
 
   ContestsService _contestsService;
+  ProfileService _profileService;
   FlashMessagesService _flashMessage;
 
   var _streamListener;

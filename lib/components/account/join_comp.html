@@ -24,12 +24,12 @@
           <div class="user-form-field">
             <!-- Description -->
             <div class="new-row bottom-separation-10">
-              <div class="small-text">Tu nombre de usuario debe tener al menos {{MIN_NICKNAME_LENGTH}} caracteres.</div>
+              <div class="small-text">Tu nombre de usuario debe tener entre {{MIN_NICKNAME_LENGTH}} y {{MAX_NICKNAME_LENGTH}} caracteres.</div>
             </div>
             <!-- Field Input -->
             <div id="nickNameInputGroup" class="input-group">
               <span class="input-group-addon"><div class="glyphicon glyphicon-user"></div></span>
-              <input id="nickName" name="NickName" type="text" ng-model="theNickName" placeholder="Nombre de usuario" class="form-control" tabindex="1" autocapitalize="off" auto-focus>
+              <input id="nickName" name="NickName" type="text" ng-model="theNickName" placeholder="Nombre de usuario" class="form-control" maxlength="{{MAX_NICKNAME_LENGTH}}" tabindex="1" autocapitalize="off" auto-focus>
             </div>
             <!-- Error label -->
             <div class="new-row">

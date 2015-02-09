@@ -19,6 +19,7 @@ class JoinComp implements ShadowRootAware {
 
   int MIN_PASSWORD_LENGTH = 8;
   int MIN_NICKNAME_LENGTH = 4;
+  int MAX_NICKNAME_LENGTH = 30;
 
   String firstName  = "";
   String lastName   = "";
@@ -77,14 +78,14 @@ class JoinComp implements ShadowRootAware {
     passwordElement   = _rootElement.querySelector("#passwordInputGroup");
     rePasswordElement = _rootElement.querySelector("#rePasswordInputGroup");
 
-    nicknameError = _rootElement.querySelector("#nickNameError");
-    nicknameError.parent.style.display = 'none';
+    nicknameError = _rootElement.querySelector("#nickNameError")
+        ..parent.style.display = 'none';
 
-    emailError = _rootElement.querySelector("#emailError");
-    emailError.parent.style.display = 'none';
+    emailError = _rootElement.querySelector("#emailError")
+        ..parent.style.display = 'none';
 
-    passwordError = _rootElement.querySelector("#passwordError");
-    passwordError.parent.style.display = 'none';
+    passwordError = _rootElement.querySelector("#passwordError")
+        ..parent.style.display = 'none';
     //_scrDet.scrollTo('.panel-heading', offset: 0, duration:  500, smooth: true, ignoreInDesktop: false);
   }
 

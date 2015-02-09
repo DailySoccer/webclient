@@ -10,7 +10,7 @@ import 'dart:async';
 @Component(
     selector: 'main-menu-slide',
     useShadowDom: false,
-    exportExpressions: const ["profileService.isLoggedIn"]
+    exportExpressions: const ["profileService.user"]
 )
 class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
 
@@ -31,7 +31,7 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
   }
 
   @override void onShadowRoot(emulatedRoot) {
-    _scope.watch("profileService.isLoggedIn", _monitorChanges, canChangeModel: false);
+    _scope.watch("profileService.user", _monitorChanges, canChangeModel: false);
   }
 
   void _monitorChanges(currentVal, prevVal) {
@@ -77,7 +77,19 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
     ''';
 
     _rootElement.setInnerHtml(finalHtml, treeSanitizer: NULL_TREE_SANITIZER);
+
+    if (profileService.isLoggedIn) {
+      restrictUserNameWidth();
+    }
   }
+
+  void  restrictUserNameWidth() {
+      Element userNameElement = _rootElement.querySelector('#menuUser');
+      if (userNameElement != null) {
+        userNameElement.text = trimStringToPx(userNameElement, _maxNicknameWidth);
+      }
+  }
+
 
   void _setUpSlidingMenu() {
 
@@ -210,10 +222,16 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
     if (!profileService.isLoggedIn) {
       return "";
     }
-
-    return profileService.user.nickName.length > _maxNicknameLength ? profileService.user.nickName.substring(0, _maxNicknameLength-3) + "..." :
-                                                                      profileService.user.nickName;
+    return profileService.user.nickName;
   }
+
+  String get _userBalance {
+    if (profileService.user == null) {
+      return "0";
+    }
+    return profileService.user.balance.toString();
+  }
+
 
   String _getNotLoggedInHtml() {
     return '''
@@ -257,19 +275,27 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
           <li highlights="my_contests"><a  id="menuMyContests" destination="my_contests">Mis torneos</a></li>
           <li highlights="">           <a  id="menuPromos"     destination="beta_info">Promos</a></li>
           
-          <li highlights="user" class="right-menu">
+          <li highlights="user" class="right-menu username-dropdown-toggle" >
             <a id="menuUser" class="dropdown-toggle" data-toggle="dropdown">${_userNickName}</a>
             <ul class="dropdown-menu">
               <li><a id="menuUserMyAccount"        destination="user_profile">Mi cuenta</a></li>
-              <li><a id="menuUserAddFunds"         destination="beta_info">Añadir fondos</a></li>
-              <li><a id="menuUserHistory"          destination="beta_info">Historial de transacciones</a></li>
+              <li id="userBalanceIn"><a id="menuUserAddFunds-sm" destination="add_funds">Añadir fondos</a></li>
+              <li><a id="menuUserHistory"          destination="transaction_history">Historial de transacciones</a></li>
               <li><a id="menuUserReferencesCenter" destination="beta_info">Centro de referencias</a></li>
               <li><a id="menuUserClassification"   destination="beta_info">Clasificación</a></li>
               <li><a id="menuUserAyuda"            destination="help_info">Ayuda</a></li>
               <li><a id="menuUserLogOut"           destination="logout">Salir</a></li>
             </ul>
           </li>
-         <!--  <li class="right-menu"><span class="current-balance">35.000€</span><button class="add-funds-button">AÑADIR FONDOS</button></li> -->
+          <li id="userBalanceOut-sm" class="right-menu">
+            <div class="balance">
+              <span class="current-balance">${_userBalance}€</span>
+              <button class="add-funds-button" destination="add_funds">AÑADIR FONDOS</button>
+            <div>
+          </li>
+          <li id="userBalanceOut-xs" class="right-menu">
+            <a id="menuUserAddFunds-xs" destination="add_funds">Añadir fondos <span class="current-balance">${_userBalance}€</span></a>            
+          </li>
         </ul>
       </div>
     </div>
@@ -297,5 +323,5 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
 
   String _slideState = "hidden";
 
-  static final int _maxNicknameLength = 30;
+  static final int _maxNicknameWidth = 200;
 }

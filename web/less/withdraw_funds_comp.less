@@ -1,0 +1,97 @@
+#withdrawFundsContent {
+
+    padding-bottom: 40px;
+    
+	.block-dark {
+		background-color: @tramaBlue;
+		padding-bottom: 40px;
+	}
+	.block-light {
+		background-color: @white;
+		padding-bottom: 40px;
+	}
+	.block-dark-header {
+        .default-header-text();
+		background-color: @tramaBlue;
+        margin-bottom: 20px;
+	}
+    
+	.title {
+		.exo_light(20pt, @blueDark);
+		padding: 16px 10px 12px;
+		text-align: center;
+	}
+
+    .withdraw-founds-box {
+        .block-dark();
+        .make-border(1px, solid, @greyMed, 5px);
+        max-width: 808px;
+        margin: 0px auto;
+        padding-bottom: 20px;
+        text-align: center;
+      
+       .data-header{
+            padding: 10px 15px;
+            background-color: @blueDark;
+            .make-border(0px, solid, @white, 5px 5px 0px 0px);
+            .data-header-title {
+                .exo_light(16pt, @white);
+                @media (min-width: @screen-md-min ) {
+                    .exo_light(20pt, @white);
+                }
+                .money {
+                    color: @green;
+                }
+            }
+        }
+
+        .money-element {
+            .make-border(1px, solid, @greyMed, 5px);
+            background-color: @white;
+            .opensans_normal(12pt, @greyDark);
+            padding: 2px 15px 2px 0px;
+            display: inline-block;
+            
+            input[type="number"] {
+                width: 100px;
+                padding: 4px 10px;
+                .make-border(0, solid, @greyMed);
+            }
+            label {
+              margin-bottom: 0;
+            }
+        }
+  
+        p {
+		    .opensans_bold(10pt, @greyDark);
+            margin: 10px;
+        }
+        .button-wrapper{
+            height: 54px;
+            margin-top: 20px;
+        }
+        
+        button.withdraw-funds-button {
+            .btn-primary();
+            text-transform: uppercase;
+            padding: 15px 50px;
+        }
+    }
+    
+    .need-help-box {
+        .block-light();
+        .make-border(1px, solid, @greyMed, 5px);
+        max-width: 808px;
+        margin: 10px auto;
+        padding: 20px 40px;
+        text-align: center;
+        #need-help-text {
+		    .opensans_bold(10pt, @blueDark);
+            margin-bottom: 0px;
+        }
+        #need-help-email {
+		    .opensans_bold(10pt, @blueLight);
+        }
+    }
+}
+

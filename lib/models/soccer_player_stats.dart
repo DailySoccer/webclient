@@ -1,8 +1,8 @@
 library soccer_player_stats;
-
+import 'dart:core';
 import "package:webclient/models/soccer_team.dart";
-import 'package:webclient/services/contest_references.dart';
 import 'package:webclient/services/datetime_service.dart';
+import 'package:webclient/services/contest_references.dart';
 
 class SoccerPlayerStats {
   DateTime startDate;
@@ -12,6 +12,10 @@ class SoccerPlayerStats {
   int fantasyPoints;
   int playedMinutes;
 
+  Map<String, int> soccerPlayerStatValues = {};
+
+  List names = ["PLAYED_MINUTED", "FANTASY_POINTS" ,"GOLES", "TIROS", "PASES", "ASISTENCIAS", "REGATES", "RECUPERACIONES", "PERDIDAS_BALON", "FALTAS_RECIBIDAS", "FALTAS_COMETIDAS", "TARJETAS_AMARILLAS", "TARJETAS_ROJAS", "GOLES_ENCAJADOS", "PARADAS", "DESPEJES", "PENALTIS_DETENIDOS"];
+/*
   int goles;
   int tiros;
   int pases;
@@ -27,7 +31,7 @@ class SoccerPlayerStats {
   int paradas;
   int despejes;
   int penaltisDetenidos;
-
+*/
   SoccerPlayerStats.fromJsonObject(Map jsonMap, ContestReferences references) {
     startDate = jsonMap.containsKey("startDate") ? DateTimeService.fromMillisecondsSinceEpoch(jsonMap["startDate"]) : DateTimeService.now;
     optaCompetitionId = jsonMap.containsKey("optaCompetitionId") && (jsonMap["optaCompetitionId"] != null) ? jsonMap["optaCompetitionId"] : "";
@@ -38,6 +42,11 @@ class SoccerPlayerStats {
 
     int _getIntValue(String key) => (jsonMap.containsKey("statsCount") && jsonMap["statsCount"].containsKey(key)) ? jsonMap["statsCount"][key] : 0;
 
+    names.forEach((name) {
+
+      soccerPlayerStatValues[name] = _getIntValue(name);
+    });
+/*
     goles = _getIntValue("GOLES");
     tiros = _getIntValue("TIROS");
     pases = _getIntValue("PASES");
@@ -53,6 +62,7 @@ class SoccerPlayerStats {
     paradas = _getIntValue("PARADAS");
     despejes = _getIntValue("DESPEJES");
     penaltisDetenidos = _getIntValue("PENALTIS_DETENIDOS");
+*/
   }
 
   bool hasPlayed() => (playedMinutes > 0) || (fantasyPoints != 0);

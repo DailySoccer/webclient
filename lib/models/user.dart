@@ -8,6 +8,7 @@ class User {
   String lastName;
   String nickName;
   String email;
+  num balance;
 
   // Numero de veces que el usuario ha ganado un contest
   int wins;
@@ -36,12 +37,13 @@ class User {
 
   User _initFromJsonObject(Map jsonMap, ContestReferences references) {
     assert(userId.isNotEmpty);
-    firstName = jsonMap["firstName"];
-    lastName = jsonMap["lastName"];
+    firstName = (jsonMap.containsKey("firstName")) ? jsonMap["firstName"] : "";
+    lastName = (jsonMap.containsKey("lastName")) ? jsonMap["lastName"] : "";
     nickName = jsonMap["nickName"];
 
     email = (jsonMap.containsKey("email")) ? jsonMap["email"] : "<email: null>";
     wins = (jsonMap.containsKey("wins")) ? jsonMap["wins"] : 0;
+    balance = (jsonMap.containsKey("cachedBalance")) ? jsonMap["cachedBalance"] : 0.0;
     return this;
   }
 }

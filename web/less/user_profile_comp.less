@@ -2,21 +2,42 @@
 	.make-row(0);
 	.make-border(1px, none none none none, @blueDark);
 	background-color: @white;
+    //.make-md-column(6);
+    .clean-paddings();
 	@media (max-width: @screen-xs-max ) {
 		background-color: @greyUltraLight;
 	}
-
 	.data-header{
 		.make-row(0);
 		.clean-paddings();
-		padding: 0px 0px 15px 0px;
+        padding: 10px 0px;
+        .make-border(1px, dotted none none none, @blueDark);
+      
+        @media (max-width: @screen-sm-max) and (min-width: @screen-xs-max ) {
+            .make-border(1px, none none none none, @blueDark);
+        }
 		.data-header-title {
 			.exo_light(16pt, @blueDark);
 			@media (min-width: @screen-md-min ) {
-				.exo_bold(20pt, @blueDark);
+				.exo_light(20pt, @blueDark);
 			}			
 		}
 	}
+    
+    .personal-data {
+	   .data-header{
+		    padding: 10px 15px;
+            background-color: @blueDark;
+            .make-border(0px, solid, @white, 5px 5px 0px 0px);
+            .data-header-title {
+                .exo_light(16pt, @white);
+                @media (min-width: @screen-md-min ) {
+                    .exo_light(20pt, @white);
+                }			
+            }
+        }
+    }
+    
 	.button-wrapper {
 		height: 35px;
 		width: 50px;
@@ -26,14 +47,11 @@
 		.btn-default();
 		.pull-right();
 		.opensans_normal(10pt, @white);
-		//margin: 0 5px;
-		
 	}
 	.add-funds-button {
 		.btn-primary();
 		.pull-right();
 		.opensans_normal(10pt, @white);
-		//margin: 0 5px;
 	}
 
 	.data-key {
@@ -53,53 +71,75 @@
 		padding: 2px 5px;
 		border-radius: 5px;
 	}
-
 	.personal-data {
 		.make-xs-column(12);
-		.make-sm-column(12);
-		.make-md-column(6);	
-		.make-md-column-push(3);	
 		padding: 20px 15px;
 	
-		.data-header-title {
-			.hidden-xs();
-		}
+        @media (max-width: @screen-sm-max ) {
+            padding: 0px;
+            .bloque-sm {
+		        padding: 10px 15px;
+            }
+        }
+          
+        .data-header { 
+            .make-border(1px, none none none none, @blueDark, 5px 5px 0px 0px);
+            @media (max-width: @screen-xs-max ) {
+                margin-bottom: 32px;
+            }
+            @media (max-width: @screen-sm-max ) {
+                border-radius: 0px;
+            }
+            .close-profile {
+                @media (min-width: @screen-xs-max ) {
+                    .hidden();
+                }
+                .close span {
+                    color: @white;
+                }
+                float: right;
+            }
+            .button-wrapper{
+                @media (max-width: @screen-xs-max ) {
+                    position: absolute; 
+                    left: 0px;
+                    top: 53px;
+                    width: 100%;
+                    button {
+                        width: 92%;
+                        margin-left: 4%;
+                        margin-right: 4%;
+                    }
+                }
+            }
+        }
 		@media (max-width: @screen-xs-max )  {
 			.action-button {
 				.action-button();
-				width: 100%;
-			}
-		}
-		@media (min-width: @screen-sm-min ) {
-			//.make-border(1px, none none dotted none, @blueDark);
-			.bloque-sm {
-				.make-sm-column(6);
-				padding: 0;
-			}
-		}
-		@media (min-width: @screen-md-min ) {
-			//.make-border(1px, none dotted none none, @blueDark);
-			.bloque-sm {
-				.make-sm-column(12);
-				padding: 0;
 			}
 		}
 	}
 	.pocket-data {
 		.make-xs-column(12);
-		.make-sm-column(6);
-		padding: 20px 15px;
-
-		@media (min-width: @screen-sm-min ) {
-			.make-border(1px, none none none none, @blueDark);
-		}
-		@media (min-width: @screen-md-min ) {
-			.make-border(1px, none none dotted none, @blueDark);
-		}
+		//.make-sm-column(6);
+		.make-md-column(12);
+		padding: 0px 15px;
+      
+        @media (max-width: @screen-sm-max) and (min-width: @screen-xs-max ) {
+            .make-border(1px, dotted none none none, @blueDark);
+        }
+          
+        .data-header-title {
+            .make-xs-column(12);
+            .make-sm-column(5);
+		    .clean-paddings();
+        }
 		.button-wrapper {
 			display: inline-block;
-			float: right;
-
+            .make-xs-column(12);
+            .make-sm-column(7);
+		    .clean-paddings();
+            
 			.action-button-transaction {
 				.action-button();
 				float: left !important;
@@ -108,29 +148,27 @@
 			.action-button-get-funds {
 				.action-button();	
 				width: 49%;
-
-			}
-			@media (max-width: @screen-sm-max ) {
-				.make-xs-column(12);
-				padding: 0;
 			}
 		}
 	}
 
 	.epicpoints-data {
+        display: none !important;
 		.make-xs-column(12);
 		.make-sm-column(6);
-		padding: 20px 15px;
-
-		@media (min-width: @screen-sm-min ) {
-			.make-border(1px, none none none dotted, @blueDark);
-		}
-		@media (min-width: @screen-md-min ) {
-			.make-border(1px, none none none none, @blueDark);
-		}
+		.make-md-column(12);
+		//.make-sm-column(6);
+		padding: 0px 15px;
+        
+      
+        @media (max-width: @screen-sm-max) and (min-width: @screen-xs-max ) {
+            .make-border(1px, dotted none dotted dotted, @blueDark);
+            height: 170px;
+        }
+      
 		.data-column {
 			.make-xs-column(6);
-			.make-md-column(4);
+          
 			padding:0;
 			a {
 				.opensans_normal(8pt, @blueLight);
@@ -141,9 +179,12 @@
 	}
 	.data-row {
 		.make-row(0);
+        padding: 0px 5px;
 	}
-
-	
+    .bloque-sm {
+        padding: 5px 0px;
+    }
+    
 	.data-container-3 {
 		.make-xs-column(3);
 		padding:0;

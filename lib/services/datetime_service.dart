@@ -33,6 +33,10 @@ class DateTimeService {
     return date.difference(now);
   }
 
+  static String formatDateYear(DateTime date) {
+    return new DateFormat("yy", "es_ES").format(date);
+  }
+
   static String formatDateWithDayOfTheMonth(DateTime date) {
     return new DateFormat("EEE, d MMM", "es_ES").format(date);
   }
@@ -51,6 +55,10 @@ class DateTimeService {
 
   static String formatDateTimeLong(DateTime date) {
     return "${new DateFormat("E, dd/MM/yy HH:mm", "es_ES").format(date)}h";
+  }
+
+  static String formatDateTimeDayHour(DateTime date) {
+    return "${new DateFormat("dd/MM/yy HH:mm", "es_ES").format(date)}h";
   }
 
   static String formatTimeLeft(Duration timeLeft) {

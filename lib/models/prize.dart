@@ -53,17 +53,17 @@ class Prize {
     return ret;
   }
 
-  num getValue(int index) {
+  Money getValue(int index) {
     if (prizeType == FREE) {
-      return 0;
+      return new Money.zero();
     }
     else if (prizeType == WINNER) {
-      return (index == 0) ? values[0] : 0;
+      return (index == 0) ? values[0] : new Money.zero();
     }
     else if (prizeType == FIFTY_FIFTY) {
-      return (index < (maxEntries / 2)) ? values[0] : 0;
+      return (index < (maxEntries / 2)) ? values[0] : new Money.zero();
     }
-    return (index < values.length) ? values[index] : 0;
+    return (index < values.length) ? values[index] : new Money.zero();
   }
 
   List<Money> getValues() {

@@ -173,8 +173,8 @@ class Contest {
   }
 
   String getPrize(int index) {
-    int prizeValue = prize.getValue(index);
-    return (prizeValue > 0) ? "${prizeValue}€" : "_";
+    Money prizeValue = prize.getValue(index);
+    return (prizeValue.amount > 0) ? "${prizeValue}" : "_";
   }
 
   /*

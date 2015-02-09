@@ -33,7 +33,7 @@ class DateTimeService {
   }
 
   static String formatDateYear(DateTime date) {
-    return new DateFormat("yy", "es_ES").format(date);
+    return new DateFormat("yyyy", "es_ES").format(date);
   }
 
   static String formatDateWithDayOfTheMonth(DateTime date) {

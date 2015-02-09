@@ -14,8 +14,8 @@
     <div class="field-date">{{transaction.formattedDate}}</div>
     <div class="field-id">{{transaction.transactionID}}</div>
     <div class="field-concept">{{transaction.transactionDescription}}</div>
-    <div class="field-amount"><div class="money-label">IMPORTE: </div> {{transaction.value}}€ </div>
-    <div class="field-balance"><div class="money-label">SALDO: </div> {{transaction.balance}}€ </div>
+    <div class="field-amount"><div class="money-label">IMPORTE: </div> {{transaction.value}}</div>
+    <div class="field-balance"><div class="money-label">SALDO: </div> {{transaction.balance}}</div>
   </div>
 
   <paginator on-page-change="onPageChange(currentPage, itemsPerPage)" items-per-page="20" list-length="transactions.length"></paginator>

@@ -1,6 +1,7 @@
 library user;
 
 import 'package:webclient/services/contest_references.dart';
+import 'package:webclient/models/money.dart';
 
 class User {
   String userId;
@@ -8,7 +9,7 @@ class User {
   String lastName;
   String nickName;
   String email;
-  num balance;
+  Money balance;
 
   // Numero de veces que el usuario ha ganado un contest
   int wins;
@@ -43,7 +44,7 @@ class User {
 
     email = (jsonMap.containsKey("email")) ? jsonMap["email"] : "<email: null>";
     wins = (jsonMap.containsKey("wins")) ? jsonMap["wins"] : 0;
-    balance = (jsonMap.containsKey("cachedBalance")) ? jsonMap["cachedBalance"] : 0.0;
+    balance = jsonMap.containsKey("cachedBalance") ? new Money.fromJsonObject(jsonMap["cachedBalance"]) : new Money.zero();
     return this;
   }
 }

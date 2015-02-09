@@ -9,6 +9,7 @@ import 'package:webclient/models/transaction_info.dart';
 import 'package:webclient/services/server_service.dart';
 import 'package:logging/logging.dart';
 import 'package:webclient/utils/game_metrics.dart';
+import 'package:webclient/models/money.dart';
 
 
 @Injectable()
@@ -85,12 +86,12 @@ class ProfileService {
   Future<List<TransactionInfo>> getTransactionHistory() {
     return _server.getTransactionHistory()
         .then((jsonMap) {
-          double balance = 0.0;
+          Money balance = new Money.zero();
           return jsonMap["transactions"].map((jsonObject) {
             TransactionInfo transactionInfo = new TransactionInfo.fromJsonObject(jsonObject);
 
             // Calcular el balance de la transaccion
-            balance += transactionInfo.value;
+            balance = balance.plus(transactionInfo.value);
             transactionInfo.balance = balance;
 
             return transactionInfo;

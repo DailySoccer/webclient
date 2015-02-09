@@ -2,7 +2,6 @@ library contest_info_comp;
 
 import 'package:angular/angular.dart';
 import 'dart:html';
-import 'dart:math';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/contest_entry.dart';
 import 'package:webclient/models/prize.dart';

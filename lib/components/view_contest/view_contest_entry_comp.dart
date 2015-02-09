@@ -71,8 +71,8 @@ class ViewContestEntryComp {
   void confirmContestCancellation(){
     modalShow(
                 "¡Atención!",
-                contest.entryFee > 0 ?
-                  "Vas a cancelar tu participación en el torneo<br><br>La cuota de inscripción de ${contest.entryFee}€ será devuelta a tu monedero si decides abandonar.<br><br>¿Estás seguro?<br><br>" :
+                contest.entryFee.amount > 0 ?
+                  "Vas a cancelar tu participación en el torneo<br><br>La cuota de inscripción de ${contest.entryFee} será devuelta a tu monedero si decides abandonar.<br><br>¿Estás seguro?<br><br>" :
                   "Vas a cancelar tu participación en el torneo<br><br>¿Estás seguro?<br><br>",
                 onOk: "Si",
                 onCancel: "No"

@@ -22,6 +22,7 @@
 		.opensans_normal(10pt, @greyDark);
 	}
 }
+
 // Botones de cancelar concurso y volver
 .view-contest-entry-actions-wrapper {
 	.make-row(0);
@@ -32,22 +33,26 @@
 		padding-top: 10px;
 		padding-bottom: 10px;
 	}
-	.button-wrapper {
-		.make-xs-column(6);
-		padding: 0 10px;
-		height: 32px;
-		margin-top: 10px;		
-	}
 
-	.btn-cancel-contest {
-		.btn-block();
-		.btn-cancel();
-	}
-	.btn-back-contest {
-		.btn-block();
-		.btn-primary();
+	.button-box {
+		display:inline-block;
+		height: 30px;
+		min-width: 33%;
+		padding-left: 5px;
+		padding-right: 5px;
+
+		@media (max-width: @screen-xs-max) {
+			display: block;
+			margin: 10px 0 ;
+		}
+		button {			
+			.btn-block();
+			padding-left: 5px;
+			padding-right: 5px;
+		}
 	}
 }
+
 #viewContestEntry {
 	@media (min-width: @screen-sm-min) {
 		//padding-top: 20px;	// Quitar cuando haya mas componentes, usar un espaciador vertical

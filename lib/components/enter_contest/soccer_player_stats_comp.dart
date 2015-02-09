@@ -35,8 +35,9 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
 
   bool isGoalkeeper() => currentInfoData['fieldPos'] == "POR";
 
-  static List<String> goalKeeperStatsList   = ["PASES", "RECUPERACIONES", "PERDIDAS_BALON", "FALTAS_COMETIDAS", "TARJETAS_AMARILLAS", "TARJETAS_ROJAS", "GOLES_ENCAJADOS", "PARADAS", "DESPEJES", "PENALTIS_DETENIDOS"];
-  static List<String> commonPlayerStatsList = ["PASES", "RECUPERACIONES", "PERDIDAS_BALON", "FALTAS_COMETIDAS", "TARJETAS_AMARILLAS", "TARJETAS_ROJAS", "GOLES", "TIROS", "ASISTENCIAS", "REGATES", "FALTAS_RECIBIDAS"];
+  //Listas para las estadísticas ordenadas
+  static List<String> goalKeeperStatsList   = ["GOLES_ENCAJADOS", "PARADAS", "DESPEJES", "PENALTIS_DETENIDOS", "PASES", "RECUPERACIONES", "PERDIDAS_BALON", "FALTAS_COMETIDAS", "TARJETAS_AMARILLAS", "TARJETAS_ROJAS"];
+  static List<String> commonPlayerStatsList = ["GOLES", "TIROS", "PASES", "ASISTENCIAS", "REGATES", "RECUPERACIONES", "PERDIDAS_BALON", "FALTAS_COMETIDAS", "FALTAS_RECIBIDAS", "TARJETAS_AMARILLAS", "TARJETAS_ROJAS"];
 
   Map mappedFieldNames = {
                 "PASES"               : {"shortName" : "P",  "description" : 'Pases'},

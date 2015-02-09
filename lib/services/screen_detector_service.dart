@@ -1,10 +1,11 @@
 library screen_detector_service;
 
 import 'dart:html';
-import 'dart:math';
 import 'package:angular/angular.dart';
 import 'dart:async';
 import 'package:logging/logging.dart';
+import 'dart:math';
+import 'package:scroll/scroll.dart';
 
 @Injectable()
 class ScreenDetectorService {
@@ -69,6 +70,62 @@ class ScreenDetectorService {
     window.animationFrame.then(_detectNow);
   }
 
+  void easingScroll(String selector, {int offset: 0, int duration: 500, bool smooth : false, bool ignoreInDesktop: false}) {
+    Function easingFunction;
+    Easing easing;
+
+    // Por defecto NO se ignora en desktop, es decir, se hace en todas las versiones
+    if (ignoreInDesktop && isNotXsScreen) {
+      return;
+    }
+
+   int targetPosition = querySelector(selector).offsetTop + offset;
+
+    if (!smooth) {
+      window.scroll(0, targetPosition);
+    }
+    else {
+      easingFunction = Easing.getEasingFunction(easing);
+
+      // Total de Frames
+      int totalFrames = ( duration / (1000 / 60) ).round();
+      int actualFrame = 0;
+
+      // Posicion inicial de donde partimemos
+      num actualPosition = window.scrollY;
+      num currentTime = 0;
+      num startValue = 0;
+      num finalValue = null; // distance value;
+      bool directionDown = null;
+
+      if (targetPosition >= actualPosition) {
+        finalValue = targetPosition - actualPosition + offset;
+        directionDown = true;
+      } else {
+        finalValue = actualPosition - targetPosition - offset;
+        directionDown = false;
+      }
+
+      void animation(num elapsedTime) {
+
+        if (actualFrame < totalFrames) {
+          currentTime += 1000 / 60;
+
+          num positionInTime = easingFunction(currentTime, startValue, finalValue, duration);
+          window.scrollTo(0, ((directionDown) ? (actualPosition + positionInTime) : (actualPosition - positionInTime)).round());
+          actualFrame++;
+
+          // Cuando este termina el frame (16.66 ms) inmediatamente empezamos el siguiente.
+          window.animationFrame.then(animation);
+        }
+      }
+
+      // Llamamos a la función anidada de animación por primera vez.
+      _turnZone.runOutsideAngular(() => animation(0));
+    }
+  }
+
+/*
   void scrollTo(String selector, {int offset: 0, int duration: 500, bool smooth : false, bool ignoreInDesktop: false}) {
     // Por defecto NO se ignora en desktop, es decir, se hace en todas las versiones
     if (ignoreInDesktop && isNotXsScreen) {
@@ -115,7 +172,7 @@ class ScreenDetectorService {
       _turnZone.runOutsideAngular(() => animation(0));
     }
   }
-
+*/
   VmTurnZone _turnZone;
   StreamController mediaScreenWidthChangeController = new StreamController.broadcast();
   String _lastMessage;

@@ -29,6 +29,10 @@ class ProfileService {
     return _server.verifyPasswordResetToken(stormPathTokenId);
   }
 
+  Future<Map> verifyAccountToken(String stormPathTokenId) {
+    return _server.verifyAccountToken(stormPathTokenId);
+  }
+
   Future<Map> resetPassword(String password, String stormPathTokenId) {
     return _server.resetPassword(password, stormPathTokenId).then(_onLoginResponse);
   }

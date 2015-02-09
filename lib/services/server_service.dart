@@ -18,6 +18,7 @@ abstract class ServerService {
 
   void        cancelAllAndReload();
   void        setSessionToken(String sessionToken);
+  Future<Map> verifyAccountToken(String token);
   Future<Map> verifyPasswordResetToken(String token);
   Future<Map> resetPassword(String password, String stormPathTokenId);
   Future<Map> signup(String firstName, String lastName, String email, String nickName, String password);
@@ -82,6 +83,10 @@ class DailySoccerServer implements ServerService {
   DailySoccerServer(this._http);
 
   void setSessionToken(String sessionToken) { _sessionToken = sessionToken; }
+
+  Future<Map> verifyAccountToken(String token) {
+    return _innerServerCall("${HostServer.url}/verify_account_token", postData: {'token':token});
+  }
 
   Future<Map> verifyPasswordResetToken(String token) {
     return _innerServerCall("${HostServer.url}/verify_password_reset_token", postData: {'token':token});

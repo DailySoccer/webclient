@@ -32,7 +32,7 @@ class Prize {
     maxEntries = jsonMap["maxEntries"];
     entryFee = new Money.fromJsonObject(jsonMap["entryFee"]);
     // multipliers = jsonMap.containsKey("multipliers") ? jsonMap["multipliers"] : [];
-    values = jsonMap.containsKey("values") ? jsonMap["values"] : [];
+    values = jsonMap.containsKey("values") ? jsonMap["values"].map((jsonMap) => new Money.fromJsonObject(jsonMap)).toList() : [];
   }
 
   String get key => getKey(prizeType, maxEntries, entryFee);

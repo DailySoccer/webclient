@@ -40,10 +40,6 @@ class Money {
     return amount <= other.amount;
   }
 
-  bool isGreaterThan(int other) {
-
-  }
-
   int compareTo(Money other) {
     return amount.compareTo(other.amount);
   }

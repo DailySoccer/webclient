@@ -60,6 +60,10 @@ class RememberPasswordComp implements ShadowRootAware{
       });
   }
 
+  void backToLanding() {
+    _router.go("landing_page",{});
+  }
+
   void hideErrors() {
     _errSection.style.display = 'none';
     _errLabel.text = "";

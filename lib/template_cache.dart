@@ -39,6 +39,9 @@ tc.put("packages/webclient/components/account/add_funds_comp.html", new HttpResp
     <p id="need-help-text">¿Necesitas ayuda?</p>
     <p id="need-help-email">soporte@epiceleven.com</p>
   </div>
+
+  <!-- Comentado hasta que tengamos los textos legales
+
   <div class="pay-faq-block">
     <h1 class="pay-faq-title">Preguntas frecuentes sobre el pago</h1>
     <div class="toogle-block">
@@ -63,6 +66,9 @@ tc.put("packages/webclient/components/account/add_funds_comp.html", new HttpResp
       </div>
     </div>
   </div>
+   Comentado hasta que tengamos los textos legales -->
+
+
   <ng-view></ng-view>
   <!--div class="default-header-text"> MI CUENTA </div>
   <div class="blue-separator"></div>
@@ -333,12 +339,12 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
           <div class="user-form-field">
             <!-- Description -->
             <div class="new-row bottom-separation-10">
-              <div class="small-text">Tu nombre de usuario debe tener al menos {{MIN_NICKNAME_LENGTH}} caracteres.</div>
+              <div class="small-text">Tu nombre de usuario debe tener entre {{MIN_NICKNAME_LENGTH}} y {{MAX_NICKNAME_LENGTH}} caracteres.</div>
             </div>
             <!-- Field Input -->
             <div id="nickNameInputGroup" class="input-group">
               <span class="input-group-addon"><div class="glyphicon glyphicon-user"></div></span>
-              <input id="nickName" name="NickName" type="text" ng-model="theNickName" placeholder="Nombre de usuario" class="form-control" tabindex="1" autocapitalize="off" auto-focus>
+              <input id="nickName" name="NickName" type="text" ng-model="theNickName" placeholder="Nombre de usuario" class="form-control" maxlength="{{MAX_NICKNAME_LENGTH}}" tabindex="1" autocapitalize="off" auto-focus>
             </div>
             <!-- Error label -->
             <div class="new-row">
@@ -592,18 +598,26 @@ tc.put("packages/webclient/components/account/remember_password_comp.html", new 
 
   </div>
 </div>"""));
-tc.put("packages/webclient/components/account/transaction_history_comp.html", new HttpResponse(200, r"""<div id="transactionHistory">
-  <div class="block-dark-header">
-    <div class="default-header-text">HISTORIAL DE TRANSACCIONES</div>
+tc.put("packages/webclient/components/account/transaction_history_comp.html", new HttpResponse(200, r"""<div id="transactionHistoryRoot">
+  <div class="default-section-header">HISTORIAL DE TRANSACCIONES</div>
+  <div class="transaction-headers">
+    <span class="header-date">FECHA</span>
+    <span class="header-id">ID</span>
+    <span class="header-concept">CONCEPTO</span>
+    <span class="header-amount">IMPORTE</span>
+    <span class="header-balance">SALDO</span>
   </div>
-  <div ng-repeat="transaction in transactions">
-    <div class="contest-small-light-text">
-      <span class="type">{{transaction.type}}</span>
-      <span class="value">{{transaction.value}}</span>
-      <span class="createdAt">{{transaction.formattedDate}}</span>
-      <span class="balance">{{transaction.balance}}</span>
-    </div>
+
+  <div class="transaction-row" ng-repeat="transaction in currentPageList">
+    <div class="field-date">{{transaction.formattedDate}}</div>
+    <div class="field-id">{{transaction.transactionID}}</div>
+    <div class="field-concept">{{transaction.transactionDescription}}</div>
+    <div class="field-amount"><div class="money-label">IMPORTE: </div> {{transaction.value}}€ </div>
+    <div class="field-balance"><div class="money-label">SALDO: </div> {{transaction.balance}}€ </div>
   </div>
+
+  <paginator on-page-change="onPageChange(currentPage, itemsPerPage)" items-per-page="20" list-length="transactions.length"></paginator>
+
 </div>
 """));
 tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpResponse(200, r"""<div id="viewProfileContent">
@@ -913,7 +927,7 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
                   <div id="prizes-list">
                     <div class="prize-element-wrapper" ng-repeat="prize in currentInfoData['prizes']">
                       <div class="prize-element">
-                          {{$index + 1}}º &nbsp;&nbsp; {{prize.value}}€
+                          {{$index + 1}}º &nbsp;&nbsp; {{prize}}€
                       </div>
                     </div>
                     <div class="clearfix"></div>
@@ -955,7 +969,7 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
         </div>
         <div class="prize-element-wrapper" ng-repeat="prize in currentInfoData['prizes']">
           <div class="prize-element">
-              {{$index + 1}}º &nbsp;&nbsp; {{prize.value}}€
+              {{$index + 1}}º &nbsp;&nbsp; {{prize}}€
           </div>
         </div>
         <div class="clearfix"></div>
@@ -998,7 +1012,7 @@ tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse
     </div>
 
     <div class="column-contest-position" ng-click="onRow(contest)" ng-if="contest.isLive || contest.isHistory">
-      <div class="column-contest-position-content"><span>{{getMyPosition(contest)}}</span></div>
+      <div class="column-contest-position-content"><span>{{printableMyPosition(contest)}}</span></div>
       <div class="column-contest-position-header">DE {{contest.maxEntries}}</div>
     </div>
 
@@ -1125,13 +1139,13 @@ tc.put("packages/webclient/components/enter_contest/lineup_selector_comp.html", 
       <div class="column-empty-slot">{{getSlotDescription($index)}}</div>
       <div class="column-action"><a class="iconButtonSelect"><span class="glyphicon glyphicon-chevron-right"></span></a></div>
     </div>
-    
+
     <div ng-if="slot != null">
-      <div class="column-fieldpos">{{slot.fieldPos.abrevName}}</div>    
+      <div class="column-fieldpos">{{slot.fieldPos.abrevName}}</div>
       <div class="column-primary-info">
         <span class="soccer-player-name">{{slot.fullName | limitToDot : 19}}</span>
         <span class="match-event-name" ng-bind-html="slot.matchEventName"></span>
-      </div>    
+      </div>
       <div class="column-salary">{{slot.salary}}€</div>
       <div class="column-action"><a class="iconButtonRemove"><span class="glyphicon glyphicon-remove"></span></a></div>
     </div>
@@ -1157,23 +1171,25 @@ tc.put("packages/webclient/components/enter_contest/matches_filter_comp.html", n
     </div>
   </div>
 </div>"""));
-tc.put("packages/webclient/components/enter_contest/soccer_player_info_comp.html", new HttpResponse(200, r"""<modal id="modalSoccerPlayerInfo">
+tc.put("packages/webclient/components/enter_contest/soccer_player_stats_comp.html", new HttpResponse(200, r"""<modal id="modalSoccerPlayerStats">
 
-  <div class="soccer-player-info-header">
-    <div class="actions-header">
+  <div class="soccer-player-stats-header">
+
+    <!-- En XS mostramos botones de Añadir / Cancelar -->
+    <div class="actions-header-xs">
+        <button class="button-cancel" data-dismiss="modal">CANCELAR</button>
+        <button class="button-add" ng-click="onAddClicked()" ng-disabled="!selectablePlayer">AÑADIR</button>
+    </div>
+
+    <!-- En el resto de versiones título y cruz de cerrar -->
+    <div class="actions-header-sm">
       <div class="text-header">ESTADÍSTICAS DEL JUGADOR</div>
-
       <button type="button" class="close" data-dismiss="modal">
         <span class="glyphicon glyphicon-remove"></span>
       </button>
-
-      <!-- Esta seccion con boton de cancelar & añadir se repite 2 veces, solo en movil, arriba y abajo -->
-      <div class="action-buttons">
-          <button class="button-cancel" data-dismiss="modal">CANCELAR</button>
-          <button class="button-add" ng-click="onAddClicked()" ng-disabled="cannotAddPlayer">AÑADIR</button>
-      </div>
-
     </div>
+
+    <!-- Extra info en la cabecera -->
     <div class="description-header">
       <div class="soccer-player-description">
         <div class="soccer-player-pos-team">
@@ -1181,108 +1197,87 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_info_comp.html
         </div>
         <div class="soccer-player-name">{{currentInfoData['name']}}</div>
       </div>
-      <div class="soccer-player-info-stats">
+      <div class="soccer-player-stats-info">
         <div class="soccer-player-fantasy-points"><span>DFP</span><span>{{currentInfoData['fantasyPoints']}}</span></div>
-        <div class="soccer-player-matches"><span>PARTIDOS</span><span>{{currentInfoData['matches']}}</span></div>
+        <div class="soccer-player-matches"><span>PARTIDOS</span><span>{{currentInfoData['matchesCount']}}</span></div>
         <div class="soccer-player-salary"><span>SALARIO</span><span>{{currentInfoData['salary']}}</span></div>
       </div>
-      <div class="next-match-wrapper" ng-if="scrDet.isNotXsScreen">
-        <span class="next-match">PRÓXIMO PARTIDO:</span> <span class="next-match" ng-bind-html="currentInfoData['nextMatchEvent']"></span>
-        <button class="button-add" ng-click="onAddClicked()" ng-disabled="cannotAddPlayer">AÑADIR</button>
-      </div>
     </div>
+
+    <div class="next-match-wrapper">
+      <div class="next-match"  ng-bind-html="currentInfoData['nextMatchEvent']"></div>
+      <button class="button-add" ng-click="onAddClicked()" ng-disabled="!selectablePlayer">AÑADIR</button>
+    </div>
+
   </div>
 
-  <div class="soccer-player-info-content">
+  <div class="soccer-player-stats-content">
       <!-- Nav tabs -->
-      <ul id="soccer-player-info" class="soccer-player-info-tabs" role="tablist">
-        <li id="seasonTab" class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('season-info-tab-content')">Datos de Temporada</a></li>
-        <li id="matchTab" ><a role="tab" data-toggle="tab" ng-click="tabChange('match-info-tab-content')">Partido a Partido</a></li>
+      <ul id="soccer-player-stats-tabs" class="soccer-player-stats-tabs" role="tablist">
+        <li id="seasonTab" class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('season-stats-tab-content')">Datos de Temporada</a></li>
+        <li id="matchTab" ><a role="tab" data-toggle="tab" ng-click="tabChange('match-by-match-stats-tab-content')">Partido a Partido</a></li>
       </ul>
 
       <div class="tabs">
         <!-- Tab panes -->
         <div class="tab-content">
-          <!--SEASON-->
-          <div class="tab-pane active" id="season-info-tab-content">
-            <div class="next-match">PRÓXIMO PARTIDO: <span ng-bind-html="currentInfoData['nextMatchEvent']"></span></div>
+          <!-- START BY-SEASON-STATS -->
+          <div class="tab-pane active" id="season-stats-tab-content">
+            <div class="next-match" ng-bind-html="currentInfoData['nextMatchEvent']"></div>
             <!-- MEDIAS -->
             <div class="season-header">ESTADÍSTICAS DE TEMPORADA <span>(DATOS POR PARTIDO)</span></div>
             <div class="season-stats">
-              <div class="season-stats-wrapper">
-                <div class="season-stats-row" ng-repeat="stat in medias">
-                  <div class="season-stats-header">{{stat['nombre']}}</div>
-                  <div class="season-stats-info">{{stat['valor']}}</div>
+                <div class="season-stats-row" ng-repeat="stat in seasonResumeStats"  data-toggle="tooltip" title="{{stat['helpInfo']}}">
+                    <div class="season-stats-header">{{stat['nombre']}}</div>
+                    <div class="season-stats-info">{{stat['valor']}}</div>
                 </div>
-              </div>
+                <div div class="season-stats-row" ng-if="seasonResumeStats.length % 2 != 0"  data-toggle="" title="">
+                    <div class="season-stats-header"></div>
+                    <div class="season-stats-info"></div>
+                </div>
             </div>
+
           </div>
-          <!--END SEASON-->
-          <!--MATCH-->
-          <div class="tab-pane" id="match-info-tab-content">
+          <!-- END BY-SEASON-STATS -->
+          <!-- START BY-MATCH-STATS-->
+          <div class="tab-pane" id="match-by-match-stats-tab-content">
             <div class="match-header">PARTIDO A PARTIDO</div>
-            <div class="match-stats" ng-if="matchesPlayed">
-              <!--HEADER-->
-              <div ng-if="isGoalkeeper()" class="match-stats-header">
-                <div><span ng-if="scrDet.isNotXsScreen">FECHA</span>&nbsp;</div>
-                <div ng-if="scrDet.isXsScreen">DÍA</div>
-                <div>OP</div>
-                <div>DFP</div>
-                <div>MIN</div>
-                <div>GE</div>
-                <div>PA</div>
-                <div>D</div>
-                <div>P</div>
-                <div>RE</div>
-                <div>PB</div>
-                <div>PD</div>
-                <div>FC</div>
-                <div>TA</div>
-                <div>TR</div>
-              </div>
-              <div ng-if="!isGoalkeeper()" class="match-stats-header">
-                <div><span ng-if="scrDet.isNotXsScreen">FECHA</span>&nbsp;</div>
-                <div ng-if="scrDet.isXsScreen">DÍA</div>
-                <div>OP</div>
-                <div>DFP</div>
-                <div>MIN</div>
-                <div>G</div>
-                <div>T</div>
-                <div>P</div>
-                <div>A</div>
-                <div>R</div>
-                <div>RE</div>
-                <div>E</div>
-                <div>PB</div>
-                <div>FJ</div>
-                <div>TA</div>
-                <div>TR</div>
-              </div>
-              <!--CONTENT-->
-              <div class="match-stats-content">
-                  <div class="match-stats-data">
-                    <!-- Los datos con un ng-repeat por año -->
-                    <div ng-repeat="slot in seasons">
-                        <div class="match-year">{{slot["año"]}}</div>
-                        <div class="data" ng-repeat="match in slot['value']">
-                          <div ng-repeat="data in match">{{data}}<span ng-if="$index == 0 && scrDet.isDesktop">/{{slot["año"]}}</span></div>
-                        </div>
-                    </div>
-                  </div>
-              </div>
-            </div>
-            <div class="noMatchesPlayed" ng-if="!matchesPlayed">
+            <div class="noMatchesPlayed" ng-class="{'hidden':currentInfoData['matchesCount'] > 0}">
                 <span>No ha jugado ningún partido esta temporada</span>
             </div>
+            <div class="match-stats-table-wrapper" ng-class="{'hidden':currentInfoData['matchesCount'] == 0}">
+              <!--HEADER-->
+              <table id="statsTable" class="table table-striped">
+                <thead class="stats-headings">
+                  <tr>
+                    <th class="head-of-headings">Temporada</th> <!-- necesitamos una vacía -->
+                    <th class="stat-field-header" ng-repeat="item in seasonTableHeaders">{{item}}</th>
+                  </tr>
+                </thead>
+                <tbody class="stats-rows">
+                  <tr ng-repeat="year in seasonsList">
+                    <td class="year-season">
+                      <div class="year">{{year['year']}}</div>
+                      <table class="match-stats-block" ng-repeat="stats in year['stats']">
+                        <tbody>
+                          <tr ng-repeat="stat in stats">
+                            <td class="match-block" ng-class="{'blue':$index == 1}">{{stat}} </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-          <!--END MATCH-->
+          <!--END BY-MATCH-->
         </div>
       </div>
-
-      <div class="action-buttons bottom">
-        <button class="button-cancel" data-dismiss="modal">CANCELAR</button>
-        <button class="button-add" ng-click="onAddClicked()" ng-disabled="cannotAddPlayer">AÑADIR</button>
-      </div>
+  </div>
+  <div class="actions-footer-xs">
+    <button class="button-cancel" data-dismiss="modal">CANCELAR</button>
+    <button class="button-add" ng-click="onAddClicked()" ng-disabled="!selectablePlayer">AÑADIR</button>
   </div>
 </modal>
 

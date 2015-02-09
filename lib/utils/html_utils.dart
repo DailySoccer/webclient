@@ -10,7 +10,7 @@ class _NullTreeSanitizer implements NodeTreeSanitizer {
 
 final NodeTreeSanitizer NULL_TREE_SANITIZER = new _NullTreeSanitizer();
 
-Future<bool> modalShow(String title, String content,{String onOk: null, String onCancel: null, closeButton: false}) {
+Future<bool> modalShow(String title, String content,{String onOk: null, String onCancel: null, bool closeButton: false}) {
   Completer completer = new Completer();
   Element parent = querySelector('ng-view');
 
@@ -43,8 +43,8 @@ Future<bool> modalShow(String title, String content,{String onOk: null, String o
     }
   }
 
-  String botonOk      = (onOk != null) ?     '''<div class="button-box"><button class="ok-button"   eventCallback="onOk">     ${onOk}</button><div>'''   : '';
-  String botonCancel  = (onCancel != null) ? '''<div class="button-box"><button class="cancel-button"  eventCallback="onCancel"> ${onCancel}</button></div>'''  : '';
+  String botonOk      = (onOk != null) ?     '''<div class="button-box"><button class="ok-button" eventCallback="onOk">${onOk}</button><div>''' : '';
+  String botonCancel  = (onCancel != null) ? '''<div class="button-box"><button class="cancel-button" eventCallback="onCancel"> ${onCancel}</button></div>''' : '';
   String modalBody =  ''' 
                         <div id="modalRoot" class="modal container fade" tabindex="-1" role="dialog" style="display: block;">
                           <div class="modal-dialog modal-lg">

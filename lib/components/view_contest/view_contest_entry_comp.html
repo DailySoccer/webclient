@@ -29,13 +29,31 @@
       <fantasy-team id="userFantasyTeam" contest-entry="mainPlayer" watch="updatedDate" is-opponent="false"></fantasy-team>
       <users-list id="usersList" ng-show="selectedOpponent == null" contest-entries="contestEntries" watch="updatedDate"></users-list>
     </div>
+
+
     <div class="view-contest-entry-actions-wrapper">
+<!-- Nuevos Bottons Autocentrables-->
+  <div class="new-row">
+    <div class="autocentered-buttons-wrapper">
+      <div ng-if="scrDet.isXsScreen" class="button-box"><button type="button" class="ok-button" ng-click="goToParent()">VOLVER A TORNEOS</button></div>
+      <div class="button-box"  ng-if="isModeViewing || isModeEdited"><button type="button" class="cancel-button" ng-click="confirmContestCancellation()">CANCELAR PARTICIPACIÓN</button></div>
+      <div ng-if="!scrDet.isXsScreen" class="button-box ok"><button type="button" class="ok-button" ng-click="goToParent()">VOLVER A TORNEOS</button></div>
+    </div>
+  </div>
+<!-- End Nuevos Bottons Autocentrables-->
+
+
+
+      <!--Viejos Bottons
       <div class="button-wrapper">
         <button type="button" class="btn-cancel-contest" ng-click="cancelContestEntry()">ABANDONAR</button>
       </div>
       <div class="button-wrapper">
-        <button type="button" class="btn-back-contest" ng-click="goToParent()">GUARDAR</button>
+        <button type="button" class="btn-back-contest" ng-click="goToParent()">GUARDAR CAMBIOS</button>
       </div>
+      End Viejos Bottons-->
+
+
     </div>
     <div class="clear-fix-bottom"></div>
   </div>

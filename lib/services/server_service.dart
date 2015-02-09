@@ -16,6 +16,7 @@ abstract class ServerService {
   static final String TIMES = "times";
   static final String SECONDS_TO_RETRY = "secondsToRetry";
 
+  void        cancelAllAndReload();
   void        setSessionToken(String sessionToken);
   Future<Map> verifyAccountToken(String token);
   Future<Map> verifyPasswordResetToken(String token);
@@ -64,8 +65,7 @@ abstract class ServerService {
   void        subscribe(dynamic id, {Function onSuccess, Function onError});
 
   // Debug
-  Future<Map> isSimulatorActivated();
-  Future<Map> getCurrentDate();
+  Future<Map> getSimulatorState();
 }
 
 @Injectable()
@@ -174,12 +174,8 @@ class DailySoccerServer implements ServerService {
     return _innerServerCall("${HostServer.url}/get_soccer_player_info/$templateSoccerPlayerId");
   }
 
-  Future<Map> isSimulatorActivated() {
-    return _innerServerCall("${HostServer.url}/admin/is_simulator_activated", retryTimes: 0);
-  }
-
-  Future<Map> getCurrentDate() {
-    return _innerServerCall("${HostServer.url}/current_date", retryTimes: 0);
+  Future<Map> getSimulatorState() {
+    return _innerServerCall("${HostServer.url}/admin/get_simulator_state", retryTimes: 0);
   }
 
   Future<Map> getScoringRules() {
@@ -196,6 +192,11 @@ class DailySoccerServer implements ServerService {
 
   Future<Map> getPrizes() {
     return _innerServerCall("${HostServer.url}/get_prizes", retryTimes: -1);
+  }
+
+  void cancelAllAndReload() {
+    _allFuturesCancelled = true;
+    window.location.reload();
   }
 
   void subscribe(dynamic id, {Function onSuccess, Function onError}) {
@@ -257,7 +258,7 @@ class DailySoccerServer implements ServerService {
 
     ((postData != null) ? _http.post(url, postData, headers: headers, params: queryString) : _http.get(url, headers: headers, params: queryString))
         .then((httpResponse) {
-          return (callContext == _context || !cancelIfChangeContext) ? httpResponse : new Future.error(new FutureCancelled());
+          return (!_allFuturesCancelled && (callContext == _context || !cancelIfChangeContext)) ? httpResponse : new Future.error(new FutureCancelled());
         })
         .then((httpResponse) {
           _checkServerVersion(httpResponse);
@@ -354,6 +355,8 @@ class DailySoccerServer implements ServerService {
   Http _http;
   String _sessionToken;
   String _currentVersion;
+  bool _allFuturesCancelled = false;
+
 
   int _pendingCallsContext = 0;
   Map<String, Completer> _pendingCalls = new Map<String, Completer>();

@@ -153,7 +153,7 @@ class ContestsListComp {
     return StringUtils.parseFantasyPoints(mainContestEntry.currentLivePoints);
   }
 
-  int getMyPrize(Contest contest) {
+  Money getMyPrize(Contest contest) {
     ContestEntry mainContestEntry = contest.getContestEntryWithUser(_profileService.user.userId);
     return mainContestEntry.prize;
   }

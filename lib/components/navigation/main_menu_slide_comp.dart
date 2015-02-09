@@ -289,12 +289,12 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
           </li>
           <li id="userBalanceOut-sm" class="right-menu">
             <div class="balance">
-              <span class="current-balance">${_userBalance}€</span>
+              <span class="current-balance">${_userBalance}</span>
               <button class="add-funds-button" destination="add_funds">AÑADIR FONDOS</button>
             <div>
           </li>
           <li id="userBalanceOut-xs" class="right-menu">
-            <a id="menuUserAddFunds-xs" destination="add_funds">Añadir fondos <span class="current-balance">${_userBalance}€</span></a>            
+            <a id="menuUserAddFunds-xs" destination="add_funds">Añadir fondos <span class="current-balance">${_userBalance}</span></a>            
           </li>
         </ul>
       </div>

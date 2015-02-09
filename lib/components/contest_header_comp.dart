@@ -101,8 +101,8 @@ class ContestHeaderComp implements DetachAware, ShadowRootAware {
 
     info["description"] = "${contest.name}";
     info['contestType'] = "${contest.tournamentTypeName}: ";
-    info["entryPrice"] = "${contest.entryFee}€";
-    info["prize"] = "${contest.prizePool}€";
+    info["entryPrice"] = "${contest.entryFee}";
+    info["prize"] = "${contest.prizePool}";
     info["prizeType"] = "${contest.prizeTypeName}";
     info["startTime"] = "";
     info["contestantCount"] = "${contest.contestEntries.length} de ${contest.maxEntries} jugadores  - Límite de salario: ${contest.salaryCap}";

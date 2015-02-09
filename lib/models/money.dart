@@ -1,16 +1,35 @@
 library money;
 
 class Money {
+  static final USD = "USD"; // United States Dollar
+  static final EUR = "EUR"; // Euro Member Countries
+  static final JPY = "JPY"; // Japan Yen
+  static final GBP = "GBP"; // United Kingdom Pound
+  static final CHF = "CHF"; // Switzerland Franc
+  static final AUD = "AUD"; // Australia Dollar
+  static final CAD = "CAD"; // Canada Dollar
+  static final String CURRENCY_UNIT_DEFAULT = EUR;
+
+  // http://www.xe.com/symbols.php
+  static Map<String, String> currentSymbolMap = {
+    USD : "\$",
+    JPY : "¥",
+    EUR : "€",
+    GBP : "£",
+    CHF : "CHF",
+    AUD : "\$",
+    CAD : "\$"
+  };
+
   String currencyUnit;
   num amount;
 
-  // TODO: Faltaría expresar el dinero de forma adecuada (con €, $...) y que el html no asumiera que está en euros €
-  String toString() => "${amount}"; // "${currencyUnit} ${amount}";
+  String toString() => "${amount}${currentSymbolMap[currencyUnit]}";
 
   int toInt() => amount.toInt();
 
   Money.fromValue(num value) {
-    currencyUnit = "EUR";
+    currencyUnit = CURRENCY_UNIT_DEFAULT;
     amount = value;
   }
 
@@ -20,7 +39,7 @@ class Money {
   }
 
   Money.zero() {
-    currencyUnit = "EUR";
+    currencyUnit = CURRENCY_UNIT_DEFAULT;
     amount = 0;
   }
 

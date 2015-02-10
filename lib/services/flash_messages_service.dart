@@ -43,7 +43,7 @@ class FlashMessagesService {
     flashMessages.add(message);
   }
 
-  newGlobalMessage(String text, int visibilitySeconds) => _addGlobalMessage(new GlobalMessage(text, visibilitySeconds));
+  addGlobalMessage(String text, int visibilitySeconds) => _addGlobalMessage(new GlobalMessage(text, visibilitySeconds));
 
   _addGlobalMessage(GlobalMessage message) {
     globalMessages.add(message);

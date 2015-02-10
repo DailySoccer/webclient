@@ -132,12 +132,11 @@ class EnterContestComp implements DetachAware {
     bool isLineupEmpty = !lineupSlots.any((soccerPlayer) => soccerPlayer != null);
     // Si no hemos metido a nadie en nuestro equipo
     if(!isLineupEmpty) {
-      _flashMessage.newGlobalMessage("Se ha guardado tu alineación", 3);
+      _flashMessage.addGlobalMessage("Se ha guardado tu alineación", 3);
     }else {
       event.allowLeave(new Future<bool>.value(true));
       return;
     }
-
   }
 
   void resetLineup() {
@@ -308,7 +307,7 @@ class EnterContestComp implements DetachAware {
     if (editingContestEntry) {
       _contestsService.editContestEntry(contestEntryId, lineupSlots.map((player) => player["id"]).toList())
         .then((_) {
-          //_teamConfirmed = true;
+          _teamConfirmed = true;
           _router.go('view_contest_entry', { "contestId": contest.contestId,
                                              "parent": _routeProvider.parameters["parent"],
                                              "viewContestEntryMode": "edited"});
@@ -321,7 +320,7 @@ class EnterContestComp implements DetachAware {
           .then((contestId) {
             GameMetrics.logEvent(GameMetrics.TEAM_CREATED);
             GameMetrics.logEvent(GameMetrics.ENTRY_FEE, {"value": contest.entryFee});
-            //_teamConfirmed = true;
+            _teamConfirmed = true;
             _router.go('view_contest_entry', {
                                 "contestId": contestId,
                                 "parent": _routeProvider.parameters["parent"],
@@ -445,5 +444,4 @@ class EnterContestComp implements DetachAware {
 
   RouteHandle _routeHandle;
   bool _teamConfirmed = false;
-  //bool _alreadyAskForLeave = false;
 }

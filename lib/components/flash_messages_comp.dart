@@ -5,6 +5,7 @@ import 'package:angular/angular.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/server_service.dart';
 import 'package:webclient/utils/html_utils.dart';
+import 'dart:async';
 
 
 @Component(selector: 'flash-messages',
@@ -25,23 +26,25 @@ class FlashMessageComp implements ShadowRootAware, ScopeAware {
   }
 
   @override void onShadowRoot(emulatedRoot) {
-    _scope.watch("flashMessageService.messages", _onFlashMessagesChange, canChangeModel: false, collection: true);
+    _scope.watch("flashMessageService.flashMessages", _onFlashMessagesChange, canChangeModel: false, collection: true);
+    // global
+    _scope.watch("flashMessageService.globalMessages", _onGlobalMessagesChange, canChangeModel: false, collection: true);
   }
 
-  void _onFlashMessagesChange(blah, blahblah) {
-    if (_flashMsgs != null) {
-      _flashMsgs.remove();
-      _flashMsgs = null;
+    void _onFlashMessagesChange(blah, blahblah) {
+      if (_flashMsgs != null) {
+        _flashMsgs.remove();
+        _flashMsgs = null;
+      }
+
+      _createFlashMessagesHtml();
     }
-
-    _createFlashMessagesHtml();
-  }
 
   void _createFlashMessagesHtml() {
 
     String messagesHtml = "";
 
-    flashMessageService.messages.forEach((msg) {
+    flashMessageService.flashMessages.forEach((msg) {
       messagesHtml +=
       '''
       <div class="alert alert-${msg.type} alert-dismissable">
@@ -62,21 +65,41 @@ class FlashMessageComp implements ShadowRootAware, ScopeAware {
     _rootElement.append(_flashMsgs);
   }
 
-  void _createGlobalMessageHtml(String msg) {
+  void _onGlobalMessagesChange(blah, blahblah) {
+    if (flashMessageService.globalMessages.length > 0) {
+      GlobalMessage gm = flashMessageService.globalMessages.first;
+      createGlobalMessageFromQueue(gm.text, gm.visibilitySeconds);
+    }
+  }
+
+  void createGlobalMessageFromQueue(String msg, int displayingSeconds) {
+    _createGlobalMessageHtml(msg);
+    new Timer(new Duration(seconds: displayingSeconds), _removeGlobalMessageFromQueue);
+  }
+
+  void _removeGlobalMessageFromQueue() {
+    _removeGlobalMessage();
+    if (flashMessageService.globalMessages.length > 0) {
+      flashMessageService.globalMessages.removeAt(0);
+    }
+  }
+
+  Element _createGlobalMessageHtml(String msg) {
 
     // Solo permitimos 1
     if (_globalMsgElement != null) {
-      return;
+      return _globalMsgElement;
     }
 
     String html =
     '''
-    <div class="alert-danger" style="padding: 1em; position: fixed; top: 10%; left: 50%; transform: translateX(-50%); z-index:99999;">${msg}</div>
+    <div class="epicGlobalMessage">${msg}</div>
     ''';
 
     _globalMsgElement = new DivElement();
     _globalMsgElement.setInnerHtml(html, treeSanitizer: NULL_TREE_SANITIZER);
     _rootElement.append(_globalMsgElement);
+    return _globalMsgElement;
   }
 
   void _removeGlobalMessage() {
@@ -87,15 +110,19 @@ class FlashMessageComp implements ShadowRootAware, ScopeAware {
   }
 
   void onServerSuccess(Map aMsg) {
-    _removeGlobalMessage();
+    if(_serverGlobalMsgElement != null) {
+      _removeGlobalMessage();
+      _serverGlobalMsgElement = null;
+    }
   }
 
   void onServerError(Map aMsg) {
-    _createGlobalMessageHtml("Error en la conexión...");
+    _serverGlobalMsgElement = _createGlobalMessageHtml("Error en la conexión...");
   }
 
   Scope _scope;
   Element _rootElement;
   Element _globalMsgElement;
+  Element _serverGlobalMsgElement;
   Element _flashMsgs;
 }

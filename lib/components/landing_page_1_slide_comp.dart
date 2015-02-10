@@ -43,7 +43,7 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
   }
 
   void smoothScrollTo(String selector) {
-    scrDet.easingScroll(selector, offset: 0, duration:  500, smooth: true, ignoreInDesktop: false);
+    scrDet.scrollTo(selector, offset: 0, duration:  500, smooth: true, ignoreInDesktop: false);
   }
 
   void onShadowRoot(emulatedRoot) {
@@ -74,7 +74,7 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
   void _buttonPressed(event) {
     String path = event.currentTarget.attributes["buttonOnclick"];
     _router.go(path, {});
-    scrDet.easingScroll('#mainWrapper', offset: 0, duration:  0, smooth: false, ignoreInDesktop: false);
+    scrDet.scrollTo('#mainWrapper', offset: 0, duration:  0, smooth: false, ignoreInDesktop: false);
   }
 
   String _commonHTML =

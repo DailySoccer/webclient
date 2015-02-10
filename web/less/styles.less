@@ -423,17 +423,25 @@ body {
 	left: @posX;
 	top:  @posY;
 }
-.epicGlobalMessage {
+
+.globalMessage {
 	.alert-danger();
-	.opensans_normal(12pt, @white);
-	border: 3px solid @orange;
+	.slide-in-from-bottom-animation();
+	.opensans_normal(12pt, @red);
+	border: 3px solid @red;
 	border-radius: 10px;
-	background-color: @blueMed;
-	color: white;	
-	padding: 1em; 
+	background-color: @tramaRed;
+	padding: 35px; 
 	position: fixed; 
 	top: 10%; 
 	left: 50%; 
 	transform: translateX(-50%); 
 	z-index:99999;
+}
+
+.epicGlobalMessage {
+	.globalMessage();
+	border-color: @white;
+	background-color: @blueDark;
+	color: @white;
 }

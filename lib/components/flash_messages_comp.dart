@@ -84,7 +84,7 @@ class FlashMessageComp implements ShadowRootAware, ScopeAware {
     }
   }
 
-  Element _createGlobalMessageHtml(String msg) {
+  Element _createGlobalMessageHtml(String msg, {bool isErrorMsg: false}) {
 
     // Solo permitimos 1
     if (_globalMsgElement != null) {
@@ -93,7 +93,7 @@ class FlashMessageComp implements ShadowRootAware, ScopeAware {
 
     String html =
     '''
-    <div class="epicGlobalMessage">${msg}</div>
+    <div class="${isErrorMsg ? "globalMessage" : "epicGlobalMessage"}">${msg}</div>
     ''';
 
     _globalMsgElement = new DivElement();
@@ -117,7 +117,7 @@ class FlashMessageComp implements ShadowRootAware, ScopeAware {
   }
 
   void onServerError(Map aMsg) {
-    _serverGlobalMsgElement = _createGlobalMessageHtml("Error en la conexión...");
+    _serverGlobalMsgElement = _createGlobalMessageHtml("Error en la conexión...", isErrorMsg: true);
   }
 
   Scope _scope;

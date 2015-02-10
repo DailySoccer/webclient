@@ -180,6 +180,8 @@ class EnterContestComp implements DetachAware {
 
       // Lo quitamos del slot
       lineupSlots[slotIndex] = null;
+      //guardamos los cambios
+      saveContestEntry();
 
       // Quitamos la modal de números rojos si ya hay salario disponible
       if (availableSalary >= 0) {
@@ -221,11 +223,8 @@ class EnterContestComp implements DetachAware {
          isSelectingSoccerPlayer = false;
          availableSalary -= soccerPlayer["salary"];
          nameFilter = null;
-
-
          // Actualizamos el contestEntry, independientemente que estemos editando o creando
          saveContestEntry();
-
          break;
        }
     }

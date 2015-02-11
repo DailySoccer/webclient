@@ -6,18 +6,18 @@
 
   <!--<div class="separator-bar"></div>-->
   <div class="info-complete-bar" ng-if="!isModeViewing">
-    <p ng-if="isModeCreated">¡PERFECTO! HAS COMPLETADO TU ALINEACIÓN CON ÉXITO</p>
-    <p ng-if="isModeEdited">¡PERFECTO! HAS EDITADO TU ALINEACIÓN CON ÉXITO</p>
-    <p ng-if="isModeSwapped">EL TORNEO ESTABA LLENO PERO TE HEMOS METIDO EN ESTE QUE ES IGUAL</p>
-    <p>Recuerda que puedes editar tu equipo cuantas veces quieras hasta que comience la competición</p>
+    <p ng-if="isModeCreated">WELL DONE! YOU HAVE SUCCESSFULLY COMPLETED YOUR LINEUP</p>
+    <p ng-if="isModeEdited">WELL DONE! YOU HAVE SUCCESSFULLY EDITED YOUR LINEUP</p>
+    <p ng-if="isModeSwapped">THE CONTEST WAS FULL, SO WE HAVE PUT YOU IN THIS EQUIVALENT ONE</p>
+    <p>Remember that you can edit your lineup as many times as you want before the contest starts</p>
   </div>
 
   <div id="viewContestEntry" ng-switch="scrDet.isXsScreen" >
     <div ng-switch-when="true">
       <!-- Tabs de la versión XS -->
       <ul class="view-contest-entry-tabs" id="viewContestEntryTab" >
-        <li class="active"><a ng-click="tabChange('userFantasyTeam')" data-toggle="tab">Tu alineación</a></li>
-        <li><a ng-click="tabChange('usersList')" data-toggle="tab">Usuarios</a></li>
+        <li class="active"><a ng-click="tabChange('userFantasyTeam')" data-toggle="tab">Your lineup</a></li>
+        <li><a ng-click="tabChange('usersList')" data-toggle="tab">Users</a></li>
       </ul>
       <div class="tab-content" id="viewContestEntryTabContent">
         <fantasy-team class="tab-pane active" id="userFantasyTeam" contest-entry="mainPlayer" watch="updatedDate" is-opponent="false"></fantasy-team>
@@ -35,9 +35,9 @@
 <!-- Nuevos Bottons Autocentrables-->
   <div class="new-row">
     <div class="autocentered-buttons-wrapper">
-      <div ng-if="scrDet.isXsScreen" class="button-box"><button type="button" class="ok-button" ng-click="goToParent()">VOLVER A TORNEOS</button></div>
-      <div class="button-box"  ng-if="isModeViewing || isModeEdited"><button type="button" class="cancel-button" ng-click="confirmContestCancellation()">CANCELAR PARTICIPACIÓN</button></div>
-      <div ng-if="!scrDet.isXsScreen" class="button-box ok"><button type="button" class="ok-button" ng-click="goToParent()">VOLVER A TORNEOS</button></div>
+      <div ng-if="scrDet.isXsScreen" class="button-box"><button type="button" class="ok-button" ng-click="goToParent()">BACK TO CONTESTS</button></div>
+      <div class="button-box"  ng-if="isModeViewing || isModeEdited"><button type="button" class="cancel-button" ng-click="confirmContestCancellation()">CANCEL PARTICIPATION</button></div>
+      <div ng-if="!scrDet.isXsScreen" class="button-box ok"><button type="button" class="ok-button" ng-click="goToParent()">BACK TO CONTESTS</button></div>
     </div>
   </div>
 <!-- End Nuevos Bottons Autocentrables-->
@@ -46,10 +46,10 @@
 
       <!--Viejos Bottons
       <div class="button-wrapper">
-        <button type="button" class="btn-cancel-contest" ng-click="cancelContestEntry()">ABANDONAR</button>
+        <button type="button" class="btn-cancel-contest" ng-click="cancelContestEntry()">ABANDON</button>
       </div>
       <div class="button-wrapper">
-        <button type="button" class="btn-back-contest" ng-click="goToParent()">GUARDAR CAMBIOS</button>
+        <button type="button" class="btn-back-contest" ng-click="goToParent()">SAVE CHANGES</button>
       </div>
       End Viejos Bottons-->
 

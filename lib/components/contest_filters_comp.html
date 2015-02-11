@@ -4,13 +4,13 @@
   <div class="choosed-filters-container" ng-show="scrDet.isXsScreen">
       <div class="competition-filter-name" ng-bind-html="filterResume"></div>
       <div class="filterToggler">
-        <div id="filtersButtonMobile" type="button" class="filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse" data-target="#filtersPanel">FILTROS</div>
+        <div id="filtersButtonMobile" type="button" class="filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse" data-target="#filtersPanel">FILTERS</div>
       </div>
   </div>
 
   <!-- Ordenación -->
   <div id="contestFastSort">
-    <span class="filter-text">Ordenar por: </span>
+    <span class="filter-text">Sort by: </span>
     <div class="btn-group" >
       <div ng-repeat="button in sortingButtons" id="{{button['id']}}" type="button" class="btn sorting-button" ng-class="button['state']" ng-click="sortListByField(button['field-name'])">{{button["name"].toUpperCase()}}</div>
     </div>
@@ -22,7 +22,7 @@
   </div>
 
   <div class="filterToggler" ng-show="!scrDet.isXsScreen">
-      <div id="filtersButtonDesktop" type="button" class="filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse">FILTROS</div>
+      <div id="filtersButtonDesktop" type="button" class="filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse">FILTERS</div>
   </div>
 
 </div>
@@ -33,7 +33,7 @@
 
     <!-- Filtro x tipos de concurso -->
     <div class="filter-column-competition">
-      <p class="filter-title">COMPETICION</p>
+      <p class="filter-title">COMPETITION</p>
       <div class="filter-content">
         <div class="check-group-wrapper">
 
@@ -50,7 +50,7 @@
 
     <!-- Filtro x tipos de concurso -->
     <div class="filter-column-tournaments">
-      <p class="filter-title">TORNEOS</p>
+      <p class="filter-title">CONTESTS</p>
       <div class="filter-content">
           <div class="check-group-wrapper">
 
@@ -67,7 +67,7 @@
 
     <!-- Filtro x dificultad -->
     <div class="filter-column-salary-limit">
-      <p class="filter-title">LÍMITE DE SALARIO</p>
+      <p class="filter-title">SALARY CAP</p>
       <div class="filter-content">
           <div class="check-group-wrapper">
 
@@ -83,7 +83,7 @@
     </div>
 
     <div class="filter-column-entry-fee">
-      <p class="filter-title">ENTRADA</p>
+      <p class="filter-title">ENTRY FEE</p>
       <div class="filter-content">
          <div class="entry-fee-value-min">MIN: {{filterEntryFeeRangeMin | number:0}}€ </div>
          <div class="entry-fee-value-max">MAX: {{filterEntryFeeRangeMax | number:0}}€ </div>
@@ -97,10 +97,10 @@
   <div class="filters-panel-row">
 
       <div class="reset-button-wrapper">
-        <button type="button" class="btn-reset" ng-click="resetAllFilters()">LIMPIAR FILTROS</button>
+        <button type="button" class="btn-reset" ng-click="resetAllFilters()">CLEAR FILTERS</button>
       </div>
       <div class="confirm-button-wrapper">
-        <button type="button" class="btn-confirm" ng-click="toggleFilterMenu()">ACEPTAR</button>
+        <button type="button" class="btn-confirm" ng-click="toggleFilterMenu()">ACCEPT</button>
       </div>
 
   </div>

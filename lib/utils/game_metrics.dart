@@ -16,6 +16,11 @@ class GameMetrics {
   static String ENTER_CONTEST = "Entered enter contest";
   static String TEAM_CREATED = "Created a team";
   static String LIVE_CONTEST_VISITED = "Visitado Live Contest";
+  // Acciones con dinero:
+  static String ENTRY_FEE = "Entry Fee for Contest";
+  static String ORDER = "Add Funds";
+  static String CANCEL_CONTEST_ENTRY = "Cancel Contest Entry";
+  static String REFUND = "Refund Asked";
 
   static void aliasMixpanel(String email) {
     JsUtils.runJavascript(null, "alias", email, "mixpanel");
@@ -25,8 +30,13 @@ class GameMetrics {
     JsUtils.runJavascript(null, "identify", email, "mixpanel");
   }
 
-  static void logEvent(String eventName) {
-    JsUtils.runJavascript(null, "track", eventName, "mixpanel");
+  static void logEvent(String eventName, [Map params]) {
+    if (params!=null && !params.isEmpty) {
+      JsUtils.runJavascript(null, "track", [eventName, params], "mixpanel");
+    }
+    else {
+      JsUtils.runJavascript(null, "track", eventName, "mixpanel");
+    }
   }
 
   static void peopleSet(Map params) {

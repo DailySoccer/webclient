@@ -90,11 +90,12 @@ class EnterContestComp implements DetachAware {
         // Si nos viene el torneo para editar la alineación
         if (editingContestEntry) {
           ContestEntry contestEntry = contest.getContestEntry(contestEntryId);
-
-          // Insertamos en el lineup el jugador
-          contestEntry.instanceSoccerPlayers.forEach((instanceSoccerPlayer) {
-            addSoccerPlayerToLineup(instanceSoccerPlayer.id);
-          });
+          if (contestEntry != null) {
+            // Insertamos en el lineup el jugador
+            contestEntry.instanceSoccerPlayers.forEach((instanceSoccerPlayer) {
+              addSoccerPlayerToLineup(instanceSoccerPlayer.id);
+            });
+          }
         }
         else {
           // TODO: ¿Únicamente restauramos el contestEntry anteriormente registrado si estamos creando uno nuevo?
@@ -311,6 +312,7 @@ class EnterContestComp implements DetachAware {
         _contestsService.addContestEntry(contest.contestId, lineupSlots.map((player) => player["id"]).toList())
           .then((contestId) {
             GameMetrics.logEvent(GameMetrics.TEAM_CREATED);
+            GameMetrics.logEvent(GameMetrics.ENTRY_FEE, {"value": contest.entryFee});
             _router.go('view_contest_entry', {
                                 "contestId": contestId,
                                 "parent": _routeProvider.parameters["parent"],

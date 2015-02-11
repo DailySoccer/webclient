@@ -11,6 +11,7 @@ import 'package:webclient/services/contest_references.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/prizes_service.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/models/money.dart';
 
 class Contest {
   // Tipos de Torneos (deducidos por las características del Contest: maxEntries ~ premios)
@@ -60,7 +61,7 @@ class Contest {
       return TIER_SKILLED;
   }
 
-  int entryFee;
+  Money entryFee;
   String prizeType;
 
   Prize get prize {
@@ -107,7 +108,7 @@ class Contest {
   bool get isLive     => state == "LIVE";
   bool get isHistory  => state == "HISTORY";
 
-  int get prizePool => ((maxEntries * entryFee) * 0.90).toInt();
+  Money get prizePool => _prizePool;
   String get prizeTypeName => Prize.typeNames[prizeType];
 
   List get tournamentTypes => [TOURNAMENT_FREE, TOURNAMENT_HEAD_TO_HEAD, TOURNAMENT_LEAGUE, TOURNAMENT_FIFTY_FIFTY];
@@ -172,8 +173,8 @@ class Contest {
   }
 
   String getPrize(int index) {
-    int prizeValue = prize.getValue(index);
-    return (prizeValue > 0) ? "${prizeValue}€" : "_";
+    Money prizeValue = prize.getValue(index);
+    return (prizeValue.amount > 0) ? "${prizeValue}" : "_";
   }
 
   /*
@@ -243,11 +244,13 @@ class Contest {
     _namePattern = jsonMap["name"];
     maxEntries = jsonMap["maxEntries"];
     salaryCap = jsonMap["salaryCap"];
-    entryFee = jsonMap["entryFee"];
+    entryFee = new Money.fromJsonObject(jsonMap["entryFee"]);
     prizeType = jsonMap["prizeType"];
     startDate = DateTimeService.fromMillisecondsSinceEpoch(jsonMap["startDate"]);
     optaCompetitionId = jsonMap.containsKey("optaCompetitionId") && (jsonMap["optaCompetitionId"] != null) ? jsonMap["optaCompetitionId"] : "";
     matchEvents = jsonMap.containsKey("templateMatchEventIds") ? jsonMap["templateMatchEventIds"].map( (matchEventId) => references.getMatchEventById(matchEventId) ).toList() : [];
+
+    _prizePool = new Money.fromValue((maxEntries * entryFee.amount) * 0.90);
 
     instanceSoccerPlayers = {};
     if (jsonMap.containsKey("instanceSoccerPlayers")) {
@@ -293,4 +296,5 @@ class Contest {
   String _name;
   String _namePattern;
   Prize _prize;
+  Money _prizePool;
 }

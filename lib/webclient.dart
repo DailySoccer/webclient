@@ -202,12 +202,12 @@ class WebClientApp extends Module {
       )
       ,'change_password': ngRoute(
           path: '/change_password',
-          enter: (RouteEnterEvent e) {
+          preEnter: (RoutePreEnterEvent e) {
             if (ProfileService.instance.isLoggedIn) {
               ProfileService.instance.logout();
             }
+            _preEnterPage(e, router, visibility: _ALWAYS);
           },
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
           viewHtml: '<change-password></change-password>'
       )
       ,'help_info': ngRoute(

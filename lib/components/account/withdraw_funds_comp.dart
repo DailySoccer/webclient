@@ -4,6 +4,7 @@ import 'package:angular/angular.dart';
 import 'dart:html';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/payment_service.dart';
+import 'package:webclient/utils/game_metrics.dart';
 
 
 @Component(
@@ -19,7 +20,7 @@ class WithdrawFundsComp implements ShadowRootAware {
   WithdrawFundsComp(this._router, this._profileManager, this._paymentService);
 
   @override void onShadowRoot(emulatedRoot) {
-    if (userData.balance < 20) {
+    if (userData.balance.amount < 20) {
       (querySelector("#withdrawFundsButton") as ButtonElement).disabled = true;
       (querySelector("#customEurosAmount") as NumberInputElement).valueAsNumber = 0;
       (querySelector("#customEurosAmount") as NumberInputElement).disabled = true;
@@ -59,7 +60,7 @@ class WithdrawFundsComp implements ShadowRootAware {
   /* Enviar la peticion */
 
   void withdrawFunds (Event e) {
-    print("i want to withdraw $selectedValue €");
+    GameMetrics.logEvent(GameMetrics.REFUND, {"value": selectedValue});
     (querySelector("#withdrawFundsButton") as ButtonElement).disabled = true;
     _paymentService.withdrawFunds(selectedValue)
       .then((_) {

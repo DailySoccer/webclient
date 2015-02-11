@@ -26,7 +26,7 @@ class PaginatorComp implements DetachAware {
     if (value == null) {
       return;
     }
-    _currentPage = 0;
+    //_currentPage = 0;
     _listLength = value;
 
     // Calculamos la páginas que habrá en total y determinamos si el paginador estará disponible o no.
@@ -226,7 +226,6 @@ class PaginatorComp implements DetachAware {
 
     return {"start":start, "end":end};
  }
-
 
   void regenerate(int highlitedPage) {
     _paginatorContainer = _rootElement.querySelector(".paginator-box");

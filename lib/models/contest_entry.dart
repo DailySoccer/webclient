@@ -4,6 +4,7 @@ import "package:webclient/models/user.dart";
 import "package:webclient/models/soccer_player.dart";
 import "package:webclient/models/contest.dart";
 import "package:webclient/models/instance_soccer_player.dart";
+import 'package:webclient/models/money.dart';
 import 'package:webclient/services/contest_references.dart';
 
 class ContestEntry {
@@ -15,7 +16,7 @@ class ContestEntry {
   List<InstanceSoccerPlayer> instanceSoccerPlayers;
 
   int position;
-  int prize;
+  Money prize;
   int fantasyPoints;
 
   int get currentLivePoints => instanceSoccerPlayers != null ? instanceSoccerPlayers.fold(0, (prev, instanceSoccerPlayer) => prev + instanceSoccerPlayer.soccerPlayer.currentLivePoints ) : 0;
@@ -49,7 +50,7 @@ class ContestEntry {
     }
 
     position = (jsonMap.containsKey("position")) ? jsonMap["position"] : 0;
-    prize = (jsonMap.containsKey("prize")) ? jsonMap["prize"] : 0;
+    prize = (jsonMap.containsKey("prize")) ? new Money.fromJsonObject(jsonMap["prize"]) : new Money.zero();
     fantasyPoints = (jsonMap.containsKey("fantasyPoints")) ? jsonMap["fantasyPoints"] : 0;
 
     contest = theContest;

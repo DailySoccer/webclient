@@ -1,4 +1,5 @@
 library prize;
+import 'package:webclient/models/money.dart';
 
 class Prize {
   // Tipos de Premios (obtenidos del backend)
@@ -18,8 +19,8 @@ class Prize {
 
   String prizeType;
   int maxEntries;
-  int entryFee;
-  List<num> values = new List<num>();
+  Money entryFee;
+  List<Money> values = [];
   // List<num> multipliers = new List<num>();
 
   Prize() {
@@ -29,9 +30,9 @@ class Prize {
   Prize.fromJsonObject(Map jsonMap) {
     prizeType = jsonMap["prizeType"];
     maxEntries = jsonMap["maxEntries"];
-    entryFee = jsonMap["entryFee"];
+    entryFee = new Money.fromJsonObject(jsonMap["entryFee"]);
     // multipliers = jsonMap.containsKey("multipliers") ? jsonMap["multipliers"] : [];
-    values = jsonMap.containsKey("values") ? jsonMap["values"] : [];
+    values = jsonMap.containsKey("values") ? jsonMap["values"].map((jsonMap) => new Money.fromJsonObject(jsonMap)).toList() : [];
   }
 
   String get key => getKey(prizeType, maxEntries, entryFee);
@@ -52,21 +53,21 @@ class Prize {
     return ret;
   }
 
-  num getValue(int index) {
+  Money getValue(int index) {
     if (prizeType == FREE) {
-      return 0;
+      return new Money.zero();
     }
     else if (prizeType == WINNER) {
-      return (index == 0) ? values[0] : 0;
+      return (index == 0) ? values[0] : new Money.zero();
     }
     else if (prizeType == FIFTY_FIFTY) {
-      return (index < (maxEntries / 2)) ? values[0] : 0;
+      return (index < (maxEntries / 2)) ? values[0] : new Money.zero();
     }
-    return (index < values.length) ? values[index] : 0;
+    return (index < values.length) ? values[index] : new Money.zero();
   }
 
-  List<num> getValues() {
-    List<num> ret = [];
+  List<Money> getValues() {
+    List<Money> ret = [];
 
     if (prizeType == FIFTY_FIFTY) {
       for (int i=0; i<maxEntries~/2; i++) {
@@ -80,7 +81,7 @@ class Prize {
     return ret;
   }
 
-  static String getKey(String prizeType, int maxEntries, int entryFee) {
+  static String getKey(String prizeType, int maxEntries, Money entryFee) {
     if (prizeType == FREE) {
       return "${prizeType}";
     }

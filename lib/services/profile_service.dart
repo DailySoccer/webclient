@@ -9,6 +9,7 @@ import 'package:webclient/models/transaction_info.dart';
 import 'package:webclient/services/server_service.dart';
 import 'package:logging/logging.dart';
 import 'package:webclient/utils/game_metrics.dart';
+import 'package:webclient/models/money.dart';
 
 
 @Injectable()
@@ -76,19 +77,21 @@ class ProfileService {
     if (!isLoggedIn) {
       throw new Exception("WTF 444 - We should be logged in when loging out");
     }
+    _setProfile(null, null, true);
+    _server.cancelAllAndReload();
 
-    return new Future.value(_setProfile(null, null, true));
+    return new Future.value(true);
   }
 
   Future<List<TransactionInfo>> getTransactionHistory() {
     return _server.getTransactionHistory()
         .then((jsonMap) {
-          double balance = 0.0;
+          Money balance = new Money.zero();
           return jsonMap["transactions"].map((jsonObject) {
             TransactionInfo transactionInfo = new TransactionInfo.fromJsonObject(jsonObject);
 
             // Calcular el balance de la transaccion
-            balance += transactionInfo.value;
+            balance = balance.plus(transactionInfo.value);
             transactionInfo.balance = balance;
 
             return transactionInfo;
@@ -136,15 +139,13 @@ class ProfileService {
       // no es valido ya. Ademas, durante desarrollo, podemos borrar la DB. El token seguira siendo valido (puesto que
       // es el email), pero el userId no.
       _server.getUserProfile().then((jsonMap) {
-        if (isLoggedIn) {
-          // Si nuestro usuario ya no es el mismo pero no ha dado un error, el sessionToken sigue siendo valido y lo
-          // unico que tenemos que hacer es anotar el nuevo User
-          if (jsonMap["_id"] != user.userId) {
-            Logger.root.warning("ProfileService: Se borro la DB y pudimos reusar el sessionToken.");
-          }
-          // En cualquier caso, refrescamos el profile para obtener el ultimo dinero
-          _setProfile(storedSessionToken, jsonMap, true);
+        // Si nuestro usuario ya no es el mismo pero no ha dado un error, el sessionToken sigue siendo valido y lo
+        // unico que tenemos que hacer es anotar el nuevo User
+        if (jsonMap["_id"] != user.userId) {
+          Logger.root.warning("ProfileService: Se borro la DB y pudimos reusar el sessionToken.");
         }
+        // En cualquier caso, refrescamos el profile para obtener el ultimo dinero
+        _setProfile(storedSessionToken, jsonMap, true);
       })
       .catchError((error) {
         // No se ha podido refrescar: Tenemos que salir y pedir que vuelva a hacer login

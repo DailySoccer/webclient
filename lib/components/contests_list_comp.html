@@ -10,7 +10,7 @@
     <div class="column-contest-empty" ng-click="onRow(contest)" ng-if="contest.isLive"></div>
 
     <div class="column-contest-price" ng-click="onRow(contest)" ng-if="!contest.isLive && !contest.isHistory">
-      <div class="column-contest-price-content">{{contest.entryFee}}€</div>
+      <div class="column-contest-price-content">{{contest.entryFee}}</div>
       <div class="column-contest-price-header">ENTRADA</div>
       <!-- torneo gratis -->
       <!--<div ng-if="isFreeContest(contest)"><img src="images/iconFree.png" alt="GRATIS"></div>-->
@@ -22,8 +22,8 @@
     </div>
 
     <div class="column-contest-prize" ng-click="onRow(contest)" ng-if="!contest.isLive">
-      <div ng-if="!contest.isHistory" class="column-contest-prize-content prize-icon-big">{{contest.prizePool}}€</div>
-      <div ng-if="contest.isHistory"  class="column-contest-prize-content prize-icon-big">{{getMyPrize(contest)}}€</div>
+      <div ng-if="!contest.isHistory" class="column-contest-prize-content prize-icon-big">{{contest.prizePool}}</div>
+      <div ng-if="contest.isHistory"  class="column-contest-prize-content prize-icon-big">{{getMyPrize(contest)}}</div>
       <div class="column-contest-prize-header">PREMIO</div>
     </div>
 

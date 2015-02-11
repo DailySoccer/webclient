@@ -33,11 +33,11 @@ class DateTimeService {
   }
 
   static String formatDateYear(DateTime date) {
-    return new DateFormat("yyyy", "es_ES").format(date);
+    return new DateFormat("yyyy", "en_EN").format(date);
   }
 
   static String formatDateWithDayOfTheMonth(DateTime date) {
-    return new DateFormat("EEE, d MMM", "es_ES").format(date);
+    return new DateFormat("EEE, d MMM", "en_EN").format(date);
   }
 
   static String formatDateShort(DateTime date) {
@@ -49,15 +49,15 @@ class DateTimeService {
   }
 
   static String formatDateTimeShort(DateTime date) {
-    return "${new DateFormat("E, HH:mm", "es_ES").format(date)}h";
+    return "${new DateFormat("E, HH:mm", "en_EN").format(date)}h";
   }
 
   static String formatDateTimeLong(DateTime date) {
-    return "${new DateFormat("E, dd/MM/yy HH:mm", "es_ES").format(date)}h";
+    return "${new DateFormat("E, dd/MM/yy HH:mm", "en_EN").format(date)}h";
   }
 
   static String formatDateTimeDayHour(DateTime date) {
-    return "${new DateFormat("dd/MM/yy HH:mm", "es_ES").format(date)}h";
+    return "${new DateFormat("dd/MM/yy HH:mm", "en_EN").format(date)}h";
   }
 
   static String formatTimeLeft(Duration timeLeft) {
@@ -69,7 +69,7 @@ class DateTimeService {
     var minutes = nfTime.format(timeLeft.inMinutes % 60);
     var seconds = nfTime.format(timeLeft.inSeconds % 60);
 
-    return (days > 0)? nfDay.format(days) + (days > 1 ? " DIAS ": " DIA ") + hours + ":" + minutes + ":" + seconds
+    return (days > 0)? nfDay.format(days) + (days > 1 ? " DAYS ": " DAY ") + hours + ":" + minutes + ":" + seconds
                      : hours + ":" + minutes + ":" + seconds;
   }
 

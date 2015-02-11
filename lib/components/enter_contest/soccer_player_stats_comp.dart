@@ -126,7 +126,7 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
       matchEventDate = " (${DateTimeService.formatDateTimeShort(nextMatchEvent.startDate)})";
     }
 
-    return ("PRÓXIMO PARTIDO: " + matchEventName + matchEventDate);
+    return ("NEXT MATCH: " + matchEventName + matchEventDate);
   }
 
   void updateSoccerPlayerInfoFromService() {
@@ -166,13 +166,13 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
 
     seasonResumeStats.clear();
     seasonsList.clear();
-    seasonTableHeaders = ['Fecha', 'Oponente', 'Daily Fantasy Points', 'Minutos'];
+    seasonTableHeaders = ['Date', 'Opponent', 'Daily Fantasy Points', 'Minutes'];
 
     if(isGoalkeeper()) {
       goalKeeperStatsList.forEach((key) {
         _totalSums[key] = 0;
       });
-      seasonTableHeaders.addAll(['Goles Encajados', 'Paradas', 'Despejes', 'Penaltis Detenidos', 'Pases', 'Recuperaciones', 'Perdidas de Balón', 'Faltas Cometidas', 'Tarjetas Amarillas', 'Tarjetas Rojas']);
+      seasonTableHeaders.addAll(['Goals Conceded', 'Saves', 'Clearances', 'Penalties Detenidos', 'Passes', 'Recuperaciones', 'Possesion lost', 'Fouls commited', 'Yellow Cards', 'Red Cards']);
     }
     else {
       commonPlayerStatsList.forEach((key) {

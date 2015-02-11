@@ -147,10 +147,10 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
     var text = '''
       <div class="soccer-player-list-header-table">
         <div class="filter filterOrderPos"><a id="Pos">Pos.</a></div>
-        <div class="filter filterOrderName"><a id="Name">Nombre</a></div>
+        <div class="filter filterOrderName"><a id="Name">Name</a></div>
         <div class="filter filterOrderDFP"><a id="DFP">DFP</a></div>
-        <div class="filter filterOrderPlayed"><a id="Played">Jugados</a></div>
-        <div class="filter filterOrderSalary"><a id="Salary">Sueldo</a></div>
+        <div class="filter filterOrderPlayed"><a id="Played">#Matches</a></div>
+        <div class="filter filterOrderSalary"><a id="Salary">Salary</a></div>
       </div>
       ''';
 

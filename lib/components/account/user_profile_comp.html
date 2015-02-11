@@ -1,24 +1,22 @@
 <div id="viewProfileContent">
-  <!--div class="default-header-text"> MI CUENTA </div-->
-  <!--div class="blue-separator"></div-->
   <div class="profile-content">
 
     <div class="personal-data">
       <div class="data-header">
-        <span class="data-header-title">MI CUENTA</span>
+        <span class="data-header-title">My Account</span>
         <div class="close-profile">
           <button type="button" class="close" ng-click="closeProfile()">
             <span class="glyphicon glyphicon-remove"></span>
           </button>
         </div>
-        <div class="button-wrapper"><button class="action-button" ng-click="editPersonalData()">EDITAR</button></div>
+        <div class="button-wrapper"><button class="action-button" ng-click="editPersonalData()">EDIT</button></div>
 
       </div>
       <div class="bloque-sm">
-        <div class="data-row"><span class="data-key">Nombre personal:</span><span class="data-value">{{userData.firstName + ' ' + userData.lastName}}</span></div>
-        <div class="data-row"><span class="data-key">Nombre de usuario:</span><span class="data-value">{{userData.nickName}}</span></div>
-        <div class="data-row"><span class="data-key">Correo electrónico:</span><span class="data-value">{{userData.email}}</span></div>
-        <div class="data-row"><span class="data-key">Contraseña:</span><span class="data-value">********</span></div>
+        <div class="data-row"><span class="data-key">Full Name:</span><span class="data-value">{{userData.firstName + ' ' + userData.lastName}}</span></div>
+        <div class="data-row"><span class="data-key">Nick:</span><span class="data-value">{{userData.nickName}}</span></div>
+        <div class="data-row"><span class="data-key">Email:</span><span class="data-value">{{userData.email}}</span></div>
+        <div class="data-row"><span class="data-key">Password:</span><span class="data-value">********</span></div>
       </div>
       <!--
       <div class="bloque-sm">
@@ -32,18 +30,18 @@
 
     <div class="pocket-data">
       <div class="data-header">
-          <span class="data-header-title">MONEDERO</span>
+          <span class="data-header-title">WALLET</span>
           <div class="button-wrapper">
-            <button class="action-button-transaction" ng-click="goTransactions()">TRANSACCIONES</button>
-            <button class="action-button-get-funds" ng-click="goWithdrawFounds()">RETIRAR FONDOS</button>
+            <button class="action-button-transaction" ng-click="goTransactions()">TRANSACTIONS</button>
+            <button class="action-button-get-funds" ng-click="goWithdrawFounds()">WITHDRAW FUNDS</button>
           </div>
        </div>
       <div class="data-container-9">
-        <div class="data-row"><span class="data-key">Balance actual:</span><span class="data-value-balance">{{userData.balance}}</span></div>
+        <div class="data-row"><span class="data-key">Actual balance:</span><span class="data-value-balance">{{userData.balance}}</span></div>
         <!--div class="data-row"><span class="data-key">Bonus pendientes:</span><span class="data-value">&lt;pending-bonuses&gt;€</span></div-->
       </div>
       <div class="data-container-3">
-        <button class="add-funds-button" ng-click="goAddFounds()">AÑADIR FONDOS</button>
+        <button class="add-funds-button" ng-click="goAddFounds()">ADD FUNDS</button>
       </div>
     </div>
 
@@ -56,7 +54,7 @@
       <div class="data-row">
         <div class="data-column"><span class="data-key">THIS MONTH:</span><span class="data-value">--€</span></div>
         <div class="data-column"><span class="data-key">&lt;penul-month&gt;:</span><span class="data-value">--€</span></div>
-        <div class="data-column"><a class="data-link" href="">¿Cómo gastar tus EPs?</a></div>
+        <div class="data-column"><a class="data-link" href="">How to use your EPs?</a></div>
       </div>
     </div>
   </div>

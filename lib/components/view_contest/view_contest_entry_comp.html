@@ -6,17 +6,17 @@
 
   <!--<div class="separator-bar"></div>-->
   <div class="info-complete-bar" ng-if="!isModeViewing">
-    <p ng-if="isModeCreated">WELL DONE! YOU HAVE SUCCESSFULLY COMPLETED YOUR TEAM</p>
-    <p ng-if="isModeEdited">WELL DONE! YOU HAVE SUCCESSFULLY EDITED YOUR TEAM</p>
+    <p ng-if="isModeCreated">WELL DONE! YOU HAVE SUCCESSFULLY COMPLETED YOUR LINEUP</p>
+    <p ng-if="isModeEdited">WELL DONE! YOU HAVE SUCCESSFULLY EDITED YOUR LINEUP</p>
     <p ng-if="isModeSwapped">THE CONTEST WAS FULL, SO WE HAVE PUT YOU IN THIS EQUIVALENT ONE</p>
-    <p>Remember that you can edit your team as many times as you want before the contest starts</p>
+    <p>Remember that you can edit your lineup as many times as you want before the contest starts</p>
   </div>
 
   <div id="viewContestEntry" ng-switch="scrDet.isXsScreen" >
     <div ng-switch-when="true">
       <!-- Tabs de la versión XS -->
       <ul class="view-contest-entry-tabs" id="viewContestEntryTab" >
-        <li class="active"><a ng-click="tabChange('userFantasyTeam')" data-toggle="tab">Your team</a></li>
+        <li class="active"><a ng-click="tabChange('userFantasyTeam')" data-toggle="tab">Your lineup</a></li>
         <li><a ng-click="tabChange('usersList')" data-toggle="tab">Users</a></li>
       </ul>
       <div class="tab-content" id="viewContestEntryTabContent">

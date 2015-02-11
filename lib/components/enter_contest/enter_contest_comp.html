@@ -4,8 +4,8 @@
 
   <!-- Nav tabs -->
   <ul class="enter-contest-tabs" role="tablist">
-    <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('lineup-tab-content')">Tu alineación</a></li>
-    <li><a role="tab" data-toggle="tab" ng-click="tabChange('contest-info-tab-content')">Info torneo</a></li>
+    <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('lineup-tab-content')">Your Lineup</a></li>
+    <li><a role="tab" data-toggle="tab" ng-click="tabChange('contest-info-tab-content')">Tournament Info</a></li>
   </ul>
 
   <div id="enterContest">
@@ -22,15 +22,15 @@
               <div class="total-salary" ng-class="{'red-numbers':availableSalary < 0}">
                 <span class="total-salary-money" ng-show="contest != null">{{availableSalary}}€</span>
               </div>
-              <button id="cancelSoccerPlayerSelection" type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer">CANCELAR</button>
+              <button id="cancelSoccerPlayerSelection" type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer">CANCEL</button>
             </div>
 
             <div class="enter-contest-lineup-wrapper">
               <div class="enter-contest-lineup">
                 <div class="enter-contest-total-salary">
-                    <span class="total-salary-text">TU ALINEACIÓN</span>
+                    <span class="total-salary-text">YOUR LINEUP</span>
                     <div class="total-salary">
-                      <span class="total-salary-text">DINERO RESTANTE:</span>
+                      <span class="total-salary-text">AVAILABLE MONEY:</span>
                       <span class="total-salary-money" ng-class="{'red-numbers': availableSalary < 0 }" ng-show="contest != null">{{availableSalary}}€</span>
                     </div>
                 </div>
@@ -57,16 +57,16 @@
 
             <div class="enter-contest-actions-wrapper">
               <div class="button-wrapper-block" ng-if="isSelectingSoccerPlayer && scrDet.isXsScreen">
-                <button type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer" >CANCELAR</button>
+                <button type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer" >CANCEL</button>
               </div>
               <div  class="bottom-content" ng-if="!isSelectingSoccerPlayer || scrDet.isNotXsScreen">
                 <div class="button-wrapper">
-                  <button type="button" class="btn-clean-lineup-list" ng-click="deleteFantasyTeam()" ng-disabled="isPlayerSelected()">BORRAR TODO</button>
+                  <button type="button" class="btn-clean-lineup-list" ng-click="deleteFantasyTeam()" ng-disabled="isPlayerSelected()">REMOVE ALL</button>
                 </div>
                 <div class="button-wrapper">
-                  <button type="button" class="btn-confirm-lineup-list" ng-click="createFantasyTeam()" ng-disabled="isInvalidFantasyTeam">CONFIRMAR</button>
+                  <button type="button" class="btn-confirm-lineup-list" ng-click="createFantasyTeam()" ng-disabled="isInvalidFantasyTeam">CONTINUE</button>
                 </div>
-                <p>Recuerda que puedes editar tu equipo cuantas veces quieras hasta que comience la competición</p>
+                <p>Remember that you can edit your team whenever you want until the competition starts</p>
               </div>
             </div>
 

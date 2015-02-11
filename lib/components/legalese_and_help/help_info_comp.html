@@ -1,87 +1,94 @@
 <div id="helpInfo">
 
   <!-- header title -->
-  <div class="default-section-header">AYUDA</div>
+  <div class="default-section-header">HELP</div>
 
   <!-- Nav tabs -->
   <ul class="help-info-tabs" role="tablist">
-    <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('how-works-content')">Cómo funciona</a></li>
-    <li><a role="tab" data-toggle="tab" ng-click="tabChange('rules-scores-content')">Puntuaciones y reglas</a></li>
+    <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('how-works-content')">How it works</a></li>
+    <li><a role="tab" data-toggle="tab" ng-click="tabChange('rules-scores-content')">Rules and Punctuations</a></li>
   </ul>
 
   <div class="tab-pane active" id="how-works-content">
     <div class="block-light">
-      <div class="title">ELIGE UN TORNEO</div>
-      <div class="description">Configura tu equipo siguiendo estas sencillas indicaciones: <br>En primer lugar, debes seleccionar el torneo en el que quieras participar. <br>Haz clic en la competición deseada y a continuación podrás elegir tus jugadores.</div>
+      <div class="title">Choose a tournamet</div>
+      <div class="description">Configure your lineup by following these simple guidelines: <br>First, you must select the tournament you want to participate.<br> and then you can select your lineup.</div>
       <div class="img-wrapper">
         <img src="images/help01.jpg" ng-if="!scrDet.isXsScreen">
         <img src="images/help01-xs.jpg" ng-if="scrDet.isXsScreen">
       </div>
-      <div class="description">Puedes filtrar los torneos según la competición, el límite salarial de que dispones <br>para confeccionar tu equipo o el tipo de torneo en el que quieras participar. </div>
+      <div class="description">You can filter the tournament according to the competition, the salary cap or the type of tournament you want to participate.</div>
       <div class="img-wrapper">
         <img src="images/help02.jpg" ng-if="!scrDet.isXsScreen">
         <img src="images/help02-xs.jpg" ng-if="scrDet.isXsScreen">
       </div>
     </div>
     <div class="block-dark">
-      <div class="title">HAZ TU EQUIPO</div>
-      <div class="description">A continuación, selecciona los 11 jugadores que quieras que participen <br>en el torneo que has elegido. Recuerda que debes ceñirte al <br>límite salarial que marque cada torneo.</div>
+      <div class="title">MAKE YOUR LINEUP</div>
+      <div class="description">Next step is to select the 11 players you want to participate in the tournament you've chosen.<br>Remember to gird the salary threshold that marks each tournament</div>
       <div class="img-wrapper">
         <img src="images/help03.jpg" ng-if="!scrDet.isXsScreen">
         <img src="images/help03-xs.jpg" ng-if="scrDet.isXsScreen">
       </div>
-      <div class="description">No olvides que puedes consultar las estadísticas de los jugadores que has elegido <br>en tiempo real y comparar los resultados de tu alineación con las de otros usuarios.</div>
+      <div class="description">Do not forget you can view the statistics of the players you have chosen <br>in real time and compare the results of your alignment with other users.</div>
       <div class="img-wrapper">
         <img src="images/help04.jpg" ng-if="!scrDet.isXsScreen">
         <img src="images/help04-xs.jpg" ng-if="scrDet.isXsScreen">
       </div>
     </div>
     <div class="block-light">
-      <div class="title">CONSIGUE EL MÁXIMO DE PUNTOS Y GANA</div>
-      <div class="description">En EPIC ELEVEN ser un buen estratega del fútbol tiene recompensa. <br>Confecciona tu alineación para cada torneo en el que quieras participar <br>y observa las estadísticas de los jugadores. Demuestra que eres el mejor, <br>porque próximamente podrás ganar fantásticos premios en metálico.</div>
+      <div class="title">GET THE MAXIMUM POINTS AND WIN</div>
+      <div class="description">In EPIC ELEVEN be a good football manager has a reward.<br>Make your lineup for each tournament you want to participate and observe the statistics of the players.<br>Prove you're the best, because soon you'll win fantastic prizes.</div>
       <div class="img-wrapper">
         <img src="images/help05.jpg" ng-if="!scrDet.isXsScreen">
-        <p class="img-footer">Compara tu alineación con las de otros usuarios en directo.</p>
+        <p class="img-footer">Compare your lineup with other users live.</p>
       </div>
     </div>
     <div class="block-light">
-      <div class="title">JUEGA DESDE CUALQUIER LUGAR</div>
+      <div class="title">PLAY ANYWHERE</div>
       <div class="block-last">
         <div class="img-wrapper-left">
           <img src="images/help06.jpg">
         </div>
         <div class="description-right">
-          <p>Comprueba lo sencillo que es participar en los torneos de EPIC 11 desde dónde quieras. Podrás seguir en directo las estadísticas de tus jugadores desde tu ordenador, tablet o smartphone con interfaces adaptadas a cada tipo de dispositivo para optimizar la usabilidad.</p>
-          <button type="button" class="button-play" ng-click="goTo('lobby')">JUGAR AHORA</button>
+          <p>See how easy it is to participate in tournaments EPIC 11 from wherever you want. You can follow live stats of your players from your computer, tablet or smartphone optimized for all devices,to improve usability.</p>
+          <button type="button" class="button-play" ng-click="goTo('lobby')">PLAY NOW</button>
         </div>
       </div>
     </div>
   </div>
   <div class="tab-pane" id="rules-scores-content">
     <div class="block-dark">
-      <div class="title">PUNTUACIONES Y ABREVIATURAS</div>
+      <div class="title">PUNTUATIONS AND ABBREVIATIONS</div>
       <div class="scores-wrapper">
         <scoring-rules></scoring-rules>
       </div>
     </div>
     <div class="block-light">
-      <div class="title">REGLAS</div>
+      <div class="title">RULES</div>
       <div class="toogle-block">
         <input type="checkbox" id="rule1" class="toggle">
-        <label for="rule1">LEGALIDAD</label>
+        <label for="rule1">LEGALS</label>
         <div>
-          <p>Para efectuar jugar en cualquiera de nuestros torneos, debes tener 18 años o más y ser residente en España. Para más información sobre bases legales, por favor, consulta nuestros <a ng-click="goTo('terminus_info')">Términos y Condiciones de Uso</a>.</p>
+          <p>To play any of our tournaments, you must be 18 years or older and a resident in Spain. For further information, please, see our<a ng-click="goTo('terminus_info')">Terms of Use</a>.</p>
         </div>
       </div>
       <div class="toogle-block">
         <input type="checkbox" id="rule2" class="toggle">
-        <label for="rule2">CUENTAS MÚLTIPLES</label>
+        <label for="rule2">MULTI ACCOUNTS</label>
         <div>
-          <p>Cada jugador de Epic Eleven puede tener una sola cuenta de usuario. No obstante, en casos especiales, Epic Eleven permite la creación de una segunda cuenta de usuario. Para ello, debes recibir por escrito una autorización expresa de Epic Eleven antes de abrir la segunda cuenta. En este caso, es decisión última de Epic Eleven determinar el derecho de un usuario a estar en posesión de dos cuentas. Las sanciones serán emitidas a discreción del personal de Epic Eleven y pueden conllevar el cierre de todas las cuentas de un usuario, así como la retención de dinero en efectivo, si determinamos que ha sido obtenido de manera fraudulenta.</p>
+          <p>Each Epic Eleven player, can only own a single account. However, in special cases, Epic Eleven allows the creation of a second account. To do this, you must revceive express written permission of Epic Eleven before opening the second account. In this case, is Epic Eleven final decision, determining the right of a user to ve in possession of two accounts. The penalties will be issued at the discretion of Epic Eleven staff and may involve the closuere of all user accounts and retention of cach, if we determine that has been obtained fraudulently.</p>
         </div>
       </div>
       <div class="toogle-block">
         <input type="checkbox" id="rule3" class="toggle">
+
+
+
+            Seguir por aqui
+
+
+
         <label for="rule3">CUENTAS ANULADAS</label>
         <div>
           <p>Existen determinados comportamientos que actúan en detrimento de Epic Eleven y del resto de jugadores. La práctica de estos comportamientos implicará la anulación de algunas (o la totalidad) de las funciones asociadas a una cuenta de usuario. Como consecuencia de lo anteriormente expuesto, los usuarios cuyas cuentas hayan sido anuladas deberán respetar las medidas disciplinarias impuestas. Toda comunicación perteneciente a la restauración de una cuenta de usuario deberá efectuarse a través de la cuenta de correo electrónico soporte@epiceleven.com.</p>

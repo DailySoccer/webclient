@@ -1,11 +1,11 @@
 <div id="myContest" >
   <!-- header title -->
-  <div class="default-section-header">MIS TORNEOS</div>
+  <div class="default-section-header">MY CONTESTS</div>
   <!-- Nav tabs -->
   <ul  id="myContestMenuTabs" class="my-contest-tabs" role="tablist">
-    <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('live-contest-content')"> En Vivo <span class="contest-count" ng-if="hasLiveContests">{{contestsService.liveContests.length}}</span></a></li>
-    <li><a role="tab" data-toggle="tab" ng-click="tabChange('waiting-contest-content')">Próximos</a></li>
-    <li><a role="tab" data-toggle="tab" ng-click="tabChange('history-contest-content')">Historial</a></li>
+    <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('live-contest-content')"> Live <span class="contest-count" ng-if="hasLiveContests">{{contestsService.liveContests.length}}</span></a></li>
+    <li><a role="tab" data-toggle="tab" ng-click="tabChange('waiting-contest-content')">Next</a></li>
+    <li><a role="tab" data-toggle="tab" ng-click="tabChange('history-contest-content')">Entry History</a></li>
   </ul>
 
   <!-- Tab panes -->
@@ -21,11 +21,11 @@
           <!-- lista vacía -->
           <div class="no-contests-wrapper" ng-switch-when="false">
             <div class="no-contests-content">
-              <div class="default-info-text">EN ESTE MOMENTO, NO ESTÁS JUGANDO<br>NINGÚN TORNEO</div>
-              <div class="no-contests-text">CONSULTA LA LISTA DE TUS <strong data-toggle="tab" ng-click="tabChange('waiting-contest-content')">PRÓXIMOS TORNEOS</strong> PARA VER CUÁNDO EMPIEZAN</div>
+              <div class="default-info-text">YOUR ARE NOT PLAYING ANY CONTEST<br>AT THE MOMENT</div>
+              <div class="no-contests-text">CHECK OUT THE LIST OF YOUR <strong data-toggle="tab" ng-click="tabChange('waiting-contest-content')">NEXT CONTESTS</strong> TO SEE WHEN THEY START</div>
             </div>
             <div class="no-contest-bottom-row">
-              <button class="btn-go-to-contest" ng-click="gotoLobby()">IR A LOS TORNEOS</button>
+              <button class="btn-go-to-contest" ng-click="gotoLobby()">TO THE CONTESTS</button>
             </div>
           </div>
           <!-- lista de concursos -->
@@ -45,11 +45,11 @@
           <!-- lista vacía -->
           <div class="no-contests-wrapper" ng-switch-when="false">
             <div class="no-contests-content">
-              <div class="default-info-text">EN ESTE MOMENTO, NO TIENES UN<br>EQUIPO CREADO PARA NINGÚN TORNEO</div>
-              <div class="no-contests-text">VE A LA LISTA DE TORNEOS, ELIGE UNO Y EMPIEZA A JUGAR</div>
+              <div class="default-info-text">YOU DON'T HAVE ANY TEAM FOR ANY CONTEST<br>RIGHT NOW</div>
+              <div class="no-contests-text">GO TO THE CONTEST LIST, PICK ONE AND START PLAYING</div>
             </div>
             <div class="no-contest-bottom-row">
-              <button class="btn-go-to-contest" ng-click="gotoLobby()">IR A LOS TORNEOS</button>
+              <button class="btn-go-to-contest" ng-click="gotoLobby()">TO THE CONTESTS</button>
             </div>
           </div>
           <!-- lista de concursos -->
@@ -69,11 +69,11 @@
           <!-- lista vacía -->
           <div class="no-contests-wrapper" ng-switch-when="false">
             <div class="no-contests-content">
-              <div class="default-info-text">TODAVÍA NO HAS JUGADO NINGÚN TORNEO<br>¿A QUE ESPERAS PARA EMPEZAR A GANAR?</div>
-              <div class="no-contests-text">VE A LA LISTA DE TORNEOS, ELIGE UNO Y EMPIEZA A JUGAR</div>
+              <div class="default-info-text">YOU HAVEN'T PLAYED ANY CONTEST YET<br>WHAT ARE YOU WAITING FOR TO START WINNING?</div>
+              <div class="no-contests-text">GO TO THE CONTEST LIST, PICK ONE AND START PLAYING</div>
             </div>
             <div class="no-contest-bottom-row">
-              <button class="btn-go-to-contest" ng-click="gotoLobby()">IR A LOS TORNEOS</button>
+              <button class="btn-go-to-contest" ng-click="gotoLobby()">TO THE CONTESTS</button>
             </div>
           </div>
           <!-- lista de concursos -->

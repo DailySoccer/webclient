@@ -302,7 +302,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
   List<Map> _sortList = [_SORT_FIELDS["Pos"], _SORT_FIELDS["Name"]];
   Map<String, String> _filterList = {};
 
-  static final Map<String, String> _POS_CLASS_NAMES = { "POR": "posPOR", "DEF": "posDEF", "MED": "posMED", "DEL": "posDEL" };
+  static final Map<String, String> _POS_CLASS_NAMES = { "GK": "posPOR", "DEF": "posDEF", "MID": "posMED", "FWD": "posDEL" };
   static final Map<String, Map> _SORT_FIELDS = { "Name": _getSortField("fullNameNormalized", 1),
                                                  "DFP": _getSortField("fantasyPoints", -1),
                                                  "Played": _getSortField("playedMatches", -1),

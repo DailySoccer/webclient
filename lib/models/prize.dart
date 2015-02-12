@@ -13,8 +13,8 @@ class Prize {
     FREE: "Free contest. No prizes", //"Free",
     WINNER: "Winner takes all", //"Winner takes all",
     TOP_3: "First 3 get prizes", //"Top 3 get prizes",
-    TOP_THIRD: "Frist # get prizes",// "El tercio superior de concursantes reciben premio", //Top third get prizes",
-    FIFTY_FIFTY: "Fisrt # get prizes",// "La mitad superior de concursantes reciben premio", //"50/50"
+    TOP_THIRD: "First # get prizes",// "El tercio superior de concursantes reciben premio", //Top third get prizes",
+    FIFTY_FIFTY: "First # get prizes",// "La mitad superior de concursantes reciben premio", //"50/50"
   };
 
   String prizeType;

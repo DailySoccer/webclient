@@ -80,7 +80,7 @@ class ContestsListComp {
   }
 
   @NgOneWay("action-button-title")
-  String actionButtonTitle = "VER";
+  String actionButtonTitle = "DETAIL";
 
   @NgTwoWay("contest-count")
   void set contestCount(int value) {

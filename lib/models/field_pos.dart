@@ -13,7 +13,7 @@ class FieldPos {
   // Mapeamos los fieldPos que nos llegan de la DB a nombres que podemos exponer al usuario
   static Map<String, String> FIELD_POSITION_FULL_NAMES = {
     'GOALKEEPER': "GOALKEEPER",
-    'DEFENSE': "DEFENSE",
+    'DEFENSE': "DEFENDER",
     'MIDDLE': "MIDFIELDER",
     'FORWARD': "FORWARD"
   };
@@ -22,10 +22,10 @@ class FieldPos {
       'GOALKEEPER': "GK",
       'DEFENSE':    "DEF",
       'MIDDLE':     "MID",
-      'FORWARD':    "FOR"
+      'FORWARD':    "FWD"
    };
 
-  static List<String> SORT_ORDER = ["GK", "DEF", "MID", "FOR"];
+  static List<String> SORT_ORDER = ["GK", "DEF", "MID", "FWD"];
 
   // Nuestra alineacion por defecto
   static List<String> LINEUP = [ "GOALKEEPER", "DEFENSE", "DEFENSE", "DEFENSE", "DEFENSE", "MIDDLE", "MIDDLE", "MIDDLE", "MIDDLE", "FORWARD", "FORWARD" ];

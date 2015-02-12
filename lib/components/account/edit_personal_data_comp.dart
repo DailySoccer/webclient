@@ -106,7 +106,7 @@ class EditPersonalDataComp implements ShadowRootAware{
     bool retorno = true;
     // Verificación del password
     if (editedPassword != editedRepeatPassword && editedPassword.length < MIN_PASSWORD_LENGTH) {
-        passwordErrorText = "Los passwords no coinciden";
+        passwordErrorText = "Passwords don't match.";
         retorno = false;
     }
     return retorno;
@@ -122,7 +122,7 @@ class EditPersonalDataComp implements ShadowRootAware{
            ..classes.add("errorDetected")
            ..style.display = '';
 
-         _nickNameErrorLabel.text = "El nombre de usuario debe tener al menos ${MIN_NICKNAME_LENGTH} caracteres";
+         _nickNameErrorLabel.text = "Username must be at least ${MIN_NICKNAME_LENGTH} characters long.";
          valid_Data = false;
        }
 
@@ -132,7 +132,7 @@ class EditPersonalDataComp implements ShadowRootAware{
            ..classes.add("errorDetected")
            ..style.display = '';
 
-         _emailErrorLabel.text = "El correo electrónico no introducido no es válido.";
+         _emailErrorLabel.text = "Email is not valid.";
          valid_Data = false;
        }
       if (!validatePassword() ) {
@@ -141,7 +141,7 @@ class EditPersonalDataComp implements ShadowRootAware{
           ..classes.add("errorDetected")
           ..style.display = '';
 
-        _passwordErrorLabel.text = "La contraseña debe tener al menos ${MIN_PASSWORD_LENGTH} caracteres.";
+        _passwordErrorLabel.text = "Password must be at least ${MIN_PASSWORD_LENGTH} characters long.";
         valid_Data = false;
       }
 

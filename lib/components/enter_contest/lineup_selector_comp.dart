@@ -26,5 +26,5 @@ class LineupSelectorComp {
   String getSlotPosition(int slotIndex) => FieldPos.FIELD_POSITION_ABREV[FieldPos.LINEUP[slotIndex]];
   String getSlotDescription(int slotIndex) => "ADD " + FieldPos.FIELD_POSITION_FULL_NAMES[FieldPos.LINEUP[slotIndex]];
 
-  static final Map<String, String> _POS_CLASS_NAMES = { "GK": "posPOR", "DEF": "posDEF", "MID": "posMED", "FOR": "posDEL" };
+  static final Map<String, String> _POS_CLASS_NAMES = { "GK": "posPOR", "DEF": "posDEF", "MID": "posMED", "FWD": "posDEL" };
 }

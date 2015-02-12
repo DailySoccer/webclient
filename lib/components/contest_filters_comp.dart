@@ -103,7 +103,7 @@ class ContestFiltersComp implements ShadowRootAware {
   String get filterEntryFeeRangeMax => getEntryFeeFilterRange()[ENTRY_FEE_MAX_RANGE].toString();
 
   // Bloque HTML con el resumen de los filtros aplicados
-  String get filterResume =>/* xsFilterList.join("<br>") + */"<div>Torneos disponibles <span class='contest-count'>" + _contestCount.toString() + "</span></div>";
+  String get filterResume =>/* xsFilterList.join("<br>") + */"<div>Available contests <span class='contest-count'>" + _contestCount.toString() + "</span></div>";
 
   ContestFiltersComp(this.scrDet) {
     initializeFilterValues();

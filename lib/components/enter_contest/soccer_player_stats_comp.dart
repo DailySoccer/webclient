@@ -53,7 +53,7 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
                 "GOLES"               : {"shortName" : "G",  "description" : 'Goals'},
                 "TIROS"               : {"shortName" : "SH",  "description" : 'Shots'},
                 "ASISTENCIAS"         : {"shortName" : "A",  "description" : 'Assists'},
-                "REGATES"             : {"shortName" : "T",  "description" : 'Take on'},
+                "REGATES"             : {"shortName" : "T",  "description" : 'Take-ons'},
                 "FALTAS_RECIBIDAS"    : {"shortName" : "FC", "description" : 'Fouls Conceded'}
   };
 
@@ -178,7 +178,7 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
       commonPlayerStatsList.forEach((key) {
         _totalSums[key] = 0;
       });
-      seasonTableHeaders.addAll(['Goals', 'Shots', 'Passes', 'Assists', 'Take on', 'Recoveries', 'Possession lost', 'Fouls Committed', 'Fouls Conceded', 'Yellow Cards', 'Red Cards']);
+      seasonTableHeaders.addAll(['Goals', 'Shots', 'Passes', 'Assists', 'Take-ons', 'Recoveries', 'Possession lost', 'Fouls Committed', 'Fouls Conceded', 'Yellow Cards', 'Red Cards']);
     }
   }
 

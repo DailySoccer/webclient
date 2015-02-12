@@ -6,7 +6,8 @@ import 'package:angular/angular.dart';
 primeTemplateCache(TemplateCache tc) {
 tc.put("packages/webclient/components/account/add_funds_comp.html", new HttpResponse(200, r"""<div id="addFundsContent">
 
-  <div class="block-dark-header">AÑADIR FONDOS</div>
+  <!-- header title -->
+  <div class="default-section-header">AÑADIR FONDOS</div>
 
   <div>
     <div class="description">
@@ -551,7 +552,14 @@ tc.put("packages/webclient/components/account/remember_password_comp.html", new 
         <!-- Mensaje cuando todo ha ido correctamente. -->
         <div ng-show="state=='STATE_REQUESTED'">
           <div class="form-description">Te hemos enviado un correo electrónicoa la dirección: <br><br><p class="email-detail">'{{email}}'</p>Revisa tu correo y sigue las instrucciones en el email que te hemos enviado.</div>
-          <div class="small-text-centered"><br><br>(Ya puedes cerrar esta ventana)</div>
+          <!-- BUTTONS -->
+          <div class="user-form-field">
+            <div class="new-row">
+              <div class="buttons-wrapper">
+                <button type="submit" id="btnSubmit" name="JoinNow" ng-click="backToLanding()" class="enter-button">ACEPTAR</button>
+              </div>
+            </div>
+          </div>
         </div>
 
         <form ng-show="state=='STATE_REQUEST'" id="rememberPasswordForm" class="form-horizontal" ng-submit="rememberMyPassword()" role="form">
@@ -599,7 +607,9 @@ tc.put("packages/webclient/components/account/remember_password_comp.html", new 
   </div>
 </div>"""));
 tc.put("packages/webclient/components/account/transaction_history_comp.html", new HttpResponse(200, r"""<div id="transactionHistoryRoot">
+  <!-- header title -->
   <div class="default-section-header">HISTORIAL DE TRANSACCIONES</div>
+
   <div class="transaction-headers">
     <span class="header-date">FECHA</span>
     <span class="header-id">ID</span>
@@ -612,8 +622,8 @@ tc.put("packages/webclient/components/account/transaction_history_comp.html", ne
     <div class="field-date">{{transaction.formattedDate}}</div>
     <div class="field-id">{{transaction.transactionID}}</div>
     <div class="field-concept">{{transaction.transactionDescription}}</div>
-    <div class="field-amount"><div class="money-label">IMPORTE: </div> {{transaction.value}}€ </div>
-    <div class="field-balance"><div class="money-label">SALDO: </div> {{transaction.balance}}€ </div>
+    <div class="field-amount"><div class="money-label">IMPORTE: </div> {{transaction.value}}</div>
+    <div class="field-balance"><div class="money-label">SALDO: </div> {{transaction.balance}}</div>
   </div>
 
   <paginator on-page-change="onPageChange(currentPage, itemsPerPage)" items-per-page="20" list-length="transactions.length"></paginator>
@@ -634,7 +644,7 @@ tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpR
           </button>
         </div>
         <div class="button-wrapper"><button class="action-button" ng-click="editPersonalData()">EDITAR</button></div>
-        
+
       </div>
       <div class="bloque-sm">
         <div class="data-row"><span class="data-key">Nombre personal:</span><span class="data-value">{{userData.firstName + ' ' + userData.lastName}}</span></div>
@@ -651,7 +661,7 @@ tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpR
       </div>
       -->
     </div>
-    
+
     <div class="pocket-data">
       <div class="data-header">
           <span class="data-header-title">MONEDERO</span>
@@ -661,7 +671,7 @@ tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpR
           </div>
        </div>
       <div class="data-container-9">
-        <div class="data-row"><span class="data-key">Balance actual:</span><span class="data-value-balance">{{userData.balance}} €</span></div>
+        <div class="data-row"><span class="data-key">Balance actual:</span><span class="data-value-balance">{{userData.balance}}</span></div>
         <!--div class="data-row"><span class="data-key">Bonus pendientes:</span><span class="data-value">&lt;pending-bonuses&gt;€</span></div-->
       </div>
       <div class="data-container-3">
@@ -682,19 +692,20 @@ tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpR
       </div>
     </div>
   </div>
-  
-  
-  
+
+
+
 </div>"""));
 tc.put("packages/webclient/components/account/withdraw_funds_comp.html", new HttpResponse(200, r"""<div id="withdrawFundsContent">
-  <div class="block-dark-header">RETIRAR FONDOS</div>
+  <!-- header title -->
+  <div class="default-section-header">RETIRAR FONDOS</div>
 
-  <div>
+  <div class="top-separation">
     <div class="withdraw-founds-box">
       <div class="data-header">
-        <span class="data-header-title">TU SALDO ES DE <span class="money"><span id="moneyAmount">{{userData.balance}}</span> €</span></span>
+        <span class="data-header-title">TU SALDO ES DE <span class="money"><span id="moneyAmount">{{userData.balance}}</span></span></span>
       </div>
-      
+
       <p>¿Cuánto dinero deseas retirar?</p>
       <div class="money-element">
         <input type="number" id="customEurosAmount"><label for="customEuros">€</label>
@@ -927,7 +938,7 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
                   <div id="prizes-list">
                     <div class="prize-element-wrapper" ng-repeat="prize in currentInfoData['prizes']">
                       <div class="prize-element">
-                          {{$index + 1}}º &nbsp;&nbsp; {{prize}}€
+                          {{$index + 1}}º &nbsp;&nbsp; {{prize}}
                       </div>
                     </div>
                     <div class="clearfix"></div>
@@ -969,7 +980,7 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
         </div>
         <div class="prize-element-wrapper" ng-repeat="prize in currentInfoData['prizes']">
           <div class="prize-element">
-              {{$index + 1}}º &nbsp;&nbsp; {{prize}}€
+              {{$index + 1}}º &nbsp;&nbsp; {{prize}}
           </div>
         </div>
         <div class="clearfix"></div>
@@ -1005,7 +1016,7 @@ tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse
     <div class="column-contest-empty" ng-click="onRow(contest)" ng-if="contest.isLive"></div>
 
     <div class="column-contest-price" ng-click="onRow(contest)" ng-if="!contest.isLive && !contest.isHistory">
-      <div class="column-contest-price-content">{{contest.entryFee}}€</div>
+      <div class="column-contest-price-content">{{contest.entryFee}}</div>
       <div class="column-contest-price-header">ENTRADA</div>
       <!-- torneo gratis -->
       <!--<div ng-if="isFreeContest(contest)"><img src="images/iconFree.png" alt="GRATIS"></div>-->
@@ -1017,8 +1028,8 @@ tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse
     </div>
 
     <div class="column-contest-prize" ng-click="onRow(contest)" ng-if="!contest.isLive">
-      <div ng-if="!contest.isHistory" class="column-contest-prize-content prize-icon-big">{{contest.prizePool}}€</div>
-      <div ng-if="contest.isHistory"  class="column-contest-prize-content prize-icon-big">{{getMyPrize(contest)}}€</div>
+      <div ng-if="!contest.isHistory" class="column-contest-prize-content prize-icon-big">{{contest.prizePool}}</div>
+      <div ng-if="contest.isHistory"  class="column-contest-prize-content prize-icon-big">{{getMyPrize(contest)}}</div>
       <div class="column-contest-prize-header">PREMIO</div>
     </div>
 
@@ -1293,9 +1304,9 @@ tc.put("packages/webclient/components/enter_contest/soccer_players_filter_comp.h
   <input type="text" class="name-player-input-filter" placeholder="Buscar jugador" ng-model="nameFilter" />
 </div>"""));
 tc.put("packages/webclient/components/legalese_and_help/beta_info_comp.html", new HttpResponse(200, r"""<div id="betaComp">
-   <div class="block-dark-header">
-    <div class="default-header-text">EPIC ELEVEN: VERSIÓN BETA</div>
-  </div>
+  <!-- header title -->
+  <div class="default-section-header">EPIC ELEVEN: VERSIÓN BETA</div>
+
   <div class="block-blue-header">
     <div class="title_white">ESTA SECCIÓN NO ESTA DISPONIBLE</div>
   </div>
@@ -1312,9 +1323,8 @@ tc.put("packages/webclient/components/legalese_and_help/beta_info_comp.html", ne
 </div>"""));
 tc.put("packages/webclient/components/legalese_and_help/help_info_comp.html", new HttpResponse(200, r"""<div id="helpInfo">
 
-  <div class="block-dark-header">
-    <div class="default-header-text">AYUDA</div>
-  </div>
+  <!-- header title -->
+  <div class="default-section-header">AYUDA</div>
 
   <!-- Nav tabs -->
   <ul class="help-info-tabs" role="tablist">
@@ -1479,11 +1489,9 @@ tc.put("packages/webclient/components/legalese_and_help/help_info_comp.html", ne
 </div>
 """));
 tc.put("packages/webclient/components/legalese_and_help/legal_info_comp.html", new HttpResponse(200, r"""<div id="staticInfo">
-
-  <div class="block-dark-header">
-    <div class="default-header-text">LEGAL</div>
-    <div class="blue-separator"></div>
-  </div>
+  <!-- header title -->
+  <div class="default-section-header">LEGAL</div>
+  <div class="blue-separator"></div>
 
   <div class="info-wrapper">
     <h1>Datos de identificación</h1>
@@ -1510,10 +1518,9 @@ tc.put("packages/webclient/components/legalese_and_help/legal_info_comp.html", n
 </div>"""));
 tc.put("packages/webclient/components/legalese_and_help/policy_info_comp.html", new HttpResponse(200, r"""<div id="staticInfo">
 
-  <div class="block-dark-header">
-    <div class="default-header-text">POLÍTICA DE PRIVACIDAD</div>
-    <div class="blue-separator"></div>
-  </div>
+  <!-- header title -->
+  <div class="default-section-header">POLÍTICA DE PRIVACIDAD</div>
+  <div class="blue-separator"></div>
 
   <div class="info-wrapper">
     <h1>
@@ -1586,10 +1593,9 @@ tc.put("packages/webclient/components/legalese_and_help/policy_info_comp.html", 
 """));
 tc.put("packages/webclient/components/legalese_and_help/terminus_info_comp.html", new HttpResponse(200, r"""<div id="staticInfo">
 
-  <div class="block-dark-header">
-    <div class="default-header-text">TÉRMINOS Y CONDICIONES</div>
-    <div class="blue-separator"></div>
-  </div>
+  <!-- header title -->
+  <div class="default-section-header">TÉRMINOS Y CONDICIONES</div>
+  <div class="blue-separator"></div>
 
   <div class="info-wrapper">
     <h1>
@@ -2198,8 +2204,8 @@ tc.put("packages/webclient/components/modal_comp.html", new HttpResponse(200, r"
 </div>
 """));
 tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(200, r"""<div id="myContest" >
-  <div class="default-header-text">MIS TORNEOS</div>
-
+  <!-- header title -->
+  <div class="default-section-header">MIS TORNEOS</div>
   <!-- Nav tabs -->
   <ul  id="myContestMenuTabs" class="my-contest-tabs" role="tablist">
     <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('live-contest-content')"> En Vivo <span class="contest-count" ng-if="hasLiveContests">{{contestsService.liveContests.length}}</span></a></li>
@@ -2514,13 +2520,31 @@ tc.put("packages/webclient/components/view_contest/view_contest_entry_comp.html"
       <fantasy-team id="userFantasyTeam" contest-entry="mainPlayer" watch="updatedDate" is-opponent="false"></fantasy-team>
       <users-list id="usersList" ng-show="selectedOpponent == null" contest-entries="contestEntries" watch="updatedDate"></users-list>
     </div>
+
+
     <div class="view-contest-entry-actions-wrapper">
+<!-- Nuevos Bottons Autocentrables-->
+  <div class="new-row">
+    <div class="autocentered-buttons-wrapper">
+      <div ng-if="scrDet.isXsScreen" class="button-box"><button type="button" class="ok-button" ng-click="goToParent()">VOLVER A TORNEOS</button></div>
+      <div class="button-box"  ng-if="isModeViewing || isModeEdited"><button type="button" class="cancel-button" ng-click="confirmContestCancellation()">CANCELAR PARTICIPACIÓN</button></div>
+      <div ng-if="!scrDet.isXsScreen" class="button-box ok"><button type="button" class="ok-button" ng-click="goToParent()">VOLVER A TORNEOS</button></div>
+    </div>
+  </div>
+<!-- End Nuevos Bottons Autocentrables-->
+
+
+
+      <!--Viejos Bottons
       <div class="button-wrapper">
         <button type="button" class="btn-cancel-contest" ng-click="cancelContestEntry()">ABANDONAR</button>
       </div>
       <div class="button-wrapper">
-        <button type="button" class="btn-back-contest" ng-click="goToParent()">GUARDAR</button>
+        <button type="button" class="btn-back-contest" ng-click="goToParent()">GUARDAR CAMBIOS</button>
       </div>
+      End Viejos Bottons-->
+
+
     </div>
     <div class="clear-fix-bottom"></div>
   </div>

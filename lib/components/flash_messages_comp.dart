@@ -10,7 +10,7 @@ import 'dart:async';
 
 @Component(selector: 'flash-messages',
            useShadowDom: false,
-           exportExpressions: const ["flashMessageService.messages"]
+           exportExpressions: const ["flashMessageService.flashMessages", "flashMessageService.globalMessages"]
 )
 class FlashMessageComp implements ShadowRootAware, ScopeAware {
 
@@ -27,7 +27,6 @@ class FlashMessageComp implements ShadowRootAware, ScopeAware {
 
   @override void onShadowRoot(emulatedRoot) {
     _scope.watch("flashMessageService.flashMessages", _onFlashMessagesChange, canChangeModel: false, collection: true);
-    // global
     _scope.watch("flashMessageService.globalMessages", _onGlobalMessagesChange, canChangeModel: false, collection: true);
   }
 

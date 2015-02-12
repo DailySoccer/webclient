@@ -4,7 +4,7 @@
     <div class="panel">
 
       <div class="panel-heading">
-        <div class="panel-title">SING UP</div>
+        <div class="panel-title">SIGN UP</div>
         <button type="button" class="close" ng-click="navigateTo('landing_page', {}, $event)">
           <span class="glyphicon glyphicon-remove"></span>
         </button>
@@ -13,13 +13,13 @@
       <div class="panel-body" >
 
         <form id="signupForm" class="form-horizontal" ng-submit="submitSignup()" role="form" formAutofillFix>
-          <div class="form-description">¿do not have an EPIC ELEVEN account yet?<br>Fill out this form.</div>
+          <div class="form-description">Don't you have an EPIC ELEVEN account yet?<br>Fill out this form.</div>
 
           <!-- NICKNAME  -->
           <div class="user-form-field">
             <!-- Description -->
             <div class="new-row bottom-separation-10">
-              <div class="small-text">Your nick must be between {{MIN_NICKNAME_LENGTH}} to {{MAX_NICKNAME_LENGTH}} characters.</div>
+              <div class="small-text">Your nickname must be {{MIN_NICKNAME_LENGTH}} to {{MAX_NICKNAME_LENGTH}} characters long.</div>
             </div>
             <!-- Field Input -->
             <div id="nickNameInputGroup" class="input-group">
@@ -28,7 +28,7 @@
             </div>
             <!-- Error label -->
             <div class="new-row">
-              <div id="nickNameError" class="join-err-text">Invalid Nick.</div>
+              <div id="nickNameError" class="join-err-text">Invalid Nickname.</div>
             </div>
           </div>
 
@@ -53,7 +53,7 @@
           <div  class="user-form-field">
             <!-- Description -->
             <div class="new-row bottom-separation-10">
-              <div class="small-text">Password: at least {{MIN_PASSWORD_LENGTH}} characters. (Type it twice).</div>
+              <div class="small-text">Password: Should be at least {{MIN_PASSWORD_LENGTH}} characters. (Type it twice).</div>
             </div>
             <!-- Field Input 1 -->
             <div id="passwordInputGroup" class="input-group  bottom-separation-10">

@@ -423,3 +423,29 @@ body {
 	left: @posX;
 	top:  @posY;
 }
+
+.globalMessage {
+	.alert-danger();
+	.slide-in-from-bottom-animation();
+	@media (max-width: @screen-xs-max) {
+		font-size: 8pt; 
+		padding: 30px 20px; 
+	}
+	.opensans_normal(12pt, @red);
+	border: 3px solid @red;
+	border-radius: 10px;
+	background-color: @tramaRed;
+	padding: 35px; 
+	position: fixed; 
+	top: 10%; 
+	left: 50%; 
+	transform: translateX(-50%); 
+	z-index:99999;
+}
+
+.epicGlobalMessage {
+	.globalMessage();
+	border-color: @white;
+	background-color: @blueDark;
+	color: @white;
+}

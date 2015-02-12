@@ -6185,7 +6185,6 @@ scoring-rules:after,
   }
 }
 .slide-in-from-bottom-animation {
-  position: relative;
   -webkit-animation: slide-in-from-bottom-keyframes 0.4s;
   -moz-animation: slide-in-from-bottom-keyframes 0.4s;
   -ms-animation: slide-in-from-bottom-keyframes 0.4s;
@@ -6194,41 +6193,37 @@ scoring-rules:after,
 }
 @-webkit-keyframes slide-in-from-bottom-keyframes {
   0% {
-    top: 300px;
+    top: 30%;
     opacity: 0;
   }
   100% {
-    top: 0px;
     opacity: 1;
   }
 }
 @-moz-keyframes slide-in-from-bottom-keyframes {
   0% {
-    top: 300px;
+    top: 30%;
     opacity: 0;
   }
   100% {
-    top: 0px;
     opacity: 1;
   }
 }
 @-o-keyframes slide-in-from-bottom-keyframes {
   0% {
-    top: 300px;
+    top: 30%;
     opacity: 0;
   }
   100% {
-    top: 0px;
     opacity: 1;
   }
 }
 @keyframes slide-in-from-bottom-keyframes {
   0% {
-    top: 300px;
+    top: 30%;
     opacity: 0;
   }
   100% {
-    top: 0px;
     opacity: 1;
   }
 }
@@ -23412,4 +23407,149 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
 .ng-cloak,
 .ng-hide {
   display: none !important;
+}
+.globalMessage {
+  background-color: #f2dede;
+  border-color: #ebccd1;
+  color: #a94442;
+  -webkit-animation: slide-in-from-bottom-keyframes 0.4s;
+  -moz-animation: slide-in-from-bottom-keyframes 0.4s;
+  -ms-animation: slide-in-from-bottom-keyframes 0.4s;
+  -o-animation: slide-in-from-bottom-keyframes 0.4s;
+  animation: slide-in-from-bottom-keyframes 0.4s;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12pt;
+  color: #ff0000;
+  border: 3px solid #ff0000;
+  border-radius: 10px;
+  background-color: #f8f0f0;
+  padding: 35px;
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 99999;
+}
+.globalMessage hr {
+  border-top-color: #e4b9c0;
+}
+.globalMessage .alert-link {
+  color: #843534;
+}
+@-webkit-keyframes slide-in-from-bottom-keyframes {
+  0% {
+    top: 30%;
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-moz-keyframes slide-in-from-bottom-keyframes {
+  0% {
+    top: 30%;
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-o-keyframes slide-in-from-bottom-keyframes {
+  0% {
+    top: 30%;
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes slide-in-from-bottom-keyframes {
+  0% {
+    top: 30%;
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@media (max-width: 767px) {
+  .globalMessage {
+    font-size: 8pt;
+    padding: 30px 20px;
+  }
+}
+.epicGlobalMessage {
+  background-color: #f2dede;
+  border-color: #ebccd1;
+  color: #a94442;
+  -webkit-animation: slide-in-from-bottom-keyframes 0.4s;
+  -moz-animation: slide-in-from-bottom-keyframes 0.4s;
+  -ms-animation: slide-in-from-bottom-keyframes 0.4s;
+  -o-animation: slide-in-from-bottom-keyframes 0.4s;
+  animation: slide-in-from-bottom-keyframes 0.4s;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12pt;
+  color: #ff0000;
+  border: 3px solid #ff0000;
+  border-radius: 10px;
+  background-color: #f8f0f0;
+  padding: 35px;
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 99999;
+  border-color: #ffffff;
+  background-color: #214a5f;
+  color: #ffffff;
+}
+.epicGlobalMessage hr {
+  border-top-color: #e4b9c0;
+}
+.epicGlobalMessage .alert-link {
+  color: #843534;
+}
+@-webkit-keyframes slide-in-from-bottom-keyframes {
+  0% {
+    top: 30%;
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-moz-keyframes slide-in-from-bottom-keyframes {
+  0% {
+    top: 30%;
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-o-keyframes slide-in-from-bottom-keyframes {
+  0% {
+    top: 30%;
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes slide-in-from-bottom-keyframes {
+  0% {
+    top: 30%;
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@media (max-width: 767px) {
+  .epicGlobalMessage {
+    font-size: 8pt;
+    padding: 30px 20px;
+  }
 }

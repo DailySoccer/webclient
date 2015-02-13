@@ -56,11 +56,11 @@
 
 // Viene de unos pixeles mas abajo haciendo fadein. Por ejemplo para los formularios.
 .slide-in-from-bottom-animation {
-	position: relative;
+	//position: relative;
 
 	#doKeyFrames(slide-in-from-bottom-keyframes, {
-			0%   { top: 300px; opacity: 0; }
-    		100% { top: 0px;   opacity: 1; }
+			0%   { top: 30%; opacity: 0; }
+    		100% { opacity: 1; }
 		});
 	.animateWithKeyFrames(slide-in-from-bottom-keyframes, 0.4s);
 }

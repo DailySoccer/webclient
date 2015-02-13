@@ -10,6 +10,13 @@ class FlashMessage {
   FlashMessage(this.context, this.type, this.text);
 }
 
+class GlobalMessage {
+  int visibilitySeconds ;
+  String text;
+
+  GlobalMessage(this.text, this.visibilitySeconds);
+}
+
 @Injectable()
 class FlashMessagesService {
   static const CONTEXT_GLOBAL = "GLOBAL";
@@ -20,18 +27,25 @@ class FlashMessagesService {
   static const TYPE_WARNING = "warning";
   static const TYPE_ERROR   = "danger";
 
-  List<FlashMessage> messages = new List<FlashMessage>();
+  List<FlashMessage> flashMessages    = new List<FlashMessage>();
+  List<GlobalMessage> globalMessages  = new List<GlobalMessage>();
 
   clearContext(String context) {
-    messages = messages.where( (m) => m.context != context ).toList();
+    flashMessages = flashMessages.where( (m) => m.context != context ).toList();
   }
 
-  warning(String text, {context: CONTEXT_GLOBAL})  => _addMessage(new FlashMessage(context, TYPE_WARNING, text));
-  info(String text, {context: CONTEXT_GLOBAL})     => _addMessage(new FlashMessage(context, TYPE_INFO, text));
-  success(String text, {context: CONTEXT_GLOBAL})  => _addMessage(new FlashMessage(context, TYPE_SUCCESS, text));
-  error(String text, {context: CONTEXT_GLOBAL})    => _addMessage(new FlashMessage(context, TYPE_ERROR, text));
+  warning(String text, {context: CONTEXT_GLOBAL})  => _addFlashMessage(new FlashMessage(context, TYPE_WARNING, text));
+  info(String text, {context: CONTEXT_GLOBAL})     => _addFlashMessage(new FlashMessage(context, TYPE_INFO, text));
+  success(String text, {context: CONTEXT_GLOBAL})  => _addFlashMessage(new FlashMessage(context, TYPE_SUCCESS, text));
+  error(String text, {context: CONTEXT_GLOBAL})    => _addFlashMessage(new FlashMessage(context, TYPE_ERROR, text));
 
-  _addMessage(FlashMessage message) {
-    messages.add(message);
+  _addFlashMessage(FlashMessage message) {
+    flashMessages.add(message);
+  }
+
+  addGlobalMessage(String text, int visibilitySeconds) => _addGlobalMessage(new GlobalMessage(text, visibilitySeconds));
+
+  _addGlobalMessage(GlobalMessage message) {
+    globalMessages.add(message);
   }
 }

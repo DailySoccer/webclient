@@ -91,9 +91,9 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
       <div id="desktopContent">    
         <div class="main-title-wrapper">
     
-          <div class="main-title">WEEKLY FANTASY LEAGUES</div>
+          <div class="main-title">DAILY FANTASY LEAGUES</div>
           <div class="main-sub-title">
-            Play and win when you want, without waiting until the end of the season.
+            Play and win whenever you want, without waiting until the end of the season.
           </div>
           <div class="button-wrap">
             <button type="button" class="button-play" buttonOnclick="join" id="playButton1">JOIN AND PLAY FREE</button>
@@ -134,7 +134,7 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
   '''
         <div id="mobileContent">
           <div class="content">
-            <p class="main-title-mobile">WEEKLY FANTASY <br> LEAGUES</p>
+            <p class="main-title-mobile">DAILY FANTASY <br> LEAGUES</p>
             <p class="title-sup-text-mobile">PLAY IN AS MANY CONTESTS AS YOU WANT</p>
             <p class="title-sup-text-mobile">CREATE YOUR TEAM IN SECONDS</p>
             <p class="title-sup-text-mobile">AND WIN CASH</p>

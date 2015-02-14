@@ -73,6 +73,10 @@ packages:
     description: route_hierarchical
     source: hosted
     version: "0.5.0"
+  scroll:
+    description: scroll
+    source: hosted
+    version: "0.0.3"
   smoke:
     description: smoke
     source: hosted

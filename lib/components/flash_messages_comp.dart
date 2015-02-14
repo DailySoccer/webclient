@@ -92,7 +92,7 @@ class FlashMessageComp implements ShadowRootAware, ScopeAware {
 
     String html =
     '''
-    <div class="${isErrorMsg ? "globalMessage" : "epicGlobalMessage"}">${msg}</div>
+        <div class="${isErrorMsg ? "globalMessage" : "epicGlobalMessage"}">${msg}</div>
     ''';
 
     _globalMsgElement = new DivElement();

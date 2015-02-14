@@ -239,10 +239,10 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
       <div id="brandLogoNotLogged" class="navbar-brand" destination="landing_page"></div>
       <div class="button-wrapper">
         <!--
-            <button id="joinButton"  type="button" class="button-join" destination="join">REGISTRO</button>
-            <button id="loginButton" type="button" class="button-login" destination="login">ENTRAR</button>
+            <button id="joinButton"  type="button" class="button-join" destination="join">REGISTER</button>
+            <button id="loginButton" type="button" class="button-login" destination="login">ENTER</button>
         -->
-        <div id="loginButton" type="button" class="button-login-flat" destination="login">ENTRAR</div>
+        <div id="loginButton" type="button" class="button-login-flat" destination="login">ENTER</div>
         <!--button class="btn-fb-span">
           <fb:login-button scope="public_profile,email" size="medium" onlogin="jsLoginFB()">
           </fb:login-button>
@@ -271,30 +271,30 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
   
       <div id="menuSlide">
         <ul class="nav navbar-nav">
-          <li highlights="lobby">      <a  id="menuLobby"      destination="lobby">Buscar Torneos</a></li>
-          <li highlights="my_contests"><a  id="menuMyContests" destination="my_contests">Mis torneos</a></li>
+          <li highlights="lobby">      <a  id="menuLobby"      destination="lobby">Search Contests</a></li>
+          <li highlights="my_contests"><a  id="menuMyContests" destination="my_contests">My contests</a></li>
           <li highlights="">           <a  id="menuPromos"     destination="beta_info">Promos</a></li>
           
           <li highlights="user" class="right-menu username-dropdown-toggle" >
             <a id="menuUser" class="dropdown-toggle" data-toggle="dropdown">${_userNickName}</a>
             <ul class="dropdown-menu">
-              <li><a id="menuUserMyAccount"        destination="user_profile">Mi cuenta</a></li>
-              <li id="userBalanceIn"><a id="menuUserAddFunds-sm" destination="add_funds">Añadir fondos</a></li>
-              <li><a id="menuUserHistory"          destination="transaction_history">Historial de transacciones</a></li>
-              <li><a id="menuUserReferencesCenter" destination="beta_info">Centro de referencias</a></li>
-              <li><a id="menuUserClassification"   destination="beta_info">Clasificación</a></li>
-              <li><a id="menuUserAyuda"            destination="help_info">Ayuda</a></li>
-              <li><a id="menuUserLogOut"           destination="logout">Salir</a></li>
+              <li><a id="menuUserMyAccount"        destination="user_profile">My account</a></li>
+              <li id="userBalanceIn"><a id="menuUserAddFunds-sm" destination="add_funds">Add funds</a></li>
+              <li><a id="menuUserHistory"          destination="transaction_history">Transactions History</a></li>
+              <li><a id="menuUserReferencesCenter" destination="beta_info">Referral Center</a></li>
+              <li><a id="menuUserClassification"   destination="beta_info">Classification</a></li>
+              <li><a id="menuUserAyuda"            destination="help_info">Help</a></li>
+              <li><a id="menuUserLogOut"           destination="logout">Logout</a></li>
             </ul>
           </li>
           <li id="userBalanceOut-sm" class="right-menu">
             <div class="balance">
               <span class="current-balance">${_userBalance}</span>
-              <button class="add-funds-button" destination="add_funds">AÑADIR FONDOS</button>
+              <button class="add-funds-button" destination="add_funds">ADD FUNDS</button>
             <div>
           </li>
           <li id="userBalanceOut-xs" class="right-menu">
-            <a id="menuUserAddFunds-xs" destination="add_funds">Añadir fondos <span class="current-balance">${_userBalance}</span></a>            
+            <a id="menuUserAddFunds-xs" destination="add_funds">Add funds <span class="current-balance">${_userBalance}</span></a>            
           </li>
         </ul>
       </div>

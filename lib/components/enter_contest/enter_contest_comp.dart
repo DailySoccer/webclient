@@ -132,7 +132,7 @@ class EnterContestComp implements DetachAware {
     bool isLineupEmpty = !lineupSlots.any((soccerPlayer) => soccerPlayer != null);
     // Si no hemos metido a nadie en nuestro equipo
     if(!isLineupEmpty) {
-      _flashMessage.addGlobalMessage("Se ha guardado tu alineación", 3);
+      _flashMessage.addGlobalMessage("Lineup saved", 3);
     }else {
       event.allowLeave(new Future<bool>.value(true));
       return;

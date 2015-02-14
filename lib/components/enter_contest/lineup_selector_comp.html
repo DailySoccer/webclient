@@ -10,7 +10,7 @@
     <div ng-if="slot != null">
       <div class="column-fieldpos">{{slot.fieldPos.abrevName}}</div>
       <div class="column-primary-info">
-        <span class="soccer-player-name">{{slot.fullName | limitToDot : 19}}</span>
+        <span class="soccer-player-name">{{slot.fullName}}</span>
         <span class="match-event-name" ng-bind-html="slot.matchEventName"></span>
       </div>
       <div class="column-salary">{{slot.salary}}€</div>
@@ -20,7 +20,7 @@
 
   <div class="alert alert-danger alert-dismissible alert-red-numbers" role="alert">
     <button type="button" class="close" ng-click="enterContestComp.alertDismiss()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    <strong>Te has pasado del límite salarial</strong><br> Por favor, elige jugadores que se ajusten al presupuesto
+    <strong>You've spent the salary cap</strong><br> Please choose players that fit the budget.
   </div>
 
 </div>

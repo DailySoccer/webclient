@@ -1,16 +1,16 @@
 <div id="usersListRoot" >
 
   <div ng-class="{'users-header-next': isViewContestEntryMode, 'users-header' : !isViewContestEntryMode}">
-    <h1>USUARIOS EN ESTE TORNEO</h1>
-    <h2 ng-if="!isViewContestEntryMode">Selecciona un usuario de esta lista para ver y comparar su alineacion con la tuya:</h2>
+    <h1>CONTENDERS IN THIS CONTEST</h1>
+    <h2 ng-if="!isViewContestEntryMode">Choose a contender to compare lineups:</h2>
   </div>
 
   <div class="users-table-header">
     <div class="pos">POS</div>
-    <div class="name" ng-class="{'name-view-contest-entry-mode': isViewContestEntryMode}">JUGADOR</div>
-    <div class="remaining-time" ng-if="!isViewContestEntryMode">T.R.</div>
-    <div class="score-container">PUNTOS</div>
-    <div class="prize-container" ng-if="!isViewContestEntryMode">PREMIOS</div>
+    <div class="name" ng-class="{'name-view-contest-entry-mode': isViewContestEntryMode}">PLAYER</div>
+    <div class="remaining-time" ng-if="!isViewContestEntryMode">R.T.</div>
+    <div class="score-container">POINTS</div>
+    <div class="prize-container" ng-if="!isViewContestEntryMode">PRIZES</div>
   </div>
 
   <div class="users-table-rows">

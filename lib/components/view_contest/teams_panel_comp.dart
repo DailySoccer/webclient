@@ -69,14 +69,14 @@ class TeamsPanelComp implements DetachAware {
     if(contest.state == "LIVE") {
       if (match != null) {
         if (!match.isStarted) {
-          content = 'No jugado';
+          content = 'Upcoming';
         }
         else {
           if (match.isFinished) {
-            content = 'Finalizado';
+            content = 'Finished';
           }
           else {
-            content = (match.isFirstHalf ? '1ª Parte - ' : match.isSecondHalf ? '2ª Parte - ' : '-Err-') + match.minutesPlayed.toString() + "'";
+            content = (match.isFirstHalf ? '1st Half - ' : match.isSecondHalf ? '2nd Half - ' : '-Err-') + match.minutesPlayed.toString() + "'";
           }
         }
       }

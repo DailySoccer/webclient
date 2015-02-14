@@ -81,9 +81,9 @@ class Contest {
    // print("estado del concurso: ${state}");
     /* los partidos en vivo o en history no continen los participantes que tiene el concurso */
     if(isLive || isHistory) {
-      return "${tournamentTypeName} - Límite de salario: ${salaryCap}";
+      return "${tournamentTypeName} - Salary cap: ${salaryCap}";
     }
-    return "${tournamentTypeName}: ${numEntries} de ${maxEntries} participantes - Límite de salario: ${salaryCap}";
+    return "${tournamentTypeName}: ${numEntries} of ${maxEntries} contenders - Salary cap: ${salaryCap}";
   }
 
   List<ContestEntry> get contestEntriesOrderByPoints {
@@ -115,9 +115,9 @@ class Contest {
 
   Map<String,String> get tournamentTypeNames {
     return {
-      TOURNAMENT_FREE: "Gratuito",
-      TOURNAMENT_HEAD_TO_HEAD: "1 contra 1",
-      TOURNAMENT_LEAGUE: "Liga",
+      TOURNAMENT_FREE: "Free",
+      TOURNAMENT_HEAD_TO_HEAD: "Head to Head",
+      TOURNAMENT_LEAGUE: "League",
       TOURNAMENT_FIFTY_FIFTY: "50/50"
     };
   }

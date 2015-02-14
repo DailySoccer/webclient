@@ -4,7 +4,7 @@
     <div class="panel">
 
       <div class="panel-heading">
-        <div class="panel-title">REGÍSTRATE</div>
+        <div class="panel-title">SIGN UP</div>
         <button type="button" class="close" ng-click="navigateTo('landing_page', {}, $event)">
           <span class="glyphicon glyphicon-remove"></span>
         </button>
@@ -13,22 +13,22 @@
       <div class="panel-body" >
 
         <form id="signupForm" class="form-horizontal" ng-submit="submitSignup()" role="form" formAutofillFix>
-          <div class="form-description">¿Todavía no tienes cuenta en EPIC ELEVEN?<br>Rellena este formulario para completar el registro.</div>
+          <div class="form-description">Don't you have an EPIC ELEVEN account yet?<br>Fill out this form.</div>
 
           <!-- NICKNAME  -->
           <div class="user-form-field">
             <!-- Description -->
             <div class="new-row bottom-separation-10">
-              <div class="small-text">Tu nombre de usuario debe tener entre {{MIN_NICKNAME_LENGTH}} y {{MAX_NICKNAME_LENGTH}} caracteres.</div>
+              <div class="small-text">Your nickname must be {{MIN_NICKNAME_LENGTH}} to {{MAX_NICKNAME_LENGTH}} characters long.</div>
             </div>
             <!-- Field Input -->
             <div id="nickNameInputGroup" class="input-group">
               <span class="input-group-addon"><div class="glyphicon glyphicon-user"></div></span>
-              <input id="nickName" name="NickName" type="text" ng-model="theNickName" placeholder="Nombre de usuario" class="form-control" maxlength="{{MAX_NICKNAME_LENGTH}}" tabindex="1" autocapitalize="off" auto-focus>
+              <input id="nickName" name="NickName" type="text" ng-model="theNickName" placeholder="Nickname" class="form-control" maxlength="{{MAX_NICKNAME_LENGTH}}" tabindex="1" autocapitalize="off" auto-focus>
             </div>
             <!-- Error label -->
             <div class="new-row">
-              <div id="nickNameError" class="join-err-text">ERROR DE REGISTRO. El user name no es válido.</div>
+              <div id="nickNameError" class="join-err-text">Invalid Nickname.</div>
             </div>
           </div>
 
@@ -36,16 +36,16 @@
           <div  class="user-form-field" >
             <!-- Description -->
             <div class="new-row bottom-separation-10">
-              <div class="small-text">Introduce un email válido.</div>
+              <div class="small-text">Email:.</div>
             </div>
             <!-- Field Input -->
             <div id="emailInputGroup" class="input-group">
               <span class="input-group-addon"><div class="glyphicon glyphicon-envelope"></div></span>
-              <input id="email" name="Email" type="email" ng-model="theEmail" placeholder="Correo electrónico" class="form-control" tabindex="2" autocapitalize="off">
+              <input id="email" name="Email" type="email" ng-model="theEmail" placeholder="Email" class="form-control" tabindex="2" autocapitalize="off">
             </div>
             <!-- Error label -->
             <div class="new-row">
-              <div id="emailError" class="join-err-text">ERROR DE REGISTRO. El mail no es válido.</div>
+              <div id="emailError" class="join-err-text">Invalid Email.</div>
             </div>
           </div>
 
@@ -53,21 +53,21 @@
           <div  class="user-form-field">
             <!-- Description -->
             <div class="new-row bottom-separation-10">
-              <div class="small-text">Contraseña: Al menos {{MIN_PASSWORD_LENGTH}} caracteres. (Escríbela dos veces).</div>
+              <div class="small-text">Password: Should be at least {{MIN_PASSWORD_LENGTH}} characters. (Type it twice).</div>
             </div>
             <!-- Field Input 1 -->
             <div id="passwordInputGroup" class="input-group  bottom-separation-10">
               <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-              <input id="password" name="Password" type="password" ng-model="thePassword" placeholder="Contraseña" class="form-control" data-minlength="MIN_PASSWORD_LENGTH" ng-minlength="MIN_PASSWORD_LENGTH"  tabindex="3" autocapitalize="off">
+              <input id="password" name="Password" type="password" ng-model="thePassword" placeholder="Password" class="form-control" data-minlength="MIN_PASSWORD_LENGTH" ng-minlength="MIN_PASSWORD_LENGTH"  tabindex="3" autocapitalize="off">
             </div>
             <!-- Field Input 2 -->
             <div id="rePasswordInputGroup" class="input-group">
               <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-              <input id="rePassword" name="RePassword" type="password" ng-model="theRePassword" placeholder="Repite la contraseña" class="form-control" tabindex="4" autocapitalize="off">
+              <input id="rePassword" name="RePassword" type="password" ng-model="theRePassword" placeholder="Repeat password" class="form-control" tabindex="4" autocapitalize="off">
             </div>
             <!-- Error de password -->
             <div class="new-row">
-              <div id="passwordError" class="join-err-text">El password no es válido.</div>
+              <div id="passwordError" class="join-err-text">Invalid Password.</div>
             </div>
           </div>
 
@@ -75,15 +75,15 @@
           <div class="input-group user-form-field">
             <div class="new-row">
               <div class="buttons-wrapper">
-                <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">REGÍSTRATE</button>
-                <button id="btnCancelJoin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCELAR</button>
+                <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">SIGN UP</button>
+                <button id="btnCancelJoin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCEL</button>
              </div>
             </div>
           </div>
 
           <!-- GOTO REGISTER -->
           <div class="user-form-field">
-            <div class="small-text">¿Ya tienes cuenta? <a ng-click="navigateTo('login', {}, $event)"> Entra por aquí! </a></div>
+            <div class="small-text">Already have an account? <a ng-click="navigateTo('login', {}, $event)"> log in here! </a></div>
           </div>
 
           <!--

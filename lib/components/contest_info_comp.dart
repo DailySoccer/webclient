@@ -36,7 +36,7 @@ class ContestInfoComp implements DetachAware {
       'name'            : '',
       'entry'           : '',
       'prize'           : '',
-      'rules'           : 'Elige un equipo de 11 jugadores a partir de los siguientes partidos',
+      'rules'           : 'Choose a team of 11 soccer players from the following matches.',
       'startDateTime'   : '', // 'COMIENZA EL DOM. 15/05 19:00',
       'matchesInvolved' : null,
       'legals'          : '',
@@ -104,12 +104,12 @@ class ContestInfoComp implements DetachAware {
       break;
       case Prize.TOP_THIRD:
         count = contest.prize.numPrizes;
-        fullDesc = count == 1 ? "El primero recibe todo el premio" : prizeDesc.replaceAll('#', count.toString());
+        fullDesc = count == 1 ? "Winner takes all" : prizeDesc.replaceAll('#', count.toString());
        break;
 
       case Prize.FIFTY_FIFTY:
         count = contest.prize.numPrizes;
-        fullDesc = count == 1 ? "El primero recibe todo el premio" : prizeDesc.replaceAll('#', count.toString());
+        fullDesc = count == 1 ? "Winner takes all" : prizeDesc.replaceAll('#', count.toString());
       break;
     }
 

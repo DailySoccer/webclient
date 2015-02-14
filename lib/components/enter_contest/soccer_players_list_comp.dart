@@ -147,10 +147,10 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
     var text = '''
       <div class="soccer-player-list-header-table">
         <div class="filter filterOrderPos"><a id="Pos">Pos.</a></div>
-        <div class="filter filterOrderName"><a id="Name">Nombre</a></div>
+        <div class="filter filterOrderName"><a id="Name">Name</a></div>
         <div class="filter filterOrderDFP"><a id="DFP">DFP</a></div>
-        <div class="filter filterOrderPlayed"><a id="Played">Jugados</a></div>
-        <div class="filter filterOrderSalary"><a id="Salary">Sueldo</a></div>
+        <div class="filter filterOrderPlayed"><a id="Played">#Matches</a></div>
+        <div class="filter filterOrderSalary"><a id="Salary">Salary</a></div>
       </div>
       ''';
 
@@ -302,7 +302,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
   List<Map> _sortList = [_SORT_FIELDS["Pos"], _SORT_FIELDS["Name"]];
   Map<String, String> _filterList = {};
 
-  static final Map<String, String> _POS_CLASS_NAMES = { "POR": "posPOR", "DEF": "posDEF", "MED": "posMED", "DEL": "posDEL" };
+  static final Map<String, String> _POS_CLASS_NAMES = { "GK": "posPOR", "DEF": "posDEF", "MID": "posMED", "FWD": "posDEL" };
   static final Map<String, Map> _SORT_FIELDS = { "Name": _getSortField("fullNameNormalized", 1),
                                                  "DFP": _getSortField("fantasyPoints", -1),
                                                  "Played": _getSortField("playedMatches", -1),

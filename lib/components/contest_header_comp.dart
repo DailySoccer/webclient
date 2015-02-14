@@ -71,25 +71,25 @@ class ContestHeaderComp implements DetachAware, ShadowRootAware {
     }
 
     if (contest.isHistory) {
-      info["startTime"] = "FINALIZADO";
+      info["startTime"] = "FINISHED";
       _count.cancel();
     }
     else if (contest.isLive) {
-      info["startTime"] = "COMENZÓ EL ${DateTimeService.formatDateTimeShort(contest.startDate).toUpperCase()}";
+      info["startTime"] = "STARTED ON ${DateTimeService.formatDateTimeShort(contest.startDate).toUpperCase()}";
       _count.cancel();
     }
     else {
-      info["startTime"] = "COMIENZA EL ${DateTimeService.formatDateTimeShort(contest.startDate).toUpperCase()}";
+      info["startTime"] = "STARTS ON ${DateTimeService.formatDateTimeShort(contest.startDate).toUpperCase()}";
 
       Duration tiempoRestante = DateTimeService.getTimeLeft(contest.startDate);
 
       if (tiempoRestante.inSeconds <= 0) {
-        info["startTime"] = "EN BREVE";
+        info["startTime"] = "SOON";
         _count.cancel();
       }
       else {
         info["countdownDate"] = DateTimeService.formatTimeLeft(tiempoRestante);
-        info["textCountdownDate"] = (scrDet.isDesktop) ? "EL CONCURSO COMENZARÁ EN: " : "FALTAN";
+        info["textCountdownDate"] = (scrDet.isDesktop) ? "THE CONTEST WILL START IN: " : "REMAINING";
       }
     }
   }
@@ -105,7 +105,7 @@ class ContestHeaderComp implements DetachAware, ShadowRootAware {
     info["prize"] = "${contest.prizePool}";
     info["prizeType"] = "${contest.prizeTypeName}";
     info["startTime"] = "";
-    info["contestantCount"] = "${contest.contestEntries.length} de ${contest.maxEntries} jugadores  - Límite de salario: ${contest.salaryCap}";
+    info["contestantCount"] = "${contest.contestEntries.length} of ${contest.maxEntries} contenders - Salary cap: ${contest.salaryCap}";
   }
 
   void goToParent() {

@@ -36,10 +36,10 @@ class FooterComp implements ShadowRootAware {
           </div>
   
           <div class="data-wrapper">
-            <a class="goto-link" id="footerHelp" destination="help_info"><span class="sub-footer-help-link">AYUDA</span></a>
+            <a class="goto-link" id="footerHelp" destination="help_info"><span class="sub-footer-help-link">HELP</span></a>
             <a class="goto-link" id="footerLegal" destination="legal_info"><span class="sub-footer-legal-link">LEGAL</span></a>
-            <a class="goto-link" id="footerTermsOfUse" destination="terminus_info"><span class="sub-footer-terms-link">TERMINOS<span> DE USO</span></span></a>
-            <a class="goto-link" id="footerPrivacyPolicy" destination="policy_info"><span class="sub-footer-policy-link"><span>POLÍTICA DE </span>PRIVACIDAD</span></a>
+            <a class="goto-link" id="footerTermsOfUse" destination="terminus_info"><span class="sub-footer-terms-link">TERMS OF USE</span></a>
+            <a class="goto-link" id="footerPrivacyPolicy" destination="policy_info"><span class="sub-footer-policy-link">PRIVACY<span> POLICY</span></span></a>
           </div>
   
           <!--<div class="credit-cards">
@@ -47,11 +47,11 @@ class FooterComp implements ShadowRootAware {
           </div>-->
   
           <div class="opta">
-            <div>Datos suministrados por: <span>OPTA</span></div>
+            <div>Data provided by: <span>OPTA</span></div>
             <div>A <strong>PERFORM</strong> GROUP COMPANY</div>
           </div>
   
-          <div class="copyright">@ Copyright 2014 Epic Eleven</div>
+          <div class="copyright">© Copyright 2015 Epic Eleven</div>
   
           <div class="social">
             <a href="https://www.facebook.com/pages/Epic-Eleven/582891628483988?fref=ts"><img src="images/social.png"/></a>

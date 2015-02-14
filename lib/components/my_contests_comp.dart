@@ -27,22 +27,22 @@ class MyContestsComp implements DetachAware {
     if (loadingService.isLoading)
       return "";
 
-    return hasLiveContests? "TIENES ${contestsService.liveContests.length} TORNEOS ACTIVOS" :
-                            "AQUÍ PODRÁS CONSULTAR EN TIEMPO REAL LOS TORNEOS QUE TENGAS ACTIVOS";
+    return hasLiveContests? "${contestsService.liveContests.length} LIVE CONTESTS" :
+                            "YOU CAN CHECK YOUR LIVE CONTESTS HERE";
   }
   String get waitingContestsMessage {
     if (loadingService.isLoading)
       return "";
 
-    return hasWaitingContests ? "TE HAS INSCRITO EN ${contestsService.waitingContests.length} TORNEOS" :
-                                "AQUÍ PODRÁS CONSULTAR Y MODIFICAR LOS EQUIPOS QUE TIENES PENDIENTES DE JUGAR EN UN TORNEO";
+    return hasWaitingContests ? "YOU HAVE ENTERED ${contestsService.waitingContests.length} CONTESTS" :
+                                "HERE YOU CAN CHECK YOUR CONTESTS AND EDIT YOUR LINEUPS";
   }
   String get historyContestsMessage {
     if (loadingService.isLoading)
       return "";
 
-    return hasHistoryContests? "${contestsService.historyContests.length} REGISTROS ${totalHistoryContestsWinner} GANADOS" :
-                               "AQUÍ PODRÁS REPASAR TODOS LOS TORNEOS QUE HAS JUGADO: TUS EQUIPOS, RIVALES, PUNTUACIONES…";
+    return hasHistoryContests? "${contestsService.historyContests.length} ENTRIES ${totalHistoryContestsWinner} WON" :
+                               "HERE YOU CAN CHECK YOUR PAST CONTESTS: LINEUPS, CONTENDERS, SCORES…";
   }
 
   bool get hasLiveContests    => contestsService.liveContests     == null ? false : contestsService.liveContests.length     > 0;

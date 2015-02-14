@@ -10,11 +10,11 @@ class Prize {
   static const FIFTY_FIFTY  = "FIFTY_FIFTY";
 
   static Map<String, String> typeNames = {
-    FREE: "Concurso Gratuito. No hay premios a repartir", //"Free",
-    WINNER: "Todo para el ganador", //"Winner takes all",
-    TOP_3: "Los 3 primeros concursantes reciben premio", //"Top 3 get prizes",
-    TOP_THIRD: "Los # primeros reciben premio",// "El tercio superior de concursantes reciben premio", //Top third get prizes",
-    FIFTY_FIFTY: "Los # primeros reciben premio",// "La mitad superior de concursantes reciben premio", //"50/50"
+    FREE: "Free contest. No prizes", //"Free",
+    WINNER: "Winner takes all", //"Winner takes all",
+    TOP_3: "First 3 get prizes", //"Top 3 get prizes",
+    TOP_THIRD: "First # get prizes",// "El tercio superior de concursantes reciben premio", //Top third get prizes",
+    FIFTY_FIFTY: "First # get prizes",// "La mitad superior de concursantes reciben premio", //"50/50"
   };
 
   String prizeType;

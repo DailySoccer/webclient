@@ -7,15 +7,15 @@ primeTemplateCache(TemplateCache tc) {
 tc.put("packages/webclient/components/account/add_funds_comp.html", new HttpResponse(200, r"""<div id="addFundsContent">
 
   <!-- header title -->
-  <div class="default-section-header">AÑADIR FONDOS</div>
+  <div class="default-section-header">ADD FUNDS</div>
 
   <div>
     <div class="description">
-      <p id="descriptionTip1">Para jugar a Epic Eleven con dinero real, necesitas añadir fondos a tu cuenta.</p>
-      <p id="descriptionTip2">No te preocupes, prodrás retirarlo cuando quieras de forma gratuita.</p>
+      <p id="descriptionTip1">In order to play Epic Eleven with real money, you need to add funds to your account.</p>
+      <p id="descriptionTip2">Don't worry, you can withdraw your money whenever you want for free.</p>
     </div>
     <div class="add-founds-box">
-      <p>Por favor, deposita al menos 10€ para continuar</p>
+      <p>Minimum allowed is 10€</p>
       <div class="money-selector">
         <div class="money-element">
           <input type="radio" name="money-radio" id="firstOffer" value="10"><label for="firstOffer">10€</label>
@@ -31,14 +31,14 @@ tc.put("packages/webclient/components/account/add_funds_comp.html", new HttpResp
           <input type="number" id="customEurosAmount" value="10"><label for="customEuros">€</label>
         </div>
       </div>
-      <h2 class="paypal-info">Depositar <span id="selectedAmountInfo">25€</span> a Fantasy Sports Games SL vía <img src="images/markPaypalMed.jpg"></h2>
-      <p class="paypal-info">Puedes usar tu tarjeta de crédito o tu cuenta de PayPal</p>
-      <div class="button-wrapper"><button class="add-funds-button" id="addFundsButton">Añadir fondos</button></div>
+      <h2 class="paypal-info">Add <span id="selectedAmountInfo">25€</span> vía <img src="images/markPaypalMed.jpg"></h2>
+      <p class="paypal-info">You can add funds using PayPal account. The money will be transferred to Fantasy Sports Games S.L.</p>
+      <div class="button-wrapper"><button class="add-funds-button" id="addFundsButton">Add funds</button></div>
     </div>
   </div>
   <div class="need-help-box">
-    <p id="need-help-text">¿Necesitas ayuda?</p>
-    <p id="need-help-email">soporte@epiceleven.com</p>
+    <p id="need-help-text">Need help?</p>
+    <p id="need-help-email">support@epiceleven.com</p>
   </div>
 
   <!-- Comentado hasta que tengamos los textos legales
@@ -141,9 +141,9 @@ tc.put("packages/webclient/components/account/change_password_comp.html", new Ht
           <!-- SI ES INVALID URL -->
           <div ng-switch-when="STATE_INVALID_URL"     class="panel-title">ERROR 503</div>
           <!-- SI ES TOKEN INVALIDO -->
-          <div ng-switch-when="STATE_INVALID_TOKEN"   class="panel-title">CAMBIO DE CONTRASEÑA</div>
+          <div ng-switch-when="STATE_INVALID_TOKEN"   class="panel-title">CHANGE PASSWORD</div>
           <!-- SI ES TOKEN VALIDO/INVALIDO -->
-          <div ng-switch-when="STATE_CHANGE_PASSWORD" class="panel-title">CAMBIO DE CONTRASEÑA</div>
+          <div ng-switch-when="STATE_CHANGE_PASSWORD" class="panel-title">CHANGE PASSWORD</div>
         </div>
 
         <button type="button" class="close" ng-click="navigateTo('landing_page',{}, $event)">
@@ -156,30 +156,30 @@ tc.put("packages/webclient/components/account/change_password_comp.html", new Ht
         <form  id="changePasswordForm" class="form-horizontal" ng-submit="changePassword()" role="form">
           <div ng-switch="state">
                 <div ng-switch-when="STATE_INVALID_URL" class="form-description">
-                  La página solicitada no está disponible
+                  The page is not available
                 </div>
                 <div ng-switch-when="STATE_INVALID_TOKEN" class="form-description">
-                  El token proporcionado no es válido o ha expirado.
+                  The provided token is invalid or has expired.
                 </div>
                 <div ng-switch-when="STATE_CHANGE_PASSWORD">
                   <div class="form-description">
-                    Crea una nueva contraseña.
+                    Create a new password.
                   </div>
                   <!-- PASSWORD -->
                   <div  class="user-form-field">
                     <!-- Description -->
                     <div class="new-row bottom-separation-10">
-                      <div class="small-text">Contraseña: Al menos {{MIN_PASSWORD_LENGTH}} caracteres. (Escríbela dos veces).</div>
+                      <div class="small-text"> Password: at least {{MIN_PASSWORD_LENGTH}} characters. (Type it twice).</div>
                     </div>
                     <!-- Field Input 1 -->
                     <div id="passwordInputGroup" class="input-group  bottom-separation-10">
                       <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-                      <input id="password" name="password" type="password"  placeholder="Contraseña"            ng-model="thePassword"   data-minlength="MIN_PASSWORD_LENGTH" ng-minlength="MIN_PASSWORD_LENGTH" class="form-control" tabindex="1" autocapitalize="off" auto-focus>
+                      <input id="password" name="password" type="password"  placeholder="Password"         ng-model="thePassword"   data-minlength="MIN_PASSWORD_LENGTH" ng-minlength="MIN_PASSWORD_LENGTH" class="form-control" tabindex="1" autocapitalize="off" auto-focus>
                     </div>
                     <!-- Field Input 2 -->
                     <div id="rePasswordInputGroup" class="input-group">
                       <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-                      <input id="rePassword" name="password" type="password" placeholder="Repite la contraseña" ng-model="theRePassword" data-minlength="MIN_PASSWORD_LENGTH" ng-minlength="MIN_PASSWORD_LENGTH" class="form-control" tabindex="2" autocapitalize="off">
+                      <input id="rePassword" name="password" type="password" placeholder="Repeat password" ng-model="theRePassword" data-minlength="MIN_PASSWORD_LENGTH" ng-minlength="MIN_PASSWORD_LENGTH" class="form-control" tabindex="2" autocapitalize="off">
                     </div>
                     <!-- Error de password -->
                     <div id="errorContainer" class="new-row">
@@ -191,8 +191,8 @@ tc.put("packages/webclient/components/account/change_password_comp.html", new Ht
                   <div class="input-group user-form-field">
                     <div class="new-row">
                       <div class="buttons-wrapper">
-                        <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">ENTRAR</button>
-                        <button id="btnCancelLogin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCELAR</button>
+                        <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">CONTINUE</button>
+                        <button id="btnCancelLogin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCEL</button>
                       </div>
                     </div>
                   </div>
@@ -209,29 +209,29 @@ tc.put("packages/webclient/components/account/change_password_comp.html", new Ht
 tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new HttpResponse(200, r"""<div id="personalDataContent" ng-show="!loadingService.isLoading" ng-cloack>
 
   <div class="edit-personal-data-header">
-    <span class="header-title">EDITAR CUENTA</span>
+    <span class="header-title">EDIT ACCOUNT</span>
   </div>
   <form id="editPersonalDataForm" class="form-horizontal" ng-submit="saveChanges()" role="form" autocomplete="off">
     <div class="content">
       <!-- Nombre -->
       <div class="content-field">
-        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">Nombre</span></div>
+        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">Name</span></div>
         <div class="control-wrapper">
-          <input id="txtName" type="text" ng-model="editedFirstName" placeholder="Nombre" class="form-control"  tabindex="1">
+          <input id="txtName" type="text" ng-model="editedFirstName" placeholder="Name" class="form-control"  tabindex="1">
         </div>
       </div>
       <!-- Apelidos -->
       <div class="content-field">
-        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">Apellidos</span></div>
+        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">Last name</span></div>
         <div class="control-wrapper">
-          <input id="txtLastName" type="text" ng-model="editedLastName" placeholder="Apellidos" class="form-control" tabindex="2">
+          <input id="txtLastName" type="text" ng-model="editedLastName" placeholder="Last name" class="form-control" tabindex="2">
         </div>
       </div>
       <!-- Nickname -->
       <div class="content-field">
-        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">Nombre de usuario</span></div>
+        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">Nick</span></div>
         <div class="control-wrapper">
-          <input id="txtNickName" type="text" ng-model="editedNickName" placeholder="Nombre de usuario" class="form-control" tabindex="3" autocapitalize="off">
+          <input id="txtNickName" type="text" ng-model="editedNickName" placeholder="Nick" class="form-control" tabindex="3" autocapitalize="off">
         </div>
         <!-- Error de nickName -->
         <div id="nickNameErrorContainer" class="content-field-block">
@@ -241,9 +241,9 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
 
       <!-- Correo Electrónico -->
       <div class="content-field">
-        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">Correo electrónico</span></div>
+        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">Email</span></div>
         <div class="control-wrapper">
-          <input id="txtEmail" type="email" ng-model="editedEmail" placeholder="Correo electrónico" class="form-control" tabindex="4" autocapitalize="off">
+          <input id="txtEmail" type="email" ng-model="editedEmail" placeholder="Email" class="form-control" tabindex="4" autocapitalize="off">
         </div>
         <!-- Error de mail -->
         <div id="emailErrorContainer" class="content-field-block">
@@ -253,15 +253,15 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
 
       <!-- Label Contraseña -->
       <div class="content-field-block">
-        <div class="control-wrapper"><span id="lblPassword" class="text-label">Contraseña (Rellena los campos de contraseña para actualizar tu contraseña)</span></div>
+        <div class="control-wrapper"><span id="lblPassword" class="text-label">Password (Fill the both fields to update it)</span></div>
       </div>
       <!-- Contraseña -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtPassword" type="password" ng-model="editedPassword" placeholder="Contraseña" class="form-control" tabindex="5" autocapitalize="off"></div>
+        <div class="control-wrapper"><input id="txtPassword" type="password" ng-model="editedPassword" placeholder="Password" class="form-control" tabindex="5" autocapitalize="off"></div>
       </div>
       <!-- Repetir Contraseña -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtRepeatPassword" type="password" ng-model="editedRepeatPassword" placeholder="Repite la contraseña" class="form-control" tabindex="6" autocapitalize="off"></div>
+        <div class="control-wrapper"><input id="txtRepeatPassword" type="password" ng-model="editedRepeatPassword" placeholder="Repeat password" class="form-control" tabindex="6" autocapitalize="off"></div>
       </div>
 
       <!-- Error de contraseñas -->
@@ -284,23 +284,23 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
        -->
     </div>
   <!-- Notificaciones -->
-    <div class="header">NOTIFICACIONES</div>
+    <div class="header">NOTIFICATIONS</div>
     <div class="subscriptions-content">
 
       <div class="content-field-block">
 
         <div class="subscription-wrapper">
-          <div class="subscription-label">NEWSLETTER/OFERTAS ESPECIALES</div>
+          <div class="subscription-label">NEWSLETTER/SPECIAL OFFERS</div>
           <div class="check-wrapper"> <input type="checkbox" id="inputNewsletter" name="switchNewsletter"> </div>
         </div>
 
         <div class="subscription-wrapper">
-          <div class="subscription-label">NOTIFICACIONES DE JUEGO</div>
+          <div class="subscription-label">GAME NOTIFICATIONS</div>
           <div class="check-wrapper"> <input type="checkbox" name="switchGameAlerts"> </div>
         </div>
 
         <div class="subscription-wrapper">
-          <div class="subscription-label">NOTIFICACIONES DE TUS FICHAJES</div>
+          <div class="subscription-label">OWN SOCCER PLAYER TRANSFER NOTIFICACIONS</div>
           <div class="check-wrapper"> <input type="checkbox" name="switchsoccerPlayerAlerts"> </div>
         </div>
 
@@ -310,10 +310,10 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
 
     <div class="save-changes-content">
       <div class="forms-wrapper-button">
-        <button id="btnSubmit" class="action-button-save" type="submit">GUARDAR CAMBIOS</button>
+        <button id="btnSubmit" class="action-button-save" type="submit">SAVE</button>
       </div>
       <div class="forms-wrapper-button">
-        <button id="btnSubmit" class="action-button-cancel" ng-click="exit($event)">CANCELAR</button>
+        <button id="btnSubmit" class="action-button-cancel" ng-click="exit($event)">CANCEL</button>
       </div>
     </div>
 
@@ -325,7 +325,7 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
     <div class="panel">
 
       <div class="panel-heading">
-        <div class="panel-title">REGÍSTRATE</div>
+        <div class="panel-title">SIGN UP</div>
         <button type="button" class="close" ng-click="navigateTo('landing_page', {}, $event)">
           <span class="glyphicon glyphicon-remove"></span>
         </button>
@@ -334,22 +334,22 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
       <div class="panel-body" >
 
         <form id="signupForm" class="form-horizontal" ng-submit="submitSignup()" role="form" formAutofillFix>
-          <div class="form-description">¿Todavía no tienes cuenta en EPIC ELEVEN?<br>Rellena este formulario para completar el registro.</div>
+          <div class="form-description">Don't you have an EPIC ELEVEN account yet?<br>Fill out this form.</div>
 
           <!-- NICKNAME  -->
           <div class="user-form-field">
             <!-- Description -->
             <div class="new-row bottom-separation-10">
-              <div class="small-text">Tu nombre de usuario debe tener entre {{MIN_NICKNAME_LENGTH}} y {{MAX_NICKNAME_LENGTH}} caracteres.</div>
+              <div class="small-text">Your nickname must be {{MIN_NICKNAME_LENGTH}} to {{MAX_NICKNAME_LENGTH}} characters long.</div>
             </div>
             <!-- Field Input -->
             <div id="nickNameInputGroup" class="input-group">
               <span class="input-group-addon"><div class="glyphicon glyphicon-user"></div></span>
-              <input id="nickName" name="NickName" type="text" ng-model="theNickName" placeholder="Nombre de usuario" class="form-control" maxlength="{{MAX_NICKNAME_LENGTH}}" tabindex="1" autocapitalize="off" auto-focus>
+              <input id="nickName" name="NickName" type="text" ng-model="theNickName" placeholder="Nickname" class="form-control" maxlength="{{MAX_NICKNAME_LENGTH}}" tabindex="1" autocapitalize="off" auto-focus>
             </div>
             <!-- Error label -->
             <div class="new-row">
-              <div id="nickNameError" class="join-err-text">ERROR DE REGISTRO. El user name no es válido.</div>
+              <div id="nickNameError" class="join-err-text">Invalid Nickname.</div>
             </div>
           </div>
 
@@ -357,16 +357,16 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
           <div  class="user-form-field" >
             <!-- Description -->
             <div class="new-row bottom-separation-10">
-              <div class="small-text">Introduce un email válido.</div>
+              <div class="small-text">Email:.</div>
             </div>
             <!-- Field Input -->
             <div id="emailInputGroup" class="input-group">
               <span class="input-group-addon"><div class="glyphicon glyphicon-envelope"></div></span>
-              <input id="email" name="Email" type="email" ng-model="theEmail" placeholder="Correo electrónico" class="form-control" tabindex="2" autocapitalize="off">
+              <input id="email" name="Email" type="email" ng-model="theEmail" placeholder="Email" class="form-control" tabindex="2" autocapitalize="off">
             </div>
             <!-- Error label -->
             <div class="new-row">
-              <div id="emailError" class="join-err-text">ERROR DE REGISTRO. El mail no es válido.</div>
+              <div id="emailError" class="join-err-text">Invalid Email.</div>
             </div>
           </div>
 
@@ -374,21 +374,21 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
           <div  class="user-form-field">
             <!-- Description -->
             <div class="new-row bottom-separation-10">
-              <div class="small-text">Contraseña: Al menos {{MIN_PASSWORD_LENGTH}} caracteres. (Escríbela dos veces).</div>
+              <div class="small-text">Password: Should be at least {{MIN_PASSWORD_LENGTH}} characters. (Type it twice).</div>
             </div>
             <!-- Field Input 1 -->
             <div id="passwordInputGroup" class="input-group  bottom-separation-10">
               <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-              <input id="password" name="Password" type="password" ng-model="thePassword" placeholder="Contraseña" class="form-control" data-minlength="MIN_PASSWORD_LENGTH" ng-minlength="MIN_PASSWORD_LENGTH"  tabindex="3" autocapitalize="off">
+              <input id="password" name="Password" type="password" ng-model="thePassword" placeholder="Password" class="form-control" data-minlength="MIN_PASSWORD_LENGTH" ng-minlength="MIN_PASSWORD_LENGTH"  tabindex="3" autocapitalize="off">
             </div>
             <!-- Field Input 2 -->
             <div id="rePasswordInputGroup" class="input-group">
               <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-              <input id="rePassword" name="RePassword" type="password" ng-model="theRePassword" placeholder="Repite la contraseña" class="form-control" tabindex="4" autocapitalize="off">
+              <input id="rePassword" name="RePassword" type="password" ng-model="theRePassword" placeholder="Repeat password" class="form-control" tabindex="4" autocapitalize="off">
             </div>
             <!-- Error de password -->
             <div class="new-row">
-              <div id="passwordError" class="join-err-text">El password no es válido.</div>
+              <div id="passwordError" class="join-err-text">Invalid Password.</div>
             </div>
           </div>
 
@@ -396,15 +396,15 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
           <div class="input-group user-form-field">
             <div class="new-row">
               <div class="buttons-wrapper">
-                <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">REGÍSTRATE</button>
-                <button id="btnCancelJoin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCELAR</button>
+                <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">SIGN UP</button>
+                <button id="btnCancelJoin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCEL</button>
              </div>
             </div>
           </div>
 
           <!-- GOTO REGISTER -->
           <div class="user-form-field">
-            <div class="small-text">¿Ya tienes cuenta? <a ng-click="navigateTo('login', {}, $event)"> Entra por aquí! </a></div>
+            <div class="small-text">Already have an account? <a ng-click="navigateTo('login', {}, $event)"> log in here! </a></div>
           </div>
 
           <!--
@@ -435,7 +435,7 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
 
       <!-- Header -->
       <div class="panel-heading">
-        <div class="panel-title">ENTRA</div>
+        <div class="panel-title">LOG IN</div>
         <button type="button" class="close" ng-click="navigateTo('landing_page',{}, $event)">
           <span class="glyphicon glyphicon-remove"></span>
         </button>
@@ -444,39 +444,39 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
       <div class="panel-body" >
 
         <form id="loginForm" class="form-horizontal" ng-submit="login()" role="form" formAutofillFix>
-          <div class="form-description">Introduce tu cuenta de correo electrónico y tu contraseña para acceder a los torneos.</div>
+          <div class="form-description">Enter your email and password to access to the contests.</div>
 
           <!-- LOGIN FIELDS -->
           <div class="user-form-field">
             <!-- MAIL -->
             <div class="input-group  bottom-separation-10">
               <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-              <input id="login-mail" ng-model="emailOrUsername" type="email" name="Email" placeholder="Correo electrónico" class="form-control" tabindex="1" autocapitalize="off" auto-focus>
+              <input id="login-mail" ng-model="emailOrUsername" type="email" name="Email" placeholder="Email" class="form-control" tabindex="1" autocapitalize="off" auto-focus>
             </div>
             <!-- PÂSSWORD -->
             <div class="input-group">
               <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-              <input id="login-password" type="password" ng-model="password" name="password" placeholder="Contraseña" class="form-control" tabindex="2" autocapitalize="off">
+              <input id="login-password" type="password" ng-model="password" name="password" placeholder="Password" class="form-control" tabindex="2" autocapitalize="off">
             </div>
 
             <!-- Error de login/pass -->
             <div id="loginErrorSection" class="new-row">
-              <div id="loginErrorLabel" class="login-err-text">ERROR DE LOGIN. Los datos inroducidos no son correctos.</div>
+              <div id="loginErrorLabel" class="login-err-text">LOGIN ERROR: Incorrect data entered.</div>
             </div>
 
           </div>
 
           <!-- REMEMBER PASS -->
           <div class="user-form-field-righted">
-            <a class="small-link-righted" ng-click="navigateTo('remember_password', {}, $event)">¿Olvidaste tu contraseña?</a>
+            <a class="small-link-righted" ng-click="navigateTo('remember_password', {}, $event)">Forgot password?</a>
           </div>
 
           <!-- BUTTONS -->
           <div class="user-form-field">
             <div class="new-row">
               <div class="buttons-wrapper">
-                <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">ENTRAR</button>
-                <button id="btnCancelLogin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCELAR</button>
+                <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">CONTINUE</button>
+                <button id="btnCancelLogin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCEL</button>
               </div>
             </div>
           </div>
@@ -484,7 +484,7 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
           <!-- GOTO REGISTER -->
           <div class="user-form-field">
             <div class="new-row">
-              <div class="small-text">¿Aún no tienes cuenta? <a ng-click="navigateTo('join', {}, $event)"> Regístrate aquí! </a></div>
+              <div class="small-text">Don't have an account? <a ng-click="navigateTo('join', {}, $event)"> Sign Up here! </a></div>
             </div>
           </div>
 
@@ -516,19 +516,16 @@ tc.put("packages/webclient/components/account/payment_comp.html", new HttpRespon
 tc.put("packages/webclient/components/account/payment_response_comp.html", new HttpResponse(200, r"""<modal>
   <div id="paymentResponse" class="main-box">
     <div class="panel">
-    
+
       <div class="panel-heading">
-        <div class="panel-title paypal-success">Pago {{titleText}}</div>
+        <div class="panel-title paypal-success">{{titleText}} pay</div>
         <!--div class="panel-title paypal-cancel" login="">Pago cancelado</div-->
         <button type="button" class="close">
           <span class="glyphicon glyphicon-remove"></span>
         </button>
       </div>
       <div class="panel-body">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-        Integer ornare blandit libero, a fringilla purus viverra et. 
-        Ut ac lorem enim. Ut finibus felis nulla, id maximus magna vulputate vitae. 
-        Sed vel venenatis metus. Curabitur fringilla lacus ultricies pulvinar convallis.
+        The requested transaction cannot be completed. Please check your payment method and try again.
       </div>
     </div>
   </div>
@@ -542,7 +539,7 @@ tc.put("packages/webclient/components/account/remember_password_comp.html", new 
 
       <!-- Header -->
       <div class="panel-heading">
-        <div class="panel-title" ng-class="{'center-text':state=='STATE_REQUESTED'}">RECORDAR CONTRASEÑA</div>
+        <div class="panel-title" ng-class="{'center-text':state=='STATE_REQUESTED'}">REMEMBER PASSWORD</div>
         <button ng-show="state=='STATE_REQUEST'" type="button" class="close" ng-click="navigateTo('login', {}, $event)">
           <span class="glyphicon glyphicon-remove"></span>
         </button>
@@ -551,12 +548,12 @@ tc.put("packages/webclient/components/account/remember_password_comp.html", new 
       <div class="panel-body" ng-switch >
         <!-- Mensaje cuando todo ha ido correctamente. -->
         <div ng-show="state=='STATE_REQUESTED'">
-          <div class="form-description">Te hemos enviado un correo electrónicoa la dirección: <br><br><p class="email-detail">'{{email}}'</p>Revisa tu correo y sigue las instrucciones en el email que te hemos enviado.</div>
+          <div class="form-description">We have sent you an email to<br><br><p class="email-detail">'{{email}}'</p>Check your inbox and follow the instructions in the email.</div>
           <!-- BUTTONS -->
           <div class="user-form-field">
             <div class="new-row">
               <div class="buttons-wrapper">
-                <button type="submit" id="btnSubmit" name="JoinNow" ng-click="backToLanding()" class="enter-button">ACEPTAR</button>
+                <button type="submit" id="btnSubmit" name="JoinNow" ng-click="backToLanding()" class="enter-button">CONTINUE</button>
               </div>
             </div>
           </div>
@@ -564,18 +561,18 @@ tc.put("packages/webclient/components/account/remember_password_comp.html", new 
 
         <form ng-show="state=='STATE_REQUEST'" id="rememberPasswordForm" class="form-horizontal" ng-submit="rememberMyPassword()" role="form">
 
-          <div class="form-description">¿Olvidaste tu contraseña? Introduce la dirección de correo electrónico y recibirás un email para recuperar tu cuenta.</div>
+          <div class="form-description">Forgot password? Enter you email and you will receive an email to recover your password.</div>
 
           <!-- EMAIL -->
           <div  class="user-form-field" >
             <!-- Description -->
             <div class="new-row bottom-separation-10">
-              <div class="small-text">Introduce la dirección de correo electrónico con la que te registrarte:</div>
+              <div class="small-text">Enter the email address used to sign up for EPIC ELEVEN:</div>
             </div>
             <!-- Field Input -->
              <div id="emailInputGroup" class="input-group">
               <span class="input-group-addon"><div class="glyphicon glyphicon-envelope"></div></span>
-              <input id="rememberEmail" name="Email" type="email" ng-model="email" placeholder="Correo electrónico" class="form-control" tabindex="1" autocapitalize="off"  auto-focus>
+              <input id="rememberEmail" name="Email" type="email" ng-model="email" placeholder="Email" class="form-control" tabindex="1" autocapitalize="off"  auto-focus>
             </div>
             <!-- Error label -->
             <div id="errContainer" class="new-row">
@@ -587,15 +584,15 @@ tc.put("packages/webclient/components/account/remember_password_comp.html", new 
           <div class="input-group user-form-field">
             <div class="new-row">
               <div class="buttons-wrapper">
-                <button type="submit" id="btnSubmit" name="RememberPassword" ng-disabled="!enabledSubmit" class="enter-button-half">ENVIAR</button>
-                <button id="btnCancelRemember" ng-click="navigateTo('login', {}, $event)" class="cancel-button-half">CANCELAR</button>
+                <button type="submit" id="btnSubmit" name="RememberPassword" ng-disabled="!enabledSubmit" class="enter-button-half">CONTINUE</button>
+                <button id="btnCancelRemember" ng-click="navigateTo('login', {}, $event)" class="cancel-button-half">CANCEL</button>
              </div>
             </div>
           </div>
 
           <!-- GOTO REGISTER -->
           <div class="new-row bottom-separation-10">
-            <div class="small-text">¿Aún no tienes cuenta? <a ng-click="navigateTo('join', {}, $event)"> Regístrate aquí! </a></div>
+            <div class="small-text">Don't have an account?<a ng-click="navigateTo('join', {}, $event)"> Sign up here! </a></div>
           </div>
 
         </form>
@@ -608,22 +605,22 @@ tc.put("packages/webclient/components/account/remember_password_comp.html", new 
 </div>"""));
 tc.put("packages/webclient/components/account/transaction_history_comp.html", new HttpResponse(200, r"""<div id="transactionHistoryRoot">
   <!-- header title -->
-  <div class="default-section-header">HISTORIAL DE TRANSACCIONES</div>
+  <div class="default-section-header">TRANSACTION HISTORY</div>
 
   <div class="transaction-headers">
-    <span class="header-date">FECHA</span>
+    <span class="header-date">DATE</span>
     <span class="header-id">ID</span>
-    <span class="header-concept">CONCEPTO</span>
-    <span class="header-amount">IMPORTE</span>
-    <span class="header-balance">SALDO</span>
+    <span class="header-concept">SUBJECT</span>
+    <span class="header-amount">VALUE</span>
+    <span class="header-balance">BALANCE</span>
   </div>
 
   <div class="transaction-row" ng-repeat="transaction in currentPageList">
     <div class="field-date">{{transaction.formattedDate}}</div>
     <div class="field-id">{{transaction.transactionID}}</div>
     <div class="field-concept">{{transaction.transactionDescription}}</div>
-    <div class="field-amount"><div class="money-label">IMPORTE: </div> {{transaction.value}}</div>
-    <div class="field-balance"><div class="money-label">SALDO: </div> {{transaction.balance}}</div>
+    <div class="field-amount"><div class="money-label">VALUE: </div> {{transaction.value}}</div>
+    <div class="field-balance"><div class="money-label">BALANCE: </div> {{transaction.balance}}</div>
   </div>
 
   <paginator on-page-change="onPageChange(currentPage, itemsPerPage)" items-per-page="20" list-length="transactions.length"></paginator>
@@ -631,26 +628,24 @@ tc.put("packages/webclient/components/account/transaction_history_comp.html", ne
 </div>
 """));
 tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpResponse(200, r"""<div id="viewProfileContent">
-  <!--div class="default-header-text"> MI CUENTA </div-->
-  <!--div class="blue-separator"></div-->
   <div class="profile-content">
 
     <div class="personal-data">
       <div class="data-header">
-        <span class="data-header-title">MI CUENTA</span>
+        <span class="data-header-title">My Account</span>
         <div class="close-profile">
           <button type="button" class="close" ng-click="closeProfile()">
             <span class="glyphicon glyphicon-remove"></span>
           </button>
         </div>
-        <div class="button-wrapper"><button class="action-button" ng-click="editPersonalData()">EDITAR</button></div>
+        <div class="button-wrapper"><button class="action-button" ng-click="editPersonalData()">EDIT</button></div>
 
       </div>
       <div class="bloque-sm">
-        <div class="data-row"><span class="data-key">Nombre personal:</span><span class="data-value">{{userData.firstName + ' ' + userData.lastName}}</span></div>
-        <div class="data-row"><span class="data-key">Nombre de usuario:</span><span class="data-value">{{userData.nickName}}</span></div>
-        <div class="data-row"><span class="data-key">Correo electrónico:</span><span class="data-value">{{userData.email}}</span></div>
-        <div class="data-row"><span class="data-key">Contraseña:</span><span class="data-value">********</span></div>
+        <div class="data-row"><span class="data-key">Full Name:</span><span class="data-value">{{userData.firstName + ' ' + userData.lastName}}</span></div>
+        <div class="data-row"><span class="data-key">Nick:</span><span class="data-value">{{userData.nickName}}</span></div>
+        <div class="data-row"><span class="data-key">Email:</span><span class="data-value">{{userData.email}}</span></div>
+        <div class="data-row"><span class="data-key">Password:</span><span class="data-value">********</span></div>
       </div>
       <!--
       <div class="bloque-sm">
@@ -664,18 +659,18 @@ tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpR
 
     <div class="pocket-data">
       <div class="data-header">
-          <span class="data-header-title">MONEDERO</span>
+          <span class="data-header-title">WALLET</span>
           <div class="button-wrapper">
-            <button class="action-button-transaction" ng-click="goTransactions()">TRANSACCIONES</button>
-            <button class="action-button-get-funds" ng-click="goWithdrawFounds()">RETIRAR FONDOS</button>
+            <button class="action-button-transaction" ng-click="goTransactions()">TRANSACTIONS</button>
+            <button class="action-button-get-funds" ng-click="goWithdrawFounds()">WITHDRAW FUNDS</button>
           </div>
        </div>
       <div class="data-container-9">
-        <div class="data-row"><span class="data-key">Balance actual:</span><span class="data-value-balance">{{userData.balance}}</span></div>
+        <div class="data-row"><span class="data-key">Actual balance:</span><span class="data-value-balance">{{userData.balance}}</span></div>
         <!--div class="data-row"><span class="data-key">Bonus pendientes:</span><span class="data-value">&lt;pending-bonuses&gt;€</span></div-->
       </div>
       <div class="data-container-3">
-        <button class="add-funds-button" ng-click="goAddFounds()">AÑADIR FONDOS</button>
+        <button class="add-funds-button" ng-click="goAddFounds()">ADD FUNDS</button>
       </div>
     </div>
 
@@ -688,7 +683,7 @@ tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpR
       <div class="data-row">
         <div class="data-column"><span class="data-key">THIS MONTH:</span><span class="data-value">--€</span></div>
         <div class="data-column"><span class="data-key">&lt;penul-month&gt;:</span><span class="data-value">--€</span></div>
-        <div class="data-column"><a class="data-link" href="">¿Cómo gastar tus EPs?</a></div>
+        <div class="data-column"><a class="data-link" href="">How to use your EPs?</a></div>
       </div>
     </div>
   </div>
@@ -698,25 +693,25 @@ tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpR
 </div>"""));
 tc.put("packages/webclient/components/account/withdraw_funds_comp.html", new HttpResponse(200, r"""<div id="withdrawFundsContent">
   <!-- header title -->
-  <div class="default-section-header">RETIRAR FONDOS</div>
+  <div class="default-section-header">WITHDRAW FUNDS</div>
 
   <div class="top-separation">
     <div class="withdraw-founds-box">
       <div class="data-header">
-        <span class="data-header-title">TU SALDO ES DE <span class="money"><span id="moneyAmount">{{userData.balance}}</span></span></span>
+        <span class="data-header-title">YOUR BALANCE IS <span class="money"><span id="moneyAmount">{{userData.balance}}</span></span></span>
       </div>
 
-      <p>¿Cuánto dinero deseas retirar?</p>
+      <p>¿How much money want to withdraw?</p>
       <div class="money-element">
         <input type="number" id="customEurosAmount"><label for="customEuros">€</label>
       </div>
-      <p class="paypal-info">Sólo puedes retirar cantidades superiores a 20 €</p>
-      <div class="button-wrapper"><button class="withdraw-funds-button" id="withdrawFundsButton">Retirar fondos</button></div>
+      <p class="paypal-info">You can only withdraw amounts larger to 20 €</p>
+      <div class="button-wrapper"><button class="withdraw-funds-button" id="withdrawFundsButton">Withdraw funds</button></div>
     </div>
   </div>
   <div class="need-help-box">
-    <p id="need-help-text">¿Necesitas ayuda?</p>
-    <p id="need-help-email">soporte@epiceleven.com</p>
+    <p id="need-help-text">Need help?</p>
+    <p id="need-help-email">support@epiceleven.com</p>
   </div>
 </div>"""));
 tc.put("packages/webclient/components/contest_filters_comp.html", new HttpResponse(200, r"""<div id="contestSortsFilters">
@@ -725,13 +720,13 @@ tc.put("packages/webclient/components/contest_filters_comp.html", new HttpRespon
   <div class="choosed-filters-container" ng-show="scrDet.isXsScreen">
       <div class="competition-filter-name" ng-bind-html="filterResume"></div>
       <div class="filterToggler">
-        <div id="filtersButtonMobile" type="button" class="filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse" data-target="#filtersPanel">FILTROS</div>
+        <div id="filtersButtonMobile" type="button" class="filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse" data-target="#filtersPanel">FILTERS</div>
       </div>
   </div>
 
   <!-- Ordenación -->
   <div id="contestFastSort">
-    <span class="filter-text">Ordenar por: </span>
+    <span class="filter-text">Sort by: </span>
     <div class="btn-group" >
       <div ng-repeat="button in sortingButtons" id="{{button['id']}}" type="button" class="btn sorting-button" ng-class="button['state']" ng-click="sortListByField(button['field-name'])">{{button["name"].toUpperCase()}}</div>
     </div>
@@ -739,11 +734,11 @@ tc.put("packages/webclient/components/contest_filters_comp.html", new HttpRespon
 
   <!-- Filtro por nombre -->
   <div id="contestFastSearch">
-      <input class="searcher" type="text" placeholder="Buscar torneo" ng-model="filterContestName" ng-keyUp="filterByName()">
+      <input class="searcher" type="text" placeholder="Search contest" ng-model="filterContestName" ng-keyUp="filterByName()">
   </div>
 
   <div class="filterToggler" ng-show="!scrDet.isXsScreen">
-      <div id="filtersButtonDesktop" type="button" class="filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse">FILTROS</div>
+      <div id="filtersButtonDesktop" type="button" class="filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse">FILTERS</div>
   </div>
 
 </div>
@@ -754,7 +749,7 @@ tc.put("packages/webclient/components/contest_filters_comp.html", new HttpRespon
 
     <!-- Filtro x tipos de concurso -->
     <div class="filter-column-competition">
-      <p class="filter-title">COMPETICION</p>
+      <p class="filter-title">COMPETITION</p>
       <div class="filter-content">
         <div class="check-group-wrapper">
 
@@ -771,7 +766,7 @@ tc.put("packages/webclient/components/contest_filters_comp.html", new HttpRespon
 
     <!-- Filtro x tipos de concurso -->
     <div class="filter-column-tournaments">
-      <p class="filter-title">TORNEOS</p>
+      <p class="filter-title">CONTESTS</p>
       <div class="filter-content">
           <div class="check-group-wrapper">
 
@@ -788,7 +783,7 @@ tc.put("packages/webclient/components/contest_filters_comp.html", new HttpRespon
 
     <!-- Filtro x dificultad -->
     <div class="filter-column-salary-limit">
-      <p class="filter-title">LÍMITE DE SALARIO</p>
+      <p class="filter-title">SALARY CAP</p>
       <div class="filter-content">
           <div class="check-group-wrapper">
 
@@ -804,7 +799,7 @@ tc.put("packages/webclient/components/contest_filters_comp.html", new HttpRespon
     </div>
 
     <div class="filter-column-entry-fee">
-      <p class="filter-title">ENTRADA</p>
+      <p class="filter-title">ENTRY FEE</p>
       <div class="filter-content">
          <div class="entry-fee-value-min">MIN: {{filterEntryFeeRangeMin | number:0}}€ </div>
          <div class="entry-fee-value-max">MAX: {{filterEntryFeeRangeMax | number:0}}€ </div>
@@ -818,10 +813,10 @@ tc.put("packages/webclient/components/contest_filters_comp.html", new HttpRespon
   <div class="filters-panel-row">
 
       <div class="reset-button-wrapper">
-        <button type="button" class="btn-reset" ng-click="resetAllFilters()">LIMPIAR FILTROS</button>
+        <button type="button" class="btn-reset" ng-click="resetAllFilters()">CLEAR FILTERS</button>
       </div>
       <div class="confirm-button-wrapper">
-        <button type="button" class="btn-confirm" ng-click="toggleFilterMenu()">ACEPTAR</button>
+        <button type="button" class="btn-confirm" ng-click="toggleFilterMenu()">ACCEPT</button>
       </div>
 
   </div>
@@ -835,13 +830,13 @@ tc.put("packages/webclient/components/contest_header_comp.html", new HttpRespons
    </div>
     <div class="contest-price">
       <div class="contest-coins-content"><span>{{info['entryPrice']}}</span></div>
-      <div class="contest-coins-header">ENTRADA</div>
+      <div class="contest-coins-header">ENTRY FEE</div>
     </div>
 
     <div class="contest-prize">
       <div class="contest-coins-content prize-icon-big"><span>{{info['prize']}}</span></div>
       <div class="contest-coins-header">
-        <div class="contest-coins-header-title">PREMIOS</div>
+        <div class="contest-coins-header-title">PRIZES</div>
         <!--<div class="contest-coins-header-prize-type">{{info['prizeType']}}</div>-->
       </div>
 
@@ -877,16 +872,16 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
         <!-- Nav tabs -->
         <div class="tabs-navigation">
           <ul class="contest-info-tabs " id="modalInfoContestTabs">
-              <li class="tab active"><a data-toggle="tab" ng-click="tabChange('info')">Información</a></li>
-              <li class="tab"><a data-toggle="tab" ng-click="tabChange('contestants')">Participantes</a></li>
-              <li class="tab"><a data-toggle="tab" ng-click="tabChange('prizes')">Premios</a></li>
+              <li class="tab active"><a data-toggle="tab" ng-click="tabChange('info')">Information</a></li>
+              <li class="tab"><a data-toggle="tab" ng-click="tabChange('contestants')">Contenders</a></li>
+              <li class="tab"><a data-toggle="tab" ng-click="tabChange('prizes')">Prizes</a></li>
               <!--<li class="buton-place">
-                <button id="btn-go-enter-contest" class="btn btn-primary" ng-click="enterContest()">ENTRAR</button>
+                <button id="btn-go-enter-contest" class="btn btn-primary" ng-click="enterContest()">ENTER</button>
               </li>-->
           </ul>
 
           <div id="enterContestButton">
-            <button id="btn-go-enter-contest" class="btn btn-primary" ng-click="enterContest()">ENTRAR</button>
+            <button id="btn-go-enter-contest" class="btn btn-primary" ng-click="enterContest()">ENTER</button>
           </div>
         </div>
       </div>
@@ -904,7 +899,7 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
                       </div>
                   </div>
                   <div class="clearfix"></div>
-                  <p class="bases-title">REGLAS DE PUNTUACIÓN</p>
+                  <p class="bases-title">SCORING RULES</p>
 
                   <div class="rules-description">
                     <scoring-rules></scoring-rules>
@@ -914,13 +909,13 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
               <div class="tab-pane" id="contestants">
                 <div class="contestant-list-wrapper">
                   <div ng-if="!loadingService.isLoading && currentInfoData['contestants'].isEmpty" class="default-info-text">
-                    Todavía no hay participantes en este concurso. <br> Anímate a ser el primero.
+                    There are still no contenders in this contest. <br> Encourage to be the first.
                   </div>
                   <div class="contestant-list">
                     <div class="contestant-element"ng-repeat="contestant in currentInfoData['contestants']">
                       <div class="contestant-position">{{$index + 1}}º</div>
                       <div class="contestant-name">{{contestant.name}}</div>
-                      <div class="contestant-points">{{contestant.wins + ' '}}<span class="prize-currency">Ganados</span></div>
+                      <div class="contestant-points">{{contestant.wins + ' '}}<span class="prize-currency">Wins</span></div>
                     </div>
                   </div>
                 </div>
@@ -962,14 +957,14 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
   <div class="clearfix"></div>
   <div class="info-section"></div>
 
-  <p class="title">REGLAS DE PUNTUACIÓN</p>
+  <p class="title">SCORING POINTS</p>
   <div class="rules-description">
     <scoring-rules></scoring-rules>
   </div>
   <div class="clearfix"></div>
   <div class="info-section"></div>
 
-  <p class="title">PREMIOS</p>
+  <p class="title">PRIZES</p>
   <div class="prizes-wrapper">
       <div id="prizes-list">
         <!--<div ng-if="!loadingService.isLoading && currentInfoData['prizes'].isEmpty" class="default-info-text">
@@ -989,15 +984,15 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
   <div class="clearfix"></div>
   <div class="info-section"></div>
 
-  <p class="title">JUGADORES</p>
+  <p class="title">CONTENDERS</p>
   <div ng-if="!loadingService.isLoading && currentInfoData['contestants'].isEmpty" class="default-info-text">
-    Todavía no hay participantes en este concurso.<br>Anímate a ser el primero.
+    There are still no contenders in this contest. <br> Encourage to be the first.
   </div>
   <div class="contestant-list">
       <div class="contestant-element"ng-repeat="contestant in currentInfoData['contestants']">
           <div class="contestant-position">{{$index + 1}}º</div>
           <div class="contestant-name">{{contestant.name}}</div>
-          <div class="contestant-points">{{contestant.wins + ' '}}<span class="prize-currency">Ganados</span></div>
+          <div class="contestant-points">{{contestant.wins + ' '}}<span class="prize-currency">Wins</span></div>
       </div>
   </div>
   <div class="clearfix"></div>
@@ -1017,25 +1012,25 @@ tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse
 
     <div class="column-contest-price" ng-click="onRow(contest)" ng-if="!contest.isLive && !contest.isHistory">
       <div class="column-contest-price-content">{{contest.entryFee}}</div>
-      <div class="column-contest-price-header">ENTRADA</div>
+      <div class="column-contest-price-header">ENTRY FEE</div>
       <!-- torneo gratis -->
       <!--<div ng-if="isFreeContest(contest)"><img src="images/iconFree.png" alt="GRATIS"></div>-->
     </div>
 
     <div class="column-contest-position" ng-click="onRow(contest)" ng-if="contest.isLive || contest.isHistory">
       <div class="column-contest-position-content"><span>{{printableMyPosition(contest)}}</span></div>
-      <div class="column-contest-position-header">DE {{contest.maxEntries}}</div>
+      <div class="column-contest-position-header">OF {{contest.maxEntries}}</div>
     </div>
 
     <div class="column-contest-prize" ng-click="onRow(contest)" ng-if="!contest.isLive">
       <div ng-if="!contest.isHistory" class="column-contest-prize-content prize-icon-big">{{contest.prizePool}}</div>
       <div ng-if="contest.isHistory"  class="column-contest-prize-content prize-icon-big">{{getMyPrize(contest)}}</div>
-      <div class="column-contest-prize-header">PREMIO</div>
+      <div class="column-contest-prize-header">PRIZE</div>
     </div>
 
     <div class="column-contest-points" ng-click="onRow(contest)" ng-if="contest.isLive">
       <div class="column-contest-points-content"><span>{{getMyFantasyPoints(contest)}}</span></div>
-      <div class="column-contest-points-header">PUNTOS</div>
+      <div class="column-contest-points-header">POINTS</div>
     </div>
 
     <div class="column-contest-start-date" ng-click="onRow(contest)" ng-if="!contest.isLive">
@@ -1058,8 +1053,8 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
 
   <!-- Nav tabs -->
   <ul class="enter-contest-tabs" role="tablist">
-    <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('lineup-tab-content')">Tu alineación</a></li>
-    <li><a role="tab" data-toggle="tab" ng-click="tabChange('contest-info-tab-content')">Info torneo</a></li>
+    <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('lineup-tab-content')">Your Lineup</a></li>
+    <li><a role="tab" data-toggle="tab" ng-click="tabChange('contest-info-tab-content')">Contest Info</a></li>
   </ul>
 
   <div id="enterContest">
@@ -1076,15 +1071,15 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
               <div class="total-salary" ng-class="{'red-numbers':availableSalary < 0}">
                 <span class="total-salary-money" ng-show="contest != null">{{availableSalary}}€</span>
               </div>
-              <button id="cancelSoccerPlayerSelection" type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer">CANCELAR</button>
+              <button id="cancelSoccerPlayerSelection" type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer">CANCEL</button>
             </div>
 
             <div class="enter-contest-lineup-wrapper">
               <div class="enter-contest-lineup">
                 <div class="enter-contest-total-salary">
-                    <span class="total-salary-text">TU ALINEACIÓN</span>
+                    <span class="total-salary-text">YOUR LINEUP</span>
                     <div class="total-salary">
-                      <span class="total-salary-text">DINERO RESTANTE:</span>
+                      <span class="total-salary-text">REMAINING SALARY:</span>
                       <span class="total-salary-money" ng-class="{'red-numbers': availableSalary < 0 }" ng-show="contest != null">{{availableSalary}}€</span>
                     </div>
                 </div>
@@ -1111,16 +1106,16 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
 
             <div class="enter-contest-actions-wrapper">
               <div class="button-wrapper-block" ng-if="isSelectingSoccerPlayer && scrDet.isXsScreen">
-                <button type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer" >CANCELAR</button>
+                <button type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer" >CANCEL</button>
               </div>
               <div  class="bottom-content" ng-if="!isSelectingSoccerPlayer || scrDet.isNotXsScreen">
                 <div class="button-wrapper">
-                  <button type="button" class="btn-clean-lineup-list" ng-click="deleteFantasyTeam()" ng-disabled="isPlayerSelected()">BORRAR TODO</button>
+                  <button type="button" class="btn-clean-lineup-list" ng-click="deleteFantasyTeam()" ng-disabled="isPlayerSelected()">REMOVE ALL</button>
                 </div>
                 <div class="button-wrapper">
-                  <button type="button" class="btn-confirm-lineup-list" ng-click="createFantasyTeam()" ng-disabled="isInvalidFantasyTeam">CONFIRMAR</button>
+                  <button type="button" class="btn-confirm-lineup-list" ng-click="createFantasyTeam()" ng-disabled="isInvalidFantasyTeam">CONTINUE</button>
                 </div>
-                <p>Recuerda que puedes editar tu equipo cuantas veces quieras hasta que comience la competición</p>
+                <p>Remember that you can edit your team as many times as you want until the contest starts</p>
               </div>
             </div>
 
@@ -1154,7 +1149,7 @@ tc.put("packages/webclient/components/enter_contest/lineup_selector_comp.html", 
     <div ng-if="slot != null">
       <div class="column-fieldpos">{{slot.fieldPos.abrevName}}</div>
       <div class="column-primary-info">
-        <span class="soccer-player-name">{{slot.fullName | limitToDot : 19}}</span>
+        <span class="soccer-player-name">{{slot.fullName}}</span>
         <span class="match-event-name" ng-bind-html="slot.matchEventName"></span>
       </div>
       <div class="column-salary">{{slot.salary}}€</div>
@@ -1164,7 +1159,7 @@ tc.put("packages/webclient/components/enter_contest/lineup_selector_comp.html", 
 
   <div class="alert alert-danger alert-dismissible alert-red-numbers" role="alert">
     <button type="button" class="close" ng-click="enterContestComp.alertDismiss()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    <strong>Te has pasado del límite salarial</strong><br> Por favor, elige jugadores que se ajusten al presupuesto
+    <strong>You've spent the salary cap</strong><br> Please choose players that fit the budget.
   </div>
 
 </div>"""));
@@ -1188,13 +1183,13 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_stats_comp.htm
 
     <!-- En XS mostramos botones de Añadir / Cancelar -->
     <div class="actions-header-xs">
-        <button class="button-cancel" data-dismiss="modal">CANCELAR</button>
-        <button class="button-add" ng-click="onAddClicked()" ng-disabled="!selectablePlayer">AÑADIR</button>
+        <button class="button-cancel" data-dismiss="modal">CANCEL</button>
+        <button class="button-add" ng-click="onAddClicked()" ng-disabled="!selectablePlayer">ADD</button>
     </div>
 
     <!-- En el resto de versiones título y cruz de cerrar -->
     <div class="actions-header-sm">
-      <div class="text-header">ESTADÍSTICAS DEL JUGADOR</div>
+      <div class="text-header">PLAYER STATISTICS</div>
       <button type="button" class="close" data-dismiss="modal">
         <span class="glyphicon glyphicon-remove"></span>
       </button>
@@ -1210,14 +1205,14 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_stats_comp.htm
       </div>
       <div class="soccer-player-stats-info">
         <div class="soccer-player-fantasy-points"><span>DFP</span><span>{{currentInfoData['fantasyPoints']}}</span></div>
-        <div class="soccer-player-matches"><span>PARTIDOS</span><span>{{currentInfoData['matchesCount']}}</span></div>
-        <div class="soccer-player-salary"><span>SALARIO</span><span>{{currentInfoData['salary']}}</span></div>
+        <div class="soccer-player-matches"><span>MATCHES</span><span>{{currentInfoData['matchesCount']}}</span></div>
+        <div class="soccer-player-salary"><span>SALARY</span><span>{{currentInfoData['salary']}}</span></div>
       </div>
     </div>
 
     <div class="next-match-wrapper">
       <div class="next-match"  ng-bind-html="currentInfoData['nextMatchEvent']"></div>
-      <button class="button-add" ng-click="onAddClicked()" ng-disabled="!selectablePlayer">AÑADIR</button>
+      <button class="button-add" ng-click="onAddClicked()" ng-disabled="!selectablePlayer">ADD</button>
     </div>
 
   </div>
@@ -1225,8 +1220,8 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_stats_comp.htm
   <div class="soccer-player-stats-content">
       <!-- Nav tabs -->
       <ul id="soccer-player-stats-tabs" class="soccer-player-stats-tabs" role="tablist">
-        <li id="seasonTab" class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('season-stats-tab-content')">Datos de Temporada</a></li>
-        <li id="matchTab" ><a role="tab" data-toggle="tab" ng-click="tabChange('match-by-match-stats-tab-content')">Partido a Partido</a></li>
+        <li id="seasonTab" class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('season-stats-tab-content')">Season data</a></li>
+        <li id="matchTab" ><a role="tab" data-toggle="tab" ng-click="tabChange('match-by-match-stats-tab-content')">match by match</a></li>
       </ul>
 
       <div class="tabs">
@@ -1236,7 +1231,7 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_stats_comp.htm
           <div class="tab-pane active" id="season-stats-tab-content">
             <div class="next-match" ng-bind-html="currentInfoData['nextMatchEvent']"></div>
             <!-- MEDIAS -->
-            <div class="season-header">ESTADÍSTICAS DE TEMPORADA <span>(DATOS POR PARTIDO)</span></div>
+            <div class="season-header">SEASON STATISTICS <span>(DATA BY MATCH)</span></div>
             <div class="season-stats">
                 <div class="season-stats-row" ng-repeat="stat in seasonResumeStats"  data-toggle="tooltip" title="{{stat['helpInfo']}}">
                     <div class="season-stats-header">{{stat['nombre']}}</div>
@@ -1252,16 +1247,16 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_stats_comp.htm
           <!-- END BY-SEASON-STATS -->
           <!-- START BY-MATCH-STATS-->
           <div class="tab-pane" id="match-by-match-stats-tab-content">
-            <div class="match-header">PARTIDO A PARTIDO</div>
+            <div class="match-header">MATCH BY MATCH</div>
             <div class="noMatchesPlayed" ng-class="{'hidden':currentInfoData['matchesCount'] > 0}">
-                <span>No ha jugado ningún partido esta temporada</span>
+                <span>Has not played any game this season</span>
             </div>
             <div class="match-stats-table-wrapper" ng-class="{'hidden':currentInfoData['matchesCount'] == 0}">
               <!--HEADER-->
               <table id="statsTable" class="table table-striped">
                 <thead class="stats-headings">
                   <tr>
-                    <th class="head-of-headings">Temporada</th> <!-- necesitamos una vacía -->
+                    <th class="head-of-headings">Season</th> <!-- necesitamos una vacía -->
                     <th class="stat-field-header" ng-repeat="item in seasonTableHeaders">{{item}}</th>
                   </tr>
                 </thead>
@@ -1287,8 +1282,8 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_stats_comp.htm
       </div>
   </div>
   <div class="actions-footer-xs">
-    <button class="button-cancel" data-dismiss="modal">CANCELAR</button>
-    <button class="button-add" ng-click="onAddClicked()" ng-disabled="!selectablePlayer">AÑADIR</button>
+    <button class="button-cancel" data-dismiss="modal">CANCEL</button>
+    <button class="button-add" ng-click="onAddClicked()" ng-disabled="!selectablePlayer">ADD</button>
   </div>
 </modal>
 
@@ -1296,27 +1291,27 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_stats_comp.htm
 tc.put("packages/webclient/components/enter_contest/soccer_players_filter_comp.html", new HttpResponse(200, r"""<div class="soccer-players-filter">
 
   <div class="filter-by-position" ng-if="scrDet.isNotXsScreen">
-    <span>JUGADORES</span>
+    <span>Players</span>
     <button class="button-filter-position" ng-click="fieldPosFilter = fieldPos"
             ng-repeat="fieldPos in posFilterList" ng-bind-html="getTextForFieldPos(fieldPos)" ng-class="getClassForFieldPos(fieldPos)"></button>
   </div>
 
-  <input type="text" class="name-player-input-filter" placeholder="Buscar jugador" ng-model="nameFilter" />
+  <input type="text" class="name-player-input-filter" placeholder="Search player..." ng-model="nameFilter" />
 </div>"""));
 tc.put("packages/webclient/components/legalese_and_help/beta_info_comp.html", new HttpResponse(200, r"""<div id="betaComp">
   <!-- header title -->
-  <div class="default-section-header">EPIC ELEVEN: VERSIÓN BETA</div>
+  <div class="default-section-header">EPIC ELEVEN: BETA VERSION</div>
 
   <div class="block-blue-header">
-    <div class="title_white">ESTA SECCIÓN NO ESTA DISPONIBLE</div>
+    <div class="title_white">SECTION NOT AVAILABLE</div>
   </div>
   <div class="beta-info-wrapper">
     <div class="texto">
-      Lo sentimos, esta es una versión beta de Epic Eleven.<br>
-      Próximamente podrás jugar y ganar premios en metálico y tendrás habilitadas<br>
-      todas las funcionalidades necesarias. Te avisaremos cuando esté operativo
+      Sorry, this is a beta version of Epic Eleven.<br>
+      We are working hard on all the features that Epic Eleven will include.
+      We will keep you updated.
       <br><br>
-      <b>Muchas gracias</b>
+      <b>Thank you</b>
     </div>
 
   </div>
@@ -1324,163 +1319,174 @@ tc.put("packages/webclient/components/legalese_and_help/beta_info_comp.html", ne
 tc.put("packages/webclient/components/legalese_and_help/help_info_comp.html", new HttpResponse(200, r"""<div id="helpInfo">
 
   <!-- header title -->
-  <div class="default-section-header">AYUDA</div>
+  <div class="default-section-header">HELP</div>
 
   <!-- Nav tabs -->
   <ul class="help-info-tabs" role="tablist">
-    <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('how-works-content')">Cómo funciona</a></li>
-    <li><a role="tab" data-toggle="tab" ng-click="tabChange('rules-scores-content')">Puntuaciones y reglas</a></li>
+    <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('how-works-content')">How it works</a></li>
+    <li><a role="tab" data-toggle="tab" ng-click="tabChange('rules-scores-content')">Rules and scoring</a></li>
   </ul>
 
   <div class="tab-pane active" id="how-works-content">
     <div class="block-light">
-      <div class="title">ELIGE UN TORNEO</div>
-      <div class="description">Configura tu equipo siguiendo estas sencillas indicaciones: <br>En primer lugar, debes seleccionar el torneo en el que quieras participar. <br>Haz clic en la competición deseada y a continuación podrás elegir tus jugadores.</div>
+      <div class="title">Choose a contest</div>
+      <div class="description"><p>In the Lobby you can find several contests to participate, either with your friends or with other players.</p>Play as many contests as you like: new contests EVERY week!<br> Use as many lineups as you want, or always the same if possible: is totally up to you. <br> Daily contests, not season long-term commitment.</div>
+      <!--div class="description">
+      <p>
+      In the Lobby you can find several contests to participate, either with your friends or with other players.
+      </p>
+
+      <ul><li>Play as many contests as you like: new contests EVERY week!</li><li> Use as many lineups as you want, or always the same if possible: is totally up to you. </li><li> Daily contests, not season long-term commitment.</li></ul>
+
+      </div-->
+
       <div class="img-wrapper">
         <img src="images/help01.jpg" ng-if="!scrDet.isXsScreen">
         <img src="images/help01-xs.jpg" ng-if="scrDet.isXsScreen">
       </div>
-      <div class="description">Puedes filtrar los torneos según la competición, el límite salarial de que dispones <br>para confeccionar tu equipo o el tipo de torneo en el que quieras participar. </div>
+      <div class="description">You can filter contests by competition, salary cap, entry fee or contest type.</div>
       <div class="img-wrapper">
         <img src="images/help02.jpg" ng-if="!scrDet.isXsScreen">
         <img src="images/help02-xs.jpg" ng-if="scrDet.isXsScreen">
       </div>
     </div>
     <div class="block-dark">
-      <div class="title">HAZ TU EQUIPO</div>
-      <div class="description">A continuación, selecciona los 11 jugadores que quieras que participen <br>en el torneo que has elegido. Recuerda que debes ceñirte al <br>límite salarial que marque cada torneo.</div>
+      <div class="title">PICK YOUR TEAM</div>
+      <div class="description"><p>Next, choose your lineup. Pick 11 players and remember:</p> You can't spend more than your salary cap.<br>You can't choose more than 4 players from the same team.</div>
       <div class="img-wrapper">
         <img src="images/help03.jpg" ng-if="!scrDet.isXsScreen">
         <img src="images/help03-xs.jpg" ng-if="scrDet.isXsScreen">
       </div>
-      <div class="description">No olvides que puedes consultar las estadísticas de los jugadores que has elegido <br>en tiempo real y comparar los resultados de tu alineación con las de otros usuarios.</div>
+      <!--div class="description">Do not forget you can view the statistics of the players you have chosen <br>in real time and compare the results of your alignment with other users.</div-->
+    </div>
+    <div class="block-light">
+      <div class="title">SCORE AND WIN</div>
+      <!--div class="description">In EPIC ELEVEN be a good football manager has a reward.<br>Make your lineup for each tournament you want to participate and observe the statistics of the players.<br>Prove you're the best, because soon you'll win fantastic prizes.</div-->
       <div class="img-wrapper">
         <img src="images/help04.jpg" ng-if="!scrDet.isXsScreen">
         <img src="images/help04-xs.jpg" ng-if="scrDet.isXsScreen">
       </div>
+      <!--div class="img-wrapper"-->
+        <!--img src="images/help05.jpg" ng-if="!scrDet.isXsScreen"-->
+        <!--p class="img-footer">Compare your lineup with other users live.</p-->
+      <!--/div-->
     </div>
     <div class="block-light">
-      <div class="title">CONSIGUE EL MÁXIMO DE PUNTOS Y GANA</div>
-      <div class="description">En EPIC ELEVEN ser un buen estratega del fútbol tiene recompensa. <br>Confecciona tu alineación para cada torneo en el que quieras participar <br>y observa las estadísticas de los jugadores. Demuestra que eres el mejor, <br>porque próximamente podrás ganar fantásticos premios en metálico.</div>
-      <div class="img-wrapper">
-        <img src="images/help05.jpg" ng-if="!scrDet.isXsScreen">
-        <p class="img-footer">Compara tu alineación con las de otros usuarios en directo.</p>
-      </div>
-    </div>
-    <div class="block-light">
-      <div class="title">JUEGA DESDE CUALQUIER LUGAR</div>
+      <div class="title">PLAY EVERYWHERE</div>
       <div class="block-last">
         <div class="img-wrapper-left">
           <img src="images/help06.jpg">
         </div>
         <div class="description-right">
-          <p>Comprueba lo sencillo que es participar en los torneos de EPIC 11 desde dónde quieras. Podrás seguir en directo las estadísticas de tus jugadores desde tu ordenador, tablet o smartphone con interfaces adaptadas a cada tipo de dispositivo para optimizar la usabilidad.</p>
-          <button type="button" class="button-play" ng-click="goTo('lobby')">JUGAR AHORA</button>
+          <p>It is very easy to play EPIC 11 from any device, any place. You can keep track of your lineup's live stats from your computer, tablet or smartphone, with an optimized interface for each one.</p>
+          <!--p>See how easy it is to participate in contests EPIC 11 from wherever you want. You can follow live stats of your players from your computer, tablet or smartphone optimized for all devices,to improve usability.</p-->
+          <button type="button" class="button-play" ng-click="goTo('lobby')">PLAY NOW</button>
         </div>
       </div>
     </div>
   </div>
   <div class="tab-pane" id="rules-scores-content">
     <div class="block-dark">
-      <div class="title">PUNTUACIONES Y ABREVIATURAS</div>
+      <div class="title">SCORING AND RULES</div>
       <div class="scores-wrapper">
         <scoring-rules></scoring-rules>
       </div>
     </div>
     <div class="block-light">
-      <div class="title">REGLAS</div>
+      <div class="title">RULES</div>
       <div class="toogle-block">
         <input type="checkbox" id="rule1" class="toggle">
-        <label for="rule1">LEGALIDAD</label>
+        <label for="rule1">LEGALS</label>
         <div>
-          <p>Para efectuar jugar en cualquiera de nuestros torneos, debes tener 18 años o más y ser residente en España. Para más información sobre bases legales, por favor, consulta nuestros <a ng-click="goTo('terminus_info')">Términos y Condiciones de Uso</a>.</p>
+          <p>To play any of our tournaments, you must be 18 years or older and a resident in Spain. For further information, please, see our<a ng-click="goTo('terminus_info')">Terms of Use</a>.</p>
         </div>
       </div>
       <div class="toogle-block">
         <input type="checkbox" id="rule2" class="toggle">
-        <label for="rule2">CUENTAS MÚLTIPLES</label>
+        <label for="rule2">MULTI ACCOUNTS</label>
         <div>
-          <p>Cada jugador de Epic Eleven puede tener una sola cuenta de usuario. No obstante, en casos especiales, Epic Eleven permite la creación de una segunda cuenta de usuario. Para ello, debes recibir por escrito una autorización expresa de Epic Eleven antes de abrir la segunda cuenta. En este caso, es decisión última de Epic Eleven determinar el derecho de un usuario a estar en posesión de dos cuentas. Las sanciones serán emitidas a discreción del personal de Epic Eleven y pueden conllevar el cierre de todas las cuentas de un usuario, así como la retención de dinero en efectivo, si determinamos que ha sido obtenido de manera fraudulenta.</p>
+          <p>Each Epic Eleven player, can only own a single account. However, in special cases, Epic Eleven allows the creation of a second account. To do this, you must revceive express written permission of Epic Eleven before opening the second account. In this case, is Epic Eleven final decision, determining the right of a user to ve in possession of two accounts. The penalties will be issued at the discretion of Epic Eleven staff and may involve the closuere of all user accounts and retention of cach, if we determine that has been obtained fraudulently.</p>
         </div>
       </div>
       <div class="toogle-block">
         <input type="checkbox" id="rule3" class="toggle">
-        <label for="rule3">CUENTAS ANULADAS</label>
+
+        <label for="rule3">BANNED ACCOUNTS</label>
         <div>
-          <p>Existen determinados comportamientos que actúan en detrimento de Epic Eleven y del resto de jugadores. La práctica de estos comportamientos implicará la anulación de algunas (o la totalidad) de las funciones asociadas a una cuenta de usuario. Como consecuencia de lo anteriormente expuesto, los usuarios cuyas cuentas hayan sido anuladas deberán respetar las medidas disciplinarias impuestas. Toda comunicación perteneciente a la restauración de una cuenta de usuario deberá efectuarse a través de la cuenta de correo electrónico soporte@epiceleven.com.</p>
+          <p>There are certain behaviors that are detrimental to "Epic Eleven" and the other players. These behaviors may imply the cancellation of some (or all) of the functions associated with a user account. As a result of the foregoing, users whose accounts have been canceled shall respect the disciplinary measures imposed. All communication pertaining to the restoration of a user account must be made through the email account support@epiceleven.com.</p>
         </div>
       </div>
       <div class="toogle-block">
         <input type="checkbox" id="rule4" class="toggle">
-        <label for="rule4">NOMBRES DE USUARIOS</label>
+        <label for="rule4">NICKNAMES</label>
         <div>
-          <p>Epic Eleven se reserva el derecho de solicitar el cambio de nombre de usuario en los casos en que resulte ofensivo o responda a intereses comerciales. El requisito de cambio será determinado exclusivamente por Epic Eleven. Si el usuario ignora la petición Epic Eleven podrá modificar dicho nombre de usuario.</p>
+          <p>"Epic Eleven" holds the right to request to change user name where that is offensive or respond to commercial interests. The requirement of change will be determined solely by Epic Eleven. If the user ignores the request, Epic Eleven alter this username.</p>
         </div>
       </div>
       <div class="toogle-block">
         <input type="checkbox" id="rule5" class="toggle">
-        <label for="rule5">TORNEOS SIN PARTICIPACIÓN</label>
+        <label for="rule5">UNFILLED CONTESTS</label>
         <div>
-          <p>Todos los torneos abiertos que se realicen en Epic Eleven tienen un premio determinado y un número de participantes concreto. Si no se alcanza este número de participantes al inicio del torneo, éste podrá anularse. Por ejemplo, una competición “Uno contra Uno” sin 2 competidores y una liga de 10 personas con sólo 9 participantes podrán no celebrarse.</p>
+          <p>All open tournaments that take place in Epic Eleven have a certain prize and a number of specific participants. If at the start of the tournament this number of participants is not reached, it may be canceled. For example, a competition "One on One" without 2 competitors and a league of 10 people with only 9 participants can not be held.</p>
         </div>
       </div>
       <div class="toogle-block">
         <input type="checkbox" id="rule6" class="toggle">
-        <label for="rule6">CANCELAR UNA PARTICIPACIÓN</label>
+        <label for="rule6">CANCEL PARTICIPATION</label>
         <div>
-          <p>Los usuarios pueden cancelar su participación en cualquier torneo haciendo clic en el botón “cancelar entrada” ubicado en la parte inferior izquierda de la sección en que puedes editar tu equipo. Una vez haya dado comienzo el torneo el botón “cancelar entrada” desaparecerá. Epic Eleven no tendrá en cuenta las solicitudes de cancelación de las inscripciones en los concursos que se rellenen durante los primeros 15 minutos del inicio del juego. Epic Eleven no tiene obligación de tramitar las solicitudes de cancelación que no se reciban o que se reciban después de los plazos indicados anteriormente en este epígrafe, debido a dificultades técnicas u otras razones. Asimismo, Epic Eleven no atenderá peticiones  para cancelar inscripciones en los torneos “Uno Contra Uno”. </p>
+          <p>Users can cancel participation in any tournament by clicking the "Cancel Entry" button at the bottom left of the section in which you can edit your team. Once the tournament has begun the button "Cancel entry" disappear. Eleven Epic will not consider requests for cancellation of entries in competitions that are completed during the first 15 minutes of the start of the game. Epic Eleven has no obligation to attend requests for cancellation that are not received or are received after the deadlines listed above in this section, due to technical difficulties or other reasons. Also, Epic Eleven will not entertain requests to cancel registrations in tournaments "One versus One". </p>
         </div>
       </div>
       <div class="toogle-block">
         <input type="checkbox" id="rule7" class="toggle">
-        <label for="rule7">JUEGOS POSPUESTOS</label>
+        <label for="rule7">GAMES POSTPONED</label>
         <div>
-          <p>Las reglas que especifican el tratamiento de los juegos pospuestos varían en función del tipo de torneo. Epic Eleven se reserva el derecho de actuar a este respecto en función de cada circunstancia particular.</p>
+          <p>The rules that specify the treatment of postponed games vary depending on the type of tournament. Epic Eleven reserves the right to act in this regard depending on the particular circumstances.</p>
         </div>
       </div>
       <div class="toogle-block">
         <input type="checkbox" id="rule8" class="toggle">
-        <label for="rule8">PARTIDOS SUPENDIDOS</label>
+        <label for="rule8">MATCHES SUSPENDED</label>
         <div>
-          <p>Las reglas que se refieren a partidos que hayan sido suspendidos tienen un tratamiento determinado en función del tipo de torneo. Se considera que un partido ha quedado suspendido cuando queda sin concluir, pero con perspectivas de finalizarse en el futuro. Como mínimo, las estadísticas recopiladas antes de la finalización del periodo del torneo serán tenidas en cuenta entre los partidos.</p>
+          <p>The rules referred to suspended matches have a given treatment depending on the type of tournament. It is considered that a match has been suspended when it is unfinished, but with prospects for completion in the future. At a minimum, the statistics collected before the end of the tournament period will be taken into account between the parties.</p>
         </div>
       </div>
       <div class="toogle-block">
         <input type="checkbox" id="rule9" class="toggle">
-        <label for="rule9">JUGADORES EN PROCESO DE NEGOCIACIÓN</label>
+        <label for="rule9">PLAYERS IN NEGOTIATION PROCESS</label>
         <div>
-          <p>Los jugadores inmersos en procesos de negociación pueden afectar al desarrollo de los torneos que ya hayan sido planificados teniendo en cuenta a estos jugadores en sus antiguos equipos. Los listados de jugadores de los equipos en Epic Eleven se actualizan una vez al día (por la noche). Hay que tener en cuenta que los torneos se crean con un adelanto de 5 a 6 días previos al partido, por lo que los jugadores que estén en proceso de negociación pueden no estar disponibles para torneos que incluyan un partido con su equipo nuevo, pero no con su antiguo equipo. También hay que tener en cuenta que, en algunos casos, un jugador que se ha seleccionado ya no esté disponible para un torneo que vaya a disputar su antiguo equipo ni su nuevo equipo. En este caso, el usuario deberá seleccionar un suplente o será acreditado con cero puntos para este jugador en cuestión.</p>
-          <p>Ten en cuenta que, el mismo día que un jugador es objeto de negociación, aún puede aparecer en el listado de jugadores de su antiguo equipo. Si la negociación se está produciendo, precisamente, con el equipo rival del jugador en negociaciones en el mismo partido en el que estás participando, todavía podrás recibir puntos por su participación en la competición. Estos puntos no se podrán reflejar con exactitud durante la puntuación en vivo, pero se tendrán en cuenta en el momento en que finalice el partido. Asimismo, ten en cuenta que la liquidación del torneo puede sufrir retrasos con el fin de asegurar la máxima exactitud.</p>
-          <p>En casos muy raros, un jugador se traspasa lo suficientemente temprano en el día como para poder jugar un partido para su nuevo equipo esa misma jornada. Si se traspasa desde un equipo que juega un partido tarde a un equipo que va a jugar un partido temprano, podrás seleccionar este jugador para el juego que tenga lugar de manera tardía aun sabiendo que el traspaso se ha realizado de facto antes del partido. Si este fuera el caso, se te asignarán cero puntos por su desempeño</p>
+          <p>The players involved in negotiation processes can affect the development of the tournaments that have already been planned considering these players in their old equipment. The listings players Epic Eleven teams are updated once a day (at night). Keep in mind that the tournaments are created with an advance of 5-6 days before the match, so players who are under negotiation may not be available for tournaments that include a game with his new team, but not with his old team. Also keep in mind that, in some cases, a player who has been selected is no longer available for a tournament that will play his old team and his new team. In this case, the user should select an alternate or be credited with zero points for the player in question.</p>
+          <p>Note that, the same day that a player is under negotiation, may still appear in the list of players from his former team. If negotiation is occurring precisely negotiations with the player in the same game the rival team in which you are involved, you'll still receive points for participating in the competition. These points may not accurately reflect during the live score, but will be considered at the time of completion of the game. Also note that settlement may be delayed tournament in order to ensure maximum accuracy.</p>
+          <p>In very rare cases, a player is transferred early enough in the day to play a game for his new team the same day. If it is transferred from a computer playing a game late to a team that will play a game early, you can select the player for the game to take place so late knowing that the transfer was made de facto before the game. If this is the case, you will be assigned zero points for their performance.</p>
         </div>
       </div>
       <div class="toogle-block">
         <input type="checkbox" id="rule10" class="toggle">
-        <label for="rule10">RESTRICCIONES EN LAS ALINEACIONES</label>
+        <label for="rule10">LINEUP RESTRICTIONS</label>
         <div>
-          <p>En casos muy raros, un jugador se traspasa lo suficientemente temprano en el día como para poder jugar un partido para su nuevo equipo esa misma jornada. Si se traspasa desde un equipo que juega un partido tarde a un equipo que va a jugar un partido temprano, podrás seleccionar este jugador para el juego que tenga lugar de manera tardía aun sabiendo que el traspaso se ha realizado de facto antes del partido. Si este fuera el caso, se te asignarán cero puntos por su desempeño</p>
+          <p>    --- -   En casos muy raros, un jugador se traspasa lo suficientemente temprano en el día como para poder jugar un partido para su nuevo equipo esa misma jornada. Si se traspasa desde un equipo que juega un partido tarde a un equipo que va a jugar un partido temprano, podrás seleccionar este jugador para el juego que tenga lugar de manera tardía aun sabiendo que el traspaso se ha realizado de facto antes del partido. Si este fuera el caso, se te asignarán cero puntos por su desempeño</p>
         </div>
       </div>
       <div class="toogle-block">
         <input type="checkbox" id="rule11" class="toggle">
-        <label for="rule11">LAS REVISIONES DE PUNTUACIÓN</label>
+        <label for="rule11">PUNCTUATION REVISIONS</label>
         <div>
-          <p>Durante el partido recibimos las puntuaciones en directo desde nuestro proveedor de Estadísticas, Opta. Al finalizar el juego, nos envía el documento final con las estadísticas completas del partido. Una vez recibidas y confirmadas las estadísticas de todos los partidos de la jornada, comenzamos a gestionar la liquidación de todas las participaciones. Sin embargo, en contadas ocasiones, las ligas y estadísticas revisadas por el proveedor sufren alguna modificación posterior a la publicación del cuadro de puntuación final. En caso de que esto ocurra, no se actualizará la puntuación del jugador en Epic Eleven. Ten en cuenta que esta situación no es la misma que un caso en que una corrección deba hacerse después del cierre debido a un problema con la fuente de datos o al proceso de resolución.</p>
+          <p>During the game we received scores direct from our Statistics supplier, Opta. After the game, send us the final document with full match statistics. Once received and confirmed the statistics of all matches of the day, we began to manage the liquidation of all entries. However, on rare occasions, leagues and statistics reviewed by the provider suffer some after publication of the final box score modification. If this happens, the player's score on Epic Eleven will not be updated. Note that this situation is not the same as a case where a correction must be made after closing due to a problem with the data source or the resolution process.</p>
         </div>
       </div>
       <div class="toogle-block">
         <input type="checkbox" id="rule12" class="toggle">
-        <label for="rule12">SERVICIO DE ACCESO Y EDICIÓN DE PROBLEMAS</label>
+        <label for="rule12">ACCESS ASSOCIATED ISSUES</label>
         <div>
-          <p>Aunque tratamos de asegurar que Epic Eleven funciona sin problemas en todo momento, al igual que cualquier servicio online, en ocasiones podemos experimentar períodos de interrupción o rendimiento lento. A veces, se producen problemas para acceder al servicio, para editar alineaciones o para entrar en nuevos torneos. Si no puedes acceder al Servicio, por favor, infórmanos de los problemas escribiendo a nuestro correo electrónico soporte@epiceleven.com. Si hay períodos prolongados en que los usuarios no puedan acceder a la funcionalidad de nuestro servicio, la edición de alineaciones no funciona correctamente u otros casos no especificados, desde Epic Eleven, ofrecemos instrucciones para cancelar las entradas en los torneos por correo electrónico antes de que empiece el juego.</p>
+          <p>Although we assure the correct operation of Epic Eleven at any time, like any other online services, we may experience cuts or slow performance. Sometimes, the user may experience problems while accessing the service, editing lineups or entering new tournaments.</p>
+          <p>If you experience problems accessing the service, please contact us vía <a href="support@epiceleven.com">support@epiceleven.com</a>. If there are long periods wich users can not access to our services, lineup editing does not work properly or other unspecified cases, from Epic Eleven, provide instructions to cancel the tickets in tournaments by email before the game starts.</p>
         </div>
       </div>
       <div class="toogle-block">
         <input type="checkbox" id="rule13" class="toggle">
-        <label for="rule13">CANCELACIÓN DE TORNEOS</label>
+        <label for="rule13">CONTEST CANCELLATION</label>
         <div>
-          <p>Epic Eleven también se reserva el derecho de cancelar los torneos a su criterio, sin ningún tipo de restricciones. Normalmente, esto se llevará a cabo sólo en los casos en los que creemos que, debido a problemas en el servicio o hechos que afecten a los eventos deportivos, no habría un impacto generalizado en la mayor parte de las competiciones.</p>
-          <p>Para más información sobre la manera en que Epic Eleven trabaja, por favor, visita nuestra sección de Preguntas Frecuentes en nuestra Página de Ayuda.</p>
+          <p>Epic Eleven also reserves the right to cancel tournaments at its discretion, without any restrictions. Normally this will be done only in cases where we believe that due to problems in service or events that affect sporting events, there would be a widespread impact on most of the competitions.</p>
         </div>
       </div>
     </div>
@@ -2189,7 +2195,7 @@ tc.put("packages/webclient/components/lobby_comp.html", new HttpResponse(200, r"
                   entry-fee-filter="lobbyFilters['FILTER_ENTRY_FEE']"
                   name-filter="lobbyFilters['FILTER_CONTEST_NAME']"
                   on-action-click='onActionClick(contest)'
-                  on-row-click="onRowClick(contest)" action-button-title="'JUGAR'"
+                  on-row-click="onRowClick(contest)" action-button-title="'PLAY'"
                   contest-count="contestCount">
   </contests-list>
 </div>
@@ -2205,12 +2211,12 @@ tc.put("packages/webclient/components/modal_comp.html", new HttpResponse(200, r"
 """));
 tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(200, r"""<div id="myContest" >
   <!-- header title -->
-  <div class="default-section-header">MIS TORNEOS</div>
+  <div class="default-section-header">MY CONTESTS</div>
   <!-- Nav tabs -->
   <ul  id="myContestMenuTabs" class="my-contest-tabs" role="tablist">
-    <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('live-contest-content')"> En Vivo <span class="contest-count" ng-if="hasLiveContests">{{contestsService.liveContests.length}}</span></a></li>
-    <li><a role="tab" data-toggle="tab" ng-click="tabChange('waiting-contest-content')">Próximos</a></li>
-    <li><a role="tab" data-toggle="tab" ng-click="tabChange('history-contest-content')">Historial</a></li>
+    <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('live-contest-content')"> Live <span class="contest-count" ng-if="hasLiveContests">{{contestsService.liveContests.length}}</span></a></li>
+    <li><a role="tab" data-toggle="tab" ng-click="tabChange('waiting-contest-content')">Upcoming</a></li>
+    <li><a role="tab" data-toggle="tab" ng-click="tabChange('history-contest-content')">Entry History</a></li>
   </ul>
 
   <!-- Tab panes -->
@@ -2226,11 +2232,11 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
           <!-- lista vacía -->
           <div class="no-contests-wrapper" ng-switch-when="false">
             <div class="no-contests-content">
-              <div class="default-info-text">EN ESTE MOMENTO, NO ESTÁS JUGANDO<br>NINGÚN TORNEO</div>
-              <div class="no-contests-text">CONSULTA LA LISTA DE TUS <strong data-toggle="tab" ng-click="tabChange('waiting-contest-content')">PRÓXIMOS TORNEOS</strong> PARA VER CUÁNDO EMPIEZAN</div>
+              <div class="default-info-text">YOUR ARE NOT PLAYING ANY CONTEST<br>AT THE MOMENT</div>
+              <div class="no-contests-text">CHECK OUT THE LIST OF YOUR <strong data-toggle="tab" ng-click="tabChange('waiting-contest-content')">NEXT CONTESTS</strong> TO SEE WHEN THEY START</div>
             </div>
             <div class="no-contest-bottom-row">
-              <button class="btn-go-to-contest" ng-click="gotoLobby()">IR A LOS TORNEOS</button>
+              <button class="btn-go-to-contest" ng-click="gotoLobby()">TO THE CONTESTS</button>
             </div>
           </div>
           <!-- lista de concursos -->
@@ -2250,11 +2256,11 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
           <!-- lista vacía -->
           <div class="no-contests-wrapper" ng-switch-when="false">
             <div class="no-contests-content">
-              <div class="default-info-text">EN ESTE MOMENTO, NO TIENES UN<br>EQUIPO CREADO PARA NINGÚN TORNEO</div>
-              <div class="no-contests-text">VE A LA LISTA DE TORNEOS, ELIGE UNO Y EMPIEZA A JUGAR</div>
+              <div class="default-info-text">YOU DON'T HAVE ANY TEAM FOR ANY CONTEST<br>RIGHT NOW</div>
+              <div class="no-contests-text">GO TO THE CONTEST LIST, PICK ONE AND START PLAYING</div>
             </div>
             <div class="no-contest-bottom-row">
-              <button class="btn-go-to-contest" ng-click="gotoLobby()">IR A LOS TORNEOS</button>
+              <button class="btn-go-to-contest" ng-click="gotoLobby()">TO THE CONTESTS</button>
             </div>
           </div>
           <!-- lista de concursos -->
@@ -2274,11 +2280,11 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
           <!-- lista vacía -->
           <div class="no-contests-wrapper" ng-switch-when="false">
             <div class="no-contests-content">
-              <div class="default-info-text">TODAVÍA NO HAS JUGADO NINGÚN TORNEO<br>¿A QUE ESPERAS PARA EMPEZAR A GANAR?</div>
-              <div class="no-contests-text">VE A LA LISTA DE TORNEOS, ELIGE UNO Y EMPIEZA A JUGAR</div>
+              <div class="default-info-text">YOU HAVEN'T PLAYED ANY CONTEST YET<br>WHAT ARE YOU WAITING FOR TO START WINNING?</div>
+              <div class="no-contests-text">GO TO THE CONTEST LIST, PICK ONE AND START PLAYING</div>
             </div>
             <div class="no-contest-bottom-row">
-              <button class="btn-go-to-contest" ng-click="gotoLobby()">IR A LOS TORNEOS</button>
+              <button class="btn-go-to-contest" ng-click="gotoLobby()">TO THE CONTESTS</button>
             </div>
           </div>
           <!-- lista de concursos -->
@@ -2304,7 +2310,7 @@ tc.put("packages/webclient/components/promos_comp.html", new HttpResponse(200, r
   <img src="images/betaHeaderXsTexto.png" class="betaVersionXs" />
 </div>-->"""));
 tc.put("packages/webclient/components/scoring_rules_comp.html", new HttpResponse(200, r"""<div id="scoringForAll" class="panel-points">
-  <div class="rules-header">TODOS LOS JUGADORES</div>
+  <div class="rules-header">ALL PLAYERS</div>
   <div class="rules-content">
     <div class="punctuation" ng-class="getClassesIsNegative(event['points'])" ng-repeat="event in AllPlayers">
       <span class="name">{{event["name"]}}</span>
@@ -2314,7 +2320,7 @@ tc.put("packages/webclient/components/scoring_rules_comp.html", new HttpResponse
 </div>
 
 <div id="scoringForGoalKeepers" class="panel-points">
-  <div class="rules-header">PORTEROS</div>
+  <div class="rules-header">GOALKEEPERS</div>
   <div class="rules-content">
     <div class="punctuation" ng-class="getClassesIsNegative(event['points'])" ng-repeat="event in GoalKeepers">
       <span class="name">{{event["name"]}} </span>
@@ -2324,7 +2330,7 @@ tc.put("packages/webclient/components/scoring_rules_comp.html", new HttpResponse
 </div>
 
 <div id="scoringForDefenders" class="panel-points">
-  <div class="rules-header">DEFENSAS</div>
+  <div class="rules-header">DEFENDERS</div>
   <div class="rules-content">
     <div class="punctuation" ng-class="getClassesIsNegative(event['points'])" ng-repeat="event in Defenders ">
       <span class="name">{{event["name"]}} </span>
@@ -2334,7 +2340,7 @@ tc.put("packages/webclient/components/scoring_rules_comp.html", new HttpResponse
 </div>
 
 <div id="scoringForMidFielders" class="panel-points">
-  <div class="rules-header">CENTROCAMPISTAS</div>
+  <div class="rules-header">MIDFIELDERS</div>
   <div class="rules-content">
     <div class="punctuation" ng-class="getClassesIsNegative(event['points'])" ng-repeat="event in MidFielders">
       <span class="name">{{event["name"]}} </span>
@@ -2344,7 +2350,7 @@ tc.put("packages/webclient/components/scoring_rules_comp.html", new HttpResponse
 </div>
 
 <div id="scoringForForwards" class="panel-points">
-  <div class="rules-header">DELANTEROS</div>
+  <div class="rules-header">FORWARDS</div>
   <div class=rules-content>
     <div class="punctuation" ng-class="getClassesIsNegative(event['points'])" ng-repeat="event in Forwards">
       <span class="name">{{event["name"]}} </span>
@@ -2357,7 +2363,7 @@ tc.put("packages/webclient/components/view_contest/fantasy_team_comp.html", new 
   <div class="fantasy-team-header" ng-class="{'opponent-team-gradient': isOpponent, 'header-view-contest-entry-mode': isViewContestEntryMode}">
 
     <div class="edit-team" ng-if="isViewContestEntryMode">
-      <button class="btn-edit-team" ng-click="editTeam()">EDITAR EL EQUIPO</button>
+      <button class="btn-edit-team" ng-click="editTeam()">EDIT THE LINEUP</button>
     </div>
 
     <div class="ranking-box" ng-if="!isViewContestEntryMode">
@@ -2366,16 +2372,16 @@ tc.put("packages/webclient/components/view_contest/fantasy_team_comp.html", new 
     </div>
 
     <div class="score-box" ng-if="!isViewContestEntryMode">
-      <span class="title">PUNTOS</span>
+      <span class="title">POINTS</span>
       <span class="content">{{userScore}}</span>
     </div>
 
     <div class="user-picture"></div>
     <div class="user-nickname" ng-class="{'nickname-view-contest-entry-mode': isViewContestEntryMode}">{{userNickname}}</div>
-    <div class="total-remaining-matches-time" ng-if="!isViewContestEntryMode">TIEMPO RESTANTE: {{remainingTime}}</div>
+    <div class="total-remaining-matches-time" ng-if="!isViewContestEntryMode">REMAINING TIME: {{remainingTime}}</div>
 
     <div class="close-team" ng-click="onCloseButtonClick()" ng-show="showCloseButton">
-      <span class="title">CERRAR</span>
+      <span class="title">CLOSE</span>
       <span class="glyphicon glyphicon-remove"></span>
     </div>
 
@@ -2388,7 +2394,7 @@ tc.put("packages/webclient/components/view_contest/fantasy_team_comp.html", new 
         <div class="column-primary-info">
           <span class="soccer-player-name">{{slot.fullName}}</span>
           <span class="match-event-name" ng-bind-html="slot.matchEventName"></span>
-          <span class="remaining-match-time" ng-if="!isViewContestEntryMode">{{slot.percentOfUsersThatOwn}}% LO TIENEN</span>
+          <span class="remaining-match-time" ng-if="!isViewContestEntryMode">{{slot.percentOfUsersThatOwn}}% OWNED</span>
         </div>
         <div class="column-score" ng-if="!isViewContestEntryMode"><span>{{slot.score}}</span></div>
         <div class="column-salary" ng-if="isViewContestEntryMode">{{slot.salary}}€</div>
@@ -2408,7 +2414,7 @@ tc.put("packages/webclient/components/view_contest/teams_panel_comp.html", new H
 
   <div class="teams-comp-bar" ng-switch-when="true">
     <div class="teams-toggler-wrapper">
-      <div id="teamsToggler" type="button" class="teams-toggler toggleOff" ng-click="toggleTeamsPanel()"  data-toggle="collapse" data-target="#teamsPanel">PARTIDOS EN ESTE TORNEO</div>
+      <div id="teamsToggler" type="button" class="teams-toggler toggleOff" ng-click="toggleTeamsPanel()"  data-toggle="collapse" data-target="#teamsPanel">MATCHES IN THIS CONTEST</div>
     </div>
     <div id="teamsPanel" class="teams-container collapse">
       <div class="top-border"></div>
@@ -2431,16 +2437,16 @@ tc.put("packages/webclient/components/view_contest/teams_panel_comp.html", new H
 tc.put("packages/webclient/components/view_contest/users_list_comp.html", new HttpResponse(200, r"""<div id="usersListRoot" >
 
   <div ng-class="{'users-header-next': isViewContestEntryMode, 'users-header' : !isViewContestEntryMode}">
-    <h1>USUARIOS EN ESTE TORNEO</h1>
-    <h2 ng-if="!isViewContestEntryMode">Selecciona un usuario de esta lista para ver y comparar su alineacion con la tuya:</h2>
+    <h1>CONTENDERS IN THIS CONTEST</h1>
+    <h2 ng-if="!isViewContestEntryMode">Choose a contender to compare lineups:</h2>
   </div>
 
   <div class="users-table-header">
     <div class="pos">POS</div>
-    <div class="name" ng-class="{'name-view-contest-entry-mode': isViewContestEntryMode}">JUGADOR</div>
-    <div class="remaining-time" ng-if="!isViewContestEntryMode">T.R.</div>
-    <div class="score-container">PUNTOS</div>
-    <div class="prize-container" ng-if="!isViewContestEntryMode">PREMIOS</div>
+    <div class="name" ng-class="{'name-view-contest-entry-mode': isViewContestEntryMode}">PLAYER</div>
+    <div class="remaining-time" ng-if="!isViewContestEntryMode">R.T.</div>
+    <div class="score-container">POINTS</div>
+    <div class="prize-container" ng-if="!isViewContestEntryMode">PRIZES</div>
   </div>
 
   <div class="users-table-rows">
@@ -2463,8 +2469,8 @@ tc.put("packages/webclient/components/view_contest/view_contest_comp.html", new 
     <div ng-switch-when="true">
      <!-- Tabs de la versión XS -->
       <ul class="view-contest-tabs" id="liveContestTab" >
-        <li class="active"> <a id="userFantasyTeamTab" ng-click="tabChange('userFantasyTeam')">Tu alineación</a></li>
-        <li>                <a id="usersListTab" ng-click="tabChange('usersList')">Usuarios</a></li>
+        <li class="active"> <a id="userFantasyTeamTab" ng-click="tabChange('userFantasyTeam')">Your lineup</a></li>
+        <li>                <a id="usersListTab" ng-click="tabChange('usersList')">Users</a></li>
         <li ng-disabled="!isOpponentSelected"><a id="opponentFantasyTeamTab" ng-click="tabChange('opponentFantasyTeam')">{{lastOpponentSelected}}</a></li>
       </ul>
 
@@ -2497,18 +2503,18 @@ tc.put("packages/webclient/components/view_contest/view_contest_entry_comp.html"
 
   <!--<div class="separator-bar"></div>-->
   <div class="info-complete-bar" ng-if="!isModeViewing">
-    <p ng-if="isModeCreated">¡PERFECTO! HAS COMPLETADO TU ALINEACIÓN CON ÉXITO</p>
-    <p ng-if="isModeEdited">¡PERFECTO! HAS EDITADO TU ALINEACIÓN CON ÉXITO</p>
-    <p ng-if="isModeSwapped">EL TORNEO ESTABA LLENO PERO TE HEMOS METIDO EN ESTE QUE ES IGUAL</p>
-    <p>Recuerda que puedes editar tu equipo cuantas veces quieras hasta que comience la competición</p>
+    <p ng-if="isModeCreated">WELL DONE! YOU HAVE SUCCESSFULLY COMPLETED YOUR LINEUP</p>
+    <p ng-if="isModeEdited">WELL DONE! YOU HAVE SUCCESSFULLY EDITED YOUR LINEUP</p>
+    <p ng-if="isModeSwapped">THE CONTEST WAS FULL, SO WE HAVE PUT YOU IN THIS EQUIVALENT ONE</p>
+    <p>Remember that you can edit your lineup as many times as you want before the contest starts</p>
   </div>
 
   <div id="viewContestEntry" ng-switch="scrDet.isXsScreen" >
     <div ng-switch-when="true">
       <!-- Tabs de la versión XS -->
       <ul class="view-contest-entry-tabs" id="viewContestEntryTab" >
-        <li class="active"><a ng-click="tabChange('userFantasyTeam')" data-toggle="tab">Tu alineación</a></li>
-        <li><a ng-click="tabChange('usersList')" data-toggle="tab">Usuarios</a></li>
+        <li class="active"><a ng-click="tabChange('userFantasyTeam')" data-toggle="tab">Your lineup</a></li>
+        <li><a ng-click="tabChange('usersList')" data-toggle="tab">Users</a></li>
       </ul>
       <div class="tab-content" id="viewContestEntryTabContent">
         <fantasy-team class="tab-pane active" id="userFantasyTeam" contest-entry="mainPlayer" watch="updatedDate" is-opponent="false"></fantasy-team>
@@ -2526,9 +2532,9 @@ tc.put("packages/webclient/components/view_contest/view_contest_entry_comp.html"
 <!-- Nuevos Bottons Autocentrables-->
   <div class="new-row">
     <div class="autocentered-buttons-wrapper">
-      <div ng-if="scrDet.isXsScreen" class="button-box"><button type="button" class="ok-button" ng-click="goToParent()">VOLVER A TORNEOS</button></div>
-      <div class="button-box"  ng-if="isModeViewing || isModeEdited"><button type="button" class="cancel-button" ng-click="confirmContestCancellation()">CANCELAR PARTICIPACIÓN</button></div>
-      <div ng-if="!scrDet.isXsScreen" class="button-box ok"><button type="button" class="ok-button" ng-click="goToParent()">VOLVER A TORNEOS</button></div>
+      <div ng-if="scrDet.isXsScreen" class="button-box"><button type="button" class="ok-button" ng-click="goToParent()">BACK TO CONTESTS</button></div>
+      <div class="button-box"  ng-if="isModeViewing || isModeEdited"><button type="button" class="cancel-button" ng-click="confirmContestCancellation()">CANCEL PARTICIPATION</button></div>
+      <div ng-if="!scrDet.isXsScreen" class="button-box ok"><button type="button" class="ok-button" ng-click="goToParent()">BACK TO CONTESTS</button></div>
     </div>
   </div>
 <!-- End Nuevos Bottons Autocentrables-->
@@ -2537,10 +2543,10 @@ tc.put("packages/webclient/components/view_contest/view_contest_entry_comp.html"
 
       <!--Viejos Bottons
       <div class="button-wrapper">
-        <button type="button" class="btn-cancel-contest" ng-click="cancelContestEntry()">ABANDONAR</button>
+        <button type="button" class="btn-cancel-contest" ng-click="cancelContestEntry()">ABANDON</button>
       </div>
       <div class="button-wrapper">
-        <button type="button" class="btn-back-contest" ng-click="goToParent()">GUARDAR CAMBIOS</button>
+        <button type="button" class="btn-back-contest" ng-click="goToParent()">SAVE CHANGES</button>
       </div>
       End Viejos Bottons-->
 

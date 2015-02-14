@@ -1,29 +1,29 @@
 <div id="personalDataContent" ng-show="!loadingService.isLoading" ng-cloack>
 
   <div class="edit-personal-data-header">
-    <span class="header-title">EDITAR CUENTA</span>
+    <span class="header-title">EDIT ACCOUNT</span>
   </div>
   <form id="editPersonalDataForm" class="form-horizontal" ng-submit="saveChanges()" role="form" autocomplete="off">
     <div class="content">
       <!-- Nombre -->
       <div class="content-field">
-        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">Nombre</span></div>
+        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">Name</span></div>
         <div class="control-wrapper">
-          <input id="txtName" type="text" ng-model="editedFirstName" placeholder="Nombre" class="form-control"  tabindex="1">
+          <input id="txtName" type="text" ng-model="editedFirstName" placeholder="Name" class="form-control"  tabindex="1">
         </div>
       </div>
       <!-- Apelidos -->
       <div class="content-field">
-        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">Apellidos</span></div>
+        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">Last name</span></div>
         <div class="control-wrapper">
-          <input id="txtLastName" type="text" ng-model="editedLastName" placeholder="Apellidos" class="form-control" tabindex="2">
+          <input id="txtLastName" type="text" ng-model="editedLastName" placeholder="Last name" class="form-control" tabindex="2">
         </div>
       </div>
       <!-- Nickname -->
       <div class="content-field">
-        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">Nombre de usuario</span></div>
+        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">Nick</span></div>
         <div class="control-wrapper">
-          <input id="txtNickName" type="text" ng-model="editedNickName" placeholder="Nombre de usuario" class="form-control" tabindex="3" autocapitalize="off">
+          <input id="txtNickName" type="text" ng-model="editedNickName" placeholder="Nick" class="form-control" tabindex="3" autocapitalize="off">
         </div>
         <!-- Error de nickName -->
         <div id="nickNameErrorContainer" class="content-field-block">
@@ -33,9 +33,9 @@
 
       <!-- Correo Electrónico -->
       <div class="content-field">
-        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">Correo electrónico</span></div>
+        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">Email</span></div>
         <div class="control-wrapper">
-          <input id="txtEmail" type="email" ng-model="editedEmail" placeholder="Correo electrónico" class="form-control" tabindex="4" autocapitalize="off">
+          <input id="txtEmail" type="email" ng-model="editedEmail" placeholder="Email" class="form-control" tabindex="4" autocapitalize="off">
         </div>
         <!-- Error de mail -->
         <div id="emailErrorContainer" class="content-field-block">
@@ -45,15 +45,15 @@
 
       <!-- Label Contraseña -->
       <div class="content-field-block">
-        <div class="control-wrapper"><span id="lblPassword" class="text-label">Contraseña (Rellena los campos de contraseña para actualizar tu contraseña)</span></div>
+        <div class="control-wrapper"><span id="lblPassword" class="text-label">Password (Fill the both fields to update it)</span></div>
       </div>
       <!-- Contraseña -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtPassword" type="password" ng-model="editedPassword" placeholder="Contraseña" class="form-control" tabindex="5" autocapitalize="off"></div>
+        <div class="control-wrapper"><input id="txtPassword" type="password" ng-model="editedPassword" placeholder="Password" class="form-control" tabindex="5" autocapitalize="off"></div>
       </div>
       <!-- Repetir Contraseña -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtRepeatPassword" type="password" ng-model="editedRepeatPassword" placeholder="Repite la contraseña" class="form-control" tabindex="6" autocapitalize="off"></div>
+        <div class="control-wrapper"><input id="txtRepeatPassword" type="password" ng-model="editedRepeatPassword" placeholder="Repeat password" class="form-control" tabindex="6" autocapitalize="off"></div>
       </div>
 
       <!-- Error de contraseñas -->
@@ -76,23 +76,23 @@
        -->
     </div>
   <!-- Notificaciones -->
-    <div class="header">NOTIFICACIONES</div>
+    <div class="header">NOTIFICATIONS</div>
     <div class="subscriptions-content">
 
       <div class="content-field-block">
 
         <div class="subscription-wrapper">
-          <div class="subscription-label">NEWSLETTER/OFERTAS ESPECIALES</div>
+          <div class="subscription-label">NEWSLETTER/SPECIAL OFFERS</div>
           <div class="check-wrapper"> <input type="checkbox" id="inputNewsletter" name="switchNewsletter"> </div>
         </div>
 
         <div class="subscription-wrapper">
-          <div class="subscription-label">NOTIFICACIONES DE JUEGO</div>
+          <div class="subscription-label">GAME NOTIFICATIONS</div>
           <div class="check-wrapper"> <input type="checkbox" name="switchGameAlerts"> </div>
         </div>
 
         <div class="subscription-wrapper">
-          <div class="subscription-label">NOTIFICACIONES DE TUS FICHAJES</div>
+          <div class="subscription-label">OWN SOCCER PLAYER TRANSFER NOTIFICACIONS</div>
           <div class="check-wrapper"> <input type="checkbox" name="switchsoccerPlayerAlerts"> </div>
         </div>
 
@@ -102,10 +102,10 @@
 
     <div class="save-changes-content">
       <div class="forms-wrapper-button">
-        <button id="btnSubmit" class="action-button-save" type="submit">GUARDAR CAMBIOS</button>
+        <button id="btnSubmit" class="action-button-save" type="submit">SAVE</button>
       </div>
       <div class="forms-wrapper-button">
-        <button id="btnSubmit" class="action-button-cancel" ng-click="exit($event)">CANCELAR</button>
+        <button id="btnSubmit" class="action-button-cancel" ng-click="exit($event)">CANCEL</button>
       </div>
     </div>
 

@@ -29,18 +29,18 @@ class ContestFiltersComp implements ShadowRootAware {
   // Mapa para traducir los filtros a lenguaje Human readable
   Map filtersFriendlyName = {
     "FILTER_TOURNAMENT":{
-      "FREE"          :"Torneos Gratuitos",
-      "HEAD_TO_HEAD"  :"Torneos 1 Contra 1",
-      "LEAGUE"        :"Torneos de league",
-      "FIFTY_FIFTY"   :"Torneos 50 / 50"
+      "FREE"          :"Free Contests",
+      "HEAD_TO_HEAD"  :"Head to Head Contests",
+      "LEAGUE"        :"League Contests",
+      "FIFTY_FIFTY"   :"50 / 50 Contests"
     },
     "FILTER_TIER":{
-      "BEGINNER" :"Dificultad principiante",
-      "STANDARD" :"Dificultad Estandar",
-      "SKILLEDS" :"Dificultad Experto"
+      "BEGINNER" :"Beginner level",
+      "STANDARD" :"Standard level",
+      "SKILLEDS" :"Expert level"
     },
-    "FILTER_ENTRY_FEE":"Entrada ",
-    "FILTER_CONTEST_NAME":"Nombre "
+    "FILTER_ENTRY_FEE":"Entry fee ",
+    "FILTER_CONTEST_NAME":"Name "
   };
 
   // Filtro por nombre
@@ -103,7 +103,7 @@ class ContestFiltersComp implements ShadowRootAware {
   String get filterEntryFeeRangeMax => getEntryFeeFilterRange()[ENTRY_FEE_MAX_RANGE].toString();
 
   // Bloque HTML con el resumen de los filtros aplicados
-  String get filterResume =>/* xsFilterList.join("<br>") + */"<div>Torneos disponibles <span class='contest-count'>" + _contestCount.toString() + "</span></div>";
+  String get filterResume =>/* xsFilterList.join("<br>") + */"<div>Available contests <span class='contest-count'>" + _contestCount.toString() + "</span></div>";
 
   ContestFiltersComp(this.scrDet) {
     initializeFilterValues();
@@ -149,24 +149,24 @@ class ContestFiltersComp implements ShadowRootAware {
 
     // Lista de tipos de concurso.
     competitionFilterList = [
-       {'name': "LEAGUE_ES",  'flag':"ESP", 'text':'Liga Española',   'checked':false, 'disabled':true, 'id':'filterLeagueEsp'}
+       {'name': "LEAGUE_ES",  'flag':"ESP", 'text':'Spanish La Liga', 'checked':false, 'disabled':true, 'id':'filterLeagueEsp'}
       ,{'name': "LEAGUE_UK",  'flag':"UK",  'text':'Premier League',  'checked':false, 'disabled':true, 'id':'filterLeagueUK'}
       ,{'name': "CHAMPIONS",  'flag':"EU",  'text':'Champions League','checked':false, 'disabled':true, 'id':'filterUCL'}
     ];
 
     // Lista de tipos de concurso.
     contestTypeFilterList = [
-       {'name':"FREE",        'text':'Gratuitos', 'checked':false, 'disabled':true, 'id':'filterTournamentTypeFree'}
-      ,{'name':"HEAD_TO_HEAD",'text':'1 contra 1','checked':false, 'disabled':true, 'id':'filterTournamentTypeHeadToHead'}
-      ,{'name':"LEAGUE",      'text':'Liga',      'checked':false, 'disabled':true, 'id':'filterTournamentTypeLeague'}
-      ,{'name':"FIFTY_FIFTY", 'text':'50 / 50',   'checked':false, 'disabled':true, 'id':'filterTournamentTypeFiftyFifty'}
+       {'name':"FREE",        'text':'Free',        'checked':false, 'disabled':true, 'id':'filterTournamentTypeFree'}
+      ,{'name':"HEAD_TO_HEAD",'text':'Head to Head','checked':false, 'disabled':true, 'id':'filterTournamentTypeHeadToHead'}
+      ,{'name':"LEAGUE",      'text':'League',      'checked':false, 'disabled':true, 'id':'filterTournamentTypeLeague'}
+      ,{'name':"FIFTY_FIFTY", 'text':'50 / 50',     'checked':false, 'disabled':true, 'id':'filterTournamentTypeFiftyFifty'}
     ];
 
     // Lista de tipos de Limites de salarios.
     salaryCapFilterList = [
-       {'name':"BEGINNER", 'text':'Principiante', 'checked':false, 'disabled':true, 'id':'filterTournamentTierBeginner'}
-      ,{'name':"STANDARD", 'text':'Estandar',     'checked':false, 'disabled':true, 'id':'filterTournamentTierStandard'}
-      ,{'name':"SKILLEDS", 'text':'Experto',      'checked':false, 'disabled':true, 'id':'filterTournamentTierSkilled'}
+       {'name':"BEGINNER", 'text':'Beginner', 'checked':false, 'disabled':true, 'id':'filterTournamentTierBeginner'}
+      ,{'name':"STANDARD", 'text':'Standard', 'checked':false, 'disabled':true, 'id':'filterTournamentTierStandard'}
+      ,{'name':"SKILLEDS", 'text':'Expert',   'checked':false, 'disabled':true, 'id':'filterTournamentTierSkilled'}
     ];
 
     // Rango de Entry Fee
@@ -175,9 +175,9 @@ class ContestFiltersComp implements ShadowRootAware {
 
   void initializeSortValues(){
     sortingButtons = [
-       {'name':"Nombre", 'state':'', 'id':'orderByName', 'field-name':'contest-name'}
-      ,{'name':"Entrada", 'state':'', 'id':'orderByEntryFee', 'field-name':'contest-entry-fee'}
-      ,{'name':"Comienzo", 'state':'', 'id':'orderByStartDate', 'field-name':'contest-start-time'}
+       {'name':"Name",      'state':'', 'id':'orderByName',      'field-name':'contest-name'}
+      ,{'name':"Entry Fee", 'state':'', 'id':'orderByEntryFee',  'field-name':'contest-entry-fee'}
+      ,{'name':"Start Date",'state':'', 'id':'orderByStartDate', 'field-name':'contest-start-time'}
     ];
   }
 

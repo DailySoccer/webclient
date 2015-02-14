@@ -5,7 +5,7 @@
 
       <!-- Header -->
       <div class="panel-heading">
-        <div class="panel-title">ENTRA</div>
+        <div class="panel-title">LOG IN</div>
         <button type="button" class="close" ng-click="navigateTo('landing_page',{}, $event)">
           <span class="glyphicon glyphicon-remove"></span>
         </button>
@@ -14,39 +14,39 @@
       <div class="panel-body" >
 
         <form id="loginForm" class="form-horizontal" ng-submit="login()" role="form" formAutofillFix>
-          <div class="form-description">Introduce tu cuenta de correo electrónico y tu contraseña para acceder a los torneos.</div>
+          <div class="form-description">Enter your email and password to access to the contests.</div>
 
           <!-- LOGIN FIELDS -->
           <div class="user-form-field">
             <!-- MAIL -->
             <div class="input-group  bottom-separation-10">
               <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-              <input id="login-mail" ng-model="emailOrUsername" type="email" name="Email" placeholder="Correo electrónico" class="form-control" tabindex="1" autocapitalize="off" auto-focus>
+              <input id="login-mail" ng-model="emailOrUsername" type="email" name="Email" placeholder="Email" class="form-control" tabindex="1" autocapitalize="off" auto-focus>
             </div>
             <!-- PÂSSWORD -->
             <div class="input-group">
               <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-              <input id="login-password" type="password" ng-model="password" name="password" placeholder="Contraseña" class="form-control" tabindex="2" autocapitalize="off">
+              <input id="login-password" type="password" ng-model="password" name="password" placeholder="Password" class="form-control" tabindex="2" autocapitalize="off">
             </div>
 
             <!-- Error de login/pass -->
             <div id="loginErrorSection" class="new-row">
-              <div id="loginErrorLabel" class="login-err-text">ERROR DE LOGIN. Los datos inroducidos no son correctos.</div>
+              <div id="loginErrorLabel" class="login-err-text">LOGIN ERROR: Incorrect data entered.</div>
             </div>
 
           </div>
 
           <!-- REMEMBER PASS -->
           <div class="user-form-field-righted">
-            <a class="small-link-righted" ng-click="navigateTo('remember_password', {}, $event)">¿Olvidaste tu contraseña?</a>
+            <a class="small-link-righted" ng-click="navigateTo('remember_password', {}, $event)">Forgot password?</a>
           </div>
 
           <!-- BUTTONS -->
           <div class="user-form-field">
             <div class="new-row">
               <div class="buttons-wrapper">
-                <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">ENTRAR</button>
-                <button id="btnCancelLogin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCELAR</button>
+                <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">CONTINUE</button>
+                <button id="btnCancelLogin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCEL</button>
               </div>
             </div>
           </div>
@@ -54,7 +54,7 @@
           <!-- GOTO REGISTER -->
           <div class="user-form-field">
             <div class="new-row">
-              <div class="small-text">¿Aún no tienes cuenta? <a ng-click="navigateTo('join', {}, $event)"> Regístrate aquí! </a></div>
+              <div class="small-text">Don't have an account? <a ng-click="navigateTo('join', {}, $event)"> Sign Up here! </a></div>
             </div>
           </div>
 

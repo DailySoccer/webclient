@@ -45,7 +45,7 @@ class SoccerPlayersFilterComp implements AttachAware {
   }
 
   String getClassForFieldPos(FieldPos fieldPos) => fieldPos == fieldPosFilter? "active" : "";
-  String getTextForFieldPos(FieldPos fieldPos)  => fieldPos == null? "TODOS" : fieldPos.abrevName;
+  String getTextForFieldPos(FieldPos fieldPos)  => fieldPos == null? "ALL" : fieldPos.abrevName;
 
   FieldPos _fieldPosFilter;
   String _nameFilter;

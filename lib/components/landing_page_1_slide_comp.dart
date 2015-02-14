@@ -91,25 +91,25 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
       <div id="desktopContent">    
         <div class="main-title-wrapper">
     
-          <div class="main-title">LIGAS FANTÁSTICAS SEMANALES</div>
+          <div class="main-title">DAILY FANTASY LEAGUES</div>
           <div class="main-sub-title">
-            Juega y gana cuando quieras, sin esperar al final de la temporada.
+            Play and win whenever you want, without waiting until the end of the season.
           </div>
           <div class="button-wrap">
-            <button type="button" class="button-play" buttonOnclick="join" id="playButton1">ÚNETE Y JUEGA GRATIS</button>
+            <button type="button" class="button-play" buttonOnclick="join" id="playButton1">JOIN AND PLAY FREE</button>
           </div>
           <div class="text-wrapper">
     
             <div class="module-column">
-              <p class="icono-text">Compite en tantos torneos como quieras de Liga, Premier y Champions</p>
+              <p class="icono-text">Play in as many contests as you want of La Liga, Premier and Champions</p>
             </div>
     
             <div class="module-column">
-              <p class="icono-text">Crea tu equipo en segundos desde cualquier dispositivo</p>
+              <p class="icono-text">Create your lineup in seconds from any device</p>
             </div>
     
             <div class="module-column">
-              <p class="icono-text">Podrás ganar dinero en efectivo con pagos inmediatos</p>
+              <p class="icono-text">You can win cash right away</p>
             </div>
     
           </div>
@@ -134,12 +134,12 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
   '''
         <div id="mobileContent">
           <div class="content">
-            <p class="main-title-mobile">LIGAS FANTÁSTICAS <br> SEMANALES</p>
-            <p class="title-sup-text-mobile">COMPITE EN TANTOS TORNEOS COMO QUIERAS</p>
-            <p class="title-sup-text-mobile">CREA TU EQUIPO EN SEGUNDOS</p>
-            <p class="title-sup-text-mobile">Y GANA DINERO</p>
+            <p class="main-title-mobile">DAILY FANTASY <br> LEAGUES</p>
+            <p class="title-sup-text-mobile">PLAY IN AS MANY CONTESTS AS YOU WANT</p>
+            <p class="title-sup-text-mobile">CREATE YOUR TEAM IN SECONDS</p>
+            <p class="title-sup-text-mobile">AND WIN CASH</p>
             <div class="button-wrap">
-              <button type="button" class="button-play-mobile" buttonOnclick="join" id="playButtonMobile">ÚNETE Y JUEGA GRATIS</button>
+              <button type="button" class="button-play-mobile" buttonOnclick="join" id="playButtonMobile">JOIN AND PLAY FREE</button>
             </div>
           </div> 
         </div>

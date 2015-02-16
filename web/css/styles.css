@@ -7442,8 +7442,8 @@ scoring-rules #scoringForForwards .rules-content {
   padding-right: 15px;
   position: relative;
   min-height: 1px;
-  padding-left: 0;
-  padding-right: 0;
+  padding-left: 5;
+  padding-right: 5;
 }
 @media (min-width: 768px) {
   .contests-list-root .contest-row .column-contest-price,

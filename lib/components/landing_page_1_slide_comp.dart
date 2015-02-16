@@ -93,23 +93,23 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
     
           <div class="main-title">DAILY FANTASY LEAGUES</div>
           <div class="main-sub-title">
-            Play and win whenever you want, without waiting until the end of the season.
+            Play whenever you want, wherever your want. Win prizes with no season-long commitment.
           </div>
           <div class="button-wrap">
-            <button type="button" class="button-play" buttonOnclick="join" id="playButton1">JOIN AND PLAY FREE</button>
+            <button type="button" class="button-play" buttonOnclick="join" id="playButton1">PLAY NOW</button>
           </div>
           <div class="text-wrapper">
     
             <div class="module-column">
-              <p class="icono-text">Play in as many contests as you want of La Liga, Premier and Champions</p>
+              <p class="icono-text">Compete with your friends in La Liga, Premier and Champions</p>
             </div>
     
             <div class="module-column">
-              <p class="icono-text">Create your lineup in seconds from any device</p>
+              <p class="icono-text">Create your lineup in seconds, on your computer, tablet or smartphone</p>
             </div>
     
             <div class="module-column">
-              <p class="icono-text">You can win cash right away</p>
+              <p class="icono-text">Immediate cash payouts</p>
             </div>
     
           </div>
@@ -139,7 +139,7 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
             <p class="title-sup-text-mobile">CREATE YOUR TEAM IN SECONDS</p>
             <p class="title-sup-text-mobile">AND WIN CASH</p>
             <div class="button-wrap">
-              <button type="button" class="button-play-mobile" buttonOnclick="join" id="playButtonMobile">JOIN AND PLAY FREE</button>
+              <button type="button" class="button-play-mobile" buttonOnclick="join" id="playButtonMobile">PLAY NOW</button>
             </div>
           </div> 
         </div>

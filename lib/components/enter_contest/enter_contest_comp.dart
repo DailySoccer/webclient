@@ -384,19 +384,19 @@ class EnterContestComp implements DetachAware {
 
   Map<String, Map> errorMap = {
     ERROR_CONTEST_NOT_ACTIVE: {
-        "title"   : "Torneo en vivo",
-        "generic" : "No es posible entrar en un torneo que ya ha comenzado.",
-        "editing" : "No es posible modificar un equipo cuando el torneo ha comenzado."
+        "title"   : "Live Contest",
+        "generic" : "It is not possible to enter a live contest.",
+        "editing" : "It is not possible to modify your lineup once the contest has started."
     },
     // TODO: Avisamos al usuario de que no dispone del dinero suficiente pero, cuando se integre la branch "paypal-ui", se le redirigirá a "añadir fondos"
     ERROR_USER_BALANCE_NEGATIVE: {
-      "title"   : "Balance insuficiente",
-      "generic" : "Necesitas tener dinero suficiente en tu cuenta para poder participar en este torneo."
+      "title"   : "Not enough cash",
+      "generic" : "You do not have enough cash to enter this contest. Please, add funds to continue."
     },
     "_ERROR_DEFAULT_": {
-        "title"   : "Aviso",
-        "generic" : "Ha sucedido un error. No es posible entrar en el torneo.",
-        "editing" : "Ha sucedido un error. No es posible modificar el equipo."
+        "title"   : "Warning",
+        "generic" : "An error has occurred. You can not enter this contest at the moment. Please, try again later.",
+        "editing" : "An error has occurred. You can not modify your lineup at the moment. Please, try again later.",
     },
   };
 

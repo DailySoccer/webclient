@@ -135,8 +135,8 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
         <div id="mobileContent">
           <div class="content">
             <p class="main-title-mobile">DAILY FANTASY <br> LEAGUES</p>
-            <p class="title-sup-text-mobile">PLAY IN AS MANY CONTESTS AS YOU WANT</p>
-            <p class="title-sup-text-mobile">CREATE YOUR TEAM IN SECONDS</p>
+            <p class="title-sup-text-mobile">PLAY AS MANY CONTESTS AS YOU WANT</p>
+            <p class="title-sup-text-mobile">CREATE YOUR LINEUP IN SECONDS</p>
             <p class="title-sup-text-mobile">AND WIN CASH</p>
             <div class="button-wrap">
               <button type="button" class="button-play-mobile" buttonOnclick="join" id="playButtonMobile">PLAY NOW</button>

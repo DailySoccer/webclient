@@ -37,6 +37,12 @@ class JoinComp implements ShadowRootAware {
   Element emailError;
   Element passwordError;
 
+  static final String ERROR_CREATING_YOUR_ACCOUNT = "ERROR_CREATING_YOUR_ACCOUNT";
+  static final String ERROR_NICKNAME_TAKEN = "ERROR_NICKNAME_TAKEN";
+  static final String ERROR_EMAIL_TAKEN = "ERROR_EMAIL_TAKEN";
+  static final String ERROR_CHECK_EMAIL_SPELLING = "ERROR_CHECK_EMAIL_SPELLING";
+  static final String ERROR_PASSWORD_TOO_SHORT = "ERROR_PASSWORD_TOO_SHORT";
+
   String get theNickName => nickName;
   void set theNickName (String value) {
     nickName = value;
@@ -180,7 +186,7 @@ class JoinComp implements ShadowRootAware {
             {
               case "nickName":
                 nicknameError
-                  ..text = value[0]
+                  ..text = _showMsgError(value[0])
                   ..classes.remove("errorDetected")
                   ..classes.add("errorDetected")
                   ..parent.style.display = "";
@@ -189,7 +195,7 @@ class JoinComp implements ShadowRootAware {
               break;
               case "email":
                 emailError
-                  ..text = value[0]
+                  ..text = _showMsgError(value[0])
                   ..classes.remove("errorDetected")
                   ..classes.add("errorDetected")
                   ..parent.style.display = "";
@@ -197,7 +203,7 @@ class JoinComp implements ShadowRootAware {
               break;
               case "password":
                 passwordError
-                  ..text = value[0]
+                  ..text = _showMsgError(value[0])
                   ..classes.remove("errorDetected")
                   ..classes.add("errorDetected")
                   ..parent.style.display = "";
@@ -218,6 +224,20 @@ class JoinComp implements ShadowRootAware {
       event.preventDefault();
     }
     _router.go(routePath, parameters);
+  }
+
+  Map<String, String> errorMap = {
+    ERROR_CREATING_YOUR_ACCOUNT: "An error has occurred while creating your account.",
+    ERROR_NICKNAME_TAKEN: "Nickname already taken.",
+    ERROR_EMAIL_TAKEN: "Email address already taken.",
+    ERROR_CHECK_EMAIL_SPELLING: "Something went wrong, check the spelling on your email address.",
+    ERROR_PASSWORD_TOO_SHORT: "Password is too short.",
+    "_ERROR_DEFAULT_": "An error has occurred. Please, try again later."
+  };
+
+  String _showMsgError(String errorCode) {
+    String keyError = errorMap.keys.firstWhere( (key) => errorCode.contains(key), orElse: () => "_ERROR_DEFAULT_" );
+    return errorMap[keyError];
   }
 
   FBLogin _fbLogin;

@@ -21,6 +21,8 @@ class LoginComp implements ShadowRootAware {
   String password = "";
   String rememberMe;
 
+  static final String ERROR_WRONG_EMAIL_OR_PASSWORD = "ERROR_WRONG_EMAIL_OR_PASSWORD";
+
   bool get enabledSubmit => StringUtils.isValidEmail(emailOrUsername) && password.isNotEmpty && _enabledSubmit;
 
   LoginComp(this._router, this._profileManager, this.loadingService, this._rootElement, this._scrDet) {
@@ -53,7 +55,7 @@ class LoginComp implements ShadowRootAware {
           _loginErrorSection.style.display = '';
 
           _loginErrorLabel
-            ..text = error.toJson()["email"][0]
+            ..text = _showMsgError(error.toJson()["email"][0])
             ..classes.remove("errorDetected")
             ..classes.add("errorDetected");
         });
@@ -65,6 +67,17 @@ class LoginComp implements ShadowRootAware {
     }
     _router.go(routePath, parameters);
   }
+
+  Map<String, String> errorMap = {
+    ERROR_WRONG_EMAIL_OR_PASSWORD: "Wrong email or password.",
+    "_ERROR_DEFAULT_": "An error has occurred. Please, try again later."
+  };
+
+  String _showMsgError(String errorCode) {
+    String keyError = errorMap.keys.firstWhere( (key) => errorCode.contains(key), orElse: () => "_ERROR_DEFAULT_" );
+    return errorMap[keyError];
+  }
+
 
   FBLogin _fbLogin;
 

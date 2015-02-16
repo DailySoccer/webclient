@@ -273,7 +273,7 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
         <ul class="nav navbar-nav">
           <li highlights="lobby">      <a  id="menuLobby"      destination="lobby">Search Contests</a></li>
           <li highlights="my_contests"><a  id="menuMyContests" destination="my_contests">My contests</a></li>
-          <li highlights="">           <a  id="menuPromos"     destination="beta_info">Promos</a></li>
+          <li highlights="">           <a  id="menuHowItWorks" destination="help_info">How it works</a></li>
           
           <li highlights="user" class="right-menu username-dropdown-toggle" >
             <a id="menuUser" class="dropdown-toggle" data-toggle="dropdown">${_userNickName}</a>
@@ -281,8 +281,8 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
               <li><a id="menuUserMyAccount"        destination="user_profile">My account</a></li>
               <li id="userBalanceIn"><a id="menuUserAddFunds-sm" destination="add_funds">Add funds</a></li>
               <li><a id="menuUserHistory"          destination="transaction_history">Transactions History</a></li>
-              <li><a id="menuUserReferencesCenter" destination="beta_info">Referral Center</a></li>
-              <li><a id="menuUserClassification"   destination="beta_info">Classification</a></li>
+              <!--li><a id="menuUserReferencesCenter" destination="beta_info">Referral Center</a></li>
+              <li><a id="menuUserClassification"   destination="beta_info">Classification</a></li-->
               <li><a id="menuUserAyuda"            destination="help_info">Help</a></li>
               <li><a id="menuUserLogOut"           destination="logout">Logout</a></li>
             </ul>

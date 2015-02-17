@@ -1,6 +1,6 @@
 #!/bin/sh
 
-mode="release"
+mode="debug"
 
 if [[ $1 != "" ]]
     then

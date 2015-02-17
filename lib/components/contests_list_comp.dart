@@ -114,7 +114,7 @@ class ContestsListComp {
           return (seconds >= 10) ? "$minutes:$seconds" : "$minutes:0$seconds";
         }
       }
-      return "Hoy";
+      return "Today";
     }
     return DateTimeService.formatDateShort(date);
   }

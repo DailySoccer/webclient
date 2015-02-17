@@ -444,7 +444,7 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
       <div class="panel-body" >
 
         <form id="loginForm" class="form-horizontal" ng-submit="login()" role="form" formAutofillFix>
-          <div class="form-description">Enter your email and password to access to the contests.</div>
+          <div class="form-description">Enter your email and password.</div>
 
           <!-- LOGIN FIELDS -->
           <div class="user-form-field">
@@ -461,14 +461,14 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
 
             <!-- Error de login/pass -->
             <div id="loginErrorSection" class="new-row">
-              <div id="loginErrorLabel" class="login-err-text">LOGIN ERROR: Incorrect data entered.</div>
+              <div id="loginErrorLabel" class="login-err-text">LOGIN ERROR: The nickname or password is not correct.</div>
             </div>
 
           </div>
 
           <!-- REMEMBER PASS -->
           <div class="user-form-field-righted">
-            <a class="small-link-righted" ng-click="navigateTo('remember_password', {}, $event)">Forgot password?</a>
+            <a class="small-link-righted" ng-click="navigateTo('remember_password', {}, $event)">Forgot your password?</a>
           </div>
 
           <!-- BUTTONS -->

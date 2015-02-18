@@ -249,6 +249,10 @@ class DailySoccerServer implements ServerService {
       return;
     }
 
+    if (postData == null) {
+      queryString = _randomizeQueryString(queryString);
+    }
+
     ((postData != null) ? _http.post(url, postData, headers: headers, params: queryString) :
                           _http.get(url, headers: headers, params: queryString))
         .then((httpResponse) {
@@ -288,6 +292,16 @@ class DailySoccerServer implements ServerService {
             _processError(serverError, url, completer);
           }
         });
+  }
+
+  Map _randomizeQueryString(Map queryString) {
+    if (queryString == null) {
+      queryString = new Map();
+    }
+
+    queryString["rnd"] = new DateTime.now().millisecondsSinceEpoch;
+
+    return queryString;
   }
 
   void _processSuccess(String url, HttpResponse httpResponse, Completer completer) {

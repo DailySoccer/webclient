@@ -35,7 +35,9 @@ main-menu-slide {
 		.user-select(none);
 	}
 	&.logged-in {		
-		.background-header();
+		//.background-header();
+		background-color: fade(@black, 80%);
+		 height: 70px;
 
 		// Menu siempre arriba fijo cuando estamos logeados
 		position: fixed;
@@ -71,9 +73,11 @@ main-menu-slide {
   			position: absolute;
   		}
 		.navbar-nav {
+			.make-row(0);
 			width: 100%;
 			padding-left: 110px;
-			margin-left: 20px;
+			//margin-left: 20px;
+			//margin-right: 20px;
 			& a:hover {color: white}
 
 		}
@@ -93,10 +97,13 @@ main-menu-slide {
   			}
   		}
 	  	.navbar-nav > li > a {
-	    	padding: 20px 0;
+	    	padding: 25px 0;
   			cursor: pointer;
   			margin-right: 20px;
   			color: @blueMenu;
+	  	}
+	  	.navbar-nav > .mainOption {
+	  		.exo_light(12pt, @white);
 	  	}
 	  	.navbar-nav > .right-menu {
 	  		.pull-right();
@@ -156,8 +163,8 @@ main-menu-slide {
     	// elementos del sub-menu
         .dropdown-menu {
         	position: relative;
-        	top: 6px;
-        	left: -10px;
+            top: -4px;
+        	left: 10px;
 			& {
 				padding: 0px;
 			}

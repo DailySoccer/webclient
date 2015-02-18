@@ -7784,6 +7784,7 @@ scoring-rules #scoringForForwards .rules-content {
   padding-left: 0;
   padding-right: 0;
   margin-top: 10px;
+  padding-left: 10px;
 }
 @media (min-width: 768px) {
   .contests-list-root .contest-row .column-contest-action {

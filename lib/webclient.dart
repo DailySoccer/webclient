@@ -278,7 +278,7 @@ class WebClientApp extends Module {
       )
       ,'lobby': ngRoute(
           path: '/lobby',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
           viewHtml: '<lobby></lobby>',
           mount: {
             'contest_info': ngRoute(
@@ -303,7 +303,7 @@ class WebClientApp extends Module {
       )
       ,'enter_contest': ngRoute(
           path: '/enter_contest/:parent/:contestId/:contestEntryId',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
           viewHtml: '<enter-contest></enter-contest>',
           mount: {
             'soccer_player_stats': ngRoute(

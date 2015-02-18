@@ -2,6 +2,7 @@ library join_comp;
 
 import 'package:angular/angular.dart';
 import 'dart:html';
+import 'package:logging/logging.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/services/loading_service.dart';
@@ -9,6 +10,7 @@ import 'package:webclient/services/server_error.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/fblogin.dart';
+import 'package:webclient/components/modal_comp.dart';
 
 @Component(
     selector: 'join',
@@ -43,6 +45,9 @@ class JoinComp implements ShadowRootAware {
   static final String ERROR_CHECK_EMAIL_SPELLING = "ERROR_CHECK_EMAIL_SPELLING";
   static final String ERROR_PASSWORD_TOO_SHORT = "ERROR_PASSWORD_TOO_SHORT";
 
+  @NgOneWay("is-modal")
+  bool isModal = false;
+
   String get theNickName => nickName;
   void set theNickName (String value) {
     nickName = value;
@@ -70,7 +75,7 @@ class JoinComp implements ShadowRootAware {
   bool get enabledSubmit => nickName.length >= MIN_NICKNAME_LENGTH && StringUtils.isValidEmail(email) && password.length >= MIN_PASSWORD_LENGTH && password == rePassword && _enabledSubmit;
 
   JoinComp(this._router, this._profileService, this.loadingService, this._rootElement, this._scrDet) {
-    _fbLogin = new FBLogin(_router, _profileService);
+    _fbLogin = new FBLogin(_router, _profileService, () => isModal ? ModalComp.close() : _router.go('lobby', {}));
   }
 
   void onShadowRoot(emulatedRoot) {
@@ -178,7 +183,7 @@ class JoinComp implements ShadowRootAware {
             GameMetrics.trackConversion(false);
 
             loadingService.isLoading = false;
-            _router.go('lobby', {});
+            isModal ? ModalComp.close() : _router.go('lobby', {});
         })
         .catchError((ServerError error) {
           error.toJson().forEach( (key, value) {
@@ -219,11 +224,27 @@ class JoinComp implements ShadowRootAware {
         }, test: (error) => error is ServerError);
   }
 
-  void navigateTo(String routePath, Map parameters, event) {
-    if (event.target.id != "btnSubmit") {
+  void onAction (String action, [event]) {
+    if (event != null) {
       event.preventDefault();
     }
-    _router.go(routePath, parameters);
+
+    switch (action) {
+      case "SUBMIT":
+        submitSignup();
+        break;
+
+      case "CANCEL":
+        isModal ? ModalComp.close() : _router.go('landing_page', {});
+        break;
+
+      case "LOGIN":
+        isModal ? _router.go("${_router.activePath.first.name}.login", {}) : _router.go('login', {});
+        break;
+
+      default:
+        Logger.root.severe("join_comp: onAction: $action");
+    }
   }
 
   Map<String, String> errorMap = {

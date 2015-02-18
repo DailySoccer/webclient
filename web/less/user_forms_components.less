@@ -209,8 +209,6 @@
 	}
 }
 
-
-
 .input-validation(@glyphCode, @size, @color) {
 	.create-glyph(@glyphCode, @size, @color);
 	.fadein-animation(0.5s);
@@ -236,4 +234,20 @@
 
 .invisible {
 	display: none;
+}
+
+// Para el join modal
+#modalRoot {
+	.main-box {
+		margin: 0;
+	}
+	#joinRoot {
+		min-height: 0;
+	}
+}
+.global-join {
+	.modal-dialog {
+		width: 400px;
+		margin: 5% auto auto auto;
+	}
 }

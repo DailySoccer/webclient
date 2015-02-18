@@ -139,7 +139,7 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
             <p class="title-sup-text-mobile">CREATE YOUR LINEUP IN SECONDS</p>
             <p class="title-sup-text-mobile">AND WIN CASH</p>
             <div class="button-wrap">
-              <button type="button" class="button-play-mobile" buttonOnclick="join" id="playButtonMobile">PLAY NOW</button>
+              <button type="button" class="button-play-mobile" buttonOnclick="lobby" id="playButtonMobile">PLAY NOW</button>
             </div>
           </div> 
         </div>

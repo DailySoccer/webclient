@@ -6274,6 +6274,7 @@ scoring-rules:after,
 }
 */
 contest-header {
+  background-color: #ffffff;
   display: block;
   min-height: 125px;
 }
@@ -20669,6 +20670,16 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
 }
 .invisible {
   display: none;
+}
+#modalRoot .main-box {
+  margin: 0;
+}
+#modalRoot #joinRoot {
+  min-height: 0;
+}
+.global-join .modal-dialog {
+  width: 400px;
+  margin: 5% auto auto auto;
 }
 #usersList {
   float: left;

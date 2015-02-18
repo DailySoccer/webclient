@@ -78,7 +78,7 @@ class ScreenDetectorService {
       return;
     }
 
-   int targetPosition = querySelector(selector).offsetTop + offset;
+   int targetPosition = querySelector(selector).offsetTop;
 
     if (!smooth) {
       window.scroll(0, targetPosition);

@@ -13940,6 +13940,7 @@ main-menu-slide {
 }
 .navbar {
   margin-bottom: 0;
+  border-radius: 0;
 }
 #mainMenu {
   background-color: rgba(0, 0, 0, 0.7);

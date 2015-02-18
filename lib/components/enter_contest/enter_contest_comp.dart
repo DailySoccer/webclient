@@ -8,7 +8,7 @@ import 'package:webclient/services/contests_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/loading_service.dart';
-import 'package:webclient/models/server_error.dart';
+import 'package:webclient/services/server_error.dart';
 import 'package:webclient/models/field_pos.dart';
 import "package:webclient/models/soccer_team.dart";
 import 'package:webclient/models/match_event.dart';
@@ -102,7 +102,7 @@ class EnterContestComp implements DetachAware {
           restoreContestEntry();
         }
       })
-      .catchError((error) {
+      .catchError((ServerError error) {
         // Si estamos editando un contestEntry y el server nos indica un fallo (generalmente es porque el usuario "no tiene permiso"), nos saldremos de la pantalla
         if (editingContestEntry) {
           _router.go("lobby", {});
@@ -110,7 +110,7 @@ class EnterContestComp implements DetachAware {
         else {
           _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
         }
-      });
+      }, test: (error) => error is ServerError);
 
     subscribeToLeaveEvent();
   }
@@ -312,7 +312,7 @@ class EnterContestComp implements DetachAware {
                                              "parent": _routeProvider.parameters["parent"],
                                              "viewContestEntryMode": "edited"});
         })
-        .catchError((error) => _errorCreating(error));
+        .catchError((ServerError error) => _errorCreating(error));
     }
     else {
       if (contest.entryFee <= _profileService.user.balance) {
@@ -327,7 +327,7 @@ class EnterContestComp implements DetachAware {
                                 "viewContestEntryMode": contestId == contest.contestId? "created" : "swapped"
                                  });
           })
-          .catchError((error) => _errorCreating(error));
+          .catchError((ServerError error) => _errorCreating(error));
       }
       else {
         // Registramos dónde tendría que navegar al tener éxito en "add_funds"

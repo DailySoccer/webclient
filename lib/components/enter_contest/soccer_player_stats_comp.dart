@@ -16,6 +16,7 @@ import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/models/instance_soccer_player.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'dart:async';
+import 'package:webclient/services/server_error.dart';
 
 @Component(
     selector: 'soccer-player-stats',
@@ -68,9 +69,9 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
       .then((_) {
         updateSoccerPlayerInfoFromService();
       })
-      .catchError((error) {
+      .catchError((ServerError error) {
         _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
-      });
+      }, test: (error) => error is ServerError);
 
     _streamListener = scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
   }

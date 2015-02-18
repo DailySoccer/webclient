@@ -12,6 +12,7 @@ import 'package:webclient/models/contest_entry.dart';
 import 'dart:html';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/game_metrics.dart';
+import 'package:webclient/services/server_error.dart';
 
 @Component(
     selector: 'view-contest',
@@ -68,7 +69,7 @@ class ViewContestComp implements DetachAware {
           GameMetrics.logEvent(GameMetrics.VIEW_CONTEST);
         }
       })
-      .catchError((error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW));
+      .catchError((ServerError error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW), test: (error) => error is ServerError);
   }
 
   String getPrize(int index) => (contest != null) ? contest.getPrize(index) : "-";
@@ -83,9 +84,9 @@ class ViewContestComp implements DetachAware {
         .then((_) {
           updatedDate = DateTimeService.now;
         })
-        .catchError((error) {
+        .catchError((ServerError error) {
           _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
-        });
+        }, test: (error) => error is ServerError);
   }
 
   void onUserClick(ContestEntry contestEntry, {preventViewOpponent: false}) {

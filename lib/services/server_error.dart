@@ -3,6 +3,9 @@ library connection_error;
 import 'dart:convert' show JSON;
 import 'package:angular/angular.dart';
 
+class FutureCancelled implements Exception {
+}
+
 class ServerError {
   static final String ERROR_RETRY_OP = "ERROR_RETRY_OP";
 

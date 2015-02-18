@@ -5,6 +5,7 @@ import 'dart:js' as js;
 import 'package:webclient/services/profile_service.dart';
 import 'package:logging/logging.dart';
 import 'package:angular/angular.dart';
+import 'package:webclient/services/server_error.dart';
 
 class FBLogin {
 
@@ -37,9 +38,9 @@ class FBLogin {
   void loginCallback(loginResponse) {
     _profileManager.facebookLogin(loginResponse["authResponse"]["accessToken"])
                           .then((_) => _router.go("lobby", {}))
-                          .catchError((error) {
+                          .catchError((ServerError error) {
                               Logger.root.severe(error);
-                              });
+                           }, test: (error) => error is ServerError);
   }
 
   Router _router;

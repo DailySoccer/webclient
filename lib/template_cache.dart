@@ -1023,7 +1023,7 @@ tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse
     </div>
 
     <div class="column-contest-prize" ng-click="onRow(contest)" ng-if="!contest.isLive">
-      <div ng-if="!contest.isHistory" class="column-contest-prize-content prize-icon-big">{{contest.prizePool}}</div>
+      <div ng-if="!contest.isHistory" class="column-contest-prize-content" ng-class="{'prize-icon-big':contest.prizePool.amount > 0}">{{contest.prizePool}}</div>
       <div ng-if="contest.isHistory"  class="column-contest-prize-content prize-icon-big">{{getMyPrize(contest)}}</div>
       <div class="column-contest-prize-header">PRIZE</div>
     </div>
@@ -1069,7 +1069,7 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
 
             <div class="enter-contest-actions-wrapper" ng-if="scrDet.isXsScreen">
               <div class="total-salary" ng-class="{'red-numbers':availableSalary < 0}">
-                <span class="total-salary-money" ng-show="contest != null">{{availableSalary}}€</span>
+                <span class="total-salary-money" ng-show="contest != null">{{printableAvailableSalary}}€</span>
               </div>
               <button id="cancelSoccerPlayerSelection" type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer">CANCEL</button>
             </div>
@@ -1080,7 +1080,7 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
                     <span class="total-salary-text">YOUR LINEUP</span>
                     <div class="total-salary">
                       <span class="total-salary-text">REMAINING SALARY:</span>
-                      <span class="total-salary-money" ng-class="{'red-numbers': availableSalary < 0 }" ng-show="contest != null">{{availableSalary}}€</span>
+                      <span class="total-salary-money" ng-class="{'red-numbers': availableSalary < 0 }" ng-show="contest != null">{{printableAvailableSalary}}€</span>
                     </div>
                 </div>
 
@@ -1152,7 +1152,7 @@ tc.put("packages/webclient/components/enter_contest/lineup_selector_comp.html", 
         <span class="soccer-player-name">{{slot.fullName}}</span>
         <span class="match-event-name" ng-bind-html="slot.matchEventName"></span>
       </div>
-      <div class="column-salary">{{slot.salary}}€</div>
+      <div class="column-salary">{{getPrintableSalary(slot.salary)}}€</div>
       <div class="column-action"><a class="iconButtonRemove"><span class="glyphicon glyphicon-remove"></span></a></div>
     </div>
   </div>
@@ -1206,7 +1206,7 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_stats_comp.htm
       <div class="soccer-player-stats-info">
         <div class="soccer-player-fantasy-points"><span>DFP</span><span>{{currentInfoData['fantasyPoints']}}</span></div>
         <div class="soccer-player-matches"><span>MATCHES</span><span>{{currentInfoData['matchesCount']}}</span></div>
-        <div class="soccer-player-salary"><span>SALARY</span><span>{{currentInfoData['salary']}}</span></div>
+        <div class="soccer-player-salary"><span>SALARY</span><span>{{printableSalary}}</span></div>
       </div>
     </div>
 
@@ -1220,8 +1220,8 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_stats_comp.htm
   <div class="soccer-player-stats-content">
       <!-- Nav tabs -->
       <ul id="soccer-player-stats-tabs" class="soccer-player-stats-tabs" role="tablist">
-        <li id="seasonTab" class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('season-stats-tab-content')">Season data</a></li>
-        <li id="matchTab" ><a role="tab" data-toggle="tab" ng-click="tabChange('match-by-match-stats-tab-content')">match by match</a></li>
+        <li id="seasonTab" class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('season-stats-tab-content')">Season Data</a></li>
+        <li id="matchTab" ><a role="tab" data-toggle="tab" ng-click="tabChange('match-by-match-stats-tab-content')">Match by Match</a></li>
       </ul>
 
       <div class="tabs">

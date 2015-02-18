@@ -414,15 +414,30 @@ class EnterContestComp implements DetachAware {
   }
 
   void saveContestEntry() {
-    window.localStorage[contest.contestId] = JSON.encode(lineupSlots.where((player) => player != null).map((player) => player["id"]).toList());
+
+
+    Map saveData = {};
+    //Si ya hay datos guardados para este partido los cargo
+    String currentUser = _profileService.isLoggedIn ? _profileService.user.userId : 'guest';
+    if (window.localStorage.containsKey(contest.contestId)) {
+      saveData = JSON.decode(window.localStorage[contest.contestId]);
+    }
+    // guardamos el mapa de datos bajo la key del usuario actual
+    saveData[currentUser] = lineupSlots.where((player) => player != null).map((player) => player["id"]).toList();
+    // Almacenamos los datos en el localStorage
+    window.localStorage[contest.contestId] = JSON.encode(saveData);
   }
 
   void restoreContestEntry() {
     if (window.localStorage.containsKey(contest.contestId)) {
-      List contestEntry = JSON.decode(window.localStorage[contest.contestId]);
-      contestEntry.forEach((id) {
-          addSoccerPlayerToLineup(id);
-      });
+      Map loadedData = JSON.decode(window.localStorage[contest.contestId]);
+      String currentUser = _profileService.isLoggedIn ? _profileService.user.userId : 'guest';
+
+      if(loadedData.containsKey(currentUser)){
+        loadedData[currentUser].forEach((id) {
+            addSoccerPlayerToLineup(id);
+        });
+      }
     }
   }
 

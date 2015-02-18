@@ -32,6 +32,7 @@ class EnterContestComp implements DetachAware {
   static final String ERROR_CONTEST_NOT_ACTIVE = "ERROR_CONTEST_NOT_ACTIVE";
   static final String ERROR_USER_ALREADY_INCLUDED = "ERROR_USER_ALREADY_INCLUDED";
   static final String ERROR_USER_BALANCE_NEGATIVE = "ERROR_USER_BALANCE_NEGATIVE";
+  static final String ERROR_MAX_PLAYERS_SAME_TEAM = "ERROR_MAX_PLAYERS_SAME_TEAM";
 
   // Errores de los que no tendríamos que informar
   static final String ERROR_CONTEST_INVALID = "ERROR_CONTEST_INVALID";
@@ -388,6 +389,10 @@ class EnterContestComp implements DetachAware {
         "title"   : "Live Contest",
         "generic" : "It is not possible to enter a live contest.",
         "editing" : "It is not possible to modify your lineup once the contest has started."
+    },
+    ERROR_MAX_PLAYERS_SAME_TEAM: {
+      "title"   : "Players from same team",
+      "generic" : "It is not possible...",
     },
     // TODO: Avisamos al usuario de que no dispone del dinero suficiente pero, cuando se integre la branch "paypal-ui", se le redirigirá a "añadir fondos"
     ERROR_USER_BALANCE_NEGATIVE: {

@@ -60,6 +60,7 @@ class EnterContestComp implements DetachAware {
   InstanceSoccerPlayer selectedInstanceSoccerPlayer;
 
   int availableSalary = 0;
+  String get printableAvailableSalary => StringUtils.parseSalary(availableSalary);
 
   bool get isInvalidFantasyTeam => lineupSlots.any((player) => player == null);
   bool get editingContestEntry => contestEntryId != "none";

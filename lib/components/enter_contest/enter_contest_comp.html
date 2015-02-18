@@ -20,7 +20,7 @@
 
             <div class="enter-contest-actions-wrapper" ng-if="scrDet.isXsScreen">
               <div class="total-salary" ng-class="{'red-numbers':availableSalary < 0}">
-                <span class="total-salary-money" ng-show="contest != null">{{availableSalary}}€</span>
+                <span class="total-salary-money" ng-show="contest != null">{{printableAvailableSalary}}€</span>
               </div>
               <button id="cancelSoccerPlayerSelection" type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer">CANCEL</button>
             </div>
@@ -31,7 +31,7 @@
                     <span class="total-salary-text">YOUR LINEUP</span>
                     <div class="total-salary">
                       <span class="total-salary-text">REMAINING SALARY:</span>
-                      <span class="total-salary-money" ng-class="{'red-numbers': availableSalary < 0 }" ng-show="contest != null">{{availableSalary}}€</span>
+                      <span class="total-salary-money" ng-class="{'red-numbers': availableSalary < 0 }" ng-show="contest != null">{{printableAvailableSalary}}€</span>
                     </div>
                 </div>
 

@@ -3,6 +3,7 @@ library lineup_selector_comp;
 import 'package:angular/angular.dart';
 import 'package:webclient/components/enter_contest/enter_contest_comp.dart';
 import 'package:webclient/models/field_pos.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 
 @Component(
@@ -25,6 +26,8 @@ class LineupSelectorComp {
   // Cuando el slot esta libre, ponemos un texto alternativo + posicion del jugador
   String getSlotPosition(int slotIndex) => FieldPos.FIELD_POSITION_ABREV[FieldPos.LINEUP[slotIndex]];
   String getSlotDescription(int slotIndex) => "ADD " + FieldPos.FIELD_POSITION_FULL_NAMES[FieldPos.LINEUP[slotIndex]];
+
+  String getPrintableSalary(int salary) => StringUtils.parseSalary(salary);
 
   static final Map<String, String> _POS_CLASS_NAMES = { "GK": "posPOR", "DEF": "posDEF", "MID": "posMED", "FWD": "posDEL" };
 }

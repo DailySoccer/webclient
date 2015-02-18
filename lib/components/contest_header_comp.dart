@@ -105,7 +105,7 @@ class ContestHeaderComp implements DetachAware, ShadowRootAware {
     info["prize"] = "${contest.prizePool}";
     info["prizeType"] = "${contest.prizeTypeName}";
     info["startTime"] = "";
-    info["contestantCount"] = "${contest.contestEntries.length} of ${contest.maxEntries} contenders - Salary cap: ${contest.salaryCap}";
+    info["contestantCount"] = "${contest.contestEntries.length} of ${contest.maxEntries} contenders - Salary cap: ${contest.printableSalaryCap}";
   }
 
   void goToParent() {

@@ -314,6 +314,11 @@ class EnterContestComp implements DetachAware {
     // Actualizamos el contestEntry, independientemente que estemos editando o creando
     saveContestEntry();
 
+    if (!_profileService.isLoggedIn) {
+      _router.go("enter_contest.join", {});
+      return;
+    }
+
     if (editingContestEntry) {
       _contestsService.editContestEntry(contestEntryId, lineupSlots.map((player) => player["id"]).toList())
         .then((_) {

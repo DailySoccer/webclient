@@ -2,6 +2,7 @@
 
 import 'package:angular/angular.dart';
 import 'dart:html';
+import 'package:logging/logging.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/loading_service.dart';
@@ -9,6 +10,7 @@ import 'package:webclient/services/server_error.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/fblogin.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/components/modal_comp.dart';
 
 @Component(
     selector: 'login',
@@ -21,12 +23,15 @@ class LoginComp implements ShadowRootAware {
   String password = "";
   String rememberMe;
 
+  @NgOneWay("is-modal")
+  bool isModal = false;
+
   static final String ERROR_WRONG_EMAIL_OR_PASSWORD = "ERROR_WRONG_EMAIL_OR_PASSWORD";
 
   bool get enabledSubmit => StringUtils.isValidEmail(emailOrUsername) && password.isNotEmpty && _enabledSubmit;
 
   LoginComp(this._router, this._profileManager, this.loadingService, this._rootElement, this._scrDet) {
-    _fbLogin = new FBLogin(_router, _profileManager);
+    _fbLogin = new FBLogin(_router, _profileManager, () => isModal ? ModalComp.close() : _router.go('lobby', {}));
   }
 
   @override void onShadowRoot(emulatedRoot) {
@@ -46,8 +51,9 @@ class LoginComp implements ShadowRootAware {
     _profileManager.login(emailOrUsername, password)
         .then((_) {
           GameMetrics.logEvent(GameMetrics.LOGIN_SUCCESSFUL);
+
           loadingService.isLoading = false;
-          _router.go('lobby', {});
+          isModal ? ModalComp.close() : _router.go('lobby', {});
         })
         .catchError((ServerError error) {
           loadingService.isLoading = false;
@@ -61,11 +67,31 @@ class LoginComp implements ShadowRootAware {
         }, test: (error) => error is ServerError);
   }
 
-  void navigateTo(String routePath, Map parameters, event) {
-    if (event.target.id != "btnSubmit") {
+  void onAction (String action, [event]) {
+    if (event != null) {
       event.preventDefault();
     }
-    _router.go(routePath, parameters);
+
+    switch (action) {
+      case "SUBMIT":
+        login();
+        break;
+
+      case "CANCEL":
+        isModal ? ModalComp.close() : _router.go('landing_page', {});
+        break;
+
+      case "REMEMBER_PASSWORD":
+        _router.go('remember_password', {});
+        break;
+
+      case "JOIN":
+        isModal ? _router.go("${_router.activePath.first.name}.join", {}) : _router.go('join', {});
+        break;
+
+      default:
+        Logger.root.severe("login_comp: onAction: $action");
+    }
   }
 
   Map<String, String> errorMap = {

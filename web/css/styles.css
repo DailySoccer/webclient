@@ -7307,7 +7307,7 @@ scoring-rules #scoringForForwards .rules-content {
   cursor: pointer;
   margin-left: -15px;
   margin-right: -15px;
-  padding: 10px;
+  padding: 15px 10px;
   border-width: 1px;
   border-style: solid none none none;
   border-color: #dcdcdc;
@@ -7784,6 +7784,7 @@ scoring-rules #scoringForForwards .rules-content {
   padding-left: 0;
   padding-right: 0;
   margin-top: 10px;
+  padding-left: 10px;
 }
 @media (min-width: 768px) {
   .contests-list-root .contest-row .column-contest-action {
@@ -13940,6 +13941,7 @@ main-menu-slide {
 }
 .navbar {
   margin-bottom: 0;
+  border-radius: 0;
 }
 #mainMenu {
   background-color: rgba(0, 0, 0, 0.7);
@@ -13960,17 +13962,16 @@ main-menu-slide {
   user-select: none;
 }
 #mainMenu.logged-in {
-  background-image: url("../images/headerBackground.jpg");
-  background-repeat: no-repeat;
-  background-position: center 4px;
-  background-color: #000000;
-  border-color: #fa9c19;
-  border-width: 0px 0px 2px 0px;
-  border-radius: 0px;
+  background-color: rgba(0, 0, 0, 0.8);
   height: 70px;
   position: fixed;
   top: 0px;
   width: 100%;
+}
+@media (max-width: 991px) {
+  #mainMenu.logged-in {
+    background-color: #0a2938;
+  }
 }
 @media (max-width: 991px) {
   #mainMenu #menuLoggedIn,
@@ -14060,9 +14061,10 @@ main-menu-slide {
     position: absolute;
   }
   #mainMenu .navbar-nav {
+    margin-left: 0;
+    margin-right: 0;
     width: 100%;
     padding-left: 110px;
-    margin-left: 20px;
   }
   #mainMenu .navbar-nav a:hover {
     color: #ffffff;
@@ -14082,10 +14084,17 @@ main-menu-slide {
     background-color: transparent;
   }
   #mainMenu .navbar-nav > li > a {
-    padding: 20px 0;
+    padding: 25px 0;
     cursor: pointer;
     margin-right: 20px;
     color: #afd3e4;
+  }
+  #mainMenu .navbar-nav > .mainOption {
+    font-family: 'Exo', sans-serif;
+    font-weight: 300;
+    font-size: 12pt;
+    color: #ffffff;
+    text-transform: uppercase;
   }
   #mainMenu .navbar-nav > .right-menu {
     float: right !important;
@@ -14293,8 +14302,8 @@ main-menu-slide {
   }
   #mainMenu .dropdown-menu {
     position: relative;
-    top: 6px;
-    left: -10px;
+    top: -4px;
+    left: 10px;
     padding: 0px;
   }
   #mainMenu .dropdown-menu > li > a {
@@ -22716,7 +22725,7 @@ body {
   margin: -70px auto -122px;
 }
 .wrapper-content-container .main-content-container {
-  padding-top: 70px;
+  margin-top: 70px;
   padding-bottom: 122px;
 }
 @media (max-width: 991px) {

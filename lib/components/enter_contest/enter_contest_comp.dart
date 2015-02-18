@@ -69,7 +69,7 @@ class EnterContestComp implements DetachAware {
 
   EnterContestComp(this._routeProvider, this._router, this.scrDet, this._contestsService, this.loadingService, this._profileService, this._flashMessage) {
     loadingService.isLoading = true;
-    scrDet.scrollTo('#mainWrapper');
+    scrDet.scrollTo('#mainApp');
 
     resetLineup();
 

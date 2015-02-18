@@ -5,7 +5,7 @@ import 'dart:html';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/services/loading_service.dart';
-import 'package:webclient/models/server_error.dart';
+import 'package:webclient/services/server_error.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/fblogin.dart';
@@ -216,7 +216,7 @@ class JoinComp implements ShadowRootAware {
           _enabledSubmit = true;
           loadingService.isLoading = false;
 
-        });
+        }, test: (error) => error is ServerError);
   }
 
   void navigateTo(String routePath, Map parameters, event) {

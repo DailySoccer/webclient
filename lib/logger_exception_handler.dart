@@ -4,6 +4,7 @@ import 'package:angular/angular.dart';
 import 'package:logging/logging.dart';
 import 'package:webclient/utils/host_server.dart';
 import 'package:webclient/services/profile_service.dart';
+import 'package:webclient/services/server_error.dart';
 
 //
 // Nuestro handler sera inyectado en Angular. Angular nos llamara entonces cada vez que se produzca una excepcion
@@ -13,7 +14,12 @@ import 'package:webclient/services/profile_service.dart';
 class LoggerExceptionHandler extends ExceptionHandler {
 
   call(dynamic exc, dynamic stackTrace, [String reason = '']) {
-    logExceptionToServer(exc, stackTrace, reason);
+    // Los FutureCancelled nos llegaran hasta aqui porque podemos no manejarlos en los catchErrors. Aqui
+    // podemos simplemente descartarlos porque es un comportamiento esperado: Tener que cancelar llamadas
+    // al servidor es normal.
+    if (exc is! FutureCancelled) {
+      logExceptionToServer(exc, stackTrace, reason);
+    }
   }
 
   static void setUpLogger() {
@@ -55,11 +61,5 @@ class LoggerExceptionHandler extends ExceptionHandler {
   static void logExceptionToServer(dynamic exc, dynamic stackTrace, [String reason = '']) {
     // Las excepciones siempre las mandamos con SHOUT para que el servidor pueda distinguirlas de todos los Levels menores
     Logger.root.shout("$exc $reason \nORIGINAL STACKTRACE:\n$stackTrace");
-
-    /*
-    if (HostServer.isDev()) {
-      window.alert(stackTrace.toString());
-    }
-    */
   }
 }

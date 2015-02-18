@@ -5,7 +5,7 @@ import 'dart:html';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/loading_service.dart';
-import 'package:webclient/models/server_error.dart';
+import 'package:webclient/services/server_error.dart';
 import 'package:webclient/utils/uri_utils.dart';
 
 @Component(
@@ -61,10 +61,10 @@ class ChangePasswordComp implements ShadowRootAware {
           UriUtils.removeQueryParameters(uri, ["sptoken"]);
 
        })
-       .catchError( (ServerError error) {
+       .catchError((ServerError error) {
           state = STATE_INVALID_TOKEN;
           _loadingService.isLoading = false;
-       });
+       }, test: (error) => error is ServerError);
     }
     else {
       _loadingService.isLoading = false;
@@ -89,12 +89,12 @@ class ChangePasswordComp implements ShadowRootAware {
 
     _profileManager.resetPassword(password, _stormPathTokenId)
       .then((_) => _router.go('lobby', {}))
-      .catchError( (ServerError error) {
+      .catchError((ServerError error) {
         _enabledSubmit = true;
         errorDetected = true;
         errorMessage = error.toJson().containsKey("password")? error.toJson()["password"] : error.toJson()["error"];
         _errLabel.classes.add('errorDetected');
-    });
+      }, test: (error) => error is ServerError);
   }
 
   void navigateTo(String routePath, Map parameters, event) {

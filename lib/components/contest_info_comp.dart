@@ -11,6 +11,7 @@ import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/components/modal_comp.dart';
+import 'package:webclient/services/server_error.dart';
 
 @Component(
   selector: 'contest-info',
@@ -52,9 +53,9 @@ class ContestInfoComp implements DetachAware {
       .then((_) {
         updateContestInfo();
       })
-      .catchError((error) {
+      .catchError((ServerError error) {
         _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
-      });
+      }, test: (error) => error is ServerError);
   }
 
   void detach() {

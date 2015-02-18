@@ -5,6 +5,7 @@ import 'package:webclient/services/scoring_rules_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/models/soccer_player.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/services/server_error.dart';
 
 @Component(
   selector:     'scoring-rules',
@@ -25,7 +26,7 @@ class ScoringRulesComp {
         _scoringPoints = scoringRulesService.scoringRules;
         _init();
       })
-      .catchError((error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW));
+      .catchError((ServerError error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW), test: (error) => error is ServerError);
   }
 
   String getClassesIsNegative(String points) {

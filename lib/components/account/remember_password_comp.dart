@@ -6,7 +6,7 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/server_service.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/services/loading_service.dart';
-import 'package:webclient/models/server_error.dart';
+import 'package:webclient/services/server_error.dart';
 
 @Component(
     selector: 'remember-password',
@@ -43,7 +43,7 @@ class RememberPasswordComp implements ShadowRootAware{
         state = STATE_REQUESTED;
         loadingService.isLoading = false;
       })
-      .catchError( (ServerError error) {
+      .catchError((ServerError error) {
         error.toJson().forEach( (key, value) {
           switch (key) {
             case "email":
@@ -57,7 +57,7 @@ class RememberPasswordComp implements ShadowRootAware{
         });
         _enabledSubmit = true;
         loadingService.isLoading = false;
-      });
+      }, test: (error) => error is ServerError);
   }
 
   void backToLanding() {

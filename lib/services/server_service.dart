@@ -4,12 +4,10 @@ import 'dart:async';
 import 'dart:convert' show JSON;
 import 'package:angular/angular.dart';
 import 'package:logging/logging.dart';
-import 'package:webclient/models/server_error.dart';
+import 'package:webclient/services/server_error.dart';
 import 'package:webclient/utils/host_server.dart';
 import 'dart:html';
 
-class FutureCancelled implements Exception {
-}
 
 abstract class ServerService {
   static final String URL = "url";
@@ -170,7 +168,7 @@ class DailySoccerServer implements ServerService {
   }
 
   Future<Map> getSimulatorState() {
-    return _innerServerCall("${HostServer.url}/admin/get_simulator_state", retryTimes: 0);
+    return _innerServerCall("${HostServer.url}/admin/get_simulator_state", retryTimes: 0, cancelIfChangeContext: false);
   }
 
   Future<Map> getScoringRules() {
@@ -215,13 +213,13 @@ class DailySoccerServer implements ServerService {
    */
   Future<Map> _innerServerCall(String url, {Map queryString:null, Map postData:null, int retryTimes: -1, bool cancelIfChangeContext: true}) {
 
-    Completer completer = null;
-
     // Cuando cambiamos de contexto no queremos reutilizar ningún completer "antiguo"
     if (_context != _pendingCallsContext) {
       _pendingCalls.clear();
       _pendingCallsContext = _context;
     }
+
+    Completer completer = null;
 
     if (_pendingCalls.containsKey(url) && !_pendingCalls[url].isCompleted) {
       completer = _pendingCalls[url];
@@ -251,25 +249,21 @@ class DailySoccerServer implements ServerService {
       return;
     }
 
-    ((postData != null) ? _http.post(url, postData, headers: headers, params: queryString) : _http.get(url, headers: headers, params: queryString))
+    ((postData != null) ? _http.post(url, postData, headers: headers, params: queryString) :
+                          _http.get(url, headers: headers, params: queryString))
         .then((httpResponse) {
-          return (!_allFuturesCancelled && (callContext == _context || !cancelIfChangeContext)) ? httpResponse : new Future.error(new FutureCancelled());
+
+          if (!_allFuturesCancelled && (callContext == _context || !cancelIfChangeContext)) {
+            _checkServerVersion(httpResponse);
+            _notify(ON_SUCCESS, {ServerService.URL: url});
+            _processSuccess(url, httpResponse, completer);
+          }
+          else {
+            _processFutureCancellation(url, completer);
+          }
         })
-        .then((httpResponse) {
-          _checkServerVersion(httpResponse);
-          _notify(ON_SUCCESS, {ServerService.URL: url});
-          _processSuccess(url, httpResponse, completer);
-        })
-        //
-        // Cancelacion del futuro
-        //
         .catchError((error) {
-          Logger.root.warning("Future cancelled: $url");
-        }, test: (e) => e is FutureCancelled)
-        //
-        // Error general
-        //
-        .catchError((error) {
+
           _checkServerVersion(error);
 
           ServerError serverError = new ServerError.fromHttpResponse(error);
@@ -297,7 +291,11 @@ class DailySoccerServer implements ServerService {
   }
 
   void _processSuccess(String url, HttpResponse httpResponse, Completer completer) {
-    _setFinishCompleterForUrl(url);
+    if (completer.isCompleted) {
+      throw new Exception("WTF 1020 El checkeo del completer se deberia hacer antes");
+    }
+
+    _pendingCalls.remove(url);
 
     // The response can be either a Map or a List. We should avoid this step by rewriting the HttpInterceptor and creating the
     // JsonObject directly from the JsonString.
@@ -310,9 +308,28 @@ class DailySoccerServer implements ServerService {
   }
 
   void _processError(ServerError serverError, String url, Completer completer) {
-    _setFinishCompleterForUrl(url);
+    if (completer.isCompleted) {
+      throw new Exception("WTF 1021 El checkeo del completer se deberia hacer antes");
+    }
+
+    _pendingCalls.remove(url);
     completer.completeError(serverError);
   }
+
+  void _processFutureCancellation(String url, Completer completer) {
+    if (completer.isCompleted) {
+      throw new Exception("WTF 1022 El checkeo del completer se deberia hacer antes");
+    }
+
+    Logger.root.info("Future cancelled: $url");
+
+    // Tal y como esta ahora es redundante, pero anyway...
+    _pendingCalls.remove(url);
+
+    // El receptor tendra que verificar si lo que le llega es un ServerError o un FutureCancelled
+    completer.completeError(new FutureCancelled());
+  }
+
 
   // Cuando se produce una actualizacion del servidor, forzamos una recarga de la pagina en el cliente para asegurarnos
   // de que siempre tenemos la ultima version
@@ -343,9 +360,6 @@ class DailySoccerServer implements ServerService {
       .forEach((subscribe) => subscribe[key](msg));
   }
 
-  void _setFinishCompleterForUrl(String url) {
-    _pendingCalls.remove(url);
-  }
 
   Http _http;
   String _sessionToken;

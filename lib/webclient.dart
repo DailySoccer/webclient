@@ -309,6 +309,16 @@ class WebClientApp extends Module {
             'soccer_player_stats': ngRoute(
               path: '/soccer_player_stats/:instanceSoccerPlayerId/selectable/:selectable',
               viewHtml: '<soccer-player-stats></soccer-player-stats>')
+            ,'login': ngRoute(
+                path: '/login',
+                preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_OUT),
+                viewHtml: '<modal><login is-modal="true"></login></modal>'
+            )
+            ,'join': ngRoute(
+                path: '/join',
+                preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_OUT),
+                viewHtml: '<modal><join is-modal="true"></join></modal>'
+            )
           }
       )
       ,'view_contest_entry': ngRoute(

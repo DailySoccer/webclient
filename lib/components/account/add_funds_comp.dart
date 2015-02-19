@@ -44,7 +44,6 @@ class AddFundsComp implements ShadowRootAware, DetachAware {
     updateSelectedPrize(e);
     if (selectedValue < 10) {
       selectedValue = 10;
-      querySelector("#selectedAmountInfo").text = "$selectedValue €";
     }
     (querySelector("#customEurosAmount") as InputElement).value = "$selectedValue";
   }
@@ -58,7 +57,6 @@ class AddFundsComp implements ShadowRootAware, DetachAware {
     } on FormatException {
       selectedValue = 0;
     }
-    querySelector("#selectedAmountInfo").text = "$selectedValue €";
   }
 
   /* Enviar la peticion */

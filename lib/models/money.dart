@@ -9,7 +9,7 @@ class Money {
   static final CHF = "CHF"; // Switzerland Franc
   static final AUD = "AUD"; // Australia Dollar
   static final CAD = "CAD"; // Canada Dollar
-  static final String CURRENCY_UNIT_DEFAULT = EUR;
+  static final String CURRENCY_UNIT_DEFAULT = USD;
 
   // http://www.xe.com/symbols.php
   static Map<String, String> currentSymbolMap = {

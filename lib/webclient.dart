@@ -63,6 +63,8 @@ import 'package:webclient/components/view_contest/fantasy_team_comp.dart';
 import 'package:webclient/components/view_contest/users_list_comp.dart';
 import 'package:webclient/components/view_contest/teams_panel_comp.dart';
 
+import 'package:webclient/components/welcome_screens/welcome_lobby_comp.dart';
+
 import 'package:webclient/components/enter_contest/enter_contest_comp.dart';
 import 'package:webclient/components/enter_contest/lineup_selector_comp.dart';
 import 'package:webclient/components/enter_contest/soccer_players_list_comp.dart';
@@ -153,6 +155,7 @@ class WebClientApp extends Module {
     bind(FantasyTeamComp);
     bind(UsersListComp);
     bind(TeamsPanelComp);
+    bind(WelcomeLobbyComp);
 
     bind(HelpInfoComp);
     bind(LegalInfoComp);
@@ -291,10 +294,10 @@ class WebClientApp extends Module {
             'contest_info': ngRoute(
                 path: '/contest_info/:contestId',
                 viewHtml: '<contest-info></contest-info>')
-            ,'welcome-screen': ngRoute(
+            ,'welcome': ngRoute(
                 path: '/welcome-screen',
                 preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_OUT),
-                viewHtml: '<modal window-size="md"><welcome-lobby></welcome-lobby></modal>'
+                viewHtml: '''<modal window-size="'md'"><welcome-lobby>dsdfsdf</welcome-lobby></modal>'''
             )
           }
       )

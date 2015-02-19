@@ -96,7 +96,7 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
             Play whenever you want, wherever your want. Win prizes with no season-long commitment.
           </div>
           <div class="button-wrap">
-            <button type="button" class="button-play" buttonOnclick="lobby" id="playButton1">PLAY NOW</button>
+            <button type="button" class="button-play" buttonOnclick="lobby.welcome" id="playButton1">PLAY NOW</button>
           </div>
           <div class="text-wrapper">
     

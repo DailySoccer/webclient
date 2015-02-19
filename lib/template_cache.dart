@@ -518,14 +518,14 @@ tc.put("packages/webclient/components/account/payment_response_comp.html", new H
     <div class="panel">
 
       <div class="panel-heading">
-        <div class="panel-title paypal-success">{{titleText}} pay</div>
+        <div class="panel-title paypal-success">{{titleText}}</div>
         <!--div class="panel-title paypal-cancel" login="">Pago cancelado</div-->
         <button type="button" class="close">
           <span class="glyphicon glyphicon-remove"></span>
         </button>
       </div>
       <div class="panel-body">
-        The requested transaction cannot be completed. Please check your payment method and try again.
+        {{descriptionText}}
       </div>
     </div>
   </div>

@@ -1,4 +1,5 @@
 library money;
+import 'package:webclient/utils/string_utils.dart';
 
 class Money {
   static final USD = "USD"; // United States Dollar
@@ -24,7 +25,7 @@ class Money {
   String currencyUnit;
   num amount;
 
-  String toString() => "${amount}${currentSymbolMap[currencyUnit]}";
+  String toString() => "${StringUtils.parsePrize(amount)}${currentSymbolMap[currencyUnit]}";
 
   int toInt() => amount.toInt();
 

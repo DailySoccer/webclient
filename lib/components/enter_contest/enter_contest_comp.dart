@@ -362,7 +362,6 @@ class EnterContestComp implements DetachAware {
     removeAllFilters();
     availableSalary = contest.salaryCap;
     alertDismiss();
-    saveContestEntry();
   }
 
   bool isPlayerSelected() {

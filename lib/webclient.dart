@@ -291,6 +291,11 @@ class WebClientApp extends Module {
             'contest_info': ngRoute(
                 path: '/contest_info/:contestId',
                 viewHtml: '<contest-info></contest-info>')
+            ,'welcome-screen': ngRoute(
+                path: '/welcome-screen',
+                preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_OUT),
+                viewHtml: '<modal window-size="md"><welcome-lobby></welcome-lobby></modal>'
+            )
           }
       )
       ,'my_contests': ngRoute(
@@ -319,12 +324,12 @@ class WebClientApp extends Module {
             ,'login': ngRoute(
                 path: '/login',
                 preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_OUT),
-                viewHtml: '<modal><login is-modal="true"></login></modal>'
+                viewHtml: '''<modal window-size="'md'"><login is-modal="true"></login></modal>'''
             )
             ,'join': ngRoute(
                 path: '/join',
                 preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_OUT),
-                viewHtml: '<modal><join is-modal="true"></join></modal>'
+                viewHtml: '''<modal window-size="'md'"><join is-modal="true"></join></modal>'''
             )
           }
       )

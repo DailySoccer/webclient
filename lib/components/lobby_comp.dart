@@ -9,6 +9,7 @@ import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/utils/game_metrics.dart';
+import 'package:webclient/services/profile_service.dart';
 
 @Component(
   selector: 'lobby',
@@ -36,7 +37,7 @@ class LobbyComp implements DetachAware {
   // Concursos listados actualmente
   int contestCount = 0;
 
-  LobbyComp(this._router, this._refreshTimersService, this.contestsService, this.scrDet, this.loadingService) {
+  LobbyComp(this._router, this._refreshTimersService, this.contestsService, this.scrDet, this.loadingService, this._profileService) {
 
     GameMetrics.logEvent(GameMetrics.LOBBY);
 
@@ -98,6 +99,7 @@ class LobbyComp implements DetachAware {
   }
 
   Router _router;
+  ProfileService _profileService;
   RefreshTimersService _refreshTimersService;
   Timer _nextTournamentInfoTimer;
 }

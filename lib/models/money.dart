@@ -25,7 +25,7 @@ class Money {
   String currencyUnit;
   num amount;
 
-  String toString() => "${StringUtils.parsePrize(amount)}${currentSymbolMap[currencyUnit]}";
+  String toString() => "${currentSymbolMap[currencyUnit]}${StringUtils.parsePrize(amount)}";
 
   int toInt() => amount.toInt();
 

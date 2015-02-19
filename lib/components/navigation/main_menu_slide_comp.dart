@@ -323,5 +323,5 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
 
   String _slideState = "hidden";
 
-  static final int _maxNicknameWidth = 200;
+  static final int _maxNicknameWidth = 170;
 }

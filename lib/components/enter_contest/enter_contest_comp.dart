@@ -362,6 +362,7 @@ class EnterContestComp implements DetachAware {
     removeAllFilters();
     availableSalary = contest.salaryCap;
     alertDismiss();
+    saveContestEntry();
   }
 
   bool isPlayerSelected() {
@@ -414,32 +415,20 @@ class EnterContestComp implements DetachAware {
   }
 
   void saveContestEntry() {
-
-
-    Map saveData = {};
-    //Si ya hay datos guardados para este partido los cargo
-    String currentUser = _profileService.isLoggedIn ? _profileService.user.userId : 'guest';
-    if (window.localStorage.containsKey(contest.contestId)) {
-      saveData = JSON.decode(window.localStorage[contest.contestId]);
-    }
-    // guardamos el mapa de datos bajo la key del usuario actual
-    saveData[currentUser] = lineupSlots.where((player) => player != null).map((player) => player["id"]).toList();
-    // Almacenamos los datos en el localStorage
-    window.localStorage[contest.contestId] = JSON.encode(saveData);
+    // Lo almacenamos localStorage.
+    window.localStorage[_getKeyForCurrentUserContest] = JSON.encode(lineupSlots.where((player) => player != null).map((player) => player["id"]).toList());
   }
 
   void restoreContestEntry() {
-    if (window.localStorage.containsKey(contest.contestId)) {
-      Map loadedData = JSON.decode(window.localStorage[contest.contestId]);
-      String currentUser = _profileService.isLoggedIn ? _profileService.user.userId : 'guest';
-
-      if(loadedData.containsKey(currentUser)){
-        loadedData[currentUser].forEach((id) {
-            addSoccerPlayerToLineup(id);
-        });
-      }
+    if (window.localStorage.containsKey(_getKeyForCurrentUserContest)) {
+      List loadedData = JSON.decode(window.localStorage[_getKeyForCurrentUserContest]);
+      loadedData.forEach((id) {
+        addSoccerPlayerToLineup(id);
+      });
     }
   }
+
+  String get _getKeyForCurrentUserContest => (_profileService.isLoggedIn ? _profileService.user.userId : 'guest') + '#' + contest.contestId;
 
   Router _router;
   RouteProvider _routeProvider;

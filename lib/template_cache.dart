@@ -1023,7 +1023,7 @@ tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse
     </div>
 
     <div class="column-contest-prize" ng-click="onRow(contest)" ng-if="!contest.isLive">
-      <div ng-if="!contest.isHistory" class="column-contest-prize-content prize-icon-big">{{contest.prizePool}}</div>
+      <div ng-if="!contest.isHistory" class="column-contest-prize-content" ng-class="{'prize-icon-big':contest.prizePool.amount > 0}">{{contest.prizePool}}</div>
       <div ng-if="contest.isHistory"  class="column-contest-prize-content prize-icon-big">{{getMyPrize(contest)}}</div>
       <div class="column-contest-prize-header">PRIZE</div>
     </div>

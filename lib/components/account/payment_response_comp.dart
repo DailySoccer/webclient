@@ -13,10 +13,14 @@ class PaymentResponseComp implements ShadowRootAware {
 
   String result;
   String titleText;
+  String descriptionText;
 
   PaymentResponseComp(this._routeProvider, this._router, this._paymentService) {
     result = _routeProvider.route.parameters['result'];
-    titleText = result == 'success'? 'correcto' : 'cancelado';
+    titleText = result == 'success' ? "successful payment" : "cancelled payment";
+    descriptionText = result == 'success'
+        ? "Thank you! Your order has been successfully processed."
+        : "The requested transaction cannot be completed. Please check your payment method and try again.";
   }
 
   @override void onShadowRoot(emulatedRoot) {
@@ -26,7 +30,7 @@ class PaymentResponseComp implements ShadowRootAware {
   void closeModal(Event e) {
     querySelector("#modalRoot").click();
   }
-  
+
   PaymentService _paymentService;
   RouteProvider _routeProvider;
   Router _router;

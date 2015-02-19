@@ -7044,13 +7044,19 @@ contest-header {
   }
 }
 .prizes-wrapper .prize-element-wrapper {
-  position: relative;
   float: left;
-  width: 25%;
+  width: 33.33333333%;
+  position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
   padding: 5px;
+}
+@media (min-width: 768px) {
+  .prizes-wrapper .prize-element-wrapper {
+    float: left;
+    width: 25%;
+  }
 }
 .prizes-wrapper .prize-element {
   font-family: 'Exo', sans-serif;

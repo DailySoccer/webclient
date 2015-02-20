@@ -15,23 +15,23 @@ tc.put("packages/webclient/components/account/add_funds_comp.html", new HttpResp
       <p id="descriptionTip2">Don't worry, you can withdraw your money whenever you want for free.</p>
     </div>
     <div class="add-founds-box">
-      <p>Minimum allowed is 10€</p>
+      <p>Minimum allowed is $10</p>
       <div class="money-selector">
         <div class="money-element">
-          <input type="radio" name="money-radio" id="firstOffer" value="10"><label for="firstOffer">10€</label>
+          <input type="radio" name="money-radio" id="firstOffer" value="10"><label for="firstOffer">$10</label>
         </div>
         <div class="money-element">
-          <input type="radio" name="money-radio" id="secondOffer" value="25" checked="checked"><label for="secondOffer">25€</label>
+          <input type="radio" name="money-radio" id="secondOffer" value="25" checked="checked"><label for="secondOffer">$25</label>
         </div>
         <div class="money-element">
-          <input type="radio" name="money-radio" id="thirdOffer" value="50"><label for="thirdOffer">50€</label>
+          <input type="radio" name="money-radio" id="thirdOffer" value="50"><label for="thirdOffer">$50</label>
         </div>
         <div class="money-element custom-money-element">
           <input type="radio" name="money-radio" id="customEuros">
-          <input type="number" id="customEurosAmount" value="10"><label for="customEuros">€</label>
+          <input type="number" id="customEurosAmount" value="10"><label for="customEuros">$</label>
         </div>
       </div>
-      <h2 class="paypal-info">Add <span id="selectedAmountInfo">25€</span> vía <img src="images/markPaypalMed.jpg"></h2>
+      <h2 class="paypal-info">Add <span id="selectedAmountInfo">${{selectedValue}}</span> vía <img src="images/markPaypalMed.jpg"></h2>
       <p class="paypal-info">You can add funds using PayPal account. The money will be transferred to Fantasy Sports Games S.L.</p>
       <div class="button-wrapper"><button class="add-funds-button" id="addFundsButton">Add funds</button></div>
     </div>
@@ -703,9 +703,9 @@ tc.put("packages/webclient/components/account/withdraw_funds_comp.html", new Htt
 
       <p>¿How much money want to withdraw?</p>
       <div class="money-element">
-        <input type="number" id="customEurosAmount"><label for="customEuros">€</label>
+        <input type="number" id="customEurosAmount"><label for="customEuros">$</label>
       </div>
-      <p class="paypal-info">You can only withdraw amounts larger to 20 €</p>
+      <p class="paypal-info">You can only withdraw amounts larger to $20</p>
       <div class="button-wrapper"><button class="withdraw-funds-button" id="withdrawFundsButton">Withdraw funds</button></div>
     </div>
   </div>
@@ -801,8 +801,8 @@ tc.put("packages/webclient/components/contest_filters_comp.html", new HttpRespon
     <div class="filter-column-entry-fee">
       <p class="filter-title">ENTRY FEE</p>
       <div class="filter-content">
-         <div class="entry-fee-value-min">MIN: {{filterEntryFeeRangeMin | number:0}}€ </div>
-         <div class="entry-fee-value-max">MAX: {{filterEntryFeeRangeMax | number:0}}€ </div>
+         <div class="entry-fee-value-min">MIN: ${{filterEntryFeeRangeMin | number:0}} </div>
+         <div class="entry-fee-value-max">MAX: ${{filterEntryFeeRangeMax | number:0}} </div>
           <div class="slider-wrapper">
             <div id="slider-range"></div>
           </div>
@@ -1069,7 +1069,7 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
 
             <div class="enter-contest-actions-wrapper" ng-if="scrDet.isXsScreen">
               <div class="total-salary" ng-class="{'red-numbers':availableSalary < 0}">
-                <span class="total-salary-money" ng-show="contest != null">{{printableAvailableSalary}}€</span>
+                <span class="total-salary-money" ng-show="contest != null">${{printableAvailableSalary}}</span>
               </div>
               <button id="cancelSoccerPlayerSelection" type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer">CANCEL</button>
             </div>
@@ -1080,7 +1080,7 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
                     <span class="total-salary-text">YOUR LINEUP</span>
                     <div class="total-salary">
                       <span class="total-salary-text">REMAINING SALARY:</span>
-                      <span class="total-salary-money" ng-class="{'red-numbers': availableSalary < 0 }" ng-show="contest != null">{{printableAvailableSalary}}€</span>
+                      <span class="total-salary-money" ng-class="{'red-numbers': availableSalary < 0 }" ng-show="contest != null">${{printableAvailableSalary}}</span>
                     </div>
                 </div>
 
@@ -1152,7 +1152,7 @@ tc.put("packages/webclient/components/enter_contest/lineup_selector_comp.html", 
         <span class="soccer-player-name">{{slot.fullName}}</span>
         <span class="match-event-name" ng-bind-html="slot.matchEventName"></span>
       </div>
-      <div class="column-salary">{{getPrintableSalary(slot.salary)}}€</div>
+      <div class="column-salary">${{getPrintableSalary(slot.salary)}}</div>
       <div class="column-action"><a class="iconButtonRemove"><span class="glyphicon glyphicon-remove"></span></a></div>
     </div>
   </div>
@@ -2397,7 +2397,7 @@ tc.put("packages/webclient/components/view_contest/fantasy_team_comp.html", new 
           <span class="remaining-match-time" ng-if="!isViewContestEntryMode">{{slot.percentOfUsersThatOwn}}% OWNED</span>
         </div>
         <div class="column-score" ng-if="!isViewContestEntryMode"><span>{{slot.score}}</span></div>
-        <div class="column-salary" ng-if="isViewContestEntryMode">{{slot.salary}}€</div>
+        <div class="column-salary" ng-if="isViewContestEntryMode">${{slot.salary}}</div>
       </div>
       <div id="statistic_{{owner}}_{{$index}}" class="soccer-player-statistics collapse" ng-if="!isViewContestEntryMode">
         <div class="statistic" ng-repeat="stat in slot.stats">

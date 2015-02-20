@@ -22540,6 +22540,9 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
     font-size: 12pt;
   }
 }
+#restrictedCompRoot .restricted-content-wrapper .texto .link {
+  cursor: pointer;
+}
 #restrictedCompRoot .restricted-content-wrapper .button-wrapper {
   position: relative;
   float: left;

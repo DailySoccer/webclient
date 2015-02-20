@@ -56,7 +56,7 @@ class PromosService {
     Map<String, Map> myPromoList = new Map();
     List myIdList = new List();
 
-    for (int i = 0; i<quantity; i++) {
+    for (int i = 0; i < quantity; i++) {
       int id = _rng.nextInt(promosIds.length);
       String promoId = promosIds.elementAt(id);
       myIdList.add(promoId);

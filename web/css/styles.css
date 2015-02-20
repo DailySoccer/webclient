@@ -22527,6 +22527,7 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   color: #ffffff;
   padding-top: 40px;
   padding-bottom: 40px;
+  text-align: center;
 }
 @media (min-width: 768px) {
   #restrictedCompRoot .restricted-content-wrapper .texto {

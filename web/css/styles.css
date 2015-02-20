@@ -7044,13 +7044,19 @@ contest-header {
   }
 }
 .prizes-wrapper .prize-element-wrapper {
-  position: relative;
   float: left;
-  width: 25%;
+  width: 33.33333333%;
+  position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
   padding: 5px;
+}
+@media (min-width: 768px) {
+  .prizes-wrapper .prize-element-wrapper {
+    float: left;
+    width: 25%;
+  }
 }
 .prizes-wrapper .prize-element {
   font-family: 'Exo', sans-serif;
@@ -13965,6 +13971,7 @@ main-menu-slide {
   background-color: rgba(0, 0, 0, 0.8);
   height: 70px;
   position: fixed;
+  display: inline-block;
   top: 0px;
   width: 100%;
 }
@@ -14072,6 +14079,7 @@ main-menu-slide {
   #mainMenu .navbar-nav > .active > a {
     background: none;
     color: #ffffff;
+    text-shadow: 0px 0px black;
   }
   #mainMenu .navbar-nav > .active > a:hover {
     background: none;
@@ -14086,13 +14094,17 @@ main-menu-slide {
   #mainMenu .navbar-nav > li > a {
     padding: 25px 0;
     cursor: pointer;
-    margin-right: 20px;
+    margin-left: 20px;
     color: #afd3e4;
+    text-shadow: 0px 2px black;
+  }
+  #mainMenu .navbar-nav > li > a:hover {
+    text-shadow: 0px 0px black;
   }
   #mainMenu .navbar-nav > .mainOption {
     font-family: 'Exo', sans-serif;
     font-weight: 300;
-    font-size: 12pt;
+    font-size: 11pt;
     color: #ffffff;
     text-transform: uppercase;
   }
@@ -14295,7 +14307,9 @@ main-menu-slide {
     color: #ffffff;
   }
   #mainMenu .username-dropdown-toggle {
-    width: 214px;
+    width: 15em;
+    margin-left: 0;
+    margin-right: 20px;
   }
   #mainMenu .dropdown-toggle {
     white-space: nowrap;

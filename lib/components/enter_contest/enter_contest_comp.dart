@@ -8,7 +8,7 @@ import 'package:webclient/services/contests_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/loading_service.dart';
-import 'package:webclient/models/server_error.dart';
+import 'package:webclient/services/server_error.dart';
 import 'package:webclient/models/field_pos.dart';
 import "package:webclient/models/soccer_team.dart";
 import 'package:webclient/models/match_event.dart';
@@ -60,6 +60,7 @@ class EnterContestComp implements DetachAware {
   InstanceSoccerPlayer selectedInstanceSoccerPlayer;
 
   int availableSalary = 0;
+  String get printableAvailableSalary => StringUtils.parseSalary(availableSalary);
 
   bool get isInvalidFantasyTeam => lineupSlots.any((player) => player == null);
   bool get editingContestEntry => contestEntryId != "none";
@@ -68,7 +69,7 @@ class EnterContestComp implements DetachAware {
 
   EnterContestComp(this._routeProvider, this._router, this.scrDet, this._contestsService, this.loadingService, this._profileService, this._flashMessage) {
     loadingService.isLoading = true;
-    scrDet.scrollTo('#mainWrapper');
+    scrDet.scrollTo('#mainApp');
 
     resetLineup();
 
@@ -102,7 +103,7 @@ class EnterContestComp implements DetachAware {
           restoreContestEntry();
         }
       })
-      .catchError((error) {
+      .catchError((ServerError error) {
         // Si estamos editando un contestEntry y el server nos indica un fallo (generalmente es porque el usuario "no tiene permiso"), nos saldremos de la pantalla
         if (editingContestEntry) {
           _router.go("lobby", {});
@@ -110,7 +111,7 @@ class EnterContestComp implements DetachAware {
         else {
           _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
         }
-      });
+      }, test: (error) => error is ServerError);
 
     subscribeToLeaveEvent();
   }
@@ -312,7 +313,7 @@ class EnterContestComp implements DetachAware {
                                              "parent": _routeProvider.parameters["parent"],
                                              "viewContestEntryMode": "edited"});
         })
-        .catchError((error) => _errorCreating(error));
+        .catchError((ServerError error) => _errorCreating(error));
     }
     else {
       if (contest.entryFee <= _profileService.user.balance) {
@@ -327,7 +328,7 @@ class EnterContestComp implements DetachAware {
                                 "viewContestEntryMode": contestId == contest.contestId? "created" : "swapped"
                                  });
           })
-          .catchError((error) => _errorCreating(error));
+          .catchError((ServerError error) => _errorCreating(error));
       }
       else {
         // Registramos dónde tendría que navegar al tener éxito en "add_funds"
@@ -414,17 +415,20 @@ class EnterContestComp implements DetachAware {
   }
 
   void saveContestEntry() {
-    window.localStorage[contest.contestId] = JSON.encode(lineupSlots.where((player) => player != null).map((player) => player["id"]).toList());
+    // Lo almacenamos localStorage.
+    window.localStorage[_getKeyForCurrentUserContest] = JSON.encode(lineupSlots.where((player) => player != null).map((player) => player["id"]).toList());
   }
 
   void restoreContestEntry() {
-    if (window.localStorage.containsKey(contest.contestId)) {
-      List contestEntry = JSON.decode(window.localStorage[contest.contestId]);
-      contestEntry.forEach((id) {
-          addSoccerPlayerToLineup(id);
+    if (window.localStorage.containsKey(_getKeyForCurrentUserContest)) {
+      List loadedData = JSON.decode(window.localStorage[_getKeyForCurrentUserContest]);
+      loadedData.forEach((id) {
+        addSoccerPlayerToLineup(id);
       });
     }
   }
+
+  String get _getKeyForCurrentUserContest => (_profileService.isLoggedIn ? _profileService.user.userId : 'guest') + '#' + contest.contestId;
 
   Router _router;
   RouteProvider _routeProvider;

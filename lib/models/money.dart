@@ -1,4 +1,5 @@
 library money;
+import 'package:webclient/utils/string_utils.dart';
 
 class Money {
   static final USD = "USD"; // United States Dollar
@@ -8,7 +9,7 @@ class Money {
   static final CHF = "CHF"; // Switzerland Franc
   static final AUD = "AUD"; // Australia Dollar
   static final CAD = "CAD"; // Canada Dollar
-  static final String CURRENCY_UNIT_DEFAULT = EUR;
+  static final String CURRENCY_UNIT_DEFAULT = USD;
 
   // http://www.xe.com/symbols.php
   static Map<String, String> currentSymbolMap = {
@@ -24,7 +25,7 @@ class Money {
   String currencyUnit;
   num amount;
 
-  String toString() => "${amount}${currentSymbolMap[currencyUnit]}";
+  String toString() => "${currentSymbolMap[currencyUnit]}${StringUtils.parsePrize(amount)}";
 
   int toInt() => amount.toInt();
 

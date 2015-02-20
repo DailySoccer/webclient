@@ -8,6 +8,7 @@ import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/refresh_timers_service.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/services/loading_service.dart';
+import 'package:webclient/services/server_error.dart';
 
 @Component(
   selector: 'my-contests',
@@ -64,7 +65,7 @@ class MyContestsComp implements DetachAware {
       .then((_) {
         loadingService.isLoading = false;
       })
-      .catchError((error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW));
+      .catchError((ServerError error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW), test: (error) => error is ServerError);
   }
 
   void onWaitingActionClick(Contest contest) {

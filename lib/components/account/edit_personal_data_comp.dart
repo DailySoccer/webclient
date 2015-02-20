@@ -4,7 +4,7 @@ import 'package:angular/angular.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/services/loading_service.dart';
-import 'package:webclient/models/server_error.dart';
+import 'package:webclient/services/server_error.dart';
 import 'dart:html';
 import 'package:webclient/utils/string_utils.dart';
 
@@ -202,7 +202,7 @@ class EditPersonalDataComp implements ShadowRootAware{
             }
           });
           loadingService.isLoading = false;
-        });
+        }, test: (error) => error is ServerError);
   }
 
   void hideErrors() {

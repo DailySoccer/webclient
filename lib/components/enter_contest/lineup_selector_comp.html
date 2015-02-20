@@ -13,7 +13,7 @@
         <span class="soccer-player-name">{{slot.fullName}}</span>
         <span class="match-event-name" ng-bind-html="slot.matchEventName"></span>
       </div>
-      <div class="column-salary">{{slot.salary}}€</div>
+      <div class="column-salary">${{getPrintableSalary(slot.salary)}}</div>
       <div class="column-action"><a class="iconButtonRemove"><span class="glyphicon glyphicon-remove"></span></a></div>
     </div>
   </div>

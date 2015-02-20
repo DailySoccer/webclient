@@ -6,13 +6,13 @@ import 'package:webclient/models/money.dart';
 class TransactionInfo {
 
   Map transactionTypes = {
-    "PRIZE"               : "Premio",
-    "ORDER"               : "Transacción",
-    "ENTER_CONTEST"       : "Participación en torneo",
-    "CANCEL_CONTEST_ENTRY": "Cancelar participación en torneo",
-    "CANCEL_CONTEST"      : "Torneo cancelado",
-    "REFUND"              : "Reembolso",
-    "FREE_MONEY"          : "Esta ronda la paga la casa"
+    "PRIZE"               : "Prize",
+    "ORDER"               : "Add funds",
+    "ENTER_CONTEST"       : "Contest entry fee",
+    "CANCEL_CONTEST_ENTRY": "Cancelled contest entry fee",
+    "CANCEL_CONTEST"      : "Cancelled contest",
+    "REFUND"              : "Refund",
+    "FREE_MONEY"          : "This one's on the house"
   };
 
   String transactionDescription;

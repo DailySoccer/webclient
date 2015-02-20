@@ -27,7 +27,7 @@
       <div class="soccer-player-stats-info">
         <div class="soccer-player-fantasy-points"><span>DFP</span><span>{{currentInfoData['fantasyPoints']}}</span></div>
         <div class="soccer-player-matches"><span>MATCHES</span><span>{{currentInfoData['matchesCount']}}</span></div>
-        <div class="soccer-player-salary"><span>SALARY</span><span>{{currentInfoData['salary']}}</span></div>
+        <div class="soccer-player-salary"><span>SALARY</span><span>{{printableSalary}}</span></div>
       </div>
     </div>
 
@@ -41,8 +41,8 @@
   <div class="soccer-player-stats-content">
       <!-- Nav tabs -->
       <ul id="soccer-player-stats-tabs" class="soccer-player-stats-tabs" role="tablist">
-        <li id="seasonTab" class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('season-stats-tab-content')">Season data</a></li>
-        <li id="matchTab" ><a role="tab" data-toggle="tab" ng-click="tabChange('match-by-match-stats-tab-content')">match by match</a></li>
+        <li id="seasonTab" class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('season-stats-tab-content')">Season Data</a></li>
+        <li id="matchTab" ><a role="tab" data-toggle="tab" ng-click="tabChange('match-by-match-stats-tab-content')">Match by Match</a></li>
       </ul>
 
       <div class="tabs">

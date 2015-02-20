@@ -29,16 +29,23 @@ main-menu-slide {
 
 .navbar {
 	margin-bottom: 0;
+	border-radius: 0;
 }
 #mainMenu {
 	* {
 		.user-select(none);
 	}
 	&.logged-in {		
-		.background-header();
+		//.background-header();
+		@media (max-width: @screen-sm-max) {
+			background-color: @blueUltraDark;
+		}
+		background-color: fade(@black, 80%);
+		height: 70px;
 
 		// Menu siempre arriba fijo cuando estamos logeados
 		position: fixed;
+		display: inline-block;
 		top: 0px;
 		width: 100%;
 	}
@@ -71,16 +78,15 @@ main-menu-slide {
   			position: absolute;
   		}
 		.navbar-nav {
+			.make-row(0);
 			width: 100%;
 			padding-left: 110px;
-			margin-left: 20px;
 			& a:hover {color: white}
-
 		}
-	  	// elementos del menu
 	  	.navbar-nav > .active > a {
   			background: none;
   			color: @white;
+  			text-shadow: 0px 0px black;  			
   			&:hover {
   				background: none;
   				color: @white;
@@ -93,10 +99,17 @@ main-menu-slide {
   			}
   		}
 	  	.navbar-nav > li > a {
-	    	padding: 20px 0;
+	    	padding: 25px 0;
   			cursor: pointer;
-  			margin-right: 20px;
+  			margin-left: 20px;
   			color: @blueMenu;
+  			text-shadow: 0px 2px black;
+  			&:hover {
+  				text-shadow: 0px 0px black;
+  			}
+	  	}
+	  	.navbar-nav > .mainOption {
+	  		.exo_light(11pt, @white);
 	  	}
 	  	.navbar-nav > .right-menu {
 	  		.pull-right();
@@ -148,7 +161,9 @@ main-menu-slide {
 
 		//elemento nombre menu usuario
 		.username-dropdown-toggle {
-			width: 214px;
+			width: 15em;
+			margin-left: 0;
+			margin-right: 20px;
 		}
 		.dropdown-toggle {
 			white-space: nowrap;
@@ -156,8 +171,8 @@ main-menu-slide {
     	// elementos del sub-menu
         .dropdown-menu {
         	position: relative;
-        	top: 6px;
-        	left: -10px;
+            top: -4px;
+        	left: 10px;
 			& {
 				padding: 0px;
 			}

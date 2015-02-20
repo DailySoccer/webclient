@@ -105,7 +105,7 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
             </div>
     
             <div class="module-column">
-              <p class="icono-text">Create your lineup in seconds, on your computer, tablet or smartphone</p>
+              <p class="icono-text">Create your lineup, on your computer, tablet or smartphone in seconds</p>
             </div>
     
             <div class="module-column">

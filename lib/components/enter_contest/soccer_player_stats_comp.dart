@@ -16,6 +16,7 @@ import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/models/instance_soccer_player.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'dart:async';
+import 'package:webclient/services/server_error.dart';
 
 @Component(
     selector: 'soccer-player-stats',
@@ -34,6 +35,8 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
   bool selectablePlayer;
 
   bool isGoalkeeper() => currentInfoData['fieldPos'] == "GK";
+
+  String get printableSalary => StringUtils.parseSalary(currentInfoData['salary']);
 
   //Listas para las estadísticas ordenadas
   static List<String> goalKeeperStatsList   = ["GOLES_ENCAJADOS", "PARADAS", "DESPEJES", "PENALTIS_DETENIDOS", "PASES", "RECUPERACIONES", "PERDIDAS_BALON", "FALTAS_COMETIDAS", "TARJETAS_AMARILLAS", "TARJETAS_ROJAS"];
@@ -68,9 +71,9 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
       .then((_) {
         updateSoccerPlayerInfoFromService();
       })
-      .catchError((error) {
+      .catchError((ServerError error) {
         _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
-      });
+      }, test: (error) => error is ServerError);
 
     _streamListener = scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
   }

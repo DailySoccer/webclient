@@ -52,6 +52,9 @@ class Contest {
 
   int salaryCap;
 
+  String get printableSalaryCap => StringUtils.parseSalary(salaryCap);
+
+
   String get tier {
     if (salaryCap >= SALARY_LIMIT_FOR_BEGINNERS)
       return TIER_BEGINNER;
@@ -81,9 +84,9 @@ class Contest {
    // print("estado del concurso: ${state}");
     /* los partidos en vivo o en history no continen los participantes que tiene el concurso */
     if(isLive || isHistory) {
-      return "${tournamentTypeName} - Salary cap: ${salaryCap}";
+      return "${tournamentTypeName} - Salary cap: ${printableSalaryCap}";
     }
-    return "${tournamentTypeName}: ${numEntries} of ${maxEntries} contenders - Salary cap: ${salaryCap}";
+    return "${tournamentTypeName}: ${numEntries} of ${maxEntries} contenders - Salary cap: ${printableSalaryCap}";
   }
 
   List<ContestEntry> get contestEntriesOrderByPoints {

@@ -4,6 +4,9 @@ import 'package:intl/intl.dart';
 class StringUtils {
 
   static NumberFormat decimalFormat = new NumberFormat("0.#", "es_ES");
+  static NumberFormat twoDecimalsFormat = new NumberFormat("###,###,###.00", "en_US");
+  static NumberFormat thousandsFormat = new NumberFormat.decimalPattern("en_US");
+
 
   static String normalize(String txt) {
     String from = "ÃÀÁÄÂÈÉËÊÌÍÏÎÒÓÖÔÙÚÜÛãàáäâèéëêìíïîòóöôùúüûÑñÇç";
@@ -31,7 +34,10 @@ class StringUtils {
     return regExp.hasMatch(email);
   }
 
-  static String parseFantasyPoints(int fantasyPoints) {
-    return decimalFormat.format(fantasyPoints * 0.1);
-  }
+  static String parseFantasyPoints(int fantasyPoints) => decimalFormat.format(fantasyPoints * 0.1);
+
+  static String parseSalary(int salaryCap) => thousandsFormat.format(salaryCap);
+
+  static String parsePrize(num money) => ((money*100)%100 == 0)? thousandsFormat.format(money): twoDecimalsFormat.format(money);
+
 }

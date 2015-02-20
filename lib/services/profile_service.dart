@@ -10,6 +10,7 @@ import 'package:webclient/services/server_service.dart';
 import 'package:logging/logging.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/models/money.dart';
+import 'package:webclient/services/server_error.dart';
 
 
 @Injectable()
@@ -147,12 +148,12 @@ class ProfileService {
         // En cualquier caso, refrescamos el profile para obtener el ultimo dinero
         _setProfile(storedSessionToken, jsonMap, true);
       })
-      .catchError((error) {
+      .catchError((ServerError error) {
         // No se ha podido refrescar: Tenemos que salir y pedir que vuelva a hacer login
         window.localStorage.clear();
         Logger.root.warning("ProfileService: Se borro la DB y necesitamos volver a hacer login.");
         window.location.reload();
-      });
+      }, test: (error) => error is ServerError);
     }
   }
 

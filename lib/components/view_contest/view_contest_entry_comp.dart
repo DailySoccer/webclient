@@ -11,6 +11,7 @@ import 'package:webclient/utils/html_utils.dart';
 import 'package:webclient/models/contest_entry.dart';
 import 'dart:html';
 import 'package:webclient/utils/game_metrics.dart';
+import 'package:webclient/services/server_error.dart';
 
 @Component(
    selector: 'view-contest-entry',
@@ -51,9 +52,9 @@ class ViewContestEntryComp {
 
         updatedDate = DateTimeService.now;
       })
-      .catchError((error) {
+      .catchError((ServerError error) {
         _router.go("lobby", {});
-      });
+      }, test: (error) => error is ServerError);
   }
 
   void tabChange(String tab) {

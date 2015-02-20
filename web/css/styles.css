@@ -5901,6 +5901,8 @@ scoring-rules:after,
 .view-contest-entry-actions-wrapper:after,
 #helpInfo .scores-wrapper:before,
 #helpInfo .scores-wrapper:after,
+#restrictedCompRoot .restricted-content-wrapper:before,
+#restrictedCompRoot .restricted-content-wrapper:after,
 .default-section-header:before,
 .default-section-header:after,
 .lineup-selector .lineup-selector-slot:before,
@@ -5986,6 +5988,7 @@ scoring-rules:after,
 .info-complete-bar:after,
 .view-contest-entry-actions-wrapper:after,
 #helpInfo .scores-wrapper:after,
+#restrictedCompRoot .restricted-content-wrapper:after,
 .default-section-header:after,
 .lineup-selector .lineup-selector-slot:after {
   clear: both;
@@ -15174,8 +15177,8 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
   background-color: #ffffff;
   overflow: hidden;
   display: block;
-  margin-left: -15px;
-  margin-right: -15px;
+  margin-left: 0;
+  margin-right: 0;
 }
 @media (min-width: 992px) {
   #promosComponent {
@@ -15185,7 +15188,6 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
     padding-right: 15px;
     padding-left: 0px;
     padding-right: 0px;
-    min-height: 230px;
   }
   #promosComponent > .navbar-header,
   #promosComponent > .navbar-collapse {
@@ -15223,7 +15225,6 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
     padding-right: 15px;
     padding-left: 0px;
     padding-right: 0px;
-    min-height: 147px;
   }
   #promosComponent > .navbar-header,
   #promosComponent > .navbar-collapse {
@@ -15294,6 +15295,21 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
   display: inline-block;
   background-color: #fa9c19;
   line-height: 31px;
+}
+#promosComponent .banner2 {
+  display: inline-block;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+@media (min-width: 768px) {
+  #promosComponent .banner2 {
+    float: left;
+    width: 50%;
+  }
 }
 #modalSoccerPlayerStats {
   background-color: #434343;
@@ -22490,6 +22506,194 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   font-size: 12px;
   color: #777777;
   text-align: center;
+}
+#restrictedCompRoot .restricted-content-wrapper {
+  margin-left: 0;
+  margin-right: 0;
+  background-image: url("../images/restrictedBg.jpg");
+}
+#restrictedCompRoot .restricted-content-wrapper .texto {
+  position: relative;
+  float: left;
+  width: 66.66666667%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 0 auto;
+  float: none;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #ffffff;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+@media (min-width: 768px) {
+  #restrictedCompRoot .restricted-content-wrapper .texto {
+    font-size: 12pt;
+  }
+}
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper {
+  position: relative;
+  float: left;
+  width: 50%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 0 auto 40px auto;
+  float: none;
+}
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper .button-box {
+  text-align: center;
+}
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button {
+  background-color: #428bca;
+  border-color: #357ebd;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  -webkit-transition: All 0.08s ease-out;
+  -moz-transition: All 0.08s ease-out;
+  -ms-transition: All 0.08s ease-out;
+  -o-transition: All 0.08s ease-out;
+  transition: All 0.08s ease-out;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  background-color: #a1c931;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #ffffff;
+  outline: none !important;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button:hover,
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button:focus,
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button:active,
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button.active,
+.open .dropdown-toggle#restrictedCompRoot .restricted-content-wrapper .button-wrapper button {
+  color: #ffffff;
+  background-color: #3276b1;
+  border-color: #285e8e;
+}
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button:active,
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button.active,
+.open .dropdown-toggle#restrictedCompRoot .restricted-content-wrapper .button-wrapper button {
+  background-image: none;
+}
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button.disabled,
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button[disabled],
+fieldset[disabled] #restrictedCompRoot .restricted-content-wrapper .button-wrapper button,
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button.disabled:hover,
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button[disabled]:hover,
+fieldset[disabled] #restrictedCompRoot .restricted-content-wrapper .button-wrapper button:hover,
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button.disabled:focus,
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button[disabled]:focus,
+fieldset[disabled] #restrictedCompRoot .restricted-content-wrapper .button-wrapper button:focus,
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button.disabled:active,
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button[disabled]:active,
+fieldset[disabled] #restrictedCompRoot .restricted-content-wrapper .button-wrapper button:active,
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button.disabled.active,
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button[disabled].active,
+fieldset[disabled] #restrictedCompRoot .restricted-content-wrapper .button-wrapper button.active {
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button .badge {
+  color: #428bca;
+  background-color: #ffffff;
+}
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button:focus,
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button:active:focus,
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button:hover,
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button:focus {
+  color: #333333;
+  text-decoration: none;
+}
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button:active,
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button.disabled,
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button[disabled],
+fieldset[disabled] #restrictedCompRoot .restricted-content-wrapper .button-wrapper button {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button:active:focus,
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button.active:focus {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button:active:hover,
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button.active:hover {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button:hover:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button:active,
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button.active {
+  background-color: #a1c931;
+  margin-top: 4px;
+  box-shadow: none;
+}
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button.disabled,
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button[disabled],
+fieldset[disabled] #restrictedCompRoot .restricted-content-wrapper .button-wrapper button {
+  background-color: #b5d657;
+  box-shadow: none;
+  margin-top: 4px;
+  color: #ebebeb;
+  cursor: not-allowed !important;
+}
+#restrictedCompRoot .restricted-content-wrapper .button-wrapper button.close {
+  background-color: #a1c931;
+  outline: none !important;
+  color: #ffffff;
 }
 /*************************************************
 Si hay que añadir nuevas banderas, ir a la siguiente url

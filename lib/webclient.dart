@@ -76,6 +76,7 @@ import 'package:webclient/components/legalese_and_help/legal_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/terminus_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/policy_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/beta_info_comp.dart';
+import 'package:webclient/components/legalese_and_help/restricted_comp.dart';
 
 import 'package:webclient/utils/host_server.dart';
 import 'package:webclient/utils/js_utils.dart';
@@ -158,6 +159,7 @@ class WebClientApp extends Module {
     bind(TerminusInfoComp);
     bind(PolicyInfoComp);
     bind(BetaInfoComp);
+    bind(RestrictedComp);
 
     bind(EnterContestComp);
     bind(SoccerPlayersListComp);
@@ -320,6 +322,11 @@ class WebClientApp extends Module {
           path: '/view_contest_entry/:parent/:viewContestEntryMode/:contestId',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
           viewHtml: '<view-contest-entry></view-contest-entry>'
+      )
+      ,'restricted': ngRoute(
+        path: '/restricted',
+        preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
+        viewHtml: '''<restricted-comp></restricted-comp>'''
       )
       ,'view_promo': ngRoute(
         path: '/view_promo/:promoId',

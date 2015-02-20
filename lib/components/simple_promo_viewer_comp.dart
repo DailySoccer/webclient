@@ -12,16 +12,16 @@ import 'package:webclient/services/promos_service.dart';
 class SimplePromoViewerComp implements DetachAware {
 
   SimplePromoViewerComp(this._router, this._routeProvider, this._scrDet, this._rootElement, this._promosService){
-    _screenWidthChangeDetector = _scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
-    var promoId = _routeProvider.route.parameters['contestId'];
+    var promoId = _routeProvider.route.parameters['promoId'];
     promo = _promosService.getPromo(promoId);
     createHTML();
+    _screenWidthChangeDetector = _scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
   }
 
   void createHTML() {
     var theHTML = '''
       <div id="simplePromoViewerRoot">
-        <img class="img-responsive" src="${_scrDet.isXsScreen ? promo["imageXs"] : promo["imageLg"]}>
+        <img class="img-responsive" src="${_scrDet.isXsScreen ? promo["imageXs"] : promo["imageLg"]}">
         <div class="promo-text>${promo["text"]}</div>
         <div class="autocentered-buttons-wrapper">
           <div class="button-box"><button class="ok-button">${promo["buttonCaption"] == "" ? "Enter the Promo" : promo["buttonCaption"]}</button><div>

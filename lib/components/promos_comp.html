@@ -1,8 +1,8 @@
-<a ng-if="!scrDet.isXsScreen" ng-click="gotoPromo(promos.keys[0])">
+<a class="banner2" ng-if="!scrDet.isXsScreen" ng-click="gotoPromo(0)">
 <img ng-if="!scrDet.isXsScreen" src="{{getThumb(0,'thumbLg')}}" class="promoDesktop" />
 </a>
 
-<a ng-if="!scrDet.isXsScreen" ng-click="gotoPromo(promos.keys[1])">
+<a class="banner2" ng-if="!scrDet.isXsScreen" ng-click="gotoPromo(1)">
 <img ng-if="!scrDet.isXsScreen" src="{{getThumb(1,'thumbLg')}}" class="promoDesktop" />
 </a>
 
@@ -10,7 +10,7 @@
   <span class="beta-version-text">VERSIÓN BETA</span>
 </div>-->
 
-<a ng-if="scrDet.isXsScreen" ng-click="gotoPromo(promos.keys[0])">
+<a ng-if="scrDet.isXsScreen" ng-click="gotoPromo(0)">
  <img ng-if="scrDet.isXsScreen" src="{{getThumb(0,'thumbXs')}}" class="promoXs" />
 </a>
 <!--<div class="beta-version-xs" ng-if="scrDet.isXsScreen">

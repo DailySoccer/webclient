@@ -1,6 +1,7 @@
 library promos_service;
 
 import 'package:angular/angular.dart';
+import 'dart:math';
 import "package:webclient/services/server_service.dart";
 
 @Injectable()
@@ -8,8 +9,8 @@ class PromosService {
 
   Map<String, Map> promos = {
     'promo1': {
-                 'thumbXs'  : ''
-                ,'thumbLg'  : ''
+                 'thumbXs': 'images/betaHeaderXsBg.jpg'
+                ,'thumbLg': 'images/betaHeaderXsBg.jpg'
                 ,'directUrl': ''
                 ,'imageXs'  : 'images/promos/promo1_slide_lg.jpg'
                 ,'imageLg'  : 'images/promos/promo1_slide_lg.jpg'
@@ -18,18 +19,18 @@ class PromosService {
                 ,'buttonCaption' :'Reserve your Spot'
               }
     ,'promo2': {
-                'thumbXs'   : ''
-               ,'thumbLg'   : ''
-               ,'directUrl' : ''
-               ,'imageXs'   : ''
-               ,'imageLg'   : ''
-               ,'text'      : ''
+                 'thumbXs': 'images/betaHeaderXsBg.jpg'
+                ,'thumbLg': 'images/betaHeaderXsBg.jpg'
+                ,'directUrl' : ''
+                ,'imageXs' :''
+                ,'imageLg':''
+                ,'text'   : ''
                ,'promoEnterUrl' : 'prohibited'
                ,'buttonCaption' :'Apply Promo'
     }
     ,'promo3': {
-                'thumbXs'   : ''
-               ,'thumbLg'   : ''
+                'thumbXs': 'images/betaHeaderXsBg.jpg'
+               ,'thumbLg': 'images/betaHeaderXsBg.jpg'
                ,'directUrl' : ''
                ,'imageXs'   :''
                ,'imageLg'   :''
@@ -50,6 +51,7 @@ class PromosService {
 
   PromosService(this._server) {
     print("Activando promo service");
+    _rng = new Random();
   }
 
   Map getPromo(String promoId) {
@@ -59,5 +61,32 @@ class PromosService {
     return promoNotFound;
   }
 
+  Map<String,Map> getRandomPromo(int quantity) {
+    List promosIds = promos.keys;
+
+    Map<String, Map> myPromoList = new Map();
+    List myIdList = new List();
+
+    for (int i = 0; i<quantity; i++) {
+      int id = _rng.nextInt(promosIds.length);
+      String promoId = promosIds.elementAt(id);
+      myIdList.add(promoId);
+      promosIds.remove(promoId);
+      myPromoList.addAll({promoId: getPromo(promoId)});
+    }
+
+    return myPromoList;
+  }
+
+  String getDirectUrl(String promoId) {
+    Map promo = getPromo(promoId);
+    if (promo['directUrl']=='') {
+      return 'lobby';
+    }
+    else return promo['directUrl'];
+  }
+
+
   ServerService _server;
+  var _rng;
 }

@@ -9,8 +9,8 @@ class PromosService {
 
   Map<String, Map> promos = {
     'promo1': {
-                 'thumbXs': 'images/betaHeaderXsBg.jpg'
-                ,'thumbLg': 'images/betaHeaderXsBg.jpg'
+                 'thumbXs': 'images/promos/promo02_2015_Bulls_Xs.png'
+                ,'thumbLg': 'images/promos/promo02_2015_Bulls_Desktop.png'
                 ,'directUrl': ''
                 ,'imageXs'  : 'images/promos/promo1_slide_lg.jpg'
                 ,'imageLg'  : 'images/promos/promo1_slide_lg.jpg'
@@ -19,8 +19,8 @@ class PromosService {
                 ,'buttonCaption' :'Reserve your Spot'
               }
     ,'promo2': {
-                 'thumbXs': 'images/betaHeaderXsBg.jpg'
-                ,'thumbLg': 'images/betaHeaderXsBg.jpg'
+                 'thumbXs': 'images/promos/promo02_2015_Premier_Xs.png'
+                ,'thumbLg': 'images/promos/promo02_2015_Premier_Desktop.png'
                 ,'directUrl' : ''
                 ,'imageXs' :''
                 ,'imageLg':''
@@ -29,8 +29,8 @@ class PromosService {
                ,'buttonCaption' :'Apply Promo'
     }
     ,'promo3': {
-                'thumbXs': 'images/betaHeaderXsBg.jpg'
-               ,'thumbLg': 'images/betaHeaderXsBg.jpg'
+                'thumbXs': 'images/promos/promo02_2015_Bulls_Xs.png'
+               ,'thumbLg': 'images/promos/promo02_2015_Bulls_Desktop.png'
                ,'directUrl' : ''
                ,'imageXs'   :''
                ,'imageLg'   :''

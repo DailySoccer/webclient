@@ -35,6 +35,8 @@ import 'package:webclient/components/paginator_comp.dart';
 import 'package:webclient/components/contest_filters_comp.dart';
 import 'package:webclient/components/lobby_comp.dart';
 import 'package:webclient/components/promos_comp.dart';
+import 'package:webclient/components/simple_promo_viewer_comp.dart';
+
 import 'package:webclient/components/contests_list_comp.dart';
 
 import 'package:webclient/components/contest_info_comp.dart';
@@ -134,6 +136,7 @@ class WebClientApp extends Module {
     bind(LobbyComp);
     bind(ContestsListComp);
     bind(PromosComp);
+    bind(SimplePromoViewerComp);
     bind(PaginatorComp);
     bind(ContestFiltersComp);
 
@@ -315,6 +318,11 @@ class WebClientApp extends Module {
           path: '/view_contest_entry/:parent/:viewContestEntryMode/:contestId',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
           viewHtml: '<view-contest-entry></view-contest-entry>'
+      )
+      ,'view_promo': ngRoute(
+        path: '/view_promo/:promoId',
+        preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
+        viewHtml: '''<simple-promo-viewer></simple-promo-viewer>'''
       )
     });
   }

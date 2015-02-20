@@ -7,7 +7,7 @@ main-menu-slide {
 }
 
 // Mixin para pintar el fondo de la cabecera  
-.background-header() {
+/*.background-header() {
     background-image: url("@{images}/headerBackground.jpg");
     background-repeat: no-repeat;
     background-position: center 4px;
@@ -16,7 +16,7 @@ main-menu-slide {
     border-width: 0px 0px 2px 0px;
     border-radius: 0px;
     height: 70px;
-}
+}*/
 
 // Mixin para el logo
 .brand-style() {
@@ -36,11 +36,7 @@ main-menu-slide {
 		.user-select(none);
 	}
 	&.logged-in {		
-		//.background-header();
-		@media (max-width: @screen-sm-max) {
-			background-color: @blueUltraDark;
-		}
-		background-color: fade(@black, 80%);
+		background-color: @blueUltraDark;
 		height: 70px;
 
 		// Menu siempre arriba fijo cuando estamos logeados

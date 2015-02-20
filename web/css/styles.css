@@ -13948,6 +13948,16 @@ main-menu-slide {
   width: 100%;
   font-size: 10pt;
 }
+/*.background-header() {
+    background-image: url("@{images}/headerBackground.jpg");
+    background-repeat: no-repeat;
+    background-position: center 4px;
+    background-color: @black;
+    border-color: @orange;
+    border-width: 0px 0px 2px 0px;
+    border-radius: 0px;
+    height: 70px;
+}*/
 .navbar {
   margin-bottom: 0;
   border-radius: 0;
@@ -13971,17 +13981,12 @@ main-menu-slide {
   user-select: none;
 }
 #mainMenu.logged-in {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: #0a2938;
   height: 70px;
   position: fixed;
   display: inline-block;
   top: 0px;
   width: 100%;
-}
-@media (max-width: 991px) {
-  #mainMenu.logged-in {
-    background-color: #0a2938;
-  }
 }
 @media (max-width: 991px) {
   #mainMenu #menuLoggedIn,
@@ -15304,6 +15309,7 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
   padding-right: 15px;
   padding-top: 10px;
   padding-bottom: 10px;
+  cursor: pointer;
 }
 @media (min-width: 768px) {
   #promosComponent .banner2 {
@@ -22546,6 +22552,8 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
 }
 #restrictedCompRoot .restricted-content-wrapper .button-wrapper .button-box {
   text-align: center;
+  margin-top: 4px;
+  height: 32px;
 }
 #restrictedCompRoot .restricted-content-wrapper .button-wrapper button {
   background-color: #428bca;

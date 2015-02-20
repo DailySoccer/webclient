@@ -415,17 +415,20 @@ class EnterContestComp implements DetachAware {
   }
 
   void saveContestEntry() {
-    window.localStorage[contest.contestId] = JSON.encode(lineupSlots.where((player) => player != null).map((player) => player["id"]).toList());
+    // Lo almacenamos localStorage.
+    window.localStorage[_getKeyForCurrentUserContest] = JSON.encode(lineupSlots.where((player) => player != null).map((player) => player["id"]).toList());
   }
 
   void restoreContestEntry() {
-    if (window.localStorage.containsKey(contest.contestId)) {
-      List contestEntry = JSON.decode(window.localStorage[contest.contestId]);
-      contestEntry.forEach((id) {
-          addSoccerPlayerToLineup(id);
+    if (window.localStorage.containsKey(_getKeyForCurrentUserContest)) {
+      List loadedData = JSON.decode(window.localStorage[_getKeyForCurrentUserContest]);
+      loadedData.forEach((id) {
+        addSoccerPlayerToLineup(id);
       });
     }
   }
+
+  String get _getKeyForCurrentUserContest => (_profileService.isLoggedIn ? _profileService.user.userId : 'guest') + '#' + contest.contestId;
 
   Router _router;
   RouteProvider _routeProvider;

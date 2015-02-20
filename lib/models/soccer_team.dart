@@ -5,8 +5,6 @@ import "package:webclient/models/match_event.dart";
 import 'package:webclient/services/contest_references.dart';
 
 class SoccerTeam {
-  static final MAX_PLAYERS_SAME_TEAM = 4;
-
   String templateSoccerTeamId;
   String name;
   String shortName;

@@ -4,7 +4,7 @@ import 'package:angular/angular.dart';
 import 'package:webclient/components/enter_contest/enter_contest_comp.dart';
 import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/utils/string_utils.dart';
-import 'package:webclient/models/soccer_team.dart';
+import 'package:webclient/models/contest.dart';
 
 
 @Component(
@@ -13,7 +13,7 @@ import 'package:webclient/models/soccer_team.dart';
     useShadowDom: false
 )
 class LineupSelectorComp {
-  String get MAX_PLAYERS_SAME_TEAM => SoccerTeam.MAX_PLAYERS_SAME_TEAM.toString();
+  String get MAX_PLAYERS_SAME_TEAM => Contest.MAX_PLAYERS_SAME_TEAM.toString();
 
   EnterContestComp enterContestComp;
 

@@ -14,6 +14,8 @@ import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/models/money.dart';
 
 class Contest {
+  static const MAX_PLAYERS_SAME_TEAM = 4;
+
   // Tipos de Torneos (deducidos por las características del Contest: maxEntries ~ premios)
   static const TOURNAMENT_FREE            = "FREE";
   static const TOURNAMENT_HEAD_TO_HEAD    = "HEAD_TO_HEAD";

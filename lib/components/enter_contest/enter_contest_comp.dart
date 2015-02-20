@@ -437,7 +437,7 @@ class EnterContestComp implements DetachAware {
       int num = playersInSameTeam.containsKey(key)
                 ? playersInSameTeam[key]
                 : 0;
-      if (num < SoccerTeam.MAX_PLAYERS_SAME_TEAM) {
+      if (num < Contest.MAX_PLAYERS_SAME_TEAM) {
         playersInSameTeam[key] = num + 1;
       }
       else {

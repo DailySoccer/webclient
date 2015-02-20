@@ -1597,6 +1597,26 @@ tc.put("packages/webclient/components/legalese_and_help/policy_info_comp.html", 
 </div>
 
 """));
+tc.put("packages/webclient/components/legalese_and_help/restricted_comp.html", new HttpResponse(200, r"""<div id="restrictedCompRoot">
+  <!-- header title -->
+  <div class="default-section-header">RESTRICTED LOCATION</div>
+
+  <div class="restricted-content-wrapper">
+
+    <div class="texto">
+      Sorry, your current location prohibits you from making deposits on Epic Eleven.<br>
+      For location requirements please refer to our <a ng-click="gotoTerminus()">Terms of Use</a> .<br>
+      If you think this is in error and require assistance, please contact us through <a href="mailto:support@epiceleven.com">support@epiceleven.com</a>
+    </div>
+
+    <div class="button-wrapper">
+      <div class="button-box">
+        <button class="ok-button" ng-click="backToLobby()">Return to Lobby</button>
+      </div>
+    </div>
+
+  </div>
+</div>"""));
 tc.put("packages/webclient/components/legalese_and_help/terminus_info_comp.html", new HttpResponse(200, r"""<div id="staticInfo">
 
   <!-- header title -->
@@ -2300,11 +2320,21 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
   </div>
 </div>
 """));
-tc.put("packages/webclient/components/promos_comp.html", new HttpResponse(200, r"""<img ng-if="!scrDet.isXsScreen" src="images/bannerPromoDesktop.jpg" class="promoDesktop" />
+tc.put("packages/webclient/components/promos_comp.html", new HttpResponse(200, r"""<a class="banner2" ng-if="!scrDet.isXsScreen" ng-click="gotoPromo(0)">
+<img ng-if="!scrDet.isXsScreen" src="{{getThumb(0,'thumbLg')}}" class="promoDesktop" />
+</a>
+
+<a class="banner2" ng-if="!scrDet.isXsScreen" ng-click="gotoPromo(1)">
+<img ng-if="!scrDet.isXsScreen" src="{{getThumb(1,'thumbLg')}}" class="promoDesktop" />
+</a>
+
 <!--<div class="beta-version-desktop" ng-if="!scrDet.isXsScreen">
   <span class="beta-version-text">VERSIÓN BETA</span>
 </div>-->
-<img ng-if="scrDet.isXsScreen" src="images/betaHeaderXsBg.jpg" class="promoXs" />
+
+<a ng-if="scrDet.isXsScreen" ng-click="gotoPromo(0)">
+ <img ng-if="scrDet.isXsScreen" src="{{getThumb(0,'thumbXs')}}" class="promoXs" />
+</a>
 <!--<div class="beta-version-xs" ng-if="scrDet.isXsScreen">
   <span class="beta-version-text">BETA</span>
   <img src="images/betaHeaderXsTexto.png" class="betaVersionXs" />

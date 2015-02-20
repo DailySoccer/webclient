@@ -26,8 +26,9 @@ class SimplePromoViewerComp implements DetachAware {
   String promoButtonCaption;
 
 
-  SimplePromoViewerComp(this._router, this._scrDet, this._rootElement){
+  SimplePromoViewerComp(this._router, this._routeProvider, this._scrDet, this._rootElement){
     _screenWidthChangeDetector = _scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
+    var promoId = _routeProvider.route.parameters['contestId'];
     createHTML();
   }
 
@@ -62,5 +63,6 @@ class SimplePromoViewerComp implements DetachAware {
   var _screenWidthChangeDetector;
   Element _rootElement;
   ScreenDetectorService _scrDet;
+  RouteProvider _routeProvider;
   Router _router;
 }

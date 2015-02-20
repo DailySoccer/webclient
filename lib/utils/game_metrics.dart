@@ -21,6 +21,8 @@ class GameMetrics {
   static String ORDER = "Add Funds";
   static String CANCEL_CONTEST_ENTRY = "Cancel Contest Entry";
   static String REFUND = "Refund Asked";
+  static String PROMO = "Promo";
+
 
   static void aliasMixpanel(String email) {
     JsUtils.runJavascript(null, "alias", email, "mixpanel");

@@ -19,6 +19,7 @@ import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/scoring_rules_service.dart';
 import 'package:webclient/services/payment_service.dart';
 import 'package:webclient/services/prizes_service.dart';
+import 'package:webclient/services/promos_service.dart';
 
 import 'package:webclient/components/landing_page_1_slide_comp.dart';
 
@@ -35,6 +36,8 @@ import 'package:webclient/components/paginator_comp.dart';
 import 'package:webclient/components/contest_filters_comp.dart';
 import 'package:webclient/components/lobby_comp.dart';
 import 'package:webclient/components/promos_comp.dart';
+import 'package:webclient/components/simple_promo_viewer_comp.dart';
+
 import 'package:webclient/components/contests_list_comp.dart';
 
 import 'package:webclient/components/contest_info_comp.dart';
@@ -73,6 +76,7 @@ import 'package:webclient/components/legalese_and_help/legal_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/terminus_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/policy_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/beta_info_comp.dart';
+import 'package:webclient/components/legalese_and_help/restricted_comp.dart';
 
 import 'package:webclient/utils/host_server.dart';
 import 'package:webclient/utils/js_utils.dart';
@@ -110,6 +114,7 @@ class WebClientApp extends Module {
     bind(DateTimeService);
     bind(ProfileService);
     bind(FlashMessagesService);
+    bind(PromosService);
 
     bind(ContestsService);
     bind(SoccerPlayerService);
@@ -134,6 +139,7 @@ class WebClientApp extends Module {
     bind(LobbyComp);
     bind(ContestsListComp);
     bind(PromosComp);
+    bind(SimplePromoViewerComp);
     bind(PaginatorComp);
     bind(ContestFiltersComp);
 
@@ -153,6 +159,7 @@ class WebClientApp extends Module {
     bind(TerminusInfoComp);
     bind(PolicyInfoComp);
     bind(BetaInfoComp);
+    bind(RestrictedComp);
 
     bind(EnterContestComp);
     bind(SoccerPlayersListComp);
@@ -315,6 +322,16 @@ class WebClientApp extends Module {
           path: '/view_contest_entry/:parent/:viewContestEntryMode/:contestId',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
           viewHtml: '<view-contest-entry></view-contest-entry>'
+      )
+      ,'restricted': ngRoute(
+        path: '/restricted',
+        preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
+        viewHtml: '''<restricted-comp></restricted-comp>'''
+      )
+      ,'view_promo': ngRoute(
+        path: '/view_promo/:promoId',
+        preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
+        viewHtml: '''<simple-promo-viewer></simple-promo-viewer>'''
       )
     });
   }

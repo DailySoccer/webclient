@@ -1,0 +1,33 @@
+#restrictedCompRoot {
+	.restricted-content-wrapper {
+		.make-row(0);
+		background-image: url("@{images}/restrictedBg.jpg");
+
+		.texto {
+			.make-xs-column(8);
+			margin: 0 auto;
+			float: none;
+			.opensans_normal(10pt, @white);
+			padding-top: 40px;
+			padding-bottom: 40px;
+			@media (min-width: @screen-sm-min) {
+				font-size: 12pt;
+			}
+			text-align: center;
+		}
+		.button-wrapper{
+			.make-xs-column(6);
+			margin: 0 auto 40px auto;
+			float: none;
+			.button-box {
+				text-align: center;
+			}
+			button {
+				.btn-primary();
+				padding-top: 10px;
+				padding-bottom: 10px;
+			}
+		}
+		
+	}
+}

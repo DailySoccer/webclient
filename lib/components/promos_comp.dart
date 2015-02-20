@@ -3,6 +3,7 @@ library promos_comp;
 import 'package:angular/angular.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/promos_service.dart';
+import 'package:webclient/utils/game_metrics.dart';
 
 @Component(
     selector: 'promos',
@@ -23,6 +24,7 @@ class PromosComp implements DetachAware{
 
   void gotoPromo(int promoId) {
     //TODO: elegir el link, pero tiene preferencia el directUrl.
+    GameMetrics.logEvent(GameMetrics.PROMO, {"code": promos.values.toList()[promoId]['name']});
     _router.go('restricted', {});
   }
 

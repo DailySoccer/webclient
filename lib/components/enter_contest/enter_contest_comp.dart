@@ -63,7 +63,9 @@ class EnterContestComp implements DetachAware {
   int availableSalary = 0;
   String get printableAvailableSalary => StringUtils.parseSalary(availableSalary);
 
-  bool get isInvalidFantasyTeam => lineupSlots.any((player) => player == null);
+  bool playersInSameTeamValid = true;
+
+  bool get isInvalidFantasyTeam => lineupSlots.any((player) => player == null) || !playersInSameTeamValid;
   bool get editingContestEntry => contestEntryId != "none";
 
   bool contestInfoFirstTimeActivation = false;  // Optimizacion para no compilar el contest_info hasta que no sea visible la primera vez
@@ -197,6 +199,8 @@ class EnterContestComp implements DetachAware {
       // El componente hijo se entera de que le hemos cambiado el filtro a traves del two-way binding.
       fieldPosFilter = new FieldPos(FieldPos.LINEUP[slotIndex]);
     }
+
+    _verifyMaxPlayersInSameTeam();
   }
 
   void addSoccerPlayerToLineup(String soccerPlayerId) {
@@ -212,6 +216,8 @@ class EnterContestComp implements DetachAware {
     else {
       _tryToAddSoccerPlayerToLineup(soccerPlayer);
     }
+
+    _verifyMaxPlayersInSameTeam();
   }
 
   void _tryToAddSoccerPlayerToLineup(var soccerPlayer) {
@@ -233,6 +239,8 @@ class EnterContestComp implements DetachAware {
     if (!isSelectingSoccerPlayer) {
       scrDet.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('main-menu-slide').offsetHeight, ignoreInDesktop: true);
     }
+
+    _verifyMaxPlayersInSameTeam();
   }
 
   bool isSlotAvailableForSoccerPlayer(String soccerPlayerId) {
@@ -364,6 +372,7 @@ class EnterContestComp implements DetachAware {
     removeAllFilters();
     availableSalary = contest.salaryCap;
     alertDismiss();
+    _verifyMaxPlayersInSameTeam();
   }
 
   bool isPlayerSelected() {
@@ -417,6 +426,32 @@ class EnterContestComp implements DetachAware {
         _router.go(_routeProvider.parameters["parent"], {});
       }
     });
+  }
+
+  void _verifyMaxPlayersInSameTeam() {
+    playersInSameTeamValid = true;
+
+    Map<String, int> playersInSameTeam = new Map<String, int>();
+    lineupSlots.where((player) => player != null).forEach((player) {
+      String key = player["instanceSoccerPlayer"].soccerTeam.templateSoccerTeamId;
+      int num = playersInSameTeam.containsKey(key)
+                ? playersInSameTeam[key]
+                : 0;
+      if (num < SoccerTeam.MAX_PLAYERS_SAME_TEAM) {
+        playersInSameTeam[key] = num + 1;
+      }
+      else {
+        playersInSameTeamValid = false;
+        return;
+      }
+    });
+
+    if (playersInSameTeamValid) {
+      (querySelector(".alert-max-players-same-team") as DivElement).classes.remove('active');
+    }
+    else {
+      (querySelector(".alert-max-players-same-team") as DivElement).classes.add('active');
+    }
   }
 
   void saveContestEntry() {

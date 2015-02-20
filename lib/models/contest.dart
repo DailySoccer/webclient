@@ -253,7 +253,7 @@ class Contest {
     optaCompetitionId = jsonMap.containsKey("optaCompetitionId") && (jsonMap["optaCompetitionId"] != null) ? jsonMap["optaCompetitionId"] : "";
     matchEvents = jsonMap.containsKey("templateMatchEventIds") ? jsonMap["templateMatchEventIds"].map( (matchEventId) => references.getMatchEventById(matchEventId) ).toList() : [];
 
-    _prizePool = new Money.fromValue((maxEntries * entryFee.amount) * 0.90);
+    _prizePool = new Money.fromValue((maxEntries * entryFee.amount) * 90 / 100);
 
     instanceSoccerPlayers = {};
     if (jsonMap.containsKey("instanceSoccerPlayers")) {

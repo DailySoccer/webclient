@@ -272,7 +272,7 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
       <div id="menuSlide">
         <ul class="nav navbar-nav">
           <li highlights="lobby"       class="mainOption"><a  id="menuLobby"      destination="lobby">LOBBY</a></li>
-          <li highlights="my_contests" class="mainOption"><a  id="menuMyContests" destination="my_contests">MY CONTEST</a></li>
+          <li highlights="my_contests" class="mainOption"><a  id="menuMyContests" destination="my_contests">MY CONTESTS</a></li>
           <li highlights="help_info"   class="mainOption"><a  id="menuHowItWorks" destination="help_info">HOW IT WORKS</a></li>
           <li id="userBalanceOut-sm"   class="right-menu">
             <div class="balance">

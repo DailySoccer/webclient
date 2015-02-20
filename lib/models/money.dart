@@ -25,13 +25,15 @@ class Money {
   String currencyUnit;
   num amount;
 
-  String toString() => "${currentSymbolMap[currencyUnit]}${StringUtils.parsePrize(amount)}";
+  // TODO: Existen contests con entryFee en Euros, mostramos únicamente Dollars...
+  String toString() => "\$${StringUtils.parsePrize(amount)}";
+  // String toString() => "${currentSymbolMap[currencyUnit]}${StringUtils.parsePrize(amount)}";
 
   int toInt() => amount.toInt();
 
   Money.fromValue(num value) {
     currencyUnit = CURRENCY_UNIT_DEFAULT;
-    amount = value;
+    amount = (value*100).toInt()/100.0;
   }
 
   Money.fromJsonObject(String jodaMoney) {

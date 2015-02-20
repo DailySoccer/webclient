@@ -1,17 +1,17 @@
-<a ng-if="!scrDet.isXsScreen" ng-click="gotoPromo(promos[0].key)">
-<img ng-if="!scrDet.isXsScreen" src="promos[0]['thumbLg']" class="promoDesktop" />
+<a ng-if="!scrDet.isXsScreen" ng-click="gotoPromo(promos.keys[0])">
+<img ng-if="!scrDet.isXsScreen" src="{{getThumb(0,'thumbLg')}}" class="promoDesktop" />
 </a>
 
-<a ng-if="!scrDet.isXsScreen" ng-click="gotoPromo(promos[1].key)">
-<img ng-if="!scrDet.isXsScreen" src="promos[1]['thumbLg']" class="promoDesktop" />
+<a ng-if="!scrDet.isXsScreen" ng-click="gotoPromo(promos.keys[1])">
+<img ng-if="!scrDet.isXsScreen" src="{{getThumb(1,'thumbLg')}}" class="promoDesktop" />
 </a>
 
 <!--<div class="beta-version-desktop" ng-if="!scrDet.isXsScreen">
   <span class="beta-version-text">VERSIÓN BETA</span>
 </div>-->
 
-<a ng-if="scrDet.isXsScreen" ng-click="gotoPromo(promos[0].key)">
- <img ng-if="!scrDet.isXsScreen" src="promos[0]['thumbXs']" class="promoXs" />
+<a ng-if="scrDet.isXsScreen" ng-click="gotoPromo(promos.keys[0])">
+ <img ng-if="scrDet.isXsScreen" src="{{getThumb(0,'thumbXs')}}" class="promoXs" />
 </a>
 <!--<div class="beta-version-xs" ng-if="scrDet.isXsScreen">
   <span class="beta-version-text">BETA</span>

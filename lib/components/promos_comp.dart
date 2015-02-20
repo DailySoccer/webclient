@@ -26,6 +26,10 @@ class PromosComp {
     _router.go(promosService.getDirectUrl(promoId), {});
   }
 
+  String getThumb(int pos, String thumbSize) {
+    return promos.values.toList()[pos][thumbSize];
+  }
+
   Router _router;
 
 }

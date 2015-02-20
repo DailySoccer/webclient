@@ -62,7 +62,7 @@ class PromosService {
   }
 
   Map<String,Map> getRandomPromo(int quantity) {
-    List promosIds = promos.keys;
+    List promosIds = promos.keys.toList();
 
     Map<String, Map> myPromoList = new Map();
     List myIdList = new List();
@@ -72,7 +72,7 @@ class PromosService {
       String promoId = promosIds.elementAt(id);
       myIdList.add(promoId);
       promosIds.remove(promoId);
-      myPromoList.addAll({promoId: getPromo(promoId)});
+      myPromoList.addAll({promoId: promos[promoId]});
     }
 
     return myPromoList;

@@ -1,7 +1,6 @@
-  library promos_service;
+library promos_service;
 
 import 'package:angular/angular.dart';
-
 import "package:webclient/services/server_service.dart";
 
 @Injectable()
@@ -9,38 +8,38 @@ class PromosService {
 
   Map<String, Map> promos = {
     'promo1': {
-                 'thumbXs': ''
-                ,'thumbLg': ''
-                ,'directUrl' : ''
-                ,'imageXs' :''
-                ,'imageLg':''
-                ,'text'   : ''
-                ,'promoEnterUrl' : 'lobby'
-                ,'buttonCaption':'Return to Lobby'
+                 'thumbXs'  : ''
+                ,'thumbLg'  : ''
+                ,'directUrl': ''
+                ,'imageXs'  : 'images/promos/promo1_slide_lg.jpg'
+                ,'imageLg'  : 'images/promos/promo1_slide_lg.jpg'
+                ,'text'     : 'Lorem fistrum a gramenawer está la cosa muy malar no te digo trigo por no llamarte Rodrigor caballo blanco caballo negroorl diodeno. Qué dise usteer ese pedazo de torpedo a peich hasta luego Lucas condemor de la pradera de la pradera benemeritaar ese hombree diodeno. Hasta luego Lucas ese pedazo de tiene musho peligro pupita de la pradera por la gloria de mi madre se calle ustée mamaar te va a hasé pupitaa por la gloria de mi madre no te digo trigo por no llamarte Rodrigor. Diodeno fistro pupita ese hombree se calle ustée te voy a borrar el cerito ese que llega amatomaa a wan. Diodeno apetecan torpedo pecador torpedo hasta luego Lucas tiene musho peligro te voy a borrar el cerito. Fistro sexuarl tiene musho peligro no te digo trigo por no llamarte Rodrigor quietooor está la cosa muy malar hasta luego Lucas llevame al sircoo condemor fistro te va a hasé pupitaa. De la pradera se calle ustée ese hombree ahorarr ese que llega la caidita la caidita fistro ahorarr apetecan pupita. Ese que llega por la gloria de mi madre a gramenawer sexuarl al ataquerl tiene musho peligro ese que llega pupita pupita pecador.'
+                ,'promoEnterUrl' : 'prohibited'
+                ,'buttonCaption' :'Reserve your Spot'
               }
     ,'promo2': {
-                'thumbXs': ''
-               ,'thumbLg': ''
+                'thumbXs'   : ''
+               ,'thumbLg'   : ''
                ,'directUrl' : ''
-               ,'imageXs' :''
-               ,'imageLg':''
-               ,'text'   : ''
-               ,'promoEnterUrl' : 'lobby'
-               ,'buttonCaption':'Return to Lobby'
+               ,'imageXs'   : ''
+               ,'imageLg'   : ''
+               ,'text'      : ''
+               ,'promoEnterUrl' : 'prohibited'
+               ,'buttonCaption' :'Apply Promo'
     }
     ,'promo3': {
-                'thumbXs': ''
-               ,'thumbLg': ''
+                'thumbXs'   : ''
+               ,'thumbLg'   : ''
                ,'directUrl' : ''
-               ,'imageXs' :''
-               ,'imageLg':''
-               ,'text'   : ''
-               ,'promoEnterUrl' : 'lobby'
-               ,'buttonCaption':'Return to Lobby'
+               ,'imageXs'   :''
+               ,'imageLg'   :''
+               ,'text'      : ''
+               ,'promoEnterUrl' : 'prohibited'
+               ,'buttonCaption' :'Apply Promo'
       }
   };
 
-  static Map promoNotFound = {
+  Map promoNotFound = {
     'imageXs' :''
     ,'imageLg':''
     ,'text'   : ''
@@ -50,19 +49,15 @@ class PromosService {
 
 
   PromosService(this._server) {
-    _instance = this;
+    print("Activando promo service");
   }
 
-  static Map getPromo(String promoId) {
-    if (_instance == null)
-      throw new Exception("WTF 8111");
-
-    if (_instance.promos.containsKey(key)) {
-      return _instance.promos[key];
+  Map getPromo(String promoId) {
+    if (promos.containsKey(key)) {
+      return promos[key];
     }
     return promoNotFound;
   }
 
   ServerService _server;
-  static PromosService _instance;
 }

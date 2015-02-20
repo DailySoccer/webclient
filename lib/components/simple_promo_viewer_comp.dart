@@ -3,6 +3,7 @@ library simple_prome_viewer_comp;
 import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/screen_detector_service.dart';
+import 'package:webclient/services/promos_service.dart';
 
 @Component(
    selector: 'simple-promo-viewer',
@@ -10,35 +11,20 @@ import 'package:webclient/services/screen_detector_service.dart';
 )
 class SimplePromoViewerComp implements DetachAware {
 
-  @NgOneWay("promo-image-lg")
-  String promoImageLg;
-
-  @NgOneWay("promo-image-xs")
-  String promoImageXs;
-
-  @NgOneWay("promo-text")
-  String promoText;
-
-  @NgOneWay('promo-enter-url')
-  String promoEnterUrl;
-
-  @NgOneWay('promo-button-caption')
-  String promoButtonCaption;
-
-
-  SimplePromoViewerComp(this._router, this._routeProvider, this._scrDet, this._rootElement){
+  SimplePromoViewerComp(this._router, this._routeProvider, this._scrDet, this._rootElement, this._promosService){
     _screenWidthChangeDetector = _scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
     var promoId = _routeProvider.route.parameters['contestId'];
+    promo = _promosService.getPromo(promoId);
     createHTML();
   }
 
   void createHTML() {
     var theHTML = '''
       <div id="simplePromoViewerRoot">
-        <img class="img-responsive" src="${_scrDet.isXsScreen ? promoImageXs : promoImageLg}">
-        <div class="promo-text>${promoText}</div>
+        <img class="img-responsive" src="${_scrDet.isXsScreen ? promo["imageXs"] : promo["imageLg"]}>
+        <div class="promo-text>${promo["text"]}</div>
         <div class="autocentered-buttons-wrapper">
-          <div class="button-box"><button class="ok-button">${promoButtonCaption == "" ? "Enter the Promo" : promoButtonCaption}</button><div>
+          <div class="button-box"><button class="ok-button">${promo["buttonCaption"] == "" ? "Enter the Promo" : promo["buttonCaption"]}</button><div>
         </div>
       </div>
     ''';
@@ -48,7 +34,7 @@ class SimplePromoViewerComp implements DetachAware {
   }
 
   void onButtonClick(event) {
-    _router.go(promoEnterUrl,{});
+    _router.go(promo["enterUrl"],{});
   }
 
   void onScreenWidthChange(String screenSize){
@@ -60,8 +46,10 @@ class SimplePromoViewerComp implements DetachAware {
     _screenWidthChangeDetector.cancel();
   }
 
+  Map promo = {};
   var _screenWidthChangeDetector;
   Element _rootElement;
+  PromosService _promosService;
   ScreenDetectorService _scrDet;
   RouteProvider _routeProvider;
   Router _router;

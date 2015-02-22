@@ -38,8 +38,9 @@ class FooterComp implements ShadowRootAware {
           <div class="data-wrapper">
             <a class="goto-link" id="footerHelp" destination="help_info"><span class="sub-footer-help-link">HELP</span></a>
             <a class="goto-link" id="footerLegal" destination="legal_info"><span class="sub-footer-legal-link">LEGAL</span></a>
-            <a class="goto-link" id="footerTermsOfUse" destination="terminus_info"><span class="sub-footer-terms-link">TERMS OF USE</span></a>
+            <a class="goto-link" id="footerTermsOfUse" destination="terminus_info"><span class="sub-footer-terms-link">TERMS<span> OF USE</span></span></a>
             <a class="goto-link" id="footerPrivacyPolicy" destination="policy_info"><span class="sub-footer-policy-link">PRIVACY<span> POLICY</span></span></a>
+            <a class="goto-link" id="footerBlog" target="_blank" href="http://halftime.epiceleven.com"><span class="sub-footer-blog-link">BLOG</span></a>
           </div>
   
           <!--<div class="credit-cards">
@@ -54,7 +55,7 @@ class FooterComp implements ShadowRootAware {
           <div class="copyright">© Copyright 2015 Epic Eleven</div>
   
           <div class="social">
-            <a href="https://www.facebook.com/pages/Epic-Eleven/582891628483988?fref=ts"><img src="images/social.png"/></a>
+            <a target="_blank" href="https://www.facebook.com/pages/Epic-Eleven/582891628483988?fref=ts"><img src="images/social.png"/></a>
           </div>
         </div>
       </div>

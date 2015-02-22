@@ -88,11 +88,17 @@ lineup-selector {
 		margin-bottom: 0;
 		display: none;
 		border-radius: 0;
+		
 		button {
 			margin: -12px -10px 0 0;
 		}
+		
+		&.active {
+      display: block;
+    }
 	}
-	.alert-red-numbers.active {
-		display: block;
-	}
+	
+	.alert-max-players-same-team {
+    .alert-red-numbers();
+  }
 }

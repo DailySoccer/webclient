@@ -225,23 +225,25 @@ class EnterContestComp implements DetachAware {
     FieldPos theFieldPos = soccerPlayer["fieldPos"];
 
     for (int c = 0; c < lineupSlots.length; ++c) {
-       if (lineupSlots[c] == null && FieldPos.LINEUP[c] == theFieldPos.value) {
-         lineupSlots[c] = soccerPlayer;
-         isSelectingSoccerPlayer = false;
-         availableSalary -= soccerPlayer["salary"];
-         nameFilter = null;
-         // Actualizamos el contestEntry, independientemente que estemos editando o creando
-         saveContestEntry();
-         break;
-       }
+      if (lineupSlots[c] == null && FieldPos.LINEUP[c] == theFieldPos.value) {
+        lineupSlots[c] = soccerPlayer;
+        isSelectingSoccerPlayer = false;
+        availableSalary -= soccerPlayer["salary"];
+        nameFilter = null;
+        // Actualizamos el contestEntry, independientemente que estemos editando o creando
+        if(!_isRestoringTeam) {
+          saveContestEntry();
+        }
+        break;
+      }
     }
     // Si ya no estamos en modo seleción, scrolleamos hasta la altura del dinero que nos queda disponible.
     if (!isSelectingSoccerPlayer) {
       scrDet.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('main-menu-slide').offsetHeight, ignoreInDesktop: true);
     }
-    if(!_isRestoringTeam) {
+   if(!_isRestoringTeam) {
       _verifyMaxPlayersInSameTeam();
-    }
+   }
   }
 
   bool isSlotAvailableForSoccerPlayer(String soccerPlayerId) {

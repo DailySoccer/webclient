@@ -1161,6 +1161,9 @@ tc.put("packages/webclient/components/enter_contest/lineup_selector_comp.html", 
     <button type="button" class="close" ng-click="enterContestComp.alertDismiss()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
     <strong>You've spent the salary cap</strong><br> Please choose players that fit the budget.
   </div>
+  <div class="alert alert-danger alert-max-players-same-team" role="alert">
+    <strong>Ups! It looks like you already have {{MAX_PLAYERS_SAME_TEAM}} players of the same team</strong><br> Please, choose another player...
+  </div>
 
 </div>"""));
 tc.put("packages/webclient/components/enter_contest/matches_filter_comp.html", new HttpResponse(200, r"""<div id="matchesFilterWrapper" ng-switch="srcDet.isXsScreen">
@@ -1605,7 +1608,7 @@ tc.put("packages/webclient/components/legalese_and_help/restricted_comp.html", n
 
     <div class="texto">
       Sorry, your current location prohibits you from making deposits on Epic Eleven.<br>
-      For location requirements please refer to our <a ng-click="gotoTerminus()">Terms of Use</a> .<br>
+      For location requirements please refer to our <a class="link"  ng-click="gotoTerminus()">Terms of Use</a> .<br>
       If you think this is in error and require assistance, please contact us through <a href="mailto:support@epiceleven.com">support@epiceleven.com</a>
     </div>
 

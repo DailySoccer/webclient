@@ -32,6 +32,8 @@ class ViewContestEntryComp {
   List<ContestEntry> get contestEntries => (contest != null) ? contest.contestEntries : null;
   List<ContestEntry> get contestEntriesOrderByPoints => (contest != null) ? contest.contestEntriesOrderByPoints : null;
 
+  String get _getKeyForCurrentUserContest => (_profileService.isLoggedIn ? _profileService.user.userId : 'guest') + '#' + contest.contestId;
+
   // A esta pantalla entramos de varias maneras:
   bool get isModeViewing => _viewContestEntryMode == "viewing"; // Clickamos "my_contests->proximos->ver".
   bool get isModeCreated => _viewContestEntryMode == "created"; // Acabamos de crearla a traves de enter_contest
@@ -71,20 +73,22 @@ class ViewContestEntryComp {
 
   void confirmContestCancellation(){
     modalShow(
-                "¡Atención!",
+                "¡Caution!",
                 contest.entryFee.amount > 0 ?
-                  "Vas a cancelar tu participación en el torneo<br><br>La cuota de inscripción de ${contest.entryFee} será devuelta a tu monedero si decides abandonar.<br><br>¿Estás seguro?<br><br>" :
-                  "Vas a cancelar tu participación en el torneo<br><br>¿Estás seguro?<br><br>",
-                onOk: "Si",
+                  "You are going to cancel your participation in this constest.<br><br>The entry fee of ${contest.entryFee} will be refounded if you decide to leave.<br><br>¿Are you sure?<br><br>" :
+                  "You are going to cancel your participation in the contest<br><br>¿Are you sure?<br><br>",
+                onOk: "Yes",
                 onCancel: "No"
              )
              .then((resp){
                 if(resp) {
                   cancelContestEntry();
+                  window.localStorage.remove(_getKeyForCurrentUserContest);
                 }
               });
 
   }
+
 
   void cancelContestEntry() {
     GameMetrics.logEvent(GameMetrics.CANCEL_CONTEST_ENTRY, {"value": contest.entryFee});

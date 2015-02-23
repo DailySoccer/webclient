@@ -32,11 +32,15 @@ class PromosService {
   };
 
   Map promoNotFound = {
-    'imageXs' :''
-    ,'imageLg':''
-    ,'text'   : ''
+    'thumbXs': ''
+    ,'thumbLg': ''
+    ,'directUrl': ''
+    ,'imageXs'  : ''
+    ,'imageLg'  : ''
+    ,'text'     : 'The promo you are trying to access is not available'
     ,'promoEnterUrl' : 'lobby'
-    ,'buttonCaption':'Return to Lobby'
+    ,'buttonCaption' :'Return to Lobby'
+    ,'name': '404'
   };
 
 

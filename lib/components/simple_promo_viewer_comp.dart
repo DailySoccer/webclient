@@ -21,8 +21,8 @@ class SimplePromoViewerComp implements DetachAware {
   void createHTML() {
     var theHTML = '''
       <div id="simplePromoViewerRoot">
-        <img class="banner" src="${_scrDet.isXsScreen ? promo["imageXs"] : promo["imageLg"]}">
-        <div class="promo-text">${promo["text"]}</div>
+        ${getPromoImg()}
+        <div class="${promo['name'] == '404' ? 'promo-text-centered' : 'promo-text'}">${promo["text"]}</div>
         <div class="button-box">
             <button class="button-ok">${promo["buttonCaption"] == "" ? "Reserve your Spot" : promo["buttonCaption"]}</button>
         </div>
@@ -31,6 +31,17 @@ class SimplePromoViewerComp implements DetachAware {
     _rootElement.nodes.clear();
     _rootElement.appendHtml(theHTML);
     _rootElement.querySelectorAll(".button-ok").onClick.listen(onButtonClick);
+  }
+
+  String getPromoImg(){
+    ImageElement image = new ImageElement(src: promo["imageXs"]);
+    if (_scrDet.isXsScreen) {
+        return '<img class="banner" src="${promo["imageXs"]}" onerror="this.parentNode.removeChild(this)">';
+    }
+    else {
+        return '<img class="banner" src="${promo["imageLg"]}" onerror="this.parentNode.removeChild(this)">';
+    }
+    return '';
   }
 
   void onButtonClick(event) {

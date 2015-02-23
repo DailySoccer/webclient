@@ -116,7 +116,7 @@ class FlashMessageComp implements ShadowRootAware, ScopeAware {
   }
 
   void onServerError(Map aMsg) {
-    _serverGlobalMsgElement = _createGlobalMessageHtml("Error en la conexión...", isErrorMsg: true);
+    _serverGlobalMsgElement = _createGlobalMessageHtml("Connection error...", isErrorMsg: true);
   }
 
   Scope _scope;

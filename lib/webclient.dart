@@ -328,11 +328,11 @@ class WebClientApp extends Module {
         preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
         viewHtml: '''<restricted-comp></restricted-comp>'''
       )
-      /*,'view_promo': ngRoute(
+      ,'view_promo': ngRoute(
         path: '/view_promo/:promoId',
         preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
         viewHtml: '''<simple-promo-viewer></simple-promo-viewer>'''
-      )*/
+      )
     });
   }
 

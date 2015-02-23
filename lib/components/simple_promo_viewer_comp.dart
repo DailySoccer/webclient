@@ -21,20 +21,31 @@ class SimplePromoViewerComp implements DetachAware {
   void createHTML() {
     var theHTML = '''
       <div id="simplePromoViewerRoot">
-        <img class="img-responsive" src="${_scrDet.isXsScreen ? promo["imageXs"] : promo["imageLg"]}">
-        <div class="promo-text>${promo["text"]}</div>
-        <div class="autocentered-buttons-wrapper">
-          <div class="button-box"><button class="ok-button">${promo["buttonCaption"] == "" ? "Enter the Promo" : promo["buttonCaption"]}</button><div>
+        ${getPromoImg()}
+        <div class="${promo['name'] == '404' ? 'promo-text-centered' : 'promo-text'}">${promo["text"]}</div>
+        <div class="button-box">
+            <button class="button-ok">${promo["buttonCaption"] == "" ? "Reserve your Spot" : promo["buttonCaption"]}</button>
         </div>
       </div>
     ''';
     _rootElement.nodes.clear();
     _rootElement.appendHtml(theHTML);
-    _rootElement.querySelectorAll("[buttonOnclick]").onClick.listen(onButtonClick);
+    _rootElement.querySelectorAll(".button-ok").onClick.listen(onButtonClick);
+  }
+
+  String getPromoImg(){
+    ImageElement image = new ImageElement(src: promo["imageXs"]);
+    if (_scrDet.isXsScreen) {
+        return '<img class="banner" src="${promo["imageXs"]}" onerror="this.parentNode.removeChild(this)">';
+    }
+    else {
+        return '<img class="banner" src="${promo["imageLg"]}" onerror="this.parentNode.removeChild(this)">';
+    }
+    return '';
   }
 
   void onButtonClick(event) {
-    _router.go(promo["enterUrl"],{});
+    _router.go(promo["promoEnterUrl"],{});
   }
 
   void onScreenWidthChange(String screenSize){

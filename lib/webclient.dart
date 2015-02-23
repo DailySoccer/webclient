@@ -297,7 +297,7 @@ class WebClientApp extends Module {
             ,'welcome': ngRoute(
                 path: '/welcome-screen',
                 preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_OUT),
-                viewHtml: '''<modal window-size="'md'"><welcome-lobby>dsdfsdf</welcome-lobby></modal>'''
+                viewHtml: '''<modal window-size="'90percent'"><welcome-lobby></welcome-lobby></modal>'''
             )
           }
       )

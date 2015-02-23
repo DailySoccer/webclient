@@ -239,8 +239,9 @@ class EnterContestComp implements DetachAware {
     if (!isSelectingSoccerPlayer) {
       scrDet.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('main-menu-slide').offsetHeight, ignoreInDesktop: true);
     }
-
-    _verifyMaxPlayersInSameTeam();
+    if(!_isRestoringTeam) {
+      _verifyMaxPlayersInSameTeam();
+    }
   }
 
   bool isSlotAvailableForSoccerPlayer(String soccerPlayerId) {
@@ -462,9 +463,11 @@ class EnterContestComp implements DetachAware {
   void restoreContestEntry() {
     if (window.localStorage.containsKey(_getKeyForCurrentUserContest)) {
       List loadedData = JSON.decode(window.localStorage[_getKeyForCurrentUserContest]);
+      _isRestoringTeam = true;
       loadedData.forEach((id) {
         addSoccerPlayerToLineup(id);
       });
+      _isRestoringTeam = false;
     }
   }
 
@@ -485,4 +488,6 @@ class EnterContestComp implements DetachAware {
 
   RouteHandle _routeHandle;
   bool _teamConfirmed = false;
+
+  bool _isRestoringTeam = false;
 }

@@ -181,6 +181,17 @@
 	}
 }
 
+#modalRoot {
+	.modal-90percent {
+		
+		width: auto;
+		@media (min-width: @screen-sm-min) {
+			width: 90%;
+			margin: 30px auto;
+			max-width: 900px;
+		}
+	}
+}
 #modalRoot .main-box {
 	.main-box();
 	.make-sm-column(12);
@@ -241,21 +252,24 @@
 	display: none;
 }
 
-/*
-// Para el join modal
-#modalRoot {
-	.main-box {
-		margin: 0;
+//Tutoriales de bienvenida
+#welcomeLobbyRoot {
+	.make-row(0);
+	.tut-title {
+		.make-xs-column(12, 30px);
+		.opensans_normal(12pt, @blueDark);
+		@media (min-width: @screen-sm-min) {
+			.opensans_normal(14pt, @blueDark);
+		}
+		@media (min-width: @screen-md-min) {
+			.opensans_normal(18pt, @blueDark);
+		}
+		margin: 10px 0;
+		text-align: center;		
 	}
-	#joinRoot {
-		min-height: 0;
+	.tut-image {
+		.make-xs-column(12);
+		.img-responsive();
+		margin-bottom: 30px;
 	}
 }
-
-.global-join {
-	.modal-dialog {
-		width: 400px;
-		margin: 5% auto auto auto;
-	}
-}
-*/

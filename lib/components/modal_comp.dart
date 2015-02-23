@@ -15,7 +15,7 @@ class ModalComp implements DetachAware, ShadowRootAware {
   /********* BINDINGS */
   @NgOneWay("window-size")
   void set windowSize(value) {
-    if (value == null || value.isEmpty || (value != "lg"  && value != "md" && value != "sm") ) {
+    if (value == null || value.isEmpty || (value != "lg"  && value != "md" && value != "sm" && value != "90percent") ) {
       return;
     }
     modalSize = value;

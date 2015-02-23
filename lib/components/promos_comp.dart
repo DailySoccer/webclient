@@ -22,10 +22,13 @@ class PromosComp implements DetachAware{
     _screenWidthChangeDetector = scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
   }
 
-  void gotoPromo(int promoId) {
+  void gotoPromo(int pos) {
     //TODO: elegir el link, pero tiene preferencia el directUrl.
-    GameMetrics.logEvent(GameMetrics.PROMO, {"code": promos.values.toList()[promoId]['name']});
-    _router.go('restricted', {});
+    GameMetrics.logEvent(GameMetrics.PROMO, {"code": promos.values.toList()[pos]['name']});
+    var promoId = promos.keys.toList()[pos];
+    String url = promos[promoId]['directUrl'] == '' ? 'view_promo' : promos[promoId]['directUrl'];
+    Map params = promos[promoId]['directUrl'] == '' ? {"promoId" : promoId} : {};
+    _router.go(url, params);
   }
 
   void onScreenWidthChange(String size) {

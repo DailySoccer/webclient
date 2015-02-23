@@ -8,23 +8,23 @@ import 'package:webclient/services/server_service.dart';
 class PromosService {
   Map<String, Map> promos = {
     'promo1': {
-                 'thumbXs': 'images/promos/promo02_2015_Bulls_Xs.jpg'
-                ,'thumbLg': 'images/promos/promo02_2015_Bulls_Desktop.png'
+                 'thumbXs': 'images/promos/promoGen01Xs.jpg'
+                ,'thumbLg': 'images/promos/promoGen01Desktop.png'
                 ,'directUrl': 'restricted'
                 ,'imageXs'  : 'images/promos/promo02_2015_Bulls_Landing_Xs.png'
                 ,'imageLg'  : 'images/promos/promo02_2015_Bulls_Landing.png'
-                ,'text'     : 'Lorem fistrum condemor minim commodo quietooor eiusmod ese hombree de la pradera ese que llega quietooor. Adipisicing qui por la gloria de mi madre llevame al sircoo ese hombree la caidita sexuarl tiene musho peligro sit amet occaecat. Llevame al sircoo no puedor tempor a gramenawer a wan.'
+                ,'text'     : ''
                 ,'promoEnterUrl' : 'restricted'
                 ,'buttonCaption' :'Reserve your Spot'
                 ,'name': 'Bull'
               }
     ,'promo2': {
-                 'thumbXs': 'images/promos/promo02_2015_Premier_Xs.jpg'
-                ,'thumbLg': 'images/promos/promo02_2015_Premier_Desktop.png'
+                 'thumbXs': 'images/promos/promoGen02Xs.jpg'
+                ,'thumbLg': 'images/promos/promoGen02Desktop.png'
                 ,'directUrl' : 'restricted'
                 ,'imageXs' :'images/promos/promo02_2015_Premier_Landing_Xs.png'
                 ,'imageLg':'images/promos/promo02_2015_Premier_Landing.jpg'
-                ,'text'   : 'Sit amet velit sed condemor tiene musho peligro diodenoo occaecat te va a hasé pupitaa minim adipisicing se calle ustée. Minim aliquip magna ese hombree diodenoo sed reprehenderit. Te va a hasé pupitaa enim consectetur amatomaa nostrud. Esse jarl exercitation dolor al ataquerl incididunt por la gloria de mi madre labore. '
+                ,'text'   : ''
                ,'promoEnterUrl' : 'restricted'
                ,'buttonCaption' :'Reserve your Spot'
                ,'name': 'Premier'

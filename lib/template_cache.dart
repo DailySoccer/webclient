@@ -1084,7 +1084,7 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
                     </div>
                 </div>
 
-                <lineup-selector ng-show="!isSelectingSoccerPlayer || scrDet.isNotXsScreen" has-max-players-same-team="playersInSameTeamValid" has-negative-balance="isNegativeBalance"></lineup-selector>
+                <lineup-selector ng-show="!isSelectingSoccerPlayer || scrDet.isNotXsScreen" has-max-players-same-team="playersInSameTeamInvalid" has-negative-balance="isNegativeBalance"></lineup-selector>
               </div>
             </div>
 
@@ -1161,7 +1161,7 @@ tc.put("packages/webclient/components/enter_contest/lineup_selector_comp.html", 
     <button type="button" class="close" ng-click="enterContestComp.alertDismiss()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
     <strong>You've spent the salary cap</strong><br> Please choose players that fit the budget.
   </div>
-  <div class="alert alert-danger alert-max-players-same-team" ng-class="{'active':!alertMaxPlayersSameTeam}" role="alert">
+  <div class="alert alert-danger alert-max-players-same-team" ng-class="{'active':alertMaxPlayersSameTeamExceed}" role="alert">
     <strong>Ups! It looks like you already have {{MAX_PLAYERS_SAME_TEAM}} players of the same team</strong><br> Please, choose another player...
   </div>
 

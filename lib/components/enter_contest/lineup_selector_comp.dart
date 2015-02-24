@@ -18,10 +18,7 @@ class LineupSelectorComp {
   bool alertNegativeBalance;
 
   @NgOneWay("has-max-players-same-team")
-  void set AlertNB(bool value){
-    alertMaxPlayersSameTeam = value;
-  }
-  bool alertMaxPlayersSameTeam;
+  bool alertMaxPlayersSameTeamExceed;
 
   String get MAX_PLAYERS_SAME_TEAM => Contest.MAX_PLAYERS_SAME_TEAM.toString();
 

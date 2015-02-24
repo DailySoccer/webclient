@@ -63,10 +63,10 @@ class EnterContestComp implements DetachAware {
   int availableSalary = 0;
   String get printableAvailableSalary => StringUtils.parseSalary(availableSalary);
 
-  bool playersInSameTeamValid = false;
+  bool playersInSameTeamInvalid = false;
   bool isNegativeBalance = false;
 
-  bool get isInvalidFantasyTeam => lineupSlots.any((player) => player == null) || !playersInSameTeamValid;
+  bool get isInvalidFantasyTeam => lineupSlots.any((player) => player == null) || playersInSameTeamInvalid || isNegativeBalance;
   bool get editingContestEntry => contestEntryId != "none";
 
   bool contestInfoFirstTimeActivation = false;  // Optimizacion para no compilar el contest_info hasta que no sea visible la primera vez
@@ -433,7 +433,7 @@ class EnterContestComp implements DetachAware {
   }
 
   void _verifyMaxPlayersInSameTeam() {
-    playersInSameTeamValid = true;
+    playersInSameTeamInvalid = false;
 
     Map<String, int> playersInSameTeam = new Map<String, int>();
 
@@ -446,7 +446,7 @@ class EnterContestComp implements DetachAware {
         playersInSameTeam[key] = num + 1;
       }
       else {
-        playersInSameTeamValid = false;
+        playersInSameTeamInvalid = true;
         return;
       }
     });

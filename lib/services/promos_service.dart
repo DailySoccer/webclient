@@ -10,13 +10,13 @@ class PromosService {
     'promo1': {
                  'thumbXs': 'images/promos/promoGen01Xs.jpg'
                 ,'thumbLg': 'images/promos/promoGen01Desktop.png'
-                ,'directUrl': 'restricted'
+                ,'directUrl': '#/enter_contest/lobby/54e4b7a4e4b00b6eabdb206d/none'
                 ,'imageXs'  : 'images/promos/promo02_2015_Bulls_Landing_Xs.png'
                 ,'imageLg'  : 'images/promos/promo02_2015_Bulls_Landing.png'
                 ,'text'     : ''
                 ,'promoEnterUrl' : 'restricted'
                 ,'buttonCaption' :'Reserve your Spot'
-                ,'name': 'Bull'
+                ,'name': 'EuropeanStrike'
               }
     ,'promo2': {
                  'thumbXs': 'images/promos/promoGen02Xs.jpg'
@@ -27,7 +27,7 @@ class PromosService {
                 ,'text'   : ''
                ,'promoEnterUrl' : 'restricted'
                ,'buttonCaption' :'Reserve your Spot'
-               ,'name': 'Premier'
+               ,'name': 'WelcomeBonus100'
               }
   };
 
@@ -45,7 +45,6 @@ class PromosService {
 
 
   PromosService(this._server) {
-    print("Activando promo service");
     _rng = new Random();
   }
 

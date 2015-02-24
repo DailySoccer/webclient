@@ -14,7 +14,7 @@ import 'package:webclient/utils/game_metrics.dart';
 class AddFundsComp implements ShadowRootAware, DetachAware {
   int selectedValue = 25;
 
-  AddFundsComp(this._routeProvider, this._paymentService) {
+  AddFundsComp(this._routeProvider, this._paymentService, this._router) {
     contestId = _routeProvider.route.parameters['contestId'];
   }
 
@@ -64,11 +64,16 @@ class AddFundsComp implements ShadowRootAware, DetachAware {
   void addFunds (Event e) {
     GameMetrics.logEvent(GameMetrics.ORDER, {"value": selectedValue});
     (querySelector("#addFundsButton") as ButtonElement).disabled = true;
-    _paymentService.expressCheckoutWithPaypal(amount: selectedValue);
+
+    // TODO: HACK HACK HACK
+    //_paymentService.expressCheckoutWithPaypal(amount: selectedValue);
+    _router.go('restricted', {});
+
   }
 
   PaymentService _paymentService;
   RouteProvider _routeProvider;
+  Router _router;
 
   String contestId;
 }

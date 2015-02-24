@@ -4,6 +4,7 @@ import 'package:angular/angular.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/promos_service.dart';
 import 'package:webclient/utils/game_metrics.dart';
+import 'dart:html';
 
 @Component(
     selector: 'promos',
@@ -28,7 +29,13 @@ class PromosComp implements DetachAware{
     var promoId = promos.keys.toList()[pos];
     String url = promos[promoId]['directUrl'] == '' ? 'view_promo' : promos[promoId]['directUrl'];
     Map params = promos[promoId]['directUrl'] == '' ? {"promoId" : promoId} : {};
-    _router.go(url, params);
+
+    if (url.contains("#")) {
+      window.location.assign(url);
+    }
+    else {
+      _router.go(url, params);
+    }
   }
 
   void onScreenWidthChange(String size) {

@@ -28,20 +28,20 @@ import 'package:webclient/components/modal_comp.dart';
 )
 class EnterContestComp implements DetachAware {
 
-  static final String ERROR_RETRY_OP = "ERROR_RETRY_OP";
-  static final String ERROR_CONTEST_NOT_ACTIVE = "ERROR_CONTEST_NOT_ACTIVE";
-  static final String ERROR_USER_ALREADY_INCLUDED = "ERROR_USER_ALREADY_INCLUDED";
-  static final String ERROR_USER_BALANCE_NEGATIVE = "ERROR_USER_BALANCE_NEGATIVE";
-  static final String ERROR_MAX_PLAYERS_SAME_TEAM = "ERROR_MAX_PLAYERS_SAME_TEAM";
+  static const String ERROR_RETRY_OP = "ERROR_RETRY_OP";
+  static const String ERROR_CONTEST_NOT_ACTIVE = "ERROR_CONTEST_NOT_ACTIVE";
+  static const String ERROR_USER_ALREADY_INCLUDED = "ERROR_USER_ALREADY_INCLUDED";
+  static const String ERROR_USER_BALANCE_NEGATIVE = "ERROR_USER_BALANCE_NEGATIVE";
+  static const String ERROR_MAX_PLAYERS_SAME_TEAM = "ERROR_MAX_PLAYERS_SAME_TEAM";
 
   // Errores de los que no tendríamos que informar
-  static final String ERROR_CONTEST_INVALID = "ERROR_CONTEST_INVALID";
-  static final String ERROR_CONTEST_FULL = "ERROR_CONTEST_FULL";
-  static final String ERROR_FANTASY_TEAM_INCOMPLETE = "ERROR_FANTASY_TEAM_INCOMPLETE";
-  static final String ERROR_SALARYCAP_INVALID = "ERROR_SALARYCAP_INVALID";
-  static final String ERROR_FORMATION_INVALID = "ERROR_FORMATION_INVALID";
-  static final String ERROR_OP_UNAUTHORIZED = "ERROR_OP_UNAUTHORIZED";
-  static final String ERROR_CONTEST_ENTRY_INVALID = "ERROR_CONTEST_ENTRY_INVALID";
+  static const String ERROR_CONTEST_INVALID = "ERROR_CONTEST_INVALID";
+  static const String ERROR_CONTEST_FULL = "ERROR_CONTEST_FULL";
+  static const String ERROR_FANTASY_TEAM_INCOMPLETE = "ERROR_FANTASY_TEAM_INCOMPLETE";
+  static const String ERROR_SALARYCAP_INVALID = "ERROR_SALARYCAP_INVALID";
+  static const String ERROR_FORMATION_INVALID = "ERROR_FORMATION_INVALID";
+  static const String ERROR_OP_UNAUTHORIZED = "ERROR_OP_UNAUTHORIZED";
+  static const String ERROR_CONTEST_ENTRY_INVALID = "ERROR_CONTEST_ENTRY_INVALID";
 
   ScreenDetectorService scrDet;
   LoadingService loadingService;
@@ -63,14 +63,17 @@ class EnterContestComp implements DetachAware {
   int availableSalary = 0;
   String get printableAvailableSalary => StringUtils.parseSalary(availableSalary);
 
-  bool playersInSameTeamValid = true;
+  bool playersInSameTeamValid = false;
+  bool isNegativeBalance = false;
 
   bool get isInvalidFantasyTeam => lineupSlots.any((player) => player == null) || !playersInSameTeamValid;
   bool get editingContestEntry => contestEntryId != "none";
 
   bool contestInfoFirstTimeActivation = false;  // Optimizacion para no compilar el contest_info hasta que no sea visible la primera vez
 
-  EnterContestComp(this._routeProvider, this._router, this.scrDet, this._contestsService, this.loadingService, this._profileService, this._flashMessage) {
+  List<String> lineupAlertList = [];
+
+  EnterContestComp(this._routeProvider, this._router, this.scrDet, this._contestsService, this.loadingService, this._profileService, this._flashMessage, this._rootElement) {
     loadingService.isLoading = true;
     scrDet.scrollTo('#mainApp');
 
@@ -88,6 +91,8 @@ class EnterContestComp implements DetachAware {
 
         contest = _contestsService.lastContest;
         availableSalary = contest.salaryCap;
+        // Comprobamos si estamos en salario negativo
+        isNegativeBalance = availableSalary < 0;
 
         initAllSoccerPlayers();
 
@@ -187,9 +192,7 @@ class EnterContestComp implements DetachAware {
       saveContestEntry();
 
       // Quitamos la modal de números rojos si ya hay salario disponible
-      if (availableSalary >= 0) {
-        alertDismiss();
-      }
+      isNegativeBalance = availableSalary < 0;
     }
     else {
       isSelectingSoccerPlayer = true;
@@ -229,6 +232,9 @@ class EnterContestComp implements DetachAware {
         lineupSlots[c] = soccerPlayer;
         isSelectingSoccerPlayer = false;
         availableSalary -= soccerPlayer["salary"];
+        // Comprobamos si estamos en salario negativo
+        isNegativeBalance = availableSalary < 0;
+
         nameFilter = null;
         // Actualizamos el contestEntry, independientemente que estemos editando o creando
         if(!_isRestoringTeam) {
@@ -241,9 +247,9 @@ class EnterContestComp implements DetachAware {
     if (!isSelectingSoccerPlayer) {
       scrDet.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('main-menu-slide').offsetHeight, ignoreInDesktop: true);
     }
-   if(!_isRestoringTeam) {
+    if(!_isRestoringTeam) {
       _verifyMaxPlayersInSameTeam();
-   }
+    }
   }
 
   bool isSlotAvailableForSoccerPlayer(String soccerPlayerId) {
@@ -299,15 +305,9 @@ class EnterContestComp implements DetachAware {
     });
   }
 
-  void alertDismiss() {
-    (querySelector(".alert-red-numbers") as DivElement).classes.remove('active');
-  }
-
   void createFantasyTeam() {
-    if (availableSalary < 0) {
-      (querySelector(".alert-red-numbers") as DivElement).classes.add('active');
+    if (isNegativeBalance)
       return;
-    }
 
     // No permitimos la reentrada de la solicitud (hasta que termine el timer de espera para volver a reintentarlo)
     if (_retryOpTimer != null && _retryOpTimer.isActive) {
@@ -374,7 +374,8 @@ class EnterContestComp implements DetachAware {
     resetLineup();
     removeAllFilters();
     availableSalary = contest.salaryCap;
-    alertDismiss();
+    // Comprobamos si estamos en salario negativo
+    isNegativeBalance = availableSalary < 0;
     _verifyMaxPlayersInSameTeam();
   }
 
@@ -435,6 +436,7 @@ class EnterContestComp implements DetachAware {
     playersInSameTeamValid = true;
 
     Map<String, int> playersInSameTeam = new Map<String, int>();
+
     lineupSlots.where((player) => player != null).forEach((player) {
       String key = player["instanceSoccerPlayer"].soccerTeam.templateSoccerTeamId;
       int num = playersInSameTeam.containsKey(key)
@@ -448,13 +450,6 @@ class EnterContestComp implements DetachAware {
         return;
       }
     });
-
-    if (playersInSameTeamValid) {
-      (querySelector(".alert-max-players-same-team") as DivElement).classes.remove('active');
-    }
-    else {
-      (querySelector(".alert-max-players-same-team") as DivElement).classes.add('active');
-    }
   }
 
   void saveContestEntry() {
@@ -470,6 +465,7 @@ class EnterContestComp implements DetachAware {
         addSoccerPlayerToLineup(id);
       });
       _isRestoringTeam = false;
+      _verifyMaxPlayersInSameTeam();
     }
   }
 
@@ -492,4 +488,6 @@ class EnterContestComp implements DetachAware {
   bool _teamConfirmed = false;
 
   bool _isRestoringTeam = false;
+  Element _rootElement;
+  Element alertMaxplayerInSameTeam;
 }

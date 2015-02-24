@@ -59,6 +59,9 @@ class WelcomeLobbyComp {
       case 'lobby':
         text ='You can play in as many tournaments as you want from La Liga, Premier League and Champions League';
       break;
+      case 'enter_contest':
+        text ='Elige tu fantastica alineación sin pasarte de salary cap';
+      break;
     }
     return text;
   }
@@ -67,7 +70,10 @@ class WelcomeLobbyComp {
     String imagePath;
     switch(stage) {
       case 'lobby':
-        imagePath = "images/tutorial/" + (_scrDet.isXsScreen ? "welcomeLobbyXs.png" : "welcomeLobbyDesktop.png");
+        imagePath = "images/tutorial/" + (_scrDet.isXsScreen ? "welcomeLobbyXs.jpg" : "welcomeTeamDesktop.jpg");
+      break;
+      case 'enter_contest':
+        imagePath = "images/tutorial/" + (_scrDet.isXsScreen ? "welcomeLobbyXs.jpg" : "welcomeTeamDesktop.jpg");
       break;
     }
     return imagePath;

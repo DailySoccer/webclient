@@ -253,7 +253,7 @@
 }
 
 //Tutoriales de bienvenida
-#welcomeLobbyRoot {
+#welcomeRoot {
 	.make-row(0);
 	.tut-title {
 		.make-xs-column(12, 30px);
@@ -271,5 +271,9 @@
 		.make-xs-column(12);
 		.img-responsive();
 		margin-bottom: 30px;
+		@media(min-width: @screen-sm-min){
+			min-height: 250px;
+			min-width: 600px;
+		}
 	}
 }

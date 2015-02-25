@@ -63,7 +63,7 @@ import 'package:webclient/components/view_contest/fantasy_team_comp.dart';
 import 'package:webclient/components/view_contest/users_list_comp.dart';
 import 'package:webclient/components/view_contest/teams_panel_comp.dart';
 
-import 'package:webclient/components/welcome_screens/welcome_lobby_comp.dart';
+import 'package:webclient/components/welcome_screens/welcome_comp.dart';
 
 import 'package:webclient/components/enter_contest/enter_contest_comp.dart';
 import 'package:webclient/components/enter_contest/lineup_selector_comp.dart';
@@ -155,7 +155,7 @@ class WebClientApp extends Module {
     bind(FantasyTeamComp);
     bind(UsersListComp);
     bind(TeamsPanelComp);
-    bind(WelcomeLobbyComp);
+    bind(WelcomeComp);
 
     bind(HelpInfoComp);
     bind(LegalInfoComp);
@@ -295,9 +295,9 @@ class WebClientApp extends Module {
                 path: '/contest_info/:contestId',
                 viewHtml: '<contest-info></contest-info>')
             ,'welcome': ngRoute(
-                path: '/welcome-screen',
-                preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_OUT),
-                viewHtml: '''<modal window-size="'90percent'"><welcome-lobby></welcome-lobby></modal>'''
+                path: '/welcome',
+                preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
+                viewHtml: '''<modal window-size="'90percent'"><welcome></welcome></modal>'''
             )
           }
       )
@@ -334,12 +334,23 @@ class WebClientApp extends Module {
                 preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_OUT),
                 viewHtml: '''<modal window-size="'md'"><join is-modal="true"></join></modal>'''
             )
+            ,'welcome': ngRoute(
+                path: '/welcome',
+                preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
+                viewHtml: '''<modal window-size="'90percent'"><welcome></welcome></modal>'''
+            )
           }
       )
       ,'view_contest_entry': ngRoute(
           path: '/view_contest_entry/:parent/:viewContestEntryMode/:contestId',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
-          viewHtml: '<view-contest-entry></view-contest-entry>'
+          viewHtml: '<view-contest-entry></view-contest-entry>',
+          mount: {
+            'welcome': ngRoute(
+              path: '/welcome',
+              preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
+              viewHtml: '''<modal window-size="'90percent'"><welcome></welcome></modal>''')
+          }
       )
       ,'restricted': ngRoute(
         path: '/restricted',

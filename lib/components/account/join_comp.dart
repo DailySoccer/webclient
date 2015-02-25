@@ -183,7 +183,7 @@ class JoinComp implements ShadowRootAware {
             GameMetrics.trackConversion(false);
 
             loadingService.isLoading = false;
-            isModal ? ModalComp.close() : _router.go('lobby', {});
+            ModalComp.close();
         })
         .catchError((ServerError error) {
           error.toJson().forEach( (key, value) {

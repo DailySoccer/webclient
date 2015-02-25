@@ -5885,8 +5885,8 @@ scoring-rules:after,
 .main-box .panel .form-horizontal:after,
 #modalRoot .main-box .panel .form-horizontal:before,
 #modalRoot .main-box .panel .form-horizontal:after,
-#welcomeLobbyRoot:before,
-#welcomeLobbyRoot:after,
+#welcomeRoot:before,
+#welcomeRoot:after,
 #usersListRoot .user-row:before,
 #usersListRoot .user-row:after,
 #usersListRoot .users-table-header:before,
@@ -5984,7 +5984,7 @@ scoring-rules:after,
 #rememberPasswordRoot:after,
 .main-box .panel .form-horizontal:after,
 #modalRoot .main-box .panel .form-horizontal:after,
-#welcomeLobbyRoot:after,
+#welcomeRoot:after,
 #usersListRoot .user-row:after,
 #usersListRoot .users-table-header:after,
 .profile-content:after,
@@ -20686,11 +20686,11 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
 .invisible {
   display: none;
 }
-#welcomeLobbyRoot {
+#welcomeRoot {
   margin-left: 0;
   margin-right: 0;
 }
-#welcomeLobbyRoot .tut-title {
+#welcomeRoot .tut-title {
   position: relative;
   float: left;
   width: 100%;
@@ -20705,7 +20705,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   text-align: center;
 }
 @media (min-width: 768px) {
-  #welcomeLobbyRoot .tut-title {
+  #welcomeRoot .tut-title {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     font-size: 14pt;
@@ -20713,14 +20713,14 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   }
 }
 @media (min-width: 992px) {
-  #welcomeLobbyRoot .tut-title {
+  #welcomeRoot .tut-title {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     font-size: 18pt;
     color: #214a5f;
   }
 }
-#welcomeLobbyRoot .tut-image {
+#welcomeRoot .tut-image {
   position: relative;
   float: left;
   width: 100%;
@@ -20731,6 +20731,12 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   max-width: 100%;
   height: auto;
   margin-bottom: 30px;
+}
+@media (min-width: 768px) {
+  #welcomeRoot .tut-image {
+    min-height: 250px;
+    min-width: 600px;
+  }
 }
 #usersList {
   float: left;

@@ -131,7 +131,7 @@ tc.put("packages/webclient/components/account/add_funds_comp.html", new HttpResp
   <!--/div-->
 </div>"""));
 tc.put("packages/webclient/components/account/change_password_comp.html", new HttpResponse(200, r"""<div id="changePasswordRoot">
-  <div id="changePasswordBox" class="main-box">
+  <div id="changePasswordBox" class="main-box air">
 
     <div class="panel">
 
@@ -319,21 +319,21 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
 
   </form>
 </div>"""));
-tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(200, r"""<div id="joinRoot" ng-show="!loadingService.isLoading">
-  <div id="signupbox" class="main-box">
+tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(200, r"""<div id="joinRoot" ng-show="!loadingService.isLoading" ng-class="{'air':!isModal}">
+  <div id="signupbox" class="main-box" ng-class="{'air':!isModal}">
 
     <div class="panel">
 
       <div class="panel-heading">
         <div class="panel-title">SIGN UP</div>
-        <button type="button" class="close" ng-click="navigateTo('landing_page', {}, $event)">
+        <button type="button" class="close" ng-click="onAction('CANCEL', $event)">
           <span class="glyphicon glyphicon-remove"></span>
         </button>
       </div>
 
       <div class="panel-body" >
 
-        <form id="signupForm" class="form-horizontal" ng-submit="submitSignup()" role="form" formAutofillFix>
+        <form id="signupForm" class="form-horizontal" ng-submit="onAction('SUBMIT')" role="form" formAutofillFix>
           <div class="form-description">Don't you have an EPIC ELEVEN account yet?<br>Fill out this form.</div>
 
           <!-- NICKNAME  -->
@@ -357,7 +357,7 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
           <div  class="user-form-field" >
             <!-- Description -->
             <div class="new-row bottom-separation-10">
-              <div class="small-text">Email:.</div>
+              <div class="small-text">Email:</div>
             </div>
             <!-- Field Input -->
             <div id="emailInputGroup" class="input-group">
@@ -397,14 +397,14 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
             <div class="new-row">
               <div class="buttons-wrapper">
                 <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">SIGN UP</button>
-                <button id="btnCancelJoin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCEL</button>
+                <button id="btnCancelJoin" ng-click="onAction('CANCEL', $event)" class="cancel-button-half">CANCEL</button>
              </div>
             </div>
           </div>
 
-          <!-- GOTO REGISTER -->
+          <!-- GOTO LOGIN -->
           <div class="user-form-field">
-            <div class="small-text">Already have an account? <a ng-click="navigateTo('login', {}, $event)"> log in here! </a></div>
+            <div class="small-text">Already have an account? <a ng-click="onAction('LOGIN', $event)"> log in here! </a></div>
           </div>
 
           <!--
@@ -428,22 +428,22 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
  }
  </script>
 """));
-tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse(200, r"""<div id="loginRoot" ng-show="!loadingService.isLoading">
-  <div id="loginBox" class="main-box">
+tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse(200, r"""<div id="loginRoot" ng-show="!loadingService.isLoading" ng-class="{'air':!isModal}">
+  <div id="loginBox" class="main-box" ng-class="{'air':!isModal}">
 
     <div class="panel">
 
       <!-- Header -->
       <div class="panel-heading">
         <div class="panel-title">LOG IN</div>
-        <button type="button" class="close" ng-click="navigateTo('landing_page',{}, $event)">
+        <button type="button" class="close" ng-click="onAction('CANCEL', $event)">
           <span class="glyphicon glyphicon-remove"></span>
         </button>
       </div>
 
       <div class="panel-body" >
 
-        <form id="loginForm" class="form-horizontal" ng-submit="login()" role="form" formAutofillFix>
+        <form id="loginForm" class="form-horizontal" ng-submit="onAction('SUBMIT')" role="form" formAutofillFix>
           <div class="form-description">Enter your email and password.</div>
 
           <!-- LOGIN FIELDS -->
@@ -468,7 +468,7 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
 
           <!-- REMEMBER PASS -->
           <div class="user-form-field-righted">
-            <a class="small-link-righted" ng-click="navigateTo('remember_password', {}, $event)">Forgot your password?</a>
+            <a class="small-link-righted" ng-click="onAction('REMEMBER_PASSWORD', $event)">Forgot your password?</a>
           </div>
 
           <!-- BUTTONS -->
@@ -476,7 +476,7 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
             <div class="new-row">
               <div class="buttons-wrapper">
                 <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">CONTINUE</button>
-                <button id="btnCancelLogin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCEL</button>
+                <button id="btnCancelLogin" ng-click="onAction('CANCEL', $event)" class="cancel-button-half">CANCEL</button>
               </div>
             </div>
           </div>
@@ -484,7 +484,7 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
           <!-- GOTO REGISTER -->
           <div class="user-form-field">
             <div class="new-row">
-              <div class="small-text">Don't have an account? <a ng-click="navigateTo('join', {}, $event)"> Sign Up here! </a></div>
+              <div class="small-text">Don't have an account? <a ng-click="onAction('JOIN', $event)"> Sign Up here! </a></div>
             </div>
           </div>
 
@@ -533,7 +533,7 @@ tc.put("packages/webclient/components/account/payment_response_comp.html", new H
 </modal>
 """));
 tc.put("packages/webclient/components/account/remember_password_comp.html", new HttpResponse(200, r"""<div id="rememberPasswordRoot" ng-show="!loadingService.isLoading">
-  <div id="loginBox" class="main-box">
+  <div id="loginBox" class="main-box air">
 
     <div class="panel">
 
@@ -2225,7 +2225,7 @@ tc.put("packages/webclient/components/lobby_comp.html", new HttpResponse(200, r"
 <!-- Punto de insercion de nuestra ruta hija contest-info -->
 <ng-view></ng-view>"""));
 tc.put("packages/webclient/components/modal_comp.html", new HttpResponse(200, r"""<div id="modalRoot" class="modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-{{modalSize}}">
     <div class="modal-content">
       <content></content>
     </div>
@@ -2587,6 +2587,6 @@ tc.put("packages/webclient/components/view_contest/view_contest_entry_comp.html"
     </div>
     <div class="clear-fix-bottom"></div>
   </div>
-
+<ng-view></ng-view>
 </section>"""));
 }

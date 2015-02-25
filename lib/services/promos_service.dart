@@ -8,26 +8,26 @@ import 'package:webclient/services/server_service.dart';
 class PromosService {
   Map<String, Map> promos = {
     'promo1': {
-                 'thumbXs': 'images/promos/promoGen01Xs.jpg'
-                ,'thumbLg': 'images/promos/promoGen01Desktop.png'
-                ,'directUrl': '#/enter_contest/lobby/54e4b7a4e4b00b6eabdb206d/none'
+                 'thumbXs': 'images/promos/promoGen02Xs.jpg'
+                ,'thumbLg': 'images/promos/promoGen02Desktop.png'
+                ,'directUrl': '#/enter_contest/lobby/54eca721e4b09263f9e8ec6e/none'
                 ,'imageXs'  : 'images/promos/promo02_2015_Bulls_Landing_Xs.png'
                 ,'imageLg'  : 'images/promos/promo02_2015_Bulls_Landing.png'
                 ,'text'     : ''
                 ,'promoEnterUrl' : 'restricted'
                 ,'buttonCaption' :'Reserve your Spot'
-                ,'name': 'EuropeanStrike'
+                ,'name': 'BullsOnParadeW25'
               }
     ,'promo2': {
-                 'thumbXs': 'images/promos/promoGen02Xs.jpg'
-                ,'thumbLg': 'images/promos/promoGen02Desktop.png'
-                ,'directUrl' : 'restricted'
+                 'thumbXs': 'images/promos/promoGen01Xs.jpg'
+                ,'thumbLg': 'images/promos/promoGen01Desktop.png'
+                ,'directUrl' : '#/enter_contest/lobby/54eca9b6e4b09263f9e8ec6f/none'
                 ,'imageXs' :'images/promos/promo02_2015_Premier_Landing_Xs.png'
                 ,'imageLg':'images/promos/promo02_2015_Premier_Landing.jpg'
                 ,'text'   : ''
                ,'promoEnterUrl' : 'restricted'
                ,'buttonCaption' :'Reserve your Spot'
-               ,'name': 'WelcomeBonus100'
+               ,'name': 'QueensMenW27'
               }
   };
 

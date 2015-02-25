@@ -227,6 +227,8 @@ class EnterContestComp implements DetachAware {
     // Buscamos el primer slot libre para la posicion que ocupa el soccer player
     FieldPos theFieldPos = soccerPlayer["fieldPos"];
 
+    print("Adding [${theFieldPos}]...");
+
     for (int c = 0; c < lineupSlots.length; ++c) {
       if (lineupSlots[c] == null && FieldPos.LINEUP[c] == theFieldPos.value) {
         lineupSlots[c] = soccerPlayer;
@@ -243,10 +245,12 @@ class EnterContestComp implements DetachAware {
         break;
       }
     }
+
     // Si ya no estamos en modo seleción, scrolleamos hasta la altura del dinero que nos queda disponible.
     if (!isSelectingSoccerPlayer) {
       scrDet.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('main-menu-slide').offsetHeight, ignoreInDesktop: true);
     }
+
     if(!_isRestoringTeam) {
       _verifyMaxPlayersInSameTeam();
     }

@@ -70,10 +70,10 @@ class WelcomeLobbyComp {
     String imagePath;
     switch(stage) {
       case 'lobby':
-        imagePath = "images/tutorial/" + (_scrDet.isXsScreen ? "welcomeLobbyXs.jpg" : "welcomeTeamDesktop.jpg");
+        imagePath = "images/tutorial/" + (_scrDet.isXsScreen ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg");
       break;
       case 'enter_contest':
-        imagePath = "images/tutorial/" + (_scrDet.isXsScreen ? "welcomeLobbyXs.jpg" : "welcomeTeamDesktop.jpg");
+        imagePath = "images/tutorial/" + (_scrDet.isXsScreen ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg");
       break;
     }
     return imagePath;

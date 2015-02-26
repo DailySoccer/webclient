@@ -69,7 +69,7 @@ class WelcomeComp {
         text ='Pick up 11 player within your salary cap.';
       break;
       case 'view_contest_entry':
-        text ='Go to “<b>My Contest</b>” to edit your lineups, watch your team’s live performance or review past contests. <br> <p class="subtitle">Remember: you can play as many contests as you like, and select as many lineups as you like.</p>';
+        text ='Go to “<b>My Contest</b>” to edit your lineups, watch your team’s live performance or review past contests. <br> <br> <p class="subtitle">Remember: you can play as many contests as you like, and select as many lineups as you like.</p>';
       break;
     }
     return text;

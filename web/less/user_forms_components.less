@@ -257,16 +257,26 @@
 	.make-row(0);
 	.tut-title {
 		.make-xs-column(12, 30px);
-		.opensans_normal(12pt, @blueDark);
+		.opensans_normal(10pt, @blueDark);
 		@media (min-width: @screen-sm-min) {
-			.opensans_normal(14pt, @blueDark);
+			.opensans_normal(12pt, @blueDark);
 		}
 		@media (min-width: @screen-md-min) {
-			.opensans_normal(18pt, @blueDark);
+			.opensans_normal(14pt, @blueDark);
 		}
 		margin: 10px 0;
 		text-align: center;		
+		.subtitle{
+			.opensans_normal(8pt, @greyDark);
+			@media (min-width: @screen-sm-min) {
+				.opensans_normal(9pt, @blueDark);
+			}
+			@media (min-width: @screen-md-min) {
+				.opensans_normal(10pt, @blueDark);
+			}
+		}
 	}
+
 	.tut-image {
 		.make-xs-column(12);
 		.img-responsive();

@@ -63,7 +63,7 @@ import 'package:webclient/components/view_contest/fantasy_team_comp.dart';
 import 'package:webclient/components/view_contest/users_list_comp.dart';
 import 'package:webclient/components/view_contest/teams_panel_comp.dart';
 
-import 'package:webclient/components/welcome_screens/welcome_comp.dart';
+import 'package:webclient/components/welcome_comp.dart';
 
 import 'package:webclient/components/enter_contest/enter_contest_comp.dart';
 import 'package:webclient/components/enter_contest/lineup_selector_comp.dart';

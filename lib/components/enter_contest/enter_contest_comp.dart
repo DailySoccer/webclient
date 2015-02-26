@@ -227,8 +227,6 @@ class EnterContestComp implements DetachAware {
     // Buscamos el primer slot libre para la posicion que ocupa el soccer player
     FieldPos theFieldPos = soccerPlayer["fieldPos"];
 
-    print("Adding [${theFieldPos}]...");
-
     for (int c = 0; c < lineupSlots.length; ++c) {
       if (lineupSlots[c] == null && FieldPos.LINEUP[c] == theFieldPos.value) {
         lineupSlots[c] = soccerPlayer;

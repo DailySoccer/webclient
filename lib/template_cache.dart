@@ -2225,7 +2225,7 @@ tc.put("packages/webclient/components/lobby_comp.html", new HttpResponse(200, r"
 <!-- Punto de insercion de nuestra ruta hija contest-info -->
 <ng-view></ng-view>"""));
 tc.put("packages/webclient/components/modal_comp.html", new HttpResponse(200, r"""<div id="modalRoot" class="modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-{{modalSize}}">
+  <div class="modal-dialog" ng-class="'modal-{{modalSize}}'">
     <div class="modal-content">
       <content></content>
     </div>

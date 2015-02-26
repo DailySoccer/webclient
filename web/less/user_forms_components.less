@@ -181,17 +181,7 @@
 	}
 }
 
-#modalRoot {
-	.modal-90percent {
-		
-		width: auto;
-		@media (min-width: @screen-sm-min) {
-			width: 90%;
-			margin: 30px auto;
-			max-width: 900px;
-		}
-	}
-}
+
 #modalRoot .main-box {
 	.main-box();
 	.make-sm-column(12);
@@ -253,6 +243,7 @@
 }
 
 //Tutoriales de bienvenida
+
 #welcomeRoot {
 	.make-row(0);
 	.tut-title {
@@ -284,6 +275,27 @@
 		@media(min-width: @screen-sm-min){
 			min-height: 250px;
 			min-width: 600px;
+		}
+	}
+}
+
+#modalRoot {
+	.modal-90percent {		
+		width: auto;
+		@media (min-width: @screen-sm-min) {
+			width: 90%;
+			margin: 30px auto;
+			max-width: 900px;
+		}
+	}
+}
+#welcomeRoot {
+		display: none;
+}
+.modal-open {
+	#modalRoot {
+		#welcomeRoot {
+			display: block;
 		}
 	}
 }

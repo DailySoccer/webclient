@@ -1,7 +1,7 @@
 .idea
 .pub
 webclient.iml
-/packages/
+**/packages/
 /build/
 /node_modules/
 .buildlog

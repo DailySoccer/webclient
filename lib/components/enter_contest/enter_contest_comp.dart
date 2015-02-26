@@ -321,6 +321,11 @@ class EnterContestComp implements DetachAware {
     // Actualizamos el contestEntry, independientemente que estemos editando o creando
     saveContestEntry();
 
+    if (!_profileService.isLoggedIn) {
+      _router.go("enter_contest.join", {});
+      return;
+    }
+
     if (editingContestEntry) {
       _contestsService.editContestEntry(contestEntryId, lineupSlots.map((player) => player["id"]).toList())
         .then((_) {
@@ -338,11 +343,11 @@ class EnterContestComp implements DetachAware {
             GameMetrics.logEvent(GameMetrics.TEAM_CREATED);
             GameMetrics.logEvent(GameMetrics.ENTRY_FEE, {"value": contest.entryFee});
             _teamConfirmed = true;
-            _router.go('view_contest_entry', {
-                                "contestId": contestId,
-                                "parent": _routeProvider.parameters["parent"],
-                                "viewContestEntryMode": contestId == contest.contestId? "created" : "swapped"
-                                 });
+            _router.go( _profileService.isWelcoming ? 'view_contest_entry.welcome' : 'view_contest_entry', {
+                          "contestId": contestId,
+                          "parent": _routeProvider.parameters["parent"],
+                          "viewContestEntryMode": contestId == contest.contestId? "created" : "swapped"
+              });
           })
           .catchError((ServerError error) => _errorCreating(error));
       }

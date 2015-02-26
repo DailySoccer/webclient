@@ -19,6 +19,8 @@ class ProfileService {
   User user = null;
   bool get isLoggedIn => user != null;
 
+  bool isWelcoming = false;
+
   static ProfileService get instance => _instance;  // Si te peta en esta linea te obliga a pensar, lo que es Una Buena Cosa™.
                                                     // Una pista... quiza te ha pasado pq has quitado componentes del index?
 
@@ -166,6 +168,14 @@ class ProfileService {
       window.localStorage.remove('sessionToken');
       window.localStorage.remove('user');
     }
+  }
+
+  void startTutorial() {
+    isWelcoming = true;
+  }
+
+  void finishTutorial() {
+    isWelcoming = false;
   }
 
   static ProfileService _instance;

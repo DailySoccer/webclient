@@ -63,6 +63,8 @@ import 'package:webclient/components/view_contest/fantasy_team_comp.dart';
 import 'package:webclient/components/view_contest/users_list_comp.dart';
 import 'package:webclient/components/view_contest/teams_panel_comp.dart';
 
+import 'package:webclient/components/welcome_screens/welcome_comp.dart';
+
 import 'package:webclient/components/enter_contest/enter_contest_comp.dart';
 import 'package:webclient/components/enter_contest/lineup_selector_comp.dart';
 import 'package:webclient/components/enter_contest/soccer_players_list_comp.dart';
@@ -153,6 +155,7 @@ class WebClientApp extends Module {
     bind(FantasyTeamComp);
     bind(UsersListComp);
     bind(TeamsPanelComp);
+    bind(WelcomeComp);
 
     bind(HelpInfoComp);
     bind(LegalInfoComp);
@@ -285,12 +288,17 @@ class WebClientApp extends Module {
       )
       ,'lobby': ngRoute(
           path: '/lobby',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
           viewHtml: '<lobby></lobby>',
           mount: {
             'contest_info': ngRoute(
                 path: '/contest_info/:contestId',
                 viewHtml: '<contest-info></contest-info>')
+            ,'welcome': ngRoute(
+                path: '/welcome',
+                preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
+                viewHtml: '''<modal window-size="'90percent'"><welcome></welcome></modal>'''
+            )
           }
       )
       ,'my_contests': ngRoute(
@@ -310,18 +318,39 @@ class WebClientApp extends Module {
       )
       ,'enter_contest': ngRoute(
           path: '/enter_contest/:parent/:contestId/:contestEntryId',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
           viewHtml: '<enter-contest></enter-contest>',
           mount: {
             'soccer_player_stats': ngRoute(
               path: '/soccer_player_stats/:instanceSoccerPlayerId/selectable/:selectable',
               viewHtml: '<soccer-player-stats></soccer-player-stats>')
+            ,'login': ngRoute(
+                path: '/login',
+                preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_OUT),
+                viewHtml: '''<modal window-size="'md'"><login is-modal="true"></login></modal>'''
+            )
+            ,'join': ngRoute(
+                path: '/join',
+                preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_OUT),
+                viewHtml: '''<modal window-size="'md'"><join is-modal="true"></join></modal>'''
+            )
+            ,'welcome': ngRoute(
+                path: '/welcome',
+                preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
+                viewHtml: '''<modal window-size="'90percent'"><welcome></welcome></modal>'''
+            )
           }
       )
       ,'view_contest_entry': ngRoute(
           path: '/view_contest_entry/:parent/:viewContestEntryMode/:contestId',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
-          viewHtml: '<view-contest-entry></view-contest-entry>'
+          viewHtml: '<view-contest-entry></view-contest-entry>',
+          mount: {
+            'welcome': ngRoute(
+              path: '/welcome',
+              preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
+              viewHtml: '''<modal window-size="'90percent'"><welcome></welcome></modal>''')
+          }
       )
       ,'restricted': ngRoute(
         path: '/restricted',

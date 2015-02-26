@@ -9,8 +9,13 @@ import 'package:webclient/services/server_error.dart';
 
 class FBLogin {
 
-  FBLogin(this._router, this._profileManager) {
+  FBLogin(this._router, this._profileManager, [this._onLogin]) {
     js.context['jsLoginFB'] = loginFB;
+
+    // Default action onLogin
+    if (_onLogin == null) {
+      _onLogin = () => _router.go("lobby", {});
+    }
   }
 
   void loginFB() {
@@ -37,7 +42,7 @@ class FBLogin {
 
   void loginCallback(loginResponse) {
     _profileManager.facebookLogin(loginResponse["authResponse"]["accessToken"])
-                          .then((_) => _router.go("lobby", {}))
+                          .then((_) => _onLogin())
                           .catchError((ServerError error) {
                               Logger.root.severe(error);
                            }, test: (error) => error is ServerError);
@@ -45,4 +50,5 @@ class FBLogin {
 
   Router _router;
   ProfileService _profileManager;
+  Function _onLogin;
 }

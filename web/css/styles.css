@@ -5885,6 +5885,8 @@ scoring-rules:after,
 .main-box .panel .form-horizontal:after,
 #modalRoot .main-box .panel .form-horizontal:before,
 #modalRoot .main-box .panel .form-horizontal:after,
+#welcomeRoot:before,
+#welcomeRoot:after,
 #usersListRoot .user-row:before,
 #usersListRoot .user-row:after,
 #usersListRoot .users-table-header:before,
@@ -5982,6 +5984,7 @@ scoring-rules:after,
 #rememberPasswordRoot:after,
 .main-box .panel .form-horizontal:after,
 #modalRoot .main-box .panel .form-horizontal:after,
+#welcomeRoot:after,
 #usersListRoot .user-row:after,
 #usersListRoot .users-table-header:after,
 .profile-content:after,
@@ -6274,6 +6277,7 @@ scoring-rules:after,
 }
 */
 contest-header {
+  background-color: #ffffff;
   display: block;
   min-height: 125px;
 }
@@ -18721,9 +18725,9 @@ lineup-selector {
   margin-right: 0;
 }
 @media (min-width: 768px) {
-  #loginRoot,
-  #joinRoot,
-  #rememberPasswordRoot {
+  #loginRoot.air,
+  #joinRoot.air,
+  #rememberPasswordRoot.air {
     min-height: 750px;
   }
 }
@@ -18839,7 +18843,7 @@ lineup-selector {
   }
 }
 @media (min-width: 768px) {
-  .main-box {
+  .main-box.air {
     margin-top: 100px;
     background-color: transparent;
   }
@@ -18863,6 +18867,7 @@ lineup-selector {
   -o-animation: fadein-keyframes 0.5s;
   animation: fadein-keyframes 0.5s;
   border-width: 0px;
+  margin-bottom: 0;
 }
 @-webkit-keyframes fadein-keyframes {
   from {
@@ -19508,6 +19513,16 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
   outline: none !important;
   color: #ffffff;
 }
+#modalRoot .modal-90percent {
+  width: auto;
+}
+@media (min-width: 768px) {
+  #modalRoot .modal-90percent {
+    width: 90%;
+    margin: 30px auto;
+    max-width: 900px;
+  }
+}
 #modalRoot .main-box {
   padding-left: 15px;
   padding-right: 15px;
@@ -19541,7 +19556,7 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
   }
 }
 @media (min-width: 768px) {
-  #modalRoot .main-box {
+  #modalRoot .main-box.air {
     margin-top: 100px;
     background-color: transparent;
   }
@@ -19565,6 +19580,7 @@ fieldset[disabled] .main-box .panel .panel-body .new-row .cancel-button-half {
   -o-animation: fadein-keyframes 0.5s;
   animation: fadein-keyframes 0.5s;
   border-width: 0px;
+  margin-bottom: 0;
 }
 @-webkit-keyframes fadein-keyframes {
   from {
@@ -20669,6 +20685,58 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
 }
 .invisible {
   display: none;
+}
+#welcomeRoot {
+  margin-left: 0;
+  margin-right: 0;
+}
+#welcomeRoot .tut-title {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12pt;
+  color: #214a5f;
+  margin: 10px 0;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  #welcomeRoot .tut-title {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 14pt;
+    color: #214a5f;
+  }
+}
+@media (min-width: 992px) {
+  #welcomeRoot .tut-title {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 18pt;
+    color: #214a5f;
+  }
+}
+#welcomeRoot .tut-image {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 30px;
+}
+@media (min-width: 768px) {
+  #welcomeRoot .tut-image {
+    min-height: 250px;
+    min-width: 600px;
+  }
 }
 #usersList {
   float: left;

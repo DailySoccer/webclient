@@ -1,0 +1,33 @@
+.maintenance{
+    background: @white;
+}
+#maintenance-wrapper {
+	.maintenance-content{
+		.make-row(0);
+		background-image: url("@{images}/restrictedBg.jpg");
+        
+		.texto {
+			.make-xs-column(8);
+			margin: 0 auto;
+			float: none;
+			.opensans_normal(10pt, @white);
+			padding-top: 60px;
+			padding-bottom: 60px;
+			@media (min-width: @screen-sm-min) {
+				font-size: 12pt;
+			}
+			text-align: center;
+			.link {
+				cursor: pointer;
+			}
+		}
+        // Mixin para el logo
+        .logo {
+            .size(137px, 68px);
+            .img-retina("@{images}/logoEpic11.png", "@{images}/logoEpic11-2x.png", 137px, 68px);
+            background-repeat: no-repeat;
+            padding: 60px;
+            margin: 0 auto;
+        }
+	}
+}

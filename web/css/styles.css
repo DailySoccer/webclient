@@ -12978,9 +12978,9 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
   float: left;
   width: 100%;
   min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding: 15px 5px;
+  padding-left: 0;
+  padding-right: 0;
+  padding: 15px 5px 15px 7px;
 }
 #contestFiltersRoot #filtersPanel .filter-content .range-font {
   font-family: 'Open Sans', sans-serif;
@@ -13615,8 +13615,8 @@ fieldset[disabled] #contestFiltersRoot #contestSortsFilters .filterToggler .filt
 #contestFiltersRoot #filtersPanel .filter-content .noUi-horizontal .noUi-handle {
   width: 30px;
   height: 30px;
-  left: -17px;
-  top: -7px;
+  left: -15px;
+  top: -7.5px;
   border-radius: 15px;
 }
 #contestFiltersRoot #filtersPanel .filter-content .noUi-handle:before,

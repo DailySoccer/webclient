@@ -11083,10 +11083,16 @@ fieldset[disabled] #rootFooter .user-info-sup-footer .add-funds-button {
     color: #afafaf;
   }
 }
+#rootFooter .sub-footer .social {
+  display: inline-block;
+}
 @media (max-width: 767px) {
   #rootFooter .sub-footer .social {
     display: none !important;
   }
+}
+#rootFooter .sub-footer .social .twitter_glyph img {
+  margin-left: 15px;
 }
 #rootFooter .sub-footer .url-link {
   text-decoration: none;

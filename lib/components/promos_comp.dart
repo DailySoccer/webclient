@@ -1,34 +1,32 @@
 library promos_comp;
 
 import 'package:angular/angular.dart';
-import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/promos_service.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'dart:html';
+import 'package:webclient/services/refresh_timers_service.dart';
 
 @Component(
     selector: 'promos',
     templateUrl: 'packages/webclient/components/promos_comp.html',
     useShadowDom: false
 )
-class PromosComp implements DetachAware{
+class PromosComp {
 
-  ScreenDetectorService scrDet;
+  static final int QUANTITY = 4;
+
   PromosService promosService;
   Map<String,Map> promos;
 
-  PromosComp(this.scrDet, this.promosService, this._router) {
-    int quantity = scrDet.isXsScreen? 1: 2;
-    promos = promosService.getRandomPromo(quantity);
-    _screenWidthChangeDetector = scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
+  PromosComp(this.promosService, this._router, this._refreshTimersService) {
+    _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_PROMOS, refreshPromos);
   }
 
   void gotoPromo(int pos) {
     //TODO: elegir el link, pero tiene preferencia el directUrl.
-    GameMetrics.logEvent(GameMetrics.PROMO, {"code": promos.values.toList()[pos]['name']});
-    var promoId = promos.keys.toList()[pos];
-    String url = promos[promoId]['directUrl'] == '' ? 'view_promo' : promos[promoId]['directUrl'];
-    Map params = promos[promoId]['directUrl'] == '' ? {"promoId" : promoId} : {};
+    GameMetrics.logEvent(GameMetrics.PROMO, {"code": promos.values.toList()[pos]['codeName']});
+    String url = promos.values.toList()[pos]['url'] == '' ? 'view_promo' : promos.values.toList()[pos]['url'];
+    Map params = promos.values.toList()[pos]['url'] == '' ? {"promoId" : pos} : {};
 
     if (url.contains("#")) {
       window.location.assign(url);
@@ -38,23 +36,18 @@ class PromosComp implements DetachAware{
     }
   }
 
-  void onScreenWidthChange(String size) {
-    int quantity = scrDet.isXsScreen? 1: 2;
-    promos = promosService.getRandomPromo(quantity);
+  void refreshPromos() {
+    promosService.getRandomPromo(QUANTITY).then((promoMap) => promos = promoMap);
   }
+
 
   String getThumb(int pos, String thumbSize) {
-    return promos.values.toList()[pos][thumbSize];
-  }
-
-  @override
-  void detach() {
-    _screenWidthChangeDetector.cancel();
+    if (promos != null && promos.length>pos)
+      return promos.values.toList()[pos][thumbSize];
+    else return '';
   }
 
   Router _router;
-  var _screenWidthChangeDetector;
-
-
+  RefreshTimersService _refreshTimersService;
 
 }

@@ -12,12 +12,16 @@ class RefreshTimersService {
     ,'SECONDS_TO_REFRESH_LIVE'                : 10
     ,'SECONDS_TO_REFRESH_MY_CONTESTS'         : 10
     ,'SECONDS_TO_UPDATE_SIMULATOR_STATE'      : 3
+    ,'SECONDS_TO_UPDATE_PROMOS'               : 60
+    ,'SECONDS_TO_REFRESH_PROMOS'               : 6
   };
 
   static const String SECONDS_TO_REFRESH_CONTEST_LIST         = "SECONDS_TO_REFRESH_CONTEST_LIST";
   static const String SECONDS_TO_REFRESH_LIVE                 = "SECONDS_TO_REFRESH_LIVE";
   static const String SECONDS_TO_REFRESH_MY_CONTESTS          = "SECONDS_TO_REFRESH_MY_CONTESTS";
   static const String SECONDS_TO_UPDATE_SIMULATOR_STATE       = "SECONDS_TO_UPDATE_SIMULATOR_STATE";
+  static const String SECONDS_TO_UPDATE_PROMOS                = "SECONDS_TO_UPDATE_PROMOS";
+  static const String SECONDS_TO_REFRESH_PROMOS               = "SECONDS_TO_REFRESH_PROMOS";
 
   RefreshTimersService();
 

@@ -39,7 +39,7 @@ class SimplePromoViewerComp implements DetachAware {
         return '<img class="banner" src="${promo["imageXs"]}" onerror="this.parentNode.removeChild(this)">';
     }
     else {
-        return '<img class="banner" src="${promo["imageLg"]}" onerror="this.parentNode.removeChild(this)">';
+        return '<img class="banner" src="${promo["imageDesktop"]}" onerror="this.parentNode.removeChild(this)">';
     }
     return '';
   }

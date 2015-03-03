@@ -48,6 +48,7 @@ abstract class ServerService {
 
   // Promos
   Future<Map> getPromos();
+  Future<Map> getPromo(String promoCodeName);
 
   // Puntuaciones
   Future<Map> getScoringRules();
@@ -176,6 +177,10 @@ class DailySoccerServer implements ServerService {
 
   Future<Map> getPromos() {
     return _innerServerCall("${HostServer.url}/promos", retryTimes: -1);
+  }
+
+  Future<Map> getPromo(String promoCodeName) {
+    return _innerServerCall("${HostServer.url}/promos/$promoCodeName", retryTimes: -1);
   }
 
   Future<Map> getScoringRules() {

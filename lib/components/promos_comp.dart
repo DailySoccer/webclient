@@ -1,6 +1,7 @@
 library promos_comp;
 
 import 'package:angular/angular.dart';
+import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/promos_service.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'dart:html';
@@ -15,10 +16,11 @@ class PromosComp {
 
   static final int QUANTITY = 4;
 
+  ScreenDetectorService scrDet;
   PromosService promosService;
   Map<String,Map> promos;
 
-  PromosComp(this.promosService, this._router, this._refreshTimersService) {
+  PromosComp(this.scrDet, this.promosService, this._router, this._refreshTimersService) {
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_PROMOS, refreshPromos);
   }
 

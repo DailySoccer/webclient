@@ -14,13 +14,17 @@ class PromosService {
 
 
   Future<Map> refreshPromos() {
-    return _server.getPromos()
-                      .then((jsonMap) {
-                          _promos = jsonMap['promos'];
-                          }
-    );
+    void assignPromoList(Map jsonMap) {
+      _promos = jsonMap['promos'];
+    }
+
+    return _permanentCodeName!=null? _server.getPromo(_permanentCodeName).then(assignPromoList) :
+                                     _server.getPromos().then(assignPromoList);
   }
 
+  static void configurePromosService(String codeName) {
+    _permanentCodeName = codeName;
+  }
 
   Map getPromo(String codeName) {
     return _promos.firstWhere((promo)=>(promo['codeName']==codeName), orElse:()=>_promoNotFound);
@@ -40,6 +44,7 @@ class PromosService {
 
     return completer.future;
   }
+
   Map<String,Map> _getRandomPromo(int quantity) {
     Map<String, Map> myPromoList = new Map();
 
@@ -62,6 +67,8 @@ class PromosService {
     else return promo['url'];
   }
 
+
+  static String _permanentCodeName;
 
   ServerService _server;
   RefreshTimersService _refreshTimersService;

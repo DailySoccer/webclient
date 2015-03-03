@@ -2325,11 +2325,11 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
 """));
 tc.put("packages/webclient/components/promos_comp.html", new HttpResponse(200, r"""<div ng-if="!scrDet.isXsScreen">
   <a class="banner2"  ng-click="gotoPromo(0)">
-  <img ng-if="!scrDet.isXsScreen" src="{{getThumb(0,'imageDesktop')}}" class="promoDesktop" />
+  <img ng-src="{{getThumb(0,'imageDesktop')}}" class="promoDesktop" />
   </a>
 
   <a class="banner2" ng-click="gotoPromo(1)">
-  <img ng-if="!scrDet.isXsScreen" src="{{getThumb(1,'imageDesktop')}}" class="promoDesktop" />
+  <img ng-src="{{getThumb(1,'imageDesktop')}}" class="promoDesktop" />
   </a>
 </div>
 
@@ -2338,7 +2338,7 @@ tc.put("packages/webclient/components/promos_comp.html", new HttpResponse(200, r
 </div>-->
 
 <a ng-if="scrDet.isXsScreen" ng-click="gotoPromo(0)">
- <img ng-if="scrDet.isXsScreen" src="{{getThumb(0,'imageXs')}}" class="promoXs" />
+ <img ng-src="{{getThumb(0,'imageXs')}}" class="promoXs" />
 </a>
 <!--<div class="beta-version-xs" ng-if="scrDet.isXsScreen">
   <span class="beta-version-text">BETA</span>

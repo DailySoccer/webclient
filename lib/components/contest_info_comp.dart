@@ -12,6 +12,7 @@ import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/components/modal_comp.dart';
 import 'package:webclient/services/server_error.dart';
+import 'package:webclient/services/profile_service.dart';
 
 @Component(
   selector: 'contest-info',
@@ -26,7 +27,7 @@ class ContestInfoComp implements DetachAware {
   String contestId;
   LoadingService loadingService;
 
-  ContestInfoComp(ScreenDetectorService scrDet, RouteProvider routeProvider, this.loadingService, this._router, this._contestsService, this._flashMessage) {
+  ContestInfoComp(ScreenDetectorService scrDet, RouteProvider routeProvider, this.loadingService, this._router, this._contestsService, this._profileService, this._flashMessage) {
 
     _streamListener = scrDet.mediaScreenWidth.listen(onScreenWidthChange);
 
@@ -118,7 +119,12 @@ class ContestInfoComp implements DetachAware {
   }
 
   void enterContest() {
-    _router.go('enter_contest', { "contestId": contestId, "parent": "lobby", "contestEntryId": "none" });
+    if (_profileService.isLoggedIn) {
+      _router.go('enter_contest', { "contestId": contestId, "parent": "lobby", "contestEntryId": "none" });
+    }
+    else {
+      _router.go('enter_contest.welcome', { "contestId": contestId, "parent": "lobby", "contestEntryId": "none" });
+    }
   }
 
   String formatMatchDate(DateTime date) {
@@ -138,5 +144,6 @@ class ContestInfoComp implements DetachAware {
   Router _router;
 
   ContestsService _contestsService;
+  ProfileService _profileService;
   FlashMessagesService _flashMessage;
 }

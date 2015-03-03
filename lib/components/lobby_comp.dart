@@ -78,7 +78,6 @@ class LobbyComp implements DetachAware {
     else {
       _router.go('enter_contest.welcome', { "contestId": contest.contestId, "parent": "lobby", "contestEntryId": "none" });
     }
-
   }
 
   // Mostramos la ventana modal con la información de ese torneo, si no es la versión movil.

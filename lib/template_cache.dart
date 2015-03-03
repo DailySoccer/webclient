@@ -1355,7 +1355,7 @@ tc.put("packages/webclient/components/legalese_and_help/help_info_comp.html", ne
     </div>
     <div class="block-dark">
       <div class="title">PICK YOUR TEAM</div>
-      <div class="description"><p>Next, choose your lineup. Pick 11 players and remember:</p> You can't spend more than your salary cap.<br>You can't choose more than 4 players from the same team.</div>
+      <div class="description"><p>Next, choose your lineup. Pick 11 players and remember:</p> You can spend all your salary cap.<br>You can pick up to 4 players of the same team.</div>
       <div class="img-wrapper">
         <img src="images/help03.jpg" ng-if="!scrDet.isXsScreen">
         <img src="images/help03-xs.jpg" ng-if="scrDet.isXsScreen">
@@ -1408,7 +1408,7 @@ tc.put("packages/webclient/components/legalese_and_help/help_info_comp.html", ne
         <input type="checkbox" id="rule2" class="toggle">
         <label for="rule2">MULTI ACCOUNTS</label>
         <div>
-          <p>Each Epic Eleven player, can only own a single account. However, in special cases, Epic Eleven allows the creation of a second account. To do this, you must revceive express written permission of Epic Eleven before opening the second account. In this case, is Epic Eleven final decision, determining the right of a user to ve in possession of two accounts. The penalties will be issued at the discretion of Epic Eleven staff and may involve the closuere of all user accounts and retention of cach, if we determine that has been obtained fraudulently.</p>
+          <p>Each Epic Eleven player, can only own a single account. However, in special cases, Epic Eleven allows the creation of a second account. To do this, you must revceive express written permission of Epic Eleven before opening the second account. In this case, is Epic Eleven final decision, determining the right of a user to be in possession of two accounts. The penalties will be issued at the discretion of Epic Eleven staff and may involve the closuere of all user accounts and retention of cach, if we determine that has been obtained fraudulently.</p>
         </div>
       </div>
       <div class="toogle-block">
@@ -2221,11 +2221,12 @@ tc.put("packages/webclient/components/lobby_comp.html", new HttpResponse(200, r"
                   on-row-click="onRowClick(contest)" action-button-title="'PLAY'"
                   contest-count="contestCount">
   </contests-list>
-</div>
 <!-- Punto de insercion de nuestra ruta hija contest-info -->
-<ng-view></ng-view>"""));
+<ng-view  ng-show="!loadingService.isLoading"></ng-view>
+</div>
+"""));
 tc.put("packages/webclient/components/modal_comp.html", new HttpResponse(200, r"""<div id="modalRoot" class="modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" ng-class="'modal-{{modalSize}}'">
+  <div class="modal-dialog modal-{{modalSize}}">
     <div class="modal-content">
       <content></content>
     </div>

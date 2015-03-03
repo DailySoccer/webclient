@@ -1158,7 +1158,6 @@ tc.put("packages/webclient/components/enter_contest/lineup_selector_comp.html", 
   </div>
 
   <div class="alert alert-danger alert-dismissible alert-red-numbers" ng-class="{'active':alertNegativeBalance}" role="alert">
-    <button type="button" class="close" ng-click="enterContestComp.alertDismiss()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
     <strong>You've spent the salary cap</strong><br> Please choose players that fit the budget.
   </div>
   <div class="alert alert-danger alert-max-players-same-team" ng-class="{'active':alertMaxPlayersSameTeamExceed}" role="alert">

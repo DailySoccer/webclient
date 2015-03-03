@@ -12,6 +12,16 @@ import 'package:webclient/services/screen_detector_service.dart';
 )
 class ModalComp implements DetachAware, ShadowRootAware {
 
+  /********* BINDINGS */
+  @NgOneWay("window-size")
+  void set windowSize(value) {
+    if (value == null || value.isEmpty || (value != "lg"  && value != "md" && value != "sm" && value != "90percent") ) {
+      return;
+    }
+    modalSize = value;
+  }
+  String modalSize = "lg";
+
   ModalComp(this._router, this._element, this._scrDet, this._view);
 
   @override void onShadowRoot(emulatedRoot) {

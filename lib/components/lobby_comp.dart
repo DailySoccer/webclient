@@ -9,6 +9,7 @@ import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/utils/game_metrics.dart';
+import 'package:webclient/services/profile_service.dart';
 
 @Component(
   selector: 'lobby',
@@ -36,7 +37,7 @@ class LobbyComp implements DetachAware {
   // Concursos listados actualmente
   int contestCount = 0;
 
-  LobbyComp(this._router, this._refreshTimersService, this.contestsService, this.scrDet, this.loadingService) {
+  LobbyComp(this._router, this._refreshTimersService, this.contestsService, this.scrDet, this.loadingService, this._profileService) {
 
     GameMetrics.logEvent(GameMetrics.LOBBY);
 
@@ -71,7 +72,12 @@ class LobbyComp implements DetachAware {
 
   // Handler para el evento de entrar en un concurso
   void onActionClick(Contest contest) {
-    _router.go('enter_contest', { "contestId": contest.contestId, "parent": "lobby", "contestEntryId": "none" });
+    if (_profileService.isLoggedIn) {
+      _router.go('enter_contest', { "contestId": contest.contestId, "parent": "lobby", "contestEntryId": "none" });
+    }
+    else {
+      _router.go('enter_contest.welcome', { "contestId": contest.contestId, "parent": "lobby", "contestEntryId": "none" });
+    }
   }
 
   // Mostramos la ventana modal con la información de ese torneo, si no es la versión movil.
@@ -98,6 +104,7 @@ class LobbyComp implements DetachAware {
   }
 
   Router _router;
+  ProfileService _profileService;
   RefreshTimersService _refreshTimersService;
   Timer _nextTournamentInfoTimer;
 }

@@ -78,6 +78,10 @@ class ScreenDetectorService {
       return;
     }
 
+    if(querySelector(selector) == null) {
+      return;
+    }
+
    int targetPosition = querySelector(selector).offsetTop;
 
     if (!smooth) {

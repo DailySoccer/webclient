@@ -55,7 +55,8 @@ class FooterComp implements ShadowRootAware {
           <div class="copyright">© Copyright 2015 Epic Eleven</div>
   
           <div class="social">
-            <a target="_blank" href="https://www.facebook.com/pages/Epic-Eleven/582891628483988?fref=ts"><img src="images/social.png"/></a>
+            <a target="_blank" href="https://www.facebook.com/pages/Epic-Eleven/582891628483988?fref=ts"><img src="images/facebook.png"/></a>
+            <a class="twitter_glyph" target="_blank" href="https://www.twitter.com/EpicEleven"><img src="images/twitter.png"/></a>
           </div>
         </div>
       </div>

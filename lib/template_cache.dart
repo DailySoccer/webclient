@@ -131,7 +131,7 @@ tc.put("packages/webclient/components/account/add_funds_comp.html", new HttpResp
   <!--/div-->
 </div>"""));
 tc.put("packages/webclient/components/account/change_password_comp.html", new HttpResponse(200, r"""<div id="changePasswordRoot">
-  <div id="changePasswordBox" class="main-box">
+  <div id="changePasswordBox" class="main-box air">
 
     <div class="panel">
 
@@ -319,21 +319,21 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
 
   </form>
 </div>"""));
-tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(200, r"""<div id="joinRoot" ng-show="!loadingService.isLoading">
-  <div id="signupbox" class="main-box">
+tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(200, r"""<div id="joinRoot" ng-show="!loadingService.isLoading" ng-class="{'air':!isModal}">
+  <div id="signupbox" class="main-box" ng-class="{'air':!isModal}">
 
     <div class="panel">
 
       <div class="panel-heading">
         <div class="panel-title">SIGN UP</div>
-        <button type="button" class="close" ng-click="navigateTo('landing_page', {}, $event)">
+        <button type="button" class="close" ng-click="onAction('CANCEL', $event)">
           <span class="glyphicon glyphicon-remove"></span>
         </button>
       </div>
 
       <div class="panel-body" >
 
-        <form id="signupForm" class="form-horizontal" ng-submit="submitSignup()" role="form" formAutofillFix>
+        <form id="signupForm" class="form-horizontal" ng-submit="onAction('SUBMIT')" role="form" formAutofillFix>
           <div class="form-description">Don't you have an EPIC ELEVEN account yet?<br>Fill out this form.</div>
 
           <!-- NICKNAME  -->
@@ -357,7 +357,7 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
           <div  class="user-form-field" >
             <!-- Description -->
             <div class="new-row bottom-separation-10">
-              <div class="small-text">Email:.</div>
+              <div class="small-text">Email:</div>
             </div>
             <!-- Field Input -->
             <div id="emailInputGroup" class="input-group">
@@ -397,14 +397,14 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
             <div class="new-row">
               <div class="buttons-wrapper">
                 <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">SIGN UP</button>
-                <button id="btnCancelJoin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCEL</button>
+                <button id="btnCancelJoin" ng-click="onAction('CANCEL', $event)" class="cancel-button-half">CANCEL</button>
              </div>
             </div>
           </div>
 
-          <!-- GOTO REGISTER -->
+          <!-- GOTO LOGIN -->
           <div class="user-form-field">
-            <div class="small-text">Already have an account? <a ng-click="navigateTo('login', {}, $event)"> log in here! </a></div>
+            <div class="small-text">Already have an account? <a ng-click="onAction('LOGIN', $event)"> log in here! </a></div>
           </div>
 
           <!--
@@ -428,22 +428,22 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
  }
  </script>
 """));
-tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse(200, r"""<div id="loginRoot" ng-show="!loadingService.isLoading">
-  <div id="loginBox" class="main-box">
+tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse(200, r"""<div id="loginRoot" ng-show="!loadingService.isLoading" ng-class="{'air':!isModal}">
+  <div id="loginBox" class="main-box" ng-class="{'air':!isModal}">
 
     <div class="panel">
 
       <!-- Header -->
       <div class="panel-heading">
         <div class="panel-title">LOG IN</div>
-        <button type="button" class="close" ng-click="navigateTo('landing_page',{}, $event)">
+        <button type="button" class="close" ng-click="onAction('CANCEL', $event)">
           <span class="glyphicon glyphicon-remove"></span>
         </button>
       </div>
 
       <div class="panel-body" >
 
-        <form id="loginForm" class="form-horizontal" ng-submit="login()" role="form" formAutofillFix>
+        <form id="loginForm" class="form-horizontal" ng-submit="onAction('SUBMIT')" role="form" formAutofillFix>
           <div class="form-description">Enter your email and password.</div>
 
           <!-- LOGIN FIELDS -->
@@ -468,7 +468,7 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
 
           <!-- REMEMBER PASS -->
           <div class="user-form-field-righted">
-            <a class="small-link-righted" ng-click="navigateTo('remember_password', {}, $event)">Forgot your password?</a>
+            <a class="small-link-righted" ng-click="onAction('REMEMBER_PASSWORD', $event)">Forgot your password?</a>
           </div>
 
           <!-- BUTTONS -->
@@ -476,7 +476,7 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
             <div class="new-row">
               <div class="buttons-wrapper">
                 <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">CONTINUE</button>
-                <button id="btnCancelLogin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCEL</button>
+                <button id="btnCancelLogin" ng-click="onAction('CANCEL', $event)" class="cancel-button-half">CANCEL</button>
               </div>
             </div>
           </div>
@@ -484,7 +484,7 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
           <!-- GOTO REGISTER -->
           <div class="user-form-field">
             <div class="new-row">
-              <div class="small-text">Don't have an account? <a ng-click="navigateTo('join', {}, $event)"> Sign Up here! </a></div>
+              <div class="small-text">Don't have an account? <a ng-click="onAction('JOIN', $event)"> Sign Up here! </a></div>
             </div>
           </div>
 
@@ -533,7 +533,7 @@ tc.put("packages/webclient/components/account/payment_response_comp.html", new H
 </modal>
 """));
 tc.put("packages/webclient/components/account/remember_password_comp.html", new HttpResponse(200, r"""<div id="rememberPasswordRoot" ng-show="!loadingService.isLoading">
-  <div id="loginBox" class="main-box">
+  <div id="loginBox" class="main-box air">
 
     <div class="panel">
 
@@ -1084,7 +1084,7 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
                     </div>
                 </div>
 
-                <lineup-selector ng-show="!isSelectingSoccerPlayer || scrDet.isNotXsScreen"></lineup-selector>
+                <lineup-selector ng-show="!isSelectingSoccerPlayer || scrDet.isNotXsScreen" has-max-players-same-team="playersInSameTeamInvalid" has-negative-balance="isNegativeBalance"></lineup-selector>
               </div>
             </div>
 
@@ -1157,11 +1157,10 @@ tc.put("packages/webclient/components/enter_contest/lineup_selector_comp.html", 
     </div>
   </div>
 
-  <div class="alert alert-danger alert-dismissible alert-red-numbers" role="alert">
-    <button type="button" class="close" ng-click="enterContestComp.alertDismiss()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+  <div class="alert alert-danger alert-dismissible alert-red-numbers" ng-class="{'active':alertNegativeBalance}" role="alert">
     <strong>You've spent the salary cap</strong><br> Please choose players that fit the budget.
   </div>
-  <div class="alert alert-danger alert-max-players-same-team" role="alert">
+  <div class="alert alert-danger alert-max-players-same-team" ng-class="{'active':alertMaxPlayersSameTeamExceed}" role="alert">
     <strong>Ups! It looks like you already have {{MAX_PLAYERS_SAME_TEAM}} players of the same team</strong><br> Please, choose another player...
   </div>
 
@@ -1355,7 +1354,7 @@ tc.put("packages/webclient/components/legalese_and_help/help_info_comp.html", ne
     </div>
     <div class="block-dark">
       <div class="title">PICK YOUR TEAM</div>
-      <div class="description"><p>Next, choose your lineup. Pick 11 players and remember:</p> You can't spend more than your salary cap.<br>You can't choose more than 4 players from the same team.</div>
+      <div class="description"><p>Next, choose your lineup. Pick 11 players and remember:</p> You can spend all your salary cap.<br>You can pick up to 4 players of the same team.</div>
       <div class="img-wrapper">
         <img src="images/help03.jpg" ng-if="!scrDet.isXsScreen">
         <img src="images/help03-xs.jpg" ng-if="scrDet.isXsScreen">
@@ -1408,7 +1407,7 @@ tc.put("packages/webclient/components/legalese_and_help/help_info_comp.html", ne
         <input type="checkbox" id="rule2" class="toggle">
         <label for="rule2">MULTI ACCOUNTS</label>
         <div>
-          <p>Each Epic Eleven player, can only own a single account. However, in special cases, Epic Eleven allows the creation of a second account. To do this, you must revceive express written permission of Epic Eleven before opening the second account. In this case, is Epic Eleven final decision, determining the right of a user to ve in possession of two accounts. The penalties will be issued at the discretion of Epic Eleven staff and may involve the closuere of all user accounts and retention of cach, if we determine that has been obtained fraudulently.</p>
+          <p>Each Epic Eleven player, can only own a single account. However, in special cases, Epic Eleven allows the creation of a second account. To do this, you must revceive express written permission of Epic Eleven before opening the second account. In this case, is Epic Eleven final decision, determining the right of a user to be in possession of two accounts. The penalties will be issued at the discretion of Epic Eleven staff and may involve the closuere of all user accounts and retention of cach, if we determine that has been obtained fraudulently.</p>
         </div>
       </div>
       <div class="toogle-block">
@@ -2221,11 +2220,12 @@ tc.put("packages/webclient/components/lobby_comp.html", new HttpResponse(200, r"
                   on-row-click="onRowClick(contest)" action-button-title="'PLAY'"
                   contest-count="contestCount">
   </contests-list>
-</div>
 <!-- Punto de insercion de nuestra ruta hija contest-info -->
-<ng-view></ng-view>"""));
+<ng-view  ng-show="!loadingService.isLoading"></ng-view>
+</div>
+"""));
 tc.put("packages/webclient/components/modal_comp.html", new HttpResponse(200, r"""<div id="modalRoot" class="modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-{{modalSize}}">
     <div class="modal-content">
       <content></content>
     </div>
@@ -2323,20 +2323,22 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
   </div>
 </div>
 """));
-tc.put("packages/webclient/components/promos_comp.html", new HttpResponse(200, r"""<a class="banner2" ng-if="!scrDet.isXsScreen" ng-click="gotoPromo(0)">
-<img ng-if="!scrDet.isXsScreen" src="{{getThumb(0,'thumbLg')}}" class="promoDesktop" />
-</a>
+tc.put("packages/webclient/components/promos_comp.html", new HttpResponse(200, r"""<div ng-if="!scrDet.isXsScreen">
+  <a class="banner2"  ng-click="gotoPromo(0)">
+  <img ng-src="{{getThumb(0,'imageDesktop')}}" class="promoDesktop" />
+  </a>
 
-<a class="banner2" ng-if="!scrDet.isXsScreen" ng-click="gotoPromo(1)">
-<img ng-if="!scrDet.isXsScreen" src="{{getThumb(1,'thumbLg')}}" class="promoDesktop" />
-</a>
+  <a class="banner2" ng-click="gotoPromo(1)">
+  <img ng-src="{{getThumb(1,'imageDesktop')}}" class="promoDesktop" />
+  </a>
+</div>
 
 <!--<div class="beta-version-desktop" ng-if="!scrDet.isXsScreen">
   <span class="beta-version-text">VERSIÓN BETA</span>
 </div>-->
 
 <a ng-if="scrDet.isXsScreen" ng-click="gotoPromo(0)">
- <img ng-if="scrDet.isXsScreen" src="{{getThumb(0,'thumbXs')}}" class="promoXs" />
+ <img ng-src="{{getThumb(0,'imageXs')}}" class="promoXs" />
 </a>
 <!--<div class="beta-version-xs" ng-if="scrDet.isXsScreen">
   <span class="beta-version-text">BETA</span>
@@ -2587,6 +2589,6 @@ tc.put("packages/webclient/components/view_contest/view_contest_entry_comp.html"
     </div>
     <div class="clear-fix-bottom"></div>
   </div>
-
+<ng-view></ng-view>
 </section>"""));
 }

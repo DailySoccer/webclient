@@ -26,6 +26,6 @@
                   on-row-click="onRowClick(contest)" action-button-title="'PLAY'"
                   contest-count="contestCount">
   </contests-list>
-</div>
 <!-- Punto de insercion de nuestra ruta hija contest-info -->
-<ng-view></ng-view>
+<ng-view  ng-show="!loadingService.isLoading"></ng-view>
+</div>

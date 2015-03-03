@@ -13,6 +13,9 @@ class SoccerTeam {
   // Partido en el que juega
   MatchEvent matchEvent;
 
+  // Nº de goles marcados en el partido
+  int score = -1;
+
   SoccerTeam.referenceInit(this.templateSoccerTeamId);
 
   factory SoccerTeam.fromJsonObject(Map jsonMap, ContestReferences references) {

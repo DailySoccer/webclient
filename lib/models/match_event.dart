@@ -93,10 +93,12 @@ class MatchEvent {
   MatchEvent _initFromJsonObject(Map jsonMap, ContestReferences references) {
     assert(templateMatchEventId.isNotEmpty);
     soccerTeamA = references.getSoccerTeamById(jsonMap["templateSoccerTeamAId"])
-      .. matchEvent = this;
+      .. matchEvent = this
+      .. score = jsonMap.containsKey("homeScore") ? jsonMap["homeScore"] : -1;
 
     soccerTeamB = references.getSoccerTeamById(jsonMap["templateSoccerTeamBId"])
-      .. matchEvent = this;
+      .. matchEvent = this
+      .. score = jsonMap.containsKey("awayScore") ? jsonMap["awayScore"] : -1;
 
     period = jsonMap.containsKey("period") ? jsonMap["period"] : "PRE_GAME";
     minutesPlayed = jsonMap.containsKey("minutesPlayed") ? jsonMap["minutesPlayed"] : 0;

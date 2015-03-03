@@ -6326,7 +6326,7 @@ contest-header {
   padding-right: 0;
   font-family: 'Exo', sans-serif;
   font-weight: 600;
-  font-size: 18pt;
+  font-size: 14pt;
   color: #214a5f;
   text-transform: uppercase;
   padding: 0 15px 0px 15px;
@@ -7351,7 +7351,7 @@ scoring-rules #scoringForForwards .rules-content {
 @media (min-width: 768px) {
   .contests-list-root .contest-row .column-contest-name {
     float: left;
-    width: 50%;
+    width: 45.83333333%;
   }
 }
 .contests-list-root .contest-row .column-contest-name .column-name {
@@ -7365,7 +7365,7 @@ scoring-rules #scoringForForwards .rules-content {
   padding-right: 0px;
   font-family: 'Exo', sans-serif;
   font-weight: 600;
-  font-size: 18pt;
+  font-size: 14pt;
   color: #214a5f;
   text-transform: uppercase;
 }
@@ -7395,7 +7395,7 @@ scoring-rules #scoringForForwards .rules-content {
   padding-right: 0px;
   font-family: 'Exo', sans-serif;
   font-weight: 600;
-  font-size: 18pt;
+  font-size: 14pt;
   color: #214a5f;
   text-transform: uppercase;
   text-align: right;
@@ -7449,6 +7449,22 @@ scoring-rules #scoringForForwards .rules-content {
   .contests-list-root .contest-row .column-contest-name .column-description {
     padding-top: 5px;
     padding-bottom: 10px;
+  }
+}
+.contests-list-root .contest-row .column-contest-flag {
+  position: relative;
+  float: left;
+  width: 4.16666667%;
+  min-height: 1px;
+  padding-left: 0;
+  padding-right: 0;
+}
+.contests-list-root .contest-row .column-contest-flag .flag {
+  margin: 4px 0 0 0;
+}
+@media (min-width: 768px) {
+  .contests-list-root .contest-row .column-contest-flag .flag {
+    margin: 10px auto;
   }
 }
 .contests-list-root .contest-row .column-contest-price,
@@ -7797,7 +7813,7 @@ scoring-rules #scoringForForwards .rules-content {
 }
 .contests-list-root .contest-row .column-contest-action {
   float: left;
-  width: 8.33333333%;
+  width: 4.16666667%;
   position: relative;
   min-height: 1px;
   padding-left: 0;
@@ -23992,7 +24008,7 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
 .contest-big-bold-text {
   font-family: 'Exo', sans-serif;
   font-weight: 600;
-  font-size: 18pt;
+  font-size: 14pt;
   color: #214a5f;
   text-transform: uppercase;
 }

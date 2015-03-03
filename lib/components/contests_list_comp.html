@@ -7,6 +7,8 @@
       <div class="column-description">{{contest.description}}</div>
     </div>
 
+    <div class="column-contest-flag"><div class="{{getSourceFlag(contest)}}"></div></div>
+
     <div class="column-contest-empty" ng-click="onRow(contest)" ng-if="contest.isLive"></div>
 
     <div class="column-contest-price" ng-click="onRow(contest)" ng-if="!contest.isLive && !contest.isHistory">

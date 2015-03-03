@@ -242,6 +242,23 @@ class ContestsListComp {
     contestCount = contestsListFiltered.length;
   }
 
+  String getSourceFlag(Contest contest) {
+    String ret = "flag ";
+    switch(contest.competitionType){
+      case "LEAGUE_ES":
+        ret += "flag-es";
+      break;
+      case "LEAGUE_UK":
+        ret += "flag-gb";
+      break;
+      case "CHAMPIONS":
+        ret += "flag-eu";
+      break;
+    }
+
+    return ret;
+  }
+
 
   /********* HANDLERS */
   void onRow(Contest contest) {

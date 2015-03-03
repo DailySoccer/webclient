@@ -46,6 +46,10 @@ abstract class ServerService {
   Future<Map> getInstancePlayerInfo(String contestId, String instanceSoccerPlayerId);
   Future<Map> getSoccerPlayerInfo(String templateSoccerPlayerId);
 
+  // Promos
+  Future<Map> getPromos();
+  Future<Map> getPromo(String promoCodeName);
+
   // Puntuaciones
   Future<Map> getScoringRules();
 
@@ -169,6 +173,14 @@ class DailySoccerServer implements ServerService {
 
   Future<Map> getSimulatorState() {
     return _innerServerCall("${HostServer.url}/admin/get_simulator_state", retryTimes: 0, cancelIfChangeContext: false);
+  }
+
+  Future<Map> getPromos() {
+    return _innerServerCall("${HostServer.url}/promos", retryTimes: -1);
+  }
+
+  Future<Map> getPromo(String promoCodeName) {
+    return _innerServerCall("${HostServer.url}/promos/$promoCodeName", retryTimes: -1);
   }
 
   Future<Map> getScoringRules() {

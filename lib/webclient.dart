@@ -299,6 +299,13 @@ class WebClientApp extends Module {
                 preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
                 viewHtml: '''<modal window-size="'90percent'"><welcome></welcome></modal>'''
             )
+            ,'view_promo': ngRoute(
+                path: '/view_promo/:promoCodeName',
+                preEnter: (RoutePreEnterEvent e) {
+                  PromosService.configurePromosService(e.parameters['promoCodeName']);
+                  _preEnterPage(e, router, visibility: _ALWAYS);
+                  }
+            )
           }
       )
       ,'my_contests': ngRoute(

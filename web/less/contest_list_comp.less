@@ -15,7 +15,7 @@
 
 		.column-contest-name {
 			.make-xs-column(12);
-			.make-sm-column(6, 0);
+			.make-sm-column(5.5, 0);
 			
 			.column-name {
 				.make-xs-column(8.5);
@@ -37,6 +37,15 @@
 				@media (max-width: @screen-xs-max) {
 					padding-top: 5px;
 					padding-bottom: 10px;
+				}
+			}
+		}
+		.column-contest-flag {
+			.make-xs-column(0.5, 0);
+			.flag {
+				margin: 4px 0 0 0;
+				@media (min-width: @screen-sm-min) {
+					margin: 10px auto;
 				}
 			}
 		}
@@ -83,7 +92,7 @@
 		}
 
 		.column-contest-action {
-			.make-xs-column(1,0);
+			.make-xs-column(0.5,0);
 			.make-sm-column(1.2,0);
 			margin-top: 10px;
 			padding-left: 10px;

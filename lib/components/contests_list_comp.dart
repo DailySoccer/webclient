@@ -97,7 +97,7 @@ class ContestsListComp {
   @NgCallback("on-action-click")
   Function onActionClick;
 
-  ContestsListComp(this._profileService, this._scrDet);
+  ContestsListComp(this._profileService, this.scrDet);
 
   /********* METHODS */
   String dateInfo(DateTime date) {
@@ -295,5 +295,5 @@ class ContestsListComp {
   int _currentPage    = 0;
 
   ProfileService _profileService;
-  ScreenDetectorService _scrDet;
+  ScreenDetectorService scrDet;
 }

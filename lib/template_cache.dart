@@ -834,7 +834,7 @@ tc.put("packages/webclient/components/contest_header_comp.html", new HttpRespons
     </div>
 
     <div class="contest-prize">
-      <div class="contest-coins-content prize-icon-big"><span>{{info['prize']}}</span></div>
+      <div class="contest-coins-content"><img ng-if="!scrDet.isXsScreen" class="iconPrize" src="images/iconPrize.png"><span>{{info['prize']}}</span></div>
       <div class="contest-coins-header">
         <div class="contest-coins-header-title">PRIZES</div>
         <!--<div class="contest-coins-header-prize-type">{{info['prizeType']}}</div>-->
@@ -1002,6 +1002,8 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
 tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse(200, r"""<div class="contests-list-root">
   <div class="contest-row" ng-repeat="contest in currentPageList">
 
+    <div class="column-contest-flag"><div class="{{getSourceFlag(contest)}}"></div></div>
+
     <div class="column-contest-name" ng-click="onRow(contest)">
       <div class="column-name">{{contest.name}}</div>
       <div class="column-start-date-time-xs">{{dateInfo(contest.startDate)}} {{timeInfo(contest.startDate)}}</div>
@@ -1023,7 +1025,7 @@ tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse
     </div>
 
     <div class="column-contest-prize" ng-click="onRow(contest)" ng-if="!contest.isLive">
-      <div ng-if="!contest.isHistory" class="column-contest-prize-content" ng-class="{'prize-icon-big':contest.prizePool.amount > 0}">{{contest.prizePool}}</div>
+      <div ng-if="!contest.isHistory" class="column-contest-prize-content"><img ng-if="!scrDet.isXsScreen && contest.prizePool.amount > 0" class="iconPrize" src="images/iconPrize.png">{{contest.prizePool}}</div>
       <div ng-if="contest.isHistory"  class="column-contest-prize-content prize-icon-big">{{getMyPrize(contest)}}</div>
       <div class="column-contest-prize-header">PRIZE</div>
     </div>
@@ -1039,7 +1041,9 @@ tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse
     </div>
 
     <div class="column-contest-action">
-      <button type="button" class="action-button" ng-click="onAction(contest)">{{actionButtonTitle}}</button>
+      <div class="button-wrapper">
+        <button type="button" class="action-button" ng-click="onAction(contest)">{{actionButtonTitle}}</button>
+      </div>
     </div>
 
   </div>

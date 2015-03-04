@@ -239,6 +239,7 @@ class ContestsListComp {
       }
     });
     refreshListOrder();
+    updatePage(_currentPage, _itemsPerPage);
     contestCount = contestsListFiltered.length;
   }
 

@@ -1,13 +1,13 @@
 <div class="contests-list-root">
   <div class="contest-row" ng-repeat="contest in currentPageList">
 
+    <div class="column-contest-flag"><div class="{{getSourceFlag(contest)}}"></div></div>
+
     <div class="column-contest-name" ng-click="onRow(contest)">
       <div class="column-name">{{contest.name}}</div>
       <div class="column-start-date-time-xs">{{dateInfo(contest.startDate)}} {{timeInfo(contest.startDate)}}</div>
       <div class="column-description">{{contest.description}}</div>
     </div>
-
-    <div class="column-contest-flag"><div class="{{getSourceFlag(contest)}}"></div></div>
 
     <div class="column-contest-empty" ng-click="onRow(contest)" ng-if="contest.isLive"></div>
 
@@ -40,7 +40,9 @@
     </div>
 
     <div class="column-contest-action">
-      <button type="button" class="action-button" ng-click="onAction(contest)">{{actionButtonTitle}}</button>
+      <div class="button-wrapper">
+        <button type="button" class="action-button" ng-click="onAction(contest)">{{actionButtonTitle}}</button>
+      </div>
     </div>
 
   </div>

@@ -1611,7 +1611,7 @@ tc.put("packages/webclient/components/legalese_and_help/restricted_comp.html", n
 
     <div class="texto">
       Sorry, your current location prohibits you from making deposits on Epic Eleven.<br>
-      For location requirements please refer to our <a class="link"  ng-click="gotoTerminus()">Terms of Use</a> .<br>
+      <br>
       If you think this is in error and require assistance, please contact us through <a href="mailto:support@epiceleven.com">support@epiceleven.com</a>
     </div>
 

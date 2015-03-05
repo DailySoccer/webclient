@@ -18,9 +18,20 @@ import 'package:webclient/services/profile_service.dart';
 )
 class FooterComp implements ShadowRootAware {
 
-  FooterComp(this._router, this._loadingService, this._view, this._rootElement, this._dateTimeService, this._srcDet, this._profileService);
+
+  FooterComp(this._router, this._loadingService, this._view, this._rootElement, this._dateTimeService, this._scrDet, this._profileService) {
+    _streamListener = _scrDet.mediaScreenWidth.listen((String scrWidth) => onScreenWidthChange(scrWidth));
+  }
 
   @override void onShadowRoot(emulatedRoot) {
+    _createHtml();
+  }
+
+  void detach() {
+    _streamListener.cancel();
+  }
+
+  void onScreenWidthChange(String scrWidth) {
     _createHtml();
   }
 
@@ -37,28 +48,32 @@ class FooterComp implements ShadowRootAware {
           </div>
   
           <div class="data-wrapper">
-            <a class="goto-link" id="footerHelp" destination="help_info"><span class="sub-footer-help-link">HELP</span></a>
-            <a class="goto-link" id="footerLegal" destination="legal_info"><span class="sub-footer-legal-link">LEGAL</span></a>
-            <a class="goto-link" id="footerTermsOfUse" destination="terminus_info"><span class="sub-footer-terms-link">TERMS<span> OF USE</span></span></a>
+            <a class="goto-link" id="footerHelp" destination="help_info">           <span class="sub-footer-help-link">HELP</span></a>
+            <a class="goto-link" id="footerLegal" destination="legal_info">         <span class="sub-footer-legal-link">LEGAL</span></a>
+            <a class="goto-link" id="footerTermsOfUse" destination="terminus_info"> <span class="sub-footer-terms-link">TERMS<span> OF USE</span></span></a>
             <a class="goto-link" id="footerPrivacyPolicy" destination="policy_info"><span class="sub-footer-policy-link">PRIVACY<span> POLICY</span></span></a>
             <a class="goto-link" id="footerBlog" target="_blank" href="http://halftime.epiceleven.com"><span class="sub-footer-blog-link">BLOG</span></a>
           </div>
   
-          <!--<div class="credit-cards">
+          <!--
+          <div class="credit-cards">
             <img src="images/creditCards.png" />
-          </div>-->
-  
+          </div>
+          -->
+          ${_scrDet.isXsScreen ? '' : '''
           <div class="opta">
             <div>Data provided by: <span>OPTA</span></div>
             <div>A <strong>PERFORM</strong> GROUP COMPANY</div>
           </div>
+          '''}
   
           <div class="copyright">© Copyright 2015 Epic Eleven</div>
-  
+          ${_scrDet.isXsScreen ? '' : '''
           <div class="social">
             <a target="_blank" href="https://www.facebook.com/pages/Epic-Eleven/582891628483988?fref=ts"><img src="images/facebook.png"/></a>
-            <a class="twitter_glyph" target="_blank" href="https://www.twitter.com/EpicEleven"><img src="images/twitter.png"/></a>
+            <a target="_blank" href="https://www.twitter.com/EpicEleven"><img src="images/twitter.png"/></a>
           </div>
+          '''}
         </div>
       </div>
     </div>
@@ -83,13 +98,14 @@ class FooterComp implements ShadowRootAware {
     _router.go(destination, {});
   }
 
-
   Element _rootElement;
   View _view;
   Router _router;
 
   DateTimeService _dateTimeService;
   LoadingService _loadingService;
-  ScreenDetectorService _srcDet;
   ProfileService _profileService;
+  ScreenDetectorService _scrDet;
+
+  var _streamListener;
 }

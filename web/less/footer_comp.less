@@ -8,7 +8,6 @@ footer {
 		.container();
 		.clean-paddings();
 	}
-
 	// Reserva de sitio. En ambas resoluciones con el contenido actual es algo menos que esto,
 	// 129px en movil y 122px en desktop, pero mejor lo fijamos a algo mas y asi en el hack del
 	// bleach usamos este height siempre.
@@ -21,36 +20,12 @@ footer {
 	.clean-paddings();
 	background-color: @black;
 	min-height: 100px;
-		
-	.goto-link{
-		text-decoration: none;
-	}
-	@own-gutter: 10px;
-	//Base para los link del footer
-	.footer-link {
+
+	.sub-footer-link {
 		.opensans_bold(10pt, @white);
 		line-height: 35px;
-		padding: 0;
-	}
-
-	.username-link {
-		.footer-link();		
-		padding-right: 5px;
-	}
-
-	.logout-link {
-		.footer-link();
-		color: @greyDark;
-		//line-height: @own-gutter * 2px;
-		text-decoration: none;
+		padding: 0 10px 0 0;
 		border-left: 2px solid @white;
-		padding-left: 10px;
-
-	}
-	.sub-footer-link{
-		.footer-link();
-		border-left: 2px solid @white;
-		padding-right: 10px;
 		@media (max-width: @screen-xs-max) {
 			.opensans_normal(10pt, @greyMed);
 			border-color: @greyMed;
@@ -58,72 +33,8 @@ footer {
 		}
 	}
 
-	.sub-footer-help-link {
-		.sub-footer-link();
-		border: none;
-		padding-left: 0px;
-		padding-right: 10px;
-		.hidden-xs();
-	}
-	.sub-footer-legal-link {
-		.sub-footer-link();
-		padding-right: 10px;
-		padding-left:  10px;
-		@media (max-width: @screen-xs-max) {
-			border: none;
-			padding-left: 10px;
-		}
-	}
-	.sub-footer-terms-link {
-		.sub-footer-link();
-		padding-right: 10px;
-		padding-left:  10px;
-		span {
-			.hidden-xs();
-		}
-	}
-	.sub-footer-policy-link {
-		.sub-footer-link();
-		padding-right: 10px;
-		padding-left:  10px;
-		span {
-			.hidden-xs();
-		}
-	}
-	.sub-footer-blog-link {
-    .sub-footer-link();
-    padding-right: 10px;
-    padding-left:  10px;
-  }
-
-	.sup-footer-wrapper {
-		.container-fluid();
-	}
-
-	.user-info-sup-footer {
-		.hidden-sm();
-		.hidden-md();
-		.hidden-lg();
-		.make-xs-column(12);
-		padding: @own-gutter 0;
-		min-height: 55px;
-
-		.add-funds-button {
-			.btn-primary();
-			float: right;
-			.opensans_bold(8pt, @white);
-			padding: 10px 20px;
-			.pull-right();
-    		@media (max-width: @screen-sm-max) {
-				.button-size(4px, 12px, 8pt, 1.5em, 4px); 
-				margin-top: 5px;
-			}
-		}
-	}
-
-	.sub-footer-wrapper{
+	.sub-footer-wrapper {
 		width: 100%;
-
 		@media (max-width: @screen-xs-max) {
 			background: @greyUltraDark;
 			
@@ -131,111 +42,140 @@ footer {
 			.make-border(1px, solid none none none, @greyMed);
 		}
 		background: @black;
-	}
-	.sub-footer {
-		.container();
-		@media (min-width: @screen-sm-min) {
-			width: 100%; //aunque sea un cotainer, queremos que se ajuste al ancho
-			padding-bottom: 15px;
-		}
-		float: none;
 
-		.logo-wrapper {
-			height: 45px;
-			margin-top: 5px;
-			.make-border(1px, none none solid none, @greyHeaderLight);
-			@media (max-width: @screen-xs-max) {
-				text-align: center;
+		.sub-footer {
+			.container();
+			@media (min-width: @screen-sm-min) {
+				width: 100%; //aunque sea un cotainer, queremos que se ajuste al ancho
+				padding-bottom: 15px;
 			}
 			a {
 				cursor: pointer;
 			}
-		}
+			
 
-		.data-wrapper{
-			.make-xs-column(12);
-			.make-sm-column(8);
-			.clean-paddings();
-			@media (max-width: @screen-xs-max) {
-				text-align: center;	
+			.logo-wrapper {
+				height: 45px;
+				margin-top: 5px;
+				.make-border(1px, none none solid none, @greyHeaderLight);
+				@media (max-width: @screen-xs-max) {
+					text-align: center;
+				}
 			}
-			a {
-				cursor: pointer;
-			}
-		}
-		.credit-cards {
-			.hidden-xs();
-			.make-sm-column(4);
-			margin: 0 auto;
-			padding: 25px 0px 26px 20px;
-			text-align: right;
-			.pull-right();
 
-		}
-		.opta {
-			.hidden-xs();
-			.make-sm-column(4);
-			.clean-paddings();
-			.pull-right();
-			.opensans_normal(10pt, @greyUltraLight);
-			line-height: 20px;
-			div {
+			.data-wrapper{
+				.make-xs-column(12);
+				.make-sm-column(8);
+				.clean-paddings();
+				@media (max-width: @screen-xs-max) {
+					text-align: center;	
+				}
+				.goto-link {
+					text-decoration: none;
+				}
+				.sub-footer-help-link {
+					.sub-footer-link();
+					border: none;
+					padding-left: 0px;
+					padding-right: 10px;
+					.hidden-xs();
+				}
+				.sub-footer-legal-link {
+					.sub-footer-link();
+					padding-right: 10px;
+					padding-left:  10px;
+					@media (max-width: @screen-xs-max) {
+						border: none;
+						padding-left: 10px;
+					}
+				}
+				.sub-footer-terms-link {
+					.sub-footer-link();
+					padding-right: 10px;
+					padding-left:  10px;
+					span {
+						.hidden-xs();
+					}
+				}
+				.sub-footer-policy-link {
+					.sub-footer-link();
+					padding-right: 10px;
+					padding-left:  10px;
+					span {
+						.hidden-xs();
+					}
+				}
+				.sub-footer-blog-link {
+				    .sub-footer-link();
+				    padding-right: 10px;
+				    padding-left:  10px;
+			  	}
+			}
+			/*
+			.credit-cards {
+				.hidden-xs();
+				.make-sm-column(4);
+				margin: 0 auto;
+				padding: 25px 0px 26px 20px;
 				text-align: right;
-				padding-right: 58px;
-				span {
-					text-indent: -9999px;
-					overflow: hidden;
-					display: inline-block;
-					&::after {
-						content: url("@{images}/logoOpta.png");
+				.pull-right();
+
+			}
+			*/
+			.opta {
+				.hidden-xs();
+				.make-sm-column(4);
+				.clean-paddings();
+				.pull-right();
+				.opensans_normal(10pt, @greyUltraLight);
+				line-height: 20px;
+				div {
+					text-align: right;
+					padding-right: 58px;
+					span {
+						text-indent: -9999px;
+						overflow: hidden;
 						display: inline-block;
-						width: 48px;
-						height: 21px;
-						position: absolute;
-						top: 5px;
-						right: 0;
+						&::after {
+							content: url("@{images}/logoOpta.png");
+							display: inline-block;
+							width: 48px;
+							height: 21px;
+							position: absolute;
+							top: 5px;
+							right: 0;
+						}
+					}
+				}
+				div + div {
+					.opensans_normal(11pt, @greyUltraLight);
+					padding-right: 0;
+					padding-top: 10px;
+					strong {
+						background-image: url("@{images}/performBg.png");
+						background-repeat: no-repeat;
+						background-position: 31px -4px;
 					}
 				}
 			}
-			div + div {
-				.opensans_normal(11pt, @greyUltraLight);
-				padding-right: 0;
-				padding-top: 10px;
-				strong {
-					background-image: url("@{images}/performBg.png");
-					background-repeat: no-repeat;
-					background-position: 31px -4px;
+			.copyright {			
+				display: inline-block;
+				.clean-paddings();
+				.opensans_bold(9pt, @greyUltraLight);
+				padding-top: 5px;
+				@media (max-width: @screen-xs-max) {
+					text-align: center;
+					width: 100%;
+					.opensans_normal(10pt, @greyMed);
 				}
 			}
-		}
-		.copyright {			
-			.make-xs-column(12);
-			.make-sm-column(3);
-			.clean-paddings();
-			.opensans_bold(9pt, @greyUltraLight);
-			padding-top: 5px;
-			@media (max-width: @screen-xs-max) {
-				text-align: center;
-				.opensans_normal(10pt, @greyMed);
+			.social {
+				.hidden-xs();
+				display: inline-block;
+				a {
+					margin-left: 15px;
+				}
 			}
-		}
-		.social {
-			.hidden-xs();
-			display: inline-block;
-			.twitter_glyph img{
-				//.size(22px, 19px);
-				margin-left: 15px;
-			}
-		}
-
-		.url-link{
-			text-decoration: none;
-			.hidden-xs();
-			.make-sm-column(3.5);
-			.opensans_bold(10pt, @white);
-			text-align: right;
-			padding: 0;
-			line-height: 21px;
 		}
 	}
 }

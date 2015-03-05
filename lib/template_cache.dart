@@ -2327,7 +2327,8 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
   </div>
 </div>
 """));
-tc.put("packages/webclient/components/promos_comp.html", new HttpResponse(200, r"""<div ng-if="!scrDet.isXsScreen">
+tc.put("packages/webclient/components/promos_comp.html", new HttpResponse(200, r"""<div id="promosRoot" ng-class="{'hide-promos': !hasPromos()}">
+<div ng-if="!scrDet.isXsScreen">
   <a class="banner2"  ng-click="gotoPromo(0)">
   <img ng-src="{{getThumb(0,'imageDesktop')}}" class="promoDesktop" />
   </a>
@@ -2347,7 +2348,8 @@ tc.put("packages/webclient/components/promos_comp.html", new HttpResponse(200, r
 <!--<div class="beta-version-xs" ng-if="scrDet.isXsScreen">
   <span class="beta-version-text">BETA</span>
   <img src="images/betaHeaderXsTexto.png" class="betaVersionXs" />
-</div>-->"""));
+</div>-->
+</div>"""));
 tc.put("packages/webclient/components/scoring_rules_comp.html", new HttpResponse(200, r"""<div id="scoringForAll" class="panel-points">
   <div class="rules-header">ALL PLAYERS</div>
   <div class="rules-content">

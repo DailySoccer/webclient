@@ -15106,6 +15106,10 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
   background-color: #fa9c19;
   line-height: 31px;
 }
+#promosComponent .hide-promos {
+  display: none !important;
+  visibility: hidden !important;
+}
 #promosComponent .banner2 {
   display: inline-block;
   position: relative;

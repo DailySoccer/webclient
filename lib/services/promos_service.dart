@@ -4,6 +4,7 @@ import 'package:angular/angular.dart';
 import 'package:webclient/services/server_service.dart';
 import 'dart:async';
 import 'package:webclient/services/refresh_timers_service.dart';
+import 'dart:math';
 
 @Injectable()
 class PromosService {
@@ -52,7 +53,7 @@ class PromosService {
     if (_promos!=null) {
       int currentPriority = _promos.first['priority'];
       List tempPromos = new List();
-      while (tempPromos.length < quantity) {
+      while (tempPromos.length < min(quantity, _promos.length)) {
         List morePromos = _promos.skip(tempPromos.length).takeWhile((promo) => promo['priority']==currentPriority).toList();
         currentPriority = currentPriority-1;
         morePromos.shuffle();

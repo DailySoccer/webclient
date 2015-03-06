@@ -48,10 +48,18 @@ class PromosService {
   Map<String,Map> _getRandomPromo(int quantity) {
     Map<String, Map> myPromoList = new Map();
 
-    if (_promos!=null) {
-      List promosIds = _promos.take(quantity).toList();
-      promosIds.shuffle();
 
+    if (_promos!=null) {
+      int currentPriority = _promos.first['priority'];
+      List tempPromos = new List();
+      while (tempPromos.length < quantity) {
+        List morePromos = _promos.skip(tempPromos.length).takeWhile((promo) => promo['priority']==currentPriority).toList();
+        currentPriority = currentPriority-1;
+        morePromos.shuffle();
+        tempPromos.addAll(morePromos);
+      }
+
+      List promosIds = tempPromos.take(quantity).toList();
       promosIds.forEach((promo) => myPromoList.addAll({promo['codeName']: promo}));
     }
 

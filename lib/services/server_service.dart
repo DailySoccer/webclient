@@ -27,9 +27,13 @@ abstract class ServerService {
 
   // Conseguir la lista de Contests Active/Live/History en los que esté inscrito el User
   Future<Map> getMyContests();
+  Future<Map> getMyActiveContests();
+  Future<Map> getMyLiveContests();
+  Future<Map> getMyHistoryContests();
   Future<Map> getMyContest(String contestId);
   Future<Map> getMyContestEntry(String contestId);
   Future<Map> getViewContest(String contestId);
+  Future<Map> countMyLiveContests();
 
   // Active Contests
   Future<Map> getActiveContests();
@@ -121,6 +125,18 @@ class DailySoccerServer implements ServerService {
     return _innerServerCall("${HostServer.url}/get_my_contests");
   }
 
+  Future<Map> getMyActiveContests() {
+    return _innerServerCall("${HostServer.url}/get_my_active_contests");
+  }
+
+  Future<Map> getMyLiveContests() {
+    return _innerServerCall("${HostServer.url}/get_my_live_contests");
+  }
+
+  Future<Map> getMyHistoryContests() {
+    return _innerServerCall("${HostServer.url}/get_my_history_contests");
+  }
+
   Future<Map> getMyContest(String contestId) {
     return _innerServerCall("${HostServer.url}/get_my_contest/$contestId");
   }
@@ -131,6 +147,10 @@ class DailySoccerServer implements ServerService {
 
   Future<Map> getViewContest(String contestId) {
     return _innerServerCall("${HostServer.url}/get_view_contest/$contestId");
+  }
+
+  Future<Map> countMyLiveContests() {
+    return _innerServerCall("${HostServer.url}/count_my_live_contests");
   }
 
   Future<Map> getActiveContests() {

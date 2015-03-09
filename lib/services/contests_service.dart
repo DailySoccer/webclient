@@ -18,6 +18,10 @@ class ContestsService {
   List<Contest> liveContests = new List<Contest>();
   List<Contest> historyContests = new List<Contest>();
 
+  bool get hasLiveContests    => liveContests     != null && liveContests.isNotEmpty;
+  bool get hasWaitingContests => waitingContests  != null && waitingContests.isNotEmpty;
+  bool get hasHistoryContests => historyContests  != null && historyContests.isNotEmpty;
+
   // El ultimo concurso que hemos cargado a traves de refreshContest
   Contest lastContest;
 
@@ -92,6 +96,33 @@ class ContestsService {
         });
   }
 
+  Future refreshMyActiveContests() {
+    return _server.getMyActiveContests()
+        .then((jsonMap) {
+          waitingContests = Contest.loadContestsFromJsonObject(jsonMap)
+            .. forEach((contest) => _registerContest(contest));
+          _prizesService.loadFromJsonObject(jsonMap);
+        });
+  }
+
+  Future refreshMyLiveContests() {
+    return _server.getMyLiveContests()
+        .then((jsonMap) {
+          liveContests = Contest.loadContestsFromJsonObject(jsonMap)
+            .. forEach((contest) => _registerContest(contest));
+          _prizesService.loadFromJsonObject(jsonMap);
+        });
+  }
+
+  Future refreshMyHistoryContests() {
+    return _server.getMyHistoryContests()
+        .then((jsonMap) {
+          historyContests = Contest.loadContestsFromJsonObject(jsonMap)
+            .. forEach((contest) => _registerContest(contest));
+          _prizesService.loadFromJsonObject(jsonMap);
+        });
+  }
+
   Future refreshMyContest(String contestId) {
     return _server.getMyContest(contestId)
         .then((jsonMap) {
@@ -122,6 +153,13 @@ class ContestsService {
                 .. updateLiveInfo(jsonMap);
           });
       });
+  }
+
+  Future<num> countMyLiveContests() {
+    return _server.countMyLiveContests()
+        .then((jsonMap) {
+          return jsonMap["count"];
+        });
   }
 
   Contest getAvailableNextContest() {

@@ -9,6 +9,7 @@ import 'package:webclient/utils/host_server.dart';
 import 'package:webclient/utils/html_utils.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
+import 'package:webclient/services/profile_service.dart';
 
 
 @Component(
@@ -17,7 +18,7 @@ import 'package:webclient/services/screen_detector_service.dart';
 )
 class FooterComp implements ShadowRootAware {
 
-  FooterComp(this._router, this._loadingService, this._view, this._rootElement, this._dateTimeService, this._srcDet);
+  FooterComp(this._router, this._loadingService, this._view, this._rootElement, this._dateTimeService, this._srcDet, this._profileService);
 
   @override void onShadowRoot(emulatedRoot) {
     _createHtml();
@@ -32,7 +33,7 @@ class FooterComp implements ShadowRootAware {
         <div class="sub-footer">
   
           <div class="logo-wrapper">
-            <a href="/"><img src="images/logoLobbyFooter.png" alt="EPIC ELEVEN"></img></a> <span class="footer-count">&nbsp;</span>
+            <a destination="${_profileService.isLoggedIn ? 'lobby' : 'landing_page'}"><img src="images/logoLobbyFooter.png" alt="EPIC ELEVEN"></img></a> <span class="footer-count">&nbsp;</span>
           </div>
   
           <div class="data-wrapper">
@@ -90,4 +91,5 @@ class FooterComp implements ShadowRootAware {
   DateTimeService _dateTimeService;
   LoadingService _loadingService;
   ScreenDetectorService _srcDet;
+  ProfileService _profileService;
 }

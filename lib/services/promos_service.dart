@@ -49,8 +49,7 @@ class PromosService {
   Map<String,Map> _getRandomPromo(int quantity) {
     Map<String, Map> myPromoList = new Map();
 
-
-    if (_promos!=null) {
+    if (_promos!=null && _promos.isNotEmpty) {
       int currentPriority = _promos.first['priority'];
       List tempPromos = new List();
       while (tempPromos.length < min(quantity, _promos.length)) {

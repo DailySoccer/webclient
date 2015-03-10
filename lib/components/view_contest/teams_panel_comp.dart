@@ -8,6 +8,7 @@ import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/services/contests_service.dart';
+import 'package:webclient/models/soccer_team.dart';
 
 @Component(
     selector: 'teams-panel',
@@ -54,7 +55,7 @@ class TeamsPanelComp implements DetachAware {
     matchEventsSorted = new List<MatchEvent>.from(contest.matchEvents)
       .. sort((entry1, entry2) => entry1.startDate.compareTo(entry2.startDate))
       .. forEach( (match) {
-        matchesInvolved.add(match.soccerTeamA.shortName + '-' + match.soccerTeamB.shortName +
+        matchesInvolved.add(match.soccerTeamA.shortName + ' <span class="team-score">${getTeamScore(match.soccerTeamA)}</span> - <span class="team-score">${getTeamScore(match.soccerTeamB)}</span> ' + match.soccerTeamB.shortName +
         "<br>" + DateTimeService.formatDateTimeShort(match.startDate) + "<br>");
      });
   }
@@ -83,6 +84,13 @@ class TeamsPanelComp implements DetachAware {
     }
 
     return "${teamsInfo}<div class=period>${content}</div>";
+  }
+
+  String getTeamScore(SoccerTeam team) {
+    if (team == null) {
+      return '';
+    }
+     return team.score >= 0 ? team.score.toString() : '';
   }
 
   void toggleTeamsPanel() {

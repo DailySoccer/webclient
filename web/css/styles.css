@@ -10997,6 +10997,9 @@ fieldset[disabled] #rootFooter .user-info-sup-footer .add-funds-button {
     text-align: center;
   }
 }
+#rootFooter .sub-footer .logo-wrapper a {
+  cursor: pointer;
+}
 #rootFooter .sub-footer .data-wrapper {
   float: left;
   width: 100%;

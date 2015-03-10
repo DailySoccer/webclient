@@ -20461,6 +20461,14 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   margin-left: 0;
   margin-right: 0;
 }
+#welcomeRoot .panel-title {
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 20pt;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-align: center;
+}
 #welcomeRoot .tut-title {
   position: relative;
   float: left;

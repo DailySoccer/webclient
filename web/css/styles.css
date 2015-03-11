@@ -6734,7 +6734,7 @@ contest-header {
   }
 }
 #teamsPanelRoot .teams-comp-bar .teams-container .teams-box .match-date {
-  padding-top: 5px;
+  margin-top: 5px;
 }
 #teamsPanelRoot .teams-comp-bar .teams-container .teams-box .score-wrapper {
   display: inline-block;
@@ -6750,6 +6750,7 @@ contest-header {
 }
 #teamsPanelRoot .teams-comp-bar .teams-container .teams-box .period {
   color: #0d75a6;
+  margin-top: 5px;
 }
 #contestInfoModal {
   background-color: #dcdcdc;

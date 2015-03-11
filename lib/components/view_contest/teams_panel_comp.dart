@@ -55,8 +55,7 @@ class TeamsPanelComp implements DetachAware {
     matchEventsSorted = new List<MatchEvent>.from(contest.matchEvents)
       .. sort((entry1, entry2) => entry1.startDate.compareTo(entry2.startDate))
       .. forEach( (match) {
-        matchesInvolved.add(match.soccerTeamA.shortName + ' <div class="score-wrapper">@scoreTeamA</div>@separator<div class="score-wrapper">@scoreTeamB</div> ' + match.soccerTeamB.shortName +
-        '''<br> <div class="match-date"> ${DateTimeService.formatDateTimeShort(match.startDate)}</div>''');
+        matchesInvolved.add('''<span> ${match.soccerTeamA.shortName} </span> <div class="score-wrapper">@scoreTeamA</div><span> - </span><div class="score-wrapper">@scoreTeamB</div><span> ${match.soccerTeamB.shortName} </span>''');
      });
   }
 
@@ -69,10 +68,7 @@ class TeamsPanelComp implements DetachAware {
     MatchEvent match = matchEventsSorted[id];
     if(contest.state == "LIVE") {
       if (match != null) {
-        if (!match.isStarted) {
-          content = 'Upcoming';
-        }
-        else {
+        if (match.isStarted) {
           if (match.isFinished) {
             content = 'Finished';
           }
@@ -84,15 +80,16 @@ class TeamsPanelComp implements DetachAware {
     }
 
     String teamsAndScores;
-    teamsAndScores = matchesInvolved[id].replaceAll("@scoreTeamA", getTeamScore(match.soccerTeamA, addSeparator: true));
-    teamsAndScores = match.soccerTeamA.score > -1 ? teamsAndScores.replaceAll("@separator", " - ") : teamsAndScores.replaceAll("@separator", "");
-    teamsAndScores = teamsAndScores.replaceAll("@scoreTeamB", ' ' +getTeamScore(match.soccerTeamB));
+    teamsAndScores = matchesInvolved[id].replaceAll("@scoreTeamA", getTeamScore(match.soccerTeamA));
+    //teamsAndScores = match.soccerTeamA.score > -1 ? teamsAndScores.replaceAll("@separator", " - ") : teamsAndScores.replaceAll("@separator", "");
+    teamsAndScores = teamsAndScores.replaceAll("@scoreTeamB", ' ' + getTeamScore(match.soccerTeamB));
 
+    String infoBox = teamsAndScores + '''<br>''' + (content != "" ?  "<div class=period>${content}</div>" : '''<div class="match-date"> ${DateTimeService.formatDateTimeShort(match.startDate)}</div>''');
 
-    return "${teamsAndScores}<div class=period>${content}</div>";
+    return infoBox;
   }
 
-  String getTeamScore(SoccerTeam team, {bool addSeparator:false}) {
+  String getTeamScore(SoccerTeam team) {
      return team.score >= 0 ? '''<span class="team-score">${team.score.toString()}</span>''' : '';
   }
 

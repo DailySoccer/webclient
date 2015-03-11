@@ -18,7 +18,6 @@ import 'package:webclient/services/profile_service.dart';
 )
 class FooterComp implements ShadowRootAware {
 
-
   FooterComp(this._router, this._loadingService, this._view, this._rootElement, this._dateTimeService, this._scrDet, this._profileService) {
     _streamListener = _scrDet.mediaScreenWidth.listen((String scrWidth) => onScreenWidthChange(scrWidth));
   }
@@ -104,6 +103,7 @@ class FooterComp implements ShadowRootAware {
 
   DateTimeService _dateTimeService;
   LoadingService _loadingService;
+
   ProfileService _profileService;
   ScreenDetectorService _scrDet;
 

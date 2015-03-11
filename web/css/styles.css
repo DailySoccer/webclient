@@ -6733,11 +6733,20 @@ contest-header {
     margin: 4px;
   }
 }
-#teamsPanelRoot .teams-comp-bar .teams-container .teams-box .team-score {
+#teamsPanelRoot .teams-comp-bar .teams-container .teams-box .match-date {
+  padding-top: 5px;
+}
+#teamsPanelRoot .teams-comp-bar .teams-container .teams-box .score-wrapper {
+  display: inline-block;
+}
+#teamsPanelRoot .teams-comp-bar .teams-container .teams-box .score-wrapper .team-score {
+  padding: 0px 5px;
+  border-radius: 3px;
+  background-color: #afafaf;
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 9pt;
-  color: #214a5f;
+  color: #ffffff;
 }
 #teamsPanelRoot .teams-comp-bar .teams-container .teams-box .period {
   color: #0d75a6;

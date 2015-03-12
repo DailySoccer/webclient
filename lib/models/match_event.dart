@@ -72,6 +72,8 @@ class MatchEvent {
   void updateLiveInfo(Map jsonMap) {
     _updateFantasyPoints(jsonMap["liveFantasyPoints"]);
 
+    soccerTeamA.score = jsonMap.containsKey("homeScore") ? jsonMap["homeScore"] : -1;
+    soccerTeamB.score = jsonMap.containsKey("awayScore") ? jsonMap["awayScore"] : -1;
     period = jsonMap["period"];
     minutesPlayed = jsonMap["minutesPlayed"];
   }
@@ -104,6 +106,8 @@ class MatchEvent {
     minutesPlayed = jsonMap.containsKey("minutesPlayed") ? jsonMap["minutesPlayed"] : 0;
 
     startDate = jsonMap.containsKey("startDate") ? DateTimeService.fromMillisecondsSinceEpoch(jsonMap["startDate"]) : null;
+
+    print("A: ${soccerTeamA.score} vs B: ${soccerTeamB.score}");
 
     // Si el templateMatchEvent incluye la información "live", la actualizamos
     if (jsonMap.containsKey("liveFantasyPoints")) {

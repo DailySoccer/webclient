@@ -8,14 +8,29 @@
 		cursor: pointer;
 		.make-row();
 		padding: 15px 10px;
+		@media (min-width: @screen-sm-min) {
+			padding: 15px 0;
+		}
 		.make-border(1px, solid none none  none, @greyLight);
 		&:nth-last-child(2) {
 			.make-border(1px, solid none solid  none, @greyLight);
 		}
 
+		.column-contest-flag {
+			.make-sm-column(0.4, 0);
+			.make-xs-column(0.8, 0);
+			.flag {
+				//min-width: 11px;
+				margin: 4px 0 0 0;
+				@media (min-width: @screen-sm-min) {
+					margin: 6px auto;
+				}
+			}
+		}
+
 		.column-contest-name {
-			.make-xs-column(12);
-			.make-sm-column(6, 0);
+			.make-xs-column(11.2);
+			.make-sm-column(5.6, 0);
 			
 			.column-name {
 				.make-xs-column(8.5);
@@ -42,9 +57,14 @@
 		}
 
 		.column-contest-price, .column-contest-prize, .column-contest-position, .column-contest-points  {
-			.make-xs-column(5.5);
-			.make-sm-column(1.8, 10);
-
+			
+			.make-sm-column(1.8);
+			.make-xs-column(5.75);
+			padding: 0 6.5%;
+			@media (min-width: @screen-sm-min) {
+				padding: 0 5px;
+			}
+			
 			.column-contest-price-header, .column-contest-prize-header, .column-contest-position-header, .column-contest-points-header {
 				@media (max-width: @screen-xs-max) {
 					display: inline-block;
@@ -83,13 +103,17 @@
 		}
 
 		.column-contest-action {
-			.make-xs-column(1,0);
+			.make-xs-column(0.5,0);
 			.make-sm-column(1.2,0);
 			margin-top: 10px;
 			padding-left: 10px;
 			@media (max-width: @screen-xs-max) {
 				text-align: right;
 				margin-top: 0px;
+			}
+			.button-wrapper { 
+				width: 100%;
+				padding-right: 10%;
 			}
 			.action-button { 
 				.make-sm-column(12);

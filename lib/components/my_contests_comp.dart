@@ -9,6 +9,7 @@ import 'package:webclient/services/refresh_timers_service.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/services/server_error.dart';
+import 'dart:async';
 
 @Component(
   selector: 'my-contests',
@@ -16,6 +17,9 @@ import 'package:webclient/services/server_error.dart';
   useShadowDom: false
 )
 class MyContestsComp implements DetachAware {
+  static const String TAB_WAITING = "waiting";
+  static const String TAB_LIVE = "live";
+  static const String TAB_HISTORY = "history";
 
   ContestsService contestsService;
   LoadingService loadingService;
@@ -46,9 +50,11 @@ class MyContestsComp implements DetachAware {
                                "HERE YOU CAN CHECK YOUR PAST CONTESTS: LINEUPS, CONTENDERS, SCORES…";
   }
 
-  bool get hasLiveContests    => contestsService.liveContests     == null ? false : contestsService.liveContests.length     > 0;
-  bool get hasWaitingContests => contestsService.waitingContests  == null ? false : contestsService.waitingContests.length  > 0;
-  bool get hasHistoryContests => contestsService.historyContests  == null ? false : contestsService.historyContests.length  > 0;
+  num get numLiveContests => _numLiveContests;
+
+  bool get hasLiveContests    => numLiveContests > 0;
+  bool get hasWaitingContests => contestsService.hasWaitingContests;
+  bool get hasHistoryContests => contestsService.hasHistoryContests;
 
   int get totalHistoryContestsWinner => contestsService.historyContests.fold(0, (prev, contest) => (contest.getContestEntryWithUser(_profileService.user.userId).position == 0) ? prev+1 : prev);
   int get totalHistoryContestsPrizes => contestsService.historyContests.fold(0, (prev, contest) => prev + contest.getContestEntryWithUser(_profileService.user.userId).prize);
@@ -57,15 +63,32 @@ class MyContestsComp implements DetachAware {
 
     loadingService.isLoading = true;
 
-    _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS, _updateLive);
+    _tabSelected = TAB_LIVE;
+
+    _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS, _refreshMyContests);
   }
 
-  void _updateLive() {
-    contestsService.refreshMyContests()
-      .then((_) {
-        loadingService.isLoading = false;
-      })
-      .catchError((ServerError error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW), test: (error) => error is ServerError);
+  void _refreshMyContests() {
+    Future myContests =
+          _tabSelected  == TAB_WAITING  ? contestsService.refreshMyActiveContests()
+        : _tabSelected  == TAB_LIVE     ? contestsService.refreshMyLiveContests()
+        : contestsService.refreshMyHistoryContests()
+        .. then((_) {
+          loadingService.isLoading = false;
+
+          // Actualizar el número de contests "live"
+          if (_tabSelected == TAB_LIVE) {
+            _numLiveContests = contestsService.liveContests.length;
+          }
+        })
+        .catchError((ServerError error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW), test: (error) => error is ServerError);
+
+    // Cuando no estamos en "live" tenemos que actualizar el número de "live" con una query independiente
+    if (_tabSelected != TAB_LIVE) {
+      contestsService.countMyLiveContests().then((count) {
+        _numLiveContests = count;
+      });
+    }
   }
 
   void onWaitingActionClick(Contest contest) {
@@ -98,10 +121,24 @@ class MyContestsComp implements DetachAware {
 
     Element contentTab = document.querySelector("#" + tab);
     contentTab.classes.add("active");
+
+    _tabSelected = tab.contains(TAB_WAITING)    ? TAB_WAITING
+                    : tab.contains(TAB_LIVE)    ? TAB_LIVE
+                    : TAB_HISTORY;
+
+    // Mostramos "cargando..." si no tenemos contests (no se ha entrado anteriormente o está vacío)
+    loadingService.isLoading =  (_tabSelected == TAB_WAITING && !contestsService.hasWaitingContests) ||
+                                (_tabSelected == TAB_LIVE && !contestsService.hasLiveContests) ||
+                                (_tabSelected == TAB_HISTORY && !contestsService.hasHistoryContests);
+    _refreshMyContests();
   }
+
+  num _numLiveContests = 0;
 
   Router _router;
   FlashMessagesService _flashMessage;
   ProfileService _profileService;
   RefreshTimersService _refreshTimersService;
+
+  String _tabSelected = TAB_LIVE;
 }

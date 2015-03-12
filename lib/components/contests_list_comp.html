@@ -1,6 +1,8 @@
 <div class="contests-list-root">
   <div class="contest-row" ng-repeat="contest in currentPageList">
 
+    <div class="column-contest-flag"><div class="{{getSourceFlag(contest)}}"></div></div>
+
     <div class="column-contest-name" ng-click="onRow(contest)">
       <div class="column-name">{{contest.name}}</div>
       <div class="column-start-date-time-xs">{{dateInfo(contest.startDate)}} {{timeInfo(contest.startDate)}}</div>
@@ -22,7 +24,7 @@
     </div>
 
     <div class="column-contest-prize" ng-click="onRow(contest)" ng-if="!contest.isLive">
-      <div ng-if="!contest.isHistory" class="column-contest-prize-content" ng-class="{'prize-icon-big':contest.prizePool.amount > 0}">{{contest.prizePool}}</div>
+      <div ng-if="!contest.isHistory" class="column-contest-prize-content"><img ng-if="!scrDet.isXsScreen && contest.prizePool.amount > 0" class="iconPrize" src="images/iconPrize.png">{{contest.prizePool}}</div>
       <div ng-if="contest.isHistory"  class="column-contest-prize-content prize-icon-big">{{getMyPrize(contest)}}</div>
       <div class="column-contest-prize-header">PRIZE</div>
     </div>
@@ -38,7 +40,9 @@
     </div>
 
     <div class="column-contest-action">
-      <button type="button" class="action-button" ng-click="onAction(contest)">{{actionButtonTitle}}</button>
+      <div class="button-wrapper">
+        <button type="button" class="action-button" ng-click="onAction(contest)">{{actionButtonTitle}}</button>
+      </div>
     </div>
 
   </div>

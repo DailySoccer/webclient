@@ -834,7 +834,7 @@ tc.put("packages/webclient/components/contest_header_comp.html", new HttpRespons
     </div>
 
     <div class="contest-prize">
-      <div class="contest-coins-content prize-icon-big"><span>{{info['prize']}}</span></div>
+      <div class="contest-coins-content"><img ng-if="!scrDet.isXsScreen" class="iconPrize" src="images/iconPrize.png"><span>{{info['prize']}}</span></div>
       <div class="contest-coins-header">
         <div class="contest-coins-header-title">PRIZES</div>
         <!--<div class="contest-coins-header-prize-type">{{info['prizeType']}}</div>-->
@@ -1002,6 +1002,8 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
 tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse(200, r"""<div class="contests-list-root">
   <div class="contest-row" ng-repeat="contest in currentPageList">
 
+    <div class="column-contest-flag"><div class="{{getSourceFlag(contest)}}"></div></div>
+
     <div class="column-contest-name" ng-click="onRow(contest)">
       <div class="column-name">{{contest.name}}</div>
       <div class="column-start-date-time-xs">{{dateInfo(contest.startDate)}} {{timeInfo(contest.startDate)}}</div>
@@ -1023,7 +1025,7 @@ tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse
     </div>
 
     <div class="column-contest-prize" ng-click="onRow(contest)" ng-if="!contest.isLive">
-      <div ng-if="!contest.isHistory" class="column-contest-prize-content" ng-class="{'prize-icon-big':contest.prizePool.amount > 0}">{{contest.prizePool}}</div>
+      <div ng-if="!contest.isHistory" class="column-contest-prize-content"><img ng-if="!scrDet.isXsScreen && contest.prizePool.amount > 0" class="iconPrize" src="images/iconPrize.png">{{contest.prizePool}}</div>
       <div ng-if="contest.isHistory"  class="column-contest-prize-content prize-icon-big">{{getMyPrize(contest)}}</div>
       <div class="column-contest-prize-header">PRIZE</div>
     </div>
@@ -1039,7 +1041,9 @@ tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse
     </div>
 
     <div class="column-contest-action">
-      <button type="button" class="action-button" ng-click="onAction(contest)">{{actionButtonTitle}}</button>
+      <div class="button-wrapper">
+        <button type="button" class="action-button" ng-click="onAction(contest)">{{actionButtonTitle}}</button>
+      </div>
     </div>
 
   </div>
@@ -1607,7 +1611,7 @@ tc.put("packages/webclient/components/legalese_and_help/restricted_comp.html", n
 
     <div class="texto">
       Sorry, your current location prohibits you from making deposits on Epic Eleven.<br>
-      For location requirements please refer to our <a class="link"  ng-click="gotoTerminus()">Terms of Use</a> .<br>
+      <br>
       If you think this is in error and require assistance, please contact us through <a href="mailto:support@epiceleven.com">support@epiceleven.com</a>
     </div>
 
@@ -2237,7 +2241,7 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
   <div class="default-section-header">MY CONTESTS</div>
   <!-- Nav tabs -->
   <ul  id="myContestMenuTabs" class="my-contest-tabs" role="tablist">
-    <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('live-contest-content')"> Live <span class="contest-count" ng-if="hasLiveContests">{{contestsService.liveContests.length}}</span></a></li>
+    <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('live-contest-content')"> Live <span class="contest-count" ng-if="hasLiveContests">{{numLiveContests}}</span></a></li>
     <li><a role="tab" data-toggle="tab" ng-click="tabChange('waiting-contest-content')">Upcoming</a></li>
     <li><a role="tab" data-toggle="tab" ng-click="tabChange('history-contest-content')">Entry History</a></li>
   </ul>
@@ -2323,7 +2327,8 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
   </div>
 </div>
 """));
-tc.put("packages/webclient/components/promos_comp.html", new HttpResponse(200, r"""<div ng-if="!scrDet.isXsScreen">
+tc.put("packages/webclient/components/promos_comp.html", new HttpResponse(200, r"""<div id="promosRoot" ng-class="{'hide-promos': !hasPromos()}">
+<div ng-if="!scrDet.isXsScreen">
   <a class="banner2"  ng-click="gotoPromo(0)">
   <img ng-src="{{getThumb(0,'imageDesktop')}}" class="promoDesktop" />
   </a>
@@ -2343,7 +2348,8 @@ tc.put("packages/webclient/components/promos_comp.html", new HttpResponse(200, r
 <!--<div class="beta-version-xs" ng-if="scrDet.isXsScreen">
   <span class="beta-version-text">BETA</span>
   <img src="images/betaHeaderXsTexto.png" class="betaVersionXs" />
-</div>-->"""));
+</div>-->
+</div>"""));
 tc.put("packages/webclient/components/scoring_rules_comp.html", new HttpResponse(200, r"""<div id="scoringForAll" class="panel-points">
   <div class="rules-header">ALL PLAYERS</div>
   <div class="rules-content">

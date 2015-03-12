@@ -31,7 +31,7 @@ class WelcomeComp {
           <div class="panel">
       
             <div class="panel-heading">
-              <div class="panel-title">SELECT A CONTEST</div>
+              <div class="panel-title">${getTutorialTitle()}</div>
               <button id="btnCloseCross" type="button" class="close" button-action="CLOSE")">
                 <span class="glyphicon glyphicon-remove"></span>
               </button>
@@ -57,6 +57,22 @@ class WelcomeComp {
       </div>
     ''';
     createHTML(html);
+  }
+
+  String getTutorialTitle() {
+    String title;
+    switch(stage) {
+      case 'lobby':
+        title ='SELECT A CONTEST';
+      break;
+      case 'enter_contest':
+        title ='SELECT YOUR LINEUP';
+      break;
+      case 'view_contest_entry':
+        title ='WELCOME TO EPICELEVEN';
+      break;
+    }
+    return title;
   }
 
   String getTutorialText() {

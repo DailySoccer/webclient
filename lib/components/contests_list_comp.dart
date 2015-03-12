@@ -97,7 +97,7 @@ class ContestsListComp {
   @NgCallback("on-action-click")
   Function onActionClick;
 
-  ContestsListComp(this._profileService, this._scrDet);
+  ContestsListComp(this._profileService, this.scrDet);
 
   /********* METHODS */
   String dateInfo(DateTime date) {
@@ -239,7 +239,25 @@ class ContestsListComp {
       }
     });
     refreshListOrder();
+    updatePage(_currentPage, _itemsPerPage);
     contestCount = contestsListFiltered.length;
+  }
+
+  String getSourceFlag(Contest contest) {
+    String ret = "flag ";
+    switch(contest.competitionType){
+      case "LEAGUE_ES":
+        ret += "flag-es";
+      break;
+      case "LEAGUE_UK":
+        ret += "flag-gb";
+      break;
+      case "CHAMPIONS":
+        ret += "flag-eu";
+      break;
+    }
+
+    return ret;
   }
 
 
@@ -278,5 +296,5 @@ class ContestsListComp {
   int _currentPage    = 0;
 
   ProfileService _profileService;
-  ScreenDetectorService _scrDet;
+  ScreenDetectorService scrDet;
 }

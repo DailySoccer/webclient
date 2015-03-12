@@ -4,6 +4,7 @@ import 'package:angular/angular.dart';
 import 'package:webclient/services/server_service.dart';
 import 'dart:async';
 import 'package:webclient/services/refresh_timers_service.dart';
+import 'dart:math';
 
 @Injectable()
 class PromosService {
@@ -48,10 +49,17 @@ class PromosService {
   Map<String,Map> _getRandomPromo(int quantity) {
     Map<String, Map> myPromoList = new Map();
 
-    if (_promos!=null) {
-      List promosIds = _promos.take(quantity).toList();
-      promosIds.shuffle();
+    if (_promos!=null && _promos.isNotEmpty) {
+      int currentPriority = _promos.first['priority'];
+      List tempPromos = new List();
+      while (tempPromos.length < min(quantity, _promos.length)) {
+        List morePromos = _promos.skip(tempPromos.length).takeWhile((promo) => promo['priority']==currentPriority).toList();
+        currentPriority = currentPriority-1;
+        morePromos.shuffle();
+        tempPromos.addAll(morePromos);
+      }
 
+      List promosIds = tempPromos.take(quantity).toList();
       promosIds.forEach((promo) => myPromoList.addAll({promo['codeName']: promo}));
     }
 

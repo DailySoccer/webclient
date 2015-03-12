@@ -18,7 +18,7 @@ class PromosComp {
 
   ScreenDetectorService scrDet;
   PromosService promosService;
-  Map<String,Map> promos;
+  Map<String,Map> promos = {};
 
   PromosComp(this.scrDet, this.promosService, this._router, this._refreshTimersService) {
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_PROMOS, refreshPromos);
@@ -42,7 +42,9 @@ class PromosComp {
     promosService.getRandomPromo(QUANTITY).then((promoMap) => promos = promoMap);
   }
 
-
+  bool hasPromos() {
+    return promos.length > 0;
+  }
   String getThumb(int pos, String thumbSize) {
     if (promos != null && promos.length>pos)
       return promos.values.toList()[pos][thumbSize];

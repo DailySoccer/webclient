@@ -84,7 +84,7 @@ class EnterContestComp implements DetachAware {
 
     GameMetrics.logEvent(GameMetrics.ENTER_CONTEST);
 
-    Future refreshContest = editingContestEntry? _contestsService.refreshMyContest(contestId) : _contestsService.refreshPublicContest(contestId);
+    Future refreshContest = editingContestEntry? _contestsService.refreshMyActiveContest(contestId) : _contestsService.refreshActiveContest(contestId);
     refreshContest
       .then((_) {
         loadingService.isLoading = false;

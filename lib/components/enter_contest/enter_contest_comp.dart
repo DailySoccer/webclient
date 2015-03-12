@@ -339,6 +339,8 @@ class EnterContestComp implements DetachAware {
         _contestsService.addContestEntry(contest.contestId, lineupSlots.map((player) => player["id"]).toList())
           .then((contestId) {
             GameMetrics.logEvent(GameMetrics.TEAM_CREATED);
+            GameMetrics.peopleSet({"Last Team Created": new DateTime.now()});
+            GameMetrics.peopleSet({"Last Team Created (${contest.competitionType})": new DateTime.now()});
             GameMetrics.logEvent(GameMetrics.ENTRY_FEE, {"value": contest.entryFee});
             _teamConfirmed = true;
             _router.go( _profileService.isWelcoming ? 'view_contest_entry.welcome' : 'view_contest_entry', {

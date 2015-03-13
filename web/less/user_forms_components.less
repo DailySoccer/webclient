@@ -248,7 +248,9 @@
 	.make-row(0);
 	.panel-title {
 		.exo_light(20pt, @white);
-		text-align: center;
+		@media (min-width: @screen-sm-min) {
+			text-align: center;
+		}
 	}
 	.tut-title {
 		.make-xs-column(12, 30px);

@@ -7,6 +7,7 @@ import "package:webclient/models/soccer_player.dart";
 import 'dart:async';
 import 'dart:math';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/models/field_pos.dart';
 
 @Component(selector: 'fantasy-team',
            templateUrl: 'packages/webclient/components/view_contest/fantasy_team_comp.html',
@@ -72,6 +73,10 @@ class FantasyTeamComp implements DetachAware {
     void _createSlots() {
 
       slots = new List<dynamic>();
+      /***** debug ***/
+      FieldPos.LINEUP.forEach((pos) {
+        slots.add(null);
+      });
 
       _contestEntry.instanceSoccerPlayers.forEach((instanceSoccerPlayer) {
 
@@ -81,7 +86,7 @@ class FantasyTeamComp implements DetachAware {
         var matchEventName = (instanceSoccerPlayer.soccerTeam.templateSoccerTeamId == instanceSoccerPlayer.soccerTeam.matchEvent.soccerTeamA.templateSoccerTeamId)?
                              "<strong>$shortNameTeamA</strong> - $shortNameTeamB" :
                              "$shortNameTeamA - <strong>$shortNameTeamB<strong>";
-        slots.add({
+        Map player = {
             "id" : instanceSoccerPlayer.id,
             "fieldPos": instanceSoccerPlayer.fieldPos,
             "fullName": instanceSoccerPlayer.soccerPlayer.name,
@@ -90,9 +95,25 @@ class FantasyTeamComp implements DetachAware {
             "percentOfUsersThatOwn": _contestEntry.contest.getPercentOfUsersThatOwn(instanceSoccerPlayer.soccerPlayer),
             "score": instanceSoccerPlayer.printableCurrentLivePoints,
             "stats": instanceSoccerPlayer.printableLivePointsPerOptaEvent
-        });
+        };
+
+        addPlayerToFantasyTeam(player);
       });
     }
+
+    void addPlayerToFantasyTeam(var soccerPlayer) {
+      // Buscamos el primer slot libre para la posicion que ocupa el soccer player
+      FieldPos theFieldPos = soccerPlayer["fieldPos"];
+
+      for (int c = 0; c < slots.length; ++c) {
+        if (slots[c] == null && FieldPos.LINEUP[c] == theFieldPos.value) {
+          slots[c] = soccerPlayer;
+          break;
+        }
+      }
+    }
+
+
 
     void _refreshSlots() {
 

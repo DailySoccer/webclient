@@ -29,10 +29,18 @@ packages:
     description: collection
     source: hosted
     version: "0.9.4"
+  crypto:
+    description: crypto
+    source: hosted
+    version: "0.9.0"
   di:
     description: di
     source: hosted
     version: "3.3.2"
+  fixnum:
+    description: fixnum
+    source: hosted
+    version: "0.9.1+2"
   html5lib:
     description: html5lib
     source: hosted
@@ -69,6 +77,10 @@ packages:
     description: pool
     source: hosted
     version: "1.0.1"
+  protobuf:
+    description: protobuf
+    source: hosted
+    version: "0.3.5+2"
   route_hierarchical:
     description: route_hierarchical
     source: hosted

@@ -32,7 +32,7 @@ class ContestsService {
   Future refreshActiveContests() {
     return _server.getActiveContests()
       .then((jsonMap) {
-        _initActiveContests(Contest.loadContestsFromJsonObject(jsonMap));
+        _initActiveContests(Contest.loadContestsFromProtocolBuffer(jsonMap));
       });
   }
 

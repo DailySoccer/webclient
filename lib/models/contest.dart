@@ -12,6 +12,7 @@ import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/prizes_service.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/models/money.dart';
+import 'package:webclient/protocols/contest.pb.dart' as protocols;
 
 class Contest {
   static const MAX_PLAYERS_SAME_TEAM = 4;
@@ -230,11 +231,66 @@ class Contest {
     return contests;
   }
 
+  static List<Contest> loadContestsFromProtocolBuffer(Map jsonMapRoot) {
+    var contests = new List<Contest>();
+
+    ContestReferences contestReferences = new ContestReferences();
+
+    if (jsonMapRoot.containsKey("contests")) {
+      protocols.ContestList contestList = new protocols.ContestList.fromBuffer(jsonMapRoot["contests"]);
+      contests = contestList.contest.map((contest) => new Contest.fromProtocolBuffer(contest, contestReferences)).toList();
+    }
+
+    /* TODO: ProtocolBuffer
+    // Solo 1 contest
+    if (jsonMapRoot.containsKey("contest")) {
+      contests.add(new Contest.fromJsonObject(jsonMapRoot["contest"], contestReferences));
+    }
+    // Array de contests
+    else {
+      contests = jsonMapRoot.containsKey("contests") ? jsonMapRoot["contests"].map((jsonObject) => new Contest.fromJsonObject(jsonObject, contestReferences)).toList() : [];
+
+      // Aceptamos múltiples listas de contests (con mayor o menor información)
+      for (int view=0; view<10 && jsonMapRoot.containsKey("contests_$view"); view++) {
+          contests.addAll( jsonMapRoot["contests_$view"].map((jsonObject) => new Contest.fromJsonObject(jsonObject, contestReferences)).toList() );
+      }
+    }
+
+    if (jsonMapRoot.containsKey("soccer_teams")) {
+      jsonMapRoot["soccer_teams"].map((jsonMap) => new SoccerTeam.fromJsonObject(jsonMap, contestReferences)).toList();
+    }
+
+    if (jsonMapRoot.containsKey("soccer_players")) {
+      jsonMapRoot["soccer_players"].map((jsonMap) => new SoccerPlayer.fromJsonObject(jsonMap, contestReferences)).toList();
+    }
+
+    if (jsonMapRoot.containsKey("users_info")) {
+      jsonMapRoot["users_info"].map((jsonMap) => new User.fromJsonObject(jsonMap, contestReferences)).toList();
+    }
+
+    // < FINAL > : Los partidos incluyen información ("liveFantasyPoints") que actualizarán a los futbolistas ("soccer_players")
+    if (jsonMapRoot.containsKey("match_events")) {
+      jsonMapRoot["match_events"].map((jsonMap) => new MatchEvent.fromJsonObject(jsonMap, contestReferences)).toList();
+    }
+    else {
+      // Aceptamos múltiples listas de partidos (con mayor o menor información)
+      for (int view=0; view<10 && jsonMapRoot.containsKey("match_events_$view"); view++) {
+        jsonMapRoot["match_events_$view"].map((jsonMap) => new MatchEvent.fromJsonObject(jsonMap, contestReferences)).toList();
+      }
+    }
+     */
+
+    return contests;
+  }
   /*
    * Factorias de creacion de un Contest
    */
   factory Contest.fromJsonObject(Map jsonMap, ContestReferences references) {
     return references.getContestById(jsonMap["_id"])._initFromJsonObject(jsonMap, references);
+  }
+
+  factory Contest.fromProtocolBuffer(protocols.Contest contestProto, ContestReferences references) {
+    return references.getContestById(contestProto.contestId)._initFromProtocolBuffer(contestProto, references);
   }
 
   /*
@@ -268,6 +324,41 @@ class Contest {
     // <FINAL> : Necesita acceso a los instanceSoccerPlayers
     contestEntries = jsonMap.containsKey("contestEntries") ? jsonMap["contestEntries"].map((jsonMap) => new ContestEntry.initFromJsonObject(jsonMap, references, this) ).toList() : [];
     numEntries = jsonMap.containsKey("numEntries") ? jsonMap["numEntries"] : contestEntries.length;
+
+    // print("Contest: id($contestId) name($name) currentUserIds($currentUserIds) templateContestId($templateContestId)");
+    return this;
+  }
+
+  Contest _initFromProtocolBuffer(protocols.Contest contestProto, ContestReferences references) {
+    assert(contestId.isNotEmpty);
+
+    templateContestId = contestProto.templateContestId;
+
+    state = contestProto.hasState() ? contestProto.state : "ACTIVE";
+    _namePattern = contestProto.name;
+    maxEntries = contestProto.maxEntries;
+    salaryCap = contestProto.salaryCap;
+    entryFee = new Money.fromJsonObject(contestProto.entryFee);
+    prizeType = contestProto.prizeType;
+    startDate = DateTimeService.fromMillisecondsSinceEpoch(contestProto.startDate.toInt());
+    optaCompetitionId = contestProto.hasOptaCompetitionId() && (contestProto.optaCompetitionId != null) ? contestProto.optaCompetitionId : "";
+    // matchEvents = contestProto.templateMatchEventId.isNotEmpty ? jsonMap["templateMatchEventIds"].map( (matchEventId) => references.getMatchEventById(matchEventId) ).toList() : [];
+
+    _prizePool = new Money.fromValue((maxEntries * entryFee.amount) * 90 / 100);
+
+    instanceSoccerPlayers = {};
+    /* TODO: ProtocolBuffer
+    if (jsonMap.containsKey("instanceSoccerPlayers")) {
+      jsonMap["instanceSoccerPlayers"].forEach((jsonObject) {
+        InstanceSoccerPlayer instanceSoccerPlayer =  new InstanceSoccerPlayer.initFromJsonObject(jsonObject, references);
+        instanceSoccerPlayers[instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId] = instanceSoccerPlayer;
+      });
+    }
+    */
+
+    // <FINAL> : Necesita acceso a los instanceSoccerPlayers
+    contestEntries = contestProto.contestEntry.isNotEmpty ? contestProto.contestEntry.map((contestEntry) => new ContestEntry.initFromProtocolBuffer(contestEntry, references, this) ).toList() : [];
+    numEntries = contestProto.hasNumEntries() ? contestProto.numEntries : contestEntries.length;
 
     // print("Contest: id($contestId) name($name) currentUserIds($currentUserIds) templateContestId($templateContestId)");
     return this;

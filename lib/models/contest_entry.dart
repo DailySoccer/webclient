@@ -6,6 +6,7 @@ import "package:webclient/models/contest.dart";
 import "package:webclient/models/instance_soccer_player.dart";
 import 'package:webclient/models/money.dart';
 import 'package:webclient/services/contest_references.dart';
+import 'package:webclient/protocols/contest.pb.dart' as protocols;
 
 class ContestEntry {
   String contestEntryId;
@@ -57,4 +58,25 @@ class ContestEntry {
 
     // print("ContestEntry: id($contestEntryId) userId($userId) contestId($contestId) soccerIds($soccerIds)");
   }
+
+  ContestEntry.initFromProtocolBuffer(protocols.Contest_ContestEntry contestEntryProtocol, ContestReferences references, Contest theContest) {
+    contestEntryId = contestEntryProtocol.contestEntryId;
+    user = references.getUserById(contestEntryProtocol.userId);
+
+    /* TODO: ProtocolBuffer
+    // Enviado únicamente cuando se envíe usando jsonView.FullContest
+    if (jsonMap.containsKey("soccerIds")) {
+      instanceSoccerPlayers = jsonMap["soccerIds"].map((soccerPlayerId) => theContest.getInstanceSoccerPlayer(soccerPlayerId)).toList();
+    }
+
+    position = (jsonMap.containsKey("position")) ? jsonMap["position"] : 0;
+    prize = (jsonMap.containsKey("prize")) ? new Money.fromJsonObject(jsonMap["prize"]) : new Money.zero();
+    fantasyPoints = (jsonMap.containsKey("fantasyPoints")) ? jsonMap["fantasyPoints"] : 0;
+     */
+
+    contest = theContest;
+
+    // print("ContestEntry: id($contestEntryId) userId($userId) contestId($contestId) soccerIds($soccerIds)");
+  }
+
 }

@@ -55,12 +55,11 @@ class TeamsPanelComp implements DetachAware {
     matchEventsSorted = new List<MatchEvent>.from(contest.matchEvents)
       .. sort((entry1, entry2) => entry1.startDate.compareTo(entry2.startDate))
       .. forEach( (match) {
-        matchesInvolved.add(match.soccerTeamA.shortName + ' <span class="team-score">${getTeamScore(match.soccerTeamA)}</span> - <span class="team-score">${getTeamScore(match.soccerTeamB)}</span> ' + match.soccerTeamB.shortName +
-        "<br>" + DateTimeService.formatDateTimeShort(match.startDate) + "<br>");
+        matchesInvolved.add('''<span> ${match.soccerTeamA.shortName} </span> <div class="score-wrapper">@scoreTeamA</div><span> - </span><div class="score-wrapper">@scoreTeamB</div><span> ${match.soccerTeamB.shortName} </span>''');
      });
   }
 
-  String getMatchAndPeriodInfo(int id, String teamsInfo) {
+  String getMatchAndPeriodInfo(int id) {
     if (matchEventsSorted == null || matchEventsSorted.isEmpty) {
       return '';
     }
@@ -69,10 +68,7 @@ class TeamsPanelComp implements DetachAware {
     MatchEvent match = matchEventsSorted[id];
     if(contest.state == "LIVE") {
       if (match != null) {
-        if (!match.isStarted) {
-          content = 'Upcoming';
-        }
-        else {
+        if (match.isStarted) {
           if (match.isFinished) {
             content = 'Finished';
           }
@@ -83,14 +79,18 @@ class TeamsPanelComp implements DetachAware {
       }
     }
 
-    return "${teamsInfo}<div class=period>${content}</div>";
+    String teamsAndScores;
+    teamsAndScores = matchesInvolved[id].replaceAll("@scoreTeamA", getTeamScore(match.soccerTeamA));
+    //teamsAndScores = match.soccerTeamA.score > -1 ? teamsAndScores.replaceAll("@separator", " - ") : teamsAndScores.replaceAll("@separator", "");
+    teamsAndScores = teamsAndScores.replaceAll("@scoreTeamB", ' ' + getTeamScore(match.soccerTeamB));
+
+    String infoBox = teamsAndScores + '''<br>''' + (content != "" ?  "<div class=period>${content}</div>" : '''<div class="match-date"> ${DateTimeService.formatDateTimeShort(match.startDate)}</div>''');
+
+    return infoBox;
   }
 
   String getTeamScore(SoccerTeam team) {
-    if (team == null) {
-      return '';
-    }
-     return team.score >= 0 ? team.score.toString() : '';
+     return team.score >= 0 ? '''<span class="team-score">${team.score.toString()}</span>''' : '';
   }
 
   void toggleTeamsPanel() {

@@ -6,8 +6,8 @@
     </div>
     <div id="teamsPanel" class="teams-container collapse">
       <div class="top-border"></div>
-      <div class="teams-box" ng-repeat="match in matchesInvolved">
-        <div class="teams-info" ng-bind-html="getMatchAndPeriodInfo($index, match)"></div>
+      <div class="teams-box" ng-repeat="match in matchEventsSorted">
+        <div class="teams-info" ng-bind-html="getMatchAndPeriodInfo($index)"></div>
       </div>
       <div class="bottom-border"></div>
     </div>
@@ -15,8 +15,8 @@
 
   <div class="teams-comp-bar" ng-switch-when="false">
     <div class="teams-container">
-      <div class="teams-box" ng-repeat="match in matchesInvolved">
-        <div class="teams-info" ng-bind-html="getMatchAndPeriodInfo($index, match)"></div>
+      <div class="teams-box" ng-repeat="match in matchEventsSorted">
+        <div class="teams-info" ng-bind-html="getMatchAndPeriodInfo($index)"></div>
       </div>
     </div>
   </div>

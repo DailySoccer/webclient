@@ -46,7 +46,7 @@ class ViewContestComp implements DetachAware {
 
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
 
-    isLive ? _contestsService.refreshMyLiveContest(contestId) : _contestsService.refreshMyHistoryContest(contestId)
+    (isLive ? _contestsService.refreshMyLiveContest(contestId) : _contestsService.refreshMyHistoryContest(contestId))
       .then((_) {
         loadingService.isLoading = false;
         contest = _contestsService.lastContest;

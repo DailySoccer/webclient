@@ -36,6 +36,13 @@ class ContestsService {
       });
   }
 
+  Future refreshActiveContest(String contestId) {
+    return _server.getActiveContest(contestId)
+      .then((jsonMap) {
+        _registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
+      });
+  }
+
   Future addContestEntry(String contestId, List<String> soccerPlayerIds) {
     return _server.addContestEntry(contestId, soccerPlayerIds)
       .then((jsonMap) {
@@ -52,13 +59,6 @@ class ContestsService {
           _profileService.updateProfileFromJson(jsonMap["profile"]);
         }
         return contestId;
-      });
-  }
-
-  Future refreshPublicContest(String contestId) {
-    return _server.getPublicContest(contestId)
-      .then((jsonMap) {
-        _registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
       });
   }
 
@@ -123,8 +123,8 @@ class ContestsService {
         });
   }
 
-  Future refreshMyContest(String contestId) {
-    return _server.getMyContest(contestId)
+  Future refreshMyActiveContest(String contestId) {
+    return _server.getMyActiveContest(contestId)
         .then((jsonMap) {
           _registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
         });
@@ -137,8 +137,16 @@ class ContestsService {
         });
   }
 
-  Future refreshViewContest(String contestId) {
-    return _server.getViewContest(contestId)
+  Future refreshMyLiveContest(String contestId) {
+    return _server.getMyLiveContest(contestId)
+        .then((jsonMap) {
+          _registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
+          _prizesService.loadFromJsonObject(jsonMap);
+        });
+  }
+
+  Future refreshMyHistoryContest(String contestId) {
+    return _server.getMyHistoryContest(contestId)
         .then((jsonMap) {
           _registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
           _prizesService.loadFromJsonObject(jsonMap);

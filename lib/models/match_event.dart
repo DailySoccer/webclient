@@ -107,8 +107,6 @@ class MatchEvent {
 
     startDate = jsonMap.containsKey("startDate") ? DateTimeService.fromMillisecondsSinceEpoch(jsonMap["startDate"]) : null;
 
-    print("A: ${soccerTeamA.score} vs B: ${soccerTeamB.score}");
-
     // Si el templateMatchEvent incluye la información "live", la actualizamos
     if (jsonMap.containsKey("liveFantasyPoints")) {
       _updateFantasyPoints(jsonMap["liveFantasyPoints"]);

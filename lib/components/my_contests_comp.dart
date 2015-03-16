@@ -113,6 +113,10 @@ class MyContestsComp implements DetachAware {
 
   void tabChange(String tab) {
 
+    //Cambiamos el activo del tab
+    querySelectorAll("#myContestMenuTabs li").classes.remove("active");
+    querySelector("#" + tab.replaceAll("content", "tab")).classes.add("active");
+    //Cambiamos el active del tab-pane
     querySelectorAll(".tab-pane").classes.remove("active");
     querySelector("#" + tab).classes.add("active");
 

@@ -40,4 +40,17 @@ class StringUtils {
 
   static String parsePrize(num money) => ((money*100)%100 == 0)? thousandsFormat.format(money): twoDecimalsFormat.format(money);
 
+  static Map<String, String> stringToMap(String params) {
+    Map<String, String> result = {};
+
+    List<String> pairs = params.split(",");
+
+    for (int i=0; i<pairs.length; i++) {
+        String pair = pairs[i];
+        List<String> keyValue = pair.split(":");
+        result.addAll({keyValue[0]:keyValue[1]});
+    }
+    return result;
+  }
+
 }

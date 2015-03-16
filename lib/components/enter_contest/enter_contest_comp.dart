@@ -342,7 +342,7 @@ class EnterContestComp implements DetachAware {
             GameMetrics.identifyMixpanel(_profileService.user.email);
             GameMetrics.peopleSet({"Last Team Created": new DateTime.now()});
             GameMetrics.peopleSet({"Last Team Created (${contest.competitionType})": new DateTime.now()});
-            GameMetrics.logEvent(GameMetrics.ENTRY_FEE, {"value": contest.entryFee});
+            GameMetrics.logEvent(GameMetrics.ENTRY_FEE, {"value": contest.entryFee.toString()});
             _teamConfirmed = true;
             _router.go( _profileService.isWelcoming ? 'view_contest_entry.welcome' : 'view_contest_entry', {
                           "contestId": contestId,

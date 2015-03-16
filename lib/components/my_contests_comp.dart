@@ -66,8 +66,18 @@ class MyContestsComp implements DetachAware {
     _tabSelected = TAB_LIVE;
 
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS, _refreshMyContests);
-    var section = _routeProvider.parameters["content"];
-
+    var section = _routeProvider.parameters["section"];
+    switch(section) {
+      case "live":
+        tabChange('live-contest-content');
+      break;
+      case "upcoming":
+        tabChange('waiting-contest-content');
+      break;
+      case "history":
+        tabChange('history-contest-content');
+      break;
+    }
   }
 
   void _refreshMyContests() {
@@ -111,6 +121,10 @@ class MyContestsComp implements DetachAware {
 
   void detach() {
     _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS);
+  }
+
+  void gotoSection(String section) {
+    _router.go('my_contests', {'section':section});
   }
 
   void tabChange(String tab) {

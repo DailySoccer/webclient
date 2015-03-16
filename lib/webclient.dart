@@ -310,8 +310,8 @@ class WebClientApp extends Module {
           }
       )
       ,'my_contests': ngRoute(
-          path: '/my_contests/:content/',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
+          path: '/my_contests/:section/',
+          preEnter: (RoutePreEnterEvent e) => _preEnterMycontest(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
           viewHtml: '<my-contests></my-contests>'
       )
       ,'live_contest': ngRoute(
@@ -395,6 +395,14 @@ class WebClientApp extends Module {
       event.allowEnter(_waitingjQueryReady(() {
         return false;
       }));
+    }
+  }
+
+  void _preEnterMycontest(RoutePreEnterEvent event, Router router, {int visibility}) {
+    _preEnterPage(event, router,visibility:visibility);
+    if (event.parameters["section"] == "null") {
+      //event.parameters["section"] = "live";
+      router.go(event.route.name, {"section":'live'});
     }
   }
 

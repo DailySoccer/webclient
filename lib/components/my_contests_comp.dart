@@ -59,13 +59,15 @@ class MyContestsComp implements DetachAware {
   int get totalHistoryContestsWinner => contestsService.historyContests.fold(0, (prev, contest) => (contest.getContestEntryWithUser(_profileService.user.userId).position == 0) ? prev+1 : prev);
   int get totalHistoryContestsPrizes => contestsService.historyContests.fold(0, (prev, contest) => prev + contest.getContestEntryWithUser(_profileService.user.userId).prize);
 
-  MyContestsComp(this.loadingService, this._profileService, this._refreshTimersService, this.contestsService, this._router, this._flashMessage) {
+  MyContestsComp(this.loadingService, this._profileService, this._refreshTimersService, this.contestsService, this._router, this._routeProvider, this._flashMessage) {
 
     loadingService.isLoading = true;
 
     _tabSelected = TAB_LIVE;
 
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS, _refreshMyContests);
+    var section = _routeProvider.parameters["content"];
+
   }
 
   void _refreshMyContests() {
@@ -140,6 +142,8 @@ class MyContestsComp implements DetachAware {
   num _numLiveContests = 0;
 
   Router _router;
+  RouteProvider _routeProvider;
+
   FlashMessagesService _flashMessage;
   ProfileService _profileService;
   RefreshTimersService _refreshTimersService;

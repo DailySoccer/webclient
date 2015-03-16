@@ -310,7 +310,7 @@ class WebClientApp extends Module {
           }
       )
       ,'my_contests': ngRoute(
-          path: '/my_contests',
+          path: '/my_contests/:content/',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
           viewHtml: '<my-contests></my-contests>'
       )

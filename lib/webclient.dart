@@ -87,6 +87,7 @@ import 'package:webclient/utils/noshim.dart';
 import 'package:angular/core_dom/module_internal.dart';
 
 import 'package:webclient/template_cache.dart';
+import 'package:webclient/utils/game_metrics.dart';
 
 class WebClientApp extends Module {
 
@@ -379,6 +380,7 @@ class WebClientApp extends Module {
     }
     else {
       JsUtils.runJavascript(null, "onjQueryReady", [() {
+        GameMetrics.logEvent(GameMetrics.PAGE_READY);
         _jQueryReady = true;
         completer.complete( cb() );
       }]);

@@ -218,7 +218,6 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
         bool isCurrentYearFetching = seasonsList.where((data) => data["year"] == year).length > 0;
         // Si no existe aún este año en la tabla de años, la generamos
         if ( !isCurrentYearFetching ) {
-          print ("Procesando Stats del año ${year}");
           // Si no tenemos creadas las estadísticas partido a partido
           Map newSeason = {};
           newSeason.addAll({'year':year, 'stats':[]});

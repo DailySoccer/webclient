@@ -12,7 +12,8 @@ class TransactionInfo {
     "CANCEL_CONTEST_ENTRY": "Cancelled contest entry fee",
     "CANCEL_CONTEST"      : "Cancelled contest",
     "REFUND"              : "Refund",
-    "FREE_MONEY"          : "This one's on the house"
+    "FREE_MONEY"          : "This one's on the house",
+    "BONUS_TO_CASH"       : "Pending bonus"
   };
 
   String transactionDescription;

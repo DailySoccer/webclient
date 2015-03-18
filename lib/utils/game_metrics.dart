@@ -26,11 +26,15 @@ class GameMetrics {
 
 
   static void aliasMixpanel(String email) {
-    JsUtils.runJavascript(null, "alias", email, "mixpanel");
+    if (!email.endsWith("test.com")) {
+      JsUtils.runJavascript(null, "alias", email, "mixpanel");
+    }
   }
 
   static void identifyMixpanel(String email) {
-    JsUtils.runJavascript(null, "identify", email, "mixpanel");
+    if (!email.endsWith("test.com")) {
+      JsUtils.runJavascript(null, "identify", email, "mixpanel");
+    }
   }
 
   static void logEvent(String eventName, [Map params]) {

@@ -82,8 +82,8 @@
                   </tr>
                 </thead>
                 <tbody class="stats-rows">
-                  <tr ng-repeat="year in seasonsList">
-                    <td class="year-season">
+                  <tr>
+                    <td ng-repeat="year in seasonsList" class="year-season">
                       <div class="year">{{year['year']}}</div>
                       <table class="match-stats-block" ng-repeat="stats in year['stats']">
                         <tbody>

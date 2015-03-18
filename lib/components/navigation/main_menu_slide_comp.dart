@@ -6,6 +6,7 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/html_utils.dart';
 import 'dart:async';
+import 'package:webclient/utils/string_utils.dart';
 
 @Component(
     selector: 'main-menu-slide',
@@ -139,7 +140,14 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
       profileService.logout();
     }
     else {
-      _router.go(destination, {});
+      String paramString = event.currentTarget.attributes["params"];
+      if (paramString != null) {
+        _router.go(destination,  StringUtils.stringToMap(paramString.toString()));
+      }
+      else {
+        _router.go(destination, {});
+      }
+
     }
   }
 
@@ -272,7 +280,7 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
       <div id="menuSlide">
         <ul class="nav navbar-nav">
           <li highlights="lobby"       class="mainOption"><a  id="menuLobby"      destination="lobby">LOBBY</a></li>
-          <li highlights="my_contests" class="mainOption"><a  id="menuMyContests" destination="my_contests">MY CONTESTS</a></li>
+          <li highlights="my_contests" class="mainOption"><a  id="menuMyContests" destination="my_contests" params="section:live">MY CONTESTS</a></li>
           <li highlights="help_info"   class="mainOption"><a  id="menuHowItWorks" destination="help_info">HOW IT WORKS</a></li>
           <li id="userBalanceOut-sm"   class="right-menu">
             <div class="balance">

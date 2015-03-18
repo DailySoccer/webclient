@@ -84,7 +84,7 @@ class EnterContestComp implements DetachAware {
 
     GameMetrics.logEvent(GameMetrics.ENTER_CONTEST);
 
-    Future refreshContest = editingContestEntry? _contestsService.refreshMyContest(contestId) : _contestsService.refreshPublicContest(contestId);
+    Future refreshContest = editingContestEntry? _contestsService.refreshMyActiveContest(contestId) : _contestsService.refreshActiveContest(contestId);
     refreshContest
       .then((_) {
         loadingService.isLoading = false;
@@ -140,7 +140,7 @@ class EnterContestComp implements DetachAware {
     // Verificamos si esta la lista vacía por completo para permitir salir sin alertas.
     bool isLineupEmpty = !lineupSlots.any((soccerPlayer) => soccerPlayer != null);
     // Si no hemos metido a nadie en nuestro equipo
-    if(!isLineupEmpty) {
+    if(!isLineupEmpty && !_teamConfirmed && !editingContestEntry) {
       _flashMessage.addGlobalMessage("Lineup saved", 3);
     }else {
       event.allowLeave(new Future<bool>.value(true));
@@ -342,7 +342,7 @@ class EnterContestComp implements DetachAware {
             GameMetrics.identifyMixpanel(_profileService.user.email);
             GameMetrics.peopleSet({"Last Team Created": new DateTime.now()});
             GameMetrics.peopleSet({"Last Team Created (${contest.competitionType})": new DateTime.now()});
-            GameMetrics.logEvent(GameMetrics.ENTRY_FEE, {"value": contest.entryFee});
+            GameMetrics.logEvent(GameMetrics.ENTRY_FEE, {"value": contest.entryFee.toString()});
             _teamConfirmed = true;
             _router.go( _profileService.isWelcoming ? 'view_contest_entry.welcome' : 'view_contest_entry', {
                           "contestId": contestId,

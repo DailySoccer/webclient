@@ -74,7 +74,7 @@ class JoinComp implements ShadowRootAware {
 
   bool get enabledSubmit => nickName.length >= MIN_NICKNAME_LENGTH && StringUtils.isValidEmail(email) && password.length >= MIN_PASSWORD_LENGTH && password == rePassword && _enabledSubmit;
 
-  JoinComp(this._router, this._profileService, this.loadingService, this._rootElement, this._scrDet) {
+  JoinComp(this._router, this._routeProvider, this._profileService, this.loadingService, this._rootElement, this._scrDet) {
     _fbLogin = new FBLogin(_router, _profileService, () => isModal ? ModalComp.close() : _router.go('lobby', {}));
   }
 
@@ -183,7 +183,13 @@ class JoinComp implements ShadowRootAware {
             GameMetrics.trackConversion(false);
 
             loadingService.isLoading = false;
-            ModalComp.close();
+            if(_routeProvider.route.parent.name == null) {
+              if (_routeProvider.route.name == 'join') {
+                _router.go("lobby", {});
+              }
+            } else {
+              ModalComp.close();
+            }
         })
         .catchError((ServerError error) {
           error.toJson().forEach( (key, value) {
@@ -264,6 +270,7 @@ class JoinComp implements ShadowRootAware {
   FBLogin _fbLogin;
 
   Router _router;
+  RouteProvider _routeProvider;
   ProfileService _profileService;
   Element _rootElement;
 

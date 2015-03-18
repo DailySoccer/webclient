@@ -2241,9 +2241,9 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
   <div class="default-section-header">MY CONTESTS</div>
   <!-- Nav tabs -->
   <ul  id="myContestMenuTabs" class="my-contest-tabs" role="tablist">
-    <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('live-contest-content')"> Live <span class="contest-count" ng-if="hasLiveContests">{{numLiveContests}}</span></a></li>
-    <li><a role="tab" data-toggle="tab" ng-click="tabChange('waiting-contest-content')">Upcoming</a></li>
-    <li><a role="tab" data-toggle="tab" ng-click="tabChange('history-contest-content')">Entry History</a></li>
+    <li id="live-contest-tab" class="active"><a role="tab" data-toggle="tab" ng-click="gotoSection('live')"> Live <span class="contest-count" ng-if="hasLiveContests">{{numLiveContests}}</span></a></li>
+    <li id="waiting-contest-tab"><a role="tab" data-toggle="tab" ng-click="gotoSection('upcoming')">Upcoming</a></li>
+    <li id="history-contest-tab"><a role="tab" data-toggle="tab" ng-click="gotoSection('history')">Entry History</a></li>
   </ul>
 
   <!-- Tab panes -->
@@ -2260,7 +2260,7 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
           <div class="no-contests-wrapper" ng-switch-when="false">
             <div class="no-contests-content">
               <div class="default-info-text">YOUR ARE NOT PLAYING ANY CONTEST<br>AT THE MOMENT</div>
-              <div class="no-contests-text">CHECK OUT THE LIST OF YOUR <strong data-toggle="tab" ng-click="tabChange('waiting-contest-content')">NEXT CONTESTS</strong> TO SEE WHEN THEY START</div>
+              <div class="no-contests-text">CHECK OUT THE LIST OF YOUR <strong data-toggle="tab" ng-click="gotoSection('upcoming')">NEXT CONTESTS</strong> TO SEE WHEN THEY START</div>
             </div>
             <div class="no-contest-bottom-row">
               <button class="btn-go-to-contest" ng-click="gotoLobby()">TO THE CONTESTS</button>
@@ -2459,8 +2459,8 @@ tc.put("packages/webclient/components/view_contest/teams_panel_comp.html", new H
     </div>
     <div id="teamsPanel" class="teams-container collapse">
       <div class="top-border"></div>
-      <div class="teams-box" ng-repeat="match in matchesInvolved">
-        <div class="teams-info" ng-bind-html="getMatchAndPeriodInfo($index, match)"></div>
+      <div class="teams-box" ng-repeat="match in matchEventsSorted">
+        <div class="teams-info" ng-bind-html="getMatchAndPeriodInfo($index)"></div>
       </div>
       <div class="bottom-border"></div>
     </div>
@@ -2468,8 +2468,8 @@ tc.put("packages/webclient/components/view_contest/teams_panel_comp.html", new H
 
   <div class="teams-comp-bar" ng-switch-when="false">
     <div class="teams-container">
-      <div class="teams-box" ng-repeat="match in matchesInvolved">
-        <div class="teams-info" ng-bind-html="getMatchAndPeriodInfo($index, match)"></div>
+      <div class="teams-box" ng-repeat="match in matchEventsSorted">
+        <div class="teams-info" ng-bind-html="getMatchAndPeriodInfo($index)"></div>
       </div>
     </div>
   </div>

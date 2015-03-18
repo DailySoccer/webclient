@@ -33,6 +33,8 @@ class ViewContestComp implements DetachAware {
   String contestId;
   Contest contest;
 
+  bool get isLive => _routeProvider.route.name.contains("live_contest");
+
   List<ContestEntry> get contestEntries => (contest != null) ? contest.contestEntries : null;
   List<ContestEntry> get contestEntriesOrderByPoints => (contest != null) ? contest.contestEntriesOrderByPoints : null;
 
@@ -44,7 +46,7 @@ class ViewContestComp implements DetachAware {
 
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
 
-    _contestsService.refreshViewContest(contestId)
+    (isLive ? _contestsService.refreshMyLiveContest(contestId) : _contestsService.refreshMyHistoryContest(contestId))
       .then((_) {
         loadingService.isLoading = false;
         contest = _contestsService.lastContest;

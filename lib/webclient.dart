@@ -87,6 +87,7 @@ import 'package:webclient/utils/noshim.dart';
 import 'package:angular/core_dom/module_internal.dart';
 
 import 'package:webclient/template_cache.dart';
+import 'package:webclient/utils/game_metrics.dart';
 
 class WebClientApp extends Module {
 
@@ -309,8 +310,8 @@ class WebClientApp extends Module {
           }
       )
       ,'my_contests': ngRoute(
-          path: '/my_contests',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
+          path: '/my_contests/:section/',
+          preEnter: (RoutePreEnterEvent e) => _preEnterMycontest(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
           viewHtml: '<my-contests></my-contests>'
       )
       ,'live_contest': ngRoute(
@@ -379,6 +380,7 @@ class WebClientApp extends Module {
     }
     else {
       JsUtils.runJavascript(null, "onjQueryReady", [() {
+        GameMetrics.logEvent(GameMetrics.PAGE_READY);
         _jQueryReady = true;
         completer.complete( cb() );
       }]);
@@ -393,6 +395,14 @@ class WebClientApp extends Module {
       event.allowEnter(_waitingjQueryReady(() {
         return false;
       }));
+    }
+  }
+
+  void _preEnterMycontest(RoutePreEnterEvent event, Router router, {int visibility}) {
+    _preEnterPage(event, router,visibility:visibility);
+    if (event.parameters["section"] == "null") {
+      //event.parameters["section"] = "live";
+      router.go(event.route.name, {"section":'live'});
     }
   }
 

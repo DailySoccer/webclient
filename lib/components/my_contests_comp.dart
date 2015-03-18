@@ -16,7 +16,7 @@ import 'dart:async';
   templateUrl: 'packages/webclient/components/my_contests_comp.html',
   useShadowDom: false
 )
-class MyContestsComp implements DetachAware {
+class MyContestsComp implements DetachAware, ShadowRootAware {
   static const String TAB_WAITING = "waiting";
   static const String TAB_LIVE = "live";
   static const String TAB_HISTORY = "history";
@@ -59,7 +59,7 @@ class MyContestsComp implements DetachAware {
   int get totalHistoryContestsWinner => contestsService.historyContests.fold(0, (prev, contest) => (contest.getContestEntryWithUser(_profileService.user.userId).position == 0) ? prev+1 : prev);
   int get totalHistoryContestsPrizes => contestsService.historyContests.fold(0, (prev, contest) => prev + contest.getContestEntryWithUser(_profileService.user.userId).prize);
 
-  MyContestsComp(this.loadingService, this._profileService, this._refreshTimersService, this.contestsService, this._router, this._flashMessage) {
+  MyContestsComp(this.loadingService, this._profileService, this._refreshTimersService, this.contestsService, this._router, this._routeProvider, this._flashMessage, this._rootElement) {
 
     loadingService.isLoading = true;
 
@@ -111,8 +111,16 @@ class MyContestsComp implements DetachAware {
     _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS);
   }
 
+  void gotoSection(String section) {
+    _router.go('my_contests', {'section':section});
+  }
+
   void tabChange(String tab) {
 
+    //Cambiamos el activo del tab
+    _rootElement.querySelectorAll("#myContestMenuTabs li").classes.remove('active');
+    _rootElement.querySelector("#" + tab.replaceAll("content", "tab")).classes.add("active");
+    //Cambiamos el active del tab-pane
     querySelectorAll(".tab-pane").classes.remove("active");
     querySelector("#" + tab).classes.add("active");
 
@@ -133,9 +141,28 @@ class MyContestsComp implements DetachAware {
     _refreshMyContests();
   }
 
+  @override
+  void onShadowRoot(ShadowRoot shadowRoot) {
+    var section = _routeProvider.parameters["section"];
+    switch(section) {
+      case "live":
+        tabChange('live-contest-content');
+      break;
+      case "upcoming":
+        tabChange('waiting-contest-content');
+      break;
+      case "history":
+        tabChange('history-contest-content');
+      break;
+    }
+  }
+
+  Element _rootElement;
   num _numLiveContests = 0;
 
   Router _router;
+  RouteProvider _routeProvider;
+
   FlashMessagesService _flashMessage;
   ProfileService _profileService;
   RefreshTimersService _refreshTimersService;

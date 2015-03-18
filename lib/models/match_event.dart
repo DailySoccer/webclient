@@ -72,6 +72,8 @@ class MatchEvent {
   void updateLiveInfo(Map jsonMap) {
     _updateFantasyPoints(jsonMap["liveFantasyPoints"]);
 
+    soccerTeamA.score = jsonMap.containsKey("homeScore") ? jsonMap["homeScore"] : -1;
+    soccerTeamB.score = jsonMap.containsKey("awayScore") ? jsonMap["awayScore"] : -1;
     period = jsonMap["period"];
     minutesPlayed = jsonMap["minutesPlayed"];
   }

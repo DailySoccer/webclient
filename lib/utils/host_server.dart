@@ -12,8 +12,7 @@ class HostServer {
       if (window.location.protocol.contains("file") || window.location.protocol.contains("chrome-extension")) {
         _url = "http://backend.epiceleven.com";
       }
-      else if(window.location.href.contains("live=true") ||
-              window.location.origin.contains("epiceleven.com")) {
+      else if(window.location.href.contains("live=true") || isEpicEleven) {
         _url = "http://backend.epiceleven.com";
       }
       else if (_isLocalHost) {
@@ -34,7 +33,7 @@ class HostServer {
   static bool get _isForcedProd => window.location.href.contains("prod=true");
   static bool get isDev => _isLocalHost && !_isForcedProd;
   static bool get isProd => !isDev;
-  static bool get isEpicEleven => window.location.hostname.contains("epiceleven");
+  static bool get isEpicEleven => window.location.hostname.contains("epiceleven.com") && !window.location.hostname.contains("staging");
 
   static String _url;
 }

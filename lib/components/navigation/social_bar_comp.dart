@@ -21,7 +21,7 @@ class SocialBarComp implements ShadowRootAware {
     //List<String> social = ['facebook', 'twitter', 'whatsapp', 'linkedIn', 'mail'];
     List <Map> social = [
                           {'name':'facebook', 'link_tag':'''data-href="shareOnFacebook"'''}
-                         ,{'name':'twitter',  'link_tag':'''href="http://twitter.com/share?via=EpicEleven&url=${url}&text=${getTextToShare()}"'''}
+                         ,{'name':'twitter',  'link_tag':'''href="http://twitter.com/share?via=EpicEleven&url=${url}&text=${getTextToShare()}" target="_blank"'''}
                          ,{'name':'whatsapp', 'link_tag':'''href="whatsapp://send?text=${getTextToShare()} ${url}"'''}
                          //,{'name':'linkedIn', 'link_tag':'''href="url_linkedIn"'''}
                          ,{'name':'email',    'link_tag':'''href="mailto:?subject=${getSubject()}&body=${getTextToShare()} ${url}"'''}
@@ -30,7 +30,7 @@ class SocialBarComp implements ShadowRootAware {
 
 
     social.forEach((item) {
-        icons += '''<a ${item['link_tag']} class="social_link ${item['name']}" target="_blank"><img src="${_imgPath + item['name'] + '.png'}"></a>''';
+        icons += '''<a ${item['link_tag']} class="social_link ${item['name']}"><img src="${_imgPath + item['name'] + '.png'}"></a>''';
     });
 
     String html = '''

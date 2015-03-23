@@ -18,7 +18,7 @@ class SocialBarComp implements ShadowRootAware {
   void _createHtml() {
     //List<String> social = ['facebook', 'twitter', 'whatsapp', 'linkedIn', 'mail'];
     List <Map> social = [
-                          {'name':'facebook', 'link_tag':'''destination="shareOnFacebook"'''}
+                          {'name':'facebook', 'link_tag':'''action="shareOnFacebook"'''}
                          ,{'name':'twitter',  'link_tag':'''href="url_twitter"'''}
                          ,{'name':'whatsapp', 'link_tag':'''href="url_whatsapp"'''}
                          ,{'name':'linkedIn', 'link_tag':'''href="url_linkedIn"'''}
@@ -27,7 +27,7 @@ class SocialBarComp implements ShadowRootAware {
     String icons = "";
 
     social.forEach((item) {
-        icons += '''<a fred="werwerwer" ${item['link_tag']} class="social_link ${item['name']}"><img src="${_imgPath + item['name'] + '.png'}"></a>''';
+        icons += '''<a ${item['link_tag']} class="social_link ${item['name']}"><img src="${_imgPath + item['name'] + '.png'}"></a>''';
     });
 
     String html = '''
@@ -38,12 +38,12 @@ class SocialBarComp implements ShadowRootAware {
       </div>
      ''';
 
-     _rootElement.innerHtml = html;
-     _rootElement.querySelectorAll("[destination]").onClick.listen(_onAction);
+     _rootElement.setInnerHtml(html, validator: _htmlValidator);
+     _rootElement.querySelectorAll("[action]").onClick.listen(_onAction);
   }
 
   void _onAction(MouseEvent event) {
-    print("Llamada a la funcion para ${(event.target as Element).attributes["destination"]}");
+    print("Llamada a la funcion para ${(event.target as Element).parent.attributes["action"]}");
   }
 /*
   void onScreenWidthChange(String scrWidth) {
@@ -62,4 +62,7 @@ class SocialBarComp implements ShadowRootAware {
   //var _streamListener;
   Element _rootElement;
   String _imgPath = 'images/social/';
+
+  final NodeValidatorBuilder _htmlValidator=new NodeValidatorBuilder.common()
+    ..allowElement('a', attributes: ['action']);
 }

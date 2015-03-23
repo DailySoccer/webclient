@@ -21,8 +21,8 @@ class SocialBarComp implements ShadowRootAware {
 
     List <Map> social = [
                           {'name':'facebook', 'link_tag':'''data-href="shareOnFacebook"'''}
-                         ,{'name':'twitter',  'link_tag':'''href="http://twitter.com/share?via=EpicEleven&url=${url}&text=${getTextToShare()}" target="_blank"'''}
-                         ,{'name':'whatsapp', 'link_tag':'''href="whatsapp://send?text=${getTextToShare()} ${url}"'''}
+                         ,{'name':'twitter',  'link_tag':'''href="http://twitter.com/share?via=EpicEleven&url=${url}&text=${getSubject()}" target="_blank"'''}
+                         ,{'name':'whatsapp', 'link_tag':'''href="whatsapp://send?text=${getSubject()} ${url}"'''}
                          ,{'name':'email',    'link_tag':'''href="mailto:?subject=${getSubject()}&body=${getTextToShare()} ${url}"'''}
                         ];
     String icons = "";
@@ -47,7 +47,7 @@ class SocialBarComp implements ShadowRootAware {
 
   void _onAction(MouseEvent event) {
     print("Llamada a la funcion para ${(event.target as Element).parent.attributes["data-href"]}");
-    _fbShare(url,'caption', getSubject(), getTextToShare(), 'http://epiceleven.com/images/apple-touch-icon-512x512-precomposed.png');
+    _fbShare(url,'Play everywhere, anytime', getSubject(), getTextToShare(), 'http://epiceleven.com/images/apple-touch-icon-512x512-precomposed.png');
   }
 
   @override void onShadowRoot(emulatedRoot) {
@@ -55,10 +55,41 @@ class SocialBarComp implements ShadowRootAware {
   }
 
   String getTextToShare() {
-    return "Mira como molo";
+    String textToShare;
+    //Antes de que empiece:
+    if (_contestHeader.contest.isActive) {
+      textToShare="I've chosen my players for ${_contestHeader.contest.name}";
+    }
+    //Live
+    else
+    if (_contestHeader.contest.isLive) {
+      textToShare="Check out how am I doing at ${_contestHeader.contest.name}";
+    }
+    //History
+    else
+    if (_contestHeader.contest.isHistory) {
+      textToShare="These are my results";
+    }
+    return textToShare;
   }
+
   String getSubject() {
-    return "Name";
+    String subject;
+    //Antes de que empiece:
+    if (_contestHeader.contest.isActive) {
+      subject="I've picked my lineup at Epic Eleven!";
+    }
+    //Live
+    else
+    if (_contestHeader.contest.isLive) {
+      subject="Watch my team live!";
+    }
+    //History
+    else
+    if (_contestHeader.contest.isHistory) {
+      subject="The contest is over at Epic Eleven";
+    }
+    return subject;
   }
 
   static void _fbShare(String url, String caption, String name, String description, String picture) {

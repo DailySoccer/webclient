@@ -17,6 +17,9 @@ class ContestHeaderComp implements DetachAware, ShadowRootAware {
 
   ScreenDetectorService scrDet;
 
+
+  bool allowSocialBarVisibility = false;
+
   Map<String, String> info = {
     'description':      '',
     'startTime':        '',
@@ -63,6 +66,20 @@ class ContestHeaderComp implements DetachAware, ShadowRootAware {
 
   ContestHeaderComp(this._router, this._routeProvider, this.scrDet, this._contestsService, this._rootElement) {
     _count = new Timer.periodic(new Duration(seconds: 1), (Timer timer) => _refreshCountdownDate());
+
+    String whereAmI = _routeProvider.routeName;
+
+    switch (whereAmI) {
+      case "view_contest_entry":
+      case "live_contest":
+      case "view_contest":
+      case "history_contest":
+        allowSocialBarVisibility = true;
+      break;
+      default:
+        allowSocialBarVisibility = false;
+      break;
+    }
   }
 
   void _refreshCountdownDate() {

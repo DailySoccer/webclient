@@ -29,6 +29,8 @@ import 'package:webclient/utils/limit_to_dot.dart';
 
 import 'package:webclient/components/navigation/main_menu_slide_comp.dart';
 import 'package:webclient/components/navigation/footer_comp.dart';
+import 'package:webclient/components/navigation/social_bar_comp.dart';
+
 import 'package:webclient/components/flash_messages_comp.dart';
 import 'package:webclient/components/modal_comp.dart';
 
@@ -133,6 +135,7 @@ class WebClientApp extends Module {
 
     bind(MainMenuSlideComp);
     bind(FooterComp);
+    bind(SocialBarComp);
     bind(FlashMessageComp);
     bind(ModalComp);
 

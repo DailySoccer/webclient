@@ -10897,6 +10897,46 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
 #rootFooter .sub-footer-wrapper .sub-footer .social a {
   margin-left: 15px;
 }
+#socialBarRoot {
+  background-image: -webkit-linear-gradient(top, #1a3949 49%, #0f2630 51%);
+  background-image: linear-gradient(to bottom, #1a3949 49%, #0f2630 51%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff1a3949', endColorstr='#ff0f2630', GradientType=0);
+  display: inline-block;
+  width: 100%;
+  height: auto;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  z-index: 999;
+}
+@media (min-width: 768px) {
+  #socialBarRoot {
+    position: relative;
+    z-index: 0;
+  }
+}
+.socialBarWrapper {
+  display: inline-block;
+}
+.socialBarWrapper .social_link {
+  cursor: pointer;
+}
+.socialBarWrapper .social_link img {
+  margin: 10px 0;
+}
+@media (min-width: 768px) {
+  .socialBarWrapper .whatsapp {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .global-live-contest #rootFooter .sub-footer-wrapper,
+  .global-view-contest-entry #rootFooter .sub-footer-wrapper,
+  .global-history-contest #rootFooter .sub-footer-wrapper {
+    padding-bottom: 69px;
+  }
+}
 landing-page-1-slide {
   display: inline-block;
   position: relative;

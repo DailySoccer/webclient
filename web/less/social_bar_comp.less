@@ -1,0 +1,36 @@
+#socialBarRoot {
+	#gradient.vertical(@blueGradientLight, @blueGradientDark, 49%, 51%);
+	display: inline-block;
+	width: 100%;
+	height: auto;
+	text-align: center;
+	position: fixed;
+	bottom: 0;
+	z-index: 999;
+
+	@media (min-width: @screen-sm-min) {
+		position: relative;
+		z-index: 0;
+	}	
+}
+.socialBarWrapper {
+	display: inline-block;
+	.social_link {
+		cursor: pointer;
+		img {
+			margin: 10px 0;
+		}
+	}
+	.whatsapp {
+		@media (min-width: @screen-sm-min) {
+			display: none;
+		}
+	}
+}
+.global-live-contest, .global-view-contest-entry, .global-history-contest {
+	& #rootFooter .sub-footer-wrapper {
+		@media (max-width: @screen-xs-max) {
+			padding-bottom: 69px;
+		}
+	}
+}

@@ -3,7 +3,7 @@ library social_bar_comp;
 import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:webclient/utils/js_utils.dart';
-//import 'package:webclient/services/screen_detector_service.dart';
+import 'package:webclient/components/contest_header_comp.dart';
 
 @Component(
     selector: 'social-bar',
@@ -13,17 +13,16 @@ import 'package:webclient/utils/js_utils.dart';
 class SocialBarComp implements ShadowRootAware {
 
   String get url => window.location.toString().replaceAll("#","%23");
-  SocialBarComp(this._rootElement); /*{
-    _streamListener = _scrDet.mediaScreenWidth.listen((String scrWidth) => onScreenWidthChange(scrWidth));
-  }*/
+  SocialBarComp(this._rootElement, this._contestHeader);
 
   void _createHtml() {
-    //List<String> social = ['facebook', 'twitter', 'whatsapp', 'linkedIn', 'mail'];
+
+    // print("Estoy en el concurso: ${_contestHeader.contest.name}");
+
     List <Map> social = [
                           {'name':'facebook', 'link_tag':'''data-href="shareOnFacebook"'''}
                          ,{'name':'twitter',  'link_tag':'''href="http://twitter.com/share?via=EpicEleven&url=${url}&text=${getTextToShare()}" target="_blank"'''}
                          ,{'name':'whatsapp', 'link_tag':'''href="whatsapp://send?text=${getTextToShare()} ${url}"'''}
-                         //,{'name':'linkedIn', 'link_tag':'''href="url_linkedIn"'''}
                          ,{'name':'email',    'link_tag':'''href="mailto:?subject=${getSubject()}&body=${getTextToShare()} ${url}"'''}
                         ];
     String icons = "";
@@ -51,11 +50,6 @@ class SocialBarComp implements ShadowRootAware {
     _fbShare(url,'caption', getSubject(), getTextToShare(), 'http://epiceleven.com/images/apple-touch-icon-512x512-precomposed.png');
   }
 
-  /*
-  void onScreenWidthChange(String scrWidth) {
-    _createHtml();
-  }
-*/
   @override void onShadowRoot(emulatedRoot) {
     _createHtml();
   }
@@ -79,15 +73,9 @@ class SocialBarComp implements ShadowRootAware {
 
   }
 
-/*
-  void detach() {
-    _streamListener.cancel();
-  }
-*/
-  //ScreenDetectorService _scrDet;
-  //var _streamListener;
   Element _rootElement;
   String _imgPath = 'images/social/';
+  ContestHeaderComp _contestHeader;
 
   final NodeValidatorBuilder _htmlValidator=new NodeValidatorBuilder.common()
     ..allowElement('a', attributes: ['data-href', 'href', 'target']);

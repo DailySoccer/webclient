@@ -857,7 +857,7 @@ tc.put("packages/webclient/components/contest_header_comp.html", new HttpRespons
     <button type="button" ng-switch-when="true"  class="close" data-dismiss="modal">   <span class="glyphicon glyphicon-remove"></span></button>
     <button type="button" ng-switch-when="false" class="close" ng-click="goToParent()"><span class="glyphicon glyphicon-remove"></span></button>
   </div>
-
+  <social-bar ng-if="allowSocialBarVisibility"></social-bar>
 </div>
 
 <div class="clearfix"></div>

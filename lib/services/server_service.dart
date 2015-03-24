@@ -72,6 +72,9 @@ abstract class ServerService {
 
   // Debug
   Future<Map> getSimulatorState();
+
+  //URL Shortener
+  Future<Map> shortUrl(String url);
 }
 
 @Injectable()
@@ -223,6 +226,11 @@ class DailySoccerServer implements ServerService {
   Future<Map> getPrizes() {
     return _innerServerCall("${HostServer.url}/get_prizes", retryTimes: -1);
   }
+
+  Future<Map> shortUrl(String url) {
+    return _innerServerCall("${HostServer.url}/short_url", postData: {'url': url});
+  }
+
 
   void cancelAllAndReload() {
     _allFuturesCancelled = true;

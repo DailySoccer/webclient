@@ -33,7 +33,7 @@ class Money {
 
   Money.fromValue(num value) {
     currencyUnit = CURRENCY_UNIT_DEFAULT;
-    amount = (value*100).toInt()/100.0;
+    amount = (value*100+0.5).toInt()/100.0;
   }
 
   Money.fromJsonObject(String jodaMoney) {

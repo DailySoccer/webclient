@@ -55,7 +55,7 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
                 "PENALTIS_DETENIDOS"  : {"shortName" : "PS", "description" : 'Penalties Saved'},
                 "GOLES"               : {"shortName" : "G",  "description" : 'Goals'},
                 "TIROS"               : {"shortName" : "SH",  "description" : 'Shots'},
-                "ASISTENCIAS"         : {"shortName" : "A",  "description" : 'Assists'},
+                "ASISTENCIAS"         : {"shortName" : "CH",  "description" : 'Chances Created'},
                 "REGATES"             : {"shortName" : "T",  "description" : 'Take-ons'},
                 "FALTAS_RECIBIDAS"    : {"shortName" : "FC", "description" : 'Fouls Conceded'}
   };

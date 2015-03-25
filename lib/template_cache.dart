@@ -667,7 +667,7 @@ tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpR
        </div>
       <div class="data-container-9">
         <div class="data-row"><span class="data-key">Actual balance:</span><span class="data-value-balance">{{userData.balance}}</span></div>
-        <!--div class="data-row"><span class="data-key">Bonus pendientes:</span><span class="data-value">&lt;pending-bonuses&gt;€</span></div-->
+        <div class="data-row"><span class="data-key">Pending bonus:</span><span class="data-value">{{userData.bonus}}</span></div-->
       </div>
       <div class="data-container-3">
         <button class="add-funds-button" ng-click="goAddFounds()">ADD FUNDS</button>
@@ -1267,8 +1267,8 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_stats_comp.htm
                   </tr>
                 </thead>
                 <tbody class="stats-rows">
-                  <tr ng-repeat="year in seasonsList">
-                    <td class="year-season">
+                  <tr>
+                    <td ng-repeat="year in seasonsList" class="year-season">
                       <div class="year">{{year['year']}}</div>
                       <table class="match-stats-block" ng-repeat="stats in year['stats']">
                         <tbody>
@@ -1336,7 +1336,7 @@ tc.put("packages/webclient/components/legalese_and_help/help_info_comp.html", ne
   <div class="tab-pane active" id="how-works-content">
     <div class="block-light">
       <div class="title">Choose a contest</div>
-      <div class="description"><p>In the Lobby you can find several contests to participate, either with your friends or with other players.</p>Play as many contests as you like: new contests EVERY week!<br> Use as many lineups as you want, or always the same if possible: is totally up to you. <br> Daily contests, not season long-term commitment.</div>
+      <div class="description"><p>In the Lobby you can find several contests in which to participate, either with your friends or with other players.</p>Play as many contests as you like: new contests will be available EVERY week!<br> Use as many different lineups as you want, or keep the same starting 11: it is totally up to you. <br> Daily contests, no season long-term commitment.</div>
       <!--div class="description">
       <p>
       In the Lobby you can find several contests to participate, either with your friends or with other players.
@@ -1358,7 +1358,7 @@ tc.put("packages/webclient/components/legalese_and_help/help_info_comp.html", ne
     </div>
     <div class="block-dark">
       <div class="title">PICK YOUR TEAM</div>
-      <div class="description"><p>Next, choose your lineup. Pick 11 players and remember:</p> You can spend all your salary cap.<br>You can pick up to 4 players of the same team.</div>
+      <div class="description"><p>Next, choose your lineup. Pick 11 players and remember:</p> You can spend all your salary cap.<br>You can pick up to 4 players from the same team.</div>
       <div class="img-wrapper">
         <img src="images/help03.jpg" ng-if="!scrDet.isXsScreen">
         <img src="images/help03-xs.jpg" ng-if="scrDet.isXsScreen">
@@ -1433,7 +1433,7 @@ tc.put("packages/webclient/components/legalese_and_help/help_info_comp.html", ne
         <input type="checkbox" id="rule5" class="toggle">
         <label for="rule5">UNFILLED CONTESTS</label>
         <div>
-          <p>All open tournaments that take place in Epic Eleven have a certain prize and a number of specific participants. If at the start of the tournament this number of participants is not reached, it may be canceled. For example, a competition "One on One" without 2 competitors and a league of 10 people with only 9 participants can not be held.</p>
+          <p>All open tournaments that take place in Epic Eleven have a certain prize and a number of specific contenders. If at the start of the tournament this number of contenders is not reached, it may be canceled. For example, a competition "One on One" without 2 competitors and a league of 10 people with only 9 contenders can not be held.</p>
         </div>
       </div>
       <div class="toogle-block">

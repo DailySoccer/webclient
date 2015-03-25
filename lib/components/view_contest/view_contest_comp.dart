@@ -50,7 +50,9 @@ class ViewContestComp implements DetachAware {
       .then((_) {
         loadingService.isLoading = false;
         contest = _contestsService.lastContest;
-        mainPlayer = contest.getContestEntryWithUser(_profileService.user.userId);
+        if (_profileService.user != null) {
+          mainPlayer = contest.getContestEntryWithUser(_profileService.user.userId);
+        }
 
         // En el caso de los tipos de torneo 1vs1 el oponente se autoselecciona
         if(contest.tournamentType == Contest.TOURNAMENT_HEAD_TO_HEAD) {
@@ -92,7 +94,7 @@ class ViewContestComp implements DetachAware {
   }
 
   void onUserClick(ContestEntry contestEntry, {preventViewOpponent: false}) {
-    if (contestEntry.contestEntryId == mainPlayer.contestEntryId) {
+    if (mainPlayer != null && contestEntry.contestEntryId == mainPlayer.contestEntryId) {
       tabChange('userFantasyTeam');
     }
     else {

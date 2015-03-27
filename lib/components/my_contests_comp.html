@@ -37,7 +37,7 @@
         </section>
       </div>
 
-      <!-- WAITING CONTESTS -->
+      <!-- UPCOMING CONTESTS -->
       <div class="tab-pane" id="waiting-contest-content">
         <div class="resume-bar"><span class="information-no-contest">{{waitingContestsMessage}}</span></div>
 
@@ -45,11 +45,19 @@
           <!-- lista vacía -->
           <div class="no-contests-wrapper" ng-switch-when="false">
             <div class="no-contests-content">
-              <div class="default-info-text">YOU DON'T HAVE ANY TEAM FOR ANY CONTEST<br>RIGHT NOW</div>
-              <div class="no-contests-text">GO TO THE CONTEST LIST, PICK ONE AND START PLAYING</div>
-            </div>
-            <div class="no-contest-bottom-row">
-              <button class="btn-go-to-contest" ng-click="gotoLobby()">TO THE CONTESTS</button>
+              <div class="default-info-text">You currently have no upcoming entries</div>
+              <div class="inner-content-wrapper">
+                <div class="next-contest-start-wrapper">
+                  <div class="next-content-title">NEXT CONTEST STARTS</div>
+                  <div class="next-content-time">{{calculateNextUpcommingContest()}}</div>
+                  <div class="no-contest-bottom-row">
+                    <button class="btn-go-to-contest" ng-click="gotoLobby()">GO TO LOBBY</button>
+                  </div>
+                </div>
+                <div class="promo-wrapper">
+                  <promos id="promosComponent" force-count="1"></promos>
+                </div>
+              </div>
             </div>
           </div>
           <!-- lista de concursos -->

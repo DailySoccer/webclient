@@ -10,6 +10,7 @@ import 'package:webclient/models/contest.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/services/server_error.dart';
 import 'dart:async';
+import 'package:webclient/services/datetime_service.dart';
 
 @Component(
   selector: 'my-contests',
@@ -89,6 +90,11 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
         _numLiveContests = count;
       });
     }
+  }
+
+  String calculateNextUpcommingContest() {
+    Contest nextContest = contestsService.getAvailableNextContest();
+    return nextContest == null ? "" :  DateTimeService.formatTimeLeft(DateTimeService.getTimeLeft(nextContest.startDate) );
   }
 
   void onWaitingActionClick(Contest contest) {

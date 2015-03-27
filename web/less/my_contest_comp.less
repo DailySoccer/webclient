@@ -63,18 +63,36 @@
 				cursor: pointer;
 			}
 		}
+		.inner-content-wrapper {
+			.make-row(0);
+			.next-contest-start-wrapper, .promo-wrapper {
+				.make-xs-column(12);
+				.make-sm-column(6);
+			}
+			.next-contest-start-wrapper {
+				text-align: center;
+				background-color: @tramaBlue;
+				border-radius: 5px; 
+				.next-content-title {
+					.exo_bold(10pt, @blueDark);
+					padding-top: 10px;
+				}
+				.next-content-time {
+					.exo_light(24pt, @blueDark);
+				}
+			}
+		}
 	}
 	.no-contest-bottom-row {
 		.make-xs-column(12);
-		background-color: @white;
-		padding-top: 30px;
-		padding-bottom: 30px;
+		padding-top: 20px;
+		padding-bottom: 20px;
 		border-radius: 0 0 10px 10px; 
 		
 		.btn-go-to-contest{
 			.btn-primary();			
 			margin: 0 auto;
-			padding: 5px 60px;
+			padding: 10px 30px;
 			display: block;
 		}
 	}	

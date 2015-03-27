@@ -11,6 +11,8 @@ import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/services/server_error.dart';
 import 'dart:async';
 import 'package:webclient/services/datetime_service.dart';
+import 'package:webclient/utils/game_metrics.dart';
+import 'package:webclient/services/promos_service.dart';
 
 @Component(
   selector: 'my-contests',
@@ -60,13 +62,14 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
   int get totalHistoryContestsWinner => contestsService.historyContests.fold(0, (prev, contest) => (contest.getContestEntryWithUser(_profileService.user.userId).position == 0) ? prev+1 : prev);
   int get totalHistoryContestsPrizes => contestsService.historyContests.fold(0, (prev, contest) => prev + contest.getContestEntryWithUser(_profileService.user.userId).prize);
 
-  MyContestsComp(this.loadingService, this._profileService, this._refreshTimersService, this.contestsService, this._router, this._routeProvider, this._flashMessage, this._rootElement) {
+  MyContestsComp(this.loadingService, this._profileService, this._refreshTimersService, this.contestsService, this._router, this._routeProvider, this._flashMessage, this._rootElement, this.promosService) {
 
     loadingService.isLoading = true;
 
     _tabSelected = TAB_LIVE;
 
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS, _refreshMyContests);
+    _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_PROMOS, refreshPromos);
   }
 
   void _refreshMyContests() {
@@ -162,6 +165,33 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
       break;
     }
   }
+
+
+  PromosService promosService;
+  Map<String,Map> promos = {};
+
+  void refreshPromos() {
+    promosService.getRandomPromo(1).then((promoMap) => promos = promoMap);
+  }
+  String getThumb(int pos, String thumbSize) {
+    if (promos != null && promos.length>pos)
+      return promos.values.toList()[pos][thumbSize];
+    else return '';
+  }
+  void gotoPromo(int pos) {
+     //TODO: elegir el link, pero tiene preferencia el directUrl.
+     GameMetrics.logEvent(GameMetrics.PROMO, {"code": promos.values.toList()[pos]['codeName']});
+     String url = promos.values.toList()[pos]['url'] == '' ? 'view_promo' : promos.values.toList()[pos]['url'];
+     Map params = promos.values.toList()[pos]['url'] == '' ? {"promoId" : pos} : {};
+
+     if (url.contains("#")) {
+       window.location.assign(url);
+     }
+     else {
+       _router.go(url, params);
+     }
+   }
+
 
   Element _rootElement;
   num _numLiveContests = 0;

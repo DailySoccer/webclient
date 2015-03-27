@@ -56,8 +56,8 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
   num get numLiveContests => _numLiveContests;
 
   bool get hasLiveContests    => numLiveContests > 0;
-  bool get hasWaitingContests => contestsService.hasWaitingContests;
-  bool get hasHistoryContests => contestsService.hasHistoryContests;
+  bool get hasWaitingContests => contestsService.hasWaitingContests && contestsService.waitingContests.length > 0;
+  bool get hasHistoryContests => contestsService.hasHistoryContests && contestsService.historyContests.length > 0;
 
   int get totalHistoryContestsWinner => contestsService.historyContests.fold(0, (prev, contest) => (contest.getContestEntryWithUser(_profileService.user.userId).position == 0) ? prev+1 : prev);
   int get totalHistoryContestsPrizes => contestsService.historyContests.fold(0, (prev, contest) => prev + contest.getContestEntryWithUser(_profileService.user.userId).prize);
@@ -67,9 +67,10 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
     loadingService.isLoading = true;
 
     _tabSelected = TAB_LIVE;
-
+    contestsService.refreshActiveContests();
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS, _refreshMyContests);
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_PROMOS, refreshPromos);
+    _nextTournamentInfoTimer = new Timer.periodic(new Duration(seconds: 1), (Timer t) => _calculateInfoBarText());
   }
 
   void _refreshMyContests() {
@@ -96,8 +97,7 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
   }
 
   String calculateNextUpcommingContest() {
-    Contest nextContest = contestsService.getAvailableNextContest();
-    return nextContest == null ? "" :  DateTimeService.formatTimeLeft(DateTimeService.getTimeLeft(nextContest.startDate) );
+    return nextContest == null ? " " :  DateTimeService.formatTimeLeft(DateTimeService.getTimeLeft(nextContest.startDate) );
   }
 
   void onWaitingActionClick(Contest contest) {
@@ -118,6 +118,7 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
 
   void detach() {
     _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS);
+    _nextTournamentInfoTimer.cancel();
   }
 
   void gotoSection(String section) {
@@ -167,8 +168,7 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
   }
 
 
-  PromosService promosService;
-  Map<String,Map> promos = {};
+
 
   void refreshPromos() {
     promosService.getRandomPromo(1).then((promoMap) => promos = promoMap);
@@ -190,8 +190,16 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
      else {
        _router.go(url, params);
      }
-   }
+  }
 
+  void _calculateInfoBarText() {
+    nextContest = contestsService.getAvailableNextContest();
+  }
+
+  Timer _nextTournamentInfoTimer;
+  Contest nextContest;
+  PromosService promosService;
+  Map<String,Map> promos = {};
 
   Element _rootElement;
   num _numLiveContests = 0;

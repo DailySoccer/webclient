@@ -14635,6 +14635,7 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
   color: #214a5f;
   text-transform: uppercase;
   margin-top: 3px;
+  min-height: 38px;
 }
 .no-contests-wrapper .no-contests-content .inner-content-wrapper .promo-wrapper {
   overflow: hidden;

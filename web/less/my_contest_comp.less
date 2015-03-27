@@ -68,17 +68,29 @@
 			.next-contest-start-wrapper, .promo-wrapper {
 				.make-xs-column(12);
 				.make-sm-column(6);
+				border-radius: 5px; 
 			}
 			.next-contest-start-wrapper {
 				text-align: center;
 				background-color: @tramaBlue;
-				border-radius: 5px; 
+				
 				.next-content-title {
 					.exo_bold(10pt, @blueDark);
 					padding-top: 10px;
 				}
 				.next-content-time {
-					.exo_light(24pt, @blueDark);
+					.exo_light(20pt, @blueDark);
+					margin-top: 3px;
+				}
+			}
+			.promo-wrapper {
+				overflow: hidden;
+				margin-top: 10px;
+				@media (min-width: @screen-sm-min) {
+					margin-top: 0;
+				}
+				.promoXs {
+					.centerImage(768);
 				}
 			}
 		}
@@ -113,3 +125,9 @@
 	}
 }
 
+.centerImage(@widthImage) {
+	position: relative;
+	display: block;
+	left: 50%;
+	margin-left: -@widthImage/2px;
+}

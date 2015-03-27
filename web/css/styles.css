@@ -14607,6 +14607,7 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  border-radius: 5px;
 }
 @media (min-width: 768px) {
   .no-contests-wrapper .no-contests-content .inner-content-wrapper .next-contest-start-wrapper,
@@ -14618,7 +14619,6 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
 .no-contests-wrapper .no-contests-content .inner-content-wrapper .next-contest-start-wrapper {
   text-align: center;
   background-color: #ecf0f1;
-  border-radius: 5px;
 }
 .no-contests-wrapper .no-contests-content .inner-content-wrapper .next-contest-start-wrapper .next-content-title {
   font-family: 'Exo', sans-serif;
@@ -14631,9 +14631,25 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
 .no-contests-wrapper .no-contests-content .inner-content-wrapper .next-contest-start-wrapper .next-content-time {
   font-family: 'Exo', sans-serif;
   font-weight: 300;
-  font-size: 24pt;
+  font-size: 20pt;
   color: #214a5f;
   text-transform: uppercase;
+  margin-top: 3px;
+}
+.no-contests-wrapper .no-contests-content .inner-content-wrapper .promo-wrapper {
+  overflow: hidden;
+  margin-top: 10px;
+}
+@media (min-width: 768px) {
+  .no-contests-wrapper .no-contests-content .inner-content-wrapper .promo-wrapper {
+    margin-top: 0;
+  }
+}
+.no-contests-wrapper .no-contests-content .inner-content-wrapper .promo-wrapper .promoXs {
+  position: relative;
+  display: block;
+  left: 50%;
+  margin-left: -384px;
 }
 .no-contests-wrapper .no-contest-bottom-row {
   position: relative;

@@ -5,6 +5,7 @@ import 'package:angular/angular.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/components/contest_header_comp.dart';
 import 'package:webclient/services/server_service.dart';
+import 'package:webclient/services/profile_service.dart';
 
 @Component(
     selector: 'social-bar',
@@ -51,12 +52,18 @@ class SocialBarComp implements ShadowRootAware {
   }
 
   @override void onShadowRoot(emulatedRoot) {
-    _serverService.shortUrl(window.location.toString()).then((shortenUrl) {
+    _serverService.shortUrl(getPublicUrl()).then((shortenUrl) {
       _url = shortenUrl["meta"]["rdd_url"];
       _createHtml();
     });
   }
 
+  String getPublicUrl() {
+    String url = window.location.toString().split('#')[0]+
+        '#/view_public_contest/'+_contestHeader.contest.contestId+'/'+
+        ProfileService.instance.user.userId;
+    return url;
+  }
 
   String getTextToShare() {
     String textToShare;

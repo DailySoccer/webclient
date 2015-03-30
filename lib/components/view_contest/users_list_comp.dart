@@ -29,8 +29,11 @@ class UsersListComp {
     _refresh();
   }
 
+  @NgOneWay("main-player")
+  String mainPlayer;
+
   bool get isViewContestEntryMode => _routeProvider.route.name.contains("view_contest_entry");
-  bool isMainPlayer(var user) => _profileService.user!=null && _profileService.user.userId == user["id"];
+  bool isMainPlayer(var user) => mainPlayer == user["id"];
 
   String getPrize(int index) => (_contest != null) ? _contest.getPrize(index) : "";
 

@@ -61,6 +61,7 @@ import 'package:webclient/components/account/transaction_history_comp.dart';
 import 'package:webclient/components/my_contests_comp.dart';
 import 'package:webclient/components/view_contest/view_contest_entry_comp.dart';
 import 'package:webclient/components/view_contest/view_contest_comp.dart';
+import 'package:webclient/components/view_contest/view_public_contest_comp.dart';
 import 'package:webclient/components/view_contest/fantasy_team_comp.dart';
 import 'package:webclient/components/view_contest/users_list_comp.dart';
 import 'package:webclient/components/view_contest/teams_panel_comp.dart';
@@ -155,6 +156,7 @@ class WebClientApp extends Module {
 
     bind(MyContestsComp);
     bind(ViewContestComp);
+    bind(ViewPublicContestComp);
     bind(ViewContestEntryComp);
     bind(FantasyTeamComp);
     bind(UsersListComp);
@@ -314,18 +316,23 @@ class WebClientApp extends Module {
       )
       ,'my_contests': ngRoute(
           path: '/my_contests/:section/',
-          preEnter: (RoutePreEnterEvent e) => _preEnterMycontest(e, router, visibility: _ALWAYS),
+          preEnter: (RoutePreEnterEvent e) => _preEnterMycontest(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
           viewHtml: '<my-contests></my-contests>'
       )
       ,'live_contest': ngRoute(
-          path: '/live_contest/:parent/:contestId',
+          path: '/live_contest/:parent/:contestId/:userId',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
           viewHtml: '<view-contest></view-contest>'
       )
       ,'history_contest': ngRoute(
-          path: '/history_contest/:parent/:contestId',
+          path: '/history_contest/:parent/:contestId/:userId',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
           viewHtml: '<view-contest></view-contest>'
+      )
+      ,'view_public_contest': ngRoute(
+          path: '/view_public_contest/:contestId/:userId',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
+          viewHtml: '<view-public-contest></view-public-contest>'
       )
       ,'enter_contest': ngRoute(
           path: '/enter_contest/:parent/:contestId/:contestEntryId',

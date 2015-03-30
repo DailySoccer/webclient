@@ -27,7 +27,20 @@ class ContestsService {
 
   Contest getContestById(String id) => _contests.containsKey(id) ? _contests[id] : null;
 
+
   ContestsService(this._server, this._profileService, this._prizesService);
+
+  Future getContest(String id) {
+    if (_contests.containsKey(id)) return new Future<Contest>.sync(() => _contests[id]);
+    else {
+      return _server.getContestInfo(id)
+        .then((jsonMap) {
+          Contest contest = Contest.loadContestsFromJsonObject(jsonMap).first;
+          _registerContest(contest);
+          return contest;
+        });
+    }
+  }
 
   Future refreshActiveContests() {
     return _server.getActiveContests()

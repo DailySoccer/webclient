@@ -39,7 +39,7 @@ class ViewContestComp implements DetachAware {
   List<ContestEntry> get contestEntriesOrderByPoints => (contest != null) ? contest.contestEntriesOrderByPoints : null;
 
 
-  ViewContestComp(this._routeProvider, this.scrDet, this._refreshTimersService, this._contestsService, this._profileService, this._flashMessage, this.loadingService) {
+  ViewContestComp(this._routeProvider, this.scrDet, this._refreshTimersService, this._contestsService, this._profileService, this._flashMessage, this.loadingService, this._router) {
     loadingService.isLoading = true;
 
     contestId = _routeProvider.route.parameters['contestId'];
@@ -50,9 +50,13 @@ class ViewContestComp implements DetachAware {
       .then((_) {
         loadingService.isLoading = false;
         contest = _contestsService.lastContest;
-        if (_profileService.user != null) {
-          mainPlayer = contest.getContestEntryWithUser(_profileService.user.userId);
+        String userId = "none";
+
+        if(_routeProvider.route.parameters.containsKey('userId')) {
+          userId = _routeProvider.route.parameters['userId'];
         }
+
+        mainPlayer = contest.getContestEntryWithUser((userId=='null'||userId=='none')? _profileService.user.userId: userId);
 
         // En el caso de los tipos de torneo 1vs1 el oponente se autoselecciona
         if(contest.tournamentType == Contest.TOURNAMENT_HEAD_TO_HEAD) {
@@ -143,5 +147,6 @@ class ViewContestComp implements DetachAware {
   ProfileService _profileService;
   RefreshTimersService _refreshTimersService;
   ContestsService _contestsService;
+  Router _router;
 }
 

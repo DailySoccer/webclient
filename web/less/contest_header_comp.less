@@ -72,10 +72,12 @@ contest-header {
 	}
 	.date-time-data {
 		.make-row(0);
+		display: inline-block;
 		//background-color: @greyUltraDark;
 		line-height: 2;
 		// Fecha comienzo contest
 		.contest-start-date {
+		  white-space: nowrap;
 			.make-xs-column(6);
 			.date-time-text();
 			text-align: left;			
@@ -87,12 +89,12 @@ contest-header {
 			.date-time-text();
 			text-align: right;
 		}
-		&:after {
-			height: 1px;
-			width: 100%;
-			background-color: @greyMed;
-			content: "";
-		}
+//		&:after {
+//			height: 1px;
+//			width: 100%;
+//			background-color: @greyMed;
+//			content: "";
+//		}
 	}
 	// Botón de cerrar
 	.close-contest {		

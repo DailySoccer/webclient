@@ -20,7 +20,7 @@
     </div>
 
     <div ng-switch-when="false">
-      <fantasy-team id="userFantasyTeam" contest-entry="mainPlayer" watch="updatedDate" is-opponent="false"></fantasy-team>
+      <fantasy-team id="userFantasyTeam" contest-entry="mainPlayer" watch="updatedDate" is-opponent="false" ng-if="isLoggedIn"></fantasy-team>
       <users-list id="usersList" ng-show="selectedOpponent == null" main-player="mainPlayer.user.userId" contest-entries="contestEntries" on-row-click="onUserClick(contestEntry)" watch="updatedDate"></users-list>
       <fantasy-team id="opponentFantasyTeam" contest-entry="selectedOpponent" is-opponent="true" ng-show="selectedOpponent != null"
                     show-close-button="true" on-close="selectedOpponent=null" watch="updatedDate"></fantasy-team>

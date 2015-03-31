@@ -34,6 +34,9 @@ class ViewContestComp implements DetachAware {
   Contest contest;
 
   bool get isLive => _routeProvider.route.name.contains("live_contest");
+  bool get isPublic => _routeProvider.route.parameters.containsKey('userId');
+  bool get isLoggedIn => _profileService.user != null;
+  bool get isUserInContest => contest.getContestEntryWithUser(_profileService.user.userId)==null;
 
   List<ContestEntry> get contestEntries => (contest != null) ? contest.contestEntries : null;
   List<ContestEntry> get contestEntriesOrderByPoints => (contest != null) ? contest.contestEntriesOrderByPoints : null;
@@ -56,7 +59,13 @@ class ViewContestComp implements DetachAware {
           userId = _routeProvider.route.parameters['userId'];
         }
 
-        mainPlayer = contest.getContestEntryWithUser((userId=='null'||userId=='none')? _profileService.user.userId: userId);
+        if (isLoggedIn && contest.containsContestEntryWithUser(_profileService.user.userId)) {
+          mainPlayer = contest.getContestEntryWithUser(_profileService.user.userId);
+          selectedOpponent = (userId!=_profileService.user.userId)? contest.getContestEntryWithUser(userId): null;
+        }
+        else {
+          mainPlayer = contest.getContestEntryWithUser(userId);
+        }
 
         // En el caso de los tipos de torneo 1vs1 el oponente se autoselecciona
         if(contest.tournamentType == Contest.TOURNAMENT_HEAD_TO_HEAD) {
@@ -98,7 +107,7 @@ class ViewContestComp implements DetachAware {
   }
 
   void onUserClick(ContestEntry contestEntry, {preventViewOpponent: false}) {
-    if (mainPlayer != null && contestEntry.contestEntryId == mainPlayer.contestEntryId) {
+    if (isLoggedIn && mainPlayer != null && contestEntry.contestEntryId == mainPlayer.contestEntryId) {
       tabChange('userFantasyTeam');
     }
     else {

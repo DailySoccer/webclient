@@ -6,6 +6,7 @@ import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/components/contest_header_comp.dart';
 import 'package:webclient/services/server_service.dart';
 import 'package:webclient/services/profile_service.dart';
+import 'package:angular/angular.dart';
 
 @Component(
     selector: 'social-bar',
@@ -14,7 +15,7 @@ import 'package:webclient/services/profile_service.dart';
 )
 class SocialBarComp implements ShadowRootAware {
 
-  SocialBarComp(this._rootElement, this._contestHeader, this._serverService);
+  SocialBarComp(this._router, this._rootElement, this._contestHeader, this._serverService);
 
   void _createHtml() {
 
@@ -59,9 +60,7 @@ class SocialBarComp implements ShadowRootAware {
   }
 
   String getPublicUrl() {
-    String url = window.location.toString().split('#')[0]+
-        '#/view_public_contest/'+_contestHeader.contest.contestId+'/'+
-        ProfileService.instance.user.userId;
+    String url = window.location.origin+window.location.pathname+_router.url('view_public_contest', parameters:{'contestId': _contestHeader.contest.contestId, 'userId': ProfileService.instance.user.userId});
     return url;
   }
 
@@ -120,6 +119,7 @@ class SocialBarComp implements ShadowRootAware {
   String _imgPath = 'images/social/';
   ContestHeaderComp _contestHeader;
   ServerService _serverService;
+  Router _router;
 
   final NodeValidatorBuilder _htmlValidator=new NodeValidatorBuilder.common()
     ..allowElement('a', attributes: ['data-href', 'href', 'target']);

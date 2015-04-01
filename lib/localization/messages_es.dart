@@ -26,6 +26,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static cancelPlayerSelection() => "CANCELAR";
 
+  static closeFantasyTeam() => "CERRAR";
+
   static contestEntryFee() => "ENTRADA";
 
   static contestFinished() => "FINALIZADO";
@@ -55,6 +57,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static createFantasyTeam() => "CONFIRMAR";
 
   static deleteFantasyTeam() => "BORRAR TODO";
+
+  static editTheLineup() => "EDITAR EL EQUIPO";
 
   static filterAccept() => "ACEPTAR";
 
@@ -138,6 +142,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static nextContest() => "SIGUIENTE TORNEO";
 
+  static playerOwned() => "LO TIENEN";
+
   static remainingSalary() => "DINERO RESTANTE";
 
   static rememberThatYouCanEditYourTeam() => "Recuerda que puedes editar tu equipo cuantas veces quieras hasta que comience la competición";
@@ -150,6 +156,12 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static tournamentLeague() => "Liga";
 
+  static userPositionTitle() => "POS";
+
+  static userRemainingTime() => "TIEMPO RESTANTE";
+
+  static userScoreTitle() => "PUNTOS";
+
   static yourLineup() => "Tu alineación";
 
 
@@ -160,6 +172,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "addFundsMinimumAllowed" : addFundsMinimumAllowed,
     "addFundsUsingPaypal" : addFundsUsingPaypal,
     "cancelPlayerSelection" : cancelPlayerSelection,
+    "closeFantasyTeam" : closeFantasyTeam,
     "contestEntryFee" : contestEntryFee,
     "contestFinished" : contestFinished,
     "contestInfo" : contestInfo,
@@ -175,6 +188,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "contestWillStartIn" : contestWillStartIn,
     "createFantasyTeam" : createFantasyTeam,
     "deleteFantasyTeam" : deleteFantasyTeam,
+    "editTheLineup" : editTheLineup,
     "filterAccept" : filterAccept,
     "filterAvailableContests" : filterAvailableContests,
     "filterChampionsLeague" : filterChampionsLeague,
@@ -216,12 +230,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "menuTransactionHistory" : menuTransactionHistory,
     "needHelp" : needHelp,
     "nextContest" : nextContest,
+    "playerOwned" : playerOwned,
     "remainingSalary" : remainingSalary,
     "rememberThatYouCanEditYourTeam" : rememberThatYouCanEditYourTeam,
     "tournamentFiftyFifty" : tournamentFiftyFifty,
     "tournamentFree" : tournamentFree,
     "tournamentHeadToHead" : tournamentHeadToHead,
     "tournamentLeague" : tournamentLeague,
+    "userPositionTitle" : userPositionTitle,
+    "userRemainingTime" : userRemainingTime,
+    "userScoreTitle" : userScoreTitle,
     "yourLineup" : yourLineup
   };
 }

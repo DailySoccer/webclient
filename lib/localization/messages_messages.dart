@@ -56,6 +56,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static deleteFantasyTeam() => "REMOVE ALL";
 
+  static editTheLineup() => "EDIT THE LINEUP";
+
   static filterAccept() => "ACCEPT";
 
   static filterAvailableContests() => "Available contests";
@@ -138,6 +140,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static nextContest() => "NEXT CONTEST";
 
+  static playerOwned() => "OWNED";
+
   static remainingSalary() => "REMAINING SALARY";
 
   static rememberThatYouCanEditYourTeam() => "Remember that you can edit your team as many times as you want until the contest starts";
@@ -149,6 +153,12 @@ class MessageLookup extends MessageLookupByLibrary {
   static tournamentHeadToHead() => "Head to Head";
 
   static tournamentLeague() => "League";
+
+  static userPositionTitle() => "POS";
+
+  static userRemainingTime() => "REMAINING TIME";
+
+  static userScoreTitle() => "POINTS";
 
   static yourLineup() => "Your Lineup";
 
@@ -175,6 +185,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "contestWillStartIn" : contestWillStartIn,
     "createFantasyTeam" : createFantasyTeam,
     "deleteFantasyTeam" : deleteFantasyTeam,
+    "editTheLineup" : editTheLineup,
     "filterAccept" : filterAccept,
     "filterAvailableContests" : filterAvailableContests,
     "filterChampionsLeague" : filterChampionsLeague,
@@ -216,12 +227,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "menuTransactionHistory" : menuTransactionHistory,
     "needHelp" : needHelp,
     "nextContest" : nextContest,
+    "playerOwned" : playerOwned,
     "remainingSalary" : remainingSalary,
     "rememberThatYouCanEditYourTeam" : rememberThatYouCanEditYourTeam,
     "tournamentFiftyFifty" : tournamentFiftyFifty,
     "tournamentFree" : tournamentFree,
     "tournamentHeadToHead" : tournamentHeadToHead,
     "tournamentLeague" : tournamentLeague,
+    "userPositionTitle" : userPositionTitle,
+    "userRemainingTime" : userRemainingTime,
+    "userScoreTitle" : userScoreTitle,
     "yourLineup" : yourLineup
   };
 }

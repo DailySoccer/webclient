@@ -317,6 +317,36 @@
     "type": "text",
     "placeholders": {}
   },
+  "editTheLineup": "EDITAR EL EQUIPO",
+  "@editTheLineup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userPositionTitle": "POS",
+  "@userPositionTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userScoreTitle": "PUNTOS",
+  "@userScoreTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userRemainingTime": "TIEMPO RESTANTE",
+  "@userRemainingTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "closeFantasyTeam": "CERRAR",
+  "@closeFantasyTeam": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "playerOwned": "LO TIENEN",
+  "@playerOwned": {
+    "type": "text",
+    "placeholders": {}
+  },
   "addFunds": "AÑADIR FONDOS",
   "@addFunds": {
     "type": "text",

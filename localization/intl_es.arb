@@ -59,23 +59,23 @@
     "type": "text",
     "placeholders": {}
   },
-  "contestDescriptionLiveOrHistory": "{tournamentTypeName} - Límite de salario: {salaryCap}",
-  "@contestDescriptionLiveOrHistory": {
+  "contestNumOfContenders": "{numEntries} de {maxEntries} participantes",
+  "@contestNumOfContenders": {
     "type": "text",
     "placeholders": {
-      "tournamentTypeName": {},
-      "salaryCap": {}
+      "numEntries": {},
+      "maxEntries": {}
     }
   },
-  "contestDescriptionActive": "{tournamentTypeName} : {numEntries} de {maxEntries} participantes - Límite de salario: {salaryCap}",
-  "@contestDescriptionActive": {
+  "nextContest": "SIGUIENTE TORNEO",
+  "@nextContest": {
     "type": "text",
-    "placeholders": {
-      "tournamentTypeName": {},
-      "numEntries": {},
-      "maxEntries": {},
-      "salaryCap": {}
-    }
+    "placeholders": {}
+  },
+  "contestSalaryCap": "Límite de salario",
+  "@contestSalaryCap": {
+    "type": "text",
+    "placeholders": {}
   },
   "contestEntryFee": "ENTRADA",
   "@contestEntryFee": {
@@ -94,6 +94,36 @@
   },
   "contestPoints": "PUNTOS",
   "@contestPoints": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contestFinished": "FINALIZADO",
+  "@contestFinished": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contestStartedOn": "COMENZÓ EL",
+  "@contestStartedOn": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contestStartsOn": "COMIENZA EL",
+  "@contestStartedOn": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contestSoon": "EN BREVE",
+  "@contestSoon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contestWillStartIn": "EL CONCURSO COMENZARÁ EN",
+  "@contestWillStartIn": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contestRemaining": "FALTAN",
+  "@contestRemaining": {
     "type": "text",
     "placeholders": {}
   },

@@ -7,13 +7,14 @@ import "package:webclient/models/contest.dart";
 import 'dart:async';
 import 'package:webclient/services/contests_service.dart';
 import 'dart:html';
+import 'package:webclient/components/base_comp.dart';
 
 @Component(
     selector: 'contest-header',
     templateUrl: 'packages/webclient/components/contest_header_comp.html',
     useShadowDom: false
 )
-class ContestHeaderComp implements DetachAware, ShadowRootAware {
+class ContestHeaderComp extends BaseComp implements DetachAware, ShadowRootAware {
 
   ScreenDetectorService scrDet;
 
@@ -71,25 +72,25 @@ class ContestHeaderComp implements DetachAware, ShadowRootAware {
     }
 
     if (contest.isHistory) {
-      info["startTime"] = "FINISHED";
+      info["startTime"] = "${T.contestFinished}";
       _count.cancel();
     }
     else if (contest.isLive) {
-      info["startTime"] = "STARTED ON ${DateTimeService.formatDateTimeShort(contest.startDate).toUpperCase()}";
+      info["startTime"] = "${T.contestStartedOn} ${DateTimeService.formatDateTimeShort(contest.startDate).toUpperCase()}";
       _count.cancel();
     }
     else {
-      info["startTime"] = "STARTS ON ${DateTimeService.formatDateTimeShort(contest.startDate).toUpperCase()}";
+      info["startTime"] = "${T.contestStartsOn} ${DateTimeService.formatDateTimeShort(contest.startDate).toUpperCase()}";
 
       Duration tiempoRestante = DateTimeService.getTimeLeft(contest.startDate);
 
       if (tiempoRestante.inSeconds <= 0) {
-        info["startTime"] = "SOON";
+        info["startTime"] = "${T.contestSoon}";
         _count.cancel();
       }
       else {
         info["countdownDate"] = DateTimeService.formatTimeLeft(tiempoRestante);
-        info["textCountdownDate"] = (scrDet.isDesktop) ? "THE CONTEST WILL START IN: " : "REMAINING";
+        info["textCountdownDate"] = (scrDet.isDesktop) ? "${T.contestWillStartIn}: " : "${T.contestRemaining}";
       }
     }
   }
@@ -105,7 +106,7 @@ class ContestHeaderComp implements DetachAware, ShadowRootAware {
     info["prize"] = "${contest.prizePool}";
     info["prizeType"] = "${contest.prizeTypeName}";
     info["startTime"] = "";
-    info["contestantCount"] = "${contest.contestEntries.length} of ${contest.maxEntries} contenders - Salary cap: ${contest.printableSalaryCap}";
+    info["contestantCount"] = "${T.contestNumOfContenders(contest.contestEntries.length, contest.maxEntries)} - ${T.contestSalaryCap}: ${contest.printableSalaryCap}";
   }
 
   void goToParent() {

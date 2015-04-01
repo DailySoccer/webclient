@@ -24,17 +24,29 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static addFundsUsingPaypal() => "You can add funds using PayPal account. The money will be transferred to Fantasy Sports Games S.L.";
 
-  static contestDescriptionActive(tournamentTypeName, numEntries, maxEntries, salaryCap) => "${tournamentTypeName}: ${numEntries} of ${maxEntries} contenders - Salary cap: ${salaryCap}";
-
-  static contestDescriptionLiveOrHistory(tournamentTypeName, salaryCap) => "${tournamentTypeName} - Salary cap: ${salaryCap}";
-
   static contestEntryFee() => "ENTRY FEE";
+
+  static contestFinished() => "FINISHED";
+
+  static contestNumOfContenders(numEntries, maxEntries) => "${numEntries} of ${maxEntries} contenders";
 
   static contestPoints() => "POINTS";
 
   static contestPosition() => "OF";
 
   static contestPrize() => "PRIZE";
+
+  static contestRemaining() => "REMAINING";
+
+  static contestSalaryCap() => "Salary cap";
+
+  static contestSoon() => "SOON";
+
+  static contestStartedOn() => "STARTED ON";
+
+  static contestStartsOn() => "STARTS ON";
+
+  static contestWillStartIn() => "THE CONTEST WILL START IN";
 
   static filterAccept() => "ACCEPT";
 
@@ -114,6 +126,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static needHelp() => "Need help?";
 
+  static nextContest() => "NEXT CONTEST";
+
   static tournamentFiftyFifty() => "50/50";
 
   static tournamentFree() => "Free";
@@ -129,12 +143,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "addFundsDescriptionTip2" : addFundsDescriptionTip2,
     "addFundsMinimumAllowed" : addFundsMinimumAllowed,
     "addFundsUsingPaypal" : addFundsUsingPaypal,
-    "contestDescriptionActive" : contestDescriptionActive,
-    "contestDescriptionLiveOrHistory" : contestDescriptionLiveOrHistory,
     "contestEntryFee" : contestEntryFee,
+    "contestFinished" : contestFinished,
+    "contestNumOfContenders" : contestNumOfContenders,
     "contestPoints" : contestPoints,
     "contestPosition" : contestPosition,
     "contestPrize" : contestPrize,
+    "contestRemaining" : contestRemaining,
+    "contestSalaryCap" : contestSalaryCap,
+    "contestSoon" : contestSoon,
+    "contestStartedOn" : contestStartedOn,
+    "contestStartsOn" : contestStartsOn,
+    "contestWillStartIn" : contestWillStartIn,
     "filterAccept" : filterAccept,
     "filterAvailableContests" : filterAvailableContests,
     "filterChampionsLeague" : filterChampionsLeague,
@@ -174,6 +194,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "menuMyContests" : menuMyContests,
     "menuTransactionHistory" : menuTransactionHistory,
     "needHelp" : needHelp,
+    "nextContest" : nextContest,
     "tournamentFiftyFifty" : tournamentFiftyFifty,
     "tournamentFree" : tournamentFree,
     "tournamentHeadToHead" : tournamentHeadToHead,

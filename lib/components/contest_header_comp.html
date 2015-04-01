@@ -7,13 +7,13 @@
    </div>
     <div class="contest-price">
       <div class="contest-coins-content"><span>{{info['entryPrice']}}</span></div>
-      <div class="contest-coins-header">ENTRY FEE</div>
+      <div class="contest-coins-header">{{T.contestEntryFee}}</div>
     </div>
 
     <div class="contest-prize">
       <div class="contest-coins-content"><img ng-if="!scrDet.isXsScreen" class="iconPrize" src="images/iconPrize.png"><span>{{info['prize']}}</span></div>
       <div class="contest-coins-header">
-        <div class="contest-coins-header-title">PRIZES</div>
+        <div class="contest-coins-header-title">{{T.contestPrize}}</div>
         <!--<div class="contest-coins-header-prize-type">{{info['prizeType']}}</div>-->
       </div>
 

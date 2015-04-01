@@ -54,21 +54,27 @@ class Localization {
   get filterOrderByStartDate => Intl.message("Start Date", name: 'filterOrderByStartDate');
   get filterAvailableContests => Intl.message("Available contests", name: 'filterAvailableContests');
 
+  get nextContest => Intl.message("NEXT CONTEST", name: 'nextContest');
+
+  get contestSalaryCap => Intl.message("Salary cap", name: 'contestSalaryCap');
   get contestEntryFee => Intl.message("ENTRY FEE", name: 'contestEntryFee');
   get contestPosition => Intl.message("OF", name: 'contestPosition');
   get contestPrize => Intl.message("PRIZE", name: 'contestPrize');
   get contestPoints => Intl.message("POINTS", name: 'contestPoints');
 
+  get contestFinished => Intl.message("FINISHED", name: 'contestFinished');
+  get contestStartedOn => Intl.message("STARTED ON", name: 'contestStartedOn');
+  get contestStartsOn => Intl.message("STARTS ON", name: 'contestStartsOn');
+  get contestSoon => Intl.message("SOON", name: 'contestSoon');
+  get contestWillStartIn => Intl.message("THE CONTEST WILL START IN", name: 'contestWillStartIn');
+  get contestRemaining => Intl.message("REMAINING", name: 'contestRemaining');
+
+  contestNumOfContenders(numEntries, maxEntries) => Intl.message("$numEntries of $maxEntries contenders", name: 'contestNumOfContenders', args: [numEntries, maxEntries]);
+
   get tournamentFree => Intl.message("Free", name: 'tournamentFree');
   get tournamentHeadToHead => Intl.message("Head to Head", name: 'tournamentHeadToHead');
   get tournamentLeague => Intl.message("League", name: 'tournamentLeague');
   get tournamentFiftyFifty => Intl.message("50/50", name: 'tournamentFiftyFifty');
-
-  contestDescriptionLiveOrHistory(tournamentTypeName, salaryCap) => Intl.message("$tournamentTypeName - Salary cap: $salaryCap",
-                            name: 'contestDescriptionLiveOrHistory',
-                            args: [tournamentTypeName, salaryCap]);
-  contestDescriptionActive(tournamentTypeName, numEntries, maxEntries, salaryCap) => Intl.message("$tournamentTypeName: $numEntries of $maxEntries contenders - Salary cap: $salaryCap",
-                            name: 'contestDescriptionActive', args: [tournamentTypeName, numEntries, maxEntries, salaryCap]);
 
   get lobbyPlay => Intl.message("PLAY", name: 'lobbyPlay');
 

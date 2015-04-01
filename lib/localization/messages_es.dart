@@ -26,6 +26,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static addPlayerToFantasyTeam() => "AÑADIR";
 
+  static cancelLogin() => "CANCELAR";
+
   static cancelPlayerSelection() => "CANCELAR";
 
   static chooseAnotherPlayer() => "Por favor, elige otro jugador...";
@@ -64,7 +66,13 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static deleteFantasyTeam() => "BORRAR TODO";
 
+  static doNotHaveAnAccount() => "¿Aún no tienes cuenta?";
+
   static editTheLineup() => "EDITAR EL EQUIPO";
+
+  static email() => "Correo electrónico";
+
+  static enterEmailAndPassword() => "Introduce tu cuenta de correo electrónico y tu contraseña para acceder a los torneos.";
 
   static fieldPosDefense() => "DEFENSA";
 
@@ -142,9 +150,17 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static footerTermsOfUse() => "TÉRMINOS DE USO";
 
+  static forgotYourPassword() => "¿Olvidaste tu contraseña?";
+
+  static joinNow() => "ENTRAR";
+
   static lineupSaved() => "Se ha guardado tu alineación";
 
   static lobbyPlay() => "JUGAR";
+
+  static loginError() => "ERROR DE LOGIN. Los datos inroducidos no son correctos.";
+
+  static loginTitle() => "ENTRA";
 
   static menuAddFuns() => "Añadir Fondos";
 
@@ -164,11 +180,15 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static nextContest() => "SIGUIENTE TORNEO";
 
+  static password() => "Contraseña";
+
   static playerOwned() => "LO TIENEN";
 
   static remainingSalary() => "DINERO RESTANTE";
 
   static rememberThatYouCanEditYourTeam() => "Recuerda que puedes editar tu equipo cuantas veces quieras hasta que comience la competición";
+
+  static signupHere() => "Regístrate aquí!";
 
   static tournamentFiftyFifty() => "50/50";
 
@@ -184,7 +204,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static userScoreTitle() => "PUNTOS";
 
-  static youHavePlayersOfSameTeam(maxPlayers) => "Ups! Parece que ya tienes ${maxPlayers} futbolistas del mismo equipo";
+  static youHavePlayersOfSameTeam(maxPlayers) => "Ups! Parece que ya tienes ${maxPlayers} jugadores del mismo equipo";
 
   static youHaveSpentTheSalaryCap() => "Te has pasado del límite salarial";
 
@@ -198,6 +218,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "addFundsMinimumAllowed" : addFundsMinimumAllowed,
     "addFundsUsingPaypal" : addFundsUsingPaypal,
     "addPlayerToFantasyTeam" : addPlayerToFantasyTeam,
+    "cancelLogin" : cancelLogin,
     "cancelPlayerSelection" : cancelPlayerSelection,
     "chooseAnotherPlayer" : chooseAnotherPlayer,
     "choosePlayersThatFitTheBudget" : choosePlayersThatFitTheBudget,
@@ -217,7 +238,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "contestWillStartIn" : contestWillStartIn,
     "createFantasyTeam" : createFantasyTeam,
     "deleteFantasyTeam" : deleteFantasyTeam,
+    "doNotHaveAnAccount" : doNotHaveAnAccount,
     "editTheLineup" : editTheLineup,
+    "email" : email,
+    "enterEmailAndPassword" : enterEmailAndPassword,
     "fieldPosDefense" : fieldPosDefense,
     "fieldPosDefenseShort" : fieldPosDefenseShort,
     "fieldPosForward" : fieldPosForward,
@@ -256,8 +280,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "footerLegal" : footerLegal,
     "footerPrivacyPolicy" : footerPrivacyPolicy,
     "footerTermsOfUse" : footerTermsOfUse,
+    "forgotYourPassword" : forgotYourPassword,
+    "joinNow" : joinNow,
     "lineupSaved" : lineupSaved,
     "lobbyPlay" : lobbyPlay,
+    "loginError" : loginError,
+    "loginTitle" : loginTitle,
     "menuAddFuns" : menuAddFuns,
     "menuHowItWorks" : menuHowItWorks,
     "menuLobby" : menuLobby,
@@ -267,9 +295,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "menuTransactionHistory" : menuTransactionHistory,
     "needHelp" : needHelp,
     "nextContest" : nextContest,
+    "password" : password,
     "playerOwned" : playerOwned,
     "remainingSalary" : remainingSalary,
     "rememberThatYouCanEditYourTeam" : rememberThatYouCanEditYourTeam,
+    "signupHere" : signupHere,
     "tournamentFiftyFifty" : tournamentFiftyFifty,
     "tournamentFree" : tournamentFree,
     "tournamentHeadToHead" : tournamentHeadToHead,

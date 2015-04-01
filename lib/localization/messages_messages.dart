@@ -26,6 +26,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static addPlayerToFantasyTeam() => "ADD";
 
+  static cancelLogin() => "CANCEL";
+
   static cancelPlayerSelection() => "CANCEL";
 
   static chooseAnotherPlayer() => "Please, choose another player...";
@@ -64,7 +66,13 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static deleteFantasyTeam() => "REMOVE ALL";
 
+  static doNotHaveAnAccount() => "Don\'t have an account?";
+
   static editTheLineup() => "EDIT THE LINEUP";
+
+  static email() => "Email";
+
+  static enterEmailAndPassword() => "Enter your email and password.";
 
   static fieldPosDefense() => "DEFENDER";
 
@@ -142,9 +150,17 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static footerTermsOfUse() => "TERMS OF USE";
 
+  static forgotYourPassword() => "Forgot your password?";
+
+  static joinNow() => "CONTINUE";
+
   static lineupSaved() => "Lineup saved";
 
   static lobbyPlay() => "PLAY";
+
+  static loginError() => "LOGIN ERROR: The nickname or password is not correct.";
+
+  static loginTitle() => "LOG IN";
 
   static menuAddFuns() => "Add Funds";
 
@@ -164,11 +180,15 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static nextContest() => "NEXT CONTEST";
 
+  static password() => "Password";
+
   static playerOwned() => "OWNED";
 
   static remainingSalary() => "REMAINING SALARY";
 
   static rememberThatYouCanEditYourTeam() => "Remember that you can edit your team as many times as you want until the contest starts";
+
+  static signupHere() => "Sign Up here!";
 
   static tournamentFiftyFifty() => "50/50";
 
@@ -198,6 +218,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "addFundsMinimumAllowed" : addFundsMinimumAllowed,
     "addFundsUsingPaypal" : addFundsUsingPaypal,
     "addPlayerToFantasyTeam" : addPlayerToFantasyTeam,
+    "cancelLogin" : cancelLogin,
     "cancelPlayerSelection" : cancelPlayerSelection,
     "chooseAnotherPlayer" : chooseAnotherPlayer,
     "choosePlayersThatFitTheBudget" : choosePlayersThatFitTheBudget,
@@ -217,7 +238,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "contestWillStartIn" : contestWillStartIn,
     "createFantasyTeam" : createFantasyTeam,
     "deleteFantasyTeam" : deleteFantasyTeam,
+    "doNotHaveAnAccount" : doNotHaveAnAccount,
     "editTheLineup" : editTheLineup,
+    "email" : email,
+    "enterEmailAndPassword" : enterEmailAndPassword,
     "fieldPosDefense" : fieldPosDefense,
     "fieldPosDefenseShort" : fieldPosDefenseShort,
     "fieldPosForward" : fieldPosForward,
@@ -256,8 +280,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "footerLegal" : footerLegal,
     "footerPrivacyPolicy" : footerPrivacyPolicy,
     "footerTermsOfUse" : footerTermsOfUse,
+    "forgotYourPassword" : forgotYourPassword,
+    "joinNow" : joinNow,
     "lineupSaved" : lineupSaved,
     "lobbyPlay" : lobbyPlay,
+    "loginError" : loginError,
+    "loginTitle" : loginTitle,
     "menuAddFuns" : menuAddFuns,
     "menuHowItWorks" : menuHowItWorks,
     "menuLobby" : menuLobby,
@@ -267,9 +295,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "menuTransactionHistory" : menuTransactionHistory,
     "needHelp" : needHelp,
     "nextContest" : nextContest,
+    "password" : password,
     "playerOwned" : playerOwned,
     "remainingSalary" : remainingSalary,
     "rememberThatYouCanEditYourTeam" : rememberThatYouCanEditYourTeam,
+    "signupHere" : signupHere,
     "tournamentFiftyFifty" : tournamentFiftyFifty,
     "tournamentFree" : tournamentFree,
     "tournamentHeadToHead" : tournamentHeadToHead,

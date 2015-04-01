@@ -14,6 +14,17 @@ class Localization {
 
   Localization ();
 
+  get loginTitle => Intl.message("LOG IN", name: 'loginTitle');
+  get enterEmailAndPassword => Intl.message("Enter your email and password.", name: 'enterEmailAndPassword');
+  get email => Intl.message("Email", name: 'email');
+  get password => Intl.message("Password", name: 'password');
+  get forgotYourPassword => Intl.message("Forgot your password?", name: 'forgotYourPassword');
+  get cancelLogin => Intl.message("CANCEL", name: 'cancelLogin');
+  get joinNow => Intl.message("CONTINUE", name: 'joinNow');
+  get doNotHaveAnAccount => Intl.message("Don't have an account?", name: 'doNotHaveAnAccount');
+  get signupHere => Intl.message("Sign Up here!", name: 'signupHere');
+  get loginError => Intl.message("LOGIN ERROR: The nickname or password is not correct.", name: 'loginError');
+
   get menuLobby => Intl.message("LOBBY", name: 'menuLobby');
   get menuMyContests => Intl.message("MY CONTESTS", name: 'menuMyContests');
   get menuHowItWorks => Intl.message("HOW IT WORKS", name: 'menuHowItWorks');

@@ -1,4 +1,54 @@
 {
+  "loginTitle": "ENTRA",
+  "@loginTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterEmailAndPassword": "Introduce tu cuenta de correo electrónico y tu contraseña para acceder a los torneos.",
+  "@enterEmailAndPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "email": "Correo electrónico",
+  "@email": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "password": "Contraseña",
+  "@password": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "forgotYourPassword": "¿Olvidaste tu contraseña?",
+  "@forgotYourPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancelLogin": "CANCELAR",
+  "@cancelLogin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "joinNow": "ENTRAR",
+  "@joinNow": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "doNotHaveAnAccount": "¿Aún no tienes cuenta?",
+  "@doNotHaveAnAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "signupHere": "Regístrate aquí!",
+  "@signupHere": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginError": "ERROR DE LOGIN. Los datos inroducidos no son correctos.",
+  "@loginError": {
+    "type": "text",
+    "placeholders": {}
+  },
   "menuLobby": "Buscar Torneos",
   "@menuLobby": {
     "type": "text",

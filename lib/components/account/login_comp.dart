@@ -11,13 +11,14 @@ import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/fblogin.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/components/modal_comp.dart';
+import 'package:webclient/components/base_comp.dart';
 
 @Component(
     selector: 'login',
     templateUrl: 'packages/webclient/components/account/login_comp.html',
     useShadowDom: false
 )
-class LoginComp implements ShadowRootAware {
+class LoginComp extends BaseComp implements ShadowRootAware {
 
   String emailOrUsername = "";
   String password = "";

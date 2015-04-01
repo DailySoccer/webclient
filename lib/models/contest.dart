@@ -12,6 +12,7 @@ import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/prizes_service.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/models/money.dart';
+import 'package:webclient/utils/localization.dart';
 
 class Contest {
   static const MAX_PLAYERS_SAME_TEAM = 4;
@@ -35,6 +36,8 @@ class Contest {
   static const COMPETITION_LEAGUE_UCL_ID    = "5";
   static const COMPETITION_WORLDCUP_ID      = "4";
 
+  Localization get T => Localization.instance;
+
   String contestId;
   String templateContestId;
 
@@ -55,7 +58,6 @@ class Contest {
   int salaryCap;
 
   String get printableSalaryCap => StringUtils.parseSalary(salaryCap);
-
 
   String get tier {
     if (salaryCap >= SALARY_LIMIT_FOR_BEGINNERS)
@@ -86,9 +88,9 @@ class Contest {
    // print("estado del concurso: ${state}");
     /* los partidos en vivo o en history no continen los participantes que tiene el concurso */
     if(isLive || isHistory) {
-      return "${tournamentTypeName} - Salary cap: ${printableSalaryCap}";
+      return T.contestDescriptionLiveOrHistory(tournamentTypeName, printableSalaryCap);
     }
-    return "${tournamentTypeName}: ${numEntries} of ${maxEntries} contenders - Salary cap: ${printableSalaryCap}";
+    return T.contestDescriptionActive(tournamentTypeName, numEntries, maxEntries, printableSalaryCap);
   }
 
   List<ContestEntry> get contestEntriesOrderByPoints {

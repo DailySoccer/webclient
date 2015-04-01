@@ -4,6 +4,7 @@ import 'package:angular/angular.dart';
 import 'dart:html';
 import 'package:webclient/services/payment_service.dart';
 import 'package:webclient/utils/game_metrics.dart';
+import 'package:webclient/components/base_comp.dart';
 
 
 @Component(
@@ -11,7 +12,7 @@ import 'package:webclient/utils/game_metrics.dart';
     templateUrl: 'packages/webclient/components/account/add_funds_comp.html',
     useShadowDom: false
 )
-class AddFundsComp implements ShadowRootAware, DetachAware {
+class AddFundsComp extends BaseComp implements ShadowRootAware, DetachAware {
   int selectedValue = 25;
 
   AddFundsComp(this._routeProvider, this._paymentService, this._router) {

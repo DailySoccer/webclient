@@ -2,6 +2,7 @@ library lobby_comp;
 
 import 'dart:async';
 import 'package:angular/angular.dart';
+import 'package:webclient/components/base_comp.dart';
 import 'package:webclient/services/contests_service.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/refresh_timers_service.dart';
@@ -16,7 +17,7 @@ import 'package:webclient/services/profile_service.dart';
   templateUrl: 'packages/webclient/components/lobby_comp.html',
   useShadowDom: false
 )
-class LobbyComp implements DetachAware {
+class LobbyComp extends BaseComp implements DetachAware {
 
   ContestsService contestsService;
   ScreenDetectorService scrDet;

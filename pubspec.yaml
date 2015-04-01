@@ -1,9 +1,10 @@
 name: webclient
 description: Epic Eleven
 dependencies:
-  angular: '>=1.0.0 <1.1.0'
+  angular: '>=1.1.0 <2.0.0'
   barback: '>=0.13.0 <0.16.0'
   browser: '>=0.10.0 <0.11.0'
+  intl: '>=0.8.7 <0.12.0'
   scroll: any
 dev_dependencies:
   unittest: any
@@ -14,7 +15,7 @@ transformers:
 - webclient/transformer_less
 
 # Queremos tener siempre los source maps disponibles. La unica opcion es compilar en debug (pub build --mode=debug).
-# Siempre subiremos en debug entonces. Pero tambien queremos que nuestro js este minificado y sin checks. 
+# Siempre subiremos en debug entonces. Pero tambien queremos que nuestro js este minificado y sin checks.
 # En la siguiente version meteran una opcion sourceMaps que permitira configurar de forma independiente.
 - $dart2js:
     checked: false

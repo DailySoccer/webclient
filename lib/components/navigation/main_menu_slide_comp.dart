@@ -7,13 +7,14 @@ import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/html_utils.dart';
 import 'dart:async';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/components/base_comp.dart';
 
 @Component(
     selector: 'main-menu-slide',
     useShadowDom: false,
     exportExpressions: const ["profileService.user"]
 )
-class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
+class MainMenuSlideComp extends BaseComp implements ShadowRootAware, ScopeAware {
 
   ProfileService profileService;
 
@@ -285,7 +286,7 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
           <li id="userBalanceOut-sm"   class="right-menu">
             <div class="balance">
               <span class="current-balance">${_userBalance}</span>
-              <button class="add-funds-button" destination="add_funds">ADD FUNDS</button>
+              <button class="add-funds-button" destination="add_funds">${T.addFunds}</button>
             </div>
           </li>
           <li highlights="user" class="right-menu username-dropdown-toggle" >

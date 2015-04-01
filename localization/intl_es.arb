@@ -1,0 +1,57 @@
+{
+  "contestDescriptionLiveOrHistory": "{tournamentTypeName} - Tope salarial: {salaryCap}",
+  "@contestDescriptionLiveOrHistory": {
+    "type": "text",
+    "placeholders": {
+      "tournamentTypeName": {},
+      "salaryCap": {}
+    }
+  },
+  "contestDescriptionActive": "{tournamentTypeName} : {numEntries} de {maxEntries} contendientes - Tope salarial: {salaryCap}",
+  "@contestDescriptionActive": {
+    "type": "text",
+    "placeholders": {
+      "tournamentTypeName": {},
+      "numEntries": {},
+      "maxEntries": {},
+      "salaryCap": {}
+    }
+  },
+  "lobbyPlay": "JUGAR",
+  "@lobbyPlay": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addFunds": "AÑADIR FONDOS",
+  "@addFunds": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addFundsDescriptionTip1": "Para jugar a Epic Eleven con dinero real, necesitas añadir fondos a tu cuenta.",
+  "@addFundsDescriptionTip1": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addFundsDescriptionTip2": "No te preocupes, prodrás retirarlo cuando quieras de forma gratuita.",
+  "@addFundsDescriptionTip2": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addFundsUsingPaypal": "Puedes usar tu tarjeta de crédito o tu cuenta de PayPal",
+  "@addFundsUsingPaypal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "needHelp": "¿Necesitas ayuda?",
+  "@needHelp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addFundsMinimumAllowed": "Por favor, deposita al menos {amount} para continuar",
+  "@addFundsMinimumAllowed": {
+    "type": "text",
+    "placeholders": {
+      "amount": {}
+    }
+  }
+}

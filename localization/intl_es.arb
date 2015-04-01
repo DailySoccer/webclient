@@ -117,6 +117,131 @@
     "type": "text",
     "placeholders": {}
   },
+  "filters": "FILTROS",
+  "@filters": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterSortBy": "Ordenar por",
+  "@filterSortBy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterSearchContest": "Buscar torneo",
+  "@filterSearchContest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterCompetition": "COMPETICIÓN",
+  "@filterCompetition": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterContests": "TORNEOS",
+  "@filterContests": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterSalaryCap": "LÍMITE DE SALARIO",
+  "@filterSalaryCap": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterEntryFee": "ENTRADA",
+  "@filterEntryFee": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterMin": "MIN",
+  "@filterMin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterMax": "MAX",
+  "@filterMax": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterClear": "LIMPIAR FILTROS",
+  "@filterClear": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterAccept": "ACEPTAR",
+  "@filterAccept": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterSpanishLaLiga": "Liga Española",
+  "@filterSpanishLaLiga": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterPremierLeague": "Premier League",
+  "@filterPremierLeague": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterChampionsLeague": "Champions League",
+  "@filterChampionsLeague": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterFree": "Gratuitos",
+  "@filterFree": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterHeadToHead": "1 contra 1",
+  "@filterHeadToHead": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterLeague": "Liga",
+  "@filterLeague": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterFiftyFifty": "50 / 50",
+  "@filterFiftyFifty": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterTierBeginner": "Principiante",
+  "@filterTierBeginner": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterTierStandard": "Estándar",
+  "@filterTierStandard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterTierExpert": "Experto",
+  "@filterTierExpert": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterOrderByName": "Nombre",
+  "@filterOrderByName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterOrderByEntryFee": "Entrada",
+  "@filterOrderByEntryFee": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterOrderByStartDate": "Comienzo",
+  "@filterOrderByStartDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterAvailableContests": "Torneos disponibles",
+  "@filterAvailableContests": {
+    "type": "text",
+    "placeholders": {}
+  },
   "lobbyPlay": "JUGAR",
   "@lobbyPlay": {
     "type": "text",

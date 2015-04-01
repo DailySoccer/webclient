@@ -6,6 +6,7 @@ import 'dart:math';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/services/screen_detector_service.dart';
+import 'package:webclient/components/base_comp.dart';
 
 
 @Component(
@@ -13,7 +14,7 @@ import 'package:webclient/services/screen_detector_service.dart';
     templateUrl: 'packages/webclient/components/contest_filters_comp.html',
     useShadowDom: false
 )
-class ContestFiltersComp implements ShadowRootAware {
+class ContestFiltersComp extends BaseComp implements ShadowRootAware {
 
   /********* CONSTANTS */
   static const String FILTER_COMPETITION  = "FILTER_COMPETITION";
@@ -26,23 +27,6 @@ class ContestFiltersComp implements ShadowRootAware {
   static const int ENTRY_FEE_MAX_RANGE = 1;
 
   /********* DECLARATIONS */
-  // Mapa para traducir los filtros a lenguaje Human readable
-  Map filtersFriendlyName = {
-    "FILTER_TOURNAMENT":{
-      "FREE"          :"Free Contests",
-      "HEAD_TO_HEAD"  :"Head to Head Contests",
-      "LEAGUE"        :"League Contests",
-      "FIFTY_FIFTY"   :"50 / 50 Contests"
-    },
-    "FILTER_TIER":{
-      "BEGINNER" :"Beginner level",
-      "STANDARD" :"Standard level",
-      "SKILLEDS" :"Expert level"
-    },
-    "FILTER_ENTRY_FEE":"Entry fee ",
-    "FILTER_CONTEST_NAME":"Name "
-  };
-
   // Filtro por nombre
   String filterContestName = "";
   //Lista de tipos de competición
@@ -103,7 +87,7 @@ class ContestFiltersComp implements ShadowRootAware {
   String get filterEntryFeeRangeMax => getEntryFeeFilterRange()[ENTRY_FEE_MAX_RANGE].toString();
 
   // Bloque HTML con el resumen de los filtros aplicados
-  String get filterResume =>/* xsFilterList.join("<br>") + */"<div>Available contests <span class='contest-count'>" + _contestCount.toString() + "</span></div>";
+  String get filterResume =>/* xsFilterList.join("<br>") + */"<div>${T.filterAvailableContests} <span class='contest-count'>" + _contestCount.toString() + "</span></div>";
 
   ContestFiltersComp(this.scrDet) {
     initializeFilterValues();
@@ -149,24 +133,24 @@ class ContestFiltersComp implements ShadowRootAware {
 
     // Lista de tipos de concurso.
     competitionFilterList = [
-       {'name': "LEAGUE_ES",  'flag':"ESP", 'text':'Spanish La Liga', 'checked':false, 'disabled':true, 'id':'filterLeagueEsp'}
-      ,{'name': "LEAGUE_UK",  'flag':"UK",  'text':'Premier League',  'checked':false, 'disabled':true, 'id':'filterLeagueUK'}
-      ,{'name': "CHAMPIONS",  'flag':"EU",  'text':'Champions League','checked':false, 'disabled':true, 'id':'filterUCL'}
+       {'name': "LEAGUE_ES",  'flag':"ESP", 'text': T.filterSpanishLaLiga,  'checked':false, 'disabled':true, 'id':'filterLeagueEsp'}
+      ,{'name': "LEAGUE_UK",  'flag':"UK",  'text': T.filterPremierLeague,  'checked':false, 'disabled':true, 'id':'filterLeagueUK'}
+      ,{'name': "CHAMPIONS",  'flag':"EU",  'text': T.filterChampionsLeague,'checked':false, 'disabled':true, 'id':'filterUCL'}
     ];
 
     // Lista de tipos de concurso.
     contestTypeFilterList = [
-       {'name':"FREE",        'text':'Free',        'checked':false, 'disabled':true, 'id':'filterTournamentTypeFree'}
-      ,{'name':"HEAD_TO_HEAD",'text':'Head to Head','checked':false, 'disabled':true, 'id':'filterTournamentTypeHeadToHead'}
-      ,{'name':"LEAGUE",      'text':'League',      'checked':false, 'disabled':true, 'id':'filterTournamentTypeLeague'}
-      ,{'name':"FIFTY_FIFTY", 'text':'50 / 50',     'checked':false, 'disabled':true, 'id':'filterTournamentTypeFiftyFifty'}
+       {'name':"FREE",        'text': T.filterFree,       'checked':false, 'disabled':true, 'id':'filterTournamentTypeFree'}
+      ,{'name':"HEAD_TO_HEAD",'text': T.filterHeadToHead, 'checked':false, 'disabled':true, 'id':'filterTournamentTypeHeadToHead'}
+      ,{'name':"LEAGUE",      'text': T.filterLeague,     'checked':false, 'disabled':true, 'id':'filterTournamentTypeLeague'}
+      ,{'name':"FIFTY_FIFTY", 'text': T.filterFiftyFifty, 'checked':false, 'disabled':true, 'id':'filterTournamentTypeFiftyFifty'}
     ];
 
     // Lista de tipos de Limites de salarios.
     salaryCapFilterList = [
-       {'name':"BEGINNER", 'text':'Beginner', 'checked':false, 'disabled':true, 'id':'filterTournamentTierBeginner'}
-      ,{'name':"STANDARD", 'text':'Standard', 'checked':false, 'disabled':true, 'id':'filterTournamentTierStandard'}
-      ,{'name':"SKILLEDS", 'text':'Expert',   'checked':false, 'disabled':true, 'id':'filterTournamentTierSkilled'}
+       {'name':"BEGINNER", 'text': T.filterTierBeginner, 'checked':false, 'disabled':true, 'id':'filterTournamentTierBeginner'}
+      ,{'name':"STANDARD", 'text': T.filterTierStandard, 'checked':false, 'disabled':true, 'id':'filterTournamentTierStandard'}
+      ,{'name':"SKILLEDS", 'text': T.filterTierExpert,   'checked':false, 'disabled':true, 'id':'filterTournamentTierSkilled'}
     ];
 
     // Rango de Entry Fee
@@ -175,9 +159,9 @@ class ContestFiltersComp implements ShadowRootAware {
 
   void initializeSortValues(){
     sortingButtons = [
-       {'name':"Name",      'state':'', 'id':'orderByName',      'field-name':'contest-name'}
-      ,{'name':"Entry Fee", 'state':'', 'id':'orderByEntryFee',  'field-name':'contest-entry-fee'}
-      ,{'name':"Start Date",'state':'', 'id':'orderByStartDate', 'field-name':'contest-start-time'}
+       {'name': T.filterOrderByName,      'state':'', 'id':'orderByName',      'field-name':'contest-name'}
+      ,{'name': T.filterOrderByEntryFee,  'state':'', 'id':'orderByEntryFee',  'field-name':'contest-entry-fee'}
+      ,{'name': T.filterOrderByStartDate, 'state':'', 'id':'orderByStartDate', 'field-name':'contest-start-time'}
     ];
   }
 

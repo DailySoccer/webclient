@@ -28,6 +28,32 @@ class Localization {
   get footerPrivacyPolicy => Intl.message("PRIVACY POLICY", name: 'footerPrivacyPolicy');
   get footerBlog => Intl.message("BLOG", name: 'footerBlog');
 
+  get filters => Intl.message("FILTERS", name: 'filters');
+  get filterSortBy => Intl.message("Sort by", name: 'filterSortBy');
+  get filterSearchContest => Intl.message("Search contest", name: 'filterSearchContest');
+  get filterCompetition => Intl.message("COMPETITION", name: 'filterCompetition');
+  get filterContests => Intl.message("CONTESTS", name: 'filterContests');
+  get filterSalaryCap => Intl.message("SALARY CAP", name: 'filterSalaryCap');
+  get filterEntryFee => Intl.message("ENTRY FEE", name: 'filterEntryFee');
+  get filterMin => Intl.message("MIN", name: 'filterMin');
+  get filterMax => Intl.message("MAX", name: 'filterMax');
+  get filterClear => Intl.message("CLEAR FILTERS", name: 'filterClear');
+  get filterAccept => Intl.message("ACCEPT", name: 'filterAccept');
+  get filterSpanishLaLiga => Intl.message("Spanish La Liga", name: 'filterSpanishLaLiga');
+  get filterPremierLeague => Intl.message("Premier League", name: 'filterPremierLeague');
+  get filterChampionsLeague => Intl.message("Champions League", name: 'filterChampionsLeague');
+  get filterFree => Intl.message("Free", name: 'filterFree');
+  get filterHeadToHead => Intl.message("Head to Head", name: 'filterHeadToHead');
+  get filterLeague => Intl.message("League", name: 'filterLeague');
+  get filterFiftyFifty => Intl.message("50 / 50", name: 'filterFiftyFifty');
+  get filterTierBeginner => Intl.message("Beginner", name: 'filterTierBeginner');
+  get filterTierStandard => Intl.message("Standard", name: 'filterTierStandard');
+  get filterTierExpert => Intl.message("Expert", name: 'filterTierExpert');
+  get filterOrderByName => Intl.message("Name", name: 'filterOrderByName');
+  get filterOrderByEntryFee => Intl.message("Entry Fee", name: 'filterOrderByEntryFee');
+  get filterOrderByStartDate => Intl.message("Start Date", name: 'filterOrderByStartDate');
+  get filterAvailableContests => Intl.message("Available contests", name: 'filterAvailableContests');
+
   get contestEntryFee => Intl.message("ENTRY FEE", name: 'contestEntryFee');
   get contestPosition => Intl.message("OF", name: 'contestPosition');
   get contestPrize => Intl.message("PRIZE", name: 'contestPrize');

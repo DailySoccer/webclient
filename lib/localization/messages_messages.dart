@@ -36,6 +36,56 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static contestPrize() => "PRIZE";
 
+  static filterAccept() => "ACCEPT";
+
+  static filterAvailableContests() => "Available contests";
+
+  static filterChampionsLeague() => "Champions League";
+
+  static filterClear() => "CLEAR FILTERS";
+
+  static filterCompetition() => "COMPETITION";
+
+  static filterContests() => "CONTESTS";
+
+  static filterEntryFee() => "ENTRY FEE";
+
+  static filterFiftyFifty() => "50 / 50";
+
+  static filterFree() => "Free";
+
+  static filterHeadToHead() => "Head to Head";
+
+  static filterLeague() => "League";
+
+  static filterMax() => "MAX";
+
+  static filterMin() => "MIN";
+
+  static filterOrderByEntryFee() => "Entry Fee";
+
+  static filterOrderByName() => "Name";
+
+  static filterOrderByStartDate() => "Start Date";
+
+  static filterPremierLeague() => "Premier League";
+
+  static filterSalaryCap() => "SALARY CAP";
+
+  static filterSearchContest() => "Search contest";
+
+  static filterSortBy() => "Sort by";
+
+  static filterSpanishLaLiga() => "Spanish La Liga";
+
+  static filterTierBeginner() => "Beginner";
+
+  static filterTierExpert() => "Expert";
+
+  static filterTierStandard() => "Standard";
+
+  static filters() => "FILTERS";
+
   static footerBlog() => "BLOG";
 
   static footerHelp() => "HELP";
@@ -85,6 +135,31 @@ class MessageLookup extends MessageLookupByLibrary {
     "contestPoints" : contestPoints,
     "contestPosition" : contestPosition,
     "contestPrize" : contestPrize,
+    "filterAccept" : filterAccept,
+    "filterAvailableContests" : filterAvailableContests,
+    "filterChampionsLeague" : filterChampionsLeague,
+    "filterClear" : filterClear,
+    "filterCompetition" : filterCompetition,
+    "filterContests" : filterContests,
+    "filterEntryFee" : filterEntryFee,
+    "filterFiftyFifty" : filterFiftyFifty,
+    "filterFree" : filterFree,
+    "filterHeadToHead" : filterHeadToHead,
+    "filterLeague" : filterLeague,
+    "filterMax" : filterMax,
+    "filterMin" : filterMin,
+    "filterOrderByEntryFee" : filterOrderByEntryFee,
+    "filterOrderByName" : filterOrderByName,
+    "filterOrderByStartDate" : filterOrderByStartDate,
+    "filterPremierLeague" : filterPremierLeague,
+    "filterSalaryCap" : filterSalaryCap,
+    "filterSearchContest" : filterSearchContest,
+    "filterSortBy" : filterSortBy,
+    "filterSpanishLaLiga" : filterSpanishLaLiga,
+    "filterTierBeginner" : filterTierBeginner,
+    "filterTierExpert" : filterTierExpert,
+    "filterTierStandard" : filterTierStandard,
+    "filters" : filters,
     "footerBlog" : footerBlog,
     "footerHelp" : footerHelp,
     "footerLegal" : footerLegal,

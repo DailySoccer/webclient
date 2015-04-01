@@ -28,6 +28,16 @@ class Localization {
   get footerPrivacyPolicy => Intl.message("PRIVACY POLICY", name: 'footerPrivacyPolicy');
   get footerBlog => Intl.message("BLOG", name: 'footerBlog');
 
+  get contestEntryFee => Intl.message("ENTRY FEE", name: 'contestEntryFee');
+  get contestPosition => Intl.message("OF", name: 'contestPosition');
+  get contestPrize => Intl.message("PRIZE", name: 'contestPrize');
+  get contestPoints => Intl.message("POINTS", name: 'contestPoints');
+
+  get tournamentFree => Intl.message("Free", name: 'tournamentFree');
+  get tournamentHeadToHead => Intl.message("Head to Head", name: 'tournamentHeadToHead');
+  get tournamentLeague => Intl.message("League", name: 'tournamentLeague');
+  get tournamentFiftyFifty => Intl.message("50/50", name: 'tournamentFiftyFifty');
+
   contestDescriptionLiveOrHistory(tournamentTypeName, salaryCap) => Intl.message("$tournamentTypeName - Salary cap: $salaryCap",
                             name: 'contestDescriptionLiveOrHistory',
                             args: [tournamentTypeName, salaryCap]);

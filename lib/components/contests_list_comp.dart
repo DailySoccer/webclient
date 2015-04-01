@@ -8,13 +8,14 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/models/money.dart';
+import 'package:webclient/components/base_comp.dart';
 
 @Component(
     selector: 'contests-list',
     templateUrl: 'packages/webclient/components/contests_list_comp.html',
     useShadowDom: false
 )
-class ContestsListComp {
+class ContestsListComp extends BaseComp {
 
   /********* DECLARATIONS */
   // Lista de concursos visible en el componente

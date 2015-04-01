@@ -122,10 +122,10 @@ class Contest {
 
   Map<String,String> get tournamentTypeNames {
     return {
-      TOURNAMENT_FREE: "Free",
-      TOURNAMENT_HEAD_TO_HEAD: "Head to Head",
-      TOURNAMENT_LEAGUE: "League",
-      TOURNAMENT_FIFTY_FIFTY: "50/50"
+      TOURNAMENT_FREE: T.tournamentFree,
+      TOURNAMENT_HEAD_TO_HEAD: T.tournamentHeadToHead,
+      TOURNAMENT_LEAGUE: T.tournamentLeague,
+      TOURNAMENT_FIFTY_FIFTY: T.tournamentFiftyFifty
     };
   }
 

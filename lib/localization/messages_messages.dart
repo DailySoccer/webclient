@@ -28,6 +28,14 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static contestDescriptionLiveOrHistory(tournamentTypeName, salaryCap) => "${tournamentTypeName} - Salary cap: ${salaryCap}";
 
+  static contestEntryFee() => "ENTRY FEE";
+
+  static contestPoints() => "POINTS";
+
+  static contestPosition() => "OF";
+
+  static contestPrize() => "PRIZE";
+
   static footerBlog() => "BLOG";
 
   static footerHelp() => "HELP";
@@ -56,6 +64,14 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static needHelp() => "Need help?";
 
+  static tournamentFiftyFifty() => "50/50";
+
+  static tournamentFree() => "Free";
+
+  static tournamentHeadToHead() => "Head to Head";
+
+  static tournamentLeague() => "League";
+
 
   final messages = const {
     "addFunds" : addFunds,
@@ -65,6 +81,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "addFundsUsingPaypal" : addFundsUsingPaypal,
     "contestDescriptionActive" : contestDescriptionActive,
     "contestDescriptionLiveOrHistory" : contestDescriptionLiveOrHistory,
+    "contestEntryFee" : contestEntryFee,
+    "contestPoints" : contestPoints,
+    "contestPosition" : contestPosition,
+    "contestPrize" : contestPrize,
     "footerBlog" : footerBlog,
     "footerHelp" : footerHelp,
     "footerLegal" : footerLegal,
@@ -78,6 +98,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "menuMyAccount" : menuMyAccount,
     "menuMyContests" : menuMyContests,
     "menuTransactionHistory" : menuTransactionHistory,
-    "needHelp" : needHelp
+    "needHelp" : needHelp,
+    "tournamentFiftyFifty" : tournamentFiftyFifty,
+    "tournamentFree" : tournamentFree,
+    "tournamentHeadToHead" : tournamentHeadToHead,
+    "tournamentLeague" : tournamentLeague
   };
 }

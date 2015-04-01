@@ -59,7 +59,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "contestDescriptionLiveOrHistory": "{tournamentTypeName} - Tope salarial: {salaryCap}",
+  "contestDescriptionLiveOrHistory": "{tournamentTypeName} - Límite de salario: {salaryCap}",
   "@contestDescriptionLiveOrHistory": {
     "type": "text",
     "placeholders": {
@@ -67,7 +67,7 @@
       "salaryCap": {}
     }
   },
-  "contestDescriptionActive": "{tournamentTypeName} : {numEntries} de {maxEntries} contendientes - Tope salarial: {salaryCap}",
+  "contestDescriptionActive": "{tournamentTypeName} : {numEntries} de {maxEntries} participantes - Límite de salario: {salaryCap}",
   "@contestDescriptionActive": {
     "type": "text",
     "placeholders": {
@@ -76,6 +76,46 @@
       "maxEntries": {},
       "salaryCap": {}
     }
+  },
+  "contestEntryFee": "ENTRADA",
+  "@contestEntryFee": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contestPosition": "DE",
+  "@contestPosition": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contestPrize": "PREMIO",
+  "@contestPrize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contestPoints": "PUNTOS",
+  "@contestPoints": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tournamentFree": "Gratuito",
+  "@tournamentFree": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tournamentHeadToHead": "1 contra 1",
+  "@tournamentHeadToHead": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tournamentLeague": "Liga",
+  "@tournamentLeague": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tournamentFiftyFifty": "50/50",
+  "@tournamentFiftyFifty": {
+    "type": "text",
+    "placeholders": {}
   },
   "lobbyPlay": "JUGAR",
   "@lobbyPlay": {

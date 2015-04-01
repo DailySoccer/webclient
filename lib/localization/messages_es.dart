@@ -24,9 +24,17 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static addFundsUsingPaypal() => "Puedes usar tu tarjeta de crédito o tu cuenta de PayPal";
 
-  static contestDescriptionActive(tournamentTypeName, numEntries, maxEntries, salaryCap) => "${tournamentTypeName} : ${numEntries} de ${maxEntries} contendientes - Tope salarial: ${salaryCap}";
+  static contestDescriptionActive(tournamentTypeName, numEntries, maxEntries, salaryCap) => "${tournamentTypeName} : ${numEntries} de ${maxEntries} participantes - Límite de salario: ${salaryCap}";
 
-  static contestDescriptionLiveOrHistory(tournamentTypeName, salaryCap) => "${tournamentTypeName} - Tope salarial: ${salaryCap}";
+  static contestDescriptionLiveOrHistory(tournamentTypeName, salaryCap) => "${tournamentTypeName} - Límite de salario: ${salaryCap}";
+
+  static contestEntryFee() => "ENTRADA";
+
+  static contestPoints() => "PUNTOS";
+
+  static contestPosition() => "DE";
+
+  static contestPrize() => "PREMIO";
 
   static footerBlog() => "BLOG";
 
@@ -56,6 +64,14 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static needHelp() => "¿Necesitas ayuda?";
 
+  static tournamentFiftyFifty() => "50/50";
+
+  static tournamentFree() => "Gratuito";
+
+  static tournamentHeadToHead() => "1 contra 1";
+
+  static tournamentLeague() => "Liga";
+
 
   final messages = const {
     "addFunds" : addFunds,
@@ -65,6 +81,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "addFundsUsingPaypal" : addFundsUsingPaypal,
     "contestDescriptionActive" : contestDescriptionActive,
     "contestDescriptionLiveOrHistory" : contestDescriptionLiveOrHistory,
+    "contestEntryFee" : contestEntryFee,
+    "contestPoints" : contestPoints,
+    "contestPosition" : contestPosition,
+    "contestPrize" : contestPrize,
     "footerBlog" : footerBlog,
     "footerHelp" : footerHelp,
     "footerLegal" : footerLegal,
@@ -78,6 +98,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "menuMyAccount" : menuMyAccount,
     "menuMyContests" : menuMyContests,
     "menuTransactionHistory" : menuTransactionHistory,
-    "needHelp" : needHelp
+    "needHelp" : needHelp,
+    "tournamentFiftyFifty" : tournamentFiftyFifty,
+    "tournamentFree" : tournamentFree,
+    "tournamentHeadToHead" : tournamentHeadToHead,
+    "tournamentLeague" : tournamentLeague
   };
 }

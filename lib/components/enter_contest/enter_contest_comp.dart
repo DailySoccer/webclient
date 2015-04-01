@@ -20,13 +20,14 @@ import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/utils/html_utils.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/components/modal_comp.dart';
+import 'package:webclient/components/base_comp.dart';
 
 @Component(
     selector: 'enter-contest',
     templateUrl: 'packages/webclient/components/enter_contest/enter_contest_comp.html',
     useShadowDom: false
 )
-class EnterContestComp implements DetachAware {
+class EnterContestComp extends BaseComp implements DetachAware {
 
   static const String ERROR_RETRY_OP = "ERROR_RETRY_OP";
   static const String ERROR_CONTEST_NOT_ACTIVE = "ERROR_CONTEST_NOT_ACTIVE";
@@ -141,7 +142,7 @@ class EnterContestComp implements DetachAware {
     bool isLineupEmpty = !lineupSlots.any((soccerPlayer) => soccerPlayer != null);
     // Si no hemos metido a nadie en nuestro equipo
     if(!isLineupEmpty && !_teamConfirmed && !editingContestEntry) {
-      _flashMessage.addGlobalMessage("Lineup saved", 3);
+      _flashMessage.addGlobalMessage("${T.lineupSaved}", 3);
     }else {
       event.allowLeave(new Future<bool>.value(true));
       return;

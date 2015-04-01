@@ -78,6 +78,15 @@ class Localization {
 
   get lobbyPlay => Intl.message("PLAY", name: 'lobbyPlay');
 
+  get lineupSaved => Intl.message("Lineup saved", name: 'lineupSaved');
+  get yourLineup => Intl.message("Your Lineup", name: 'yourLineup');
+  get contestInfo => Intl.message("Contest Info", name: 'contestInfo');
+  get cancelPlayerSelection => Intl.message("CANCEL", name: 'cancelPlayerSelection');
+  get remainingSalary => Intl.message("REMAINING SALARY", name: 'remainingSalary');
+  get deleteFantasyTeam => Intl.message("REMOVE ALL", name: 'deleteFantasyTeam');
+  get createFantasyTeam => Intl.message("CONTINUE", name: 'createFantasyTeam');
+  get rememberThatYouCanEditYourTeam => Intl.message("Remember that you can edit your team as many times as you want until the contest starts", name: 'rememberThatYouCanEditYourTeam');
+
   get addFunds => Intl.message("ADD FUNDS", name: 'addFunds');
   get addFundsDescriptionTip1 => Intl.message("In order to play Epic Eleven with real money, you need to add funds to your account.", name: 'addFundsDescriptionTip1');
   get addFundsDescriptionTip2 => Intl.message("Don't worry, you can withdraw your money whenever you want for free.", name: 'addFundsDescriptionTip2');

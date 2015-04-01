@@ -24,9 +24,13 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static addFundsUsingPaypal() => "You can add funds using PayPal account. The money will be transferred to Fantasy Sports Games S.L.";
 
+  static cancelPlayerSelection() => "CANCEL";
+
   static contestEntryFee() => "ENTRY FEE";
 
   static contestFinished() => "FINISHED";
+
+  static contestInfo() => "Contest Info";
 
   static contestNumOfContenders(numEntries, maxEntries) => "${numEntries} of ${maxEntries} contenders";
 
@@ -47,6 +51,10 @@ class MessageLookup extends MessageLookupByLibrary {
   static contestStartsOn() => "STARTS ON";
 
   static contestWillStartIn() => "THE CONTEST WILL START IN";
+
+  static createFantasyTeam() => "CONTINUE";
+
+  static deleteFantasyTeam() => "REMOVE ALL";
 
   static filterAccept() => "ACCEPT";
 
@@ -108,6 +116,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static footerTermsOfUse() => "TERMS OF USE";
 
+  static lineupSaved() => "Lineup saved";
+
   static lobbyPlay() => "PLAY";
 
   static menuAddFuns() => "Add Funds";
@@ -128,6 +138,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static nextContest() => "NEXT CONTEST";
 
+  static remainingSalary() => "REMAINING SALARY";
+
+  static rememberThatYouCanEditYourTeam() => "Remember that you can edit your team as many times as you want until the contest starts";
+
   static tournamentFiftyFifty() => "50/50";
 
   static tournamentFree() => "Free";
@@ -136,6 +150,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static tournamentLeague() => "League";
 
+  static yourLineup() => "Your Lineup";
+
 
   final messages = const {
     "addFunds" : addFunds,
@@ -143,8 +159,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "addFundsDescriptionTip2" : addFundsDescriptionTip2,
     "addFundsMinimumAllowed" : addFundsMinimumAllowed,
     "addFundsUsingPaypal" : addFundsUsingPaypal,
+    "cancelPlayerSelection" : cancelPlayerSelection,
     "contestEntryFee" : contestEntryFee,
     "contestFinished" : contestFinished,
+    "contestInfo" : contestInfo,
     "contestNumOfContenders" : contestNumOfContenders,
     "contestPoints" : contestPoints,
     "contestPosition" : contestPosition,
@@ -155,6 +173,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "contestStartedOn" : contestStartedOn,
     "contestStartsOn" : contestStartsOn,
     "contestWillStartIn" : contestWillStartIn,
+    "createFantasyTeam" : createFantasyTeam,
+    "deleteFantasyTeam" : deleteFantasyTeam,
     "filterAccept" : filterAccept,
     "filterAvailableContests" : filterAvailableContests,
     "filterChampionsLeague" : filterChampionsLeague,
@@ -185,6 +205,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "footerLegal" : footerLegal,
     "footerPrivacyPolicy" : footerPrivacyPolicy,
     "footerTermsOfUse" : footerTermsOfUse,
+    "lineupSaved" : lineupSaved,
     "lobbyPlay" : lobbyPlay,
     "menuAddFuns" : menuAddFuns,
     "menuHowItWorks" : menuHowItWorks,
@@ -195,9 +216,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "menuTransactionHistory" : menuTransactionHistory,
     "needHelp" : needHelp,
     "nextContest" : nextContest,
+    "remainingSalary" : remainingSalary,
+    "rememberThatYouCanEditYourTeam" : rememberThatYouCanEditYourTeam,
     "tournamentFiftyFifty" : tournamentFiftyFifty,
     "tournamentFree" : tournamentFree,
     "tournamentHeadToHead" : tournamentHeadToHead,
-    "tournamentLeague" : tournamentLeague
+    "tournamentLeague" : tournamentLeague,
+    "yourLineup" : yourLineup
   };
 }

@@ -277,6 +277,46 @@
     "type": "text",
     "placeholders": {}
   },
+  "lineupSaved": "Se ha guardado tu alineación",
+  "@lineupSaved": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourLineup": "Tu alineación",
+  "@yourLineup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contestInfo": "Info torneo",
+  "@contestInfo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancelPlayerSelection": "CANCELAR",
+  "@cancelPlayerSelection": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "remainingSalary": "DINERO RESTANTE",
+  "@remainingSalary": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteFantasyTeam": "BORRAR TODO",
+  "@deleteFantasyTeam": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createFantasyTeam": "CONFIRMAR",
+  "@createFantasyTeam": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "rememberThatYouCanEditYourTeam": "Recuerda que puedes editar tu equipo cuantas veces quieras hasta que comience la competición",
+  "@rememberThatYouCanEditYourTeam": {
+    "type": "text",
+    "placeholders": {}
+  },
   "addFunds": "AÑADIR FONDOS",
   "@addFunds": {
     "type": "text",

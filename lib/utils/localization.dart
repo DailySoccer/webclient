@@ -139,6 +139,13 @@ class Localization {
   youHavePlayersOfSameTeam(maxPlayers) => Intl.message("Ups! It looks like you already have $maxPlayers players of the same team", name: 'youHavePlayersOfSameTeam', args: [maxPlayers]);
   get chooseAnotherPlayer => Intl.message("Please, choose another player...", name: 'chooseAnotherPlayer');
 
+  get haveCompletedYourLineup => Intl.message("WELL DONE! YOU HAVE SUCCESSFULLY COMPLETED YOUR LINEUP", name: 'haveCompletedYourLineup');
+  get haveEditedYourLineup => Intl.message("WELL DONE! YOU HAVE SUCCESSFULLY EDITED YOUR LINEUP", name: 'haveEditedYourLineup');
+  get havePutYouInEquivalentContest => Intl.message("THE CONTEST WAS FULL, SO WE HAVE PUT YOU IN THIS EQUIVALENT ONE", name: 'havePutYouInEquivalentContest');
+  get rememberThatYouCanEdit => Intl.message("Remember that you can edit your lineup as many times as you want before the contest starts", name: 'rememberThatYouCanEdit');
+  get cancelContestEntry => Intl.message("CANCEL PARTICIPATION", name: 'cancelContestEntry');
+  get backToContests => Intl.message("BACK TO CONTESTS", name: 'backToContests');
+
   get addFunds => Intl.message("ADD FUNDS", name: 'addFunds');
   get addFundsDescriptionTip1 => Intl.message("In order to play Epic Eleven with real money, you need to add funds to your account.", name: 'addFundsDescriptionTip1');
   get addFundsDescriptionTip2 => Intl.message("Don't worry, you can withdraw your money whenever you want for free.", name: 'addFundsDescriptionTip2');

@@ -549,6 +549,36 @@
     "type": "text",
     "placeholders": {}
   },
+  "haveCompletedYourLineup": "¡PERFECTO! HAS COMPLETADO TU ALINEACIÓN CON ÉXITO",
+  "@haveCompletedYourLineup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "haveEditedYourLineup": "¡PERFECTO! HAS EDITADO TU ALINEACIÓN CON ÉXITO",
+  "@haveEditedYourLineup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "havePutYouInEquivalentContest": "EL TORNEO ESTABA LLENO PERO TE HEMOS METIDO EN ESTE QUE ES IGUAL",
+  "@havePutYouInEquivalentContest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "rememberThatYouCanEdit": "Recuerda que puedes editar tu equipo cuantas veces quieras hasta que comience la competición",
+  "@rememberThatYouCanEdit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancelContestEntry": "CANCELAR PARTICIPACIÓN",
+  "@cancelContestEntry": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "backToContests": "VOLVER A TORNEOS",
+  "@backToContests": {
+    "type": "text",
+    "placeholders": {}
+  },
   "addFunds": "AÑADIR FONDOS",
   "@addFunds": {
     "type": "text",

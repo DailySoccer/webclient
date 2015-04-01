@@ -26,6 +26,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static addPlayerToFantasyTeam() => "AÑADIR";
 
+  static backToContests() => "VOLVER A TORNEOS";
+
+  static cancelContestEntry() => "CANCELAR PARTICIPACIÓN";
+
   static cancelLogin() => "CANCELAR";
 
   static cancelPlayerSelection() => "CANCELAR";
@@ -158,6 +162,12 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static haveAnAccount() => "¿Ya tienes cuenta?";
 
+  static haveCompletedYourLineup() => "¡PERFECTO! HAS COMPLETADO TU ALINEACIÓN CON ÉXITO";
+
+  static haveEditedYourLineup() => "¡PERFECTO! HAS EDITADO TU ALINEACIÓN CON ÉXITO";
+
+  static havePutYouInEquivalentContest() => "EL TORNEO ESTABA LLENO PERO TE HEMOS METIDO EN ESTE QUE ES IGUAL";
+
   static lineupSaved() => "Se ha guardado tu alineación";
 
   static lobbyPlay() => "JUGAR";
@@ -208,6 +218,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static remainingSalary() => "DINERO RESTANTE";
 
+  static rememberThatYouCanEdit() => "Recuerda que puedes editar tu equipo cuantas veces quieras hasta que comience la competición";
+
   static rememberThatYouCanEditYourTeam() => "Recuerda que puedes editar tu equipo cuantas veces quieras hasta que comience la competición";
 
   static repeatPassword() => "Repite la contraseña";
@@ -250,6 +262,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "addFundsMinimumAllowed" : addFundsMinimumAllowed,
     "addFundsUsingPaypal" : addFundsUsingPaypal,
     "addPlayerToFantasyTeam" : addPlayerToFantasyTeam,
+    "backToContests" : backToContests,
+    "cancelContestEntry" : cancelContestEntry,
     "cancelLogin" : cancelLogin,
     "cancelPlayerSelection" : cancelPlayerSelection,
     "cancelSignup" : cancelSignup,
@@ -316,6 +330,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "footerTermsOfUse" : footerTermsOfUse,
     "forgotYourPassword" : forgotYourPassword,
     "haveAnAccount" : haveAnAccount,
+    "haveCompletedYourLineup" : haveCompletedYourLineup,
+    "haveEditedYourLineup" : haveEditedYourLineup,
+    "havePutYouInEquivalentContest" : havePutYouInEquivalentContest,
     "lineupSaved" : lineupSaved,
     "lobbyPlay" : lobbyPlay,
     "loginDescription" : loginDescription,
@@ -341,6 +358,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "passwordInvalid" : passwordInvalid,
     "playerOwned" : playerOwned,
     "remainingSalary" : remainingSalary,
+    "rememberThatYouCanEdit" : rememberThatYouCanEdit,
     "rememberThatYouCanEditYourTeam" : rememberThatYouCanEditYourTeam,
     "repeatPassword" : repeatPassword,
     "signupDescription" : signupDescription,

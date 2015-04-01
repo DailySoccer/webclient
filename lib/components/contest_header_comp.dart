@@ -20,8 +20,6 @@ class ContestHeaderComp implements DetachAware, ShadowRootAware {
   Map<String, String> info = {
     'description':      '',
     'startTime':        '',
-    'countdownDate':    '',
-    'textCountdownDate':'',
     'contestType':      '',
     'contestantCount':  '',
     'entryPrice':       '',
@@ -46,6 +44,14 @@ class ContestHeaderComp implements DetachAware, ShadowRootAware {
   void set setModal(String value) {
     if (value != null) {
       isInsideModal = value == "true";
+    }
+  }
+
+  bool showMatches = true;
+  @NgAttr('show-matches')
+  void set setShowMatches(String value) {
+    if (value != null) {
+      showMatches = value == "true";
     }
   }
 
@@ -83,13 +89,14 @@ class ContestHeaderComp implements DetachAware, ShadowRootAware {
 
       Duration tiempoRestante = DateTimeService.getTimeLeft(contest.startDate);
 
-      if (tiempoRestante.inSeconds <= 0) {
-        info["startTime"] = "SOON";
-        _count.cancel();
-      }
-      else {
-        info["countdownDate"] = DateTimeService.formatTimeLeft(tiempoRestante);
-        info["textCountdownDate"] = (scrDet.isDesktop) ? "THE CONTEST WILL START IN: " : "REMAINING";
+      if (tiempoRestante.inHours <= 23) {
+        if (tiempoRestante.inSeconds <= 0) {
+          info["startTime"] = "STARTS VERY SOON";
+          _count.cancel();
+        }
+        else {
+          info["startTime"] = "STARTS IN ${DateTimeService.formatTimeLeft(tiempoRestante)}";
+        }
       }
     }
   }

@@ -6358,6 +6358,7 @@ contest-header {
   padding-left: 15px;
   padding-right: 15px;
   text-align: right;
+  padding-left: 0px;
 }
 #contestHeaderWrapper .date-time-data .contest-countdown-text span {
   font-family: 'Open Sans', sans-serif;
@@ -6403,7 +6404,7 @@ contest-header {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  padding-left: 15px;
+  padding-left: 0px;
   padding-right: 15px;
 }
 @media (max-width: 767px) {

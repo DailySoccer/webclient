@@ -30,6 +30,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static cancelPlayerSelection() => "CANCEL";
 
+  static cancelSignup() => "CANCEL";
+
   static chooseAnotherPlayer() => "Please, choose another player...";
 
   static choosePlayersThatFitTheBudget() => "Please choose players that fit the budget.";
@@ -72,7 +74,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static email() => "Email";
 
-  static enterEmailAndPassword() => "Enter your email and password.";
+  static emailHelper() => "Email:";
+
+  static emailInvalid() => "Invalid Email.";
 
   static fieldPosDefense() => "DEFENDER";
 
@@ -152,13 +156,19 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static forgotYourPassword() => "Forgot your password?";
 
-  static joinNow() => "CONTINUE";
+  static haveAnAccount() => "Already have an account?";
 
   static lineupSaved() => "Lineup saved";
 
   static lobbyPlay() => "PLAY";
 
+  static loginDescription() => "Enter your email and password.";
+
   static loginError() => "LOGIN ERROR: The nickname or password is not correct.";
+
+  static loginHere() => "log in here!";
+
+  static loginNow() => "CONTINUE";
 
   static loginTitle() => "LOG IN";
 
@@ -180,7 +190,17 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static nextContest() => "NEXT CONTEST";
 
+  static nickname() => "Nickname";
+
+  static nicknameHelper(minLength, maxLength) => "Your nickname must be ${minLength} to ${maxLength} characters long.";
+
+  static nicknameInvalid() => "Invalid Nickname.";
+
   static password() => "Password";
+
+  static passwordHelper(minLength) => "Password: Should be at least ${minLength} characters. (Type it twice).";
+
+  static passwordInvalid() => "Invalid Password.";
 
   static playerOwned() => "OWNED";
 
@@ -188,7 +208,15 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static rememberThatYouCanEditYourTeam() => "Remember that you can edit your team as many times as you want until the contest starts";
 
+  static repeatPassword() => "Repeat password";
+
+  static signupDescription() => "Don\'t you have an EPIC ELEVEN account yet?<br>Fill out this form.";
+
   static signupHere() => "Sign Up here!";
+
+  static signupNow() => "SIGN UP";
+
+  static signupTitle() => "SIGN UP";
 
   static tournamentFiftyFifty() => "50/50";
 
@@ -220,6 +248,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "addPlayerToFantasyTeam" : addPlayerToFantasyTeam,
     "cancelLogin" : cancelLogin,
     "cancelPlayerSelection" : cancelPlayerSelection,
+    "cancelSignup" : cancelSignup,
     "chooseAnotherPlayer" : chooseAnotherPlayer,
     "choosePlayersThatFitTheBudget" : choosePlayersThatFitTheBudget,
     "closeFantasyTeam" : closeFantasyTeam,
@@ -241,7 +270,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "doNotHaveAnAccount" : doNotHaveAnAccount,
     "editTheLineup" : editTheLineup,
     "email" : email,
-    "enterEmailAndPassword" : enterEmailAndPassword,
+    "emailHelper" : emailHelper,
+    "emailInvalid" : emailInvalid,
     "fieldPosDefense" : fieldPosDefense,
     "fieldPosDefenseShort" : fieldPosDefenseShort,
     "fieldPosForward" : fieldPosForward,
@@ -281,10 +311,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "footerPrivacyPolicy" : footerPrivacyPolicy,
     "footerTermsOfUse" : footerTermsOfUse,
     "forgotYourPassword" : forgotYourPassword,
-    "joinNow" : joinNow,
+    "haveAnAccount" : haveAnAccount,
     "lineupSaved" : lineupSaved,
     "lobbyPlay" : lobbyPlay,
+    "loginDescription" : loginDescription,
     "loginError" : loginError,
+    "loginHere" : loginHere,
+    "loginNow" : loginNow,
     "loginTitle" : loginTitle,
     "menuAddFuns" : menuAddFuns,
     "menuHowItWorks" : menuHowItWorks,
@@ -295,11 +328,20 @@ class MessageLookup extends MessageLookupByLibrary {
     "menuTransactionHistory" : menuTransactionHistory,
     "needHelp" : needHelp,
     "nextContest" : nextContest,
+    "nickname" : nickname,
+    "nicknameHelper" : nicknameHelper,
+    "nicknameInvalid" : nicknameInvalid,
     "password" : password,
+    "passwordHelper" : passwordHelper,
+    "passwordInvalid" : passwordInvalid,
     "playerOwned" : playerOwned,
     "remainingSalary" : remainingSalary,
     "rememberThatYouCanEditYourTeam" : rememberThatYouCanEditYourTeam,
+    "repeatPassword" : repeatPassword,
+    "signupDescription" : signupDescription,
     "signupHere" : signupHere,
+    "signupNow" : signupNow,
+    "signupTitle" : signupTitle,
     "tournamentFiftyFifty" : tournamentFiftyFifty,
     "tournamentFree" : tournamentFree,
     "tournamentHeadToHead" : tournamentHeadToHead,

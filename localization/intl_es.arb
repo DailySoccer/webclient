@@ -1,11 +1,6 @@
 {
-  "loginTitle": "ENTRA",
-  "@loginTitle": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "enterEmailAndPassword": "Introduce tu cuenta de correo electrónico y tu contraseña para acceder a los torneos.",
-  "@enterEmailAndPassword": {
+  "nickname": "Nombre de usuario",
+  "@nickname": {
     "type": "text",
     "placeholders": {}
   },
@@ -19,6 +14,86 @@
     "type": "text",
     "placeholders": {}
   },
+  "repeatPassword": "Repite la contraseña",
+  "@repeatPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "signupTitle": "REGÍSTRATE",
+  "@signupTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "signupDescription": "¿Todavía no tienes cuenta en EPIC ELEVEN?<br>Rellena este formulario para completar el registro.",
+  "@signupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nicknameHelper": "Tu nombre de usuario debe tener entre {minLength} y {maxLength} caracteres.",
+  "@nicknameHelper": {
+    "type": "text",
+    "placeholders": {
+      "minLength": {},
+      "maxLength": {}
+     }
+  },
+  "nicknameInvalid": "El nombre de usuario no es válido.",
+  "@nicknameInvalid": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emailHelper": "Introduce un email válido.",
+  "@emailHelper": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emailInvalid": "El email no es válido.",
+  "@emailInvalid": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordHelper": "Contraseña: Al menos $minLength caracteres. (Escríbela dos veces).",
+  "@passwordHelper": {
+    "type": "text",
+    "placeholders": {
+      "minLength": {}
+    }
+  },
+  "passwordInvalid": "La contraseñna no es válida.",
+  "@passwordInvalid": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "signupNow": "REGÍSTRATE",
+  "@signupNow": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancelSignup": "CANCELAR",
+  "@cancelSignup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "haveAnAccount": "¿Ya tienes cuenta?",
+  "@haveAnAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginHere": "Entra por aquí!",
+  "@loginHere": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginTitle": "ENTRA",
+  "@loginTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginDescription": "Introduce tu cuenta de correo electrónico y tu contraseña para acceder a los torneos.",
+  "@loginDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
   "forgotYourPassword": "¿Olvidaste tu contraseña?",
   "@forgotYourPassword": {
     "type": "text",
@@ -29,7 +104,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "joinNow": "ENTRAR",
+  "loginNow": "ENTRAR",
   "@joinNow": {
     "type": "text",
     "placeholders": {}

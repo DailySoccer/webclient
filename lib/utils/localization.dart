@@ -14,13 +14,29 @@ class Localization {
 
   Localization ();
 
-  get loginTitle => Intl.message("LOG IN", name: 'loginTitle');
-  get enterEmailAndPassword => Intl.message("Enter your email and password.", name: 'enterEmailAndPassword');
+  get nickname => Intl.message("Nickname", name: 'nickname');
   get email => Intl.message("Email", name: 'email');
   get password => Intl.message("Password", name: 'password');
+  get repeatPassword => Intl.message("Repeat password", name: 'repeatPassword');
+
+  get signupTitle => Intl.message("SIGN UP", name: 'signupTitle');
+  get signupDescription => Intl.message("Don't you have an EPIC ELEVEN account yet?<br>Fill out this form.", name: 'signupDescription');
+  nicknameHelper(minLength, maxLength) => Intl.message("Your nickname must be $minLength to $maxLength characters long.", name: 'nicknameHelper', args: [minLength, maxLength]);
+  get nicknameInvalid => Intl.message("Invalid Nickname.", name: 'nicknameInvalid');
+  get emailHelper => Intl.message("Email:", name: 'emailHelper');
+  get emailInvalid => Intl.message("Invalid Email.", name: 'emailInvalid');
+  passwordHelper(minLength) => Intl.message("Password: Should be at least $minLength characters. (Type it twice).", name: 'passwordHelper', args: [minLength]);
+  get passwordInvalid => Intl.message("Invalid Password.", name: 'passwordInvalid');
+  get signupNow => Intl.message("SIGN UP", name: 'signupNow');
+  get cancelSignup => Intl.message("CANCEL", name: 'cancelSignup');
+  get haveAnAccount => Intl.message("Already have an account?", name: 'haveAnAccount');
+  get loginHere => Intl.message("log in here!", name: 'loginHere');
+
+  get loginTitle => Intl.message("LOG IN", name: 'loginTitle');
+  get loginDescription => Intl.message("Enter your email and password.", name: 'loginDescription');
   get forgotYourPassword => Intl.message("Forgot your password?", name: 'forgotYourPassword');
   get cancelLogin => Intl.message("CANCEL", name: 'cancelLogin');
-  get joinNow => Intl.message("CONTINUE", name: 'joinNow');
+  get loginNow => Intl.message("CONTINUE", name: 'loginNow');
   get doNotHaveAnAccount => Intl.message("Don't have an account?", name: 'doNotHaveAnAccount');
   get signupHere => Intl.message("Sign Up here!", name: 'signupHere');
   get loginError => Intl.message("LOGIN ERROR: The nickname or password is not correct.", name: 'loginError');

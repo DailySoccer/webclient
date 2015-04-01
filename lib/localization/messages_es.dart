@@ -30,6 +30,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static cancelPlayerSelection() => "CANCELAR";
 
+  static cancelSignup() => "CANCELAR";
+
   static chooseAnotherPlayer() => "Por favor, elige otro jugador...";
 
   static choosePlayersThatFitTheBudget() => "Por favor, elige jugadores que se ajusten al presupuesto";
@@ -72,7 +74,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static email() => "Correo electrónico";
 
-  static enterEmailAndPassword() => "Introduce tu cuenta de correo electrónico y tu contraseña para acceder a los torneos.";
+  static emailHelper() => "Introduce un email válido.";
+
+  static emailInvalid() => "El email no es válido.";
 
   static fieldPosDefense() => "DEFENSA";
 
@@ -152,13 +156,19 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static forgotYourPassword() => "¿Olvidaste tu contraseña?";
 
-  static joinNow() => "ENTRAR";
+  static haveAnAccount() => "¿Ya tienes cuenta?";
 
   static lineupSaved() => "Se ha guardado tu alineación";
 
   static lobbyPlay() => "JUGAR";
 
+  static loginDescription() => "Introduce tu cuenta de correo electrónico y tu contraseña para acceder a los torneos.";
+
   static loginError() => "ERROR DE LOGIN. Los datos inroducidos no son correctos.";
+
+  static loginHere() => "Entra por aquí!";
+
+  static loginNow() => "ENTRAR";
 
   static loginTitle() => "ENTRA";
 
@@ -180,7 +190,17 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static nextContest() => "SIGUIENTE TORNEO";
 
+  static nickname() => "Nombre de usuario";
+
+  static nicknameHelper(minLength, maxLength) => "Tu nombre de usuario debe tener entre ${minLength} y ${maxLength} caracteres.";
+
+  static nicknameInvalid() => "El nombre de usuario no es válido.";
+
   static password() => "Contraseña";
+
+  static passwordHelper(minLength) => "Contraseña: Al menos $minLength caracteres. (Escríbela dos veces).";
+
+  static passwordInvalid() => "La contraseñna no es válida.";
 
   static playerOwned() => "LO TIENEN";
 
@@ -188,7 +208,15 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static rememberThatYouCanEditYourTeam() => "Recuerda que puedes editar tu equipo cuantas veces quieras hasta que comience la competición";
 
+  static repeatPassword() => "Repite la contraseña";
+
+  static signupDescription() => "¿Todavía no tienes cuenta en EPIC ELEVEN?<br>Rellena este formulario para completar el registro.";
+
   static signupHere() => "Regístrate aquí!";
+
+  static signupNow() => "REGÍSTRATE";
+
+  static signupTitle() => "REGÍSTRATE";
 
   static tournamentFiftyFifty() => "50/50";
 
@@ -220,6 +248,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "addPlayerToFantasyTeam" : addPlayerToFantasyTeam,
     "cancelLogin" : cancelLogin,
     "cancelPlayerSelection" : cancelPlayerSelection,
+    "cancelSignup" : cancelSignup,
     "chooseAnotherPlayer" : chooseAnotherPlayer,
     "choosePlayersThatFitTheBudget" : choosePlayersThatFitTheBudget,
     "closeFantasyTeam" : closeFantasyTeam,
@@ -241,7 +270,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "doNotHaveAnAccount" : doNotHaveAnAccount,
     "editTheLineup" : editTheLineup,
     "email" : email,
-    "enterEmailAndPassword" : enterEmailAndPassword,
+    "emailHelper" : emailHelper,
+    "emailInvalid" : emailInvalid,
     "fieldPosDefense" : fieldPosDefense,
     "fieldPosDefenseShort" : fieldPosDefenseShort,
     "fieldPosForward" : fieldPosForward,
@@ -281,10 +311,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "footerPrivacyPolicy" : footerPrivacyPolicy,
     "footerTermsOfUse" : footerTermsOfUse,
     "forgotYourPassword" : forgotYourPassword,
-    "joinNow" : joinNow,
+    "haveAnAccount" : haveAnAccount,
     "lineupSaved" : lineupSaved,
     "lobbyPlay" : lobbyPlay,
+    "loginDescription" : loginDescription,
     "loginError" : loginError,
+    "loginHere" : loginHere,
+    "loginNow" : loginNow,
     "loginTitle" : loginTitle,
     "menuAddFuns" : menuAddFuns,
     "menuHowItWorks" : menuHowItWorks,
@@ -295,11 +328,20 @@ class MessageLookup extends MessageLookupByLibrary {
     "menuTransactionHistory" : menuTransactionHistory,
     "needHelp" : needHelp,
     "nextContest" : nextContest,
+    "nickname" : nickname,
+    "nicknameHelper" : nicknameHelper,
+    "nicknameInvalid" : nicknameInvalid,
     "password" : password,
+    "passwordHelper" : passwordHelper,
+    "passwordInvalid" : passwordInvalid,
     "playerOwned" : playerOwned,
     "remainingSalary" : remainingSalary,
     "rememberThatYouCanEditYourTeam" : rememberThatYouCanEditYourTeam,
+    "repeatPassword" : repeatPassword,
+    "signupDescription" : signupDescription,
     "signupHere" : signupHere,
+    "signupNow" : signupNow,
+    "signupTitle" : signupTitle,
     "tournamentFiftyFifty" : tournamentFiftyFifty,
     "tournamentFree" : tournamentFree,
     "tournamentHeadToHead" : tournamentHeadToHead,

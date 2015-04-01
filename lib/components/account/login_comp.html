@@ -14,7 +14,7 @@
       <div class="panel-body" >
 
         <form id="loginForm" class="form-horizontal" ng-submit="onAction('SUBMIT')" role="form" formAutofillFix>
-          <div class="form-description">{{T.enterEmailAndPassword}}</div>
+          <div class="form-description" ng-bind-html="T.loginDescription"></div>
 
           <!-- LOGIN FIELDS -->
           <div class="user-form-field">
@@ -45,7 +45,7 @@
           <div class="user-form-field">
             <div class="new-row">
               <div class="buttons-wrapper">
-                <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">{{T.joinNow}}</button>
+                <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">{{T.loginNow}}</button>
                 <button id="btnCancelLogin" ng-click="onAction('CANCEL', $event)" class="cancel-button-half">{{T.cancelLogin}}</button>
               </div>
             </div>

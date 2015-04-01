@@ -11,13 +11,14 @@ import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/fblogin.dart';
 import 'package:webclient/components/modal_comp.dart';
+import 'package:webclient/components/base_comp.dart';
 
 @Component(
     selector: 'join',
     templateUrl: 'packages/webclient/components/account/join_comp.html',
     useShadowDom: false
 )
-class JoinComp implements ShadowRootAware {
+class JoinComp extends BaseComp implements ShadowRootAware {
 
   int MIN_PASSWORD_LENGTH = 8;
   int MIN_NICKNAME_LENGTH = 4;

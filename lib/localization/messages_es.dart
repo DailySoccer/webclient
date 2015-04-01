@@ -24,7 +24,13 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static addFundsUsingPaypal() => "Puedes usar tu tarjeta de crédito o tu cuenta de PayPal";
 
+  static addPlayerToFantasyTeam() => "AÑADIR";
+
   static cancelPlayerSelection() => "CANCELAR";
+
+  static chooseAnotherPlayer() => "Por favor, elige otro jugador...";
+
+  static choosePlayersThatFitTheBudget() => "Por favor, elige jugadores que se ajusten al presupuesto";
 
   static closeFantasyTeam() => "CERRAR";
 
@@ -59,6 +65,22 @@ class MessageLookup extends MessageLookupByLibrary {
   static deleteFantasyTeam() => "BORRAR TODO";
 
   static editTheLineup() => "EDITAR EL EQUIPO";
+
+  static fieldPosDefense() => "DEFENSA";
+
+  static fieldPosDefenseShort() => "DEF";
+
+  static fieldPosForward() => "DELANTERO";
+
+  static fieldPosForwardShort() => "DEL";
+
+  static fieldPosGoalkeeper() => "PORTERO";
+
+  static fieldPosGoalkeeperShort() => "POR";
+
+  static fieldPosMiddle() => "CENTROCAMPISTA";
+
+  static fieldPosMiddleShort() => "MED";
 
   static filterAccept() => "ACEPTAR";
 
@@ -162,6 +184,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static userScoreTitle() => "PUNTOS";
 
+  static youHavePlayersOfSameTeam(maxPlayers) => "Ups! Parece que ya tienes ${maxPlayers} futbolistas del mismo equipo";
+
+  static youHaveSpentTheSalaryCap() => "Te has pasado del límite salarial";
+
   static yourLineup() => "Tu alineación";
 
 
@@ -171,7 +197,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "addFundsDescriptionTip2" : addFundsDescriptionTip2,
     "addFundsMinimumAllowed" : addFundsMinimumAllowed,
     "addFundsUsingPaypal" : addFundsUsingPaypal,
+    "addPlayerToFantasyTeam" : addPlayerToFantasyTeam,
     "cancelPlayerSelection" : cancelPlayerSelection,
+    "chooseAnotherPlayer" : chooseAnotherPlayer,
+    "choosePlayersThatFitTheBudget" : choosePlayersThatFitTheBudget,
     "closeFantasyTeam" : closeFantasyTeam,
     "contestEntryFee" : contestEntryFee,
     "contestFinished" : contestFinished,
@@ -189,6 +218,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "createFantasyTeam" : createFantasyTeam,
     "deleteFantasyTeam" : deleteFantasyTeam,
     "editTheLineup" : editTheLineup,
+    "fieldPosDefense" : fieldPosDefense,
+    "fieldPosDefenseShort" : fieldPosDefenseShort,
+    "fieldPosForward" : fieldPosForward,
+    "fieldPosForwardShort" : fieldPosForwardShort,
+    "fieldPosGoalkeeper" : fieldPosGoalkeeper,
+    "fieldPosGoalkeeperShort" : fieldPosGoalkeeperShort,
+    "fieldPosMiddle" : fieldPosMiddle,
+    "fieldPosMiddleShort" : fieldPosMiddleShort,
     "filterAccept" : filterAccept,
     "filterAvailableContests" : filterAvailableContests,
     "filterChampionsLeague" : filterChampionsLeague,
@@ -240,6 +277,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "userPositionTitle" : userPositionTitle,
     "userRemainingTime" : userRemainingTime,
     "userScoreTitle" : userScoreTitle,
+    "youHavePlayersOfSameTeam" : youHavePlayersOfSameTeam,
+    "youHaveSpentTheSalaryCap" : youHaveSpentTheSalaryCap,
     "yourLineup" : yourLineup
   };
 }

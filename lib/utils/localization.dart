@@ -94,6 +94,22 @@ class Localization {
   get closeFantasyTeam => Intl.message("CLOSE", name: 'closeFantasyTeam');
   get playerOwned => Intl.message("OWNED", name: 'playerOwned');
 
+  get fieldPosGoalkeeper => Intl.message("GOALKEEPER", name: 'fieldPosGoalkeeper');
+  get fieldPosDefense => Intl.message("DEFENDER", name: 'fieldPosDefense');
+  get fieldPosMiddle => Intl.message("MIDFIELDER", name: 'fieldPosMiddle');
+  get fieldPosForward => Intl.message("FORWARD", name: 'fieldPosForward');
+
+  get fieldPosGoalkeeperShort => Intl.message("GK", name: 'fieldPosGoalkeeperShort');
+  get fieldPosDefenseShort => Intl.message("DEF", name: 'fieldPosDefenseShort');
+  get fieldPosMiddleShort => Intl.message("MID", name: 'fieldPosMiddleShort');
+  get fieldPosForwardShort => Intl.message("FWD", name: 'fieldPosForwardShort');
+
+  get addPlayerToFantasyTeam => Intl.message("ADD", name: 'addPlayerToFantasyTeam');
+  get youHaveSpentTheSalaryCap => Intl.message("You've spent the salary cap", name: 'youHaveSpentTheSalaryCap');
+  get choosePlayersThatFitTheBudget => Intl.message("Please choose players that fit the budget.", name: 'choosePlayersThatFitTheBudget');
+  youHavePlayersOfSameTeam(maxPlayers) => Intl.message("Ups! It looks like you already have $maxPlayers players of the same team", name: 'youHavePlayersOfSameTeam', args: [maxPlayers]);
+  get chooseAnotherPlayer => Intl.message("Please, choose another player...", name: 'chooseAnotherPlayer');
+
   get addFunds => Intl.message("ADD FUNDS", name: 'addFunds');
   get addFundsDescriptionTip1 => Intl.message("In order to play Epic Eleven with real money, you need to add funds to your account.", name: 'addFundsDescriptionTip1');
   get addFundsDescriptionTip2 => Intl.message("Don't worry, you can withdraw your money whenever you want for free.", name: 'addFundsDescriptionTip2');

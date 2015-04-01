@@ -24,7 +24,15 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static addFundsUsingPaypal() => "You can add funds using PayPal account. The money will be transferred to Fantasy Sports Games S.L.";
 
+  static addPlayerToFantasyTeam() => "ADD";
+
   static cancelPlayerSelection() => "CANCEL";
+
+  static chooseAnotherPlayer() => "Please, choose another player...";
+
+  static choosePlayersThatFitTheBudget() => "Please choose players that fit the budget.";
+
+  static closeFantasyTeam() => "CLOSE";
 
   static contestEntryFee() => "ENTRY FEE";
 
@@ -57,6 +65,22 @@ class MessageLookup extends MessageLookupByLibrary {
   static deleteFantasyTeam() => "REMOVE ALL";
 
   static editTheLineup() => "EDIT THE LINEUP";
+
+  static fieldPosDefense() => "DEFENDER";
+
+  static fieldPosDefenseShort() => "DEF";
+
+  static fieldPosForward() => "FORWARD";
+
+  static fieldPosForwardShort() => "FWD";
+
+  static fieldPosGoalkeeper() => "GOALKEEPER";
+
+  static fieldPosGoalkeeperShort() => "GK";
+
+  static fieldPosMiddle() => "MIDFIELDER";
+
+  static fieldPosMiddleShort() => "MID";
 
   static filterAccept() => "ACCEPT";
 
@@ -160,6 +184,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static userScoreTitle() => "POINTS";
 
+  static youHavePlayersOfSameTeam(maxPlayers) => "Ups! It looks like you already have ${maxPlayers} players of the same team";
+
+  static youHaveSpentTheSalaryCap() => "You\'ve spent the salary cap";
+
   static yourLineup() => "Your Lineup";
 
 
@@ -169,7 +197,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "addFundsDescriptionTip2" : addFundsDescriptionTip2,
     "addFundsMinimumAllowed" : addFundsMinimumAllowed,
     "addFundsUsingPaypal" : addFundsUsingPaypal,
+    "addPlayerToFantasyTeam" : addPlayerToFantasyTeam,
     "cancelPlayerSelection" : cancelPlayerSelection,
+    "chooseAnotherPlayer" : chooseAnotherPlayer,
+    "choosePlayersThatFitTheBudget" : choosePlayersThatFitTheBudget,
+    "closeFantasyTeam" : closeFantasyTeam,
     "contestEntryFee" : contestEntryFee,
     "contestFinished" : contestFinished,
     "contestInfo" : contestInfo,
@@ -186,6 +218,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "createFantasyTeam" : createFantasyTeam,
     "deleteFantasyTeam" : deleteFantasyTeam,
     "editTheLineup" : editTheLineup,
+    "fieldPosDefense" : fieldPosDefense,
+    "fieldPosDefenseShort" : fieldPosDefenseShort,
+    "fieldPosForward" : fieldPosForward,
+    "fieldPosForwardShort" : fieldPosForwardShort,
+    "fieldPosGoalkeeper" : fieldPosGoalkeeper,
+    "fieldPosGoalkeeperShort" : fieldPosGoalkeeperShort,
+    "fieldPosMiddle" : fieldPosMiddle,
+    "fieldPosMiddleShort" : fieldPosMiddleShort,
     "filterAccept" : filterAccept,
     "filterAvailableContests" : filterAvailableContests,
     "filterChampionsLeague" : filterChampionsLeague,
@@ -237,6 +277,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "userPositionTitle" : userPositionTitle,
     "userRemainingTime" : userRemainingTime,
     "userScoreTitle" : userScoreTitle,
+    "youHavePlayersOfSameTeam" : youHavePlayersOfSameTeam,
+    "youHaveSpentTheSalaryCap" : youHaveSpentTheSalaryCap,
     "yourLineup" : yourLineup
   };
 }

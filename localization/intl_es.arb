@@ -347,6 +347,73 @@
     "type": "text",
     "placeholders": {}
   },
+  "fieldPosGoalkeeper": "PORTERO",
+  "@fieldPosGoalkeeper": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fieldPosDefense": "DEFENSA",
+  "@fieldPosDefense": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fieldPosMiddle": "CENTROCAMPISTA",
+  "@fieldPosMiddle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fieldPosForward": "DELANTERO",
+  "@fieldPosForward": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fieldPosGoalkeeperShort": "POR",
+  "@fieldPosGoalkeeperShort": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fieldPosDefenseShort": "DEF",
+  "@fieldPosDefenseShort": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fieldPosMiddleShort": "MED",
+  "@fieldPosMiddleShort": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fieldPosForwardShort": "DEL",
+  "@fieldPosForwardShort": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addPlayerToFantasyTeam": "AÑADIR",
+  "@addPlayerToFantasyTeam": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youHaveSpentTheSalaryCap": "Te has pasado del límite salarial",
+  "@youHaveSpentTheSalaryCap": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "choosePlayersThatFitTheBudget": "Por favor, elige jugadores que se ajusten al presupuesto",
+  "@choosePlayersThatFitTheBudget": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youHavePlayersOfSameTeam": "Ups! Parece que ya tienes {maxPlayers} jugadores del mismo equipo",
+  "@youHavePlayersOfSameTeam": {
+    "type": "text",
+    "placeholders": {
+      "maxPlayers": {}
+    }
+  },
+  "chooseAnotherPlayer": "Por favor, elige otro jugador...",
+  "@chooseAnotherPlayer": {
+    "type": "text",
+    "placeholders": {}
+  },
   "addFunds": "AÑADIR FONDOS",
   "@addFunds": {
     "type": "text",

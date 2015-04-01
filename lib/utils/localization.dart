@@ -18,6 +18,8 @@ class Localization {
   get email => Intl.message("Email", name: 'email');
   get password => Intl.message("Password", name: 'password');
   get repeatPassword => Intl.message("Repeat password", name: 'repeatPassword');
+  get users => Intl.message("Users", name: 'users');
+  get opponent => Intl.message("Opponent", name: 'opponent');
 
   get signupTitle => Intl.message("SIGN UP", name: 'signupTitle');
   get signupDescription => Intl.message("Don't you have an EPIC ELEVEN account yet?<br>Fill out this form.", name: 'signupDescription');

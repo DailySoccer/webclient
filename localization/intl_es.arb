@@ -19,6 +19,16 @@
     "type": "text",
     "placeholders": {}
   },
+  "users": "Usuarios",
+  "@users": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "opponent": "Adversario",
+  "@opponent": {
+    "type": "text",
+    "placeholders": {}
+  },
   "signupTitle": "REGÍSTRATE",
   "@signupTitle": {
     "type": "text",

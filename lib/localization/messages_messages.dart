@@ -196,6 +196,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static nicknameInvalid() => "Invalid Nickname.";
 
+  static opponent() => "Opponent";
+
   static password() => "Password";
 
   static passwordHelper(minLength) => "Password: Should be at least ${minLength} characters. (Type it twice).";
@@ -231,6 +233,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static userRemainingTime() => "REMAINING TIME";
 
   static userScoreTitle() => "POINTS";
+
+  static users() => "Users";
 
   static youHavePlayersOfSameTeam(maxPlayers) => "Ups! It looks like you already have ${maxPlayers} players of the same team";
 
@@ -331,6 +335,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "nickname" : nickname,
     "nicknameHelper" : nicknameHelper,
     "nicknameInvalid" : nicknameInvalid,
+    "opponent" : opponent,
     "password" : password,
     "passwordHelper" : passwordHelper,
     "passwordInvalid" : passwordInvalid,
@@ -349,6 +354,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "userPositionTitle" : userPositionTitle,
     "userRemainingTime" : userRemainingTime,
     "userScoreTitle" : userScoreTitle,
+    "users" : users,
     "youHavePlayersOfSameTeam" : youHavePlayersOfSameTeam,
     "youHaveSpentTheSalaryCap" : youHaveSpentTheSalaryCap,
     "yourLineup" : yourLineup

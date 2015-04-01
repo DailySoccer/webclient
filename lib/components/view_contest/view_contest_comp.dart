@@ -13,12 +13,13 @@ import 'dart:html';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/server_error.dart';
+import 'package:webclient/components/base_comp.dart';
 
 @Component(
     selector: 'view-contest',
     templateUrl: 'packages/webclient/components/view_contest/view_contest_comp.html',
     useShadowDom: false)
-class ViewContestComp implements DetachAware {
+class ViewContestComp extends BaseComp implements DetachAware {
 
   ScreenDetectorService scrDet;
   LoadingService loadingService;
@@ -27,7 +28,7 @@ class ViewContestComp implements DetachAware {
   ContestEntry selectedOpponent;
 
   DateTime updatedDate;
-  String lastOpponentSelected = "Adversario";
+  String lastOpponentSelected = "";
   bool isOpponentSelected = false;
 
   String contestId;
@@ -43,6 +44,7 @@ class ViewContestComp implements DetachAware {
     loadingService.isLoading = true;
 
     contestId = _routeProvider.route.parameters['contestId'];
+    lastOpponentSelected = T.opponent;
 
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
 

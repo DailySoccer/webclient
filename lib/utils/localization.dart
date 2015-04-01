@@ -22,6 +22,12 @@ class Localization {
   get menuTransactionHistory => Intl.message("Transaction History", name: 'menuTransactionHistory');
   get menuLogout => Intl.message("Logout", name: 'menuLogout');
 
+  get footerHelp => Intl.message("HELP", name: 'footerHelp');
+  get footerLegal => Intl.message("LEGAL", name: 'footerLegal');
+  get footerTermsOfUse => Intl.message("TERMS OF USE", name: 'footerTermsOfUse');
+  get footerPrivacyPolicy => Intl.message("PRIVACY POLICY", name: 'footerPrivacyPolicy');
+  get footerBlog => Intl.message("BLOG", name: 'footerBlog');
+
   contestDescriptionLiveOrHistory(tournamentTypeName, salaryCap) => Intl.message("$tournamentTypeName - Salary cap: $salaryCap",
                             name: 'contestDescriptionLiveOrHistory',
                             args: [tournamentTypeName, salaryCap]);

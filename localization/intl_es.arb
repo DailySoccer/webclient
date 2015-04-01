@@ -34,6 +34,31 @@
     "type": "text",
     "placeholders": {}
   },
+  "footerHelp": "AYUDA",
+  "@footerHelp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "footerLegal": "LEGAL",
+  "@footerLegal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "footerTermsOfUse": "TÉRMINOS DE USO",
+  "@footerTermsOfUse": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "footerPrivacyPolicy": "POLÍTICA DE PRIVACIDAD",
+  "@footerPrivacyPolicy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "footerBlog": "BLOG",
+  "@footerBlog": {
+    "type": "text",
+    "placeholders": {}
+  },
   "contestDescriptionLiveOrHistory": "{tournamentTypeName} - Tope salarial: {salaryCap}",
   "@contestDescriptionLiveOrHistory": {
     "type": "text",

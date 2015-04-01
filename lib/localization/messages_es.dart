@@ -28,6 +28,16 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static contestDescriptionLiveOrHistory(tournamentTypeName, salaryCap) => "${tournamentTypeName} - Tope salarial: ${salaryCap}";
 
+  static footerBlog() => "BLOG";
+
+  static footerHelp() => "AYUDA";
+
+  static footerLegal() => "LEGAL";
+
+  static footerPrivacyPolicy() => "POLÍTICA DE PRIVACIDAD";
+
+  static footerTermsOfUse() => "TÉRMINOS DE USO";
+
   static lobbyPlay() => "JUGAR";
 
   static menuAddFuns() => "Añadir Fondos";
@@ -55,6 +65,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "addFundsUsingPaypal" : addFundsUsingPaypal,
     "contestDescriptionActive" : contestDescriptionActive,
     "contestDescriptionLiveOrHistory" : contestDescriptionLiveOrHistory,
+    "footerBlog" : footerBlog,
+    "footerHelp" : footerHelp,
+    "footerLegal" : footerLegal,
+    "footerPrivacyPolicy" : footerPrivacyPolicy,
+    "footerTermsOfUse" : footerTermsOfUse,
     "lobbyPlay" : lobbyPlay,
     "menuAddFuns" : menuAddFuns,
     "menuHowItWorks" : menuHowItWorks,

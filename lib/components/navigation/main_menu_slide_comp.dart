@@ -280,9 +280,9 @@ class MainMenuSlideComp extends BaseComp implements ShadowRootAware, ScopeAware 
   
       <div id="menuSlide">
         <ul class="nav navbar-nav">
-          <li highlights="lobby"       class="mainOption"><a  id="menuLobby"      destination="lobby">LOBBY</a></li>
-          <li highlights="my_contests" class="mainOption"><a  id="menuMyContests" destination="my_contests" params="section:live">MY CONTESTS</a></li>
-          <li highlights="help_info"   class="mainOption"><a  id="menuHowItWorks" destination="help_info">HOW IT WORKS</a></li>
+          <li highlights="lobby"       class="mainOption"><a  id="menuLobby"      destination="lobby">${T.menuLobby}</a></li>
+          <li highlights="my_contests" class="mainOption"><a  id="menuMyContests" destination="my_contests" params="section:live">${T.menuMyContests}</a></li>
+          <li highlights="help_info"   class="mainOption"><a  id="menuHowItWorks" destination="help_info">${T.menuHowItWorks}</a></li>
           <li id="userBalanceOut-sm"   class="right-menu">
             <div class="balance">
               <span class="current-balance">${_userBalance}</span>
@@ -292,13 +292,13 @@ class MainMenuSlideComp extends BaseComp implements ShadowRootAware, ScopeAware 
           <li highlights="user" class="right-menu username-dropdown-toggle" >
             <a id="menuUser" class="dropdown-toggle" data-toggle="dropdown">${_userNickName}</a>
             <ul class="dropdown-menu">
-              <li><a id="menuUserMyAccount"        destination="user_profile">My Account</a></li>
-              <li id="userBalanceIn"><a id="menuUserAddFunds-sm" destination="add_funds">Add Funds</a></li>
-              <li><a id="menuUserHistory"          destination="transaction_history">Transaction History</a></li>
+              <li><a id="menuUserMyAccount"        destination="user_profile">${T.menuMyAccount}</a></li>
+              <li id="userBalanceIn"><a id="menuUserAddFunds-sm" destination="add_funds">${T.menuAddFuns}</a></li>
+              <li><a id="menuUserHistory"          destination="transaction_history">${T.menuTransactionHistory}</a></li>
               <!--li><a id="menuUserReferencesCenter" destination="beta_info">Referral Center</a></li>
               <li><a id="menuUserClassification"   destination="beta_info">Classification</a></li-->
               <!--<li><a id="menuUserAyuda"            destination="help_info">How It Works</a></li>-->
-              <li><a id="menuUserLogOut"           destination="logout">LogOut</a></li>
+              <li><a id="menuUserLogOut"           destination="logout">${T.menuLogout}</a></li>
             </ul>
           </li>
           

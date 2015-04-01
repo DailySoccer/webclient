@@ -1,4 +1,39 @@
 {
+  "menuLobby": "Buscar Torneos",
+  "@menuLobby": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuMyContests": "Mis Torneos",
+  "@menuMyContests": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuHowItWorks": "Cómo Jugar",
+  "@menuHowItWorks": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuMyAccount": "Mi Cuenta",
+  "@menuMyAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuAddFuns": "Añadir Fondos",
+  "@menuAddFuns": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuTransactionHistory": "Historial de Transacciones",
+  "@menuTransactionHistory": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuLogout": "Salir",
+  "@menuLogout": {
+    "type": "text",
+    "placeholders": {}
+  },
   "contestDescriptionLiveOrHistory": "{tournamentTypeName} - Tope salarial: {salaryCap}",
   "@contestDescriptionLiveOrHistory": {
     "type": "text",

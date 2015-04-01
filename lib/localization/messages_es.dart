@@ -30,6 +30,20 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static lobbyPlay() => "JUGAR";
 
+  static menuAddFuns() => "Añadir Fondos";
+
+  static menuHowItWorks() => "Cómo Jugar";
+
+  static menuLobby() => "Buscar Torneos";
+
+  static menuLogout() => "Salir";
+
+  static menuMyAccount() => "Mi Cuenta";
+
+  static menuMyContests() => "Mis Torneos";
+
+  static menuTransactionHistory() => "Historial de Transacciones";
+
   static needHelp() => "¿Necesitas ayuda?";
 
 
@@ -42,6 +56,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "contestDescriptionActive" : contestDescriptionActive,
     "contestDescriptionLiveOrHistory" : contestDescriptionLiveOrHistory,
     "lobbyPlay" : lobbyPlay,
+    "menuAddFuns" : menuAddFuns,
+    "menuHowItWorks" : menuHowItWorks,
+    "menuLobby" : menuLobby,
+    "menuLogout" : menuLogout,
+    "menuMyAccount" : menuMyAccount,
+    "menuMyContests" : menuMyContests,
+    "menuTransactionHistory" : menuTransactionHistory,
     "needHelp" : needHelp
   };
 }

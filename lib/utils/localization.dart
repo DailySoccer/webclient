@@ -12,6 +12,14 @@ class Localization {
     //Intl.defaultLocale = "en_ES";
   }
 
+  get menuLobby => Intl.message("LOBBY", name: 'menuLobby');
+  get menuMyContests => Intl.message("MY CONTESTS", name: 'menuMyContests');
+  get menuHowItWorks => Intl.message("HOW IT WORKS", name: 'menuHowItWorks');
+  get menuMyAccount => Intl.message("My Account", name: 'menuMyAccount');
+  get menuAddFuns => Intl.message("Add Funds", name: 'menuAddFuns');
+  get menuTransactionHistory => Intl.message("Transaction History", name: 'menuTransactionHistory');
+  get menuLogout => Intl.message("Logout", name: 'menuLogout');
+
   contestDescriptionLiveOrHistory(tournamentTypeName, salaryCap) => Intl.message("$tournamentTypeName - Salary cap: $salaryCap",
                             name: 'contestDescriptionLiveOrHistory',
                             args: [tournamentTypeName, salaryCap]);

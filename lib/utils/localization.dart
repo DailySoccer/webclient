@@ -1,16 +1,18 @@
 library localization;
 
+import 'dart:async';
 import 'package:intl/intl.dart';
 import 'package:webclient/localization/messages_all.dart';
 
 class Localization {
   static Localization get instance => _instance;
 
-  Localization () {
-    Intl.defaultLocale = 'es_ES';
-    initializeMessages("es");
-    //Intl.defaultLocale = "en_ES";
+  static Future init () {
+    Intl.defaultLocale = 'es_ES'; //"en_EN";
+    return initializeMessages("es");
   }
+
+  Localization ();
 
   get menuLobby => Intl.message("LOBBY", name: 'menuLobby');
   get menuMyContests => Intl.message("MY CONTESTS", name: 'menuMyContests');

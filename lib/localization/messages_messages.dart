@@ -270,6 +270,26 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static havePutYouInEquivalentContest() => "THE CONTEST WAS FULL, SO WE HAVE PUT YOU IN THIS EQUIVALENT ONE";
 
+  static help() => "HELP";
+
+  static help01() => "<p>In the Lobby you can find several contests in which to participate, either with your friends or with other players.</p>Play as many contests as you like: new contests will be available EVERY week!<br> Use as many different lineups as you want, or keep the same starting 11: it is totally up to you. <br> Daily contests, no season long-term commitment.";
+
+  static help01Title() => "Choose a contest";
+
+  static help02() => "You can filter contests by competition, salary cap, entry fee or contest type.";
+
+  static help03() => "<p>Next, choose your lineup. Pick 11 players and remember:</p> You can spend all your salary cap.<br>You can pick up to 4 players from the same team.";
+
+  static help03Title() => "PICK YOUR TEAM";
+
+  static help04Title() => "SCORE AND WIN";
+
+  static help06() => "<p>It is very easy to play EPIC 11 from any device, any place. You can keep track of your lineup\'s live stats from your computer, tablet or smartphone, with an optimized interface for each one.</p>";
+
+  static help06Title() => "PLAY EVERYWHERE";
+
+  static howItWorks() => "How it works";
+
   static howMuchMoneyWantToWithdraw() => "¿How much money want to withdraw?";
 
   static immediateCashPayouts() => "Immediate cash payouts";
@@ -390,7 +410,37 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static repeatPassword() => "Repeat password";
 
+  static ruleAccessAssociatedIssues() => "ACCESS ASSOCIATED ISSUES";
+
+  static ruleBannedAccounts() => "BANNED ACCOUNTS";
+
+  static ruleCancelParcipation() => "CANCEL PARTICIPATION";
+
+  static ruleContestCancellation() => "CONTEST CANCELLATION";
+
+  static ruleGamesPostponed() => "GAMES POSTPONED";
+
+  static ruleLegals() => "LEGALS";
+
+  static ruleLineupRestrictions() => "LINEUP RESTRICTIONS";
+
+  static ruleMatchesSuspended() => "MATCHES SUSPENDED";
+
+  static ruleMutiAccounts() => "MULTI ACCOUNTS";
+
+  static ruleNicknames() => "NICKNAMES";
+
+  static rulePlayersInNegotiationProcess() => "PLAYERS IN NEGOTIATION PROCESS";
+
+  static rulePunctuationRevisions() => "PUNCTUATION REVISIONS";
+
+  static ruleUnfilledContests() => "UNFILLED CONTESTS";
+
+  static rules() => "";
+
   static saveEditAccount() => "SAVE";
+
+  static scoringAndRules() => "Scoring and rules";
 
   static searchPlayer() => "Search player...";
 
@@ -586,6 +636,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "haveCompletedYourLineup" : haveCompletedYourLineup,
     "haveEditedYourLineup" : haveEditedYourLineup,
     "havePutYouInEquivalentContest" : havePutYouInEquivalentContest,
+    "help" : help,
+    "help01" : help01,
+    "help01Title" : help01Title,
+    "help02" : help02,
+    "help03" : help03,
+    "help03Title" : help03Title,
+    "help04Title" : help04Title,
+    "help06" : help06,
+    "help06Title" : help06Title,
+    "howItWorks" : howItWorks,
     "howMuchMoneyWantToWithdraw" : howMuchMoneyWantToWithdraw,
     "immediateCashPayouts" : immediateCashPayouts,
     "landingMobile1" : landingMobile1,
@@ -646,7 +706,22 @@ class MessageLookup extends MessageLookupByLibrary {
     "rememberThatYouCanEdit" : rememberThatYouCanEdit,
     "rememberThatYouCanEditYourTeam" : rememberThatYouCanEditYourTeam,
     "repeatPassword" : repeatPassword,
+    "ruleAccessAssociatedIssues" : ruleAccessAssociatedIssues,
+    "ruleBannedAccounts" : ruleBannedAccounts,
+    "ruleCancelParcipation" : ruleCancelParcipation,
+    "ruleContestCancellation" : ruleContestCancellation,
+    "ruleGamesPostponed" : ruleGamesPostponed,
+    "ruleLegals" : ruleLegals,
+    "ruleLineupRestrictions" : ruleLineupRestrictions,
+    "ruleMatchesSuspended" : ruleMatchesSuspended,
+    "ruleMutiAccounts" : ruleMutiAccounts,
+    "ruleNicknames" : ruleNicknames,
+    "rulePlayersInNegotiationProcess" : rulePlayersInNegotiationProcess,
+    "rulePunctuationRevisions" : rulePunctuationRevisions,
+    "ruleUnfilledContests" : ruleUnfilledContests,
+    "rules" : rules,
     "saveEditAccount" : saveEditAccount,
+    "scoringAndRules" : scoringAndRules,
     "searchPlayer" : searchPlayer,
     "sectionNotAvailable" : sectionNotAvailable,
     "signupDescription" : signupDescription,

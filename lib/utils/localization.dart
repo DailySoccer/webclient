@@ -276,5 +276,32 @@ class Localization {
 
   get needHelp => Intl.message("Need help?", name: 'needHelp');
 
+  get help => Intl.message("HELP", name: 'help');
+  get howItWorks => Intl.message("How it works", name: 'howItWorks');
+  get scoringAndRules => Intl.message("Scoring and rules", name: 'scoringAndRules');
+  get help01Title => Intl.message("Choose a contest", name: 'help01Title');
+  get help01 => Intl.message("<p>In the Lobby you can find several contests in which to participate, either with your friends or with other players.</p>Play as many contests as you like: new contests will be available EVERY week!<br> Use as many different lineups as you want, or keep the same starting 11: it is totally up to you. <br> Daily contests, no season long-term commitment.", name: 'help01');
+  get help02 => Intl.message("You can filter contests by competition, salary cap, entry fee or contest type.", name: 'help02');
+  get help03Title => Intl.message("PICK YOUR TEAM", name: 'help03Title');
+  get help03 => Intl.message("<p>Next, choose your lineup. Pick 11 players and remember:</p> You can spend all your salary cap.<br>You can pick up to 4 players from the same team.", name: 'help03');
+  get help04Title => Intl.message("SCORE AND WIN", name: 'help04Title');
+  get help06Title => Intl.message("PLAY EVERYWHERE", name: 'help06Title');
+  get help06 => Intl.message("<p>It is very easy to play EPIC 11 from any device, any place. You can keep track of your lineup's live stats from your computer, tablet or smartphone, with an optimized interface for each one.</p>", name: 'help06');
+
+  get rules => Intl.message("", name: 'rules');
+  get ruleLegals => Intl.message("LEGALS", name: 'ruleLegals');
+  get ruleMutiAccounts => Intl.message("MULTI ACCOUNTS", name: 'ruleMutiAccounts');
+  get ruleBannedAccounts => Intl.message("BANNED ACCOUNTS", name: 'ruleBannedAccounts');
+  get ruleNicknames => Intl.message("NICKNAMES", name: 'ruleNicknames');
+  get ruleUnfilledContests => Intl.message("UNFILLED CONTESTS", name: 'ruleUnfilledContests');
+  get ruleCancelParcipation => Intl.message("CANCEL PARTICIPATION", name: 'ruleCancelParcipation');
+  get ruleGamesPostponed => Intl.message("GAMES POSTPONED", name: 'ruleGamesPostponed');
+  get ruleMatchesSuspended => Intl.message("MATCHES SUSPENDED", name: 'ruleMatchesSuspended');
+  get rulePlayersInNegotiationProcess => Intl.message("PLAYERS IN NEGOTIATION PROCESS", name: 'rulePlayersInNegotiationProcess');
+  get ruleLineupRestrictions => Intl.message("LINEUP RESTRICTIONS", name: 'ruleLineupRestrictions');
+  get rulePunctuationRevisions => Intl.message("PUNCTUATION REVISIONS", name: 'rulePunctuationRevisions');
+  get ruleAccessAssociatedIssues => Intl.message("ACCESS ASSOCIATED ISSUES", name: 'ruleAccessAssociatedIssues');
+  get ruleContestCancellation => Intl.message("CONTEST CANCELLATION", name: 'ruleContestCancellation');
+
   static Localization _instance = new Localization();
 }

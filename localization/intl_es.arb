@@ -1119,5 +1119,130 @@
   "@needHelp": {
     "type": "text",
     "placeholders": {}
+  },
+  "help": "AYUDA",
+  "@help": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "howItWorks": "Cómo funciona",
+  "@howItWorks": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "scoringAndRules": "Puntuaciones y reglas",
+  "@scoringAndRules": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "help01Title": "ELIGE UN TORNEO",
+  "@help01Title": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "help01": "Configura tu equipo siguiendo estas sencillas indicaciones: <br>En primer lugar, debes seleccionar el torneo en el que quieras participar. <br>Haz clic en la competición deseada y a continuación podrás elegir tus jugadores.",
+  "@help01": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "help02": "Puedes filtrar los torneos según la competición, el límite salarial de que dispones <br>para confeccionar tu equipo o el tipo de torneo en el que quieras participar.",
+  "@help02": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "help03Title": "HAZ TU EQUIPO",
+  "@help03Title": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "help03": "A continuación, selecciona los 11 jugadores que quieras que participen <br>en el torneo que has elegido. Recuerda que debes ceñirte al <br>límite salarial que marque cada torneo.",
+  "@help03": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "help04Title": "CONSIGUE EL MÁXIMO DE PUNTOS Y GANA",
+  "@help04Title": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "help06Title": "JUEGA DESDE CUALQUIER LUGAR",
+  "@help06Title": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "help06": "Comprueba lo sencillo que es participar en los torneos de EPIC 11 desde dónde quieras. Podrás seguir en directo las estadísticas de tus jugadores desde tu ordenador, tablet o smartphone con interfaces adaptadas a cada tipo de dispositivo para optimizar la usabilidad.",
+  "@help06": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "rules": "REGLAS",
+  "@rules": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ruleLegals": "LEGALIDAD",
+  "@ruleLegals": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ruleMutiAccounts": "CUENTAS MÚLTIPLES",
+  "@ruleMutiAccounts": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ruleBannedAccounts": "CUENTAS ANULADAS",
+  "@ruleBannedAccounts": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ruleNicknames": "NOMBRES DE USUARIOS",
+  "@ruleNicknames": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ruleUnfilledContests": "TORNEOS SIN PARTICIPACIÓN",
+  "@ruleUnfilledContests": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ruleCancelParcipation": "CANCELAR UNA PARTICIPACIÓN",
+  "@ruleCancelParcipation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ruleGamesPostponed": "JUEGOS POSPUESTOS",
+  "@ruleGamesPostponed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ruleMatchesSuspended": "PARTIDOS SUPENDIDOS",
+  "@ruleMatchesSuspended": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "rulePlayersInNegotiationProcess": "JUGADORES EN PROCESO DE NEGOCIACIÓN",
+  "@rulePlayersInNegotiationProcess": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ruleLineupRestrictions": "RESTRICCIONES EN LAS ALINEACIONES",
+  "@ruleLineupRestrictions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "rulePunctuationRevisions": "LAS REVISIONES DE PUNTUACIÓN",
+  "@rulePunctuationRevisions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ruleAccessAssociatedIssues": "SERVICIO DE ACCESO Y EDICIÓN DE PROBLEMAS",
+  "@ruleAccessAssociatedIssues": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ruleContestCancellation": "CANCELACIÓN DE TORNEOS",
+  "@ruleContestCancellation": {
+    "type": "text",
+    "placeholders": {}
   }
 }

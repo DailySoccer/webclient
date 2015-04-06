@@ -48,32 +48,59 @@
 }
 
 .no-contests-wrapper{
-	.make-row(0);
-	.no-contests-content {
-		.make-xs-column(12);
-		background-color: @white;
-		text-align: center;
-		.no-contests-text {
-			.opensans_bold(8pt, @greyMed);
-			@media (max-width: @screen-xs-max) {
-				.opensans_bold(7pt, @greyMed);
-			}
-			strong {
-				color: @blueDark;
-				cursor: pointer;
-			}
+	
+	background-color: @white;
+	text-align: center;
+	.title-info-text {
+		.make-row(0);
+		.default-info-text();
+	}
+	.sub-title-info-text {
+		.make-row(0);
+		.opensans_bold(8pt, @greyMed);
+		@media (max-width: @screen-xs-max) {
+			.opensans_bold(7pt, @greyMed);
 		}
-		.inner-content-wrapper {
-			.make-row(0);
-			.next-contest-start-wrapper, .promo-wrapper {
-				.make-xs-column(12);
-				.make-sm-column(6);
-				border-radius: 5px; 
+		strong {
+			color: @blueDark;
+			cursor: pointer;
+		}
+	}
+	.column-heading {
+		.opensans_bold(8pt, @greyMed);
+		@media (max-width: @screen-xs-max) {
+			.opensans_bold(7pt, @greyMed);
+		}
+		margin: 20px;
+	}
+	.no-contest-bottom-row {
+		.make-row(0);
+		padding-top: 20px;
+		padding-bottom: 20px;
+		border-radius: 0 0 10px 10px;			
+		.btn-go-to-contest{
+			.btn-primary();			
+			margin: 0 auto;
+			padding: 10px 30px;
+			display: block;
+		}
+	}	
+	.inner-content-wrapper {
+		.make-row(0);
+		.inner-column {
+			.make-xs-column(12);
+			.make-sm-column(6, 30px);
+		}
+		
+		.next-contest-start-wrapper {
+			.inner-column();
+			@media (min-width: @screen-sm-min) {
+				padding-right: 7px;
 			}
-			.next-contest-start-wrapper {
-				text-align: center;
+			.next-content-content {
+				text-align: center;				
+				border-radius: 8px;
 				background-color: @tramaBlue;
-				
 				.next-content-title {
 					.exo_bold(10pt, @blueDark);
 					padding-top: 10px;
@@ -83,32 +110,26 @@
 					margin-top: 3px;
 					min-height: 38px;
 				}
+			}	
+		}
+		.promo-wrapper {
+			.inner-column();
+			@media (min-width: @screen-sm-min) {
+				padding-left: 7px;
 			}
-			.promo-wrapper {
+			.promo-content {
 				overflow: hidden;
 				margin-top: 10px;
+				border-radius: 8px;
 				@media (min-width: @screen-sm-min) {
 					margin-top: 0;
 				}
 				.promoXs {
 					.centerImage(768);
-				}
+				}	
 			}
 		}
 	}
-	.no-contest-bottom-row {
-		.make-xs-column(12);
-		padding-top: 20px;
-		padding-bottom: 20px;
-		border-radius: 0 0 10px 10px; 
-		
-		.btn-go-to-contest{
-			.btn-primary();			
-			margin: 0 auto;
-			padding: 10px 30px;
-			display: block;
-		}
-	}	
 }
 
 .list-container {

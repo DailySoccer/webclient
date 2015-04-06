@@ -261,6 +261,56 @@ class Localization {
   get eventCleanSheet => Intl.message("Clean Sheet", name: 'eventCleanSheet');
   get eventGoalConceded => Intl.message("Goal Conceded", name: 'eventGoalConceded');
 
+  get playerStatistics => Intl.message("PLAYER STATISTICS", name: 'playerStatistics');
+  get playerDFP => Intl.message("DFP", name: 'playerDFP');
+  get playerMatches => Intl.message("MATCHES", name: 'playerMatches');
+  get playerSalary => Intl.message("SALARY", name: 'playerSalary');
+  get seasonData => Intl.message("Season Data", name: 'seasonData');
+  get matchByMatch => Intl.message("Match by Match", name: 'matchByMatch');
+  get seasonStatistics => Intl.message("SEASON STATISTICS <span>(DATA BY MATCH)</span>", name: 'seasonStatistics');
+  get noMatchesPlayed => Intl.message("Has not played any game this season", name: 'noMatchesPlayed');
+
+  get season => Intl.message("Season", name: 'season');
+  get matchDate => Intl.message("Date", name: 'matchDate');
+  get matchOpponent => Intl.message("Opponent", name: 'matchOpponent');
+  get matchDailyFantasyPoints => Intl.message("Daily Fantasy Points", name: 'matchDailyFantasyPoints');
+  get matchMinutes => Intl.message("Minutes", name: 'matchMinutes');
+  get nextMatch => Intl.message("NEXT MATCH", name: 'nextMatch');
+
+  get statPasses => Intl.message("Passes", name: 'statPasses');
+  get statPassesShortName => Intl.message("P", name: 'statPassesShortName');
+  get statRecoveries => Intl.message("Recoveries", name: 'statRecoveries');
+  get statRecoveriesShortName => Intl.message("R", name: 'statRecoveriesShortName');
+  get statPossessionLost => Intl.message("Possession lost", name: 'statPossessionLost');
+  get statPossessionLostShortName => Intl.message("PL", name: 'statPossessionLostShortName');
+  get statFoulsCommitted => Intl.message("Fouls Committed", name: 'statFoulsCommitted');
+  get statFoulsCommittedShortName => Intl.message("F", name: 'statFoulsCommittedShortName');
+  get statYellowCards => Intl.message("Yellow Cards", name: 'statYellowCards');
+  get statYellowCardsShortName => Intl.message("YC", name: 'statYellowCardsShortName');
+  get statRedCards => Intl.message("Red Cards", name: 'statRedCards');
+  get statRedCardsShortName => Intl.message("RC", name: 'statRedCardsShortName');
+  get statGoalsConceded => Intl.message("Goals Conceded", name: 'statGoalsConceded');
+  get statGoalsConcededShortName => Intl.message("GC", name: 'statGoalsConcededShortName');
+  get statSaves => Intl.message("Saves", name: 'statSaves');
+  get statSavesShortName => Intl.message("S", name: 'statSavesShortName');
+  get statClearances => Intl.message("Clearances", name: 'statClearances');
+  get statClearancesShortName => Intl.message("C", name: 'statClearancesShortName');
+  get statPenaltiesSaved => Intl.message("Penalties Saved", name: 'statPenaltiesSaved');
+  get statPenaltiesSavedShortName => Intl.message("PS", name: 'statPenaltiesSavedShortName');
+  get statGoals => Intl.message("Goals", name: 'statGoals');
+  get statGoalsShortName => Intl.message("G", name: 'statGoalsShortName');
+  get statShots => Intl.message("Shots", name: 'statShots');
+  get statShotsShortName => Intl.message("SH", name: 'statShotsShortName');
+  get statChancesCreated => Intl.message("Chances Created", name: 'statChancesCreated');
+  get statChancesCreatedShortName => Intl.message("CH", name: 'statChancesCreatedShortName');
+  get statTakeOns => Intl.message("Take-ons", name: 'statTakeOns');
+  get statTakeOnsShortName => Intl.message("T", name: 'statTakeOnsShortName');
+  get statFoulsConceded => Intl.message("Fouls Conceded", name: 'statFoulsConceded');
+  get statFoulsConcededShortName => Intl.message("FC", name: 'statFoulsConcededShortName');
+  get statSavedPenalties => Intl.message("Saved Penalties", name: 'statSavedPenalties');
+  get statMinutesPlayed => Intl.message("Minutes played", name: 'statMinutesPlayed');
+  get statMinutesPlayedShortName => Intl.message("MIN", name: 'statMinutesPlayedShortName');
+
   get addFunds => Intl.message("ADD FUNDS", name: 'addFunds');
   get addFundsDescriptionTip1 => Intl.message("In order to play Epic Eleven with real money, you need to add funds to your account.", name: 'addFundsDescriptionTip1');
   get addFundsDescriptionTip2 => Intl.message("Don't worry, you can withdraw your money whenever you want for free.", name: 'addFundsDescriptionTip2');

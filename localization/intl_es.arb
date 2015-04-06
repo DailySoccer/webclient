@@ -1066,6 +1066,236 @@
     "type": "text",
     "placeholders": {}
   },
+  "playerStatistics": "ESTADÍSTICAS DEL JUGADOR",
+  "@playerStatistics": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "playerDFP": "DFP",
+  "@playerDFP": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "playerMatches": "PARTIDOS",
+  "@playerMatches": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "playerSalary": "SALARIO",
+  "@playerSalary": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "seasonData": "Datos de Temporada",
+  "@seasonData": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "matchByMatch": "Partido a Partido",
+  "@matchByMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "seasonStatistics": "ESTADÍSTICAS DE TEMPORADA <span>(DATOS POR PARTIDO)</span>",
+  "@seasonStatistics": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noMatchesPlayed": "No ha jugado ningún partido esta temporada",
+  "@noMatchesPlayed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "season": "Temporada",
+  "@season": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "matchDate": "Fecha",
+  "@matchDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "matchOpponent": "Oponente",
+  "@matchOpponent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "matchDailyFantasyPoints": "Daily Fantasy Points",
+  "@matchDailyFantasyPoints": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "matchMinutes": "Minutos",
+  "@matchMinutes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nextMatch": "PRÓXIMO PARTIDO",
+  "@nextMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statPasses": "Pases",
+  "@statPasses": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statPassesShortName": "P",
+  "@statPassesShortName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statRecoveries": "Recuperaciones",
+  "@statRecoveries": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statRecoveriesShortName": "RE",
+  "@statRecoveriesShortName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statPossessionLost": "Perdidas de Balón",
+  "@statPossessionLost": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statPossessionLostShortName": "PB",
+  "@statPossessionLostShortName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statFoulsCommitted": "Faltas Cometidas",
+  "@statFoulsCommitted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statFoulsCommittedShortName": "FC",
+  "@statFoulsCommittedShortName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statYellowCards": "Tarjetas Amarillas",
+  "@statYellowCards": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statYellowCardsShortName": "TA",
+  "@statYellowCardsShortName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statRedCards": "Tarjetas Rojas",
+  "@statRedCards": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statRedCardsShortName": "TR",
+  "@statRedCardsShortName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statGoalsConceded": "Goles Encajados",
+  "@statGoalsConceded": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statGoalsConcededShortName": "GE",
+  "@statGoalsConcededShortName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statSaves": "Paradas",
+  "@statSaves": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statSavesShortName": "PA",
+  "@statSavesShortName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statClearances": "Despejes",
+  "@statClearances": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statClearancesShortName": "D",
+  "@statClearancesShortName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statPenaltiesSaved": "Penaltis Detenidos",
+  "@statPenaltiesSaved": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statPenaltiesSavedShortName": "PD",
+  "@statPenaltiesSavedShortName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statGoals": "Goles",
+  "@statGoals": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statGoalsShortName": "G",
+  "@statGoalsShortName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statShots": "Tiros",
+  "@statShots": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statShotsShortName": "T",
+  "@statShotsShortName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statChancesCreated": "Asistencias",
+  "@statChancesCreated": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statChancesCreatedShortName": "A",
+  "@statChancesCreatedShortName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statTakeOns": "Regates",
+  "@statTakeOns": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statTakeOnsShortName": "R",
+  "@statTakeOnsShortName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statFoulsConceded": "Faltas Recibidas",
+  "@statFoulsConceded": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statFoulsConcededShortName": "FR",
+  "@statFoulsConcededShortName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statMinutesPlayed": "Minutos jugados",
+  "@statMinutesPlayed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statMinutesPlayedShortName": "MIN",
+  "@statMinutesPlayedShortName": {
+    "type": "text",
+    "placeholders": {}
+  },
   "addFunds": "AÑADIR FONDOS",
   "@addFunds": {
     "type": "text",

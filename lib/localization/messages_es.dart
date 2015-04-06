@@ -316,9 +316,19 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static loginTitle() => "ENTRA";
 
+  static matchByMatch() => "Partido a Partido";
+
+  static matchDailyFantasyPoints() => "Daily Fantasy Points";
+
+  static matchDate() => "Fecha";
+
   static matchFinished() => "Finalizado";
 
   static matchFirstHalf() => "1ª Parte";
+
+  static matchMinutes() => "Minutos";
+
+  static matchOpponent() => "Oponente";
 
   static matchSecondHalf() => "2ª Parte";
 
@@ -348,11 +358,15 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static nextContest() => "SIGUIENTE TORNEO";
 
+  static nextMatch() => "PRÓXIMO PARTIDO";
+
   static nickname() => "Nombre de usuario";
 
   static nicknameHelper(minLength, maxLength) => "Tu nombre de usuario debe tener entre ${minLength} y ${maxLength} caracteres.";
 
   static nicknameInvalid() => "El nombre de usuario no es válido.";
+
+  static noMatchesPlayed() => "No ha jugado ningún partido esta temporada";
 
   static notifications() => "NOTIFICACIONES";
 
@@ -378,6 +392,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static playWheneverYouWant() => "Juega y gana cuando quieras, sin esperar al final de la temporada.";
 
+  static playerDFP() => "DFP";
+
+  static playerMatches() => "PARTIDOS";
+
   static playerOrderDFP() => "DFP";
 
   static playerOrderMatches() => "Jugados";
@@ -389,6 +407,10 @@ class MessageLookup extends MessageLookupByLibrary {
   static playerOrderSalary() => "Sueldo";
 
   static playerOwned() => "LO TIENEN";
+
+  static playerSalary() => "SALARIO";
+
+  static playerStatistics() => "ESTADÍSTICAS DEL JUGADOR";
 
   static players() => "JUGADORES";
 
@@ -444,6 +466,12 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static searchPlayer() => "Buscar jugador";
 
+  static season() => "Temporada";
+
+  static seasonData() => "Datos de Temporada";
+
+  static seasonStatistics() => "ESTADÍSTICAS DE TEMPORADA <span>(DATOS POR PARTIDO)</span>";
+
   static sectionNotAvailable() => "ESTA SECCIÓN NO ESTA DISPONIBLE";
 
   static signupDescription() => "¿Todavía no tienes cuenta en EPIC ELEVEN?<br>Rellena este formulario para completar el registro.";
@@ -453,6 +481,70 @@ class MessageLookup extends MessageLookupByLibrary {
   static signupNow() => "REGÍSTRATE";
 
   static signupTitle() => "REGÍSTRATE";
+
+  static statChancesCreated() => "Asistencias";
+
+  static statChancesCreatedShortName() => "A";
+
+  static statClearances() => "Despejes";
+
+  static statClearancesShortName() => "D";
+
+  static statFoulsCommitted() => "Faltas Cometidas";
+
+  static statFoulsCommittedShortName() => "FC";
+
+  static statFoulsConceded() => "Faltas Recibidas";
+
+  static statFoulsConcededShortName() => "FR";
+
+  static statGoals() => "Goles";
+
+  static statGoalsConceded() => "Goles Encajados";
+
+  static statGoalsConcededShortName() => "GE";
+
+  static statGoalsShortName() => "G";
+
+  static statMinutesPlayed() => "Minutos jugados";
+
+  static statMinutesPlayedShortName() => "MIN";
+
+  static statPasses() => "Pases";
+
+  static statPassesShortName() => "P";
+
+  static statPenaltiesSaved() => "Penaltis Detenidos";
+
+  static statPenaltiesSavedShortName() => "PD";
+
+  static statPossessionLost() => "Perdidas de Balón";
+
+  static statPossessionLostShortName() => "PB";
+
+  static statRecoveries() => "Recuperaciones";
+
+  static statRecoveriesShortName() => "RE";
+
+  static statRedCards() => "Tarjetas Rojas";
+
+  static statRedCardsShortName() => "TR";
+
+  static statSaves() => "Paradas";
+
+  static statSavesShortName() => "PA";
+
+  static statShots() => "Tiros";
+
+  static statShotsShortName() => "T";
+
+  static statTakeOns() => "Regates";
+
+  static statTakeOnsShortName() => "R";
+
+  static statYellowCards() => "Tarjetas Amarillas";
+
+  static statYellowCardsShortName() => "TA";
 
   static thisIsABetaVersion() => "Lo sentimos, esta es una versión beta de Epic Eleven.<br>Próximamente podrás jugar y ganar premios en metálico y tendrás habilitadas<br>todas las funcionalidades necesarias. Te avisaremos cuando esté operativo<br><br><b>Muchas gracias</b>";
 
@@ -659,8 +751,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "loginHere" : loginHere,
     "loginNow" : loginNow,
     "loginTitle" : loginTitle,
+    "matchByMatch" : matchByMatch,
+    "matchDailyFantasyPoints" : matchDailyFantasyPoints,
+    "matchDate" : matchDate,
     "matchFinished" : matchFinished,
     "matchFirstHalf" : matchFirstHalf,
+    "matchMinutes" : matchMinutes,
+    "matchOpponent" : matchOpponent,
     "matchSecondHalf" : matchSecondHalf,
     "matchesInThisContest" : matchesInThisContest,
     "menuAddFuns" : menuAddFuns,
@@ -675,9 +772,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "needHelp" : needHelp,
     "newsletterSpecialOffers" : newsletterSpecialOffers,
     "nextContest" : nextContest,
+    "nextMatch" : nextMatch,
     "nickname" : nickname,
     "nicknameHelper" : nicknameHelper,
     "nicknameInvalid" : nicknameInvalid,
+    "noMatchesPlayed" : noMatchesPlayed,
     "notifications" : notifications,
     "opponent" : opponent,
     "ownTransferNotifications" : ownTransferNotifications,
@@ -690,12 +789,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "pendingBonus" : pendingBonus,
     "playNow" : playNow,
     "playWheneverYouWant" : playWheneverYouWant,
+    "playerDFP" : playerDFP,
+    "playerMatches" : playerMatches,
     "playerOrderDFP" : playerOrderDFP,
     "playerOrderMatches" : playerOrderMatches,
     "playerOrderName" : playerOrderName,
     "playerOrderPos" : playerOrderPos,
     "playerOrderSalary" : playerOrderSalary,
     "playerOwned" : playerOwned,
+    "playerSalary" : playerSalary,
+    "playerStatistics" : playerStatistics,
     "players" : players,
     "prizeFiftyFifty" : prizeFiftyFifty,
     "prizeFree" : prizeFree,
@@ -723,11 +826,46 @@ class MessageLookup extends MessageLookupByLibrary {
     "saveEditAccount" : saveEditAccount,
     "scoringAndRules" : scoringAndRules,
     "searchPlayer" : searchPlayer,
+    "season" : season,
+    "seasonData" : seasonData,
+    "seasonStatistics" : seasonStatistics,
     "sectionNotAvailable" : sectionNotAvailable,
     "signupDescription" : signupDescription,
     "signupHere" : signupHere,
     "signupNow" : signupNow,
     "signupTitle" : signupTitle,
+    "statChancesCreated" : statChancesCreated,
+    "statChancesCreatedShortName" : statChancesCreatedShortName,
+    "statClearances" : statClearances,
+    "statClearancesShortName" : statClearancesShortName,
+    "statFoulsCommitted" : statFoulsCommitted,
+    "statFoulsCommittedShortName" : statFoulsCommittedShortName,
+    "statFoulsConceded" : statFoulsConceded,
+    "statFoulsConcededShortName" : statFoulsConcededShortName,
+    "statGoals" : statGoals,
+    "statGoalsConceded" : statGoalsConceded,
+    "statGoalsConcededShortName" : statGoalsConcededShortName,
+    "statGoalsShortName" : statGoalsShortName,
+    "statMinutesPlayed" : statMinutesPlayed,
+    "statMinutesPlayedShortName" : statMinutesPlayedShortName,
+    "statPasses" : statPasses,
+    "statPassesShortName" : statPassesShortName,
+    "statPenaltiesSaved" : statPenaltiesSaved,
+    "statPenaltiesSavedShortName" : statPenaltiesSavedShortName,
+    "statPossessionLost" : statPossessionLost,
+    "statPossessionLostShortName" : statPossessionLostShortName,
+    "statRecoveries" : statRecoveries,
+    "statRecoveriesShortName" : statRecoveriesShortName,
+    "statRedCards" : statRedCards,
+    "statRedCardsShortName" : statRedCardsShortName,
+    "statSaves" : statSaves,
+    "statSavesShortName" : statSavesShortName,
+    "statShots" : statShots,
+    "statShotsShortName" : statShotsShortName,
+    "statTakeOns" : statTakeOns,
+    "statTakeOnsShortName" : statTakeOnsShortName,
+    "statYellowCards" : statYellowCards,
+    "statYellowCardsShortName" : statYellowCardsShortName,
     "thisIsABetaVersion" : thisIsABetaVersion,
     "tournamentFiftyFifty" : tournamentFiftyFifty,
     "tournamentFree" : tournamentFree,

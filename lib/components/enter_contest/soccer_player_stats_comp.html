@@ -10,7 +10,7 @@
 
     <!-- En el resto de versiones título y cruz de cerrar -->
     <div class="actions-header-sm">
-      <div class="text-header">PLAYER STATISTICS</div>
+      <div class="text-header">{{T.playerStatistics}}</div>
       <button type="button" class="close" data-dismiss="modal">
         <span class="glyphicon glyphicon-remove"></span>
       </button>
@@ -25,9 +25,9 @@
         <div class="soccer-player-name">{{currentInfoData['name']}}</div>
       </div>
       <div class="soccer-player-stats-info">
-        <div class="soccer-player-fantasy-points"><span>DFP</span><span>{{currentInfoData['fantasyPoints']}}</span></div>
-        <div class="soccer-player-matches"><span>MATCHES</span><span>{{currentInfoData['matchesCount']}}</span></div>
-        <div class="soccer-player-salary"><span>SALARY</span><span>{{printableSalary}}</span></div>
+        <div class="soccer-player-fantasy-points"><span>{{T.playerDFP}}</span><span>{{currentInfoData['fantasyPoints']}}</span></div>
+        <div class="soccer-player-matches"><span>{{T.playerMatches}}</span><span>{{currentInfoData['matchesCount']}}</span></div>
+        <div class="soccer-player-salary"><span>{{T.playerSalary}}</span><span>{{printableSalary}}</span></div>
       </div>
     </div>
 
@@ -41,8 +41,8 @@
   <div class="soccer-player-stats-content">
       <!-- Nav tabs -->
       <ul id="soccer-player-stats-tabs" class="soccer-player-stats-tabs" role="tablist">
-        <li id="seasonTab" class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('season-stats-tab-content')">Season Data</a></li>
-        <li id="matchTab" ><a role="tab" data-toggle="tab" ng-click="tabChange('match-by-match-stats-tab-content')">Match by Match</a></li>
+        <li id="seasonTab" class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('season-stats-tab-content')">{{T.seasonData}}</a></li>
+        <li id="matchTab" ><a role="tab" data-toggle="tab" ng-click="tabChange('match-by-match-stats-tab-content')">{{T.matchByMatch}}</a></li>
       </ul>
 
       <div class="tabs">
@@ -52,7 +52,7 @@
           <div class="tab-pane active" id="season-stats-tab-content">
             <div class="next-match" ng-bind-html="currentInfoData['nextMatchEvent']"></div>
             <!-- MEDIAS -->
-            <div class="season-header">SEASON STATISTICS <span>(DATA BY MATCH)</span></div>
+            <div class="season-header" ng-bind-html="T.seasonStatistics"></span></div>
             <div class="season-stats">
                 <div class="season-stats-row" ng-repeat="stat in seasonResumeStats"  data-toggle="tooltip" title="{{stat['helpInfo']}}">
                     <div class="season-stats-header">{{stat['nombre']}}</div>
@@ -68,16 +68,16 @@
           <!-- END BY-SEASON-STATS -->
           <!-- START BY-MATCH-STATS-->
           <div class="tab-pane" id="match-by-match-stats-tab-content">
-            <div class="match-header">MATCH BY MATCH</div>
+            <div class="match-header">{{T.matchByMatch.toUpperCase()}}</div>
             <div class="noMatchesPlayed" ng-class="{'hidden':currentInfoData['matchesCount'] > 0}">
-                <span>Has not played any game this season</span>
+                <span>{{T.noMatchesPlayed}}</span>
             </div>
             <div class="match-stats-table-wrapper" ng-class="{'hidden':currentInfoData['matchesCount'] == 0}">
               <!--HEADER-->
               <table id="statsTable" class="table table-striped">
                 <thead class="stats-headings">
                   <tr>
-                    <th class="head-of-headings">Season</th> <!-- necesitamos una vacía -->
+                    <th class="head-of-headings">{{T.season}}</th> <!-- necesitamos una vacía -->
                     <th class="stat-field-header" ng-repeat="item in seasonTableHeaders">{{item}}</th>
                   </tr>
                 </thead>

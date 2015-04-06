@@ -5685,10 +5685,14 @@ scoring-rules:after,
 #contestFiltersRoot #filtersPanel .filters-panel-row:after,
 .resume-bar:before,
 .resume-bar:after,
-.no-contests-wrapper:before,
-.no-contests-wrapper:after,
-.no-contests-wrapper .no-contests-content .inner-content-wrapper:before,
-.no-contests-wrapper .no-contests-content .inner-content-wrapper:after,
+.no-contests-wrapper .title-info-text:before,
+.no-contests-wrapper .title-info-text:after,
+.no-contests-wrapper .sub-title-info-text:before,
+.no-contests-wrapper .sub-title-info-text:after,
+.no-contests-wrapper .no-contest-bottom-row:before,
+.no-contests-wrapper .no-contest-bottom-row:after,
+.no-contests-wrapper .inner-content-wrapper:before,
+.no-contests-wrapper .inner-content-wrapper:after,
 #promosComponent:before,
 #promosComponent:after,
 #modalSoccerPlayerStats .modal-content:before,
@@ -5803,8 +5807,10 @@ scoring-rules:after,
 #contestFiltersRoot #filtersPanel:after,
 #contestFiltersRoot #filtersPanel .filters-panel-row:after,
 .resume-bar:after,
-.no-contests-wrapper:after,
-.no-contests-wrapper .no-contests-content .inner-content-wrapper:after,
+.no-contests-wrapper .title-info-text:after,
+.no-contests-wrapper .sub-title-info-text:after,
+.no-contests-wrapper .no-contest-bottom-row:after,
+.no-contests-wrapper .inner-content-wrapper:after,
 #promosComponent:after,
 #modalSoccerPlayerStats .modal-content:after,
 #modalSoccerPlayerStats .soccer-player-stats-header:after,
@@ -14564,101 +14570,68 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
   background-color: #214a5f;
 }
 .no-contests-wrapper {
-  margin-left: 0;
-  margin-right: 0;
-}
-.no-contests-wrapper .no-contests-content {
-  position: relative;
-  float: left;
-  width: 100%;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
   background-color: #ffffff;
   text-align: center;
 }
-.no-contests-wrapper .no-contests-content .no-contests-text {
+.no-contests-wrapper .title-info-text {
+  margin-left: 0;
+  margin-right: 0;
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 20pt;
+  color: #0d75a6;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0 auto;
+  padding: 15px 0;
+}
+@media (max-width: 991px) {
+  .no-contests-wrapper .title-info-text {
+    font-family: 'Exo', sans-serif;
+    font-weight: 300;
+    font-size: 12pt;
+    color: #0d75a6;
+    text-transform: uppercase;
+  }
+}
+.no-contests-wrapper .sub-title-info-text {
+  margin-left: 0;
+  margin-right: 0;
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 8pt;
   color: #afafaf;
 }
 @media (max-width: 767px) {
-  .no-contests-wrapper .no-contests-content .no-contests-text {
+  .no-contests-wrapper .sub-title-info-text {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
     font-size: 7pt;
     color: #afafaf;
   }
 }
-.no-contests-wrapper .no-contests-content .no-contests-text strong {
+.no-contests-wrapper .sub-title-info-text strong {
   color: #214a5f;
   cursor: pointer;
 }
-.no-contests-wrapper .no-contests-content .inner-content-wrapper {
-  margin-left: 0;
-  margin-right: 0;
+.no-contests-wrapper .column-heading {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #afafaf;
+  margin: 20px;
 }
-.no-contests-wrapper .no-contests-content .inner-content-wrapper .next-contest-start-wrapper,
-.no-contests-wrapper .no-contests-content .inner-content-wrapper .promo-wrapper {
-  float: left;
-  width: 100%;
-  position: relative;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  border-radius: 5px;
-}
-@media (min-width: 768px) {
-  .no-contests-wrapper .no-contests-content .inner-content-wrapper .next-contest-start-wrapper,
-  .no-contests-wrapper .no-contests-content .inner-content-wrapper .promo-wrapper {
-    float: left;
-    width: 50%;
+@media (max-width: 767px) {
+  .no-contests-wrapper .column-heading {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 7pt;
+    color: #afafaf;
   }
-}
-.no-contests-wrapper .no-contests-content .inner-content-wrapper .next-contest-start-wrapper {
-  text-align: center;
-  background-color: #ecf0f1;
-}
-.no-contests-wrapper .no-contests-content .inner-content-wrapper .next-contest-start-wrapper .next-content-title {
-  font-family: 'Exo', sans-serif;
-  font-weight: 600;
-  font-size: 10pt;
-  color: #214a5f;
-  text-transform: uppercase;
-  padding-top: 10px;
-}
-.no-contests-wrapper .no-contests-content .inner-content-wrapper .next-contest-start-wrapper .next-content-time {
-  font-family: 'Exo', sans-serif;
-  font-weight: 300;
-  font-size: 20pt;
-  color: #214a5f;
-  text-transform: uppercase;
-  margin-top: 3px;
-  min-height: 38px;
-}
-.no-contests-wrapper .no-contests-content .inner-content-wrapper .promo-wrapper {
-  overflow: hidden;
-  margin-top: 10px;
-}
-@media (min-width: 768px) {
-  .no-contests-wrapper .no-contests-content .inner-content-wrapper .promo-wrapper {
-    margin-top: 0;
-  }
-}
-.no-contests-wrapper .no-contests-content .inner-content-wrapper .promo-wrapper .promoXs {
-  position: relative;
-  display: block;
-  left: 50%;
-  margin-left: -384px;
 }
 .no-contests-wrapper .no-contest-bottom-row {
-  position: relative;
-  float: left;
-  width: 100%;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
+  margin-left: 0;
+  margin-right: 0;
   padding-top: 20px;
   padding-bottom: 20px;
   border-radius: 0 0 10px 10px;
@@ -14812,6 +14785,100 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
   background-color: #a1c931;
   outline: none !important;
   color: #ffffff;
+}
+.no-contests-wrapper .inner-content-wrapper {
+  margin-left: 0;
+  margin-right: 0;
+}
+.no-contests-wrapper .inner-content-wrapper .inner-column {
+  float: left;
+  width: 100%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  .no-contests-wrapper .inner-content-wrapper .inner-column {
+    float: left;
+    width: 50%;
+  }
+}
+.no-contests-wrapper .inner-content-wrapper .next-contest-start-wrapper {
+  float: left;
+  width: 100%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  .no-contests-wrapper .inner-content-wrapper .next-contest-start-wrapper {
+    float: left;
+    width: 50%;
+  }
+}
+@media (min-width: 768px) {
+  .no-contests-wrapper .inner-content-wrapper .next-contest-start-wrapper {
+    padding-right: 7px;
+  }
+}
+.no-contests-wrapper .inner-content-wrapper .next-contest-start-wrapper .next-content-content {
+  text-align: center;
+  border-radius: 8px;
+  background-color: #ecf0f1;
+}
+.no-contests-wrapper .inner-content-wrapper .next-contest-start-wrapper .next-content-content .next-content-title {
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  font-size: 10pt;
+  color: #214a5f;
+  text-transform: uppercase;
+  padding-top: 10px;
+}
+.no-contests-wrapper .inner-content-wrapper .next-contest-start-wrapper .next-content-content .next-content-time {
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 20pt;
+  color: #214a5f;
+  text-transform: uppercase;
+  margin-top: 3px;
+  min-height: 38px;
+}
+.no-contests-wrapper .inner-content-wrapper .promo-wrapper {
+  float: left;
+  width: 100%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  .no-contests-wrapper .inner-content-wrapper .promo-wrapper {
+    float: left;
+    width: 50%;
+  }
+}
+@media (min-width: 768px) {
+  .no-contests-wrapper .inner-content-wrapper .promo-wrapper {
+    padding-left: 7px;
+  }
+}
+.no-contests-wrapper .inner-content-wrapper .promo-wrapper .promo-content {
+  overflow: hidden;
+  margin-top: 10px;
+  border-radius: 8px;
+}
+@media (min-width: 768px) {
+  .no-contests-wrapper .inner-content-wrapper .promo-wrapper .promo-content {
+    margin-top: 0;
+  }
+}
+.no-contests-wrapper .inner-content-wrapper .promo-wrapper .promo-content .promoXs {
+  position: relative;
+  display: block;
+  left: 50%;
+  margin-left: -384px;
 }
 .list-container {
   background-color: #ffffff;

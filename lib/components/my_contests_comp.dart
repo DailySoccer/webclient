@@ -97,7 +97,7 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
   }
 
   String calculateNextUpcommingContest() {
-    return nextContest == null ? " " :  DateTimeService.formatTimeLeft(DateTimeService.getTimeLeft(nextContest.startDate) );
+    return nextContest == null ? "--:--:--" :  DateTimeService.formatTimeLeft(DateTimeService.getTimeLeft(nextContest.startDate) );
   }
 
   void onWaitingActionClick(Contest contest) {

@@ -81,7 +81,7 @@ class ContestsListComp extends BaseComp {
   }
 
   @NgOneWay("action-button-title")
-  String actionButtonTitle = "DETAIL";
+  String actionButtonTitle;
 
   @NgTwoWay("contest-count")
   void set contestCount(int value) {
@@ -98,7 +98,9 @@ class ContestsListComp extends BaseComp {
   @NgCallback("on-action-click")
   Function onActionClick;
 
-  ContestsListComp(this._profileService, this.scrDet);
+  ContestsListComp(this._profileService, this.scrDet) {
+    actionButtonTitle = T.contestDetail;
+  }
 
   /********* METHODS */
   String dateInfo(DateTime date) {

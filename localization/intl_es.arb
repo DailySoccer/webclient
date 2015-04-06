@@ -1,4 +1,74 @@
 {
+  "betaVersion": "EPIC ELEVEN: VERSIÓN BETA",
+  "@betaVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sectionNotAvailable": "ESTA SECCIÓN NO ESTA DISPONIBLE",
+  "@sectionNotAvailable": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "thisIsABetaVersion": "Lo sentimos, esta es una versión beta de Epic Eleven.<br>Próximamente podrás jugar y ganar premios en metálico y tendrás habilitadas<br>todas las funcionalidades necesarias. Te avisaremos cuando esté operativo<br><br><b>Muchas gracias</b>",
+  "@thisIsABetaVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dailyFantasyLeagues": "LIGAS FANTÁSTICAS DIARIAS",
+  "@dailyFantasyLeagues": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "playWheneverYouWant": "Juega y gana cuando quieras, sin esperar al final de la temporada.",
+  "@playWheneverYouWant": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "playNow": "JUGAR",
+  "@playNow": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "competeWithYourFriends": "Compite en tantos torneos como quieras de Liga, Premier y Champions",
+  "@competeWithYourFriends": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createYourLineup": "Crea tu equipo en segundos desde cualquier dispositivo",
+  "@createYourLineup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "immediateCashPayouts": "Podrás ganar dinero en efectivo con pagos inmediatos",
+  "@immediateCashPayouts": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dailyFantasyLeaguesMobile": "LIGAS FANTÁSTICAS <br> DIARIAS",
+  "@dailyFantasyLeaguesMobile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "landingMobile1": "COMPITE EN TANTOS TORNEOS COMO QUIERAS",
+  "@landingMobile1": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "landingMobile2": "CREA TU EQUIPO EN SEGUNDOS",
+  "@landingMobile2": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "landingMobile3": "Y GANA DINERO",
+  "@landingMobile3": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fullname": "Nombre personal",
+  "@fullname": {
+    "type": "text",
+    "placeholders": {}
+  },
   "nickname": "Nombre de usuario",
   "@nickname": {
     "type": "text",
@@ -26,6 +96,116 @@
   },
   "opponent": "Adversario",
   "@opponent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editMyAccount": "EDITAR",
+  "@editMyAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editAccount": "EDITAR CUENTA",
+  "@editAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "name": "Nombre",
+  "@name": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastName": "Apellidos",
+  "@lastName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordFillBothFieldsToUpdate": "Contraseña (Rellena los campos de contraseña para actualizar tu contraseña)",
+  "@passwordFillBothFieldsToUpdate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveEditAccount": "GUARDAR CAMBIOS",
+  "@saveEditAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancelEditAccount": "CANCELAR",
+  "@cancelEditAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordsDontMatch": "Las contraseñas no coinciden",
+  "@passwordsDontMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notifications": "NOTIFICACIONES",
+  "@notifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newsletterSpecialOffers": "NEWSLETTER/OFERTAS ESPECIALES",
+  "@newsletterSpecialOffers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "gameNotifications": "NOTIFICACIONES DE JUEGO",
+  "@gameNotifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ownTransferNotifications": "NOTIFICACIONES DE TUS FICHAJES",
+  "@ownTransferNotifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wallet": "MONEDERO",
+  "@wallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transactions": "TRANSACCIONES",
+  "@transactions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "actualBalance": "Balance actual",
+  "@actualBalance": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pendingBonus": "Bonus pendientes",
+  "@pendingBonus": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transactionHistory": "HISTORIAL DE TRANSACCIONES",
+  "@transactionHistory": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transactionDate": "FECHA",
+  "@transactionDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transactionId": "ID",
+  "@transactionId": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transactionSubject": "CONCEPTO",
+  "@transactionSubject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transactionValue": "IMPORTE",
+  "@transactionValue": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transactionBalance": "SALDO",
+  "@transactionBalance": {
     "type": "text",
     "placeholders": {}
   },
@@ -62,8 +242,20 @@
     "type": "text",
     "placeholders": {}
   },
-  "passwordHelper": "Contraseña: Al menos $minLength caracteres. (Escríbela dos veces).",
+  "emailIsNotValid": "El correo electrónico introducido no es válido.",
+  "@emailIsNotValid": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordHelper": "Contraseña: Al menos $minLength caracteres.",
   "@passwordHelper": {
+    "type": "text",
+    "placeholders": {
+      "minLength": {}
+    }
+  },
+  "passwordTypeItTwice": "(Escríbela dos veces).",
+  "@passwordTypeItTwice": {
     "type": "text",
     "placeholders": {
       "minLength": {}
@@ -259,6 +451,31 @@
   },
   "contestRemaining": "FALTAN",
   "@contestRemaining": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contestDetail": "VER",
+  "@contestDetail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "matchesInThisContest": "PARTIDOS EN ESTE TORNEO",
+  "@matchesInThisContest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "matchFinished": "Finalizado",
+  "@matchFinished": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "matchFirstHalf": "1ª Parte",
+  "@matchFirstHalf": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "matchSecondHalf": "2ª Parte",
+  "@matchSecondHalf": {
     "type": "text",
     "placeholders": {}
   },
@@ -467,8 +684,23 @@
     "type": "text",
     "placeholders": {}
   },
+  "userNameTitle": "JUGADOR",
+  "@userNameTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userRemainingTimeTitle": "T.R.",
+  "@userRemainingTimeTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
   "userRemainingTime": "TIEMPO RESTANTE",
   "@userRemainingTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userPrizesTitle": "PREMIOS",
+  "@userPrizesTitle": {
     "type": "text",
     "placeholders": {}
   },
@@ -519,6 +751,56 @@
   },
   "fieldPosForwardShort": "DEL",
   "@fieldPosForwardShort": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "playerOrderPos": "Pos.",
+  "@playerOrderPos": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "playerOrderName": "Nombre",
+  "@playerOrderName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "playerOrderDFP": "DFP",
+  "@playerOrderDFP": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "playerOrderMatches": "Jugados",
+  "@playerOrderMatches": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "playerOrderSalary": "Sueldo",
+  "@playerOrderSalary": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "players": "JUGADORES",
+  "@players": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "searchPlayer": "Buscar jugador",
+  "@searchPlayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterAll": "TODOS",
+  "@filterAll": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contendersInThisContest": "USUARIOS EN ESTE TORNEO",
+  "@contendersInThisContest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseAContender": "Selecciona un usuario de esta lista para ver y comparar su alineacion con la tuya",
+  "@chooseAContender": {
     "type": "text",
     "placeholders": {}
   },
@@ -599,16 +881,38 @@
     "type": "text",
     "placeholders": {}
   },
-  "needHelp": "¿Necesitas ayuda?",
-  "@needHelp": {
-    "type": "text",
-    "placeholders": {}
-  },
   "addFundsMinimumAllowed": "Por favor, deposita al menos {amount} para continuar",
   "@addFundsMinimumAllowed": {
     "type": "text",
     "placeholders": {
       "amount": {}
     }
+  },
+  "withdrawFunds": "Retirar fondos",
+  "@withdrawFunds": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourBalanceIs": "TU SALDO ES DE",
+  "@yourBalanceIs": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "howMuchMoneyWantToWithdraw": "¿Cuánto dinero deseas retirar?",
+  "@howMuchMoneyWantToWithdraw": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "withdrawMinimumAllowed": "Sólo puedes retirar cantidades superiores a {amount}",
+  "@withdrawMinimumAllowed": {
+    "type": "text",
+    "placeholders": {
+      "amount": {}
+    }
+  },
+  "needHelp": "¿Necesitas ayuda?",
+  "@needHelp": {
+    "type": "text",
+    "placeholders": {}
   }
 }

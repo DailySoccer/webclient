@@ -3,13 +3,14 @@ library transaction_history_comp;
 import 'package:angular/angular.dart';
 import 'package:webclient/models/transaction_info.dart';
 import 'package:webclient/services/profile_service.dart';
+import 'package:webclient/components/base_comp.dart';
 
 @Component(
     selector: 'transaction-history',
     templateUrl: 'packages/webclient/components/account/transaction_history_comp.html',
     useShadowDom: false
 )
-class TransactionHistoryComp {
+class TransactionHistoryComp extends BaseComp {
 
   List<TransactionInfo> transactions = new List<TransactionInfo>();
   // Lista de concursos visible en el componente

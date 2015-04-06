@@ -14,12 +14,59 @@ class Localization {
 
   Localization ();
 
+  get betaVersion => Intl.message("EPIC ELEVEN: BETA VERSION", name: 'betaVersion');
+  get sectionNotAvailable => Intl.message("SECTION NOT AVAILABLE", name: 'sectionNotAvailable');
+  get thisIsABetaVersion => Intl.message("Sorry, this is a beta version of Epic Eleven.<br>"
+      "We are working hard on all the features that Epic Eleven will include."
+      "We will keep you updated."
+      "<br><br>"
+      "<b>Thank you</b>", name: 'thisIsABetaVersion');
+
+  get dailyFantasyLeagues => Intl.message("DAILY FANTASY LEAGUES", name: 'dailyFantasyLeagues');
+  get playWheneverYouWant => Intl.message("Play whenever you want, wherever your want. Win prizes with no season-long commitment.", name: 'playWheneverYouWant');
+  get playNow => Intl.message("PLAY NOW", name: 'playNow');
+  get competeWithYourFriends => Intl.message("Compete with your friends in La Liga, Premier and Champions", name: 'competeWithYourFriends');
+  get createYourLineup => Intl.message("Create your lineup, on your computer, tablet or smartphone in seconds", name: 'createYourLineup');
+  get immediateCashPayouts => Intl.message("Immediate cash payouts", name: 'immediateCashPayouts');
+  get dailyFantasyLeaguesMobile => Intl.message("DAILY FANTASY <br> LEAGUES", name: 'dailyFantasyLeaguesMobile');
+  get landingMobile1 => Intl.message("PLAY AS MANY CONTESTS AS YOU WANT", name: 'landingMobile1');
+  get landingMobile2 => Intl.message("CREATE YOUR LINEUP IN SECONDS", name: 'landingMobile2');
+  get landingMobile3 => Intl.message("AND WIN CASH", name: 'landingMobile3');
+
+  get fullname => Intl.message("Full Name", name: 'fullname');
   get nickname => Intl.message("Nickname", name: 'nickname');
   get email => Intl.message("Email", name: 'email');
   get password => Intl.message("Password", name: 'password');
   get repeatPassword => Intl.message("Repeat password", name: 'repeatPassword');
   get users => Intl.message("Users", name: 'users');
   get opponent => Intl.message("Opponent", name: 'opponent');
+  get editMyAccount => Intl.message("EDIT", name: 'editMyAccount');
+
+  get editAccount => Intl.message("EDIT ACCOUNT", name: 'editAccount');
+  get name => Intl.message("Name", name: 'name');
+  get lastName => Intl.message("Last name", name: 'lastName');
+  get passwordFillBothFieldsToUpdate => Intl.message("Password (Fill the both fields to update it)", name: 'passwordFillBothFieldsToUpdate');
+  get saveEditAccount => Intl.message("SAVE", name: 'saveEditAccount');
+  get cancelEditAccount => Intl.message("CANCEL", name: 'cancelEditAccount');
+
+  get passwordsDontMatch => Intl.message("Passwords don't match.", name: 'passwordsDontMatch');
+
+  get notifications => Intl.message("NOTIFICATIONS", name: 'notifications');
+  get newsletterSpecialOffers => Intl.message("NEWSLETTER/SPECIAL OFFERS", name: 'newsletterSpecialOffers');
+  get gameNotifications => Intl.message("GAME NOTIFICATIONS", name: 'gameNotifications');
+  get ownTransferNotifications => Intl.message("OWN SOCCER PLAYER TRANSFER NOTIFICACIONS", name: 'ownTransferNotifications');
+
+  get wallet => Intl.message("WALLET", name: 'wallet');
+  get transactions => Intl.message("TRANSACCIONES", name: 'transactions');
+  get actualBalance => Intl.message("Actual balance", name: 'actualBalance');
+  get pendingBonus => Intl.message("Pending bonus", name: 'pendingBonus');
+
+  get transactionHistory => Intl.message("TRANSACTION HISTORY", name: 'transactionHistory');
+  get transactionDate => Intl.message("DATE", name: 'transactionDate');
+  get transactionId => Intl.message("ID", name: 'transactionId');
+  get transactionSubject => Intl.message("SUBJECT", name: 'transactionSubject');
+  get transactionValue => Intl.message("VALUE", name: 'transactionValue');
+  get transactionBalance => Intl.message("BALANCE", name: 'transactionBalance');
 
   get signupTitle => Intl.message("SIGN UP", name: 'signupTitle');
   get signupDescription => Intl.message("Don't you have an EPIC ELEVEN account yet?<br>Fill out this form.", name: 'signupDescription');
@@ -27,7 +74,9 @@ class Localization {
   get nicknameInvalid => Intl.message("Invalid Nickname.", name: 'nicknameInvalid');
   get emailHelper => Intl.message("Email:", name: 'emailHelper');
   get emailInvalid => Intl.message("Invalid Email.", name: 'emailInvalid');
-  passwordHelper(minLength) => Intl.message("Password: Should be at least $minLength characters. (Type it twice).", name: 'passwordHelper', args: [minLength]);
+  get emailIsNotValid => Intl.message("Email is not valid.", name: 'emailIsNotValid');
+  passwordHelper(minLength) => Intl.message("Password: Should be at least $minLength characters.", name: 'passwordHelper', args: [minLength]);
+  get passwordTypeItTwice => Intl.message("(Type it twice).", name: 'passwordTypeItTwice');
   get passwordInvalid => Intl.message("Invalid Password.", name: 'passwordInvalid');
   get signupNow => Intl.message("SIGN UP", name: 'signupNow');
   get cancelSignup => Intl.message("CANCEL", name: 'cancelSignup');
@@ -97,8 +146,14 @@ class Localization {
   get contestSoon => Intl.message("SOON", name: 'contestSoon');
   get contestWillStartIn => Intl.message("THE CONTEST WILL START IN", name: 'contestWillStartIn');
   get contestRemaining => Intl.message("REMAINING", name: 'contestRemaining');
+  get contestDetail => Intl.message("DETAIL", name: 'contestDetail');
 
   contestNumOfContenders(numEntries, maxEntries) => Intl.message("$numEntries of $maxEntries contenders", name: 'contestNumOfContenders', args: [numEntries, maxEntries]);
+
+  get matchesInThisContest => Intl.message("MATCHES IN THIS CONTEST", name: 'matchesInThisContest');
+  get matchFinished => Intl.message("Finished", name: 'matchFinished');
+  get matchFirstHalf => Intl.message("1st Half", name: 'matchFirstHalf');
+  get matchSecondHalf => Intl.message("2nd Half", name: 'matchSecondHalf');
 
   get tournamentFree => Intl.message("Free", name: 'tournamentFree');
   get tournamentHeadToHead => Intl.message("Head to Head", name: 'tournamentHeadToHead');
@@ -119,7 +174,10 @@ class Localization {
   get editTheLineup => Intl.message("EDIT THE LINEUP", name: 'editTheLineup');
   get userPositionTitle => Intl.message("POS", name: 'userPositionTitle');
   get userScoreTitle => Intl.message("POINTS", name: 'userScoreTitle');
+  get userNameTitle => Intl.message("PLAYER", name: 'userNameTitle');
+  get userRemainingTimeTitle => Intl.message("R.T.", name: 'userRemainingTimeTitle');
   get userRemainingTime => Intl.message("REMAINING TIME", name: 'userRemainingTime');
+  get userPrizesTitle => Intl.message("PRIZES", name: 'userPrizesTitle');
   get closeFantasyTeam => Intl.message("CLOSE", name: 'closeFantasyTeam');
   get playerOwned => Intl.message("OWNED", name: 'playerOwned');
 
@@ -132,6 +190,19 @@ class Localization {
   get fieldPosDefenseShort => Intl.message("DEF", name: 'fieldPosDefenseShort');
   get fieldPosMiddleShort => Intl.message("MID", name: 'fieldPosMiddleShort');
   get fieldPosForwardShort => Intl.message("FWD", name: 'fieldPosForwardShort');
+
+  get playerOrderPos => Intl.message("Pos.", name: 'playerOrderPos');
+  get playerOrderName => Intl.message("Name", name: 'playerOrderName');
+  get playerOrderDFP => Intl.message("DFP", name: 'playerOrderDFP');
+  get playerOrderMatches => Intl.message("#Matches", name: 'playerOrderMatches');
+  get playerOrderSalary => Intl.message("Salary", name: 'playerOrderSalary');
+
+  get players => Intl.message("Players", name: 'players');
+  get searchPlayer => Intl.message("Search player...", name: 'searchPlayer');
+  get filterAll => Intl.message("ALL", name: 'filterAll');
+
+  get contendersInThisContest => Intl.message("CONTENDERS IN THIS CONTEST", name: 'contendersInThisContest');
+  get chooseAContender => Intl.message("Choose a contender to compare lineups", name: 'chooseAContender');
 
   get addPlayerToFantasyTeam => Intl.message("ADD", name: 'addPlayerToFantasyTeam');
   get youHaveSpentTheSalaryCap => Intl.message("You've spent the salary cap", name: 'youHaveSpentTheSalaryCap');
@@ -152,6 +223,12 @@ class Localization {
   get addFundsUsingPaypal => Intl.message("You can add funds using PayPal account. The money will be transferred to Fantasy Sports Games S.L.", name: 'addFundsUsingPaypal');
 
   addFundsMinimumAllowed(amount) => Intl.message("Minimum allowed is $amount", args: [amount], name: 'addFundsMinimumAllowed');
+
+  get withdrawFunds => Intl.message("Withdraw funds", name: 'withdrawFunds');
+  get yourBalanceIs => Intl.message("YOUR BALANCE IS", name: 'yourBalanceIs');
+  get howMuchMoneyWantToWithdraw => Intl.message("¿How much money want to withdraw?", name: 'howMuchMoneyWantToWithdraw');
+
+  withdrawMinimumAllowed(amount) => Intl.message("You can only withdraw amounts larger to $amount", args: [amount], name: 'withdrawMinimumAllowed');
 
   get needHelp => Intl.message("Need help?", name: 'needHelp');
 

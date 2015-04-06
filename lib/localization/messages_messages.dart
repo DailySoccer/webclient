@@ -14,6 +14,8 @@ final messages = new MessageLookup();
 class MessageLookup extends MessageLookupByLibrary {
 
   get localeName => 'messages';
+  static actualBalance() => "Actual balance";
+
   static addFunds() => "ADD FUNDS";
 
   static addFundsDescriptionTip1() => "In order to play Epic Eleven with real money, you need to add funds to your account.";
@@ -28,7 +30,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static backToContests() => "BACK TO CONTESTS";
 
+  static betaVersion() => "EPIC ELEVEN: BETA VERSION";
+
   static cancelContestEntry() => "CANCEL PARTICIPATION";
+
+  static cancelEditAccount() => "CANCEL";
 
   static cancelLogin() => "CANCEL";
 
@@ -36,11 +42,19 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static cancelSignup() => "CANCEL";
 
+  static chooseAContender() => "Choose a contender to compare lineups";
+
   static chooseAnotherPlayer() => "Please, choose another player...";
 
   static choosePlayersThatFitTheBudget() => "Please choose players that fit the budget.";
 
   static closeFantasyTeam() => "CLOSE";
+
+  static competeWithYourFriends() => "Compete with your friends in La Liga, Premier and Champions";
+
+  static contendersInThisContest() => "CONTENDERS IN THIS CONTEST";
+
+  static contestDetail() => "DETAIL";
 
   static contestEntryFee() => "ENTRY FEE";
 
@@ -70,9 +84,19 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static createFantasyTeam() => "CONTINUE";
 
+  static createYourLineup() => "Create your lineup, on your computer, tablet or smartphone in seconds";
+
+  static dailyFantasyLeagues() => "DAILY FANTASY LEAGUES";
+
+  static dailyFantasyLeaguesMobile() => "DAILY FANTASY <br> LEAGUES";
+
   static deleteFantasyTeam() => "REMOVE ALL";
 
   static doNotHaveAnAccount() => "Don\'t have an account?";
+
+  static editAccount() => "EDIT ACCOUNT";
+
+  static editMyAccount() => "EDIT";
 
   static editTheLineup() => "EDIT THE LINEUP";
 
@@ -81,6 +105,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static emailHelper() => "Email:";
 
   static emailInvalid() => "Invalid Email.";
+
+  static emailIsNotValid() => "Email is not valid.";
 
   static fieldPosDefense() => "DEFENDER";
 
@@ -99,6 +125,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static fieldPosMiddleShort() => "MID";
 
   static filterAccept() => "ACCEPT";
+
+  static filterAll() => "ALL";
 
   static filterAvailableContests() => "Available contests";
 
@@ -160,6 +188,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static forgotYourPassword() => "Forgot your password?";
 
+  static fullname() => "Full Name";
+
+  static gameNotifications() => "GAME NOTIFICATIONS";
+
   static haveAnAccount() => "Already have an account?";
 
   static haveCompletedYourLineup() => "WELL DONE! YOU HAVE SUCCESSFULLY COMPLETED YOUR LINEUP";
@@ -167,6 +199,18 @@ class MessageLookup extends MessageLookupByLibrary {
   static haveEditedYourLineup() => "WELL DONE! YOU HAVE SUCCESSFULLY EDITED YOUR LINEUP";
 
   static havePutYouInEquivalentContest() => "THE CONTEST WAS FULL, SO WE HAVE PUT YOU IN THIS EQUIVALENT ONE";
+
+  static howMuchMoneyWantToWithdraw() => "¿How much money want to withdraw?";
+
+  static immediateCashPayouts() => "Immediate cash payouts";
+
+  static landingMobile1() => "PLAY AS MANY CONTESTS AS YOU WANT";
+
+  static landingMobile2() => "CREATE YOUR LINEUP IN SECONDS";
+
+  static landingMobile3() => "AND WIN CASH";
+
+  static lastName() => "Last name";
 
   static lineupSaved() => "Lineup saved";
 
@@ -182,6 +226,14 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static loginTitle() => "LOG IN";
 
+  static matchFinished() => "Finished";
+
+  static matchFirstHalf() => "1st Half";
+
+  static matchSecondHalf() => "2nd Half";
+
+  static matchesInThisContest() => "MATCHES IN THIS CONTEST";
+
   static menuAddFuns() => "Add Funds";
 
   static menuHowItWorks() => "HOW IT WORKS";
@@ -196,7 +248,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static menuTransactionHistory() => "Transaction History";
 
+  static name() => "Name";
+
   static needHelp() => "Need help?";
+
+  static newsletterSpecialOffers() => "NEWSLETTER/SPECIAL OFFERS";
 
   static nextContest() => "NEXT CONTEST";
 
@@ -206,15 +262,43 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static nicknameInvalid() => "Invalid Nickname.";
 
+  static notifications() => "NOTIFICATIONS";
+
   static opponent() => "Opponent";
+
+  static ownTransferNotifications() => "OWN SOCCER PLAYER TRANSFER NOTIFICACIONS";
 
   static password() => "Password";
 
-  static passwordHelper(minLength) => "Password: Should be at least ${minLength} characters. (Type it twice).";
+  static passwordFillBothFieldsToUpdate() => "Password (Fill the both fields to update it)";
+
+  static passwordHelper(minLength) => "Password: Should be at least ${minLength} characters.";
 
   static passwordInvalid() => "Invalid Password.";
 
+  static passwordTypeItTwice() => "(Type it twice).";
+
+  static passwordsDontMatch() => "Passwords don\'t match.";
+
+  static pendingBonus() => "Pending bonus";
+
+  static playNow() => "PLAY NOW";
+
+  static playWheneverYouWant() => "Play whenever you want, wherever your want. Win prizes with no season-long commitment.";
+
+  static playerOrderDFP() => "DFP";
+
+  static playerOrderMatches() => "#Matches";
+
+  static playerOrderName() => "Name";
+
+  static playerOrderPos() => "Pos.";
+
+  static playerOrderSalary() => "Salary";
+
   static playerOwned() => "OWNED";
+
+  static players() => "Players";
 
   static remainingSalary() => "REMAINING SALARY";
 
@@ -224,6 +308,12 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static repeatPassword() => "Repeat password";
 
+  static saveEditAccount() => "SAVE";
+
+  static searchPlayer() => "Search player...";
+
+  static sectionNotAvailable() => "SECTION NOT AVAILABLE";
+
   static signupDescription() => "Don\'t you have an EPIC ELEVEN account yet?<br>Fill out this form.";
 
   static signupHere() => "Sign Up here!";
@@ -231,6 +321,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static signupNow() => "SIGN UP";
 
   static signupTitle() => "SIGN UP";
+
+  static thisIsABetaVersion() => "Sorry, this is a beta version of Epic Eleven.<br>We are working hard on all the features that Epic Eleven will include.We will keep you updated.<br><br><b>Thank you</b>";
 
   static tournamentFiftyFifty() => "50/50";
 
@@ -240,22 +332,51 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static tournamentLeague() => "League";
 
+  static transactionBalance() => "BALANCE";
+
+  static transactionDate() => "DATE";
+
+  static transactionHistory() => "TRANSACTION HISTORY";
+
+  static transactionId() => "ID";
+
+  static transactionSubject() => "SUBJECT";
+
+  static transactionValue() => "VALUE";
+
+  static transactions() => "TRANSACCIONES";
+
+  static userNameTitle() => "PLAYER";
+
   static userPositionTitle() => "POS";
 
+  static userPrizesTitle() => "PRIZES";
+
   static userRemainingTime() => "REMAINING TIME";
+
+  static userRemainingTimeTitle() => "R.T.";
 
   static userScoreTitle() => "POINTS";
 
   static users() => "Users";
 
+  static wallet() => "WALLET";
+
+  static withdrawFunds() => "Withdraw funds";
+
+  static withdrawMinimumAllowed(amount) => "You can only withdraw amounts larger to ${amount}";
+
   static youHavePlayersOfSameTeam(maxPlayers) => "Ups! It looks like you already have ${maxPlayers} players of the same team";
 
   static youHaveSpentTheSalaryCap() => "You\'ve spent the salary cap";
+
+  static yourBalanceIs() => "YOUR BALANCE IS";
 
   static yourLineup() => "Your Lineup";
 
 
   final messages = const {
+    "actualBalance" : actualBalance,
     "addFunds" : addFunds,
     "addFundsDescriptionTip1" : addFundsDescriptionTip1,
     "addFundsDescriptionTip2" : addFundsDescriptionTip2,
@@ -263,13 +384,19 @@ class MessageLookup extends MessageLookupByLibrary {
     "addFundsUsingPaypal" : addFundsUsingPaypal,
     "addPlayerToFantasyTeam" : addPlayerToFantasyTeam,
     "backToContests" : backToContests,
+    "betaVersion" : betaVersion,
     "cancelContestEntry" : cancelContestEntry,
+    "cancelEditAccount" : cancelEditAccount,
     "cancelLogin" : cancelLogin,
     "cancelPlayerSelection" : cancelPlayerSelection,
     "cancelSignup" : cancelSignup,
+    "chooseAContender" : chooseAContender,
     "chooseAnotherPlayer" : chooseAnotherPlayer,
     "choosePlayersThatFitTheBudget" : choosePlayersThatFitTheBudget,
     "closeFantasyTeam" : closeFantasyTeam,
+    "competeWithYourFriends" : competeWithYourFriends,
+    "contendersInThisContest" : contendersInThisContest,
+    "contestDetail" : contestDetail,
     "contestEntryFee" : contestEntryFee,
     "contestFinished" : contestFinished,
     "contestInfo" : contestInfo,
@@ -284,12 +411,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "contestStartsOn" : contestStartsOn,
     "contestWillStartIn" : contestWillStartIn,
     "createFantasyTeam" : createFantasyTeam,
+    "createYourLineup" : createYourLineup,
+    "dailyFantasyLeagues" : dailyFantasyLeagues,
+    "dailyFantasyLeaguesMobile" : dailyFantasyLeaguesMobile,
     "deleteFantasyTeam" : deleteFantasyTeam,
     "doNotHaveAnAccount" : doNotHaveAnAccount,
+    "editAccount" : editAccount,
+    "editMyAccount" : editMyAccount,
     "editTheLineup" : editTheLineup,
     "email" : email,
     "emailHelper" : emailHelper,
     "emailInvalid" : emailInvalid,
+    "emailIsNotValid" : emailIsNotValid,
     "fieldPosDefense" : fieldPosDefense,
     "fieldPosDefenseShort" : fieldPosDefenseShort,
     "fieldPosForward" : fieldPosForward,
@@ -299,6 +432,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "fieldPosMiddle" : fieldPosMiddle,
     "fieldPosMiddleShort" : fieldPosMiddleShort,
     "filterAccept" : filterAccept,
+    "filterAll" : filterAll,
     "filterAvailableContests" : filterAvailableContests,
     "filterChampionsLeague" : filterChampionsLeague,
     "filterClear" : filterClear,
@@ -329,10 +463,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "footerPrivacyPolicy" : footerPrivacyPolicy,
     "footerTermsOfUse" : footerTermsOfUse,
     "forgotYourPassword" : forgotYourPassword,
+    "fullname" : fullname,
+    "gameNotifications" : gameNotifications,
     "haveAnAccount" : haveAnAccount,
     "haveCompletedYourLineup" : haveCompletedYourLineup,
     "haveEditedYourLineup" : haveEditedYourLineup,
     "havePutYouInEquivalentContest" : havePutYouInEquivalentContest,
+    "howMuchMoneyWantToWithdraw" : howMuchMoneyWantToWithdraw,
+    "immediateCashPayouts" : immediateCashPayouts,
+    "landingMobile1" : landingMobile1,
+    "landingMobile2" : landingMobile2,
+    "landingMobile3" : landingMobile3,
+    "lastName" : lastName,
     "lineupSaved" : lineupSaved,
     "lobbyPlay" : lobbyPlay,
     "loginDescription" : loginDescription,
@@ -340,6 +482,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "loginHere" : loginHere,
     "loginNow" : loginNow,
     "loginTitle" : loginTitle,
+    "matchFinished" : matchFinished,
+    "matchFirstHalf" : matchFirstHalf,
+    "matchSecondHalf" : matchSecondHalf,
+    "matchesInThisContest" : matchesInThisContest,
     "menuAddFuns" : menuAddFuns,
     "menuHowItWorks" : menuHowItWorks,
     "menuLobby" : menuLobby,
@@ -347,34 +493,68 @@ class MessageLookup extends MessageLookupByLibrary {
     "menuMyAccount" : menuMyAccount,
     "menuMyContests" : menuMyContests,
     "menuTransactionHistory" : menuTransactionHistory,
+    "name" : name,
     "needHelp" : needHelp,
+    "newsletterSpecialOffers" : newsletterSpecialOffers,
     "nextContest" : nextContest,
     "nickname" : nickname,
     "nicknameHelper" : nicknameHelper,
     "nicknameInvalid" : nicknameInvalid,
+    "notifications" : notifications,
     "opponent" : opponent,
+    "ownTransferNotifications" : ownTransferNotifications,
     "password" : password,
+    "passwordFillBothFieldsToUpdate" : passwordFillBothFieldsToUpdate,
     "passwordHelper" : passwordHelper,
     "passwordInvalid" : passwordInvalid,
+    "passwordTypeItTwice" : passwordTypeItTwice,
+    "passwordsDontMatch" : passwordsDontMatch,
+    "pendingBonus" : pendingBonus,
+    "playNow" : playNow,
+    "playWheneverYouWant" : playWheneverYouWant,
+    "playerOrderDFP" : playerOrderDFP,
+    "playerOrderMatches" : playerOrderMatches,
+    "playerOrderName" : playerOrderName,
+    "playerOrderPos" : playerOrderPos,
+    "playerOrderSalary" : playerOrderSalary,
     "playerOwned" : playerOwned,
+    "players" : players,
     "remainingSalary" : remainingSalary,
     "rememberThatYouCanEdit" : rememberThatYouCanEdit,
     "rememberThatYouCanEditYourTeam" : rememberThatYouCanEditYourTeam,
     "repeatPassword" : repeatPassword,
+    "saveEditAccount" : saveEditAccount,
+    "searchPlayer" : searchPlayer,
+    "sectionNotAvailable" : sectionNotAvailable,
     "signupDescription" : signupDescription,
     "signupHere" : signupHere,
     "signupNow" : signupNow,
     "signupTitle" : signupTitle,
+    "thisIsABetaVersion" : thisIsABetaVersion,
     "tournamentFiftyFifty" : tournamentFiftyFifty,
     "tournamentFree" : tournamentFree,
     "tournamentHeadToHead" : tournamentHeadToHead,
     "tournamentLeague" : tournamentLeague,
+    "transactionBalance" : transactionBalance,
+    "transactionDate" : transactionDate,
+    "transactionHistory" : transactionHistory,
+    "transactionId" : transactionId,
+    "transactionSubject" : transactionSubject,
+    "transactionValue" : transactionValue,
+    "transactions" : transactions,
+    "userNameTitle" : userNameTitle,
     "userPositionTitle" : userPositionTitle,
+    "userPrizesTitle" : userPrizesTitle,
     "userRemainingTime" : userRemainingTime,
+    "userRemainingTimeTitle" : userRemainingTimeTitle,
     "userScoreTitle" : userScoreTitle,
     "users" : users,
+    "wallet" : wallet,
+    "withdrawFunds" : withdrawFunds,
+    "withdrawMinimumAllowed" : withdrawMinimumAllowed,
     "youHavePlayersOfSameTeam" : youHavePlayersOfSameTeam,
     "youHaveSpentTheSalaryCap" : youHaveSpentTheSalaryCap,
+    "yourBalanceIs" : yourBalanceIs,
     "yourLineup" : yourLineup
   };
 }

@@ -5,6 +5,7 @@ import 'dart:html';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/payment_service.dart';
 import 'package:webclient/utils/game_metrics.dart';
+import 'package:webclient/components/base_comp.dart';
 
 
 @Component(
@@ -12,7 +13,7 @@ import 'package:webclient/utils/game_metrics.dart';
     templateUrl: 'packages/webclient/components/account/withdraw_funds_comp.html',
     useShadowDom: false
 )
-class WithdrawFundsComp implements ShadowRootAware {
+class WithdrawFundsComp extends BaseComp implements ShadowRootAware {
   int selectedValue = 0;
 
   dynamic get userData => _profileManager.user;

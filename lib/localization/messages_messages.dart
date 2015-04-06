@@ -112,6 +112,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static emailIsNotValid() => "Email is not valid.";
 
+  static entryHistory() => "Entry History";
+
   static eventAssist() => "Chance Created";
 
   static eventAttemptSaved() => "Attempted shot";
@@ -304,6 +306,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static lineupSaved() => "Lineup saved";
 
+  static live() => "Live";
+
   static lobbyPlay() => "PLAY";
 
   static loginDescription() => "Enter your email and password.";
@@ -350,6 +354,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static midfielders() => "MIDFIELDERS";
 
+  static myContests() => "MY CONTESTS";
+
   static name() => "Name";
 
   static needHelp() => "Need help?";
@@ -369,6 +375,12 @@ class MessageLookup extends MessageLookupByLibrary {
   static noMatchesPlayed() => "Has not played any game this season";
 
   static notifications() => "NOTIFICATIONS";
+
+  static numOfLiveContests(num) => "${num} LIVE CONTESTS";
+
+  static numOfWaitingContests(num) => "YOU HAVE ENTERED ${num} CONTESTS";
+
+  static numOfWonContests(num, won) => "${num} ENTRIES ${won} WON";
 
   static opponent() => "Opponent";
 
@@ -572,6 +584,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static transactions() => "TRANSACCIONES";
 
+  static upcoming() => "Upcoming";
+
   static userNameTitle() => "PLAYER";
 
   static userPositionTitle() => "POS";
@@ -592,9 +606,15 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static withdrawMinimumAllowed(amount) => "You can only withdraw amounts larger to ${amount}";
 
+  static youCanCheckYourContestsAndEdit() => "HERE YOU CAN CHECK YOUR CONTESTS AND EDIT YOUR LINEUPS";
+
+  static youCanCheckYourLiveContests() => "YOU CAN CHECK YOUR LIVE CONTESTS HERE";
+
   static youHavePlayersOfSameTeam(maxPlayers) => "Ups! It looks like you already have ${maxPlayers} players of the same team";
 
   static youHaveSpentTheSalaryCap() => "You\'ve spent the salary cap";
+
+  static youcanCheckYourPastContests() => "HERE YOU CAN CHECK YOUR PAST CONTESTS: LINEUPS, CONTENDERS, SCORES…";
 
   static yourBalanceIs() => "YOUR BALANCE IS";
 
@@ -651,6 +671,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "emailHelper" : emailHelper,
     "emailInvalid" : emailInvalid,
     "emailIsNotValid" : emailIsNotValid,
+    "entryHistory" : entryHistory,
     "eventAssist" : eventAssist,
     "eventAttemptSaved" : eventAttemptSaved,
     "eventCaughtOffside" : eventCaughtOffside,
@@ -747,6 +768,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "landingMobile3" : landingMobile3,
     "lastName" : lastName,
     "lineupSaved" : lineupSaved,
+    "live" : live,
     "lobbyPlay" : lobbyPlay,
     "loginDescription" : loginDescription,
     "loginError" : loginError,
@@ -770,6 +792,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "menuMyContests" : menuMyContests,
     "menuTransactionHistory" : menuTransactionHistory,
     "midfielders" : midfielders,
+    "myContests" : myContests,
     "name" : name,
     "needHelp" : needHelp,
     "newsletterSpecialOffers" : newsletterSpecialOffers,
@@ -780,6 +803,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "nicknameInvalid" : nicknameInvalid,
     "noMatchesPlayed" : noMatchesPlayed,
     "notifications" : notifications,
+    "numOfLiveContests" : numOfLiveContests,
+    "numOfWaitingContests" : numOfWaitingContests,
+    "numOfWonContests" : numOfWonContests,
     "opponent" : opponent,
     "ownTransferNotifications" : ownTransferNotifications,
     "password" : password,
@@ -881,6 +907,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "transactionSubject" : transactionSubject,
     "transactionValue" : transactionValue,
     "transactions" : transactions,
+    "upcoming" : upcoming,
     "userNameTitle" : userNameTitle,
     "userPositionTitle" : userPositionTitle,
     "userPrizesTitle" : userPrizesTitle,
@@ -891,8 +918,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "wallet" : wallet,
     "withdrawFunds" : withdrawFunds,
     "withdrawMinimumAllowed" : withdrawMinimumAllowed,
+    "youCanCheckYourContestsAndEdit" : youCanCheckYourContestsAndEdit,
+    "youCanCheckYourLiveContests" : youCanCheckYourLiveContests,
     "youHavePlayersOfSameTeam" : youHavePlayersOfSameTeam,
     "youHaveSpentTheSalaryCap" : youHaveSpentTheSalaryCap,
+    "youcanCheckYourPastContests" : youcanCheckYourPastContests,
     "yourBalanceIs" : yourBalanceIs,
     "yourLineup" : yourLineup
   };

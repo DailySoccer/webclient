@@ -150,6 +150,18 @@ class Localization {
 
   contestNumOfContenders(numEntries, maxEntries) => Intl.message("$numEntries of $maxEntries contenders", name: 'contestNumOfContenders', args: [numEntries, maxEntries]);
 
+  get myContests => Intl.message("MY CONTESTS", name: 'myContests');
+  get live => Intl.message("Live", name: 'live');
+  get upcoming => Intl.message("Upcoming", name: 'upcoming');
+  get entryHistory => Intl.message("Entry History", name: 'entryHistory');
+
+  numOfLiveContests(num) => Intl.message("$num LIVE CONTESTS", name: 'numOfLiveContests', args: [num]);
+  get youCanCheckYourLiveContests => Intl.message("YOU CAN CHECK YOUR LIVE CONTESTS HERE", name: 'youCanCheckYourLiveContests');
+  numOfWaitingContests(num) => Intl.message("YOU HAVE ENTERED $num CONTESTS", name: 'numOfWaitingContests', args: [num]);
+  get youCanCheckYourContestsAndEdit => Intl.message("HERE YOU CAN CHECK YOUR CONTESTS AND EDIT YOUR LINEUPS", name: 'youCanCheckYourContestsAndEdit');
+  numOfWonContests(num, won) => Intl.message("$num ENTRIES $won WON", name: 'numOfWonContests', args: [num, won]);
+  get youcanCheckYourPastContests => Intl.message("HERE YOU CAN CHECK YOUR PAST CONTESTS: LINEUPS, CONTENDERS, SCORES…", name: 'youcanCheckYourPastContests');
+
   get matchesInThisContest => Intl.message("MATCHES IN THIS CONTEST", name: 'matchesInThisContest');
   get matchFinished => Intl.message("Finished", name: 'matchFinished');
   get matchFirstHalf => Intl.message("1st Half", name: 'matchFirstHalf');

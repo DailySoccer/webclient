@@ -10,13 +10,14 @@ import 'package:webclient/models/contest.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/services/server_error.dart';
 import 'dart:async';
+import 'package:webclient/components/base_comp.dart';
 
 @Component(
   selector: 'my-contests',
   templateUrl: 'packages/webclient/components/my_contests_comp.html',
   useShadowDom: false
 )
-class MyContestsComp implements DetachAware, ShadowRootAware {
+class MyContestsComp extends BaseComp implements DetachAware, ShadowRootAware {
   static const String TAB_WAITING = "waiting";
   static const String TAB_LIVE = "live";
   static const String TAB_HISTORY = "history";
@@ -32,22 +33,22 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
     if (loadingService.isLoading)
       return "";
 
-    return hasLiveContests? "${contestsService.liveContests.length} LIVE CONTESTS" :
-                            "YOU CAN CHECK YOUR LIVE CONTESTS HERE";
+    return hasLiveContests? T.numOfLiveContests(contestsService.liveContests.length) :
+                            T.youCanCheckYourLiveContests;
   }
   String get waitingContestsMessage {
     if (loadingService.isLoading)
       return "";
 
-    return hasWaitingContests ? "YOU HAVE ENTERED ${contestsService.waitingContests.length} CONTESTS" :
-                                "HERE YOU CAN CHECK YOUR CONTESTS AND EDIT YOUR LINEUPS";
+    return hasWaitingContests ? T.numOfWaitingContests(contestsService.waitingContests.length) :
+                                T.youCanCheckYourContestsAndEdit;
   }
   String get historyContestsMessage {
     if (loadingService.isLoading)
       return "";
 
-    return hasHistoryContests? "${contestsService.historyContests.length} ENTRIES ${totalHistoryContestsWinner} WON" :
-                               "HERE YOU CAN CHECK YOUR PAST CONTESTS: LINEUPS, CONTENDERS, SCORES…";
+    return hasHistoryContests? T.numOfWonContests(contestsService.historyContests.length, totalHistoryContestsWinner) :
+                               T.youcanCheckYourPastContests;
   }
 
   num get numLiveContests => _numLiveContests;

@@ -394,6 +394,63 @@
       "maxEntries": {}
     }
   },
+  "myContests": "MIS TORNEOS",
+  "@myContests": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "live": "En Vivo",
+  "@live": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "upcoming": "Próximos",
+  "@upcoming": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "entryHistory": "Historial",
+  "@entryHistory": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "numOfLiveContests": "TIENES {num} TORNEOS ACTIVOS",
+  "@numOfLiveContests": {
+    "type": "text",
+    "placeholders": {
+      "num": {}
+    }
+  },
+  "youCanCheckYourLiveContests": "AQUÍ PODRÁS CONSULTAR EN TIEMPO REAL LOS TORNEOS QUE TENGAS ACTIVOS",
+  "@youCanCheckYourLiveContests": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "numOfWaitingContests": "TE HAS INSCRITO EN {num} TORNEOS",
+  "@numOfWaitingContests": {
+    "type": "text",
+    "placeholders": {
+      "num": {}
+    }
+  },
+  "youCanCheckYourContestsAndEdit": "AQUÍ PODRÁS CONSULTAR Y MODIFICAR LOS EQUIPOS QUE TIENES PENDIENTES DE JUGAR EN UN TORNEO",
+  "@youCanCheckYourContestsAndEdit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "numOfWonContests": "{num} REGISTROS {won} GANADOS",
+  "@numOfWonContests": {
+    "type": "text",
+    "placeholders": {
+      "num": {},
+      "won": {}
+    }
+  },
+  "youcanCheckYourPastContests": "AQUÍ PODRÁS REPASAR TODOS LOS TORNEOS QUE HAS JUGADO: TUS EQUIPOS, RIVALES, PUNTUACIONES…",
+  "@youcanCheckYourPastContests": {
+    "type": "text",
+    "placeholders": {}
+  },
   "nextContest": "SIGUIENTE TORNEO",
   "@nextContest": {
     "type": "text",

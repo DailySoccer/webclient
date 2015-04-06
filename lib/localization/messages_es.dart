@@ -112,6 +112,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static emailIsNotValid() => "El correo electrónico introducido no es válido.";
 
+  static entryHistory() => "Historial";
+
   static eventAssist() => "Asistencia";
 
   static eventAttemptSaved() => "Disparo a puerta";
@@ -304,6 +306,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static lineupSaved() => "Se ha guardado tu alineación";
 
+  static live() => "En Vivo";
+
   static lobbyPlay() => "JUGAR";
 
   static loginDescription() => "Introduce tu cuenta de correo electrónico y tu contraseña para acceder a los torneos.";
@@ -350,6 +354,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static midfielders() => "CENTROCAMPISTAS";
 
+  static myContests() => "MIS TORNEOS";
+
   static name() => "Nombre";
 
   static needHelp() => "¿Necesitas ayuda?";
@@ -369,6 +375,12 @@ class MessageLookup extends MessageLookupByLibrary {
   static noMatchesPlayed() => "No ha jugado ningún partido esta temporada";
 
   static notifications() => "NOTIFICACIONES";
+
+  static numOfLiveContests(num) => "TIENES ${num} TORNEOS ACTIVOS";
+
+  static numOfWaitingContests(num) => "TE HAS INSCRITO EN ${num} TORNEOS";
+
+  static numOfWonContests(num, won) => "${num} REGISTROS ${won} GANADOS";
 
   static opponent() => "Adversario";
 
@@ -570,6 +582,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static transactions() => "TRANSACCIONES";
 
+  static upcoming() => "Próximos";
+
   static userNameTitle() => "JUGADOR";
 
   static userPositionTitle() => "POS";
@@ -590,9 +604,15 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static withdrawMinimumAllowed(amount) => "Sólo puedes retirar cantidades superiores a ${amount}";
 
+  static youCanCheckYourContestsAndEdit() => "AQUÍ PODRÁS CONSULTAR Y MODIFICAR LOS EQUIPOS QUE TIENES PENDIENTES DE JUGAR EN UN TORNEO";
+
+  static youCanCheckYourLiveContests() => "AQUÍ PODRÁS CONSULTAR EN TIEMPO REAL LOS TORNEOS QUE TENGAS ACTIVOS";
+
   static youHavePlayersOfSameTeam(maxPlayers) => "Ups! Parece que ya tienes ${maxPlayers} jugadores del mismo equipo";
 
   static youHaveSpentTheSalaryCap() => "Te has pasado del límite salarial";
+
+  static youcanCheckYourPastContests() => "AQUÍ PODRÁS REPASAR TODOS LOS TORNEOS QUE HAS JUGADO: TUS EQUIPOS, RIVALES, PUNTUACIONES…";
 
   static yourBalanceIs() => "TU SALDO ES DE";
 
@@ -649,6 +669,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "emailHelper" : emailHelper,
     "emailInvalid" : emailInvalid,
     "emailIsNotValid" : emailIsNotValid,
+    "entryHistory" : entryHistory,
     "eventAssist" : eventAssist,
     "eventAttemptSaved" : eventAttemptSaved,
     "eventCaughtOffside" : eventCaughtOffside,
@@ -745,6 +766,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "landingMobile3" : landingMobile3,
     "lastName" : lastName,
     "lineupSaved" : lineupSaved,
+    "live" : live,
     "lobbyPlay" : lobbyPlay,
     "loginDescription" : loginDescription,
     "loginError" : loginError,
@@ -768,6 +790,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "menuMyContests" : menuMyContests,
     "menuTransactionHistory" : menuTransactionHistory,
     "midfielders" : midfielders,
+    "myContests" : myContests,
     "name" : name,
     "needHelp" : needHelp,
     "newsletterSpecialOffers" : newsletterSpecialOffers,
@@ -778,6 +801,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "nicknameInvalid" : nicknameInvalid,
     "noMatchesPlayed" : noMatchesPlayed,
     "notifications" : notifications,
+    "numOfLiveContests" : numOfLiveContests,
+    "numOfWaitingContests" : numOfWaitingContests,
+    "numOfWonContests" : numOfWonContests,
     "opponent" : opponent,
     "ownTransferNotifications" : ownTransferNotifications,
     "password" : password,
@@ -878,6 +904,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "transactionSubject" : transactionSubject,
     "transactionValue" : transactionValue,
     "transactions" : transactions,
+    "upcoming" : upcoming,
     "userNameTitle" : userNameTitle,
     "userPositionTitle" : userPositionTitle,
     "userPrizesTitle" : userPrizesTitle,
@@ -888,8 +915,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "wallet" : wallet,
     "withdrawFunds" : withdrawFunds,
     "withdrawMinimumAllowed" : withdrawMinimumAllowed,
+    "youCanCheckYourContestsAndEdit" : youCanCheckYourContestsAndEdit,
+    "youCanCheckYourLiveContests" : youCanCheckYourLiveContests,
     "youHavePlayersOfSameTeam" : youHavePlayersOfSameTeam,
     "youHaveSpentTheSalaryCap" : youHaveSpentTheSalaryCap,
+    "youcanCheckYourPastContests" : youcanCheckYourPastContests,
     "yourBalanceIs" : yourBalanceIs,
     "yourLineup" : yourLineup
   };

@@ -17,6 +17,7 @@ class GameMetrics {
   static String TEAM_CREATED = "Created a team";
   static String LIVE_CONTEST_VISITED = "Visitado Live Contest";
   static String PAGE_READY = "Page ready";
+  static String LEAVING_GAME = "Leaving Game";
   // Acciones con dinero:
   static String ENTRY_FEE = "Entry Fee for Contest";
   static String ORDER = "Add Funds";

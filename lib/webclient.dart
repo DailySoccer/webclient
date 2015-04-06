@@ -100,6 +100,19 @@ class WebClientApp extends Module {
       bind(TemplateCache, toValue: cache);
     }
 
+    window.onBeforeUnload.listen((BeforeUnloadEvent e) {
+      //print(e);
+      GameMetrics.logEvent(GameMetrics.LEAVING_GAME);
+      return;
+      });
+    /*
+    window.onUnload.listen((Event e) {
+      print(e);
+      //GameMetrics.logEvent(GameMetrics.LEAVING_GAME);
+      return;
+      });
+
+    */
     // No usamos animacion -> podemos quitar esto
     bind(CompilerConfig, toValue:new CompilerConfig.withOptions(elementProbeEnabled: false));
 
@@ -186,6 +199,7 @@ class WebClientApp extends Module {
     bind(RouteInitializerFn, toValue: webClientRouteInitializer);
     bind(NgRoutingUsePushState, toValue: new NgRoutingUsePushState.value(false));
   }
+
 
   void webClientRouteInitializer(Router router, RouteViewFactory views) {
 

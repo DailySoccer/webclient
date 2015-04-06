@@ -28,6 +28,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static addPlayerToFantasyTeam() => "AÑADIR";
 
+  static allPlayers() => "TODOS LOS JUGADORES";
+
   static backToContests() => "VOLVER A TORNEOS";
 
   static betaVersion() => "EPIC ELEVEN: VERSIÓN BETA";
@@ -89,6 +91,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static dailyFantasyLeagues() => "LIGAS FANTÁSTICAS DIARIAS";
 
   static dailyFantasyLeaguesMobile() => "LIGAS FANTÁSTICAS <br> DIARIAS";
+
+  static defenders() => "DEFENSAS";
 
   static deleteFantasyTeam() => "BORRAR TODO";
 
@@ -250,9 +254,13 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static forgotYourPassword() => "¿Olvidaste tu contraseña?";
 
+  static forwards() => "DELANTEROS";
+
   static fullname() => "Nombre personal";
 
   static gameNotifications() => "NOTIFICACIONES DE JUEGO";
+
+  static goalkeepers() => "PORTEROS";
 
   static haveAnAccount() => "¿Ya tienes cuenta?";
 
@@ -309,6 +317,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static menuMyContests() => "Mis Torneos";
 
   static menuTransactionHistory() => "Historial de Transacciones";
+
+  static midfielders() => "CENTROCAMPISTAS";
 
   static name() => "Nombre";
 
@@ -455,6 +465,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "addFundsMinimumAllowed" : addFundsMinimumAllowed,
     "addFundsUsingPaypal" : addFundsUsingPaypal,
     "addPlayerToFantasyTeam" : addPlayerToFantasyTeam,
+    "allPlayers" : allPlayers,
     "backToContests" : backToContests,
     "betaVersion" : betaVersion,
     "cancelContestEntry" : cancelContestEntry,
@@ -486,6 +497,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "createYourLineup" : createYourLineup,
     "dailyFantasyLeagues" : dailyFantasyLeagues,
     "dailyFantasyLeaguesMobile" : dailyFantasyLeaguesMobile,
+    "defenders" : defenders,
     "deleteFantasyTeam" : deleteFantasyTeam,
     "doNotHaveAnAccount" : doNotHaveAnAccount,
     "editAccount" : editAccount,
@@ -566,8 +578,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "footerPrivacyPolicy" : footerPrivacyPolicy,
     "footerTermsOfUse" : footerTermsOfUse,
     "forgotYourPassword" : forgotYourPassword,
+    "forwards" : forwards,
     "fullname" : fullname,
     "gameNotifications" : gameNotifications,
+    "goalkeepers" : goalkeepers,
     "haveAnAccount" : haveAnAccount,
     "haveCompletedYourLineup" : haveCompletedYourLineup,
     "haveEditedYourLineup" : haveEditedYourLineup,
@@ -596,6 +610,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "menuMyAccount" : menuMyAccount,
     "menuMyContests" : menuMyContests,
     "menuTransactionHistory" : menuTransactionHistory,
+    "midfielders" : midfielders,
     "name" : name,
     "needHelp" : needHelp,
     "newsletterSpecialOffers" : newsletterSpecialOffers,

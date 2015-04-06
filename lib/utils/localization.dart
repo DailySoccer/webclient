@@ -201,6 +201,12 @@ class Localization {
   get searchPlayer => Intl.message("Search player...", name: 'searchPlayer');
   get filterAll => Intl.message("ALL", name: 'filterAll');
 
+  get allPlayers => Intl.message("ALL PLAYERS", name: 'allPlayers');
+  get goalkeepers => Intl.message("GOALKEEPERS", name: 'goalkeepers');
+  get defenders => Intl.message("DEFENDERS", name: 'defenders');
+  get midfielders => Intl.message("MIDFIELDERS", name: 'midfielders');
+  get forwards => Intl.message("FORWARDS", name: 'forwards');
+
   get contendersInThisContest => Intl.message("CONTENDERS IN THIS CONTEST", name: 'contendersInThisContest');
   get chooseAContender => Intl.message("Choose a contender to compare lineups", name: 'chooseAContender');
 

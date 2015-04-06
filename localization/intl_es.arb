@@ -794,6 +794,31 @@
     "type": "text",
     "placeholders": {}
   },
+  "allPlayers": "TODOS LOS JUGADORES",
+  "@allPlayers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "goalkeepers": "PORTEROS",
+  "@goalkeepers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "defenders": "DEFENSAS",
+  "@defenders": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "midfielders": "CENTROCAMPISTAS",
+  "@midfielders": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "forwards": "DELANTEROS",
+  "@forwards": {
+    "type": "text",
+    "placeholders": {}
+  },
   "contendersInThisContest": "USUARIOS EN ESTE TORNEO",
   "@contendersInThisContest": {
     "type": "text",

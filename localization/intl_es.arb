@@ -886,6 +886,161 @@
     "type": "text",
     "placeholders": {}
   },
+  "eventPassSuccessful": "Pase completado",
+  "@eventPassSuccessful": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventPassUnsuccessful": "Pase no completado",
+  "@eventPassUnsuccessful": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventTakeOn": "Regate",
+  "@eventTakeOn": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventFoulReceived": "Falta recibida",
+  "@eventFoulReceived": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventTackle": "Entrada",
+  "@eventTackle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventInterception": "Intercepción",
+  "@eventInterception": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventSaveGoalkeeper": "Parada",
+  "@eventSaveGoalkeeper": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventSavePlayer": "Disparo defendido",
+  "@eventSavePlayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventClaim": "Anticipación",
+  "@eventClaim": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventClearance": "Despeje",
+  "@eventClearance": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventMiss": "Disparo fuera",
+  "@eventMiss": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventPost": "Disparo al poste",
+  "@eventPost": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventAttemptSaved": "Disparo a puerta",
+  "@eventAttemptSaved": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventYellowCard": "Tarjeta amarilla",
+  "@eventYellowCard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventPunch": "Despeje de puño",
+  "@eventPunch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventDispossessed": "Pérdida de balón",
+  "@eventDispossessed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventError": "Error",
+  "@eventError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventDecisiveError": "Error grave",
+  "@eventDecisiveError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventAssist": "Asistencia",
+  "@eventAssist": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventTackleEffective": "Entrada exitosa",
+  "@eventTackleEffective": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventGoal": "Gol",
+  "@eventGoal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventOwnGoal": "Gol en propia meta",
+  "@eventOwnGoal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventFoulCommitted": "Falta cometida",
+  "@eventFoulCommitted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventSecondYellowCard": "Segunda tarjeta amarilla",
+  "@eventSecondYellowCard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventRedCard": "Tarjeta roja",
+  "@eventRedCard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventCaughtOffside": "Fuera de juego",
+  "@eventCaughtOffside": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventPenaltyCommitted": "Penalti cometido",
+  "@eventPenaltyCommitted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventPenaltyFailed": "Penalti fallado",
+  "@eventPenaltyFailed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventGoalkeeperSavesPenalty": "Penalti parado",
+  "@eventGoalkeeperSavesPenalty": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventCleanSheet": "Sin goles encajados",
+  "@eventCleanSheet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventGoalConceded": "Gol encajado",
+  "@eventGoalConceded": {
+    "type": "text",
+    "placeholders": {}
+  },
   "addFunds": "AÑADIR FONDOS",
   "@addFunds": {
     "type": "text",

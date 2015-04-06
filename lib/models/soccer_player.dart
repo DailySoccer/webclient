@@ -5,6 +5,7 @@ import "package:webclient/models/soccer_team.dart";
 import "package:webclient/models/soccer_player_stats.dart";
 //import "package:webclient/models/field_pos.dart";
 import 'package:webclient/services/contest_references.dart';
+import 'package:webclient/utils/localization.dart';
 
 class LiveEventInfo {
   int count;
@@ -17,6 +18,8 @@ class LiveEventInfo {
 }
 
 class SoccerPlayer {
+  static Localization get T => Localization.instance;
+
   String templateSoccerPlayerId;
   String name;
   // FieldPos fieldPos;
@@ -82,39 +85,39 @@ class SoccerPlayer {
   }
 
   static final Map<String, String> _EVENT_KEY_TO_NAME = {
-    "PASS_SUCCESSFUL"   : "Successful Pass",
-    "PASS_UNSUCCESSFUL" : "Unsuccessful Pass",
-    "TAKE_ON"           : "Take-on",
-    "FOUL_RECEIVED"     : "Foul Received",
-    "TACKLE"            : "Tackle",
-    "INTERCEPTION"      : "Interception",
-    "SAVE_GOALKEEPER"   : "Save",
-    "SAVE_PLAYER"       : "Saved Shot",
-    "CLAIM"             : "Anticipation",
-    "CLEARANCE"         : "Clearance",
-    "MISS"              : "Missed Shot",
-    "POST"              : "Post",
-    "ATTEMPT_SAVED"     : "Attempted Shot",
-    "YELLOW_CARD"       : "Yellow Card",
-    "PUNCH"             : "Punch",
-    "DISPOSSESSED"      : "Dispossessed",
-    "ERROR"             : "Error",
-    "DECISIVE_ERROR"    : "Decisive Error",
-    "ASSIST"            : "Chance Created",
-    "TACKLE_EFFECTIVE"  : "Completed Tackle",
-    "GOAL_SCORED_BY_GOALKEEPER" : "Goal",
-    "GOAL_SCORED_BY_DEFENDER"   : "Goal",
-    "GOAL_SCORED_BY_MIDFIELDER" : "Goal",
-    "GOAL_SCORED_BY_FORWARD"    : "Goal",
-    "OWN_GOAL"          : "Own Goal",
-    "FOUL_COMMITTED"    : "Foul Committed",
-    "SECOND_YELLOW_CARD": "Second Yellow Card",
-    "RED_CARD"          : "Red Card",
-    "CAUGHT_OFFSIDE"    : "Offside",
-    "PENALTY_COMMITTED" : "Penalty Conceded",
-    "PENALTY_FAILED"    : "Missed Penalty",
-    "GOALKEEPER_SAVES_PENALTY"  : "Penalty Saved",
-    "CLEAN_SHEET"       : "Clean Sheet",
-    "GOAL_CONCEDED"     : "Goal Conceded"
+    "PASS_SUCCESSFUL"   : T.eventPassSuccessful,
+    "PASS_UNSUCCESSFUL" : T.eventPassUnsuccessful,
+    "TAKE_ON"           : T.eventTakeOn,
+    "FOUL_RECEIVED"     : T.eventFoulReceived,
+    "TACKLE"            : T.eventTackle,
+    "INTERCEPTION"      : T.eventInterception,
+    "SAVE_GOALKEEPER"   : T.eventSaveGoalkeeper,
+    "SAVE_PLAYER"       : T.eventSavePlayer,
+    "CLAIM"             : T.eventClaim,
+    "CLEARANCE"         : T.eventClearance,
+    "MISS"              : T.eventMiss,
+    "POST"              : T.eventPost,
+    "ATTEMPT_SAVED"     : T.eventAttemptSaved,
+    "YELLOW_CARD"       : T.eventYellowCard,
+    "PUNCH"             : T.eventPunch,
+    "DISPOSSESSED"      : T.eventDispossessed,
+    "ERROR"             : T.eventError,
+    "DECISIVE_ERROR"    : T.eventDecisiveError,
+    "ASSIST"            : T.eventAssist,
+    "TACKLE_EFFECTIVE"  : T.eventTackleEffective,
+    "GOAL_SCORED_BY_GOALKEEPER" : T.eventGoal,
+    "GOAL_SCORED_BY_DEFENDER"   : T.eventGoal,
+    "GOAL_SCORED_BY_MIDFIELDER" : T.eventGoal,
+    "GOAL_SCORED_BY_FORWARD"    : T.eventGoal,
+    "OWN_GOAL"          : T.eventOwnGoal,
+    "FOUL_COMMITTED"    : T.eventFoulCommitted,
+    "SECOND_YELLOW_CARD": T.eventSecondYellowCard,
+    "RED_CARD"          : T.eventRedCard,
+    "CAUGHT_OFFSIDE"    : T.eventCaughtOffside,
+    "PENALTY_COMMITTED" : T.eventPenaltyCommitted,
+    "PENALTY_FAILED"    : T.eventPenaltyFailed,
+    "GOALKEEPER_SAVES_PENALTY"  : T.eventGoalkeeperSavesPenalty,
+    "CLEAN_SHEET"       : T.eventCleanSheet,
+    "GOAL_CONCEDED"     : T.eventGoalConceded
   };
 }

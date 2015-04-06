@@ -108,6 +108,68 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static emailIsNotValid() => "El correo electrónico introducido no es válido.";
 
+  static eventAssist() => "Asistencia";
+
+  static eventAttemptSaved() => "Disparo a puerta";
+
+  static eventCaughtOffside() => "Fuera de juego";
+
+  static eventClaim() => "Anticipación";
+
+  static eventCleanSheet() => "Sin goles encajados";
+
+  static eventClearance() => "Despeje";
+
+  static eventDecisiveError() => "Error grave";
+
+  static eventDispossessed() => "Pérdida de balón";
+
+  static eventError() => "Error";
+
+  static eventFoulCommitted() => "Falta cometida";
+
+  static eventFoulReceived() => "Falta recibida";
+
+  static eventGoal() => "Gol";
+
+  static eventGoalConceded() => "Gol encajado";
+
+  static eventGoalkeeperSavesPenalty() => "Penalti parado";
+
+  static eventInterception() => "Intercepción";
+
+  static eventMiss() => "Disparo fuera";
+
+  static eventOwnGoal() => "Gol en propia meta";
+
+  static eventPassSuccessful() => "Pase completado";
+
+  static eventPassUnsuccessful() => "Pase no completado";
+
+  static eventPenaltyCommitted() => "Penalti cometido";
+
+  static eventPenaltyFailed() => "Penalti fallado";
+
+  static eventPost() => "Disparo al poste";
+
+  static eventPunch() => "Despeje de puño";
+
+  static eventRedCard() => "Tarjeta roja";
+
+  static eventSaveGoalkeeper() => "Parada";
+
+  static eventSavePlayer() => "Disparo defendido";
+
+  static eventSecondYellowCard() => "Segunda tarjeta amarilla";
+
+  static eventTackle() => "Entrada";
+
+  static eventTackleEffective() => "Entrada exitosa";
+
+  static eventTakeOn() => "Regate";
+
+  static eventYellowCard() => "Tarjeta amarilla";
+
   static fieldPosDefense() => "DEFENSA";
 
   static fieldPosDefenseShort() => "DEF";
@@ -433,6 +495,37 @@ class MessageLookup extends MessageLookupByLibrary {
     "emailHelper" : emailHelper,
     "emailInvalid" : emailInvalid,
     "emailIsNotValid" : emailIsNotValid,
+    "eventAssist" : eventAssist,
+    "eventAttemptSaved" : eventAttemptSaved,
+    "eventCaughtOffside" : eventCaughtOffside,
+    "eventClaim" : eventClaim,
+    "eventCleanSheet" : eventCleanSheet,
+    "eventClearance" : eventClearance,
+    "eventDecisiveError" : eventDecisiveError,
+    "eventDispossessed" : eventDispossessed,
+    "eventError" : eventError,
+    "eventFoulCommitted" : eventFoulCommitted,
+    "eventFoulReceived" : eventFoulReceived,
+    "eventGoal" : eventGoal,
+    "eventGoalConceded" : eventGoalConceded,
+    "eventGoalkeeperSavesPenalty" : eventGoalkeeperSavesPenalty,
+    "eventInterception" : eventInterception,
+    "eventMiss" : eventMiss,
+    "eventOwnGoal" : eventOwnGoal,
+    "eventPassSuccessful" : eventPassSuccessful,
+    "eventPassUnsuccessful" : eventPassUnsuccessful,
+    "eventPenaltyCommitted" : eventPenaltyCommitted,
+    "eventPenaltyFailed" : eventPenaltyFailed,
+    "eventPost" : eventPost,
+    "eventPunch" : eventPunch,
+    "eventRedCard" : eventRedCard,
+    "eventSaveGoalkeeper" : eventSaveGoalkeeper,
+    "eventSavePlayer" : eventSavePlayer,
+    "eventSecondYellowCard" : eventSecondYellowCard,
+    "eventTackle" : eventTackle,
+    "eventTackleEffective" : eventTackleEffective,
+    "eventTakeOn" : eventTakeOn,
+    "eventYellowCard" : eventYellowCard,
     "fieldPosDefense" : fieldPosDefense,
     "fieldPosDefenseShort" : fieldPosDefenseShort,
     "fieldPosForward" : fieldPosForward,

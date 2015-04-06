@@ -217,6 +217,12 @@ class Localization {
   get cancelContestEntry => Intl.message("CANCEL PARTICIPATION", name: 'cancelContestEntry');
   get backToContests => Intl.message("BACK TO CONTESTS", name: 'backToContests');
 
+  get prizeFree => Intl.message("Free contest. No prizes", name: 'prizeFree');
+  get prizeWinner => Intl.message("Winner takes all", name: 'prizeWinner');
+  get prizeTop3 => Intl.message("First 3 get prizes", name: 'prizeTop3');
+  get prizeTopThird => Intl.message("First # get prizes", name: 'prizeTopThird');
+  get prizeFiftyFifty => Intl.message("First # get prizes", name: 'prizeFiftyFifty');
+
   get addFunds => Intl.message("ADD FUNDS", name: 'addFunds');
   get addFundsDescriptionTip1 => Intl.message("In order to play Epic Eleven with real money, you need to add funds to your account.", name: 'addFundsDescriptionTip1');
   get addFundsDescriptionTip2 => Intl.message("Don't worry, you can withdraw your money whenever you want for free.", name: 'addFundsDescriptionTip2');

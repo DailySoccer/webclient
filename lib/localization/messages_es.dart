@@ -300,6 +300,16 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static players() => "JUGADORES";
 
+  static prizeFiftyFifty() => "Los # primeros reciben premio";
+
+  static prizeFree() => "Concurso Gratuito. No hay premios a repartir";
+
+  static prizeTop3() => "Los 3 primeros concursantes reciben premio";
+
+  static prizeTopThird() => "Los # primeros reciben premio";
+
+  static prizeWinner() => "Todo para el ganador";
+
   static remainingSalary() => "DINERO RESTANTE";
 
   static rememberThatYouCanEdit() => "Recuerda que puedes editar tu equipo cuantas veces quieras hasta que comience la competición";
@@ -519,6 +529,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "playerOrderSalary" : playerOrderSalary,
     "playerOwned" : playerOwned,
     "players" : players,
+    "prizeFiftyFifty" : prizeFiftyFifty,
+    "prizeFree" : prizeFree,
+    "prizeTop3" : prizeTop3,
+    "prizeTopThird" : prizeTopThird,
+    "prizeWinner" : prizeWinner,
     "remainingSalary" : remainingSalary,
     "rememberThatYouCanEdit" : rememberThatYouCanEdit,
     "rememberThatYouCanEditYourTeam" : rememberThatYouCanEditYourTeam,

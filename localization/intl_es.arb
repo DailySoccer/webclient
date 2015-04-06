@@ -861,6 +861,31 @@
     "type": "text",
     "placeholders": {}
   },
+  "prizeFree": "Concurso Gratuito. No hay premios a repartir",
+  "@prizeFree": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prizeWinner": "Todo para el ganador",
+  "@prizeWinner": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prizeTop3": "Los 3 primeros concursantes reciben premio",
+  "@prizeTop3": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prizeTopThird": "Los # primeros reciben premio",
+  "@prizeTopThird": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prizeFiftyFifty": "Los # primeros reciben premio",
+  "@prizeFiftyFifty": {
+    "type": "text",
+    "placeholders": {}
+  },
   "addFunds": "AÑADIR FONDOS",
   "@addFunds": {
     "type": "text",

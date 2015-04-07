@@ -1584,6 +1584,26 @@
       "amount": {}
     }
   },
+  "restrictedLocation": "Ubicación restringida",
+  "@restrictedLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "currentLocationProhibitsDeposits": "Lo lamentamos, su ubicación actual le prohíbe hacer depósitos en Epic Elevent.",
+  "@currentLocationProhibitsDeposits": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ifErrorAndRequireAssistence": "Si piensa que es un error y necesita ayuda, por favor póngase en contacto con nosotros a través de",
+  "@ifErrorAndRequireAssistence": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "returnToLobby": "Ir a Buscar torneos",
+  "@returnToLobby": {
+    "type": "text",
+    "placeholders": {}
+  },
   "needHelp": "¿Necesitas ayuda?",
   "@needHelp": {
     "type": "text",

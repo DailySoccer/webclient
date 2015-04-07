@@ -1,18 +1,18 @@
 <div id="restrictedCompRoot">
   <!-- header title -->
-  <div class="default-section-header">RESTRICTED LOCATION</div>
+  <div class="default-section-header">{{T.restrictedLocation}}</div>
 
   <div class="restricted-content-wrapper">
 
     <div class="texto">
-      Sorry, your current location prohibits you from making deposits on Epic Eleven.<br>
+      {{T.currentLocationProhibitsDeposits}}<br>
       <br>
-      If you think this is in error and require assistance, please contact us through <a href="mailto:support@epiceleven.com">support@epiceleven.com</a>
+      {{T.ifErrorAndRequireAssistence}} <a href="mailto:support@epiceleven.com">support@epiceleven.com</a>
     </div>
 
     <div class="button-wrapper">
       <div class="button-box">
-        <button class="ok-button" ng-click="backToLobby()">Return to Lobby</button>
+        <button class="ok-button" ng-click="backToLobby()">{{T.returnToLobby}}</button>
       </div>
     </div>
 

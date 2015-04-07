@@ -379,6 +379,11 @@ class Localization {
 
   withdrawMinimumAllowed(amount) => Intl.message("You can only withdraw amounts larger to $amount", args: [amount], name: 'withdrawMinimumAllowed');
 
+  get restrictedLocation => Intl.message("RESTRICTED LOCATION", name: 'restrictedLocation');
+  get currentLocationProhibitsDeposits => Intl.message("Sorry, your current location prohibits you from making deposits on Epic Eleven.", name: 'currentLocationProhibitsDeposits');
+  get ifErrorAndRequireAssistence => Intl.message("If you think this is in error and require assistance, please contact us through", name: 'ifErrorAndRequireAssistence');
+  get returnToLobby => Intl.message("Return to Lobby", name: 'returnToLobby');
+
   get needHelp => Intl.message("Need help?", name: 'needHelp');
 
   get help => Intl.message("HELP", name: 'help');

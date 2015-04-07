@@ -118,6 +118,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static createYourLineup() => "Crea tu equipo en segundos desde cualquier dispositivo";
 
+  static currentLocationProhibitsDeposits() => "Lo lamentamos, su ubicación actual le prohíbe hacer depósitos en Epic Elevent.";
+
   static dailyFantasyLeagues() => "LIGAS FANTÁSTICAS DIARIAS";
 
   static dailyFantasyLeaguesMobile() => "LIGAS FANTÁSTICAS <br> DIARIAS";
@@ -372,6 +374,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static howMuchMoneyWantToWithdraw() => "¿Cuánto dinero deseas retirar?";
 
+  static ifErrorAndRequireAssistence() => "Si piensa que es un error y necesita ayuda, por favor póngase en contacto con nosotros a través de";
+
   static immediateCashPayouts() => "Podrás ganar dinero en efectivo con pagos inmediatos";
 
   static information() => "Información";
@@ -535,6 +539,10 @@ class MessageLookup extends MessageLookupByLibrary {
   static rememberThatYouCanEditYourTeam() => "Recuerda que puedes editar tu equipo cuantas veces quieras hasta que comience la competición";
 
   static repeatPassword() => "Repite la contraseña";
+
+  static restrictedLocation() => "Ubicación restringida";
+
+  static returnToLobby() => "Ir a Buscar torneos";
 
   static ruleAccessAssociatedIssues() => "SERVICIO DE ACCESO Y EDICIÓN DE PROBLEMAS";
 
@@ -776,6 +784,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "createFantasyTeam" : createFantasyTeam,
     "createNewPassword" : createNewPassword,
     "createYourLineup" : createYourLineup,
+    "currentLocationProhibitsDeposits" : currentLocationProhibitsDeposits,
     "dailyFantasyLeagues" : dailyFantasyLeagues,
     "dailyFantasyLeaguesMobile" : dailyFantasyLeaguesMobile,
     "days" : days,
@@ -903,6 +912,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "historyContestsInfo" : historyContestsInfo,
     "howItWorks" : howItWorks,
     "howMuchMoneyWantToWithdraw" : howMuchMoneyWantToWithdraw,
+    "ifErrorAndRequireAssistence" : ifErrorAndRequireAssistence,
     "immediateCashPayouts" : immediateCashPayouts,
     "information" : information,
     "landingMobile1" : landingMobile1,
@@ -985,6 +995,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "rememberThatYouCanEdit" : rememberThatYouCanEdit,
     "rememberThatYouCanEditYourTeam" : rememberThatYouCanEditYourTeam,
     "repeatPassword" : repeatPassword,
+    "restrictedLocation" : restrictedLocation,
+    "returnToLobby" : returnToLobby,
     "ruleAccessAssociatedIssues" : ruleAccessAssociatedIssues,
     "ruleBannedAccounts" : ruleBannedAccounts,
     "ruleCancelParcipation" : ruleCancelParcipation,

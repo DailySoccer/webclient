@@ -118,6 +118,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static createYourLineup() => "Create your lineup, on your computer, tablet or smartphone in seconds";
 
+  static currentLocationProhibitsDeposits() => "Sorry, your current location prohibits you from making deposits on Epic Eleven.";
+
   static dailyFantasyLeagues() => "DAILY FANTASY LEAGUES";
 
   static dailyFantasyLeaguesMobile() => "DAILY FANTASY <br> LEAGUES";
@@ -374,6 +376,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static howMuchMoneyWantToWithdraw() => "¿How much money want to withdraw?";
 
+  static ifErrorAndRequireAssistence() => "If you think this is in error and require assistance, please contact us through";
+
   static immediateCashPayouts() => "Immediate cash payouts";
 
   static information() => "Information";
@@ -537,6 +541,10 @@ class MessageLookup extends MessageLookupByLibrary {
   static rememberThatYouCanEditYourTeam() => "Remember that you can edit your team as many times as you want until the contest starts";
 
   static repeatPassword() => "Repeat password";
+
+  static restrictedLocation() => "RESTRICTED LOCATION";
+
+  static returnToLobby() => "Return to Lobby";
 
   static ruleAccessAssociatedIssues() => "ACCESS ASSOCIATED ISSUES";
 
@@ -780,6 +788,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "createFantasyTeam" : createFantasyTeam,
     "createNewPassword" : createNewPassword,
     "createYourLineup" : createYourLineup,
+    "currentLocationProhibitsDeposits" : currentLocationProhibitsDeposits,
     "dailyFantasyLeagues" : dailyFantasyLeagues,
     "dailyFantasyLeaguesMobile" : dailyFantasyLeaguesMobile,
     "days" : days,
@@ -908,6 +917,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "historyContestsInfo" : historyContestsInfo,
     "howItWorks" : howItWorks,
     "howMuchMoneyWantToWithdraw" : howMuchMoneyWantToWithdraw,
+    "ifErrorAndRequireAssistence" : ifErrorAndRequireAssistence,
     "immediateCashPayouts" : immediateCashPayouts,
     "information" : information,
     "landingMobile1" : landingMobile1,
@@ -990,6 +1000,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "rememberThatYouCanEdit" : rememberThatYouCanEdit,
     "rememberThatYouCanEditYourTeam" : rememberThatYouCanEditYourTeam,
     "repeatPassword" : repeatPassword,
+    "restrictedLocation" : restrictedLocation,
+    "returnToLobby" : returnToLobby,
     "ruleAccessAssociatedIssues" : ruleAccessAssociatedIssues,
     "ruleBannedAccounts" : ruleBannedAccounts,
     "ruleCancelParcipation" : ruleCancelParcipation,

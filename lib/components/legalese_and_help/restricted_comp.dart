@@ -1,13 +1,14 @@
 library restricted_comp;
 
 import 'package:angular/angular.dart';
+import 'package:webclient/components/base_comp.dart';
 
 @Component(
     selector: 'restricted-comp',
     templateUrl: 'packages/webclient/components/legalese_and_help/restricted_comp.html',
     useShadowDom: false
 )
-class RestrictedComp {
+class RestrictedComp extends BaseComp {
   RestrictedComp(this._router);
 
   void backToLobby() {

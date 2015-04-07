@@ -17,14 +17,46 @@
         <!-- Barra de resumen de actividad -->
         <div class="resume-bar"><span class="information-no-contest">{{liveContestsMessage}}</span></div>
 
-        <section ng-unless="loadingService.isLoading" ng-switch="hasLiveContests">
+        <section id="live" ng-unless="loadingService.isLoading" ng-switch="hasLiveContests">
           <!-- lista vacía -->
           <div class="no-contests-wrapper" ng-switch-when="false">
-              <div class="title-info-text">YOUR ARE NOT PLAYING ANY CONTEST<br>AT THE MOMENT</div>
-              <div class="sub-title-info-text">CHECK OUT THE LIST OF YOUR <strong data-toggle="tab" ng-click="gotoSection('upcoming')">NEXT CONTESTS</strong> TO SEE WHEN THEY START</div>
-              <div class="no-contest-bottom-row">
-                <button class="btn-go-to-contest" ng-click="gotoLobby()">GO TO LOBBY</button>
+              <div ng-switch="hasWaitingContests">
+
+                <div class="title-info-text">YOU ARE NOT PLAYING ANY CONTEST AT THE MOMENT</div>
+                <div class="sub-title-info-text">CHECK OUT THE LIST OF YOUR <strong data-toggle="tab" ng-click="gotoSection('upcoming')">NEXT CONTESTS</strong> TO SEE WHEN THEY START</div>
+                <div ng-switch-when="false">
+                  <div class="no-contest-bottom-row">
+                    <button class="btn-go-to-contest" ng-click="gotoLobby()">GO TO LOBBY</button>
+                  </div>
+                </div>
+
+                <div ng-switch-when="true">
+                  <div class="inner-content-wrapper">
+                    <div class="next-contest-start-wrapper">
+                      <div class="next-content-content">
+                        <div class="next-content-title">NEXT CONTEST STARTS</div>
+                        <div class="next-content-time">{{calculateNextUpcommingContest()}}</div>
+                        <div class="no-contest-bottom-row">
+                          <button class="btn-go-to-contest" ng-click="gotoLobby()">GO TO LOBBY</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="promo-wrapper">
+                      <div class="promo-content">
+                        <div class="text-devices">
+                          <div class="title-text">LOREM IPSUM DOLOR SIT AMET</div>
+                          <div class="sub-title-text">Lorem ipsum dolor sit amet, consecteur adipiscing edit.</div>
+                        </div>
+                        <div class="icon-devices">
+                         <img src="images/IconDevicesColor.png" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               </div>
+
           </div>
 
           <!-- lista de concursos -->
@@ -40,11 +72,11 @@
       <div class="tab-pane" id="waiting-contest-content">
         <div class="resume-bar"><span class="information-no-contest">{{waitingContestsMessage}}</span></div>
 
-        <section ng-unless="loadingService.isLoading" ng-switch="hasWaitingContests">
+        <section id="upcoming" ng-unless="loadingService.isLoading" ng-switch="hasWaitingContests">
           <!-- lista vacía -->
           <div class="no-contests-wrapper" ng-switch-when="false">
             <div class="no-contests-content">
-              <div class="default-info-text">Currently you are not participating in any contest</div>
+              <div class="default-info-text">CURRENTLY YOU ARE NOT PARTICIPATING IN ANY CONTEST</div>
               <div class="inner-content-wrapper">
                 <div class="next-contest-start-wrapper">
                   <div class="column-heading">GO TO THE LOBBY, PICK A CONTEST AND START PLAYING</div>
@@ -81,7 +113,7 @@
       <div class="tab-pane" id="history-contest-content">
         <div class="resume-bar"><span class="information-no-contest">{{historyContestsMessage}}</span></div>
 
-        <section ng-unless="loadingService.isLoading" ng-switch="hasHistoryContests">
+        <section  id="history" ng-unless="loadingService.isLoading" ng-switch="hasHistoryContests">
           <!-- lista vacía -->
           <div class="no-contests-wrapper" ng-switch-when="false">
               <div class="title-info-text">YOU HAVEN'T PLAYED ANY CONTEST YET<br>WHAT ARE YOU WAITING FOR TO START WINNING?</div>

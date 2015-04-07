@@ -151,6 +151,14 @@ class Localization {
   get contestRemaining => Intl.message("REMAINING", name: 'contestRemaining');
   get contestDetail => Intl.message("DETAIL", name: 'contestDetail');
 
+  get chooseATeamOf11Players => Intl.message("Choose a team of 11 soccer players from the following matches.", name: 'chooseATeamOf11Players');
+  get contenders => Intl.message("Contenders", name: 'contenders');
+  get information => Intl.message("Information", name: 'information');
+  get enterFromContestInfo => Intl.message("ENTER", name: 'enterFromContestInfo');
+  get scoringRules => Intl.message("SCORING RULES", name: 'scoringRules');
+  get contestsWin => Intl.message("Wins", name: 'contestsWin');
+  get noContendersInThisContest => Intl.message("There are still no contenders in this contest. <br> Encourage to be the first.", name: 'noContendersInThisContest');
+
   contestNumOfContenders(numEntries, maxEntries) => Intl.message("$numEntries of $maxEntries contenders", name: 'contestNumOfContenders', args: [numEntries, maxEntries]);
 
   get myContests => Intl.message("MY CONTESTS", name: 'myContests');
@@ -247,6 +255,7 @@ class Localization {
   get cancelContestEntry => Intl.message("CANCEL PARTICIPATION", name: 'cancelContestEntry');
   get backToContests => Intl.message("BACK TO CONTESTS", name: 'backToContests');
 
+  get prizes => Intl.message("Prizes", name: 'prizes');
   get prizeFree => Intl.message("Free contest. No prizes", name: 'prizeFree');
   get prizeWinner => Intl.message("Winner takes all", name: 'prizeWinner');
   get prizeTop3 => Intl.message("First 3 get prizes", name: 'prizeTop3');

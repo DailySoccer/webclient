@@ -556,6 +556,41 @@
     "type": "text",
     "placeholders": {}
   },
+  "chooseATeamOf11Players": "Elige un equipo de 11 jugadores a partir de los siguientes partidos",
+  "@chooseATeamOf11Players": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contenders": "Participantes",
+  "@contenders": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "information": "Información",
+  "@information": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterFromContestInfo": "ENTRAR",
+  "@enterFromContestInfo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "scoringRules": "REGLAS DE PUNTUACIÓN",
+  "@scoringRules": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contestsWin": "Ganados",
+  "@contestsWin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noContendersInThisContest": "Todavía no hay participantes en este concurso.<br>Anímate a ser el primero.",
+  "@noContendersInThisContest": {
+    "type": "text",
+    "placeholders": {}
+  },
   "matchesInThisContest": "PARTIDOS EN ESTE TORNEO",
   "@matchesInThisContest": {
     "type": "text",
@@ -990,6 +1025,11 @@
   },
   "backToContests": "VOLVER A TORNEOS",
   "@backToContests": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prizes": "Premios",
+  "@prizes": {
     "type": "text",
     "placeholders": {}
   },

@@ -52,6 +52,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static chooseAContender() => "Selecciona un usuario de esta lista para ver y comparar su alineacion con la tuya";
 
+  static chooseATeamOf11Players() => "Elige un equipo de 11 jugadores a partir de los siguientes partidos";
+
   static chooseAnotherPlayer() => "Por favor, elige otro jugador...";
 
   static choosePlayersThatFitTheBudget() => "Por favor, elige jugadores que se ajusten al presupuesto";
@@ -59,6 +61,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static closeFantasyTeam() => "CERRAR";
 
   static competeWithYourFriends() => "Compite en tantos torneos como quieras de Liga, Premier y Champions";
+
+  static contenders() => "Participantes";
 
   static contendersInThisContest() => "USUARIOS EN ESTE TORNEO";
 
@@ -90,6 +94,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static contestWillStartIn() => "EL CONCURSO COMENZARÁ EN";
 
+  static contestsWin() => "Ganados";
+
   static createFantasyTeam() => "CONFIRMAR";
 
   static createYourLineup() => "Crea tu equipo en segundos desde cualquier dispositivo";
@@ -117,6 +123,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static emailInvalid() => "El email no es válido.";
 
   static emailIsNotValid() => "El correo electrónico introducido no es válido.";
+
+  static enterFromContestInfo() => "ENTRAR";
 
   static entryHistory() => "Historial";
 
@@ -310,6 +318,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static immediateCashPayouts() => "Podrás ganar dinero en efectivo con pagos inmediatos";
 
+  static information() => "Información";
+
   static landingMobile1() => "COMPITE EN TANTOS TORNEOS COMO QUIERAS";
 
   static landingMobile2() => "CREA TU EQUIPO EN SEGUNDOS";
@@ -388,6 +398,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static nicknameInvalid() => "El nombre de usuario no es válido.";
 
+  static noContendersInThisContest() => "Todavía no hay participantes en este concurso.<br>Anímate a ser el primero.";
+
   static noMatchesPlayed() => "No ha jugado ningún partido esta temporada";
 
   static notifications() => "NOTIFICACIONES";
@@ -452,6 +464,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static prizeWinner() => "Todo para el ganador";
 
+  static prizes() => "Premios";
+
   static remainingSalary() => "DINERO RESTANTE";
 
   static rememberThatYouCanEdit() => "Recuerda que puedes editar tu equipo cuantas veces quieras hasta que comience la competición";
@@ -491,6 +505,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static saveEditAccount() => "GUARDAR CAMBIOS";
 
   static scoringAndRules() => "Puntuaciones y reglas";
+
+  static scoringRules() => "REGLAS DE PUNTUACIÓN";
 
   static searchPlayer() => "Buscar jugador";
 
@@ -659,10 +675,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "checkNextContestsPost" : checkNextContestsPost,
     "checkNextContestsPre" : checkNextContestsPre,
     "chooseAContender" : chooseAContender,
+    "chooseATeamOf11Players" : chooseATeamOf11Players,
     "chooseAnotherPlayer" : chooseAnotherPlayer,
     "choosePlayersThatFitTheBudget" : choosePlayersThatFitTheBudget,
     "closeFantasyTeam" : closeFantasyTeam,
     "competeWithYourFriends" : competeWithYourFriends,
+    "contenders" : contenders,
     "contendersInThisContest" : contendersInThisContest,
     "contestDetail" : contestDetail,
     "contestEntryFee" : contestEntryFee,
@@ -678,6 +696,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "contestStartedOn" : contestStartedOn,
     "contestStartsOn" : contestStartsOn,
     "contestWillStartIn" : contestWillStartIn,
+    "contestsWin" : contestsWin,
     "createFantasyTeam" : createFantasyTeam,
     "createYourLineup" : createYourLineup,
     "dailyFantasyLeagues" : dailyFantasyLeagues,
@@ -692,6 +711,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "emailHelper" : emailHelper,
     "emailInvalid" : emailInvalid,
     "emailIsNotValid" : emailIsNotValid,
+    "enterFromContestInfo" : enterFromContestInfo,
     "entryHistory" : entryHistory,
     "eventAssist" : eventAssist,
     "eventAttemptSaved" : eventAttemptSaved,
@@ -788,6 +808,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "howItWorks" : howItWorks,
     "howMuchMoneyWantToWithdraw" : howMuchMoneyWantToWithdraw,
     "immediateCashPayouts" : immediateCashPayouts,
+    "information" : information,
     "landingMobile1" : landingMobile1,
     "landingMobile2" : landingMobile2,
     "landingMobile3" : landingMobile3,
@@ -827,6 +848,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "nickname" : nickname,
     "nicknameHelper" : nicknameHelper,
     "nicknameInvalid" : nicknameInvalid,
+    "noContendersInThisContest" : noContendersInThisContest,
     "noMatchesPlayed" : noMatchesPlayed,
     "notifications" : notifications,
     "numOfLiveContests" : numOfLiveContests,
@@ -859,6 +881,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "prizeTop3" : prizeTop3,
     "prizeTopThird" : prizeTopThird,
     "prizeWinner" : prizeWinner,
+    "prizes" : prizes,
     "remainingSalary" : remainingSalary,
     "rememberThatYouCanEdit" : rememberThatYouCanEdit,
     "rememberThatYouCanEditYourTeam" : rememberThatYouCanEditYourTeam,
@@ -879,6 +902,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "rules" : rules,
     "saveEditAccount" : saveEditAccount,
     "scoringAndRules" : scoringAndRules,
+    "scoringRules" : scoringRules,
     "searchPlayer" : searchPlayer,
     "season" : season,
     "seasonData" : seasonData,

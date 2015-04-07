@@ -13,13 +13,14 @@ import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/components/modal_comp.dart';
 import 'package:webclient/services/server_error.dart';
 import 'package:webclient/services/profile_service.dart';
+import 'package:webclient/components/base_comp.dart';
 
 @Component(
   selector: 'contest-info',
   templateUrl: 'packages/webclient/components/contest_info_comp.html',
   useShadowDom: false
 )
-class ContestInfoComp implements DetachAware {
+class ContestInfoComp extends BaseComp implements DetachAware {
 
   bool isModal = false;
   Map currentInfoData;
@@ -38,7 +39,7 @@ class ContestInfoComp implements DetachAware {
       'name'            : '',
       'entry'           : '',
       'prize'           : '',
-      'rules'           : 'Choose a team of 11 soccer players from the following matches.',
+      'rules'           : T.chooseATeamOf11Players,
       'startDateTime'   : '', // 'COMIENZA EL DOM. 15/05 19:00',
       'matchesInvolved' : null,
       'legals'          : '',
@@ -106,12 +107,12 @@ class ContestInfoComp implements DetachAware {
       break;
       case Prize.TOP_THIRD:
         count = contest.prize.numPrizes;
-        fullDesc = count == 1 ? "Winner takes all" : prizeDesc.replaceAll('#', count.toString());
+        fullDesc = count == 1 ? T.prizeWinner : prizeDesc.replaceAll('#', count.toString());
        break;
 
       case Prize.FIFTY_FIFTY:
         count = contest.prize.numPrizes;
-        fullDesc = count == 1 ? "Winner takes all" : prizeDesc.replaceAll('#', count.toString());
+        fullDesc = count == 1 ? T.prizeWinner : prizeDesc.replaceAll('#', count.toString());
       break;
     }
 

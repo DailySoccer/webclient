@@ -202,6 +202,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static filterAll() => "TODOS";
 
+  static filterAllMatches() => "Todos los<br>partidos";
+
+  static filterAllMatchesSelector() => "Todos los partidos";
+
   static filterAvailableContests() => "Torneos disponibles";
 
   static filterChampionsLeague() => "Champions League";
@@ -730,6 +734,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "fieldPosMiddleShort" : fieldPosMiddleShort,
     "filterAccept" : filterAccept,
     "filterAll" : filterAll,
+    "filterAllMatches" : filterAllMatches,
+    "filterAllMatchesSelector" : filterAllMatchesSelector,
     "filterAvailableContests" : filterAvailableContests,
     "filterChampionsLeague" : filterChampionsLeague,
     "filterClear" : filterClear,

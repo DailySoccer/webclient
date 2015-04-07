@@ -6,6 +6,7 @@ import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/match_event.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
+import 'package:webclient/components/base_comp.dart';
 
 
 
@@ -13,7 +14,7 @@ import 'package:webclient/services/screen_detector_service.dart';
     selector: 'matches-filter',
     templateUrl: 'packages/webclient/components/enter_contest/matches_filter_comp.html',
     useShadowDom: false)
-class MatchesFilterComp implements ShadowRootAware {
+class MatchesFilterComp extends BaseComp implements ShadowRootAware {
 
   ScreenDetectorService srcDet;
   List<Map<String, String>> matchEvents = [];
@@ -34,7 +35,7 @@ class MatchesFilterComp implements ShadowRootAware {
     }
 
     matchEvents.clear();
-    matchEvents.add({"id": _ALL_MATCHES, "texto": "All<br>matches", "textoSelector": "All matches"});
+    matchEvents.add({"id": _ALL_MATCHES, "texto": T.filterAllMatches, "textoSelector": T.filterAllMatchesSelector});
 
     theContest.matchEvents.forEach((match) => _addMatchEvent(match));
     runAnimation();

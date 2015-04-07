@@ -132,6 +132,9 @@ class Localization {
   get filterOrderByStartDate => Intl.message("Start Date", name: 'filterOrderByStartDate');
   get filterAvailableContests => Intl.message("Available contests", name: 'filterAvailableContests');
 
+  get filterAllMatches => Intl.message("All<br>matches", name: 'filterAllMatches');
+  get filterAllMatchesSelector => Intl.message("All matches", name: 'filterAllMatchesSelector');
+
   get nextContest => Intl.message("NEXT CONTEST", name: 'nextContest');
 
   get contestSalaryCap => Intl.message("Salary cap", name: 'contestSalaryCap');
@@ -170,7 +173,6 @@ class Localization {
   get waitingContestsInfo => Intl.message("YOU DON'T HAVE ANY TEAM FOR ANY CONTEST<br>RIGHT NOW", name: 'waitingContestsInfo');
   get goToPickContest => Intl.message("GO TO THE CONTEST LIST, PICK ONE AND START PLAYING", name: 'goToPickContest');
   get historyContestsInfo => Intl.message("YOU HAVEN'T PLAYED ANY CONTEST YET<br>WHAT ARE YOU WAITING FOR TO START WINNING?", name: 'historyContestsInfo');
-
 
   get matchesInThisContest => Intl.message("MATCHES IN THIS CONTEST", name: 'matchesInThisContest');
   get matchFinished => Intl.message("Finished", name: 'matchFinished');

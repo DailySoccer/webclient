@@ -721,6 +721,16 @@
     "type": "text",
     "placeholders": {}
   },
+  "filterAllMatches": "Todos los<br>partidos",
+  "@filterAllMatches": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterAllMatchesSelector": "Todos los partidos",
+  "@filterAllMatchesSelector": {
+    "type": "text",
+    "placeholders": {}
+  },
   "lobbyPlay": "JUGAR",
   "@lobbyPlay": {
     "type": "text",

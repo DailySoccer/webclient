@@ -7,16 +7,18 @@ import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/services/server_error.dart';
 import 'dart:html';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/components/base_comp.dart';
 
 @Component(
     selector: 'edit-personal-data',
     templateUrl: 'packages/webclient/components/account/edit_personal_data_comp.html',
     useShadowDom: false
 )
-class EditPersonalDataComp implements ShadowRootAware{
+class EditPersonalDataComp extends BaseComp implements ShadowRootAware{
 
   int MIN_PASSWORD_LENGTH = 8;
   int MIN_NICKNAME_LENGTH = 4;
+  int MAX_NICKNAME_LENGTH = 30;
 
   String country;
   String region;
@@ -31,7 +33,6 @@ class EditPersonalDataComp implements ShadowRootAware{
 
   String nicknameErrorText;
   String emailErrorText;
-  String passwordErrorText;
 
   bool get acceptNewsletter => _acceptNewsletter;
   void set acceptNewsletter(bool value) {
@@ -103,13 +104,7 @@ class EditPersonalDataComp implements ShadowRootAware{
   }
 
   bool validatePassword() {
-    bool retorno = true;
-    // Verificación del password
-    if (editedPassword != editedRepeatPassword && editedPassword.length < MIN_PASSWORD_LENGTH) {
-        passwordErrorText = "Passwords don't match.";
-        retorno = false;
-    }
-    return retorno;
+    return (editedPassword == editedRepeatPassword) && (editedPassword.length >= MIN_PASSWORD_LENGTH);
   }
 
   void saveChanges() {
@@ -122,7 +117,7 @@ class EditPersonalDataComp implements ShadowRootAware{
            ..classes.add("errorDetected")
            ..style.display = '';
 
-         _nickNameErrorLabel.text = "Username must be at least ${MIN_NICKNAME_LENGTH} characters long.";
+         _nickNameErrorLabel.text = T.nicknameHelper(MIN_NICKNAME_LENGTH, MAX_NICKNAME_LENGTH);
          valid_Data = false;
        }
 
@@ -132,7 +127,7 @@ class EditPersonalDataComp implements ShadowRootAware{
            ..classes.add("errorDetected")
            ..style.display = '';
 
-         _emailErrorLabel.text = "Email is not valid.";
+         _emailErrorLabel.text = T.emailIsNotValid;
          valid_Data = false;
        }
       if (!validatePassword() ) {
@@ -141,7 +136,7 @@ class EditPersonalDataComp implements ShadowRootAware{
           ..classes.add("errorDetected")
           ..style.display = '';
 
-        _passwordErrorLabel.text = "Password must be at least ${MIN_PASSWORD_LENGTH} characters long.";
+        _passwordErrorLabel.text = (editedPassword != editedRepeatPassword) ? T.passwordsDontMatch : T.passwordHelper(MIN_PASSWORD_LENGTH);
         valid_Data = false;
       }
 

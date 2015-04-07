@@ -3,13 +3,14 @@ library soccer_players_filter_comp;
 import 'package:angular/angular.dart';
 import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/services/screen_detector_service.dart';
+import 'package:webclient/components/base_comp.dart';
 
 @Component(
     selector: 'soccer-players-filter',
     templateUrl: 'packages/webclient/components/enter_contest/soccer_players_filter_comp.html',
     useShadowDom: false
 )
-class SoccerPlayersFilterComp implements AttachAware {
+class SoccerPlayersFilterComp extends BaseComp implements AttachAware {
 
   ScreenDetectorService scrDet;
 
@@ -45,7 +46,7 @@ class SoccerPlayersFilterComp implements AttachAware {
   }
 
   String getClassForFieldPos(FieldPos fieldPos) => fieldPos == fieldPosFilter? "active" : "";
-  String getTextForFieldPos(FieldPos fieldPos)  => fieldPos == null? "ALL" : fieldPos.abrevName;
+  String getTextForFieldPos(FieldPos fieldPos)  => fieldPos == null? T.filterAll : fieldPos.abrevName;
 
   FieldPos _fieldPosFilter;
   String _nameFilter;

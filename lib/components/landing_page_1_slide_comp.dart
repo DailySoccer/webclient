@@ -6,13 +6,14 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/utils/game_metrics.dart';
+import 'package:webclient/components/base_comp.dart';
 
 
 @Component(
    selector: 'landing-page-1-slide',
    useShadowDom: false
 )
-class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
+class LandingPage1SlideComp extends BaseComp implements ShadowRootAware, DetachAware {
 
   String content;
   ScreenDetectorService scrDet;
@@ -86,30 +87,30 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
       </div>
     ''';
 
-  String _theDesktopHTML =
+  String get _theDesktopHTML =>
     '''
       <div id="desktopContent">    
         <div class="main-title-wrapper">
     
-          <div class="main-title">DAILY FANTASY LEAGUES</div>
+          <div class="main-title">${T.dailyFantasyLeagues}</div>
           <div class="main-sub-title">
-            Play whenever you want, wherever your want. Win prizes with no season-long commitment.
+            ${T.playWheneverYouWant}
           </div>
           <div class="button-wrap">
-            <button type="button" class="button-play" buttonOnclick="lobby.welcome" id="playButton1">PLAY NOW</button>
+            <button type="button" class="button-play" buttonOnclick="lobby.welcome" id="playButton1">${T.playNow}</button>
           </div>
           <div class="text-wrapper">
     
             <div class="module-column">
-              <p class="icono-text">Compete with your friends in La Liga, Premier and Champions</p>
+              <p class="icono-text">${T.competeWithYourFriends}</p>
             </div>
     
             <div class="module-column">
-              <p class="icono-text">Create your lineup, on your computer, tablet or smartphone in seconds</p>
+              <p class="icono-text">${T.createYourLineup}</p>
             </div>
     
             <div class="module-column">
-              <p class="icono-text">Immediate cash payouts</p>
+              <p class="icono-text">${T.immediateCashPayouts}</p>
             </div>
     
           </div>
@@ -130,20 +131,21 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
       </div>
     ''';
 
-  String _theMobileHTML =
+  String get _theMobileHTML =>
   '''
         <div id="mobileContent">
           <div class="content">
-            <p class="main-title-mobile">DAILY FANTASY <br> LEAGUES</p>
-            <p class="title-sup-text-mobile">PLAY AS MANY CONTESTS AS YOU WANT</p>
-            <p class="title-sup-text-mobile">CREATE YOUR LINEUP IN SECONDS</p>
-            <p class="title-sup-text-mobile">AND WIN CASH</p>
+            <p class="main-title-mobile">${T.dailyFantasyLeaguesMobile}</p>
+            <p class="title-sup-text-mobile">${T.landingMobile1}</p>
+            <p class="title-sup-text-mobile">${T.landingMobile2}</p>
+            <p class="title-sup-text-mobile">${T.landingMobile3}</p>
             <div class="button-wrap">
-              <button type="button" class="button-play-mobile" buttonOnclick="lobby.welcome" id="playButtonMobile">PLAY NOW</button>
+              <button type="button" class="button-play-mobile" buttonOnclick="lobby.welcome" id="playButtonMobile">${T.playNow}</button>
             </div>
           </div> 
         </div>
     ''';
+
   var _streamListener;
 
   int _windowHeigtht;

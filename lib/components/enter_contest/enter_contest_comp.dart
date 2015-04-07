@@ -20,13 +20,14 @@ import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/utils/html_utils.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/components/modal_comp.dart';
+import 'package:webclient/components/base_comp.dart';
 
 @Component(
     selector: 'enter-contest',
     templateUrl: 'packages/webclient/components/enter_contest/enter_contest_comp.html',
     useShadowDom: false
 )
-class EnterContestComp implements DetachAware {
+class EnterContestComp extends BaseComp implements DetachAware {
 
   static const String ERROR_RETRY_OP = "ERROR_RETRY_OP";
   static const String ERROR_CONTEST_NOT_ACTIVE = "ERROR_CONTEST_NOT_ACTIVE";
@@ -141,7 +142,7 @@ class EnterContestComp implements DetachAware {
     bool isLineupEmpty = !lineupSlots.any((soccerPlayer) => soccerPlayer != null);
     // Si no hemos metido a nadie en nuestro equipo
     if(!isLineupEmpty && !_teamConfirmed && !editingContestEntry) {
-      _flashMessage.addGlobalMessage("Lineup saved", 3);
+      _flashMessage.addGlobalMessage("${T.lineupSaved}", 3);
     }else {
       event.allowLeave(new Future<bool>.value(true));
       return;
@@ -407,25 +408,25 @@ class EnterContestComp implements DetachAware {
     ModalComp.open(_router, "enter_contest.soccer_player_stats", { "instanceSoccerPlayerId":soccerPlayerId, "selectable":isSlotAvailableForSoccerPlayer(soccerPlayerId)}, addSoccerPlayerToLineup);
   }
 
-  Map<String, Map> errorMap = {
+  Map<String, Map> get errorMap => {
     ERROR_CONTEST_NOT_ACTIVE: {
-        "title"   : "Live Contest",
-        "generic" : "It is not possible to enter a live contest.",
-        "editing" : "It is not possible to modify your lineup once the contest has started."
+        "title"   : T.errorContestNotActiveTitle,
+        "generic" : T.errorContestNotActiveGeneric,
+        "editing" : T.errorContestNotActiveEditing
     },
     ERROR_MAX_PLAYERS_SAME_TEAM: {
-      "title"   : "Players from same team",
-      "generic" : "It is not possible...",
+      "title"   : T.errorMaxPlayersSameTeamTitle,
+      "generic" : T.errorMaxPlayersSameTeamGeneric
     },
     // TODO: Avisamos al usuario de que no dispone del dinero suficiente pero, cuando se integre la branch "paypal-ui", se le redirigirá a "añadir fondos"
     ERROR_USER_BALANCE_NEGATIVE: {
-      "title"   : "Not enough cash",
-      "generic" : "You do not have enough cash to enter this contest. Please, add funds to continue."
+      "title"   : T.errorUserBalanceNegativeTitle,
+      "generic" : T.errorUserBalanceNegativeGeneric
     },
     "_ERROR_DEFAULT_": {
-        "title"   : "Warning",
-        "generic" : "An error has occurred. You can not enter this contest at the moment. Please, try again later.",
-        "editing" : "An error has occurred. You can not modify your lineup at the moment. Please, try again later.",
+        "title"   : T.errorDefaultTitle,
+        "generic" : T.errorDefaultGeneric,
+        "editing" : T.errorDefaultEditing
     },
   };
 

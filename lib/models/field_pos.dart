@@ -1,6 +1,8 @@
 library field_pos;
+import 'package:webclient/utils/localization.dart';
 
 class FieldPos {
+  static Localization get T => Localization.instance;
 
   // Las unicas instancias de FieldPos en todo el programa
   static Map<String, FieldPos> FIELD_POSITIONS = {
@@ -12,20 +14,20 @@ class FieldPos {
 
   // Mapeamos los fieldPos que nos llegan de la DB a nombres que podemos exponer al usuario
   static Map<String, String> FIELD_POSITION_FULL_NAMES = {
-    'GOALKEEPER': "GOALKEEPER",
-    'DEFENSE': "DEFENDER",
-    'MIDDLE': "MIDFIELDER",
-    'FORWARD': "FORWARD"
+    'GOALKEEPER': T.fieldPosGoalkeeper,
+    'DEFENSE': T.fieldPosDefense,
+    'MIDDLE': T.fieldPosMiddle,
+    'FORWARD': T.fieldPosForward
   };
 
   static Map<String, String> FIELD_POSITION_ABREV = {
-      'GOALKEEPER': "GK",
-      'DEFENSE':    "DEF",
-      'MIDDLE':     "MID",
-      'FORWARD':    "FWD"
+      'GOALKEEPER': T.fieldPosGoalkeeperShort,
+      'DEFENSE':    T.fieldPosDefenseShort,
+      'MIDDLE':     T.fieldPosMiddleShort,
+      'FORWARD':    T.fieldPosForwardShort
    };
 
-  static List<String> SORT_ORDER = ["GK", "DEF", "MID", "FWD"];
+  static List<String> SORT_ORDER = [T.fieldPosGoalkeeperShort, T.fieldPosDefenseShort, T.fieldPosMiddleShort, T.fieldPosForwardShort];
 
   // Nuestra alineacion por defecto
   static List<String> LINEUP = [ "GOALKEEPER", "DEFENSE", "DEFENSE", "DEFENSE", "DEFENSE", "MIDDLE", "MIDDLE", "MIDDLE", "MIDDLE", "FORWARD", "FORWARD" ];

@@ -5,13 +5,14 @@ import 'package:webclient/models/contest_entry.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/components/base_comp.dart';
 
 @Component(
    selector: 'users-list',
    templateUrl: 'packages/webclient/components/view_contest/users_list_comp.html',
    useShadowDom: false
 )
-class UsersListComp {
+class UsersListComp extends BaseComp {
 
   List users = new List();
 

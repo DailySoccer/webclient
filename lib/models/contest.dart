@@ -12,6 +12,7 @@ import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/prizes_service.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/models/money.dart';
+import 'package:webclient/utils/localization.dart';
 
 class Contest {
   static const MAX_PLAYERS_SAME_TEAM = 4;
@@ -35,6 +36,8 @@ class Contest {
   static const COMPETITION_LEAGUE_UCL_ID    = "5";
   static const COMPETITION_WORLDCUP_ID      = "4";
 
+  Localization get T => Localization.instance;
+
   String contestId;
   String templateContestId;
 
@@ -55,7 +58,6 @@ class Contest {
   int salaryCap;
 
   String get printableSalaryCap => StringUtils.parseSalary(salaryCap);
-
 
   String get tier {
     if (salaryCap >= SALARY_LIMIT_FOR_BEGINNERS)
@@ -86,9 +88,9 @@ class Contest {
    // print("estado del concurso: ${state}");
     /* los partidos en vivo o en history no continen los participantes que tiene el concurso */
     if(isLive || isHistory) {
-      return "${tournamentTypeName} - Salary cap: ${printableSalaryCap}";
+      return "$tournamentTypeName - ${T.contestSalaryCap}: $printableSalaryCap";
     }
-    return "${tournamentTypeName}: ${numEntries} of ${maxEntries} contenders - Salary cap: ${printableSalaryCap}";
+    return "$tournamentTypeName: ${T.contestNumOfContenders(numEntries, maxEntries)} - ${T.contestSalaryCap}: $printableSalaryCap";
   }
 
   List<ContestEntry> get contestEntriesOrderByPoints {
@@ -120,10 +122,10 @@ class Contest {
 
   Map<String,String> get tournamentTypeNames {
     return {
-      TOURNAMENT_FREE: "Free",
-      TOURNAMENT_HEAD_TO_HEAD: "Head to Head",
-      TOURNAMENT_LEAGUE: "League",
-      TOURNAMENT_FIFTY_FIFTY: "50/50"
+      TOURNAMENT_FREE: T.tournamentFree,
+      TOURNAMENT_HEAD_TO_HEAD: T.tournamentHeadToHead,
+      TOURNAMENT_LEAGUE: T.tournamentLeague,
+      TOURNAMENT_FIFTY_FIFTY: T.tournamentFiftyFifty
     };
   }
 

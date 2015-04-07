@@ -12,13 +12,14 @@ import 'package:webclient/models/contest_entry.dart';
 import 'dart:html';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/server_error.dart';
+import 'package:webclient/components/base_comp.dart';
 
 @Component(
    selector: 'view-contest-entry',
    templateUrl: 'packages/webclient/components/view_contest/view_contest_entry_comp.html',
    useShadowDom: false
 )
-class ViewContestEntryComp {
+class ViewContestEntryComp extends BaseComp {
   ScreenDetectorService scrDet;
   LoadingService loadingService;
 

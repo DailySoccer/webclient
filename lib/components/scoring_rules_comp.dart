@@ -6,13 +6,14 @@ import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/models/soccer_player.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/services/server_error.dart';
+import 'package:webclient/components/base_comp.dart';
 
 @Component(
   selector:     'scoring-rules',
   templateUrl:  'packages/webclient/components/scoring_rules_comp.html',
   useShadowDom: false
 )
-class ScoringRulesComp {
+class ScoringRulesComp extends BaseComp {
 
   List<Map> AllPlayers;
   List<Map> GoalKeepers;

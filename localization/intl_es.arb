@@ -1,0 +1,1872 @@
+{
+  "betaVersion": "EPIC ELEVEN: VERSIÓN BETA",
+  "@betaVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sectionNotAvailable": "ESTA SECCIÓN NO ESTA DISPONIBLE",
+  "@sectionNotAvailable": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "thisIsABetaVersion": "Lo sentimos, esta es una versión beta de Epic Eleven.<br>Próximamente podrás jugar y ganar premios en metálico y tendrás habilitadas<br>todas las funcionalidades necesarias. Te avisaremos cuando esté operativo<br><br><b>Muchas gracias</b>",
+  "@thisIsABetaVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dailyFantasyLeagues": "LIGAS FANTÁSTICAS DIARIAS",
+  "@dailyFantasyLeagues": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "playWheneverYouWant": "Juega y gana cuando quieras, sin esperar al final de la temporada.",
+  "@playWheneverYouWant": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "playNow": "JUGAR",
+  "@playNow": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "competeWithYourFriends": "Compite en tantos torneos como quieras de Liga, Premier y Champions",
+  "@competeWithYourFriends": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createYourLineup": "Crea tu equipo en segundos desde cualquier dispositivo",
+  "@createYourLineup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "immediateCashPayouts": "Podrás ganar dinero en efectivo con pagos inmediatos",
+  "@immediateCashPayouts": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "days":"{num, plural, =0{DIAS}=1{DIA}other{DIAS}}",
+  "@days":{
+    "type": "text",
+    "placeholders" : { 
+      "num":{}
+    }
+  },
+  "today": "HOY",
+  "@today": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "leftXMin": "Faltan",
+  "@leftXMin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dailyFantasyLeaguesMobile": "LIGAS FANTÁSTICAS <br> DIARIAS",
+  "@dailyFantasyLeaguesMobile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "landingMobile1": "COMPITE EN TANTOS TORNEOS COMO QUIERAS",
+  "@landingMobile1": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "landingMobile2": "CREA TU EQUIPO EN SEGUNDOS",
+  "@landingMobile2": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "landingMobile3": "Y GANA DINERO",
+  "@landingMobile3": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fullname": "Nombre personal",
+  "@fullname": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nickname": "Nombre de usuario",
+  "@nickname": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "email": "Correo electrónico",
+  "@email": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "password": "Contraseña",
+  "@password": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "repeatPassword": "Repite la contraseña",
+  "@repeatPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "users": "Usuarios",
+  "@users": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "opponent": "Adversario",
+  "@opponent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editMyAccount": "EDITAR",
+  "@editMyAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editAccount": "EDITAR CUENTA",
+  "@editAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "name": "Nombre",
+  "@name": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastName": "Apellidos",
+  "@lastName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordFillBothFieldsToUpdate": "Contraseña (Rellena los campos de contraseña para actualizar tu contraseña)",
+  "@passwordFillBothFieldsToUpdate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveEditAccount": "GUARDAR CAMBIOS",
+  "@saveEditAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancelEditAccount": "CANCELAR",
+  "@cancelEditAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordsDontMatch": "Las contraseñas no coinciden",
+  "@passwordsDontMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notifications": "NOTIFICACIONES",
+  "@notifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newsletterSpecialOffers": "NEWSLETTER/OFERTAS ESPECIALES",
+  "@newsletterSpecialOffers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "gameNotifications": "NOTIFICACIONES DE JUEGO",
+  "@gameNotifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ownTransferNotifications": "NOTIFICACIONES DE TUS FICHAJES",
+  "@ownTransferNotifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wallet": "MONEDERO",
+  "@wallet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transactions": "TRANSACCIONES",
+  "@transactions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "actualBalance": "Balance actual",
+  "@actualBalance": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pendingBonus": "Bonus pendientes",
+  "@pendingBonus": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transactionHistory": "HISTORIAL DE TRANSACCIONES",
+  "@transactionHistory": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transactionDate": "FECHA",
+  "@transactionDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transactionId": "ID",
+  "@transactionId": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transactionSubject": "CONCEPTO",
+  "@transactionSubject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transactionValue": "IMPORTE",
+  "@transactionValue": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transactionBalance": "SALDO",
+  "@transactionBalance": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "signupTitle": "REGÍSTRATE",
+  "@signupTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "signupDescription": "¿Todavía no tienes cuenta en EPIC ELEVEN?<br>Rellena este formulario para completar el registro.",
+  "@signupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nicknameHelper": "Tu nombre de usuario debe tener entre {minLength} y {maxLength} caracteres.",
+  "@nicknameHelper": {
+    "type": "text",
+    "placeholders": {
+      "minLength": {},
+      "maxLength": {}
+     }
+  },
+  "nicknameInvalid": "El nombre de usuario no es válido.",
+  "@nicknameInvalid": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emailHelper": "Introduce un email válido.",
+  "@emailHelper": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emailInvalid": "El email no es válido.",
+  "@emailInvalid": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emailIsNotValid": "El correo electrónico introducido no es válido.",
+  "@emailIsNotValid": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordHelper": "Contraseña: Al menos $minLength caracteres.",
+  "@passwordHelper": {
+    "type": "text",
+    "placeholders": {
+      "minLength": {}
+    }
+  },
+  "passwordTypeItTwice": "(Escríbela dos veces).",
+  "@passwordTypeItTwice": {
+    "type": "text",
+    "placeholders": {
+      "minLength": {}
+    }
+  },
+  "passwordInvalid": "La contraseñna no es válida.",
+  "@passwordInvalid": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "signupNow": "REGÍSTRATE",
+  "@signupNow": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancelSignup": "CANCELAR",
+  "@cancelSignup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "haveAnAccount": "¿Ya tienes cuenta?",
+  "@haveAnAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginHere": "Entra por aquí!",
+  "@loginHere": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginTitle": "ENTRA",
+  "@loginTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginDescription": "Introduce tu cuenta de correo electrónico y tu contraseña para acceder a los torneos.",
+  "@loginDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "forgotYourPassword": "¿Olvidaste tu contraseña?",
+  "@forgotYourPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancelLogin": "CANCELAR",
+  "@cancelLogin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginNow": "ENTRAR",
+  "@joinNow": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "doNotHaveAnAccount": "¿Aún no tienes cuenta?",
+  "@doNotHaveAnAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "signupHere": "Regístrate aquí!",
+  "@signupHere": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginError": "ERROR DE LOGIN. Los datos inroducidos no son correctos.",
+  "@loginError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "rememberPassword": "RECORDAR CONTRASEÑA",
+  "@rememberPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "haveSentYouAnEmailTo": "Te hemos enviado un correo electrónico a la dirección",
+  "@haveSentYouAnEmailTo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "checkYouInbox": "Revisa tu correo y sigue las instrucciones en el email que te hemos enviado.",
+  "@checkYouInbox": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "rememberPasswordInfo": "¿Olvidaste tu contraseña? Introduce la dirección de correo electrónico y recibirás un email para recuperar tu cuenta.",
+  "@rememberPasswordInfo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterEmailInRememberPassword": "Introduce la dirección de correo electrónico con la que te registraste",
+  "@enterEmailInRememberPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "continueRememberPassword": "ENVIAR",
+  "@continueRememberPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancelRememberPassword": "CANCELAR",
+  "@cancelRememberPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changePassword": "CAMBIO DE CONTRASEÑA",
+  "@changePassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pageNotAvailable": "La página solicitada no está disponible",
+  "@pageNotAvailable": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tokenInvalid": "El token proporcionado no es válido o ha expirado.",
+  "@tokenInvalid": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createNewPassword": "Crea una nueva contraseña.",
+  "@createNewPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "continueChangePassword": "ENTRAR",
+  "@continueChangePassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancelChangePassword": "CANCELAR",
+  "@cancelChangePassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuLobby": "Buscar Torneos",
+  "@menuLobby": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuMyContests": "Mis Torneos",
+  "@menuMyContests": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuHowItWorks": "Cómo Jugar",
+  "@menuHowItWorks": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuMyAccount": "Mi Cuenta",
+  "@menuMyAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuAddFuns": "Añadir Fondos",
+  "@menuAddFuns": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuTransactionHistory": "Historial de Transacciones",
+  "@menuTransactionHistory": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuLogout": "Salir",
+  "@menuLogout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "footerHelp": "AYUDA",
+  "@footerHelp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "footerLegal": "LEGAL",
+  "@footerLegal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "footerTermsOfUse": "TÉRMINOS DE USO",
+  "@footerTermsOfUse": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "footerPrivacyPolicy": "POLÍTICA DE PRIVACIDAD",
+  "@footerPrivacyPolicy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "footerBlog": "BLOG",
+  "@footerBlog": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contestNumOfContenders": "{numEntries} de {maxEntries} participantes",
+  "@contestNumOfContenders": {
+    "type": "text",
+    "placeholders": {
+      "numEntries": {},
+      "maxEntries": {}
+    }
+  },
+  "myContests": "MIS TORNEOS",
+  "@myContests": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "live": "En Vivo",
+  "@live": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "upcoming": "Próximos",
+  "@upcoming": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "entryHistory": "Historial",
+  "@entryHistory": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "numOfLiveContests": "TIENES {num} TORNEOS ACTIVOS",
+  "@numOfLiveContests": {
+    "type": "text",
+    "placeholders": {
+      "num": {}
+    }
+  },
+  "youCanCheckYourLiveContests": "AQUÍ PODRÁS CONSULTAR EN TIEMPO REAL LOS TORNEOS QUE TENGAS ACTIVOS",
+  "@youCanCheckYourLiveContests": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "numOfWaitingContests": "TE HAS INSCRITO EN {num} TORNEOS",
+  "@numOfWaitingContests": {
+    "type": "text",
+    "placeholders": {
+      "num": {}
+    }
+  },
+  "youCanCheckYourContestsAndEdit": "AQUÍ PODRÁS CONSULTAR Y MODIFICAR LOS EQUIPOS QUE TIENES PENDIENTES DE JUGAR EN UN TORNEO",
+  "@youCanCheckYourContestsAndEdit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "numOfWonContests": "{num} REGISTROS {won} GANADOS",
+  "@numOfWonContests": {
+    "type": "text",
+    "placeholders": {
+      "num": {},
+      "won": {}
+    }
+  },
+  "youcanCheckYourPastContests": "AQUÍ PODRÁS REPASAR TODOS LOS TORNEOS QUE HAS JUGADO: TUS EQUIPOS, RIVALES, PUNTUACIONES…",
+  "@youcanCheckYourPastContests": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nextContest": "SIGUIENTE TORNEO",
+  "@nextContest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "liveContestsInfo": "EN ESTE MOMENTO, NO ESTÁS JUGANDO<br>NINGÚN TORNEO",
+  "@liveContestsInfo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "checkNextContestsPre": "CONSULTA LA LISTA DE TUS",
+  "@checkNextContestsPre": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "checkNextContestsLink": "PRÓXIMOS TORNEOS",
+  "@checkNextContestsLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "checkNextContestsPost": "PARA VER CUÁNDO EMPIEZAN",
+  "@checkNextContestsPost": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toTheContests": "IR A LOS TORNEOS",
+  "@toTheContests": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "waitingContestsInfo": "EN ESTE MOMENTO, NO TIENES UN<br>EQUIPO CREADO PARA NINGÚN TORNEO",
+  "@waitingContestsInfo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "goToPickContest": "VE A LA LISTA DE TORNEOS, ELIGE UNO Y EMPIEZA A JUGAR",
+  "@goToPickContest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "historyContestsInfo": "TODAVÍA NO HAS JUGADO NINGÚN TORNEO<br>¿A QUE ESPERAS PARA EMPEZAR A GANAR?",
+  "@historyContestsInfo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contestSalaryCap": "Límite de salario",
+  "@contestSalaryCap": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contestEntryFee": "ENTRADA",
+  "@contestEntryFee": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contestPosition": "DE",
+  "@contestPosition": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contestPrize": "PREMIO",
+  "@contestPrize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contestPoints": "PUNTOS",
+  "@contestPoints": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contestFinished": "FINALIZADO",
+  "@contestFinished": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contestStartedOn": "COMENZÓ EL",
+  "@contestStartedOn": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contestStartsOn": "COMIENZA EL",
+  "@contestStartedOn": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contestSoon": "EN BREVE",
+  "@contestSoon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contestWillStartIn": "EL CONCURSO COMENZARÁ EN",
+  "@contestWillStartIn": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contestRemaining": "FALTAN",
+  "@contestRemaining": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contestDetail": "VER",
+  "@contestDetail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseATeamOf11Players": "Elige un equipo de 11 jugadores a partir de los siguientes partidos",
+  "@chooseATeamOf11Players": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contenders": "Participantes",
+  "@contenders": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "information": "Información",
+  "@information": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterFromContestInfo": "ENTRAR",
+  "@enterFromContestInfo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "scoringRules": "REGLAS DE PUNTUACIÓN",
+  "@scoringRules": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contestsWin": "Ganados",
+  "@contestsWin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noContendersInThisContest": "Todavía no hay participantes en este concurso.<br>Anímate a ser el primero.",
+  "@noContendersInThisContest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "matchesInThisContest": "PARTIDOS EN ESTE TORNEO",
+  "@matchesInThisContest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "matchFinished": "Finalizado",
+  "@matchFinished": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "matchFirstHalf": "1ª Parte",
+  "@matchFirstHalf": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "matchSecondHalf": "2ª Parte",
+  "@matchSecondHalf": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tournamentFree": "Gratuito",
+  "@tournamentFree": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tournamentHeadToHead": "1 contra 1",
+  "@tournamentHeadToHead": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tournamentLeague": "Liga",
+  "@tournamentLeague": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tournamentFiftyFifty": "50/50",
+  "@tournamentFiftyFifty": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filters": "FILTROS",
+  "@filters": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterSortBy": "Ordenar por",
+  "@filterSortBy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterSearchContest": "Buscar torneo",
+  "@filterSearchContest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterCompetition": "COMPETICIÓN",
+  "@filterCompetition": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterContests": "TORNEOS",
+  "@filterContests": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterSalaryCap": "LÍMITE DE SALARIO",
+  "@filterSalaryCap": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterEntryFee": "ENTRADA",
+  "@filterEntryFee": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterMin": "MIN",
+  "@filterMin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterMax": "MAX",
+  "@filterMax": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterClear": "LIMPIAR FILTROS",
+  "@filterClear": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterAccept": "ACEPTAR",
+  "@filterAccept": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterSpanishLaLiga": "Liga Española",
+  "@filterSpanishLaLiga": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterPremierLeague": "Premier League",
+  "@filterPremierLeague": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterChampionsLeague": "Champions League",
+  "@filterChampionsLeague": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterFree": "Gratuitos",
+  "@filterFree": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterHeadToHead": "1 contra 1",
+  "@filterHeadToHead": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterLeague": "Liga",
+  "@filterLeague": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterFiftyFifty": "50 / 50",
+  "@filterFiftyFifty": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterTierBeginner": "Principiante",
+  "@filterTierBeginner": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterTierStandard": "Estándar",
+  "@filterTierStandard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterTierExpert": "Experto",
+  "@filterTierExpert": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterOrderByName": "Nombre",
+  "@filterOrderByName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterOrderByEntryFee": "Entrada",
+  "@filterOrderByEntryFee": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterOrderByStartDate": "Comienzo",
+  "@filterOrderByStartDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterAvailableContests": "Torneos disponibles",
+  "@filterAvailableContests": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterAllMatches": "Todos los<br>partidos",
+  "@filterAllMatches": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterAllMatchesSelector": "Todos los partidos",
+  "@filterAllMatchesSelector": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lobbyPlay": "JUGAR",
+  "@lobbyPlay": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lineupSaved": "Se ha guardado tu alineación",
+  "@lineupSaved": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourLineup": "Tu alineación",
+  "@yourLineup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contestInfo": "Info torneo",
+  "@contestInfo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancelPlayerSelection": "CANCELAR",
+  "@cancelPlayerSelection": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "remainingSalary": "DINERO RESTANTE",
+  "@remainingSalary": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteFantasyTeam": "BORRAR TODO",
+  "@deleteFantasyTeam": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createFantasyTeam": "CONFIRMAR",
+  "@createFantasyTeam": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "rememberThatYouCanEditYourTeam": "Recuerda que puedes editar tu equipo cuantas veces quieras hasta que comience la competición",
+  "@rememberThatYouCanEditYourTeam": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editTheLineup": "EDITAR EL EQUIPO",
+  "@editTheLineup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userPositionTitle": "POS",
+  "@userPositionTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userScoreTitle": "PUNTOS",
+  "@userScoreTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userNameTitle": "JUGADOR",
+  "@userNameTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userRemainingTimeTitle": "T.R.",
+  "@userRemainingTimeTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userRemainingTime": "TIEMPO RESTANTE",
+  "@userRemainingTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userPrizesTitle": "PREMIOS",
+  "@userPrizesTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "closeFantasyTeam": "CERRAR",
+  "@closeFantasyTeam": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "playerOwned": "LO TIENEN",
+  "@playerOwned": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fieldPosGoalkeeper": "PORTERO",
+  "@fieldPosGoalkeeper": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fieldPosDefense": "DEFENSA",
+  "@fieldPosDefense": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fieldPosMiddle": "CENTROCAMPISTA",
+  "@fieldPosMiddle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fieldPosForward": "DELANTERO",
+  "@fieldPosForward": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fieldPosGoalkeeperShort": "POR",
+  "@fieldPosGoalkeeperShort": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fieldPosDefenseShort": "DEF",
+  "@fieldPosDefenseShort": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fieldPosMiddleShort": "MED",
+  "@fieldPosMiddleShort": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fieldPosForwardShort": "DEL",
+  "@fieldPosForwardShort": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "playerOrderPos": "Pos.",
+  "@playerOrderPos": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "playerOrderName": "Nombre",
+  "@playerOrderName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "playerOrderDFP": "DFP",
+  "@playerOrderDFP": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "playerOrderMatches": "Jugados",
+  "@playerOrderMatches": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "playerOrderSalary": "Sueldo",
+  "@playerOrderSalary": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "players": "JUGADORES",
+  "@players": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "searchPlayer": "Buscar jugador",
+  "@searchPlayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "filterAll": "TODOS",
+  "@filterAll": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "allPlayers": "TODOS LOS JUGADORES",
+  "@allPlayers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "goalkeepers": "PORTEROS",
+  "@goalkeepers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "defenders": "DEFENSAS",
+  "@defenders": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "midfielders": "CENTROCAMPISTAS",
+  "@midfielders": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "forwards": "DELANTEROS",
+  "@forwards": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contendersInThisContest": "USUARIOS EN ESTE TORNEO",
+  "@contendersInThisContest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseAContender": "Selecciona un usuario de esta lista para ver y comparar su alineacion con la tuya",
+  "@chooseAContender": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addPlayerToFantasyTeam": "AÑADIR",
+  "@addPlayerToFantasyTeam": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youHaveSpentTheSalaryCap": "Te has pasado del límite salarial",
+  "@youHaveSpentTheSalaryCap": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "choosePlayersThatFitTheBudget": "Por favor, elige jugadores que se ajusten al presupuesto",
+  "@choosePlayersThatFitTheBudget": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youHavePlayersOfSameTeam": "Ups! Parece que ya tienes {maxPlayers} jugadores del mismo equipo",
+  "@youHavePlayersOfSameTeam": {
+    "type": "text",
+    "placeholders": {
+      "maxPlayers": {}
+    }
+  },
+  "chooseAnotherPlayer": "Por favor, elige otro jugador...",
+  "@chooseAnotherPlayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "haveCompletedYourLineup": "¡PERFECTO! HAS COMPLETADO TU ALINEACIÓN CON ÉXITO",
+  "@haveCompletedYourLineup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "haveEditedYourLineup": "¡PERFECTO! HAS EDITADO TU ALINEACIÓN CON ÉXITO",
+  "@haveEditedYourLineup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "havePutYouInEquivalentContest": "EL TORNEO ESTABA LLENO PERO TE HEMOS METIDO EN ESTE QUE ES IGUAL",
+  "@havePutYouInEquivalentContest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "rememberThatYouCanEdit": "Recuerda que puedes editar tu equipo cuantas veces quieras hasta que comience la competición",
+  "@rememberThatYouCanEdit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancelContestEntry": "CANCELAR PARTICIPACIÓN",
+  "@cancelContestEntry": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "backToContests": "VOLVER A TORNEOS",
+  "@backToContests": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prizes": "Premios",
+  "@prizes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prizeFree": "Concurso Gratuito. No hay premios a repartir",
+  "@prizeFree": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prizeWinner": "Todo para el ganador",
+  "@prizeWinner": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prizeTop3": "Los 3 primeros concursantes reciben premio",
+  "@prizeTop3": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prizeTopThird": "Los # primeros reciben premio",
+  "@prizeTopThird": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prizeFiftyFifty": "Los # primeros reciben premio",
+  "@prizeFiftyFifty": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventPassSuccessful": "Pase completado",
+  "@eventPassSuccessful": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventPassUnsuccessful": "Pase no completado",
+  "@eventPassUnsuccessful": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventTakeOn": "Regate",
+  "@eventTakeOn": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventFoulReceived": "Falta recibida",
+  "@eventFoulReceived": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventTackle": "Entrada",
+  "@eventTackle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventInterception": "Intercepción",
+  "@eventInterception": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventSaveGoalkeeper": "Parada",
+  "@eventSaveGoalkeeper": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventSavePlayer": "Disparo defendido",
+  "@eventSavePlayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventClaim": "Anticipación",
+  "@eventClaim": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventClearance": "Despeje",
+  "@eventClearance": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventMiss": "Disparo fuera",
+  "@eventMiss": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventPost": "Disparo al poste",
+  "@eventPost": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventAttemptSaved": "Disparo a puerta",
+  "@eventAttemptSaved": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventYellowCard": "Tarjeta amarilla",
+  "@eventYellowCard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventPunch": "Despeje de puño",
+  "@eventPunch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventDispossessed": "Pérdida de balón",
+  "@eventDispossessed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventError": "Error",
+  "@eventError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventDecisiveError": "Error grave",
+  "@eventDecisiveError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventAssist": "Asistencia",
+  "@eventAssist": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventTackleEffective": "Entrada exitosa",
+  "@eventTackleEffective": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventGoal": "Gol",
+  "@eventGoal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventOwnGoal": "Gol en propia meta",
+  "@eventOwnGoal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventFoulCommitted": "Falta cometida",
+  "@eventFoulCommitted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventSecondYellowCard": "Segunda tarjeta amarilla",
+  "@eventSecondYellowCard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventRedCard": "Tarjeta roja",
+  "@eventRedCard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventCaughtOffside": "Fuera de juego",
+  "@eventCaughtOffside": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventPenaltyCommitted": "Penalti cometido",
+  "@eventPenaltyCommitted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventPenaltyFailed": "Penalti fallado",
+  "@eventPenaltyFailed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventGoalkeeperSavesPenalty": "Penalti parado",
+  "@eventGoalkeeperSavesPenalty": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventCleanSheet": "Sin goles encajados",
+  "@eventCleanSheet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventGoalConceded": "Gol encajado",
+  "@eventGoalConceded": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "playerStatistics": "ESTADÍSTICAS DEL JUGADOR",
+  "@playerStatistics": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "playerDFP": "DFP",
+  "@playerDFP": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "playerMatches": "PARTIDOS",
+  "@playerMatches": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "playerSalary": "SALARIO",
+  "@playerSalary": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "seasonData": "Datos de Temporada",
+  "@seasonData": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "matchByMatch": "Partido a Partido",
+  "@matchByMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "seasonStatistics": "ESTADÍSTICAS DE TEMPORADA <span>(DATOS POR PARTIDO)</span>",
+  "@seasonStatistics": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noMatchesPlayed": "No ha jugado ningún partido esta temporada",
+  "@noMatchesPlayed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "season": "Temporada",
+  "@season": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "matchDate": "Fecha",
+  "@matchDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "matchOpponent": "Oponente",
+  "@matchOpponent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "matchDailyFantasyPoints": "Daily Fantasy Points",
+  "@matchDailyFantasyPoints": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "matchMinutes": "Minutos",
+  "@matchMinutes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nextMatch": "PRÓXIMO PARTIDO",
+  "@nextMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statPasses": "Pases",
+  "@statPasses": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statPassesShortName": "P",
+  "@statPassesShortName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statRecoveries": "Recuperaciones",
+  "@statRecoveries": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statRecoveriesShortName": "RE",
+  "@statRecoveriesShortName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statPossessionLost": "Perdidas de Balón",
+  "@statPossessionLost": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statPossessionLostShortName": "PB",
+  "@statPossessionLostShortName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statFoulsCommitted": "Faltas Cometidas",
+  "@statFoulsCommitted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statFoulsCommittedShortName": "FC",
+  "@statFoulsCommittedShortName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statYellowCards": "Tarjetas Amarillas",
+  "@statYellowCards": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statYellowCardsShortName": "TA",
+  "@statYellowCardsShortName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statRedCards": "Tarjetas Rojas",
+  "@statRedCards": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statRedCardsShortName": "TR",
+  "@statRedCardsShortName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statGoalsConceded": "Goles Encajados",
+  "@statGoalsConceded": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statGoalsConcededShortName": "GE",
+  "@statGoalsConcededShortName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statSaves": "Paradas",
+  "@statSaves": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statSavesShortName": "PA",
+  "@statSavesShortName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statClearances": "Despejes",
+  "@statClearances": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statClearancesShortName": "D",
+  "@statClearancesShortName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statPenaltiesSaved": "Penaltis Detenidos",
+  "@statPenaltiesSaved": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statPenaltiesSavedShortName": "PD",
+  "@statPenaltiesSavedShortName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statGoals": "Goles",
+  "@statGoals": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statGoalsShortName": "G",
+  "@statGoalsShortName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statShots": "Tiros",
+  "@statShots": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statShotsShortName": "T",
+  "@statShotsShortName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statChancesCreated": "Asistencias",
+  "@statChancesCreated": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statChancesCreatedShortName": "A",
+  "@statChancesCreatedShortName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statTakeOns": "Regates",
+  "@statTakeOns": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statTakeOnsShortName": "R",
+  "@statTakeOnsShortName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statFoulsConceded": "Faltas Recibidas",
+  "@statFoulsConceded": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statFoulsConcededShortName": "FR",
+  "@statFoulsConcededShortName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statSavedPenalties": "Penaltis Detenidos",
+  "@statSavedPenalties": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statMinutesPlayed": "Minutos jugados",
+  "@statMinutesPlayed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statMinutesPlayedShortName": "MIN",
+  "@statMinutesPlayedShortName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "successfulPayment": "Pago realizado",
+  "@successfulPayment": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancelledPayment": "Pago cancelado",
+  "@cancelledPayment": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "successfulPaymentDescription": "¡Gracias! El pago ha sido procesado correctamente.",
+  "@successfulPaymentDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancelledPaymentDescription": "La transacción solicitada no ha podido ser completada. Por favor, verifica tu método de pago e inténtalo de nuevo.",
+  "@cancelledPaymentDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addFunds": "AÑADIR FONDOS",
+  "@addFunds": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addFundsDescriptionTip1": "Para jugar a Epic Eleven con dinero real, necesitas añadir fondos a tu cuenta.",
+  "@addFundsDescriptionTip1": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addFundsDescriptionTip2": "No te preocupes, prodrás retirarlo cuando quieras de forma gratuita.",
+  "@addFundsDescriptionTip2": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addFundsUsingPaypal": "Puedes usar tu tarjeta de crédito o tu cuenta de PayPal",
+  "@addFundsUsingPaypal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addFundsMinimumAllowed": "Por favor, deposita al menos {amount} para continuar",
+  "@addFundsMinimumAllowed": {
+    "type": "text",
+    "placeholders": {
+      "amount": {}
+    }
+  },
+  "withdrawFunds": "Retirar fondos",
+  "@withdrawFunds": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourBalanceIs": "TU SALDO ES DE",
+  "@yourBalanceIs": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "howMuchMoneyWantToWithdraw": "¿Cuánto dinero deseas retirar?",
+  "@howMuchMoneyWantToWithdraw": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "withdrawMinimumAllowed": "Sólo puedes retirar cantidades superiores a {amount}",
+  "@withdrawMinimumAllowed": {
+    "type": "text",
+    "placeholders": {
+      "amount": {}
+    }
+  },
+  "restrictedLocation": "Ubicación restringida",
+  "@restrictedLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "currentLocationProhibitsDeposits": "Lo lamentamos, su ubicación actual le prohíbe hacer depósitos en Epic Elevent.",
+  "@currentLocationProhibitsDeposits": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ifErrorAndRequireAssistence": "Si piensa que es un error y necesita ayuda, por favor póngase en contacto con nosotros a través de",
+  "@ifErrorAndRequireAssistence": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "returnToLobby": "Ir a Buscar torneos",
+  "@returnToLobby": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "needHelp": "¿Necesitas ayuda?",
+  "@needHelp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialLobbyTitle": "SELECCIONA UN TORNEO",
+  "@tutorialLobbyTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialEnterContestTitle": "ELIGE TU ALINEACIÓN",
+  "@tutorialEnterContestTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialViewContestTitle": "BIENVENIDO A EPIC ELEVEN",
+  "@tutorialViewContestTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialLobby": "Puedes jugar tantos torneos como quieras de La Liga, Barclays Premier League y la UEFA Champions League.",
+  "@tutorialLobby": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialEnterContest": "Escoge 11 jugadores sin saltarte tu límite salarial",
+  "@tutorialEnterContest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialViewContest": "Ve a '<b>Mis Torneos</b>' para editar tus alineaciones, ver cómo lo hace tu equipo en vivo o ver el resultado de torneos que ya jugaste. <br> <br> <p class='subtitle'>Recuerda: puedes jugar tantos torneos como quieras, y hacer tantas alineaciones como quieras.</p>",
+  "@tutorialViewContest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialGotIt": "¡Entendido!",
+  "@tutorialGotIt": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "help": "AYUDA",
+  "@help": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "howItWorks": "Cómo funciona",
+  "@howItWorks": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "scoringAndRules": "Puntuaciones y reglas",
+  "@scoringAndRules": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "help01Title": "ELIGE UN TORNEO",
+  "@help01Title": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "help01": "Configura tu equipo siguiendo estas sencillas indicaciones: <br>En primer lugar, debes seleccionar el torneo en el que quieras participar. <br>Haz clic en la competición deseada y a continuación podrás elegir tus jugadores.",
+  "@help01": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "help02": "Puedes filtrar los torneos según la competición, el límite salarial de que dispones <br>para confeccionar tu equipo o el tipo de torneo en el que quieras participar.",
+  "@help02": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "help03Title": "HAZ TU EQUIPO",
+  "@help03Title": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "help03": "A continuación, selecciona los 11 jugadores que quieras que participen <br>en el torneo que has elegido. Recuerda que debes ceñirte al <br>límite salarial que marque cada torneo.",
+  "@help03": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "help04Title": "CONSIGUE EL MÁXIMO DE PUNTOS Y GANA",
+  "@help04Title": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "help06Title": "JUEGA DESDE CUALQUIER LUGAR",
+  "@help06Title": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "help06": "Comprueba lo sencillo que es participar en los torneos de EPIC 11 desde dónde quieras. Podrás seguir en directo las estadísticas de tus jugadores desde tu ordenador, tablet o smartphone con interfaces adaptadas a cada tipo de dispositivo para optimizar la usabilidad.",
+  "@help06": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "rules": "REGLAS",
+  "@rules": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ruleLegals": "LEGALIDAD",
+  "@ruleLegals": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ruleMutiAccounts": "CUENTAS MÚLTIPLES",
+  "@ruleMutiAccounts": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ruleBannedAccounts": "CUENTAS ANULADAS",
+  "@ruleBannedAccounts": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ruleNicknames": "NOMBRES DE USUARIOS",
+  "@ruleNicknames": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ruleUnfilledContests": "TORNEOS SIN PARTICIPACIÓN",
+  "@ruleUnfilledContests": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ruleCancelParcipation": "CANCELAR UNA PARTICIPACIÓN",
+  "@ruleCancelParcipation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ruleGamesPostponed": "JUEGOS POSPUESTOS",
+  "@ruleGamesPostponed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ruleMatchesSuspended": "PARTIDOS SUPENDIDOS",
+  "@ruleMatchesSuspended": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "rulePlayersInNegotiationProcess": "JUGADORES EN PROCESO DE NEGOCIACIÓN",
+  "@rulePlayersInNegotiationProcess": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ruleLineupRestrictions": "RESTRICCIONES EN LAS ALINEACIONES",
+  "@ruleLineupRestrictions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "rulePunctuationRevisions": "LAS REVISIONES DE PUNTUACIÓN",
+  "@rulePunctuationRevisions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ruleAccessAssociatedIssues": "SERVICIO DE ACCESO Y EDICIÓN DE PROBLEMAS",
+  "@ruleAccessAssociatedIssues": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ruleContestCancellation": "CANCELACIÓN DE TORNEOS",
+  "@ruleContestCancellation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorContestNotActiveTitle": "Torneo en vivo",
+  "@errorContestNotActiveTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorContestNotActiveGeneric": "No es posible entrar en un torneo que ya ha comenzado.",
+  "@errorContestNotActiveGeneric": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorContestNotActiveEditing": "No es posible modificar un equipo cuando el torneo ha comenzado.",
+  "@errorContestNotActiveEditing": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorMaxPlayersSameTeamTitle": "Jugadores del mismo equipo",
+  "@errorMaxPlayersSameTeamTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorMaxPlayersSameTeamGeneric": "No es posible...",
+  "@errorMaxPlayersSameTeamGeneric": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorUserBalanceNegativeTitle": "Balance insuficiente",
+  "@errorUserBalanceNegativeTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorUserBalanceNegativeGeneric": "Necesitas tener dinero suficiente en tu cuenta para poder participar en este torneo.",
+  "@errorUserBalanceNegativeGeneric": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorDefaultTitle": "Aviso",
+  "@errorDefaultTitle": {
+    "type": "text",
+    "placeholders": {}
+  },  
+  "errorDefaultGeneric": "Ha sucedido un error. No es posible entrar en el torneo.",
+  "@errorDefaultGeneric": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorCreatingYourAccount": "Se ha producido un error al crear la cuenta",
+  "@errorCreatingYourAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorNicknameTaken": "El nombre de usuario ya está registrado",
+  "@errorNicknameTaken": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorEmailTaken": "El correo electrónico ya está registrado",
+  "@errorEmailTaken": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorCheckEmailSpelling": "Algo ha ido mal, revisa que el correo electrónico sea correcto",
+  "@errorCheckEmailSpelling": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorDefaultEditing": "Ha sucedido un error. No es posible modificar el equipo.",
+  "@errorDefaultEditing": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorPasswordTooShort": "La contraseña es demasiado corta.",
+  "@errorPasswordTooShort": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorJoinDefault": "Ha ocurrido un error. Por favor, inténtalo más tarde.",
+  "@errorJoinDefault": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorWrongEmailOrPassword": "El correo electrónico o la contraseña no son correctas.",
+  "@errorWrongEmailOrPassword": {
+    "type": "text",
+    "placeholders": {}
+  }
+}

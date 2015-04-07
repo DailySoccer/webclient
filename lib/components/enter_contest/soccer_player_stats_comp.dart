@@ -17,13 +17,14 @@ import 'package:webclient/models/instance_soccer_player.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'dart:async';
 import 'package:webclient/services/server_error.dart';
+import 'package:webclient/components/base_comp.dart';
 
 @Component(
     selector: 'soccer-player-stats',
     templateUrl: 'packages/webclient/components/enter_contest/soccer_player_stats_comp.html',
     useShadowDom: false
 )
-class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
+class SoccerPlayerStatsComp extends BaseComp implements DetachAware, ShadowRootAware {
 
   ScreenDetectorService scrDet;
 
@@ -34,7 +35,7 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
   Map currentInfoData;
   bool selectablePlayer;
 
-  bool isGoalkeeper() => currentInfoData['fieldPos'] == "GK";
+  bool isGoalkeeper() => currentInfoData['fieldPos'] == T.fieldPosGoalkeeperShort;
 
   String get printableSalary => StringUtils.parseSalary(currentInfoData['salary']);
 
@@ -42,22 +43,22 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
   static List<String> goalKeeperStatsList   = ["GOLES_ENCAJADOS", "PARADAS", "DESPEJES", "PENALTIS_DETENIDOS", "PASES", "RECUPERACIONES", "PERDIDAS_BALON", "FALTAS_COMETIDAS", "TARJETAS_AMARILLAS", "TARJETAS_ROJAS"];
   static List<String> commonPlayerStatsList = ["GOLES", "TIROS", "PASES", "ASISTENCIAS", "REGATES", "RECUPERACIONES", "PERDIDAS_BALON", "FALTAS_COMETIDAS", "FALTAS_RECIBIDAS", "TARJETAS_AMARILLAS", "TARJETAS_ROJAS"];
 
-  Map mappedFieldNames = {
-                "PASES"               : {"shortName" : "P",  "description" : 'Passes'},
-                "RECUPERACIONES"      : {"shortName" : "R", "description" : 'Recoveries'},
-                "PERDIDAS_BALON"      : {"shortName" : "PL", "description" : 'Possession lost'},
-                "FALTAS_COMETIDAS"    : {"shortName" : "F", "description" : 'Fouls Committed'},
-                "TARJETAS_AMARILLAS"  : {"shortName" : "YC", "description" : 'Yellow Cards'},
-                "TARJETAS_ROJAS"      : {"shortName" : "RC", "description" : 'Red Cards'},
-                "GOLES_ENCAJADOS"     : {"shortName" : "GC", "description" : 'Goals Conceded'},
-                "PARADAS"             : {"shortName" : "S", "description" : 'Saves'},
-                "DESPEJES"            : {"shortName" : "C",  "description" : 'Clearances'},
-                "PENALTIS_DETENIDOS"  : {"shortName" : "PS", "description" : 'Penalties Saved'},
-                "GOLES"               : {"shortName" : "G",  "description" : 'Goals'},
-                "TIROS"               : {"shortName" : "SH",  "description" : 'Shots'},
-                "ASISTENCIAS"         : {"shortName" : "CH",  "description" : 'Chances Created'},
-                "REGATES"             : {"shortName" : "T",  "description" : 'Take-ons'},
-                "FALTAS_RECIBIDAS"    : {"shortName" : "FC", "description" : 'Fouls Conceded'}
+  Map get mappedFieldNames => {
+                "PASES"               : {"shortName" : T.statPassesShortName,  "description" : T.statPasses},
+                "RECUPERACIONES"      : {"shortName" : T.statRecoveriesShortName, "description" : T.statRecoveries},
+                "PERDIDAS_BALON"      : {"shortName" : T.statPossessionLostShortName, "description" : T.statPossessionLost},
+                "FALTAS_COMETIDAS"    : {"shortName" : T.statFoulsCommittedShortName, "description" : T.statFoulsCommitted},
+                "TARJETAS_AMARILLAS"  : {"shortName" : T.statYellowCardsShortName, "description" : T.statYellowCards},
+                "TARJETAS_ROJAS"      : {"shortName" : T.statRedCardsShortName, "description" : T.statRedCards},
+                "GOLES_ENCAJADOS"     : {"shortName" : T.statGoalsConcededShortName, "description" : T.statGoalsConceded},
+                "PARADAS"             : {"shortName" : T.statSavesShortName, "description" : T.statSaves},
+                "DESPEJES"            : {"shortName" : T.statClearancesShortName,  "description" : T.statClearances},
+                "PENALTIS_DETENIDOS"  : {"shortName" : T.statPenaltiesSavedShortName, "description" : T.statPenaltiesSaved},
+                "GOLES"               : {"shortName" : T.statGoalsShortName,  "description" : T.statGoals},
+                "TIROS"               : {"shortName" : T.statShotsShortName,  "description" : T.statShots},
+                "ASISTENCIAS"         : {"shortName" : T.statChancesCreatedShortName,  "description" : T.statChancesCreated},
+                "REGATES"             : {"shortName" : T.statTakeOnsShortName,  "description" : T.statTakeOns},
+                "FALTAS_RECIBIDAS"    : {"shortName" : T.statFoulsConcededShortName, "description" : T.statFoulsConceded}
   };
 
   SoccerPlayerStatsComp(this._flashMessage, this.scrDet, this._soccerPlayerService, RouteProvider routeProvider, Router router, this._rootElement) {
@@ -129,7 +130,7 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
       matchEventDate = " (${DateTimeService.formatDateTimeShort(nextMatchEvent.startDate)})";
     }
 
-    return ("NEXT MATCH: " + matchEventName + matchEventDate);
+    return ("${T.nextMatch}: " + matchEventName + matchEventDate);
   }
 
   void updateSoccerPlayerInfoFromService() {
@@ -169,19 +170,19 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
 
     seasonResumeStats.clear();
     seasonsList.clear();
-    seasonTableHeaders = ['Date', 'Opponent', 'Daily Fantasy Points', 'Minutes'];
+    seasonTableHeaders = [T.matchDate, T.matchOpponent, T.matchDailyFantasyPoints, T.matchMinutes];
 
     if(isGoalkeeper()) {
       goalKeeperStatsList.forEach((key) {
         _totalSums[key] = 0;
       });
-      seasonTableHeaders.addAll(['Goals Conceded', 'Saves', 'Clearances', 'Saved Penalties', 'Passes', 'Recoveries', 'Possession Lost', 'Fouls Committed', 'Yellow Cards', 'Red Cards']);
+      seasonTableHeaders.addAll([T.statGoalsConceded, T.statSaves, T.statClearances, T.statSavedPenalties, T.statPasses, T.statRecoveries, T.statPossessionLost, T.statFoulsCommitted, T.statYellowCards, T.statRedCards]);
     }
     else {
       commonPlayerStatsList.forEach((key) {
         _totalSums[key] = 0;
       });
-      seasonTableHeaders.addAll(['Goals', 'Shots', 'Passes', 'Assists', 'Take-ons', 'Recoveries', 'Possession lost', 'Fouls Committed', 'Fouls Conceded', 'Yellow Cards', 'Red Cards']);
+      seasonTableHeaders.addAll([T.statGoals, T.statShots, T.statPasses, T.statChancesCreated, T.statTakeOns, T.statRecoveries, T.statPossessionLost, T.statFoulsCommitted, T.statFoulsConceded, T.statYellowCards, T.statRedCards]);
     }
   }
 
@@ -238,7 +239,7 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
   void calculateSeasonResumeStats() {
 
       // Añadimos las especificas del portero
-      seasonResumeStats.add( {'nombre' : "MIN" , 'valor':  calculateStatAverage("MIN"),       'helpInfo': 'Minutes played'});
+      seasonResumeStats.add( {'nombre' : T.statMinutesPlayedShortName, 'valor':  calculateStatAverage("MIN"),       'helpInfo': T.statMinutesPlayed});
 
       _totalSums.keys.forEach((key) {
          seasonResumeStats.add({'nombre' : mappedFieldNames[key]["shortName"], 'valor' : calculateStatAverage(key), 'helpInfo': mappedFieldNames[key]["description"]});

@@ -8,13 +8,14 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/models/money.dart';
+import 'package:webclient/components/base_comp.dart';
 
 @Component(
     selector: 'contests-list',
     templateUrl: 'packages/webclient/components/contests_list_comp.html',
     useShadowDom: false
 )
-class ContestsListComp {
+class ContestsListComp extends BaseComp {
 
   /********* DECLARATIONS */
   // Lista de concursos visible en el componente
@@ -80,7 +81,7 @@ class ContestsListComp {
   }
 
   @NgOneWay("action-button-title")
-  String actionButtonTitle = "DETAIL";
+  String actionButtonTitle;
 
   @NgTwoWay("contest-count")
   void set contestCount(int value) {
@@ -97,7 +98,9 @@ class ContestsListComp {
   @NgCallback("on-action-click")
   Function onActionClick;
 
-  ContestsListComp(this._profileService, this.scrDet);
+  ContestsListComp(this._profileService, this.scrDet) {
+    actionButtonTitle = T.contestDetail;
+  }
 
   /********* METHODS */
   String dateInfo(DateTime date) {
@@ -114,7 +117,7 @@ class ContestsListComp {
           return (seconds >= 10) ? "$minutes:$seconds" : "$minutes:0$seconds";
         }
       }
-      return "Today";
+      return T.today;
     }
     return DateTimeService.formatDateShort(date);
   }
@@ -125,7 +128,7 @@ class ContestsListComp {
       Duration duration = DateTimeService.getTimeLeft(date);
       int minutesLeft = duration.inMinutes;
       if (minutesLeft >= 0 && minutesLeft < 120) {
-        return (minutesLeft >= 30) ? "${minutesLeft} min." : "Faltan";
+        return (minutesLeft >= 30) ? "${minutesLeft} min." : T.leftXMin;
       }
     }
     return DateTimeService.formatTimeShort(date);

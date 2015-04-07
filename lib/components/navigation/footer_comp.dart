@@ -10,13 +10,14 @@ import 'package:webclient/utils/html_utils.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/profile_service.dart';
+import 'package:webclient/components/base_comp.dart';
 
 
 @Component(
    selector: 'footer',
    useShadowDom: false
 )
-class FooterComp implements ShadowRootAware {
+class FooterComp extends BaseComp implements ShadowRootAware {
 
   FooterComp(this._router, this._loadingService, this._view, this._rootElement, this._dateTimeService, this._scrDet, this._profileService) {
     _streamListener = _scrDet.mediaScreenWidth.listen((String scrWidth) => onScreenWidthChange(scrWidth));
@@ -47,11 +48,11 @@ class FooterComp implements ShadowRootAware {
           </div>
   
           <div class="data-wrapper">
-            <a class="goto-link" id="footerHelp" destination="help_info">           <span class="sub-footer-help-link">HELP</span></a>
-            <a class="goto-link" id="footerLegal" destination="legal_info">         <span class="sub-footer-legal-link">LEGAL</span></a>
-            <a class="goto-link" id="footerTermsOfUse" destination="terminus_info"> <span class="sub-footer-terms-link">TERMS<span> OF USE</span></span></a>
-            <a class="goto-link" id="footerPrivacyPolicy" destination="policy_info"><span class="sub-footer-policy-link">PRIVACY<span> POLICY</span></span></a>
-            <a class="goto-link" id="footerBlog" target="_blank" href="http://halftime.epiceleven.com"><span class="sub-footer-blog-link">BLOG</span></a>
+            <a class="goto-link" id="footerHelp" destination="help_info">           <span class="sub-footer-help-link">${T.footerHelp}</span></a>
+            <a class="goto-link" id="footerLegal" destination="legal_info">         <span class="sub-footer-legal-link">${T.footerLegal}</span></a>
+            <a class="goto-link" id="footerTermsOfUse" destination="terminus_info"> <span class="sub-footer-terms-link">${T.footerTermsOfUse}</span></a>
+            <a class="goto-link" id="footerPrivacyPolicy" destination="policy_info"><span class="sub-footer-policy-link">${T.footerPrivacyPolicy}</span></a>
+            <a class="goto-link" id="footerBlog" target="_blank" href="http://halftime.epiceleven.com"><span class="sub-footer-blog-link">${T.footerBlog}</span></a>
           </div>
   
           <!--

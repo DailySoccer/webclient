@@ -4,12 +4,13 @@ import 'package:angular/angular.dart';
 import 'dart:html';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/profile_service.dart';
+import 'package:webclient/components/base_comp.dart';
 
 @Component(
   selector: 'welcome',
   useShadowDom: false
 )
-class WelcomeComp {
+class WelcomeComp extends BaseComp {
   String stage;
   Map stage_params;
   WelcomeComp(this._rootElement, this._router, this._reouteProvider, this._scrDet, this._profileService) {
@@ -45,7 +46,7 @@ class WelcomeComp {
               <div class="input-group user-form-field">
                 <div class="new-row">
                   <div class="autocentered-buttons-wrapper">
-                     <div class="button-box"><button id="btnClose" button-action="CLOSE" class="ok-button">Got it!</button></div>
+                     <div class="button-box"><button id="btnClose" button-action="CLOSE" class="ok-button">${T.tutorialGotIt}</button></div>
                   </div>
                 </div>
               </div>
@@ -62,15 +63,9 @@ class WelcomeComp {
   String getTutorialTitle() {
     String title;
     switch(stage) {
-      case 'lobby':
-        title ='SELECT A CONTEST';
-      break;
-      case 'enter_contest':
-        title ='SELECT YOUR LINEUP';
-      break;
-      case 'view_contest_entry':
-        title ='WELCOME TO EPICELEVEN';
-      break;
+      case 'lobby': title = T.tutorialLobbyTitle; break;
+      case 'enter_contest': title = T.tutorialEnterContestTitle; break;
+      case 'view_contest_entry': title = T.tutorialViewContestTitle; break;
     }
     return title;
   }
@@ -78,15 +73,9 @@ class WelcomeComp {
   String getTutorialText() {
     String text;
     switch(stage) {
-      case 'lobby':
-        text ='You can play as many contests as you like for La Liga BBVA, Barclays Premier League and UEFA Champions League.';
-      break;
-      case 'enter_contest':
-        text ='Pick up 11 player within your salary cap.';
-      break;
-      case 'view_contest_entry':
-        text ='Go to “<b>My Contest</b>” to edit your lineups, watch your team’s live performance or review past contests. <br> <br> <p class="subtitle">Remember: you can play as many contests as you like, and select as many lineups as you like.</p>';
-      break;
+      case 'lobby': text = T.tutorialLobby; break;
+      case 'enter_contest': text = T.tutorialEnterContest; break;
+      case 'view_contest_entry': text = T.tutorialViewContest; break;
     }
     return text;
   }

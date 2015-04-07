@@ -3,20 +3,20 @@
 
     <div class="personal-data">
       <div class="data-header">
-        <span class="data-header-title">My Account</span>
+        <span class="data-header-title">{{T.menuMyAccount}}</span>
         <div class="close-profile">
           <button type="button" class="close" ng-click="closeProfile()">
             <span class="glyphicon glyphicon-remove"></span>
           </button>
         </div>
-        <div class="button-wrapper"><button class="action-button" ng-click="editPersonalData()">EDIT</button></div>
+        <div class="button-wrapper"><button class="action-button" ng-click="editPersonalData()">{{T.editMyAccount}}</button></div>
 
       </div>
       <div class="bloque-sm">
-        <div class="data-row"><span class="data-key">Full Name:</span><span class="data-value">{{userData.firstName + ' ' + userData.lastName}}</span></div>
-        <div class="data-row"><span class="data-key">Nick:</span><span class="data-value">{{userData.nickName}}</span></div>
-        <div class="data-row"><span class="data-key">Email:</span><span class="data-value">{{userData.email}}</span></div>
-        <div class="data-row"><span class="data-key">Password:</span><span class="data-value">********</span></div>
+        <div class="data-row"><span class="data-key">{{T.fullname}}:</span><span class="data-value">{{userData.firstName + ' ' + userData.lastName}}</span></div>
+        <div class="data-row"><span class="data-key">{{T.nickname}}:</span><span class="data-value">{{userData.nickName}}</span></div>
+        <div class="data-row"><span class="data-key">{{T.email}}:</span><span class="data-value">{{userData.email}}</span></div>
+        <div class="data-row"><span class="data-key">{{T.password}}:</span><span class="data-value">********</span></div>
       </div>
       <!--
       <div class="bloque-sm">
@@ -30,18 +30,18 @@
 
     <div class="pocket-data">
       <div class="data-header">
-          <span class="data-header-title">WALLET</span>
+          <span class="data-header-title">{{T.wallet}}</span>
           <div class="button-wrapper">
-            <button class="action-button-transaction" ng-click="goTransactions()">TRANSACTIONS</button>
-            <button class="action-button-get-funds" ng-click="goWithdrawFounds()">WITHDRAW FUNDS</button>
+            <button class="action-button-transaction" ng-click="goTransactions()">{{T.transactions}}</button>
+            <button class="action-button-get-funds" ng-click="goWithdrawFounds()">{{T.withdrawFunds.toUpperCase()}}</button>
           </div>
        </div>
       <div class="data-container-9">
-        <div class="data-row"><span class="data-key">Actual balance:</span><span class="data-value-balance">{{userData.balance}}</span></div>
-        <div class="data-row"><span class="data-key">Pending bonus:</span><span class="data-value">{{userData.bonus}}</span></div-->
+        <div class="data-row"><span class="data-key">{{T.actualBalance}}:</span><span class="data-value-balance">{{userData.balance}}</span></div>
+        <div class="data-row"><span class="data-key">{{T.pendingBonus}}:</span><span class="data-value">{{userData.bonus}}</span></div-->
       </div>
       <div class="data-container-3">
-        <button class="add-funds-button" ng-click="goAddFounds()">ADD FUNDS</button>
+        <button class="add-funds-button" ng-click="goAddFounds()">{{T.addFunds}}</button>
       </div>
     </div>
 

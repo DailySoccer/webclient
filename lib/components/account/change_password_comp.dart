@@ -7,13 +7,14 @@ import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/services/server_error.dart';
 import 'package:webclient/utils/uri_utils.dart';
+import 'package:webclient/components/base_comp.dart';
 
 @Component(
     selector: 'change-password',
     templateUrl: 'packages/webclient/components/account/change_password_comp.html',
     useShadowDom: false
 )
-class ChangePasswordComp implements ShadowRootAware {
+class ChangePasswordComp extends BaseComp implements ShadowRootAware {
   static const String STATE_ENTERING        = 'STATE_ENTERING';
   static const String STATE_INVALID_URL     = 'STATE_INVALID_URL';
   static const String STATE_INVALID_TOKEN   = 'STATE_INVALID_TOKEN';

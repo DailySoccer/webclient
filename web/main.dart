@@ -5,6 +5,7 @@ import 'package:webclient/webclient.dart';
 import 'package:webclient/logger_exception_handler.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/utils/uri_utils.dart';
+import 'package:webclient/utils/localization.dart';
 
 
 
@@ -15,7 +16,9 @@ void main() {
 
     clearQueryStrings();
 
-    applicationFactory().addModule(new WebClientApp()).run();
+    Localization.init().then((_) {
+      applicationFactory().addModule(new WebClientApp()).run();
+    });
   }
   catch (exc, stackTrace) {
     LoggerExceptionHandler.logExceptionToServer(exc, stackTrace);

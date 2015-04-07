@@ -1,15 +1,15 @@
 <div id="addFundsContent">
 
   <!-- header title -->
-  <div class="default-section-header">ADD FUNDS</div>
+  <div class="default-section-header">{{T.addFunds}}</div>
 
   <div>
     <div class="description">
-      <p id="descriptionTip1">In order to play Epic Eleven with real money, you need to add funds to your account.</p>
-      <p id="descriptionTip2">Don't worry, you can withdraw your money whenever you want for free.</p>
+      <p id="descriptionTip1">{{T.addFundsDescriptionTip1}}</p>
+      <p id="descriptionTip2">{{T.addFundsDescriptionTip2}}</p>
     </div>
     <div class="add-founds-box">
-      <p>Minimum allowed is $10</p>
+      <p>{{T.addFundsMinimumAllowed("$10")}}</p>
       <div class="money-selector">
         <div class="money-element">
           <input type="radio" name="money-radio" id="firstOffer" value="10"><label for="firstOffer">$10</label>
@@ -26,12 +26,12 @@
         </div>
       </div>
       <h2 class="paypal-info">Add <span id="selectedAmountInfo">${{selectedValue}}</span> vía <img src="images/markPaypalMed.jpg"></h2>
-      <p class="paypal-info">You can add funds using PayPal account. The money will be transferred to Fantasy Sports Games S.L.</p>
-      <div class="button-wrapper"><button class="add-funds-button" id="addFundsButton">Add funds</button></div>
+      <p class="paypal-info">{{T.addFundsUsingPaypal}}</p>
+      <div class="button-wrapper"><button class="add-funds-button" id="addFundsButton">{{T.addFunds}}</button></div>
     </div>
   </div>
   <div class="need-help-box">
-    <p id="need-help-text">Need help?</p>
+    <p id="need-help-text">{{T.needHelp}}</p>
     <p id="need-help-email">support@epiceleven.com</p>
   </div>
 

@@ -7,6 +7,7 @@ import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/utils/html_utils.dart';
+import 'package:webclient/components/base_comp.dart';
 
 
 @Component(
@@ -14,7 +15,7 @@ import 'package:webclient/utils/html_utils.dart';
     useShadowDom: false,
     exportExpressions: const ["lineupFilter"]
 )
-class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware {
+class SoccerPlayersListComp extends BaseComp implements ShadowRootAware, ScopeAware, DetachAware {
 
   static const String FILTER_POSITION = "FILTER_POSITION";
   static const String FILTER_NAME = "FILTER_NAME";
@@ -80,7 +81,9 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
 
   List<dynamic> lineupFilter;
 
-  SoccerPlayersListComp(this._scrDet, this._element, this._turnZone);
+  SoccerPlayersListComp(this._scrDet, this._element, this._turnZone) {
+    _POS_CLASS_NAMES = { T.fieldPosGoalkeeperShort: "posPOR", T.fieldPosDefenseShort: "posDEF", T.fieldPosMiddleShort: "posMED", T.fieldPosForwardShort: "posDEL" };
+  }
 
   void _onLineupFilterChanged(changes, _) {
     if (_soccerPlayerListRoot == null) {
@@ -146,11 +149,11 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
   void _createSortHeader() {
     var text = '''
       <div class="soccer-player-list-header-table">
-        <div class="filter filterOrderPos"><a id="Pos">Pos.</a></div>
-        <div class="filter filterOrderName"><a id="Name">Name</a></div>
-        <div class="filter filterOrderDFP"><a id="DFP">DFP</a></div>
-        <div class="filter filterOrderPlayed"><a id="Played">#Matches</a></div>
-        <div class="filter filterOrderSalary"><a id="Salary">Salary</a></div>
+        <div class="filter filterOrderPos"><a id="Pos">${T.playerOrderPos}</a></div>
+        <div class="filter filterOrderName"><a id="Name">${T.playerOrderName}</a></div>
+        <div class="filter filterOrderDFP"><a id="DFP">${T.playerOrderDFP}</a></div>
+        <div class="filter filterOrderPlayed"><a id="Played">${T.playerOrderMatches}</a></div>
+        <div class="filter filterOrderSalary"><a id="Salary">${T.playerOrderSalary}</a></div>
       </div>
       ''';
 
@@ -302,7 +305,8 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
   List<Map> _sortList = [_SORT_FIELDS["Pos"], _SORT_FIELDS["Name"]];
   Map<String, String> _filterList = {};
 
-  static final Map<String, String> _POS_CLASS_NAMES = { "GK": "posPOR", "DEF": "posDEF", "MID": "posMED", "FWD": "posDEL" };
+  Map<String, String> _POS_CLASS_NAMES;
+
   static final Map<String, Map> _SORT_FIELDS = { "Name": _getSortField("fullNameNormalized", 1),
                                                  "DFP": _getSortField("fantasyPoints", -1),
                                                  "Played": _getSortField("playedMatches", -1),

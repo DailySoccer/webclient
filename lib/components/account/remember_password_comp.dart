@@ -7,13 +7,14 @@ import 'package:webclient/services/server_service.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/services/server_error.dart';
+import 'package:webclient/components/base_comp.dart';
 
 @Component(
     selector: 'remember-password',
     templateUrl: 'packages/webclient/components/account/remember_password_comp.html',
     useShadowDom: false
 )
-class RememberPasswordComp implements ShadowRootAware{
+class RememberPasswordComp extends BaseComp implements ShadowRootAware{
 
 
   static const String STATE_REQUEST   = 'STATE_REQUEST';

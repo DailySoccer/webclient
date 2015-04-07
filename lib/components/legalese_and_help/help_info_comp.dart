@@ -3,13 +3,14 @@ library help_info_comp;
 import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/screen_detector_service.dart';
+import 'package:webclient/components/base_comp.dart';
 
 @Component(
    selector: 'help-info',
    templateUrl: 'packages/webclient/components/legalese_and_help/help_info_comp.html',
    useShadowDom: false
 )
-class HelpInfoComp {
+class HelpInfoComp extends BaseComp {
   ScreenDetectorService scrDet;
 
   HelpInfoComp(this.scrDet, this._router);

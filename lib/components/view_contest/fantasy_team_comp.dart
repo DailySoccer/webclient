@@ -8,11 +8,12 @@ import 'dart:async';
 import 'dart:math';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/models/field_pos.dart';
+import 'package:webclient/components/base_comp.dart';
 
 @Component(selector: 'fantasy-team',
            templateUrl: 'packages/webclient/components/view_contest/fantasy_team_comp.html',
            useShadowDom: false)
-class FantasyTeamComp implements DetachAware {
+class FantasyTeamComp extends BaseComp implements DetachAware {
 
   List<dynamic> slots = null;
 

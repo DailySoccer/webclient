@@ -9,13 +9,14 @@ import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/services/contests_service.dart';
 import 'package:webclient/models/soccer_team.dart';
+import 'package:webclient/components/base_comp.dart';
 
 @Component(
     selector: 'teams-panel',
     templateUrl: 'packages/webclient/components/view_contest/teams_panel_comp.html',
     useShadowDom: false
 )
-class TeamsPanelComp implements DetachAware {
+class TeamsPanelComp extends BaseComp implements DetachAware {
   List<String> matchesInvolved = [];
   List<MatchEvent> matchEventsSorted = [];
 
@@ -70,10 +71,10 @@ class TeamsPanelComp implements DetachAware {
       if (match != null) {
         if (match.isStarted) {
           if (match.isFinished) {
-            content = 'Finished';
+            content = T.matchFinished;
           }
           else {
-            content = (match.isFirstHalf ? '1st Half - ' : match.isSecondHalf ? '2nd Half - ' : '-Err-') + match.minutesPlayed.toString() + "'";
+            content = (match.isFirstHalf ? "${T.matchFirstHalf} - " : match.isSecondHalf ? "${T.matchSecondHalf} - " : '-Err-') + match.minutesPlayed.toString() + "'";
           }
         }
       }

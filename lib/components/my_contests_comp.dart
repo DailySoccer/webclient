@@ -66,7 +66,7 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
 
     loadingService.isLoading = true;
 
-    _tabSelected = TAB_LIVE;
+    _tabSelected = TAB_WAITING;
     contestsService.refreshActiveContests();
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS, _refreshMyContests);
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_PROMOS, refreshPromos);
@@ -76,7 +76,7 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
   void _refreshMyContests() {
     Future myContests =
           _tabSelected  == TAB_WAITING  ? contestsService.refreshMyActiveContests()
-        : _tabSelected  == TAB_LIVE     ? contestsService.refreshMyLiveContests()
+        : _tabSelected  == TAB_LIVE     ? refreshLiveAndUpcoming()
         : contestsService.refreshMyHistoryContests()
         .. then((_) {
           loadingService.isLoading = false;
@@ -94,6 +94,11 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
         _numLiveContests = count;
       });
     }
+  }
+
+  Future refreshLiveAndUpcoming() {
+    contestsService.refreshMyActiveContests();
+    return contestsService.refreshMyLiveContests();
   }
 
   String calculateNextUpcommingContest() {

@@ -1478,6 +1478,26 @@
     "type": "text",
     "placeholders": {}
   },
+  "successfulPayment": "Pago realizado",
+  "@successfulPayment": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancelledPayment": "Pago cancelado",
+  "@cancelledPayment": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "successfulPaymentDescription": "¡Gracias! El pago ha sido procesado correctamente.",
+  "@successfulPaymentDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancelledPaymentDescription": "La transacción solicitada no ha podido ser completada. Por favor, verifica tu método de pago e inténtalo de nuevo.",
+  "@cancelledPaymentDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
   "addFunds": "AÑADIR FONDOS",
   "@addFunds": {
     "type": "text",

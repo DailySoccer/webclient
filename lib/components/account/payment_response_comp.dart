@@ -3,13 +3,14 @@ library payment_response_comp;
 import 'package:angular/angular.dart';
 import 'dart:html';
 import 'package:webclient/services/payment_service.dart';
+import 'package:webclient/components/base_comp.dart';
 
 @Component(
     selector: 'payment-response',
     templateUrl: 'packages/webclient/components/account/payment_response_comp.html',
     useShadowDom: false
 )
-class PaymentResponseComp implements ShadowRootAware {
+class PaymentResponseComp extends BaseComp implements ShadowRootAware {
 
   String result;
   String titleText;
@@ -17,10 +18,10 @@ class PaymentResponseComp implements ShadowRootAware {
 
   PaymentResponseComp(this._routeProvider, this._router, this._paymentService) {
     result = _routeProvider.route.parameters['result'];
-    titleText = result == 'success' ? "successful payment" : "cancelled payment";
+    titleText = result == 'success' ? T.successfulPayment : T.cancelledPayment;
     descriptionText = result == 'success'
-        ? "Thank you! Your order has been successfully processed."
-        : "The requested transaction cannot be completed. Please check your payment method and try again.";
+        ? T.successfulPaymentDescription
+        : T.cancelledPaymentDescription;
   }
 
   @override void onShadowRoot(emulatedRoot) {

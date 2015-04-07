@@ -352,6 +352,11 @@ class Localization {
   get statMinutesPlayed => Intl.message("Minutes played", name: 'statMinutesPlayed');
   get statMinutesPlayedShortName => Intl.message("MIN", name: 'statMinutesPlayedShortName');
 
+  get successfulPayment => Intl.message("successful payment", name: 'successfulPayment');
+  get cancelledPayment => Intl.message("cancelled payment", name: 'cancelledPayment');
+  get successfulPaymentDescription => Intl.message("Thank you! Your order has been successfully processed.", name: 'successfulPaymentDescription');
+  get cancelledPaymentDescription => Intl.message("The requested transaction cannot be completed. Please check your payment method and try again.", name: 'cancelledPaymentDescription');
+
   get addFunds => Intl.message("ADD FUNDS", name: 'addFunds');
   get addFundsDescriptionTip1 => Intl.message("In order to play Epic Eleven with real money, you need to add funds to your account.", name: 'addFundsDescriptionTip1');
   get addFundsDescriptionTip2 => Intl.message("Don't worry, you can withdraw your money whenever you want for free.", name: 'addFundsDescriptionTip2');

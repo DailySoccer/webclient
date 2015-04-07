@@ -88,9 +88,9 @@ class Contest {
    // print("estado del concurso: ${state}");
     /* los partidos en vivo o en history no continen los participantes que tiene el concurso */
     if(isLive || isHistory) {
-      return "$tournamentTypeName - ${T.contestSalaryCap}: $salaryCap";
+      return "$tournamentTypeName - ${T.contestSalaryCap}: $printableSalaryCap";
     }
-    return "$tournamentTypeName: ${T.contestNumOfContenders(numEntries, maxEntries)} - ${T.contestSalaryCap}: $salaryCap";
+    return "$tournamentTypeName: ${T.contestNumOfContenders(numEntries, maxEntries)} - ${T.contestSalaryCap}: $printableSalaryCap";
   }
 
   List<ContestEntry> get contestEntriesOrderByPoints {

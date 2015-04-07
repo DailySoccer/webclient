@@ -9,7 +9,7 @@ class Localization {
 
   static Future init () {
     Intl.defaultLocale = 'es_ES'; //"en_EN";
-    return initializeMessages("es"); //new Future.value(true); //initializeMessages("es");
+    return initializeMessages("es"); //new Future.value(true);
   }
 
   Localization ();

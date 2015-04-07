@@ -3,9 +3,9 @@ import 'package:intl/intl.dart';
 
 class StringUtils {
 
-  static NumberFormat decimalFormat = new NumberFormat("0.#", "es_ES");
-  static NumberFormat twoDecimalsFormat = new NumberFormat("###,###,###.00", "en_US");
-  static NumberFormat thousandsFormat = new NumberFormat.decimalPattern("en_US");
+  static NumberFormat decimalFormat = new NumberFormat("0.#", Intl.defaultLocale);
+  static NumberFormat twoDecimalsFormat = new NumberFormat("###,###,###.00", Intl.defaultLocale);
+  static NumberFormat thousandsFormat = new NumberFormat.decimalPattern(Intl.defaultLocale);
 
 
   static String normalize(String txt) {

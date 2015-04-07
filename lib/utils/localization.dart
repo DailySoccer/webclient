@@ -8,7 +8,7 @@ class Localization {
   static Localization get instance => _instance;
 
   static Future init () {
-    Intl.defaultLocale = 'es_ES'; // "es_ES" "en_EN" "en_US"
+    Intl.defaultLocale = 'en_US'; // "es_ES" "en_EN" "en_US"
 
     switch (Intl.shortLocale(Intl.defaultLocale)) {
       case "es":  return initializeMessages("es");

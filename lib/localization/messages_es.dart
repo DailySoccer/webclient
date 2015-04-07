@@ -44,6 +44,12 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static cancelSignup() => "CANCELAR";
 
+  static checkNextContestsLink() => "PRÓXIMOS TORNEOS";
+
+  static checkNextContestsPost() => "PARA VER CUÁNDO EMPIEZAN";
+
+  static checkNextContestsPre() => "CONSULTA LA LISTA DE TUS";
+
   static chooseAContender() => "Selecciona un usuario de esta lista para ver y comparar su alineacion con la tuya";
 
   static chooseAnotherPlayer() => "Por favor, elige otro jugador...";
@@ -262,6 +268,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static gameNotifications() => "NOTIFICACIONES DE JUEGO";
 
+  static goToPickContest() => "VE A LA LISTA DE TORNEOS, ELIGE UNO Y EMPIEZA A JUGAR";
+
   static goalkeepers() => "PORTEROS";
 
   static haveAnAccount() => "¿Ya tienes cuenta?";
@@ -290,6 +298,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static help06Title() => "JUEGA DESDE CUALQUIER LUGAR";
 
+  static historyContestsInfo() => "TODAVÍA NO HAS JUGADO NINGÚN TORNEO<br>¿A QUE ESPERAS PARA EMPEZAR A GANAR?";
+
   static howItWorks() => "Cómo funciona";
 
   static howMuchMoneyWantToWithdraw() => "¿Cuánto dinero deseas retirar?";
@@ -307,6 +317,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static lineupSaved() => "Se ha guardado tu alineación";
 
   static live() => "En Vivo";
+
+  static liveContestsInfo() => "EN ESTE MOMENTO, NO ESTÁS JUGANDO<br>NINGÚN TORNEO";
 
   static lobbyPlay() => "JUGAR";
 
@@ -560,6 +572,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static thisIsABetaVersion() => "Lo sentimos, esta es una versión beta de Epic Eleven.<br>Próximamente podrás jugar y ganar premios en metálico y tendrás habilitadas<br>todas las funcionalidades necesarias. Te avisaremos cuando esté operativo<br><br><b>Muchas gracias</b>";
 
+  static toTheContests() => "IR A LOS TORNEOS";
+
   static tournamentFiftyFifty() => "50/50";
 
   static tournamentFree() => "Gratuito";
@@ -598,6 +612,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static users() => "Usuarios";
 
+  static waitingContestsInfo() => "EN ESTE MOMENTO, NO TIENES UN<br>EQUIPO CREADO PARA NINGÚN TORNEO";
+
   static wallet() => "MONEDERO";
 
   static withdrawFunds() => "Retirar fondos";
@@ -635,6 +651,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "cancelLogin" : cancelLogin,
     "cancelPlayerSelection" : cancelPlayerSelection,
     "cancelSignup" : cancelSignup,
+    "checkNextContestsLink" : checkNextContestsLink,
+    "checkNextContestsPost" : checkNextContestsPost,
+    "checkNextContestsPre" : checkNextContestsPre,
     "chooseAContender" : chooseAContender,
     "chooseAnotherPlayer" : chooseAnotherPlayer,
     "choosePlayersThatFitTheBudget" : choosePlayersThatFitTheBudget,
@@ -744,6 +763,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "forwards" : forwards,
     "fullname" : fullname,
     "gameNotifications" : gameNotifications,
+    "goToPickContest" : goToPickContest,
     "goalkeepers" : goalkeepers,
     "haveAnAccount" : haveAnAccount,
     "haveCompletedYourLineup" : haveCompletedYourLineup,
@@ -758,6 +778,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "help04Title" : help04Title,
     "help06" : help06,
     "help06Title" : help06Title,
+    "historyContestsInfo" : historyContestsInfo,
     "howItWorks" : howItWorks,
     "howMuchMoneyWantToWithdraw" : howMuchMoneyWantToWithdraw,
     "immediateCashPayouts" : immediateCashPayouts,
@@ -767,6 +788,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "lastName" : lastName,
     "lineupSaved" : lineupSaved,
     "live" : live,
+    "liveContestsInfo" : liveContestsInfo,
     "lobbyPlay" : lobbyPlay,
     "loginDescription" : loginDescription,
     "loginError" : loginError,
@@ -893,6 +915,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "statYellowCards" : statYellowCards,
     "statYellowCardsShortName" : statYellowCardsShortName,
     "thisIsABetaVersion" : thisIsABetaVersion,
+    "toTheContests" : toTheContests,
     "tournamentFiftyFifty" : tournamentFiftyFifty,
     "tournamentFree" : tournamentFree,
     "tournamentHeadToHead" : tournamentHeadToHead,
@@ -912,6 +935,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "userRemainingTimeTitle" : userRemainingTimeTitle,
     "userScoreTitle" : userScoreTitle,
     "users" : users,
+    "waitingContestsInfo" : waitingContestsInfo,
     "wallet" : wallet,
     "withdrawFunds" : withdrawFunds,
     "withdrawMinimumAllowed" : withdrawMinimumAllowed,

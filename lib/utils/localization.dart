@@ -162,6 +162,16 @@ class Localization {
   numOfWonContests(num, won) => Intl.message("$num ENTRIES $won WON", name: 'numOfWonContests', args: [num, won]);
   get youcanCheckYourPastContests => Intl.message("HERE YOU CAN CHECK YOUR PAST CONTESTS: LINEUPS, CONTENDERS, SCORES…", name: 'youcanCheckYourPastContests');
 
+  get liveContestsInfo => Intl.message("YOUR ARE NOT PLAYING ANY CONTEST<br>AT THE MOMENT", name: 'liveContestsInfo');
+  get checkNextContestsPre => Intl.message("CHECK OUT THE LIST OF YOUR", name: 'checkNextContestsPre');
+  get checkNextContestsLink => Intl.message("NEXT CONTESTS", name: 'checkNextContestsLink');
+  get checkNextContestsPost => Intl.message("TO SEE WHEN THEY START", name: 'checkNextContestsPost');
+  get toTheContests => Intl.message("TO THE CONTESTS", name: 'toTheContests');
+  get waitingContestsInfo => Intl.message("YOU DON'T HAVE ANY TEAM FOR ANY CONTEST<br>RIGHT NOW", name: 'waitingContestsInfo');
+  get goToPickContest => Intl.message("GO TO THE CONTEST LIST, PICK ONE AND START PLAYING", name: 'goToPickContest');
+  get historyContestsInfo => Intl.message("YOU HAVEN'T PLAYED ANY CONTEST YET<br>WHAT ARE YOU WAITING FOR TO START WINNING?", name: 'historyContestsInfo');
+
+
   get matchesInThisContest => Intl.message("MATCHES IN THIS CONTEST", name: 'matchesInThisContest');
   get matchFinished => Intl.message("Finished", name: 'matchFinished');
   get matchFirstHalf => Intl.message("1st Half", name: 'matchFirstHalf');

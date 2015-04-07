@@ -44,6 +44,12 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static cancelSignup() => "CANCEL";
 
+  static checkNextContestsLink() => "NEXT CONTESTS";
+
+  static checkNextContestsPost() => "TO SEE WHEN THEY START";
+
+  static checkNextContestsPre() => "CHECK OUT THE LIST OF YOUR";
+
   static chooseAContender() => "Choose a contender to compare lineups";
 
   static chooseAnotherPlayer() => "Please, choose another player...";
@@ -262,6 +268,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static gameNotifications() => "GAME NOTIFICATIONS";
 
+  static goToPickContest() => "GO TO THE CONTEST LIST, PICK ONE AND START PLAYING";
+
   static goalkeepers() => "GOALKEEPERS";
 
   static haveAnAccount() => "Already have an account?";
@@ -290,6 +298,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static help06Title() => "PLAY EVERYWHERE";
 
+  static historyContestsInfo() => "YOU HAVEN\'T PLAYED ANY CONTEST YET<br>WHAT ARE YOU WAITING FOR TO START WINNING?";
+
   static howItWorks() => "How it works";
 
   static howMuchMoneyWantToWithdraw() => "¿How much money want to withdraw?";
@@ -307,6 +317,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static lineupSaved() => "Lineup saved";
 
   static live() => "Live";
+
+  static liveContestsInfo() => "YOUR ARE NOT PLAYING ANY CONTEST<br>AT THE MOMENT";
 
   static lobbyPlay() => "PLAY";
 
@@ -562,6 +574,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static thisIsABetaVersion() => "Sorry, this is a beta version of Epic Eleven.<br>We are working hard on all the features that Epic Eleven will include.We will keep you updated.<br><br><b>Thank you</b>";
 
+  static toTheContests() => "TO THE CONTESTS";
+
   static tournamentFiftyFifty() => "50/50";
 
   static tournamentFree() => "Free";
@@ -600,6 +614,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static users() => "Users";
 
+  static waitingContestsInfo() => "YOU DON\'T HAVE ANY TEAM FOR ANY CONTEST<br>RIGHT NOW";
+
   static wallet() => "WALLET";
 
   static withdrawFunds() => "Withdraw funds";
@@ -637,6 +653,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "cancelLogin" : cancelLogin,
     "cancelPlayerSelection" : cancelPlayerSelection,
     "cancelSignup" : cancelSignup,
+    "checkNextContestsLink" : checkNextContestsLink,
+    "checkNextContestsPost" : checkNextContestsPost,
+    "checkNextContestsPre" : checkNextContestsPre,
     "chooseAContender" : chooseAContender,
     "chooseAnotherPlayer" : chooseAnotherPlayer,
     "choosePlayersThatFitTheBudget" : choosePlayersThatFitTheBudget,
@@ -746,6 +765,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "forwards" : forwards,
     "fullname" : fullname,
     "gameNotifications" : gameNotifications,
+    "goToPickContest" : goToPickContest,
     "goalkeepers" : goalkeepers,
     "haveAnAccount" : haveAnAccount,
     "haveCompletedYourLineup" : haveCompletedYourLineup,
@@ -760,6 +780,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "help04Title" : help04Title,
     "help06" : help06,
     "help06Title" : help06Title,
+    "historyContestsInfo" : historyContestsInfo,
     "howItWorks" : howItWorks,
     "howMuchMoneyWantToWithdraw" : howMuchMoneyWantToWithdraw,
     "immediateCashPayouts" : immediateCashPayouts,
@@ -769,6 +790,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "lastName" : lastName,
     "lineupSaved" : lineupSaved,
     "live" : live,
+    "liveContestsInfo" : liveContestsInfo,
     "lobbyPlay" : lobbyPlay,
     "loginDescription" : loginDescription,
     "loginError" : loginError,
@@ -896,6 +918,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "statYellowCards" : statYellowCards,
     "statYellowCardsShortName" : statYellowCardsShortName,
     "thisIsABetaVersion" : thisIsABetaVersion,
+    "toTheContests" : toTheContests,
     "tournamentFiftyFifty" : tournamentFiftyFifty,
     "tournamentFree" : tournamentFree,
     "tournamentHeadToHead" : tournamentHeadToHead,
@@ -915,6 +938,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "userRemainingTimeTitle" : userRemainingTimeTitle,
     "userScoreTitle" : userScoreTitle,
     "users" : users,
+    "waitingContestsInfo" : waitingContestsInfo,
     "wallet" : wallet,
     "withdrawFunds" : withdrawFunds,
     "withdrawMinimumAllowed" : withdrawMinimumAllowed,

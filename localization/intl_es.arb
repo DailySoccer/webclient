@@ -456,6 +456,46 @@
     "type": "text",
     "placeholders": {}
   },
+  "liveContestsInfo": "EN ESTE MOMENTO, NO ESTÁS JUGANDO<br>NINGÚN TORNEO",
+  "@liveContestsInfo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "checkNextContestsPre": "CONSULTA LA LISTA DE TUS",
+  "@checkNextContestsPre": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "checkNextContestsLink": "PRÓXIMOS TORNEOS",
+  "@checkNextContestsLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "checkNextContestsPost": "PARA VER CUÁNDO EMPIEZAN",
+  "@checkNextContestsPost": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toTheContests": "IR A LOS TORNEOS",
+  "@toTheContests": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "waitingContestsInfo": "EN ESTE MOMENTO, NO TIENES UN<br>EQUIPO CREADO PARA NINGÚN TORNEO",
+  "@waitingContestsInfo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "goToPickContest": "VE A LA LISTA DE TORNEOS, ELIGE UNO Y EMPIEZA A JUGAR",
+  "@goToPickContest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "historyContestsInfo": "TODAVÍA NO HAS JUGADO NINGÚN TORNEO<br>¿A QUE ESPERAS PARA EMPEZAR A GANAR?",
+  "@historyContestsInfo": {
+    "type": "text",
+    "placeholders": {}
+  },
   "contestSalaryCap": "Límite de salario",
   "@contestSalaryCap": {
     "type": "text",

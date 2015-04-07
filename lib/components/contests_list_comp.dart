@@ -117,7 +117,7 @@ class ContestsListComp extends BaseComp {
           return (seconds >= 10) ? "$minutes:$seconds" : "$minutes:0$seconds";
         }
       }
-      return "Today";
+      return T.today;
     }
     return DateTimeService.formatDateShort(date);
   }
@@ -128,7 +128,7 @@ class ContestsListComp extends BaseComp {
       Duration duration = DateTimeService.getTimeLeft(date);
       int minutesLeft = duration.inMinutes;
       if (minutesLeft >= 0 && minutesLeft < 120) {
-        return (minutesLeft >= 30) ? "${minutesLeft} min." : "Faltan";
+        return (minutesLeft >= 30) ? "${minutesLeft} min." : T.leftXMin;
       }
     }
     return DateTimeService.formatTimeShort(date);

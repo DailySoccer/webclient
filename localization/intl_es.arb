@@ -51,6 +51,16 @@
       "num":{}
     }
   },
+  "today": "HOY",
+  "@today": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "leftXMin": "Faltan",
+  "@leftXMin": {
+    "type": "text",
+    "placeholders": {}
+  },
   "dailyFantasyLeaguesMobile": "LIGAS FANTÁSTICAS <br> DIARIAS",
   "@dailyFantasyLeaguesMobile": {
     "type": "text",

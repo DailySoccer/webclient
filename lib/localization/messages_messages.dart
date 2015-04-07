@@ -390,6 +390,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static lastName() => "Last name";
 
+  static leftXMin() => "to begin";
+
   static lineupSaved() => "Lineup saved";
 
   static live() => "Live";
@@ -672,6 +674,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static toTheContests() => "TO THE CONTESTS";
 
+  static today() => "Today";
+
   static tokenInvalid() => "The provided token is invalid or has expired.";
 
   static tournamentFiftyFifty() => "50/50";
@@ -938,6 +942,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "landingMobile2" : landingMobile2,
     "landingMobile3" : landingMobile3,
     "lastName" : lastName,
+    "leftXMin" : leftXMin,
     "lineupSaved" : lineupSaved,
     "live" : live,
     "liveContestsInfo" : liveContestsInfo,
@@ -1079,6 +1084,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "successfulPaymentDescription" : successfulPaymentDescription,
     "thisIsABetaVersion" : thisIsABetaVersion,
     "toTheContests" : toTheContests,
+    "today" : today,
     "tokenInvalid" : tokenInvalid,
     "tournamentFiftyFifty" : tournamentFiftyFifty,
     "tournamentFree" : tournamentFree,

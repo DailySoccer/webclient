@@ -27,6 +27,8 @@ class Localization {
       "<b>Thank you</b>", name: 'thisIsABetaVersion');
 
   days(num) => Intl.plural(num, zero: 'days', one: 'day', other: 'days', name: "days", args: [num]);
+  get today => Intl.message("Today", name: 'today');
+  get leftXMin => Intl.message("to begin", name: 'leftXMin');
 
   get dailyFantasyLeagues => Intl.message("DAILY FANTASY LEAGUES", name: 'dailyFantasyLeagues');
   get playWheneverYouWant => Intl.message("Play whenever you want, wherever your want. Win prizes with no season-long commitment.", name: 'playWheneverYouWant');

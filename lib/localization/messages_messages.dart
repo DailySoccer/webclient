@@ -122,6 +122,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static dailyFantasyLeaguesMobile() => "DAILY FANTASY <br> LEAGUES";
 
+  static days(num) => "${Intl.plural(num, zero: 'days', one: 'day', other: 'days')}";
+
   static defenders() => "DEFENDERS";
 
   static deleteFantasyTeam() => "REMOVE ALL";
@@ -746,6 +748,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "createYourLineup" : createYourLineup,
     "dailyFantasyLeagues" : dailyFantasyLeagues,
     "dailyFantasyLeaguesMobile" : dailyFantasyLeaguesMobile,
+    "days" : days,
     "defenders" : defenders,
     "deleteFantasyTeam" : deleteFantasyTeam,
     "doNotHaveAnAccount" : doNotHaveAnAccount,

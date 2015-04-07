@@ -5,9 +5,11 @@ import 'package:angular/angular.dart';
 import 'package:webclient/services/server_service.dart';
 import 'package:webclient/services/refresh_timers_service.dart';
 import 'package:webclient/utils/host_server.dart';
+import 'package:webclient/utils/localization.dart';
 
 @Injectable()
 class DateTimeService {
+  static Localization get T => Localization.instance;
 
   static DateTime get now => _instance._internalNow;
   static DateTime fromMillisecondsSinceEpoch(int millisecondsSinceEpoch) => new DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch, isUtc: _UTC);
@@ -33,11 +35,11 @@ class DateTimeService {
   }
 
   static String formatDateYear(DateTime date) {
-    return new DateFormat("yyyy", "en_EN").format(date);
+    return new DateFormat("yyyy", Intl.defaultLocale).format(date);
   }
 
   static String formatDateWithDayOfTheMonth(DateTime date) {
-    return new DateFormat("EEE, d MMM", "en_EN").format(date);
+    return new DateFormat("EEE, d MMM", Intl.defaultLocale).format(date);
   }
 
   static String formatDateShort(DateTime date) {
@@ -49,15 +51,15 @@ class DateTimeService {
   }
 
   static String formatDateTimeShort(DateTime date) {
-    return "${new DateFormat("E, HH:mm", "en_EN").format(date)}h";
+    return "${new DateFormat("E, HH:mm", Intl.defaultLocale).format(date)}h";
   }
 
   static String formatDateTimeLong(DateTime date) {
-    return "${new DateFormat("E, dd/MM/yy HH:mm", "en_EN").format(date)}h";
+    return "${new DateFormat("E, dd/MM/yy HH:mm", Intl.defaultLocale).format(date)}h";
   }
 
   static String formatDateTimeDayHour(DateTime date) {
-    return "${new DateFormat("dd/MM/yy HH:mm", "en_EN").format(date)}h";
+    return "${new DateFormat("dd/MM/yy HH:mm", Intl.defaultLocale).format(date)}h";
   }
 
   static String formatTimeLeft(Duration timeLeft) {
@@ -69,7 +71,7 @@ class DateTimeService {
     var minutes = nfTime.format(timeLeft.inMinutes % 60);
     var seconds = nfTime.format(timeLeft.inSeconds % 60);
 
-    return (days > 0)? nfDay.format(days) + (days > 1 ? " DAYS ": " DAY ") + hours + ":" + minutes + ":" + seconds
+    return (days > 0)? "${nfDay.format(days)} ${T.days(days)} $hours:$minutes:$seconds"
                      : hours + ":" + minutes + ":" + seconds;
   }
 

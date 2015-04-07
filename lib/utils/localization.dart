@@ -9,7 +9,7 @@ class Localization {
 
   static Future init () {
     Intl.defaultLocale = 'es_ES'; //"en_EN";
-    return initializeMessages("es");
+    return initializeMessages("es"); //new Future.value(true); //initializeMessages("es");
   }
 
   Localization ();
@@ -21,6 +21,8 @@ class Localization {
       "We will keep you updated."
       "<br><br>"
       "<b>Thank you</b>", name: 'thisIsABetaVersion');
+
+  days(num) => Intl.plural(num, zero: 'days', one: 'day', other: 'days', name: "days", args: [num]);
 
   get dailyFantasyLeagues => Intl.message("DAILY FANTASY LEAGUES", name: 'dailyFantasyLeagues');
   get playWheneverYouWant => Intl.message("Play whenever you want, wherever your want. Win prizes with no season-long commitment.", name: 'playWheneverYouWant');

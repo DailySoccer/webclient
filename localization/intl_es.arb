@@ -44,6 +44,13 @@
     "type": "text",
     "placeholders": {}
   },
+  "days":"{num, plural, =0{DIAS}=1{DIA}other{DIAS}}",
+  "@days":{
+    "type": "text",
+    "placeholders" : { 
+      "num":{}
+    }
+  },
   "dailyFantasyLeaguesMobile": "LIGAS FANTÁSTICAS <br> DIARIAS",
   "@dailyFantasyLeaguesMobile": {
     "type": "text",

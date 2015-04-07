@@ -38,7 +38,7 @@
 
           <!-- REMEMBER PASS -->
           <div class="user-form-field-righted">
-            <a class="small-link-righted" ng-click="onAction('REMEMBER_PASSWORD', $event)">Forgot your password?</a>
+            <a id="rememberPasswordLink" class="small-link-righted" ng-click="onAction('REMEMBER_PASSWORD', $event)">Forgot your password?</a>
           </div>
 
           <!-- BUTTONS -->
@@ -54,7 +54,7 @@
           <!-- GOTO REGISTER -->
           <div class="user-form-field">
             <div class="new-row">
-              <div class="small-text">Don't have an account? <a ng-click="onAction('JOIN', $event)"> Sign Up here! </a></div>
+              <div class="small-text">Don't have an account? <a id="gotoRegisterLink" ng-click="onAction('JOIN', $event)"> Sign Up here! </a></div>
             </div>
           </div>
 

@@ -419,5 +419,12 @@ class Localization {
   get errorDefaultGeneric => Intl.message("An error has occurred. You can not enter this contest at the moment. Please, try again later.", name: 'errorDefaultGeneric');
   get errorDefaultEditing => Intl.message("An error has occurred. You can not modify your lineup at the moment. Please, try again later.", name: 'errorDefaultEditing');
 
+  get errorCreatingYourAccount => Intl.message("An error has occurred while creating your account.", name: 'errorCreatingYourAccount');
+  get errorNicknameTaken => Intl.message("Nickname already taken.", name: 'errorNicknameTaken');
+  get errorEmailTaken => Intl.message("Email address already taken.", name: 'errorEmailTaken');
+  get errorCheckEmailSpelling => Intl.message("Something went wrong, check the spelling on your email address.", name: 'errorCheckEmailSpelling');
+  get errorPasswordTooShort => Intl.message("Password is too short.", name: 'errorPasswordTooShort');
+  get errorJoinDefault => Intl.message("An error has occurred. Please, try again later.", name: 'errorJoinDefault');
+
   static Localization _instance = new Localization();
 }

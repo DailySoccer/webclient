@@ -1759,9 +1759,39 @@
     "type": "text",
     "placeholders": {}
   },
+  "errorCreatingYourAccount": "Se ha producido un error al crear la cuenta",
+  "@errorCreatingYourAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorNicknameTaken": "El nombre de usuario ya está registrado",
+  "@errorNicknameTaken": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorEmailTaken": "El correo electrónico ya está registrado",
+  "@errorEmailTaken": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorCheckEmailSpelling": "Algo ha ido mal, revisa que el correo electrónico sea correcto",
+  "@errorCheckEmailSpelling": {
+    "type": "text",
+    "placeholders": {}
+  },
   "errorDefaultEditing": "Ha sucedido un error. No es posible modificar el equipo.",
   "@errorDefaultEditing": {
     "type": "text",
     "placeholders": {}
-  }  
+  },
+  "errorPasswordTooShort": "La contraseña es demasiado corta.",
+  "@errorPasswordTooShort": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorJoinDefault": "Ha ocurrido un error. Por favor, inténtalo más tarde.",
+  "@errorJoinDefault": {
+    "type": "text",
+    "placeholders": {}
+  }
 }

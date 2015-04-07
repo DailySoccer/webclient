@@ -254,12 +254,12 @@ class JoinComp extends BaseComp implements ShadowRootAware {
     }
   }
 
-  Map<String, String> errorMap = {
-    ERROR_CREATING_YOUR_ACCOUNT: "An error has occurred while creating your account.",
-    ERROR_NICKNAME_TAKEN: "Nickname already taken.",
-    ERROR_EMAIL_TAKEN: "Email address already taken.",
-    ERROR_CHECK_EMAIL_SPELLING: "Something went wrong, check the spelling on your email address.",
-    ERROR_PASSWORD_TOO_SHORT: "Password is too short.",
+  Map<String, String> get errorMap => {
+    ERROR_CREATING_YOUR_ACCOUNT: T.errorCreatingYourAccount,
+    ERROR_NICKNAME_TAKEN: T.errorNicknameTaken,
+    ERROR_EMAIL_TAKEN: T.errorEmailTaken,
+    ERROR_CHECK_EMAIL_SPELLING: T.errorCheckEmailSpelling,
+    ERROR_PASSWORD_TOO_SHORT: T.errorPasswordTooShort,
     "_ERROR_DEFAULT_": "An error has occurred. Please, try again later."
   };
 

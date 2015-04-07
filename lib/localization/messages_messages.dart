@@ -150,11 +150,15 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static entryHistory() => "Entry History";
 
+  static errorCheckEmailSpelling() => "Something went wrong, check the spelling on your email address.";
+
   static errorContestNotActiveEditing() => "It is not possible to modify your lineup once the contest has started.";
 
   static errorContestNotActiveGeneric() => "It is not possible to enter a live contest.";
 
   static errorContestNotActiveTitle() => "Live Contest";
+
+  static errorCreatingYourAccount() => "An error has occurred while creating your account.";
 
   static errorDefaultEditing() => "An error has occurred. You can not modify your lineup at the moment. Please, try again later.";
 
@@ -162,9 +166,17 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static errorDefaultTitle() => "Warning";
 
+  static errorEmailTaken() => "Email address already taken.";
+
+  static errorJoinDefault() => "An error has occurred. Please, try again later.";
+
   static errorMaxPlayersSameTeamGeneric() => "It is not possible...";
 
   static errorMaxPlayersSameTeamTitle() => "Players from same team";
+
+  static errorNicknameTaken() => "Nickname already taken.";
+
+  static errorPasswordTooShort() => "Password is too short.";
 
   static errorUserBalanceNegativeGeneric() => "You do not have enough cash to enter this contest. Please, add funds to continue.";
 
@@ -782,14 +794,20 @@ class MessageLookup extends MessageLookupByLibrary {
     "enterEmailInRememberPassword" : enterEmailInRememberPassword,
     "enterFromContestInfo" : enterFromContestInfo,
     "entryHistory" : entryHistory,
+    "errorCheckEmailSpelling" : errorCheckEmailSpelling,
     "errorContestNotActiveEditing" : errorContestNotActiveEditing,
     "errorContestNotActiveGeneric" : errorContestNotActiveGeneric,
     "errorContestNotActiveTitle" : errorContestNotActiveTitle,
+    "errorCreatingYourAccount" : errorCreatingYourAccount,
     "errorDefaultEditing" : errorDefaultEditing,
     "errorDefaultGeneric" : errorDefaultGeneric,
     "errorDefaultTitle" : errorDefaultTitle,
+    "errorEmailTaken" : errorEmailTaken,
+    "errorJoinDefault" : errorJoinDefault,
     "errorMaxPlayersSameTeamGeneric" : errorMaxPlayersSameTeamGeneric,
     "errorMaxPlayersSameTeamTitle" : errorMaxPlayersSameTeamTitle,
+    "errorNicknameTaken" : errorNicknameTaken,
+    "errorPasswordTooShort" : errorPasswordTooShort,
     "errorUserBalanceNegativeGeneric" : errorUserBalanceNegativeGeneric,
     "errorUserBalanceNegativeTitle" : errorUserBalanceNegativeTitle,
     "eventAssist" : eventAssist,

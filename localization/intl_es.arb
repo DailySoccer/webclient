@@ -1793,5 +1793,10 @@
   "@errorJoinDefault": {
     "type": "text",
     "placeholders": {}
+  },
+  "errorWrongEmailOrPassword": "El correo electrónico o la contraseña no son correctas.",
+  "@errorWrongEmailOrPassword": {
+    "type": "text",
+    "placeholders": {}
   }
 }

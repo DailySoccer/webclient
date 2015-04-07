@@ -160,6 +160,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static errorCreatingYourAccount() => "An error has occurred while creating your account.";
 
+  static errorDefault() => "An error has occurred. Please, try again later.";
+
   static errorDefaultEditing() => "An error has occurred. You can not modify your lineup at the moment. Please, try again later.";
 
   static errorDefaultGeneric() => "An error has occurred. You can not enter this contest at the moment. Please, try again later.";
@@ -167,8 +169,6 @@ class MessageLookup extends MessageLookupByLibrary {
   static errorDefaultTitle() => "Warning";
 
   static errorEmailTaken() => "Email address already taken.";
-
-  static errorJoinDefault() => "An error has occurred. Please, try again later.";
 
   static errorMaxPlayersSameTeamGeneric() => "It is not possible...";
 
@@ -181,6 +181,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static errorUserBalanceNegativeGeneric() => "You do not have enough cash to enter this contest. Please, add funds to continue.";
 
   static errorUserBalanceNegativeTitle() => "Not enough cash";
+
+  static errorWrongEmailOrPassword() => "Wrong email or password.";
 
   static eventAssist() => "Chance Created";
 
@@ -799,17 +801,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "errorContestNotActiveGeneric" : errorContestNotActiveGeneric,
     "errorContestNotActiveTitle" : errorContestNotActiveTitle,
     "errorCreatingYourAccount" : errorCreatingYourAccount,
+    "errorDefault" : errorDefault,
     "errorDefaultEditing" : errorDefaultEditing,
     "errorDefaultGeneric" : errorDefaultGeneric,
     "errorDefaultTitle" : errorDefaultTitle,
     "errorEmailTaken" : errorEmailTaken,
-    "errorJoinDefault" : errorJoinDefault,
     "errorMaxPlayersSameTeamGeneric" : errorMaxPlayersSameTeamGeneric,
     "errorMaxPlayersSameTeamTitle" : errorMaxPlayersSameTeamTitle,
     "errorNicknameTaken" : errorNicknameTaken,
     "errorPasswordTooShort" : errorPasswordTooShort,
     "errorUserBalanceNegativeGeneric" : errorUserBalanceNegativeGeneric,
     "errorUserBalanceNegativeTitle" : errorUserBalanceNegativeTitle,
+    "errorWrongEmailOrPassword" : errorWrongEmailOrPassword,
     "eventAssist" : eventAssist,
     "eventAttemptSaved" : eventAttemptSaved,
     "eventCaughtOffside" : eventCaughtOffside,

@@ -260,7 +260,7 @@ class JoinComp extends BaseComp implements ShadowRootAware {
     ERROR_EMAIL_TAKEN: T.errorEmailTaken,
     ERROR_CHECK_EMAIL_SPELLING: T.errorCheckEmailSpelling,
     ERROR_PASSWORD_TOO_SHORT: T.errorPasswordTooShort,
-    "_ERROR_DEFAULT_": "An error has occurred. Please, try again later."
+    "_ERROR_DEFAULT_": T.errorDefault
   };
 
   String _showMsgError(String errorCode) {

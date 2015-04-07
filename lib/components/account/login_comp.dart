@@ -96,9 +96,9 @@ class LoginComp extends BaseComp implements ShadowRootAware {
     }
   }
 
-  Map<String, String> errorMap = {
-    ERROR_WRONG_EMAIL_OR_PASSWORD: "Wrong email or password.",
-    "_ERROR_DEFAULT_": "An error has occurred. Please, try again later."
+  Map<String, String> get errorMap => {
+    ERROR_WRONG_EMAIL_OR_PASSWORD: T.errorWrongEmailOrPassword,
+    "_ERROR_DEFAULT_": T.errorDefault
   };
 
   String _showMsgError(String errorCode) {

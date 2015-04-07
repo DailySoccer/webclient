@@ -168,8 +168,6 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static errorEmailTaken() => "El correo electrónico ya está registrado";
 
-  static errorJoinDefault() => "Ha ocurrido un error. Por favor, inténtalo más tarde.";
-
   static errorMaxPlayersSameTeamGeneric() => "No es posible...";
 
   static errorMaxPlayersSameTeamTitle() => "Jugadores del mismo equipo";
@@ -181,6 +179,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static errorUserBalanceNegativeGeneric() => "Necesitas tener dinero suficiente en tu cuenta para poder participar en este torneo.";
 
   static errorUserBalanceNegativeTitle() => "Balance insuficiente";
+
+  static errorWrongEmailOrPassword() => "El correo electrónico o la contraseña no son correctas.";
 
   static eventAssist() => "Asistencia";
 
@@ -801,13 +801,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "errorDefaultGeneric" : errorDefaultGeneric,
     "errorDefaultTitle" : errorDefaultTitle,
     "errorEmailTaken" : errorEmailTaken,
-    "errorJoinDefault" : errorJoinDefault,
     "errorMaxPlayersSameTeamGeneric" : errorMaxPlayersSameTeamGeneric,
     "errorMaxPlayersSameTeamTitle" : errorMaxPlayersSameTeamTitle,
     "errorNicknameTaken" : errorNicknameTaken,
     "errorPasswordTooShort" : errorPasswordTooShort,
     "errorUserBalanceNegativeGeneric" : errorUserBalanceNegativeGeneric,
     "errorUserBalanceNegativeTitle" : errorUserBalanceNegativeTitle,
+    "errorWrongEmailOrPassword" : errorWrongEmailOrPassword,
     "eventAssist" : eventAssist,
     "eventAttemptSaved" : eventAttemptSaved,
     "eventCaughtOffside" : eventCaughtOffside,

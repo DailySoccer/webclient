@@ -424,7 +424,8 @@ class Localization {
   get errorEmailTaken => Intl.message("Email address already taken.", name: 'errorEmailTaken');
   get errorCheckEmailSpelling => Intl.message("Something went wrong, check the spelling on your email address.", name: 'errorCheckEmailSpelling');
   get errorPasswordTooShort => Intl.message("Password is too short.", name: 'errorPasswordTooShort');
-  get errorJoinDefault => Intl.message("An error has occurred. Please, try again later.", name: 'errorJoinDefault');
+  get errorWrongEmailOrPassword => Intl.message("Wrong email or password.", name: 'errorWrongEmailOrPassword');
+  get errorDefault => Intl.message("An error has occurred. Please, try again later.", name: 'errorDefault');
 
   static Localization _instance = new Localization();
 }

@@ -100,6 +100,13 @@ class Localization {
   get continueRememberPassword => Intl.message("CONTINUE", name: 'continueRememberPassword');
   get cancelRememberPassword => Intl.message("CANCEL", name: 'cancelRememberPassword');
 
+  get changePassword => Intl.message("CHANGE PASSWORD", name: 'changePassword');
+  get pageNotAvailable => Intl.message("The page is not available", name: 'pageNotAvailable');
+  get tokenInvalid => Intl.message("The provided token is invalid or has expired.", name: 'tokenInvalid');
+  get createNewPassword => Intl.message("Create a new password.", name: 'createNewPassword');
+  get continueChangePassword => Intl.message("CONTINUE", name: 'continueChangePassword');
+  get cancelChangePassword => Intl.message("CANCEL", name: 'cancelChangePassword');
+
   get menuLobby => Intl.message("LOBBY", name: 'menuLobby');
   get menuMyContests => Intl.message("MY CONTESTS", name: 'menuMyContests');
   get menuHowItWorks => Intl.message("HOW IT WORKS", name: 'menuHowItWorks');

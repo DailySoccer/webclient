@@ -34,6 +34,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static betaVersion() => "EPIC ELEVEN: VERSIÓN BETA";
 
+  static cancelChangePassword() => "CANCELAR";
+
   static cancelContestEntry() => "CANCELAR PARTICIPACIÓN";
 
   static cancelEditAccount() => "CANCELAR";
@@ -45,6 +47,12 @@ class MessageLookup extends MessageLookupByLibrary {
   static cancelRememberPassword() => "CANCELAR";
 
   static cancelSignup() => "CANCELAR";
+
+  static cancelledPayment() => "Pago cancelado";
+
+  static cancelledPaymentDescription() => "La transacción solicitada no ha podido ser completada. Por favor, verifica tu método de pago e inténtalo de nuevo.";
+
+  static changePassword() => "CAMBIO DE CONTRASEÑA";
 
   static checkNextContestsLink() => "PRÓXIMOS TORNEOS";
 
@@ -100,9 +108,13 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static contestsWin() => "Ganados";
 
+  static continueChangePassword() => "ENTRAR";
+
   static continueRememberPassword() => "ENVIAR";
 
   static createFantasyTeam() => "CONFIRMAR";
+
+  static createNewPassword() => "Crea una nueva contraseña.";
 
   static createYourLineup() => "Crea tu equipo en segundos desde cualquier dispositivo";
 
@@ -424,6 +436,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static ownTransferNotifications() => "NOTIFICACIONES DE TUS FICHAJES";
 
+  static pageNotAvailable() => "La página solicitada no está disponible";
+
   static password() => "Contraseña";
 
   static passwordFillBothFieldsToUpdate() => "Contraseña (Rellena los campos de contraseña para actualizar tu contraseña)";
@@ -604,9 +618,15 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static statYellowCardsShortName() => "TA";
 
+  static successfulPayment() => "Pago realizado";
+
+  static successfulPaymentDescription() => "¡Gracias! El pago ha sido procesado correctamente.";
+
   static thisIsABetaVersion() => "Lo sentimos, esta es una versión beta de Epic Eleven.<br>Próximamente podrás jugar y ganar premios en metálico y tendrás habilitadas<br>todas las funcionalidades necesarias. Te avisaremos cuando esté operativo<br><br><b>Muchas gracias</b>";
 
   static toTheContests() => "IR A LOS TORNEOS";
+
+  static tokenInvalid() => "El token proporcionado no es válido o ha expirado.";
 
   static tournamentFiftyFifty() => "50/50";
 
@@ -680,12 +700,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "allPlayers" : allPlayers,
     "backToContests" : backToContests,
     "betaVersion" : betaVersion,
+    "cancelChangePassword" : cancelChangePassword,
     "cancelContestEntry" : cancelContestEntry,
     "cancelEditAccount" : cancelEditAccount,
     "cancelLogin" : cancelLogin,
     "cancelPlayerSelection" : cancelPlayerSelection,
     "cancelRememberPassword" : cancelRememberPassword,
     "cancelSignup" : cancelSignup,
+    "cancelledPayment" : cancelledPayment,
+    "cancelledPaymentDescription" : cancelledPaymentDescription,
+    "changePassword" : changePassword,
     "checkNextContestsLink" : checkNextContestsLink,
     "checkNextContestsPost" : checkNextContestsPost,
     "checkNextContestsPre" : checkNextContestsPre,
@@ -713,8 +737,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "contestStartsOn" : contestStartsOn,
     "contestWillStartIn" : contestWillStartIn,
     "contestsWin" : contestsWin,
+    "continueChangePassword" : continueChangePassword,
     "continueRememberPassword" : continueRememberPassword,
     "createFantasyTeam" : createFantasyTeam,
+    "createNewPassword" : createNewPassword,
     "createYourLineup" : createYourLineup,
     "dailyFantasyLeagues" : dailyFantasyLeagues,
     "dailyFantasyLeaguesMobile" : dailyFantasyLeaguesMobile,
@@ -875,6 +901,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "numOfWonContests" : numOfWonContests,
     "opponent" : opponent,
     "ownTransferNotifications" : ownTransferNotifications,
+    "pageNotAvailable" : pageNotAvailable,
     "password" : password,
     "passwordFillBothFieldsToUpdate" : passwordFillBothFieldsToUpdate,
     "passwordHelper" : passwordHelper,
@@ -965,8 +992,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "statTakeOnsShortName" : statTakeOnsShortName,
     "statYellowCards" : statYellowCards,
     "statYellowCardsShortName" : statYellowCardsShortName,
+    "successfulPayment" : successfulPayment,
+    "successfulPaymentDescription" : successfulPaymentDescription,
     "thisIsABetaVersion" : thisIsABetaVersion,
     "toTheContests" : toTheContests,
+    "tokenInvalid" : tokenInvalid,
     "tournamentFiftyFifty" : tournamentFiftyFifty,
     "tournamentFree" : tournamentFree,
     "tournamentHeadToHead" : tournamentHeadToHead,

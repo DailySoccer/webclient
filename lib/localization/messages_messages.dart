@@ -34,6 +34,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static betaVersion() => "EPIC ELEVEN: BETA VERSION";
 
+  static cancelChangePassword() => "CANCEL";
+
   static cancelContestEntry() => "CANCEL PARTICIPATION";
 
   static cancelEditAccount() => "CANCEL";
@@ -45,6 +47,12 @@ class MessageLookup extends MessageLookupByLibrary {
   static cancelRememberPassword() => "CANCEL";
 
   static cancelSignup() => "CANCEL";
+
+  static cancelledPayment() => "cancelled payment";
+
+  static cancelledPaymentDescription() => "The requested transaction cannot be completed. Please check your payment method and try again.";
+
+  static changePassword() => "CHANGE PASSWORD";
 
   static checkNextContestsLink() => "NEXT CONTESTS";
 
@@ -100,9 +108,13 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static contestsWin() => "Wins";
 
+  static continueChangePassword() => "CONTINUE";
+
   static continueRememberPassword() => "CONTINUE";
 
   static createFantasyTeam() => "CONTINUE";
+
+  static createNewPassword() => "Create a new password.";
 
   static createYourLineup() => "Create your lineup, on your computer, tablet or smartphone in seconds";
 
@@ -424,6 +436,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static ownTransferNotifications() => "OWN SOCCER PLAYER TRANSFER NOTIFICACIONS";
 
+  static pageNotAvailable() => "The page is not available";
+
   static password() => "Password";
 
   static passwordFillBothFieldsToUpdate() => "Password (Fill the both fields to update it)";
@@ -606,9 +620,15 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static statYellowCardsShortName() => "YC";
 
+  static successfulPayment() => "successful payment";
+
+  static successfulPaymentDescription() => "Thank you! Your order has been successfully processed.";
+
   static thisIsABetaVersion() => "Sorry, this is a beta version of Epic Eleven.<br>We are working hard on all the features that Epic Eleven will include.We will keep you updated.<br><br><b>Thank you</b>";
 
   static toTheContests() => "TO THE CONTESTS";
+
+  static tokenInvalid() => "The provided token is invalid or has expired.";
 
   static tournamentFiftyFifty() => "50/50";
 
@@ -682,12 +702,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "allPlayers" : allPlayers,
     "backToContests" : backToContests,
     "betaVersion" : betaVersion,
+    "cancelChangePassword" : cancelChangePassword,
     "cancelContestEntry" : cancelContestEntry,
     "cancelEditAccount" : cancelEditAccount,
     "cancelLogin" : cancelLogin,
     "cancelPlayerSelection" : cancelPlayerSelection,
     "cancelRememberPassword" : cancelRememberPassword,
     "cancelSignup" : cancelSignup,
+    "cancelledPayment" : cancelledPayment,
+    "cancelledPaymentDescription" : cancelledPaymentDescription,
+    "changePassword" : changePassword,
     "checkNextContestsLink" : checkNextContestsLink,
     "checkNextContestsPost" : checkNextContestsPost,
     "checkNextContestsPre" : checkNextContestsPre,
@@ -715,8 +739,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "contestStartsOn" : contestStartsOn,
     "contestWillStartIn" : contestWillStartIn,
     "contestsWin" : contestsWin,
+    "continueChangePassword" : continueChangePassword,
     "continueRememberPassword" : continueRememberPassword,
     "createFantasyTeam" : createFantasyTeam,
+    "createNewPassword" : createNewPassword,
     "createYourLineup" : createYourLineup,
     "dailyFantasyLeagues" : dailyFantasyLeagues,
     "dailyFantasyLeaguesMobile" : dailyFantasyLeaguesMobile,
@@ -877,6 +903,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "numOfWonContests" : numOfWonContests,
     "opponent" : opponent,
     "ownTransferNotifications" : ownTransferNotifications,
+    "pageNotAvailable" : pageNotAvailable,
     "password" : password,
     "passwordFillBothFieldsToUpdate" : passwordFillBothFieldsToUpdate,
     "passwordHelper" : passwordHelper,
@@ -968,8 +995,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "statTakeOnsShortName" : statTakeOnsShortName,
     "statYellowCards" : statYellowCards,
     "statYellowCardsShortName" : statYellowCardsShortName,
+    "successfulPayment" : successfulPayment,
+    "successfulPaymentDescription" : successfulPaymentDescription,
     "thisIsABetaVersion" : thisIsABetaVersion,
     "toTheContests" : toTheContests,
+    "tokenInvalid" : tokenInvalid,
     "tournamentFiftyFifty" : tournamentFiftyFifty,
     "tournamentFree" : tournamentFree,
     "tournamentHeadToHead" : tournamentHeadToHead,

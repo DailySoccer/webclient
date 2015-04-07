@@ -361,6 +361,36 @@
     "type": "text",
     "placeholders": {}
   },
+  "changePassword": "CAMBIO DE CONTRASEÑA",
+  "@changePassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pageNotAvailable": "La página solicitada no está disponible",
+  "@pageNotAvailable": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tokenInvalid": "El token proporcionado no es válido o ha expirado.",
+  "@tokenInvalid": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createNewPassword": "Crea una nueva contraseña.",
+  "@createNewPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "continueChangePassword": "ENTRAR",
+  "@continueChangePassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancelChangePassword": "CANCELAR",
+  "@cancelChangePassword": {
+    "type": "text",
+    "placeholders": {}
+  },
   "menuLobby": "Buscar Torneos",
   "@menuLobby": {
     "type": "text",

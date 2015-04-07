@@ -696,6 +696,20 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static transactions() => "TRANSACCIONES";
 
+  static tutorialEnterContest() => "Pick up 11 player within your salary cap.";
+
+  static tutorialEnterContestTitle() => "SELECT YOUR LINEUP";
+
+  static tutorialGotIt() => "Got it!";
+
+  static tutorialLobby() => "You can play as many contests as you like for La Liga BBVA, Barclays Premier League and UEFA Champions League.";
+
+  static tutorialLobbyTitle() => "SELECT A CONTEST";
+
+  static tutorialViewContest() => "Go to \'<b>My Contest</b>\' to edit your lineups, watch your team’s live performance or review past contests. <br> <br> <p class=\'subtitle\'>Remember: you can play as many contests as you like, and select as many lineups as you like.</p>";
+
+  static tutorialViewContestTitle() => "WELCOME TO EPICELEVEN";
+
   static upcoming() => "Upcoming";
 
   static userNameTitle() => "PLAYER";
@@ -1077,6 +1091,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "transactionSubject" : transactionSubject,
     "transactionValue" : transactionValue,
     "transactions" : transactions,
+    "tutorialEnterContest" : tutorialEnterContest,
+    "tutorialEnterContestTitle" : tutorialEnterContestTitle,
+    "tutorialGotIt" : tutorialGotIt,
+    "tutorialLobby" : tutorialLobby,
+    "tutorialLobbyTitle" : tutorialLobbyTitle,
+    "tutorialViewContest" : tutorialViewContest,
+    "tutorialViewContestTitle" : tutorialViewContestTitle,
     "upcoming" : upcoming,
     "userNameTitle" : userNameTitle,
     "userPositionTitle" : userPositionTitle,

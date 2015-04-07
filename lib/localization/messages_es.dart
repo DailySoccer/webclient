@@ -644,6 +644,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static statRedCardsShortName() => "TR";
 
+  static statSavedPenalties() => "Penaltis Detenidos";
+
   static statSaves() => "Paradas";
 
   static statSavesShortName() => "PA";
@@ -691,6 +693,20 @@ class MessageLookup extends MessageLookupByLibrary {
   static transactionValue() => "IMPORTE";
 
   static transactions() => "TRANSACCIONES";
+
+  static tutorialEnterContest() => "Escoge 11 jugadores sin saltarte tu límite salarial";
+
+  static tutorialEnterContestTitle() => "ELIGE TU ALINEACIÓN";
+
+  static tutorialGotIt() => "¡Entendido!";
+
+  static tutorialLobby() => "Puedes jugar tantos torneos como quieras de La Liga, Barclays Premier League y la UEFA Champions League.";
+
+  static tutorialLobbyTitle() => "SELECCIONA UN TORNEO";
+
+  static tutorialViewContest() => "Ve a \'<b>Mis Torneos</b>\' para editar tus alineaciones, ver cómo lo hace tu equipo en vivo o ver el resultado de torneos que ya jugaste. <br> <br> <p class=\'subtitle\'>Recuerda: puedes jugar tantos torneos como quieras, y hacer tantas alineaciones como quieras.</p>";
+
+  static tutorialViewContestTitle() => "BIENVENIDO A EPIC ELEVEN";
 
   static upcoming() => "Próximos";
 
@@ -1047,6 +1063,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "statRecoveriesShortName" : statRecoveriesShortName,
     "statRedCards" : statRedCards,
     "statRedCardsShortName" : statRedCardsShortName,
+    "statSavedPenalties" : statSavedPenalties,
     "statSaves" : statSaves,
     "statSavesShortName" : statSavesShortName,
     "statShots" : statShots,
@@ -1071,6 +1088,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "transactionSubject" : transactionSubject,
     "transactionValue" : transactionValue,
     "transactions" : transactions,
+    "tutorialEnterContest" : tutorialEnterContest,
+    "tutorialEnterContestTitle" : tutorialEnterContestTitle,
+    "tutorialGotIt" : tutorialGotIt,
+    "tutorialLobby" : tutorialLobby,
+    "tutorialLobbyTitle" : tutorialLobbyTitle,
+    "tutorialViewContest" : tutorialViewContest,
+    "tutorialViewContestTitle" : tutorialViewContestTitle,
     "upcoming" : upcoming,
     "userNameTitle" : userNameTitle,
     "userPositionTitle" : userPositionTitle,

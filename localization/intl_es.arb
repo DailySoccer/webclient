@@ -1505,6 +1505,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "statSavedPenalties": "Penaltis Detenidos",
+  "@statSavedPenalties": {
+    "type": "text",
+    "placeholders": {}
+  },
   "statMinutesPlayed": "Minutos jugados",
   "@statMinutesPlayed": {
     "type": "text",
@@ -1606,6 +1611,41 @@
   },
   "needHelp": "¿Necesitas ayuda?",
   "@needHelp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialLobbyTitle": "SELECCIONA UN TORNEO",
+  "@tutorialLobbyTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialEnterContestTitle": "ELIGE TU ALINEACIÓN",
+  "@tutorialEnterContestTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialViewContestTitle": "BIENVENIDO A EPIC ELEVEN",
+  "@tutorialViewContestTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialLobby": "Puedes jugar tantos torneos como quieras de La Liga, Barclays Premier League y la UEFA Champions League.",
+  "@tutorialLobby": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialEnterContest": "Escoge 11 jugadores sin saltarte tu límite salarial",
+  "@tutorialEnterContest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialViewContest": "Ve a '<b>Mis Torneos</b>' para editar tus alineaciones, ver cómo lo hace tu equipo en vivo o ver el resultado de torneos que ya jugaste. <br> <br> <p class='subtitle'>Recuerda: puedes jugar tantos torneos como quieras, y hacer tantas alineaciones como quieras.</p>",
+  "@tutorialViewContest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialGotIt": "¡Entendido!",
+  "@tutorialGotIt": {
     "type": "text",
     "placeholders": {}
   },

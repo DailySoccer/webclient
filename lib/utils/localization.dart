@@ -8,8 +8,12 @@ class Localization {
   static Localization get instance => _instance;
 
   static Future init () {
-    Intl.defaultLocale = 'es_ES'; //"en_EN";
-    return initializeMessages("es"); //new Future.value(true);
+    Intl.defaultLocale = 'es_ES'; // "es_ES" "en_EN" "en_US"
+
+    switch (Intl.shortLocale(Intl.defaultLocale)) {
+      case "es":  return initializeMessages("es");
+      default:    return new Future.value(true);
+    }
   }
 
   Localization ();
@@ -385,6 +389,14 @@ class Localization {
   get returnToLobby => Intl.message("Return to Lobby", name: 'returnToLobby');
 
   get needHelp => Intl.message("Need help?", name: 'needHelp');
+
+  get tutorialLobbyTitle => Intl.message("SELECT A CONTEST", name: 'tutorialLobbyTitle');
+  get tutorialEnterContestTitle => Intl.message("SELECT YOUR LINEUP", name: 'tutorialEnterContestTitle');
+  get tutorialViewContestTitle => Intl.message("WELCOME TO EPICELEVEN", name: 'tutorialViewContestTitle');
+  get tutorialLobby => Intl.message("You can play as many contests as you like for La Liga BBVA, Barclays Premier League and UEFA Champions League.", name: 'tutorialLobby');
+  get tutorialEnterContest => Intl.message("Pick up 11 player within your salary cap.", name: 'tutorialEnterContest');
+  get tutorialViewContest => Intl.message("Go to '<b>My Contest</b>' to edit your lineups, watch your team’s live performance or review past contests. <br> <br> <p class='subtitle'>Remember: you can play as many contests as you like, and select as many lineups as you like.</p>", name: 'tutorialViewContest');
+  get tutorialGotIt => Intl.message("Got it!", name: 'tutorialGotIt');
 
   get help => Intl.message("HELP", name: 'help');
   get howItWorks => Intl.message("How it works", name: 'howItWorks');

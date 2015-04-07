@@ -326,6 +326,41 @@
     "type": "text",
     "placeholders": {}
   },
+  "rememberPassword": "RECORDAR CONTRASEÑA",
+  "@rememberPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "haveSentYouAnEmailTo": "Te hemos enviado un correo electrónico a la dirección",
+  "@haveSentYouAnEmailTo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "checkYouInbox": "Revisa tu correo y sigue las instrucciones en el email que te hemos enviado.",
+  "@checkYouInbox": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "rememberPasswordInfo": "¿Olvidaste tu contraseña? Introduce la dirección de correo electrónico y recibirás un email para recuperar tu cuenta.",
+  "@rememberPasswordInfo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterEmailInRememberPassword": "Introduce la dirección de correo electrónico con la que te registraste",
+  "@enterEmailInRememberPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "continueRememberPassword": "ENVIAR",
+  "@continueRememberPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancelRememberPassword": "CANCELAR",
+  "@cancelRememberPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
   "menuLobby": "Buscar Torneos",
   "@menuLobby": {
     "type": "text",

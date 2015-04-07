@@ -42,6 +42,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static cancelPlayerSelection() => "CANCELAR";
 
+  static cancelRememberPassword() => "CANCELAR";
+
   static cancelSignup() => "CANCELAR";
 
   static checkNextContestsLink() => "PRÓXIMOS TORNEOS";
@@ -49,6 +51,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static checkNextContestsPost() => "PARA VER CUÁNDO EMPIEZAN";
 
   static checkNextContestsPre() => "CONSULTA LA LISTA DE TUS";
+
+  static checkYouInbox() => "Revisa tu correo y sigue las instrucciones en el email que te hemos enviado.";
 
   static chooseAContender() => "Selecciona un usuario de esta lista para ver y comparar su alineacion con la tuya";
 
@@ -96,6 +100,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static contestsWin() => "Ganados";
 
+  static continueRememberPassword() => "ENVIAR";
+
   static createFantasyTeam() => "CONFIRMAR";
 
   static createYourLineup() => "Crea tu equipo en segundos desde cualquier dispositivo";
@@ -123,6 +129,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static emailInvalid() => "El email no es válido.";
 
   static emailIsNotValid() => "El correo electrónico introducido no es válido.";
+
+  static enterEmailInRememberPassword() => "Introduce la dirección de correo electrónico con la que te registraste";
 
   static enterFromContestInfo() => "ENTRAR";
 
@@ -291,6 +299,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static haveEditedYourLineup() => "¡PERFECTO! HAS EDITADO TU ALINEACIÓN CON ÉXITO";
 
   static havePutYouInEquivalentContest() => "EL TORNEO ESTABA LLENO PERO TE HEMOS METIDO EN ESTE QUE ES IGUAL";
+
+  static haveSentYouAnEmailTo() => "Te hemos enviado un correo electrónico a la dirección";
 
   static help() => "AYUDA";
 
@@ -467,6 +477,10 @@ class MessageLookup extends MessageLookupByLibrary {
   static prizes() => "Premios";
 
   static remainingSalary() => "DINERO RESTANTE";
+
+  static rememberPassword() => "RECORDAR CONTRASEÑA";
+
+  static rememberPasswordInfo() => "¿Olvidaste tu contraseña? Introduce la dirección de correo electrónico y recibirás un email para recuperar tu cuenta.";
 
   static rememberThatYouCanEdit() => "Recuerda que puedes editar tu equipo cuantas veces quieras hasta que comience la competición";
 
@@ -670,10 +684,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "cancelEditAccount" : cancelEditAccount,
     "cancelLogin" : cancelLogin,
     "cancelPlayerSelection" : cancelPlayerSelection,
+    "cancelRememberPassword" : cancelRememberPassword,
     "cancelSignup" : cancelSignup,
     "checkNextContestsLink" : checkNextContestsLink,
     "checkNextContestsPost" : checkNextContestsPost,
     "checkNextContestsPre" : checkNextContestsPre,
+    "checkYouInbox" : checkYouInbox,
     "chooseAContender" : chooseAContender,
     "chooseATeamOf11Players" : chooseATeamOf11Players,
     "chooseAnotherPlayer" : chooseAnotherPlayer,
@@ -697,6 +713,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "contestStartsOn" : contestStartsOn,
     "contestWillStartIn" : contestWillStartIn,
     "contestsWin" : contestsWin,
+    "continueRememberPassword" : continueRememberPassword,
     "createFantasyTeam" : createFantasyTeam,
     "createYourLineup" : createYourLineup,
     "dailyFantasyLeagues" : dailyFantasyLeagues,
@@ -711,6 +728,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "emailHelper" : emailHelper,
     "emailInvalid" : emailInvalid,
     "emailIsNotValid" : emailIsNotValid,
+    "enterEmailInRememberPassword" : enterEmailInRememberPassword,
     "enterFromContestInfo" : enterFromContestInfo,
     "entryHistory" : entryHistory,
     "eventAssist" : eventAssist,
@@ -795,6 +813,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "haveCompletedYourLineup" : haveCompletedYourLineup,
     "haveEditedYourLineup" : haveEditedYourLineup,
     "havePutYouInEquivalentContest" : havePutYouInEquivalentContest,
+    "haveSentYouAnEmailTo" : haveSentYouAnEmailTo,
     "help" : help,
     "help01" : help01,
     "help01Title" : help01Title,
@@ -883,6 +902,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "prizeWinner" : prizeWinner,
     "prizes" : prizes,
     "remainingSalary" : remainingSalary,
+    "rememberPassword" : rememberPassword,
+    "rememberPasswordInfo" : rememberPasswordInfo,
     "rememberThatYouCanEdit" : rememberThatYouCanEdit,
     "rememberThatYouCanEditYourTeam" : rememberThatYouCanEditYourTeam,
     "repeatPassword" : repeatPassword,

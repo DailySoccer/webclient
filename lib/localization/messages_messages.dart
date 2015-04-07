@@ -42,6 +42,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static cancelPlayerSelection() => "CANCEL";
 
+  static cancelRememberPassword() => "CANCEL";
+
   static cancelSignup() => "CANCEL";
 
   static checkNextContestsLink() => "NEXT CONTESTS";
@@ -49,6 +51,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static checkNextContestsPost() => "TO SEE WHEN THEY START";
 
   static checkNextContestsPre() => "CHECK OUT THE LIST OF YOUR";
+
+  static checkYouInbox() => "Check your inbox and follow the instructions in the email.";
 
   static chooseAContender() => "Choose a contender to compare lineups";
 
@@ -96,6 +100,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static contestsWin() => "Wins";
 
+  static continueRememberPassword() => "CONTINUE";
+
   static createFantasyTeam() => "CONTINUE";
 
   static createYourLineup() => "Create your lineup, on your computer, tablet or smartphone in seconds";
@@ -123,6 +129,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static emailInvalid() => "Invalid Email.";
 
   static emailIsNotValid() => "Email is not valid.";
+
+  static enterEmailInRememberPassword() => "Enter the email address used to sign up for EPIC ELEVEN";
 
   static enterFromContestInfo() => "ENTER";
 
@@ -291,6 +299,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static haveEditedYourLineup() => "WELL DONE! YOU HAVE SUCCESSFULLY EDITED YOUR LINEUP";
 
   static havePutYouInEquivalentContest() => "THE CONTEST WAS FULL, SO WE HAVE PUT YOU IN THIS EQUIVALENT ONE";
+
+  static haveSentYouAnEmailTo() => "We have sent you an email to";
 
   static help() => "HELP";
 
@@ -467,6 +477,10 @@ class MessageLookup extends MessageLookupByLibrary {
   static prizes() => "Prizes";
 
   static remainingSalary() => "REMAINING SALARY";
+
+  static rememberPassword() => "REMEMBER PASSWORD";
+
+  static rememberPasswordInfo() => "Forgot password? Enter you email and you will receive an email to recover your password.";
 
   static rememberThatYouCanEdit() => "Remember that you can edit your lineup as many times as you want before the contest starts";
 
@@ -672,10 +686,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "cancelEditAccount" : cancelEditAccount,
     "cancelLogin" : cancelLogin,
     "cancelPlayerSelection" : cancelPlayerSelection,
+    "cancelRememberPassword" : cancelRememberPassword,
     "cancelSignup" : cancelSignup,
     "checkNextContestsLink" : checkNextContestsLink,
     "checkNextContestsPost" : checkNextContestsPost,
     "checkNextContestsPre" : checkNextContestsPre,
+    "checkYouInbox" : checkYouInbox,
     "chooseAContender" : chooseAContender,
     "chooseATeamOf11Players" : chooseATeamOf11Players,
     "chooseAnotherPlayer" : chooseAnotherPlayer,
@@ -699,6 +715,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "contestStartsOn" : contestStartsOn,
     "contestWillStartIn" : contestWillStartIn,
     "contestsWin" : contestsWin,
+    "continueRememberPassword" : continueRememberPassword,
     "createFantasyTeam" : createFantasyTeam,
     "createYourLineup" : createYourLineup,
     "dailyFantasyLeagues" : dailyFantasyLeagues,
@@ -713,6 +730,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "emailHelper" : emailHelper,
     "emailInvalid" : emailInvalid,
     "emailIsNotValid" : emailIsNotValid,
+    "enterEmailInRememberPassword" : enterEmailInRememberPassword,
     "enterFromContestInfo" : enterFromContestInfo,
     "entryHistory" : entryHistory,
     "eventAssist" : eventAssist,
@@ -797,6 +815,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "haveCompletedYourLineup" : haveCompletedYourLineup,
     "haveEditedYourLineup" : haveEditedYourLineup,
     "havePutYouInEquivalentContest" : havePutYouInEquivalentContest,
+    "haveSentYouAnEmailTo" : haveSentYouAnEmailTo,
     "help" : help,
     "help01" : help01,
     "help01Title" : help01Title,
@@ -885,6 +904,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "prizeWinner" : prizeWinner,
     "prizes" : prizes,
     "remainingSalary" : remainingSalary,
+    "rememberPassword" : rememberPassword,
+    "rememberPasswordInfo" : rememberPasswordInfo,
     "rememberThatYouCanEdit" : rememberThatYouCanEdit,
     "rememberThatYouCanEditYourTeam" : rememberThatYouCanEditYourTeam,
     "repeatPassword" : repeatPassword,

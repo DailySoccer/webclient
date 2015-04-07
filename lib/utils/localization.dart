@@ -92,6 +92,14 @@ class Localization {
   get signupHere => Intl.message("Sign Up here!", name: 'signupHere');
   get loginError => Intl.message("LOGIN ERROR: The nickname or password is not correct.", name: 'loginError');
 
+  get rememberPassword => Intl.message("REMEMBER PASSWORD", name: 'rememberPassword');
+  get haveSentYouAnEmailTo => Intl.message("We have sent you an email to", name: 'haveSentYouAnEmailTo');
+  get checkYouInbox => Intl.message("Check your inbox and follow the instructions in the email.", name: 'checkYouInbox');
+  get rememberPasswordInfo => Intl.message("Forgot password? Enter you email and you will receive an email to recover your password.", name: 'rememberPasswordInfo');
+  get enterEmailInRememberPassword => Intl.message("Enter the email address used to sign up for EPIC ELEVEN", name: 'enterEmailInRememberPassword');
+  get continueRememberPassword => Intl.message("CONTINUE", name: 'continueRememberPassword');
+  get cancelRememberPassword => Intl.message("CANCEL", name: 'cancelRememberPassword');
+
   get menuLobby => Intl.message("LOBBY", name: 'menuLobby');
   get menuMyContests => Intl.message("MY CONTESTS", name: 'menuMyContests');
   get menuHowItWorks => Intl.message("HOW IT WORKS", name: 'menuHowItWorks');

@@ -22,14 +22,14 @@
           <div class="no-contests-wrapper" ng-switch-when="false">
               <div ng-switch="hasWaitingContests">
 
-                <div class="title-info-text">YOU DON'T HAVE ANY LIVE CONTEST</div>
-                <div class="sub-title-info-text">CHECK OUT YOUR <strong data-toggle="tab" ng-click="gotoSection('upcoming')">UPCOMING CONTESTS</strong> TO SEE WHEN THEY START</div>
+                <div class="title-info-text">YOU ARE NOT PLAYING ANY CONTEST AT THE MOMENT</div>
+                <div class="sub-title-info-text">CHECK OUT THE LIST OF YOUR <strong data-toggle="tab" ng-click="gotoSection('upcoming')">UPCOMMING CONTESTS</strong> TO SEE WHEN THEY START</div>
                 <div ng-switch-when="false">
                   <div class="no-contest-bottom-row">
                     <button class="btn-go-to-contest" ng-click="gotoLobby()">GO TO LOBBY</button>
                   </div>
                 </div>
-s
+
                 <div ng-switch-when="true">
                   <div class="inner-content-wrapper">
                     <div class="next-contest-start-wrapper">

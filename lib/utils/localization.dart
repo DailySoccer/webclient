@@ -408,5 +408,16 @@ class Localization {
   get ruleAccessAssociatedIssues => Intl.message("ACCESS ASSOCIATED ISSUES", name: 'ruleAccessAssociatedIssues');
   get ruleContestCancellation => Intl.message("CONTEST CANCELLATION", name: 'ruleContestCancellation');
 
+  get errorContestNotActiveTitle => Intl.message("Live Contest", name: 'errorContestNotActiveTitle');
+  get errorContestNotActiveGeneric => Intl.message("It is not possible to enter a live contest.", name: 'errorContestNotActiveGeneric');
+  get errorContestNotActiveEditing => Intl.message("It is not possible to modify your lineup once the contest has started.", name: 'errorContestNotActiveEditing');
+  get errorMaxPlayersSameTeamTitle => Intl.message("Players from same team", name: 'errorMaxPlayersSameTeamTitle');
+  get errorMaxPlayersSameTeamGeneric => Intl.message("It is not possible...", name: 'errorMaxPlayersSameTeamGeneric');
+  get errorUserBalanceNegativeTitle => Intl.message("Not enough cash", name: 'errorUserBalanceNegativeTitle');
+  get errorUserBalanceNegativeGeneric => Intl.message("You do not have enough cash to enter this contest. Please, add funds to continue.", name: 'errorUserBalanceNegativeGeneric');
+  get errorDefaultTitle => Intl.message("Warning", name: 'errorDefaultTitle');
+  get errorDefaultGeneric => Intl.message("An error has occurred. You can not enter this contest at the moment. Please, try again later.", name: 'errorDefaultGeneric');
+  get errorDefaultEditing => Intl.message("An error has occurred. You can not modify your lineup at the moment. Please, try again later.", name: 'errorDefaultEditing');
+
   static Localization _instance = new Localization();
 }

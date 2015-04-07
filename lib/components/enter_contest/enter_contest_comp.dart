@@ -408,25 +408,25 @@ class EnterContestComp extends BaseComp implements DetachAware {
     ModalComp.open(_router, "enter_contest.soccer_player_stats", { "instanceSoccerPlayerId":soccerPlayerId, "selectable":isSlotAvailableForSoccerPlayer(soccerPlayerId)}, addSoccerPlayerToLineup);
   }
 
-  Map<String, Map> errorMap = {
+  Map<String, Map> get errorMap => {
     ERROR_CONTEST_NOT_ACTIVE: {
-        "title"   : "Live Contest",
-        "generic" : "It is not possible to enter a live contest.",
-        "editing" : "It is not possible to modify your lineup once the contest has started."
+        "title"   : T.errorContestNotActiveTitle,
+        "generic" : T.errorContestNotActiveGeneric,
+        "editing" : T.errorContestNotActiveEditing
     },
     ERROR_MAX_PLAYERS_SAME_TEAM: {
-      "title"   : "Players from same team",
-      "generic" : "It is not possible...",
+      "title"   : T.errorMaxPlayersSameTeamTitle,
+      "generic" : T.errorMaxPlayersSameTeamGeneric
     },
     // TODO: Avisamos al usuario de que no dispone del dinero suficiente pero, cuando se integre la branch "paypal-ui", se le redirigirá a "añadir fondos"
     ERROR_USER_BALANCE_NEGATIVE: {
-      "title"   : "Not enough cash",
-      "generic" : "You do not have enough cash to enter this contest. Please, add funds to continue."
+      "title"   : T.errorUserBalanceNegativeTitle,
+      "generic" : T.errorUserBalanceNegativeGeneric
     },
     "_ERROR_DEFAULT_": {
-        "title"   : "Warning",
-        "generic" : "An error has occurred. You can not enter this contest at the moment. Please, try again later.",
-        "editing" : "An error has occurred. You can not modify your lineup at the moment. Please, try again later.",
+        "title"   : T.errorDefaultTitle,
+        "generic" : T.errorDefaultGeneric,
+        "editing" : T.errorDefaultEditing
     },
   };
 

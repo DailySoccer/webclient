@@ -150,6 +150,26 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static entryHistory() => "Historial";
 
+  static errorContestNotActiveEditing() => "No es posible modificar un equipo cuando el torneo ha comenzado.";
+
+  static errorContestNotActiveGeneric() => "No es posible entrar en un torneo que ya ha comenzado.";
+
+  static errorContestNotActiveTitle() => "Torneo en vivo";
+
+  static errorDefaultEditing() => "Ha sucedido un error. No es posible modificar el equipo.";
+
+  static errorDefaultGeneric() => "Ha sucedido un error. No es posible entrar en el torneo.";
+
+  static errorDefaultTitle() => "Aviso";
+
+  static errorMaxPlayersSameTeamGeneric() => "No es posible...";
+
+  static errorMaxPlayersSameTeamTitle() => "Jugadores del mismo equipo";
+
+  static errorUserBalanceNegativeGeneric() => "Necesitas tener dinero suficiente en tu cuenta para poder participar en este torneo.";
+
+  static errorUserBalanceNegativeTitle() => "Balance insuficiente";
+
   static eventAssist() => "Asistencia";
 
   static eventAttemptSaved() => "Disparo a puerta";
@@ -760,6 +780,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "enterEmailInRememberPassword" : enterEmailInRememberPassword,
     "enterFromContestInfo" : enterFromContestInfo,
     "entryHistory" : entryHistory,
+    "errorContestNotActiveEditing" : errorContestNotActiveEditing,
+    "errorContestNotActiveGeneric" : errorContestNotActiveGeneric,
+    "errorContestNotActiveTitle" : errorContestNotActiveTitle,
+    "errorDefaultEditing" : errorDefaultEditing,
+    "errorDefaultGeneric" : errorDefaultGeneric,
+    "errorDefaultTitle" : errorDefaultTitle,
+    "errorMaxPlayersSameTeamGeneric" : errorMaxPlayersSameTeamGeneric,
+    "errorMaxPlayersSameTeamTitle" : errorMaxPlayersSameTeamTitle,
+    "errorUserBalanceNegativeGeneric" : errorUserBalanceNegativeGeneric,
+    "errorUserBalanceNegativeTitle" : errorUserBalanceNegativeTitle,
     "eventAssist" : eventAssist,
     "eventAttemptSaved" : eventAttemptSaved,
     "eventCaughtOffside" : eventCaughtOffside,

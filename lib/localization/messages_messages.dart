@@ -150,6 +150,26 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static entryHistory() => "Entry History";
 
+  static errorContestNotActiveEditing() => "It is not possible to modify your lineup once the contest has started.";
+
+  static errorContestNotActiveGeneric() => "It is not possible to enter a live contest.";
+
+  static errorContestNotActiveTitle() => "Live Contest";
+
+  static errorDefaultEditing() => "An error has occurred. You can not modify your lineup at the moment. Please, try again later.";
+
+  static errorDefaultGeneric() => "An error has occurred. You can not enter this contest at the moment. Please, try again later.";
+
+  static errorDefaultTitle() => "Warning";
+
+  static errorMaxPlayersSameTeamGeneric() => "It is not possible...";
+
+  static errorMaxPlayersSameTeamTitle() => "Players from same team";
+
+  static errorUserBalanceNegativeGeneric() => "You do not have enough cash to enter this contest. Please, add funds to continue.";
+
+  static errorUserBalanceNegativeTitle() => "Not enough cash";
+
   static eventAssist() => "Chance Created";
 
   static eventAttemptSaved() => "Attempted shot";
@@ -762,6 +782,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "enterEmailInRememberPassword" : enterEmailInRememberPassword,
     "enterFromContestInfo" : enterFromContestInfo,
     "entryHistory" : entryHistory,
+    "errorContestNotActiveEditing" : errorContestNotActiveEditing,
+    "errorContestNotActiveGeneric" : errorContestNotActiveGeneric,
+    "errorContestNotActiveTitle" : errorContestNotActiveTitle,
+    "errorDefaultEditing" : errorDefaultEditing,
+    "errorDefaultGeneric" : errorDefaultGeneric,
+    "errorDefaultTitle" : errorDefaultTitle,
+    "errorMaxPlayersSameTeamGeneric" : errorMaxPlayersSameTeamGeneric,
+    "errorMaxPlayersSameTeamTitle" : errorMaxPlayersSameTeamTitle,
+    "errorUserBalanceNegativeGeneric" : errorUserBalanceNegativeGeneric,
+    "errorUserBalanceNegativeTitle" : errorUserBalanceNegativeTitle,
     "eventAssist" : eventAssist,
     "eventAttemptSaved" : eventAttemptSaved,
     "eventCaughtOffside" : eventCaughtOffside,

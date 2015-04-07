@@ -1713,5 +1713,55 @@
   "@ruleContestCancellation": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "errorContestNotActiveTitle": "Torneo en vivo",
+  "@errorContestNotActiveTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorContestNotActiveGeneric": "No es posible entrar en un torneo que ya ha comenzado.",
+  "@errorContestNotActiveGeneric": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorContestNotActiveEditing": "No es posible modificar un equipo cuando el torneo ha comenzado.",
+  "@errorContestNotActiveEditing": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorMaxPlayersSameTeamTitle": "Jugadores del mismo equipo",
+  "@errorMaxPlayersSameTeamTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorMaxPlayersSameTeamGeneric": "No es posible...",
+  "@errorMaxPlayersSameTeamGeneric": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorUserBalanceNegativeTitle": "Balance insuficiente",
+  "@errorUserBalanceNegativeTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorUserBalanceNegativeGeneric": "Necesitas tener dinero suficiente en tu cuenta para poder participar en este torneo.",
+  "@errorUserBalanceNegativeGeneric": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorDefaultTitle": "Aviso",
+  "@errorDefaultTitle": {
+    "type": "text",
+    "placeholders": {}
+  },  
+  "errorDefaultGeneric": "Ha sucedido un error. No es posible entrar en el torneo.",
+  "@errorDefaultGeneric": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorDefaultEditing": "Ha sucedido un error. No es posible modificar el equipo.",
+  "@errorDefaultEditing": {
+    "type": "text",
+    "placeholders": {}
+  }  
 }

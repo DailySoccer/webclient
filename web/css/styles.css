@@ -14736,6 +14736,9 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
 #myContestMenuTabs .active {
   background-color: #214a5f;
 }
+#live .inner-content-wrapper {
+  margin-top: 20px;
+}
 .no-contests-wrapper {
   background-color: #ffffff;
   text-align: center;
@@ -14784,15 +14787,15 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
 .no-contests-wrapper .column-heading {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
-  font-size: 8pt;
+  font-size: 7pt;
   color: #afafaf;
   margin: 20px;
 }
-@media (max-width: 767px) {
+@media (min-width: 768px) {
   .no-contests-wrapper .column-heading {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
-    font-size: 7pt;
+    font-size: 8pt;
     color: #afafaf;
   }
 }
@@ -15046,6 +15049,72 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
   display: block;
   left: 50%;
   margin-left: -384px;
+}
+.no-contests-wrapper .inner-content-wrapper .promo-wrapper .promo-content .text-devices {
+  float: left;
+  width: 58.33333333%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  position: relative;
+}
+@media (min-width: 768px) {
+  .no-contests-wrapper .inner-content-wrapper .promo-wrapper .promo-content .text-devices {
+    float: left;
+    width: 50%;
+  }
+}
+.no-contests-wrapper .inner-content-wrapper .promo-wrapper .promo-content .text-devices .title-text {
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 12pt;
+  color: #0d75a6;
+  text-transform: uppercase;
+  text-align: center;
+  top: 0;
+}
+@media (min-width: 992px) {
+  .no-contests-wrapper .inner-content-wrapper .promo-wrapper .promo-content .text-devices .title-text {
+    font-family: 'Exo', sans-serif;
+    font-weight: 300;
+    font-size: 20pt;
+    color: #0d75a6;
+    text-transform: uppercase;
+  }
+}
+.no-contests-wrapper .inner-content-wrapper .promo-wrapper .promo-content .text-devices .sub-title-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 7pt;
+  color: #afafaf;
+  bottom: 0;
+}
+@media (min-width: 768px) {
+  .no-contests-wrapper .inner-content-wrapper .promo-wrapper .promo-content .text-devices .sub-title-text {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 8pt;
+    color: #afafaf;
+  }
+}
+.no-contests-wrapper .inner-content-wrapper .promo-wrapper .promo-content .icon-devices {
+  float: left;
+  width: 41.66666667%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  .no-contests-wrapper .inner-content-wrapper .promo-wrapper .promo-content .icon-devices {
+    float: left;
+    width: 50%;
+  }
+}
+.no-contests-wrapper .inner-content-wrapper .promo-wrapper .promo-content .icon-devices img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 .list-container {
   background-color: #ffffff;

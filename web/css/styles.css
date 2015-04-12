@@ -5613,10 +5613,10 @@ button.close {
 #contestHeaderWrapper .contest-relevant-data:after,
 #contestHeaderWrapper .date-time-data:before,
 #contestHeaderWrapper .date-time-data:after,
-#teamsPanelRoot .teams-comp-bar:before,
-#teamsPanelRoot .teams-comp-bar:after,
-#teamsPanelRoot .teams-comp-bar .teams-container:before,
-#teamsPanelRoot .teams-comp-bar .teams-container:after,
+#teamsPanelComp #teamsPanelRoot .teams-comp-bar:before,
+#teamsPanelComp #teamsPanelRoot .teams-comp-bar:after,
+#teamsPanelComp #teamsPanelRoot .teams-container:before,
+#teamsPanelComp #teamsPanelRoot .teams-container:after,
 #contestInfoModal .modal-info-content .tabs-navigation:before,
 #contestInfoModal .modal-info-content .tabs-navigation:after,
 #contestInfoModal .modal-info-content .info-options:before,
@@ -5765,8 +5765,8 @@ scoring-rules:after,
 #contestHeaderWrapper:after,
 #contestHeaderWrapper .contest-relevant-data:after,
 #contestHeaderWrapper .date-time-data:after,
-#teamsPanelRoot .teams-comp-bar:after,
-#teamsPanelRoot .teams-comp-bar .teams-container:after,
+#teamsPanelComp #teamsPanelRoot .teams-comp-bar:after,
+#teamsPanelComp #teamsPanelRoot .teams-container:after,
 #contestInfoModal .modal-info-content .tabs-navigation:after,
 #contestInfoModal .modal-info-content .info-options:after,
 #contestInfoTabbed:after,
@@ -6323,9 +6323,11 @@ contest-header {
 #contestHeaderWrapper .date-time-data {
   margin-left: 0;
   margin-right: 0;
+  display: inline-block;
   line-height: 2;
 }
 #contestHeaderWrapper .date-time-data .contest-start-date {
+  white-space: nowrap;
   position: relative;
   float: left;
   width: 50%;
@@ -6356,6 +6358,7 @@ contest-header {
   padding-left: 15px;
   padding-right: 15px;
   text-align: right;
+  padding-left: 0px;
 }
 #contestHeaderWrapper .date-time-data .contest-countdown-text span {
   font-family: 'Open Sans', sans-serif;
@@ -6370,12 +6373,6 @@ contest-header {
     font-size: 11pt;
     color: #59add5;
   }
-}
-#contestHeaderWrapper .date-time-data:after {
-  height: 1px;
-  width: 100%;
-  background-color: #afafaf;
-  content: "";
 }
 #contestHeaderWrapper .close-contest {
   position: absolute;
@@ -6393,22 +6390,58 @@ contest-header {
   content: "\E014";
   font-size: 9pt;
 }
-#teamsPanelComp {
-  display: block;
+#teamsPanelComp .teams-toggler-wrapper {
+  display: inline-block;
+  float: right;
+  background-color: #ffffff;
+}
+#teamsPanelComp .teams-toggler-wrapper .teams-toggler {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #777777;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  padding-left: 0px;
+  padding-right: 15px;
+}
+@media (max-width: 767px) {
+  #teamsPanelComp .teams-toggler-wrapper .teams-toggler {
+    margin-top: 3px;
+  }
+}
+@media (min-width: 767px) {
+  #teamsPanelComp .teams-toggler-wrapper .teams-toggler {
+    margin-top: 9px;
+  }
+}
+#teamsPanelComp .teams-toggler-wrapper .toggleOff::after {
+  font-family: 'Glyphicons Halflings';
+  content: "\E114";
+  font-size: 6pt;
+  color: #434343;
+  padding-left: 3px;
+}
+#teamsPanelComp .teams-toggler-wrapper .toggleOn::after {
+  font-family: 'Glyphicons Halflings';
+  content: "\E113";
+  font-size: 6pt;
+  color: #434343;
+  padding-left: 3px;
 }
 @media (max-width: 991px) {
-  #teamsPanelComp {
+  #teamsPanelComp .teams-toggler-wrapper {
     background-color: #ffffff;
-    min-height: 45px;
   }
 }
 @media (min-width: 992px) {
-  #teamsPanelComp {
-    background-color: #ecf0f1;
-    min-height: 50px;
+  #teamsPanelComp .teams-toggler-wrapper {
+    background-color: #ffffff;
     overflow: hidden;
   }
-  #teamsPanelComp .animate {
+  #teamsPanelComp .teams-toggler-wrapper .animate {
     -webkit-animation: teamspanel-height-keyframes 1s;
     -moz-animation: teamspanel-height-keyframes 1s;
     -ms-animation: teamspanel-height-keyframes 1s;
@@ -6456,12 +6489,19 @@ contest-header {
     }
   }
 }
-#teamsPanelRoot .teams-comp-bar {
+#teamsPanelComp #teamsPanelRoot {
+  display: block;
+  border-width: 1px;
+  border-style: solid none none none;
+  border-color: #cccccc;
+  border-radius: 0;
+}
+#teamsPanelComp #teamsPanelRoot .teams-comp-bar {
   margin-left: 0;
   margin-right: 0;
   background-color: #ecf0f1;
 }
-#teamsPanelRoot .teams-comp-bar .social {
+#teamsPanelComp #teamsPanelRoot .teams-comp-bar .social {
   position: relative;
   float: left;
   width: 0%;
@@ -6471,63 +6511,25 @@ contest-header {
   width: 150px;
   padding: 9px 20px;
 }
-#teamsPanelRoot .teams-comp-bar .teams-toggler-wrapper {
-  background-color: #ffffff;
-  border-width: 1px;
-  border-style: none none solid none;
-  border-color: #777777;
-  border-radius: 0;
-}
-#teamsPanelRoot .teams-comp-bar .teams-toggler-wrapper .teams-toggler {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-  font-size: 8pt;
-  color: #777777;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  padding: 15px;
-}
-#teamsPanelRoot .teams-comp-bar .teams-toggler-wrapper .toggleOff::after {
-  font-family: 'Glyphicons Halflings';
-  content: "\E114";
-  font-size: 8pt;
-  color: #434343;
-  position: absolute;
-  right: 15px;
-}
-#teamsPanelRoot .teams-comp-bar .teams-toggler-wrapper .toggleOn::after {
-  font-family: 'Glyphicons Halflings';
-  content: "\E113";
-  font-size: 8pt;
-  color: #434343;
-  position: absolute;
-  right: 15px;
-}
-#teamsPanelRoot .teams-comp-bar .teams-container {
+#teamsPanelComp #teamsPanelRoot .teams-container {
   margin-left: 0;
   margin-right: 0;
   padding: 8px 5px 0px 5px;
 }
 @media (max-width: 767px) {
-  #teamsPanelRoot .teams-comp-bar .teams-container {
+  #teamsPanelComp #teamsPanelRoot .teams-container {
     background-color: #ecf0f1;
     padding: 0;
   }
-  #teamsPanelRoot .teams-comp-bar .teams-container .top-border {
+  #teamsPanelComp #teamsPanelRoot .teams-container .top-border {
     height: 10px;
   }
-  #teamsPanelRoot .teams-comp-bar .teams-container .bottom-border {
-    border-width: 1px;
-    border-style: none none solid none;
-    border-color: #777777;
-    border-radius: 0;
+  #teamsPanelComp #teamsPanelRoot .teams-container .bottom-border {
     height: 10px;
     clear: both;
   }
 }
-#teamsPanelRoot .teams-comp-bar .teams-container .teams-box {
+#teamsPanelComp #teamsPanelRoot .teams-container .teams-box {
   float: left;
   width: 33.33333333%;
   position: relative;
@@ -6538,18 +6540,18 @@ contest-header {
   padding-right: 0px;
 }
 @media (min-width: 768px) {
-  #teamsPanelRoot .teams-comp-bar .teams-container .teams-box {
+  #teamsPanelComp #teamsPanelRoot .teams-container .teams-box {
     float: left;
     width: 25%;
   }
 }
 @media (min-width: 992px) {
-  #teamsPanelRoot .teams-comp-bar .teams-container .teams-box {
+  #teamsPanelComp #teamsPanelRoot .teams-container .teams-box {
     float: left;
     width: 16.66666667%;
   }
 }
-#teamsPanelRoot .teams-comp-bar .teams-container .teams-box .teams-info {
+#teamsPanelComp #teamsPanelRoot .teams-container .teams-box .teams-info {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 9pt;
@@ -6563,17 +6565,17 @@ contest-header {
   line-height: 15px;
 }
 @media (max-width: 767px) {
-  #teamsPanelRoot .teams-comp-bar .teams-container .teams-box .teams-info {
+  #teamsPanelComp #teamsPanelRoot .teams-container .teams-box .teams-info {
     margin: 4px;
   }
 }
-#teamsPanelRoot .teams-comp-bar .teams-container .teams-box .match-date {
+#teamsPanelComp #teamsPanelRoot .teams-container .teams-box .match-date {
   margin-top: 5px;
 }
-#teamsPanelRoot .teams-comp-bar .teams-container .teams-box .score-wrapper {
+#teamsPanelComp #teamsPanelRoot .teams-container .teams-box .score-wrapper {
   display: inline-block;
 }
-#teamsPanelRoot .teams-comp-bar .teams-container .teams-box .score-wrapper .team-score {
+#teamsPanelComp #teamsPanelRoot .teams-container .teams-box .score-wrapper .team-score {
   padding: 0px 5px;
   border-radius: 3px;
   background-color: #afafaf;
@@ -6582,7 +6584,7 @@ contest-header {
   font-size: 9pt;
   color: #ffffff;
 }
-#teamsPanelRoot .teams-comp-bar .teams-container .teams-box .period {
+#teamsPanelComp #teamsPanelRoot .teams-container .teams-box .period {
   color: #0d75a6;
   margin-top: 5px;
 }

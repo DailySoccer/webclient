@@ -1,15 +1,49 @@
 //barra que muestra los partidos que intervienen en el concurso y los encales sociales
 #teamsPanelComp {
-	display: block;
+
+	//display: inline-block;
+    .teams-toggler-wrapper {
+      display: inline-block;
+      float: right;
+      background-color: @white;
+      .teams-toggler {
+        .opensans_bold(8pt, @greyDark);
+        .user-select(none);
+        padding-left: 0px;
+        padding-right: 15px;      
+        //position: absolute;
+        //right: 0;
+        //bottom: 0;  
+          @media (max-width: @screen-xs-max) {
+          margin-top: 3px;
+          }
+          @media (min-width: @screen-xs-max) {
+          margin-top: 9px;
+          }
+                  
+      }
+      .toggleOff::after{
+        .create-glyph("\E114", 6pt, @greyUltraDark);
+        padding-left: 3px;
+        //position: absolute;
+        //right: 15px;
+      }
+      .toggleOn::after{
+        .create-glyph("\E113", 6pt, @greyUltraDark);
+        padding-left: 3px;
+        
+        //position: absolute;
+        //right: 15px;
+      }
 
 	// Reserva de sitio
 	@media (max-width: @screen-sm-max) {
 		background-color: @white;
-		min-height: 45px;
+		//min-height: 45px;
 	}
 	@media (min-width: @screen-md-min) {
-		background-color: @tramaBlue;
-		min-height: 50px;
+		background-color: @white;
+		//min-height: 50px;
 		overflow: hidden;
 
 		// Animacion para cuando hay mas de una linea (solo en desktop)
@@ -24,6 +58,9 @@
 }
 
 #teamsPanelRoot {
+  display: block;
+  .make-border(1px, solid none none none, #ccc);
+
 	.teams-comp-bar{
 		.make-row(0);
 		background-color: @tramaBlue;
@@ -32,27 +69,11 @@
 			width: 150px;
 			padding: 9px 20px;
 		}
-		.teams-toggler-wrapper {
-			background-color: @white;
-			.teams-toggler {
-				.opensans_bold(8pt, @greyDark);
-				.user-select(none);
-				padding: 15px;
-			}
-			.toggleOff::after{
-				.create-glyph("\E114", 8pt, @greyUltraDark);
-				position: absolute;
-				right: 15px;
-			}
-			.toggleOn::after{
-				.create-glyph("\E113", 8pt, @greyUltraDark);
-				position: absolute;
-				right: 15px;
-			}
-			.make-border(1px, none none solid none, @greyDark);
 		}
 		.teams-container {
 			.make-row(0);
+			//.make-border(1px, solid none none none, @greyDark);        
+			
 			padding: 8px 5px 0px 5px;
 			@media (max-width: @screen-xs-max) {			
 				background-color: @tramaBlue;
@@ -61,7 +82,7 @@
 					height: 10px;
 				}
 				.bottom-border {
-					.make-border(1px, none none solid none, @greyDark);
+					//.make-border(1px, none none solid none, @greyDark);
 					height: 10px;
 					clear: both;
 				}

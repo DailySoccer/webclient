@@ -83,7 +83,8 @@
 		.make-row(0);
 		padding-top: 20px;
 		padding-bottom: 20px;
-		border-radius: 0 0 10px 10px;			
+		border-radius: 0 0 10px 10px;	
+		max-height: 54px;		
 		.btn-go-to-contest{
 			.btn-primary();			
 			margin: 0 auto;
@@ -91,6 +92,10 @@
 			display: block;
 		}
 	}	
+	.inner-no-contest-bottom-row {
+		padding-bottom: 53px;
+		padding-top: 8px;
+	}
 	.inner-content-wrapper {
 		.make-row(0);
 		.inner-column {
@@ -107,9 +112,13 @@
 				text-align: center;				
 				border-radius: 8px;
 				background-color: @tramaBlue;
+				height: 147px;
 				.next-content-title {
 					.exo_bold(10pt, @blueDark);
 					padding-top: 10px;
+				}
+				.inner-next-content-title {
+					.exo_bold(10pt, @greyDark);
 				}
 				.next-content-time {
 					.exo_light(20pt, @blueDark);

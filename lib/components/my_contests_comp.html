@@ -24,35 +24,38 @@
 
                 <div class="title-info-text">YOU DON'T HAVE ANY LIVE CONTEST</div>
                 <div class="sub-title-info-text">CHECK OUT YOUR <strong data-toggle="tab" ng-click="gotoSection('upcoming')">UPCOMING CONTESTS</strong> TO SEE WHEN THEY START</div>
-                <div ng-switch-when="false">
-                  <div class="no-contest-bottom-row">
-                    <button class="btn-go-to-contest" ng-click="gotoLobby()">GO TO LOBBY</button>
-                  </div>
-                </div>
 
-                <div ng-switch-when="true">
-                  <div class="inner-content-wrapper">
-                    <div class="next-contest-start-wrapper">
-                      <div class="next-content-content">
-                        <div class="next-content-title">NEXT CONTEST STARTS</div>
-                        <div class="next-content-time">{{calculateNextUpcommingContest()}}</div>
-                        <div class="no-contest-bottom-row">
-                          <button class="btn-go-to-contest" ng-click="gotoLobby()">GO TO LOBBY</button>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="promo-wrapper">
-                      <div class="promo-content">
-                        <div class="text-devices">
-                          <div class="title-text">LOREM IPSUM DOLOR SIT AMET</div>
-                          <div class="sub-title-text">Lorem ipsum dolor sit amet, consecteur adipiscing edit.</div>
-                        </div>
-                        <div class="icon-devices">
-                         <img src="images/IconDevicesColor.png" />
-                        </div>
+                <div class="inner-content-wrapper">
+
+                  <div class="next-contest-start-wrapper">
+                    <div class="next-content-content">
+                      <div class="next-content-title">NEXT CONTEST STARTS</div>
+                      <div class="next-content-time">{{calculateNextUpcommingContest()}}</div>
+                      <div class="no-contest-bottom-row">
+                        <button class="btn-go-to-contest" ng-click="gotoLobby()">JOIN MORE CONTESTS</button>
                       </div>
                     </div>
                   </div>
+
+                  <div class="promo-wrapper" ng-switch-when="true">
+                    <div class="promo-content">
+                      <div class="text-devices">
+                        <div class="title-text">LOREM IPSUM DOLOR SIT AMET</div>
+                        <div class="sub-title-text">Lorem ipsum dolor sit amet, consecteur adipiscing edit.</div>
+                      </div>
+                      <div class="icon-devices">
+                       <img src="images/IconDevicesColor.png" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="promo-wrapper" ng-switch-when="false">
+                    <div class="promo-content">
+                      <a ng-click="gotoPromo(0)">
+                       <img ng-src="{{getThumb(0,'imageXs')}}" class="promoXs" />
+                      </a>
+                    </div>
+                  </div>
+
                 </div>
 
               </div>
@@ -89,7 +92,7 @@
                   </div>
                 </div>
                 <div class="promo-wrapper">
-                <div class="column-heading">OR TRY ONE OF OUR PROMOS</div>
+                  <div class="column-heading">OR TRY ONE OF OUR PROMOS</div>
                   <div class="promo-content">
                     <a ng-click="gotoPromo(0)">
                      <img ng-src="{{getThumb(0,'imageXs')}}" class="promoXs" />
@@ -116,11 +119,13 @@
         <section  id="history" ng-unless="loadingService.isLoading" ng-switch="hasHistoryContests">
           <!-- lista vacía -->
           <div class="no-contests-wrapper" ng-switch-when="false">
+            <div class="no-contests-content">
               <div class="title-info-text">YOU HAVEN'T PLAYED ANY CONTEST YET<br>WHAT ARE YOU WAITING FOR TO START WINNING?</div>
               <div class="sub-title-info-text">GO TO THE <strong data-toggle="tab" ng-click="gotoLobby('upcoming')">LOBBY</strong>, PICK ONE AND START PLAYING</div>
               <div class="no-contest-bottom-row">
                 <button class="btn-go-to-contest" ng-click="gotoLobby()">TO THE LOBBY</button>
               </div>
+            </div>
           </div>
           <!-- lista de concursos -->
           <div class="list-container" ng-switch-when="true">

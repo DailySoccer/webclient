@@ -404,7 +404,7 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
 
           <!-- GOTO LOGIN -->
           <div class="user-form-field">
-            <div class="small-text">Already have an account? <a ng-click="onAction('LOGIN', $event)"> log in here! </a></div>
+            <div class="small-text">Already have an account? <a id="gotoLoginLink" ng-click="onAction('LOGIN', $event)"> log in here! </a></div>
           </div>
 
           <!--
@@ -468,7 +468,7 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
 
           <!-- REMEMBER PASS -->
           <div class="user-form-field-righted">
-            <a class="small-link-righted" ng-click="onAction('REMEMBER_PASSWORD', $event)">Forgot your password?</a>
+            <a id="rememberPasswordLink" class="small-link-righted" ng-click="onAction('REMEMBER_PASSWORD', $event)">Forgot your password?</a>
           </div>
 
           <!-- BUTTONS -->
@@ -484,7 +484,7 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
           <!-- GOTO REGISTER -->
           <div class="user-form-field">
             <div class="new-row">
-              <div class="small-text">Don't have an account? <a ng-click="onAction('JOIN', $event)"> Sign Up here! </a></div>
+              <div class="small-text">Don't have an account? <a id="gotoRegisterLink" ng-click="onAction('JOIN', $event)"> Sign Up here! </a></div>
             </div>
           </div>
 
@@ -592,7 +592,7 @@ tc.put("packages/webclient/components/account/remember_password_comp.html", new 
 
           <!-- GOTO REGISTER -->
           <div class="new-row bottom-separation-10">
-            <div class="small-text">Don't have an account?<a ng-click="navigateTo('join', {}, $event)"> Sign up here! </a></div>
+            <div class="small-text">Don't have an account?<a id="gotoRegisterLink" ng-click="navigateTo('join', {}, $event)"> Sign up here! </a></div>
           </div>
 
         </form>
@@ -853,6 +853,9 @@ tc.put("packages/webclient/components/contest_header_comp.html", new HttpRespons
     </div>
   </div>
 
+  <teams-panel id="teamsPanelComp" contest="contest" contest-id="contest.contestId"  ng-if="showMatches"></teams-panel>
+
+
   <div class="close-contest" ng-switch="isInsideModal">
     <button type="button" ng-switch-when="true"  class="close" data-dismiss="modal">   <span class="glyphicon glyphicon-remove"></span></button>
     <button type="button" ng-switch-when="false" class="close" ng-click="goToParent()"><span class="glyphicon glyphicon-remove"></span></button>
@@ -864,7 +867,7 @@ tc.put("packages/webclient/components/contest_header_comp.html", new HttpRespons
 """));
 tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(200, r"""<modal id="contestInfoModal" ng-if="isModal">
 
-  <contest-header id="contestInfoHeader" contest="contest" contest-id="contestId"  modal="true"></contest-header>
+  <contest-header id="contestInfoHeader" contest="contest" contest-id="contestId"  modal="true" show-matches="false"></contest-header>
 
   <div class="modal-info-content">
 
@@ -872,10 +875,10 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
         <!-- Nav tabs -->
         <div class="tabs-navigation">
           <ul class="contest-info-tabs " id="modalInfoContestTabs">
-              <li class="tab active"><a data-toggle="tab" ng-click="tabChange('info')">Information</a></li>
-              <li class="tab"><a data-toggle="tab" ng-click="tabChange('contestants')">Contenders</a></li>
+              <li class="tab active"><a data-toggle="tab" ng-click="tabChange('matches')">Matches</a></li>
               <li class="tab"><a data-toggle="tab" ng-click="tabChange('prizes')">Prizes</a></li>
-              <!--<li class="buton-place">
+              <li class="tab"><a data-toggle="tab" ng-click="tabChange('contestants')">Contenders</a></li>
+              <li class="tab"><a data-toggle="tab" ng-click="tabChange('scoring')">Scoring Rules</a></li>              <!--<li class="buton-place">
                 <button id="btn-go-enter-contest" class="btn btn-primary" ng-click="enterContest()">ENTER</button>
               </li>-->
           </ul>
@@ -890,7 +893,7 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
           <div class=" tab-content">
 
               <!-- Tab panes -->
-              <div class="tab-pane active" id="info">
+              <div class="tab-pane active" id="matches">
                   <p class="instructions">{{currentInfoData['rules']}}</p>
                   <div class="matches-involved">
                       <div class="match" ng-repeat="match in currentInfoData['matchesInvolved']">
@@ -898,12 +901,25 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
                           <p class="date">{{formatMatchDate(match.startDate)}}</p>
                       </div>
                   </div>
-                  <div class="clearfix"></div>
-                  <p class="bases-title">SCORING RULES</p>
+              </div>
 
-                  <div class="rules-description">
-                    <scoring-rules></scoring-rules>
+              <div class="tab-pane" id="prizes">
+                <div class="prizes-wrapper">
+                  <!--<div ng-if="!loadingService.isLoading && currentInfoData['prizes'].isEmpty" class="default-info-text">
+                    Este concurso no tiene premios
+                  </div>-->
+                  <div class="default-info-text">
+                    {{currentInfoData["prizeType"]}}
                   </div>
+                  <div id="prizes-list">
+                    <div class="prize-element-wrapper" ng-repeat="prize in currentInfoData['prizes']">
+                      <div class="prize-element">
+                          {{$index + 1}}º &nbsp;&nbsp; {{prize}}
+                      </div>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                </div>
               </div>
 
               <div class="tab-pane" id="contestants">
@@ -921,26 +937,14 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
                 </div>
               </div>
 
-              <div class="tab-pane" id="prizes">
-
-                <div class="prizes-wrapper">
-                  <!--<div ng-if="!loadingService.isLoading && currentInfoData['prizes'].isEmpty" class="default-info-text">
-                    Este concurso no tiene premios
-                  </div>-->
-                  <div class="default-info-text">
-                    {{currentInfoData["prizeType"]}}
+                            <!-- Tab panes -->
+              <div class="tab-pane" id="scoring">
+                  <!--div class="clearfix"></div-->
+                  <div class="rules-description">
+                    <scoring-rules></scoring-rules>
                   </div>
-                  <div id="prizes-list">
-                    <div class="prize-element-wrapper" ng-repeat="prize in currentInfoData['prizes']">
-                      <div class="prize-element">
-                          {{$index + 1}}º &nbsp;&nbsp; {{prize}}
-                      </div>
-                    </div>
-                    <div class="clearfix"></div>
-                  </div>
-                </div>
-
               </div>
+
           </div>
       </div>
   </div>
@@ -953,13 +957,6 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
           <p class="teams">{{match.soccerTeamA.shortName}} - {{match.soccerTeamB.shortName}}</p>
           <p class="date">{{formatMatchDate(match.startDate)}}</p>
       </div>
-  </div>
-  <div class="clearfix"></div>
-  <div class="info-section"></div>
-
-  <p class="title">SCORING POINTS</p>
-  <div class="rules-description">
-    <scoring-rules></scoring-rules>
   </div>
   <div class="clearfix"></div>
   <div class="info-section"></div>
@@ -996,6 +993,14 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
       </div>
   </div>
   <div class="clearfix"></div>
+  <div class="info-section"></div>
+
+  <p class="title">SCORING RULES</p>
+  <div class="rules-description">
+    <scoring-rules></scoring-rules>
+  </div>
+  <div class="clearfix"></div>
+
 </div>
 
 """));
@@ -1053,7 +1058,7 @@ tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse
 </div>"""));
 tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", new HttpResponse(200, r"""<div id="enter-contest-wrapper" >
 
-  <contest-header id="contestHeader" contest="contest" contest-id="contestId"></contest-header>
+  <contest-header id="contestHeader" contest="contest" contest-id="contestId" show-matches="false"></contest-header>
 
   <!-- Nav tabs -->
   <ul class="enter-contest-tabs" role="tablist">
@@ -1384,8 +1389,8 @@ tc.put("packages/webclient/components/legalese_and_help/help_info_comp.html", ne
           <img src="images/help06.jpg">
         </div>
         <div class="description-right">
-          <p>It is very easy to play EPIC 11 from any device, any place. You can keep track of your lineup's live stats from your computer, tablet or smartphone, with an optimized interface for each one.</p>
-          <!--p>See how easy it is to participate in contests EPIC 11 from wherever you want. You can follow live stats of your players from your computer, tablet or smartphone optimized for all devices,to improve usability.</p-->
+          <p>It is very easy to play EPIC ELEVEN from any device, any place. You can keep track of your lineup's live stats from your computer, tablet or smartphone, with an optimized interface for each one.</p>
+          <!--p>See how easy it is to participate in contests EPIC ELEVEN from wherever you want. You can follow live stats of your players from your computer, tablet or smartphone optimized for all devices,to improve usability.</p-->
           <button type="button" class="button-play" ng-click="goTo('lobby')">PLAY NOW</button>
         </div>
       </div>
@@ -1402,97 +1407,97 @@ tc.put("packages/webclient/components/legalese_and_help/help_info_comp.html", ne
       <div class="title">RULES</div>
       <div class="toogle-block">
         <input type="checkbox" id="rule1" class="toggle">
-        <label for="rule1">LEGALS</label>
+        <label for="rule1">1. Legals</label>
         <div>
-          <p>To play any of our tournaments, you must be 18 years or older and a resident in Spain. For further information, please, see our<a ng-click="goTo('terminus_info')">Terms of Use</a>.</p>
+          <p>To play in Epic Eleven you must be at least 18 years older. For further information, please, see our<a ng-click="goTo('terminus_info')">Terms of Use</a>.</p>
         </div>
       </div>
       <div class="toogle-block">
         <input type="checkbox" id="rule2" class="toggle">
-        <label for="rule2">MULTI ACCOUNTS</label>
+        <label for="rule2">2. Multiple Accounts</label>
         <div>
-          <p>Each Epic Eleven player, can only own a single account. However, in special cases, Epic Eleven allows the creation of a second account. To do this, you must revceive express written permission of Epic Eleven before opening the second account. In this case, is Epic Eleven final decision, determining the right of a user to be in possession of two accounts. The penalties will be issued at the discretion of Epic Eleven staff and may involve the closuere of all user accounts and retention of cach, if we determine that has been obtained fraudulently.</p>
+          <p>Any Player can only own a single user account of Epic Eleven. However, in special cases, Epic Eleven allows the creation of a second account. To do this, you must receive written consent of Epic Eleven before opening a second account, so is Epic Eleven’s final decision to let a User possess two user accounts. If this condition is not met, any penalty that Epic Eleven suits fit will be issued at Epic Eleven’s staff discretion and may involve the closure of all involved user accounts and the retention of cash within, if we determine that has been obtained fraudulently.</p>
         </div>
       </div>
       <div class="toogle-block">
         <input type="checkbox" id="rule3" class="toggle">
 
-        <label for="rule3">BANNED ACCOUNTS</label>
+        <label for="rule3">3. Banned accounts</label>
         <div>
-          <p>There are certain behaviors that are detrimental to "Epic Eleven" and the other players. These behaviors may imply the cancellation of some (or all) of the functions associated with a user account. As a result of the foregoing, users whose accounts have been canceled shall respect the disciplinary measures imposed. All communication pertaining to the restoration of a user account must be made through the email account support@epiceleven.com.</p>
+          <p>There are certain behaviors that are detrimental to Epic Eleven and the other players. These behaviors may imply the cancellation of some (or all) of the functions associated with a user account. As a result of the foregoing, users whose accounts have been canceled shall respect the disciplinary measures imposed. All communication pertaining to the restoration of a user account must be made through the email account <a href="mailto:support@epiceleven.com">support@epiceleven.com</a>.</p>
         </div>
       </div>
       <div class="toogle-block">
         <input type="checkbox" id="rule4" class="toggle">
-        <label for="rule4">NICKNAMES</label>
+        <label for="rule4">4. Nicknames</label>
         <div>
-          <p>"Epic Eleven" holds the right to request to change user name where that is offensive or respond to commercial interests. The requirement of change will be determined solely by Epic Eleven. If the user ignores the request, Epic Eleven alter this username.</p>
+          <p>Epic Eleven holds the right to request the change of a user name where that is offensive or respond to commercial interests. Only Epic Eleven can determine the reasons for that request. If the User ignores the request, Epic Eleven will alter this username without being obliged to extend any further notice to the User.</p>
         </div>
       </div>
       <div class="toogle-block">
         <input type="checkbox" id="rule5" class="toggle">
-        <label for="rule5">UNFILLED CONTESTS</label>
+        <label for="rule5">5. Empty contests</label>
         <div>
-          <p>All open tournaments that take place in Epic Eleven have a certain prize and a number of specific contenders. If at the start of the tournament this number of contenders is not reached, it may be canceled. For example, a competition "One on One" without 2 competitors and a league of 10 people with only 9 contenders can not be held.</p>
+          <p>All open tournaments that take place in Epic Eleven have a certain prize and a number of specific participants. If at the start of the tournament this number of participants is not reached, it may be canceled. For example, a competition "One on One" without 2 competitors and a league of 10 people with only 9 participants can not be held. In every case, is up to Epic Eleven discretion to cancel a contest.</p>
         </div>
       </div>
       <div class="toogle-block">
         <input type="checkbox" id="rule6" class="toggle">
-        <label for="rule6">CANCEL PARTICIPATION</label>
+        <label for="rule6">6. Cancelled participation</label>
         <div>
-          <p>Users can cancel participation in any tournament by clicking the "Cancel Entry" button at the bottom left of the section in which you can edit your team. Once the tournament has begun the button "Cancel entry" disappear. Eleven Epic will not consider requests for cancellation of entries in competitions that are completed during the first 15 minutes of the start of the game. Epic Eleven has no obligation to attend requests for cancellation that are not received or are received after the deadlines listed above in this section, due to technical difficulties or other reasons. Also, Epic Eleven will not entertain requests to cancel registrations in tournaments "One versus One". </p>
+          <p>Users can withdraw its participation in any contest by clicking the "Cancel Entry" button at the bottom left of the section in which you can edit your team. Once the tournament has started, the button "Cancel entry" will disappear from that section. Epic Eleven will not consider requests for cancellation of entries in competitions that are completed during the first 15 minutes of the start of the game. Epic Eleven has no obligation to attend requests for cancellation that are not received or that have been received after the deadlines listed above in this section, due to technical difficulties or other reasons. Also, Epic Eleven will not attend requests to cancel registrations in contests "One versus One".</p>
         </div>
       </div>
       <div class="toogle-block">
         <input type="checkbox" id="rule7" class="toggle">
-        <label for="rule7">GAMES POSTPONED</label>
+        <label for="rule7">7. Postponed games</label>
         <div>
-          <p>The rules that specify the treatment of postponed games vary depending on the type of tournament. Epic Eleven reserves the right to act in this regard depending on the particular circumstances.</p>
+          <p>The rules that specify the treatment of postponed games vary depending on the type of contest. Epic Eleven reserves the right to act in this regard depending on the particular circumstances.</p>
         </div>
       </div>
       <div class="toogle-block">
         <input type="checkbox" id="rule8" class="toggle">
-        <label for="rule8">MATCHES SUSPENDED</label>
+        <label for="rule8">8. Suspended games</label>
         <div>
-          <p>The rules referred to suspended matches have a given treatment depending on the type of tournament. It is considered that a match has been suspended when it is unfinished, but with prospects for completion in the future. At a minimum, the statistics collected before the end of the tournament period will be taken into account between the parties.</p>
+          <p>The rules that specify the treatment to suspended matches depend on the type of contest. It is considered that a match has been suspended when it is unfinished, but with prospects for completion in the future. Epic Eleven is committed to, at least, take into account the statistics collected before the end of the contest, for the sake of the game.</p>
         </div>
       </div>
       <div class="toogle-block">
         <input type="checkbox" id="rule9" class="toggle">
-        <label for="rule9">PLAYERS IN NEGOTIATION PROCESS</label>
+        <label for="rule9">9. Players in negotiation process</label>
         <div>
-          <p>The players involved in negotiation processes can affect the development of the tournaments that have already been planned considering these players in their old equipment. The listings players Epic Eleven teams are updated once a day (at night). Keep in mind that the tournaments are created with an advance of 5-6 days before the match, so players who are under negotiation may not be available for tournaments that include a game with his new team, but not with his old team. Also keep in mind that, in some cases, a player who has been selected is no longer available for a tournament that will play his old team and his new team. In this case, the user should select an alternate or be credited with zero points for the player in question.</p>
-          <p>Note that, the same day that a player is under negotiation, may still appear in the list of players from his former team. If negotiation is occurring precisely negotiations with the player in the same game the rival team in which you are involved, you'll still receive points for participating in the competition. These points may not accurately reflect during the live score, but will be considered at the time of completion of the game. Also note that settlement may be delayed tournament in order to ensure maximum accuracy.</p>
-          <p>In very rare cases, a player is transferred early enough in the day to play a game for his new team the same day. If it is transferred from a computer playing a game late to a team that will play a game early, you can select the player for the game to take place so late knowing that the transfer was made de facto before the game. If this is the case, you will be assigned zero points for their performance.</p>
+          <p>Any player involved in team transaction processes might affect current contests, may these players being in a team that is no longer his actual team. Our player lists are updated once a day (at 00:00), so keep in mind that contests might have been created several days before the transfer was made, which results in players being available for their old teams, not for their new teams. Also, in some cases, a player might not be available for a contest since he was transferred to a team that does not fit into that very contest, so unless the player selects an alternate player, the transferred player would be credited with zero points.</p>
+          <p>When a transaction is under negotiation the player may still appear in the list of player of his former team. If he plays against his former team, he may still be awarded with points, as he plays in the same game, which usually will be included in the same contests. Points may not be accurately awarded, but will be reflected at the end of the game. Is worth noting that the settlement of the contest may be delayed in order to ensure maximum accuracy.</p>
+          <p>In very rare cases, a player is transferred early enough in the day to play a game for his new team the same day. If it is transferred from a team that plays a game later in the evening to a team that will play a game earlier, you might be able to select the player for later game, knowing that the transfer was made de facto before the game. If this is the case, the transferred player would be credited with zero points.</p>
         </div>
       </div>
       <div class="toogle-block">
         <input type="checkbox" id="rule10" class="toggle">
-        <label for="rule10">LINEUP RESTRICTIONS</label>
+        <label for="rule10">10. lineup restrictions</label>
         <div>
-          <p>    --- -   En casos muy raros, un jugador se traspasa lo suficientemente temprano en el día como para poder jugar un partido para su nuevo equipo esa misma jornada. Si se traspasa desde un equipo que juega un partido tarde a un equipo que va a jugar un partido temprano, podrás seleccionar este jugador para el juego que tenga lugar de manera tardía aun sabiendo que el traspaso se ha realizado de facto antes del partido. Si este fuera el caso, se te asignarán cero puntos por su desempeño</p>
+          <p>Lineup restrictions are limited to one rule: no more than 4 players from the same team. Any attempt to overcome this limitation will find an automatic refusal to proceed by the platform itself.</p>
         </div>
       </div>
       <div class="toogle-block">
         <input type="checkbox" id="rule11" class="toggle">
-        <label for="rule11">PUNCTUATION REVISIONS</label>
+        <label for="rule11">11. score revisions</label>
         <div>
-          <p>During the game we received scores direct from our Statistics supplier, Opta. After the game, send us the final document with full match statistics. Once received and confirmed the statistics of all matches of the day, we began to manage the liquidation of all entries. However, on rare occasions, leagues and statistics reviewed by the provider suffer some after publication of the final box score modification. If this happens, the player's score on Epic Eleven will not be updated. Note that this situation is not the same as a case where a correction must be made after closing due to a problem with the data source or the resolution process.</p>
+          <p>During the game we received the events from our supplier, OPTA. After the game, they provide us with a final document with full match statistics. Once received and confirmed, contests will begin to be settled. However, on rare occasions, our provider might review those documents, which may alter the final box score. If this were to happen, the player's score on Epic Eleven will not be updated. Note that this situation is not the same as a case where a correction must be made after closing due to a problem with the data source or the resolution process.</p>
         </div>
       </div>
       <div class="toogle-block">
         <input type="checkbox" id="rule12" class="toggle">
-        <label for="rule12">ACCESS ASSOCIATED ISSUES</label>
+        <label for="rule12">12. Access associated issues</label>
         <div>
-          <p>Although we assure the correct operation of Epic Eleven at any time, like any other online services, we may experience cuts or slow performance. Sometimes, the user may experience problems while accessing the service, editing lineups or entering new tournaments.</p>
-          <p>If you experience problems accessing the service, please contact us vía <a href="support@epiceleven.com">support@epiceleven.com</a>. If there are long periods wich users can not access to our services, lineup editing does not work properly or other unspecified cases, from Epic Eleven, provide instructions to cancel the tickets in tournaments by email before the game starts.</p>
+          <p>Although we do our best to guarantee the correct performance of Epic Eleven at any time, we may experience cuts or slow performance due to unexpected problems that may arise in Epic Eleven or in the support provided by third parties for the Portal. Sometimes, the user may experience problems while accessing the service, editing lineups or entering new contests.</p>
+          <p>If you experience any problems accessing the service, please contact us vía <a href="mailto:support@epiceleven.com">support@epiceleven.com</a>. If there were periods during which users were unable to access our services, to edit lineups or to perform any action, Epic Eleven will provide instructions to cancel any contest by email before the game starts.</p>
         </div>
       </div>
       <div class="toogle-block">
         <input type="checkbox" id="rule13" class="toggle">
-        <label for="rule13">CONTEST CANCELLATION</label>
+        <label for="rule13">13. Contest cancellation</label>
         <div>
-          <p>Epic Eleven also reserves the right to cancel tournaments at its discretion, without any restrictions. Normally this will be done only in cases where we believe that due to problems in service or events that affect sporting events, there would be a widespread impact on most of the competitions.</p>
+          <p>Epic Eleven holds the right to cancel contests at discretion, without any restrictions. Usually this might be done in extreme situations, where an event might affect several contests in a negative way or even the real competitions, which in the end would affect Epic Eleven.</p>
         </div>
       </div>
     </div>
@@ -1502,102 +1507,52 @@ tc.put("packages/webclient/components/legalese_and_help/help_info_comp.html", ne
 """));
 tc.put("packages/webclient/components/legalese_and_help/legal_info_comp.html", new HttpResponse(200, r"""<div id="staticInfo">
   <!-- header title -->
-  <div class="default-section-header">LEGAL</div>
+  <div class="default-section-header">LEGALS</div>
   <div class="blue-separator"></div>
 
   <div class="info-wrapper">
-    <h1>Datos de identificación</h1>
-  	<p>Usted está visitando la página web www.epiceleven.com, titularidad de FANTASY SPORTS GAMES, S.L (en adelante EPIC ELEVEN). La misma está domiciliada en la Avenida de Brasil, 23, Oficinal 5-A, 28020, Madrid, siendo su e-mail de contacto: info@epiceleven.com identificada con C.I.F. B-87028445.</p>
-  	<h1>Aceptación del Usuario</h1>
-  	<p>Este Aviso Legal regula el acceso y utilización de la página web www.epiceleven.com (en adelante la “Web”) que EPIC ELEVEN pone a disposición de los usuarios de Internet. El acceso a la misma implica la aceptación sin reservas del presente Aviso Legal. Asimismo, EPIC ELEVEN puede ofrecer a través de la Web, servicios que podrán encontrarse sometidos a unas condiciones particulares propias sobre las cuales se informará al Usuario en cada caso concreto.</p>
-  	<h1>Acceso a la Web y Contraseñas</h1>
-  	<p>Al acceder a la página web de EPIC ELEVEN el usuario declara tener capacidad suficiente para navegar por la mencionada página web, esto es ser mayor de dieciocho años y no estar incapacitado. A su vez, de manera general no se exige la previa suscripción o registro como Usuario para el acceso y uso de la Web, sin perjuicio de que para la utilización de determinados servicios o contenidos de la misma se deba realizar dicha suscripción o registro. Los datos de los Usuarios obtenidos a través de la suscripción o registro a la presente Web, están protegidos mediante contraseñas elegidas por ellos mismos. El Usuario se compromete a mantener su contraseña en secreto y a protegerla de usos no autorizados por terceros. El Usuario deberá notificar a EPIC ELEVEN inmediatamente cualquier uso no consentido de su cuenta o cualquier violación de la seguridad relacionada con el servicio de la Web de la que haya tenido conocimiento. EPIC ELEVEN adopta las medidas técnicas y organizativas necesarias para garantizar la protección de los datos de carácter personal y evitar su alteración, ida, tratamiento y/o acceso no autorizado, habida cuenta del estado de la técnica, la naturaleza de los datos almacenados y los riesgos a que están expuestos, todo ello conforme a lo establecido por la legislación española de Protección de Datos de Carácter Personal. EPIC ELEVEN no se hace responsable frente a los Usuarios, por la revelación de sus datos personales a terceros que no sea debida a causas directamente imputables a EPIC ELEVEN, ni por el uso que de tales datos hagan terceros ajenos a EPIC ELEVEN.</p>
-  	<h1>Uso correcto de la Web</h1>
-  	<p>El Usuario se compromete a utilizar la Web, los contenidos y servicios de conformidad con la Ley, el presente Aviso Legal, las buenas costumbres y el orden público. Del mismo modo el Usuario se obliga a no utilizar la Web o los servicios que se presten a través de ésta con fines o efectos ilícitos o contrarios al contenido del presente Aviso Legal, lesivos de los intereses o derechos de terceros, o que de cualquier forma pueda dañar, inutilizar o deteriorar la Web o sus servicios o impedir un normal disfrute de la Web por otros Usuarios. Sin perjuicio de lo anterior, EPIC ELEVEN puede ofrecer a través de la web servicios adicionales que cuenten con su propia regulación adicional. En estos casos, se informará adecuadamente a los Usuarios en cada caso concreto. Asimismo, el Usuario se compromete expresamente a no destruir, alterar, inutilizar o, de cualquier otra forma, dañar los datos, programas o documentos electrónicos que se encuentren en la Web. El Usuario se compromete a no obstaculizar el acceso de otros Usuarios al servicio de acceso mediante el consumo masivo de los recursos informáticos a través de los cuales EPIC ELEVEN presta el servicio, así como realizar acciones que dañen, interrumpan o generen errores en dichos sistemas. El Usuario se compromete a no introducir programas, virus, macros, applets, controles ActiveX o cualquier otro dispositivo lógico o secuencia de caracteres que causen o sean susceptibles de causar cualquier tipo de alteración en los sistemas informáticos de EPIC ELEVEN o de terceros.</p>
-  	<h1>Enlaces de terceros</h1>
-  	<p>El presente Aviso Legal se refiere únicamente a la Web y contenidos de EPIC ELEVEN, y no se aplica a los enlaces o a las páginas web de terceros accesibles a través de la Web. Los destinos de dichos enlaces no están bajo el control de EPIC ELEVEN, y el mismo no es responsable del contenido de ninguna de las páginas Web de destino de un enlace, ni de ningún enlace incluido en una página Web a la que se llegue desde la Web de EPIC ELEVEN, ni de ningún cambio o actualización de dichas páginas. Estos enlaces se proporcionan únicamente para informar al Usuario sobre la existencia de otras fuentes de información sobre un tema concreto, y la inclusión de un enlace no implica la aprobación de la página Web enlazada por parte de EPIC ELEVEN.</p>
-  	<h1>Propiedad intelectual</h1>
-  	<p>EPIC ELEVEN advierte que los derechos de propiedad intelectual de la Web, su código fuente, diseño, estructura de navegación, bases de datos y los distintos elementos en ésta contenidos son titularidad exclusiva de EPIC ELEVEN, a quien corresponde el ejercicio exclusivo de los derechos de explotación de los mismos en cualquier forma y, en especial, con carácter enunciativo que no limitado, los derechos de reproducción, copia, distribución, transformación, comercialización, y comunicación pública. La reproducción, copia, distribución, transformación, comercialización, y comunicación pública parcial o total de la información contenida en esta Web, queda estrictamente prohibida sin la previa autorización expresa y por escrito de EPIC ELEVEN, y constituye una infracción de los derechos de propiedad intelectual e industrial.</p>
-  	<h1>Foros, Blogs e imágenes</h1>
-  	<p>EPIC ELEVEN ofrece a los Usuarios la posibilidad de introducir comentarios y/o de remitir fotografías, para incorporarlos en las secciones correspondientes. La publicación de los comentarios y/o las fotografías está sujeta al presente Aviso Legal. La persona identificada en cada caso como la que ha realizado los comentarios y/o ha enviado las fotografías, es responsable de los mismos. Los comentarios y/o las fotografías, no reflejan la opinión de EPIC ELEVEN, ni el mismo hace declaraciones a este respecto. EPIC ELEVEN no se hará responsable, a no ser en aquellos extremos a los que le obligue la Ley, de los errores, inexactitudes o irregularidades que puedan contener los comentarios y/o las fotografías, así como de los daños o perjuicios que se pudieran ocasionar por la inserción de los comentarios y/o las fotografías en el Foro o en las demás secciones de la Web que permitan esta clase de servicios.El Usuario suministrador del texto y/o fotografías cede a EPIC ELEVEN los derechos para su reproducción, uso, distribución, comunicación pública en formato electrónico, en el marco de las actividades para esta web. Y, en especial, el Usuario cede dichos derechos para el emplazamiento del texto y/o las fotografías en la Web, con el fin de que los demás Usuarios del sitio Web puedan acceder a los mismos. El Usuario suministrador declara ser el titular de los derechos sobre los textos o fotografías o, en su caso, garantiza que dispone de los derechos y autorizaciones necesarios del autor o propietario del texto y/o fotografías, para su utilización por parte de EPIC ELEVEN a través de la Web. EPIC ELEVEN no se hará responsable, a no ser en aquellos extremos a los que obligue la Ley, de los daños o perjuicios que se pudieran ocasionar por el uso, reproducción, distribución o comunicación pública o cualquier tipo de actividad que realice sobre los textos y/o fotografías que se encuentren protegidos por derechos de propiedad intelectual pertenecientes a terceros, sin que el Usuario haya obtenido previamente de sus titulares la autorización necesaria para llevar a cabo el uso que efectúa o pretende efectuar. Asimismo, EPIC ELEVEN se reserva el derecho de retirar de forma unilateral los comentarios y/o fotografías albergados en cualquier otra sección de la Web, cuando EPIC ELEVEN lo estime oportuno. EPIC ELEVEN no será responsable por la información enviada por el Usuario cuando no tenga conocimiento efectivo de que la información almacenada es ilícita o de que lesiona bienes o derechos de un tercero susceptibles de indemnización. En el momento que EPIC ELEVEN tenga conocimiento efectivo de que aloja datos como los anteriormente referidos, se compromete a actuar con diligencia para retirarlos o hacer imposible el acceso a ellos. En todo caso, para interponer cualquier reclamación relacionada con los contenidos insertados en el Foro o secciones análogas, puede hacerlo dirigiéndose a la siguiente dirección de correo electrónico: info@epiceleven.com.</p>
-  	<h1>Modificaciones de las condiciones de uso</h1>
-  	<p>EPIC ELEVEN se reserva el derecho de modificar, desarrollar o actualizar en cualquier momento y sin previa notificación las condiciones de uso de la mencionada página web. El usuario quedará obligado automáticamente por las condiciones de uso que se hallen vigentes en el momento en que acceda a la web, por lo que deberá leer periódicamente dichas condiciones de uso.</p>
-  	<h1>Régimen de responsabilidad</h1>
-  	<p>La utilización de la página web es responsabilidad única y exclusiva de cada Usuario, por lo que será responsabilidad suya cualquier infracción o cualquier perjuicio que pueda causar por el uso de dicha página. EPIC ELEVEN, sus socios, colaboradores, empleados y cualquier otro representante o tercero quedan pues exonerados de cualquier responsabilidad que pudiera conllevar las acciones del Usuario. EPIC ELEVEN, aún cuando ponga todo su esfuerzo en facilitar siempre información actualizada mediante su página web, no garantiza la inexistencia de errores o inexactitudes en ninguno de los contenidos, siempre que sea por razones no imputables de forma directa a EPIC ELEVEN. Por lo anterior, será el Usuario el único responsable frente a todas aquellas reclamaciones o acciones legales iniciadas contra EPIC ELEVEN basadas en el uso de la página web o sus contenidos por parte del usuario, siempre que esta utilización se haya realizado de forma ilícita, vulnerando derechos de terceros, o causando cualquier tipo de perjuicio, asumiendo por ello cuantos gastos, costes o indemnizaciones en los que pueda incurrir EPIC ELEVEN.</p>
-  	<h1>Ley aplicable y Jurisdicción</h1>
-	  <p>Esta Web se rige por la legislación española. EPIC ELEVEN y el Usuario, con renuncia expresa a su propio fuero, si lo tuvieren, se someten a la jurisdicción de los juzgados y tribunales de la ciudad de Madrid (España). Esto siempre que este no sea un usuario final, siendo el foro que la ley estipula el domicilio del demandado.</p>
+    <h1>IDENTIFICATION DATA</h1>
+  	<p>You are currently visiting <a href="http://www.epiceleven.com" target="_blank">www.epiceleven.com</a>, a webpage owned by FANTASY SPORTS GAMES S.L. (hereinafter EPIC ELEVEN). The same has for address Avenida de Brasil, 23, Oficina 5-A, 28020, Madrid, has for e-mail address <a href="mailto:info@epiceleven.com">info@epiceleven.com</a> and has for VAT B-87028445.</p>
+  	<h1>USER ACCEPTANCE</h1>
+  	<p>This Legal Notice governs the access and use of the website <a href="http://www.epiceleven.com" target="_blank">www.epiceleven.com</a> (hereinafter the "Web ") that EPIC ELEVEN makes available to Internet users . Access to it implies unreserved acceptance of this Legal Notice . Also, EPIC ELEVEN can offer through its Portal services that may be subject to some own conditions on which EPIC ELEVEN will inform the user in each case.</p>
+  	<h1>ACCESS TO THE PORTAL AND PASSWORDS</h1>
+  	<p>By accessing the website the User declares EPIC ELEVEN have enough capacity to navigate the website mentioned, ie be eighteen years old and not be incapacitated . Also, no subscription or registration as a User for access and use of the Web is generally asked to any User, without prejudice to the use of certain services or content thereof is required of such subscription or registration. The data obtained from Users through the subscription or registration on this website are protected by passwords chosen by Users themselves. The User agrees to keep his password secret and protect it from unauthorized use by third parties. The User shall immediately notify EPIC ELEVEN any non-consensual use of his account or any violation security-related of the Web service of which he has knowledge. EPIC ELEVEN adopts the technical and organizational measures to ensure the protection of personal data and prevent tampering, ida, treatment and/or unauthorized access, given the state of the art, the nature of the stored data and the risks they are exposed, all in accordance with the provisions of the Spanish legislation for Protection of Personal Data. ELEVEN EPIC is not liable to Users for the disclosure of personal data to third parties other than due to causes directly attributable to EPIC ELEVEN, nor for the use made ​​of such data to third parties EPIC ELEVEN.</p>
+  	<h1>CORRECT USE OF THE PORTAL</h1>
+  	<p>The User agrees to use the Portal, content and services in accordance with the law, this Legal Notice, morals and public order. Similarly, the User agrees not to use the Portal or the services provided through it for illegal purposes or contrary to the contents of this Legal Notice, detrimental to the interests or rights of others, or in any way that could damage, disable or impair the website or its services, or impede normal enjoyment of the website by other users. Without limiting the foregoing, EPIC ELEVEN can offer through the web additional services that have their own additional regulation. In these cases, Epic Eleven will properly inform the Users in each specific case. Also, the User expressly agrees not to destroy, alter, disable or otherwise damage data, programs or documents that are on the Portal. The User agrees not to hinder access of other users to the service through the mass consumption of computing resources through which EPIC ELEVEN serves, as well as actions that may damage, interrupt or generate errors in these systems. The User agrees not to introduce programs, viruses, macros, applets, ActiveX controls or any other logical device or character sequence that cause or may cause any type of alteration in the computer systems EPIC ELEVEN or third parties.</p>
+  	<h1>LINKS BELONGING TO THIRD PARTIES</h1>
+  	<p>This legal notice relates only to the Portal and content of EPIC ELEVEN, and does not apply to the links or the websites of third parties accessible through the Portal. The contents of these links are not under control of EPIC ELEVEN, and the same is not responsible for the content of any of the Web pages of any link, or any link contained in a Web page that is reached from the EPIC ELEVEN Portal, or any changes or updates to such sites. These links are provided solely to inform the user about the existence of other sources of information about a particular topic, and the inclusion of any link does not imply endorsement of the linked website by EPIC ELEVEN.</p>
+  	<h1>INTELLECTUAL PROPERTY</h1>
+  	<p>ELEVEN EPIC warns that intellectual property rights of the Portal, its source, design, navigation structure, databases and different elements contained in this code are exclusively owned by EPIC ELEVEN, who has the exclusive rights to exploit them in any way and, in particular, by way of example but not limited, rights of reproduction, copying, distribution, processing, marketing, and public communication. The reproduction, copying, distribution, processing, marketing, and partial or total public communication of the information contained in this website is strictly prohibited without the express written permission of EPIC ELEVEN, and constitutes an infringement of intellectual property and industrial rights.</p>
+  	<h1>FORUMS, BLOGS AND IMAGES</h1>
+  	<p>EPIC ELEVEN gives users the ability to enter comments and/or submit images for inclusion in the appropriate sections. The publication of comments and/or images is subject to this Legal Notice. The person identified in each case as it has made comments and/or sent images, is responsible for them. Comments and/or images do not reflect the opinions of EPIC ELEVEN, who also does not make any statement in this regard. EPIC ELEVEN will not be liable, unless in those extremes that would force the law, for any errors, inaccuracies or irregularities that may contain comments and/or images, as well as any damages that may result by inserting comments and/or images on the Forum or on other sections of the web that allow this kind of services. The Users that supplies text and/or images yields the rights to reproduce, use, distribution, public communication in electronic form as part of the activities for this website to EPIC ELEVEN. And, especially, the User grants such rights to the location of text and/or images on the Web, so that other users of the website can access them. The supplier User declares to be the owner of the rights to the texts or pictures or, where appropriate, ensure that has the necessary rights and authorizations of the author or owner of the text and/or images, for use by EPIC ELEVEN through the Portal. EPIC ELEVEN will not be liable, except in those extremes to which compels the Law of the damages that could be caused by the use, reproduction, distribution or public communication or any type of activity carried on texts and/or images are protected by intellectual property rights belonging to third parties without the User having previously obtained them from the owners, which is needed to carry out the intended use or release. Also ELEVEN EPIC reserves the right to withdraw unilaterally comments and/or images housed in any other section of the Portal, when EPIC ELEVEN deems appropriate. EPIC ELEVEN will not responsible for the information sent by the user when they have actual knowledge that the information stored is unlawful or harms property or rights of a third party liable for compensation. At the moment EPIC ELEVEN have actual knowledge about housing data as referred to above, you agree to act expeditiously to remove or block all access to them. In any case, any claim relating to or inserted in forum sections similar content, you can do so by going to the following email address: <a href="mailto:info@epiceleven.com">info@epiceleven.com</a>.</p>
+  	<h1>CHANGES TO THE TERMS OF USE</h1>
+  	<p>ELEVEN EPIC reserves the right to modify, develop or update at any time and without notice the terms of use of that website. The user will be automatically bound by the conditions of use that are in effect at the time they access the web, so you should periodically read the terms of use.</p>
+  	<h1>LIABILITY REGIME</h1>
+  	<p>The use of the website is the sole responsibility of each User, so it will be your responsibility if any breach or any harm results from the use of this page. EPIC ELEVEN, its partners, collaborators, employees and other representatives or third party are therefore exempt from any liability that may involve the actions of the user. EPIC ELEVEN, even when puts every effort into providing constantly updated information via their website, does not guarantee the absence of errors or inaccuracies in any of the contents, whenever for reasons not attributable directly to EPIC ELEVEN. Therefore, the User shall be solely liable against any claims or legal proceedings against EPIC ELEVEN based on the use of the website or its contents by the user, provided such use has been made illegally, violating rights of third parties or causing any damage, thereby assuming all costs, expenses or damages that may be incurred in EPIC ELEVEN.</p>
+  	<h1>APPLICABLE LAW AND JURISDICTION</h1>
+	  <p>This website is governed by Spanish law. ELEVEN EPIC and the User, expressly waiving their own jurisdiction, if they will have it, submit to the jurisdiction of the courts of the city of Madrid (Spain). This provided this is not an end user, being the forum that the law provides the defendant's domicile.</p>
   </div>
 </div>"""));
 tc.put("packages/webclient/components/legalese_and_help/policy_info_comp.html", new HttpResponse(200, r"""<div id="staticInfo">
 
   <!-- header title -->
-  <div class="default-section-header">POLÍTICA DE PRIVACIDAD</div>
+  <div class="default-section-header">PRIVACY POLICY</div>
   <div class="blue-separator"></div>
 
   <div class="info-wrapper">
-    <h1>
-        Formularios Web
-    </h1>
-    <p>
-        El Usuario podrá remitir a EPIC ELEVEN sus datos de carácter personal a través de los distintos formularios que a tal efecto aparecen incorporados en la
-        Web. Dichos formularios incorporan un texto legal en materia de protección de datos personales que da cumplimiento a las exigencias establecidas en la Ley
-        Orgánica 15/1999, de 13 de diciembre, de Protección de Datos de Carácter Personal, y en su Reglamento de Desarrollo, aprobado por el Real Decreto
-        1720/2007, de 21 de diciembre. Por ello, rogamos lea atentamente los textos legales antes de facilitar sus datos de carácter personal.
-    </p>
-    <h1>
-        Cláusulas de privacidad
-    </h1>
-    <p>
-        Esta declaración tiene como finalidad informar a los usuarios de la Política general de Privacidad y Protección de Datos Personales seguida por EPIC
-        ELEVEN. Esta Política de Privacidad podría variar en función del criterio empresarial o bien de aquellas modificaciones legislativas, por lo que se
-        aconseja a los usuarios que la visiten periódicamente. A su vez, informamos al usuario que EPIC ELEVEN realiza el tratamiento de los datos de acuerdo a las
-        finalidades que el contenido de la web www.epiceleven.com requiera. Para ello, actuará de forma proporcionada, obteniendo datos que sean pertinentes,
-        enviando solo comunicaciones comerciales a quién así lo haya permitido de manera expresa en los formularios arriba mencionados.
-    </p>
-    <h1>
-        Secreto y seguridad de los datos
-    </h1>
-    <p>
-        EPIC ELEVEN se compromete a cumplir con el deber de secreto respecto a los datos de carácter personal. A su vez, dichos datos serán guardados adoptando las
-        medidas de índole técnica y organizativa necesarias que garanticen la seguridad de los datos de carácter personal. Todo ello, con la finalidad de evitar su
-        alteración, pérdida, tratamiento o acceso no autorizado, teniendo siempre en cuenta el estado de la tecnología, de acuerdo con lo establecido por el RLOPD.
-    </p>
-    <h1>
-        Envío de comunicaciones comerciales y cesión de datos
-    </h1>
-    <p>
-        El usuario que desee recibir la newsletter o cualquier tipo de información comercial de la empresa marcará una casilla habilitada al efecto en el
-        formulario. Esto habilitará a EPIC ELEVEN para poder realizar acciones comerciales por vía electrónica, según los datos disponsibles y siempre para una
-        finalidad acorde con el tratamiento de datos autorizado por el usuario, pudiendo oponerse a este tratamiento en cualquier momento. El usuario consiente que
-        EPIC ELEVEN, pueda ceder datos a terceros, siempre que se trate de empresas colaboradoras, socios o proveedoras que tenga conexión con el desarrollo del
-        modelo de negocio. En todo caso, cuando el prestador vaya a ceder datos del usuario a un tercero no referido anteriormente el mismo solicitará de manera
-        expresa el consentimiento del usuario, garantizando su no cesión hasta la obtención del mismo.
-    </p>
-    <h1>
-        Derechos de Acceso, rectificación, oposición y cancelación
-    </h1>
-    <p>
-        En todo caso, cuando el usuario quisiera ejercer cualquiera de los derechos arriba mencionados podrá ponerse en contacto con EPIC ELEVEN en el correo
-        electrónico: info@epiceleven.com, haciendo constar como asunto del correo el derecho a ejercer, de cara a poder facilitarle el formulario correspondiente.
-    </p>
-    <h1>
-        Tratamiento de datos de menores de edad
-    </h1>
-    <p>
-        La web va principalmente dirigida a usuarios mayores de edad. Sin embargo, con el objetivo de cumplir con el Real Decreto 1720/2007, de 21 de diciembre,
-        por el que se aprueba el Reglamento de desarrollo de la Ley Orgánica 15/1999, de 13 de diciembre, de protección de datos de carácter personal, EPIC ELEVEN,
-        informa que para proceder al tratamiento de datos de menores de 14 años requerirá el consentimiento de los padres o tutores. Corresponde a EPIC ELEVEN
-        articular los procedimientos que garanticen que se ha comprobado de modo efectivo la edad del menor, y la autenticidad del consentimiento prestado en su
-        caso, por lo padres, tutores o representantes legales, en caso de sospechar que es menor de catorce años.
-    </p>
-    <h1>
-        Registro como usuario
-    </h1>
-    <p>
-        En el momento en que el usuario se registre en cualquiera de las Webs de EPIC ELEVEN, se le solicitarán una serie de datos personales que ayudarán a
-        personalizar el servicio ofrecido por EPIC ELEVEN (nombre, apellidos, email, dirección postal, etc.). En dicha línea, EPIC ELEVEN podrá solicitar algunos
-        datos adicionales que tienen por finalidad mejorar su experiencia de usuario.
-    </p>
+    <h1>WEB FORMS</h1>
+    <p>The User may refer to EPIC ELEVEN their personal data through different forms that for that purpose appear on the Website. These forms incorporate a legal text on the protection of personal data that complies with the requirements established in Law 15/1999, of December, 13rd for Protection of Personal Data, and its Implementing Regulations, approved by Royal Decree 1720/2007 of December, 21st. Therefore, please read carefully the legal texts before providing personal data.</p>
+    <h1>PRIVACY PROVISIONS</h1>
+    <p>This statement is to inform users of the general Privacy and Protection of Personal Data followed by EPIC ELEVEN. This Privacy Policy may vary depending on the business judgment either of those legislative changes, so Users are advised to visit this provisions regularly. We inform the User as well that EPIC ELEVEN performs data processing according to the purposes required for the content of the web <a href="http://www.epiceleven.com" target="_blank" alt="Epic Eleven">www.epiceleven.com</a>. To do this, EPIC ELEVEN will act in a balanced way, obtaining relevant data, sending commercial communications who only has so explicitly allowed in the above forms.</p>
+    <h1>SECRET AND DATA SECURITY</h1>
+    <p>EPIC ELEVEN agrees to comply with the duty of keeping in secrecy all personal data. In turn, this data will be saved by adopting the necessary technical and organizational measures to guarantee the security of personal data. All this, in order to prevent alteration, loss or unauthorized access, taking into account the state of technology, in accordance with the provisions of the RLOPD.</p>
+    <h1>SENDING OD ADVERTISING, INFORMATION AND DATA TRANSFER</h1>
+    <p>The user who wishes to receive the newsletter or any type of commercial business information will be able to check a box for that purpose on a form or in the dedicated space in the user account section. This will enable EPIC ELEVEN to perform commercial actions electronically, according to the provided data, and to check for a purpose consistent with the processing of data authorized by the User, as the User can oppose this treatment at any time. The User agrees that EPIC ELEVEN can yield data to third parties, provided that in the case of supplier partner companies, partners or having connection with the development of the business model. In any case, where the service will cede User data to a third party not previously referred it explicitly request the User's consent, ensuring no assignment to obtain it.</p>
+    <h1>RIGHTS OF ACCESS, CORRECTION, OPPOSITION AND CANCELLATION</h1>
+    <h1>DATA PROCESING FOR UNDERAGE</h1>
+    <p>The website is primarily aimed at adults. However, in order to comply with Royal Decree 1720/2007 of December, 21st, approving the Regulation implementing Law 15/1999 of December, 13rd on the protection of personal data, it is adopted by EPIC ELEVEN and reports that to proceed to data processing under 14, EPIC ELEVEN will require the consent of parents or guardians. It is a responsibility of EPIC ELEVEN to articulate the procedures to ensure that the child's age has been properly checked, as the authenticity of the consent given in his case as well, so parents, guardians or legal representatives, if suspect the User is under fourteen, can be notified.</p>
+    <h1>REGISTER AS USER</h1>
+    <p>At the time the user logs in any of the Websites of EPIC ELEVEN’s Portal, they will be asked for a series of personal data that will help personalize the service offered by EPIC ELEVEN (name, email, mailing address, etc.). In this line, EPIC ELEVEN may request some additional data that are intended to improve your user experience.</p>
   </div>
 
 </div>
@@ -1626,573 +1581,356 @@ tc.put("packages/webclient/components/legalese_and_help/restricted_comp.html", n
 tc.put("packages/webclient/components/legalese_and_help/terminus_info_comp.html", new HttpResponse(200, r"""<div id="staticInfo">
 
   <!-- header title -->
-  <div class="default-section-header">TÉRMINOS Y CONDICIONES</div>
+  <div class="default-section-header">TERMS AND CONDITIONS</div>
   <div class="blue-separator"></div>
 
   <div class="info-wrapper">
     <h1>
-        1. Generales
+        1. GENERAL Terms
     </h1>
     <p>
-        1.1 Estos Términos y condiciones regulan el acceso y uso del Portal, siendo aceptados expresa y plenamente por el mero hecho de acceder al Portal y/o por
-        la visualización de los contenidos o utilización de los servicios contenidos en el mismo. En caso de que no se acepten estas condiciones generales o, en su
-        caso, las condiciones particulares que puedan regular el uso de un determinado servicio y/o contenido, el Usuario deberá abstenerse de acceder al Portal
-        así como en su caso a dicho servicio y/o contenido.
+        1.1 The present Terms and Conditions of Use (onwards “Terms and Conditions”) regulate the use and access to our Platform, being expressly and completely accepted by the mere fact of entering the Platform and/or by the visualization of its contents or use of the included content. In the case that this conditions are not accepted or any of the particular conditions, the user should refrain from enter our Platform as well as using its services and products.
     </p>
     <p>
-        1.2 Epic Eleven se reserva el derecho de modificar estos Términos y condiciones cuando lo considere oportuno, sin asumir responsabilidad alguna por ello,
-        quedando el usuario vinculado por los Términos y condiciones vigentes en cada momento por el mero hecho de acceder o registrarse en el Portal en ese
-        momento.
+        1.2 Epic Eleven holds the right to modify this Terms and Conditions whenever considers its due, without assuming any responsibility for it, binding the user by the Terms and Conditions in force at that time, by the mere fact of accessing our Portal or signing up in that specific moment.
     </p>
     <p>
-        1.3 El Portal está orientado a ciudadanos de cualquier nacionalidad y residencia, pero siempre mayores de edad de acuerdo con la legislación que les
-        resulte de aplicación, no autorizándose por tanto el alta de menores de edad. Epic Eleven prohíbe expresamente a los menores de edad, según la legislación
-        que les resulte de aplicación, que soliciten el alta en el servicio. Además, los usuarios tendrán una sola cuenta en Epic Eleven. Epic Eleven podrá
-        cancelar las cuentas de los usuarios que cometan fraude, como duplicidad de cuentas o introducción de datos falsos, con la intención de conseguir más
-        puntos. Los usuarios aceptan que hay un proceso de validación de su identidad que puede incluir aspectos como la validación de un número de móvil o la
-        entrega de documentación que permita identificar al usuario y comprobar que es mayor de edad.
+        1.3 Our Portal is oriented to citizens of any nationality or residency, but always to legally adults according to local regulations, therefore denying the inscription to under-ages. Epic Eleven prohibits expressly the under-ages, according to local regulations, to sign up. Moreover, every user can only have one single account in Epic Eleven. Epic Eleven holds the right to cancel the account of users who commit fraud, like duplicates of a certain account or falsify personal data with the goal of gaining more points or contests. Users agree that there is a process to validate any data they introduce in the Portal, such as validation of the phone number or a request of documentation that allows Epic Eleven to check if a user is a legal adult.
     </p>
     <p>
-        1.4 El Portal está orientado a ciudadanos de cualquier nacionalidad y residencia, siempre y cuando la legislación que les resulte de aplicación les permita
-        desarrollar la actividad del Portal, con una finalidad puramente promocional, de manera absolutamente gratuita, que constituye el objeto del Portal,
-        conforme a estos Términos y condiciones, por lo que Epic Eleven prohíbe expresamente a aquellas personas a las que la legislación que les resulte de
-        aplicación conforme a su nacionalidad o residencia les prohíba participar en el Portal, que se registren en el mismo y participen en él, declinando Epic
-        Eleven cualquier responsabilidad en caso de no atender esta prohibición.
+        1.4 The Portal is oriented to citizens of any nationality or residency, as long as the current regulations allows them to perform activity in the Portal, with a purely promotional, free-to-play end, which is the main end of the Portal. According to our Terms and Conditions, Epic Eleven expressly prohibits its use to individuals whose legislation, according to their nationality or residency, does not allow them to participate in our Portal. Also, to those who sign up and participate in it albeit being forbidden, Epic Eleven declines any responsibility.
     </p>
     <p>
-        1.5 Se adquiere la condición de participante (en adelante el “Participante”) mediante el proceso de registro definido en el Portal, pudiendo desde ese
-        momento acceder a los servicios ofrecidos en el mismo. El Participante deberá identificarse para garantizar la seguridad del proceso, el cumplimiento de
-        estos Términos y condiciones y, sobre todo, la entrega de los obsequios a la persona que los obtenga (cuando corresponda). A la hora de registrarse en el
-        Portal, el Participante tendrá que hacerlo únicamente con una dirección válida de email. El acceso como Visitante (en adelante el “Visitante”) al Portal no
-        requerirá el registro de datos personales excepto el e-mail (el email para registrarse debe ser una cuenta de correo privada, no se aceptará ninguna cuenta
-        pública) para aquellos casos en los que desee el envío periódico de información y así lo solicite expresamente.
+        1.5 Any person who signs up in our Portal acquires the condition of “User” (onwards known as “User” or “the User”), being able to access all the services offered within the Portal. The user must identify every time, in order to guarantee the security of the process, the fulfillment of this Terms and Conditions and moreover, the transaction of money to a certain user wherever it is fit. To sign up or log in (once a user has already sign up for the first time), the user must use a valid e-mail address. Accessing as a “visitor” (onwards known as “Visitor” of “the Visitor”) to Epic Eleven will not require any personal info until the visitor tries to introduce a line up in a contest, independently if that contest is free or requires an entry fee. In case the visitor wants to subscribe to any of Epic Eleven newsletter, an email would be required, being that a personal e-mail, not a public one.
     </p>
     <p>
-        1.6 Tanto el Participante como el Visitante (en adelante ambos denominados de forma conjunta e indistinta el “Usuario”) son conscientes de que el acceso y
-        utilización de los servicios y contenidos del Portal se realiza bajo su única y exclusiva responsabilidad. En este sentido, durante el proceso de registro
-        se le solicitará que escoja un nombre de usuario y una contraseña, recomendándole a tal efecto que no comparta la contraseña con terceros, ni permita que
-        ninguna persona acceda a su cuenta en su nombre o la manipule de forma que pueda poner en peligro la seguridad de la misma. En el caso de que tenga
-        conocimiento o sospeche que se esté violando la seguridad de su cuenta deberá notificarlo inmediatamente a Epic Eleven y modificar su contraseña. Usted
-        será el único y exclusivo responsable de guardar confidencialmente su contraseña y del uso que se haga de ella.
+        1.6 Both the User and the Visitor are aware that the access and use of the Portal is being made under its own responsibility. In this regard, the User will be asked to choose a user name and a password. The User is responsible for keeping the password hidden from a third person, as well as to not allow a third person to access the account on its behalf or to let a third person manipulate the account in a way that presents a danger to the security of the account and its rightful owner.
     </p>
     <p>
-        1.7 El Usuario deberá establecer las medidas de seguridad de carácter técnico adecuadas para evitar acciones no deseadas en su sistema de información,
-        archivos y equipos informáticos empleados para acceder a Internet y, en especial, al Portal.
+        1.7 The user must establish the necessary security measures in order to avoid unwanted actions on the personal systems and computers that the User uses to access Internet and, specially, our Portal.
     </p>
     <h1>
-        2. Derechos y obligaciones del usuario
+        2. User’s Rights and obligations
     </h1>
     <p>
-        El Usuario podrá:
+        The user will be able to:
     </p>
     <p>
-        2.1 Acceder de forma gratuita y sin necesidad de autorización previa a los contenidos y servicios del Portal disponibles como tales, sin perjuicio de las
-        condiciones técnicas, particulares o la necesidad del previo registro respecto de servicios y contenidos específicos, según se determine en estas
-        condiciones. El Usuario, no obstante, será responsable de la contratación y del abono de las tarifas que correspondan por la conexión y navegación por
-        Internet, tanto desde su ordenador como desde cualquier otro dispositivo móvil que utilice para ello, y que le reclamen las correspondientes compañías
-        suministradoras en función de los acuerdos alcanzados con las mismas.
+        2.1 Access for free to our Portal’s available contents without previous authorization, without taking harm to any special technical conditions or the need of a previous sign up in services and specific contents of a third partner, as are specified in this conditions. Nonetheless, the User will be held responsible for the payment of any Internet service regarding the connection and navigation through the web, from its own computer to any device the User uses, that providers charge in those concepts, attending to its own deals with those providers.
     </p>
     <p>
-        2.2 Utilizar los servicios y contenidos disponibles para su uso exclusivamente particular, sin perjuicio de lo dispuesto en las condiciones particulares
-        que regulen el uso de un determinado servicio y/o contenido. El usuario se compromete por tanto a no utilizar el Portal con fines comerciales sin haber
-        recabado previamente el consentimiento por escrito de Epic Eleven y haber convenido con ella los términos y condiciones de tal uso comercial.
+        2.2 Make use of the available services and contents for its particular use, without taking harm about what was explicitly disposed in the conditions that regulates the use of a specific service and/or content. The User commits to use the Portal for its rightful use, and not for commercial use without the specific written consent of Epic Eleven or without having agreed to specific terms and conditions for that commercial use with Epic Eleven.
     </p>
     <p>
-        2.3 Hacer un uso correcto y lícito del sitio, de conformidad con estos Términos y Condiciones, la legislación vigente, la moral, las buenas costumbres y el
-        orden público.
+        2.3 Make a good and legal use of the Portal; in agree with this Terms and Conditions, the actual legislation, moral grounds and good faith.
     </p>
     <p>
-        2.4 En particular, por lo que se refiere a ACTOS DE ENGAÑO O HACKING, el Usuario se compromete a no realizar ninguna de las siguientes conductas:
+        2.4 Particularly, to what its due to CHEATING OR HACKING, the User makes a commitment by agreeing to this Terms and Conditions, to not perform any of the follow actions:
     </p>
     <ul>
         <li>
-            <p>
-                Proyectar o utilizar engaños, ardides o cualquier tipo de software no autorizado por Epic Eleven diseñado o que tenga por finalidad modificar o
-                interferir con la operativa del Portal, o con cualquier servicio o contenido del mismo.
-            </p>
+            To design, activate, sell or help to create any unauthorized software which end purpose interferes with the Portal, with any of its services or contents, or other users.
         </li>
         <li>
-            <p>
-                Modificar algún archivo o software que forme parte del Portal, sin el previo consentimiento expreso y por escrito de Epic Eleven.
-            </p>
+            To modify any file or software that belongs to the Portal, without previous explicit and written consent from Epic Eleven.
         </li>
         <li>
-            <p>
-                Perjudicar, sobrecargar o contribuir en modo alguno a interferir en el buen funcionamiento de algún ordenador o servidor utilizado para ofrecer o
-                dar asistencia al Portal o al disfrute del mismo por parte de alguna otra persona.
-            </p>
+          To harm, overload or contribute in any way to interfere with the good performance of any piece of hardware related in some way to give assistance to the Portal or to help anyone to enjoy all services and contents that the Portal has to offer.
         </li>
         <li>
-            <p>
-                Impulsar, contribuir o participar en algún tipo de ataque, incluyendo, a título meramente ilustrativo, la distribución de algún virus, correo no
-                deseado, cadenas de mensajes, spam,…, u otros intentos de perjudicar el Portal o el uso o disfrute del mismo por cualquier otra persona.
-            </p>
+            To impulse, contribute or take part in any kind of attack, including, e.g. distributing a virus via e-mail, unwanted e-mails, spam… or any other attempts to do harm to the Portal, its use or enjoyment of the Portal by a third party.
         </li>
         <li>
-            <p>
-                Intentar obtener acceso no autorizado al Portal, a cuentas registradas de otros Usuarios o a los ordenadores, servidores o redes del Portal, de
-                Epic Eleven o de terceros.
-            </p>
+            To try to access the Portal through an unauthorized way, through other user’s accounts or through any hardware related to the computers, servers or networks that belongs to Epic Eleven or any other third party.
         </li>
     </ul>
     <p>
-        Además, por lo que respecta a CONTENIDOS OFENSIVOS, el Usuario se compromete a no realizar ninguna de las siguientes conductas:
+        Also, regarding to OFFENSIVE CONTENTS, the User commits not to perform any of the following actions:
     </p>
     <ul>
         <li>
-            <p>
-                Publicar información que resulte abusiva, amenazante, obscena, difamatoria u ofensiva desde un punto de vista racial, sexual, religioso o de otro
-                tipo.
-            </p>
+            To publish any information that can be abusive, threatening, obscene, defamatory or offensive from a racial, sexual or religious point of view.
         </li>
         <li>
-            <p>
-                Publicar información que contenga material sexual, violencia excesiva o temas ofensivos, o un enlace a dicho contenido.
-            </p>
+            To publish any information that contains sexual material, excessive violence or offensive topics, or that contains a link to any of this topics.
         </li>
         <li>
-            <p>
-                Acosar, abusar, ofender o, en general, tratar sin el debido respeto y educación a alguna persona, o grupos de personas, otro Usuario o cualquiera
-                de los empleados o colaboradores de Epic Eleven.
-            </p>
+            To bully, abuse, offend or, in short, to mistreat any other User, groups of people, or any of the employees and collaborators of Epic Eleven.
         </li>
         <li>
-            <p>
-                Utilizar el Portal, incluyendo el uso de enlaces, para hacer que esté disponible o accesible algún material o información que infrinja algún
-                derecho de autor, marca comercial, patente, secreto comercial o industrial, derecho de privacidad, derecho de publicidad, o derecho de alguna
-                persona física o jurídica, o que suplante a alguien, incluyendo, a título meramente ilustrativo, a los propios empleados o colaboradores de Epic
-                Eleven.
-            </p>
+            To use the Portal, including any use of links, to make accessible any material or information that infringes any copyright, commercial brand, patent, industrial or commercial secret, privacy right, commercial right or any right of any physical or legal person, or to impersonate anyone, e.g. any Epic Eleven’s employee or collaborator.
         </li>
         <li>
-            <p>
-                Utilizar de una forma inapropiada el servicio de atención al cliente de Epic Eleven, lo que incluye el envío de falsos informes de abusos o la
-                utilización de un lenguaje inadecuado, obsceno o abusivo en sus comunicaciones.
-            </p>
+            To use inappropriately Epic Eleven’s customer service, which includes sending false reports of any kind of abuse or the use of an inadequate, obscene or abusive language in any communication.
         </li>
     </ul>
     <p>
-        Con carácter general, en ningún caso el Usuario podrá:
+        Generally, the User will never be allowed to:
     </p>
     <ul>
         <li>
-            <p>
-                Acceder o utilizar los servicios y contenidos del Portal con fines ilícitos, lesivos de derechos y libertades de terceros, o que puedan perjudicar,
-                dañar o impedir por cualquier forma, el acceso a los mismos, en perjuicio de Epic Eleven o de terceros.
-            </p>
+            To access or use the services and contents of the Portal with illicit, harmful ends that infringe rights and freedom of a third party, or that may harm or impede by any mean the access to those services and contents to Epic Eleven or a third party.
         </li>
         <li>
-            <p>
-                Utilizar los servicios, total o parcialmente, para promocionar, vender, contratar, divulgar publicidad o información propia o de terceras personas
-                sin autorización previa de Epic Eleven.
-            </p>
+            To use the services that Epic Eleven provides to, complete or partially, promote, sell, hire, market or divulge you own or third party’s information.
         </li>
         <li>
-            <p>
-                Incluir hipervínculos en sus páginas web particulares o comerciales a este Portal incumpliendo las condiciones previstas para ello. (iv) Utilizar
-                los servicios y contenidos ofrecidos a través del Portal de forma contraria a las condiciones que regulen el uso de un determinado servicio y/o
-                contenido, y en perjuicio o con menoscabo de los derechos del resto de Usuario o de la propia Epic Eleven.
-            </p>
+            To include links in its own particular or commercial site to this Portal, breaking the Terms and Conditions provided for. Also, to use the services or contents offered through the Portal in a way that it Terms and Conditions does not allow, or inflicting harm on any of the rights that the rest of the users or Epic Eleven itself holds.
         </li>
         <li>
-            <p>
-                Realizar cualquier acción que impida o dificulte el acceso al sitio por los Usuarios, así como de los hipervínculos a los servicios y contenidos
-                ofrecidos por Epic Eleven o por terceros a través del Portal. (vi) Utilizar el Portal como vía de acceso a Internet para la comisión de acciones
-                ilícitas o contrarias a la legislación vigente, la moral, las buenas costumbres y el orden público.
-            </p>
+            To perform any action that impedes or difficult the access to the Portal to other Users, as well as to the links to other services or contents offered by Epic Eleven or a third party via the Portal; To use the Portal as a medium to commit any felony or act against the actual legislation, moral grounds and good faith.
         </li>
         <li>
-            <p>
-                Emplear cualquier tipo de virus informático, código, software, programa informático, equipo informático o de telecomunicaciones, que puedan
-                provocar daños o alteraciones no autorizadas de los contenidos, programas o sistemas accesibles a través de los servicios y contenidos prestados en
-                el Portal o en los sistemas de información, archivos y equipos informáticos de los Usuarios del mismo; o el acceso no autorizado a cualesquiera
-                contenidos y/o servicios del Portal.
-            </p>
+            To use any kind of virus, code, software or hardware that might result in any harm or unauthorized alteration in the Portal, its contents or any system accessible via the Portal or the hardware and software of any User.
         </li>
         <li>
-            <p>
-                Eliminar o modificar de cualquier modo los dispositivos de protección o identificación de Epic Eleven, o sus legítimos titulares que puedan
-                contener los contenidos alojados en el Portal, o los símbolos que Epic Eleven o los terceros legítimos titulares de los derechos incorporen a sus
-                creaciones objeto de propiedad intelectual o industrial existentes en este Portal.
-            </p>
+            To erase or modify in any way any medium the Portal uses to protect and identify its Users, the contents stored in the Portal or any symbol that Epic Eleven or any other third party uploads into the Portal. Those contents will be protected by the inherent copyrights that those Users incorporate to their creations.
         </li>
         <li>
-            <p>
-                Incluir en sitios web de su responsabilidad o propiedad "metatags" correspondientes a marcas, nombres comerciales o signos distintivos propiedad de
-                Epic Eleven o de terceros.
-            </p>
+            To include in any web site of its own responsibility or property “metatags” of any brand, commercial name o any distinctive symbol property of Epic Eleven or any other related third party.
         </li>
         <li>
-            <p>
-                Reproducir total o parcialmente el Portal en otro sitio o página web y sin cumplir las condiciones previstas para ello.
-            </p>
+            To reproduce total or partially the Portal in any other web site without fulfilling the expected conditions for that matter.
         </li>
         <li>
-            <p>
-                Realizar enmarcados al Portal o a las páginas web accesibles a través del mismo que oculten o modifiquen -con carácter delimitativo pero no
-                limitativo- contenidos, espacios publicitarios y marcas de Epic Eleven o de terceros, con independencia o no de que supongan actos de competencia
-                desleal o de confusión.
-            </p>
+            To get frames of the Portal, or any web site accessible through the Portal, that hide or modify –with delimitative intention, but not restrictive- contents, commercial spaces and brands of Epic Eleven or any other related third party, independently of this action being one considered as unfair competition or to create confusion.
         </li>
         <li>
-            <p>
-                Crear marcos dentro de un sitio web de su responsabilidad o propiedad que reproduzcan la página principal y/o las páginas accesibles a través de la
-                misma, correspondientes al Portal sin la previa autorización de Epic Eleven.
-            </p>
+            To create frames inside any web site of its own responsibility or property that reproduces the main page or the Portal or any of the accessible pages through it without the explicit consent of Epic Eleven.
         </li>
         <li>
-            <p>
-                Solicitar o tratar de obtener información personal de otros Usuarios del Portal, así como obtener, recopilar, publicar o tratar por cualquier
-                medio, datos de carácter personal de otros Usuarios del mismo, salvo con la previa autorización por escrito de Epic Eleven.
-            </p>
+            To ask or try to obtain through any mean personal information about other Users of the Portal; collect, publish or obtain by any mean personal information of other Users of Epic Eleven, without the explicit consent of Epic Eleven.
         </li>
     </ul>
 
     <h1>
-        3. Derechos de Epic Eleven
+        3. epic eleven’s rights
     </h1>
     <p>
-        Epic Eleven se reserva los siguientes derechos:
+        Epic Eleven holds the following rights:
     </p>
     <p>
-        3.1 Modificar los presentes Términos y condiciones, así como las condiciones de acceso al Portal, técnicas o no, de forma unilateral y sin preaviso a los
-        Usuarios, sin perjuicio de lo dispuesto en las condiciones particulares que regulen el uso de un determinado servicio y/o contenido del Portal.
+        3.1 To modify the present Terms and Conditions, as the conditions, technical or not, to access the Portal unilaterally and without previous notice to the Users, without detriment of anything set in the particular conditions that regulate the use of a certain service or content within this Portal.
     </p>
     <p>
-        3.2 Establecer condiciones particulares y, en su caso, la exigencia de un precio u otros requisitos para el acceso a determinados servicios y/o contenidos.
+        3.2 To establish a certain condition or instead a price in order to access particular features or services within the Portal.
     </p>
     <p>
-        3.3 Limitar, excluir, suspender, cancelar, modificar o condicionar, sin aviso previo, el acceso de los Usuarios cuando no se den todas las garantías de
-        utilización correcta del Portal por los mismos conforme a las obligaciones y prohibiciones asumidas por los mismos. En esos casos Epic Eleven podrá
-        cancelar el nombre de usuario y contraseña y todos los puntos, beneficios, regalos o ganancias asociados a una determinada cuenta, sin que por ella deba
-        compensar en modo alguno al Participante.
+        3.3 To limit, exclude, suspend, cancel, modify or influence the access to the Portal, without previous notice to the Users, when those Users do not respect the previous guarantees for a safety and correct use of the Portal. In those cases, Epic Eleven might cancel the username and passwords, any points, benefits, gifts or winnings associated to a certain user account, without being obliged to extend any compensation.
     </p>
     <p>
-        3.4 Finalizar, suspender, modificar o condicionar, sin aviso previo, la prestación de un servicio o suministro de un contenido, sin derecho a
-        indemnización, cuando el mismo resulte ilícito o contrario a las condiciones establecidas para los mismos, sin perjuicio de lo dispuesto en las condiciones
-        particulares que regulen el uso de un determinado servicio y/o contenido del Portal. En esos casos Epic Eleven podrá cancelar el nombre de usuario y
-        contraseña y todos los puntos, beneficios, regalos o ganancias asociados a una determinada cuenta, sin que por ella deba compensar en modo alguno al
-        Participante.
+        3.4 To terminate, suspend, modify or influence, without previous notification to the Users, the service provided or the supply of content without being obliged to compensate in any way, when the said service turns out to be used by the User in a way that attacks the legality or the present Terms and Conditions that regulates any service or content within the Portal. In those cases, Epic Eleven may cancel the username, passwords, any point, benefit or gift associated to a certain account, without being obliged to extend any compensation.
     </p>
     <p>
-        3.5 Modificar unilateralmente y sin previo aviso, siempre que lo considere oportuno, la estructura y diseño del Portal, así como actualizar, modificar o
-        suprimir todo o parte de los contenidos o servicios y condiciones de acceso y/o uso del Portal, pudiendo incluso limitar o no permitir el acceso a dicha
-        información.
+        3.5 To modify unilaterally and without previous notice, anytime Epic Eleven sees fit, the structure and design of the Portal, as well as to update, modify or suppress all or part of the contents, services or access and use conditions of the Portal, and may even restrict or prohibit the access to that specific information.
     </p>
     <p>
-        3.6 Denegar en cualquier momento y sin necesidad de aviso previo el acceso al Portal a aquellos Participantes que incumplan estas condiciones de uso,
-        pudiendo cancelar el nombre de usuario y contraseña de los mismos, así como todos los puntos, beneficios, regalos o ganancias asociados a su cuenta, sin
-        que por ella deba compensar en modo alguno al Participante en cuestión.
+        3.6 To deny at any time and without previous notice the access to the Portal to those Users or Visitors that break this Terms and Conditions. In those cases, Epic Eleven may even cancel the username, passwords any point, benefits or gift associated to a certain account, without being obliged to extend any compensation to the User or Visitor.
     </p>
     <p>
-        3.7 Emprender cualquier acción legal o judicial que resulte conveniente para la protección de los derechos de Epic Eleven así como de terceros que presten
-        sus servicios o contenidos a través del Portal, siempre que resulte procedente.
+        3.7 To undertake any legal action that sees fit for the protection of Epic Eleven’s rights, and any third party that gives service or contents through the Portal, anytime.
     </p>
     <p>
-        3.8 Exigir la indemnización que pudiera derivar por el uso indebido o ilícito de todo o parte de los servicios y contenidos prestados a través del Portal.
+        3.8 To demand compensation that may sees fit from improper or illegal use of all or part of the services and contents provided through the Portal.
     </p>
     <h1>
-        4. Operativa del portal
+        4. Operations within the portal
     </h1>
     <p>
-        4.1 Podrán ser Participantes todas aquellas personas físicas, mayores de edad, según la legislación de su nacionalidad, con independencia de la misma, que
-        se registren como Participantes y faciliten a tal efecto de forma veraz los datos necesarios para ello.
+        4.1 Any adult physical person, being an ‘adult’ what the law of this person’s nationality considers so, that signs up as User and provides the necessary truthful information would be considered as a “Player” (onwards “Player” or “the Player”).
     </p>
     <p>
-        4.2 Por el mero hecho de cumplimentar el formulario de registro el Participante acepta de forma irrevocable los presentes Términos y condiciones.
+        4.2 By the mere fact of filling the sign up form, the Player accepts irrevocably this Terms and Conditions.
     </p>
     <p>
-        4.3 Adicionalmente este saldo puede verse incrementado por promociones que Epic Eleven ponga en práctica en cada momento. Por ejemplo, si un Usuario se
-        registra como Participante por la intervención o recomendación de otro Participante, por el uso que el Participante invitado haga del Portal, por la
-        adición de un importe fijo y mínimo de Puntos que con carácter periódico Epic Eleven pueda añadir al Participante, por la participación en determinadas
-        promociones comerciales de colaboradores de Epic Eleven, por registrarse en otras webs de colaboradores o participar en las mismas,… Estos medios
-        adicionales para incrementar el saldo de Puntos del Participante se regirán por las condiciones que Epic Eleven publicite en el Portal en cada momento.
+        4.3 A User can only own one account and can only play on Epic Eleven with this very one account. Epic Eleven holds the right to impede this User to participate in the case that this rule is not met.
     </p>
     <p>
-        4.4 El saldo de puntos disminuirá de forma natural por el consumo de Puntos que el Participante lleve a cabo como consecuencia de los torneos en los que
-        participe.
+        4.4 The Player will have a balance of Epic Eleven Points (or “Epic Points”), displayed within the Portal. Those Epic Points will vary according to the rules displayed in the Portal.
     </p>
     <p>
-        4.5 Los Puntos de una cuenta se podrán cancelar y la propia cuenta darse de baja por parte de Epic Eleven, sin que por ello asuma responsabilidad frente al
-        Participante ni deba compensarle en modo alguno, si no se producen movimientos en la misma durante un periodo consecutivo de doce meses.
+        4.5 Epic Eleven might change the rules of the Epic Points unilaterally without previous notice to the Users and at any time if considered necessary.
     </p>
     <p>
-        4.6 Los Puntos son personales e intransferibles del Participante y de su cuenta, no pudiendo cederse, traspasarse, transmitirse, gravarse en modo alguno,
-        tanto de forma gratuita como onerosa, total o parcialmente, por medio directos o indirectos. Los Puntos no pueden traspasarse entre cuentas, aunque el
-        Participante acredite ser titular de ambas.
+        4.6 Additionally, this balance might be increase by promotions, such as share-with-friends promotions, commercial promotions or special occasions that Epic Eleven sees fit. This additional means to increase Epic Points will be regulated by the conditions exposed by Epic Eleven at the Portal.
     </p>
     <p>
-        4.7 Un Participante únicamente puede ser titular de una cuenta, por lo que Epic Eleven se reserva el derecho de impedir su participación en el Portal en
-        caso de que se infrinja esta prohibición.
+        4.7 The balance will diminish naturally when the User uses Epic Points to enter any contests that allows this as a mean to participate.
     </p>
     <p>
-        4.8 Se insta y aconseja a los Participantes del Portal actuar conforme a la legislación aplicable en la jurisdicción donde estén domiciliados y/o sean
-        residentes. Epic Eleven desconoce la legislación aplicable a los Participantes, por lo que no asume responsabilidad alguna derivada de su aplicación, lo
-        que incluye la eventual tributación del Participante. Se aconseja a los Participantes que deseen obtener información con respecto a los impuestos y/o
-        asuntos legales, que entren en contacto o recurran a los servicios de asesores apropiados y/o de las autoridades competentes en la jurisdicción en la cual
-        estén domiciliados y/o sean residentes.
+        4.8 The Epic Points in any account and the account itself could be cancelled by Epic Eleven at any point, unilaterally and without being obliged to extend any compensation, if there is no movement in the account for a consecutive period of twelve months.
     </p>
     <p>
-        4.9 Extinción. Epic Eleven se reserva el derecho de dar por terminada su condición de Participante del Portal y los derechos que le pudieran corresponder
-        en tal condición, en cualquier comento, como consecuencia del incumplimiento de sus obligaciones conforme a los presentes Términos y condiciones, fuerza
-        mayor, cese o suspensión de los servicios ofrecidos por el Portal o disolución, extinción o cese en la actividad de Epic Eleven. En caso de cese en su
-        condición de Participante del Portal Epic Eleven no tendrá responsabilidad u obligación alguna frente a usted, cancelando su cuenta y anulando los puntos
-        acumulados en la misma, no obstante lo cual Epic Eleven sí podrá ejercitar las acciones que en Derecho le correspondan en la forma que considere oportuna
-        para exigir las responsabilidades que deriven de cualquier incumplimiento de los presentes Términos y condiciones o de la legislación aplicable.
+        4.9 Epic Points are personal and not transferable, and therefore can’t be loaned, transferred, sold or used in any other way than its primary purpose explained in the Rules. Also, Epic Points cannot be transferred between accounts even if the Player attests to be the owner of both accounts, which would be also a violation of this Terms and Conditions, as it was explained in section 4.3 of this Terms and Conditions.
+    </p>
+    <p>
+        4.10 Epic Eleven advises to act within the limits of the local law every time. Epic Eleven does not know the applicable local laws, and therefore will not assume any responsibility derived of the misuse of the Portal, which includes taxations. If any User requires information about taxation and/or any legal inquiry, Epic Eleven advises to appeal to the relevant consultant agents on its own jurisdiction.
+    </p>
+    <p>
+        4.11 Epic Eleven holds the right to terminate the condition of “Player” of any User and every derived right of that condition, at any time and without being obliged to extend any compensation, as a consequence of a Player breaking any of this obligations according to the Terms and Conditions, Force Majeure, suspension or cancellation of any service offered by Epic Eleven. This is valid as well for a situation where the Portal is about to stop, extinct or dissolve its activity. In the case of cessation of activity of the User in its condition as Player in the Portal, Epic Eleven won’t have any responsibility or obligation towards the User if cancels the account and revoke the points, although Epic Eleven will be able to take any action it considers necessary according to the Law in order to demand accountability in case the User does not meet the Terms and Conditions or the applicable law at any point.
     </p>
     <h1>
-        5. Exención y limitación de responsabilidad de Epic Eleven
+        5. EXEMPTIONS and limitation of liability of epic eleven
     </h1>
     <p>
-        Epic Eleven queda exenta de cualquier tipo de responsabilidad por daños y perjuicios de toda naturaleza en los siguientes casos:
+        Epic Eleven is exempt from any liability for damages of any nature in the following cases:
     </p>
     <p>
-        5.1 Por la imposibilidad o dificultades de conexión a la red de comunicaciones a través de la que resulta accesible este Portal, independientemente de la
-        clase de conexión utilizada por el Usuario.
+        5.1 Due to the impossibility or difficulties in connecting to the communications network through which this Portal is accessible regardless of the type of connection used by the user.
     </p>
     <p>
-        5.2 Por la interrupción, suspensión o cancelación del acceso al Portal, así como por la disponibilidad y continuidad del funcionamiento del Portal o de
-        los servicios y/o contenidos en el mismo, cuando ello se deba a una causa ajena al ámbito de control de Epic Eleven.
+        5.2 Due to the interruption, suspension or cancellation of the Portal, as well as the availability and continuity of the Website or the services and/or contents therein, when this one is due to causes beyond the control of Epic Eleven.
     </p>
     <p>
-        5.3 Epic Eleven no asume ninguna responsabilidad respecto de los servicios y contenidos, ni por la disponibilidad y condiciones, técnicas o no, de acceso
-        a los mismos, que sean ofrecidos por terceros prestadores de servicios, en especial respecto de los prestadores de servicios de la sociedad de la
-        información.
+        5.3 Epic Eleven assumes no responsibility for the services and contents, nor for the availability and conditions, technical or otherwise, to access to those services and contents, which are offered by third party service providers, especially regarding those providers specially dedicated to offer this access.
     </p>
     <p>
-        5.4 Epic Eleven, en ningún momento, asume responsabilidad por los daños o perjuicios que pudieran causar la información, contenidos, productos y servicios
-        prestados, comunicados, alojados, transmitidos, exhibidos u ofertados por terceros ajenos a Epic Eleven, incluidos los prestadores de servicios la sociedad
-        de la información, a través de un portal al que pueda accederse mediante un enlace existente en este Portal.
+        5.4 Epic Eleven, at any time, does not accept liability for damages that may cause the information, content, products and services, communicated, hosted, transmitted, displayed or offered by third parties outside Epic Eleven, including service providers. That includes anything that can be accessed through a link on this website posted by these third parties or any other User.
     </p>
     <p>
-        5.5 Del tratamiento y utilización posterior de datos personales realizados por terceros ajenos a Epic Eleven, así como la pertinencia de la información
-        solicitada por éstos.
+        5.5 Treatment and subsequent use of personal data by third parties outside Epic Eleven, and the relevance of the information requested by them.
     </p>
     <p>
-        5.6 De la calidad y velocidad de acceso al Portal y de las condiciones técnicas que debe reunir el Usuario con el fin de poder acceder al Portal y a sus
-        servicios y/o contenidos.
+        5.6 Quality and speed of access to the Portal and technical conditions to be met by the User to gain access to the Portal and its services and/or content.
     </p>
     <p>
-        5.7 Epic Eleven no será responsable de los retrasos o fallos que se produjeran en el acceso y/o funcionamiento de los servicios y/o contenidos del Portal,
-        debido a un caso de Fuerza Mayor.
+        5.7 Epic Eleven will not be responsible for delays or faults produced in access and/or operation of services and/or contents of the Portal, due to Force Majeure.
     </p>
     <p>
-        5.8 El Usuario responderá personalmente de los daños y perjuicios de cualquier naturaleza causados a Epic Eleven, directa o indirectamente, por el
-        incumplimiento de cualquiera de las obligaciones derivadas de estas condiciones generales u otras normas por las que se rija la utilización del Portal.
+        5.8 The User will be personally liable for damages of any kind caused to Epic Eleven, directly or indirectly, for breach of any of the obligations under these Terms and Conditions or other rules governing the use of the Portal.
     </p>
     <h1>
-        6. Propiedad intelectual e industrial
+        6. Intellectual and industrial property
     </h1>
     <p>
-        6.1 El Usuario conoce que los contenidos y servicios ofrecidos a través del Portal, - incluyendo textos, gráficos, imágenes, animaciones, creaciones
-        musicales, vídeos, sonidos, dibujos, fotografías, todos los comentarios, exposiciones, aplicaciones informáticas, bases de datos y código html del mismo,
-        sin que esta enumeración tenga carácter limitativo -, se encuentran protegidos por las leyes de propiedad intelectual. El derecho de autor y de explotación
-        económica de este Portal corresponde a Epic Eleven. En cuanto a los contenidos incluidos en el Portal los derechos de autor y de explotación económica son
-        propiedad de Epic Eleven o en su caso, de terceras entidades, y en ambos casos se encuentran protegidos por las leyes vigentes de propiedad intelectual.
+        6.1 User acknowledges that the contents and services offered through the Site, -including text, graphics, images, animations, musical creations, videos, sounds, drawings, photographs, all comments, exhibitions, applications, databases and html code same without this list being limited- are protected by intellectual property laws. Copyright and economic exploitation of this Site is for Epic Eleven. As for the contents included in the Portal, copyright and economic exploitation are the property of Epic Eleven or where appropriate, from third parties, and where is applicable, intellectual property laws protects both cases: Epic Eleven and third parties.
     </p>
     <p>
-        6.2 Las marcas, nombres comerciales o signos distintivos que aparecen en el Portal son propiedad de Epic Eleven, y se encuentran protegidos por las leyes
-        vigentes de propiedad industrial.
+        6.2 The trademarks, trade names or logos appearing on the Site are owned by Epic Eleven, and are protected by applicable intellectual property laws.
     </p>
     <p>
-        6.3 La prestación de los servicios y publicación de los contenidos a través del Portal no implicará en ningún caso la cesión, renuncia o transmisión, total
-        o parcial, de la titularidad de los correspondientes derechos de propiedad intelectual e industrial.
+        6.3 The provision of services and publication of content through the Portal does not imply any assignment, surrender or transfer all or part of the ownership of the corresponding intellectual and industrial property.
     </p>
     <p>
-        6.4 Ninguna parte de este Portal puede ser reproducido, distribuido, transmitido, copiado, comunicado públicamente, transformado, en todo o en parte
-        mediante ningún sistema o método manual, electrónico o mecánico (incluyendo el fotocopiado, grabación o cualquier sistema de recuperación y almacenamiento
-        de información) a través de cualquier soporte actualmente conocido o que se invente en el futuro, sin consentimiento de Epic Eleven. La utilización, bajo
-        cualquier modalidad, de todo o parte del contenido del Portal queda sujeta a la necesidad de solicitar autorización previa de Epic Eleven, y la aceptación
-        de la correspondiente licencia, en su caso, excepto para lo dispuesto respecto de los derechos reconocidos y concedidos al Usuario en estas condiciones
-        generales o lo que así se determine en las condiciones particulares que Epic Eleven tenga a bien establecer para regular el uso de un determinado servicio
-        y/o contenido ofrecido a través del Portal.
+        6.4 No part of this Website may be reproduced, distributed, transmitted, copied, publicly communicated, transformed, in whole or in part by any system or manual, electronic or mechanical means (including photocopying, recording or any retrieval system and storage) through any media now known or invented in the future, without the consent of Epic Eleven. The use, in any form, all or part of the content of the Website is subject to the need for prior authorization of Epic Eleven, and acceptance of the license, if any, except for the provisions on the rights and granted to the User in these Terms and Conditions or what is thus determined by the particular conditions that Epic Eleven may establish to regulate the use of a particular service and/or content offered through the Portal.
     </p>
     <p>
-        6.5 Bajo ningún concepto, el Usuario podrá realizar un uso o utilización de los servicios y contenidos existentes en la página que no sea exclusivamente
-        personal, a salvo de las excepciones determinadas en las presentes condiciones de uso de este Portal o en las condiciones particulares que Epic Eleven
-        tenga a bien establecer para regular el uso de un determinado servicio y/o contenido ofrecido a través del Portal.
+        6.5 Under no circumstances, the user may make an application or use of services and content on the page that is not exclusively personal, safe from the exceptions identified in the present conditions of use of this Portal or the particular conditions that Epic Eleven may establish to regulate the use of a particular service and/or content offered through the Portal.
     </p>
     <p>
-        6.6 Si la actuación u omisión culpable o negligente directa o indirectamente imputable al Usuario del Portal que origine la infracción de los derechos de
-        propiedad intelectual e industrial de Epic Eleven o de terceros, exista o no beneficio para el mismo, originase a Epic Eleven daños, pérdidas, obligaciones
-        solidarias, gastos de cualquier naturaleza, sanciones, medidas coercitivas, multas y otras cantidades surgidas o derivadas de cualquier reclamación,
-        demanda, acción, pleito o procedimiento, sea civil, penal o administrativo, Epic Eleven tendrá derecho a dirigirse contra el Usuario por todos los medios
-        legales a su alcance y reclamar cualesquiera cantidades indemnizatorias, incluyendo, a título enunciativo y no limitativo, daños morales e imagen, daño
-        emergente y lucro cesante, costes publicitarios o de cualquier otra índole que pudieran resultar para su reparación, importes de sanciones o sentencias
-        condenatorias, el de los intereses de demora, las costas judiciales y el importe de la defensa en cualquier proceso en el que pudiera resultar demandada
-        por las causas anteriormente expuestas, por los daños y perjuicios ocasionados por razón de su actuación u omisión, sin perjuicio de ejercer cualesquiera
-        otras acciones que en Derecho le corresponda.
+        6.6 If the act or omission fault or negligence directly or indirectly attributable to User Portal arising from the infringement of the rights of intellectual property of Epic Eleven or third parties, whether or not benefit to the same, fells into Epic Eleven damages, losses, joint obligations, expenses of any kind, sanctions, coercive measures, fines and other amounts arising or resulting from any claim, demand, action, suit or proceeding, whether civil, criminal or administrative, Epic Eleven is entitled to bring proceedings against the User by all legal means at its disposal and to claim any compensation, including, but not limited to, moral and image damages, consequential damages and loss of earnings, advertising costs or any other that might be for repair, sanction or convictions, that of the default interest, court costs and the total cost of the defense in any process that could arise due to the aforementioned causes for damages incurred by reason of his act or omission, without Subject to exercise any other remedies available to him accordingly to the law.
     </p>
     <h1>
-        7. Enlaces e Hiperenlaces
+        7. Links and hyperlinks
     </h1>
     <p>
-        7.1 Las personas o entidades que pretendan realizar o realicen un hiperenlace desde una página web de otro portal de Internet a cualquiera de las páginas
-        del Portal de Epic Eleven deberán someterse a las siguientes condiciones: (i) No se permite la reproducción ni total ni parcial de ninguno de los servicios
-        ni contenidos del Portal. (ii) No se establecerán deep-links, ni frames con las páginas del Portal sin la previa autorización expresa de Epic Eleven. (iii)
-        No se incluirá ninguna manifestación falsa, inexacta o incorrecta sobre las páginas del Portal ni sobre los servicios o contenidos del mismo. (iv) Salvo
-        aquellos signos que formen parte del "hiperenlace", la página web en la que se establezca no contendrá ninguna marca, nombre comercial, rótulo de
-        establecimiento, denominación, logotipo, eslogan u otros signos distintivos pertenecientes a Epic Eleven, salvo autorización expresa de ésta. (v) El
-        establecimiento del "hiperenlace" no implicará la existencia de ningún tipo de relación entre Epic Eleven y el titular de la página web o del portal desde
-        el cual se realice. (vi) Epic Eleven no será responsable de los contenidos o servicios puestos a disposición del público en la página web o portal desde el
-        cual se realice el "hiperenlace" ni de las informaciones y manifestaciones incluidas en las mismas. (vii) Cualquier "hiperenlace" al Portal de Epic Eleven
-        se efectuará a su página principal o páginas principales de las secciones que contiene.
+        7.1 Individuals or entities who wish to create a hyperlink from a web page from another internet portal to any pages of Epic Eleven’s Portal must abide by the following conditions:
     </p>
+
+    <ul class="latin-list">
+      <li>
+        The total or partial reproduction of any services or content offered is not allowed.
+      </li>
+      <li>
+        No deep-links, or frames with the pages of the Portal would be established without the express permission of Epic Eleven.
+      </li>
+      <li>
+        No false, inaccurate or incorrect demonstration will be included on the pages of the Portal or any of its services or contents.
+      </li>
+      <li>
+        Except for those signs that are part of the "hyperlink", the website where the links directs the User will not contain any trademark, trade name, label, name, logo, slogan or other distinctive signs belonging to Epic Eleven, unless previous authorization.
+      </li>
+      <li>
+        The establishment of "hyperlink" does not imply the existence of any relationship between Epic Eleven and the owner of the website or portal from which it is made.
+      </li>
+      <li>
+        Epic Eleven is not responsible for the contents or services made available to the public on the website or portal from which the "hyperlink" or the information and statements included therein.
+      </li>
+      <li>
+        Any "hyperlink" to Portal Epic Eleven will be to the homepage or main pages of the sections it contains.
+      </li>
+    </ul>
+
     <p>
-        7.2 Epic Eleven rechaza cualquier responsabilidad sobre la información contenida en páginas web de terceros conectadas por enlaces con el Portal de Epic
-        Eleven o que no sean gestionadas directamente por nuestro administrador del Portal. La función de los enlaces que aparecen en este Portal tiene sólo
-        finalidad informativa y en ningún caso suponen una sugerencia, invitación o recomendación para la visita de los lugares de destino. Cuando para utilizar
-        algunos de los servicios del Portal, los Participantes deban proporcionar previamente a Epic Eleven ciertos datos de carácter personal, Epic Eleven tratará
-        tales datos con las finalidades, así como bajo las condiciones definidas, en su Política de Privacidad .
+        7.2 Eleven Epic disclaims any responsibility for information contained in third party websites connected by links to the Portal of Epic Eleven or to those links that are not directly managed by our website administrator. The function of the links on this website is for information and in no way a suggestion, invitation or recommendation to visit the places of destination. When a Player wishes to use some of the Portal services, it must provide first some certain personal data to Epic Eleven. Epic Eleven treat such data for the purposes and under the conditions defined in this Privacy Policy.
     </p>
     <h1>
-        8. Finales
+        8. FINALS
     </h1>
     <p>
-        8.1 Controversias. Para la resolución de cualquier controversia que resulte de la interpretación y/o cumplimiento de los Términos y condiciones, los
-        Usuarios, tanto Participantes como Visitantes, con expresa renuncia a cualquier otro fuero que pudiera corresponderles, se someten a los Juzgados y
-        Tribunales de la Ciudad de Madrid.
+        8.1 Disputes. For the resolution of any disputes arising from the interpretation and/or enforcement of these Terms and Conditions, Users, both Players and Visitors, expressly waiving any other jurisdiction that may apply to the Courts, they consent to undergo to the courts of the city of Madrid.
     </p>
     <p>
-        8.2 Derecho aplicable. Los presentes Términos y condiciones se regirán por la legislación española común y se interpretarán con arreglo a la misma.
+        8.2 Applicable law. These Terms and Conditions are governed by the common Spanish legislation and construed in accordance with the same.
     </p>
     <p>
-        8.3 Cláusulas inválidas. Si alguna cláusula de los presentes Términos y condiciones se considerara o pudiera ser ilegal, inválida o inaplicable, estos
-        Términos y condiciones se considerarán divisibles e inoperativos en relación con dicha cláusula y hasta donde ésta se considere ilegal, inválida o
-        inaplicable; y, por lo que hace referencia a cualesquiera otro aspecto de estos Términos y condiciones, permanecerá en vigor y tendrá plenos efectos; sin
-        embargo, siempre que alguna cláusula de estos Términos y condiciones se considerara o pudiera ser ilegal, inválida o inaplicable se incluirá
-        automáticamente una cláusula lo más similar posible a la cláusula ilegal, inválida o inaplicable para que sea legal, válida y aplicable.
+        8.3 Invalid clauses. If any provision of these Terms and Conditions shall be deemed or may be illegal, invalid or unenforceable, these Terms and Conditions shall be deemed severable and inoperative in relation to that clause and to where it is deemed unlawful, void or unenforceable; and, by making reference to any other aspect of these Terms and Conditions will remain in full force and full effect; provided, however, that any provision of these Terms and Conditions shall be deemed or may be illegal, invalid or unenforceable, Epic Eleven will automatically include a clause as close as possible to the illegal, invalid or unenforceable to make it legal, valid and enforceable provision.
     </p>
     <p>
-        8.4 Encabezamientos. Los encabezamientos de las cláusulas de los presentes Términos y condiciones se realizan únicamente a efectos de referencias y, en
-        ningún caso, afectan o limitan el sentido y contenido de los mismos.
+        8.4 Headings. The headings of the clauses of these Terms and Conditions are made only for reference purposes and in no way affect or limit the meaning and content thereof.
     </p>
     <p>
-        8.5 Reclamaciones. Para efectuar cualquier reclamación sobre los servicios prestados a través del portal el participante puede remitir un correo
-        electrónico a epiceleven@epiceleven.com indicando sus datos, exponiendo los hechos que motivan la queja o reclamación y concretando su pretensión. Si lo
-        prefieren, disponemos igualmente de Hojas de Reclamaciones a disposición de quienes las soliciten en el domicilio que consta en el Aviso Legal.
+        8.5 Claims. To make any claims about the services provided through the portal, the User can send an email to support@epiceleven.com indicating their data, exposing the facts underlying the claim or complaint and specifying his claim. If you prefer, we also have complaint forms available to those requesting it at the address stated in the Legal Notice.
     </p>
     <h1>
-        Datos de identificación
+        Identification data
     </h1>
     <p>
-        Usted está visitando la página web www.epiceleven.com, titularidad de FANTASY SPORTS GAMES, S.L (en adelante EPIC ELEVEN). La misma está domiciliada en la
-        Avenida de Brasil, 23, Oficinal 5-A, 28020, Madrid, siendo su e-mail de contacto: info@epiceleven.com identificada con C.I.F. B-87028445.
+        You are visiting the website <a href="http://www.epiceleven.com" target="_blank">www.epiceleven.com</a>, ownership of SPORTS FANTASY GAMES, SL (hereinafter EPIC ELEVEN). The same is domiciled in Avenida Brasil, 23, Officinal 5-A, 28020, Madrid, and its e- mail address: info@epiceleven.com identified with C.I.F. B-87028445.
     </p>
     <h1>
-        Aceptación del Usuario
+        User Agreement
     </h1>
     <p>
-        Este Aviso Legal regula el acceso y utilización de la página web www.epiceleven.com (en adelante la “Web”) que EPIC ELEVEN pone a disposición de los
-        usuarios de Internet. El acceso a la misma implica la aceptación sin reservas del presente Aviso Legal. Asimismo, EPIC ELEVEN puede ofrecer a través de la
-        Web, servicios que podrán encontrarse sometidos a unas condiciones particulares propias sobre las cuales se informará al Usuario en cada caso concreto.
+        This Legal Notice governs the access and use of the website www.epiceleven.com (hereinafter the "Portal") that EPIC ELEVEN makes available to Internet users. Access to it implies unreserved acceptance of this Legal Notice. Also, EPIC ELEVEN can offer through the Portal services that may be subject to some own conditions on which the User will be informed in each case.
     </p>
     <h1>
-        Acceso a la Web y Contraseñas
+        ACCESs to the WEB and passwords
     </h1>
     <p>
-        Al acceder a la página web de EPIC ELEVEN el usuario declara tener capacidad suficiente para navegar por la mencionada página web, esto es ser mayor de
-        dieciocho años y no estar incapacitado. A su vez, de manera general no se exige la previa suscripción o registro como Usuario para el acceso y uso de la
-        Web, sin perjuicio de que para la utilización de determinados servicios o contenidos de la misma se deba realizar dicha suscripción o registro. Los datos
-        de los Usuarios obtenidos a través de la suscripción o registro a la presente Web, están protegidos mediante contraseñas elegidas por ellos mismos. El
-        Usuario se compromete a mantener su contraseña en secreto y a protegerla de usos no autorizados por terceros. El Usuario deberá notificar a EPIC ELEVEN
-        inmediatamente cualquier uso no consentido de su cuenta o cualquier violación de la seguridad relacionada con el servicio de la Web, de la que haya tenido
-        conocimiento. EPIC ELEVEN adopta las medidas técnicas y organizativas necesarias para garantizar la protección de los datos de carácter personal y evitar
-        su alteración, pérdida, tratamiento y/o acceso no autorizado, habida cuenta del estado de la técnica, la naturaleza de los datos almacenados y los riesgos
-        a que están expuestos, todo ello, conforme a lo establecido por la legislación española de Protección de Datos de Carácter Personal. EPIC ELEVEN no se hace
-        responsable frente a los Usuarios, por la revelación de sus datos personales a terceros que no sea debida a causas directamente imputables a EPIC ELEVEN,
-        ni por el uso que de tales datos hagan terceros ajenos a EPIC ELEVEN.
+        By accessing the website, the User declares to have enough capacity to navigate EPIC ELEVEN, ie: be eighteen years old and not be incapacitated. In turn, generally no subscription or registration as a user is required to access and use of the Portal, without prejudice to the use of certain services or content of such where a subscription or registration is required. The obtained data from Users through the subscription or registration to this website are protected by passwords chosen by themselves. The User agrees to keep that password secret and protect it from unauthorized use by third parties. The User shall immediately notify EPIC ELEVEN any non-consensual use of the account or any violation security-related of any service within the Portal of which he was aware. EPIC ELEVEN adopts the technical and organizational measures to ensure the protection of personal data and avoid its alteration, loss, treatment and/or unauthorized access, given the state of the art, the nature of the stored data and the risks they are exposed, all in accordance with the provisions of the Spanish legislation Protection of Personal Data. EPIC ELEVEN is not made liable to the Users for the disclosure of personal data to third parties other than due to causes directly attributable to EPIC ELEVEN, nor for the use made of such data to third parties that are not part of EPIC ELEVEN.
     </p>
     <h1>
-        Uso correcto de la Web
+        Correct use of the web
     </h1>
     <p>
-        El Usuario se compromete a utilizar la Web, los contenidos y servicios de conformidad con la Ley, el presente Aviso Legal, las buenas costumbres y el orden
-        público. Del mismo modo el Usuario se obliga a no utilizar la Web o los servicios que se presten a través de ésta con fines o efectos ilícitos o contrarios
-        al contenido del presente Aviso Legal, lesivos de los intereses o derechos de terceros, o que de cualquier forma pueda dañar, inutilizar o deteriorar la
-        Web o sus servicios o impedir un normal disfrute de la Web por otros Usuarios. Sin perjuicio de lo anterior, EPIC ELEVEN puede ofrecer a través de la web
-        servicios adicionales que cuenten con su propia regulación adicional. En estos casos, se informará adecuadamente a los Usuarios en cada caso concreto.
-        Asimismo, el Usuario se compromete expresamente a no destruir, alterar, inutilizar o, de cualquier otra forma, dañar los datos, programas o documentos
-        electrónicos que se encuentren en la Web. El Usuario se compromete a no obstaculizar el acceso de otros Usuarios al servicio de acceso mediante el consumo
-        masivo de los recursos informáticos a través de los cuales EPIC ELEVEN presta el servicio, así como realizar acciones que dañen, interrumpan o generen
-        errores en dichos sistemas. El Usuario se compromete a no introducir programas, virus, macros, applets, controles ActiveX o cualquier otro dispositivo
-        lógico o secuencia de caracteres que causen o sean susceptibles de causar cualquier tipo de alteración en los sistemas informáticos de EPIC ELEVEN o de
-        terceros.
+        The User agrees to use the Portal, content and services in accordance with the law, this Legal Notice, morals and public order. Similarly, the User agrees not to use the Portal or the services provided through it for illegal purposes or contrary to the contents of this Legal Notice, detrimental to the interests or rights of others, or in any way could damage, disable or impair the website or its services or impede normal enjoyment of the website by other users. Without limiting the foregoing, EPIC ELEVEN can offer through the web additional services that have their own additional regulation. In these cases, the Users will be properly informed in each specific case. Also, the User expressly agrees not to destroy, alter, disable or otherwise, damage data, programs or documents that are on the Portal. The User agrees not to hinder access of other users to access service through the mass consumption of computing resources through which EPIC ELEVEN serves, as well as actions that may damage, interrupt or generate errors in these systems. The User agrees not to introduce programs, viruses, macros, applets, ActiveX controls or any other logical device or character sequence that cause or may cause any type of alteration in EPIC ELEVEN or third parties computer systems.
     </p>
     <h1>
-        Enlaces de terceros
+        Links to third parties
     </h1>
     <p>
-        El presente Aviso Legal se refiere únicamente a la Web y contenidos de EPIC ELEVEN, y no se aplica a los enlaces o a las páginas web de terceros accesibles
-        a través de la Web. Los destinos de dichos enlaces no están bajo el control de EPIC ELEVEN, y el mismo no es responsable del contenido de ninguna de las
-        páginas Web de destino de un enlace, ni de ningún enlace incluido en una página Web a la que se llegue desde la Web de EPIC ELEVEN, ni de ningún cambio o
-        actualización de dichas páginas. Estos enlaces se proporcionan únicamente para informar al Usuario sobre la existencia de otras fuentes de información
-        sobre un tema concreto, y la inclusión de un enlace no implica la aprobación de la página Web enlazada por parte de EPIC ELEVEN.
+        This legal notice relates only to the Portal and content of EPIC ELEVEN, and does not apply to the links or the websites of third parties accessible through the Portal. The webs of these links are not under the control of EPIC ELEVEN, and the same is not responsible for the content of any of the Web pages destination of a link, or any link contained in a Web page that is reached from the EPIC web ELEVEN, or any changes or updates to such sites. These links are provided solely to inform the user about the existence of other sources of information about a particular topic, and the inclusion of any link does not imply endorsement of the linked website by EPIC ELEVEN.
     </p>
     <h1>
-        Propiedad intelectual
+        Intellectual property
     </h1>
     <p>
-        EPIC ELEVEN advierte que los derechos de propiedad intelectual de la Web, su código fuente, diseño, estructura de navegación, bases de datos y los
-        distintos elementos en ésta contenidos son titularidad exclusiva de EPIC ELEVEN, a quien corresponde el ejercicio exclusivo de los derechos de explotación
-        de los mismos en cualquier forma y, en especial, con carácter enunciativo que no limitado, los derechos de reproducción, copia, distribución,
-        transformación, comercialización, y comunicación pública. La reproducción, copia, distribución, transformación, comercialización, y comunicación pública
-        parcial o total de la información contenida en esta Web, queda estrictamente prohibida sin la previa autorización expresa y por escrito de EPIC ELEVEN, y
-        constituye una infracción de los derechos de propiedad intelectual e industrial.
+        ELEVEN EPIC warns that intellectual property rights of the Portal, its source, design, navigation structure, databases and different elements contained in this code are exclusively owned by EPIC ELEVEN, who has the exclusive rights to exploit them in any way desired according to the law, and in particular, by way of example but not limited to, rights of reproduction, copying, distribution, processing, marketing, and public communication. The reproduction, copying, distribution, processing, marketing, and partial or total public communication of the information contained in this website is strictly prohibited without the express written permission of EPIC ELEVEN, and constitutes an infringement of intellectual property rights and industrial.
     </p>
     <h1>
-        Foros, Blogs e imágenes
+        Forums, Blogs and Images
     </h1>
     <p>
-        EPIC ELEVEN ofrece a los Usuarios la posibilidad de introducir comentarios y/o de remitir fotografías, para incorporarlos en las secciones
-        correspondientes. La publicación de los comentarios y/o las fotografías está sujeta al presente Aviso Legal. La persona identificada en cada caso como la
-        que ha realizado los comentarios y/o ha enviado las fotografías, es responsable de los mismos. Los comentarios y/o las fotografías, no reflejan la opinión
-        de EPIC ELEVEN, ni el mismo hace declaraciones a este respecto. EPIC ELEVEN no se hará responsable, a no ser en aquellos extremos a los que le obligue la
-        Ley, de los errores, inexactitudes o irregularidades que puedan contener los comentarios y/o las fotografías, así como de los daños o perjuicios que se
-        pudieran ocasionar por la inserción de los comentarios y/o las fotografías en el Foro o en las demás secciones de la Web que permitan esta clase de
-        servicios.El Usuario suministrador del texto y/o fotografías cede a EPIC ELEVEN los derechos para su reproducción, uso, distribución, comunicación pública
-        en formato electrónico, en el marco de las actividades para esta web. Y, en especial, el Usuario cede dichos derechos para el emplazamiento del texto y/o
-        las fotografías en la Web, con el fin de que los demás Usuarios del sitio Web puedan acceder a los mismos. El Usuario suministrador declara ser el titular
-        de los derechos sobre los textos o fotografías o, en su caso, garantiza que dispone de los derechos y autorizaciones necesarios del autor o propietario del
-        texto y/o fotografías, para su utilización por parte de EPIC ELEVEN a través de la Web. EPIC ELEVEN no se hará responsable, a no ser en aquellos extremos a
-        los que obligue la Ley, de los daños o perjuicios que se pudieran ocasionar por el uso, reproducción, distribución o comunicación pública o cualquier tipo
-        de actividad que realice sobre los textos y/o fotografías que se encuentren protegidos por derechos de propiedad intelectual pertenecientes a terceros, sin
-        que el Usuario haya obtenido previamente de sus titulares la autorización necesaria para llevar a cabo el uso que efectúa o pretende efectuar. Asimismo,
-        EPIC ELEVEN se reserva el derecho de retirar de forma unilateral los comentarios y/o fotografías albergados en cualquier otra sección de la Web, cuando
-        EPIC ELEVEN lo estime oportuno. EPIC ELEVEN no será responsable por la información enviada por el Usuario cuando no tenga conocimiento efectivo de que la
-        información almacenada es ilícita o de que lesiona bienes o derechos de un tercero susceptibles de indemnización. En el momento que EPIC ELEVEN tenga
-        conocimiento efectivo de que aloja datos como los anteriormente referidos, se compromete a actuar con diligencia para retirarlos o hacer imposible el
-        acceso a ellos. En todo caso, para interponer cualquier reclamación relacionada con los contenidos insertados en el Foro o secciones análogas, puede
-        hacerlo dirigiéndose a la siguiente dirección de correo electrónico: info@epiceleven.com.
+        EPIC ELEVEN gives Users the ability to enter comments and/or submit photographs for inclusion in the appropriate sections. The publication of comments and/or photographs is subject to this Legal Notice. The person identified in each case as the one who has made comments and/or sent photographs, is responsible for them. Comments and / or photographs do not reflect the opinions of EPIC ELEVEN, and EPIC ELEVEN will not made any statement in this regard. EPIC ELEVEN will not be liable, unless those extremes that would force the law, for any errors, inaccuracies or irregularities that may contain the comments and/or photographs, as well as any damages that may result by inserting those comments and/or photos on the Forum or on other sections of the Web that allow this kind of services. The User which supplies texts and/or photographs yields to EPIC ELEVEN his rights to reproduce, use, distribution, public communication in electronic form as part of the activities for this website. And, especially, the User grants such rights to the location of text and / or photos on the Web, so that other users of the website can access them. The supplier User declares to be the owner of the rights to the texts or pictures or, where appropriate, ensures to have the necessary rights and authorizations of the author or owner of the text and/or photographs, for use by EPIC ELEVEN to through the Web. EPIC ELEVEN will not be liable, except in those extremes to which compels the Law, of the damages that could be caused by the use, reproduction, distribution or public communication or any type of activity carried on texts and/or photographs are protected by intellectual property rights belonging to third parties without the User having previously obtained from the owners needed to carry out the use made or intended release. EPIC ELEVEN also reserves the right to withdraw unilaterally comments and/or photographs housed in any other section of the Web, when EPIC ELEVEN deems appropriate. EPIC ELEVEN will not responsible for the information sent by the user when they have actual knowledge that the information stored is unlawful or harms property or rights of a third party liable for compensation. At the moment EPIC ELEVEN realizes that is housing data as referred to above, the User agrees to act expeditiously to remove or block all access to them. In any case, any claim relating to or inserted in forum sections similar content, you can do so by going to the following email address: <a href="mailto:support@epiceleven.com">support@epiceleven.com</a>.
     </p>
     <h1>
-        Modificaciones de las condiciones de uso
+        CHANGES TO THE TERMS OF USE
     </h1>
     <p>
-        EPIC ELEVEN se reserva el derecho de modificar, desarrollar o actualizar en cualquier momento y sin previa notificación las condiciones de uso de la
-        mencionada página web. El usuario quedará obligado automáticamente por las condiciones de uso que se hallen vigentes en el momento en que acceda a la web,
-        por lo que deberá leer periódicamente dichas condiciones de uso.
+        ELEVEN EPIC reserves the right to modify, develop or update at any time and without notice the Terms and Conditions of this Portal. The User will be automatically bound by the conditions of use that are in effect at the time they access the web, so you should periodically read the Terms and Conditions.
     </p>
     <h1>
-        Régimen de responsabilidad
+        LIABILITY REGIME
     </h1>
     <p>
-        La utilización de la página web es responsabilidad única y exclusiva de cada Usuario, por lo que será responsabilidad suya cualquier infracción o cualquier
-        perjuicio que pueda causar por el uso de dicha página. EPIC ELEVEN, sus socios, colaboradores, empleados y cualquier otro representante o tercero quedan
-        pues exonerados de cualquier responsabilidad que pudiera conllevar las acciones del Usuario. EPIC ELEVEN, aún cuando ponga todo su esfuerzo en facilitar
-        siempre información actualizada mediante su página web, no garantiza la inexistencia de errores o inexactitudes en ninguno de los contenidos, siempre que
-        sea por razones no imputables de forma directa a EPIC ELEVEN. Por lo anterior, será el Usuario el único responsable frente a todas aquellas reclamaciones o
-        acciones legales iniciadas contra EPIC ELEVEN basadas en el uso de la página web o sus contenidos por parte del usuario, siempre que esta utilización se
-        haya realizado de forma ilícita, vulnerando derechos de terceros, o causando cualquier tipo de perjuicio, asumiendo por ello cuantos gastos, costes o
-        indemnizaciones en los que pueda incurrir EPIC ELEVEN..
+        The use of the website is the sole responsibility of each User, so it will be the User responsibility if any breach or any harm resulting from the use of this page gets into the Portal. EPIC ELEVEN, its partners, collaborators, employees and other representatives or third parties are therefore exempt from any liability that may involve the actions of the User. EPIC ELEVEN puts all its capacity into providing constantly updated information via their website, but that does not guarantee the absence of errors or inaccuracies in any of the contents, even whenever the reasons are not attributable directly to EPIC ELEVEN. Therefore, the User shall be solely liable against any claims or legal proceedings against EPIC ELEVEN based on the use of the website or its contents by the User, provided such use has been made illegally, violating rights of third parties or causing any damage, thereby assuming all costs, expenses or damages that may be incurred in EPIC ELEVEN.
     </p>
     <h1>
-        Ley aplicable y Jurisdicción
+        APPLICABLE LAW AND JURISDICTION
     </h1>
     <p>
-        Esta Web se rige por la legislación española. EPIC ELEVEN y el Usuario, con renuncia expresa a su propio fuero, si lo tuvieren, se someten a la
-        jurisdicción de los juzgados y tribunales de la ciudad de Madrid (España). Esto siempre que este no sea un usuario final, siendo el foro que la ley
-        estipula el domicilio del demandado.
+        This website is governed by Spanish law. EPIC ELEVEN and the user, expressly waiving their own jurisdiction, if they will have it, will submit to the jurisdiction of the courts of the city of Madrid (Spain). This provided this is not an end user, being the forum that the law provides the defendant's domicile.
     </p>
   </div>
 </div>"""));
@@ -2451,12 +2189,13 @@ tc.put("packages/webclient/components/view_contest/fantasy_team_comp.html", new 
   </div>
 
 </div>"""));
-tc.put("packages/webclient/components/view_contest/teams_panel_comp.html", new HttpResponse(200, r"""<div id="teamsPanelRoot" ng-show="contest != null" ng-switch="scrDet.isXsScreen" class="animate">
+tc.put("packages/webclient/components/view_contest/teams_panel_comp.html", new HttpResponse(200, r"""<div class="teams-toggler-wrapper">
+  <div id="teamsToggler" type="button" class="teams-toggler toggleOff" ng-click="toggleTeamsPanel()"  data-toggle="collapse" data-target="#teamsPanel">SHOW MATCHES</div>
+</div>
+<div id="teamsPanelRoot" ng-show="contest != null" class="animate">
 
-  <div class="teams-comp-bar" ng-switch-when="true">
-    <div class="teams-toggler-wrapper">
-      <div id="teamsToggler" type="button" class="teams-toggler toggleOff" ng-click="toggleTeamsPanel()"  data-toggle="collapse" data-target="#teamsPanel">MATCHES IN THIS CONTEST</div>
-    </div>
+  <div class="teams-comp-bar" >
+
     <div id="teamsPanel" class="teams-container collapse">
       <div class="top-border"></div>
       <div class="teams-box" ng-repeat="match in matchEventsSorted">
@@ -2466,13 +2205,6 @@ tc.put("packages/webclient/components/view_contest/teams_panel_comp.html", new H
     </div>
   </div>
 
-  <div class="teams-comp-bar" ng-switch-when="false">
-    <div class="teams-container">
-      <div class="teams-box" ng-repeat="match in matchEventsSorted">
-        <div class="teams-info" ng-bind-html="getMatchAndPeriodInfo($index)"></div>
-      </div>
-    </div>
-  </div>
 
 </div>"""));
 tc.put("packages/webclient/components/view_contest/users_list_comp.html", new HttpResponse(200, r"""<div id="usersListRoot" >
@@ -2504,7 +2236,6 @@ tc.put("packages/webclient/components/view_contest/users_list_comp.html", new Ht
 tc.put("packages/webclient/components/view_contest/view_contest_comp.html", new HttpResponse(200, r"""<section>
 
   <contest-header id="contestHeader" contest="contest" contest-id="contestId"></contest-header>
-  <teams-panel id="teamsPanelComp" contest="contest" contest-id="contestId"></teams-panel>
 
   <div id="viewContestRoot" ng-switch="scrDet.isXsScreen" >
     <div ng-switch-when="true">
@@ -2539,8 +2270,6 @@ tc.put("packages/webclient/components/view_contest/view_contest_comp.html", new 
 tc.put("packages/webclient/components/view_contest/view_contest_entry_comp.html", new HttpResponse(200, r"""<section ng-show="!loadingService.isLoading">
 
   <contest-header id="contestHeader" contest="contest" contest-id="contestId"></contest-header>
-
-  <teams-panel id="teamsPanelComp" contest="contest" contest-id="contestId"></teams-panel>
 
   <!--<div class="separator-bar"></div>-->
   <div class="info-complete-bar" ng-if="!isModeViewing">

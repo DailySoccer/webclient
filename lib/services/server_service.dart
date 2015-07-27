@@ -390,7 +390,9 @@ class DailySoccerServer implements ServerService {
 
     if (serverVersion != null) {
       if (_currentVersion != null && _currentVersion != serverVersion) {
+        if (serverVersion!="devel") {
           window.location.reload();
+        }
       }
       else {
         _currentVersion = serverVersion;

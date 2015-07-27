@@ -55,7 +55,7 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
                 "PENALTIS_DETENIDOS"  : {"shortName" : "PS", "description" : 'Penalties Saved'},
                 "GOLES"               : {"shortName" : "G",  "description" : 'Goals'},
                 "TIROS"               : {"shortName" : "SH",  "description" : 'Shots'},
-                "ASISTENCIAS"         : {"shortName" : "A",  "description" : 'Assists'},
+                "ASISTENCIAS"         : {"shortName" : "CH",  "description" : 'Chances Created'},
                 "REGATES"             : {"shortName" : "T",  "description" : 'Take-ons'},
                 "FALTAS_RECIBIDAS"    : {"shortName" : "FC", "description" : 'Fouls Conceded'}
   };
@@ -215,8 +215,9 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
           matchStatRows.add(stat.soccerPlayerStatValues[key]);
         });
 
+        bool isCurrentYearFetching = seasonsList.where((data) => data["year"] == year).length > 0;
         // Si no existe aún este año en la tabla de años, la generamos
-        if (seasonsList.length == 0) {
+        if ( !isCurrentYearFetching ) {
           // Si no tenemos creadas las estadísticas partido a partido
           Map newSeason = {};
           newSeason.addAll({'year':year, 'stats':[]});

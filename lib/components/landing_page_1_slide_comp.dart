@@ -6,7 +6,7 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/utils/game_metrics.dart';
-
+import 'package:webclient/utils/translate_config.dart';
 
 @Component(
    selector: 'landing-page-1-slide',
@@ -18,6 +18,7 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
   ScreenDetectorService scrDet;
 
   int get screenHeight => window.innerHeight -70 - 122;
+
 
 
   LandingPage1SlideComp(this._router, this._profileService, this.scrDet, this._loadingService, this._rootElement) {
@@ -91,25 +92,23 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
       <div id="desktopContent">    
         <div class="main-title-wrapper">
     
-          <div class="main-title">DAILY FANTASY LEAGUES</div>
-          <div class="main-sub-title">
-            Play whenever you want, wherever your want. Win prizes with no season-long commitment.
-          </div>
+          <div class="main-title">${config.translate("title", group:"landing")}</div>
+          <div class="main-sub-title">${config.translate("subtitle", group:"landing")}</div>
           <div class="button-wrap">
-            <button type="button" class="button-play" buttonOnclick="lobby.welcome" id="playButton1">PLAY NOW</button>
+            <button type="button" class="button-play" buttonOnclick="lobby.welcome" id="playButton1">${config.translate("buttonplay", group:"landing")}</button>
           </div>
           <div class="text-wrapper">
     
             <div class="module-column">
-              <p class="icono-text">Compete with your friends in La Liga, Premier and Champions</p>
+              <p class="icono-text">${config.translate("info1", group:"landing")}</p>
             </div>
     
             <div class="module-column">
-              <p class="icono-text">Create your lineup, on your computer, tablet or smartphone in seconds</p>
+              <p class="icono-text">${config.translate("info2", group:"landing")}</p>
             </div>
     
             <div class="module-column">
-              <p class="icono-text">Immediate cash payouts</p>
+              <p class="icono-text">${config.translate("info3", group:"landing")}</p>
             </div>
     
           </div>
@@ -146,7 +145,7 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
     ''';
   var _streamListener;
 
-  int _windowHeigtht;
+  // int _windowHeigtht;
 
   Router _router;
   ProfileService _profileService;

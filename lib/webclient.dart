@@ -2,8 +2,10 @@ library webclient;
 
 import 'dart:html';
 import 'dart:async';
+import 'dart:convert' show JSON;
 import 'package:angular/angular.dart';
 import 'package:angular/routing/module.dart';
+// import 'package:intl/intl.dart';
 
 import 'package:webclient/logger_exception_handler.dart';
 import 'package:webclient/services/server_service.dart';
@@ -25,6 +27,10 @@ import 'package:webclient/components/landing_page_1_slide_comp.dart';
 
 import 'package:webclient/utils/form-autofill-fix.dart';
 import 'package:webclient/utils/element-autofocus.dart';
+import 'package:webclient/utils/translate_decorator.dart';
+import 'package:webclient/utils/translate_formatter.dart';
+import 'package:webclient/utils/translate_config.dart';
+
 import 'package:webclient/utils/limit_to_dot.dart';
 
 import 'package:webclient/components/navigation/main_menu_slide_comp.dart';
@@ -89,6 +95,7 @@ import 'package:angular/core_dom/module_internal.dart';
 import 'package:webclient/template_cache.dart';
 import 'package:webclient/utils/game_metrics.dart';
 
+
 class WebClientApp extends Module {
 
   WebClientApp() {
@@ -128,6 +135,10 @@ class WebClientApp extends Module {
     bind(FormAutofillDecorator);
     bind(AutoFocusDecorator);
     bind(LimitToDot);
+
+    bind(TranslateConfig);
+    bind(TranslateDecorator);
+    bind(TranslateFormatter);
 
     bind(LandingPage1SlideComp);
 
@@ -185,6 +196,8 @@ class WebClientApp extends Module {
 
     bind(RouteInitializerFn, toValue: webClientRouteInitializer);
     bind(NgRoutingUsePushState, toValue: new NgRoutingUsePushState.value(false));
+
+
   }
 
   void webClientRouteInitializer(Router router, RouteViewFactory views) {

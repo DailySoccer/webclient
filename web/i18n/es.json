@@ -1,0 +1,19 @@
+{
+  "_comment": "i18n Spanish",
+  "version": "0.0.1",
+  "modified": "2015-09-21",
+  "language": "Spanish",
+  "locale": "es",
+  "translations" : {
+
+    "landing" : {
+      "title"         : "LIGAS FANTASTICAS DIARIAS",
+      "subtitle"      : "Juega siempre que quieras, donde tu quieras y gana premios cada jornada.",
+      "buttonplay"    : "JUEGA AHORA",
+      "info1"         : "Compite contra tus amigos en la Liga, Premier y Champions.",
+      "info2"         : "Crea tu alineación desde tu ordenador, tablet o movil en segundos.",
+      "info3"         : "Pagos efectivos en el momento."
+    },
+
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "_comment": "i18n English",
+  "version": "0.0.1",
+  "modified": "2015-09-21",
+  "language": "English",
+  "locale": "en",
+  "translations" : {
+
+    "landing" :
+      {
+        "title": "DAILY FANTASY LEAGUES",
+        "subtitle": "Play whenever you want, wherever your want. Win prizes with no season-long commitment.",
+        "buttonplay": "PLAY NOW",
+        "info1": "Compete with your friends in La Liga, Premier and Champions",
+        "info2": "Create your lineup, on your computer, tablet or smartphone in seconds",
+        "info3": "Immediate cash payouts"
+      }
+  }
+}

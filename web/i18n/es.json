@@ -4,9 +4,10 @@
   "modified": "2015-09-21",
   "language": "Spanish",
   "locale": "es",
-  "translations" : {
-
-    "landing" : {
+  "translations" :
+  {
+    "landing" :
+    {
       "title"         : "LIGAS FANTASTICAS DIARIAS",
       "subtitle"      : "Juega siempre que quieras, donde tu quieras y gana premios cada jornada.",
       "buttonplay"    : "JUEGA AHORA",
@@ -14,6 +15,36 @@
       "info2"         : "Crea tu alineación desde tu ordenador, tablet o movil en segundos.",
       "info3"         : "Pagos efectivos en el momento."
     },
-
+    "join" :
+    {
+      "title"         : "REGISTRATE",
+      "description"   : "No estas registrado aún? <br> Rellena el formulario.",
+      "nickrequires"  : "Tu nombre debe tener entre @MIN_NICKNAME_LENGTH y @MAX_NICKNAME_LENGTH caracteres.",
+      "nick"          : "Nombre",
+      "invalidnick"   : "Nombre inválido.",
+      "email"         : "Correo Electrónico",
+      "invalidemail"  : "Correo Electrónico Invalido.",
+      "passrequires"  : "Contraseña: Debe tener al menos @MIN_PASSWORD_LENGTH caracteres. (Escríbela 2 veces).",
+      "pass"          : "Contraseña",
+      "repass"        : "Repite la Contraseña",
+      "invalidpass"   : "Contraseña Inválida.",
+      "buttonsignup"  : "REGISTRATE",
+      "buttoncancel"  : "CANCELAR",
+      "registered"    : "¿Ya estas registrado?",
+      "loginhere"     : "Accede desde aquí!"
+    },
+    "login" :
+    {
+      "title"         : "ENTRAR",
+      "description"   : "Introduce tu correo electrónico y contraseña",
+      "email"         : "Correo Electrónico",
+      "pass"          : "Contraseña",
+      "loginerror"    : "ERROR: El correo electrónico o la contraseña no son validos son incorrectos",
+      "forgotpass"    : "¿Olvidaste tu contraseña?",
+      "buttonlogin"   : "CONTINUAR",
+      "buttoncancel"  : "CANCELAR",
+      "unregistered"  : "Aún no estas resistrado?",
+      "signuphere"    : "Regístrate aquí!"
+    }
   }
 }

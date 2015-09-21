@@ -4,16 +4,47 @@
   "modified": "2015-09-21",
   "language": "English",
   "locale": "en",
-  "translations" : {
-
+  "translations" :
+  {
     "landing" :
-      {
-        "title": "DAILY FANTASY LEAGUES",
-        "subtitle": "Play whenever you want, wherever your want. Win prizes with no season-long commitment.",
-        "buttonplay": "PLAY NOW",
-        "info1": "Compete with your friends in La Liga, Premier and Champions",
-        "info2": "Create your lineup, on your computer, tablet or smartphone in seconds",
-        "info3": "Immediate cash payouts"
-      }
+    {
+      "title"         : "DAILY FANTASY LEAGUES",
+      "subtitle"      : "Play whenever you want, wherever your want. Win prizes with no season-long commitment.",
+      "buttonplay"    : "PLAY NOW",
+      "info1"         : "Compete with your friends in La Liga, Premier and Champions",
+      "info2"         : "Create your lineup, on your computer, tablet or smartphone in seconds",
+      "info3"         : "Immediate cash payouts"
+    },
+    "join" :
+    {
+      "title"         : "SING UP",
+      "description"   : "Don't you have an EPIC ELEVEN account yet? <br> Fill out this form.",
+      "nickrequires"  : "Your nickname must be @MIN_NICKNAME_LENGTH to @MAX_NICKNAME_LENGTH characters long.",
+      "nick"          : "Nickname",
+      "invalidnick"   : "Invalid Nickname.",
+      "email"         : "Email",
+      "invalidemail"  : "Invalid Mail.",
+      "passrequires"  : "Password: Should be at least @MIN_PASSWORD_LENGTH characters. (Type it twice).",
+      "pass"          : "Password",
+      "repass"        : "Repeat Password",
+      "invalidpass"   : "Invalid Password.",
+      "buttonsignup"  : "SIGN UP",
+      "buttoncancel"  : "CANCEL",
+      "registered"    : "Already have an account?",
+      "loginhere"     : "Log in here!"
+    },
+    "login" :
+    {
+      "title"         : "LOG IN",
+      "description"   : "Enter your email and password.",
+      "email"         : "Email",
+      "pass"          : "Password",
+      "loginerror"    : "LOGIN ERROR: The nickname or password is not correct.",
+      "forgotpass"    : "Forgot your password?",
+      "buttonlogin"   : "CONTINUE",
+      "buttoncancel"  : "CANCEL",
+      "unregistered"  : "Don't have an account?",
+      "signuphere"    : "Sign up here!"
+    }
   }
 }

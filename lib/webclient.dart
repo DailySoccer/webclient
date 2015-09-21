@@ -2,10 +2,8 @@ library webclient;
 
 import 'dart:html';
 import 'dart:async';
-import 'dart:convert' show JSON;
 import 'package:angular/angular.dart';
 import 'package:angular/routing/module.dart';
-// import 'package:intl/intl.dart';
 
 import 'package:webclient/logger_exception_handler.dart';
 import 'package:webclient/services/server_service.dart';

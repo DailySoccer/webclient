@@ -11,6 +11,7 @@ import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/fblogin.dart';
 import 'package:webclient/components/modal_comp.dart';
+import 'package:webclient/utils/translate_config.dart';
 
 @Component(
     selector: 'join',
@@ -73,6 +74,16 @@ class JoinComp implements ShadowRootAware {
   }
 
   bool get enabledSubmit => nickName.length >= MIN_NICKNAME_LENGTH && StringUtils.isValidEmail(email) && password.length >= MIN_PASSWORD_LENGTH && password == rePassword && _enabledSubmit;
+
+  String GetLocalizedText(key) {
+    String str = config.translate(key, group:"join");
+    str = str .replaceAll("@MIN_NICKNAME_LENGTH", MIN_NICKNAME_LENGTH.toString())
+              .replaceAll("@MAX_NICKNAME_LENGTH", MAX_NICKNAME_LENGTH.toString())
+              .replaceAll("@MIN_PASSWORD_LENGTH", MIN_PASSWORD_LENGTH.toString());
+
+    return str;
+  }
+
 
   JoinComp(this._router, this._routeProvider, this._profileService, this.loadingService, this._rootElement, this._scrDet) {
     _fbLogin = new FBLogin(_router, _profileService, () => isModal ? ModalComp.close() : _router.go('lobby', {}));

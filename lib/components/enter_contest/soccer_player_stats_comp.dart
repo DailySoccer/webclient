@@ -34,7 +34,7 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
   Map currentInfoData;
   bool selectablePlayer;
 
-  bool isGoalkeeper() => currentInfoData['fieldPos'] == "GK";
+  bool isGoalkeeper() => currentInfoData['fieldPos'] == StringUtils.Translate("gk", "soccerplayerpositions");
 
   String get printableSalary => StringUtils.parseSalary(currentInfoData['salary']);
 

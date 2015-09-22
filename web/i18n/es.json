@@ -6,8 +6,23 @@
   "locale": "es",
   "translations" :
   {
-    "currency": "€",
-    "landing" :
+    "currency"        : "€",
+    "locale"          : "es_ES",
+    "common"          :
+    {
+      "day"           : " DIA ",
+      "days"          : " DIAS "
+    },
+    "date"            :
+    {
+      "datewithdayofthemonth" : "EEE, d MMM",
+      "dateshort"     : "dd/MM",
+      "timeshort"     : "HH:mm",
+      "datetimeshort" : "E, HH:mm",
+      "datetimelong"  : "E, dd/MM/yy HH:mm",
+      "datetimedayhour"       : "dd/MM/yy HH:mm"
+    },
+    "landing"         :
     {
       "title"         : "LIGAS FANTASTICAS DIARIAS",
       "subtitle"      : "Juega siempre que quieras, donde tu quieras y gana premios cada jornada.",
@@ -16,7 +31,7 @@
       "info2"         : "Crea tu alineación desde tu ordenador, tablet o movil en segundos.",
       "info3"         : "Pagos efectivos en el momento."
     },
-    "join" :
+    "join"            :
     {
       "title"         : "REGISTRATE",
       "description"   : "No estas registrado aún? <br> Rellena el formulario.",
@@ -34,7 +49,7 @@
       "registered"    : "¿Ya estas registrado?",
       "loginhere"     : "Accede desde aquí!"
     },
-    "login" :
+    "login"           :
     {
       "title"         : "ENTRAR",
       "description"   : "Introduce tu correo electrónico y contraseña",
@@ -47,7 +62,7 @@
       "unregistered"  : "Aún no estas resistrado?",
       "signuphere"    : "¡Regístrate aquí!"
     },
-    "changepass" :
+    "changepass"      :
     {
       "error503"      : "ERROR 503",
       "changepass"    : "CAMBIO DE CONTRASEÑA",
@@ -60,7 +75,7 @@
       "buttoncontinue": "CONTINUAR",
       "buttoncancel"  : "CANCELAR"
     },
-    "rememberpass" :
+    "rememberpass"    :
     {
       "title"         : "RECORDAR CONTRASEÑA",
       "confirm_part_1": "Te hemos mandado un correo electrónico a",
@@ -73,7 +88,7 @@
       "unregistered"  : "¿Aún no estás registrado?",
       "signuphere"    : "¡Registrate aquí!"
     },
-    "addfunds" :
+    "addfunds"        :
     {
       "title"         : "AÑADIR FONDOS",
       "description1"  : "Para jugar a EPIC ELEVEN con dinero real, necesitas añadir fondos a tu cuenta.",
@@ -85,7 +100,7 @@
       "buttonaddfunds": "Añadir fondos",
       "needhelp"      : "¿Necesitas ayuda?"
     },
-    "editprofile" :
+    "editprofile"     :
     {
       "title"         : "EDITAR PERFIL",
       "name"          : "Nnombre",
@@ -109,7 +124,7 @@
       "resultokdesc"  : "¡Gracias!Thank you! Tu petición se ha completado con éxito.",
       "resultnookdesc": "La transacción no se ha podido completar. Por favor, revisa los datos introducidos e intentalo de nuevo."
     },
-    "transactionhistory" :
+    "transactionhistory"        :
     {
       "title"         : "HISTORIAL DE TRANSACTIONES",
       "date"          : "FECHA",
@@ -118,7 +133,7 @@
       "value"         : "CANTIDAD",
       "balance"       : "BALANCE"
     },
-    "userprofile" :
+    "userprofile"     :
     {
       "title"         : "Perfil de usuario",
       "buttonedit"    : "EDITAR",
@@ -139,7 +154,7 @@
       "penulmonth"    : "penul-mes",
       "howtouse"      : "Como usar tus puntos?"
     },
-    "withdrawfunds" :
+    "withdrawfunds"   :
     {
       "title"         : "RETIRAR FONDOS",
       "balance"       : "TU BALANCE ES",
@@ -148,7 +163,7 @@
       "withdrawfunds" : "Retirar fondods",
       "needhelp"      : "¿Necesitas ayuda?"
     },
-    "entercontest" :
+    "entercontest"    :
     {
       "tablineup"     : "Tu Alineación",
       "tabcontestinfo": "Informacion del concurso",
@@ -158,7 +173,30 @@
       "buttonclean"   : "LIMPIAR ALINEACION",
       "buttoncontinue": "CONTINUAR",
       "tip"           : "Recuerda que puedes editar tu alineación todas las veces que quieras hasta que el concurso comience"
-
+    },
+    "lineupselector"  :
+    {
+      "watedsalarycap": "<strong>Has gastado todo el presupuesto</strong><br> Por favor, elige otros jugadores para ajustar el presupuesto",
+      "maxplayersteam": "<strong>Ups! Parece que has sobrepasado el limite de tener @MAX_PLAYERS_SAME_TEAM jugadores del mismo equipo</strong><br> Por favor, elige otros jugadores...",
+      "add"           : "AÑADIR "
+    },
+    "matchesfilter"   :
+    {
+      "all-matches"   : "Todos<br>los partidos",
+      "allmatches"    : "Todos los partidos",
+      "all"           : "todos"
+    },
+    "soccerplayerpositions"        :
+    {
+      "goalkeeper"    : "PORTERO",
+      "gk"            : "POR",
+      "defense"       : "DEFENSA",
+      "def"           : "DEF",
+      "middle"        : "MEDIO",
+      "mid"           : "MED",
+      "forward"       : "DELANTERO",
+      "for"           : "DEL",
+      "all"           : "TODOS"
     }
   }
 }

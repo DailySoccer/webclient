@@ -6,6 +6,7 @@ import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/match_event.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 
 
@@ -34,7 +35,7 @@ class MatchesFilterComp implements ShadowRootAware {
     }
 
     matchEvents.clear();
-    matchEvents.add({"id": _ALL_MATCHES, "texto": "All<br>matches", "textoSelector": "All matches"});
+    matchEvents.add({"id": _ALL_MATCHES, "texto": StringUtils.Translate("all-matches", "matchesfilter"), "textoSelector": StringUtils.Translate("allmatches", "matchesfilter")});
 
     theContest.matchEvents.forEach((match) => _addMatchEvent(match));
     runAnimation();
@@ -82,6 +83,6 @@ class MatchesFilterComp implements ShadowRootAware {
   MatchesFilterComp(this.srcDet, this._view);
 
   View _view;
-  static final String _ALL_MATCHES = "all";
+  static final String _ALL_MATCHES = StringUtils.Translate("all", "matchesfilter");
   String _selectedOption;
 }

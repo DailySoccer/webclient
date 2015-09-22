@@ -5,6 +5,7 @@ import 'package:angular/angular.dart';
 import 'package:webclient/services/server_service.dart';
 import 'package:webclient/services/refresh_timers_service.dart';
 import 'package:webclient/utils/host_server.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 @Injectable()
 class DateTimeService {
@@ -33,31 +34,31 @@ class DateTimeService {
   }
 
   static String formatDateYear(DateTime date) {
-    return new DateFormat("yyyy", "en_EN").format(date);
+    return new DateFormat("yyyy", StringUtils.GetLocale()).format(date);
   }
 
   static String formatDateWithDayOfTheMonth(DateTime date) {
-    return new DateFormat("EEE, d MMM", "en_EN").format(date);
+    return new DateFormat(StringUtils.GetDatePattern("datewithdayofthemonth"), StringUtils.GetLocale()).format(date);
   }
 
   static String formatDateShort(DateTime date) {
-    return new DateFormat("dd/MM").format(date);
+    return new DateFormat(StringUtils.GetDatePattern("dateshort")).format(date);
   }
 
   static String formatTimeShort(DateTime date) {
-    return "${new DateFormat("HH:mm").format(date)}h";
+    return "${new DateFormat(StringUtils.GetDatePattern("timeshort")).format(date)}h";
   }
 
   static String formatDateTimeShort(DateTime date) {
-    return "${new DateFormat("E, HH:mm", "en_EN").format(date)}h";
+    return "${new DateFormat(StringUtils.GetDatePattern("datetimeshort"), StringUtils.GetLocale()).format(date)}h";
   }
 
   static String formatDateTimeLong(DateTime date) {
-    return "${new DateFormat("E, dd/MM/yy HH:mm", "en_EN").format(date)}h";
+    return "${new DateFormat(StringUtils.GetDatePattern("datetimelong"), StringUtils.GetLocale()).format(date)}h";
   }
 
   static String formatDateTimeDayHour(DateTime date) {
-    return "${new DateFormat("dd/MM/yy HH:mm", "en_EN").format(date)}h";
+    return "${new DateFormat(StringUtils.GetDatePattern("datetimedayhour"), StringUtils.GetLocale()).format(date)}h";
   }
 
   static String formatTimeLeft(Duration timeLeft) {
@@ -69,7 +70,7 @@ class DateTimeService {
     var minutes = nfTime.format(timeLeft.inMinutes % 60);
     var seconds = nfTime.format(timeLeft.inSeconds % 60);
 
-    return (days > 0)? nfDay.format(days) + (days > 1 ? " DAYS ": " DAY ") + hours + ":" + minutes + ":" + seconds
+    return (days > 0)? nfDay.format(days) + (days > 1 ? StringUtils.Translate("days", "common") : StringUtils.Translate("day", "common") ) + hours + ":" + minutes + ":" + seconds
                      : hours + ":" + minutes + ":" + seconds;
   }
 

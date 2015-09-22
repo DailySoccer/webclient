@@ -6,8 +6,23 @@
   "locale": "en",
   "translations" :
   {
-    "currency": "$",
-    "landing" :
+    "currency"        : "$",
+    "locale"          : "en_EN",
+    "common"          :
+    {
+      "day"           : " DAY ",
+      "days"          : " DAYS "
+    },
+    "date"            :
+    {
+      "datewithdayofthemonth" : "MMM d EEE",
+      "dateshort"     : "MM/dd",
+      "timeshort"     : "HH:mm",
+      "datetimeshort" : "E, HH:mm",
+      "datetimelong"  : "E, MM/dd/yy HH:mm",
+      "datetimedayhour"       : "MM/dd/yy HH:mm"
+    },
+    "landing"         :
     {
       "title"         : "DAILY FANTASY LEAGUES",
       "subtitle"      : "Play whenever you want, wherever your want. Win prizes with no season-long commitment.",
@@ -16,7 +31,7 @@
       "info2"         : "Create your lineup, on your computer, tablet or smartphone in seconds",
       "info3"         : "Immediate cash payouts"
     },
-    "join" :
+    "join"            :
     {
       "title"         : "SING UP",
       "description"   : "Don't you have an EPIC ELEVEN account yet? <br> Fill out this form.",
@@ -34,7 +49,7 @@
       "registered"    : "Already have an account?",
       "loginhere"     : "Log in here!"
     },
-    "login" :
+    "login"           :
     {
       "title"         : "LOG IN",
       "description"   : "Enter your email and password.",
@@ -47,7 +62,7 @@
       "unregistered"  : "Don't have an account?",
       "signuphere"    : "Sign up here!"
     },
-    "changepass" :
+    "changepass"      :
     {
       "error503"      : "ERROR 503",
       "changepass"    : "CHANGE PASSWORD",
@@ -73,7 +88,7 @@
       "unregistered"  : "Don't have an account?",
       "signuphere"    : "Sign up here!"
     },
-    "addfunds" :
+    "addfunds"        :
     {
       "title"         : "ADD FUNDS",
       "description1"  : "In order to play Epic Eleven with real money, you need to add funds to your account.",
@@ -85,7 +100,7 @@
       "buttonaddfunds": "Add funds",
       "needhelp"      : "Need help"
     },
-    "editprofile" :
+    "editprofile"     :
     {
       "title"         : "EDIT ACCOUNT",
       "name"          : "Name",
@@ -109,7 +124,7 @@
       "resultokdesc"  : "Thank you! Your order has been successfully processed.",
       "resultnookdesc": "The requested transaction cannot be completed. Please check your payment method and try again."
     },
-    "transactionhistory" :
+    "transactionhistory"        :
     {
       "title"         : "TRANSACTION HISTORY",
       "date"          : "DATE",
@@ -118,7 +133,7 @@
       "value"         : "VALUE",
       "balance"       : "BALANCE"
     },
-    "userprofile" :
+    "userprofile"     :
     {
       "title"         : "My Account",
       "buttonedit"    : "EDIT",
@@ -139,7 +154,7 @@
       "penulmonth"    : "penul-month",
       "howtouse"      : "How to use your EPs?"
     },
-    "withdrawfunds" :
+    "withdrawfunds"   :
     {
       "title"         : "WITHDRAW FUNDS",
       "balance"       : "YOUR BALANCE IS",
@@ -148,7 +163,7 @@
       "withdrawfunds" : "Withdraw funds",
       "needhelp"      : "Need help?"
     },
-    "entercontest" :
+    "entercontest"    :
     {
       "tablineup"     : "Your lineup",
       "tabcontestinfo": "Contest Info",
@@ -158,7 +173,30 @@
       "buttonclean"   : "REMOVE ALL",
       "buttoncontinue": "CONTINUE",
       "tip"           : "Remember that you can edit your team as many times as you want until the contest starts"
-
+    },
+    "lineupselector"  :
+    {
+      "watedsalarycap": "<strong>You've spent the salary cap</strong><br> Please choose players that fit the budget.",
+      "maxplayersteam": "<strong>Ups! It looks like you already have @MAX_PLAYERS_SAME_TEAM players of the same team</strong><br> Please, choose another player...",
+      "add"           : "ADD "
+    },
+    "matchesfilter"   :
+    {
+      "all-matches"   : "All<br>matches",
+      "allmatches"    : "All matches",
+      "all"           : "all"
+    },
+    "soccerplayerpositions"        :
+    {
+      "goalkeeper"    : "GOALKEEPER",
+      "gk"            : "GK",
+      "defense"       : "DEFENSE",
+      "def"           : "DEF",
+      "middle"        : "MIDDLE",
+      "mid"           : "MID",
+      "forward"       : "FORWARD",
+      "for"           : "FOR",
+      "all"           : "ALL"
     }
   }
 }

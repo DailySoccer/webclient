@@ -26,7 +26,7 @@ class InstanceSoccerPlayer {
 
   InstanceSoccerPlayer.initFromJsonObject(Map jsonMap, ContestReferences references) {
     soccerPlayer = references.getSoccerPlayerById(jsonMap["templateSoccerPlayerId"]);
-    fieldPos = jsonMap.containsKey("fieldPos") ? new FieldPos(jsonMap["fieldPos"]) : null;
+    fieldPos = jsonMap.containsKey("fieldPos") ? new FieldPos(StringUtils.Translate(jsonMap["fieldPos"].toString().toLowerCase(), "soccerplayerpositions")) : null;
     salary = jsonMap.containsKey("salary") ? jsonMap["salary"] : 0;
     soccerTeam = references.getSoccerTeamById(jsonMap["templateSoccerTeamId"]);
   }

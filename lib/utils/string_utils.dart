@@ -58,6 +58,13 @@ class StringUtils {
     return config.translate(key, group:theGroup);
   }
 
+  static String GetDatePattern(String pattern) {
+      return config.translate(pattern, group:"date");
+  }
+
+  static String GetLocale() {
+    return config.translate("locale");
+  }
 
   static String FormatCurrency(String amount) {
     String currency = config.translate("currency");

@@ -18,11 +18,6 @@
     </div>
   </div>
 
-  <div class="alert alert-danger alert-dismissible alert-red-numbers" ng-class="{'active':alertNegativeBalance}" role="alert">
-    <strong>You've spent the salary cap</strong><br> Please choose players that fit the budget.
-  </div>
-  <div class="alert alert-danger alert-max-players-same-team" ng-class="{'active':alertMaxPlayersSameTeamExceed}" role="alert">
-    <strong>Ups! It looks like you already have {{MAX_PLAYERS_SAME_TEAM}} players of the same team</strong><br> Please, choose another player...
-  </div>
-
+  <div class="alert alert-danger alert-dismissible alert-red-numbers" ng-class="{'active':alertNegativeBalance}" role="alert" ng-bind-html="GetLocalizedText('watedsalarycap')"></div>
+  <div class="alert alert-danger alert-max-players-same-team" ng-class="{'active':alertMaxPlayersSameTeamExceed}" role="alert" ng-bind-html="GetLocalizedText('maxplayersteam')"></div>
 </div>

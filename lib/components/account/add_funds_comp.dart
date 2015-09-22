@@ -4,6 +4,7 @@ import 'package:angular/angular.dart';
 import 'dart:html';
 import 'package:webclient/services/payment_service.dart';
 import 'package:webclient/utils/game_metrics.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 
 @Component(
@@ -13,6 +14,14 @@ import 'package:webclient/utils/game_metrics.dart';
 )
 class AddFundsComp implements ShadowRootAware, DetachAware {
   int selectedValue = 25;
+
+  String GetLocalizedText(key) {
+    return StringUtils.Translate(key, "addfunds");
+  }
+
+  String FormatCurrency(String amount) {
+    return StringUtils.FormatCurrency(amount);
+  }
 
   AddFundsComp(this._routeProvider, this._paymentService, this._router) {
     contestId = _routeProvider.route.parameters['contestId'];

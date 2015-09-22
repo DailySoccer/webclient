@@ -58,4 +58,15 @@ class StringUtils {
     return config.translate(key, group:theGroup);
   }
 
+
+  static String FormatCurrency(String amount) {
+    String currency = config.translate("currency");
+    String value = "";
+
+    if (currency == '\$') {
+      return currency + amount;
+    }
+
+    return  value = amount + currency;
+  }
 }

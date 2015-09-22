@@ -6,6 +6,7 @@
   "locale": "es",
   "translations" :
   {
+    "currency": "€",
     "landing" :
     {
       "title"         : "LIGAS FANTASTICAS DIARIAS",
@@ -71,6 +72,18 @@
       "buttoncancel"  : "CANCELAR",
       "unregistered"  : "¿Aún no estás registrado?",
       "signuphere"    : "¡Registrate aquí!"
+    },
+    "addfunds" :
+    {
+      "title"         : "AÑADIR FONDOS",
+      "description1"  : "Para jugar a EPIC ELEVEN con dinero real, necesitas añadir fondos a tu cuenta.",
+      "description2"  : "No te preocupes, podrás retirar los fondos cuando tu quieras de forma gratuita.",
+      "minfunds"      : "El minimo permitido es de ",
+      "addfunds"      : "Añadir",
+      "via"           : "vía",
+      "paypalinfo"    : "Puedes añadir fondos utilizando tu cuenta de PayPal. El dinero será trasnferido a Fantasy Sports Games S.L.",
+      "buttonaddfunds": "Añadir fondos",
+      "needhelp"      : "¿Necesitas ayuda?"
     }
   }
 }

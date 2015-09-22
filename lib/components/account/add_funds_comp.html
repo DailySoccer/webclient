@@ -1,37 +1,37 @@
 <div id="addFundsContent">
 
   <!-- header title -->
-  <div class="default-section-header">ADD FUNDS</div>
+  <div class="default-section-header">{{GetLocalizedText("title")}}</div>
 
   <div>
     <div class="description">
-      <p id="descriptionTip1">In order to play Epic Eleven with real money, you need to add funds to your account.</p>
-      <p id="descriptionTip2">Don't worry, you can withdraw your money whenever you want for free.</p>
+      <p id="descriptionTip1">{{GetLocalizedText("description1")}}</p>
+      <p id="descriptionTip2">{{GetLocalizedText("description2")}}</p>
     </div>
     <div class="add-founds-box">
-      <p>Minimum allowed is $10</p>
+      <p>{{GetLocalizedText("minfunds")}}{{FormatCurrency("10")}}</p>
       <div class="money-selector">
         <div class="money-element">
-          <input type="radio" name="money-radio" id="firstOffer" value="10"><label for="firstOffer">$10</label>
+          <input type="radio" name="money-radio" id="firstOffer" value="10"><label for="firstOffer">{{FormatCurrency("10")}}</label>
         </div>
         <div class="money-element">
-          <input type="radio" name="money-radio" id="secondOffer" value="25" checked="checked"><label for="secondOffer">$25</label>
+          <input type="radio" name="money-radio" id="secondOffer" value="25" checked="checked"><label for="secondOffer">{{FormatCurrency("25")}}</label>
         </div>
         <div class="money-element">
-          <input type="radio" name="money-radio" id="thirdOffer" value="50"><label for="thirdOffer">$50</label>
+          <input type="radio" name="money-radio" id="thirdOffer" value="50"><label for="thirdOffer">{{FormatCurrency("50")}}</label>
         </div>
         <div class="money-element custom-money-element">
           <input type="radio" name="money-radio" id="customEuros">
-          <input type="number" id="customEurosAmount" value="10"><label for="customEuros">$</label>
+          <input type="number" id="customEurosAmount" value="10"><label for="customEuros">{{FormatCurrency("")}}</label>
         </div>
       </div>
-      <h2 class="paypal-info">Add <span id="selectedAmountInfo">${{selectedValue}}</span> vía <img src="images/markPaypalMed.jpg"></h2>
-      <p class="paypal-info">You can add funds using PayPal account. The money will be transferred to Fantasy Sports Games S.L.</p>
-      <div class="button-wrapper"><button class="add-funds-button" id="addFundsButton">Add funds</button></div>
+      <h2 class="paypal-info">Add <span id="selectedAmountInfo">{{FormatCurrency(selectedValue.toString())}}</span> {{GetLocalizedText("via")}} <img src="images/markPaypalMed.jpg"></h2>
+      <p class="paypal-info">{{GetLocalizedText("paypalinfo")}}</p>
+      <div class="button-wrapper"><button class="add-funds-button" id="addFundsButton">{{GetLocalizedText("buttonaddfunds")}}</button></div>
     </div>
   </div>
   <div class="need-help-box">
-    <p id="need-help-text">Need help?</p>
+    <p id="need-help-text">{{GetLocalizedText("needhelp")}}</p>
     <p id="need-help-email">support@epiceleven.com</p>
   </div>
 

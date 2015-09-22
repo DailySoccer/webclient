@@ -6,6 +6,7 @@
   "locale": "en",
   "translations" :
   {
+    "currency": "$",
     "landing" :
     {
       "title"         : "DAILY FANTASY LEAGUES",
@@ -71,6 +72,18 @@
       "buttoncancel"  : "CANCEL",
       "unregistered"  : "Don't have an account?",
       "signuphere"    : "Sign up here!"
+    },
+    "addfunds" :
+    {
+      "title"         : "ADD FUNDS",
+      "description1"  : "In order to play Epic Eleven with real money, you need to add funds to your account.",
+      "description2"  : "Don't worry, you can withdraw your money whenever you want for free.",
+      "minfunds"      : "Minimum allowed is ",
+      "addfunds"      : "Add",
+      "via"           : "via",
+      "paypalinfo"    : "You can add funds using PayPal account. The money will be transferred to Fantasy Sports Games S.L.",
+      "buttonaddfunds": "Add funds",
+      "needhelp"      : "Need help"
     }
   }
 }

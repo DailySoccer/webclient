@@ -211,12 +211,13 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
         <div  class="user-form-field facebook-form-wrapper">
           <div class="form-description" ng-bind-html="getLocalizedText('facebookdescription')"></div>
           <div class="fb-button-wrapper">
-            <div class="fb-login-button" data-size="xlarge" data-max-rows="1" 
+            <!--div class="fb-login-button" data-size="xlarge" data-max-rows="1" 
                  data-scope="public_profile,email,user_friends"
                  data-show-faces="true" onlogin="jsLoginFB()" ng-show="!isFacebookConnected"></div>
             <div class="fb-login-button" data-size="xlarge"
                  data-scope="public_profile,email,user_friends"
-                 onlogin="jsLoginFB()" ng-show="isFacebookConnected"></div>
+                 onlogin="jsLoginFB()" ng-show="isFacebookConnected"></div-->
+            <button class="fb-login-button-smartphone" ng-click="makeFacebookSignUp()"> <img src="images/FB-f-Logo__white_29.png" class="fb-brand">{{getLocalizedText('buttonsignupfb')}}</button>
           </div>
         </div>
         <!-- -->
@@ -319,12 +320,13 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
         <div  class="user-form-field facebook-form-wrapper">
           <div class="form-description">{{GetLocalizedText('enterwithfacebook')}}</div>
           <div class="fb-button-wrapper">
-            <div class="fb-login-button" data-size="xlarge" onlogin="jsLoginFB()"
+            <!--div class="fb-login-button" data-size="xlarge" onlogin="jsLoginFB()"
                  data-scope="public_profile,email,user_friends"
                  ng-show="isFacebookConnected"></div>
             <div class="fb-login-button" data-size="xlarge" onlogin="jsLoginFB()"
                  data-scope="public_profile,email,user_friends"
-                 data-show-faces="true" data-max-rows="1" ng-show="!isFacebookConnected"></div>
+                 data-show-faces="true" data-max-rows="1" ng-show="!isFacebookConnected"></div-->
+            <button class="fb-login-button-smartphone" ng-click="makeFacebookLogin()"> <img src="images/FB-f-Logo__white_29.png" class="fb-brand">{{GetLocalizedText('buttonloginfb')}}</button>
           </div>
         </div>
         <!-- -->
@@ -670,7 +672,7 @@ tc.put("packages/webclient/components/contest_header_f2p_comp.html", new HttpRes
       <span>{{info['startTime']}}&nbsp;</span>
     </div>
   </div>
-  <social-share ng-if="userIsRegistered()" parameters-by-map="sharingInfo" inline></social-share>
+  <social-share ng-if="userIsRegistered()" parameters-by-map="sharingInfo" inline inline-xs></social-share>
 
   <div class="tournament-and-type-section">
     <span class="{{getSourceFlag()}}"></span>
@@ -1184,7 +1186,7 @@ tc.put("packages/webclient/components/enter_contest/lineup_selector_comp.html", 
     </div>
   </div>
 
-  <div class="lineup-selector-slot" ng-repeat="slot in lineupSlots" ng-mousedown="onLineupSlotSelected({'slotIndex': $index})" ng-class="getSlotClassColor($index)">
+  <div class="lineup-selector-slot" ng-repeat="slot in lineupSlots" ng-click="onLineupSlotSelected({'slotIndex': $index})" ng-class="getSlotClassColor($index)">
 
     <div ng-if="slot == null">
       <div class="column-fieldpos"></div>
@@ -2024,6 +2026,12 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
   </div>
 </div>
 """));
+tc.put("packages/webclient/components/navigation/deprecated_version_screen_comp.html", new HttpResponse(200, r"""<div class="deprecated-version-screen" ng-if="show">
+  <img src="images/logoE11.png"></img>
+  <h1>{{getLocalizedText("title")}}</h1>
+  <p>{{getLocalizedText("body")}}</p>
+  <button ng-click="goShop()">{{getLocalizedText("button")}}</button>
+</div>"""));
 tc.put("packages/webclient/components/promos_comp.html", new HttpResponse(200, r"""<div id="promosRoot" ng-class="{'hide-promos': !hasPromos()}">
 <div ng-if="!scrDet.isXsScreen">
   <a class="banner2"  ng-click="gotoPromo(0)">
@@ -2165,9 +2173,9 @@ tc.put("packages/webclient/components/social/facebook_share_comp.html", new Http
   <div class="facebook-share-button" ng-click="shareOnFB()">
     <img src="images/iconFacebook.png"/> Compartir
   </div>
-  <div class="facebook-like"  ng-show="showLike">
+  <!--div class="facebook-like"  ng-show="showLike">
     <fb:like class="facebook-like-xfbml" href="https://www.facebook.com/Futbolcuatro" layout="button_count" action="like" />
-  </div>
+  </div-->
 </div>"""));
 tc.put("packages/webclient/components/social/friend_info_comp.html", new HttpResponse(200, r"""<div class="friend-element-wrapper">
   <img class="friend-picture" ng-src="{{profileImage == ''? 'images/icon-userProfile.png' : profileImage}}">
@@ -2183,14 +2191,12 @@ tc.put("packages/webclient/components/social/social_share_comp.html", new HttpRe
   <twitter-share parameters-by-map="sharingInfo" show-like="showLike"></twitter-share>
 </div>"""));
 tc.put("packages/webclient/components/social/twitter_share_comp.html", new HttpResponse(200, r"""<div class="twitter-share-wrapper">
-  <a class="twitter-share-button-wrapper" target="_blank" ng-href="https://twitter.com/intent/tweet?{{intentTweetParams}}" ng-click="onTweet()">
+  <twitter-button class="twitter-share-button-wrapper" ng-click="onTweet()">
     <span class="twitter-share-button"><img src="images/twitterTransparentBG.png">Tweet</span>
-  </a>
-  <a class="twitter-share-button-wrapper" target="_blank" ng-href="https://twitter.com/intent/follow?screen_name=Futbol_cuatro" ng-click="onFollow()" ng-if="showLike">
+  </twitter-button>
+  <twitter-button class="twitter-share-button-wrapper" ng-click="onFollow()" ng-if="showLike">
     <span class="twitter-share-button"><img src="images/twitterTransparentBG.png">Follow</span>
-  </a>
-  <!--div id="twitterShareButton" class="twitter-share-button-wrapper"></div-->
-  <!--div id="twitterFollowButton" class="twitter-follow-button-wrapper" ng-if="showLike"></div-->
+  </twitter-button>
 </div>"""));
 tc.put("packages/webclient/components/tutorial_list_comp.html", new HttpResponse(200, r"""<div id="tutorialListRoot">
   
@@ -2467,7 +2473,7 @@ tc.put("packages/webclient/components/view_contest/view_contest_entry_comp.html"
   <div class="share-methods-modal-content" id="shareMethodsContent">
     <div class="share-method">
       <p>Puedes compartir el enlace del torneo en tu perfil de Facebook</p>
-      <social-share parameters-by-map="sharingInfo" inline></social-share>
+      <social-share parameters-by-map="sharingInfo" inline inline-xs></social-share>
     </div>
     <div class="share-method">
       <p>o enviarlo por mail a los amigos que quieras.</p>

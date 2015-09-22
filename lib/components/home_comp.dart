@@ -189,13 +189,13 @@ class HomeComp implements DetachAware {
     if (!isBlogTileEnabled) return;
     GameMetrics.logEvent(GameMetrics.ENTERED_FORUMS);
     // window.open("http://halftime.epiceleven.com", "HalfTime");
-    window.open("http://www.futbolcuatro.com/foros/", "Foro Fútbol Cuatro");
+    window.open("http://www.futbolcuatro.com/foros/", "_system");
   }
 
   void onHowItWorksClick() {
     if (!isHowItWorksEnabled) return;
     // _router.go('help_info', {});
-    window.open("http://www.futbolcuatro.com/ayuda/", "Como jugar a Futbol Cuatro");
+    window.open("http://www.futbolcuatro.com/ayuda/", "_system");
   }
 
   void detach() {

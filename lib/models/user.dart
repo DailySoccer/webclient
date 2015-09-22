@@ -62,6 +62,7 @@ class User {
   String get mainMenuInfo => "$userId;$facebookID;$profileImage;${energyBalance.toInt()};${managerBalance.toInt()};${goldBalance.toInt()};$trueSkill;${notifications.length};${achievements.length}";
 
   bool hasAchievement(String achievement) => achievements.contains(achievement);
+  bool get isLoggedByUUID => email.contains("@uuid.com");
 
   //String get fullName => "$firstName $lastName";
   String toString() => "$userId - $email - $nickName";

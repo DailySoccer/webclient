@@ -27,6 +27,7 @@ import 'package:webclient/services/tutorial_service.dart';
 import 'dart:math';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/utils/game_info.dart';
+import 'package:logging/logging.dart';
 
 @Component(
     selector: 'enter-contest',
@@ -251,6 +252,7 @@ class EnterContestComp implements DetachAware {
   }
 
   void refreshInfoFromContest() {
+    
     loadingService.isLoading = false;
 
     GameMetrics.logEvent(editingContestEntry? GameMetrics.ENTER_CONTEST_EDITING : GameMetrics.ENTER_CONTEST, 

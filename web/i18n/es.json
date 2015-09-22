@@ -47,6 +47,7 @@
     {
       "title"                           : "REGÍSTRATE",
       "facebookdescription"             : "Regístrate con tu cuenta de Facebook<br> y podrás retar y jugar con tus amigos fácilmente.",
+      "buttonsignupfb"                  : "Registro",
       "clasicsignupdescription"         : "O rellena el siguiente formulario.",
       "nickrequires"                    : "Tu nombre debe tener entre @MIN_NICKNAME_LENGTH y @MAX_NICKNAME_LENGTH caracteres.",
       "nick"                            : "Nombre de usuario",
@@ -56,7 +57,7 @@
       "passrequires"                    : "Contraseña: Debe tener al menos @MIN_PASSWORD_LENGTH caracteres (escríbela 2 veces).",
       "pass"                            : "Contraseña",
       "repass"                          : "Repite la contraseña",
-      "acceptTermsAndPrivacyPolicy"     : "Al registrase, usted acepta los <a target='_blank' href='http://www.futbolcuatro.com/terminos-de-uso/'>Términos de uso, Condiciones de compra</a> y la <a target='_blank' href='http://www.futbolcuatro.com/politica-de-privacidad/'>Política de privacidad</a>.",
+      "acceptTermsAndPrivacyPolicy"     : "Al registrase, usted acepta los <a target='_system' href='http://www.futbolcuatro.com/terminos-de-uso/'>Términos de uso, Condiciones de compra</a> y la <a target='_system' href='http://www.futbolcuatro.com/politica-de-privacidad/'>Política de privacidad</a>.",
       "invalidpass"                     : "Contraseña inválida.",
       "buttonsignup"                    : "REGÍSTRATE",
       "buttoncancel"                    : "CANCELAR",
@@ -71,6 +72,7 @@
       "title"                           : "ENTRAR",
       "mailandpassword"                 : "O introduce tu correo y contraseña",
       "enterwithfacebook"               : "Entra con tu cuenta de Facebook",
+      "buttonloginfb"                   : "Entrar",
       "email"                           : "Correo electrónico",
       "pass"                            : "Contraseña",
       "loginerror"                      : "El correo electrónico o la contraseña no son válidos. Por favor, revisa los datos.",
@@ -783,6 +785,16 @@
       "energyshopdescription"           : "Recárgate de energía para acceder a <strong>Torneos Virtuales</strong>",
       "free"                            : "GRATIS",
       "mostpopularimagesource"          : "images/icon-mas-popular.png",
+      "refillable"                      : "Recarga +1 automáticamente en:",
+      "no-refillable"                   : "Tienes la energía a tope",
+      "alert-user-gold-message"         : "Tienes actualmente @MONEY",
+      "buy-gold-button"                 : "COMPRAR ORO",
+      "alert-no-gold-message"           : "No tienes ORO suficiente.",
+      "errordefaulttitle"               : "Atención",
+      "errordefaultgeneric"             : "Ha ocurrido un error. Inténtalo mas tarde."
+    }
+    ,"catalog"                          :
+    {
       "product_gold_1"                  : "Pack Calderilla",
       "product_gold_2"                  : "Pack Utillero",
       "product_gold_3"                  : "Pack Ojeador",
@@ -790,15 +802,7 @@
       "product_gold_5"                  : "Pack Director deportivo",
       "product_gold_6"                  : "Pack Presidente",
       "product_energy_1"                : "RECARGA +1",
-      "product_maxrefill"               : "RECARGA COMPLETA",
-      "refillable"                      : "Recarga +1 automáticamente en:",
-      "no-refillable"                   : "Tienes la energía a tope",
-      "alert-user-gold-message"         : "Tienes actualmente @MONEY",
-      "buy-gold-button"                 : "COMPRAR ORO",
-      "alert-no-gold-message"           : "No tienes ORO suficiente.",
-
-      "errordefaulttitle"               : "Atención",
-      "errordefaultgeneric"             : "Ha ocurrido un error. Inténtalo mas tarde."
+      "product_maxrefill"               : "RECARGA COMPLETA"
     }
     ,"goldshop"                         :
     {
@@ -1247,10 +1251,16 @@
       "aditional-achievements"          : "Has ganado @NUM_ACHIEVEMENTS logros más...",
       "go-notifications"                : "Ir a notificaciones"
     }
-    ,"XsNotAvailable"                   :
+    ,"xsNotAvailable"                   :
     {
       "title"                           : "No disponible para dispositivos móviles",
       "body"                            : "Muy pronto en todos los dispositivos"
+    }
+    ,"deprecatedVersion"                :
+    {
+      "title"                           : "La versión de la aplicacion está obsoleta.",
+      "body"                            : "Actualizala gratuitamente en la tienda de aplicaciones.",
+      "button"                          : "Ir a la tienda"
     }
     ,"serverError"                      :
     {

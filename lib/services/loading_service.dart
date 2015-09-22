@@ -2,6 +2,7 @@ library loading_service;
 
 import 'package:angular/angular.dart';
 import 'package:webclient/utils/js_utils.dart';
+import 'dart:async';
 
 @Injectable()
 class LoadingService {
@@ -23,6 +24,11 @@ class LoadingService {
 
   LoadingService() {
     _instance = this;
+    
+    new Timer(new Duration(milliseconds: 1000), () {
+      JsUtils.runJavascript(null, "hide", null, ["navigator", "splashscreen"]);
+      JsUtils.runJavascript(null, "hide", null, ["StatusBar"]);
+    });
   }
 
   void _refresh() {

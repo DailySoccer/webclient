@@ -1,3 +1,5 @@
+library logger_exception_handler;
+
 import 'dart:html';
 
 import 'package:angular/angular.dart';
@@ -40,6 +42,7 @@ class LoggerExceptionHandler extends ExceptionHandler {
         print("[${r.level}] ${r.time}: ${r.message}");
       }
 
+      /*
       // Por convenio, si se quiere mandar un mensaje al servidor, basta usar el Logger.root con Level == SEVERE.
       bool webClientNotify = (r.message != null) && r.message.contains("[WebClient]");
       if (webClientNotify || r.level >= Level.SEVERE) {
@@ -70,6 +73,7 @@ class LoggerExceptionHandler extends ExceptionHandler {
           erroresNum = 0;
         }
       }
+       */
     });
   }
 

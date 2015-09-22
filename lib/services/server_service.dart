@@ -10,6 +10,8 @@ import 'dart:html';
 import 'package:webclient/services/tutorial_service.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/competition.dart';
+import 'package:webclient/components/navigation/deprecated_version_screen_comp.dart';
+import 'package:webclient/utils/js_utils.dart';
 
 
 abstract class ServerService {
@@ -24,6 +26,7 @@ abstract class ServerService {
   Future<Map> signup(String firstName, String lastName, String email, String nickName, String password);
   Future<Map> login(String email, String password);
   Future<Map> facebookLogin(String accessToken, String facebookID, String facebookName, String facebookEmail);
+  Future<Map> deviceLogin(String uuid);
   Future<Map> getUserProfile();
   Future<Map> getFacebookProfiles(List<String> facebookIds);
   Future<Map> changeUserProfile(String firstName, String lastName, String email, String nickName, String password);
@@ -92,6 +95,10 @@ abstract class ServerService {
   Future<Map> buyProduct(String productId);
   Future<Map> buySoccerPlayer(String contestId, String soccerPlayerId);
   Future<Map> getCatalog();
+  Future<Map> getiTunesCatalog();
+  Future<Map> getPlayStoreCatalog();
+  
+  Future<Map> checkout(String productId, String paymentType, String paymentId);
 
   // Suscripción a eventos
   void        subscribe(dynamic id, {Function onSuccess, Function onError});
@@ -139,6 +146,10 @@ class DailySoccerServer implements ServerService {
       'facebookName': facebookName,
       'facebookEmail': facebookEmail
       });
+  }
+  
+  Future<Map> deviceLogin(String uuid) {
+    return _innerServerCall("${HostServer.url}/devicelogin", postData: {'uuid': uuid}, cancelIfChangeContext: false);
   }
 
   Future<Map> askForPasswordReset(String email) {
@@ -349,9 +360,27 @@ class DailySoccerServer implements ServerService {
   }
 
   Future<Map> getCatalog() {
-    return _innerServerCall("${HostServer.url}/get_catalog", retryTimes: -1);
+    return _innerServerCall("${HostServer.url}/get_catalog", retryTimes: -1, cancelIfChangeContext: false);
   }
 
+  Future<Map> getiTunesCatalog() {
+    return _innerServerCall("${HostServer.url}/get_itunes_catalog", retryTimes: -1, cancelIfChangeContext: false);
+  }
+
+  Future<Map> getPlayStoreCatalog() {
+    return _innerServerCall("${HostServer.url}/get_playstore_catalog", retryTimes: -1, cancelIfChangeContext: false);
+  }
+  
+  Future<Map> checkout(String productId, String paymentType, String paymentId) {
+    // Incluimos el paymentId en la url, para que no se produzca la reutilización de "completers" de distintas compras    
+    return _innerServerCall("${HostServer.url}/store/buy/$paymentId", postData: {
+        'productId': productId,
+        'paymentType': paymentType,
+        'paymentId': paymentId
+      }
+    );
+  }
+  
   void cancelAllAndReload() {
     _allFuturesCancelled = true;
     window.location.reload();
@@ -457,7 +486,7 @@ class DailySoccerServer implements ServerService {
             }
           }
           else if (serverError.isServerExceptionError) {
-            // Si se ha producido una excepcion en el servidor, navegaremos a la landing/lobby para forzar "limpieza" en el cliente
+                        // Si se ha producido una excepcion en el servidor, navegaremos a la landing/lobby para forzar "limpieza" en el cliente
             window.location.assign(Uri.parse(window.location.toString()).path);
           }
           else {
@@ -516,27 +545,40 @@ class DailySoccerServer implements ServerService {
     completer.completeError(new FutureCancelled());
   }
 
-
   // Cuando se produce una actualizacion del servidor, forzamos una recarga de la pagina en el cliente para asegurarnos
   // de que siempre tenemos la ultima version
   void _checkServerVersion(var httpResponse) {
-
-    var serverVersion = httpResponse.headers("release-version");
-
-    if (serverVersion != null) {
-      if (_currentVersion != null && _currentVersion != serverVersion) {
-        if (serverVersion!="devel") {
-          window.location.reload();
+    
+    String serverVersion = httpResponse.headers("release-version-ios");
+    if (serverVersion != null && (serverVersion!="devel")) {
+      if (_currentVersion == null || _currentVersion.isEmpty) {
+        Logger.root.info("ServerService: CurrentVersion updated");
+        JsUtils.runJavascript(null, "getAppVersion", [(version) => _currentVersion = version]);
+      }
+      
+      if (_currentVersion != null && changedVersion(_currentVersion, serverVersion)) {
+        Logger.root.info("INCOHERENT VERSION ==> VERSIONES ::::::  CURRENT: $_currentVersion |||| SERVER: $serverVersion");
+        
+        String marketAppId = httpResponse.headers("market-app-id-ios");
+        if (marketAppId != null && marketAppId.isNotEmpty) {
+          Logger.root.info("RELOAD LOCATION ==> VERSIONES ::::::  CURRENT: $_currentVersion |||| SERVER: $serverVersion");
+          DeprecatedVersionScreenComp.Instance.show = true;
+          DeprecatedVersionScreenComp.Instance.marketAppId = marketAppId;
         }
       }
-      else {
-        _currentVersion = serverVersion;
-
-        HostServer.CURRENT_VERSION = _currentVersion;
-      }
+      
+      HostServer.CURRENT_VERSION = serverVersion;
     }
   }
 
+  bool changedVersion(String oriVersion, String dstVersion) {
+    if (oriVersion == dstVersion) return false;
+    
+    List ori = oriVersion.split(".");
+    List dst = dstVersion.split(".");
+    return !( (ori.length >= 2) && (dst.length >= 2) && (ori[0] == dst[0]) && (ori[1] == dst[1]) );
+  }
+  
   // Por si queremos volver al sistema de mandar todos nuestros posts en form-urlencoded
   String _mapToFormUrlEncoded(Map postData) {
     var parts = [];

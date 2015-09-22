@@ -11,6 +11,7 @@ import 'package:webclient/logger_exception_handler.dart';
 
 import 'package:webclient/services/server_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
+import 'package:webclient/resource_url_resolver_wrapper.dart';
 import 'package:webclient/services/refresh_timers_service.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/services/datetime_service.dart';
@@ -42,6 +43,7 @@ import 'package:webclient/utils/max_text_width.dart';
 
 import 'package:webclient/components/navigation/main_menu_f2p_comp.dart';
 import 'package:webclient/components/navigation/footer_comp.dart';
+import 'package:webclient/components/navigation/deprecated_version_screen_comp.dart';
 //import 'package:webclient/components/navigation/xs_not_available_screen_comp.dart';
 
 import 'package:webclient/components/flash_messages_comp.dart';
@@ -144,6 +146,8 @@ class WebClientApp extends Module {
     // Disable CSS shim
     bind(PlatformJsBasedShim, toImplementation: PlatformJsBasedNoShim);
     bind(DefaultPlatformShim, toImplementation: DefaultPlatformNoShim);
+    bind(ResourceResolverConfig, toValue: new ResourceResolverConfig.resolveRelativeUrls(false));
+    bind(ResourceUrlResolver, toImplementation: ResourceUrlResolverWrapper);
     bind(ExceptionHandler, toImplementation: LoggerExceptionHandler);
     bind(ServerService, toImplementation: DailySoccerServer);
     bind(ScreenDetectorService);
@@ -172,6 +176,7 @@ class WebClientApp extends Module {
 
     bind(MainMenuF2PComp);
     bind(FooterComp);
+    bind(DeprecatedVersionScreenComp);
     //bind(XsNotAvailableScreenComp);
 
     bind(NgBindHtmlUnsafeDirective);
@@ -238,6 +243,9 @@ class WebClientApp extends Module {
     JsUtils.setJavascriptFunction('serverLoggerInfoCB',    (String text) => Logger.root.info   (ProfileService.decorateLog(text)) );
     JsUtils.setJavascriptFunction('serverLoggerWarningCB', (String text) => Logger.root.warning(ProfileService.decorateLog(text)) );
     JsUtils.setJavascriptFunction('serverLoggerServereCB', (String text) => Logger.root.severe (ProfileService.decorateLog(text)) );
+    JsUtils.setJavascriptFunction('paymentServiceReady', () => PaymentService.Instance.isReady = true);
+    JsUtils.setJavascriptFunction('paymentServiceCheckout', (Object order, String productId, String paymentType, String paymentId) => PaymentService.Instance.checkout(order, productId, paymentType, paymentId));
+    JsUtils.setJavascriptFunction('updateProductInfo', (String productId, String title, String price) => CatalogService.Instance.updateProductInfo(productId, title, price));
     
     //bind(AddFundsComp);
     //bind(TransactionHistoryComp);
@@ -663,9 +671,10 @@ class WebClientApp extends Module {
 
       // Si el tutorial está activo y la ruta no está permitida, nos salimos del tutorial...
       if (TutorialService.isActivated && !TutorialService.Instance.CurrentTutorial.isTransitionAllowed(event.route.name)) {
+        Logger.root.info("Preenter --> Skiping Tutorial");
         TutorialService.Instance.skipTutorial();
       }
-
+      
       if (!bEnter) {
         router.go("home", {}, replace:true);
       }

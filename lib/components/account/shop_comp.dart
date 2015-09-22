@@ -17,6 +17,8 @@ import 'package:webclient/models/user.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/utils/game_info.dart';
+import 'package:webclient/utils/js_utils.dart';
+import 'package:webclient/services/payment_service.dart';
 
 @Component(
     selector: 'shop-comp',
@@ -41,10 +43,10 @@ class ShopComp implements DetachAware{
     return StringUtils.translate(key, group, substitutions);
   }
 
-  ShopComp(this._flashMessage, this._profileService, this._catalogService, this._tutorialService) {
+  ShopComp(this._flashMessage, this._profileService, this._catalogService, this._tutorialService, this._paymentService) {
     goldProducts = [];
     energyProducts = [];
-
+    
     errorMap = {
       "_ERROR_DEFAULT_": {
           "title"   : getLocalizedText("errordefaulttitle"),
@@ -59,31 +61,36 @@ class ShopComp implements DetachAware{
     
     _catalogService.getCatalog()
       .then((catalog) {
-        for (Product info in catalog.where((g) => g.gained.isGold)) {
-          Map gProduct = {};
-          gProduct["id"]             = info.id;
-          gProduct["description"]    = getLocalizedText(info.name);
-          gProduct["captionImage"]   = info.imageUrl;
-          gProduct["price"]          = info.price.toStringWithCurrency();
-          gProduct["quantity"]       = info.gained.amount.toInt().toString();
-          gProduct["freeIncrement"]  = info.free.amount.toInt();
-          gProduct["isMostPopular"]  = info.mostPopular;
-          gProduct["purchasable"]    = true;
-          goldProducts.add(gProduct);
-        }
-
         for (Product info in catalog.where((e) => e.gained.isEnergy)) {
           Map eProduct = {};
           eProduct["info"]         = info;
           eProduct["id"]           = info.id;
-          eProduct["description"]  = getLocalizedText(info.name);
+          eProduct["description"]  = info.description;
           eProduct["captionImage"] = info.imageUrl;
           eProduct["price"]        = info.price.toString();
           eProduct["quantity"]     = info.gained.amount.toInt().toString();
           eProduct["purchasable"]  = true;
           energyProducts.add(eProduct);
         }
-    });
+        
+        // Esperar a que iTunes Connect actualice correctamente los productos de GOLD
+        return _paymentService.waitingForReady();
+      })
+      .then((_) {
+        for (Product info in _catalogService.products.where((g) => g.gained.isGold && g.isValid)) {
+          Map gProduct = {};
+          gProduct["id"]             = info.id;
+          gProduct["storeId"]        = info.storeId;
+          gProduct["description"]    = info.description;
+          gProduct["captionImage"]   = info.imageUrl;
+          gProduct["price"]          = info.storePrice; // info.price.toStringWithCurrency();
+          gProduct["quantity"]       = info.gained.amount.toInt().toString();
+          gProduct["freeIncrement"]  = info.free.amount.toInt();
+          gProduct["isMostPopular"]  = info.mostPopular;
+          gProduct["purchasable"]    = true;
+          goldProducts.add(gProduct);
+        }
+      });
     
     GameMetrics.logEvent(GameMetrics.SHOP_ENTERED);
     _tutorialService.triggerEnter("shop", component: this, activateIfNeeded: false);
@@ -182,5 +189,6 @@ class ShopComp implements DetachAware{
   ProfileService _profileService;
   CatalogService _catalogService;
   TutorialService _tutorialService;
+  PaymentService _paymentService;
 }
 

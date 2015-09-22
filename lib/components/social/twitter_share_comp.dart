@@ -4,6 +4,7 @@ import 'package:angular/angular.dart';
 import 'package:webclient/utils/fblogin.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/utils/game_metrics.dart';
+import 'dart:html';
 
 @Component(
   selector: 'twitter-share',
@@ -84,10 +85,12 @@ class TwitterShareComp {
   String getParam(String param) => 'https://about.twitter.com/es/resources/buttons#tweet';
   
   void onTweet() {
+    window.open("https://twitter.com/intent/tweet?${intentTweetParams}", '_system');
     if (sharingInfo['dartCallback'] != null) sharingInfo['dartCallback']();
     GameMetrics.logEvent(GameMetrics.SHARE_REQUEST_TWITTER);
   }
   void onFollow() {
+    window.open("https://twitter.com/intent/follow?screen_name=Futbol_cuatro", '_system');
   }
   
   Map sharingInfo = {};

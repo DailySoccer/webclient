@@ -1,0 +1,80 @@
+{
+    "cordova-plugin-whitelist": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-whitelist@1"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-facebook4": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-facebook4@~1.6.3"
+        },
+        "is_top_level": true,
+        "variables": {
+            "APP_ID": "1684730951797091",
+            "APP_NAME": "Fútbol Cuatro"
+        }
+    },
+    "cordova-plugin-inappbrowser": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-inappbrowser@1.2.1"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-splashscreen": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-splashscreen@3.2.1"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-console": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-console@1.0.2"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-statusbar": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-statusbar@2.1.1"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-app-version": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-app-version"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-device": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-device"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cc.fovea.cordova.purchase": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/j3k0/cordova-plugin-purchase.git",
+            "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {
+            "BILLING_KEY": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmGVdxhnxvtimkirR63ht+DsU/6N31fkEAxQk3s+v5R2HtuxUeX6YjJ8TGoXqCSPzYUh9WlTNWbxir7XBx+p7VNKjsGU5nz4kbImyy8XiS5CtISljSH/csV+l/8xmiIFjkFZ540N/pAXffoP6HlGe+HBVE/UsApxegVIt2Eq952vXorNdGyZa3CzmnVG3nWBQhsNIjNWWvcbirZ5PPHqfJB+ylnxxdFZeZw6Eff1ndX9I1lMqtBU/vOdmu9TinecJcEywOpYeZ5WBxI6APeq7uwOZRUX8v321ZLN/I+/sKUEuJzRwHUqThAQeaQMwrQbDnsoPdxrK2Ngd/v2sBUksfwIDAQAB"
+        }
+    }
+}

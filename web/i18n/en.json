@@ -84,6 +84,81 @@
       "paypalinfo"    : "You can add funds using PayPal account. The money will be transferred to Fantasy Sports Games S.L.",
       "buttonaddfunds": "Add funds",
       "needhelp"      : "Need help"
+    },
+    "editprofile" :
+    {
+      "title"         : "EDIT ACCOUNT",
+      "name"          : "Name",
+      "lastname"      : "Last name",
+      "username"      : "Nick",
+      "mail"          : "Email",
+      "passrequires"  : "Password (Fill the both fields to update it)",
+      "pass"          : "Password",
+      "repass"        : "Repeat Password",
+      "notifications" : "NOTIFICATIONS",
+      "newletternotifications"  : "NEWSLETTER/SPECIAL OFFERS",
+      "gamenotifications"       : "GAME NOTIFICATIONS",
+      "transfernotifications"   : "OWN SOCCER PLAYER TRANSFER NOTIFICACIONS",
+      "buttonsave"    : "SAVE",
+      "buttoncancel"  : "CANCEL"
+    },
+    "paymentresponse" :
+    {
+      "resultok"      : "successful payment",
+      "resultnook"    : "cancelled payment",
+      "resultokdesc"  : "Thank you! Your order has been successfully processed.",
+      "resultnookdesc": "The requested transaction cannot be completed. Please check your payment method and try again."
+    },
+    "transactionhistory" :
+    {
+      "title"         : "TRANSACTION HISTORY",
+      "date"          : "DATE",
+      "id"            : "ID",
+      "subject"       : "SUBJECT",
+      "value"         : "VALUE",
+      "balance"       : "BALANCE"
+    },
+    "userprofile" :
+    {
+      "title"         : "My Account",
+      "buttonedit"    : "EDIT",
+      "fullname"      : "Full Name",
+      "nick"          : "Nick",
+      "email"         : "Email",
+      "pass"          : "Password",
+      "wallet"        : "WALLET",
+      "transactions"  : "TRANSACTIONS",
+      "withdrawfunds" : "WITHDRAW FUNDS",
+      "actualbalance" : "Actual balance",
+      "pendingbonus"  : "Pending bonus",
+      "addfunds"      : "ADD FUNDS",
+      "epicpoints"    : "EPIC POINTS",
+      "e11pbalance"   : "E11P BALANCE",
+      "uitimonth"     : "ulti-month",
+      "thismonth"     : "THIS MONTH",
+      "penulmonth"    : "penul-month",
+      "howtouse"      : "How to use your EPs?"
+    },
+    "withdrawfunds" :
+    {
+      "title"         : "WITHDRAW FUNDS",
+      "balance"       : "YOUR BALANCE IS",
+      "withdrawdesc1" : "How much money want to withdraw?",
+      "withdrawdesc2" : "You can only withdraw amounts larger to ",
+      "withdrawfunds" : "Withdraw funds",
+      "needhelp"      : "Need help?"
+    },
+    "entercontest" :
+    {
+      "tablineup"     : "Your lineup",
+      "tabcontestinfo": "Contest Info",
+      "buttoncancel"  : "CANCEL",
+      "yourlineup"    : "YOUR LINEUP",
+      "remainsalary"  : "REMAINING SALARY",
+      "buttonclean"   : "REMOVE ALL",
+      "buttoncontinue": "CONTINUE",
+      "tip"           : "Remember that you can edit your team as many times as you want until the contest starts"
+
     }
   }
 }

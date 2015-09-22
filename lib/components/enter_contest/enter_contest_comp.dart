@@ -73,6 +73,14 @@ class EnterContestComp implements DetachAware {
 
   List<String> lineupAlertList = [];
 
+  String GetLocalizedText(key) {
+    return StringUtils.Translate(key, "entercontest");
+  }
+
+  String FormatCurrency(String amount) {
+    return StringUtils.FormatCurrency(amount);
+  }
+
   EnterContestComp(this._routeProvider, this._router, this.scrDet, this._contestsService, this.loadingService, this._profileService, this._flashMessage, this._rootElement) {
     loadingService.isLoading = true;
     scrDet.scrollTo('#mainApp');

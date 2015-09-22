@@ -21,7 +21,7 @@
       "title"         : "REGISTRATE",
       "description"   : "No estas registrado aún? <br> Rellena el formulario.",
       "nickrequires"  : "Tu nombre debe tener entre @MIN_NICKNAME_LENGTH y @MAX_NICKNAME_LENGTH caracteres.",
-      "nick"          : "Nombre",
+      "nick"          : "Nombre de usuario",
       "invalidnick"   : "Nombre inválido.",
       "email"         : "Correo Electrónico",
       "invalidemail"  : "Correo Electrónico Invalido.",
@@ -84,6 +84,81 @@
       "paypalinfo"    : "Puedes añadir fondos utilizando tu cuenta de PayPal. El dinero será trasnferido a Fantasy Sports Games S.L.",
       "buttonaddfunds": "Añadir fondos",
       "needhelp"      : "¿Necesitas ayuda?"
+    },
+    "editprofile" :
+    {
+      "title"         : "EDITAR PERFIL",
+      "name"          : "Nnombre",
+      "lastname"      : "Primer Apellido",
+      "username"      : "Nombre de usuario",
+      "mail"          : "Correo Electrónico",
+      "passrequires"  : "Contraseña (Rellena ambos campos de contraseña para actualizarla)",
+      "pass"          : "Contraseña",
+      "repass"        : "Repite la Contraseña",
+      "notifications" : "NOTIFICACIONES",
+      "newletternotifications"  : "ULTIMAS NOTICIAS/OFERTAS ESPECIALES",
+      "gamenotifications"       : "NOTIFICACIONES DE JUEGO",
+      "transfernotifications"   : "TRANSFERENCIA DE JUGADORES PROPIAS",
+      "buttonsave"    : "GUARDAR",
+      "buttoncancel"  : "CANCELAR"
+    },
+    "paymentresponse" :
+    {
+      "resultok"      : "Pago completado",
+      "resultnook"    : "Pago cancelado",
+      "resultokdesc"  : "¡Gracias!Thank you! Tu petición se ha completado con éxito.",
+      "resultnookdesc": "La transacción no se ha podido completar. Por favor, revisa los datos introducidos e intentalo de nuevo."
+    },
+    "transactionhistory" :
+    {
+      "title"         : "HISTORIAL DE TRANSACTIONES",
+      "date"          : "FECHA",
+      "id"            : "ID",
+      "subject"       : "ASUNTO",
+      "value"         : "CANTIDAD",
+      "balance"       : "BALANCE"
+    },
+    "userprofile" :
+    {
+      "title"         : "Perfil de usuario",
+      "buttonedit"    : "EDITAR",
+      "fullname"      : "Nombre completo",
+      "nick"          : "Nombre de usuario",
+      "email"         : "Correo Electrónico",
+      "pass"          : "Contraseña",
+      "wallet"        : "CARTERA",
+      "transactions"  : "TRANSACCIONES",
+      "withdrawfunds" : "RETIRAR FONDOS",
+      "actualbalance" : "Balance Actual",
+      "pendingbonus"  : "Bonus pendientes",
+      "addfunds"      : "AÑADIR FONDOS",
+      "epicpoints"    : "EPIC POINTS",
+      "e11pbalance"   : "BALANCE EpicPoints",
+      "uitimonth"     : "ulti-mes",
+      "thismonth"     : "ESTE MES",
+      "penulmonth"    : "penul-mes",
+      "howtouse"      : "Como usar tus puntos?"
+    },
+    "withdrawfunds" :
+    {
+      "title"         : "RETIRAR FONDOS",
+      "balance"       : "TU BALANCE ES",
+      "withdrawdesc1" : "¿Cuánto dinero quieres retirar?",
+      "withdrawdesc2" : "Solo puedes retirar cantidades superiores a",
+      "withdrawfunds" : "Retirar fondods",
+      "needhelp"      : "¿Necesitas ayuda?"
+    },
+    "entercontest" :
+    {
+      "tablineup"     : "Tu Alineación",
+      "tabcontestinfo": "Informacion del concurso",
+      "buttoncancel"  : "CANCELAR",
+      "yourlineup"    : "TU ALINEACIÓN",
+      "remainsalary"  : "SALARIO RESTANTE",
+      "buttonclean"   : "LIMPIAR ALINEACION",
+      "buttoncontinue": "CONTINUAR",
+      "tip"           : "Recuerda que puedes editar tu alineación todas las veces que quieras hasta que el concurso comience"
+
     }
   }
 }

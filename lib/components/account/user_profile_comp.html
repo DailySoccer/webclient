@@ -3,20 +3,20 @@
 
     <div class="personal-data">
       <div class="data-header">
-        <span class="data-header-title">My Account</span>
+        <span class="data-header-title">{{GetLocalizedText("title")}}</span>
         <div class="close-profile">
           <button type="button" class="close" ng-click="closeProfile()">
             <span class="glyphicon glyphicon-remove"></span>
           </button>
         </div>
-        <div class="button-wrapper"><button class="action-button" ng-click="editPersonalData()">EDIT</button></div>
+        <div class="button-wrapper"><button class="action-button" ng-click="editPersonalData()">{{GetLocalizedText("buttonedit")}}</button></div>
 
       </div>
       <div class="bloque-sm">
-        <div class="data-row"><span class="data-key">Full Name:</span><span class="data-value">{{userData.firstName + ' ' + userData.lastName}}</span></div>
-        <div class="data-row"><span class="data-key">Nick:</span><span class="data-value">{{userData.nickName}}</span></div>
-        <div class="data-row"><span class="data-key">Email:</span><span class="data-value">{{userData.email}}</span></div>
-        <div class="data-row"><span class="data-key">Password:</span><span class="data-value">********</span></div>
+        <div class="data-row"><span class="data-key">{{GetLocalizedText("fullname")}}:</span><span class="data-value">{{userData.firstName + ' ' + userData.lastName}}</span></div>
+        <div class="data-row"><span class="data-key">{{GetLocalizedText("nick")}}:</span><span class="data-value">{{userData.nickName}}</span></div>
+        <div class="data-row"><span class="data-key">{{GetLocalizedText("email")}}:</span><span class="data-value">{{userData.email}}</span></div>
+        <div class="data-row"><span class="data-key">{{GetLocalizedText("pass")}}:</span><span class="data-value">********</span></div>
       </div>
       <!--
       <div class="bloque-sm">
@@ -30,35 +30,35 @@
 
     <div class="pocket-data">
       <div class="data-header">
-          <span class="data-header-title">WALLET</span>
+          <span class="data-header-title">{{GetLocalizedText("wallet")}}</span>
           <div class="button-wrapper">
-            <button class="action-button-transaction" ng-click="goTransactions()">TRANSACTIONS</button>
-            <button class="action-button-get-funds" ng-click="goWithdrawFounds()">WITHDRAW FUNDS</button>
+            <button class="action-button-transaction" ng-click="goTransactions()">{{GetLocalizedText("transactions")}}</button>
+            <button class="action-button-get-funds" ng-click="goWithdrawFounds()">{{GetLocalizedText("withdrawfunds")}}</button>
           </div>
        </div>
       <div class="data-container-9">
-        <div class="data-row"><span class="data-key">Actual balance:</span><span class="data-value-balance">{{userData.balance}}</span></div>
-        <div class="data-row"><span class="data-key">Pending bonus:</span><span class="data-value">{{userData.bonus}}</span></div-->
+        <div class="data-row"><span class="data-key">{{GetLocalizedText("actualbalance")}}:</span><span class="data-value-balance">{{userData.balance}}</span></div>
+        <div class="data-row"><span class="data-key">{{GetLocalizedText("pendingbonus")}}:</span><span class="data-value">{{userData.bonus}}</span></div-->
       </div>
       <div class="data-container-3">
-        <button class="add-funds-button" ng-click="goAddFounds()">ADD FUNDS</button>
+        <button class="add-funds-button" ng-click="goAddFounds()">{{GetLocalizedText("addfunds")}}</button>
       </div>
     </div>
 
     <div class="epicpoints-data">
-      <div class="data-header"><span class="data-header-title">EPIC POINTS</span></div>
+      <div class="data-header"><span class="data-header-title">{{GetLocalizedText("epicpoints")}}</span></div>
       <div class="data-row">
-        <div class="data-column"><span class="data-key">E11P BALANCE:</span><span class="data-value">--€</span></div>
-        <div class="data-column"><span class="data-key">&lt;ulti-month&gt;:</span><span class="data-value">--€</span></div>
+        <div class="data-column"><span class="data-key">{{GetLocalizedText("e11pbalance")}}:</span><span class="data-value">--€</span></div>
+        <div class="data-column"><span class="data-key">&lt;{{GetLocalizedText("uitimonth")}}&gt;:</span><span class="data-value">--€</span></div>
       </div>
       <div class="data-row">
-        <div class="data-column"><span class="data-key">THIS MONTH:</span><span class="data-value">--€</span></div>
-        <div class="data-column"><span class="data-key">&lt;penul-month&gt;:</span><span class="data-value">--€</span></div>
-        <div class="data-column"><a class="data-link" href="">How to use your EPs?</a></div>
+        <div class="data-column"><span class="data-key">{{GetLocalizedText("thismonth")}}:</span><span class="data-value">--€</span></div>
+        <div class="data-column"><span class="data-key">&lt;{{GetLocalizedText("penulmonth")}}&gt;:</span><span class="data-value">--€</span></div>
+        <div class="data-column"><a class="data-link" href="">{{GetLocalizedText("howtouse")}}</a></div>
       </div>
     </div>
   </div>
 
 
-
+  </div>
 </div>

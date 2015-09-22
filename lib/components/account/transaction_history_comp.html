@@ -1,21 +1,21 @@
 <div id="transactionHistoryRoot">
   <!-- header title -->
-  <div class="default-section-header">TRANSACTION HISTORY</div>
+  <div class="default-section-header">{{GetLocalizedText("title")}}</div>
 
   <div class="transaction-headers">
-    <span class="header-date">DATE</span>
-    <span class="header-id">ID</span>
-    <span class="header-concept">SUBJECT</span>
-    <span class="header-amount">VALUE</span>
-    <span class="header-balance">BALANCE</span>
+    <span class="header-date">{{GetLocalizedText("date")}}</span>
+    <span class="header-id">{{GetLocalizedText("id")}}</span>
+    <span class="header-concept">{{GetLocalizedText("subject")}}</span>
+    <span class="header-amount">{{GetLocalizedText("value")}}</span>
+    <span class="header-balance">{{GetLocalizedText("balance")}}</span>
   </div>
 
   <div class="transaction-row" ng-repeat="transaction in currentPageList">
     <div class="field-date">{{transaction.formattedDate}}</div>
     <div class="field-id">{{transaction.transactionID}}</div>
     <div class="field-concept">{{transaction.transactionDescription}}</div>
-    <div class="field-amount"><div class="money-label">VALUE: </div> {{transaction.value}}</div>
-    <div class="field-balance"><div class="money-label">BALANCE: </div> {{transaction.balance}}</div>
+    <div class="field-amount"><div class="money-label">{{GetLocalizedText("value")}}: </div> {{transaction.value}}</div>
+    <div class="field-balance"><div class="money-label">{{GetLocalizedText("balance")}}: </div> {{transaction.balance}}</div>
   </div>
 
   <paginator on-page-change="onPageChange(currentPage, itemsPerPage)" items-per-page="20" list-length="transactions.length"></paginator>

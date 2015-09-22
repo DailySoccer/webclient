@@ -53,6 +53,10 @@ class EditPersonalDataComp implements ShadowRootAware{
 
   dynamic get userData => _profileManager.user;
 
+  String GetLocalizedText(key) {
+    return StringUtils.Translate(key, "editprofile");
+  }
+
   EditPersonalDataComp(this._profileManager, this.loadingService, this._router, this._rootElement);
 
   void init() {

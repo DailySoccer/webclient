@@ -5,6 +5,7 @@ import 'dart:html';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/payment_service.dart';
 import 'package:webclient/utils/game_metrics.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 
 @Component(
@@ -16,6 +17,14 @@ class WithdrawFundsComp implements ShadowRootAware {
   int selectedValue = 0;
 
   dynamic get userData => _profileManager.user;
+
+  String GetLocalizedText(key) {
+    return StringUtils.Translate(key, "withdrawfunds");
+  }
+
+  String FormatCurrency(String amount) {
+    return StringUtils.FormatCurrency(amount);
+  }
 
   WithdrawFundsComp(this._router, this._profileManager, this._paymentService);
 

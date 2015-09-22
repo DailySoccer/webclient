@@ -89,7 +89,6 @@ class GameMetrics {
     else {
       JsUtils.runJavascript(null, "track", eventName, "mixpanel");
     }
-    *
      */
   }
 

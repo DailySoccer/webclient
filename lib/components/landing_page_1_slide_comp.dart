@@ -6,7 +6,7 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/utils/game_metrics.dart';
-import 'package:webclient/utils/translate_config.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 @Component(
    selector: 'landing-page-1-slide',
@@ -20,6 +20,9 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
   int get screenHeight => window.innerHeight -70 - 122;
 
 
+  String GetLocalizedText(key) {
+    return StringUtils.Translate(key, "landing");
+  }
 
   LandingPage1SlideComp(this._router, this._profileService, this.scrDet, this._loadingService, this._rootElement) {
     _streamListener = scrDet.mediaScreenWidth.listen(onScreenWidthChange);
@@ -78,71 +81,75 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
     scrDet.scrollTo('#mainWrapper', offset: 0, duration:  0, smooth: false, ignoreInDesktop: false);
   }
 
-  String _commonHTML =
-    '''
-      <div class="screen-pattern"></div>
-      <div id="landingPageRoot">
-        @HTMLContent
-        <div class="beta-label"><img src="images/beta.png"/></div>
-      </div>
-    ''';
+  String get _commonHTML {
+    return '''
+              <div class="screen-pattern"></div>
+              <div id="landingPageRoot">
+                @HTMLContent
+                <div class="beta-label"><img src="images/beta.png"/></div>
+              </div>
+           ''';
+  }
 
-  String _theDesktopHTML =
-    '''
-      <div id="desktopContent">    
-        <div class="main-title-wrapper">
-    
-          <div class="main-title">${config.translate("title", group:"landing")}</div>
-          <div class="main-sub-title">${config.translate("subtitle", group:"landing")}</div>
-          <div class="button-wrap">
-            <button type="button" class="button-play" buttonOnclick="lobby.welcome" id="playButton1">${config.translate("buttonplay", group:"landing")}</button>
-          </div>
-          <div class="text-wrapper">
-    
-            <div class="module-column">
-              <p class="icono-text">${config.translate("info1", group:"landing")}</p>
-            </div>
-    
-            <div class="module-column">
-              <p class="icono-text">${config.translate("info2", group:"landing")}</p>
-            </div>
-    
-            <div class="module-column">
-              <p class="icono-text">${config.translate("info3", group:"landing")}</p>
-            </div>
-    
-          </div>
-          <div class="modules-wrapper">
-            <div class="module-column">
-              <img src="images/iconsLeagues.png">
-            </div>
-            <div class="module-column">
-              <img src="images/iconsDevices.png">
-            </div>
-            <div class="module-column">
-              <img src="images/iconsPayment.png">
-            </div>
-          </div>
-    
-        </div>
-        
-      </div>
-    ''';
+  String  get _theDesktopHTML {
+    return '''
+              <div id="desktopContent">    
+                <div class="main-title-wrapper">
+            
+                  <div class="main-title">${GetLocalizedText("title")}</div>
+                  <div class="main-sub-title">${GetLocalizedText("subtitle")}</div>
+                  <div class="button-wrap">
+                    <button type="button" class="button-play" buttonOnclick="lobby.welcome" id="playButton1">${GetLocalizedText("buttonplay")}</button>
+                  </div>
+                  <div class="text-wrapper">
+            
+                    <div class="module-column">
+                      <p class="icono-text">${GetLocalizedText("info1")}</p>
+                    </div>
+            
+                    <div class="module-column">
+                      <p class="icono-text">${GetLocalizedText("info2")}</p>
+                    </div>
+            
+                    <div class="module-column">
+                      <p class="icono-text">${GetLocalizedText("info3")}</p>
+                    </div>
+            
+                  </div>
+                  <div class="modules-wrapper">
+                    <div class="module-column">
+                      <img src="images/iconsLeagues.png">
+                    </div>
+                    <div class="module-column">
+                      <img src="images/iconsDevices.png">
+                    </div>
+                    <div class="module-column">
+                      <img src="images/iconsPayment.png">
+                    </div>
+                  </div>
+            
+                </div>
+                
+              </div>
+          ''';
+  }
 
-  String _theMobileHTML =
-  '''
-        <div id="mobileContent">
-          <div class="content">
-            <p class="main-title-mobile">DAILY FANTASY <br> LEAGUES</p>
-            <p class="title-sup-text-mobile">PLAY AS MANY CONTESTS AS YOU WANT</p>
-            <p class="title-sup-text-mobile">CREATE YOUR LINEUP IN SECONDS</p>
-            <p class="title-sup-text-mobile">AND WIN CASH</p>
-            <div class="button-wrap">
-              <button type="button" class="button-play-mobile" buttonOnclick="lobby.welcome" id="playButtonMobile">PLAY NOW</button>
-            </div>
-          </div> 
-        </div>
-    ''';
+  String get _theMobileHTML {
+    return '''
+                <div id="mobileContent">
+                  <div class="content">
+                    <p class="main-title-mobile">DAILY FANTASY <br> LEAGUES</p>
+                    <p class="title-sup-text-mobile">PLAY AS MANY CONTESTS AS YOU WANT</p>
+                    <p class="title-sup-text-mobile">CREATE YOUR LINEUP IN SECONDS</p>
+                    <p class="title-sup-text-mobile">AND WIN CASH</p>
+                    <div class="button-wrap">
+                      <button type="button" class="button-play-mobile" buttonOnclick="lobby.welcome" id="playButtonMobile">PLAY NOW</button>
+                    </div>
+                  </div> 
+                </div>
+            ''';
+  }
+
   var _streamListener;
 
   // int _windowHeigtht;

@@ -45,6 +45,32 @@
       "buttoncancel"  : "CANCEL",
       "unregistered"  : "Don't have an account?",
       "signuphere"    : "Sign up here!"
+    },
+    "changepass" :
+    {
+      "error503"      : "ERROR 503",
+      "changepass"    : "CHANGE PASSWORD",
+      "unavailable"   : "The page is not available",
+      "tokenexpired"  : "The provided token is invalid or has expired.",
+      "createpass"    : "Create a new password.",
+      "passrequires"  : "Password: at least @MIN_PASSWORD_LENGTH characters. (Type it twice).",
+      "pass"          : "Password",
+      "repass"        : "Repeat Password",
+      "buttoncontinue": "CONTINUE",
+      "buttoncancel"  : "CANCEL"
+    },
+    "rememberpass" :
+    {
+      "title"         : "REMEMBER PASSWORD",
+      "confirm_part_1": "We have sent you an email to",
+      "confirm_part_2": "Check your inbox and follow the instructions in the email.",
+      "description"   : "Forgot password? Enter you email and you will receive an email to recover your password.",
+      "emailrequires" : "Enter the email address used to sign up for EPIC ELEVEN:",
+      "email"         : "Email",
+      "buttoncontinue": "CONTINUE",
+      "buttoncancel"  : "CANCEL",
+      "unregistered"  : "Don't have an account?",
+      "signuphere"    : "Sign up here!"
     }
   }
 }

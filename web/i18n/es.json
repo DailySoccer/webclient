@@ -44,7 +44,33 @@
       "buttonlogin"   : "CONTINUAR",
       "buttoncancel"  : "CANCELAR",
       "unregistered"  : "Aún no estas resistrado?",
-      "signuphere"    : "Regístrate aquí!"
+      "signuphere"    : "¡Regístrate aquí!"
+    },
+    "changepass" :
+    {
+      "error503"      : "ERROR 503",
+      "changepass"    : "CAMBIO DE CONTRASEÑA",
+      "unavailable"   : "Esta página no está disponible",
+      "tokenexpired"  : "El token proporcionado no es válido o ha expirado.",
+      "createpass"    : "Crea una nueva contraseña.",
+      "passrequires"  : "Contraseña: Debe tener al menos @MIN_PASSWORD_LENGTH caracteres. (Escríbela 2 veces).",
+      "pass"          : "Contraseña",
+      "repass"        : "Repite Contraseña",
+      "buttoncontinue": "CONTINUAR",
+      "buttoncancel"  : "CANCELAR"
+    },
+    "rememberpass" :
+    {
+      "title"         : "RECORDAR CONTRASEÑA",
+      "confirm_part_1": "Te hemos mandado un correo electrónico a",
+      "confirm_part_2": "Revisa la bandeja de entrada de tu correo electrónico y sigue las instrucciones del correo.",
+      "description"   : "¿Olvidaste tu contraseña? Introduce tu email para recuperarla",
+      "emailrequires" : "Intruduce la direccion de correo electrónico con la que te registrarse en EPIC ELEVEN:",
+      "email"         : "Correo Electrónico",
+      "buttoncontinue": "CONTINUAR",
+      "buttoncancel"  : "CANCELAR",
+      "unregistered"  : "¿Aún no estás registrado?",
+      "signuphere"    : "¡Registrate aquí!"
     }
   }
 }

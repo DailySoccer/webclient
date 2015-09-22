@@ -7,6 +7,7 @@ import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/services/server_error.dart';
 import 'package:webclient/utils/uri_utils.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 @Component(
     selector: 'change-password',
@@ -39,6 +40,12 @@ class ChangePasswordComp implements ShadowRootAware {
   }
 
   bool get enabledSubmit => password.length >= MIN_PASSWORD_LENGTH && password == rePassword;
+
+  String GetLocalizedText(key) {
+    return StringUtils.Translate(key, "changepass")
+        .replaceAll("@MIN_PASSWORD_LENGTH", MIN_PASSWORD_LENGTH.toString());
+  }
+
   bool errorDetected = false;
   String errorMessage = "";
 

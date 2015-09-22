@@ -1,5 +1,6 @@
 library string_utils;
 import 'package:intl/intl.dart';
+import 'package:webclient/utils/translate_config.dart';
 
 class StringUtils {
 
@@ -51,6 +52,10 @@ class StringUtils {
         result.addAll({keyValue[0]:keyValue[1]});
     }
     return result;
+  }
+
+  static String Translate(String key, String theGroup) {
+    return config.translate(key, group:theGroup);
   }
 
 }

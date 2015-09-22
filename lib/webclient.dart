@@ -11,6 +11,7 @@ import 'package:webclient/logger_exception_handler.dart';
 
 import 'package:webclient/services/server_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
+import 'package:webclient/resource_url_resolver_wrapper.dart';
 import 'package:webclient/services/refresh_timers_service.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/services/datetime_service.dart';
@@ -144,6 +145,8 @@ class WebClientApp extends Module {
     // Disable CSS shim
     bind(PlatformJsBasedShim, toImplementation: PlatformJsBasedNoShim);
     bind(DefaultPlatformShim, toImplementation: DefaultPlatformNoShim);
+    bind(ResourceResolverConfig, toValue: new ResourceResolverConfig.resolveRelativeUrls(false));
+    bind(ResourceUrlResolver, toImplementation: ResourceUrlResolverWrapper);
     bind(ExceptionHandler, toImplementation: LoggerExceptionHandler);
     bind(ServerService, toImplementation: DailySoccerServer);
     bind(ScreenDetectorService);

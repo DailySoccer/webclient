@@ -46,6 +46,7 @@ class MatchesFilterComp implements ShadowRootAware {
   }
 
   void runAnimation() {
+    /*
     if (srcDet.isDesktop && matchEvents.length > 1) {
       _view.domRead(() {
         var filterButtons = querySelector(".matches-filter-buttons");
@@ -64,6 +65,7 @@ class MatchesFilterComp implements ShadowRootAware {
         }
       });
     }
+     */
   }
 
   Map _addMatchEvent(MatchEvent match) {

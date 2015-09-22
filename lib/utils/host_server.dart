@@ -2,6 +2,7 @@ library host_server;
 
 import 'dart:html';
 import 'package:logging/logging.dart';
+import 'package:webclient/utils/js_utils.dart';
 
 class HostServer {
 
@@ -9,13 +10,14 @@ class HostServer {
 
   // Global que apunta al servidor Host. Obligatorio usarla cuando vas a hacer una llamada al servidor
   static String get url {
-
+    String REMOTE_SERVER = "http://backend.epiceleven.com"; // "http://dailysoccer-staging.herokuapp.com";
+    
     if (_url == null) {
       if (window.location.protocol.contains("file") || window.location.protocol.contains("chrome-extension")) {
-        _url = "http://backend.epiceleven.com";
+        _url = REMOTE_SERVER;
       }
       else if(window.location.href.contains("live=true") || isEpicEleven) {
-        _url = "http://backend.epiceleven.com";
+        _url = REMOTE_SERVER;
       }
       else if (_isLocalHost) {
           _url = (window.location.href.contains("https=true"))? "https://backend.epiceleven.localhost:9000" :
@@ -25,7 +27,7 @@ class HostServer {
         _url = window.location.origin;
       }
 
-      Logger.root.info("Nuestro Host es: $_url");
+      Logger.root.info("Nuestro Host es: $_url | Production: $isProd | Protocol: ${window.location.protocol}");
     }
 
     return _url;
@@ -62,7 +64,17 @@ class HostServer {
   static bool get isDev => (_isNgrok || _isLocalHost || _isStaging) && !_isForcedProd;
   static bool get isProd => !isDev;
   static bool get isEpicEleven => window.location.hostname.contains("epiceleven.com") && !window.location.hostname.contains("staging");
+  static bool get isAndroidPlatform => platform == "android";
+  static bool get isiOSPlatform => platform == "ios";
 
+  static String get platform {
+    if (_platform == null || _platform.isEmpty) {
+      JsUtils.runJavascript(null, "getPlatform", [(String platform) => _platform = platform.toLowerCase()]);
+    }
+    return _platform;
+  }
+  
+  static String _platform;
   static String _domain;
   static String _url;
 }

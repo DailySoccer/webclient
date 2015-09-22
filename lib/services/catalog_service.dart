@@ -10,6 +10,9 @@ import 'package:webclient/models/product.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/models/money.dart';
 import 'package:webclient/services/payment_service.dart';
+import 'package:webclient/utils/js_utils.dart';
+import 'package:logging/logging.dart';
+import 'package:webclient/utils/host_server.dart';
 
 @Injectable()
 class CatalogService {
@@ -17,12 +20,27 @@ class CatalogService {
   HashMap<String, Product> productsMap;
   List<Product> products;
 
-  CatalogService(this._server, this._profileService, this._paymentService);
+  static CatalogService get Instance => _instance;
+  
+  CatalogService(this._server, this._profileService, this._paymentService) {
+    _instance = this;
+  }
 
+  void updateProductInfo(String productId, String title, String price) {
+    Logger.root.info("-> UpdateProductInfo: $productId : $title : $price");
+    if (productsMap.containsKey(productId)) {
+      Product product = productsMap[productId];
+      product.updateInfo(title, price);
+    }
+  }
+  
   Future buyProduct(String productId) {
     if (productsMap.containsKey(productId) && productsMap[productId].price.currencyUnit == Money.EUR) {
       Completer completer = new Completer();
-      _paymentService.expressCheckoutWithPaypal(productId: productId);
+      
+      // _paymentService.expressCheckoutWithPaypal(productId: productId);
+      JsUtils.runJavascript(null, "buyConsumable", [productId], 'epicStore');
+      
       return completer.future;
     }
     return _server.buyProduct(productId)
@@ -47,10 +65,12 @@ class CatalogService {
 
     // Tenemos cargado el catálogo solicitado?
     if (products != null) {
+      // JsUtils.runJavascript(null, "refresh", null, 'epicStore');
       completer.complete(products);
     }
     else {
-      _server.getCatalog()
+      // Solicitud el catálogo específico de iTunes Connect
+      (HostServer.isAndroidPlatform ? _server.getPlayStoreCatalog() : _server.getiTunesCatalog())
         .then((jsonMapRoot) {
             if (jsonMapRoot.containsKey("products")) {
               products = [];
@@ -61,6 +81,16 @@ class CatalogService {
                 products.add(product);
                 productsMap[product.id] = product;
               });
+
+              // Registrar los Productos para el iTunes Connect o Play Store
+              List<Map> productsGold = products.where((product) => product.gained.isGold).map((product) {
+                Map gProduct = {};
+                gProduct["id"]      = product.id;
+                gProduct["storeId"] = product.storeId;
+                return gProduct;
+              }).toList();
+
+              JsUtils.runJavascript(null, "registerConsumable", [productsGold], 'epicStore');
             }
             completer.complete(products);
           });
@@ -72,4 +102,5 @@ class CatalogService {
   ServerService _server;
   ProfileService _profileService;
   PaymentService _paymentService;
+  static CatalogService _instance;
 }

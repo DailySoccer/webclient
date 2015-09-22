@@ -28,7 +28,7 @@ class TutorialsComp {
   }
   
   void goToHowToPlay() {
-    window.open("http://www.futbolcuatro.com/ayuda/", "Como jugar a Futbol Cuatro");
+    window.open("http://www.futbolcuatro.com/ayuda/", '_system');
   }
   
   String get tutorialIniciacionName => TutorialIniciacion.NAME;

@@ -14,7 +14,7 @@ class XsNotAvailableScreenComp {
   XsNotAvailableScreenComp();
 
   String getLocalizedText(key, [Map substitutions]) {
-    return StringUtils.translate(key, "XsNotAvailable", substitutions);
+    return StringUtils.translate(key, "xsNotAvailable", substitutions);
   }
   
   bool get show => HostServer.isProd;

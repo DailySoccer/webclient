@@ -19,6 +19,7 @@ import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/utils/fblogin.dart';
 import 'package:webclient/utils/host_server.dart';
 import 'package:webclient/utils/game_info.dart';
+import 'package:webclient/utils/js_utils.dart';
 
 @Injectable()
 class ProfileService {
@@ -77,7 +78,18 @@ class ProfileService {
     });
   }
 
+  Future<Map> deviceLogin(String uuid) {
+    Logger.root.info("deviceLogin request: $uuid");
+    
+    // GameMetrics.aliasMixpanel(email);
+    // GameMetrics.peopleSet({"\$email": email, "\$created": new DateTime.now()});
+    
+    return _server.deviceLogin(uuid).then(_onLoginResponse);
+  }
+  
   Future<Map> _onLoginResponse(Map loginResponseJson) {
+    Logger.root.info("_onLoginResponse: $loginResponseJson");
+    
     _server.setSessionToken(loginResponseJson["sessionToken"]); // to make the getUserProfile call succeed
     return _server.getUserProfile()
                       .then((jsonMap) => _setProfile(loginResponseJson["sessionToken"], jsonMap, true));
@@ -212,8 +224,17 @@ class ProfileService {
         window.location.reload();
       }, test: (error) => error is ServerError);
     }
+    else {
+      JsUtils.runJavascript(null, "getUUID", [(uuid) => loginWithUUID(uuid)]);
+    }
   }
-
+  
+  void loginWithUUID(String uuid) {
+    Logger.root.info("UUID: $uuid");
+    // TODO: Comentado el login mediante el UUID, hasta que el backEnd ofrezca dicha posibilidad
+    // deviceLogin(uuid);
+  }
+  
   void _saveProfile() {
     if (user != null && _sessionToken != null) {
       GameInfo.assign('sessionToken', _sessionToken);

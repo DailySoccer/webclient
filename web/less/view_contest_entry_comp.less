@@ -95,6 +95,11 @@
 			background-color: @tramaMed;
 			border-top: 1px solid @white;
 			padding: 20px 20px 0 20px;
+			social-share[inline-xs] {
+				@media (max-width: @screen-xs-max) {
+					margin: 0 -20px;
+				}
+			}
 		}
 		p {
 			.opensans_normal(10pt, @greyDark);

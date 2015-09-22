@@ -1,5 +1,6 @@
 @fontOpenSans: 'Open Sans', sans-serif;
 @fontExo: 'Exo', sans-serif;
+@fontFacebook: helvetica, arial, sans-serif;
 
 @font-family-base: @fontOpenSans;
 
@@ -41,3 +42,12 @@
 	
 	.text_shadowing(@theFontColor);
 }
+.facebook_font(@theFontSize, @theFontColor:inherit) {
+	font-family: @fontFacebook;
+	font-weight: bold;
+	font-size: @theFontSize;
+	color: @theFontColor;
+	text-shadow: 0 -1px 0 #354c8c;
+	-webkit-font-smoothing: antialiased;
+}
+

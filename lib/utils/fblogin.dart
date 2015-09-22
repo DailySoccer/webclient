@@ -30,15 +30,24 @@ class FBLogin {
     //js.JsObject fb = js.context["FB"];
     //fb.callMethod("getLoginStatus", [onGetLoginStatus]);
     GameMetrics.logEvent(GameMetrics.LOGIN_ATTEMPTED, {"action via": "facebook"});
+    
     JsUtils.runJavascript(null, "facebookLoginStatus", [onGetLoginStatus]);
+    /*JsUtils.runJavascript(null, "facebookLogin", [(js.JsObject loginResponse) {
+          if (loginResponse["status"] == "connected") {
+            loginCallback(loginResponse);
+          }
+        }]);*/
   }
 
   void onGetLoginStatus(statusResponse) {
     if (statusResponse["status"] == "connected") {
+      print(" - FB EVAL => CONNECTED");
       loginCallback(statusResponse);
     } else if (statusResponse["status"] == 'not_authorized') {
+      print(" - FB EVAL => NOT AUTH");
       // El usuario no ha autorizado el uso de su facebook.
     } else {
+      print(" - FB EVAL => CONNECTED AND AUTH");
       JsUtils.runJavascript(null, "facebookLogin", [(js.JsObject loginResponse) {
         if (loginResponse["status"] == "connected") {
           loginCallback(loginResponse);
@@ -51,16 +60,26 @@ class FBLogin {
     Completer<Map> completer = new Completer<Map>();
     
     JsUtils.runJavascript(null, "facebookPermissions", [(js.JsObject permissionsResponse) {
+      print(" - FB REQUEST => Permissions CB ${permissionsResponse["error"]}");
       if (permissionsResponse["error"] == false) {
+        print(" - FB REQUEST => Permissions 1");
         js.JsArray permissionsJS = permissionsResponse['data'];
+        print(" - FB REQUEST => Permissions 2");
         Map permissions = {};
-        permissionsJS.forEach( (p) => permissions[p['permission']] = (p['status'] == 'granted') );
+        print(" - FB REQUEST => Permissions 3");
+        permissionsJS.forEach( (p) {
+          print(" - FB REQUEST => Permissions CB ${p['permission']} - ${p['status']}");
+          permissions[p['permission']] = (p['status'] == 'granted');
+        });
+        print(" - FB REQUEST => Permissions 4");
         
         completer.complete(permissions);
       } else {
+        print(" - FB REQUEST => Permissions -1");
         Logger.root.severe (ProfileService.decorateLog("WTF - 8696 - RunJS - Facebook Get Permissions Error: " + permissionsResponse["error"]['message']));
         completer.completeError({});
       }
+      print(" - FB REQUEST => Permissions END");
     }]);
     return completer.future;  
   }
@@ -83,10 +102,13 @@ class FBLogin {
 
   static void loginCallback(loginResponse) {
     getFacebookPermissions().then( (permissions) {
+      print(" - FB REQUEST => Permissions Then ${permissions.toString()}");
       if ( _checkPermissions(permissions) ) {
+        print(" - FB REQUEST => Permissions Checked");
         serverLoginWithFB();
       } else {
         // ERROR
+        print(" - FB REQUEST => Permissions Check ERROR");
         GameMetrics.logEvent(GameMetrics.LOGIN_FB_PERMISSIONS_DENIED, permissions);
         Logger.root.severe (ProfileService.decorateLog("WTF - 8695 - Facebook Permissions Insuficent: $permissions"));
         rerequestLoginModal();
@@ -95,11 +117,14 @@ class FBLogin {
   }
   
   static void serverLoginWithFB() {
+    print(" - FB REQUEST => ProfileInfoRequest");
     profileInfo().then((info) {
               String accessToken = info['accessToken'];
               String email       = info['email'];
               String id          = info['id'];
               String name        = info['name'];
+              print(" - FB REQUEST => ProfileInfoRequest Then: accessToken => $accessToken || email => $email || id => $id || name => $name ");
+                     
               // LOGIN
               Logger.root.info (ProfileService.decorateLog("Server Login with Facebook"));
               _profileManager.facebookLogin(accessToken, id, name, email)
@@ -114,22 +139,29 @@ class FBLogin {
   
   static Future<Map> profileInfo() {
     Completer<Map> completer = new Completer<Map>();
-
+    print(" - FB REQUEST => ProfileInfoRequest In");
+    
     JsUtils.runJavascript(null, "facebookProfileInfo", [(js.JsObject profileInfoResponse) {
       Map info = {};
+      print(" - FB REQUEST => ProfileInfoRequest CB");
+      print(" - FB REQUEST => ProfileInfoRequest ${profileInfoResponse["error"]}");
       if (!profileInfoResponse["error"]) {
+        print(" - FB REQUEST => ProfileInfoRequest 1");
         info['accessToken'] = profileInfoResponse['accessToken'];
         info['email']       = profileInfoResponse['email'];
         info['id']          = profileInfoResponse['id'];
         info['name']        = profileInfoResponse['name'];
         info['picture']     = profileInfoResponse['picture'];
-        
+
+        print(" - FB REQUEST => ProfileInfoRequest 2");
         Map image = {};
         image['imageUrl']   = profileInfoResponse['picture']['data']['url'];
         image['isDefault']  = profileInfoResponse['picture']['data']['is_silhouette'];
-        
+
+        print(" - FB REQUEST => ProfileInfoRequest 3");
         _profileImageCache[info['id']] = image;
-        
+        print(" - FB REQUEST => ProfileInfoRequest ${profileInfoResponse["accessToken"]}, ${profileInfoResponse["email"]}, ${profileInfoResponse["id"]}, ${profileInfoResponse["name"]}");
+
         completer.complete(info);
       } else {
         Logger.root.severe (ProfileService.decorateLog("WTF - 8692 - RunJS - Facebook Get Profile Info ${profileInfoResponse["error"]['message']}"));
@@ -173,48 +205,82 @@ class FBLogin {
     }
     
     _profileImageCache[facebookId] = defaultImage;
-    JsUtils.runJavascript(null, "facebookProfilePhoto", [facebookId, (js.JsObject profileInfoResponse) {
-          Map image = {};
-          if (profileInfoResponse["error"] == false) {
-            image['imageUrl'] = profileInfoResponse['imageUrl'];
-            image['isDefault'] = profileInfoResponse['isDefault'];
-            _profileImageCache[facebookId] = image;
-          } else {
-            Logger.root.warning (ProfileService.decorateLog("WTF - 3510 - RunJS - Facebook Get Profile Image '${profileInfoResponse["error"]['message']}'"));
-          }
-        }]);
-    
+    if (_isRequestingOpenGraph) {
+      _openGraphRequestQueue.add(() => _profileImageJSCall(facebookId));
+    } else {
+      _profileImageJSCall(facebookId);
+    }
+
     return defaultImage;
   }
+  
+  static void _profileImageJSCall(String facebookId) {
+    _isRequestingOpenGraph = true;
+    JsUtils.runJavascript(null, "facebookProfilePhoto", [facebookId, (js.JsObject profileInfoResponse) {
+      Map image = {};
+      
+      print('error: ' + profileInfoResponse["error"]);
+      
+      if (profileInfoResponse["error"] == false) {
+        
+        print('imageUrl: ' + profileInfoResponse['imageUrl']);
+        print('isDefault: ' + profileInfoResponse['isDefault']);
+        
+        image['imageUrl'] = profileInfoResponse['imageUrl'];
+        image['isDefault'] = profileInfoResponse['isDefault'];
+        _profileImageCache[facebookId] = image;
+      } else {
+        Logger.root.warning (ProfileService.decorateLog("WTF - 3510 - RunJS - Facebook Get Profile Image '${profileInfoResponse["error"]['message']}'"));
+      }
+      _isRequestingOpenGraph = false;
+      if (_openGraphRequestQueue.length > 0) { 
+        _openGraphRequestQueue.removeLast()(); // pop and call the function
+      }
+    }]);
+  }
+  
   
   static Future<List<String>> friendList(facebookId) {
     Completer<List<String>> completer = new Completer<List<String>>();
     if (facebookId == null || facebookId == '') return completer.future;
     
-    JsUtils.runJavascript(null, "facebookFriends", [facebookId, (js.JsObject profileInfoResponse) {
-          if (profileInfoResponse["error"] == false) {
-            
-            List<String> idList = new List<String>();
-            int length = profileInfoResponse['friendsInfo']['length'];
-            
-            for (int i = 0; i < length; i++) {
-              var currentFriend = profileInfoResponse['friendsInfo'][i];
-              idList.add(currentFriend['id']);
-
-              _profileImageCache[currentFriend['id']] = { 
-                      'imageUrl'  : currentFriend['image']['url'],
-                      'isDefault' : currentFriend['image']['isDefault']
-                    };
-            }
-            
-            completer.complete(idList);
-          } else {
-            Logger.root.severe (ProfileService.decorateLog("WTF - 3511 - RunJS - Facebook Get Friends '${profileInfoResponse["error"]['message']}'"));
-            completer.completeError(profileInfoResponse["error"]);
-          }
-        }]);
+    if (_isRequestingOpenGraph) {
+      _openGraphRequestQueue.add(() => _friendListJSCall(facebookId, completer));
+    } else {
+      _friendListJSCall(facebookId, completer);
+    }
     
     return completer.future;
+  }
+  
+  static void _friendListJSCall(String facebookId, Completer<List<String>> completer) {
+    _isRequestingOpenGraph = true;
+    JsUtils.runJavascript(null, "facebookFriends", [facebookId, (js.JsObject profileInfoResponse) {
+        if (profileInfoResponse["error"] == false) {
+          
+          List<String> idList = new List<String>();
+          int length = profileInfoResponse['friendsInfo']['length'];
+          
+          for (int i = 0; i < length; i++) {
+            var currentFriend = profileInfoResponse['friendsInfo'][i];
+            idList.add(currentFriend['id']);
+  
+            _profileImageCache[currentFriend['id']] = {
+                    'imageUrl'  : currentFriend['image']['url'],
+                    'isDefault' : currentFriend['image']['isDefault']
+                  };
+          }
+          
+          completer.complete(idList);
+        } else {
+          Logger.root.severe (ProfileService.decorateLog("WTF - 3511 - RunJS - Facebook Get Friends '${profileInfoResponse["error"]['message']}'"));
+          completer.completeError(profileInfoResponse["error"]);
+        }
+        _isRequestingOpenGraph = false;
+        if (_openGraphRequestQueue.length > 0) { 
+          _openGraphRequestQueue.removeLast()(); // pop and call the function
+        }
+      }]);
   }
   
   static void parseXFBML(String cssSelector) {
@@ -226,13 +292,20 @@ class FBLogin {
   }
   
   static bool _checkPermissions(Map permissions) {
-    return NEEDED_PERMISSIONS.every( (p) => permissions[p]);
+    return NEEDED_PERMISSIONS.every( (p) {
+
+      print(" - FB REQUEST => Permissions Check ${p} -> ${permissions[p]}");
+      return permissions[p];
+    });
   }
 
   String _state = null;
   String get state => _state;
 
   bool get isConnected => _state == "connected";
+
+  static List<Function> _openGraphRequestQueue = new List<Function>();
+  static bool _isRequestingOpenGraph = false;
   
   static Map <String, Map> _profileImageCache = {};
   static Router _router;

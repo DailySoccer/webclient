@@ -10,6 +10,10 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:intl/intl.dart';
 import 'package:webclient/utils/host_server.dart';
+import 'package:webclient/models/money.dart';
+import 'package:logging/logging.dart';
+import 'package:webclient/services/template_service.dart';
+import 'package:webclient/services/catalog_service.dart';
 
 @Component(
     selector: 'main-menu-f2p',
@@ -21,7 +25,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
   bool betaOn = true;
   
   MainMenuF2PComp(
-      this._router, this.profileService, this._scrDet, this._rootElement) {
+      this._router, this.profileService, this._scrDet, this._rootElement, this._templateService, this._catalogService) {
     _router.onRouteStart.listen((RouteStartEvent event) {
       event.completed.then((_) {
         if (_router.activePath.length > 0) {
@@ -91,7 +95,6 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
     <nav id="mainMenu" class="${navClass}" role="navigation">
       ${innerHtml}
     </nav>
-    <span class='beta-label'>${StringUtils.translate('beta', 'mainmenu')} <small>${HostServer.CURRENT_VERSION}</small></span>
     ''';
 
     _rootElement.setInnerHtml(finalHtml, treeSanitizer: NULL_TREE_SANITIZER);
@@ -497,6 +500,8 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
     }
   }
 
+  TemplateService _templateService;
+  CatalogService _catalogService;
   ScreenDetectorService _scrDet;
   Scope _scope;
   StreamSubscription _scrollMoveListener;

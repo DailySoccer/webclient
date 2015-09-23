@@ -257,7 +257,12 @@
       "abrevfoulsconceded"        : "FC",
       "descfoulsconceded"         : "Fouls Conceded",
       "keyplayedminutes"          : "PLAYED_MINUTED",
-      "keyfantasypoints"          : "FANTASY_POINTS"
+      "keyfantasypoints"          : "FANTASY_POINTS",
+      "date"                      : "Date",
+      "opponent"                  : "Opponent",
+      "dailyfantasypoints"        : "Daily Fantasy Points",
+      "minutes"                   : "Minutes",
+      "posessionlost"             : "Possesion Lost"
     },
     "footer" :
     {
@@ -279,6 +284,105 @@
       "classification": "Classification",
       "howitworks2"   : "How It Workd",
       "logout"        : "LogOut"
+    },
+    "contestlist"     :
+    {
+      "entryfee"      : "ENTRY FEE",
+      "of"            : "OF",
+      "prize"          : "PRIZE",
+      "points"        : "POINTS"
+    },
+    "contestfilters"  :
+    {
+      "filters"       : "FILTERS",
+      "competition"   : "COMPETITION",
+      "contests"      : "CONTESTS",
+      "salarycap"     : "SALARY CAP",
+      "entryfee"      : "ENTRY FEE",
+      "min"           : "MIN",
+      "max"           : "MAX",
+      "clearfilters"  : "CLEAR FILTERS",
+      "buttonaccept"  : "ACCEPT",
+      "sortby"       : "Sort by",
+      "search"        : "Search contest",
+      "competitionlaliga"       : "Spanish La Liga",
+      "competitionpremier"      : "Premier League",
+      "competitionchampions"    : "Champions League",
+      "contestfree"             : "Free",
+      "contestheadtohead"       : "Head to Head",
+      "contestleague"           : "League",
+      "contestfifty"            : "50 / 50",
+      "salarycapbegginer"       : "Beginner",
+      "salarycapstandard"       : "Standard",
+      "salarycapskilled"        : "Skilled",
+      "sortbyname"              : "Name",
+      "sortbyentryfee"          : "Entry Fee",
+      "sortbystartdate"         : "Start Date"
+    },
+    "fantasyteam"     :
+    {
+      "editlineup"    : "EDIT THE LINEUP",
+      "pos"           : "POS",
+      "points"        : "POINTS",
+      "remainingtime" : "REMAINING TIME",
+      "close"         : "CLOSE",
+      "owned"         : "OWNED"
+    },
+    "teamspanel"      :
+    {
+      "showmatches"   : "SHOW MATCHES",
+      "firsthalf"     : "1st Half - ",
+      "secondhalf"    : "2nd Half - ",
+      "error"         : "-Err-",
+      "finished"      : "Finished"
+    },
+    "userlist"        :
+    {
+      "title"         : "CONTENDERS IN THIS CONTEST",
+      "desc"          : "Choose a contender to compare lineups",
+      "pos"           : "POS",
+      "player"        : "PLAYER",
+      "rt"            : "R.T",
+      "points"        : "POINTS",
+      "prizes"        : "PRIZES"
+    },
+    "viewcontest"     :
+    {
+      "yourlineup"    : "Your lineup",
+      "users"         : "Users",
+      "opponent"      : "Opponent"
+    },
+    "viewcontestentry":
+    {
+      "created"       : "WELL DONE! YOU HAVE SUCCESSFULLY COMPLETED YOUR LINEUP",
+      "edited"        : "WELL DONE! YOU HAVE SUCCESSFULLY EDITED YOUR LINEUP",
+      "swapped"       : "THE CONTEST WAS FULL, SO WE HAVE PUT YOU IN THIS EQUIVALENT ONE",
+      "tip"           : "Remember that you can edit your lineup as many times as you want before the contest starts",
+      "yourlineup"    : "Your lineup",
+      "users"         : "Users",
+      "backtocontests": "BACK TO CONTESTS",
+      "cancel"        : "CANCEL PARTICIPATION"
+    },
+    "contestheader"   :
+    {
+      "entryfee"      : "ENTRY FEE",
+      "prizes"        : "PRIZES",
+      "finished"      : "FINISHED",
+      "startedon"     : "STARTED ON ",
+      "startson"      : "STARTS ON ",
+      "verysoon"      : "STARTS VERY SOON ",
+      "startsin"      : "STARTS IN ",
+      "salarycap"     : "contenders - Salary cap"
+    },
+    "contest"         :
+    {
+      "contestfree"             : "Free",
+      "contestheadtohead"       : "Head to Head",
+      "contestleague"           : "League",
+      "contestfifty"            : "50 / 50",
+      "salarycap"               : "Salary cap",
+      "contenders"              : "contenders",
+      "of"                      : "of"
     }
   }
 }

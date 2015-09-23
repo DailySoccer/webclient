@@ -4,13 +4,13 @@
   <div class="choosed-filters-container" ng-show="scrDet.isXsScreen">
       <div class="competition-filter-name" ng-bind-html="filterResume"></div>
       <div class="filterToggler">
-        <div id="filtersButtonMobile" type="button" class="filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse" data-target="#filtersPanel">FILTERS</div>
+        <div id="filtersButtonMobile" type="button" class="filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse" data-target="#filtersPanel">{{GetLocalizedText("filters")}}</div>
       </div>
   </div>
 
   <!-- Ordenación -->
   <div id="contestFastSort">
-    <span class="filter-text">Sort by: </span>
+    <span class="filter-text">{{GetLocalizedText("sortby")}}: </span>
     <div class="btn-group" >
       <div ng-repeat="button in sortingButtons" id="{{button['id']}}" type="button" class="btn sorting-button" ng-class="button['state']" ng-click="sortListByField(button['field-name'])">{{button["name"].toUpperCase()}}</div>
     </div>
@@ -18,11 +18,11 @@
 
   <!-- Filtro por nombre -->
   <div id="contestFastSearch">
-      <input class="searcher" type="text" placeholder="Search contest" ng-model="filterContestName" ng-keyUp="filterByName()">
+      <input class="searcher" type="text" placeholder="{{GetLocalizedText('search')}}" ng-model="filterContestName" ng-keyUp="filterByName()">
   </div>
 
   <div class="filterToggler" ng-show="!scrDet.isXsScreen">
-      <div id="filtersButtonDesktop" type="button" class="filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse">FILTERS</div>
+      <div id="filtersButtonDesktop" type="button" class="filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse">{{GetLocalizedText("filters")}}</div>
   </div>
 
 </div>
@@ -33,7 +33,7 @@
 
     <!-- Filtro x tipos de concurso -->
     <div class="filter-column-competition">
-      <p class="filter-title">COMPETITION</p>
+      <p class="filter-title">{{GetLocalizedText("competition")}}</p>
       <div class="filter-content">
         <div class="check-group-wrapper">
 
@@ -50,7 +50,7 @@
 
     <!-- Filtro x tipos de concurso -->
     <div class="filter-column-tournaments">
-      <p class="filter-title">CONTESTS</p>
+      <p class="filter-title">{{GetLocalizedText("contests")}}</p>
       <div class="filter-content">
           <div class="check-group-wrapper">
 
@@ -67,7 +67,7 @@
 
     <!-- Filtro x dificultad -->
     <div class="filter-column-salary-limit">
-      <p class="filter-title">SALARY CAP</p>
+      <p class="filter-title">{{GetLocalizedText("salarycap")}}</p>
       <div class="filter-content">
           <div class="check-group-wrapper">
 
@@ -83,10 +83,10 @@
     </div>
 
     <div class="filter-column-entry-fee">
-      <p class="filter-title">ENTRY FEE</p>
+      <p class="filter-title">{{GetLocalizedText("entryfee")}}</p>
       <div class="filter-content">
-         <div class="entry-fee-value-min">MIN: ${{filterEntryFeeRangeMin | number:0}} </div>
-         <div class="entry-fee-value-max">MAX: ${{filterEntryFeeRangeMax | number:0}} </div>
+         <div class="entry-fee-value-min">{{GetLocalizedText("min")}}: {{FormatCurrency((filterEntryFeeRangeMin | number:0).toString())}} </div>
+         <div class="entry-fee-value-max">{{GetLocalizedText("max")}}: {{FormatCurrency((filterEntryFeeRangeMax | number:0).toString())}} </div>
           <div class="slider-wrapper">
             <div id="slider-range"></div>
           </div>
@@ -97,10 +97,10 @@
   <div class="filters-panel-row">
 
       <div class="reset-button-wrapper">
-        <button type="button" class="btn-reset" ng-click="resetAllFilters()">CLEAR FILTERS</button>
+        <button type="button" class="btn-reset" ng-click="resetAllFilters()">{{GetLocalizedText("clearfilters")}}</button>
       </div>
       <div class="confirm-button-wrapper">
-        <button type="button" class="btn-confirm" ng-click="toggleFilterMenu()">ACCEPT</button>
+        <button type="button" class="btn-confirm" ng-click="toggleFilterMenu()">{{GetLocalizedText("buttonaccept")}}</button>
       </div>
 
   </div>

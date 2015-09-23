@@ -13,6 +13,7 @@ import 'dart:html';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/server_error.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 @Component(
     selector: 'view-contest',
@@ -27,7 +28,7 @@ class ViewContestComp implements DetachAware {
   ContestEntry selectedOpponent;
 
   DateTime updatedDate;
-  String lastOpponentSelected = "Adversario";
+  String lastOpponentSelected = "";
   bool isOpponentSelected = false;
 
   String contestId;
@@ -38,9 +39,13 @@ class ViewContestComp implements DetachAware {
   List<ContestEntry> get contestEntries => (contest != null) ? contest.contestEntries : null;
   List<ContestEntry> get contestEntriesOrderByPoints => (contest != null) ? contest.contestEntriesOrderByPoints : null;
 
+  String GetLocalizedText(key) {
+    return StringUtils.Translate(key, "viewcontest");
+  }
 
   ViewContestComp(this._routeProvider, this.scrDet, this._refreshTimersService, this._contestsService, this._profileService, this._flashMessage, this.loadingService) {
     loadingService.isLoading = true;
+    lastOpponentSelected = GetLocalizedText("opponent");
 
     contestId = _routeProvider.route.parameters['contestId'];
 

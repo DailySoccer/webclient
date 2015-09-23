@@ -200,19 +200,47 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
 
     seasonResumeStats.clear();
     seasonsList.clear();
-    seasonTableHeaders = ['Date', 'Opponent', 'Daily Fantasy Points', 'Minutes'];
+    seasonTableHeaders = [
+      GetCodeData("date"),
+      GetCodeData("opponent"),
+      GetCodeData("dailyfantasypoints"),
+      GetCodeData("minutes")
+    ];
 
     if(isGoalkeeper()) {
       goalKeeperStatsList.forEach((key) {
         _totalSums[key] = 0;
       });
-      seasonTableHeaders.addAll(['Goals Conceded', 'Saves', 'Clearances', 'Saved Penalties', 'Passes', 'Recoveries', 'Possession Lost', 'Fouls Committed', 'Yellow Cards', 'Red Cards']);
+      seasonTableHeaders.addAll([
+        GetCodeData("descgoalsconceded"),
+        GetCodeData("descsaves"),
+        GetCodeData("descclearances"),
+        GetCodeData("descpenaltiessaved"),
+        GetCodeData("descpasses"),
+        GetCodeData("descrecovers"),
+        GetCodeData("posessionlost"),
+        GetCodeData("descfoulscommited"),
+        GetCodeData("descyellowcards"),
+        GetCodeData("descredcards")
+      ]);
     }
     else {
       commonPlayerStatsList.forEach((key) {
         _totalSums[key] = 0;
       });
-      seasonTableHeaders.addAll(['Goals', 'Shots', 'Passes', 'Assists', 'Take-ons', 'Recoveries', 'Possession lost', 'Fouls Committed', 'Fouls Conceded', 'Yellow Cards', 'Red Cards']);
+      seasonTableHeaders.addAll([
+        GetCodeData("descgoals"),
+        GetCodeData("descshots"),
+        GetCodeData("descpasses"),
+        GetCodeData("descchancescreated"),
+        GetCodeData("desctakeons"),
+        GetCodeData("descrecovers"),
+        GetCodeData("posessionlost"),
+        GetCodeData("descfoulscommited"),
+        GetCodeData("descfoulsconceded"),
+        GetCodeData("descyellowcards"),
+        GetCodeData("descredcards")
+      ]);
     }
   }
 

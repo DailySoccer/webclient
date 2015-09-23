@@ -51,6 +51,10 @@ class FantasyTeamComp implements DetachAware {
 
     bool get isViewContestEntryMode => _routeProvider.route.name.contains("view_contest_entry");
 
+    String GetLocalizedText(key) {
+      return StringUtils.Translate(key, "fantasyteam");
+    }
+
     FantasyTeamComp(this._routeProvider, this._router, this._rootElement);
 
     void _refreshTeam() {

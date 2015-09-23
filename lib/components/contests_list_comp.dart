@@ -97,6 +97,10 @@ class ContestsListComp {
   @NgCallback("on-action-click")
   Function onActionClick;
 
+  String GetLocalizedText(key) {
+    return StringUtils.Translate(key, "contestlist");
+  }
+
   ContestsListComp(this._profileService, this.scrDet);
 
   /********* METHODS */

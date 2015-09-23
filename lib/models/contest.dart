@@ -86,9 +86,9 @@ class Contest {
    // print("estado del concurso: ${state}");
     /* los partidos en vivo o en history no continen los participantes que tiene el concurso */
     if(isLive || isHistory) {
-      return "${tournamentTypeName} - Salary cap: ${printableSalaryCap}";
+      return "${tournamentTypeName} - ${StringUtils.Translate("salarycap", "contest")}: ${printableSalaryCap}";
     }
-    return "${tournamentTypeName}: ${numEntries} of ${maxEntries} contenders - Salary cap: ${printableSalaryCap}";
+    return "${tournamentTypeName}: ${numEntries} ${StringUtils.Translate("of", "contest")} ${maxEntries} ${StringUtils.Translate("contenders", "contest")} - ${StringUtils.Translate("salarycap", "contest")}: ${printableSalaryCap}";
   }
 
   List<ContestEntry> get contestEntriesOrderByPoints {
@@ -120,10 +120,10 @@ class Contest {
 
   Map<String,String> get tournamentTypeNames {
     return {
-      TOURNAMENT_FREE: "Free",
-      TOURNAMENT_HEAD_TO_HEAD: "Head to Head",
-      TOURNAMENT_LEAGUE: "League",
-      TOURNAMENT_FIFTY_FIFTY: "50/50"
+      TOURNAMENT_FREE: StringUtils.Translate("contestfree", "contest"),
+      TOURNAMENT_HEAD_TO_HEAD: StringUtils.Translate("contestheadtohead", "contest"),
+      TOURNAMENT_LEAGUE: StringUtils.Translate("contestleague", "contest"),
+      TOURNAMENT_FIFTY_FIFTY: StringUtils.Translate("contestfifty", "contest")
     };
   }
 

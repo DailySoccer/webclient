@@ -9,6 +9,7 @@ import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/services/contests_service.dart';
 import 'package:webclient/models/soccer_team.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 @Component(
     selector: 'teams-panel',
@@ -41,6 +42,10 @@ class TeamsPanelComp implements DetachAware {
     }
   }
 
+  String GetLocalizedText(key) {
+    return StringUtils.Translate(key, "teamspanel");
+  }
+
   TeamsPanelComp(this.scrDet, this._contestsService, this._routeProvider) {
     _streamListener = scrDet.mediaScreenWidth.listen(onScreenWidthChange);
   }
@@ -70,10 +75,10 @@ class TeamsPanelComp implements DetachAware {
       if (match != null) {
         if (match.isStarted) {
           if (match.isFinished) {
-            content = 'Finished';
+            content = GetLocalizedText("finished");
           }
           else {
-            content = (match.isFirstHalf ? '1st Half - ' : match.isSecondHalf ? '2nd Half - ' : '-Err-') + match.minutesPlayed.toString() + "'";
+            content = (match.isFirstHalf ? GetLocalizedText("firsthalf") : match.isSecondHalf ? GetLocalizedText("secondhalf") : GetLocalizedText("error")) + match.minutesPlayed.toString() + "'";
           }
         }
       }

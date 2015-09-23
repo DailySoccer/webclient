@@ -15,12 +15,12 @@
     },
     "date"            :
     {
-      "datewithdayofthemonth" : "EEE, d MMM",
+      "datewithdayofthemonth"       : "EEE, d MMM",
       "dateshort"     : "dd/MM",
       "timeshort"     : "HH:mm",
       "datetimeshort" : "E, HH:mm",
       "datetimelong"  : "E, dd/MM/yy HH:mm",
-      "datetimedayhour"       : "dd/MM/yy HH:mm"
+      "datetimedayhour"             : "dd/MM/yy HH:mm"
     },
     "landing"         :
     {
@@ -111,9 +111,9 @@
       "pass"          : "Contraseña",
       "repass"        : "Repite la Contraseña",
       "notifications" : "NOTIFICACIONES",
-      "newletternotifications"  : "ULTIMAS NOTICIAS/OFERTAS ESPECIALES",
-      "gamenotifications"       : "NOTIFICACIONES DE JUEGO",
-      "transfernotifications"   : "TRANSFERENCIA DE JUGADORES PROPIAS",
+      "newletternotifications"      : "ULTIMAS NOTICIAS/OFERTAS ESPECIALES",
+      "gamenotifications"           : "NOTIFICACIONES DE JUEGO",
+      "transfernotifications"       : "TRANSFERENCIA DE JUGADORES PROPIAS",
       "buttonsave"    : "GUARDAR",
       "buttoncancel"  : "CANCELAR"
     },
@@ -124,7 +124,7 @@
       "resultokdesc"  : "¡Gracias!Thank you! Tu petición se ha completado con éxito.",
       "resultnookdesc": "La transacción no se ha podido completar. Por favor, revisa los datos introducidos e intentalo de nuevo."
     },
-    "transactionhistory"        :
+    "transactionhistory"            :
     {
       "title"         : "HISTORIAL DE TRANSACTIONES",
       "date"          : "FECHA",
@@ -186,7 +186,7 @@
       "allmatches"    : "Todos los partidos",
       "all"           : "todos"
     },
-    "soccerplayerpositions"        :
+    "soccerplayerpositions"         :
     {
       "goalkeeper"    : "PORTERO",
       "gk"            : "POR",
@@ -197,6 +197,88 @@
       "forward"       : "DELANTERO",
       "for"           : "DEL",
       "all"           : "TODOS"
+    },
+    "soccerplayerstats"             :
+    {
+      "buttoncancel"  : "CANCEL",
+      "buttonadd"     : "ADD",
+      "tittle"        : "PLAYER STATISTICS",
+      "dfp"           : "DFP",
+      "matches"       : "MATCHES",
+      "salary"        : "SALARY",
+      "seasondata"    : "Season Data",
+      "matchbymatch"  : "Match by Match",
+      "seasonstats"   : "SEASON STATISTICS <span>(DATA BY MATCH)</span>",
+      "noseasonstats" : "Has not played any game this season",
+      "season"        : "Season",
+      "keypasses"                 : "PASSES",
+      "abrevpasses"               : "P",
+      "descpasses"                : "Passes",
+      "keyrecovers"               : "RECOVERIES",
+      "abrevrecovers"             : "R",
+      "descrecovers"              : "Recoveries",
+      "keyposslost"               : "PERDIDAS_BALON",
+      "abrevposslost"             : "PL",
+      "descposslost"              : "Possession lost",
+      "keyfoulscommited"          : "FALTAS_COMETIDAS",
+      "abrevfoulscommited"        : "F",
+      "descfoulscommited"         : "Fouls Committed",
+      "keyyellowcards"            : "TARJETAS_AMARILLAS",
+      "abrevyellowcards"          : "YC",
+      "descyellowcards"           : "Yellow Cards",
+      "keyredcards"               : "TARJETAS_ROJAS",
+      "abrevredcards"             : "RC",
+      "descredcards"              : "Red Cards",
+      "keygoalsconceded"          : "GOLES_ENCAJADOS",
+      "abrevgoalsconceded"        : "GC",
+      "descgoalsconceded"         : "Goals Conceded",
+      "keysaves"                  : "PARADAS",
+      "abrevsaves"                : "S",
+      "descsaves"                 : "Saves",
+      "keyclearances"             : "DESPEJES",
+      "abrevclearances"           : "C",
+      "descclearances"            : "Clearances",
+      "keypenaltiessaved"         : "PENALTIS_DETENIDOS",
+      "abrevpenaltiessaved"       : "PS",
+      "descpenaltiessaved"        : "Penalties Saved",
+      "keygoals"                  : "GOLES",
+      "abrevgoals"                : "G",
+      "descgoals"                 : "Goals",
+      "keyshots"                  : "TIROS",
+      "abrevshots"                : "SH",
+      "descshots"                 : "Shots",
+      "keychancescreated"         : "ASISTENCIAS",
+      "abrevchancescreated"       : "CH",
+      "descchancescreated"        : "Chances Created",
+      "keytakeons"                : "REGATES",
+      "abrevtakeons"              : "T",
+      "desctakeons"               : "Take-ons",
+      "keyfoulsconceded"          : "FALTAS_RECIBIDAS",
+      "abrevfoulsconceded"        : "FC",
+      "descfoulsconceded"         : "Fouls Conceded",
+      "keyplayedminutes"          : "PLAYED_MINUTED",
+      "keyfantasypoints"          : "FANTASY_POINTS"
+    },
+    "footer"          :
+    {
+      "help"          : "AYUDA",
+      "legal"         : "LEGAL",
+      "terms"         : "TERMINOS<span> DE USO</span>",
+      "privacy"       : "POLITICAS<span> DE PRIVACIDAD</span>"
+    },
+    "mainmenu"        :
+    {
+      "lobby"         : "CONCURSOS",
+      "mycontest"     : "MIS CONCURSOS",
+      "howitworks"    : "CÓMO FUNCIONA",
+      "buttonaddfunds": "AÑADIR FONDOS",
+      "myaccount"     : "Mi Cuenta",
+      "addfunds"      : "Añadir Fondos",
+      "transactions"  : "Historial de Transacciones",
+      "referral"      : "Centro de Referidos",
+      "classification": "Clasificación",
+      "howitworks2"   : "Cómo funciona",
+      "logout"        : "Salir"
     }
   }
 }

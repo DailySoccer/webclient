@@ -279,30 +279,30 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
   
       <div id="menuSlide">
         <ul class="nav navbar-nav">
-          <li highlights="lobby"       class="mainOption"><a  id="menuLobby"      destination="lobby">LOBBY</a></li>
-          <li highlights="my_contests" class="mainOption"><a  id="menuMyContests" destination="my_contests" params="section:live">MY CONTESTS</a></li>
-          <li highlights="help_info"   class="mainOption"><a  id="menuHowItWorks" destination="help_info">HOW IT WORKS</a></li>
+          <li highlights="lobby"       class="mainOption"><a  id="menuLobby"      destination="lobby">${StringUtils.Translate("lobby", "mainmenu")}</a></li>
+          <li highlights="my_contests" class="mainOption"><a  id="menuMyContests" destination="my_contests" params="section:live">${StringUtils.Translate("mycontest", "mainmenu")}</a></li>
+          <li highlights="help_info"   class="mainOption"><a  id="menuHowItWorks" destination="help_info">${StringUtils.Translate("howitworks", "mainmenu")}</a></li>
           <li id="userBalanceOut-sm"   class="right-menu">
             <div class="balance">
               <span class="current-balance">${_userBalance}</span>
-              <button class="add-funds-button" destination="add_funds">ADD FUNDS</button>
+              <button class="add-funds-button" destination="add_funds">${StringUtils.Translate("buttonaddfunds", "mainmenu")}</button>
             </div>
           </li>
           <li highlights="user" class="right-menu username-dropdown-toggle" >
             <a id="menuUser" class="dropdown-toggle" data-toggle="dropdown">${_userNickName}</a>
             <ul class="dropdown-menu">
-              <li><a id="menuUserMyAccount"        destination="user_profile">My Account</a></li>
-              <li id="userBalanceIn"><a id="menuUserAddFunds-sm" destination="add_funds">Add Funds</a></li>
-              <li><a id="menuUserHistory"          destination="transaction_history">Transaction History</a></li>
-              <!--li><a id="menuUserReferencesCenter" destination="beta_info">Referral Center</a></li>
-              <li><a id="menuUserClassification"   destination="beta_info">Classification</a></li-->
-              <!--<li><a id="menuUserAyuda"            destination="help_info">How It Works</a></li>-->
-              <li><a id="menuUserLogOut"           destination="logout">LogOut</a></li>
+              <li><a id="menuUserMyAccount"        destination="user_profile">${StringUtils.Translate("myaccount", "mainmenu")}</a></li>
+              <li id="userBalanceIn"><a id="menuUserAddFunds-sm" destination="add_funds">${StringUtils.Translate("addfunds", "mainmenu")}</a></li>
+              <li><a id="menuUserHistory"          destination="transaction_history">${StringUtils.Translate("transactions", "mainmenu")}</a></li>
+              <!--li><a id="menuUserReferencesCenter" destination="beta_info">${StringUtils.Translate("referral", "mainmenu")}</a></li>
+              <li><a id="menuUserClassification"   destination="beta_info">${StringUtils.Translate("classification", "mainmenu")}</a></li-->
+              <!--<li><a id="menuUserAyuda"            destination="help_info">${StringUtils.Translate("howitworks2", "mainmenu")}</a></li>-->
+              <li><a id="menuUserLogOut"           destination="logout">${StringUtils.Translate("logout", "mainmenu")}</a></li>
             </ul>
           </li>
           
           <li id="userBalanceOut-xs" class="right-menu">
-            <a id="menuUserAddFunds-xs" destination="add_funds">ADD FUNDS <span class="current-balance">${_userBalance}</span></a>            
+            <a id="menuUserAddFunds-xs" destination="add_funds">${StringUtils.Translate("buttonaddfunds", "mainmenu")} <span class="current-balance">${_userBalance}</span></a>            
           </li>
         </ul>
       </div>

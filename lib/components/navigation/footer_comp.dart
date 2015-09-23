@@ -10,6 +10,7 @@ import 'package:webclient/utils/html_utils.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/profile_service.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 
 @Component(
@@ -47,10 +48,10 @@ class FooterComp implements ShadowRootAware {
           </div>
   
           <div class="data-wrapper">
-            <a class="goto-link" id="footerHelp" destination="help_info">           <span class="sub-footer-help-link">HELP</span></a>
-            <a class="goto-link" id="footerLegal" destination="legal_info">         <span class="sub-footer-legal-link">LEGAL</span></a>
-            <a class="goto-link" id="footerTermsOfUse" destination="terminus_info"> <span class="sub-footer-terms-link">TERMS<span> OF USE</span></span></a>
-            <a class="goto-link" id="footerPrivacyPolicy" destination="policy_info"><span class="sub-footer-policy-link">PRIVACY<span> POLICY</span></span></a>
+            <a class="goto-link" id="footerHelp" destination="help_info">           <span class="sub-footer-help-link">${StringUtils.Translate("help", "footer")}</span></a>
+            <a class="goto-link" id="footerLegal" destination="legal_info">         <span class="sub-footer-legal-link">${StringUtils.Translate("legal", "footer")}</span></a>
+            <a class="goto-link" id="footerTermsOfUse" destination="terminus_info"> <span class="sub-footer-terms-link">${StringUtils.Translate("terms", "footer")}</span></a>
+            <a class="goto-link" id="footerPrivacyPolicy" destination="policy_info"><span class="sub-footer-policy-link">${StringUtils.Translate("privacy", "footer")}</span></a>
             <a class="goto-link" id="footerBlog" target="_blank" href="http://halftime.epiceleven.com"><span class="sub-footer-blog-link">BLOG</span></a>
           </div>
   

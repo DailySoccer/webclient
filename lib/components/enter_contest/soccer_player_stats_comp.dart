@@ -1,4 +1,4 @@
-library soccer_player_stats_comp;
+ library soccer_player_stats_comp;
 
 import 'dart:html';
 
@@ -39,26 +39,57 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
   String get printableSalary => StringUtils.parseSalary(currentInfoData['salary']);
 
   //Listas para las estadísticas ordenadas
-  static List<String> goalKeeperStatsList   = ["GOLES_ENCAJADOS", "PARADAS", "DESPEJES", "PENALTIS_DETENIDOS", "PASES", "RECUPERACIONES", "PERDIDAS_BALON", "FALTAS_COMETIDAS", "TARJETAS_AMARILLAS", "TARJETAS_ROJAS"];
-  static List<String> commonPlayerStatsList = ["GOLES", "TIROS", "PASES", "ASISTENCIAS", "REGATES", "RECUPERACIONES", "PERDIDAS_BALON", "FALTAS_COMETIDAS", "FALTAS_RECIBIDAS", "TARJETAS_AMARILLAS", "TARJETAS_ROJAS"];
+  static List<String> get goalKeeperStatsList   => [
+    GetCodeData("keygoalsconceded"),
+    GetCodeData("keysaves"),
+    GetCodeData("keyclearances"),
+    GetCodeData("keypenaltiessaved"),
+    GetCodeData("keypasses"),
+    GetCodeData("keyrecovers"),
+    GetCodeData("keyposslost"),
+    GetCodeData("keyfoulscommited"),
+    GetCodeData("keyyellowcards"),
+    GetCodeData("keyredcards")
+  ];
 
-  Map mappedFieldNames = {
-                "PASES"               : {"shortName" : "P",  "description" : 'Passes'},
-                "RECUPERACIONES"      : {"shortName" : "R", "description" : 'Recoveries'},
-                "PERDIDAS_BALON"      : {"shortName" : "PL", "description" : 'Possession lost'},
-                "FALTAS_COMETIDAS"    : {"shortName" : "F", "description" : 'Fouls Committed'},
-                "TARJETAS_AMARILLAS"  : {"shortName" : "YC", "description" : 'Yellow Cards'},
-                "TARJETAS_ROJAS"      : {"shortName" : "RC", "description" : 'Red Cards'},
-                "GOLES_ENCAJADOS"     : {"shortName" : "GC", "description" : 'Goals Conceded'},
-                "PARADAS"             : {"shortName" : "S", "description" : 'Saves'},
-                "DESPEJES"            : {"shortName" : "C",  "description" : 'Clearances'},
-                "PENALTIS_DETENIDOS"  : {"shortName" : "PS", "description" : 'Penalties Saved'},
-                "GOLES"               : {"shortName" : "G",  "description" : 'Goals'},
-                "TIROS"               : {"shortName" : "SH",  "description" : 'Shots'},
-                "ASISTENCIAS"         : {"shortName" : "CH",  "description" : 'Chances Created'},
-                "REGATES"             : {"shortName" : "T",  "description" : 'Take-ons'},
-                "FALTAS_RECIBIDAS"    : {"shortName" : "FC", "description" : 'Fouls Conceded'}
+  static List<String> get commonPlayerStatsList => [
+    GetCodeData("keygoals"),
+    GetCodeData("keyshots") ,
+    GetCodeData("keypasses"),
+    GetCodeData("keychancescreated"),
+    GetCodeData("keytakeons") ,
+    GetCodeData("keyrecovers"),
+    GetCodeData("keyposslost"),
+    GetCodeData("keyfoulscommited"),
+    GetCodeData("keyfoulsconceded"),
+    GetCodeData("keyyellowcards"),
+    GetCodeData("keyredcards")
+  ];
+
+  Map get mappedFieldNames => {
+    GetCodeData("keypasses")          : {"shortName" : GetCodeData("abrevpasses"),        "description" : GetCodeData("descpasses")},
+    GetCodeData("keyrecovers")        : {"shortName" : GetCodeData("abrevrecovers"),      "description" : GetCodeData("descrecovers")},
+    GetCodeData("keyposslost")        : {"shortName" : GetCodeData("abrevposslost"),      "description" : GetCodeData("descposslost")},
+    GetCodeData("keyfoulscommited")   : {"shortName" : GetCodeData("abrevfoulscommited"), "description" : GetCodeData("descfoulscommited")},
+    GetCodeData("keyyellowcards")     : {"shortName" : GetCodeData("abrevyellowcards"),   "description" : GetCodeData("descyellowcards")},
+    GetCodeData("keyredcards")        : {"shortName" : GetCodeData("abrevredcards"),      "description" : GetCodeData("descredcards")},
+    GetCodeData("keygoalsconceded")   : {"shortName" : GetCodeData("abrevgoalsconceded"), "description" : GetCodeData("descgoalsconceded")},
+    GetCodeData("keysaves")           : {"shortName" : GetCodeData("abrevsaves"),         "description" : GetCodeData("descsaves")},
+    GetCodeData("keyclearances")      : {"shortName" : GetCodeData("abrevclearances"),    "description" : GetCodeData("descclearances")},
+    GetCodeData("keypenaltiessaved")  : {"shortName" : GetCodeData("abrevpenaltiessaved"),"description" : GetCodeData("descpenaltiessaved")},
+    GetCodeData("keygoals")           : {"shortName" : GetCodeData("abrevgoals"),         "description" : GetCodeData("descgoals")},
+    GetCodeData("keyshots")           : {"shortName" : GetCodeData("abrevshots"),         "description" : GetCodeData("descshots")},
+    GetCodeData("keychancescreated")  : {"shortName" : GetCodeData("abrevchancescreated"),"description" : GetCodeData("descchancescreated")},
+    GetCodeData("keytakeons")         : {"shortName" : GetCodeData("abrevtakeons") ,      "description" : GetCodeData("desctakeons") },
+    GetCodeData("keyfoulsconceded")   : {"shortName" : GetCodeData("abrevfoulsconceded"), "description" : GetCodeData("descfoulsconceded")}
   };
+
+  static String GetCodeData(String key) {
+    return StringUtils.Translate(key, "soccerplayerstats");
+  }
+  String GetLocalizedText(String key) {
+    return StringUtils.Translate(key, "soccerplayerstats");
+  }
 
   SoccerPlayerStatsComp(this._flashMessage, this.scrDet, this._soccerPlayerService, RouteProvider routeProvider, Router router, this._rootElement) {
 

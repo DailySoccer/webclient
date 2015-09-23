@@ -10,6 +10,7 @@ import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/profile_service.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 @Component(
   selector: 'lobby',
@@ -54,7 +55,7 @@ class LobbyComp implements DetachAware {
   /********* METHODS */
   void _calculateInfoBarText() {
     Contest nextContest = contestsService.getAvailableNextContest();
-    infoBarText = nextContest == null? "" : "NEXT CONTEST: ${nextContest.name.toUpperCase()} - ${_calculateTimeToNextTournament()}";
+    infoBarText = nextContest == null? "" : "${StringUtils.Translate("nextcontest", "lobby")}: ${nextContest.name.toUpperCase()} - ${_calculateTimeToNextTournament()}";
   }
 
   String _calculateTimeToNextTournament() {

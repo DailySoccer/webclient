@@ -29,6 +29,10 @@ class ScoringRulesComp {
       .catchError((ServerError error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW), test: (error) => error is ServerError);
   }
 
+  String GetLocalizedText(key) {
+    return StringUtils.Translate(key, "scoringrules");
+  }
+
   String getClassesIsNegative(String points) {
     return ( points == null || num.parse(points.replaceFirst(",", ".")) < 0 ) ? "negative": "";
   }

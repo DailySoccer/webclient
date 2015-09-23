@@ -1,6 +1,7 @@
 library restricted_comp;
 
 import 'package:angular/angular.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 @Component(
     selector: 'restricted-comp',
@@ -8,6 +9,11 @@ import 'package:angular/angular.dart';
     useShadowDom: false
 )
 class RestrictedComp {
+
+  String GetLocalizedText(key) {
+    return StringUtils.Translate(key, "restricted");
+  }
+
   RestrictedComp(this._router);
 
   void backToLobby() {

@@ -10,6 +10,7 @@ import 'package:webclient/models/contest.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/services/server_error.dart';
 import 'dart:async';
+import 'package:webclient/utils/string_utils.dart';
 
 @Component(
   selector: 'my-contests',
@@ -32,22 +33,22 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
     if (loadingService.isLoading)
       return "";
 
-    return hasLiveContests? "${contestsService.liveContests.length} LIVE CONTESTS" :
-                            "YOU CAN CHECK YOUR LIVE CONTESTS HERE";
+    return hasLiveContests? "${contestsService.liveContests.length} ${GetLocalizedText("hasLivecontests1")}" :
+                             GetLocalizedText("hasLivecontests2");
   }
   String get waitingContestsMessage {
     if (loadingService.isLoading)
       return "";
 
-    return hasWaitingContests ? "YOU HAVE ENTERED ${contestsService.waitingContests.length} CONTESTS" :
-                                "HERE YOU CAN CHECK YOUR CONTESTS AND EDIT YOUR LINEUPS";
+    return hasWaitingContests ? "${GetLocalizedText("haswaitingcontests1")} ${contestsService.waitingContests.length} ${GetLocalizedText("haswaitingcontests2")}" :
+                                 GetLocalizedText("haswaitingcontests3");
   }
   String get historyContestsMessage {
     if (loadingService.isLoading)
       return "";
 
-    return hasHistoryContests? "${contestsService.historyContests.length} ENTRIES ${totalHistoryContestsWinner} WON" :
-                               "HERE YOU CAN CHECK YOUR PAST CONTESTS: LINEUPS, CONTENDERS, SCORES…";
+    return hasHistoryContests? "${contestsService.historyContests.length} ${GetLocalizedText("hasHistoryContests1")} ${totalHistoryContestsWinner} ${GetLocalizedText("hasHistoryContests2")}" :
+                                GetLocalizedText("hasHistoryContests3");
   }
 
   num get numLiveContests => _numLiveContests;
@@ -58,6 +59,10 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
 
   int get totalHistoryContestsWinner => contestsService.historyContests.fold(0, (prev, contest) => (contest.getContestEntryWithUser(_profileService.user.userId).position == 0) ? prev+1 : prev);
   int get totalHistoryContestsPrizes => contestsService.historyContests.fold(0, (prev, contest) => prev + contest.getContestEntryWithUser(_profileService.user.userId).prize);
+
+  String GetLocalizedText(key) {
+    return StringUtils.Translate(key, "mycontest");
+  }
 
   MyContestsComp(this.loadingService, this._profileService, this._refreshTimersService, this.contestsService, this._router, this._routeProvider, this._flashMessage, this._rootElement) {
 

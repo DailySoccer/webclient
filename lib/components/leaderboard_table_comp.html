@@ -1,0 +1,18 @@
+<div class="leaderboard-table">
+  <div class="leaderboard-table-header" ng-show="isHeaded">
+    <div class="leaderboard-table-element">
+      <span class="leaderboard-column leaderboard-table-position">Pos.</span>
+      <span class="leaderboard-column leaderboard-table-name">Name</span>
+      <span class="leaderboard-column leaderboard-table-hint"> </span>
+      <span class="leaderboard-column leaderboard-table-skillpoints">{{pointsColumnName}}</span>
+    </div>
+  </div>
+  <div class="leaderboard-table-data">
+    <div class="leaderboard-table-element {{isThePlayer(element['id'])? 'player-position' : ''}}" ng-repeat="element in tableElements">
+      <span class="leaderboard-column leaderboard-table-position">{{element['position']}} </span>
+      <span class="leaderboard-column leaderboard-table-name">{{element['name']}} </span>
+      <span class="leaderboard-column leaderboard-table-hint">{{isThePlayer(element['id'])? playerHint : ''}} </span>
+      <span class="leaderboard-column leaderboard-table-skillpoints">{{element['points']}} </span>
+    </div>
+  </div>
+</div>

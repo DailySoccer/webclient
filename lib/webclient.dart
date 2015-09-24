@@ -43,6 +43,8 @@ import 'package:webclient/components/contests_list_comp.dart';
 import 'package:webclient/components/contest_info_comp.dart';
 import 'package:webclient/components/scoring_rules_comp.dart';
 import 'package:webclient/components/contest_header_comp.dart';
+import 'package:webclient/components/leaderboard_comp.dart';
+import 'package:webclient/components/leaderboard_table_comp.dart';
 
 import 'package:webclient/components/account/login_comp.dart';
 import 'package:webclient/components/account/join_comp.dart';
@@ -145,6 +147,8 @@ class WebClientApp extends Module {
     bind(SimplePromoViewerComp);
     bind(PaginatorComp);
     bind(ContestFiltersComp);
+    bind(LeaderboardComp);
+    bind(LeaderboardTableComp);
 
     bind(ContestHeaderComp);
     bind(ContestInfoComp);
@@ -369,6 +373,11 @@ class WebClientApp extends Module {
         path: '/view_promo/:promoId',
         preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
         viewHtml: '''<simple-promo-viewer></simple-promo-viewer>'''
+      )
+      ,'leaderboard': ngRoute(
+        path: '/leaderboard',
+        preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
+        viewHtml: '''<leaderboard></leaderboard>'''
       )
     });
   }

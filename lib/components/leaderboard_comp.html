@@ -1,0 +1,54 @@
+<div id="leaderboard-wrapper">
+
+  <div id="leaderboard-header-wrapper">
+
+    <h1>Ranking</h1>
+    <div class="rankings-wrapper">
+      <div class="ranking ranking-by-points">
+        <span class="ranking-position">{{playerPointsInfo['position']}}º</span>
+        <div class="ranking-info">
+          <span class="ranking-name">Top Points</span>
+          <span class="ranking-value">{{playerPointsInfo['points']}} ptos</span>
+        </div>
+      </div>
+  
+      <div class="ranking ranking-by-money">
+        <span class="ranking-position">{{playerMoneyInfo['position']}}º</span>
+        <div class="ranking-info">
+          <span class="ranking-name">Top Money</span>
+          <span class="ranking-value">{{playerMoneyInfo['points']}} $</span>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+
+  </div>
+
+  <div class="clearfix"></div>
+
+
+  <ul class="leaderboard-tabs" role="tablist">
+    <li class="active"><a class="leaderboard-tab top-points-tab" role="tab" data-toggle="tab" ng-click="tabChange('top-points')">Top Vacilones</a></li>
+    <li><a class="leaderboard-tab top-money-tab" role="tab" data-toggle="tab" ng-click="tabChange('top-money')">Top Mandones</a></li>
+  </ul>
+  
+  <div class="tabs">
+    <div class="tab-content">
+
+      <!-- LIVE CONTESTS -->
+      <div class="tab-pane active" id="top-points">      
+        
+        <leaderboard-table show-header="true" table-elements="pointsUserList" points-column-label="pointsColumnName" hint="playerPointsHint"></leaderboard-table>
+        
+      </div>
+
+      <!-- WAITING CONTESTS -->
+      <div class="tab-pane" id="top-money">
+
+        <leaderboard-table show-header="true" table-elements="moneyUserList" points-column-label="moneyColumnName" hint="playerMoneyHint"></leaderboard-table>
+      </div>
+    </div>
+  </div>
+
+
+</div>

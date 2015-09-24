@@ -2,6 +2,8 @@ library leaderboard_comp;
 
 import 'dart:html';
 import 'package:angular/angular.dart';
+import 'package:webclient/services/leaderboard_service.dart';
+import 'package:webclient/models/user.dart';
 
 
 @Component(
@@ -18,7 +20,7 @@ class LeaderboardComp {
   String playerPointsHint = 'Eres un crack!!';
   String playerMoneyHint = 'Paquete';
   bool isThePlayer(id) => id == '123b'/*get del singleton*/;
-  
+
   List<Map> pointsUserList = [
     {'position':'1', 'id':'123',  'name': 'Juan Carlos Ruiz', 'points': '3527'},
     {'position':'2', 'id':'123s', 'name': 'Rodrigo Lara',     'points': '3333'},
@@ -39,29 +41,32 @@ class LeaderboardComp {
 
   Map playerPointsCache = null;
   Map playerMoneyCache = null;
-  
-  LeaderboardComp () {
+
+  LeaderboardComp (LeaderboardService leaderboardService) {
+    leaderboardService.getUsers()
+      .then((List<User> users) {
+        print("Users: ${users.length}");
+      });
   }
-  
-  
+
   void tabChange(String tab) {
     querySelectorAll("#leaderboard-wrapper .tab-pane").classes.remove('active');
     querySelector("#${tab}").classes.add("active");
   }
-  
+
   Map get playerPointsInfo {
     if (playerPointsCache == null) {
       playerPointsCache = pointsUserList.firstWhere( (u) => isThePlayer(u['id']));
     }
     return playerPointsCache;
   }
-  
+
   Map get playerMoneyInfo {
     if (playerMoneyCache == null) {
       playerMoneyCache = moneyUserList.firstWhere( (u) => isThePlayer(u['id']));
     }
     return playerMoneyCache;
   }
-  
-  
+
+
 }

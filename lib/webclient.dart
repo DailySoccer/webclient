@@ -17,6 +17,7 @@ import 'package:webclient/services/contests_service.dart';
 import 'package:webclient/services/soccer_player_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/scoring_rules_service.dart';
+import 'package:webclient/services/leaderboard_service.dart';
 import 'package:webclient/services/payment_service.dart';
 import 'package:webclient/services/prizes_service.dart';
 import 'package:webclient/services/promos_service.dart';
@@ -124,6 +125,7 @@ class WebClientApp extends Module {
     bind(ContestsService);
     bind(SoccerPlayerService);
     bind(ScoringRulesService);
+    bind(LeaderboardService);
     bind(PaymentService);
     bind(PrizesService);
 

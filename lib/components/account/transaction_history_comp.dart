@@ -3,6 +3,7 @@ library transaction_history_comp;
 import 'package:angular/angular.dart';
 import 'package:webclient/models/transaction_info.dart';
 import 'package:webclient/services/profile_service.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 @Component(
     selector: 'transaction-history',
@@ -17,6 +18,10 @@ class TransactionHistoryComp {
 
   int _itemsPerPage   = 0;
   int _currentPage    = 0;
+
+  String getLocalizedText(key) {
+    return StringUtils.translate(key, "transactionhistory");
+  }
 
   TransactionHistoryComp(this._router, this._profileService) {
     _profileService.getTransactionHistory()

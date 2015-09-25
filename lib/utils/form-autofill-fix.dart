@@ -32,7 +32,7 @@ class FormAutofillDecorator {
 
   void forceInputActivity() {
     // Buscar todos los controles 'inputs'
-    List<InputElement> inputs = formElement.querySelectorAll('input');
+    List<InputElement> inputs = formElement.querySelectorAll('input') as List<InputElement>;
     for (var input in inputs) {
       // Indicar al input que ha cambiado (por si acaso = "autocomplete form")
       //print("event Change: ${input.id}");

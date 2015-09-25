@@ -73,6 +73,14 @@ class EnterContestComp implements DetachAware {
 
   List<String> lineupAlertList = [];
 
+  String getLocalizedText(key) {
+    return StringUtils.translate(key, "entercontest");
+  }
+
+  String formatCurrency(String amount) {
+    return StringUtils.formatCurrency(amount);
+  }
+
   EnterContestComp(this._routeProvider, this._router, this.scrDet, this._contestsService, this.loadingService, this._profileService, this._flashMessage, this._rootElement) {
     loadingService.isLoading = true;
     scrDet.scrollTo('#mainApp');
@@ -141,7 +149,7 @@ class EnterContestComp implements DetachAware {
     bool isLineupEmpty = !lineupSlots.any((soccerPlayer) => soccerPlayer != null);
     // Si no hemos metido a nadie en nuestro equipo
     if(!isLineupEmpty && !_teamConfirmed && !editingContestEntry) {
-      _flashMessage.addGlobalMessage("Lineup saved", 3);
+      _flashMessage.addGlobalMessage(StringUtils.translate("lineupsavedmsg", "entercontest"), 3);
     }else {
       event.allowLeave(new Future<bool>.value(true));
       return;

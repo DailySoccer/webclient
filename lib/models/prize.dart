@@ -1,5 +1,6 @@
 library prize;
 import 'package:webclient/models/money.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 class Prize {
   // Tipos de Premios (obtenidos del backend)
@@ -10,11 +11,11 @@ class Prize {
   static const FIFTY_FIFTY  = "FIFTY_FIFTY";
 
   static Map<String, String> typeNames = {
-    FREE: "Free contest. No prizes", //"Free",
-    WINNER: "Winner takes all", //"Winner takes all",
-    TOP_3: "First 3 get prizes", //"Top 3 get prizes",
-    TOP_THIRD: "First # get prizes",// "El tercio superior de concursantes reciben premio", //Top third get prizes",
-    FIFTY_FIFTY: "First # get prizes",// "La mitad superior de concursantes reciben premio", //"50/50"
+    FREE: StringUtils.translate("free", "prizes"), //"Free",
+    WINNER: StringUtils.translate("winnertakesall", "prizes"), //"Winner takes all",
+    TOP_3: StringUtils.translate("first3", "prizes"), //"Top 3 get prizes",
+    TOP_THIRD: StringUtils.translate("firstthird", "prizes"),// "El tercio superior de concursantes reciben premio", //Top third get prizes",
+    FIFTY_FIFTY: StringUtils.translate("fifty", "prizes")// "La mitad superior de concursantes reciben premio", //"50/50"
   };
 
   String prizeType;

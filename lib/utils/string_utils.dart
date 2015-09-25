@@ -1,5 +1,6 @@
 library string_utils;
 import 'package:intl/intl.dart';
+import 'package:webclient/utils/translate_config.dart';
 
 class StringUtils {
 
@@ -53,4 +54,26 @@ class StringUtils {
     return result;
   }
 
+  static String translate(String key, String theGroup) {
+    return config.translate(key, group:theGroup);
+  }
+
+  static String getDatePattern(String pattern) {
+      return config.translate(pattern, group:"date");
+  }
+
+  static String getLocale() {
+    return config.translate("locale");
+  }
+
+  static String formatCurrency(String amount) {
+    String currency = config.translate("currency");
+    String value = "";
+
+    if (currency == '\$') {
+      return currency + amount;
+    }
+
+    return  value = amount + currency;
+  }
 }

@@ -5,6 +5,7 @@ import 'package:webclient/webclient.dart';
 import 'package:webclient/logger_exception_handler.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/utils/uri_utils.dart';
+import 'package:webclient/utils/translate_config.dart';
 
 
 
@@ -12,10 +13,13 @@ void main() {
 
   try {
     LoggerExceptionHandler.setUpLogger();
+    TranslateConfig.initialize().then((value) {
+        config = value;
+        clearQueryStrings();
 
-    clearQueryStrings();
+        applicationFactory().addModule(new WebClientApp()).run();
+      });
 
-    applicationFactory().addModule(new WebClientApp()).run();
   }
   catch (exc, stackTrace) {
     LoggerExceptionHandler.logExceptionToServer(exc, stackTrace);

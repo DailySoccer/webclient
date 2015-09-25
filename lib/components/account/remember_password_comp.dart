@@ -23,6 +23,10 @@ class RememberPasswordComp implements ShadowRootAware{
   String state = STATE_REQUEST;
   bool get enabledSubmit => StringUtils.isValidEmail(email) && _enabledSubmit;
 
+  String getLocalizedText(key) {
+    return StringUtils.translate(key, "rememberpass");
+  }
+
   RememberPasswordComp(this._router, this._profileManager, this.loadingService, this._serverService, this._rootElement);
 
   void navigateTo(String route, Map parameters, event)

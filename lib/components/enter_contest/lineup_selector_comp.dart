@@ -22,6 +22,11 @@ class LineupSelectorComp {
 
   String get MAX_PLAYERS_SAME_TEAM => Contest.MAX_PLAYERS_SAME_TEAM.toString();
 
+  String getLocalizedText(key) {
+    return StringUtils.translate(key, "lineupselector")
+        .replaceAll("@MAX_PLAYERS_SAME_TEAM", MAX_PLAYERS_SAME_TEAM);
+  }
+
   EnterContestComp enterContestComp;
 
   LineupSelectorComp(this.enterContestComp);
@@ -34,9 +39,14 @@ class LineupSelectorComp {
 
   // Cuando el slot esta libre, ponemos un texto alternativo + posicion del jugador
   String getSlotPosition(int slotIndex) => FieldPos.FIELD_POSITION_ABREV[FieldPos.LINEUP[slotIndex]];
-  String getSlotDescription(int slotIndex) => "ADD " + FieldPos.FIELD_POSITION_FULL_NAMES[FieldPos.LINEUP[slotIndex]];
+  String getSlotDescription(int slotIndex) => getLocalizedText("add") + FieldPos.FIELD_POSITION_FULL_NAMES[FieldPos.LINEUP[slotIndex]];
 
   String getPrintableSalary(int salary) => StringUtils.parseSalary(salary);
 
-  static final Map<String, String> _POS_CLASS_NAMES = { "GK": "posPOR", "DEF": "posDEF", "MID": "posMED", "FWD": "posDEL" };
+  static final Map<String, String> _POS_CLASS_NAMES = {
+    StringUtils.translate("gk", "soccerplayerpositions") : "posPOR",
+    StringUtils.translate("def", "soccerplayerpositions"): "posDEF",
+    StringUtils.translate("mid", "soccerplayerpositions"): "posMED",
+    StringUtils.translate("for", "soccerplayerpositions"): "posDEL"
+  };
 }

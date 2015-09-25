@@ -4,6 +4,7 @@ import 'package:angular/angular.dart';
 import 'dart:html';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/profile_service.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 @Component(
   selector: 'welcome',
@@ -12,6 +13,11 @@ import 'package:webclient/services/profile_service.dart';
 class WelcomeComp {
   String stage;
   Map stage_params;
+
+  String getLocalizedText(key) {
+    return StringUtils.translate(key, "welcome");
+  }
+
   WelcomeComp(this._rootElement, this._router, this._reouteProvider, this._scrDet, this._profileService) {
     stage = _reouteProvider.route.parent.name;
     stage_params = _reouteProvider.route.parameters;
@@ -63,13 +69,13 @@ class WelcomeComp {
     String title;
     switch(stage) {
       case 'lobby':
-        title ='SELECT A CONTEST';
+        title = getLocalizedText("tutorialtittlelobby");
       break;
       case 'enter_contest':
-        title ='SELECT YOUR LINEUP';
+        title = getLocalizedText("tutorialtittleentercontest");
       break;
       case 'view_contest_entry':
-        title ='WELCOME TO EPICELEVEN';
+        title = getLocalizedText("tutorialtittleviewcontestentry");
       break;
     }
     return title;
@@ -79,13 +85,13 @@ class WelcomeComp {
     String text;
     switch(stage) {
       case 'lobby':
-        text ='You can play as many contests as you like for La Liga BBVA, Barclays Premier League and UEFA Champions League.';
+        text = getLocalizedText("tutorialtextlobby");
       break;
       case 'enter_contest':
-        text ='Pick up 11 player within your salary cap.';
+        text = getLocalizedText("tutorialtextentercontest");
       break;
       case 'view_contest_entry':
-        text ='Go to “<b>My Contest</b>” to edit your lineups, watch your team’s live performance or review past contests. <br> <br> <p class="subtitle">Remember: you can play as many contests as you like, and select as many lineups as you like.</p>';
+        text = getLocalizedText("tutorialtextviewcontestentry");
       break;
     }
     return text;

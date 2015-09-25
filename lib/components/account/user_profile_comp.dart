@@ -2,6 +2,7 @@ library user_profile_comp;
 
 import 'package:angular/angular.dart';
 import 'package:webclient/services/profile_service.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 @Component(
     selector: 'user-profile',
@@ -11,8 +12,12 @@ import 'package:webclient/services/profile_service.dart';
 class UserProfileComp {
 
   bool isEditingProfile = false;
-  
+
   dynamic get userData => _profileManager.user;
+
+  String getLocalizedText(key) {
+    return StringUtils.translate(key, "userprofile");
+  }
 
   UserProfileComp(this._router, this._profileManager);
 
@@ -27,15 +32,15 @@ class UserProfileComp {
   void goTransactions() {
     _router.go('transaction_history', {});
   }
-  
+
   void goAddFounds() {
     _router.go('add_funds', {});
   }
-  
+
   void goWithdrawFounds() {
     _router.go('withdraw_funds', {});
   }
-  
+
   ProfileService _profileManager;
   Router _router;
 }

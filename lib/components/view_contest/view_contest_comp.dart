@@ -39,13 +39,13 @@ class ViewContestComp implements DetachAware {
   List<ContestEntry> get contestEntries => (contest != null) ? contest.contestEntries : null;
   List<ContestEntry> get contestEntriesOrderByPoints => (contest != null) ? contest.contestEntriesOrderByPoints : null;
 
-  String GetLocalizedText(key) {
-    return StringUtils.Translate(key, "viewcontest");
+  String getLocalizedText(key) {
+    return StringUtils.translate(key, "viewcontest");
   }
 
   ViewContestComp(this._routeProvider, this.scrDet, this._refreshTimersService, this._contestsService, this._profileService, this._flashMessage, this.loadingService) {
     loadingService.isLoading = true;
-    lastOpponentSelected = GetLocalizedText("opponent");
+    lastOpponentSelected = getLocalizedText("opponent");
 
     contestId = _routeProvider.route.parameters['contestId'];
 

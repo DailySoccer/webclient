@@ -1,29 +1,29 @@
 <div id="personalDataContent" ng-show="!loadingService.isLoading" ng-cloack>
 
   <div class="edit-personal-data-header">
-    <span class="header-title">{{GetLocalizedText("title")}}</span>
+    <span class="header-title">{{getLocalizedText("title")}}</span>
   </div>
   <form id="editPersonalDataForm" class="form-horizontal" ng-submit="saveChanges()" role="form" autocomplete="off">
     <div class="content">
       <!-- Nombre -->
       <div class="content-field">
-        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">{{GetLocalizedText("name")}}</span></div>
+        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">{{getLocalizedText("name")}}</span></div>
         <div class="control-wrapper">
-          <input id="txtName" type="text" ng-model="editedFirstName" placeholder="{{GetLocalizedText('name')}}" class="form-control"  tabindex="1">
+          <input id="txtName" type="text" ng-model="editedFirstName" placeholder="{{getLocalizedText('name')}}" class="form-control"  tabindex="1">
         </div>
       </div>
       <!-- Apelidos -->
       <div class="content-field">
-        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">{{GetLocalizedText("lastname")}}</span></div>
+        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">{{getLocalizedText("lastname")}}</span></div>
         <div class="control-wrapper">
-          <input id="txtLastName" type="text" ng-model="editedLastName" placeholder="{{GetLocalizedText('lastname')}}" class="form-control" tabindex="2">
+          <input id="txtLastName" type="text" ng-model="editedLastName" placeholder="{{getLocalizedText('lastname')}}" class="form-control" tabindex="2">
         </div>
       </div>
       <!-- Nickname -->
       <div class="content-field">
-        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">{{GetLocalizedText("username")}}</span></div>
+        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">{{getLocalizedText("username")}}</span></div>
         <div class="control-wrapper">
-          <input id="txtNickName" type="text" ng-model="editedNickName" placeholder="{{GetLocalizedText('username')}}" class="form-control" tabindex="3" autocapitalize="off">
+          <input id="txtNickName" type="text" ng-model="editedNickName" placeholder="{{getLocalizedText('username')}}" class="form-control" tabindex="3" autocapitalize="off">
         </div>
         <!-- Error de nickName -->
         <div id="nickNameErrorContainer" class="content-field-block">
@@ -33,9 +33,9 @@
 
       <!-- Correo Electrónico -->
       <div class="content-field">
-        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">{{GetLocalizedText("mail")}}</span></div>
+        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">{{getLocalizedText("mail")}}</span></div>
         <div class="control-wrapper">
-          <input id="txtEmail" type="email" ng-model="editedEmail" placeholder="{{GetLocalizedText('mail')}}" class="form-control" tabindex="4" autocapitalize="off">
+          <input id="txtEmail" type="email" ng-model="editedEmail" placeholder="{{getLocalizedText('mail')}}" class="form-control" tabindex="4" autocapitalize="off">
         </div>
         <!-- Error de mail -->
         <div id="emailErrorContainer" class="content-field-block">
@@ -45,15 +45,15 @@
 
       <!-- Label Contraseña -->
       <div class="content-field-block">
-        <div class="control-wrapper"><span id="lblPassword" class="text-label">{{GetLocalizedText("passrequires")}}</span></div>
+        <div class="control-wrapper"><span id="lblPassword" class="text-label">{{getLocalizedText("passrequires")}}</span></div>
       </div>
       <!-- Contraseña -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtPassword" type="password" ng-model="editedPassword" placeholder="{{GetLocalizedText('pass')}}" class="form-control" tabindex="5" autocapitalize="off"></div>
+        <div class="control-wrapper"><input id="txtPassword" type="password" ng-model="editedPassword" placeholder="{{getLocalizedText('pass')}}" class="form-control" tabindex="5" autocapitalize="off"></div>
       </div>
       <!-- Repetir Contraseña -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtRepeatPassword" type="password" ng-model="editedRepeatPassword" placeholder="{{GetLocalizedText('repass')}}" class="form-control" tabindex="6" autocapitalize="off"></div>
+        <div class="control-wrapper"><input id="txtRepeatPassword" type="password" ng-model="editedRepeatPassword" placeholder="{{getLocalizedText('repass')}}" class="form-control" tabindex="6" autocapitalize="off"></div>
       </div>
 
       <!-- Error de contraseñas -->
@@ -76,23 +76,23 @@
        -->
     </div>
   <!-- Notificaciones -->
-    <div class="header">{{GetLocalizedText("notifications")}}</div>
+    <div class="header">{{getLocalizedText("notifications")}}</div>
     <div class="subscriptions-content">
 
       <div class="content-field-block">
 
         <div class="subscription-wrapper">
-          <div class="subscription-label">{{GetLocalizedText("newletternotifications")}}</div>
+          <div class="subscription-label">{{getLocalizedText("newletternotifications")}}</div>
           <div class="check-wrapper"> <input type="checkbox" id="inputNewsletter" name="switchNewsletter"> </div>
         </div>
 
         <div class="subscription-wrapper">
-          <div class="subscription-label">{{GetLocalizedText("gamenotifications")}}</div>
+          <div class="subscription-label">{{getLocalizedText("gamenotifications")}}</div>
           <div class="check-wrapper"> <input type="checkbox" name="switchGameAlerts"> </div>
         </div>
 
         <div class="subscription-wrapper">
-          <div class="subscription-label">{{GetLocalizedText("transfernotifications")}}</div>
+          <div class="subscription-label">{{getLocalizedText("transfernotifications")}}</div>
           <div class="check-wrapper"> <input type="checkbox" name="switchsoccerPlayerAlerts"> </div>
         </div>
 
@@ -102,10 +102,10 @@
 
     <div class="save-changes-content">
       <div class="forms-wrapper-button">
-        <button id="btnSubmit" class="action-button-save" type="submit">{{GetLocalizedText("buttonsave")}}</button>
+        <button id="btnSubmit" class="action-button-save" type="submit">{{getLocalizedText("buttonsave")}}</button>
       </div>
       <div class="forms-wrapper-button">
-        <button id="btnSubmit" class="action-button-cancel" ng-click="exit($event)">{{GetLocalizedText("buttoncancel")}}</button>
+        <button id="btnSubmit" class="action-button-cancel" ng-click="exit($event)">{{getLocalizedText("buttoncancel")}}</button>
       </div>
     </div>
 

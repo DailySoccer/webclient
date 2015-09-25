@@ -20,8 +20,8 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
   int get screenHeight => window.innerHeight -70 - 122;
 
 
-  String GetLocalizedText(key) {
-    return StringUtils.Translate(key, "landing");
+  String getLocalizedText(key) {
+    return StringUtils.translate(key, "landing");
   }
 
   LandingPage1SlideComp(this._router, this._profileService, this.scrDet, this._loadingService, this._rootElement) {
@@ -96,23 +96,23 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
               <div id="desktopContent">    
                 <div class="main-title-wrapper">
             
-                  <div class="main-title">${GetLocalizedText("title")}</div>
-                  <div class="main-sub-title">${GetLocalizedText("subtitle")}</div>
+                  <div class="main-title">${getLocalizedText("title")}</div>
+                  <div class="main-sub-title">${getLocalizedText("subtitle")}</div>
                   <div class="button-wrap">
-                    <button type="button" class="button-play" buttonOnclick="lobby.welcome" id="playButton1">${GetLocalizedText("buttonplay")}</button>
+                    <button type="button" class="button-play" buttonOnclick="lobby.welcome" id="playButton1">${getLocalizedText("buttonplay")}</button>
                   </div>
                   <div class="text-wrapper">
             
                     <div class="module-column">
-                      <p class="icono-text">${GetLocalizedText("info1")}</p>
+                      <p class="icono-text">${getLocalizedText("info1")}</p>
                     </div>
             
                     <div class="module-column">
-                      <p class="icono-text">${GetLocalizedText("info2")}</p>
+                      <p class="icono-text">${getLocalizedText("info2")}</p>
                     </div>
             
                     <div class="module-column">
-                      <p class="icono-text">${GetLocalizedText("info3")}</p>
+                      <p class="icono-text">${getLocalizedText("info3")}</p>
                     </div>
             
                   </div>

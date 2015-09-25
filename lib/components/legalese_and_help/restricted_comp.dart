@@ -10,8 +10,8 @@ import 'package:webclient/utils/string_utils.dart';
 )
 class RestrictedComp {
 
-  String GetLocalizedText(key) {
-    return StringUtils.Translate(key, "restricted");
+  String getLocalizedText(key) {
+    return StringUtils.translate(key, "restricted");
   }
 
   RestrictedComp(this._router);

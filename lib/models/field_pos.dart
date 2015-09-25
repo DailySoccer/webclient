@@ -5,51 +5,51 @@ class FieldPos {
 
   // Las unicas instancias de FieldPos en todo el programa
   static Map<String, FieldPos> FIELD_POSITIONS = {
-    GetLocalizedText("goalkeeper"): new FieldPos._internal(GetLocalizedText("goalkeeper")),
-    GetLocalizedText("defense"): new FieldPos._internal(GetLocalizedText("defense")),
-    GetLocalizedText("middle"): new FieldPos._internal(GetLocalizedText("middle")),
-    GetLocalizedText("forward"): new FieldPos._internal(GetLocalizedText("forward")),
+    getLocalizedText("goalkeeper"): new FieldPos._internal(getLocalizedText("goalkeeper")),
+    getLocalizedText("defense"): new FieldPos._internal(getLocalizedText("defense")),
+    getLocalizedText("middle"): new FieldPos._internal(getLocalizedText("middle")),
+    getLocalizedText("forward"): new FieldPos._internal(getLocalizedText("forward")),
   };
 
   // Mapeamos los fieldPos que nos llegan de la DB a nombres que podemos exponer al usuario
   static Map<String, String> FIELD_POSITION_FULL_NAMES = {
-    GetLocalizedText("goalkeeper")  : GetLocalizedText("goalkeeper"),
-    GetLocalizedText("defense")     : GetLocalizedText("defense"),
-    GetLocalizedText("middle")      : GetLocalizedText("middle"),
-    GetLocalizedText("forward")     : GetLocalizedText("forward")
+    getLocalizedText("goalkeeper")  : getLocalizedText("goalkeeper"),
+    getLocalizedText("defense")     : getLocalizedText("defense"),
+    getLocalizedText("middle")      : getLocalizedText("middle"),
+    getLocalizedText("forward")     : getLocalizedText("forward")
   };
 
-  static String GetLocalizedText(String key) {
-    return StringUtils.Translate(key, "soccerplayerpositions");
+  static String getLocalizedText(String key) {
+    return StringUtils.translate(key, "soccerplayerpositions");
   }
 
   static Map<String, String> get FIELD_POSITION_ABREV => {
-    GetLocalizedText("goalkeeper")  : GetLocalizedText("gk"),
-    GetLocalizedText("defense")     : GetLocalizedText("def"),
-    GetLocalizedText("middle")      : GetLocalizedText("mid"),
-    GetLocalizedText("forward")     : GetLocalizedText("for")
+    getLocalizedText("goalkeeper")  : getLocalizedText("gk"),
+    getLocalizedText("defense")     : getLocalizedText("def"),
+    getLocalizedText("middle")      : getLocalizedText("mid"),
+    getLocalizedText("forward")     : getLocalizedText("for")
    };
 
   static List<String> get SORT_ORDER => [
-    GetLocalizedText("gk"),
-    GetLocalizedText("def"),
-    GetLocalizedText("mid"),
-    GetLocalizedText("for")
+    getLocalizedText("gk"),
+    getLocalizedText("def"),
+    getLocalizedText("mid"),
+    getLocalizedText("for")
   ];
 
   // Nuestra alineacion por defecto
   static List<String> LINEUP = [
-    GetLocalizedText("goalkeeper"),
-    GetLocalizedText("defense"),
-    GetLocalizedText("defense"),
-    GetLocalizedText("defense"),
-    GetLocalizedText("defense"),
-    GetLocalizedText("middle"),
-    GetLocalizedText("middle"),
-    GetLocalizedText("middle"),
-    GetLocalizedText("middle"),
-    GetLocalizedText("forward"),
-    GetLocalizedText("forward")
+    getLocalizedText("goalkeeper"),
+    getLocalizedText("defense"),
+    getLocalizedText("defense"),
+    getLocalizedText("defense"),
+    getLocalizedText("defense"),
+    getLocalizedText("middle"),
+    getLocalizedText("middle"),
+    getLocalizedText("middle"),
+    getLocalizedText("middle"),
+    getLocalizedText("forward"),
+    getLocalizedText("forward")
    ];
 
   factory FieldPos(String val) {

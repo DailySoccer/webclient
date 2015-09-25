@@ -1,16 +1,16 @@
 <div id="usersListRoot" >
 
   <div ng-class="{'users-header-next': isViewContestEntryMode, 'users-header' : !isViewContestEntryMode}">
-    <h1>{{GetLocalizedText("title")}}</h1>
-    <h2 ng-if="!isViewContestEntryMode">{{GetLocalizedText("desc")}}:</h2>
+    <h1>{{getLocalizedText("title")}}</h1>
+    <h2 ng-if="!isViewContestEntryMode">{{getLocalizedText("desc")}}:</h2>
   </div>
 
   <div class="users-table-header">
-    <div class="pos">{{GetLocalizedText("pos")}}</div>
-    <div class="name" ng-class="{'name-view-contest-entry-mode': isViewContestEntryMode}">{{GetLocalizedText("player")}}</div>
-    <div class="remaining-time" ng-if="!isViewContestEntryMode">{{GetLocalizedText("rt")}}</div>
-    <div class="score-container">{{GetLocalizedText("points")}}</div>
-    <div class="prize-container" ng-if="!isViewContestEntryMode">{{GetLocalizedText("prizes")}}</div>
+    <div class="pos">{{getLocalizedText("pos")}}</div>
+    <div class="name" ng-class="{'name-view-contest-entry-mode': isViewContestEntryMode}">{{getLocalizedText("player")}}</div>
+    <div class="remaining-time" ng-if="!isViewContestEntryMode">{{getLocalizedText("rt")}}</div>
+    <div class="score-container">{{getLocalizedText("points")}}</div>
+    <div class="prize-container" ng-if="!isViewContestEntryMode">{{getLocalizedText("prizes")}}</div>
   </div>
 
   <div class="users-table-rows">

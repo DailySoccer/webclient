@@ -41,8 +41,8 @@ class ChangePasswordComp implements ShadowRootAware {
 
   bool get enabledSubmit => password.length >= MIN_PASSWORD_LENGTH && password == rePassword;
 
-  String GetLocalizedText(key) {
-    return StringUtils.Translate(key, "changepass")
+  String getLocalizedText(key) {
+    return StringUtils.translate(key, "changepass")
         .replaceAll("@MIN_PASSWORD_LENGTH", MIN_PASSWORD_LENGTH.toString());
   }
 

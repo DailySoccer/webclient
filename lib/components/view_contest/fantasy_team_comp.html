@@ -3,25 +3,25 @@
   <div class="fantasy-team-header" ng-class="{'opponent-team-gradient': isOpponent, 'header-view-contest-entry-mode': isViewContestEntryMode}">
 
     <div class="edit-team" ng-if="isViewContestEntryMode">
-      <button class="btn-edit-team" ng-click="editTeam()">{{GetLocalizedText("editlineup")}}</button>
+      <button class="btn-edit-team" ng-click="editTeam()">{{getLocalizedText("editlineup")}}</button>
     </div>
 
     <div class="ranking-box" ng-if="!isViewContestEntryMode">
-      <span class="title">{{GetLocalizedText("pos")}}</span>
+      <span class="title">{{getLocalizedText("pos")}}</span>
       <span class="content">{{userPosition}}</span>
     </div>
 
     <div class="score-box" ng-if="!isViewContestEntryMode">
-      <span class="title">{{GetLocalizedText("points")}}</span>
+      <span class="title">{{getLocalizedText("points")}}</span>
       <span class="content">{{userScore}}</span>
     </div>
 
     <div class="user-picture"></div>
     <div class="user-nickname" ng-class="{'nickname-view-contest-entry-mode': isViewContestEntryMode}">{{userNickname}}</div>
-    <div class="total-remaining-matches-time" ng-if="!isViewContestEntryMode">{{GetLocalizedText("remainingtime")}}: {{remainingTime}}</div>
+    <div class="total-remaining-matches-time" ng-if="!isViewContestEntryMode">{{getLocalizedText("remainingtime")}}: {{remainingTime}}</div>
 
     <div class="close-team" ng-click="onCloseButtonClick()" ng-show="showCloseButton">
-      <span class="title">{{GetLocalizedText("close")}}</span>
+      <span class="title">{{getLocalizedText("close")}}</span>
       <span class="glyphicon glyphicon-remove"></span>
     </div>
 
@@ -34,7 +34,7 @@
         <div class="column-primary-info">
           <span class="soccer-player-name">{{slot.fullName}}</span>
           <span class="match-event-name" ng-bind-html="slot.matchEventName"></span>
-          <span class="remaining-match-time" ng-if="!isViewContestEntryMode">{{slot.percentOfUsersThatOwn}}% {{GetLocalizedText("owned")}}</span>
+          <span class="remaining-match-time" ng-if="!isViewContestEntryMode">{{slot.percentOfUsersThatOwn}}% {{getLocalizedText("owned")}}</span>
         </div>
         <div class="column-score" ng-if="!isViewContestEntryMode"><span>{{slot.score}}</span></div>
         <div class="column-salary" ng-if="isViewContestEntryMode">${{slot.salary}}</div>

@@ -34,8 +34,8 @@ class UsersListComp {
 
   String getPrize(int index) => (_contest != null) ? _contest.getPrize(index) : "";
 
-  String GetLocalizedText(key) {
-    return StringUtils.Translate(key, "userlist");
+  String getLocalizedText(key) {
+    return StringUtils.translate(key, "userlist");
   }
 
   UsersListComp(this._routeProvider, this._profileService);

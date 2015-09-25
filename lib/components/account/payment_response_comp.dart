@@ -16,17 +16,17 @@ class PaymentResponseComp implements ShadowRootAware {
   String titleText;
   String descriptionText;
 
-  String GetLocalizedText(key) {
-    return StringUtils.Translate(key, "paymentresponse");
+  String getLocalizedText(key) {
+    return StringUtils.translate(key, "paymentresponse");
   }
 
 
   PaymentResponseComp(this._routeProvider, this._router, this._paymentService) {
     result = _routeProvider.route.parameters['result'];
-    titleText = result == 'success' ? GetLocalizedText("resultok") : GetLocalizedText("resultnook");
+    titleText = result == 'success' ? getLocalizedText("resultok") : getLocalizedText("resultnook");
     descriptionText = result == 'success'
-        ? GetLocalizedText("resultokdesc")
-        : GetLocalizedText("resultnookdesc");
+        ? getLocalizedText("resultokdesc")
+        : getLocalizedText("resultnookdesc");
   }
 
   @override void onShadowRoot(emulatedRoot) {

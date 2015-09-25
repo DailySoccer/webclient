@@ -19,8 +19,8 @@ class TransactionHistoryComp {
   int _itemsPerPage   = 0;
   int _currentPage    = 0;
 
-  String GetLocalizedText(key) {
-    return StringUtils.Translate(key, "transactionhistory");
+  String getLocalizedText(key) {
+    return StringUtils.translate(key, "transactionhistory");
   }
 
   TransactionHistoryComp(this._router, this._profileService) {

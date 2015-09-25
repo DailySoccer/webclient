@@ -41,8 +41,8 @@ class ViewContestEntryComp {
   bool get isModeEdited  => _viewContestEntryMode == "edited";  // Venimos de editarla a traves de enter_contest.
   bool get isModeSwapped => _viewContestEntryMode == "swapped"; // Acabamos de crearla pero el servidor nos cambio a otro concurso pq el nuestro estaba lleno.
 
-  String GetLocalizedText(key) {
-    return StringUtils.Translate(key, "viewcontestentry");
+  String getLocalizedText(key) {
+    return StringUtils.translate(key, "viewcontestentry");
   }
 
   ViewContestEntryComp(this._routeProvider, this.scrDet, this._contestsService, this._profileService, this._router, this.loadingService) {

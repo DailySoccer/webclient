@@ -25,8 +25,8 @@ class SoccerPlayersFilterComp implements AttachAware {
     _fieldPosFilter = value;
   }
 
-  String GetLocalizedText(key) {
-    return StringUtils.Translate(key, "soccerplayerpositions");
+  String getLocalizedText(key) {
+    return StringUtils.translate(key, "soccerplayerpositions");
   }
 
   SoccerPlayersFilterComp(this.scrDet);
@@ -35,14 +35,14 @@ class SoccerPlayersFilterComp implements AttachAware {
   @override void attach() {
     posFilterList = [
         null,
-        new FieldPos(GetLocalizedText("goalkeeper")),
-        new FieldPos(GetLocalizedText("defense")),
-        new FieldPos(GetLocalizedText("middle")),
-        new FieldPos(GetLocalizedText("forward"))
+        new FieldPos(getLocalizedText("goalkeeper")),
+        new FieldPos(getLocalizedText("defense")),
+        new FieldPos(getLocalizedText("middle")),
+        new FieldPos(getLocalizedText("forward"))
       ];
     // En movil podemos empezar directamente filtrados
     if (scrDet.isXsScreen) {
-      _fieldPosFilter = new FieldPos(GetLocalizedText("goalkeeper"));
+      _fieldPosFilter = new FieldPos(getLocalizedText("goalkeeper"));
     }
     else {
       // Tentativamente vamos a empezar con los delanteros en desktop
@@ -51,7 +51,7 @@ class SoccerPlayersFilterComp implements AttachAware {
   }
 
   String getClassForFieldPos(FieldPos fieldPos) => fieldPos == fieldPosFilter? "active" : "";
-  String getTextForFieldPos(FieldPos fieldPos)  => fieldPos == null? StringUtils.Translate("all", "soccerplayerpositions") : fieldPos.abrevName;
+  String getTextForFieldPos(FieldPos fieldPos)  => fieldPos == null? StringUtils.translate("all", "soccerplayerpositions") : fieldPos.abrevName;
 
   FieldPos _fieldPosFilter;
   String _nameFilter;

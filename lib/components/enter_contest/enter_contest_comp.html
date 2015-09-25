@@ -4,8 +4,8 @@
 
   <!-- Nav tabs -->
   <ul class="enter-contest-tabs" role="tablist">
-    <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('lineup-tab-content')">{{GetLocalizedText("tablineup")}}</a></li>
-    <li><a role="tab" data-toggle="tab" ng-click="tabChange('contest-info-tab-content')">{{GetLocalizedText("tabcontestinfo")}}</a></li>
+    <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('lineup-tab-content')">{{getLocalizedText("tablineup")}}</a></li>
+    <li><a role="tab" data-toggle="tab" ng-click="tabChange('contest-info-tab-content')">{{getLocalizedText("tabcontestinfo")}}</a></li>
   </ul>
 
   <div id="enterContest">
@@ -20,18 +20,18 @@
 
             <div class="enter-contest-actions-wrapper" ng-if="scrDet.isXsScreen">
               <div class="total-salary" ng-class="{'red-numbers':availableSalary < 0}">
-                <span class="total-salary-money" ng-show="contest != null">{{FormatCurrency(printableAvailableSalary)}}</span>
+                <span class="total-salary-money" ng-show="contest != null">{{formatCurrency(printableAvailableSalary)}}</span>
               </div>
-              <button id="cancelSoccerPlayerSelection" type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer">{{GetLocalizedText("buttoncancel")}}</button>
+              <button id="cancelSoccerPlayerSelection" type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer">{{getLocalizedText("buttoncancel")}}</button>
             </div>
 
             <div class="enter-contest-lineup-wrapper">
               <div class="enter-contest-lineup">
                 <div class="enter-contest-total-salary">
-                    <span class="total-salary-text">{{GetLocalizedText("yourlineup")}}</span>
+                    <span class="total-salary-text">{{getLocalizedText("yourlineup")}}</span>
                     <div class="total-salary">
-                      <span class="total-salary-text">{{GetLocalizedText("remainsalary")}}:</span>
-                      <span class="total-salary-money" ng-class="{'red-numbers': availableSalary < 0 }" ng-show="contest != null">{{FormatCurrency(printableAvailableSalary)}}</span>
+                      <span class="total-salary-text">{{getLocalizedText("remainsalary")}}:</span>
+                      <span class="total-salary-money" ng-class="{'red-numbers': availableSalary < 0 }" ng-show="contest != null">{{formatCurrency(printableAvailableSalary)}}</span>
                     </div>
                 </div>
 
@@ -57,16 +57,16 @@
 
             <div class="enter-contest-actions-wrapper">
               <div class="button-wrapper-block" ng-if="isSelectingSoccerPlayer && scrDet.isXsScreen">
-                <button type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer">{{GetLocalizedText("buttoncancel")}}</button>
+                <button type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer">{{getLocalizedText("buttoncancel")}}</button>
               </div>
               <div  class="bottom-content" ng-if="!isSelectingSoccerPlayer || scrDet.isNotXsScreen">
                 <div class="button-wrapper">
-                  <button type="button" class="btn-clean-lineup-list" ng-click="deleteFantasyTeam()" ng-disabled="isPlayerSelected()">{{GetLocalizedText("buttonclean")}}</button>
+                  <button type="button" class="btn-clean-lineup-list" ng-click="deleteFantasyTeam()" ng-disabled="isPlayerSelected()">{{getLocalizedText("buttonclean")}}</button>
                 </div>
                 <div class="button-wrapper">
-                  <button type="button" class="btn-confirm-lineup-list" ng-click="createFantasyTeam()" ng-disabled="isInvalidFantasyTeam">{{GetLocalizedText("buttoncontinue")}}</button>
+                  <button type="button" class="btn-confirm-lineup-list" ng-click="createFantasyTeam()" ng-disabled="isInvalidFantasyTeam">{{getLocalizedText("buttoncontinue")}}</button>
                 </div>
-                <p>{{GetLocalizedText("tip")}}</p>
+                <p>{{getLocalizedText("tip")}}</p>
               </div>
             </div>
 

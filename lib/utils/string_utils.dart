@@ -54,19 +54,19 @@ class StringUtils {
     return result;
   }
 
-  static String Translate(String key, String theGroup) {
+  static String translate(String key, String theGroup) {
     return config.translate(key, group:theGroup);
   }
 
-  static String GetDatePattern(String pattern) {
+  static String getDatePattern(String pattern) {
       return config.translate(pattern, group:"date");
   }
 
-  static String GetLocale() {
+  static String getLocale() {
     return config.translate("locale");
   }
 
-  static String FormatCurrency(String amount) {
+  static String formatCurrency(String amount) {
     String currency = config.translate("currency");
     String value = "";
 

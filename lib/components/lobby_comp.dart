@@ -55,7 +55,7 @@ class LobbyComp implements DetachAware {
   /********* METHODS */
   void _calculateInfoBarText() {
     Contest nextContest = contestsService.getAvailableNextContest();
-    infoBarText = nextContest == null? "" : "${StringUtils.Translate("nextcontest", "lobby")}: ${nextContest.name.toUpperCase()} - ${_calculateTimeToNextTournament()}";
+    infoBarText = nextContest == null? "" : "${StringUtils.translate("nextcontest", "lobby")}: ${nextContest.name.toUpperCase()} - ${_calculateTimeToNextTournament()}";
   }
 
   String _calculateTimeToNextTournament() {

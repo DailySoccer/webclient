@@ -33,22 +33,22 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
     if (loadingService.isLoading)
       return "";
 
-    return hasLiveContests? "${contestsService.liveContests.length} ${GetLocalizedText("hasLivecontests1")}" :
-                             GetLocalizedText("hasLivecontests2");
+    return hasLiveContests? "${contestsService.liveContests.length} ${getLocalizedText("hasLivecontests1")}" :
+                             getLocalizedText("hasLivecontests2");
   }
   String get waitingContestsMessage {
     if (loadingService.isLoading)
       return "";
 
-    return hasWaitingContests ? "${GetLocalizedText("haswaitingcontests1")} ${contestsService.waitingContests.length} ${GetLocalizedText("haswaitingcontests2")}" :
-                                 GetLocalizedText("haswaitingcontests3");
+    return hasWaitingContests ? "${getLocalizedText("haswaitingcontests1")} ${contestsService.waitingContests.length} ${getLocalizedText("haswaitingcontests2")}" :
+                                 getLocalizedText("haswaitingcontests3");
   }
   String get historyContestsMessage {
     if (loadingService.isLoading)
       return "";
 
-    return hasHistoryContests? "${contestsService.historyContests.length} ${GetLocalizedText("hasHistoryContests1")} ${totalHistoryContestsWinner} ${GetLocalizedText("hasHistoryContests2")}" :
-                                GetLocalizedText("hasHistoryContests3");
+    return hasHistoryContests? "${contestsService.historyContests.length} ${getLocalizedText("hasHistoryContests1")} ${totalHistoryContestsWinner} ${getLocalizedText("hasHistoryContests2")}" :
+                                getLocalizedText("hasHistoryContests3");
   }
 
   num get numLiveContests => _numLiveContests;
@@ -60,8 +60,8 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
   int get totalHistoryContestsWinner => contestsService.historyContests.fold(0, (prev, contest) => (contest.getContestEntryWithUser(_profileService.user.userId).position == 0) ? prev+1 : prev);
   int get totalHistoryContestsPrizes => contestsService.historyContests.fold(0, (prev, contest) => prev + contest.getContestEntryWithUser(_profileService.user.userId).prize);
 
-  String GetLocalizedText(key) {
-    return StringUtils.Translate(key, "mycontest");
+  String getLocalizedText(key) {
+    return StringUtils.translate(key, "mycontest");
   }
 
   MyContestsComp(this.loadingService, this._profileService, this._refreshTimersService, this.contestsService, this._router, this._routeProvider, this._flashMessage, this._rootElement) {

@@ -303,10 +303,10 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
   Map<String, String> _filterList = {};
 
   static final Map<String, String> _POS_CLASS_NAMES = {
-    StringUtils.Translate("gk", "soccerplayerpositions") : "posPOR",
-    StringUtils.Translate("def", "soccerplayerpositions"): "posDEF",
-    StringUtils.Translate("mid", "soccerplayerpositions"): "posMED",
-    StringUtils.Translate("for", "soccerplayerpositions"): "posDEL"
+    StringUtils.translate("gk", "soccerplayerpositions") : "posPOR",
+    StringUtils.translate("def", "soccerplayerpositions"): "posDEF",
+    StringUtils.translate("mid", "soccerplayerpositions"): "posMED",
+    StringUtils.translate("for", "soccerplayerpositions"): "posDEL"
   };
   static final Map<String, Map> _SORT_FIELDS = { "Name": _getSortField("fullNameNormalized", 1),
                                                  "DFP": _getSortField("fantasyPoints", -1),

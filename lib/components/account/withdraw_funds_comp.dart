@@ -18,12 +18,12 @@ class WithdrawFundsComp implements ShadowRootAware {
 
   dynamic get userData => _profileManager.user;
 
-  String GetLocalizedText(key) {
-    return StringUtils.Translate(key, "withdrawfunds");
+  String getLocalizedText(key) {
+    return StringUtils.translate(key, "withdrawfunds");
   }
 
-  String FormatCurrency(String amount) {
-    return StringUtils.FormatCurrency(amount);
+  String formatCurrency(String amount) {
+    return StringUtils.formatCurrency(amount);
   }
 
   WithdrawFundsComp(this._router, this._profileManager, this._paymentService);

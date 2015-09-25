@@ -42,8 +42,8 @@ class TeamsPanelComp implements DetachAware {
     }
   }
 
-  String GetLocalizedText(key) {
-    return StringUtils.Translate(key, "teamspanel");
+  String getLocalizedText(key) {
+    return StringUtils.translate(key, "teamspanel");
   }
 
   TeamsPanelComp(this.scrDet, this._contestsService, this._routeProvider) {
@@ -75,10 +75,10 @@ class TeamsPanelComp implements DetachAware {
       if (match != null) {
         if (match.isStarted) {
           if (match.isFinished) {
-            content = GetLocalizedText("finished");
+            content = getLocalizedText("finished");
           }
           else {
-            content = (match.isFirstHalf ? GetLocalizedText("firsthalf") : match.isSecondHalf ? GetLocalizedText("secondhalf") : GetLocalizedText("error")) + match.minutesPlayed.toString() + "'";
+            content = (match.isFirstHalf ? getLocalizedText("firsthalf") : match.isSecondHalf ? getLocalizedText("secondhalf") : getLocalizedText("error")) + match.minutesPlayed.toString() + "'";
           }
         }
       }

@@ -74,8 +74,8 @@ class JoinComp implements ShadowRootAware {
 
   bool get enabledSubmit => nickName.length >= MIN_NICKNAME_LENGTH && StringUtils.isValidEmail(email) && password.length >= MIN_PASSWORD_LENGTH && password == rePassword && _enabledSubmit;
 
-  String GetLocalizedText(key) {
-    String str = StringUtils.Translate(key, "join")
+  String getLocalizedText(key) {
+    String str = StringUtils.translate(key, "join")
               .replaceAll("@MIN_NICKNAME_LENGTH", MIN_NICKNAME_LENGTH.toString())
               .replaceAll("@MAX_NICKNAME_LENGTH", MAX_NICKNAME_LENGTH.toString())
               .replaceAll("@MIN_PASSWORD_LENGTH", MIN_PASSWORD_LENGTH.toString());

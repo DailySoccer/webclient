@@ -14,8 +14,8 @@ class WelcomeComp {
   String stage;
   Map stage_params;
 
-  String GetLocalizedText(key) {
-    return StringUtils.Translate(key, "welcome");
+  String getLocalizedText(key) {
+    return StringUtils.translate(key, "welcome");
   }
 
   WelcomeComp(this._rootElement, this._router, this._reouteProvider, this._scrDet, this._profileService) {
@@ -69,13 +69,13 @@ class WelcomeComp {
     String title;
     switch(stage) {
       case 'lobby':
-        title = GetLocalizedText("tutorialtittlelobby");
+        title = getLocalizedText("tutorialtittlelobby");
       break;
       case 'enter_contest':
-        title = GetLocalizedText("tutorialtittleentercontest");
+        title = getLocalizedText("tutorialtittleentercontest");
       break;
       case 'view_contest_entry':
-        title = GetLocalizedText("tutorialtittleviewcontestentry");
+        title = getLocalizedText("tutorialtittleviewcontestentry");
       break;
     }
     return title;
@@ -85,13 +85,13 @@ class WelcomeComp {
     String text;
     switch(stage) {
       case 'lobby':
-        text = GetLocalizedText("tutorialtextlobby");
+        text = getLocalizedText("tutorialtextlobby");
       break;
       case 'enter_contest':
-        text = GetLocalizedText("tutorialtextentercontest");
+        text = getLocalizedText("tutorialtextentercontest");
       break;
       case 'view_contest_entry':
-        text = GetLocalizedText("tutorialtextviewcontestentry");
+        text = getLocalizedText("tutorialtextviewcontestentry");
       break;
     }
     return text;

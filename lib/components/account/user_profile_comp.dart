@@ -15,8 +15,8 @@ class UserProfileComp {
 
   dynamic get userData => _profileManager.user;
 
-  String GetLocalizedText(key) {
-    return StringUtils.Translate(key, "userprofile");
+  String getLocalizedText(key) {
+    return StringUtils.translate(key, "userprofile");
   }
 
   UserProfileComp(this._router, this._profileManager);

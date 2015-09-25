@@ -11,11 +11,11 @@ class Prize {
   static const FIFTY_FIFTY  = "FIFTY_FIFTY";
 
   static Map<String, String> typeNames = {
-    FREE: StringUtils.Translate("free", "prizes"), //"Free",
-    WINNER: StringUtils.Translate("winnertakesall", "prizes"), //"Winner takes all",
-    TOP_3: StringUtils.Translate("first3", "prizes"), //"Top 3 get prizes",
-    TOP_THIRD: StringUtils.Translate("firstthird", "prizes"),// "El tercio superior de concursantes reciben premio", //Top third get prizes",
-    FIFTY_FIFTY: StringUtils.Translate("fifty", "prizes")// "La mitad superior de concursantes reciben premio", //"50/50"
+    FREE: StringUtils.translate("free", "prizes"), //"Free",
+    WINNER: StringUtils.translate("winnertakesall", "prizes"), //"Winner takes all",
+    TOP_3: StringUtils.translate("first3", "prizes"), //"Top 3 get prizes",
+    TOP_THIRD: StringUtils.translate("firstthird", "prizes"),// "El tercio superior de concursantes reciben premio", //Top third get prizes",
+    FIFTY_FIFTY: StringUtils.translate("fifty", "prizes")// "La mitad superior de concursantes reciben premio", //"50/50"
   };
 
   String prizeType;

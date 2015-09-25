@@ -104,14 +104,14 @@ class ContestFiltersComp implements ShadowRootAware {
   String get filterEntryFeeRangeMax => getEntryFeeFilterRange()[ENTRY_FEE_MAX_RANGE].toString();
 
   // Bloque HTML con el resumen de los filtros aplicados
-  String get filterResume =>/* xsFilterList.join("<br>") + */"<div>${GetLocalizedText("availabletip")}<span class='contest-count'>" + _contestCount.toString() + "</span></div>";
+  String get filterResume =>/* xsFilterList.join("<br>") + */"<div>${getLocalizedText("availabletip")}<span class='contest-count'>" + _contestCount.toString() + "</span></div>";
 
-  String GetLocalizedText(key) {
-    return StringUtils.Translate(key, "contestfilters");
+  String getLocalizedText(key) {
+    return StringUtils.translate(key, "contestfilters");
   }
 
-  String FormatCurrency(String amount) {
-    return StringUtils.FormatCurrency(amount);
+  String formatCurrency(String amount) {
+    return StringUtils.formatCurrency(amount);
   }
 
   ContestFiltersComp(this.scrDet) {
@@ -158,24 +158,24 @@ class ContestFiltersComp implements ShadowRootAware {
 
     // Lista de tipos de concurso.
     competitionFilterList = [
-       {'name': "LEAGUE_ES",  'flag':"ESP", 'text': GetLocalizedText('competitionlaliga'),    'checked':false, 'disabled':true, 'id':'filterLeagueEsp'}
-      ,{'name': "LEAGUE_UK",  'flag':"UK",  'text': GetLocalizedText('competitionpremier'),   'checked':false, 'disabled':true, 'id':'filterLeagueUK'}
-      ,{'name': "CHAMPIONS",  'flag':"EU",  'text': GetLocalizedText('competitionchampions'), 'checked':false, 'disabled':true, 'id':'filterUCL'}
+       {'name': "LEAGUE_ES",  'flag':"ESP", 'text': getLocalizedText('competitionlaliga'),    'checked':false, 'disabled':true, 'id':'filterLeagueEsp'}
+      ,{'name': "LEAGUE_UK",  'flag':"UK",  'text': getLocalizedText('competitionpremier'),   'checked':false, 'disabled':true, 'id':'filterLeagueUK'}
+      ,{'name': "CHAMPIONS",  'flag':"EU",  'text': getLocalizedText('competitionchampions'), 'checked':false, 'disabled':true, 'id':'filterUCL'}
     ];
 
     // Lista de tipos de concurso.
     contestTypeFilterList = [
-       {'name':"FREE",        'text':GetLocalizedText('contestfree'),       'checked':false, 'disabled':true, 'id':'filterTournamentTypeFree'}
-      ,{'name':"HEAD_TO_HEAD",'text':GetLocalizedText('contestheadtohead'), 'checked':false, 'disabled':true, 'id':'filterTournamentTypeHeadToHead'}
-      ,{'name':"LEAGUE",      'text':GetLocalizedText('contestleague'),     'checked':false, 'disabled':true, 'id':'filterTournamentTypeLeague'}
-      ,{'name':"FIFTY_FIFTY", 'text':GetLocalizedText('contestfifty'),      'checked':false, 'disabled':true, 'id':'filterTournamentTypeFiftyFifty'}
+       {'name':"FREE",        'text':getLocalizedText('contestfree'),       'checked':false, 'disabled':true, 'id':'filterTournamentTypeFree'}
+      ,{'name':"HEAD_TO_HEAD",'text':getLocalizedText('contestheadtohead'), 'checked':false, 'disabled':true, 'id':'filterTournamentTypeHeadToHead'}
+      ,{'name':"LEAGUE",      'text':getLocalizedText('contestleague'),     'checked':false, 'disabled':true, 'id':'filterTournamentTypeLeague'}
+      ,{'name':"FIFTY_FIFTY", 'text':getLocalizedText('contestfifty'),      'checked':false, 'disabled':true, 'id':'filterTournamentTypeFiftyFifty'}
     ];
 
     // Lista de tipos de Limites de salarios.
     salaryCapFilterList = [
-       {'name':"BEGINNER", 'text':GetLocalizedText('salarycapbegginer'), 'checked':false, 'disabled':true, 'id':'filterTournamentTierBeginner'}
-      ,{'name':"STANDARD", 'text':GetLocalizedText('salarycapstandard'), 'checked':false, 'disabled':true, 'id':'filterTournamentTierStandard'}
-      ,{'name':"SKILLEDS", 'text':GetLocalizedText('salarycapskilled'),  'checked':false, 'disabled':true, 'id':'filterTournamentTierSkilled'}
+       {'name':"BEGINNER", 'text':getLocalizedText('salarycapbegginer'), 'checked':false, 'disabled':true, 'id':'filterTournamentTierBeginner'}
+      ,{'name':"STANDARD", 'text':getLocalizedText('salarycapstandard'), 'checked':false, 'disabled':true, 'id':'filterTournamentTierStandard'}
+      ,{'name':"SKILLEDS", 'text':getLocalizedText('salarycapskilled'),  'checked':false, 'disabled':true, 'id':'filterTournamentTierSkilled'}
     ];
 
     // Rango de Entry Fee
@@ -184,9 +184,9 @@ class ContestFiltersComp implements ShadowRootAware {
 
   void initializeSortValues(){
     sortingButtons = [
-       {'name':GetLocalizedText('sortbyname'),      'state':'', 'id':'orderByName',      'field-name':'contest-name'}
-      ,{'name':GetLocalizedText('sortbyentryfee'),  'state':'', 'id':'orderByEntryFee',  'field-name':'contest-entry-fee'}
-      ,{'name':GetLocalizedText('sortbystartdate'), 'state':'', 'id':'orderByStartDate', 'field-name':'contest-start-time'}
+       {'name':getLocalizedText('sortbyname'),      'state':'', 'id':'orderByName',      'field-name':'contest-name'}
+      ,{'name':getLocalizedText('sortbyentryfee'),  'state':'', 'id':'orderByEntryFee',  'field-name':'contest-entry-fee'}
+      ,{'name':getLocalizedText('sortbystartdate'), 'state':'', 'id':'orderByStartDate', 'field-name':'contest-start-time'}
     ];
   }
 

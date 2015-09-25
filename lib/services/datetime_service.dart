@@ -34,31 +34,31 @@ class DateTimeService {
   }
 
   static String formatDateYear(DateTime date) {
-    return new DateFormat("yyyy", StringUtils.GetLocale()).format(date);
+    return new DateFormat("yyyy", StringUtils.getLocale()).format(date);
   }
 
   static String formatDateWithDayOfTheMonth(DateTime date) {
-    return new DateFormat(StringUtils.GetDatePattern("datewithdayofthemonth"), StringUtils.GetLocale()).format(date);
+    return new DateFormat(StringUtils.getDatePattern("datewithdayofthemonth"), StringUtils.getLocale()).format(date);
   }
 
   static String formatDateShort(DateTime date) {
-    return new DateFormat(StringUtils.GetDatePattern("dateshort")).format(date);
+    return new DateFormat(StringUtils.getDatePattern("dateshort")).format(date);
   }
 
   static String formatTimeShort(DateTime date) {
-    return "${new DateFormat(StringUtils.GetDatePattern("timeshort")).format(date)}h";
+    return "${new DateFormat(StringUtils.getDatePattern("timeshort")).format(date)}h";
   }
 
   static String formatDateTimeShort(DateTime date) {
-    return "${new DateFormat(StringUtils.GetDatePattern("datetimeshort"), StringUtils.GetLocale()).format(date)}h";
+    return "${new DateFormat(StringUtils.getDatePattern("datetimeshort"), StringUtils.getLocale()).format(date)}h";
   }
 
   static String formatDateTimeLong(DateTime date) {
-    return "${new DateFormat(StringUtils.GetDatePattern("datetimelong"), StringUtils.GetLocale()).format(date)}h";
+    return "${new DateFormat(StringUtils.getDatePattern("datetimelong"), StringUtils.getLocale()).format(date)}h";
   }
 
   static String formatDateTimeDayHour(DateTime date) {
-    return "${new DateFormat(StringUtils.GetDatePattern("datetimedayhour"), StringUtils.GetLocale()).format(date)}h";
+    return "${new DateFormat(StringUtils.getDatePattern("datetimedayhour"), StringUtils.getLocale()).format(date)}h";
   }
 
   static String formatTimeLeft(Duration timeLeft) {
@@ -70,7 +70,7 @@ class DateTimeService {
     var minutes = nfTime.format(timeLeft.inMinutes % 60);
     var seconds = nfTime.format(timeLeft.inSeconds % 60);
 
-    return (days > 0)? nfDay.format(days) + (days > 1 ? StringUtils.Translate("days", "common") : StringUtils.Translate("day", "common") ) + hours + ":" + minutes + ":" + seconds
+    return (days > 0)? nfDay.format(days) + (days > 1 ? StringUtils.translate("days", "common") : StringUtils.translate("day", "common") ) + hours + ":" + minutes + ":" + seconds
                      : hours + ":" + minutes + ":" + seconds;
   }
 

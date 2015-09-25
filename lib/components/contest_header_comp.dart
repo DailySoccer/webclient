@@ -68,8 +68,8 @@ class ContestHeaderComp implements DetachAware, ShadowRootAware {
     }
   }
 
-  String GetLocalizedText(key) {
-    return StringUtils.Translate(key, "contestheader");
+  String getLocalizedText(key) {
+    return StringUtils.translate(key, "contestheader");
   }
 
   ContestHeaderComp(this._router, this._routeProvider, this.scrDet, this._contestsService, this._rootElement) {
@@ -82,25 +82,25 @@ class ContestHeaderComp implements DetachAware, ShadowRootAware {
     }
 
     if (contest.isHistory) {
-      info["startTime"] = GetLocalizedText("finished");
+      info["startTime"] = getLocalizedText("finished");
       _count.cancel();
     }
     else if (contest.isLive) {
-      info["startTime"] = GetLocalizedText("startedon") + DateTimeService.formatDateTimeShort(contest.startDate).toUpperCase();
+      info["startTime"] = getLocalizedText("startedon") + DateTimeService.formatDateTimeShort(contest.startDate).toUpperCase();
       _count.cancel();
     }
     else {
-      info["startTime"] = GetLocalizedText("startson") + DateTimeService.formatDateTimeShort(contest.startDate).toUpperCase();
+      info["startTime"] = getLocalizedText("startson") + DateTimeService.formatDateTimeShort(contest.startDate).toUpperCase();
 
       Duration tiempoRestante = DateTimeService.getTimeLeft(contest.startDate);
 
       if (tiempoRestante.inHours <= 23) {
         if (tiempoRestante.inSeconds <= 0) {
-          info["startTime"] = GetLocalizedText("verysoon");
+          info["startTime"] = getLocalizedText("verysoon");
           _count.cancel();
         }
         else {
-          info["startTime"] = GetLocalizedText("startsin") + DateTimeService.formatTimeLeft(tiempoRestante);
+          info["startTime"] = getLocalizedText("startsin") + DateTimeService.formatTimeLeft(tiempoRestante);
         }
       }
     }
@@ -117,7 +117,7 @@ class ContestHeaderComp implements DetachAware, ShadowRootAware {
     info["prize"] = "${contest.prizePool}";
     info["prizeType"] = "${contest.prizeTypeName}";
     info["startTime"] = "";
-    info["contestantCount"] = "${contest.contestEntries.length} of ${contest.maxEntries} ${GetLocalizedText("salarycap")}: ${contest.printableSalaryCap}";
+    info["contestantCount"] = "${contest.contestEntries.length} of ${contest.maxEntries} ${getLocalizedText("salarycap")}: ${contest.printableSalaryCap}";
   }
 
   void goToParent() {

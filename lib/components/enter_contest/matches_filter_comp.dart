@@ -35,7 +35,7 @@ class MatchesFilterComp implements ShadowRootAware {
     }
 
     matchEvents.clear();
-    matchEvents.add({"id": _ALL_MATCHES, "texto": StringUtils.Translate("all-matches", "matchesfilter"), "textoSelector": StringUtils.Translate("allmatches", "matchesfilter")});
+    matchEvents.add({"id": _ALL_MATCHES, "texto": StringUtils.translate("all-matches", "matchesfilter"), "textoSelector": StringUtils.translate("allmatches", "matchesfilter")});
 
     theContest.matchEvents.forEach((match) => _addMatchEvent(match));
     runAnimation();
@@ -83,6 +83,6 @@ class MatchesFilterComp implements ShadowRootAware {
   MatchesFilterComp(this.srcDet, this._view);
 
   View _view;
-  static final String _ALL_MATCHES = StringUtils.Translate("all", "matchesfilter");
+  static final String _ALL_MATCHES = StringUtils.translate("all", "matchesfilter");
   String _selectedOption;
 }

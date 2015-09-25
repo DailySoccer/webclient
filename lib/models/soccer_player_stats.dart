@@ -16,27 +16,27 @@ class SoccerPlayerStats {
   Map<String, int> soccerPlayerStatValues = {};
 
   List get names => [
-    GetCodeData("keyplayedminutes"),
-    GetCodeData("keyfantasypoints") ,
-    GetCodeData("keygoals"),
-    GetCodeData("keyshots"),
-    GetCodeData("keypasses"),
-    GetCodeData("keychancescreated"),
-    GetCodeData("keytakeons") ,
-    GetCodeData("keyrecovers"),
-    GetCodeData("keyposslost"),
-    GetCodeData("keyfoulsconceded"),
-    GetCodeData("keyfoulscommited"),
-    GetCodeData("keyyellowcards"),
-    GetCodeData("keyredcards"),
-    GetCodeData("keygoalsconceded"),
-    GetCodeData("keysaves"),
-    GetCodeData("keyclearances"),
-    GetCodeData("keypenaltiessaved")
+    getCodeData("keyplayedminutes"),
+    getCodeData("keyfantasypoints") ,
+    getCodeData("keygoals"),
+    getCodeData("keyshots"),
+    getCodeData("keypasses"),
+    getCodeData("keychancescreated"),
+    getCodeData("keytakeons") ,
+    getCodeData("keyrecovers"),
+    getCodeData("keyposslost"),
+    getCodeData("keyfoulsconceded"),
+    getCodeData("keyfoulscommited"),
+    getCodeData("keyyellowcards"),
+    getCodeData("keyredcards"),
+    getCodeData("keygoalsconceded"),
+    getCodeData("keysaves"),
+    getCodeData("keyclearances"),
+    getCodeData("keypenaltiessaved")
   ];
 
-  static String GetCodeData(String key) {
-    return StringUtils.Translate(key, "soccerplayerstats");
+  static String getCodeData(String key) {
+    return StringUtils.translate(key, "soccerplayerstats");
   }
 
   SoccerPlayerStats.fromJsonObject(Map jsonMap, ContestReferences references) {

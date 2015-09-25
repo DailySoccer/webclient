@@ -8,17 +8,17 @@
         <!-- Nav tabs -->
         <div class="tabs-navigation">
           <ul class="contest-info-tabs " id="modalInfoContestTabs">
-              <li class="tab active"><a data-toggle="tab" ng-click="tabChange('matches')">{{GetLocalizedText("matches")}}</a></li>
-              <li class="tab"><a data-toggle="tab" ng-click="tabChange('prizes')">{{GetLocalizedText("prizes")}}</a></li>
-              <li class="tab"><a data-toggle="tab" ng-click="tabChange('contestants')">{{GetLocalizedText("contenders")}}</a></li>
-              <li class="tab"><a data-toggle="tab" ng-click="tabChange('scoring')">{{GetLocalizedText("scoringrules")}}</a></li>
+              <li class="tab active"><a data-toggle="tab" ng-click="tabChange('matches')">{{getLocalizedText("matches")}}</a></li>
+              <li class="tab"><a data-toggle="tab" ng-click="tabChange('prizes')">{{getLocalizedText("prizes")}}</a></li>
+              <li class="tab"><a data-toggle="tab" ng-click="tabChange('contestants')">{{getLocalizedText("contenders")}}</a></li>
+              <li class="tab"><a data-toggle="tab" ng-click="tabChange('scoring')">{{getLocalizedText("scoringrules")}}</a></li>
               <!--<li class="buton-place">
                 <button id="btn-go-enter-contest" class="btn btn-primary" ng-click="enterContest()">ENTER</button>
               </li>-->
           </ul>
 
           <div id="enterContestButton">
-            <button id="btn-go-enter-contest" class="btn btn-primary" ng-click="enterContest()">{{GetLocalizedText("buttonenter")}}</button>
+            <button id="btn-go-enter-contest" class="btn btn-primary" ng-click="enterContest()">{{getLocalizedText("buttonenter")}}</button>
           </div>
         </div>
       </div>
@@ -58,12 +58,12 @@
 
               <div class="tab-pane" id="contestants">
                 <div class="contestant-list-wrapper">
-                  <div ng-if="!loadingService.isLoading && currentInfoData['contestants'].isEmpty" class="default-info-text" ng-bind-html="GetLocalizedText('nocontenders')"></div>
+                  <div ng-if="!loadingService.isLoading && currentInfoData['contestants'].isEmpty" class="default-info-text" ng-bind-html="getLocalizedText('nocontenders')"></div>
                   <div class="contestant-list">
                     <div class="contestant-element"ng-repeat="contestant in currentInfoData['contestants']">
                       <div class="contestant-position">{{$index + 1}}º</div>
                       <div class="contestant-name">{{contestant.name}}</div>
-                      <div class="contestant-points">{{contestant.wins + ' '}}<span class="prize-currency">{{GetLocalizedText("wins")}}</span></div>
+                      <div class="contestant-points">{{contestant.wins + ' '}}<span class="prize-currency">{{getLocalizedText("wins")}}</span></div>
                     </div>
                   </div>
                 </div>
@@ -93,7 +93,7 @@
   <div class="clearfix"></div>
   <div class="info-section"></div>
 
-  <p class="title">{{GetLocalizedText("prizes").toUpperCase()}}</p>
+  <p class="title">{{getLocalizedText("prizes").toUpperCase()}}</p>
   <div class="prizes-wrapper">
       <div id="prizes-list">
         <!--<div ng-if="!loadingService.isLoading && currentInfoData['prizes'].isEmpty" class="default-info-text">
@@ -113,19 +113,19 @@
   <div class="clearfix"></div>
   <div class="info-section"></div>
 
-  <p class="title">{{GetLocalizedText("contenders").toUpperCase()}}</p>
-  <div ng-if="!loadingService.isLoading && currentInfoData['contestants'].isEmpty" class="default-info-text" ng-bind-html="GetLocalizedText('nocontenders')"></div>
+  <p class="title">{{getLocalizedText("contenders").toUpperCase()}}</p>
+  <div ng-if="!loadingService.isLoading && currentInfoData['contestants'].isEmpty" class="default-info-text" ng-bind-html="getLocalizedText('nocontenders')"></div>
   <div class="contestant-list">
       <div class="contestant-element"ng-repeat="contestant in currentInfoData['contestants']">
           <div class="contestant-position">{{$index + 1}}º</div>
           <div class="contestant-name">{{contestant.name}}</div>
-          <div class="contestant-points">{{contestant.wins + ' '}}<span class="prize-currency">{{GetLocalizedText("wins")}}</span></div>
+          <div class="contestant-points">{{contestant.wins + ' '}}<span class="prize-currency">{{getLocalizedText("wins")}}</span></div>
       </div>
   </div>
   <div class="clearfix"></div>
   <div class="info-section"></div>
 
-  <p class="title">{{GetLocalizedText("scoringrules").toUpperCase()}}</p>
+  <p class="title">{{getLocalizedText("scoringrules").toUpperCase()}}</p>
   <div class="rules-description">
     <scoring-rules></scoring-rules>
   </div>

@@ -15,12 +15,12 @@ import 'package:webclient/utils/string_utils.dart';
 class AddFundsComp implements ShadowRootAware, DetachAware {
   int selectedValue = 25;
 
-  String GetLocalizedText(key) {
-    return StringUtils.Translate(key, "addfunds");
+  String getLocalizedText(key) {
+    return StringUtils.translate(key, "addfunds");
   }
 
-  String FormatCurrency(String amount) {
-    return StringUtils.FormatCurrency(amount);
+  String formatCurrency(String amount) {
+    return StringUtils.formatCurrency(amount);
   }
 
   AddFundsComp(this._routeProvider, this._paymentService, this._router) {

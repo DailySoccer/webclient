@@ -28,8 +28,8 @@ class ContestInfoComp implements DetachAware {
   String contestId;
   LoadingService loadingService;
 
-  String GetLocalizedText(key) {
-    return StringUtils.Translate(key, "contestinfo");
+  String getLocalizedText(key) {
+    return StringUtils.translate(key, "contestinfo");
   }
 
   ContestInfoComp(ScreenDetectorService scrDet, RouteProvider routeProvider, this.loadingService, this._router, this._contestsService, this._profileService, this._flashMessage) {
@@ -43,7 +43,7 @@ class ContestInfoComp implements DetachAware {
       'name'            : '',
       'entry'           : '',
       'prize'           : '',
-      'rules'           : GetLocalizedText("rulestip"),
+      'rules'           : getLocalizedText("rulestip"),
       'startDateTime'   : '', // 'COMIENZA EL DOM. 15/05 19:00',
       'matchesInvolved' : null,
       'legals'          : '',
@@ -111,12 +111,12 @@ class ContestInfoComp implements DetachAware {
       break;
       case Prize.TOP_THIRD:
         count = contest.prize.numPrizes;
-        fullDesc = count == 1 ? GetLocalizedText("winnertakesall") : prizeDesc.replaceAll('#', count.toString());
+        fullDesc = count == 1 ? getLocalizedText("winnertakesall") : prizeDesc.replaceAll('#', count.toString());
        break;
 
       case Prize.FIFTY_FIFTY:
         count = contest.prize.numPrizes;
-        fullDesc = count == 1 ? GetLocalizedText("winnertakesall") : prizeDesc.replaceAll('#', count.toString());
+        fullDesc = count == 1 ? getLocalizedText("winnertakesall") : prizeDesc.replaceAll('#', count.toString());
       break;
     }
 

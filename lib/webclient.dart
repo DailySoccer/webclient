@@ -27,7 +27,6 @@ import 'package:webclient/utils/form-autofill-fix.dart';
 import 'package:webclient/utils/element-autofocus.dart';
 import 'package:webclient/utils/translate_decorator.dart';
 import 'package:webclient/utils/translate_formatter.dart';
-import 'package:webclient/utils/translate_config.dart';
 
 import 'package:webclient/utils/limit_to_dot.dart';
 
@@ -134,7 +133,6 @@ class WebClientApp extends Module {
     bind(AutoFocusDecorator);
     bind(LimitToDot);
 
-    bind(TranslateConfig);
     bind(TranslateDecorator);
     bind(TranslateFormatter);
 

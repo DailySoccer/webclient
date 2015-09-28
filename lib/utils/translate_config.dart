@@ -1,12 +1,11 @@
-// Copyright (C) 2014 Edwin Bühler. All Rights Reserved.
-//
-// @author Edwin Bühler
 library translate_config;
+
 import 'dart:html';
 import 'dart:async';
 import 'dart:convert' show JSON;
 
 TranslateConfig  config ;
+
 
 class  TranslateConfig {
 

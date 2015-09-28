@@ -10,7 +10,7 @@ import 'package:webclient/utils/string_utils.dart';
   selector: 'welcome',
   useShadowDom: false
 )
-class WelcomeComp {
+class WelcomeComp implements DetachAware{
   String stage;
   Map stage_params;
 

@@ -1,3 +1,5 @@
+library logger_exception_handler;
+
 import 'dart:html';
 
 import 'package:angular/angular.dart';
@@ -37,6 +39,7 @@ class LoggerExceptionHandler extends ExceptionHandler {
         print("[${r.level}] ${r.time}: ${r.message}");
       }
 
+      /*
       // Por convenio, si se quiere mandar un mensaje al servidor, basta usar el Logger.root con Level == SEVERE.
       if (r.level >= Level.SEVERE) {
 
@@ -55,6 +58,7 @@ class LoggerExceptionHandler extends ExceptionHandler {
         HttpRequest.postFormData("${HostServer.url}/log", {"message": "${r.message}", "level": "${r.level}", "email": "${userEmail}", "userAgent": "${userAgent}" })
                    .catchError((error) => print(error));
       }
+       */
     });
   }
 

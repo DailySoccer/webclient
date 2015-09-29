@@ -14,12 +14,13 @@ transformers:
 - webclient/transformer_less
 
 # Queremos tener siempre los source maps disponibles. La unica opcion es compilar en debug (pub build --mode=debug).
-# Siempre subiremos en debug entonces. Pero tambien queremos que nuestro js este minificado y sin checks. 
+# Siempre subiremos en debug entonces. Pero tambien queremos que nuestro js este minificado y sin checks.
 # En la siguiente version meteran una opcion sourceMaps que permitira configurar de forma independiente.
 - $dart2js:
     checked: false
     csp: false
     minify: false
+    sourceMaps: true
     suppressHints: false
     suppressWarnings: false
     terse: true

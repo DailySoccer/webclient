@@ -1,6 +1,7 @@
 library leaderboard_table_comp;
 
 import 'dart:html';
+import 'dart:math';
 import 'package:angular/angular.dart';
 //import 'package:webclient/utils/html_utils.dart';
 //import 'package:webclient/services/screen_detector_service.dart';
@@ -23,9 +24,12 @@ class LeaderboardTableComp {
   
   String playerHint = 'Eres un crack!!';
   
-  bool isThePlayer(id) => id == '123b'/*get del singleton*/;
+  bool isThePlayer(id) => id == highlightedElement['id'];
   
-  List<Map> tableElements;
+  int rows = 0;
+  List<Map> tableElements = null;
+  List<Map> shownElements = null;
+  Map highlightedElement = null;
 
   LeaderboardTableComp () {
     //_streamListener = _scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
@@ -52,6 +56,19 @@ class LeaderboardTableComp {
   }
   */
   
+  void calculateShownElements() {
+    if (rows != 0 && tableElements != null && highlightedElement['id'] != '') {
+      int pos = highlightedElement['id'] != ''? highlightedElement['position'] : 0;
+      //primera posicion calculada a partir del elemento iluminado
+      int firstPosition = max(pos - ((rows-1) / 2).floor(), 1) - 1;
+      //ultima posicion calculada a partir de la primera
+      int lastPosition = min(firstPosition + rows, tableElements.length);
+      //corrección de la primera posicion cuando esta cerca de las últimas posiciones
+      firstPosition = max(min(firstPosition, lastPosition - rows), 0);
+      shownElements = tableElements.sublist(firstPosition, lastPosition);
+    }
+  }
+  
   @NgOneWay("show-header")
   void set showHeader(bool value) {
     isHeaded = value;
@@ -60,6 +77,13 @@ class LeaderboardTableComp {
   @NgOneWay("table-elements")
   void set tableValues(List<Map> value) {
     tableElements = value;
+    calculateShownElements();
+  }
+  
+  @NgOneWay("highlight-element")
+  void set playerInfo (Map value) {
+    highlightedElement = value;
+    calculateShownElements();
   }
   
   @NgOneWay("points-column-label")
@@ -70,6 +94,12 @@ class LeaderboardTableComp {
   @NgOneWay("hint")
   void set hint(String value) {
     playerHint = value;
+  }
+  
+  @NgOneWay("rows")
+  void set rowsToShow(int value) {
+    rows = value;
+    calculateShownElements();
   }
   
 }

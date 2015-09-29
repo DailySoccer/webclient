@@ -16,7 +16,7 @@
         <span class="ranking-position">{{playerMoneyInfo['position']}}º</span>
         <div class="ranking-info">
           <span class="ranking-name">Top Money</span>
-          <span class="ranking-value">{{playerMoneyInfo['points']}} $</span>
+          <span class="ranking-value">{{playerMoneyInfo['points']}} </span>
         </div>
       </div>
       <div class="clearfix"></div>
@@ -38,14 +38,14 @@
       <!-- LIVE CONTESTS -->
       <div class="tab-pane active" id="top-points">      
         
-        <leaderboard-table show-header="true" table-elements="pointsUserList" points-column-label="pointsColumnName" hint="playerPointsHint"></leaderboard-table>
+        <leaderboard-table show-header="true" highlight-element="playerPointsInfo" table-elements="pointsUserList" rows="usersToShow" points-column-label="pointsColumnName" hint="playerPointsHint" ng-show="!loadingService.isLoading"></leaderboard-table>
         
       </div>
 
       <!-- WAITING CONTESTS -->
       <div class="tab-pane" id="top-money">
 
-        <leaderboard-table show-header="true" table-elements="moneyUserList" points-column-label="moneyColumnName" hint="playerMoneyHint"></leaderboard-table>
+        <leaderboard-table show-header="true" highlight-element="playerMoneyInfo" table-elements="moneyUserList" rows="usersToShow" points-column-label="moneyColumnName" hint="playerMoneyHint" ng-show="!loadingService.isLoading"></leaderboard-table>
       </div>
     </div>
   </div>

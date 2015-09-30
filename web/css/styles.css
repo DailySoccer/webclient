@@ -5627,6 +5627,8 @@ button.close {
 .contestant-list .contestant-element:after,
 .contests-list-f2p-root:before,
 .contests-list-f2p-root:after,
+.contests-list-f2p-root .contestSlot:before,
+.contests-list-f2p-root .contestSlot:after,
 scoring-rules:before,
 scoring-rules:after,
 .panel-points .punctuation:before,
@@ -5776,6 +5778,7 @@ scoring-rules:after,
 #contestInfoTabbed:after,
 .contestant-list .contestant-element:after,
 .contests-list-f2p-root:after,
+.contests-list-f2p-root .contestSlot:after,
 scoring-rules:after,
 .panel-points .punctuation:after,
 .contests-list-root:after,
@@ -7047,7 +7050,6 @@ contest-header {
   padding-right: 15px;
   position: relative;
   background-color: #dcdcdc;
-  min-height: 480px;
 }
 .contests-list-f2p-root > .navbar-header,
 .contests-list-f2p-root > .navbar-collapse {
@@ -7060,6 +7062,434 @@ contest-header {
     margin-right: 0;
     margin-left: 0;
   }
+}
+.contests-list-f2p-root .contestSlot {
+  margin-left: 0;
+  margin-right: 0;
+  -webkit-box-shadow: 0px 1px 5px 0px rgba(67, 67, 67, 0.5);
+  -moz-box-shadow: 0px 1px 5px 0px rgba(67, 67, 67, 0.5);
+  box-shadow: 0px 1px 5px 0px rgba(67, 67, 67, 0.5);
+  margin-top: 10px;
+  min-height: 31px;
+  width: 100%;
+  position: relative;
+  padding-bottom: 10px;
+  background-color: #ffffff;
+}
+.contests-list-f2p-root .contestSlot .flagsRow {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+}
+.contests-list-f2p-root .contestSlot .flagsRow .flag {
+  position: absolute;
+  top: 11px;
+  left: 15px;
+}
+.contests-list-f2p-root .contestSlot .flagsRow .contest-type {
+  position: absolute;
+  top: -1px;
+  left: 35px;
+  width: 20px;
+  height: 31px;
+}
+.contests-list-f2p-root .contestSlot .flagsRow .contest-type.real {
+  background-image: url("../images/realContest.png");
+}
+.contests-list-f2p-root .contestSlot .flagsRow .contest-type.train {
+  background-image: url("../images/trainContest.png");
+}
+.contests-list-f2p-root .contestSlot .special-image-section {
+  overflow: hidden;
+  position: relative;
+  margin: 2px 2px 0 2px;
+  height: 103px;
+}
+@media (min-width: 768px) {
+  .contests-list-f2p-root .contestSlot .special-image-section {
+    height: 206px;
+  }
+}
+.contests-list-f2p-root .contestSlot .special-image-section img {
+  position: absolute;
+  left: 50%;
+  margin-left: -485px;
+  top: 50%;
+  margin-top: -103px;
+}
+@media (max-width: 767px) {
+  .contests-list-f2p-root .contestSlot .time-section {
+    margin-top: 10px;
+    text-align: right;
+  }
+}
+.contests-list-f2p-root .contestSlot .time-section .fake-time-column {
+  float: left;
+  width: 83.33333333%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 25px;
+}
+@media (min-width: 768px) {
+  .contests-list-f2p-root .contestSlot .time-section .fake-time-column {
+    float: left;
+    width: 100%;
+  }
+}
+@media (min-width: 768px) {
+  .contests-list-f2p-root .contestSlot .time-section .fake-time-column {
+    margin-top: 40px;
+  }
+}
+.contests-list-f2p-root .contestSlot .time-section .column-start-hour {
+  float: left;
+  width: 16.66666667%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 9pt;
+  color: #214a5f;
+}
+@media (min-width: 768px) {
+  .contests-list-f2p-root .contestSlot .time-section .column-start-hour {
+    float: left;
+    width: 8.33333333%;
+  }
+}
+@media (min-width: 768px) {
+  .contests-list-f2p-root .contestSlot .time-section .column-start-hour {
+    font-family: 'Exo', sans-serif;
+    font-weight: 300;
+    font-size: 12pt;
+    color: #214a5f;
+    text-transform: uppercase;
+  }
+}
+.contests-list-f2p-root .contestSlot .name-section {
+  float: left;
+  width: 100%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  .contests-list-f2p-root .contestSlot .name-section {
+    float: left;
+    width: 45.83333333%;
+  }
+}
+.contests-list-f2p-root .contestSlot .name-section .contest-name {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 9pt;
+  color: #214a5f;
+}
+@media (min-width: 768px) {
+  .contests-list-f2p-root .contestSlot .name-section .contest-name {
+    font-family: 'Exo', sans-serif;
+    font-weight: 600;
+    font-size: 12pt;
+    color: #214a5f;
+    text-transform: uppercase;
+  }
+}
+.contests-list-f2p-root .contestSlot .name-section .contest-description {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 9pt;
+  color: #777777;
+}
+@media (min-width: 768px) {
+  .contests-list-f2p-root .contestSlot .name-section .contest-description {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 9pt;
+    color: #777777;
+  }
+}
+.contests-list-f2p-root .contestSlot .conditions-section .condition-box-commons {
+  float: left;
+  width: 45.83333333%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 9pt;
+  color: #777777;
+}
+@media (min-width: 768px) {
+  .contests-list-f2p-root .contestSlot .conditions-section .condition-box-commons {
+    float: left;
+    width: 20.83333333%;
+  }
+}
+@media (min-width: 768px) {
+  .contests-list-f2p-root .contestSlot .conditions-section .condition-box-commons {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 12pt;
+    color: #777777;
+    border-radius: 5px;
+    box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5) inset;
+    padding: 10px;
+  }
+}
+@media (max-width: 767px) {
+  .contests-list-f2p-root .contestSlot .conditions-section .condition-box-commons {
+    max-width: 125px;
+  }
+}
+.contests-list-f2p-root .contestSlot .conditions-section .condition-box-commons img {
+  vertical-align: top;
+  margin-right: 10px;
+}
+.contests-list-f2p-root .contestSlot .conditions-section .condition-box-commons span {
+  text-align: right;
+  float: right;
+  padding-rigth: 10px;
+}
+.contests-list-f2p-root .contestSlot .conditions-section .entry-fee-box {
+  float: left;
+  width: 45.83333333%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 9pt;
+  color: #777777;
+  margin-right: 10px;
+  margin-left: -10px;
+}
+@media (min-width: 768px) {
+  .contests-list-f2p-root .contestSlot .conditions-section .entry-fee-box {
+    float: left;
+    width: 20.83333333%;
+  }
+}
+@media (min-width: 768px) {
+  .contests-list-f2p-root .contestSlot .conditions-section .entry-fee-box {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 12pt;
+    color: #777777;
+    border-radius: 5px;
+    box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5) inset;
+    padding: 10px;
+  }
+}
+@media (max-width: 767px) {
+  .contests-list-f2p-root .contestSlot .conditions-section .entry-fee-box {
+    max-width: 125px;
+  }
+}
+.contests-list-f2p-root .contestSlot .conditions-section .entry-fee-box img {
+  vertical-align: top;
+  margin-right: 10px;
+}
+.contests-list-f2p-root .contestSlot .conditions-section .entry-fee-box span {
+  text-align: right;
+  float: right;
+  padding-rigth: 10px;
+}
+.contests-list-f2p-root .contestSlot .conditions-section .prize-box {
+  float: left;
+  width: 45.83333333%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 9pt;
+  color: #777777;
+}
+@media (min-width: 768px) {
+  .contests-list-f2p-root .contestSlot .conditions-section .prize-box {
+    float: left;
+    width: 20.83333333%;
+  }
+}
+@media (min-width: 768px) {
+  .contests-list-f2p-root .contestSlot .conditions-section .prize-box {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 12pt;
+    color: #777777;
+    border-radius: 5px;
+    box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5) inset;
+    padding: 10px;
+  }
+}
+@media (max-width: 767px) {
+  .contests-list-f2p-root .contestSlot .conditions-section .prize-box {
+    max-width: 125px;
+  }
+}
+.contests-list-f2p-root .contestSlot .conditions-section .prize-box img {
+  vertical-align: top;
+  margin-right: 10px;
+}
+.contests-list-f2p-root .contestSlot .conditions-section .prize-box span {
+  text-align: right;
+  float: right;
+  padding-rigth: 10px;
+}
+@media (max-width: 767px) {
+  .contests-list-f2p-root .contestSlot .conditions-section .prize-box {
+    border-left: 1px solid #dcdcdc;
+  }
+}
+.contests-list-f2p-root .contestSlot .conditions-section .fit-icon-size {
+  width: 16px;
+  height: 16px;
+  position: relative;
+  top: 3px;
+  right: -3px;
+  display: inline-block;
+}
+@media (min-width: 768px) {
+  .contests-list-f2p-root .contestSlot .conditions-section .fit-icon-size {
+    width: 25px;
+    height: 25px;
+  }
+}
+.contests-list-f2p-root .contestSlot .conditions-section .entry-fee-energy::after {
+  content: " ";
+  background-image: url("../images/lightning-xs.png");
+  width: 16px;
+  height: 16px;
+  position: relative;
+  top: 3px;
+  right: -3px;
+  display: inline-block;
+}
+@media (min-width: 768px) {
+  .contests-list-f2p-root .contestSlot .conditions-section .entry-fee-energy::after {
+    background-image: url("../images/lightning-lg.png");
+  }
+}
+@media (min-width: 768px) {
+  .contests-list-f2p-root .contestSlot .conditions-section .entry-fee-energy::after {
+    width: 25px;
+    height: 25px;
+  }
+}
+.contests-list-f2p-root .contestSlot .conditions-section .entry-fee-coin::after,
+.contests-list-f2p-root .contestSlot .conditions-section .prize-coin::after {
+  content: " ";
+  background-image: url("../images/coin-xs.png");
+  width: 16px;
+  height: 16px;
+  position: relative;
+  top: 3px;
+  right: -3px;
+  display: inline-block;
+}
+@media (min-width: 768px) {
+  .contests-list-f2p-root .contestSlot .conditions-section .entry-fee-coin::after,
+  .contests-list-f2p-root .contestSlot .conditions-section .prize-coin::after {
+    background-image: url("../images/coin-lg.png");
+  }
+}
+@media (min-width: 768px) {
+  .contests-list-f2p-root .contestSlot .conditions-section .entry-fee-coin::after,
+  .contests-list-f2p-root .contestSlot .conditions-section .prize-coin::after {
+    width: 25px;
+    height: 25px;
+  }
+}
+.contests-list-f2p-root .contestSlot .conditions-section .prize-managerpoints::after {
+  content: " ";
+  background-image: url("../images/star-xs.png");
+  width: 16px;
+  height: 16px;
+  position: relative;
+  top: 3px;
+  right: -3px;
+  display: inline-block;
+}
+@media (min-width: 768px) {
+  .contests-list-f2p-root .contestSlot .conditions-section .prize-managerpoints::after {
+    background-image: url("../images/star-lg.png");
+  }
+}
+@media (min-width: 768px) {
+  .contests-list-f2p-root .contestSlot .conditions-section .prize-managerpoints::after {
+    width: 25px;
+    height: 25px;
+  }
+}
+.contests-list-f2p-root .contestSlot .action-section {
+  float: left;
+  width: 25%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-left: 0px;
+  padding-right: 0px;
+  text-align: center;
+  vertical-align: bottom;
+  float: right;
+}
+@media (min-width: 768px) {
+  .contests-list-f2p-root .contestSlot .action-section {
+    float: left;
+    width: 4.16666667%;
+  }
+}
+.contests-list-f2p-root .contestSlot .action-section img {
+  margin-top: 18px;
+}
+@media (max-width: 767px) {
+  .contests-list-f2p-root .contestSlot .action-section {
+    text-align: right;
+  }
+  .contests-list-f2p-root .contestSlot .action-section img {
+    margin-top: 7px;
+  }
+}
+.contests-list-f2p-root .special.contestSlot {
+  background-color: #434343;
+}
+.contests-list-f2p-root .special .time-section {
+  position: relative;
+}
+.contests-list-f2p-root .special .time-section .column-start-hour {
+  color: #ffffff;
+}
+@media (max-width: 767px) {
+  .contests-list-f2p-root .special .time-section .column-start-hour {
+    position: absolute;
+    top: 2px;
+    right: 10px;
+  }
+}
+.contests-list-f2p-root .special .time-section .fake-time-column {
+  margin-top: 10px;
+}
+@media (max-width: 767px) {
+  .contests-list-f2p-root .special .time-section .fake-time-column {
+    margin-top: 0px;
+  }
+}
+.contests-list-f2p-root .special .name-section .contest-name,
+.contests-list-f2p-root .special .name-section .contest-description {
+  color: #ffffff;
+}
+.contests-list-f2p-root .special .conditions-section .entry-fee-box span,
+.contests-list-f2p-root .special .conditions-section .prize-box span {
+  color: #ffffff;
 }
 scoring-rules {
   margin-right: auto;

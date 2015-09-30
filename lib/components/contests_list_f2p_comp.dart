@@ -4,6 +4,8 @@ import 'package:angular/angular.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'dart:math';
+import 'package:webclient/services/datetime_service.dart';
 
 @Component(
     selector: 'contests-list-f2p',
@@ -12,13 +14,36 @@ import 'package:webclient/utils/string_utils.dart';
 )
 class ContestsListF2PComp {
 
+  // Lista original de los contest
+  List<Contest> contestsListOriginal;
+  ScreenDetectorService scrDet;
+
   /********* BINDINGS */
   @NgOneWay("contests-list")
   void set contestsList(List<Contest> value) {
     if (value == null || value.isEmpty) {
       return;
     }
-    _contestsListOriginal = value;
+    contestsListOriginal = value;
+
+    Random rand = new Random();
+
+    _contestTypeValues = new List<String>();
+    for (var i = 0; i < contestsListOriginal.length; i++) {
+      _contestTypeValues.add(rand.nextInt(2) == 0? 'train' : 'real');
+    }
+    _contestMorfology = new List<String>();
+    for (var i = 0; i < contestsListOriginal.length; i++) {
+      _contestMorfology.add(rand.nextInt(2) == 0? 'normal' : 'special');
+    }
+    _contestImage = new List<String>();
+    for (var i = 0; i < contestsListOriginal.length; i++) {
+      if (_contestMorfology[i] == 'special') {
+        _contestImage.add(rand.nextInt(2) == 0? 'sampleImage1' : 'sampleImage2');
+      }
+      else
+        _contestImage.add("");
+    }
   }
 
   @NgOneWay("action-button-title")
@@ -52,9 +77,42 @@ class ContestsListF2PComp {
       case "CHAMPIONS":
         ret += "flag-eu";
       break;
+      default:
+        ret += "flag-es";
+      break;
     }
 
     return ret;
+  }
+
+  //TODO: Esto es temporal... hay que obtener el valor del contest.
+  String getContestTypeIcon(int id) {
+    if (_contestTypeValues != null) {
+      return  _contestTypeValues[id];
+    }
+
+    return "train";
+  }
+
+  String getContestMorfology(int id) {
+    if (_contestMorfology != null) {
+      return _contestMorfology[id];
+    }
+    return "normal";
+  }
+
+  String getContestImage(int id) {
+    if (_contestImage != null) {
+      return _contestImage[id];
+    }
+    if (_contestMorfology != null) {
+      return _contestMorfology[id] == "normal" ? "" : "sampleImage1";
+    }
+    return "";
+  }
+
+  String timeInfo(DateTime date) {
+    return DateTimeService.formatTimeShort(date);
   }
 
   /********* HANDLERS */
@@ -70,8 +128,7 @@ class ContestsListF2PComp {
     }
   }
 
-  /********* PRIVATE DECLARATIONS */
-  // Lista original de los contest
-  List<Contest> _contestsListOriginal;
-  ScreenDetectorService scrDet;
+  List<String> _contestTypeValues;
+  List<String> _contestMorfology;
+  List<String> _contestImage;
 }

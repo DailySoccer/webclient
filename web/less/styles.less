@@ -460,10 +460,16 @@ body {
 	z-index:99999;
 	.slide-in-from-bottom-animation();
 }
-
+ 
 .epicGlobalMessage {
 	.globalMessage();
 	border-color: @white;
 	background-color: @blueDark;
 	color: @white;
+}
+
+.make-shadow(@offsetH, @offsetV, @radius, @spread, @color:@greyUltraDark, @opacity) {
+	-webkit-box-shadow: @offsetH @offsetV @radius @spread rgba(red(@color), green(@color), blue(@color), @opacity);
+	-moz-box-shadow: 	@offsetH @offsetV @radius @spread rgba(red(@color), green(@color), blue(@color), @opacity);
+	box-shadow: 		@offsetH @offsetV @radius @spread rgba(red(@color), green(@color), blue(@color), @opacity);
 }

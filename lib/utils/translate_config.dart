@@ -6,18 +6,17 @@ import 'dart:convert' show JSON;
 
 TranslateConfig  config ;
 
-
 class  TranslateConfig {
-
-
   String title = 'Sample';
   Map i18n = new Map();
+
   // TODO Using a code based map for the default strings ?
   String currentLocale = "es";
 
   static create() {
     config = new TranslateConfig();
   }
+
   static Future initialize() {
     var completer = new Completer();
     TranslateConfig newConfig = new TranslateConfig();
@@ -33,11 +32,11 @@ class  TranslateConfig {
     // TODO test: is file available
     currentLocale = locale;
     HttpRequest.getString("i18n/" + currentLocale + ".json").then(
-        (configText) {
-          i18n = (JSON.decode(configText))["translations"];
+      (configText) {
+        i18n = (JSON.decode(configText))["translations"];
           completer.complete(this);
-        },
-        onError: (error) => completer.completeError(error));
+      },
+      onError: (error) => completer.completeError(error));
     return completer.future;
   }
 

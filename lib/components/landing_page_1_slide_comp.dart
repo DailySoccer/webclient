@@ -98,6 +98,12 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
           <div class="button-wrap">
             <button type="button" class="button-play" buttonOnclick="lobby.welcome" id="playButton1">PLAY NOW</button>
           </div>
+          <div class="button-wrap">
+            <button type="button" class="button-play" id="fbLoginTest">LOGIN</button>
+          </div>
+          <div class="button-wrap">
+            <button type="button" class="button-play" id="fbPublishTest">PUBLISH</button>
+          </div>
           <div class="text-wrapper">
     
             <div class="module-column">
@@ -140,6 +146,12 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
             <p class="title-sup-text-mobile">AND WIN CASH</p>
             <div class="button-wrap">
               <button type="button" class="button-play-mobile" buttonOnclick="lobby.welcome" id="playButtonMobile">PLAY NOW</button>
+            </div>
+            <div class="button-wrap">
+              <button type="button" class="button-play-mobile" id="fbLoginTest">LOGIN</button>
+            </div>
+            <div class="button-wrap">
+              <button type="button" class="button-play-mobile" id="fbPublishTest">PUBLISH</button>
             </div>
           </div> 
         </div>

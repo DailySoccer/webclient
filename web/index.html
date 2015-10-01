@@ -10,6 +10,7 @@
       wtf.trace.start();
     </script>
   -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -19,7 +20,7 @@
     <meta property="og:title"        content="Epic Eleven" />
     <meta property="og:description"  content="Play football fantasy leagues" />
     <meta property="og:image"        content="http://www.epiceleven.com/images/logoEpic11-2x.png" />
-    
+        
     <title>Epic Eleven</title>
 
     <!-- Nuestros estilos compilados con less. Cuando compilamos nuestro styles.less (para dar nuestro styles.css) arrastramos
@@ -131,7 +132,10 @@
       </div>
       <footer></footer>
     </div>
+    
 
+    <!--script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/facebookConnectPlugin.js"></script-->
     <script src="js/jquery.min.js"></script>
     <script>
       // facebook sdk
@@ -160,6 +164,19 @@
           })
         }, function(response){ dartCallback(); });
         */
+      }
+
+      function facebookLogin2() {
+        alert("goood");
+        FB.login(function(response){ alert(response); }, {scope: 'email,user_likes'});
+      }
+      
+      function facebookPublish2() {
+        alert("goood");
+        FB.ui( {
+          method: 'share',
+          href: 'https://dl.dropboxusercontent.com/u/15392112/htmlPublic/e11-publishTest.html'
+        }, function(response){ alert(response); });
       }
       
       function onjQueryReady(dartCallback) {
@@ -197,14 +214,20 @@
 
     <!-- Facebook Stuff -->
     <script>
+    
       window.fbAsyncInit = function() {
+        alert(5);
         FB.init({
           appId      : '1043008439063842',
           xfbml      : true,
-          version    : 'v2.4'
+          version    : 'v2.2'
         });
+        alert(6);
+        alert("Login status .. " + (FB.getLoginStatus()? 1:0));
+        alert("Login status .. " + FB.getLoginStatus());
       };
 
+      
       (function(d, s, id){
          var js, fjs = d.getElementsByTagName(s)[0];
          if (d.getElementById(id)) {return;}
@@ -230,7 +253,44 @@
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
      */
+     
+     var fbCordovaLogin = function () {
+         facebookConnectPlugin.login( ['email','user_likes'], 
+             function (response) { alert(JSON.stringify(response)) },
+             function (response) { alert(JSON.stringify(response)) });
+     }
+     
+     var fbCordovaShowDialog = function () { 
+         facebookConnectPlugin.showDialog( { method: "feed" }, 
+             function (response) { alert(JSON.stringify(response)) },
+             function (response) { alert(JSON.stringify(response)) });
+     }
+     
+     
+      function añadirElEvento() {
+        setTimeout( function() {
+
+          var elem = document.getElementById("fbLoginTest");
+          var elem2 = document.getElementById("fbPublishTest");
+          if(elem && elem2) {
+            if (!window.cordova) {
+              elem.addEventListener("click", facebookLogin2);
+              elem2.addEventListener("click", facebookPublish2);
+            } else {
+              alert("Cordova");
+              elem.addEventListener("click", fbCordovaLogin);
+              elem2.addEventListener("click", fbCordovaShowDialog);
+            }
+          } else {
+            return añadirElEvento();
+          }
+          
+        }, 500);
+      }
+     
+     añadirElEvento();
     </script>
 
+    
   </body>
 </html>

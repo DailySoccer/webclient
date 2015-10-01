@@ -1,15 +1,11 @@
 <div class="contests-list-f2p-root">
 
-  <!-- slot fijo para testeo -->
+  <!-- slot fijo NORMAL para testeo
   <div class="contestSlot">
-
-    <div class="special-image-section" ng-if="getContestMorfology(0) == 'special'">
-      <img src="images/sampleImage1.jpg"></img>
-    </div>
 
     <div class="time-section">
       <div class="fake-time-column"></div>
-      <div class="column-start-hour">19:00h.</div>
+      <div class="column-start-hour">19:00h</div>
     </div>
 
     <div class="name-section">
@@ -29,7 +25,7 @@
     </div>
 
     <div class="action-section">
-      <img class="ticket" src="images/arrow{{getContestMorfology(0) == 'normal' ? 'Black' : 'White'}}.png"></img>
+      <img class="ticket" src="images/arrowBlack.png"></img>
     </div>
 
     <div class="flagsRow">
@@ -38,8 +34,47 @@
     </div>
 
   </div>
-  <!--slot fijo para testeo -->
+slot fijo para testeo -->
+    <!-- slot fijo SPECIAL para testeo
+  <div class="contestSlot special">
 
+    <div class="special-image-section">
+      <img src="images/sampleImage1.jpg"></img>
+    </div>
+
+    <div class="time-section">
+      <div class="fake-time-column"></div>
+      <div class="column-start-hour">19:00h</div>
+    </div>
+
+    <div class="name-section">
+      <div class="contest-name">Nombre del Concurso</div>
+      <div class="contest-description">Description del concurso</div>
+    </div>
+
+    <div class="conditions-section">
+      <div class="entry-fee-box">
+        <img class="ticket" src="images/ticket-{{scrDet.isXsScreen ? 'xs' : 'lg'}}.png"></img>
+        <span ng-class="{'entry-fee-coin':getContestTypeIcon(0) == 'real', 'entry-fee-energy':getContestTypeIcon(0) == 'train'}">$99</span>
+      </div>
+      <div class="prize-box">
+        <img class="ticket" src="images/moneybag-{{scrDet.isXsScreen ? 'xs' : 'lg'}}.png"></img>
+        <span ng-class="{'prize-coin':getContestTypeIcon(0) == 'real', 'prize-managerpoints':getContestTypeIcon(0) == 'train'}">$99</span>
+      </div>
+    </div>
+
+    <div class="action-section">
+      <img class="ticket" src="images/arrowWhite.png"></img>
+    </div>
+
+    <div class="flagsRow">
+      <span class="flag flag-es"></span>
+      <span class="contest-type {{getContestTypeIcon(0)}}"></span>
+    </div>
+
+  </div>
+
+ slot fijo para testeo -->
 
   <div ng-repeat="contest in contestsListOriginal">
     <div class="contestSlot" ng-class="{'special' : getContestMorfology($index) == 'special'}">
@@ -74,7 +109,7 @@
         <img class="ticket" src="images/arrow{{getContestMorfology($index) == 'normal' ? 'Black' : 'White'}}.png"></img>
       </div>
 
-      <div class="flagsRow">
+      <div class="tournament-and-type-section">
         <span class="{{getSourceFlag(contest)}}"></span>
         <span class="contest-type {{getContestTypeIcon($index)}}"></span>
       </div>

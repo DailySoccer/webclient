@@ -1,8 +1,9 @@
 .contests-list-f2p-root {
 	.container-fluid();
 	position: relative;
-	background-color: @greyLight;
-	
+	background-color: @greyLight;	
+
+	//definición del slot de la lista
 	.contestSlot {
 		.make-row(0);
 		.make-shadow(0px, 1px, 5px, 0px, @greyUltraDark, 0.5);
@@ -10,9 +11,12 @@
 		min-height: 31px;
 		width: 100%;
 		position: relative;
-		padding-bottom: 10px;
+		@media (max-width: @screen-xs-max) {
+			padding-bottom: 10px;
+		}
 		background-color: @white;
-		.flagsRow {
+		//Sección de iconos que definen el tipo y torneo del concurso
+		.tournament-and-type-section {
 			position: absolute;
 			top: 0px;
 			width: 100%;
@@ -31,6 +35,7 @@
 				&.train {background-image: url("@{images}/trainContest.png");}
 			}
 		}
+		// Imagen para los concursos especiales
 		.special-image-section {
 			overflow: hidden;
 			position: relative;
@@ -47,16 +52,14 @@
 				margin-top: -103px;
 			}
 		}
-		.special-image-section{
-				
-		}
+		// Sección de la hora
 		.time-section {
 			@media (max-width: @screen-xs-max) {
 				margin-top: 10px;
 				text-align: right;
 			}
 			.fake-time-column {
-				.make-xs-column(10);
+				.make-xs-column(9);
 				.make-sm-column(12);
 				margin-top: 25px;
 				@media (min-width: @screen-sm-min) {
@@ -64,7 +67,7 @@
 				}
 			}
 			.column-start-hour {
-				.make-xs-column(2);
+				.make-xs-column(3);
 				.make-sm-column(1);
 				.opensans_bold(9pt, @blueDark);
 				@media (min-width: @screen-sm-min) {
@@ -72,10 +75,13 @@
 				}
 			}
 		}
-
+		// Sección de nombre y descripción
 		.name-section {
 			.make-xs-column(12);
 			.make-sm-column(5.5);
+			@media (max-width: @screen-xs-max) {
+				margin-bottom: 10px;
+			}
 			.contest-name {
 				.opensans_bold(9pt, @blueDark);
 				@media (min-width: @screen-sm-min) {
@@ -89,19 +95,18 @@
 				}
 			}
 		}
-
+		// Sección de concidiones de pago y premio del concurso
 		.conditions-section {
 			.condition-box-commons {
 				.make-xs-column(5.5);
 				.make-sm-column(2.5);			
-				.opensans_normal(9pt, @greyDark);
-				
-				
+				.opensans_normal(9pt, @greyDark);								
 				@media (min-width: @screen-sm-min) {
 					.opensans_normal(12pt, @greyDark);
 					border-radius: 5px;
 					box-shadow: 1px 1px 7px rgba(0,0,0,0.5) inset;
 					padding: 10px;
+					top: -10px;
 				}
 				@media (max-width: @screen-xs-max) {
 					max-width:125px;
@@ -118,8 +123,10 @@
 			}
 			.entry-fee-box {
 				.condition-box-commons();
-				margin-right: 10px;
-				margin-left: -10px;
+				@media (min-width: @screen-sm-min) {
+					margin-right: 10px;
+					margin-left: -10px;
+				}
 			}
 			.prize-box {
 				.condition-box-commons();
@@ -164,21 +171,23 @@
 				.fit-icon-size();
 			}
 		}
+		// Sección de la flechita de ir al concurso
 		.action-section {
 			.make-xs-column(3);
 			.make-sm-column(0.5);
-			.clean-paddings();
+			padding: 0 10px;
 			text-align: center;
 			vertical-align: bottom;
 			float: right;
-			img {margin-top: 18px;}
+			margin-top: 8px;
 			@media (max-width: @screen-xs-max) {
 				text-align: right;
-				img {margin-top: 7px;}
-			}
-			
+				max-width:125px;
+				margin-top: 2px;	
+			}			
 		}
 	}
+	//Definición especifica para concursos especiales.
 	.special{
 		&.contestSlot { background-color: @greyUltraDark; }
 		.special-image-section{}
@@ -187,16 +196,14 @@
 			.column-start-hour { 
 				color: @white; 
 				@media (max-width: @screen-xs-max) {
-					position: absolute; top:2px; right: 10px;
-
+					position: absolute; top:2px; right: 0px;
 				}
 			}
 			.fake-time-column { 
-				margin-top: 10px;
+				margin-top: 20px;
 				@media (max-width: @screen-xs-max) {
 					margin-top: 0px;
 				}
-
 			}
 		}
 		.name-section {
@@ -205,6 +212,5 @@
 		.conditions-section {
 			.entry-fee-box span, .prize-box span {color: @white;}
 		}
-
 	}
 }

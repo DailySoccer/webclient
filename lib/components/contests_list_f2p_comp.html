@@ -77,7 +77,7 @@ slot fijo para testeo -->
  slot fijo para testeo -->
 
   <div ng-repeat="contest in contestsListOriginal">
-    <div class="contestSlot" ng-class="{'special' : getContestMorfology($index) == 'special'}">
+    <div class="contestSlot" ng-class="{'special' : getContestMorfology($index) == 'special'}" ng-click="onRow(contest)">
 
       <div class="special-image-section" ng-if="getContestMorfology($index) == 'special'">
         <img src="images/{{getContestImage($index)}}.jpg"></img>
@@ -105,7 +105,7 @@ slot fijo para testeo -->
         </div>
       </div>
 
-      <div class="action-section">
+      <div class="action-section" ng-click="onAction(contest, $event)">
         <img class="ticket" src="images/arrow{{getContestMorfology($index) == 'normal' ? 'Black' : 'White'}}.png"></img>
       </div>
 

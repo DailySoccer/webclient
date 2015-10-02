@@ -6,6 +6,7 @@ import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'dart:math';
 import 'package:webclient/services/datetime_service.dart';
+import 'dart:html';
 
 @Component(
     selector: 'contests-list-f2p',
@@ -122,7 +123,8 @@ class ContestsListF2PComp {
     }
   }
 
-  void onAction(Contest contest) {
+  void onAction(Contest contest, Event event) {
+    event.stopPropagation();
     if (onActionClick != null) {
       onActionClick({"contest":contest});
     }

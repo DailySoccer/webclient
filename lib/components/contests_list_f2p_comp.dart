@@ -26,21 +26,6 @@ class ContestsListF2PComp {
       return;
     }
     contestsListOriginal = value;
-
-    Random rand = new Random();
-
-    _contestMorfology = new List<String>();
-    for (var i = 0; i < contestsListOriginal.length; i++) {
-      _contestMorfology.add(rand.nextInt(2) == 0? 'normal' : 'special');
-    }
-    _contestImage = new List<String>();
-    for (var i = 0; i < contestsListOriginal.length; i++) {
-      if (_contestMorfology[i] == 'special') {
-        _contestImage.add(rand.nextInt(2) == 0? 'sampleImage1' : 'sampleImage2');
-      }
-      else
-        _contestImage.add("");
-    }
   }
 
   @NgOneWay("action-button-title")
@@ -86,21 +71,12 @@ class ContestsListF2PComp {
     return contest.isSimulation ? "train" : "real";
   }
 
-  String getContestMorfology(int id) {
-    if (_contestMorfology != null) {
-      return _contestMorfology[id];
-    }
-    return "normal";
+  String getContestMorfology(Contest contest) {
+    return contest.hasSpecialImage ? "special" : "normal";
   }
 
-  String getContestImage(int id) {
-    if (_contestImage != null) {
-      return _contestImage[id];
-    }
-    if (_contestMorfology != null) {
-      return _contestMorfology[id] == "normal" ? "" : "sampleImage1";
-    }
-    return "";
+  String getContestImage(Contest contest) {
+    return contest.hasSpecialImage ? contest.specialImage : "";
   }
 
   String timeInfo(DateTime date) {
@@ -120,7 +96,4 @@ class ContestsListF2PComp {
       onActionClick({"contest":contest});
     }
   }
-
-  List<String> _contestMorfology;
-  List<String> _contestImage;
 }

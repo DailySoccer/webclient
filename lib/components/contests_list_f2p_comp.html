@@ -1,9 +1,9 @@
 <div class="contests-list-f2p-root">
   <div ng-repeat="contest in contestsListOriginal">
-    <div class="contestSlot" ng-class="{'special' : getContestMorfology($index) == 'special'}" ng-click="onRow(contest)">
+    <div class="contestSlot" ng-class="{'special' : getContestMorfology(contest) == 'special'}" ng-click="onRow(contest)">
 
-      <div class="special-image-section" ng-if="getContestMorfology($index) == 'special'">
-        <img src="images/{{getContestImage($index)}}.jpg"></img>
+      <div class="special-image-section" ng-if="getContestMorfology(contest) == 'special'">
+        <img src="{{getContestImage(contest)}}"></img>
       </div>
 
       <div class="time-section">
@@ -29,7 +29,7 @@
       </div>
 
       <div class="action-section" ng-click="onAction(contest, $event)">
-        <img class="ticket" src="images/arrow{{getContestMorfology($index) == 'normal' ? 'Black' : 'White'}}.png"></img>
+        <img class="ticket" src="images/arrow{{getContestMorfology(contest) == 'normal' ? 'Black' : 'White'}}.png"></img>
       </div>
 
       <div class="tournament-and-type-section">

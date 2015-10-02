@@ -116,7 +116,7 @@ class Contest {
   bool get isLive     => state == "LIVE";
   bool get isHistory  => state == "HISTORY";
   bool get isSimulation => simulation;
-  bool get hasSpecialImage => specialImage != null && specialImage.isEmpty;
+  bool get hasSpecialImage => specialImage != null && !specialImage.isEmpty;
 
   bool get needGold => entryFee.isGold;
   bool get needManagerPoints => entryFee.isManagerPoints;

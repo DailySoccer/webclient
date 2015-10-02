@@ -14307,7 +14307,7 @@ main-menu-f2p {
     top: 70px;
     bottom: 0px;
     overflow-y: auto;
-    right: -250px;
+    left: -250px;
     -moz-transform: translateX(6px);
     -ms-transform: translateX(6px);
     -o-transform: translateX(6px);
@@ -14328,21 +14328,21 @@ main-menu-f2p {
     transition: 0.4s ease all;
   }
   #mainMenu #menuSlide.slide-in {
-    -moz-transform: translateX(-250px);
-    -ms-transform: translateX(-250px);
-    -o-transform: translateX(-250px);
-    -webkit-transform: translateX(-250px);
-    transform: translateX(-250px);
-    -moz-transform: translateZ(-250px) translateX(-250px);
-    -ms-transform: translateZ(-250px) translateX(-250px);
-    -o-transform: translateZ(-250px) translateX(-250px);
-    -webkit-transform: translateZ(-250px) translateX(-250px);
-    transform: translateZ(-250px) translateX(-250px);
-    -moz-transform: translate3d(-250px, 0, 0);
-    -ms-transform: translate3d(-250px, 0, 0);
-    -o-transform: translate3d(-250px, 0, 0);
-    -webkit-transform: translate3d(-250px, 0, 0);
-    transform: translate3d(-250px, 0, 0);
+    -moz-transform: translateX(250px);
+    -ms-transform: translateX(250px);
+    -o-transform: translateX(250px);
+    -webkit-transform: translateX(250px);
+    transform: translateX(250px);
+    -moz-transform: translateZ(250px) translateX(250px);
+    -ms-transform: translateZ(250px) translateX(250px);
+    -o-transform: translateZ(250px) translateX(250px);
+    -webkit-transform: translateZ(250px) translateX(250px);
+    transform: translateZ(250px) translateX(250px);
+    -moz-transform: translate3d(250px, 0, 0);
+    -ms-transform: translate3d(250px, 0, 0);
+    -o-transform: translate3d(250px, 0, 0);
+    -webkit-transform: translate3d(250px, 0, 0);
+    transform: translate3d(250px, 0, 0);
   }
   #mainMenu #menuSlide .navbar-nav {
     background-color: #ffffff;

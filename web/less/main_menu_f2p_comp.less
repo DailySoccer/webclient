@@ -226,7 +226,7 @@ main-menu-f2p {
 			overflow-y: auto;
 
 			// Estado inicial
-			right: -@offcanvas-width;
+			left: -@offcanvas-width;
 			.translateX(6px);	// Para que llegue a irse la sombra
 			box-shadow: -3px 0px 3px 0px @greyUltraDark;
 			
@@ -234,7 +234,7 @@ main-menu-f2p {
 
     		// Estado "dentro" (final)
     		&.slide-in {
-    			.translateX(-@offcanvas-width);
+    			.translateX(@offcanvas-width);
 			}
 			
 	    	// Caja menu ppal.

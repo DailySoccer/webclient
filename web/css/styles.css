@@ -14267,6 +14267,9 @@ main-menu-f2p {
   #mainMenu #menuLoggedIn a:hover {
     background-color: #dcdcdc;
   }
+  #mainMenu .navbar-toggle {
+    float: left;
+  }
   #mainMenu #toggleSlideMenu {
     border-width: 0px;
     border-style: none none none none;

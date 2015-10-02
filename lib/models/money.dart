@@ -34,8 +34,13 @@ class Money {
 
   int toInt() => amount.toInt();
 
-  Money.fromValue(String aCurrency, num value) {
+  Money.from(String aCurrency, num value) {
     currencyUnit = aCurrency;
+    amount = (value*100+0.5).toInt()/100.0;
+  }
+
+  Money.fromValue(num value) {
+    currencyUnit = CURRENCY_UNIT_DEFAULT;
     amount = (value*100+0.5).toInt()/100.0;
   }
 
@@ -55,11 +60,11 @@ class Money {
   }
 
   Money plus(Money money) {
-    return new Money.fromValue(currencyUnit, amount + money.amount);
+    return new Money.from(currencyUnit, amount + money.amount);
   }
 
   Money minus(Money money) {
-    return new Money.fromValue(currencyUnit, amount - money.amount);
+    return new Money.from(currencyUnit, amount - money.amount);
   }
 
   bool operator >=(Money other) {

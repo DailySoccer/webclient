@@ -343,7 +343,7 @@ class EnterContestComp implements DetachAware {
         .catchError((ServerError error) => _errorCreating(error));
     }
     else {
-      if (contest.entryFee <= _profileService.user.balance) {
+      if (_profileService.user.hasMoney(contest.entryFee)) {
         _contestsService.addContestEntry(contest.contestId, lineupSlots.map((player) => player["id"]).toList())
           .then((contestId) {
             GameMetrics.logEvent(GameMetrics.TEAM_CREATED);
@@ -361,9 +361,18 @@ class EnterContestComp implements DetachAware {
           .catchError((ServerError error) => _errorCreating(error));
       }
       else {
+        // TODO: Qué hacemos si el usuario no tiene dinero?
+        // TODO: Traducir...
+        modalShow(
+            contest.entryFee.isEnergy ? "Sin ENERGIA suficiente" : "Sin GOLD suficiente",
+            contest.entryFee.isEnergy ? "No tienes ENERGIA para entrar en el torneo" : "No tienes GOLD para entrar en el torneo"
+        );
+
+        /*
         // Registramos dónde tendría que navegar al tener éxito en "add_funds"
         window.localStorage["add_funds_success"] = window.location.href;
         _router.go("add_funds", {});
+         */
       }
     }
   }

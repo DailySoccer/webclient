@@ -29,10 +29,6 @@ class ContestsListF2PComp {
 
     Random rand = new Random();
 
-    _contestTypeValues = new List<String>();
-    for (var i = 0; i < contestsListOriginal.length; i++) {
-      _contestTypeValues.add(rand.nextInt(2) == 0? 'train' : 'real');
-    }
     _contestMorfology = new List<String>();
     for (var i = 0; i < contestsListOriginal.length; i++) {
       _contestMorfology.add(rand.nextInt(2) == 0? 'normal' : 'special');
@@ -86,13 +82,8 @@ class ContestsListF2PComp {
     return ret;
   }
 
-  //TODO: Esto es temporal... hay que obtener el valor del contest.
-  String getContestTypeIcon(int id) {
-    if (_contestTypeValues != null) {
-      return  _contestTypeValues[id];
-    }
-
-    return "train";
+  String getContestTypeIcon(Contest contest) {
+    return contest.isSimulation ? "train" : "real";
   }
 
   String getContestMorfology(int id) {
@@ -130,7 +121,6 @@ class ContestsListF2PComp {
     }
   }
 
-  List<String> _contestTypeValues;
   List<String> _contestMorfology;
   List<String> _contestImage;
 }

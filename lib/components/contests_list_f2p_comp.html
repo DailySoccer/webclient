@@ -20,11 +20,11 @@
       <div class="conditions-section">
         <div class="entry-fee-box">
           <img class="ticket" src="images/ticket-{{scrDet.isXsScreen ? 'xs' : 'lg'}}.png"></img>
-          <span ng-class="{'entry-fee-coin':getContestTypeIcon($index) == 'real', 'entry-fee-energy':getContestTypeIcon($index) == 'train'}">{{contest.entryFee}}</span>
+          <span ng-class="{'entry-fee-coin':getContestTypeIcon(contest) == 'real', 'entry-fee-energy':getContestTypeIcon(contest) == 'train'}">{{contest.entryFee}}</span>
         </div>
         <div class="prize-box">
           <img class="ticket" src="images/moneybag-{{scrDet.isXsScreen ? 'xs' : 'lg'}}.png"></img>
-          <span ng-class="{'prize-coin':getContestTypeIcon($index) == 'real', 'prize-managerpoints':getContestTypeIcon($index) == 'train'}">{{contest.prizePool}}</span>
+          <span ng-class="{'prize-coin':getContestTypeIcon(contest) == 'real', 'prize-managerpoints':getContestTypeIcon(contest) == 'train'}">{{contest.prizePool}}</span>
         </div>
       </div>
 
@@ -34,7 +34,7 @@
 
       <div class="tournament-and-type-section">
         <span class="{{getSourceFlag(contest)}}"></span>
-        <span class="contest-type {{getContestTypeIcon($index)}}"></span>
+        <span class="contest-type {{getContestTypeIcon(contest)}}"></span>
       </div>
 
     </div>

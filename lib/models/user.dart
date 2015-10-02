@@ -2,6 +2,7 @@ library user;
 
 import 'package:webclient/services/contest_references.dart';
 import 'package:webclient/models/money.dart';
+import 'package:logging/logging.dart';
 
 class User {
   String userId;
@@ -11,6 +12,9 @@ class User {
   String email;
   Money balance;
   Money bonus;
+  Money goldBalance;
+  Money managerBalance;
+  Money energyBalance;
 
   // Numero de veces que el usuario ha ganado un contest
   int wins;
@@ -22,6 +26,21 @@ class User {
   Map toJson() => {"_id": userId, "firstName": firstName, "lastName": lastName, "email": email, "nickName": nickName};
 
   User.referenceInit(this.userId);
+
+  bool hasMoney(Money money) {
+    if (money.isGold) {
+      return goldBalance >= money;
+    }
+    else if (money.isManagerPoints) {
+      return managerBalance >= money;
+    }
+    else if (money.isEnergy) {
+      return energyBalance >= money;
+    }
+
+    Logger.root.severe("User ${userId} not has Money ${money}");
+    return false;
+  }
 
   // TODO: El User para el jugador principal es cargado sin necesidad de ContestReferences
   factory User.fromJsonObject(Map jsonMap, [ContestReferences references]) {
@@ -52,6 +71,10 @@ class User {
 
     trueSkill = (jsonMap.containsKey("trueSkill")) ? jsonMap["trueSkill"] : 0;
     earnedMoney = jsonMap.containsKey("earnedMoney") ? new Money.fromJsonObject(jsonMap["earnedMoney"]) : new Money.zero();
+    
+    goldBalance = jsonMap.containsKey("goldBalance") ? new Money.fromJsonObject(jsonMap["goldBalance"]) : new Money.zeroFrom(Money.CURRENCY_GOLD);
+    managerBalance = jsonMap.containsKey("managerBalance") ? new Money.fromJsonObject(jsonMap["managerBalance"]) : new Money.zeroFrom(Money.CURRENCY_MANAGER);
+    energyBalance = jsonMap.containsKey("energyBalance") ? new Money.fromJsonObject(jsonMap["energyBalance"]) : new Money.zeroFrom(Money.CURRENCY_ENERGY);
     return this;
   }
 }

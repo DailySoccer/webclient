@@ -31,7 +31,8 @@ import 'package:webclient/utils/translate_formatter.dart';
 
 import 'package:webclient/utils/limit_to_dot.dart';
 
-import 'package:webclient/components/navigation/main_menu_slide_comp.dart';
+//import 'package:webclient/components/navigation/main_menu_slide_comp.dart';
+import 'package:webclient/components/navigation/main_menu_f2p_comp.dart';
 import 'package:webclient/components/navigation/footer_comp.dart';
 import 'package:webclient/components/flash_messages_comp.dart';
 import 'package:webclient/components/modal_comp.dart';
@@ -145,7 +146,8 @@ class WebClientApp extends Module {
 
     bind(LandingPage1SlideComp);
 
-    bind(MainMenuSlideComp);
+    //bind(MainMenuSlideComp);
+    bind(MainMenuF2PComp);
     bind(FooterComp);
     bind(FlashMessageComp);
     bind(ModalComp);

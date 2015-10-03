@@ -58,6 +58,48 @@ main-menu-f2p {
 
    	// Version no XS (SM y Desktop)
   	@media (min-width: @screen-sm-min) {
+		.top-elements {
+			margin-left: 100px;
+			display: inline-block;
+			.links-options {
+				.mainLink{
+					display: inline-block;
+					height: 67px;
+					a {
+						top:0;
+						right:0;
+						bottom:0;
+						left:0;
+					}	
+				}
+
+			}
+			.stats-commons {
+				text-align: center;
+				display: inline-block;
+				margin: 0 5px;
+				.count {
+					margin-top: 5px;
+				}
+			}
+			.user-stats {
+				display: inline-block;
+				.energy{
+					.stats-commons();
+					color: @greyMed;
+				}
+				.manager-points{
+					.stats-commons();
+					color: @green;
+				}
+				.coins {
+					.stats-commons();
+					color: @orange;
+				}
+			}
+		}
+
+
   		.navbar-header {
   			float: left;
   			position: absolute;
@@ -66,7 +108,7 @@ main-menu-f2p {
 			.make-row(0);
 			width: 100%;
 			padding-left: 110px;
-			& a:hover {color: white}
+			& a:hover {color: @white;}
 		}
 	  	.navbar-nav > .active > a {
   			background: none;
@@ -173,6 +215,11 @@ main-menu-f2p {
 	            }
 	        }
 	    }
+
+		.menu-elements {
+			.hidden();
+		}
+
   	}
 
 	// Elementos del menu reducido:

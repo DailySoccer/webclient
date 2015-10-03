@@ -267,9 +267,45 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware {
           <span class="icon-bar"></span>
         </button>
         <div id="brandLogoLogged" class="navbar-brand" destination="lobby"></div>
+
+        <div class="top-elements">
+          <div class="links-options">
+            <div  class="mainLink">
+              <a id="menuLobby" destination="lobby" highlights="lobby">${StringUtils.translate("lobby", "mainmenu")}</a>
+            </div>
+            <div highlights="my_contests" class="mainLink">
+              <a id="menuMyContests" destination="my_contests" params="section:live">${StringUtils.translate("mycontest", "mainmenu")}</a>
+            </div>
+            <div highlights="help_info" class="mainLink">
+              <a id="menuHowItWorks" destination="help_info">${StringUtils.translate("howitworks", "mainmenu")}</a>
+            </div>
+          </div>
+
+          <div class="user-stats">
+            <div class="energy">         
+              <img src="images/lightning-lg.png"> 
+              <div class="count">
+                0/00
+              </div>
+            </div>
+          <div class="manager-points"> 
+            <img src="images/star-lg.png">     
+              <div class="count">
+                0000
+              </div>
+            </div>
+          <div class="coins">          
+            <img src="images/coin-lg.png">      
+              <div class="count">
+                000
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
-  
-      <div id="menuSlide">
+
+      <div id="menuSlide" class="menu-elements">
         <ul class="nav navbar-nav">
           <li highlights="lobby"       class="mainOption"><a  id="menuLobby"      destination="lobby">${StringUtils.translate("lobby", "mainmenu")}</a></li>
           <li highlights="my_contests" class="mainOption"><a  id="menuMyContests" destination="my_contests" params="section:live">${StringUtils.translate("mycontest", "mainmenu")}</a></li>

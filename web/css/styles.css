@@ -13987,6 +13987,58 @@ main-menu-f2p {
   }
 }
 @media (min-width: 768px) {
+  #mainMenu .top-elements {
+    margin-left: 100px;
+    display: inline-block;
+  }
+  #mainMenu .top-elements .links-options .mainLink {
+    display: inline-block;
+    height: 67px;
+  }
+  #mainMenu .top-elements .links-options .mainLink a {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  #mainMenu .top-elements .stats-commons {
+    text-align: center;
+    display: inline-block;
+    margin: 0 5px;
+  }
+  #mainMenu .top-elements .stats-commons .count {
+    margin-top: 5px;
+  }
+  #mainMenu .top-elements .user-stats {
+    display: inline-block;
+  }
+  #mainMenu .top-elements .user-stats .energy {
+    text-align: center;
+    display: inline-block;
+    margin: 0 5px;
+    color: #afafaf;
+  }
+  #mainMenu .top-elements .user-stats .energy .count {
+    margin-top: 5px;
+  }
+  #mainMenu .top-elements .user-stats .manager-points {
+    text-align: center;
+    display: inline-block;
+    margin: 0 5px;
+    color: #a1c931;
+  }
+  #mainMenu .top-elements .user-stats .manager-points .count {
+    margin-top: 5px;
+  }
+  #mainMenu .top-elements .user-stats .coins {
+    text-align: center;
+    display: inline-block;
+    margin: 0 5px;
+    color: #fa9c19;
+  }
+  #mainMenu .top-elements .user-stats .coins .count {
+    margin-top: 5px;
+  }
   #mainMenu .navbar-header {
     float: left;
     position: absolute;
@@ -14256,6 +14308,10 @@ main-menu-f2p {
   }
   #mainMenu .dropdown-menu > li > a:hover {
     background-color: #dcdcdc;
+  }
+  #mainMenu .menu-elements {
+    display: none !important;
+    visibility: hidden !important;
   }
 }
 @media (min-width: 768px) and (max-width: 767px) {

@@ -1054,53 +1054,11 @@ tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse
 
 </div>"""));
 tc.put("packages/webclient/components/contests_list_f2p_comp.html", new HttpResponse(200, r"""<div class="contests-list-f2p-root">
-
-  <!-- slot fijo para testeo -->
-  <div class="contestSlot" ng-class="{'special' : getContestMorfology(0) == 'special'}">
-    <!-- -------------------------------------------------------------------------------------------- -->
-    <div class="special-image-section" ng-if="getContestMorfology(0) == 'special'">
-      <img src="images/sampleImage1.jpg"></img>
-    </div>
-    <!-- -------------------------------------------------------------------------------------------- -->
-    <div class="time-section">
-      <div class="fake-time-column"></div>
-      <div class="column-start-hour">19:00h.</div>
-    </div>
-
-    <div class="name-section">
-      <div class="contest-name">Nombre del Concurso</div>
-      <div class="contest-description">Description del concurso</div>
-    </div>
-
-    <div class="conditions-section">
-      <div class="entry-fee-box">
-        <img class="ticket" src="images/ticket-{{scrDet.isXsScreen ? 'xs' : 'lg'}}.png"></img>
-        <span ng-class="{'entry-fee-coin':getContestTypeIcon(0) == 'real', 'entry-fee-energy':getContestTypeIcon(0) == 'train'}">$99</span>
-      </div>
-      <div class="prize-box">
-        <img class="ticket" src="images/moneybag-{{scrDet.isXsScreen ? 'xs' : 'lg'}}.png"></img>
-        <span ng-class="{'prize-coin':getContestTypeIcon(0) == 'real', 'prize-managerpoints':getContestTypeIcon(0) == 'train'}">$99</span>
-      </div>
-    </div>
-
-    <div class="action-section">
-      <img class="ticket" src="images/arrow{{getContestMorfology(0) == 'normal' ? 'Black' : 'White'}}.png"></img>
-    </div>
-
-    <div class="flagsRow">
-      <span class="flag flag-es"></span>
-      <span class="contest-type {{getContestTypeIcon(0)}}"></span>
-    </div>
-
-  </div>
-  <!-- slot fijo para testeo -->
-
-
   <div ng-repeat="contest in contestsListOriginal">
-    <div class="contestSlot" ng-class="{'special' : getContestMorfology($index) == 'special'}">
+    <div class="contestSlot" ng-class="{'special' : getContestMorfology(contest) == 'special'}" ng-click="onRow(contest)">
 
-      <div class="special-image-section" ng-if="getContestMorfology($index) == 'special'">
-        <img src="images/{{getContestImage($index)}}.jpg"></img>
+      <div class="special-image-section" ng-if="getContestMorfology(contest) == 'special'">
+        <img src="{{getContestImage(contest)}}"></img>
       </div>
 
       <div class="time-section">
@@ -1117,21 +1075,21 @@ tc.put("packages/webclient/components/contests_list_f2p_comp.html", new HttpResp
       <div class="conditions-section">
         <div class="entry-fee-box">
           <img class="ticket" src="images/ticket-{{scrDet.isXsScreen ? 'xs' : 'lg'}}.png"></img>
-          <span ng-class="{'entry-fee-coin':getContestTypeIcon($index) == 'real', 'entry-fee-energy':getContestTypeIcon($index) == 'train'}">{{contest.entryFee}}</span>
+          <span ng-class="{'entry-fee-coin':getContestTypeIcon(contest) == 'real', 'entry-fee-energy':getContestTypeIcon(contest) == 'train'}">{{contest.entryFee}}</span>
         </div>
         <div class="prize-box">
           <img class="ticket" src="images/moneybag-{{scrDet.isXsScreen ? 'xs' : 'lg'}}.png"></img>
-          <span ng-class="{'prize-coin':getContestTypeIcon($index) == 'real', 'prize-managerpoints':getContestTypeIcon($index) == 'train'}">{{contest.prizePool}}</span>
+          <span ng-class="{'prize-coin':getContestTypeIcon(contest) == 'real', 'prize-managerpoints':getContestTypeIcon(contest) == 'train'}">{{contest.prizePool}}</span>
         </div>
       </div>
 
-      <div class="action-section">
-        <img class="ticket" src="images/arrow{{getContestMorfology($index) == 'normal' ? 'Black' : 'White'}}.png"></img>
+      <div class="action-section" ng-click="onAction(contest, $event)">
+        <img class="ticket" src="images/arrow{{getContestMorfology(contest) == 'normal' ? 'Black' : 'White'}}.png"></img>
       </div>
 
-      <div class="flagsRow">
+      <div class="tournament-and-type-section">
         <span class="{{getSourceFlag(contest)}}"></span>
-        <span class="contest-type {{getContestTypeIcon($index)}}"></span>
+        <span class="contest-type {{getContestTypeIcon(contest)}}"></span>
       </div>
 
     </div>

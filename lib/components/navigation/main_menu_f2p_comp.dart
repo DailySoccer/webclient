@@ -200,22 +200,26 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware {
   }
 
   void _updateActiveElement(String name) {
-    Element elem = _rootElement.querySelector("#mainMenu li.active");
+    List<Element> elem = _rootElement.querySelectorAll(".active");
+    
     if (elem != null) {
-      elem.classes.remove('active');
+      elem.forEach((e){ e.classes.remove('active');});
     }
-
-    elem = _rootElement.querySelector("[highlights=${name}]");
+    
+    elem = _rootElement.querySelectorAll("[highlights=${name}]");
 
     if (elem == null && _isRouteNameInsideUserMenu(name)) {
-      elem = _rootElement.querySelector('[highlights="user"]');
+      elem = _rootElement.querySelectorAll('[highlights="user"]');
     }
 
     if (elem != null) {
-      elem.classes.add('active');
+      elem.forEach((e){ e.classes.add('active');});
     }
   }
 
+  
+  
+  
   bool _isRouteNameInsideUserMenu(String name) {
     return name.contains('user') || name == 'help_info';
   }
@@ -300,42 +304,6 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware {
           <span class="icon-bar"></span>
         </button>
         <div id="brandLogoLogged" class="navbar-brand" destination="lobby"></div>
-
-        <div class="top-elements">
-          <div class="links-options">
-            <div  class="mainLink">
-              <a id="menuLobby" destination="lobby" highlights="lobby">${StringUtils.translate("lobby", "mainmenu")}</a>
-            </div>
-            <div highlights="my_contests" class="mainLink">
-              <a id="menuMyContests" destination="my_contests" params="section:live">${StringUtils.translate("mycontest", "mainmenu")}</a>
-            </div>
-            <div highlights="help_info" class="mainLink">
-              <a id="menuHowItWorks" destination="help_info">${StringUtils.translate("howitworks", "mainmenu")}</a>
-            </div>
-          </div>
-
-          <div class="user-stats">
-            <div class="energy">         
-              <img src="images/lightning-lg.png"> 
-              <div class="count">
-                ${_userEnergy}/${_maxEnergy}
-              </div>
-            </div>
-          <div class="manager-points"> 
-            <img src="images/star-lg.png">     
-              <div class="count">
-                ${_userManagerPoints}
-              </div>
-            </div>
-          <div class="coins">          
-            <img src="images/coin-lg.png">      
-              <div class="count">
-                ${_userGold}
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
 
       <div id="menuSlide" class="menu-elements">
@@ -366,6 +334,52 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware {
             <a id="menuUserAddFunds-xs" destination="add_funds">${StringUtils.translate("buttonaddfunds", "mainmenu")} <span class="current-balance">${_userBalance}</span></a>            
           </li>
         </ul>
+      </div>
+
+      <div id ="desktopMenu" class="fixed-menu">
+        
+        <div class="links-options">
+          <div highlights="lobby" class="mainLink">
+            <a id="menuLobby" destination="lobby" highlights="lobby">${StringUtils.translate("lobby", "mainmenu")}</a>
+          </div>
+          <div highlights="my_contests" class="mainLink">
+            <a id="menuMyContests" destination="my_contests" params="section:live">${StringUtils.translate("mycontest", "mainmenu")}</a>
+          </div>
+          <div highlights="help_info" class="mainLink">
+            <a id="menuHowItWorks" destination="help_info">${StringUtils.translate("howitworks", "mainmenu")}</a>
+          </div>
+        </div>
+      
+        <div class="fixed-user-stats">
+
+          <div class="energy">         
+            <img src="images/lightning-lg.png"> 
+            <div class="count">${_userEnergy}/${_maxEnergy}</div>
+          </div>
+          <div class="manager-points"> 
+            <img src="images/star-lg.png">     
+            <div class="count">${_userManagerPoints}</div>
+          </div>
+          <div class="coins">          
+            <img src="images/coin-lg.png">      
+            <div class="count">${_userGold}</div>
+          </div>
+            
+          <div id="desktopMenuUser" class="profile dropdown-toggle profile" data-toggle="dropdown">          
+            <img src="images/UserProfile.png" data-toggle="dropdown">      
+            <ul class="dropdown-menu">
+              <li><a id="menuUserMyAccount"        destination="user_profile">${StringUtils.translate("myaccount", "mainmenu")}</a></li>
+              <li id="userBalanceIn"><a id="menuUserAddFunds-sm" destination="add_funds">${StringUtils.translate("addfunds", "mainmenu")}</a></li>
+              <li><a id="menuUserHistory"          destination="transaction_history">${StringUtils.translate("transactions", "mainmenu")}</a></li>
+              <!--li><a id="menuUserReferencesCenter" destination="beta_info">${StringUtils.translate("referral", "mainmenu")}</a></li>
+              <li><a id="menuUserClassification"   destination="beta_info">${StringUtils.translate("classification", "mainmenu")}</a></li-->
+              <!--<li><a id="menuUserAyuda"            destination="help_info">${StringUtils.translate("howitworks2", "mainmenu")}</a></li>-->
+              <li><a id="menuUserLogOut"           destination="logout">${StringUtils.translate("logout", "mainmenu")}</a></li>
+            </ul>
+          </div>
+
+        </div>
+      
       </div>
     </div>
     ''';

@@ -5683,6 +5683,8 @@ scoring-rules:after,
 #contestFiltersRoot #filtersPanel:after,
 #contestFiltersRoot #filtersPanel .filters-panel-row:before,
 #contestFiltersRoot #filtersPanel .filters-panel-row:after,
+#mainMenu #desktopMenu:before,
+#mainMenu #desktopMenu:after,
 .resume-bar:before,
 .resume-bar:after,
 .no-contests-wrapper:before,
@@ -5806,6 +5808,7 @@ scoring-rules:after,
 #contestFiltersRoot #contestSortsFilters .choosed-filters-container:after,
 #contestFiltersRoot #filtersPanel:after,
 #contestFiltersRoot #filtersPanel .filters-panel-row:after,
+#mainMenu #desktopMenu:after,
 .resume-bar:after,
 .no-contests-wrapper:after,
 #promosComponent:after,
@@ -7050,6 +7053,7 @@ contest-header {
   padding-right: 15px;
   position: relative;
   background-color: #dcdcdc;
+  padding-bottom: 15px;
 }
 .contests-list-f2p-root > .navbar-header,
 .contests-list-f2p-root > .navbar-collapse {
@@ -13987,58 +13991,6 @@ main-menu-f2p {
   }
 }
 @media (min-width: 768px) {
-  #mainMenu .top-elements {
-    margin-left: 100px;
-    display: inline-block;
-  }
-  #mainMenu .top-elements .links-options .mainLink {
-    display: inline-block;
-    height: 67px;
-  }
-  #mainMenu .top-elements .links-options .mainLink a {
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-  }
-  #mainMenu .top-elements .stats-commons {
-    text-align: center;
-    display: inline-block;
-    margin: 0 5px;
-  }
-  #mainMenu .top-elements .stats-commons .count {
-    margin-top: 5px;
-  }
-  #mainMenu .top-elements .user-stats {
-    display: inline-block;
-  }
-  #mainMenu .top-elements .user-stats .energy {
-    text-align: center;
-    display: inline-block;
-    margin: 0 5px;
-    color: #afafaf;
-  }
-  #mainMenu .top-elements .user-stats .energy .count {
-    margin-top: 5px;
-  }
-  #mainMenu .top-elements .user-stats .manager-points {
-    text-align: center;
-    display: inline-block;
-    margin: 0 5px;
-    color: #a1c931;
-  }
-  #mainMenu .top-elements .user-stats .manager-points .count {
-    margin-top: 5px;
-  }
-  #mainMenu .top-elements .user-stats .coins {
-    text-align: center;
-    display: inline-block;
-    margin: 0 5px;
-    color: #fa9c19;
-  }
-  #mainMenu .top-elements .user-stats .coins .count {
-    margin-top: 5px;
-  }
   #mainMenu .navbar-header {
     float: left;
     position: absolute;
@@ -14456,6 +14408,104 @@ main-menu-f2p {
     color: #000000;
     background-color: #dcdcdc;
   }
+}
+#mainMenu #desktopMenu {
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 100px;
+}
+#mainMenu #desktopMenu .links-options {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  #mainMenu #desktopMenu .links-options {
+    float: left;
+    width: 59.16666667%;
+  }
+}
+@media (max-width: 767px) {
+  #mainMenu #desktopMenu .links-options {
+    display: none !important;
+  }
+}
+#mainMenu #desktopMenu .links-options .mainLink {
+  display: inline-block;
+}
+#mainMenu #desktopMenu .links-options .mainLink a {
+  padding: 25px 5px;
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  text-shadow: 0px 2px black;
+}
+#mainMenu #desktopMenu .links-options .mainLink a:hover,
+#mainMenu #desktopMenu .links-options .mainLink a .active {
+  color: #ffffff;
+}
+#mainMenu #desktopMenu .links-options .active a {
+  color: #ffffff;
+}
+#mainMenu #desktopMenu .stats-commons {
+  text-align: center;
+  display: inline-block;
+  width: 60px;
+  margin: 0 5px;
+}
+#mainMenu #desktopMenu .stats-commons .count {
+  margin-top: 5px;
+  font-size: 8pt;
+}
+#mainMenu #desktopMenu .fixed-user-stats {
+  display: inline-block;
+  padding: 10px 0;
+  float: right !important;
+}
+#mainMenu #desktopMenu .fixed-user-stats .energy {
+  text-align: center;
+  display: inline-block;
+  width: 60px;
+  margin: 0 5px;
+  color: #a1c931;
+}
+#mainMenu #desktopMenu .fixed-user-stats .energy .count {
+  margin-top: 5px;
+  font-size: 8pt;
+}
+#mainMenu #desktopMenu .fixed-user-stats .manager-points {
+  text-align: center;
+  display: inline-block;
+  width: 60px;
+  margin: 0 5px;
+  color: #afafaf;
+}
+#mainMenu #desktopMenu .fixed-user-stats .manager-points .count {
+  margin-top: 5px;
+  font-size: 8pt;
+}
+#mainMenu #desktopMenu .fixed-user-stats .coins {
+  text-align: center;
+  display: inline-block;
+  width: 60px;
+  margin: 0 5px;
+  color: #fa9c19;
+}
+#mainMenu #desktopMenu .fixed-user-stats .coins .count {
+  margin-top: 5px;
+  font-size: 8pt;
+}
+#mainMenu #desktopMenu .fixed-user-stats .profile {
+  text-align: center;
+  display: inline-block;
+  width: 60px;
+  margin: 0 5px;
+  vertical-align: top;
+}
+#mainMenu #desktopMenu .fixed-user-stats .profile .count {
+  margin-top: 5px;
+  font-size: 8pt;
 }
 #mainMenu #menuNotLoggedIn {
   overflow: hidden;

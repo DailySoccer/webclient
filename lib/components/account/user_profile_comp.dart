@@ -15,10 +15,10 @@ class UserProfileComp {
 
   dynamic get userData => _profileManager.user;
 
-  String getLocalizedText(key) {
-    return StringUtils.translate(key, "userprofile");
+  String getLocalizedText(key, [group = "userprofile"]) {
+    return StringUtils.translate(key, group);
   }
-
+  
   UserProfileComp(this._router, this._profileManager);
 
   void editPersonalData() {

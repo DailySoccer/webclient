@@ -11,7 +11,9 @@
     "common"                            :
     {
       "day"                             : " DÍA ",
-      "days"                            : " DÍAS "
+      "days"                            : " DÍAS ",
+      "points"                          : " Puntos ",
+      "abrevpoints"                     : " PTOS. "
     },
     "date"                              :
     {
@@ -135,15 +137,19 @@
     },
     "userprofile"                       :
     {
-      "title"                           : "Perfil de usuario",
+      "title"                           : "Mi cuenta",
       "buttonedit"                      : "EDITAR",
       "fullname"                        : "Nombre completo",
       "nick"                            : "Nombre de usuario",
       "email"                           : "Correo Electrónico",
       "pass"                            : "Contraseña",
-      "wallet"                          : "CARTERA",
-      "transactions"                    : "TRANSACCIONES",
-      "withdrawfunds"                   : "RETIRAR FONDOS",
+      
+      "wallet"                          : "Monedas Gold",
+      "buttonbuy"                       : "Comprar",
+      
+      "ranking"                         : "Clasificación",
+      "buttonrankingtable"              : "Ver en la tabla",
+      
       "actualbalance"                   : "Balance Actual",
       "pendingbonus"                    : "Bonus pendientes",
       "addfunds"                        : "AÑADIR FONDOS",

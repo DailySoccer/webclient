@@ -38,6 +38,8 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
 
   void _createHTML(String theHTML) {
     _rootElement.nodes.clear();
+    //NodeValidatorBuilder builder = new NodeValidatorBuilder.common()
+      //                                    ..allowElement('a', attributes: ['href']);
     _rootElement.appendHtml(theHTML);
     _rootElement.querySelectorAll("[buttonOnclick]").onClick.listen(_buttonPressed);
   }
@@ -104,6 +106,7 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
           <div class="button-wrap">
             <button type="button" class="button-play" id="fbPublishTest">PUBLISH</button>
           </div>
+          
           <div class="text-wrapper">
     
             <div class="module-column">

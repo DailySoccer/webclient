@@ -7,6 +7,7 @@ import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/html_utils.dart';
 import 'dart:async';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/models/user.dart';
 
 @Component(
     selector: 'main-menu-f2p',
@@ -233,6 +234,31 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware {
     return profileService.user.balance.toString();
   }
 
+  String get _maxEnergy {
+    return User.MAX_ENERGY.toString();
+  }
+
+  String get _userEnergy {
+    if (!profileService.isLoggedIn) {
+      return "";
+    }
+    return profileService.user.Energy.toString();
+  }
+
+  String get _userManagerPoints {
+    if (!profileService.isLoggedIn) {
+      return "";
+    }
+    return profileService.user.ManagerPoints.toString();
+  }
+
+  String get _userGold {
+    if (!profileService.isLoggedIn) {
+      return "";
+    }
+    return profileService.user.Gold.toString();
+  }
+
   String _getNotLoggedInHtml() {
     return '''
     <div id="menuNotLoggedIn">
@@ -285,19 +311,19 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware {
             <div class="energy">         
               <img src="images/lightning-lg.png"> 
               <div class="count">
-                0/00
+                ${_userEnergy}/${_maxEnergy}
               </div>
             </div>
           <div class="manager-points"> 
             <img src="images/star-lg.png">     
               <div class="count">
-                0000
+                ${_userManagerPoints}
               </div>
             </div>
           <div class="coins">          
             <img src="images/coin-lg.png">      
               <div class="count">
-                000
+                ${_userGold}
               </div>
             </div>
           </div>

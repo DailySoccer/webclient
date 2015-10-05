@@ -48,6 +48,21 @@ class User {
     return false;
   }
 
+  String get printableEnergyTimeLeft {
+    String result = "";
+    if (energyBalance.amount < MAX_ENERGY) {
+      int seconds = EnergyTimeLeft;
+      result = "${seconds~/60}:${seconds%60}";
+    }
+    return result;
+  }
+
+  int get EnergyTimeLeft {
+    return (energyBalance.amount < MAX_ENERGY)
+        ? (MINUTES_TO_RELOAD_ENERGY * 60) - DateTimeService.now.difference(lastUpdatedEnergy).inSeconds
+        : 0;
+  }
+
   Money energyRefresh() {
     // Si la energía no la tenemos completamente recargada, miramos si ha pasado suficiente tiempo desde que se usó
     if (energyBalance.amount < MAX_ENERGY) {

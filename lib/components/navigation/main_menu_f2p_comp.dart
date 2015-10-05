@@ -259,6 +259,13 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware {
     return profileService.user.Gold.toString();
   }
 
+  String get _energyTimeLeft {
+    if (!profileService.isLoggedIn) {
+      return "";
+    }
+    return profileService.user.printableEnergyTimeLeft;
+  }
+
   String _getNotLoggedInHtml() {
     return '''
     <div id="menuNotLoggedIn">

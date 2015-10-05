@@ -13,7 +13,7 @@ import 'package:webclient/models/user.dart';
     selector: 'main-menu-f2p',
     useShadowDom: false,
     exportExpressions: const ["profileService.user"])
-class MainMenuF2PComp implements ShadowRootAware, ScopeAware {
+class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
   ProfileService profileService;
 
   MainMenuF2PComp(
@@ -33,7 +33,16 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware {
 
   @override void onShadowRoot(emulatedRoot) {
     _scope.watch("profileService.user", _monitorChanges, canChangeModel: false);
+    _streamListener = _scrDet.mediaScreenWidth.listen(onScreenWidthChange);
   }
+  
+  @override void detach() {
+    _streamListener.cancel();
+  }
+  
+  void onScreenWidthChange(String msg) {
+    _monitorChanges(null, null);
+    }
 
   void _monitorChanges(currentVal, prevVal) {
     _reset();
@@ -215,9 +224,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware {
     if (elem != null) {
       elem.forEach((e){ e.classes.add('active');});
     }
-  }
-
-  
+  }  
   
   
   bool _isRouteNameInsideUserMenu(String name) {
@@ -263,6 +270,9 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware {
     return profileService.user.Gold.toString();
   }
 
+  String get _userTrueSkill {
+    return '9999';
+  }
   String get _energyTimeLeft {
     if (!profileService.isLoggedIn) {
       return "";
@@ -353,31 +363,22 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware {
         <div class="fixed-user-stats">
 
           <div class="energy">         
-            <img src="images/lightning-lg.png"> 
+            <img src="images/lightning-menu.png"> 
             <div class="count">${_userEnergy}/${_maxEnergy}</div>
           </div>
           <div class="manager-points"> 
-            <img src="images/star-lg.png">     
+            <img src="images/star-menu.png">     
             <div class="count">${_userManagerPoints}</div>
           </div>
           <div class="coins">          
-            <img src="images/coin-lg.png">      
+            <img src="images/coin-menu.png">      
             <div class="count">${_userGold}</div>
           </div>
-            
-          <div id="desktopMenuUser" class="profile dropdown-toggle profile" data-toggle="dropdown">          
-            <img src="images/UserProfile.png" data-toggle="dropdown">      
-            <ul class="dropdown-menu">
-              <li><a id="menuUserMyAccount"        destination="user_profile">${StringUtils.translate("myaccount", "mainmenu")}</a></li>
-              <li id="userBalanceIn"><a id="menuUserAddFunds-sm" destination="add_funds">${StringUtils.translate("addfunds", "mainmenu")}</a></li>
-              <li><a id="menuUserHistory"          destination="transaction_history">${StringUtils.translate("transactions", "mainmenu")}</a></li>
-              <!--li><a id="menuUserReferencesCenter" destination="beta_info">${StringUtils.translate("referral", "mainmenu")}</a></li>
-              <li><a id="menuUserClassification"   destination="beta_info">${StringUtils.translate("classification", "mainmenu")}</a></li-->
-              <!--<li><a id="menuUserAyuda"            destination="help_info">${StringUtils.translate("howitworks2", "mainmenu")}</a></li>-->
-              <li><a id="menuUserLogOut"           destination="logout">${StringUtils.translate("logout", "mainmenu")}</a></li>
-            </ul>
-          </div>
-
+          <div id="desktopMenuUser" class="profile">       
+            <img src="images/UserProfile.png" data-toggle="dropdown">
+            <div class="count">${_userTrueSkill}</div>
+            ${getDesktopFixedMenu()}
+          </div> 
         </div>
       
       </div>
@@ -385,6 +386,23 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware {
     ''';
     }
 
+  String getDesktopFixedMenu() {
+    if (_scrDet.isNotXsScreen) {
+      return '''
+        
+          <ul id="desktopUserMenu" class="dropdown-menu">
+            <li><a id="menuUserMyAccount"        destination="user_profile">${StringUtils.translate("myaccount", "mainmenu")}</a></li>
+            <li id="userBalanceIn"><a id="menuUserAddFunds-sm" destination="add_funds">${StringUtils.translate("addfunds", "mainmenu")}</a></li>
+            <li><a id="menuUserHistory"          destination="transaction_history">${StringUtils.translate("transactions", "mainmenu")}</a></li>
+            <!--li><a id="menuUserReferencesCenter" destination="beta_info">${StringUtils.translate("referral", "mainmenu")}</a></li>
+            <li><a id="menuUserClassification"   destination="beta_info">${StringUtils.translate("classification", "mainmenu")}</a></li-->
+            <!--<li><a id="menuUserAyuda"            destination="help_info">${StringUtils.translate("howitworks2", "mainmenu")}</a></li>-->
+            <li><a id="menuUserLogOut"           destination="logout">${StringUtils.translate("logout", "mainmenu")}</a></li>
+          </ul>
+      ''';
+    }
+    return '';
+  }
 
   void _cancelListeners() {
     if (_scrollMoveListener != null) {
@@ -406,6 +424,8 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware {
   Router _router;
 
   String _slideState = "hidden";
-
+  
+  var _streamListener;
+  
   static final int _maxNicknameWidth = 170;
 }

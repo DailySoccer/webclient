@@ -13991,248 +13991,69 @@ main-menu-f2p {
   }
 }
 @media (min-width: 768px) {
-  #mainMenu .navbar-header {
-    float: left;
-    position: absolute;
-  }
-  #mainMenu .navbar-nav {
-    margin-left: 0;
-    margin-right: 0;
-    width: 100%;
-    padding-left: 110px;
-  }
-  #mainMenu .navbar-nav a:hover {
-    color: #ffffff;
-  }
-  #mainMenu .navbar-nav > .active > a {
-    background: none;
-    color: #ffffff;
-    text-shadow: 0px 0px black;
-  }
-  #mainMenu .navbar-nav > .active > a:hover {
-    background: none;
-    color: #ffffff;
-  }
-  #mainMenu .navbar-nav > .open > a {
-    background-color: transparent;
-  }
-  #mainMenu .navbar-nav > .open > a:hover {
-    background-color: transparent;
-  }
-  #mainMenu .navbar-nav > li > a {
-    padding: 25px 0;
-    cursor: pointer;
-    margin-left: 20px;
-    color: #afd3e4;
-    text-shadow: 0px 2px black;
-  }
-  #mainMenu .navbar-nav > li > a:hover {
-    text-shadow: 0px 0px black;
-  }
-  #mainMenu .navbar-nav > .mainOption {
-    font-family: 'Exo', sans-serif;
-    font-weight: 300;
-    font-size: 11pt;
-    color: #ffffff;
-    text-transform: uppercase;
-  }
-  #mainMenu .navbar-nav > .right-menu {
-    float: right !important;
-    text-align: right;
-  }
-  #mainMenu .navbar-nav > .right-menu .balance {
-    text-align: center;
-  }
-  #mainMenu .navbar-nav > .right-menu .balance .current-balance {
-    display: block;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 700;
-    font-size: 10pt;
-    color: #ffffff;
-    margin: 5px 0;
-  }
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button {
-    background-color: #428bca;
-    border-color: #357ebd;
-    display: inline-block;
-    margin-bottom: 0;
-    font-weight: normal;
-    text-align: center;
-    vertical-align: middle;
-    cursor: pointer;
-    background-image: none;
-    border: 1px solid transparent;
-    white-space: nowrap;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    border-radius: 4px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    border-width: 0;
-    -webkit-transition: All 0.08s ease-out;
-    -moz-transition: All 0.08s ease-out;
-    -ms-transition: All 0.08s ease-out;
-    -o-transition: All 0.08s ease-out;
-    transition: All 0.08s ease-out;
-    font-weight: 400;
-    font-size: 10pt;
-    background-color: #a1c931;
-    box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
-    outline: none !important;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 700;
-    font-size: 7pt;
-    color: #ffffff;
-  }
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button:hover,
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button:focus,
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button:active,
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button.active,
-  .open .dropdown-toggle#mainMenu .navbar-nav > .right-menu .balance .add-funds-button {
-    color: #ffffff;
-    background-color: #3276b1;
-    border-color: #285e8e;
-  }
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button:active,
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button.active,
-  .open .dropdown-toggle#mainMenu .navbar-nav > .right-menu .balance .add-funds-button {
-    background-image: none;
-  }
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button.disabled,
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button[disabled],
-  fieldset[disabled] #mainMenu .navbar-nav > .right-menu .balance .add-funds-button,
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button.disabled:hover,
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button[disabled]:hover,
-  fieldset[disabled] #mainMenu .navbar-nav > .right-menu .balance .add-funds-button:hover,
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button.disabled:focus,
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button[disabled]:focus,
-  fieldset[disabled] #mainMenu .navbar-nav > .right-menu .balance .add-funds-button:focus,
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button.disabled:active,
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button[disabled]:active,
-  fieldset[disabled] #mainMenu .navbar-nav > .right-menu .balance .add-funds-button:active,
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button.disabled.active,
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button[disabled].active,
-  fieldset[disabled] #mainMenu .navbar-nav > .right-menu .balance .add-funds-button.active {
-    background-color: #428bca;
-    border-color: #357ebd;
-  }
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button .badge {
-    color: #428bca;
-    background-color: #ffffff;
-  }
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button:focus,
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button:active:focus,
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button.active:focus {
-    outline: thin dotted;
-    outline: 5px auto -webkit-focus-ring-color;
-    outline-offset: -2px;
-  }
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button:hover,
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button:focus {
-    color: #333333;
-    text-decoration: none;
-  }
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button:active,
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button.active {
-    outline: 0;
-    background-image: none;
-    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  }
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button.disabled,
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button[disabled],
-  fieldset[disabled] #mainMenu .navbar-nav > .right-menu .balance .add-funds-button {
-    cursor: not-allowed;
-    pointer-events: none;
-    opacity: 0.65;
-    filter: alpha(opacity=65);
-    -webkit-box-shadow: none;
-    box-shadow: none;
-  }
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button:active:focus,
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button.active:focus {
-    color: #ffffff;
-    background-color: #b5d657;
-  }
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button:active:hover,
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button.active:hover {
-    color: #ffffff;
-    background-color: #b5d657;
-  }
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button:focus {
-    background-color: #a1c931;
-    color: #ffffff;
-  }
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button:hover {
-    background-color: #acd142;
-    outline: none !important;
-    color: #ffffff;
-  }
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button:hover:focus {
-    background-color: #a1c931;
-    color: #ffffff;
-  }
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button:active,
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button.active {
-    background-color: #a1c931;
-    margin-top: 4px;
-    box-shadow: none;
-  }
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button:hover {
-    background-color: #acd142;
-    outline: none !important;
-    color: #ffffff;
-  }
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button.disabled,
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button[disabled],
-  fieldset[disabled] #mainMenu .navbar-nav > .right-menu .balance .add-funds-button {
-    background-color: #b5d657;
-    box-shadow: none;
-    margin-top: 4px;
-    color: #ebebeb;
-    cursor: not-allowed !important;
-  }
-  #mainMenu .navbar-nav > .right-menu .balance .add-funds-button.close {
-    background-color: #a1c931;
-    outline: none !important;
-    color: #ffffff;
-  }
-  #mainMenu .navbar-nav .right-menu > a:hover {
-    color: #ffffff;
-  }
-  #mainMenu .navbar-nav .right-menu > a::after {
-    font-family: 'Glyphicons Halflings';
-    content: "\E114";
-    font-size: 10pt;
-    color: #afd3e4;
-    margin-left: 5px;
-    position: relative;
-    top: 2px;
-  }
-  #mainMenu .open > a:hover {
-    color: white !important;
-  }
-  #mainMenu .open > a::after {
-    font-family: 'Glyphicons Halflings' !important;
-    content: "\E113" !important;
-    font-size: 10pt !important;
-    color: #afd3e4 !important;
-    margin-left: 5px;
-    color: white !important;
-    position: relative;
-    top: 2px;
-  }
-  #mainMenu .navbar-nav .right-menu a:hover::after {
-    color: #ffffff;
-  }
-  #mainMenu .navbar-nav .open a::after {
-    color: #ffffff;
-  }
-  #mainMenu .navbar-nav .active a::after {
-    color: #ffffff;
+  #mainMenu {
+    /*  		
+	  	.navbar-nav > li > a {
+	    	padding: 25px 0;
+  			cursor: pointer;
+  			margin-left: 20px;
+  			color: @blueMenu;
+  			text-shadow: 0px 2px black;
+  			&:hover {
+  				text-shadow: 0px 0px black;
+  			}
+	  	}
+	  	.navbar-nav > .mainOption {
+	  		.exo_light(11pt, @white);
+	  	}
+	  	.navbar-nav > .right-menu {
+	  		.pull-right();
+	  		text-align: right;
+			.balance {
+				.hidden-xs();
+				text-align: center;
+				.current-balance {
+	  				display: block;
+		  			.opensans_bold(10pt, @white);
+		  			margin: 5px 0;	
+		  		}
+		  		.add-funds-button {
+					.btn-primary();
+					.opensans_bold(7pt, @white);
+				}
+		  	}
+	  	}
+	  	.navbar-nav .right-menu {
+	  		> a:hover {color: white}
+	  		> a::after {
+		  		.create-glyph("\E114", 10pt, @blueMenu);
+		  		margin-left: 5px;
+		  		position: relative;
+				top: 2px;
+			}
+	  	}
+	  	.open {
+	  		> a:hover {color: white !important;}
+	  		> a::after {
+		  		.create-glyph("\E113", 10pt, @blueMenu) !important;
+		  		margin-left: 5px;
+	  			color: white !important;
+			    position: relative;
+				top: 2px;
+			}
+  		}
+		.navbar-nav .right-menu a:hover {
+            &::after {
+                color: @white;
+            }
+         }
+	  	.navbar-nav .open a::after {
+	  		color: @white;
+	  	} 
+	  	.navbar-nav .active a::after {
+	  		color: @white;
+	  	}
+*/
   }
   #mainMenu .username-dropdown-toggle {
     width: 14em;
@@ -14264,11 +14085,6 @@ main-menu-f2p {
   #mainMenu .menu-elements {
     display: none !important;
     visibility: hidden !important;
-  }
-}
-@media (min-width: 768px) and (max-width: 767px) {
-  #mainMenu .navbar-nav > .right-menu .balance {
-    display: none !important;
   }
 }
 @media (max-width: 767px) {
@@ -14414,6 +14230,15 @@ main-menu-f2p {
   margin-right: 0;
   padding-left: 100px;
 }
+@media (max-width: 767px) {
+  #mainMenu #desktopMenu {
+    position: absolute;
+    right: 25px;
+    bottom: 0;
+    left: 50px;
+    padding: 0;
+  }
+}
 #mainMenu #desktopMenu .links-options {
   position: relative;
   min-height: 1px;
@@ -14451,8 +14276,7 @@ main-menu-f2p {
 #mainMenu #desktopMenu .stats-commons {
   text-align: center;
   display: inline-block;
-  width: 60px;
-  margin: 0 5px;
+  width: 50px;
 }
 #mainMenu #desktopMenu .stats-commons .count {
   margin-top: 5px;
@@ -14466,8 +14290,7 @@ main-menu-f2p {
 #mainMenu #desktopMenu .fixed-user-stats .energy {
   text-align: center;
   display: inline-block;
-  width: 60px;
-  margin: 0 5px;
+  width: 50px;
   color: #a1c931;
 }
 #mainMenu #desktopMenu .fixed-user-stats .energy .count {
@@ -14477,8 +14300,7 @@ main-menu-f2p {
 #mainMenu #desktopMenu .fixed-user-stats .manager-points {
   text-align: center;
   display: inline-block;
-  width: 60px;
-  margin: 0 5px;
+  width: 50px;
   color: #afafaf;
 }
 #mainMenu #desktopMenu .fixed-user-stats .manager-points .count {
@@ -14488,8 +14310,7 @@ main-menu-f2p {
 #mainMenu #desktopMenu .fixed-user-stats .coins {
   text-align: center;
   display: inline-block;
-  width: 60px;
-  margin: 0 5px;
+  width: 50px;
   color: #fa9c19;
 }
 #mainMenu #desktopMenu .fixed-user-stats .coins .count {
@@ -14499,16 +14320,27 @@ main-menu-f2p {
 #mainMenu #desktopMenu .fixed-user-stats .profile {
   text-align: center;
   display: inline-block;
-  width: 60px;
-  margin: 0 5px;
+  width: 50px;
+  color: #ffffff;
   vertical-align: top;
+  margin-left: 30px;
+  position: relative;
 }
 #mainMenu #desktopMenu .fixed-user-stats .profile .count {
   margin-top: 5px;
   font-size: 8pt;
 }
+#mainMenu #desktopMenu .fixed-user-stats .profile #desktopUserMenu {
+  position: absolute;
+  top: 57px;
+  left: -180px;
+  text-align: center;
+  padding: 0px;
+  width: 230px;
+}
 #mainMenu #menuNotLoggedIn {
   overflow: hidden;
+  height: 68px;
 }
 #mainMenu #menuNotLoggedIn .navbar-brand {
   width: 99px;

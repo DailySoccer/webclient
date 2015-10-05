@@ -58,32 +58,7 @@ main-menu-f2p {
 
    	// Version no XS (SM y Desktop)
   	@media (min-width: @screen-sm-min) {
-
-  		.navbar-header {
-  			float: left;
-  			position: absolute;
-  		}
-		.navbar-nav {
-			.make-row(0);
-			width: 100%;
-			padding-left: 110px;
-			& a:hover {color: @white;}
-		}
-	  	.navbar-nav > .active > a {
-  			background: none;
-  			color: @white;
-  			text-shadow: 0px 0px black;  			
-  			&:hover {
-  				background: none;
-  				color: @white;
-  			}
-  		}
-  		.navbar-nav > .open > a {
-  			background-color: transparent;
-  			&:hover {
-  				background-color: transparent;
-  			}
-  		}
+/*  		
 	  	.navbar-nav > li > a {
 	    	padding: 25px 0;
   			cursor: pointer;
@@ -144,7 +119,7 @@ main-menu-f2p {
 	  	.navbar-nav .active a::after {
 	  		color: @white;
 	  	}
-
+*/
 		//elemento nombre menu usuario
 		.username-dropdown-toggle {
 			width: 14em;
@@ -297,6 +272,13 @@ main-menu-f2p {
 	#desktopMenu {
 		.make-row(0);
 		padding-left: 100px;
+		@media (max-width: @screen-xs-max) {
+			position: absolute;
+			right: 25px;
+			bottom: 0;
+			left: 50px;
+			padding: 0;
+		}
 		.links-options {
 			.make-sm-column(7.1);
 			.hidden-xs();
@@ -322,8 +304,7 @@ main-menu-f2p {
 		.stats-commons {
 			text-align: center;
 			display: inline-block;
-			width: 60px;
-			margin: 0 5px;
+			width: 50px;
 			.count {
 				margin-top: 5px;
 				font-size: 8pt;
@@ -347,17 +328,26 @@ main-menu-f2p {
 			}
 			.profile {
 				.stats-commons();
+				color: @white;
 				vertical-align: top;
+				margin-left: 30px;
+				position: relative;
+				#desktopUserMenu {
+				position: absolute;
+				top: 57px;
+				left: -180px;
+				text-align: center;
+				padding: 0px;
+				width: 230px;					
+				}
 			}
 		}
 	}
 
-
-
-
 	// Menu sin logear:
 	#menuNotLoggedIn {   
 		overflow: hidden;
+		height: 68px;
 		
 		.navbar-brand {
 	  		.brand-style();

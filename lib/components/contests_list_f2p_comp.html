@@ -1,0 +1,42 @@
+<div class="contests-list-f2p-root">
+  <div ng-repeat="contest in contestsListOriginal">
+    <div class="contestSlot" ng-class="{'special' : getContestMorfology(contest) == 'special'}" ng-click="onRow(contest)">
+
+      <div class="special-image-section" ng-if="getContestMorfology(contest) == 'special'">
+        <img src="{{getContestImage(contest)}}"></img>
+      </div>
+
+      <div class="time-section">
+         <div class="fake-time-column"></div>
+        <div class="column-start-hour">{{timeInfo(contest.startDate)}}</div>
+      </div>
+
+      <!-- margen arriba -->
+      <div class="name-section">
+        <div class="contest-name">{{contest.name}}</div>
+        <div class="contest-description">{{contest.description}}</div>
+      </div>
+
+      <div class="conditions-section">
+        <div class="entry-fee-box">
+          <img class="ticket" src="images/ticket-{{scrDet.isXsScreen ? 'xs' : 'lg'}}.png"></img>
+          <span ng-class="{'entry-fee-coin':getContestTypeIcon(contest) == 'real', 'entry-fee-energy':getContestTypeIcon(contest) == 'train'}">{{contest.entryFee}}</span>
+        </div>
+        <div class="prize-box">
+          <img class="ticket" src="images/moneybag-{{scrDet.isXsScreen ? 'xs' : 'lg'}}.png"></img>
+          <span ng-class="{'prize-coin':getContestTypeIcon(contest) == 'real', 'prize-managerpoints':getContestTypeIcon(contest) == 'train'}">{{contest.prizePool}}</span>
+        </div>
+      </div>
+
+      <div class="action-section" ng-click="onAction(contest, $event)">
+        <img class="ticket" src="images/arrow{{getContestMorfology(contest) == 'normal' ? 'Black' : 'White'}}.png"></img>
+      </div>
+
+      <div class="tournament-and-type-section">
+        <span class="{{getSourceFlag(contest)}}"></span>
+        <span class="contest-type {{getContestTypeIcon(contest)}}"></span>
+      </div>
+
+    </div>
+  </div>
+</div>

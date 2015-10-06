@@ -284,7 +284,8 @@
       "referral"                        : "Referral Center",
       "classification"                  : "Classification",
       "howitworks2"                     : "How It Workd",
-      "logout"                          : "LogOut"
+      "logout"                          : "LogOut",
+      "login"                           : "Log In"
     },
     "contestlist"                       :
     {

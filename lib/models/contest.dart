@@ -54,6 +54,9 @@ class Contest {
 
   int salaryCap;
 
+  bool simulation = false;
+  String specialImage;
+
   String get printableSalaryCap => StringUtils.parseSalary(salaryCap);
 
 
@@ -112,6 +115,12 @@ class Contest {
   bool get isActive   => state == "ACTIVE";
   bool get isLive     => state == "LIVE";
   bool get isHistory  => state == "HISTORY";
+  bool get isSimulation => simulation;
+  bool get hasSpecialImage => specialImage != null && !specialImage.isEmpty;
+
+  bool get needGold => entryFee.isGold;
+  bool get needManagerPoints => entryFee.isManagerPoints;
+  bool get needEnergy => entryFee.isEnergy;
 
   Money get prizePool => _prizePool;
   String get prizeTypeName => Prize.typeNames[prizeType];
@@ -251,11 +260,15 @@ class Contest {
     salaryCap = jsonMap["salaryCap"];
     entryFee = new Money.fromJsonObject(jsonMap["entryFee"]);
     prizeType = jsonMap["prizeType"];
+    simulation = jsonMap.containsKey("simulation") ? jsonMap["simulation"] : false;
+    specialImage = jsonMap.containsKey("specialImage") ? jsonMap["specialImage"] : null;
+
     startDate = DateTimeService.fromMillisecondsSinceEpoch(jsonMap["startDate"]);
     optaCompetitionId = jsonMap.containsKey("optaCompetitionId") && (jsonMap["optaCompetitionId"] != null) ? jsonMap["optaCompetitionId"] : "";
     matchEvents = jsonMap.containsKey("templateMatchEventIds") ? jsonMap["templateMatchEventIds"].map( (matchEventId) => references.getMatchEventById(matchEventId) ).toList() : [];
 
-    _prizePool = new Money.fromValue((maxEntries * entryFee.amount) * 90 / 100);
+    String prizeCurrency = entryFee.isEnergy ? Money.CURRENCY_MANAGER : Money.CURRENCY_GOLD;
+    _prizePool = new Money.from(prizeCurrency, (maxEntries * entryFee.amount) * 90 / 100);
 
     instanceSoccerPlayers = {};
     if (jsonMap.containsKey("instanceSoccerPlayers")) {

@@ -2,11 +2,12 @@ library landing_page_1_slide_comp;
 
 import 'dart:html';
 import 'package:angular/angular.dart';
-import 'package:webclient/services/profile_service.dart';
-import 'package:webclient/services/screen_detector_service.dart';
-import 'package:webclient/services/loading_service.dart';
+import 'package:webclient/utils/html_utils.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/services/profile_service.dart';
+import 'package:webclient/services/loading_service.dart';
+import 'package:webclient/services/screen_detector_service.dart';
 
 @Component(
    selector: 'landing-page-1-slide',
@@ -42,8 +43,9 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
 
   void _createHTML(String theHTML) {
     _rootElement.nodes.clear();
-    _rootElement.appendHtml(theHTML);
-    _rootElement.querySelectorAll("[buttonOnclick]").onClick.listen(_buttonPressed);
+    _rootElement.setInnerHtml(theHTML, treeSanitizer: NULL_TREE_SANITIZER);
+    _rootElement.querySelectorAll("[destination]").onClick
+      .listen(_buttonPressed);
   }
 
   void smoothScrollTo(String selector) {
@@ -76,7 +78,7 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
   }
 
   void _buttonPressed(event) {
-    String path = event.currentTarget.attributes["buttonOnclick"];
+    String path = event.currentTarget.attributes["destination"];
     _router.go(path, {});
     scrDet.scrollTo('#mainWrapper', offset: 0, duration:  0, smooth: false, ignoreInDesktop: false);
   }
@@ -99,7 +101,7 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
                   <div class="main-title">${getLocalizedText("title")}</div>
                   <div class="main-sub-title">${getLocalizedText("subtitle")}</div>
                   <div class="button-wrap">
-                    <button type="button" class="button-play" buttonOnclick="lobby.welcome" id="playButton1">${getLocalizedText("buttonplay")}</button>
+                    <div id="playButtonDesktop" class="button-play" destination="lobby.welcome" >${getLocalizedText("buttonplay")}</div>
                   </div>
                   <div class="text-wrapper">
             
@@ -143,7 +145,7 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
                     <p class="title-sup-text-mobile">CREATE YOUR LINEUP IN SECONDS</p>
                     <p class="title-sup-text-mobile">AND WIN CASH</p>
                     <div class="button-wrap">
-                      <button type="button" class="button-play-mobile" buttonOnclick="lobby.welcome" id="playButtonMobile">PLAY NOW</button>
+                      <div id="playButtonMobile" class="button-play-mobile" destination="lobby.welcome">${getLocalizedText("buttonplay")}</div>
                     </div>
                   </div> 
                 </div>

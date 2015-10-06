@@ -1,0 +1,400 @@
+// Reserva de sitio
+main-menu-f2p {
+	display: block;
+	height: 70px;
+	width: 100%;
+	font-size: 10pt;
+}
+
+// Mixin para el logo
+.brand-style() {
+	.size(99px, 52px);
+  	.img-retina("@{images}/logoEpic11.png", "@{images}/logoEpic11-2x.png", 99px, 52px);
+  	background-repeat: no-repeat;
+  	margin-top: 10px;
+  	cursor: pointer;
+}
+
+.navbar {
+	margin-bottom: 0;
+	border-radius: 0;
+}
+#mainMenu {
+	* {
+		.user-select(none);
+	}
+	&.logged-in {		
+		background-color: @blueUltraDark;
+		height: 70px;
+
+		// Menu siempre arriba fijo cuando estamos logeados
+		position: fixed;
+		display: inline-block;
+		top: 0px;
+		width: 100%;
+	}
+
+	background-color: fade(@black, 70%);
+	z-index: 999;
+	border-style: none;						// Esto quita el de la navbar de bootstrap
+	border-bottom: 2px solid @orange;		// Y ahora le damos el que nos interesa
+	padding-left: 8px;
+  	padding-right: 8px;
+  	.user-select(none);
+
+  	#menuLoggedIn, #menuNotLoggedIn {
+		@media (max-width: @screen-sm-max) {
+			.container-fluid();
+		}
+		@media (min-width: @screen-md-min) {
+			.container();
+		}
+	}
+
+	.navbar-brand {
+ 	 	.brand-style();
+ 	 	.hidden-xs();
+	}
+
+   	// Version no XS (SM y Desktop)
+  	@media (min-width: @screen-sm-min) {
+/*  		
+	  	.navbar-nav > li > a {
+	    	padding: 25px 0;
+  			cursor: pointer;
+  			margin-left: 20px;
+  			color: @blueMenu;
+  			text-shadow: 0px 2px black;
+  			&:hover {
+  				text-shadow: 0px 0px black;
+  			}
+	  	}
+	  	.navbar-nav > .mainOption {
+	  		.exo_light(11pt, @white);
+	  	}
+	  	.navbar-nav > .right-menu {
+	  		.pull-right();
+	  		text-align: right;
+			.balance {
+				.hidden-xs();
+				text-align: center;
+				.current-balance {
+	  				display: block;
+		  			.opensans_bold(10pt, @white);
+		  			margin: 5px 0;	
+		  		}
+		  		.add-funds-button {
+					.btn-primary();
+					.opensans_bold(7pt, @white);
+				}
+		  	}
+	  	}
+	  	.navbar-nav .right-menu {
+	  		> a:hover {color: white}
+	  		> a::after {
+		  		.create-glyph("\E114", 10pt, @blueMenu);
+		  		margin-left: 5px;
+		  		position: relative;
+				top: 2px;
+			}
+	  	}
+	  	.open {
+	  		> a:hover {color: white !important;}
+	  		> a::after {
+		  		.create-glyph("\E113", 10pt, @blueMenu) !important;
+		  		margin-left: 5px;
+	  			color: white !important;
+			    position: relative;
+				top: 2px;
+			}
+  		}
+		.navbar-nav .right-menu a:hover {
+            &::after {
+                color: @white;
+            }
+         }
+	  	.navbar-nav .open a::after {
+	  		color: @white;
+	  	} 
+	  	.navbar-nav .active a::after {
+	  		color: @white;
+	  	}
+*/
+		//elemento nombre menu usuario
+		.username-dropdown-toggle {
+			width: 14em;
+			margin-left: 0;
+			margin-right: 20px;
+		}
+		.dropdown-toggle {
+			white-space: nowrap;
+		}
+    	// elementos del sub-menu
+        .dropdown-menu {
+        	position: relative;
+            top: -4px;
+        	left: 10px;
+			& {
+				padding: 0px;
+			}
+	        & > li > a {
+	        	text-align: left;
+	            cursor:pointer;
+	            padding: 10px 40px 10px 20px;
+	            .make-border(1px, none solid solid solid, @greyUltraLight);
+	            position: relative;
+
+	            &:hover {
+	            	background-color: @greyLight;
+	            }
+	        }
+	    }
+
+		.menu-elements {
+			.hidden();
+		}
+
+  	}
+
+	// Elementos del menu reducido:
+    @media (max-width: @screen-xs-max) {
+
+    	@offcanvas-width: 250px;	// Cuanto ancho necesitamos para que quepan incluso los submenus
+    	@fixed-top: 70px;
+		#menuLoggedIn a:hover {
+			background-color: @greyLight;
+		}
+		
+		.navbar-toggle {
+			float: left;
+		}
+		// Icono que abre el menu
+		#toggleSlideMenu {
+		  	.make-border(0px, none none none none, @black);
+			.icon-bar {
+				background-color: @white;
+				height: 3px;
+			}
+		  	margin-top: 15px;
+		  	margin-right: 0;
+		    &:hover, &:focus {
+	    		background-color: transparent;
+		 	}
+		}
+
+		#backdrop {
+			background-color: @black;
+			opacity: 0;
+			position: fixed;
+			top: @fixed-top;
+			left: 0px;
+			right: 0px;
+			height: 100%;
+			
+			.transition(.4s ease opacity);
+
+			&.slide-in {
+				opacity: 0.5;
+			}
+		}
+
+        #menuSlide {
+			background-color: @greyUltraDark;
+			position: fixed;
+			width: @offcanvas-width;
+			top: @fixed-top;
+			bottom: 0px;
+			overflow-y: auto;
+
+			// Estado inicial
+			left: -@offcanvas-width;
+			.translateX(6px);	// Para que llegue a irse la sombra
+			box-shadow: -3px 0px 3px 0px @greyUltraDark;
+			
+			.transition(.4s ease all);
+
+    		// Estado "dentro" (final)
+    		&.slide-in {
+    			.translateX(@offcanvas-width);
+			}
+			
+	    	// Caja menu ppal.
+			.navbar-nav {
+				background-color: @white;
+				margin: 0px;
+				li {
+					.make-border(1px, solid none none none, @greyLight);
+					.opensans_normal(10pt, @greyDark);
+					cursor: pointer;
+
+					// Flechita cerrada/abierta del menu dropdown de usuario
+					> .dropdown-toggle::after {
+	        			.create-glyph("\E080", 10pt, @greyDark);
+	        			position: absolute;
+	        			top: 11px;
+	        			right: 11px;
+	        		}
+	        		&.active {
+						.opensans_bold(10pt, @black);
+					}
+					// Submenu de usuario
+					&.right-menu.open {
+						> a, > a:focus, > a:hover {
+							color: @black;
+							background-color: @greyLight;
+						}
+						// Cambiamos la flechita a abierto
+						> a::after {
+				  			.create-glyph("\E114", 10pt,  @greyDark) !important;
+				  			position: absolute;
+	        				top: 12px;
+        					right: 11px;
+				  		}
+					}
+	    		}
+			}
+
+	  		ul.dropdown-menu {
+				padding: 0px;
+		        > li {
+		        	> a {
+			            cursor:pointer;
+			            padding: 10px 0px 10px 40px;
+			        }
+					> a:focus {
+						color:@black;
+						background-color: @greyLight;
+					}
+				}
+		    }
+        }
+    }
+	#desktopMenu {
+		.make-row(0);
+		padding-left: 100px;
+		@media (max-width: @screen-xs-max) {
+			position: absolute;
+			right: 25px;
+			bottom: 0;
+			left: 50px;
+			padding: 0;
+		}
+		.links-options {
+			.make-sm-column(7.1);
+			.hidden-xs();
+			.mainLink{					
+				display: inline-block;
+				a {
+					padding: 25px 5px;
+					display: inline-block;
+					cursor: pointer;
+					text-decoration: none;
+					text-shadow: 0px 2px black;
+					&:hover, .active {
+						color: @white;
+					}
+				}	
+			}
+			.active {
+				a {
+					color: @white;
+				}
+			}
+		}
+		.stats-commons {
+			text-align: center;
+			display: inline-block;
+			width: 50px;
+			.count {
+				margin-top: 5px;
+				font-size: 8pt;
+			}
+		}
+		.fixed-user-stats {
+			display: inline-block;
+			padding: 10px 0;
+			.pull-right();
+			.energy{
+				.stats-commons();
+				color: @green;
+			}
+			.manager-points{
+				.stats-commons();
+				color: @greyMed;
+			}
+			.coins {
+				.stats-commons();
+				color: @orange;
+			}
+			.profile {
+				.stats-commons();
+				color: @white;
+				margin-left: 40px;
+				position: relative;
+				#desktopUserMenu {
+					position: absolute;
+					top: 57px;
+					left: -180px;
+					text-align: center;
+					padding: 0px;
+					width: 230px;					
+				}
+			}
+		}
+	}
+
+	// Menu sin logear:
+	#menuNotLoggedIn {   
+		overflow: hidden;
+		height: 68px;
+		
+		.navbar-brand {
+	  		.brand-style();
+	  		height: 60px;
+	  		margin-top: 8px;
+		}
+
+	    // Botones de login y join: ;
+	    .button-wrapper {
+	      	line-height: 1.1;
+			display: inline-block;
+			position: relative;
+			top: 15px;
+	      	.pull-right();
+	      	.button-base {
+	        	&:active {
+	        		margin-top: 10px !important; 
+	        	}
+	      	}
+	      	.button-join {
+	        	.button-base();
+	        	.btn-default();
+	      	}
+	      	.button-login-flat {
+	      		.opensans_normal(10pt, @white);
+	        	background-color: transparent;
+	        	border: 1px solid @white;
+	        	border-radius: 10px;
+	        	padding: 10px 20px;
+	        	cursor: pointer;
+	        	&:hover, &:active {
+	        		border: 1px solid @green;
+	        		.opensans_normal(10pt, @green);
+	        	}
+	      	}
+	    }
+	}
+}
+#userBalanceIn, #userBalanceOut-sm {
+	.hidden-xs();
+}
+#userBalanceOut-xs {
+	.visible-xs();
+	.current-balance {
+		.badge();
+		.pull-right();
+		background-color: @green;
+		padding-top: 5px;
+		padding-bottom: 5px;
+	}
+}

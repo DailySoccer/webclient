@@ -31,18 +31,22 @@ import 'package:webclient/utils/translate_formatter.dart';
 
 import 'package:webclient/utils/limit_to_dot.dart';
 
-import 'package:webclient/components/navigation/main_menu_slide_comp.dart';
+//import 'package:webclient/components/navigation/main_menu_slide_comp.dart';
+import 'package:webclient/components/navigation/main_menu_f2p_comp.dart';
 import 'package:webclient/components/navigation/footer_comp.dart';
 import 'package:webclient/components/flash_messages_comp.dart';
 import 'package:webclient/components/modal_comp.dart';
 
 import 'package:webclient/components/paginator_comp.dart';
 import 'package:webclient/components/contest_filters_comp.dart';
-import 'package:webclient/components/lobby_comp.dart';
+//import 'package:webclient/components/lobby_comp.dart';
+import 'package:webclient/components/lobby_f2p_comp.dart';
 import 'package:webclient/components/promos_comp.dart';
-import 'package:webclient/components/simple_promo_viewer_comp.dart';
+//import 'package:webclient/components/simple_promo_viewer_comp.dart';
+import 'package:webclient/components/simple_promo_f2p_comp.dart';
 
 import 'package:webclient/components/contests_list_comp.dart';
+import 'package:webclient/components/contests_list_f2p_comp.dart';
 
 import 'package:webclient/components/contest_info_comp.dart';
 import 'package:webclient/components/scoring_rules_comp.dart';
@@ -61,6 +65,7 @@ import 'package:webclient/components/account/payment_response_comp.dart';
 import 'package:webclient/components/account/add_funds_comp.dart';
 import 'package:webclient/components/account/withdraw_funds_comp.dart';
 import 'package:webclient/components/account/transaction_history_comp.dart';
+import 'package:webclient/components/account/shop_comp.dart';
 
 import 'package:webclient/components/my_contests_comp.dart';
 import 'package:webclient/components/view_contest/view_contest_entry_comp.dart';
@@ -142,7 +147,8 @@ class WebClientApp extends Module {
 
     bind(LandingPage1SlideComp);
 
-    bind(MainMenuSlideComp);
+    //bind(MainMenuSlideComp);
+    bind(MainMenuF2PComp);
     bind(FooterComp);
     bind(FlashMessageComp);
     bind(ModalComp);
@@ -150,10 +156,13 @@ class WebClientApp extends Module {
     bind(LoginComp);
     bind(JoinComp);
 
-    bind(LobbyComp);
+    //bind(LobbyComp);
+    bind(LobbyF2PComp);
     bind(ContestsListComp);
+    bind(ContestsListF2PComp);
     bind(PromosComp);
-    bind(SimplePromoViewerComp);
+    //bind(SimplePromoViewerComp);
+    bind(SimplePromoF2PComp);
     bind(PaginatorComp);
     bind(ContestFiltersComp);
     bind(LeaderboardComp);
@@ -195,6 +204,7 @@ class WebClientApp extends Module {
     bind(AddFundsComp);
     bind(WithdrawFundsComp);
     bind(TransactionHistoryComp);
+    bind(ShopComp);
 
     bind(RouteInitializerFn, toValue: webClientRouteInitializer);
     bind(NgRoutingUsePushState, toValue: new NgRoutingUsePushState.value(false));
@@ -302,10 +312,15 @@ class WebClientApp extends Module {
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
           viewHtml: '<transaction-history></transaction-history>'
       )
+      ,'shop': ngRoute(
+          path: '/shop',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
+          viewHtml: '<shop-comp></shop-comp>'
+      )
       ,'lobby': ngRoute(
           path: '/lobby',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
-          viewHtml: '<lobby></lobby>',
+          viewHtml: '<lobbyf2p></lobbyf2p>',
           mount: {
             'contest_info': ngRoute(
                 path: '/contest_info/:contestId',

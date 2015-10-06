@@ -9,7 +9,10 @@ class Money {
   static final CHF = "CHF"; // Switzerland Franc
   static final AUD = "AUD"; // Australia Dollar
   static final CAD = "CAD"; // Canada Dollar
-  static final String CURRENCY_UNIT_DEFAULT = USD;
+  static final String CURRENCY_GOLD     = AUD;
+  static final String CURRENCY_MANAGER  = CHF;
+  static final String CURRENCY_ENERGY   = JPY;
+  static final String CURRENCY_UNIT_DEFAULT = CURRENCY_GOLD;
 
   // http://www.xe.com/symbols.php
   static Map<String, String> currentSymbolMap = {
@@ -26,10 +29,15 @@ class Money {
   num amount;
 
   // TODO: Existen contests con entryFee en Euros, mostramos únicamente Dollars...
-  String toString() => "\$${StringUtils.parsePrize(amount)}";
+  String toString() => "${StringUtils.parsePrize(amount)}";
   // String toString() => "${currentSymbolMap[currencyUnit]}${StringUtils.parsePrize(amount)}";
 
   int toInt() => amount.toInt();
+
+  Money.from(String aCurrency, num value) {
+    currencyUnit = aCurrency;
+    amount = (value*100+0.5).toInt()/100.0;
+  }
 
   Money.fromValue(num value) {
     currencyUnit = CURRENCY_UNIT_DEFAULT;
@@ -46,12 +54,17 @@ class Money {
     amount = 0;
   }
 
+  Money.zeroFrom(String aCurrency) {
+    currencyUnit = aCurrency;
+    amount = 0;
+  }
+
   Money plus(Money money) {
-    return new Money.fromValue(amount + money.amount);
+    return new Money.from(currencyUnit, amount + money.amount);
   }
 
   Money minus(Money money) {
-    return new Money.fromValue(amount - money.amount);
+    return new Money.from(currencyUnit, amount - money.amount);
   }
 
   bool operator >=(Money other) {
@@ -65,4 +78,8 @@ class Money {
   int compareTo(Money other) {
     return amount.compareTo(other.amount);
   }
+
+  bool get isGold => currencyUnit == CURRENCY_GOLD;
+  bool get isManagerPoints => currencyUnit == CURRENCY_MANAGER;
+  bool get isEnergy => currencyUnit == CURRENCY_ENERGY;
 }

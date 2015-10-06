@@ -21,24 +21,27 @@ class UserProfileComp {
   
   UserProfileComp(this._router, this._profileManager);
 
+  String get rankingPointsPosition {
+    return "3";
+  }
+  num get rankingPoints {
+    return 2500;
+  }
+  String get rankingMoneyPosition {
+    return "58";
+  }
+  num get rankingMoney {
+    return 8500;
+  }
+  
   void editPersonalData() {
     _router.go('edit_profile', {});
   }
-
-  void closeProfile() {
-    _router.go('lobby', {});
-  }
-
-  void goTransactions() {
-    _router.go('transaction_history', {});
-  }
-
-  void goAddFounds() {
+  void goBuyGold() {
     _router.go('add_funds', {});
   }
-
-  void goWithdrawFounds() {
-    _router.go('withdraw_funds', {});
+  void goLeaderboard() {
+    _router.go('leaderboard', {});
   }
 
   ProfileService _profileManager;

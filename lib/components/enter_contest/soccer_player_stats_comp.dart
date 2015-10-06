@@ -90,6 +90,9 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
   String getLocalizedText(String key) {
     return StringUtils.translate(key, "soccerplayerstats");
   }
+  String getUppercaseLocalizedText(String key) {
+    return getLocalizedText(key).toUpperCase();
+  }
 
   SoccerPlayerStatsComp(this._flashMessage, this.scrDet, this._soccerPlayerService, RouteProvider routeProvider, Router router, this._rootElement) {
 

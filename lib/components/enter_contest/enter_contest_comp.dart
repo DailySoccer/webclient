@@ -204,7 +204,7 @@ class EnterContestComp implements DetachAware {
     }
     else {
       isSelectingSoccerPlayer = true;
-      scrDet.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('main-menu-slide').offsetHeight, ignoreInDesktop: true);
+      scrDet.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('#mainAppMenu').offsetHeight, ignoreInDesktop: true);
       // Cuando seleccionan un slot del lineup cambiamos siempre el filtro de la soccer-player-list, especialmente
       // en movil que cambiamos de vista a "solo ella".
       // El componente hijo se entera de que le hemos cambiado el filtro a traves del two-way binding.
@@ -254,7 +254,7 @@ class EnterContestComp implements DetachAware {
 
     // Si ya no estamos en modo seleción, scrolleamos hasta la altura del dinero que nos queda disponible.
     if (!isSelectingSoccerPlayer) {
-      scrDet.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('main-menu-slide').offsetHeight, ignoreInDesktop: true);
+      scrDet.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('#mainAppMenu').offsetHeight, ignoreInDesktop: true);
     }
 
     if(!_isRestoringTeam) {
@@ -417,7 +417,7 @@ class EnterContestComp implements DetachAware {
 
   void cancelPlayerSelection() {
     isSelectingSoccerPlayer = false;
-    scrDet.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('main-menu-slide').offsetHeight, ignoreInDesktop: true);
+    scrDet.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('#mainAppMenu').offsetHeight, ignoreInDesktop: true);
   }
 
   void onRowClick(String soccerPlayerId) {

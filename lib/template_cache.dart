@@ -604,7 +604,10 @@ tc.put("packages/webclient/components/account/remember_password_comp.html", new 
   </div>
 </div>"""));
 tc.put("packages/webclient/components/account/shop_comp.html", new HttpResponse(200, r"""<div id="shopCompWrapper">
-The Gold Shop
+  <div class="headerWrapper">
+    
+  </div>
+  
 </div>"""));
 tc.put("packages/webclient/components/account/transaction_history_comp.html", new HttpResponse(200, r"""<div id="transactionHistoryRoot">
   <!-- header title -->
@@ -1336,6 +1339,78 @@ tc.put("packages/webclient/components/enter_contest/soccer_players_filter_comp.h
   </div>
 
   <input type="text" class="name-player-input-filter" placeholder="Search player..." ng-model="nameFilter" />
+</div>"""));
+tc.put("packages/webclient/components/leaderboard_comp.html", new HttpResponse(200, r"""<div id="leaderboard-wrapper">
+
+  <div id="leaderboard-header-wrapper">
+
+    <h1>Ranking</h1>
+    <div class="rankings-wrapper">
+      <div class="ranking ranking-by-points">
+        <span class="ranking-position">{{playerPointsInfo['position']}}º</span>
+        <div class="ranking-info">
+          <span class="ranking-name">Top Points</span>
+          <span class="ranking-value">{{playerPointsInfo['points']}} ptos</span>
+        </div>
+      </div>
+  
+      <div class="ranking ranking-by-money">
+        <span class="ranking-position">{{playerMoneyInfo['position']}}º</span>
+        <div class="ranking-info">
+          <span class="ranking-name">Top Money</span>
+          <span class="ranking-value">{{playerMoneyInfo['points']}} </span>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+
+  </div>
+
+  <div class="clearfix"></div>
+
+
+  <ul class="leaderboard-tabs" role="tablist">
+    <li class="active"><a class="leaderboard-tab top-points-tab" role="tab" data-toggle="tab" ng-click="tabChange('top-points')">Top Vacilones</a></li>
+    <li><a class="leaderboard-tab top-money-tab" role="tab" data-toggle="tab" ng-click="tabChange('top-money')">Top Mandones</a></li>
+  </ul>
+  
+  <div class="tabs">
+    <div class="tab-content">
+
+      <!-- LIVE CONTESTS -->
+      <div class="tab-pane active" id="top-points">      
+        
+        <leaderboard-table show-header="true" highlight-element="playerPointsInfo" table-elements="pointsUserList" rows="usersToShow" points-column-label="pointsColumnName" hint="playerPointsHint" ng-show="!loadingService.isLoading"></leaderboard-table>
+        
+      </div>
+
+      <!-- WAITING CONTESTS -->
+      <div class="tab-pane" id="top-money">
+
+        <leaderboard-table show-header="true" highlight-element="playerMoneyInfo" table-elements="moneyUserList" rows="usersToShow" points-column-label="moneyColumnName" hint="playerMoneyHint" ng-show="!loadingService.isLoading"></leaderboard-table>
+      </div>
+    </div>
+  </div>
+
+
+</div>"""));
+tc.put("packages/webclient/components/leaderboard_table_comp.html", new HttpResponse(200, r"""<div class="leaderboard-table">
+  <div class="leaderboard-table-header" ng-show="isHeaded">
+    <div class="leaderboard-table-element">
+      <span class="leaderboard-column leaderboard-table-position">Pos.</span>
+      <span class="leaderboard-column leaderboard-table-name">Name</span>
+      <span class="leaderboard-column leaderboard-table-hint"> </span>
+      <span class="leaderboard-column leaderboard-table-skillpoints">{{pointsColumnName}}</span>
+    </div>
+  </div>
+  <div class="leaderboard-table-data">
+    <div class="leaderboard-table-element {{isThePlayer(element['id'])? 'player-position' : ''}}" ng-repeat="element in shownElements">
+      <span class="leaderboard-column leaderboard-table-position">{{element['position']}} </span>
+      <span class="leaderboard-column leaderboard-table-name">{{element['name']}} </span>
+      <span class="leaderboard-column leaderboard-table-hint">{{isThePlayer(element['id'])? playerHint : ''}} </span>
+      <span class="leaderboard-column leaderboard-table-skillpoints">{{element['points']}} </span>
+    </div>
+  </div>
 </div>"""));
 tc.put("packages/webclient/components/legalese_and_help/beta_info_comp.html", new HttpResponse(200, r"""<div id="betaComp">
   <!-- header title -->

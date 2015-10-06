@@ -51,7 +51,7 @@ class MatchesFilterComp implements ShadowRootAware {
         var filterButtons = querySelector(".matches-filter-buttons");
 
         if (filterButtons != null && !filterButtons.classes.contains("animate-once")) {
-          filterButtons.classes.add("animate animate-once");
+          filterButtons.classes.addAll(["animate", "animate-once"]);
 
           // No queremos que cuando cambiemos de tab, vuelva a animar
           filterButtons.on["animationend"].listen((data) {

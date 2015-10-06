@@ -143,22 +143,20 @@
       "nick"                            : "Nombre de usuario",
       "email"                           : "Correo Electrónico",
       "pass"                            : "Contraseña",
-      
       "wallet"                          : "Monedas Gold",
       "buttonbuy"                       : "Comprar",
-      
       "ranking"                         : "Clasificación",
-      "buttonrankingtable"              : "Ver en la tabla",
-      
-      "actualbalance"                   : "Balance Actual",
-      "pendingbonus"                    : "Bonus pendientes",
-      "addfunds"                        : "AÑADIR FONDOS",
-      "epicpoints"                      : "EPIC POINTS",
-      "e11pbalance"                     : "BALANCE EpicPoints",
-      "uitimonth"                       : "ulti-mes",
-      "thismonth"                       : "ESTE MES",
-      "penulmonth"                      : "penul-mes",
-      "howtouse"                        : "¿Cómo usar tus puntos?"
+      "buttonrankingtable"              : "Ver en la tabla"
+    },
+    "leaderboard"                       :
+    {
+      "title"                           : "Clasificación",
+      "trueskill"                       : "Habilidad",
+      "gold"                            : "Monedas",
+      "topgold"                         : "Top Gold",
+      "topskill"                        : "Top Skill",
+      "abrevposition"                   : "Pos.",
+      "name"                            : "Nombre"
     },
     "withdrawfunds"                     :
     {

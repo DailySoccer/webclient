@@ -2,12 +2,12 @@
 
   <div id="leaderboard-header-wrapper">
 
-    <h1>Ranking</h1>
+    <h1>{{getLocalizedText("title")}}</h1>
     <div class="rankings-wrapper">
       <div class="ranking ranking-by-points">
         <span class="ranking-position">{{playerPointsInfo['position']}}º</span>
         <div class="ranking-info">
-          <span class="ranking-name">Top Points</span>
+          <span class="ranking-name">{{getLocalizedText("topskill")}}</span>
           <span class="ranking-value">{{playerPointsInfo['points']}} ptos</span>
         </div>
       </div>
@@ -15,7 +15,7 @@
       <div class="ranking ranking-by-money">
         <span class="ranking-position">{{playerMoneyInfo['position']}}º</span>
         <div class="ranking-info">
-          <span class="ranking-name">Top Money</span>
+          <span class="ranking-name">{{getLocalizedText("topgold")}}</span>
           <span class="ranking-value">{{playerMoneyInfo['points']}} </span>
         </div>
       </div>
@@ -28,8 +28,8 @@
 
 
   <ul class="leaderboard-tabs" role="tablist">
-    <li class="active"><a class="leaderboard-tab top-points-tab" role="tab" data-toggle="tab" ng-click="tabChange('top-points')">Habilidad</a></li>
-    <li><a class="leaderboard-tab top-money-tab" role="tab" data-toggle="tab" ng-click="tabChange('top-money')">Monedas</a></li>
+    <li class="active"><a class="leaderboard-tab top-points-tab" role="tab" data-toggle="tab" ng-click="tabChange('top-points')">{{getLocalizedText("trueskill")}}</a></li>
+    <li><a class="leaderboard-tab top-money-tab" role="tab" data-toggle="tab" ng-click="tabChange('top-money')">{{getLocalizedText("gold")}}</a></li>
   </ul>
   
   <div class="tabs">
@@ -46,6 +46,7 @@
       <div class="tab-pane" id="top-money">
 
         <leaderboard-table show-header="true" highlight-element="playerMoneyInfo" table-elements="moneyUserList" rows="usersToShow" points-column-label="moneyColumnName" hint="playerMoneyHint" ng-show="!loadingService.isLoading"></leaderboard-table>
+      
       </div>
     </div>
   </div>

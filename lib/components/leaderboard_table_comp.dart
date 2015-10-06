@@ -3,6 +3,7 @@ library leaderboard_table_comp;
 import 'dart:html';
 import 'dart:math';
 import 'package:angular/angular.dart';
+import 'package:webclient/utils/string_utils.dart';
 //import 'package:webclient/utils/html_utils.dart';
 //import 'package:webclient/services/screen_detector_service.dart';
 //import 'package:webclient/services/screen_detector_service.dart';
@@ -31,6 +32,10 @@ class LeaderboardTableComp {
   List<Map> shownElements = null;
   Map highlightedElement = null;
 
+  String getLocalizedText(key, [group = "leaderboard"]) {
+    return StringUtils.translate(key, group);
+  }
+  
   LeaderboardTableComp () {
     //_streamListener = _scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
   }

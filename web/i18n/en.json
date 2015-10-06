@@ -141,18 +141,20 @@
       "nick"                            : "Nick",
       "email"                           : "Email",
       "pass"                            : "Password",
-      "wallet"                          : "WALLET",
-      "transactions"                    : "TRANSACTIONS",
-      "withdrawfunds"                   : "WITHDRAW FUNDS",
-      "actualbalance"                   : "Actual balance",
-      "pendingbonus"                    : "Pending bonus",
-      "addfunds"                        : "ADD FUNDS",
-      "epicpoints"                      : "EPIC POINTS",
-      "e11pbalance"                     : "E11P BALANCE",
-      "uitimonth"                       : "last-month",
-      "thismonth"                       : "THIS MONTH",
-      "penulmonth"                      : "penul-month",
-      "howtouse"                        : "How to use your EPs?"
+      "wallet"                          : "Gold Coins",
+      "buttonbuy"                       : "Buy",
+      "ranking"                         : "Rankings",
+      "buttonrankingtable"              : "Ranking table"
+    },
+    "leaderboard"                       :
+    {
+      "title"                           : "Ranking",
+      "trueskill"                       : "Skill",
+      "gold"                            : "Gold",
+      "topgold"                         : "Top Gold",
+      "topskill"                        : "Top Skill",
+      "abrevposition"                   : "Pos.",
+      "name"                            : "Name"
     },
     "withdrawfunds"                     :
     {

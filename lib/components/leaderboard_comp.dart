@@ -6,6 +6,7 @@ import 'package:webclient/services/leaderboard_service.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/models/user.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 
 @Component(
@@ -21,11 +22,11 @@ class LeaderboardComp {
 
   int usersToShow = 7;  
   
-  String pointsColumnName = "Points";
-  String moneyColumnName = "Money";
+  String get pointsColumnName => getLocalizedText("trueskill");
+  String get moneyColumnName => getLocalizedText("gold");
 
-  String playerPointsHint = 'Eres un crack!!';
-  String playerMoneyHint = 'Paquete';
+  String playerPointsHint = '';
+  String playerMoneyHint = '';
   
   bool isThePlayer(id) => id == profileService.user.userId/*get del singleton*/;
 
@@ -34,6 +35,10 @@ class LeaderboardComp {
   Map playerPointsInfo = {'position':'_', 'id':'', 'name': '', 'points': ' '};
   Map playerMoneyInfo = {'position':'_', 'id':'', 'name': '', 'points': '\$ '};
 
+  String getLocalizedText(key, [group = "leaderboard"]) {
+    return StringUtils.translate(key, group);
+  }
+  
   LeaderboardComp (LeaderboardService leaderboardService, this.loadingService, this.profileService) {
     loadingService.isLoading = true;
     leaderboardService.getUsers()

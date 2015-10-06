@@ -7385,7 +7385,7 @@ contest-header {
 }
 .contests-list-f2p-root .contestSlot .conditions-section .entry-fee-energy::after {
   content: " ";
-  background-image: url("../images/lightning-xs.png");
+  background-image: url("../images/icon-lightning-xs.png");
   width: 16px;
   height: 16px;
   position: relative;
@@ -7395,7 +7395,7 @@ contest-header {
 }
 @media (min-width: 768px) {
   .contests-list-f2p-root .contestSlot .conditions-section .entry-fee-energy::after {
-    background-image: url("../images/lightning-lg.png");
+    background-image: url("../images/icon-lightning-lg.png");
   }
 }
 @media (min-width: 768px) {
@@ -7407,7 +7407,7 @@ contest-header {
 .contests-list-f2p-root .contestSlot .conditions-section .entry-fee-coin::after,
 .contests-list-f2p-root .contestSlot .conditions-section .prize-coin::after {
   content: " ";
-  background-image: url("../images/coin-xs.png");
+  background-image: url("../images/icon-coin-xs.png");
   width: 16px;
   height: 16px;
   position: relative;
@@ -7418,7 +7418,7 @@ contest-header {
 @media (min-width: 768px) {
   .contests-list-f2p-root .contestSlot .conditions-section .entry-fee-coin::after,
   .contests-list-f2p-root .contestSlot .conditions-section .prize-coin::after {
-    background-image: url("../images/coin-lg.png");
+    background-image: url("../images/icon-coin-lg.png");
   }
 }
 @media (min-width: 768px) {
@@ -7430,7 +7430,7 @@ contest-header {
 }
 .contests-list-f2p-root .contestSlot .conditions-section .prize-managerpoints::after {
   content: " ";
-  background-image: url("../images/star-xs.png");
+  background-image: url("../images/icon-star-xs.png");
   width: 16px;
   height: 16px;
   position: relative;
@@ -7440,7 +7440,7 @@ contest-header {
 }
 @media (min-width: 768px) {
   .contests-list-f2p-root .contestSlot .conditions-section .prize-managerpoints::after {
-    background-image: url("../images/star-lg.png");
+    background-image: url("../images/icon-star-lg.png");
   }
 }
 @media (min-width: 768px) {

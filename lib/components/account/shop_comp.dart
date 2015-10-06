@@ -1,7 +1,8 @@
 library shop_comp;
 
-import 'package:angular/angular.dart';
 import 'dart:html';
+import 'package:angular/angular.dart';
+import 'package:webclient/services/screen_detector_service.dart';
 
 @Component(
     selector: 'shop-comp',
@@ -9,5 +10,14 @@ import 'dart:html';
     useShadowDom: false
 )
 class ShopComp {
-  ShopComp();
+  
+  Map shopData;
+  
+  ShopComp(this._scrDet) {
+    
+  }
+  
+  
+  ScreenDetectorService _scrDet;
 }
+

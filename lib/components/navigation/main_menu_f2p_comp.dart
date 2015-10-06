@@ -349,15 +349,15 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
       
         <div class="fixed-user-stats">
 
-          <div class="energy" destination="shop">         
+          <div class="energy">         
             <img src="images/lightning-menu.png"> 
             <div class="count">${_userEnergy}/${_maxEnergy}</div>
           </div>
-          <div class="manager-points" destination="shop"> 
+          <div class="manager-points"> 
             <img src="images/star-menu.png">     
             <div class="count">${_userManagerPoints}</div>
           </div>
-          <div class="coins" destination="shop">
+          <div class="coins">
             <img src="images/coin-menu.png">      
             <div class="count">${_userGold}</div>
           </div>

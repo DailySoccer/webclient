@@ -22,7 +22,7 @@
       </div>
       <div class="data-content">
         <div class="data-row">
-          <div class="wrapper-box"> <span class="data-value-coins">{{userData.balance}}</span><img class="coin-icon" src="images/coin-lg.png"> </div>
+          <div class="wrapper-box"> <span class="data-value-coins">{{userData.balance}}</span><img class="coin-icon" src="images/icon-coin-lg.png"> </div>
         </div>
       </div>
       <div class="data-action">
@@ -35,13 +35,13 @@
       </div>
       <div class="data-content">
         <div class="single-ranking-info ranking-by-points wrapper-box">
-          <img class="ranking-badge" src="images/leaderboardTopPointsDark.png">
+          <img class="ranking-badge" src="images/icon-Ranking-Skill-Blue.png">
           <span class="ranking-position" ng-show="!loadingService.isLoading">{{rankingPointsPosition}}º</span>
           <span class="ranking-score" ng-show="!loadingService.isLoading">{{rankingPoints}} {{getLocalizedText("abrevpoints", "common")}}</span>
         </div>
         <div class="single-ranking-info ranking-by-money wrapper-box">
         
-          <img class="ranking-badge" src="images/coin-lg.png">
+          <img class="ranking-badge" src="images/icon-coin-lg.png">
           <span class="ranking-position" ng-show="!loadingService.isLoading">{{rankingMoneyPosition}}º</span>
           <span class="ranking-score" ng-show="!loadingService.isLoading">{{rankingMoney}}</span>
         </div>

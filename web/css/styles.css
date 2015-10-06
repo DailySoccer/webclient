@@ -18703,13 +18703,13 @@ lineup-selector {
   background-color: #214a5f;
 }
 #leaderboard-wrapper .leaderboard-tabs .leaderboard-tab:before {
-  margin-right: 20px;
+  margin-right: 10px;
   background-repeat: no-repeat;
   background-position: center center;
 }
 #leaderboard-wrapper .leaderboard-tabs .top-money-tab:before {
   content: " ";
-  background-image: url("../images/leaderboardTopMoney.png");
+  background-image: url("../images/icon-coin-lg.png");
   width: 32px;
   height: 50px;
   display: inline-block;
@@ -18717,7 +18717,7 @@ lineup-selector {
 }
 #leaderboard-wrapper .leaderboard-tabs .top-points-tab:before {
   content: " ";
-  background-image: url("../images/leaderboardTopPoints.png");
+  background-image: url("../images/icon-Ranking-Skill.png");
   width: 32px;
   height: 50px;
   display: inline-block;

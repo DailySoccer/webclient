@@ -65,6 +65,7 @@ import 'package:webclient/components/account/payment_response_comp.dart';
 import 'package:webclient/components/account/add_funds_comp.dart';
 import 'package:webclient/components/account/withdraw_funds_comp.dart';
 import 'package:webclient/components/account/transaction_history_comp.dart';
+import 'package:webclient/components/account/shop_comp.dart';
 
 import 'package:webclient/components/my_contests_comp.dart';
 import 'package:webclient/components/view_contest/view_contest_entry_comp.dart';
@@ -203,6 +204,7 @@ class WebClientApp extends Module {
     bind(AddFundsComp);
     bind(WithdrawFundsComp);
     bind(TransactionHistoryComp);
+    bind(ShopComp);
 
     bind(RouteInitializerFn, toValue: webClientRouteInitializer);
     bind(NgRoutingUsePushState, toValue: new NgRoutingUsePushState.value(false));
@@ -309,6 +311,11 @@ class WebClientApp extends Module {
           path: '/transaction_history',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
           viewHtml: '<transaction-history></transaction-history>'
+      )
+      ,'shop': ngRoute(
+          path: '/shop',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
+          viewHtml: '<shop-comp></shop-comp>'
       )
       ,'lobby': ngRoute(
           path: '/lobby',

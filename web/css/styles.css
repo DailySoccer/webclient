@@ -5731,10 +5731,10 @@ scoring-rules:after,
 #usersListRoot .users-table-header:after,
 .profile-content:before,
 .profile-content:after,
-.profile-content .data-header:before,
-.profile-content .data-header:after,
-.profile-content .data-row:before,
-.profile-content .data-row:after,
+.profile-content .profile-section .data-header:before,
+.profile-content .profile-section .data-header:after,
+.profile-content .profile-section .data-content:before,
+.profile-content .profile-section .data-content:after,
 .info-complete-bar:before,
 .info-complete-bar:after,
 .view-contest-entry-actions-wrapper:before,
@@ -5832,8 +5832,8 @@ scoring-rules:after,
 #usersListRoot .user-row:after,
 #usersListRoot .users-table-header:after,
 .profile-content:after,
-.profile-content .data-header:after,
-.profile-content .data-row:after,
+.profile-content .profile-section .data-header:after,
+.profile-content .profile-section .data-content:after,
 .info-complete-bar:after,
 .view-contest-entry-actions-wrapper:after,
 #helpInfo .scores-wrapper:after,
@@ -14322,8 +14322,7 @@ main-menu-f2p {
   display: inline-block;
   width: 50px;
   color: #ffffff;
-  vertical-align: top;
-  margin-left: 30px;
+  margin-left: 40px;
   position: relative;
 }
 #mainMenu #desktopMenu .fixed-user-stats .profile .count {
@@ -21164,177 +21163,171 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
 .profile-content {
   margin-left: 0;
   margin-right: 0;
-  border-width: 1px;
-  border-style: none none none none;
-  border-color: #214a5f;
-  border-radius: 0;
   background-color: #ffffff;
   padding-left: 0px;
   padding-right: 0px;
 }
-@media (max-width: 767px) {
-  .profile-content {
-    background-color: #f8f8f8;
-  }
+.profile-content .profile-section {
+  position: relative;
 }
-.profile-content .data-header {
+.profile-content .profile-section .data-header {
   margin-left: 0;
   margin-right: 0;
   padding-left: 0px;
   padding-right: 0px;
-  padding: 10px 0px;
-  border-width: 1px;
-  border-style: dotted none none none;
-  border-color: #214a5f;
-  border-radius: 0;
+  padding: 15px 0px 10px 0px;
+  text-align: center;
+  margin-bottom: 0px;
 }
-@media (max-width: 991px) and (min-width: 767px) {
-  .profile-content .data-header {
-    border-width: 1px;
-    border-style: none none none none;
-    border-color: #214a5f;
-    border-radius: 0;
-  }
-}
-.profile-content .data-header .data-header-title {
+.profile-content .profile-section .data-header .data-header-title {
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
-  font-size: 16pt;
+  font-weight: 600;
+  font-size: 12pt;
   color: #214a5f;
   text-transform: uppercase;
 }
-@media (min-width: 992px) {
-  .profile-content .data-header .data-header-title {
+@media (min-width: 768px) {
+  .profile-content .profile-section .data-header .data-header-title {
     font-family: 'Exo', sans-serif;
-    font-weight: 300;
+    font-weight: 600;
     font-size: 20pt;
     color: #214a5f;
     text-transform: uppercase;
   }
 }
-.profile-content .personal-data .data-header {
-  padding: 10px 15px;
-  background-color: #214a5f;
-  border-width: 0px;
-  border-style: solid;
-  border-color: #ffffff;
-  border-radius: 5px 5px 0px 0px;
+.profile-content .profile-section .data-content {
+  margin-left: 0;
+  margin-right: 0;
+  padding: 10px 15px 25px 15px;
 }
-.profile-content .personal-data .data-header .data-header-title {
+@media (min-width: 768px) {
+  .profile-content .profile-section .data-content {
+    min-height: 130px;
+  }
+}
+@media (min-width: 768px) {
+  .profile-content .profile-section .data-content .wrapper-box {
+    border-radius: 5px;
+    box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5) inset;
+    padding: 10px 20px;
+    display: inline-block;
+    margin: 0px auto;
+  }
+}
+.profile-content .profile-section .data-action {
+  min-height: 80px;
+  padding: 0px 0px 30px 0px;
+  margin: 10px;
+  border-bottom: 1px dotted #000000;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .profile-content .profile-section .data-action {
+    border-bottom: 0px none #000000;
+    padding: 0px 0px 0px 0px;
+    margin: 0px;
+  }
+}
+.profile-content .profile-section .data-action .action-button {
+  color: #333333;
+  background-color: #ffffff;
+  border-color: #cccccc;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  -webkit-transition: All 0.08s ease-out;
+  -moz-transition: All 0.08s ease-out;
+  -ms-transition: All 0.08s ease-out;
+  -o-transition: All 0.08s ease-out;
+  transition: All 0.08s ease-out;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  background-color: #59add5;
+  box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
+  outline: none !important;
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
-  font-size: 16pt;
+  font-weight: 600;
+  font-size: 10pt;
   color: #ffffff;
   text-transform: uppercase;
+  padding: 12px 12px;
+  width: 100%;
+  max-width: 300px;
+  margin: 0px auto;
 }
-@media (min-width: 992px) {
-  .profile-content .personal-data .data-header .data-header-title {
-    font-family: 'Exo', sans-serif;
-    font-weight: 300;
-    font-size: 20pt;
-    color: #ffffff;
-    text-transform: uppercase;
-  }
-}
-.profile-content .button-wrapper {
-  height: 35px;
-  width: 50px;
-  display: inline;
-}
-.profile-content .action-button {
-  color: #333333;
-  background-color: #ffffff;
-  border-color: #cccccc;
-  display: inline-block;
-  margin-bottom: 0;
-  font-weight: normal;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  background-image: none;
-  border: 1px solid transparent;
-  white-space: nowrap;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  border-radius: 4px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  border-width: 0;
-  -webkit-transition: All 0.08s ease-out;
-  -moz-transition: All 0.08s ease-out;
-  -ms-transition: All 0.08s ease-out;
-  -o-transition: All 0.08s ease-out;
-  transition: All 0.08s ease-out;
-  background-color: #59add5;
-  box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
-  outline: none !important;
-  float: right !important;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 10pt;
-  color: #ffffff;
-}
-.profile-content .action-button:hover,
-.profile-content .action-button:focus,
-.profile-content .action-button:active,
-.profile-content .action-button.active,
-.open .dropdown-toggle.profile-content .action-button {
+.profile-content .profile-section .data-action .action-button:hover,
+.profile-content .profile-section .data-action .action-button:focus,
+.profile-content .profile-section .data-action .action-button:active,
+.profile-content .profile-section .data-action .action-button.active,
+.open .dropdown-toggle.profile-content .profile-section .data-action .action-button {
   color: #333333;
   background-color: #ebebeb;
   border-color: #adadad;
 }
-.profile-content .action-button:active,
-.profile-content .action-button.active,
-.open .dropdown-toggle.profile-content .action-button {
+.profile-content .profile-section .data-action .action-button:active,
+.profile-content .profile-section .data-action .action-button.active,
+.open .dropdown-toggle.profile-content .profile-section .data-action .action-button {
   background-image: none;
 }
-.profile-content .action-button.disabled,
-.profile-content .action-button[disabled],
-fieldset[disabled] .profile-content .action-button,
-.profile-content .action-button.disabled:hover,
-.profile-content .action-button[disabled]:hover,
-fieldset[disabled] .profile-content .action-button:hover,
-.profile-content .action-button.disabled:focus,
-.profile-content .action-button[disabled]:focus,
-fieldset[disabled] .profile-content .action-button:focus,
-.profile-content .action-button.disabled:active,
-.profile-content .action-button[disabled]:active,
-fieldset[disabled] .profile-content .action-button:active,
-.profile-content .action-button.disabled.active,
-.profile-content .action-button[disabled].active,
-fieldset[disabled] .profile-content .action-button.active {
+.profile-content .profile-section .data-action .action-button.disabled,
+.profile-content .profile-section .data-action .action-button[disabled],
+fieldset[disabled] .profile-content .profile-section .data-action .action-button,
+.profile-content .profile-section .data-action .action-button.disabled:hover,
+.profile-content .profile-section .data-action .action-button[disabled]:hover,
+fieldset[disabled] .profile-content .profile-section .data-action .action-button:hover,
+.profile-content .profile-section .data-action .action-button.disabled:focus,
+.profile-content .profile-section .data-action .action-button[disabled]:focus,
+fieldset[disabled] .profile-content .profile-section .data-action .action-button:focus,
+.profile-content .profile-section .data-action .action-button.disabled:active,
+.profile-content .profile-section .data-action .action-button[disabled]:active,
+fieldset[disabled] .profile-content .profile-section .data-action .action-button:active,
+.profile-content .profile-section .data-action .action-button.disabled.active,
+.profile-content .profile-section .data-action .action-button[disabled].active,
+fieldset[disabled] .profile-content .profile-section .data-action .action-button.active {
   background-color: #ffffff;
   border-color: #cccccc;
 }
-.profile-content .action-button .badge {
+.profile-content .profile-section .data-action .action-button .badge {
   color: #ffffff;
   background-color: #333333;
 }
-.profile-content .action-button:focus,
-.profile-content .action-button:active:focus,
-.profile-content .action-button.active:focus {
+.profile-content .profile-section .data-action .action-button:focus,
+.profile-content .profile-section .data-action .action-button:active:focus,
+.profile-content .profile-section .data-action .action-button.active:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-.profile-content .action-button:hover,
-.profile-content .action-button:focus {
+.profile-content .profile-section .data-action .action-button:hover,
+.profile-content .profile-section .data-action .action-button:focus {
   color: #333333;
   text-decoration: none;
 }
-.profile-content .action-button:active,
-.profile-content .action-button.active {
+.profile-content .profile-section .data-action .action-button:active,
+.profile-content .profile-section .data-action .action-button.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-.profile-content .action-button.disabled,
-.profile-content .action-button[disabled],
-fieldset[disabled] .profile-content .action-button {
+.profile-content .profile-section .data-action .action-button.disabled,
+.profile-content .profile-section .data-action .action-button[disabled],
+fieldset[disabled] .profile-content .profile-section .data-action .action-button {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -21342,210 +21335,70 @@ fieldset[disabled] .profile-content .action-button {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-.profile-content .action-button:active:focus,
-.profile-content .action-button.active:focus {
+.profile-content .profile-section .data-action .action-button:active:focus,
+.profile-content .profile-section .data-action .action-button.active:focus {
   color: #ffffff;
   background-color: #82c1df;
 }
-.profile-content .action-button:active:hover,
-.profile-content .action-button.active:hover {
+.profile-content .profile-section .data-action .action-button:active:hover,
+.profile-content .profile-section .data-action .action-button.active:hover {
   color: #ffffff;
   background-color: #82c1df;
 }
-.profile-content .action-button:focus {
+.profile-content .profile-section .data-action .action-button:focus {
   background-color: #59add5;
   color: #ffffff;
 }
-.profile-content .action-button:hover {
+.profile-content .profile-section .data-action .action-button:hover {
   background-color: #6db7da;
   outline: none !important;
   color: #ffffff;
 }
-.profile-content .action-button:hover:focus {
+.profile-content .profile-section .data-action .action-button:hover:focus {
   background-color: #59add5;
   color: #ffffff;
 }
-.profile-content .action-button:active,
-.profile-content .action-button.active {
+.profile-content .profile-section .data-action .action-button:active,
+.profile-content .profile-section .data-action .action-button.active {
   background-color: #59add5;
   margin-top: 4px;
   box-shadow: none;
 }
-.profile-content .action-button:hover {
+.profile-content .profile-section .data-action .action-button:hover {
   background-color: #6db7da;
   outline: none !important;
   color: #ffffff;
 }
-.profile-content .action-button.disabled,
-.profile-content .action-button[disabled],
-fieldset[disabled] .profile-content .action-button {
+.profile-content .profile-section .data-action .action-button.disabled,
+.profile-content .profile-section .data-action .action-button[disabled],
+fieldset[disabled] .profile-content .profile-section .data-action .action-button {
   background-color: #82c1df;
   box-shadow: none;
   margin-top: 4px;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
-.profile-content .action-button.close {
+.profile-content .profile-section .data-action .action-button.close {
   background-color: #59add5;
   outline: none !important;
   color: #ffffff;
 }
-.profile-content .add-funds-button {
-  background-color: #428bca;
-  border-color: #357ebd;
-  display: inline-block;
-  margin-bottom: 0;
-  font-weight: normal;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  background-image: none;
-  border: 1px solid transparent;
-  white-space: nowrap;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  border-radius: 4px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  border-width: 0;
-  -webkit-transition: All 0.08s ease-out;
-  -moz-transition: All 0.08s ease-out;
-  -ms-transition: All 0.08s ease-out;
-  -o-transition: All 0.08s ease-out;
-  transition: All 0.08s ease-out;
-  background-color: #a1c931;
-  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
-  outline: none !important;
-  float: right !important;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 10pt;
+.profile-content .profile-section.personal-data .data-header {
+  text-align: left;
+  padding: 10px 12px;
+  background-color: #214a5f;
+}
+.profile-content .profile-section.personal-data .data-header .data-header-title {
   color: #ffffff;
 }
-.profile-content .add-funds-button:hover,
-.profile-content .add-funds-button:focus,
-.profile-content .add-funds-button:active,
-.profile-content .add-funds-button.active,
-.open .dropdown-toggle.profile-content .add-funds-button {
-  color: #ffffff;
-  background-color: #3276b1;
-  border-color: #285e8e;
-}
-.profile-content .add-funds-button:active,
-.profile-content .add-funds-button.active,
-.open .dropdown-toggle.profile-content .add-funds-button {
-  background-image: none;
-}
-.profile-content .add-funds-button.disabled,
-.profile-content .add-funds-button[disabled],
-fieldset[disabled] .profile-content .add-funds-button,
-.profile-content .add-funds-button.disabled:hover,
-.profile-content .add-funds-button[disabled]:hover,
-fieldset[disabled] .profile-content .add-funds-button:hover,
-.profile-content .add-funds-button.disabled:focus,
-.profile-content .add-funds-button[disabled]:focus,
-fieldset[disabled] .profile-content .add-funds-button:focus,
-.profile-content .add-funds-button.disabled:active,
-.profile-content .add-funds-button[disabled]:active,
-fieldset[disabled] .profile-content .add-funds-button:active,
-.profile-content .add-funds-button.disabled.active,
-.profile-content .add-funds-button[disabled].active,
-fieldset[disabled] .profile-content .add-funds-button.active {
-  background-color: #428bca;
-  border-color: #357ebd;
-}
-.profile-content .add-funds-button .badge {
-  color: #428bca;
-  background-color: #ffffff;
-}
-.profile-content .add-funds-button:focus,
-.profile-content .add-funds-button:active:focus,
-.profile-content .add-funds-button.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-.profile-content .add-funds-button:hover,
-.profile-content .add-funds-button:focus {
-  color: #333333;
-  text-decoration: none;
-}
-.profile-content .add-funds-button:active,
-.profile-content .add-funds-button.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-.profile-content .add-funds-button.disabled,
-.profile-content .add-funds-button[disabled],
-fieldset[disabled] .profile-content .add-funds-button {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-.profile-content .add-funds-button:active:focus,
-.profile-content .add-funds-button.active:focus {
-  color: #ffffff;
-  background-color: #b5d657;
-}
-.profile-content .add-funds-button:active:hover,
-.profile-content .add-funds-button.active:hover {
-  color: #ffffff;
-  background-color: #b5d657;
-}
-.profile-content .add-funds-button:focus {
-  background-color: #a1c931;
-  color: #ffffff;
-}
-.profile-content .add-funds-button:hover {
-  background-color: #acd142;
-  outline: none !important;
-  color: #ffffff;
-}
-.profile-content .add-funds-button:hover:focus {
-  background-color: #a1c931;
-  color: #ffffff;
-}
-.profile-content .add-funds-button:active,
-.profile-content .add-funds-button.active {
-  background-color: #a1c931;
-  margin-top: 4px;
-  box-shadow: none;
-}
-.profile-content .add-funds-button:hover {
-  background-color: #acd142;
-  outline: none !important;
-  color: #ffffff;
-}
-.profile-content .add-funds-button.disabled,
-.profile-content .add-funds-button[disabled],
-fieldset[disabled] .profile-content .add-funds-button {
-  background-color: #b5d657;
-  box-shadow: none;
-  margin-top: 4px;
-  color: #ebebeb;
-  cursor: not-allowed !important;
-}
-.profile-content .add-funds-button.close {
-  background-color: #a1c931;
-  outline: none !important;
-  color: #ffffff;
-}
-.profile-content .data-key {
+.profile-content .profile-section.personal-data .data-content .data-key {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 9pt;
   color: #214a5f;
   line-height: 25pt;
 }
-.profile-content .data-value {
+.profile-content .profile-section.personal-data .data-content .data-value {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 9pt;
@@ -21553,655 +21406,277 @@ fieldset[disabled] .profile-content .add-funds-button {
   line-height: 25pt;
   margin-left: 8px;
 }
-.profile-content .data-value-balance {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-  font-size: 9pt;
-  color: #ffffff;
-  line-height: 25pt;
-  margin-left: 8px;
-  background-color: #fa9c19;
-  padding: 2px 5px;
-  border-radius: 5px;
-}
-.profile-content .personal-data {
-  position: relative;
-  float: left;
-  width: 100%;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding: 20px 15px;
-}
-@media (max-width: 991px) {
-  .profile-content .personal-data {
-    padding: 0px;
+@media (min-width: 768px) {
+  .profile-content .profile-section.personal-data {
+    border-bottom: 1px dotted #000000;
   }
-  .profile-content .personal-data .bloque-sm {
-    padding: 10px 15px;
-  }
-}
-.profile-content .personal-data .data-header {
-  border-width: 1px;
-  border-style: none none none none;
-  border-color: #214a5f;
-  border-radius: 5px 5px 0px 0px;
-}
-@media (max-width: 767px) {
-  .profile-content .personal-data .data-header {
-    margin-bottom: 32px;
-  }
-}
-@media (max-width: 991px) {
-  .profile-content .personal-data .data-header {
-    border-radius: 0px;
-  }
-}
-.profile-content .personal-data .data-header .close-profile {
-  float: right;
-}
-@media (min-width: 767px) {
-  .profile-content .personal-data .data-header .close-profile {
-    display: none !important;
-    visibility: hidden !important;
-  }
-}
-.profile-content .personal-data .data-header .close-profile .close span {
-  color: #ffffff;
-}
-@media (max-width: 767px) {
-  .profile-content .personal-data .data-header .button-wrapper {
+  .profile-content .profile-section.personal-data .data-action {
     position: absolute;
-    left: 0px;
-    top: 53px;
-    width: 100%;
+    top: 10px;
+    right: 15px;
   }
-  .profile-content .personal-data .data-header .button-wrapper button {
-    width: 92%;
-    margin-left: 4%;
-    margin-right: 4%;
+  .profile-content .profile-section.personal-data .data-action .action-button {
+    padding: 7px 20px;
+    width: auto;
   }
 }
-@media (max-width: 767px) {
-  .profile-content .personal-data .action-button {
-    color: #333333;
-    background-color: #ffffff;
-    border-color: #cccccc;
-    display: inline-block;
-    margin-bottom: 0;
-    font-weight: normal;
-    text-align: center;
-    vertical-align: middle;
-    cursor: pointer;
-    background-image: none;
-    border: 1px solid transparent;
-    white-space: nowrap;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    border-radius: 4px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    border-width: 0;
-    -webkit-transition: All 0.08s ease-out;
-    -moz-transition: All 0.08s ease-out;
-    -ms-transition: All 0.08s ease-out;
-    -o-transition: All 0.08s ease-out;
-    transition: All 0.08s ease-out;
-    background-color: #59add5;
-    box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
-    outline: none !important;
-    float: right !important;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 400;
-    font-size: 10pt;
-    color: #ffffff;
-  }
-  .profile-content .personal-data .action-button:hover,
-  .profile-content .personal-data .action-button:focus,
-  .profile-content .personal-data .action-button:active,
-  .profile-content .personal-data .action-button.active,
-  .open .dropdown-toggle.profile-content .personal-data .action-button {
-    color: #333333;
-    background-color: #ebebeb;
-    border-color: #adadad;
-  }
-  .profile-content .personal-data .action-button:active,
-  .profile-content .personal-data .action-button.active,
-  .open .dropdown-toggle.profile-content .personal-data .action-button {
-    background-image: none;
-  }
-  .profile-content .personal-data .action-button.disabled,
-  .profile-content .personal-data .action-button[disabled],
-  fieldset[disabled] .profile-content .personal-data .action-button,
-  .profile-content .personal-data .action-button.disabled:hover,
-  .profile-content .personal-data .action-button[disabled]:hover,
-  fieldset[disabled] .profile-content .personal-data .action-button:hover,
-  .profile-content .personal-data .action-button.disabled:focus,
-  .profile-content .personal-data .action-button[disabled]:focus,
-  fieldset[disabled] .profile-content .personal-data .action-button:focus,
-  .profile-content .personal-data .action-button.disabled:active,
-  .profile-content .personal-data .action-button[disabled]:active,
-  fieldset[disabled] .profile-content .personal-data .action-button:active,
-  .profile-content .personal-data .action-button.disabled.active,
-  .profile-content .personal-data .action-button[disabled].active,
-  fieldset[disabled] .profile-content .personal-data .action-button.active {
-    background-color: #ffffff;
-    border-color: #cccccc;
-  }
-  .profile-content .personal-data .action-button .badge {
-    color: #ffffff;
-    background-color: #333333;
-  }
-  .profile-content .personal-data .action-button:focus,
-  .profile-content .personal-data .action-button:active:focus,
-  .profile-content .personal-data .action-button.active:focus {
-    outline: thin dotted;
-    outline: 5px auto -webkit-focus-ring-color;
-    outline-offset: -2px;
-  }
-  .profile-content .personal-data .action-button:hover,
-  .profile-content .personal-data .action-button:focus {
-    color: #333333;
-    text-decoration: none;
-  }
-  .profile-content .personal-data .action-button:active,
-  .profile-content .personal-data .action-button.active {
-    outline: 0;
-    background-image: none;
-    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  }
-  .profile-content .personal-data .action-button.disabled,
-  .profile-content .personal-data .action-button[disabled],
-  fieldset[disabled] .profile-content .personal-data .action-button {
-    cursor: not-allowed;
-    pointer-events: none;
-    opacity: 0.65;
-    filter: alpha(opacity=65);
-    -webkit-box-shadow: none;
-    box-shadow: none;
-  }
-  .profile-content .personal-data .action-button:active:focus,
-  .profile-content .personal-data .action-button.active:focus {
-    color: #ffffff;
-    background-color: #82c1df;
-  }
-  .profile-content .personal-data .action-button:active:hover,
-  .profile-content .personal-data .action-button.active:hover {
-    color: #ffffff;
-    background-color: #82c1df;
-  }
-  .profile-content .personal-data .action-button:focus {
-    background-color: #59add5;
-    color: #ffffff;
-  }
-  .profile-content .personal-data .action-button:hover {
-    background-color: #6db7da;
-    outline: none !important;
-    color: #ffffff;
-  }
-  .profile-content .personal-data .action-button:hover:focus {
-    background-color: #59add5;
-    color: #ffffff;
-  }
-  .profile-content .personal-data .action-button:active,
-  .profile-content .personal-data .action-button.active {
-    background-color: #59add5;
-    margin-top: 4px;
-    box-shadow: none;
-  }
-  .profile-content .personal-data .action-button:hover {
-    background-color: #6db7da;
-    outline: none !important;
-    color: #ffffff;
-  }
-  .profile-content .personal-data .action-button.disabled,
-  .profile-content .personal-data .action-button[disabled],
-  fieldset[disabled] .profile-content .personal-data .action-button {
-    background-color: #82c1df;
-    box-shadow: none;
-    margin-top: 4px;
-    color: #ebebeb;
-    cursor: not-allowed !important;
-  }
-  .profile-content .personal-data .action-button.close {
-    background-color: #59add5;
-    outline: none !important;
-    color: #ffffff;
-  }
-}
-.profile-content .pocket-data {
-  float: left;
-  width: 100%;
+.profile-content .profile-section.pocket-data {
   position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  padding: 0px 15px;
-}
-@media (min-width: 992px) {
-  .profile-content .pocket-data {
-    float: left;
-    width: 100%;
-  }
-}
-@media (max-width: 991px) and (min-width: 767px) {
-  .profile-content .pocket-data {
-    border-width: 1px;
-    border-style: dotted none none none;
-    border-color: #214a5f;
-    border-radius: 0;
-  }
-}
-.profile-content .pocket-data .data-header-title {
-  float: left;
-  width: 100%;
-  position: relative;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-left: 0px;
-  padding-right: 0px;
+  padding: 0px;
 }
 @media (min-width: 768px) {
-  .profile-content .pocket-data .data-header-title {
-    float: left;
-    width: 41.66666667%;
-  }
-}
-.profile-content .pocket-data .button-wrapper {
-  display: inline-block;
-  float: left;
-  width: 100%;
-  position: relative;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-left: 0px;
-  padding-right: 0px;
-}
-@media (min-width: 768px) {
-  .profile-content .pocket-data .button-wrapper {
-    float: left;
-    width: 58.33333333%;
-  }
-}
-.profile-content .pocket-data .button-wrapper .action-button-transaction {
-  color: #333333;
-  background-color: #ffffff;
-  border-color: #cccccc;
-  display: inline-block;
-  margin-bottom: 0;
-  font-weight: normal;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  background-image: none;
-  border: 1px solid transparent;
-  white-space: nowrap;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  border-radius: 4px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  border-width: 0;
-  -webkit-transition: All 0.08s ease-out;
-  -moz-transition: All 0.08s ease-out;
-  -ms-transition: All 0.08s ease-out;
-  -o-transition: All 0.08s ease-out;
-  transition: All 0.08s ease-out;
-  background-color: #59add5;
-  box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
-  outline: none !important;
-  float: right !important;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 10pt;
-  color: #ffffff;
-  float: left !important;
-  width: 49%;
-}
-.profile-content .pocket-data .button-wrapper .action-button-transaction:hover,
-.profile-content .pocket-data .button-wrapper .action-button-transaction:focus,
-.profile-content .pocket-data .button-wrapper .action-button-transaction:active,
-.profile-content .pocket-data .button-wrapper .action-button-transaction.active,
-.open .dropdown-toggle.profile-content .pocket-data .button-wrapper .action-button-transaction {
-  color: #333333;
-  background-color: #ebebeb;
-  border-color: #adadad;
-}
-.profile-content .pocket-data .button-wrapper .action-button-transaction:active,
-.profile-content .pocket-data .button-wrapper .action-button-transaction.active,
-.open .dropdown-toggle.profile-content .pocket-data .button-wrapper .action-button-transaction {
-  background-image: none;
-}
-.profile-content .pocket-data .button-wrapper .action-button-transaction.disabled,
-.profile-content .pocket-data .button-wrapper .action-button-transaction[disabled],
-fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-transaction,
-.profile-content .pocket-data .button-wrapper .action-button-transaction.disabled:hover,
-.profile-content .pocket-data .button-wrapper .action-button-transaction[disabled]:hover,
-fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-transaction:hover,
-.profile-content .pocket-data .button-wrapper .action-button-transaction.disabled:focus,
-.profile-content .pocket-data .button-wrapper .action-button-transaction[disabled]:focus,
-fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-transaction:focus,
-.profile-content .pocket-data .button-wrapper .action-button-transaction.disabled:active,
-.profile-content .pocket-data .button-wrapper .action-button-transaction[disabled]:active,
-fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-transaction:active,
-.profile-content .pocket-data .button-wrapper .action-button-transaction.disabled.active,
-.profile-content .pocket-data .button-wrapper .action-button-transaction[disabled].active,
-fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-transaction.active {
-  background-color: #ffffff;
-  border-color: #cccccc;
-}
-.profile-content .pocket-data .button-wrapper .action-button-transaction .badge {
-  color: #ffffff;
-  background-color: #333333;
-}
-.profile-content .pocket-data .button-wrapper .action-button-transaction:focus,
-.profile-content .pocket-data .button-wrapper .action-button-transaction:active:focus,
-.profile-content .pocket-data .button-wrapper .action-button-transaction.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-.profile-content .pocket-data .button-wrapper .action-button-transaction:hover,
-.profile-content .pocket-data .button-wrapper .action-button-transaction:focus {
-  color: #333333;
-  text-decoration: none;
-}
-.profile-content .pocket-data .button-wrapper .action-button-transaction:active,
-.profile-content .pocket-data .button-wrapper .action-button-transaction.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-.profile-content .pocket-data .button-wrapper .action-button-transaction.disabled,
-.profile-content .pocket-data .button-wrapper .action-button-transaction[disabled],
-fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-transaction {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-.profile-content .pocket-data .button-wrapper .action-button-transaction:active:focus,
-.profile-content .pocket-data .button-wrapper .action-button-transaction.active:focus {
-  color: #ffffff;
-  background-color: #82c1df;
-}
-.profile-content .pocket-data .button-wrapper .action-button-transaction:active:hover,
-.profile-content .pocket-data .button-wrapper .action-button-transaction.active:hover {
-  color: #ffffff;
-  background-color: #82c1df;
-}
-.profile-content .pocket-data .button-wrapper .action-button-transaction:focus {
-  background-color: #59add5;
-  color: #ffffff;
-}
-.profile-content .pocket-data .button-wrapper .action-button-transaction:hover {
-  background-color: #6db7da;
-  outline: none !important;
-  color: #ffffff;
-}
-.profile-content .pocket-data .button-wrapper .action-button-transaction:hover:focus {
-  background-color: #59add5;
-  color: #ffffff;
-}
-.profile-content .pocket-data .button-wrapper .action-button-transaction:active,
-.profile-content .pocket-data .button-wrapper .action-button-transaction.active {
-  background-color: #59add5;
-  margin-top: 4px;
-  box-shadow: none;
-}
-.profile-content .pocket-data .button-wrapper .action-button-transaction:hover {
-  background-color: #6db7da;
-  outline: none !important;
-  color: #ffffff;
-}
-.profile-content .pocket-data .button-wrapper .action-button-transaction.disabled,
-.profile-content .pocket-data .button-wrapper .action-button-transaction[disabled],
-fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-transaction {
-  background-color: #82c1df;
-  box-shadow: none;
-  margin-top: 4px;
-  color: #ebebeb;
-  cursor: not-allowed !important;
-}
-.profile-content .pocket-data .button-wrapper .action-button-transaction.close {
-  background-color: #59add5;
-  outline: none !important;
-  color: #ffffff;
-}
-.profile-content .pocket-data .button-wrapper .action-button-get-funds {
-  color: #333333;
-  background-color: #ffffff;
-  border-color: #cccccc;
-  display: inline-block;
-  margin-bottom: 0;
-  font-weight: normal;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  background-image: none;
-  border: 1px solid transparent;
-  white-space: nowrap;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  border-radius: 4px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  border-width: 0;
-  -webkit-transition: All 0.08s ease-out;
-  -moz-transition: All 0.08s ease-out;
-  -ms-transition: All 0.08s ease-out;
-  -o-transition: All 0.08s ease-out;
-  transition: All 0.08s ease-out;
-  background-color: #59add5;
-  box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
-  outline: none !important;
-  float: right !important;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 10pt;
-  color: #ffffff;
-  width: 49%;
-}
-.profile-content .pocket-data .button-wrapper .action-button-get-funds:hover,
-.profile-content .pocket-data .button-wrapper .action-button-get-funds:focus,
-.profile-content .pocket-data .button-wrapper .action-button-get-funds:active,
-.profile-content .pocket-data .button-wrapper .action-button-get-funds.active,
-.open .dropdown-toggle.profile-content .pocket-data .button-wrapper .action-button-get-funds {
-  color: #333333;
-  background-color: #ebebeb;
-  border-color: #adadad;
-}
-.profile-content .pocket-data .button-wrapper .action-button-get-funds:active,
-.profile-content .pocket-data .button-wrapper .action-button-get-funds.active,
-.open .dropdown-toggle.profile-content .pocket-data .button-wrapper .action-button-get-funds {
-  background-image: none;
-}
-.profile-content .pocket-data .button-wrapper .action-button-get-funds.disabled,
-.profile-content .pocket-data .button-wrapper .action-button-get-funds[disabled],
-fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-get-funds,
-.profile-content .pocket-data .button-wrapper .action-button-get-funds.disabled:hover,
-.profile-content .pocket-data .button-wrapper .action-button-get-funds[disabled]:hover,
-fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-get-funds:hover,
-.profile-content .pocket-data .button-wrapper .action-button-get-funds.disabled:focus,
-.profile-content .pocket-data .button-wrapper .action-button-get-funds[disabled]:focus,
-fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-get-funds:focus,
-.profile-content .pocket-data .button-wrapper .action-button-get-funds.disabled:active,
-.profile-content .pocket-data .button-wrapper .action-button-get-funds[disabled]:active,
-fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-get-funds:active,
-.profile-content .pocket-data .button-wrapper .action-button-get-funds.disabled.active,
-.profile-content .pocket-data .button-wrapper .action-button-get-funds[disabled].active,
-fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-get-funds.active {
-  background-color: #ffffff;
-  border-color: #cccccc;
-}
-.profile-content .pocket-data .button-wrapper .action-button-get-funds .badge {
-  color: #ffffff;
-  background-color: #333333;
-}
-.profile-content .pocket-data .button-wrapper .action-button-get-funds:focus,
-.profile-content .pocket-data .button-wrapper .action-button-get-funds:active:focus,
-.profile-content .pocket-data .button-wrapper .action-button-get-funds.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-.profile-content .pocket-data .button-wrapper .action-button-get-funds:hover,
-.profile-content .pocket-data .button-wrapper .action-button-get-funds:focus {
-  color: #333333;
-  text-decoration: none;
-}
-.profile-content .pocket-data .button-wrapper .action-button-get-funds:active,
-.profile-content .pocket-data .button-wrapper .action-button-get-funds.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-.profile-content .pocket-data .button-wrapper .action-button-get-funds.disabled,
-.profile-content .pocket-data .button-wrapper .action-button-get-funds[disabled],
-fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-get-funds {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-.profile-content .pocket-data .button-wrapper .action-button-get-funds:active:focus,
-.profile-content .pocket-data .button-wrapper .action-button-get-funds.active:focus {
-  color: #ffffff;
-  background-color: #82c1df;
-}
-.profile-content .pocket-data .button-wrapper .action-button-get-funds:active:hover,
-.profile-content .pocket-data .button-wrapper .action-button-get-funds.active:hover {
-  color: #ffffff;
-  background-color: #82c1df;
-}
-.profile-content .pocket-data .button-wrapper .action-button-get-funds:focus {
-  background-color: #59add5;
-  color: #ffffff;
-}
-.profile-content .pocket-data .button-wrapper .action-button-get-funds:hover {
-  background-color: #6db7da;
-  outline: none !important;
-  color: #ffffff;
-}
-.profile-content .pocket-data .button-wrapper .action-button-get-funds:hover:focus {
-  background-color: #59add5;
-  color: #ffffff;
-}
-.profile-content .pocket-data .button-wrapper .action-button-get-funds:active,
-.profile-content .pocket-data .button-wrapper .action-button-get-funds.active {
-  background-color: #59add5;
-  margin-top: 4px;
-  box-shadow: none;
-}
-.profile-content .pocket-data .button-wrapper .action-button-get-funds:hover {
-  background-color: #6db7da;
-  outline: none !important;
-  color: #ffffff;
-}
-.profile-content .pocket-data .button-wrapper .action-button-get-funds.disabled,
-.profile-content .pocket-data .button-wrapper .action-button-get-funds[disabled],
-fieldset[disabled] .profile-content .pocket-data .button-wrapper .action-button-get-funds {
-  background-color: #82c1df;
-  box-shadow: none;
-  margin-top: 4px;
-  color: #ebebeb;
-  cursor: not-allowed !important;
-}
-.profile-content .pocket-data .button-wrapper .action-button-get-funds.close {
-  background-color: #59add5;
-  outline: none !important;
-  color: #ffffff;
-}
-.profile-content .epicpoints-data {
-  display: none !important;
-  float: left;
-  width: 100%;
-  position: relative;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding: 0px 15px;
-}
-@media (min-width: 768px) {
-  .profile-content .epicpoints-data {
+  .profile-content .profile-section.pocket-data {
     float: left;
     width: 50%;
   }
 }
-@media (min-width: 992px) {
-  .profile-content .epicpoints-data {
-    float: left;
-    width: 100%;
+.profile-content .profile-section.pocket-data .data-content {
+  text-align: center;
+}
+.profile-content .profile-section.pocket-data .data-content .data-value-coins {
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 25pt;
+  color: #000000;
+  text-transform: uppercase;
+}
+.profile-content .profile-section.pocket-data .data-content .coin-icon {
+  vertical-align: baseline;
+  margin-left: 5px;
+}
+@media (min-width: 768px) {
+  .profile-content .profile-section.pocket-data .data-content .data-value-coins {
+    font-family: 'Exo', sans-serif;
+    font-weight: 300;
+    font-size: 35pt;
+    color: #000000;
+    text-transform: uppercase;
+  }
+  .profile-content .profile-section.pocket-data .data-content .coin-icon {
+    width: 32px;
+    height: 32px;
+  }
+  .profile-content .profile-section.pocket-data .data-content .wrapper-box {
+    padding: 22px 20px;
   }
 }
-@media (max-width: 991px) and (min-width: 767px) {
-  .profile-content .epicpoints-data {
-    border-width: 1px;
-    border-style: dotted none dotted dotted;
-    border-color: #214a5f;
-    border-radius: 0;
-    height: 170px;
-  }
-}
-.profile-content .epicpoints-data .data-column {
-  position: relative;
-  float: left;
-  width: 50%;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding: 0;
-}
-.profile-content .epicpoints-data .data-column a {
+.profile-content .profile-section.pocket-data .data-action .action-button {
+  background-color: #428bca;
+  border-color: #357ebd;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  -webkit-transition: All 0.08s ease-out;
+  -moz-transition: All 0.08s ease-out;
+  -ms-transition: All 0.08s ease-out;
+  -o-transition: All 0.08s ease-out;
+  transition: All 0.08s ease-out;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
-  font-size: 8pt;
-  color: #59add5;
-  line-height: 33px;
+  background-color: #a1c931;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  outline: none !important;
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  font-size: 10pt;
+  color: #ffffff;
+  text-transform: uppercase;
+  padding: 12px 12px;
 }
-.profile-content .data-row {
-  margin-left: 0;
-  margin-right: 0;
-  padding: 0px 5px;
+.profile-content .profile-section.pocket-data .data-action .action-button:hover,
+.profile-content .profile-section.pocket-data .data-action .action-button:focus,
+.profile-content .profile-section.pocket-data .data-action .action-button:active,
+.profile-content .profile-section.pocket-data .data-action .action-button.active,
+.open .dropdown-toggle.profile-content .profile-section.pocket-data .data-action .action-button {
+  color: #ffffff;
+  background-color: #3276b1;
+  border-color: #285e8e;
 }
-.profile-content .bloque-sm {
-  padding: 5px 0px;
+.profile-content .profile-section.pocket-data .data-action .action-button:active,
+.profile-content .profile-section.pocket-data .data-action .action-button.active,
+.open .dropdown-toggle.profile-content .profile-section.pocket-data .data-action .action-button {
+  background-image: none;
 }
-.profile-content .data-container-3 {
+.profile-content .profile-section.pocket-data .data-action .action-button.disabled,
+.profile-content .profile-section.pocket-data .data-action .action-button[disabled],
+fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .action-button,
+.profile-content .profile-section.pocket-data .data-action .action-button.disabled:hover,
+.profile-content .profile-section.pocket-data .data-action .action-button[disabled]:hover,
+fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .action-button:hover,
+.profile-content .profile-section.pocket-data .data-action .action-button.disabled:focus,
+.profile-content .profile-section.pocket-data .data-action .action-button[disabled]:focus,
+fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .action-button:focus,
+.profile-content .profile-section.pocket-data .data-action .action-button.disabled:active,
+.profile-content .profile-section.pocket-data .data-action .action-button[disabled]:active,
+fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .action-button:active,
+.profile-content .profile-section.pocket-data .data-action .action-button.disabled.active,
+.profile-content .profile-section.pocket-data .data-action .action-button[disabled].active,
+fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .action-button.active {
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+.profile-content .profile-section.pocket-data .data-action .action-button .badge {
+  color: #428bca;
+  background-color: #ffffff;
+}
+.profile-content .profile-section.pocket-data .data-action .action-button:focus,
+.profile-content .profile-section.pocket-data .data-action .action-button:active:focus,
+.profile-content .profile-section.pocket-data .data-action .action-button.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.profile-content .profile-section.pocket-data .data-action .action-button:hover,
+.profile-content .profile-section.pocket-data .data-action .action-button:focus {
+  color: #333333;
+  text-decoration: none;
+}
+.profile-content .profile-section.pocket-data .data-action .action-button:active,
+.profile-content .profile-section.pocket-data .data-action .action-button.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.profile-content .profile-section.pocket-data .data-action .action-button.disabled,
+.profile-content .profile-section.pocket-data .data-action .action-button[disabled],
+fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .action-button {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.profile-content .profile-section.pocket-data .data-action .action-button:active:focus,
+.profile-content .profile-section.pocket-data .data-action .action-button.active:focus {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+.profile-content .profile-section.pocket-data .data-action .action-button:active:hover,
+.profile-content .profile-section.pocket-data .data-action .action-button.active:hover {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+.profile-content .profile-section.pocket-data .data-action .action-button:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+.profile-content .profile-section.pocket-data .data-action .action-button:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+.profile-content .profile-section.pocket-data .data-action .action-button:hover:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+.profile-content .profile-section.pocket-data .data-action .action-button:active,
+.profile-content .profile-section.pocket-data .data-action .action-button.active {
+  background-color: #a1c931;
+  margin-top: 4px;
+  box-shadow: none;
+}
+.profile-content .profile-section.pocket-data .data-action .action-button:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+.profile-content .profile-section.pocket-data .data-action .action-button.disabled,
+.profile-content .profile-section.pocket-data .data-action .action-button[disabled],
+fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .action-button {
+  background-color: #b5d657;
+  box-shadow: none;
+  margin-top: 4px;
+  color: #ebebeb;
+  cursor: not-allowed !important;
+}
+.profile-content .profile-section.pocket-data .data-action .action-button.close {
+  background-color: #a1c931;
+  outline: none !important;
+  color: #ffffff;
+}
+@media (min-width: 768px) {
+  .profile-content .profile-section.pocket-data {
+    border-right: 1px dotted #000000;
+  }
+}
+.profile-content .profile-section.ranking-data {
   position: relative;
-  float: left;
-  width: 25%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  padding: 0;
+  padding: 0px;
 }
-.profile-content .data-container-9 {
+@media (min-width: 768px) {
+  .profile-content .profile-section.ranking-data {
+    float: left;
+    width: 50%;
+  }
+}
+.profile-content .profile-section.ranking-data .data-content {
+  padding-right: 50px;
+  padding-left: 50px;
+}
+@media (max-width: 480px) {
+  .profile-content .profile-section.ranking-data .data-content {
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+}
+.profile-content .profile-section.ranking-data .data-content .single-ranking-info {
+  text-align: center;
   position: relative;
   float: left;
-  width: 75%;
+  width: 47.5%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  padding: 0;
+}
+.profile-content .profile-section.ranking-data .data-content .single-ranking-info .ranking-badge {
+  width: 32px;
+  height: 32px;
+}
+.profile-content .profile-section.ranking-data .data-content .single-ranking-info .ranking-position {
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 25pt;
+  color: #214a5f;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: -5px;
+}
+.profile-content .profile-section.ranking-data .data-content .single-ranking-info .ranking-score {
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  font-size: 10pt;
+  color: #fa9c19;
+  text-transform: uppercase;
+  display: block;
+}
+.profile-content .profile-section.ranking-data .data-content .single-ranking-info.ranking-by-money {
+  margin-left: 5%;
+}
+.profile-content .profile-section.ranking-data .data-action {
+  border-bottom: 0px none #000000;
 }
 .separator-bar {
   background-image: -webkit-linear-gradient(top, #1a3949 49%, #0f2630 51%);

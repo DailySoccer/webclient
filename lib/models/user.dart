@@ -14,6 +14,8 @@ class User {
 
   // Numero de veces que el usuario ha ganado un contest
   int wins;
+  int trueSkill;
+  Money earnedMoney;
 
   //String get fullName => "$firstName $lastName";
   String toString() => "$userId - $email - $nickName";
@@ -47,6 +49,9 @@ class User {
     wins = (jsonMap.containsKey("wins")) ? jsonMap["wins"] : 0;
     balance = jsonMap.containsKey("cachedBalance") ? new Money.fromJsonObject(jsonMap["cachedBalance"]) : new Money.zero();
     bonus = jsonMap.containsKey("cachedBonus") ? new Money.fromJsonObject(jsonMap["cachedBonus"]) : new Money.zero();
+
+    trueSkill = (jsonMap.containsKey("trueSkill")) ? jsonMap["trueSkill"] : 0;
+    earnedMoney = jsonMap.containsKey("earnedMoney") ? new Money.fromJsonObject(jsonMap["earnedMoney"]) : new Money.zero();
     return this;
   }
 }

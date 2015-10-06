@@ -58,6 +58,9 @@ abstract class ServerService {
   // Puntuaciones
   Future<Map> getScoringRules();
 
+  // Leaderboards
+  Future<Map> getLeaderboard();
+
   // Transaction History
   Future<Map> getTransactionHistory();
 
@@ -210,6 +213,10 @@ class DailySoccerServer implements ServerService {
 
   Future<Map> getScoringRules() {
     return _innerServerCall("${HostServer.url}/get_scoring_rules", retryTimes: -1);
+  }
+
+  Future<Map> getLeaderboard() {
+    return _innerServerCall("${HostServer.url}/get_leaderboard", retryTimes: -1);
   }
 
   Future<Map> getTransactionHistory() {

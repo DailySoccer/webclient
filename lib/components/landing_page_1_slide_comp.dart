@@ -152,8 +152,6 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
 
   var _streamListener;
 
-  // int _windowHeigtht;
-
   Router _router;
   ProfileService _profileService;
   LoadingService _loadingService;

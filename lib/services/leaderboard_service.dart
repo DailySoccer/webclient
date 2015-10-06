@@ -27,10 +27,6 @@ class LeaderboardService {
       _server.getLeaderboard()
         .then((jsonMapRoot) {
             users = jsonMapRoot.containsKey("users") ? jsonMapRoot["users"].map((jsonObject) => new User.fromJsonObject(jsonObject)).toList() : [];
-            users.forEach((User u) {
-              // u.earnedMoney.amount = random.nextInt(300);
-              u.trueSkill = random.nextInt(3000);
-            });
             completer.complete(users);
           });
     }

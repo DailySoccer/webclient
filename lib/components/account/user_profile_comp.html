@@ -36,14 +36,14 @@
       <div class="data-content">
         <div class="single-ranking-info ranking-by-points wrapper-box">
           <img class="ranking-badge" src="images/leaderboardTopPointsDark.png">
-          <span class="ranking-position">{{rankingPointsPosition}}º</span>
-          <span class="ranking-score">{{rankingPoints}} {{getLocalizedText("abrevpoints", "common")}}</span>
+          <span class="ranking-position" ng-show="!loadingService.isLoading">{{rankingPointsPosition}}º</span>
+          <span class="ranking-score" ng-show="!loadingService.isLoading">{{rankingPoints}} {{getLocalizedText("abrevpoints", "common")}}</span>
         </div>
         <div class="single-ranking-info ranking-by-money wrapper-box">
         
           <img class="ranking-badge" src="images/coin-lg.png">
-          <span class="ranking-position">{{rankingMoneyPosition}}º</span>
-          <span class="ranking-score">{{rankingMoney}}</span>
+          <span class="ranking-position" ng-show="!loadingService.isLoading">{{rankingMoneyPosition}}º</span>
+          <span class="ranking-score" ng-show="!loadingService.isLoading">{{rankingMoney}}</span>
         </div>
       </div>
       <div class="data-action">

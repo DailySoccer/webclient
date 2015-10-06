@@ -4,6 +4,7 @@ import 'package:angular/angular.dart';
 import 'dart:html';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/profile_service.dart';
+import 'package:webclient/utils/html_utils.dart';
 import 'package:webclient/utils/string_utils.dart';
 
 @Component(
@@ -115,7 +116,7 @@ class WelcomeComp implements DetachAware{
 
   void createHTML(String theHTML) {
     _rootElement.nodes.clear();
-    _rootElement.appendHtml(theHTML);
+    _rootElement.setInnerHtml(theHTML, treeSanitizer: NULL_TREE_SANITIZER);
     _rootElement.querySelectorAll("[button-action]").onClick.listen(buttonPressed);
   }
 

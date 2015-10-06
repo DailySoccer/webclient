@@ -290,7 +290,8 @@
       "referral"                        : "Centro de usuarios referidos",
       "classification"                  : "Clasificación",
       "howitworks2"                     : "Cómo funciona",
-      "logout"                          : "Salir"
+      "logout"                          : "Salir",
+      "login"                           : "Entrar"
     },
     "contestlist"                       :
     {

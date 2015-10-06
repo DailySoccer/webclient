@@ -1,13 +1,13 @@
 library main_menu_f2p_comp;
 
 import 'dart:html';
+import 'dart:async';
 import 'package:angular/angular.dart';
+import 'package:webclient/models/user.dart';
+import 'package:webclient/utils/html_utils.dart';
+import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
-import 'package:webclient/utils/html_utils.dart';
-import 'dart:async';
-import 'package:webclient/utils/string_utils.dart';
-import 'package:webclient/models/user.dart';
 
 @Component(
     selector: 'main-menu-f2p',
@@ -285,20 +285,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
     <div id="menuNotLoggedIn">
       <div id="brandLogoNotLogged" class="navbar-brand" destination="landing_page"></div>
       <div class="button-wrapper">
-        <!--
-            <button id="joinButton"  type="button" class="button-join" destination="join">REGISTER</button>
-            <button id="loginButton" type="button" class="button-login" destination="login">ENTER</button>
-        -->
-        <div id="loginButton" type="button" class="button-login-flat" destination="login">ENTER</div>
-        <!--button class="btn-fb-span">
-          <fb:login-button scope="public_profile,email" size="medium" onlogin="jsLoginFB()">
-          </fb:login-button>
-          <script>
-             if (typeof FB !== "undefined" && FB != null) {
-               FB.XFBML.parse();
-             }
-          </script>
-        </button-->
+        <div id="loginButton" type="button" class="button-login-flat" destination="login">${StringUtils.translate("login", "mainmenu")}</div>
       </div>
     </div>
     ''';

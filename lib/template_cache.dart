@@ -319,6 +319,28 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
 
   </form>
 </div>"""));
+tc.put("packages/webclient/components/account/energy_shop_comp.html", new HttpResponse(200, r"""<modal id="modalShopCompWrapper">
+  
+  <div class="header"></div>
+  
+  <div class="content">
+    <div class="itemsWrapper">
+      <div ng-repeat="item in products" class="productItem" ng-click="buyItem(item.id)">{{item.name}}</div> 
+    </div>
+  </div>
+  
+</modal>"""));
+tc.put("packages/webclient/components/account/gold_shop_comp.html", new HttpResponse(200, r"""<modal id="modalShopCompWrapper">
+  
+  <div class="header"></div>
+  
+  <div class="content">
+    <div class="itemsWrapper">
+      <div ng-repeat="item in products" class="productItem" ng-click="buyItem(item.id)">{{item.name}}</div> 
+    </div>
+  </div>
+  
+</modal>"""));
 tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(200, r"""<div id="joinRoot" ng-show="!loadingService.isLoading" ng-class="{'air':!isModal}">
   <div id="signupbox" class="main-box" ng-class="{'air':!isModal}">
 
@@ -603,10 +625,27 @@ tc.put("packages/webclient/components/account/remember_password_comp.html", new 
 
   </div>
 </div>"""));
-tc.put("packages/webclient/components/account/shop_comp.html", new HttpResponse(200, r"""<div id="shopCompWrapper">
-  <div class="headerWrapper">
-    
+tc.put("packages/webclient/components/account/shop_comp.html", new HttpResponse(200, r"""<div id="mainShopCompWrapper">
+
+  <div class="itemsWrapper">
+   
+  
+    <div ng-repeat="item in shops" class="shopItem" ng-click="openShop(item.name)">
+      <div class="slot">        
+        <div class="shotItemLeft"></div>
+        <div class="shotItemMiddle"></div>      
+        <div class="shotItemRight"></div>
+        
+      </div>
+      <div class="shopItemPattern"></div>    
+      <img src="images/{{item.image}}">
+      <span class="shopItemInfo" ng-bind-html="'<span>'+item.description+'</span>'"></span>
+   </div> 
+   
   </div>
+  
+  <!-- Punto de insercion de nuestra ruta hija contest-info (modal) -->
+  <ng-view ng-show="!loadingService.isLoading"></ng-view>
   
 </div>"""));
 tc.put("packages/webclient/components/account/transaction_history_comp.html", new HttpResponse(200, r"""<div id="transactionHistoryRoot">
@@ -657,7 +696,7 @@ tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpR
       </div>
       <div class="data-content">
         <div class="data-row">
-          <div class="wrapper-box"> <span class="data-value-coins">{{userData.balance}}</span><img class="coin-icon" src="images/coin-lg.png"> </div>
+          <div class="wrapper-box"> <span class="data-value-coins">{{userData.balance}}</span><img class="coin-icon" src="images/icon-coin-lg.png"> </div>
         </div>
       </div>
       <div class="data-action">
@@ -670,15 +709,15 @@ tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpR
       </div>
       <div class="data-content">
         <div class="single-ranking-info ranking-by-points wrapper-box">
-          <img class="ranking-badge" src="images/leaderboardTopPointsDark.png">
-          <span class="ranking-position">{{rankingPointsPosition}}º</span>
-          <span class="ranking-score">{{rankingPoints}} {{getLocalizedText("abrevpoints", "common")}}</span>
+          <img class="ranking-badge" src="images/icon-Ranking-Skill-Blue.png">
+          <span class="ranking-position" ng-show="!loadingService.isLoading">{{rankingPointsPosition}}º</span>
+          <span class="ranking-score" ng-show="!loadingService.isLoading">{{rankingPoints}} {{getLocalizedText("abrevpoints", "common")}}</span>
         </div>
         <div class="single-ranking-info ranking-by-money wrapper-box">
         
-          <img class="ranking-badge" src="images/coin-lg.png">
-          <span class="ranking-position">{{rankingMoneyPosition}}º</span>
-          <span class="ranking-score">{{rankingMoney}}</span>
+          <img class="ranking-badge" src="images/icon-coin-lg.png">
+          <span class="ranking-position" ng-show="!loadingService.isLoading">{{rankingMoneyPosition}}º</span>
+          <span class="ranking-score" ng-show="!loadingService.isLoading">{{rankingMoney}}</span>
         </div>
       </div>
       <div class="data-action">
@@ -1289,7 +1328,7 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_stats_comp.htm
           <!-- END BY-SEASON-STATS -->
           <!-- START BY-MATCH-STATS-->
           <div class="tab-pane" id="match-by-match-stats-tab-content">
-            <div class="match-header">{{getLocalizedText("matchbymatch").toUpperCase()}}</div>
+            <div class="match-header">{{getUppercaseLocalizedText("matchbymatch")}}</div>
             <div class="noMatchesPlayed" ng-class="{'hidden':currentInfoData['matchesCount'] > 0}">
                 <span>{{getLocalizedText("noseasonstats")}}</span>
             </div>
@@ -1370,8 +1409,8 @@ tc.put("packages/webclient/components/leaderboard_comp.html", new HttpResponse(2
 
 
   <ul class="leaderboard-tabs" role="tablist">
-    <li class="active"><a class="leaderboard-tab top-points-tab" role="tab" data-toggle="tab" ng-click="tabChange('top-points')">Top Vacilones</a></li>
-    <li><a class="leaderboard-tab top-money-tab" role="tab" data-toggle="tab" ng-click="tabChange('top-money')">Top Mandones</a></li>
+    <li class="active"><a class="leaderboard-tab top-points-tab" role="tab" data-toggle="tab" ng-click="tabChange('top-points')">Habilidad</a></li>
+    <li><a class="leaderboard-tab top-money-tab" role="tab" data-toggle="tab" ng-click="tabChange('top-money')">Monedas</a></li>
   </ul>
   
   <div class="tabs">

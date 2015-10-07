@@ -1,3 +1,64 @@
-#shopCompWrapper {
-	
+#mainShopCompWrapper {
+	.container-fluid();
+	padding: 15px 0;
+
+	.itemsWrapper {
+	 	.make-row(0);
+	 	.shopItem {
+	 		.make-xs-column(12);
+	 		.make-sm-column(6);
+	 		position: relative;
+	 		cursor: pointer;
+	 		height: 80px;
+			margin-top: 10px;
+			.slot {
+				height: 80px;
+				> * {
+					height: 100%;
+					display: inline-block;
+				}
+				.shotItemLeft {					
+					width: 104px;
+					background: url("@{images}/shopItemBgLeft.png") no-repeat right;
+				}		
+				.shotItemRight {
+					width: 195px;
+					float: right;
+					background: url("@{images}/shopItemBgRight.png") no-repeat left;
+				}
+				.shotItemMiddle {					
+					left: 119px;
+					right: 195px;
+					position: absolute;
+					background: url("@{images}/shopItemBgMiddle.png") repeat;
+				}
+	 		}
+	 		.shopItemPattern {
+				position: absolute;
+				right: 15px;
+				left: 15px;
+				top: 0;
+				height: 80px;
+				background: url("../images/shopItemPattern.png") repeat;
+			}
+			img {
+				position: absolute;
+				top: 0;
+			}
+	 		.shopItemInfo {
+	 			position: absolute;
+	 			top: 0;
+	 			right: 30px;
+	 			bottom: 0;
+	 			left: 119px;
+	 			padding-left: 15px;
+	 			padding-right: 15px;
+	 			
+	 			.opensans_normal(10pt, @white);
+	 			display: flex;
+	 			justify-content:center;
+	 			align-items:center;
+	 		}
+	 	}
+	}
 }

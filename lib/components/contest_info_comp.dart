@@ -85,7 +85,7 @@ class ContestInfoComp implements DetachAware {
     for (ContestEntry contestEntry in contest.contestEntries) {
       contestants.add({
         'name'  : contestEntry.user.nickName,
-        'wins'  : contestEntry.user.wins
+        'trueSkill'  : StringUtils.parseTrueSkill(contestEntry.user.trueSkill)
       });
     }
 

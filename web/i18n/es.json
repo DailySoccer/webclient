@@ -264,7 +264,7 @@
       "keyplayedminutes"                : "MINUTOS_JUGADOS",
       "keyfantasypoints"                : "PUNTOS_FANTASY",
       "date"                            : "Fecha",
-      "opponent"                        : "Oponente", 
+      "opponent"                        : "Oponente",
       "dailyfantasypoints"              : "Daily Fantasy Points",
       "minutes"                         : "Minutos",
       "posessionlost"                   : "Perdidas de balón"
@@ -399,7 +399,7 @@
       "scoringrules"                    : "Reglas",
       "buttonenter"                     : "ENTRAR",
       "nocontenders"                    : "Aún no hay participantes en este concurso. <br> Animate a ser el primero.",
-      "wins"                            : "Victorias",
+      "skill"                           : "Puntos",
       "prizes2"                         : "PREMIOS",
       "contenders2"                     : "CONCURSANTES",
       "rulestip"                        : "Elige un equipo de 11 jugadores de los siguientes encuentros.",

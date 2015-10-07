@@ -274,7 +274,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
     if (!profileService.isLoggedIn) {
       return "";
     }
-    return profileService.user.trueSkill.toString();
+    return StringUtils.parseTrueSkill(profileService.user.trueSkill);
   }
 
   String get _energyTimeLeft {

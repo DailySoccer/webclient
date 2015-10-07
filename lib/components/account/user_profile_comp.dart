@@ -15,18 +15,18 @@ import 'package:webclient/models/user.dart';
 class UserProfileComp {
 
   LoadingService loadingService;
-  
+
   bool isEditingProfile = false;
 
   dynamic get userData => _profileManager.user;
 
   Map playerSkillInfo = {'position':'_', 'id':'', 'name': '', 'points': ' '};
   Map playerMoneyInfo = {'position':'_', 'id':'', 'name': '', 'points': '\$ '};
-  
+
   String getLocalizedText(key, [group = "userprofile"]) {
     return StringUtils.translate(key, group);
   }
-  
+
   UserProfileComp(this._router, this._profileManager, this.loadingService, LeaderboardService leaderboardService) {
     loadingService.isLoading = true;
     leaderboardService.getUsers()
@@ -36,18 +36,29 @@ class UserProfileComp {
       List<User> moneyUserListTmp = new List<User>.from(users);
       List<Map> pointsUserList;
       List<Map> moneyUserList;
-      
+
       pointsUserListTmp.sort( (User u1, User u2) => u2.trueSkill.compareTo(u1.trueSkill) );
       moneyUserListTmp.sort( (User u1, User u2) => u2.earnedMoney.compareTo(u1.earnedMoney) );
 
       int i = 1;
-      pointsUserList = pointsUserListTmp.map((User u) => {'position': i++, 'id':u.userId, 'name':u.nickName, 'points':u.trueSkill}).toList();
+      pointsUserList = pointsUserListTmp.map((User u) => {
+        'position': i++,
+        'id': u.userId,
+        'name': u.nickName,
+        'points': StringUtils.parseTrueSkill(u.trueSkill)
+        }).toList();
+
       i = 1;
-      moneyUserList = moneyUserListTmp.map((User u) => {'position': i++, 'id':u.userId, 'name':u.nickName, 'points':u.earnedMoney}).toList();
-      
+      moneyUserList = moneyUserListTmp.map((User u) => {
+        'position': i++,
+        'id': u.userId,
+        'name': u.nickName,
+        'points': u.earnedMoney
+        }).toList();
+
       playerSkillInfo = pointsUserList.firstWhere( (Map u1) => userData.userId == u1['id'] );
       playerMoneyInfo = moneyUserList.firstWhere( (Map u1) => userData.userId == u1['id'] );
-      
+
       loadingService.isLoading = false;
     });
   }
@@ -64,7 +75,7 @@ class UserProfileComp {
   String get rankingMoney {
     return playerMoneyInfo['points'].toString();
   }
-  
+
   void editPersonalData() {
     _router.go('edit_profile', {});
   }

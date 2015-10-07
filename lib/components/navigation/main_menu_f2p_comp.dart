@@ -35,11 +35,11 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
     _scope.watch("profileService.user", _monitorChanges, canChangeModel: false);
     _streamListener = _scrDet.mediaScreenWidth.listen(onScreenWidthChange);
   }
-  
+
   @override void detach() {
     _streamListener.cancel();
   }
-  
+
   void onScreenWidthChange(String msg) {
     _monitorChanges(null, null);
     }
@@ -210,11 +210,11 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
 
   void _updateActiveElement(String name) {
     List<Element> elem = _rootElement.querySelectorAll(".active");
-    
+
     if (elem != null) {
       elem.forEach((e){ e.classes.remove('active');});
     }
-    
+
     elem = _rootElement.querySelectorAll("[highlights=${name}]");
 
     if (elem == null && _isRouteNameInsideUserMenu(name)) {
@@ -224,9 +224,9 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
     if (elem != null) {
       elem.forEach((e){ e.classes.add('active');});
     }
-  }  
-  
-  
+  }
+
+
   bool _isRouteNameInsideUserMenu(String name) {
     return name.contains('user') || name == 'help_info';
   }
@@ -271,8 +271,12 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
   }
 
   String get _userTrueSkill {
-    return '9999';
+    if (!profileService.isLoggedIn) {
+      return "";
+    }
+    return profileService.user.trueSkill.toString();
   }
+
   String get _energyTimeLeft {
     if (!profileService.isLoggedIn) {
       return "";
@@ -411,8 +415,8 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
   Router _router;
 
   String _slideState = "hidden";
-  
+
   var _streamListener;
-  
+
   static final int _maxNicknameWidth = 170;
 }

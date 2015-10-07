@@ -280,14 +280,14 @@
     {
       "lobby"                           : "LOBBY",
       "mycontest"                       : "MY CONTEST",
-      "howitworks"                      : "HOW IT WORKD",
+      "howitworks"                      : "HOW IT WORKS",
       "buttonaddfunds"                  : "ADD FUNDS",
       "myaccount"                       : "My Account",
       "addfunds"                        : "Add Funds",
       "transactions"                    : "Transaction History",
       "referral"                        : "Referral Center",
       "classification"                  : "Classification",
-      "howitworks2"                     : "How It Workd",
+      "howitworks2"                     : "How It Works",
       "logout"                          : "LogOut",
       "login"                           : "Log In"
     },
@@ -499,6 +499,24 @@
       "penaltysaved"                    : "Penalty Saved",
       "clean"                           : "Clean Sheet",
       "goalconceded"                    : "Goal Conceded"
+    },
+    "shop"                              :
+    {
+      "goldshopdescription"             : "Buy Gold to in order to enter <strong>Official Contests</strong>",
+      "trainerpointsshopdescription"    : "Increase your Trainer Tier and sign <strong>Better Players</strong>",
+      "energyshopdescription"           : "Refill your energy in order to enter <strong>Virtual Contests</strong>"
+    },
+    "goldshop"                          :
+    {
+      "product1"                        : "PENNIES",
+      "product2"                        : "BIG BOSS",
+      "product3"                        : "SCOUT",
+      "product4"                        : "AGENT",
+      "product5"                        : "PRESIDENT",
+      "product6"                        : "MEN IN BLACK",
+      "free"                            : "FREE",
+      "buttonback"                      : "Back",
+      "mostpopularimagesource"          : "images/icon-most-popular.png"
     }
   }
 }

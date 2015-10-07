@@ -1,22 +1,22 @@
 <div id="mainShopCompWrapper">
 
-  <div class="itemsWrapper">
-   
-  
-    <div ng-repeat="item in shops" class="shopItem" ng-click="openShop(item.name)">
-      <div class="slot" >        
-        <div class="shotItemLeft"></div>
-        <div class="shotItemMiddle"></div>      
-        <div class="shotItemRight"></div>        
+  <div class="items-wrapper">  
+    <div ng-repeat="item in shops" class="shop-item" ng-click="openShop(item.name)">
+      <div class="slot-base">        
+        <div class="shop-item-left"></div>
+        <div class="shop-item-middle"></div>      
+        <div class="shop-item-right"></div>        
       </div>
-      <div class="shopItemPattern"></div>    
-      <img src="images/{{item.image}}">
-      <span class="shopItemInfo" ng-bind-html="'<span>'+item.description+'</span>'"></span>
-   </div> 
-   
-  </div>
+      <div class="shop-item-pattern"></div>
+      <div class="slot-content">    
+        <img class="item-icon" src="images/{{item.image}}">
+        <span class="shop-item-info" ng-bind-html="'<span>'+item.description+'</span>'"></span>
+      </div>   
+    </div>
   
-  <!-- Punto de insercion de nuestra ruta hija contest-info (modal) -->
-  <ng-view ng-show="!loadingService.isLoading"></ng-view>
+    <!-- Punto de insercion de nuestra ruta hija contest-info (modal) -->
+    <ng-view ng-show="!loadingService.isLoading"></ng-view>
+  
+  </div>
   
 </div>

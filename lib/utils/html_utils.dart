@@ -15,11 +15,11 @@ Future<bool> modalShow(String title, String content,{String onOk: null, String o
   Element parent = querySelector('ng-view');
 
   void onClose(dynamic sender) {
-    parent.children.remove(parent.querySelector('#modalRoot'));
+    parent.children.remove(parent.querySelector('#alertRoot'));
   }
 
   void closeMe() {
-    JsUtils.runJavascript('#modalRoot', 'modal', "hide");
+    JsUtils.runJavascript('#alertRoot', 'modal', "hide");
   }
 
   // Si no se han especificado callBacks, declaramos como minimo el botón Aceptar.
@@ -46,7 +46,7 @@ Future<bool> modalShow(String title, String content,{String onOk: null, String o
   String botonOk      = (onOk != null) ?     '''<div class="button-box"><button class="ok-button" eventCallback="onOk">${onOk}</button><div>''' : '';
   String botonCancel  = (onCancel != null) ? '''<div class="button-box"><button class="cancel-button" eventCallback="onCancel"> ${onCancel}</button></div>''' : '';
   String modalBody =  ''' 
-                        <div id="modalRoot" class="modal container fade" tabindex="-1" role="dialog" style="display: block;">
+                        <div id="alertRoot" class="modal container fade" tabindex="-1" role="dialog" style="display: block;">
                           <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                               <content>      
@@ -87,8 +87,8 @@ Future<bool> modalShow(String title, String content,{String onOk: null, String o
   // Aqui hago el setup de los botones. (que tiene que hacer cada botón al ser clickado... ver: main_menu_slide_comp).
   parent.querySelectorAll("[eventCallback]").onClick.listen(onButtonClick);
 
-  JsUtils.runJavascript('#modalRoot', 'modal', null);
-  JsUtils.runJavascript('#modalRoot', 'on', {'hidden.bs.modal': onClose});
+  JsUtils.runJavascript('#alertRoot', 'modal', null);
+  JsUtils.runJavascript('#alertRoot', 'on', {'hidden.bs.modal': onClose});
   return completer.future;
 }
 

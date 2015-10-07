@@ -7,7 +7,7 @@ import 'package:webclient/components/modal_comp.dart';
 
 @Component(
     selector: 'trainer-points-shop-comp',
-    templateUrl: 'packages/webclient/components/account/gold_shop_comp.html',
+    templateUrl: 'packages/webclient/components/account/trainer_points_shop_comp.html',
     useShadowDom: false
 )
 class TrainerPointsShopComp {

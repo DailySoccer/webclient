@@ -319,25 +319,96 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
 
   </form>
 </div>"""));
-tc.put("packages/webclient/components/account/energy_shop_comp.html", new HttpResponse(200, r"""<modal id="modalShopCompWrapper">
+tc.put("packages/webclient/components/account/energy_shop_comp.html", new HttpResponse(200, r"""<modal id="energyshopComp">
   
-  <div class="header"></div>
+  <div class="header">
+  </div>
   
   <div class="content">
-    <div class="itemsWrapper">
-      <div ng-repeat="item in products" class="productItem" ng-click="buyItem(item.id)">{{item.name}}</div> 
+    <div class="products-wrapper">
+      
+      <div ng-repeat="item in products" class="product" ng-click="buyItem(item.id)">
+        <div class="slot-base">        
+          <div class="shop-itemLeft"></div>
+          <div class="shop-itemMiddle"></div>      
+          <div class="shop-itemRight"></div>        
+        </div>
+        <div class="shop-item-pattern" ng-if="!item.isMostPoputar"></div>
+        <div class="slot-content">    
+          <div class="image-column">
+            <img class="item-icon" src="images/{{item.captionImage}}">
+          </div>
+          <div class="quantity-column">
+            <span class="product-description">{{item.description}}</span>
+            <span class="product-count">{{item.quantity}}</span>
+          </div>
+          <div class="price-column">
+            <div class="free-increment" ng-if="item.freeIncrement > 0">
+              <span class="free-increment-count">{{item.description}}</span>
+              <span class="free-increment-desc">GRATIS</span>
+            </div>
+            <span class="product-price">{{item.price}}</span>
+          </div>
+        </div>   
+      </div>
+       
     </div>
   </div>
   
 </modal>"""));
-tc.put("packages/webclient/components/account/gold_shop_comp.html", new HttpResponse(200, r"""<modal id="modalShopCompWrapper">
+tc.put("packages/webclient/components/account/gold_shop_comp.html", new HttpResponse(200, r"""<modal id="goldShopComp">
   
-  <div class="header"></div>
+  <div class="header">
+  
+  </div>
   
   <div class="content">
-    <div class="itemsWrapper">
-      <div ng-repeat="item in products" class="productItem" ng-click="buyItem(item.id)">{{item.name}}</div> 
+  
+    <div class="content-banner">
+      <img src="{{getShopBanner()}}">
     </div>
+    
+    <div class="products-wrapper">
+      
+      <div ng-repeat="item in products" class="product" ng-click="buyItem(item.id)">
+        <div class="slot-base">        
+          <div class="shop-item-left"></div>
+          <div class="shop-item-middle"></div>      
+          <div class="shop-item-right"></div>        
+        </div>
+        <div class="shop-item-pattern" ng-if="!item.isMostPopular"></div>
+        
+        <div class="slot-content">    
+        
+          <div class="image-column">
+            <img class="item-icon" src="images/{{item.captionImage}}">
+          </div>
+        
+          <div class="quantity-column">
+            <span class="product-description">{{item.description}}</span>
+            <span class="product-count">{{item.quantity}}</span>
+          </div>
+        
+          <div class="price-column">
+            <div class="free-increment" ng-if="item.freeIncrement > 0">
+              <span class="free-increment-count">{{item.freeIncrement}}</span>
+              <span class="free-increment-desc">GRATIS</span>
+            </div>
+            <span class="product-price" ng-class="{'no-frees' : !(item.freeIncrement > 0)}">{{item.price}}</span>
+          </div>
+          <div class="clearfix"></div>
+          <img src="images/icon-mas-popular.png" class="shop-item-popular" ng-if="item.isMostPopular">
+        
+        </div>   
+      </div>
+       
+    </div>
+    
+    <div class="buttons-wrapper">
+       <div class="button-box"><button id="btnClose" class="cancel-button" data-dismiss="modal"> Volver</button></div>
+    </div>
+
+
   </div>
   
 </modal>"""));
@@ -627,25 +698,24 @@ tc.put("packages/webclient/components/account/remember_password_comp.html", new 
 </div>"""));
 tc.put("packages/webclient/components/account/shop_comp.html", new HttpResponse(200, r"""<div id="mainShopCompWrapper">
 
-  <div class="itemsWrapper">
-   
-  
-    <div ng-repeat="item in shops" class="shopItem" ng-click="openShop(item.name)">
-      <div class="slot">        
-        <div class="shotItemLeft"></div>
-        <div class="shotItemMiddle"></div>      
-        <div class="shotItemRight"></div>
-        
+  <div class="items-wrapper">  
+    <div ng-repeat="item in shops" class="shop-item" ng-click="openShop(item.name)">
+      <div class="slot-base">        
+        <div class="shop-item-left"></div>
+        <div class="shop-item-middle"></div>      
+        <div class="shop-item-right"></div>        
       </div>
-      <div class="shopItemPattern"></div>    
-      <img src="images/{{item.image}}">
-      <span class="shopItemInfo" ng-bind-html="'<span>'+item.description+'</span>'"></span>
-   </div> 
-   
-  </div>
+      <div class="shop-item-pattern"></div>
+      <div class="slot-content">    
+        <img class="item-icon" src="images/{{item.image}}">
+        <span class="shop-item-info" ng-bind-html="'<span>'+item.description+'</span>'"></span>
+      </div>   
+    </div>
   
-  <!-- Punto de insercion de nuestra ruta hija contest-info (modal) -->
-  <ng-view ng-show="!loadingService.isLoading"></ng-view>
+    <!-- Punto de insercion de nuestra ruta hija contest-info (modal) -->
+    <ng-view ng-show="!loadingService.isLoading"></ng-view>
+  
+  </div>
   
 </div>"""));
 tc.put("packages/webclient/components/account/transaction_history_comp.html", new HttpResponse(200, r"""<div id="transactionHistoryRoot">
@@ -965,7 +1035,7 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
                     <div class="contestant-element"ng-repeat="contestant in currentInfoData['contestants']">
                       <div class="contestant-position">{{$index + 1}}º</div>
                       <div class="contestant-name">{{contestant.name}}</div>
-                      <div class="contestant-points">{{contestant.wins + ' '}}<span class="prize-currency">{{getLocalizedText("wins")}}</span></div>
+                      <div class="contestant-points">{{contestant.trueSkill + ' '}}<span class="prize-currency">{{getLocalizedText("skill")}}</span></div>
                     </div>
                   </div>
                 </div>
@@ -1021,7 +1091,7 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
       <div class="contestant-element"ng-repeat="contestant in currentInfoData['contestants']">
           <div class="contestant-position">{{$index + 1}}º</div>
           <div class="contestant-name">{{contestant.name}}</div>
-          <div class="contestant-points">{{contestant.wins + ' '}}<span class="prize-currency">{{getLocalizedText("wins")}}</span></div>
+          <div class="contestant-points">{{contestant.trueSkill + ' '}}<span class="prize-currency">{{getLocalizedText("skill")}}</span></div>
       </div>
   </div>
   <div class="clearfix"></div>
@@ -1383,12 +1453,12 @@ tc.put("packages/webclient/components/leaderboard_comp.html", new HttpResponse(2
 
   <div id="leaderboard-header-wrapper">
 
-    <h1>Ranking</h1>
+    <h1>{{getLocalizedText("title")}}</h1>
     <div class="rankings-wrapper">
       <div class="ranking ranking-by-points">
         <span class="ranking-position">{{playerPointsInfo['position']}}º</span>
         <div class="ranking-info">
-          <span class="ranking-name">Top Points</span>
+          <span class="ranking-name">{{getLocalizedText("topskill")}}</span>
           <span class="ranking-value">{{playerPointsInfo['points']}} ptos</span>
         </div>
       </div>
@@ -1396,7 +1466,7 @@ tc.put("packages/webclient/components/leaderboard_comp.html", new HttpResponse(2
       <div class="ranking ranking-by-money">
         <span class="ranking-position">{{playerMoneyInfo['position']}}º</span>
         <div class="ranking-info">
-          <span class="ranking-name">Top Money</span>
+          <span class="ranking-name">{{getLocalizedText("topgold")}}</span>
           <span class="ranking-value">{{playerMoneyInfo['points']}} </span>
         </div>
       </div>
@@ -1409,8 +1479,8 @@ tc.put("packages/webclient/components/leaderboard_comp.html", new HttpResponse(2
 
 
   <ul class="leaderboard-tabs" role="tablist">
-    <li class="active"><a class="leaderboard-tab top-points-tab" role="tab" data-toggle="tab" ng-click="tabChange('top-points')">Habilidad</a></li>
-    <li><a class="leaderboard-tab top-money-tab" role="tab" data-toggle="tab" ng-click="tabChange('top-money')">Monedas</a></li>
+    <li class="active"><a class="leaderboard-tab top-points-tab" role="tab" data-toggle="tab" ng-click="tabChange('top-points')">{{getLocalizedText("trueskill")}}</a></li>
+    <li><a class="leaderboard-tab top-money-tab" role="tab" data-toggle="tab" ng-click="tabChange('top-money')">{{getLocalizedText("gold")}}</a></li>
   </ul>
   
   <div class="tabs">
@@ -1427,6 +1497,7 @@ tc.put("packages/webclient/components/leaderboard_comp.html", new HttpResponse(2
       <div class="tab-pane" id="top-money">
 
         <leaderboard-table show-header="true" highlight-element="playerMoneyInfo" table-elements="moneyUserList" rows="usersToShow" points-column-label="moneyColumnName" hint="playerMoneyHint" ng-show="!loadingService.isLoading"></leaderboard-table>
+      
       </div>
     </div>
   </div>
@@ -1436,8 +1507,8 @@ tc.put("packages/webclient/components/leaderboard_comp.html", new HttpResponse(2
 tc.put("packages/webclient/components/leaderboard_table_comp.html", new HttpResponse(200, r"""<div class="leaderboard-table">
   <div class="leaderboard-table-header" ng-show="isHeaded">
     <div class="leaderboard-table-element">
-      <span class="leaderboard-column leaderboard-table-position">Pos.</span>
-      <span class="leaderboard-column leaderboard-table-name">Name</span>
+      <span class="leaderboard-column leaderboard-table-position">{{getLocalizedText("abrevposition")}}</span>
+      <span class="leaderboard-column leaderboard-table-name">{{getLocalizedText("name")}}</span>
       <span class="leaderboard-column leaderboard-table-hint"> </span>
       <span class="leaderboard-column leaderboard-table-skillpoints">{{pointsColumnName}}</span>
     </div>

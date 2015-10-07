@@ -361,7 +361,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
             <img src="images/icon-star-lg.png">     
             <div class="count">${_userManagerPoints}</div>
           </div>
-          <div class="coins" destination="shop">
+          <div class="coins" destination="shop.gold">
             <img src="images/icon-coin-lg.png">      
             <div class="count">${_userGold}</div>
           </div>

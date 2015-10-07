@@ -5,8 +5,8 @@ import 'package:webclient/utils/translate_config.dart';
 class StringUtils {
 
   static NumberFormat decimalFormat = new NumberFormat("0.#", "es_ES");
-  static NumberFormat twoDecimalsFormat = new NumberFormat("###,###,###.00", "en_US");
-  static NumberFormat thousandsFormat = new NumberFormat.decimalPattern("en_US");
+  static NumberFormat twoDecimalsFormat = new NumberFormat("###,###,###.00", "es_ES");
+  static NumberFormat thousandsFormat = new NumberFormat.decimalPattern("es_ES");
 
 
   static String normalize(String txt) {
@@ -40,6 +40,8 @@ class StringUtils {
   static String parseSalary(int salaryCap) => thousandsFormat.format(salaryCap);
 
   static String parsePrize(num money) => ((money*100)%100 == 0)? thousandsFormat.format(money): twoDecimalsFormat.format(money);
+
+  static String parseTrueSkill(int trueSkill) => thousandsFormat.format(trueSkill);
 
   static Map<String, String> stringToMap(String params) {
     Map<String, String> result = {};

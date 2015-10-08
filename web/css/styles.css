@@ -7662,7 +7662,7 @@ contest-header {
 }
 .contests-list-f2p-root .contestSlot .time-section .fake-time-column {
   float: left;
-  width: 75%;
+  width: 58.33333333%;
   position: relative;
   min-height: 1px;
   padding-left: 15px;
@@ -7682,7 +7682,7 @@ contest-header {
 }
 .contests-list-f2p-root .contestSlot .time-section .column-start-time {
   float: left;
-  width: 25%;
+  width: 41.66666667%;
   position: relative;
   min-height: 1px;
   padding-left: 15px;
@@ -7700,23 +7700,15 @@ contest-header {
 }
 @media (min-width: 768px) {
   .contests-list-f2p-root .contestSlot .time-section .column-start-time {
+    padding-right: 0;
+    padding-left: 10px;
     font-family: 'Exo', sans-serif;
     font-weight: 300;
     font-size: 12pt;
     color: #214a5f;
     text-transform: uppercase;
   }
-}
-@media (min-width: 768px) {
-  .contests-list-f2p-root .contestSlot .time-section .column-start-time .column-start-hour {
-    font-family: 'Exo', sans-serif;
-    font-weight: 300;
-    font-size: 12pt;
-    color: #214a5f;
-    text-transform: uppercase;
-  }
-}
-@media (min-width: 768px) {
+  .contests-list-f2p-root .contestSlot .time-section .column-start-time .column-start-hour.start-soon,
   .contests-list-f2p-root .contestSlot .time-section .column-start-time .column-start-date {
     font-family: 'Exo', sans-serif;
     font-weight: 300;

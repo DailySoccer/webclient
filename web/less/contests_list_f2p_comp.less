@@ -64,7 +64,7 @@
 				text-align: right;
 			}
 			.fake-time-column {
-				.make-xs-column(9);
+				.make-xs-column(7);
 				.make-sm-column(12);
 				margin-top: 25px;
 				@media (min-width: @screen-sm-min) {
@@ -73,19 +73,16 @@
 			}
 			
       .column-start-time {
-				.make-xs-column(3);
+				.make-xs-column(5);
 				.make-sm-column(1);
 				.opensans_bold(9pt, @blueDark);
 				@media (min-width: @screen-sm-min) {
+					padding-right: 0;
+					padding-left: 10px;
 					.exo_light(12pt, @blueDark);
-				}
-				.column-start-hour {
-					@media (min-width: @screen-sm-min) {
-						.exo_light(12pt, @blueDark);
-					}
-				}
-				.column-start-date {
-					@media (min-width: @screen-sm-min) {
+					
+					.column-start-hour.start-soon,
+					.column-start-date {
 						.exo_light(10pt, @blueDark);
 					}
 				}

@@ -1,9 +1,12 @@
 library contest_header_f2p_comp;
 
 import 'package:angular/angular.dart';
+import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import "package:webclient/models/contest.dart";
+import 'package:webclient/models/contest_entry.dart';
+import 'package:webclient/models/money.dart';
 import 'dart:async';
 import 'package:webclient/services/contests_service.dart';
 import 'dart:html';
@@ -72,12 +75,12 @@ class ContestHeaderF2PComp implements DetachAware, ShadowRootAware {
     return StringUtils.translate(key, "contestheader");
   }
 
-  ContestHeaderF2PComp(this._router, this._routeProvider, this.scrDet, this._contestsService, this._rootElement) {
+  ContestHeaderF2PComp(this._router, this._routeProvider, this._profileService, this.scrDet, this._contestsService, this._rootElement) {
     _count = new Timer.periodic(new Duration(seconds: 1), (Timer timer) => _refreshCountdownDate());
   }
 
   String getContestTypeIcon() {
-    return (contest != null && contest.isSimulation) ? "train" : "real";
+    return contest.isSimulation ? "train" : "real";
   }
 
   String getSourceFlag() {
@@ -98,6 +101,32 @@ class ContestHeaderF2PComp implements DetachAware, ShadowRootAware {
     }
 
     return ret;
+  }
+
+
+  String printableMyPosition() {
+    ContestEntry mainContestEntry = contest.getContestEntryWithUser(_profileService.user.userId);
+
+    // En los contest Históricos tendremos la posición registrada en el propio ContestEntry
+    if (contest.isHistory) {
+      return (mainContestEntry.position >= 0) ? "${mainContestEntry.position + 1}" : "-";
+    }
+
+    return "${contest.getUserPosition(mainContestEntry)}";
+  }
+
+  Money getPrizeToShow() {
+    // En los contest Históricos tendremos la posición registrada en el propio ContestEntry
+    if (contest.isHistory || contest.isLive) {
+      return getMyPrize(contest);
+    }
+
+    return contest.prizePool;
+  }
+  
+  Money getMyPrize(Contest contest) {
+    ContestEntry mainContestEntry = contest.getContestEntryWithUser(_profileService.user.userId);
+    return mainContestEntry.prize;
   }
   
   void _refreshCountdownDate() {
@@ -163,4 +192,5 @@ class ContestHeaderF2PComp implements DetachAware, ShadowRootAware {
   ContestsService _contestsService;
   Element _rootElement;
   Timer _count;
+  ProfileService _profileService;
 }

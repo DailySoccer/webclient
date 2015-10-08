@@ -1,5 +1,5 @@
 
-<div class="contest-header-f2p-wrapper">
+<div class="contest-header-f2p-wrapper" ng-if="contest != null">
   
   <!-- margen arriba -->
   <div class="name-section">
@@ -11,7 +11,7 @@
   
     <div class="player-position" ng-if="contest.isLive || contest.isHistory">
       <div class="condition-name"><span>{{getLocalizedText("position")}}</span></div>
-      <div class="condition-amount"><span class="current-position">{{contest.numEntries}}</span>/{{contest.maxEntries}}</div>
+      <div class="condition-amount"><span class="current-position">{{printableMyPosition()}}</span>/{{contest.numEntries}}</div>
     </div>
     
     <div class="entry-fee-box" ng-if="!(contest.isLive || contest.isHistory)">
@@ -20,7 +20,7 @@
     </div>
     <div class="prize-box">
       <span class="condition-name">{{getLocalizedText("prize")}}</span>
-      <span class="condition-amount" ng-class="{'prize-coin':getContestTypeIcon() == 'real', 'prize-managerpoints':getContestTypeIcon() == 'train'}">{{contest.prizePool}}</span>
+      <span class="condition-amount" ng-class="{'prize-coin':getContestTypeIcon() == 'real', 'prize-managerpoints':getContestTypeIcon() == 'train'}">{{getPrizeToShow()}}</span>
     </div>
   </div>
   

@@ -297,7 +297,9 @@
       "of"                              : "DE",
       "prize"                           : "Premio:",
       "points"                          : "PUNTOS",
-      "position"                        : "Puesto:"
+      "position"                        : "Puesto:",
+      "soonHint"                        : "Faltan @TIME min",
+      "verySoonHint"                    : "Falta @TIME"
     },
     "contestfilters"                    :
     {

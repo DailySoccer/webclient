@@ -18,10 +18,16 @@ import 'dart:html';
 )
 class ContestsListF2PComp {
 
+  static const num SOON_SECONDS = 2 * 60 * 60;
+  static const num VERY_SOON_SECONDS = 30 * 60;
+  
   // Lista original de los contest
-  List<Contest> contestsListOriginal;
+  List<Contest> contestsListOriginal = [];
+  List<Contest> contestsListOrdered = [];
   ScreenDetectorService scrDet;
 
+  Map _sortOrder = {'fieldName':'contest-start-time', 'order': 1};
+  
   /********* BINDINGS */
   @NgOneWay("contests-list")
   void set contestsList(List<Contest> value) {
@@ -29,6 +35,7 @@ class ContestsListF2PComp {
       return;
     }
     contestsListOriginal = value;
+    refreshListOrder();
   }
 
   @NgOneWay("action-button-title")
@@ -36,6 +43,12 @@ class ContestsListF2PComp {
   
   @NgOneWay("show-date")
   bool showDate = false;
+  
+  @NgOneWay("sorting")
+  void sortOrder(Map value) {
+    _sortOrder = value;
+    refreshListOrder();
+  }
 
   @NgCallback('on-list-change')
   Function onListChange;
@@ -46,8 +59,8 @@ class ContestsListF2PComp {
   @NgCallback("on-action-click")
   Function onActionClick;
 
-  String getLocalizedText(key) {
-    return StringUtils.translate(key, "contestlist");
+  String getLocalizedText(key, [Map substitutions]) {
+    return StringUtils.translate(key, "contestlist", substitutions);
   }
 
   ContestsListF2PComp(this.scrDet, this._profileService);
@@ -85,14 +98,30 @@ class ContestsListF2PComp {
     return contest.hasSpecialImage ? contest.specialImage : "";
   }
 
+  // Date info
+  num timeLeft(DateTime date) {
+    Duration duration = DateTimeService.getTimeLeft(date);
+    int secondsLeft = duration.inSeconds;
+    return secondsLeft;
+  }
+  
+  bool isSoon(DateTime date) {
+    int secondsLeft = timeLeft(date);
+    return secondsLeft >= 0 && secondsLeft < SOON_SECONDS;
+  }
   
   String timeInfo(DateTime date) {
     // Avisamos 2 horas antes...
-    if (DateTimeService.isToday(date) && date.isAfter(DateTimeService.now)) {
-      Duration duration = DateTimeService.getTimeLeft(date);
-      int minutesLeft = duration.inMinutes;
-      if (minutesLeft >= 0 && minutesLeft < 120) {
-        return (minutesLeft >= 30) ? "${minutesLeft} min." : "Faltan";
+    int secondsLeft = timeLeft(date);
+    if (secondsLeft >= 0 && secondsLeft < SOON_SECONDS) {
+      int minutes = secondsLeft ~/ 60;
+      int seconds = secondsLeft - (minutes * 60);
+      
+      if (secondsLeft < VERY_SOON_SECONDS) {
+        String timeFormatted = (seconds >= 10) ?  "$minutes:$seconds" :  "$minutes:0$seconds";
+        return "${getLocalizedText("verySoonHint", {"TIME": timeFormatted})}";
+      } else {
+        return "${getLocalizedText("soonHint", {"TIME": minutes})}";
       }
     }
     return DateTimeService.formatTimeShort(date);
@@ -101,22 +130,37 @@ class ContestsListF2PComp {
   String dateInfo(DateTime date) {
     // Avisamos cuando sea "Hoy"
     if (DateTimeService.isToday(date)) {
-      Duration duration = DateTimeService.getTimeLeft(date);
-
-      // Avisamos unos minutos antes (30 min)
-      if (duration.inMinutes >= 0 && duration.inMinutes < 30) {
-        int secondsTotal = duration.inSeconds;
-        int minutes = secondsTotal ~/ 60;
-        int seconds = secondsTotal - (minutes * 60);
-        if (minutes >= 0 && seconds >= 0) {
-          return (seconds >= 10) ? "$minutes:$seconds" : "$minutes:0$seconds";
-        }
-      }
-      return "Today";
+      return getLocalizedText("today");
     }
     return DateTimeService.formatDateShort(date);
   }
 
+  void refreshListOrder() {
+    if (_sortOrder == null || _sortOrder.isEmpty) {
+      return;
+    }
+
+    contestsListOrdered = [];
+    contestsListOrdered.addAll(contestsListOriginal);
+
+    switch(_sortOrder['fieldName']) {
+      case "contest-name":
+        contestsListOrdered.sort((contest1, contest2) => ( _sortOrder['order'] * contest1.compareNameTo(contest2)) );
+      break;
+
+      case "contest-entry-fee":
+        contestsListOrdered.sort((contest1, contest2) => ( _sortOrder['order'] * contest1.compareEntryFeeTo(contest2)) );
+      break;
+
+      case "contest-start-time":
+        contestsListOrdered.sort((contest1, contest2) => ( _sortOrder['order'] * contest1.compareStartDateTo(contest2)) );
+      break;
+
+      default:
+        print('-CONTEST_LIST-: No se ha encontrado el campo para ordenar');
+      break;
+    }
+  }
 
   String printableMyPosition(Contest contest) {
     ContestEntry mainContestEntry = contest.getContestEntryWithUser(_profileService.user.userId);

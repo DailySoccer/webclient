@@ -297,7 +297,9 @@
       "of"                              : "OF",
       "prize"                           : "Prize",
       "points"                          : "POINTS",
-      "position"                        : "Position:"
+      "position"                        : "Position:",
+      "soonHint"                        : "@TIME min left",
+      "verySoonHint"                    : "@TIME Left"
     },
     "contestfilters"                    :
     {

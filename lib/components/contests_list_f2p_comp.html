@@ -1,5 +1,5 @@
 <div class="contests-list-f2p-root">
-  <div ng-repeat="contest in contestsListOriginal">
+  <div ng-repeat="contest in contestsListOrdered">
     <div class="contestSlot" ng-class="{'special' : getContestMorfology(contest) == 'special'}" ng-click="onRow(contest)">
 
       <div class="special-image-section" ng-if="getContestMorfology(contest) == 'special'">
@@ -9,8 +9,8 @@
       <div class="time-section">
         <div class="fake-time-column"></div>
         <div class="column-start-time">
-          <div class="column-start-hour">{{timeInfo(contest.startDate)}}</div>
-          <div class="column-start-date" ng-if="showDate">{{dateInfo(contest.startDate)}}</div>
+          <div class="column-start-hour" ng-class="{'start-soon' : isSoon(contest.startDate)}">{{timeInfo(contest.startDate)}}</div>
+          <div class="column-start-date" ng-if="showDate && !isSoon(contest.startDate)">{{dateInfo(contest.startDate)}}</div>
         </div>
       </div>
 
@@ -24,7 +24,7 @@
       
         <div class="player-position" ng-if="contest.isLive || contest.isHistory">
           <div class="condition-name"><span>{{getLocalizedText("position")}}</span></div>
-          <div class="condition-amount"><span class="current-position">{{printableMyPosition(contest)}}</span>/{{contest.maxEntries}}</div>
+          <div class="condition-amount"><span class="current-position">{{printableMyPosition(contest)}}</span>/{{contest.numEntries}}</div>
         </div>
         
         <div class="entry-fee-box" ng-if="!(contest.isLive || contest.isHistory)">

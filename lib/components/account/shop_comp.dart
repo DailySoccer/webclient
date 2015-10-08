@@ -29,7 +29,7 @@ class ShopComp {
   }
   
   void openShop(String name) {
-    if (name == 'gold') {
+    if (name != 'trainer_points') {
       ModalComp.open(_router, "shop." + name, {});
     }
   }

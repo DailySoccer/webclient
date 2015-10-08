@@ -517,6 +517,12 @@
       "free"                            : "FREE",
       "buttonback"                      : "Back",
       "mostpopularimagesource"          : "images/icon-most-popular.png"
+    },
+    "energyshop"                        :
+    {
+      "maxrefill"                       : "Refill all the energy",
+      "autorefill"                      : "AutoRefill+1 in:",
+      "buttonback"                      : "Back"
     }
   }
 }

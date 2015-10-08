@@ -353,7 +353,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
       
         <div class="fixed-user-stats">
 
-          <div class="energy" destination="shop">         
+          <div class="energy" destination="shop.energy">         
             <img src="images/icon-lightning-lg.png"> 
             <div class="count">${_userEnergy}/${_maxEnergy}</div>
           </div>

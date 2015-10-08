@@ -11607,23 +11607,6 @@ fieldset[disabled] #withdrawFundsContent .withdraw-founds-box button.withdraw-fu
 #trainerPointsShopComp .products-wrapper .product .slot-content .price-column .product-price.no-frees {
   margin-top: 45px;
 }
-#goldShopComp .products-wrapper .product .slot-content .shop-item-info,
-#trainerPointsShopComp .products-wrapper .product .slot-content .shop-item-info {
-  position: absolute;
-  top: 0;
-  right: 30px;
-  bottom: 0;
-  left: 119px;
-  padding-left: 15px;
-  padding-right: 15px;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 10pt;
-  color: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 #goldShopComp .buttons-wrapper,
 #trainerPointsShopComp .buttons-wrapper {
   text-align: center;
@@ -11949,8 +11932,8 @@ fieldset[disabled] #trainerPointsShopComp .buttons-wrapper .cancel-button {
   top: 0;
 }
 #energyshopComp .products-wrapper .product .slot-content .quantity-column {
-  left: 88px;
-  right: 88px;
+  left: 105px;
+  right: 10px;
   position: absolute;
   text-align: center;
   padding: 10px 0;
@@ -11958,9 +11941,9 @@ fieldset[disabled] #trainerPointsShopComp .buttons-wrapper .cancel-button {
 #energyshopComp .products-wrapper .product .slot-content .quantity-column .product-description {
   display: block;
   font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
+  font-weight: 400;
   font-size: 10pt;
-  color: #59add5;
+  color: #ffffff;
 }
 #energyshopComp .products-wrapper .product .slot-content .quantity-column .product-count {
   display: block;
@@ -11980,6 +11963,14 @@ fieldset[disabled] #trainerPointsShopComp .buttons-wrapper .cancel-button {
   vertical-align: baseline;
   position: relative;
   left: 4px;
+}
+#energyshopComp .products-wrapper .product .slot-content .quantity-column .product-time-left {
+  display: block;
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 28pt;
+  color: #ffffff;
+  text-transform: uppercase;
 }
 #energyshopComp .products-wrapper .product .slot-content .price-column {
   width: 104px;
@@ -12017,21 +12008,11 @@ fieldset[disabled] #trainerPointsShopComp .buttons-wrapper .cancel-button {
 #energyshopComp .products-wrapper .product .slot-content .price-column .product-price.no-frees {
   margin-top: 45px;
 }
-#energyshopComp .products-wrapper .product .slot-content .shop-item-info {
-  position: absolute;
-  top: 0;
-  right: 30px;
-  bottom: 0;
-  left: 119px;
-  padding-left: 15px;
-  padding-right: 15px;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 10pt;
-  color: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+#energyshopComp .products-wrapper .product.no-purchasable {
+  cursor: auto;
+}
+#energyshopComp .products-wrapper .product.no-purchasable .slot-base .shop-item-right {
+  background: url("../images/shopItemBgRightNoPuchasable.jpg") repeat;
 }
 #energyshopComp .buttons-wrapper {
   text-align: center;

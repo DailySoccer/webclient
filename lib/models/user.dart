@@ -4,6 +4,7 @@ import 'package:webclient/services/contest_references.dart';
 import 'package:webclient/models/money.dart';
 import 'package:logging/logging.dart';
 import 'package:webclient/services/datetime_service.dart';
+import 'package:intl/intl.dart';
 
 class User {
   static const int MINUTES_TO_RELOAD_ENERGY = 15;
@@ -47,12 +48,13 @@ class User {
     Logger.root.severe("User ${userId} not has Money ${money}");
     return false;
   }
-
-  String get printableEnergyTimeLeft {
+  
+  NumberFormat nfTime = new NumberFormat("00");
+    String get printableEnergyTimeLeft {
     String result = "";
     if (energyBalance.amount < MAX_ENERGY) {
       int seconds = EnergyTimeLeft;
-      result = "${seconds~/60}:${seconds%60}";
+      result = "${nfTime.format(seconds~/60)}:${nfTime.format(seconds%60)}";
     }
     return result;
   }

@@ -48,7 +48,7 @@
 					right: 195px;
 					position: absolute;
 					background: url("@{images}/shopItemBgMiddle.png") repeat;
-				}		
+				}					
 				.shop-item-right {
 					width: 195px;
 					float: right;
@@ -84,15 +84,15 @@
 	 				top: 0;
 	 			}
 	 			.quantity-column {					
-					left: 88px;
-					right: 88px;
+					left: 105px;
+					right: 10px;
 					position: absolute;
 					text-align: center;
 					padding: 10px 0;
 
 					.product-description {
 						display: block;
-						.opensans_bold(10pt, @blueLight);
+						.opensans_normal(10pt, @white);
 					}
 					.product-count {
 						display: block;
@@ -103,6 +103,10 @@
 							position: relative;
 							left: 4px;
 						}
+					}
+					.product-time-left {
+						display: block;
+						.exo_light(28pt, @white);
 					}
 				}		
 				.price-column {
@@ -130,25 +134,17 @@
 							margin-top: 45px;
 						}
 	              	}
-				}				
-		 		.shop-item-info {
-		 			position: absolute;
-		 			top: 0;
-		 			right: 30px;
-		 			bottom: 0;
-		 			left: 119px;
-		 			padding-left: 15px;
-		 			padding-right: 15px;
-		 			
-		 			.opensans_normal(10pt, @white);
-		 			display: flex;
-		 			justify-content:center;
-		 			align-items:center;
-		 		}
+				}
 		 	}
+		 	&.no-purchasable{
+				cursor: auto;				
+				.slot-base .shop-item-right {
+					background: url("@{images}/shopItemBgRightNoPuchasable.jpg") repeat;
+				}
+			}
 	 	}
 	}
-
+	
 	.buttons-wrapper {
 		text-align: center;
 		max-width: 150px;

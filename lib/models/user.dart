@@ -50,7 +50,7 @@ class User {
   }
   
   NumberFormat nfTime = new NumberFormat("00");
-    String get printableEnergyTimeLeft {
+  String get printableEnergyTimeLeft {
     String result = "";
     if (energyBalance.amount < MAX_ENERGY) {
       int seconds = EnergyTimeLeft;

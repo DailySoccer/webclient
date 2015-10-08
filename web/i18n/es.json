@@ -379,10 +379,11 @@
       "startedon"                       : "EMPEZó EL ",
       "startson"                        : "EMPIEZA EL ",
       "verysoon"                        : "EMPIEZA MUY PRONTO ",
-      "startsin"                        : "EMPIEZA DENTRO DE ",
+      "startsin"                        : "EMPIEZA EN ",
       "salarycap"                       : "participantes - cuota",
       "entryfee"                        : "Precio:",
-      "prize"                           : "Premio:"
+      "prize"                           : "Premio:",
+      "position"                        : "Posición:"
     },
     "contest"                           :
     {

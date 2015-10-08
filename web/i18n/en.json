@@ -382,7 +382,8 @@
       "startsin"                        : "STARTS IN ",
       "salarycap"                       : "contenders - Salary cap",
       "entryfee"                        : "Entry fee:",
-      "prize"                           : "Prize:"
+      "prize"                           : "Prize:",
+      "position"                        : "Position:"
     },
     "contest"                           :
     {

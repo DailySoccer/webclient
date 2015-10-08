@@ -70,9 +70,14 @@
 	
 	// Sección de concidiones de pago y premio del concurso
 	.conditions-section {
+		
+		.make-xs-column(8);
+		.make-sm-column(4);
+		padding: 0px;
+		
 		.condition-box-commons {
-			.make-xs-column(5.5);
-			.make-sm-column(1.5);
+			.make-xs-column(6);
+			padding-right: 0px;
 			.opensans_bold(9pt, @greyDark);		
 			position: relative;
 
@@ -83,9 +88,6 @@
 				padding: 5px 10px 8px 10px;
 				top: -5px;
 			}
-			@media (max-width: @screen-xs-max) {
-				max-width:125px;
-			}
 			img {
 				vertical-align: top; 
 				margin-right: 10px;
@@ -95,10 +97,12 @@
 				padding: 3px 0px 0px 0px;
 				text-align: left;
 				line-height: 30px;
+				display: inline-block;
 			}
 			.condition-name {
 				.opensans_normal(8pt, @greyMed);
 				line-height: 15px;
+				display: inline-block;
 
 				@media (min-width: @screen-sm-min) {
 					position: absolute;
@@ -173,154 +177,28 @@
 	}
 	
 	.date-time-data {
-		
-		.date-time-text{
-			span {
-				.opensans_bold(8pt, @blueLight);
-				@media (min-width: @screen-sm-min) {
-					.opensans_bold(11pt, @blueLight);
-				}
-			}
+		.make-xs-column(4);
+		.make-sm-column(12);
+		padding-right: 0px;
+		padding-left: 0px;
+		@media (min-width: @screen-sm-min) {
+			padding-left: 15px;
+			padding-right: 15px;
 		}
-		
-		.make-row(0);
 		display: inline-block;
 		//background-color: @greyUltraDark;
 		line-height: 2;
 		// Fecha comienzo contest
 		.contest-start-date {
-		  white-space: nowrap;
-			.make-xs-column(6);
-			.date-time-text();
-			text-align: left;			
+			text-align: right;	
+			.opensans_bold(8pt, @blueLight);
+			@media (min-width: @screen-sm-min) {
+				text-align: left;
+				.opensans_bold(11pt, @blueLight);
+			}	
 		}
-
-		// Contador para comienzo de contest
-		.contest-countdown-text {
-			.make-xs-column(6);
-			.date-time-text();
-			text-align: right;
-			padding-left: 0px;
-		}
+		
 	}
 	
 }
 
-
-
-/*
-
-// Reserva de sitio
-contest-header {
-	background-color: @white;
-	display: block;
-	min-height: 125px;
-	@media (min-width: @screen-sm-min) {
-		min-height: 115px;
-	}
-}
-.rounded-borders {
-	border-radius: 5px 5px 0 0;
-}
-#contestHeaderWrapper {
-	.container-fluid();
-	position: relative;
-	padding: 0;
-	.contest-relevant-data {
-		.make-row(0);		
-		padding: 20px 0 12px 0;
-		.contest-name-description {
-			.make-xs-column(12, 0);
-			.make-sm-column(8, 0);
-			.contest-big-bold-text();
-			padding: 0 15px 0px 15px;
-			
-		}
-		.contest-price, .contest-prize {
-			.make-xs-column(6);
-			.make-sm-column(2);
-			.contest-big-light-text();
-		}
-		.contest-explanation {
-			.contest-small-bold-text();
-			@media (max-width: @screen-xs-max) {
-				padding-top: 5px;
-				padding-bottom: 10px;
-			}
-		}
-		.contest-coins-header, .contest-coins-header-title   {
-			.contest-small-light-text();
-		}
-		
-		.contest-coins-content {
-			// Inversion para header y content
-			.pull-left();
-			.make-sm-column(12, 0);
-			.iconPrize {
-				.size(32px, 26px);
-				position: absolute;
-				left: -38px;
-				top: 3px;
-			}
-			> span {
-				@media (max-width: @screen-xs-max) {
-					display: inline-block;
-					margin-right: 10px;
-					.badge();
-					background-color: @greyLight;
-				}
-				.contest-big-light-text();
-			}			
-		}
-		
-	}
-	.date-time-text{
-		span {
-			.opensans_bold(8pt, @blueLight);
-			@media (min-width: @screen-sm-min) {
-				.opensans_bold(11pt, @blueLight);
-			}
-		}
-	}
-	.date-time-data {
-		.make-row(0);
-		display: inline-block;
-		//background-color: @greyUltraDark;
-		line-height: 2;
-		// Fecha comienzo contest
-		.contest-start-date {
-		  white-space: nowrap;
-			.make-xs-column(6);
-			.date-time-text();
-			text-align: left;			
-		}
-
-		// Contador para comienzo de contest
-		.contest-countdown-text {
-			.make-xs-column(6);
-			.date-time-text();
-			text-align: right;
-			padding-left: 0px;
-		}
-//		&:after {
-//			height: 1px;
-//			width: 100%;
-//			background-color: @greyMed;
-//			content: "";
-//		}
-	}
-	// Botón de cerrar
-	.close-contest {		
-		position: absolute;
-		right: 10px;
-		top: 10px;
-		// Posición para versión xs
-		@media (max-width: @screen-xs-max) {
-			right: 5px;
-			top: 8px;
-		}
-		.btn::after {
-			.create-glyph("\E014", 9pt);
-		}
-	}
-}*/

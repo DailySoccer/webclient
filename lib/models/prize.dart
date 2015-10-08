@@ -20,7 +20,7 @@ class Prize {
 
   String prizeType;
   int maxEntries;
-  Money entryFee;
+  Money prizePool;
   List<Money> values = [];
   // List<num> multipliers = new List<num>();
 
@@ -31,12 +31,12 @@ class Prize {
   Prize.fromJsonObject(Map jsonMap) {
     prizeType = jsonMap["prizeType"];
     maxEntries = jsonMap["maxEntries"];
-    entryFee = jsonMap.containsKey("entryFee") ? new Money.fromJsonObject(jsonMap["entryFee"]) : new Money.zero();
+    prizePool = jsonMap.containsKey("prizePool") ? new Money.fromJsonObject(jsonMap["prizePool"]) : new Money.zero();
     // multipliers = jsonMap.containsKey("multipliers") ? jsonMap["multipliers"] : [];
     values = jsonMap.containsKey("values") ? jsonMap["values"].map((jsonMap) => new Money.fromJsonObject(jsonMap)).toList() : [];
   }
 
-  String get key => getKey(prizeType, maxEntries, entryFee);
+  String get key => getKey(prizeType, maxEntries, prizePool);
 
   int get numPrizes {
     int ret = 0;
@@ -82,13 +82,13 @@ class Prize {
     return ret;
   }
 
-  static String getKey(String prizeType, int maxEntries, Money entryFee) {
+  static String getKey(String prizeType, int maxEntries, Money prizePool) {
     if (prizeType == FREE) {
       return "${prizeType}";
     }
     else if (prizeType == WINNER || prizeType == FIFTY_FIFTY) {
-      return "${prizeType}_${entryFee}";
+      return "${prizeType}_${prizePool}";
     }
-    return "${prizeType}_${maxEntries}_${entryFee}";
+    return "${prizeType}_${maxEntries}_${prizePool}";
   }
 }

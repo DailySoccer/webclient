@@ -71,10 +71,11 @@ class Contest {
 
   Money entryFee;
   String prizeType;
+  num prizeMultiplier;
 
   Prize get prize {
     if (_prize == null) {
-      _prize = PrizesService.getPrize(Prize.getKey(prizeType, maxEntries, entryFee));
+      _prize = PrizesService.getPrize(Prize.getKey(prizeType, maxEntries, _prizePool));
     }
     return _prize;
   }
@@ -260,6 +261,7 @@ class Contest {
     salaryCap = jsonMap["salaryCap"];
     entryFee = new Money.fromJsonObject(jsonMap["entryFee"]);
     prizeType = jsonMap["prizeType"];
+    prizeMultiplier = jsonMap.containsKey("prizeMultiplier") ? jsonMap["prizeMultiplier"] : 0.9;
     simulation = jsonMap.containsKey("simulation") ? jsonMap["simulation"] : false;
     specialImage = jsonMap.containsKey("specialImage") ? jsonMap["specialImage"] : null;
 
@@ -268,7 +270,7 @@ class Contest {
     matchEvents = jsonMap.containsKey("templateMatchEventIds") ? jsonMap["templateMatchEventIds"].map( (matchEventId) => references.getMatchEventById(matchEventId) ).toList() : [];
 
     String prizeCurrency = entryFee.isEnergy ? Money.CURRENCY_MANAGER : Money.CURRENCY_GOLD;
-    _prizePool = new Money.from(prizeCurrency, (maxEntries * entryFee.amount) * 90 / 100);
+    _prizePool = new Money.from(prizeCurrency, maxEntries * entryFee.amount * prizeMultiplier);
 
     instanceSoccerPlayers = {};
     if (jsonMap.containsKey("instanceSoccerPlayers")) {

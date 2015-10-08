@@ -24,7 +24,7 @@
       
         <div class="player-position" ng-if="contest.isLive || contest.isHistory">
           <div class="condition-name"><span>{{getLocalizedText("position")}}</span></div>
-          <div class="condition-amount"><span class="current-position">{{contest.numEntries}}</span>/{{contest.maxEntries}}</div>
+          <div class="condition-amount"><span class="current-position">{{printableMyPosition(contest)}}</span>/{{contest.maxEntries}}</div>
         </div>
         
         <div class="entry-fee-box" ng-if="!(contest.isLive || contest.isHistory)">
@@ -33,7 +33,7 @@
         </div>
         <div class="prize-box">
           <span class="condition-name">{{getLocalizedText("prize")}}</span>
-          <span class="condition-amount" ng-class="{'prize-coin':getContestTypeIcon(contest) == 'real', 'prize-managerpoints':getContestTypeIcon(contest) == 'train'}">{{contest.prizePool}}</span>
+          <span class="condition-amount" ng-class="{'prize-coin':getContestTypeIcon(contest) == 'real', 'prize-managerpoints':getContestTypeIcon(contest) == 'train'}">{{getPrizeToShow(contest)}}</span>
         </div>
       </div>
 

@@ -2,8 +2,11 @@ library contests_list_f2p_comp;
 
 import 'package:angular/angular.dart';
 import 'package:webclient/models/contest.dart';
+import 'package:webclient/models/contest_entry.dart';
+import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/models/money.dart';
 import 'dart:math';
 import 'package:webclient/services/datetime_service.dart';
 import 'dart:html';
@@ -32,7 +35,7 @@ class ContestsListF2PComp {
   String actionButtonTitle = "VER";
   
   @NgOneWay("show-date")
-  bool showDate = true;
+  bool showDate = false;
 
   @NgCallback('on-list-change')
   Function onListChange;
@@ -47,7 +50,7 @@ class ContestsListF2PComp {
     return StringUtils.translate(key, "contestlist");
   }
 
-  ContestsListF2PComp(this.scrDet);
+  ContestsListF2PComp(this.scrDet, this._profileService);
 
   /********* METHODS */
   String getSourceFlag(Contest contest) {
@@ -114,6 +117,33 @@ class ContestsListF2PComp {
     return DateTimeService.formatDateShort(date);
   }
 
+
+  String printableMyPosition(Contest contest) {
+    ContestEntry mainContestEntry = contest.getContestEntryWithUser(_profileService.user.userId);
+
+    // En los contest Históricos tendremos la posición registrada en el propio ContestEntry
+    if (contest.isHistory) {
+      return (mainContestEntry.position >= 0) ? "${mainContestEntry.position + 1}" : "-";
+    }
+
+    return "${contest.getUserPosition(mainContestEntry)}";
+  }
+
+  Money getPrizeToShow(Contest contest) {
+    // En los contest Históricos tendremos la posición registrada en el propio ContestEntry
+    if (contest.isHistory || contest.isLive) {
+      return getMyPrize(contest);
+    }
+
+    return contest.prizePool;
+  }
+  
+  Money getMyPrize(Contest contest) {
+    ContestEntry mainContestEntry = contest.getContestEntryWithUser(_profileService.user.userId);
+    return mainContestEntry.prize;
+  }
+  
+  
   /********* HANDLERS */
   void onRow(Contest contest) {
     if (onRowClick != null) {
@@ -127,4 +157,7 @@ class ContestsListF2PComp {
       onActionClick({"contest":contest});
     }
   }
+  
+  
+  ProfileService _profileService;
 }

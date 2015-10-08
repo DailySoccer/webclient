@@ -3,7 +3,7 @@
     <div class="contestSlot" ng-class="{'special' : getContestMorfology(contest) == 'special'}" ng-click="onRow(contest)">
 
       <div class="special-image-section" ng-if="getContestMorfology(contest) == 'special'">
-        <img src="{{getContestImage(contest)}}"></img>
+        <img ng-src="{{getContestImage(contest)}}"></img>
       </div>
 
       <div class="time-section">
@@ -38,7 +38,7 @@
       </div>
 
       <div class="action-section" ng-click="onAction(contest, $event)">
-        <img class="ticket" src="images/arrow{{getContestMorfology(contest) == 'normal' ? 'Black' : 'White'}}.png" ng-if="!contest.isLive">
+        <img class="ticket" ng-src="images/arrow{{getContestMorfology(contest) == 'normal' ? 'Black' : 'White'}}.png" ng-if="!contest.isLive">
         <div class="button-wrapper" ng-if="contest.isLive">
           <button type="button" class="action-button" ng-click="onAction(contest)">{{actionButtonTitle}}</button>
         </div>

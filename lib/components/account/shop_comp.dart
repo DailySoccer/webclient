@@ -22,9 +22,9 @@ class ShopComp {
   
   ShopComp(this._router) {
     shops = [
-        {"name" : "gold",           "image" : "shopItemCoin.png",          "description" : getLocalizedText('goldshopdescription')}
-       ,{"name" : "trainer_points", "image" : "shopItemTrainerPoints.png", "description" : getLocalizedText('trainerpointsshopdescription')}
-       ,{"name" : "energy",         "image" : "shopItemEnergy.png",        "description" : getLocalizedText('energyshopdescription')}
+        {"name" : "gold",           "image" : "images/shopItemCoin.png",          "description" : getLocalizedText('goldshopdescription')}
+       ,{"name" : "trainer_points", "image" : "images/shopItemTrainerPoints.png", "description" : getLocalizedText('trainerpointsshopdescription')}
+       ,{"name" : "energy",         "image" : "images/shopItemEnergy.png",        "description" : getLocalizedText('energyshopdescription')}
     ];
   }
   

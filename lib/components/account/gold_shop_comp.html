@@ -7,7 +7,7 @@
   <div class="content">
   
     <div class="content-banner">
-      <img src="{{getShopBanner()}}">
+      <img ng-src="{{getShopBanner()}}">
     </div>
     
     <div class="products-wrapper">
@@ -23,7 +23,7 @@
         <div class="slot-content">    
         
           <div class="image-column">
-            <img class="item-icon" src="images/{{item.captionImage}}">
+            <img class="item-icon" ng-src="images/{{item.captionImage}}">
           </div>
         
           <div class="quantity-column">
@@ -39,7 +39,7 @@
             <span class="product-price" ng-class="{'no-frees' : !(item.freeIncrement > 0)}">{{item.price}}</span>
           </div>
           <div class="clearfix"></div>
-          <img src="{{getLocalizedText('mostpopularimagesource')}}" class="shop-item-popular" ng-if="item.isMostPopular">
+          <img ng-src="{{getLocalizedText('mostpopularimagesource')}}" class="shop-item-popular" ng-if="item.isMostPopular">
         
         </div>   
       </div>
@@ -47,7 +47,7 @@
     </div>
     
     <div class="buttons-wrapper">
-       <div class="button-box"><button id="btnClose" class="cancel-button" data-dismiss="modal"> {{getLocalizedText('buttonback')}}</button></div>
+       <div class="button-box"><button id="btnClose" class="cancel-button" ng-click="CloseModal()"> {{getLocalizedText('buttonback')}}</button></div>
     </div>
 
 

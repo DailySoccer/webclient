@@ -3,6 +3,7 @@ library gold_shop_comp;
 import 'package:angular/angular.dart';
 import 'package:webclient/utils/html_utils.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/components/modal_comp.dart';
 
 @Component(
     selector: 'gold-shop-comp',
@@ -35,5 +36,9 @@ class GoldShopComp {
   buyItem(String id) {
     modalShow("Gold Shop", "Quieres comprar elemento [" + id + "]");
   }  
+  
+  void CloseModal() {
+    ModalComp.close();
+  }
 }
 

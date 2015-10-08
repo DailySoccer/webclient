@@ -73,7 +73,7 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS, _refreshMyContests);
   }
 
-  void _refreshMyContests() {
+  void _refreshMyContests() {    
     Future myContests =
           _tabSelected  == TAB_WAITING  ? contestsService.refreshMyActiveContests()
         : _tabSelected  == TAB_LIVE     ? contestsService.refreshMyLiveContests()

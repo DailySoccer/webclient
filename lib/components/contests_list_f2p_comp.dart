@@ -29,7 +29,10 @@ class ContestsListF2PComp {
   }
 
   @NgOneWay("action-button-title")
-  String actionButtonTitle = "DETAIL";
+  String actionButtonTitle = "VER";
+  
+  @NgOneWay("show-date")
+  bool showDate = true;
 
   @NgCallback('on-list-change')
   Function onListChange;
@@ -79,8 +82,36 @@ class ContestsListF2PComp {
     return contest.hasSpecialImage ? contest.specialImage : "";
   }
 
+  
   String timeInfo(DateTime date) {
+    // Avisamos 2 horas antes...
+    if (DateTimeService.isToday(date) && date.isAfter(DateTimeService.now)) {
+      Duration duration = DateTimeService.getTimeLeft(date);
+      int minutesLeft = duration.inMinutes;
+      if (minutesLeft >= 0 && minutesLeft < 120) {
+        return (minutesLeft >= 30) ? "${minutesLeft} min." : "Faltan";
+      }
+    }
     return DateTimeService.formatTimeShort(date);
+  }
+  
+  String dateInfo(DateTime date) {
+    // Avisamos cuando sea "Hoy"
+    if (DateTimeService.isToday(date)) {
+      Duration duration = DateTimeService.getTimeLeft(date);
+
+      // Avisamos unos minutos antes (30 min)
+      if (duration.inMinutes >= 0 && duration.inMinutes < 30) {
+        int secondsTotal = duration.inSeconds;
+        int minutes = secondsTotal ~/ 60;
+        int seconds = secondsTotal - (minutes * 60);
+        if (minutes >= 0 && seconds >= 0) {
+          return (seconds >= 10) ? "$minutes:$seconds" : "$minutes:0$seconds";
+        }
+      }
+      return "Today";
+    }
+    return DateTimeService.formatDateShort(date);
   }
 
   /********* HANDLERS */

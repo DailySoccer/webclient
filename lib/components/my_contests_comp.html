@@ -30,9 +30,9 @@
           </div>
           <!-- lista de concursos -->
           <div class="list-container" ng-switch-when="true">
-            <contests-list id="liveContests" contests-list="contestsService.liveContests"
+            <contests-list-f2p id="liveContests" contests-list="contestsService.liveContests"
                            sorting="liveSortType" on-action-click='onLiveActionClick(contest)' on-row-click='onLiveActionClick(contest)'>
-            </contests-list>
+            </contests-list-f2p>
           </div>
         </section>
       </div>
@@ -54,9 +54,9 @@
           </div>
           <!-- lista de concursos -->
           <div class="list-container" ng-switch-when="true">
-            <contests-list id="waitingContests" contests-list='contestsService.waitingContests'
+            <contests-list-f2p id="waitingContests" contests-list='contestsService.waitingContests' show-date="true"
                            sorting="waitingSortType" on-action-click='onWaitingActionClick(contest)' on-row-click='onWaitingActionClick(contest)'>
-            </contests-list>
+            </contests-list-f2p>
           </div>
         </section>
       </div>
@@ -78,9 +78,9 @@
           </div>
           <!-- lista de concursos -->
           <div class="list-container" ng-switch-when="true">
-            <contests-list id="historyContests" contests-list="contestsService.historyContests"
+            <contests-list-f2p id="historyContests" contests-list="contestsService.historyContests" show-date="true"
                            sorting="historySortType" on-action-click='onHistoryActionClick(contest)' on-row-click='onHistoryActionClick(contest)'>
-            </contests-list>
+            </contests-list-f2p>
           </div>
         </section>
       </div>

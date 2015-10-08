@@ -1,0 +1,326 @@
+.contest-header-f2p-wrapper {
+	.container-fluid();
+	position: relative;
+	background-color: @greyLight;
+	padding-bottom: 5px;
+	padding-top: 50px;
+	padding-left: 0px;
+	min-height: 31px;
+	width: 100%;
+	position: relative;
+	@media (max-width: @screen-xs-max) {
+		padding-bottom: 10px;
+	}
+	background-color: @white;
+	//Sección de iconos que definen el tipo y torneo del concurso
+	.tournament-and-type-section {
+		position: absolute;
+		top: 0px;
+		width: 100%;
+		.flag {
+			position: absolute;
+			top: 11px;				
+			left: 15px;
+		}
+		.contest-type {
+			position: absolute; 
+			top: -1px;
+			left: 35px;
+			width: 20px;
+			height: 31px;
+			&.real {background-image: url("@{images}/realContest.png");}
+			&.train {background-image: url("@{images}/trainContest.png");}
+		}
+	}
+	
+	.close-contest {		
+		position: absolute;
+		right: 10px;
+		top: 10px;
+		// Posición para versión xs
+		@media (max-width: @screen-xs-max) {
+			right: 5px;
+			top: 8px;
+		}
+		.btn::after {
+			.create-glyph("\E014", 9pt);
+		}
+	}
+	
+	// Sección de nombre y descripción
+	.name-section {
+		.make-xs-column(12);
+		.make-sm-column(8);
+		@media (max-width: @screen-xs-max) {
+			margin-bottom: 10px;
+		}
+		.contest-name {
+			.opensans_bold(9pt, @blueDark);
+			@media (min-width: @screen-sm-min) {
+				.exo_bold(12pt, @blueDark);
+			}
+		}
+		.contest-description {
+			.opensans_normal(9pt, @greyDark);
+			@media (min-width: @screen-sm-min) {
+				.opensans_normal(9pt, @greyDark);
+			}
+		}
+	}
+	
+	// Sección de concidiones de pago y premio del concurso
+	.conditions-section {
+		.condition-box-commons {
+			.make-xs-column(5.5);
+			.make-sm-column(1.5);
+			.opensans_bold(9pt, @greyDark);		
+			position: relative;
+
+			@media (min-width: @screen-sm-min) {
+				.opensans_bold(14pt, @greyDark);
+				border-radius: 5px;
+				box-shadow: 1px 1px 7px rgba(0,0,0,0.5) inset;
+				padding: 5px 10px 8px 10px;
+				top: -5px;
+			}
+			@media (max-width: @screen-xs-max) {
+				max-width:125px;
+			}
+			img {
+				vertical-align: top; 
+				margin-right: 10px;
+			}
+			.condition-amount {
+				.make-sm-column(12);
+				padding: 3px 0px 0px 0px;
+				text-align: left;
+				line-height: 30px;
+			}
+			.condition-name {
+				.opensans_normal(8pt, @greyMed);
+				line-height: 15px;
+
+				@media (min-width: @screen-sm-min) {
+					position: absolute;
+					top: -17px;
+					left: 0px;
+				}
+			}
+		}
+
+		.player-position {
+			.condition-box-commons();
+			@media (min-width: @screen-sm-min) {
+				margin-right: 10px;
+				margin-left: -10px;
+			}
+			.condition-amount {
+				color: @greyMed;
+				.current-position {
+					color: @greyUltraDark;
+				}
+			}
+		}
+		.entry-fee-box {
+			.condition-box-commons();
+			@media (min-width: @screen-sm-min) {
+				margin-right: 10px;
+				margin-left: -10px;
+			}
+		}
+		.prize-box {
+			.condition-box-commons();
+		}
+		.fit-icon-size {
+			width: 16px;
+			height: 16px;
+			position: relative;
+			display: inline-block;
+			margin-left: 3px;
+			top: 2px;
+			@media (min-width: @screen-sm-min) {
+				float: right;
+				width: 25px;
+				height: 25px;
+				margin-left: 0px;
+				top: 0px;
+			}
+		}
+		.entry-fee-energy::after {
+			content: " ";
+			background-image: url("@{images}/icon-lightning-xs.png");
+			@media (min-width: @screen-sm-min) {
+				background-image: url("@{images}/icon-lightning-lg.png");
+			}
+			.fit-icon-size();
+		}		
+		.entry-fee-coin::after, .prize-coin::after {
+			content: " ";
+			background-image: url("@{images}/icon-coin-xs.png");
+			@media (min-width: @screen-sm-min) {
+				background-image: url("@{images}/icon-coin-lg.png");
+			}
+			.fit-icon-size();
+		}
+		.prize-managerpoints::after {
+			content: " ";
+			background-image: url("@{images}/icon-star-xs.png");
+			@media (min-width: @screen-sm-min) {
+				background-image: url("@{images}/icon-star-lg.png");
+			}
+			.fit-icon-size();
+		}
+	}
+	
+	.date-time-data {
+		
+		.date-time-text{
+			span {
+				.opensans_bold(8pt, @blueLight);
+				@media (min-width: @screen-sm-min) {
+					.opensans_bold(11pt, @blueLight);
+				}
+			}
+		}
+		
+		.make-row(0);
+		display: inline-block;
+		//background-color: @greyUltraDark;
+		line-height: 2;
+		// Fecha comienzo contest
+		.contest-start-date {
+		  white-space: nowrap;
+			.make-xs-column(6);
+			.date-time-text();
+			text-align: left;			
+		}
+
+		// Contador para comienzo de contest
+		.contest-countdown-text {
+			.make-xs-column(6);
+			.date-time-text();
+			text-align: right;
+			padding-left: 0px;
+		}
+	}
+	
+}
+
+
+
+/*
+
+// Reserva de sitio
+contest-header {
+	background-color: @white;
+	display: block;
+	min-height: 125px;
+	@media (min-width: @screen-sm-min) {
+		min-height: 115px;
+	}
+}
+.rounded-borders {
+	border-radius: 5px 5px 0 0;
+}
+#contestHeaderWrapper {
+	.container-fluid();
+	position: relative;
+	padding: 0;
+	.contest-relevant-data {
+		.make-row(0);		
+		padding: 20px 0 12px 0;
+		.contest-name-description {
+			.make-xs-column(12, 0);
+			.make-sm-column(8, 0);
+			.contest-big-bold-text();
+			padding: 0 15px 0px 15px;
+			
+		}
+		.contest-price, .contest-prize {
+			.make-xs-column(6);
+			.make-sm-column(2);
+			.contest-big-light-text();
+		}
+		.contest-explanation {
+			.contest-small-bold-text();
+			@media (max-width: @screen-xs-max) {
+				padding-top: 5px;
+				padding-bottom: 10px;
+			}
+		}
+		.contest-coins-header, .contest-coins-header-title   {
+			.contest-small-light-text();
+		}
+		
+		.contest-coins-content {
+			// Inversion para header y content
+			.pull-left();
+			.make-sm-column(12, 0);
+			.iconPrize {
+				.size(32px, 26px);
+				position: absolute;
+				left: -38px;
+				top: 3px;
+			}
+			> span {
+				@media (max-width: @screen-xs-max) {
+					display: inline-block;
+					margin-right: 10px;
+					.badge();
+					background-color: @greyLight;
+				}
+				.contest-big-light-text();
+			}			
+		}
+		
+	}
+	.date-time-text{
+		span {
+			.opensans_bold(8pt, @blueLight);
+			@media (min-width: @screen-sm-min) {
+				.opensans_bold(11pt, @blueLight);
+			}
+		}
+	}
+	.date-time-data {
+		.make-row(0);
+		display: inline-block;
+		//background-color: @greyUltraDark;
+		line-height: 2;
+		// Fecha comienzo contest
+		.contest-start-date {
+		  white-space: nowrap;
+			.make-xs-column(6);
+			.date-time-text();
+			text-align: left;			
+		}
+
+		// Contador para comienzo de contest
+		.contest-countdown-text {
+			.make-xs-column(6);
+			.date-time-text();
+			text-align: right;
+			padding-left: 0px;
+		}
+//		&:after {
+//			height: 1px;
+//			width: 100%;
+//			background-color: @greyMed;
+//			content: "";
+//		}
+	}
+	// Botón de cerrar
+	.close-contest {		
+		position: absolute;
+		right: 10px;
+		top: 10px;
+		// Posición para versión xs
+		@media (max-width: @screen-xs-max) {
+			right: 5px;
+			top: 8px;
+		}
+		.btn::after {
+			.create-glyph("\E014", 9pt);
+		}
+	}
+}*/

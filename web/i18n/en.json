@@ -11,7 +11,9 @@
     "common"                            :
     {
       "day"                             : " DAY ",
-      "days"                            : " DAYS "
+      "days"                            : " DAYS ",
+      "points"                          : " Points ",
+      "abrevpoints"                     : " PTS. "
     },
     "date"                              :
     {
@@ -291,10 +293,11 @@
     },
     "contestlist"                       :
     {
-      "entryfee"                        : "ENTRY FEE",
+      "entryfee"                        : "Entry fee:",
       "of"                              : "OF",
-      "prize"                            : "PRIZE",
-      "points"                          : "POINTS"
+      "prize"                           : "Prize",
+      "points"                          : "POINTS",
+      "position"                        : "Position:"
     },
     "contestfilters"                    :
     {
@@ -377,7 +380,9 @@
       "startson"                        : "STARTS ON ",
       "verysoon"                        : "STARTS VERY SOON ",
       "startsin"                        : "STARTS IN ",
-      "salarycap"                       : "contenders - Salary cap"
+      "salarycap"                       : "contenders - Salary cap",
+      "entryfee"                        : "Entry fee:",
+      "prize"                           : "Prize:"
     },
     "contest"                           :
     {

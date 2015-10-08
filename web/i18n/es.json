@@ -293,10 +293,11 @@
     },
     "contestlist"                       :
     {
-      "entryfee"                        : "CUOTA",
+      "entryfee"                        : "Precio:",
       "of"                              : "DE",
-      "prize"                           : "PREMIO",
-      "points"                          : "PUNTOS"
+      "prize"                           : "Premio:",
+      "points"                          : "PUNTOS",
+      "position"                        : "Puesto:"
     },
     "contestfilters"                    :
     {
@@ -379,7 +380,9 @@
       "startson"                        : "EMPIEZA EL ",
       "verysoon"                        : "EMPIEZA MUY PRONTO ",
       "startsin"                        : "EMPIEZA DENTRO DE ",
-      "salarycap"                       : "participantes - cuota"
+      "salarycap"                       : "participantes - cuota",
+      "entryfee"                        : "Precio:",
+      "prize"                           : "Premio:"
     },
     "contest"                           :
     {
@@ -423,15 +426,15 @@
       "tablive"                         : "En Directo",
       "tabupcoming"                     : "Próximos",
       "tabhistory"                      : "Historico",
-      "nolives"                         : "NO ESTAS JUGANDO NINGúN TORNEOS<br>EN ESTE MOMENTO",
+      "nolives"                         : "NO ESTAS JUGANDO NINGúN TORNEO EN ESTE MOMENTO",
       "nolivestip1"                     : "ÉCHALE UN VISTAZO A LA LISTA DE TUS ",
       "nolivestip2"                     : "PRÓXIMOS TORNEOS",
       "nolivestip3"                     : " PARA VER CUANDO EMPIEZAN",
       "tocontest"                       : "IR A LOS TORNEOS",
-      "noupcomings"                     : "NO TIENES ALINEACIONES PARA NINGÚN TORNEOS<br>EN ESTE MOMENTO",
-      "noupcomingstip1"                 : "VES A LA LISTA DE TORNEOS, ELIGE UNO Y EMPIEZA A JUGAR",
-      "nohistorys"                      : "AÚN NO HAS JUGADO NINGÚN TORNEOS<br>¿A QUÉ ESPERAS PARA EMPEZAR A GANAR?",
-      "nohistoryestip"                  : "VES A LA LISTA DE TORNEOS, ELIGE UNO Y EMPIEZA A JUGAR",
+      "noupcomings"                     : "NO TIENES ALINEACIONES PARA NINGÚN TORNEO<br>EN ESTE MOMENTO",
+      "noupcomingstip1"                 : "VE A LA LISTA DE TORNEOS, ELIGE UNO Y EMPIEZA A JUGAR",
+      "nohistorys"                      : "AÚN NO HAS JUGADO NINGÚN TORNEO<br>¿A QUÉ ESPERAS PARA EMPEZAR A GANAR?",
+      "nohistoryestip"                  : "VE A LA LISTA DE TORNEOS, ELIGE UNO Y EMPIEZA A JUGAR",
       "hasLivecontests1"                : "TORNEOS EN DIRECTO",
       "hasLivecontests2"                : "PUEDES SEGUIR EN DIRECTO TUS TORNEOS DESDE AQUÍ",
       "haswaitingcontests1"             : "HAS PARTICIPADO EN",

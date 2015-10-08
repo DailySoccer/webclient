@@ -51,6 +51,7 @@ import 'package:webclient/components/contests_list_f2p_comp.dart';
 import 'package:webclient/components/contest_info_comp.dart';
 import 'package:webclient/components/scoring_rules_comp.dart';
 import 'package:webclient/components/contest_header_comp.dart';
+import 'package:webclient/components/contest_header_f2p_comp.dart';
 import 'package:webclient/components/leaderboard_comp.dart';
 import 'package:webclient/components/leaderboard_table_comp.dart';
 
@@ -169,6 +170,7 @@ class WebClientApp extends Module {
     bind(LeaderboardTableComp);
 
     bind(ContestHeaderComp);
+    bind(ContestHeaderF2PComp);
     bind(ContestInfoComp);
     bind(ScoringRulesComp);
 

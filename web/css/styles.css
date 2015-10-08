@@ -11418,12 +11418,6 @@ fieldset[disabled] #withdrawFundsContent .withdraw-founds-box button.withdraw-fu
   margin: 15px;
   height: 220px;
 }
-@media (max-width: 767px) {
-  #goldShopComp .content-banner,
-  #trainerPointsShopComp .content-banner {
-    display: none !important;
-  }
-}
 #goldShopComp .content-banner img,
 #trainerPointsShopComp .content-banner img {
   position: absolute;
@@ -11838,11 +11832,6 @@ fieldset[disabled] #trainerPointsShopComp .buttons-wrapper .cancel-button {
   position: relative;
   margin: 15px;
   height: 220px;
-}
-@media (max-width: 767px) {
-  #energyshopComp .content-banner {
-    display: none !important;
-  }
 }
 #energyshopComp .content-banner img {
   position: absolute;

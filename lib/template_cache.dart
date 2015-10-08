@@ -321,20 +321,66 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
 </div>"""));
 tc.put("packages/webclient/components/account/energy_shop_comp.html", new HttpResponse(200, r"""<modal id="energyshopComp">
   
-  <div class="header">
-  
-  </div>
+  <!--<div class="header"></div> -->
   
   <div class="content">
   
+    <div class="content-banner">
+      <img ng-src="{{getShopBanner()}}">
+    </div>
+    
+    <div class="products-wrapper">
+    
+      <div ng-repeat="item in products"  ng-click="buyEnergy(item.id)">
+        
+        
+        <div ng-class="{'no-purchasable': !item.purchasable}" class="product" ng-if="item.price != null || timeLeft != ''">
+        
+        
+        
+          <div class="slot-base">        
+            <div class="shop-item-left"></div>
+            <div class="shop-item-middle"></div>      
+            <div class="shop-item-right"></div>        
+          </div>
+          <div class="shop-item-pattern"></div>
+          
+          <div class="slot-content">
+          
+            <div class="image-column">
+              <img class="item-icon" ng-src="images/{{item.captionImage}}">
+            </div>
+          
+            <div class="quantity-column">
+              <span class="product-description">{{item.description}}</span>
+              <div ng-switch="item.purchasable">
+                <span ng-switch-when="true"  class="product-count">{{item.price}}</span>
+                <span ng-switch-when="false" class="product-time-left">{{timeLeft}}</span>
+              </div>
+            </div>
+          
+       	  </div>
+        
+        
+          
+        </div>
+        
+        
+           
+      </div>
+      
+    </div>
+  
+    <div class="buttons-wrapper">
+     <div class="button-box"><button id="btnClose" class="cancel-button" ng-click="CloseModal()">{{getLocalizedText('buttonback')}}</button></div>
+    </div>
+    
   </div>
   
 </modal>"""));
 tc.put("packages/webclient/components/account/gold_shop_comp.html", new HttpResponse(200, r"""<modal id="goldShopComp">
   
-  <div class="header">
-  
-  </div>
+  <!--<div class="header"></div> -->
   
   <div class="content">
   
@@ -379,7 +425,7 @@ tc.put("packages/webclient/components/account/gold_shop_comp.html", new HttpResp
     </div>
     
     <div class="buttons-wrapper">
-       <div class="button-box"><button id="btnClose" class="cancel-button" data-dismiss="modal"> {{getLocalizedText('buttonback')}}</button></div>
+       <div class="button-box"><button id="btnClose" class="cancel-button" ng-click="CloseModal()">{{getLocalizedText('buttonback')}}</button></div>
     </div>
 
 

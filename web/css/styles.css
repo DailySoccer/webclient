@@ -7765,23 +7765,33 @@ contest-header {
     color: #777777;
   }
 }
-.contests-list-f2p-root .contestSlot .conditions-section .condition-box-commons {
+.contests-list-f2p-root .contestSlot .conditions-section {
   float: left;
-  width: 45.83333333%;
+  width: 83.33333333%;
+  position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  padding: 0px;
+}
+@media (min-width: 768px) {
+  .contests-list-f2p-root .contestSlot .conditions-section {
+    float: left;
+    width: 25%;
+  }
+}
+.contests-list-f2p-root .contestSlot .conditions-section .condition-box-commons {
+  float: left;
+  width: 50%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-right: 0px;
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 9pt;
   color: #777777;
   position: relative;
-}
-@media (min-width: 768px) {
-  .contests-list-f2p-root .contestSlot .conditions-section .condition-box-commons {
-    float: left;
-    width: 12.5%;
-  }
 }
 @media (min-width: 768px) {
   .contests-list-f2p-root .contestSlot .conditions-section .condition-box-commons {
@@ -7793,11 +7803,6 @@ contest-header {
     box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5) inset;
     padding: 5px 10px 8px 10px;
     top: -5px;
-  }
-}
-@media (max-width: 767px) {
-  .contests-list-f2p-root .contestSlot .conditions-section .condition-box-commons {
-    max-width: 125px;
   }
 }
 .contests-list-f2p-root .contestSlot .conditions-section .condition-box-commons img {
@@ -7812,6 +7817,7 @@ contest-header {
   padding: 3px 0px 0px 0px;
   text-align: left;
   line-height: 30px;
+  display: inline-block;
 }
 @media (min-width: 768px) {
   .contests-list-f2p-root .contestSlot .conditions-section .condition-box-commons .condition-amount {
@@ -7825,6 +7831,7 @@ contest-header {
   font-size: 8pt;
   color: #afafaf;
   line-height: 15px;
+  display: inline-block;
 }
 @media (min-width: 768px) {
   .contests-list-f2p-root .contestSlot .conditions-section .condition-box-commons .condition-name {
@@ -7835,21 +7842,16 @@ contest-header {
 }
 .contests-list-f2p-root .contestSlot .conditions-section .player-position {
   float: left;
-  width: 45.83333333%;
+  width: 50%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  padding-right: 0px;
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 9pt;
   color: #777777;
   position: relative;
-}
-@media (min-width: 768px) {
-  .contests-list-f2p-root .contestSlot .conditions-section .player-position {
-    float: left;
-    width: 12.5%;
-  }
 }
 @media (min-width: 768px) {
   .contests-list-f2p-root .contestSlot .conditions-section .player-position {
@@ -7861,11 +7863,6 @@ contest-header {
     box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5) inset;
     padding: 5px 10px 8px 10px;
     top: -5px;
-  }
-}
-@media (max-width: 767px) {
-  .contests-list-f2p-root .contestSlot .conditions-section .player-position {
-    max-width: 125px;
   }
 }
 .contests-list-f2p-root .contestSlot .conditions-section .player-position img {
@@ -7880,6 +7877,7 @@ contest-header {
   padding: 3px 0px 0px 0px;
   text-align: left;
   line-height: 30px;
+  display: inline-block;
 }
 @media (min-width: 768px) {
   .contests-list-f2p-root .contestSlot .conditions-section .player-position .condition-amount {
@@ -7893,6 +7891,7 @@ contest-header {
   font-size: 8pt;
   color: #afafaf;
   line-height: 15px;
+  display: inline-block;
 }
 @media (min-width: 768px) {
   .contests-list-f2p-root .contestSlot .conditions-section .player-position .condition-name {
@@ -7915,21 +7914,16 @@ contest-header {
 }
 .contests-list-f2p-root .contestSlot .conditions-section .entry-fee-box {
   float: left;
-  width: 45.83333333%;
+  width: 50%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  padding-right: 0px;
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 9pt;
   color: #777777;
   position: relative;
-}
-@media (min-width: 768px) {
-  .contests-list-f2p-root .contestSlot .conditions-section .entry-fee-box {
-    float: left;
-    width: 12.5%;
-  }
 }
 @media (min-width: 768px) {
   .contests-list-f2p-root .contestSlot .conditions-section .entry-fee-box {
@@ -7941,11 +7935,6 @@ contest-header {
     box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5) inset;
     padding: 5px 10px 8px 10px;
     top: -5px;
-  }
-}
-@media (max-width: 767px) {
-  .contests-list-f2p-root .contestSlot .conditions-section .entry-fee-box {
-    max-width: 125px;
   }
 }
 .contests-list-f2p-root .contestSlot .conditions-section .entry-fee-box img {
@@ -7960,6 +7949,7 @@ contest-header {
   padding: 3px 0px 0px 0px;
   text-align: left;
   line-height: 30px;
+  display: inline-block;
 }
 @media (min-width: 768px) {
   .contests-list-f2p-root .contestSlot .conditions-section .entry-fee-box .condition-amount {
@@ -7973,6 +7963,7 @@ contest-header {
   font-size: 8pt;
   color: #afafaf;
   line-height: 15px;
+  display: inline-block;
 }
 @media (min-width: 768px) {
   .contests-list-f2p-root .contestSlot .conditions-section .entry-fee-box .condition-name {
@@ -7989,21 +7980,16 @@ contest-header {
 }
 .contests-list-f2p-root .contestSlot .conditions-section .prize-box {
   float: left;
-  width: 45.83333333%;
+  width: 50%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  padding-right: 0px;
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 9pt;
   color: #777777;
   position: relative;
-}
-@media (min-width: 768px) {
-  .contests-list-f2p-root .contestSlot .conditions-section .prize-box {
-    float: left;
-    width: 12.5%;
-  }
 }
 @media (min-width: 768px) {
   .contests-list-f2p-root .contestSlot .conditions-section .prize-box {
@@ -8015,11 +8001,6 @@ contest-header {
     box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5) inset;
     padding: 5px 10px 8px 10px;
     top: -5px;
-  }
-}
-@media (max-width: 767px) {
-  .contests-list-f2p-root .contestSlot .conditions-section .prize-box {
-    max-width: 125px;
   }
 }
 .contests-list-f2p-root .contestSlot .conditions-section .prize-box img {
@@ -8034,6 +8015,7 @@ contest-header {
   padding: 3px 0px 0px 0px;
   text-align: left;
   line-height: 30px;
+  display: inline-block;
 }
 @media (min-width: 768px) {
   .contests-list-f2p-root .contestSlot .conditions-section .prize-box .condition-amount {
@@ -8047,6 +8029,7 @@ contest-header {
   font-size: 8pt;
   color: #afafaf;
   line-height: 15px;
+  display: inline-block;
 }
 @media (min-width: 768px) {
   .contests-list-f2p-root .contestSlot .conditions-section .prize-box .condition-name {

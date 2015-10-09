@@ -110,9 +110,14 @@
 		}
 		// Sección de concidiones de pago y premio del concurso
 		.conditions-section {
+			
+			.make-xs-column(10);
+			.make-sm-column(3);
+			padding: 0px;
+			
 			.condition-box-commons {
-				.make-xs-column(5.5);
-				.make-sm-column(1.5);
+				.make-xs-column(6);
+				padding-right: 0px;
 				.opensans_bold(9pt, @greyDark);		
 				position: relative;
 				
@@ -123,9 +128,6 @@
 					padding: 5px 10px 8px 10px;
 					top: -5px;
 				}
-				@media (max-width: @screen-xs-max) {
-					max-width:125px;
-				}
 				img {
 					vertical-align: top; 
 					margin-right: 10px;
@@ -135,10 +137,12 @@
 					padding: 3px 0px 0px 0px;
 					text-align: left;
 					line-height: 30px;
+					display: inline-block;
 				}
 				.condition-name {
 					.opensans_normal(8pt, @greyMed);
 					line-height: 15px;
+					display: inline-block;
 					
 					@media (min-width: @screen-sm-min) {
 						position: absolute;

@@ -262,6 +262,13 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
     }
     return profileService.user.ManagerPoints.toString();
   }
+  
+  String get _userManagerLevel {
+    if (!profileService.isLoggedIn) {
+      return "";
+    }
+    return profileService.user.managerBalance.toString();
+  }
 
   String get _userGold {
     if (!profileService.isLoggedIn) {
@@ -364,11 +371,13 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
               </div>            
               <span class="plus">+</span></div>            
           </div>
-
           <div class="manager-points additive" destination="shop"> 
-
-            <img src="images/icon-star-lg.png">     
-            <div class="count">${_userManagerPoints}<span class="plus">+</span></div>
+            <img src="images/icon-star-lg.png">
+            <span class="managerLevel">${_userManagerLevel}</span>     
+            <div class="count">
+                ${_userManagerPoints}
+                <span class="plus">+</span>
+            </div>
             
           </div>
 

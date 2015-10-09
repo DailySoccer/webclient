@@ -1,15 +1,14 @@
 library contests_list_f2p_comp;
 
+import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/contest_entry.dart';
+import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/models/money.dart';
-import 'dart:math';
-import 'package:webclient/services/datetime_service.dart';
-import 'dart:html';
 
 @Component(
     selector: 'contests-list-f2p',
@@ -24,9 +23,6 @@ class ContestsListF2PComp {
   // Lista original de los contest
   List<Contest> contestsListOriginal = [];
   List<Contest> contestsListOrdered = [];
-  ScreenDetectorService scrDet;
-
-  Map _sortOrder = {'fieldName':'contest-start-time', 'order': 1};
   
   /********* BINDINGS */
   @NgOneWay("contests-list")
@@ -45,7 +41,8 @@ class ContestsListF2PComp {
   bool showDate = false;
   
   @NgOneWay("sorting")
-  void sortOrder(Map value) {
+  void set sortOrder(Map value) {
+    print(value);
     _sortOrder = value;
     refreshListOrder();
   }
@@ -202,6 +199,8 @@ class ContestsListF2PComp {
     }
   }
   
-  
+
+  Map _sortOrder = {'fieldName':'contest-start-time', 'order': 1};
   ProfileService _profileService;
+  ScreenDetectorService scrDet;
 }

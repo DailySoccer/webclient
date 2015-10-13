@@ -23,7 +23,6 @@ class LeaderboardService {
     }
     else {
       // Solicitamos al server la leaderboard
-      var random = new Random();
       _server.getLeaderboard()
         .then((jsonMapRoot) {
             users = jsonMapRoot.containsKey("users") ? jsonMapRoot["users"].map((jsonObject) => new User.fromJsonObject(jsonObject)).toList() : [];

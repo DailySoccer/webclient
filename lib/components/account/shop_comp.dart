@@ -1,8 +1,9 @@
 library shop_comp;
 
-import 'dart:html';
 import 'package:angular/angular.dart';
-import 'package:webclient/services/screen_detector_service.dart';
+import 'package:webclient/components/modal_comp.dart';
+import 'package:webclient/services/loading_service.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 @Component(
     selector: 'shop-comp',
@@ -10,14 +11,29 @@ import 'package:webclient/services/screen_detector_service.dart';
     useShadowDom: false
 )
 class ShopComp {
+
+  LoadingService loadingService;
   
-  Map shopData;
+  List<Map> shops;
   
-  ShopComp(this._scrDet) {
-    
+  String getLocalizedText(key) {
+    return StringUtils.translate(key, "shop");
   }
   
+  ShopComp(this._router) {
+    shops = [
+        {"name" : "gold",           "image" : "images/shopItemCoin.png",          "description" : getLocalizedText('goldshopdescription')}
+       ,{"name" : "trainer_points", "image" : "images/shopItemTrainerPoints.png", "description" : getLocalizedText('trainerpointsshopdescription')}
+       ,{"name" : "energy",         "image" : "images/shopItemEnergy.png",        "description" : getLocalizedText('energyshopdescription')}
+    ];
+  }
   
-  ScreenDetectorService _scrDet;
+  void openShop(String name) {
+    if (name != 'trainer_points') {
+      ModalComp.open(_router, "shop." + name, {});
+    }
+  }
+  
+  Router _router;  
 }
 

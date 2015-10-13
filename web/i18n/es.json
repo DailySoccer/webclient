@@ -502,6 +502,31 @@
       "penaltysaved"                    : "Penalti parado",
       "clean"                           : "Portería a cero",
       "goalconceded"                    : "Gol recibido"
+    },
+    "shop"                              :
+    {
+      "goldshopdescription"             : "Compra Monedas y accede a torneos <strong>oficiales</strong>",
+      "trainerpointsshopdescription"    : "Aumenta tu nivel de entrenador y ficha a los <strong>mejores jugadores</strong>",
+      "energyshopdescription"           : "Recárgate de energía para acceder a torneos de <strong>entrenamiento</strong>"
+    },
+    "goldshop"                          :
+    {
+      "product1"                        : "CALDERILLA",
+      "product2"                        : "JEFAZO",
+      "product3"                        : "OJEADOR",
+      "product4"                        : "REPRESENTANTE",
+      "product5"                        : "PRESIDENTE",
+      "product6"                        : "HOMBRE DE NEGRO",
+      "free"                            : "GRATIS",
+      "buttonback"                      : "Volver",
+      "mostpopularimagesource"          : "images/icon-mas-popular.png"
+    },
+    "energyshop"                        :
+    {
+      "maxrefill"                       : "Recarga al máximo con:",
+      "autorefill"                      : "Recarga +1 automática en:",
+      "buttonback"                      : "Volver"
     }
+    
   }
 }

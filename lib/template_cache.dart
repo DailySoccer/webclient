@@ -319,6 +319,119 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
 
   </form>
 </div>"""));
+tc.put("packages/webclient/components/account/energy_shop_comp.html", new HttpResponse(200, r"""<modal id="energyshopComp">
+  
+  <!--<div class="header"></div> -->
+  
+  <div class="content">
+  
+    <div class="content-banner">
+      <img ng-src="{{getShopBanner()}}">
+    </div>
+    
+    <div class="products-wrapper">
+    
+      <div ng-repeat="item in products"  ng-click="buyEnergy(item.id)">
+        
+        
+        <div ng-class="{'no-purchasable': !item.purchasable}" class="product" ng-if="item.price != null || timeLeft != ''">
+        
+        
+        
+          <div class="slot-base">        
+            <div class="shop-item-left"></div>
+            <div class="shop-item-middle"></div>      
+            <div class="shop-item-right"></div>        
+          </div>
+          <div class="shop-item-pattern"></div>
+          
+          <div class="slot-content">
+          
+            <div class="image-column">
+              <img class="item-icon" ng-src="images/{{item.captionImage}}">
+            </div>
+          
+            <div class="quantity-column">
+              <span class="product-description">{{item.description}}</span>
+              <div ng-switch="item.purchasable">
+                <span ng-switch-when="true"  class="product-count">{{item.price}}</span>
+                <span ng-switch-when="false" class="product-time-left">{{timeLeft}}</span>
+              </div>
+            </div>
+          
+       	  </div>
+        
+        
+          
+        </div>
+        
+        
+           
+      </div>
+      
+    </div>
+  
+    <div class="buttons-wrapper">
+     <div class="button-box"><button id="btnClose" class="cancel-button" ng-click="CloseModal()">{{getLocalizedText('buttonback')}}</button></div>
+    </div>
+    
+  </div>
+  
+</modal>"""));
+tc.put("packages/webclient/components/account/gold_shop_comp.html", new HttpResponse(200, r"""<modal id="goldShopComp">
+  
+  <!--<div class="header"></div> -->
+  
+  <div class="content">
+  
+    <div class="content-banner">
+      <img ng-src="{{getShopBanner()}}">
+    </div>
+    
+    <div class="products-wrapper">
+      
+      <div ng-repeat="item in products" class="product" ng-click="buyItem(item.id)">
+        <div class="slot-base">        
+          <div class="shop-item-left"></div>
+          <div class="shop-item-middle"></div>      
+          <div class="shop-item-right"></div>        
+        </div>
+        <div class="shop-item-pattern" ng-if="!item.isMostPopular"></div>
+        
+        <div class="slot-content">    
+        
+          <div class="image-column">
+            <img class="item-icon" ng-src="images/{{item.captionImage}}">
+          </div>
+        
+          <div class="quantity-column">
+            <span class="product-description">{{item.description}}</span>
+            <span class="product-count">{{item.quantity}}</span>
+          </div>
+        
+          <div class="price-column">
+            <div class="free-increment" ng-if="item.freeIncrement > 0">
+              <span class="free-increment-count">{{item.freeIncrement}}</span>
+              <span class="free-increment-desc">{{getLocalizedText('free')}}</span>
+            </div>
+            <span class="product-price" ng-class="{'no-frees' : !(item.freeIncrement > 0)}">{{item.price}}</span>
+          </div>
+          <div class="clearfix"></div>
+          <img ng-src="{{getLocalizedText('mostpopularimagesource')}}" class="shop-item-popular" ng-if="item.isMostPopular">
+        
+        </div>   
+      </div>
+       
+    </div>
+    
+    <div class="buttons-wrapper">
+       <div class="button-box"><button id="btnClose" class="cancel-button" ng-click="CloseModal()">{{getLocalizedText('buttonback')}}</button></div>
+    </div>
+
+
+  </div>
+  
+</modal>"""));
 tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(200, r"""<div id="joinRoot" ng-show="!loadingService.isLoading" ng-class="{'air':!isModal}">
   <div id="signupbox" class="main-box" ng-class="{'air':!isModal}">
 
@@ -603,12 +716,39 @@ tc.put("packages/webclient/components/account/remember_password_comp.html", new 
 
   </div>
 </div>"""));
-tc.put("packages/webclient/components/account/shop_comp.html", new HttpResponse(200, r"""<div id="shopCompWrapper">
-  <div class="headerWrapper">
-    
+tc.put("packages/webclient/components/account/shop_comp.html", new HttpResponse(200, r"""<div id="mainShopCompWrapper">
+
+  <div class="items-wrapper">  
+    <div ng-repeat="item in shops" class="shop-item" ng-click="openShop(item.name)">
+      <div class="slot-base">        
+        <div class="shop-item-left"></div>
+        <div class="shop-item-middle"></div>      
+        <div class="shop-item-right"></div>        
+      </div>
+      <div class="shop-item-pattern"></div>
+      <div class="slot-content">    
+        <img class="item-icon" ng-src="{{item.image}}">
+        <span class="shop-item-info" ng-bind-html="'<span>'+item.description+'</span>'"></span>
+      </div>   
+    </div>
+  
+    <!-- Punto de insercion de nuestra ruta hija contest-info (modal) -->
+    <ng-view ng-show="!loadingService.isLoading"></ng-view>
+  
   </div>
   
 </div>"""));
+tc.put("packages/webclient/components/account/trainer_points_shop_comp.html", new HttpResponse(200, r"""<modal id="trainerPointsShopComp">
+  
+  <div class="header">
+  
+  </div>
+  
+  <div class="content">
+  
+  </div>
+  
+</modal>"""));
 tc.put("packages/webclient/components/account/transaction_history_comp.html", new HttpResponse(200, r"""<div id="transactionHistoryRoot">
   <!-- header title -->
   <div class="default-section-header">{{getLocalizedText("title")}}</div>
@@ -657,7 +797,7 @@ tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpR
       </div>
       <div class="data-content">
         <div class="data-row">
-          <div class="wrapper-box"> <span class="data-value-coins">{{userData.balance}}</span><img class="coin-icon" src="images/coin-lg.png"> </div>
+          <div class="wrapper-box"> <span class="data-value-coins">{{userData.balance}}</span><img class="coin-icon" src="images/icon-coin-lg.png"> </div>
         </div>
       </div>
       <div class="data-action">
@@ -670,15 +810,15 @@ tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpR
       </div>
       <div class="data-content">
         <div class="single-ranking-info ranking-by-points wrapper-box">
-          <img class="ranking-badge" src="images/leaderboardTopPointsDark.png">
-          <span class="ranking-position">{{rankingPointsPosition}}º</span>
-          <span class="ranking-score">{{rankingPoints}} {{getLocalizedText("abrevpoints", "common")}}</span>
+          <img class="ranking-badge" src="images/icon-Ranking-Skill-Blue.png">
+          <span class="ranking-position" ng-show="!loadingService.isLoading">{{rankingPointsPosition}}º</span>
+          <span class="ranking-score" ng-show="!loadingService.isLoading">{{rankingPoints}} {{getLocalizedText("abrevpoints", "common")}}</span>
         </div>
         <div class="single-ranking-info ranking-by-money wrapper-box">
         
-          <img class="ranking-badge" src="images/coin-lg.png">
-          <span class="ranking-position">{{rankingMoneyPosition}}º</span>
-          <span class="ranking-score">{{rankingMoney}}</span>
+          <img class="ranking-badge" src="images/icon-coin-lg.png">
+          <span class="ranking-position" ng-show="!loadingService.isLoading">{{rankingMoneyPosition}}º</span>
+          <span class="ranking-score" ng-show="!loadingService.isLoading">{{rankingMoney}}</span>
         </div>
       </div>
       <div class="data-action">
@@ -861,9 +1001,98 @@ tc.put("packages/webclient/components/contest_header_comp.html", new HttpRespons
 
 <div class="clearfix"></div>
 """));
+tc.put("packages/webclient/components/contest_header_f2p_comp.html", new HttpResponse(200, r"""
+<div class="contest-header-f2p-wrapper">
+  
+  <!-- margen arriba -->
+  <div class="name-section">
+    <div class="contest-name">{{contest.name}}</div>
+    <div class="contest-description">{{contest.description}}</div>
+  </div>
+
+  <div class="conditions-section">
+  
+    <div class="player-position" ng-if="contest.isLive || contest.isHistory">
+      <div class="condition-name"><span>{{getLocalizedText("position")}}</span></div>
+      <div class="condition-amount"><span class="current-position">{{contest.numEntries}}</span>/{{contest.maxEntries}}</div>
+    </div>
+    
+    <div class="entry-fee-box" ng-if="!(contest.isLive || contest.isHistory)">
+      <span class="condition-name">{{getLocalizedText("entryfee")}}</span>
+      <span class="condition-amount" ng-class="{'entry-fee-coin':getContestTypeIcon() == 'real', 'entry-fee-energy':getContestTypeIcon() == 'train'}">{{contest.entryFee}}</span>
+    </div>
+    <div class="prize-box">
+      <span class="condition-name">{{getLocalizedText("prize")}}</span>
+      <span class="condition-amount" ng-class="{'prize-coin':getContestTypeIcon() == 'real', 'prize-managerpoints':getContestTypeIcon() == 'train'}">{{contest.prizePool}}</span>
+    </div>
+  </div>
+  
+  <div class="date-time-data">
+    <div class="contest-start-date">
+      <span>{{info['startTime']}}&nbsp;</span>
+    </div>
+    <div class="contest-countdown-text">
+      <span class="text-countdown">{{info['textCountdownDate']}}&nbsp;</span>
+      <span class="time-countdown">{{info['countdownDate']}}&nbsp;</span>
+    </div>
+  </div>
+  
+  <div class="tournament-and-type-section">
+    <span class="{{getSourceFlag()}}"></span>
+    <span class="contest-type {{getContestTypeIcon()}}"></span>
+  </div>
+  
+  <div class="close-contest" ng-switch="isInsideModal">
+    <button type="button" ng-switch-when="true"  class="close" data-dismiss="modal">   <span class="glyphicon glyphicon-remove"></span></button>
+    <button type="button" ng-switch-when="false" class="close" ng-click="goToParent()"><span class="glyphicon glyphicon-remove"></span></button>
+  </div>
+
+
+  <!--div ng-if="isInsideModal" class="border-top"></div>
+  <div class="contest-relevant-data">
+    <div class="contest-name-description">
+      <div class="contest-name">{{info['description']}}</div>
+      <div class="contest-explanation">{{info['contestType']}} {{info['contestantCount']}}</div>
+   </div>
+    <div class="contest-price">
+      <div class="contest-coins-content"><span>{{info['entryPrice']}}</span></div>
+      <div class="contest-coins-header">{{getLocalizedText("entryfee")}}</div>
+    </div>
+
+    <div class="contest-prize">
+      <div class="contest-coins-content"><img ng-if="!scrDet.isXsScreen" class="iconPrize" src="images/iconPrize.png"><span>{{info['prize']}}</span></div>
+      <div class="contest-coins-header">
+        <div class="contest-coins-header-title">{{getLocalizedText("prizes")}}</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="date-time-data">
+    <div class="contest-start-date">
+      <span>{{info['startTime']}}&nbsp;</span>
+    </div>
+    <div class="contest-countdown-text">
+      <span class="text-countdown">{{info['textCountdownDate']}}&nbsp;</span>
+      <span class="time-countdown">{{info['countdownDate']}}&nbsp;</span>
+    </div>
+  </div>
+
+  <teams-panel id="teamsPanelComp" contest="contest" contest-id="contest.contestId"  ng-if="showMatches"></teams-panel>
+
+
+  <div class="close-contest" ng-switch="isInsideModal">
+    <button type="button" ng-switch-when="true"  class="close" data-dismiss="modal">   <span class="glyphicon glyphicon-remove"></span></button>
+    <button type="button" ng-switch-when="false" class="close" ng-click="goToParent()"><span class="glyphicon glyphicon-remove"></span></button>
+  </div-->
+
+</div>
+
+<div class="clearfix"></div>
+"""));
 tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(200, r"""<modal id="contestInfoModal" ng-if="isModal">
 
-  <contest-header id="contestInfoHeader" contest="contest" contest-id="contestId"  modal="true" show-matches="false"></contest-header>
+  <contest-header-f2p id="contestInfoHeader" contest="contest" contest-id="contestId"  modal="true" show-matches="false"></contest-header-f2p>
 
   <div class="modal-info-content">
 
@@ -926,7 +1155,7 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
                     <div class="contestant-element"ng-repeat="contestant in currentInfoData['contestants']">
                       <div class="contestant-position">{{$index + 1}}º</div>
                       <div class="contestant-name">{{contestant.name}}</div>
-                      <div class="contestant-points">{{contestant.wins + ' '}}<span class="prize-currency">{{getLocalizedText("wins")}}</span></div>
+                      <div class="contestant-points">{{contestant.trueSkill + ' '}}<span class="prize-currency">{{getLocalizedText("skill")}}</span></div>
                     </div>
                   </div>
                 </div>
@@ -982,7 +1211,7 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
       <div class="contestant-element"ng-repeat="contestant in currentInfoData['contestants']">
           <div class="contestant-position">{{$index + 1}}º</div>
           <div class="contestant-name">{{contestant.name}}</div>
-          <div class="contestant-points">{{contestant.wins + ' '}}<span class="prize-currency">{{getLocalizedText("wins")}}</span></div>
+          <div class="contestant-points">{{contestant.trueSkill + ' '}}<span class="prize-currency">{{getLocalizedText("skill")}}</span></div>
       </div>
   </div>
   <div class="clearfix"></div>
@@ -1054,12 +1283,15 @@ tc.put("packages/webclient/components/contests_list_f2p_comp.html", new HttpResp
     <div class="contestSlot" ng-class="{'special' : getContestMorfology(contest) == 'special'}" ng-click="onRow(contest)">
 
       <div class="special-image-section" ng-if="getContestMorfology(contest) == 'special'">
-        <img src="{{getContestImage(contest)}}"></img>
+        <img ng-src="{{getContestImage(contest)}}"></img>
       </div>
 
       <div class="time-section">
-         <div class="fake-time-column"></div>
-        <div class="column-start-hour">{{timeInfo(contest.startDate)}}</div>
+        <div class="fake-time-column"></div>
+        <div class="column-start-time">
+          <div class="column-start-hour">{{timeInfo(contest.startDate)}}</div>
+          <div class="column-start-date" ng-if="showDate">{{dateInfo(contest.startDate)}}</div>
+        </div>
       </div>
 
       <!-- margen arriba -->
@@ -1069,32 +1301,40 @@ tc.put("packages/webclient/components/contests_list_f2p_comp.html", new HttpResp
       </div>
 
       <div class="conditions-section">
-        <div class="entry-fee-box">
-          <img class="ticket" src="images/ticket-{{scrDet.isXsScreen ? 'xs' : 'lg'}}.png"></img>
-          <span ng-class="{'entry-fee-coin':getContestTypeIcon(contest) == 'real', 'entry-fee-energy':getContestTypeIcon(contest) == 'train'}">{{contest.entryFee}}</span>
+      
+        <div class="player-position" ng-if="contest.isLive || contest.isHistory">
+          <div class="condition-name"><span>{{getLocalizedText("position")}}</span></div>
+          <div class="condition-amount"><span class="current-position">{{contest.numEntries}}</span>/{{contest.maxEntries}}</div>
+        </div>
+        
+        <div class="entry-fee-box" ng-if="!(contest.isLive || contest.isHistory)">
+          <span class="condition-name">{{getLocalizedText("entryfee")}}</span>
+          <span class="condition-amount" ng-class="{'entry-fee-coin':getContestTypeIcon(contest) == 'real', 'entry-fee-energy':getContestTypeIcon(contest) == 'train'}">{{contest.entryFee}}</span>
         </div>
         <div class="prize-box">
-          <img class="ticket" src="images/moneybag-{{scrDet.isXsScreen ? 'xs' : 'lg'}}.png"></img>
-          <span ng-class="{'prize-coin':getContestTypeIcon(contest) == 'real', 'prize-managerpoints':getContestTypeIcon(contest) == 'train'}">{{contest.prizePool}}</span>
+          <span class="condition-name">{{getLocalizedText("prize")}}</span>
+          <span class="condition-amount" ng-class="{'prize-coin':getContestTypeIcon(contest) == 'real', 'prize-managerpoints':getContestTypeIcon(contest) == 'train'}">{{contest.prizePool}}</span>
         </div>
       </div>
 
       <div class="action-section" ng-click="onAction(contest, $event)">
-        <img class="ticket" src="images/arrow{{getContestMorfology(contest) == 'normal' ? 'Black' : 'White'}}.png"></img>
+        <img class="ticket" ng-src="images/arrow{{getContestMorfology(contest) == 'normal' ? 'Black' : 'White'}}.png" ng-if="!contest.isLive">
+        <div class="button-wrapper" ng-if="contest.isLive">
+          <button type="button" class="action-button" ng-click="onAction(contest)">{{actionButtonTitle}}</button>
+        </div>
       </div>
 
       <div class="tournament-and-type-section">
         <span class="{{getSourceFlag(contest)}}"></span>
         <span class="contest-type {{getContestTypeIcon(contest)}}"></span>
       </div>
-
     </div>
   </div>
 </div>
 """));
 tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", new HttpResponse(200, r"""<div id="enter-contest-wrapper" >
 
-  <contest-header id="contestHeader" contest="contest" contest-id="contestId" show-matches="false"></contest-header>
+  <contest-header-f2p id="contestHeader" contest="contest" contest-id="contestId" show-matches="false"></contest-header-f2p>
 
   <!-- Nav tabs -->
   <ul class="enter-contest-tabs" role="tablist">
@@ -1289,7 +1529,7 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_stats_comp.htm
           <!-- END BY-SEASON-STATS -->
           <!-- START BY-MATCH-STATS-->
           <div class="tab-pane" id="match-by-match-stats-tab-content">
-            <div class="match-header">{{getLocalizedText("matchbymatch").toUpperCase()}}</div>
+            <div class="match-header">{{getUppercaseLocalizedText("matchbymatch")}}</div>
             <div class="noMatchesPlayed" ng-class="{'hidden':currentInfoData['matchesCount'] > 0}">
                 <span>{{getLocalizedText("noseasonstats")}}</span>
             </div>
@@ -1344,12 +1584,12 @@ tc.put("packages/webclient/components/leaderboard_comp.html", new HttpResponse(2
 
   <div id="leaderboard-header-wrapper">
 
-    <h1>Ranking</h1>
+    <h1>{{getLocalizedText("title")}}</h1>
     <div class="rankings-wrapper">
       <div class="ranking ranking-by-points">
         <span class="ranking-position">{{playerPointsInfo['position']}}º</span>
         <div class="ranking-info">
-          <span class="ranking-name">Top Points</span>
+          <span class="ranking-name">{{getLocalizedText("topskill")}}</span>
           <span class="ranking-value">{{playerPointsInfo['points']}} ptos</span>
         </div>
       </div>
@@ -1357,7 +1597,7 @@ tc.put("packages/webclient/components/leaderboard_comp.html", new HttpResponse(2
       <div class="ranking ranking-by-money">
         <span class="ranking-position">{{playerMoneyInfo['position']}}º</span>
         <div class="ranking-info">
-          <span class="ranking-name">Top Money</span>
+          <span class="ranking-name">{{getLocalizedText("topgold")}}</span>
           <span class="ranking-value">{{playerMoneyInfo['points']}} </span>
         </div>
       </div>
@@ -1370,8 +1610,8 @@ tc.put("packages/webclient/components/leaderboard_comp.html", new HttpResponse(2
 
 
   <ul class="leaderboard-tabs" role="tablist">
-    <li class="active"><a class="leaderboard-tab top-points-tab" role="tab" data-toggle="tab" ng-click="tabChange('top-points')">Top Vacilones</a></li>
-    <li><a class="leaderboard-tab top-money-tab" role="tab" data-toggle="tab" ng-click="tabChange('top-money')">Top Mandones</a></li>
+    <li class="active"><a class="leaderboard-tab top-points-tab" role="tab" data-toggle="tab" ng-click="tabChange('top-points')">{{getLocalizedText("trueskill")}}</a></li>
+    <li><a class="leaderboard-tab top-money-tab" role="tab" data-toggle="tab" ng-click="tabChange('top-money')">{{getLocalizedText("gold")}}</a></li>
   </ul>
   
   <div class="tabs">
@@ -1388,6 +1628,7 @@ tc.put("packages/webclient/components/leaderboard_comp.html", new HttpResponse(2
       <div class="tab-pane" id="top-money">
 
         <leaderboard-table show-header="true" highlight-element="playerMoneyInfo" table-elements="moneyUserList" rows="usersToShow" points-column-label="moneyColumnName" hint="playerMoneyHint" ng-show="!loadingService.isLoading"></leaderboard-table>
+      
       </div>
     </div>
   </div>
@@ -1397,8 +1638,8 @@ tc.put("packages/webclient/components/leaderboard_comp.html", new HttpResponse(2
 tc.put("packages/webclient/components/leaderboard_table_comp.html", new HttpResponse(200, r"""<div class="leaderboard-table">
   <div class="leaderboard-table-header" ng-show="isHeaded">
     <div class="leaderboard-table-element">
-      <span class="leaderboard-column leaderboard-table-position">Pos.</span>
-      <span class="leaderboard-column leaderboard-table-name">Name</span>
+      <span class="leaderboard-column leaderboard-table-position">{{getLocalizedText("abrevposition")}}</span>
+      <span class="leaderboard-column leaderboard-table-name">{{getLocalizedText("name")}}</span>
       <span class="leaderboard-column leaderboard-table-hint"> </span>
       <span class="leaderboard-column leaderboard-table-skillpoints">{{pointsColumnName}}</span>
     </div>
@@ -2095,9 +2336,9 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
           </div>
           <!-- lista de concursos -->
           <div class="list-container" ng-switch-when="true">
-            <contests-list id="liveContests" contests-list="contestsService.liveContests"
+            <contests-list-f2p id="liveContests" contests-list="contestsService.liveContests"
                            sorting="liveSortType" on-action-click='onLiveActionClick(contest)' on-row-click='onLiveActionClick(contest)'>
-            </contests-list>
+            </contests-list-f2p>
           </div>
         </section>
       </div>
@@ -2119,9 +2360,9 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
           </div>
           <!-- lista de concursos -->
           <div class="list-container" ng-switch-when="true">
-            <contests-list id="waitingContests" contests-list='contestsService.waitingContests'
+            <contests-list-f2p id="waitingContests" contests-list='contestsService.waitingContests' show-date="true"
                            sorting="waitingSortType" on-action-click='onWaitingActionClick(contest)' on-row-click='onWaitingActionClick(contest)'>
-            </contests-list>
+            </contests-list-f2p>
           </div>
         </section>
       </div>
@@ -2143,9 +2384,9 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
           </div>
           <!-- lista de concursos -->
           <div class="list-container" ng-switch-when="true">
-            <contests-list id="historyContests" contests-list="contestsService.historyContests"
+            <contests-list-f2p id="historyContests" contests-list="contestsService.historyContests" show-date="true"
                            sorting="historySortType" on-action-click='onHistoryActionClick(contest)' on-row-click='onHistoryActionClick(contest)'>
-            </contests-list>
+            </contests-list-f2p>
           </div>
         </section>
       </div>
@@ -2324,7 +2565,7 @@ tc.put("packages/webclient/components/view_contest/users_list_comp.html", new Ht
 </div>"""));
 tc.put("packages/webclient/components/view_contest/view_contest_comp.html", new HttpResponse(200, r"""<section>
 
-  <contest-header id="contestHeader" contest="contest" contest-id="contestId"></contest-header>
+  <contest-header-f2p id="contestHeader" contest="contest" contest-id="contestId"></contest-header-f2p>
 
   <div id="viewContestRoot" ng-switch="scrDet.isXsScreen" >
     <div ng-switch-when="true">

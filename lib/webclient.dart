@@ -67,6 +67,9 @@ import 'package:webclient/components/account/add_funds_comp.dart';
 import 'package:webclient/components/account/withdraw_funds_comp.dart';
 import 'package:webclient/components/account/transaction_history_comp.dart';
 import 'package:webclient/components/account/shop_comp.dart';
+import 'package:webclient/components/account/gold_shop_comp.dart';
+import 'package:webclient/components/account/energy_shop_comp.dart';
+import 'package:webclient/components/account/trainer_points_shop_comp.dart';
 
 import 'package:webclient/components/my_contests_comp.dart';
 import 'package:webclient/components/view_contest/view_contest_entry_comp.dart';
@@ -207,6 +210,9 @@ class WebClientApp extends Module {
     bind(WithdrawFundsComp);
     bind(TransactionHistoryComp);
     bind(ShopComp);
+    bind(GoldShopComp);
+    bind(EnergyShopComp);
+    bind(TrainerPointsShopComp);
 
     bind(RouteInitializerFn, toValue: webClientRouteInitializer);
     bind(NgRoutingUsePushState, toValue: new NgRoutingUsePushState.value(false));
@@ -317,7 +323,21 @@ class WebClientApp extends Module {
       ,'shop': ngRoute(
           path: '/shop',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
-          viewHtml: '<shop-comp></shop-comp>'
+          viewHtml: '<shop-comp></shop-comp>',
+          mount: {
+            'gold': ngRoute(
+              path: '/gold_shop',
+              viewHtml: '<gold-shop-comp></gold-shop-comp>'
+            )
+            ,'energy': ngRoute(
+                path: '/energy_shop',
+                viewHtml: '<energy-shop-comp></energy-shop-comp>'
+            )
+            ,'trainer_points': ngRoute(
+              path: '/trainer_points_shop',
+              viewHtml: '<trainer-points-shop-comp></trainer-points-shop-comp>'
+            )
+          }
       )
       ,'lobby': ngRoute(
           path: '/lobby',

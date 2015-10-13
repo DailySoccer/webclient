@@ -5657,6 +5657,28 @@ scoring-rules:after,
 #transactionHistoryRoot .transaction-headers:after,
 #transactionHistoryRoot .transaction-row:before,
 #transactionHistoryRoot .transaction-row:after,
+#mainShopCompWrapper:before,
+#mainShopCompWrapper:after,
+#mainShopCompWrapper .items-wrapper:before,
+#mainShopCompWrapper .items-wrapper:after,
+#goldShopComp .modal-content:before,
+#goldShopComp .modal-content:after,
+#trainerPointsShopComp .modal-content:before,
+#trainerPointsShopComp .modal-content:after,
+#goldShopComp .content:before,
+#goldShopComp .content:after,
+#trainerPointsShopComp .content:before,
+#trainerPointsShopComp .content:after,
+#goldShopComp .products-wrapper:before,
+#goldShopComp .products-wrapper:after,
+#trainerPointsShopComp .products-wrapper:before,
+#trainerPointsShopComp .products-wrapper:after,
+#energyshopComp .modal-content:before,
+#energyshopComp .modal-content:after,
+#energyshopComp .content:before,
+#energyshopComp .content:after,
+#energyshopComp .products-wrapper:before,
+#energyshopComp .products-wrapper:after,
 .fantasy-team-list .soccer-player-row:before,
 .fantasy-team-list .soccer-player-row:after,
 .statistic:before,
@@ -5753,6 +5775,8 @@ scoring-rules:after,
 .calendar-wrapper:after,
 .default-section-header:before,
 .default-section-header:after,
+.modal-properties-default .modal-content:before,
+.modal-properties-default .modal-content:after,
 .lineup-selector .lineup-selector-slot:before,
 .lineup-selector .lineup-selector-slot:after {
   content: " ";
@@ -5797,6 +5821,17 @@ scoring-rules:after,
 #addFundsContent .scores-wrapper:after,
 #transactionHistoryRoot .transaction-headers:after,
 #transactionHistoryRoot .transaction-row:after,
+#mainShopCompWrapper:after,
+#mainShopCompWrapper .items-wrapper:after,
+#goldShopComp .modal-content:after,
+#trainerPointsShopComp .modal-content:after,
+#goldShopComp .content:after,
+#trainerPointsShopComp .content:after,
+#goldShopComp .products-wrapper:after,
+#trainerPointsShopComp .products-wrapper:after,
+#energyshopComp .modal-content:after,
+#energyshopComp .content:after,
+#energyshopComp .products-wrapper:after,
 .fantasy-team-list .soccer-player-row:after,
 .statistic:after,
 #rootFooter:after,
@@ -5845,6 +5880,7 @@ scoring-rules:after,
 #simplePromoF2PRoot:after,
 .calendar-wrapper:after,
 .default-section-header:after,
+.modal-properties-default .modal-content:after,
 .lineup-selector .lineup-selector-slot:after {
   clear: both;
 }
@@ -11022,6 +11058,899 @@ fieldset[disabled] #withdrawFundsContent .withdraw-founds-box button.withdraw-fu
 #transactionHistoryRoot .transaction-row .field-balance .red-numbers {
   color: #ff0000;
 }
+#mainShopCompWrapper {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 15px 0;
+}
+#mainShopCompWrapper > .navbar-header,
+#mainShopCompWrapper > .navbar-collapse {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+@media (min-width: 768px) {
+  #mainShopCompWrapper > .navbar-header,
+  #mainShopCompWrapper > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+#mainShopCompWrapper .items-wrapper {
+  margin-left: 0;
+  margin-right: 0;
+}
+#mainShopCompWrapper .items-wrapper .shop-item {
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  position: relative;
+  cursor: pointer;
+  height: 80px;
+  margin-top: 10px;
+}
+@media (min-width: 768px) {
+  #mainShopCompWrapper .items-wrapper .shop-item {
+    float: left;
+    width: 50%;
+  }
+}
+#mainShopCompWrapper .items-wrapper .shop-item .slot-base {
+  height: 80px;
+}
+#mainShopCompWrapper .items-wrapper .shop-item .slot-base > * {
+  height: 100%;
+  display: inline-block;
+}
+#mainShopCompWrapper .items-wrapper .shop-item .slot-base .shop-item-left {
+  width: 104px;
+  background: url("../images/shopItemBgLeft.png") no-repeat right;
+}
+#mainShopCompWrapper .items-wrapper .shop-item .slot-base .shop-item-middle {
+  left: 119px;
+  right: 195px;
+  position: absolute;
+  background: url("../images/shopItemBgMiddle.png") repeat;
+}
+#mainShopCompWrapper .items-wrapper .shop-item .slot-base .shop-item-right {
+  width: 195px;
+  float: right;
+  background: url("../images/shopItemBgRight.png") no-repeat left;
+}
+#mainShopCompWrapper .items-wrapper .shop-item .shop-item-pattern {
+  position: absolute;
+  right: 15px;
+  left: 15px;
+  top: 0;
+  height: 80px;
+  background: url("../images/shopItemPattern.png") repeat;
+}
+#mainShopCompWrapper .items-wrapper .shop-item .slot-content .item-icon {
+  position: absolute;
+  top: 0;
+}
+#mainShopCompWrapper .items-wrapper .shop-item .slot-content .shop-item-info {
+  position: absolute;
+  top: 0;
+  right: 30px;
+  bottom: 0;
+  left: 119px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#goldShopComp,
+#trainerPointsShopComp {
+  background-color: #434343;
+  color: #ffffff;
+  padding: 5px;
+}
+#goldShopComp .modal-content,
+#trainerPointsShopComp .modal-content {
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+@media (min-width: 768px) {
+  #goldShopComp,
+  #trainerPointsShopComp {
+    background-color: #dcdcdc;
+  }
+  #goldShopComp .modal-dialog,
+  #trainerPointsShopComp .modal-dialog {
+    width: 90%;
+    max-width: 900px;
+  }
+}
+@media (max-width: 767px) {
+  #goldShopComp #modalRoot,
+  #trainerPointsShopComp #modalRoot {
+    border-width: 1px;
+    border-style: solid none none none;
+    border-color: #fba61a;
+    border-radius: 0;
+    top: 68px;
+    background-color: #ffffff;
+  }
+  #goldShopComp #modalRoot .modal-dialog,
+  #trainerPointsShopComp #modalRoot .modal-dialog {
+    margin: 0;
+  }
+  #goldShopComp #modalRoot .modal-dialog .modal-content,
+  #trainerPointsShopComp #modalRoot .modal-dialog .modal-content {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+#goldShopComp .modal-content,
+#trainerPointsShopComp .modal-content {
+  background-color: #dcdcdc;
+}
+#goldShopComp .content,
+#trainerPointsShopComp .content {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+#goldShopComp .content > .navbar-header,
+#trainerPointsShopComp .content > .navbar-header,
+#goldShopComp .content > .navbar-collapse,
+#trainerPointsShopComp .content > .navbar-collapse {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+@media (min-width: 768px) {
+  #goldShopComp .content > .navbar-header,
+  #trainerPointsShopComp .content > .navbar-header,
+  #goldShopComp .content > .navbar-collapse,
+  #trainerPointsShopComp .content > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+#goldShopComp .content-banner,
+#trainerPointsShopComp .content-banner {
+  overflow: hidden;
+  position: relative;
+  margin: 15px;
+  height: 220px;
+}
+#goldShopComp .content-banner img,
+#trainerPointsShopComp .content-banner img {
+  position: absolute;
+  left: 50%;
+  margin-left: -512px;
+  top: 50%;
+  margin-top: -110px;
+}
+#goldShopComp .products-wrapper,
+#trainerPointsShopComp .products-wrapper {
+  margin-left: 0;
+  margin-right: 0;
+}
+#goldShopComp .products-wrapper .product,
+#trainerPointsShopComp .products-wrapper .product {
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  position: relative;
+  cursor: pointer;
+  height: 80px;
+  margin-top: 10px;
+}
+@media (min-width: 768px) {
+  #goldShopComp .products-wrapper .product,
+  #trainerPointsShopComp .products-wrapper .product {
+    float: left;
+    width: 50%;
+  }
+}
+#goldShopComp .products-wrapper .product .slot-base,
+#trainerPointsShopComp .products-wrapper .product .slot-base {
+  height: 80px;
+  -webkit-box-shadow: -7px 6px 5px -2px rgba(67, 67, 67, 0.5);
+  -moz-box-shadow: -7px 6px 5px -2px rgba(67, 67, 67, 0.5);
+  box-shadow: -7px 6px 5px -2px rgba(67, 67, 67, 0.5);
+}
+#goldShopComp .products-wrapper .product .slot-base > *,
+#trainerPointsShopComp .products-wrapper .product .slot-base > * {
+  height: 100%;
+  display: inline-block;
+}
+#goldShopComp .products-wrapper .product .slot-base .shop-item-left,
+#trainerPointsShopComp .products-wrapper .product .slot-base .shop-item-left {
+  width: 104px;
+  background: url("../images/shopItemBgLeft.png") no-repeat right;
+}
+#goldShopComp .products-wrapper .product .slot-base .shop-item-middle,
+#trainerPointsShopComp .products-wrapper .product .slot-base .shop-item-middle {
+  left: 119px;
+  right: 195px;
+  position: absolute;
+  background: url("../images/shopItemBgMiddle.png") repeat;
+}
+#goldShopComp .products-wrapper .product .slot-base .shop-item-right,
+#trainerPointsShopComp .products-wrapper .product .slot-base .shop-item-right {
+  width: 195px;
+  float: right;
+  background: url("../images/shopItemBgRight.png") no-repeat left;
+}
+#goldShopComp .products-wrapper .product .shop-item-pattern,
+#trainerPointsShopComp .products-wrapper .product .shop-item-pattern {
+  position: absolute;
+  right: 15px;
+  left: 15px;
+  top: 0;
+  height: 80px;
+  background: url("../images/shopItemPattern.png") repeat;
+}
+#goldShopComp .products-wrapper .product .slot-content,
+#trainerPointsShopComp .products-wrapper .product .slot-content {
+  position: relative;
+  top: -80px;
+  height: 80px;
+  /* temporal */
+  /* temporal */
+}
+#goldShopComp .products-wrapper .product .slot-content .image-column,
+#trainerPointsShopComp .products-wrapper .product .slot-content .image-column,
+#goldShopComp .products-wrapper .product .slot-content .quantity-column,
+#trainerPointsShopComp .products-wrapper .product .slot-content .quantity-column,
+#goldShopComp .products-wrapper .product .slot-content .price-column,
+#trainerPointsShopComp .products-wrapper .product .slot-content .price-column {
+  height: 100%;
+  display: inline-block;
+}
+#goldShopComp .products-wrapper .product .slot-content span,
+#trainerPointsShopComp .products-wrapper .product .slot-content span {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #ffffff;
+}
+#goldShopComp .products-wrapper .product .slot-content .image-column,
+#trainerPointsShopComp .products-wrapper .product .slot-content .image-column {
+  width: 104px;
+}
+#goldShopComp .products-wrapper .product .slot-content .shop-item-popular,
+#trainerPointsShopComp .products-wrapper .product .slot-content .shop-item-popular {
+  position: absolute;
+  top: 0;
+}
+#goldShopComp .products-wrapper .product .slot-content .quantity-column,
+#trainerPointsShopComp .products-wrapper .product .slot-content .quantity-column {
+  left: 88px;
+  right: 88px;
+  position: absolute;
+  text-align: center;
+  padding: 10px 0;
+}
+#goldShopComp .products-wrapper .product .slot-content .quantity-column .product-description,
+#trainerPointsShopComp .products-wrapper .product .slot-content .quantity-column .product-description {
+  display: block;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #59add5;
+}
+#goldShopComp .products-wrapper .product .slot-content .quantity-column .product-count,
+#trainerPointsShopComp .products-wrapper .product .slot-content .quantity-column .product-count {
+  display: block;
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 28pt;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+#goldShopComp .products-wrapper .product .slot-content .quantity-column .product-count:after,
+#trainerPointsShopComp .products-wrapper .product .slot-content .quantity-column .product-count:after {
+  content: " ";
+  background-image: url("../images/icon-coin-lg.png");
+  width: 27px;
+  height: 27px;
+  display: inline-block;
+  vertical-align: middle;
+  vertical-align: baseline;
+  position: relative;
+  left: 4px;
+}
+#goldShopComp .products-wrapper .product .slot-content .price-column,
+#trainerPointsShopComp .products-wrapper .product .slot-content .price-column {
+  width: 104px;
+  float: right;
+  text-align: center;
+}
+#goldShopComp .products-wrapper .product .slot-content .price-column .free-increment,
+#trainerPointsShopComp .products-wrapper .product .slot-content .price-column .free-increment {
+  margin: 10px auto 0 auto;
+  width: 56px;
+  height: 37px;
+  background: url("../images/BuyGoldFreeBase.png");
+}
+#goldShopComp .products-wrapper .product .slot-content .price-column .free-increment .free-increment-count,
+#trainerPointsShopComp .products-wrapper .product .slot-content .price-column .free-increment .free-increment-count {
+  display: block;
+  padding-top: 1px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 13pt;
+  color: #ffffff;
+}
+#goldShopComp .products-wrapper .product .slot-content .price-column .free-increment .free-increment-desc,
+#trainerPointsShopComp .products-wrapper .product .slot-content .price-column .free-increment .free-increment-desc {
+  display: block;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 7pt;
+  color: #ffffff;
+}
+#goldShopComp .products-wrapper .product .slot-content .price-column .product-price,
+#trainerPointsShopComp .products-wrapper .product .slot-content .price-column .product-price {
+  display: block;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14pt;
+  color: #afd3e4;
+}
+#goldShopComp .products-wrapper .product .slot-content .price-column .product-price.no-frees,
+#trainerPointsShopComp .products-wrapper .product .slot-content .price-column .product-price.no-frees {
+  margin-top: 45px;
+}
+#goldShopComp .buttons-wrapper,
+#trainerPointsShopComp .buttons-wrapper {
+  text-align: center;
+  max-width: 150px;
+  margin: 25px auto;
+}
+#goldShopComp .buttons-wrapper .button-box,
+#trainerPointsShopComp .buttons-wrapper .button-box {
+  display: inline-block;
+  height: 30px;
+  min-width: 33%;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+#goldShopComp .buttons-wrapper .button-properties,
+#trainerPointsShopComp .buttons-wrapper .button-properties {
+  margin: 0 5px 0 5px;
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+#goldShopComp .buttons-wrapper .cancel-button,
+#trainerPointsShopComp .buttons-wrapper .cancel-button {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  -webkit-transition: All 0.08s ease-out;
+  -moz-transition: All 0.08s ease-out;
+  -ms-transition: All 0.08s ease-out;
+  -o-transition: All 0.08s ease-out;
+  transition: All 0.08s ease-out;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  background-color: #afafaf;
+  box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
+  color: #ffffff;
+  outline: none !important;
+  margin: 0 5px 0 5px;
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+#goldShopComp .buttons-wrapper .cancel-button:focus,
+#trainerPointsShopComp .buttons-wrapper .cancel-button:focus,
+#goldShopComp .buttons-wrapper .cancel-button:active:focus,
+#trainerPointsShopComp .buttons-wrapper .cancel-button:active:focus,
+#goldShopComp .buttons-wrapper .cancel-button.active:focus,
+#trainerPointsShopComp .buttons-wrapper .cancel-button.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+#goldShopComp .buttons-wrapper .cancel-button:hover,
+#trainerPointsShopComp .buttons-wrapper .cancel-button:hover,
+#goldShopComp .buttons-wrapper .cancel-button:focus,
+#trainerPointsShopComp .buttons-wrapper .cancel-button:focus {
+  color: #333333;
+  text-decoration: none;
+}
+#goldShopComp .buttons-wrapper .cancel-button:active,
+#trainerPointsShopComp .buttons-wrapper .cancel-button:active,
+#goldShopComp .buttons-wrapper .cancel-button.active,
+#trainerPointsShopComp .buttons-wrapper .cancel-button.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+#goldShopComp .buttons-wrapper .cancel-button.disabled,
+#trainerPointsShopComp .buttons-wrapper .cancel-button.disabled,
+#goldShopComp .buttons-wrapper .cancel-button[disabled],
+#trainerPointsShopComp .buttons-wrapper .cancel-button[disabled],
+fieldset[disabled] #goldShopComp .buttons-wrapper .cancel-button,
+fieldset[disabled] #trainerPointsShopComp .buttons-wrapper .cancel-button {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+#goldShopComp .buttons-wrapper .cancel-button:active:focus,
+#trainerPointsShopComp .buttons-wrapper .cancel-button:active:focus,
+#goldShopComp .buttons-wrapper .cancel-button.active:focus,
+#trainerPointsShopComp .buttons-wrapper .cancel-button.active:focus {
+  color: #ffffff;
+  background-color: #c9c9c9;
+}
+#goldShopComp .buttons-wrapper .cancel-button:active:hover,
+#trainerPointsShopComp .buttons-wrapper .cancel-button:active:hover,
+#goldShopComp .buttons-wrapper .cancel-button.active:hover,
+#trainerPointsShopComp .buttons-wrapper .cancel-button.active:hover {
+  color: #ffffff;
+  background-color: #c9c9c9;
+}
+#goldShopComp .buttons-wrapper .cancel-button:focus,
+#trainerPointsShopComp .buttons-wrapper .cancel-button:focus {
+  background-color: #afafaf;
+  color: #ffffff;
+}
+#goldShopComp .buttons-wrapper .cancel-button:hover,
+#trainerPointsShopComp .buttons-wrapper .cancel-button:hover {
+  background-color: #bcbcbc;
+  outline: none !important;
+  color: #ffffff;
+}
+#goldShopComp .buttons-wrapper .cancel-button:hover:focus,
+#trainerPointsShopComp .buttons-wrapper .cancel-button:hover:focus {
+  background-color: #afafaf;
+  color: #ffffff;
+}
+#goldShopComp .buttons-wrapper .cancel-button:active,
+#trainerPointsShopComp .buttons-wrapper .cancel-button:active,
+#goldShopComp .buttons-wrapper .cancel-button.active,
+#trainerPointsShopComp .buttons-wrapper .cancel-button.active {
+  background-color: #afafaf;
+  margin-top: 4px;
+  box-shadow: none;
+}
+#goldShopComp .buttons-wrapper .cancel-button:hover,
+#trainerPointsShopComp .buttons-wrapper .cancel-button:hover {
+  background-color: #bcbcbc;
+  outline: none !important;
+  color: #ffffff;
+}
+#goldShopComp .buttons-wrapper .cancel-button.disabled,
+#trainerPointsShopComp .buttons-wrapper .cancel-button.disabled,
+#goldShopComp .buttons-wrapper .cancel-button[disabled],
+#trainerPointsShopComp .buttons-wrapper .cancel-button[disabled],
+fieldset[disabled] #goldShopComp .buttons-wrapper .cancel-button,
+fieldset[disabled] #trainerPointsShopComp .buttons-wrapper .cancel-button {
+  background-color: #c9c9c9;
+  box-shadow: none;
+  margin-top: 4px;
+  color: #ebebeb;
+  cursor: not-allowed !important;
+}
+#goldShopComp .buttons-wrapper .cancel-button.close,
+#trainerPointsShopComp .buttons-wrapper .cancel-button.close {
+  background-color: #afafaf;
+  outline: none !important;
+  color: #ffffff;
+}
+#energyshopComp {
+  background-color: #434343;
+  color: #ffffff;
+  padding: 5px;
+}
+#energyshopComp .modal-content {
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+@media (min-width: 768px) {
+  #energyshopComp {
+    background-color: #dcdcdc;
+  }
+  #energyshopComp .modal-dialog {
+    width: 90%;
+    max-width: 900px;
+  }
+}
+@media (max-width: 767px) {
+  #energyshopComp #modalRoot {
+    border-width: 1px;
+    border-style: solid none none none;
+    border-color: #fba61a;
+    border-radius: 0;
+    top: 68px;
+    background-color: #ffffff;
+  }
+  #energyshopComp #modalRoot .modal-dialog {
+    margin: 0;
+  }
+  #energyshopComp #modalRoot .modal-dialog .modal-content {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+#energyshopComp .modal-content {
+  background-color: #dcdcdc;
+}
+#energyshopComp .content {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+#energyshopComp .content > .navbar-header,
+#energyshopComp .content > .navbar-collapse {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+@media (min-width: 768px) {
+  #energyshopComp .content > .navbar-header,
+  #energyshopComp .content > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+#energyshopComp .content-banner {
+  overflow: hidden;
+  position: relative;
+  margin: 15px;
+  height: 220px;
+}
+#energyshopComp .content-banner img {
+  position: absolute;
+  left: 50%;
+  margin-left: -512px;
+  top: 50%;
+  margin-top: -110px;
+}
+#energyshopComp .products-wrapper {
+  margin-left: 0;
+  margin-right: 0;
+}
+#energyshopComp .products-wrapper .product {
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  position: relative;
+  cursor: pointer;
+  height: 80px;
+  margin-top: 10px;
+}
+@media (min-width: 768px) {
+  #energyshopComp .products-wrapper .product {
+    float: left;
+    width: 50%;
+  }
+}
+#energyshopComp .products-wrapper .product .slot-base {
+  height: 80px;
+  -webkit-box-shadow: -7px 6px 5px -2px rgba(67, 67, 67, 0.5);
+  -moz-box-shadow: -7px 6px 5px -2px rgba(67, 67, 67, 0.5);
+  box-shadow: -7px 6px 5px -2px rgba(67, 67, 67, 0.5);
+}
+#energyshopComp .products-wrapper .product .slot-base > * {
+  height: 100%;
+  display: inline-block;
+}
+#energyshopComp .products-wrapper .product .slot-base .shop-item-left {
+  width: 104px;
+  background: url("../images/shopItemBgLeft.png") no-repeat right;
+}
+#energyshopComp .products-wrapper .product .slot-base .shop-item-middle {
+  left: 119px;
+  right: 195px;
+  position: absolute;
+  background: url("../images/shopItemBgMiddle.png") repeat;
+}
+#energyshopComp .products-wrapper .product .slot-base .shop-item-right {
+  width: 195px;
+  float: right;
+  background: url("../images/shopItemBgRight.png") no-repeat left;
+}
+#energyshopComp .products-wrapper .product .shop-item-pattern {
+  position: absolute;
+  right: 15px;
+  left: 15px;
+  top: 0;
+  height: 80px;
+  background: url("../images/shopItemPattern.png") repeat;
+}
+#energyshopComp .products-wrapper .product .slot-content {
+  position: relative;
+  top: -80px;
+  height: 80px;
+  /* temporal */
+  /* temporal */
+}
+#energyshopComp .products-wrapper .product .slot-content .image-column,
+#energyshopComp .products-wrapper .product .slot-content .quantity-column,
+#energyshopComp .products-wrapper .product .slot-content .price-column {
+  height: 100%;
+  display: inline-block;
+}
+#energyshopComp .products-wrapper .product .slot-content span {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #ffffff;
+}
+#energyshopComp .products-wrapper .product .slot-content .image-column {
+  width: 104px;
+}
+#energyshopComp .products-wrapper .product .slot-content .shop-item-popular {
+  position: absolute;
+  top: 0;
+}
+#energyshopComp .products-wrapper .product .slot-content .quantity-column {
+  left: 105px;
+  right: 10px;
+  position: absolute;
+  text-align: center;
+  padding: 10px 0;
+}
+#energyshopComp .products-wrapper .product .slot-content .quantity-column .product-description {
+  display: block;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #ffffff;
+}
+#energyshopComp .products-wrapper .product .slot-content .quantity-column .product-count {
+  display: block;
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 28pt;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+#energyshopComp .products-wrapper .product .slot-content .quantity-column .product-count:after {
+  content: " ";
+  background-image: url("../images/icon-coin-lg.png");
+  width: 27px;
+  height: 27px;
+  display: inline-block;
+  vertical-align: middle;
+  vertical-align: baseline;
+  position: relative;
+  left: 4px;
+}
+#energyshopComp .products-wrapper .product .slot-content .quantity-column .product-time-left {
+  display: block;
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 28pt;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+#energyshopComp .products-wrapper .product .slot-content .price-column {
+  width: 104px;
+  float: right;
+  text-align: center;
+}
+#energyshopComp .products-wrapper .product .slot-content .price-column .free-increment {
+  margin: 10px auto 0 auto;
+  width: 56px;
+  height: 37px;
+  background: url("../images/BuyGoldFreeBase.png");
+}
+#energyshopComp .products-wrapper .product .slot-content .price-column .free-increment .free-increment-count {
+  display: block;
+  padding-top: 1px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 13pt;
+  color: #ffffff;
+}
+#energyshopComp .products-wrapper .product .slot-content .price-column .free-increment .free-increment-desc {
+  display: block;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 7pt;
+  color: #ffffff;
+}
+#energyshopComp .products-wrapper .product .slot-content .price-column .product-price {
+  display: block;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14pt;
+  color: #afd3e4;
+}
+#energyshopComp .products-wrapper .product .slot-content .price-column .product-price.no-frees {
+  margin-top: 45px;
+}
+#energyshopComp .products-wrapper .product.no-purchasable {
+  cursor: auto;
+}
+#energyshopComp .products-wrapper .product.no-purchasable .slot-base .shop-item-right {
+  background: url("../images/shopItemBgRightNoPuchasable.jpg") repeat;
+}
+#energyshopComp .buttons-wrapper {
+  text-align: center;
+  max-width: 150px;
+  margin: 25px auto;
+}
+#energyshopComp .buttons-wrapper .button-box {
+  display: inline-block;
+  height: 30px;
+  min-width: 33%;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+#energyshopComp .buttons-wrapper .button-properties {
+  margin: 0 5px 0 5px;
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+#energyshopComp .buttons-wrapper .cancel-button {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  -webkit-transition: All 0.08s ease-out;
+  -moz-transition: All 0.08s ease-out;
+  -ms-transition: All 0.08s ease-out;
+  -o-transition: All 0.08s ease-out;
+  transition: All 0.08s ease-out;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  background-color: #afafaf;
+  box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
+  color: #ffffff;
+  outline: none !important;
+  margin: 0 5px 0 5px;
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+#energyshopComp .buttons-wrapper .cancel-button:focus,
+#energyshopComp .buttons-wrapper .cancel-button:active:focus,
+#energyshopComp .buttons-wrapper .cancel-button.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+#energyshopComp .buttons-wrapper .cancel-button:hover,
+#energyshopComp .buttons-wrapper .cancel-button:focus {
+  color: #333333;
+  text-decoration: none;
+}
+#energyshopComp .buttons-wrapper .cancel-button:active,
+#energyshopComp .buttons-wrapper .cancel-button.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+#energyshopComp .buttons-wrapper .cancel-button.disabled,
+#energyshopComp .buttons-wrapper .cancel-button[disabled],
+fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+#energyshopComp .buttons-wrapper .cancel-button:active:focus,
+#energyshopComp .buttons-wrapper .cancel-button.active:focus {
+  color: #ffffff;
+  background-color: #c9c9c9;
+}
+#energyshopComp .buttons-wrapper .cancel-button:active:hover,
+#energyshopComp .buttons-wrapper .cancel-button.active:hover {
+  color: #ffffff;
+  background-color: #c9c9c9;
+}
+#energyshopComp .buttons-wrapper .cancel-button:focus {
+  background-color: #afafaf;
+  color: #ffffff;
+}
+#energyshopComp .buttons-wrapper .cancel-button:hover {
+  background-color: #bcbcbc;
+  outline: none !important;
+  color: #ffffff;
+}
+#energyshopComp .buttons-wrapper .cancel-button:hover:focus {
+  background-color: #afafaf;
+  color: #ffffff;
+}
+#energyshopComp .buttons-wrapper .cancel-button:active,
+#energyshopComp .buttons-wrapper .cancel-button.active {
+  background-color: #afafaf;
+  margin-top: 4px;
+  box-shadow: none;
+}
+#energyshopComp .buttons-wrapper .cancel-button:hover {
+  background-color: #bcbcbc;
+  outline: none !important;
+  color: #ffffff;
+}
+#energyshopComp .buttons-wrapper .cancel-button.disabled,
+#energyshopComp .buttons-wrapper .cancel-button[disabled],
+fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
+  background-color: #c9c9c9;
+  box-shadow: none;
+  margin-top: 4px;
+  color: #ebebeb;
+  cursor: not-allowed !important;
+}
+#energyshopComp .buttons-wrapper .cancel-button.close {
+  background-color: #afafaf;
+  outline: none !important;
+  color: #ffffff;
+}
 @media (max-width: 767px) {
   .header-view-contest-entry-mode {
     margin-top: 70px;
@@ -14824,78 +15753,6 @@ main-menu-f2p {
   }
 }
 @media (min-width: 768px) {
-  #mainMenu {
-    /*  		
-	  	.navbar-nav > li > a {
-	    	padding: 25px 0;
-  			cursor: pointer;
-  			margin-left: 20px;
-  			color: @blueMenu;
-  			text-shadow: 0px 2px black;
-  			&:hover {
-  				text-shadow: 0px 0px black;
-  			}
-	  	}
-	  	.navbar-nav > .mainOption {
-	  		.exo_light(11pt, @white);
-	  	}
-	  	.navbar-nav > .right-menu {
-	  		.pull-right();
-	  		text-align: right;
-			.balance {
-				.hidden-xs();
-				text-align: center;
-				.current-balance {
-	  				display: block;
-		  			.opensans_bold(10pt, @white);
-		  			margin: 5px 0;	
-		  		}
-		  		.add-funds-button {
-					.btn-primary();
-					.opensans_bold(7pt, @white);
-				}
-		  	}
-	  	}
-	  	.navbar-nav .right-menu {
-	  		> a:hover {color: white}
-	  		> a::after {
-		  		.create-glyph("\E114", 10pt, @blueMenu);
-		  		margin-left: 5px;
-		  		position: relative;
-				top: 2px;
-			}
-	  	}
-	  	.open {
-	  		> a:hover {color: white !important;}
-	  		> a::after {
-		  		.create-glyph("\E113", 10pt, @blueMenu) !important;
-		  		margin-left: 5px;
-	  			color: white !important;
-			    position: relative;
-				top: 2px;
-			}
-  		}
-		.navbar-nav .right-menu a:hover {
-            &::after {
-                color: @white;
-            }
-         }
-	  	.navbar-nav .open a::after {
-	  		color: @white;
-	  	} 
-	  	.navbar-nav .active a::after {
-	  		color: @white;
-	  	}
-*/
-  }
-  #mainMenu .username-dropdown-toggle {
-    width: 14em;
-    margin-left: 0;
-    margin-right: 20px;
-  }
-  #mainMenu .dropdown-toggle {
-    white-space: nowrap;
-  }
   #mainMenu .dropdown-menu {
     position: relative;
     top: -4px;
@@ -15155,7 +16012,7 @@ main-menu-f2p {
   display: inline-block;
   width: 50px;
   color: #ffffff;
-  margin-left: 40px;
+  margin-left: 35px;
   position: relative;
 }
 #mainMenu #desktopMenu .fixed-user-stats .profile .count {
@@ -24710,5 +25567,43 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
     -webkit-transform: translateY(-50%, 0%);
     -moz-transform: translateY(-50%, 0%);
     -ms-transform: translateY(-50%, 0%);
+  }
+}
+.modal-properties-default {
+  background-color: #434343;
+  color: #ffffff;
+  padding: 5px;
+}
+.modal-properties-default .modal-content {
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+@media (min-width: 768px) {
+  .modal-properties-default {
+    background-color: #dcdcdc;
+  }
+  .modal-properties-default .modal-dialog {
+    width: 90%;
+    max-width: 900px;
+  }
+}
+@media (max-width: 767px) {
+  .modal-properties-default #modalRoot {
+    border-width: 1px;
+    border-style: solid none none none;
+    border-color: #fba61a;
+    border-radius: 0;
+    top: 68px;
+    background-color: #ffffff;
+  }
+  .modal-properties-default #modalRoot .modal-dialog {
+    margin: 0;
+  }
+  .modal-properties-default #modalRoot .modal-dialog .modal-content {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
   }
 }

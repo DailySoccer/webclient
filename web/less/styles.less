@@ -17,6 +17,9 @@
 @import "withdraw_funds_comp.less";
 @import "transaction_history_comp.less";
 @import "shop_comp.less";
+@import "shop_gold_comp.less";
+@import "shop_energy_comp.less";
+@import "shop_trainer_points_comp.less";
 
 @import "fantasy_team_comp.less";
 @import "footer_comp.less";
@@ -475,4 +478,38 @@ body {
 	-webkit-box-shadow: @offsetH @offsetV @radius @spread rgba(red(@color), green(@color), blue(@color), @opacity);
 	-moz-box-shadow: 	@offsetH @offsetV @radius @spread rgba(red(@color), green(@color), blue(@color), @opacity);
 	box-shadow: 		@offsetH @offsetV @radius @spread rgba(red(@color), green(@color), blue(@color), @opacity);
+}
+
+.modal-properties-default {
+	background-color: @greyUltraDark;
+	color: @white;
+	padding: 5px;
+	.modal-content {
+		.make-row(0);
+		.clean-paddings();
+	}
+	//Configuramos los tamaños de la modal...
+	@media (min-width: @screen-sm-min) {
+		background-color: @greyLight;
+		.modal-dialog {
+			width: 90%;
+			max-width: 900px;
+		}
+	}
+	//... en XS ocupa todo el ancho
+	@media (max-width: @screen-xs-max) {
+		#modalRoot {			
+			.make-border(1px, solid none none none, @orangeHeaderLight);
+			top: 68px;
+			background-color: @white;
+			.modal-dialog {
+				margin: 0;			
+				.modal-content {
+					border: none;
+					border-radius: 0;
+					box-shadow: none;
+				}
+			}
+		}
+	}
 }

@@ -40,7 +40,7 @@ class EnergyShopComp {
         }
 
         products.addAll([
-          {"id" : "ENERGY_2", "description" : getLocalizedText("autorefill"), "captionImage" : "images/icon-EnergyLevelUp.png","purchasable": false}
+          {"id" : "AUTO_REFILL", "description" : getLocalizedText("autorefill"), "captionImage" : "images/icon-EnergyLevelUp.png","purchasable": false}
         ]);
     });
   }

@@ -21,6 +21,7 @@ import 'package:webclient/services/leaderboard_service.dart';
 import 'package:webclient/services/payment_service.dart';
 import 'package:webclient/services/prizes_service.dart';
 import 'package:webclient/services/promos_service.dart';
+import 'package:webclient/services/catalog_service.dart';
 
 import 'package:webclient/components/landing_page_1_slide_comp.dart';
 
@@ -141,6 +142,7 @@ class WebClientApp extends Module {
     bind(LeaderboardService);
     bind(PaymentService);
     bind(PrizesService);
+    bind(CatalogService);
 
     bind(FormAutofillDecorator);
     bind(AutoFocusDecorator);

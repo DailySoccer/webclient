@@ -1,34 +1,34 @@
 <modal id="goldShopComp">
-  
+
   <!--<div class="header"></div> -->
-  
+
   <div class="content">
-  
+
     <div class="content-banner">
       <img ng-src="{{getShopBanner()}}">
     </div>
-    
+
     <div class="products-wrapper">
-      
+
       <div ng-repeat="item in products" class="product" ng-click="buyItem(item.id)">
-        <div class="slot-base">        
+        <div class="slot-base">
           <div class="shop-item-left"></div>
-          <div class="shop-item-middle"></div>      
-          <div class="shop-item-right"></div>        
+          <div class="shop-item-middle"></div>
+          <div class="shop-item-right"></div>
         </div>
         <div class="shop-item-pattern" ng-if="!item.isMostPopular"></div>
-        
-        <div class="slot-content">    
-        
+
+        <div class="slot-content">
+
           <div class="image-column">
-            <img class="item-icon" ng-src="images/{{item.captionImage}}">
+            <img class="item-icon" ng-src="{{item.captionImage}}">
           </div>
-        
+
           <div class="quantity-column">
             <span class="product-description">{{item.description}}</span>
             <span class="product-count">{{item.quantity}}</span>
           </div>
-        
+
           <div class="price-column">
             <div class="free-increment" ng-if="item.freeIncrement > 0">
               <span class="free-increment-count">{{item.freeIncrement}}</span>
@@ -38,17 +38,17 @@
           </div>
           <div class="clearfix"></div>
           <img ng-src="{{getLocalizedText('mostpopularimagesource')}}" class="shop-item-popular" ng-if="item.isMostPopular">
-        
-        </div>   
+
+        </div>
       </div>
-       
+
     </div>
-    
+
     <div class="buttons-wrapper">
        <div class="button-box"><button id="btnClose" class="cancel-button" ng-click="CloseModal()">{{getLocalizedText('buttonback')}}</button></div>
     </div>
 
 
   </div>
-  
+
 </modal>

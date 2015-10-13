@@ -366,8 +366,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
             <img src="images/icon-lightning-lg.png"> 
             <div class="count">
               <div class="progress">
-                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="${_maxEnergy}" style="width:${User.MAX_ENERGY / profileService.user.Energy * 100}%">
-                </div>
+                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="${_maxEnergy}" style="width:${User.MAX_ENERGY / profileService.user.Energy * 100}%"></div>
               </div>            
               <span class="plus">+</span></div>            
           </div>
@@ -377,16 +376,14 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
             <div class="count">
                 ${_userManagerPoints}
                 <span class="plus">+</span>
-            </div>
-            
+            </div>            
           </div>
 
           <div class="coins additive" destination="shop.gold">
-
             <img src="images/icon-coin-lg.png">      
             <div class="count">${_userGold}<span class="plus">+</span></div>
-            
           </div>
+          
           <div id="desktopMenuUser" class="profile">       
             <img src="images/icon-userProfile.png" data-toggle="dropdown">
             <div class="count">${_userTrueSkill}</div>

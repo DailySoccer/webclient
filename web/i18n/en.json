@@ -177,7 +177,8 @@
       "buttonclean"                     : "REMOVE ALL",
       "buttoncontinue"                  : "CONTINUE",
       "tip"                             : "Remember: you can edit your team as many times as you want until the contest starts",
-      "lineupsavedmsg"                  : "Lineup saved"
+      "lineupsavedmsg"                  : "Lineup saved",
+      
     },
     "lineupselector"                    :
     {
@@ -371,7 +372,12 @@
       "yourlineup"                      : "Your lineup",
       "users"                           : "Users",
       "backtocontests"                  : "BACK TO CONTESTS",
-      "cancel"                          : "CANCEL PARTICIPATION"
+      "cancel"                          : "CANCEL PARTICIPATION",
+      "alertcanceltitle"                : "¡Atención!",
+      "alertcancelpaidcontest"          : "You are going to cancel your participation in this constest.<br><br>The entry fee of @PRICE will be refounded if you decide to leave.<br><br>¿Are you sure?<br><br>",
+      "alertcancelcontest"              : "You are going to cancel your participation in the contest<br><br>¿Are you sure?<br><br>",
+      "alertbuttonno"                   : "No",
+      "alertbuttonyes"                  : "Yes"
     },
     "contestheader"                     :
     {

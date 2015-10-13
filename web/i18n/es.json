@@ -178,6 +178,7 @@
       "buttoncontinue"                  : "CONTINUAR",
       "tip"                             : "Recuerda que puedes editar tu alineación todas las veces que quieras hasta que el torneo comience",
       "lineupsavedmsg"                  : "Alineación guardada"
+      
     },
     "lineupselector"                    :
     {
@@ -371,7 +372,12 @@
       "yourlineup"                      : "Tu Alineación",
       "users"                           : "Usuarios",
       "backtocontests"                  : "VUELVE A LOS TORNEOS",
-      "cancel"                          : "SALIR DEL TORNEO"
+      "cancel"                          : "SALIR DEL TORNEO",
+      "alertcanceltitle"                : "Caution!",
+      "alertcancelpaidcontest"          : "Estas a punto de cancelar tu participación en este concurso.<br><br>La entrada que abonaste de @PRICE será devuelta.<br><br>¿Estás seguro de querer abandonar este concurso?<br><br>",
+      "alertcancelcontest"              : "Estas a punto de cancelar tu participación en este concurso.<br><br>¿Estás seguro de querer abandonar este concurso?<br><br>",
+      "alertbuttonno"                   : "No",
+      "alertbuttonyes"                  : "Si"
     },
     "contestheader"                     :
     {

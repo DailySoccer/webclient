@@ -260,14 +260,14 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
     if (!profileService.isLoggedIn) {
       return "";
     }
-    return profileService.user.ManagerPoints.toString();
+    return "${profileService.user.ManagerPoints.toString()}/${profileService.user.pointsToNextLevel}";
   }
-  
+
   String get _userManagerLevel {
     if (!profileService.isLoggedIn) {
       return "";
     }
-    return profileService.user.managerBalance.toString();
+    return profileService.user.managerLevel.toInt().toString();
   }
 
   String get _userGold {
@@ -366,7 +366,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
             <img src="images/icon-lightning-lg.png"> 
             <div class="count">
               <div class="progress">
-                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="${_maxEnergy}" style="width:${User.MAX_ENERGY / profileService.user.Energy * 100}%"></div>
+                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="${_maxEnergy}" style="width:${profileService.user.Energy * 100 / User.MAX_ENERGY}%"></div>
               </div>            
               <span class="plus">+</span></div>            
           </div>

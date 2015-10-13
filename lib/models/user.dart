@@ -133,9 +133,11 @@ class User {
 
     managerLevel = jsonMap.containsKey("managerLevel") ? jsonMap["managerLevel"] : 0;
 
+    /*
     if (jsonMap.containsKey("managerLevel")) {
       Logger.root.info("Manager: $managerLevel Points: ${managerBalance.amount} Next Level: $pointsToNextLevel");
     }
+     */
 
     if (jsonMap.containsKey("lastUpdatedEnergy") && jsonMap["lastUpdatedEnergy"] != null) {
       lastUpdatedEnergy = DateTimeService.fromMillisecondsSinceEpoch(jsonMap["lastUpdatedEnergy"]);

@@ -10,6 +10,10 @@ class User {
   static const int MINUTES_TO_RELOAD_ENERGY = 15;
   static const num MAX_ENERGY = 10;
 
+  static List MANAGER_POINTS = [
+    0, 65, 125, 250, 500, 1000
+  ];
+
   String userId;
   String firstName;
   String lastName;
@@ -20,6 +24,12 @@ class User {
   Money goldBalance;
   Money managerBalance;
   Money energyBalance;
+
+  num managerLevel;
+  int get pointsToNextLevel {
+    int level = managerLevel.toInt();
+    return (level == 5) ? MANAGER_POINTS[5] : MANAGER_POINTS[level+1];
+  }
 
   DateTime lastUpdatedEnergy;
 
@@ -48,7 +58,7 @@ class User {
     Logger.root.severe("User ${userId} not has Money ${money}");
     return false;
   }
-  
+
   NumberFormat nfTime = new NumberFormat("00");
   String get printableEnergyTimeLeft {
     String result = "";
@@ -116,10 +126,16 @@ class User {
 
     trueSkill = (jsonMap.containsKey("trueSkill")) ? jsonMap["trueSkill"] : 0;
     earnedMoney = jsonMap.containsKey("earnedMoney") ? new Money.fromJsonObject(jsonMap["earnedMoney"]) : new Money.zero();
-    
+
     goldBalance = jsonMap.containsKey("goldBalance") ? new Money.fromJsonObject(jsonMap["goldBalance"]) : new Money.zeroFrom(Money.CURRENCY_GOLD);
     managerBalance = jsonMap.containsKey("managerBalance") ? new Money.fromJsonObject(jsonMap["managerBalance"]) : new Money.zeroFrom(Money.CURRENCY_MANAGER);
     energyBalance = jsonMap.containsKey("energyBalance") ? new Money.fromJsonObject(jsonMap["energyBalance"]) : new Money.zeroFrom(Money.CURRENCY_ENERGY);
+
+    managerLevel = jsonMap.containsKey("managerLevel") ? jsonMap["managerLevel"] : 0;
+
+    if (jsonMap.containsKey("managerLevel")) {
+      Logger.root.info("Manager: $managerLevel Points: ${managerBalance.amount} Next Level: $pointsToNextLevel");
+    }
 
     if (jsonMap.containsKey("lastUpdatedEnergy") && jsonMap["lastUpdatedEnergy"] != null) {
       lastUpdatedEnergy = DateTimeService.fromMillisecondsSinceEpoch(jsonMap["lastUpdatedEnergy"]);

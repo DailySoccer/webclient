@@ -39,7 +39,7 @@ main-menu-f2p {
 	border-style: none;						// Esto quita el de la navbar de bootstrap
 	border-bottom: 2px solid @orange;		// Y ahora le damos el que nos interesa
 	padding-left: 8px;
-  	padding-right: 8px;
+  	//padding-right: 8px;
   	.user-select(none);
 
   	#menuLoggedIn, #menuNotLoggedIn {
@@ -49,6 +49,9 @@ main-menu-f2p {
 		@media (min-width: @screen-md-min) {
 			.container();
 		}
+	}
+	#menuLoggedIn {
+		padding-right: 0px;
 	}
 
 	.navbar-brand {
@@ -212,7 +215,7 @@ main-menu-f2p {
 		padding-left: 100px;
 		@media (max-width: @screen-xs-max) {
 			position: absolute;
-			right: 25px;
+			right: 0px;
 			bottom: 0;
 			left: 50px;
 			padding: 0;
@@ -247,19 +250,23 @@ main-menu-f2p {
 			text-align: center;
 			display: inline-block;
 			width: 50px;
-			margin: 0 10px;
+			margin: 0 1%;
 			//En sm no cabe... hay que hacer algunos ajustes.
 			@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
 				margin: 0 5px;
 			}
+			img {
+				margin-left: 10px;
+			}
 			.count {
 				margin-top: 5px;
-				font-size: 8pt;
+				font-size: 7pt;
 				border: 1px solid @greyBlue;
 				border-right: none;
-				border-radius-right: none;
 				border-top-left-radius: 10px;
 				border-bottom-left-radius: 10px;
+				padding-top: 2px;
+				padding-bottom: 1px;
 			}
 			.progress {
 				width: 70%;
@@ -292,13 +299,15 @@ main-menu-f2p {
 				height: 17px;
 				width: 17px;
 				bottom: 0px;
+				font-size: 8pt;
 			}
 		}
 		.fixed-user-stats {
-			display: inline-block;
-			padding: 10px 0;
+			display: inline-block;			
+			padding-top: 10px;
+			padding-bottom: 10px;
 			.make-sm-column(5.5);
-			.pull-right();
+			.pull-right();			
 			@media (max-width: @screen-xs-max) {
 				width: 66%;
 				min-width: 380px;
@@ -310,10 +319,18 @@ main-menu-f2p {
 				width: 104%;
 				min-width: 220px;
 				text-align: center;
+
+			}
+			@media (max-width: @screen-md-max) {
+				.clean-paddings();
 			}
 			.energy{
 				.stats-commons();
 				color: @green;
+				.count {
+					padding-top: 0;
+				}
+				
 			}
 			.manager-points{
 				.stats-commons();
@@ -327,8 +344,9 @@ main-menu-f2p {
 					height: 18px;
 					position: absolute;
 					top: 12px;
-					left: 9px;
+					left: 22px;
 				}
+				width: 68px;
 			}
 			.coins {
 				.stats-commons();

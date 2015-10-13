@@ -15992,10 +15992,24 @@ main-menu-f2p {
   display: inline-block;
   width: 50px;
   color: #afafaf;
+  position: relative;
 }
 #mainMenu #desktopMenu .fixed-user-stats .manager-points .count {
   margin-top: 5px;
   font-size: 8pt;
+}
+#mainMenu #desktopMenu .fixed-user-stats .manager-points .managerLevel {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 9pt;
+  color: #000000;
+  background-color: #55c0ff;
+  border-radius: 10px;
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top: 12px;
+  left: 9px;
 }
 #mainMenu #desktopMenu .fixed-user-stats .coins {
   text-align: center;

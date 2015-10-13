@@ -1,35 +1,35 @@
 <modal id="energyshopComp">
-  
+
   <!--<div class="header"></div> -->
-  
+
   <div class="content">
-  
+
     <div class="content-banner">
       <img ng-src="{{getShopBanner()}}">
     </div>
-    
+
     <div class="products-wrapper">
-    
+
       <div ng-repeat="item in products"  ng-click="buyEnergy(item.id)">
-        
-        
+
+
         <div ng-class="{'no-purchasable': !item.purchasable}" class="product" ng-if="item.price != null || timeLeft != ''">
-        
-        
-        
-          <div class="slot-base">        
+
+
+
+          <div class="slot-base">
             <div class="shop-item-left"></div>
-            <div class="shop-item-middle"></div>      
-            <div class="shop-item-right"></div>        
+            <div class="shop-item-middle"></div>
+            <div class="shop-item-right"></div>
           </div>
           <div class="shop-item-pattern"></div>
-          
+
           <div class="slot-content">
-          
+
             <div class="image-column">
-              <img class="item-icon" ng-src="images/{{item.captionImage}}">
+              <img class="item-icon" ng-src="{{item.captionImage}}">
             </div>
-          
+
             <div class="quantity-column">
               <span class="product-description">{{item.description}}</span>
               <div ng-switch="item.purchasable">
@@ -37,23 +37,23 @@
                 <span ng-switch-when="false" class="product-time-left">{{timeLeft}}</span>
               </div>
             </div>
-          
+
        	  </div>
-        
-        
-          
+
+
+
         </div>
-        
-        
-           
+
+
+
       </div>
-      
+
     </div>
-  
+
     <div class="buttons-wrapper">
      <div class="button-box"><button id="btnClose" class="cancel-button" ng-click="CloseModal()">{{getLocalizedText('buttonback')}}</button></div>
     </div>
-    
+
   </div>
-  
+
 </modal>

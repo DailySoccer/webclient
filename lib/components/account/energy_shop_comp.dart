@@ -5,6 +5,8 @@ import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/components/modal_comp.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
+import 'package:webclient/services/catalog_service.dart';
+import 'package:webclient/models/product.dart';
 
 
 @Component(
@@ -13,37 +15,49 @@ import 'package:webclient/services/flash_messages_service.dart';
     useShadowDom: false
 )
 class EnergyShopComp {
-  
+
   List<Map> products;
-  
+
   String get timeLeft => _userProfile.user.printableEnergyTimeLeft;
-  
+
   String getLocalizedText(key) {
     return StringUtils.translate(key, "energyshop");
   }
-  
-  EnergyShopComp(this._flashMessage, this._userProfile) {
-    products = [ 
-       {"id" : "e1", "description" : getLocalizedText("maxrefill"),  "captionImage" : "icon-FullEnergy.png",   "purchasable": true, "price": "30€"}
-      ,{"id" : "e2", "description" : getLocalizedText("autorefill"), "captionImage" : "Icon-EnergyLevelUp.png","purchasable": false}
-    ];
+
+  EnergyShopComp(this._flashMessage, this._userProfile, this._catalogService) {
+    products = [];
+
+    _catalogService.getCatalog()
+      .then((catalog) {
+        for (Product info in catalog.where((product) => product.gained.isEnergy)) {
+          Map product = {};
+          product["description"] = getLocalizedText(info.name);
+          product["captionImage"] = info.imageUrl;
+          product["price"] = info.price.toString();
+          product["quantity"] = info.gained.amount.toInt().toString();
+          product["purchasable"] = true;
+          products.add(product);
+        }
+
+        products.addAll([
+          {"id" : "AUTO_REFILL", "description" : getLocalizedText("autorefill"), "captionImage" : "images/icon-EnergyLevelUp.png","purchasable": false}
+        ]);
+    });
   }
-  
-  String getShopBanner() {
-    return "images/shopBannerSample.jpg";
-  }
-  
+
+  String getShopBanner() => "images/shopBannerSample.jpg";
+
   void buyEnergy(String id) {
-    if (id == "e1" ) {
+    if (products.firstWhere((product) => product["id"] == id, orElse: () => {})["purchasable"]) {
       _flashMessage.addGlobalMessage("DEBUG: Quieres comprar elemento [ Recarga  Completa ]", 1);
     }
   }
-  
+
   void CloseModal() {
     ModalComp.close();
   }
-  
+
   FlashMessagesService _flashMessage;
   ProfileService _userProfile;
-  
+  CatalogService _catalogService;
 }

@@ -30,6 +30,7 @@ class Money {
 
   // TODO: Existen contests con entryFee en Euros, mostramos únicamente Dollars...
   String toString() => "${StringUtils.parsePrize(amount)}";
+  String toStringWithCurrency() => "${StringUtils.parsePrize(amount)}${currentSymbolMap[currencyUnit]}";
   // String toString() => "${currentSymbolMap[currencyUnit]}${StringUtils.parsePrize(amount)}";
 
   int toInt() => amount.toInt();

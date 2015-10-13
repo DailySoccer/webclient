@@ -70,6 +70,9 @@ abstract class ServerService {
   // Premios
   Future<Map> getPrizes();
 
+  // Catalog
+  Future<Map> getCatalog();
+
   // Suscripción a eventos
   void        subscribe(dynamic id, {Function onSuccess, Function onError});
 
@@ -229,6 +232,10 @@ class DailySoccerServer implements ServerService {
 
   Future<Map> getPrizes() {
     return _innerServerCall("${HostServer.url}/get_prizes", retryTimes: -1);
+  }
+
+  Future<Map> getCatalog() {
+    return _innerServerCall("${HostServer.url}/get_catalog", retryTimes: -1);
   }
 
   void cancelAllAndReload() {

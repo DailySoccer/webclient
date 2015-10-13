@@ -5,13 +5,28 @@ import "package:webclient/models/soccer_team.dart";
 import "package:webclient/models/field_pos.dart";
 import 'package:webclient/services/contest_references.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:logging/logging.dart';
 
 class InstanceSoccerPlayer {
+  static List<int> LEVEL_SALARY = [
+      2750, 4250, 5750, 7250, 8750, 100000
+    ];
+
   SoccerPlayer soccerPlayer;
   SoccerTeam soccerTeam;
 
   FieldPos fieldPos;
   int salary;
+
+  int _level = -1;
+  int get level {
+    // Si no se ha calculado el nivel del futbolista, lo calculamos
+    if (_level < 0) {
+      for (_level = 0; _level<LEVEL_SALARY.length && salary>LEVEL_SALARY[_level]; _level++) {
+      }
+    }
+    return _level;
+  }
 
   String get id => soccerPlayer.templateSoccerPlayerId;
 

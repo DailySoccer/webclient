@@ -13881,6 +13881,10 @@ fieldset[disabled] #mobileContent .button-wrap .button-play-mobile {
   margin: 0px auto -2px auto;
   display: block;
 }
+.week-calendar .week-days-wrapper .week-day.disabled {
+  color: #6a8597;
+  cursor: default;
+}
 .week-calendar .week-days-wrapper .week-day .day-info {
   padding: 0px 15px;
   margin: 10px 0px 0px 0px;

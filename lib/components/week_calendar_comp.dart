@@ -18,14 +18,16 @@ import 'package:webclient/utils/string_utils.dart';
 
 class WeekCalendar {
 
-  List<Map> dayList = new List<Map>();
+  @NgOneWay("dates")
+  List<Map> dayList;// = new List<Map>();
   
+  /*
   @NgOneWay("start-date")
   void set startDate(String value) {
     _firstDay = DateTimeService.now;
     updateDayList();
   }
-  
+  */
   @NgCallback("on-day-selected")
   void set onDayClickCallback(Function value) {
     _onDayClick = value;
@@ -38,6 +40,7 @@ class WeekCalendar {
     return StringUtils.translate(key, "weekcalendar", substitutions);
   }
   
+  /*
   void updateDayList() {
     dayList = new List<Map>();
     DateTime current = _currentSelected = _firstDay;
@@ -47,13 +50,16 @@ class WeekCalendar {
     }
     dayClick();
   }
+  */
   
-  void selectDay(Event ev, DateTime day) {
+  void selectDay(Event ev, Map weekElem) {
+    if (!weekElem['enabled']) return;
+    
     Element weekDayElem = ev.currentTarget;
     ElementList oldWeekDayElems = querySelectorAll(".week-day.active");
     oldWeekDayElems.classes.remove("active");
     weekDayElem.classes.add('active');
-    _currentSelected = day;
+    _currentSelected = weekElem['date'];
     dayClick();
   }
   
@@ -62,8 +68,17 @@ class WeekCalendar {
       _onDayClick({'day': _currentSelected});
     }
   }
+  
+  bool isCurrentSelected(DateTime date, int index) {
+    if (_currentSelected == null) {
+      return index == 0;
+    }
+    
+    return (date.day == _currentSelected.day && 
+            date.month == _currentSelected.month && 
+            date.year == _currentSelected.year);
+  }
 
   DateTime _currentSelected = null;
-  DateTime _firstDay = null;
   Function _onDayClick;
 }

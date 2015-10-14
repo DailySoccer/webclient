@@ -316,72 +316,62 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
 
       <div id="menuSlide" class="menu-elements">
         <ul class="nav navbar-nav">
-          <li highlights="lobby"       class="mainOption"><a  id="menuLobby"      destination="lobby">                            ${StringUtils.translate("lobby",      "mainmenu")}</a></li>
-          <li highlights="my_contests" class="mainOption"><a  id="menuMyContests" destination="my_contests" params="section:live">${StringUtils.translate("mycontest",  "mainmenu")}</a></li>
-          <li highlights="leaderboard" class="mainOption"><a  id="menuMyContests" destination="leaderboard" params="section:live">${StringUtils.translate("leaderboard","mainmenu")}</a></li>
+          ${getMainOptions()}
           <li highlights="user" class="right-menu username-dropdown-toggle" >
             <a id="menuUser" class="dropdown-toggle" data-toggle="dropdown">${_userNickName}</a>
-            ${getDesktopFixedMenu()}
+            <ul class="dropdown-menu">
+              ${getUserMenuOptions(_scrDet.isXsScreen)}
+            </ul>
           </li>
-
         </ul>
-
       </div>
 
-      <div id ="desktopMenu" class="fixed-menu">
-        
-        <div class="links-options">
-          <div highlights="lobby" class="mainLink">
-            <a id="menuLobby" destination="lobby" highlights="lobby">${StringUtils.translate("lobby", "mainmenu")}</a>
-          </div>
-          <div highlights="my_contests" class="mainLink">
-            <a id="menuMyContests" destination="my_contests" params="section:live">${StringUtils.translate("mycontest", "mainmenu")}</a>
-          </div>
-          <div highlights="help_info" class="mainLink">
-            <a id="menuLeaderBoard" destination="leaderboard">${StringUtils.translate("leaderboard", "mainmenu")}</a>
-          </div>
-        </div>
+      <div id ="desktopMenu" class="fixed-menu">        
+        <ul class="links-options">
+          ${getMainOptions()}
+        </ul>
       
-        <div class="fixed-user-stats">
-          <div class="energy additive" destination="shop.energy">
+        <ul class="fixed-user-stats">
+          <li class="energy additive" destination="shop.energy">
             <img src="images/icon-lightning-lg.png"> 
             <div class="count">
               <div class="progress">
                 <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="${_maxEnergy}" style="width:${profileService.user.Energy * 100 / User.MAX_ENERGY}%"></div>
               </div>            
               <span class="plus">+</span></div>            
-          </div>
+          </li>
 
-          <div class="manager-points additive" destination="shop"> 
+          <li class="manager-points additive" destination="shop"> 
             <img src="images/icon-star-lg.png">
             <span class="managerLevel">${_userManagerLevel}</span>     
             <div class="count">
                 ${_userManagerPoints}
                 <span class="plus">+</span>
             </div>            
-          </div>
+          </li>
 
-          <div class="coins additive" destination="shop.gold">
+          <li class="coins additive" destination="shop.gold">
             <img src="images/icon-coin-lg.png">      
             <div class="count">${_userGold}<span class="plus">+</span></div>
-          </div>
+          </li>
 
-          <div id="desktopMenuUser" class="profile">       
+          <li id="desktopMenuUser" class="profile">       
             <img src="images/icon-userProfile.png" data-toggle="dropdown">
             <div class="count">${_userTrueSkill}</div>
-            ${getDesktopFixedMenu()}
-          </div> 
-        </div>
+            <ul id="desktopUserMenu" class="dropdown-menu">
+              ${getUserMenuOptions(_scrDet.isNotXsScreen)}
+            </ul>
+          </li> 
+        </ul>
       
       </div>
     </div>
     ''';
     }
 
-  String getDesktopFixedMenu() {
-    if (_scrDet.isNotXsScreen) {
+  String getUserMenuOptions(bool isDesktop) {
+    if (isDesktop) {
       return '''        
-        <ul id="desktopUserMenu" class="dropdown-menu">
           <li><a id="menuUserMyAccount" destination="user_profile"> ${StringUtils.translate("myaccount",  "mainmenu")}</a></li>
           <li><a id="menuUserShop"      destination="shop">         ${StringUtils.translate("shop",       "mainmenu")}</a></li>
           <li><a id="menuHowItWorks"    destination="help_info">    ${StringUtils.translate("howitworks", "mainmenu")}</a></li>
@@ -390,6 +380,32 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
       ''';
     }
     return '';
+  }
+  
+  String getMainOptions() {
+    return '''
+      <li highlights="lobby"       class="mainLink"> ${getMainMenuLink("lobby")}       </li>
+      <li highlights="my_contests" class="mainLink"> ${getMainMenuLink("my_contests")} </li>
+      <li highlights="leaderboard" class="mainLink"> ${getMainMenuLink("leaderboard")} </li>
+    ''';
+  }
+  
+  String getMainMenuLink(String menuLink) {
+    String ret = "";
+    
+    switch (menuLink) {
+      case "lobby":
+        ret = '''<a id="menuLobby"      destination="lobby">                            ${StringUtils.translate("lobby",        "mainmenu")}</a>''';
+        break;
+      case "my_contests":
+        ret = '''<a id="menuMyContests" destination="my_contests" params="section:live">${StringUtils.translate("mycontest",    "mainmenu")}</a>''';
+        break;
+      case "leaderboard":
+        ret = '''<a id="menuLeaderboard" destination="leaderboard">                     ${StringUtils.translate("leaderboard",  "mainmenu")}</a>''';
+        break;
+    }
+    
+    return ret;    
   }
 
   void _cancelListeners() {

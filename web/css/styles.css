@@ -11104,8 +11104,16 @@ fieldset[disabled] #withdrawFundsContent .withdraw-founds-box button.withdraw-fu
     width: 50%;
   }
 }
+@media (max-width: 480px) {
+  #mainShopCompWrapper .items-wrapper .shop-item {
+    padding: 0 3px;
+  }
+}
 #mainShopCompWrapper .items-wrapper .shop-item .slot-base {
   height: 80px;
+  -webkit-box-shadow: -7px 6px 5px -2px rgba(67, 67, 67, 0.5);
+  -moz-box-shadow: -7px 6px 5px -2px rgba(67, 67, 67, 0.5);
+  box-shadow: -7px 6px 5px -2px rgba(67, 67, 67, 0.5);
 }
 #mainShopCompWrapper .items-wrapper .shop-item .slot-base > * {
   height: 100%;
@@ -11121,6 +11129,12 @@ fieldset[disabled] #withdrawFundsContent .withdraw-founds-box button.withdraw-fu
   position: absolute;
   background: url("../images/shopItemBgMiddle.png") repeat;
 }
+@media (max-width: 480px) {
+  #mainShopCompWrapper .items-wrapper .shop-item .slot-base .shop-item-middle {
+    left: 107px;
+    right: 183px;
+  }
+}
 #mainShopCompWrapper .items-wrapper .shop-item .slot-base .shop-item-right {
   width: 195px;
   float: right;
@@ -11133,6 +11147,12 @@ fieldset[disabled] #withdrawFundsContent .withdraw-founds-box button.withdraw-fu
   top: 0;
   height: 80px;
   background: url("../images/shopItemPattern.png") repeat;
+}
+@media (max-width: 480px) {
+  #mainShopCompWrapper .items-wrapper .shop-item .shop-item-pattern {
+    right: 3px;
+    left: 3px;
+  }
 }
 #mainShopCompWrapper .items-wrapper .shop-item .slot-content .item-icon {
   position: absolute;
@@ -11153,6 +11173,11 @@ fieldset[disabled] #withdrawFundsContent .withdraw-founds-box button.withdraw-fu
   display: flex;
   justify-content: center;
   align-items: center;
+}
+@media (max-width: 480px) {
+  #mainShopCompWrapper .items-wrapper .shop-item .slot-content .shop-item-info {
+    left: 107px;
+  }
 }
 #goldShopComp,
 #trainerPointsShopComp {
@@ -11267,6 +11292,12 @@ fieldset[disabled] #withdrawFundsContent .withdraw-founds-box button.withdraw-fu
     width: 50%;
   }
 }
+@media (max-width: 480px) {
+  #goldShopComp .products-wrapper .product,
+  #trainerPointsShopComp .products-wrapper .product {
+    padding: 0 3px;
+  }
+}
 #goldShopComp .products-wrapper .product .slot-base,
 #trainerPointsShopComp .products-wrapper .product .slot-base {
   height: 80px;
@@ -11284,12 +11315,25 @@ fieldset[disabled] #withdrawFundsContent .withdraw-founds-box button.withdraw-fu
   width: 104px;
   background: url("../images/shopItemBgLeft.png") no-repeat right;
 }
+@media (max-width: 480px) {
+  #goldShopComp .products-wrapper .product .slot-base .shop-item-left,
+  #trainerPointsShopComp .products-wrapper .product .slot-base .shop-item-left {
+    width: 89px;
+  }
+}
 #goldShopComp .products-wrapper .product .slot-base .shop-item-middle,
 #trainerPointsShopComp .products-wrapper .product .slot-base .shop-item-middle {
   left: 119px;
   right: 195px;
   position: absolute;
   background: url("../images/shopItemBgMiddle.png") repeat;
+}
+@media (max-width: 480px) {
+  #goldShopComp .products-wrapper .product .slot-base .shop-item-middle,
+  #trainerPointsShopComp .products-wrapper .product .slot-base .shop-item-middle {
+    left: 90px;
+    right: 183px;
+  }
 }
 #goldShopComp .products-wrapper .product .slot-base .shop-item-right,
 #trainerPointsShopComp .products-wrapper .product .slot-base .shop-item-right {
@@ -11305,6 +11349,13 @@ fieldset[disabled] #withdrawFundsContent .withdraw-founds-box button.withdraw-fu
   top: 0;
   height: 80px;
   background: url("../images/shopItemPattern.png") repeat;
+}
+@media (max-width: 480px) {
+  #goldShopComp .products-wrapper .product .shop-item-pattern,
+  #trainerPointsShopComp .products-wrapper .product .shop-item-pattern {
+    right: 3px;
+    left: 3px;
+  }
 }
 #goldShopComp .products-wrapper .product .slot-content,
 #trainerPointsShopComp .products-wrapper .product .slot-content {
@@ -11346,6 +11397,13 @@ fieldset[disabled] #withdrawFundsContent .withdraw-founds-box button.withdraw-fu
   position: absolute;
   text-align: center;
   padding: 10px 0;
+}
+@media (max-width: 480px) {
+  #goldShopComp .products-wrapper .product .slot-content .quantity-column,
+  #trainerPointsShopComp .products-wrapper .product .slot-content .quantity-column {
+    left: 60px;
+    right: 70px;
+  }
 }
 #goldShopComp .products-wrapper .product .slot-content .quantity-column .product-description,
 #trainerPointsShopComp .products-wrapper .product .slot-content .quantity-column .product-description {
@@ -11678,6 +11736,11 @@ fieldset[disabled] #trainerPointsShopComp .buttons-wrapper .cancel-button {
     width: 50%;
   }
 }
+@media (max-width: 480px) {
+  #energyshopComp .products-wrapper .product {
+    padding: 0 3px;
+  }
+}
 #energyshopComp .products-wrapper .product .slot-base {
   height: 80px;
   -webkit-box-shadow: -7px 6px 5px -2px rgba(67, 67, 67, 0.5);
@@ -11692,11 +11755,22 @@ fieldset[disabled] #trainerPointsShopComp .buttons-wrapper .cancel-button {
   width: 104px;
   background: url("../images/shopItemBgLeft.png") no-repeat right;
 }
+@media (max-width: 480px) {
+  #energyshopComp .products-wrapper .product .slot-base .shop-item-left {
+    width: 89px;
+  }
+}
 #energyshopComp .products-wrapper .product .slot-base .shop-item-middle {
   left: 119px;
   right: 195px;
   position: absolute;
   background: url("../images/shopItemBgMiddle.png") repeat;
+}
+@media (max-width: 480px) {
+  #energyshopComp .products-wrapper .product .slot-base .shop-item-middle {
+    left: 92px;
+    right: 183px;
+  }
 }
 #energyshopComp .products-wrapper .product .slot-base .shop-item-right {
   width: 195px;
@@ -11710,6 +11784,12 @@ fieldset[disabled] #trainerPointsShopComp .buttons-wrapper .cancel-button {
   top: 0;
   height: 80px;
   background: url("../images/shopItemPattern.png") repeat;
+}
+@media (max-width: 480px) {
+  #energyshopComp .products-wrapper .product .shop-item-pattern {
+    right: 3px;
+    left: 3px;
+  }
 }
 #energyshopComp .products-wrapper .product .slot-content {
   position: relative;
@@ -11743,6 +11823,12 @@ fieldset[disabled] #trainerPointsShopComp .buttons-wrapper .cancel-button {
   position: absolute;
   text-align: center;
   padding: 10px 0;
+}
+@media (max-width: 480px) {
+  #energyshopComp .products-wrapper .product .slot-content .quantity-column {
+    left: 90px;
+    right: 30px;
+  }
 }
 #energyshopComp .products-wrapper .product .slot-content .quantity-column .product-description {
   display: block;

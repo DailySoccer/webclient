@@ -11,8 +11,12 @@
 	 		cursor: pointer;
 	 		height: 80px;
 			margin-top: 10px;
+			@media (max-width: @screen-xs-min) {
+				padding: 0 3px;
+			}
 			.slot-base {
 				height: 80px;
+				.make-shadow(-7px, 6px, 5px, -2px, @greyUltraDark, 0.5);
 				> * {
 					height: 100%;
 					display: inline-block;
@@ -24,6 +28,10 @@
 				.shop-item-middle {					
 					left: 119px;
 					right: 195px;
+					@media (max-width: @screen-xs-min) {
+						left: 107px;
+						right: 183px;
+					}
 					position: absolute;
 					background: url("@{images}/shopItemBgMiddle.png") repeat;
 				}		
@@ -37,6 +45,10 @@
 				position: absolute;
 				right: 15px;
 				left: 15px;
+				@media (max-width: @screen-xs-min) {
+					right: 3px;
+					left: 3px;
+				}
 				top: 0;
 				height: 80px;
 				background: url("../images/shopItemPattern.png") repeat;
@@ -52,6 +64,9 @@
 		 			right: 30px;
 		 			bottom: 0;
 		 			left: 119px;
+		 			@media (max-width: @screen-xs-min) {
+						left: 107px;
+		 			}
 		 			padding-left: 15px;
 		 			padding-right: 15px;
 		 			

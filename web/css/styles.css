@@ -7614,9 +7614,6 @@ contest-header {
 .contestant-list > div:nth-child(odd) {
   background-color: #dcdcdc;
 }
-.global-my-contests #mainWrapper.wrapper-content-container {
-  background-color: #dcdcdc;
-}
 .contests-list-f2p-root {
   margin-right: auto;
   margin-left: auto;
@@ -9911,6 +9908,7 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
 }
 #addFundsContent {
   padding-bottom: 40px;
+  background-color: #ffffff;
 }
 #addFundsContent .block-dark {
   background-color: #ecf0f1;
@@ -23304,6 +23302,9 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
     padding-right: 15px;
   }
 }
+.global-user-profile #mainWrapper.wrapper-content-container {
+  background-color: #ffffff;
+}
 .profile-content {
   margin-left: 0;
   margin-right: 0;
@@ -25176,7 +25177,7 @@ body {
 }
 .global-logged-in .wrapper-content-container {
   max-width: 970px;
-  background-color: #ffffff;
+  background-color: #dcdcdc;
 }
 .btn {
   border-width: 0;

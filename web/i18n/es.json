@@ -24,6 +24,16 @@
       "datetimelong"                    : "E, dd/MM/yy HH:mm",
       "datetimedayhour"                 : "dd/MM/yy HH:mm"
     },
+    "weekcalendar"                      :
+    {
+      "1"                               : "L",
+      "2"                               : "M",
+      "3"                               : "X",
+      "4"                               : "J",
+      "5"                               : "V",
+      "6"                               : "S",
+      "7"                               : "D"
+    },
     "landing"                           :
     {
       "title"                           : "LIGAS FANTÁSTICAS DIARIAS",

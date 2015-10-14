@@ -42,11 +42,16 @@ class ContestsListF2PComp {
   
   @NgOneWay("sorting")
   void set sortOrder(Map value) {
-    print(value);
     _sortOrder = value;
     refreshListOrder();
   }
 
+  @NgOneWay("date-filter")
+  void set filterByDate(DateTime value) {
+    _dateFilter = value;
+    refreshListOrder();
+  }
+  
   @NgCallback('on-list-change')
   Function onListChange;
 
@@ -138,7 +143,14 @@ class ContestsListF2PComp {
     }
 
     contestsListOrdered = [];
-    contestsListOrdered.addAll(contestsListOriginal);
+    
+    if(_dateFilter != null) {
+      contestsListOrdered.addAll(contestsListOriginal.where((c) => (_dateFilter.day == c.startDate.day && 
+                                                                _dateFilter.month == c.startDate.month && 
+                                                                _dateFilter.year == c.startDate.year)));
+    } else {
+      contestsListOrdered.addAll(contestsListOriginal);
+    }
 
     switch(_sortOrder['fieldName']) {
       case "contest-name":
@@ -199,7 +211,7 @@ class ContestsListF2PComp {
     }
   }
   
-
+  DateTime _dateFilter = new DateTime.now();
   Map _sortOrder = {'fieldName':'contest-start-time', 'order': 1};
   ProfileService _profileService;
   ScreenDetectorService scrDet;

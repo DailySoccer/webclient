@@ -6,9 +6,10 @@ import 'package:webclient/services/contests_service.dart';
 import 'package:webclient/services/refresh_timers_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/loading_service.dart';
+import 'package:webclient/services/datetime_service.dart';
+import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/utils/game_metrics.dart';
-import 'package:webclient/services/profile_service.dart';
 
 @Component(
   selector: 'lobbyf2p',
@@ -19,6 +20,9 @@ class LobbyF2PComp implements DetachAware {
   ContestsService contestsService;
   ScreenDetectorService scrDet;
   LoadingService loadingService;
+  DateTime selectedDate;
+  
+  String get today => DateTimeService.today;
 
   LobbyF2PComp(this._router, this._refreshTimersService, this.contestsService, this.scrDet, this.loadingService, this._profileService) {
 
@@ -48,6 +52,10 @@ class LobbyF2PComp implements DetachAware {
     else {
       _router.go('enter_contest.welcome', { "contestId": contest.contestId, "parent": "lobby", "contestEntryId": "none" });
     }
+  }
+  
+  void onSelectedDayChange(DateTime day) {
+    selectedDate = day;
   }
 
   // Mostramos la ventana modal con la información de ese torneo, si no es la versión movil.

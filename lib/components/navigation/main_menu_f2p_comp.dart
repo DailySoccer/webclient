@@ -42,7 +42,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
 
   void onScreenWidthChange(String msg) {
     _monitorChanges(null, null);
-    }
+  }
 
   void _monitorChanges(currentVal, prevVal) {
     _reset();

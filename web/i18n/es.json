@@ -177,8 +177,21 @@
       "buttonclean"                     : "BORRAR ALINEACION",
       "buttoncontinue"                  : "CONTINUAR",
       "tip"                             : "Recuerda que puedes editar tu alineación todas las veces que quieras hasta que el torneo comience",
-      "lineupsavedmsg"                  : "Alineación guardada"
-      
+      "lineupsavedmsg"                  : "Alineación guardada",
+      "errorcontestnotactivetitle"      : "Torneo en Directo",
+      "errorcontestnotactivegeneric"    : "No es posible entrar al concurso en directo",
+      "errorcontestnotactiveediting"    : "No es posible modificar tu alineación cuando el torneo ya haya empezado",
+      "errormaxplayerssameteamtitle"    : "Jugadores del mismo equipo",
+      "errormaxplayerssameteamgeneric"  : "No es posible...",
+      "erroruserbalancenegativetitle"   : "No tienes GOLD suficiente",
+      "erroruserbalancenegativegeneric" : "No tienes GOLD suficiente para entrar a este concurso. Por favor, ingresa fondos para poder continuar",
+      "errordefaulttitle"               : "Atención",
+      "errordefaultgeneric"             : "Ha ocurrido un error. No puedes acceder a este torneo en este momento. Inténtalo mas tarde.",
+      "errordefaultediting"             : "Ha ocurrido un error. No puedes modificar tu alineación en este momento. Inténtalo mas tarde.",
+      "alertnoenergytitle"              : "Sin ENERGIA suficiente",
+      "alertnogoldtitle"                : "Sin GOLD suficiente",
+      "alertnoenergymessage"            : "No tienes ENERGIA para entrar en el torneo",
+      "alertnogoldmessage"              : "No tienes GOLD para entrar en el torneo"          
     },
     "lineupselector"                    :
     {

@@ -83,6 +83,29 @@ class EnterContestComp implements DetachAware {
 
   EnterContestComp(this._routeProvider, this._router, this.scrDet, this._contestsService, this.loadingService, this._profileService, this._flashMessage, this._rootElement) {
     loadingService.isLoading = true;
+   
+    errorMap = {
+      ERROR_CONTEST_NOT_ACTIVE: {
+          "title"   : getLocalizedText("errorcontestnotactivetitle"),
+          "generic" : getLocalizedText("errorcontestnotactivegeneric"),
+          "editing" : getLocalizedText("errorcontestnotactiveediting")
+      },
+      ERROR_MAX_PLAYERS_SAME_TEAM: {
+        "title"   : getLocalizedText("errormaxplayerssameteamtitle"),
+        "generic" : getLocalizedText("errormaxplayerssameteamgeneric"),
+      },
+      // TODO: Avisamos al usuario de que no dispone del dinero suficiente pero, cuando se integre la branch "paypal-ui", se le redirigirá a "añadir fondos"
+      ERROR_USER_BALANCE_NEGATIVE: {
+        "title"   : getLocalizedText("erroruserbalancenegativetitle"),
+        "generic" : getLocalizedText("erroruserbalancenegativegeneric")
+      },
+      "_ERROR_DEFAULT_": {
+          "title"   : getLocalizedText("errordefaulttitle"),
+          "generic" : getLocalizedText("errordefaultgeneric"),
+          "editing" : getLocalizedText("errordefaultediting")
+      },
+    };
+    
     scrDet.scrollTo('#mainApp');
 
     resetLineup();
@@ -364,8 +387,8 @@ class EnterContestComp implements DetachAware {
         // TODO: Qué hacemos si el usuario no tiene dinero?
         // TODO: Traducir...
         modalShow(
-            contest.entryFee.isEnergy ? "Sin ENERGIA suficiente" : "Sin GOLD suficiente",
-            contest.entryFee.isEnergy ? "No tienes ENERGIA para entrar en el torneo" : "No tienes GOLD para entrar en el torneo"
+            contest.entryFee.isEnergy ? getLocalizedText("alertnoenergytitle") : getLocalizedText("alertnogoldtitle"),
+            contest.entryFee.isEnergy ? getLocalizedText("alertnoenergymessage")  : getLocalizedText("alertnogoldmessage")
         );
 
         /*
@@ -424,27 +447,7 @@ class EnterContestComp implements DetachAware {
     ModalComp.open(_router, "enter_contest.soccer_player_stats", { "instanceSoccerPlayerId":soccerPlayerId, "selectable":isSlotAvailableForSoccerPlayer(soccerPlayerId)}, addSoccerPlayerToLineup);
   }
 
-  Map<String, Map> errorMap = {
-    ERROR_CONTEST_NOT_ACTIVE: {
-        "title"   : "Live Contest",
-        "generic" : "It is not possible to enter a live contest.",
-        "editing" : "It is not possible to modify your lineup once the contest has started."
-    },
-    ERROR_MAX_PLAYERS_SAME_TEAM: {
-      "title"   : "Players from same team",
-      "generic" : "It is not possible...",
-    },
-    // TODO: Avisamos al usuario de que no dispone del dinero suficiente pero, cuando se integre la branch "paypal-ui", se le redirigirá a "añadir fondos"
-    ERROR_USER_BALANCE_NEGATIVE: {
-      "title"   : "Not enough cash",
-      "generic" : "You do not have enough cash to enter this contest. Please, add funds to continue."
-    },
-    "_ERROR_DEFAULT_": {
-        "title"   : "Warning",
-        "generic" : "An error has occurred. You can not enter this contest at the moment. Please, try again later.",
-        "editing" : "An error has occurred. You can not modify your lineup at the moment. Please, try again later.",
-    },
-  };
+  Map<String, Map> errorMap;
 
   void _showMsgError(ServerError error) {
     String keyError = errorMap.keys.firstWhere( (key) => error.responseError.contains(key), orElse: () => "_ERROR_DEFAULT_" );
@@ -512,9 +515,10 @@ class EnterContestComp implements DetachAware {
   ScreenDetectorService _scrDet;
 
   RouteHandle _routeHandle;
-  bool _teamConfirmed = false;
 
+  bool _teamConfirmed = false;
   bool _isRestoringTeam = false;
+
   Element _rootElement;
   Element alertMaxplayerInSameTeam;
 }

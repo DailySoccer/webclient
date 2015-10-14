@@ -320,37 +320,37 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
   </form>
 </div>"""));
 tc.put("packages/webclient/components/account/energy_shop_comp.html", new HttpResponse(200, r"""<modal id="energyshopComp">
-  
+
   <!--<div class="header"></div> -->
-  
+
   <div class="content">
-  
+
     <div class="content-banner">
       <img ng-src="{{getShopBanner()}}">
     </div>
-    
+
     <div class="products-wrapper">
-    
+
       <div ng-repeat="item in products"  ng-click="buyEnergy(item.id)">
-        
-        
+
+
         <div ng-class="{'no-purchasable': !item.purchasable}" class="product" ng-if="item.price != null || timeLeft != ''">
-        
-        
-        
-          <div class="slot-base">        
+
+
+
+          <div class="slot-base">
             <div class="shop-item-left"></div>
-            <div class="shop-item-middle"></div>      
-            <div class="shop-item-right"></div>        
+            <div class="shop-item-middle"></div>
+            <div class="shop-item-right"></div>
           </div>
           <div class="shop-item-pattern"></div>
-          
+
           <div class="slot-content">
-          
+
             <div class="image-column">
-              <img class="item-icon" ng-src="images/{{item.captionImage}}">
+              <img class="item-icon" ng-src="{{item.captionImage}}">
             </div>
-          
+
             <div class="quantity-column">
               <span class="product-description">{{item.description}}</span>
               <div ng-switch="item.purchasable">
@@ -358,57 +358,57 @@ tc.put("packages/webclient/components/account/energy_shop_comp.html", new HttpRe
                 <span ng-switch-when="false" class="product-time-left">{{timeLeft}}</span>
               </div>
             </div>
-          
+
        	  </div>
-        
-        
-          
+
+
+
         </div>
-        
-        
-           
+
+
+
       </div>
-      
+
     </div>
-  
+
     <div class="buttons-wrapper">
      <div class="button-box"><button id="btnClose" class="cancel-button" ng-click="CloseModal()">{{getLocalizedText('buttonback')}}</button></div>
     </div>
-    
+
   </div>
-  
+
 </modal>"""));
 tc.put("packages/webclient/components/account/gold_shop_comp.html", new HttpResponse(200, r"""<modal id="goldShopComp">
-  
+
   <!--<div class="header"></div> -->
-  
+
   <div class="content">
-  
+
     <div class="content-banner">
       <img ng-src="{{getShopBanner()}}">
     </div>
-    
+
     <div class="products-wrapper">
-      
+
       <div ng-repeat="item in products" class="product" ng-click="buyItem(item.id)">
-        <div class="slot-base">        
+        <div class="slot-base">
           <div class="shop-item-left"></div>
-          <div class="shop-item-middle"></div>      
-          <div class="shop-item-right"></div>        
+          <div class="shop-item-middle"></div>
+          <div class="shop-item-right"></div>
         </div>
         <div class="shop-item-pattern" ng-if="!item.isMostPopular"></div>
-        
-        <div class="slot-content">    
-        
+
+        <div class="slot-content">
+
           <div class="image-column">
-            <img class="item-icon" ng-src="images/{{item.captionImage}}">
+            <img class="item-icon" ng-src="{{item.captionImage}}">
           </div>
-        
+
           <div class="quantity-column">
             <span class="product-description">{{item.description}}</span>
             <span class="product-count">{{item.quantity}}</span>
           </div>
-        
+
           <div class="price-column">
             <div class="free-increment" ng-if="item.freeIncrement > 0">
               <span class="free-increment-count">{{item.freeIncrement}}</span>
@@ -418,19 +418,19 @@ tc.put("packages/webclient/components/account/gold_shop_comp.html", new HttpResp
           </div>
           <div class="clearfix"></div>
           <img ng-src="{{getLocalizedText('mostpopularimagesource')}}" class="shop-item-popular" ng-if="item.isMostPopular">
-        
-        </div>   
+
+        </div>
       </div>
-       
+
     </div>
-    
+
     <div class="buttons-wrapper">
        <div class="button-box"><button id="btnClose" class="cancel-button" ng-click="CloseModal()">{{getLocalizedText('buttonback')}}</button></div>
     </div>
 
 
   </div>
-  
+
 </modal>"""));
 tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(200, r"""<div id="joinRoot" ng-show="!loadingService.isLoading" ng-class="{'air':!isModal}">
   <div id="signupbox" class="main-box" ng-class="{'air':!isModal}">
@@ -1002,7 +1002,7 @@ tc.put("packages/webclient/components/contest_header_comp.html", new HttpRespons
 <div class="clearfix"></div>
 """));
 tc.put("packages/webclient/components/contest_header_f2p_comp.html", new HttpResponse(200, r"""
-<div class="contest-header-f2p-wrapper">
+<div class="contest-header-f2p-wrapper" ng-if="contest != null">
   
   <!-- margen arriba -->
   <div class="name-section">
@@ -1014,7 +1014,7 @@ tc.put("packages/webclient/components/contest_header_f2p_comp.html", new HttpRes
   
     <div class="player-position" ng-if="contest.isLive || contest.isHistory">
       <div class="condition-name"><span>{{getLocalizedText("position")}}</span></div>
-      <div class="condition-amount"><span class="current-position">{{contest.numEntries}}</span>/{{contest.maxEntries}}</div>
+      <div class="condition-amount"><span class="current-position">{{printableMyPosition()}}</span>/{{contest.numEntries}}</div>
     </div>
     
     <div class="entry-fee-box" ng-if="!(contest.isLive || contest.isHistory)">
@@ -1023,17 +1023,13 @@ tc.put("packages/webclient/components/contest_header_f2p_comp.html", new HttpRes
     </div>
     <div class="prize-box">
       <span class="condition-name">{{getLocalizedText("prize")}}</span>
-      <span class="condition-amount" ng-class="{'prize-coin':getContestTypeIcon() == 'real', 'prize-managerpoints':getContestTypeIcon() == 'train'}">{{contest.prizePool}}</span>
+      <span class="condition-amount" ng-class="{'prize-coin':getContestTypeIcon() == 'real', 'prize-managerpoints':getContestTypeIcon() == 'train'}">{{getPrizeToShow()}}</span>
     </div>
   </div>
   
   <div class="date-time-data">
     <div class="contest-start-date">
       <span>{{info['startTime']}}&nbsp;</span>
-    </div>
-    <div class="contest-countdown-text">
-      <span class="text-countdown">{{info['textCountdownDate']}}&nbsp;</span>
-      <span class="time-countdown">{{info['countdownDate']}}&nbsp;</span>
     </div>
   </div>
   
@@ -1046,45 +1042,6 @@ tc.put("packages/webclient/components/contest_header_f2p_comp.html", new HttpRes
     <button type="button" ng-switch-when="true"  class="close" data-dismiss="modal">   <span class="glyphicon glyphicon-remove"></span></button>
     <button type="button" ng-switch-when="false" class="close" ng-click="goToParent()"><span class="glyphicon glyphicon-remove"></span></button>
   </div>
-
-
-  <!--div ng-if="isInsideModal" class="border-top"></div>
-  <div class="contest-relevant-data">
-    <div class="contest-name-description">
-      <div class="contest-name">{{info['description']}}</div>
-      <div class="contest-explanation">{{info['contestType']}} {{info['contestantCount']}}</div>
-   </div>
-    <div class="contest-price">
-      <div class="contest-coins-content"><span>{{info['entryPrice']}}</span></div>
-      <div class="contest-coins-header">{{getLocalizedText("entryfee")}}</div>
-    </div>
-
-    <div class="contest-prize">
-      <div class="contest-coins-content"><img ng-if="!scrDet.isXsScreen" class="iconPrize" src="images/iconPrize.png"><span>{{info['prize']}}</span></div>
-      <div class="contest-coins-header">
-        <div class="contest-coins-header-title">{{getLocalizedText("prizes")}}</div>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="date-time-data">
-    <div class="contest-start-date">
-      <span>{{info['startTime']}}&nbsp;</span>
-    </div>
-    <div class="contest-countdown-text">
-      <span class="text-countdown">{{info['textCountdownDate']}}&nbsp;</span>
-      <span class="time-countdown">{{info['countdownDate']}}&nbsp;</span>
-    </div>
-  </div>
-
-  <teams-panel id="teamsPanelComp" contest="contest" contest-id="contest.contestId"  ng-if="showMatches"></teams-panel>
-
-
-  <div class="close-contest" ng-switch="isInsideModal">
-    <button type="button" ng-switch-when="true"  class="close" data-dismiss="modal">   <span class="glyphicon glyphicon-remove"></span></button>
-    <button type="button" ng-switch-when="false" class="close" ng-click="goToParent()"><span class="glyphicon glyphicon-remove"></span></button>
-  </div-->
 
 </div>
 
@@ -1226,60 +1183,8 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
 </div>
 
 """));
-tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse(200, r"""<div class="contests-list-root">
-  <div class="contest-row" ng-repeat="contest in currentPageList">
-
-    <div class="column-contest-flag"><div class="{{getSourceFlag(contest)}}"></div></div>
-
-    <div class="column-contest-name" ng-click="onRow(contest)">
-      <div class="column-name">{{contest.name}}</div>
-      <div class="column-start-date-time-xs">{{dateInfo(contest.startDate)}} {{timeInfo(contest.startDate)}}</div>
-      <div class="column-description">{{contest.description}}</div>
-    </div>
-
-    <div class="column-contest-empty" ng-click="onRow(contest)" ng-if="contest.isLive"></div>
-
-    <div class="column-contest-price" ng-click="onRow(contest)" ng-if="!contest.isLive && !contest.isHistory">
-      <div class="column-contest-price-content">{{contest.entryFee}}</div>
-      <div class="column-contest-price-header">{{getLocalizedText("entryfee")}}</div>
-      <!-- torneo gratis -->
-      <!--<div ng-if="isFreeContest(contest)"><img src="images/iconFree.png" alt="GRATIS"></div>-->
-    </div>
-
-    <div class="column-contest-position" ng-click="onRow(contest)" ng-if="contest.isLive || contest.isHistory">
-      <div class="column-contest-position-content"><span>{{printableMyPosition(contest)}}</span></div>
-      <div class="column-contest-position-header">{{getLocalizedText("of")}} {{contest.maxEntries}}</div>
-    </div>
-
-    <div class="column-contest-prize" ng-click="onRow(contest)" ng-if="!contest.isLive">
-      <div ng-if="!contest.isHistory" class="column-contest-prize-content"><img ng-if="!scrDet.isXsScreen && contest.prizePool.amount > 0" class="iconPrize" src="images/iconPrize.png">{{contest.prizePool}}</div>
-      <div ng-if="contest.isHistory"  class="column-contest-prize-content prize-icon-big">{{getMyPrize(contest)}}</div>
-      <div class="column-contest-prize-header">{{getLocalizedText("prize")}}</div>
-    </div>
-
-    <div class="column-contest-points" ng-click="onRow(contest)" ng-if="contest.isLive">
-      <div class="column-contest-points-content"><span>{{getMyFantasyPoints(contest)}}</span></div>
-      <div class="column-contest-points-header">{{getLocalizedText("points")}}</div>
-    </div>
-
-    <div class="column-contest-start-date" ng-click="onRow(contest)" ng-if="!contest.isLive">
-      <div class="column-start-date-day">{{dateInfo(contest.startDate)}}</div>
-      <div class="column-start-date-hour">{{timeInfo(contest.startDate)}}</div>
-    </div>
-
-    <div class="column-contest-action">
-      <div class="button-wrapper">
-        <button type="button" class="action-button" ng-click="onAction(contest)">{{actionButtonTitle}}</button>
-      </div>
-    </div>
-
-  </div>
-
-  <paginator on-page-change="onPageChange(currentPage, itemsPerPage)" list-length="contestsListFiltered.length"></paginator>
-
-</div>"""));
 tc.put("packages/webclient/components/contests_list_f2p_comp.html", new HttpResponse(200, r"""<div class="contests-list-f2p-root">
-  <div ng-repeat="contest in contestsListOriginal">
+  <div ng-repeat="contest in contestsListOrdered">
     <div class="contestSlot" ng-class="{'special' : getContestMorfology(contest) == 'special'}" ng-click="onRow(contest)">
 
       <div class="special-image-section" ng-if="getContestMorfology(contest) == 'special'">
@@ -1289,8 +1194,8 @@ tc.put("packages/webclient/components/contests_list_f2p_comp.html", new HttpResp
       <div class="time-section">
         <div class="fake-time-column"></div>
         <div class="column-start-time">
-          <div class="column-start-hour">{{timeInfo(contest.startDate)}}</div>
-          <div class="column-start-date" ng-if="showDate">{{dateInfo(contest.startDate)}}</div>
+          <div class="column-start-hour" ng-class="{'start-soon' : isSoon(contest.startDate)}">{{timeInfo(contest.startDate)}}</div>
+          <div class="column-start-date" ng-if="showDate && !isSoon(contest.startDate)">{{dateInfo(contest.startDate)}}</div>
         </div>
       </div>
 
@@ -1304,7 +1209,7 @@ tc.put("packages/webclient/components/contests_list_f2p_comp.html", new HttpResp
       
         <div class="player-position" ng-if="contest.isLive || contest.isHistory">
           <div class="condition-name"><span>{{getLocalizedText("position")}}</span></div>
-          <div class="condition-amount"><span class="current-position">{{contest.numEntries}}</span>/{{contest.maxEntries}}</div>
+          <div class="condition-amount"><span class="current-position">{{printableMyPosition(contest)}}</span>/{{contest.numEntries}}</div>
         </div>
         
         <div class="entry-fee-box" ng-if="!(contest.isLive || contest.isHistory)">
@@ -1313,14 +1218,14 @@ tc.put("packages/webclient/components/contests_list_f2p_comp.html", new HttpResp
         </div>
         <div class="prize-box">
           <span class="condition-name">{{getLocalizedText("prize")}}</span>
-          <span class="condition-amount" ng-class="{'prize-coin':getContestTypeIcon(contest) == 'real', 'prize-managerpoints':getContestTypeIcon(contest) == 'train'}">{{contest.prizePool}}</span>
+          <span class="condition-amount" ng-class="{'prize-coin':getContestTypeIcon(contest) == 'real', 'prize-managerpoints':getContestTypeIcon(contest) == 'train'}">{{getPrizeToShow(contest)}}</span>
         </div>
       </div>
 
       <div class="action-section" ng-click="onAction(contest, $event)">
         <img class="ticket" ng-src="images/arrow{{getContestMorfology(contest) == 'normal' ? 'Black' : 'White'}}.png" ng-if="!contest.isLive">
         <div class="button-wrapper" ng-if="contest.isLive">
-          <button type="button" class="action-button" ng-click="onAction(contest)">{{actionButtonTitle}}</button>
+          <button type="button" class="action-button" ng-click="onAction(contest, $event)">{{actionButtonTitle}}</button>
         </div>
       </div>
 

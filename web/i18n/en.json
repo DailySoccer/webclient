@@ -178,7 +178,20 @@
       "buttoncontinue"                  : "CONTINUE",
       "tip"                             : "Remember: you can edit your team as many times as you want until the contest starts",
       "lineupsavedmsg"                  : "Lineup saved",
-      
+      "errorcontestnotactivetitle"      : "Live Contest",
+      "errorcontestnotactivegeneric"    : "It is not possible to enter a live contest.",
+      "errorcontestnotactiveediting"    : "It is not possible to modify your lineup once the contest has started.",
+      "errormaxplayerssameteamtitle"    : "Players from same team",
+      "errormaxplayerssameteamgeneric"  : "It is not possible...",
+      "erroruserbalancenegativetitle"   : "Not enough cash",
+      "erroruserbalancenegativegeneric" : "You do not have enough cash to enter this contest. Please, add funds to continue.",
+      "errordefaulttitle"               : "Warning",
+      "errordefaultgeneric"             : "An error has occurred. You can not enter this contest at the moment. Please, try again later.",
+      "errordefaultediting"             : "An error has occurred. You can not modify your lineup at the moment. Please, try again later.",
+      "alertnoenergytitle"              : "Not enough ENERGY",
+      "alertnogoldtitle"                : "Not enough GOLD",
+      "alertnoenergymessage"            : "You don't have available ENERGY to eneter this contest",
+      "alertnogoldmessage"              : "You don't have available GOLD to eneter this contest"      
     },
     "lineupselector"                    :
     {

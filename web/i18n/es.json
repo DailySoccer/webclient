@@ -322,6 +322,7 @@
       "prize"                           : "Premio:",
       "points"                          : "PUNTOS",
       "position"                        : "Puesto:",
+      "today"                           : "Hoy",
       "soonHint"                        : "Faltan @TIME min",
       "verySoonHint"                    : "Falta @TIME"
     },

@@ -12,7 +12,7 @@ class Product {
   bool mostPopular;
 
   Product.initFromJsonObject(Map jsonMap) {
-    id = jsonMap.containsKey("id") ? jsonMap["id"] : "";
+    id = jsonMap.containsKey("productId") ? jsonMap["productId"] : "";
     name = jsonMap.containsKey("name") ? jsonMap["name"] : "";
     price = jsonMap.containsKey("price") ? new Money.fromJsonObject(jsonMap["price"]) : "";
     free = jsonMap.containsKey("free") ? new Money.fromJsonObject(jsonMap["free"]) : "";

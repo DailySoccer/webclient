@@ -304,9 +304,11 @@
     {
       "lobby"                           : "LOBBY",
       "mycontest"                       : "MY CONTEST",
-      "howitworks"                      : "HOW IT WORKS",
-      "buttonaddfunds"                  : "ADD FUNDS",
+      "leaderboard"                     : "RANKING",
+      "howitworks"                      : "Help",
       "myaccount"                       : "My Account",
+      "shop"                            : "Shop",
+      
       "addfunds"                        : "Add Funds",
       "transactions"                    : "Transaction History",
       "referral"                        : "Referral Center",

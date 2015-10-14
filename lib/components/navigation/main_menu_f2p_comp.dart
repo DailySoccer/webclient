@@ -316,102 +316,96 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
 
       <div id="menuSlide" class="menu-elements">
         <ul class="nav navbar-nav">
-          <li highlights="lobby"       class="mainOption"><a  id="menuLobby"      destination="lobby">${StringUtils.translate("lobby", "mainmenu")}</a></li>
-          <li highlights="my_contests" class="mainOption"><a  id="menuMyContests" destination="my_contests" params="section:live">${StringUtils.translate("mycontest", "mainmenu")}</a></li>
-          <li highlights="help_info"   class="mainOption"><a  id="menuHowItWorks" destination="help_info">${StringUtils.translate("howitworks", "mainmenu")}</a></li>
-          <li id="userBalanceOut-sm"   class="right-menu">
-            <div class="balance">
-              <span class="current-balance">${_userBalance}</span>
-              <button class="add-funds-button" destination="add_funds">${StringUtils.translate("buttonaddfunds", "mainmenu")}</button>
-            </div>
-          </li>
+          ${getMainOptions()}
           <li highlights="user" class="right-menu username-dropdown-toggle" >
             <a id="menuUser" class="dropdown-toggle" data-toggle="dropdown">${_userNickName}</a>
             <ul class="dropdown-menu">
-              <li><a id="menuUserMyAccount"        destination="user_profile">${StringUtils.translate("myaccount", "mainmenu")}</a></li>
-              <li id="userBalanceIn"><a id="menuUserAddFunds-sm" destination="add_funds">${StringUtils.translate("addfunds", "mainmenu")}</a></li>
-              <li><a id="menuUserHistory"          destination="transaction_history">${StringUtils.translate("transactions", "mainmenu")}</a></li>
-              <!--li><a id="menuUserReferencesCenter" destination="beta_info">${StringUtils.translate("referral", "mainmenu")}</a></li>
-              <li><a id="menuUserClassification"   destination="beta_info">${StringUtils.translate("classification", "mainmenu")}</a></li-->
-              <!--<li><a id="menuUserAyuda"            destination="help_info">${StringUtils.translate("howitworks2", "mainmenu")}</a></li>-->
-              <li><a id="menuUserLogOut"           destination="logout">${StringUtils.translate("logout", "mainmenu")}</a></li>
+              ${getUserMenuOptions(_scrDet.isXsScreen)}
             </ul>
-          </li>
-          
-          <li id="userBalanceOut-xs" class="right-menu">
-            <a id="menuUserAddFunds-xs" destination="add_funds">${StringUtils.translate("buttonaddfunds", "mainmenu")} <span class="current-balance">${_userBalance}</span></a>            
           </li>
         </ul>
       </div>
 
-      <div id ="desktopMenu" class="fixed-menu">
-        
-        <div class="links-options">
-          <div highlights="lobby" class="mainLink">
-            <a id="menuLobby" destination="lobby" highlights="lobby">${StringUtils.translate("lobby", "mainmenu")}</a>
-          </div>
-          <div highlights="my_contests" class="mainLink">
-            <a id="menuMyContests" destination="my_contests" params="section:live">${StringUtils.translate("mycontest", "mainmenu")}</a>
-          </div>
-          <div highlights="help_info" class="mainLink">
-            <a id="menuHowItWorks" destination="help_info">${StringUtils.translate("howitworks", "mainmenu")}</a>
-          </div>
-        </div>
+      <div id ="desktopMenu" class="fixed-menu">        
+        <ul class="links-options">
+          ${getMainOptions()}
+        </ul>
       
-        <div class="fixed-user-stats">
-
-
-          <div class="energy additive" destination="shop.energy">         
-
+        <ul class="fixed-user-stats">
+          <li class="energy additive" destination="shop.energy">
             <img src="images/icon-lightning-lg.png"> 
             <div class="count">
               <div class="progress">
                 <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="${_maxEnergy}" style="width:${profileService.user.Energy * 100 / User.MAX_ENERGY}%"></div>
               </div>            
               <span class="plus">+</span></div>            
-          </div>
-          <div class="manager-points additive" destination="shop"> 
+          </li>
+
+          <li class="manager-points additive" destination="shop"> 
             <img src="images/icon-star-lg.png">
             <span class="managerLevel">${_userManagerLevel}</span>     
             <div class="count">
                 ${_userManagerPoints}
                 <span class="plus">+</span>
             </div>            
-          </div>
+          </li>
 
-          <div class="coins additive" destination="shop.gold">
+          <li class="coins additive" destination="shop.gold">
             <img src="images/icon-coin-lg.png">      
             <div class="count">${_userGold}<span class="plus">+</span></div>
-          </div>
-          
-          <div id="desktopMenuUser" class="profile">       
+          </li>
+
+          <li id="desktopMenuUser" class="profile">       
             <img src="images/icon-userProfile.png" data-toggle="dropdown">
             <div class="count">${_userTrueSkill}</div>
-            ${getDesktopFixedMenu()}
-          </div> 
-        </div>
+            <ul id="desktopUserMenu" class="dropdown-menu">
+              ${getUserMenuOptions(_scrDet.isNotXsScreen)}
+            </ul>
+          </li> 
+        </ul>
       
       </div>
     </div>
     ''';
     }
 
-  String getDesktopFixedMenu() {
-    if (_scrDet.isNotXsScreen) {
-      return '''
-        
-          <ul id="desktopUserMenu" class="dropdown-menu">
-            <li><a id="menuUserMyAccount"        destination="user_profile">${StringUtils.translate("myaccount", "mainmenu")}</a></li>
-            <li id="userBalanceIn"><a id="menuUserAddFunds-sm" destination="add_funds">${StringUtils.translate("addfunds", "mainmenu")}</a></li>
-            <li><a id="menuUserHistory"          destination="transaction_history">${StringUtils.translate("transactions", "mainmenu")}</a></li>
-            <!--li><a id="menuUserReferencesCenter" destination="beta_info">${StringUtils.translate("referral", "mainmenu")}</a></li>
-            <li><a id="menuUserClassification"   destination="beta_info">${StringUtils.translate("classification", "mainmenu")}</a></li-->
-            <!--<li><a id="menuUserAyuda"            destination="help_info">${StringUtils.translate("howitworks2", "mainmenu")}</a></li>-->
-            <li><a id="menuUserLogOut"           destination="logout">${StringUtils.translate("logout", "mainmenu")}</a></li>
-          </ul>
+  String getUserMenuOptions(bool isDesktop) {
+    if (isDesktop) {
+      return '''        
+          <li><a id="menuUserMyAccount" destination="user_profile"> ${StringUtils.translate("myaccount",  "mainmenu")}</a></li>
+          <li><a id="menuUserShop"      destination="shop">         ${StringUtils.translate("shop",       "mainmenu")}</a></li>
+          <li><a id="menuHowItWorks"    destination="help_info">    ${StringUtils.translate("howitworks", "mainmenu")}</a></li>
+          <li><a id="menuUserLogOut"    destination="logout">       ${StringUtils.translate("logout",     "mainmenu")}</a></li>
+        </ul>
       ''';
     }
     return '';
+  }
+  
+  String getMainOptions() {
+    return '''
+      <li highlights="lobby"       class="mainLink"> ${getMainMenuLink("lobby")}       </li>
+      <li highlights="my_contests" class="mainLink"> ${getMainMenuLink("my_contests")} </li>
+      <li highlights="leaderboard" class="mainLink"> ${getMainMenuLink("leaderboard")} </li>
+    ''';
+  }
+  
+  String getMainMenuLink(String menuLink) {
+    String ret = "";
+    
+    switch (menuLink) {
+      case "lobby":
+        ret = '''<a id="menuLobby"      destination="lobby">                            ${StringUtils.translate("lobby",        "mainmenu")}</a>''';
+        break;
+      case "my_contests":
+        ret = '''<a id="menuMyContests" destination="my_contests" params="section:live">${StringUtils.translate("mycontest",    "mainmenu")}</a>''';
+        break;
+      case "leaderboard":
+        ret = '''<a id="menuLeaderboard" destination="leaderboard">                     ${StringUtils.translate("leaderboard",  "mainmenu")}</a>''';
+        break;
+    }
+    
+    return ret;    
   }
 
   void _cancelListeners() {

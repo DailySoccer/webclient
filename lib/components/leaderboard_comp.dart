@@ -69,7 +69,7 @@ class LeaderboardComp {
         playerMoneyInfo = moneyUserList.firstWhere( (u) => isThePlayer(u['id']));
 
         loadingService.isLoading = false;
-        print("Users: ${users.length}");
+        //print("Users: ${users.length}");
       });
   }
 

@@ -16248,6 +16248,7 @@ main-menu-f2p {
 }
 #mainMenu #desktopMenu .fixed-user-stats {
   display: inline-block;
+  margin: 0;
   padding-top: 10px;
   padding-bottom: 10px;
   position: relative;
@@ -16273,7 +16274,7 @@ main-menu-f2p {
 }
 @media (max-width: 480px) {
   #mainMenu #desktopMenu .fixed-user-stats {
-    width: 104%;
+    width: 100%;
     min-width: 220px;
     text-align: center;
   }

@@ -304,9 +304,11 @@
     {
       "lobby"                           : "TORNEOS",
       "mycontest"                       : "MIS TORNEOS",
-      "howitworks"                      : "CÓMO FUNCIONA",
-      "buttonaddfunds"                  : "AÑADIR FONDOS",
+      "leaderboard"                     : "CLASIFICACIÓN",
+      "howitworks"                      : "Ayuda",
       "myaccount"                       : "Mi Cuenta",
+      "shop"                            : "Tienda",
+      
       "addfunds"                        : "Añadir Fondos",
       "transactions"                    : "Historial de transacciones",
       "referral"                        : "Centro de usuarios referidos",

@@ -201,7 +201,7 @@
       "alertnoenergytitle"              : "Sin ENERGIA suficiente",
       "alertnogoldtitle"                : "Sin GOLD suficiente",
       "alertnoenergymessage"            : "No tienes ENERGIA para entrar en el torneo",
-      "alertnogoldmessage"              : "No tienes GOLD para entrar en el torneo"          
+      "alertnogoldmessage"              : "No tienes GOLD para entrar en el torneo"
     },
     "lineupselector"                    :
     {
@@ -540,22 +540,22 @@
     },
     "goldshop"                          :
     {
-      "product1"                        : "CALDERILLA",
-      "product2"                        : "JEFAZO",
-      "product3"                        : "OJEADOR",
-      "product4"                        : "REPRESENTANTE",
-      "product5"                        : "PRESIDENTE",
-      "product6"                        : "HOMBRE DE NEGRO",
+      "product_gold_1"                  : "CALDERILLA",
+      "product_gold_2"                  : "JEFAZO",
+      "product_gold_3"                  : "OJEADOR",
+      "product_gold_4"                  : "REPRESENTANTE",
+      "product_gold_5"                  : "PRESIDENTE",
+      "product_gold_6"                  : "HOMBRE DE NEGRO",
       "free"                            : "GRATIS",
       "buttonback"                      : "Volver",
       "mostpopularimagesource"          : "images/icon-mas-popular.png"
     },
     "energyshop"                        :
     {
-      "maxrefill"                       : "Recarga al máximo con:",
+      "product_maxrefill"               : "Recarga al máximo con:",
       "autorefill"                      : "Recarga +1 automática en:",
       "buttonback"                      : "Volver"
     }
-    
+
   }
 }

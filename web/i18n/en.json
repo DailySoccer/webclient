@@ -201,7 +201,7 @@
       "alertnoenergytitle"              : "Not enough ENERGY",
       "alertnogoldtitle"                : "Not enough GOLD",
       "alertnoenergymessage"            : "You don't have available ENERGY to eneter this contest",
-      "alertnogoldmessage"              : "You don't have available GOLD to eneter this contest"      
+      "alertnogoldmessage"              : "You don't have available GOLD to eneter this contest"
     },
     "lineupselector"                    :
     {
@@ -540,19 +540,19 @@
     },
     "goldshop"                          :
     {
-      "product1"                        : "PENNIES",
-      "product2"                        : "BIG BOSS",
-      "product3"                        : "SCOUT",
-      "product4"                        : "AGENT",
-      "product5"                        : "PRESIDENT",
-      "product6"                        : "MEN IN BLACK",
+      "product_gold_1"                  : "PENNIES",
+      "product_gold_2"                  : "BIG BOSS",
+      "product_gold_3"                  : "SCOUT",
+      "product_gold_4"                  : "AGENT",
+      "product_gold_5"                  : "PRESIDENT",
+      "product_gold_6"                  : "MEN IN BLACK",
       "free"                            : "FREE",
       "buttonback"                      : "Back",
       "mostpopularimagesource"          : "images/icon-most-popular.png"
     },
     "energyshop"                        :
     {
-      "maxrefill"                       : "Refill all the energy",
+      "product_maxrefill"               : "Refill all the energy",
       "autorefill"                      : "AutoRefill+1 in:",
       "buttonback"                      : "Back"
     }

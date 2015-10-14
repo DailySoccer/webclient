@@ -4,15 +4,15 @@
   <simple-promo-f2p id="promosComponent" ng-show="scrDet.isNotXsScreen"></simple-promo-f2p>
 
   <!-- Temporalmente pongo la imagen del calendario (maquetar mas adelante). -->
-  <div class="calendar-wrapper">
-    <img src="images/calendarPlaceholder.jpg"></img>
-  </div>
-
+  <week-calendar on-day-selected="onSelectedDayChange(day)" start-date="today"></week-calendar>
+  
   <!-- Lista de concursos -->
   <contests-list-f2p  id="activeContestList"
                   contests-list="contestsService.activeContests"
+                  date-filter="selectedDate"
                   on-action-click='onActionClick(contest)'
-                  on-row-click="onRowClick(contest)" action-button-title="'>'">
+                  on-row-click="onRowClick(contest)" 
+                  action-button-title="'>'">
   </contests-list-f2p>
 
   <!-- Punto de insercion de nuestra ruta hija contest-info (modal) -->

@@ -24,6 +24,16 @@
       "datetimelong"                    : "E, MM/dd/yy HH:mm",
       "datetimedayhour"                 : "MM/dd/yy HH:mm"
     },
+    "weekcalendar"                      :
+    {
+      "1"                               : "M",
+      "2"                               : "T",
+      "3"                               : "W",
+      "4"                               : "Th",
+      "5"                               : "F",
+      "6"                               : "S",
+      "7"                               : "Su"
+    },
     "landing"                           :
     {
       "title"                           : "DAILY FANTASY LEAGUES",

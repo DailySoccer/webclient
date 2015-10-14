@@ -12,7 +12,8 @@ class DateTimeService {
 
   static DateTime get now => _instance._internalNow;
   static DateTime fromMillisecondsSinceEpoch(int millisecondsSinceEpoch) => new DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch, isUtc: _UTC);
-
+  static String get today => formatDateWithDayOfTheMonth(now);
+  
   DateTimeService(this._server, this._refreshTimersService) {
     if (_instance != null)
       throw new Exception("WTF 1233");
@@ -35,6 +36,10 @@ class DateTimeService {
 
   static String formatDateYear(DateTime date) {
     return new DateFormat("yyyy", StringUtils.getLocale()).format(date);
+  }
+
+  static String formatDateWeekdayNameShort(DateTime date) {
+    return new DateFormat("EEE", StringUtils.getLocale()).format(date);
   }
 
   static String formatDateWithDayOfTheMonth(DateTime date) {

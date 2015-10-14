@@ -43,8 +43,11 @@ class GoldShopComp {
   String getShopBanner() => "images/shopBannerSample.jpg";
 
   void buyItem(String id) {
-    Map product = products.firstWhere((product) => product["id"] == id, orElse: () => {});
-    _flashMessage.addGlobalMessage("Quieres comprar elemento [${product["description"]}]", 1);
+    _catalogService.buyProduct(id)
+      .then( (_) {
+        Map product = products.firstWhere((product) => product["id"] == id, orElse: () => {});
+        _flashMessage.addGlobalMessage("Has comprado [${product["description"]}]", 1);
+    });
   }
 
   void CloseModal() {

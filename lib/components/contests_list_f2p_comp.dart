@@ -27,9 +27,6 @@ class ContestsListF2PComp {
   /********* BINDINGS */
   @NgOneWay("contests-list")
   void set contestsList(List<Contest> value) {
-    if (value == null || value.isEmpty) {
-      return;
-    }
     contestsListOriginal = value;
     refreshListOrder();
   }
@@ -143,14 +140,7 @@ class ContestsListF2PComp {
     }
 
     contestsListOrdered = [];
-    
-    if(_dateFilter != null) {
-      contestsListOrdered.addAll(contestsListOriginal.where((c) => (_dateFilter.day == c.startDate.day && 
-                                                                _dateFilter.month == c.startDate.month && 
-                                                                _dateFilter.year == c.startDate.year)));
-    } else {
-      contestsListOrdered.addAll(contestsListOriginal);
-    }
+    contestsListOrdered.addAll(contestsListOriginal);
 
     switch(_sortOrder['fieldName']) {
       case "contest-name":

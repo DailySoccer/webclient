@@ -83,7 +83,7 @@ class EnterContestComp implements DetachAware {
 
   EnterContestComp(this._routeProvider, this._router, this.scrDet, this._contestsService, this.loadingService, this._profileService, this._flashMessage, this._rootElement) {
     loadingService.isLoading = true;
-   
+
     errorMap = {
       ERROR_CONTEST_NOT_ACTIVE: {
           "title"   : getLocalizedText("errorcontestnotactivetitle"),
@@ -105,7 +105,7 @@ class EnterContestComp implements DetachAware {
           "editing" : getLocalizedText("errordefaultediting")
       },
     };
-    
+
     scrDet.scrollTo('#mainApp');
 
     resetLineup();
@@ -499,7 +499,7 @@ class EnterContestComp implements DetachAware {
     }
   }
 
-  String get _getKeyForCurrentUserContest => (_profileService.isLoggedIn ? _profileService.user.userId : 'guest') + '#' + contest.contestId;
+  String get _getKeyForCurrentUserContest => (_profileService.isLoggedIn ? _profileService.user.userId : 'guest') + '#' + contest.optaCompetitionId;
 
   Router _router;
   RouteProvider _routeProvider;

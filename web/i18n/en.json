@@ -556,7 +556,9 @@
       "autorefill"                      : "AutoRefill+1 in:",
       "buttonback"                      : "Back",
       "erroruserbalancenegativetitle"   : "Not enough cash",
-      "erroruserbalancenegativegeneric" : "You do not have enough cash. Please, add funds to continue."
+      "erroruserbalancenegativegeneric" : "You do not have enough cash. Please, add funds to continue.",
+      "errordefaultgeneric"             : "An error has occurred. Please, try again later.",
+      "errordefaultediting"             : "An error has occurred. Please, try again later."
     }
   }
 }

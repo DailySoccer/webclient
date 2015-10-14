@@ -40,8 +40,7 @@ class EnergyShopComp {
       },
       "_ERROR_DEFAULT_": {
           "title"   : getLocalizedText("errordefaulttitle"),
-          "generic" : getLocalizedText("errordefaultgeneric"),
-          "editing" : getLocalizedText("errordefaultediting")
+          "generic" : getLocalizedText("errordefaultgeneric")
       }
     };
 

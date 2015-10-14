@@ -63,7 +63,6 @@ class StringUtils {
   static String translate(String key, String theGroup, [Map substitutions]) {
     String s = config.translate(key, group:theGroup);
     if (substitutions != null) {
-      print('$substitutions');
       substitutions.forEach( (k,v) => s = s.replaceAll('@$k', '$v') );
     }
     return s;

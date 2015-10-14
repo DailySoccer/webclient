@@ -7,6 +7,7 @@ import 'package:angular/angular.dart';
 
 import "package:webclient/services/server_service.dart";
 import 'package:webclient/models/product.dart';
+import 'package:webclient/services/profile_service.dart';
 
 @Injectable()
 class CatalogService {
@@ -14,7 +15,25 @@ class CatalogService {
   HashMap<String, Product> productsMap;
   List<Product> products;
 
-  CatalogService(this._server);
+  CatalogService(this._server, this._profileService);
+
+  Future buyProduct(String productId) {
+    return _server.buyProduct(productId)
+      .then((jsonMap) {
+        if (jsonMap.containsKey("profile")) {
+          _profileService.updateProfileFromJson(jsonMap["profile"]);
+        }
+      });
+  }
+
+  Future buySoccerPlayer(String contestId, String soccerPlayerId) {
+    return _server.buySoccerPlayer(contestId, soccerPlayerId)
+      .then((jsonMap) {
+        if (jsonMap.containsKey("profile")) {
+          _profileService.updateProfileFromJson(jsonMap["profile"]);
+        }
+      });
+  }
 
   Future<List<Product>> getCatalog() {
     var completer = new Completer();
@@ -44,4 +63,5 @@ class CatalogService {
   }
 
   ServerService _server;
+  ProfileService _profileService;
 }

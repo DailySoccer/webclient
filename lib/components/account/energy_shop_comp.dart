@@ -31,11 +31,12 @@ class EnergyShopComp {
       .then((catalog) {
         for (Product info in catalog.where((product) => product.gained.isEnergy)) {
           Map product = {};
-          product["description"] = getLocalizedText(info.name);
+          product["id"]           = info.id;
+          product["description"]  = getLocalizedText(info.name);
           product["captionImage"] = info.imageUrl;
-          product["price"] = info.price.toString();
-          product["quantity"] = info.gained.amount.toInt().toString();
-          product["purchasable"] = true;
+          product["price"]        = info.price.toString();
+          product["quantity"]     = info.gained.amount.toInt().toString();
+          product["purchasable"]  = true;
           products.add(product);
         }
 
@@ -49,7 +50,10 @@ class EnergyShopComp {
 
   void buyEnergy(String id) {
     if (products.firstWhere((product) => product["id"] == id, orElse: () => {})["purchasable"]) {
-      _flashMessage.addGlobalMessage("DEBUG: Quieres comprar elemento [ Recarga  Completa ]", 1);
+      _catalogService.buyProduct(id)
+        .then( (_) {
+          _flashMessage.addGlobalMessage("DEBUG: Has comprado [ Recarga  Completa ]", 1);
+      });
     }
   }
 

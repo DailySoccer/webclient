@@ -71,6 +71,8 @@ abstract class ServerService {
   Future<Map> getPrizes();
 
   // Catalog
+  Future<Map> buyProduct(String productId);
+  Future<Map> buySoccerPlayer(String contestId, String soccerPlayerId);
   Future<Map> getCatalog();
 
   // Suscripción a eventos
@@ -232,6 +234,14 @@ class DailySoccerServer implements ServerService {
 
   Future<Map> getPrizes() {
     return _innerServerCall("${HostServer.url}/get_prizes", retryTimes: -1);
+  }
+
+  Future<Map> buyProduct(String productId) {
+    return _innerServerCall("${HostServer.url}/buy_product/$productId", retryTimes: -1);
+  }
+
+  Future<Map> buySoccerPlayer(String contestId, String soccerPlayerId) {
+    return _innerServerCall("${HostServer.url}/buy_soccer_player/$contestId/$soccerPlayerId", retryTimes: -1);
   }
 
   Future<Map> getCatalog() {

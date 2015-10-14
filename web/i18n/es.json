@@ -554,7 +554,9 @@
     {
       "product_maxrefill"               : "Recarga al máximo con:",
       "autorefill"                      : "Recarga +1 automática en:",
-      "buttonback"                      : "Volver"
+      "buttonback"                      : "Volver",
+      "erroruserbalancenegativetitle"   : "No tienes GOLD suficiente",
+      "erroruserbalancenegativegeneric" : "No tienes GOLD suficiente. Por favor, ingresa fondos para poder continuar"
     }
 
   }

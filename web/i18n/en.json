@@ -554,7 +554,9 @@
     {
       "product_maxrefill"               : "Refill all the energy",
       "autorefill"                      : "AutoRefill+1 in:",
-      "buttonback"                      : "Back"
+      "buttonback"                      : "Back",
+      "erroruserbalancenegativetitle"   : "Not enough cash",
+      "erroruserbalancenegativegeneric" : "You do not have enough cash. Please, add funds to continue."
     }
   }
 }

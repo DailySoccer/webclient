@@ -211,7 +211,7 @@ class ContestsListF2PComp {
     }
   }
   
-  DateTime _dateFilter = new DateTime.now();
+  DateTime _dateFilter = null;
   Map _sortOrder = {'fieldName':'contest-start-time', 'order': 1};
   ProfileService _profileService;
   ScreenDetectorService scrDet;

@@ -1,4 +1,4 @@
-<div class="contests-list-f2p-root">
+<div class="contests-list-f2p-root" ng-if="contestsListOriginal.isNotEmpty">
   <div ng-repeat="contest in contestsListOrdered">
     <div class="contestSlot" ng-class="{'special' : getContestMorfology(contest) == 'special'}" ng-click="onRow(contest)">
 

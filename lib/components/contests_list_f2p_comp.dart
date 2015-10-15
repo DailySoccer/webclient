@@ -27,6 +27,10 @@ class ContestsListF2PComp {
   /********* BINDINGS */
   @NgOneWay("contests-list")
   void set contestsList(List<Contest> value) {
+    if (value == null || value.isEmpty) {
+      contestsListOriginal = new List<Contest>();
+      return;
+    }
     contestsListOriginal = value;
     refreshListOrder();
   }

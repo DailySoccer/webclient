@@ -2,32 +2,33 @@ library week_calendar_comp;
 
 import 'dart:html';
 import 'package:angular/angular.dart';
-import 'package:webclient/services/leaderboard_service.dart';
-import 'package:webclient/services/loading_service.dart';
-import 'package:webclient/services/profile_service.dart';
-import 'package:webclient/services/datetime_service.dart';
-import 'package:webclient/models/user.dart';
 import 'package:webclient/utils/string_utils.dart';
-
 
 @Component(
     selector: 'week-calendar',
     templateUrl: 'packages/webclient/components/week_calendar_comp.html',
     useShadowDom: false
 )
-
 class WeekCalendar {
 
-  @NgOneWay("dates")
-  List<Map> dayList;// = new List<Map>();
+  List<Map> dayList;
   
-  /*
-  @NgOneWay("start-date")
-  void set startDate(String value) {
-    _firstDay = DateTimeService.now;
-    updateDayList();
+  @NgOneWay("dates")
+  void set dates(List<Map> value) {
+    if (value != null && value.isNotEmpty) {
+      dayList = value;
+      if (_currentSelected == null || _currentSelected.isBefore(value.first['date'])) {
+        _currentSelected = value.first['date'];
+      } else {
+        Map dayTmp = value.firstWhere((c) => isCurrentSelected(c['date'], 0));
+        if (!dayTmp['enabled']) {
+          _currentSelected = value.first['date'];
+        }
+      }
+    }
+    dayClick();
   }
-  */
+  
   @NgCallback("on-day-selected")
   void set onDayClickCallback(Function value) {
     _onDayClick = value;
@@ -39,18 +40,6 @@ class WeekCalendar {
   String getLocalizedText(key, [Map substitutions]) {
     return StringUtils.translate(key, "weekcalendar", substitutions);
   }
-  
-  /*
-  void updateDayList() {
-    dayList = new List<Map>();
-    DateTime current = _currentSelected = _firstDay;
-    for(int i = 0; i < 7; i++) {
-      dayList.add({"weekday": getLocalizedText(current.weekday.toString()), "monthday": current.day, "date": current});
-      current = current.add(new Duration(days: 1));
-    }
-    dayClick();
-  }
-  */
   
   void selectDay(Event ev, Map weekElem) {
     if (!weekElem['enabled']) return;

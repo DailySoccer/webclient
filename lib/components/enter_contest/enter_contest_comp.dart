@@ -20,6 +20,7 @@ import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/utils/html_utils.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/components/modal_comp.dart';
+import 'package:webclient/services/catalog_service.dart';
 
 @Component(
     selector: 'enter-contest',
@@ -81,7 +82,9 @@ class EnterContestComp implements DetachAware {
     return StringUtils.formatCurrency(amount);
   }
 
-  EnterContestComp(this._routeProvider, this._router, this.scrDet, this._contestsService, this.loadingService, this._profileService, this._flashMessage, this._rootElement) {
+  EnterContestComp(this._routeProvider, this._router, this.scrDet,
+                   this._contestsService, this.loadingService, this._profileService, this._catalogService,
+                   this._flashMessage, this._rootElement) {
     loadingService.isLoading = true;
 
     errorMap = {
@@ -260,6 +263,9 @@ class EnterContestComp implements DetachAware {
 
     for (int c = 0; c < lineupSlots.length; ++c) {
       if (lineupSlots[c] == null && FieldPos.LINEUP[c] == theFieldPos.value) {
+        // TODO:...
+        // _catalogService.buySoccerPlayer(contest.contestId, soccerPlayer["id"]);
+
         lineupSlots[c] = soccerPlayer;
         isSelectingSoccerPlayer = false;
         availableSalary -= soccerPlayer["salary"];
@@ -506,6 +512,7 @@ class EnterContestComp implements DetachAware {
 
   ContestsService _contestsService;
   ProfileService _profileService;
+  CatalogService _catalogService;
   FlashMessagesService _flashMessage;
 
   var _streamListener;

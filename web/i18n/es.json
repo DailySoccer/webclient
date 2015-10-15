@@ -325,8 +325,8 @@
       "points"                          : "PUNTOS",
       "position"                        : "Puesto:",
       "today"                           : "Hoy",
-      "soonHint"                        : "Faltan @TIME min",
-      "verySoonHint"                    : "Falta @TIME"
+      "soonHint"                        : "Faltan<br>@TIME min",
+      "verySoonHint"                    : "Falta<br>@TIME"
     },
     "contestfilters"                    :
     {

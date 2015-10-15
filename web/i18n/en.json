@@ -325,8 +325,8 @@
       "points"                          : "POINTS",
       "position"                        : "Position:",
       "today"                           : "Today",
-      "soonHint"                        : "@TIME min left",
-      "verySoonHint"                    : "@TIME Left"
+      "soonHint"                        : "@TIME min<br>left",
+      "verySoonHint"                    : "@TIME<br>Left"
     },
     "contestfilters"                    :
     {

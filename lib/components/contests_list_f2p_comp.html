@@ -9,8 +9,8 @@
       <div class="time-section">
         <div class="fake-time-column"></div>
         <div class="column-start-time">
-          <div class="column-start-hour" ng-class="{'start-soon' : isSoon(contest.startDate)}">{{timeInfo(contest.startDate)}}</div>
-          <div class="column-start-date" ng-if="showDate && !isSoon(contest.startDate)">{{dateInfo(contest.startDate)}}</div>
+          <div class="column-start-hour" ng-class="{'start-soon' : isSoon(contest.startDate)}" ng-bind-html="timeInfo(contest.startDate)"></div>
+          <div class="column-start-date" ng-if="showDate && !isSoon(contest.startDate)" ng-bind-html="dateInfo(contest.startDate)"></div>
         </div>
       </div>
 

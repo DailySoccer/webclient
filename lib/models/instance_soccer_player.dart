@@ -6,6 +6,7 @@ import "package:webclient/models/field_pos.dart";
 import 'package:webclient/services/contest_references.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:logging/logging.dart';
+import 'package:webclient/models/money.dart';
 
 class InstanceSoccerPlayer {
   static List<int> LEVEL_SALARY = [
@@ -26,6 +27,15 @@ class InstanceSoccerPlayer {
       }
     }
     return _level;
+  }
+
+  Money moneyToBuy(num managerLevel) {
+    Money result = new Money.from(Money.CURRENCY_GOLD, 0);
+    if (managerLevel < level) {
+      // 1 moneda de GOLD por cada nivel de diferencia
+      result.amount += level - managerLevel.toInt();
+    }
+    return result;
   }
 
   String get id => soccerPlayer.templateSoccerPlayerId;

@@ -264,7 +264,7 @@ class EnterContestComp implements DetachAware {
     for (int c = 0; c < lineupSlots.length; ++c) {
       if (lineupSlots[c] == null && FieldPos.LINEUP[c] == theFieldPos.value) {
         // TODO:...
-        _catalogService.buySoccerPlayer(contest.contestId, soccerPlayer["id"]);
+        // _catalogService.buySoccerPlayer(contest.contestId, soccerPlayer["id"]);
 
         lineupSlots[c] = soccerPlayer;
         isSelectingSoccerPlayer = false;

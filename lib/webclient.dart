@@ -403,6 +403,12 @@ class WebClientApp extends Module {
                 preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
                 viewHtml: '''<modal window-size="'90percent'"><welcome></welcome></modal>'''
             )
+            /*,'no_gold' : ngRoute(
+                path: '/no_gold',
+                preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
+                viewHtml: '''<modal window-size="'90percent'"><alert-no-gold></alert-no-gold></modal>'''
+            )*/
+            
           }
       )
       ,'view_contest_entry': ngRoute(

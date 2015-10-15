@@ -16473,6 +16473,9 @@ main-menu-f2p {
   background-image: url("../images/progress-bar-front.png");
   background-color: transparent;
 }
+#mainMenu #desktopMenu .fixed-user-stats .profile img {
+  margin-left: 0px;
+}
 #mainMenu #desktopMenu .fixed-user-stats .profile .count {
   border: none;
 }

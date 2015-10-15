@@ -20,8 +20,8 @@ class WeekCalendar {
       if (_currentSelected == null || _currentSelected.isBefore(value.first['date'])) {
         _currentSelected = value.first['date'];
       } else {
-        Map dayTmp = value.firstWhere((c) => isCurrentSelected(c['date'], 0));
-        if (!dayTmp['enabled']) {
+        Map dayTmp = value.firstWhere((c) => isCurrentSelected(c['date'], 0), orElse: () => null);
+        if (dayTmp != null && !dayTmp['enabled']) {
           _currentSelected = value.first['date'];
         }
       }

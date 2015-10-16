@@ -5,6 +5,15 @@
 	line-height: 30px;
 	background-color: @blueMed;
 	cursor: pointer;
+	text-align: left;
+	@media (min-width: @screen-sm-min) {
+		padding-right: 15px;
+	}
+	
+	.filter {
+		padding-top: 3px;
+	}
+	
 	.filterOrderPos {
 		.hidden-xs();
 		.hidden-sm();
@@ -12,25 +21,25 @@
 		padding-left: 7px;
 	}
 	.filterOrderName {
-		.make-xs-column(6.2, 0px);
-		.make-md-column(5.3, 0px);
-		padding-left: 10px;
+		.make-xs-column(5, 0px);
+		.make-md-column(4, 0px);
+		padding-left: 5px;
 	}
 	.filterOrderDFP {
-		.make-xs-column(1.24, 0px);
+		.make-xs-column(1, 0px);
 		.make-md-column(1, 0px);
 		text-align: center;
 	}
 	.filterOrderPlayed {
-		.make-xs-column(1.5, 0px);
+		.make-xs-column(1, 0px);
 		text-align: center;
 	}
 	.filterOrderSalary {
-		.make-xs-column(1.9, 0px);
-		text-align: right;
+		.make-xs-column(2, 0px);
+		text-align: center;
 	}
 	a {
-		text-decoration: underline;
+		text-decoration: none;
 		.opensans_bold(10pt, @white);
 		@media (max-width: @screen-xs-max) {
 			font-size: 8pt;
@@ -41,8 +50,9 @@
 
 // Lista de seleccion de jugadores
 .soccer-players-list {
-	overflow: auto; 
+	overflow: auto;
 	@media (min-width: @screen-sm-min) {
+		overflow-y: scroll;
 		max-height: 413px;
 	}
 	
@@ -71,13 +81,17 @@
 			padding-top: 12px;			
 		}
 		.column-primary-info {
-			.make-xs-column(6.5, @soccer-players-list-gutter);
-			.make-md-column(5.5, @soccer-players-list-gutter);
+			.make-xs-column(5, @soccer-players-list-gutter);
+			.make-md-column(4, @soccer-players-list-gutter);
 			line-height: 9pt;
 			padding-left: 10px;
 			@media (max-width: @screen-xs-max) {
 				padding-left: 5px;
 			}
+			/*Temporal*/
+			white-space: nowrap;
+			overflow: hidden;
+			
 			.soccer-player-name {
 				.opensans_bold(9pt, @greyDark);
 				@media (max-width: @screen-xs-max) {
@@ -104,7 +118,7 @@
 			text-align: center;
 		}
 		.column-played {
-			.make-xs-column(1.5, @soccer-players-list-gutter);
+			.make-xs-column(1, @soccer-players-list-gutter);
 			.opensans_bold(9pt, @greyDark);
 			@media (max-width: @screen-xs-max) {
 				font-size: 8pt;
@@ -113,25 +127,85 @@
 			text-align: center;
 		}
 		.column-salary {
-			.make-xs-column(1.9, @soccer-players-list-gutter);
+			.make-xs-column(2, @soccer-players-list-gutter);
 			.opensans_bold(9pt, @greyDark);
 			@media (max-width: @screen-xs-max) {
 				font-size: 8pt;
-				padding-right: 5px;
 			}
 			padding-top: 10px;
+			text-align: center;
+		}
+		.column-manager-level {
+			.make-xs-column(1, @soccer-players-list-gutter);
+			.opensans_bold(9pt, @blueLight);
+			padding-top: 10px;
 			text-align: right;
+			visibility: hidden;
+			&:after {
+				.addIcon("icon-star-xs-white.png", 12pt, 12pt);
+				vertical-align: baseline;
+			}
 		}
 		.column-action {
-			.make-xs-column(1.1, @soccer-players-list-gutter);
+			.make-xs-column(2, @soccer-players-list-gutter);
 			text-align: right;
 			padding-right: 3px;
 			margin-top: 4px;
 			.action-button {
-				&.add { .btn-primary();	padding: 5px 10px; }
-				&.remove { .btn-default(); padding: 5px 10px; }
+				
+				&.add { 
+					.btn-primary();
+					padding: 5px;
+					line-height: 18px;
+				}
+				&.remove { 
+					.btn-default();
+					padding: 5px;
+					line-height: 18px;
+				}
+				&.free-purchase {
+					.opensans_normal(25pt, @white);
+				}
+				&.add.coin-purchase {
+					text-align: right;
+					width: 53px;
+					padding: 5px;
+				}
+				
+				min-width: 30px;
 				font-size: 10pt;
-				width: 30px;
+				
+				.coins-to-buy:after {
+					.addIcon("icon-coin-xs.png", 12pt, 12pt);
+					vertical-align: top;
+				}
+				@media (max-width: @screen-xs-min) {
+					
+					&.add.coin-purchase {
+						width: 43px;
+						padding-left: 0px;
+						padding-right: 0px;
+					}
+				}
+			}
+		}
+		&.not-available {
+			background-color: @red;
+			.column-manager-level, 
+			.column-played, 
+			.column-salary, 
+			.column-dfp,
+			.column-fieldpos { 
+				color: @white;
+			}
+			.column-primary-info {
+				.soccer-player-name,
+				.match-event-name {
+					color: @white;
+				}
+			}
+			.column-manager-level { 
+				visibility: visible;
 			}
 		}
 	}	

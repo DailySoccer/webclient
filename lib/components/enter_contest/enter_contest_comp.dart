@@ -241,7 +241,10 @@ class EnterContestComp implements DetachAware {
   }
 
   void addSoccerPlayerToLineup(String soccerPlayerId) {
-    _tryToAddSoccerPlayerToLineup(allSoccerPlayers.firstWhere((soccerPlayer) => soccerPlayer["id"] == soccerPlayerId));
+    var soccerPlayer = allSoccerPlayers.firstWhere((soccerPlayer) => soccerPlayer["id"] == soccerPlayerId, orElse: () => null);
+    if (soccerPlayer != null) {
+      _tryToAddSoccerPlayerToLineup(soccerPlayer);
+    }
   }
 
   void onSoccerPlayerActionButton(var soccerPlayer) {

@@ -28,6 +28,9 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
 
   @NgCallback("on-action-click")
   Function onActionClick;
+  
+  @NgOneWay("manager-level")
+  num managerLevel;
 
   @NgOneWay("field-pos-filter")
   FieldPos get fieldPosFilter => new FieldPos(_filterList[FILTER_POSITION]);
@@ -100,7 +103,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
 
           // Quiza nos mandan quitar un portero pero estamos filtrando por defensas....
           if (elem != null) {
-            Money moneyToBuy = soccerPlayer['instanceSoccerPlayer'].moneyToBuy(_profileService.user.managerLevel);
+            Money moneyToBuy = soccerPlayer['instanceSoccerPlayer'].moneyToBuy(managerLevel);
             elem.setInnerHtml(_getActionButton(!lineupFilter.contains(soccerPlayer), moneyToBuy), treeSanitizer: NULL_TREE_SANITIZER);
           }
         }
@@ -198,7 +201,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
 
   String _getHtmlForSlot(var slot, bool addButton) {
     InstanceSoccerPlayer soccerPlayer = slot['instanceSoccerPlayer'];
-    Money moneyToBuy = slot['instanceSoccerPlayer'].moneyToBuy(_profileService.user.managerLevel);
+    Money moneyToBuy = slot['instanceSoccerPlayer'].moneyToBuy(managerLevel);
     bool soccerPlayerIsAvailable = moneyToBuy.toInt() == 0;
     String strAddButton = _getActionButton(addButton, moneyToBuy);
     
@@ -222,7 +225,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
 
   String _getActionButton(bool addButton, Money moneyToBuy) {
     bool isFree = moneyToBuy.toInt() == 0;
-    String buttonText = !addButton? '-' : isFree? '+' : '<span class="coins-to-buy">${moneyToBuy.toInt() * 199}</span>';
+    String buttonText = !addButton? '-' : isFree? '+' : '<span class="coins-to-buy">${moneyToBuy.toInt()}</span>';
     
     return '<button type="button" class="action-button ${addButton? 'add' : 'remove'} ${isFree? 'free-purchase' : 'coin-purchase'}">$buttonText</button>';
   }
@@ -232,7 +235,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
     int divId = int.parse((e.currentTarget as DivElement).id.replaceFirst("soccerPlayer", ""));
     var clickedSlot = _sortedSoccerPlayers.firstWhere((slot) => slot['intId'] == divId);
 
-    if (e.target is ButtonElement) {
+    if (e.currentTarget is ButtonElement) {
       if (onActionClick != null) {
         onActionClick({"soccerPlayer": clickedSlot});
       }

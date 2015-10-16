@@ -22,6 +22,7 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/components/modal_comp.dart';
 import 'package:webclient/services/catalog_service.dart';
 import 'package:webclient/models/user.dart';
+import 'package:webclient/models/money.dart';
 
 @Component(
     selector: 'enter-contest',
@@ -63,6 +64,16 @@ class EnterContestComp implements DetachAware {
   InstanceSoccerPlayer selectedInstanceSoccerPlayer;
 
   int availableSalary = 0;
+  Money _coinsNeeded = new Money.from(Money.CURRENCY_GOLD, 0);
+  Money get coinsNeeded {
+    _coinsNeeded.amount = 0;
+    num managerLevel = playerManagerLevel;
+    lineupSlots.where((c) => c != null).
+    forEach( (c) =>
+        _coinsNeeded.amount += c["instanceSoccerPlayer"].moneyToBuy(managerLevel).amount);
+    return _coinsNeeded;
+  }
+
   String get printableAvailableSalary => StringUtils.parseSalary(availableSalary);
 
   bool notEnoughResourcesForEntryFee = false;
@@ -74,10 +85,12 @@ class EnterContestComp implements DetachAware {
 
   bool contestInfoFirstTimeActivation = false;  // Optimizacion para no compilar el contest_info hasta que no sea visible la primera vez
 
+  num get playerManagerLevel => (contest != null && contest.simulation) ? User.MAX_MANAGER_LEVEL : _profileService.user.managerLevel;
+
   List<String> lineupAlertList = [];
 
   Map<String, Map> errorMap;
-  
+
   String getLocalizedText(key, {substitutions: null}) {
     return StringUtils.translate(key, "entercontest", substitutions);
   }
@@ -160,7 +173,7 @@ class EnterContestComp implements DetachAware {
         }
       }, test: (error) => error is ServerError);
 
-    subscribeToLeaveEvent();    
+    subscribeToLeaveEvent();
   }
 
   void subscribeToLeaveEvent() {
@@ -360,7 +373,7 @@ class EnterContestComp implements DetachAware {
     if (_retryOpTimer != null && _retryOpTimer.isActive) {
       return;
     }
-    
+
     if(notEnoughResourcesForEntryFee)
       alertNotEnoughResources();
 
@@ -526,7 +539,7 @@ class EnterContestComp implements DetachAware {
       _router.go(contest.entryFee.isEnergy ? 'shop.energy' : 'shop.gold', {});
     });
   }
-  
+
   String getNotEnoughGoldContent() {
     return '''
     <div class="content-wrapper">
@@ -554,7 +567,7 @@ class EnterContestComp implements DetachAware {
     </div>
     ''';
   }
-  
+
   String get _getKeyForCurrentUserContest => (_profileService.isLoggedIn ? _profileService.user.userId : 'guest') + '#' + contest.optaCompetitionId;
 
   Router _router;

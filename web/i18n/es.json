@@ -206,12 +206,12 @@
       "buy-energy-button"               : "RECARGAR ENERGÍA",
       "alert-user-gold-message"         : "Tiens actualmente @MONEY",
       "alert-no-energy-message"         : "<strong>No tienes suficiente energía</strong><br>para entrar en este torneo."
-      
     },
     "lineupselector"                    :
     {
       "wastedsalarycap"                 : "<strong>Has gastado todo el presupuesto</strong><br> Por favor, elige otros jugadores para ajustar el presupuesto",
       "maxplayersteam"                  : "<strong>Ups! Parece que has sobrepasado el limite de tener @MAX_PLAYERS_SAME_TEAM jugadores del mismo equipo</strong><br> Por favor, elige otros jugadores...",
+      "not-enough-resources"            : "<strong>ATENCIÓN! Este torneo tiene requisitos que no cumples y no podras participar</strong><br> Pero tranquilo. Guardaremos a alineación y podrás acceder a la tienda y así poder pagar la cuota de entrada.",
       "add"                             : "AÑADIR "
     },
     "matchesfilter"                     :

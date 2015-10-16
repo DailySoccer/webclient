@@ -65,6 +65,7 @@ class EnterContestComp implements DetachAware {
   int availableSalary = 0;
   String get printableAvailableSalary => StringUtils.parseSalary(availableSalary);
 
+  bool notEnoughResourcesForEntryFee = false;
   bool playersInSameTeamInvalid = false;
   bool isNegativeBalance = false;
 
@@ -75,6 +76,8 @@ class EnterContestComp implements DetachAware {
 
   List<String> lineupAlertList = [];
 
+  Map<String, Map> errorMap;
+  
   String getLocalizedText(key, {substitutions: null}) {
     return StringUtils.translate(key, "entercontest", substitutions);
   }
@@ -128,7 +131,8 @@ class EnterContestComp implements DetachAware {
         availableSalary = contest.salaryCap;
         // Comprobamos si estamos en salario negativo
         isNegativeBalance = availableSalary < 0;
-
+        //Comprobamos si tenemos recursos suficientes para pagar el torneo.
+        notEnoughResourcesForEntryFee = contest.entryFee.isEnergy ? contest.entryFee.compareTo(_profileService.user.energyBalance) > 0 :  contest.entryFee.compareTo(_profileService.user.goldBalance) > 0;
         initAllSoccerPlayers();
 
         // Si nos viene el torneo para editar la alineación
@@ -156,7 +160,7 @@ class EnterContestComp implements DetachAware {
         }
       }, test: (error) => error is ServerError);
 
-    subscribeToLeaveEvent();
+    subscribeToLeaveEvent();    
   }
 
   void subscribeToLeaveEvent() {
@@ -456,8 +460,6 @@ class EnterContestComp implements DetachAware {
   void onRowClick(String soccerPlayerId) {
     ModalComp.open(_router, "enter_contest.soccer_player_stats", { "instanceSoccerPlayerId":soccerPlayerId, "selectable":isSlotAvailableForSoccerPlayer(soccerPlayerId)}, addSoccerPlayerToLineup);
   }
-
-  Map<String, Map> errorMap;
 
   void _showMsgError(ServerError error) {
     String keyError = errorMap.keys.firstWhere( (key) => error.responseError.contains(key), orElse: () => "_ERROR_DEFAULT_" );

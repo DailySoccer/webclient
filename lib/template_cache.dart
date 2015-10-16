@@ -661,7 +661,7 @@ tc.put("packages/webclient/components/account/remember_password_comp.html", new 
       <div class="panel-body" ng-switch >
         <!-- Mensaje cuando todo ha ido correctamente. -->
         <div ng-show="state=='STATE_REQUESTED'">
-          <div class="form-description">{{getLocalizedText("confirm_part_1")}}<br><br><p class="email-detail">'{{email}}'</p>{{getLocalizedText("confirm_part_2")}}</div>
+          <div class="form-description">{{getLocalizedText("confirmpart1")}}<br><br><p class="email-detail">'{{email}}'</p>{{getLocalizedText("confirmpart2")}}</div>
           <!-- BUTTONS -->
           <div class="user-form-field">
             <div class="new-row">
@@ -1183,7 +1183,7 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
 </div>
 
 """));
-tc.put("packages/webclient/components/contests_list_f2p_comp.html", new HttpResponse(200, r"""<div class="contests-list-f2p-root">
+tc.put("packages/webclient/components/contests_list_f2p_comp.html", new HttpResponse(200, r"""<div class="contests-list-f2p-root" ng-if="contestsListOriginal.isNotEmpty">
   <div ng-repeat="contest in contestsListOrdered">
     <div class="contestSlot" ng-class="{'special' : getContestMorfology(contest) == 'special'}" ng-click="onRow(contest)">
 
@@ -1223,16 +1223,17 @@ tc.put("packages/webclient/components/contests_list_f2p_comp.html", new HttpResp
       </div>
 
       <div class="action-section" ng-click="onAction(contest, $event)">
-        <img class="ticket" ng-src="images/arrow{{getContestMorfology(contest) == 'normal' ? 'Black' : 'White'}}.png" ng-if="!contest.isLive">
-        <div class="button-wrapper" ng-if="contest.isLive">
+        <img class="ticket" ng-src="images/arrow{{getContestMorfology(contest) == 'normal' ? 'Black' : 'White'}}.png">
+        <!--div class="button-wrapper" ng-if="contest.isLive">
           <button type="button" class="action-button" ng-click="onAction(contest, $event)">{{actionButtonTitle}}</button>
-        </div>
+        </div-->
       </div>
 
       <div class="tournament-and-type-section">
         <span class="{{getSourceFlag(contest)}}"></span>
         <span class="contest-type {{getContestTypeIcon(contest)}}"></span>
       </div>
+      
     </div>
   </div>
 </div>
@@ -1300,7 +1301,8 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
               </div>
               <div  class="bottom-content" ng-if="!isSelectingSoccerPlayer || scrDet.isNotXsScreen">
                 <div class="button-wrapper">
-                  <button type="button" class="btn-clean-lineup-list" ng-click="deleteFantasyTeam()" ng-disabled="isPlayerSelected()">{{getLocalizedText("buttonclean")}}</button>
+                  <!--<button type="button" class="btn-clean-lineup-list" ng-click="deleteFantasyTeam()" ng-disabled="isPlayerSelected()">{{getLocalizedText("buttonclean")}}</button>-->
+                  <button type="button" class="btn-clean-lineup-list" ng-click="alertNotEnoughResources()" ng-disabled="isPlayerSelected()">{{getLocalizedText("buttonclean")}}</button>
                 </div>
                 <div class="button-wrapper">
                   <button type="button" class="btn-confirm-lineup-list" ng-click="createFantasyTeam()" ng-disabled="isInvalidFantasyTeam">{{getLocalizedText("buttoncontinue")}}</button>
@@ -2185,15 +2187,14 @@ tc.put("packages/webclient/components/lobby_f2p_comp.html", new HttpResponse(200
   <simple-promo-f2p id="promosComponent" ng-show="scrDet.isNotXsScreen"></simple-promo-f2p>
 
   <!-- Temporalmente pongo la imagen del calendario (maquetar mas adelante). -->
-  <div class="calendar-wrapper">
-    <img src="images/calendarPlaceholder.jpg"></img>
-  </div>
-
+  <week-calendar on-day-selected="onSelectedDayChange(day)" dates="dayList"></week-calendar>
+  
   <!-- Lista de concursos -->
   <contests-list-f2p  id="activeContestList"
-                  contests-list="contestsService.activeContests"
-                  on-action-click='onActionClick(contest)'
-                  on-row-click="onRowClick(contest)" action-button-title="'>'">
+                      contests-list="currentContestList"
+                      on-action-click='onActionClick(contest)'
+                      on-row-click="onRowClick(contest)" 
+                      action-button-title="'>'">
   </contests-list-f2p>
 
   <!-- Punto de insercion de nuestra ruta hija contest-info (modal) -->
@@ -2561,4 +2562,14 @@ tc.put("packages/webclient/components/view_contest/view_contest_entry_comp.html"
   </div>
 <ng-view></ng-view>
 </section>"""));
+tc.put("packages/webclient/components/week_calendar_comp.html", new HttpResponse(200, r"""<div class="week-calendar">
+  <ul class="week-days-wrapper">
+    <li class="week-day {{$index==0? ' today':''}} {{isCurrentSelected(day['date'], $index)? ' active':''}}{{(!day['enabled'])? ' disabled':''}}"  ng-click="selectDay($event, day)" ng-repeat="day in dayList">
+      <div class="day-info"> 
+        <span class="week-day-name">{{getLocalizedText(day["weekday"])}}</span>
+        <span class="day-number">   {{day["monthday"]}}</span>
+      </div>
+    </li>
+  </ul>
+</div>"""));
 }

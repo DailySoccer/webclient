@@ -198,15 +198,20 @@
       "errordefaulttitle"               : "Warning",
       "errordefaultgeneric"             : "An error has occurred. You can not enter this contest at the moment. Please, try again later.",
       "errordefaultediting"             : "An error has occurred. You can not modify your lineup at the moment. Please, try again later.",
-      "alertnoenergytitle"              : "Not enough ENERGY",
-      "alertnogoldtitle"                : "Not enough GOLD",
-      "alertnoenergymessage"            : "You don't have available ENERGY to eneter this contest",
-      "alertnogoldmessage"              : "You don't have available GOLD to eneter this contest"
+      "alert-no-energy-title"           : "Not enough ENERGY",
+      "alert-no-gold-title"             : "Not enough GOLD",
+      "alert-no-energy-message"         : "You don't have available ENERGY to eneter this contest",
+      "alert-no-gold-message"           : "You don't have available GOLD to eneter this contest",
+      "buy-gold-button"                 : "BUY GOLD",
+      "buy-energy-button"               : "REFILL ENERGY",
+      "alert-user-gold-message"         : "You own @MONEY",
+      "alert-no-energy-message"         : "<strong>You don't have enough energy</strong><br>to enter this contest."
     },
     "lineupselector"                    :
     {
       "wastedsalarycap"                 : "<strong>You've spent the salary cap</strong><br> Please choose players that fit the budget.",
       "maxplayersteam"                  : "<strong>Ups! It looks like you already have @MAX_PLAYERS_SAME_TEAM players of the same team</strong><br> Please, choose another player...",
+      "not-enough-resources"            : "<strong>ATENTION! You can't enter this tournament</strong><br> We will save your lineup until you get what you need to pay the entry-fee.",
       "add"                             : "ADD "
     },
     "matchesfilter"                     :

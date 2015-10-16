@@ -14,6 +14,9 @@ import 'package:webclient/models/contest.dart';
 )
 class LineupSelectorComp {
 
+  @NgOneWay("not-enough-resources")
+  bool alertNotEnoughResources;
+  
   @NgOneWay("has-negative-balance")
   bool alertNegativeBalance;
 

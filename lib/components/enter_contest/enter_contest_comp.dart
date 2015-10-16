@@ -21,6 +21,7 @@ import 'package:webclient/utils/html_utils.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/components/modal_comp.dart';
 import 'package:webclient/services/catalog_service.dart';
+import 'package:webclient/models/user.dart';
 
 @Component(
     selector: 'enter-contest',
@@ -74,8 +75,8 @@ class EnterContestComp implements DetachAware {
 
   List<String> lineupAlertList = [];
 
-  String getLocalizedText(key) {
-    return StringUtils.translate(key, "entercontest");
+  String getLocalizedText(key, {substitutions: null}) {
+    return StringUtils.translate(key, "entercontest", substitutions);
   }
 
   String formatCurrency(String amount) {
@@ -396,8 +397,8 @@ class EnterContestComp implements DetachAware {
         // TODO: Qué hacemos si el usuario no tiene dinero?
         // TODO: Traducir...
         modalShow(
-            contest.entryFee.isEnergy ? getLocalizedText("alertnoenergytitle") : getLocalizedText("alertnogoldtitle"),
-            contest.entryFee.isEnergy ? getLocalizedText("alertnoenergymessage")  : getLocalizedText("alertnogoldmessage")
+            contest.entryFee.isEnergy ? getLocalizedText("alert-no-energy-title") : getLocalizedText("alert-no-gold-title"),
+            contest.entryFee.isEnergy ? getLocalizedText("alert-no-energy-message")  : getLocalizedText("alert-no-gold-message")
         );
 
         /*
@@ -508,6 +509,47 @@ class EnterContestComp implements DetachAware {
     }
   }
 
+
+  void alertNotEnoughResources() {
+    modalShow(
+      "",
+      contest.entryFee.isEnergy ? getNotEnoughEnergyContent() : getNotEnoughGoldContent(),
+      onOk: contest.entryFee.isEnergy ? getLocalizedText('buy-energy-button') : getLocalizedText("buy-gold-button"),
+      closeButton:true
+    )
+    .then((_) {
+      _router.go(contest.entryFee.isEnergy ? 'shop.energy' : 'shop.gold', {});
+    });
+  }
+  
+  String getNotEnoughGoldContent() {
+    return '''
+    <div class="content-wrapper">
+      <img class="main-image" src="images/iconNoGold.png">
+      <span class="not-enough-resources-count">${contest.entryFee}</span>
+      <p class="content-text">
+        <strong>${getLocalizedText("alert-no-gold-message")}</strong>
+        <br>
+        ${getLocalizedText('alert-user-gold-message', substitutions:{'MONEY': _profileService.user.goldBalance})}
+        <img src="images/icon-coin-xs.png">
+      </p>
+    </div>
+    ''';
+  }
+  String getNotEnoughEnergyContent() {
+    return '''
+    <div class="content-wrapper">
+      <img class="main-image" src="images/iconNoEnergy.png">
+      <div class="energy-bar-wrapper">
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="${User.MAX_ENERGY}" style="width:${_profileService.user.Energy * 100 / User.MAX_ENERGY}%"></div>
+        </div>
+      </div>
+      <p class="content-text">${getLocalizedText("alert-no-energy-message")}</p>
+    </div>
+    ''';
+  }
+  
   String get _getKeyForCurrentUserContest => (_profileService.isLoggedIn ? _profileService.user.userId : 'guest') + '#' + contest.optaCompetitionId;
 
   Router _router;

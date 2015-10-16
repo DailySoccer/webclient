@@ -198,10 +198,14 @@
       "errordefaulttitle"               : "Atención",
       "errordefaultgeneric"             : "Ha ocurrido un error. No puedes acceder a este torneo en este momento. Inténtalo mas tarde.",
       "errordefaultediting"             : "Ha ocurrido un error. No puedes modificar tu alineación en este momento. Inténtalo mas tarde.",
-      "alertnoenergytitle"              : "Sin ENERGIA suficiente",
-      "alertnogoldtitle"                : "Sin GOLD suficiente",
-      "alertnoenergymessage"            : "No tienes ENERGIA para entrar en el torneo",
-      "alertnogoldmessage"              : "No tienes GOLD para entrar en el torneo"
+      "alert-no-energy-title"           : "Sin ENERGIA suficiente",
+      "alert-no-gold-title"             : "Sin GOLD suficiente",
+      "alert-no-energy-message"         : "No tienes ENERGIA para entrar en el torneo",
+      "alert-no-gold-message"           : "No tienes GOLD para entrar en el torneo",
+      "buy-gold-button"                 : "COMPRAR MONEDAS",
+      "buy-energy-button"               : "RECARGAR ENERGÍA",
+      "alert-user-gold-message"         : "Tiens actualmente @MONEY",
+      "alert-no-energy-message"         : "<strong>No tienes suficiente energía</strong><br>para entrar en este torneo."
     },
     "lineupselector"                    :
     {

@@ -45,7 +45,7 @@
 	.exo_bold(10pt, @blueLight);
 }
 
-.main-box {	
+.main-box {
 	.make-sm-column(8);
 	.make-sm-column-push(2);
 	.make-md-column(6);
@@ -58,128 +58,125 @@
 			background-color: transparent;
 		}
 	}
-	// estilo de textos
-	.text-form {
-		.opensans_bold(8pt, @greyDark);
-		text-align: center;
-	}
-	
-	.panel {
-		/*
-		@media (min-width: @screen-md-min) {
-			.slide-in-from-bottom-animation();
+}
+// estilo de textos
+.text-form {
+	.opensans_bold(8pt, @greyDark);
+	text-align: center;
+}
+
+.panel {
+	.fadein-animation(0.5s);
+	border-width: 0px;
+	margin-bottom: 0;
+	.panel-heading {	
+		@media (max-width: @screen-xs-max) {
+			border-top-right-radius: 0px;
+			border-top-left-radius: 0px;
+		}		
+		background-color: @blueDark;
+		.panel-title {
+			.exo_light(20pt, @white);
 		}
-		*/
-		.fadein-animation(0.5s);
-		border-width: 0px;
-		margin-bottom: 0;
-		.panel-heading {	
-			@media (max-width: @screen-xs-max) {
-				border-top-right-radius: 0px;
-				border-top-left-radius: 0px;
-			}		
-			background-color: @blueDark;
-			.panel-title {
-				.exo_light(20pt, @white);
-			}
-			button.close {
-				.close();
-				color: @white;
-				opacity: 0.5;
-				position: absolute;
-				top: 15px;
-				right: 15px;
+		button.close {
+			.close();
+			color: @white;
+			opacity: 0.5;
+			position: absolute;
+			top: 15px;
+			right: 15px;
+			font-size: 20pt;
+			.user-select(none);
+			&:hover {
 				font-size: 20pt;
-				&:hover {
-					font-size: 20pt;
-					color: @white;
-					opacity: 1;
-				}
+				color: @white;
+				opacity: 1;
 			}
 		}
+	}
 
-		.form-horizontal { 
-			.make-row(0);
+	.form-horizontal { 
+		.make-row(0);
+	}
+	.panel-body {
+		padding: 15px 12%;
+		// Textos del form
+		.form-description{
+			.text-form();
+			font-size: 8pt;
+			padding: 0;
+			margin-bottom: 10px;
 		}
-		.panel-body {
-			padding: 15px 12%;
-			// Textos del form
-			.form-description{
-				.text-form();
-				font-size: 8pt;
-				padding: 0;
-				margin-bottom: 10px;
-			}
-			label {
-		 		.opensans_normal(8pt, @greyDark);
-		 		.make-xs-column(3);
+		label {
+	 		.opensans_normal(8pt, @greyDark);
+	 		.make-xs-column(3);
+	 	}
+		.user-form-field {
+			.make-xs-column(12, 0px);
+		 	margin-bottom: 20px;
+		 	text-align: center;
+		}
+		.user-form-field-righted {
+			.user-form-field();
+			text-align: right;
+		}
+		// Inputs
+		.input-group {
+		 	input {
+		 		line-height: 20px;
+		 		&::-webkit-input-placeholder { .text-form(); }
+				&::-moz-placeholder { .text-form(); } /* firefox 19+ */
+				&::-ms-input-placeholder { .text-form(); } /* ie */
+				&:-webkit-autofill { -webkit-box-shadow: 0px 0px 0px 1000px @white inset; }
 		 	}
-			.user-form-field {
-				.make-xs-column(12, 0px);
-			 	margin-bottom: 20px;
-			 	text-align: center;
+		}
+		.no-margin {
+			margin: 0;
+		}
+		//Check y link para recordar password
+		.remember-forgot-group {
+			.make-xs-column(12, 0px);
+			.checkbox {
+				.make-xs-column(6);
+				padding-left: 20px;
 			}
-			.user-form-field-righted {
-				.user-form-field();
+			.forget-pass {
+				.make-xs-column(12, 0px);
 				text-align: right;
+				margin-top: -20px;
+				margin-bottom: 20px;
+				a {
+					cursor: pointer;
+					.opensans_normal(8pt, @blueLight);
+				}				
 			}
-			// Inputs
-			.input-group {
-			 	input {
-			 		line-height: 20px;
-			 		&::-webkit-input-placeholder { .text-form(); }
-					&::-moz-placeholder { .text-form(); } /* firefox 19+ */
-					&::-ms-input-placeholder { .text-form(); } /* ie */
-					&:-webkit-autofill { -webkit-box-shadow: 0px 0px 0px 1000px @white inset; }
-			 	}
-			}
-			.no-margin {
-				margin: 0;
-			}
-			//Check y link para recordar password
-			.remember-forgot-group {
-				.make-xs-column(12, 0px);
-				.checkbox {
-					.make-xs-column(6);
-					padding-left: 20px;
+		}
+		// botón entrar
+		.top-separation-20 { margin-top: 20px; }
+		.bottom-separation-10 { margin-bottom: 10px; }
+		.new-row {
+			.make-xs-column(12, 0);
+			.buttons-wrapper { height: 36px; text-align: center; }
+			.fb-button-wrapper { height: 15px; text-align: center; margin-top: 20px; }
+			.enter-button {
+					.btn-block();
+					.btn-primary();
 				}
-				.forget-pass {
-					.make-xs-column(12, 0px);
-					text-align: right;
-					margin-top: -20px;
-					margin-bottom: 20px;
-					a {
-						cursor: pointer;
-						.opensans_normal(8pt, @blueLight);
-					}				
-				}
-			}
-			// botón entrar
-			.top-separation-20 { margin-top: 20px; }
-			.bottom-separation-10 { margin-bottom: 10px; }
-			.new-row {
-				.make-xs-column(12, 0);
-				.buttons-wrapper { height: 36px; text-align: center; }
-				.fb-button-wrapper { height: 15px; text-align: center; margin-top: 20px; }
-				.enter-button {
-   					.btn-block();
-   					.btn-primary();
-   				}
-				.enter-button-half {
-   					.btn-primary();
-   					.make-xs-column(5.9);
-   					.pull-right();
+			.enter-button-half {
+					.btn-primary();
+					.make-xs-column(5.9);
+					.pull-right();
 
-   				}
-   				.cancel-button-half {
-   					.btn-cancel();
-   					.make-xs-column(5.9);
-   					.pull-left();
-   				}
-			}
+				}
+				.cancel-button-half {
+					.btn-cancel();
+					.make-xs-column(5.9);
+					.pull-left();
+				}
 		}
 	}
 }
+
 
 
 #modalRoot .main-box {
@@ -241,9 +238,64 @@
 .invisible {
 	display: none;
 }
+//Ventana Alerta
+#alertRoot {
+	.panel {
+		border: 1px solid white;
+		background-color: @greyLight;
+		border-radius: 10px;
+	}
+	.close {
+		position: absolute;
+		right: 15px;
+		top: 15px;
+		> * {
+			.user-select(none);
+		}
+	}
+	.content-wrapper {
+		text-align: center;
+	}
+	.main-image {
+		display: block;
+		margin: 0 auto;
+	}
+	.not-enough-resources-count {
+		.opensans_bold(10pt, @orange);
+		border: 3px solid @greyBlue;
+		border-radius: 10px;
+		background-color: @blueUltraDark;
+		padding: 2px 35px;
+	}
+	.content-text {
+		margin-top: 20px;
+		.opensans_normal(9pt, @greyDark);
+	}
+	.energy-bar-wrapper {
+		margin: 0 auto;
+		max-width: 85px;
+		border: 3px solid @greyBlue;
+		border-radius: 10px;
+		background-color: @blueUltraDark;
+		padding: 4px 2px 0px 2px;
+		.progress {
+			position: relative;
+			display: inline-block;
+			border-radius: 0px;
+			margin-bottom: 0;
+			background-image: url("@{images}/progress-bar-back-big.png");		
+			background-color: transparent;
+			max-width: 70px;
+			width: 100%;
+			.progress-bar {
+				background-image: url("@{images}/progress-bar-front-big.png");
+				background-color: transparent;
+			}
+		}
+	}
+}
 
 //Tutoriales de bienvenida
-
 #welcomeRoot {
 	.make-row(0);
 	.panel-title {

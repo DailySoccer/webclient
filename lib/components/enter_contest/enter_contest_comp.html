@@ -61,7 +61,8 @@
               </div>
               <div  class="bottom-content" ng-if="!isSelectingSoccerPlayer || scrDet.isNotXsScreen">
                 <div class="button-wrapper">
-                  <button type="button" class="btn-clean-lineup-list" ng-click="deleteFantasyTeam()" ng-disabled="isPlayerSelected()">{{getLocalizedText("buttonclean")}}</button>
+                  <!--<button type="button" class="btn-clean-lineup-list" ng-click="deleteFantasyTeam()" ng-disabled="isPlayerSelected()">{{getLocalizedText("buttonclean")}}</button>-->
+                  <button type="button" class="btn-clean-lineup-list" ng-click="alertNotEnoughResources()" ng-disabled="isPlayerSelected()">{{getLocalizedText("buttonclean")}}</button>
                 </div>
                 <div class="button-wrapper">
                   <button type="button" class="btn-confirm-lineup-list" ng-click="createFantasyTeam()" ng-disabled="isInvalidFantasyTeam">{{getLocalizedText("buttoncontinue")}}</button>

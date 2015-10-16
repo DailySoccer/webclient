@@ -360,6 +360,9 @@ class EnterContestComp implements DetachAware {
     if (_retryOpTimer != null && _retryOpTimer.isActive) {
       return;
     }
+    
+    if(notEnoughResourcesForEntryFee)
+      alertNotEnoughResources();
 
     // Actualizamos el contestEntry, independientemente que estemos editando o creando
     saveContestEntry();

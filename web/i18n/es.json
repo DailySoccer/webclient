@@ -211,7 +211,7 @@
     {
       "wastedsalarycap"                 : "<strong>Has gastado todo el presupuesto</strong><br> Por favor, elige otros jugadores para ajustar el presupuesto",
       "maxplayersteam"                  : "<strong>Ups! Parece que has sobrepasado el limite de tener @MAX_PLAYERS_SAME_TEAM jugadores del mismo equipo</strong><br> Por favor, elige otros jugadores...",
-      "not-enough-resources"            : "<strong>ATENCIÓN! Este torneo tiene requisitos que no cumples y no podras participar</strong><br> Pero tranquilo. Guardaremos a alineación y podrás acceder a la tienda y así poder pagar la cuota de entrada.",
+      "not-enough-resources"            : "<strong>ATENCIÓN! Este torneo tiene requisitos que no cumples y no podras participar</strong><br> Ves a la tienda y pilla lo que necesitas para pagar la entrada al torneo. Mientras tanto guardaremos tu alineación.",
       "add"                             : "AÑADIR "
     },
     "matchesfilter"                     :

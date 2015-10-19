@@ -86,6 +86,10 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
 
   List<dynamic> lineupFilter;
 
+  String getLocalizedText(key) {
+    return StringUtils.translate(key, "soccerplayerlist");
+  }
+  
   SoccerPlayersListComp(this._scrDet, this._element, this._turnZone, this._profileService);
 
   void _onLineupFilterChanged(changes, _) {
@@ -153,11 +157,11 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
   void _createSortHeader() {
     var text = '''
       <div class="soccer-player-list-header-table">
-        <div class="filter filterOrderPos"><a id="Pos">Pos.</a></div>
-        <div class="filter filterOrderName"><a id="Name">Name</a></div>
-        <div class="filter filterOrderDFP"><a id="DFP">DFP</a></div>
-        <div class="filter filterOrderPlayed"><a id="Played">PJ.</a></div>
-        <div class="filter filterOrderSalary"><a id="Salary">Salary</a></div>
+        <div class="filter filterOrderPos"><a id="Pos">${getLocalizedText('positionabrev')}</a></div>
+        <div class="filter filterOrderName"><a id="Name">${getLocalizedText('name')}</a></div>
+        <div class="filter filterOrderDFP"><a id="DFP">${getLocalizedText('dfp')}</a></div>
+        <div class="filter filterOrderPlayed"><a id="Played">${getLocalizedText('numMatchesAbrev')}</a></div>
+        <div class="filter filterOrderSalary"><a id="Salary">${getLocalizedText('salary')}</a></div>
       </div>
       ''';
 

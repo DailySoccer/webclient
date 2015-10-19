@@ -220,6 +220,14 @@
       "allmatches"                      : "Todos los encuentros",
       "all"                             : "todos"
     },
+    "soccerplayerlist"                  :
+    {
+      "positionabrev"                   : "Pos.",
+      "name"                            : "Nombre",
+      "dfp"                             : "DFP",
+      "numMatchesAbrev"                 : "PJ.",
+      "salary"                          : "Salario"
+    },
     "soccerplayerpositions"             :
     {
       "goalkeeper"                      : "PORTERO",

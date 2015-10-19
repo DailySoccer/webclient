@@ -19304,6 +19304,22 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   outline: none !important;
   color: #ffffff;
 }
+.enter-contest-actions-wrapper .btn-confirm-lineup-list .confirm-cost.coins:after {
+  content: " ";
+  background-image: url("../images/icon-coin-xs.png");
+  width: 12pt;
+  height: 12pt;
+  display: inline-block;
+  vertical-align: middle;
+}
+.enter-contest-actions-wrapper .btn-confirm-lineup-list .confirm-cost.energy:after {
+  content: " ";
+  background-image: url("../images/icon-lightning-xs.png");
+  width: 12pt;
+  height: 12pt;
+  display: inline-block;
+  vertical-align: middle;
+}
 .enter-contest-actions-wrapper p {
   position: relative;
   float: left;
@@ -20649,6 +20665,7 @@ lineup-selector {
   background-color: #fceaea;
 }
 .lineup-selector .lineup-selector-slot {
+  padding-left: 10px;
   cursor: pointer;
 }
 .lineup-selector .lineup-selector-slot:nth-last-child(2) {
@@ -20665,8 +20682,8 @@ lineup-selector {
   width: 16.66666667%;
   position: relative;
   min-height: 1px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 9pt;
@@ -20686,7 +20703,7 @@ lineup-selector {
 }
 .lineup-selector .lineup-selector-slot .column-primary-info {
   float: left;
-  width: 58.33333333%;
+  width: 52.5%;
   position: relative;
   min-height: 1px;
   padding-left: 0px;
@@ -20696,8 +20713,32 @@ lineup-selector {
 @media (min-width: 992px) {
   .lineup-selector .lineup-selector-slot .column-primary-info {
     float: left;
-    width: 58.33333333%;
+    width: 52.5%;
   }
+}
+.lineup-selector .lineup-selector-slot .column-gold-cost {
+  position: relative;
+  float: left;
+  width: 22.5%;
+  min-height: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  text-align: right;
+}
+.lineup-selector .lineup-selector-slot .column-gold-cost .coins-amount {
+  line-height: 42px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 9pt;
+  color: #777777;
+}
+.lineup-selector .lineup-selector-slot .column-gold-cost .coins-amount:after {
+  content: " ";
+  background-image: url("../images/icon-coin-xs.png");
+  width: 12pt;
+  height: 12pt;
+  display: inline-block;
+  vertical-align: middle;
 }
 .lineup-selector .lineup-selector-slot .column-empty-slot {
   position: relative;

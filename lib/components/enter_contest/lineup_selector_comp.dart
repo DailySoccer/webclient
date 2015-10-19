@@ -52,11 +52,7 @@ class LineupSelectorComp {
 
   String getPrintableGoldCost(dynamic slot) {
     Money money = slot['instanceSoccerPlayer'].moneyToBuy(managerLevel);
-    if (money.amount <= 0) {
-      return "";
-    } else {
-      return '<span class="coins-amount">${money.amount.toString()}</span>';
-    }
+    return money.amount <= 0 ? '' : '<span class="coins-amount">${money.toInt()}</span>';
   }
   
   static final Map<String, String> _POS_CLASS_NAMES = {

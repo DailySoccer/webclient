@@ -371,7 +371,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
       return '''        
           <li><a id="menuUserMyAccount" destination="user_profile"> ${StringUtils.translate("myaccount",  "mainmenu")}</a></li>
           <li><a id="menuUserShop"      destination="shop">         ${StringUtils.translate("shop",       "mainmenu")}</a></li>
-          <li><a id="menuHowItWorks"    destination="help_info">    ${StringUtils.translate("howitworks", "mainmenu")}</a></li>
+          <!--li><a id="menuHowItWorks"    destination="help_info">    ${StringUtils.translate("howitworks", "mainmenu")}</a></li-->
           <li><a id="menuUserLogOut"    destination="logout">       ${StringUtils.translate("logout",     "mainmenu")}</a></li>
         </ul>
       ''';

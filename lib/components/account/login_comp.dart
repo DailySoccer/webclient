@@ -85,7 +85,7 @@ class LoginComp implements ShadowRootAware {
         break;
 
       case "CANCEL":
-        isModal ? ModalComp.close() : _router.go('landing_page', {});
+        isModal ? ModalComp.close() : _router.go('lobby', {});
         break;
 
       case "REMEMBER_PASSWORD":

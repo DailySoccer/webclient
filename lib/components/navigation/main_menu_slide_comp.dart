@@ -136,7 +136,7 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
     _hide();
 
     if (destination == "logout") {
-      _router.go('landing_page', {});
+      _router.go('lobby', {});
       profileService.logout();
     }
     else {
@@ -244,7 +244,7 @@ class MainMenuSlideComp implements ShadowRootAware, ScopeAware {
   String _getNotLoggedInHtml() {
     return '''
     <div id="menuNotLoggedIn">
-      <div id="brandLogoNotLogged" class="navbar-brand" destination="landing_page"></div>
+      <div id="brandLogoNotLogged" class="navbar-brand" destination="lobby"></div>
       <div class="button-wrapper">
         <!--
             <button id="joinButton"  type="button" class="button-join" destination="join">REGISTER</button>

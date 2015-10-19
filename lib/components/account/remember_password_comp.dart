@@ -65,7 +65,7 @@ class RememberPasswordComp implements ShadowRootAware{
   }
 
   void backToLanding() {
-    _router.go("landing_page",{});
+    _router.go("lobby",{});
   }
 
   void hideErrors() {

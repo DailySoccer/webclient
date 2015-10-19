@@ -335,8 +335,19 @@ class EnterContestComp implements DetachAware {
 
     int intId = 0;
     allSoccerPlayers = new List<dynamic>();
-
+    
+    ContestEntry contestEntry = null;
+    if (editingContestEntry) {
+      contestEntry = contest.getContestEntry(contestEntryId);
+    }
+    
+    
     contest.instanceSoccerPlayers.forEach((templateSoccerId, instanceSoccerPlayer) {
+
+      if (contestEntry != null && contestEntry.isPurchased(instanceSoccerPlayer)) {
+        instanceSoccerPlayer.level = 0;
+      }
+      
       MatchEvent matchEvent = instanceSoccerPlayer.soccerTeam.matchEvent;
       SoccerTeam soccerTeam = instanceSoccerPlayer.soccerTeam;
 

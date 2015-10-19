@@ -24,6 +24,7 @@ class InstanceSoccerPlayer {
   int salary;
 
   int _level = -1;
+  set level(lvl) => _level = lvl;
   int get level {
     // Si no se ha calculado el nivel del futbolista, lo calculamos
     if (_level < 0) {

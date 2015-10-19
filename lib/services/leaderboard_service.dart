@@ -6,19 +6,31 @@ import 'package:angular/angular.dart';
 
 import "package:webclient/services/server_service.dart";
 import "package:webclient/models/user.dart";
+import 'package:webclient/services/profile_service.dart';
 
 @Injectable()
 class LeaderboardService {
 
   List<User> users;
 
-  LeaderboardService(this._server);
+  LeaderboardService(this._server, this._profileService);
 
   Future<List<User>> getUsers() {
     var completer = new Completer();
 
-    // Tenemos cargada la leaderboard solicitada?
-    if (users != null) {
+    // Tenemos la leaderboard cargada?
+    bool updated = (users != null);
+
+    if (updated && _profileService.isLoggedIn) {
+      // La tenemos correctamente actualizada? (puntos iguales a los del propio perfil de usuario)
+      User userInLeaderboard = users.firstWhere( (user) => user.userId == _profileService.user.userId);
+      if (userInLeaderboard.trueSkill != _profileService.user.trueSkill) {
+        updated = false;
+      }
+    }
+
+    // Tenemos actualizada la leaderboard?
+    if (updated) {
       completer.complete(users);
     }
     else {
@@ -34,4 +46,5 @@ class LeaderboardService {
   }
 
   ServerService _server;
+  ProfileService _profileService;
 }

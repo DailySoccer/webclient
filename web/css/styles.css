@@ -16350,6 +16350,7 @@ main-menu-f2p {
   margin: 0 1%;
   color: #afafaf;
   position: relative;
+  left: 3px;
   width: 68px;
 }
 @media (min-width: 768px) and (max-width: 991px) {
@@ -16399,6 +16400,12 @@ main-menu-f2p {
   position: absolute;
   top: 12px;
   left: 22px;
+}
+#mainMenu #desktopMenu .fixed-user-stats .manager-points .count {
+  border-right: 1px solid #6a8597;
+  border-radius: 10px;
+  position: relative;
+  left: 3px;
 }
 #mainMenu #desktopMenu .fixed-user-stats .coins {
   text-align: center;

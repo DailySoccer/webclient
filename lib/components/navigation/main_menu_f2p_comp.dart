@@ -338,12 +338,12 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
               <span class="plus">+</span></div>            
           </li>
 
-          <li class="manager-points additive" destination="shop"> 
+          <li class="manager-points additive"> 
             <img src="images/icon-star-lg.png">
             <span class="managerLevel">${_userManagerLevel}</span>     
             <div class="count">
                 ${_userManagerPoints}
-                <span class="plus">+</span>
+                <!--span class="plus">+</span-->
             </div>            
           </li>
 

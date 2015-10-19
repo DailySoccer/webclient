@@ -81,7 +81,7 @@ class EnterContestComp implements DetachAware {
 
   Money get moneyNeeded {
     return (contest != null)
-        ? (contest.simulation ? contest.entryFee : coinsNeeded)
+        ? (contest.simulation ? (editingContestEntry ? new Money.from(Money.CURRENCY_ENERGY, 0) : contest.entryFee) : coinsNeeded)
         : new Money.from(Money.CURRENCY_GOLD, 0);
   }
 
@@ -89,7 +89,7 @@ class EnterContestComp implements DetachAware {
 
   // Comprobamos si tenemos recursos suficientes para pagar el torneo (salvo que estemos editando el contestEntry)
   bool get enoughResourcesForEntryFee =>
-      editingContestEntry || contest == null || !_profileService.isLoggedIn || _profileService.user.hasMoney(moneyNeeded);
+      contest == null || !_profileService.isLoggedIn || _profileService.user.hasMoney(moneyNeeded);
 
   bool playersInSameTeamInvalid = false;
   bool isNegativeBalance = false;
@@ -406,6 +406,17 @@ class EnterContestComp implements DetachAware {
       return;
     }
 
+    if (!enoughResourcesForEntryFee) {
+      alertNotEnoughResources();
+      return;
+
+      /*
+      // Registramos dónde tendría que navegar al tener éxito en "add_funds"
+      window.localStorage["add_funds_success"] = window.location.href;
+      _router.go("add_funds", {});
+       */
+    }
+
     if (editingContestEntry) {
       _contestsService.editContestEntry(contestEntryId, lineupSlots.map((player) => player["id"]).toList())
         .then((_) {
@@ -417,7 +428,6 @@ class EnterContestComp implements DetachAware {
         .catchError((ServerError error) => _errorCreating(error));
     }
     else {
-      if (enoughResourcesForEntryFee) {
         _contestsService.addContestEntry(contest.contestId, lineupSlots.map((player) => player["id"]).toList())
           .then((contestId) {
             GameMetrics.logEvent(GameMetrics.TEAM_CREATED);
@@ -433,16 +443,6 @@ class EnterContestComp implements DetachAware {
               });
           })
           .catchError((ServerError error) => _errorCreating(error));
-      }
-      else {
-        alertNotEnoughResources();
-
-        /*
-        // Registramos dónde tendría que navegar al tener éxito en "add_funds"
-        window.localStorage["add_funds_success"] = window.location.href;
-        _router.go("add_funds", {});
-         */
-      }
     }
   }
 

@@ -246,8 +246,6 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
     if (onActionClick != null) {
       onActionClick({"soccerPlayer": clickedSlot});
     }
-    
-    print("ACTION - EVENT PHASE: ${e.eventPhase}");
   }
 
   void _onSoccerPlayerInfo(MouseEvent e) {
@@ -259,7 +257,6 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
     if (onRowClick != null) {
       onRowClick({"soccerPlayerId": clickedSlot['id']});
     }
-    print("INFO - EVENT PHASE: ${e.eventPhase}");
   }  
   
   static bool _isVisibleWithFilters(player, pos, matchId, name) {

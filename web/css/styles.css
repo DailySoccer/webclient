@@ -16257,7 +16257,8 @@ main-menu-f2p {
   height: 17px;
   width: 17px;
   bottom: 0px;
-  font-size: 8pt;
+  font-size: 13pt;
+  line-height: 11pt;
 }
 #mainMenu #desktopMenu .fixed-user-stats {
   display: inline-block;

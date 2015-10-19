@@ -228,7 +228,6 @@ class WebClientApp extends Module {
 
     views.configure({
       'landing_page': ngRoute(
-          defaultRoute: true,
           path: '/landing_page',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_OUT),
           viewHtml: '<landing-page-1-slide></landing-page-1-slide>'
@@ -344,6 +343,7 @@ class WebClientApp extends Module {
           }
       )
       ,'lobby': ngRoute(
+          defaultRoute: true,
           path: '/lobby',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
           viewHtml: '<lobbyf2p></lobbyf2p>',
@@ -408,7 +408,7 @@ class WebClientApp extends Module {
                 preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
                 viewHtml: '''<modal window-size="'90percent'"><alert-no-gold></alert-no-gold></modal>'''
             )*/
-            
+
           }
       )
       ,'view_contest_entry': ngRoute(
@@ -489,6 +489,8 @@ class WebClientApp extends Module {
       }
 
       if (!bEnter) {
+        router.go("lobby", {}, replace:true);
+        /*
         if (ProfileService.instance.isLoggedIn) {
           // Antes de redirigir al lobby, miramos que vengamos desde 0. Esto evita un flashazo en el que si estas
           // por ejemplo en my_contest e intentas ir a la landing, se ve brevemente el lobby
@@ -499,6 +501,7 @@ class WebClientApp extends Module {
         else {
           router.go("landing_page", {}, replace: true);
         }
+         */
       }
 
       window.scroll(0, 0);

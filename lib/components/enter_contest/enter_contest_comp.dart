@@ -80,7 +80,8 @@ class EnterContestComp implements DetachAware {
   String get printableAvailableSalary => StringUtils.parseSalary(availableSalary);
 
   // Comprobamos si tenemos recursos suficientes para pagar el torneo (salvo que estemos editando el contestEntry)
-  bool get enoughResourcesForEntryFee => editingContestEntry || contest == null || _profileService.user.hasMoney(contest.entryFee);
+  bool get enoughResourcesForEntryFee =>
+      editingContestEntry || contest == null || !_profileService.isLoggedIn || _profileService.user.hasMoney(contest.entryFee);
 
   bool playersInSameTeamInvalid = false;
   bool isNegativeBalance = false;
@@ -90,7 +91,8 @@ class EnterContestComp implements DetachAware {
 
   bool contestInfoFirstTimeActivation = false;  // Optimizacion para no compilar el contest_info hasta que no sea visible la primera vez
 
-  num get playerManagerLevel => (contest != null && contest.simulation) ? User.MAX_MANAGER_LEVEL : _profileService.user.managerLevel;
+  num get playerManagerLevel =>
+      (contest != null && contest.simulation) ? User.MAX_MANAGER_LEVEL : (_profileService.isLoggedIn ? _profileService.user.managerLevel : 0);
 
   List<String> lineupAlertList = [];
 
@@ -338,19 +340,19 @@ class EnterContestComp implements DetachAware {
 
     int intId = 0;
     allSoccerPlayers = new List<dynamic>();
-    
+
     ContestEntry contestEntry = null;
     if (editingContestEntry) {
       contestEntry = contest.getContestEntry(contestEntryId);
     }
-    
-    
+
+
     contest.instanceSoccerPlayers.forEach((templateSoccerId, instanceSoccerPlayer) {
 
       if (contestEntry != null && contestEntry.isPurchased(instanceSoccerPlayer)) {
         instanceSoccerPlayer.level = 0;
       }
-      
+
       MatchEvent matchEvent = instanceSoccerPlayer.soccerTeam.matchEvent;
       SoccerTeam soccerTeam = instanceSoccerPlayer.soccerTeam;
 

@@ -81,7 +81,7 @@ class EnterContestComp implements DetachAware {
 
   // Comprobamos si tenemos recursos suficientes para pagar el torneo (salvo que estemos editando el contestEntry)
   bool get enoughResourcesForEntryFee =>
-      editingContestEntry || contest == null || !_profileService.isLoggedIn || _profileService.user.hasMoney(contest.entryFee);
+      editingContestEntry || contest == null || !_profileService.isLoggedIn || _profileService.user.hasMoney(coinsNeeded);
 
   bool playersInSameTeamInvalid = false;
   bool isNegativeBalance = false;
@@ -552,7 +552,7 @@ class EnterContestComp implements DetachAware {
     return '''
     <div class="content-wrapper">
       <img class="main-image" src="images/iconNoGold.png">
-      <span class="not-enough-resources-count">${contest.entryFee}</span>
+      <span class="not-enough-resources-count">${coinsNeeded}</span>
       <p class="content-text">
         <strong>${getLocalizedText("alert-no-gold-message")}</strong>
         <br>

@@ -17,15 +17,15 @@ class LineupSelectorComp {
 
   @NgOneWay("not-enough-resources")
   bool alertNotEnoughResources;
-  
+
   @NgOneWay("has-negative-balance")
   bool alertNegativeBalance;
 
   @NgOneWay("has-max-players-same-team")
   bool alertMaxPlayersSameTeamExceed;
-  
+
   @NgOneWay("manager-level")
-  int managerLevel = 0;
+  num managerLevel = 0;
 
   String get MAX_PLAYERS_SAME_TEAM => Contest.MAX_PLAYERS_SAME_TEAM.toString();
 
@@ -54,7 +54,7 @@ class LineupSelectorComp {
     Money money = slot['instanceSoccerPlayer'].moneyToBuy(managerLevel);
     return money.amount <= 0 ? '' : '<span class="coins-amount">${money.toInt()}</span>';
   }
-  
+
   static final Map<String, String> _POS_CLASS_NAMES = {
     StringUtils.translate("gk", "soccerplayerpositions") : "posPOR",
     StringUtils.translate("def", "soccerplayerpositions"): "posDEF",

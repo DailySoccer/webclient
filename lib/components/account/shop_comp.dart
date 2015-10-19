@@ -13,27 +13,27 @@ import 'package:webclient/utils/string_utils.dart';
 class ShopComp {
 
   LoadingService loadingService;
-  
+
   List<Map> shops;
-  
+
   String getLocalizedText(key) {
     return StringUtils.translate(key, "shop");
   }
-  
+
   ShopComp(this._router) {
     shops = [
         {"name" : "gold",           "image" : "images/shopItemCoin.png",          "description" : getLocalizedText('goldshopdescription')}
-       ,{"name" : "trainer_points", "image" : "images/shopItemTrainerPoints.png", "description" : getLocalizedText('trainerpointsshopdescription')}
+       // ,{"name" : "trainer_points", "image" : "images/shopItemTrainerPoints.png", "description" : getLocalizedText('trainerpointsshopdescription')}
        ,{"name" : "energy",         "image" : "images/shopItemEnergy.png",        "description" : getLocalizedText('energyshopdescription')}
     ];
   }
-  
+
   void openShop(String name) {
     if (name != 'trainer_points') {
       ModalComp.open(_router, "shop." + name, {});
     }
   }
-  
-  Router _router;  
+
+  Router _router;
 }
 

@@ -68,20 +68,28 @@ class EnterContestComp implements DetachAware {
   Money get coinsNeeded {
     _coinsNeeded.amount = 0;
     num managerLevel = playerManagerLevel;
-    lineupSlots.where((c) => c != null).
-    forEach( (c) =>
-        _coinsNeeded.amount += c["instanceSoccerPlayer"].moneyToBuy(managerLevel).amount);
-    if (contest != null && contest.entryFee != null && contest.entryFee.currencyUnit == Money.CURRENCY_GOLD && !editingContestEntry) {
+    lineupSlots
+      .where((c) => c != null)
+      .forEach( (c) =>
+          _coinsNeeded.amount += c["instanceSoccerPlayer"].moneyToBuy(managerLevel).amount);
+
+    if (contest != null && contest.entryFee != null && contest.entryFee.isGold && !editingContestEntry) {
       _coinsNeeded.amount += contest.entryFee.amount;
     }
     return _coinsNeeded;
+  }
+
+  Money get moneyNeeded {
+    return (contest != null)
+        ? (contest.simulation ? contest.entryFee : coinsNeeded)
+        : new Money.from(Money.CURRENCY_GOLD, 0);
   }
 
   String get printableAvailableSalary => StringUtils.parseSalary(availableSalary);
 
   // Comprobamos si tenemos recursos suficientes para pagar el torneo (salvo que estemos editando el contestEntry)
   bool get enoughResourcesForEntryFee =>
-      editingContestEntry || contest == null || !_profileService.isLoggedIn || _profileService.user.hasMoney(coinsNeeded);
+      editingContestEntry || contest == null || !_profileService.isLoggedIn || _profileService.user.hasMoney(moneyNeeded);
 
   bool playersInSameTeamInvalid = false;
   bool isNegativeBalance = false;

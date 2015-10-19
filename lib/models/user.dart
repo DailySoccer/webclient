@@ -7,7 +7,7 @@ import 'package:webclient/services/datetime_service.dart';
 import 'package:intl/intl.dart';
 
 class User {
-  static const int MINUTES_TO_RELOAD_ENERGY = 15;
+  static const int MINUTES_TO_RELOAD_ENERGY = 60;
   static const num MAX_ENERGY = 10;
 
   static List MANAGER_POINTS = [

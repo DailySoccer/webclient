@@ -79,7 +79,9 @@ class EnterContestComp implements DetachAware {
 
   String get printableAvailableSalary => StringUtils.parseSalary(availableSalary);
 
-  bool notEnoughResourcesForEntryFee = false;
+  // Comprobamos si tenemos recursos suficientes para pagar el torneo (salvo que estemos editando el contestEntry)
+  bool get enoughResourcesForEntryFee => editingContestEntry || contest == null || _profileService.user.hasMoney(contest.entryFee);
+
   bool playersInSameTeamInvalid = false;
   bool isNegativeBalance = false;
 
@@ -147,8 +149,6 @@ class EnterContestComp implements DetachAware {
         availableSalary = contest.salaryCap;
         // Comprobamos si estamos en salario negativo
         isNegativeBalance = availableSalary < 0;
-        //Comprobamos si tenemos recursos suficientes para pagar el torneo.
-        notEnoughResourcesForEntryFee = contest.entryFee.isEnergy ? contest.entryFee.compareTo(_profileService.user.energyBalance) > 0 :  contest.entryFee.compareTo(_profileService.user.goldBalance) > 0;
         initAllSoccerPlayers();
 
         // Si nos viene el torneo para editar la alineación
@@ -388,9 +388,6 @@ class EnterContestComp implements DetachAware {
       return;
     }
 
-    if(notEnoughResourcesForEntryFee)
-      alertNotEnoughResources();
-
     // Actualizamos el contestEntry, independientemente que estemos editando o creando
     saveContestEntry();
 
@@ -410,7 +407,7 @@ class EnterContestComp implements DetachAware {
         .catchError((ServerError error) => _errorCreating(error));
     }
     else {
-      if (_profileService.user.hasMoney(contest.entryFee)) {
+      if (enoughResourcesForEntryFee) {
         _contestsService.addContestEntry(contest.contestId, lineupSlots.map((player) => player["id"]).toList())
           .then((contestId) {
             GameMetrics.logEvent(GameMetrics.TEAM_CREATED);
@@ -428,10 +425,7 @@ class EnterContestComp implements DetachAware {
           .catchError((ServerError error) => _errorCreating(error));
       }
       else {
-        modalShow(
-            contest.entryFee.isEnergy ? getLocalizedText("alert-no-energy-title") : getLocalizedText("alert-no-gold-title"),
-            contest.entryFee.isEnergy ? getLocalizedText("alert-no-energy-message")  : getLocalizedText("alert-no-gold-message")
-        );
+        alertNotEnoughResources();
 
         /*
         // Registramos dónde tendría que navegar al tener éxito en "add_funds"

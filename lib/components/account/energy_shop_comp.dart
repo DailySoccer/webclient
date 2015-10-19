@@ -9,6 +9,7 @@ import 'package:webclient/services/catalog_service.dart';
 import 'package:webclient/models/product.dart';
 import 'package:webclient/services/server_error.dart';
 import 'package:webclient/utils/html_utils.dart';
+import 'dart:html';
 
 
 @Component(
@@ -69,7 +70,12 @@ class EnergyShopComp {
     if (products.firstWhere((product) => product["id"] == id, orElse: () => {})["purchasable"]) {
       _catalogService.buyProduct(id)
         .then( (_) {
-          _flashMessage.addGlobalMessage("DEBUG: Has comprado [ Recarga  Completa ]", 1);
+          _flashMessage.addGlobalMessage("Has comprado [ Recarga  Completa ]", 1);
+
+          if (window.localStorage.containsKey("add_energy_success")) {
+            CloseModal();
+            window.location.assign(window.localStorage["add_energy_success"]);
+          }
         })
         .catchError((ServerError error) {
             String keyError = errorMap.keys.firstWhere( (key) => error.responseError.contains(key), orElse: () => "_ERROR_DEFAULT_" );

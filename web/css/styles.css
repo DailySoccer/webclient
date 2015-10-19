@@ -19314,7 +19314,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
 }
 .enter-contest-actions-wrapper .btn-confirm-lineup-list .confirm-cost.energy:after {
   content: " ";
-  background-image: url("../images/icon-lightning-xs.png");
+  background-image: url("../images/icon-lightningWhite-xs.png");
   width: 12pt;
   height: 12pt;
   display: inline-block;

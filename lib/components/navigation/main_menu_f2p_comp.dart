@@ -142,7 +142,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
     _hide();
 
     if (destination == "logout") {
-      _router.go('landing_page', {});
+      _router.go('lobby', {});
       profileService.logout();
     } else {
       String paramString = event.currentTarget.attributes["params"];
@@ -378,7 +378,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
     }
     return '';
   }
-  
+
   String getMainOptions() {
     return '''
       <li highlights="lobby"       class="mainLink"> ${getMainMenuLink("lobby")}       </li>
@@ -386,10 +386,10 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
       <li highlights="leaderboard" class="mainLink"> ${getMainMenuLink("leaderboard")} </li>
     ''';
   }
-  
+
   String getMainMenuLink(String menuLink) {
     String ret = "";
-    
+
     switch (menuLink) {
       case "lobby":
         ret = '''<a id="menuLobby"      destination="lobby">                            ${StringUtils.translate("lobby",        "mainmenu")}</a>''';
@@ -401,8 +401,8 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
         ret = '''<a id="menuLeaderboard" destination="leaderboard">                     ${StringUtils.translate("leaderboard",  "mainmenu")}</a>''';
         break;
     }
-    
-    return ret;    
+
+    return ret;
   }
 
   void _cancelListeners() {

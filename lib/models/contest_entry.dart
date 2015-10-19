@@ -14,6 +14,7 @@ class ContestEntry {
   Contest contest;
 
   List<InstanceSoccerPlayer> instanceSoccerPlayers;
+  List<InstanceSoccerPlayer> soccerPlayersPurchased;
 
   int position;
   Money prize;
@@ -38,6 +39,8 @@ class ContestEntry {
 
   bool contains(SoccerPlayer soccerPlayer) => instanceSoccerPlayers.any( (elem) => elem.soccerPlayer.templateSoccerPlayerId == soccerPlayer.templateSoccerPlayerId );
 
+  bool isPurchased(InstanceSoccerPlayer soccerPlayer) => soccerPlayersPurchased.contains(soccerPlayer);
+
   ContestEntry(this.contestEntryId, this.user, this.instanceSoccerPlayers);
 
   ContestEntry.initFromJsonObject(Map jsonMap, ContestReferences references, Contest theContest) {
@@ -47,6 +50,10 @@ class ContestEntry {
     // Enviado únicamente cuando se envíe usando jsonView.FullContest
     if (jsonMap.containsKey("soccerIds")) {
       instanceSoccerPlayers = jsonMap["soccerIds"].map((soccerPlayerId) => theContest.getInstanceSoccerPlayer(soccerPlayerId)).toList();
+    }
+
+    if (jsonMap.containsKey("playersPurchased") && jsonMap["playersPurchased"] != null) {
+      soccerPlayersPurchased = jsonMap["playersPurchased"].map((soccerPlayerId) => theContest.getInstanceSoccerPlayer(soccerPlayerId)).toList();
     }
 
     position = (jsonMap.containsKey("position")) ? jsonMap["position"] : 0;

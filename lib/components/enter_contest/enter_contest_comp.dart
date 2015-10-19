@@ -414,8 +414,6 @@ class EnterContestComp implements DetachAware {
           .catchError((ServerError error) => _errorCreating(error));
       }
       else {
-        // TODO: Qué hacemos si el usuario no tiene dinero?
-        // TODO: Traducir...
         modalShow(
             contest.entryFee.isEnergy ? getLocalizedText("alert-no-energy-title") : getLocalizedText("alert-no-gold-title"),
             contest.entryFee.isEnergy ? getLocalizedText("alert-no-energy-message")  : getLocalizedText("alert-no-gold-message")

@@ -25,8 +25,8 @@ class SoccerPlayersFilterComp implements AttachAware {
     _fieldPosFilter = value;
   }
 
-  String getLocalizedText(key) {
-    return StringUtils.translate(key, "soccerplayerpositions");
+  String getLocalizedText(key, {group: "soccerplayerpositions"}) {
+    return StringUtils.translate(key, group);
   }
 
   SoccerPlayersFilterComp(this.scrDet);

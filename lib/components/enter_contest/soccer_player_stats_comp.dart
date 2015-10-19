@@ -163,7 +163,7 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
       matchEventDate = " (${DateTimeService.formatDateTimeShort(nextMatchEvent.startDate)})";
     }
 
-    return ("NEXT MATCH: " + matchEventName + matchEventDate);
+    return ("${getLocalizedText('next-match')}: " + matchEventName + matchEventDate);
   }
 
   void updateSoccerPlayerInfoFromService() {

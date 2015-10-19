@@ -226,7 +226,9 @@
       "name"                            : "Name",
       "dfp"                             : "DFP",
       "numMatchesAbrev"                 : "#Match",
-      "salary"                          : "Salary"
+      "salary"                          : "Salary",
+      "search-player"                   : "Search player...",
+      "players"                         : "Players"
     },
     "soccerplayerpositions"             :
     {
@@ -248,6 +250,7 @@
       "dfp"                             : "DFP",
       "matches"                         : "MATCHES",
       "salary"                          : "SALARY",
+      "next-match"                      : "NEXT MATCH",
       "seasondata"                      : "Season Data",
       "matchbymatch"                    : "Match by Match",
       "seasonstats"                     : "SEASON STATISTICS <span>(DATA BY MATCH)</span>",
@@ -311,7 +314,8 @@
       "help"                            : "HELP",
       "legal"                           : "LEGAL",
       "terms"                           : "TERMS<span> OF USE</span>",
-      "privacy"                         : "PRIVACY<span> POLICY</span>"
+      "privacy"                         : "PRIVACY<span> POLICY</span>",
+      "data-provided-by"                : "Data provided by"
     },
     "mainmenu"                          :
     {
@@ -321,7 +325,7 @@
       "howitworks"                      : "Help",
       "myaccount"                       : "My Account",
       "shop"                            : "Shop",
-      
+
       "addfunds"                        : "Add Funds",
       "transactions"                    : "Transaction History",
       "referral"                        : "Referral Center",

@@ -62,7 +62,7 @@ class FooterComp implements ShadowRootAware {
           -->
           ${_scrDet.isXsScreen ? '' : '''
           <div class="opta">
-            <div>Data provided by: <span>OPTA</span></div>
+            <div>${StringUtils.translate("data-provided-by", "footer")}: <span>OPTA</span></div>
             <div>A <strong>PERFORM</strong> GROUP COMPANY</div>
           </div>
           '''}

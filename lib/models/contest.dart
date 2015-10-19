@@ -90,9 +90,9 @@ class Contest {
    // print("estado del concurso: ${state}");
     /* los partidos en vivo o en history no continen los participantes que tiene el concurso */
     if(isLive || isHistory) {
-      return "${tournamentTypeName} - ${StringUtils.translate("salarycap", "contest")}: ${printableSalaryCap}";
+      return "${tournamentTypeName}";
     }
-    return "${tournamentTypeName}: ${numEntries} ${StringUtils.translate("of", "contest")} ${maxEntries} ${StringUtils.translate("contenders", "contest")} - ${StringUtils.translate("salarycap", "contest")}: ${printableSalaryCap}";
+    return "${tournamentTypeName}: ${numEntries} ${StringUtils.translate("of", "contest")} ${maxEntries} ${StringUtils.translate("contenders", "contest")}";
   }
 
   List<ContestEntry> get contestEntriesOrderByPoints {

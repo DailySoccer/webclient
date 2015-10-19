@@ -47,7 +47,7 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
     if (loadingService.isLoading)
       return "";
 
-    return hasHistoryContests? "${contestsService.historyContests.length} ${getLocalizedText("hasHistoryContests1")} ${totalHistoryContestsWinner} ${getLocalizedText("hasHistoryContests2")}" :
+    return hasHistoryContests? "${contestsService.historyContests.length} ${getLocalizedText("hasHistoryContests1")} / ${totalHistoryContestsWinner} ${getLocalizedText("hasHistoryContests2")}" :
                                 getLocalizedText("hasHistoryContests3");
   }
 
@@ -73,7 +73,7 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS, _refreshMyContests);
   }
 
-  void _refreshMyContests() {    
+  void _refreshMyContests() {
     Future myContests =
           _tabSelected  == TAB_WAITING  ? contestsService.refreshMyActiveContests()
         : _tabSelected  == TAB_LIVE     ? contestsService.refreshMyLiveContests()

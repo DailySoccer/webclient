@@ -153,7 +153,7 @@
       "nick"                            : "Nombre de usuario",
       "email"                           : "Correo Electrónico",
       "pass"                            : "Contraseña",
-      "wallet"                          : "Monedas Gold",
+      "wallet"                          : "Oro",
       "buttonbuy"                       : "Comprar",
       "ranking"                         : "Clasificación",
       "buttonrankingtable"              : "Ver en la tabla"
@@ -163,8 +163,8 @@
       "title"                           : "Clasificación",
       "trueskill"                       : "Habilidad",
       "gold"                            : "Monedas",
-      "topgold"                         : "Top Gold",
-      "topskill"                        : "Top Skill",
+      "topgold"                         : "TOP ORO",
+      "topskill"                        : "TOP HABILIDAD",
       "abrevposition"                   : "Pos.",
       "name"                            : "Nombre"
     },
@@ -180,7 +180,7 @@
     "entercontest"                      :
     {
       "tablineup"                       : "Tu alineación",
-      "tabcontestinfo"                  : "Informacion del torneo",
+      "tabcontestinfo"                  : "Información del torneo",
       "buttoncancel"                    : "CANCELAR",
       "yourlineup"                      : "TU ALINEACIÓN",
       "remainsalary"                    : "SALARIO RESTANTE",
@@ -209,7 +209,7 @@
     },
     "lineupselector"                    :
     {
-      "wastedsalarycap"                 : "<strong>Has gastado todo el presupuesto</strong><br> Por favor, elige otros jugadores para ajustar el presupuesto",
+      "wastedsalarycap"                 : "<strong>Has gastado más presupuesto del permitido</strong><br> Por favor, cambia la alineación para no superar el límite.",
       "maxplayersteam"                  : "<strong>Ups! Parece que has sobrepasado el limite de tener @MAX_PLAYERS_SAME_TEAM jugadores del mismo equipo</strong><br> Por favor, elige otros jugadores...",
       "not-enough-resources"            : "<strong>ATENCIÓN! Este torneo tiene requisitos que no cumples y no podras participar</strong><br> Ves a la tienda y pilla lo que necesitas para pagar la entrada al torneo. Mientras tanto guardaremos tu alineación.",
       "add"                             : "AÑADIR "
@@ -226,7 +226,9 @@
       "name"                            : "Nombre",
       "dfp"                             : "DFP",
       "numMatchesAbrev"                 : "PJ.",
-      "salary"                          : "Salario"
+      "salary"                          : "Salario",
+      "search-player"                   : "Buscar jugador...",
+      "players"                         : "Jugadores"
     },
     "soccerplayerpositions"             :
     {
@@ -248,6 +250,7 @@
       "dfp"                             : "DFP",
       "matches"                         : "PARTIDOS",
       "salary"                          : "SALARIO",
+      "next-match"                      : "PRÓXIMO PARTIDO",
       "seasondata"                      : "Datos de temporada",
       "matchbymatch"                    : "Partido a partido",
       "seasonstats"                     : "ESTADÍSTICAS DE TEMPORADA <span>(DATOS POR PARTIDO)</span>",
@@ -311,7 +314,8 @@
       "help"                            : "AYUDA",
       "legal"                           : "LEGAL",
       "terms"                           : "TÉRMINOS<span> DE USO</span>",
-      "privacy"                         : "POLÍTICAS<span> DE PRIVACIDAD</span>"
+      "privacy"                         : "POLÍTICAS<span> DE PRIVACIDAD</span>",
+      "data-provided-by"                : "Datos provistos por"
     },
     "mainmenu"                          :
     {
@@ -404,8 +408,8 @@
     },
     "viewcontestentry":
     {
-      "created"                         : "ENHORABUENA! HAS COMPLETADO TU ALINEACIÓN.",
-      "edited"                          : "ENHORABUENA! HAS EDITADO TU ALINEACIÓN.",
+      "created"                         : "¡ENHORABUENA! HAS COMPLETADO TU ALINEACIÓN.",
+      "edited"                          : "¡ENHORABUENA! HAS EDITADO TU ALINEACIÓN.",
       "swapped"                         : "EL TORNEO ESTÁ LLENO, ASI QUE TE HEMOS PUESTO EN OTRO EQUIVALENTE. COMPETIRÁS CON OTROS USUARIOS",
       "tip"                             : "Recuerda que puedes editar tu alineación tantas veces como quieras hasta que el torneo comience",
       "yourlineup"                      : "Tu Alineación",
@@ -449,7 +453,7 @@
       "contenders"                      : "Participantes",
       "scoringrules"                    : "Reglas",
       "buttonenter"                     : "ENTRAR",
-      "nocontenders"                    : "Aún no hay participantes en este concurso. <br> Animate a ser el primero.",
+      "nocontenders"                    : "Aún no hay participantes en este concurso. <br> Anímate a ser el primero.",
       "skill"                           : "Puntos",
       "prizes2"                         : "PREMIOS",
       "contenders2"                     : "CONCURSANTES",
@@ -473,8 +477,8 @@
       "title"                           : "MIS TORNEOS",
       "tablive"                         : "En Directo",
       "tabupcoming"                     : "Próximos",
-      "tabhistory"                      : "Historico",
-      "nolives"                         : "NO ESTAS JUGANDO NINGúN TORNEO EN ESTE MOMENTO",
+      "tabhistory"                      : "Histórico",
+      "nolives"                         : "NO ESTÁS JUGANDO NINGúN TORNEO EN ESTE MOMENTO",
       "nolivestip1"                     : "ÉCHALE UN VISTAZO A LA LISTA DE TUS ",
       "nolivestip2"                     : "PRÓXIMOS TORNEOS",
       "nolivestip3"                     : " PARA VER CUANDO EMPIEZAN",
@@ -488,7 +492,7 @@
       "haswaitingcontests1"             : "HAS PARTICIPADO EN",
       "haswaitingcontests2"             : "TORNEOS",
       "haswaitingcontests3"             : "AQUÍ PUEDES VER TUS PRÓXIMOS TORNEOS Y EDITAR TUS ALINEACIONES",
-      "hasHistoryContests1"             : "TORNEOS",
+      "hasHistoryContests1"             : "JUGADOS",
       "hasHistoryContests2"             : "GANADOS",
       "hasHistoryContests3"             : "AQUÍ PUEDES CONSULTAR LOS TORNEOS QUE JUGASTE: ALINEACIONES, PARTICIPANTES, PUNTUACIONES…"
     },
@@ -499,7 +503,7 @@
       "tutorialtittleviewcontestentry"  : "BIENVENIDO A EPIC ELEVEN",
       "tutorialtextlobby"               : "Puedes participar en todos los torneos que quieras de La Liga BBVA, Barclays Premier League y UEFA Champions League.",
       "tutorialtextentercontest"        : "Elije 11 jugadores de la lista sin pasarte del presupuesto.",
-      "tutorialtextviewcontestentry"    : "Ve a “<b>Mis Concursos</b>” para editar tus alineaciones, ver a tu equipo puntuando en directo o para ver tu historico de concursos. <br> <br> <p class=\"subtitle\">Recuerda: puedes jugar a todos los concursos que quieras y elegir tantas alineaciones como quieras.</p>"
+      "tutorialtextviewcontestentry"    : "Ve a “<b>Mis Concursos</b>” para editar tus alineaciones, ver a tu equipo puntuando en directo o para ver tu histórico de concursos. <br> <br> <p class=\"subtitle\">Recuerda: puedes jugar a todos los concursos que quieras y elegir tantas alineaciones como quieras.</p>"
     },
     "restricted"                        :
     {
@@ -550,9 +554,9 @@
     },
     "shop"                              :
     {
-      "goldshopdescription"             : "Compra Monedas y accede a torneos <strong>oficiales</strong>",
+      "goldshopdescription"             : "Compra Oro y accede a <strong>Torneos Oficiales</strong>",
       "trainerpointsshopdescription"    : "Aumenta tu nivel de entrenador y ficha a los <strong>mejores jugadores</strong>",
-      "energyshopdescription"           : "Recárgate de energía para acceder a torneos de <strong>entrenamiento</strong>"
+      "energyshopdescription"           : "Recárgate de energía para acceder a <strong>Torneos de Entrenamiento</strong>"
     },
     "goldshop"                          :
     {

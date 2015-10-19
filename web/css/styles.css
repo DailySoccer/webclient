@@ -5615,6 +5615,8 @@ button.close {
 #contestHeaderWrapper .date-time-data:after,
 .contest-header-f2p-wrapper:before,
 .contest-header-f2p-wrapper:after,
+#teamsPanelComp:before,
+#teamsPanelComp:after,
 #teamsPanelComp #teamsPanelRoot .teams-comp-bar:before,
 #teamsPanelComp #teamsPanelRoot .teams-comp-bar:after,
 #teamsPanelComp #teamsPanelRoot .teams-container:before,
@@ -5802,6 +5804,7 @@ scoring-rules:after,
 #contestHeaderWrapper .contest-relevant-data:after,
 #contestHeaderWrapper .date-time-data:after,
 .contest-header-f2p-wrapper:after,
+#teamsPanelComp:after,
 #teamsPanelComp #teamsPanelRoot .teams-comp-bar:after,
 #teamsPanelComp #teamsPanelRoot .teams-container:after,
 #contestInfoModal .modal-info-content .tabs-navigation:after,
@@ -6967,9 +6970,47 @@ contest-header {
     color: #59add5;
   }
 }
+#teamsPanelComp {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  display: block;
+  padding-left: 0px;
+  padding-right: 0px;
+  top: -10px;
+  position: relative;
+}
+@media (min-width: 768px) {
+  #teamsPanelComp {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  #teamsPanelComp {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  #teamsPanelComp {
+    width: 970px;
+  }
+}
+#teamsPanelComp > .navbar-header,
+#teamsPanelComp > .navbar-collapse {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+@media (min-width: 768px) {
+  #teamsPanelComp > .navbar-header,
+  #teamsPanelComp > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
 #teamsPanelComp .teams-toggler-wrapper {
-  display: inline-block;
-  float: right;
+  display: block;
+  text-align: right;
   background-color: #ffffff;
 }
 #teamsPanelComp .teams-toggler-wrapper .teams-toggler {
@@ -6983,16 +7024,6 @@ contest-header {
   user-select: none;
   padding-left: 0px;
   padding-right: 15px;
-}
-@media (max-width: 767px) {
-  #teamsPanelComp .teams-toggler-wrapper .teams-toggler {
-    margin-top: 3px;
-  }
-}
-@media (min-width: 767px) {
-  #teamsPanelComp .teams-toggler-wrapper .teams-toggler {
-    margin-top: 9px;
-  }
 }
 #teamsPanelComp .teams-toggler-wrapper .toggleOff::after {
   font-family: 'Glyphicons Halflings';
@@ -23357,6 +23388,11 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
 }
 .profile-content .profile-section.ranking-data .data-action {
   border-bottom: 0px none #000000;
+}
+.global-history-contest #mainWrapper.wrapper-content-container,
+.global-view-contest-entry #mainWrapper.wrapper-content-container,
+.global-live-contest #mainWrapper.wrapper-content-container {
+  background-color: #ffffff;
 }
 .separator-bar {
   background-image: -webkit-linear-gradient(top, #1a3949 49%, #0f2630 51%);

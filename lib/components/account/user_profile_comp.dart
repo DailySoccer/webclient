@@ -80,7 +80,7 @@ class UserProfileComp {
     _router.go('edit_profile', {});
   }
   void goBuyGold() {
-    _router.go('add_funds', {});
+    _router.go('shop.gold', {});
   }
   void goLeaderboard() {
     _router.go('leaderboard', {});

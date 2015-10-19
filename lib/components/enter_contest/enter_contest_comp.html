@@ -35,7 +35,11 @@
                     </div>
                 </div>
 
-                <lineup-selector ng-show="!isSelectingSoccerPlayer || scrDet.isNotXsScreen" not-enough-resources="notEnoughResourcesForEntryFee" has-max-players-same-team="playersInSameTeamInvalid" has-negative-balance="isNegativeBalance"></lineup-selector>
+                <lineup-selector ng-show="!isSelectingSoccerPlayer || scrDet.isNotXsScreen" 
+                                 not-enough-resources="!enoughResourcesForEntryFee" 
+                                 has-max-players-same-team="playersInSameTeamInvalid" 
+                                 has-negative-balance="isNegativeBalance"
+                                 manager-level="playerManagerLevel"></lineup-selector>
               </div>
             </div>
 
@@ -49,6 +53,7 @@
 
                 <soccer-players-list soccer-players="allSoccerPlayers"
                                      lineup-filter="lineupSlots"
+                                     manager-level="playerManagerLevel"
                                      field-pos-filter="fieldPosFilter" name-filter="nameFilter" match-filter="matchFilter"
                                      on-row-click="onRowClick(soccerPlayerId)"
                                      on-action-click="onSoccerPlayerActionButton(soccerPlayer)"></soccer-players-list>
@@ -64,7 +69,10 @@
                   <button type="button" class="btn-clean-lineup-list" ng-click="deleteFantasyTeam()" ng-disabled="isPlayerSelected()">{{getLocalizedText("buttonclean")}}</button>
                 </div>
                 <div class="button-wrapper">
-                  <button type="button" class="btn-confirm-lineup-list" ng-click="createFantasyTeam()" ng-disabled="isInvalidFantasyTeam">{{getLocalizedText("buttoncontinue")}}</button>
+                  <button type="button" class="btn-confirm-lineup-list" 
+                          ng-click="createFantasyTeam()" 
+                          ng-disabled="isInvalidFantasyTeam"
+                          ng-bind-html="getConfirmButtonText()"></button>
                 </div>
                 <p>{{getLocalizedText("tip")}}</p>
               </div>

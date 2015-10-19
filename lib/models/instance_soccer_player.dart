@@ -10,11 +10,11 @@ import 'package:webclient/models/money.dart';
 
 class InstanceSoccerPlayer {
   static List<int> LEVEL_SALARY = [
-      2750, 4250, 5750, 7250, 8750, 100000
+      5000, 6200, 7500, 8900, 10000, 100000
     ];
 
   static List<int> LEVEL_PRICE = [
-      0, 2, 6, 11, 22, 44
+      0, 3, 7, 15, 30, 59
     ];
 
   SoccerPlayer soccerPlayer;
@@ -24,6 +24,7 @@ class InstanceSoccerPlayer {
   int salary;
 
   int _level = -1;
+  set level(lvl) => _level = lvl;
   int get level {
     // Si no se ha calculado el nivel del futbolista, lo calculamos
     if (_level < 0) {

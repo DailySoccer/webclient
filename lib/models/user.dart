@@ -13,7 +13,9 @@ class User {
   static List MANAGER_POINTS = [
     0, 65, 125, 250, 500, 1000
   ];
-
+  
+  static num get MAX_MANAGER_LEVEL => MANAGER_POINTS.length - 1;
+  
   String userId;
   String firstName;
   String lastName;

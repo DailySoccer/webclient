@@ -22,6 +22,7 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/components/modal_comp.dart';
 import 'package:webclient/services/catalog_service.dart';
 import 'package:webclient/models/user.dart';
+import 'package:webclient/models/money.dart';
 
 @Component(
     selector: 'enter-contest',
@@ -63,9 +64,33 @@ class EnterContestComp implements DetachAware {
   InstanceSoccerPlayer selectedInstanceSoccerPlayer;
 
   int availableSalary = 0;
+  Money _coinsNeeded = new Money.from(Money.CURRENCY_GOLD, 0);
+  Money get coinsNeeded {
+    _coinsNeeded.amount = 0;
+    num managerLevel = playerManagerLevel;
+    lineupSlots
+      .where((c) => c != null)
+      .forEach( (c) =>
+          _coinsNeeded.amount += c["instanceSoccerPlayer"].moneyToBuy(managerLevel).amount);
+
+    if (contest != null && contest.entryFee != null && contest.entryFee.isGold && !editingContestEntry) {
+      _coinsNeeded.amount += contest.entryFee.amount;
+    }
+    return _coinsNeeded;
+  }
+
+  Money get moneyNeeded {
+    return (contest != null)
+        ? (contest.simulation ? (editingContestEntry ? new Money.from(Money.CURRENCY_ENERGY, 0) : contest.entryFee) : coinsNeeded)
+        : new Money.from(Money.CURRENCY_GOLD, 0);
+  }
+
   String get printableAvailableSalary => StringUtils.parseSalary(availableSalary);
 
-  bool notEnoughResourcesForEntryFee = false;
+  // Comprobamos si tenemos recursos suficientes para pagar el torneo (salvo que estemos editando el contestEntry)
+  bool get enoughResourcesForEntryFee =>
+      contest == null || !_profileService.isLoggedIn || _profileService.user.hasMoney(moneyNeeded);
+
   bool playersInSameTeamInvalid = false;
   bool isNegativeBalance = false;
 
@@ -74,10 +99,13 @@ class EnterContestComp implements DetachAware {
 
   bool contestInfoFirstTimeActivation = false;  // Optimizacion para no compilar el contest_info hasta que no sea visible la primera vez
 
+  num get playerManagerLevel =>
+      (contest != null && contest.simulation) ? User.MAX_MANAGER_LEVEL : (_profileService.isLoggedIn ? _profileService.user.managerLevel : 0);
+
   List<String> lineupAlertList = [];
 
   Map<String, Map> errorMap;
-  
+
   String getLocalizedText(key, {substitutions: null}) {
     return StringUtils.translate(key, "entercontest", substitutions);
   }
@@ -131,8 +159,6 @@ class EnterContestComp implements DetachAware {
         availableSalary = contest.salaryCap;
         // Comprobamos si estamos en salario negativo
         isNegativeBalance = availableSalary < 0;
-        //Comprobamos si tenemos recursos suficientes para pagar el torneo.
-        notEnoughResourcesForEntryFee = contest.entryFee.isEnergy ? contest.entryFee.compareTo(_profileService.user.energyBalance) > 0 :  contest.entryFee.compareTo(_profileService.user.goldBalance) > 0;
         initAllSoccerPlayers();
 
         // Si nos viene el torneo para editar la alineación
@@ -160,7 +186,7 @@ class EnterContestComp implements DetachAware {
         }
       }, test: (error) => error is ServerError);
 
-    subscribeToLeaveEvent();    
+    subscribeToLeaveEvent();
   }
 
   void subscribeToLeaveEvent() {
@@ -323,7 +349,18 @@ class EnterContestComp implements DetachAware {
     int intId = 0;
     allSoccerPlayers = new List<dynamic>();
 
+    ContestEntry contestEntry = null;
+    if (editingContestEntry) {
+      contestEntry = contest.getContestEntry(contestEntryId);
+    }
+
+
     contest.instanceSoccerPlayers.forEach((templateSoccerId, instanceSoccerPlayer) {
+
+      if (contestEntry != null && contestEntry.isPurchased(instanceSoccerPlayer)) {
+        instanceSoccerPlayer.level = 0;
+      }
+
       MatchEvent matchEvent = instanceSoccerPlayer.soccerTeam.matchEvent;
       SoccerTeam soccerTeam = instanceSoccerPlayer.soccerTeam;
 
@@ -360,9 +397,6 @@ class EnterContestComp implements DetachAware {
     if (_retryOpTimer != null && _retryOpTimer.isActive) {
       return;
     }
-    
-    if(notEnoughResourcesForEntryFee)
-      alertNotEnoughResources();
 
     // Actualizamos el contestEntry, independientemente que estemos editando o creando
     saveContestEntry();
@@ -370,6 +404,17 @@ class EnterContestComp implements DetachAware {
     if (!_profileService.isLoggedIn) {
       _router.go("enter_contest.join", {});
       return;
+    }
+
+    if (!enoughResourcesForEntryFee) {
+      alertNotEnoughResources();
+      return;
+
+      /*
+      // Registramos dónde tendría que navegar al tener éxito en "add_funds"
+      window.localStorage["add_funds_success"] = window.location.href;
+      _router.go("add_funds", {});
+       */
     }
 
     if (editingContestEntry) {
@@ -383,7 +428,6 @@ class EnterContestComp implements DetachAware {
         .catchError((ServerError error) => _errorCreating(error));
     }
     else {
-      if (_profileService.user.hasMoney(contest.entryFee)) {
         _contestsService.addContestEntry(contest.contestId, lineupSlots.map((player) => player["id"]).toList())
           .then((contestId) {
             GameMetrics.logEvent(GameMetrics.TEAM_CREATED);
@@ -399,21 +443,6 @@ class EnterContestComp implements DetachAware {
               });
           })
           .catchError((ServerError error) => _errorCreating(error));
-      }
-      else {
-        // TODO: Qué hacemos si el usuario no tiene dinero?
-        // TODO: Traducir...
-        modalShow(
-            contest.entryFee.isEnergy ? getLocalizedText("alert-no-energy-title") : getLocalizedText("alert-no-gold-title"),
-            contest.entryFee.isEnergy ? getLocalizedText("alert-no-energy-message")  : getLocalizedText("alert-no-gold-message")
-        );
-
-        /*
-        // Registramos dónde tendría que navegar al tener éxito en "add_funds"
-        window.localStorage["add_funds_success"] = window.location.href;
-        _router.go("add_funds", {});
-         */
-      }
     }
   }
 
@@ -523,15 +552,18 @@ class EnterContestComp implements DetachAware {
       closeButton:true
     )
     .then((_) {
+      // Registramos dónde tendría que navegar al tener éxito en "add_funds"
+      window.localStorage[contest.entryFee.isEnergy ? "add_energy_success" : "add_gold_success"] = window.location.href;
+
       _router.go(contest.entryFee.isEnergy ? 'shop.energy' : 'shop.gold', {});
     });
   }
-  
+
   String getNotEnoughGoldContent() {
     return '''
     <div class="content-wrapper">
       <img class="main-image" src="images/iconNoGold.png">
-      <span class="not-enough-resources-count">${contest.entryFee}</span>
+      <span class="not-enough-resources-count">${coinsNeeded}</span>
       <p class="content-text">
         <strong>${getLocalizedText("alert-no-gold-message")}</strong>
         <br>
@@ -555,6 +587,13 @@ class EnterContestComp implements DetachAware {
     ''';
   }
   
+  String getConfirmButtonText() {
+    if (contest == null) return getLocalizedText("buttoncontinue");
+    
+    Money cost = contest.entryFee.isEnergy? contest.entryFee : _coinsNeeded;    
+    return'${getLocalizedText("buttoncontinue")}: <span class="confirm-cost ${cost.isEnergy? "energy": "coins"}">${cost.amount.toInt()}</span>';
+  }
+
   String get _getKeyForCurrentUserContest => (_profileService.isLoggedIn ? _profileService.user.userId : 'guest') + '#' + contest.optaCompetitionId;
 
   Router _router;

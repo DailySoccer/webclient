@@ -5,6 +5,7 @@ import 'package:webclient/components/enter_contest/enter_contest_comp.dart';
 import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/models/contest.dart';
+import 'package:webclient/models/money.dart';
 
 
 @Component(
@@ -16,12 +17,15 @@ class LineupSelectorComp {
 
   @NgOneWay("not-enough-resources")
   bool alertNotEnoughResources;
-  
+
   @NgOneWay("has-negative-balance")
   bool alertNegativeBalance;
 
   @NgOneWay("has-max-players-same-team")
   bool alertMaxPlayersSameTeamExceed;
+
+  @NgOneWay("manager-level")
+  num managerLevel = 0;
 
   String get MAX_PLAYERS_SAME_TEAM => Contest.MAX_PLAYERS_SAME_TEAM.toString();
 
@@ -45,6 +49,11 @@ class LineupSelectorComp {
   String getSlotDescription(int slotIndex) => getLocalizedText("add") + FieldPos.FIELD_POSITION_FULL_NAMES[FieldPos.LINEUP[slotIndex]];
 
   String getPrintableSalary(int salary) => StringUtils.parseSalary(salary);
+
+  String getPrintableGoldCost(dynamic slot) {
+    Money money = slot['instanceSoccerPlayer'].moneyToBuy(managerLevel);
+    return money.amount <= 0 ? '' : '<span class="coins-amount">${money.toInt()}</span>';
+  }
 
   static final Map<String, String> _POS_CLASS_NAMES = {
     StringUtils.translate("gk", "soccerplayerpositions") : "posPOR",

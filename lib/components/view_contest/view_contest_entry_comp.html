@@ -1,6 +1,6 @@
 <section ng-show="!loadingService.isLoading">
 
-  <contest-header id="contestHeader" contest="contest" contest-id="contestId"></contest-header>
+  <contest-header-f2p id="contestHeader" contest="contest" contest-id="contestId"></contest-header-f2p>
 
   <!--<div class="separator-bar"></div>-->
   <div class="info-complete-bar" ng-if="!isModeViewing">
@@ -34,7 +34,7 @@
   <div class="new-row">
     <div class="autocentered-buttons-wrapper">
       <div ng-if="scrDet.isXsScreen" class="button-box"><button type="button" class="ok-button" ng-click="goToParent()">{{getLocalizedText("backtocontests")}}</button></div>
-      <div class="button-box"  ng-if="isModeViewing || isModeEdited"><button type="button" class="cancel-button" ng-click="confirmContestCancellation()">{{getLocalizedText("cancel")}}</button></div>
+      <!--div class="button-box"  ng-if="isModeViewing || isModeEdited"><button type="button" class="cancel-button" ng-click="confirmContestCancellation()">{{getLocalizedText("cancel")}}</button></div-->
       <div ng-if="!scrDet.isXsScreen" class="button-box ok"><button type="button" class="ok-button" ng-click="goToParent()">{{getLocalizedText("backtocontests")}}</button></div>
     </div>
   </div>

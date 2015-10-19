@@ -8,12 +8,13 @@
     </div>
 
     <div ng-if="slot != null">
-      <div class="column-fieldpos">{{slot.fieldPos.abrevName}}</div>
+      <!--div class="column-fieldpos">{{slot.fieldPos.abrevName}}</div-->
       <div class="column-primary-info">
         <span class="soccer-player-name">{{slot.fullName}}</span>
         <span class="match-event-name" ng-bind-html="slot.matchEventName"></span>
       </div>
       <div class="column-salary">${{getPrintableSalary(slot.salary)}}</div>
+      <div class="column-gold-cost" ng-bind-html="getPrintableGoldCost(slot)"></div>
       <div class="column-action"><a class="iconButtonRemove"><span class="glyphicon glyphicon-remove"></span></a></div>
     </div>
   </div>

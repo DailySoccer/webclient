@@ -204,7 +204,7 @@
       "alert-no-gold-message"           : "No tienes GOLD para entrar en el torneo",
       "buy-gold-button"                 : "COMPRAR MONEDAS",
       "buy-energy-button"               : "RECARGAR ENERGÍA",
-      "alert-user-gold-message"         : "Tiens actualmente @MONEY",
+      "alert-user-gold-message"         : "Tienes actualmente @MONEY",
       "alert-no-energy-message"         : "<strong>No tienes suficiente energía</strong><br>para entrar en este torneo."
     },
     "lineupselector"                    :
@@ -219,6 +219,14 @@
       "all-matches"                     : "Todos<br>los encuentros",
       "allmatches"                      : "Todos los encuentros",
       "all"                             : "todos"
+    },
+    "soccerplayerlist"                  :
+    {
+      "positionabrev"                   : "Pos.",
+      "name"                            : "Nombre",
+      "dfp"                             : "DFP",
+      "numMatchesAbrev"                 : "PJ.",
+      "salary"                          : "Salario"
     },
     "soccerplayerpositions"             :
     {
@@ -313,7 +321,7 @@
       "howitworks"                      : "Ayuda",
       "myaccount"                       : "Mi Cuenta",
       "shop"                            : "Tienda",
-      
+
       "addfunds"                        : "Añadir Fondos",
       "transactions"                    : "Historial de transacciones",
       "referral"                        : "Centro de usuarios referidos",

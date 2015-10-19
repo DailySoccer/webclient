@@ -71,7 +71,7 @@ class EnterContestComp implements DetachAware {
     lineupSlots.where((c) => c != null).
     forEach( (c) =>
         _coinsNeeded.amount += c["instanceSoccerPlayer"].moneyToBuy(managerLevel).amount);
-    if (contest.entryFee.currencyUnit == Money.CURRENCY_GOLD) {
+    if (contest != null && contest.entryFee != null && contest.entryFee.currencyUnit == Money.CURRENCY_GOLD && !editingContestEntry) {
       _coinsNeeded.amount += contest.entryFee.amount;
     }
     return _coinsNeeded;

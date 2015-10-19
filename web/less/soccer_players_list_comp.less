@@ -71,79 +71,85 @@
 		.make-border(1px, none none dotted none, @greyDark);
 		height: 42px;
 		cursor: pointer;
-
-		.column-fieldpos {
-			.make-md-column(1, @soccer-players-list-gutter);
-			.hidden-xs();
-			.hidden-sm();
-			.opensans_bold(9pt, @greyDark);
-			text-align: center;
-			padding-top: 12px;			
-		}
-		.column-primary-info {
-			.make-xs-column(5, @soccer-players-list-gutter);
-			.make-md-column(4, @soccer-players-list-gutter);
-			line-height: 9pt;
-			padding-left: 10px;
-			@media (max-width: @screen-xs-max) {
-				padding-left: 5px;
-			}
-			/*Temporal*/
-			white-space: nowrap;
-			overflow: hidden;
+		
+		.soccer-player-info {
+			.make-xs-column(10, 0px);
 			
-			.soccer-player-name {
+			.column-fieldpos {
+				.make-md-column(1, @soccer-players-list-gutter);
+				.hidden-xs();
+				.hidden-sm();
+				.opensans_bold(9pt, @greyDark);
+				text-align: center;
+				padding-top: 12px;			
+			}
+			.column-primary-info {
+				.make-xs-column(6, @soccer-players-list-gutter);
+				.make-md-column(5, @soccer-players-list-gutter);
+				line-height: 9pt;
+				padding-left: 10px;
+				@media (max-width: @screen-xs-max) {
+					padding-left: 5px;
+				}
+				/*Temporal*/
+				white-space: nowrap;
+				overflow: hidden;
+
+				.soccer-player-name {
+					.opensans_bold(9pt, @greyDark);
+					@media (max-width: @screen-xs-max) {
+						font-size: 7pt;
+					}
+					display: block;
+					text-transform: uppercase;
+					padding-top: 10px;
+					white-space: nowrap;
+					overflow: hidden;
+				}
+				.match-event-name {
+					.opensans_normal(9pt, @blueLight);
+					@media (max-width: @screen-xs-max) {
+						font-size: 7pt;
+					}
+				}
+			}
+			.column-dfp {
+				.make-xs-column(1.3, @soccer-players-list-gutter);
 				.opensans_bold(9pt, @greyDark);
 				@media (max-width: @screen-xs-max) {
-					font-size: 7pt;
+					font-size: 8pt;
 				}
-				display: block;
-				text-transform: uppercase;
 				padding-top: 10px;
+				text-align: center;
 			}
-			.match-event-name {
-				.opensans_normal(9pt, @blueLight);
+			.column-played {
+				.make-xs-column(1.2, @soccer-players-list-gutter);
+				.opensans_bold(9pt, @greyDark);
 				@media (max-width: @screen-xs-max) {
-					font-size: 7pt;
+					font-size: 8pt;
 				}
+				padding-top: 10px;
+				text-align: center;
 			}
-		}
-		.column-dfp {
-			.make-xs-column(1, @soccer-players-list-gutter);
-			.opensans_bold(9pt, @greyDark);
-			@media (max-width: @screen-xs-max) {
-				font-size: 8pt;
+			.column-salary {
+				.make-xs-column(2, @soccer-players-list-gutter);
+				.opensans_bold(9pt, @greyDark);
+				@media (max-width: @screen-xs-max) {
+					font-size: 8pt;
+				}
+				padding-top: 10px;
+				text-align: center;
 			}
-			padding-top: 10px;
-			text-align: center;
-		}
-		.column-played {
-			.make-xs-column(1, @soccer-players-list-gutter);
-			.opensans_bold(9pt, @greyDark);
-			@media (max-width: @screen-xs-max) {
-				font-size: 8pt;
-			}
-			padding-top: 10px;
-			text-align: center;
-		}
-		.column-salary {
-			.make-xs-column(2, @soccer-players-list-gutter);
-			.opensans_bold(9pt, @greyDark);
-			@media (max-width: @screen-xs-max) {
-				font-size: 8pt;
-			}
-			padding-top: 10px;
-			text-align: center;
-		}
-		.column-manager-level {
-			.make-xs-column(1, @soccer-players-list-gutter);
-			.opensans_bold(9pt, @blueLight);
-			padding-top: 10px;
-			text-align: right;
-			visibility: hidden;
-			&:after {
-				.addIcon("icon-star-xs-white.png", 12pt, 12pt);
-				vertical-align: baseline;
+			.column-manager-level {
+				.make-xs-column(1.5, @soccer-players-list-gutter);
+				.opensans_bold(9pt, @blueLight);
+				padding-top: 10px;
+				text-align: right;
+				visibility: hidden;
+				&:after {
+					.addIcon("icon-star-xs-white.png", 12pt, 12pt);
+					vertical-align: baseline;
+				}
 			}
 		}
 		.column-action {

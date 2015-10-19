@@ -36,7 +36,7 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
 
   bool isGoalkeeper() => currentInfoData['fieldPos'] == StringUtils.translate("gk", "soccerplayerpositions");
 
-  String get printableSalary => StringUtils.parseSalary(currentInfoData['salary']);
+  String get printableSalary => currentInfoData != null? StringUtils.parseSalary(currentInfoData['salary']) : "0";
 
   //Listas para las estadísticas ordenadas
   static List<String> get goalKeeperStatsList   => [

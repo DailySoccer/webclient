@@ -41,10 +41,10 @@ lineup-selector {
 			line-height: 10pt;
 			
 			.soccer-player-name {
-				&:extend(.soccer-players-list .soccer-players-list-slot .column-primary-info .soccer-player-name);
+				&:extend(.soccer-players-list .soccer-players-list-slot .soccer-player-info .column-primary-info .soccer-player-name);
 			}
 			.match-event-name {
-				&:extend(.soccer-players-list .soccer-players-list-slot .column-primary-info .match-event-name);
+				&:extend(.soccer-players-list .soccer-players-list-slot .soccer-player-info .column-primary-info .match-event-name);
 			}
 		}
 
@@ -68,7 +68,7 @@ lineup-selector {
 		}
 
 		.column-salary {
-			&:extend(.soccer-players-list .soccer-players-list-slot .column-salary);
+			&:extend(.soccer-players-list .soccer-players-list-slot .soccer-player-info .column-salary);
 			.opensans_bold(9pt, @greyDark);
 			text-align: right;
 		}

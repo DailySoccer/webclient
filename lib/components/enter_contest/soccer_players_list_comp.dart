@@ -108,7 +108,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
           // Quiza nos mandan quitar un portero pero estamos filtrando por defensas....
           if (elem != null) {
             Money moneyToBuy = soccerPlayer['instanceSoccerPlayer'].moneyToBuy(managerLevel);
-            elem.setInnerHtml(_getActionButton(!lineupFilter.contains(soccerPlayer), moneyToBuy, soccerPlayer['intId']), treeSanitizer: NULL_TREE_SANITIZER);
+            elem.setInnerHtml(_getActionButton(!lineupFilter.contains(soccerPlayer), moneyToBuy), treeSanitizer: NULL_TREE_SANITIZER);
           }
         }
       }
@@ -200,63 +200,68 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
     _soccerPlayerListRoot.appendHtml(allHtml.toString());
     _element.append(_soccerPlayerListRoot);
 
-    _element.querySelectorAll(".soccer-players-list-slot").onClick.listen(_onSoccerPlayerInfo);
-    _element.querySelectorAll(".action-button").onClick.listen(_onSoccerPlayerAction);
+    _element.querySelectorAll(".soccer-player-info").onClick.listen(_onSoccerPlayerInfo);
+    _element.querySelectorAll(".column-action").onClick.listen(_onSoccerPlayerAction);
   }
 
-  String _getHtmlForSlot(var slot, bool addButton) {
+  String _getHtmlForSlot(var slot, bool addButton) { 
     InstanceSoccerPlayer soccerPlayer = slot['instanceSoccerPlayer'];
     Money moneyToBuy = slot['instanceSoccerPlayer'].moneyToBuy(managerLevel);
     bool soccerPlayerIsAvailable = moneyToBuy.toInt() == 0;
-    String strAddButton = _getActionButton(addButton, moneyToBuy, slot["intId"]);
+    String strAddButton = _getActionButton(addButton, moneyToBuy);
     
     return '''
       <div id="soccerPlayer${slot["intId"]}" class="soccer-players-list-slot ${_POS_CLASS_NAMES[slot["fieldPos"].abrevName]} ${!soccerPlayerIsAvailable? 'not-available' : ''}">
-        <div class="column-fieldpos">${slot["fieldPos"].abrevName}</div>
-        <div class="column-primary-info">
-          <span class="soccer-player-name">${slot["fullName"]}</span>
-          <span class="match-event-name">${slot["matchEventName"]}</span>
+        <div id="soccerPlayerInfo${slot["intId"]}" class="soccer-player-info">
+          <div class="column-fieldpos">${slot["fieldPos"].abrevName}</div>
+          <div class="column-primary-info">
+            <span class="soccer-player-name">${slot["fullName"]}</span>
+            <span class="match-event-name">${slot["matchEventName"]}</span>
+          </div>
+          <div class="column-dfp">${StringUtils.parseFantasyPoints(slot["fantasyPoints"])}</div>
+          <div class="column-played">${slot["playedMatches"]}</div>
+          <div class="column-salary">\$${StringUtils.parseSalary(slot["salary"])}</div>
+          <div class="column-manager-level"><span class="manager-level-needed">${soccerPlayer.level}</span></div>
         </div>
-        <div class="column-dfp">${StringUtils.parseFantasyPoints(slot["fantasyPoints"])}</div>
-        <div class="column-played">${slot["playedMatches"]}</div>
-        <div class="column-salary">\$${StringUtils.parseSalary(slot["salary"])}</div>
-        <div class="column-manager-level"><span class="manager-level-needed">${soccerPlayer.level}</span></div>
-        <div class="column-action">
+        <div class="column-action" id="soccerPlayerAction${slot["intId"]}" >
           ${strAddButton}
         </div>
       </div>
     ''';
   }
 
-  String _getActionButton(bool addButton, Money moneyToBuy, int id) {
+  String _getActionButton(bool addButton, Money moneyToBuy) {
     bool isFree = moneyToBuy.toInt() == 0;
     String buttonText = !addButton? '-' : isFree? '+' : '<span class="coins-to-buy">${moneyToBuy.toInt()}</span>';
     
-    return '<button id="soccerPlayerAction$id" type="button" class="action-button ${addButton? 'add' : 'remove'} ${isFree? 'free-purchase' : 'coin-purchase'}">$buttonText</button>';
+    return '<button type="button" class="action-button ${addButton? 'add' : 'remove'} ${isFree? 'free-purchase' : 'coin-purchase'}">$buttonText</button>';
   }
 
   void _onSoccerPlayerAction(MouseEvent e) {
-    ButtonElement btt = e.currentTarget as ButtonElement;
+    DivElement div = e.currentTarget as DivElement;
     
-    int soccerPlayerId = int.parse(btt.id.replaceFirst("soccerPlayerAction", ""));
+    int soccerPlayerId = int.parse(div.id.replaceFirst("soccerPlayerAction", ""));
     var clickedSlot = _sortedSoccerPlayers.firstWhere((slot) => slot['intId'] == soccerPlayerId);
     
     if (onActionClick != null) {
       onActionClick({"soccerPlayer": clickedSlot});
     }
+    
+    print("ACTION - EVENT PHASE: ${e.eventPhase}");
   }
 
   void _onSoccerPlayerInfo(MouseEvent e) {
     DivElement div = e.currentTarget as DivElement;
     
-    int divId = int.parse(div.id.replaceFirst("soccerPlayer", ""));
+    int divId = int.parse(div.id.replaceFirst("soccerPlayerInfo", ""));
     var clickedSlot = _sortedSoccerPlayers.firstWhere((slot) => slot['intId'] == divId);
     
     if (onRowClick != null) {
       onRowClick({"soccerPlayerId": clickedSlot['id']});
     }
-  }
-
+    print("INFO - EVENT PHASE: ${e.eventPhase}");
+  }  
+  
   static bool _isVisibleWithFilters(player, pos, matchId, name) {
     return (pos == null || player["fieldPos"].value == pos) &&
            (matchId == null || player["matchId"] == matchId) &&

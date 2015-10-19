@@ -10,6 +10,7 @@ import 'package:webclient/models/product.dart';
 import 'package:webclient/services/server_error.dart';
 import 'package:webclient/utils/html_utils.dart';
 import 'dart:html';
+import 'package:webclient/models/money.dart';
 
 
 @Component(
@@ -24,13 +25,13 @@ class EnergyShopComp {
   List<Map> products;
   Map<String, Map> errorMap;
 
-  String get timeLeft => _userProfile.user.printableEnergyTimeLeft;
+  String get timeLeft => _profileService.user.printableEnergyTimeLeft;
 
-  String getLocalizedText(key) {
-    return StringUtils.translate(key, "energyshop");
+  String getLocalizedText(key, {substitutions: null}) {
+    return StringUtils.translate(key, "energyshop", substitutions);
   }
 
-  EnergyShopComp(this._flashMessage, this._userProfile, this._catalogService) {
+  EnergyShopComp(this._flashMessage, this._profileService, this._catalogService, this._router) {
     products = [];
 
     errorMap = {
@@ -49,6 +50,7 @@ class EnergyShopComp {
       .then((catalog) {
         for (Product info in catalog.where((product) => product.gained.isEnergy)) {
           Map product = {};
+          product["info"]         = info;
           product["id"]           = info.id;
           product["description"]  = getLocalizedText(info.name);
           product["captionImage"] = info.imageUrl;
@@ -67,28 +69,64 @@ class EnergyShopComp {
   String getShopBanner() => "images/shopBannerSample.jpg";
 
   void buyEnergy(String id) {
-    if (products.firstWhere((product) => product["id"] == id, orElse: () => {})["purchasable"]) {
-      _catalogService.buyProduct(id)
-        .then( (_) {
-          _flashMessage.addGlobalMessage("Has comprado [ Recarga  Completa ]", 1);
+    Map product = products.firstWhere((product) => product["id"] == id, orElse: () => {});
+    if (product["purchasable"]) {
+      // Tenemos el dinero suficiente para comprarlo?
+      Money price = product["info"].price;
+      if (_profileService.user.hasMoney(price)) {
+        _catalogService.buyProduct(id)
+          .then( (_) {
+            _flashMessage.addGlobalMessage("Has comprado [ Recarga  Completa ]", 1);
 
-          if (window.localStorage.containsKey("add_energy_success")) {
-            CloseModal();
-            window.location.assign(window.localStorage["add_energy_success"]);
-          }
-        })
-        .catchError((ServerError error) {
-            String keyError = errorMap.keys.firstWhere( (key) => error.responseError.contains(key), orElse: () => "_ERROR_DEFAULT_" );
-            modalShow(errorMap[keyError]["title"],errorMap[keyError]["generic"]);
-        });
+            if (window.localStorage.containsKey("add_energy_success")) {
+              CloseModal();
+              window.location.assign(window.localStorage["add_energy_success"]);
+            }
+          })
+          .catchError((ServerError error) {
+              String keyError = errorMap.keys.firstWhere( (key) => error.responseError.contains(key), orElse: () => "_ERROR_DEFAULT_" );
+              modalShow(errorMap[keyError]["title"],errorMap[keyError]["generic"]);
+          });
+      }
+      else {
+        alertNotEnoughResources(price);
+      }
     }
+  }
+
+  void alertNotEnoughResources(Money goldNeeded) {
+    modalShow(
+      "",
+      getNotEnoughGoldContent(goldNeeded),
+      onOk: getLocalizedText("buy-gold-button"),
+      closeButton:true
+    )
+    .then((_) {
+      _router.go('shop.gold', {});
+    });
+  }
+
+  String getNotEnoughGoldContent(Money goldNeeded) {
+    return '''
+    <div class="content-wrapper">
+      <img class="main-image" src="images/iconNoGold.png">
+      <span class="not-enough-resources-count">${goldNeeded}</span>
+      <p class="content-text">
+        <strong>${getLocalizedText("alert-no-gold-message")}</strong>
+        <br>
+        ${getLocalizedText('alert-user-gold-message', substitutions: {'MONEY': _profileService.user.goldBalance})}
+        <img src="images/icon-coin-xs.png">
+      </p>
+    </div>
+    ''';
   }
 
   void CloseModal() {
     ModalComp.close();
   }
 
+  Router _router;
   FlashMessagesService _flashMessage;
-  ProfileService _userProfile;
+  ProfileService _profileService;
   CatalogService _catalogService;
 }

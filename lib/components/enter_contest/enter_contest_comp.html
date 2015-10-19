@@ -35,7 +35,11 @@
                     </div>
                 </div>
 
-                <lineup-selector ng-show="!isSelectingSoccerPlayer || scrDet.isNotXsScreen" not-enough-resources="!enoughResourcesForEntryFee" has-max-players-same-team="playersInSameTeamInvalid" has-negative-balance="isNegativeBalance"></lineup-selector>
+                <lineup-selector ng-show="!isSelectingSoccerPlayer || scrDet.isNotXsScreen" 
+                                 not-enough-resources="!enoughResourcesForEntryFee" 
+                                 has-max-players-same-team="playersInSameTeamInvalid" 
+                                 has-negative-balance="isNegativeBalance"
+                                 manager-level="playerManagerLevel"></lineup-selector>
               </div>
             </div>
 

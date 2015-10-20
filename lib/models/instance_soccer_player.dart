@@ -10,7 +10,7 @@ import 'package:webclient/models/money.dart';
 
 class InstanceSoccerPlayer {
   static List<int> LEVEL_SALARY = [
-      5700, 6100, 6500, 7000, 7900, 100000
+      6100, 6500, 6900, 7300, 8000, 100000
     ];
 
   static List<int> LEVEL_PRICE = [

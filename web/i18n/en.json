@@ -202,6 +202,8 @@
       "alert-no-gold-title"             : "Not enough GOLD",
       "alert-no-energy-message"         : "You don't have available ENERGY to eneter this contest",
       "alert-no-gold-message"           : "You don't have available GOLD to eneter this contest",
+      "resource-gold"                   : "GOLD",
+      "resource-energy"                 : "ENERGY",
       "buy-gold-button"                 : "BUY GOLD",
       "buy-energy-button"               : "REFILL ENERGY",
       "alert-user-gold-message"         : "You own @MONEY",

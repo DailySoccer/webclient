@@ -18,6 +18,9 @@ class LineupSelectorComp {
   @NgOneWay("not-enough-resources")
   bool alertNotEnoughResources;
 
+  @NgOneWay("resource")
+  String resource;
+
   @NgOneWay("has-negative-balance")
   bool alertNegativeBalance;
 
@@ -29,9 +32,8 @@ class LineupSelectorComp {
 
   String get MAX_PLAYERS_SAME_TEAM => Contest.MAX_PLAYERS_SAME_TEAM.toString();
 
-  String getLocalizedText(key) {
-    return StringUtils.translate(key, "lineupselector")
-        .replaceAll("@MAX_PLAYERS_SAME_TEAM", MAX_PLAYERS_SAME_TEAM);
+  String getLocalizedText(key, [Map substitutions]) {
+    return StringUtils.translate(key, "lineupselector", {"MAX_PLAYERS_SAME_TEAM": MAX_PLAYERS_SAME_TEAM, "RESOURCE": resource});
   }
 
   EnterContestComp enterContestComp;

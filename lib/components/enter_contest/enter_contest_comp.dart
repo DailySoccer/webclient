@@ -91,6 +91,8 @@ class EnterContestComp implements DetachAware {
   bool get enoughResourcesForEntryFee =>
       contest == null || !_profileService.isLoggedIn || _profileService.user.hasMoney(moneyNeeded);
 
+  String get resourceName => contest != null && contest.simulation ? getLocalizedText("resource-energy") : getLocalizedText("resource-gold");
+
   bool playersInSameTeamInvalid = false;
   bool isNegativeBalance = false;
 

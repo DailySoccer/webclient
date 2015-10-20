@@ -146,7 +146,7 @@ tc.put("packages/webclient/components/account/change_password_comp.html", new Ht
           <div ng-switch-when="STATE_CHANGE_PASSWORD" class="panel-title">{{getLocalizedText("changepass")}}</div>
         </div>
 
-        <button type="button" class="close" ng-click="navigateTo('landing_page',{}, $event)">
+        <button type="button" class="close" ng-click="navigateTo('lobby',{}, $event)">
           <span class="glyphicon glyphicon-remove"></span>
         </button>
 
@@ -192,7 +192,7 @@ tc.put("packages/webclient/components/account/change_password_comp.html", new Ht
                     <div class="new-row">
                       <div class="buttons-wrapper">
                         <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">{{getLocalizedText("buttoncontinue")}}</button>
-                        <button id="btnCancelLogin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">{{getLocalizedText("buttoncancel")}}</button>
+                        <button id="btnCancelLogin" ng-click="navigateTo('lobby', {}, $event)" class="cancel-button-half">{{getLocalizedText("buttoncancel")}}</button>
                       </div>
                     </div>
                   </div>
@@ -1044,6 +1044,7 @@ tc.put("packages/webclient/components/contest_header_f2p_comp.html", new HttpRes
   </div>
 
 </div>
+<teams-panel id="teamsPanelComp" contest="contest" contest-id="contest.contestId"  ng-if="showMatches"></teams-panel>
 
 <div class="clearfix"></div>
 """));
@@ -1194,8 +1195,8 @@ tc.put("packages/webclient/components/contests_list_f2p_comp.html", new HttpResp
       <div class="time-section">
         <div class="fake-time-column"></div>
         <div class="column-start-time">
-          <div class="column-start-hour" ng-class="{'start-soon' : isSoon(contest.startDate)}">{{timeInfo(contest.startDate)}}</div>
-          <div class="column-start-date" ng-if="showDate && !isSoon(contest.startDate)">{{dateInfo(contest.startDate)}}</div>
+          <div class="column-start-hour" ng-class="{'start-soon' : isSoon(contest.startDate)}" ng-bind-html="timeInfo(contest.startDate)"></div>
+          <div class="column-start-date" ng-if="showDate && !isSoon(contest.startDate)" ng-bind-html="dateInfo(contest.startDate)"></div>
         </div>
       </div>
 
@@ -1275,7 +1276,12 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
                     </div>
                 </div>
 
-                <lineup-selector ng-show="!isSelectingSoccerPlayer || scrDet.isNotXsScreen" has-max-players-same-team="playersInSameTeamInvalid" has-negative-balance="isNegativeBalance"></lineup-selector>
+                <lineup-selector ng-show="!isSelectingSoccerPlayer || scrDet.isNotXsScreen"
+                                 not-enough-resources="!enoughResourcesForEntryFee"
+                                 resource="resourceName"
+                                 has-max-players-same-team="playersInSameTeamInvalid"
+                                 has-negative-balance="isNegativeBalance"
+                                 manager-level="playerManagerLevel"></lineup-selector>
               </div>
             </div>
 
@@ -1289,6 +1295,7 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
 
                 <soccer-players-list soccer-players="allSoccerPlayers"
                                      lineup-filter="lineupSlots"
+                                     manager-level="playerManagerLevel"
                                      field-pos-filter="fieldPosFilter" name-filter="nameFilter" match-filter="matchFilter"
                                      on-row-click="onRowClick(soccerPlayerId)"
                                      on-action-click="onSoccerPlayerActionButton(soccerPlayer)"></soccer-players-list>
@@ -1301,11 +1308,13 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
               </div>
               <div  class="bottom-content" ng-if="!isSelectingSoccerPlayer || scrDet.isNotXsScreen">
                 <div class="button-wrapper">
-                  <!--<button type="button" class="btn-clean-lineup-list" ng-click="deleteFantasyTeam()" ng-disabled="isPlayerSelected()">{{getLocalizedText("buttonclean")}}</button>-->
-                  <button type="button" class="btn-clean-lineup-list" ng-click="alertNotEnoughResources()" ng-disabled="isPlayerSelected()">{{getLocalizedText("buttonclean")}}</button>
+                  <button type="button" class="btn-clean-lineup-list" ng-click="deleteFantasyTeam()" ng-disabled="isPlayerSelected()">{{getLocalizedText("buttonclean")}}</button>
                 </div>
                 <div class="button-wrapper">
-                  <button type="button" class="btn-confirm-lineup-list" ng-click="createFantasyTeam()" ng-disabled="isInvalidFantasyTeam">{{getLocalizedText("buttoncontinue")}}</button>
+                  <button type="button" class="btn-confirm-lineup-list"
+                          ng-click="createFantasyTeam()"
+                          ng-disabled="isInvalidFantasyTeam"
+                          ng-bind-html="getConfirmButtonText()"></button>
                 </div>
                 <p>{{getLocalizedText("tip")}}</p>
               </div>
@@ -1339,18 +1348,21 @@ tc.put("packages/webclient/components/enter_contest/lineup_selector_comp.html", 
     </div>
 
     <div ng-if="slot != null">
-      <div class="column-fieldpos">{{slot.fieldPos.abrevName}}</div>
+      <!--div class="column-fieldpos">{{slot.fieldPos.abrevName}}</div-->
       <div class="column-primary-info">
         <span class="soccer-player-name">{{slot.fullName}}</span>
         <span class="match-event-name" ng-bind-html="slot.matchEventName"></span>
       </div>
       <div class="column-salary">${{getPrintableSalary(slot.salary)}}</div>
+      <div class="column-gold-cost" ng-bind-html="getPrintableGoldCost(slot)"></div>
       <div class="column-action"><a class="iconButtonRemove"><span class="glyphicon glyphicon-remove"></span></a></div>
     </div>
   </div>
-
+  
+  <div class="alert alert-danger alert-dismissible alert-red-numbers" ng-class="{'active':alertNotEnoughResources}" role="alert" ng-bind-html="getLocalizedText('not-enough-resources')"></div>
   <div class="alert alert-danger alert-dismissible alert-red-numbers" ng-class="{'active':alertNegativeBalance}" role="alert" ng-bind-html="getLocalizedText('wastedsalarycap')"></div>
   <div class="alert alert-danger alert-max-players-same-team" ng-class="{'active':alertMaxPlayersSameTeamExceed}" role="alert" ng-bind-html="getLocalizedText('maxplayersteam')"></div>
+  
 </div>"""));
 tc.put("packages/webclient/components/enter_contest/matches_filter_comp.html", new HttpResponse(200, r"""<div id="matchesFilterWrapper" ng-switch="srcDet.isXsScreen">
 
@@ -1401,7 +1413,7 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_stats_comp.htm
 
     <div class="next-match-wrapper">
       <div class="next-match"  ng-bind-html="currentInfoData['nextMatchEvent']"></div>
-      <button class="button-add" ng-click="onAddClicked()" ng-disabled="!selectablePlayer">ADD</button>
+      <button class="button-add" ng-click="onAddClicked()" ng-disabled="!selectablePlayer">{{getLocalizedText("buttonadd")}}</button>
     </div>
 
   </div>
@@ -1480,12 +1492,12 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_stats_comp.htm
 tc.put("packages/webclient/components/enter_contest/soccer_players_filter_comp.html", new HttpResponse(200, r"""<div class="soccer-players-filter">
 
   <div class="filter-by-position" ng-if="scrDet.isNotXsScreen">
-    <span>Players</span>
+    <span>{{getLocalizedText("players", group: "soccerplayerlist")}}</span>
     <button class="button-filter-position" ng-click="fieldPosFilter = fieldPos"
             ng-repeat="fieldPos in posFilterList" ng-bind-html="getTextForFieldPos(fieldPos)" ng-class="getClassForFieldPos(fieldPos)"></button>
   </div>
 
-  <input type="text" class="name-player-input-filter" placeholder="Search player..." ng-model="nameFilter" />
+  <input type="text" class="name-player-input-filter" placeholder="{{getLocalizedText('search-player', group: 'soccerplayerlist')}}" ng-model="nameFilter" />
 </div>"""));
 tc.put("packages/webclient/components/leaderboard_comp.html", new HttpResponse(200, r"""<div id="leaderboard-wrapper">
 
@@ -2505,7 +2517,7 @@ tc.put("packages/webclient/components/view_contest/view_contest_comp.html", new 
 """));
 tc.put("packages/webclient/components/view_contest/view_contest_entry_comp.html", new HttpResponse(200, r"""<section ng-show="!loadingService.isLoading">
 
-  <contest-header id="contestHeader" contest="contest" contest-id="contestId"></contest-header>
+  <contest-header-f2p id="contestHeader" contest="contest" contest-id="contestId"></contest-header-f2p>
 
   <!--<div class="separator-bar"></div>-->
   <div class="info-complete-bar" ng-if="!isModeViewing">
@@ -2539,7 +2551,7 @@ tc.put("packages/webclient/components/view_contest/view_contest_entry_comp.html"
   <div class="new-row">
     <div class="autocentered-buttons-wrapper">
       <div ng-if="scrDet.isXsScreen" class="button-box"><button type="button" class="ok-button" ng-click="goToParent()">{{getLocalizedText("backtocontests")}}</button></div>
-      <div class="button-box"  ng-if="isModeViewing || isModeEdited"><button type="button" class="cancel-button" ng-click="confirmContestCancellation()">{{getLocalizedText("cancel")}}</button></div>
+      <!--div class="button-box"  ng-if="isModeViewing || isModeEdited"><button type="button" class="cancel-button" ng-click="confirmContestCancellation()">{{getLocalizedText("cancel")}}</button></div-->
       <div ng-if="!scrDet.isXsScreen" class="button-box ok"><button type="button" class="ok-button" ng-click="goToParent()">{{getLocalizedText("backtocontests")}}</button></div>
     </div>
   </div>

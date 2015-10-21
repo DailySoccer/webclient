@@ -10,13 +10,25 @@ class _NullTreeSanitizer implements NodeTreeSanitizer {
 
 final NodeTreeSanitizer NULL_TREE_SANITIZER = new _NullTreeSanitizer();
 
+class AttributeValidator implements NodeValidator {
+  bool allowsElement(Element element) => true;
+  bool allowsAttribute(Element element, String attributeName, String value) => true;
+}
+
+NodeValidator htmlValidator = new NodeValidatorBuilder()
+  ..allowTextElements()
+  ..allowHtml5()
+  ..allowInlineStyles()
+  ..allowTemplating()
+  ..add(new AttributeValidator());
+
 Future<bool> modalShow(String title, String content,
     {String onOk: null, String onCancel: null, bool closeButton: false}) {
   Completer completer = new Completer();
-  Element parent = querySelector('ng-view');
+  Element modalWindow = querySelector("#modal-window");
 
   void onClose(dynamic sender) {
-    parent.children.remove(parent.querySelector('#alertRoot'));
+    modalWindow.children.remove(modalWindow.querySelector('#alertRoot'));
   }
 
   void closeMe() {
@@ -60,15 +72,15 @@ Future<bool> modalShow(String title, String content,
         </div>
       ''';
       closeButton = false;
-    }  
-    
+    }
+
     return ret;
   }
-  
+
   String botonOk = (onOk != null)
       ? '''<div class="button-box"><button class="ok-button" eventCallback="onOk">${onOk}</button><div>'''
       : '';
-  String botonCancel = (onCancel != null) 
+  String botonCancel = (onCancel != null)
       ? '''<div class="button-box"><button class="cancel-button" eventCallback="onCancel"> ${onCancel}</button></div>'''
       : '';
   String modalBody = ''' 
@@ -110,9 +122,10 @@ Future<bool> modalShow(String title, String content,
                         </div>
                       ''';
 
-  parent.appendHtml(modalBody);
+  modalWindow.setInnerHtml(modalBody, validator: htmlValidator);
+
   // Aqui hago el setup de los botones. (que tiene que hacer cada botón al ser clickado... ver: main_menu_slide_comp).
-  parent.querySelectorAll("[eventCallback]").onClick.listen(onButtonClick);
+  modalWindow.querySelectorAll("[eventCallback]").onClick.listen(onButtonClick);
 
   JsUtils.runJavascript('#alertRoot', 'modal', null);
   JsUtils.runJavascript('#alertRoot', 'on', {'hidden.bs.modal': onClose});

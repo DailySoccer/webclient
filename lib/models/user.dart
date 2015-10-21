@@ -13,9 +13,9 @@ class User {
   static List MANAGER_POINTS = [
     0, 65, 125, 250, 500, 1000
   ];
-  
+
   static num get MAX_MANAGER_LEVEL => MANAGER_POINTS.length - 1;
-  
+
   String userId;
   String firstName;
   String lastName;
@@ -72,9 +72,14 @@ class User {
   }
 
   int get EnergyTimeLeft {
-    return (energyBalance.amount < MAX_ENERGY)
+    int time = (energyBalance.amount < MAX_ENERGY)
         ? (MINUTES_TO_RELOAD_ENERGY * 60) - DateTimeService.now.difference(lastUpdatedEnergy).inSeconds
         : 0;
+    if (time < 0) {
+      energyRefresh();
+      time = EnergyTimeLeft;
+    }
+    return time;
   }
 
   Money energyRefresh() {
@@ -88,7 +93,7 @@ class User {
         energyBalance.amount += energyPlus;
         energyBalance.amount = energyBalance.amount.clamp(0.0, MAX_ENERGY);
 
-        lastUpdatedEnergy.add(new Duration(minutes: energyPlus * MINUTES_TO_RELOAD_ENERGY));
+        lastUpdatedEnergy = lastUpdatedEnergy.add(new Duration(minutes: energyPlus * MINUTES_TO_RELOAD_ENERGY));
       }
     }
     return energyBalance;

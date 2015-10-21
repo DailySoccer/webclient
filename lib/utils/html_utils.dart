@@ -13,7 +13,7 @@ final NodeTreeSanitizer NULL_TREE_SANITIZER = new _NullTreeSanitizer();
 Future<bool> modalShow(String title, String content,
     {String onOk: null, String onCancel: null, bool closeButton: false}) {
   Completer completer = new Completer();
-  Element modalWindow = querySelector("#modal-window");
+  Element modalWindow = querySelector("#modalWindow");
 
   void onClose(dynamic sender) {
     modalWindow.children.remove(modalWindow.querySelector('#alertRoot'));

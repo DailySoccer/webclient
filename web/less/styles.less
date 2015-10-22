@@ -5,58 +5,55 @@
 @import "fonts.less";
 @import "animations.less";
 
-@import "contest_header_comp.less";
 @import "contest_header_f2p_comp.less";
 @import "teams_panel_comp.less";
 @import "contest_info_comp.less";
 @import "contests_list_f2p_comp.less";
 @import "scoring_rules_comp.less";
-@import "contest_list_comp.less";
 @import "edit_personal_data_comp.less";
 @import "add_funds_comp.less";
-@import "withdraw_funds_comp.less";
 @import "transaction_history_comp.less";
 @import "shop_comp.less";
 @import "shop_gold_comp.less";
 @import "shop_energy_comp.less";
 @import "shop_trainer_points_comp.less";
-
 @import "fantasy_team_comp.less";
 @import "footer_comp.less";
-@import "landing_page_1_slide_comp.less";
 @import "landing_page_obsolete_browser_comp.less";
-
 @import "view_contest_comp.less";
-//@import "lobby_comp.less";
 @import "lobby_f2p_comp.less";
-@import "week_calendar_comp.less";
-@import "contest_filters_comp.less";
-//@import "main_menu_slide_comp.less";
 @import "main_menu_f2p_comp.less";
 @import "my_contest_comp.less";
 @import "paginator_comp.less";
 @import "promos_comp.less";
 @import "soccer_player_stats_comp.less";
-
 @import "enter_contest_comp.less";
 @import "soccer_players_list_comp.less";
 @import "soccer_players_filter_comp.less";
 @import "matches_filter_comp.less";
 @import "lineup_selector_comp.less";
 @import "leaderboard_comp.less";
-
 @import "user_forms_components.less";
 @import "users_list_comp.less";
 @import "user_profile_comp.less";
 @import "view_contest_entry_comp.less";
-@import "help_info_comp.less";
 @import "static_pages_components.less";
-@import "beta_info_comp.less";
-@import "restricted_comp.less";
 @import "maintenance.less";
-//@import "simple_promo_viewer_comp.less";
 @import "simple_promo_f2p.less";
-@import "lobby_calendar_comp.less";
+@import "week_calendar_comp.less";
+//@import "lobby_calendar_comp.less";
+//@import "contest_header_comp.less";
+//@import "contest_list_comp.less";
+//@import "withdraw_funds_comp.less";
+//@import "landing_page_1_slide_comp.less";
+//@import "lobby_comp.less";
+//@import "help_info_comp.less";
+//@import "beta_info_comp.less";
+//@import "restricted_comp.less";
+
+//@import "contest_filters_comp.less";
+//@import "main_menu_slide_comp.less";
+//@import "simple_promo_viewer_comp.less";
 
 // Otros css del proyecto, para incluirlos todos en nuestro .css principal	
 @import "../flags/flags.less";
@@ -97,14 +94,18 @@ body {
 // Contenedor exterior que envuelve a todo el contenido.
 .wrapper-content-container {
 	min-height: 100%; 
-	margin: -70px auto -122px; 	// Para que el footer se ponga encima nuestra (teniendo en cuenta el menu)
+	margin: -70px auto -120px; 	// Para que el footer se ponga encima nuestra (teniendo en cuenta el menu)
+	@media (max-width: @screen-sm-max) {
+		margin: -70px auto -88px; 	// Para que el footer se ponga encima nuestra (teniendo en cuenta el menu)
+	}
 
 	// Contenedor interior que envuelve al contenido. Fijamos el width con el.
 	.main-content-container {
 		margin-top: 70px;
-		padding-bottom: 122px;
+		padding-bottom: 120px;
 
 		@media (max-width: @screen-sm-max) {
+			padding-bottom: 88px;
 			.container-fluid();
 			.clean-paddings();
 		}

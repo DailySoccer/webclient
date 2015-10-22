@@ -595,6 +595,29 @@
       "erroruserbalancenegativegeneric" : "You do not have enough cash. Please, add funds to continue.",
       "errordefaultgeneric"             : "An error has occurred. Please, try again later.",
       "errordefaultediting"             : "An error has occurred. Please, try again later."
+    },
+    "facebook_service"                  :
+    {
+      "default_title"                   : "Epic Eleven",
+      "default_description"             : "Juega hoy gratis a Epic Eleven",
+      
+      "contest_live_title"              : "¡Sigue el torneo en directo!",
+      "contest_live_description"        : "Estoy jugando en un torneo de Epic Eleven, ¡fíjate en cómo lo estoy haciendo!",
+      "contest_live_img_first"          : "http://thumbs.dreamstime.com/z/ganador-de-la-concesi%C3%B3n-vector-9014178.jpg",
+      "contest_live_img_second"         : "http://www.rmbs.es/blog/biblioteca-san-julian/wp-content/uploads/2012/04/medalla-plata1.jpg",
+      "contest_live_img_third"          : "http://www.rmbs.es/blog/biblioteca-san-julian/wp-content/uploads/2012/04/9172624-medalla-de-bronce-tercer-lugar.jpg",
+      "contest_live_img_other"          : "http://www.plymouth.gov.uk/banner-footballpitch.jpg",
+      
+      "contest_history_title"           : "¡He quedado @USER_POS!",
+      "contest_history_description"     : "Juega conmigo en Epic Eleven y demuestra si puedes superarme.",
+      "contest_history_img_first"       : "http://thumbs.dreamstime.com/z/ganador-de-la-concesi%C3%B3n-vector-9014178.jpg",
+      "contest_history_img_second"      : "http://www.rmbs.es/blog/biblioteca-san-julian/wp-content/uploads/2012/04/medalla-plata1.jpg",
+      "contest_history_img_third"       : "http://www.rmbs.es/blog/biblioteca-san-julian/wp-content/uploads/2012/04/9172624-medalla-de-bronce-tercer-lugar.jpg",
+      "contest_history_img_other"       : "http://www.plymouth.gov.uk/banner-footballpitch.jpg",
+      
+      "contest_inscription_title"       : "¡Acabo de inscribirme en un torneo de Epic Eleven!",
+      "contest_inscription_description" : "Pulsa sobre este enlace y gana un bono de bienvenida para jugar conmigo.",
+      "contest_inscription_img"         : "http://hercules.deportevirtual.com/images/inscripc.jpg"
     }
     ,"createcontest"                     :
     {

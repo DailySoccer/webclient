@@ -2,7 +2,7 @@
   <div class="lineup-selector-slot" ng-repeat="slot in enterContestComp.lineupSlots" ng-click="enterContestComp.onLineupSlotSelected($index)" ng-class="getSlotClassColor($index)">
 
     <div ng-if="slot == null">
-      <div class="column-fieldpos">{{getSlotPosition($index)}}</div>
+      <div class="column-fieldpos"></div>
       <div class="column-empty-slot">{{getSlotDescription($index)}}</div>
       <div class="column-action"><a class="iconButtonSelect"><span class="glyphicon glyphicon-chevron-right"></span></a></div>
     </div>

@@ -8090,6 +8090,66 @@ contest-header {
     left: 0px;
   }
 }
+.contests-list-f2p-root .contestSlot .conditions-section .points-box {
+  float: left;
+  width: 50%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-right: 0px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 9pt;
+  color: #777777;
+  position: relative;
+}
+@media (min-width: 768px) {
+  .contests-list-f2p-root .contestSlot .conditions-section .points-box {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14pt;
+    color: #777777;
+    border-radius: 5px;
+    box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5) inset;
+    padding: 5px 10px 8px 10px;
+    top: -5px;
+  }
+}
+.contests-list-f2p-root .contestSlot .conditions-section .points-box img {
+  vertical-align: top;
+  margin-right: 10px;
+}
+.contests-list-f2p-root .contestSlot .conditions-section .points-box .condition-amount {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 3px 0px 0px 0px;
+  text-align: left;
+  line-height: 30px;
+  display: inline-block;
+}
+@media (min-width: 768px) {
+  .contests-list-f2p-root .contestSlot .conditions-section .points-box .condition-amount {
+    float: left;
+    width: 100%;
+  }
+}
+.contests-list-f2p-root .contestSlot .conditions-section .points-box .condition-name {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 8pt;
+  color: #afafaf;
+  line-height: 15px;
+  display: inline-block;
+}
+@media (min-width: 768px) {
+  .contests-list-f2p-root .contestSlot .conditions-section .points-box .condition-name {
+    position: absolute;
+    top: -17px;
+    left: 0px;
+  }
+}
 .contests-list-f2p-root .contestSlot .conditions-section .fit-icon-size {
   width: 16px;
   height: 16px;

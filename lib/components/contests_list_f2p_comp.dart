@@ -185,6 +185,14 @@ class ContestsListF2PComp {
     return contest.prizePool;
   }
   
+  String getPointsToShow(Contest contest) {
+    // En los contest Históricos tendremos la posición registrada en el propio ContestEntry
+    if (contest.isHistory || contest.isLive) {
+      return StringUtils.parseFantasyPoints(contest.getContestEntryWithUser(_profileService.user.userId).currentLivePoints);
+    }
+    return "0";
+  }
+  
   Money getMyPrize(Contest contest) {
     ContestEntry mainContestEntry = contest.getContestEntryWithUser(_profileService.user.userId);
     return mainContestEntry.prize;

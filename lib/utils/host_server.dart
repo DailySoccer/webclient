@@ -9,13 +9,14 @@ class HostServer {
 
   // Global que apunta al servidor Host. Obligatorio usarla cuando vas a hacer una llamada al servidor
   static String get url {
+    String REMOTE_SERVER = "http://backend.epiceleven.com"; // "http://dailysoccer-staging.herokuapp.com";
 
     if (_url == null) {
       if (window.location.protocol.contains("file") || window.location.protocol.contains("chrome-extension")) {
-        _url = "http://backend.epiceleven.com";
+        _url = REMOTE_SERVER;
       }
       else if(window.location.href.contains("live=true") || isEpicEleven) {
-        _url = "http://backend.epiceleven.com";
+        _url = REMOTE_SERVER;
       }
       else if (_isLocalHost) {
           _url = (window.location.href.contains("https=true"))? "https://backend.epiceleven.localhost:9000" :
@@ -25,7 +26,7 @@ class HostServer {
         _url = window.location.origin;
       }
 
-      Logger.root.info("Nuestro Host es: $_url");
+      Logger.root.info("Nuestro Host es: $_url | Production: $isProd | Protocol: ${window.location.protocol}");
     }
 
     return _url;

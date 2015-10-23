@@ -1217,9 +1217,13 @@ tc.put("packages/webclient/components/contests_list_f2p_comp.html", new HttpResp
           <span class="condition-name">{{getLocalizedText("entryfee")}}</span>
           <span class="condition-amount" ng-class="{'entry-fee-coin':getContestTypeIcon(contest) == 'real', 'entry-fee-energy':getContestTypeIcon(contest) == 'train'}">{{contest.entryFee}}</span>
         </div>
-        <div class="prize-box">
+        <div class="prize-box" ng-if="!contest.isLive">
           <span class="condition-name">{{getLocalizedText("prize")}}</span>
           <span class="condition-amount" ng-class="{'prize-coin':getContestTypeIcon(contest) == 'real', 'prize-managerpoints':getContestTypeIcon(contest) == 'train'}">{{getPrizeToShow(contest)}}</span>
+        </div>
+        <div class="points-box" ng-if="contest.isLive">
+          <span class="condition-name">{{getLocalizedText("points")}}</span>
+          <span class="condition-amount">{{getPointsToShow(contest)}}</span>
         </div>
       </div>
 
@@ -1342,7 +1346,7 @@ tc.put("packages/webclient/components/enter_contest/lineup_selector_comp.html", 
   <div class="lineup-selector-slot" ng-repeat="slot in enterContestComp.lineupSlots" ng-click="enterContestComp.onLineupSlotSelected($index)" ng-class="getSlotClassColor($index)">
 
     <div ng-if="slot == null">
-      <div class="column-fieldpos">{{getSlotPosition($index)}}</div>
+      <div class="column-fieldpos"></div>
       <div class="column-empty-slot">{{getSlotDescription($index)}}</div>
       <div class="column-action"><a class="iconButtonSelect"><span class="glyphicon glyphicon-chevron-right"></span></a></div>
     </div>

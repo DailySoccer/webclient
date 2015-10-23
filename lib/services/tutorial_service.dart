@@ -4,17 +4,16 @@ import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/utils/html_utils.dart';
+import 'dart:collection';
 
 @Injectable()
 class TutorialService {
-  TutorialService(this._scrDet, this._profileService) {
-
-  }
+  TutorialService(this._scrDet, this._profileService);
 
   void enterAt(String stage) {
-    if (_profileService.showTutorialAt(stage)) {
+    if (showTutorialAt(stage)) {
       modalShow(getTutorialTitle(stage), bodyHtml(stage), modalSize: "90percent");
-      _profileService.tutorialShown(stage);
+      tutorialShown(stage);
     }
   }
 
@@ -87,6 +86,23 @@ class TutorialService {
     }
     return imagePath;
   }
+
+  bool showTutorialAt(String location) {
+    return _profileService.isWelcoming && _tutorialInfo.containsKey(location);
+  }
+
+  String gotoTutorialAt(String location) {
+    return _tutorialInfo.containsKey(location) ? _tutorialInfo[location] : location;
+  }
+
+  void tutorialShown(String location) {
+    _tutorialInfo.remove(location);
+  }
+
+  HashMap<String, bool> _tutorialInfo = {
+    'lobby' : true,
+    'enter_contest' : true
+  };
 
   ScreenDetectorService _scrDet;
   ProfileService _profileService;

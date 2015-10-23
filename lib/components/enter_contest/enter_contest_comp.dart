@@ -23,6 +23,7 @@ import 'package:webclient/components/modal_comp.dart';
 import 'package:webclient/services/catalog_service.dart';
 import 'package:webclient/models/user.dart';
 import 'package:webclient/models/money.dart';
+import 'package:webclient/services/tutorial_service.dart';
 
 @Component(
     selector: 'enter-contest',
@@ -118,7 +119,7 @@ class EnterContestComp implements DetachAware {
 
   EnterContestComp(this._routeProvider, this._router, this.scrDet,
                    this._contestsService, this.loadingService, this._profileService, this._catalogService,
-                   this._flashMessage, this._rootElement) {
+                   this._flashMessage, this._rootElement, TutorialService tutorialService) {
     loadingService.isLoading = true;
 
     errorMap = {
@@ -189,6 +190,7 @@ class EnterContestComp implements DetachAware {
       }, test: (error) => error is ServerError);
 
     subscribeToLeaveEvent();
+    tutorialService.enterAt("enter_contest");
   }
 
   void subscribeToLeaveEvent() {

@@ -124,12 +124,7 @@ class ContestInfoComp implements DetachAware {
   }
 
   void enterContest() {
-    if (_profileService.isLoggedIn) {
-      _router.go('enter_contest', { "contestId": contestId, "parent": "lobby", "contestEntryId": "none" });
-    }
-    else {
-      _router.go('enter_contest.welcome', { "contestId": contestId, "parent": "lobby", "contestEntryId": "none" });
-    }
+    _router.go('enter_contest', { "contestId": contestId, "parent": "lobby", "contestEntryId": "none" });
   }
 
   String formatMatchDate(DateTime date) {

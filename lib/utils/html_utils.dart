@@ -11,7 +11,7 @@ class _NullTreeSanitizer implements NodeTreeSanitizer {
 final NodeTreeSanitizer NULL_TREE_SANITIZER = new _NullTreeSanitizer();
 
 Future<bool> modalShow(String title, String content,
-    {String onOk: null, String onCancel: null, bool closeButton: false}) {
+    {String modalSize: "lg", String onOk: null, String onCancel: null, bool closeButton: false}) {
   Completer completer = new Completer();
   Element modalWindow = querySelector("#modalWindow");
 
@@ -73,7 +73,7 @@ Future<bool> modalShow(String title, String content,
       : '';
   String modalBody = ''' 
                         <div id="alertRoot" class="modal container fade" tabindex="-1" role="dialog" style="display: block;">
-                          <div class="modal-dialog modal-lg">
+                          <div class="modal-dialog modal-${modalSize}">
                             <div class="modal-content"> 
 
                               <div class="alert-content">      

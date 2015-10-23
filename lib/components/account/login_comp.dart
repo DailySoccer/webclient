@@ -11,6 +11,7 @@ import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/fblogin.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/components/modal_comp.dart';
+import 'package:webclient/utils/translate_config.dart';
 
 @Component(
     selector: 'login',
@@ -29,6 +30,11 @@ class LoginComp implements ShadowRootAware {
   static final String ERROR_WRONG_EMAIL_OR_PASSWORD = "ERROR_WRONG_EMAIL_OR_PASSWORD";
 
   bool get enabledSubmit => StringUtils.isValidEmail(emailOrUsername) && password.isNotEmpty && _enabledSubmit;
+
+  String GetLocalizedText(key) {
+      String str = config.translate(key, group:"login");
+      return str;
+    }
 
   LoginComp(this._router, this._profileManager, this.loadingService, this._rootElement, this._scrDet) {
     _fbLogin = new FBLogin(_router, _profileManager, () => isModal ? ModalComp.close() : _router.go('lobby', {}));
@@ -79,7 +85,7 @@ class LoginComp implements ShadowRootAware {
         break;
 
       case "CANCEL":
-        isModal ? ModalComp.close() : _router.go('landing_page', {});
+        isModal ? ModalComp.close() : _router.go('lobby', {});
         break;
 
       case "REMEMBER_PASSWORD":

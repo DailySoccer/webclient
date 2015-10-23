@@ -93,6 +93,11 @@ class ContestsService {
         .then((jsonMap) {
           _initMyContests(Contest.loadContestsFromJsonObject(jsonMap));
           _prizesService.loadFromJsonObject(jsonMap);
+
+          if (jsonMap.containsKey("profile")) {
+            _profileService.updateProfileFromJson(jsonMap["profile"]);
+          }
+
         });
   }
 
@@ -102,6 +107,10 @@ class ContestsService {
           waitingContests = Contest.loadContestsFromJsonObject(jsonMap)
             .. forEach((contest) => _registerContest(contest));
           _prizesService.loadFromJsonObject(jsonMap);
+
+          if (jsonMap.containsKey("profile")) {
+            _profileService.updateProfileFromJson(jsonMap["profile"]);
+          }
         });
   }
 
@@ -111,6 +120,10 @@ class ContestsService {
           liveContests = Contest.loadContestsFromJsonObject(jsonMap)
             .. forEach((contest) => _registerContest(contest));
           _prizesService.loadFromJsonObject(jsonMap);
+
+          if (jsonMap.containsKey("profile")) {
+            _profileService.updateProfileFromJson(jsonMap["profile"]);
+          }
         });
   }
 
@@ -120,6 +133,10 @@ class ContestsService {
           historyContests = Contest.loadContestsFromJsonObject(jsonMap)
             .. forEach((contest) => _registerContest(contest));
           _prizesService.loadFromJsonObject(jsonMap);
+
+          if (jsonMap.containsKey("profile")) {
+            _profileService.updateProfileFromJson(jsonMap["profile"]);
+          }
         });
   }
 

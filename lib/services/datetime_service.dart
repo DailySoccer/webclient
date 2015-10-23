@@ -5,13 +5,15 @@ import 'package:angular/angular.dart';
 import 'package:webclient/services/server_service.dart';
 import 'package:webclient/services/refresh_timers_service.dart';
 import 'package:webclient/utils/host_server.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 @Injectable()
 class DateTimeService {
 
   static DateTime get now => _instance._internalNow;
   static DateTime fromMillisecondsSinceEpoch(int millisecondsSinceEpoch) => new DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch, isUtc: _UTC);
-
+  static String get today => formatDateWithDayOfTheMonth(now);
+  
   DateTimeService(this._server, this._refreshTimersService) {
     if (_instance != null)
       throw new Exception("WTF 1233");
@@ -33,31 +35,35 @@ class DateTimeService {
   }
 
   static String formatDateYear(DateTime date) {
-    return new DateFormat("yyyy", "en_EN").format(date);
+    return new DateFormat("yyyy", StringUtils.getLocale()).format(date);
+  }
+
+  static String formatDateWeekdayNameShort(DateTime date) {
+    return new DateFormat("EEE", StringUtils.getLocale()).format(date);
   }
 
   static String formatDateWithDayOfTheMonth(DateTime date) {
-    return new DateFormat("EEE, d MMM", "en_EN").format(date);
+    return new DateFormat(StringUtils.getDatePattern("datewithdayofthemonth"), StringUtils.getLocale()).format(date);
   }
 
   static String formatDateShort(DateTime date) {
-    return new DateFormat("dd/MM").format(date);
+    return new DateFormat(StringUtils.getDatePattern("dateshort")).format(date);
   }
 
   static String formatTimeShort(DateTime date) {
-    return "${new DateFormat("HH:mm").format(date)}h";
+    return "${new DateFormat(StringUtils.getDatePattern("timeshort")).format(date)}h";
   }
 
   static String formatDateTimeShort(DateTime date) {
-    return "${new DateFormat("E, HH:mm", "en_EN").format(date)}h";
+    return "${new DateFormat(StringUtils.getDatePattern("datetimeshort"), StringUtils.getLocale()).format(date)}h";
   }
 
   static String formatDateTimeLong(DateTime date) {
-    return "${new DateFormat("E, dd/MM/yy HH:mm", "en_EN").format(date)}h";
+    return "${new DateFormat(StringUtils.getDatePattern("datetimelong"), StringUtils.getLocale()).format(date)}h";
   }
 
   static String formatDateTimeDayHour(DateTime date) {
-    return "${new DateFormat("dd/MM/yy HH:mm", "en_EN").format(date)}h";
+    return "${new DateFormat(StringUtils.getDatePattern("datetimedayhour"), StringUtils.getLocale()).format(date)}h";
   }
 
   static String formatTimeLeft(Duration timeLeft) {
@@ -69,7 +75,7 @@ class DateTimeService {
     var minutes = nfTime.format(timeLeft.inMinutes % 60);
     var seconds = nfTime.format(timeLeft.inSeconds % 60);
 
-    return (days > 0)? nfDay.format(days) + (days > 1 ? " DAYS ": " DAY ") + hours + ":" + minutes + ":" + seconds
+    return (days > 0)? nfDay.format(days) + (days > 1 ? StringUtils.translate("days", "common") : StringUtils.translate("day", "common") ) + hours + ":" + minutes + ":" + seconds
                      : hours + ":" + minutes + ":" + seconds;
   }
 

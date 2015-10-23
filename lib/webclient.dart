@@ -17,32 +17,45 @@ import 'package:webclient/services/contests_service.dart';
 import 'package:webclient/services/soccer_player_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/scoring_rules_service.dart';
+import 'package:webclient/services/leaderboard_service.dart';
 import 'package:webclient/services/payment_service.dart';
 import 'package:webclient/services/prizes_service.dart';
 import 'package:webclient/services/promos_service.dart';
+import 'package:webclient/services/catalog_service.dart';
 
 import 'package:webclient/components/landing_page_1_slide_comp.dart';
 
 import 'package:webclient/utils/form-autofill-fix.dart';
 import 'package:webclient/utils/element-autofocus.dart';
+import 'package:webclient/utils/translate_decorator.dart';
+import 'package:webclient/utils/translate_formatter.dart';
+
 import 'package:webclient/utils/limit_to_dot.dart';
 
-import 'package:webclient/components/navigation/main_menu_slide_comp.dart';
+//import 'package:webclient/components/navigation/main_menu_slide_comp.dart';
+import 'package:webclient/components/navigation/main_menu_f2p_comp.dart';
 import 'package:webclient/components/navigation/footer_comp.dart';
 import 'package:webclient/components/flash_messages_comp.dart';
 import 'package:webclient/components/modal_comp.dart';
 
 import 'package:webclient/components/paginator_comp.dart';
 import 'package:webclient/components/contest_filters_comp.dart';
-import 'package:webclient/components/lobby_comp.dart';
+//import 'package:webclient/components/lobby_comp.dart';
+import 'package:webclient/components/lobby_f2p_comp.dart';
+import 'package:webclient/components/week_calendar_comp.dart';
 import 'package:webclient/components/promos_comp.dart';
-import 'package:webclient/components/simple_promo_viewer_comp.dart';
+//import 'package:webclient/components/simple_promo_viewer_comp.dart';
+import 'package:webclient/components/simple_promo_f2p_comp.dart';
 
-import 'package:webclient/components/contests_list_comp.dart';
+//import 'package:webclient/components/contests_list_comp.dart';
+import 'package:webclient/components/contests_list_f2p_comp.dart';
 
 import 'package:webclient/components/contest_info_comp.dart';
 import 'package:webclient/components/scoring_rules_comp.dart';
 import 'package:webclient/components/contest_header_comp.dart';
+import 'package:webclient/components/contest_header_f2p_comp.dart';
+import 'package:webclient/components/leaderboard_comp.dart';
+import 'package:webclient/components/leaderboard_table_comp.dart';
 
 import 'package:webclient/components/account/login_comp.dart';
 import 'package:webclient/components/account/join_comp.dart';
@@ -55,6 +68,10 @@ import 'package:webclient/components/account/payment_response_comp.dart';
 import 'package:webclient/components/account/add_funds_comp.dart';
 import 'package:webclient/components/account/withdraw_funds_comp.dart';
 import 'package:webclient/components/account/transaction_history_comp.dart';
+import 'package:webclient/components/account/shop_comp.dart';
+import 'package:webclient/components/account/gold_shop_comp.dart';
+import 'package:webclient/components/account/energy_shop_comp.dart';
+import 'package:webclient/components/account/trainer_points_shop_comp.dart';
 
 import 'package:webclient/components/my_contests_comp.dart';
 import 'package:webclient/components/view_contest/view_contest_entry_comp.dart';
@@ -89,6 +106,7 @@ import 'package:angular/core_dom/module_internal.dart';
 import 'package:webclient/template_cache.dart';
 import 'package:webclient/utils/game_metrics.dart';
 
+
 class WebClientApp extends Module {
 
   WebClientApp() {
@@ -122,16 +140,22 @@ class WebClientApp extends Module {
     bind(ContestsService);
     bind(SoccerPlayerService);
     bind(ScoringRulesService);
+    bind(LeaderboardService);
     bind(PaymentService);
     bind(PrizesService);
+    bind(CatalogService);
 
     bind(FormAutofillDecorator);
     bind(AutoFocusDecorator);
     bind(LimitToDot);
 
+    bind(TranslateDecorator);
+    bind(TranslateFormatter);
+
     bind(LandingPage1SlideComp);
 
-    bind(MainMenuSlideComp);
+    //bind(MainMenuSlideComp);
+    bind(MainMenuF2PComp);
     bind(FooterComp);
     bind(FlashMessageComp);
     bind(ModalComp);
@@ -139,14 +163,21 @@ class WebClientApp extends Module {
     bind(LoginComp);
     bind(JoinComp);
 
-    bind(LobbyComp);
-    bind(ContestsListComp);
+    //bind(LobbyComp);
+    bind(LobbyF2PComp);
+    bind(WeekCalendar);
+    //bind(ContestsListComp);
+    bind(ContestsListF2PComp);
     bind(PromosComp);
-    bind(SimplePromoViewerComp);
+    //bind(SimplePromoViewerComp);
+    bind(SimplePromoF2PComp);
     bind(PaginatorComp);
     bind(ContestFiltersComp);
+    bind(LeaderboardComp);
+    bind(LeaderboardTableComp);
 
     bind(ContestHeaderComp);
+    bind(ContestHeaderF2PComp);
     bind(ContestInfoComp);
     bind(ScoringRulesComp);
 
@@ -182,16 +213,21 @@ class WebClientApp extends Module {
     bind(AddFundsComp);
     bind(WithdrawFundsComp);
     bind(TransactionHistoryComp);
+    bind(ShopComp);
+    bind(GoldShopComp);
+    bind(EnergyShopComp);
+    bind(TrainerPointsShopComp);
 
     bind(RouteInitializerFn, toValue: webClientRouteInitializer);
     bind(NgRoutingUsePushState, toValue: new NgRoutingUsePushState.value(false));
+
+
   }
 
   void webClientRouteInitializer(Router router, RouteViewFactory views) {
 
     views.configure({
       'landing_page': ngRoute(
-          defaultRoute: true,
           path: '/landing_page',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_OUT),
           viewHtml: '<landing-page-1-slide></landing-page-1-slide>'
@@ -287,10 +323,30 @@ class WebClientApp extends Module {
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
           viewHtml: '<transaction-history></transaction-history>'
       )
+      ,'shop': ngRoute(
+          path: '/shop',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
+          viewHtml: '<shop-comp></shop-comp>',
+          mount: {
+            'gold': ngRoute(
+              path: '/gold_shop',
+              viewHtml: '<gold-shop-comp></gold-shop-comp>'
+            )
+            ,'energy': ngRoute(
+                path: '/energy_shop',
+                viewHtml: '<energy-shop-comp></energy-shop-comp>'
+            )
+            ,'trainer_points': ngRoute(
+              path: '/trainer_points_shop',
+              viewHtml: '<trainer-points-shop-comp></trainer-points-shop-comp>'
+            )
+          }
+      )
       ,'lobby': ngRoute(
+          defaultRoute: true,
           path: '/lobby',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
-          viewHtml: '<lobby></lobby>',
+          viewHtml: '<lobbyf2p></lobbyf2p>',
           mount: {
             'contest_info': ngRoute(
                 path: '/contest_info/:contestId',
@@ -347,6 +403,12 @@ class WebClientApp extends Module {
                 preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
                 viewHtml: '''<modal window-size="'90percent'"><welcome></welcome></modal>'''
             )
+            /*,'no_gold' : ngRoute(
+                path: '/no_gold',
+                preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
+                viewHtml: '''<modal window-size="'90percent'"><alert-no-gold></alert-no-gold></modal>'''
+            )*/
+
           }
       )
       ,'view_contest_entry': ngRoute(
@@ -369,6 +431,11 @@ class WebClientApp extends Module {
         path: '/view_promo/:promoId',
         preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
         viewHtml: '''<simple-promo-viewer></simple-promo-viewer>'''
+      )
+      ,'leaderboard': ngRoute(
+        path: '/leaderboard',
+        preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
+        viewHtml: '''<leaderboard></leaderboard>'''
       )
     });
   }
@@ -422,6 +489,8 @@ class WebClientApp extends Module {
       }
 
       if (!bEnter) {
+        router.go("lobby", {}, replace:true);
+        /*
         if (ProfileService.instance.isLoggedIn) {
           // Antes de redirigir al lobby, miramos que vengamos desde 0. Esto evita un flashazo en el que si estas
           // por ejemplo en my_contest e intentas ir a la landing, se ve brevemente el lobby
@@ -432,6 +501,7 @@ class WebClientApp extends Module {
         else {
           router.go("landing_page", {}, replace: true);
         }
+         */
       }
 
       window.scroll(0, 0);

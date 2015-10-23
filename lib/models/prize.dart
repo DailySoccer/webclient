@@ -1,5 +1,6 @@
 library prize;
 import 'package:webclient/models/money.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 class Prize {
   // Tipos de Premios (obtenidos del backend)
@@ -10,16 +11,16 @@ class Prize {
   static const FIFTY_FIFTY  = "FIFTY_FIFTY";
 
   static Map<String, String> typeNames = {
-    FREE: "Free contest. No prizes", //"Free",
-    WINNER: "Winner takes all", //"Winner takes all",
-    TOP_3: "First 3 get prizes", //"Top 3 get prizes",
-    TOP_THIRD: "First # get prizes",// "El tercio superior de concursantes reciben premio", //Top third get prizes",
-    FIFTY_FIFTY: "First # get prizes",// "La mitad superior de concursantes reciben premio", //"50/50"
+    FREE: StringUtils.translate("free", "prizes"), //"Free",
+    WINNER: StringUtils.translate("winnertakesall", "prizes"), //"Winner takes all",
+    TOP_3: StringUtils.translate("first3", "prizes"), //"Top 3 get prizes",
+    TOP_THIRD: StringUtils.translate("firstthird", "prizes"),// "El tercio superior de concursantes reciben premio", //Top third get prizes",
+    FIFTY_FIFTY: StringUtils.translate("fifty", "prizes")// "La mitad superior de concursantes reciben premio", //"50/50"
   };
 
   String prizeType;
   int maxEntries;
-  Money entryFee;
+  Money prizePool;
   List<Money> values = [];
   // List<num> multipliers = new List<num>();
 
@@ -30,12 +31,12 @@ class Prize {
   Prize.fromJsonObject(Map jsonMap) {
     prizeType = jsonMap["prizeType"];
     maxEntries = jsonMap["maxEntries"];
-    entryFee = new Money.fromJsonObject(jsonMap["entryFee"]);
+    prizePool = jsonMap.containsKey("prizePool") ? new Money.fromJsonObject(jsonMap["prizePool"]) : new Money.zero();
     // multipliers = jsonMap.containsKey("multipliers") ? jsonMap["multipliers"] : [];
     values = jsonMap.containsKey("values") ? jsonMap["values"].map((jsonMap) => new Money.fromJsonObject(jsonMap)).toList() : [];
   }
 
-  String get key => getKey(prizeType, maxEntries, entryFee);
+  String get key => getKey(prizeType, maxEntries, prizePool);
 
   int get numPrizes {
     int ret = 0;
@@ -81,13 +82,13 @@ class Prize {
     return ret;
   }
 
-  static String getKey(String prizeType, int maxEntries, Money entryFee) {
+  static String getKey(String prizeType, int maxEntries, Money prizePool) {
     if (prizeType == FREE) {
       return "${prizeType}";
     }
     else if (prizeType == WINNER || prizeType == FIFTY_FIFTY) {
-      return "${prizeType}_${entryFee}";
+      return "${prizeType}_${prizePool}";
     }
-    return "${prizeType}_${maxEntries}_${entryFee}";
+    return "${prizeType}_${maxEntries}_${prizePool}";
   }
 }

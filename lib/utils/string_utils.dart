@@ -1,11 +1,12 @@
 library string_utils;
 import 'package:intl/intl.dart';
+import 'package:webclient/utils/translate_config.dart';
 
 class StringUtils {
 
   static NumberFormat decimalFormat = new NumberFormat("0.#", "es_ES");
-  static NumberFormat twoDecimalsFormat = new NumberFormat("###,###,###.00", "en_US");
-  static NumberFormat thousandsFormat = new NumberFormat.decimalPattern("en_US");
+  static NumberFormat twoDecimalsFormat = new NumberFormat("###,###,###.00", "es_ES");
+  static NumberFormat thousandsFormat = new NumberFormat.decimalPattern("es_ES");
 
 
   static String normalize(String txt) {
@@ -40,6 +41,8 @@ class StringUtils {
 
   static String parsePrize(num money) => ((money*100)%100 == 0)? thousandsFormat.format(money): twoDecimalsFormat.format(money);
 
+  static String parseTrueSkill(int trueSkill) => thousandsFormat.format(trueSkill);
+
   static Map<String, String> stringToMap(String params) {
     Map<String, String> result = {};
 
@@ -52,5 +55,35 @@ class StringUtils {
     }
     return result;
   }
+/*
+  static String translate(String key, String theGroup) {
+    return config.translate(key, group:theGroup);
+  }
+*/
+  static String translate(String key, String theGroup, [Map substitutions]) {
+    String s = config.translate(key, group:theGroup);
+    if (substitutions != null) {
+      substitutions.forEach( (k,v) => s = s.replaceAll('@$k', '$v') );
+    }
+    return s;
+  }
 
+  static String getDatePattern(String pattern) {
+      return config.translate(pattern, group:"date");
+  }
+
+  static String getLocale() {
+    return config.translate("locale");
+  }
+
+  static String formatCurrency(String amount) {
+    String currency = config.translate("currency");
+    String value = "";
+
+    if (currency == '\$') {
+      return currency + amount;
+    }
+
+    return  value = amount + currency;
+  }
 }

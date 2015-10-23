@@ -58,6 +58,9 @@ abstract class ServerService {
   // Puntuaciones
   Future<Map> getScoringRules();
 
+  // Leaderboards
+  Future<Map> getLeaderboard();
+
   // Transaction History
   Future<Map> getTransactionHistory();
 
@@ -66,6 +69,11 @@ abstract class ServerService {
 
   // Premios
   Future<Map> getPrizes();
+
+  // Catalog
+  Future<Map> buyProduct(String productId);
+  Future<Map> buySoccerPlayer(String contestId, String soccerPlayerId);
+  Future<Map> getCatalog();
 
   // Suscripción a eventos
   void        subscribe(dynamic id, {Function onSuccess, Function onError});
@@ -212,6 +220,10 @@ class DailySoccerServer implements ServerService {
     return _innerServerCall("${HostServer.url}/get_scoring_rules", retryTimes: -1);
   }
 
+  Future<Map> getLeaderboard() {
+    return _innerServerCall("${HostServer.url}/get_leaderboard", retryTimes: -1);
+  }
+
   Future<Map> getTransactionHistory() {
     return _innerServerCall("${HostServer.url}/get_transaction_history", retryTimes: -1);
   }
@@ -222,6 +234,18 @@ class DailySoccerServer implements ServerService {
 
   Future<Map> getPrizes() {
     return _innerServerCall("${HostServer.url}/get_prizes", retryTimes: -1);
+  }
+
+  Future<Map> buyProduct(String productId) {
+    return _innerServerCall("${HostServer.url}/buy_product/$productId", retryTimes: -1);
+  }
+
+  Future<Map> buySoccerPlayer(String contestId, String soccerPlayerId) {
+    return _innerServerCall("${HostServer.url}/buy_soccer_player/$contestId/$soccerPlayerId", retryTimes: -1);
+  }
+
+  Future<Map> getCatalog() {
+    return _innerServerCall("${HostServer.url}/get_catalog", retryTimes: -1);
   }
 
   void cancelAllAndReload() {

@@ -10,6 +10,7 @@ import 'package:webclient/utils/html_utils.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/profile_service.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 
 @Component(
@@ -43,15 +44,15 @@ class FooterComp implements ShadowRootAware {
         <div class="sub-footer">
   
           <div class="logo-wrapper">
-            <a destination="${_profileService.isLoggedIn ? 'lobby' : 'landing_page'}"><img src="images/logoLobbyFooter.png" alt="EPIC ELEVEN"></img></a> <span class="footer-count">&nbsp;</span>
+            <a destination="lobby"><img src="images/logoLobbyFooter.png" alt="EPIC ELEVEN"></img></a> <span class="footer-count">&nbsp;</span>
           </div>
   
           <div class="data-wrapper">
-            <a class="goto-link" id="footerHelp" destination="help_info">           <span class="sub-footer-help-link">HELP</span></a>
-            <a class="goto-link" id="footerLegal" destination="legal_info">         <span class="sub-footer-legal-link">LEGAL</span></a>
-            <a class="goto-link" id="footerTermsOfUse" destination="terminus_info"> <span class="sub-footer-terms-link">TERMS<span> OF USE</span></span></a>
-            <a class="goto-link" id="footerPrivacyPolicy" destination="policy_info"><span class="sub-footer-policy-link">PRIVACY<span> POLICY</span></span></a>
-            <a class="goto-link" id="footerBlog" target="_blank" href="http://halftime.epiceleven.com"><span class="sub-footer-blog-link">BLOG</span></a>
+            <!--a class="goto-link" id="footerHelp" destination="help_info">           <span class="sub-footer-help-link">${StringUtils.translate("help", "footer")}</span></a>
+            <a class="goto-link" id="footerLegal" destination="legal_info">         <span class="sub-footer-legal-link">${StringUtils.translate("legal", "footer")}</span></a>
+            <a class="goto-link" id="footerTermsOfUse" destination="terminus_info"> <span class="sub-footer-terms-link">${StringUtils.translate("terms", "footer")}</span></a>
+            <a class="goto-link" id="footerPrivacyPolicy" destination="policy_info"><span class="sub-footer-policy-link">${StringUtils.translate("privacy", "footer")}</span></a>
+            <a class="goto-link" id="footerBlog" target="_blank" href="http://halftime.epiceleven.com"><span class="sub-footer-blog-link">BLOG</span></a-->
           </div>
   
           <!--
@@ -61,7 +62,7 @@ class FooterComp implements ShadowRootAware {
           -->
           ${_scrDet.isXsScreen ? '' : '''
           <div class="opta">
-            <div>Data provided by: <span>OPTA</span></div>
+            <div>${StringUtils.translate("data-provided-by", "footer")}: <span>OPTA</span></div>
             <div>A <strong>PERFORM</strong> GROUP COMPANY</div>
           </div>
           '''}

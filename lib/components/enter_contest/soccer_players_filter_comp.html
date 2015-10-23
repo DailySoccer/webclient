@@ -1,10 +1,10 @@
 <div class="soccer-players-filter">
 
   <div class="filter-by-position" ng-if="scrDet.isNotXsScreen">
-    <span>Players</span>
+    <span>{{getLocalizedText("players", group: "soccerplayerlist")}}</span>
     <button class="button-filter-position" ng-click="fieldPosFilter = fieldPos"
             ng-repeat="fieldPos in posFilterList" ng-bind-html="getTextForFieldPos(fieldPos)" ng-class="getClassForFieldPos(fieldPos)"></button>
   </div>
 
-  <input type="text" class="name-player-input-filter" placeholder="Search player..." ng-model="nameFilter" />
+  <input type="text" class="name-player-input-filter" placeholder="{{getLocalizedText('search-player', group: 'soccerplayerlist')}}" ng-model="nameFilter" />
 </div>

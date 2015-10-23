@@ -20,6 +20,9 @@ import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/utils/html_utils.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/components/modal_comp.dart';
+import 'package:webclient/services/catalog_service.dart';
+import 'package:webclient/models/user.dart';
+import 'package:webclient/models/money.dart';
 
 @Component(
     selector: 'enter-contest',
@@ -61,7 +64,34 @@ class EnterContestComp implements DetachAware {
   InstanceSoccerPlayer selectedInstanceSoccerPlayer;
 
   int availableSalary = 0;
+  Money _coinsNeeded = new Money.from(Money.CURRENCY_GOLD, 0);
+  Money get coinsNeeded {
+    _coinsNeeded.amount = 0;
+    num managerLevel = playerManagerLevel;
+    lineupSlots
+      .where((c) => c != null)
+      .forEach( (c) =>
+          _coinsNeeded.amount += c["instanceSoccerPlayer"].moneyToBuy(managerLevel).amount);
+
+    if (contest != null && contest.entryFee != null && contest.entryFee.isGold && !editingContestEntry) {
+      _coinsNeeded.amount += contest.entryFee.amount;
+    }
+    return _coinsNeeded;
+  }
+
+  Money get moneyNeeded {
+    return (contest != null)
+        ? (contest.simulation ? (editingContestEntry ? new Money.from(Money.CURRENCY_ENERGY, 0) : contest.entryFee) : coinsNeeded)
+        : new Money.from(Money.CURRENCY_GOLD, 0);
+  }
+
   String get printableAvailableSalary => StringUtils.parseSalary(availableSalary);
+
+  // Comprobamos si tenemos recursos suficientes para pagar el torneo (salvo que estemos editando el contestEntry)
+  bool get enoughResourcesForEntryFee =>
+      contest == null || !_profileService.isLoggedIn || _profileService.user.hasMoney(moneyNeeded);
+
+  String get resourceName => contest != null && contest.simulation ? getLocalizedText("resource-energy") : getLocalizedText("resource-gold");
 
   bool playersInSameTeamInvalid = false;
   bool isNegativeBalance = false;
@@ -71,10 +101,48 @@ class EnterContestComp implements DetachAware {
 
   bool contestInfoFirstTimeActivation = false;  // Optimizacion para no compilar el contest_info hasta que no sea visible la primera vez
 
+  num get playerManagerLevel =>
+      (contest != null && contest.simulation) ? User.MAX_MANAGER_LEVEL : (_profileService.isLoggedIn ? _profileService.user.managerLevel : 0);
+
   List<String> lineupAlertList = [];
 
-  EnterContestComp(this._routeProvider, this._router, this.scrDet, this._contestsService, this.loadingService, this._profileService, this._flashMessage, this._rootElement) {
+  Map<String, Map> errorMap;
+
+  String getLocalizedText(key, {substitutions: null}) {
+    return StringUtils.translate(key, "entercontest", substitutions);
+  }
+
+  String formatCurrency(String amount) {
+    return StringUtils.formatCurrency(amount);
+  }
+
+  EnterContestComp(this._routeProvider, this._router, this.scrDet,
+                   this._contestsService, this.loadingService, this._profileService, this._catalogService,
+                   this._flashMessage, this._rootElement) {
     loadingService.isLoading = true;
+
+    errorMap = {
+      ERROR_CONTEST_NOT_ACTIVE: {
+          "title"   : getLocalizedText("errorcontestnotactivetitle"),
+          "generic" : getLocalizedText("errorcontestnotactivegeneric"),
+          "editing" : getLocalizedText("errorcontestnotactiveediting")
+      },
+      ERROR_MAX_PLAYERS_SAME_TEAM: {
+        "title"   : getLocalizedText("errormaxplayerssameteamtitle"),
+        "generic" : getLocalizedText("errormaxplayerssameteamgeneric"),
+      },
+      // TODO: Avisamos al usuario de que no dispone del dinero suficiente pero, cuando se integre la branch "paypal-ui", se le redirigirá a "añadir fondos"
+      ERROR_USER_BALANCE_NEGATIVE: {
+        "title"   : getLocalizedText("erroruserbalancenegativetitle"),
+        "generic" : getLocalizedText("erroruserbalancenegativegeneric")
+      },
+      "_ERROR_DEFAULT_": {
+          "title"   : getLocalizedText("errordefaulttitle"),
+          "generic" : getLocalizedText("errordefaultgeneric"),
+          "editing" : getLocalizedText("errordefaultediting")
+      },
+    };
+
     scrDet.scrollTo('#mainApp');
 
     resetLineup();
@@ -93,7 +161,6 @@ class EnterContestComp implements DetachAware {
         availableSalary = contest.salaryCap;
         // Comprobamos si estamos en salario negativo
         isNegativeBalance = availableSalary < 0;
-
         initAllSoccerPlayers();
 
         // Si nos viene el torneo para editar la alineación
@@ -141,7 +208,7 @@ class EnterContestComp implements DetachAware {
     bool isLineupEmpty = !lineupSlots.any((soccerPlayer) => soccerPlayer != null);
     // Si no hemos metido a nadie en nuestro equipo
     if(!isLineupEmpty && !_teamConfirmed && !editingContestEntry) {
-      _flashMessage.addGlobalMessage("Lineup saved", 3);
+      _flashMessage.addGlobalMessage(StringUtils.translate("lineupsavedmsg", "entercontest"), 3);
     }else {
       event.allowLeave(new Future<bool>.value(true));
       return;
@@ -196,7 +263,7 @@ class EnterContestComp implements DetachAware {
     }
     else {
       isSelectingSoccerPlayer = true;
-      scrDet.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('main-menu-slide').offsetHeight, ignoreInDesktop: true);
+      scrDet.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('#mainAppMenu').offsetHeight, ignoreInDesktop: true);
       // Cuando seleccionan un slot del lineup cambiamos siempre el filtro de la soccer-player-list, especialmente
       // en movil que cambiamos de vista a "solo ella".
       // El componente hijo se entera de que le hemos cambiado el filtro a traves del two-way binding.
@@ -207,7 +274,10 @@ class EnterContestComp implements DetachAware {
   }
 
   void addSoccerPlayerToLineup(String soccerPlayerId) {
-    _tryToAddSoccerPlayerToLineup(allSoccerPlayers.firstWhere((soccerPlayer) => soccerPlayer["id"] == soccerPlayerId));
+    var soccerPlayer = allSoccerPlayers.firstWhere((soccerPlayer) => soccerPlayer["id"] == soccerPlayerId, orElse: () => null);
+    if (soccerPlayer != null) {
+      _tryToAddSoccerPlayerToLineup(soccerPlayer);
+    }
   }
 
   void onSoccerPlayerActionButton(var soccerPlayer) {
@@ -229,6 +299,9 @@ class EnterContestComp implements DetachAware {
 
     for (int c = 0; c < lineupSlots.length; ++c) {
       if (lineupSlots[c] == null && FieldPos.LINEUP[c] == theFieldPos.value) {
+        // TODO:...
+        // _catalogService.buySoccerPlayer(contest.contestId, soccerPlayer["id"]);
+
         lineupSlots[c] = soccerPlayer;
         isSelectingSoccerPlayer = false;
         availableSalary -= soccerPlayer["salary"];
@@ -246,7 +319,7 @@ class EnterContestComp implements DetachAware {
 
     // Si ya no estamos en modo seleción, scrolleamos hasta la altura del dinero que nos queda disponible.
     if (!isSelectingSoccerPlayer) {
-      scrDet.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('main-menu-slide').offsetHeight, ignoreInDesktop: true);
+      scrDet.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('#mainAppMenu').offsetHeight, ignoreInDesktop: true);
     }
 
     if(!_isRestoringTeam) {
@@ -278,7 +351,18 @@ class EnterContestComp implements DetachAware {
     int intId = 0;
     allSoccerPlayers = new List<dynamic>();
 
+    ContestEntry contestEntry = null;
+    if (editingContestEntry) {
+      contestEntry = contest.getContestEntry(contestEntryId);
+    }
+
+
     contest.instanceSoccerPlayers.forEach((templateSoccerId, instanceSoccerPlayer) {
+
+      if (contestEntry != null && contestEntry.isPurchased(instanceSoccerPlayer)) {
+        instanceSoccerPlayer.level = 0;
+      }
+
       MatchEvent matchEvent = instanceSoccerPlayer.soccerTeam.matchEvent;
       SoccerTeam soccerTeam = instanceSoccerPlayer.soccerTeam;
 
@@ -324,6 +408,17 @@ class EnterContestComp implements DetachAware {
       return;
     }
 
+    if (!enoughResourcesForEntryFee) {
+      alertNotEnoughResources();
+      return;
+
+      /*
+      // Registramos dónde tendría que navegar al tener éxito en "add_funds"
+      window.localStorage["add_funds_success"] = window.location.href;
+      _router.go("add_funds", {});
+       */
+    }
+
     if (editingContestEntry) {
       _contestsService.editContestEntry(contestEntryId, lineupSlots.map((player) => player["id"]).toList())
         .then((_) {
@@ -335,7 +430,6 @@ class EnterContestComp implements DetachAware {
         .catchError((ServerError error) => _errorCreating(error));
     }
     else {
-      if (contest.entryFee <= _profileService.user.balance) {
         _contestsService.addContestEntry(contest.contestId, lineupSlots.map((player) => player["id"]).toList())
           .then((contestId) {
             GameMetrics.logEvent(GameMetrics.TEAM_CREATED);
@@ -351,12 +445,6 @@ class EnterContestComp implements DetachAware {
               });
           })
           .catchError((ServerError error) => _errorCreating(error));
-      }
-      else {
-        // Registramos dónde tendría que navegar al tener éxito en "add_funds"
-        window.localStorage["add_funds_success"] = window.location.href;
-        _router.go("add_funds", {});
-      }
     }
   }
 
@@ -400,34 +488,12 @@ class EnterContestComp implements DetachAware {
 
   void cancelPlayerSelection() {
     isSelectingSoccerPlayer = false;
-    scrDet.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('main-menu-slide').offsetHeight, ignoreInDesktop: true);
+    scrDet.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('#mainAppMenu').offsetHeight, ignoreInDesktop: true);
   }
 
   void onRowClick(String soccerPlayerId) {
     ModalComp.open(_router, "enter_contest.soccer_player_stats", { "instanceSoccerPlayerId":soccerPlayerId, "selectable":isSlotAvailableForSoccerPlayer(soccerPlayerId)}, addSoccerPlayerToLineup);
   }
-
-  Map<String, Map> errorMap = {
-    ERROR_CONTEST_NOT_ACTIVE: {
-        "title"   : "Live Contest",
-        "generic" : "It is not possible to enter a live contest.",
-        "editing" : "It is not possible to modify your lineup once the contest has started."
-    },
-    ERROR_MAX_PLAYERS_SAME_TEAM: {
-      "title"   : "Players from same team",
-      "generic" : "It is not possible...",
-    },
-    // TODO: Avisamos al usuario de que no dispone del dinero suficiente pero, cuando se integre la branch "paypal-ui", se le redirigirá a "añadir fondos"
-    ERROR_USER_BALANCE_NEGATIVE: {
-      "title"   : "Not enough cash",
-      "generic" : "You do not have enough cash to enter this contest. Please, add funds to continue."
-    },
-    "_ERROR_DEFAULT_": {
-        "title"   : "Warning",
-        "generic" : "An error has occurred. You can not enter this contest at the moment. Please, try again later.",
-        "editing" : "An error has occurred. You can not modify your lineup at the moment. Please, try again later.",
-    },
-  };
 
   void _showMsgError(ServerError error) {
     String keyError = errorMap.keys.firstWhere( (key) => error.responseError.contains(key), orElse: () => "_ERROR_DEFAULT_" );
@@ -479,13 +545,65 @@ class EnterContestComp implements DetachAware {
     }
   }
 
-  String get _getKeyForCurrentUserContest => (_profileService.isLoggedIn ? _profileService.user.userId : 'guest') + '#' + contest.contestId;
+
+  void alertNotEnoughResources() {
+    modalShow(
+      "",
+      contest.entryFee.isEnergy ? getNotEnoughEnergyContent() : getNotEnoughGoldContent(),
+      onOk: contest.entryFee.isEnergy ? getLocalizedText('buy-energy-button') : getLocalizedText("buy-gold-button"),
+      closeButton:true
+    )
+    .then((_) {
+      // Registramos dónde tendría que navegar al tener éxito en "add_funds"
+      window.localStorage[contest.entryFee.isEnergy ? "add_energy_success" : "add_gold_success"] = window.location.href;
+
+      _router.go(contest.entryFee.isEnergy ? 'shop.energy' : 'shop.gold', {});
+    });
+  }
+
+  String getNotEnoughGoldContent() {
+    return '''
+    <div class="content-wrapper">
+      <img class="main-image" src="images/iconNoGold.png">
+      <span class="not-enough-resources-count">${coinsNeeded}</span>
+      <p class="content-text">
+        <strong>${getLocalizedText("alert-no-gold-message")}</strong>
+        <br>
+        ${getLocalizedText('alert-user-gold-message', substitutions:{'MONEY': _profileService.user.goldBalance})}
+        <img src="images/icon-coin-xs.png">
+      </p>
+    </div>
+    ''';
+  }
+  String getNotEnoughEnergyContent() {
+    return '''
+    <div class="content-wrapper">
+      <img class="main-image" src="images/iconNoEnergy.png">
+      <div class="energy-bar-wrapper">
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="${User.MAX_ENERGY}" style="width:${_profileService.user.Energy * 100 / User.MAX_ENERGY}%"></div>
+        </div>
+      </div>
+      <p class="content-text">${getLocalizedText("alert-no-energy-message")}</p>
+    </div>
+    ''';
+  }
+
+  String getConfirmButtonText() {
+    if (contest == null) return getLocalizedText("buttoncontinue");
+
+    Money cost = contest.entryFee.isEnergy? contest.entryFee : coinsNeeded;
+    return'${getLocalizedText("buttoncontinue")}: <span class="confirm-cost ${cost.isEnergy? "energy": "coins"}">${cost.amount.toInt()}</span>';
+  }
+
+  String get _getKeyForCurrentUserContest => (_profileService.isLoggedIn ? _profileService.user.userId : 'guest') + '#' + contest.optaCompetitionId;
 
   Router _router;
   RouteProvider _routeProvider;
 
   ContestsService _contestsService;
   ProfileService _profileService;
+  CatalogService _catalogService;
   FlashMessagesService _flashMessage;
 
   var _streamListener;
@@ -495,9 +613,10 @@ class EnterContestComp implements DetachAware {
   ScreenDetectorService _scrDet;
 
   RouteHandle _routeHandle;
-  bool _teamConfirmed = false;
 
+  bool _teamConfirmed = false;
   bool _isRestoringTeam = false;
+
   Element _rootElement;
   Element alertMaxplayerInSameTeam;
 }

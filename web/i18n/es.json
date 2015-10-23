@@ -1,0 +1,591 @@
+{
+  "_comment"                            : "i18n Spanish",
+  "version"                             : "0.0.1",
+  "modified"                            : "2015-09-21",
+  "language"                            : "Spanish",
+  "locale"                              : "es",
+  "translations" :
+  {
+    "currency"                          : "$",
+    "locale"                            : "es_ES",
+    "common"                            :
+    {
+      "day"                             : " DÍA ",
+      "days"                            : " DÍAS ",
+      "points"                          : " Puntos ",
+      "abrevpoints"                     : " PTOS. "
+    },
+    "date"                              :
+    {
+      "datewithdayofthemonth"           : "EEE, d MMM",
+      "dateshort"                       : "dd/MM",
+      "timeshort"                       : "HH:mm",
+      "datetimeshort"                   : "E, HH:mm",
+      "datetimelong"                    : "E, dd/MM/yy HH:mm",
+      "datetimedayhour"                 : "dd/MM/yy HH:mm"
+    },
+    "weekcalendar"                      :
+    {
+      "1"                               : "L",
+      "2"                               : "M",
+      "3"                               : "X",
+      "4"                               : "J",
+      "5"                               : "V",
+      "6"                               : "S",
+      "7"                               : "D"
+    },
+    "landing"                           :
+    {
+      "title"                           : "LIGAS FANTÁSTICAS DIARIAS",
+      "subtitle"                        : "Juega siempre que quieras, donde tú quieras y gana premios cada jornada.",
+      "buttonplay"                      : "JUEGA AHORA",
+      "info1"                           : "Compite contra tus amigos en la Liga, Premier y Champions.",
+      "info2"                           : "Crea tu alineación desde tu ordenador, tablet o móvil en segundos.",
+      "info3"                           : "Pagos efectivos en el momento."
+    },
+    "join"                              :
+    {
+      "title"                           : "REGÍSTRATE",
+      "description"                     : "¿No estás registrado aún? <br> Rellena el formulario.",
+      "nickrequires"                    : "Tu nombre debe tener entre @MIN_NICKNAME_LENGTH y @MAX_NICKNAME_LENGTH caracteres.",
+      "nick"                            : "Nombre de usuario",
+      "invalidnick"                     : "Nombre inválido.",
+      "email"                           : "Correo Electrónico",
+      "invalidemail"                    : "Correo Electrónico Invalido.",
+      "passrequires"                    : "Contraseña: Debe tener al menos @MIN_PASSWORD_LENGTH caracteres. (Escríbela 2 veces).",
+      "pass"                            : "Contraseña",
+      "repass"                          : "Repite la Contraseña",
+      "invalidpass"                     : "Contraseña Inválida.",
+      "buttonsignup"                    : "REGÍSTRATE",
+      "buttoncancel"                    : "CANCELAR",
+      "registered"                      : "¿Ya estas registrado?",
+      "loginhere"                       : "¡Accede desde aquí!"
+    },
+    "login"                             :
+    {
+      "title"                           : "ENTRAR",
+      "description"                     : "Introduce tu correo electrónico y contraseña",
+      "email"                           : "Correo Electrónico",
+      "pass"                            : "Contraseña",
+      "loginerror"                      : "ERROR: El correo electrónico o la contraseña no son validos. Por favor, revisa los datos.",
+      "forgotpass"                      : "¿Olvidaste tu contraseña?",
+      "buttonlogin"                     : "CONTINUAR",
+      "buttoncancel"                    : "CANCELAR",
+      "unregistered"                    : "¿Aún no estas resistrado?",
+      "signuphere"                      : "¡Regístrate aquí!"
+    },
+    "changepass"                        :
+    {
+      "error503"                        : "ERROR 503",
+      "changepass"                      : "CAMBIO DE CONTRASEÑA",
+      "unavailable"                     : "Esta página no está disponible",
+      "tokenexpired"                    : "El token proporcionado no es válido o ha expirado.",
+      "createpass"                      : "Crea una nueva contraseña.",
+      "passrequires"                    : "Contraseña: Debe tener al menos @MIN_PASSWORD_LENGTH caracteres. (Escríbela 2 veces).",
+      "pass"                            : "Contraseña",
+      "repass"                          : "Repite Contraseña",
+      "buttoncontinue"                  : "CONTINUAR",
+      "buttoncancel"                    : "CANCELAR"
+    },
+    "rememberpass"                      :
+    {
+      "title"                           : "RECORDAR CONTRASEÑA",
+      "confirm_part_1"                  : "Te hemos mandado un correo electrónico a",
+      "confirm_part_2"                  : "Revisa la bandeja de entrada de tu correo electrónico y sigue las instrucciones del correo.",
+      "description"                     : "¿Olvidaste tu contraseña? Introduce tu email para recuperarla",
+      "emailrequires"                   : "Intruduce la direccion de correo electrónico con la que te registrarse en EPIC ELEVEN                  :",
+      "email"                           : "Correo Electrónico",
+      "buttoncontinue"                  : "CONTINUAR",
+      "buttoncancel"                    : "CANCELAR",
+      "unregistered"                    : "¿Aún no estás registrado?",
+      "signuphere"                      : "¡Regístrate aquí!"
+    },
+    "addfunds"                          :
+    {
+      "title"                           : "AÑADIR FONDOS",
+      "description1"                    : "Para jugar a EPIC ELEVEN con dinero real, necesitas añadir fondos a tu cuenta.",
+      "description2"                    : "No te preocupes, podrás retirar los fondos cuando tu quieras de forma gratuita.",
+      "minfunds"                        : "El mínimo permitido es de ",
+      "addfunds"                        : "Añadir",
+      "via"                             : "vía",
+      "paypalinfo"                      : "Puedes añadir fondos utilizando tu cuenta de PayPal. El dinero será trasnferido a Fantasy Sports Games S.L.",
+      "buttonaddfunds"                  : "Añadir fondos",
+      "needhelp"                        : "¿Necesitas ayuda?"
+    },
+    "editprofile"                       :
+    {
+      "title"                           : "EDITAR PERFIL",
+      "name"                            : "Nombre",
+      "lastname"                        : "Primer Apellido",
+      "username"                        : "Nombre de usuario",
+      "mail"                            : "Correo Electrónico",
+      "passrequires"                    : "Contraseña (Rellena ambos campos para actualizar tu contraseña)",
+      "pass"                            : "Contraseña",
+      "repass"                          : "Repite la Contraseña",
+      "notifications"                   : "NOTIFICACIONES",
+      "newletternotifications"                        : "ÚLTIMAS NOTICIAS/OFERTAS ESPECIALES",
+      "gamenotifications"                             : "NOTIFICACIONES DE JUEGO",
+      "transfernotifications"                         : "TRANSFERENCIA DE JUGADORES PROPIAS",
+      "buttonsave"                      : "GUARDAR",
+      "buttoncancel"                    : "CANCELAR"
+    },
+    "paymentresponse"                   :
+    {
+      "resultok"                        : "Pago completado",
+      "resultnook"                      : "Pago cancelado",
+      "resultokdesc"                    : "¡Gracias! Tu petición se ha completado con éxito.",
+      "resultnookdesc"                  : "La transacción no se ha podido completar. Por favor, revisa los datos introducidos e inténtalo de nuevo."
+    },
+    "transactionhistory"                :
+    {
+      "title"                           : "HISTORIAL DE TRANSACCIONES",
+      "date"                            : "FECHA",
+      "id"                              : "ID",
+      "subject"                         : "ASUNTO",
+      "value"                           : "CANTIDAD",
+      "balance"                         : "BALANCE"
+    },
+    "userprofile"                       :
+    {
+      "title"                           : "Mi cuenta",
+      "buttonedit"                      : "EDITAR",
+      "fullname"                        : "Nombre completo",
+      "nick"                            : "Nombre de usuario",
+      "email"                           : "Correo Electrónico",
+      "pass"                            : "Contraseña",
+      "wallet"                          : "Oro",
+      "buttonbuy"                       : "Comprar",
+      "ranking"                         : "Clasificación",
+      "buttonrankingtable"              : "Ver en la tabla"
+    },
+    "leaderboard"                       :
+    {
+      "title"                           : "Clasificación",
+      "trueskill"                       : "Habilidad",
+      "gold"                            : "Oro",
+      "topgold"                         : "TOP ORO",
+      "topskill"                        : "TOP HABILIDAD",
+      "abrevposition"                   : "Pos.",
+      "name"                            : "Nombre"
+    },
+    "withdrawfunds"                     :
+    {
+      "title"                           : "RETIRAR FONDOS",
+      "balance"                         : "TU BALANCE ES",
+      "withdrawdesc1"                   : "¿Cuánto dinero quieres retirar?",
+      "withdrawdesc2"                   : "Solo puedes retirar cantidades superiores a",
+      "withdrawfunds"                   : "Retirar fondos",
+      "needhelp"                        : "¿Necesitas ayuda?"
+    },
+    "entercontest"                      :
+    {
+      "tablineup"                       : "Tu alineación",
+      "tabcontestinfo"                  : "Información del torneo",
+      "buttoncancel"                    : "CANCELAR",
+      "yourlineup"                      : "TU ALINEACIÓN",
+      "remainsalary"                    : "SALARIO RESTANTE",
+      "buttonclean"                     : "LIMPIAR",
+      "buttoncontinue"                  : "CONTINUAR",
+      "tip"                             : "Recuerda que puedes editar tu alineación todas las veces que quieras hasta que el torneo comience",
+      "lineupsavedmsg"                  : "Alineación guardada",
+      "errorcontestnotactivetitle"      : "Torneo en Directo",
+      "errorcontestnotactivegeneric"    : "No es posible entrar al concurso en directo",
+      "errorcontestnotactiveediting"    : "No es posible modificar tu alineación cuando el torneo ya haya empezado",
+      "errormaxplayerssameteamtitle"    : "Jugadores del mismo equipo",
+      "errormaxplayerssameteamgeneric"  : "No es posible...",
+      "erroruserbalancenegativetitle"   : "No tienes ORO suficiente",
+      "erroruserbalancenegativegeneric" : "No tienes ORO suficiente para entrar a este concurso. Por favor, ingresa fondos para poder continuar",
+      "errordefaulttitle"               : "Atención",
+      "errordefaultgeneric"             : "Ha ocurrido un error. No puedes acceder a este torneo en este momento. Inténtalo mas tarde.",
+      "errordefaultediting"             : "Ha ocurrido un error. No puedes modificar tu alineación en este momento. Inténtalo mas tarde.",
+      "alert-no-energy-title"           : "Sin ENERGIA suficiente",
+      "alert-no-gold-title"             : "Sin ORO suficiente",
+      "alert-no-energy-message"         : "No tienes ENERGIA para entrar en el torneo",
+      "alert-no-gold-message"           : "No tienes ORO para entrar en el torneo",
+      "resource-gold"                   : "ORO",
+      "resource-energy"                 : "ENERGÍA",
+      "buy-gold-button"                 : "COMPRAR ORO",
+      "buy-energy-button"               : "RECARGAR ENERGÍA",
+      "alert-user-gold-message"         : "Tienes actualmente @MONEY",
+      "alert-no-energy-message"         : "<strong>No tienes suficiente energía</strong><br>para entrar en este torneo."
+    },
+    "lineupselector"                    :
+    {
+      "wastedsalarycap"                 : "<strong>Has gastado más presupuesto del permitido</strong><br> Por favor, cambia la alineación para no superar el límite.",
+      "maxplayersteam"                  : "<strong>Tienes demasiados jugadores del mismo equipo.</strong><br>No superes el límite de @MAX_PLAYERS_SAME_TEAM jugadores.",
+      "not-enough-resources"            : "<strong>¡ATENCIÓN! Algo está fallando...</strong><br> Te falta @RESOURCE para entrar en este torneo.",
+      "add"                             : "AÑADIR "
+    },
+    "matchesfilter"                     :
+    {
+      "all-matches"                     : "Todos<br>los encuentros",
+      "allmatches"                      : "Todos los encuentros",
+      "all"                             : "todos"
+    },
+    "soccerplayerlist"                  :
+    {
+      "positionabrev"                   : "Pos.",
+      "name"                            : "Nombre",
+      "dfp"                             : "DFP",
+      "numMatchesAbrev"                 : "PJ.",
+      "salary"                          : "Salario",
+      "search-player"                   : "Buscar jugador...",
+      "players"                         : "Jugadores"
+    },
+    "soccerplayerpositions"             :
+    {
+      "goalkeeper"                      : "PORTERO",
+      "gk"                              : "POR",
+      "defense"                         : "DEFENSA",
+      "def"                             : "DEF",
+      "middle"                          : "MEDIO",
+      "mid"                             : "MED",
+      "forward"                         : "DELANTERO",
+      "for"                             : "DEL",
+      "all"                             : "TODOS"
+    },
+    "soccerplayerstats"                 :
+    {
+      "buttoncancel"                    : "CANCELAR",
+      "buttonadd"                       : "AÑADIR",
+      "tittle"                          : "ESTADÍSTICAS PERSONALES",
+      "dfp"                             : "DFP",
+      "matches"                         : "PARTIDOS",
+      "salary"                          : "SALARIO",
+      "next-match"                      : "PRÓXIMO PARTIDO",
+      "seasondata"                      : "Datos de temporada",
+      "matchbymatch"                    : "Partido a partido",
+      "seasonstats"                     : "ESTADÍSTICAS DE TEMPORADA <span>(DATOS POR PARTIDO)</span>",
+      "noseasonstats"                   : "No ha jugado ningún partido esta temporada",
+      "season"                          : "Season",
+      "keypasses"                       : "PASES",
+      "abrevpasses"                     : "P",
+      "descpasses"                      : "Pases",
+      "keyrecovers"                     : "RECUPERACIONES",
+      "abrevrecovers"                   : "R",
+      "descrecovers"                    : "Recuperaciones",
+      "keyposslost"                     : "PÉRDIDAS_BALON",
+      "abrevposslost"                   : "PB",
+      "descposslost"                    : "Pérdidas de balón",
+      "keyfoulscommited"                : "FALTAS_COMETIDAS",
+      "abrevfoulscommited"              : "F",
+      "descfoulscommited"               : "Faltas cometidas",
+      "keyyellowcards"                  : "TARJETAS_AMARILLAS",
+      "abrevyellowcards"                : "TA",
+      "descyellowcards"                 : "Tarjetas amarillas",
+      "keyredcards"                     : "TARJETAS_ROJAS",
+      "abrevredcards"                   : "TR",
+      "descredcards"                    : "Tarjetas rojas",
+      "keygoalsconceded"                : "GOLES_ENCAJADOS",
+      "abrevgoalsconceded"              : "GC",
+      "descgoalsconceded"               : "Goles encajados",
+      "keysaves"                        : "PARADAS",
+      "abrevsaves"                      : "P",
+      "descsaves"                       : "Paradas",
+      "keyclearances"                   : "DESPEJES",
+      "abrevclearances"                 : "D",
+      "descclearances"                  : "Despejes",
+      "keypenaltiessaved"               : "PENALTIS_DETENIDOS",
+      "abrevpenaltiessaved"             : "PD",
+      "descpenaltiessaved"              : "Penaltis detenidos",
+      "keygoals"                        : "GOLES",
+      "abrevgoals"                      : "G",
+      "descgoals"                       : "Goles",
+      "keyshots"                        : "TIROS",
+      "abrevshots"                      : "T",
+      "descshots"                       : "Tiros",
+      "keychancescreated"               : "ASISTENCIAS",
+      "abrevchancescreated"             : "A",
+      "descchancescreated"              : "Asistencias",
+      "keytakeons"                      : "REGATES",
+      "abrevtakeons"                    : "R",
+      "desctakeons"                     : "Regates",
+      "keyfoulsconceded"                : "FALTAS_RECIBIDAS",
+      "abrevfoulsconceded"              : "FR",
+      "descfoulsconceded"               : "Faltas recibidas",
+      "keyplayedminutes"                : "MINUTOS_JUGADOS",
+      "keyfantasypoints"                : "PUNTOS_FANTASY",
+      "date"                            : "Fecha",
+      "opponent"                        : "Oponente",
+      "dailyfantasypoints"              : "Daily Fantasy Points",
+      "minutes"                         : "Minutos",
+      "posessionlost"                   : "Perdidas de balón"
+    },
+    "footer"                            :
+    {
+      "help"                            : "AYUDA",
+      "legal"                           : "LEGAL",
+      "terms"                           : "TÉRMINOS<span> DE USO</span>",
+      "privacy"                         : "POLÍTICAS<span> DE PRIVACIDAD</span>",
+      "data-provided-by"                : "Datos provistos por"
+    },
+    "mainmenu"                          :
+    {
+      "lobby"                           : "TORNEOS",
+      "mycontest"                       : "MIS TORNEOS",
+      "leaderboard"                     : "CLASIFICACIÓN",
+      "howitworks"                      : "Ayuda",
+      "myaccount"                       : "Mi Cuenta",
+      "shop"                            : "Tienda",
+
+      "addfunds"                        : "Añadir Fondos",
+      "transactions"                    : "Historial de transacciones",
+      "referral"                        : "Centro de usuarios referidos",
+      "classification"                  : "Clasificación",
+      "howitworks2"                     : "Cómo funciona",
+      "logout"                          : "Salir",
+      "login"                           : "Entrar"
+    },
+    "contestlist"                       :
+    {
+      "entryfee"                        : "Precio:",
+      "of"                              : "DE",
+      "prize"                           : "Premio:",
+      "points"                          : "Puntos",
+      "position"                        : "Puesto:",
+      "today"                           : "Hoy",
+      "soonHint"                        : "Faltan<br>@TIME min",
+      "verySoonHint"                    : "Falta<br>@TIME"
+    },
+    "contestfilters"                    :
+    {
+      "filters"                         : "FILTROS",
+      "competition"                     : "COMPETICIóN",
+      "contests"                        : "TORNEOS",
+      "salarycap"                       : "LIMITE DE SALARIO",
+      "entryfee"                        : "CUOTA DE ENTRADA",
+      "min"                             : "MIN",
+      "max"                             : "MAX",
+      "clearfilters"                    : "LIMPIAR FILTROS",
+      "buttonaccept"                    : "ACEPTAR",
+      "sortby"                          : "Ordenar por",
+      "search"                          : "Buscar torneo",
+      "availabletip"                    : "Torneos disponibles ",
+      "competitionlaliga"               : "La Liga Española",
+      "competitionpremier"              : "Premier League",
+      "competitionchampions"            : "Champions League",
+      "contestfree"                     : "Gratuito",
+      "contestheadtohead"               : "1 contra 1",
+      "contestleague"                   : "Liga",
+      "contestfifty"                    : "50 / 50",
+      "salarycapbegginer"               : "Principiante",
+      "salarycapstandard"               : "Normal",
+      "salarycapskilled"                : "Experto",
+      "sortbyname"                      : "Nombre",
+      "sortbyentryfee"                  : "Cuota",
+      "sortbystartdate"                 : "Fecha"
+    },
+    "fantasyteam"                       :
+    {
+      "editlineup"                      : "EDITAR ALINEACIÓN",
+      "pos"                             : "POS",
+      "points"                          : "PUNTOS",
+      "remainingtime"                   : "TIEMPO RESTANTE",
+      "close"                           : "CERRAR",
+      "owned"                           : "SELECCIONADO"
+    },
+    "teamspanel"                        :
+    {
+      "showmatches"                     : "VER PARTIDOS",
+      "firsthalf"                       : "1ª Parte - ",
+      "secondhalf"                      : "2ª Parte - ",
+      "error"                           : "-Err-",
+      "finished"                        : "Terminado"
+    },
+    "userlist"                          :
+    {
+      "title"                           : "PARTICIPANTES DEL TORNEO",
+      "desc"                            : "Elige un participante para comparar su alineación",
+      "pos"                             : "POS",
+      "player"                          : "JUGADOR",
+      "rt"                              : "T.R.",
+      "points"                          : "PUNTOS",
+      "prizes"                          : "PREMIOS"
+    },
+    "viewcontest"                       :
+    {
+      "yourlineup"                      : "Tu Alineación",
+      "users"                           : "Usuarios",
+      "opponent"                        : "Adversario"
+    },
+    "viewcontestentry":
+    {
+      "created"                         : "¡ENHORABUENA! HAS COMPLETADO TU ALINEACIÓN.",
+      "edited"                          : "¡ENHORABUENA! HAS EDITADO TU ALINEACIÓN.",
+      "swapped"                         : "EL TORNEO ESTÁ LLENO, ASI QUE TE HEMOS PUESTO EN OTRO EQUIVALENTE. COMPETIRÁS CON OTROS USUARIOS",
+      "tip"                             : "Recuerda que puedes editar tu alineación tantas veces como quieras hasta que el torneo comience",
+      "yourlineup"                      : "Tu Alineación",
+      "users"                           : "Usuarios",
+      "backtocontests"                  : "VUELVE A LOS TORNEOS",
+      "cancel"                          : "SALIR DEL TORNEO",
+      "alertcanceltitle"                : "Caution!",
+      "alertcancelpaidcontest"          : "Estas a punto de cancelar tu participación en este concurso.<br><br>La entrada que abonaste de @PRICE será devuelta.<br><br>¿Estás seguro de querer abandonar este concurso?<br><br>",
+      "alertcancelcontest"              : "Estas a punto de cancelar tu participación en este concurso.<br><br>¿Estás seguro de querer abandonar este concurso?<br><br>",
+      "alertbuttonno"                   : "No",
+      "alertbuttonyes"                  : "Si"
+    },
+    "contestheader"                     :
+    {
+      "entryfee"                        : "CUOTA",
+      "prizes"                          : "PREMIOS",
+      "finished"                        : "TERMINADO",
+      "startedon"                       : "EMPEZó EL ",
+      "startson"                        : "EMPIEZA EL ",
+      "verysoon"                        : "EMPIEZA MUY PRONTO ",
+      "startsin"                        : "EMPIEZA EN ",
+      "salarycap"                       : "participantes - cuota",
+      "entryfee"                        : "Precio:",
+      "prize"                           : "Premio:",
+      "position"                        : "Posición:"
+    },
+    "contest"                           :
+    {
+      "contestfree"                     : "Gratuito",
+      "contestheadtohead"               : "1 contra 1",
+      "contestleague"                   : "Liga",
+      "contestfifty"                    : "50 / 50",
+      "salarycap"                       : "Cuota",
+      "contenders"                      : "participantes",
+      "of"                              : "de"
+    },
+    "contestinfo"                       :
+    {
+      "matches"                         : "Partidos",
+      "prizes"                          : "Premios",
+      "contenders"                      : "Participantes",
+      "scoringrules"                    : "Reglas",
+      "buttonenter"                     : "ENTRAR",
+      "nocontenders"                    : "Aún no hay participantes en este concurso. <br> Anímate a ser el primero.",
+      "skill"                           : "Puntos",
+      "prizes2"                         : "PREMIOS",
+      "contenders2"                     : "CONCURSANTES",
+      "rulestip"                        : "Elige un equipo de 11 jugadores de los siguientes encuentros.",
+      "winnertakesall"                  : "El ganador de lo lleva todo"
+    },
+    "prizes"                            :
+    {
+      "free"                            : "Concurso gratuito. No hay premios",
+      "winnertakesall"                  : "El ganador de lo lleva todo",
+      "first3"                          : "Los 3 primeros consiguen premio",
+      "firstthird"                      : "Los primeros # tienen premios",
+      "fifty"                           : "Los primeros # tienen premios"
+    },
+    "lobby"                             :
+    {
+      "nextcontest"                     : "PRÓXIMO TORNEOS"
+    },
+    "mycontest"                         :
+    {
+      "title"                           : "MIS TORNEOS",
+      "tablive"                         : "En Directo",
+      "tabupcoming"                     : "Próximos",
+      "tabhistory"                      : "Histórico",
+      "nolives"                         : "NO ESTÁS JUGANDO NINGúN TORNEO EN ESTE MOMENTO",
+      "nolivestip1"                     : "ÉCHALE UN VISTAZO A LA LISTA DE TUS ",
+      "nolivestip2"                     : "PRÓXIMOS TORNEOS",
+      "nolivestip3"                     : " PARA VER CUANDO EMPIEZAN",
+      "tocontest"                       : "IR A LOS TORNEOS",
+      "noupcomings"                     : "NO TIENES ALINEACIONES PARA NINGÚN TORNEO<br>EN ESTE MOMENTO",
+      "noupcomingstip1"                 : "VE A LA LISTA DE TORNEOS, ELIGE UNO Y EMPIEZA A JUGAR",
+      "nohistorys"                      : "AÚN NO HAS JUGADO NINGÚN TORNEO<br>¿A QUÉ ESPERAS PARA EMPEZAR A GANAR?",
+      "nohistoryestip"                  : "VE A LA LISTA DE TORNEOS, ELIGE UNO Y EMPIEZA A JUGAR",
+      "hasLivecontests1"                : "TORNEOS EN DIRECTO",
+      "hasLivecontests2"                : "PUEDES SEGUIR EN DIRECTO TUS TORNEOS DESDE AQUÍ",
+      "haswaitingcontests1"             : "HAS PARTICIPADO EN",
+      "haswaitingcontests2"             : "TORNEOS",
+      "haswaitingcontests3"             : "AQUÍ PUEDES VER TUS PRÓXIMOS TORNEOS Y EDITAR TUS ALINEACIONES",
+      "hasHistoryContests1"             : "JUGADOS",
+      "hasHistoryContests2"             : "GANADOS",
+      "hasHistoryContests3"             : "AQUÍ PUEDES CONSULTAR LOS TORNEOS QUE JUGASTE: ALINEACIONES, PARTICIPANTES, PUNTUACIONES…"
+    },
+    "welcome"                           :
+    {
+      "tutorialtittlelobby"             : "SELECCIONA UN TORNEO",
+      "tutorialtittleentercontest"      : "SELECCIONA TU ALINEACIÓN",
+      "tutorialtittleviewcontestentry"  : "BIENVENIDO A EPIC ELEVEN",
+      "tutorialtextlobby"               : "Puedes participar en todos los torneos que quieras de La Liga BBVA, Barclays Premier League y UEFA Champions League.",
+      "tutorialtextentercontest"        : "Elije 11 jugadores de la lista sin pasarte del presupuesto.",
+      "tutorialtextviewcontestentry"    : "Ve a “<b>Mis Concursos</b>” para editar tus alineaciones, ver a tu equipo puntuando en directo o para ver tu histórico de concursos. <br> <br> <p class=\"subtitle\">Recuerda: puedes jugar a todos los concursos que quieras y elegir tantas alineaciones como quieras.</p>"
+    },
+    "restricted"                        :
+    {
+      "desc"                            : "Lo sentimos, está prohibido ingresar fondos a Epic Eleven desde el pais en el que estás.<br><br>Si piensas que esto se debe a un error y necesitas asistencia, por favor contacta con nosotros a través de <a href=\"mailto:support@epiceleven.com\">support@epiceleven.com</a>",
+      "gotolobby"                       : "Volver a los concursos"
+    },
+    "scoringrules"                      :
+    {
+      "all"                             : "TODOS LOS JUGADORES",
+      "goalkeepers"                     : "PORTEROS",
+      "defenders"                       : "DEFENSAS",
+      "middles"                         : "MEDIOS",
+      "forwards"                        : "DELANTEROS",
+      "successpass"                     : "Pase exitoso",
+      "unsuccesspass"                   : "Pase fallido",
+      "takeon"                          : "Regate",
+      "foulreceived"                    : "Falta recibida",
+      "tackle"                          : "Entrada",
+      "interception"                    : "Intercepción",
+      "save"                            : "Parada",
+      "saveshot"                       : "Bloqueo de tiro",
+      "claim"                           : "Anticipación",
+      "clearance"                       : "Despeje",
+      "miss"                            : "Tiro fallado",
+      "post"                            : "Tiro al poste",
+      "asaved"                          : "Tiro detenido",
+      "ycard"                           : "Tarjeta amarilla",
+      "punch"                           : "Despeje de puños",
+      "dispossessed"                    : "Pérdida de balón",
+      "error"                           : "Error",
+      "decisiveerror"                   : "Error decisivo",
+      "assist"                          : "Oportunidad",
+      "tacklecomplete"                  : "Entrada exitosa",
+      "goalbygk"                        : "Gol",
+      "goalbydef"                       : "Gol",
+      "goalbymid"                       : "Gol",
+      "goalbyfor"                       : "Gol",
+      "owngoal"                         : "Gol en propia meta",
+      "foulcommited"                    : "Faltas cometidas",
+      "ycard2"                          : "Segunda tarjeta amarilla",
+      "rcard"                           : "Tarjeta roja",
+      "offside"                         : "Fuera de juego",
+      "penaltyconceded"                 : "Penalti cometido",
+      "penaltyfailed"                   : "Penalti fallado",
+      "penaltysaved"                    : "Penalti parado",
+      "clean"                           : "Portería a cero",
+      "goalconceded"                    : "Gol recibido"
+    },
+    "shop"                              :
+    {
+      "goldshopdescription"             : "Compra Oro y accede a <strong>Torneos Oficiales</strong>",
+      "trainerpointsshopdescription"    : "Aumenta tu nivel de entrenador y ficha a los <strong>mejores jugadores</strong>",
+      "energyshopdescription"           : "Recárgate de energía para acceder a <strong>Torneos de Entrenamiento</strong>"
+    },
+    "goldshop"                          :
+    {
+      "product_gold_1"                  : "CALDERILLA",
+      "product_gold_2"                  : "JEFAZO",
+      "product_gold_3"                  : "OJEADOR",
+      "product_gold_4"                  : "REPRESENTANTE",
+      "product_gold_5"                  : "PRESIDENTE",
+      "product_gold_6"                  : "HOMBRE DE NEGRO",
+      "free"                            : "GRATIS",
+      "buttonback"                      : "Volver",
+      "mostpopularimagesource"          : "images/icon-mas-popular.png"
+    },
+    "energyshop"                        :
+    {
+      "product_maxrefill"               : "Recarga al máximo con:",
+      "autorefill"                      : "Recarga +1 automática en:",
+      "buttonback"                      : "Volver",
+      "alert-no-gold-title"             : "Sin ORO suficiente",
+      "alert-no-gold-message"           : "No tienes ORO para comprar este producto",
+      "buy-gold-button"                 : "COMPRAR ORO",
+      "alert-user-gold-message"         : "Tienes actualmente @MONEY",
+      "erroruserbalancenegativetitle"   : "No tienes ORO suficiente",
+      "erroruserbalancenegativegeneric" : "No tienes ORO suficiente. Por favor, ingresa fondos para poder continuar",
+      "errordefaulttitle"               : "Atención",
+      "errordefaultgeneric"             : "Ha ocurrido un error. Inténtalo mas tarde."
+    }
+
+  }
+}

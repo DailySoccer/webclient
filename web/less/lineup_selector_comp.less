@@ -8,7 +8,7 @@ lineup-selector {
 .lineup-selector {
 	.make-border(1px, solid none none none, @greyDark);
 	@lineup-selector-gutter: 0px;	// Tiene que ser el mismo que soccer_players_list
-	@lineup-pos-selector-gutter: 20px;   // Nuevo para la posicion del jugador
+	@lineup-pos-selector-gutter: 10px;   // Nuevo para la posicion del jugador
 
 	.posPOR { background-color: @tramaPor; }
 	.posDEF { background-color: @tramaDef; }
@@ -16,6 +16,7 @@ lineup-selector {
 	.posDEL { background-color: @tramaDel; }
 
 	.lineup-selector-slot {
+		padding-left: 10px;
 		// Heredamos los estilos de nuestro padre la lista soccer_players_list
 		&:extend(.soccer-players-list .soccer-players-list-slot);
 		&:nth-last-child(2){ 
@@ -35,18 +36,30 @@ lineup-selector {
 			.opensans_bold(9pt, @greyDark);
 		}
 		.column-primary-info {
-			.make-xs-column(7, @lineup-selector-gutter);
-			.make-md-column(7, @lineup-selector-gutter);
+			.make-xs-column(6.3, @lineup-selector-gutter);
+			.make-md-column(6.3, @lineup-selector-gutter);
 			line-height: 10pt;
 			
 			.soccer-player-name {
-				&:extend(.soccer-players-list .soccer-players-list-slot .column-primary-info .soccer-player-name);
+				&:extend(.soccer-players-list .soccer-players-list-slot .soccer-player-info .column-primary-info .soccer-player-name);
 			}
 			.match-event-name {
-				&:extend(.soccer-players-list .soccer-players-list-slot .column-primary-info .match-event-name);
+				&:extend(.soccer-players-list .soccer-players-list-slot .soccer-player-info .column-primary-info .match-event-name);
 			}
 		}
 
+		.column-gold-cost{
+			.make-xs-column(2.7, @lineup-pos-selector-gutter);
+			
+			text-align: right;
+			.coins-amount {
+				line-height: 42px;
+				.opensans_bold(9pt, @greyDark);
+				&:after {
+					.addIcon("icon-coin-xs.png", 12pt, 12pt);
+				}
+			}
+		}
 		// Mostraremos o column-primary-info o column-empty-slot (desde dart)
 		.column-empty-slot {
 			.make-xs-column(9, @lineup-selector-gutter);
@@ -55,7 +68,7 @@ lineup-selector {
 		}
 
 		.column-salary {
-			&:extend(.soccer-players-list .soccer-players-list-slot .column-salary);
+			&:extend(.soccer-players-list .soccer-players-list-slot .soccer-player-info .column-salary);
 			.opensans_bold(9pt, @greyDark);
 			text-align: right;
 		}

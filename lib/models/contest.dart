@@ -54,6 +54,9 @@ class Contest {
 
   int salaryCap;
 
+  bool simulation = false;
+  String specialImage;
+
   String get printableSalaryCap => StringUtils.parseSalary(salaryCap);
 
 
@@ -68,10 +71,11 @@ class Contest {
 
   Money entryFee;
   String prizeType;
+  num prizeMultiplier;
 
   Prize get prize {
     if (_prize == null) {
-      _prize = PrizesService.getPrize(Prize.getKey(prizeType, maxEntries, entryFee));
+      _prize = PrizesService.getPrize(Prize.getKey(prizeType, maxEntries, _prizePool));
     }
     return _prize;
   }
@@ -86,9 +90,9 @@ class Contest {
    // print("estado del concurso: ${state}");
     /* los partidos en vivo o en history no continen los participantes que tiene el concurso */
     if(isLive || isHistory) {
-      return "${tournamentTypeName} - Salary cap: ${printableSalaryCap}";
+      return "${tournamentTypeName}";
     }
-    return "${tournamentTypeName}: ${numEntries} of ${maxEntries} contenders - Salary cap: ${printableSalaryCap}";
+    return "${tournamentTypeName}: ${numEntries} ${StringUtils.translate("of", "contest")} ${maxEntries} ${StringUtils.translate("contenders", "contest")}";
   }
 
   List<ContestEntry> get contestEntriesOrderByPoints {
@@ -112,6 +116,12 @@ class Contest {
   bool get isActive   => state == "ACTIVE";
   bool get isLive     => state == "LIVE";
   bool get isHistory  => state == "HISTORY";
+  bool get isSimulation => simulation;
+  bool get hasSpecialImage => specialImage != null && !specialImage.isEmpty;
+
+  bool get needGold => entryFee.isGold;
+  bool get needManagerPoints => entryFee.isManagerPoints;
+  bool get needEnergy => entryFee.isEnergy;
 
   Money get prizePool => _prizePool;
   String get prizeTypeName => Prize.typeNames[prizeType];
@@ -120,10 +130,10 @@ class Contest {
 
   Map<String,String> get tournamentTypeNames {
     return {
-      TOURNAMENT_FREE: "Free",
-      TOURNAMENT_HEAD_TO_HEAD: "Head to Head",
-      TOURNAMENT_LEAGUE: "League",
-      TOURNAMENT_FIFTY_FIFTY: "50/50"
+      TOURNAMENT_FREE: StringUtils.translate("contestfree", "contest"),
+      TOURNAMENT_HEAD_TO_HEAD: StringUtils.translate("contestheadtohead", "contest"),
+      TOURNAMENT_LEAGUE: StringUtils.translate("contestleague", "contest"),
+      TOURNAMENT_FIFTY_FIFTY: StringUtils.translate("contestfifty", "contest")
     };
   }
 
@@ -251,11 +261,16 @@ class Contest {
     salaryCap = jsonMap["salaryCap"];
     entryFee = new Money.fromJsonObject(jsonMap["entryFee"]);
     prizeType = jsonMap["prizeType"];
+    prizeMultiplier = jsonMap.containsKey("prizeMultiplier") ? jsonMap["prizeMultiplier"] : 0.9;
+    simulation = jsonMap.containsKey("simulation") ? jsonMap["simulation"] : false;
+    specialImage = jsonMap.containsKey("specialImage") ? jsonMap["specialImage"] : null;
+
     startDate = DateTimeService.fromMillisecondsSinceEpoch(jsonMap["startDate"]);
     optaCompetitionId = jsonMap.containsKey("optaCompetitionId") && (jsonMap["optaCompetitionId"] != null) ? jsonMap["optaCompetitionId"] : "";
     matchEvents = jsonMap.containsKey("templateMatchEventIds") ? jsonMap["templateMatchEventIds"].map( (matchEventId) => references.getMatchEventById(matchEventId) ).toList() : [];
 
-    _prizePool = new Money.fromValue((maxEntries * entryFee.amount) * 90 / 100);
+    String prizeCurrency = entryFee.isEnergy ? Money.CURRENCY_MANAGER : Money.CURRENCY_GOLD;
+    _prizePool = new Money.from(prizeCurrency, maxEntries * entryFee.amount * prizeMultiplier);
 
     instanceSoccerPlayers = {};
     if (jsonMap.containsKey("instanceSoccerPlayers")) {

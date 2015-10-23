@@ -6,14 +6,20 @@
 @import "animations.less";
 
 @import "contest_header_comp.less";
+@import "contest_header_f2p_comp.less";
 @import "teams_panel_comp.less";
 @import "contest_info_comp.less";
+@import "contests_list_f2p_comp.less";
 @import "scoring_rules_comp.less";
 @import "contest_list_comp.less";
 @import "edit_personal_data_comp.less";
 @import "add_funds_comp.less";
 @import "withdraw_funds_comp.less";
 @import "transaction_history_comp.less";
+@import "shop_comp.less";
+@import "shop_gold_comp.less";
+@import "shop_energy_comp.less";
+@import "shop_trainer_points_comp.less";
 
 @import "fantasy_team_comp.less";
 @import "footer_comp.less";
@@ -21,9 +27,12 @@
 @import "landing_page_obsolete_browser_comp.less";
 
 @import "view_contest_comp.less";
-@import "lobby_comp.less";
+//@import "lobby_comp.less";
+@import "lobby_f2p_comp.less";
+@import "week_calendar_comp.less";
 @import "contest_filters_comp.less";
-@import "main_menu_slide_comp.less";
+//@import "main_menu_slide_comp.less";
+@import "main_menu_f2p_comp.less";
 @import "my_contest_comp.less";
 @import "paginator_comp.less";
 @import "promos_comp.less";
@@ -34,6 +43,7 @@
 @import "soccer_players_filter_comp.less";
 @import "matches_filter_comp.less";
 @import "lineup_selector_comp.less";
+@import "leaderboard_comp.less";
 
 @import "user_forms_components.less";
 @import "users_list_comp.less";
@@ -44,7 +54,9 @@
 @import "beta_info_comp.less";
 @import "restricted_comp.less";
 @import "maintenance.less";
-@import "simple_promo_viewer_comp.less";
+//@import "simple_promo_viewer_comp.less";
+@import "simple_promo_f2p.less";
+@import "lobby_calendar_comp.less";
 
 // Otros css del proyecto, para incluirlos todos en nuestro .css principal	
 @import "../flags/flags.less";
@@ -70,7 +82,7 @@ html { overflow-y: scroll; }
 
 // El modal viene en boostrap como overflow-y: scroll (siempre se ve barra). Preferimos
 // que solo se vea si realmente se necesita.
-#modalRoot { overflow-y: auto; }
+#modalRoot, #alertRoot { overflow-y: auto; }
 
 #mainApp { height: 100%; }
 
@@ -117,7 +129,7 @@ body {
 
 .global-logged-in .wrapper-content-container {
 	max-width: 970px;
-	background-color: @white;
+	background-color: @greyLight;
 }
 
 
@@ -455,10 +467,50 @@ body {
 	z-index:99999;
 	.slide-in-from-bottom-animation();
 }
-
+ 
 .epicGlobalMessage {
 	.globalMessage();
 	border-color: @white;
 	background-color: @blueDark;
 	color: @white;
+}
+
+.make-shadow(@offsetH, @offsetV, @radius, @spread, @color:@greyUltraDark, @opacity) {
+	-webkit-box-shadow: @offsetH @offsetV @radius @spread rgba(red(@color), green(@color), blue(@color), @opacity);
+	-moz-box-shadow: 	@offsetH @offsetV @radius @spread rgba(red(@color), green(@color), blue(@color), @opacity);
+	box-shadow: 		@offsetH @offsetV @radius @spread rgba(red(@color), green(@color), blue(@color), @opacity);
+}
+
+.modal-properties-default {
+	background-color: @greyUltraDark;
+	color: @white;
+	padding: 5px;
+	.modal-content {
+		.make-row(0);
+		.clean-paddings();
+	}
+	//Configuramos los tamaños de la modal...
+	@media (min-width: @screen-sm-min) {
+		background-color: @greyLight;
+		.modal-dialog {
+			width: 90%;
+			max-width: 900px;
+		}
+	}
+	//... en XS ocupa todo el ancho
+	@media (max-width: @screen-xs-max) {
+		#modalRoot {			
+			.make-border(1px, solid none none none, @orangeHeaderLight);
+			top: 68px;
+			background-color: @white;
+			.modal-dialog {
+				margin: 0;			
+				.modal-content {
+					border: none;
+					border-radius: 0;
+					box-shadow: none;
+				}
+			}
+		}
+	}
 }

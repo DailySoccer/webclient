@@ -1,0 +1,186 @@
+#energyshopComp {
+	.modal-properties-default();
+	.modal-content {background-color: @greyLight;}
+
+	.content {
+		.container-fluid();
+		//margin-bottom: 15px;
+		.clean-paddings();
+	}
+
+	.content-banner {
+		overflow: hidden;
+		position: relative;
+		margin: 15px;
+		height: 220px;
+		//.hidden-xs();		
+		img {
+			position: absolute;
+			left: 50%;
+			margin-left: -512px;
+			top: 50%;
+			margin-top: -110px;
+		}
+	}
+
+	.products-wrapper {
+	 	.make-row(0);
+	 	.product {
+	 		.make-xs-column(12);
+	 		.make-sm-column(6);
+	 		position: relative;
+	 		cursor: pointer;
+	 		height: 80px;
+			margin-top: 10px;
+			@media (max-width: @screen-xs-min) {
+				padding: 0 3px;
+			}
+			.slot-base {
+				height: 80px;
+				.make-shadow(-7px, 6px, 5px, -2px, @greyUltraDark, 0.5);
+				> * {
+					height: 100%;
+					display: inline-block;
+				}
+				.shop-item-left {					
+					width: 104px;
+					@media (max-width: @screen-xs-min) {
+						width: 89px;
+					}
+					background: url("@{images}/shopItemBgLeft.png") no-repeat right;
+				}
+				.shop-item-middle {					
+					left: 119px;
+					right: 195px;
+					@media (max-width: @screen-xs-min) {
+						left: 92px;
+						right: 183px;
+					}
+					position: absolute;
+					background: url("@{images}/shopItemBgMiddle.png") repeat;
+				}					
+				.shop-item-right {
+					width: 195px;
+					float: right;
+					background: url("@{images}/shopItemBgRight.png") no-repeat left;
+				}
+	 		}
+	 		.shop-item-pattern {
+				position: absolute;
+				right: 15px;
+				left: 15px;
+				@media (max-width: @screen-xs-min) {
+					right: 3px;
+					left: 3px;
+				}
+				top: 0;
+				height: 80px;
+				background: url("../images/shopItemPattern.png") repeat;
+			}
+	 		.slot-content {
+	 			position: relative;
+	 			top: -80px;
+	 			height: 80px;
+	 			& .image-column, .quantity-column, .price-column {
+					height: 100%;
+					display: inline-block;
+				}
+				/* temporal */
+				span {
+					.opensans_normal(10pt, @white);
+				}
+				/* temporal */
+	 			.image-column {
+	 				width: 104px;
+	 			}
+	 			.shop-item-popular {
+	 				position: absolute;
+	 				top: 0;
+	 			}
+	 			.quantity-column {					
+					left: 105px;
+					right: 10px;
+					@media (max-width: @screen-xs-min) {
+						left: 90px;
+						right: 30px;
+					}
+					position: absolute;
+					text-align: center;
+					padding: 10px 0;
+
+					.product-description {
+						display: block;
+						.opensans_normal(10pt, @white);
+					}
+					.product-count {
+						display: block;
+						.exo_light(28pt, @white);
+						&:after{
+							.addIcon("icon-coin-lg.png", 27px, 27px);
+							vertical-align: baseline;
+							position: relative;
+							left: 4px;
+						}
+					}
+					.product-time-left {
+						display: block;
+						.exo_light(28pt, @white);
+					}
+				}		
+				.price-column {
+					width: 104px;
+					float: right;
+					text-align: center;
+					.free-increment {
+						margin: 10px auto 0 auto; 
+						.size(56px, 37px);
+						background: url("@{images}/BuyGoldFreeBase.png");
+						.free-increment-count {
+							display: block; 
+							padding-top: 1px;
+							.opensans_bold(13pt, @white);
+						}
+	              		.free-increment-desc {
+							display: block;
+							.opensans_bold(7pt, @white);
+	              		}
+	              	}
+	              	.product-price {
+	              		display: block;
+						.opensans_normal(14pt, @blueMenu);
+						&.no-frees {
+							margin-top: 45px;
+						}
+	              	}
+				}
+		 	}
+		 	&.no-purchasable{
+				cursor: auto;				
+				.slot-base .shop-item-right {
+					background: url("@{images}/shopItemBgRightNoPuchasable.jpg") repeat;
+				}
+			}
+	 	}
+	}
+	
+	.buttons-wrapper {
+		text-align: center;
+		max-width: 150px;
+		margin: 25px auto;
+		.button-box{
+			display:inline-block;
+			height: 30px;
+			min-width: 33%;
+			padding-left: 5px;
+			padding-right: 5px;
+		}
+		.button-properties {
+			margin: 0 5px 0 5px;
+			.make-xs-column(12);
+		}
+		.cancel-button {
+			.btn-cancel();
+			.button-properties();
+		}
+	}
+}

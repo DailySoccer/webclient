@@ -1,64 +1,54 @@
 <div id="viewProfileContent">
   <div class="profile-content">
 
-    <div class="personal-data">
+    <div class="personal-data profile-section">
       <div class="data-header">
-        <span class="data-header-title">My Account</span>
-        <div class="close-profile">
-          <button type="button" class="close" ng-click="closeProfile()">
-            <span class="glyphicon glyphicon-remove"></span>
-          </button>
+        <span class="data-header-title">{{getLocalizedText("title")}}</span>
+      </div>
+      <div class="data-content">
+        <div class="data-row"><span class="data-key">{{getLocalizedText("fullname")}}:</span><span class="data-value">{{userData.firstName + ' ' + userData.lastName}}</span></div>
+        <div class="data-row"><span class="data-key">{{getLocalizedText("nick")}}:</span><span class="data-value">{{userData.nickName}}</span></div>
+        <div class="data-row"><span class="data-key">{{getLocalizedText("email")}}:</span><span class="data-value">{{userData.email}}</span></div>
+        <div class="data-row"><span class="data-key">{{getLocalizedText("pass")}}:</span><span class="data-value">********</span></div>
+      </div>
+      <div class="data-action">
+        <button class="action-button edit-button" ng-click="editPersonalData()">{{getLocalizedText("buttonedit")}}</button>
+      </div>
+    </div>
+
+    <div class="pocket-data profile-section">
+      <div class="data-header">
+          <span class="data-header-title">{{getLocalizedText("wallet")}}</span>
+      </div>
+      <div class="data-content">
+        <div class="data-row">
+          <div class="wrapper-box"> <span class="data-value-coins">{{userData.balance}}</span><img class="coin-icon" src="images/icon-coin-lg.png"> </div>
         </div>
-        <div class="button-wrapper"><button class="action-button" ng-click="editPersonalData()">EDIT</button></div>
-
       </div>
-      <div class="bloque-sm">
-        <div class="data-row"><span class="data-key">Full Name:</span><span class="data-value">{{userData.firstName + ' ' + userData.lastName}}</span></div>
-        <div class="data-row"><span class="data-key">Nick:</span><span class="data-value">{{userData.nickName}}</span></div>
-        <div class="data-row"><span class="data-key">Email:</span><span class="data-value">{{userData.email}}</span></div>
-        <div class="data-row"><span class="data-key">Password:</span><span class="data-value">********</span></div>
+      <div class="data-action">
+        <button class="action-button buy-button" ng-click="goBuyGold()">{{getLocalizedText("buttonbuy")}}</button>
       </div>
-      <!--
-      <div class="bloque-sm">
-        <div class="data-row"><span class="data-key">Pais:</span><span class="data-value">&lt; Pais &gt;</span></div>
-        <div class="data-row"><span class="data-key">Region:</span><span class="data-value">&lt; Region &gt;</span></div>
-        <div class="data-row"><span class="data-key">Ciudad:</span><span class="data-value">&lt; Ciudad &gt;</span></div>
-        <div class="data-row"><span class="data-key">Notificaciones:</span><span class="data-value">&lt; Notificaciones &gt;</span></div>
-      </div>
-      -->
     </div>
-
-    <div class="pocket-data">
+    <div class="ranking-data profile-section">
       <div class="data-header">
-          <span class="data-header-title">WALLET</span>
-          <div class="button-wrapper">
-            <button class="action-button-transaction" ng-click="goTransactions()">TRANSACTIONS</button>
-            <button class="action-button-get-funds" ng-click="goWithdrawFounds()">WITHDRAW FUNDS</button>
-          </div>
-       </div>
-      <div class="data-container-9">
-        <div class="data-row"><span class="data-key">Actual balance:</span><span class="data-value-balance">{{userData.balance}}</span></div>
-        <div class="data-row"><span class="data-key">Pending bonus:</span><span class="data-value">{{userData.bonus}}</span></div-->
+          <span class="data-header-title">{{getLocalizedText("ranking")}}</span>
       </div>
-      <div class="data-container-3">
-        <button class="add-funds-button" ng-click="goAddFounds()">ADD FUNDS</button>
+      <div class="data-content">
+        <div class="single-ranking-info ranking-by-points wrapper-box">
+          <img class="ranking-badge" src="images/icon-Ranking-Skill-Blue.png">
+          <span class="ranking-position" ng-show="!loadingService.isLoading">{{rankingPointsPosition}}º</span>
+          <span class="ranking-score" ng-show="!loadingService.isLoading">{{rankingPoints}} {{getLocalizedText("abrevpoints", "common")}}</span>
+        </div>
+        <div class="single-ranking-info ranking-by-money wrapper-box">
+        
+          <img class="ranking-badge" src="images/icon-coin-lg.png">
+          <span class="ranking-position" ng-show="!loadingService.isLoading">{{rankingMoneyPosition}}º</span>
+          <span class="ranking-score" ng-show="!loadingService.isLoading">{{rankingMoney}}</span>
+        </div>
       </div>
-    </div>
-
-    <div class="epicpoints-data">
-      <div class="data-header"><span class="data-header-title">EPIC POINTS</span></div>
-      <div class="data-row">
-        <div class="data-column"><span class="data-key">E11P BALANCE:</span><span class="data-value">--€</span></div>
-        <div class="data-column"><span class="data-key">&lt;ulti-month&gt;:</span><span class="data-value">--€</span></div>
-      </div>
-      <div class="data-row">
-        <div class="data-column"><span class="data-key">THIS MONTH:</span><span class="data-value">--€</span></div>
-        <div class="data-column"><span class="data-key">&lt;penul-month&gt;:</span><span class="data-value">--€</span></div>
-        <div class="data-column"><a class="data-link" href="">How to use your EPs?</a></div>
+      <div class="data-action">
+        <button class="action-button ranking-table-button" ng-click="goLeaderboard()">{{getLocalizedText("buttonrankingtable")}}</button>
       </div>
     </div>
   </div>
-
-
-
 </div>

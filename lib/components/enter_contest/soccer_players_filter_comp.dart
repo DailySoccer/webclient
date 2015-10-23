@@ -3,6 +3,7 @@ library soccer_players_filter_comp;
 import 'package:angular/angular.dart';
 import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/services/screen_detector_service.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 @Component(
     selector: 'soccer-players-filter',
@@ -13,13 +14,7 @@ class SoccerPlayersFilterComp implements AttachAware {
 
   ScreenDetectorService scrDet;
 
-  List<FieldPos> posFilterList = [
-      null,
-      new FieldPos("GOALKEEPER"),
-      new FieldPos("DEFENSE"),
-      new FieldPos("MIDDLE"),
-      new FieldPos("FORWARD")
-    ];
+  List<FieldPos> posFilterList;
 
   @NgTwoWay("name-filter")
   String nameFilter;
@@ -30,13 +25,24 @@ class SoccerPlayersFilterComp implements AttachAware {
     _fieldPosFilter = value;
   }
 
+  String getLocalizedText(key, {group: "soccerplayerpositions"}) {
+    return StringUtils.translate(key, group);
+  }
+
   SoccerPlayersFilterComp(this.scrDet);
 
 
   @override void attach() {
+    posFilterList = [
+        null,
+        new FieldPos(getLocalizedText("goalkeeper")),
+        new FieldPos(getLocalizedText("defense")),
+        new FieldPos(getLocalizedText("middle")),
+        new FieldPos(getLocalizedText("forward"))
+      ];
     // En movil podemos empezar directamente filtrados
     if (scrDet.isXsScreen) {
-      _fieldPosFilter = new FieldPos("GOALKEEPER");
+      _fieldPosFilter = new FieldPos(getLocalizedText("goalkeeper"));
     }
     else {
       // Tentativamente vamos a empezar con los delanteros en desktop
@@ -45,7 +51,7 @@ class SoccerPlayersFilterComp implements AttachAware {
   }
 
   String getClassForFieldPos(FieldPos fieldPos) => fieldPos == fieldPosFilter? "active" : "";
-  String getTextForFieldPos(FieldPos fieldPos)  => fieldPos == null? "ALL" : fieldPos.abrevName;
+  String getTextForFieldPos(FieldPos fieldPos)  => fieldPos == null? StringUtils.translate("all", "soccerplayerpositions") : fieldPos.abrevName;
 
   FieldPos _fieldPosFilter;
   String _nameFilter;

@@ -13,6 +13,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <meta property="og:url"          content="http://www.epiceleven.com" />
+    <meta property="og:type"         content="article" />
+    <meta property="og:title"        content="Epic Eleven" />
+    <meta property="og:description"  content="Play football fantasy leagues" />
+    <meta property="og:image"        content="http://www.epiceleven.com/images/logoEpic11-2x.png" />
+
     <title>Epic Eleven</title>
 
     <!-- Nuestros estilos compilados con less. Cuando compilamos nuestro styles.less (para dar nuestro styles.css) arrastramos
@@ -120,11 +127,12 @@
     </script>
 
     <div id="mainApp" ng-app>
-      <main-menu-slide></main-menu-slide>
+      <main-menu-f2p id="mainAppMenu"></main-menu-f2p>
       <div id="mainWrapper" class="wrapper-content-container">
         <div id="mainContent" class="main-content-container">
           <flash-messages></flash-messages>
           <ng-view></ng-view>
+          <div id="modalWindow"></div>
         </div>
       </div>
       <footer></footer>
@@ -132,9 +140,32 @@
 
     <script src="js/jquery.min.js"></script>
     <script>
+      // facebook sdk
+      // https://developers.facebook.com/docs/javascript/examples
+
       function facebookLogin(callback) {
         console.log("js facebook login");
         FB.login(callback, {scope: 'email,user_likes'});
+      }
+
+      function facebookPublish(body, dartCallback) {
+        // facebook ui sdk
+        // https://developers.facebook.com/docs/javascript/reference/FB.ui
+        // open graph markup
+        // https://developers.facebook.com/docs/sharing/webmasters#markup
+        FB.ui( {
+          method: 'share',
+          href: 'https://dl.dropboxusercontent.com/u/15392112/htmlPublic/e11-publishTest.html'
+        }, function(response){ dartCallback(); });
+        /*
+        FB.ui({
+          method: 'share_open_graph',
+          action_type: 'og.likes',
+          action_properties: JSON.stringify({
+              object:'https://dl.dropboxusercontent.com/u/15392112/htmlPublic/e11-publishTest.html',
+          })
+        }, function(response){ dartCallback(); });
+        */
       }
 
       function onjQueryReady(dartCallback) {
@@ -172,6 +203,7 @@
 
     <!-- Facebook Stuff -->
     <script>
+
      window.fbAsyncInit = function() {
        FB.init({
          appId      : '865176766847011',
@@ -187,6 +219,7 @@
         js.src = "https://connect.facebook.net/en_US/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
+
     </script>
 
 

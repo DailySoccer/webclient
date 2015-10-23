@@ -12,6 +12,7 @@ import 'package:webclient/models/contest_entry.dart';
 import 'dart:html';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/server_error.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 @Component(
    selector: 'view-contest-entry',
@@ -39,6 +40,10 @@ class ViewContestEntryComp {
   bool get isModeCreated => _viewContestEntryMode == "created"; // Acabamos de crearla a traves de enter_contest
   bool get isModeEdited  => _viewContestEntryMode == "edited";  // Venimos de editarla a traves de enter_contest.
   bool get isModeSwapped => _viewContestEntryMode == "swapped"; // Acabamos de crearla pero el servidor nos cambio a otro concurso pq el nuestro estaba lleno.
+
+  String getLocalizedText(key, [Map substitutions]) {
+    return StringUtils.translate(key, "viewcontestentry", substitutions);
+  }
 
   ViewContestEntryComp(this._routeProvider, this.scrDet, this._contestsService, this._profileService, this._router, this.loadingService) {
     loadingService.isLoading = true;
@@ -73,12 +78,12 @@ class ViewContestEntryComp {
 
   void confirmContestCancellation(){
     modalShow(
-                "¡Caution!",
+                getLocalizedText("alertcanceltitle"),
                 contest.entryFee.amount > 0 ?
-                  "You are going to cancel your participation in this constest.<br><br>The entry fee of ${contest.entryFee} will be refounded if you decide to leave.<br><br>¿Are you sure?<br><br>" :
-                  "You are going to cancel your participation in the contest<br><br>¿Are you sure?<br><br>",
-                onOk: "Yes",
-                onCancel: "No"
+                  getLocalizedText("alertcancelpaidcontest",{'PRICE' : contest.entryFee}) :
+                  getLocalizedText("alertcancelcontest"),
+                onOk: getLocalizedText("alertbuttonyes"),
+                onCancel: getLocalizedText("alertbuttonno")
              )
              .then((resp){
                 if(resp) {
@@ -86,7 +91,6 @@ class ViewContestEntryComp {
                   window.localStorage.remove(_getKeyForCurrentUserContest);
                 }
               });
-
   }
 
 

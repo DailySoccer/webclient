@@ -74,6 +74,16 @@ class JoinComp implements ShadowRootAware {
 
   bool get enabledSubmit => nickName.length >= MIN_NICKNAME_LENGTH && StringUtils.isValidEmail(email) && password.length >= MIN_PASSWORD_LENGTH && password == rePassword && _enabledSubmit;
 
+  String getLocalizedText(key) {
+    String str = StringUtils.translate(key, "join")
+              .replaceAll("@MIN_NICKNAME_LENGTH", MIN_NICKNAME_LENGTH.toString())
+              .replaceAll("@MAX_NICKNAME_LENGTH", MAX_NICKNAME_LENGTH.toString())
+              .replaceAll("@MIN_PASSWORD_LENGTH", MIN_PASSWORD_LENGTH.toString());
+
+    return str;
+  }
+
+
   JoinComp(this._router, this._routeProvider, this._profileService, this.loadingService, this._rootElement, this._scrDet) {
     _fbLogin = new FBLogin(_router, _profileService, () => isModal ? ModalComp.close() : _router.go('lobby', {}));
   }
@@ -241,7 +251,7 @@ class JoinComp implements ShadowRootAware {
         break;
 
       case "CANCEL":
-        isModal ? ModalComp.close() : _router.go('landing_page', {});
+        isModal ? ModalComp.close() : _router.go('lobby', {});
         break;
 
       case "LOGIN":

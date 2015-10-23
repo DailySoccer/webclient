@@ -1,4 +1,4 @@
-library soccer_player_stats_comp;
+ library soccer_player_stats_comp;
 
 import 'dart:html';
 
@@ -34,31 +34,65 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
   Map currentInfoData;
   bool selectablePlayer;
 
-  bool isGoalkeeper() => currentInfoData['fieldPos'] == "GK";
+  bool isGoalkeeper() => currentInfoData['fieldPos'] == StringUtils.translate("gk", "soccerplayerpositions");
 
-  String get printableSalary => StringUtils.parseSalary(currentInfoData['salary']);
+  String get printableSalary => currentInfoData != null? StringUtils.parseSalary(currentInfoData['salary']) : "0";
 
   //Listas para las estadísticas ordenadas
-  static List<String> goalKeeperStatsList   = ["GOLES_ENCAJADOS", "PARADAS", "DESPEJES", "PENALTIS_DETENIDOS", "PASES", "RECUPERACIONES", "PERDIDAS_BALON", "FALTAS_COMETIDAS", "TARJETAS_AMARILLAS", "TARJETAS_ROJAS"];
-  static List<String> commonPlayerStatsList = ["GOLES", "TIROS", "PASES", "ASISTENCIAS", "REGATES", "RECUPERACIONES", "PERDIDAS_BALON", "FALTAS_COMETIDAS", "FALTAS_RECIBIDAS", "TARJETAS_AMARILLAS", "TARJETAS_ROJAS"];
+  static List<String> get goalKeeperStatsList   => [
+    getCodeData("keygoalsconceded"),
+    getCodeData("keysaves"),
+    getCodeData("keyclearances"),
+    getCodeData("keypenaltiessaved"),
+    getCodeData("keypasses"),
+    getCodeData("keyrecovers"),
+    getCodeData("keyposslost"),
+    getCodeData("keyfoulscommited"),
+    getCodeData("keyyellowcards"),
+    getCodeData("keyredcards")
+  ];
 
-  Map mappedFieldNames = {
-                "PASES"               : {"shortName" : "P",  "description" : 'Passes'},
-                "RECUPERACIONES"      : {"shortName" : "R", "description" : 'Recoveries'},
-                "PERDIDAS_BALON"      : {"shortName" : "PL", "description" : 'Possession lost'},
-                "FALTAS_COMETIDAS"    : {"shortName" : "F", "description" : 'Fouls Committed'},
-                "TARJETAS_AMARILLAS"  : {"shortName" : "YC", "description" : 'Yellow Cards'},
-                "TARJETAS_ROJAS"      : {"shortName" : "RC", "description" : 'Red Cards'},
-                "GOLES_ENCAJADOS"     : {"shortName" : "GC", "description" : 'Goals Conceded'},
-                "PARADAS"             : {"shortName" : "S", "description" : 'Saves'},
-                "DESPEJES"            : {"shortName" : "C",  "description" : 'Clearances'},
-                "PENALTIS_DETENIDOS"  : {"shortName" : "PS", "description" : 'Penalties Saved'},
-                "GOLES"               : {"shortName" : "G",  "description" : 'Goals'},
-                "TIROS"               : {"shortName" : "SH",  "description" : 'Shots'},
-                "ASISTENCIAS"         : {"shortName" : "CH",  "description" : 'Chances Created'},
-                "REGATES"             : {"shortName" : "T",  "description" : 'Take-ons'},
-                "FALTAS_RECIBIDAS"    : {"shortName" : "FC", "description" : 'Fouls Conceded'}
+  static List<String> get commonPlayerStatsList => [
+    getCodeData("keygoals"),
+    getCodeData("keyshots") ,
+    getCodeData("keypasses"),
+    getCodeData("keychancescreated"),
+    getCodeData("keytakeons") ,
+    getCodeData("keyrecovers"),
+    getCodeData("keyposslost"),
+    getCodeData("keyfoulscommited"),
+    getCodeData("keyfoulsconceded"),
+    getCodeData("keyyellowcards"),
+    getCodeData("keyredcards")
+  ];
+
+  Map get mappedFieldNames => {
+    getCodeData("keypasses")          : {"shortName" : getCodeData("abrevpasses"),        "description" : getCodeData("descpasses")},
+    getCodeData("keyrecovers")        : {"shortName" : getCodeData("abrevrecovers"),      "description" : getCodeData("descrecovers")},
+    getCodeData("keyposslost")        : {"shortName" : getCodeData("abrevposslost"),      "description" : getCodeData("descposslost")},
+    getCodeData("keyfoulscommited")   : {"shortName" : getCodeData("abrevfoulscommited"), "description" : getCodeData("descfoulscommited")},
+    getCodeData("keyyellowcards")     : {"shortName" : getCodeData("abrevyellowcards"),   "description" : getCodeData("descyellowcards")},
+    getCodeData("keyredcards")        : {"shortName" : getCodeData("abrevredcards"),      "description" : getCodeData("descredcards")},
+    getCodeData("keygoalsconceded")   : {"shortName" : getCodeData("abrevgoalsconceded"), "description" : getCodeData("descgoalsconceded")},
+    getCodeData("keysaves")           : {"shortName" : getCodeData("abrevsaves"),         "description" : getCodeData("descsaves")},
+    getCodeData("keyclearances")      : {"shortName" : getCodeData("abrevclearances"),    "description" : getCodeData("descclearances")},
+    getCodeData("keypenaltiessaved")  : {"shortName" : getCodeData("abrevpenaltiessaved"),"description" : getCodeData("descpenaltiessaved")},
+    getCodeData("keygoals")           : {"shortName" : getCodeData("abrevgoals"),         "description" : getCodeData("descgoals")},
+    getCodeData("keyshots")           : {"shortName" : getCodeData("abrevshots"),         "description" : getCodeData("descshots")},
+    getCodeData("keychancescreated")  : {"shortName" : getCodeData("abrevchancescreated"),"description" : getCodeData("descchancescreated")},
+    getCodeData("keytakeons")         : {"shortName" : getCodeData("abrevtakeons") ,      "description" : getCodeData("desctakeons") },
+    getCodeData("keyfoulsconceded")   : {"shortName" : getCodeData("abrevfoulsconceded"), "description" : getCodeData("descfoulsconceded")}
   };
+
+  static String getCodeData(String key) {
+    return StringUtils.translate(key, "soccerplayerstats");
+  }
+  String getLocalizedText(String key) {
+    return StringUtils.translate(key, "soccerplayerstats");
+  }
+  String getUppercaseLocalizedText(String key) {
+    return getLocalizedText(key).toUpperCase();
+  }
 
   SoccerPlayerStatsComp(this._flashMessage, this.scrDet, this._soccerPlayerService, RouteProvider routeProvider, Router router, this._rootElement) {
 
@@ -129,7 +163,7 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
       matchEventDate = " (${DateTimeService.formatDateTimeShort(nextMatchEvent.startDate)})";
     }
 
-    return ("NEXT MATCH: " + matchEventName + matchEventDate);
+    return ("${getLocalizedText('next-match')}: " + matchEventName + matchEventDate);
   }
 
   void updateSoccerPlayerInfoFromService() {
@@ -169,19 +203,47 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
 
     seasonResumeStats.clear();
     seasonsList.clear();
-    seasonTableHeaders = ['Date', 'Opponent', 'Daily Fantasy Points', 'Minutes'];
+    seasonTableHeaders = [
+      getCodeData("date"),
+      getCodeData("opponent"),
+      getCodeData("dailyfantasypoints"),
+      getCodeData("minutes")
+    ];
 
     if(isGoalkeeper()) {
       goalKeeperStatsList.forEach((key) {
         _totalSums[key] = 0;
       });
-      seasonTableHeaders.addAll(['Goals Conceded', 'Saves', 'Clearances', 'Saved Penalties', 'Passes', 'Recoveries', 'Possession Lost', 'Fouls Committed', 'Yellow Cards', 'Red Cards']);
+      seasonTableHeaders.addAll([
+        getCodeData("descgoalsconceded"),
+        getCodeData("descsaves"),
+        getCodeData("descclearances"),
+        getCodeData("descpenaltiessaved"),
+        getCodeData("descpasses"),
+        getCodeData("descrecovers"),
+        getCodeData("posessionlost"),
+        getCodeData("descfoulscommited"),
+        getCodeData("descyellowcards"),
+        getCodeData("descredcards")
+      ]);
     }
     else {
       commonPlayerStatsList.forEach((key) {
         _totalSums[key] = 0;
       });
-      seasonTableHeaders.addAll(['Goals', 'Shots', 'Passes', 'Assists', 'Take-ons', 'Recoveries', 'Possession lost', 'Fouls Committed', 'Fouls Conceded', 'Yellow Cards', 'Red Cards']);
+      seasonTableHeaders.addAll([
+        getCodeData("descgoals"),
+        getCodeData("descshots"),
+        getCodeData("descpasses"),
+        getCodeData("descchancescreated"),
+        getCodeData("desctakeons"),
+        getCodeData("descrecovers"),
+        getCodeData("posessionlost"),
+        getCodeData("descfoulscommited"),
+        getCodeData("descfoulsconceded"),
+        getCodeData("descyellowcards"),
+        getCodeData("descredcards")
+      ]);
     }
   }
 

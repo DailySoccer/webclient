@@ -1,13 +1,13 @@
 <section>
 
-  <contest-header id="contestHeader" contest="contest" contest-id="contestId"></contest-header>
+  <contest-header-f2p id="contestHeader" contest="contest" contest-id="contestId"></contest-header-f2p>
 
   <div id="viewContestRoot" ng-switch="scrDet.isXsScreen" >
     <div ng-switch-when="true">
      <!-- Tabs de la versión XS -->
       <ul class="view-contest-tabs" id="liveContestTab" >
-        <li class="active"> <a id="userFantasyTeamTab" ng-click="tabChange('userFantasyTeam')">Your lineup</a></li>
-        <li>                <a id="usersListTab" ng-click="tabChange('usersList')">Users</a></li>
+        <li class="active"> <a id="userFantasyTeamTab" ng-click="tabChange('userFantasyTeam')">{{getLocalizedText("yourlineup")}}</a></li>
+        <li>                <a id="usersListTab" ng-click="tabChange('usersList')">{{getLocalizedText("users")}}</a></li>
         <li ng-disabled="!isOpponentSelected"><a id="opponentFantasyTeamTab" ng-click="tabChange('opponentFantasyTeam')">{{lastOpponentSelected}}</a></li>
       </ul>
 

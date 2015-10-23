@@ -7,37 +7,37 @@ primeTemplateCache(TemplateCache tc) {
 tc.put("packages/webclient/components/account/add_funds_comp.html", new HttpResponse(200, r"""<div id="addFundsContent">
 
   <!-- header title -->
-  <div class="default-section-header">ADD FUNDS</div>
+  <div class="default-section-header">{{getLocalizedText("title")}}</div>
 
   <div>
     <div class="description">
-      <p id="descriptionTip1">In order to play Epic Eleven with real money, you need to add funds to your account.</p>
-      <p id="descriptionTip2">Don't worry, you can withdraw your money whenever you want for free.</p>
+      <p id="descriptionTip1">{{getLocalizedText("description1")}}</p>
+      <p id="descriptionTip2">{{getLocalizedText("description2")}}</p>
     </div>
     <div class="add-founds-box">
-      <p>Minimum allowed is $10</p>
+      <p>{{getLocalizedText("minfunds")}}{{formatCurrency("10")}}</p>
       <div class="money-selector">
         <div class="money-element">
-          <input type="radio" name="money-radio" id="firstOffer" value="10"><label for="firstOffer">$10</label>
+          <input type="radio" name="money-radio" id="firstOffer" value="10"><label for="firstOffer">{{formatCurrency("10")}}</label>
         </div>
         <div class="money-element">
-          <input type="radio" name="money-radio" id="secondOffer" value="25" checked="checked"><label for="secondOffer">$25</label>
+          <input type="radio" name="money-radio" id="secondOffer" value="25" checked="checked"><label for="secondOffer">{{formatCurrency("25")}}</label>
         </div>
         <div class="money-element">
-          <input type="radio" name="money-radio" id="thirdOffer" value="50"><label for="thirdOffer">$50</label>
+          <input type="radio" name="money-radio" id="thirdOffer" value="50"><label for="thirdOffer">{{formatCurrency("50")}}</label>
         </div>
         <div class="money-element custom-money-element">
           <input type="radio" name="money-radio" id="customEuros">
-          <input type="number" id="customEurosAmount" value="10"><label for="customEuros">$</label>
+          <input type="number" id="customEurosAmount" value="10"><label for="customEuros">{{formatCurrency("")}}</label>
         </div>
       </div>
-      <h2 class="paypal-info">Add <span id="selectedAmountInfo">${{selectedValue}}</span> vía <img src="images/markPaypalMed.jpg"></h2>
-      <p class="paypal-info">You can add funds using PayPal account. The money will be transferred to Fantasy Sports Games S.L.</p>
-      <div class="button-wrapper"><button class="add-funds-button" id="addFundsButton">Add funds</button></div>
+      <h2 class="paypal-info">Add <span id="selectedAmountInfo">{{formatCurrency(selectedValue.toString())}}</span> {{getLocalizedText("via")}} <img src="images/markPaypalMed.jpg"></h2>
+      <p class="paypal-info">{{getLocalizedText("paypalinfo")}}</p>
+      <div class="button-wrapper"><button class="add-funds-button" id="addFundsButton">{{getLocalizedText("buttonaddfunds")}}</button></div>
     </div>
   </div>
   <div class="need-help-box">
-    <p id="need-help-text">Need help?</p>
+    <p id="need-help-text">{{getLocalizedText("needhelp")}}</p>
     <p id="need-help-email">support@epiceleven.com</p>
   </div>
 
@@ -139,14 +139,14 @@ tc.put("packages/webclient/components/account/change_password_comp.html", new Ht
       <div class="panel-heading">
         <div ng-switch="state">
           <!-- SI ES INVALID URL -->
-          <div ng-switch-when="STATE_INVALID_URL"     class="panel-title">ERROR 503</div>
+          <div ng-switch-when="STATE_INVALID_URL"     class="panel-title">{{getLocalizedText("error503")}}</div>
           <!-- SI ES TOKEN INVALIDO -->
-          <div ng-switch-when="STATE_INVALID_TOKEN"   class="panel-title">CHANGE PASSWORD</div>
+          <div ng-switch-when="STATE_INVALID_TOKEN"   class="panel-title">{{getLocalizedText("changepass")}}</div>
           <!-- SI ES TOKEN VALIDO/INVALIDO -->
-          <div ng-switch-when="STATE_CHANGE_PASSWORD" class="panel-title">CHANGE PASSWORD</div>
+          <div ng-switch-when="STATE_CHANGE_PASSWORD" class="panel-title">{{getLocalizedText("changepass")}}</div>
         </div>
 
-        <button type="button" class="close" ng-click="navigateTo('landing_page',{}, $event)">
+        <button type="button" class="close" ng-click="navigateTo('lobby',{}, $event)">
           <span class="glyphicon glyphicon-remove"></span>
         </button>
 
@@ -156,30 +156,30 @@ tc.put("packages/webclient/components/account/change_password_comp.html", new Ht
         <form  id="changePasswordForm" class="form-horizontal" ng-submit="changePassword()" role="form">
           <div ng-switch="state">
                 <div ng-switch-when="STATE_INVALID_URL" class="form-description">
-                  The page is not available
+                  {{getLocalizedText("unavailable")}}
                 </div>
                 <div ng-switch-when="STATE_INVALID_TOKEN" class="form-description">
-                  The provided token is invalid or has expired.
+                  {{getLocalizedText("tokenexpired")}}
                 </div>
                 <div ng-switch-when="STATE_CHANGE_PASSWORD">
                   <div class="form-description">
-                    Create a new password.
+                    {{getLocalizedText("createpass")}}
                   </div>
                   <!-- PASSWORD -->
                   <div  class="user-form-field">
                     <!-- Description -->
                     <div class="new-row bottom-separation-10">
-                      <div class="small-text"> Password: at least {{MIN_PASSWORD_LENGTH}} characters. (Type it twice).</div>
+                      <div class="small-text">{{getLocalizedText("passrequires")}}</div>
                     </div>
                     <!-- Field Input 1 -->
                     <div id="passwordInputGroup" class="input-group  bottom-separation-10">
                       <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-                      <input id="password" name="password" type="password"  placeholder="Password"         ng-model="thePassword"   data-minlength="MIN_PASSWORD_LENGTH" ng-minlength="MIN_PASSWORD_LENGTH" class="form-control" tabindex="1" autocapitalize="off" auto-focus>
+                      <input id="password" name="password" type="password"  placeholder="{{getLocalizedText('pass')}}"         ng-model="thePassword"   data-minlength="MIN_PASSWORD_LENGTH" ng-minlength="MIN_PASSWORD_LENGTH" class="form-control" tabindex="1" autocapitalize="off" auto-focus>
                     </div>
                     <!-- Field Input 2 -->
                     <div id="rePasswordInputGroup" class="input-group">
                       <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-                      <input id="rePassword" name="password" type="password" placeholder="Repeat password" ng-model="theRePassword" data-minlength="MIN_PASSWORD_LENGTH" ng-minlength="MIN_PASSWORD_LENGTH" class="form-control" tabindex="2" autocapitalize="off">
+                      <input id="rePassword" name="password" type="password" placeholder="{{getLocalizedText('repass')}}" ng-model="theRePassword" data-minlength="MIN_PASSWORD_LENGTH" ng-minlength="MIN_PASSWORD_LENGTH" class="form-control" tabindex="2" autocapitalize="off">
                     </div>
                     <!-- Error de password -->
                     <div id="errorContainer" class="new-row">
@@ -191,8 +191,8 @@ tc.put("packages/webclient/components/account/change_password_comp.html", new Ht
                   <div class="input-group user-form-field">
                     <div class="new-row">
                       <div class="buttons-wrapper">
-                        <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">CONTINUE</button>
-                        <button id="btnCancelLogin" ng-click="navigateTo('landing_page', {}, $event)" class="cancel-button-half">CANCEL</button>
+                        <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">{{getLocalizedText("buttoncontinue")}}</button>
+                        <button id="btnCancelLogin" ng-click="navigateTo('lobby', {}, $event)" class="cancel-button-half">{{getLocalizedText("buttoncancel")}}</button>
                       </div>
                     </div>
                   </div>
@@ -209,29 +209,29 @@ tc.put("packages/webclient/components/account/change_password_comp.html", new Ht
 tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new HttpResponse(200, r"""<div id="personalDataContent" ng-show="!loadingService.isLoading" ng-cloack>
 
   <div class="edit-personal-data-header">
-    <span class="header-title">EDIT ACCOUNT</span>
+    <span class="header-title">{{getLocalizedText("title")}}</span>
   </div>
   <form id="editPersonalDataForm" class="form-horizontal" ng-submit="saveChanges()" role="form" autocomplete="off">
     <div class="content">
       <!-- Nombre -->
       <div class="content-field">
-        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">Name</span></div>
+        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">{{getLocalizedText("name")}}</span></div>
         <div class="control-wrapper">
-          <input id="txtName" type="text" ng-model="editedFirstName" placeholder="Name" class="form-control"  tabindex="1">
+          <input id="txtName" type="text" ng-model="editedFirstName" placeholder="{{getLocalizedText('name')}}" class="form-control"  tabindex="1">
         </div>
       </div>
       <!-- Apelidos -->
       <div class="content-field">
-        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">Last name</span></div>
+        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">{{getLocalizedText("lastname")}}</span></div>
         <div class="control-wrapper">
-          <input id="txtLastName" type="text" ng-model="editedLastName" placeholder="Last name" class="form-control" tabindex="2">
+          <input id="txtLastName" type="text" ng-model="editedLastName" placeholder="{{getLocalizedText('lastname')}}" class="form-control" tabindex="2">
         </div>
       </div>
       <!-- Nickname -->
       <div class="content-field">
-        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">Nick</span></div>
+        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">{{getLocalizedText("username")}}</span></div>
         <div class="control-wrapper">
-          <input id="txtNickName" type="text" ng-model="editedNickName" placeholder="Nick" class="form-control" tabindex="3" autocapitalize="off">
+          <input id="txtNickName" type="text" ng-model="editedNickName" placeholder="{{getLocalizedText('username')}}" class="form-control" tabindex="3" autocapitalize="off">
         </div>
         <!-- Error de nickName -->
         <div id="nickNameErrorContainer" class="content-field-block">
@@ -241,9 +241,9 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
 
       <!-- Correo Electrónico -->
       <div class="content-field">
-        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">Email</span></div>
+        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">{{getLocalizedText("mail")}}</span></div>
         <div class="control-wrapper">
-          <input id="txtEmail" type="email" ng-model="editedEmail" placeholder="Email" class="form-control" tabindex="4" autocapitalize="off">
+          <input id="txtEmail" type="email" ng-model="editedEmail" placeholder="{{getLocalizedText('mail')}}" class="form-control" tabindex="4" autocapitalize="off">
         </div>
         <!-- Error de mail -->
         <div id="emailErrorContainer" class="content-field-block">
@@ -253,15 +253,15 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
 
       <!-- Label Contraseña -->
       <div class="content-field-block">
-        <div class="control-wrapper"><span id="lblPassword" class="text-label">Password (Fill the both fields to update it)</span></div>
+        <div class="control-wrapper"><span id="lblPassword" class="text-label">{{getLocalizedText("passrequires")}}</span></div>
       </div>
       <!-- Contraseña -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtPassword" type="password" ng-model="editedPassword" placeholder="Password" class="form-control" tabindex="5" autocapitalize="off"></div>
+        <div class="control-wrapper"><input id="txtPassword" type="password" ng-model="editedPassword" placeholder="{{getLocalizedText('pass')}}" class="form-control" tabindex="5" autocapitalize="off"></div>
       </div>
       <!-- Repetir Contraseña -->
       <div class="content-field">
-        <div class="control-wrapper"><input id="txtRepeatPassword" type="password" ng-model="editedRepeatPassword" placeholder="Repeat password" class="form-control" tabindex="6" autocapitalize="off"></div>
+        <div class="control-wrapper"><input id="txtRepeatPassword" type="password" ng-model="editedRepeatPassword" placeholder="{{getLocalizedText('repass')}}" class="form-control" tabindex="6" autocapitalize="off"></div>
       </div>
 
       <!-- Error de contraseñas -->
@@ -284,23 +284,23 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
        -->
     </div>
   <!-- Notificaciones -->
-    <div class="header">NOTIFICATIONS</div>
+    <div class="header">{{getLocalizedText("notifications")}}</div>
     <div class="subscriptions-content">
 
       <div class="content-field-block">
 
         <div class="subscription-wrapper">
-          <div class="subscription-label">NEWSLETTER/SPECIAL OFFERS</div>
+          <div class="subscription-label">{{getLocalizedText("newletternotifications")}}</div>
           <div class="check-wrapper"> <input type="checkbox" id="inputNewsletter" name="switchNewsletter"> </div>
         </div>
 
         <div class="subscription-wrapper">
-          <div class="subscription-label">GAME NOTIFICATIONS</div>
+          <div class="subscription-label">{{getLocalizedText("gamenotifications")}}</div>
           <div class="check-wrapper"> <input type="checkbox" name="switchGameAlerts"> </div>
         </div>
 
         <div class="subscription-wrapper">
-          <div class="subscription-label">OWN SOCCER PLAYER TRANSFER NOTIFICACIONS</div>
+          <div class="subscription-label">{{getLocalizedText("transfernotifications")}}</div>
           <div class="check-wrapper"> <input type="checkbox" name="switchsoccerPlayerAlerts"> </div>
         </div>
 
@@ -310,22 +310,135 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
 
     <div class="save-changes-content">
       <div class="forms-wrapper-button">
-        <button id="btnSubmit" class="action-button-save" type="submit">SAVE</button>
+        <button id="btnSubmit" class="action-button-save" type="submit">{{getLocalizedText("buttonsave")}}</button>
       </div>
       <div class="forms-wrapper-button">
-        <button id="btnSubmit" class="action-button-cancel" ng-click="exit($event)">CANCEL</button>
+        <button id="btnSubmit" class="action-button-cancel" ng-click="exit($event)">{{getLocalizedText("buttoncancel")}}</button>
       </div>
     </div>
 
   </form>
 </div>"""));
+tc.put("packages/webclient/components/account/energy_shop_comp.html", new HttpResponse(200, r"""<modal id="energyshopComp">
+
+  <!--<div class="header"></div> -->
+
+  <div class="content">
+
+    <div class="content-banner">
+      <img ng-src="{{getShopBanner()}}">
+    </div>
+
+    <div class="products-wrapper">
+
+      <div ng-repeat="item in products"  ng-click="buyEnergy(item.id)">
+
+
+        <div ng-class="{'no-purchasable': !item.purchasable}" class="product" ng-if="item.price != null || timeLeft != ''">
+
+
+
+          <div class="slot-base">
+            <div class="shop-item-left"></div>
+            <div class="shop-item-middle"></div>
+            <div class="shop-item-right"></div>
+          </div>
+          <div class="shop-item-pattern"></div>
+
+          <div class="slot-content">
+
+            <div class="image-column">
+              <img class="item-icon" ng-src="{{item.captionImage}}">
+            </div>
+
+            <div class="quantity-column">
+              <span class="product-description">{{item.description}}</span>
+              <div ng-switch="item.purchasable">
+                <span ng-switch-when="true"  class="product-count">{{item.price}}</span>
+                <span ng-switch-when="false" class="product-time-left">{{timeLeft}}</span>
+              </div>
+            </div>
+
+       	  </div>
+
+
+
+        </div>
+
+
+
+      </div>
+
+    </div>
+
+    <div class="buttons-wrapper">
+     <div class="button-box"><button id="btnClose" class="cancel-button" ng-click="CloseModal()">{{getLocalizedText('buttonback')}}</button></div>
+    </div>
+
+  </div>
+
+</modal>"""));
+tc.put("packages/webclient/components/account/gold_shop_comp.html", new HttpResponse(200, r"""<modal id="goldShopComp">
+
+  <!--<div class="header"></div> -->
+
+  <div class="content">
+
+    <div class="content-banner">
+      <img ng-src="{{getShopBanner()}}">
+    </div>
+
+    <div class="products-wrapper">
+
+      <div ng-repeat="item in products" class="product" ng-click="buyItem(item.id)">
+        <div class="slot-base">
+          <div class="shop-item-left"></div>
+          <div class="shop-item-middle"></div>
+          <div class="shop-item-right"></div>
+        </div>
+        <div class="shop-item-pattern" ng-if="!item.isMostPopular"></div>
+
+        <div class="slot-content">
+
+          <div class="image-column">
+            <img class="item-icon" ng-src="{{item.captionImage}}">
+          </div>
+
+          <div class="quantity-column">
+            <span class="product-description">{{item.description}}</span>
+            <span class="product-count">{{item.quantity}}</span>
+          </div>
+
+          <div class="price-column">
+            <div class="free-increment" ng-if="item.freeIncrement > 0">
+              <span class="free-increment-count">{{item.freeIncrement}}</span>
+              <span class="free-increment-desc">{{getLocalizedText('free')}}</span>
+            </div>
+            <span class="product-price" ng-class="{'no-frees' : !(item.freeIncrement > 0)}">{{item.price}}</span>
+          </div>
+          <div class="clearfix"></div>
+          <img ng-src="{{getLocalizedText('mostpopularimagesource')}}" class="shop-item-popular" ng-if="item.isMostPopular">
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="buttons-wrapper">
+       <div class="button-box"><button id="btnClose" class="cancel-button" ng-click="CloseModal()">{{getLocalizedText('buttonback')}}</button></div>
+    </div>
+
+
+  </div>
+
+</modal>"""));
 tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(200, r"""<div id="joinRoot" ng-show="!loadingService.isLoading" ng-class="{'air':!isModal}">
   <div id="signupbox" class="main-box" ng-class="{'air':!isModal}">
 
     <div class="panel">
 
       <div class="panel-heading">
-        <div class="panel-title">SIGN UP</div>
+        <div class="panel-title">{{getLocalizedText("title")}}</div>
         <button type="button" class="close" ng-click="onAction('CANCEL', $event)">
           <span class="glyphicon glyphicon-remove"></span>
         </button>
@@ -334,22 +447,22 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
       <div class="panel-body" >
 
         <form id="signupForm" class="form-horizontal" ng-submit="onAction('SUBMIT')" role="form" formAutofillFix>
-          <div class="form-description">Don't you have an EPIC ELEVEN account yet?<br>Fill out this form.</div>
+          <div class="form-description" ng-bind-html="getLocalizedText('description')"></div>
 
           <!-- NICKNAME  -->
           <div class="user-form-field">
             <!-- Description -->
             <div class="new-row bottom-separation-10">
-              <div class="small-text">Your nickname must be {{MIN_NICKNAME_LENGTH}} to {{MAX_NICKNAME_LENGTH}} characters long.</div>
+              <div class="small-text">{{getLocalizedText('nickrequires')}}</div>
             </div>
             <!-- Field Input -->
             <div id="nickNameInputGroup" class="input-group">
               <span class="input-group-addon"><div class="glyphicon glyphicon-user"></div></span>
-              <input id="nickName" name="NickName" type="text" ng-model="theNickName" placeholder="Nickname" class="form-control" maxlength="{{MAX_NICKNAME_LENGTH}}" tabindex="1" autocapitalize="off" auto-focus>
+              <input id="nickName" name="NickName" type="text" ng-model="theNickName" placeholder="{{getLocalizedText('nick')}}" class="form-control" maxlength="{{MAX_NICKNAME_LENGTH}}" tabindex="1" autocapitalize="off" auto-focus>
             </div>
             <!-- Error label -->
             <div class="new-row">
-              <div id="nickNameError" class="join-err-text">Invalid Nickname.</div>
+              <div id="nickNameError" class="join-err-text">{{getLocalizedText("invalidnick")}}</div>
             </div>
           </div>
 
@@ -357,16 +470,16 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
           <div  class="user-form-field" >
             <!-- Description -->
             <div class="new-row bottom-separation-10">
-              <div class="small-text">Email:</div>
+              <div class="small-text">{{getLocalizedText("email")}}:</div>
             </div>
             <!-- Field Input -->
             <div id="emailInputGroup" class="input-group">
               <span class="input-group-addon"><div class="glyphicon glyphicon-envelope"></div></span>
-              <input id="email" name="Email" type="email" ng-model="theEmail" placeholder="Email" class="form-control" tabindex="2" autocapitalize="off">
+              <input id="email" name="Email" type="email" ng-model="theEmail" placeholder="{{getLocalizedText('email')}}" class="form-control" tabindex="2" autocapitalize="off">
             </div>
             <!-- Error label -->
             <div class="new-row">
-              <div id="emailError" class="join-err-text">Invalid Email.</div>
+              <div id="emailError" class="join-err-text">{{getLocalizedText("invalidemail")}}</div>
             </div>
           </div>
 
@@ -374,21 +487,21 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
           <div  class="user-form-field">
             <!-- Description -->
             <div class="new-row bottom-separation-10">
-              <div class="small-text">Password: Should be at least {{MIN_PASSWORD_LENGTH}} characters. (Type it twice).</div>
+              <div class="small-text">{{getLocalizedText("passrequires")}}</div>
             </div>
             <!-- Field Input 1 -->
             <div id="passwordInputGroup" class="input-group  bottom-separation-10">
               <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-              <input id="password" name="Password" type="password" ng-model="thePassword" placeholder="Password" class="form-control" data-minlength="MIN_PASSWORD_LENGTH" ng-minlength="MIN_PASSWORD_LENGTH"  tabindex="3" autocapitalize="off">
+              <input id="password" name="Password" type="password" ng-model="thePassword" placeholder="{{getLocalizedText('pass')}}" class="form-control" data-minlength="MIN_PASSWORD_LENGTH" ng-minlength="MIN_PASSWORD_LENGTH"  tabindex="3" autocapitalize="off">
             </div>
             <!-- Field Input 2 -->
             <div id="rePasswordInputGroup" class="input-group">
               <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-              <input id="rePassword" name="RePassword" type="password" ng-model="theRePassword" placeholder="Repeat password" class="form-control" tabindex="4" autocapitalize="off">
+              <input id="rePassword" name="RePassword" type="password" ng-model="theRePassword" placeholder="{{getLocalizedText('repass')}}" class="form-control" tabindex="4" autocapitalize="off">
             </div>
             <!-- Error de password -->
             <div class="new-row">
-              <div id="passwordError" class="join-err-text">Invalid Password.</div>
+              <div id="passwordError" class="join-err-text">{{getLocalizedText("invalidpass")}}</div>
             </div>
           </div>
 
@@ -396,15 +509,15 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
           <div class="input-group user-form-field">
             <div class="new-row">
               <div class="buttons-wrapper">
-                <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">SIGN UP</button>
-                <button id="btnCancelJoin" ng-click="onAction('CANCEL', $event)" class="cancel-button-half">CANCEL</button>
+                <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">{{getLocalizedText("buttonsignup")}}</button>
+                <button id="btnCancelJoin" ng-click="onAction('CANCEL', $event)" class="cancel-button-half">{{getLocalizedText("buttoncancel")}}</button>
              </div>
             </div>
           </div>
 
           <!-- GOTO LOGIN -->
           <div class="user-form-field">
-            <div class="small-text">Already have an account? <a id="gotoLoginLink" ng-click="onAction('LOGIN', $event)"> log in here! </a></div>
+            <div class="small-text">{{getLocalizedText("registered")}} <a id="gotoLoginLink" ng-click="onAction('LOGIN', $event)"> {{getLocalizedText("loginhere")}}</a></div>
           </div>
 
           <!--
@@ -435,7 +548,7 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
 
       <!-- Header -->
       <div class="panel-heading">
-        <div class="panel-title">LOG IN</div>
+        <div class="panel-title">{{GetLocalizedText('title')}}</div>
         <button type="button" class="close" ng-click="onAction('CANCEL', $event)">
           <span class="glyphicon glyphicon-remove"></span>
         </button>
@@ -444,39 +557,39 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
       <div class="panel-body" >
 
         <form id="loginForm" class="form-horizontal" ng-submit="onAction('SUBMIT')" role="form" formAutofillFix>
-          <div class="form-description">Enter your email and password.</div>
+          <div class="form-description">{{GetLocalizedText('description')}}</div>
 
           <!-- LOGIN FIELDS -->
           <div class="user-form-field">
             <!-- MAIL -->
             <div class="input-group  bottom-separation-10">
               <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-              <input id="login-mail" ng-model="emailOrUsername" type="email" name="Email" placeholder="Email" class="form-control" tabindex="1" autocapitalize="off" auto-focus>
+              <input id="login-mail" ng-model="emailOrUsername" type="email" name="Email" placeholder="{{GetLocalizedText('email')}}" class="form-control" tabindex="1" autocapitalize="off" auto-focus>
             </div>
             <!-- PÂSSWORD -->
             <div class="input-group">
               <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
-              <input id="login-password" type="password" ng-model="password" name="password" placeholder="Password" class="form-control" tabindex="2" autocapitalize="off">
+              <input id="login-password" type="password" ng-model="password" name="password" placeholder="{{GetLocalizedText('pass')}}" class="form-control" tabindex="2" autocapitalize="off">
             </div>
 
             <!-- Error de login/pass -->
             <div id="loginErrorSection" class="new-row">
-              <div id="loginErrorLabel" class="login-err-text">LOGIN ERROR: The nickname or password is not correct.</div>
+              <div id="loginErrorLabel" class="login-err-text">{{GetLocalizedText('loginerror')}}</div>
             </div>
 
           </div>
 
           <!-- REMEMBER PASS -->
           <div class="user-form-field-righted">
-            <a id="rememberPasswordLink" class="small-link-righted" ng-click="onAction('REMEMBER_PASSWORD', $event)">Forgot your password?</a>
+            <a id="rememberPasswordLink" class="small-link-righted" ng-click="onAction('REMEMBER_PASSWORD', $event)">{{GetLocalizedText('forgotpass')}}</a>
           </div>
 
           <!-- BUTTONS -->
           <div class="user-form-field">
             <div class="new-row">
               <div class="buttons-wrapper">
-                <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">CONTINUE</button>
-                <button id="btnCancelLogin" ng-click="onAction('CANCEL', $event)" class="cancel-button-half">CANCEL</button>
+                <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">{{GetLocalizedText('buttonlogin')}}</button>
+                <button id="btnCancelLogin" ng-click="onAction('CANCEL', $event)" class="cancel-button-half">{{GetLocalizedText('buttoncancel')}}</button>
               </div>
             </div>
           </div>
@@ -484,7 +597,7 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
           <!-- GOTO REGISTER -->
           <div class="user-form-field">
             <div class="new-row">
-              <div class="small-text">Don't have an account? <a id="gotoRegisterLink" ng-click="onAction('JOIN', $event)"> Sign Up here! </a></div>
+              <div class="small-text">{{GetLocalizedText('unregistered')}} <a id="gotoRegisterLink" ng-click="onAction('JOIN', $event)"> {{GetLocalizedText('signuphere')}} </a></div>
             </div>
           </div>
 
@@ -539,7 +652,7 @@ tc.put("packages/webclient/components/account/remember_password_comp.html", new 
 
       <!-- Header -->
       <div class="panel-heading">
-        <div class="panel-title" ng-class="{'center-text':state=='STATE_REQUESTED'}">REMEMBER PASSWORD</div>
+        <div class="panel-title" ng-class="{'center-text':state=='STATE_REQUESTED'}">{{getLocalizedText("title")}}</div>
         <button ng-show="state=='STATE_REQUEST'" type="button" class="close" ng-click="navigateTo('login', {}, $event)">
           <span class="glyphicon glyphicon-remove"></span>
         </button>
@@ -548,12 +661,12 @@ tc.put("packages/webclient/components/account/remember_password_comp.html", new 
       <div class="panel-body" ng-switch >
         <!-- Mensaje cuando todo ha ido correctamente. -->
         <div ng-show="state=='STATE_REQUESTED'">
-          <div class="form-description">We have sent you an email to<br><br><p class="email-detail">'{{email}}'</p>Check your inbox and follow the instructions in the email.</div>
+          <div class="form-description">{{getLocalizedText("confirmpart1")}}<br><br><p class="email-detail">'{{email}}'</p>{{getLocalizedText("confirmpart2")}}</div>
           <!-- BUTTONS -->
           <div class="user-form-field">
             <div class="new-row">
               <div class="buttons-wrapper">
-                <button type="submit" id="btnSubmit" name="JoinNow" ng-click="backToLanding()" class="enter-button">CONTINUE</button>
+                <button type="submit" id="btnSubmit" name="JoinNow" ng-click="backToLanding()" class="enter-button">{{getLocalizedText("buttoncontinue")}}</button>
               </div>
             </div>
           </div>
@@ -561,18 +674,18 @@ tc.put("packages/webclient/components/account/remember_password_comp.html", new 
 
         <form ng-show="state=='STATE_REQUEST'" id="rememberPasswordForm" class="form-horizontal" ng-submit="rememberMyPassword()" role="form">
 
-          <div class="form-description">Forgot password? Enter you email and you will receive an email to recover your password.</div>
+          <div class="form-description">{{getLocalizedText("description")}}</div>
 
           <!-- EMAIL -->
           <div  class="user-form-field" >
             <!-- Description -->
             <div class="new-row bottom-separation-10">
-              <div class="small-text">Enter the email address used to sign up for EPIC ELEVEN:</div>
+              <div class="small-text">{{getLocalizedText("emailrequires")}}</div>
             </div>
             <!-- Field Input -->
              <div id="emailInputGroup" class="input-group">
               <span class="input-group-addon"><div class="glyphicon glyphicon-envelope"></div></span>
-              <input id="rememberEmail" name="Email" type="email" ng-model="email" placeholder="Email" class="form-control" tabindex="1" autocapitalize="off"  auto-focus>
+              <input id="rememberEmail" name="Email" type="email" ng-model="email" placeholder="{{getLocalizedText('email')}}" class="form-control" tabindex="1" autocapitalize="off"  auto-focus>
             </div>
             <!-- Error label -->
             <div id="errContainer" class="new-row">
@@ -584,15 +697,15 @@ tc.put("packages/webclient/components/account/remember_password_comp.html", new 
           <div class="input-group user-form-field">
             <div class="new-row">
               <div class="buttons-wrapper">
-                <button type="submit" id="btnSubmit" name="RememberPassword" ng-disabled="!enabledSubmit" class="enter-button-half">CONTINUE</button>
-                <button id="btnCancelRemember" ng-click="navigateTo('login', {}, $event)" class="cancel-button-half">CANCEL</button>
+                <button type="submit" id="btnSubmit" name="RememberPassword" ng-disabled="!enabledSubmit" class="enter-button-half">{{getLocalizedText("buttoncontinue")}}</button>
+                <button id="btnCancelRemember" ng-click="navigateTo('login', {}, $event)" class="cancel-button-half">{{getLocalizedText("buttoncancel")}}</button>
              </div>
             </div>
           </div>
 
           <!-- GOTO REGISTER -->
           <div class="new-row bottom-separation-10">
-            <div class="small-text">Don't have an account?<a id="gotoRegisterLink" ng-click="navigateTo('join', {}, $event)"> Sign up here! </a></div>
+            <div class="small-text">{{getLocalizedText("unregistered")}}<a id="gotoRegisterLink" ng-click="navigateTo('join', {}, $event)"> {{getLocalizedText("signuphere")}} </a></div>
           </div>
 
         </form>
@@ -603,24 +716,57 @@ tc.put("packages/webclient/components/account/remember_password_comp.html", new 
 
   </div>
 </div>"""));
+tc.put("packages/webclient/components/account/shop_comp.html", new HttpResponse(200, r"""<div id="mainShopCompWrapper">
+
+  <div class="items-wrapper">  
+    <div ng-repeat="item in shops" class="shop-item" ng-click="openShop(item.name)">
+      <div class="slot-base">        
+        <div class="shop-item-left"></div>
+        <div class="shop-item-middle"></div>      
+        <div class="shop-item-right"></div>        
+      </div>
+      <div class="shop-item-pattern"></div>
+      <div class="slot-content">    
+        <img class="item-icon" ng-src="{{item.image}}">
+        <span class="shop-item-info" ng-bind-html="'<span>'+item.description+'</span>'"></span>
+      </div>   
+    </div>
+  
+    <!-- Punto de insercion de nuestra ruta hija contest-info (modal) -->
+    <ng-view ng-show="!loadingService.isLoading"></ng-view>
+  
+  </div>
+  
+</div>"""));
+tc.put("packages/webclient/components/account/trainer_points_shop_comp.html", new HttpResponse(200, r"""<modal id="trainerPointsShopComp">
+  
+  <div class="header">
+  
+  </div>
+  
+  <div class="content">
+  
+  </div>
+  
+</modal>"""));
 tc.put("packages/webclient/components/account/transaction_history_comp.html", new HttpResponse(200, r"""<div id="transactionHistoryRoot">
   <!-- header title -->
-  <div class="default-section-header">TRANSACTION HISTORY</div>
+  <div class="default-section-header">{{getLocalizedText("title")}}</div>
 
   <div class="transaction-headers">
-    <span class="header-date">DATE</span>
-    <span class="header-id">ID</span>
-    <span class="header-concept">SUBJECT</span>
-    <span class="header-amount">VALUE</span>
-    <span class="header-balance">BALANCE</span>
+    <span class="header-date">{{getLocalizedText("date")}}</span>
+    <span class="header-id">{{getLocalizedText("id")}}</span>
+    <span class="header-concept">{{getLocalizedText("subject")}}</span>
+    <span class="header-amount">{{getLocalizedText("value")}}</span>
+    <span class="header-balance">{{getLocalizedText("balance")}}</span>
   </div>
 
   <div class="transaction-row" ng-repeat="transaction in currentPageList">
     <div class="field-date">{{transaction.formattedDate}}</div>
     <div class="field-id">{{transaction.transactionID}}</div>
     <div class="field-concept">{{transaction.transactionDescription}}</div>
-    <div class="field-amount"><div class="money-label">VALUE: </div> {{transaction.value}}</div>
-    <div class="field-balance"><div class="money-label">BALANCE: </div> {{transaction.balance}}</div>
+    <div class="field-amount"><div class="money-label">{{getLocalizedText("value")}}: </div> {{transaction.value}}</div>
+    <div class="field-balance"><div class="money-label">{{getLocalizedText("balance")}}: </div> {{transaction.balance}}</div>
   </div>
 
   <paginator on-page-change="onPageChange(currentPage, itemsPerPage)" items-per-page="20" list-length="transactions.length"></paginator>
@@ -630,87 +776,77 @@ tc.put("packages/webclient/components/account/transaction_history_comp.html", ne
 tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpResponse(200, r"""<div id="viewProfileContent">
   <div class="profile-content">
 
-    <div class="personal-data">
+    <div class="personal-data profile-section">
       <div class="data-header">
-        <span class="data-header-title">My Account</span>
-        <div class="close-profile">
-          <button type="button" class="close" ng-click="closeProfile()">
-            <span class="glyphicon glyphicon-remove"></span>
-          </button>
+        <span class="data-header-title">{{getLocalizedText("title")}}</span>
+      </div>
+      <div class="data-content">
+        <div class="data-row"><span class="data-key">{{getLocalizedText("fullname")}}:</span><span class="data-value">{{userData.firstName + ' ' + userData.lastName}}</span></div>
+        <div class="data-row"><span class="data-key">{{getLocalizedText("nick")}}:</span><span class="data-value">{{userData.nickName}}</span></div>
+        <div class="data-row"><span class="data-key">{{getLocalizedText("email")}}:</span><span class="data-value">{{userData.email}}</span></div>
+        <div class="data-row"><span class="data-key">{{getLocalizedText("pass")}}:</span><span class="data-value">********</span></div>
+      </div>
+      <div class="data-action">
+        <button class="action-button edit-button" ng-click="editPersonalData()">{{getLocalizedText("buttonedit")}}</button>
+      </div>
+    </div>
+
+    <div class="pocket-data profile-section">
+      <div class="data-header">
+          <span class="data-header-title">{{getLocalizedText("wallet")}}</span>
+      </div>
+      <div class="data-content">
+        <div class="data-row">
+          <div class="wrapper-box"> <span class="data-value-coins">{{userData.balance}}</span><img class="coin-icon" src="images/icon-coin-lg.png"> </div>
         </div>
-        <div class="button-wrapper"><button class="action-button" ng-click="editPersonalData()">EDIT</button></div>
-
       </div>
-      <div class="bloque-sm">
-        <div class="data-row"><span class="data-key">Full Name:</span><span class="data-value">{{userData.firstName + ' ' + userData.lastName}}</span></div>
-        <div class="data-row"><span class="data-key">Nick:</span><span class="data-value">{{userData.nickName}}</span></div>
-        <div class="data-row"><span class="data-key">Email:</span><span class="data-value">{{userData.email}}</span></div>
-        <div class="data-row"><span class="data-key">Password:</span><span class="data-value">********</span></div>
+      <div class="data-action">
+        <button class="action-button buy-button" ng-click="goBuyGold()">{{getLocalizedText("buttonbuy")}}</button>
       </div>
-      <!--
-      <div class="bloque-sm">
-        <div class="data-row"><span class="data-key">Pais:</span><span class="data-value">&lt; Pais &gt;</span></div>
-        <div class="data-row"><span class="data-key">Region:</span><span class="data-value">&lt; Region &gt;</span></div>
-        <div class="data-row"><span class="data-key">Ciudad:</span><span class="data-value">&lt; Ciudad &gt;</span></div>
-        <div class="data-row"><span class="data-key">Notificaciones:</span><span class="data-value">&lt; Notificaciones &gt;</span></div>
-      </div>
-      -->
     </div>
-
-    <div class="pocket-data">
+    <div class="ranking-data profile-section">
       <div class="data-header">
-          <span class="data-header-title">WALLET</span>
-          <div class="button-wrapper">
-            <button class="action-button-transaction" ng-click="goTransactions()">TRANSACTIONS</button>
-            <button class="action-button-get-funds" ng-click="goWithdrawFounds()">WITHDRAW FUNDS</button>
-          </div>
-       </div>
-      <div class="data-container-9">
-        <div class="data-row"><span class="data-key">Actual balance:</span><span class="data-value-balance">{{userData.balance}}</span></div>
-        <div class="data-row"><span class="data-key">Pending bonus:</span><span class="data-value">{{userData.bonus}}</span></div-->
+          <span class="data-header-title">{{getLocalizedText("ranking")}}</span>
       </div>
-      <div class="data-container-3">
-        <button class="add-funds-button" ng-click="goAddFounds()">ADD FUNDS</button>
+      <div class="data-content">
+        <div class="single-ranking-info ranking-by-points wrapper-box">
+          <img class="ranking-badge" src="images/icon-Ranking-Skill-Blue.png">
+          <span class="ranking-position" ng-show="!loadingService.isLoading">{{rankingPointsPosition}}º</span>
+          <span class="ranking-score" ng-show="!loadingService.isLoading">{{rankingPoints}} {{getLocalizedText("abrevpoints", "common")}}</span>
+        </div>
+        <div class="single-ranking-info ranking-by-money wrapper-box">
+        
+          <img class="ranking-badge" src="images/icon-coin-lg.png">
+          <span class="ranking-position" ng-show="!loadingService.isLoading">{{rankingMoneyPosition}}º</span>
+          <span class="ranking-score" ng-show="!loadingService.isLoading">{{rankingMoney}}</span>
+        </div>
       </div>
-    </div>
-
-    <div class="epicpoints-data">
-      <div class="data-header"><span class="data-header-title">EPIC POINTS</span></div>
-      <div class="data-row">
-        <div class="data-column"><span class="data-key">E11P BALANCE:</span><span class="data-value">--€</span></div>
-        <div class="data-column"><span class="data-key">&lt;ulti-month&gt;:</span><span class="data-value">--€</span></div>
-      </div>
-      <div class="data-row">
-        <div class="data-column"><span class="data-key">THIS MONTH:</span><span class="data-value">--€</span></div>
-        <div class="data-column"><span class="data-key">&lt;penul-month&gt;:</span><span class="data-value">--€</span></div>
-        <div class="data-column"><a class="data-link" href="">How to use your EPs?</a></div>
+      <div class="data-action">
+        <button class="action-button ranking-table-button" ng-click="goLeaderboard()">{{getLocalizedText("buttonrankingtable")}}</button>
       </div>
     </div>
   </div>
-
-
-
 </div>"""));
 tc.put("packages/webclient/components/account/withdraw_funds_comp.html", new HttpResponse(200, r"""<div id="withdrawFundsContent">
   <!-- header title -->
-  <div class="default-section-header">WITHDRAW FUNDS</div>
+  <div class="default-section-header">{{getLocalizedText("title")}}</div>
 
   <div class="top-separation">
     <div class="withdraw-founds-box">
       <div class="data-header">
-        <span class="data-header-title">YOUR BALANCE IS <span class="money"><span id="moneyAmount">{{userData.balance}}</span></span></span>
+        <span class="data-header-title">{{getLocalizedText("balance")}}<span class="money"><span id="moneyAmount">{{userData.balance}}</span></span></span>
       </div>
 
-      <p>¿How much money want to withdraw?</p>
+      <p>{{getLocalizedText("withdrawdesc1")}}</p>
       <div class="money-element">
-        <input type="number" id="customEurosAmount"><label for="customEuros">$</label>
+        <input type="number" id="customEurosAmount"><label for="customEuros">{{formatCurrency("")}}</label>
       </div>
-      <p class="paypal-info">You can only withdraw amounts larger to $20</p>
-      <div class="button-wrapper"><button class="withdraw-funds-button" id="withdrawFundsButton">Withdraw funds</button></div>
+      <p class="paypal-info">{{getLocalizedText("withdrawdesc2")}}{{formatCurrency("20")}}</p>
+      <div class="button-wrapper"><button class="withdraw-funds-button" id="withdrawFundsButton">{{getLocalizedText("withdrawfunds")}}</button></div>
     </div>
   </div>
   <div class="need-help-box">
-    <p id="need-help-text">Need help?</p>
+    <p id="need-help-text">{{getLocalizedText("needhelp")}}</p>
     <p id="need-help-email">support@epiceleven.com</p>
   </div>
 </div>"""));
@@ -720,13 +856,13 @@ tc.put("packages/webclient/components/contest_filters_comp.html", new HttpRespon
   <div class="choosed-filters-container" ng-show="scrDet.isXsScreen">
       <div class="competition-filter-name" ng-bind-html="filterResume"></div>
       <div class="filterToggler">
-        <div id="filtersButtonMobile" type="button" class="filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse" data-target="#filtersPanel">FILTERS</div>
+        <div id="filtersButtonMobile" type="button" class="filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse" data-target="#filtersPanel">{{getLocalizedText("filters")}}</div>
       </div>
   </div>
 
   <!-- Ordenación -->
   <div id="contestFastSort">
-    <span class="filter-text">Sort by: </span>
+    <span class="filter-text">{{getLocalizedText("sortby")}}: </span>
     <div class="btn-group" >
       <div ng-repeat="button in sortingButtons" id="{{button['id']}}" type="button" class="btn sorting-button" ng-class="button['state']" ng-click="sortListByField(button['field-name'])">{{button["name"].toUpperCase()}}</div>
     </div>
@@ -734,11 +870,11 @@ tc.put("packages/webclient/components/contest_filters_comp.html", new HttpRespon
 
   <!-- Filtro por nombre -->
   <div id="contestFastSearch">
-      <input class="searcher" type="text" placeholder="Search contest" ng-model="filterContestName" ng-keyUp="filterByName()">
+      <input class="searcher" type="text" placeholder="{{getLocalizedText('search')}}" ng-model="filterContestName" ng-keyUp="filterByName()">
   </div>
 
   <div class="filterToggler" ng-show="!scrDet.isXsScreen">
-      <div id="filtersButtonDesktop" type="button" class="filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse">FILTERS</div>
+      <div id="filtersButtonDesktop" type="button" class="filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse">{{getLocalizedText("filters")}}</div>
   </div>
 
 </div>
@@ -749,7 +885,7 @@ tc.put("packages/webclient/components/contest_filters_comp.html", new HttpRespon
 
     <!-- Filtro x tipos de concurso -->
     <div class="filter-column-competition">
-      <p class="filter-title">COMPETITION</p>
+      <p class="filter-title">{{getLocalizedText("competition")}}</p>
       <div class="filter-content">
         <div class="check-group-wrapper">
 
@@ -766,7 +902,7 @@ tc.put("packages/webclient/components/contest_filters_comp.html", new HttpRespon
 
     <!-- Filtro x tipos de concurso -->
     <div class="filter-column-tournaments">
-      <p class="filter-title">CONTESTS</p>
+      <p class="filter-title">{{getLocalizedText("contests")}}</p>
       <div class="filter-content">
           <div class="check-group-wrapper">
 
@@ -783,7 +919,7 @@ tc.put("packages/webclient/components/contest_filters_comp.html", new HttpRespon
 
     <!-- Filtro x dificultad -->
     <div class="filter-column-salary-limit">
-      <p class="filter-title">SALARY CAP</p>
+      <p class="filter-title">{{getLocalizedText("salarycap")}}</p>
       <div class="filter-content">
           <div class="check-group-wrapper">
 
@@ -799,10 +935,10 @@ tc.put("packages/webclient/components/contest_filters_comp.html", new HttpRespon
     </div>
 
     <div class="filter-column-entry-fee">
-      <p class="filter-title">ENTRY FEE</p>
+      <p class="filter-title">{{getLocalizedText("entryfee")}}</p>
       <div class="filter-content">
-         <div class="entry-fee-value-min">MIN: ${{filterEntryFeeRangeMin | number:0}} </div>
-         <div class="entry-fee-value-max">MAX: ${{filterEntryFeeRangeMax | number:0}} </div>
+         <div class="entry-fee-value-min">{{getLocalizedText("min")}}: {{formatCurrency((filterEntryFeeRangeMin | number:0).toString())}} </div>
+         <div class="entry-fee-value-max">{{getLocalizedText("max")}}: {{formatCurrency((filterEntryFeeRangeMax | number:0).toString())}} </div>
           <div class="slider-wrapper">
             <div id="slider-range"></div>
           </div>
@@ -813,10 +949,10 @@ tc.put("packages/webclient/components/contest_filters_comp.html", new HttpRespon
   <div class="filters-panel-row">
 
       <div class="reset-button-wrapper">
-        <button type="button" class="btn-reset" ng-click="resetAllFilters()">CLEAR FILTERS</button>
+        <button type="button" class="btn-reset" ng-click="resetAllFilters()">{{getLocalizedText("clearfilters")}}</button>
       </div>
       <div class="confirm-button-wrapper">
-        <button type="button" class="btn-confirm" ng-click="toggleFilterMenu()">ACCEPT</button>
+        <button type="button" class="btn-confirm" ng-click="toggleFilterMenu()">{{getLocalizedText("buttonaccept")}}</button>
       </div>
 
   </div>
@@ -830,13 +966,13 @@ tc.put("packages/webclient/components/contest_header_comp.html", new HttpRespons
    </div>
     <div class="contest-price">
       <div class="contest-coins-content"><span>{{info['entryPrice']}}</span></div>
-      <div class="contest-coins-header">ENTRY FEE</div>
+      <div class="contest-coins-header">{{getLocalizedText("entryfee")}}</div>
     </div>
 
     <div class="contest-prize">
       <div class="contest-coins-content"><img ng-if="!scrDet.isXsScreen" class="iconPrize" src="images/iconPrize.png"><span>{{info['prize']}}</span></div>
       <div class="contest-coins-header">
-        <div class="contest-coins-header-title">PRIZES</div>
+        <div class="contest-coins-header-title">{{getLocalizedText("prizes")}}</div>
         <!--<div class="contest-coins-header-prize-type">{{info['prizeType']}}</div>-->
       </div>
 
@@ -865,9 +1001,56 @@ tc.put("packages/webclient/components/contest_header_comp.html", new HttpRespons
 
 <div class="clearfix"></div>
 """));
+tc.put("packages/webclient/components/contest_header_f2p_comp.html", new HttpResponse(200, r"""
+<div class="contest-header-f2p-wrapper" ng-if="contest != null">
+  
+  <!-- margen arriba -->
+  <div class="name-section">
+    <div class="contest-name">{{contest.name}}</div>
+    <div class="contest-description">{{contest.description}}</div>
+  </div>
+
+  <div class="conditions-section">
+  
+    <div class="player-position" ng-if="contest.isLive || contest.isHistory">
+      <div class="condition-name"><span>{{getLocalizedText("position")}}</span></div>
+      <div class="condition-amount"><span class="current-position">{{printableMyPosition()}}</span>/{{contest.numEntries}}</div>
+    </div>
+    
+    <div class="entry-fee-box" ng-if="!(contest.isLive || contest.isHistory)">
+      <span class="condition-name">{{getLocalizedText("entryfee")}}</span>
+      <span class="condition-amount" ng-class="{'entry-fee-coin':getContestTypeIcon() == 'real', 'entry-fee-energy':getContestTypeIcon() == 'train'}">{{contest.entryFee}}</span>
+    </div>
+    <div class="prize-box">
+      <span class="condition-name">{{getLocalizedText("prize")}}</span>
+      <span class="condition-amount" ng-class="{'prize-coin':getContestTypeIcon() == 'real', 'prize-managerpoints':getContestTypeIcon() == 'train'}">{{getPrizeToShow()}}</span>
+    </div>
+  </div>
+  
+  <div class="date-time-data">
+    <div class="contest-start-date">
+      <span>{{info['startTime']}}&nbsp;</span>
+    </div>
+  </div>
+  
+  <div class="tournament-and-type-section">
+    <span class="{{getSourceFlag()}}"></span>
+    <span class="contest-type {{getContestTypeIcon()}}"></span>
+  </div>
+  
+  <div class="close-contest" ng-switch="isInsideModal">
+    <button type="button" ng-switch-when="true"  class="close" data-dismiss="modal">   <span class="glyphicon glyphicon-remove"></span></button>
+    <button type="button" ng-switch-when="false" class="close" ng-click="goToParent()"><span class="glyphicon glyphicon-remove"></span></button>
+  </div>
+
+</div>
+<teams-panel id="teamsPanelComp" contest="contest" contest-id="contest.contestId"  ng-if="showMatches"></teams-panel>
+
+<div class="clearfix"></div>
+"""));
 tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(200, r"""<modal id="contestInfoModal" ng-if="isModal">
 
-  <contest-header id="contestInfoHeader" contest="contest" contest-id="contestId"  modal="true" show-matches="false"></contest-header>
+  <contest-header-f2p id="contestInfoHeader" contest="contest" contest-id="contestId"  modal="true" show-matches="false"></contest-header-f2p>
 
   <div class="modal-info-content">
 
@@ -875,16 +1058,17 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
         <!-- Nav tabs -->
         <div class="tabs-navigation">
           <ul class="contest-info-tabs " id="modalInfoContestTabs">
-              <li class="tab active"><a data-toggle="tab" ng-click="tabChange('matches')">Matches</a></li>
-              <li class="tab"><a data-toggle="tab" ng-click="tabChange('prizes')">Prizes</a></li>
-              <li class="tab"><a data-toggle="tab" ng-click="tabChange('contestants')">Contenders</a></li>
-              <li class="tab"><a data-toggle="tab" ng-click="tabChange('scoring')">Scoring Rules</a></li>              <!--<li class="buton-place">
+              <li class="tab active"><a data-toggle="tab" ng-click="tabChange('matches')">{{getLocalizedText("matches")}}</a></li>
+              <li class="tab"><a data-toggle="tab" ng-click="tabChange('prizes')">{{getLocalizedText("prizes")}}</a></li>
+              <li class="tab"><a data-toggle="tab" ng-click="tabChange('contestants')">{{getLocalizedText("contenders")}}</a></li>
+              <li class="tab"><a data-toggle="tab" ng-click="tabChange('scoring')">{{getLocalizedText("scoringrules")}}</a></li>
+              <!--<li class="buton-place">
                 <button id="btn-go-enter-contest" class="btn btn-primary" ng-click="enterContest()">ENTER</button>
               </li>-->
           </ul>
 
           <div id="enterContestButton">
-            <button id="btn-go-enter-contest" class="btn btn-primary" ng-click="enterContest()">ENTER</button>
+            <button id="btn-go-enter-contest" class="btn btn-primary" ng-click="enterContest()">{{getLocalizedText("buttonenter")}}</button>
           </div>
         </div>
       </div>
@@ -924,14 +1108,12 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
 
               <div class="tab-pane" id="contestants">
                 <div class="contestant-list-wrapper">
-                  <div ng-if="!loadingService.isLoading && currentInfoData['contestants'].isEmpty" class="default-info-text">
-                    There are still no contenders in this contest. <br> Encourage to be the first.
-                  </div>
+                  <div ng-if="!loadingService.isLoading && currentInfoData['contestants'].isEmpty" class="default-info-text" ng-bind-html="getLocalizedText('nocontenders')"></div>
                   <div class="contestant-list">
                     <div class="contestant-element"ng-repeat="contestant in currentInfoData['contestants']">
                       <div class="contestant-position">{{$index + 1}}º</div>
                       <div class="contestant-name">{{contestant.name}}</div>
-                      <div class="contestant-points">{{contestant.wins + ' '}}<span class="prize-currency">Wins</span></div>
+                      <div class="contestant-points">{{contestant.trueSkill + ' '}}<span class="prize-currency">{{getLocalizedText("skill")}}</span></div>
                     </div>
                   </div>
                 </div>
@@ -961,7 +1143,7 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
   <div class="clearfix"></div>
   <div class="info-section"></div>
 
-  <p class="title">PRIZES</p>
+  <p class="title">{{getLocalizedText("prizes").toUpperCase()}}</p>
   <div class="prizes-wrapper">
       <div id="prizes-list">
         <!--<div ng-if="!loadingService.isLoading && currentInfoData['prizes'].isEmpty" class="default-info-text">
@@ -981,21 +1163,19 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
   <div class="clearfix"></div>
   <div class="info-section"></div>
 
-  <p class="title">CONTENDERS</p>
-  <div ng-if="!loadingService.isLoading && currentInfoData['contestants'].isEmpty" class="default-info-text">
-    There are still no contenders in this contest. <br> Encourage to be the first.
-  </div>
+  <p class="title">{{getLocalizedText("contenders").toUpperCase()}}</p>
+  <div ng-if="!loadingService.isLoading && currentInfoData['contestants'].isEmpty" class="default-info-text" ng-bind-html="getLocalizedText('nocontenders')"></div>
   <div class="contestant-list">
       <div class="contestant-element"ng-repeat="contestant in currentInfoData['contestants']">
           <div class="contestant-position">{{$index + 1}}º</div>
           <div class="contestant-name">{{contestant.name}}</div>
-          <div class="contestant-points">{{contestant.wins + ' '}}<span class="prize-currency">Wins</span></div>
+          <div class="contestant-points">{{contestant.trueSkill + ' '}}<span class="prize-currency">{{getLocalizedText("skill")}}</span></div>
       </div>
   </div>
   <div class="clearfix"></div>
   <div class="info-section"></div>
 
-  <p class="title">SCORING RULES</p>
+  <p class="title">{{getLocalizedText("scoringrules").toUpperCase()}}</p>
   <div class="rules-description">
     <scoring-rules></scoring-rules>
   </div>
@@ -1004,66 +1184,73 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
 </div>
 
 """));
-tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse(200, r"""<div class="contests-list-root">
-  <div class="contest-row" ng-repeat="contest in currentPageList">
+tc.put("packages/webclient/components/contests_list_f2p_comp.html", new HttpResponse(200, r"""<div class="contests-list-f2p-root" ng-if="contestsListOriginal.isNotEmpty">
+  <div ng-repeat="contest in contestsListOrdered">
+    <div class="contestSlot" ng-class="{'special' : getContestMorfology(contest) == 'special'}" ng-click="onRow(contest)">
 
-    <div class="column-contest-flag"><div class="{{getSourceFlag(contest)}}"></div></div>
-
-    <div class="column-contest-name" ng-click="onRow(contest)">
-      <div class="column-name">{{contest.name}}</div>
-      <div class="column-start-date-time-xs">{{dateInfo(contest.startDate)}} {{timeInfo(contest.startDate)}}</div>
-      <div class="column-description">{{contest.description}}</div>
-    </div>
-
-    <div class="column-contest-empty" ng-click="onRow(contest)" ng-if="contest.isLive"></div>
-
-    <div class="column-contest-price" ng-click="onRow(contest)" ng-if="!contest.isLive && !contest.isHistory">
-      <div class="column-contest-price-content">{{contest.entryFee}}</div>
-      <div class="column-contest-price-header">ENTRY FEE</div>
-      <!-- torneo gratis -->
-      <!--<div ng-if="isFreeContest(contest)"><img src="images/iconFree.png" alt="GRATIS"></div>-->
-    </div>
-
-    <div class="column-contest-position" ng-click="onRow(contest)" ng-if="contest.isLive || contest.isHistory">
-      <div class="column-contest-position-content"><span>{{printableMyPosition(contest)}}</span></div>
-      <div class="column-contest-position-header">OF {{contest.maxEntries}}</div>
-    </div>
-
-    <div class="column-contest-prize" ng-click="onRow(contest)" ng-if="!contest.isLive">
-      <div ng-if="!contest.isHistory" class="column-contest-prize-content"><img ng-if="!scrDet.isXsScreen && contest.prizePool.amount > 0" class="iconPrize" src="images/iconPrize.png">{{contest.prizePool}}</div>
-      <div ng-if="contest.isHistory"  class="column-contest-prize-content prize-icon-big">{{getMyPrize(contest)}}</div>
-      <div class="column-contest-prize-header">PRIZE</div>
-    </div>
-
-    <div class="column-contest-points" ng-click="onRow(contest)" ng-if="contest.isLive">
-      <div class="column-contest-points-content"><span>{{getMyFantasyPoints(contest)}}</span></div>
-      <div class="column-contest-points-header">POINTS</div>
-    </div>
-
-    <div class="column-contest-start-date" ng-click="onRow(contest)" ng-if="!contest.isLive">
-      <div class="column-start-date-day">{{dateInfo(contest.startDate)}}</div>
-      <div class="column-start-date-hour">{{timeInfo(contest.startDate)}}</div>
-    </div>
-
-    <div class="column-contest-action">
-      <div class="button-wrapper">
-        <button type="button" class="action-button" ng-click="onAction(contest)">{{actionButtonTitle}}</button>
+      <div class="special-image-section" ng-if="getContestMorfology(contest) == 'special'">
+        <img ng-src="{{getContestImage(contest)}}"></img>
       </div>
+
+      <div class="time-section">
+        <div class="fake-time-column"></div>
+        <div class="column-start-time">
+          <div class="column-start-hour" ng-class="{'start-soon' : isSoon(contest.startDate)}" ng-bind-html="timeInfo(contest.startDate)"></div>
+          <div class="column-start-date" ng-if="showDate && !isSoon(contest.startDate)" ng-bind-html="dateInfo(contest.startDate)"></div>
+        </div>
+      </div>
+
+      <!-- margen arriba -->
+      <div class="name-section">
+        <div class="contest-name">{{contest.name}}</div>
+        <div class="contest-description">{{contest.description}}</div>
+      </div>
+
+      <div class="conditions-section">
+      
+        <div class="player-position" ng-if="contest.isLive || contest.isHistory">
+          <div class="condition-name"><span>{{getLocalizedText("position")}}</span></div>
+          <div class="condition-amount"><span class="current-position">{{printableMyPosition(contest)}}</span>/{{contest.numEntries}}</div>
+        </div>
+        
+        <div class="entry-fee-box" ng-if="!(contest.isLive || contest.isHistory)">
+          <span class="condition-name">{{getLocalizedText("entryfee")}}</span>
+          <span class="condition-amount" ng-class="{'entry-fee-coin':getContestTypeIcon(contest) == 'real', 'entry-fee-energy':getContestTypeIcon(contest) == 'train'}">{{contest.entryFee}}</span>
+        </div>
+        <div class="prize-box" ng-if="!contest.isLive">
+          <span class="condition-name">{{getLocalizedText("prize")}}</span>
+          <span class="condition-amount" ng-class="{'prize-coin':getContestTypeIcon(contest) == 'real', 'prize-managerpoints':getContestTypeIcon(contest) == 'train'}">{{getPrizeToShow(contest)}}</span>
+        </div>
+        <div class="points-box" ng-if="contest.isLive">
+          <span class="condition-name">{{getLocalizedText("points")}}</span>
+          <span class="condition-amount">{{getPointsToShow(contest)}}</span>
+        </div>
+      </div>
+
+      <div class="action-section" ng-click="onAction(contest, $event)">
+        <img class="ticket" ng-src="images/arrow{{getContestMorfology(contest) == 'normal' ? 'Black' : 'White'}}.png">
+        <!--div class="button-wrapper" ng-if="contest.isLive">
+          <button type="button" class="action-button" ng-click="onAction(contest, $event)">{{actionButtonTitle}}</button>
+        </div-->
+      </div>
+
+      <div class="tournament-and-type-section">
+        <span class="{{getSourceFlag(contest)}}"></span>
+        <span class="contest-type {{getContestTypeIcon(contest)}}"></span>
+      </div>
+      
     </div>
-
   </div>
-
-  <paginator on-page-change="onPageChange(currentPage, itemsPerPage)" list-length="contestsListFiltered.length"></paginator>
-
-</div>"""));
+</div>
+"""));
 tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", new HttpResponse(200, r"""<div id="enter-contest-wrapper" >
 
-  <contest-header id="contestHeader" contest="contest" contest-id="contestId" show-matches="false"></contest-header>
+  <contest-header-f2p id="contestHeader" contest="contest" contest-id="contestId" show-matches="false"></contest-header-f2p>
 
   <!-- Nav tabs -->
   <ul class="enter-contest-tabs" role="tablist">
-    <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('lineup-tab-content')">Your Lineup</a></li>
-    <li><a role="tab" data-toggle="tab" ng-click="tabChange('contest-info-tab-content')">Contest Info</a></li>
+    <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('lineup-tab-content')">{{getLocalizedText("tablineup")}}</a></li>
+    <li><a role="tab" data-toggle="tab" ng-click="tabChange('contest-info-tab-content')">{{getLocalizedText("tabcontestinfo")}}</a></li>
   </ul>
 
   <div id="enterContest">
@@ -1078,22 +1265,27 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
 
             <div class="enter-contest-actions-wrapper" ng-if="scrDet.isXsScreen">
               <div class="total-salary" ng-class="{'red-numbers':availableSalary < 0}">
-                <span class="total-salary-money" ng-show="contest != null">${{printableAvailableSalary}}</span>
+                <span class="total-salary-money" ng-show="contest != null">{{formatCurrency(printableAvailableSalary)}}</span>
               </div>
-              <button id="cancelSoccerPlayerSelection" type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer">CANCEL</button>
+              <button id="cancelSoccerPlayerSelection" type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer">{{getLocalizedText("buttoncancel")}}</button>
             </div>
 
             <div class="enter-contest-lineup-wrapper">
               <div class="enter-contest-lineup">
                 <div class="enter-contest-total-salary">
-                    <span class="total-salary-text">YOUR LINEUP</span>
+                    <span class="total-salary-text">{{getLocalizedText("yourlineup")}}</span>
                     <div class="total-salary">
-                      <span class="total-salary-text">REMAINING SALARY:</span>
-                      <span class="total-salary-money" ng-class="{'red-numbers': availableSalary < 0 }" ng-show="contest != null">${{printableAvailableSalary}}</span>
+                      <span class="total-salary-text">{{getLocalizedText("remainsalary")}}:</span>
+                      <span class="total-salary-money" ng-class="{'red-numbers': availableSalary < 0 }" ng-show="contest != null">{{formatCurrency(printableAvailableSalary)}}</span>
                     </div>
                 </div>
 
-                <lineup-selector ng-show="!isSelectingSoccerPlayer || scrDet.isNotXsScreen" has-max-players-same-team="playersInSameTeamInvalid" has-negative-balance="isNegativeBalance"></lineup-selector>
+                <lineup-selector ng-show="!isSelectingSoccerPlayer || scrDet.isNotXsScreen"
+                                 not-enough-resources="!enoughResourcesForEntryFee"
+                                 resource="resourceName"
+                                 has-max-players-same-team="playersInSameTeamInvalid"
+                                 has-negative-balance="isNegativeBalance"
+                                 manager-level="playerManagerLevel"></lineup-selector>
               </div>
             </div>
 
@@ -1107,6 +1299,7 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
 
                 <soccer-players-list soccer-players="allSoccerPlayers"
                                      lineup-filter="lineupSlots"
+                                     manager-level="playerManagerLevel"
                                      field-pos-filter="fieldPosFilter" name-filter="nameFilter" match-filter="matchFilter"
                                      on-row-click="onRowClick(soccerPlayerId)"
                                      on-action-click="onSoccerPlayerActionButton(soccerPlayer)"></soccer-players-list>
@@ -1115,16 +1308,19 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
 
             <div class="enter-contest-actions-wrapper">
               <div class="button-wrapper-block" ng-if="isSelectingSoccerPlayer && scrDet.isXsScreen">
-                <button type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer" >CANCEL</button>
+                <button type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer">{{getLocalizedText("buttoncancel")}}</button>
               </div>
               <div  class="bottom-content" ng-if="!isSelectingSoccerPlayer || scrDet.isNotXsScreen">
                 <div class="button-wrapper">
-                  <button type="button" class="btn-clean-lineup-list" ng-click="deleteFantasyTeam()" ng-disabled="isPlayerSelected()">REMOVE ALL</button>
+                  <button type="button" class="btn-clean-lineup-list" ng-click="deleteFantasyTeam()" ng-disabled="isPlayerSelected()">{{getLocalizedText("buttonclean")}}</button>
                 </div>
                 <div class="button-wrapper">
-                  <button type="button" class="btn-confirm-lineup-list" ng-click="createFantasyTeam()" ng-disabled="isInvalidFantasyTeam">CONTINUE</button>
+                  <button type="button" class="btn-confirm-lineup-list"
+                          ng-click="createFantasyTeam()"
+                          ng-disabled="isInvalidFantasyTeam"
+                          ng-bind-html="getConfirmButtonText()"></button>
                 </div>
-                <p>Remember that you can edit your team as many times as you want until the contest starts</p>
+                <p>{{getLocalizedText("tip")}}</p>
               </div>
             </div>
 
@@ -1150,29 +1346,27 @@ tc.put("packages/webclient/components/enter_contest/lineup_selector_comp.html", 
   <div class="lineup-selector-slot" ng-repeat="slot in enterContestComp.lineupSlots" ng-click="enterContestComp.onLineupSlotSelected($index)" ng-class="getSlotClassColor($index)">
 
     <div ng-if="slot == null">
-      <div class="column-fieldpos">{{getSlotPosition($index)}}</div>
+      <div class="column-fieldpos"></div>
       <div class="column-empty-slot">{{getSlotDescription($index)}}</div>
       <div class="column-action"><a class="iconButtonSelect"><span class="glyphicon glyphicon-chevron-right"></span></a></div>
     </div>
 
     <div ng-if="slot != null">
-      <div class="column-fieldpos">{{slot.fieldPos.abrevName}}</div>
+      <!--div class="column-fieldpos">{{slot.fieldPos.abrevName}}</div-->
       <div class="column-primary-info">
         <span class="soccer-player-name">{{slot.fullName}}</span>
         <span class="match-event-name" ng-bind-html="slot.matchEventName"></span>
       </div>
       <div class="column-salary">${{getPrintableSalary(slot.salary)}}</div>
+      <div class="column-gold-cost" ng-bind-html="getPrintableGoldCost(slot)"></div>
       <div class="column-action"><a class="iconButtonRemove"><span class="glyphicon glyphicon-remove"></span></a></div>
     </div>
   </div>
-
-  <div class="alert alert-danger alert-dismissible alert-red-numbers" ng-class="{'active':alertNegativeBalance}" role="alert">
-    <strong>You've spent the salary cap</strong><br> Please choose players that fit the budget.
-  </div>
-  <div class="alert alert-danger alert-max-players-same-team" ng-class="{'active':alertMaxPlayersSameTeamExceed}" role="alert">
-    <strong>Ups! It looks like you already have {{MAX_PLAYERS_SAME_TEAM}} players of the same team</strong><br> Please, choose another player...
-  </div>
-
+  
+  <div class="alert alert-danger alert-dismissible alert-red-numbers" ng-class="{'active':alertNotEnoughResources}" role="alert" ng-bind-html="getLocalizedText('not-enough-resources')"></div>
+  <div class="alert alert-danger alert-dismissible alert-red-numbers" ng-class="{'active':alertNegativeBalance}" role="alert" ng-bind-html="getLocalizedText('wastedsalarycap')"></div>
+  <div class="alert alert-danger alert-max-players-same-team" ng-class="{'active':alertMaxPlayersSameTeamExceed}" role="alert" ng-bind-html="getLocalizedText('maxplayersteam')"></div>
+  
 </div>"""));
 tc.put("packages/webclient/components/enter_contest/matches_filter_comp.html", new HttpResponse(200, r"""<div id="matchesFilterWrapper" ng-switch="srcDet.isXsScreen">
 
@@ -1194,13 +1388,13 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_stats_comp.htm
 
     <!-- En XS mostramos botones de Añadir / Cancelar -->
     <div class="actions-header-xs">
-        <button class="button-cancel" data-dismiss="modal">CANCEL</button>
-        <button class="button-add" ng-click="onAddClicked()" ng-disabled="!selectablePlayer">ADD</button>
+        <button class="button-cancel" data-dismiss="modal">{{getLocalizedText("buttoncancel")}}</button>
+        <button class="button-add" ng-click="onAddClicked()" ng-disabled="!selectablePlayer">{{getLocalizedText("buttonadd")}}</button>
     </div>
 
     <!-- En el resto de versiones título y cruz de cerrar -->
     <div class="actions-header-sm">
-      <div class="text-header">PLAYER STATISTICS</div>
+      <div class="text-header">{{getLocalizedText("tittle")}}</div>
       <button type="button" class="close" data-dismiss="modal">
         <span class="glyphicon glyphicon-remove"></span>
       </button>
@@ -1215,15 +1409,15 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_stats_comp.htm
         <div class="soccer-player-name">{{currentInfoData['name']}}</div>
       </div>
       <div class="soccer-player-stats-info">
-        <div class="soccer-player-fantasy-points"><span>DFP</span><span>{{currentInfoData['fantasyPoints']}}</span></div>
-        <div class="soccer-player-matches"><span>MATCHES</span><span>{{currentInfoData['matchesCount']}}</span></div>
-        <div class="soccer-player-salary"><span>SALARY</span><span>{{printableSalary}}</span></div>
+        <div class="soccer-player-fantasy-points"><span>{{getLocalizedText("dfp")}}</span><span>{{currentInfoData['fantasyPoints']}}</span></div>
+        <div class="soccer-player-matches"><span>{{getLocalizedText("matches")}}</span><span>{{currentInfoData['matchesCount']}}</span></div>
+        <div class="soccer-player-salary"><span>{{getLocalizedText("salary")}}</span><span>{{printableSalary}}</span></div>
       </div>
     </div>
 
     <div class="next-match-wrapper">
       <div class="next-match"  ng-bind-html="currentInfoData['nextMatchEvent']"></div>
-      <button class="button-add" ng-click="onAddClicked()" ng-disabled="!selectablePlayer">ADD</button>
+      <button class="button-add" ng-click="onAddClicked()" ng-disabled="!selectablePlayer">{{getLocalizedText("buttonadd")}}</button>
     </div>
 
   </div>
@@ -1231,8 +1425,8 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_stats_comp.htm
   <div class="soccer-player-stats-content">
       <!-- Nav tabs -->
       <ul id="soccer-player-stats-tabs" class="soccer-player-stats-tabs" role="tablist">
-        <li id="seasonTab" class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('season-stats-tab-content')">Season Data</a></li>
-        <li id="matchTab" ><a role="tab" data-toggle="tab" ng-click="tabChange('match-by-match-stats-tab-content')">Match by Match</a></li>
+        <li id="seasonTab" class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('season-stats-tab-content')">{{getLocalizedText("seasondata")}}</a></li>
+        <li id="matchTab" ><a role="tab" data-toggle="tab" ng-click="tabChange('match-by-match-stats-tab-content')">{{getLocalizedText("matchbymatch")}}</a></li>
       </ul>
 
       <div class="tabs">
@@ -1242,7 +1436,7 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_stats_comp.htm
           <div class="tab-pane active" id="season-stats-tab-content">
             <div class="next-match" ng-bind-html="currentInfoData['nextMatchEvent']"></div>
             <!-- MEDIAS -->
-            <div class="season-header">SEASON STATISTICS <span>(DATA BY MATCH)</span></div>
+            <div class="season-header" ng-bind-html="getLocalizedText('seasonstats')"></div>
             <div class="season-stats">
                 <div class="season-stats-row" ng-repeat="stat in seasonResumeStats"  data-toggle="tooltip" title="{{stat['helpInfo']}}">
                     <div class="season-stats-header">{{stat['nombre']}}</div>
@@ -1258,16 +1452,16 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_stats_comp.htm
           <!-- END BY-SEASON-STATS -->
           <!-- START BY-MATCH-STATS-->
           <div class="tab-pane" id="match-by-match-stats-tab-content">
-            <div class="match-header">MATCH BY MATCH</div>
+            <div class="match-header">{{getUppercaseLocalizedText("matchbymatch")}}</div>
             <div class="noMatchesPlayed" ng-class="{'hidden':currentInfoData['matchesCount'] > 0}">
-                <span>Has not played any game this season</span>
+                <span>{{getLocalizedText("noseasonstats")}}</span>
             </div>
             <div class="match-stats-table-wrapper" ng-class="{'hidden':currentInfoData['matchesCount'] == 0}">
               <!--HEADER-->
               <table id="statsTable" class="table table-striped">
                 <thead class="stats-headings">
                   <tr>
-                    <th class="head-of-headings">Season</th> <!-- necesitamos una vacía -->
+                    <th class="head-of-headings">{{getLocalizedText("season")}}</th> <!-- necesitamos una vacía -->
                     <th class="stat-field-header" ng-repeat="item in seasonTableHeaders">{{item}}</th>
                   </tr>
                 </thead>
@@ -1293,8 +1487,8 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_stats_comp.htm
       </div>
   </div>
   <div class="actions-footer-xs">
-    <button class="button-cancel" data-dismiss="modal">CANCEL</button>
-    <button class="button-add" ng-click="onAddClicked()" ng-disabled="!selectablePlayer">ADD</button>
+    <button class="button-cancel" data-dismiss="modal">{{getLocalizedText("buttoncancel")}}</button>
+    <button class="button-add" ng-click="onAddClicked()" ng-disabled="!selectablePlayer">{{getLocalizedText("buttonadd")}}</button>
   </div>
 </modal>
 
@@ -1302,12 +1496,85 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_stats_comp.htm
 tc.put("packages/webclient/components/enter_contest/soccer_players_filter_comp.html", new HttpResponse(200, r"""<div class="soccer-players-filter">
 
   <div class="filter-by-position" ng-if="scrDet.isNotXsScreen">
-    <span>Players</span>
+    <span>{{getLocalizedText("players", group: "soccerplayerlist")}}</span>
     <button class="button-filter-position" ng-click="fieldPosFilter = fieldPos"
             ng-repeat="fieldPos in posFilterList" ng-bind-html="getTextForFieldPos(fieldPos)" ng-class="getClassForFieldPos(fieldPos)"></button>
   </div>
 
-  <input type="text" class="name-player-input-filter" placeholder="Search player..." ng-model="nameFilter" />
+  <input type="text" class="name-player-input-filter" placeholder="{{getLocalizedText('search-player', group: 'soccerplayerlist')}}" ng-model="nameFilter" />
+</div>"""));
+tc.put("packages/webclient/components/leaderboard_comp.html", new HttpResponse(200, r"""<div id="leaderboard-wrapper">
+
+  <div id="leaderboard-header-wrapper">
+
+    <h1>{{getLocalizedText("title")}}</h1>
+    <div class="rankings-wrapper">
+      <div class="ranking ranking-by-points">
+        <span class="ranking-position">{{playerPointsInfo['position']}}º</span>
+        <div class="ranking-info">
+          <span class="ranking-name">{{getLocalizedText("topskill")}}</span>
+          <span class="ranking-value">{{playerPointsInfo['points']}} ptos</span>
+        </div>
+      </div>
+  
+      <div class="ranking ranking-by-money">
+        <span class="ranking-position">{{playerMoneyInfo['position']}}º</span>
+        <div class="ranking-info">
+          <span class="ranking-name">{{getLocalizedText("topgold")}}</span>
+          <span class="ranking-value">{{playerMoneyInfo['points']}} </span>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+
+  </div>
+
+  <div class="clearfix"></div>
+
+
+  <ul class="leaderboard-tabs" role="tablist">
+    <li class="active"><a class="leaderboard-tab top-points-tab" role="tab" data-toggle="tab" ng-click="tabChange('top-points')">{{getLocalizedText("trueskill")}}</a></li>
+    <li><a class="leaderboard-tab top-money-tab" role="tab" data-toggle="tab" ng-click="tabChange('top-money')">{{getLocalizedText("gold")}}</a></li>
+  </ul>
+  
+  <div class="tabs">
+    <div class="tab-content">
+
+      <!-- LIVE CONTESTS -->
+      <div class="tab-pane active" id="top-points">      
+        
+        <leaderboard-table show-header="true" highlight-element="playerPointsInfo" table-elements="pointsUserList" rows="usersToShow" points-column-label="pointsColumnName" hint="playerPointsHint" ng-show="!loadingService.isLoading"></leaderboard-table>
+        
+      </div>
+
+      <!-- WAITING CONTESTS -->
+      <div class="tab-pane" id="top-money">
+
+        <leaderboard-table show-header="true" highlight-element="playerMoneyInfo" table-elements="moneyUserList" rows="usersToShow" points-column-label="moneyColumnName" hint="playerMoneyHint" ng-show="!loadingService.isLoading"></leaderboard-table>
+      
+      </div>
+    </div>
+  </div>
+
+
+</div>"""));
+tc.put("packages/webclient/components/leaderboard_table_comp.html", new HttpResponse(200, r"""<div class="leaderboard-table">
+  <div class="leaderboard-table-header" ng-show="isHeaded">
+    <div class="leaderboard-table-element">
+      <span class="leaderboard-column leaderboard-table-position">{{getLocalizedText("abrevposition")}}</span>
+      <span class="leaderboard-column leaderboard-table-name">{{getLocalizedText("name")}}</span>
+      <span class="leaderboard-column leaderboard-table-hint"> </span>
+      <span class="leaderboard-column leaderboard-table-skillpoints">{{pointsColumnName}}</span>
+    </div>
+  </div>
+  <div class="leaderboard-table-data">
+    <div class="leaderboard-table-element {{isThePlayer(element['id'])? 'player-position' : ''}}" ng-repeat="element in shownElements">
+      <span class="leaderboard-column leaderboard-table-position">{{element['position']}} </span>
+      <span class="leaderboard-column leaderboard-table-name">{{element['name']}} </span>
+      <span class="leaderboard-column leaderboard-table-hint">{{isThePlayer(element['id'])? playerHint : ''}} </span>
+      <span class="leaderboard-column leaderboard-table-skillpoints">{{element['points']}} </span>
+    </div>
+  </div>
 </div>"""));
 tc.put("packages/webclient/components/legalese_and_help/beta_info_comp.html", new HttpResponse(200, r"""<div id="betaComp">
   <!-- header title -->
@@ -1564,15 +1831,11 @@ tc.put("packages/webclient/components/legalese_and_help/restricted_comp.html", n
 
   <div class="restricted-content-wrapper">
 
-    <div class="texto">
-      Sorry, your current location prohibits you from making deposits on Epic Eleven.<br>
-      <br>
-      If you think this is in error and require assistance, please contact us through <a href="mailto:support@epiceleven.com">support@epiceleven.com</a>
-    </div>
+    <div class="texto" ng-bind-html="getLocalizedText('desc')"></div>
 
     <div class="button-wrapper">
       <div class="button-box">
-        <button class="ok-button" ng-click="backToLobby()">Return to Lobby</button>
+        <button class="ok-button" ng-click="backToLobby()">{{getLocalizedText("gotolobby")}}</button>
       </div>
     </div>
 
@@ -1882,7 +2145,7 @@ tc.put("packages/webclient/components/legalese_and_help/terminus_info_comp.html"
         User Agreement
     </h1>
     <p>
-        This Legal Notice governs the access and use of the website www.epiceleven.com (hereinafter the "Portal") that EPIC ELEVEN makes available to Internet users. Access to it implies unreserved acceptance of this Legal Notice. Also, EPIC ELEVEN can offer through the Portal services that may be subject to some own conditions on which the User will be informed in each case.
+        This Legal Notice governs the access and use of the website <a href="http://www.epiceleven.com" target="_blank">www.epiceleven.com</a> (hereinafter the "Portal") that EPIC ELEVEN makes available to Internet users. Access to it implies unreserved acceptance of this Legal Notice. Also, EPIC ELEVEN can offer through the Portal services that may be subject to some own conditions on which the User will be informed in each case.
     </p>
     <h1>
         ACCESs to the WEB and passwords
@@ -1934,36 +2197,25 @@ tc.put("packages/webclient/components/legalese_and_help/terminus_info_comp.html"
     </p>
   </div>
 </div>"""));
-tc.put("packages/webclient/components/lobby_comp.html", new HttpResponse(200, r"""<div id="lobbyRoot">
+tc.put("packages/webclient/components/lobby_f2p_comp.html", new HttpResponse(200, r"""<div id="lobbyf2pRoot">
 
   <!-- Header de Promociones -->
-  <promos id="promosComponent"></promos>
+  <simple-promo-f2p id="promosComponent" ng-show="scrDet.isNotXsScreen"></simple-promo-f2p>
 
-  <!-- Barra azul de información -->
-  <div id="lobbyTopInfobar">
-    <p>{{infoBarText}}</p>
-  </div>
-
-  <!-- Filtros y Ordenación -->
-  <contest-filters-comp id="contestFiltersRoot"
-                        contests-list="contestsService.activeContests" contest-count="contestCount"
-                        on-sort-order-change="onSortOrderChange(sortParams)" on-filter-change="onFilterChange(filterList)"></contest-filters-comp>
-
+  <!-- Temporalmente pongo la imagen del calendario (maquetar mas adelante). -->
+  <week-calendar on-day-selected="onSelectedDayChange(day)" dates="dayList"></week-calendar>
+  
   <!-- Lista de concursos -->
-  <contests-list  id="activeContestList"
-                  sorting="lobbySorting"
-                  contests-list="contestsService.activeContests"
-                  competition-type-filter="lobbyFilters['FILTER_COMPETITION']"
-                  tournament-type-filter="lobbyFilters['FILTER_TOURNAMENT']"
-                  salary-cap-filter="lobbyFilters['FILTER_TIER']"
-                  entry-fee-filter="lobbyFilters['FILTER_ENTRY_FEE']"
-                  name-filter="lobbyFilters['FILTER_CONTEST_NAME']"
-                  on-action-click='onActionClick(contest)'
-                  on-row-click="onRowClick(contest)" action-button-title="'PLAY'"
-                  contest-count="contestCount">
-  </contests-list>
-<!-- Punto de insercion de nuestra ruta hija contest-info -->
-<ng-view  ng-show="!loadingService.isLoading"></ng-view>
+  <contests-list-f2p  id="activeContestList"
+                      contests-list="currentContestList"
+                      on-action-click='onActionClick(contest)'
+                      on-row-click="onRowClick(contest)" 
+                      action-button-title="'>'">
+  </contests-list-f2p>
+
+  <!-- Punto de insercion de nuestra ruta hija contest-info (modal) -->
+  <ng-view  ng-show="!loadingService.isLoading"></ng-view>
+
 </div>
 """));
 tc.put("packages/webclient/components/modal_comp.html", new HttpResponse(200, r"""<div id="modalRoot" class="modal" tabindex="-1" role="dialog">
@@ -1976,12 +2228,12 @@ tc.put("packages/webclient/components/modal_comp.html", new HttpResponse(200, r"
 """));
 tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(200, r"""<div id="myContest" >
   <!-- header title -->
-  <div class="default-section-header">MY CONTESTS</div>
+  <div class="default-section-header">{{getLocalizedText("title")}}</div>
   <!-- Nav tabs -->
   <ul  id="myContestMenuTabs" class="my-contest-tabs" role="tablist">
-    <li id="live-contest-tab" class="active"><a role="tab" data-toggle="tab" ng-click="gotoSection('live')"> Live <span class="contest-count" ng-if="hasLiveContests">{{numLiveContests}}</span></a></li>
-    <li id="waiting-contest-tab"><a role="tab" data-toggle="tab" ng-click="gotoSection('upcoming')">Upcoming</a></li>
-    <li id="history-contest-tab"><a role="tab" data-toggle="tab" ng-click="gotoSection('history')">Entry History</a></li>
+    <li id="live-contest-tab" class="active"><a role="tab" data-toggle="tab" ng-click="gotoSection('live')"> {{getLocalizedText("tablive")}} <span class="contest-count" ng-if="hasLiveContests">{{numLiveContests}}</span></a></li>
+    <li id="waiting-contest-tab"><a role="tab" data-toggle="tab" ng-click="gotoSection('upcoming')">{{getLocalizedText("tabupcoming")}}</a></li>
+    <li id="history-contest-tab"><a role="tab" data-toggle="tab" ng-click="gotoSection('history')">{{getLocalizedText ("tabhistory")}}</a></li>
   </ul>
 
   <!-- Tab panes -->
@@ -1997,18 +2249,18 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
           <!-- lista vacía -->
           <div class="no-contests-wrapper" ng-switch-when="false">
             <div class="no-contests-content">
-              <div class="default-info-text">YOUR ARE NOT PLAYING ANY CONTEST<br>AT THE MOMENT</div>
-              <div class="no-contests-text">CHECK OUT THE LIST OF YOUR <strong data-toggle="tab" ng-click="gotoSection('upcoming')">NEXT CONTESTS</strong> TO SEE WHEN THEY START</div>
+              <div class="default-info-text" ng-bind-html="getLocalizedText('nolives')"></div>
+              <div class="no-contests-text">{{getLocalizedText("nolivestip1")}} <strong data-toggle="tab" ng-click="gotoSection('upcoming')">{{getLocalizedText("nolivestip2")}}</strong> {{getLocalizedText("nolivestip3")}}</div>
             </div>
             <div class="no-contest-bottom-row">
-              <button class="btn-go-to-contest" ng-click="gotoLobby()">TO THE CONTESTS</button>
+              <button class="btn-go-to-contest" ng-click="gotoLobby()">{{getLocalizedText("tocontest")}}</button>
             </div>
           </div>
           <!-- lista de concursos -->
           <div class="list-container" ng-switch-when="true">
-            <contests-list id="liveContests" contests-list="contestsService.liveContests"
+            <contests-list-f2p id="liveContests" contests-list="contestsService.liveContests"
                            sorting="liveSortType" on-action-click='onLiveActionClick(contest)' on-row-click='onLiveActionClick(contest)'>
-            </contests-list>
+            </contests-list-f2p>
           </div>
         </section>
       </div>
@@ -2021,18 +2273,18 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
           <!-- lista vacía -->
           <div class="no-contests-wrapper" ng-switch-when="false">
             <div class="no-contests-content">
-              <div class="default-info-text">YOU DON'T HAVE ANY TEAM FOR ANY CONTEST<br>RIGHT NOW</div>
-              <div class="no-contests-text">GO TO THE CONTEST LIST, PICK ONE AND START PLAYING</div>
+              <div class="default-info-text" ng-bind-html="getLocalizedText('noupcomings')"></div>
+              <div class="no-contests-text">{{getLocalizedText("noupcomingstip1")}}</div>
             </div>
             <div class="no-contest-bottom-row">
-              <button class="btn-go-to-contest" ng-click="gotoLobby()">TO THE CONTESTS</button>
+              <button class="btn-go-to-contest" ng-click="gotoLobby()">{{getLocalizedText("tocontest")}}</button>
             </div>
           </div>
           <!-- lista de concursos -->
           <div class="list-container" ng-switch-when="true">
-            <contests-list id="waitingContests" contests-list='contestsService.waitingContests'
+            <contests-list-f2p id="waitingContests" contests-list='contestsService.waitingContests' show-date="true"
                            sorting="waitingSortType" on-action-click='onWaitingActionClick(contest)' on-row-click='onWaitingActionClick(contest)'>
-            </contests-list>
+            </contests-list-f2p>
           </div>
         </section>
       </div>
@@ -2045,18 +2297,18 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
           <!-- lista vacía -->
           <div class="no-contests-wrapper" ng-switch-when="false">
             <div class="no-contests-content">
-              <div class="default-info-text">YOU HAVEN'T PLAYED ANY CONTEST YET<br>WHAT ARE YOU WAITING FOR TO START WINNING?</div>
-              <div class="no-contests-text">GO TO THE CONTEST LIST, PICK ONE AND START PLAYING</div>
+              <div class="default-info-text" ng-bind-html="getLocalizedText('nohistorys')"></div>
+              <div class="no-contests-text">{{getLocalizedText("nohistoryestip")}}</div>
             </div>
             <div class="no-contest-bottom-row">
-              <button class="btn-go-to-contest" ng-click="gotoLobby()">TO THE CONTESTS</button>
+              <button class="btn-go-to-contest" ng-click="gotoLobby()">{{getLocalizedText("tocontest")}}</button>
             </div>
           </div>
           <!-- lista de concursos -->
           <div class="list-container" ng-switch-when="true">
-            <contests-list id="historyContests" contests-list="contestsService.historyContests"
+            <contests-list-f2p id="historyContests" contests-list="contestsService.historyContests" show-date="true"
                            sorting="historySortType" on-action-click='onHistoryActionClick(contest)' on-row-click='onHistoryActionClick(contest)'>
-            </contests-list>
+            </contests-list-f2p>
           </div>
         </section>
       </div>
@@ -2089,7 +2341,7 @@ tc.put("packages/webclient/components/promos_comp.html", new HttpResponse(200, r
 </div>-->
 </div>"""));
 tc.put("packages/webclient/components/scoring_rules_comp.html", new HttpResponse(200, r"""<div id="scoringForAll" class="panel-points">
-  <div class="rules-header">ALL PLAYERS</div>
+  <div class="rules-header">{{getLocalizedText("all")}}</div>
   <div class="rules-content">
     <div class="punctuation" ng-class="getClassesIsNegative(event['points'])" ng-repeat="event in AllPlayers">
       <span class="name">{{event["name"]}}</span>
@@ -2099,7 +2351,7 @@ tc.put("packages/webclient/components/scoring_rules_comp.html", new HttpResponse
 </div>
 
 <div id="scoringForGoalKeepers" class="panel-points">
-  <div class="rules-header">GOALKEEPERS</div>
+  <div class="rules-header">{{getLocalizedText("goalkeepers")}}</div>
   <div class="rules-content">
     <div class="punctuation" ng-class="getClassesIsNegative(event['points'])" ng-repeat="event in GoalKeepers">
       <span class="name">{{event["name"]}} </span>
@@ -2109,7 +2361,7 @@ tc.put("packages/webclient/components/scoring_rules_comp.html", new HttpResponse
 </div>
 
 <div id="scoringForDefenders" class="panel-points">
-  <div class="rules-header">DEFENDERS</div>
+  <div class="rules-header">{{getLocalizedText("defenders")}}</div>
   <div class="rules-content">
     <div class="punctuation" ng-class="getClassesIsNegative(event['points'])" ng-repeat="event in Defenders ">
       <span class="name">{{event["name"]}} </span>
@@ -2119,7 +2371,7 @@ tc.put("packages/webclient/components/scoring_rules_comp.html", new HttpResponse
 </div>
 
 <div id="scoringForMidFielders" class="panel-points">
-  <div class="rules-header">MIDFIELDERS</div>
+  <div class="rules-header">{{getLocalizedText("middles")}}</div>
   <div class="rules-content">
     <div class="punctuation" ng-class="getClassesIsNegative(event['points'])" ng-repeat="event in MidFielders">
       <span class="name">{{event["name"]}} </span>
@@ -2129,7 +2381,7 @@ tc.put("packages/webclient/components/scoring_rules_comp.html", new HttpResponse
 </div>
 
 <div id="scoringForForwards" class="panel-points">
-  <div class="rules-header">FORWARDS</div>
+  <div class="rules-header">{{getLocalizedText("forwards")}}</div>
   <div class=rules-content>
     <div class="punctuation" ng-class="getClassesIsNegative(event['points'])" ng-repeat="event in Forwards">
       <span class="name">{{event["name"]}} </span>
@@ -2142,25 +2394,25 @@ tc.put("packages/webclient/components/view_contest/fantasy_team_comp.html", new 
   <div class="fantasy-team-header" ng-class="{'opponent-team-gradient': isOpponent, 'header-view-contest-entry-mode': isViewContestEntryMode}">
 
     <div class="edit-team" ng-if="isViewContestEntryMode">
-      <button class="btn-edit-team" ng-click="editTeam()">EDIT THE LINEUP</button>
+      <button class="btn-edit-team" ng-click="editTeam()">{{getLocalizedText("editlineup")}}</button>
     </div>
 
     <div class="ranking-box" ng-if="!isViewContestEntryMode">
-      <span class="title">POS</span>
+      <span class="title">{{getLocalizedText("pos")}}</span>
       <span class="content">{{userPosition}}</span>
     </div>
 
     <div class="score-box" ng-if="!isViewContestEntryMode">
-      <span class="title">POINTS</span>
+      <span class="title">{{getLocalizedText("points")}}</span>
       <span class="content">{{userScore}}</span>
     </div>
 
     <div class="user-picture"></div>
     <div class="user-nickname" ng-class="{'nickname-view-contest-entry-mode': isViewContestEntryMode}">{{userNickname}}</div>
-    <div class="total-remaining-matches-time" ng-if="!isViewContestEntryMode">REMAINING TIME: {{remainingTime}}</div>
+    <div class="total-remaining-matches-time" ng-if="!isViewContestEntryMode">{{getLocalizedText("remainingtime")}}: {{remainingTime}}</div>
 
     <div class="close-team" ng-click="onCloseButtonClick()" ng-show="showCloseButton">
-      <span class="title">CLOSE</span>
+      <span class="title">{{getLocalizedText("close")}}</span>
       <span class="glyphicon glyphicon-remove"></span>
     </div>
 
@@ -2173,7 +2425,7 @@ tc.put("packages/webclient/components/view_contest/fantasy_team_comp.html", new 
         <div class="column-primary-info">
           <span class="soccer-player-name">{{slot.fullName}}</span>
           <span class="match-event-name" ng-bind-html="slot.matchEventName"></span>
-          <span class="remaining-match-time" ng-if="!isViewContestEntryMode">{{slot.percentOfUsersThatOwn}}% OWNED</span>
+          <span class="remaining-match-time" ng-if="!isViewContestEntryMode">{{slot.percentOfUsersThatOwn}}% {{getLocalizedText("owned")}}</span>
         </div>
         <div class="column-score" ng-if="!isViewContestEntryMode"><span>{{slot.score}}</span></div>
         <div class="column-salary" ng-if="isViewContestEntryMode">${{slot.salary}}</div>
@@ -2190,7 +2442,7 @@ tc.put("packages/webclient/components/view_contest/fantasy_team_comp.html", new 
 
 </div>"""));
 tc.put("packages/webclient/components/view_contest/teams_panel_comp.html", new HttpResponse(200, r"""<div class="teams-toggler-wrapper">
-  <div id="teamsToggler" type="button" class="teams-toggler toggleOff" ng-click="toggleTeamsPanel()"  data-toggle="collapse" data-target="#teamsPanel">SHOW MATCHES</div>
+  <div id="teamsToggler" type="button" class="teams-toggler toggleOff" ng-click="toggleTeamsPanel()"  data-toggle="collapse" data-target="#teamsPanel">{{getLocalizedText("showmatches")}}</div>
 </div>
 <div id="teamsPanelRoot" ng-show="contest != null" class="animate">
 
@@ -2210,16 +2462,16 @@ tc.put("packages/webclient/components/view_contest/teams_panel_comp.html", new H
 tc.put("packages/webclient/components/view_contest/users_list_comp.html", new HttpResponse(200, r"""<div id="usersListRoot" >
 
   <div ng-class="{'users-header-next': isViewContestEntryMode, 'users-header' : !isViewContestEntryMode}">
-    <h1>CONTENDERS IN THIS CONTEST</h1>
-    <h2 ng-if="!isViewContestEntryMode">Choose a contender to compare lineups:</h2>
+    <h1>{{getLocalizedText("title")}}</h1>
+    <h2 ng-if="!isViewContestEntryMode">{{getLocalizedText("desc")}}:</h2>
   </div>
 
   <div class="users-table-header">
-    <div class="pos">POS</div>
-    <div class="name" ng-class="{'name-view-contest-entry-mode': isViewContestEntryMode}">PLAYER</div>
-    <div class="remaining-time" ng-if="!isViewContestEntryMode">R.T.</div>
-    <div class="score-container">POINTS</div>
-    <div class="prize-container" ng-if="!isViewContestEntryMode">PRIZES</div>
+    <div class="pos">{{getLocalizedText("pos")}}</div>
+    <div class="name" ng-class="{'name-view-contest-entry-mode': isViewContestEntryMode}">{{getLocalizedText("player")}}</div>
+    <div class="remaining-time" ng-if="!isViewContestEntryMode">{{getLocalizedText("rt")}}</div>
+    <div class="score-container">{{getLocalizedText("points")}}</div>
+    <div class="prize-container" ng-if="!isViewContestEntryMode">{{getLocalizedText("prizes")}}</div>
   </div>
 
   <div class="users-table-rows">
@@ -2235,14 +2487,14 @@ tc.put("packages/webclient/components/view_contest/users_list_comp.html", new Ht
 </div>"""));
 tc.put("packages/webclient/components/view_contest/view_contest_comp.html", new HttpResponse(200, r"""<section>
 
-  <contest-header id="contestHeader" contest="contest" contest-id="contestId"></contest-header>
+  <contest-header-f2p id="contestHeader" contest="contest" contest-id="contestId"></contest-header-f2p>
 
   <div id="viewContestRoot" ng-switch="scrDet.isXsScreen" >
     <div ng-switch-when="true">
      <!-- Tabs de la versión XS -->
       <ul class="view-contest-tabs" id="liveContestTab" >
-        <li class="active"> <a id="userFantasyTeamTab" ng-click="tabChange('userFantasyTeam')">Your lineup</a></li>
-        <li>                <a id="usersListTab" ng-click="tabChange('usersList')">Users</a></li>
+        <li class="active"> <a id="userFantasyTeamTab" ng-click="tabChange('userFantasyTeam')">{{getLocalizedText("yourlineup")}}</a></li>
+        <li>                <a id="usersListTab" ng-click="tabChange('usersList')">{{getLocalizedText("users")}}</a></li>
         <li ng-disabled="!isOpponentSelected"><a id="opponentFantasyTeamTab" ng-click="tabChange('opponentFantasyTeam')">{{lastOpponentSelected}}</a></li>
       </ul>
 
@@ -2269,22 +2521,22 @@ tc.put("packages/webclient/components/view_contest/view_contest_comp.html", new 
 """));
 tc.put("packages/webclient/components/view_contest/view_contest_entry_comp.html", new HttpResponse(200, r"""<section ng-show="!loadingService.isLoading">
 
-  <contest-header id="contestHeader" contest="contest" contest-id="contestId"></contest-header>
+  <contest-header-f2p id="contestHeader" contest="contest" contest-id="contestId"></contest-header-f2p>
 
   <!--<div class="separator-bar"></div>-->
   <div class="info-complete-bar" ng-if="!isModeViewing">
-    <p ng-if="isModeCreated">WELL DONE! YOU HAVE SUCCESSFULLY COMPLETED YOUR LINEUP</p>
-    <p ng-if="isModeEdited">WELL DONE! YOU HAVE SUCCESSFULLY EDITED YOUR LINEUP</p>
-    <p ng-if="isModeSwapped">THE CONTEST WAS FULL, SO WE HAVE PUT YOU IN THIS EQUIVALENT ONE</p>
-    <p>Remember that you can edit your lineup as many times as you want before the contest starts</p>
+    <p ng-if="isModeCreated">{{getLocalizedText("created")}}</p>
+    <p ng-if="isModeEdited">{{getLocalizedText("edited")}}</p>
+    <p ng-if="isModeSwapped">{{getLocalizedText("swapped")}}</p>
+    <p>{{getLocalizedText("tip")}}</p>
   </div>
 
   <div id="viewContestEntry" ng-switch="scrDet.isXsScreen" >
     <div ng-switch-when="true">
       <!-- Tabs de la versión XS -->
       <ul class="view-contest-entry-tabs" id="viewContestEntryTab" >
-        <li class="active"><a ng-click="tabChange('userFantasyTeam')" data-toggle="tab">Your lineup</a></li>
-        <li><a ng-click="tabChange('usersList')" data-toggle="tab">Users</a></li>
+        <li class="active"><a ng-click="tabChange('userFantasyTeam')" data-toggle="tab">{{getLocalizedText("yourlineup")}}</a></li>
+        <li><a ng-click="tabChange('usersList')" data-toggle="tab">{{getLocalizedText("users")}}</a></li>
       </ul>
       <div class="tab-content" id="viewContestEntryTabContent">
         <fantasy-team class="tab-pane active" id="userFantasyTeam" contest-entry="mainPlayer" watch="updatedDate" is-opponent="false"></fantasy-team>
@@ -2302,9 +2554,9 @@ tc.put("packages/webclient/components/view_contest/view_contest_entry_comp.html"
 <!-- Nuevos Bottons Autocentrables-->
   <div class="new-row">
     <div class="autocentered-buttons-wrapper">
-      <div ng-if="scrDet.isXsScreen" class="button-box"><button type="button" class="ok-button" ng-click="goToParent()">BACK TO CONTESTS</button></div>
-      <div class="button-box"  ng-if="isModeViewing || isModeEdited"><button type="button" class="cancel-button" ng-click="confirmContestCancellation()">CANCEL PARTICIPATION</button></div>
-      <div ng-if="!scrDet.isXsScreen" class="button-box ok"><button type="button" class="ok-button" ng-click="goToParent()">BACK TO CONTESTS</button></div>
+      <div ng-if="scrDet.isXsScreen" class="button-box"><button type="button" class="ok-button" ng-click="goToParent()">{{getLocalizedText("backtocontests")}}</button></div>
+      <!--div class="button-box"  ng-if="isModeViewing || isModeEdited"><button type="button" class="cancel-button" ng-click="confirmContestCancellation()">{{getLocalizedText("cancel")}}</button></div-->
+      <div ng-if="!scrDet.isXsScreen" class="button-box ok"><button type="button" class="ok-button" ng-click="goToParent()">{{getLocalizedText("backtocontests")}}</button></div>
     </div>
   </div>
 <!-- End Nuevos Bottons Autocentrables-->
@@ -2326,4 +2578,14 @@ tc.put("packages/webclient/components/view_contest/view_contest_entry_comp.html"
   </div>
 <ng-view></ng-view>
 </section>"""));
+tc.put("packages/webclient/components/week_calendar_comp.html", new HttpResponse(200, r"""<div class="week-calendar">
+  <ul class="week-days-wrapper">
+    <li class="week-day {{$index==0? ' today':''}} {{isCurrentSelected(day['date'], $index)? ' active':''}}{{(!day['enabled'])? ' disabled':''}}"  ng-click="selectDay($event, day)" ng-repeat="day in dayList">
+      <div class="day-info"> 
+        <span class="week-day-name">{{getLocalizedText(day["weekday"])}}</span>
+        <span class="day-number">   {{day["monthday"]}}</span>
+      </div>
+    </li>
+  </ul>
+</div>"""));
 }

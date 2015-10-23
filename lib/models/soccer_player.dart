@@ -5,6 +5,7 @@ import "package:webclient/models/soccer_team.dart";
 import "package:webclient/models/soccer_player_stats.dart";
 //import "package:webclient/models/field_pos.dart";
 import 'package:webclient/services/contest_references.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 class LiveEventInfo {
   int count;
@@ -82,39 +83,39 @@ class SoccerPlayer {
   }
 
   static final Map<String, String> _EVENT_KEY_TO_NAME = {
-    "PASS_SUCCESSFUL"   : "Successful Pass",
-    "PASS_UNSUCCESSFUL" : "Unsuccessful Pass",
-    "TAKE_ON"           : "Take-on",
-    "FOUL_RECEIVED"     : "Foul Received",
-    "TACKLE"            : "Tackle",
-    "INTERCEPTION"      : "Interception",
-    "SAVE_GOALKEEPER"   : "Save",
-    "SAVE_PLAYER"       : "Saved Shot",
-    "CLAIM"             : "Anticipation",
-    "CLEARANCE"         : "Clearance",
-    "MISS"              : "Missed Shot",
-    "POST"              : "Post",
-    "ATTEMPT_SAVED"     : "Attempted Shot",
-    "YELLOW_CARD"       : "Yellow Card",
-    "PUNCH"             : "Punch",
-    "DISPOSSESSED"      : "Dispossessed",
-    "ERROR"             : "Error",
-    "DECISIVE_ERROR"    : "Decisive Error",
-    "ASSIST"            : "Chance Created",
-    "TACKLE_EFFECTIVE"  : "Completed Tackle",
-    "GOAL_SCORED_BY_GOALKEEPER" : "Goal",
-    "GOAL_SCORED_BY_DEFENDER"   : "Goal",
-    "GOAL_SCORED_BY_MIDFIELDER" : "Goal",
-    "GOAL_SCORED_BY_FORWARD"    : "Goal",
-    "OWN_GOAL"          : "Own Goal",
-    "FOUL_COMMITTED"    : "Foul Committed",
-    "SECOND_YELLOW_CARD": "Second Yellow Card",
-    "RED_CARD"          : "Red Card",
-    "CAUGHT_OFFSIDE"    : "Offside",
-    "PENALTY_COMMITTED" : "Penalty Conceded",
-    "PENALTY_FAILED"    : "Missed Penalty",
-    "GOALKEEPER_SAVES_PENALTY"  : "Penalty Saved",
-    "CLEAN_SHEET"       : "Clean Sheet",
-    "GOAL_CONCEDED"     : "Goal Conceded"
+    "PASS_SUCCESSFUL"           : StringUtils.translate("successpass", "scoringrules"),
+    "PASS_UNSUCCESSFUL"         : StringUtils.translate("unsuccesspass", "scoringrules"),
+    "TAKE_ON"                   : StringUtils.translate("takeon", "scoringrules"),
+    "FOUL_RECEIVED"             : StringUtils.translate("foulreceived", "scoringrules"),
+    "TACKLE"                    : StringUtils.translate("tackle", "scoringrules"),
+    "INTERCEPTION"              : StringUtils.translate("interception", "scoringrules"),
+    "SAVE_GOALKEEPER"           : StringUtils.translate("save", "scoringrules"),
+    "SAVE_PLAYER"               : StringUtils.translate("saveshot", "scoringrules"),
+    "CLAIM"                     : StringUtils.translate("claim", "scoringrules"),
+    "CLEARANCE"                 : StringUtils.translate("clearance", "scoringrules"),
+    "MISS"                      : StringUtils.translate("miss", "scoringrules"),
+    "POST"                      : StringUtils.translate("post", "scoringrules"),
+    "ATTEMPT_SAVED"             : StringUtils.translate("asaved", "scoringrules"),
+    "YELLOW_CARD"               : StringUtils.translate("ycard", "scoringrules"),
+    "PUNCH"                     : StringUtils.translate("punch", "scoringrules"),
+    "DISPOSSESSED"              : StringUtils.translate("dispossessed", "scoringrules"),
+    "ERROR"                     : StringUtils.translate("error", "scoringrules"),
+    "DECISIVE_ERROR"            : StringUtils.translate("decisiveerror", "scoringrules"),
+    "ASSIST"                    : StringUtils.translate("assist", "scoringrules"),
+    "TACKLE_EFFECTIVE"          : StringUtils.translate("tacklecomplete", "scoringrules"),
+    "GOAL_SCORED_BY_GOALKEEPER" : StringUtils.translate("goalbygk", "scoringrules"),
+    "GOAL_SCORED_BY_DEFENDER"   : StringUtils.translate("goalbydef", "scoringrules"),
+    "GOAL_SCORED_BY_MIDFIELDER" : StringUtils.translate("goalbymid", "scoringrules"),
+    "GOAL_SCORED_BY_FORWARD"    : StringUtils.translate("goalbyfor", "scoringrules"),
+    "OWN_GOAL"                  : StringUtils.translate("owngoal", "scoringrules"),
+    "FOUL_COMMITTED"            : StringUtils.translate("foulcommited", "scoringrules"),
+    "SECOND_YELLOW_CARD"        : StringUtils.translate("ycard2", "scoringrules"),
+    "RED_CARD"                  : StringUtils.translate("rcard", "scoringrules"),
+    "CAUGHT_OFFSIDE"            : StringUtils.translate("offside", "scoringrules"),
+    "PENALTY_COMMITTED"         : StringUtils.translate("penaltyconceded", "scoringrules"),
+    "PENALTY_FAILED"            : StringUtils.translate("penaltyfailed", "scoringrules"),
+    "GOALKEEPER_SAVES_PENALTY"  : StringUtils.translate("penaltysaved", "scoringrules"),
+    "CLEAN_SHEET"               : StringUtils.translate("clean", "scoringrules"),
+    "GOAL_CONCEDED"             : StringUtils.translate("goalconceded", "scoringrules")
   };
 }

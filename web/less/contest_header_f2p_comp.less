@@ -1,0 +1,204 @@
+.contest-header-f2p-wrapper {
+	.container-fluid();
+	position: relative;
+	background-color: @greyLight;
+	padding-bottom: 5px;
+	padding-top: 50px;
+	padding-left: 0px;
+	min-height: 31px;
+	width: 100%;
+	position: relative;
+	@media (max-width: @screen-xs-max) {
+		padding-bottom: 10px;
+	}
+	background-color: @white;
+	//Sección de iconos que definen el tipo y torneo del concurso
+	.tournament-and-type-section {
+		position: absolute;
+		top: 0px;
+		width: 100%;
+		.flag {
+			position: absolute;
+			top: 11px;				
+			left: 15px;
+		}
+		.contest-type {
+			position: absolute; 
+			top: -1px;
+			left: 35px;
+			width: 20px;
+			height: 31px;
+			&.real {background-image: url("@{images}/realContest.png");}
+			&.train {background-image: url("@{images}/trainContest.png");}
+		}
+	}
+	
+	.close-contest {		
+		position: absolute;
+		right: 10px;
+		top: 10px;
+		// Posición para versión xs
+		@media (max-width: @screen-xs-max) {
+			right: 5px;
+			top: 8px;
+		}
+		.btn::after {
+			.create-glyph("\E014", 9pt);
+		}
+	}
+	
+	// Sección de nombre y descripción
+	.name-section {
+		.make-xs-column(12);
+		.make-sm-column(8);
+		@media (max-width: @screen-xs-max) {
+			margin-bottom: 10px;
+		}
+		.contest-name {
+			.opensans_bold(9pt, @blueDark);
+			@media (min-width: @screen-sm-min) {
+				.exo_bold(12pt, @blueDark);
+			}
+		}
+		.contest-description {
+			.opensans_normal(9pt, @greyDark);
+			@media (min-width: @screen-sm-min) {
+				.opensans_normal(9pt, @greyDark);
+			}
+		}
+	}
+	
+	// Sección de concidiones de pago y premio del concurso
+	.conditions-section {
+		
+		.make-xs-column(8);
+		.make-sm-column(4);
+		padding: 0px;
+		
+		.condition-box-commons {
+			.make-xs-column(6);
+			padding-right: 0px;
+			.opensans_bold(9pt, @greyDark);		
+			position: relative;
+
+			@media (min-width: @screen-sm-min) {
+				.opensans_bold(14pt, @greyDark);
+				border-radius: 5px;
+				box-shadow: 1px 1px 7px rgba(0,0,0,0.5) inset;
+				padding: 5px 10px 8px 10px;
+				top: -5px;
+			}
+			img {
+				vertical-align: top; 
+				margin-right: 10px;
+			}
+			.condition-amount {
+				.make-sm-column(12);
+				padding: 3px 0px 0px 0px;
+				text-align: left;
+				line-height: 30px;
+				display: inline-block;
+			}
+			.condition-name {
+				.opensans_normal(8pt, @greyMed);
+				line-height: 15px;
+				display: inline-block;
+
+				@media (min-width: @screen-sm-min) {
+					position: absolute;
+					top: -17px;
+					left: 0px;
+				}
+			}
+		}
+
+		.player-position {
+			.condition-box-commons();
+			@media (min-width: @screen-sm-min) {
+				margin-right: 10px;
+				margin-left: -10px;
+			}
+			.condition-amount {
+				color: @greyMed;
+				.current-position {
+					color: @greyUltraDark;
+				}
+			}
+		}
+		.entry-fee-box {
+			.condition-box-commons();
+			@media (min-width: @screen-sm-min) {
+				margin-right: 10px;
+				margin-left: -10px;
+			}
+		}
+		.prize-box {
+			.condition-box-commons();
+		}
+		.fit-icon-size {
+			width: 16px;
+			height: 16px;
+			position: relative;
+			display: inline-block;
+			margin-left: 3px;
+			top: 2px;
+			@media (min-width: @screen-sm-min) {
+				float: right;
+				width: 25px;
+				height: 25px;
+				margin-left: 0px;
+				top: 0px;
+			}
+		}
+		.entry-fee-energy::after {
+			content: " ";
+			background-image: url("@{images}/icon-lightning-xs.png");
+			@media (min-width: @screen-sm-min) {
+				background-image: url("@{images}/icon-lightning-lg.png");
+			}
+			.fit-icon-size();
+		}		
+		.entry-fee-coin::after, .prize-coin::after {
+			content: " ";
+			background-image: url("@{images}/icon-coin-xs.png");
+			@media (min-width: @screen-sm-min) {
+				background-image: url("@{images}/icon-coin-lg.png");
+			}
+			.fit-icon-size();
+		}
+		.prize-managerpoints::after {
+			content: " ";
+			background-image: url("@{images}/icon-star-xs.png");
+			@media (min-width: @screen-sm-min) {
+				background-image: url("@{images}/icon-star-lg.png");
+			}
+			.fit-icon-size();
+		}
+	}
+	
+	.date-time-data {
+		.make-xs-column(4);
+		.make-sm-column(12);
+		padding-right: 0px;
+		padding-left: 0px;
+		@media (min-width: @screen-sm-min) {
+			padding-left: 15px;
+			padding-right: 15px;
+		}
+		display: inline-block;
+		//background-color: @greyUltraDark;
+		line-height: 2;
+		// Fecha comienzo contest
+		.contest-start-date {
+			text-align: right;	
+			.opensans_bold(8pt, @blueLight);
+			@media (min-width: @screen-sm-min) {
+				text-align: left;
+				.opensans_bold(11pt, @blueLight);
+			}	
+		}
+		
+	}
+	
+}
+

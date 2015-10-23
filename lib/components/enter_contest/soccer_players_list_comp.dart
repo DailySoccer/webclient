@@ -7,6 +7,9 @@ import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/utils/html_utils.dart';
+import 'package:webclient/services/profile_service.dart';
+import 'package:webclient/models/instance_soccer_player.dart';
+import 'package:webclient/models/money.dart';
 
 
 @Component(
@@ -25,6 +28,9 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
 
   @NgCallback("on-action-click")
   Function onActionClick;
+  
+  @NgOneWay("manager-level")
+  num managerLevel;
 
   @NgOneWay("field-pos-filter")
   FieldPos get fieldPosFilter => new FieldPos(_filterList[FILTER_POSITION]);
@@ -80,7 +86,11 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
 
   List<dynamic> lineupFilter;
 
-  SoccerPlayersListComp(this._scrDet, this._element, this._turnZone);
+  String getLocalizedText(key) {
+    return StringUtils.translate(key, "soccerplayerlist");
+  }
+  
+  SoccerPlayersListComp(this._scrDet, this._element, this._turnZone, this._profileService);
 
   void _onLineupFilterChanged(changes, _) {
     if (_soccerPlayerListRoot == null) {
@@ -97,7 +107,8 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
 
           // Quiza nos mandan quitar un portero pero estamos filtrando por defensas....
           if (elem != null) {
-            elem.setInnerHtml(_getActionButton(!lineupFilter.contains(soccerPlayer)), treeSanitizer: NULL_TREE_SANITIZER);
+            Money moneyToBuy = soccerPlayer['instanceSoccerPlayer'].moneyToBuy(managerLevel);
+            elem.setInnerHtml(_getActionButton(!lineupFilter.contains(soccerPlayer), moneyToBuy), treeSanitizer: NULL_TREE_SANITIZER);
           }
         }
       }
@@ -146,11 +157,11 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
   void _createSortHeader() {
     var text = '''
       <div class="soccer-player-list-header-table">
-        <div class="filter filterOrderPos"><a id="Pos">Pos.</a></div>
-        <div class="filter filterOrderName"><a id="Name">Name</a></div>
-        <div class="filter filterOrderDFP"><a id="DFP">DFP</a></div>
-        <div class="filter filterOrderPlayed"><a id="Played">#Matches</a></div>
-        <div class="filter filterOrderSalary"><a id="Salary">Salary</a></div>
+        <div class="filter filterOrderPos"><a id="Pos">${getLocalizedText('positionabrev')}</a></div>
+        <div class="filter filterOrderName"><a id="Name">${getLocalizedText('name')}</a></div>
+        <div class="filter filterOrderDFP"><a id="DFP">${getLocalizedText('dfp')}</a></div>
+        <div class="filter filterOrderPlayed"><a id="Played">${getLocalizedText('numMatchesAbrev')}</a></div>
+        <div class="filter filterOrderSalary"><a id="Salary">${getLocalizedText('salary')}</a></div>
       </div>
       ''';
 
@@ -181,60 +192,73 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
     for (int c = 0; c < length; ++c) {
       var slot = _sortedSoccerPlayers[c];
 
-      if (!_isVisibleWithFilters(slot, filterPosVal, filterMatchIdVal, filterNameVal)) {
-        continue;
+      if (_isVisibleWithFilters(slot, filterPosVal, filterMatchIdVal, filterNameVal)) {
+        allHtml.write(_getHtmlForSlot(slot, !lineupFilter.contains(slot)));
       }
-
-      allHtml.write(_getHtmlForSlot(slot, !lineupFilter.contains(slot)));
     }
 
     _soccerPlayerListRoot.appendHtml(allHtml.toString());
     _element.append(_soccerPlayerListRoot);
 
-    _element.querySelectorAll(".soccer-players-list-slot").onClick.listen(_onMouseEvent);
+    _element.querySelectorAll(".soccer-player-info").onClick.listen(_onSoccerPlayerInfo);
+    _element.querySelectorAll(".column-action").onClick.listen(_onSoccerPlayerAction);
   }
 
-  String _getHtmlForSlot(var slot, bool addButton) {
-
-    String strAddButton = _getActionButton(addButton);
-
+  String _getHtmlForSlot(var slot, bool addButton) { 
+    InstanceSoccerPlayer soccerPlayer = slot['instanceSoccerPlayer'];
+    Money moneyToBuy = slot['instanceSoccerPlayer'].moneyToBuy(managerLevel);
+    bool soccerPlayerIsAvailable = moneyToBuy.toInt() == 0;
+    String strAddButton = _getActionButton(addButton, moneyToBuy);
+    
     return '''
-      <div id="soccerPlayer${slot["intId"]}" class="soccer-players-list-slot ${_POS_CLASS_NAMES[slot["fieldPos"].abrevName]}">
-        <div class="column-fieldpos">${slot["fieldPos"].abrevName}</div>
-        <div class="column-primary-info">
-          <span class="soccer-player-name">${slot["fullName"]}</span>
-          <span class="match-event-name">${slot["matchEventName"]}</span>
+      <div id="soccerPlayer${slot["intId"]}" class="soccer-players-list-slot ${_POS_CLASS_NAMES[slot["fieldPos"].abrevName]} ${!soccerPlayerIsAvailable? 'not-available' : ''}">
+        <div id="soccerPlayerInfo${slot["intId"]}" class="soccer-player-info">
+          <div class="column-fieldpos">${slot["fieldPos"].abrevName}</div>
+          <div class="column-primary-info">
+            <span class="soccer-player-name">${slot["fullName"]}</span>
+            <span class="match-event-name">${slot["matchEventName"]}</span>
+          </div>
+          <div class="column-dfp">${StringUtils.parseFantasyPoints(slot["fantasyPoints"])}</div>
+          <div class="column-played">${slot["playedMatches"]}</div>
+          <div class="column-salary">\$${StringUtils.parseSalary(slot["salary"])}</div>
+          <div class="column-manager-level"><span class="manager-level-needed">${soccerPlayer.level}</span></div>
         </div>
-        <div class="column-dfp">${StringUtils.parseFantasyPoints(slot["fantasyPoints"])}</div>
-        <div class="column-played">${slot["playedMatches"]}</div>
-        <div class="column-salary">\$${StringUtils.parseSalary(slot["salary"])}</div>
-        <div class="column-action">
+        <div class="column-action" id="soccerPlayerAction${slot["intId"]}" >
           ${strAddButton}
         </div>
       </div>
     ''';
   }
 
-  String _getActionButton(bool addButton) {
-    return addButton? '<button type="button" class="action-button add">+</button>' :
-                      '<button type="button" class="action-button remove">-</button>';
+  String _getActionButton(bool addButton, Money moneyToBuy) {
+    bool isFree = moneyToBuy.toInt() == 0;
+    String buttonText = !addButton? '-' : isFree? '+' : '<span class="coins-to-buy">${moneyToBuy.toInt()}</span>';
+    
+    return '<button type="button" class="action-button ${addButton? 'add' : 'remove'} ${isFree? 'free-purchase' : 'coin-purchase'}">$buttonText</button>';
   }
 
-  void _onMouseEvent(MouseEvent e) {
-
-    int divId = int.parse((e.currentTarget as DivElement).id.replaceFirst("soccerPlayer", ""));
-    var clickedSlot = _sortedSoccerPlayers.firstWhere((slot) => slot['intId'] == divId);
-
-    if (e.target is ButtonElement) {
-      if (onActionClick != null) {
-        onActionClick({"soccerPlayer": clickedSlot});
-      }
+  void _onSoccerPlayerAction(MouseEvent e) {
+    DivElement div = e.currentTarget as DivElement;
+    
+    int soccerPlayerId = int.parse(div.id.replaceFirst("soccerPlayerAction", ""));
+    var clickedSlot = _sortedSoccerPlayers.firstWhere((slot) => slot['intId'] == soccerPlayerId);
+    
+    if (onActionClick != null) {
+      onActionClick({"soccerPlayer": clickedSlot});
     }
-    else if (onRowClick != null) {
+  }
+
+  void _onSoccerPlayerInfo(MouseEvent e) {
+    DivElement div = e.currentTarget as DivElement;
+    
+    int divId = int.parse(div.id.replaceFirst("soccerPlayerInfo", ""));
+    var clickedSlot = _sortedSoccerPlayers.firstWhere((slot) => slot['intId'] == divId);
+    
+    if (onRowClick != null) {
       onRowClick({"soccerPlayerId": clickedSlot['id']});
     }
-  }
-
+  }  
+  
   static bool _isVisibleWithFilters(player, pos, matchId, name) {
     return (pos == null || player["fieldPos"].value == pos) &&
            (matchId == null || player["matchId"] == matchId) &&
@@ -297,12 +321,19 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
   bool _isDirty = false;
   Scope _scope;
   Watch _lineupFilterWatch;
+  ProfileService _profileService;
+  
 
   List<dynamic> _sortedSoccerPlayers = null;
   List<Map> _sortList = [_SORT_FIELDS["Pos"], _SORT_FIELDS["Name"]];
   Map<String, String> _filterList = {};
 
-  static final Map<String, String> _POS_CLASS_NAMES = { "GK": "posPOR", "DEF": "posDEF", "MID": "posMED", "FWD": "posDEL" };
+  static final Map<String, String> _POS_CLASS_NAMES = {
+    StringUtils.translate("gk", "soccerplayerpositions") : "posPOR",
+    StringUtils.translate("def", "soccerplayerpositions"): "posDEF",
+    StringUtils.translate("mid", "soccerplayerpositions"): "posMED",
+    StringUtils.translate("for", "soccerplayerpositions"): "posDEL"
+  };
   static final Map<String, Map> _SORT_FIELDS = { "Name": _getSortField("fullNameNormalized", 1),
                                                  "DFP": _getSortField("fantasyPoints", -1),
                                                  "Played": _getSortField("playedMatches", -1),

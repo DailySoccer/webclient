@@ -1,40 +1,34 @@
 //barra que muestra los partidos que intervienen en el concurso y los encales sociales
 #teamsPanelComp {
-
+	.container-fluid();
+	display: block;
+	.clean-paddings();
+	top: -10px;
+	position: relative;
 	//display: inline-block;
-    .teams-toggler-wrapper {
-      display: inline-block;
-      float: right;
-      background-color: @white;
-      .teams-toggler {
-        .opensans_bold(8pt, @greyDark);
-        .user-select(none);
-        padding-left: 0px;
-        padding-right: 15px;      
-        //position: absolute;
-        //right: 0;
-        //bottom: 0;  
-          @media (max-width: @screen-xs-max) {
-          margin-top: 3px;
-          }
-          @media (min-width: @screen-xs-max) {
-          margin-top: 9px;
-          }
-                  
-      }
-      .toggleOff::after{
-        .create-glyph("\E114", 6pt, @greyUltraDark);
-        padding-left: 3px;
-        //position: absolute;
-        //right: 15px;
-      }
-      .toggleOn::after{
-        .create-glyph("\E113", 6pt, @greyUltraDark);
-        padding-left: 3px;
-        
-        //position: absolute;
-        //right: 15px;
-      }
+	.teams-toggler-wrapper {
+		display: block;
+		text-align: right;
+		background-color: @white;
+		.teams-toggler {
+			.opensans_bold(8pt, @greyDark);
+			.user-select(none);
+			padding-left: 0px;
+			padding-right: 15px;
+		}
+		.toggleOff::after{
+			.create-glyph("\E114", 6pt, @greyUltraDark);
+			padding-left: 3px;
+			//position: absolute;
+			//right: 15px;
+		}
+		.toggleOn::after{
+			.create-glyph("\E113", 6pt, @greyUltraDark);
+			padding-left: 3px;
+
+			//position: absolute;
+			//right: 15px;
+		}
 
 	// Reserva de sitio
 	@media (max-width: @screen-sm-max) {

@@ -4,26 +4,31 @@ import 'package:angular/angular.dart';
 import 'dart:html';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/profile_service.dart';
+import 'package:webclient/utils/html_utils.dart';
+import 'package:webclient/utils/string_utils.dart';
 
-@Component(
-  selector: 'welcome',
-  useShadowDom: false
-)
-class WelcomeComp {
+@Component(selector: 'welcome', useShadowDom: false)
+class WelcomeComp implements DetachAware {
   String stage;
   Map stage_params;
-  WelcomeComp(this._rootElement, this._router, this._reouteProvider, this._scrDet, this._profileService) {
+
+  String getLocalizedText(key) {
+    return StringUtils.translate(key, "welcome");
+  }
+
+  WelcomeComp(this._rootElement, this._router, this._reouteProvider,
+      this._scrDet, this._profileService) {
     stage = _reouteProvider.route.parent.name;
     stage_params = _reouteProvider.route.parameters;
     composeHtml();
-    _screenWidthChangeDetector = _scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
+    _screenWidthChangeDetector = _scrDet.mediaScreenWidth
+        .listen((String msg) => onScreenWidthChange(msg));
     if (stage == 'view_contest_entry') {
       _profileService.finishTutorial();
     }
   }
 
   void composeHtml() {
-
     String html = '''
       <div id="welcomeRoot">
         <div class="main-box">
@@ -61,59 +66,69 @@ class WelcomeComp {
 
   String getTutorialTitle() {
     String title;
-    switch(stage) {
+    switch (stage) {
       case 'lobby':
-        title ='SELECT A CONTEST';
-      break;
+        title = getLocalizedText("tutorialtittlelobby");
+        break;
       case 'enter_contest':
-        title ='SELECT YOUR LINEUP';
-      break;
+        title = getLocalizedText("tutorialtittleentercontest");
+        break;
       case 'view_contest_entry':
-        title ='WELCOME TO EPICELEVEN';
-      break;
+        title = getLocalizedText("tutorialtittleviewcontestentry");
+        break;
     }
     return title;
   }
 
   String getTutorialText() {
     String text;
-    switch(stage) {
+    switch (stage) {
       case 'lobby':
-        text ='You can play as many contests as you like for La Liga BBVA, Barclays Premier League and UEFA Champions League.';
-      break;
+        text = getLocalizedText("tutorialtextlobby");
+        break;
       case 'enter_contest':
-        text ='Pick up 11 player within your salary cap.';
-      break;
+        text = getLocalizedText("tutorialtextentercontest");
+        break;
       case 'view_contest_entry':
-        text ='Go to “<b>My Contest</b>” to edit your lineups, watch your team’s live performance or review past contests. <br> <br> <p class="subtitle">Remember: you can play as many contests as you like, and select as many lineups as you like.</p>';
-      break;
+        text = getLocalizedText("tutorialtextviewcontestentry");
+        break;
     }
     return text;
   }
 
   String getTutorialImage() {
     String imagePath;
-    switch(stage) {
+    switch (stage) {
       case 'lobby':
-        imagePath = "images/tutorial/" + (_scrDet.isXsScreen ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg");
-      break;
+        imagePath = "images/tutorial/" +
+            (_scrDet.isXsScreen
+                ? "welcomeLobbyXs.jpg"
+                : "welcomeLobbyDesktop.jpg");
+        break;
       case 'enter_contest':
-        imagePath = "images/tutorial/" + (_scrDet.isXsScreen ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg");
-      break;
+        imagePath = "images/tutorial/" +
+            (_scrDet.isXsScreen
+                ? "welcomeTeamXs.jpg"
+                : "welcomeTeamDesktop.jpg");
+        break;
       case "view_contest_entry":
-        imagePath = "images/tutorial/" + (_scrDet.isXsScreen ? "welcomeSuccessXs.jpg" : "welcomeSuccessDesktop.jpg");
-      break;
+        imagePath = "images/tutorial/" +
+            (_scrDet.isXsScreen
+                ? "welcomeSuccessXs.jpg"
+                : "welcomeSuccessDesktop.jpg");
+        break;
     }
     return imagePath;
   }
 
   void createHTML(String theHTML) {
     _rootElement.nodes.clear();
-    _rootElement.appendHtml(theHTML);
-    _rootElement.querySelectorAll("[button-action]").onClick.listen(buttonPressed);
+    _rootElement.setInnerHtml(theHTML, treeSanitizer: NULL_TREE_SANITIZER);
+    _rootElement.querySelectorAll("[button-action]").onClick
+        .listen(buttonPressed);
   }
 
-  void buttonPressed(event){
+  void buttonPressed(event) {
     _router.go(stage, stage_params);
     if (stage == 'enter_contest') {
       _profileService.startTutorial();
@@ -133,6 +148,6 @@ class WelcomeComp {
   Router _router;
   RouteProvider _reouteProvider;
   ScreenDetectorService _scrDet;
-  ProfileService  _profileService;
+  ProfileService _profileService;
   var _screenWidthChangeDetector;
 }

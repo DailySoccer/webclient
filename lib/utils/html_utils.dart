@@ -10,20 +10,21 @@ class _NullTreeSanitizer implements NodeTreeSanitizer {
 
 final NodeTreeSanitizer NULL_TREE_SANITIZER = new _NullTreeSanitizer();
 
-Future<bool> modalShow(String title, String content,{String onOk: null, String onCancel: null, bool closeButton: false}) {
+Future<bool> modalShow(String title, String content,
+    {String onOk: null, String onCancel: null, bool closeButton: false}) {
   Completer completer = new Completer();
-  Element parent = querySelector('ng-view');
+  Element modalWindow = querySelector("#modalWindow");
 
   void onClose(dynamic sender) {
-    parent.children.remove(parent.querySelector('#modalRoot'));
+    modalWindow.children.remove(modalWindow.querySelector('#alertRoot'));
   }
 
   void closeMe() {
-    JsUtils.runJavascript('#modalRoot', 'modal', "hide");
+    JsUtils.runJavascript('#alertRoot', 'modal', "hide");
   }
 
   // Si no se han especificado callBacks, declaramos como minimo el botón Aceptar.
-  if(onOk == null && onCancel == null) {
+  if (onOk == null && onCancel == null) {
     onOk = "OK";
   }
 
@@ -31,45 +32,70 @@ Future<bool> modalShow(String title, String content,{String onOk: null, String o
     String eventCallback = sender.currentTarget.attributes["eventCallback"];
     closeMe();
     //Luego el true o false para cerrar la ventana.
-    switch(eventCallback){
+    switch (eventCallback) {
       case "onYes":
       case "onOk":
         completer.complete(true);
-      break;
+        break;
       case "onNo":
       case "onCancel":
         completer.complete(false);
-      break;
+        break;
     }
   }
 
-  String botonOk      = (onOk != null) ?     '''<div class="button-box"><button class="ok-button" eventCallback="onOk">${onOk}</button><div>''' : '';
-  String botonCancel  = (onCancel != null) ? '''<div class="button-box"><button class="cancel-button" eventCallback="onCancel"> ${onCancel}</button></div>''' : '';
-  String modalBody =  ''' 
-                        <div id="modalRoot" class="modal container fade" tabindex="-1" role="dialog" style="display: block;">
+  String composeHeader() {
+    String ret = "";
+
+    if (title != "") {
+      ret = '''
+        <!-- Header -->
+        <div class="panel-heading">
+          <div class="panel-title">${title}</div>
+          ${closeButton ? '''
+              <button type="button" class="close" eventCallback="closeMe">
+                <span class="glyphicon glyphicon-remove"></span>
+              </button> ''' : ''
+          }
+        </div>
+      ''';
+      closeButton = false;
+    }
+
+    return ret;
+  }
+
+  String botonOk = (onOk != null)
+      ? '''<div class="button-box"><button class="ok-button" eventCallback="onOk">${onOk}</button><div>'''
+      : '';
+  String botonCancel = (onCancel != null)
+      ? '''<div class="button-box"><button class="cancel-button" eventCallback="onCancel"> ${onCancel}</button></div>'''
+      : '';
+  String modalBody = ''' 
+                        <div id="alertRoot" class="modal container fade" tabindex="-1" role="dialog" style="display: block;">
                           <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                              <content>      
-                                <div id="loginBox" class="main-box">
-                                  <div class="panel">            
-                                    <!-- Header -->
-                                    <div class="panel-heading">
-                                      <div class="panel-title">${title}</div>
+                            <div class="modal-content"> 
+
+                              <div class="alert-content">      
+                                <div id="alertBox" class="main-box">
+                                  <div class="panel">
+                                    ${composeHeader()} 
+                                    <!-- Content Message and Buttons-->
+                                    <div class="panel-body" >
+                                      <!-- close button -->
                                       ${closeButton ? '''
                                         <button type="button" class="close" eventCallback="closeMe">
-                                          <span class="glyphicon glyphicon-remove"></span>
+                                          <!--<span class="glyphicon glyphicon-remove"></span>-->
+                                          <img src="images/alertCloseButton.png">
                                         </button> ''' : ''
-                                      }
-                                    </div>            
-                                    <!-- Content Message and Buttons-->
-                                    <div class="panel-body" >            
+                                      }           
                                       <!-- Alert Text -->
                                       <div class="form-description">${content}</div>            
                                       <!-- Alert Buttons -->
                                       <div class="input-group user-form-field">
-                                        <div class="new-row">
+                                        <div class="new-row">                  
                                           <div class="autocentered-buttons-wrapper">
-                                            ${(onCancel != null) ? botonCancel  : ""}
+                                            ${(onCancel != null) ? botonCancel  : ""} 
                                             ${(onOk     != null) ? botonOk      : ""}
                                           </div>
                                         </div>
@@ -77,18 +103,20 @@ Future<bool> modalShow(String title, String content,{String onOk: null, String o
                                     </div>
                                   </div>
                                 </div>        
-                              </content>
+                              </div>
+
                             </div>
                           </div>
                         </div>
                       ''';
 
-  parent.appendHtml(modalBody);
-  // Aqui hago el setup de los botones. (que tiene que hacer cada botón al ser clickado... ver: main_menu_slide_comp).
-  parent.querySelectorAll("[eventCallback]").onClick.listen(onButtonClick);
+  modalWindow.setInnerHtml(modalBody, treeSanitizer: NULL_TREE_SANITIZER);
 
-  JsUtils.runJavascript('#modalRoot', 'modal', null);
-  JsUtils.runJavascript('#modalRoot', 'on', {'hidden.bs.modal': onClose});
+  // Aqui hago el setup de los botones. (que tiene que hacer cada botón al ser clickado... ver: main_menu_slide_comp).
+  modalWindow.querySelectorAll("[eventCallback]").onClick.listen(onButtonClick);
+
+  JsUtils.runJavascript('#alertRoot', 'modal', null);
+  JsUtils.runJavascript('#alertRoot', 'on', {'hidden.bs.modal': onClose});
   return completer.future;
 }
 
@@ -98,7 +126,7 @@ String trimStringToPx(Element elem, int maxWidthAllowed) {
   int visualStringWidth(String theString) {
     var displayOriginal = elem.style.display;
     Map OriginalStyle = {};
-    String OriginalDisplay =elem.style.display;
+    String OriginalDisplay = elem.style.display;
     // Si el elemento es display:block, no lo puedo usar para cambiarle el ancho. Por siacaso guardo su display original
     elem.style.setProperty("display", "inline-block");
 
@@ -123,7 +151,7 @@ String trimStringToPx(Element elem, int maxWidthAllowed) {
     trimmedString += '...';
 
     int start = 0;
-    int end = trimmedString.length -1;
+    int end = trimmedString.length - 1;
     int middle = 0;
 
     //Si no cabe, hacemos busqueda dicotómica para encontrar la longitud de cadena máxima permitida
@@ -131,20 +159,20 @@ String trimStringToPx(Element elem, int maxWidthAllowed) {
       middle = (((start + end) / 2)).ceil();
       trimmedString = tmpString.substring(0, middle).trim() + '...';
       int trimmedStringWidth = visualStringWidth(trimmedString);
-      int nextTrimmedStringWidth = visualStringWidth( tmpString.substring(0, middle + 1).trim() + '...');
+      int nextTrimmedStringWidth =
+          visualStringWidth(tmpString.substring(0, middle + 1).trim() + '...');
 
       // Si el texto ocupa lo mismo Ó si la diferencia de poner un carcater de más nos hace pasarnos
-      if(trimmedStringWidth == maxWidthAllowed || (trimmedStringWidth < maxWidthAllowed && nextTrimmedStringWidth > maxWidthAllowed)) {
+      if (trimmedStringWidth == maxWidthAllowed ||
+          (trimmedStringWidth < maxWidthAllowed &&
+              nextTrimmedStringWidth > maxWidthAllowed)) {
         return trimmedString;
-      }
-      else if (trimmedStringWidth < maxWidthAllowed) {
-          start = middle - 1;
-      }
-      else {
+      } else if (trimmedStringWidth < maxWidthAllowed) {
+        start = middle - 1;
+      } else {
         end = middle + 1;
       }
     }
-
   }
 
   return trimmedString;

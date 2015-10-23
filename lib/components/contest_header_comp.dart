@@ -7,6 +7,7 @@ import "package:webclient/models/contest.dart";
 import 'dart:async';
 import 'package:webclient/services/contests_service.dart';
 import 'dart:html';
+import 'package:webclient/utils/string_utils.dart';
 
 @Component(
     selector: 'contest-header',
@@ -67,6 +68,10 @@ class ContestHeaderComp implements DetachAware, ShadowRootAware {
     }
   }
 
+  String getLocalizedText(key) {
+    return StringUtils.translate(key, "contestheader");
+  }
+
   ContestHeaderComp(this._router, this._routeProvider, this.scrDet, this._contestsService, this._rootElement) {
     _count = new Timer.periodic(new Duration(seconds: 1), (Timer timer) => _refreshCountdownDate());
   }
@@ -77,25 +82,25 @@ class ContestHeaderComp implements DetachAware, ShadowRootAware {
     }
 
     if (contest.isHistory) {
-      info["startTime"] = "FINISHED";
+      info["startTime"] = getLocalizedText("finished");
       _count.cancel();
     }
     else if (contest.isLive) {
-      info["startTime"] = "STARTED ON ${DateTimeService.formatDateTimeShort(contest.startDate).toUpperCase()}";
+      info["startTime"] = getLocalizedText("startedon") + DateTimeService.formatDateTimeShort(contest.startDate).toUpperCase();
       _count.cancel();
     }
     else {
-      info["startTime"] = "STARTS ON ${DateTimeService.formatDateTimeShort(contest.startDate).toUpperCase()}";
+      info["startTime"] = getLocalizedText("startson") + DateTimeService.formatDateTimeShort(contest.startDate).toUpperCase();
 
       Duration tiempoRestante = DateTimeService.getTimeLeft(contest.startDate);
 
       if (tiempoRestante.inHours <= 23) {
         if (tiempoRestante.inSeconds <= 0) {
-          info["startTime"] = "STARTS VERY SOON";
+          info["startTime"] = getLocalizedText("verysoon");
           _count.cancel();
         }
         else {
-          info["startTime"] = "STARTS IN ${DateTimeService.formatTimeLeft(tiempoRestante)}";
+          info["startTime"] = getLocalizedText("startsin") + DateTimeService.formatTimeLeft(tiempoRestante);
         }
       }
     }
@@ -112,7 +117,7 @@ class ContestHeaderComp implements DetachAware, ShadowRootAware {
     info["prize"] = "${contest.prizePool}";
     info["prizeType"] = "${contest.prizeTypeName}";
     info["startTime"] = "";
-    info["contestantCount"] = "${contest.contestEntries.length} of ${contest.maxEntries} contenders - Salary cap: ${contest.printableSalaryCap}";
+    info["contestantCount"] = "${contest.contestEntries.length} of ${contest.maxEntries} ${getLocalizedText("salarycap")}: ${contest.printableSalaryCap}";
   }
 
   void goToParent() {

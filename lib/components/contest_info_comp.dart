@@ -13,6 +13,7 @@ import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/components/modal_comp.dart';
 import 'package:webclient/services/server_error.dart';
 import 'package:webclient/services/profile_service.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 @Component(
   selector: 'contest-info',
@@ -27,6 +28,10 @@ class ContestInfoComp implements DetachAware {
   String contestId;
   LoadingService loadingService;
 
+  String getLocalizedText(key) {
+    return StringUtils.translate(key, "contestinfo");
+  }
+
   ContestInfoComp(ScreenDetectorService scrDet, RouteProvider routeProvider, this.loadingService, this._router, this._contestsService, this._profileService, this._flashMessage) {
 
     _streamListener = scrDet.mediaScreenWidth.listen(onScreenWidthChange);
@@ -38,7 +43,7 @@ class ContestInfoComp implements DetachAware {
       'name'            : '',
       'entry'           : '',
       'prize'           : '',
-      'rules'           : 'Choose a team of 11 soccer players from the following matches.',
+      'rules'           : getLocalizedText("rulestip"),
       'startDateTime'   : '', // 'COMIENZA EL DOM. 15/05 19:00',
       'matchesInvolved' : null,
       'legals'          : '',
@@ -80,7 +85,7 @@ class ContestInfoComp implements DetachAware {
     for (ContestEntry contestEntry in contest.contestEntries) {
       contestants.add({
         'name'  : contestEntry.user.nickName,
-        'wins'  : contestEntry.user.wins
+        'trueSkill'  : StringUtils.parseTrueSkill(contestEntry.user.trueSkill)
       });
     }
 
@@ -106,12 +111,12 @@ class ContestInfoComp implements DetachAware {
       break;
       case Prize.TOP_THIRD:
         count = contest.prize.numPrizes;
-        fullDesc = count == 1 ? "Winner takes all" : prizeDesc.replaceAll('#', count.toString());
+        fullDesc = count == 1 ? getLocalizedText("winnertakesall") : prizeDesc.replaceAll('#', count.toString());
        break;
 
       case Prize.FIFTY_FIFTY:
         count = contest.prize.numPrizes;
-        fullDesc = count == 1 ? "Winner takes all" : prizeDesc.replaceAll('#', count.toString());
+        fullDesc = count == 1 ? getLocalizedText("winnertakesall") : prizeDesc.replaceAll('#', count.toString());
       break;
     }
 

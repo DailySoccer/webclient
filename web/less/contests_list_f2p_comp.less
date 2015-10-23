@@ -1,0 +1,275 @@
+.contests-list-f2p-root {
+	.container-fluid();
+	position: relative;
+	background-color: @greyLight;
+	padding-bottom: 15px;
+
+	//definición del slot de la lista
+	.contestSlot {
+		.make-row(0);
+		.make-shadow(0px, 1px, 5px, 0px, @greyUltraDark, 0.5);
+		margin-top: 10px;		
+		min-height: 31px;
+		width: 100%;
+		position: relative;
+		@media (max-width: @screen-xs-max) {
+			padding-bottom: 10px;
+		}
+		background-color: @white;
+		//Sección de iconos que definen el tipo y torneo del concurso
+		.tournament-and-type-section {
+			position: absolute;
+			top: 0px;
+			width: 100%;
+			.flag {
+				position: absolute;
+				top: 11px;				
+				left: 15px;
+			}
+			.contest-type {
+				position: absolute; 
+				top: -1px;
+				left: 35px;
+				width: 20px;
+				height: 31px;
+				&.real {background-image: url("@{images}/realContest.png");}
+				&.train {background-image: url("@{images}/trainContest.png");}
+			}
+		}
+		// Imagen para los concursos especiales
+		.special-image-section {
+			overflow: hidden;
+			position: relative;
+			margin: 2px 2px 0 2px;
+			height: 103px;
+			@media (min-width: @screen-sm-min) {
+				height: 206px;
+			}
+			img {
+				position: absolute;
+				left: 50%;
+				margin-left: -485px;
+				top: 50%;
+				margin-top: -103px;
+			}
+		}
+		// Sección de la hora
+		.time-section {
+			@media (max-width: @screen-xs-max) {
+				margin-top: 10px;
+				text-align: right;
+			}
+			.fake-time-column {
+				.make-xs-column(7);
+				.make-sm-column(12);
+				margin-top: 25px;
+				@media (min-width: @screen-sm-min) {
+						margin-top: 40px;
+				}
+			}
+			
+      .column-start-time {
+				.make-xs-column(5);
+				.make-sm-column(1);
+				.opensans_bold(9pt, @blueDark);
+				@media (min-width: @screen-sm-min) {
+					padding-right: 0;
+					padding-left: 10px;
+					.exo_light(12pt, @blueDark);
+					
+					.column-start-hour.start-soon,
+					.column-start-date {
+						.exo_light(10pt, @blueDark);
+					}
+				}
+			}
+		}
+		// Sección de nombre y descripción
+		.name-section {
+			.make-xs-column(12);
+			.make-sm-column(7);
+			@media (max-width: @screen-xs-max) {
+				margin-bottom: 10px;
+			}
+			.contest-name {
+				.opensans_bold(9pt, @blueDark);
+				@media (min-width: @screen-sm-min) {
+					.exo_bold(12pt, @blueDark);
+				}
+			}
+			.contest-description {
+				.opensans_normal(9pt, @greyDark);
+				@media (min-width: @screen-sm-min) {
+					.opensans_normal(9pt, @greyDark);
+				}
+			}
+		}
+		// Sección de concidiones de pago y premio del concurso
+		.conditions-section {
+			
+			.make-xs-column(10);
+			.make-sm-column(3);
+			padding: 0px;
+			
+			.condition-box-commons {
+				.make-xs-column(6);
+				padding-right: 0px;
+				.opensans_bold(9pt, @greyDark);		
+				position: relative;
+				
+				@media (min-width: @screen-sm-min) {
+					.opensans_bold(14pt, @greyDark);
+					border-radius: 5px;
+					box-shadow: 1px 1px 7px rgba(0,0,0,0.5) inset;
+					padding: 5px 10px 8px 10px;
+					top: -5px;
+				}
+				img {
+					vertical-align: top; 
+					margin-right: 10px;
+				}
+				.condition-amount {
+					.make-sm-column(12);
+					padding: 3px 0px 0px 0px;
+					text-align: left;
+					line-height: 30px;
+					display: inline-block;
+				}
+				.condition-name {
+					.opensans_normal(8pt, @greyMed);
+					line-height: 15px;
+					display: inline-block;
+					
+					@media (min-width: @screen-sm-min) {
+						position: absolute;
+						top: -17px;
+						left: 0px;
+					}
+				}
+			}
+			
+			.player-position {
+				.condition-box-commons();
+				@media (min-width: @screen-sm-min) {
+					margin-right: 10px;
+					margin-left: -10px;
+				}
+				.condition-amount {
+					color: @greyMed;
+					.current-position {
+						color: @greyUltraDark;
+					}
+				}
+			}
+			.entry-fee-box {
+				.condition-box-commons();
+				@media (min-width: @screen-sm-min) {
+					margin-right: 10px;
+					margin-left: -10px;
+				}
+			}
+			.prize-box {
+				.condition-box-commons();
+			}
+			.points-box {
+				.condition-box-commons();
+			}
+			.fit-icon-size {
+				width: 16px;
+				height: 16px;
+				position: relative;
+				display: inline-block;
+				margin-left: 3px;
+				top: 2px;
+				@media (min-width: @screen-sm-min) {
+					float: right;
+					width: 25px;
+					height: 25px;
+					margin-left: 0px;
+					top: 0px;
+				}
+			}
+			.entry-fee-energy::after {
+				content: " ";
+				background-image: url("@{images}/icon-lightning-xs.png");
+				@media (min-width: @screen-sm-min) {
+					background-image: url("@{images}/icon-lightning-lg.png");
+				}
+				.fit-icon-size();
+			}		
+			.entry-fee-coin::after, .prize-coin::after {
+				content: " ";
+				background-image: url("@{images}/icon-coin-xs.png");
+				@media (min-width: @screen-sm-min) {
+					background-image: url("@{images}/icon-coin-lg.png");
+				}
+				.fit-icon-size();
+			}
+			.prize-managerpoints::after {
+				content: " ";
+				background-image: url("@{images}/icon-star-xs.png");
+				@media (min-width: @screen-sm-min) {
+					background-image: url("@{images}/icon-star-lg.png");
+				}
+				.fit-icon-size();
+			}
+		}
+		// Sección de la flechita de ir al concurso
+		.action-section {
+			.make-xs-column(1.5);
+			.make-sm-column(1);
+			padding: 18px 10px 0 10px;
+			text-align: center;
+			vertical-align: bottom;  
+			float: right;
+			height: 48px;
+			top: -15px;
+			
+			@media (max-width: @screen-xs-max) {
+				text-align: right;
+				max-width: 125px;
+				padding: 2px 10px 0 10px;
+				top: 0; 
+				height: 20px;
+			}
+			.action-button {
+				.btn-primary();
+			}
+		}
+	}
+	//Definición especifica para concursos especiales.
+	.special{
+		&.contestSlot { background-color: @greyUltraDark; }
+		.special-image-section {}
+		.time-section {
+			position: relative;
+      .column-start-time {
+				color: @white; 
+				@media (max-width: @screen-xs-max) {
+					position: absolute; top:2px; right: 0px;
+				}
+				.column-start-hour, 
+				.column-start-date {
+					color: @white;
+				}
+			}
+			.fake-time-column { 
+				margin-top: 25px;
+				@media (max-width: @screen-xs-max) {
+					margin-top: 0px;
+				}
+			}
+		}
+		.name-section {
+			.contest-name, .contest-description {color: @white;}
+		}
+		.conditions-section {
+			.player-position .condition-amount .current-position, 
+			.entry-fee-box span, 
+			.prize-box span {
+				color: @white;
+			}
+			
+		}
+	}
+}

@@ -11,18 +11,17 @@ class TutorialService {
   TutorialService(this._scrDet, this._profileService);
 
   void enterAt(String stage) {
-    if (showTutorialAt(stage)) {
-      modalShow(getTutorialTitle(stage), bodyHtml(stage), modalSize: "90percent");
-      tutorialShown(stage);
+    if (_profileService.showTutorialAt(stage)) {
+      modalShow(getTutorialTitle(stage), bodyHtml(stage), type: 'welcome', modalSize: "lg");
+      _profileService.tutorialShown(stage);
     }
   }
 
   String bodyHtml(String stage) {
     return '''
-        <div class="panel-body" >
-          <div class="tut-title">${getTutorialText(stage)}</div>
-          <img class="tut-image" src="${getTutorialImage(stage)}"/>
-        </div>
+      <div class="tut-title">${getTutorialText(stage)}</div>
+      <img class="tut-image-xs" src="${getTutorialImage(stage, size:'xs')}"/>
+      <img class="tut-image" src="${getTutorialImage(stage)}"/>
     ''';
   }
 
@@ -62,24 +61,24 @@ class TutorialService {
     return text;
   }
 
-  String getTutorialImage(String stage) {
+  String getTutorialImage(String stage, {String size: ''}) {
     String imagePath;
     switch (stage) {
       case 'lobby':
         imagePath = "images/tutorial/" +
-            (_scrDet.isXsScreen
+            (size == 'xs'
                 ? "welcomeLobbyXs.jpg"
                 : "welcomeLobbyDesktop.jpg");
         break;
       case 'enter_contest':
         imagePath = "images/tutorial/" +
-            (_scrDet.isXsScreen
+            (size == 'xs'
                 ? "welcomeTeamXs.jpg"
                 : "welcomeTeamDesktop.jpg");
         break;
       case "view_contest_entry":
         imagePath = "images/tutorial/" +
-            (_scrDet.isXsScreen
+            (size == 'xs'
                 ? "welcomeSuccessXs.jpg"
                 : "welcomeSuccessDesktop.jpg");
         break;

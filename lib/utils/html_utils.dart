@@ -10,17 +10,21 @@ class _NullTreeSanitizer implements NodeTreeSanitizer {
 
 final NodeTreeSanitizer NULL_TREE_SANITIZER = new _NullTreeSanitizer();
 
-Future<bool> modalShow(String title, String content,
-    {String modalSize: "lg", String onOk: null, String onCancel: null, bool closeButton: false}) {
+Future<bool> modalShow(String title, String content, {String modalSize: "lg",
+    String onOk: null, String onCancel: null, bool closeButton: false,
+    type: 'alert'}) {
+  
+  String globalRootId = 'alertRoot';
+  
   Completer completer = new Completer();
   Element modalWindow = querySelector("#modalWindow");
 
   void onClose(dynamic sender) {
-    modalWindow.children.remove(modalWindow.querySelector('#alertRoot'));
+    modalWindow.children.remove(modalWindow.querySelector('#' + globalRootId));
   }
 
   void closeMe() {
-    JsUtils.runJavascript('#alertRoot', 'modal', "hide");
+    JsUtils.runJavascript('#' + globalRootId, 'modal', "hide");
   }
 
   // Si no se han especificado callBacks, declaramos como minimo el botón Aceptar.
@@ -71,52 +75,106 @@ Future<bool> modalShow(String title, String content,
   String botonCancel = (onCancel != null)
       ? '''<div class="button-box"><button class="cancel-button" eventCallback="onCancel"> ${onCancel}</button></div>'''
       : '';
-  String modalBody = ''' 
-                        <div id="alertRoot" class="modal container fade" tabindex="-1" role="dialog" style="display: block;">
-                          <div class="modal-dialog modal-${modalSize}">
-                            <div class="modal-content"> 
 
-                              <div class="alert-content">      
-                                <div id="alertBox" class="main-box">
-                                  <div class="panel">
-                                    ${composeHeader()} 
-                                    <!-- Content Message and Buttons-->
-                                    <div class="panel-body" >
-                                      <!-- close button -->
-                                      ${closeButton ? '''
-                                        <button type="button" class="close" eventCallback="closeMe">
-                                          <!--<span class="glyphicon glyphicon-remove"></span>-->
-                                          <img src="images/alertCloseButton.png">
-                                        </button> ''' : ''
-                                      }           
-                                      <!-- Alert Text -->
-                                      <div class="form-description">${content}</div>            
-                                      <!-- Alert Buttons -->
-                                      <div class="input-group user-form-field">
-                                        <div class="new-row">                  
-                                          <div class="autocentered-buttons-wrapper">
-                                            ${(onCancel != null) ? botonCancel  : ""} 
-                                            ${(onOk     != null) ? botonOk      : ""}
-                                          </div>
-                                        </div>
-                                      </div>            
-                                    </div>
-                                  </div>
-                                </div>        
+  String composeAlert() {
+    return ''' 
+            <div id="alertRoot" class="modal container fade" tabindex="-1" role="dialog" style="display: block;">
+              <div class="modal-dialog modal-${modalSize}">
+                <div class="modal-content"> 
+  
+                  <div class="alert-content">      
+                    <div id="alertBox" class="main-box">
+                      <div class="panel">
+                        ${composeHeader()} 
+                        <!-- Content Message and Buttons-->
+                        <div class="panel-body" >
+                          <!-- close button -->
+                          ${closeButton ? '''
+                                <button type="button" class="close" eventCallback="closeMe">
+                                  <!--<span class="glyphicon glyphicon-remove"></span>-->
+                                  <img src="images/alertCloseButton.png">
+                                </button> ''' : ''
+                          }           
+                          <!-- Alert Text -->
+                          <div class="form-description">${content}</div>            
+                          <!-- Alert Buttons -->
+                          <div class="input-group user-form-field">
+                            <div class="new-row">                  
+                              <div class="autocentered-buttons-wrapper">
+                                ${(onCancel != null) ? botonCancel  : ""} 
+                                ${(onOk     != null) ? botonOk      : ""}
                               </div>
-
                             </div>
+                          </div>            
+                        </div>
+                      </div>
+                    </div>        
+                  </div>
+  
+                </div>
+              </div>
+            </div>
+    ''';
+  }
+
+  String composeModal() {
+    return ''' 
+            <div id="welcomeRoot" class="modal" tabindex="-1" role="dialog"  style="display: block;">
+              <div class="modal-dialog modal-${modalSize}">
+                <div class="modal-content">
+                  
+                  <div class="panel">
+                    ${composeHeader()}                    
+                    <!-- Content Message and Buttons-->
+                    <div class="panel-body">
+                      <!-- close button -->
+                      ${closeButton ? '''
+                            <button type="button" class="close" eventCallback="closeMe">
+                              <!--<span class="glyphicon glyphicon-remove"></span>-->
+                              <img src="images/alertCloseButton.png">
+                            </button> ''' : ''
+                      }           
+                      <!-- Alert Text -->
+                      <div class="form-description">${content}</div>            
+                      <!-- Alert Buttons -->
+                      <div class="input-group user-form-field">
+                        <div class="new-row">                  
+                          <div class="autocentered-buttons-wrapper">
+                            ${(onCancel != null) ? botonCancel  : ""} 
+                            ${(onOk     != null) ? botonOk      : ""}
                           </div>
                         </div>
-                      ''';
+                      </div>            
+                    </div>
+                  </div>                            
+          
+          
+                </div>
+              </div>
+            </div>
+    ''';
+  }
+
+  String modalBody = '';
+
+  switch (type) {
+    case 'welcome':
+      globalRootId = 'welcomeRoot';
+      modalBody = composeModal();
+      break;
+    default:
+      globalRootId = 'alertRoot';
+      modalBody = composeAlert();
+      break;
+  }
 
   modalWindow.setInnerHtml(modalBody, treeSanitizer: NULL_TREE_SANITIZER);
 
   // Aqui hago el setup de los botones. (que tiene que hacer cada botón al ser clickado... ver: main_menu_slide_comp).
   modalWindow.querySelectorAll("[eventCallback]").onClick.listen(onButtonClick);
 
-  JsUtils.runJavascript('#alertRoot', 'modal', null);
-  JsUtils.runJavascript('#alertRoot', 'on', {'hidden.bs.modal': onClose});
+  JsUtils.runJavascript('#' + globalRootId, 'modal', null);
+  JsUtils.runJavascript('#' + globalRootId, 'on', {'hidden.bs.modal': onClose});
   return completer.future;
 }
 

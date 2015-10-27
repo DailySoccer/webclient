@@ -41,7 +41,7 @@
       "buttonplay"                      : "JUEGA AHORA",
       "info1"                           : "Compite contra tus amigos en la Liga, Premier y Champions.",
       "info2"                           : "Crea tu alineación desde tu ordenador, tablet o móvil en segundos.",
-      "info3"                           : "Pagos efectivos en el momento."
+      "info3"                           : "Recoge tus recompensas al instante."
     },
     "join"                              :
     {
@@ -50,28 +50,28 @@
       "nickrequires"                    : "Tu nombre debe tener entre @MIN_NICKNAME_LENGTH y @MAX_NICKNAME_LENGTH caracteres.",
       "nick"                            : "Nombre de usuario",
       "invalidnick"                     : "Nombre inválido.",
-      "email"                           : "Correo Electrónico",
-      "invalidemail"                    : "Correo Electrónico Invalido.",
-      "passrequires"                    : "Contraseña: Debe tener al menos @MIN_PASSWORD_LENGTH caracteres. (Escríbela 2 veces).",
+      "email"                           : "Correo electrónico",
+      "invalidemail"                    : "Correo electrónico inválido.",
+      "passrequires"                    : "Contraseña: Debe tener al menos @MIN_PASSWORD_LENGTH caracteres (escríbela 2 veces).",
       "pass"                            : "Contraseña",
-      "repass"                          : "Repite la Contraseña",
-      "invalidpass"                     : "Contraseña Inválida.",
+      "repass"                          : "Repite la contraseña",
+      "invalidpass"                     : "Contraseña inválida.",
       "buttonsignup"                    : "REGÍSTRATE",
       "buttoncancel"                    : "CANCELAR",
-      "registered"                      : "¿Ya estas registrado?",
+      "registered"                      : "¿Ya estás registrado?",
       "loginhere"                       : "¡Accede desde aquí!"
     },
     "login"                             :
     {
       "title"                           : "ENTRAR",
       "description"                     : "Introduce tu correo electrónico y contraseña",
-      "email"                           : "Correo Electrónico",
+      "email"                           : "Correo electrónico",
       "pass"                            : "Contraseña",
-      "loginerror"                      : "ERROR: El correo electrónico o la contraseña no son validos. Por favor, revisa los datos.",
+      "loginerror"                      : "ERROR: El correo electrónico o la contraseña no son válidos. Por favor, revisa los datos.",
       "forgotpass"                      : "¿Olvidaste tu contraseña?",
       "buttonlogin"                     : "CONTINUAR",
       "buttoncancel"                    : "CANCELAR",
-      "unregistered"                    : "¿Aún no estas resistrado?",
+      "unregistered"                    : "¿Aún no estás registrado?",
       "signuphere"                      : "¡Regístrate aquí!"
     },
     "changepass"                        :
@@ -83,7 +83,7 @@
       "createpass"                      : "Crea una nueva contraseña.",
       "passrequires"                    : "Contraseña: Debe tener al menos @MIN_PASSWORD_LENGTH caracteres. (Escríbela 2 veces).",
       "pass"                            : "Contraseña",
-      "repass"                          : "Repite Contraseña",
+      "repass"                          : "Repite contraseña",
       "buttoncontinue"                  : "CONTINUAR",
       "buttoncancel"                    : "CANCELAR"
     },
@@ -92,9 +92,9 @@
       "title"                           : "RECORDAR CONTRASEÑA",
       "confirm_part_1"                  : "Te hemos mandado un correo electrónico a",
       "confirm_part_2"                  : "Revisa la bandeja de entrada de tu correo electrónico y sigue las instrucciones del correo.",
-      "description"                     : "¿Olvidaste tu contraseña? Introduce tu email para recuperarla",
-      "emailrequires"                   : "Intruduce la direccion de correo electrónico con la que te registrarse en EPIC ELEVEN                  :",
-      "email"                           : "Correo Electrónico",
+      "description"                     : "¿Olvidaste tu contraseña? Introduce tu correo electrónico para recuperarla",
+      "emailrequires"                   : "Introduce la dirección de correo electrónico con la que te registraste en EPIC ELEVEN                  :",
+      "email"                           : "Correo electrónico",
       "buttoncontinue"                  : "CONTINUAR",
       "buttoncancel"                    : "CANCELAR",
       "unregistered"                    : "¿Aún no estás registrado?",
@@ -102,9 +102,10 @@
     },
     "addfunds"                          :
     {
+      "status"                          : "----DEPRECATED----",
       "title"                           : "AÑADIR FONDOS",
-      "description1"                    : "Para jugar a EPIC ELEVEN con dinero real, necesitas añadir fondos a tu cuenta.",
-      "description2"                    : "No te preocupes, podrás retirar los fondos cuando tu quieras de forma gratuita.",
+      "description1"                    : "Para jugar a EPIC ELEVEN con Oro, necesitas añadir fondos a tu cuenta.",
+      "description2"                    : "No te preocupes, podrás retirar los fondos cuando tú quieras de forma gratuita.",
       "minfunds"                        : "El mínimo permitido es de ",
       "addfunds"                        : "Añadir",
       "via"                             : "vía",
@@ -116,12 +117,12 @@
     {
       "title"                           : "EDITAR PERFIL",
       "name"                            : "Nombre",
-      "lastname"                        : "Primer Apellido",
+      "lastname"                        : "Primer apellido",
       "username"                        : "Nombre de usuario",
-      "mail"                            : "Correo Electrónico",
+      "mail"                            : "Correo electrónico",
       "passrequires"                    : "Contraseña (Rellena ambos campos para actualizar tu contraseña)",
       "pass"                            : "Contraseña",
-      "repass"                          : "Repite la Contraseña",
+      "repass"                          : "Repite la contraseña",
       "notifications"                   : "NOTIFICACIONES",
       "newletternotifications"                        : "ÚLTIMAS NOTICIAS/OFERTAS ESPECIALES",
       "gamenotifications"                             : "NOTIFICACIONES DE JUEGO",
@@ -138,6 +139,7 @@
     },
     "transactionhistory"                :
     {
+      "status"                          : "----DEPRECATED----",
       "title"                           : "HISTORIAL DE TRANSACCIONES",
       "date"                            : "FECHA",
       "id"                              : "ID",
@@ -163,13 +165,14 @@
       "title"                           : "Clasificación",
       "trueskill"                       : "Habilidad",
       "gold"                            : "Oro",
-      "topgold"                         : "TOP ORO",
-      "topskill"                        : "TOP HABILIDAD",
+      "topgold"                         : "RÁNKING ORO",
+      "topskill"                        : "RÁNKING HABILIDAD",
       "abrevposition"                   : "Pos.",
       "name"                            : "Nombre"
     },
     "withdrawfunds"                     :
     {
+      "status"                          : "----DEPRECATED----",
       "title"                           : "RETIRAR FONDOS",
       "balance"                         : "TU BALANCE ES",
       "withdrawdesc1"                   : "¿Cuánto dinero quieres retirar?",
@@ -193,14 +196,14 @@
       "errorcontestnotactiveediting"    : "No es posible modificar tu alineación cuando el torneo ya haya empezado",
       "errormaxplayerssameteamtitle"    : "Jugadores del mismo equipo",
       "errormaxplayerssameteamgeneric"  : "No es posible...",
-      "erroruserbalancenegativetitle"   : "No tienes ORO suficiente",
-      "erroruserbalancenegativegeneric" : "No tienes ORO suficiente para entrar a este concurso. Por favor, ingresa fondos para poder continuar",
+      "erroruserbalancenegativetitle"   : "No tienes Oro suficiente",
+      "erroruserbalancenegativegeneric" : "No tienes Oro suficiente para entrar a este concurso. Por favor, compra ORO para poder continuar",
       "errordefaulttitle"               : "Atención",
-      "errordefaultgeneric"             : "Ha ocurrido un error. No puedes acceder a este torneo en este momento. Inténtalo mas tarde.",
-      "errordefaultediting"             : "Ha ocurrido un error. No puedes modificar tu alineación en este momento. Inténtalo mas tarde.",
-      "alert-no-energy-title"           : "Sin ENERGIA suficiente",
-      "alert-no-gold-title"             : "Sin ORO suficiente",
-      "alert-no-energy-message"         : "No tienes ENERGIA para entrar en el torneo",
+      "errordefaultgeneric"             : "Ha ocurrido un error. No puedes acceder a este torneo en este momento. Inténtalo más tarde.",
+      "errordefaultediting"             : "Ha ocurrido un error. No puedes modificar tu alineación en este momento. Inténtalo más tarde.",
+      "alert-no-energy-title"           : "Sin ENERGÍA suficiente",
+      "alert-no-gold-title"             : "¡No hay Oro!",
+      "alert-no-energy-message"         : "No tienes ENERGÍA para entrar en el torneo",
       "alert-no-gold-message"           : "No tienes ORO para entrar en el torneo",
       "resource-gold"                   : "ORO",
       "resource-energy"                 : "ENERGÍA",
@@ -350,9 +353,9 @@
     "contestfilters"                    :
     {
       "filters"                         : "FILTROS",
-      "competition"                     : "COMPETICIóN",
+      "competition"                     : "COMPETICIÓN",
       "contests"                        : "TORNEOS",
-      "salarycap"                       : "LIMITE DE SALARIO",
+      "salarycap"                       : "LÍMITE DE SALARIO",
       "entryfee"                        : "CUOTA DE ENTRADA",
       "min"                             : "MIN",
       "max"                             : "MAX",
@@ -361,9 +364,9 @@
       "sortby"                          : "Ordenar por",
       "search"                          : "Buscar torneo",
       "availabletip"                    : "Torneos disponibles ",
-      "competitionlaliga"               : "La Liga Española",
-      "competitionpremier"              : "Premier League",
-      "competitionchampions"            : "Champions League",
+      "competitionlaliga"               : "La Liga BBVA",
+      "competitionpremier"              : "Barclays Premier League",
+      "competitionchampions"            : "UEFA Champions League",
       "contestfree"                     : "Gratuito",
       "contestheadtohead"               : "1 contra 1",
       "contestleague"                   : "Liga",
@@ -404,7 +407,7 @@
     },
     "viewcontest"                       :
     {
-      "yourlineup"                      : "Tu Alineación",
+      "yourlineup"                      : "Tu alineación",
       "users"                           : "Usuarios",
       "opponent"                        : "Adversario"
     },
@@ -412,24 +415,24 @@
     {
       "created"                         : "¡ENHORABUENA! HAS COMPLETADO TU ALINEACIÓN.",
       "edited"                          : "¡ENHORABUENA! HAS EDITADO TU ALINEACIÓN.",
-      "swapped"                         : "EL TORNEO ESTÁ LLENO, ASI QUE TE HEMOS PUESTO EN OTRO EQUIVALENTE. COMPETIRÁS CON OTROS USUARIOS",
+      "swapped"                         : "EL TORNEO ESTÁ LLENO, ASÍ QUE TE HEMOS PUESTO EN OTRO EQUIVALENTE. COMPETIRÁS CON OTROS USUARIOS",
       "tip"                             : "Recuerda que puedes editar tu alineación tantas veces como quieras hasta que el torneo comience",
-      "yourlineup"                      : "Tu Alineación",
+      "yourlineup"                      : "Tu alineación",
       "users"                           : "Usuarios",
       "backtocontests"                  : "VUELVE A LOS TORNEOS",
       "cancel"                          : "SALIR DEL TORNEO",
-      "alertcanceltitle"                : "Caution!",
-      "alertcancelpaidcontest"          : "Estas a punto de cancelar tu participación en este concurso.<br><br>La entrada que abonaste de @PRICE será devuelta.<br><br>¿Estás seguro de querer abandonar este concurso?<br><br>",
-      "alertcancelcontest"              : "Estas a punto de cancelar tu participación en este concurso.<br><br>¿Estás seguro de querer abandonar este concurso?<br><br>",
+      "alertcanceltitle"                : "¡Atención!",
+      "alertcancelpaidcontest"          : "Estás a punto de cancelar tu participación en este concurso.<br><br>La entrada que abonaste de @PRICE será devuelta.<br><br>¿Estás seguro de querer abandonar este concurso?<br><br>",
+      "alertcancelcontest"              : "Estás a punto de cancelar tu participación en este concurso.<br><br>¿Estás seguro de querer abandonar este concurso?<br><br>",
       "alertbuttonno"                   : "No",
-      "alertbuttonyes"                  : "Si"
+      "alertbuttonyes"                  : "Sí"
     },
     "contestheader"                     :
     {
       "entryfee"                        : "CUOTA",
       "prizes"                          : "PREMIOS",
       "finished"                        : "TERMINADO",
-      "startedon"                       : "EMPEZó EL ",
+      "startedon"                       : "EMPEZÓ EL ",
       "startson"                        : "EMPIEZA EL ",
       "verysoon"                        : "EMPIEZA MUY PRONTO ",
       "startsin"                        : "EMPIEZA EN ",
@@ -465,14 +468,14 @@
     "prizes"                            :
     {
       "free"                            : "Concurso gratuito. No hay premios",
-      "winnertakesall"                  : "El ganador de lo lleva todo",
+      "winnertakesall"                  : "El ganador se lo lleva todo",
       "first3"                          : "Los 3 primeros consiguen premio",
-      "firstthird"                      : "Los primeros # tienen premios",
-      "fifty"                           : "Los primeros # tienen premios"
+      "firstthird"                      : "El tercio superior de participantes tiene premio",
+      "fifty"                           : "La primera mitad de participantes tiene premio"
     },
     "lobby"                             :
     {
-      "nextcontest"                     : "PRÓXIMO TORNEOS"
+      "nextcontest"                     : "PRÓXIMOS TORNEOS"
     },
     "mycontest"                         :
     {
@@ -480,10 +483,10 @@
       "tablive"                         : "En Directo",
       "tabupcoming"                     : "Próximos",
       "tabhistory"                      : "Histórico",
-      "nolives"                         : "NO ESTÁS JUGANDO NINGúN TORNEO EN ESTE MOMENTO",
+      "nolives"                         : "NO ESTÁS JUGANDO NINGÚN TORNEO EN ESTE MOMENTO",
       "nolivestip1"                     : "ÉCHALE UN VISTAZO A LA LISTA DE TUS ",
       "nolivestip2"                     : "PRÓXIMOS TORNEOS",
-      "nolivestip3"                     : " PARA VER CUANDO EMPIEZAN",
+      "nolivestip3"                     : " PARA VER CUÁNDO EMPIEZAN",
       "tocontest"                       : "IR A LOS TORNEOS",
       "noupcomings"                     : "NO TIENES ALINEACIONES PARA NINGÚN TORNEO<br>EN ESTE MOMENTO",
       "noupcomingstip1"                 : "VE A LA LISTA DE TORNEOS, ELIGE UNO Y EMPIEZA A JUGAR",
@@ -509,7 +512,7 @@
     },
     "restricted"                        :
     {
-      "desc"                            : "Lo sentimos, está prohibido ingresar fondos a Epic Eleven desde el pais en el que estás.<br><br>Si piensas que esto se debe a un error y necesitas asistencia, por favor contacta con nosotros a través de <a href=\"mailto:support@epiceleven.com\">support@epiceleven.com</a>",
+      "desc"                            : "Lo sentimos, está prohibido comprar Oro desde el pais en el que estás.<br><br>Si piensas que esto se debe a un error y necesitas asistencia, por favor contacta con nosotros a través de <a href=\"mailto:support@epiceleven.com\">support@epiceleven.com</a>",
       "gotolobby"                       : "Volver a los concursos"
     },
     "scoringrules"                      :
@@ -557,17 +560,17 @@
     "shop"                              :
     {
       "goldshopdescription"             : "Compra Oro y accede a <strong>Torneos Oficiales</strong>",
-      "trainerpointsshopdescription"    : "Aumenta tu nivel de entrenador y ficha a los <strong>mejores jugadores</strong>",
+      "trainerpointsshopdescription"    : "Aumenta tu Nivel de Mánager y ficha a los <strong>mejores jugadores</strong>",
       "energyshopdescription"           : "Recárgate de energía para acceder a <strong>Torneos de Entrenamiento</strong>"
     },
     "goldshop"                          :
     {
       "product_gold_1"                  : "CALDERILLA",
-      "product_gold_2"                  : "JEFAZO",
-      "product_gold_3"                  : "OJEADOR",
-      "product_gold_4"                  : "REPRESENTANTE",
-      "product_gold_5"                  : "PRESIDENTE",
-      "product_gold_6"                  : "HOMBRE DE NEGRO",
+      "product_gold_2"                  : "PILA DE ORO",
+      "product_gold_3"                  : "MONTÓN DE ORO",
+      "product_gold_4"                  : "MALETÍN DE ORO",
+      "product_gold_5"                  : "CAJA FUERTE DE ORO",
+      "product_gold_6"                  : "GRAN BÓVEDA DE ORO",
       "free"                            : "GRATIS",
       "buttonback"                      : "Volver",
       "mostpopularimagesource"          : "images/icon-mas-popular.png"
@@ -577,12 +580,12 @@
       "product_maxrefill"               : "Recarga al máximo con:",
       "autorefill"                      : "Recarga +1 automática en:",
       "buttonback"                      : "Volver",
-      "alert-no-gold-title"             : "Sin ORO suficiente",
-      "alert-no-gold-message"           : "No tienes ORO para comprar este producto",
+      "alert-no-gold-title"             : "Sin Oro suficiente",
+      "alert-no-gold-message"           : "No tienes Oro para comprar este producto",
       "buy-gold-button"                 : "COMPRAR ORO",
       "alert-user-gold-message"         : "Tienes actualmente @MONEY",
-      "erroruserbalancenegativetitle"   : "No tienes ORO suficiente",
-      "erroruserbalancenegativegeneric" : "No tienes ORO suficiente. Por favor, ingresa fondos para poder continuar",
+      "erroruserbalancenegativetitle"   : "No tienes Oro suficiente",
+      "erroruserbalancenegativegeneric" : "No tienes Oro suficiente. Por favor, compra Oro para poder continuar",
       "errordefaulttitle"               : "Atención",
       "errordefaultgeneric"             : "Ha ocurrido un error. Inténtalo mas tarde."
     }

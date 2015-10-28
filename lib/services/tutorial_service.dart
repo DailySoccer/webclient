@@ -11,9 +11,9 @@ class TutorialService {
   TutorialService(this._scrDet, this._profileService);
 
   void enterAt(String stage) {
-    if (_profileService.showTutorialAt(stage)) {
+    if (showTutorialAt(stage)) {
       modalShow(getTutorialTitle(stage), bodyHtml(stage), type: 'welcome', modalSize: "lg");
-      _profileService.tutorialShown(stage);
+      tutorialShown(stage);
     }
   }
 

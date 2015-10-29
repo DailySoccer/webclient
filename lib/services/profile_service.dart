@@ -12,14 +12,13 @@ import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/models/money.dart';
 import 'package:webclient/services/server_error.dart';
 
-
 @Injectable()
 class ProfileService {
 
   User user = null;
   bool get isLoggedIn => user != null;
 
-  bool isWelcoming = false;
+  bool get isWelcoming => !_hasDoneLogin;
 
   static ProfileService get instance => _instance;  // Si te peta en esta linea te obliga a pensar, lo que es Una Buena Cosa™.
                                                     // Una pista... quiza te ha pasado pq has quitado componentes del index?
@@ -170,13 +169,7 @@ class ProfileService {
     }
   }
 
-  void startTutorial() {
-    isWelcoming = true;
-  }
-
-  void finishTutorial() {
-    isWelcoming = false;
-  }
+  bool get _hasDoneLogin => window.localStorage.containsKey('user');
 
   static ProfileService _instance;
 

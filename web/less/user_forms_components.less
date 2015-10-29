@@ -298,12 +298,23 @@
 //Tutoriales de bienvenida
 #welcomeRoot {
 	.make-row(0);
+
 	.panel-title {
 		.exo_light(20pt, @white);
 		@media (min-width: @screen-sm-min) {
 			text-align: center;
 		}
 	}
+	//.modal-content {background-color: @greyLight;}
+	.panel {
+		.panel-body {
+			padding: 15px;
+			.panel-description {
+				.make-row(0);
+			}
+		}
+	}
+
 	.tut-title {
 		.make-xs-column(12, 30px);
 		.opensans_normal(10pt, @blueDark);
@@ -326,14 +337,23 @@
 		}
 	}
 
-	.tut-image {
+	.tut-image-common {
 		.make-xs-column(12);
 		.img-responsive();
-		margin-bottom: 30px;
+		margin: 30px 0;
 		@media(min-width: @screen-sm-min){
 			min-height: 250px;
-			min-width: 600px;
+			.clean-paddings();
+			//min-width: 600px;
 		}
+	}
+	.tut-image-xs {
+		.tut-image-common();
+		.visible-xs();
+	}
+	.tut-image {
+		.tut-image-common();
+		.hidden-xs();
 	}
 }
 

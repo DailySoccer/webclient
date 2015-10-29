@@ -24,6 +24,7 @@ import 'package:webclient/services/payment_service.dart';
 import 'package:webclient/services/prizes_service.dart';
 import 'package:webclient/services/promos_service.dart';
 import 'package:webclient/services/catalog_service.dart';
+import 'package:webclient/services/tutorial_service.dart';
 
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/utils/form-autofill-fix.dart';
@@ -82,7 +83,6 @@ import 'package:webclient/components/enter_contest/soccer_player_stats_comp.dart
 //import 'package:webclient/components/navigation/main_menu_slide_comp.dart';
 //import 'package:webclient/components/contest_filters_comp.dart';
 //import 'package:webclient/components/lobby_comp.dart';
-
 //import 'package:webclient/components/simple_promo_viewer_comp.dart';
 //import 'package:webclient/components/contests_list_comp.dart';
 //import 'package:webclient/components/contest_header_comp.dart';
@@ -129,6 +129,8 @@ class WebClientApp extends Module {
     bind(PaymentService);
     bind(PrizesService);
     bind(CatalogService);
+    bind(TutorialService);
+
     bind(FormAutofillDecorator);
     bind(AutoFocusDecorator);
     bind(LimitToDot);
@@ -167,23 +169,23 @@ class WebClientApp extends Module {
     bind(ChangePasswordComp);
     bind(RememberPasswordComp);
     bind(UserProfileComp);
-    bind(EditPersonalDataComp);    
-    bind(AddFundsComp);    
+    bind(EditPersonalDataComp);
+    bind(AddFundsComp);
     bind(TransactionHistoryComp);
     bind(ShopComp);
     bind(GoldShopComp);
     bind(EnergyShopComp);
     bind(RouteInitializerFn, toValue: webClientRouteInitializer);
     bind(NgRoutingUsePushState, toValue: new NgRoutingUsePushState.value(false));
-    
+
     //bind(LandingPage1SlideComp);
     //bind(MainMenuSlideComp);
     //bind(LobbyComp);
-    
+
     //bind(ContestsListComp);
     //bind(SimplePromoViewerComp);
     //bind(ContestFiltersComp);
-    //bind(ContestHeaderComp);    
+    //bind(ContestHeaderComp);
     //bind(HelpInfoComp);
     //bind(LegalInfoComp);
     //bind(TerminusInfoComp);
@@ -250,7 +252,7 @@ class WebClientApp extends Module {
         path: '/restricted',
         preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
         viewHtml: '''<restricted-comp></restricted-comp>'''
-      )      
+      )
       */
       'login': ngRoute(
           path: '/login',

@@ -14,6 +14,7 @@ import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/server_error.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/services/tutorial_service.dart';
 
 @Component(
     selector: 'view-contest',
@@ -43,7 +44,8 @@ class ViewContestComp implements DetachAware {
     return StringUtils.translate(key, "viewcontest");
   }
 
-  ViewContestComp(this._routeProvider, this.scrDet, this._refreshTimersService, this._contestsService, this._profileService, this._flashMessage, this.loadingService) {
+  ViewContestComp(this._routeProvider, this.scrDet, this._refreshTimersService, 
+      this._contestsService, this._profileService, this._flashMessage, this.loadingService, TutorialService tutorialService) {
     loadingService.isLoading = true;
     lastOpponentSelected = getLocalizedText("opponent");
 
@@ -77,6 +79,9 @@ class ViewContestComp implements DetachAware {
         }
       })
       .catchError((ServerError error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW), test: (error) => error is ServerError);
+      
+
+    tutorialService.enterAt("view_contest_entry");
   }
 
   String getPrize(int index) => (contest != null) ? contest.getPrize(index) : "-";

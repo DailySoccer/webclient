@@ -5653,6 +5653,10 @@ scoring-rules:after,
 #mainShopCompWrapper:after,
 #mainShopCompWrapper .items-wrapper:before,
 #mainShopCompWrapper .items-wrapper:after,
+#goldShopComp:before,
+#goldShopComp:after,
+#trainerPointsShopComp:before,
+#trainerPointsShopComp:after,
 #goldShopComp .modal-content:before,
 #goldShopComp .modal-content:after,
 #trainerPointsShopComp .modal-content:before,
@@ -5665,6 +5669,8 @@ scoring-rules:after,
 #goldShopComp .products-wrapper:after,
 #trainerPointsShopComp .products-wrapper:before,
 #trainerPointsShopComp .products-wrapper:after,
+#energyshopComp:before,
+#energyshopComp:after,
 #energyshopComp .modal-content:before,
 #energyshopComp .modal-content:after,
 #energyshopComp .content:before,
@@ -5689,6 +5695,8 @@ scoring-rules:after,
 .no-contests-wrapper:after,
 #promosComponent:before,
 #promosComponent:after,
+#modalSoccerPlayerStats:before,
+#modalSoccerPlayerStats:after,
 #modalSoccerPlayerStats .modal-content:before,
 #modalSoccerPlayerStats .modal-content:after,
 #modalSoccerPlayerStats .soccer-player-stats-header:before,
@@ -5721,6 +5729,8 @@ scoring-rules:after,
 .panel .form-horizontal:after,
 #welcomeRoot:before,
 #welcomeRoot:after,
+#welcomeRoot .panel .panel-body .panel-description:before,
+#welcomeRoot .panel .panel-body .panel-description:after,
 #usersListRoot .user-row:before,
 #usersListRoot .user-row:after,
 #usersListRoot .users-table-header:before,
@@ -5745,6 +5755,8 @@ scoring-rules:after,
 .week-calendar .week-days-wrapper:after,
 .default-section-header:before,
 .default-section-header:after,
+.modal-properties-default:before,
+.modal-properties-default:after,
 .modal-properties-default .modal-content:before,
 .modal-properties-default .modal-content:after,
 .lineup-selector .lineup-selector-slot:before,
@@ -5789,12 +5801,15 @@ scoring-rules:after,
 #transactionHistoryRoot .transaction-row:after,
 #mainShopCompWrapper:after,
 #mainShopCompWrapper .items-wrapper:after,
+#goldShopComp:after,
+#trainerPointsShopComp:after,
 #goldShopComp .modal-content:after,
 #trainerPointsShopComp .modal-content:after,
 #goldShopComp .content:after,
 #trainerPointsShopComp .content:after,
 #goldShopComp .products-wrapper:after,
 #trainerPointsShopComp .products-wrapper:after,
+#energyshopComp:after,
 #energyshopComp .modal-content:after,
 #energyshopComp .content:after,
 #energyshopComp .products-wrapper:after,
@@ -5807,6 +5822,7 @@ scoring-rules:after,
 .resume-bar:after,
 .no-contests-wrapper:after,
 #promosComponent:after,
+#modalSoccerPlayerStats:after,
 #modalSoccerPlayerStats .modal-content:after,
 #modalSoccerPlayerStats .soccer-player-stats-header:after,
 #modalSoccerPlayerStats .soccer-player-stats-content:after,
@@ -5823,6 +5839,7 @@ scoring-rules:after,
 #rememberPasswordRoot:after,
 .panel .form-horizontal:after,
 #welcomeRoot:after,
+#welcomeRoot .panel .panel-body .panel-description:after,
 #usersListRoot .user-row:after,
 #usersListRoot .users-table-header:after,
 .profile-content:after,
@@ -5835,6 +5852,7 @@ scoring-rules:after,
 .week-calendar:after,
 .week-calendar .week-days-wrapper:after,
 .default-section-header:after,
+.modal-properties-default:after,
 .modal-properties-default .modal-content:after,
 .lineup-selector .lineup-selector-slot:after {
   clear: both;
@@ -9903,6 +9921,44 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   background-color: #434343;
   color: #ffffff;
   padding: 5px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  #goldShopComp,
+  #trainerPointsShopComp {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  #goldShopComp,
+  #trainerPointsShopComp {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  #goldShopComp,
+  #trainerPointsShopComp {
+    width: 970px;
+  }
+}
+#goldShopComp > .navbar-header,
+#trainerPointsShopComp > .navbar-header,
+#goldShopComp > .navbar-collapse,
+#trainerPointsShopComp > .navbar-collapse {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+@media (min-width: 768px) {
+  #goldShopComp > .navbar-header,
+  #trainerPointsShopComp > .navbar-header,
+  #goldShopComp > .navbar-collapse,
+  #trainerPointsShopComp > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
 }
 #goldShopComp .modal-content,
 #trainerPointsShopComp .modal-content {
@@ -10364,6 +10420,37 @@ fieldset[disabled] #trainerPointsShopComp .buttons-wrapper .cancel-button {
   background-color: #434343;
   color: #ffffff;
   padding: 5px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  #energyshopComp {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  #energyshopComp {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  #energyshopComp {
+    width: 970px;
+  }
+}
+#energyshopComp > .navbar-header,
+#energyshopComp > .navbar-collapse {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+@media (min-width: 768px) {
+  #energyshopComp > .navbar-header,
+  #energyshopComp > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
 }
 #energyshopComp .modal-content {
   margin-left: 0;
@@ -13487,6 +13574,37 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
   background-color: #434343;
   color: #ffffff;
   padding: 5px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  #modalSoccerPlayerStats {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  #modalSoccerPlayerStats {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  #modalSoccerPlayerStats {
+    width: 970px;
+  }
+}
+#modalSoccerPlayerStats > .navbar-header,
+#modalSoccerPlayerStats > .navbar-collapse {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+@media (min-width: 768px) {
+  #modalSoccerPlayerStats > .navbar-header,
+  #modalSoccerPlayerStats > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
 }
 #modalSoccerPlayerStats .modal-content {
   margin-left: 0;
@@ -18659,6 +18777,13 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
     text-align: center;
   }
 }
+#welcomeRoot .panel .panel-body {
+  padding: 15px;
+}
+#welcomeRoot .panel .panel-body .panel-description {
+  margin-left: 0;
+  margin-right: 0;
+}
 #welcomeRoot .tut-title {
   position: relative;
   float: left;
@@ -18711,6 +18836,60 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
     color: #214a5f;
   }
 }
+#welcomeRoot .tut-image-common {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 30px 0;
+}
+@media (min-width: 768px) {
+  #welcomeRoot .tut-image-common {
+    min-height: 250px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+#welcomeRoot .tut-image-xs {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 30px 0;
+  display: none !important;
+}
+@media (min-width: 768px) {
+  #welcomeRoot .tut-image-xs {
+    min-height: 250px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+@media (max-width: 767px) {
+  #welcomeRoot .tut-image-xs {
+    display: block !important;
+  }
+  table#welcomeRoot .tut-image-xs {
+    display: table;
+  }
+  tr#welcomeRoot .tut-image-xs {
+    display: table-row !important;
+  }
+  th#welcomeRoot .tut-image-xs,
+  td#welcomeRoot .tut-image-xs {
+    display: table-cell !important;
+  }
+}
 #welcomeRoot .tut-image {
   position: relative;
   float: left;
@@ -18721,12 +18900,18 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   display: block;
   max-width: 100%;
   height: auto;
-  margin-bottom: 30px;
+  margin: 30px 0;
 }
 @media (min-width: 768px) {
   #welcomeRoot .tut-image {
     min-height: 250px;
-    min-width: 600px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+@media (max-width: 767px) {
+  #welcomeRoot .tut-image {
+    display: none !important;
   }
 }
 #modalRoot .modal-90percent {
@@ -21242,6 +21427,37 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
   background-color: #434343;
   color: #ffffff;
   padding: 5px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  .modal-properties-default {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .modal-properties-default {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .modal-properties-default {
+    width: 970px;
+  }
+}
+.modal-properties-default > .navbar-header,
+.modal-properties-default > .navbar-collapse {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+@media (min-width: 768px) {
+  .modal-properties-default > .navbar-header,
+  .modal-properties-default > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
 }
 .modal-properties-default .modal-content {
   margin-left: 0;

@@ -13,6 +13,7 @@ import 'dart:html';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/server_error.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/services/tutorial_service.dart';
 
 @Component(
    selector: 'view-contest-entry',
@@ -45,7 +46,8 @@ class ViewContestEntryComp {
     return StringUtils.translate(key, "viewcontestentry", substitutions);
   }
 
-  ViewContestEntryComp(this._routeProvider, this.scrDet, this._contestsService, this._profileService, this._router, this.loadingService) {
+  ViewContestEntryComp(this._routeProvider, this.scrDet, this._contestsService,
+                       this._profileService, this._router, this.loadingService, TutorialService tutorialService) {
     loadingService.isLoading = true;
 
     _viewContestEntryMode = _routeProvider.route.parameters['viewContestEntryMode'];
@@ -62,6 +64,8 @@ class ViewContestEntryComp {
       .catchError((ServerError error) {
         _router.go("lobby", {});
       }, test: (error) => error is ServerError);
+
+    tutorialService.enterAt("view_contest_entry");
   }
 
   void tabChange(String tab) {

@@ -17,6 +17,12 @@ class TutorialService {
 
   TutorialService() {
     _instance = this;
+
+    _serverCalls = {
+      "get_active_contests" : (url, postData) {
+          return new Future.value(JSON.decode(getActiveContestsJSON));
+        }
+    };
   }
 
   void enterAt(String stage) {
@@ -25,13 +31,6 @@ class TutorialService {
       tutorialShown(stage);
     }
   }
-
-  Map<String, Function> _serverCalls = {
-    "get_active_contests" : (url, postData) {
-        Map json = JSON.decode(getActiveContestsJSON);
-        return new Future.value(json);
-      }
-  };
 
   bool isServerCallLocked(String url, {Map postData:null}) {
     return _serverCalls.keys.any((pattern) => url.contains(pattern));
@@ -128,6 +127,8 @@ class TutorialService {
     'enter_contest' : true,
     'view_contest_entry' : true
   };
+
+  Map<String, Function> _serverCalls;
 
   static String getActiveContestsJSON = '''
     {"contests":[{"templateContestId":"56331ce6d4c6912cf152f1f1","state":"ACTIVE","name":"Tutorial [Oficial]","contestEntries":[],"maxEntries":100,"salaryCap":70000,"entryFee":"AUD 1.00","prizeMultiplier":0.9,"prizeType":"WINNER_TAKES_ALL","startDate":1445625000000,"optaCompetitionId":"23","simulation":false,"specialImage":"","numEntries":0,"_id":"56331d69d4c6912cf152f1f6"},{"templateContestId":"56331d4dd4c6912cf152f1f4","state":"ACTIVE","name":"Tutorial [Entrenamiento]","contestEntries":[],"maxEntries":20,"salaryCap":70000,"entryFee":"JPY 1","prizeMultiplier":10.0,"prizeType":"FIFTY_FIFTY","startDate":1445335200000,"optaCompetitionId":"23","simulation":true,"specialImage":"","numEntries":0,"_id":"56331d69d4c6912cf152f201"}]}

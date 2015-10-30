@@ -20097,6 +20097,94 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   margin-left: -75px;
   text-align: center;
 }
+/*
+.tutorial-tip-wrapper {
+	width: 300px;
+	margin-left: 305px;
+	right: 0px;
+	position: relative;
+	top: 0px;
+}
+
+.tutorial-tip-wrapper:before {
+	content: "";
+	width: 0px;
+	height: 0px;
+	border-top: 5px solid transparent;
+	border-bottom: 5px solid transparent;
+	border-right: 5px solid white;
+	border-left: 0px none transparent;
+}
+*/
+.tutorial-tip {
+  position: absolute;
+  margin-bottom: 5px;
+  margin-left: -80px;
+  padding: 7px;
+  width: 160px;
+  border-radius: 2px;
+  background-color: #ffffff;
+  color: #08161b;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.2;
+}
+.tutorial-tip:after {
+  content: "";
+  border: 10px solid transparent;
+  max-width: 0;
+  max-height: 0;
+  display: block;
+  position: absolute;
+}
+.tutorial-tip.top {
+  top: -40px;
+  left: 50%;
+}
+.tutorial-tip.top:after {
+  border-top: 10px solid #ffffff;
+  border-bottom: 0px none transparent;
+  bottom: -10px;
+  left: 50%;
+  margin-left: -10px;
+}
+.tutorial-tip.bottom {
+  bottom: -40px;
+  left: 50%;
+}
+.tutorial-tip.bottom:after {
+  border-top: 0px none transparent;
+  border-bottom: 10px solid #ffffff;
+  top: -10px;
+  left: 50%;
+  margin-left: -10px;
+}
+.tutorial-tip.left {
+  margin-top: -15px;
+  top: 50%;
+  left: -90px;
+}
+.tutorial-tip.left:after {
+  border: 7px solid transparent;
+  border-left: 7px solid #ffffff;
+  border-right: 0px none transparent;
+  right: -7px;
+  top: 50%;
+  margin-top: -7px;
+}
+.tutorial-tip.right {
+  margin-top: -15px;
+  top: 50%;
+  right: -90px;
+}
+.tutorial-tip.right:after {
+  border: 7px solid transparent;
+  border-left: 0px none transparent;
+  border-right: 7px solid #ffffff;
+  left: -7px;
+  top: 50%;
+  margin-top: -7px;
+}
 /*************************************************
 Si hay que añadir nuevas banderas, ir a la siguiente url
 url: http://flag-sprites.com/es_ES/;

@@ -98,6 +98,7 @@ class TutorialService {
       modalShow(tutorialInfo.title(), tutorialInfo.body(), type: 'welcome', modalSize: "lg");
       CurrentStep.removeEnter(stage);
       configureSkipComponent();
+      //tipAnElement("#activeContestList .contestSlot", "Prueba de una tip");
     }
   }
 
@@ -116,7 +117,35 @@ class TutorialService {
       _skipComp = null;
     }
   }
+  
+  void tipAnElement(String cssSelector, String tipText, {bool hightlight: true, String position: 'top', String tipId: ''}) {
+    Timer timer;
+    timer = new Timer.periodic(new Duration(milliseconds: 100), (Timer t) {
+      Element elem = querySelector(cssSelector);
+      elem.classes.add("tutorial-tipped-element${hightlight? " highlighted-tip" : ""}");
+      
+      /*Element tipWrapper = new Element.div();
+      tipWrapper.classes.add("tutorial-tip-wrapper");
+      ***/
+      Element tip = new Element.div();
+      tip.classes.add("tutorial-tip $position");
+      if (tipId != '') tip.id = tipId;
+      tip.appendText(tipText);
+      // tip.attributes['tiped-element'] = "#activeContestList .contests-list-f2p-root .contestSlot";
+      tip.onClick.listen((e) {
+        elem.classes.remove("tutorial-tipped-element");
+        elem.classes.remove("highlighted-tip");
+        tip.remove();
+      });
+      
+      //tipWrapper.append(tip);
+      elem.append(tip);
+      
+      timer.cancel();
+    });
 
+  }
+  
   void skipTutorial() {
     _activated = false;
     configureSkipComponent();

@@ -2,6 +2,7 @@ library tutorial_service;
 import 'package:angular/angular.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/utils/html_utils.dart';
+import 'package:webclient/services/datetime_service.dart';
 import 'dart:collection';
 import 'dart:async';
 import 'dart:convert' show JSON;
@@ -62,10 +63,25 @@ class TutorialService {
     };
 
     _serverCalls = {
-      "get_active_contests" : (url, postData) {
-          return new Future.value(JSON.decode(getActiveContestsJSON));
-        }
+      "get_active_contests" : (url, postData) => waitCompleter(() => JSON.decode(getActiveContestsJSON))
     };
+  }
+
+  Future waitCompleter(Function callback) {
+    // TODO: Cuando estamos en desarrollo y el simulador no está activo, se tarda tiempo en configurar el fakeTime
+    if (DateTimeService.isReady) {
+      return new Future.value(callback());
+    }
+    else {
+      var completer = new Completer();
+      new Timer.periodic(new Duration(milliseconds: 100), (Timer t) {
+        if (DateTimeService.isReady) {
+          completer.complete(callback());
+          t.cancel();
+        }
+      });
+      return completer.future;
+    }
   }
 
   void enterAt(String stage) {

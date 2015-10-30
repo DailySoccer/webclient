@@ -7,6 +7,7 @@ import 'dart:collection';
 import 'dart:async';
 import 'dart:convert' show JSON;
 import 'dart:html';
+import 'package:webclient/services/refresh_timers_service.dart';
 
 class TutorialInfo {
   Function title;
@@ -112,7 +113,29 @@ class TutorialService {
   void skipTutorial() {
     _activated = false;
     configureSkipComponent();
+
     // Resto de funciones de saltar tutorial
+    if (_contentUpdater != null) {
+      _contentUpdater();
+    }
+  }
+
+  void registerContentUpdater(String name, Function contentUpdater) {
+    if (isRefreshTimerLocked(name)) {
+      _contentUpdater = contentUpdater;
+    }
+  }
+
+  void cancelContentUpdater(String name) {
+    if (isRefreshTimerLocked(name)) {
+      _contentUpdater = null;
+    }
+  }
+
+  bool isRefreshTimerLocked(String name) {
+    return (name == RefreshTimersService.SECONDS_TO_REFRESH_CONTEST_LIST ||
+        name == RefreshTimersService.SECONDS_TO_REFRESH_LIVE ||
+        name == RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS);
   }
 
   bool isServerCallLocked(String url, {Map postData:null}) {
@@ -155,6 +178,7 @@ class TutorialService {
 
   bool _activated = true;
   Element _skipComp = null;
+  Function _contentUpdater = null;
 
   static TutorialService _instance;
 }

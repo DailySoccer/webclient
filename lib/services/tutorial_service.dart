@@ -7,8 +7,26 @@ import 'dart:async';
 import 'dart:convert' show JSON;
 import 'dart:html';
 
+class TutorialInfo {
+  Function title;
+  Function text;
+  Function image;
+  TutorialInfo({this.title: null, this.text: null, this.image: null});
+}
+
+class TutorialStep {
+  Map<String, TutorialInfo> enter;
+  Map<String, Function> serverCalls;
+  TutorialStep({this.enter: null, this.serverCalls: null});
+
+  bool hasEnter(String path) => enter != null && enter.containsKey(path);
+  void removeEnter(String path) { if (hasEnter(path)) enter.remove(path); }
+}
+
 @Injectable()
 class TutorialService {
+  static String STEP_BEGIN = "begin";
+  static String STEP_END = "end";
 
   static TutorialService get Instance {
     return _instance;
@@ -16,8 +34,32 @@ class TutorialService {
 
   static bool get isActivated => _instance != null && _instance._activated;
 
+  String StepId = STEP_BEGIN;
+  TutorialStep get Step => _tutorialSteps[StepId];
+
   TutorialService() {
     _instance = this;
+
+    _tutorialSteps = {
+      STEP_BEGIN: new TutorialStep(
+            enter: {
+              'lobby': new TutorialInfo(
+                  title: () => getLocalizedText("tutorialtittlelobby"),
+                  text: () => getLocalizedText("tutorialtextlobby"),
+                  image: ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg")
+                ),
+              'enter_contest' : new TutorialInfo(
+                  title: () => getLocalizedText("tutorialtittleentercontest"),
+                  text: () => getLocalizedText("tutorialtextentercontest"),
+                  image: ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg")
+                ),
+              'view_contest_entry': new TutorialInfo(
+                  title: () => getLocalizedText("tutorialtittleviewcontestentry"),
+                  text: () => getLocalizedText("tutorialtextviewcontestentry"),
+                  image: ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeSuccessXs.jpg" : "welcomeSuccessDesktop.jpg")
+                )
+            })
+    };
 
     _serverCalls = {
       "get_active_contests" : (url, postData) {
@@ -27,29 +69,30 @@ class TutorialService {
   }
 
   void enterAt(String stage) {
-    if (showTutorialAt(stage)) {
-      modalShow(getTutorialTitle(stage), bodyHtml(stage), type: 'welcome', modalSize: "lg");
-      tutorialShown(stage);
+    if (isActivated && Step.hasEnter(stage)) {
+      TutorialInfo tutorialInfo = Step.enter[stage];
+      modalShow(tutorialInfo.title(), bodyHtml(tutorialInfo), type: 'welcome', modalSize: "lg");
+      Step.removeEnter(stage);
       configureSkipComponent();
     }
   }
-  
+
   void configureSkipComponent() {
     if (isActivated && _skipComp == null) {
       Element mainApp = querySelector('#mainContent');
-      
+
       _skipComp = new Element.div();
       _skipComp.classes.add("skip-tutorial-button");
       _skipComp.appendText("Saltar tutorial");
       _skipComp.onClick.listen((e) => skipTutorial());
-      
+
       mainApp.append(_skipComp);
     } else if (!isActivated && _skipComp != null) {
       _skipComp.remove();
       _skipComp = null;
     }
   }
-  
+
   void skipTutorial() {
     _activated = false;
     configureSkipComponent();
@@ -65,11 +108,11 @@ class TutorialService {
     return key != null ? _serverCalls[key](url, postData) : new Future.value({});
   }
 
-  String bodyHtml(String stage) {
+  String bodyHtml(TutorialInfo info) {
     return '''
-      <div class="tut-title">${getTutorialText(stage)}</div>
-      <img class="tut-image-xs" src="${getTutorialImage(stage, size:'xs')}"/>
-      <img class="tut-image" src="${getTutorialImage(stage)}"/>
+      <div class="tut-title">${info.text()}</div>
+      <img class="tut-image-xs" src="${info.image(size:'xs')}"/>
+      <img class="tut-image" src="${info.image()}"/>
     ''';
   }
 
@@ -77,73 +120,8 @@ class TutorialService {
     return StringUtils.translate(key, "welcome");
   }
 
-  String getTutorialTitle(String stage) {
-    String title;
-    switch (stage) {
-      case 'lobby':
-        title = getLocalizedText("tutorialtittlelobby");
-        break;
-      case 'enter_contest':
-        title = getLocalizedText("tutorialtittleentercontest");
-        break;
-      case 'view_contest_entry':
-        title = getLocalizedText("tutorialtittleviewcontestentry");
-        break;
-    }
-    return title;
-  }
-
-  String getTutorialText(String stage) {
-    String text;
-    switch (stage) {
-      case 'lobby':
-        text = getLocalizedText("tutorialtextlobby");
-        break;
-      case 'enter_contest':
-        text = getLocalizedText("tutorialtextentercontest");
-        break;
-      case 'view_contest_entry':
-        text = getLocalizedText("tutorialtextviewcontestentry");
-        break;
-    }
-    return text;
-  }
-
-  String getTutorialImage(String stage, {String size: ''}) {
-    String imagePath;
-    switch (stage) {
-      case 'lobby':
-        imagePath = "images/tutorial/" +
-            (size == 'xs'
-                ? "welcomeLobbyXs.jpg"
-                : "welcomeLobbyDesktop.jpg");
-        break;
-      case 'enter_contest':
-        imagePath = "images/tutorial/" +
-            (size == 'xs'
-                ? "welcomeTeamXs.jpg"
-                : "welcomeTeamDesktop.jpg");
-        break;
-      case "view_contest_entry":
-        imagePath = "images/tutorial/" +
-            (size == 'xs'
-                ? "welcomeSuccessXs.jpg"
-                : "welcomeSuccessDesktop.jpg");
-        break;
-    }
-    return imagePath;
-  }
-
-  bool showTutorialAt(String location) {
-    return isActivated && _tutorialInfo.containsKey(location);
-  }
-
   String gotoTutorialAt(String location) {
     return _tutorialInfo.containsKey(location) ? _tutorialInfo[location] : location;
-  }
-
-  void tutorialShown(String location) {
-    _tutorialInfo.remove(location);
   }
 
   HashMap<String, bool> _tutorialInfo = {
@@ -152,6 +130,7 @@ class TutorialService {
     'view_contest_entry' : true
   };
 
+  HashMap<String, TutorialStep> _tutorialSteps;
   Map<String, Function> _serverCalls;
 
   static String getActiveContestsJSON = '''

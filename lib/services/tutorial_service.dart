@@ -5,6 +5,7 @@ import 'package:webclient/utils/html_utils.dart';
 import 'dart:collection';
 import 'dart:async';
 import 'dart:convert' show JSON;
+import 'dart:html';
 
 @Injectable()
 class TutorialService {
@@ -29,7 +30,30 @@ class TutorialService {
     if (showTutorialAt(stage)) {
       modalShow(getTutorialTitle(stage), bodyHtml(stage), type: 'welcome', modalSize: "lg");
       tutorialShown(stage);
+      configureSkipComponent();
     }
+  }
+  
+  void configureSkipComponent() {
+    if (isActivated && _skipComp == null) {
+      Element mainApp = querySelector('#mainContent');
+      
+      _skipComp = new Element.div();
+      _skipComp.classes.add("skip-tutorial-button");
+      _skipComp.appendText("Saltar tutorial");
+      _skipComp.onClick.listen((e) => skipTutorial());
+      
+      mainApp.append(_skipComp);
+    } else if (!isActivated && _skipComp != null) {
+      _skipComp.remove();
+      _skipComp = null;
+    }
+  }
+  
+  void skipTutorial() {
+    _activated = false;
+    configureSkipComponent();
+    // Resto de funciones de saltar tutorial
   }
 
   bool isServerCallLocked(String url, {Map postData:null}) {
@@ -135,6 +159,7 @@ class TutorialService {
   ''';
 
   bool _activated = true;
+  Element _skipComp = null;
 
   static TutorialService _instance;
 }

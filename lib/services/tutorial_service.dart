@@ -44,18 +44,18 @@ class TutorialService {
       STEP_BEGIN: new TutorialStep(
             enter: {
               'lobby': new TutorialInfo(
-                  title: () => getLocalizedText("tutorialtittlelobby"),
-                  text: () => getLocalizedText("tutorialtextlobby"),
+                  title: () => getLocalizedText("title-lobby"),
+                  text: () => getLocalizedText("text-lobby"),
                   image: ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg")
                 ),
               'enter_contest' : new TutorialInfo(
-                  title: () => getLocalizedText("tutorialtittleentercontest"),
-                  text: () => getLocalizedText("tutorialtextentercontest"),
+                  title: () => getLocalizedText("title-entercontest"),
+                  text: () => getLocalizedText("text-entercontest"),
                   image: ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg")
                 ),
               'view_contest_entry': new TutorialInfo(
-                  title: () => getLocalizedText("tutorialtittleviewcontestentry"),
-                  text: () => getLocalizedText("tutorialtextviewcontestentry"),
+                  title: () => getLocalizedText("title-viewcontestentry"),
+                  text: () => getLocalizedText("text-viewcontestentry"),
                   image: ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeSuccessXs.jpg" : "welcomeSuccessDesktop.jpg")
                 )
             })
@@ -83,7 +83,7 @@ class TutorialService {
 
       _skipComp = new Element.div();
       _skipComp.classes.add("skip-tutorial-button");
-      _skipComp.appendText("Saltar tutorial");
+      _skipComp.appendText(getLocalizedText("skip-tutorial"));
       _skipComp.onClick.listen((e) => skipTutorial());
 
       mainApp.append(_skipComp);

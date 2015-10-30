@@ -1,20 +1,45 @@
 library tutorial_service;
 import 'package:angular/angular.dart';
-import 'package:webclient/services/screen_detector_service.dart';
-import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/utils/html_utils.dart';
 import 'dart:collection';
+import 'dart:async';
+import 'dart:convert' show JSON;
 
 @Injectable()
 class TutorialService {
-  TutorialService(this._scrDet, this._profileService);
+
+  static TutorialService get Instance {
+    return _instance;
+  }
+
+  static bool get isActivated => _instance != null && _instance._activated;
+
+  TutorialService() {
+    _instance = this;
+  }
 
   void enterAt(String stage) {
     if (showTutorialAt(stage)) {
       modalShow(getTutorialTitle(stage), bodyHtml(stage), type: 'welcome', modalSize: "lg");
       tutorialShown(stage);
     }
+  }
+
+  Map<String, Function> _serverCalls = {
+    "get_active_contests" : (url, postData) {
+        Map json = JSON.decode(getActiveContestsJSON);
+        return new Future.value(json);
+      }
+  };
+
+  bool isServerCallLocked(String url, {Map postData:null}) {
+    return _serverCalls.keys.any((pattern) => url.contains(pattern));
+  }
+
+  Future<Map> serverCall(String url, {Map postData:null}) {
+    String key = _serverCalls.keys.firstWhere((pattern) => url.contains(pattern), orElse: () => null);
+    return key != null ? _serverCalls[key](url, postData) : new Future.value({});
   }
 
   String bodyHtml(String stage) {
@@ -87,7 +112,7 @@ class TutorialService {
   }
 
   bool showTutorialAt(String location) {
-    return _profileService.isWelcoming && _tutorialInfo.containsKey(location);
+    return isActivated && _tutorialInfo.containsKey(location);
   }
 
   String gotoTutorialAt(String location) {
@@ -100,9 +125,15 @@ class TutorialService {
 
   HashMap<String, bool> _tutorialInfo = {
     'lobby' : true,
-    'enter_contest' : true
+    'enter_contest' : true,
+    'view_contest_entry' : true
   };
 
-  ScreenDetectorService _scrDet;
-  ProfileService _profileService;
+  static String getActiveContestsJSON = '''
+    {"contests":[{"templateContestId":"56331ce6d4c6912cf152f1f1","state":"ACTIVE","name":"Tutorial [Oficial]","contestEntries":[],"maxEntries":100,"salaryCap":70000,"entryFee":"AUD 1.00","prizeMultiplier":0.9,"prizeType":"WINNER_TAKES_ALL","startDate":1445625000000,"optaCompetitionId":"23","simulation":false,"specialImage":"","numEntries":0,"_id":"56331d69d4c6912cf152f1f6"},{"templateContestId":"56331d4dd4c6912cf152f1f4","state":"ACTIVE","name":"Tutorial [Entrenamiento]","contestEntries":[],"maxEntries":20,"salaryCap":70000,"entryFee":"JPY 1","prizeMultiplier":10.0,"prizeType":"FIFTY_FIFTY","startDate":1445335200000,"optaCompetitionId":"23","simulation":true,"specialImage":"","numEntries":0,"_id":"56331d69d4c6912cf152f201"}]}
+  ''';
+
+  bool _activated = true;
+
+  static TutorialService _instance;
 }

@@ -334,11 +334,6 @@ class WebClientApp extends Module {
             'contest_info': ngRoute(
                 path: '/contest_info/:contestId',
                 viewHtml: '<contest-info></contest-info>')
-            ,'welcome': ngRoute(
-                path: '/welcome',
-                preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
-                viewHtml: '''<modal window-size="'90percent'"><welcome></welcome></modal>'''
-            )
             ,'view_promo': ngRoute(
                 path: '/view_promo/:promoCodeName',
                 preEnter: (RoutePreEnterEvent e) {
@@ -381,23 +376,12 @@ class WebClientApp extends Module {
                 preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_OUT),
                 viewHtml: '''<modal window-size="'md'"><join is-modal="true"></join></modal>'''
             )
-            ,'welcome': ngRoute(
-                path: '/welcome',
-                preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
-                viewHtml: '''<modal window-size="'90percent'"><welcome></welcome></modal>'''
-            )
           }
       )
       ,'view_contest_entry': ngRoute(
           path: '/view_contest_entry/:parent/:viewContestEntryMode/:contestId',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
-          viewHtml: '<view-contest-entry></view-contest-entry>',
-          mount: {
-            'welcome': ngRoute(
-              path: '/welcome',
-              preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
-              viewHtml: '''<modal window-size="'90percent'"><welcome></welcome></modal>''')
-          }
+          viewHtml: '<view-contest-entry></view-contest-entry>'
       )
       ,'view_promo': ngRoute(
         path: '/view_promo/:promoId',

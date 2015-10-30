@@ -9,15 +9,22 @@ import 'dart:convert' show JSON;
 import 'dart:html';
 import 'package:webclient/services/refresh_timers_service.dart';
 
-class TutorialInfo {
+class InfoHtml {
   Function title;
   Function text;
   Function image;
-  TutorialInfo({this.title: null, this.text: null, this.image: null});
+
+  String body() => '''
+    <div class="tut-title">${text()}</div>
+    <img class="tut-image-xs" src="${image(size:'xs')}"/>
+    <img class="tut-image" src="${image()}"/>
+  ''';
+
+  InfoHtml({this.title: null, this.text: null, this.image: null});
 }
 
 class TutorialStep {
-  Map<String, TutorialInfo> enter;
+  Map<String, InfoHtml> enter;
   Map<String, Function> serverCalls;
   TutorialStep({this.enter: null, this.serverCalls: null});
 
@@ -36,8 +43,8 @@ class TutorialService {
 
   static bool get isActivated => _instance != null && _instance._activated;
 
-  String StepId = STEP_BEGIN;
-  TutorialStep get Step => _tutorialSteps[StepId];
+  String CurrentStepId = STEP_BEGIN;
+  TutorialStep get CurrentStep => _tutorialSteps[CurrentStepId];
 
   TutorialService() {
     _instance = this;
@@ -45,17 +52,17 @@ class TutorialService {
     _tutorialSteps = {
       STEP_BEGIN: new TutorialStep(
             enter: {
-              'lobby': new TutorialInfo(
+              'lobby': new InfoHtml(
                   title: () => getLocalizedText("title-lobby"),
                   text: () => getLocalizedText("text-lobby"),
                   image: ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg")
                 ),
-              'enter_contest' : new TutorialInfo(
+              'enter_contest' : new InfoHtml(
                   title: () => getLocalizedText("title-entercontest"),
                   text: () => getLocalizedText("text-entercontest"),
                   image: ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg")
                 ),
-              'view_contest_entry': new TutorialInfo(
+              'view_contest_entry': new InfoHtml(
                   title: () => getLocalizedText("title-viewcontestentry"),
                   text: () => getLocalizedText("text-viewcontestentry"),
                   image: ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeSuccessXs.jpg" : "welcomeSuccessDesktop.jpg")
@@ -86,10 +93,10 @@ class TutorialService {
   }
 
   void enterAt(String stage) {
-    if (isActivated && Step.hasEnter(stage)) {
-      TutorialInfo tutorialInfo = Step.enter[stage];
-      modalShow(tutorialInfo.title(), bodyHtml(tutorialInfo), type: 'welcome', modalSize: "lg");
-      Step.removeEnter(stage);
+    if (isActivated && CurrentStep.hasEnter(stage)) {
+      InfoHtml tutorialInfo = CurrentStep.enter[stage];
+      modalShow(tutorialInfo.title(), tutorialInfo.body(), type: 'welcome', modalSize: "lg");
+      CurrentStep.removeEnter(stage);
       configureSkipComponent();
     }
   }
@@ -139,35 +146,17 @@ class TutorialService {
   }
 
   bool isServerCallLocked(String url, {Map postData:null}) {
-    return Step.serverCalls != null && Step.serverCalls.keys.any((pattern) => url.contains(pattern));
+    return CurrentStep.serverCalls != null && CurrentStep.serverCalls.keys.any((pattern) => url.contains(pattern));
   }
 
   Future<Map> serverCall(String url, {Map postData:null}) {
-    String key = Step.serverCalls.keys.firstWhere((pattern) => url.contains(pattern), orElse: () => null);
-    return key != null ? Step.serverCalls[key](url, postData) : new Future.value({});
-  }
-
-  String bodyHtml(TutorialInfo info) {
-    return '''
-      <div class="tut-title">${info.text()}</div>
-      <img class="tut-image-xs" src="${info.image(size:'xs')}"/>
-      <img class="tut-image" src="${info.image()}"/>
-    ''';
+    String key = CurrentStep.serverCalls.keys.firstWhere((pattern) => url.contains(pattern), orElse: () => null);
+    return key != null ? CurrentStep.serverCalls[key](url, postData) : new Future.value({});
   }
 
   String getLocalizedText(key) {
     return StringUtils.translate(key, "welcome");
   }
-
-  String gotoTutorialAt(String location) {
-    return _tutorialInfo.containsKey(location) ? _tutorialInfo[location] : location;
-  }
-
-  HashMap<String, bool> _tutorialInfo = {
-    'lobby' : true,
-    'enter_contest' : true,
-    'view_contest_entry' : true
-  };
 
   HashMap<String, TutorialStep> _tutorialSteps;
 

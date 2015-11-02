@@ -123,13 +123,16 @@ class TutorialService {
     timer = new Timer.periodic(new Duration(milliseconds: 100), (Timer t) {
       Element elem = querySelector(cssSelector);
       if (elem == null) return;
-      elem.classes.add("tutorial-tipped-element${hightlight? " highlighted-tip" : ""}");
+      elem.classes.add("tutorial-tipped-element");
+      if (hightlight) {
+        elem.classes.add("highlighted-tip");
+      }
 
       /*Element tipWrapper = new Element.div();
       tipWrapper.classes.add("tutorial-tip-wrapper");
       ***/
       Element tip = new Element.div();
-      tip.classes.add("tutorial-tip $position");
+      tip.classes.addAll(["tutorial-tip", "$position"]);
       if (tipId != '') tip.id = tipId;
       tip.appendText(tipText);
       // tip.attributes['tiped-element'] = "#activeContestList .contests-list-f2p-root .contestSlot";

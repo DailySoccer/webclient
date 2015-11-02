@@ -98,7 +98,7 @@ class TutorialService {
       modalShow(tutorialInfo.title(), tutorialInfo.body(), type: 'welcome', modalSize: "lg");
       CurrentStep.removeEnter(stage);
       configureSkipComponent();
-      //tipAnElement("#activeContestList .contestSlot", "Prueba de una tip");
+      tipAnElement("#activeContestList .contestSlot", "Prueba de una tip");
     }
   }
 
@@ -122,6 +122,7 @@ class TutorialService {
     Timer timer;
     timer = new Timer.periodic(new Duration(milliseconds: 100), (Timer t) {
       Element elem = querySelector(cssSelector);
+      if (elem == null) return;
       elem.classes.add("tutorial-tipped-element${hightlight? " highlighted-tip" : ""}");
 
       /*Element tipWrapper = new Element.div();

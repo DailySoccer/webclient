@@ -46,7 +46,7 @@ class TutorialService {
   String CurrentStepId = STEP_BEGIN;
   TutorialStep get CurrentStep => _tutorialSteps[CurrentStepId];
 
-  TutorialService() {
+  TutorialService(this._router) {
     _instance = this;
 
     _tutorialSteps = {
@@ -117,13 +117,13 @@ class TutorialService {
       _skipComp = null;
     }
   }
-  
+
   void tipAnElement(String cssSelector, String tipText, {bool hightlight: true, String position: 'top', String tipId: ''}) {
     Timer timer;
     timer = new Timer.periodic(new Duration(milliseconds: 100), (Timer t) {
       Element elem = querySelector(cssSelector);
       elem.classes.add("tutorial-tipped-element${hightlight? " highlighted-tip" : ""}");
-      
+
       /*Element tipWrapper = new Element.div();
       tipWrapper.classes.add("tutorial-tip-wrapper");
       ***/
@@ -137,15 +137,15 @@ class TutorialService {
         elem.classes.remove("highlighted-tip");
         tip.remove();
       });
-      
+
       //tipWrapper.append(tip);
       elem.append(tip);
-      
+
       timer.cancel();
     });
 
   }
-  
+
   void skipTutorial() {
     _activated = false;
     configureSkipComponent();
@@ -153,6 +153,10 @@ class TutorialService {
     // Resto de funciones de saltar tutorial
     if (_contentUpdater != null) {
       _contentUpdater();
+    }
+    else {
+      // Si no estamos en una pantalla en la que podamos actualizar el contenido correctamente, navegaremos al lobby
+      _router.go('lobby', {});
     }
   }
 
@@ -192,6 +196,8 @@ class TutorialService {
   static String getActiveContestsJSON = '''
     {"contests":[{"templateContestId":"56331ce6d4c6912cf152f1f1","state":"ACTIVE","name":"Tutorial [Oficial]","contestEntries":[],"maxEntries":100,"salaryCap":70000,"entryFee":"AUD 1.00","prizeMultiplier":0.9,"prizeType":"WINNER_TAKES_ALL","startDate":1445625000000,"optaCompetitionId":"23","simulation":false,"specialImage":"","numEntries":0,"_id":"56331d69d4c6912cf152f1f6"},{"templateContestId":"56331d4dd4c6912cf152f1f4","state":"ACTIVE","name":"Tutorial [Entrenamiento]","contestEntries":[],"maxEntries":20,"salaryCap":70000,"entryFee":"JPY 1","prizeMultiplier":10.0,"prizeType":"FIFTY_FIFTY","startDate":1445335200000,"optaCompetitionId":"23","simulation":true,"specialImage":"","numEntries":0,"_id":"56331d69d4c6912cf152f201"}]}
   ''';
+
+  Router _router;
 
   bool _activated = true;
   Element _skipComp = null;

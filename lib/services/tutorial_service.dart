@@ -69,10 +69,45 @@ class TutorialService {
                 )
             },
             serverCalls: {
-              "get_active_contests" : (url, postData) => waitCompleter(() => JSON.decode(getActiveContestsJSON))
+              "get_active_contests" : (url, postData) => getActiveContests(),
+              "get_active_contest" : (url, postData) => getActiveContest(url),
+              "get_contest_info" : (url, postData) => getContestInfo(url)
             }
         )
     };
+  }
+
+  Future getActiveContests() {
+    var completer = new Completer();
+    HttpRequest.getString("tutorial/get_active_contests.json").then(
+      (json) {
+        completer.complete(JSON.decode(json));
+      });
+    return completer.future;
+  }
+
+  Future getActiveContest(String url) {
+    var completer = new Completer();
+
+    HttpRequest.getString(url.contains("TUTORIAL-56331d69d4c6912cf152f1f6")
+        ? "tutorial/get_active_contest_1.json" : "tutorial/get_active_contest_2.json").then(
+      (json) {
+        completer.complete(JSON.decode(json));
+      });
+
+    return completer.future;
+  }
+
+  Future getContestInfo(String url) {
+    var completer = new Completer();
+
+    HttpRequest.getString(url.contains("TUTORIAL-56331d69d4c6912cf152f1f6")
+        ? "tutorial/get_contest_info_1.json" : "tutorial/get_contest_info_2.json").then(
+      (json) {
+        completer.complete(JSON.decode(json));
+      });
+
+    return completer.future;
   }
 
   Future waitCompleter(Function callback) {
@@ -196,10 +231,6 @@ class TutorialService {
   }
 
   HashMap<String, TutorialStep> _tutorialSteps;
-
-  static String getActiveContestsJSON = '''
-    {"contests":[{"templateContestId":"56331ce6d4c6912cf152f1f1","state":"ACTIVE","name":"Tutorial [Oficial]","contestEntries":[],"maxEntries":100,"salaryCap":70000,"entryFee":"AUD 1.00","prizeMultiplier":0.9,"prizeType":"WINNER_TAKES_ALL","startDate":1445625000000,"optaCompetitionId":"23","simulation":false,"specialImage":"","numEntries":0,"_id":"56331d69d4c6912cf152f1f6"},{"templateContestId":"56331d4dd4c6912cf152f1f4","state":"ACTIVE","name":"Tutorial [Entrenamiento]","contestEntries":[],"maxEntries":20,"salaryCap":70000,"entryFee":"JPY 1","prizeMultiplier":10.0,"prizeType":"FIFTY_FIFTY","startDate":1445335200000,"optaCompetitionId":"23","simulation":true,"specialImage":"","numEntries":0,"_id":"56331d69d4c6912cf152f201"}]}
-  ''';
 
   Router _router;
 

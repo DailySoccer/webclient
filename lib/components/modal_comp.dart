@@ -4,6 +4,7 @@ import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/services/screen_detector_service.dart';
+import 'package:webclient/components/backdrop_comp.dart';
 
 @Component(
   selector: 'modal',
@@ -36,6 +37,7 @@ class ModalComp implements DetachAware, ShadowRootAware {
 
       JsUtils.runJavascript('#modalRoot', 'modal', null);
       JsUtils.runJavascript('#modalRoot', 'on', {'hidden.bs.modal': onHidden});
+      BackdropComp.show(onHidden);
     });
   }
 
@@ -47,7 +49,8 @@ class ModalComp implements DetachAware, ShadowRootAware {
     bool isModalOpen = document.querySelector('body').classes.contains('modal-open');
     if (isModalOpen) {
       document.querySelector('body').classes.remove('modal-open');
-      document.querySelector('.modal-backdrop').remove();
+      BackdropComp.hide();
+      //document.querySelector('.modal-backdrop').remove();
     }
   }
 

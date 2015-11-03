@@ -25,6 +25,7 @@ import 'package:webclient/services/prizes_service.dart';
 import 'package:webclient/services/promos_service.dart';
 import 'package:webclient/services/catalog_service.dart';
 import 'package:webclient/services/tutorial_service.dart';
+import 'package:webclient/services/tutorial_tip_service.dart';
 
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/utils/form-autofill-fix.dart';
@@ -130,6 +131,7 @@ class WebClientApp extends Module {
     bind(PrizesService);
     bind(CatalogService);
     bind(TutorialService);
+    bind(TutorialTipService);
 
     bind(FormAutofillDecorator);
     bind(AutoFocusDecorator);

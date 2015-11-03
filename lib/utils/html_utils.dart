@@ -3,6 +3,7 @@ library html_utils;
 import 'dart:html';
 import 'package:webclient/utils/js_utils.dart';
 import 'dart:async';
+import 'package:webclient/components/backdrop_comp.dart';
 
 class _NullTreeSanitizer implements NodeTreeSanitizer {
   void sanitizeTree(Node node) {}
@@ -21,10 +22,13 @@ Future<bool> modalShow(String title, String content, {String modalSize: "lg",
 
   void onClose(dynamic sender) {
     modalWindow.children.remove(modalWindow.querySelector('#' + globalRootId));
+    BackdropComp.hide();
+    completer.complete(false);
   }
 
   void closeMe() {
     JsUtils.runJavascript('#' + globalRootId, 'modal', "hide");
+    BackdropComp.hide();
   }
 
   // Si no se han especificado callBacks, declaramos como minimo el botón Aceptar.
@@ -175,6 +179,7 @@ Future<bool> modalShow(String title, String content, {String modalSize: "lg",
 
   JsUtils.runJavascript('#' + globalRootId, 'modal', null);
   JsUtils.runJavascript('#' + globalRootId, 'on', {'hidden.bs.modal': onClose});
+  BackdropComp.show();
   return completer.future;
 }
 

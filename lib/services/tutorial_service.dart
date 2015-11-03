@@ -11,6 +11,7 @@ import 'package:webclient/services/refresh_timers_service.dart';
 import 'package:webclient/tutorial/tutorial.dart';
 import 'package:webclient/tutorial/tutorial_oficial.dart';
 import 'package:webclient/tutorial/tutorial_entrenamiento.dart';
+import 'package:webclient/services/tutorial_tip_service.dart';
 
 @Injectable()
 class TutorialService {
@@ -37,10 +38,14 @@ class TutorialService {
   void enterAt(String stage) {
     if (isActivated && CurrentStep.hasEnter(stage)) {
       InfoHtml tutorialInfo = CurrentStep.enter[stage];
-      modalShow(tutorialInfo.title(), tutorialInfo.body(), type: 'welcome', modalSize: "lg");
+      TutorialTip nextTip = new TutorialTip("#activeContestList .contestSlot", "Prueba de una tip");
+      
+      modalShow(tutorialInfo.title(), tutorialInfo.body(), type: 'welcome', modalSize: "lg")
+        .then( (ok) => nextTip.waitAndShow(new Duration(seconds: 1)) );
+      
       CurrentStep.removeEnter(stage);
       configureSkipComponent();
-      tipAnElement("#activeContestList .contestSlot", "Prueba de una tip");
+      //TutorialTipService.tipAnElement("#activeContestList .contestSlot", "Prueba de una tip");
     }
   }
 
@@ -60,37 +65,6 @@ class TutorialService {
     }
   }
 
-  void tipAnElement(String cssSelector, String tipText, {bool hightlight: true, String position: 'top', String tipId: ''}) {
-    Timer timer;
-    timer = new Timer.periodic(new Duration(milliseconds: 100), (Timer t) {
-      Element elem = querySelector(cssSelector);
-      if (elem == null) return;
-      elem.classes.add("tutorial-tipped-element");
-      if (hightlight) {
-        elem.classes.add("highlighted-tip");
-      }
-
-      /*Element tipWrapper = new Element.div();
-      tipWrapper.classes.add("tutorial-tip-wrapper");
-      ***/
-      Element tip = new Element.div();
-      tip.classes.addAll(["tutorial-tip", "$position"]);
-      if (tipId != '') tip.id = tipId;
-      tip.appendText(tipText);
-      // tip.attributes['tiped-element'] = "#activeContestList .contests-list-f2p-root .contestSlot";
-      tip.onClick.listen((e) {
-        elem.classes.remove("tutorial-tipped-element");
-        elem.classes.remove("highlighted-tip");
-        tip.remove();
-      });
-
-      //tipWrapper.append(tip);
-      elem.append(tip);
-
-      timer.cancel();
-    });
-
-  }
 
   void skipTutorial() {
     _activated = false;

@@ -1,0 +1,35 @@
+// Invalidate bootstrapBackdrop
+.modal-backdrop {
+	display: none !important;
+	&in {
+		display: none !important;
+	}
+}
+
+
+#backdropComp {
+	display: none;
+	//display: block;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1000;
+	background-color: #000000;
+	opacity: 0.0;
+	filter: alpha(opacity=0);
+	transition: all 0.2s linear;
+	-webkit-transition: opacity .2s linear;
+	-moz-transition: opacity .2s linear;
+	-ms-transition: opacity .2s linear;
+	-ms-transition: filter .2s linear;
+	-o-transition: opacity .2s linear;
+	transition: opacity .2s linear;
+	
+	&.visible {
+		display: block;
+		opacity: 0.5;
+		filter: alpha(opacity=50);
+	}
+}

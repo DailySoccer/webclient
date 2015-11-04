@@ -498,7 +498,7 @@
       "hasHistoryContests2"             : "WON",
       "hasHistoryContests3"             : "HERE YOU CAN CHECK YOUR PAST CONTESTS: LINEUPS, CONTENDERS, SCORES…"
     },
-    "welcome"         :
+    "tutorial"         :
     {
       "skip-tutorial"                   : "Skip tutorial",
       "title-lobby"                     : "SELECT A CONTEST",
@@ -507,6 +507,12 @@
       "text-lobby"                      : "You can play as many contests as you like for La Liga BBVA, Barclays Premier League and UEFA Champions League.",
       "text-entercontest"               : "Pick up 11 players within the salary cap.",
       "text-viewcontestentry"           : "Go to “<b>My Contest</b>” to edit your lineups, watch your team’s live performance or review previous contests. <br> <br> <p class=\"subtitle\">Remember: you can play as many contests as you like, and select as many lineups as you like.</p>"
+    },
+    "tutorial_entrenamiento"            :
+    {
+    },
+    "tutorial_oficial"                  :
+    {
     },
     "restricted"                        :
     {

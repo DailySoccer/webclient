@@ -501,12 +501,30 @@
       "hasHistoryContests2"             : "GANADOS",
       "hasHistoryContests3"             : "AQUÍ PUEDES CONSULTAR LOS TORNEOS QUE JUGASTE: ALINEACIONES, PARTICIPANTES, PUNTUACIONES…"
     },
-    "welcome"                           :
+    "tutorial"                           :
     {
       "skip-tutorial"                   : "Saltar tutorial",
       "title-lobby"                     : "SELECCIONA UN TORNEO",
       "title-entercontest"              : "SELECCIONA TU ALINEACIÓN",
       "title-viewcontestentry"          : "BIENVENIDO A EPIC ELEVEN",
+      "text-lobby"                      : "Puedes participar en todos los torneos que quieras de La Liga BBVA, Barclays Premier League y UEFA Champions League.",
+      "text-entercontest"               : "Elije 11 jugadores de la lista sin pasarte del presupuesto.",
+      "text-viewcontestentry"           : "Ve a “<b>Mis Concursos</b>” para editar tus alineaciones, ver a tu equipo puntuando en directo o para ver tu histórico de concursos. <br> <br> <p class=\"subtitle\">Recuerda: puedes jugar a todos los concursos que quieras y elegir tantas alineaciones como quieras.</p>"
+    },
+    "tutorial_entrenamiento"            :
+    {
+      "title-lobby"                     : "[ENTRENAMIENTO] SELECCIONA UN TORNEO",
+      "title-entercontest"              : "[ENTRENAMIENTO] SELECCIONA TU ALINEACIÓN",
+      "title-viewcontestentry"          : "[ENTRENAMIENTO] BIENVENIDO A EPIC ELEVEN",
+      "text-lobby"                      : "Puedes participar en todos los torneos que quieras de La Liga BBVA, Barclays Premier League y UEFA Champions League.",
+      "text-entercontest"               : "Elije 11 jugadores de la lista sin pasarte del presupuesto.",
+      "text-viewcontestentry"           : "Ve a “<b>Mis Concursos</b>” para editar tus alineaciones, ver a tu equipo puntuando en directo o para ver tu histórico de concursos. <br> <br> <p class=\"subtitle\">Recuerda: puedes jugar a todos los concursos que quieras y elegir tantas alineaciones como quieras.</p>"
+    },
+    "tutorial_oficial"                  :
+    {
+      "title-lobby"                     : "[OFICIAL] SELECCIONA UN TORNEO",
+      "title-entercontest"              : "[OFICIAL] SELECCIONA TU ALINEACIÓN",
+      "title-viewcontestentry"          : "[OFICIAL] BIENVENIDO A EPIC ELEVEN",
       "text-lobby"                      : "Puedes participar en todos los torneos que quieras de La Liga BBVA, Barclays Premier League y UEFA Champions League.",
       "text-entercontest"               : "Elije 11 jugadores de la lista sin pasarte del presupuesto.",
       "text-viewcontestentry"           : "Ve a “<b>Mis Concursos</b>” para editar tus alineaciones, ver a tu equipo puntuando en directo o para ver tu histórico de concursos. <br> <br> <p class=\"subtitle\">Recuerda: puedes jugar a todos los concursos que quieras y elegir tantas alineaciones como quieras.</p>"

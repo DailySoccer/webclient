@@ -8,123 +8,30 @@ import 'dart:async';
 import 'dart:convert' show JSON;
 import 'dart:html';
 import 'package:webclient/services/refresh_timers_service.dart';
-
-class InfoHtml {
-  Function title;
-  Function text;
-  Function image;
-
-  String body() => '''
-    <div class="tut-title">${text()}</div>
-    <img class="tut-image-xs" src="${image(size:'xs')}"/>
-    <img class="tut-image" src="${image()}"/>
-  ''';
-
-  InfoHtml({this.title: null, this.text: null, this.image: null});
-}
-
-class TutorialStep {
-  Map<String, InfoHtml> enter;
-  Map<String, Function> serverCalls;
-  TutorialStep({this.enter: null, this.serverCalls: null});
-
-  bool hasEnter(String path) => enter != null && enter.containsKey(path);
-  void removeEnter(String path) { if (hasEnter(path)) enter.remove(path); }
-}
+import 'package:webclient/tutorial/tutorial.dart';
+import 'package:webclient/tutorial/tutorial_oficial.dart';
+import 'package:webclient/tutorial/tutorial_entrenamiento.dart';
 
 @Injectable()
 class TutorialService {
-  static String STEP_BEGIN = "begin";
-  static String STEP_END = "end";
-
   static TutorialService get Instance {
     return _instance;
   }
 
   static bool get isActivated => _instance != null && _instance._activated;
 
-  String CurrentStepId = STEP_BEGIN;
-  TutorialStep get CurrentStep => _tutorialSteps[CurrentStepId];
+  Tutorial CurrentTutorial;
+  TutorialStep get CurrentStep => CurrentTutorial != null ? CurrentTutorial.CurrentStep : null;
 
   TutorialService(this._router) {
     _instance = this;
 
-    _tutorialSteps = {
-      STEP_BEGIN: new TutorialStep(
-            enter: {
-              'lobby': new InfoHtml(
-                  title: () => getLocalizedText("title-lobby"),
-                  text: () => getLocalizedText("text-lobby"),
-                  image: ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg")
-                ),
-              'enter_contest' : new InfoHtml(
-                  title: () => getLocalizedText("title-entercontest"),
-                  text: () => getLocalizedText("text-entercontest"),
-                  image: ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg")
-                ),
-              'view_contest_entry': new InfoHtml(
-                  title: () => getLocalizedText("title-viewcontestentry"),
-                  text: () => getLocalizedText("text-viewcontestentry"),
-                  image: ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeSuccessXs.jpg" : "welcomeSuccessDesktop.jpg")
-                )
-            },
-            serverCalls: {
-              "get_active_contests" : (url, postData) => getActiveContests(),
-              "get_active_contest" : (url, postData) => getActiveContest(url),
-              "get_contest_info" : (url, postData) => getContestInfo(url)
-            }
-        )
-    };
-  }
+    _tutorials = [
+      new TutorialEntrenamiento(),
+      new TutorialOficial()
+      ];
 
-  Future getActiveContests() {
-    var completer = new Completer();
-    HttpRequest.getString("tutorial/get_active_contests.json").then(
-      (json) {
-        completer.complete(JSON.decode(json));
-      });
-    return completer.future;
-  }
-
-  Future getActiveContest(String url) {
-    var completer = new Completer();
-
-    HttpRequest.getString(url.contains("TUTORIAL-56331d69d4c6912cf152f1f6")
-        ? "tutorial/get_active_contest_1.json" : "tutorial/get_active_contest_2.json").then(
-      (json) {
-        completer.complete(JSON.decode(json));
-      });
-
-    return completer.future;
-  }
-
-  Future getContestInfo(String url) {
-    var completer = new Completer();
-
-    HttpRequest.getString(url.contains("TUTORIAL-56331d69d4c6912cf152f1f6")
-        ? "tutorial/get_contest_info_1.json" : "tutorial/get_contest_info_2.json").then(
-      (json) {
-        completer.complete(JSON.decode(json));
-      });
-
-    return completer.future;
-  }
-
-  Future waitCompleter(Function callback) {
-    // TODO: Cuando estamos en desarrollo y el simulador no está activo, se tarda tiempo en configurar el fakeTime
-    if (DateTimeService.isReady) {
-      return new Future.value(callback());
-    }
-    else {
-      var completer = new Completer();
-      new Timer.periodic(new Duration(milliseconds: 100), (Timer t) {
-        if (DateTimeService.isReady) {
-          completer.complete(callback());
-          t.cancel();
-        }
-      });
-      return completer.future;
-    }
+    CurrentTutorial = _tutorials[0];
   }
 
   void enterAt(String stage) {
@@ -227,12 +134,12 @@ class TutorialService {
   }
 
   String getLocalizedText(key) {
-    return StringUtils.translate(key, "welcome");
+    return StringUtils.translate(key, "tutorial");
   }
 
-  HashMap<String, TutorialStep> _tutorialSteps;
-
   Router _router;
+
+  List<Tutorial> _tutorials;
 
   bool _activated = true;
   Element _skipComp = null;

@@ -2,7 +2,10 @@ library tutorial;
 
 import 'dart:collection';
 import 'dart:async';
+import 'dart:convert' show JSON;
+import 'dart:html';
 import 'package:webclient/services/datetime_service.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 class InfoHtml {
   Function title;
@@ -37,6 +40,18 @@ class Tutorial {
   bool get isCompleted => CurrentStepId == STEP_END;
 
   Tutorial();
+
+  Future emptyContent() {
+    return new Future.value({});
+  }
+
+  Future getContentJson(String fileName) {
+    var completer = new Completer();
+    HttpRequest.getString(fileName).then((json) {
+        completer.complete(JSON.decode(json));
+      });
+    return completer.future;
+  }
 
   Future waitCompleter(Function callback) {
     // TODO: Cuando estamos en desarrollo y el simulador no está activo, se tarda tiempo en configurar el fakeTime

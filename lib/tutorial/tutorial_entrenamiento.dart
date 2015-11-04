@@ -31,40 +31,15 @@ class TutorialEntrenamiento extends Tutorial {
                 )
             },
             serverCalls: {
-              "get_active_contests" : (url, postData) => waitCompleter( () => getActiveContests() ),
-              "get_active_contest" : (url, postData) => getActiveContest(url),
-              "get_contest_info" : (url, postData) => getContestInfo(url)
+              "get_active_contests" : (url, postData) => waitCompleter( () => getContentJson(PATH + "get_active_contests.json") ),
+              "get_active_contest" : (url, postData) => getContentJson(PATH + "get_active_contest.json"),
+              "get_contest_info" : (url, postData) => getContentJson(PATH + "get_contest_info.json"),
+              "get_my_active_contests": (url, postData) => emptyContent(),
+              "get_my_live_contests": (url, postData) => emptyContent(),
+              "get_my_history_contests": (url, postData) => emptyContent()
             }
         )
     };
-  }
-
-  Future getActiveContests() {
-    var completer = new Completer();
-    HttpRequest.getString(PATH + "get_active_contests.json").then((json) {
-        completer.complete(JSON.decode(json));
-      });
-    return completer.future;
-  }
-
-  Future getActiveContest(String url) {
-    var completer = new Completer();
-
-    HttpRequest.getString(PATH + "get_active_contest.json").then((json) {
-        completer.complete(JSON.decode(json));
-      });
-
-    return completer.future;
-  }
-
-  Future getContestInfo(String url) {
-    var completer = new Completer();
-
-    HttpRequest.getString(PATH + "get_contest_info.json").then((json) {
-        completer.complete(JSON.decode(json));
-      });
-
-    return completer.future;
   }
 
   String getLocalizedText(key) {

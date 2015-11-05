@@ -38,11 +38,20 @@ class TutorialService {
   void enterAt(String stage) {
     if (isActivated && CurrentStep.hasEnter(stage)) {
       InfoHtml tutorialInfo = CurrentStep.enter[stage];
-      TutorialTip nextTip = new TutorialTip("#activeContestList .contestSlot", "Prueba de una tip");
       
-      modalShow(tutorialInfo.title(), tutorialInfo.body(), type: 'welcome', modalSize: "lg")
-        .then( (ok) => nextTip.waitAndShow(new Duration(seconds: 1)) );
+      TutorialTip firstTip = new TutorialTip("#activeContestList .contestSlot", 
+                                              tipText: "Tip sin highlight", 
+                                              delay: new Duration(seconds: 1),
+                                              highlight: false);
       
+      TutorialTip secondTip_1 = new TutorialTip("week-calendar .week-calendar", tipText: "Tip dependiente de la primera", delay: new Duration(milliseconds: 200));
+      TutorialTip secondTip_2 = new TutorialTip("#activeContestList .contestSlot", tipText: "Tip simultanea y con retardo", delay: new Duration(seconds: 2), position: "bottom");
+      
+      modalShow(tutorialInfo.title(), tutorialInfo.body(), type: 'welcome', modalSize: "lg");
+        /*.then( (_) => TutorialTipService.instance.tipElement(firstTip)
+        .then( (_) => TutorialTipService.instance.tipMultipleElement([secondTip_1, secondTip_2])) );*/
+      TutorialTipService.instance.tipElement(firstTip)
+        .then( (_) => TutorialTipService.instance.tipMultipleElement([secondTip_1, secondTip_2]));
       CurrentStep.removeEnter(stage);
       configureSkipComponent();
       //TutorialTipService.tipAnElement("#activeContestList .contestSlot", "Prueba de una tip");

@@ -1,13 +1,12 @@
 library tutorial_entrenamiento;
 
 import 'package:webclient/utils/string_utils.dart';
-import 'dart:collection';
 import 'dart:async';
-import 'dart:convert' show JSON;
-import 'dart:html';
 import 'package:webclient/tutorial/tutorial.dart';
 
 class TutorialEntrenamiento extends Tutorial {
+  static String STEP_1 = "1";
+
   String get PATH => "tutorial/entrenamiento/";
 
   TutorialEntrenamiento() {
@@ -30,16 +29,27 @@ class TutorialEntrenamiento extends Tutorial {
                   image: ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeSuccessXs.jpg" : "welcomeSuccessDesktop.jpg")
                 )
             },
-            serverCalls: {
+            serverCalls: joinMaps([defaultServerCalls, {
               "get_active_contests" : (url, postData) => waitCompleter( () => getContentJson(PATH + "get_active_contests.json") ),
               "get_active_contest" : (url, postData) => getContentJson(PATH + "get_active_contest.json"),
               "get_contest_info" : (url, postData) => getContentJson(PATH + "get_contest_info.json"),
-              "get_my_active_contests": (url, postData) => emptyContent(),
-              "get_my_live_contests": (url, postData) => emptyContent(),
-              "get_my_history_contests": (url, postData) => emptyContent()
-            }
+              "add_contest_entry": (url, postData) => addContestEntry(postData)
+            }])
+        ),
+        STEP_1: new TutorialStep(
+            enter: {
+            },
+            serverCalls: joinMaps([defaultServerCalls, {
+              "get_my_contest_entry": (url, postData) => getContentJson(PATH + "get_active_contest.json"),
+              "get_my_active_contest": (url, postData) => getContentJson(PATH + "get_active_contest.json")
+            }])
         )
     };
+  }
+
+  Future addContestEntry(Map postData) {
+    CurrentStepId = STEP_1;
+    return emptyContent();
   }
 
   String getLocalizedText(key) {

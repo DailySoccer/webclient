@@ -1,10 +1,6 @@
 library tutorial_oficial;
 
 import 'package:webclient/utils/string_utils.dart';
-import 'dart:collection';
-import 'dart:async';
-import 'dart:convert' show JSON;
-import 'dart:html';
 import 'package:webclient/tutorial/tutorial.dart';
 
 class TutorialOficial extends Tutorial {
@@ -30,14 +26,11 @@ class TutorialOficial extends Tutorial {
                   image: ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeSuccessXs.jpg" : "welcomeSuccessDesktop.jpg")
                 )
             },
-            serverCalls: {
+            serverCalls: joinMaps([defaultServerCalls, {
               "get_active_contests" : (url, postData) => waitCompleter( () => getContentJson(PATH + "get_active_contests.json") ),
               "get_active_contest" : (url, postData) => getContentJson(PATH + "get_active_contest.json"),
-              "get_contest_info" : (url, postData) => getContentJson(PATH + "get_contest_info.json"),
-              "get_my_active_contests": (url, postData) => emptyContent(),
-              "get_my_live_contests": (url, postData) => emptyContent(),
-              "get_my_history_contests": (url, postData) => emptyContent()
-            }
+              "get_contest_info" : (url, postData) => getContentJson(PATH + "get_contest_info.json")
+            }])
         )
     };
   }

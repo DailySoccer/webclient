@@ -45,6 +45,26 @@ class Tutorial {
     return new Future.value({});
   }
 
+  Map get defaultServerCalls => {
+    "get_active_contests" : (url, postData) => emptyContent(),
+    "get_active_contest" : (url, postData) => emptyContent(),
+    "get_contest_info" : (url, postData) => emptyContent(),
+    "get_my_active_contests": (url, postData) => emptyContent(),
+    "get_my_live_contests": (url, postData) => emptyContent(),
+    "get_my_history_contests": (url, postData) => emptyContent(),
+    "add_contest_entry": (url, postData) => emptyContent(),
+    "get_my_contest_entry": (url, postData) => emptyContent(),
+    "get_my_active_contest": (url, postData) => emptyContent()
+  };
+
+  Map joinMaps(List<Map> maps) {
+    Map result = {};
+    for (Map map in maps) {
+      result.addAll(map);
+    }
+    return result;
+  }
+
   Future getContentJson(String fileName) {
     var completer = new Completer();
     HttpRequest.getString(fileName).then((json) {

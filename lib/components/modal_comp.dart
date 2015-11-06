@@ -37,19 +37,20 @@ class ModalComp implements DetachAware, ShadowRootAware {
 
       JsUtils.runJavascript('#modalRoot', 'modal', null);
       JsUtils.runJavascript('#modalRoot', 'on', {'hidden.bs.modal': onHidden});
-      BackdropComp.show(onHidden);
+      BackdropComp.instance.show();
     });
   }
 
   void onHidden(dynamic sender) {
     _router.go(_router.activePath.first.name, {});
+    BackdropComp.instance.hide();
   }
 
   void detach() {
     bool isModalOpen = document.querySelector('body').classes.contains('modal-open');
     if (isModalOpen) {
       document.querySelector('body').classes.remove('modal-open');
-      BackdropComp.hide();
+      BackdropComp.instance.hide();
       //document.querySelector('.modal-backdrop').remove();
     }
   }

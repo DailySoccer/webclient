@@ -6,6 +6,7 @@ import 'dart:convert' show JSON;
 import 'dart:html';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/services/profile_service.dart';
 
 class InfoHtml {
   Function title;
@@ -65,6 +66,17 @@ class Tutorial {
     return result;
   }
 
+  List joinLists(List<Map> maps, {Map element: null}) {
+    List result = [];
+    for (Map map in maps) {
+      result.add(map);
+    }
+    if (element != null) {
+      result.add(element);
+    }
+    return result;
+  }
+
   Future getContentJson(String fileName) {
     var completer = new Completer();
     HttpRequest.getString(fileName).then((json) {
@@ -89,6 +101,184 @@ class Tutorial {
       return completer.future;
     }
   }
+
+  final String ATHLETIC_CLUB = "5625d0ecc1f5fbc410e6ec7a";
+  final String ATLETICO_MADRID = "5625d0ecc1f5fbc410e6ec7c";
+  final String BARCELONA = "5625d0edc1f5fbc410e6ec7e";
+  final String CELTA_DE_VIGO = "5625d0edc1f5fbc410e6ec80";
+  final String DEPORTIVO_CORUNYA = "5625d0edc1f5fbc410e6ec84";
+  final String EIBAR = "5625d0edc1f5fbc410e6ec86";
+  final String ESPANYOL = "5625d0edc1f5fbc410e6ec8a";
+  final String GETAFE = "5625d0edc1f5fbc410e6ec8c";
+  final String GRANADA = "5625d0edc1f5fbc410e6ec8e";
+  final String LEVANTE = "5625d0edc1f5fbc410e6ec90";
+  final String MALAGA = "5625d0edc1f5fbc410e6ec92";
+  final String RAYO_VALLECANO = "5625d0edc1f5fbc410e6ec94";
+  final String REAL_MADRID = "5625d0edc1f5fbc410e6ec96";
+  final String REAL_SOCIEDAD = "5625d0edc1f5fbc410e6ec98";
+  final String SEVILLA = "5625d0edc1f5fbc410e6ec9a";
+  final String VALENCIA = "5625d0edc1f5fbc410e6ec9c";
+  final String VILLARREAL = "5625d0edc1f5fbc410e6ec9e";
+  final String LAS_PALMAS = "56260840c1f5fbc410f99492";
+  final String REAL_BETIS = "56260840c1f5fbc410f99494";
+  final String SPORTING_GIJON = "56260840c1f5fbc410f99496";
+
+  List get UsersInfo => [
+    {
+      "userId":"USER01-5625d093d4c6ebe295987fd1",
+      "nickName":"User01",
+      "wins":0,
+      "trueSkill":0,
+      "earnedMoney":"AUD 0.00"
+    },
+    {
+      "userId":"USER02-5625d093d4c6ebe295987fd6",
+      "nickName":"User02",
+      "wins":0,
+      "trueSkill":0,
+      "earnedMoney":"AUD 0.00"
+    },
+    {
+      "userId":"USER03-5625d093d4c6ebe295987fd8",
+      "nickName":"User03",
+      "wins":0,
+      "trueSkill":0,
+      "earnedMoney":"AUD 0.00"
+    },
+    {
+      "userId":"USER04-5625d093d4c6ebe295987fdb",
+      "nickName":"User04",
+      "wins":0,
+      "trueSkill":0,
+      "earnedMoney":"AUD 0.00"
+    },
+    {
+      "userId":"USER05-5625d093d4c6ebe295987fde",
+      "nickName":"User05",
+      "wins":0,
+      "trueSkill":0,
+      "earnedMoney":"AUD 0.00"
+    }
+    ];
+
+  List get MatchEvents => [
+    {
+      "templateSoccerTeamAId":RAYO_VALLECANO,
+      "templateSoccerTeamBId":ESPANYOL,
+      "period":"PRE_GAME",
+      "minutesPlayed":0,
+      "startDate":1445335200000,
+      "_id":"56331d69d4c6912cf152f1f7"
+    },
+    {
+      "templateSoccerTeamAId":CELTA_DE_VIGO,
+      "templateSoccerTeamBId":REAL_MADRID,
+      "period":"PRE_GAME",
+      "minutesPlayed":0,
+      "startDate":1445335200000,
+      "_id":"56331d69d4c6912cf152f1f8"
+    },
+    {
+      "templateSoccerTeamAId":GRANADA,
+      "templateSoccerTeamBId":REAL_BETIS,
+      "period":"PRE_GAME",
+      "minutesPlayed":0,
+      "startDate":1445335200000,
+      "_id":"56331d69d4c6912cf152f1f9"
+    },
+    {
+      "templateSoccerTeamAId":SEVILLA,
+      "templateSoccerTeamBId":GETAFE,
+      "period":"PRE_GAME",
+      "minutesPlayed":0,
+      "startDate":1445335200000,
+      "_id":"56331d69d4c6912cf152f1fa"
+    },
+    {
+      "templateSoccerTeamAId":MALAGA,
+      "templateSoccerTeamBId":DEPORTIVO_CORUNYA,
+      "period":"PRE_GAME",
+      "minutesPlayed":0,
+      "startDate":1445335200000,
+      "_id":"56331d69d4c6912cf152f1fb"
+    },
+    {
+      "templateSoccerTeamAId":LEVANTE,
+      "templateSoccerTeamBId":REAL_SOCIEDAD,
+      "period":"PRE_GAME",
+      "minutesPlayed":0,
+      "startDate":1445335200000,
+      "_id":"56331d69d4c6912cf152f1fc"
+    },
+    {
+      "templateSoccerTeamAId":LAS_PALMAS,
+      "templateSoccerTeamBId":VILLARREAL,
+      "period":"PRE_GAME",
+      "minutesPlayed":0,
+      "startDate":1445335200000,
+      "_id":"56331d69d4c6912cf152f1fd"
+    },
+    {
+      "templateSoccerTeamAId":BARCELONA,
+      "templateSoccerTeamBId":EIBAR,
+      "period":"PRE_GAME",
+      "minutesPlayed":0,
+      "startDate":1445335200000,
+      "_id":"56331d69d4c6912cf152f1fe"
+    },
+    {
+      "templateSoccerTeamAId":ATLETICO_MADRID,
+      "templateSoccerTeamBId":VALENCIA,
+      "period":"PRE_GAME",
+      "minutesPlayed":0,
+      "startDate":1445335200000,
+      "_id":"56331d69d4c6912cf152f1ff"
+    },
+    {
+      "templateSoccerTeamAId":ATHLETIC_CLUB,
+      "templateSoccerTeamBId":SPORTING_GIJON,
+      "period":"PRE_GAME",
+      "minutesPlayed":0,
+      "startDate":1445335200000,
+      "_id":"56331d69d4c6912cf152f200"
+     }
+  ];
+
+  List get TemplateMatchEventIds => [
+    "56331d69d4c6912cf152f1f7",
+    "56331d69d4c6912cf152f1f8",
+    "56331d69d4c6912cf152f1f9",
+    "56331d69d4c6912cf152f1fa",
+    "56331d69d4c6912cf152f1fb",
+    "56331d69d4c6912cf152f1fc",
+    "56331d69d4c6912cf152f1fd",
+    "56331d69d4c6912cf152f1fe",
+    "56331d69d4c6912cf152f1ff",
+    "56331d69d4c6912cf152f200"
+  ];
+
+  List get SoccerTeams => [
+    {"name":"Athletic Club","shortName":"ATH","_id":ATHLETIC_CLUB},
+    {"name":"Atlético de Madrid","shortName":"ATM","_id":ATLETICO_MADRID},
+    {"name":"Barcelona","shortName":"BCN","_id":BARCELONA},
+    {"name":"Celta de Vigo","shortName":"CEL","_id":CELTA_DE_VIGO},
+    {"name":"Deportivo de La Coruña","shortName":"DEP","_id":DEPORTIVO_CORUNYA},
+    {"name":"Eibar","shortName":"EIB","_id":EIBAR},
+    {"name":"Espanyol","shortName":"ESP","_id":ESPANYOL},
+    {"name":"Getafe","shortName":"GET","_id":GETAFE},
+    {"name":"Granada CF","shortName":"GRA","_id":GRANADA},
+    {"name":"Levante","shortName":"LEV","_id":LEVANTE},
+    {"name":"Málaga","shortName":"MAL","_id":MALAGA},
+    {"name":"Rayo Vallecano","shortName":"RAY","_id":RAYO_VALLECANO},
+    {"name":"Real Madrid","shortName":"RMD","_id":REAL_MADRID},
+    {"name":"Real Sociedad","shortName":"RSO","_id":REAL_SOCIEDAD},
+    {"name":"Sevilla","shortName":"SEV","_id":SEVILLA},
+    {"name":"Valencia CF","shortName":"VAL","_id":VALENCIA},
+    {"name":"Villarreal","shortName":"VIL","_id":VILLARREAL},
+    {"name":"Las Palmas","shortName":"LPA","_id":LAS_PALMAS},
+    {"name":"Real Betis","shortName":"BET","_id":REAL_BETIS},
+    {"name":"Sporting de Gijón","shortName":"SPG","_id":SPORTING_GIJON}
+  ];
 
   HashMap<String, TutorialStep> tutorialSteps;
 }

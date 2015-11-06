@@ -2,11 +2,12 @@ library tutorial_oficial;
 
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/tutorial/tutorial.dart';
+import 'package:webclient/services/profile_service.dart';
 
 class TutorialOficial extends Tutorial {
   String get PATH => "tutorial/oficial/";
 
-  TutorialOficial() {
+  TutorialOficial(this._profileService) {
     tutorialSteps = {
       Tutorial.STEP_BEGIN: new TutorialStep(
             enter: {
@@ -38,4 +39,6 @@ class TutorialOficial extends Tutorial {
   String getLocalizedText(key) {
     return StringUtils.translate(key, "tutorial_oficial");
   }
+
+  ProfileService _profileService;
 }

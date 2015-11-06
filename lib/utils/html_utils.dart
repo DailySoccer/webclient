@@ -19,16 +19,17 @@ Future<bool> modalShow(String title, String content, {String modalSize: "lg",
   
   Completer completer = new Completer();
   Element modalWindow = querySelector("#modalWindow");
+  bool result = false;
 
   void onClose(dynamic sender) {
     modalWindow.children.remove(modalWindow.querySelector('#' + globalRootId));
-    BackdropComp.hide();
-    completer.complete(false);
+    BackdropComp.instance.hide();
+    completer.complete(result);
   }
 
   void closeMe() {
     JsUtils.runJavascript('#' + globalRootId, 'modal', "hide");
-    BackdropComp.hide();
+    BackdropComp.instance.hide();
   }
 
   // Si no se han especificado callBacks, declaramos como minimo el botón Aceptar.
@@ -38,18 +39,20 @@ Future<bool> modalShow(String title, String content, {String modalSize: "lg",
 
   void onButtonClick(dynamic sender) {
     String eventCallback = sender.currentTarget.attributes["eventCallback"];
-    closeMe();
     //Luego el true o false para cerrar la ventana.
     switch (eventCallback) {
       case "onYes":
       case "onOk":
-        completer.complete(true);
+        result = true;
         break;
       case "onNo":
       case "onCancel":
-        completer.complete(false);
+        result = false;
         break;
     }
+
+    closeMe();
+    if (!completer.isCompleted) completer.complete(result);
   }
 
   String composeHeader() {
@@ -179,7 +182,7 @@ Future<bool> modalShow(String title, String content, {String modalSize: "lg",
 
   JsUtils.runJavascript('#' + globalRootId, 'modal', null);
   JsUtils.runJavascript('#' + globalRootId, 'on', {'hidden.bs.modal': onClose});
-  BackdropComp.show();
+  BackdropComp.instance.show();
   return completer.future;
 }
 

@@ -1,83 +1,85 @@
 library tutorial_tip_service;
 
 import 'dart:async';
-import 'dart:math';
-import 'dart:collection';
 import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:webclient/components/backdrop_comp.dart';
 
 @Injectable()
-class TutorialTipService {
+class ToolTipService {
   
-  static TutorialTipService get instance {
+  static ToolTipService get instance {
     if(_instance == null)
-      _instance = new TutorialTipService();
+      _instance = new ToolTipService();
     return _instance;
   }
   
-  TutorialTipService() { }
-  
-  Future tipElement(TutorialTip tip) {
-    Completer completer = new Completer();
+  ToolTipService() { 
     
-    var hideTip = () {
+  }
+  
+  void tipElement(ToolTip tip, {bool hideOnClick: false}) {
+    BackdropComp backdrop = BackdropComp.instance;
+    
+    void hideTip([_]) {
       tip.hide();
-      completer.complete();
+      if (tip.isHighlight) backdrop.hide();
     };
     
     if (tip.isHighlight) {
-      tip.onClick.listen((_) {
-          BackdropComp.hide();
-          //hideTip();
-        });
-      tip.onShow.listen((_) => BackdropComp.show(hideTip));
-    } else {
-      tip.onClick.listen( (_) => hideTip() );
+      tip.onShow.listen((_) => backdrop.show());
+      if (hideOnClick) backdrop.onClick.single.then(hideTip);
     }
     
+    if (hideOnClick) tip.onClick.listen(hideTip);
+    
     tip.show();
-    return completer.future;
   }
   
-  Future tipMultipleElement(List<TutorialTip> tipList) {
+  Future tipMultipleElement(List<ToolTip> tipList, {bool hideAllOnClick: false}) {
     Completer completer = new Completer();
+    BackdropComp backdrop = BackdropComp.instance;
     
-    var hideAll = () {
+    void notifyFirstShow(ToolTip tip) {
+      if (!completer.isCompleted) completer.complete(tip);
+    }    
+    void hideAll([_]) {
       tipList.forEach( (tip) => tip.hide() );
-      completer.complete();
+      backdrop.hide();
     };
     
     tipList.forEach( (tip) {
-      tip.onClick.listen( (_) {
-        BackdropComp.hide();
-        //hideAll();
-      });
+      
+      if (tip.isHighlight) tip.onShow.listen((_) => backdrop.show());
+      
+      if (hideAllOnClick) tip.onClick.listen(hideAll);
+
+      tip.onShow.listen(notifyFirstShow);
       tip.show();
-      tip.onShow.listen((_) => BackdropComp.show(hideAll));
     });
+    
+    if (hideAllOnClick) backdrop.onClick.listen(hideAll);
     
     return completer.future;
   }
 
-  static TutorialTipService _instance = null;
+  static ToolTipService _instance = null;
 }
 
-class TutorialTip {
+class ToolTip {
 
-  StreamController<TutorialTip> _onClick = new StreamController.broadcast();
-  Stream<TutorialTip> get onClick => _onClick.stream;
-  StreamController<TutorialTip> _onShow = new StreamController.broadcast();
-  Stream<TutorialTip> get onShow => _onShow.stream;
-  StreamController<TutorialTip> _onHide = new StreamController.broadcast();
-  Stream<TutorialTip> get onHide => _onHide.stream;
-  
+  Stream<ToolTip> get onClick => _onClick.stream;
+  Stream<ToolTip> get onShow => _onShow.stream;
+  Stream<ToolTip> get onHide => _onHide.stream;
+
   bool get isHighlight => _highlight;
+  bool get isShown => _isShown;
   
   
-  TutorialTip(String cssSelector, {String tipText: null, bool highlight: true, 
-              String position: 'top', String tipId: '',
-              Duration delay: Duration.ZERO, Duration duration: Duration.ZERO}) {
+  ToolTip(String cssSelector, 
+          {String tipText: null, bool highlight: true, 
+           String position: 'top', String tipId: '',
+           Duration delay: Duration.ZERO, Duration duration: Duration.ZERO}) {
     _cssSelector = cssSelector;
     _tipText = tipText;
     _highlight = highlight;
@@ -88,8 +90,8 @@ class TutorialTip {
   }
   
   
-  void show([bool condition()]) {
-    new Timer(_delay, () => _showAsSoonAsPossible(condition) );
+  void show() {
+    new Timer(_delay, () => _showAsSoonAsPossible() );
     
     if (_duration != null && _duration != Duration.ZERO) {
       new Timer(_duration, () => _onClick.add(this) );
@@ -97,17 +99,19 @@ class TutorialTip {
   }
   
   void hide() {
+    if (!_isShown) return;
+    
     _theTippedElem.classes.remove("tutorial-tipped-element");
-    _theTippedElem.classes.remove("highlighted-tip");
+    if (_highlight) _theTippedElem.classes.remove("highlighted-tip");
     if (_theTip != null) _theTip.remove();
+    _isShown = false;
     _onHide.add(this);
   }
   
-  void _showAsSoonAsPossible([bool condition()]) {
+  void _showAsSoonAsPossible() {
     Timer timer;
     timer = new Timer.periodic(new Duration(milliseconds: 100), (Timer t) {
       
-      if (condition != null && !condition()) return;
       _theTippedElem = querySelector(_cssSelector);
       if (_theTippedElem == null) return;
       
@@ -127,6 +131,7 @@ class TutorialTip {
         _theTippedElem.append(_theTip);
       }
       
+      _isShown = true;
       _onShow.add(this);
       timer.cancel();
     });
@@ -142,5 +147,9 @@ class TutorialTip {
 
   Element _theTip = null;
   Element _theTippedElem;
-  
+  bool _isShown = false;
+
+  StreamController<ToolTip> _onClick = new StreamController.broadcast();
+  StreamController<ToolTip> _onShow = new StreamController.broadcast();
+  StreamController<ToolTip> _onHide = new StreamController.broadcast();
 }

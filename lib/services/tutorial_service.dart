@@ -11,7 +11,7 @@ import 'package:webclient/services/refresh_timers_service.dart';
 import 'package:webclient/tutorial/tutorial.dart';
 import 'package:webclient/tutorial/tutorial_oficial.dart';
 import 'package:webclient/tutorial/tutorial_entrenamiento.dart';
-import 'package:webclient/services/tutorial_tip_service.dart';
+import 'package:webclient/services/tooltip_service.dart';
 
 @Injectable()
 class TutorialService {
@@ -39,19 +39,20 @@ class TutorialService {
     if (isActivated && CurrentStep.hasEnter(stage)) {
       InfoHtml tutorialInfo = CurrentStep.enter[stage];
       
-      TutorialTip firstTip = new TutorialTip("#activeContestList .contestSlot", 
+      ToolTip firstTip = new ToolTip("#activeContestList .contestSlot", 
                                               tipText: "Tip sin highlight", 
                                               delay: new Duration(seconds: 1),
                                               highlight: false);
       
-      TutorialTip secondTip_1 = new TutorialTip("week-calendar .week-calendar", tipText: "Tip dependiente de la primera", delay: new Duration(milliseconds: 200));
-      TutorialTip secondTip_2 = new TutorialTip("#activeContestList .contestSlot", tipText: "Tip simultanea y con retardo", delay: new Duration(seconds: 2), position: "bottom");
+      ToolTip secondTip_1 = new ToolTip("week-calendar .week-calendar", tipText: "Tip dependiente de la primera", delay: new Duration(milliseconds: 200));
+      ToolTip secondTip_2 = new ToolTip("#activeContestList .contestSlot", tipText: "Tip simultanea y con retardo", delay: new Duration(seconds: 2), position: "bottom");
       
       modalShow(tutorialInfo.title(), tutorialInfo.body(), type: 'welcome', modalSize: "lg");
         /*.then( (_) => TutorialTipService.instance.tipElement(firstTip)
         .then( (_) => TutorialTipService.instance.tipMultipleElement([secondTip_1, secondTip_2])) );*/
-      TutorialTipService.instance.tipElement(firstTip)
-        .then( (_) => TutorialTipService.instance.tipMultipleElement([secondTip_1, secondTip_2]));
+      ToolTipService.instance.tipElement(firstTip, hideOnClick: true);
+      firstTip.onHide.listen((_) => ToolTipService.instance.tipMultipleElement([secondTip_1, secondTip_2], hideAllOnClick: true));
+      
       CurrentStep.removeEnter(stage);
       configureSkipComponent();
       //TutorialTipService.tipAnElement("#activeContestList .contestSlot", "Prueba de una tip");

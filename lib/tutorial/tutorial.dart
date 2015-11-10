@@ -123,6 +123,10 @@ class Tutorial {
     }
   }
 
+  void changeEnter(String stage, Map map) {
+    CurrentStep.enter[stage] = map;
+  }
+
   void removeEnter(String stage) {
     CurrentStep.removeEnter(stage);
   }

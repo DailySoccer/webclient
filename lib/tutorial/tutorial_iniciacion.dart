@@ -49,9 +49,13 @@ class TutorialIniciacion extends Tutorial {
                     .then((_) {
                         //showTooltip(new ToolTip("#activeContestList .train", tipText: "Torneo Entrenamiento", delay: new Duration(seconds: 1), duration: new Duration(seconds: 1), highlight: true));
                         //showTooltip(new ToolTip("#activeContestList .real", tipText: "Torneo Oficial", delay: new Duration(seconds: 2), duration: new Duration(seconds: 1), highlight: true));
-                        showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: "Entra en este Torneo", delay: new Duration(seconds: 3), duration: new Duration(seconds: 1), highlight: true));
+                        //showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: "Entra en este Torneo", highlight: true));
 
-                        removeEnter("lobby");
+                        changeEnter("lobby", {
+                          Tutorial.KEY_POPUP: () => showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: "Entra en este Torneo", highlight: true))
+                        });
+                        enterAt("lobby");
+                        // removeEnter("lobby");
                     }),
                 Tutorial.KEY_TOOLTIPS: [
                     // new ToolTip("#activeContestList .contestSlot", tipText: "Participar en torneos cuesta oro. Por ahora comienzas con 5 de Oro, suficiente para entrar en un primer torneo", delay: new Duration(seconds: 1))

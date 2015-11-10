@@ -1,0 +1,87 @@
+#homeRoot {
+	@row-height: 100px;
+	
+	.make-tile(@columns, @rows) {
+		.make-sm-column(@columns);
+		padding: 2px;
+		height: @row-height * @rows;
+		position: relative;
+
+		.opensans_normal(12pt, @white);
+
+		.tile {
+			padding: 15px;
+			height: 100%;
+			background-color: white;
+		}
+
+		.tile-info {
+			display: block;
+			position: absolute;
+			bottom: 15px;
+			.notation {
+				display: block;
+				.opensans_normal(8pt, @white);
+				font-style: italic;
+			}
+		}
+
+	}
+
+	.home-tile-wrapper {
+		.make-tile(3, 2);
+
+		//background: #ff0000;
+	}
+
+	.vertical-layout-tilling {
+		.make-tile(3, 2);
+		padding: 0;
+	}
+
+	.vertical-layout-tilling .home-tile-wrapper {
+		.make-tile(12, 1);
+		display: block;
+
+		//background: #ff00ff;
+	}
+
+	.main-tile-wrapper {
+		margin-top: 20px;
+		.make-tile(12, 3);
+
+		.tile {
+			background-color: #000000;
+		}
+		//background: #0000ff;
+	}
+
+
+	#myContestsTile {
+		.tile {
+			background-color: #214a5f;
+		}
+	}
+
+	#manageTile {
+		.tile {
+			background-color: #fa9c19;
+		}
+	}
+
+	#tutorialTile {
+		.tile {
+			background-color: #59add5;
+		}
+	}
+
+	#blogTile {
+		.tile {
+			background: #59add5;
+		}
+	}
+	
+	.clearfix {
+		padding-bottom: 20px;
+	}
+}

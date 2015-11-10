@@ -43,6 +43,7 @@ import 'package:webclient/components/flash_messages_comp.dart';
 import 'package:webclient/components/modal_comp.dart';
 import 'package:webclient/components/paginator_comp.dart';
 import 'package:webclient/components/lobby_f2p_comp.dart';
+import 'package:webclient/components/home_comp.dart';
 import 'package:webclient/components/promos_comp.dart';
 import 'package:webclient/components/simple_promo_f2p_comp.dart';
 import 'package:webclient/components/contests_list_f2p_comp.dart';
@@ -145,6 +146,7 @@ class WebClientApp extends Module {
     bind(LoginComp);
     bind(JoinComp);
     bind(LobbyF2PComp);
+    bind(HomeComp);
     bind(ContestsListF2PComp);
     bind(PromosComp);
     bind(SimplePromoF2PComp);
@@ -327,6 +329,11 @@ class WebClientApp extends Module {
             )
           }
       )
+      ,'home': ngRoute(
+          path: '/home',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
+          viewHtml: '<home></home>'
+      )
       ,'lobby': ngRoute(
           defaultRoute: true,
           path: '/lobby',
@@ -341,7 +348,7 @@ class WebClientApp extends Module {
                 preEnter: (RoutePreEnterEvent e) {
                   PromosService.configurePromosService(e.parameters['promoCodeName']);
                   _preEnterPage(e, router, visibility: _ALWAYS);
-                  }
+                }
             )
           }
       )

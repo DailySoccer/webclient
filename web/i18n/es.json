@@ -511,6 +511,17 @@
       "text-entercontest"               : "Elije 11 jugadores de la lista sin pasarte del presupuesto.",
       "text-viewcontestentry"           : "Ve a “<b>Mis Concursos</b>” para editar tus alineaciones, ver a tu equipo puntuando en directo o para ver tu histórico de concursos. <br> <br> <p class=\"subtitle\">Recuerda: puedes jugar a todos los concursos que quieras y elegir tantas alineaciones como quieras.</p>"
     },
+    "tutorial_iniciacion"               :
+    {
+      "title-lobby"                     : "BIENVENIDO A EPIC ELEVEN",
+      "text-lobby"                      : "En Epic Eleven compites en torneos con equipos formados por jugadores reales que obtienen puntos en función de su rendimiento en la vida real.",
+
+      "title-entercontest"              : "EQUIPO IDEAL",
+      "text-entercontest"               : "Haz tu equipo ideal a partir de los jugadores que participan en los partidos que forman este torneo.",
+
+      "title-viewcontestentry"          : "[ENTRENAMIENTO] BIENVENIDO A EPIC ELEVEN",
+      "text-viewcontestentry"           : "Ve a “<b>Mis Concursos</b>” para editar tus alineaciones, ver a tu equipo puntuando en directo o para ver tu histórico de concursos. <br> <br> <p class=\"subtitle\">Recuerda: puedes jugar a todos los concursos que quieras y elegir tantas alineaciones como quieras.</p>"
+    },
     "tutorial_entrenamiento"            :
     {
       "title-lobby"                     : "[ENTRENAMIENTO] SELECCIONA UN TORNEO",

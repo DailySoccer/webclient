@@ -11,21 +11,27 @@ class TutorialOficial extends Tutorial {
     tutorialSteps = {
       Tutorial.STEP_BEGIN: new TutorialStep(
             enter: {
-              'lobby': new InfoHtml(
-                  title: () => getLocalizedText("title-lobby"),
-                  text: () => getLocalizedText("text-lobby"),
-                  image: ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg")
-                ),
-              'enter_contest' : new InfoHtml(
-                  title: () => getLocalizedText("title-entercontest"),
-                  text: () => getLocalizedText("text-entercontest"),
-                  image: ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg")
-                ),
-              'view_contest_entry': new InfoHtml(
-                  title: () => getLocalizedText("title-viewcontestentry"),
-                  text: () => getLocalizedText("text-viewcontestentry"),
-                  image: ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeSuccessXs.jpg" : "welcomeSuccessDesktop.jpg")
-                )
+              'lobby': {
+                Tutorial.KEY_POPUP: () => openModal(new InfoHtml(
+                            title: () => getLocalizedText("title-lobby"),
+                            text: () => getLocalizedText("text-lobby"),
+                            image: ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg")
+                          ))
+              },
+              'enter_contest' : {
+                Tutorial.KEY_POPUP: () => openModal(new InfoHtml(
+                            title: () => getLocalizedText("title-entercontest"),
+                            text: () => getLocalizedText("text-entercontest"),
+                            image: ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg")
+                          ))
+              },
+              'view_contest_entry': {
+                Tutorial.KEY_POPUP: () => openModal(new InfoHtml(
+                            title: () => getLocalizedText("title-viewcontestentry"),
+                            text: () => getLocalizedText("text-viewcontestentry"),
+                            image: ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeSuccessXs.jpg" : "welcomeSuccessDesktop.jpg")
+                          ))
+              }
             },
             serverCalls: joinMaps([defaultServerCalls, {
               "get_active_contests" : (url, postData) => waitCompleter( () => getContentJson(PATH + "get_active_contests.json") ),

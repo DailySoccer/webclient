@@ -7,11 +7,14 @@ import 'dart:html';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/services/profile_service.dart';
+import 'package:webclient/utils/html_utils.dart';
+import 'package:webclient/services/tooltip_service.dart';
 
 class InfoHtml {
   Function title;
   Function text;
   Function image;
+  Function onClose;
 
   String body() => '''
     <div class="tut-title">${text()}</div>
@@ -19,11 +22,11 @@ class InfoHtml {
     <img class="tut-image" src="${image()}"/>
   ''';
 
-  InfoHtml({this.title: null, this.text: null, this.image: null});
+  InfoHtml({this.title: null, this.text: null, this.image: null, this.onClose: null});
 }
 
 class TutorialStep {
-  Map<String, InfoHtml> enter;
+  Map<String, Map> enter;
   Map<String, Function> serverCalls;
   TutorialStep({this.enter: null, this.serverCalls: null});
 
@@ -32,6 +35,9 @@ class TutorialStep {
 }
 
 class Tutorial {
+  static String KEY_POPUP = "popup";
+  static String KEY_TOOLTIPS = "tooltips";
+
   static String STEP_BEGIN = "begin";
   static String STEP_END = "end";
 
@@ -75,6 +81,50 @@ class Tutorial {
       result.add(element);
     }
     return result;
+  }
+
+  Future openModal(InfoHtml infoHtml) {
+    return modalShow(infoHtml.title(), infoHtml.body(), type: 'welcome', modalSize: "lg");
+  }
+
+  void showTooltip(ToolTip tooltip) {
+    ToolTipService.instance.tipElement(tooltip);
+  }
+
+  void enterAt(String stage) {
+    if (CurrentStep.hasEnter(stage)) {
+      Map enterInfo = CurrentStep.enter[stage];
+
+      if (enterInfo.containsKey(Tutorial.KEY_POPUP)) {
+        enterInfo[Tutorial.KEY_POPUP]();
+      }
+
+      if (enterInfo.containsKey(Tutorial.KEY_TOOLTIPS)) {
+        List<ToolTip> tooltips = enterInfo[Tutorial.KEY_TOOLTIPS];
+        for (ToolTip tooltip in tooltips) {
+          ToolTipService.instance.tipElement(tooltip);
+        }
+      }
+
+      /*
+      ToolTip firstTip = new ToolTip("#activeContestList .contestSlot",
+                                              tipText: "Tip sin highlight",
+                                              delay: new Duration(seconds: 1),
+                                              highlight: false);
+
+      ToolTip secondTip_1 = new ToolTip("week-calendar .week-calendar", tipText: "Tip dependiente de la primera", delay: new Duration(milliseconds: 200));
+      ToolTip secondTip_2 = new ToolTip("#activeContestList .contestSlot", tipText: "Tip simultanea y con retardo", delay: new Duration(seconds: 2), position: "bottom");
+
+      ToolTipService.instance.tipElement(firstTip, hideOnClick: true);
+      firstTip.onHide.listen((_) => ToolTipService.instance.tipMultipleElement([secondTip_1, secondTip_2], hideAllOnClick: true));
+       */
+
+      // CurrentStep.removeEnter(stage);
+    }
+  }
+
+  void removeEnter(String stage) {
+    CurrentStep.removeEnter(stage);
   }
 
   Future getContentJson(String fileName) {

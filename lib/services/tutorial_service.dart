@@ -11,6 +11,7 @@ import 'package:webclient/services/refresh_timers_service.dart';
 import 'package:webclient/tutorial/tutorial.dart';
 import 'package:webclient/tutorial/tutorial_oficial.dart';
 import 'package:webclient/tutorial/tutorial_entrenamiento.dart';
+import 'package:webclient/tutorial/tutorial_iniciacion.dart';
 import 'package:webclient/services/tooltip_service.dart';
 import 'package:webclient/services/profile_service.dart';
 
@@ -29,6 +30,7 @@ class TutorialService {
     _instance = this;
 
     _tutorials = [
+      new TutorialIniciacion(profileService),
       new TutorialEntrenamiento(profileService),
       new TutorialOficial(profileService)
       ];
@@ -38,25 +40,8 @@ class TutorialService {
 
   void enterAt(String stage) {
     if (isActivated && CurrentStep.hasEnter(stage)) {
-      InfoHtml tutorialInfo = CurrentStep.enter[stage];
-
-      ToolTip firstTip = new ToolTip("#activeContestList .contestSlot",
-                                              tipText: "Tip sin highlight",
-                                              delay: new Duration(seconds: 1),
-                                              highlight: false);
-
-      ToolTip secondTip_1 = new ToolTip("week-calendar .week-calendar", tipText: "Tip dependiente de la primera", delay: new Duration(milliseconds: 200));
-      ToolTip secondTip_2 = new ToolTip("#activeContestList .contestSlot", tipText: "Tip simultanea y con retardo", delay: new Duration(seconds: 2), position: "bottom");
-
-      modalShow(tutorialInfo.title(), tutorialInfo.body(), type: 'welcome', modalSize: "lg");
-        /*.then( (_) => TutorialTipService.instance.tipElement(firstTip)
-        .then( (_) => TutorialTipService.instance.tipMultipleElement([secondTip_1, secondTip_2])) );*/
-      ToolTipService.instance.tipElement(firstTip, hideOnClick: true);
-      firstTip.onHide.listen((_) => ToolTipService.instance.tipMultipleElement([secondTip_1, secondTip_2], hideAllOnClick: true));
-
-      CurrentStep.removeEnter(stage);
+      CurrentTutorial.enterAt(stage);
       configureSkipComponent();
-      //TutorialTipService.tipAnElement("#activeContestList .contestSlot", "Prueba de una tip");
     }
   }
 

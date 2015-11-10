@@ -1,4 +1,4 @@
-library tutorial_entrenamiento;
+library tutorial_iniciacion;
 
 import 'package:webclient/utils/string_utils.dart';
 import 'dart:async';
@@ -7,12 +7,12 @@ import 'package:webclient/tutorial/tutorial.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/tooltip_service.dart';
 
-class TutorialEntrenamiento extends Tutorial {
+class TutorialIniciacion extends Tutorial {
   static String STEP_1 = "1";
 
-  String get PATH => "tutorial/entrenamiento/";
+  String get PATH => "tutorial/iniciacion/";
 
-  TutorialEntrenamiento(this._profileService) {
+  TutorialIniciacion(this._profileService) {
     getContentJson(PATH + "instance_soccer_players.json").then((list) => InstanceSoccerPlayerList = list);
     getContentJson(PATH + "soccer_players.json").then((list) => SoccerPlayerList = list);
 
@@ -39,9 +39,22 @@ class TutorialEntrenamiento extends Tutorial {
                       title: () => getLocalizedText("title-lobby"),
                       text: () => getLocalizedText("text-lobby"),
                       image: ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg")
-                    )),
+                    ))
+                    .then((_) => openModal(new InfoHtml(
+                                              title: () => "ORO",
+                                              text: () => "Participar en torneos cuesta oro. Por ahora comienzas con 5 de Oro, suficiente para entrar en un primer torneo.",
+                                              image: ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg")
+                                            ))
+                    )
+                    .then((_) {
+                        //showTooltip(new ToolTip("#activeContestList .train", tipText: "Torneo Entrenamiento", delay: new Duration(seconds: 1), duration: new Duration(seconds: 1), highlight: true));
+                        //showTooltip(new ToolTip("#activeContestList .real", tipText: "Torneo Oficial", delay: new Duration(seconds: 2), duration: new Duration(seconds: 1), highlight: true));
+                        showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: "Entra en este Torneo", delay: new Duration(seconds: 3), duration: new Duration(seconds: 1), highlight: true));
+
+                        removeEnter("lobby");
+                    }),
                 Tutorial.KEY_TOOLTIPS: [
-                    new ToolTip("#activeContestList .contestSlot", tipText: "Tip sin highlight", delay: new Duration(seconds: 1))
+                    // new ToolTip("#activeContestList .contestSlot", tipText: "Participar en torneos cuesta oro. Por ahora comienzas con 5 de Oro, suficiente para entrar en un primer torneo", delay: new Duration(seconds: 1))
                   ]
               },
               'enter_contest' : {
@@ -50,6 +63,11 @@ class TutorialEntrenamiento extends Tutorial {
                       text: () => getLocalizedText("text-entercontest"),
                       image: ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg")
                     ))
+                    .then((_) {
+                        //showTooltip(new ToolTip("#activeContestList .train", tipText: "Torneo Entrenamiento", delay: new Duration(seconds: 1), duration: new Duration(seconds: 1), highlight: true));
+                        //showTooltip(new ToolTip("#activeContestList .real", tipText: "Torneo Oficial", delay: new Duration(seconds: 2), duration: new Duration(seconds: 1), highlight: true));
+                        showTooltip(new ToolTip(".totalSalary", tipText: "Entra en este Torneo", delay: new Duration(seconds: 3), duration: new Duration(seconds: 1), highlight: true));
+                    })
               },
               'view_contest_entry': {
                 Tutorial.KEY_POPUP: () => openModal(new InfoHtml(
@@ -75,7 +93,7 @@ class TutorialEntrenamiento extends Tutorial {
   }
 
   String getLocalizedText(key) {
-    return StringUtils.translate(key, "tutorial_entrenamiento");
+    return StringUtils.translate(key, "tutorial_iniciacion");
   }
 
   Map get PlayerInfo => {
@@ -97,7 +115,8 @@ class TutorialEntrenamiento extends Tutorial {
 
   Map get ContestList => {
     "contests": [
-      ContestInstance
+      TrainingContestInstance,
+      OficialContestInstance
       ],
       "users_info": _profileService.isLoggedIn && FantasyTeam.isNotEmpty ? joinLists(UsersInfo, element: PlayerInfo) : UsersInfo,
       "match_events": MatchEvents,
@@ -105,7 +124,7 @@ class TutorialEntrenamiento extends Tutorial {
       "soccer_players": SoccerPlayerList
   };
 
-  Map get ContestInstance => {
+  Map get TrainingContestInstance => {
         "templateContestId": "56331d4dd4c6912cf152f1f4",
         "state": "ACTIVE",
         "name": "Tutorial [Entrenamiento]",
@@ -122,7 +141,27 @@ class TutorialEntrenamiento extends Tutorial {
         "simulation": true,
         "specialImage": "",
         "numEntries": ContestEntries.length,
-        "_id":  "TUTORIAL-56331d69d4c6912cf152f201"
+        "_id":  "TRAINING-56331d69d4c6912cf152f201"
+  };
+
+  Map get OficialContestInstance => {
+        "templateContestId": "56331d4dd4c6912cf152f1f4",
+        "state": "ACTIVE",
+        "name": "Tutorial [Oficial]",
+        "contestEntries": _profileService.isLoggedIn && FantasyTeam.isNotEmpty ? joinLists(ContestEntries, element: PlayerEntry) : ContestEntries,
+        "templateMatchEventIds": TemplateMatchEventIds,
+        "instanceSoccerPlayers": InstanceSoccerPlayerList,
+        "maxEntries": 20,
+        "salaryCap": 70000,
+        "entryFee": "JPY 1",
+        "prizeMultiplier": 10.0,
+        "prizeType": "FIFTY_FIFTY",
+        "startDate": new DateTime.now().add(new Duration(minutes: 120)).millisecondsSinceEpoch,
+        "optaCompetitionId": "23",
+        "simulation": false,
+        "specialImage": "",
+        "numEntries": ContestEntries.length,
+        "_id":  "OFICIAL-56331d69d4c6912cf152f201"
   };
 
   List get ContestEntries => [

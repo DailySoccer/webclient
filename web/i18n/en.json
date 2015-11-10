@@ -508,6 +508,9 @@
       "text-entercontest"               : "Pick up 11 players within the salary cap.",
       "text-viewcontestentry"           : "Go to “<b>My Contest</b>” to edit your lineups, watch your team’s live performance or review previous contests. <br> <br> <p class=\"subtitle\">Remember: you can play as many contests as you like, and select as many lineups as you like.</p>"
     },
+    "tutorial_iniciacion"               :
+    {
+    },
     "tutorial_entrenamiento"            :
     {
     },

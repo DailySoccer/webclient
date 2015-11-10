@@ -51,9 +51,7 @@ class TutorialIniciacion extends Tutorial {
                         //showTooltip(new ToolTip("#activeContestList .real", tipText: "Torneo Oficial", delay: new Duration(seconds: 2), duration: new Duration(seconds: 1), highlight: true));
                         //showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: "Entra en este Torneo", highlight: true));
 
-                        changeEnter("lobby", {
-                          Tutorial.KEY_POPUP: () => showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: "Entra en este Torneo", highlight: true))
-                        });
+                        changeEnter("lobby", popup: () => showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: "Entra en este Torneo", highlight: true)));
                         enterAt("lobby");
                         // removeEnter("lobby");
                     }),

@@ -123,8 +123,13 @@ class Tutorial {
     }
   }
 
-  void changeEnter(String stage, Map map) {
-    CurrentStep.enter[stage] = map;
+  void changeEnter(String stage, {Map map: null, Function popup: null}) {
+    if (popup != null) {
+      CurrentStep.enter[stage][KEY_POPUP] = popup;
+    }
+    else {
+      CurrentStep.enter[stage] = map;
+    }
   }
 
   void removeEnter(String stage) {

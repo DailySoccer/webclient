@@ -53,6 +53,7 @@ import 'package:webclient/components/contest_header_f2p_comp.dart';
 import 'package:webclient/components/leaderboard_comp.dart';
 import 'package:webclient/components/leaderboard_table_comp.dart';
 import 'package:webclient/components/my_contests_comp.dart';
+import 'package:webclient/components/tutorial_list_comp.dart';
 import 'package:webclient/components/welcome_comp.dart';
 import 'package:webclient/components/week_calendar_comp.dart';
 
@@ -157,6 +158,7 @@ class WebClientApp extends Module {
     bind(ContestInfoComp);
     bind(ScoringRulesComp);
     bind(MyContestsComp);
+    bind(TutorialListComp);
     bind(ViewContestComp);
     bind(ViewContestEntryComp);
     bind(FantasyTeamComp);
@@ -351,6 +353,11 @@ class WebClientApp extends Module {
                 }
             )
           }
+      )
+      ,'tutorial_list': ngRoute(
+          path: '/tutorial_list',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
+          viewHtml: '<tutorial-list></tutorial-list>'
       )
       ,'my_contests': ngRoute(
           path: '/my_contests/:section/',

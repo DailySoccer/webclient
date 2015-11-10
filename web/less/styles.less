@@ -44,6 +44,7 @@
 @import "tutorial_comp.less";
 @import "backdrop_comp.less";
 @import "home_comp.less";
+@import "tutorial_list_comp.less";
 //@import "lobby_calendar_comp.less";
 //@import "contest_header_comp.less";
 //@import "contest_list_comp.less";
@@ -104,7 +105,7 @@ body {
 
 	// Contenedor interior que envuelve al contenido. Fijamos el width con el.
 	.main-content-container {
-		margin-top: 70px;
+		padding-top: 70px;
 		padding-bottom: 120px;
 
 		@media (max-width: @screen-sm-max) {
@@ -517,6 +518,35 @@ body {
 					box-shadow: none;
 				}
 			}
+		}
+	}
+}
+
+.make-tile(@columns, @rows) {
+	@row-height: 100px;
+	
+	.make-sm-column(@columns);
+	padding: 2px;
+	height: @row-height * @rows;
+	position: relative;
+	cursor: pointer;
+
+	.opensans_normal(12pt, @white);
+
+	.tile {
+		padding: 15px;
+		height: 100%;
+		background-color: white;
+	}
+
+	.tile-info {
+		display: block;
+		position: absolute;
+		bottom: 15px;
+		.notation {
+			display: block;
+			.opensans_normal(8pt, @white);
+			font-style: italic;
 		}
 	}
 }

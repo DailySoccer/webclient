@@ -8,19 +8,19 @@
   Scouting??
   -->
   
-  <div id="contestTile"       class="home-tile-wrapper main-tile-wrapper">
+  <div id="contestTile" class="home-tile-wrapper main-tile-wrapper" ng-click="onContestsClick()">
     <div class="tile">
       <span class="tile-info">Torneos</span>
     </div>
   </div>
   
   <div id="manageTile"          class="vertical-layout-tilling">
-    <div id="scoutingTile"      class="home-tile-wrapper">
+    <div id="scoutingTile"      class="home-tile-wrapper" ng-click="onScoutingClick()">
       <div class="tile">
         <span class="tile-info">Scouting</span>
       </div>
     </div>
-    <div id="createContestTile" class="home-tile-wrapper">
+    <div id="createContestTile" class="home-tile-wrapper" ng-click="onCreateContestClick()">
       <div class="tile">
         <span class="tile-info">Crear Torneo</span>
       </div>
@@ -28,19 +28,19 @@
   </div>
   
   <div id="myContestsTile"    class="vertical-layout-tilling">
-    <div id="historyTile"     class="home-tile-wrapper">
+    <div id="historyTile"     class="home-tile-wrapper" ng-click="onHistoryClick()">
       <div class="tile">
         <span class="tile-info">Historico</span>
       </div>
     </div>
-    <div id="liveTile"        class="home-tile-wrapper">
+    <div id="liveTile"        class="home-tile-wrapper" ng-click="onLiveClick()">
       <div class="tile">
         <span class="tile-info">En vivo</span>
       </div>
     </div>
   </div>
   
-  <div id="blogTile"     class="home-tile-wrapper">
+  <div id="blogTile"     class="home-tile-wrapper" ng-click="onBlogClick()">
     <div class="tile">
       <span class="tile-info">
         Cuaderno <br>del Entrenador
@@ -48,10 +48,12 @@
       </span>
     </div>
   </div>
-  <div id="tutorialTile" class="home-tile-wrapper">
+  
+  <div id="tutorialTile" class="home-tile-wrapper" ng-click="onTutorialClick()">
     <div class="tile">
       <span class="tile-info">Tutorial</span>
     </div>
   </div>
+  
   <div class="clearfix"></div>
 </div>

@@ -38,7 +38,8 @@ class TutorialIniciacion extends Tutorial {
                 Tutorial.KEY_POPUP: () => openModal(
                       title: () => getLocalizedText("title-lobby"),
                       text: () => getLocalizedText("text-lobby"),
-                      image: ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg")
+                      image: ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg"),
+                      onOk: getLocalizedText("next", context: "tutorial")
                     )
                     .then((_) => openModal(
                         title: () => "ORO",
@@ -51,7 +52,7 @@ class TutorialIniciacion extends Tutorial {
                         //showTooltip(new ToolTip("#activeContestList .real", tipText: "Torneo Oficial", delay: new Duration(seconds: 2), duration: new Duration(seconds: 1), highlight: true));
                         //showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: "Entra en este Torneo", highlight: true));
 
-                        changeTrigger("lobby", popup: () => showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: "Entra en este Torneo", highlight: true, duration: new Duration(seconds: 3))));
+                        changeTrigger("lobby", popup: () => showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: "Entra en este Torneo", highlight: true)));
                         triggerEnter("lobby");
                         // removeEnter("lobby");
                     }),
@@ -99,8 +100,8 @@ class TutorialIniciacion extends Tutorial {
     return emptyContent();
   }
 
-  String getLocalizedText(key) {
-    return StringUtils.translate(key, "tutorial_iniciacion");
+  String getLocalizedText(key, {String context: "tutorial_iniciacion"}) {
+    return StringUtils.translate(key, context);
   }
 
   Map get PlayerInfo => {

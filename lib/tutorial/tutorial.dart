@@ -84,12 +84,12 @@ abstract class Tutorial {
         <img class="tut-image" src="${image()}"/>
       ''';
 
-  Future openModal({String title(): null, String text(): null, String image({String size}): null, String body(): null}) {
-    return modalShow(title != null ? title() : "", body != null ? body() : bodyDefault(text, image), type: 'welcome', modalSize: "lg");
+  Future openModal({String title(): null, String text(): null, String image({String size}): null, String body(): null, String onOk: null}) {
+    return modalShow(title != null ? title() : "", body != null ? body() : bodyDefault(text, image), type: 'welcome', modalSize: "lg", onOk: onOk);
   }
 
   void showTooltip(ToolTip tooltip) {
-    ToolTipService.instance.tipElement(tooltip);
+    ToolTipService.instance.tipElement(tooltip, hideOnClick: tooltip.hasDuration);
   }
 
   void triggerEnter(String trigger) {

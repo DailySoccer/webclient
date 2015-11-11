@@ -142,7 +142,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
     _hide();
 
     if (destination == "logout") {
-      _router.go('lobby', {});
+      _router.go('home', {});
       profileService.logout();
     } else {
       String paramString = event.currentTarget.attributes["params"];
@@ -291,7 +291,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
   String _getNotLoggedInHtml() {
     return '''
     <div id="menuNotLoggedIn">
-      <div id="brandLogoNotLogged" class="navbar-brand" destination="lobby"></div>
+      <div id="brandLogoNotLogged" class="navbar-brand" destination="home"></div>
       <div class="button-wrapper">
         <div id="loginButton" type="button" class="button-login-flat" destination="login">${StringUtils.translate("login", "mainmenu")}</div>
       </div>
@@ -308,7 +308,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <div id="brandLogoLogged" class="navbar-brand" destination="lobby"></div>
+        <div id="brandLogoLogged" class="navbar-brand" destination="home"></div>
       </div>
 
       <div id="menuSlide" class="menu-elements">

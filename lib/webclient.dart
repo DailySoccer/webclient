@@ -333,12 +333,12 @@ class WebClientApp extends Module {
           }
       )
       ,'home': ngRoute(
+          defaultRoute: true,
           path: '/home',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
           viewHtml: '<home></home>'
       )
       ,'lobby': ngRoute(
-          defaultRoute: true,
           path: '/lobby',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
           viewHtml: '<lobbyf2p></lobbyf2p>',

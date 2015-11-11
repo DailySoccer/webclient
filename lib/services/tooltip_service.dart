@@ -20,15 +20,17 @@ class ToolTipService {
   
   void tipElement(ToolTip tip, {bool hideOnClick: true}) {
     BackdropComp backdrop = BackdropComp.instance;
+    StreamSubscription subscription = null;
     
     void hideTip([_]) {
       tip.hide();
       if (tip.isHighlight) backdrop.hide();
+      if (subscription != null) subscription.cancel();
     };
     
     if (tip.isHighlight) {
       tip.onShow.listen((_) => backdrop.show());
-      if (hideOnClick) backdrop.onClick.single.then(hideTip);
+      if (hideOnClick) subscription = backdrop.onClick.listen(hideTip);
     }
     
     if (hideOnClick) tip.onClick.listen(hideTip);

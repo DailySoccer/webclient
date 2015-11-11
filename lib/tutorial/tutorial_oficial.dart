@@ -42,6 +42,11 @@ class TutorialOficial extends Tutorial {
     };
   }
 
+  void activate() {
+    CurrentStepId = Tutorial.STEP_BEGIN;
+    changeUser(TutorialPlayer(goldBalance: "AUD 5.00"));
+  }
+
   String getLocalizedText(key) {
     return StringUtils.translate(key, "tutorial_oficial");
   }

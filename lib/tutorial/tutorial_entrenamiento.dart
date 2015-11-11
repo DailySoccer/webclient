@@ -69,6 +69,11 @@ class TutorialEntrenamiento extends Tutorial {
     };
   }
 
+  void activate() {
+    CurrentStepId = Tutorial.STEP_BEGIN;
+    changeUser(TutorialPlayer(goldBalance: "AUD 5.00"));
+  }
+
   Future addContestEntry(Map postData) {
     FantasyTeam = JSON.decode(postData["soccerTeam"]);
     return emptyContent();

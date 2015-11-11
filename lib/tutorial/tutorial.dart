@@ -20,7 +20,7 @@ class TutorialStep {
   void removeTrigger(String path) { if (hasTrigger(path)) triggers.remove(path); }
 }
 
-class Tutorial {
+abstract class Tutorial {
   static String INITIATION = "initiation";
   static String OFICIAL_CONTESTS = "oficialContests";
   static String CREATING_CONTESTS = "creatingContests";
@@ -39,6 +39,8 @@ class Tutorial {
   void skipTutorial() { CurrentStepId = STEP_END; }
 
   Tutorial(this.profileService);
+
+  void activate();
 
   Future emptyContent() {
     return new Future.value({});
@@ -192,7 +194,7 @@ class Tutorial {
   final String REAL_BETIS = "56260840c1f5fbc410f99494";
   final String SPORTING_GIJON = "56260840c1f5fbc410f99496";
 
-  Map TutorialPlayer({String earnedMoney: null}) => {
+  Map TutorialPlayer({String goldBalance: null}) => {
     "userId":"PLAYER-5625d093d4c6ebe295987fd1",
     "firstName": "Player",
     "lastName": "XXX",
@@ -200,7 +202,8 @@ class Tutorial {
     "email": "player@epiceleven.com",
     "wins":0,
     "trueSkill":0,
-    "earnedMoney": earnedMoney != null ? earnedMoney : "AUD 0.00"
+    "earnedMoney": "AUD 0.00",
+    "goldBalance": goldBalance != null ? goldBalance : "AUD 0.00"
   };
 
   List get UsersInfo => [

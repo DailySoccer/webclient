@@ -39,6 +39,7 @@ class TutorialService {
     if (_tutorials.containsKey(tutorialName)) {
       _activated = true;
       CurrentTutorial = _tutorials[tutorialName];
+      CurrentTutorial.activate();
 
       _router.go('lobby', {});
     }
@@ -49,6 +50,10 @@ class TutorialService {
     if (!isActivated) {
       CurrentTutorial = _tutorials.values.firstWhere((tutorial) => !tutorial.isCompleted && tutorial.CurrentStep.hasTrigger(trigger), orElse: () => null);
       _activated = CurrentTutorial != null;
+
+      if (CurrentTutorial != null) {
+        CurrentTutorial.activate();
+      }
     }
 
     // Si existe un tutorial activado, permitimos que continúe...

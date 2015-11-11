@@ -87,8 +87,11 @@ class TutorialIniciacion extends Tutorial {
             serverCalls: serverCallsWhenContestEntry
         )
     };
+  }
 
-    changeUser(TutorialPlayer(earnedMoney: "AUD 5.00"));
+  void activate() {
+    CurrentStepId = Tutorial.STEP_BEGIN;
+    changeUser(TutorialPlayer(goldBalance: "AUD 5.00"));
   }
 
   Future addContestEntry(Map postData) {

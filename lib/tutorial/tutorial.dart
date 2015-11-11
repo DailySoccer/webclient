@@ -9,21 +9,7 @@ import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/html_utils.dart';
 import 'package:webclient/services/tooltip_service.dart';
-
-class InfoHtml {
-  Function title;
-  Function text;
-  Function image;
-  Function onClose;
-
-  String body() => '''
-    <div class="tut-title">${text()}</div>
-    <img class="tut-image-xs" src="${image(size:'xs')}"/>
-    <img class="tut-image" src="${image()}"/>
-  ''';
-
-  InfoHtml({this.title: null, this.text: null, this.image: null, this.onClose: null});
-}
+import 'package:webclient/models/user.dart';
 
 class TutorialStep {
   Map<String, Map> enter;
@@ -83,8 +69,14 @@ class Tutorial {
     return result;
   }
 
-  Future openModal(InfoHtml infoHtml) {
-    return modalShow(infoHtml.title(), infoHtml.body(), type: 'welcome', modalSize: "lg");
+  String bodyDefault(String text(), String image({String size})) => '''
+        <div class="tut-title">${text()}</div>
+        <img class="tut-image-xs" src="${image(size:'xs')}"/>
+        <img class="tut-image" src="${image()}"/>
+      ''';
+
+  Future openModal({String title(): null, String text(): null, String image({String size}): null, String body(): null}) {
+    return modalShow(title != null ? title() : "", body != null ? body() : bodyDefault(text, image), type: 'welcome', modalSize: "lg");
   }
 
   void showTooltip(ToolTip tooltip) {

@@ -11,6 +11,7 @@ import 'package:logging/logging.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/models/money.dart';
 import 'package:webclient/services/server_error.dart';
+import 'package:webclient/services/tutorial_service.dart';
 
 @Injectable()
 class ProfileService {
@@ -141,13 +142,16 @@ class ProfileService {
       // no es valido ya. Ademas, durante desarrollo, podemos borrar la DB. El token seguira siendo valido (puesto que
       // es el email), pero el userId no.
       _server.getUserProfile().then((jsonMap) {
-        // Si nuestro usuario ya no es el mismo pero no ha dado un error, el sessionToken sigue siendo valido y lo
-        // unico que tenemos que hacer es anotar el nuevo User
-        if (jsonMap["_id"] != user.userId) {
-          Logger.root.warning("ProfileService: Se borro la DB y pudimos reusar el sessionToken.");
+        // Puede que recibamos la información del perfil, cuando el usuario esté "log out" o esté activo el tutorial
+        if (user != null && !TutorialService.isActivated) {
+          // Si nuestro usuario ya no es el mismo pero no ha dado un error, el sessionToken sigue siendo valido y lo
+          // unico que tenemos que hacer es anotar el nuevo User
+          if (jsonMap["_id"] != user.userId) {
+            Logger.root.warning("ProfileService: Se borro la DB y pudimos reusar el sessionToken.");
+          }
+          // En cualquier caso, refrescamos el profile para obtener el ultimo dinero
+          _setProfile(storedSessionToken, jsonMap, true);
         }
-        // En cualquier caso, refrescamos el profile para obtener el ultimo dinero
-        _setProfile(storedSessionToken, jsonMap, true);
       })
       .catchError((ServerError error) {
         // No se ha podido refrescar: Tenemos que salir y pedir que vuelva a hacer login

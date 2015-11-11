@@ -67,6 +67,8 @@ class TutorialService {
     _activated = false;
     configureSkipComponent();
 
+    CurrentTutorial.restoreUser();
+
     // Resto de funciones de saltar tutorial
     if (_contentUpdater != null) {
       _contentUpdater();

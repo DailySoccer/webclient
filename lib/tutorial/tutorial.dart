@@ -32,13 +32,14 @@ class Tutorial {
 
   bool get isCompleted => CurrentStepId == STEP_END;
 
-  Tutorial();
+  Tutorial(this.profileService);
 
   Future emptyContent() {
     return new Future.value({});
   }
 
   Map get defaultServerCalls => {
+    "get_user_profile": (url, postData) => emptyContent(),
     "get_active_contests" : (url, postData) => emptyContent(),
     "get_active_contest" : (url, postData) => emptyContent(),
     "get_contest_info" : (url, postData) => emptyContent(),
@@ -115,6 +116,17 @@ class Tutorial {
     }
   }
 
+  void changeUser(Map userJsonMap) {
+    userBackup = profileService.isLoggedIn ? profileService.user : null;
+    profileService.user = new User.fromJsonObject(userJsonMap);
+  }
+
+  void restoreUser() {
+    if (userBackup != null) {
+      profileService.user = userBackup;
+    }
+  }
+
   void changeEnter(String stage, {Map map: null, Function popup: null}) {
     if (popup != null) {
       CurrentStep.enter[stage][KEY_POPUP] = popup;
@@ -173,6 +185,17 @@ class Tutorial {
   final String LAS_PALMAS = "56260840c1f5fbc410f99492";
   final String REAL_BETIS = "56260840c1f5fbc410f99494";
   final String SPORTING_GIJON = "56260840c1f5fbc410f99496";
+
+  Map get TutorialPlayer => {
+    "userId":"PLAYER-5625d093d4c6ebe295987fd1",
+    "firstName": "Player",
+    "lastName": "XXX",
+    "nickName":"Player",
+    "email": "player@epiceleven.com",
+    "wins":0,
+    "trueSkill":0,
+    "earnedMoney":"AUD 0.00"
+  };
 
   List get UsersInfo => [
     {
@@ -332,4 +355,7 @@ class Tutorial {
   ];
 
   HashMap<String, TutorialStep> tutorialSteps;
+  User userBackup;
+
+  ProfileService profileService;
 }

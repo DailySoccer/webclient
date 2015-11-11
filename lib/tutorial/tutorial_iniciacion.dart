@@ -12,7 +12,7 @@ class TutorialIniciacion extends Tutorial {
 
   String get PATH => "tutorial/iniciacion/";
 
-  TutorialIniciacion(this._profileService) {
+  TutorialIniciacion(ProfileService profileService) : super(profileService) {
     getContentJson(PATH + "instance_soccer_players.json").then((list) => InstanceSoccerPlayerList = list);
     getContentJson(PATH + "soccer_players.json").then((list) => SoccerPlayerList = list);
 
@@ -87,6 +87,8 @@ class TutorialIniciacion extends Tutorial {
             serverCalls: serverCallsWhenContestEntry
         )
     };
+
+    changeUser(TutorialPlayer);
   }
 
   Future addContestEntry(Map postData) {
@@ -99,15 +101,15 @@ class TutorialIniciacion extends Tutorial {
   }
 
   Map get PlayerInfo => {
-      "userId": _profileService.isLoggedIn ? _profileService.user.userId : "PLAYER",
-      "nickName": _profileService.isLoggedIn ? _profileService.user.nickName : "Player",
+      "userId": profileService.isLoggedIn ? profileService.user.userId : "PLAYER",
+      "nickName": profileService.isLoggedIn ? profileService.user.nickName : "Player",
       "wins":0,
       "trueSkill":0,
       "earnedMoney":"AUD 0.00"
     };
 
   Map get PlayerEntry => {
-    "userId": _profileService.isLoggedIn ? _profileService.user.userId : "PLAYER",
+    "userId": profileService.isLoggedIn ? profileService.user.userId : "PLAYER",
     "position":-1,
     "prize":"AUD 0.00",
     "fantasyPoints":0,
@@ -120,7 +122,7 @@ class TutorialIniciacion extends Tutorial {
       TrainingContestInstance,
       OficialContestInstance
       ],
-      "users_info": _profileService.isLoggedIn && FantasyTeam.isNotEmpty ? joinLists(UsersInfo, element: PlayerInfo) : UsersInfo,
+      "users_info": profileService.isLoggedIn && FantasyTeam.isNotEmpty ? joinLists(UsersInfo, element: PlayerInfo) : UsersInfo,
       "match_events": MatchEvents,
       "soccer_teams": SoccerTeams,
       "soccer_players": SoccerPlayerList
@@ -130,7 +132,7 @@ class TutorialIniciacion extends Tutorial {
         "templateContestId": "56331d4dd4c6912cf152f1f4",
         "state": "ACTIVE",
         "name": "Tutorial [Entrenamiento]",
-        "contestEntries": _profileService.isLoggedIn && FantasyTeam.isNotEmpty ? joinLists(ContestEntries, element: PlayerEntry) : ContestEntries,
+        "contestEntries": profileService.isLoggedIn && FantasyTeam.isNotEmpty ? joinLists(ContestEntries, element: PlayerEntry) : ContestEntries,
         "templateMatchEventIds": TemplateMatchEventIds,
         "instanceSoccerPlayers": InstanceSoccerPlayerList,
         "maxEntries": 20,
@@ -150,7 +152,7 @@ class TutorialIniciacion extends Tutorial {
         "templateContestId": "56331d4dd4c6912cf152f1f4",
         "state": "ACTIVE",
         "name": "Tutorial [Oficial]",
-        "contestEntries": _profileService.isLoggedIn && FantasyTeam.isNotEmpty ? joinLists(ContestEntries, element: PlayerEntry) : ContestEntries,
+        "contestEntries": profileService.isLoggedIn && FantasyTeam.isNotEmpty ? joinLists(ContestEntries, element: PlayerEntry) : ContestEntries,
         "templateMatchEventIds": TemplateMatchEventIds,
         "instanceSoccerPlayers": InstanceSoccerPlayerList,
         "maxEntries": 20,
@@ -207,6 +209,4 @@ class TutorialIniciacion extends Tutorial {
   List InstanceSoccerPlayerList = [];
   List SoccerPlayerList = [];
   List FantasyTeam = [];
-
-  ProfileService _profileService;
 }

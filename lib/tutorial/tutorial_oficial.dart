@@ -7,7 +7,7 @@ import 'package:webclient/services/profile_service.dart';
 class TutorialOficial extends Tutorial {
   String get PATH => "tutorial/oficial/";
 
-  TutorialOficial(this._profileService) {
+  TutorialOficial(ProfileService profileService) : super(profileService) {
     tutorialSteps = {
       Tutorial.STEP_BEGIN: new TutorialStep(
             enter: {
@@ -45,6 +45,4 @@ class TutorialOficial extends Tutorial {
   String getLocalizedText(key) {
     return StringUtils.translate(key, "tutorial_oficial");
   }
-
-  ProfileService _profileService;
 }

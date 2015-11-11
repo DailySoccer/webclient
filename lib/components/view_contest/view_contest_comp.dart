@@ -44,12 +44,14 @@ class ViewContestComp implements DetachAware {
     return StringUtils.translate(key, "viewcontest");
   }
 
-  ViewContestComp(this._routeProvider, this.scrDet, this._refreshTimersService, 
+  ViewContestComp(this._routeProvider, this.scrDet, this._refreshTimersService,
       this._contestsService, this._profileService, this._flashMessage, this.loadingService, TutorialService tutorialService) {
     loadingService.isLoading = true;
     lastOpponentSelected = getLocalizedText("opponent");
 
     contestId = _routeProvider.route.parameters['contestId'];
+
+    tutorialService.triggerEnter("view_contest_entry");
 
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
 
@@ -79,9 +81,6 @@ class ViewContestComp implements DetachAware {
         }
       })
       .catchError((ServerError error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW), test: (error) => error is ServerError);
-      
-
-    tutorialService.enterAt("view_contest_entry");
   }
 
   String getPrize(int index) => (contest != null) ? contest.getPrize(index) : "-";

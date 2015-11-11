@@ -12,12 +12,12 @@ import 'package:webclient/services/tooltip_service.dart';
 import 'package:webclient/models/user.dart';
 
 class TutorialStep {
-  Map<String, Map> enter;
+  Map<String, Map> triggers;
   Map<String, Function> serverCalls;
-  TutorialStep({this.enter: null, this.serverCalls: null});
+  TutorialStep({this.triggers: null, this.serverCalls: null});
 
-  bool hasEnter(String path) => enter != null && enter.containsKey(path);
-  void removeEnter(String path) { if (hasEnter(path)) enter.remove(path); }
+  bool hasTrigger(String path) => triggers != null && triggers.containsKey(path);
+  void removeTrigger(String path) { if (hasTrigger(path)) triggers.remove(path); }
 }
 
 class Tutorial {
@@ -35,6 +35,8 @@ class Tutorial {
   TutorialStep get CurrentStep => tutorialSteps[CurrentStepId];
 
   bool get isCompleted => CurrentStepId == STEP_END;
+
+  void skipTutorial() { CurrentStepId = STEP_END; }
 
   Tutorial(this.profileService);
 
@@ -88,9 +90,9 @@ class Tutorial {
     ToolTipService.instance.tipElement(tooltip);
   }
 
-  void enterAt(String stage) {
-    if (CurrentStep.hasEnter(stage)) {
-      Map enterInfo = CurrentStep.enter[stage];
+  void triggerEnter(String trigger) {
+    if (CurrentStep.hasTrigger(trigger)) {
+      Map enterInfo = CurrentStep.triggers[trigger];
 
       if (enterInfo.containsKey(Tutorial.KEY_POPUP)) {
         enterInfo[Tutorial.KEY_POPUP]();
@@ -131,17 +133,17 @@ class Tutorial {
     }
   }
 
-  void changeEnter(String stage, {Map map: null, Function popup: null}) {
+  void changeTrigger(String trigger, {Map map: null, Function popup: null}) {
     if (popup != null) {
-      CurrentStep.enter[stage][KEY_POPUP] = popup;
+      CurrentStep.triggers[trigger][KEY_POPUP] = popup;
     }
     else {
-      CurrentStep.enter[stage] = map;
+      CurrentStep.triggers[trigger] = map;
     }
   }
 
-  void removeEnter(String stage) {
-    CurrentStep.removeEnter(stage);
+  void removeTrigger(String stage) {
+    CurrentStep.removeTrigger(stage);
   }
 
   Future getContentJson(String fileName) {
@@ -190,7 +192,7 @@ class Tutorial {
   final String REAL_BETIS = "56260840c1f5fbc410f99494";
   final String SPORTING_GIJON = "56260840c1f5fbc410f99496";
 
-  Map get TutorialPlayer => {
+  Map TutorialPlayer({String earnedMoney: null}) => {
     "userId":"PLAYER-5625d093d4c6ebe295987fd1",
     "firstName": "Player",
     "lastName": "XXX",
@@ -198,7 +200,7 @@ class Tutorial {
     "email": "player@epiceleven.com",
     "wins":0,
     "trueSkill":0,
-    "earnedMoney":"AUD 0.00"
+    "earnedMoney": earnedMoney != null ? earnedMoney : "AUD 0.00"
   };
 
   List get UsersInfo => [

@@ -31,22 +31,29 @@ class TutorialService {
     _instance = this;
 
     _tutorials = {
-      Tutorial.INITIATION: () => new TutorialIniciacion(profileService)
+      Tutorial.INITIATION: new TutorialIniciacion(profileService)
     };
   }
 
   void start(String tutorialName) {
     if (_tutorials.containsKey(tutorialName)) {
       _activated = true;
-      CurrentTutorial = _tutorials[tutorialName]();
+      CurrentTutorial = _tutorials[tutorialName];
 
       _router.go('lobby', {});
     }
   }
 
-  void enterAt(String stage) {
-    if (isActivated && CurrentStep.hasEnter(stage)) {
-      CurrentTutorial.enterAt(stage);
+  void triggerEnter(String trigger) {
+    // Si ningún tutorial está activado, comprobamos si existe alguno que quiera responder al path que ha visitado el usuario
+    if (!isActivated) {
+      CurrentTutorial = _tutorials.values.firstWhere((tutorial) => !tutorial.isCompleted && tutorial.CurrentStep.hasTrigger(trigger), orElse: () => null);
+      _activated = CurrentTutorial != null;
+    }
+
+    // Si existe un tutorial activado, permitimos que continúe...
+    if (isActivated && CurrentStep.hasTrigger(trigger)) {
+      CurrentTutorial.triggerEnter(trigger);
       configureSkipComponent();
     }
   }
@@ -73,6 +80,7 @@ class TutorialService {
     configureSkipComponent();
 
     CurrentTutorial.restoreUser();
+    CurrentTutorial.skipTutorial();
 
     /*
     // Resto de funciones de saltar tutorial
@@ -122,7 +130,7 @@ class TutorialService {
 
   Router _router;
 
-  Map<String, Function> _tutorials;
+  Map<String, Tutorial> _tutorials;
 
   bool _activated = false;
   Element _skipComp = null;

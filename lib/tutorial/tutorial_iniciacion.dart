@@ -33,7 +33,7 @@ class TutorialIniciacion extends Tutorial {
 
     tutorialSteps = {
       Tutorial.STEP_BEGIN: new TutorialStep(
-            enter: {
+            triggers: {
               'lobby': {
                 Tutorial.KEY_POPUP: () => openModal(
                       title: () => getLocalizedText("title-lobby"),
@@ -51,8 +51,8 @@ class TutorialIniciacion extends Tutorial {
                         //showTooltip(new ToolTip("#activeContestList .real", tipText: "Torneo Oficial", delay: new Duration(seconds: 2), duration: new Duration(seconds: 1), highlight: true));
                         //showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: "Entra en este Torneo", highlight: true));
 
-                        changeEnter("lobby", popup: () => showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: "Entra en este Torneo", highlight: true, duration: new Duration(seconds: 3))));
-                        enterAt("lobby");
+                        changeTrigger("lobby", popup: () => showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: "Entra en este Torneo", highlight: true, duration: new Duration(seconds: 3))));
+                        triggerEnter("lobby");
                         // removeEnter("lobby");
                     }),
                 Tutorial.KEY_TOOLTIPS: [
@@ -82,13 +82,13 @@ class TutorialIniciacion extends Tutorial {
             serverCalls: serverCallsWhenActive
         ),
         STEP_1: new TutorialStep(
-            enter: {
+            triggers: {
             },
             serverCalls: serverCallsWhenContestEntry
         )
     };
 
-    changeUser(TutorialPlayer);
+    changeUser(TutorialPlayer(earnedMoney: "AUD 5.00"));
   }
 
   Future addContestEntry(Map postData) {

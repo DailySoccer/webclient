@@ -10,7 +10,7 @@ class TutorialOficial extends Tutorial {
   TutorialOficial(ProfileService profileService) : super(profileService) {
     tutorialSteps = {
       Tutorial.STEP_BEGIN: new TutorialStep(
-            enter: {
+            triggers: {
               'lobby': {
                 Tutorial.KEY_POPUP: () => openModal(
                             title: () => getLocalizedText("title-lobby"),

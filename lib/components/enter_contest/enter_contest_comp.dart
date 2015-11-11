@@ -151,6 +151,8 @@ class EnterContestComp implements DetachAware {
     contestId = _routeProvider.route.parameters['contestId'];
     contestEntryId = _routeProvider.route.parameters['contestEntryId'];
 
+    tutorialService.triggerEnter("enter_contest");
+
     GameMetrics.logEvent(GameMetrics.ENTER_CONTEST);
 
     Future refreshContest = editingContestEntry? _contestsService.refreshMyActiveContest(contestId) : _contestsService.refreshActiveContest(contestId);
@@ -190,7 +192,6 @@ class EnterContestComp implements DetachAware {
       }, test: (error) => error is ServerError);
 
     subscribeToLeaveEvent();
-    tutorialService.enterAt("enter_contest");
   }
 
   void subscribeToLeaveEvent() {

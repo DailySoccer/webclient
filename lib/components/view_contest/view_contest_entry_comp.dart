@@ -53,6 +53,8 @@ class ViewContestEntryComp {
     _viewContestEntryMode = _routeProvider.route.parameters['viewContestEntryMode'];
     contestId = _routeProvider.route.parameters['contestId'];
 
+    tutorialService.triggerEnter("view_contest_entry");
+
     _contestsService.refreshMyContestEntry(contestId)
       .then((_) {
         loadingService.isLoading = false;
@@ -64,8 +66,6 @@ class ViewContestEntryComp {
       .catchError((ServerError error) {
         _router.go("lobby", {});
       }, test: (error) => error is ServerError);
-
-    tutorialService.enterAt("view_contest_entry");
   }
 
   void tabChange(String tab) {

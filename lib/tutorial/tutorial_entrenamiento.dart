@@ -33,7 +33,7 @@ class TutorialEntrenamiento extends Tutorial {
 
     tutorialSteps = {
       Tutorial.STEP_BEGIN: new TutorialStep(
-            enter: {
+            triggers: {
               'lobby': {
                 Tutorial.KEY_POPUP: () => openModal(
                       title: () => getLocalizedText("title-lobby"),
@@ -62,7 +62,7 @@ class TutorialEntrenamiento extends Tutorial {
             serverCalls: serverCallsWhenActive
         ),
         STEP_1: new TutorialStep(
-            enter: {
+            triggers: {
             },
             serverCalls: serverCallsWhenContestEntry
         )

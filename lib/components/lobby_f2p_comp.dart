@@ -38,9 +38,9 @@ class LobbyF2PComp implements DetachAware {
       loadingService.isLoading = true;
     }
 
-    _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_CONTEST_LIST, refreshActiveContest);
+    tutorialService.triggerEnter("lobby");
 
-    tutorialService.enterAt("lobby");
+    _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_CONTEST_LIST, refreshActiveContest);
   }
 
   // Rutina que refresca la lista de concursos

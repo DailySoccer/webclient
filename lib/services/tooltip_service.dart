@@ -18,7 +18,7 @@ class ToolTipService {
     
   }
   
-  void tipElement(ToolTip tip, {bool hideOnClick: false}) {
+  void tipElement(ToolTip tip, {bool hideOnClick: true}) {
     BackdropComp backdrop = BackdropComp.instance;
     
     void hideTip([_]) {
@@ -36,7 +36,7 @@ class ToolTipService {
     tip.show();
   }
   
-  Future tipMultipleElement(List<ToolTip> tipList, {bool hideAllOnClick: false}) {
+  Future tipMultipleElement(List<ToolTip> tipList, {bool hideAllOnClick: true}) {
     Completer completer = new Completer();
     BackdropComp backdrop = BackdropComp.instance;
     
@@ -92,10 +92,6 @@ class ToolTip {
   
   void show() {
     new Timer(_delay, () => _showAsSoonAsPossible() );
-    
-    if (_duration != null && _duration != Duration.ZERO) {
-      new Timer(_duration, () => _onClick.add(this) );
-    }
   }
   
   void hide() {
@@ -134,6 +130,10 @@ class ToolTip {
       _isShown = true;
       _onShow.add(this);
       timer.cancel();
+      
+      if (_duration != null && _duration != Duration.ZERO) {
+        new Timer(_duration, () => _onClick.add(this));
+      }
     });
   }
   

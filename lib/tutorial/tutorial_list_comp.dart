@@ -5,7 +5,7 @@ import 'package:angular/angular.dart';
 
 @Component(
   selector: 'tutorial-list',
-  templateUrl: 'packages/webclient/components/tutorial_list_comp.html',
+  templateUrl: 'packages/webclient/tutorial/tutorial_list_comp.html',
   useShadowDom: false
 )
 class TutorialListComp  {

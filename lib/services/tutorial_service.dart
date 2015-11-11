@@ -14,6 +14,7 @@ import 'package:webclient/tutorial/tutorial_entrenamiento.dart';
 import 'package:webclient/tutorial/tutorial_iniciacion.dart';
 import 'package:webclient/services/tooltip_service.dart';
 import 'package:webclient/services/profile_service.dart';
+import 'package:webclient/components/backdrop_comp.dart';
 
 @Injectable()
 class TutorialService {
@@ -74,6 +75,7 @@ class TutorialService {
       // Si no estamos en una pantalla en la que podamos actualizar el contenido correctamente, navegaremos al lobby
       _router.go('lobby', {});
     }
+    BackdropComp.instance.hide();
   }
 
   void registerContentUpdater(String name, Function contentUpdater) {

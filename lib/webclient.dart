@@ -37,6 +37,8 @@ import 'package:webclient/utils/host_server.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/utils/noshim.dart';
 
+import 'package:webclient/tutorial/tutorial_list_comp.dart';
+
 import 'package:webclient/components/navigation/main_menu_f2p_comp.dart';
 import 'package:webclient/components/navigation/footer_comp.dart';
 import 'package:webclient/components/flash_messages_comp.dart';
@@ -53,7 +55,6 @@ import 'package:webclient/components/contest_header_f2p_comp.dart';
 import 'package:webclient/components/leaderboard_comp.dart';
 import 'package:webclient/components/leaderboard_table_comp.dart';
 import 'package:webclient/components/my_contests_comp.dart';
-import 'package:webclient/components/tutorial_list_comp.dart';
 import 'package:webclient/components/welcome_comp.dart';
 import 'package:webclient/components/week_calendar_comp.dart';
 

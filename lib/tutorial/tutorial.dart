@@ -21,6 +21,10 @@ class TutorialStep {
 }
 
 class Tutorial {
+  static String INITIATION = "initiation";
+  static String OFICIAL_CONTESTS = "oficialContests";
+  static String CREATING_CONTESTS = "creatingContests";
+
   static String KEY_POPUP = "popup";
   static String KEY_TOOLTIPS = "tooltips";
 

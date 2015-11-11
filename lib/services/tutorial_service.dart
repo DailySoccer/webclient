@@ -30,13 +30,18 @@ class TutorialService {
   TutorialService(this._router, ProfileService profileService) {
     _instance = this;
 
-    _tutorials = [
-      new TutorialIniciacion(profileService),
-      new TutorialEntrenamiento(profileService),
-      new TutorialOficial(profileService)
-      ];
+    _tutorials = {
+      Tutorial.INITIATION: () => new TutorialIniciacion(profileService)
+    };
+  }
 
-    CurrentTutorial = _tutorials[0];
+  void start(String tutorialName) {
+    if (_tutorials.containsKey(tutorialName)) {
+      _activated = true;
+      CurrentTutorial = _tutorials[tutorialName]();
+
+      _router.go('lobby', {});
+    }
   }
 
   void enterAt(String stage) {
@@ -69,14 +74,18 @@ class TutorialService {
 
     CurrentTutorial.restoreUser();
 
+    /*
     // Resto de funciones de saltar tutorial
     if (_contentUpdater != null) {
       _contentUpdater();
     }
     else {
-      // Si no estamos en una pantalla en la que podamos actualizar el contenido correctamente, navegaremos al lobby
-      _router.go('lobby', {});
+      // Si no estamos en una pantalla en la que podamos actualizar el contenido correctamente, navegaremos al home
+      _router.go('home', {});
     }
+   */
+
+    _router.go('home', {});
     BackdropComp.instance.hide();
   }
 
@@ -113,9 +122,9 @@ class TutorialService {
 
   Router _router;
 
-  List<Tutorial> _tutorials;
+  Map<String, Function> _tutorials;
 
-  bool _activated = true;
+  bool _activated = false;
   Element _skipComp = null;
   Function _contentUpdater = null;
 

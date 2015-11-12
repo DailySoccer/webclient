@@ -40,6 +40,7 @@ class TutorialService {
       _activated = true;
       CurrentTutorial = _tutorials[tutorialName];
       CurrentTutorial.activate();
+      querySelector('body').classes.add('tutorial');
 
       _router.go('lobby', {});
     }
@@ -53,6 +54,7 @@ class TutorialService {
 
       if (CurrentTutorial != null) {
         CurrentTutorial.activate();
+        querySelector('body').classes.add('tutorial');
       }
     }
 
@@ -100,6 +102,7 @@ class TutorialService {
 
     _router.go('home', {});
     BackdropComp.instance.hide();
+    querySelector('body').classes.remove('tutorial');
   }
 
   void registerContentUpdater(String name, Function contentUpdater) {

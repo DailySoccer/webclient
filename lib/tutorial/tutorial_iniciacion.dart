@@ -50,7 +50,13 @@ class TutorialIniciacion extends Tutorial {
                         //showTooltip(new ToolTip("#activeContestList .train", tipText: "Torneo Entrenamiento", delay: new Duration(seconds: 1), duration: new Duration(seconds: 1), highlight: true));
                         //showTooltip(new ToolTip("#activeContestList .real", tipText: "Torneo Oficial", delay: new Duration(seconds: 2), duration: new Duration(seconds: 1), highlight: true));
                         //showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: "Entra en este Torneo", highlight: true));
-
+                        
+                        /*
+                        changeTrigger("lobby", () {
+                          showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: "Entra en este Torneo", duration: new Duration(seconds: 1)));
+                          showTooltip(new ToolTip("#activeContestList .contestSlot", highlight: true));
+                        });
+                        */
                         changeTrigger("lobby", () => showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: "Entra en este Torneo", highlight: true)));
                         triggerEnter("lobby");
                         // removeEnter("lobby");

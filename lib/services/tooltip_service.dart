@@ -77,7 +77,7 @@ class ToolTip {
   bool get hasDuration => _duration.inMicroseconds > 0;
 
   ToolTip(String cssSelector,
-          {String tipText: null, bool highlight: true,
+          {String tipText: null, bool highlight: false,
            String position: 'top', String tipId: '',
            Duration delay: Duration.ZERO, Duration duration: Duration.ZERO}) {
     _cssSelector = cssSelector;

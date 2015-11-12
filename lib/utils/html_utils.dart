@@ -14,17 +14,19 @@ final NodeTreeSanitizer NULL_TREE_SANITIZER = new _NullTreeSanitizer();
 Future<bool> modalShow(String title, String content, {String modalSize: "lg",
     String onOk: null, String onCancel: null, bool closeButton: false,
     type: 'alert'}) {
-  
+
   String globalRootId = 'alertRoot';
-  
+
   Completer completer = new Completer();
   Element modalWindow = querySelector("#modalWindow");
   bool result = false;
 
   void onClose(dynamic sender) {
     modalWindow.children.remove(modalWindow.querySelector('#' + globalRootId));
-    BackdropComp.instance.hide();
-    if(!completer.isCompleted) completer.complete(result);
+    if(!completer.isCompleted) {
+      BackdropComp.instance.hide();
+      completer.complete(result);
+    }
   }
 
   void closeMe() {

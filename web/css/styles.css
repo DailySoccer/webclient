@@ -20282,7 +20282,7 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
 #homeRoot .home-tile-wrapper .tile .tile-action {
   margin-top: 20px;
 }
-#homeRoot .home-tile-wrapper .tile .tile-action.disable {
+#homeRoot .home-tile-wrapper .tile .tile-action.disabled {
   content: " ";
   background-image: url("../images/ht_IconoLock.png");
   width: 32px;
@@ -20290,7 +20290,7 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   display: inline-block;
   vertical-align: middle;
 }
-#homeRoot .home-tile-wrapper .tile .tile-action.enable {
+#homeRoot .home-tile-wrapper .tile .tile-action.enabled {
   content: " ";
   background-image: url("../images/ht_IconoGo.png");
   width: 32px;

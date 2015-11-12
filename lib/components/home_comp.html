@@ -12,7 +12,7 @@
     <div class="tile">
       <span class="tile-title">Torneos</span>
       <span class="tile-info">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer elementum justo vel eleifend fringilla.</span>
-      <span class="tile-action enable"></span>
+      <span class="tile-action enabled"></span>
     </div>
   </div>
   
@@ -20,13 +20,13 @@
     <div id="createContestTile" class="home-tile-wrapper" ng-click="onCreateContestClick()">
       <div class="tile">
         <span class="tile-title">Reta a tus amigos</span>
-        <span class="tile-action disable"></span>
+        <span class="tile-action" ng-class="{'disabled': !userIsLogged, 'enabled': userIsLogged}"></span>
       </div>
     </div>
     <div id="scoutingTile"      class="home-tile-wrapper" ng-click="onScoutingClick()">
       <div class="tile">
         <span class="tile-title">Ojeador</span>
-        <span class="tile-action disable"></span>
+        <span class="tile-action" ng-class="{'disabled': !userIsLogged, 'enabled': userIsLogged}"></span>
       </div>
     </div>
   </div>
@@ -35,13 +35,13 @@
     <div id="historyTile"     class="home-tile-wrapper" ng-click="onHistoryClick()">
       <div class="tile">
         <span class="tile-title">Histórico</span>
-        <span class="tile-action disable"></span>
+        <span class="tile-action" ng-class="{'disabled': !userIsLogged, 'enabled': userIsLogged}"></span>
       </div>
     </div>
     <div id="liveTile"        class="home-tile-wrapper" ng-click="onLiveClick()">
       <div class="tile">
         <span class="tile-title">En vivo</span>
-        <span class="tile-action disable"></span>
+        <span class="tile-action" ng-class="{'disabled': !userIsLogged, 'enabled': userIsLogged}"></span>
       </div>
     </div>
   </div>
@@ -50,7 +50,7 @@
     <div class="tile">
       <span class="tile-title">Palabra de Míster</span>
       <span class="tile-info">Un blog escrito por Salva Carmona, el tio que más sabe de estadísticas futboleras del mundo.</span>
-      <span class="tile-action enable"></span>
+      <span class="tile-action enabled"></span>
     </div>
   </div>
   

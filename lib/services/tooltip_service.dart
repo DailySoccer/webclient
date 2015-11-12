@@ -67,10 +67,11 @@ class ToolTipService {
   
   void clear() {
     _requestedTooltips.forEach( (t) => t.cancelAndHide() );
+    _requestedTooltips.clear();
     BackdropComp.instance.hide();
   }
   
-  static List<ToolTip> _requestedTooltips;
+  List<ToolTip> _requestedTooltips = [];
   static ToolTipService _instance = null;
 }
 

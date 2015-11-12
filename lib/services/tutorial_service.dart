@@ -7,6 +7,7 @@ import 'dart:collection';
 import 'dart:async';
 import 'dart:convert' show JSON;
 import 'dart:html';
+import 'package:angular/angular.dart';
 import 'package:webclient/services/refresh_timers_service.dart';
 import 'package:webclient/tutorial/tutorial.dart';
 import 'package:webclient/tutorial/tutorial_oficial.dart';
@@ -41,9 +42,18 @@ class TutorialService {
       CurrentTutorial = _tutorials[tutorialName];
       CurrentTutorial.activate();
       querySelector('body').classes.add('tutorial');
+      disableElementEvents('main-menu-f2p');
+      disableElementEvents('footer');
 
       _router.go('lobby', {});
     }
+  }
+
+  void disableElementEvents(String cssSelector) {
+    querySelector(cssSelector).classes.add('disabled-pointer-events');
+  }
+  void enableElementEvents(String cssSelector) {
+    querySelector(cssSelector).classes.remove('disabled-pointer-events');
   }
 
   void triggerEnter(String trigger, {bool activateIfNeeded: true}) {
@@ -55,6 +65,8 @@ class TutorialService {
       if (CurrentTutorial != null) {
         CurrentTutorial.activate();
         querySelector('body').classes.add('tutorial');
+        disableElementEvents('main-menu-f2p');
+        disableElementEvents('footer');
       }
     }
 
@@ -88,6 +100,8 @@ class TutorialService {
 
     CurrentTutorial.restoreUser();
     CurrentTutorial.skipTutorial();
+    enableElementEvents('main-menu-f2p');
+    enableElementEvents('footer');
 
     /*
     // Resto de funciones de saltar tutorial

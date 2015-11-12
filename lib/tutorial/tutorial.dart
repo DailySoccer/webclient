@@ -12,7 +12,7 @@ import 'package:webclient/services/tooltip_service.dart';
 import 'package:webclient/models/user.dart';
 
 class TutorialStep {
-  Map<String, Map> triggers;
+  Map<String, Function> triggers;
   Map<String, Function> serverCalls;
   TutorialStep({this.triggers: null, this.serverCalls: null});
 
@@ -93,19 +93,8 @@ abstract class Tutorial {
   }
 
   void triggerEnter(String trigger) {
-    if (CurrentStep.hasTrigger(trigger)) {
-      Map enterInfo = CurrentStep.triggers[trigger];
-
-      if (enterInfo.containsKey(Tutorial.KEY_POPUP)) {
-        enterInfo[Tutorial.KEY_POPUP]();
-      }
-
-      if (enterInfo.containsKey(Tutorial.KEY_TOOLTIPS)) {
-        List<ToolTip> tooltips = enterInfo[Tutorial.KEY_TOOLTIPS];
-        for (ToolTip tooltip in tooltips) {
-          ToolTipService.instance.tipElement(tooltip);
-        }
-      }
+    if (CurrentStep.hasTrigger(trigger) && CurrentStep.triggers[trigger] != null) {
+      CurrentStep.triggers[trigger]();
 
       /*
       ToolTip firstTip = new ToolTip("#activeContestList .contestSlot",
@@ -135,13 +124,8 @@ abstract class Tutorial {
     }
   }
 
-  void changeTrigger(String trigger, {Map map: null, Function popup: null}) {
-    if (popup != null) {
-      CurrentStep.triggers[trigger][KEY_POPUP] = popup;
-    }
-    else {
-      CurrentStep.triggers[trigger] = map;
-    }
+  void changeTrigger(String trigger, Function function) {
+    CurrentStep.triggers[trigger] = function;
   }
 
   void removeTrigger(String stage) {

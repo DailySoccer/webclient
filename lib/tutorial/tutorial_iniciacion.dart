@@ -34,8 +34,7 @@ class TutorialIniciacion extends Tutorial {
     tutorialSteps = {
       Tutorial.STEP_BEGIN: new TutorialStep(
             triggers: {
-              'lobby': {
-                Tutorial.KEY_POPUP: () => openModal(
+              'lobby': () => openModal(
                       title: () => getLocalizedText("title-lobby"),
                       text: () => getLocalizedText("text-lobby"),
                       image: ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg"),
@@ -52,16 +51,11 @@ class TutorialIniciacion extends Tutorial {
                         //showTooltip(new ToolTip("#activeContestList .real", tipText: "Torneo Oficial", delay: new Duration(seconds: 2), duration: new Duration(seconds: 1), highlight: true));
                         //showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: "Entra en este Torneo", highlight: true));
 
-                        changeTrigger("lobby", popup: () => showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: "Entra en este Torneo", highlight: true)));
+                        changeTrigger("lobby", () => showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: "Entra en este Torneo", highlight: true)));
                         triggerEnter("lobby");
                         // removeEnter("lobby");
                     }),
-                Tutorial.KEY_TOOLTIPS: [
-                    // new ToolTip("#activeContestList .contestSlot", tipText: "Participar en torneos cuesta oro. Por ahora comienzas con 5 de Oro, suficiente para entrar en un primer torneo", delay: new Duration(seconds: 1))
-                  ]
-              },
-              'enter_contest' : {
-                Tutorial.KEY_POPUP: () => openModal(
+              'enter_contest' : () => openModal(
                       title: () => getLocalizedText("title-entercontest"),
                       text: () => getLocalizedText("text-entercontest"),
                       image: ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg")
@@ -70,15 +64,12 @@ class TutorialIniciacion extends Tutorial {
                         //showTooltip(new ToolTip("#activeContestList .train", tipText: "Torneo Entrenamiento", delay: new Duration(seconds: 1), duration: new Duration(seconds: 1), highlight: true));
                         //showTooltip(new ToolTip("#activeContestList .real", tipText: "Torneo Oficial", delay: new Duration(seconds: 2), duration: new Duration(seconds: 1), highlight: true));
                         showTooltip(new ToolTip(".totalSalary", tipText: "Entra en este Torneo", delay: new Duration(seconds: 3), duration: new Duration(seconds: 1), highlight: true));
-                    })
-              },
-              'view_contest_entry': {
-                Tutorial.KEY_POPUP: () => openModal(
+                    }),
+              'view_contest_entry': () => openModal(
                       title: () => getLocalizedText("title-viewcontestentry"),
                       text: () => getLocalizedText("text-viewcontestentry"),
                       image: ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeSuccessXs.jpg" : "welcomeSuccessDesktop.jpg")
                     )
-              }
             },
             serverCalls: serverCallsWhenActive
         ),

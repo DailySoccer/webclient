@@ -17,6 +17,7 @@ class ToolTipService {
   ToolTipService();
 
   void tipElement(ToolTip tip, {bool hideOnClick: true}) {
+    _requestedTooltips.add(tip);
     BackdropComp backdrop = BackdropComp.instance;
     StreamSubscription subscription = null;
 
@@ -37,6 +38,7 @@ class ToolTipService {
   }
 
   Future tipMultipleElement(List<ToolTip> tipList, {bool hideAllOnClick: true}) {
+    _requestedTooltips.addAll(tipList);
     Completer completer = new Completer();
     BackdropComp backdrop = BackdropComp.instance;
 
@@ -62,7 +64,13 @@ class ToolTipService {
 
     return completer.future;
   }
-
+  
+  void clear() {
+    _requestedTooltips.forEach( (t) => t.cancelAndHide() );
+    BackdropComp.instance.hide();
+  }
+  
+  static List<ToolTip> _requestedTooltips;
   static ToolTipService _instance = null;
 }
 
@@ -91,7 +99,7 @@ class ToolTip {
 
 
   void show() {
-    new Timer(_delay, () => _showAsSoonAsPossible() );
+    _delayTimer = new Timer(_delay, () => _showAsSoonAsPossible() );
   }
 
   void hide() {
@@ -103,10 +111,19 @@ class ToolTip {
     _isShown = false;
     _onHide.add(this);
   }
-
+  
+  void cancelAndHide() {
+    void cancel(Timer t) {
+      if(t != null && t.isActive) t.cancel();
+    }
+    cancel(_showAsSoonTimer);
+    cancel(_durationTimer);
+    cancel(_delayTimer);
+    hide();
+  }
+  
   void _showAsSoonAsPossible() {
-    Timer timer;
-    timer = new Timer.periodic(new Duration(milliseconds: 100), (Timer t) {
+    _showAsSoonTimer = new Timer.periodic(new Duration(milliseconds: 100), (Timer t) {
 
       _theTippedElem = querySelector(_cssSelector);
       if (_theTippedElem == null) return;
@@ -129,10 +146,10 @@ class ToolTip {
 
       _isShown = true;
       _onShow.add(this);
-      timer.cancel();
+      _showAsSoonTimer.cancel();
 
       if (_duration != null && _duration != Duration.ZERO) {
-        new Timer(_duration, () => _onClick.add(this));
+        _durationTimer = new Timer(_duration, () => _onClick.add(this));
       }
     });
   }
@@ -148,6 +165,10 @@ class ToolTip {
   Element _theTip = null;
   Element _theTippedElem;
   bool _isShown = false;
+
+  Timer _showAsSoonTimer = null;
+  Timer _durationTimer = null;
+  Timer _delayTimer = null;
 
   StreamController<ToolTip> _onClick = new StreamController.broadcast();
   StreamController<ToolTip> _onShow = new StreamController.broadcast();

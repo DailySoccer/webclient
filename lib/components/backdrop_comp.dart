@@ -36,8 +36,10 @@ class BackdropComp {
   }
   
   void hide() {
-    backdropElement.classes.remove('visible');
-    _onHide.add(this);
+    if (backdropElement.classes.contains('visible')) {
+      backdropElement.classes.remove('visible');
+      _onHide.add(this);
+    }
   }
   
   Element _backdropElement = null;

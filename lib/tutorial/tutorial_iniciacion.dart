@@ -17,17 +17,17 @@ class TutorialIniciacion extends Tutorial {
     getContentJson(PATH + "soccer_players.json").then((list) => SoccerPlayerList = list);
 
     var serverCallsWhenActive = joinMaps([defaultServerCalls, {
-      "get_active_contests" : (url, postData) => waitCompleter( () => ContestList ),
-      "get_active_contest" : (url, postData) => waitCompleter( () => ContestList ),
-      "get_contest_info" : (url, postData) => waitCompleter( () => ContestList ),
+      "get_active_contests" : (url, postData) => waitCompleter( () => OficialContestListWithFakes ),
+      "get_active_contest" : (url, postData) => waitCompleter( () => OficialContestList ),
+      "get_contest_info" : (url, postData) => waitCompleter( () => OficialContestList ),
       "add_contest_entry": (url, postData) { CurrentStepId = STEP_1; return addContestEntry(postData); }
     }]);
 
     var serverCallsWhenContestEntry = joinMaps([defaultServerCalls, {
-      "get_my_contest_entry": (url, postData) => waitCompleter( () => ContestList ),
-      "get_my_active_contests": (url, postData) => waitCompleter( () => ContestList ),
-      "get_contest_info" : (url, postData) => waitCompleter( () => ContestList ),
-      "get_my_active_contest": (url, postData) => waitCompleter( () => ContestList ),
+      "get_my_contest_entry": (url, postData) => waitCompleter( () => OficialContestList ),
+      "get_my_active_contests": (url, postData) => waitCompleter( () => OficialContestList ),
+      "get_contest_info" : (url, postData) => waitCompleter( () => OficialContestList ),
+      "get_my_active_contest": (url, postData) => waitCompleter( () => OficialContestList ),
       "edit_contest_entry": (url, postData) => addContestEntry(postData)
     }]);
 
@@ -37,44 +37,49 @@ class TutorialIniciacion extends Tutorial {
               'lobby': () => openModal(
                       title: () => getLocalizedText("title-lobby"),
                       text: () => getLocalizedText("text-lobby"),
-                      image: ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg"),
+                      image: null, //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg"),
                       onOk: getLocalizedText("next", context: "tutorial")
                     )
                     .then((_) => openModal(
                         title: () => "ORO",
-                        text: () => "Participar en torneos cuesta oro. Por ahora comienzas con 5 de Oro, suficiente para entrar en un primer torneo.",
-                        image: ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg")
+                        text: () => "Participar en torneos cuesta oro. Por ahora comienzas con 1 de Oro, suficiente para entrar en un primer torneo.",
+                        image: null //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg")
                       )
                     )
                     .then((_) {
                         //showTooltip(new ToolTip("#activeContestList .train", tipText: "Torneo Entrenamiento", delay: new Duration(seconds: 1), duration: new Duration(seconds: 1), highlight: true));
                         //showTooltip(new ToolTip("#activeContestList .real", tipText: "Torneo Oficial", delay: new Duration(seconds: 2), duration: new Duration(seconds: 1), highlight: true));
                         //showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: "Entra en este Torneo", highlight: true));
-                        
+
                         /*
                         changeTrigger("lobby", () {
                           showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: "Entra en este Torneo", duration: new Duration(seconds: 1)));
                           showTooltip(new ToolTip("#activeContestList .contestSlot", highlight: true));
                         });
                         */
+
                         changeTrigger("lobby", () => showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: "Entra en este Torneo", highlight: true)));
                         triggerEnter("lobby");
                         // removeEnter("lobby");
                     }),
-              'enter_contest' : () => openModal(
+              'enter_contest' : () {
+                    openModal(
                       title: () => getLocalizedText("title-entercontest"),
                       text: () => getLocalizedText("text-entercontest"),
-                      image: ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg")
+                      image: null // ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg")
                     )
                     .then((_) {
                         //showTooltip(new ToolTip("#activeContestList .train", tipText: "Torneo Entrenamiento", delay: new Duration(seconds: 1), duration: new Duration(seconds: 1), highlight: true));
                         //showTooltip(new ToolTip("#activeContestList .real", tipText: "Torneo Oficial", delay: new Duration(seconds: 2), duration: new Duration(seconds: 1), highlight: true));
-                        showTooltip(new ToolTip(".totalSalary", tipText: "Entra en este Torneo", delay: new Duration(seconds: 3), duration: new Duration(seconds: 1), highlight: true));
-                    }),
+                        //showTooltip(new ToolTip(".totalSalary", tipText: "Entra en este Torneo", delay: new Duration(seconds: 3), duration: new Duration(seconds: 1), highlight: true));
+
+                        //showTooltip(new ToolTip("#enter-contest-wrapper", highlight: true));
+                    });
+              },
               'view_contest_entry': () => openModal(
                       title: () => getLocalizedText("title-viewcontestentry"),
                       text: () => getLocalizedText("text-viewcontestentry"),
-                      image: ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeSuccessXs.jpg" : "welcomeSuccessDesktop.jpg")
+                      image: null //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeSuccessXs.jpg" : "welcomeSuccessDesktop.jpg")
                     )
             },
             serverCalls: serverCallsWhenActive
@@ -89,7 +94,7 @@ class TutorialIniciacion extends Tutorial {
 
   void activate() {
     CurrentStepId = Tutorial.STEP_BEGIN;
-    changeUser(TutorialPlayer(goldBalance: "AUD 5.00"));
+    changeUser(TutorialPlayer(goldBalance: "AUD 1.00"));
   }
 
   Future addContestEntry(Map postData) {
@@ -118,10 +123,31 @@ class TutorialIniciacion extends Tutorial {
     "_id":"PLAYER-56334440d4c657a07a9f890c"
     };
 
-  Map get ContestList => {
+  Map get OficialContestList => {
     "contests": [
-      TrainingContestInstance,
       OficialContestInstance
+      ],
+      "users_info": profileService.isLoggedIn && FantasyTeam.isNotEmpty ? joinLists(UsersInfo, element: PlayerInfo) : UsersInfo,
+      "match_events": MatchEvents,
+      "soccer_teams": SoccerTeams,
+      "soccer_players": SoccerPlayerList
+  };
+
+  Map get OficialContestListWithFakes => {
+    "contests": [
+      OficialContestInstance,
+      OficialContestFake1,
+      OficialContestFake2
+      ],
+      "users_info": profileService.isLoggedIn && FantasyTeam.isNotEmpty ? joinLists(UsersInfo, element: PlayerInfo) : UsersInfo,
+      "match_events": MatchEvents,
+      "soccer_teams": SoccerTeams,
+      "soccer_players": SoccerPlayerList
+  };
+
+  Map get TrainingContestList => {
+    "contests": [
+      TrainingContestInstance
       ],
       "users_info": profileService.isLoggedIn && FantasyTeam.isNotEmpty ? joinLists(UsersInfo, element: PlayerInfo) : UsersInfo,
       "match_events": MatchEvents,
@@ -156,9 +182,9 @@ class TutorialIniciacion extends Tutorial {
         "contestEntries": profileService.isLoggedIn && FantasyTeam.isNotEmpty ? joinLists(ContestEntries, element: PlayerEntry) : ContestEntries,
         "templateMatchEventIds": TemplateMatchEventIds,
         "instanceSoccerPlayers": InstanceSoccerPlayerList,
-        "maxEntries": 20,
+        "maxEntries": 10,
         "salaryCap": 70000,
-        "entryFee": "JPY 1",
+        "entryFee": "AUD 1",
         "prizeMultiplier": 10.0,
         "prizeType": "FIFTY_FIFTY",
         "startDate": new DateTime.now().add(new Duration(minutes: 120)).millisecondsSinceEpoch,
@@ -167,6 +193,40 @@ class TutorialIniciacion extends Tutorial {
         "specialImage": "",
         "numEntries": ContestEntries.length,
         "_id":  "OFICIAL-56331d69d4c6912cf152f201"
+  };
+
+  Map get OficialContestFake1 => {
+        "templateContestId": "56331d4dd4c6912cf152f1f4",
+        "state": "ACTIVE",
+        "name": "Tutorial 1",
+        "maxEntries": 20,
+        "salaryCap": 70000,
+        "entryFee": "AUD 10",
+        "prizeMultiplier": 10.0,
+        "prizeType": "FIFTY_FIFTY",
+        "startDate": new DateTime.now().add(new Duration(minutes: 130)).millisecondsSinceEpoch,
+        "optaCompetitionId": "23",
+        "simulation": false,
+        "specialImage": "",
+        "numEntries": 18,
+        "_id":  "OFICIAL-FAKE1-56331d69d4c6912cf152f201"
+  };
+
+  Map get OficialContestFake2 => {
+        "templateContestId": "56331d4dd4c6912cf152f1f4",
+        "state": "ACTIVE",
+        "name": "Tutorial 2",
+        "maxEntries": 20,
+        "salaryCap": 70000,
+        "entryFee": "AUD 10",
+        "prizeMultiplier": 10.0,
+        "prizeType": "FIFTY_FIFTY",
+        "startDate": new DateTime.now().add(new Duration(minutes: 140)).millisecondsSinceEpoch,
+        "optaCompetitionId": "23",
+        "simulation": false,
+        "specialImage": "",
+        "numEntries": 15,
+        "_id":  "OFICIAL-FAKE2-56331d69d4c6912cf152f201"
   };
 
   List get ContestEntries => [

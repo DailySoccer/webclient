@@ -78,7 +78,12 @@ abstract class Tutorial {
     return result;
   }
 
-  String bodyDefault(String text(), String image({String size})) => '''
+  String bodyDefault(String text(), String image({String size})) =>
+      (image == null)
+      ? '''
+        <div class="tut-title">${text()}</div>
+      '''
+      : '''
         <div class="tut-title">${text()}</div>
         <img class="tut-image-xs" src="${image(size:'xs')}"/>
         <img class="tut-image" src="${image()}"/>

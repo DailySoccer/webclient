@@ -1,0 +1,125 @@
+.global-create-contest #mainWrapper.wrapper-content-container {
+	background-color: @white;
+}
+
+#createContest {
+	
+	.create-contest-section-wrapper {
+		.make-sm-column(6);
+		.make-xs-column(12);
+		&.large { 
+			.make-sm-column(12); 
+			padding: 2px;
+		}
+		height: 130px;
+		padding: 2px;
+		position: relative;
+		
+		.create-contest-section {
+			background-color: @greyUltraLight;
+			position: relative;
+			padding: 15px;
+			height: 100%;
+			
+			.opensans_normal(10pt, @greyDark);
+			.title {
+				.opensans_bold(12pt, @greyDark);
+				margin-bottom: 20px;
+			}
+			.data-input-wrapper {
+
+				.data-element {
+					.make-xs-column(6);
+					padding: 0;
+					
+					input[type="radio"] {
+						display: none;
+					}
+					input[type="radio"] + label {
+						// aqui el estilo normal
+						.opensans_normal(10pt, @greyDark);
+						border: 1px solid transparent;
+						border-radius: 5px;
+						padding: 5px 5px;
+						display: block;
+						vertical-align: middle;
+						.icon {
+							margin-right: 10px;
+							vertical-align: middle;
+						}
+					}
+					input[type="radio"]:checked + label {
+						background-color: @white;
+						border: 1px solid @greyUltraDark;
+						border-radius: 5px;
+					}
+					
+				}
+				&.competition .data-element,
+				&.entry-fee .data-element {
+					.make-xs-column(4);
+					padding: 0;
+					
+					input[type="radio"] + label .icon {
+						margin-right: 5px;
+					}
+				}
+				
+				.addIcon44(@img) {
+					.addIcon(@img, 44px, 44px);
+				}
+				
+				// Contest type
+				#contestOficial + label .icon {
+					.addIcon44("icon-oficial.png");
+				}
+				#contestTraining + label .icon {
+					.addIcon44("icon-training.png");
+				}
+				
+				// Competition
+				#contestLeague + label .icon {
+					.addIcon44("icon-league.png");
+				}
+				#contestPremiere + label .icon {
+					.addIcon44("icon-premiere.png");
+				}
+				#contestChampions + label .icon {
+					.addIcon44("icon-champions.png");
+				}
+				
+				// Contest Style
+				#contestHeadToHead + label .icon {
+					.addIcon44("icon-headToHead.png");
+				}
+				#contestOpen + label .icon {
+					.addIcon44("icon-open.png");
+				}
+				
+				// Opponent type
+				#contestAny + label .icon {
+					.addIcon44("icon-any.png");
+				}
+				#contestFriends + label .icon {
+					.addIcon44("icon-friends.png");
+				}
+				
+				// Entry Fee
+				&.entry-fee input[type="radio"] + label .energy:after {
+					content: "";
+					.addIcon("icon-lightning-lg.png", 27px, 27px);
+				}
+				&.entry-fee input[type="radio"] + label .manager-points:after {
+					content: "";
+					.addIcon("icon-star-lg.png", 27px, 27px);
+				}
+				&.entry-fee input[type="radio"] + label .gold:after {
+					content: "";
+					.addIcon("icon-coin-lg.png", 27px, 27px);
+				}
+				
+			}
+		}
+	}
+	
+}

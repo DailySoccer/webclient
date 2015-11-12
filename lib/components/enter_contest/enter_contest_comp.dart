@@ -297,6 +297,15 @@ class EnterContestComp implements DetachAware {
   }
 
   void _tryToAddSoccerPlayerToLineup(var soccerPlayer) {
+    if (contest.entryFee.isGold && !_isRestoringTeam) {
+      Money moneyToBuy = new Money.from(Money.CURRENCY_GOLD, soccerPlayer["instanceSoccerPlayer"].moneyToBuy(playerManagerLevel).amount);
+      bool hasMoney = _profileService.isLoggedIn && _profileService.user.hasMoney(moneyToBuy);
+      if (!hasMoney) {
+        alertNotBuy(moneyToBuy);
+        return;
+      }
+    }
+
     // Buscamos el primer slot libre para la posicion que ocupa el soccer player
     FieldPos theFieldPos = soccerPlayer["fieldPos"];
 
@@ -548,6 +557,23 @@ class EnterContestComp implements DetachAware {
     }
   }
 
+  void alertNotBuy(Money coins) {
+    modalShow(
+      "",
+      '''
+      <div class="content-wrapper">
+        <img class="main-image" src="images/iconNoGold.png">
+        <span class="not-enough-resources-count">${coins}</span>
+        <p class="content-text">
+          <strong>${getLocalizedText("alert-no-gold-to-buy-message")}</strong>
+          <br>
+          ${getLocalizedText('alert-user-gold-message', substitutions:{'MONEY': _profileService.user.goldBalance})}
+          <img src="images/icon-coin-xs.png">
+        </p>
+      </div>
+      '''
+    );
+  }
 
   void alertNotEnoughResources() {
     modalShow(

@@ -205,6 +205,7 @@
       "alert-no-gold-title"             : "¡No hay Oro!",
       "alert-no-energy-message"         : "No tienes ENERGÍA para entrar en el torneo",
       "alert-no-gold-message"           : "No tienes ORO para entrar en el torneo",
+      "alert-no-gold-to-buy-message"    : "No tienes ORO para seleccionar al jugador",
       "resource-gold"                   : "ORO",
       "resource-energy"                 : "ENERGÍA",
       "buy-gold-button"                 : "COMPRAR ORO",

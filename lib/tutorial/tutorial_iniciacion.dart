@@ -86,6 +86,7 @@ class TutorialIniciacion extends Tutorial {
               'enter_contest' : () {
                 EnterContestComp enterContest = context;
                 enterContest.fieldPosFilter = FieldPos.FORWARD;
+                enterContest.saveContestEntryFromJson(KeyLocalStorage, JSON.encode(oficialFantasyTeam));
 
                 openModal(
                   title: () => "", //getLocalizedText("title-entercontest"),
@@ -154,6 +155,10 @@ class TutorialIniciacion extends Tutorial {
                   showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: "Entra en este Torneo", highlight: true));
                 },
               'enter_contest' : () {
+                EnterContestComp enterContest = context;
+                enterContest.fieldPosFilter = FieldPos.FORWARD;
+                enterContest.saveContestEntryFromJson(KeyLocalStorage, JSON.encode(virtualFantasyTeam));
+
                 openModal(
                   title: () => getLocalizedText("title-entercontest"),
                   text: () => getLocalizedText("text-entercontest"),
@@ -399,4 +404,28 @@ class TutorialIniciacion extends Tutorial {
   List InstanceSoccerPlayerList = [];
   List SoccerPlayerList = [];
   List FantasyTeam = [];
+
+  List oficialFantasyTeam = [
+    "5625dd85c1f5fbc410ee72fa",
+    "56260840c1f5fbc410f9951a",
+    "56260d5ec1f5fbc410fae9dc",
+    "5625d0edc1f5fbc410e6f00a",
+    "5625d0edc1f5fbc410e6ef4e",
+    "56260840c1f5fbc410f9953f",
+    "5625f9d5c1f5fbc410f5deba",
+    "56260840c1f5fbc410f9954d",
+    "562608c1c1f5fbc410f99f83"
+    ];
+
+  List virtualFantasyTeam = [
+    "5625dd85c1f5fbc410ee72fa",
+    "56260840c1f5fbc410f9951a",
+    "56260d5ec1f5fbc410fae9dc",
+    "5625d0edc1f5fbc410e6f00a",
+    "5625d0edc1f5fbc410e6ef4e",
+    "56260840c1f5fbc410f9953f",
+    "5625f9d5c1f5fbc410f5deba",
+    "56260840c1f5fbc410f9954d",
+    "562608c1c1f5fbc410f99f83"
+    ];
 }

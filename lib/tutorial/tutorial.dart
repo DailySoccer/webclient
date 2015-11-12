@@ -190,6 +190,8 @@ abstract class Tutorial {
   final String REAL_BETIS = "56260840c1f5fbc410f99494";
   final String SPORTING_GIJON = "56260840c1f5fbc410f99496";
 
+  String get KeyLocalStorage => TutorialPlayer()["userId"]+"#23";
+
   Map TutorialPlayer({String goldBalance: null}) => {
     "userId":"PLAYER-5625d093d4c6ebe295987fd1",
     "firstName": "Player",

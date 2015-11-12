@@ -543,13 +543,18 @@ class EnterContestComp implements DetachAware {
     });
   }
 
+  void saveContestEntryFromJson(String key, String json) {
+    window.localStorage[key] = json;
+  }
+
   void saveContestEntry() {
     // Lo almacenamos localStorage.
-    window.localStorage[_getKeyForCurrentUserContest] = JSON.encode(lineupSlots.where((player) => player != null).map((player) => player["id"]).toList());
+    saveContestEntryFromJson(_getKeyForCurrentUserContest, JSON.encode(lineupSlots.where((player) => player != null).map((player) => player["id"]).toList()));
   }
 
   void restoreContestEntry() {
     if (window.localStorage.containsKey(_getKeyForCurrentUserContest)) {
+      // print ("localStorage: key: " + _getKeyForCurrentUserContest + ": " + window.localStorage[_getKeyForCurrentUserContest]);
       List loadedData = JSON.decode(window.localStorage[_getKeyForCurrentUserContest]);
       _isRestoringTeam = true;
       loadedData.forEach((id) {

@@ -10,19 +10,23 @@
   
   <div id="contestTile" class="home-tile-wrapper main-tile-wrapper" ng-click="onContestsClick()">
     <div class="tile">
-      <span class="tile-info">Torneos</span>
+      <span class="tile-title">Torneos</span>
+      <span class="tile-info">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer elementum justo vel eleifend fringilla.</span>
+      <span class="tile-action enable"></span>
     </div>
   </div>
   
   <div id="manageTile"          class="vertical-layout-tilling">
-    <div id="scoutingTile"      class="home-tile-wrapper" ng-click="onScoutingClick()">
-      <div class="tile">
-        <span class="tile-info">Scouting</span>
-      </div>
-    </div>
     <div id="createContestTile" class="home-tile-wrapper" ng-click="onCreateContestClick()">
       <div class="tile">
-        <span class="tile-info">Crear Torneo</span>
+        <span class="tile-title">Reta a tus amigos</span>
+        <span class="tile-action disable"></span>
+      </div>
+    </div>
+    <div id="scoutingTile"      class="home-tile-wrapper" ng-click="onScoutingClick()">
+      <div class="tile">
+        <span class="tile-title">Ojeador</span>
+        <span class="tile-action disable"></span>
       </div>
     </div>
   </div>
@@ -30,28 +34,23 @@
   <div id="myContestsTile"    class="vertical-layout-tilling">
     <div id="historyTile"     class="home-tile-wrapper" ng-click="onHistoryClick()">
       <div class="tile">
-        <span class="tile-info">Historico</span>
+        <span class="tile-title">Histórico</span>
+        <span class="tile-action disable"></span>
       </div>
     </div>
     <div id="liveTile"        class="home-tile-wrapper" ng-click="onLiveClick()">
       <div class="tile">
-        <span class="tile-info">En vivo</span>
+        <span class="tile-title">En vivo</span>
+        <span class="tile-action disable"></span>
       </div>
     </div>
   </div>
   
   <div id="blogTile"     class="home-tile-wrapper" ng-click="onBlogClick()">
     <div class="tile">
-      <span class="tile-info">
-        Cuaderno <br>del Entrenador
-        <span class="notation">Por Salva Carmona</span>
-      </span>
-    </div>
-  </div>
-  
-  <div id="tutorialTile" class="home-tile-wrapper" ng-click="onTutorialClick()">
-    <div class="tile">
-      <span class="tile-info">Tutorial</span>
+      <span class="tile-title">Palabra de Míster</span>
+      <span class="tile-info">Un blog escrito por Salva Carmona, el tio que más sabe de estadísticas futboleras del mundo.</span>
+      <span class="tile-action enable"></span>
     </div>
   </div>
   

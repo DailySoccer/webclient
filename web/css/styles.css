@@ -20231,18 +20231,14 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   padding-left: 15px;
   padding-right: 15px;
   padding: 2px;
-  height: 200px;
+  height: 300px;
   position: relative;
   cursor: pointer;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 12pt;
-  color: #ffffff;
 }
 @media (min-width: 768px) {
   #homeRoot .home-tile-wrapper {
     float: left;
-    width: 25%;
+    width: 33.33333333%;
   }
 }
 #homeRoot .home-tile-wrapper .tile {
@@ -20250,18 +20246,57 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   height: 100%;
   background-color: white;
 }
-#homeRoot .home-tile-wrapper .tile-info {
-  display: block;
-  position: absolute;
-  bottom: 15px;
+#homeRoot .home-tile-wrapper .tile {
+  background-color: #000000;
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
 }
-#homeRoot .home-tile-wrapper .tile-info .notation {
+#homeRoot .home-tile-wrapper .tile .tile-title {
+  display: block;
+  position: relative;
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  font-size: 14pt;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+#homeRoot .home-tile-wrapper .tile .tile-title:after {
+  content: "";
+  display: block;
+  position: relative;
+  width: 70px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+#homeRoot .home-tile-wrapper .tile .tile-info {
   display: block;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
-  font-size: 8pt;
+  font-size: 10pt;
   color: #ffffff;
   font-style: italic;
+  max-width: 200px;
+}
+#homeRoot .home-tile-wrapper .tile .tile-action {
+  margin-top: 20px;
+}
+#homeRoot .home-tile-wrapper .tile .tile-action.disable {
+  content: " ";
+  background-image: url("../images/ht_IconoLock.png");
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+  vertical-align: middle;
+}
+#homeRoot .home-tile-wrapper .tile .tile-action.enable {
+  content: " ";
+  background-image: url("../images/ht_IconoGo.png");
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+  vertical-align: middle;
 }
 #homeRoot .vertical-layout-tilling {
   cursor: default;
@@ -20269,19 +20304,15 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   padding-left: 15px;
   padding-right: 15px;
   padding: 2px;
-  height: 200px;
+  height: 300px;
   position: relative;
   cursor: pointer;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 12pt;
-  color: #ffffff;
   padding: 0;
 }
 @media (min-width: 768px) {
   #homeRoot .vertical-layout-tilling {
     float: left;
-    width: 25%;
+    width: 33.33333333%;
   }
 }
 #homeRoot .vertical-layout-tilling .tile {
@@ -20289,31 +20320,14 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   height: 100%;
   background-color: white;
 }
-#homeRoot .vertical-layout-tilling .tile-info {
-  display: block;
-  position: absolute;
-  bottom: 15px;
-}
-#homeRoot .vertical-layout-tilling .tile-info .notation {
-  display: block;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 8pt;
-  color: #ffffff;
-  font-style: italic;
-}
 #homeRoot .vertical-layout-tilling .home-tile-wrapper {
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
   padding: 2px;
-  height: 100px;
+  height: 150px;
   position: relative;
   cursor: pointer;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 12pt;
-  color: #ffffff;
   display: block;
 }
 @media (min-width: 768px) {
@@ -20327,19 +20341,6 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   height: 100%;
   background-color: white;
 }
-#homeRoot .vertical-layout-tilling .home-tile-wrapper .tile-info {
-  display: block;
-  position: absolute;
-  bottom: 15px;
-}
-#homeRoot .vertical-layout-tilling .home-tile-wrapper .tile-info .notation {
-  display: block;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 8pt;
-  color: #ffffff;
-  font-style: italic;
-}
 #homeRoot .main-tile-wrapper {
   margin-top: 20px;
   min-height: 1px;
@@ -20349,10 +20350,6 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   height: 300px;
   position: relative;
   cursor: pointer;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 12pt;
-  color: #ffffff;
 }
 @media (min-width: 768px) {
   #homeRoot .main-tile-wrapper {
@@ -20365,33 +20362,41 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   height: 100%;
   background-color: white;
 }
-#homeRoot .main-tile-wrapper .tile-info {
-  display: block;
-  position: absolute;
-  bottom: 15px;
+#homeRoot .main-tile-wrapper .tile {
+  background-image: url("../images/ht_ModuloTorneoBG.jpg");
 }
-#homeRoot .main-tile-wrapper .tile-info .notation {
-  display: block;
+#homeRoot .main-tile-wrapper .tile .tile-title {
+  margin-top: 10px;
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  font-size: 30pt;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+#homeRoot .main-tile-wrapper .tile .tile-title:after {
+  width: 85px;
+}
+#homeRoot .main-tile-wrapper .tile .tile-info {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
-  font-size: 8pt;
+  font-size: 10pt;
   color: #ffffff;
-  font-style: italic;
+  max-width: 450px;
 }
-#homeRoot .main-tile-wrapper .tile {
-  background-color: #000000;
+#homeRoot #myContestsTile #historyTile .tile {
+  background-image: url("../images/ht_ModuloHistoricoBG.jpg");
 }
-#homeRoot #myContestsTile .tile {
-  background-color: #214a5f;
+#homeRoot #myContestsTile #liveTile .tile {
+  background-image: url("../images/ht_ModuloEnVivoBG.jpg");
 }
-#homeRoot #manageTile .tile {
-  background-color: #fa9c19;
+#homeRoot #manageTile #createContestTile .tile {
+  background-image: url("../images/ht_ModuloRetaBG.jpg");
 }
-#homeRoot #tutorialTile .tile {
-  background-color: #59add5;
+#homeRoot #manageTile #scoutingTile .tile {
+  background-image: url("../images/ht_ModuloOjeadorBG.jpg");
 }
 #homeRoot #blogTile .tile {
-  background: #59add5;
+  background-image: url("../images/ht_ModuloMisterBG.jpg");
 }
 #homeRoot .clearfix,
 #homeRoot .container,
@@ -20494,13 +20499,9 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   padding-left: 15px;
   padding-right: 15px;
   padding: 2px;
-  height: 500px;
+  height: 750px;
   position: relative;
   cursor: pointer;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 12pt;
-  color: #ffffff;
 }
 @media (min-width: 768px) {
   #tutorialListRoot .tutorial-tile-wrapper {
@@ -20512,19 +20513,6 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   padding: 15px;
   height: 100%;
   background-color: white;
-}
-#tutorialListRoot .tutorial-tile-wrapper .tile-info {
-  display: block;
-  position: absolute;
-  bottom: 15px;
-}
-#tutorialListRoot .tutorial-tile-wrapper .tile-info .notation {
-  display: block;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 8pt;
-  color: #ffffff;
-  font-style: italic;
 }
 #tutorialListRoot #initiation .tile {
   background-color: rgba(255, 255, 255, 0.7);

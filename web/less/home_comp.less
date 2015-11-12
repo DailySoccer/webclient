@@ -5,14 +5,54 @@
 #homeRoot {
 	
 	.home-tile-wrapper {
-		.make-tile(3, 2);
-
+		.make-tile(4, 2);
+		
+		.tile {
+			
+			background-color: @black;
+			//background-image: url("@{images}/landingBackground.jpg");
+			background-size: cover;
+			background-position: center bottom;
+			background-repeat: no-repeat;
+			
+			.tile-title {
+				display: block;
+				position: relative;
+				.exo_bold(14pt, @white);
+				
+				&:after {
+					content: "";
+					display: block;
+					position: relative;
+					width: 70px;
+					border-bottom: 2px solid fade(@white, 50%);
+					margin-bottom: 15px;
+					margin-top: 10px;
+				}
+			}
+				
+			.tile-info {
+				display: block;
+				.opensans_normal(10pt, @white);
+				font-style: italic;
+				max-width: 200px;
+			}
+			.tile-action {
+				margin-top: 20px;
+			}
+			.tile-action.disable {
+				.addIcon("ht_IconoLock.png", 32px, 32px);
+			}
+			.tile-action.enable {
+				.addIcon("ht_IconoGo.png", 32px, 32px);
+			}
+		}
 		//background: #ff0000;
 	}
 
 	.vertical-layout-tilling {
 		cursor: default;
-		.make-tile(3, 2);
+		.make-tile(4, 2);
 		padding: 0;
 	}
 
@@ -25,37 +65,47 @@
 
 	.main-tile-wrapper {
 		margin-top: 20px;
-		.make-tile(12, 3);
+		.make-tile(12, 2);
 
 		.tile {
-			background-color: #000000;
+			background-image: url("@{images}/ht_ModuloTorneoBG.jpg");
+			.tile-title {
+				margin-top: 10px;
+				&:after {
+					width: 85px;
+				}
+				.exo_bold(30pt, @white);
+			}
+			
+			.tile-info {
+				.opensans_normal(10pt, @white);
+				max-width: 450px;
+			}
 		}
 		//background: #0000ff;
 	}
 
 
 	#myContestsTile {
-		.tile {
-			background-color: #214a5f;
+		#historyTile .tile {
+			background-image: url("@{images}/ht_ModuloHistoricoBG.jpg");
+		}
+		#liveTile .tile {
+			background-image: url("@{images}/ht_ModuloEnVivoBG.jpg");
 		}
 	}
 
 	#manageTile {
-		.tile {
-			background-color: #fa9c19;
+		#createContestTile .tile {
+			background-image: url("@{images}/ht_ModuloRetaBG.jpg");
+		}
+		#scoutingTile .tile {
+			background-image: url("@{images}/ht_ModuloOjeadorBG.jpg");
 		}
 	}
 
-	#tutorialTile {
-		.tile {
-			background-color: #59add5;
-		}
-	}
-
-	#blogTile {
-		.tile {
-			background: #59add5;
-		}
+	#blogTile .tile {
+		background-image: url("@{images}/ht_ModuloMisterBG.jpg");
 	}
 	
 	.clearfix {

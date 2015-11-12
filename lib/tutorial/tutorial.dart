@@ -57,7 +57,8 @@ abstract class Tutorial {
     "get_my_history_contests": (url, postData) => emptyContent(),
     "add_contest_entry": (url, postData) => emptyContent(),
     "get_my_contest_entry": (url, postData) => emptyContent(),
-    "get_my_active_contest": (url, postData) => emptyContent()
+    "get_my_active_contest": (url, postData) => emptyContent(),
+    "count_my_live_contests": (url, postData) => emptyContent()
   };
 
   Map joinMaps(List<Map> maps) {
@@ -94,12 +95,17 @@ abstract class Tutorial {
     return modalShow(title != null ? title() : "", body != null ? body() : bodyDefault(text, image), type: 'welcome', modalSize: "lg", onOk: onOk);
   }
 
+  void clearTooltips() {
+    ToolTipService.instance.clear();
+  }
+
   void showTooltip(ToolTip tooltip) {
     ToolTipService.instance.tipElement(tooltip, hideOnClick: tooltip.hasDuration);
   }
 
-  void triggerEnter(String trigger) {
+  void triggerEnter(String trigger, {Object component: null}) {
     if (CurrentStep.hasTrigger(trigger) && CurrentStep.triggers[trigger] != null) {
+      context = component;
       CurrentStep.triggers[trigger]();
 
       /*
@@ -356,6 +362,7 @@ abstract class Tutorial {
   HashMap<String, TutorialStep> tutorialSteps;
   User userBackup;
 
+  Object context;
   ProfileService profileService;
   Router router;
 }

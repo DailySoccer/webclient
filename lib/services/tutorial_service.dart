@@ -56,7 +56,7 @@ class TutorialService {
     querySelector(cssSelector).classes.remove('disabled-pointer-events');
   }
 
-  void triggerEnter(String trigger, {bool activateIfNeeded: true}) {
+  void triggerEnter(String trigger, {bool activateIfNeeded: true, Object component: null}) {
     // Si ningún tutorial está activado, comprobamos si existe alguno que quiera responder al path que ha visitado el usuario
     if (!isActivated && activateIfNeeded) {
       CurrentTutorial = _tutorials.values.firstWhere((tutorial) => !tutorial.isCompleted && tutorial.CurrentStep.hasTrigger(trigger), orElse: () => null);
@@ -72,7 +72,7 @@ class TutorialService {
 
     // Si existe un tutorial activado, permitimos que continúe...
     if (isActivated && CurrentStep.hasTrigger(trigger)) {
-      CurrentTutorial.triggerEnter(trigger);
+      CurrentTutorial.triggerEnter(trigger, component: component);
       configureSkipComponent();
     }
   }

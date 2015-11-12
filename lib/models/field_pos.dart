@@ -2,6 +2,10 @@ library field_pos;
 import 'package:webclient/utils/string_utils.dart';
 
 class FieldPos {
+  static FieldPos GOALKEEPER = new FieldPos(getLocalizedText("goalkeeper"));
+  static FieldPos DEFENSE = new FieldPos(getLocalizedText("defense"));
+  static FieldPos MIDDLE = new FieldPos(getLocalizedText("middle"));
+  static FieldPos FORWARD = new FieldPos(getLocalizedText("forward"));
 
   // Las unicas instancias de FieldPos en todo el programa
   static Map<String, FieldPos> FIELD_POSITIONS = {

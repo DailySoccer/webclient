@@ -64,18 +64,22 @@ class ToolTipService {
 
     return completer.future;
   }
-  
+
   void clear() {
     _requestedTooltips.forEach( (t) => t.cancelAndHide() );
     _requestedTooltips.clear();
     BackdropComp.instance.hide();
   }
-  
+
   List<ToolTip> _requestedTooltips = [];
   static ToolTipService _instance = null;
 }
 
 class ToolTip {
+  static const String POSITION_TOP = 'top';
+  static const String POSITION_BOTTOM = 'bottom';
+  static const String POSITION_LEFT = 'left';
+  static const String POSITION_RIGHT = 'right';
 
   Stream<ToolTip> get onClick => _onClick.stream;
   Stream<ToolTip> get onShow => _onShow.stream;
@@ -87,7 +91,7 @@ class ToolTip {
 
   ToolTip(String cssSelector,
           {String tipText: null, bool highlight: false,
-           String position: 'top', String tipId: '',
+           String position: ToolTip.POSITION_TOP, String tipId: '',
            Duration delay: Duration.ZERO, Duration duration: Duration.ZERO}) {
     _cssSelector = cssSelector;
     _tipText = tipText;
@@ -112,7 +116,7 @@ class ToolTip {
     _isShown = false;
     _onHide.add(this);
   }
-  
+
   void cancelAndHide() {
     void cancel(Timer t) {
       if(t != null && t.isActive) t.cancel();
@@ -122,7 +126,7 @@ class ToolTip {
     cancel(_delayTimer);
     hide();
   }
-  
+
   void _showAsSoonAsPossible() {
     _showAsSoonTimer = new Timer.periodic(new Duration(milliseconds: 100), (Timer t) {
 

@@ -151,7 +151,7 @@ class EnterContestComp implements DetachAware {
     contestId = _routeProvider.route.parameters['contestId'];
     contestEntryId = _routeProvider.route.parameters['contestEntryId'];
 
-    _tutorialService.triggerEnter("enter_contest");
+    _tutorialService.triggerEnter("enter_contest", component: this);
 
     GameMetrics.logEvent(GameMetrics.ENTER_CONTEST);
 
@@ -453,7 +453,7 @@ class EnterContestComp implements DetachAware {
             GameMetrics.peopleSet({"Last Team Created (${contest.competitionType})": new DateTime.now()});
             GameMetrics.logEvent(GameMetrics.ENTRY_FEE, {"value": contest.entryFee.toString()});
             _teamConfirmed = true;
-            _router.go( _profileService.isWelcoming ? 'view_contest_entry.welcome' : 'view_contest_entry', {
+            _router.go( 'view_contest_entry', {
                           "contestId": contestId,
                           "parent": _routeProvider.parameters["parent"],
                           "viewContestEntryMode": contestId == contest.contestId? "created" : "swapped"
@@ -575,7 +575,10 @@ class EnterContestComp implements DetachAware {
         </p>
       </div>
       '''
-    );
+    )
+    .then((_) {
+      _tutorialService.triggerEnter("alert-not-buy");
+    });
   }
 
   void alertNotEnoughResources() {

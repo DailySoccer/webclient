@@ -7,9 +7,12 @@ import 'package:webclient/tutorial/tutorial.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/tooltip_service.dart';
 import 'package:angular/angular.dart';
+import 'package:webclient/components/enter_contest/enter_contest_comp.dart';
+import 'package:webclient/models/field_pos.dart';
 
 class TutorialIniciacion extends Tutorial {
   static String STEP_1 = "1";
+  static String STEP_2 = "2";
 
   String get PATH => "tutorial/iniciacion/";
 
@@ -17,14 +20,14 @@ class TutorialIniciacion extends Tutorial {
     getContentJson(PATH + "instance_soccer_players.json").then((list) => InstanceSoccerPlayerList = list);
     getContentJson(PATH + "soccer_players.json").then((list) => SoccerPlayerList = list);
 
-    var serverCallsWhenActive = joinMaps([defaultServerCalls, {
+    var serverCallsWhenOficial = joinMaps([defaultServerCalls, {
       "get_active_contests" : (url, postData) => waitCompleter( () => OficialContestListWithFakes ),
       "get_active_contest" : (url, postData) => waitCompleter( () => OficialContestList ),
       "get_contest_info" : (url, postData) => waitCompleter( () => OficialContestList ),
       "add_contest_entry": (url, postData) { return addContestEntry(postData); }
     }]);
 
-    var serverCallsWhenContestEntry = joinMaps([defaultServerCalls, {
+    var serverCallsWhenOficialContestEntry = joinMaps([defaultServerCalls, {
       "get_my_contest_entry": (url, postData) => waitCompleter( () => OficialContestList ),
       "get_my_active_contests": (url, postData) => waitCompleter( () => OficialContestList ),
       "get_contest_info" : (url, postData) => waitCompleter( () => OficialContestList ),
@@ -32,80 +35,159 @@ class TutorialIniciacion extends Tutorial {
       "edit_contest_entry": (url, postData) => addContestEntry(postData)
     }]);
 
+    var serverCallsWhenVirtual = joinMaps([defaultServerCalls, {
+      "get_active_contests" : (url, postData) => waitCompleter( () => TrainingContestList ),
+      "get_active_contest" : (url, postData) => waitCompleter( () => TrainingContestList ),
+      "get_contest_info" : (url, postData) => waitCompleter( () => TrainingContestList ),
+      "add_contest_entry": (url, postData) { CurrentStepId = STEP_2; return addContestEntry(postData); }
+    }]);
+
+    var serverCallsWhenVirtualContestEntry = joinMaps([defaultServerCalls, {
+      "get_my_contest_entry": (url, postData) => waitCompleter( () => TrainingContestList ),
+      "get_my_active_contests": (url, postData) => waitCompleter( () => TrainingContestList ),
+      "get_contest_info" : (url, postData) => waitCompleter( () => TrainingContestList ),
+      "get_my_active_contest": (url, postData) => waitCompleter( () => TrainingContestList ),
+      "edit_contest_entry": (url, postData) => addContestEntry(postData),
+      "get_my_live_contest": (url, postData) => waitCompleter( () => TrainingContestLive )
+    }]);
+
     tutorialSteps = {
       Tutorial.STEP_BEGIN: new TutorialStep(
             triggers: {
-              'lobby': () => openModal(
-                      title: () => getLocalizedText("title-lobby"),
-                      text: () => getLocalizedText("text-lobby"),
-                      image: null, //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg"),
-                      onOk: getLocalizedText("next", context: "tutorial")
-                    )
-                    .then((_) => openModal(
-                        title: () => "ORO",
-                        text: () => "Participar en torneos cuesta oro. Por ahora comienzas con 1 de Oro, suficiente para entrar en un primer torneo.",
-                        image: null //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg")
-                      )
-                    )
-                    .then((_) {
-                        //showTooltip(new ToolTip("#activeContestList .train", tipText: "Torneo Entrenamiento", delay: new Duration(seconds: 1), duration: new Duration(seconds: 1), highlight: true));
-                        //showTooltip(new ToolTip("#activeContestList .real", tipText: "Torneo Oficial", delay: new Duration(seconds: 2), duration: new Duration(seconds: 1), highlight: true));
-                        //showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: "Entra en este Torneo", highlight: true));
-
-                        /*
-                        changeTrigger("lobby", () {
-                          showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: "Entra en este Torneo", duration: new Duration(seconds: 1)));
-                          showTooltip(new ToolTip("#activeContestList .contestSlot", highlight: true));
-                        });
-                        */
-
-                        changeTrigger("lobby", () => showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: "Entra en este Torneo", highlight: true)));
-                        triggerEnter("lobby");
-                        // removeEnter("lobby");
-                    }),
-              'enter_contest' : () {
-                    openModal(
-                      title: () => getLocalizedText("title-entercontest"),
-                      text: () => getLocalizedText("text-entercontest"),
-                      image: null // ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg")
-                    )
-                    .then((_) {
-                        //showTooltip(new ToolTip("#activeContestList .train", tipText: "Torneo Entrenamiento", delay: new Duration(seconds: 1), duration: new Duration(seconds: 1), highlight: true));
-                        //showTooltip(new ToolTip("#activeContestList .real", tipText: "Torneo Oficial", delay: new Duration(seconds: 2), duration: new Duration(seconds: 1), highlight: true));
-                        //showTooltip(new ToolTip(".totalSalary", tipText: "Entra en este Torneo", delay: new Duration(seconds: 3), duration: new Duration(seconds: 1), highlight: true));
-
-                        //showTooltip(new ToolTip("#enter-contest-wrapper", highlight: true));
-                    });
-              },
-              'lineup-4': () => openModal(
-                  title: () => "",
-                  text: () => "Tú nivel de entrenador determina qué jugadores puedes fichar...",
+              'lobby': () =>
+                openModal(
+                  title: () => "", //getLocalizedText("title-lobby"),
+                  text: () => "En Epic Eleven podrás crear equipos virtuales, con jugadores reales de los equipos que participan en la Liga Española, la Premier League y la Champion's League.",
                   image: null, //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg"),
                   onOk: getLocalizedText("next", context: "tutorial")
                 )
                 .then((_) => openModal(
                     title: () => "",
-                    text: () => "Puedes mejorar tu nivel de entrenador compitiendo en torneos virtuales",
+                    text: () => "Vamos a jugar nuestro primer torneo. Participar en los torneos cuesta Oro, pero no te preocupes hemos añadido suficiente oro para que puedas participar.",
+                    image: null //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg")
+                  )
+                )
+                .then((_) {
+                    //showTooltip(new ToolTip("#activeContestList .train", tipText: "Torneo Entrenamiento", delay: new Duration(seconds: 1), duration: new Duration(seconds: 1), highlight: true));
+                    //showTooltip(new ToolTip("#activeContestList .real", tipText: "Torneo Oficial", delay: new Duration(seconds: 2), duration: new Duration(seconds: 1), highlight: true));
+                    //showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: "Entra en este Torneo", highlight: true));
+
+                    /*
+                    changeTrigger("lobby", () {
+                      showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: "Entra en este Torneo", duration: new Duration(seconds: 1)));
+                      showTooltip(new ToolTip("#activeContestList .contestSlot", highlight: true));
+                    });
+                    */
+
+                    changeTrigger("lobby", () => showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: "Selecciona este torneo", highlight: true)));
+                    triggerEnter("lobby");
+                    //removeEnter("lobby");
+                }),
+              'enter_contest' : () {
+                EnterContestComp enterContest = context;
+                enterContest.fieldPosFilter = FieldPos.FORWARD;
+
+                openModal(
+                  title: () => "", //getLocalizedText("title-entercontest"),
+                  text: () => "Haz tu equipo ideal a partir de los jugadores que participan en este torneo", //getLocalizedText("text-entercontest"),
+                  image: null, // ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg")
+                  onOk: getLocalizedText("next", context: "tutorial")
+                )
+                .then((_) =>
+                    openModal(
+                      title: () => "", //getLocalizedText("title-entercontest"),
+                      text: () => "Ten en cuenta que cada jugador tiene un salario y debes mantenerte dentro del presupuesto.", //getLocalizedText("text-entercontest"),
+                      image: null, // ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg")
+                      onOk: getLocalizedText("next", context: "tutorial")
+                    )
+                )
+                .then((_) {
+                  showTooltip(new ToolTip("#soccerPlayer220", tipText: "Selecciona este jugador", highlight: true, position: ToolTip.POSITION_BOTTOM));
+                });
+              },
+              'lineup-10': () {
+                clearTooltips();
+
+                openModal(
+                  title: () => "",
+                  text: () => "Bien, ya has añadido tu primer jugador",
+                  image: null, //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg"),
+                  onOk: getLocalizedText("next", context: "tutorial")
+                )
+                .then((_) {
+                  showTooltip(new ToolTip("#soccerPlayer464", tipText: "Selecciona este jugador", highlight: true, position: ToolTip.POSITION_BOTTOM));
+                })
+                .then((_) {
+                });
+              },
+              'alert-not-buy': () {
+                  clearTooltips();
+                  openModal(
+                    title: () => "",
+                    text: () => "Tú nivel de entrenador determina qué jugadores puedes fichar...",
                     image: null, //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg"),
                     onOk: getLocalizedText("next", context: "tutorial")
-                 ))
-                .then((_) {
-                  CurrentStepId = STEP_1;
-                  router.go("lobby", {});
-                }),
-              'view_contest_entry': () => openModal(
-                      title: () => getLocalizedText("title-viewcontestentry"),
-                      text: () => getLocalizedText("text-viewcontestentry"),
-                      image: null //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeSuccessXs.jpg" : "welcomeSuccessDesktop.jpg")
-                    )
+                  )
+                  .then((_) => openModal(
+                      title: () => "",
+                      text: () => "Puedes mejorar tu nivel de entrenador compitiendo en torneos virtuales",
+                      image: null, //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg"),
+                      onOk: getLocalizedText("next", context: "tutorial")
+                   ))
+                  .then((_) {
+                    CurrentStepId = STEP_1;
+                    router.go("lobby", {});
+                  });
+              },
+              'view_contest_entry': () =>
+                openModal(
+                  title: () => getLocalizedText("title-viewcontestentry"),
+                  text: () => getLocalizedText("text-viewcontestentry"),
+                  image: null //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeSuccessXs.jpg" : "welcomeSuccessDesktop.jpg")
+                )
             },
-            serverCalls: serverCallsWhenActive
+            serverCalls: serverCallsWhenOficial
         ),
         STEP_1: new TutorialStep(
             triggers: {
+              'lobby': () {
+                  showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: "Entra en este Torneo", highlight: true));
+                },
+              'enter_contest' : () {
+                openModal(
+                  title: () => getLocalizedText("title-entercontest"),
+                  text: () => getLocalizedText("text-entercontest"),
+                  image: null // ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg")
+                );
+              }
             },
-            serverCalls: serverCallsWhenContestEntry
-        )
+            serverCalls: serverCallsWhenVirtual
+        ),
+        STEP_2: new TutorialStep(
+            triggers: {
+              'lobby': () {
+                  showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: "Entra en este Torneo", highlight: true));
+                },
+              'enter_contest' : () {
+                openModal(
+                  title: () => getLocalizedText("title-entercontest"),
+                  text: () => getLocalizedText("text-entercontest"),
+                  image: null // ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg")
+                );
+              },
+              'view_contest_entry': () {
+                openModal(
+                  title: () => "",
+                  text: () => "Simulación del torneo...",
+                  image: null //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeSuccessXs.jpg" : "welcomeSuccessDesktop.jpg")
+                )
+                .then((_) {
+                  router.go('live_contest', {"contestId": TrainingContestInstance["_id"], "parent": "my_contests"});
+                });
+              }
+            },
+            serverCalls: serverCallsWhenVirtualContestEntry
+        ),
     };
   }
 
@@ -172,9 +254,39 @@ class TutorialIniciacion extends Tutorial {
       "soccer_players": SoccerPlayerList
   };
 
+  Map get TrainingContestLive => {
+    "contests": [
+      TrainingContestInstanceLive
+      ],
+      "users_info": profileService.isLoggedIn && FantasyTeam.isNotEmpty ? joinLists(UsersInfo, element: PlayerInfo) : UsersInfo,
+      "match_events": MatchEvents,
+      "soccer_teams": SoccerTeams,
+      "soccer_players": SoccerPlayerList
+  };
+
   Map get TrainingContestInstance => {
         "templateContestId": "56331d4dd4c6912cf152f1f4",
         "state": "ACTIVE",
+        "name": "Tutorial [Entrenamiento]",
+        "contestEntries": profileService.isLoggedIn && FantasyTeam.isNotEmpty ? joinLists(ContestEntries, element: PlayerEntry) : ContestEntries,
+        "templateMatchEventIds": TemplateMatchEventIds,
+        "instanceSoccerPlayers": InstanceSoccerPlayerList,
+        "maxEntries": 20,
+        "salaryCap": 70000,
+        "entryFee": "JPY 1",
+        "prizeMultiplier": 10.0,
+        "prizeType": "FIFTY_FIFTY",
+        "startDate": new DateTime.now().add(new Duration(minutes: 60)).millisecondsSinceEpoch,
+        "optaCompetitionId": "23",
+        "simulation": true,
+        "specialImage": "",
+        "numEntries": ContestEntries.length,
+        "_id":  "TRAINING-56331d69d4c6912cf152f201"
+  };
+
+  Map get TrainingContestInstanceLive => {
+        "templateContestId": "56331d4dd4c6912cf152f1f4",
+        "state": "LIVE",
         "name": "Tutorial [Entrenamiento]",
         "contestEntries": profileService.isLoggedIn && FantasyTeam.isNotEmpty ? joinLists(ContestEntries, element: PlayerEntry) : ContestEntries,
         "templateMatchEventIds": TemplateMatchEventIds,

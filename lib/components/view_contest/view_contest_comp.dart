@@ -51,7 +51,7 @@ class ViewContestComp implements DetachAware {
 
     contestId = _routeProvider.route.parameters['contestId'];
 
-    tutorialService.triggerEnter("view_contest_entry");
+    tutorialService.triggerEnter("view_contest");
 
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
 

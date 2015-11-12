@@ -24,7 +24,7 @@ Future<bool> modalShow(String title, String content, {String modalSize: "lg",
   void onClose(dynamic sender) {
     modalWindow.children.remove(modalWindow.querySelector('#' + globalRootId));
     BackdropComp.instance.hide();
-    completer.complete(result);
+    if(!completer.isCompleted) completer.complete(result);
   }
 
   void closeMe() {

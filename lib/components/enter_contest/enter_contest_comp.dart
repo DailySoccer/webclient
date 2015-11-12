@@ -119,7 +119,7 @@ class EnterContestComp implements DetachAware {
 
   EnterContestComp(this._routeProvider, this._router, this.scrDet,
                    this._contestsService, this.loadingService, this._profileService, this._catalogService,
-                   this._flashMessage, this._rootElement, TutorialService tutorialService) {
+                   this._flashMessage, this._rootElement, this._tutorialService) {
     loadingService.isLoading = true;
 
     errorMap = {
@@ -151,7 +151,7 @@ class EnterContestComp implements DetachAware {
     contestId = _routeProvider.route.parameters['contestId'];
     contestEntryId = _routeProvider.route.parameters['contestEntryId'];
 
-    tutorialService.triggerEnter("enter_contest");
+    _tutorialService.triggerEnter("enter_contest");
 
     GameMetrics.logEvent(GameMetrics.ENTER_CONTEST);
 
@@ -336,6 +336,9 @@ class EnterContestComp implements DetachAware {
 
     if(!_isRestoringTeam) {
       _verifyMaxPlayersInSameTeam();
+
+      int playerInLineup = lineupSlots.where((player) => player != null).length;
+      _tutorialService.triggerEnter("lineup-" + playerInLineup.toString(), activateIfNeeded: false);
     }
   }
 
@@ -630,6 +633,7 @@ class EnterContestComp implements DetachAware {
   Router _router;
   RouteProvider _routeProvider;
 
+  TutorialService _tutorialService;
   ContestsService _contestsService;
   ProfileService _profileService;
   CatalogService _catalogService;

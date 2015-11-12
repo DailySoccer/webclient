@@ -31,7 +31,7 @@ class TutorialService {
     _instance = this;
 
     _tutorials = {
-      Tutorial.INITIATION: new TutorialIniciacion(profileService)
+      Tutorial.INITIATION: new TutorialIniciacion(this._router, profileService)
     };
   }
 
@@ -46,9 +46,9 @@ class TutorialService {
     }
   }
 
-  void triggerEnter(String trigger) {
+  void triggerEnter(String trigger, {bool activateIfNeeded: true}) {
     // Si ningún tutorial está activado, comprobamos si existe alguno que quiera responder al path que ha visitado el usuario
-    if (!isActivated) {
+    if (!isActivated && activateIfNeeded) {
       CurrentTutorial = _tutorials.values.firstWhere((tutorial) => !tutorial.isCompleted && tutorial.CurrentStep.hasTrigger(trigger), orElse: () => null);
       _activated = CurrentTutorial != null;
 

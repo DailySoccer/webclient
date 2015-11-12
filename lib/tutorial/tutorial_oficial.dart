@@ -3,11 +3,12 @@ library tutorial_oficial;
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/tutorial/tutorial.dart';
 import 'package:webclient/services/profile_service.dart';
+import 'package:angular/angular.dart';
 
 class TutorialOficial extends Tutorial {
   String get PATH => "tutorial/oficial/";
 
-  TutorialOficial(ProfileService profileService) : super(profileService) {
+  TutorialOficial(Router router, ProfileService profileService) : super(router, profileService) {
     tutorialSteps = {
       Tutorial.STEP_BEGIN: new TutorialStep(
             triggers: {

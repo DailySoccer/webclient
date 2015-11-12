@@ -6,13 +6,14 @@ import 'dart:convert' show JSON;
 import 'package:webclient/tutorial/tutorial.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/tooltip_service.dart';
+import 'package:angular/angular.dart';
 
 class TutorialEntrenamiento extends Tutorial {
   static String STEP_1 = "1";
 
   String get PATH => "tutorial/entrenamiento/";
 
-  TutorialEntrenamiento(ProfileService profileService) : super(profileService) {
+  TutorialEntrenamiento(Router router, ProfileService profileService) : super(router, profileService) {
     getContentJson(PATH + "instance_soccer_players.json").then((list) => InstanceSoccerPlayerList = list);
     getContentJson(PATH + "soccer_players.json").then((list) => SoccerPlayerList = list);
 

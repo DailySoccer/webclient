@@ -10,6 +10,7 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/html_utils.dart';
 import 'package:webclient/services/tooltip_service.dart';
 import 'package:webclient/models/user.dart';
+import 'package:angular/angular.dart';
 
 class TutorialStep {
   Map<String, Function> triggers;
@@ -38,7 +39,7 @@ abstract class Tutorial {
 
   void skipTutorial() { CurrentStepId = STEP_END; }
 
-  Tutorial(this.profileService);
+  Tutorial(this.router, this.profileService);
 
   void activate();
 
@@ -356,4 +357,5 @@ abstract class Tutorial {
   User userBackup;
 
   ProfileService profileService;
+  Router router;
 }

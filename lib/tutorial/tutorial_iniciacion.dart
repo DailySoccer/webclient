@@ -6,13 +6,14 @@ import 'dart:convert' show JSON;
 import 'package:webclient/tutorial/tutorial.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/tooltip_service.dart';
+import 'package:angular/angular.dart';
 
 class TutorialIniciacion extends Tutorial {
   static String STEP_1 = "1";
 
   String get PATH => "tutorial/iniciacion/";
 
-  TutorialIniciacion(ProfileService profileService) : super(profileService) {
+  TutorialIniciacion(Router router, ProfileService profileService) : super(router, profileService) {
     getContentJson(PATH + "instance_soccer_players.json").then((list) => InstanceSoccerPlayerList = list);
     getContentJson(PATH + "soccer_players.json").then((list) => SoccerPlayerList = list);
 
@@ -20,7 +21,7 @@ class TutorialIniciacion extends Tutorial {
       "get_active_contests" : (url, postData) => waitCompleter( () => OficialContestListWithFakes ),
       "get_active_contest" : (url, postData) => waitCompleter( () => OficialContestList ),
       "get_contest_info" : (url, postData) => waitCompleter( () => OficialContestList ),
-      "add_contest_entry": (url, postData) { CurrentStepId = STEP_1; return addContestEntry(postData); }
+      "add_contest_entry": (url, postData) { return addContestEntry(postData); }
     }]);
 
     var serverCallsWhenContestEntry = joinMaps([defaultServerCalls, {
@@ -76,6 +77,22 @@ class TutorialIniciacion extends Tutorial {
                         //showTooltip(new ToolTip("#enter-contest-wrapper", highlight: true));
                     });
               },
+              'lineup-4': () => openModal(
+                  title: () => "",
+                  text: () => "Tú nivel de entrenador determina qué jugadores puedes fichar...",
+                  image: null, //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg"),
+                  onOk: getLocalizedText("next", context: "tutorial")
+                )
+                .then((_) => openModal(
+                    title: () => "",
+                    text: () => "Puedes mejorar tu nivel de entrenador compitiendo en torneos virtuales",
+                    image: null, //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg"),
+                    onOk: getLocalizedText("next", context: "tutorial")
+                 ))
+                .then((_) {
+                  CurrentStepId = STEP_1;
+                  router.go("lobby", {});
+                }),
               'view_contest_entry': () => openModal(
                       title: () => getLocalizedText("title-viewcontestentry"),
                       text: () => getLocalizedText("text-viewcontestentry"),

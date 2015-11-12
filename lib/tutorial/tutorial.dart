@@ -92,7 +92,7 @@ abstract class Tutorial {
       ''';
 
   Future openModal({String title(): null, String text(): null, String image({String size}): null, String body(): null, String onOk: null}) {
-    return modalShow(title != null ? title() : "", body != null ? body() : bodyDefault(text, image), type: 'welcome', modalSize: "lg", onOk: onOk);
+    return modalShow(title != null ? title() : "", body != null ? body() : bodyDefault(text, image), type: 'welcome', modalSize: "md", onOk: onOk);
   }
 
   void clearTooltips() {

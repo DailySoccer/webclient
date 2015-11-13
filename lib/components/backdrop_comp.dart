@@ -26,22 +26,31 @@ class BackdropComp {
     }
     return _instance;
   }
-  
+
   BackdropComp();
-  
-  void show() {
+
+  void show({Object propietary: null}) {
+    if (propietary != null && !backdropElement.classes.contains('visible')) {
+      _propietary = propietary;
+    }
+
     backdropElement.classes.add('visible');
-    backdropElement.onClick.listen((e) => _onClick.add(this));
     _onShow.add(this);
   }
-  
-  void hide() {
+
+  void hide({Object propietary: null, bool forceUpdate: false}) {
+    if (_propietary != propietary && !forceUpdate) {
+      return;
+    }
+
     if (backdropElement.classes.contains('visible')) {
       backdropElement.classes.remove('visible');
       _onHide.add(this);
+      _propietary = null;
     }
   }
-  
+
+  Object _propietary = null;
   Element _backdropElement = null;
   static BackdropComp _instance = null;
 

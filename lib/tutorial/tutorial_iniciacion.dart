@@ -107,7 +107,7 @@ class TutorialIniciacion extends Tutorial {
 
                 //Bien, ya has añadido tu primer jugador.
                 showTooltip(new ToolTip(".posDEL", tipText: getLocalizedText("msg-07"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
-                  //Cuando añades un jugador su salario
+                  //Cuando añades un jugador su salario (".enter-contest-total-salary")
                   showTooltip(new ToolTip(".enter-contest-lineup-wrapper", tipText: getLocalizedText("msg-08"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
                     //Cada jugador además de su salario
                     showTooltip(new ToolTip("#soccerPlayer464", tipText: getLocalizedText("msg-09"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {

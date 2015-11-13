@@ -23,12 +23,12 @@ class ToolTipService {
 
     void hideTip([_]) {
       tip.hide();
-      if (tip.isHighlight) backdrop.hide();
+      if (tip.isHighlight) backdrop.hide(propietary: tip);
       if (subscription != null) subscription.cancel();
     };
 
     if (tip.isHighlight) {
-      tip.onShow.listen((_) => backdrop.show());
+      tip.onShow.listen((_) => backdrop.show(propietary: tip));
       if (hideOnClick) subscription = backdrop.onClick.listen(hideTip);
     }
 

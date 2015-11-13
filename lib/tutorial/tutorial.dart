@@ -52,6 +52,7 @@ abstract class Tutorial {
     "get_active_contests" : (url, postData) => emptyContent(),
     "get_active_contest" : (url, postData) => emptyContent(),
     "get_contest_info" : (url, postData) => emptyContent(),
+    "get_instance_soccer_player_info": (url, postData) => emptyContent(),
     "get_my_active_contests": (url, postData) => emptyContent(),
     "get_my_live_contests": (url, postData) => emptyContent(),
     "get_my_history_contests": (url, postData) => emptyContent(),

@@ -144,17 +144,17 @@ class TutorialIniciacion extends Tutorial {
         STEP_1: new TutorialStep(
             triggers: {
               'lobby': () {
+                  /*
                   //Para participar en los torneos virtuales necesitarás energía
                   showTooltip(new ToolTip(".energy", tipText: getLocalizedText("msg-18"), highlight: true, position: ToolTip.POSITION_BOTTOM, onClickCb: (_) {
                     //Selecciona este torneo
                     showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: getLocalizedText("msg-19"), highlight: true));
                   }));
-                  /*
+                   */
                   openModal(
                     text: () => getLocalizedText("msg-18") //Para participar en los torneos virtuales necesitarás energía
                   )
                   .then ((_) => showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: getLocalizedText("msg-19"), highlight: true))); //Selecciona este torneo
-                 */
                 },
               'enter_contest' : () {
                 EnterContestComp enterContest = context;
@@ -175,9 +175,14 @@ class TutorialIniciacion extends Tutorial {
               'lineup-11': () {
                 clearTooltips();
 
+                //Una vez completada una alineación se activa el botón de Continuar
+                showTooltip(new ToolTip(".button-wrapper .btn-confirm-lineup-list", tipText: getLocalizedText("msg-25"), highlight: true, position: ToolTip.POSITION_TOP));
+
+                /*
                 openModal(
                   text: () => getLocalizedText("msg-25") //Una vez completada una alineación se activa el botón de Continuar
                 );
+                 */
               }
             },
             serverCalls: serverCallsWhenVirtual

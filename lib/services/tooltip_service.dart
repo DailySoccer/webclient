@@ -104,6 +104,7 @@ class ToolTip {
     _duration = duration;
 
     if (onClickCb != null) {
+      _onClickCb = onClickCb;
       onHide.listen(onClickCb);
     }
   }
@@ -146,7 +147,7 @@ class ToolTip {
         _theTip = new Element.div();
         _theTip.classes.addAll(["epic-tooltip", _position]);
         if (_tipId != '') _theTip.id = _tipId;
-        _theTip.appendText(_tipText);
+        _theTip.appendHtml(_tipText);
         _theTip.onClick.listen((e) {
           _onClick.add(this);
           e.stopImmediatePropagation();

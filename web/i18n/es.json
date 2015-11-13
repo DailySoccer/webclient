@@ -533,7 +533,7 @@
       "msg-20"                          : "A diferencia de los Torneos Reales, en los Virtuales no existe una limitación por nivel de manager, por lo tanto todos los jugadores estarán disponibles.<br><br>Así que la única limitación será tu presupuesto.",
       "msg-23"                          : "Hemos hecho la alineación por ti, solo necesitas alinear un delantero.",
       "msg-24"                          : "Añade un delantero.",
-      "msg-25"                          : "Una vez completada una alineación se activa el botón de Continuar. Púlsalo.",
+      "msg-25"                          : "Una vez completada una alineación se activa el botón de Continuar.<br>Púlsalo.",
       "msg-25b"                         : "Acabas de entrar en un Torneo Virtual.",
       "msg-26"                          : "Ésta es la pantalla de simulación, donde podrás ver en tiempo real cómo se desarrolla el partido y tu clasificación en ese torneo virtual.",
       "msg-27"                          : "También podrás ver las alineaciones de tus rivales.",

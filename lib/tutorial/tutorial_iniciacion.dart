@@ -63,22 +63,16 @@ class TutorialIniciacion extends Tutorial {
                 )
                 .then((_) => openModal(
                     title: () => "",
-                    text: () => "Vamos a jugar nuestro primer torneo. Participar en los torneos cuesta Oro, pero no te preocupes hemos añadido suficiente oro para que puedas participar.",
+                    text: () => "Vamos a jugar nuestro primer torneo. Participar en los torneos cuesta oro, pero no te preocupes hemos añadido suficiente oro para que puedas participar.",
                     image: null, //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg")
                     onOk: getLocalizedText("next", context: "tutorial")
                   )
                 )
                 .then((_) => openModal(
                     title: () => "",
-                    text: () => "Los torneos reales están asociados a eventos reales, se juegan en tiempo real, en la fecha del evento de la vida real.",
+                    text: () => "Los torneos reales están asociados a eventos reales, se juegan en tiempo real, en la fecha del evento de la vida real.<br><br>Los resultados de los torneos están basados en las valoraciones de los jugadores durante el partido o partidos pertenecientes al torneo.",
                     image: null, //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg")
                     onOk: getLocalizedText("next", context: "tutorial")
-                  )
-                )
-                .then((_) => openModal(
-                    title: () => "",
-                    text: () => "Los resultados de los torneos están basados en las valoraciones de los jugadores durante el partido o partidos pertenecientes al torneo.",
-                    image: null //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg")
                   )
                 )
                 .then((_) {
@@ -104,17 +98,9 @@ class TutorialIniciacion extends Tutorial {
 
                 openModal(
                   title: () => "", //getLocalizedText("title-entercontest"),
-                  text: () => "Haz tu equipo ideal a partir de los jugadores que participan en este torneo", //getLocalizedText("text-entercontest"),
+                  text: () => "Haz tu equipo ideal a partir de los jugadores que participan en este torneo.<br><br>Ten en cuenta que cada jugador tiene un salario y debes mantenerte dentro del presupuesto.", //getLocalizedText("text-entercontest"),
                   image: null, // ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg")
                   onOk: getLocalizedText("next", context: "tutorial")
-                )
-                .then((_) =>
-                    openModal(
-                      title: () => "", //getLocalizedText("title-entercontest"),
-                      text: () => "Ten en cuenta que cada jugador tiene un salario y debes mantenerte dentro del presupuesto.", //getLocalizedText("text-entercontest"),
-                      image: null, // ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg")
-                      onOk: getLocalizedText("next", context: "tutorial")
-                    )
                 )
                 .then((_) {
                   showTooltip(new ToolTip("#soccerPlayer220", tipText: "Añade este jugador a tu alineación.", highlight: true, position: ToolTip.POSITION_BOTTOM));
@@ -149,7 +135,8 @@ class TutorialIniciacion extends Tutorial {
                   openModal(
                     title: () => "",
                     text: () => "Los jugadores marcados en rojo, son jugadores con un nivel de entrenador superior a tu nivel actual.",
-                    image: null //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg"),
+                    image: null, //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg"),
+                    onOk: getLocalizedText("next", context: "tutorial")
                   )
                 )
                 .then((_) {
@@ -162,27 +149,13 @@ class TutorialIniciacion extends Tutorial {
                   clearTooltips();
                   openModal(
                     title: () => "",
-                    text: () => "Como has podido ver no puedes alinearlo, a no ser que utilices oro.",
+                    text: () => "Como has podido ver no puedes alinearlo, a no ser que utilices oro o subas tu nivel de manager.<br><br>Para mejorar tu nivel de entrenador, deberás ganar experiencia compitiendo en torneos virtuales.",
                     image: null, //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg"),
                     onOk: getLocalizedText("next", context: "tutorial")
                   )
-                  .then((_) =>
-                    openModal(
-                      title: () => "",
-                      text: () => "Para mejorar tu nivel de entrenador, deberás ganar experiencia compitiendo en torneos virtuales.",
-                      image: null, //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg"),
-                      onOk: getLocalizedText("next", context: "tutorial")
-                    )
-                  )
                   .then((_) => openModal(
                       title: () => "",
-                      text: () => "Los torneos virtuales, se pueden jugar en cualquier momento, no cuestan sino energía y al participar en ellos, ganarás puntos de prestigio que harán subir tu nivel de manager.",
-                      image: null, //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg"),
-                      onOk: getLocalizedText("next", context: "tutorial")
-                   ))
-                  .then((_) => openModal(
-                      title: () => "",
-                      text: () => "Los torneos virtuales, están basados en las estadísticas históricas de los jugadores y el resultado de un avanzado algoritmo de simulación.",
+                      text: () => "Los torneos virtuales, se pueden jugar en cualquier momento, no cuestan sino energía y al participar en ellos, ganarás puntos de prestigio que harán subir tu nivel de manager.<br><br>Los torneos virtuales, están basados en las estadísticas históricas de los jugadores y el resultado de un avanzado algoritmo de simulación.",
                       image: null, //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg"),
                       onOk: getLocalizedText("next", context: "tutorial")
                    ))
@@ -195,7 +168,8 @@ class TutorialIniciacion extends Tutorial {
                 openModal(
                   title: () => getLocalizedText("title-viewcontestentry"),
                   text: () => getLocalizedText("text-viewcontestentry"),
-                  image: null //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeSuccessXs.jpg" : "welcomeSuccessDesktop.jpg")
+                  image: null, //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeSuccessXs.jpg" : "welcomeSuccessDesktop.jpg")
+                  onOk: getLocalizedText("next", context: "tutorial")
                 )
             },
             serverCalls: serverCallsWhenOficial
@@ -205,8 +179,9 @@ class TutorialIniciacion extends Tutorial {
               'lobby': () {
                   openModal(
                     title: () => "", //getLocalizedText("title-entercontest"),
-                    text: () => "Vamos a jugar nuestro primer torneo virtual, para participar en los torneos necesitarás energía.", //getLocalizedText("text-entercontest"),
-                    image: null // ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg")
+                    text: () => "Para participar en los torneos virtuales necesitarás energía.", //getLocalizedText("text-entercontest"),
+                    image: null, // ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg")
+                    onOk: getLocalizedText("next", context: "tutorial")
                   )
                   .then ((_) => showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: "Selecciona este torneo", highlight: true)));
                 },
@@ -217,26 +192,16 @@ class TutorialIniciacion extends Tutorial {
 
                 openModal(
                   title: () => "", //getLocalizedText("title-entercontest"),
-                  text: () => "A diferencia de los Torneos Reales, en los Virtuales no existe una limitación por nivel de manager.", //getLocalizedText("text-entercontest"),
-                  image: null // ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg")
+                  text: () => "A diferencia de los Torneos Reales, en los Virtuales no existe una limitación por nivel de manager, por lo tanto todos los jugadores estarán disponibles.<br><br>Así que la única limitación será tu presupuesto.", //getLocalizedText("text-entercontest"),
+                  image: null, // ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg")
+                  onOk: getLocalizedText("next", context: "tutorial")
                 )
                 .then((_) =>
                   openModal(
                     title: () => "", //getLocalizedText("title-entercontest"),
-                    text: () => "Y por lo tanto todos los jugadores estarán disponibles.", //getLocalizedText("text-entercontest"),
-                    image: null // ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg")
-                  ))
-                .then((_) =>
-                  openModal(
-                    title: () => "", //getLocalizedText("title-entercontest"),
-                    text: () => "Así que la única limitación será tu presupuesto.", //getLocalizedText("text-entercontest"),
-                    image: null // ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg")
-                  ))
-                .then((_) =>
-                  openModal(
-                    title: () => "", //getLocalizedText("title-entercontest"),
                     text: () => "Hemos hecho la alineación por ti, solo necesitas alinear un delantero.", //getLocalizedText("text-entercontest"),
-                    image: null // ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg")
+                    image: null, // ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg")
+                    onOk: getLocalizedText("next", context: "tutorial")
                   ))
                 .then((_) {
                   showTooltip(new ToolTip("#soccerPlayer344", tipText: "Añade un delantero.", highlight: true, position: ToolTip.POSITION_BOTTOM));
@@ -250,9 +215,7 @@ class TutorialIniciacion extends Tutorial {
                   text: () => "Una vez completada una alineación se activa el botón de Continuar. Púlsalo.",
                   image: null, //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg"),
                   onOk: getLocalizedText("next", context: "tutorial")
-                )
-                .then((_) {
-                });
+                );
               }
             },
             serverCalls: serverCallsWhenVirtual
@@ -262,8 +225,9 @@ class TutorialIniciacion extends Tutorial {
               'view_contest_entry': () {
                 openModal(
                   title: () => "",
-                  text: () => "Simulación del torneo...",
-                  image: null //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeSuccessXs.jpg" : "welcomeSuccessDesktop.jpg")
+                  text: () => "Acabas de entrar en un Torneo Virtual.",
+                  image: null, //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeSuccessXs.jpg" : "welcomeSuccessDesktop.jpg")
+                  onOk: getLocalizedText("next", context: "tutorial")
                 )
                 .then((_) {
                   router.go('live_contest', {"contestId": TrainingContestInstance["_id"], "parent": "my_contests"});
@@ -273,25 +237,29 @@ class TutorialIniciacion extends Tutorial {
                 openModal(
                   title: () => "",
                   text: () => "Ésta es la pantalla de simulación, donde podrás ver en tiempo real cómo se desarrolla el partido y tu clasificación en ese torneo virtual.",
-                  image: null //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeSuccessXs.jpg" : "welcomeSuccessDesktop.jpg")
+                  image: null, //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeSuccessXs.jpg" : "welcomeSuccessDesktop.jpg")
+                  onOk: getLocalizedText("next", context: "tutorial")
                 )
                 .then((_) =>
                   openModal(
                     title: () => "", //getLocalizedText("title-entercontest"),
                     text: () => "También podrás ver las alineaciones de tus rivales.", //getLocalizedText("text-entercontest"),
-                    image: null // ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg")
+                    image: null, // ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg")
+                    onOk: getLocalizedText("next", context: "tutorial")
                   ))
                 .then((_) =>
                   openModal(
                     title: () => "", //getLocalizedText("title-entercontest"),
                     text: () => "Aqui se ve la simulación.", //getLocalizedText("text-entercontest"),
-                    image: null // ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg")
+                    image: null, // ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg")
+                    onOk: getLocalizedText("next", context: "tutorial")
                   ))
                 .then((_) =>
                   openModal(
                     title: () => "", //getLocalizedText("title-entercontest"),
                     text: () => "¡¡¡ Enhorabuena, subes de nivel !!!", //getLocalizedText("text-entercontest"),
-                    image: null // ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg")
+                    image: null, // ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg")
+                    onOk: getLocalizedText("next", context: "tutorial")
                   ))
                 .then((_) {
                   CurrentStepId = Tutorial.STEP_END;

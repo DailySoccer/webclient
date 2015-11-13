@@ -419,6 +419,9 @@ class EnterContestComp implements DetachAware {
     // Actualizamos el contestEntry, independientemente que estemos editando o creando
     saveContestEntry();
 
+    //TODO: Mostramos los IDs del fantasyTeam creado
+    //print ("FantasyTeam: " + window.localStorage[_getKeyForCurrentUserContest]);
+
     if (!_profileService.isLoggedIn) {
       _router.go("enter_contest.join", {});
       return;

@@ -18953,6 +18953,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   }
 }
 #usersListRoot {
+  background-color: #ffffff;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -19142,6 +19143,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
     overflow: hidden;
   }
   #usersListRoot .users-header {
+    background-color: #ffffff;
     padding: 10px 50px 0px 15px;
     height: 75px;
   }
@@ -20196,6 +20198,18 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
 }
 .disabled-pointer-events {
   pointer-events: none;
+}
+#soccerManagerLevel.epic-tooltip.bottom {
+  bottom: -90px;
+  left: 75%;
+}
+#continueButton.epic-tooltip.top {
+  top: -50px;
+  left: 50%;
+  margin-left: -215px;
+}
+#usersList .epic-tooltip.top {
+  margin-left: -160px;
 }
 .modal-backdrop {
   display: none !important;

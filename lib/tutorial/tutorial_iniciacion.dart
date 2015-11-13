@@ -115,7 +115,7 @@ class TutorialIniciacion extends Tutorial {
                   //Cuando añades un jugador su salario (".enter-contest-total-salary")
                   showTooltip(new ToolTip(".enter-contest-lineup-wrapper", tipText: getLocalizedText("msg-08"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
                     //Cada jugador además de su salario
-                    showTooltip(new ToolTip("#soccerPlayer464", tipText: getLocalizedText("msg-09"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
+                    showTooltip(new ToolTip("#soccerPlayer464 .column-manager-level", tipText: getLocalizedText("msg-09"), highlight: true, position: ToolTip.POSITION_BOTTOM, tipId: 'soccerManagerLevel', onClickCb: (_) {
                       //Los jugadores marcados en rojo
                       showTooltip(new ToolTip("#soccerPlayer464", tipText: getLocalizedText("msg-10"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
                         //Intenta seleccionar un jugador marcado en rojo.
@@ -181,7 +181,7 @@ class TutorialIniciacion extends Tutorial {
                 clearTooltips();
 
                 //Una vez completada una alineación se activa el botón de Continuar
-                showTooltip(new ToolTip(".button-wrapper .btn-confirm-lineup-list", tipText: getLocalizedText("msg-25"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true));
+                showTooltip(new ToolTip(".button-wrapper .btn-confirm-lineup-list", tipId: 'continueButton', tipText: getLocalizedText("msg-25"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true));
 
                 /*
                 openModal(

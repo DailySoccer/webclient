@@ -66,7 +66,12 @@ class ToolTipService {
   }
 
   void clear() {
-    _requestedTooltips.forEach( (t) => t.cancelAndHide() );
+    _requestedTooltips.forEach( (t) {
+      if (t.isHighlight) {
+        BackdropComp.instance.hide(propietary: t);
+      }
+      t.cancelAndHide();
+    });
     _requestedTooltips.clear();
     BackdropComp.instance.hide();
   }

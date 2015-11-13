@@ -10,6 +10,7 @@ import 'package:angular/angular.dart';
 import 'package:webclient/components/enter_contest/enter_contest_comp.dart';
 import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/components/view_contest/view_contest_comp.dart';
+import 'package:webclient/services/tutorial_service.dart';
 
 class TutorialIniciacion extends Tutorial {
   static String STEP_1 = "1";
@@ -154,7 +155,7 @@ class TutorialIniciacion extends Tutorial {
                   openModal(
                     text: () => getLocalizedText("msg-18") //Para participar en los torneos virtuales necesitarás energía
                   )
-                  .then ((_) => showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: getLocalizedText("msg-19"), highlight: true))); //Selecciona este torneo
+                  .then ((_) => showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: getLocalizedText("msg-19"), highlight: true, allowClickOnElement: true))); //Selecciona este torneo
                 },
               'enter_contest' : () {
                 EnterContestComp enterContest = context;
@@ -169,14 +170,14 @@ class TutorialIniciacion extends Tutorial {
                     text: () => getLocalizedText("msg-23") //Hemos hecho la alineación por ti
                   ))
                 .then((_) {
-                  showTooltip(new ToolTip("#soccerPlayer344", tipText: getLocalizedText("msg-24"), highlight: true, position: ToolTip.POSITION_BOTTOM)); //Añade un delantero
+                  showTooltip(new ToolTip("#soccerPlayer344", tipText: getLocalizedText("msg-24"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true)); //Añade un delantero
                 });
               },
               'lineup-11': () {
                 clearTooltips();
 
                 //Una vez completada una alineación se activa el botón de Continuar
-                showTooltip(new ToolTip(".button-wrapper .btn-confirm-lineup-list", tipText: getLocalizedText("msg-25"), highlight: true, position: ToolTip.POSITION_TOP));
+                showTooltip(new ToolTip(".button-wrapper .btn-confirm-lineup-list", tipText: getLocalizedText("msg-25"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true));
 
                 /*
                 openModal(
@@ -203,16 +204,30 @@ class TutorialIniciacion extends Tutorial {
                 openModal(
                   text: () => getLocalizedText("msg-26") //Ésta es la pantalla de simulación
                 )
-                .then((_) =>
+                .then((_) {
+                  var completer = new Completer();
+
+                  //Aqui se ve la simulación.
+                  showTooltip(new ToolTip("#usersList", tipText: getLocalizedText("msg-27"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
+                    completer.complete(true);
+                  }));
+
+                  return completer.future;
+
+                  /*
                   openModal(
                     text: () => getLocalizedText("msg-27") //También podrás ver las alineaciones de tus rivales
-                  ))
+                  );
+                   */
+                })
                 .then((_) =>
                   openModal(
                     text: () => getLocalizedText("msg-28") //Aqui se ve la simulación.
                   ))
                 .then((_) {
                   var completer = new Completer();
+
+                  clearTooltips();
 
                   new Timer.periodic(new Duration(seconds: 3), (Timer t) {
                       if (liveStep + 1 < LiveMatchEventsList.length) {
@@ -233,7 +248,7 @@ class TutorialIniciacion extends Tutorial {
                   ))
                 .then((_) {
                   CurrentStepId = Tutorial.STEP_END;
-                  router.go("home", {});
+                  TutorialService.Instance.skipTutorial();
                 });
               }
             },

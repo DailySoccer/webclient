@@ -133,9 +133,7 @@ abstract class Tutorial {
   }
 
   void restoreUser() {
-    if (userBackup != null) {
-      profileService.user = userBackup;
-    }
+    profileService.user = userBackup;
   }
 
   void changeTrigger(String trigger, Function function) {

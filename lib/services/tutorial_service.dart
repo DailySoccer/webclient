@@ -98,8 +98,6 @@ class TutorialService {
     _activated = false;
     configureSkipComponent();
 
-    ToolTipService.instance.clear();
-
     CurrentTutorial.restoreUser();
     CurrentTutorial.skipTutorial();
     enableElementEvents('main-menu-f2p');
@@ -117,6 +115,7 @@ class TutorialService {
    */
 
     _router.go('home', {});
+    ToolTipService.instance.clear();
     BackdropComp.instance.hide(forceUpdate: true);
     querySelector('body').classes.remove('tutorial');
   }

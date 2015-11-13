@@ -88,11 +88,13 @@ class ToolTip {
   bool get isHighlight => _highlight;
   bool get isShown => _isShown;
   bool get hasDuration => _duration.inMicroseconds > 0;
+  bool get isClickable => _onClickCb != null;
 
   ToolTip(String cssSelector,
           {String tipText: null, bool highlight: false,
            String position: ToolTip.POSITION_TOP, String tipId: '',
-           Duration delay: Duration.ZERO, Duration duration: Duration.ZERO}) {
+           Duration delay: Duration.ZERO, Duration duration: Duration.ZERO,
+           void onClickCb(Tooltip): null}) {
     _cssSelector = cssSelector;
     _tipText = tipText;
     _highlight = highlight;
@@ -100,6 +102,7 @@ class ToolTip {
     _tipId = tipId;
     _delay = delay;
     _duration = duration;
+    _onClickCb = onClickCb;
   }
 
 
@@ -142,6 +145,9 @@ class ToolTip {
         if (_tipId != '') _theTip.id = _tipId;
         _theTip.appendText(_tipText);
         _theTip.onClick.listen((e) {
+          if (_onClickCb != null) {
+            _onClickCb(this);
+          }
           _onClick.add(this);
           e.stopImmediatePropagation();
         });
@@ -166,6 +172,7 @@ class ToolTip {
   String _tipId;
   Duration _delay;
   Duration _duration;
+  Function _onClickCb;
 
   Element _theTip = null;
   Element _theTippedElem;

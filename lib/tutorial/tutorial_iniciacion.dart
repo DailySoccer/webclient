@@ -105,29 +105,20 @@ class TutorialIniciacion extends Tutorial {
               'lineup-10': () {
                 clearTooltips();
 
-                openModal(
-                  text: () => getLocalizedText("msg-07") //Bien, ya has añadido tu primer jugador.
-                )
-                .then((_) =>
-                  openModal(
-                    text: () => getLocalizedText("msg-08") //Cuando añades un jugador su salario
-                  )
-                )
-                .then((_) =>
-                  openModal(
-                    text: () => getLocalizedText("msg-09") //Cada jugador además de su salario
-                  )
-                )
-                .then((_) =>
-                  openModal(
-                    text: () => getLocalizedText("msg-10") //Los jugadores marcados en rojo
-                  )
-                )
-                .then((_) {
-                  showTooltip(new ToolTip("#soccerPlayer464", tipText: getLocalizedText("msg-11"), highlight: true, position: ToolTip.POSITION_BOTTOM)); //Intenta seleccionar un jugador marcado en rojo.
-                })
-                .then((_) {
-                });
+                //Bien, ya has añadido tu primer jugador.
+                showTooltip(new ToolTip(".posDEL", tipText: getLocalizedText("msg-07"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
+                  //Cuando añades un jugador su salario
+                  showTooltip(new ToolTip(".enter-contest-lineup-wrapper", tipText: getLocalizedText("msg-08"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
+                    //Cada jugador además de su salario
+                    showTooltip(new ToolTip("#soccerPlayer464", tipText: getLocalizedText("msg-09"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
+                      //Los jugadores marcados en rojo
+                      showTooltip(new ToolTip("#soccerPlayer464", tipText: getLocalizedText("msg-10"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
+                        //Intenta seleccionar un jugador marcado en rojo.
+                        showTooltip(new ToolTip("#soccerPlayer464", tipText: getLocalizedText("msg-11"), highlight: true, position: ToolTip.POSITION_BOTTOM));
+                      }));
+                    }));
+                  }));
+                }));
               },
               'alert-not-buy': () {
                   clearTooltips();
@@ -153,10 +144,17 @@ class TutorialIniciacion extends Tutorial {
         STEP_1: new TutorialStep(
             triggers: {
               'lobby': () {
+                  //Para participar en los torneos virtuales necesitarás energía
+                  showTooltip(new ToolTip(".energy", tipText: getLocalizedText("msg-18"), highlight: true, position: ToolTip.POSITION_BOTTOM, onClickCb: (_) {
+                    //Selecciona este torneo
+                    showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: getLocalizedText("msg-19"), highlight: true));
+                  }));
+                  /*
                   openModal(
                     text: () => getLocalizedText("msg-18") //Para participar en los torneos virtuales necesitarás energía
                   )
                   .then ((_) => showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: getLocalizedText("msg-19"), highlight: true))); //Selecciona este torneo
+                 */
                 },
               'enter_contest' : () {
                 EnterContestComp enterContest = context;

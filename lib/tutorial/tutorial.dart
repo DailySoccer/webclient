@@ -101,7 +101,7 @@ abstract class Tutorial {
   }
 
   void showTooltip(ToolTip tooltip) {
-    ToolTipService.instance.tipElement(tooltip, hideOnClick: tooltip.hasDuration);
+    ToolTipService.instance.tipElement(tooltip, hideOnClick: (tooltip.hasDuration || tooltip.isClickable));
   }
 
   void triggerEnter(String trigger, {Object component: null}) {

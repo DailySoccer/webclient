@@ -35,7 +35,7 @@
 }
 */
 
-.tutorial-tip {
+.epic-tooltip {
 	position: absolute;
   margin-bottom: 5px;
   margin-left: -80px;
@@ -43,10 +43,11 @@
   min-width: 160px;
   border-radius: 2px;
   background-color: @white;
-  color: @blueHyperDark;
   text-align: center;
   font-size: 14px;
   line-height: 1.2;
+	.opensans_normal(10pt, @blueHyperDark);
+	
 	
 	&:after {
 		content: "";
@@ -109,7 +110,7 @@
 	
 }
 
-.tutorial-tipped-element.highlighted-tip {
+.tooltipped-element.highlighted-tip {
 	z-index: 1001;
 	position: relative;
 }

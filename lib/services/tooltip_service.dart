@@ -110,7 +110,7 @@ class ToolTip {
   void hide() {
     if (!_isShown) return;
 
-    _theTippedElem.classes.remove("tutorial-tipped-element");
+    _theTippedElem.classes.remove("tooltipped-element");
     if (_highlight) _theTippedElem.classes.remove("highlighted-tip");
     if (_theTip != null) _theTip.remove();
     _isShown = false;
@@ -133,12 +133,12 @@ class ToolTip {
       _theTippedElem = querySelector(_cssSelector);
       if (_theTippedElem == null) return;
 
-      _theTippedElem.classes.add('tutorial-tipped-element');
+      _theTippedElem.classes.add('tooltipped-element');
       if (_highlight) _theTippedElem.classes.add('highlighted-tip');
 
       if (_tipText != null && _tipText != '') {
         _theTip = new Element.div();
-        _theTip.classes.addAll(["tutorial-tip", _position]);
+        _theTip.classes.addAll(["epic-tooltip", _position]);
         if (_tipId != '') _theTip.id = _tipId;
         _theTip.appendText(_tipText);
         _theTip.onClick.listen((e) {

@@ -91,8 +91,16 @@ class TutorialIniciacion extends Tutorial {
                     });
                     */
 
+                    /*
                     changeTrigger("lobby", () => showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: getLocalizedText("msg-03"), highlight: true, allowClickOnElement: true))); //Selecciona este torneo
                     triggerEnter("lobby");
+                     */
+
+                    showTooltips([
+                      new ToolTip("#activeContestList .contestSlot .action-section", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-03"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true),
+                      new ToolTip("#activeContestList .contestSlot", highlight: true)
+                    ]);
+
                     //removeEnter("lobby");
                 }),
               'enter_contest' : () {
@@ -104,7 +112,10 @@ class TutorialIniciacion extends Tutorial {
                   text: () => getLocalizedText("msg-04") // Haz tu equipo ideal a partir de los jugadores
                 )
                 .then((_) {
-                  showTooltip(new ToolTip("#soccerPlayer220 .action-button", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-06"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true)); //Añade este jugador a tu alineación.
+                  showTooltips([
+                    new ToolTip("#soccerPlayer220 .action-button", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-06"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true), //Añade este jugador a tu alineación.
+                    new ToolTip("#soccerPlayer220", highlight: true)
+                  ]);
                 });
               },
               'lineup-10': () {
@@ -119,7 +130,11 @@ class TutorialIniciacion extends Tutorial {
                       //Los jugadores marcados en rojo
                       showTooltip(new ToolTip("#soccerPlayer464", tipText: getLocalizedText("msg-10"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
                         //Intenta seleccionar un jugador marcado en rojo.
-                        showTooltip(new ToolTip("#soccerPlayer464", tipText: getLocalizedText("msg-11"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true));
+                        // showTooltip(new ToolTip("#soccerPlayer464", tipText: getLocalizedText("msg-11"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true));
+                        showTooltips([
+                          new ToolTip("#soccerPlayer464 .action-button", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-11"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true),
+                          new ToolTip("#soccerPlayer464", highlight: true)
+                        ]);
                       }));
                     }));
                   }));
@@ -159,7 +174,13 @@ class TutorialIniciacion extends Tutorial {
                   openModal(
                     text: () => getLocalizedText("msg-18") //Para participar en los torneos virtuales necesitarás energía
                   )
-                  .then ((_) => showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: getLocalizedText("msg-19"), highlight: true, allowClickOnElement: true))); //Selecciona este torneo
+                  .then ((_) {
+                    //showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: getLocalizedText("msg-19"), highlight: true, allowClickOnElement: true))); //Selecciona este torneo
+                    showTooltips([
+                      new ToolTip("#activeContestList .contestSlot .action-section", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-19"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true),
+                      new ToolTip("#activeContestList .contestSlot", highlight: true)
+                    ]);
+                  });
                 },
               'enter_contest' : () {
                 EnterContestComp enterContest = context;
@@ -174,7 +195,12 @@ class TutorialIniciacion extends Tutorial {
                     text: () => getLocalizedText("msg-23") //Hemos hecho la alineación por ti
                   ))
                 .then((_) {
-                  showTooltip(new ToolTip("#soccerPlayer344", tipText: getLocalizedText("msg-24"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true)); //Añade un delantero
+                  //showTooltip(new ToolTip("#soccerPlayer344 .action-button", tipText: getLocalizedText("msg-24"), highlight: true, arrowPosition: ToolTip.POSITION_RIGHT, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true)); //Añade un delantero
+                  showTooltips([
+                    new ToolTip("#soccerPlayer344 .action-button", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-24"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true),
+                    new ToolTip("#soccerPlayer344", highlight: true)
+                  ]);
+
                 });
               },
               'lineup-11': () {

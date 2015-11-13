@@ -99,7 +99,8 @@ class ToolTip {
           {String tipText: null, bool highlight: false,
            String position: ToolTip.POSITION_TOP, String tipId: '',
            Duration delay: Duration.ZERO, Duration duration: Duration.ZERO,
-           void onClickCb(Tooltip): null, bool allowClickOnElement: false}) {
+           void onClickCb(Tooltip): null, bool allowClickOnElement: false,
+           String arrowPosition: null}) {
     _cssSelector = cssSelector;
     _tipText = tipText;
     _highlight = highlight;
@@ -108,6 +109,7 @@ class ToolTip {
     _delay = delay;
     _duration = duration;
     _allowClickOnElement = allowClickOnElement;
+    _arrowPosition = arrowPosition;
 
     if (onClickCb != null) {
       _onClickCb = onClickCb;
@@ -154,6 +156,7 @@ class ToolTip {
       if (_tipText != null && _tipText != '') {
         _theTip = new Element.div();
         _theTip.classes.addAll(["epic-tooltip", _position]);
+        if (_arrowPosition != null) _theTip.classes.add("${_arrowPosition}Arrow");
         if (_tipId != '') _theTip.id = _tipId;
         _theTip.appendHtml(_tipText);
         _theTip.onClick.listen((e) {
@@ -183,6 +186,7 @@ class ToolTip {
   Duration _duration;
   Function _onClickCb;
   bool _allowClickOnElement;
+  String _arrowPosition;
 
   Element _theTip = null;
   Element _theTippedElem;

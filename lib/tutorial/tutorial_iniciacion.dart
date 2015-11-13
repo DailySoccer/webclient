@@ -104,7 +104,7 @@ class TutorialIniciacion extends Tutorial {
                   text: () => getLocalizedText("msg-04") // Haz tu equipo ideal a partir de los jugadores
                 )
                 .then((_) {
-                  showTooltip(new ToolTip("#soccerPlayer220", tipText: getLocalizedText("msg-06"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true)); //Añade este jugador a tu alineación.
+                  showTooltip(new ToolTip("#soccerPlayer220 .action-button", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-06"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true)); //Añade este jugador a tu alineación.
                 });
               },
               'lineup-10': () {

@@ -102,7 +102,10 @@ class ToolTip {
     _tipId = tipId;
     _delay = delay;
     _duration = duration;
-    _onClickCb = onClickCb;
+
+    if (onClickCb != null) {
+      onHide.listen(onClickCb);
+    }
   }
 
 
@@ -145,9 +148,6 @@ class ToolTip {
         if (_tipId != '') _theTip.id = _tipId;
         _theTip.appendText(_tipText);
         _theTip.onClick.listen((e) {
-          if (_onClickCb != null) {
-            _onClickCb(this);
-          }
           _onClick.add(this);
           e.stopImmediatePropagation();
         });

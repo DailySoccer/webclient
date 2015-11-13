@@ -511,18 +511,34 @@
       "text-lobby"                      : "Puedes participar en todos los torneos que quieras de La Liga BBVA, Barclays Premier League y UEFA Champions League.",
       "text-entercontest"               : "Elije 11 jugadores de la lista sin pasarte del presupuesto.",
       "text-viewcontestentry"           : "Ve a “<b>Mis Concursos</b>” para editar tus alineaciones, ver a tu equipo puntuando en directo o para ver tu histórico de concursos. <br> <br> <p class=\"subtitle\">Recuerda: puedes jugar a todos los concursos que quieras y elegir tantas alineaciones como quieras.</p>",
-      "next"                            : "Siguiente"
+      "next"                            : "Continuar"
     },
     "tutorial_iniciacion"               :
     {
-      "title-lobby"                     : "BIENVENIDO A EPIC ELEVEN",
-      "text-lobby"                      : "En Epic Eleven compites en torneos con equipos formados por jugadores reales que obtienen puntos en función de su rendimiento en la vida real.",
-
-      "title-entercontest"              : "EQUIPO IDEAL",
-      "text-entercontest"               : "Haz tu equipo ideal a partir de los jugadores que participan en los partidos que forman este torneo.",
-
-      "title-viewcontestentry"          : "[ENTRENAMIENTO] BIENVENIDO A EPIC ELEVEN",
-      "text-viewcontestentry"           : "Ve a “<b>Mis Concursos</b>” para editar tus alineaciones, ver a tu equipo puntuando en directo o para ver tu histórico de concursos. <br> <br> <p class=\"subtitle\">Recuerda: puedes jugar a todos los concursos que quieras y elegir tantas alineaciones como quieras.</p>"
+      "msg-01"                          : "En Epic Eleven podrás crear equipos virtuales, con jugadores reales de los equipos que participan en la Liga Española, la Premier League y la Champion's League.",
+      "msg-02"                          : "Vamos a jugar nuestro primer torneo. Participar en los torneos cuesta oro, pero no te preocupes hemos añadido suficiente oro para que puedas participar.",
+      "msg-02b"                         : "Los torneos reales están asociados a eventos reales, se juegan en tiempo real, en la fecha del evento de la vida real.<br><br>Los resultados de los torneos están basados en las valoraciones de los jugadores durante el partido o partidos pertenecientes al torneo.",
+      "msg-03"                          : "Selecciona este torneo",
+      "msg-04"                          : "Haz tu equipo ideal a partir de los jugadores que participan en este torneo.<br><br>Ten en cuenta que cada jugador tiene un salario y debes mantenerte dentro del presupuesto.",
+      "msg-06"                          : "Añade este jugador a tu alineación.",
+      "msg-07"                          : "Bien, ya has añadido tu primer jugador.",
+      "msg-08"                          : "Cuando añades un jugador su salario se descuenta de tu presupuesto.",
+      "msg-09"                          : "Cada jugador además de su salario tiene un requerimiento de nivel de entrenador.",
+      "msg-10"                          : "Los jugadores marcados en rojo, son jugadores con un nivel de entrenador superior a tu nivel actual.",
+      "msg-11"                          : "Intenta seleccionar un jugador marcado en rojo.",
+      "msg-12"                          : "Como has podido ver no puedes alinearlo, a no ser que utilices oro o subas tu nivel de manager.<br><br>Para mejorar tu nivel de entrenador, deberás ganar experiencia compitiendo en torneos virtuales.",
+      "msg-15"                          : "Los torneos virtuales, se pueden jugar en cualquier momento, no cuestan sino energía y al participar en ellos, ganarás puntos de prestigio que harán subir tu nivel de manager.<br><br>Los torneos virtuales, están basados en las estadísticas históricas de los jugadores y el resultado de un avanzado algoritmo de simulación.",
+      "msg-18"                          : "Para participar en los torneos virtuales necesitarás energía.",
+      "msg-19"                          : "Selecciona este torneo",
+      "msg-20"                          : "A diferencia de los Torneos Reales, en los Virtuales no existe una limitación por nivel de manager, por lo tanto todos los jugadores estarán disponibles.<br><br>Así que la única limitación será tu presupuesto.",
+      "msg-23"                          : "Hemos hecho la alineación por ti, solo necesitas alinear un delantero.",
+      "msg-24"                          : "Añade un delantero.",
+      "msg-25"                          : "Una vez completada una alineación se activa el botón de Continuar. Púlsalo.",
+      "msg-25b"                         : "Acabas de entrar en un Torneo Virtual.",
+      "msg-26"                          : "Ésta es la pantalla de simulación, donde podrás ver en tiempo real cómo se desarrolla el partido y tu clasificación en ese torneo virtual.",
+      "msg-27"                          : "También podrás ver las alineaciones de tus rivales.",
+      "msg-28"                          : "Aqui se ve la simulación.",
+      "msg-29"                          : "¡¡¡ Enhorabuena, subes de nivel !!!"
     },
     "tutorial_entrenamiento"            :
     {

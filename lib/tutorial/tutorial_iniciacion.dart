@@ -56,23 +56,14 @@ class TutorialIniciacion extends Tutorial {
             triggers: {
               'lobby': () =>
                 openModal(
-                  title: () => "", //getLocalizedText("title-lobby"),
-                  text: () => "En Epic Eleven podrás crear equipos virtuales, con jugadores reales de los equipos que participan en la Liga Española, la Premier League y la Champion's League.",
-                  image: null, //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg"),
-                  onOk: getLocalizedText("next", context: "tutorial")
+                  text: () => getLocalizedText("msg-01") // En Epic Eleven podrás crear equipos virtuales
                 )
                 .then((_) => openModal(
-                    title: () => "",
-                    text: () => "Vamos a jugar nuestro primer torneo. Participar en los torneos cuesta oro, pero no te preocupes hemos añadido suficiente oro para que puedas participar.",
-                    image: null, //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg")
-                    onOk: getLocalizedText("next", context: "tutorial")
+                    text: () => getLocalizedText("msg-02") // Vamos a jugar nuestro primer torneo
                   )
                 )
                 .then((_) => openModal(
-                    title: () => "",
-                    text: () => "Los torneos reales están asociados a eventos reales, se juegan en tiempo real, en la fecha del evento de la vida real.<br><br>Los resultados de los torneos están basados en las valoraciones de los jugadores durante el partido o partidos pertenecientes al torneo.",
-                    image: null, //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg")
-                    onOk: getLocalizedText("next", context: "tutorial")
+                    text: () => getLocalizedText("msg-02b") // Los torneos reales están asociados a eventos reales
                   )
                 )
                 .then((_) {
@@ -87,7 +78,7 @@ class TutorialIniciacion extends Tutorial {
                     });
                     */
 
-                    changeTrigger("lobby", () => showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: "Selecciona este torneo", highlight: true)));
+                    changeTrigger("lobby", () => showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: getLocalizedText("msg-03"), highlight: true))); //Selecciona este torneo
                     triggerEnter("lobby");
                     //removeEnter("lobby");
                 }),
@@ -97,50 +88,35 @@ class TutorialIniciacion extends Tutorial {
                 enterContest.saveContestEntryFromJson(KeyLocalStorage, JSON.encode(oficialFantasyTeam));
 
                 openModal(
-                  title: () => "", //getLocalizedText("title-entercontest"),
-                  text: () => "Haz tu equipo ideal a partir de los jugadores que participan en este torneo.<br><br>Ten en cuenta que cada jugador tiene un salario y debes mantenerte dentro del presupuesto.", //getLocalizedText("text-entercontest"),
-                  image: null, // ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg")
-                  onOk: getLocalizedText("next", context: "tutorial")
+                  text: () => getLocalizedText("msg-04") // Haz tu equipo ideal a partir de los jugadores
                 )
                 .then((_) {
-                  showTooltip(new ToolTip("#soccerPlayer220", tipText: "Añade este jugador a tu alineación.", highlight: true, position: ToolTip.POSITION_BOTTOM));
+                  showTooltip(new ToolTip("#soccerPlayer220", tipText: getLocalizedText("msg-06"), highlight: true, position: ToolTip.POSITION_BOTTOM)); //Añade este jugador a tu alineación.
                 });
               },
               'lineup-10': () {
                 clearTooltips();
 
                 openModal(
-                  title: () => "",
-                  text: () => "Bien, ya has añadido tu primer jugador.",
-                  image: null, //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg"),
-                  onOk: getLocalizedText("next", context: "tutorial")
+                  text: () => getLocalizedText("msg-07") //Bien, ya has añadido tu primer jugador.
                 )
                 .then((_) =>
                   openModal(
-                    title: () => "",
-                    text: () => "Cuando añades un jugador su salario se descuenta de tu presupuesto.",
-                    image: null, //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg"),
-                    onOk: getLocalizedText("next", context: "tutorial")
+                    text: () => getLocalizedText("msg-08") //Cuando añades un jugador su salario
                   )
                 )
                 .then((_) =>
                   openModal(
-                    title: () => "",
-                    text: () => "Cada jugador además de su salario tiene un requerimiento de nivel de entrenador.",
-                    image: null, //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg"),
-                    onOk: getLocalizedText("next", context: "tutorial")
+                    text: () => getLocalizedText("msg-09") //Cada jugador además de su salario
                   )
                 )
                 .then((_) =>
                   openModal(
-                    title: () => "",
-                    text: () => "Los jugadores marcados en rojo, son jugadores con un nivel de entrenador superior a tu nivel actual.",
-                    image: null, //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg"),
-                    onOk: getLocalizedText("next", context: "tutorial")
+                    text: () => getLocalizedText("msg-10") //Los jugadores marcados en rojo
                   )
                 )
                 .then((_) {
-                  showTooltip(new ToolTip("#soccerPlayer464", tipText: "Intenta seleccionar un jugador marcado en rojo.", highlight: true, position: ToolTip.POSITION_BOTTOM));
+                  showTooltip(new ToolTip("#soccerPlayer464", tipText: getLocalizedText("msg-11"), highlight: true, position: ToolTip.POSITION_BOTTOM)); //Intenta seleccionar un jugador marcado en rojo.
                 })
                 .then((_) {
                 });
@@ -148,16 +124,10 @@ class TutorialIniciacion extends Tutorial {
               'alert-not-buy': () {
                   clearTooltips();
                   openModal(
-                    title: () => "",
-                    text: () => "Como has podido ver no puedes alinearlo, a no ser que utilices oro o subas tu nivel de manager.<br><br>Para mejorar tu nivel de entrenador, deberás ganar experiencia compitiendo en torneos virtuales.",
-                    image: null, //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg"),
-                    onOk: getLocalizedText("next", context: "tutorial")
+                    text: () => getLocalizedText("msg-12") //Como has podido ver no puedes alinearlo
                   )
                   .then((_) => openModal(
-                      title: () => "",
-                      text: () => "Los torneos virtuales, se pueden jugar en cualquier momento, no cuestan sino energía y al participar en ellos, ganarás puntos de prestigio que harán subir tu nivel de manager.<br><br>Los torneos virtuales, están basados en las estadísticas históricas de los jugadores y el resultado de un avanzado algoritmo de simulación.",
-                      image: null, //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg"),
-                      onOk: getLocalizedText("next", context: "tutorial")
+                      text: () => getLocalizedText("msg-15") //Los torneos virtuales, se pueden jugar en cualquier momento
                    ))
                   .then((_) {
                     CurrentStepId = STEP_1;
@@ -166,9 +136,7 @@ class TutorialIniciacion extends Tutorial {
               },
               'view_contest_entry': () =>
                 openModal(
-                  title: () => getLocalizedText("title-viewcontestentry"),
                   text: () => getLocalizedText("text-viewcontestentry"),
-                  image: null, //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeSuccessXs.jpg" : "welcomeSuccessDesktop.jpg")
                   onOk: getLocalizedText("next", context: "tutorial")
                 )
             },
@@ -178,12 +146,9 @@ class TutorialIniciacion extends Tutorial {
             triggers: {
               'lobby': () {
                   openModal(
-                    title: () => "", //getLocalizedText("title-entercontest"),
-                    text: () => "Para participar en los torneos virtuales necesitarás energía.", //getLocalizedText("text-entercontest"),
-                    image: null, // ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg")
-                    onOk: getLocalizedText("next", context: "tutorial")
+                    text: () => getLocalizedText("msg-18") //Para participar en los torneos virtuales necesitarás energía
                   )
-                  .then ((_) => showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: "Selecciona este torneo", highlight: true)));
+                  .then ((_) => showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: getLocalizedText("msg-19"), highlight: true))); //Selecciona este torneo
                 },
               'enter_contest' : () {
                 EnterContestComp enterContest = context;
@@ -191,30 +156,21 @@ class TutorialIniciacion extends Tutorial {
                 enterContest.saveContestEntryFromJson(KeyLocalStorage, JSON.encode(virtualFantasyTeam));
 
                 openModal(
-                  title: () => "", //getLocalizedText("title-entercontest"),
-                  text: () => "A diferencia de los Torneos Reales, en los Virtuales no existe una limitación por nivel de manager, por lo tanto todos los jugadores estarán disponibles.<br><br>Así que la única limitación será tu presupuesto.", //getLocalizedText("text-entercontest"),
-                  image: null, // ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg")
-                  onOk: getLocalizedText("next", context: "tutorial")
+                  text: () => getLocalizedText("msg-20") //A diferencia de los Torneos Reales
                 )
                 .then((_) =>
                   openModal(
-                    title: () => "", //getLocalizedText("title-entercontest"),
-                    text: () => "Hemos hecho la alineación por ti, solo necesitas alinear un delantero.", //getLocalizedText("text-entercontest"),
-                    image: null, // ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg")
-                    onOk: getLocalizedText("next", context: "tutorial")
+                    text: () => getLocalizedText("msg-23") //Hemos hecho la alineación por ti
                   ))
                 .then((_) {
-                  showTooltip(new ToolTip("#soccerPlayer344", tipText: "Añade un delantero.", highlight: true, position: ToolTip.POSITION_BOTTOM));
+                  showTooltip(new ToolTip("#soccerPlayer344", tipText: getLocalizedText("msg-24"), highlight: true, position: ToolTip.POSITION_BOTTOM)); //Añade un delantero
                 });
               },
               'lineup-11': () {
                 clearTooltips();
 
                 openModal(
-                  title: () => "",
-                  text: () => "Una vez completada una alineación se activa el botón de Continuar. Púlsalo.",
-                  image: null, //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeLobbyXs.jpg" : "welcomeLobbyDesktop.jpg"),
-                  onOk: getLocalizedText("next", context: "tutorial")
+                  text: () => getLocalizedText("msg-25") //Una vez completada una alineación se activa el botón de Continuar
                 );
               }
             },
@@ -224,10 +180,7 @@ class TutorialIniciacion extends Tutorial {
             triggers: {
               'view_contest_entry': () {
                 openModal(
-                  title: () => "",
-                  text: () => "Acabas de entrar en un Torneo Virtual.",
-                  image: null, //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeSuccessXs.jpg" : "welcomeSuccessDesktop.jpg")
-                  onOk: getLocalizedText("next", context: "tutorial")
+                  text: () => getLocalizedText("msg-25b") //Acabas de entrar en un Torneo Virtual
                 )
                 .then((_) {
                   router.go('live_contest', {"contestId": TrainingContestInstance["_id"], "parent": "my_contests"});
@@ -235,31 +188,19 @@ class TutorialIniciacion extends Tutorial {
               },
               'view_contest': () {
                 openModal(
-                  title: () => "",
-                  text: () => "Ésta es la pantalla de simulación, donde podrás ver en tiempo real cómo se desarrolla el partido y tu clasificación en ese torneo virtual.",
-                  image: null, //({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeSuccessXs.jpg" : "welcomeSuccessDesktop.jpg")
-                  onOk: getLocalizedText("next", context: "tutorial")
+                  text: () => getLocalizedText("msg-26") //Ésta es la pantalla de simulación
                 )
                 .then((_) =>
                   openModal(
-                    title: () => "", //getLocalizedText("title-entercontest"),
-                    text: () => "También podrás ver las alineaciones de tus rivales.", //getLocalizedText("text-entercontest"),
-                    image: null, // ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg")
-                    onOk: getLocalizedText("next", context: "tutorial")
+                    text: () => getLocalizedText("msg-27") //También podrás ver las alineaciones de tus rivales
                   ))
                 .then((_) =>
                   openModal(
-                    title: () => "", //getLocalizedText("title-entercontest"),
-                    text: () => "Aqui se ve la simulación.", //getLocalizedText("text-entercontest"),
-                    image: null, // ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg")
-                    onOk: getLocalizedText("next", context: "tutorial")
+                    text: () => getLocalizedText("msg-28") //Aqui se ve la simulación.
                   ))
                 .then((_) =>
                   openModal(
-                    title: () => "", //getLocalizedText("title-entercontest"),
-                    text: () => "¡¡¡ Enhorabuena, subes de nivel !!!", //getLocalizedText("text-entercontest"),
-                    image: null, // ({String size: ''}) => "images/tutorial/" + (size == 'xs' ? "welcomeTeamXs.jpg" : "welcomeTeamDesktop.jpg")
-                    onOk: getLocalizedText("next", context: "tutorial")
+                    text: () => getLocalizedText("msg-29") //¡¡¡ Enhorabuena, subes de nivel !!!
                   ))
                 .then((_) {
                   CurrentStepId = Tutorial.STEP_END;

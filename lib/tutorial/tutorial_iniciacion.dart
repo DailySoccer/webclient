@@ -13,10 +13,12 @@ import 'package:webclient/components/view_contest/view_contest_comp.dart';
 import 'package:webclient/services/tutorial_service.dart';
 
 class TutorialIniciacion extends Tutorial {
+  static String NAME = "TUTORIAL_INICIACION";
   static String STEP_1 = "1";
   static String STEP_2 = "2";
 
   String get PATH => "tutorial/iniciacion/";
+  String get name => TutorialIniciacion.NAME;
 
   DateTime currentDate = new DateTime.now();
 
@@ -209,7 +211,7 @@ class TutorialIniciacion extends Tutorial {
                 .then((_) {
                   var completer = new Completer();
 
-                  //Aqui se ve la simulación.
+                  //También podrás ver las alineaciones de tus rivales
                   showTooltip(new ToolTip("#usersList", tipText: getLocalizedText("msg-27"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
                     completer.complete(true);
                   }));
@@ -222,10 +224,12 @@ class TutorialIniciacion extends Tutorial {
                   );
                    */
                 })
+                /*
                 .then((_) =>
                   openModal(
                     text: () => getLocalizedText("msg-28") //Aqui se ve la simulación.
                   ))
+                   */
                 .then((_) {
                   var completer = new Completer();
 

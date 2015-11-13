@@ -7,6 +7,7 @@ import 'package:angular/angular.dart';
 
 class TutorialOficial extends Tutorial {
   String get PATH => "tutorial/oficial/";
+  String get name => "TUTORIAL_OFICIAL";
 
   TutorialOficial(Router router, ProfileService profileService) : super(router, profileService) {
     tutorialSteps = {

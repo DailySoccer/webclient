@@ -12,6 +12,7 @@ class TutorialEntrenamiento extends Tutorial {
   static String STEP_1 = "1";
 
   String get PATH => "tutorial/entrenamiento/";
+  String get name => "TUTORIAL_ENTRENAMIENTO";
 
   TutorialEntrenamiento(Router router, ProfileService profileService) : super(router, profileService) {
     getContentJson(PATH + "instance_soccer_players.json").then((list) => InstanceSoccerPlayerList = list);

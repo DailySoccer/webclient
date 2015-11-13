@@ -36,6 +36,7 @@ abstract class Tutorial {
   TutorialStep get CurrentStep => tutorialSteps[CurrentStepId];
 
   bool get isCompleted => CurrentStepId == STEP_END;
+  String get name;
 
   void skipTutorial() { CurrentStepId = STEP_END; }
 

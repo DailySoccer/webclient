@@ -31,9 +31,16 @@ class TutorialService {
   TutorialService(this._router, ProfileService profileService) {
     _instance = this;
 
-    _tutorials = {
-      Tutorial.INITIATION: new TutorialIniciacion(this._router, profileService)
-    };
+    // Incluir los tutoriales que no se hayan terminado
+    _tutorials = {};
+
+    if (!isCompleted(TutorialIniciacion.NAME)) {
+      _tutorials[Tutorial.INITIATION] = new TutorialIniciacion(this._router, profileService);
+    }
+  }
+
+  bool isCompleted(String tutorialKey) {
+    return false && window.localStorage.containsKey(tutorialKey);
   }
 
   void start(String tutorialName) {
@@ -97,6 +104,8 @@ class TutorialService {
   void skipTutorial() {
     _activated = false;
     configureSkipComponent();
+
+    window.localStorage[CurrentTutorial.name] = CurrentTutorial.CurrentStepId;
 
     CurrentTutorial.restoreUser();
     CurrentTutorial.skipTutorial();

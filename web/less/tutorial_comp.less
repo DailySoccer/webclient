@@ -38,15 +38,14 @@
 .epic-tooltip {
 	position: absolute;
   margin-bottom: 5px;
-  margin-left: -80px;
-  padding: 7px;
-  min-width: 160px;
+  margin-left: -160px;
+  padding: 10px 20px;
+  min-width: 320px;
   border-radius: 2px;
-  background-color: @white;
+  background-color: @orange;
   text-align: center;
-  font-size: 14px;
   line-height: 1.2;
-	.opensans_normal(10pt, @blueHyperDark);
+	.opensans_normal(14pt, @white);
 	pointer-events: all;
 	
 	&:after {
@@ -59,10 +58,10 @@
 	}
 	
 	&.top {
-		top: -40px;
+		top: -60px;
 		left: 50%;
 		&:after {
-			border-top: 10px solid #ffffff;
+			border-top: 10px solid @orange;
 			border-bottom: 0px none transparent;
 			bottom: -10px;
 			left: 50%;
@@ -70,11 +69,11 @@
 		}
 	}
 	&.bottom {
-		bottom: -40px;
+		bottom: -60px;
 		left: 50%;
 		&:after {
 			border-top: 0px none transparent;
-			border-bottom: 10px solid #ffffff;
+			border-bottom: 10px solid @orange;
 			top: -10px;
 			left: 50%;
 			margin-left: -10px;
@@ -84,10 +83,10 @@
 	&.left {
   	margin-top: -15px;
 		top: 50%;
-		left: -90px;
+		left: -170px;
 		&:after {
 			border: 7px solid transparent;
-			border-left: 7px solid #ffffff;
+			border-left: 7px solid @orange;
 			border-right: 0px none transparent;
 			right: -7px;
 			top: 50%;
@@ -97,11 +96,11 @@
 	&.right {
   	margin-top: -15px;
 		top: 50%;
-		right: -90px;
+		right: -170px;
 		&:after {
 			border: 7px solid transparent;
 			border-left: 0px none transparent;
-			border-right: 7px solid #ffffff;
+			border-right: 7px solid @orange;
 			left: -7px;
 			top: 50%;
 			margin-top: -7px;
@@ -130,17 +129,27 @@
 }
 
 #soccerManagerLevel.epic-tooltip.bottom {
-	bottom: -90px;
-	left: 75%;
+	bottom: -100px;
 }
+
 #continueButton.epic-tooltip.top {
-	top: -50px;
-	left: 50%;
-	margin-left: -215px;
+	top: -70px;
+	margin-left: -270px;
+	font-size: 12pt;
 }
 
 #usersList .epic-tooltip.top {
 	margin-left: -160px;
 }
 
+.contestSlot .action-section .epic-tooltip.rightArrow {
+	right: 25px;
+}
+#enterContest .enter-contest-lineup-wrapper .epic-tooltip.top {
+	margin-left: -180px;
+}
+
+#soccerPlayerRedStyle.epic-tooltip.top {
+	top: -80px;
+}
 

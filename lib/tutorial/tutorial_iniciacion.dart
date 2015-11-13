@@ -80,22 +80,12 @@ class TutorialIniciacion extends Tutorial {
                   )
                 )
                 .then((_) {
-                    //showTooltip(new ToolTip("#activeContestList .train", tipText: "Torneo Entrenamiento", delay: new Duration(seconds: 1), duration: new Duration(seconds: 1), highlight: true));
-                    //showTooltip(new ToolTip("#activeContestList .real", tipText: "Torneo Oficial", delay: new Duration(seconds: 2), duration: new Duration(seconds: 1), highlight: true));
-                    //showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: "Entra en este Torneo", highlight: true));
-
-                    /*
-                    changeTrigger("lobby", () {
-                      showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: "Entra en este Torneo", duration: new Duration(seconds: 1)));
-                      showTooltip(new ToolTip("#activeContestList .contestSlot", highlight: true));
-                    });
-                    */
-
                     /*
                     changeTrigger("lobby", () => showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: getLocalizedText("msg-03"), highlight: true, allowClickOnElement: true))); //Selecciona este torneo
                     triggerEnter("lobby");
                      */
 
+                    //Selecciona este torneo
                     showTooltips([
                       new ToolTip("#activeContestList .contestSlot .action-section", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-03"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true),
                       new ToolTip("#activeContestList .contestSlot", highlight: true)
@@ -168,14 +158,17 @@ class TutorialIniciacion extends Tutorial {
                   //Para participar en los torneos virtuales necesitarás energía
                   showTooltip(new ToolTip(".energy", tipText: getLocalizedText("msg-18"), highlight: true, position: ToolTip.POSITION_BOTTOM, onClickCb: (_) {
                     //Selecciona este torneo
-                    showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: getLocalizedText("msg-19"), highlight: true));
+                    showTooltips([
+                      new ToolTip("#activeContestList .contestSlot .action-section", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-19"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true),
+                      new ToolTip("#activeContestList .contestSlot", highlight: true)
+                    ]);
                   }));
                    */
                   openModal(
                     text: () => getLocalizedText("msg-18") //Para participar en los torneos virtuales necesitarás energía
                   )
                   .then ((_) {
-                    //showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: getLocalizedText("msg-19"), highlight: true, allowClickOnElement: true))); //Selecciona este torneo
+                    //Selecciona este torneo
                     showTooltips([
                       new ToolTip("#activeContestList .contestSlot .action-section", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-19"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true),
                       new ToolTip("#activeContestList .contestSlot", highlight: true)
@@ -280,7 +273,7 @@ class TutorialIniciacion extends Tutorial {
                   ))
                 .then((_) {
                   CurrentStepId = Tutorial.STEP_END;
-                  TutorialService.Instance.skipTutorial();
+                  TutorialService.Instance.skipTutorial(routePath: "join");
                 });
               }
             },

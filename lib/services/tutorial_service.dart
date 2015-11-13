@@ -101,7 +101,7 @@ class TutorialService {
   }
 
 
-  void skipTutorial() {
+  void skipTutorial({String routePath: 'home'}) {
     _activated = false;
     configureSkipComponent();
 
@@ -123,10 +123,11 @@ class TutorialService {
     }
    */
 
-    _router.go('home', {});
     ToolTipService.instance.clear();
     BackdropComp.instance.hide(forceUpdate: true);
     querySelector('body').classes.remove('tutorial');
+
+    _router.go(routePath, {});
   }
 
   void registerContentUpdater(String name, Function contentUpdater) {

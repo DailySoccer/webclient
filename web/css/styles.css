@@ -7531,6 +7531,7 @@ scoring-rules:after,
   font-size: 9pt;
   color: #777777;
   position: relative;
+  background-color: white;
 }
 @media (min-width: 768px) {
   .contests-list-f2p-root .contestSlot .conditions-section .condition-box-commons {
@@ -7591,6 +7592,7 @@ scoring-rules:after,
   font-size: 9pt;
   color: #777777;
   position: relative;
+  background-color: white;
 }
 @media (min-width: 768px) {
   .contests-list-f2p-root .contestSlot .conditions-section .player-position {
@@ -7663,6 +7665,7 @@ scoring-rules:after,
   font-size: 9pt;
   color: #777777;
   position: relative;
+  background-color: white;
 }
 @media (min-width: 768px) {
   .contests-list-f2p-root .contestSlot .conditions-section .entry-fee-box {
@@ -7729,6 +7732,7 @@ scoring-rules:after,
   font-size: 9pt;
   color: #777777;
   position: relative;
+  background-color: white;
 }
 @media (min-width: 768px) {
   .contests-list-f2p-root .contestSlot .conditions-section .prize-box {
@@ -7789,6 +7793,7 @@ scoring-rules:after,
   font-size: 9pt;
   color: #777777;
   position: relative;
+  background-color: white;
 }
 @media (min-width: 768px) {
   .contests-list-f2p-root .contestSlot .conditions-section .points-box {

@@ -29,6 +29,7 @@ class TutorialIniciacion extends Tutorial {
       "get_active_contest" : (url, postData) => waitCompleter( () => OficialContestList ),
       "get_contest_info" : (url, postData) => waitCompleter( () => OficialContestList ),
       "add_contest_entry": (url, postData) { return addContestEntry(postData); },
+      "get_instance_soccer_player_info": (String url, postData) => url.contains("56260898c1f5fbc410f998b1") ? getContentJson(PATH + "stats-player-01.json") : getContentJson(PATH + "stats-player-02.json"),
       "get_simulator_state": (url, postData) => waitCompleter( () => {
         "init": true,
         "currentDate": currentDate.millisecondsSinceEpoch,
@@ -47,6 +48,7 @@ class TutorialIniciacion extends Tutorial {
       "get_active_contests" : (url, postData) => waitCompleter( () => TrainingContestList ),
       "get_active_contest" : (url, postData) => waitCompleter( () => TrainingContestList ),
       "get_contest_info" : (url, postData) => waitCompleter( () => TrainingContestList ),
+      "get_instance_soccer_player_info": (url, postData) => getContentJson(PATH + "stats-player-03.json"),
       "add_contest_entry": (url, postData) { CurrentStepId = STEP_2; return addContestEntry(postData); }
     }]);
 
@@ -134,7 +136,7 @@ class TutorialIniciacion extends Tutorial {
                     router.go("lobby", {});
                   });
               },
-              'view_contest_entry': () =>
+              '**view_contest_entry': () =>
                 openModal(
                   text: () => getLocalizedText("text-viewcontestentry"),
                   onOk: getLocalizedText("next", context: "tutorial")
@@ -487,6 +489,7 @@ class TutorialIniciacion extends Tutorial {
       "position":-1,
       "prize":"AUD 0.00",
       "fantasyPoints":0,
+      "soccerIds": ["5625d0edc1f5fbc410e6ef0a","5625d0edc1f5fbc410e6ed28","5625e993c1f5fbc410f0d80d","5625d104c1f5fbc410e6f75c","5625d106c1f5fbc410e6f802","5625d108c1f5fbc410e6f84b","5625d0f9c1f5fbc410e6f180","5625d0edc1f5fbc410e6ef58","5625d0edc1f5fbc410e6edd8","5625d0edc1f5fbc410e6effa","5625d162c1f5fbc410e73bee"],
       "_id":"56334440d4c657a07a9f890c"
     },
     {
@@ -494,6 +497,7 @@ class TutorialIniciacion extends Tutorial {
       "position":-1,
       "prize":"AUD 0.00",
       "fantasyPoints":0,
+      "soccerIds": ["5625d0edc1f5fbc410e6efba","5625d0edc1f5fbc410e6ed02","5625d0edc1f5fbc410e6eef2","56260840c1f5fbc410f994ce","56260840c1f5fbc410f99506","5625d1bbc1f5fbc410e77439","5625d164c1f5fbc410e73df4","5625d0edc1f5fbc410e6eeac","5625d0f0c1f5fbc410e6f082","5625d499c1f5fbc410e937dd","5625d0edc1f5fbc410e6ee06"],
       "_id":"563337c0d4c657a07a9f8906"
     },
     {
@@ -501,6 +505,7 @@ class TutorialIniciacion extends Tutorial {
       "position":-1,
       "prize":"AUD 0.00",
       "fantasyPoints":0,
+      "soccerIds": ["5626088bc1f5fbc410f996e1","5625d0edc1f5fbc410e6ee34","56260940c1f5fbc410f9bf8e","5625d0edc1f5fbc410e6edc4","5625d0edc1f5fbc410e6ef14","5625eac9c1f5fbc410f14235","56261affc1f5fbc410fc80af","5625d0edc1f5fbc410e6ed90","5625d106c1f5fbc410e6f80a","5625d0edc1f5fbc410e6ef88","56260898c1f5fbc410f998b1"],
       "_id":"56334c7bd4c657a07a9f890f"
     },
     {
@@ -508,6 +513,7 @@ class TutorialIniciacion extends Tutorial {
       "position":-1,
       "prize":"AUD 0.00",
       "fantasyPoints":0,
+      "soccerIds": ["5625d0edc1f5fbc410e6ed9c","5625d0edc1f5fbc410e6ef76","5625d0edc1f5fbc410e6eef0","5625d104c1f5fbc410e6f752","5625d0edc1f5fbc410e6ee2c","5625ecb2c1f5fbc410f1e88d","5625d0edc1f5fbc410e6ef02","5625d108c1f5fbc410e6f84b","5626088bc1f5fbc410f996c2","5625d0edc1f5fbc410e6eefc","5625d0edc1f5fbc410e6ef86"],
       "_id":"56334fdfd4c657a07a9f8912"
     },
     {
@@ -515,6 +521,7 @@ class TutorialIniciacion extends Tutorial {
       "position":-1,
       "prize":"AUD 0.00",
       "fantasyPoints":0,
+      "soccerIds": ["5625dd85c1f5fbc410ee72fa", "56260840c1f5fbc410f9951a", "56260d5ec1f5fbc410fae9dc", "5625d0edc1f5fbc410e6f00a", "5625d0edc1f5fbc410e6ef4e", "56260840c1f5fbc410f9953f", "5625f9d5c1f5fbc410f5deba", "56260840c1f5fbc410f9954d", "562608c1c1f5fbc410f99f83","5625d0edc1f5fbc410e6ef3c","5625d0edc1f5fbc410e6ee8c"],
       "_id":"56333853d4c657a07a9f8909"
     }
   ];
@@ -539,15 +546,14 @@ class TutorialIniciacion extends Tutorial {
     ];
 
   List virtualFantasyTeam = [
-    "5625dd85c1f5fbc410ee72fa",
-    "56260840c1f5fbc410f9951a",
-    "56260d5ec1f5fbc410fae9dc",
-    "5625d0edc1f5fbc410e6f00a",
-    "5625d0edc1f5fbc410e6ef4e",
-    "56260840c1f5fbc410f9953f",
-    "5625f9d5c1f5fbc410f5deba",
-    "56260840c1f5fbc410f9954d",
-    "562608c1c1f5fbc410f99f83",
-    "56260898c1f5fbc410f998b1"
-    ];
+    "5625d0edc1f5fbc410e6edc2",
+    "56260840c1f5fbc410f99549",
+    "5625d0edc1f5fbc410e6ee48",
+    "56260996c1f5fbc410f9d66f",
+    "56260898c1f5fbc410f998a9",
+    "56260999c1f5fbc410f9d7c7",
+    "5625d0edc1f5fbc410e6ee52",
+    "5625d0edc1f5fbc410e6ed52",
+    "5625d101c1f5fbc410e6f6ba",
+    "5625d0edc1f5fbc410e6ef3c"];
 }

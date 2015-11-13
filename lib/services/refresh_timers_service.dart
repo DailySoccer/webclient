@@ -3,6 +3,7 @@ library refresh_timers_service;
 import 'dart:async';
 import 'package:angular/angular.dart';
 import 'package:logging/logging.dart';
+import 'package:webclient/services/tutorial_service.dart';
 
 @Injectable()
 class RefreshTimersService {
@@ -27,7 +28,11 @@ class RefreshTimersService {
 
  Timer addRefreshTimer(String name, Function updateFunction, [String timerName] ) {
 
-    Timer timer = new Timer.periodic(new Duration(seconds: (timerName == null) ? timersDef[name] : timersDef[timerName]), (Timer t) => updateFunction());
+    Timer timer = new Timer.periodic(new Duration(seconds: (timerName == null) ? timersDef[name] : timersDef[timerName]), (Timer t) {
+      if (!isRefreshLocked(name)) {
+        updateFunction();
+      }
+    });
 
     if (_timers.containsKey(name) && _timers[name].isActive) {
         Logger.root.warning("Timer: $name cancelled");
@@ -39,10 +44,20 @@ class RefreshTimersService {
     // Realizamos la primera llamada a la función solicitada
     updateFunction();
 
+    if (TutorialService.isActivated) {
+      TutorialService.Instance.registerContentUpdater(name, updateFunction);
+    }
+
     return timer;
   }
 
+  bool isRefreshLocked(String name) => TutorialService.isActivated && TutorialService.Instance.isRefreshTimerLocked(name);
+
   void cancelTimer(String name) {
+    if (TutorialService.isActivated) {
+      TutorialService.Instance.cancelContentUpdater(name);
+    }
+
     if (_timers.containsKey(name)) {
       _timers[name].cancel();
     }

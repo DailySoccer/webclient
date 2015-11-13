@@ -13,8 +13,8 @@ class ContestEntry {
   User user;
   Contest contest;
 
-  List<InstanceSoccerPlayer> instanceSoccerPlayers;
-  List<InstanceSoccerPlayer> soccerPlayersPurchased;
+  List<InstanceSoccerPlayer> instanceSoccerPlayers = [];
+  List<InstanceSoccerPlayer> soccerPlayersPurchased = [];
 
   int position;
   Money prize;

@@ -1,0 +1,151 @@
+.global-home #mainWrapper {
+	background: none;
+}
+
+#homeRoot {
+	
+	.home-tile-wrapper {
+		.make-tile(4, 3);
+		
+		.tile {
+			
+			background-color: @black;
+			//background-image: url("@{images}/landingBackground.jpg");
+			background-size: cover;
+			background-position: center bottom;
+			background-repeat: no-repeat;
+			
+			.tile-title {
+				display: block;
+				position: relative;
+				.exo_bold(14pt, @white);
+				
+				&:after {
+					content: "";
+					display: block;
+					position: relative;
+					width: 70px;
+					border-bottom: 2px solid fade(@white, 50%);
+					margin-top: 5px;
+				}
+			}
+				
+			.tile-info {
+				.opensans_normal(10pt, @white);
+				font-style: italic;
+				max-width: 200px;
+				margin: 15px 0 5px 0;
+				display: inline-block;
+			}
+			
+		}
+		
+		&.disabled .tile-action {
+			.addIcon("ht_IconoLock.png", 32px, 32px);
+			float: right;
+		}
+		&.enabled .tile-action {
+			.addIcon("ht_IconoGo.png", 32px, 32px);
+			float: right;
+		}
+	}
+
+	.vertical-layout-tilling {
+		cursor: default;
+		.make-tile(4, 3);
+		padding: 0;
+	}
+	
+	
+	#myContestsTile .home-tile-wrapper {
+		.make-tile(12, 1);
+	}
+	#manageTile .home-tile-wrapper {
+		.make-tile(12, 1.5);
+	}
+	#blogTile.home-tile-wrapper {
+		.make-tile(4, 3);
+	}
+	
+
+	#contestTile .tile {
+		background-image: url("@{images}/ht_ModuloTorneoBG.jpg");
+	}
+
+	
+	#createContestTile .tile {
+		background-image: url("@{images}/ht_ModuloRetaBG.jpg");
+	}
+	#scoutingTile .tile {
+		background-image: url("@{images}/ht_ModuloOjeadorBG.jpg");
+	}
+	
+	
+	#upcomingTile .tile {
+		background-image: url("@{images}/ht_ModuloHistoricoBG.jpg");
+	}
+	#liveTile .tile {
+		background-image: url("@{images}/ht_ModuloEnVivoBG.jpg");
+	}
+	#historyTile .tile {
+		background-image: url("@{images}/ht_ModuloHistoricoBG.jpg");
+	}
+	
+	
+	#blogTile .tile {
+		background-image: url("@{images}/ht_ModuloMisterBG.jpg");
+	}
+	
+	
+	#contestTile.home-tile-wrapper {
+		margin-top: 20px;
+		.make-tile(12, 3);
+
+		.tile {
+			.tile-title {
+				margin-top: 40px;
+				&:after {
+					width: 85px;
+					margin-top: 15px;
+				}
+				.exo_bold(30pt, @white);
+			}
+
+			.tile-info {
+				.opensans_normal(10pt, @white);
+				max-width: 450px;
+			}
+			.tile-action {	
+				display: block;
+				float: none;
+				margin-top: 10px;
+			}
+		}
+
+	}
+	
+	#myContestsTile .home-tile-wrapper {
+		.tile {
+			.tile-title {
+				color: @blueLight;
+			}
+		}
+	}
+	
+	#blogTile .tile {
+		.tile-title {
+			color: @greyMed;
+		}
+		.tile-action {
+			position: relative;
+			margin-top: 200px;
+		}
+	}
+	
+	
+	
+	
+	.clearfix {
+		padding-bottom: 20px;
+	}
+}

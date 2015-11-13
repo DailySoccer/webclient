@@ -119,7 +119,7 @@ class EnterContestComp implements DetachAware {
 
   EnterContestComp(this._routeProvider, this._router, this.scrDet,
                    this._contestsService, this.loadingService, this._profileService, this._catalogService,
-                   this._flashMessage, this._rootElement, TutorialService tutorialService) {
+                   this._flashMessage, this._rootElement, this._tutorialService) {
     loadingService.isLoading = true;
 
     errorMap = {
@@ -150,6 +150,8 @@ class EnterContestComp implements DetachAware {
 
     contestId = _routeProvider.route.parameters['contestId'];
     contestEntryId = _routeProvider.route.parameters['contestEntryId'];
+
+    _tutorialService.triggerEnter("enter_contest", component: this);
 
     GameMetrics.logEvent(GameMetrics.ENTER_CONTEST);
 
@@ -190,7 +192,6 @@ class EnterContestComp implements DetachAware {
       }, test: (error) => error is ServerError);
 
     subscribeToLeaveEvent();
-    tutorialService.enterAt("enter_contest");
   }
 
   void subscribeToLeaveEvent() {
@@ -210,7 +211,8 @@ class EnterContestComp implements DetachAware {
     bool isLineupEmpty = !lineupSlots.any((soccerPlayer) => soccerPlayer != null);
     // Si no hemos metido a nadie en nuestro equipo
     if(!isLineupEmpty && !_teamConfirmed && !editingContestEntry) {
-      _flashMessage.addGlobalMessage(StringUtils.translate("lineupsavedmsg", "entercontest"), 3);
+      // TODO: Quitamos el mensaje informativo...
+      // _flashMessage.addGlobalMessage(StringUtils.translate("lineupsavedmsg", "entercontest"), 3);
     }else {
       event.allowLeave(new Future<bool>.value(true));
       return;
@@ -296,6 +298,15 @@ class EnterContestComp implements DetachAware {
   }
 
   void _tryToAddSoccerPlayerToLineup(var soccerPlayer) {
+    if (contest.entryFee.isGold && !_isRestoringTeam) {
+      Money moneyToBuy = new Money.from(Money.CURRENCY_GOLD, soccerPlayer["instanceSoccerPlayer"].moneyToBuy(playerManagerLevel).amount);
+      bool hasMoney = _profileService.isLoggedIn && _profileService.user.hasMoney(moneyToBuy);
+      if (!hasMoney) {
+        alertNotBuy(moneyToBuy);
+        return;
+      }
+    }
+
     // Buscamos el primer slot libre para la posicion que ocupa el soccer player
     FieldPos theFieldPos = soccerPlayer["fieldPos"];
 
@@ -326,6 +337,9 @@ class EnterContestComp implements DetachAware {
 
     if(!_isRestoringTeam) {
       _verifyMaxPlayersInSameTeam();
+
+      int playerInLineup = lineupSlots.where((player) => player != null).length;
+      _tutorialService.triggerEnter("lineup-" + playerInLineup.toString(), activateIfNeeded: false);
     }
   }
 
@@ -405,6 +419,9 @@ class EnterContestComp implements DetachAware {
     // Actualizamos el contestEntry, independientemente que estemos editando o creando
     saveContestEntry();
 
+    //TODO: Mostramos los IDs del fantasyTeam creado
+    //print ("FantasyTeam: " + window.localStorage[_getKeyForCurrentUserContest]);
+
     if (!_profileService.isLoggedIn) {
       _router.go("enter_contest.join", {});
       return;
@@ -440,7 +457,7 @@ class EnterContestComp implements DetachAware {
             GameMetrics.peopleSet({"Last Team Created (${contest.competitionType})": new DateTime.now()});
             GameMetrics.logEvent(GameMetrics.ENTRY_FEE, {"value": contest.entryFee.toString()});
             _teamConfirmed = true;
-            _router.go( _profileService.isWelcoming ? 'view_contest_entry.welcome' : 'view_contest_entry', {
+            _router.go( 'view_contest_entry', {
                           "contestId": contestId,
                           "parent": _routeProvider.parameters["parent"],
                           "viewContestEntryMode": contestId == contest.contestId? "created" : "swapped"
@@ -530,13 +547,18 @@ class EnterContestComp implements DetachAware {
     });
   }
 
+  void saveContestEntryFromJson(String key, String json) {
+    window.localStorage[key] = json;
+  }
+
   void saveContestEntry() {
     // Lo almacenamos localStorage.
-    window.localStorage[_getKeyForCurrentUserContest] = JSON.encode(lineupSlots.where((player) => player != null).map((player) => player["id"]).toList());
+    saveContestEntryFromJson(_getKeyForCurrentUserContest, JSON.encode(lineupSlots.where((player) => player != null).map((player) => player["id"]).toList()));
   }
 
   void restoreContestEntry() {
     if (window.localStorage.containsKey(_getKeyForCurrentUserContest)) {
+      // print ("localStorage: key: " + _getKeyForCurrentUserContest + ": " + window.localStorage[_getKeyForCurrentUserContest]);
       List loadedData = JSON.decode(window.localStorage[_getKeyForCurrentUserContest]);
       _isRestoringTeam = true;
       loadedData.forEach((id) {
@@ -547,6 +569,26 @@ class EnterContestComp implements DetachAware {
     }
   }
 
+  void alertNotBuy(Money coins) {
+    modalShow(
+      "",
+      '''
+      <div class="content-wrapper">
+        <img class="main-image" src="images/iconNoGold.png">
+        <span class="not-enough-resources-count">${coins}</span>
+        <p class="content-text">
+          <strong>${getLocalizedText("alert-no-gold-to-buy-message")}</strong>
+          <br>
+          ${getLocalizedText('alert-user-gold-message', substitutions:{'MONEY': _profileService.user.goldBalance})}
+          <img src="images/icon-coin-xs.png">
+        </p>
+      </div>
+      '''
+    )
+    .then((_) {
+      _tutorialService.triggerEnter("alert-not-buy");
+    });
+  }
 
   void alertNotEnoughResources() {
     modalShow(
@@ -603,6 +645,7 @@ class EnterContestComp implements DetachAware {
   Router _router;
   RouteProvider _routeProvider;
 
+  TutorialService _tutorialService;
   ContestsService _contestsService;
   ProfileService _profileService;
   CatalogService _catalogService;

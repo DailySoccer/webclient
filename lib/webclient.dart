@@ -25,6 +25,7 @@ import 'package:webclient/services/prizes_service.dart';
 import 'package:webclient/services/promos_service.dart';
 import 'package:webclient/services/catalog_service.dart';
 import 'package:webclient/services/tutorial_service.dart';
+import 'package:webclient/services/tooltip_service.dart';
 
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/utils/form-autofill-fix.dart';
@@ -42,6 +43,7 @@ import 'package:webclient/components/flash_messages_comp.dart';
 import 'package:webclient/components/modal_comp.dart';
 import 'package:webclient/components/paginator_comp.dart';
 import 'package:webclient/components/lobby_f2p_comp.dart';
+import 'package:webclient/components/home_comp.dart';
 import 'package:webclient/components/promos_comp.dart';
 import 'package:webclient/components/simple_promo_f2p_comp.dart';
 import 'package:webclient/components/contests_list_f2p_comp.dart';
@@ -53,6 +55,7 @@ import 'package:webclient/components/leaderboard_table_comp.dart';
 import 'package:webclient/components/my_contests_comp.dart';
 import 'package:webclient/components/welcome_comp.dart';
 import 'package:webclient/components/week_calendar_comp.dart';
+import 'package:webclient/components/tutorial_list_comp.dart';
 
 import 'package:webclient/components/account/login_comp.dart';
 import 'package:webclient/components/account/join_comp.dart';
@@ -130,6 +133,7 @@ class WebClientApp extends Module {
     bind(PrizesService);
     bind(CatalogService);
     bind(TutorialService);
+    bind(ToolTipService);
 
     bind(FormAutofillDecorator);
     bind(AutoFocusDecorator);
@@ -143,6 +147,7 @@ class WebClientApp extends Module {
     bind(LoginComp);
     bind(JoinComp);
     bind(LobbyF2PComp);
+    bind(HomeComp);
     bind(ContestsListF2PComp);
     bind(PromosComp);
     bind(SimplePromoF2PComp);
@@ -153,6 +158,7 @@ class WebClientApp extends Module {
     bind(ContestInfoComp);
     bind(ScoringRulesComp);
     bind(MyContestsComp);
+    bind(TutorialListComp);
     bind(ViewContestComp);
     bind(ViewContestEntryComp);
     bind(FantasyTeamComp);
@@ -325,8 +331,13 @@ class WebClientApp extends Module {
             )
           }
       )
-      ,'lobby': ngRoute(
+      ,'home': ngRoute(
           defaultRoute: true,
+          path: '/home',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
+          viewHtml: '<home></home>'
+      )
+      ,'lobby': ngRoute(
           path: '/lobby',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
           viewHtml: '<lobbyf2p></lobbyf2p>',
@@ -334,19 +345,19 @@ class WebClientApp extends Module {
             'contest_info': ngRoute(
                 path: '/contest_info/:contestId',
                 viewHtml: '<contest-info></contest-info>')
-            ,'welcome': ngRoute(
-                path: '/welcome',
-                preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
-                viewHtml: '''<modal window-size="'90percent'"><welcome></welcome></modal>'''
-            )
             ,'view_promo': ngRoute(
                 path: '/view_promo/:promoCodeName',
                 preEnter: (RoutePreEnterEvent e) {
                   PromosService.configurePromosService(e.parameters['promoCodeName']);
                   _preEnterPage(e, router, visibility: _ALWAYS);
-                  }
+                }
             )
           }
+      )
+      ,'tutorial_list': ngRoute(
+          path: '/tutorial_list',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
+          viewHtml: '<tutorial-list></tutorial-list>'
       )
       ,'my_contests': ngRoute(
           path: '/my_contests/:section/',
@@ -381,23 +392,12 @@ class WebClientApp extends Module {
                 preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_OUT),
                 viewHtml: '''<modal window-size="'md'"><join is-modal="true"></join></modal>'''
             )
-            ,'welcome': ngRoute(
-                path: '/welcome',
-                preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
-                viewHtml: '''<modal window-size="'90percent'"><welcome></welcome></modal>'''
-            )
           }
       )
       ,'view_contest_entry': ngRoute(
           path: '/view_contest_entry/:parent/:viewContestEntryMode/:contestId',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
-          viewHtml: '<view-contest-entry></view-contest-entry>',
-          mount: {
-            'welcome': ngRoute(
-              path: '/welcome',
-              preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
-              viewHtml: '''<modal window-size="'90percent'"><welcome></welcome></modal>''')
-          }
+          viewHtml: '<view-contest-entry></view-contest-entry>'
       )
       ,'view_promo': ngRoute(
         path: '/view_promo/:promoId',

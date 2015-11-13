@@ -44,12 +44,14 @@ class ViewContestComp implements DetachAware {
     return StringUtils.translate(key, "viewcontest");
   }
 
-  ViewContestComp(this._routeProvider, this.scrDet, this._refreshTimersService, 
+  ViewContestComp(this._routeProvider, this.scrDet, this._refreshTimersService,
       this._contestsService, this._profileService, this._flashMessage, this.loadingService, TutorialService tutorialService) {
     loadingService.isLoading = true;
     lastOpponentSelected = getLocalizedText("opponent");
 
     contestId = _routeProvider.route.parameters['contestId'];
+
+    tutorialService.triggerEnter("view_contest", component: this);
 
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
 
@@ -71,7 +73,7 @@ class ViewContestComp implements DetachAware {
 
         // Únicamente actualizamos los contests que estén en "live"
         if (_contestsService.lastContest.isLive) {
-          _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE, _updateLive);
+          _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE, updateLive);
           GameMetrics.logEvent(GameMetrics.LIVE_CONTEST_VISITED);
         }
         else {
@@ -79,9 +81,6 @@ class ViewContestComp implements DetachAware {
         }
       })
       .catchError((ServerError error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW), test: (error) => error is ServerError);
-      
-
-    tutorialService.enterAt("view_contest_entry");
   }
 
   String getPrize(int index) => (contest != null) ? contest.getPrize(index) : "-";
@@ -90,7 +89,7 @@ class ViewContestComp implements DetachAware {
     _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE);
   }
 
-  void _updateLive() {
+  void updateLive() {
     // Actualizamos únicamente la lista de live MatchEvents
     _contestsService.refreshLiveMatchEvents(_contestsService.lastContest.templateContestId)
         .then((_) {

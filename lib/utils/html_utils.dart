@@ -3,6 +3,7 @@ library html_utils;
 import 'dart:html';
 import 'package:webclient/utils/js_utils.dart';
 import 'dart:async';
+import 'package:webclient/components/backdrop_comp.dart';
 
 class _NullTreeSanitizer implements NodeTreeSanitizer {
   void sanitizeTree(Node node) {}
@@ -13,18 +14,24 @@ final NodeTreeSanitizer NULL_TREE_SANITIZER = new _NullTreeSanitizer();
 Future<bool> modalShow(String title, String content, {String modalSize: "lg",
     String onOk: null, String onCancel: null, bool closeButton: false,
     type: 'alert'}) {
-  
+
   String globalRootId = 'alertRoot';
-  
+
   Completer completer = new Completer();
   Element modalWindow = querySelector("#modalWindow");
+  bool result = false;
 
   void onClose(dynamic sender) {
     modalWindow.children.remove(modalWindow.querySelector('#' + globalRootId));
+    if(!completer.isCompleted) {
+      BackdropComp.instance.hide();
+      completer.complete(result);
+    }
   }
 
   void closeMe() {
     JsUtils.runJavascript('#' + globalRootId, 'modal', "hide");
+    BackdropComp.instance.hide();
   }
 
   // Si no se han especificado callBacks, declaramos como minimo el botón Aceptar.
@@ -34,18 +41,20 @@ Future<bool> modalShow(String title, String content, {String modalSize: "lg",
 
   void onButtonClick(dynamic sender) {
     String eventCallback = sender.currentTarget.attributes["eventCallback"];
-    closeMe();
     //Luego el true o false para cerrar la ventana.
     switch (eventCallback) {
       case "onYes":
       case "onOk":
-        completer.complete(true);
+        result = true;
         break;
       case "onNo":
       case "onCancel":
-        completer.complete(false);
+        result = false;
         break;
     }
+
+    closeMe();
+    if (!completer.isCompleted) completer.complete(result);
   }
 
   String composeHeader() {
@@ -175,6 +184,7 @@ Future<bool> modalShow(String title, String content, {String modalSize: "lg",
 
   JsUtils.runJavascript('#' + globalRootId, 'modal', null);
   JsUtils.runJavascript('#' + globalRootId, 'on', {'hidden.bs.modal': onClose});
+  BackdropComp.instance.show();
   return completer.future;
 }
 

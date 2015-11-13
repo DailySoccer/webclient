@@ -9,7 +9,7 @@ main-menu-f2p {
 // Mixin para el logo
 .brand-style() {
 	.size(99px, 52px);
-  	.img-retina("@{images}/logoEpic11.png", "@{images}/logoEpic11-2x.png", 99px, 52px);
+  	.img-retina("@{images}/logoE11.png", "@{images}/logoE11.png", 99px, 52px);
   	background-repeat: no-repeat;
   	margin-top: 10px;
   	cursor: pointer;
@@ -25,6 +25,7 @@ main-menu-f2p {
 	}
 	&.logged-in {		
 		background-color: @blueUltraDark;
+		border-bottom: 2px solid @orange;		
 		height: 70px;
 
 		// Menu siempre arriba fijo cuando estamos logeados
@@ -34,10 +35,9 @@ main-menu-f2p {
 		width: 100%;
 	}
 
-	background-color: fade(@black, 70%);
+	background-color: fade(@blueUltraDark, 0%);
 	z-index: 999;
-	border-style: none;						// Esto quita el de la navbar de bootstrap
-	border-bottom: 2px solid @orange;		// Y ahora le damos el que nos interesa
+	border-style: none;	
 	padding-left: 8px;
   	//padding-right: 8px;
   	.user-select(none);

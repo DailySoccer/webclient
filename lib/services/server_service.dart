@@ -7,6 +7,7 @@ import 'package:logging/logging.dart';
 import 'package:webclient/services/server_error.dart';
 import 'package:webclient/utils/host_server.dart';
 import 'dart:html';
+import 'package:webclient/services/tutorial_service.dart';
 
 
 abstract class ServerService {
@@ -274,6 +275,13 @@ class DailySoccerServer implements ServerService {
    */
   Future<Map> _innerServerCall(String url, {Map queryString:null, Map postData:null, int retryTimes: -1, bool cancelIfChangeContext: true}) {
 
+    if (TutorialService.isActivated && TutorialService.Instance.isServerCallLocked(url, postData: postData)) {
+      if (!url.contains("get_simulator_state")) {
+        print("Tutorial: $url");
+      }
+      return TutorialService.Instance.serverCall(url, postData: postData);
+    }
+
     // Cuando cambiamos de contexto no queremos reutilizar ningún completer "antiguo"
     if (_context != _pendingCallsContext) {
       _pendingCalls.clear();
@@ -442,7 +450,6 @@ class DailySoccerServer implements ServerService {
   String _sessionToken;
   String _currentVersion;
   bool _allFuturesCancelled = false;
-
 
   int _pendingCallsContext = 0;
   Map<String, Completer> _pendingCalls = new Map<String, Completer>();

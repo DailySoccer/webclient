@@ -65,8 +65,18 @@ class LeaderboardComp {
           'points': u.earnedMoney
           }).toList();
 
-        playerPointsInfo = pointsUserList.firstWhere( (u) => isThePlayer(u['id']));
-        playerMoneyInfo = moneyUserList.firstWhere( (u) => isThePlayer(u['id']));
+        playerPointsInfo = pointsUserList.firstWhere( (u) => isThePlayer(u['id']), orElse: () => {
+          'position': pointsUserList.length,
+          'id': "<unknown>",
+          'name': "<unknown>",
+          'points': 0
+        });
+        playerMoneyInfo = moneyUserList.firstWhere( (u) => isThePlayer(u['id']), orElse: () => {
+          'position': pointsUserList.length,
+          'id': "<unknown>",
+          'name': "<unknown>",
+          'points': 0
+        });
 
         loadingService.isLoading = false;
         //print("Users: ${users.length}");

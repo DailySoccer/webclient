@@ -9,12 +9,15 @@ import 'package:webclient/services/tooltip_service.dart';
 import 'package:angular/angular.dart';
 import 'package:webclient/components/enter_contest/enter_contest_comp.dart';
 import 'package:webclient/models/field_pos.dart';
+import 'package:webclient/components/view_contest/view_contest_comp.dart';
 
 class TutorialIniciacion extends Tutorial {
   static String STEP_1 = "1";
   static String STEP_2 = "2";
 
   String get PATH => "tutorial/iniciacion/";
+
+  DateTime currentDate = new DateTime.now();
 
   TutorialIniciacion(Router router, ProfileService profileService) : super(router, profileService) {
     getContentJson(PATH + "instance_soccer_players.json").then((list) => InstanceSoccerPlayerList = list);
@@ -24,7 +27,11 @@ class TutorialIniciacion extends Tutorial {
       "get_active_contests" : (url, postData) => waitCompleter( () => OficialContestListWithFakes ),
       "get_active_contest" : (url, postData) => waitCompleter( () => OficialContestList ),
       "get_contest_info" : (url, postData) => waitCompleter( () => OficialContestList ),
-      "add_contest_entry": (url, postData) { return addContestEntry(postData); }
+      "add_contest_entry": (url, postData) { return addContestEntry(postData); },
+      "get_simulator_state": (url, postData) => waitCompleter( () => {
+        "init": true,
+        "currentDate": currentDate.millisecondsSinceEpoch,
+      })
     }]);
 
     var serverCallsWhenOficialContestEntry = joinMaps([defaultServerCalls, {
@@ -48,7 +55,8 @@ class TutorialIniciacion extends Tutorial {
       "get_contest_info" : (url, postData) => waitCompleter( () => TrainingContestList ),
       "get_my_active_contest": (url, postData) => waitCompleter( () => TrainingContestList ),
       "edit_contest_entry": (url, postData) => addContestEntry(postData),
-      "get_my_live_contest": (url, postData) => waitCompleter( () => TrainingContestLive )
+      "get_my_live_contest": (url, postData) => waitCompleter( () => TrainingContestLive ),
+      "get_live_match_events": (url, postData) => waitCompleter( () => LiveMatchEventsResponse )
     }]);
 
     tutorialSteps = {
@@ -187,6 +195,8 @@ class TutorialIniciacion extends Tutorial {
                 });
               },
               'view_contest': () {
+                ViewContestComp liveContest = context;
+
                 openModal(
                   text: () => getLocalizedText("msg-26") //Ésta es la pantalla de simulación
                 )
@@ -198,6 +208,22 @@ class TutorialIniciacion extends Tutorial {
                   openModal(
                     text: () => getLocalizedText("msg-28") //Aqui se ve la simulación.
                   ))
+                .then((_) {
+                  var completer = new Completer();
+
+                  new Timer.periodic(new Duration(seconds: 3), (Timer t) {
+                      if (liveStep + 1 < LiveMatchEventsList.length) {
+                        liveStep++;
+                        liveContest.updateLive();
+                      }
+                      else {
+                        completer.complete(true);
+                        t.cancel();
+                      }
+                  });
+
+                  return completer.future;
+                })
                 .then((_) =>
                   openModal(
                     text: () => getLocalizedText("msg-29") //¡¡¡ Enhorabuena, subes de nivel !!!
@@ -218,6 +244,57 @@ class TutorialIniciacion extends Tutorial {
   void activate() {
     CurrentStepId = Tutorial.STEP_BEGIN;
     changeUser(TutorialPlayer(goldBalance: "AUD 1.00"));
+
+    LiveMatchEventsList.add([]);
+
+    getContentJson(PATH + "live-01.json").then((list) {
+      LiveMatchEventsList.add(list);
+    })
+    .then((_) =>
+      getContentJson(PATH + "live-02.json").then((list) {
+        LiveMatchEventsList.add(list);
+      })
+    )
+    .then((_) =>
+      getContentJson(PATH + "live-03.json").then((list) {
+        LiveMatchEventsList.add(list);
+      })
+    )
+    .then((_) =>
+      getContentJson(PATH + "live-04.json").then((list) {
+        LiveMatchEventsList.add(list);
+      })
+    )
+    .then((_) =>
+      getContentJson(PATH + "live-05.json").then((list) {
+        LiveMatchEventsList.add(list);
+      })
+    )
+    .then((_) =>
+      getContentJson(PATH + "live-06.json").then((list) {
+        LiveMatchEventsList.add(list);
+      })
+    )
+    .then((_) =>
+      getContentJson(PATH + "live-07.json").then((list) {
+        LiveMatchEventsList.add(list);
+      })
+    )
+    .then((_) =>
+      getContentJson(PATH + "live-08.json").then((list) {
+        LiveMatchEventsList.add(list);
+      })
+    )
+    .then((_) =>
+      getContentJson(PATH + "live-09.json").then((list) {
+        LiveMatchEventsList.add(list);
+      })
+    )
+    .then((_) =>
+      getContentJson(PATH + "live-10.json").then((list) {
+        LiveMatchEventsList.add(list);
+      })
+    );
   }
 
   Future addContestEntry(Map postData) {
@@ -300,7 +377,7 @@ class TutorialIniciacion extends Tutorial {
         "entryFee": "JPY 1",
         "prizeMultiplier": 10.0,
         "prizeType": "FIFTY_FIFTY",
-        "startDate": new DateTime.now().add(new Duration(minutes: 60)).millisecondsSinceEpoch,
+        "startDate": currentDate.add(new Duration(minutes: 60)).millisecondsSinceEpoch,
         "optaCompetitionId": "23",
         "simulation": true,
         "specialImage": "",
@@ -320,7 +397,7 @@ class TutorialIniciacion extends Tutorial {
         "entryFee": "JPY 1",
         "prizeMultiplier": 10.0,
         "prizeType": "FIFTY_FIFTY",
-        "startDate": new DateTime.now().add(new Duration(minutes: 60)).millisecondsSinceEpoch,
+        "startDate": currentDate.add(new Duration(minutes: 60)).millisecondsSinceEpoch,
         "optaCompetitionId": "23",
         "simulation": true,
         "specialImage": "",
@@ -340,7 +417,7 @@ class TutorialIniciacion extends Tutorial {
         "entryFee": "AUD 1",
         "prizeMultiplier": 10.0,
         "prizeType": "FIFTY_FIFTY",
-        "startDate": new DateTime.now().add(new Duration(minutes: 120)).millisecondsSinceEpoch,
+        "startDate": currentDate.add(new Duration(minutes: 120)).millisecondsSinceEpoch,
         "optaCompetitionId": "23",
         "simulation": false,
         "specialImage": "",
@@ -357,7 +434,7 @@ class TutorialIniciacion extends Tutorial {
         "entryFee": "AUD 10",
         "prizeMultiplier": 10.0,
         "prizeType": "FIFTY_FIFTY",
-        "startDate": new DateTime.now().add(new Duration(minutes: 130)).millisecondsSinceEpoch,
+        "startDate": currentDate.add(new Duration(minutes: 130)).millisecondsSinceEpoch,
         "optaCompetitionId": "23",
         "simulation": false,
         "specialImage": "",
@@ -374,12 +451,16 @@ class TutorialIniciacion extends Tutorial {
         "entryFee": "AUD 10",
         "prizeMultiplier": 10.0,
         "prizeType": "FIFTY_FIFTY",
-        "startDate": new DateTime.now().add(new Duration(minutes: 140)).millisecondsSinceEpoch,
+        "startDate": currentDate.add(new Duration(minutes: 140)).millisecondsSinceEpoch,
         "optaCompetitionId": "23",
         "simulation": false,
         "specialImage": "",
         "numEntries": 15,
         "_id":  "OFICIAL-FAKE2-56331d69d4c6912cf152f201"
+  };
+
+  Map get LiveMatchEventsResponse => {
+    "content": LiveMatchEventsList[liveStep]
   };
 
   List get ContestEntries => [
@@ -423,6 +504,9 @@ class TutorialIniciacion extends Tutorial {
   List InstanceSoccerPlayerList = [];
   List SoccerPlayerList = [];
   List FantasyTeam = [];
+  List<List> LiveMatchEventsList = [];
+
+  int liveStep = 0;
 
   List oficialFantasyTeam = [
     "5625dd85c1f5fbc410ee72fa",

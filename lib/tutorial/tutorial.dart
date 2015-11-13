@@ -43,8 +43,8 @@ abstract class Tutorial {
 
   void activate();
 
-  Future emptyContent() {
-    return new Future.value({});
+  Future emptyContent({Map content: null}) {
+    return new Future.value(content != null ? content : {});
   }
 
   Map get defaultServerCalls => {
@@ -58,7 +58,8 @@ abstract class Tutorial {
     "add_contest_entry": (url, postData) => emptyContent(),
     "get_my_contest_entry": (url, postData) => emptyContent(),
     "get_my_active_contest": (url, postData) => emptyContent(),
-    "count_my_live_contests": (url, postData) => emptyContent()
+    "count_my_live_contests": (url, postData) => emptyContent(),
+    "get_live_match_events": (url, postData) => emptyContent(content: { "content": [] })
   };
 
   Map joinMaps(List<Map> maps) {
@@ -242,6 +243,19 @@ abstract class Tutorial {
     }
     ];
 
+  List get TemplateMatchEventIds => [
+    "56459d29d4c67b6c0b0ada5c", //"56331d69d4c6912cf152f1f7",
+    "56459d29d4c67b6c0b0ada5d", //"56331d69d4c6912cf152f1f8",
+    "56459d29d4c67b6c0b0ada5e", //"56331d69d4c6912cf152f1f9",
+    "56459d29d4c67b6c0b0ada5f", //"56331d69d4c6912cf152f1fa",
+    "56459d29d4c67b6c0b0ada60", //"56331d69d4c6912cf152f1fb",
+    "56459d29d4c67b6c0b0ada61", //"56331d69d4c6912cf152f1fc",
+    "56459d29d4c67b6c0b0ada62", //"56331d69d4c6912cf152f1fd",
+    "56459d29d4c67b6c0b0ada63", //"56331d69d4c6912cf152f1fe",
+    "56459d29d4c67b6c0b0ada64", //"56331d69d4c6912cf152f1ff",
+    "56459d29d4c67b6c0b0ada65"  //"56331d69d4c6912cf152f200"
+  ];
+
   List get MatchEvents => [
     {
       "templateSoccerTeamAId":RAYO_VALLECANO,
@@ -249,7 +263,7 @@ abstract class Tutorial {
       "period":"PRE_GAME",
       "minutesPlayed":0,
       "startDate":1445335200000,
-      "_id":"56331d69d4c6912cf152f1f7"
+      "_id":TemplateMatchEventIds[0]
     },
     {
       "templateSoccerTeamAId":CELTA_DE_VIGO,
@@ -257,7 +271,7 @@ abstract class Tutorial {
       "period":"PRE_GAME",
       "minutesPlayed":0,
       "startDate":1445335200000,
-      "_id":"56331d69d4c6912cf152f1f8"
+      "_id":TemplateMatchEventIds[1]
     },
     {
       "templateSoccerTeamAId":GRANADA,
@@ -265,7 +279,7 @@ abstract class Tutorial {
       "period":"PRE_GAME",
       "minutesPlayed":0,
       "startDate":1445335200000,
-      "_id":"56331d69d4c6912cf152f1f9"
+      "_id":TemplateMatchEventIds[2]
     },
     {
       "templateSoccerTeamAId":SEVILLA,
@@ -273,7 +287,7 @@ abstract class Tutorial {
       "period":"PRE_GAME",
       "minutesPlayed":0,
       "startDate":1445335200000,
-      "_id":"56331d69d4c6912cf152f1fa"
+      "_id":TemplateMatchEventIds[3]
     },
     {
       "templateSoccerTeamAId":MALAGA,
@@ -281,7 +295,7 @@ abstract class Tutorial {
       "period":"PRE_GAME",
       "minutesPlayed":0,
       "startDate":1445335200000,
-      "_id":"56331d69d4c6912cf152f1fb"
+      "_id":TemplateMatchEventIds[4]
     },
     {
       "templateSoccerTeamAId":LEVANTE,
@@ -289,7 +303,7 @@ abstract class Tutorial {
       "period":"PRE_GAME",
       "minutesPlayed":0,
       "startDate":1445335200000,
-      "_id":"56331d69d4c6912cf152f1fc"
+      "_id":TemplateMatchEventIds[5]
     },
     {
       "templateSoccerTeamAId":LAS_PALMAS,
@@ -297,7 +311,7 @@ abstract class Tutorial {
       "period":"PRE_GAME",
       "minutesPlayed":0,
       "startDate":1445335200000,
-      "_id":"56331d69d4c6912cf152f1fd"
+      "_id":TemplateMatchEventIds[6]
     },
     {
       "templateSoccerTeamAId":BARCELONA,
@@ -305,7 +319,7 @@ abstract class Tutorial {
       "period":"PRE_GAME",
       "minutesPlayed":0,
       "startDate":1445335200000,
-      "_id":"56331d69d4c6912cf152f1fe"
+      "_id":TemplateMatchEventIds[7]
     },
     {
       "templateSoccerTeamAId":ATLETICO_MADRID,
@@ -313,7 +327,7 @@ abstract class Tutorial {
       "period":"PRE_GAME",
       "minutesPlayed":0,
       "startDate":1445335200000,
-      "_id":"56331d69d4c6912cf152f1ff"
+      "_id":TemplateMatchEventIds[8]
     },
     {
       "templateSoccerTeamAId":ATHLETIC_CLUB,
@@ -321,21 +335,8 @@ abstract class Tutorial {
       "period":"PRE_GAME",
       "minutesPlayed":0,
       "startDate":1445335200000,
-      "_id":"56331d69d4c6912cf152f200"
+      "_id":TemplateMatchEventIds[9]
      }
-  ];
-
-  List get TemplateMatchEventIds => [
-    "56331d69d4c6912cf152f1f7",
-    "56331d69d4c6912cf152f1f8",
-    "56331d69d4c6912cf152f1f9",
-    "56331d69d4c6912cf152f1fa",
-    "56331d69d4c6912cf152f1fb",
-    "56331d69d4c6912cf152f1fc",
-    "56331d69d4c6912cf152f1fd",
-    "56331d69d4c6912cf152f1fe",
-    "56331d69d4c6912cf152f1ff",
-    "56331d69d4c6912cf152f200"
   ];
 
   List get SoccerTeams => [

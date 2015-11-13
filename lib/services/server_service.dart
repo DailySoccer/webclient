@@ -276,7 +276,9 @@ class DailySoccerServer implements ServerService {
   Future<Map> _innerServerCall(String url, {Map queryString:null, Map postData:null, int retryTimes: -1, bool cancelIfChangeContext: true}) {
 
     if (TutorialService.isActivated && TutorialService.Instance.isServerCallLocked(url, postData: postData)) {
-      print("Tutorial: $url");
+      if (!url.contains("get_simulator_state")) {
+        print("Tutorial: $url");
+      }
       return TutorialService.Instance.serverCall(url, postData: postData);
     }
 

@@ -86,7 +86,7 @@ class TutorialIniciacion extends Tutorial {
                     });
                     */
 
-                    changeTrigger("lobby", () => showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: getLocalizedText("msg-03"), highlight: true))); //Selecciona este torneo
+                    changeTrigger("lobby", () => showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: getLocalizedText("msg-03"), highlight: true, allowClickOnElement: true))); //Selecciona este torneo
                     triggerEnter("lobby");
                     //removeEnter("lobby");
                 }),
@@ -99,7 +99,7 @@ class TutorialIniciacion extends Tutorial {
                   text: () => getLocalizedText("msg-04") // Haz tu equipo ideal a partir de los jugadores
                 )
                 .then((_) {
-                  showTooltip(new ToolTip("#soccerPlayer220", tipText: getLocalizedText("msg-06"), highlight: true, position: ToolTip.POSITION_BOTTOM)); //Añade este jugador a tu alineación.
+                  showTooltip(new ToolTip("#soccerPlayer220", tipText: getLocalizedText("msg-06"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true)); //Añade este jugador a tu alineación.
                 });
               },
               'lineup-10': () {
@@ -114,7 +114,7 @@ class TutorialIniciacion extends Tutorial {
                       //Los jugadores marcados en rojo
                       showTooltip(new ToolTip("#soccerPlayer464", tipText: getLocalizedText("msg-10"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
                         //Intenta seleccionar un jugador marcado en rojo.
-                        showTooltip(new ToolTip("#soccerPlayer464", tipText: getLocalizedText("msg-11"), highlight: true, position: ToolTip.POSITION_BOTTOM));
+                        showTooltip(new ToolTip("#soccerPlayer464", tipText: getLocalizedText("msg-11"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true));
                       }));
                     }));
                   }));

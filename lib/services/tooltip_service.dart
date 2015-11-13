@@ -94,7 +94,7 @@ class ToolTip {
           {String tipText: null, bool highlight: false,
            String position: ToolTip.POSITION_TOP, String tipId: '',
            Duration delay: Duration.ZERO, Duration duration: Duration.ZERO,
-           void onClickCb(Tooltip): null}) {
+           void onClickCb(Tooltip): null, bool allowClickOnElement: false}) {
     _cssSelector = cssSelector;
     _tipText = tipText;
     _highlight = highlight;
@@ -102,6 +102,7 @@ class ToolTip {
     _tipId = tipId;
     _delay = delay;
     _duration = duration;
+    _allowClickOnElement = allowClickOnElement;
 
     if (onClickCb != null) {
       _onClickCb = onClickCb;
@@ -118,6 +119,7 @@ class ToolTip {
     if (!_isShown) return;
 
     _theTippedElem.classes.remove("tooltipped-element");
+    if (!_allowClickOnElement) _theTippedElem.classes.remove('disabled-pointer-events');
     if (_highlight) _theTippedElem.classes.remove("highlighted-tip");
     if (_theTip != null) _theTip.remove();
     _isShown = false;
@@ -141,8 +143,9 @@ class ToolTip {
       if (_theTippedElem == null) return;
 
       _theTippedElem.classes.add('tooltipped-element');
+      if (!_allowClickOnElement) _theTippedElem.classes.add('disabled-pointer-events');
       if (_highlight) _theTippedElem.classes.add('highlighted-tip');
-
+      
       if (_tipText != null && _tipText != '') {
         _theTip = new Element.div();
         _theTip.classes.addAll(["epic-tooltip", _position]);
@@ -152,7 +155,7 @@ class ToolTip {
           _onClick.add(this);
           e.stopImmediatePropagation();
         });
-
+        
         _theTippedElem.append(_theTip);
       }
 
@@ -174,6 +177,7 @@ class ToolTip {
   Duration _delay;
   Duration _duration;
   Function _onClickCb;
+  bool _allowClickOnElement;
 
   Element _theTip = null;
   Element _theTippedElem;

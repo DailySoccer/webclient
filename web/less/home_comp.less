@@ -5,7 +5,7 @@
 #homeRoot {
 	
 	.home-tile-wrapper {
-		.make-tile(4, 2);
+		.make-tile(4, 3);
 		
 		.tile {
 			
@@ -26,87 +26,124 @@
 					position: relative;
 					width: 70px;
 					border-bottom: 2px solid fade(@white, 50%);
-					margin-bottom: 15px;
-					margin-top: 10px;
+					margin-top: 5px;
 				}
 			}
 				
 			.tile-info {
-				display: block;
 				.opensans_normal(10pt, @white);
 				font-style: italic;
 				max-width: 200px;
+				margin: 15px 0 5px 0;
+				display: inline-block;
 			}
-			.tile-action {
-				margin-top: 20px;
-			}
-			.tile-action.disabled {
-				.addIcon("ht_IconoLock.png", 32px, 32px);
-			}
-			.tile-action.enabled {
-				.addIcon("ht_IconoGo.png", 32px, 32px);
-			}
+			
 		}
-		//background: #ff0000;
+		
+		&.disabled .tile-action {
+			.addIcon("ht_IconoLock.png", 32px, 32px);
+			float: right;
+		}
+		&.enabled .tile-action {
+			.addIcon("ht_IconoGo.png", 32px, 32px);
+			float: right;
+		}
 	}
 
 	.vertical-layout-tilling {
 		cursor: default;
-		.make-tile(4, 2);
+		.make-tile(4, 3);
 		padding: 0;
 	}
-
-	.vertical-layout-tilling .home-tile-wrapper {
+	
+	
+	#myContestsTile .home-tile-wrapper {
 		.make-tile(12, 1);
-		display: block;
+	}
+	#manageTile .home-tile-wrapper {
+		.make-tile(12, 1.5);
+	}
+	#blogTile.home-tile-wrapper {
+		.make-tile(4, 3);
+	}
+	
 
-		//background: #ff00ff;
+	#contestTile .tile {
+		background-image: url("@{images}/ht_ModuloTorneoBG.jpg");
 	}
 
-	.main-tile-wrapper {
+	
+	#createContestTile .tile {
+		background-image: url("@{images}/ht_ModuloRetaBG.jpg");
+	}
+	#scoutingTile .tile {
+		background-image: url("@{images}/ht_ModuloOjeadorBG.jpg");
+	}
+	
+	
+	#upcomingTile .tile {
+		background-image: url("@{images}/ht_ModuloHistoricoBG.jpg");
+	}
+	#liveTile .tile {
+		background-image: url("@{images}/ht_ModuloEnVivoBG.jpg");
+	}
+	#historyTile .tile {
+		background-image: url("@{images}/ht_ModuloHistoricoBG.jpg");
+	}
+	
+	
+	#blogTile .tile {
+		background-image: url("@{images}/ht_ModuloMisterBG.jpg");
+	}
+	
+	
+	#contestTile.home-tile-wrapper {
 		margin-top: 20px;
-		.make-tile(12, 2);
+		.make-tile(12, 3);
 
 		.tile {
-			background-image: url("@{images}/ht_ModuloTorneoBG.jpg");
 			.tile-title {
-				margin-top: 10px;
+				margin-top: 40px;
 				&:after {
 					width: 85px;
+					margin-top: 15px;
 				}
 				.exo_bold(30pt, @white);
 			}
-			
+
 			.tile-info {
 				.opensans_normal(10pt, @white);
 				max-width: 450px;
 			}
+			.tile-action {	
+				display: block;
+				float: none;
+				margin-top: 10px;
+			}
 		}
-		//background: #0000ff;
+
 	}
-
-
-	#myContestsTile {
-		#historyTile .tile {
-			background-image: url("@{images}/ht_ModuloHistoricoBG.jpg");
-		}
-		#liveTile .tile {
-			background-image: url("@{images}/ht_ModuloEnVivoBG.jpg");
-		}
-	}
-
-	#manageTile {
-		#createContestTile .tile {
-			background-image: url("@{images}/ht_ModuloRetaBG.jpg");
-		}
-		#scoutingTile .tile {
-			background-image: url("@{images}/ht_ModuloOjeadorBG.jpg");
+	
+	#myContestsTile .home-tile-wrapper {
+		.tile {
+			.tile-title {
+				color: @blueLight;
+			}
 		}
 	}
-
+	
 	#blogTile .tile {
-		background-image: url("@{images}/ht_ModuloMisterBG.jpg");
+		.tile-title {
+			color: @greyMed;
+		}
+		.tile-action {
+			position: relative;
+			margin-top: 200px;
+		}
 	}
+	
+	
+	
 	
 	.clearfix {
 		padding-bottom: 20px;

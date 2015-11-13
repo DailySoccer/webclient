@@ -487,7 +487,7 @@ body {
 }
 
 .modal-properties-default {
-	background-color: @greyUltraDark;
+	background-color: @greyDark;
 	color: @white;
 	padding: 5px;
 	.container();
@@ -498,7 +498,7 @@ body {
 	}
 	//Configuramos los tamaños de la modal...
 	@media (min-width: @screen-sm-min) {
-		background-color: @greyLight;
+		background-color: @greyMed;
 		.modal-dialog {
 			width: 90%;
 			max-width: 900px;
@@ -523,7 +523,7 @@ body {
 }
 
 .make-tile(@columns, @rows) {
-	@row-height: 150px;
+	@row-height: 100px;
 	
 	.make-sm-column(@columns);
 	padding: 2px;

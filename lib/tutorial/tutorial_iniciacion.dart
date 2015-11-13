@@ -154,16 +154,15 @@ class TutorialIniciacion extends Tutorial {
         STEP_1: new TutorialStep(
             triggers: {
               'lobby': () {
-                  /*
                   //Para participar en los torneos virtuales necesitarás energía
-                  showTooltip(new ToolTip(".energy", tipText: getLocalizedText("msg-18"), highlight: true, position: ToolTip.POSITION_BOTTOM, onClickCb: (_) {
+                  showTooltip(new ToolTip(".entry-fee-box", tipText: getLocalizedText("msg-18"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
                     //Selecciona este torneo
                     showTooltips([
                       new ToolTip("#activeContestList .contestSlot .action-section", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-19"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true),
                       new ToolTip("#activeContestList .contestSlot", highlight: true)
                     ]);
                   }));
-                   */
+                  /*
                   openModal(
                     text: () => getLocalizedText("msg-18") //Para participar en los torneos virtuales necesitarás energía
                   )
@@ -174,6 +173,7 @@ class TutorialIniciacion extends Tutorial {
                       new ToolTip("#activeContestList .contestSlot", highlight: true)
                     ]);
                   });
+                   */
                 },
               'enter_contest' : () {
                 EnterContestComp enterContest = context;

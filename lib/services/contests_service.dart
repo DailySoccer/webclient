@@ -8,6 +8,7 @@ import "package:webclient/services/profile_service.dart";
 import "package:webclient/services/prizes_service.dart";
 import "package:webclient/models/contest.dart";
 import 'package:logging/logging.dart';
+import 'package:webclient/models/template_contest.dart';
 
 
 @Injectable()
@@ -28,6 +29,13 @@ class ContestsService {
   Contest getContestById(String id) => _contests.containsKey(id) ? _contests[id] : null;
 
   ContestsService(this._server, this._profileService, this._prizesService);
+
+  Future getActiveTemplateContests() {
+    return _server.getActiveTemplateContests()
+      .then((jsonMap) {
+        return TemplateContest.loadTemplateContestsFromJsonObject(jsonMap);
+      });
+  }
 
   Future refreshActiveContests() {
     return _server.getActiveContests()

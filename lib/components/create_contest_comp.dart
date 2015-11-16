@@ -4,6 +4,8 @@ import 'dart:async';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/tutorial_service.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/services/contests_service.dart';
+import 'package:webclient/models/template_contest.dart';
 
 @Component(
   selector: 'create-contest',
@@ -11,7 +13,7 @@ import 'package:webclient/utils/string_utils.dart';
   useShadowDom: false
 )
 class CreateContestComp  {
-  
+
   @NgTwoWay("selected-option")
   String get selectedOption => _selectedOption;
   void   set selectedOption(String val) {
@@ -19,7 +21,7 @@ class CreateContestComp  {
       _selectedOption = val;
     }
   }
-  
+
   List<Map<String, String>> contestDates = [{'dateText': getLocalizedText("select_date"),
                                              'contestId': _DEFAULT_SELECT_DATE_TEXT
                                             },
@@ -35,22 +37,28 @@ class CreateContestComp  {
                                             {'dateText': 'pues eso',
                                              'contestId': '42fbw4fr524jk'
                                             }];
-  
+
   String get optionsSelectorValue => selectedOption == null? _DEFAULT_SELECT_DATE_TEXT : selectedOption;
   void   set optionsSelectorValue(String val) {  selectedOption = (val == _DEFAULT_SELECT_DATE_TEXT)? null : val;  }
-  
+
   String contestName;
-  
-  
-  CreateContestComp(this._router);
-  
+
+  CreateContestComp(this._router, this._contestsService) {
+    _contestsService.getActiveTemplateContests()
+      .then((templateContests) {
+        _templateContests = templateContests;
+      });
+  }
+
   static String getLocalizedText(key) {
     return StringUtils.translate(key, "createcontest");
   }
-  
+
   static final String _DEFAULT_SELECT_DATE_TEXT = '';
   String _selectedOption;
-  
+
   Router _router;
-  
+
+  List<TemplateContest> _templateContests;
+  ContestsService _contestsService;
 }

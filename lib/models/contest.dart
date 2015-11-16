@@ -12,6 +12,7 @@ import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/prizes_service.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/models/money.dart';
+import 'package:webclient/models/competition.dart';
 
 class Contest {
   static const MAX_PLAYERS_SAME_TEAM = 4;
@@ -29,11 +30,6 @@ class Contest {
   static const TIER_BEGINNER              = "BEGINNER";
   static const TIER_STANDARD              = "STANDARD";
   static const TIER_SKILLED               = "SKILLEDS";
-
-  static const COMPETITION_LEAGUE_ES_ID     = "23";
-  static const COMPETITION_LEAGUE_UK_ID     = "8";
-  static const COMPETITION_LEAGUE_UCL_ID    = "5";
-  static const COMPETITION_WORLDCUP_ID      = "4";
 
   String contestId;
   String templateContestId;
@@ -101,13 +97,7 @@ class Contest {
     return entries;
   }
 
-  Map<String, String> competitionTypeValues = {
-    COMPETITION_LEAGUE_ES_ID:   "LEAGUE_ES"
-    ,COMPETITION_LEAGUE_UK_ID:  "LEAGUE_UK"
-    ,COMPETITION_LEAGUE_UCL_ID: "CHAMPIONS"
-    ,COMPETITION_WORLDCUP_ID:   "WORLDCUP"
-  };
-  String get competitionType => optaCompetitionId.isNotEmpty ? competitionTypeValues[optaCompetitionId] : "";
+  String get competitionType => Competition.competitionType(optaCompetitionId);
 
   Contest(this.contestId, this.contestEntries);
 

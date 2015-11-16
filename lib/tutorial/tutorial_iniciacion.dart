@@ -93,6 +93,8 @@ class TutorialIniciacion extends Tutorial {
                     ]);
 
                     //removeEnter("lobby");
+                })
+                .catchError((e) {
                 }),
               'enter_contest' : () {
                 EnterContestComp enterContest = context;
@@ -107,6 +109,8 @@ class TutorialIniciacion extends Tutorial {
                     new ToolTip("#soccerPlayer220 .action-button", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-06"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true), //Añade este jugador a tu alineación.
                     new ToolTip("#soccerPlayer220", highlight: true)
                   ]);
+                })
+                .catchError((e) {
                 });
               },
               'lineup-10': () {
@@ -142,6 +146,8 @@ class TutorialIniciacion extends Tutorial {
                   .then((_) {
                     CurrentStepId = STEP_1;
                     router.go("lobby", {});
+                  })
+                  .catchError((e) {
                   });
               },
               '**view_contest_entry': () =>
@@ -194,7 +200,8 @@ class TutorialIniciacion extends Tutorial {
                     new ToolTip("#soccerPlayer344 .action-button", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-24"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true),
                     new ToolTip("#soccerPlayer344", highlight: true)
                   ]);
-
+                })
+                .catchError((e) {
                 });
               },
               'lineup-11': () {
@@ -220,6 +227,8 @@ class TutorialIniciacion extends Tutorial {
                 )
                 .then((_) {
                   router.go('live_contest', {"contestId": TrainingContestInstance["_id"], "parent": "my_contests"});
+                })
+                .catchError((e) {
                 });
               },
               'view_contest': () {
@@ -275,6 +284,8 @@ class TutorialIniciacion extends Tutorial {
                 .then((_) {
                   CurrentStepId = Tutorial.STEP_END;
                   TutorialService.Instance.skipTutorial(routePath: "join");
+                })
+                .catchError((e) {
                 });
               }
             },
@@ -340,7 +351,9 @@ class TutorialIniciacion extends Tutorial {
       getContentJson(PATH + "live-10.json").then((list) {
         LiveMatchEventsList.add(list);
       })
-    );
+    )
+    .catchError((e) {
+    });
   }
 
   Future addContestEntry(Map postData) {

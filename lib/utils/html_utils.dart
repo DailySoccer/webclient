@@ -21,12 +21,22 @@ Future<bool> modalShow(String title, String content, {String modalSize: "lg",
   Element modalWindow = querySelector("#modalWindow");
   bool result = false;
 
-  void onClose(dynamic sender) {
-    modalWindow.children.remove(modalWindow.querySelector('#' + globalRootId));
+  void completeWithResult() {
     if(!completer.isCompleted) {
       BackdropComp.instance.hide();
-      completer.complete(result);
+
+      if (result) {
+        completer.complete(result);
+      }
+      else {
+        completer.completeError(result);
+      }
     }
+  }
+
+  void onClose(dynamic sender) {
+    modalWindow.children.remove(modalWindow.querySelector('#' + globalRootId));
+    completeWithResult();
   }
 
   void closeMe() {
@@ -54,7 +64,7 @@ Future<bool> modalShow(String title, String content, {String modalSize: "lg",
     }
 
     closeMe();
-    if (!completer.isCompleted) completer.complete(result);
+    completeWithResult();
   }
 
   String composeHeader() {
@@ -186,6 +196,11 @@ Future<bool> modalShow(String title, String content, {String modalSize: "lg",
   JsUtils.runJavascript('#' + globalRootId, 'on', {'hidden.bs.modal': onClose});
   BackdropComp.instance.show();
   return completer.future;
+}
+
+void modalClose({String type: 'generic'}) {
+  String globalRootId = type == 'welcome' ? 'welcomeRoot' : 'alertRoot';
+  JsUtils.runJavascript('#' + globalRootId, 'modal', "hide");
 }
 
 String trimStringToPx(Element elem, int maxWidthAllowed) {

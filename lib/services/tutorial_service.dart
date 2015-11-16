@@ -123,6 +123,7 @@ class TutorialService {
     }
    */
 
+    modalClose(type: 'welcome');
     ToolTipService.instance.clear();
     BackdropComp.instance.hide(forceUpdate: true);
     querySelector('body').classes.remove('tutorial');

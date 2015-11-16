@@ -1294,6 +1294,75 @@ tc.put("packages/webclient/components/enter_contest/soccer_players_filter_comp.h
 
   <input type="text" class="name-player-input-filter" placeholder="{{getLocalizedText('search-player', group: 'soccerplayerlist')}}" ng-model="nameFilter" />
 </div>"""));
+tc.put("packages/webclient/components/home_comp.html", new HttpResponse(200, r"""<div id="homeRoot">
+  <!--
+  Torneos
+  Tutorial
+  Blog
+  Crear Torneos
+  Torneos en directo
+  Scouting??
+  -->
+  
+  <div id="contestTile" class="home-tile-wrapper enabled" ng-click="onContestsClick()">
+    <div class="tile">
+      <span class="tile-title">Torneos</span>
+      <span class="tile-info">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer elementum justo vel eleifend fringilla.</span>
+      <span class="tile-action"></span>
+    </div>
+  </div>
+  
+  <div id="manageTile" class="vertical-layout-tilling">
+    <div id="createContestTile" class="home-tile-wrapper" ng-click="onCreateContestClick()" ng-class="{'disabled': !userIsLogged, 'enabled': userIsLogged}">
+      <div class="tile">
+        <span class="tile-title">Reta a tus amigos</span>
+        <span class="tile-info">Primero debes aprender a jugar</span>
+        <span class="tile-action"></span>
+      </div>
+    </div>
+    <div id="scoutingTile" class="home-tile-wrapper" ng-click="onScoutingClick()" ng-class="{'disabled': !userIsLogged, 'enabled': userIsLogged}">
+      <div class="tile">
+        <span class="tile-title">Ojeador</span>
+        <span class="tile-info ">Primero debes aprender a jugar</span>
+        <span class="tile-action"></span>
+      </div>
+    </div>
+  </div>
+  
+  <div id="myContestsTile" class="vertical-layout-tilling">
+    <div id="upcomingTile" class="home-tile-wrapper" ng-click="onUpcomingClick()" ng-class="{'disabled': !userIsLogged, 'enabled': userIsLogged}">
+      <div class="tile">
+        <span class="tile-title">Próximos</span>
+        <span class="tile-info">Primero debes aprender a jugar</span>
+        <span class="tile-action"></span>
+      </div>
+    </div>
+    <div id="liveTile" class="home-tile-wrapper" ng-click="onLiveClick()" ng-class="{'disabled': !userIsLogged, 'enabled': userIsLogged}">
+      <div class="tile">
+        <span class="tile-title">En vivo</span>
+        <span class="tile-info">Primero debes aprender a jugar</span>
+        <span class="tile-action"></span>
+      </div>
+    </div>
+    <div id="historyTile" class="home-tile-wrapper" ng-click="onHistoryClick()" ng-class="{'disabled': !userIsLogged, 'enabled': userIsLogged}">
+      <div class="tile">
+        <span class="tile-title">Histórico</span>
+        <span class="tile-info">Primero debes aprender a jugar</span>
+        <span class="tile-action"></span>
+      </div>
+    </div>
+  </div>
+  
+  <div id="blogTile" class="home-tile-wrapper enabled" ng-click="onBlogClick()">
+    <div class="tile">
+      <span class="tile-title">Palabra de Míster</span>
+      <span class="tile-info">Un blog escrito por Salva Carmona, el tio que más sabe de estadísticas futboleras del mundo.</span>
+      <span class="tile-action"></span>
+    </div>
+  </div>
+  
+  <div class="clearfix"></div>
+</div>"""));
 tc.put("packages/webclient/components/leaderboard_comp.html", new HttpResponse(200, r"""<div id="leaderboard-wrapper">
 
   <div id="leaderboard-header-wrapper">
@@ -1558,6 +1627,26 @@ tc.put("packages/webclient/components/scoring_rules_comp.html", new HttpResponse
       <span class="points"><b>{{event["points"]}}</b></span>
     </div>
   </div>
+</div>"""));
+tc.put("packages/webclient/components/tutorial_list_comp.html", new HttpResponse(200, r"""<div id="tutorialListRoot">
+  
+  <div id="initiation" class="tutorial-tile-wrapper" ng-click="onTutorialClick('initiation')">
+    <div class="tile">
+      <span class="tile-info">Iniciación</span>
+    </div>
+  </div>
+  <div id="oficialContests" class="tutorial-tile-wrapper" ng-click="onTutorialClick('oficialContests')">
+    <div class="tile">
+      <span class="tile-info">Jugar Torneos Oficiales</span>
+    </div>
+  </div>
+  <div id="creatingContests" class="tutorial-tile-wrapper" ng-click="onTutorialClick('creatingContests')">
+    <div class="tile">
+      <span class="tile-info">Crear Torneos con tus amigos</span>
+    </div>
+  </div>
+  
+  <div class="clearfix"></div>
 </div>"""));
 tc.put("packages/webclient/components/view_contest/fantasy_team_comp.html", new HttpResponse(200, r"""<div id="fantasyTeamRoot" class="fantasy-team-wrapper" >
 

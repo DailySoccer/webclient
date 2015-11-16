@@ -7531,7 +7531,7 @@ scoring-rules:after,
   font-size: 9pt;
   color: #777777;
   position: relative;
-  background-color: white;
+  background-color: #ffffff;
 }
 @media (min-width: 768px) {
   .contests-list-f2p-root .contestSlot .conditions-section .condition-box-commons {
@@ -7592,7 +7592,7 @@ scoring-rules:after,
   font-size: 9pt;
   color: #777777;
   position: relative;
-  background-color: white;
+  background-color: #ffffff;
 }
 @media (min-width: 768px) {
   .contests-list-f2p-root .contestSlot .conditions-section .player-position {
@@ -7665,7 +7665,7 @@ scoring-rules:after,
   font-size: 9pt;
   color: #777777;
   position: relative;
-  background-color: white;
+  background-color: #ffffff;
 }
 @media (min-width: 768px) {
   .contests-list-f2p-root .contestSlot .conditions-section .entry-fee-box {
@@ -7732,7 +7732,7 @@ scoring-rules:after,
   font-size: 9pt;
   color: #777777;
   position: relative;
-  background-color: white;
+  background-color: #ffffff;
 }
 @media (min-width: 768px) {
   .contests-list-f2p-root .contestSlot .conditions-section .prize-box {
@@ -7793,7 +7793,7 @@ scoring-rules:after,
   font-size: 9pt;
   color: #777777;
   position: relative;
-  background-color: white;
+  background-color: #ffffff;
 }
 @media (min-width: 768px) {
   .contests-list-f2p-root .contestSlot .conditions-section .points-box {
@@ -20103,7 +20103,7 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   width: 150px;
   margin-left: -75px;
   text-align: center;
-  z-index: 1001;
+  z-index: 1051;
 }
 /*
 .tutorial-tip-wrapper {

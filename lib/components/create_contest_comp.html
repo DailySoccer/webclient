@@ -3,14 +3,18 @@
   <div class="create-contest-section-wrapper">
     <div class="create-contest-section">
       <div class="title">Nombre</div>
+      <div class="data-input-wrapper contest-name">
+        <input id="contestNameInput" type="text" ng-model="contestName" placeholder="Nombre del torneo" class="form-control ng-binding ng-pristine ng-touched" tabindex="1">
+      </div>
     </div>
   </div>
+  
   <div class="create-contest-section-wrapper">
     <div class="create-contest-section">
       <div class="title">Tipo de Torneo</div>
       <div class="data-input-wrapper contest-type">
         <span class="data-element">
-          <input id="contestOficial" type="radio" value="oficial" name="contestType">
+          <input id="contestOficial" type="radio" value="oficial" name="contestType" checked>
           <label for="contestOficial"><span class="icon"></span>Oficial</label>
         </span>
         <span class="data-element">
@@ -20,6 +24,7 @@
       </div>
     </div>
   </div>
+  
   <div class="create-contest-section-wrapper">
     <div class="create-contest-section">
       <div class="title">Competición</div>
@@ -39,11 +44,19 @@
       </div>
     </div>
   </div>
+  
   <div class="create-contest-section-wrapper">
     <div class="create-contest-section">
-    <div class="title">Fecha</div>
+      <div class="title">Fecha</div>
+      <div class="data-input-wrapper contest-date">
+        <select name="contestDateSelector" id="contestDateSelector" class="form-control contest-date-selector dropdown-toggle" ng-model="optionsSelectorValue" >
+          <option ng-repeat="contest in contestDates" id="option-contest-{{contest.contestId}}"
+                  value="{{$index + 1}}" ng-value="contest.contestId">{{contest.dateText}}</option>
+        </select>
+      </div>
     </div>
   </div>
+  
   <div class="create-contest-section-wrapper">
     <div class="create-contest-section">
       <div class="title">Tipo de Torneo</div>
@@ -59,6 +72,7 @@
       </div>
     </div>
   </div>
+  
   <div class="create-contest-section-wrapper">
     <div class="create-contest-section">
       <div class="title">Oponente</div>
@@ -82,7 +96,7 @@
         
         <span class="data-element">
           <input id="contestFee_1E_3MP" type="radio" value="1E_3MP" name="entry-fee">
-          <label for="contestFee_1E_3MP"><span class="energy">1</span> por <span class="manager-points">3</span></label>
+          <label for="contestFee_1E_3MP"><span class="entry-fee- energy">1</span> por <span class="manager-points">3</span></label>
         </span>
         <span class="data-element">
           <input id="contestFee_1G_3G" type="radio" value="1G_3G" name="entry-fee">

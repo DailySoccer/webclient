@@ -636,6 +636,10 @@
       "erroruserbalancenegativegeneric" : "No tienes Oro suficiente. Por favor, compra Oro para poder continuar",
       "errordefaulttitle"               : "Atención",
       "errordefaultgeneric"             : "Ha ocurrido un error. Inténtalo mas tarde."
+    },
+    "createcontest"                     :
+    {
+      "select_date"                     : "Selecciona Fecha"
     }
 
   }

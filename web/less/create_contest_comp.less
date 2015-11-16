@@ -1,4 +1,4 @@
-.global-create-contest #mainWrapper.wrapper-content-container {
+.global-create-contest #mainContent.main-content-container {
 	background-color: @white;
 }
 
@@ -61,7 +61,7 @@
 					padding: 0;
 					
 					input[type="radio"] + label .icon {
-						margin-right: 5px;
+						margin: 0 5px 0 0;
 					}
 				}
 				
@@ -116,6 +116,30 @@
 				&.entry-fee input[type="radio"] + label .gold:after {
 					content: "";
 					.addIcon("icon-coin-lg.png", 27px, 27px);
+				}
+				
+				&.contest-date {
+					margin: 30px 0;
+					select.contest-date-selector {
+						width: auto;
+						max-width: 100%;
+						overflow: hidden;
+						display: inline-block;
+						padding: 7px 10% 7px 15px;
+						-webkit-appearance: none;
+						-moz-appearance: none;
+						appearance: none;
+						background-color: @white;
+						background: @white url("@{images}/arrowDownBlack.png") no-repeat 95% 50%;
+					}
+					/*&:after {
+						content: "";
+						.addIcon("arrowDownBlack.png", 20px, 20px);
+						margin-left: -35px;
+					}*/
+				}
+				&.contest-name {
+					margin: 30px 0;
 				}
 				
 			}

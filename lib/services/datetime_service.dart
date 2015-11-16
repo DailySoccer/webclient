@@ -82,7 +82,13 @@ class DateTimeService {
                      : hours + ":" + minutes + ":" + seconds;
   }
 
-   void _updateSimulatorState() {
+  static void setFakeDateTime(DateTime fakeDateTime) {
+    _instance._simulatorActivated = true;
+    _instance._simulatorStateReceived = true;
+    _instance._fakeDateTime = fakeDateTime;
+  }
+
+  void _updateSimulatorState() {
     _server.getSimulatorState()
       .then((jsonMap) {
         bool activated = jsonMap["init"];

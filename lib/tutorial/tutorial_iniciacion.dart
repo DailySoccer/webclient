@@ -11,6 +11,7 @@ import 'package:webclient/components/enter_contest/enter_contest_comp.dart';
 import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/components/view_contest/view_contest_comp.dart';
 import 'package:webclient/services/tutorial_service.dart';
+import 'package:webclient/services/datetime_service.dart';
 
 class TutorialIniciacion extends Tutorial {
   static String NAME = "TUTORIAL_INICIACION";
@@ -285,6 +286,8 @@ class TutorialIniciacion extends Tutorial {
   }
 
   void activate() {
+    DateTimeService.setFakeDateTime(currentDate);
+
     CurrentStepId = Tutorial.STEP_BEGIN;
     changeUser(TutorialPlayer(goldBalance: "AUD 1.00"));
 

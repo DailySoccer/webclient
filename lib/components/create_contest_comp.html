@@ -1,5 +1,7 @@
 <div id="createContest">
+
   <div class="default-section-header dark">Crear torneo</div>
+  
   <div class="create-contest-section-wrapper">
     <div class="create-contest-section">
       <div class="title">Nombre</div>
@@ -19,7 +21,7 @@
         </span>
         <span class="data-element">
           <input id="contestTraining" type="radio" value="training" name="contestType">
-          <label for="contestTraining"><span class="icon"></span>Uno contra Uno</label>
+          <label for="contestTraining"><span class="icon"></span>Entrenamiento</label>
         </span>
       </div>
     </div>
@@ -50,8 +52,8 @@
       <div class="title">Fecha</div>
       <div class="data-input-wrapper contest-date">
         <select name="contestDateSelector" id="contestDateSelector" class="form-control contest-date-selector dropdown-toggle" ng-model="optionsSelectorValue" >
-          <option ng-repeat="contest in contestDates" id="option-contest-{{contest.contestId}}"
-                  value="{{$index + 1}}" ng-value="contest.contestId">{{contest.dateText}}</option>
+          <option ng-repeat="template in templatesList" id="option-contest-{{template.id}}"
+                  value="{{$index + 1}}" ng-value="template.id">{{template.name}}</option>
         </select>
       </div>
     </div>

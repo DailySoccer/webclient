@@ -21,22 +21,24 @@ class CreateContestComp  {
       _selectedOption = val;
     }
   }
+  
+  List<Map<String, String>> templatesList = [{'name': getLocalizedText("select_date"),
+                                              'id': _DEFAULT_SELECT_DATE_TEXT
+                                             },
+                                             {'name': 'Supersábado de Clásico',
+                                              'id': '12a34asfl324524jk'
+                                             },
+                                             {'name': 'GESDVSV ds fsad  asdf',
+                                              'id': '22a34ashsd23424jk'
+                                             },
+                                             {'name': 'blau blau',
+                                              'id': '32a6734fvxbfnrg4524jk'
+                                             },
+                                             {'name': 'pues eso',
+                                              'id': '42fbw4fr524jk'
+                                             }];
+  
 
-  List<Map<String, String>> contestDates = [{'dateText': getLocalizedText("select_date"),
-                                             'contestId': _DEFAULT_SELECT_DATE_TEXT
-                                            },
-                                            {'dateText': 'Supersábado de Clásico',
-                                             'contestId': '12a34asfl324524jk'
-                                            },
-                                            {'dateText': 'GESDVSV ds fsad  asdf',
-                                             'contestId': '22a34ashsd23424jk'
-                                            },
-                                            {'dateText': 'blau blau',
-                                             'contestId': '32a6734fvxbfnrg4524jk'
-                                            },
-                                            {'dateText': 'pues eso',
-                                             'contestId': '42fbw4fr524jk'
-                                            }];
 
   String get optionsSelectorValue => selectedOption == null? _DEFAULT_SELECT_DATE_TEXT : selectedOption;
   void   set optionsSelectorValue(String val) {  selectedOption = (val == _DEFAULT_SELECT_DATE_TEXT)? null : val;  }

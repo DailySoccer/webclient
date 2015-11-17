@@ -8,6 +8,7 @@ import 'package:webclient/services/server_error.dart';
 import 'package:webclient/utils/host_server.dart';
 import 'dart:html';
 import 'package:webclient/services/tutorial_service.dart';
+import 'package:webclient/models/contest.dart';
 
 
 abstract class ServerService {
@@ -39,6 +40,7 @@ abstract class ServerService {
 
   // Template Contests
   Future<Map> getActiveTemplateContests();
+  Future<Map> createContest(Contest contest, List<String> soccerPlayers);
 
   // Active Contests
   Future<Map> getActiveContests();
@@ -172,6 +174,21 @@ class DailySoccerServer implements ServerService {
 
   Future<Map> getActiveTemplateContests() {
     return _innerServerCall("${HostServer.url}/get_active_templatecontests");
+  }
+
+  Future<Map> createContest(Contest contest, List<String> soccerPlayers) {
+    String jsonSoccerPlayers = JSON.encode(soccerPlayers);
+
+    Map postData = {
+      'templateContestId': contest.templateContestId,
+      'name': contest.name,
+      'startDate': contest.startDate.toString(),
+      'simulation': contest.isSimulation,
+      'maxEntries': contest.maxEntries,
+      'soccerTeam': jsonSoccerPlayers
+    };
+
+    return _innerServerCall("${HostServer.url}/create_contest", postData: postData);
   }
 
   Future<Map> getActiveContests() {

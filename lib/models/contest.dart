@@ -36,6 +36,10 @@ class Contest {
 
   String state;
 
+  void set name(String aName) {
+    _name = aName;
+  }
+
   String get name {
     if (_name == null) {
       _name = _parsePattern(_namePattern);
@@ -100,6 +104,8 @@ class Contest {
   String get competitionType => Competition.competitionType(optaCompetitionId);
 
   Contest(this.contestId, this.contestEntries);
+
+  Contest.instance();
 
   Contest.referenceInit(this.contestId);
 

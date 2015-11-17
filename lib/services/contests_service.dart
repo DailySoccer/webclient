@@ -30,6 +30,12 @@ class ContestsService {
 
   ContestsService(this._server, this._profileService, this._prizesService);
 
+  Future createContest(Contest contest, List<String> soccerPlayers) {
+    return _server.createContest(contest, soccerPlayers)
+      .then((jsonMap) {
+      });
+  }
+
   Future getActiveTemplateContests() {
     return _server.getActiveTemplateContests()
       .then((jsonMap) {

@@ -16,11 +16,11 @@
       <div class="title">Tipo de Torneo</div>
       <div class="data-input-wrapper contest-type">
         <span class="data-element">
-          <input id="contestOficial" type="radio" value="oficial" name="contestType" checked>
+          <input id="contestOficial" type="radio" value="oficial" ng-value="TYPE_OFICIAL" ng-model="contestType" name="contestType" checked>
           <label for="contestOficial"><span class="icon"></span>Oficial</label>
         </span>
         <span class="data-element">
-          <input id="contestTraining" type="radio" value="training" name="contestType">
+          <input id="contestTraining" type="radio" value="training" ng-value="TYPE_TRAINING" ng-model="contestType" name="contestType">
           <label for="contestTraining"><span class="icon"></span>Entrenamiento</label>
         </span>
       </div>
@@ -34,14 +34,14 @@
         <span class="data-element">
           <input id="contestLeague" type="radio" value="LEAGUE_ES" name="competition"
                  ng-class="{'disabled-radio': templatesFilteredList[leagueES_val].length == 0 }"
-                 ng-value="leagueES_val" ng-model="selectedCompetition" 
+                 ng-value="leagueES_val" ng-model="selectedCompetition"
                  ng-disabled="templatesFilteredList[leagueES_val].length == 0">
           <label for="contestLeague"><span class="icon"></span>Liga</label>
         </span>
         <span class="data-element">
           <input id="contestPremiere" type="radio" value="LEAGUE_UK" name="competition"
                  ng-class="{'disabled-radio': templatesFilteredList[leagueUK_val].length == 0 }"
-                 ng-value="leagueUK_val" ng-model="selectedCompetition" 
+                 ng-value="leagueUK_val" ng-model="selectedCompetition"
                  ng-disabled="templatesFilteredList[leagueUK_val].length == 0">
           <label for="contestPremiere"><span class="icon"></span>Premiere</label>
         </span>
@@ -53,14 +53,12 @@
     <div class="create-contest-section">
       <div class="title">Torneo</div>
       <div class="data-input-wrapper contest-date">
-        <select ng-disabled="printableTemplateList.length == 0" name="contestDateSelector" id="contestDateSelector" 
+        <select ng-disabled="printableTemplateList.length == 0" name="contestDateSelector" id="contestDateSelector"
                 class="form-control contest-date-selector dropdown-toggle" ng-model="selectedTemplate" >
-                
           <option id="option-contest-select-contest" value="" ng-value="null" ng-bind="comboDefaultText"></option>
-          
+
           <option ng-repeat="template in printableTemplateList" id="option-contest-{{template.templateContestId}}"
                   value="{{$index + 1}}" ng-value="template">{{template.name}}</option>
-                  
         </select>
       </div>
     </div>
@@ -83,7 +81,7 @@
       </div>
     </div>
   </div>
-  
+
   <!--div class="create-contest-section-wrapper">
     <div class="create-contest-section">
       <div class="title">Oponente</div>
@@ -99,7 +97,7 @@
       </div>
     </div>
   </div-->
-  
+
   <div class="create-contest-section-wrapper large">
     <div class="create-contest-section">
       <div class="title">Precio de entrada</div>

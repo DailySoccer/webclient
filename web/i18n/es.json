@@ -639,7 +639,7 @@
     },
     "createcontest"                     :
     {
-      "select_date"                     : "Selecciona Fecha",
+      "select_event"                    : "Selecciona Evento",
       "select_competition_first"        : "Selecciona la competicion antes."
     }
 

@@ -1,15 +1,15 @@
 library competition;
 
 class Competition {
-  static const LEAGUE_ES_ID     = "23";
-  static const LEAGUE_UK_ID     = "8";
-  static const LEAGUE_UCL_ID    = "5";
-  static const WORLDCUP_ID      = "4";
+  static const String LEAGUE_ES_ID     = "23";
+  static const String LEAGUE_UK_ID     = "8";
+  static const String LEAGUE_UCL_ID    = "5";
+  static const String WORLDCUP_ID      = "4";
 
-  static const LEAGUE_ES      = "LEAGUE_ES";
-  static const LEAGUE_UK      = "LEAGUE_UK";
-  static const LEAGUE_UCL     = "CHAMPIONS";
-  static const WORLDCUP       = "WORLDCUP";
+  static const String LEAGUE_ES      = "LEAGUE_ES";
+  static const String LEAGUE_UK      = "LEAGUE_UK";
+  static const String LEAGUE_UCL     = "CHAMPIONS";
+  static const String WORLDCUP       = "WORLDCUP";
 
   static Map<String, String> competitionTypeValues = {
     LEAGUE_ES_ID:   LEAGUE_ES

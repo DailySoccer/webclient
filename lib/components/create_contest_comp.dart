@@ -15,90 +15,52 @@ import 'package:webclient/models/competition.dart';
 )
 class CreateContestComp  {
 
-  @NgTwoWay("selected-option")
-  String get selectedOption => _selectedOption;
-  void   set selectedOption(String val) {
-    if (val != _selectedOption) {
-      _selectedOption = val;
-    }
-  }
-
-  String _selectedCompetition = '';
-  void set selectedCompetition(String comp) {
-    _selectedCompetition = comp;
-    updatePrintableList();
-  }
-  String get selectedCompetition => _selectedCompetition;
-
-  List<Map<String, String>> _templatesFilteredList = [placeholderNotSelected];
-  List<Map<String, String>> _templatesList = [{'name': 'Supersábado de Clásico',
-                                                'id': '12a34asfl324524jk',
-                                                'competition': Competition.LEAGUE_ES
-                                               },
-                                               {'name': 'GESDVSV ds fsad  asdf',
-                                                'id': '22a34ashsd23424jk',
-                                                'competition': Competition.LEAGUE_ES
-                                               },
-                                               {'name': 'blau blau',
-                                                'id': '32a6734fvxbfnrg4524jk',
-                                                'competition': Competition.LEAGUE_UK
-                                               },
-                                               {'name': 'pues eso',
-                                                'id': '42fbw4fr524jk',
-                                                'competition': Competition.LEAGUE_UK
-                                               }];
-
-  List<Map<String, String>> get printableTemplateList => _templatesFilteredList;
-
-  static Map<String, String> placeholderTemplate     = { 'name': getLocalizedText("select_date"),
-                                                         'id': '',
-                                                         'competition': '' };
-  static Map<String, String> placeholderNotSelected  = { 'name': getLocalizedText("select_competition_first"),
-                                                         'id': '',
-                                                         'competition': '' };
-  static Map<String, String> placeholderEmpty        = { 'name': getLocalizedText("select_competition_first"),
-                                                         'id': '',
-                                                         'competition': '' };
-
-  void updatePrintableList() {
-    List<Map<String, String>> filteredList = _templatesList.where( (t) => t['competition'] ==  selectedCompetition).toList();
-    _templatesFilteredList.clear();
-
-    if (selectedCompetition == null || selectedCompetition == '') {
-      _templatesFilteredList.add(placeholderNotSelected);
-    } else if (filteredList.isEmpty) {
-      _templatesFilteredList.add(placeholderEmpty);
-    } else {
-      _templatesFilteredList.add(placeholderTemplate);
-      _templatesFilteredList.addAll(filteredList);
-    }
-    selectedOption = null;
-  }
-
-
-  String get optionsSelectorValue => selectedOption == null? placeholderTemplate['id'] : selectedOption;
-  void   set optionsSelectorValue(String val) {  selectedOption = (val == placeholderTemplate['id'])? null : val;  }
-
-  bool get isNotComplete => false;
-
+  String selectedCompetition;
   String contestName;
+  
+  String get selectedTemplate => _selectedTemplate;
+  void   set selectedTemplate(String val) {
+    if (val != _selectedTemplate) {
+      _selectedTemplate = val;
+    }
+  }
+
+  String leagueES_val = Competition.LEAGUE_ES;
+  String leagueUK_val = Competition.LEAGUE_UK;
+  
+  String get comboDefaultText {
+    if (printableTemplateList.length == 0) {
+      return getLocalizedText("select_competition_first");
+    } 
+    return getLocalizedText("select_event");
+  }
+
+  List<TemplateContest> emptyListAuxiliar = [];
+  List<TemplateContest> get printableTemplateList {
+    if(templatesFilteredList.containsKey(selectedCompetition)) {
+      return templatesFilteredList[selectedCompetition];
+    }
+    return emptyListAuxiliar;
+  }
+  
+  // Esta sin completar el formulario?
+  bool get isNotComplete => false;
 
   CreateContestComp(this._router, this._contestsService) {
     _contestsService.getActiveTemplateContests()
       .then((templateContests) {
         _templateContests = templateContests;
 
-        if (_templateContests.isNotEmpty) {
-          _templatesList = [];
-          for (TemplateContest templateContest in _templateContests) {
-            _templatesList.add( {
-              'name': templateContest.name,
-              'id': templateContest.templateContestId,
-              'competition': templateContest.competitionType,
-              'instanceTemplateContest': templateContest
-            });
-          }
+        selectedCompetition = null;
+        if(_templateContests.length > 0) {
+          
+          templatesFilteredList.forEach( (String key, List<TemplateContest> list) {
+            list.clear();
+            list.addAll(_templateContests.where((t) => t.competitionType == key));
+            if (selectedCompetition == null && list.isNotEmpty) selectedCompetition = key;
+          });
         }
+        
       });
   }
 
@@ -110,10 +72,15 @@ class CreateContestComp  {
     print("Dandole a crear contest, boton lo linkeado.");
   }
 
-  String _selectedOption;
-
-  Router _router;
+  String _selectedTemplate;
+  Map<String, List<TemplateContest>> templatesFilteredList = { 
+    Competition.LEAGUE_ES: [],
+    Competition.LEAGUE_UK: []
+  };
 
   List<TemplateContest> _templateContests;
   ContestsService _contestsService;
+
+  Router _router;
 }
+

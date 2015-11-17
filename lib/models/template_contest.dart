@@ -129,16 +129,16 @@ class TemplateContest {
     ContestReferences contestReferences = new ContestReferences();
 
     // Solo 1 contest
-    if (jsonMapRoot.containsKey("contest")) {
-      templateContests.add(new TemplateContest.fromJsonObject(jsonMapRoot["contest"], contestReferences));
+    if (jsonMapRoot.containsKey("template_contest")) {
+      templateContests.add(new TemplateContest.fromJsonObject(jsonMapRoot["template_contest"], contestReferences));
     }
     // Array de contests
     else {
-      templateContests = jsonMapRoot.containsKey("contests") ? jsonMapRoot["contests"].map((jsonObject) => new TemplateContest.fromJsonObject(jsonObject, contestReferences)).toList() : [];
+      templateContests = jsonMapRoot.containsKey("template_contests") ? jsonMapRoot["template_contests"].map((jsonObject) => new TemplateContest.fromJsonObject(jsonObject, contestReferences)).toList() : [];
 
       // Aceptamos múltiples listas de contests (con mayor o menor información)
-      for (int view=0; view<10 && jsonMapRoot.containsKey("contests_$view"); view++) {
-        templateContests.addAll( jsonMapRoot["contests_$view"].map((jsonObject) => new TemplateContest.fromJsonObject(jsonObject, contestReferences)).toList() );
+      for (int view=0; view<10 && jsonMapRoot.containsKey("template_contest_$view"); view++) {
+        templateContests.addAll( jsonMapRoot["template_contest_$view"].map((jsonObject) => new TemplateContest.fromJsonObject(jsonObject, contestReferences)).toList() );
       }
     }
 
@@ -172,6 +172,7 @@ class TemplateContest {
    * Factorias de creacion de un Contest
    */
   factory TemplateContest.fromJsonObject(Map jsonMap, ContestReferences references) {
+    TemplateContest tContest = references.getTemplateContestById(jsonMap["_id"]);
     return references.getTemplateContestById(jsonMap["_id"])._initFromJsonObject(jsonMap, references);
   }
 
@@ -180,8 +181,6 @@ class TemplateContest {
    */
   TemplateContest _initFromJsonObject(Map jsonMap, ContestReferences references) {
     assert(templateContestId.isNotEmpty);
-
-    templateContestId = jsonMap["templateContestId"];
 
     state = jsonMap.containsKey("state") ? jsonMap["state"] : "ACTIVE";
     _namePattern = jsonMap["name"];

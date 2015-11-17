@@ -20648,6 +20648,7 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   padding-left: 15px;
   padding-right: 15px;
   padding: 2px;
+  height: auto;
 }
 @media (min-width: 768px) {
   #createContest .create-contest-section-wrapper.large {
@@ -20704,7 +20705,15 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   border: 1px solid #434343;
   border-radius: 5px;
 }
-#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.competition .data-element,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.competition .data-element {
+  padding: 0;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.competition .data-element input[type="radio"] + label .icon {
+  margin: 0 5px 0 0;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee {
+  height: auto;
+}
 #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee .data-element {
   position: relative;
   float: left;
@@ -20712,11 +20721,29 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  padding: 0;
+  padding: 0 15px 0 0;
 }
-#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.competition .data-element input[type="radio"] + label .icon,
-#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee .data-element input[type="radio"] + label .icon {
-  margin: 0 5px 0 0;
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee .data-element input[type="radio"] + label {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12pt;
+  color: #777777;
+  padding: 5px 15px;
+  margin: 0;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee .data-element input[type="radio"] + label .entry-fee-value:after {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14pt;
+  color: #777777;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee .data-element input[type="radio"] + label .entry-fee-value:after {
+  margin: 0 5px;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee:after {
+  clear: both;
+  content: "";
+  display: block;
 }
 #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper #contestOficial + label .icon {
   content: " ";
@@ -20839,6 +20866,161 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
 }
 #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.contest-name {
   margin: 30px 0;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest {
+  background-color: #428bca;
+  border-color: #357ebd;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  -webkit-transition: All 0.08s ease-out;
+  -moz-transition: All 0.08s ease-out;
+  -ms-transition: All 0.08s ease-out;
+  -o-transition: All 0.08s ease-out;
+  transition: All 0.08s ease-out;
+  font-size: 10pt;
+  background-color: #a1c931;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  outline: none !important;
+  display: block;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  width: 300px;
+  margin: 0px auto;
+  position: relative;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12pt;
+  color: #ffffff;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:hover,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:focus,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:active,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest.active,
+.open .dropdown-toggle#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest {
+  color: #ffffff;
+  background-color: #3276b1;
+  border-color: #285e8e;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:active,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest.active,
+.open .dropdown-toggle#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest {
+  background-image: none;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest.disabled,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest[disabled],
+fieldset[disabled] #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest.disabled:hover,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest[disabled]:hover,
+fieldset[disabled] #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:hover,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest.disabled:focus,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest[disabled]:focus,
+fieldset[disabled] #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:focus,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest.disabled:active,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest[disabled]:active,
+fieldset[disabled] #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:active,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest.disabled.active,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest[disabled].active,
+fieldset[disabled] #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest.active {
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest .badge {
+  color: #428bca;
+  background-color: #ffffff;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:focus,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:active:focus,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:hover,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:focus {
+  color: #333333;
+  text-decoration: none;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:active,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest.disabled,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest[disabled],
+fieldset[disabled] #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:active:focus,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest.active:focus {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:active:hover,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest.active:hover {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:hover:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:active,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest.active {
+  background-color: #a1c931;
+  margin-top: 4px;
+  box-shadow: none;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest.disabled,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest[disabled],
+fieldset[disabled] #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest {
+  background-color: #b5d657;
+  box-shadow: none;
+  margin-top: 4px;
+  color: #ebebeb;
+  cursor: not-allowed !important;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest.close {
+  background-color: #a1c931;
+  outline: none !important;
+  color: #ffffff;
 }
 /*************************************************
 Si hay que añadir nuevas banderas, ir a la siguiente url

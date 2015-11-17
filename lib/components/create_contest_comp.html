@@ -32,17 +32,17 @@
       <div class="title">Competición</div>
       <div class="data-input-wrapper  competition">
         <span class="data-element">
-          <input id="contestLeague" type="radio" value="league" name="competition">
+          <input id="contestLeague" type="radio" value="league" ng-model="selectedCompetition" name="competition">
           <label for="contestLeague"><span class="icon"></span>Liga</label>
         </span>
         <span class="data-element">
-          <input id="contestPremiere" type="radio" value="premiere" name="competition">
+          <input id="contestPremiere" type="radio" value="premiere" ng-model="selectedCompetition" name="competition">
           <label for="contestPremiere"><span class="icon"></span>Premiere</label>
         </span>
-        <span class="data-element">
-          <input id="contestChampions" type="radio" value="champions" name="competition">
+        <!--span class="data-element">
+          <input id="contestChampions" type="radio" value="champions" ng-model="selectedCompetition" name="competition">
           <label for="contestChampions"><span class="icon"></span>Champions</label>
-        </span>
+        </span-->
       </div>
     </div>
   </div>
@@ -52,7 +52,7 @@
       <div class="title">Fecha</div>
       <div class="data-input-wrapper contest-date">
         <select name="contestDateSelector" id="contestDateSelector" class="form-control contest-date-selector dropdown-toggle" ng-model="optionsSelectorValue" >
-          <option ng-repeat="template in templatesList" id="option-contest-{{template.id}}"
+          <option ng-repeat="template in printableTemplateList" id="option-contest-{{template.id}}"
                   value="{{$index + 1}}" ng-value="template.id">{{template.name}}</option>
         </select>
       </div>
@@ -98,18 +98,67 @@
         
         <span class="data-element">
           <input id="contestFee_1E_3MP" type="radio" value="1E_3MP" name="entry-fee">
-          <label for="contestFee_1E_3MP"><span class="entry-fee- energy">1</span> por <span class="manager-points">3</span></label>
+          <label for="contestFee_1E_3MP"><span class="entry-fee-value energy">1</span> por <span class="entry-fee-value manager-points">3</span></label>
         </span>
         <span class="data-element">
           <input id="contestFee_1G_3G" type="radio" value="1G_3G" name="entry-fee">
-          <label for="contestFee_1G_3G"><span class="gold">1</span> por <span class="gold">3</span></label>
+          <label for="contestFee_1G_3G"><span class="entry-fee-value gold">1</span> por <span class="entry-fee-value gold">3</span></label>
         </span>
+      
+        <span class="data-element">
+          <input id="contestFee_1G_3G" type="radio" value="1G_3G" name="entry-fee">
+          <label for="contestFee_1G_3G"><span class="entry-fee-value gold">1</span> por <span class="entry-fee-value gold">3</span></label>
+        </span>
+      
+        <span class="data-element">
+          <input id="contestFee_1G_3G" type="radio" value="1G_3G" name="entry-fee">
+          <label for="contestFee_1G_3G"><span class="entry-fee-value gold">1</span> por <span class="entry-fee-value gold">3</span></label>
+        </span>
+      
+        <span class="data-element">
+          <input id="contestFee_1G_3G" type="radio" value="1G_3G" name="entry-fee">
+          <label for="contestFee_1G_3G"><span class="entry-fee-value gold">1</span> por <span class="entry-fee-value gold">3</span></label>
+        </span>
+      
+        <span class="data-element">
+          <input id="contestFee_1G_3G" type="radio" value="1G_3G" name="entry-fee">
+          <label for="contestFee_1G_3G"><span class="entry-fee-value gold">1</span> por <span class="entry-fee-value gold">3</span></label>
+        </span>
+        <span class="data-element">
+          <input id="contestFee_1G_3G" type="radio" value="1G_3G" name="entry-fee">
+          <label for="contestFee_1G_3G"><span class="entry-fee-value gold">1</span> por <span class="entry-fee-value gold">3</span></label>
+        </span>
+      
+        <span class="data-element">
+          <input id="contestFee_1G_3G" type="radio" value="1G_3G" name="entry-fee">
+          <label for="contestFee_1G_3G"><span class="entry-fee-value gold">1</span> por <span class="entry-fee-value gold">3</span></label>
+        </span>
+      
+        <span class="data-element">
+          <input id="contestFee_1G_3G" type="radio" value="1G_3G" name="entry-fee">
+          <label for="contestFee_1G_3G"><span class="entry-fee-value gold">1</span> por <span class="entry-fee-value gold">3</span></label>
+        </span>
+      
+        <span class="data-element">
+          <input id="contestFee_1G_3G" type="radio" value="1G_3G" name="entry-fee">
+          <label for="contestFee_1G_3G"><span class="entry-fee-value gold">1</span> por <span class="entry-fee-value gold">3</span></label>
+        </span>
+      
       
       </div>
     </div>
   </div>
   
   
+  <div class="create-contest-section-wrapper large">
+    <div class="create-contest-section">
+      <div class="data-input-wrapper confirm-button-wrapper">
+        <button type="button" class="btn-confirm-contest"
+                ng-click="createContest()"
+                ng-disabled="isNotComplete"> Crear Torneo </button>
+      </div>
+    </div>
+  </div>
   
   <div class="clearfix"></div>
 </div>

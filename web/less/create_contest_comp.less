@@ -7,13 +7,15 @@
 	.create-contest-section-wrapper {
 		.make-sm-column(6);
 		.make-xs-column(12);
-		&.large { 
-			.make-sm-column(12); 
-			padding: 2px;
-		}
 		height: 130px;
 		padding: 2px;
 		position: relative;
+		
+		&.large { 
+			.make-sm-column(12); 
+			padding: 2px;
+			height: auto;
+		}
 		
 		.create-contest-section {
 			background-color: @greyUltraLight;
@@ -55,13 +57,39 @@
 					}
 					
 				}
-				&.competition .data-element,
-				&.entry-fee .data-element {
-					.make-xs-column(4);
+				&.competition .data-element{
+					//.make-xs-column(4);
 					padding: 0;
 					
 					input[type="radio"] + label .icon {
 						margin: 0 5px 0 0;
+					}
+				}
+				
+				&.entry-fee {
+					height: auto;
+					
+					.data-element {
+						.make-xs-column(4);
+						padding: 0 15px 0 0;
+
+						input[type="radio"] + label {
+							.opensans_normal(12pt, @greyDark);
+							padding: 5px 15px;
+							margin: 0;
+							.entry-fee-value:after {
+								.opensans_normal(14pt, @greyDark);
+							}
+							.entry-fee-value:after {
+								margin: 0 5px;
+							}
+						}
+					}
+		
+					&:after {
+						clear: both;
+						content: "";
+						display: block; 
 					}
 				}
 				
@@ -138,8 +166,18 @@
 						margin-left: -35px;
 					}*/
 				}
+				
 				&.contest-name {
 					margin: 30px 0;
+				}
+				
+				.btn-confirm-contest {
+					.btn-primary();
+					.btn-block();
+					width: 300px;
+					margin: 0px auto;
+					position: relative;
+					.opensans_normal(12pt, @white);
 				}
 				
 			}

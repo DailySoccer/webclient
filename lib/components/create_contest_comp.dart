@@ -22,27 +22,64 @@ class CreateContestComp  {
     }
   }
   
-  List<Map<String, String>> templatesList = [{'name': getLocalizedText("select_date"),
-                                              'id': _DEFAULT_SELECT_DATE_TEXT
-                                             },
-                                             {'name': 'Supersábado de Clásico',
-                                              'id': '12a34asfl324524jk'
-                                             },
-                                             {'name': 'GESDVSV ds fsad  asdf',
-                                              'id': '22a34ashsd23424jk'
-                                             },
-                                             {'name': 'blau blau',
-                                              'id': '32a6734fvxbfnrg4524jk'
-                                             },
-                                             {'name': 'pues eso',
-                                              'id': '42fbw4fr524jk'
-                                             }];
+  String _selectedCompetition = '';
+  void set selectedCompetition(String comp) {
+    _selectedCompetition = comp;
+    updatePrintableList();
+  }
+  String get selectedCompetition => _selectedCompetition;
+  
+  List<Map<String, String>> _templatesFilteredList = [placeholderNotSelected];
+  List<Map<String, String>> _templatesList = [{'name': 'Supersábado de Clásico',
+                                                'id': '12a34asfl324524jk',
+                                                'competition': 'league'
+                                               },
+                                               {'name': 'GESDVSV ds fsad  asdf',
+                                                'id': '22a34ashsd23424jk',
+                                                'competition': 'league'
+                                               },
+                                               {'name': 'blau blau',
+                                                'id': '32a6734fvxbfnrg4524jk',
+                                                'competition': 'premiere'
+                                               },
+                                               {'name': 'pues eso',
+                                                'id': '42fbw4fr524jk',
+                                                'competition': 'premiere'
+                                               }];
+  
+  List<Map<String, String>> get printableTemplateList => _templatesFilteredList;
+
+  static Map<String, String> placeholderTemplate     = { 'name': getLocalizedText("select_date"), 
+                                                         'id': '',
+                                                         'competition': '' };
+  static Map<String, String> placeholderNotSelected  = { 'name': getLocalizedText("select_competition_first"), 
+                                                         'id': '',
+                                                         'competition': '' };
+  static Map<String, String> placeholderEmpty        = { 'name': getLocalizedText("select_competition_first"), 
+                                                         'id': '',
+                                                         'competition': '' };
+  
+  void updatePrintableList() {
+    List<Map<String, String>> filteredList = _templatesList.where( (t) => t['competition'] ==  selectedCompetition).toList();
+    _templatesFilteredList.clear();
+    
+    if (selectedCompetition == null || selectedCompetition == '') {
+      _templatesFilteredList.add(placeholderNotSelected);
+    } else if (filteredList.isEmpty) {
+      _templatesFilteredList.add(placeholderEmpty);
+    } else {
+      _templatesFilteredList.add(placeholderTemplate);
+      _templatesFilteredList.addAll(filteredList);
+    }
+    selectedOption = null;
+  }
   
 
+  String get optionsSelectorValue => selectedOption == null? placeholderTemplate['id'] : selectedOption;
+  void   set optionsSelectorValue(String val) {  selectedOption = (val == placeholderTemplate['id'])? null : val;  }
 
-  String get optionsSelectorValue => selectedOption == null? _DEFAULT_SELECT_DATE_TEXT : selectedOption;
-  void   set optionsSelectorValue(String val) {  selectedOption = (val == _DEFAULT_SELECT_DATE_TEXT)? null : val;  }
-
+  bool get isNotComplete => false;
+  
   String contestName;
 
   CreateContestComp(this._router, this._contestsService) {
@@ -56,7 +93,10 @@ class CreateContestComp  {
     return StringUtils.translate(key, "createcontest");
   }
 
-  static final String _DEFAULT_SELECT_DATE_TEXT = '';
+  void createContest() {
+    print("Dandole a crear contest, boton lo linkeado.");
+  }
+  
   String _selectedOption;
 
   Router _router;

@@ -6681,6 +6681,7 @@ scoring-rules:after,
   }
 }
 #teamsPanelComp .teams-toggler-wrapper {
+  cursor: pointer;
   display: block;
   text-align: right;
   background-color: #ffffff;
@@ -20695,6 +20696,7 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   padding: 5px 5px;
   display: block;
   vertical-align: middle;
+  cursor: pointer;
 }
 #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .data-element input[type="radio"] + label .icon {
   margin-right: 10px;
@@ -20704,6 +20706,10 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   background-color: #ffffff;
   border: 1px solid #434343;
   border-radius: 5px;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .data-element input[type="radio"].disabled-radio + label {
+  opacity: 0.3;
+  cursor: auto;
 }
 #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.competition .data-element {
   padding: 0;
@@ -21021,6 +21027,9 @@ fieldset[disabled] #createContest .create-contest-section-wrapper .create-contes
   background-color: #a1c931;
   outline: none !important;
   color: #ffffff;
+}
+#createContest #teamsPanelComp {
+  clear: both;
 }
 /*************************************************
 Si hay que añadir nuevas banderas, ir a la siguiente url

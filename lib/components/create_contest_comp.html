@@ -32,11 +32,17 @@
       <div class="title">Competición</div>
       <div class="data-input-wrapper competition">
         <span class="data-element">
-          <input id="contestLeague" ng-disabled="templatesFilteredList[leagueES_val].length == 0" type="radio" value="LEAGUE_ES" ng-value="leagueES_val" ng-model="selectedCompetition" name="competition">
+          <input id="contestLeague" type="radio" value="LEAGUE_ES" name="competition"
+                 ng-class="{'disabled-radio': templatesFilteredList[leagueES_val].length == 0 }"
+                 ng-value="leagueES_val" ng-model="selectedCompetition" 
+                 ng-disabled="templatesFilteredList[leagueES_val].length == 0">
           <label for="contestLeague"><span class="icon"></span>Liga</label>
         </span>
         <span class="data-element">
-          <input id="contestPremiere" ng-disabled="templatesFilteredList[leagueUK_val].length == 0" type="radio" value="LEAGUE_UK" ng-value="leagueUK_val" ng-model="selectedCompetition" name="competition">
+          <input id="contestPremiere" type="radio" value="LEAGUE_UK" name="competition"
+                 ng-class="{'disabled-radio': templatesFilteredList[leagueUK_val].length == 0 }"
+                 ng-value="leagueUK_val" ng-model="selectedCompetition" 
+                 ng-disabled="templatesFilteredList[leagueUK_val].length == 0">
           <label for="contestPremiere"><span class="icon"></span>Premiere</label>
         </span>
       </div>
@@ -45,24 +51,26 @@
 
   <div class="create-contest-section-wrapper">
     <div class="create-contest-section">
-      <div class="title">Fecha</div>
+      <div class="title">Torneo</div>
       <div class="data-input-wrapper contest-date">
         <select ng-disabled="printableTemplateList.length == 0" name="contestDateSelector" id="contestDateSelector" 
                 class="form-control contest-date-selector dropdown-toggle" ng-model="selectedTemplate" >
                 
-          <option id="option-contest-select-contest" value="" ng-value="''" ng-bind="comboDefaultText"></option>
+          <option id="option-contest-select-contest" value="" ng-value="null" ng-bind="comboDefaultText"></option>
           
           <option ng-repeat="template in printableTemplateList" id="option-contest-{{template.templateContestId}}"
-                  value="{{$index + 1}}" ng-value="template.templateContestId">{{template.name}}</option>
+                  value="{{$index + 1}}" ng-value="template">{{template.name}}</option>
                   
         </select>
       </div>
     </div>
   </div>
 
+  <teams-panel id="teamsPanelComp" template-contest="selectedTemplate"></teams-panel>
+
   <div class="create-contest-section-wrapper">
     <div class="create-contest-section">
-      <div class="title">Tipo de Torneo</div>
+      <div class="title">Rivales</div>
       <div class="data-input-wrapper contest-style">
         <span class="data-element">
           <input id="contestHeadToHead" type="radio" value="headToHead" name="contestStyle" checked>
@@ -70,7 +78,7 @@
         </span>
         <span class="data-element">
           <input id="contestOpen" type="radio" value="open" name="contestStyle">
-          <label for="contestOpen"><span class="icon"></span>Abierto</label>
+          <label for="contestOpen"><span class="icon"></span>Liga</label>
         </span>
       </div>
     </div>

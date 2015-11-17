@@ -49,11 +49,16 @@
 							margin-right: 10px;
 							vertical-align: middle;
 						}
+						cursor: pointer;
 					}
 					input[type="radio"]:checked + label {
 						background-color: @white;
 						border: 1px solid @greyUltraDark;
 						border-radius: 5px;
+					}
+					input[type="radio"].disabled-radio + label {
+						opacity: 0.3;
+						cursor: auto;
 					}
 					
 				}
@@ -182,6 +187,10 @@
 				
 			}
 		}
+	}
+	
+	#teamsPanelComp {
+		clear: both;
 	}
 	
 }

@@ -18,8 +18,8 @@ class CreateContestComp  {
   String selectedCompetition;
   String contestName;
   
-  String get selectedTemplate => _selectedTemplate;
-  void   set selectedTemplate(String val) {
+  TemplateContest get selectedTemplate => _selectedTemplate;
+  void set selectedTemplate(TemplateContest val) {
     if (val != _selectedTemplate) {
       _selectedTemplate = val;
     }
@@ -72,7 +72,7 @@ class CreateContestComp  {
     print("Dandole a crear contest, boton lo linkeado.");
   }
 
-  String _selectedTemplate;
+  TemplateContest _selectedTemplate;
   Map<String, List<TemplateContest>> templatesFilteredList = { 
     Competition.LEAGUE_ES: [],
     Competition.LEAGUE_UK: []

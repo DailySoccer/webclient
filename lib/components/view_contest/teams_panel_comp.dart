@@ -10,6 +10,7 @@ import 'package:webclient/models/contest.dart';
 import 'package:webclient/services/contests_service.dart';
 import 'package:webclient/models/soccer_team.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/models/template_contest.dart';
 
 @Component(
     selector: 'teams-panel',
@@ -21,13 +22,31 @@ class TeamsPanelComp implements DetachAware {
   List<MatchEvent> matchEventsSorted = [];
 
   ScreenDetectorService scrDet;
+  bool isShown = false;
 
+  @NgOneWay("template-contest")
+  void set templateContest(TemplateContest value) {
+    if (value != null) {
+      _matchEvents = value.matchEvents;
+      _contestState = "ACTIVE";
+      isShown = true;
+      generateMatchesList();
+    } else {
+      isShown = false;
+    }
+  }
+  
   @NgOneWay("contest")
   Contest get contest => _contest;
   void set contest(Contest value) {
     if (value != null) {
       _contest = value;
+      _matchEvents = _contest.matchEvents;
+      _contestState = _contest.state;
+      isShown = true;
       generateMatchesList();
+    } else {
+      isShown = false;
     }
   }
 
@@ -36,11 +55,10 @@ class TeamsPanelComp implements DetachAware {
   @NgOneWay("contest-id")
   void set contestId(String value) {
     if (value != null) {
-      _contestId = value;
-      _contest = _contestsService.getContestById(value);
-      generateMatchesList();
+      contest = _contestsService.getContestById(value);
     }
   }
+  
 
   String getLocalizedText(key) {
     return StringUtils.translate(key, "teamspanel");
@@ -52,12 +70,12 @@ class TeamsPanelComp implements DetachAware {
 
   /** Methods **/
   void generateMatchesList() {
-    if(contest == null) {
+    if(_matchEvents == null) {
       return;
     }
 
     matchesInvolved.clear();
-    matchEventsSorted = new List<MatchEvent>.from(contest.matchEvents)
+    matchEventsSorted = new List<MatchEvent>.from(_matchEvents)
       .. sort((entry1, entry2) => entry1.startDate.compareTo(entry2.startDate))
       .. forEach( (match) {
         matchesInvolved.add('''<span> ${match.soccerTeamA.shortName} </span> <div class="score-wrapper">@scoreTeamA</div><span> - </span><div class="score-wrapper">@scoreTeamB</div><span> ${match.soccerTeamB.shortName} </span>''');
@@ -65,13 +83,13 @@ class TeamsPanelComp implements DetachAware {
   }
 
   String getMatchAndPeriodInfo(int id) {
-    if (matchEventsSorted == null || matchEventsSorted.isEmpty) {
+    if (matchEventsSorted == null || matchEventsSorted.isEmpty || matchEventsSorted.length <= id) {
       return '';
     }
 
     String content = "";
     MatchEvent match = matchEventsSorted[id];
-    if(contest.state == "LIVE") {
+    if(_contestState == "LIVE") {
       if (match != null) {
         if (match.isStarted) {
           if (match.isFinished) {
@@ -143,8 +161,10 @@ class TeamsPanelComp implements DetachAware {
   bool _togglerEventsInitialized = false;
   var _streamListener;
   Contest _contest;
-  String _contestId = '';
+  //String _contestId = '';
   RouteProvider _routeProvider;
-
+  List<MatchEvent> _matchEvents;
+  String _contestState;
+  
   ContestsService _contestsService;
 }

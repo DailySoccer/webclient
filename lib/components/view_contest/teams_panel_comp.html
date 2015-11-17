@@ -1,7 +1,7 @@
-<div class="teams-toggler-wrapper">
+<div class="teams-toggler-wrapper" ng-show="isShown">
   <div id="teamsToggler" type="button" class="teams-toggler toggleOff" ng-click="toggleTeamsPanel()"  data-toggle="collapse" data-target="#teamsPanel">{{getLocalizedText("showmatches")}}</div>
 </div>
-<div id="teamsPanelRoot" ng-show="contest != null" class="animate">
+<div id="teamsPanelRoot" ng-show="isShown" class="animate">
 
   <div class="teams-comp-bar" >
 

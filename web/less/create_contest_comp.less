@@ -151,9 +151,9 @@
 					.addIcon("icon-coin-lg.png", 27px, 27px);
 				}
 				
-				&.contest-date {
+				&.contest-template {
 					margin: 30px 0;
-					select.contest-date-selector {
+					select.contest-template-selector {
 						width: auto;
 						max-width: 100%;
 						overflow: hidden;
@@ -193,4 +193,51 @@
 		clear: both;
 	}
 	
+	week-calendar#createContestCalendar {
+		.make-xs-column(8);
+		.clean-paddings();
+		
+		.week-calendar {
+			.make-border(0, none none none none, @blueLight);
+			background-color: transparent;
+			background-image: none;
+
+			.week-days-wrapper {
+				.make-sm-column-offset(0);
+				.make-sm-column(12);
+				.clean-paddings();
+				.exo_light(10pt, @greyDark);
+				background-image: none;
+				
+				.week-day {
+					&.active {
+						.exo_bold(10pt, @black);
+						&:after { border-bottom: 12px solid @greyDark; }
+					}
+
+					.day-info { 
+						margin: 0;
+						border-left: 1px solid @greyLight; 
+					}
+					&.today .day-info {	border-left: 0px none @blueUltraDark;	}
+					
+				}
+			}
+		}
+	}
+	
+	.contest-hour-selector-wrapper {
+		.make-xs-column(4);
+		padding: 10px;
+	}
+	.contest-hour-selector {
+		text-align: right;
+	}
 }
+
+
+
+
+
+
+

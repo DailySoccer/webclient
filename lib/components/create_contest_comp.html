@@ -51,13 +51,14 @@
 
   <div class="create-contest-section-wrapper">
     <div class="create-contest-section">
-      <div class="title">Torneo</div>
-      <div class="data-input-wrapper contest-date">
-        <select ng-disabled="printableTemplateList.length == 0" name="contestDateSelector" id="contestDateSelector"
-                class="form-control contest-date-selector dropdown-toggle" ng-model="selectedTemplate" >
+      <div class="title">Evento</div>
+      <div class="data-input-wrapper contest-template">
+        <select ng-disabled="printableTemplateList.length == 0" name="contestTemplateSelector" id="contestTemplateSelector" 
+                class="form-control contest-template-selector dropdown-toggle" ng-model="selectedTemplate" >
+
           <option id="option-contest-select-contest" value="" ng-value="null" ng-bind="comboDefaultText"></option>
 
-          <option ng-repeat="template in printableTemplateList" id="option-contest-{{template.templateContestId}}"
+          <option ng-repeat="template in printableTemplateList" id="option-contest-template-{{template.templateContestId}}"
                   value="{{$index + 1}}" ng-value="template">{{template.name}}</option>
         </select>
       </div>
@@ -81,23 +82,26 @@
       </div>
     </div>
   </div>
-
-  <!--div class="create-contest-section-wrapper">
+  
+  <div class="create-contest-section-wrapper">
     <div class="create-contest-section">
-      <div class="title">Oponente</div>
-      <div class="data-input-wrapper opponent-type">
-        <span class="data-element">
-          <input id="contestAny" type="radio" value="any" name="opponent-type">
-          <label for="contestAny"><span class="icon"></span>Cualquiera</label>
-        </span>
-        <span class="data-element">
-          <input id="contestFriends" type="radio" value="friends" name="opponent-type">
-          <label for="contestFriends"><span class="icon"></span>Amigos</label>
-        </span>
+      <div class="title">Fecha</div>
+      <div class="data-input-wrapper date">
+        <week-calendar id="createContestCalendar" on-day-selected="onSelectedDayChange(day)" dates="dayList"></week-calendar>
+        
+        <div class="contest-hour-selector-wrapper">
+          <select ng-disabled="false" name="contestHourSelector" id="contestHourSelector" 
+                  class="form-control contest-hour-selector dropdown-toggle" ng-model="selectedHour">
+                  
+            <option ng-repeat="hour in hourList" id="option-contest-hour-{{hour}}"
+                    value="{{$index + 1}}" ng-value="hour">{{hour}}:00</option>
+                    
+          </select>
+        </div>
+        
       </div>
     </div>
-  </div-->
-
+  </div>
   <div class="create-contest-section-wrapper large">
     <div class="create-contest-section">
       <div class="title">Precio de entrada</div>

@@ -14,7 +14,7 @@ class WeekCalendar {
 
   List<Map> dayList;
   int get firstEnabledPos => max(dayList.indexOf(dayList.firstWhere((c) => c['enabled'], orElse: () => {})), 0);
-
+  
   @NgOneWay("dates")
   void set dates(List<Map> value) {
     if (value != null && value.isNotEmpty) {
@@ -24,7 +24,6 @@ class WeekCalendar {
       if (_currentSelected == null || _currentDate.isBefore(value.first['date'])) {
         _currentSelected = value[firstEnabledPos];
       } else {
-
         _currentSelected = value.firstWhere((c) => isCurrentSelected(c['date'], 0), orElse: () => null);
         // miramos si en la nueva información nos dicen que ya no esta enabled.
         if ((_currentSelected != null && !_currentSelected['enabled']) ||_currentSelected == null) {

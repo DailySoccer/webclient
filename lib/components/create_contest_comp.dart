@@ -8,6 +8,7 @@ import 'package:webclient/services/contests_service.dart';
 import 'package:webclient/models/template_contest.dart';
 import 'package:webclient/models/competition.dart';
 import 'package:webclient/models/contest.dart';
+import 'package:webclient/services/datetime_service.dart';
 
 @Component(
   selector: 'create-contest',
@@ -18,9 +19,21 @@ class CreateContestComp  {
 
   String selectedCompetition;
   String contestName;
+  
+  int selectedHour = 12;
+  DateTime selectedDate = null;
+
+  String TYPE_OFICIAL = "oficial";
+  String TYPE_TRAINING = "training";
+
+  String leagueES_val = Competition.LEAGUE_ES;
+  String leagueUK_val = Competition.LEAGUE_UK;
+
+  List<Map> dayList = new List<Map>();
+  List<int> hourList = new List<int>();
 
   @NgOneWay("contestType")
-  String contestType;
+  String contestType ;
 
   TemplateContest get selectedTemplate => _selectedTemplate;
     void set selectedTemplate(TemplateContest val) {
@@ -28,12 +41,6 @@ class CreateContestComp  {
       _selectedTemplate = val;
     }
   }
-
-  String TYPE_OFICIAL = "oficial";
-  String TYPE_TRAINING = "training";
-
-  String leagueES_val = Competition.LEAGUE_ES;
-  String leagueUK_val = Competition.LEAGUE_UK;
 
   String get comboDefaultText {
     if (printableTemplateList.length == 0) {
@@ -56,6 +63,9 @@ class CreateContestComp  {
   CreateContestComp(this._router, this._contestsService) {
     contestType = TYPE_OFICIAL;
 
+    updateDayList();
+    for(int i = 1; i <= 24; i++) hourList.add(i);
+    
     _contestsService.getActiveTemplateContests()
       .then((templateContests) {
         _templateContests = templateContests;
@@ -76,7 +86,21 @@ class CreateContestComp  {
   static String getLocalizedText(key) {
     return StringUtils.translate(key, "createcontest");
   }
+  
+  void updateDayList() {
+    dayList = new List<Map>();
+    DateTime current = DateTimeService.now;
 
+    for(int i = 0; i < 7; i++) {
+      dayList.add({"weekday": current.weekday.toString(), "monthday": current.day, "date": current, "enabled": true});
+      current = current.add(new Duration(days: 1));
+    }
+  }
+  
+  void onSelectedDayChange(DateTime day) {
+    selectedDate = day;
+  }
+  
   void createContest() {
     if (_selectedTemplate != null) {
       Contest contest = new Contest.instance();

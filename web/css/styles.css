@@ -20850,7 +20850,7 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   display: inline-block;
   vertical-align: middle;
 }
-#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.contest-date {
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.contest-template {
   margin: 30px 0;
   /*&:after {
 						content: "";
@@ -20858,7 +20858,7 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
 						margin-left: -35px;
 					}*/
 }
-#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.contest-date select.contest-date-selector {
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.contest-template select.contest-template-selector {
   width: auto;
   max-width: 100%;
   overflow: hidden;
@@ -21030,6 +21030,78 @@ fieldset[disabled] #createContest .create-contest-section-wrapper .create-contes
 }
 #createContest #teamsPanelComp {
   clear: both;
+}
+#createContest week-calendar#createContestCalendar {
+  position: relative;
+  float: left;
+  width: 66.66666667%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+#createContest week-calendar#createContestCalendar .week-calendar {
+  border-width: 0;
+  border-style: none none none none;
+  border-color: #59add5;
+  border-radius: 0;
+  background-color: transparent;
+  background-image: none;
+}
+#createContest week-calendar#createContestCalendar .week-calendar .week-days-wrapper {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-left: 0px;
+  padding-right: 0px;
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 10pt;
+  color: #777777;
+  text-transform: uppercase;
+  background-image: none;
+}
+@media (min-width: 768px) {
+  #createContest week-calendar#createContestCalendar .week-calendar .week-days-wrapper {
+    margin-left: 0%;
+  }
+}
+@media (min-width: 768px) {
+  #createContest week-calendar#createContestCalendar .week-calendar .week-days-wrapper {
+    float: left;
+    width: 100%;
+  }
+}
+#createContest week-calendar#createContestCalendar .week-calendar .week-days-wrapper .week-day.active {
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  font-size: 10pt;
+  color: #000000;
+  text-transform: uppercase;
+}
+#createContest week-calendar#createContestCalendar .week-calendar .week-days-wrapper .week-day.active:after {
+  border-bottom: 12px solid #777777;
+}
+#createContest week-calendar#createContestCalendar .week-calendar .week-days-wrapper .week-day .day-info {
+  margin: 0;
+  border-left: 1px solid #dcdcdc;
+}
+#createContest week-calendar#createContestCalendar .week-calendar .week-days-wrapper .week-day.today .day-info {
+  border-left: 0px none #0a2938;
+}
+#createContest .contest-hour-selector-wrapper {
+  position: relative;
+  float: left;
+  width: 33.33333333%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 10px;
+}
+#createContest .contest-hour-selector {
+  text-align: right;
 }
 /*************************************************
 Si hay que añadir nuevas banderas, ir a la siguiente url

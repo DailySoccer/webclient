@@ -99,6 +99,7 @@ class EnterContestComp implements DetachAware {
 
   bool get isInvalidFantasyTeam => lineupSlots.any((player) => player == null) || playersInSameTeamInvalid || isNegativeBalance;
   bool get editingContestEntry => contestEntryId != "none";
+  bool get isCreatingContest => _parent.contains("create_contest");
 
   bool contestInfoFirstTimeActivation = false;  // Optimizacion para no compilar el contest_info hasta que no sea visible la primera vez
 
@@ -148,6 +149,7 @@ class EnterContestComp implements DetachAware {
 
     resetLineup();
 
+    _parent = _routeProvider.parameters["parent"];
     contestId = _routeProvider.route.parameters['contestId'];
     contestEntryId = _routeProvider.route.parameters['contestEntryId'];
 
@@ -155,7 +157,11 @@ class EnterContestComp implements DetachAware {
 
     GameMetrics.logEvent(GameMetrics.ENTER_CONTEST);
 
-    Future refreshContest = editingContestEntry? _contestsService.refreshMyActiveContest(contestId) : _contestsService.refreshActiveContest(contestId);
+    Future refreshContest = isCreatingContest
+                              ? _contestsService.refreshMyCreateContest(contestId)
+                              : editingContestEntry
+                                ? _contestsService.refreshMyActiveContest(contestId)
+                                : _contestsService.refreshActiveContest(contestId);
     refreshContest
       .then((_) {
         loadingService.isLoading = false;
@@ -644,6 +650,7 @@ class EnterContestComp implements DetachAware {
 
   Router _router;
   RouteProvider _routeProvider;
+  String _parent;
 
   TutorialService _tutorialService;
   ContestsService _contestsService;

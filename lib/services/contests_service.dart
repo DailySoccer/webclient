@@ -31,9 +31,27 @@ class ContestsService {
   ContestsService(this._server, this._profileService, this._prizesService);
 
   Future createContest(Contest contest, List<String> soccerPlayers) {
+    // Al crear un contest se nos devuelve el contest recientemente creado
     return _server.createContest(contest, soccerPlayers)
       .then((jsonMap) {
+        _registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
+        return lastContest;
       });
+  }
+
+  Future refreshMyCreateContest(String contestId) {
+    Completer completer = new Completer();
+
+    // TODO: Actualmente un contest recién creado lo deberíamos haber recibido en la propia query de la creación
+    Contest contest = getContestById(contestId);
+    if (contest != null) {
+      completer.complete(true);
+    }
+    else {
+      completer.completeError(false);
+    }
+
+    return completer.future;
   }
 
   Future getActiveTemplateContests() {

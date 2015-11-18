@@ -54,6 +54,8 @@ class CreateContestComp  {
   bool get isNotComplete => false;
 
   CreateContestComp(this._router, this._contestsService) {
+    contestType = TYPE_OFICIAL;
+
     _contestsService.getActiveTemplateContests()
       .then((templateContests) {
         _templateContests = templateContests;
@@ -86,8 +88,8 @@ class CreateContestComp  {
 
       List<String> soccerPlayers = [];
       _contestsService.createContest(contest, soccerPlayers)
-        .then((_) {
-          _router.go('lobby', {});
+        .then((Contest contestCreated) {
+          _router.go('enter_contest', { "contestId": contestCreated.contestId, "parent": "create_contest", "contestEntryId": "none" });
         });
     }
   }

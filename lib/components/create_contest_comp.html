@@ -6,7 +6,8 @@
     <div class="create-contest-section">
       <div class="title">Nombre</div>
       <div class="data-input-wrapper contest-name">
-        <input id="contestNameInput" type="text" ng-model="contestName" placeholder="Nombre del torneo" class="form-control ng-binding ng-pristine ng-touched" tabindex="1">
+        <input id="contestNameInput" type="text" ng-model="contestName" placeholder="{{placeholderName}}" 
+               class="form-control ng-binding ng-pristine ng-touched" tabindex="1">
       </div>
     </div>
   </div>
@@ -174,7 +175,7 @@
       <div class="data-input-wrapper confirm-button-wrapper">
         <button type="button" class="btn-confirm-contest"
                 ng-click="createContest()"
-                ng-disabled="isNotComplete"> Crear Torneo </button>
+                ng-disabled="!isComplete"> Crear Torneo </button>
       </div>
     </div>
   </div>

@@ -54,6 +54,7 @@ class CreateContestComp  {
       updateDate();
     }
   }
+  String get placeholderName => selectedTemplate != null? selectedTemplate.name : "Nombre del torneo";
 
   String get comboDefaultText {
     if (printableTemplateList.length == 0) {
@@ -71,7 +72,7 @@ class CreateContestComp  {
   }
 
   // Esta sin completar el formulario?
-  bool get isNotComplete => false;
+  bool get isComplete => _selectedTemplate != null;
 
   CreateContestComp(this._router, this._contestsService) {
     contestType = TYPE_OFICIAL;

@@ -182,7 +182,7 @@ class DailySoccerServer implements ServerService {
     Map postData = {
       'templateContestId': contest.templateContestId,
       'name': contest.name,
-      'startDate': contest.startDate.toString(),
+      'millisecondsSinceEpoch': contest.startDate.millisecondsSinceEpoch,
       'simulation': contest.isSimulation,
       'maxEntries': contest.maxEntries,
       'soccerTeam': jsonSoccerPlayers

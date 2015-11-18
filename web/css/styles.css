@@ -21106,6 +21106,9 @@ fieldset[disabled] #createContest .create-contest-section-wrapper .create-contes
 #createContest week-calendar#createContestCalendar .week-calendar .week-days-wrapper .week-day.active:after {
   border-bottom: 12px solid #777777;
 }
+#createContest week-calendar#createContestCalendar .week-calendar .week-days-wrapper .week-day.disabled {
+  color: #dcdcdc;
+}
 #createContest week-calendar#createContestCalendar .week-calendar .week-days-wrapper .week-day .day-info {
   margin: 0;
   border-left: 1px solid #dcdcdc;

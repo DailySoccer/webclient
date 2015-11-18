@@ -27,19 +27,9 @@ class CreateContestComp  {
     _contestType = val;
     updateDate();
   }
-  void updateDate() {
-    if (_contestType == TYPE_OFICIAL && _selectedTemplate != null) {
-      DateTime t = _selectedTemplate.startDate;
-      selectedHour = t.hour;
-      selectedMinText = t.minute < 10? "0${t.minute}": "${t.minute}";
-      selectedDate = t;
-    } else {
-      selectedMinText = '00';
-    }
-  }
 
   int selectedHour = 12;
-  String selectedMinText = '00';
+  String selectedMinutesText = '00';
   DateTime selectedDate = null;
 
   String TYPE_OFICIAL = "oficial";
@@ -87,7 +77,7 @@ class CreateContestComp  {
     contestType = TYPE_OFICIAL;
     contestStyle = STYLE_HEAD_TO_HEAD;
 
-    updateDayList();
+    generateDayList();
     for(int i = 1; i <= 24; i++) hourList.add(i);
 
     _contestsService.getActiveTemplateContests()
@@ -111,7 +101,7 @@ class CreateContestComp  {
     return StringUtils.translate(key, "createcontest");
   }
 
-  void updateDayList() {
+  void generateDayList() {
     dayList = new List<Map>();
     DateTime current = DateTimeService.now;
 
@@ -130,6 +120,7 @@ class CreateContestComp  {
 
   void onSelectedDayChange(DateTime day) {
     selectedDate = day;
+    updateHours();
   }
 
   void createContest() {
@@ -147,6 +138,55 @@ class CreateContestComp  {
           _router.go('enter_contest', { "contestId": contestCreated.contestId, "parent": "create_contest", "contestEntryId": "none" });
         });
     }
+  }
+  
+  void updateDate() {
+    updateDayList();
+    updateHours();
+  }
+  
+  void updateDayList() {
+    if (_contestType == TYPE_OFICIAL) {
+      dayList.forEach( (d) => d['enabled'] = true );
+      return;
+    }
+    
+    if (_selectedTemplate == null) return;
+    DateTime tStart = _selectedTemplate.startDate;
+    
+    dayList.forEach( (d) => d['enabled'] = !d['date'].isAfter(tStart) );
+  }
+  
+  void updateHours() {
+    selectedMinutesText = '00';
+    
+    if (_selectedTemplate == null) return;
+
+    if (_contestType == TYPE_OFICIAL) {
+      DateTime tStart = _selectedTemplate.startDate;
+      selectedHour = tStart.hour;
+      selectedMinutesText = tStart.minute < 10? "0${tStart.minute}": "${tStart.minute}";
+      selectedDate = tStart;
+      return;
+    }
+
+    
+    DateTime tStart = _selectedTemplate.startDate;
+    
+    bool isStartDay(DateTime day) {
+      return (tStart.day == day.day &&
+              tStart.month == day.month &&
+              tStart.year == day.year);
+    }
+    
+    int maxHour = isStartDay(selectedDate)? _selectedTemplate.startDate.hour : 24;
+    int minHour = selectedDate == dayList[0]['date']? DateTimeService.now.hour + 1 : 1;
+
+    hourList.clear();
+    for(int i = minHour; i <= maxHour; i++) hourList.add(i);
+
+    if (selectedHour < hourList[0]) selectedHour = hourList[0];
+    if (selectedHour > hourList.last) selectedHour = hourList.last;
   }
 
   TemplateContest _selectedTemplate;

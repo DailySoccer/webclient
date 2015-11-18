@@ -20,6 +20,7 @@ class CreateContestComp  {
   String selectedCompetition;
   String contestName;
   String _contestType;
+  String contestStyle;
 
   String get contestType => _contestType;
   void set contestType(String val) {
@@ -43,6 +44,9 @@ class CreateContestComp  {
 
   String TYPE_OFICIAL = "oficial";
   String TYPE_TRAINING = "training";
+
+  String STYLE_HEAD_TO_HEAD = "headToHead";
+  String STYLE_LEAGUE = "league";
 
   String leagueES_val = Competition.LEAGUE_ES;
   String leagueUK_val = Competition.LEAGUE_UK;
@@ -81,6 +85,7 @@ class CreateContestComp  {
 
   CreateContestComp(this._router, this._contestsService) {
     contestType = TYPE_OFICIAL;
+    contestStyle = STYLE_HEAD_TO_HEAD;
 
     updateDayList();
     for(int i = 1; i <= 24; i++) hourList.add(i);
@@ -134,7 +139,7 @@ class CreateContestComp  {
       contest.name = contestName != null ? contestName : _selectedTemplate.name;
       contest.simulation = (contestType == TYPE_TRAINING);
       contest.startDate = contest.simulation ? selectedDate.add(new Duration(hours:selectedHour)) : _selectedTemplate.startDate;
-      contest.maxEntries = _selectedTemplate.maxEntries;
+      contest.maxEntries = (contestStyle == STYLE_HEAD_TO_HEAD) ? 2 : (selectedLeaguePlayerCount > 0) ? selectedLeaguePlayerCount : 100;
 
       List<String> soccerPlayers = [];
       _contestsService.createContest(contest, soccerPlayers)

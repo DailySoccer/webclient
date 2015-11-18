@@ -28,19 +28,19 @@ class TutorialService {
   Tutorial CurrentTutorial;
   TutorialStep get CurrentStep => CurrentTutorial != null ? CurrentTutorial.CurrentStep : null;
 
-  TutorialService(this._router, ProfileService profileService) {
+  TutorialService(this._router, this._profileService) {
     _instance = this;
 
     // Incluir los tutoriales que no se hayan terminado
     _tutorials = {};
 
     if (!isCompleted(TutorialIniciacion.NAME)) {
-      _tutorials[Tutorial.INITIATION] = new TutorialIniciacion(this._router, profileService);
+      _tutorials[Tutorial.INITIATION] = new TutorialIniciacion(this._router, _profileService);
     }
   }
 
   bool isCompleted(String tutorialKey) {
-    return false && window.localStorage.containsKey(tutorialKey);
+    return _profileService.isLoggedIn && window.localStorage.containsKey(tutorialKey);
   }
 
   void start(String tutorialName) {
@@ -163,6 +163,7 @@ class TutorialService {
   }
 
   Router _router;
+  ProfileService _profileService;
 
   Map<String, Tutorial> _tutorials;
 

@@ -168,6 +168,8 @@ class CreateContestComp  {
       selectedHour = tStart.hour;
       selectedMinutesText = tStart.minute < 10? "0${tStart.minute}": "${tStart.minute}";
       selectedDate = tStart;
+      hourList.clear();
+      for(int i = 0; i <= 24; i++) hourList.add(i);
       return;
     }
 

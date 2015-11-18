@@ -128,7 +128,7 @@ class CreateContestComp  {
     if (_selectedTemplate != null) {
       Contest contest = new Contest.instance();
       contest.templateContestId = _selectedTemplate.templateContestId;
-      contest.name = contestName != null ? contestName : _selectedTemplate.name;
+      contest.name = contestName != null && contestName.isNotEmpty ? contestName : _selectedTemplate.name;
       contest.simulation = (contestType == TYPE_TRAINING);
       contest.startDate = contest.simulation ? selectedDate.add(new Duration(hours:selectedHour)) : _selectedTemplate.startDate;
       contest.maxEntries = (contestStyle == STYLE_HEAD_TO_HEAD) ? 2 : (selectedLeaguePlayerCount > 0) ? selectedLeaguePlayerCount : 100;
@@ -140,27 +140,27 @@ class CreateContestComp  {
         });
     }
   }
-  
+
   void updateDate() {
     updateDayList();
     updateHours();
   }
-  
+
   void updateDayList() {
     if (_contestType == TYPE_OFICIAL) {
       dayList.forEach( (d) => d['enabled'] = true );
       return;
     }
-    
+
     if (_selectedTemplate == null) return;
     DateTime tStart = _selectedTemplate.startDate;
-    
+
     dayList.forEach( (d) => d['enabled'] = !d['date'].isAfter(tStart) );
   }
-  
+
   void updateHours() {
     selectedMinutesText = '00';
-    
+
     if (_selectedTemplate == null) return;
 
     if (_contestType == TYPE_OFICIAL) {
@@ -171,15 +171,15 @@ class CreateContestComp  {
       return;
     }
 
-    
+
     DateTime tStart = _selectedTemplate.startDate;
-    
+
     bool isStartDay(DateTime day) {
       return (tStart.day == day.day &&
               tStart.month == day.month &&
               tStart.year == day.year);
     }
-    
+
     int maxHour = isStartDay(selectedDate)? _selectedTemplate.startDate.hour : 24;
     int minHour = selectedDate == dayList[0]['date']? DateTimeService.now.hour + 1 : 1;
 

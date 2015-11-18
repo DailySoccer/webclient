@@ -14,6 +14,18 @@ class WeekCalendar {
 
   List<Map> dayList;
   int get firstEnabledPos => max(dayList.indexOf(dayList.firstWhere((c) => c['enabled'], orElse: () => {})), 0);
+
+  @NgOneWay("disabled")
+  void set disabled(bool isDisabled) {
+    _isDisabled = isDisabled;
+  }
+  
+  @NgOneWay("selected-date")
+  void set currentSelectedDate(DateTime t) {
+    if  (t == null) return;
+    
+    _currentSelected = {"weekday": t.weekday.toString(), "monthday": t.day, "date": t, "enabled": true};
+  }
   
   @NgOneWay("dates")
   void set dates(List<Map> value) {
@@ -49,6 +61,7 @@ class WeekCalendar {
   }
 
   void selectDay(Event ev, Map weekElem) {
+    if (_isDisabled) return;
     if (!weekElem['enabled']) return;
 
     Element weekDayElem = ev.currentTarget;
@@ -75,6 +88,7 @@ class WeekCalendar {
             date.year == _currentDate.year);
   }
 
+  bool _isDisabled = false;
   Map _currentSelected = null;
   DateTime get _currentDate => _currentSelected != null? _currentSelected['date'] : null;
   Function _onDayClick;

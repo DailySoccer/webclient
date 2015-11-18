@@ -20674,6 +20674,14 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   color: #777777;
   margin-bottom: 20px;
 }
+#createContest .create-contest-section-wrapper .create-contest-section .title .annotation {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #afafaf;
+  font-style: italic;
+  margin-left: 20px;
+}
 #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .data-element {
   position: relative;
   float: left;
@@ -20806,6 +20814,20 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   height: 44px;
   display: inline-block;
   vertical-align: middle;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper input[type="radio"]#contestOpen + label .contest-league-count-selector {
+  position: relative;
+  float: left;
+  width: 41.66666667%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  float: right;
+  margin-top: 5px;
+  display: none;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper input[type="radio"]#contestOpen:checked + label .contest-league-count-selector {
+  display: block;
 }
 #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper #contestAny + label .icon {
   content: " ";
@@ -21099,9 +21121,6 @@ fieldset[disabled] #createContest .create-contest-section-wrapper .create-contes
   padding-left: 15px;
   padding-right: 15px;
   padding: 10px;
-}
-#createContest .contest-hour-selector {
-  text-align: right;
 }
 /*************************************************
 Si hay que añadir nuevas banderas, ir a la siguiente url

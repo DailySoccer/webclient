@@ -27,6 +27,11 @@
 			.title {
 				.opensans_bold(12pt, @greyDark);
 				margin-bottom: 20px;
+				.annotation {
+					.opensans_normal(10pt, @greyMed);
+					font-style: italic;
+					margin-left: 20px;
+				}
 			}
 			.data-input-wrapper {
 
@@ -126,7 +131,17 @@
 					.addIcon44("icon-headToHead.png");
 				}
 				#contestOpen + label .icon {
-					.addIcon44("icon-open.png");
+						.addIcon44("icon-open.png");
+				}
+				
+				input[type="radio"]#contestOpen + label .contest-league-count-selector {
+					.make-xs-column(5);
+					float: right;
+					margin-top: 5px;
+					display: none;
+				}
+				input[type="radio"]#contestOpen:checked + label .contest-league-count-selector {
+					display: block;
 				}
 				
 				// Opponent type
@@ -230,9 +245,9 @@
 		.make-xs-column(4);
 		padding: 10px;
 	}
-	.contest-hour-selector {
-		text-align: right;
-	}
+	
+	
+	
 }
 
 

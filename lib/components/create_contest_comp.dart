@@ -19,7 +19,7 @@ class CreateContestComp  {
 
   String selectedCompetition;
   String contestName;
-  
+
   int selectedHour = 12;
   DateTime selectedDate = null;
 
@@ -65,7 +65,7 @@ class CreateContestComp  {
 
     updateDayList();
     for(int i = 1; i <= 24; i++) hourList.add(i);
-    
+
     _contestsService.getActiveTemplateContests()
       .then((templateContests) {
         _templateContests = templateContests;
@@ -86,27 +86,30 @@ class CreateContestComp  {
   static String getLocalizedText(key) {
     return StringUtils.translate(key, "createcontest");
   }
-  
+
   void updateDayList() {
     dayList = new List<Map>();
     DateTime current = DateTimeService.now;
+
+    // Set de la hora a las 00:00
+    current = current.subtract(new Duration(hours: current.hour, minutes: current.minute, seconds: current.second, milliseconds: current.millisecond));
 
     for(int i = 0; i < 7; i++) {
       dayList.add({"weekday": current.weekday.toString(), "monthday": current.day, "date": current, "enabled": true});
       current = current.add(new Duration(days: 1));
     }
   }
-  
+
   void onSelectedDayChange(DateTime day) {
     selectedDate = day;
   }
-  
+
   void createContest() {
     if (_selectedTemplate != null) {
       Contest contest = new Contest.instance();
       contest.templateContestId = _selectedTemplate.templateContestId;
       contest.name = contestName != null ? contestName : _selectedTemplate.name;
-      contest.startDate = _selectedTemplate.startDate;
+      contest.startDate = selectedDate != null ? selectedDate.add(new Duration(hours:selectedHour)) : _selectedTemplate.startDate;
       contest.simulation = contestType == TYPE_TRAINING;
       contest.maxEntries = _selectedTemplate.maxEntries;
 

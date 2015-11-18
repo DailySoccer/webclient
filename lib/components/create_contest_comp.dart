@@ -49,7 +49,7 @@ class CreateContestComp  {
 
   List<Map> dayList = new List<Map>();
   List<int> hourList = new List<int>();
-  
+
   List<int> leaguePlayerCountList = [5, 10, 15, 20, 50, -1];
   int selectedLeaguePlayerCount = 10;
 
@@ -117,7 +117,7 @@ class CreateContestComp  {
       dayList.add({"weekday": current.weekday.toString(), "monthday": current.day, "date": current, "enabled": true});
       current = current.add(new Duration(days: 1));
     }
-    
+
     if (selectedDate == null) {
       selectedDate = dayList[0]['date'];
     }
@@ -132,8 +132,8 @@ class CreateContestComp  {
       Contest contest = new Contest.instance();
       contest.templateContestId = _selectedTemplate.templateContestId;
       contest.name = contestName != null ? contestName : _selectedTemplate.name;
-      contest.startDate = selectedDate != null ? selectedDate.add(new Duration(hours:selectedHour)) : _selectedTemplate.startDate;
-      contest.simulation = contestType == TYPE_TRAINING;
+      contest.simulation = (contestType == TYPE_TRAINING);
+      contest.startDate = contest.simulation ? selectedDate.add(new Duration(hours:selectedHour)) : _selectedTemplate.startDate;
       contest.maxEntries = _selectedTemplate.maxEntries;
 
       List<String> soccerPlayers = [];

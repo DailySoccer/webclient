@@ -49,6 +49,7 @@ class CreateContestComp  {
 
   List<int> leaguePlayerCountList = [5, 10, 15, 20, 50, -1];
   int selectedLeaguePlayerCount = 10;
+  int get maxEntries => (contestStyle == STYLE_HEAD_TO_HEAD) ? 2 : (selectedLeaguePlayerCount > 0) ? selectedLeaguePlayerCount : 100;
 
   TemplateContest get selectedTemplate => _selectedTemplate;
   void set selectedTemplate(TemplateContest val) {
@@ -80,7 +81,7 @@ class CreateContestComp  {
 
   Money get entryFee => _selectedTemplate.entryFee;
   String get prizeType => Prize.typeNames[_selectedTemplate.prizeType].toUpperCase();
-  int get computedPrize => 9;
+  int get computedPrize => prizePool.amount.toInt();
 
   CreateContestComp(this._router, this._contestsService) {
     contestType = TYPE_OFICIAL;
@@ -105,6 +106,10 @@ class CreateContestComp  {
 
       });
   }
+
+  num get prizeMultiplier => contestType == TYPE_OFICIAL ? _selectedTemplate.prizeMultiplier : 10;
+
+  Money get prizePool => new Money.from(contestType == TYPE_OFICIAL ? Money.CURRENCY_GOLD : Money.CURRENCY_MANAGER, maxEntries * _selectedTemplate.entryFee.amount * prizeMultiplier);
 
   String getLocalizedText(key) {
     return StringUtils.translate(key, "createcontest");
@@ -139,7 +144,7 @@ class CreateContestComp  {
       contest.name = contestName != null && contestName.isNotEmpty ? contestName : _selectedTemplate.name;
       contest.simulation = (contestType == TYPE_TRAINING);
       contest.startDate = contest.simulation ? selectedDate.add(new Duration(hours:selectedHour)) : _selectedTemplate.startDate;
-      contest.maxEntries = (contestStyle == STYLE_HEAD_TO_HEAD) ? 2 : (selectedLeaguePlayerCount > 0) ? selectedLeaguePlayerCount : 100;
+      contest.maxEntries = maxEntries;
 
       List<String> soccerPlayers = [];
       _contestsService.createContest(contest, soccerPlayers)

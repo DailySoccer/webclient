@@ -463,11 +463,22 @@ class EnterContestComp implements DetachAware {
             GameMetrics.peopleSet({"Last Team Created (${contest.competitionType})": new DateTime.now()});
             GameMetrics.logEvent(GameMetrics.ENTRY_FEE, {"value": contest.entryFee.toString()});
             _teamConfirmed = true;
-            _router.go( 'view_contest_entry', {
-                          "contestId": contestId,
-                          "parent": _routeProvider.parameters["parent"],
-                          "viewContestEntryMode": contestId == contest.contestId? "created" : "swapped"
-              });
+
+            if (isCreatingContest) {
+              _router.go( 'view_contest_entry', {
+                            "contestId": contestId,
+                            "parent": "my_contests",
+                            "section": "upcoming",
+                            "viewContestEntryMode": contestId == contest.contestId? "created" : "swapped"
+                });
+            }
+            else {
+              _router.go( 'view_contest_entry', {
+                            "contestId": contestId,
+                            "parent": _routeProvider.parameters["parent"],
+                            "viewContestEntryMode": contestId == contest.contestId? "created" : "swapped"
+                });
+            }
           })
           .catchError((ServerError error) => _errorCreating(error));
     }

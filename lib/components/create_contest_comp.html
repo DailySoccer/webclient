@@ -116,11 +116,11 @@
       <div class="title">Premios</div>
       <div class="data-input-wrapper entry-fee">
         <span class="data-element">
-          <input id="contestFee_1E_3MP" type="radio" value="1E_3MP" name="entry-fee">
-          <label for="contestFee_1E_3MP">
+          <div class="entry-fee-values-wrapper">
           <span class="entry-fee-value" ng-class="{'gold' :contestType == TYPE_OFICIAL, 'energy': contestType != TYPE_OFICIAL}">{{entryFee.toInt()}}</span> 
           por 
-          <span class="entry-fee-value" ng-class="{'gold' :contestType == TYPE_OFICIAL, 'manager-points': contestType != TYPE_OFICIAL}">{{computedPrize}}</span></label>
+          <span class="entry-fee-value" ng-class="{'gold' :contestType == TYPE_OFICIAL, 'manager-points': contestType != TYPE_OFICIAL}">{{computedPrize}}</span>
+          </div>
         </span>
         <div>
           <span>Repartición de premios: </span>

@@ -20771,7 +20771,11 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   padding-right: 15px;
   padding: 0 15px 0 0;
 }
-#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee .data-element input[type="radio"] + label {
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee .data-element .entry-fee-values-wrapper {
+  border: 1px solid transparent;
+  border-radius: 5px;
+  display: block;
+  vertical-align: middle;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 12pt;
@@ -20779,13 +20783,17 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   padding: 5px 15px;
   margin: 0;
 }
-#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee .data-element input[type="radio"] + label .entry-fee-value:after {
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee .data-element .entry-fee-values-wrapper .icon {
+  margin-right: 10px;
+  vertical-align: middle;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee .data-element .entry-fee-values-wrapper .entry-fee-value:after {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 14pt;
   color: #777777;
 }
-#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee .data-element input[type="radio"] + label .entry-fee-value:after {
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee .data-element .entry-fee-values-wrapper .entry-fee-value:after {
   margin: 0 5px;
 }
 #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee:after {
@@ -20879,7 +20887,7 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   display: inline-block;
   vertical-align: middle;
 }
-#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee input[type="radio"] + label .energy:after {
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee .entry-fee-values-wrapper .energy:after {
   content: "";
   content: " ";
   background-image: url("../images/icon-lightning-lg.png");
@@ -20888,7 +20896,7 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   display: inline-block;
   vertical-align: middle;
 }
-#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee input[type="radio"] + label .manager-points:after {
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee .entry-fee-values-wrapper .manager-points:after {
   content: "";
   content: " ";
   background-image: url("../images/icon-star-lg.png");
@@ -20897,7 +20905,7 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   display: inline-block;
   vertical-align: middle;
 }
-#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee input[type="radio"] + label .gold:after {
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee .entry-fee-values-wrapper .gold:after {
   content: "";
   content: " ";
   background-image: url("../images/icon-coin-lg.png");

@@ -25,7 +25,7 @@
 
     <div ng-switch-when="false">
       <fantasy-team id="userFantasyTeam" contest-entry="mainPlayer" watch="updatedDate" is-opponent="false"></fantasy-team>
-      <users-list id="usersList" ng-show="selectedOpponent == null" contest-entries="contestEntries" watch="updatedDate"></users-list>
+      <users-list show-invite="showInviteButton" on-invite-friends="onInviteFriends()" id="usersList" ng-show="selectedOpponent == null" contest-entries="contestEntries" watch="updatedDate"></users-list>
     </div>
 
 

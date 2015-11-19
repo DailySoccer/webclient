@@ -19189,6 +19189,20 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
     padding-right: 15px;
   }
 }
+#usersListRoot .invite-friends-wrapper h1 {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+#usersListRoot .invite-friends-wrapper .invite-friends {
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  font-size: 12pt;
+  color: #59add5;
+  text-transform: uppercase;
+  margin: 0;
+  text-align: center;
+  cursor: pointer;
+}
 .global-user-profile #mainWrapper.wrapper-content-container {
   background-color: #ffffff;
 }

@@ -61,8 +61,11 @@ class CreateContestComp  {
   String get placeholderName => selectedTemplate != null? selectedTemplate.name : getLocalizedText("contest_name_placeholder");
 
   String get comboDefaultText {
+    if (printableTemplateList.length == 0) {
+      return getLocalizedText("select_competition_first");
+    }
     return getLocalizedText("select_event");
-  }
+  } 
 
   List<TemplateContest> emptyListAuxiliar = [];
   List<TemplateContest> get printableTemplateList {

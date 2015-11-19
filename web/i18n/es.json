@@ -399,6 +399,7 @@
     "userlist"                          :
     {
       "title"                           : "PARTICIPANTES DEL TORNEO",
+      "invite_text"                     : "Invitar amigos",
       "desc"                            : "Elige un participante para comparar su alineación",
       "pos"                             : "POS",
       "player"                          : "JUGADOR",
@@ -636,6 +637,30 @@
       "erroruserbalancenegativegeneric" : "No tienes Oro suficiente. Por favor, compra Oro para poder continuar",
       "errordefaulttitle"               : "Atención",
       "errordefaultgeneric"             : "Ha ocurrido un error. Inténtalo mas tarde."
+    },
+    "createcontest"                     :
+    {
+      "select_event"                    : "Selecciona Evento",
+      "select_competition_first"        : "Selecciona antes una competición",
+      "name"                            : "Nombre",
+      "create_contest"                  : "Crear torneo",
+      "contest_name_placeholder"        : "Nombre del torneo",
+      "contest_type"                    : "Tipo de torneo",
+      "oficial"                         : "Oficial",
+      "training"                        : "Entrenamiento",
+      "competition"                     : "Competición",
+      "spanish_league"                  : "La liga",
+      "premiere_league"                 : "Premiere",
+      "event"                           : "Evento",
+      "rivals"                          : "Rivales",
+      "head_to_head"                    : "Uno contra uno",
+      "league"                          : "Liga",
+      "no_limit"                        : "Sin límite",
+      "date"                            : "Fecha",
+      "fixed_hour_warning"              : "La fecha de los torneos oficiales es fija",
+      "create_contest_btt"              : "Crear torneo",
+      "matches_title"                   : "Partidos"
+      
     }
 
   }

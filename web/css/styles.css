@@ -6681,6 +6681,7 @@ scoring-rules:after,
   }
 }
 #teamsPanelComp .teams-toggler-wrapper {
+  cursor: pointer;
   display: block;
   text-align: right;
   background-color: #ffffff;
@@ -19188,6 +19189,20 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
     padding-right: 15px;
   }
 }
+#usersListRoot .invite-friends-wrapper h1 {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+#usersListRoot .invite-friends-wrapper .invite-friends {
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  font-size: 12pt;
+  color: #59add5;
+  text-transform: uppercase;
+  margin: 0;
+  text-align: center;
+  cursor: pointer;
+}
 .global-user-profile #mainWrapper.wrapper-content-container {
   background-color: #ffffff;
 }
@@ -20072,7 +20087,7 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   cursor: default;
 }
 .week-calendar .week-days-wrapper .week-day .day-info {
-  padding: 0px 15px;
+  padding: 0px;
   margin: 10px 0px 0px 0px;
   text-align: center;
   border-left: 1px solid #0a2938;
@@ -20622,6 +20637,538 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
 }
 #tutorialListRoot #creatingContests .tile {
   background-color: rgba(15, 38, 48, 0.7);
+}
+.global-create-contest #mainContent.main-content-container {
+  background-color: #ffffff;
+}
+#createContest .create-contest-section-wrapper {
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  height: 130px;
+  padding: 2px;
+  position: relative;
+}
+@media (min-width: 768px) {
+  #createContest .create-contest-section-wrapper {
+    float: left;
+    width: 50%;
+  }
+}
+#createContest .create-contest-section-wrapper.large {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 2px;
+  height: auto;
+}
+@media (min-width: 768px) {
+  #createContest .create-contest-section-wrapper.large {
+    float: left;
+    width: 100%;
+  }
+}
+#createContest .create-contest-section-wrapper .create-contest-section {
+  background-color: #f8f8f8;
+  position: relative;
+  padding: 15px;
+  height: 100%;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #777777;
+  /*
+			.entry-fee {
+				.opensans_normal(12pt, @black);
+				.entry-fee-amount {
+					&.gold:after {
+						content: "";
+						display: inline-block;
+						.addIcon("icon-coin-lg.png", 27px, 27px);
+					}
+					&.energy:after {
+						content: "";
+						display: inline-block;
+						.addIcon("icon-lightning-lg.png", 27px, 27px);
+					}
+				}
+			}*/
+}
+#createContest .create-contest-section-wrapper .create-contest-section .title {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 12pt;
+  color: #777777;
+  margin-bottom: 20px;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .title .annotation {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #afafaf;
+  font-style: italic;
+  margin-left: 20px;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .data-element {
+  position: relative;
+  float: left;
+  width: 50%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 0;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .data-element input[type="radio"] {
+  display: none;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .data-element input[type="radio"] + label {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #777777;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  padding: 5px 5px;
+  display: block;
+  vertical-align: middle;
+  cursor: pointer;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .data-element input[type="radio"] + label .icon {
+  margin-right: 10px;
+  vertical-align: middle;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .data-element input[type="radio"]:checked + label {
+  background-color: #ffffff;
+  border: 1px solid #434343;
+  border-radius: 5px;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .data-element input[type="radio"].disabled-radio + label {
+  opacity: 0.3;
+  cursor: auto;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.competition .data-element {
+  padding: 0;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.competition .data-element input[type="radio"] + label .icon {
+  margin: 0 5px 0 0;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee {
+  height: auto;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12pt;
+  color: #434343;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee .data-element {
+  position: relative;
+  float: left;
+  width: 33.33333333%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 0 15px 0 0;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee .data-element .entry-fee-values-wrapper {
+  border: 1px solid transparent;
+  border-radius: 5px;
+  display: block;
+  vertical-align: middle;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12pt;
+  color: #777777;
+  padding: 5px 15px;
+  margin: 0;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee .data-element .entry-fee-values-wrapper .icon {
+  margin-right: 10px;
+  vertical-align: middle;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee .data-element .entry-fee-values-wrapper .entry-fee-value:after {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14pt;
+  color: #777777;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee .data-element .entry-fee-values-wrapper .entry-fee-value:after {
+  margin: 0 5px;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper #contestOficial + label .icon {
+  content: " ";
+  background-image: url("../images/icon-oficial.png");
+  width: 44px;
+  height: 44px;
+  display: inline-block;
+  vertical-align: middle;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper #contestTraining + label .icon {
+  content: " ";
+  background-image: url("../images/icon-training.png");
+  width: 44px;
+  height: 44px;
+  display: inline-block;
+  vertical-align: middle;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper #contestLeague + label .icon {
+  content: " ";
+  background-image: url("../images/icon-league.png");
+  width: 44px;
+  height: 44px;
+  display: inline-block;
+  vertical-align: middle;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper #contestPremiere + label .icon {
+  content: " ";
+  background-image: url("../images/icon-premiere.png");
+  width: 44px;
+  height: 44px;
+  display: inline-block;
+  vertical-align: middle;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper #contestChampions + label .icon {
+  content: " ";
+  background-image: url("../images/icon-champions.png");
+  width: 44px;
+  height: 44px;
+  display: inline-block;
+  vertical-align: middle;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper #contestHeadToHead + label .icon {
+  content: " ";
+  background-image: url("../images/icon-headToHead.png");
+  width: 44px;
+  height: 44px;
+  display: inline-block;
+  vertical-align: middle;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper #contestOpen + label .icon {
+  content: " ";
+  background-image: url("../images/icon-open.png");
+  width: 44px;
+  height: 44px;
+  display: inline-block;
+  vertical-align: middle;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper input[type="radio"]#contestOpen + label .contest-league-count-selector {
+  position: relative;
+  float: left;
+  width: 50%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  float: right;
+  margin-top: 5px;
+  display: none;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper input[type="radio"]#contestOpen:checked + label .contest-league-count-selector {
+  display: block;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper #contestAny + label .icon {
+  content: " ";
+  background-image: url("../images/icon-any.png");
+  width: 44px;
+  height: 44px;
+  display: inline-block;
+  vertical-align: middle;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper #contestFriends + label .icon {
+  content: " ";
+  background-image: url("../images/icon-friends.png");
+  width: 44px;
+  height: 44px;
+  display: inline-block;
+  vertical-align: middle;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee .entry-fee-values-wrapper .energy:after {
+  content: "";
+  content: " ";
+  background-image: url("../images/icon-lightning-lg.png");
+  width: 27px;
+  height: 27px;
+  display: inline-block;
+  vertical-align: middle;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee .entry-fee-values-wrapper .manager-points:after {
+  content: "";
+  content: " ";
+  background-image: url("../images/icon-star-lg.png");
+  width: 27px;
+  height: 27px;
+  display: inline-block;
+  vertical-align: middle;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee .entry-fee-values-wrapper .gold:after {
+  content: "";
+  content: " ";
+  background-image: url("../images/icon-coin-lg.png");
+  width: 27px;
+  height: 27px;
+  display: inline-block;
+  vertical-align: middle;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.contest-template {
+  margin: 30px 0;
+  /*&:after {
+						content: "";
+						.addIcon("arrowDownBlack.png", 20px, 20px);
+						margin-left: -35px;
+					}*/
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.contest-template select.contest-template-selector {
+  width: auto;
+  max-width: 100%;
+  overflow: hidden;
+  display: inline-block;
+  padding: 7px 10% 7px 15px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #ffffff;
+  background: #ffffff url("../images/arrowDownBlack.png") no-repeat 95% 50%;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.contest-name {
+  margin: 30px 0;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest {
+  background-color: #428bca;
+  border-color: #357ebd;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  -webkit-transition: All 0.08s ease-out;
+  -moz-transition: All 0.08s ease-out;
+  -ms-transition: All 0.08s ease-out;
+  -o-transition: All 0.08s ease-out;
+  transition: All 0.08s ease-out;
+  font-size: 10pt;
+  background-color: #a1c931;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  outline: none !important;
+  display: block;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  width: 300px;
+  margin: 0px auto;
+  position: relative;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12pt;
+  color: #ffffff;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:hover,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:focus,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:active,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest.active,
+.open .dropdown-toggle#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest {
+  color: #ffffff;
+  background-color: #3276b1;
+  border-color: #285e8e;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:active,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest.active,
+.open .dropdown-toggle#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest {
+  background-image: none;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest.disabled,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest[disabled],
+fieldset[disabled] #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest.disabled:hover,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest[disabled]:hover,
+fieldset[disabled] #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:hover,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest.disabled:focus,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest[disabled]:focus,
+fieldset[disabled] #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:focus,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest.disabled:active,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest[disabled]:active,
+fieldset[disabled] #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:active,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest.disabled.active,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest[disabled].active,
+fieldset[disabled] #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest.active {
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest .badge {
+  color: #428bca;
+  background-color: #ffffff;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:focus,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:active:focus,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:hover,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:focus {
+  color: #333333;
+  text-decoration: none;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:active,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest.disabled,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest[disabled],
+fieldset[disabled] #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:active:focus,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest.active:focus {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:active:hover,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest.active:hover {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:hover:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:active,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest.active {
+  background-color: #a1c931;
+  margin-top: 4px;
+  box-shadow: none;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest.disabled,
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest[disabled],
+fieldset[disabled] #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest {
+  background-color: #b5d657;
+  box-shadow: none;
+  margin-top: 4px;
+  color: #ebebeb;
+  cursor: not-allowed !important;
+}
+#createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest.close {
+  background-color: #a1c931;
+  outline: none !important;
+  color: #ffffff;
+}
+#createContest #teamsPanelComp {
+  clear: both;
+}
+#createContest week-calendar#createContestCalendar {
+  position: relative;
+  float: left;
+  width: 66.66666667%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+#createContest week-calendar#createContestCalendar .week-calendar {
+  border-width: 0;
+  border-style: none none none none;
+  border-color: #59add5;
+  border-radius: 0;
+  background-color: transparent;
+  background-image: none;
+}
+#createContest week-calendar#createContestCalendar .week-calendar .week-days-wrapper {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-left: 0px;
+  padding-right: 0px;
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 10pt;
+  color: #777777;
+  text-transform: uppercase;
+  background-image: none;
+}
+@media (min-width: 768px) {
+  #createContest week-calendar#createContestCalendar .week-calendar .week-days-wrapper {
+    margin-left: 0%;
+  }
+}
+@media (min-width: 768px) {
+  #createContest week-calendar#createContestCalendar .week-calendar .week-days-wrapper {
+    float: left;
+    width: 100%;
+  }
+}
+#createContest week-calendar#createContestCalendar .week-calendar .week-days-wrapper .week-day.active {
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  font-size: 10pt;
+  color: #000000;
+  text-transform: uppercase;
+}
+#createContest week-calendar#createContestCalendar .week-calendar .week-days-wrapper .week-day.active:after {
+  border-bottom-color: #777777;
+}
+#createContest week-calendar#createContestCalendar .week-calendar .week-days-wrapper .week-day.disabled {
+  color: #dcdcdc;
+}
+#createContest week-calendar#createContestCalendar .week-calendar .week-days-wrapper .week-day .day-info {
+  margin: 0;
+  border-left: 1px solid #dcdcdc;
+}
+#createContest week-calendar#createContestCalendar .week-calendar .week-days-wrapper .week-day.today .day-info {
+  border-left: 0px none #0a2938;
+}
+#createContest .contest-hour-selector-wrapper {
+  position: relative;
+  float: left;
+  width: 33.33333333%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 10px;
+}
+#createContest #teamsToggler {
+  text-align: center;
 }
 /*************************************************
 Si hay que añadir nuevas banderas, ir a la siguiente url
@@ -21635,6 +22182,10 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
     color: #214a5f;
     text-transform: uppercase;
   }
+}
+.default-section-header.dark {
+  background-color: #214a5f;
+  color: #ffffff;
 }
 /*
 .default-header-text {

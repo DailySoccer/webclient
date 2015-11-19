@@ -1,0 +1,292 @@
+.global-create-contest #mainContent.main-content-container {
+	background-color: @white;
+}
+
+#createContest {
+	
+	.create-contest-section-wrapper {
+		.make-sm-column(6);
+		.make-xs-column(12);
+		height: 130px;
+		padding: 2px;
+		position: relative;
+		
+		&.large { 
+			.make-sm-column(12); 
+			padding: 2px;
+			height: auto;
+		}
+		
+		.create-contest-section {
+			background-color: @greyUltraLight;
+			position: relative;
+			padding: 15px;
+			height: 100%;
+			
+			.opensans_normal(10pt, @greyDark);
+			.title {
+				.opensans_bold(12pt, @greyDark);
+				margin-bottom: 20px;
+				.annotation {
+					.opensans_normal(10pt, @greyMed);
+					font-style: italic;
+					margin-left: 20px;
+				}
+			}
+			.data-input-wrapper {
+
+				.data-element {
+					.make-xs-column(6);
+					padding: 0;
+					
+					input[type="radio"] {
+						display: none;
+					}
+					input[type="radio"] + label {
+						// aqui el estilo normal
+						.opensans_normal(10pt, @greyDark);
+						border: 1px solid transparent;
+						border-radius: 5px;
+						padding: 5px 5px;
+						display: block;
+						vertical-align: middle;
+						.icon {
+							margin-right: 10px;
+							vertical-align: middle;
+						}
+						cursor: pointer;
+					}
+					input[type="radio"]:checked + label {
+						background-color: @white;
+						border: 1px solid @greyUltraDark;
+						border-radius: 5px;
+					}
+					input[type="radio"].disabled-radio + label {
+						opacity: 0.3;
+						cursor: auto;
+					}
+					
+				}
+				&.competition .data-element{
+					//.make-xs-column(4);
+					padding: 0;
+					
+					input[type="radio"] + label .icon {
+						margin: 0 5px 0 0;
+					}
+				}
+				
+				&.entry-fee {
+					height: auto;
+					.opensans_normal(12pt, @greyUltraDark);
+					
+					.data-element {
+						.make-xs-column(4);
+						padding: 0 15px 0 0;
+
+						.entry-fee-values-wrapper {
+							border: 1px solid transparent;
+							border-radius: 5px;
+							display: block;
+							vertical-align: middle;
+							.opensans_normal(12pt, @greyDark);
+							padding: 5px 15px;
+							margin: 0;
+							
+							.icon {
+								margin-right: 10px;
+								vertical-align: middle;
+							}
+							
+							.entry-fee-value:after {
+								.opensans_normal(14pt, @greyDark);
+							}
+							.entry-fee-value:after {
+								margin: 0 5px;
+							}
+						}
+					}
+		
+					&:after {
+						clear: both;
+						content: "";
+						display: block; 
+					}
+				}
+				
+				.addIcon44(@img) {
+					.addIcon(@img, 44px, 44px);
+				}
+				
+				// Contest type
+				#contestOficial + label .icon {
+					.addIcon44("icon-oficial.png");
+				}
+				#contestTraining + label .icon {
+					.addIcon44("icon-training.png");
+				}
+				
+				// Competition
+				#contestLeague + label .icon {
+					.addIcon44("icon-league.png");
+				}
+				#contestPremiere + label .icon {
+					.addIcon44("icon-premiere.png");
+				}
+				#contestChampions + label .icon {
+					.addIcon44("icon-champions.png");
+				}
+				
+				// Contest Style
+				#contestHeadToHead + label .icon {
+					.addIcon44("icon-headToHead.png");
+				}
+				#contestOpen + label .icon {
+						.addIcon44("icon-open.png");
+				}
+				
+				input[type="radio"]#contestOpen + label .contest-league-count-selector {
+					.make-xs-column(6);
+					float: right;
+					margin-top: 5px;
+					display: none;
+				}
+				input[type="radio"]#contestOpen:checked + label .contest-league-count-selector {
+					display: block;
+				}
+				
+				// Opponent type
+				#contestAny + label .icon {
+					.addIcon44("icon-any.png");
+				}
+				#contestFriends + label .icon {
+					.addIcon44("icon-friends.png");
+				}
+				
+				// Entry Fee
+				&.entry-fee .entry-fee-values-wrapper .energy:after {
+					content: "";
+					.addIcon("icon-lightning-lg.png", 27px, 27px);
+				}
+				&.entry-fee .entry-fee-values-wrapper .manager-points:after {
+					content: "";
+					.addIcon("icon-star-lg.png", 27px, 27px);
+				}
+				&.entry-fee .entry-fee-values-wrapper .gold:after {
+					content: "";
+					.addIcon("icon-coin-lg.png", 27px, 27px);
+				}
+				
+				&.contest-template {
+					margin: 30px 0;
+					select.contest-template-selector {
+						width: auto;
+						max-width: 100%;
+						overflow: hidden;
+						display: inline-block;
+						padding: 7px 10% 7px 15px;
+						-webkit-appearance: none;
+						-moz-appearance: none;
+						appearance: none;
+						background-color: @white;
+						background: @white url("@{images}/arrowDownBlack.png") no-repeat 95% 50%;
+					}
+					/*&:after {
+						content: "";
+						.addIcon("arrowDownBlack.png", 20px, 20px);
+						margin-left: -35px;
+					}*/
+				}
+				
+				&.contest-name {
+					margin: 30px 0;
+				}
+				
+				.btn-confirm-contest {
+					.btn-primary();
+					.btn-block();
+					width: 300px;
+					margin: 0px auto;
+					position: relative;
+					.opensans_normal(12pt, @white);
+				}
+				
+			}
+			/*
+			.entry-fee {
+				.opensans_normal(12pt, @black);
+				.entry-fee-amount {
+					&.gold:after {
+						content: "";
+						display: inline-block;
+						.addIcon("icon-coin-lg.png", 27px, 27px);
+					}
+					&.energy:after {
+						content: "";
+						display: inline-block;
+						.addIcon("icon-lightning-lg.png", 27px, 27px);
+					}
+				}
+			}*/
+		}
+	}
+	
+	#teamsPanelComp {
+		clear: both;
+	}
+	
+	week-calendar#createContestCalendar {
+		.make-xs-column(8);
+		.clean-paddings();
+		
+		.week-calendar {
+			.make-border(0, none none none none, @blueLight);
+			background-color: transparent;
+			background-image: none;
+
+			.week-days-wrapper {
+				.make-sm-column-offset(0);
+				.make-sm-column(12);
+				.clean-paddings();
+				.exo_light(10pt, @greyDark);
+				background-image: none;
+				
+				.week-day {
+					&.active {
+						.exo_bold(10pt, @black);
+						&:after { border-bottom-color: @greyDark; }
+					}
+					
+					&.disabled {
+						color: @greyLight;
+					}
+
+					.day-info { 
+						margin: 0;
+						border-left: 1px solid @greyLight; 
+					}
+					&.today .day-info {	border-left: 0px none @blueUltraDark;	}
+					
+				}
+			}
+		}
+	}
+	
+	.contest-hour-selector-wrapper {
+		.make-xs-column(4);
+		padding: 10px;
+	}
+	
+	#teamsToggler {
+		text-align: center;
+	}
+	
+	
+}
+
+
+
+
+
+
+

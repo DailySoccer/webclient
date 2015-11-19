@@ -17,22 +17,26 @@ class HomeComp  {
   void onContestsClick() {
     _router.go('lobby', {});
   }
-  
+
   void onScoutingClick() {
     if (!userIsLogged) return;
   }
+
   void onCreateContestClick() {
     if (!userIsLogged) return;
+    _router.go('create_contest', {});
   }
+
   void onHistoryClick() {
     if (!userIsLogged) return;
     _router.go('my_contests', {'section':'history'});
   }
+
   void onLiveClick() {
     if (!userIsLogged) return;
     _router.go('my_contests', {'section':'live'});
   }
-  
+
   void onBlogClick() {
 
   }
@@ -41,7 +45,7 @@ class HomeComp  {
   }
 
   bool get userIsLogged => _profileService.isLoggedIn;
-  
+
   ProfileService _profileService;
   Router _router;
 

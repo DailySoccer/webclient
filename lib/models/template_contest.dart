@@ -1,4 +1,4 @@
-library contest;
+library template_contest;
 
 import "package:webclient/models/match_event.dart";
 import "package:webclient/models/user.dart";
@@ -12,33 +12,22 @@ import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/prizes_service.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/models/money.dart';
-import 'package:webclient/models/competition.dart';
 
-class Contest {
-  static const MAX_PLAYERS_SAME_TEAM = 4;
-
+class TemplateContest {
   // Tipos de Torneos (deducidos por las características del Contest: maxEntries ~ premios)
   static const TOURNAMENT_FREE            = "FREE";
   static const TOURNAMENT_HEAD_TO_HEAD    = "HEAD_TO_HEAD";
   static const TOURNAMENT_LEAGUE          = "LEAGUE";
   static const TOURNAMENT_FIFTY_FIFTY     = "FIFTY_FIFTY";
 
-  static const SALARY_LIMIT_FOR_BEGINNERS = 75000;
-  static const SALARY_LIMIT_FOR_STANDARDS = 70000;
-  static const SALARY_LIMIT_FOR_SKILLEDS  = 65000;
+  static const COMPETITION_LEAGUE_ES_ID     = "23";
+  static const COMPETITION_LEAGUE_UK_ID     = "8";
+  static const COMPETITION_LEAGUE_UCL_ID    = "5";
+  static const COMPETITION_WORLDCUP_ID      = "4";
 
-  static const TIER_BEGINNER              = "BEGINNER";
-  static const TIER_STANDARD              = "STANDARD";
-  static const TIER_SKILLED               = "SKILLEDS";
-
-  String contestId;
   String templateContestId;
 
   String state;
-
-  void set name(String aName) {
-    _name = aName;
-  }
 
   String get name {
     if (_name == null) {
@@ -47,27 +36,12 @@ class Contest {
     return _name;
   }
 
-  List<ContestEntry> contestEntries;
-  int numEntries;
-
   int maxEntries;
 
   int salaryCap;
 
   bool simulation = false;
   String specialImage;
-
-  String get printableSalaryCap => StringUtils.parseSalary(salaryCap);
-
-
-  String get tier {
-    if (salaryCap >= SALARY_LIMIT_FOR_BEGINNERS)
-      return TIER_BEGINNER;
-    else if (salaryCap < SALARY_LIMIT_FOR_BEGINNERS && salaryCap > SALARY_LIMIT_FOR_SKILLEDS)
-      return TIER_STANDARD;
-    else
-      return TIER_SKILLED;
-  }
 
   Money entryFee;
   String prizeType;
@@ -82,32 +56,20 @@ class Contest {
 
   String optaCompetitionId;
   List<MatchEvent> matchEvents;
-  Map<String, InstanceSoccerPlayer> instanceSoccerPlayers = new Map<String, InstanceSoccerPlayer>();
 
   DateTime startDate;
 
-  String get description  {
-   // print("estado del concurso: ${state}");
-    /* los partidos en vivo o en history no continen los participantes que tiene el concurso */
-    if(isLive || isHistory) {
-      return "${tournamentTypeName}";
-    }
-    return "${tournamentTypeName}: ${numEntries} ${StringUtils.translate("of", "contest")} ${maxEntries} ${StringUtils.translate("contenders", "contest")}";
-  }
+  Map<String, String> competitionTypeValues = {
+    COMPETITION_LEAGUE_ES_ID:   "LEAGUE_ES"
+    ,COMPETITION_LEAGUE_UK_ID:  "LEAGUE_UK"
+    ,COMPETITION_LEAGUE_UCL_ID: "CHAMPIONS"
+    ,COMPETITION_WORLDCUP_ID:   "WORLDCUP"
+  };
+  String get competitionType => optaCompetitionId.isNotEmpty ? competitionTypeValues[optaCompetitionId] : "";
 
-  List<ContestEntry> get contestEntriesOrderByPoints {
-    List<ContestEntry> entries = new List<ContestEntry>.from(contestEntries);
-    entries.sort((entry1, entry2) => entry2.currentLivePoints.compareTo(entry1.currentLivePoints));
-    return entries;
-  }
+  TemplateContest(this.templateContestId);
 
-  String get competitionType => Competition.competitionType(optaCompetitionId);
-
-  Contest(this.contestId, this.contestEntries);
-
-  Contest.instance();
-
-  Contest.referenceInit(this.contestId);
+  TemplateContest.referenceInit(this.templateContestId);
 
   bool get isActive   => state == "ACTIVE";
   bool get isLive     => state == "LIVE";
@@ -153,36 +115,6 @@ class Contest {
     return type;
   }
 
-  bool containsContestEntryWithUser(String userId) {
-    return getContestEntryWithUser(userId) != null;
-  }
-
-  ContestEntry getContestEntry(String contestEntryId) {
-    return contestEntries.firstWhere( (entry) => entry.contestEntryId == contestEntryId, orElse: () => null );
-  }
-
-  ContestEntry getContestEntryWithUser(String userId) {
-    return contestEntries.firstWhere( (entry) => entry.user.userId == userId, orElse: () => null );
-  }
-
-  int getUserPosition(ContestEntry contestEntry) {
-    List<ContestEntry> contestsEntries = contestEntriesOrderByPoints;
-    for (int i=0; i<contestsEntries.length; i++) {
-      if (contestsEntries[i].contestEntryId == contestEntry.contestEntryId)
-        return i+1;
-    }
-    return -1;
-  }
-
-  int getPercentOfUsersThatOwn(SoccerPlayer soccerPlayer) {
-    int numOwners = contestEntries.fold(0, (prev, contestEntry) => contestEntry.contains(soccerPlayer) ? (prev + 1) : prev );
-    return (numOwners * 100 / contestEntries.length).truncate();
-  }
-
-  InstanceSoccerPlayer getInstanceSoccerPlayer(String instanceSoccerPlayerId) {
-    return instanceSoccerPlayers.containsKey(instanceSoccerPlayerId) ? instanceSoccerPlayers[instanceSoccerPlayerId] : null;
-  }
-
   String getPrize(int index) {
     Money prizeValue = prize.getValue(index);
     return (prizeValue.amount > 0) ? "${prizeValue}" : "_";
@@ -191,22 +123,22 @@ class Contest {
   /*
    * Carga o un Contest o una LISTA de Contests a partir de JsonObjects
    */
-  static List<Contest> loadContestsFromJsonObject(Map jsonMapRoot) {
-    var contests = new List<Contest>();
+  static List<TemplateContest> loadTemplateContestsFromJsonObject(Map jsonMapRoot) {
+    var templateContests = new List<TemplateContest>();
 
     ContestReferences contestReferences = new ContestReferences();
 
     // Solo 1 contest
-    if (jsonMapRoot.containsKey("contest")) {
-      contests.add(new Contest.fromJsonObject(jsonMapRoot["contest"], contestReferences));
+    if (jsonMapRoot.containsKey("template_contest")) {
+      templateContests.add(new TemplateContest.fromJsonObject(jsonMapRoot["template_contest"], contestReferences));
     }
     // Array de contests
     else {
-      contests = jsonMapRoot.containsKey("contests") ? jsonMapRoot["contests"].map((jsonObject) => new Contest.fromJsonObject(jsonObject, contestReferences)).toList() : [];
+      templateContests = jsonMapRoot.containsKey("template_contests") ? jsonMapRoot["template_contests"].map((jsonObject) => new TemplateContest.fromJsonObject(jsonObject, contestReferences)).toList() : [];
 
       // Aceptamos múltiples listas de contests (con mayor o menor información)
-      for (int view=0; view<10 && jsonMapRoot.containsKey("contests_$view"); view++) {
-          contests.addAll( jsonMapRoot["contests_$view"].map((jsonObject) => new Contest.fromJsonObject(jsonObject, contestReferences)).toList() );
+      for (int view=0; view<10 && jsonMapRoot.containsKey("template_contest_$view"); view++) {
+        templateContests.addAll( jsonMapRoot["template_contest_$view"].map((jsonObject) => new TemplateContest.fromJsonObject(jsonObject, contestReferences)).toList() );
       }
     }
 
@@ -233,23 +165,22 @@ class Contest {
       }
     }
 
-    return contests;
+    return templateContests;
   }
 
   /*
    * Factorias de creacion de un Contest
    */
-  factory Contest.fromJsonObject(Map jsonMap, ContestReferences references) {
-    return references.getContestById(jsonMap["_id"])._initFromJsonObject(jsonMap, references);
+  factory TemplateContest.fromJsonObject(Map jsonMap, ContestReferences references) {
+    TemplateContest tContest = references.getTemplateContestById(jsonMap["_id"]);
+    return references.getTemplateContestById(jsonMap["_id"])._initFromJsonObject(jsonMap, references);
   }
 
   /*
    * Inicializacion de los contenidos de un Contest
    */
-  Contest _initFromJsonObject(Map jsonMap, ContestReferences references) {
-    assert(contestId.isNotEmpty);
-
-    templateContestId = jsonMap["templateContestId"];
+  TemplateContest _initFromJsonObject(Map jsonMap, ContestReferences references) {
+    assert(templateContestId.isNotEmpty);
 
     state = jsonMap.containsKey("state") ? jsonMap["state"] : "ACTIVE";
     _namePattern = jsonMap["name"];
@@ -268,35 +199,8 @@ class Contest {
     String prizeCurrency = entryFee.isEnergy ? Money.CURRENCY_MANAGER : Money.CURRENCY_GOLD;
     _prizePool = new Money.from(prizeCurrency, maxEntries * entryFee.amount * prizeMultiplier);
 
-    instanceSoccerPlayers = {};
-    if (jsonMap.containsKey("instanceSoccerPlayers")) {
-      jsonMap["instanceSoccerPlayers"].forEach((jsonObject) {
-        InstanceSoccerPlayer instanceSoccerPlayer =  new InstanceSoccerPlayer.initFromJsonObject(jsonObject, references);
-        instanceSoccerPlayers[instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId] = instanceSoccerPlayer;
-      });
-    }
-
-    // <FINAL> : Necesita acceso a los instanceSoccerPlayers
-    contestEntries = jsonMap.containsKey("contestEntries") ? jsonMap["contestEntries"].map((jsonMap) => new ContestEntry.initFromJsonObject(jsonMap, references, this) ).toList() : [];
-    numEntries = jsonMap.containsKey("numEntries") ? jsonMap["numEntries"] : contestEntries.length;
-
     // print("Contest: id($contestId) name($name) currentUserIds($currentUserIds) templateContestId($templateContestId)");
     return this;
-  }
-
-  int compareNameTo(Contest contest){
-    int comp = StringUtils.normalize(name).compareTo(StringUtils.normalize(contest.name));
-    return comp != 0 ? comp : contestId.compareTo(contest.contestId);
-  }
-
-  int compareEntryFeeTo(Contest contest){
-    int comp = entryFee.compareTo(contest.entryFee);
-    return comp != 0 ? comp : contestId.compareTo(contest.contestId);
-  }
-
-  int compareStartDateTo(Contest contest){
-    int comp = startDate.compareTo(contest.startDate);
-    return comp != 0 ? comp : contestId.compareTo(contest.contestId);
   }
 
   String _parsePattern(String text) {

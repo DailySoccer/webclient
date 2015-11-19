@@ -399,6 +399,7 @@
     "userlist"                          :
     {
       "title"                           : "PARTICIPANTES DEL TORNEO",
+      "invite_text"                     : "Invitar amigos",
       "desc"                            : "Elige un participante para comparar su alineación",
       "pos"                             : "POS",
       "player"                          : "JUGADOR",
@@ -640,6 +641,7 @@
     "createcontest"                     :
     {
       "select_event"                    : "Selecciona Evento",
+      "select_competition_first"        : "Selecciona antes una competición",
       "name"                            : "Nombre",
       "create_contest"                  : "Crear torneo",
       "contest_name_placeholder"        : "Nombre del torneo",

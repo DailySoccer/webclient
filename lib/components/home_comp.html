@@ -10,8 +10,17 @@
   
   <div id="contestTile" class="home-tile-wrapper enabled" ng-click="onContestsClick()">
     <div class="tile">
-      <span class="tile-title">Torneos</span>
-      <span class="tile-info">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer elementum justo vel eleifend fringilla.</span>
+      <section ng-if="!userIsLogged">
+        <span class="tile-title">Jugar</span>
+        <span class="tile-info">Aprende a ganar<br>y comienza tu carrera de manager</span>
+      </section>
+      <section ng-if="userIsLogged">
+        <span class="tile-title real">Superclásico</span>
+        <div class="tile-info">
+          <span class="promo-date">20-24 NOV.</span>
+          <span class="promo-description">Haz tu once y compite en superligas de 30 jugadores</span>
+        </div>
+      </section>
       <span class="tile-action"></span>
     </div>
   </div>
@@ -36,22 +45,32 @@
   <div id="myContestsTile" class="vertical-layout-tilling">
     <div id="upcomingTile" class="home-tile-wrapper" ng-click="onUpcomingClick()" ng-class="{'disabled': !userIsLogged, 'enabled': userIsLogged}">
       <div class="tile">
-        <span class="tile-title">Próximos</span>
-        <span class="tile-info">Primero debes aprender a jugar</span>
+        <span class="tile-title">Próximos torneos</span>
+        <div class="tile-info">
+          <span ng-if="!userIsLogged">Todavía no has participado</span>
+          <span ng-if="userIsLogged" class="num-contest-info">{{numUpcomingContests}}</span>
+        </div>
         <span class="tile-action"></span>
       </div>
     </div>
     <div id="liveTile" class="home-tile-wrapper" ng-click="onLiveClick()" ng-class="{'disabled': !userIsLogged, 'enabled': userIsLogged}">
       <div class="tile">
-        <span class="tile-title">En vivo</span>
-        <span class="tile-info">Primero debes aprender a jugar</span>
+        <span class="tile-title">Torneos en vivo</span>
+        <div class="tile-info">
+          <span ng-if="!userIsLogged">Todavía no has participado</span>
+          <span ng-if="userIsLogged" class="num-contest-info">{{numLiveContests}}</span>
+        </div>
         <span class="tile-action"></span>
       </div>
     </div>
     <div id="historyTile" class="home-tile-wrapper" ng-click="onHistoryClick()" ng-class="{'disabled': !userIsLogged, 'enabled': userIsLogged}">
       <div class="tile">
         <span class="tile-title">Histórico</span>
-        <span class="tile-info">Primero debes aprender a jugar</span>
+        <div class="tile-info">
+          <span ng-if="!userIsLogged">Todavía no has participado</span>
+          <span ng-if="userIsLogged" class="num-contest-info virtual">{{numVirtualHistoryContests}}</span>
+          <span ng-if="userIsLogged" class="num-contest-info real">{{numRealHistoryContests}}</span>
+        </div>
         <span class="tile-action"></span>
       </div>
     </div>

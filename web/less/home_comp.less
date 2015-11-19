@@ -25,16 +25,15 @@
 					display: block;
 					position: relative;
 					width: 70px;
-					border-bottom: 2px solid fade(@white, 50%);
+					border-bottom: 1px solid fade(@white, 50%);
 					margin-top: 5px;
 				}
 			}
 				
 			.tile-info {
 				.opensans_normal(10pt, @white);
-				font-style: italic;
 				max-width: 200px;
-				margin: 15px 0 5px 0;
+				margin: 10px 0 5px 0;
 				display: inline-block;
 			}
 			
@@ -106,14 +105,26 @@
 				margin-top: 40px;
 				&:after {
 					width: 85px;
-					margin-top: 15px;
+					margin-top: 5px;
+					border-bottom: 2px solid fade(@white, 75%);
 				}
 				.exo_bold(30pt, @white);
+				&:before {
+					content: "";
+					.addIcon("trophy_light.png", 42px, 42px);
+					margin-top: -20px;
+					display: block;
+				}
 			}
 
 			.tile-info {
-				.opensans_normal(10pt, @white);
+				.opensans_normal(14pt, @white);
 				max-width: 450px;
+				.promo-date,
+				.promo-description {
+					display: block;
+					.opensans_normal(10pt, @white);
+				}
 			}
 			.tile-action {	
 				display: block;
@@ -121,13 +132,44 @@
 				margin-top: 10px;
 			}
 		}
-
 	}
 	
 	#myContestsTile .home-tile-wrapper {
 		.tile {
 			.tile-title {
 				color: @blueLight;
+			}
+			.tile-info {
+				.num-contest-info {
+					background-color: @blueMed;
+					border-radius: 5px;
+					padding: 5px;
+					min-width: 30px;
+					display: inline-block;
+					text-align: center;
+					vertical-align: bottom;
+					
+					&.virtual {
+						text-align: left;
+						min-width: 90px;
+						vertical-align: bottom;
+						&:before {
+							content: "";
+							margin: 1px 5px -1px 5px;
+							.addIcon("ht_IconoEntrenamiento.png", 17px, 20px);
+						}
+					}
+					&.real {
+						text-align: left;
+						min-width: 90px;
+						vertical-align: bottom;
+						&:before {
+							content: "";
+							margin: 1px 5px -1px 5px;
+							.addIcon("ht_IconoOficial.png", 20px, 20px);
+						}
+					}
+				}
 			}
 		}
 	}

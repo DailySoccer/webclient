@@ -9,10 +9,11 @@ import 'dart:math';
 @Injectable()
 class PromosService {
 
+  List<Map> get promos => _promos;
+  
   PromosService(this._server, this._refreshTimersService) {
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_UPDATE_PROMOS, refreshPromos);
   }
-
 
   Future<Map> refreshPromos() {
     void assignPromoList(Map jsonMap) {

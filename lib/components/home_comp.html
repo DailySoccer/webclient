@@ -14,12 +14,12 @@
         <span class="tile-title">Jugar</span>
         <span class="tile-info">Aprende a ganar<br>y comienza tu carrera de manager</span>
       </section>
-      <section ng-if="userIsLogged">
-        <span class="tile-title real">Superclásico</span>
+      <section ng-if="userIsLogged" ng-bind-html="contestTileHTML" >
+        <!--span class="tile-title real">Superclásico</span>
         <div class="tile-info">
           <span class="promo-date">20-24 NOV.</span>
           <span class="promo-description">Haz tu once y compite en superligas de 30 jugadores</span>
-        </div>
+        </div-->
       </section>
       <span class="tile-action"></span>
     </div>

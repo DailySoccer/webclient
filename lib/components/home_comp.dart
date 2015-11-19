@@ -9,6 +9,8 @@ import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/services/server_error.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/refresh_timers_service.dart';
+import 'package:webclient/services/promos_service.dart';
+import 'dart:html';
 
 @Component(
   selector: 'home',
@@ -25,8 +27,11 @@ class HomeComp  {
   int numRealHistoryContests = 0;
   int numUpcomingContests = 0;
 
+  
+  
   HomeComp(this._router, this._profileService, this.contestsService, this._flashMessage,
-            this.loadingService, this._refreshTimersService, TutorialService tutorialService) {
+            this.loadingService, this._refreshTimersService, this._promosService, 
+            TutorialService tutorialService) {
     loadingService.isLoading = true;
     _refreshMyContests();
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS, _refreshMyContests);
@@ -34,21 +39,43 @@ class HomeComp  {
 
 
   void _refreshMyContests() {
-  // Parallel processing using the Future API
-  Future.wait([ contestsService.refreshMyHistoryContests(), 
-                contestsService.refreshMyLiveContests(), 
-                contestsService.refreshMyActiveContests()])
-    .then((_) { 
-      loadingService.isLoading = false;
-      numVirtualHistoryContests = contestsService.historyContests.where( (c) => c.isSimulation ).length;
-      numRealHistoryContests = contestsService.historyContests.length - numVirtualHistoryContests;
-      numLiveContests = contestsService.liveContests.length;
-      numUpcomingContests = contestsService.waitingContests.length;
-    })
-    .catchError((ServerError error) {
-      _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW); 
-    }, test: (error) => error is ServerError);
+    if (!userIsLogged) return;
+    // Parallel processing using the Future API
+    Future.wait([ contestsService.refreshMyHistoryContests(), 
+                  contestsService.refreshMyLiveContests(), 
+                  contestsService.refreshMyActiveContests()])
+      .then((_) { 
+        loadingService.isLoading = false;
+        numVirtualHistoryContests = contestsService.historyContests.where( (c) => c.isSimulation ).length;
+        numRealHistoryContests = contestsService.historyContests.length - numVirtualHistoryContests;
+        numLiveContests = contestsService.liveContests.length;
+        numUpcomingContests = contestsService.waitingContests.length;
+      })
+      .catchError((ServerError error) {
+        _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW); 
+      }, test: (error) => error is ServerError);
     
+  }
+  
+  Map defaultPromo = {  'url': ''
+                       ,'imageXs'  : '../images/ht_ModuloTorneoBG.jpg'
+                       ,'imageDesktop'  : '../images/ht_ModuloTorneoBG.jpg'
+                       ,'html' : '''  <span class="tile-title">Jugar</span>
+                                      <span class="tile-info">Aprende a ganar<br>y comienza tu carrera de manager</span>
+                                 '''
+                       ,'text'     : 'The promo you are trying to access is not available'
+                       ,'promoEnterUrl' : 'lobby'
+                       ,'buttonCaption' :'Return to Lobby'
+                       ,'codeName': '404'
+                     };
+  
+  String get contestTileHTML {
+    List<Map> promos = this._promosService.promos != null? this._promosService.promos : [];
+    Map currentPromo = promos.length > 0? promos[0] : defaultPromo;
+    
+    querySelector("#contestTile .tile").style.backgroundImage = "url('${currentPromo['imageDesktop']}')";
+    
+    return currentPromo['html'];
   }
   
   
@@ -93,5 +120,6 @@ class HomeComp  {
   Router _router;
   FlashMessagesService _flashMessage;
   RefreshTimersService _refreshTimersService;
+  PromosService _promosService;
 
 }

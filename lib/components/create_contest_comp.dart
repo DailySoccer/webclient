@@ -65,7 +65,7 @@ class CreateContestComp  {
       return getLocalizedText("select_competition_first");
     }
     return getLocalizedText("select_event");
-  } 
+  }
 
   List<TemplateContest> emptyListAuxiliar = [];
   List<TemplateContest> get printableTemplateList {
@@ -79,9 +79,9 @@ class CreateContestComp  {
   bool get isComplete => _selectedTemplate != null;
 
   Money get entryFee => _selectedTemplate.entryFee;
-  String get prizeType => _selectedTemplate.prizeType;
+  String get prizeType => Prize.typeNames[_selectedTemplate.prizeType].toUpperCase();
   int get computedPrize => 9;
-  
+
   CreateContestComp(this._router, this._contestsService) {
     contestType = TYPE_OFICIAL;
     contestStyle = STYLE_HEAD_TO_HEAD;

@@ -9,6 +9,9 @@ import 'package:webclient/models/template_contest.dart';
 import 'package:webclient/models/competition.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/services/datetime_service.dart';
+import 'package:webclient/utils/js_utils.dart';
+import 'package:webclient/models/money.dart';
+import 'package:webclient/models/prize.dart';
 
 @Component(
   selector: 'create-contest',
@@ -52,14 +55,12 @@ class CreateContestComp  {
     if (val != _selectedTemplate) {
       _selectedTemplate = val;
       updateDate();
+      //JsUtils.runJavascript('#teamsPanel', 'collapse', "show");
     }
   }
-  String get placeholderName => selectedTemplate != null? selectedTemplate.name : "Nombre del torneo";
+  String get placeholderName => selectedTemplate != null? selectedTemplate.name : getLocalizedText("contest_name_placeholder");
 
   String get comboDefaultText {
-    if (printableTemplateList.length == 0) {
-      return getLocalizedText("select_competition_first");
-    }
     return getLocalizedText("select_event");
   }
 
@@ -74,6 +75,10 @@ class CreateContestComp  {
   // Esta sin completar el formulario?
   bool get isComplete => _selectedTemplate != null;
 
+  Money get entryFee => _selectedTemplate.entryFee;
+  String get prizeType => _selectedTemplate.prizeType;
+  int get computedPrize => 9;
+  
   CreateContestComp(this._router, this._contestsService) {
     contestType = TYPE_OFICIAL;
     contestStyle = STYLE_HEAD_TO_HEAD;
@@ -98,7 +103,7 @@ class CreateContestComp  {
       });
   }
 
-  static String getLocalizedText(key) {
+  String getLocalizedText(key) {
     return StringUtils.translate(key, "createcontest");
   }
 
@@ -125,7 +130,7 @@ class CreateContestComp  {
   }
 
   void createContest() {
-    if (_selectedTemplate != null) {
+    if (isComplete) {
       Contest contest = new Contest.instance();
       contest.templateContestId = _selectedTemplate.templateContestId;
       contest.name = contestName != null && contestName.isNotEmpty ? contestName : _selectedTemplate.name;

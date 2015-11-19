@@ -23,6 +23,20 @@ class TeamsPanelComp implements DetachAware {
 
   ScreenDetectorService scrDet;
   bool isShown = false;
+  bool isTeamsPanelOpen = false;
+  
+  String _buttonText = getLocalizedText("showmatches");
+  @NgOneWay("button-text")
+  void set buttonText(String text) {
+    _buttonText = text;
+  }
+  String get buttonText => _buttonText;
+
+
+  @NgOneWay("panel-open")
+  void set isPanelOpen(bool b) {
+    if (b != null) isTeamsPanelOpen = b;
+  }
 
   @NgOneWay("template-contest")
   void set templateContest(TemplateContest value) {
@@ -60,7 +74,7 @@ class TeamsPanelComp implements DetachAware {
   }
   
 
-  String getLocalizedText(key) {
+  static String getLocalizedText(key) {
     return StringUtils.translate(key, "teamspanel");
   }
 
@@ -116,15 +130,19 @@ class TeamsPanelComp implements DetachAware {
      return team.score >= 0 ? '''<span class="team-score">${team.score.toString()}</span>''' : '';
   }
 
-  void toggleTeamsPanel() {
+  void initTogglerEvents() {
     if (!_togglerEventsInitialized) {
       JsUtils.runJavascript('#teamsPanel', 'on', {'shown.bs.collapse': onOpenTeamsPanel});
       JsUtils.runJavascript('#teamsPanel', 'on', {'hidden.bs.collapse': onCloseTeamsPanel});
       _togglerEventsInitialized = true;
     }
-
+  }
+  
+  void toggleTeamsPanel() {
+    initTogglerEvents();
+    
     // Abrimos el menú si está cerrado
-    if (_isTeamsPanelOpen) {
+    if (isTeamsPanelOpen) {
       JsUtils.runJavascript('#teamsPanel', 'collapse', "hide");
     }
     else {
@@ -145,19 +163,20 @@ class TeamsPanelComp implements DetachAware {
   }
 
   void onOpenTeamsPanel(dynamic sender) {
-    _isTeamsPanelOpen = true;
+    initTogglerEvents();
+    isTeamsPanelOpen = true;
     querySelector('#teamsToggler').classes.remove('toggleOff');
     querySelector('#teamsToggler').classes.add('toggleOn');
   }
 
   void onCloseTeamsPanel(dynamic sender) {
-    _isTeamsPanelOpen = false;
+    initTogglerEvents();
+    isTeamsPanelOpen = false;
     querySelector('#teamsToggler').classes.remove('toggleOn');
     querySelector('#teamsToggler').classes.add('toggleOff');
 
   }
-
-  bool _isTeamsPanelOpen  = false;
+  
   bool _togglerEventsInitialized = false;
   var _streamListener;
   Contest _contest;

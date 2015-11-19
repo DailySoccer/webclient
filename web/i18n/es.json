@@ -640,7 +640,25 @@
     "createcontest"                     :
     {
       "select_event"                    : "Selecciona Evento",
-      "select_competition_first"        : "Selecciona la competicion antes."
+      "name"                            : "Nombre",
+      "create_contest"                  : "Crear torneo",
+      "contest_name_placeholder"        : "Nombre del torneo",
+      "contest_type"                    : "Tipo de torneo",
+      "oficial"                         : "Oficial",
+      "training"                        : "Entrenamiento",
+      "competition"                     : "Competición",
+      "spanish_league"                  : "La liga",
+      "premiere_league"                 : "Premiere",
+      "event"                           : "Evento",
+      "rivals"                          : "Rivales",
+      "head_to_head"                    : "Uno contra uno",
+      "league"                          : "Liga",
+      "no_limit"                        : "Sin límite",
+      "date"                            : "Fecha",
+      "fixed_hour_warning"              : "La fecha de los torneos oficiales es fija",
+      "create_contest_btt"              : "Crear torneo",
+      "matches_title"                   : "Partidos"
+      
     }
 
   }

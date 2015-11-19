@@ -20073,7 +20073,7 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   cursor: default;
 }
 .week-calendar .week-days-wrapper .week-day .day-info {
-  padding: 0px 15px;
+  padding: 0px;
   margin: 10px 0px 0px 0px;
   text-align: center;
   border-left: 1px solid #0a2938;
@@ -20666,6 +20666,22 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   font-weight: 400;
   font-size: 10pt;
   color: #777777;
+  /*
+			.entry-fee {
+				.opensans_normal(12pt, @black);
+				.entry-fee-amount {
+					&.gold:after {
+						content: "";
+						display: inline-block;
+						.addIcon("icon-coin-lg.png", 27px, 27px);
+					}
+					&.energy:after {
+						content: "";
+						display: inline-block;
+						.addIcon("icon-lightning-lg.png", 27px, 27px);
+					}
+				}
+			}*/
 }
 #createContest .create-contest-section-wrapper .create-contest-section .title {
   font-family: 'Open Sans', sans-serif;
@@ -20727,6 +20743,10 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
 }
 #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee {
   height: auto;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12pt;
+  color: #434343;
 }
 #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee .data-element {
   position: relative;
@@ -21104,7 +21124,7 @@ fieldset[disabled] #createContest .create-contest-section-wrapper .create-contes
   text-transform: uppercase;
 }
 #createContest week-calendar#createContestCalendar .week-calendar .week-days-wrapper .week-day.active:after {
-  border-bottom: 12px solid #777777;
+  border-bottom-color: #777777;
 }
 #createContest week-calendar#createContestCalendar .week-calendar .week-days-wrapper .week-day.disabled {
   color: #dcdcdc;
@@ -21124,6 +21144,9 @@ fieldset[disabled] #createContest .create-contest-section-wrapper .create-contes
   padding-left: 15px;
   padding-right: 15px;
   padding: 10px;
+}
+#createContest #teamsToggler {
+  text-align: center;
 }
 /*************************************************
 Si hay que añadir nuevas banderas, ir a la siguiente url

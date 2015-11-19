@@ -78,6 +78,7 @@
 				
 				&.entry-fee {
 					height: auto;
+					.opensans_normal(12pt, @greyUltraDark);
 					
 					.data-element {
 						.make-xs-column(4);
@@ -201,6 +202,22 @@
 				}
 				
 			}
+			/*
+			.entry-fee {
+				.opensans_normal(12pt, @black);
+				.entry-fee-amount {
+					&.gold:after {
+						content: "";
+						display: inline-block;
+						.addIcon("icon-coin-lg.png", 27px, 27px);
+					}
+					&.energy:after {
+						content: "";
+						display: inline-block;
+						.addIcon("icon-lightning-lg.png", 27px, 27px);
+					}
+				}
+			}*/
 		}
 	}
 	
@@ -227,7 +244,7 @@
 				.week-day {
 					&.active {
 						.exo_bold(10pt, @black);
-						&:after { border-bottom: 12px solid @greyDark; }
+						&:after { border-bottom-color: @greyDark; }
 					}
 					
 					&.disabled {
@@ -250,6 +267,9 @@
 		padding: 10px;
 	}
 	
+	#teamsToggler {
+		text-align: center;
+	}
 	
 	
 }

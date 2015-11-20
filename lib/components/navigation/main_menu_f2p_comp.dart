@@ -329,7 +329,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
         </ul>
       
         <ul class="fixed-user-stats">
-          <li class="energy additive" destination="shop.energy">
+          <li class="energy additive" destination="shop">
             <img src="images/icon-lightning-lg.png"> 
             <div class="count">
               <div class="progress">
@@ -347,7 +347,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
             </div>            
           </li>
 
-          <li class="coins additive" destination="shop.gold">
+          <li class="coins additive" destination="shop">
             <img src="images/icon-coin-lg.png">      
             <div class="count">${_userGold}<span class="plus">+</span></div>
           </li>

@@ -5651,16 +5651,6 @@ scoring-rules:after,
 #transactionHistoryRoot .transaction-row:after,
 #mainShopCompWrapper:before,
 #mainShopCompWrapper:after,
-#mainShopCompWrapper .items-wrapper:before,
-#mainShopCompWrapper .items-wrapper:after,
-#goldShopComp:before,
-#goldShopComp:after,
-#trainerPointsShopComp:before,
-#trainerPointsShopComp:after,
-#goldShopComp .modal-content:before,
-#goldShopComp .modal-content:after,
-#trainerPointsShopComp .modal-content:before,
-#trainerPointsShopComp .modal-content:after,
 #goldShopComp .content:before,
 #goldShopComp .content:after,
 #trainerPointsShopComp .content:before,
@@ -5669,10 +5659,6 @@ scoring-rules:after,
 #goldShopComp .products-wrapper:after,
 #trainerPointsShopComp .products-wrapper:before,
 #trainerPointsShopComp .products-wrapper:after,
-#energyshopComp:before,
-#energyshopComp:after,
-#energyshopComp .modal-content:before,
-#energyshopComp .modal-content:after,
 #energyshopComp .content:before,
 #energyshopComp .content:after,
 #energyshopComp .products-wrapper:before,
@@ -5800,17 +5786,10 @@ scoring-rules:after,
 #transactionHistoryRoot .transaction-headers:after,
 #transactionHistoryRoot .transaction-row:after,
 #mainShopCompWrapper:after,
-#mainShopCompWrapper .items-wrapper:after,
-#goldShopComp:after,
-#trainerPointsShopComp:after,
-#goldShopComp .modal-content:after,
-#trainerPointsShopComp .modal-content:after,
 #goldShopComp .content:after,
 #trainerPointsShopComp .content:after,
 #goldShopComp .products-wrapper:after,
 #trainerPointsShopComp .products-wrapper:after,
-#energyshopComp:after,
-#energyshopComp .modal-content:after,
 #energyshopComp .content:after,
 #energyshopComp .products-wrapper:after,
 .fantasy-team-list .soccer-player-row:after,
@@ -9813,6 +9792,84 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   padding-left: 15px;
   padding-right: 15px;
   padding: 15px 0;
+  /*
+	.items-wrapper {
+	 	.make-row(0);
+	 	.shop-item {
+	 		.make-xs-column(12);
+	 		.make-sm-column(6);
+	 		position: relative;
+	 		cursor: pointer;
+	 		height: 80px;
+			margin-top: 10px;
+			@media (max-width: @screen-xs-min) {
+				padding: 0 3px;
+			}
+			.slot-base {
+				height: 80px;
+				.make-shadow(-7px, 6px, 5px, -2px, @greyUltraDark, 0.5);
+				> * {
+					height: 100%;
+					display: inline-block;
+				}
+				.shop-item-left {					
+					width: 104px;
+					background: url("@{images}/shopItemBgLeft.png") no-repeat right;
+				}
+				.shop-item-middle {					
+					left: 119px;
+					right: 195px;
+					@media (max-width: @screen-xs-min) {
+						left: 107px;
+						right: 183px;
+					}
+					position: absolute;
+					background: url("@{images}/shopItemBgMiddle.png") repeat;
+				}		
+				.shop-item-right {
+					width: 195px;
+					float: right;
+					background: url("@{images}/shopItemBgRight.png") no-repeat left;
+				}
+	 		}
+	 		.shop-item-pattern {
+				position: absolute;
+				right: 15px;
+				left: 15px;
+				@media (max-width: @screen-xs-min) {
+					right: 3px;
+					left: 3px;
+				}
+				top: 0;
+				height: 80px;
+				background: url("../images/shopItemPattern.png") repeat;
+			}
+	 		.slot-content {
+				.item-icon {
+					position: absolute;
+					top: 0;
+				}
+		 		.shop-item-info {
+		 			position: absolute;
+		 			top: 0;
+		 			right: 30px;
+		 			bottom: 0;
+		 			left: 119px;
+		 			@media (max-width: @screen-xs-min) {
+						left: 107px;
+		 			}
+		 			padding-left: 15px;
+		 			padding-right: 15px;
+		 			
+		 			.opensans_normal(10pt, @white);
+		 			display: flex;
+		 			justify-content:center;
+		 			align-items:center;
+		 		}
+		 	}
+	 	}
+	}
+*/
 }
 #mainShopCompWrapper > .navbar-header,
 #mainShopCompWrapper > .navbar-collapse {
@@ -9826,188 +9883,12 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
     margin-left: 0;
   }
 }
-#mainShopCompWrapper .items-wrapper {
-  margin-left: 0;
-  margin-right: 0;
-}
-#mainShopCompWrapper .items-wrapper .shop-item {
-  float: left;
-  width: 100%;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  position: relative;
-  cursor: pointer;
-  height: 80px;
-  margin-top: 10px;
-}
-@media (min-width: 768px) {
-  #mainShopCompWrapper .items-wrapper .shop-item {
-    float: left;
-    width: 50%;
-  }
-}
-@media (max-width: 480px) {
-  #mainShopCompWrapper .items-wrapper .shop-item {
-    padding: 0 3px;
-  }
-}
-#mainShopCompWrapper .items-wrapper .shop-item .slot-base {
-  height: 80px;
-  -webkit-box-shadow: -7px 6px 5px -2px rgba(67, 67, 67, 0.5);
-  -moz-box-shadow: -7px 6px 5px -2px rgba(67, 67, 67, 0.5);
-  box-shadow: -7px 6px 5px -2px rgba(67, 67, 67, 0.5);
-}
-#mainShopCompWrapper .items-wrapper .shop-item .slot-base > * {
-  height: 100%;
-  display: inline-block;
-}
-#mainShopCompWrapper .items-wrapper .shop-item .slot-base .shop-item-left {
-  width: 104px;
-  background: url("../images/shopItemBgLeft.png") no-repeat right;
-}
-#mainShopCompWrapper .items-wrapper .shop-item .slot-base .shop-item-middle {
-  left: 119px;
-  right: 195px;
-  position: absolute;
-  background: url("../images/shopItemBgMiddle.png") repeat;
-}
-@media (max-width: 480px) {
-  #mainShopCompWrapper .items-wrapper .shop-item .slot-base .shop-item-middle {
-    left: 107px;
-    right: 183px;
-  }
-}
-#mainShopCompWrapper .items-wrapper .shop-item .slot-base .shop-item-right {
-  width: 195px;
-  float: right;
-  background: url("../images/shopItemBgRight.png") no-repeat left;
-}
-#mainShopCompWrapper .items-wrapper .shop-item .shop-item-pattern {
-  position: absolute;
-  right: 15px;
-  left: 15px;
-  top: 0;
-  height: 80px;
-  background: url("../images/shopItemPattern.png") repeat;
-}
-@media (max-width: 480px) {
-  #mainShopCompWrapper .items-wrapper .shop-item .shop-item-pattern {
-    right: 3px;
-    left: 3px;
-  }
-}
-#mainShopCompWrapper .items-wrapper .shop-item .slot-content .item-icon {
-  position: absolute;
-  top: 0;
-}
-#mainShopCompWrapper .items-wrapper .shop-item .slot-content .shop-item-info {
-  position: absolute;
-  top: 0;
-  right: 30px;
-  bottom: 0;
-  left: 119px;
-  padding-left: 15px;
-  padding-right: 15px;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 10pt;
-  color: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-@media (max-width: 480px) {
-  #mainShopCompWrapper .items-wrapper .shop-item .slot-content .shop-item-info {
-    left: 107px;
-  }
-}
 #goldShopComp,
 #trainerPointsShopComp {
-  background-color: #777777;
-  color: #ffffff;
-  padding: 5px;
-  margin-right: auto;
-  margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-@media (min-width: 768px) {
-  #goldShopComp,
-  #trainerPointsShopComp {
-    width: 750px;
-  }
-}
-@media (min-width: 992px) {
-  #goldShopComp,
-  #trainerPointsShopComp {
-    width: 970px;
-  }
-}
-@media (min-width: 1200px) {
-  #goldShopComp,
-  #trainerPointsShopComp {
-    width: 970px;
-  }
-}
-#goldShopComp > .navbar-header,
-#trainerPointsShopComp > .navbar-header,
-#goldShopComp > .navbar-collapse,
-#trainerPointsShopComp > .navbar-collapse {
-  margin-right: -15px;
-  margin-left: -15px;
-}
-@media (min-width: 768px) {
-  #goldShopComp > .navbar-header,
-  #trainerPointsShopComp > .navbar-header,
-  #goldShopComp > .navbar-collapse,
-  #trainerPointsShopComp > .navbar-collapse {
-    margin-right: 0;
-    margin-left: 0;
-  }
-}
-#goldShopComp .modal-content,
-#trainerPointsShopComp .modal-content {
-  margin-left: 0;
-  margin-right: 0;
-  padding-left: 0px;
-  padding-right: 0px;
-}
-@media (min-width: 768px) {
-  #goldShopComp,
-  #trainerPointsShopComp {
-    background-color: #afafaf;
-  }
-  #goldShopComp .modal-dialog,
-  #trainerPointsShopComp .modal-dialog {
-    width: 90%;
-    max-width: 900px;
-  }
-}
-@media (max-width: 767px) {
-  #goldShopComp #modalRoot,
-  #trainerPointsShopComp #modalRoot {
-    border-width: 1px;
-    border-style: solid none none none;
-    border-color: #fba61a;
-    border-radius: 0;
-    top: 68px;
-    background-color: #ffffff;
-  }
-  #goldShopComp #modalRoot .modal-dialog,
-  #trainerPointsShopComp #modalRoot .modal-dialog {
-    margin: 0;
-  }
-  #goldShopComp #modalRoot .modal-dialog .modal-content,
-  #trainerPointsShopComp #modalRoot .modal-dialog .modal-content {
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-  }
-}
-#goldShopComp .modal-content,
-#trainerPointsShopComp .modal-content {
-  background-color: #dcdcdc;
+  /*
+	.modal-properties-default();
+	.modal-content {background-color: @greyLight;}
+*/
 }
 #goldShopComp .content,
 #trainerPointsShopComp .content {
@@ -10423,76 +10304,10 @@ fieldset[disabled] #trainerPointsShopComp .buttons-wrapper .cancel-button {
   color: #ffffff;
 }
 #energyshopComp {
-  background-color: #777777;
-  color: #ffffff;
-  padding: 5px;
-  margin-right: auto;
-  margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-@media (min-width: 768px) {
-  #energyshopComp {
-    width: 750px;
-  }
-}
-@media (min-width: 992px) {
-  #energyshopComp {
-    width: 970px;
-  }
-}
-@media (min-width: 1200px) {
-  #energyshopComp {
-    width: 970px;
-  }
-}
-#energyshopComp > .navbar-header,
-#energyshopComp > .navbar-collapse {
-  margin-right: -15px;
-  margin-left: -15px;
-}
-@media (min-width: 768px) {
-  #energyshopComp > .navbar-header,
-  #energyshopComp > .navbar-collapse {
-    margin-right: 0;
-    margin-left: 0;
-  }
-}
-#energyshopComp .modal-content {
-  margin-left: 0;
-  margin-right: 0;
-  padding-left: 0px;
-  padding-right: 0px;
-}
-@media (min-width: 768px) {
-  #energyshopComp {
-    background-color: #afafaf;
-  }
-  #energyshopComp .modal-dialog {
-    width: 90%;
-    max-width: 900px;
-  }
-}
-@media (max-width: 767px) {
-  #energyshopComp #modalRoot {
-    border-width: 1px;
-    border-style: solid none none none;
-    border-color: #fba61a;
-    border-radius: 0;
-    top: 68px;
-    background-color: #ffffff;
-  }
-  #energyshopComp #modalRoot .modal-dialog {
-    margin: 0;
-  }
-  #energyshopComp #modalRoot .modal-dialog .modal-content {
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-  }
-}
-#energyshopComp .modal-content {
-  background-color: #dcdcdc;
+  /*
+ 	.modal-properties-default();
+	.modal-content {background-color: @greyLight;}
+*/
 }
 #energyshopComp .content {
   margin-right: auto;
@@ -20549,17 +20364,10 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
 #homeRoot #transactionHistoryRoot .transaction-headers,
 #homeRoot #transactionHistoryRoot .transaction-row,
 #homeRoot #mainShopCompWrapper,
-#homeRoot #mainShopCompWrapper .items-wrapper,
-#homeRoot #goldShopComp,
-#homeRoot #trainerPointsShopComp,
-#homeRoot #goldShopComp .modal-content,
-#homeRoot #trainerPointsShopComp .modal-content,
 #homeRoot #goldShopComp .content,
 #homeRoot #trainerPointsShopComp .content,
 #homeRoot #goldShopComp .products-wrapper,
 #homeRoot #trainerPointsShopComp .products-wrapper,
-#homeRoot #energyshopComp,
-#homeRoot #energyshopComp .modal-content,
 #homeRoot #energyshopComp .content,
 #homeRoot #energyshopComp .products-wrapper,
 #homeRoot .fantasy-team-list .soccer-player-row,

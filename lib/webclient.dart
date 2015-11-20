@@ -317,8 +317,8 @@ class WebClientApp extends Module {
       ,'shop': ngRoute(
           path: '/shop',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
-          viewHtml: '<shop-comp></shop-comp>',
-          mount: {
+          viewHtml: '<shop-comp></shop-comp>'
+          /*,mount: {
             'gold': ngRoute(
               path: '/gold_shop',
               viewHtml: '<gold-shop-comp></gold-shop-comp>'
@@ -331,7 +331,7 @@ class WebClientApp extends Module {
               path: '/trainer_points_shop',
               viewHtml: '<trainer-points-shop-comp></trainer-points-shop-comp>'
             )
-          }
+          }*/
       )
       ,'home': ngRoute(
           defaultRoute: true,

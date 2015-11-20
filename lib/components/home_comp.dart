@@ -27,6 +27,7 @@ class HomeComp  {
   int numRealHistoryContests = 0;
   int numUpcomingContests = 0;
 
+  static const String PROMO_CODE_NAME = "Home Contest Tile";
   
   
   HomeComp(this._router, this._profileService, this.contestsService, this._flashMessage,
@@ -57,21 +58,21 @@ class HomeComp  {
     
   }
   
-  Map defaultPromo = {  'url': ''
-                       ,'imageXs'  : '../images/ht_ModuloTorneoBG.jpg'
-                       ,'imageDesktop'  : '../images/ht_ModuloTorneoBG.jpg'
+  Map defaultPromo = {  'url' : ''  // Not used
+                       ,'imageXs' : 'images/ht_ModuloTorneoBGPlay.jpg'  // Not used
+                       ,'imageDesktop' : 'images/ht_ModuloTorneoBGPlay.jpg'
                        ,'html' : '''  <span class="tile-title">Jugar</span>
                                       <span class="tile-info">Aprende a ganar<br>y comienza tu carrera de manager</span>
                                  '''
-                       ,'text'     : 'The promo you are trying to access is not available'
-                       ,'promoEnterUrl' : 'lobby'
-                       ,'buttonCaption' :'Return to Lobby'
-                       ,'codeName': '404'
+                       ,'text' : 'The promo you are trying to access is not available'
+                       ,'promoEnterUrl' : 'lobby' // Not used
+                       ,'buttonCaption' : 'Return to Lobby'  // Not used
+                       ,'codeName' : '404'
                      };
   
   String get contestTileHTML {
     List<Map> promos = this._promosService.promos != null? this._promosService.promos : [];
-    Map currentPromo = promos.length > 0? promos[0] : defaultPromo;
+    Map currentPromo = promos.firstWhere((promo) => promo['codeName'] == PROMO_CODE_NAME, orElse: () => defaultPromo);
     
     querySelector("#contestTile .tile").style.backgroundImage = "url('${currentPromo['imageDesktop']}')";
     

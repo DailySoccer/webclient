@@ -664,7 +664,26 @@
       "fixed_hour_warning"              : "La fecha de los torneos oficiales es fija",
       "create_contest_btt"              : "Crear torneo",
       "matches_title"                   : "Partidos"
+    },
+    "home"                              : 
+    {
+      "play"                            : "Jugar",
+      "learn_to_play"                   : "Aprende a ganar<br>y comienza tu carrera de manager",
+      "create_contest_title"            : "Reta a tus amigos",
+      "create_contest_text_nolog"       : "Debes estar registrado",
+      "create_contest_text_notut"       : "Primero debes aprender a jugar",
+      "create_contest_text_logNtut"     : "Demuestra quien manda",
       
+      "scouting_title"                  : "Ojeador",
+      "scouting_info"                   : "Próximamente",
+      
+      "upcoming_title"                  : "Próximos torneos",
+      "live_title"                      : "Torneos en vivo",
+      "history_title"                   : "Histórico",
+      "mycontest_disabled_info"         : "Todavía no has participado",
+      
+      "blog_title"                      : "Palabra de Míster",
+      "blog_info"                       : "Un blog escrito por Salva Carmona, el tio que más sabe de estadísticas futboleras del mundo."
     }
 
   }

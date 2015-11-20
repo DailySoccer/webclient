@@ -593,6 +593,49 @@
       "erroruserbalancenegativegeneric" : "You do not have enough cash. Please, add funds to continue.",
       "errordefaultgeneric"             : "An error has occurred. Please, try again later.",
       "errordefaultediting"             : "An error has occurred. Please, try again later."
+    },
+    "createcontest"                     :
+    {
+      "select_event"                    : "Select Event",
+      "select_competition_first"        : "Select competition first",
+      "name"                            : "Name",
+      "create_contest"                  : "Create Contest",
+      "contest_name_placeholder"        : "Contest Name",
+      "contest_type"                    : "Contest type",
+      "oficial"                         : "Oficial",
+      "training"                        : "Training",
+      "competition"                     : "Competition",
+      "spanish_league"                  : "La Liga",
+      "premiere_league"                 : "Premiere",
+      "event"                           : "Event",
+      "rivals"                          : "Rivals",
+      "head_to_head"                    : "Head to head",
+      "league"                          : "League",
+      "no_limit"                        : "No limits",
+      "date"                            : "Date",
+      "fixed_hour_warning"              : "Oficial contest's date is not selectable",
+      "create_contest_btt"              : "Create contest",
+      "matches_title"                   : "Matches"
+    },
+    "home"                              : 
+    {
+      "play"                            : "Play",
+      "learn_to_play"                   : "Learn to play<br>and start your football manager career",
+      "create_contest_title"            : "Challenge your friends",
+      "create_contest_text_nolog"       : "You should be logged in",
+      "create_contest_text_notut"       : "You should learn to play first",
+      "create_contest_text_logNtut"     : "Show themm who rules",
+      
+      "scouting_title"                  : "Scouting",
+      "scouting_info"                   : "Coming soon",
+      
+      "upcoming_title"                  : "Next contests",
+      "live_title"                      : "Live contests",
+      "history_title"                   : "History",
+      "mycontest_disabled_info"         : "Still you have not participated",
+      
+      "blog_title"                      : "HalfTime",
+      "blog_info"                       : "A blog written by Salva Carmona, the guy with the best knowledge of football statistics in the world."
     }
   }
 }

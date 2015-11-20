@@ -11,6 +11,8 @@ import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/refresh_timers_service.dart';
 import 'package:webclient/services/promos_service.dart';
 import 'dart:html';
+import 'package:webclient/tutorial/tutorial_iniciacion.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 @Component(
   selector: 'home',
@@ -27,11 +29,27 @@ class HomeComp  {
   int numRealHistoryContests = 0;
   int numUpcomingContests = 0;
 
-  static const String PROMO_CODE_NAME = "Home Contest Tile";
-  
+  bool get userIsLogged => _profileService.isLoggedIn;
+  bool get tutorialIsDone => TutorialService.Instance.isCompleted(TutorialIniciacion.NAME);
+
+  bool get isContestTileEnabled => tutorialIsDone;
+  bool get isCreateContestTileEnabled => userIsLogged && tutorialIsDone;
+  bool get isScoutingTileEnabled => false;
+  bool get isMyContestTilesEnabled => userIsLogged && tutorialIsDone;
+  bool get isUpcomingTileEnabled => isMyContestTilesEnabled;
+  bool get isLiveTileEnabled => isMyContestTilesEnabled;
+  bool get isHistoryTileEnabled => isMyContestTilesEnabled;
+  bool get isBlogTileEnabled => true;
+  String get CreateContestTileText => !userIsLogged? getLocalizedText('create_contest_text_nolog') : 
+                                            !tutorialIsDone? getLocalizedText('create_contest_text_notut') : 
+                                                             getLocalizedText('create_contest_text_logNtut');
+
+  static const String PROMO_CODE_NAME_LOGIN = "Home Contest Tile LogIn";
+  static const String PROMO_CODE_NAME_LOGOFF = "Home Contest Tile LogOff";
+  Map currentPromo = null;
   
   HomeComp(this._router, this._profileService, this.contestsService, this._flashMessage,
-            this.loadingService, this._refreshTimersService, this._promosService, 
+            this.loadingService, this._refreshTimersService, this._promosService,
             TutorialService tutorialService) {
     loadingService.isLoading = true;
     _refreshMyContests();
@@ -39,8 +57,18 @@ class HomeComp  {
   }
 
 
+  static String getStaticLocalizedText(key) {
+    return StringUtils.translate(key, "home");
+  }
+  String getLocalizedText(key) {
+    return getStaticLocalizedText(key);
+  }
+  
   void _refreshMyContests() {
-    if (!userIsLogged) return;
+    if (!userIsLogged) {
+      loadingService.isLoading = false;
+      return;
+    }
     // Parallel processing using the Future API
     Future.wait([ contestsService.refreshMyHistoryContests(), 
                   contestsService.refreshMyLiveContests(), 
@@ -58,11 +86,11 @@ class HomeComp  {
     
   }
   
-  Map defaultPromo = {  'url' : ''  // Not used
+  Map defaultPromo = {  'url' : '' // EJ: "#/enter_contest/lobby/564cb79ad4c6c22fa0407f5d/none"
                        ,'imageXs' : 'images/ht_ModuloTorneoBGPlay.jpg'  // Not used
                        ,'imageDesktop' : 'images/ht_ModuloTorneoBGPlay.jpg'
-                       ,'html' : '''  <span class="tile-title">Jugar</span>
-                                      <span class="tile-info">Aprende a ganar<br>y comienza tu carrera de manager</span>
+                       ,'html' : '''  <span class="tile-title">${getStaticLocalizedText('play')}</span>
+                                      <span class="tile-info">${getStaticLocalizedText('learn_to_play')}</span>
                                  '''
                        ,'text' : 'The promo you are trying to access is not available'
                        ,'promoEnterUrl' : 'lobby' // Not used
@@ -71,51 +99,50 @@ class HomeComp  {
                      };
   
   String get contestTileHTML {
+    Element tile = querySelector("#contestTile .tile");
+    if(tile == null) return defaultPromo['html'];
+
     List<Map> promos = this._promosService.promos != null? this._promosService.promos : [];
-    Map currentPromo = promos.firstWhere((promo) => promo['codeName'] == PROMO_CODE_NAME, orElse: () => defaultPromo);
-    
-    querySelector("#contestTile .tile").style.backgroundImage = "url('${currentPromo['imageDesktop']}')";
-    
+    String promoCodeName = isContestTileEnabled? PROMO_CODE_NAME_LOGIN : PROMO_CODE_NAME_LOGOFF;
+    currentPromo = promos.firstWhere((promo) => promo['codeName'] == promoCodeName, orElse: () => defaultPromo);
+
+    tile.style.backgroundImage = "url('${currentPromo['imageDesktop']}')";
     return currentPromo['html'];
   }
   
-  
   void onContestsClick() {
-    _router.go('lobby', {});
+    _promosService.gotoPromo(currentPromo, defaultUrl: 'lobby');
   }
 
   void onScoutingClick() {
-    if (!userIsLogged) return;
+    if (!isScoutingTileEnabled) return;
   }
 
   void onCreateContestClick() {
-    if (!userIsLogged) return;
+    if (!isCreateContestTileEnabled) return;
     _router.go('create_contest', {});
   }
 
   void onHistoryClick() {
-    if (!userIsLogged) return;
+    if (!isHistoryTileEnabled) return;
     _router.go('my_contests', {'section':'history'});
   }
 
   void onLiveClick() {
-    if (!userIsLogged) return;
+    if (!isLiveTileEnabled) return;
     _router.go('my_contests', {'section':'live'});
   }
 
   void onUpcomingClick() {
-    if (!userIsLogged) return;
+    if (!isUpcomingTileEnabled) return;
     _router.go('my_contests', {'section':'upcoming'});
   }
 
   void onBlogClick() {
-
-  }
-  void onTutorialClick() {
-    _router.go('tutorial_list', {});
+    if (!isBlogTileEnabled) return;
+    window.location.assign("http://halftime.epiceleven.com");
   }
 
-  bool get userIsLogged => _profileService.isLoggedIn;
 
   ProfileService _profileService;
   Router _router;

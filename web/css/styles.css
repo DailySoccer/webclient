@@ -20251,6 +20251,29 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
 .tutorial.global-live-contest .close-contest {
   display: none;
 }
+.modal-dialog .panel-body .tut-title .modal-body-title {
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 20pt;
+  color: #214a5f;
+  text-transform: uppercase;
+  text-transform: none;
+  display: block;
+  max-width: 400px;
+  margin: 0 auto;
+}
+.modal-dialog .panel-body .tut-title .modal-body-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12pt;
+  color: #777777;
+  display: block;
+  max-width: 450px;
+  margin: 20px auto;
+}
+.modal-dialog .modal-content .panel {
+  background-color: #ecf0f1;
+}
 .modal-backdrop {
   display: none !important;
 }
@@ -20336,18 +20359,18 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   margin: 10px 0 5px 0;
   display: inline-block;
 }
-#homeRoot .home-tile-wrapper.disabled .tile-action {
+#homeRoot .home-tile-wrapper .tile-action {
   content: " ";
-  background-image: url("../images/ht_IconoLock.png");
+  background-image: url("../images/ht_IconoGo.png");
   width: 32px;
   height: 32px;
   display: inline-block;
   vertical-align: middle;
   float: right;
 }
-#homeRoot .home-tile-wrapper.enabled .tile-action {
+#homeRoot .home-tile-wrapper.disabled .tile-action {
   content: " ";
-  background-image: url("../images/ht_IconoGo.png");
+  background-image: url("../images/ht_IconoLock.png");
   width: 32px;
   height: 32px;
   display: inline-block;
@@ -20491,7 +20514,18 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   margin-top: 5px;
   border-bottom: 2px solid rgba(255, 255, 255, 0.75);
 }
-#homeRoot #contestTile.home-tile-wrapper .tile .tile-title:before {
+#homeRoot #contestTile.home-tile-wrapper .tile .tile-title.real:before {
+  content: "";
+  content: " ";
+  background-image: url("../images/trophy_light.png");
+  width: 42px;
+  height: 42px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: -20px;
+  display: block;
+}
+#homeRoot #contestTile.home-tile-wrapper .tile .tile-title.virtual:before {
   content: "";
   content: " ";
   background-image: url("../images/trophy_light.png");

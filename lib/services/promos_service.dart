@@ -5,13 +5,15 @@ import 'package:webclient/services/server_service.dart';
 import 'dart:async';
 import 'package:webclient/services/refresh_timers_service.dart';
 import 'dart:math';
+import 'package:webclient/utils/game_metrics.dart';
+import 'dart:html';
 
 @Injectable()
 class PromosService {
 
   List<Map> get promos => _promos;
   
-  PromosService(this._server, this._refreshTimersService) {
+  PromosService(this._router, this._server, this._refreshTimersService) {
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_UPDATE_PROMOS, refreshPromos);
   }
 
@@ -27,7 +29,21 @@ class PromosService {
   static void configurePromosService(String codeName) {
     _permanentCodeName = codeName;
   }
+  
+  void gotoPromo(Map promo, {String defaultUrl: 'view_promo', Map defaultUrlParams: null}) {
+    //TODO: elegir el link, pero tiene preferencia el directUrl.
+    if (defaultUrlParams == null) defaultUrlParams = defaultUrl == 'view_promo' ? {"promoId" : promo['codeName']} : {};
+    GameMetrics.logEvent(GameMetrics.PROMO, {"code": promo['codeName']});
+    String url = promo['url'] == '' ? defaultUrl : promo['url'];
+    Map params = promo['url'] == '' ? defaultUrlParams : {};
 
+    if (url.contains("#")) {
+      window.location.assign(url);
+    } else {
+      _router.go(url, params);
+    }
+  }
+  
   Map getPromo(String codeName) {
     return _promos.firstWhere((promo)=>(promo['codeName']==codeName), orElse:()=>_promoNotFound);
   }
@@ -78,7 +94,8 @@ class PromosService {
 
 
   static String _permanentCodeName;
-
+  Router _router;
+  
   ServerService _server;
   RefreshTimersService _refreshTimersService;
 

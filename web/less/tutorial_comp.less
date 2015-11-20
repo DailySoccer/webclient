@@ -41,16 +41,19 @@
   margin-left: -160px;
   padding: 10px 20px;
   min-width: 320px;
-  border-radius: 2px;
+  border-radius: 5px;
   background-color: @orange;
   text-align: center;
   line-height: 1.2;
 	.opensans_normal(14pt, @white);
 	pointer-events: all;
 	
+	@verticalArrowSize: 15px;
+	@horizontalArrowSize: 12px;
+	
 	&:after {
 		content: "";
-		border: 10px solid transparent;
+		border: @verticalArrowSize solid transparent;
 		max-width: 0;
 		max-height: 0;
 		display: block;
@@ -60,23 +63,25 @@
 	&.top {
 		top: -60px;
 		left: 50%;
+		box-shadow: 0px -2px 3px 0px rgba(0,0,0,0.7);
 		&:after {
-			border-top: 10px solid @orange;
+			border-top: @verticalArrowSize solid @orange;
 			border-bottom: 0px none transparent;
-			bottom: -10px;
+			bottom: -@verticalArrowSize;
 			left: 50%;
-			margin-left: -10px;
+			margin-left: -@verticalArrowSize;
 		}
 	}
 	&.bottom {
 		bottom: -60px;
 		left: 50%;
+		box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.7);
 		&:after {
 			border-top: 0px none transparent;
-			border-bottom: 10px solid @orange;
-			top: -10px;
+			border-bottom: @verticalArrowSize solid @orange;
+			top: -@verticalArrowSize;
 			left: 50%;
-			margin-left: -10px;
+			margin-left: -@verticalArrowSize;
 		}
 	}
 	
@@ -84,34 +89,36 @@
   	margin-top: -15px;
 		top: 50%;
 		left: -170px;
+		box-shadow: -2px 0px 3px 0px rgba(0,0,0,0.7);
 		&:after {
-			border: 7px solid transparent;
-			border-left: 7px solid @orange;
+			border: @horizontalArrowSize solid transparent;
+			border-left: @horizontalArrowSize solid @orange;
 			border-right: 0px none transparent;
-			right: -7px;
+			right: -@horizontalArrowSize;
 			top: 50%;
-			margin-top: -7px;
+			margin-top: -@horizontalArrowSize;
 		}
 	}
 	&.right {
   	margin-top: -15px;
 		top: 50%;
 		right: -170px;
+		box-shadow: 2px 0px 3px 0px rgba(0,0,0,0.7);
 		&:after {
-			border: 7px solid transparent;
+			border: @horizontalArrowSize solid transparent;
 			border-left: 0px none transparent;
-			border-right: 7px solid @orange;
-			left: -7px;
+			border-right: @horizontalArrowSize solid @orange;
+			left: -@horizontalArrowSize;
 			top: 50%;
-			margin-top: -7px;
+			margin-top: -@horizontalArrowSize;
 		}
 	}
 	
 	&.rightArrow {
-		right: 0;
+		right: -10px;
 		left: auto;
 		&:after {
-			right: 5px;
+			right: 15px;
 			left: auto;
 		}
 	}
@@ -129,13 +136,23 @@
 }
 
 #soccerManagerLevel.epic-tooltip.bottom {
-	bottom: -100px;
+	bottom: -85px;
+	width: 410px;
+	
+	&.rightArrow {
+		right: -35px;
+		&:after {
+			right: 35px;
+		}
+	}
 }
 
-#continueButton.epic-tooltip.top {
-	top: -70px;
-	margin-left: -270px;
-	font-size: 12pt;
+#continueButton.epic-tooltip {
+	&.top {
+		top: -70px;
+		margin-left: -270px;
+		font-size: 12pt;
+	}
 }
 
 #usersList .epic-tooltip.top {
@@ -143,7 +160,7 @@
 }
 
 .contestSlot .action-section .epic-tooltip.rightArrow {
-	right: 25px;
+	right: 10px;
 }
 #enterContest .enter-contest-lineup-wrapper .epic-tooltip.top {
 	margin-left: -180px;
@@ -164,14 +181,14 @@
 	text-transform: none;
 	display: block;
 	max-width: 400px;
-	margin: 0 auto;
+	margin: 0px auto 20px auto;
 }
 
 .modal-dialog .panel-body .tut-title .modal-body-text {
 	.opensans_normal(12pt, @greyDark);
 	display: block;
 	max-width: 450px;
-	margin: 20px auto;
+	margin: 0px auto 20px auto;
 }
 
 .modal-dialog .modal-content .panel {

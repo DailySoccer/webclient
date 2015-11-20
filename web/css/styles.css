@@ -7948,6 +7948,7 @@ scoring-rules:after,
   float: right;
   height: 48px;
   top: -15px;
+  cursor: pointer;
 }
 @media (min-width: 768px) {
   .contests-list-f2p-root .contestSlot .action-section {
@@ -7972,7 +7973,6 @@ scoring-rules:after,
   font-weight: normal;
   text-align: center;
   vertical-align: middle;
-  cursor: pointer;
   background-image: none;
   border: 1px solid transparent;
   white-space: nowrap;
@@ -7997,6 +7997,7 @@ scoring-rules:after,
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
   outline: none !important;
+  cursor: pointer;
 }
 .contests-list-f2p-root .contestSlot .action-section .action-button:hover,
 .contests-list-f2p-root .contestSlot .action-section .action-button:focus,
@@ -20145,7 +20146,7 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   margin-left: -160px;
   padding: 10px 20px;
   min-width: 320px;
-  border-radius: 2px;
+  border-radius: 5px;
   background-color: #fa9c19;
   text-align: center;
   line-height: 1.2;
@@ -20157,7 +20158,7 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
 }
 .epic-tooltip:after {
   content: "";
-  border: 10px solid transparent;
+  border: 15px solid transparent;
   max-width: 0;
   max-height: 0;
   display: block;
@@ -20166,57 +20167,61 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
 .epic-tooltip.top {
   top: -60px;
   left: 50%;
+  box-shadow: 0px -2px 3px 0px rgba(0, 0, 0, 0.7);
 }
 .epic-tooltip.top:after {
-  border-top: 10px solid #fa9c19;
+  border-top: 15px solid #fa9c19;
   border-bottom: 0px none transparent;
-  bottom: -10px;
+  bottom: -15px;
   left: 50%;
-  margin-left: -10px;
+  margin-left: -15px;
 }
 .epic-tooltip.bottom {
   bottom: -60px;
   left: 50%;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.7);
 }
 .epic-tooltip.bottom:after {
   border-top: 0px none transparent;
-  border-bottom: 10px solid #fa9c19;
-  top: -10px;
+  border-bottom: 15px solid #fa9c19;
+  top: -15px;
   left: 50%;
-  margin-left: -10px;
+  margin-left: -15px;
 }
 .epic-tooltip.left {
   margin-top: -15px;
   top: 50%;
   left: -170px;
+  box-shadow: -2px 0px 3px 0px rgba(0, 0, 0, 0.7);
 }
 .epic-tooltip.left:after {
-  border: 7px solid transparent;
-  border-left: 7px solid #fa9c19;
+  border: 12px solid transparent;
+  border-left: 12px solid #fa9c19;
   border-right: 0px none transparent;
-  right: -7px;
+  right: -12px;
   top: 50%;
-  margin-top: -7px;
+  margin-top: -12px;
 }
 .epic-tooltip.right {
   margin-top: -15px;
   top: 50%;
   right: -170px;
+  box-shadow: 2px 0px 3px 0px rgba(0, 0, 0, 0.7);
 }
 .epic-tooltip.right:after {
-  border: 7px solid transparent;
+  border: 12px solid transparent;
   border-left: 0px none transparent;
-  border-right: 7px solid #fa9c19;
-  left: -7px;
+  border-right: 12px solid #fa9c19;
+  left: -12px;
   top: 50%;
-  margin-top: -7px;
+  margin-top: -12px;
 }
 .epic-tooltip.rightArrow {
-  right: 0;
+  right: -10px;
   left: auto;
 }
 .epic-tooltip.rightArrow:after {
-  right: 5px;
+  right: 15px;
   left: auto;
 }
 .tooltipped-element.highlighted-tip {
@@ -20228,7 +20233,14 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   pointer-events: none !important;
 }
 #soccerManagerLevel.epic-tooltip.bottom {
-  bottom: -100px;
+  bottom: -85px;
+  width: 410px;
+}
+#soccerManagerLevel.epic-tooltip.bottom.rightArrow {
+  right: -35px;
+}
+#soccerManagerLevel.epic-tooltip.bottom.rightArrow:after {
+  right: 35px;
 }
 #continueButton.epic-tooltip.top {
   top: -70px;
@@ -20239,7 +20251,7 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   margin-left: -160px;
 }
 .contestSlot .action-section .epic-tooltip.rightArrow {
-  right: 25px;
+  right: 10px;
 }
 #enterContest .enter-contest-lineup-wrapper .epic-tooltip.top {
   margin-left: -180px;
@@ -20260,7 +20272,7 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   text-transform: none;
   display: block;
   max-width: 400px;
-  margin: 0 auto;
+  margin: 0px auto 20px auto;
 }
 .modal-dialog .panel-body .tut-title .modal-body-text {
   font-family: 'Open Sans', sans-serif;
@@ -20269,7 +20281,7 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   color: #777777;
   display: block;
   max-width: 450px;
-  margin: 20px auto;
+  margin: 0px auto 20px auto;
 }
 .modal-dialog .modal-content .panel {
   background-color: #ecf0f1;

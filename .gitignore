@@ -6,3 +6,4 @@ webclient.iml
 /node_modules/
 .buildlog
 *.DS_Store
+.packages

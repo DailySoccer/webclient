@@ -10862,6 +10862,9 @@ fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
     text-align: center;
   }
 }
+#fantasyTeamRoot {
+  background-color: #ffffff;
+}
 .fantasy-team-header {
   height: 76px;
   position: relative;
@@ -15618,6 +15621,9 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   text-align: center;
   margin-top: 20px;
 }
+.enter-contest-soccer-players-wrapper {
+  background-color: #ffffff;
+}
 @media (min-width: 768px) {
   .enter-contest-soccer-players-wrapper {
     position: relative;
@@ -20285,6 +20291,12 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
 }
 .modal-dialog .modal-content .panel {
   background-color: #ecf0f1;
+}
+fantasy-team#userFantasyTeam > .epic-tooltip {
+  top: -75px;
+}
+users-list#usersList > .epic-tooltip {
+  top: -95px;
 }
 .modal-backdrop {
   display: none !important;

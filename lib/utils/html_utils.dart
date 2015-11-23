@@ -13,7 +13,7 @@ final NodeTreeSanitizer NULL_TREE_SANITIZER = new _NullTreeSanitizer();
 
 Future<bool> modalShow(String title, String content, {String modalSize: "lg",
     String onOk: null, String onCancel: null, bool closeButton: false,
-    type: 'alert'}) {
+    type: 'alert', onBackdropClick: false}) {
 
   String globalRootId = 'alertRoot';
 
@@ -193,8 +193,13 @@ Future<bool> modalShow(String title, String content, {String modalSize: "lg",
   modalWindow.querySelectorAll("[eventCallback]").onClick.listen(onButtonClick);
 
   JsUtils.runJavascript('#' + globalRootId, 'modal', null);
-  JsUtils.runJavascript('#' + globalRootId, 'on', {'hidden.bs.modal': onClose});
+  JsUtils.runJavascript('#' + globalRootId, 'on', {'hidden.bs.modal': (sender) { 
+                                                                        result = onBackdropClick; 
+                                                                        onClose(sender); 
+                                                                      } 
+                                                  });
   BackdropComp.instance.show();
+  
   return completer.future;
 }
 

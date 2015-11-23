@@ -269,7 +269,7 @@ class TutorialIniciacion extends Tutorial {
                     //Aquí puedes ver tu puntuación frente a los rivales
                     showTooltip(new ToolTip("#usersList", tipText: getLocalizedText("msg-14"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
                       //Haz click...
-                      showTooltip(new ToolTip(".user-row", tipText: getLocalizedText("msg-14"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true, onClickCb: (_) {
+                      showTooltip(new ToolTip(".user-row", tipId: 'compareUserPoints', tipText: getLocalizedText("msg-14"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true, onClickCb: (_) {
                         completer.complete(true);
                       }));
                     }));

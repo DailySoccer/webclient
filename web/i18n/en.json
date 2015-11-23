@@ -568,21 +568,22 @@
     },
     "shop"                              :
     {
+    "name"                              : "SHOP",
       "goldshopdescription"             : "Buy Gold to in order to enter <strong>Official Contests</strong>",
       "trainerpointsshopdescription"    : "Increase your Trainer Tier and sign <strong>Better Players</strong>",
-      "energyshopdescription"           : "Refill your energy in order to enter <strong>Virtual Contests</strong>"
-    },
-    "goldshop"                          :
-    {
+      "energyshopdescription"           : "Refill your energy in order to enter <strong>Virtual Contests</strong>",
+      "free"                            : "FREE",
+      "mostpopularimagesource"          : "images/icon-most-popular.png",
       "product_gold_1"                  : "PENNIES",
       "product_gold_2"                  : "BIG BOSS",
       "product_gold_3"                  : "SCOUT",
       "product_gold_4"                  : "AGENT",
       "product_gold_5"                  : "PRESIDENT",
-      "product_gold_6"                  : "MEN IN BLACK",
-      "free"                            : "FREE",
-      "buttonback"                      : "Back",
-      "mostpopularimagesource"          : "images/icon-most-popular.png"
+      "product_gold_6"                  : "MEN IN BLACK"
+    },
+    "goldshop"                          :
+    {
+      "buttonback"                      : "Back"
     },
     "energyshop"                        :
     {

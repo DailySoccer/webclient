@@ -1,6 +1,146 @@
 #mainShopCompWrapper {
+	@item-height: 195;
+
 	.container-fluid();
-	padding: 15px 0;
+	padding: 0;
+	
+	.header {
+		.make-row(0);
+		.shop-banner {
+			.img-responsive();
+		}
+	}
+	.content {
+		.make-row(0);
+		padding: 15px;
+
+		.money-layout {
+			
+			.make-tile(9, 2, @item-height);
+			padding: 0;
+		}
+		
+		.money-tile-wrapper {
+			.make-tile(4,1, @item-height);
+			padding: 5px;
+
+			.tile {
+				padding: 0;
+				background-color: transparent;
+				cursor: default;
+				position: relative;
+
+				.header{
+					height: 35px;
+					border-radius: 10px 10px 0 0;	
+					background-color: @blueMed;
+					text-align: center;
+					position: relative;
+
+					.title {
+						.opensans_normal(11pt, @blueMenu);
+						top: 5px;
+						position: relative;
+					}
+				}
+				.content{
+					background-image: url("@{images}/shopItemBg.jpg");
+					background-repeat: no-repeat;
+					background-position: center top;
+					background-size: cover;
+					border-radius: 0px 0px 10px 10px;
+					position: relative;
+					height: 150px;
+
+					.gold-icon{
+						.img-responsive();
+						position: absolute;
+						top: 0;
+						left: 0;
+					}
+					@price-widht: 95px;
+					.content-info {
+						position: absolute;
+						right: 0;
+						top: 0;
+						width: @price-widht;
+						text-align: center;
+						padding-right: 15px;
+						height: 100%;
+
+						.gold-quantity{
+							.exo_light(28pt, @white);
+							position: relative;
+							top: 15px;
+							&:after{
+								.addIcon("icon-coin-lg.png", 27px, 27px);
+								vertical-align: baseline;
+								position: relative;
+								left: 4px;
+							}
+						}
+						
+						.price-wrapper{
+							.button-wrapper{
+								display: inline-block;
+								height: 30px;
+								position: absolute;
+								bottom: 15px;
+								width: @price-widht;
+								right: 15px;
+
+								.price {
+									.opensans_normal(14pt, @white);
+									.btn-primary();
+									width: 100%;
+									
+								}
+							}
+							.free-increment {
+								.size(68px, 37px);
+								background: url("@{images}/BuyGoldFreeBase.png");
+								position: absolute;
+								bottom: 40px;
+								width: @price-widht;
+								background-position-x: center;
+								background-repeat: no-repeat;
+								right: 15px;
+
+								.free-increment-count {
+									display: block; 
+									padding-top: 1px;
+									.opensans_bold(13pt, @white);
+								}
+
+			              		.free-increment-desc {
+									display: block;
+									.opensans_bold(7pt, @white);
+									position: relative;
+									bottom: 4px;
+			              		}
+			              	}
+						}
+					}
+
+					.gold-item-popular {
+						position: absolute;
+						top: 0;
+						left: 0;
+					}
+
+				}
+
+			}
+		}
+
+		.energy-tile {
+			cursor: default;
+			.make-tile(3, 2, @item-height);
+			padding: 0;
+		}
+		
+
+	}
 /*
 	.items-wrapper {
 	 	.make-row(0);

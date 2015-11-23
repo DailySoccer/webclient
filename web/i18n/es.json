@@ -608,21 +608,22 @@
     },
     "shop"                              :
     {
+      "name"                            : "TIENDA",
       "goldshopdescription"             : "Compra Oro y accede a <strong>Torneos Oficiales</strong>",
       "trainerpointsshopdescription"    : "Aumenta tu Nivel de Mánager y ficha a los <strong>mejores jugadores</strong>",
-      "energyshopdescription"           : "Recárgate de energía para acceder a <strong>Torneos de Entrenamiento</strong>"
-    },
-    "goldshop"                          :
-    {
+      "energyshopdescription"           : "Recárgate de energía para acceder a <strong>Torneos de Entrenamiento</strong>",
+      "free"                            : "GRATIS",      
+      "mostpopularimagesource"          : "images/icon-mas-popular.png",
       "product_gold_1"                  : "CALDERILLA",
       "product_gold_2"                  : "PILA DE ORO",
       "product_gold_3"                  : "MONTÓN DE ORO",
       "product_gold_4"                  : "MALETÍN DE ORO",
       "product_gold_5"                  : "CAJA FUERTE DE ORO",
-      "product_gold_6"                  : "GRAN BÓVEDA DE ORO",
-      "free"                            : "GRATIS",
-      "buttonback"                      : "Volver",
-      "mostpopularimagesource"          : "images/icon-mas-popular.png"
+      "product_gold_6"                  : "GRAN BÓVEDA DE ORO"
+    },
+    "goldshop"                          :
+    {
+      "buttonback"                      : "Volver"
     },
     "energyshop"                        :
     {

@@ -5651,6 +5651,10 @@ scoring-rules:after,
 #transactionHistoryRoot .transaction-row:after,
 #mainShopCompWrapper:before,
 #mainShopCompWrapper:after,
+#mainShopCompWrapper .header:before,
+#mainShopCompWrapper .header:after,
+#mainShopCompWrapper .content:before,
+#mainShopCompWrapper .content:after,
 #goldShopComp .content:before,
 #goldShopComp .content:after,
 #trainerPointsShopComp .content:before,
@@ -5786,6 +5790,8 @@ scoring-rules:after,
 #transactionHistoryRoot .transaction-headers:after,
 #transactionHistoryRoot .transaction-row:after,
 #mainShopCompWrapper:after,
+#mainShopCompWrapper .header:after,
+#mainShopCompWrapper .content:after,
 #goldShopComp .content:after,
 #trainerPointsShopComp .content:after,
 #goldShopComp .products-wrapper:after,
@@ -9791,7 +9797,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   margin-left: auto;
   padding-left: 15px;
   padding-right: 15px;
-  padding: 15px 0;
+  padding: 0;
   /*
 	.items-wrapper {
 	 	.make-row(0);
@@ -9882,6 +9888,341 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
     margin-right: 0;
     margin-left: 0;
   }
+}
+#mainShopCompWrapper .header {
+  margin-left: 0;
+  margin-right: 0;
+}
+#mainShopCompWrapper .header .shop-banner {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+#mainShopCompWrapper .content {
+  margin-left: 0;
+  margin-right: 0;
+  padding: 15px;
+}
+#mainShopCompWrapper .content .money-layout {
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 2px;
+  height: 390px;
+  position: relative;
+  cursor: pointer;
+  padding: 0;
+}
+@media (min-width: 768px) {
+  #mainShopCompWrapper .content .money-layout {
+    float: left;
+    width: 75%;
+  }
+}
+#mainShopCompWrapper .content .money-layout .tile {
+  padding: 15px;
+  height: 100%;
+  background-color: white;
+}
+#mainShopCompWrapper .content .money-tile-wrapper {
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 2px;
+  height: 195px;
+  position: relative;
+  cursor: pointer;
+  padding: 5px;
+}
+@media (min-width: 768px) {
+  #mainShopCompWrapper .content .money-tile-wrapper {
+    float: left;
+    width: 33.33333333%;
+  }
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile {
+  padding: 15px;
+  height: 100%;
+  background-color: white;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile {
+  padding: 0;
+  background-color: transparent;
+  cursor: default;
+  position: relative;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .header {
+  height: 35px;
+  border-radius: 10px 10px 0 0;
+  background-color: #0d75a6;
+  text-align: center;
+  position: relative;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .header .title {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 11pt;
+  color: #afd3e4;
+  top: 5px;
+  position: relative;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content {
+  background-image: url("../images/shopItemBg.jpg");
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  border-radius: 0px 0px 10px 10px;
+  position: relative;
+  height: 150px;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .gold-icon {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 95px;
+  text-align: center;
+  padding-right: 15px;
+  height: 100%;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .gold-quantity {
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 28pt;
+  color: #ffffff;
+  text-transform: uppercase;
+  position: relative;
+  top: 15px;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .gold-quantity:after {
+  content: " ";
+  background-image: url("../images/icon-coin-lg.png");
+  width: 27px;
+  height: 27px;
+  display: inline-block;
+  vertical-align: middle;
+  vertical-align: baseline;
+  position: relative;
+  left: 4px;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper {
+  display: inline-block;
+  height: 30px;
+  position: absolute;
+  bottom: 15px;
+  width: 95px;
+  right: 15px;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price {
+  font-size: 14pt;
+  background-color: #428bca;
+  border-color: #357ebd;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  -webkit-transition: All 0.08s ease-out;
+  -moz-transition: All 0.08s ease-out;
+  -ms-transition: All 0.08s ease-out;
+  -o-transition: All 0.08s ease-out;
+  transition: All 0.08s ease-out;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  background-color: #a1c931;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #ffffff;
+  outline: none !important;
+  width: 100%;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:hover,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:focus,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:active,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.active,
+.open .dropdown-toggle#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price {
+  color: #ffffff;
+  background-color: #3276b1;
+  border-color: #285e8e;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:active,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.active,
+.open .dropdown-toggle#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price {
+  background-image: none;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.disabled,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price[disabled],
+fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.disabled:hover,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price[disabled]:hover,
+fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:hover,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.disabled:focus,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price[disabled]:focus,
+fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:focus,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.disabled:active,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price[disabled]:active,
+fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:active,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.disabled.active,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price[disabled].active,
+fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.active {
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price .badge {
+  color: #428bca;
+  background-color: #ffffff;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:focus,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:active:focus,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:hover,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:focus {
+  color: #333333;
+  text-decoration: none;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:active,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.disabled,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price[disabled],
+fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:active:focus,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.active:focus {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:active:hover,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.active:hover {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:hover:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:active,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.active {
+  background-color: #a1c931;
+  margin-top: 4px;
+  box-shadow: none;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.disabled,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price[disabled],
+fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price {
+  background-color: #b5d657;
+  box-shadow: none;
+  margin-top: 4px;
+  color: #ebebeb;
+  cursor: not-allowed !important;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.close {
+  background-color: #a1c931;
+  outline: none !important;
+  color: #ffffff;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .free-increment {
+  width: 68px;
+  height: 37px;
+  background: url("../images/BuyGoldFreeBase.png");
+  position: absolute;
+  bottom: 40px;
+  width: 95px;
+  background-position-x: center;
+  background-repeat: no-repeat;
+  right: 15px;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .free-increment .free-increment-count {
+  display: block;
+  padding-top: 1px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 13pt;
+  color: #ffffff;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .free-increment .free-increment-desc {
+  display: block;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 7pt;
+  color: #ffffff;
+  position: relative;
+  bottom: 4px;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .gold-item-popular {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#mainShopCompWrapper .content .energy-tile {
+  cursor: default;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 2px;
+  height: 390px;
+  position: relative;
+  cursor: pointer;
+  padding: 0;
+}
+@media (min-width: 768px) {
+  #mainShopCompWrapper .content .energy-tile {
+    float: left;
+    width: 25%;
+  }
+}
+#mainShopCompWrapper .content .energy-tile .tile {
+  padding: 15px;
+  height: 100%;
+  background-color: white;
 }
 #goldShopComp,
 #trainerPointsShopComp {
@@ -20364,6 +20705,8 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
 #homeRoot #transactionHistoryRoot .transaction-headers,
 #homeRoot #transactionHistoryRoot .transaction-row,
 #homeRoot #mainShopCompWrapper,
+#homeRoot #mainShopCompWrapper .header,
+#homeRoot #mainShopCompWrapper .content,
 #homeRoot #goldShopComp .content,
 #homeRoot #trainerPointsShopComp .content,
 #homeRoot #goldShopComp .products-wrapper,

@@ -40,6 +40,10 @@ class User {
   int trueSkill;
   Money earnedMoney;
 
+  Set<String> achievements = new Set<String>();
+
+  bool hasAchievement(String achievement) => achievements.contains(achievement);
+
   //String get fullName => "$firstName $lastName";
   String toString() => "$userId - $email - $nickName";
   Map toJson() => {"_id": userId, "firstName": firstName, "lastName": lastName, "email": email, "nickName": nickName};
@@ -155,6 +159,14 @@ class User {
       lastUpdatedEnergy = new DateTime.now();
       energyBalance = new Money.from(Money.CURRENCY_ENERGY, MAX_ENERGY);
     }
+
+    if (jsonMap.containsKey("achievements")) {
+      achievements = new Set<String>();
+
+      List<String> achievementList = jsonMap["achievements"];
+      achievementList.forEach( (achievementId) => achievements.add(achievementId) );
+    }
+
     return this;
   }
 }

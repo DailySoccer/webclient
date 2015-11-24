@@ -5753,6 +5753,8 @@ scoring-rules:after,
 .week-calendar:after,
 .week-calendar .week-days-wrapper:before,
 .week-calendar .week-days-wrapper:after,
+#helpInfo .scores-wrapper:before,
+#helpInfo .scores-wrapper:after,
 .default-section-header:before,
 .default-section-header:after,
 .modal-properties-default:before,
@@ -5851,6 +5853,7 @@ scoring-rules:after,
 #simplePromoF2PRoot:after,
 .week-calendar:after,
 .week-calendar .week-days-wrapper:after,
+#helpInfo .scores-wrapper:after,
 .default-section-header:after,
 .modal-properties-default:after,
 .modal-properties-default .modal-content:after,
@@ -8143,6 +8146,12 @@ fieldset[disabled] .contests-list-f2p-root .contestSlot .action-section .action-
 .contests-list-f2p-root .special .name-section .contest-name,
 .contests-list-f2p-root .special .name-section .contest-description {
   color: #ffffff;
+}
+.contests-list-f2p-root .special .conditions-section .player-position,
+.contests-list-f2p-root .special .conditions-section .entry-fee-box,
+.contests-list-f2p-root .special .conditions-section .prize-box,
+.contests-list-f2p-root .special .conditions-section .points-box {
+  background-color: #434343;
 }
 .contests-list-f2p-root .special .conditions-section .player-position .condition-amount .current-position,
 .contests-list-f2p-root .special .conditions-section .entry-fee-box span,
@@ -12112,7 +12121,7 @@ main-menu-f2p {
 }
 #mainMenu.logged-in {
   background-color: #0a2938;
-  border-bottom: 2px solid #fa9c19;
+  border-bottom: 1px solid #fa9c19;
   height: 70px;
   position: fixed;
   display: inline-block;
@@ -12338,6 +12347,17 @@ main-menu-f2p {
     color: #777777;
     cursor: pointer;
   }
+  #mainMenu #menuSlide .navbar-nav li .count {
+    color: #ffffff;
+    background-color: #ff0000;
+    padding: 0 3px;
+    min-width: 20px;
+    height: 20px;
+    display: block;
+    text-align: center;
+    border-radius: 300px;
+    float: right;
+  }
   #mainMenu #menuSlide .navbar-nav li > .dropdown-toggle::after {
     font-family: 'Glyphicons Halflings';
     content: "\E080";
@@ -12413,8 +12433,7 @@ main-menu-f2p {
 }
 @media (max-width: 991px) {
   #mainMenu #desktopMenu .links-options {
-    padding-left: 0px;
-    padding-right: 0px;
+    padding: 0 0 0 10px;
   }
 }
 #mainMenu #desktopMenu .links-options .mainLink {
@@ -12426,10 +12445,106 @@ main-menu-f2p {
   cursor: pointer;
   text-decoration: none;
   text-shadow: 0px 2px black;
+  color: #59add5;
 }
 #mainMenu #desktopMenu .links-options .mainLink a:hover,
 #mainMenu #desktopMenu .links-options .mainLink a .active {
   color: #ffffff;
+}
+#mainMenu #desktopMenu .links-options .mainLink a#menuLeaderboard,
+#mainMenu #desktopMenu .links-options .mainLink a#menuNotifications,
+#mainMenu #desktopMenu .links-options .mainLink a#menuHelp {
+  margin: 0 0 0 10px;
+  padding: 0;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+  background-repeat: no-repeat;
+}
+@media (max-width: 991px) {
+  #mainMenu #desktopMenu .links-options .mainLink a#menuLeaderboard,
+  #mainMenu #desktopMenu .links-options .mainLink a#menuNotifications,
+  #mainMenu #desktopMenu .links-options .mainLink a#menuHelp {
+    margin: 0 0 0 5px;
+  }
+}
+#mainMenu #desktopMenu .links-options .mainLink a#menuLeaderboard .count,
+#mainMenu #desktopMenu .links-options .mainLink a#menuNotifications .count,
+#mainMenu #desktopMenu .links-options .mainLink a#menuHelp .count {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 8pt;
+  color: #ffffff;
+  text-shadow: none;
+  background-color: #ff0000;
+  padding: 0 3px;
+  min-width: 15px;
+  height: 15px;
+  display: block;
+  position: absolute;
+  top: 4px;
+  right: 0px;
+  text-indent: 0%;
+  white-space: normal;
+  overflow: visible;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 300px;
+}
+#mainMenu #desktopMenu .links-options .mainLink a#menuLeaderboard {
+  margin: 0 0 0 30px;
+  content: " ";
+  background-image: url("../images/menuLeaderboard.png");
+  width: 35px;
+  height: 31px;
+  display: inline-block;
+  vertical-align: middle;
+}
+@media (max-width: 991px) {
+  #mainMenu #desktopMenu .links-options .mainLink a#menuLeaderboard {
+    margin: 0 0 0 5px;
+  }
+}
+#mainMenu #desktopMenu .links-options .mainLink a#menuNotifications {
+  content: " ";
+  background-image: url("../images/menuNotifications.png");
+  width: 35px;
+  height: 32px;
+  display: inline-block;
+  vertical-align: middle;
+}
+#mainMenu #desktopMenu .links-options .mainLink a#menuHelp {
+  content: " ";
+  background-image: url("../images/menuHelp.png");
+  width: 35px;
+  height: 32px;
+  display: inline-block;
+  vertical-align: middle;
+}
+#mainMenu #desktopMenu .links-options .mainLink.active a#menuLeaderboard {
+  content: " ";
+  background-image: url("../images/menuLeaderboardLight.png");
+  width: 35px;
+  height: 31px;
+  display: inline-block;
+  vertical-align: middle;
+}
+#mainMenu #desktopMenu .links-options .mainLink.active a#menuNotifications {
+  content: " ";
+  background-image: url("../images/menuNotificationsLight.png");
+  width: 35px;
+  height: 32px;
+  display: inline-block;
+  vertical-align: middle;
+}
+#mainMenu #desktopMenu .links-options .mainLink.active a#menuHelp {
+  content: " ";
+  background-image: url("../images/menuHelpLight.png");
+  width: 35px;
+  height: 32px;
+  display: inline-block;
+  vertical-align: middle;
 }
 #mainMenu #desktopMenu .links-options .active a {
   color: #ffffff;
@@ -12438,12 +12553,9 @@ main-menu-f2p {
   text-align: center;
   display: inline-block;
   width: 50px;
-  margin: 0 1%;
-}
-@media (min-width: 768px) and (max-width: 991px) {
-  #mainMenu #desktopMenu .stats-commons {
-    margin: 0 5px;
-  }
+  /*@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+				margin: 0 5px;
+			}*/
 }
 #mainMenu #desktopMenu .stats-commons img {
   margin-left: 10px;
@@ -12497,17 +12609,11 @@ main-menu-f2p {
   margin: 0;
   padding-top: 10px;
   padding-bottom: 10px;
+  width: 260px;
   position: relative;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 0px;
+  padding-right: 0px;
   float: right !important;
-}
-@media (min-width: 768px) {
-  #mainMenu #desktopMenu .fixed-user-stats {
-    float: left;
-    width: 45.83333333%;
-  }
 }
 @media (max-width: 767px) {
   #mainMenu #desktopMenu .fixed-user-stats {
@@ -12525,23 +12631,14 @@ main-menu-f2p {
     text-align: center;
   }
 }
-@media (max-width: 1199px) {
-  #mainMenu #desktopMenu .fixed-user-stats {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-}
 #mainMenu #desktopMenu .fixed-user-stats .energy {
   text-align: center;
   display: inline-block;
   width: 50px;
-  margin: 0 1%;
+  /*@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+				margin: 0 5px;
+			}*/
   color: #a1c931;
-}
-@media (min-width: 768px) and (max-width: 991px) {
-  #mainMenu #desktopMenu .fixed-user-stats .energy {
-    margin: 0 5px;
-  }
 }
 #mainMenu #desktopMenu .fixed-user-stats .energy img {
   margin-left: 10px;
@@ -12580,16 +12677,13 @@ main-menu-f2p {
   text-align: center;
   display: inline-block;
   width: 50px;
-  margin: 0 1%;
+  /*@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+				margin: 0 5px;
+			}*/
   color: #afafaf;
   position: relative;
   left: 3px;
   width: 68px;
-}
-@media (min-width: 768px) and (max-width: 991px) {
-  #mainMenu #desktopMenu .fixed-user-stats .manager-points {
-    margin: 0 5px;
-  }
 }
 #mainMenu #desktopMenu .fixed-user-stats .manager-points img {
   margin-left: 10px;
@@ -12644,13 +12738,10 @@ main-menu-f2p {
   text-align: center;
   display: inline-block;
   width: 50px;
-  margin: 0 1%;
+  /*@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+				margin: 0 5px;
+			}*/
   color: #fa9c19;
-}
-@media (min-width: 768px) and (max-width: 991px) {
-  #mainMenu #desktopMenu .fixed-user-stats .coins {
-    margin: 0 5px;
-  }
 }
 #mainMenu #desktopMenu .fixed-user-stats .coins img {
   margin-left: 10px;
@@ -12686,15 +12777,12 @@ main-menu-f2p {
   text-align: center;
   display: inline-block;
   width: 50px;
-  margin: 0 1%;
+  /*@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+				margin: 0 5px;
+			}*/
   color: #ffffff;
   float: right;
   position: relative;
-}
-@media (min-width: 768px) and (max-width: 991px) {
-  #mainMenu #desktopMenu .fixed-user-stats .profile {
-    margin: 0 5px;
-  }
 }
 #mainMenu #desktopMenu .fixed-user-stats .profile img {
   margin-left: 10px;
@@ -17127,26 +17215,22 @@ lineup-selector {
 }
 #leaderboard-wrapper #leaderboard-header-wrapper {
   display: block;
-  background-color: black;
-  background-image: url('../images/leaderboardBackground.png');
-  background-size: cover;
-  background-position: center bottom;
-  background-repeat: no-repeat;
+  background-color: #ecf0f1;
+  /*background-image: url('@{images}/leaderboardBackground.png');
+		background-size: cover;
+		background-position: center bottom;
+		background-repeat: no-repeat;*/
   padding: 10px 10px;
 }
 #leaderboard-wrapper #leaderboard-header-wrapper h1 {
   font-family: 'Exo', sans-serif;
   font-weight: 300;
   font-size: 25pt;
-  color: #ffffff;
+  color: #08161b;
   text-transform: uppercase;
   text-transform: initial;
   text-align: center;
-}
-@media (min-width: 768px) {
-  #leaderboard-wrapper #leaderboard-header-wrapper h1 {
-    text-align: left;
-  }
+  margin: 20px;
 }
 #leaderboard-wrapper #leaderboard-header-wrapper .rankings-wrapper {
   display: block;
@@ -17226,10 +17310,13 @@ lineup-selector {
   margin: 0;
   padding: 0;
 }
+#leaderboard-wrapper .leaderboard-tabs li:last-child {
+  width: 33.33444333%;
+}
 #leaderboard-wrapper .leaderboard-tabs > li {
   position: relative;
   float: left;
-  width: 50%;
+  width: 33.33333333%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
@@ -17290,6 +17377,14 @@ lineup-selector {
   content: " ";
   background-image: url("../images/icon-Ranking-Skill.png");
   width: 32px;
+  height: 50px;
+  display: inline-block;
+  vertical-align: middle;
+}
+#leaderboard-wrapper .leaderboard-tabs .achivements-tab:before {
+  content: " ";
+  background-image: url("../images/achivements-icon.png");
+  width: 33px;
   height: 50px;
   display: inline-block;
   vertical-align: middle;
@@ -20354,6 +20449,19 @@ users-list#usersList > .epic-tooltip {
   height: 100%;
   background-color: white;
 }
+#homeRoot .home-tile-wrapper .home-tile-content {
+  padding: 1px;
+  height: 100%;
+  position: relative;
+  background: rgba(255, 255, 255, 0.2);
+  background: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 0%, #ffffff 100%);
+  background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(255, 255, 255, 0.2)), color-stop(100%, #ffffff));
+  background: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 0%, #ffffff 100%);
+  background: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 0%, #ffffff 100%);
+  background: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 0%, #ffffff 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, #ffffff 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ffffff', GradientType=1);
+}
 #homeRoot .home-tile-wrapper .tile {
   background-color: #000000;
   background-size: cover;
@@ -20719,6 +20827,7 @@ users-list#usersList > .epic-tooltip {
 #homeRoot #simplePromoF2PRoot,
 #homeRoot .week-calendar,
 #homeRoot .week-calendar .week-days-wrapper,
+#homeRoot #helpInfo .scores-wrapper,
 #homeRoot .default-section-header,
 #homeRoot .modal-properties-default,
 #homeRoot .modal-properties-default .modal-content,
@@ -21288,6 +21397,528 @@ fieldset[disabled] #createContest .create-contest-section-wrapper .create-contes
 }
 #createContest #teamsToggler {
   text-align: center;
+}
+#helpInfo .block-dark {
+  background-color: #ecf0f1;
+  padding-bottom: 40px;
+}
+#helpInfo .block-light {
+  background-color: #ffffff;
+  padding-bottom: 40px;
+}
+#helpInfo .title {
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 20pt;
+  color: #214a5f;
+  text-transform: uppercase;
+  padding: 16px 10px 12px;
+  text-align: center;
+}
+#helpInfo .description {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #777777;
+  text-align: center;
+  padding: 20px 10px;
+}
+#helpInfo .img-wrapper {
+  max-width: 829px;
+  margin: 0 auto;
+}
+#helpInfo .img-wrapper img {
+  display: block;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  #helpInfo .img-wrapper img {
+    padding: 10px;
+  }
+}
+#helpInfo .img-wrapper .img-footer {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #434343;
+  text-align: center;
+}
+#helpInfo .block-last {
+  max-width: 660px;
+  margin: 0 auto;
+}
+#helpInfo .block-last .img-wrapper-left {
+  max-width: 323px;
+  padding: 10px;
+  margin: 0 auto;
+}
+@media (min-width: 768px) {
+  #helpInfo .block-last .img-wrapper-left {
+    float: left !important;
+    width: 45%;
+    height: 222px;
+  }
+}
+#helpInfo .block-last .img-wrapper-left img {
+  display: block;
+  width: 100%;
+}
+#helpInfo .block-last .description-right {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #777777;
+  text-align: center;
+  padding: 10px;
+}
+@media (min-width: 768px) {
+  #helpInfo .block-last .description-right {
+    height: 222px;
+    text-align: left;
+  }
+}
+#helpInfo .block-last .description-right .button-play {
+  background-color: #428bca;
+  border-color: #357ebd;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  -webkit-transition: All 0.08s ease-out;
+  -moz-transition: All 0.08s ease-out;
+  -ms-transition: All 0.08s ease-out;
+  -o-transition: All 0.08s ease-out;
+  transition: All 0.08s ease-out;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  background-color: #a1c931;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #ffffff;
+  outline: none !important;
+  margin-top: 5px;
+  padding: 10px 40px;
+}
+#helpInfo .block-last .description-right .button-play:hover,
+#helpInfo .block-last .description-right .button-play:focus,
+#helpInfo .block-last .description-right .button-play:active,
+#helpInfo .block-last .description-right .button-play.active,
+.open .dropdown-toggle#helpInfo .block-last .description-right .button-play {
+  color: #ffffff;
+  background-color: #3276b1;
+  border-color: #285e8e;
+}
+#helpInfo .block-last .description-right .button-play:active,
+#helpInfo .block-last .description-right .button-play.active,
+.open .dropdown-toggle#helpInfo .block-last .description-right .button-play {
+  background-image: none;
+}
+#helpInfo .block-last .description-right .button-play.disabled,
+#helpInfo .block-last .description-right .button-play[disabled],
+fieldset[disabled] #helpInfo .block-last .description-right .button-play,
+#helpInfo .block-last .description-right .button-play.disabled:hover,
+#helpInfo .block-last .description-right .button-play[disabled]:hover,
+fieldset[disabled] #helpInfo .block-last .description-right .button-play:hover,
+#helpInfo .block-last .description-right .button-play.disabled:focus,
+#helpInfo .block-last .description-right .button-play[disabled]:focus,
+fieldset[disabled] #helpInfo .block-last .description-right .button-play:focus,
+#helpInfo .block-last .description-right .button-play.disabled:active,
+#helpInfo .block-last .description-right .button-play[disabled]:active,
+fieldset[disabled] #helpInfo .block-last .description-right .button-play:active,
+#helpInfo .block-last .description-right .button-play.disabled.active,
+#helpInfo .block-last .description-right .button-play[disabled].active,
+fieldset[disabled] #helpInfo .block-last .description-right .button-play.active {
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+#helpInfo .block-last .description-right .button-play .badge {
+  color: #428bca;
+  background-color: #ffffff;
+}
+#helpInfo .block-last .description-right .button-play:focus,
+#helpInfo .block-last .description-right .button-play:active:focus,
+#helpInfo .block-last .description-right .button-play.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+#helpInfo .block-last .description-right .button-play:hover,
+#helpInfo .block-last .description-right .button-play:focus {
+  color: #333333;
+  text-decoration: none;
+}
+#helpInfo .block-last .description-right .button-play:active,
+#helpInfo .block-last .description-right .button-play.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+#helpInfo .block-last .description-right .button-play.disabled,
+#helpInfo .block-last .description-right .button-play[disabled],
+fieldset[disabled] #helpInfo .block-last .description-right .button-play {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+#helpInfo .block-last .description-right .button-play:active:focus,
+#helpInfo .block-last .description-right .button-play.active:focus {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+#helpInfo .block-last .description-right .button-play:active:hover,
+#helpInfo .block-last .description-right .button-play.active:hover {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+#helpInfo .block-last .description-right .button-play:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+#helpInfo .block-last .description-right .button-play:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+#helpInfo .block-last .description-right .button-play:hover:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+#helpInfo .block-last .description-right .button-play:active,
+#helpInfo .block-last .description-right .button-play.active {
+  background-color: #a1c931;
+  margin-top: 4px;
+  box-shadow: none;
+}
+#helpInfo .block-last .description-right .button-play:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+#helpInfo .block-last .description-right .button-play.disabled,
+#helpInfo .block-last .description-right .button-play[disabled],
+fieldset[disabled] #helpInfo .block-last .description-right .button-play {
+  background-color: #b5d657;
+  box-shadow: none;
+  margin-top: 4px;
+  color: #ebebeb;
+  cursor: not-allowed !important;
+}
+#helpInfo .block-last .description-right .button-play.close {
+  background-color: #a1c931;
+  outline: none !important;
+  color: #ffffff;
+}
+#helpInfo .toogle-block {
+  max-width: 808px;
+  margin: 5px auto;
+}
+#helpInfo .toogle-block label {
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  font-size: 10pt;
+  color: #777777;
+  text-transform: uppercase;
+  display: block;
+  height: 28px;
+  padding: 5px 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #777777;
+  border-radius: 5px;
+  transition: .4s all linear;
+}
+#helpInfo .toogle-block label:hover {
+  cursor: pointer;
+}
+#helpInfo .toogle-block label::after {
+  font-family: 'Glyphicons Halflings';
+  content: "\E080";
+  font-size: 9pt;
+  float: right;
+}
+#helpInfo .toogle-block .toggle ~ div {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #777777;
+  padding: 0 10px;
+  height: 0;
+  -webkit-transform: scaleY(0);
+  -o-transform: scaleY(0);
+  -ms-transform: scaleY(0);
+  transform: scaleY(0);
+  -webkit-transform-origin: top;
+  -o-transform-origin: top;
+  -ms-transform-origin: top;
+  transform-origin: top;
+  -webkit-transition: -webkit-transform 0.08s ease-out;
+  -o-transition: -o-transform 0.08s ease;
+  -ms-transition: -ms-transform 0.08s ease;
+  transition: transform 0.08s ease;
+}
+#helpInfo .toogle-block .toggle:checked ~ div {
+  height: auto;
+  -webkit-transform: scaleY(1);
+  -o-transform: scaleY(1);
+  -ms-transform: scaleY(1);
+  transform: scaleY(1);
+}
+#helpInfo .toogle-block .toggle:checked + label::after {
+  font-family: 'Glyphicons Halflings';
+  content: "\E114";
+  font-size: 9pt;
+}
+#helpInfo .toogle-block .toggle {
+  display: none;
+}
+#helpInfo .toogle-block a {
+  cursor: pointer;
+}
+#helpInfo .scores-wrapper {
+  margin-left: 0;
+  margin-right: 0;
+  max-width: 818px;
+  margin: 0 auto 30px auto;
+}
+#helpInfo .help-info-tabs {
+  height: 54px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+#helpInfo .help-info-tabs > li {
+  position: relative;
+  float: left;
+  width: 50%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: #59add5;
+  padding-left: 0px;
+  padding-right: 0px;
+  border-width: 4px;
+  border-style: none none solid none;
+  border-color: #214a5f;
+  border-radius: 0;
+}
+#helpInfo .help-info-tabs > li a {
+  cursor: pointer;
+  line-height: 50px;
+  text-align: center;
+  display: block;
+  text-decoration: none;
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #ffffff;
+}
+@media (max-width: 767px) {
+  #helpInfo .help-info-tabs > li a {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 9pt;
+    color: #ffffff;
+  }
+}
+#helpInfo .help-info-tabs > li[disabled] {
+  background-color: #afd3e4;
+  cursor: no-drop;
+}
+#helpInfo .help-info-tabs > li[disabled] > a {
+  cursor: no-drop;
+  color: #afafaf;
+}
+#helpInfo .help-info-tabs .active {
+  background-color: #214a5f;
+}
+#helpInfo .tab-pane {
+  display: none;
+}
+#helpInfo .tab-pane.active {
+  display: block;
+}
+#achievements-wrapper {
+  padding: 20px 10px;
+  background-color: #ffffff;
+}
+#achievements-wrapper .achievement {
+  position: relative;
+  float: left;
+  width: 25%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: center;
+  padding: 10px 5px;
+  opacity: 0.5;
+}
+#achievements-wrapper .achievement.earned {
+  opacity: 1;
+}
+#achievements-wrapper .achievement .achievement-icon {
+  position: relative;
+}
+#achievements-wrapper .achievement .achievement-icon img {
+  top: 32px;
+  position: relative;
+  display: block;
+  left: 32px;
+}
+#achievements-wrapper .achievement .achievement-icon .achievement-level {
+  position: absolute;
+  display: block;
+  left: 40px;
+  bottom: 5px;
+  width: 48px;
+  height: 48px;
+  text-align: center;
+  background-color: #214a5f;
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  font-size: 16pt;
+  color: #ffffff;
+  text-transform: uppercase;
+  border-radius: 100%;
+  border: 4px solid #ffffff;
+  padding: 7px 0;
+}
+#achievements-wrapper .achievement .achievement-icon {
+  content: " ";
+  background-image: url("../images/basic");
+  width: 128px;
+  height: 128px;
+  display: inline-block;
+  vertical-align: middle;
+}
+#achievements-wrapper .achievement .achievement-name {
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  font-size: 16pt;
+  color: #434343;
+  text-transform: uppercase;
+}
+#achievements-wrapper .achievement .achievement-level {
+  background-color: #434343;
+}
+#achievements-wrapper .achievement .achievement-description {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #777777;
+  line-height: 18px;
+  height: 54px;
+}
+#achievements-wrapper .achievement.Training .achievement-icon {
+  content: " ";
+  background-image: url("../images/achievements/AchievementBaseTraining.png");
+  width: 128px;
+  height: 128px;
+  display: inline-block;
+  vertical-align: middle;
+}
+#achievements-wrapper .achievement.Training .achievement-name {
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  font-size: 16pt;
+  color: #214a5f;
+  text-transform: uppercase;
+}
+#achievements-wrapper .achievement.Training .achievement-level {
+  background-color: #214a5f;
+}
+#achievements-wrapper .achievement.Oficial .achievement-icon {
+  content: " ";
+  background-image: url("../images/achievements/AchievementBaseOficial.png");
+  width: 128px;
+  height: 128px;
+  display: inline-block;
+  vertical-align: middle;
+}
+#achievements-wrapper .achievement.Oficial .achievement-name {
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  font-size: 16pt;
+  color: #fa9c19;
+  text-transform: uppercase;
+}
+#achievements-wrapper .achievement.Oficial .achievement-level {
+  background-color: #fa9c19;
+}
+#achievements-wrapper .achievement.ManagerLevel .achievement-icon {
+  content: " ";
+  background-image: url("../images/achievements/AchievementBaseManagerLevel.png");
+  width: 128px;
+  height: 128px;
+  display: inline-block;
+  vertical-align: middle;
+}
+#achievements-wrapper .achievement.ManagerLevel .achievement-name {
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  font-size: 16pt;
+  color: #d90006;
+  text-transform: uppercase;
+}
+#achievements-wrapper .achievement.ManagerLevel .achievement-level {
+  background-color: #d90006;
+}
+#achievements-wrapper .achievement.Player .achievement-icon {
+  content: " ";
+  background-image: url("../images/achievements/AchievementBasePlayer.png");
+  width: 128px;
+  height: 128px;
+  display: inline-block;
+  vertical-align: middle;
+}
+#achievements-wrapper .achievement.Player .achievement-name {
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  font-size: 16pt;
+  color: #434343;
+  text-transform: uppercase;
+}
+#achievements-wrapper .achievement.Player .achievement-level {
+  background-color: #434343;
+}
+#achievements-wrapper .achievement.SkillLevel .achievement-icon {
+  content: " ";
+  background-image: url("../images/achievements/AchievementBaseSkillLevel.png");
+  width: 128px;
+  height: 128px;
+  display: inline-block;
+  vertical-align: middle;
+}
+#achievements-wrapper .achievement.SkillLevel .achievement-name {
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  font-size: 16pt;
+  color: #8eb819;
+  text-transform: uppercase;
+}
+#achievements-wrapper .achievement.SkillLevel .achievement-level {
+  background-color: #8eb819;
 }
 /*************************************************
 Si hay que añadir nuevas banderas, ir a la siguiente url

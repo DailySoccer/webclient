@@ -4,6 +4,8 @@ import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:webclient/models/user.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/models/achievement.dart';
+import 'package:webclient/services/profile_service.dart';
 
 
 @Component(
@@ -13,45 +15,22 @@ import 'package:webclient/utils/string_utils.dart';
 )
 
 class AchivementsComp {
+
+  ProfileService profileService;
 /*
   LoadingService loadingService;
-  ProfileService profileService;
 */
-  AchivementsComp (/*this.loadingService, this.profileService*/) {
+
+  bool achievementEarned(achievementKey) => profileService.isLoggedIn && profileService.user.hasAchievement(achievementKey);
+
+  AchivementsComp ( this.profileService /*, this.loadingService*/) {
+    /*
+    // TEST: Dar premios al usuario
+    if (profileService.isLoggedIn) {
+      profileService.user.achievements.add(Achievement.PLAYED_VIRTUAL_CONTESTS_LEVEL_1);
+    }
+     */
   }
-  
-  List<Achivement> achivementList = [
-      new Achivement(name: "asd", description: "qweqweqweqwe", image: 'IconManagerMister.png', style: 'Training', earned: true),
-      new Achivement(name: "xcv", description: "qweqweqweqwe", image: '', style: 'Training', earned: true),
-      new Achivement(name: "ser", description: "eeeeeeee", image: '', style: 'Oficial', earned: false),
-      new Achivement(name: "sds", description: "ddddddd", image: '', style: 'Oficial', earned: true),
-      new Achivement(name: "asd", description: "cccccccc", image: '', style: 'Training', earned: true),
-      new Achivement(name: "asd", description: "qweqweqweqwe", image: 'IconManagerPrincipiante.png', style: 'Training', earned: true),
-      new Achivement(name: "asd", description: "qweqweqweqwe", image: 'IconManagerMister.png', style: 'Oficial', earned: true),
-      new Achivement(name: "asd", description: "qweqweqweqwe", image: 'IconManagerMister.png', style: 'ManagerLevel', earned: true),
-      new Achivement(name: "asd", description: "qweqweqweqwe", image: 'IconManagerPrincipiante.png', style: 'Player', earned: true),
-      new Achivement(name: "asd", description: "qweqweqweqwe", image: 'IconManagerPrincipiante.png', style: 'SkillLevel', earned: true)
-    ];
 
-}
-
-class Achivement {
-
-  String name;
-  String description;
-  String image;
-  String style;
-  bool earned;
-
-  static const BASIC_STYLE = "basic";
-  static const ORANGE_STYLE = "orange";
-  
-  Achivement({String name: "", String description: "", String image: "", String style: BASIC_STYLE, bool earned: false}) {
-    this.name = name;
-    this.description = description;
-    this.image = image;
-    this.style = style;
-    this.earned = earned;
-  }
-  
+  List<Achievement> achivementList = Achievement.AVAILABLES.map( (achievementMap) => new Achievement.fromJsonObject(achievementMap)).toList();
 }

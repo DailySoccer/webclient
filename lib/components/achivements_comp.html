@@ -1,6 +1,6 @@
 <div id="achivements-wrapper">
 
-  <div ng-repeat="achiv in achivementList" class="achivement {{achiv.style}}" ng-class="{'earned': achiv.earned}">
+  <div ng-repeat="achiv in achivementList" class="achivement {{achiv.style}}" ng-class="{'earned': achievementEarned(achiv.id)}">
     <div class="achivement-icon">
       <img src="images/achivements/{{achiv.image}}" ng-if="achiv.image != ''">
     </div>

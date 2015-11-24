@@ -40,7 +40,9 @@ class User {
   int trueSkill;
   Money earnedMoney;
 
-  List<String> achievements = [];
+  Set<String> achievements = new Set<String>();
+
+  bool hasAchievement(String achievement) => achievements.contains(achievement);
 
   //String get fullName => "$firstName $lastName";
   String toString() => "$userId - $email - $nickName";
@@ -159,7 +161,10 @@ class User {
     }
 
     if (jsonMap.containsKey("achievements")) {
-      achievements = jsonMap["achievements"];
+      achievements = new Set<String>();
+
+      List<String> achievementList = jsonMap["achievements"];
+      achievementList.forEach( (achievementId) => achievements.add(achievementId) );
     }
 
     return this;

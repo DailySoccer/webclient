@@ -1,16 +1,11 @@
 <div id="achivements-wrapper">
 
-  <div class="achivement earned">
-    <div class="achivement-icon"></div>
-    <div class="achivement-name">El principiante</div>
-    <div class="achivement-description">Ganar el primer torneo virtual</div>
-    <div class="achivement-reward">Recarga de energía</div>
-  </div>
-  <div class="achivement">
-    <div class="achivement-icon"></div>
-    <div class="achivement-name">El principiante</div>
-    <div class="achivement-description">Ganar el primer torneo virtual</div>
-    <div class="achivement-reward">Recarga de energía</div>
+  <div ng-repeat="achiv in achivementList" class="achivement {{achiv.style}}" ng-class="{'earned': achiv.earned}">
+    <div class="achivement-icon">
+      <img src="images/achivements/{{achiv.image}}" ng-if="achiv.image != ''">
+    </div>
+    <div class="achivement-name">{{achiv.name}}</div>
+    <div class="achivement-description">{{achiv.description}}</div>
   </div>
 
   <div class="clearfix"></div>

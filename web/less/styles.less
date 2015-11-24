@@ -528,12 +528,13 @@ body {
 	}
 }
 
-.make-tile(@columns, @rows) {
-	@row-height: 100px;
-	
+
+
+.make-tile(@columns, @rows, @row-height:100) {
+
 	.make-sm-column(@columns);
 	padding: 2px;
-	height: @row-height * @rows;
+	height: unit(@row-height * @rows, px);
 	position: relative;
 	cursor: pointer;
 

@@ -674,31 +674,31 @@
     },
     "shop"                              :
     {
+      "name"                            : "TIENDA",
       "goldshopdescription"             : "Compra Oro y accede a <strong>Torneos Oficiales</strong>",
       "trainerpointsshopdescription"    : "Aumenta tu Nivel de Mánager y ficha a los <strong>mejores jugadores</strong>",
-      "energyshopdescription"           : "Recárgate de energía para acceder a <strong>Torneos de Entrenamiento</strong>"
-    },
-    "goldshop"                          :
-    {
+      "energyshopdescription"           : "Recárgate de energía para acceder a <strong>Torneos de Entrenamiento</strong>",
+      "free"                            : "GRATIS",      
+      "mostpopularimagesource"          : "images/icon-mas-popular.png",
       "product_gold_1"                  : "CALDERILLA",
       "product_gold_2"                  : "PILA DE ORO",
       "product_gold_3"                  : "MONTÓN DE ORO",
       "product_gold_4"                  : "MALETÍN DE ORO",
       "product_gold_5"                  : "CAJA FUERTE DE ORO",
       "product_gold_6"                  : "GRAN BÓVEDA DE ORO",
-      "free"                            : "GRATIS",
-      "buttonback"                      : "Volver",
-      "mostpopularimagesource"          : "images/icon-mas-popular.png"
+      "product_maxrefill"               : "Recarga al máximo con:",
+      "autorefill"                      : "Recarga +1 automática en:",
+      "alert-user-gold-message"         : "Tienes actualmente @MONEY"
+    },
+    "goldshop"                          :
+    {
+      "buttonback"                      : "Volver"
     },
     "energyshop"                        :
     {
-      "product_maxrefill"               : "Recarga al máximo con:",
-      "autorefill"                      : "Recarga +1 automática en:",
       "buttonback"                      : "Volver",
-      "alert-no-gold-title"             : "Sin Oro suficiente",
-      "alert-no-gold-message"           : "No tienes Oro para comprar este producto",
-      "buy-gold-button"                 : "COMPRAR ORO",
-      "alert-user-gold-message"         : "Tienes actualmente @MONEY",
+
+      
       "erroruserbalancenegativetitle"   : "No tienes Oro suficiente",
       "erroruserbalancenegativegeneric" : "No tienes Oro suficiente. Por favor, compra Oro para poder continuar",
       "errordefaulttitle"               : "Atención",

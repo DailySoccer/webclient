@@ -5651,16 +5651,10 @@ scoring-rules:after,
 #transactionHistoryRoot .transaction-row:after,
 #mainShopCompWrapper:before,
 #mainShopCompWrapper:after,
-#mainShopCompWrapper .items-wrapper:before,
-#mainShopCompWrapper .items-wrapper:after,
-#goldShopComp:before,
-#goldShopComp:after,
-#trainerPointsShopComp:before,
-#trainerPointsShopComp:after,
-#goldShopComp .modal-content:before,
-#goldShopComp .modal-content:after,
-#trainerPointsShopComp .modal-content:before,
-#trainerPointsShopComp .modal-content:after,
+#mainShopCompWrapper .header:before,
+#mainShopCompWrapper .header:after,
+#mainShopCompWrapper .content:before,
+#mainShopCompWrapper .content:after,
 #goldShopComp .content:before,
 #goldShopComp .content:after,
 #trainerPointsShopComp .content:before,
@@ -5669,10 +5663,6 @@ scoring-rules:after,
 #goldShopComp .products-wrapper:after,
 #trainerPointsShopComp .products-wrapper:before,
 #trainerPointsShopComp .products-wrapper:after,
-#energyshopComp:before,
-#energyshopComp:after,
-#energyshopComp .modal-content:before,
-#energyshopComp .modal-content:after,
 #energyshopComp .content:before,
 #energyshopComp .content:after,
 #energyshopComp .products-wrapper:before,
@@ -5802,17 +5792,12 @@ scoring-rules:after,
 #transactionHistoryRoot .transaction-headers:after,
 #transactionHistoryRoot .transaction-row:after,
 #mainShopCompWrapper:after,
-#mainShopCompWrapper .items-wrapper:after,
-#goldShopComp:after,
-#trainerPointsShopComp:after,
-#goldShopComp .modal-content:after,
-#trainerPointsShopComp .modal-content:after,
+#mainShopCompWrapper .header:after,
+#mainShopCompWrapper .content:after,
 #goldShopComp .content:after,
 #trainerPointsShopComp .content:after,
 #goldShopComp .products-wrapper:after,
 #trainerPointsShopComp .products-wrapper:after,
-#energyshopComp:after,
-#energyshopComp .modal-content:after,
 #energyshopComp .content:after,
 #energyshopComp .products-wrapper:after,
 .fantasy-team-list .soccer-player-row:after,
@@ -9822,7 +9807,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   margin-left: auto;
   padding-left: 15px;
   padding-right: 15px;
-  padding: 15px 0;
+  padding: 0;
 }
 #mainShopCompWrapper > .navbar-header,
 #mainShopCompWrapper > .navbar-collapse {
@@ -9836,188 +9821,578 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
     margin-left: 0;
   }
 }
-#mainShopCompWrapper .items-wrapper {
+#mainShopCompWrapper .gold {
+  content: " ";
+  background-image: url("../images/icon-coin-lg.png");
+  width: 27px;
+  height: 27px;
+  display: inline-block;
+  vertical-align: middle;
+  vertical-align: baseline;
+  position: relative;
+  left: 4px;
+  top: 3px;
+}
+#mainShopCompWrapper .header {
   margin-left: 0;
   margin-right: 0;
 }
-#mainShopCompWrapper .items-wrapper .shop-item {
-  float: left;
-  width: 100%;
+#mainShopCompWrapper .header .shop-banner {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+#mainShopCompWrapper .content {
+  margin-left: 0;
+  margin-right: 0;
+  padding: 15px;
+}
+#mainShopCompWrapper .content .money-layout {
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  padding: 2px;
+  height: 390px;
   position: relative;
   cursor: pointer;
-  height: 80px;
-  margin-top: 10px;
+  padding: 0;
+  background-color: #dcdcdc;
 }
 @media (min-width: 768px) {
-  #mainShopCompWrapper .items-wrapper .shop-item {
+  #mainShopCompWrapper .content .money-layout {
     float: left;
-    width: 50%;
+    width: 75%;
   }
 }
-@media (max-width: 480px) {
-  #mainShopCompWrapper .items-wrapper .shop-item {
-    padding: 0 3px;
-  }
-}
-#mainShopCompWrapper .items-wrapper .shop-item .slot-base {
-  height: 80px;
-  -webkit-box-shadow: -7px 6px 5px -2px rgba(67, 67, 67, 0.5);
-  -moz-box-shadow: -7px 6px 5px -2px rgba(67, 67, 67, 0.5);
-  box-shadow: -7px 6px 5px -2px rgba(67, 67, 67, 0.5);
-}
-#mainShopCompWrapper .items-wrapper .shop-item .slot-base > * {
+#mainShopCompWrapper .content .money-layout .tile {
+  padding: 15px;
   height: 100%;
-  display: inline-block;
+  background-color: white;
 }
-#mainShopCompWrapper .items-wrapper .shop-item .slot-base .shop-item-left {
-  width: 104px;
-  background: url("../images/shopItemBgLeft.png") no-repeat right;
-}
-#mainShopCompWrapper .items-wrapper .shop-item .slot-base .shop-item-middle {
-  left: 119px;
-  right: 195px;
-  position: absolute;
-  background: url("../images/shopItemBgMiddle.png") repeat;
-}
-@media (max-width: 480px) {
-  #mainShopCompWrapper .items-wrapper .shop-item .slot-base .shop-item-middle {
-    left: 107px;
-    right: 183px;
-  }
-}
-#mainShopCompWrapper .items-wrapper .shop-item .slot-base .shop-item-right {
-  width: 195px;
-  float: right;
-  background: url("../images/shopItemBgRight.png") no-repeat left;
-}
-#mainShopCompWrapper .items-wrapper .shop-item .shop-item-pattern {
-  position: absolute;
-  right: 15px;
-  left: 15px;
-  top: 0;
-  height: 80px;
-  background: url("../images/shopItemPattern.png") repeat;
-}
-@media (max-width: 480px) {
-  #mainShopCompWrapper .items-wrapper .shop-item .shop-item-pattern {
-    right: 3px;
-    left: 3px;
-  }
-}
-#mainShopCompWrapper .items-wrapper .shop-item .slot-content .item-icon {
-  position: absolute;
-  top: 0;
-}
-#mainShopCompWrapper .items-wrapper .shop-item .slot-content .shop-item-info {
-  position: absolute;
-  top: 0;
-  right: 30px;
-  bottom: 0;
-  left: 119px;
+#mainShopCompWrapper .content .money-tile-wrapper {
+  min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  padding: 2px;
+  height: 195px;
+  position: relative;
+  cursor: pointer;
+  padding: 5px;
+}
+@media (min-width: 768px) {
+  #mainShopCompWrapper .content .money-tile-wrapper {
+    float: left;
+    width: 33.33333333%;
+  }
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile {
+  padding: 15px;
+  height: 100%;
+  background-color: white;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile {
+  padding: 0;
+  background-color: transparent;
+  cursor: default;
+  position: relative;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .header {
+  height: 35px;
+  border-radius: 10px 10px 0 0;
+  background-color: #0d75a6;
+  text-align: center;
+  position: relative;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .header .title {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 11pt;
+  color: #afd3e4;
+  top: 8px;
+  position: relative;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content {
+  background-image: url("../images/shopItemBg.jpg");
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  border-radius: 0px 0px 10px 10px;
+  position: relative;
+  height: 150px;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .gold-icon {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 125px;
+  text-align: center;
+  height: 100%;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .gold-quantity {
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 20pt;
+  color: #ffffff;
+  text-transform: uppercase;
+  position: relative;
+  top: 15px;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .gold-quantity:after {
+  content: " ";
+  background-image: url("../images/icon-coin-lg.png");
+  width: 27px;
+  height: 27px;
+  display: inline-block;
+  vertical-align: middle;
+  vertical-align: baseline;
+  position: relative;
+  left: 4px;
+  top: 3px;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper {
+  display: inline-block;
+  height: 30px;
+  position: absolute;
+  bottom: 15px;
+  width: 125px;
+  right: 15px;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price {
+  font-size: 14pt;
+  background-color: #428bca;
+  border-color: #357ebd;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  -webkit-transition: All 0.08s ease-out;
+  -moz-transition: All 0.08s ease-out;
+  -ms-transition: All 0.08s ease-out;
+  -o-transition: All 0.08s ease-out;
+  transition: All 0.08s ease-out;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  background-color: #a1c931;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #ffffff;
+  outline: none !important;
+  width: 100%;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:hover,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:focus,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:active,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.active,
+.open .dropdown-toggle#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price {
+  color: #ffffff;
+  background-color: #3276b1;
+  border-color: #285e8e;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:active,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.active,
+.open .dropdown-toggle#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price {
+  background-image: none;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.disabled,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price[disabled],
+fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.disabled:hover,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price[disabled]:hover,
+fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:hover,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.disabled:focus,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price[disabled]:focus,
+fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:focus,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.disabled:active,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price[disabled]:active,
+fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:active,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.disabled.active,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price[disabled].active,
+fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.active {
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price .badge {
+  color: #428bca;
+  background-color: #ffffff;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:focus,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:active:focus,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:hover,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:focus {
+  color: #333333;
+  text-decoration: none;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:active,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.disabled,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price[disabled],
+fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:active:focus,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.active:focus {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:active:hover,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.active:hover {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:hover:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:active,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.active {
+  background-color: #a1c931;
+  margin-top: 4px;
+  box-shadow: none;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.disabled,
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price[disabled],
+fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price {
+  background-color: #b5d657;
+  box-shadow: none;
+  margin-top: 4px;
+  color: #ebebeb;
+  cursor: not-allowed !important;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.close {
+  background-color: #a1c931;
+  outline: none !important;
+  color: #ffffff;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .free-increment {
+  width: 68px;
+  height: 37px;
+  background: url("../images/BuyGoldFreeBase.png");
+  position: absolute;
+  bottom: 40px;
+  width: 125px;
+  background-position-x: center;
+  background-repeat: no-repeat;
+  right: 15px;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .free-increment .free-increment-count {
+  display: block;
+  padding-top: 1px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 13pt;
+  color: #ffffff;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .free-increment .free-increment-desc {
+  display: block;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 7pt;
+  color: #ffffff;
+  position: relative;
+  bottom: 4px;
+}
+#mainShopCompWrapper .content .money-tile-wrapper .tile .content .gold-item-popular {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#mainShopCompWrapper .content .energy-layout {
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 2px;
+  height: 390px;
+  position: relative;
+  cursor: pointer;
+  padding: 5px;
+}
+@media (min-width: 768px) {
+  #mainShopCompWrapper .content .energy-layout {
+    float: left;
+    width: 25%;
+  }
+}
+#mainShopCompWrapper .content .energy-layout .tile {
+  padding: 15px;
+  height: 100%;
+  background-color: white;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper {
+  cursor: default;
+  background-color: #000000;
+  background-image: url("../images/energyBg.png");
+  background-repeat: no-repeat;
+  background-position: center top;
+  border-radius: 10px;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile {
+  padding: 0;
+  background-color: transparent;
+  cursor: default;
+  position: relative;
+  min-height: 185px;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .products {
+  min-height: 170px;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-separator {
+  margin: 20px;
+  border-top: 1px solid #59add5;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-icon {
+  margin: 0 auto;
+  display: block;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-description {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
   color: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
 }
-@media (max-width: 480px) {
-  #mainShopCompWrapper .items-wrapper .shop-item .slot-content .shop-item-info {
-    left: 107px;
-  }
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper {
+  padding-top: 15px;
+  max-height: 65px;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button {
+  background-color: #428bca;
+  border-color: #357ebd;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  -webkit-transition: All 0.08s ease-out;
+  -moz-transition: All 0.08s ease-out;
+  -ms-transition: All 0.08s ease-out;
+  -o-transition: All 0.08s ease-out;
+  transition: All 0.08s ease-out;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  background-color: #a1c931;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #ffffff;
+  outline: none !important;
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:hover,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:focus,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:active,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button.active,
+.open .dropdown-toggle#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button {
+  color: #ffffff;
+  background-color: #3276b1;
+  border-color: #285e8e;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:active,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button.active,
+.open .dropdown-toggle#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button {
+  background-image: none;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button.disabled,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button[disabled],
+fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button.disabled:hover,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button[disabled]:hover,
+fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:hover,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button.disabled:focus,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button[disabled]:focus,
+fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:focus,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button.disabled:active,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button[disabled]:active,
+fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:active,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button.disabled.active,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button[disabled].active,
+fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button.active {
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button .badge {
+  color: #428bca;
+  background-color: #ffffff;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:focus,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:active:focus,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:hover,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:focus {
+  color: #333333;
+  text-decoration: none;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:active,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button.disabled,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button[disabled],
+fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:active:focus,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button.active:focus {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:active:hover,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button.active:hover {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:hover:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:active,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button.active {
+  background-color: #a1c931;
+  margin-top: 4px;
+  box-shadow: none;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button.disabled,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button[disabled],
+fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button {
+  background-color: #b5d657;
+  box-shadow: none;
+  margin-top: 4px;
+  color: #ebebeb;
+  cursor: not-allowed !important;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button.close {
+  background-color: #a1c931;
+  outline: none !important;
+  color: #ffffff;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button .quantity {
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 20pt;
+  color: #ffffff;
+  text-transform: uppercase;
+  padding: 0 20px;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button .quantity:after {
+  content: " ";
+  background-image: url("../images/icon-coin-lg.png");
+  width: 27px;
+  height: 27px;
+  display: inline-block;
+  vertical-align: middle;
+  vertical-align: baseline;
+  position: relative;
+  left: 4px;
+  top: 3px;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .no-purchasable {
+  padding: 0 10px 18px;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .product-time-left {
+  display: block;
+  text-align: center;
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 28pt;
+  color: #59add5;
+  text-transform: uppercase;
 }
 #goldShopComp,
 #trainerPointsShopComp {
-  background-color: #777777;
-  color: #ffffff;
-  padding: 5px;
-  margin-right: auto;
-  margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-@media (min-width: 768px) {
-  #goldShopComp,
-  #trainerPointsShopComp {
-    width: 750px;
-  }
-}
-@media (min-width: 992px) {
-  #goldShopComp,
-  #trainerPointsShopComp {
-    width: 970px;
-  }
-}
-@media (min-width: 1200px) {
-  #goldShopComp,
-  #trainerPointsShopComp {
-    width: 970px;
-  }
-}
-#goldShopComp > .navbar-header,
-#trainerPointsShopComp > .navbar-header,
-#goldShopComp > .navbar-collapse,
-#trainerPointsShopComp > .navbar-collapse {
-  margin-right: -15px;
-  margin-left: -15px;
-}
-@media (min-width: 768px) {
-  #goldShopComp > .navbar-header,
-  #trainerPointsShopComp > .navbar-header,
-  #goldShopComp > .navbar-collapse,
-  #trainerPointsShopComp > .navbar-collapse {
-    margin-right: 0;
-    margin-left: 0;
-  }
-}
-#goldShopComp .modal-content,
-#trainerPointsShopComp .modal-content {
-  margin-left: 0;
-  margin-right: 0;
-  padding-left: 0px;
-  padding-right: 0px;
-}
-@media (min-width: 768px) {
-  #goldShopComp,
-  #trainerPointsShopComp {
-    background-color: #afafaf;
-  }
-  #goldShopComp .modal-dialog,
-  #trainerPointsShopComp .modal-dialog {
-    width: 90%;
-    max-width: 900px;
-  }
-}
-@media (max-width: 767px) {
-  #goldShopComp #modalRoot,
-  #trainerPointsShopComp #modalRoot {
-    border-width: 1px;
-    border-style: solid none none none;
-    border-color: #fba61a;
-    border-radius: 0;
-    top: 68px;
-    background-color: #ffffff;
-  }
-  #goldShopComp #modalRoot .modal-dialog,
-  #trainerPointsShopComp #modalRoot .modal-dialog {
-    margin: 0;
-  }
-  #goldShopComp #modalRoot .modal-dialog .modal-content,
-  #trainerPointsShopComp #modalRoot .modal-dialog .modal-content {
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-  }
-}
-#goldShopComp .modal-content,
-#trainerPointsShopComp .modal-content {
-  background-color: #dcdcdc;
+  /*
+	.modal-properties-default();
+	.modal-content {background-color: @greyLight;}
+*/
 }
 #goldShopComp .content,
 #trainerPointsShopComp .content {
@@ -10433,76 +10808,10 @@ fieldset[disabled] #trainerPointsShopComp .buttons-wrapper .cancel-button {
   color: #ffffff;
 }
 #energyshopComp {
-  background-color: #777777;
-  color: #ffffff;
-  padding: 5px;
-  margin-right: auto;
-  margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-@media (min-width: 768px) {
-  #energyshopComp {
-    width: 750px;
-  }
-}
-@media (min-width: 992px) {
-  #energyshopComp {
-    width: 970px;
-  }
-}
-@media (min-width: 1200px) {
-  #energyshopComp {
-    width: 970px;
-  }
-}
-#energyshopComp > .navbar-header,
-#energyshopComp > .navbar-collapse {
-  margin-right: -15px;
-  margin-left: -15px;
-}
-@media (min-width: 768px) {
-  #energyshopComp > .navbar-header,
-  #energyshopComp > .navbar-collapse {
-    margin-right: 0;
-    margin-left: 0;
-  }
-}
-#energyshopComp .modal-content {
-  margin-left: 0;
-  margin-right: 0;
-  padding-left: 0px;
-  padding-right: 0px;
-}
-@media (min-width: 768px) {
-  #energyshopComp {
-    background-color: #afafaf;
-  }
-  #energyshopComp .modal-dialog {
-    width: 90%;
-    max-width: 900px;
-  }
-}
-@media (max-width: 767px) {
-  #energyshopComp #modalRoot {
-    border-width: 1px;
-    border-style: solid none none none;
-    border-color: #fba61a;
-    border-radius: 0;
-    top: 68px;
-    background-color: #ffffff;
-  }
-  #energyshopComp #modalRoot .modal-dialog {
-    margin: 0;
-  }
-  #energyshopComp #modalRoot .modal-dialog .modal-content {
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-  }
-}
-#energyshopComp .modal-content {
-  background-color: #dcdcdc;
+  /*
+ 	.modal-properties-default();
+	.modal-content {background-color: @greyLight;}
+*/
 }
 #energyshopComp .content {
   margin-right: auto;
@@ -20776,17 +21085,12 @@ users-list#usersList > .epic-tooltip {
 #homeRoot #transactionHistoryRoot .transaction-headers,
 #homeRoot #transactionHistoryRoot .transaction-row,
 #homeRoot #mainShopCompWrapper,
-#homeRoot #mainShopCompWrapper .items-wrapper,
-#homeRoot #goldShopComp,
-#homeRoot #trainerPointsShopComp,
-#homeRoot #goldShopComp .modal-content,
-#homeRoot #trainerPointsShopComp .modal-content,
+#homeRoot #mainShopCompWrapper .header,
+#homeRoot #mainShopCompWrapper .content,
 #homeRoot #goldShopComp .content,
 #homeRoot #trainerPointsShopComp .content,
 #homeRoot #goldShopComp .products-wrapper,
 #homeRoot #trainerPointsShopComp .products-wrapper,
-#homeRoot #energyshopComp,
-#homeRoot #energyshopComp .modal-content,
 #homeRoot #energyshopComp .content,
 #homeRoot #energyshopComp .products-wrapper,
 #homeRoot .fantasy-team-list .soccer-player-row,

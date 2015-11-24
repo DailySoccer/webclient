@@ -1,0 +1,80 @@
+#achievements-wrapper {
+		@colors: '@{blueDark}',  '@{orange}',  '@{darkRed}',	   '@{greyUltraDark}',  '@{lightGreen}';
+		@names:  'Training', 	   'Oficial',    'ManagerLevel',   'Player', 					  'SkillLevel';
+	
+		padding: 20px 10px;
+		background-color: @white;
+		.achievement {
+			.make-xs-column(3);
+			text-align: center;
+			padding: 10px 5px;
+			//border: 1px solid red;
+			opacity: 0.5;
+			
+			&.earned {
+				opacity: 1;
+			}
+			
+			.achievement-icon {
+				position: relative;
+				
+				img {
+					top: 32px;
+					position: relative;
+					display: block;
+					left: 32px;
+				}
+				
+				.achievement-level {
+					position: absolute;
+					display: block;
+					left: 40px;
+					bottom: 5px;
+					width: 48px;
+					height: 48px;
+					text-align: center;
+					background-color: @blueDark;
+					.exo_bold(16pt, @white);
+					border-radius: 100%;
+					border: 2px solid @white;
+					padding: 9px 0;
+				}
+			}
+			
+			.achievement-config(@iconImage, @color) {
+				.achievement-icon {
+					.addIcon(@iconImage, 128px, 128px);
+				}
+				.achievement-name {
+					.exo_bold(16pt, @color);
+				}
+				.achievement-level {
+					background-color: @color;
+				}
+			}
+			
+			.achievement-config('basic', @greyUltraDark);
+			
+			.achievement-description {
+				.opensans_normal(10pt, @greyDark);
+				line-height: 18px;
+				height: 54px;
+			}
+			
+			.loop(@index) when (@index  > 0) {
+				.loop((@index  - 1));    // next iteration
+    		@color: e(extract(@colors, @index));
+    		@name: e(extract(@names, @index));
+				@photo: "achievements/AchievementBase@{name}.png";
+				&.@{name} {	
+					.achievement-config(@photo, @color);
+				}
+			}
+			
+			@i: length(@colors);
+			.loop(length(@colors)); // launch the loop
+			
+		}
+
+
+}

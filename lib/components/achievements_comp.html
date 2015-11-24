@@ -1,12 +1,11 @@
 <div id="achievements-wrapper">
 
-  <div ng-repeat="achiev in achievementList" class="achievement {{achiev.style}}" ng-class="{'earned': achiev.earned}">
+  <div ng-repeat="achiev in achievementList" class="achievement {{achiev.style}}" ng-class="{'earned': achievementEarned(achiev.id)}">
     <div class="achievement-icon">
-      <img src="images/achievement/{{achiev.image}}" ng-if="achiev.image != ''">
-      <span class="achievement" ng-if="achiev.level != -1">{{achiev.level}}</span>
+      <img src="images/achievements/{{achiev.image}}" ng-if="achiev.image != ''">
+      <span class="achievement-level" ng-if="achiev.level != -1">{{achiev.level}}</span>
     </div>
     <div class="achievement-name">{{achiev.name}}</div>
-    <div class="achievement-description">{{achiev.description}}</div>
     <div class="achievement-description">{{achiev.description}}</div>
   </div>
 

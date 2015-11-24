@@ -21763,10 +21763,11 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
 #helpInfo .tab-pane.active {
   display: block;
 }
-#achivements-wrapper {
-  padding: 10px;
+#achievements-wrapper {
+  padding: 20px 10px;
+  background-color: #ffffff;
 }
-#achivements-wrapper .achivement {
+#achievements-wrapper .achievement {
   position: relative;
   float: left;
   width: 25%;
@@ -21774,19 +21775,40 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   padding-left: 15px;
   padding-right: 15px;
   text-align: center;
-  padding: 20px 5px;
+  padding: 10px 5px;
   opacity: 0.5;
 }
-#achivements-wrapper .achivement.earned {
+#achievements-wrapper .achievement.earned {
   opacity: 1;
 }
-#achivements-wrapper .achivement .achivement-icon img {
+#achievements-wrapper .achievement .achievement-icon {
+  position: relative;
+}
+#achievements-wrapper .achievement .achievement-icon img {
   top: 32px;
   position: relative;
   display: block;
   left: 32px;
 }
-#achivements-wrapper .achivement .achivement-icon {
+#achievements-wrapper .achievement .achievement-icon .achievement-level {
+  position: absolute;
+  display: block;
+  left: 40px;
+  bottom: 5px;
+  width: 48px;
+  height: 48px;
+  text-align: center;
+  background-color: #214a5f;
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  font-size: 16pt;
+  color: #ffffff;
+  text-transform: uppercase;
+  border-radius: 100%;
+  border: 2px solid #ffffff;
+  padding: 9px 0;
+}
+#achievements-wrapper .achievement .achievement-icon {
   content: " ";
   background-image: url("../images/basic");
   width: 128px;
@@ -21794,93 +21816,113 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   display: inline-block;
   vertical-align: middle;
 }
-#achivements-wrapper .achivement .achivement-name {
+#achievements-wrapper .achievement .achievement-name {
   font-family: 'Exo', sans-serif;
   font-weight: 600;
   font-size: 16pt;
   color: #434343;
   text-transform: uppercase;
 }
-#achivements-wrapper .achivement .achivement-description {
+#achievements-wrapper .achievement .achievement-level {
+  background-color: #434343;
+}
+#achievements-wrapper .achievement .achievement-description {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
   color: #777777;
+  line-height: 18px;
+  height: 54px;
 }
-#achivements-wrapper .achivement.Training .achivement-icon {
+#achievements-wrapper .achievement.Training .achievement-icon {
   content: " ";
-  background-image: url("../images/achivements/AchievementBaseTraining.png");
+  background-image: url("../images/achievements/AchievementBaseTraining.png");
   width: 128px;
   height: 128px;
   display: inline-block;
   vertical-align: middle;
 }
-#achivements-wrapper .achivement.Training .achivement-name {
+#achievements-wrapper .achievement.Training .achievement-name {
   font-family: 'Exo', sans-serif;
   font-weight: 600;
   font-size: 16pt;
   color: #214a5f;
   text-transform: uppercase;
 }
-#achivements-wrapper .achivement.Oficial .achivement-icon {
+#achievements-wrapper .achievement.Training .achievement-level {
+  background-color: #214a5f;
+}
+#achievements-wrapper .achievement.Oficial .achievement-icon {
   content: " ";
-  background-image: url("../images/achivements/AchievementBaseOficial.png");
+  background-image: url("../images/achievements/AchievementBaseOficial.png");
   width: 128px;
   height: 128px;
   display: inline-block;
   vertical-align: middle;
 }
-#achivements-wrapper .achivement.Oficial .achivement-name {
+#achievements-wrapper .achievement.Oficial .achievement-name {
   font-family: 'Exo', sans-serif;
   font-weight: 600;
   font-size: 16pt;
   color: #fa9c19;
   text-transform: uppercase;
 }
-#achivements-wrapper .achivement.ManagerLevel .achivement-icon {
+#achievements-wrapper .achievement.Oficial .achievement-level {
+  background-color: #fa9c19;
+}
+#achievements-wrapper .achievement.ManagerLevel .achievement-icon {
   content: " ";
-  background-image: url("../images/achivements/AchievementBaseManagerLevel.png");
+  background-image: url("../images/achievements/AchievementBaseManagerLevel.png");
   width: 128px;
   height: 128px;
   display: inline-block;
   vertical-align: middle;
 }
-#achivements-wrapper .achivement.ManagerLevel .achivement-name {
+#achievements-wrapper .achievement.ManagerLevel .achievement-name {
   font-family: 'Exo', sans-serif;
   font-weight: 600;
   font-size: 16pt;
   color: #d90006;
   text-transform: uppercase;
 }
-#achivements-wrapper .achivement.Player .achivement-icon {
+#achievements-wrapper .achievement.ManagerLevel .achievement-level {
+  background-color: #d90006;
+}
+#achievements-wrapper .achievement.Player .achievement-icon {
   content: " ";
-  background-image: url("../images/achivements/AchievementBasePlayer.png");
+  background-image: url("../images/achievements/AchievementBasePlayer.png");
   width: 128px;
   height: 128px;
   display: inline-block;
   vertical-align: middle;
 }
-#achivements-wrapper .achivement.Player .achivement-name {
+#achievements-wrapper .achievement.Player .achievement-name {
   font-family: 'Exo', sans-serif;
   font-weight: 600;
   font-size: 16pt;
   color: #434343;
   text-transform: uppercase;
 }
-#achivements-wrapper .achivement.SkillLevel .achivement-icon {
+#achievements-wrapper .achievement.Player .achievement-level {
+  background-color: #434343;
+}
+#achievements-wrapper .achievement.SkillLevel .achievement-icon {
   content: " ";
-  background-image: url("../images/achivements/AchievementBaseSkillLevel.png");
+  background-image: url("../images/achievements/AchievementBaseSkillLevel.png");
   width: 128px;
   height: 128px;
   display: inline-block;
   vertical-align: middle;
 }
-#achivements-wrapper .achivement.SkillLevel .achivement-name {
+#achievements-wrapper .achievement.SkillLevel .achievement-name {
   font-family: 'Exo', sans-serif;
   font-weight: 600;
   font-size: 16pt;
   color: #8eb819;
   text-transform: uppercase;
+}
+#achievements-wrapper .achievement.SkillLevel .achievement-level {
+  background-color: #8eb819;
 }
 /*************************************************
 Si hay que añadir nuevas banderas, ir a la siguiente url

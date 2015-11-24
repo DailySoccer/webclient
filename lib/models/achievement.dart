@@ -70,18 +70,20 @@ class Achievement {
   String description;
   String image;
   String style;
+  int level;
 
   static const BASIC_STYLE = "basic";
   static const ORANGE_STYLE = "orange";
 
   bool earnedByUser(User user) => user.achievements.contains(id);
 
-  Achievement({String id: "", String name: "", String description: "", String image: "", String style: BASIC_STYLE}) {
+  Achievement({String id: "", String name: "", String description: "", String image: "", String style: BASIC_STYLE, int level: -1}) {
     this.id = id;
     this.name = name;
     this.description = description;
     this.image = image;
     this.style = style;
+    this.level = level;
   }
 
   Achievement.fromJsonObject(Map jsonMap) {
@@ -90,6 +92,7 @@ class Achievement {
     description = jsonMap.containsKey("description") ? jsonMap["description"] : "";
     image = jsonMap.containsKey("image") ? jsonMap["image"] : "";
     style = jsonMap.containsKey("style") ? jsonMap["style"] : "";
+    level = jsonMap.containsKey("level") ? jsonMap["level"] : -1;
   }
 
   static String translate(String key) => StringUtils.translate(key, "achievements");
@@ -254,35 +257,40 @@ class Achievement {
       "name": translate("name_true_skill_level_4"), // "Nivel de Skill 4",
       "description": translate("desc_true_skill_level_4"), // "Nivel de Skill 4",
       "image": 'IconManagerPrincipiante.png',
-      "style": 'SkillLevel'
+      "style": 'SkillLevel',
+      "level": 4
     },
     {
       "id": TRUE_SKILL_LEVEL_5,
       "name": translate("name_true_skill_level_5"), // "Nivel de Skill 5",
       "description": translate("desc_true_skill_level_5"), // "Nivel de Skill 5",
       "image": 'IconManagerPrincipiante.png',
-      "style": 'SkillLevel'
+      "style": 'SkillLevel',
+      "level": 5
     },
     {
       "id": MANAGER_LEVEL_3,
       "name": translate("name_manager_level_3"), // "Nivel de Manager 3",
       "description": translate("desc_manager_level_3"), // "Nivel de Manager 3",
       "image": 'IconManagerPrincipiante.png',
-      "style": 'SkillLevel'
+      "style": 'SkillLevel',
+      "level": 3
     },
     {
       "id": MANAGER_LEVEL_4,
       "name": translate("name_manager_level_4"), // "Nivel de Manager 4",
       "description": translate("desc_manager_level_4"), // "Nivel de Manager 4",
       "image": 'IconManagerPrincipiante.png',
-      "style": 'SkillLevel'
+      "style": 'SkillLevel',
+      "level": 4
     },
     {
       "id": MANAGER_LEVEL_5,
       "name": translate("name_manager_level_5"), // "Nivel de Manager 5",
       "description": translate("desc_manager_level_5"), // "Nivel de Manager 5",
       "image": 'IconManagerPrincipiante.png',
-      "style": 'SkillLevel'
+      "style": 'SkillLevel',
+      "level": 5
     }
   ];
 

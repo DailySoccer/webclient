@@ -1,5 +1,6 @@
 #mainShopCompWrapper {
 	@item-height: 195;
+	@quantity-font-size: 24pt;
 
 	.container-fluid();
 	padding: 0;
@@ -69,7 +70,7 @@
 						height: 100%;
 
 						.gold-quantity{
-							.exo_light(28pt, @white);
+							.exo_light(@quantity-font-size, @white);
 							position: relative;
 							top: 15px;
 							&:after{
@@ -133,90 +134,56 @@
 			}
 		}
 
-		.energy-tile {
-			cursor: default;
+		.energy-tiles {
 			.make-tile(3, 2, @item-height);
-			padding: 0;
-		}
-		
+			padding: 5px;
 
-	}
-/*
-	.items-wrapper {
-	 	.make-row(0);
-	 	.shop-item {
-	 		.make-xs-column(12);
-	 		.make-sm-column(6);
-	 		position: relative;
-	 		cursor: pointer;
-	 		height: 80px;
-			margin-top: 10px;
-			@media (max-width: @screen-xs-min) {
-				padding: 0 3px;
-			}
-			.slot-base {
-				height: 80px;
-				.make-shadow(-7px, 6px, 5px, -2px, @greyUltraDark, 0.5);
-				> * {
-					height: 100%;
-					display: inline-block;
+		}
+
+		.energy-tiles-wrapper {
+			cursor: default;
+			background-color: @black;
+			background-image: url("@{images}/energyBg.png");
+			background-repeat: no-repeat;
+			background-position: center top;
+			border-radius: 10px;
+
+			.tile {
+				padding: 0;
+				background-color: transparent;
+				cursor: default;
+				position: relative;
+				min-height: 185px;
+				
+				.energy-icon {
+					margin: 0 auto;
+					display: block;
 				}
-				.shop-item-left {					
-					width: 104px;
-					background: url("@{images}/shopItemBgLeft.png") no-repeat right;
+				.energy-description {
+					.opensans_normal(10pt, @white);
+					text-align: center;
 				}
-				.shop-item-middle {					
-					left: 119px;
-					right: 195px;
-					@media (max-width: @screen-xs-min) {
-						left: 107px;
-						right: 183px;
+				.button-wrapper {
+					padding-top: 15px;
+					.refill-button{
+						.btn-primary();
+						margin-right: auto;
+						margin-left: auto;
+						display: block;
+						.quantity {
+							.exo_light(@quantity-font-size, @white);
+							padding: 0 20px;
+							&:after{
+								.addIcon("icon-coin-lg.png", 27px, 27px);
+								vertical-align: baseline;
+								position: relative;
+								left: 4px;
+							}
+						}
 					}
-					position: absolute;
-					background: url("@{images}/shopItemBgMiddle.png") repeat;
-				}		
-				.shop-item-right {
-					width: 195px;
-					float: right;
-					background: url("@{images}/shopItemBgRight.png") no-repeat left;
 				}
-	 		}
-	 		.shop-item-pattern {
-				position: absolute;
-				right: 15px;
-				left: 15px;
-				@media (max-width: @screen-xs-min) {
-					right: 3px;
-					left: 3px;
-				}
-				top: 0;
-				height: 80px;
-				background: url("../images/shopItemPattern.png") repeat;
+				
 			}
-	 		.slot-content {
-				.item-icon {
-					position: absolute;
-					top: 0;
-				}
-		 		.shop-item-info {
-		 			position: absolute;
-		 			top: 0;
-		 			right: 30px;
-		 			bottom: 0;
-		 			left: 119px;
-		 			@media (max-width: @screen-xs-min) {
-						left: 107px;
-		 			}
-		 			padding-left: 15px;
-		 			padding-right: 15px;
-		 			
-		 			.opensans_normal(10pt, @white);
-		 			display: flex;
-		 			justify-content:center;
-		 			align-items:center;
-		 		}
-		 	}
-	 	}
+		}
 	}
-*/
 }

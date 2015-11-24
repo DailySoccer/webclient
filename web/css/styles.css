@@ -9798,84 +9798,6 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   padding-left: 15px;
   padding-right: 15px;
   padding: 0;
-  /*
-	.items-wrapper {
-	 	.make-row(0);
-	 	.shop-item {
-	 		.make-xs-column(12);
-	 		.make-sm-column(6);
-	 		position: relative;
-	 		cursor: pointer;
-	 		height: 80px;
-			margin-top: 10px;
-			@media (max-width: @screen-xs-min) {
-				padding: 0 3px;
-			}
-			.slot-base {
-				height: 80px;
-				.make-shadow(-7px, 6px, 5px, -2px, @greyUltraDark, 0.5);
-				> * {
-					height: 100%;
-					display: inline-block;
-				}
-				.shop-item-left {					
-					width: 104px;
-					background: url("@{images}/shopItemBgLeft.png") no-repeat right;
-				}
-				.shop-item-middle {					
-					left: 119px;
-					right: 195px;
-					@media (max-width: @screen-xs-min) {
-						left: 107px;
-						right: 183px;
-					}
-					position: absolute;
-					background: url("@{images}/shopItemBgMiddle.png") repeat;
-				}		
-				.shop-item-right {
-					width: 195px;
-					float: right;
-					background: url("@{images}/shopItemBgRight.png") no-repeat left;
-				}
-	 		}
-	 		.shop-item-pattern {
-				position: absolute;
-				right: 15px;
-				left: 15px;
-				@media (max-width: @screen-xs-min) {
-					right: 3px;
-					left: 3px;
-				}
-				top: 0;
-				height: 80px;
-				background: url("../images/shopItemPattern.png") repeat;
-			}
-	 		.slot-content {
-				.item-icon {
-					position: absolute;
-					top: 0;
-				}
-		 		.shop-item-info {
-		 			position: absolute;
-		 			top: 0;
-		 			right: 30px;
-		 			bottom: 0;
-		 			left: 119px;
-		 			@media (max-width: @screen-xs-min) {
-						left: 107px;
-		 			}
-		 			padding-left: 15px;
-		 			padding-right: 15px;
-		 			
-		 			.opensans_normal(10pt, @white);
-		 			display: flex;
-		 			justify-content:center;
-		 			align-items:center;
-		 		}
-		 	}
-	 	}
-	}
-*/
 }
 #mainShopCompWrapper > .navbar-header,
 #mainShopCompWrapper > .navbar-collapse {
@@ -9995,7 +9917,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
 #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .gold-quantity {
   font-family: 'Exo', sans-serif;
   font-weight: 300;
-  font-size: 28pt;
+  font-size: 24pt;
   color: #ffffff;
   text-transform: uppercase;
   position: relative;
@@ -10202,8 +10124,7 @@ fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .cont
   top: 0;
   left: 0;
 }
-#mainShopCompWrapper .content .energy-tile {
-  cursor: default;
+#mainShopCompWrapper .content .energy-tiles {
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
@@ -10211,18 +10132,216 @@ fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .cont
   height: 390px;
   position: relative;
   cursor: pointer;
-  padding: 0;
+  padding: 5px;
 }
 @media (min-width: 768px) {
-  #mainShopCompWrapper .content .energy-tile {
+  #mainShopCompWrapper .content .energy-tiles {
     float: left;
     width: 25%;
   }
 }
-#mainShopCompWrapper .content .energy-tile .tile {
+#mainShopCompWrapper .content .energy-tiles .tile {
   padding: 15px;
   height: 100%;
   background-color: white;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper {
+  cursor: default;
+  background-color: #000000;
+  background-image: url("../images/energyBg.png");
+  background-repeat: no-repeat;
+  background-position: center top;
+  border-radius: 10px;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile {
+  padding: 0;
+  background-color: transparent;
+  cursor: default;
+  position: relative;
+  min-height: 185px;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-icon {
+  margin: 0 auto;
+  display: block;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-description {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #ffffff;
+  text-align: center;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper {
+  padding-top: 15px;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button {
+  background-color: #428bca;
+  border-color: #357ebd;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  -webkit-transition: All 0.08s ease-out;
+  -moz-transition: All 0.08s ease-out;
+  -ms-transition: All 0.08s ease-out;
+  -o-transition: All 0.08s ease-out;
+  transition: All 0.08s ease-out;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  background-color: #a1c931;
+  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
+  color: #ffffff;
+  outline: none !important;
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:hover,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:focus,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:active,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button.active,
+.open .dropdown-toggle#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button {
+  color: #ffffff;
+  background-color: #3276b1;
+  border-color: #285e8e;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:active,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button.active,
+.open .dropdown-toggle#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button {
+  background-image: none;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button.disabled,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button[disabled],
+fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button.disabled:hover,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button[disabled]:hover,
+fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:hover,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button.disabled:focus,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button[disabled]:focus,
+fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:focus,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button.disabled:active,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button[disabled]:active,
+fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:active,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button.disabled.active,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button[disabled].active,
+fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button.active {
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button .badge {
+  color: #428bca;
+  background-color: #ffffff;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:focus,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:active:focus,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:hover,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:focus {
+  color: #333333;
+  text-decoration: none;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:active,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button.disabled,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button[disabled],
+fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:active:focus,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button.active:focus {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:active:hover,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button.active:hover {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:hover:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:active,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button.active {
+  background-color: #a1c931;
+  margin-top: 4px;
+  box-shadow: none;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button.disabled,
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button[disabled],
+fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button {
+  background-color: #b5d657;
+  box-shadow: none;
+  margin-top: 4px;
+  color: #ebebeb;
+  cursor: not-allowed !important;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button.close {
+  background-color: #a1c931;
+  outline: none !important;
+  color: #ffffff;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button .quantity {
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 24pt;
+  color: #ffffff;
+  text-transform: uppercase;
+  padding: 0 20px;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button .quantity:after {
+  content: " ";
+  background-image: url("../images/icon-coin-lg.png");
+  width: 27px;
+  height: 27px;
+  display: inline-block;
+  vertical-align: middle;
+  vertical-align: baseline;
+  position: relative;
+  left: 4px;
 }
 #goldShopComp,
 #trainerPointsShopComp {

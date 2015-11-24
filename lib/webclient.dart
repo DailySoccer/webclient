@@ -57,7 +57,7 @@ import 'package:webclient/components/welcome_comp.dart';
 import 'package:webclient/components/week_calendar_comp.dart';
 import 'package:webclient/components/tutorial_list_comp.dart';
 import 'package:webclient/components/create_contest_comp.dart';
-import 'package:webclient/components/achivements_comp.dart';
+import 'package:webclient/components/achievements_comp.dart';
 
 import 'package:webclient/components/account/login_comp.dart';
 import 'package:webclient/components/account/join_comp.dart';
@@ -186,7 +186,7 @@ class WebClientApp extends Module {
     bind(GoldShopComp);
     bind(EnergyShopComp);
     bind(HelpInfoComp);
-    bind(AchivementsComp);
+    bind(AchievementsComp);
     bind(RouteInitializerFn, toValue: webClientRouteInitializer);
     bind(NgRoutingUsePushState, toValue: new NgRoutingUsePushState.value(false));
 

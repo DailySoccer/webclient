@@ -31,11 +31,13 @@ class LeaderboardComp {
 
   bool isThePlayer(id) => id == profileService.user.userId/*get del singleton*/;
 
+  int get achievementsEarned => Achievement.AVAILABLES.where( (achievement) => profileService.user.hasAchievement(achievement["id"]) ).length;
+
   String get trueskillTabTitle    => getLocalizedText("trueskill_tab",    substitutions: {"PLAYER_POSITION": playerPointsInfo['position']});
   String get goldTabTitle         => getLocalizedText("gold_tab",         substitutions: {"PLAYER_POSITION": playerMoneyInfo['position']});
-  String get achievementsTabTitle => getLocalizedText("achievements_tab", substitutions: {"PLAYER_ACHIEVEMENTS": profileService.user.achievements.length, 
+  String get achievementsTabTitle => getLocalizedText("achievements_tab", substitutions: {"PLAYER_ACHIEVEMENTS": achievementsEarned,
                                                                                           "TOTAL_ACHIEVEMENTS": Achievement.AVAILABLES.length});
-  
+
   List<Map> pointsUserList;
   List<Map> moneyUserList;
   Map playerPointsInfo = {'position':'_', 'id':'', 'name': '', 'points': ' '};

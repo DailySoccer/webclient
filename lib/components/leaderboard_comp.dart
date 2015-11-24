@@ -7,6 +7,7 @@ import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/models/user.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/models/achievement.dart';
 
 
 @Component(
@@ -30,13 +31,18 @@ class LeaderboardComp {
 
   bool isThePlayer(id) => id == profileService.user.userId/*get del singleton*/;
 
+  String get trueskillTabTitle    => getLocalizedText("trueskill_tab",    substitutions: {"PLAYER_POSITION": playerPointsInfo['position']});
+  String get goldTabTitle         => getLocalizedText("gold_tab",         substitutions: {"PLAYER_POSITION": playerMoneyInfo['position']});
+  String get achievementsTabTitle => getLocalizedText("achievements_tab", substitutions: {"PLAYER_ACHIEVEMENTS": profileService.user.achievements.length, 
+                                                                                          "TOTAL_ACHIEVEMENTS": Achievement.AVAILABLES.length});
+  
   List<Map> pointsUserList;
   List<Map> moneyUserList;
   Map playerPointsInfo = {'position':'_', 'id':'', 'name': '', 'points': ' '};
   Map playerMoneyInfo = {'position':'_', 'id':'', 'name': '', 'points': '\$ '};
 
-  String getLocalizedText(key, [group = "leaderboard"]) {
-    return StringUtils.translate(key, group);
+  String getLocalizedText(key, {group: "leaderboard", Map substitutions}) {
+    return StringUtils.translate(key, group, substitutions);
   }
 
   LeaderboardComp (LeaderboardService leaderboardService, this.loadingService, this.profileService) {

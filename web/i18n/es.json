@@ -162,10 +162,12 @@
     },
     "leaderboard"                       :
     {
-      "title"                           : "Clasificación",
+      "title"                           : "Game Center",
+      "trueskill_tab"                   : "Habilidad (@PLAYER_POSITIONº)",
+      "gold_tab"                        : "Monedas (@PLAYER_POSITIONº)",
+      "achievements_tab"                : "Logros (@PLAYER_ACHIEVEMENTS de @TOTAL_ACHIEVEMENTS)",
       "trueskill"                       : "Habilidad",
-      "gold"                            : "Oro",
-      "achievements"                    : "Logros",
+      "gold"                            : "Monedas",
       "topgold"                         : "RÁNKING ORO",
       "topskill"                        : "RÁNKING HABILIDAD",
       "abrevposition"                   : "Pos.",

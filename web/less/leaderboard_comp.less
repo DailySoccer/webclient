@@ -5,22 +5,19 @@
 	#leaderboard-header-wrapper {
 		
 		display: block;
-		background-color: black;
-		background-image: url('@{images}/leaderboardBackground.png');
+		background-color: @tramaBlue;
+		/*background-image: url('@{images}/leaderboardBackground.png');
 		background-size: cover;
 		background-position: center bottom;
-		background-repeat: no-repeat;
+		background-repeat: no-repeat;*/
 		padding: 10px 10px;
 		
 		h1 {
-			.exo_light(25pt, @white);
+			.exo_light(25pt, @blueHyperDark);
 			text-transform: initial;
 			
 			text-align: center;
-			
-			@media (min-width: @screen-sm-min) {
-				text-align: left;
-			}
+			margin: 20px;
 		}
 		
 		.rankings-wrapper {

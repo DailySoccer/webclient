@@ -3,7 +3,7 @@
   <div id="leaderboard-header-wrapper">
 
     <h1>{{getLocalizedText("title")}}</h1>
-    <div class="rankings-wrapper">
+    <!--div class="rankings-wrapper">
       <div class="ranking ranking-by-points">
         <span class="ranking-position">{{playerPointsInfo['position']}}º</span>
         <div class="ranking-info">
@@ -20,7 +20,7 @@
         </div>
       </div>
       <div class="clearfix"></div>
-    </div>
+    </div-->
 
   </div>
 
@@ -28,9 +28,9 @@
 
 
   <ul class="leaderboard-tabs" role="tablist">
-    <li class="active"><a class="leaderboard-tab top-points-tab" role="tab" data-toggle="tab" ng-click="tabChange('top-points')">{{getLocalizedText("trueskill")}}</a></li>
-    <li><a class="leaderboard-tab top-money-tab" role="tab" data-toggle="tab" ng-click="tabChange('top-money')">{{getLocalizedText("gold")}}</a></li>
-    <li><a class="leaderboard-tab achivements-tab" role="tab" data-toggle="tab" ng-click="tabChange('achivements-content')">{{getLocalizedText("achievements")}}</a></li>
+    <li class="active"><a class="leaderboard-tab top-points-tab" role="tab" data-toggle="tab" ng-click="tabChange('top-points')">{{trueskillTabTitle}}</a></li>
+    <li><a class="leaderboard-tab top-money-tab" role="tab" data-toggle="tab" ng-click="tabChange('top-money')">{{goldTabTitle}}</a></li>
+    <li><a class="leaderboard-tab achivements-tab" role="tab" data-toggle="tab" ng-click="tabChange('achivements-content')">{{achievementsTabTitle}}</a></li>
   </ul>
 
   <div class="tabs">

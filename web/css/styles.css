@@ -17215,26 +17215,22 @@ lineup-selector {
 }
 #leaderboard-wrapper #leaderboard-header-wrapper {
   display: block;
-  background-color: black;
-  background-image: url('../images/leaderboardBackground.png');
-  background-size: cover;
-  background-position: center bottom;
-  background-repeat: no-repeat;
+  background-color: #ecf0f1;
+  /*background-image: url('@{images}/leaderboardBackground.png');
+		background-size: cover;
+		background-position: center bottom;
+		background-repeat: no-repeat;*/
   padding: 10px 10px;
 }
 #leaderboard-wrapper #leaderboard-header-wrapper h1 {
   font-family: 'Exo', sans-serif;
   font-weight: 300;
   font-size: 25pt;
-  color: #ffffff;
+  color: #08161b;
   text-transform: uppercase;
   text-transform: initial;
   text-align: center;
-}
-@media (min-width: 768px) {
-  #leaderboard-wrapper #leaderboard-header-wrapper h1 {
-    text-align: left;
-  }
+  margin: 20px;
 }
 #leaderboard-wrapper #leaderboard-header-wrapper .rankings-wrapper {
   display: block;

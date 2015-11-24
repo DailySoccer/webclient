@@ -7,6 +7,21 @@
 	.home-tile-wrapper {
 		.make-tile(4, 3);
 		
+		.home-tile-content {
+			padding: 1px;
+			height: 100%;
+			position: relative;
+			
+			background: rgba(255,255,255,0.2);
+			background: -moz-linear-gradient(-45deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,1) 100%);
+			background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(255,255,255,0.2)), color-stop(100%, rgba(255,255,255,1)));
+			background: -webkit-linear-gradient(-45deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,1) 100%);
+			background: -o-linear-gradient(-45deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,1) 100%);
+			background: -ms-linear-gradient(-45deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,1) 100%);
+			background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,1) 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff', GradientType=1 );
+		}
+		
 		.tile {
 			
 			background-color: @black;

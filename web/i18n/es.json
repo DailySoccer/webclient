@@ -165,6 +165,7 @@
       "title"                           : "Clasificación",
       "trueskill"                       : "Habilidad",
       "gold"                            : "Oro",
+      "achivements"                     : "Logros",
       "topgold"                         : "RÁNKING ORO",
       "topskill"                        : "RÁNKING HABILIDAD",
       "abrevposition"                   : "Pos.",
@@ -325,9 +326,11 @@
     },
     "mainmenu"                          :
     {
-      "lobby"                           : "TORNEOS",
-      "mycontest"                       : "MIS TORNEOS",
-      "leaderboard"                     : "CLASIFICACIÓN",
+      "home"                            : "Inicio",
+      "lobby"                           : "Torneos",
+      "mycontest"                       : "Mis torneos",
+      "leaderboard"                     : "Clasificación",
+      "notifications"                   : "Notificaciones",
       "howitworks"                      : "Ayuda",
       "myaccount"                       : "Mi Cuenta",
       "shop"                            : "Tienda",

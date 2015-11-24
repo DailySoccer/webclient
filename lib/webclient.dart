@@ -57,6 +57,7 @@ import 'package:webclient/components/welcome_comp.dart';
 import 'package:webclient/components/week_calendar_comp.dart';
 import 'package:webclient/components/tutorial_list_comp.dart';
 import 'package:webclient/components/create_contest_comp.dart';
+import 'package:webclient/components/achivements_comp.dart';
 
 import 'package:webclient/components/account/login_comp.dart';
 import 'package:webclient/components/account/join_comp.dart';
@@ -83,6 +84,8 @@ import 'package:webclient/components/enter_contest/soccer_players_filter_comp.da
 import 'package:webclient/components/enter_contest/matches_filter_comp.dart';
 import 'package:webclient/components/enter_contest/soccer_player_stats_comp.dart';
 
+import 'package:webclient/components/legalese_and_help/help_info_comp.dart';
+
 //import 'package:webclient/components/landing_page_1_slide_comp.dart';
 //import 'package:webclient/components/navigation/main_menu_slide_comp.dart';
 //import 'package:webclient/components/contest_filters_comp.dart';
@@ -94,7 +97,6 @@ import 'package:webclient/components/enter_contest/soccer_player_stats_comp.dart
 //import 'package:webclient/components/account/payment_response_comp.dart';
 //import 'package:webclient/components/account/withdraw_funds_comp.dart';
 //import 'package:webclient/components/account/trainer_points_shop_comp.dart';
-//import 'package:webclient/components/legalese_and_help/help_info_comp.dart';
 //import 'package:webclient/components/legalese_and_help/legal_info_comp.dart';
 //import 'package:webclient/components/legalese_and_help/terminus_info_comp.dart';
 //import 'package:webclient/components/legalese_and_help/policy_info_comp.dart';
@@ -183,6 +185,8 @@ class WebClientApp extends Module {
     bind(ShopComp);
     bind(GoldShopComp);
     bind(EnergyShopComp);
+    bind(HelpInfoComp);
+    bind(AchivementsComp);
     bind(RouteInitializerFn, toValue: webClientRouteInitializer);
     bind(NgRoutingUsePushState, toValue: new NgRoutingUsePushState.value(false));
 
@@ -194,7 +198,6 @@ class WebClientApp extends Module {
     //bind(SimplePromoViewerComp);
     //bind(ContestFiltersComp);
     //bind(ContestHeaderComp);
-    //bind(HelpInfoComp);
     //bind(LegalInfoComp);
     //bind(TerminusInfoComp);
     //bind(PolicyInfoComp);
@@ -220,11 +223,6 @@ class WebClientApp extends Module {
           path: '/beta_info',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
           viewHtml: '<beta-info></beta-info>'
-      )
-      ,'help_info': ngRoute(
-          path: '/help-info',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
-          viewHtml: '<help-info></help-info>'
       )
       ,'legal_info': ngRoute(
           path: '/legal_info',
@@ -415,6 +413,11 @@ class WebClientApp extends Module {
         path: '/create_contest',
         preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
         viewHtml: '''<create-contest></create-contest>'''
+      )
+      ,'help_info': ngRoute(
+          path: '/help-info',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
+          viewHtml: '<help-info></help-info>'
       )
     });
   }

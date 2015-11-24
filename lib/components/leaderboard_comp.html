@@ -30,22 +30,27 @@
   <ul class="leaderboard-tabs" role="tablist">
     <li class="active"><a class="leaderboard-tab top-points-tab" role="tab" data-toggle="tab" ng-click="tabChange('top-points')">{{getLocalizedText("trueskill")}}</a></li>
     <li><a class="leaderboard-tab top-money-tab" role="tab" data-toggle="tab" ng-click="tabChange('top-money')">{{getLocalizedText("gold")}}</a></li>
+    <li><a class="leaderboard-tab achivements-tab" role="tab" data-toggle="tab" ng-click="tabChange('achivements-content')">{{getLocalizedText("achivements")}}</a></li>
   </ul>
   
   <div class="tabs">
     <div class="tab-content">
 
-      <!-- LIVE CONTESTS -->
       <div class="tab-pane active" id="top-points">      
         
         <leaderboard-table show-header="true" highlight-element="playerPointsInfo" table-elements="pointsUserList" rows="usersToShow" points-column-label="pointsColumnName" hint="playerPointsHint" ng-show="!loadingService.isLoading"></leaderboard-table>
         
       </div>
 
-      <!-- WAITING CONTESTS -->
       <div class="tab-pane" id="top-money">
 
         <leaderboard-table show-header="true" highlight-element="playerMoneyInfo" table-elements="moneyUserList" rows="usersToShow" points-column-label="moneyColumnName" hint="playerMoneyHint" ng-show="!loadingService.isLoading"></leaderboard-table>
+      
+      </div>
+
+      <div class="tab-pane" id="achivements-content">
+
+        <achivements ng-show="!loadingService.isLoading"></achivements>
       
       </div>
     </div>

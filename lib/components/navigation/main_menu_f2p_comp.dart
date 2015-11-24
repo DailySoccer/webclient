@@ -288,6 +288,24 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
     return profileService.user.printableEnergyTimeLeft;
   }
 
+  String get _notificationsCountCode {
+    int numNotifications = 8;
+    
+    if (numNotifications > 0) {
+      return "<span class='count'>${numNotifications}</span>";
+    }
+    return "";
+  }
+
+  String get _achivementsCountCode {
+    int numNotifications = 3;
+    
+    if (numNotifications > 0) {
+      return "<span class='count'>${numNotifications}</span>";
+    }
+    return "";
+  }
+
   String _getNotLoggedInHtml() {
     return '''
     <div id="menuNotLoggedIn">
@@ -352,7 +370,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
             <div class="count">${_userGold}<span class="plus">+</span></div>
           </li>
 
-          <li id="desktopMenuUser" class="profile">       
+          <li id="desktopMenuUser" class="profile">
             <img src="images/icon-userProfile.png" data-toggle="dropdown">
             <div class="count">${_userTrueSkill}</div>
             <ul id="desktopUserMenu" class="dropdown-menu">
@@ -371,7 +389,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
       return '''        
           <li><a id="menuUserMyAccount" destination="user_profile"> ${StringUtils.translate("myaccount",  "mainmenu")}</a></li>
           <li><a id="menuUserShop"      destination="shop">         ${StringUtils.translate("shop",       "mainmenu")}</a></li>
-          <!--li><a id="menuHowItWorks"    destination="help_info">    ${StringUtils.translate("howitworks", "mainmenu")}</a></li-->
+          <!--li><a id="menuHowItWorks" destination="help_info">    ${StringUtils.translate("howitworks", "mainmenu")}</a></li-->
           <li><a id="menuUserLogOut"    destination="logout">       ${StringUtils.translate("logout",     "mainmenu")}</a></li>
         </ul>
       ''';
@@ -381,9 +399,12 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
 
   String getMainOptions() {
     return '''
-      <li highlights="lobby"       class="mainLink"> ${getMainMenuLink("lobby")}       </li>
-      <li highlights="my_contests" class="mainLink"> ${getMainMenuLink("my_contests")} </li>
-      <li highlights="leaderboard" class="mainLink"> ${getMainMenuLink("leaderboard")} </li>
+      <li highlights="home"          class="mainLink"> ${getMainMenuLink("home")}         </li>
+      <li highlights="lobby"         class="mainLink"> ${getMainMenuLink("lobby")}        </li>
+      <li highlights="my_contests"   class="mainLink"> ${getMainMenuLink("my_contests")}  </li>
+      <li highlights="leaderboard"   class="mainLink"> ${getMainMenuLink("leaderboard")}  </li>
+      <li highlights="notifications" class="mainLink"> ${getMainMenuLink("notifications")}</li>
+      <li highlights="help_info"     class="mainLink"> ${getMainMenuLink("help")}         </li>
     ''';
   }
 
@@ -391,14 +412,23 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
     String ret = "";
 
     switch (menuLink) {
+      case "home":
+        ret = '''<a id="menuHome"        destination="home">                             ${StringUtils.translate("home",          "mainmenu")}</a>''';
+        break;
       case "lobby":
-        ret = '''<a id="menuLobby"      destination="lobby">                            ${StringUtils.translate("lobby",        "mainmenu")}</a>''';
+        ret = '''<a id="menuLobby"       destination="lobby">                            ${StringUtils.translate("lobby",         "mainmenu")}</a>''';
         break;
       case "my_contests":
-        ret = '''<a id="menuMyContests" destination="my_contests" params="section:live">${StringUtils.translate("mycontest",    "mainmenu")}</a>''';
+        ret = '''<a id="menuMyContests"  destination="my_contests" params="section:live">${StringUtils.translate("mycontest",     "mainmenu")}</a>''';
         break;
       case "leaderboard":
-        ret = '''<a id="menuLeaderboard" destination="leaderboard">                     ${StringUtils.translate("leaderboard",  "mainmenu")}</a>''';
+        ret = '''<a id="menuLeaderboard" destination="leaderboard">                      ${StringUtils.translate("leaderboard",   "mainmenu")}${_achivementsCountCode}</a>''';
+        break;
+      case "notifications":
+        ret = '''<a id="menuNotifications">                                              ${StringUtils.translate("notifications", "mainmenu")}${_notificationsCountCode}</a>''';
+        break;
+      case "help":
+        ret = '''<a id="menuHelp"        destination="help_info">                        ${StringUtils.translate("howitworks",    "mainmenu")}</a>''';
         break;
     }
 

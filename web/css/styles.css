@@ -9811,6 +9811,18 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
     margin-left: 0;
   }
 }
+#mainShopCompWrapper .gold {
+  content: " ";
+  background-image: url("../images/icon-coin-lg.png");
+  width: 27px;
+  height: 27px;
+  display: inline-block;
+  vertical-align: middle;
+  vertical-align: baseline;
+  position: relative;
+  left: 4px;
+  top: 3px;
+}
 #mainShopCompWrapper .header {
   margin-left: 0;
   margin-right: 0;
@@ -9834,6 +9846,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   position: relative;
   cursor: pointer;
   padding: 0;
+  background-color: #dcdcdc;
 }
 @media (min-width: 768px) {
   #mainShopCompWrapper .content .money-layout {
@@ -9885,7 +9898,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   font-weight: 400;
   font-size: 11pt;
   color: #afd3e4;
-  top: 5px;
+  top: 8px;
   position: relative;
 }
 #mainShopCompWrapper .content .money-tile-wrapper .tile .content {
@@ -9909,15 +9922,14 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   position: absolute;
   right: 0;
   top: 0;
-  width: 95px;
+  width: 125px;
   text-align: center;
-  padding-right: 15px;
   height: 100%;
 }
 #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .gold-quantity {
   font-family: 'Exo', sans-serif;
   font-weight: 300;
-  font-size: 24pt;
+  font-size: 20pt;
   color: #ffffff;
   text-transform: uppercase;
   position: relative;
@@ -9933,13 +9945,14 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   vertical-align: baseline;
   position: relative;
   left: 4px;
+  top: 3px;
 }
 #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper {
   display: inline-block;
   height: 30px;
   position: absolute;
   bottom: 15px;
-  width: 95px;
+  width: 125px;
   right: 15px;
 }
 #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price {
@@ -10097,7 +10110,7 @@ fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .cont
   background: url("../images/BuyGoldFreeBase.png");
   position: absolute;
   bottom: 40px;
-  width: 95px;
+  width: 125px;
   background-position-x: center;
   background-repeat: no-repeat;
   right: 15px;
@@ -10124,7 +10137,7 @@ fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .cont
   top: 0;
   left: 0;
 }
-#mainShopCompWrapper .content .energy-tiles {
+#mainShopCompWrapper .content .energy-layout {
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
@@ -10135,12 +10148,12 @@ fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .cont
   padding: 5px;
 }
 @media (min-width: 768px) {
-  #mainShopCompWrapper .content .energy-tiles {
+  #mainShopCompWrapper .content .energy-layout {
     float: left;
     width: 25%;
   }
 }
-#mainShopCompWrapper .content .energy-tiles .tile {
+#mainShopCompWrapper .content .energy-layout .tile {
   padding: 15px;
   height: 100%;
   background-color: white;
@@ -10160,6 +10173,13 @@ fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .cont
   position: relative;
   min-height: 185px;
 }
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .products {
+  min-height: 170px;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-separator {
+  margin: 20px;
+  border-top: 1px solid #59add5;
+}
 #mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-icon {
   margin: 0 auto;
   display: block;
@@ -10173,6 +10193,7 @@ fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .cont
 }
 #mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper {
   padding-top: 15px;
+  max-height: 65px;
 }
 #mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button {
   background-color: #428bca;
@@ -10327,7 +10348,7 @@ fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .bu
 #mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button .quantity {
   font-family: 'Exo', sans-serif;
   font-weight: 300;
-  font-size: 24pt;
+  font-size: 20pt;
   color: #ffffff;
   text-transform: uppercase;
   padding: 0 20px;
@@ -10342,6 +10363,19 @@ fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .bu
   vertical-align: baseline;
   position: relative;
   left: 4px;
+  top: 3px;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .no-purchasable {
+  padding: 0 10px 18px;
+}
+#mainShopCompWrapper .content .energy-tiles-wrapper .tile .product-time-left {
+  display: block;
+  text-align: center;
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 28pt;
+  color: #59add5;
+  text-transform: uppercase;
 }
 #goldShopComp,
 #trainerPointsShopComp {

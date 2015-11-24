@@ -619,7 +619,10 @@
       "product_gold_3"                  : "MONTÓN DE ORO",
       "product_gold_4"                  : "MALETÍN DE ORO",
       "product_gold_5"                  : "CAJA FUERTE DE ORO",
-      "product_gold_6"                  : "GRAN BÓVEDA DE ORO"
+      "product_gold_6"                  : "GRAN BÓVEDA DE ORO",
+      "product_maxrefill"               : "Recarga al máximo con:",
+      "autorefill"                      : "Recarga +1 automática en:",
+      "alert-user-gold-message"         : "Tienes actualmente @MONEY"
     },
     "goldshop"                          :
     {
@@ -627,13 +630,9 @@
     },
     "energyshop"                        :
     {
-      "product_maxrefill"               : "Recarga al máximo con:",
-      "autorefill"                      : "Recarga +1 automática en:",
       "buttonback"                      : "Volver",
-      "alert-no-gold-title"             : "Sin Oro suficiente",
-      "alert-no-gold-message"           : "No tienes Oro para comprar este producto",
-      "buy-gold-button"                 : "COMPRAR ORO",
-      "alert-user-gold-message"         : "Tienes actualmente @MONEY",
+
+      
       "erroruserbalancenegativetitle"   : "No tienes Oro suficiente",
       "erroruserbalancenegativegeneric" : "No tienes Oro suficiente. Por favor, compra Oro para poder continuar",
       "errordefaulttitle"               : "Atención",

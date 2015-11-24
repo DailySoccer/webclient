@@ -136,7 +136,7 @@ class User {
 
     goldBalance = jsonMap.containsKey("goldBalance") ? new Money.fromJsonObject(jsonMap["goldBalance"]) : new Money.zeroFrom(Money.CURRENCY_GOLD);
     managerBalance = jsonMap.containsKey("managerBalance") ? new Money.fromJsonObject(jsonMap["managerBalance"]) : new Money.zeroFrom(Money.CURRENCY_MANAGER);
-    energyBalance = jsonMap.containsKey("energyBalance") ? new Money.fromJsonObject(jsonMap["energyBalance"]) : new Money.zeroFrom(Money.CURRENCY_ENERGY);
+    energyBalance = jsonMap.containsKey("energyBalance") ? new Money.zeroFrom(Money.CURRENCY_ENERGY)/*new Money.fromJsonObject(jsonMap["energyBalance"])*/ : new Money.zeroFrom(Money.CURRENCY_ENERGY);
 
     managerLevel = jsonMap.containsKey("managerLevel") ? jsonMap["managerLevel"] : 0;
 

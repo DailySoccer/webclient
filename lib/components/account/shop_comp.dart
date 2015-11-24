@@ -8,44 +8,75 @@ import 'dart:html';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/catalog_service.dart';
 import 'package:webclient/models/product.dart';
+import 'package:webclient/services/profile_service.dart';
+import 'package:webclient/models/money.dart';
+import 'package:webclient/services/server_error.dart';
+import 'package:webclient/utils/html_utils.dart';
 
 @Component(
     selector: 'shop-comp',
     templateUrl: 'packages/webclient/components/account/shop_comp.html',
     useShadowDom: false
 )
-class ShopComp {
+class ShopComp implements DetachAware{
 
   LoadingService loadingService;
 
   List<Map> goldProducts;
+  List<Map> energyProducts;
 
-  String getLocalizedText(key) {
-    return StringUtils.translate(key, "shop");
+  Map<String, Map> errorMap;
+  
+  DateTime t = new DateTime.now();
+  
+  String get timeLeft => _profileService.user.printableEnergyTimeLeft;
+  
+  String getLocalizedText(key, {group: "shop", substitutions: null}) {
+    return StringUtils.translate(key, group, substitutions);
   }
   
 
-  ShopComp(this._flashMessage, this._catalogService) {
+  ShopComp(this._flashMessage, this._profileService, this._catalogService) {
     goldProducts = [];
-
     _catalogService.getCatalog()
       .then((catalog) {
-        for (Product info in catalog.where((product) => product.gained.isGold)) {
-          Map product = {};
-          product["id"]             = info.id;
-          product["description"]    = getLocalizedText(info.name);
-          product["captionImage"]   = info.imageUrl;
-          product["price"]          = info.price.toStringWithCurrency();
-          product["quantity"]       = info.gained.amount.toInt().toString();
-          product["freeIncrement"]  = info.free.amount.toInt();
-          product["isMostPopular"]  = info.mostPopular;
-          product["purchasable"]    = true;
-          goldProducts.add(product);
+        for (Product info in catalog.where((g) => g.gained.isGold)) {
+          Map gProduct = {};
+          gProduct["id"]             = info.id;
+          gProduct["description"]    = getLocalizedText(info.name);
+          gProduct["captionImage"]   = info.imageUrl;
+          gProduct["price"]          = info.price.toStringWithCurrency();
+          gProduct["quantity"]       = info.gained.amount.toInt().toString();
+          gProduct["freeIncrement"]  = info.free.amount.toInt();
+          gProduct["isMostPopular"]  = info.mostPopular;
+          gProduct["purchasable"]    = true;
+          goldProducts.add(gProduct);
         }
     });
+    
+    energyProducts = [];
+    _catalogService.getCatalog()
+      .then((catalog) {
+        for (Product info in catalog.where((e) => e.gained.isEnergy)) {
+          Map eProduct = {};
+          eProduct["info"]         = info;
+          eProduct["id"]           = info.id;
+          eProduct["description"]  = getLocalizedText(info.name);
+          eProduct["captionImage"] = info.imageUrl;
+          eProduct["price"]        = info.price.toString();
+          eProduct["quantity"]     = info.gained.amount.toInt().toString();
+          eProduct["purchasable"]  = true;
+          energyProducts.add(eProduct);
+        }
+
+        energyProducts.addAll([
+          {"id" : "AUTO_REFILL", "description" : getLocalizedText("autorefill"), "captionImage" : "images/icon-EnergyLevelUp.png","purchasable": false}
+        ]);
+    });
+    
   }
   
-  void buyItem(String id) {
+  void buyGold(String id) {
     _catalogService.buyProduct(id)
       .then( (_) {
         if (window.localStorage.containsKey("add_gold_success")) {
@@ -59,7 +90,67 @@ class ShopComp {
     });
   }
 
+  void buyEnergy(String id) {
+    Map product = energyProducts.firstWhere((product) => product["id"] == id, orElse: () => {});
+    if (product["purchasable"]) {
+      // Tenemos el dinero suficiente para comprarlo?
+      Money price = product["info"].price;
+      if (_profileService.user.hasMoney(price)) {
+        _catalogService.buyProduct(id)
+          .then( (_) {
+            _flashMessage.addGlobalMessage("Has comprado [ Recarga  Completa ]", 1);
+
+            if (window.localStorage.containsKey("add_energy_success")) {
+              ModalComp.close();
+              window.location.assign(window.localStorage["add_energy_success"]);
+            }
+          })
+          .catchError((ServerError error) {
+              String keyError = errorMap.keys.firstWhere( (key) => error.responseError.contains(key), orElse: () => "_ERROR_DEFAULT_" );
+              modalShow(errorMap[keyError]["title"],errorMap[keyError]["generic"]);
+          });
+      }
+      else {
+        alertNotEnoughResources(price);
+      }
+    }
+  }
+  
+  void alertNotEnoughResources(Money goldNeeded) {
+     modalShow(
+       "",
+       getNotEnoughGoldContent(goldNeeded),
+       onOk: getLocalizedText("buy-gold-button", group:'entercontest'),
+       closeButton:true
+     )
+     /*.then((_) {
+       _router.go('shop.gold', {});
+     })*/;
+   }
+
+   String getNotEnoughGoldContent(Money goldNeeded) {
+     return '''
+    <div class="content-wrapper">
+      <img class="main-image" src="images/iconNoGold.png">
+      <span class="not-enough-resources-count">${goldNeeded}</span>
+      <p class="content-text">
+        <strong>${getLocalizedText("alert-no-gold-message", group:'entercontest')}</strong>
+        <br>
+        ${getLocalizedText('alert-user-gold-message', group:'entercontest', substitutions:{'MONEY': _profileService.user.goldBalance})}
+        <img src="images/icon-coin-xs.png">
+      </p>
+    </div>
+    ''';
+   }
+  
+   void detach() {
+     window.localStorage.remove("add_funds_success");
+     window.localStorage.remove("add_gold_success");
+     window.localStorage.remove("add_energy_success");
+   }
+
   FlashMessagesService _flashMessage;
+  ProfileService _profileService;
   CatalogService _catalogService;
 }
 

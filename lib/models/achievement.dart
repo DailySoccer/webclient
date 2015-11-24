@@ -236,21 +236,24 @@ class Achievement {
       "name": translate("name_true_skill_level_1"), // "Nivel de Skill 1",
       "description": translate("desc_true_skill_level_1"), // "Nivel de Skill 1",
       "image": 'IconManagerPrincipiante.png',
-      "style": 'SkillLevel'
+      "style": 'SkillLevel',
+      "level": 1
     },
     {
       "id": TRUE_SKILL_LEVEL_2,
       "name": translate("name_true_skill_level_2"), // "Nivel de Skill 2",
       "description": translate("desc_true_skill_level_2"), // "Nivel de Skill 2",
       "image": 'IconManagerPrincipiante.png',
-      "style": 'SkillLevel'
+      "style": 'SkillLevel',
+      "level": 2
     },
     {
       "id": TRUE_SKILL_LEVEL_3,
       "name": translate("name_true_skill_level_3"), // "Nivel de Skill 3",
       "description": translate("desc_true_skill_level_3"), // "Nivel de Skill 3",
       "image": 'IconManagerPrincipiante.png',
-      "style": 'SkillLevel'
+      "style": 'SkillLevel',
+      "level": 3
     },
     {
       "id": TRUE_SKILL_LEVEL_4,

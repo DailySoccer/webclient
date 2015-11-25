@@ -54,6 +54,8 @@ class ContestEntry {
     contestEntryId = jsonMap["_id"];
     user = references.getUserById(jsonMap["userId"]);
 
+    formation = (jsonMap.containsKey("formation")) ? jsonMap["formation"] : FORMATION_442;
+
     // Enviado únicamente cuando se envíe usando jsonView.FullContest
     if (jsonMap.containsKey("soccerIds")) {
       instanceSoccerPlayers = jsonMap["soccerIds"].map((soccerPlayerId) => theContest.getInstanceSoccerPlayer(soccerPlayerId)).toList();

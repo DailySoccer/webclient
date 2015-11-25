@@ -792,6 +792,20 @@ tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpR
     </div>
   </div>
 </div>"""));
+tc.put("packages/webclient/components/achievements_comp.html", new HttpResponse(200, r"""<div id="achievements-wrapper">
+
+  <div ng-repeat="achiev in achievementList" class="achievement {{achiev.style}}" ng-class="{'earned': achievementEarned(achiev.id)}">
+    <div class="achievement-icon">
+      <img src="images/achievements/{{achiev.image}}" ng-if="achiev.image != ''">
+      <span class="achievement-level" ng-if="achiev.level != -1">{{achiev.level}}</span>
+    </div>
+    <div class="achievement-name">{{achiev.name}}</div>
+    <div class="achievement-description">{{achiev.description}}</div>
+  </div>
+
+  <div class="clearfix"></div>
+
+</div>"""));
 tc.put("packages/webclient/components/contest_header_f2p_comp.html", new HttpResponse(200, r"""
 <div class="contest-header-f2p-wrapper" ng-if="contest != null">
   
@@ -1546,7 +1560,7 @@ tc.put("packages/webclient/components/leaderboard_comp.html", new HttpResponse(2
   <div id="leaderboard-header-wrapper">
 
     <h1>{{getLocalizedText("title")}}</h1>
-    <div class="rankings-wrapper">
+    <!--div class="rankings-wrapper">
       <div class="ranking ranking-by-points">
         <span class="ranking-position">{{playerPointsInfo['position']}}º</span>
         <div class="ranking-info">
@@ -1554,7 +1568,7 @@ tc.put("packages/webclient/components/leaderboard_comp.html", new HttpResponse(2
           <span class="ranking-value">{{playerPointsInfo['points']}} ptos</span>
         </div>
       </div>
-  
+
       <div class="ranking ranking-by-money">
         <span class="ranking-position">{{playerMoneyInfo['position']}}º</span>
         <div class="ranking-info">
@@ -1563,7 +1577,7 @@ tc.put("packages/webclient/components/leaderboard_comp.html", new HttpResponse(2
         </div>
       </div>
       <div class="clearfix"></div>
-    </div>
+    </div-->
 
   </div>
 
@@ -1571,25 +1585,30 @@ tc.put("packages/webclient/components/leaderboard_comp.html", new HttpResponse(2
 
 
   <ul class="leaderboard-tabs" role="tablist">
-    <li class="active"><a class="leaderboard-tab top-points-tab" role="tab" data-toggle="tab" ng-click="tabChange('top-points')">{{getLocalizedText("trueskill")}}</a></li>
-    <li><a class="leaderboard-tab top-money-tab" role="tab" data-toggle="tab" ng-click="tabChange('top-money')">{{getLocalizedText("gold")}}</a></li>
+    <li class="active"><a class="leaderboard-tab top-points-tab" role="tab" data-toggle="tab" ng-click="tabChange('top-points')">{{trueskillTabTitle}}</a></li>
+    <li><a class="leaderboard-tab top-money-tab" role="tab" data-toggle="tab" ng-click="tabChange('top-money')">{{goldTabTitle}}</a></li>
+    <li><a class="leaderboard-tab achivements-tab" role="tab" data-toggle="tab" ng-click="tabChange('achivements-content')">{{achievementsTabTitle}}</a></li>
   </ul>
-  
+
   <div class="tabs">
     <div class="tab-content">
 
-      <!-- LIVE CONTESTS -->
-      <div class="tab-pane active" id="top-points">      
-        
+      <div class="tab-pane active" id="top-points">
+
         <leaderboard-table show-header="true" highlight-element="playerPointsInfo" table-elements="pointsUserList" rows="usersToShow" points-column-label="pointsColumnName" hint="playerPointsHint" ng-show="!loadingService.isLoading"></leaderboard-table>
-        
+
       </div>
 
-      <!-- WAITING CONTESTS -->
       <div class="tab-pane" id="top-money">
 
         <leaderboard-table show-header="true" highlight-element="playerMoneyInfo" table-elements="moneyUserList" rows="usersToShow" points-column-label="moneyColumnName" hint="playerMoneyHint" ng-show="!loadingService.isLoading"></leaderboard-table>
-      
+
+      </div>
+
+      <div class="tab-pane" id="achivements-content">
+
+        <achievements ng-show="!loadingService.isLoading"></achievements>
+
       </div>
     </div>
   </div>

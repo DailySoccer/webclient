@@ -45,8 +45,8 @@ abstract class ServerService {
   // Active Contests
   Future<Map> getActiveContests();
   Future<Map> getActiveContest(String contestId);
-  Future<Map> addContestEntry(String contestId, List<String> soccerPlayers);
-  Future<Map> editContestEntry(String contestEntryId, List<String> soccerPlayers);
+  Future<Map> addContestEntry(String contestId, String formation, List<String> soccerPlayers);
+  Future<Map> editContestEntry(String contestEntryId, String formation, List<String> soccerPlayers);
   Future<Map> cancelContestEntry(String contestEntryId);
   Future<Map> getContestInfo(String contestId);
 
@@ -199,14 +199,14 @@ class DailySoccerServer implements ServerService {
     return _innerServerCall("${HostServer.url}/get_active_contest/$contestId");
   }
 
-  Future<Map> addContestEntry(String contestId, List<String> soccerPlayers) {
+  Future<Map> addContestEntry(String contestId, String formation, List<String> soccerPlayers) {
     String jsonSoccerPlayers = JSON.encode(soccerPlayers);
-    return _innerServerCall("${HostServer.url}/add_contest_entry", postData: {'contestId': contestId, 'soccerTeam': jsonSoccerPlayers});
+    return _innerServerCall("${HostServer.url}/add_contest_entry", postData: {'contestId': contestId, 'formation': formation, 'soccerTeam': jsonSoccerPlayers});
   }
 
-  Future<Map> editContestEntry(String contestEntryId, List<String> soccerPlayers) {
+  Future<Map> editContestEntry(String contestEntryId, String formation, List<String> soccerPlayers) {
     String jsonSoccerPlayers = JSON.encode(soccerPlayers);
-    return _innerServerCall("${HostServer.url}/edit_contest_entry", postData: {'contestEntryId': contestEntryId, 'soccerTeam': jsonSoccerPlayers});
+    return _innerServerCall("${HostServer.url}/edit_contest_entry", postData: {'contestEntryId': contestEntryId, 'formation': formation, 'soccerTeam': jsonSoccerPlayers});
   }
 
   Future<Map> cancelContestEntry(String contestEntryId) {

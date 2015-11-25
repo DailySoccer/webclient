@@ -75,8 +75,8 @@ class ContestsService {
       });
   }
 
-  Future addContestEntry(String contestId, List<String> soccerPlayerIds) {
-    return _server.addContestEntry(contestId, soccerPlayerIds)
+  Future addContestEntry(String contestId, String formation, List<String> soccerPlayerIds) {
+    return _server.addContestEntry(contestId, formation, soccerPlayerIds)
       .then((jsonMap) {
         String contestId = jsonMap["contestId"];
 
@@ -113,8 +113,8 @@ class ContestsService {
       });
   }
 
-  Future editContestEntry(String contestId, List<String> soccerPlayerIds) {
-    return _server.editContestEntry(contestId, soccerPlayerIds)
+  Future editContestEntry(String contestId, String formation, List<String> soccerPlayerIds) {
+    return _server.editContestEntry(contestId, formation, soccerPlayerIds)
       .then((jsonMap) {
         Logger.root.info("response: " + jsonMap.toString());
       });

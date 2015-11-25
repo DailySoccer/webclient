@@ -52,6 +52,7 @@ class EnterContestComp implements DetachAware {
 
   Contest contest;
   String contestId;
+  String formation = ContestEntry.FORMATION_442;
   String contestEntryId;
 
   List<dynamic> allSoccerPlayers;
@@ -445,7 +446,7 @@ class EnterContestComp implements DetachAware {
     }
 
     if (editingContestEntry) {
-      _contestsService.editContestEntry(contestEntryId, lineupSlots.map((player) => player["id"]).toList())
+      _contestsService.editContestEntry(contestEntryId, formation, lineupSlots.map((player) => player["id"]).toList())
         .then((_) {
           _teamConfirmed = true;
           _router.go('view_contest_entry', { "contestId": contest.contestId,
@@ -455,7 +456,7 @@ class EnterContestComp implements DetachAware {
         .catchError((ServerError error) => _errorCreating(error));
     }
     else {
-        _contestsService.addContestEntry(contest.contestId, lineupSlots.map((player) => player["id"]).toList())
+        _contestsService.addContestEntry(contest.contestId, formation, lineupSlots.map((player) => player["id"]).toList())
           .then((contestId) {
             GameMetrics.logEvent(GameMetrics.TEAM_CREATED);
             GameMetrics.identifyMixpanel(_profileService.user.email);

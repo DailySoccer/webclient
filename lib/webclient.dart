@@ -57,7 +57,7 @@ import 'package:webclient/components/welcome_comp.dart';
 import 'package:webclient/components/week_calendar_comp.dart';
 import 'package:webclient/components/tutorial_list_comp.dart';
 import 'package:webclient/components/create_contest_comp.dart';
-import 'package:webclient/components/achievements_comp.dart';
+import 'package:webclient/components/achievement_list_comp.dart';
 
 import 'package:webclient/components/account/login_comp.dart';
 import 'package:webclient/components/account/join_comp.dart';
@@ -68,8 +68,8 @@ import 'package:webclient/components/account/change_password_comp.dart';
 import 'package:webclient/components/account/add_funds_comp.dart';
 import 'package:webclient/components/account/transaction_history_comp.dart';
 import 'package:webclient/components/account/shop_comp.dart';
-import 'package:webclient/components/account/gold_shop_comp.dart';
-import 'package:webclient/components/account/energy_shop_comp.dart';
+
+import 'package:webclient/components/account/notifications.dart';
 
 import 'package:webclient/components/view_contest/view_contest_entry_comp.dart';
 import 'package:webclient/components/view_contest/view_contest_comp.dart';
@@ -97,6 +97,8 @@ import 'package:webclient/components/legalese_and_help/help_info_comp.dart';
 //import 'package:webclient/components/account/payment_response_comp.dart';
 //import 'package:webclient/components/account/withdraw_funds_comp.dart';
 //import 'package:webclient/components/account/trainer_points_shop_comp.dart';
+//import 'package:webclient/components/account/gold_shop_comp.dart';
+//import 'package:webclient/components/account/energy_shop_comp.dart';
 //import 'package:webclient/components/legalese_and_help/legal_info_comp.dart';
 //import 'package:webclient/components/legalese_and_help/terminus_info_comp.dart';
 //import 'package:webclient/components/legalese_and_help/policy_info_comp.dart';
@@ -116,6 +118,7 @@ class WebClientApp extends Module {
 
     // No usamos animacion -> podemos quitar esto
     bind(CompilerConfig, toValue:new CompilerConfig.withOptions(elementProbeEnabled: false));
+    
     // Disable CSS shim
     bind(PlatformJsBasedShim, toImplementation: PlatformJsBasedNoShim);
     bind(DefaultPlatformShim, toImplementation: DefaultPlatformNoShim);
@@ -183,10 +186,9 @@ class WebClientApp extends Module {
     bind(AddFundsComp);
     bind(TransactionHistoryComp);
     bind(ShopComp);
-    bind(GoldShopComp);
-    bind(EnergyShopComp);
+    bind(NotificationsComp);    
     bind(HelpInfoComp);
-    bind(AchievementsComp);
+    bind(AchievementListComp);
     bind(RouteInitializerFn, toValue: webClientRouteInitializer);
     bind(NgRoutingUsePushState, toValue: new NgRoutingUsePushState.value(false));
 
@@ -207,6 +209,8 @@ class WebClientApp extends Module {
     //bind(PaymentResponseComp);
     //bind(WithdrawFundsComp);
     //bind(TrainerPointsShopComp);
+    //bind(GoldShopComp);
+    //bind(EnergyShopComp);
   }
 
   void webClientRouteInitializer(Router router, RouteViewFactory views) {
@@ -330,6 +334,11 @@ class WebClientApp extends Module {
               viewHtml: '<trainer-points-shop-comp></trainer-points-shop-comp>'
             )
           }*/
+      )
+      ,'notifications': ngRoute(
+          path: '/notifications',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
+          viewHtml: '<notifications></notifications>'
       )
       ,'home': ngRoute(
           defaultRoute: true,

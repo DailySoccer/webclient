@@ -1,4 +1,4 @@
-library achievements_comp;
+library achievement_list_comp;
 
 import 'dart:html';
 import 'package:angular/angular.dart';
@@ -9,12 +9,12 @@ import 'package:webclient/services/profile_service.dart';
 
 
 @Component(
-    selector: 'achievements',
-    templateUrl: 'packages/webclient/components/achievements_comp.html',
+    selector: 'achievement-list',
+    templateUrl: 'packages/webclient/components/achievement_list_comp.html',
     useShadowDom: false
 )
 
-class AchievementsComp {
+class AchievementListComp {
 
   ProfileService profileService;
 /*
@@ -23,7 +23,7 @@ class AchievementsComp {
 
   bool achievementEarned(achievementKey) => profileService.isLoggedIn && profileService.user.hasAchievement(achievementKey);
 
-  AchievementsComp ( this.profileService /*, this.loadingService*/) {
+  AchievementListComp ( this.profileService /*, this.loadingService*/) {
     /*
     // TEST: Dar premios al usuario
     if (profileService.isLoggedIn) {

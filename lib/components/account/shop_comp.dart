@@ -62,7 +62,7 @@ class ShopComp implements DetachAware{
           eProduct["info"]         = info;
           eProduct["id"]           = info.id;
           eProduct["description"]  = getLocalizedText(info.name);
-          eProduct["captionImage"] = info.imageUrl;
+          eProduct["captionImage"] = info.imageUrl ;
           eProduct["price"]        = info.price.toString();
           eProduct["quantity"]     = info.gained.amount.toInt().toString();
           eProduct["purchasable"]  = true;

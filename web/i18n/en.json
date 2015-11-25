@@ -14,8 +14,8 @@
       "days"                            : " DAYS ",
       "points"                          : " Points ",
       "abrevpoints"                     : " PTS. "
-    },
-    "date"                              :
+    }
+    ,"date"                             :
     {
       "datewithdayofthemonth"           : "MMM d EEE",
       "dateshort"                       : "MM/dd",
@@ -23,8 +23,8 @@
       "datetimeshort"                   : "E, HH:mm",
       "datetimelong"                    : "E, MM/dd/yy HH:mm",
       "datetimedayhour"                 : "MM/dd/yy HH:mm"
-    },
-    "weekcalendar"                      :
+    }
+    ,"weekcalendar"                     :
     {
       "1"                               : "M",
       "2"                               : "T",
@@ -33,8 +33,8 @@
       "5"                               : "F",
       "6"                               : "S",
       "7"                               : "Su"
-    },
-    "landing"                           :
+    }
+    ,"landing"                          :
     {
       "title"                           : "DAILY FANTASY LEAGUES",
       "subtitle"                        : "Play whenever you want, wherever your want. Win prizes with no season-long commitment.",
@@ -42,8 +42,8 @@
       "info1"                           : "Compete with your friends in La Liga, Premier and Champions",
       "info2"                           : "Create your lineup on your computer, tablet or smartphone in seconds",
       "info3"                           : "Immediate cash payouts"
-    },
-    "join"                              :
+    }
+    ,"join"                             :
     {
       "title"                           : "SIGN UP",
       "description"                     : "Don't have an EPIC ELEVEN account yet? <br> Sign up now.",
@@ -60,8 +60,8 @@
       "buttoncancel"                    : "CANCEL",
       "registered"                      : "Already have an account?",
       "loginhere"                       : "Log in here!"
-    },
-    "login"                             :
+    }
+    ,"login"                            :
     {
       "title"                           : "LOG IN",
       "description"                     : "Enter your email and password.",
@@ -73,8 +73,8 @@
       "buttoncancel"                    : "CANCEL",
       "unregistered"                    : "Don't have an account yet?",
       "signuphere"                      : "Sign up here!"
-    },
-    "changepass"                        :
+    }
+    ,"changepass"                       :
     {
       "error503"                        : "ERROR 503",
       "changepass"                      : "CHANGE PASSWORD",
@@ -86,8 +86,8 @@
       "repass"                          : "Repeat Password",
       "buttoncontinue"                  : "CONTINUE",
       "buttoncancel"                    : "CANCEL"
-    },
-    "rememberpass"                      :
+    }
+    ,"rememberpass"                     :
     {
       "title"                           : "REMEMBER PASSWORD",
       "confirm_part_1"                  : "We have sent you an email to",
@@ -99,8 +99,8 @@
       "buttoncancel"                    : "CANCEL",
       "unregistered"                    : "Don't have an account?",
       "signuphere"                      : "Sign up here!"
-    },
-    "addfunds"                          :
+    }
+    ,"addfunds"                         :
     {
       "title"                           : "ADD FUNDS",
       "description1"                    : "In order to play Epic Eleven with real money, you need to add funds to your account.",
@@ -111,8 +111,8 @@
       "paypalinfo"                      : "You can add funds using PayPal account. The money will be transferred to Fantasy Sports Games S.L.",
       "buttonaddfunds"                  : "Add funds",
       "needhelp"                        : "Need help"
-    },
-    "editprofile"                       :
+    }
+    ,"editprofile"                      :
     {
       "title"                           : "EDIT ACCOUNT",
       "name"                            : "Name",
@@ -128,15 +128,15 @@
       "transfernotifications"           : "OWN SOCCER PLAYER TRANSFER NOTIFICACIONS",
       "buttonsave"                      : "SAVE",
       "buttoncancel"                    : "CANCEL"
-    },
-    "paymentresponse"                   :
+    }
+    ,"paymentresponse"                  :
     {
       "resultok"                        : "Successful payment",
       "resultnook"                      : "Cancelled payment",
       "resultokdesc"                    : "Thank you! Your order has been successfully processed.",
       "resultnookdesc"                  : "The requested transaction cannot be completed. Please check your payment method and try again."
-    },
-    "transactionhistory"                :
+    }
+    ,"transactionhistory"               :
     {
       "title"                           : "TRANSACTION HISTORY",
       "date"                            : "DATE",
@@ -144,8 +144,8 @@
       "subject"                         : "SUBJECT",
       "value"                           : "VALUE",
       "balance"                         : "BALANCE"
-    },
-    "userprofile"                       :
+    }
+    ,"userprofile"                      :
     {
       "title"                           : "My Account",
       "buttonedit"                      : "EDIT",
@@ -157,8 +157,8 @@
       "buttonbuy"                       : "Buy",
       "ranking"                         : "Rankings",
       "buttonrankingtable"              : "Ranking table"
-    },
-    "leaderboard"                       :
+    }
+    ,"leaderboard"                      :
     {
       "title"                           : "Ranking",
       "trueskill"                       : "Skill",
@@ -167,8 +167,8 @@
       "topskill"                        : "Top Skill",
       "abrevposition"                   : "Pos.",
       "name"                            : "Name"
-    },
-    "withdrawfunds"                     :
+    }
+    ,"withdrawfunds"                    :
     {
       "title"                           : "WITHDRAW FUNDS",
       "balance"                         : "YOUR BALANCE IS",
@@ -176,8 +176,8 @@
       "withdrawdesc2"                   : "You can only withdraw money amounts larger than ",
       "withdrawfunds"                   : "Withdraw funds",
       "needhelp"                        : "Need help?"
-    },
-    "entercontest"                      :
+    }
+    ,"entercontest"                     :
     {
       "tablineup"                       : "Your lineup",
       "tabcontestinfo"                  : "Contest Info",
@@ -209,21 +209,21 @@
       "buy-energy-button"               : "REFILL ENERGY",
       "alert-user-gold-message"         : "You own @MONEY",
       "alert-no-energy-message"         : "<strong>You don't have enough energy</strong><br>to enter this contest."
-    },
-    "lineupselector"                    :
+    }
+    ,"lineupselector"                   :
     {
       "wastedsalarycap"                 : "<strong>You've spent the salary cap</strong><br> Please choose players that fit the budget.",
       "maxplayersteam"                  : "<strong>Ups! It looks like you already have @MAX_PLAYERS_SAME_TEAM players of the same team</strong><br> Please, choose another player...",
       "not-enough-resources"            : "<strong>ATENTION! You can't enter this tournament</strong><br> We will save your lineup until you get what you need to pay the entry-fee.",
       "add"                             : "ADD "
-    },
-    "matchesfilter"                     :
+    }
+    ,"matchesfilter"                    :
     {
       "all-matches"                     : "All<br>matches",
       "allmatches"                      : "All matches",
       "all"                             : "all"
-    },
-    "soccerplayerlist"                  :
+    }
+    ,"soccerplayerlist"                 :
     {
       "positionabrev"                   : "Pos.",
       "name"                            : "Name",
@@ -232,8 +232,8 @@
       "salary"                          : "Salary",
       "search-player"                   : "Search player...",
       "players"                         : "Players"
-    },
-    "soccerplayerpositions"             :
+    }
+    ,"soccerplayerpositions"            :
     {
       "goalkeeper"                      : "GOALKEEPER",
       "gk"                              : "GK",
@@ -244,8 +244,8 @@
       "forward"                         : "FORWARD",
       "for"                             : "FOR",
       "all"                             : "ALL"
-    },
-    "soccerplayerstats"                               :
+    }
+    ,"soccerplayerstats"                :
     {
       "buttoncancel"                    : "CANCEL",
       "buttonadd"                       : "ADD",
@@ -311,16 +311,16 @@
       "dailyfantasypoints"              : "Daily Fantasy Points",
       "minutes"                         : "Minutes",
       "posessionlost"                   : "Possesion Lost"
-    },
-    "footer"                            :
+    }
+    ,"footer"                           :
     {
       "help"                            : "HELP",
       "legal"                           : "LEGAL",
       "terms"                           : "TERMS<span> OF USE</span>",
       "privacy"                         : "PRIVACY<span> POLICY</span>",
       "data-provided-by"                : "Data provided by"
-    },
-    "mainmenu"                          :
+    }
+    ,"mainmenu"                         :
     {
       "lobby"                           : "LOBBY",
       "mycontest"                       : "MY CONTEST",
@@ -336,8 +336,8 @@
       "howitworks2"                     : "How It Works",
       "logout"                          : "LogOut",
       "login"                           : "Log In"
-    },
-    "contestlist"                       :
+    }
+    ,"contestlist"                      :
     {
       "entryfee"                        : "Entry fee:",
       "of"                              : "OF",
@@ -347,8 +347,8 @@
       "today"                           : "Today",
       "soonHint"                        : "@TIME min<br>left",
       "verySoonHint"                    : "@TIME<br>Left"
-    },
-    "contestfilters"                    :
+    }
+    ,"contestfilters"                   :
     {
       "filters"                         : "FILTERS",
       "competition"                     : "COMPETITION",
@@ -375,8 +375,8 @@
       "sortbyname"                      : "Name",
       "sortbyentryfee"                  : "Entry Fee",
       "sortbystartdate"                 : "Start Date"
-    },
-    "fantasyteam"                       :
+    }
+    ,"fantasyteam"                      :
     {
       "editlineup"                      : "EDIT THE LINEUP",
       "pos"                             : "POS",
@@ -384,16 +384,16 @@
       "remainingtime"                   : "REMAINING TIME",
       "close"                           : "CLOSE",
       "owned"                           : "OWNED"
-    },
-    "teamspanel"                        :
+    }
+    ,"teamspanel"                       :
     {
       "showmatches"                     : "SHOW MATCHES",
       "firsthalf"                       : "1st Half - ",
       "secondhalf"                      : "2nd Half - ",
       "error"                           : "-Err-",
       "finished"                        : "Finished"
-    },
-    "userlist"                          :
+    }
+    ,"userlist"                         :
     {
       "title"                           : "CONTENDERS IN THIS CONTEST",
       "desc"                            : "Choose a contender to compare lineups",
@@ -402,14 +402,14 @@
       "rt"                              : "R.T",
       "points"                          : "POINTS",
       "prizes"                          : "PRIZES"
-    },
-    "viewcontest"                       :
+    }
+    ,"viewcontest"                      :
     {
       "yourlineup"                      : "Your lineup",
       "users"                           : "Users",
       "opponent"                        : "Opponent"
-    },
-    "viewcontestentry"                  :
+    }
+    ,"viewcontestentry"                 :
     {
       "created"                         : "WELL DONE! YOU HAVE SUCCESSFULLY COMPLETED YOUR LINEUP",
       "edited"                          : "WELL DONE! YOU HAVE SUCCESSFULLY EDITED YOUR LINEUP",
@@ -438,8 +438,8 @@
       "entryfee"                        : "Entry fee:",
       "prize"                           : "Prize:",
       "position"                        : "Position:"
-    },
-    "contest"                           :
+    }
+    ,"contest"                          :
     {
       "contestfree"                     : "Free",
       "contestheadtohead"               : "Head to Head",
@@ -448,8 +448,8 @@
       "salarycap"                       : "Salary cap",
       "contenders"                      : "contenders",
       "of"                              : "of"
-    },
-    "contestinfo"                       :
+    }
+    ,"contestinfo"                      :
     {
       "matches"                         : "Matches",
       "prizes"                          : "Prizes",
@@ -462,20 +462,20 @@
       "contenders2"                     : "CONTENDERS",
       "rulestip"                        : "Choose a team of 11 soccer players from the following matches.",
       "winnertakesall"                  : "Winner takes all"
-    },
-    "prizes"                            :
+    }
+    ,"prizes"                           :
     {
       "free"                            : "Free contest. No prizes",
       "winnertakesall"                  : "Winner takes all",
       "first3"                          : "First 3 get prizes",
       "firstthird"                      : "First # get prizes",
       "fifty"                           : "First # get prizes"
-    },
-    "lobby"                             :
+    }
+    ,"lobby"                            :
     {
       "nextcontest"                     : "NEXT CONTEST"
-    },
-    "mycontest"                         :
+    }
+    ,"mycontest"                        :
     {
       "title"                           : "MY CONTESTS",
       "tablive"                         : "live",
@@ -498,8 +498,8 @@
       "hasHistoryContests1"             : "ENTRIES",
       "hasHistoryContests2"             : "WON",
       "hasHistoryContests3"             : "HERE YOU CAN CHECK YOUR PAST CONTESTS: LINEUPS, CONTENDERS, SCORES…"
-    },
-    "tutorial"         :
+    }
+    ,"tutorial"                         :
     {
       "skip-tutorial"                   : "Skip tutorial",
       "title-lobby"                     : "SELECT A CONTEST",
@@ -509,22 +509,22 @@
       "text-entercontest"               : "Pick up 11 players within the salary cap.",
       "text-viewcontestentry"           : "Go to “<b>My Contest</b>” to edit your lineups, watch your team’s live performance or review previous contests. <br> <br> <p class=\"subtitle\">Remember: you can play as many contests as you like, and select as many lineups as you like.</p>",
       "next"                            : "Next"
-    },
-    "tutorial_iniciacion"               :
+    }
+    ,"tutorial_iniciacion"              :
     {
-    },
-    "tutorial_entrenamiento"            :
+    }
+    ,"tutorial_entrenamiento"           :
     {
-    },
-    "tutorial_oficial"                  :
+    }
+    ,"tutorial_oficial"                 :
     {
-    },
-    "restricted"                        :
+    }
+    ,"restricted"                       :
     {
       "desc"                            : "Sorry, your current location prohibits you from making deposits on Epic Eleven.<br><br>If you think this is an error and you require any assistance, please contact us through <a href=\"mailto:support@epiceleven.com\">support@epiceleven.com</a>",
       "gotolobby"                       : "Return to Lobby"
-    },
-    "scoringrules"                      :
+    }
+    ,"scoringrules"                     :
     {
       "all"                             : "ALL PLAYERS",
       "goalkeepers"                     : "GOALKEEPERS",
@@ -565,8 +565,8 @@
       "penaltysaved"                    : "Penalty Saved",
       "clean"                           : "Clean Sheet",
       "goalconceded"                    : "Goal Conceded"
-    },
-    "shop"                              :
+    }
+    ,"shop"                              :
     {
       "name"                            : "SHOP",
       "goldshopdescription"             : "Buy Gold to in order to enter <strong>Official Contests</strong>",
@@ -582,20 +582,20 @@
       "product_gold_6"                  : "MEN IN BLACK",
       "product_maxrefill"               : "Refill all the energy",
       "autorefill"                      : "AutoRefill+1 in:"
-    },
-    "goldshop"                          :
+    }
+    ,"goldshop"                          :
     {
       "buttonback"                      : "Back"
-    },
-    "energyshop"                        :
+    }
+    ,"energyshop"                        :
     {
       "buttonback"                      : "Back",
       "erroruserbalancenegativetitle"   : "Not enough cash",
       "erroruserbalancenegativegeneric" : "You do not have enough cash. Please, add funds to continue.",
       "errordefaultgeneric"             : "An error has occurred. Please, try again later.",
       "errordefaultediting"             : "An error has occurred. Please, try again later."
-    },
-    "createcontest"                     :
+    }
+    ,"createcontest"                     :
     {
       "select_event"                    : "Select Event",
       "select_competition_first"        : "Select competition first",
@@ -617,8 +617,8 @@
       "fixed_hour_warning"              : "Oficial contest's date is not selectable",
       "create_contest_btt"              : "Create contest",
       "matches_title"                   : "Matches"
-    },
-    "home"                              : 
+    }
+    ,"home"                             : 
     {
       "play"                            : "Play",
       "learn_to_play"                   : "Learn to play<br>and start your football manager career",
@@ -637,6 +637,10 @@
       
       "blog_title"                      : "HalfTime",
       "blog_info"                       : "A blog written by Salva Carmona, the guy with the best knowledge of football statistics in the world."
+    }
+    ,"notifications"                    :
+    {
+      "name"                            : "NOTIFICATIONS" 
     }
   }
 }

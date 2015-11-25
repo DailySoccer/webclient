@@ -8,11 +8,18 @@ import 'package:webclient/models/money.dart';
 import 'package:webclient/services/contest_references.dart';
 
 class ContestEntry {
+  static const String FORMATION_442 = "442";
+  static const String FORMATION_352 = "352";
+  static const String FORMATION_433 = "433";
+  static const String FORMATION_343 = "343";
+  static const String FORMATION_451 = "451";
+
   String contestEntryId;
 
   User user;
   Contest contest;
 
+  String formation = FORMATION_442;
   List<InstanceSoccerPlayer> instanceSoccerPlayers = [];
   List<InstanceSoccerPlayer> soccerPlayersPurchased = [];
 

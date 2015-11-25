@@ -17,6 +17,7 @@ class TutorialIniciacion extends Tutorial {
   static String NAME = "TUTORIAL_INICIACION";
   static String STEP_1 = "1";
   static String STEP_2 = "2";
+  static String STEP_3 = "3";
 
   String get PATH => "tutorial/iniciacion/";
   String get name => TutorialIniciacion.NAME;
@@ -52,7 +53,7 @@ class TutorialIniciacion extends Tutorial {
       "get_active_contest" : (url, postData) => waitCompleter( () => TrainingContestList ),
       "get_contest_info" : (url, postData) => waitCompleter( () => TrainingContestList ),
       "get_instance_soccer_player_info": (url, postData) => getContentJson(PATH + "stats-player-03.json"),
-      "add_contest_entry": (url, postData) { CurrentStepId = STEP_2; return addContestEntry(postData); }
+      "add_contest_entry": (url, postData) { CurrentStepId = STEP_3; return addContestEntry(postData); }
     }]);
 
     var serverCallsWhenVirtualContestEntry = joinMaps([defaultServerCalls, {
@@ -77,21 +78,21 @@ class TutorialIniciacion extends Tutorial {
                   )
                 )
                 .then((_) {
-                    /*
-                    changeTrigger("lobby", () => showTooltip(new ToolTip("#activeContestList .contestSlot", tipText: getLocalizedText("msg-03"), highlight: true, allowClickOnElement: true))); //Selecciona este torneo
-                    triggerEnter("lobby");
-                     */
+                    CurrentStepId = STEP_1;
 
                     //Selecciona este torneo
                     showTooltips([
                       new ToolTip("#activeContestList .contestSlot .action-section", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-02a"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true),
                       new ToolTip("#activeContestList .contestSlot", highlight: true)
                     ]);
-
-                    //removeEnter("lobby");
                 })
                 .catchError((e) {
-                }),
+                })
+            },
+            serverCalls: serverCallsWhenOficial
+      ),
+      STEP_1: new TutorialStep(
+            triggers: {
               'enter_contest' : () {
                 EnterContestComp enterContest = context;
                 enterContest.fieldPosFilter = FieldPos.FORWARD;
@@ -106,12 +107,12 @@ class TutorialIniciacion extends Tutorial {
                   ))
                 .then((_) {
                   Completer completer = new Completer();
-                  
+
                   // Esta es la lista de partidos de este torneo.
                   showTooltip(
                     new ToolTip("matches-filter", tipText: getLocalizedText("msg-02d"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
                       clearTooltips();
-                      
+
                       // Esta es la lista de jugadores disponibles
                       showTooltip(
                         new ToolTip(".enter-contest-soccer-players-wrapper", tipText: getLocalizedText("msg-02e"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
@@ -120,7 +121,7 @@ class TutorialIniciacion extends Tutorial {
                       );
                     })
                   );
-                  
+
                   return completer.future;
                 })
                 .then((_) {
@@ -144,7 +145,7 @@ class TutorialIniciacion extends Tutorial {
                       //Los jugadores marcados en rojo
                       showTooltip(new ToolTip("#soccerPlayer464", tipId: 'soccerPlayerRedStyle', tipText: getLocalizedText("msg-03d"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
                         clearTooltips();
-                        
+
                         //Intenta seleccionar un jugador marcado en rojo.
                         // showTooltip(new ToolTip("#soccerPlayer464", tipText: getLocalizedText("msg-11"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true));
                         showTooltips([
@@ -162,7 +163,7 @@ class TutorialIniciacion extends Tutorial {
                     text: () => getLocalizedText("msg-03f") //Necesitas subir tu nivel de manager compitiendo
                   )
                   .then((_) {
-                    CurrentStepId = STEP_1;
+                    CurrentStepId = STEP_2;
                     router.go("lobby", {});
                   })
                   .catchError((e) {
@@ -176,7 +177,7 @@ class TutorialIniciacion extends Tutorial {
             },
             serverCalls: serverCallsWhenOficial
         ),
-        STEP_1: new TutorialStep(
+        STEP_2: new TutorialStep(
             triggers: {
               'lobby': () {
                 openModal(
@@ -219,7 +220,7 @@ class TutorialIniciacion extends Tutorial {
                   ))
                 .then((_) {
                   //Añade un delantero
-                  //showTooltip(new ToolTip("#soccerPlayer344 .action-button", tipText: getLocalizedText("msg-24"), highlight: true, arrowPosition: ToolTip.POSITION_RIGHT, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true)); 
+                  //showTooltip(new ToolTip("#soccerPlayer344 .action-button", tipText: getLocalizedText("msg-24"), highlight: true, arrowPosition: ToolTip.POSITION_RIGHT, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true));
                   showTooltips([
                     new ToolTip("#soccerPlayer344 .action-button", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-09"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true),
                     new ToolTip("#soccerPlayer344", highlight: true)
@@ -243,7 +244,7 @@ class TutorialIniciacion extends Tutorial {
             },
             serverCalls: serverCallsWhenVirtual
         ),
-        STEP_2: new TutorialStep(
+        STEP_3: new TutorialStep(
             triggers: {
               'view_contest_entry': () {
                 openModal(
@@ -294,7 +295,7 @@ class TutorialIniciacion extends Tutorial {
 
                   clearTooltips();
 
-                  new Timer(new Duration(seconds: 3), () { 
+                  new Timer(new Duration(seconds: 3), () {
                     if (liveStep + 1 < LiveMatchEventsList.length) {
                       liveStep++;
                       liveContest.updateLive();
@@ -312,10 +313,10 @@ class TutorialIniciacion extends Tutorial {
                             }
                         });
                       }));
-                      
+
                     }
                   });
-                  
+
                   return completer.future;
                 })
                 .then((_) =>

@@ -95,6 +95,8 @@ abstract class Tutorial {
       ''';
 
   Future openModal({String title(): null, String text(): null, String image({String size}): null, String body(): null, String onOk: null}) {
+    if (isCompleted)
+      return new Future.error(false);
     return modalShow(title != null ? title() : "", body != null ? body() : bodyDefault(text, image), type: 'welcome', modalSize: "md", onOk: onOk != null ? onOk : StringUtils.translate("next", "tutorial"), onBackdropClick: true);
   }
 
@@ -103,10 +105,14 @@ abstract class Tutorial {
   }
 
   void showTooltip(ToolTip tooltip) {
+    if (isCompleted)
+      return;
     ToolTipService.instance.tipElement(tooltip, hideOnClick: (tooltip.hasDuration || tooltip.isClickable));
   }
 
   void showTooltips(List<ToolTip> tooltips) {
+    if (isCompleted)
+      return;
     ToolTipService.instance.tipMultipleElement(tooltips, hideAllOnClick: false);
   }
 

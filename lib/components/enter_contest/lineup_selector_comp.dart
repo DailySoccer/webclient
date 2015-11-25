@@ -33,14 +33,17 @@ class LineupSelectorComp {
 
   @NgOneWay("lineup-slots")
   List<dynamic> lineupSlots = [];
+  
+  @NgOneWay("lineup-formation")
+  List<String> lineupFormation = FieldPos.FORMATIONS[ContestEntry.FORMATION_442];
 
   @NgCallback("on-lineup-slot-selected")
   Function onLineupSlotSelected;
   
-  @NgTwoWay("lineup-formation")
-  String get lineupFormation => _lineupFormation;
-  void set lineupFormation(String value) {
-    _lineupFormation = value;
+  @NgTwoWay("formation-id")
+  String get formationId => _formationId;
+  void set formationId(String value) {
+    _formationId = value;
   }
   
   String get MAX_PLAYERS_SAME_TEAM => Contest.MAX_PLAYERS_SAME_TEAM.toString();
@@ -52,14 +55,14 @@ class LineupSelectorComp {
   LineupSelectorComp();
 
   // Para pintar el color correspondiente segun la posicion del jugador
-  String getSlotClassColor(int slotIndex) => _POS_CLASS_NAMES[FieldPos.FIELD_POSITION_ABREV[FieldPos.LINEUP[slotIndex]]];
+  String getSlotClassColor(int slotIndex) => _POS_CLASS_NAMES[FieldPos.FIELD_POSITION_ABREV[lineupFormation[slotIndex]]];
 
   // Por si queremos cambiar lo que significa un slot libre
   bool isEmptySlot(var slot) => slot == null;
 
   // Cuando el slot esta libre, ponemos un texto alternativo + posicion del jugador
-  String getSlotPosition(int slotIndex) => FieldPos.FIELD_POSITION_ABREV[FieldPos.LINEUP[slotIndex]];
-  String getSlotDescription(int slotIndex) => getLocalizedText("add") + FieldPos.FIELD_POSITION_FULL_NAMES[FieldPos.LINEUP[slotIndex]];
+  String getSlotPosition(int slotIndex) => FieldPos.FIELD_POSITION_ABREV[lineupFormation[slotIndex]];
+  String getSlotDescription(int slotIndex) => getLocalizedText("add") + FieldPos.FIELD_POSITION_FULL_NAMES[lineupFormation[slotIndex]];
 
   String getPrintableSalary(int salary) => StringUtils.parseSalary(salary);
   
@@ -69,7 +72,7 @@ class LineupSelectorComp {
   }
   
   String getPrintableFormation() {
-    return getLocalizedText('formation') + " " + (FORMATION_TO_STRING.containsKey(_lineupFormation)? FORMATION_TO_STRING[_lineupFormation] : '');
+    return getLocalizedText('formation') + " " + (FORMATION_TO_STRING.containsKey(formationId)? FORMATION_TO_STRING[formationId] : '');
   }
 
   
@@ -92,5 +95,5 @@ class LineupSelectorComp {
     StringUtils.translate("for", "soccerplayerpositions"): "posDEL"
   };
   
-  String _lineupFormation;
+  String _formationId;
 }

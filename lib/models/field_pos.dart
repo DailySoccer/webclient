@@ -1,5 +1,6 @@
 library field_pos;
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/models/contest_entry.dart';
 
 class FieldPos {
   static FieldPos GOALKEEPER = new FieldPos(getLocalizedText("goalkeeper"));
@@ -21,6 +22,74 @@ class FieldPos {
     getLocalizedText("defense")     : getLocalizedText("defense"),
     getLocalizedText("middle")      : getLocalizedText("middle"),
     getLocalizedText("forward")     : getLocalizedText("forward")
+  };
+
+  static Map<String, List<String>> FORMATIONS = {
+    ContestEntry.FORMATION_442: [ GOALKEEPER.value,
+                                  DEFENSE.value,
+                                  DEFENSE.value,
+                                  DEFENSE.value,
+                                  DEFENSE.value,
+                                  MIDDLE.value,
+                                  MIDDLE.value,
+                                  MIDDLE.value,
+                                  MIDDLE.value,
+                                  FORWARD.value,
+                                  FORWARD.value
+                                 ],
+
+    ContestEntry.FORMATION_352: [ GOALKEEPER.value,
+                                  DEFENSE.value,
+                                  DEFENSE.value,
+                                  DEFENSE.value,
+                                  MIDDLE.value,
+                                  MIDDLE.value,
+                                  MIDDLE.value,
+                                  MIDDLE.value,
+                                  MIDDLE.value,
+                                  FORWARD.value,
+                                  FORWARD.value
+                                 ],
+
+    ContestEntry.FORMATION_433: [ GOALKEEPER.value,
+                                  DEFENSE.value,
+                                  DEFENSE.value,
+                                  DEFENSE.value,
+                                  DEFENSE.value,
+                                  MIDDLE.value,
+                                  MIDDLE.value,
+                                  MIDDLE.value,
+                                  FORWARD.value,
+                                  FORWARD.value,
+                                  FORWARD.value
+                                 ],
+
+    ContestEntry.FORMATION_343: [ GOALKEEPER.value,
+                                  DEFENSE.value,
+                                  DEFENSE.value,
+                                  DEFENSE.value,
+                                  MIDDLE.value,
+                                  MIDDLE.value,
+                                  MIDDLE.value,
+                                  MIDDLE.value,
+                                  FORWARD.value,
+                                  FORWARD.value,
+                                  FORWARD.value
+                                 ],
+
+    ContestEntry.FORMATION_451: [ GOALKEEPER.value,
+                                  DEFENSE.value,
+                                  DEFENSE.value,
+                                  DEFENSE.value,
+                                  DEFENSE.value,
+                                  MIDDLE.value,
+                                  MIDDLE.value,
+                                  MIDDLE.value,
+                                  MIDDLE.value,
+                                  MIDDLE.value,
+                                  FORWARD.value
+                                 ]
+                                 
   };
 
   static String getLocalizedText(String key) {

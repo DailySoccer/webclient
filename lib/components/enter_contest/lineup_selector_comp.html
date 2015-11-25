@@ -8,7 +8,7 @@
        
       <div id="formationsPanel" class="formations-container collapse">
         <span class="formation-element" ng-repeat="key in formationList">
-          <input id="formation{{key}}" name="formation{{key}}" type="radio" value="{{key}}" ng-value="key" ng-model="lineupFormation">
+          <input id="formation{{key}}" name="formation{{key}}" type="radio" value="{{key}}" ng-value="key" ng-model="formationId">
           <label for="formation{{key}}">{{formationToString(key)}}</label>
         </span>
       </div>

@@ -246,7 +246,7 @@ main-menu-f2p {
 					display: inline-block;
 					cursor: pointer;
 					text-decoration: none;
-					text-shadow: 0px 2px black;
+					//text-shadow: 0px 2px black;
 					color: @blueLight;
 					&:hover, .active {
 						color: @white;
@@ -270,7 +270,7 @@ main-menu-f2p {
 						
 						.count {
 							.opensans_normal(8pt, @white);
-							text-shadow: none;
+							//text-shadow: none;
 							background-color: @red;
 							padding: 0 3px;
 							min-width: 15px;
@@ -294,12 +294,24 @@ main-menu-f2p {
 							margin: 0 0 0 5px;
 						}
 						.addIcon("menuLeaderboard.png", 35px, 31px);
+						
+						&#menuLeaderboard:hover {
+							.addIcon("menuLeaderboardLight.png", 35px, 31px);
+						}
 					}
 					&#menuNotifications {
 						.addIcon("menuNotifications.png", 35px, 32px);
+						
+						&#menuNotifications:hover {
+							.addIcon("menuNotificationsLight.png", 35px, 32px);
+						}
 					}
 					&#menuHelp {
 						.addIcon("menuHelp.png", 35px, 32px);
+						
+						&#menuHelp:hover {
+							.addIcon("menuHelpLight.png", 35px, 32px);
+						}
 					}
 				}
 

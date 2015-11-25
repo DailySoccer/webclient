@@ -6216,6 +6216,7 @@ scoring-rules:after,
   font-weight: 700;
   font-size: 9pt;
   color: #214a5f;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
 }
 @media (min-width: 768px) {
   .contest-header-f2p-wrapper .name-section .contest-name {
@@ -6224,6 +6225,7 @@ scoring-rules:after,
     font-size: 12pt;
     color: #214a5f;
     text-transform: uppercase;
+    text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   }
 }
 .contest-header-f2p-wrapper .name-section .contest-description {
@@ -6231,6 +6233,7 @@ scoring-rules:after,
   font-weight: 400;
   font-size: 9pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
 }
 @media (min-width: 768px) {
   .contest-header-f2p-wrapper .name-section .contest-description {
@@ -6238,6 +6241,7 @@ scoring-rules:after,
     font-weight: 400;
     font-size: 9pt;
     color: #777777;
+    text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   }
 }
 .contest-header-f2p-wrapper .conditions-section {
@@ -6266,6 +6270,7 @@ scoring-rules:after,
   font-weight: 700;
   font-size: 9pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   position: relative;
 }
 @media (min-width: 768px) {
@@ -6274,6 +6279,7 @@ scoring-rules:after,
     font-weight: 700;
     font-size: 14pt;
     color: #777777;
+    text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
     border-radius: 5px;
     box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5) inset;
     padding: 5px 10px 8px 10px;
@@ -6305,6 +6311,7 @@ scoring-rules:after,
   font-weight: 400;
   font-size: 8pt;
   color: #afafaf;
+  text-shadow: 1px 1px 1px rgba(175, 175, 175, 0.004);
   line-height: 15px;
   display: inline-block;
 }
@@ -6326,6 +6333,7 @@ scoring-rules:after,
   font-weight: 700;
   font-size: 9pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   position: relative;
 }
 @media (min-width: 768px) {
@@ -6334,6 +6342,7 @@ scoring-rules:after,
     font-weight: 700;
     font-size: 14pt;
     color: #777777;
+    text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
     border-radius: 5px;
     box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5) inset;
     padding: 5px 10px 8px 10px;
@@ -6365,6 +6374,7 @@ scoring-rules:after,
   font-weight: 400;
   font-size: 8pt;
   color: #afafaf;
+  text-shadow: 1px 1px 1px rgba(175, 175, 175, 0.004);
   line-height: 15px;
   display: inline-block;
 }
@@ -6398,6 +6408,7 @@ scoring-rules:after,
   font-weight: 700;
   font-size: 9pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   position: relative;
 }
 @media (min-width: 768px) {
@@ -6406,6 +6417,7 @@ scoring-rules:after,
     font-weight: 700;
     font-size: 14pt;
     color: #777777;
+    text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
     border-radius: 5px;
     box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5) inset;
     padding: 5px 10px 8px 10px;
@@ -6437,6 +6449,7 @@ scoring-rules:after,
   font-weight: 400;
   font-size: 8pt;
   color: #afafaf;
+  text-shadow: 1px 1px 1px rgba(175, 175, 175, 0.004);
   line-height: 15px;
   display: inline-block;
 }
@@ -6464,6 +6477,7 @@ scoring-rules:after,
   font-weight: 700;
   font-size: 9pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   position: relative;
 }
 @media (min-width: 768px) {
@@ -6472,6 +6486,7 @@ scoring-rules:after,
     font-weight: 700;
     font-size: 14pt;
     color: #777777;
+    text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
     border-radius: 5px;
     box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5) inset;
     padding: 5px 10px 8px 10px;
@@ -6503,6 +6518,7 @@ scoring-rules:after,
   font-weight: 400;
   font-size: 8pt;
   color: #afafaf;
+  text-shadow: 1px 1px 1px rgba(175, 175, 175, 0.004);
   line-height: 15px;
   display: inline-block;
 }
@@ -6635,6 +6651,7 @@ scoring-rules:after,
   font-weight: 700;
   font-size: 8pt;
   color: #59add5;
+  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
 }
 @media (min-width: 768px) {
   .contest-header-f2p-wrapper .date-time-data .contest-start-date {
@@ -6643,6 +6660,7 @@ scoring-rules:after,
     font-weight: 700;
     font-size: 11pt;
     color: #59add5;
+    text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
   }
 }
 #teamsPanelComp {
@@ -6679,6 +6697,7 @@ scoring-rules:after,
   font-weight: 700;
   font-size: 8pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -6825,6 +6844,7 @@ scoring-rules:after,
   font-weight: 700;
   font-size: 9pt;
   color: #afafaf;
+  text-shadow: 1px 1px 1px rgba(175, 175, 175, 0.004);
   min-width: 90px;
   background-color: #ffffff;
   border-radius: 10px;
@@ -6852,6 +6872,7 @@ scoring-rules:after,
   font-weight: 700;
   font-size: 9pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 #teamsPanelComp #teamsPanelRoot .teams-container .teams-box .period {
   color: #0d75a6;
@@ -6914,6 +6935,7 @@ scoring-rules:after,
   font-weight: 400;
   font-size: 10pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 @media (max-width: 767px) {
   #contestInfoModal .modal-info-content .tabs-navigation #modalInfoContestTabs > li a {
@@ -6921,6 +6943,7 @@ scoring-rules:after,
     font-weight: 400;
     font-size: 9pt;
     color: #ffffff;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   }
 }
 #contestInfoModal .modal-info-content .tabs-navigation #modalInfoContestTabs > li[disabled] {
@@ -6956,6 +6979,7 @@ scoring-rules:after,
   font-weight: 700;
   font-size: 8pt;
   color: #afafaf;
+  text-shadow: 1px 1px 1px rgba(175, 175, 175, 0.004);
   padding: 0 15px;
   position: absolute;
   top: 15px;
@@ -7087,6 +7111,7 @@ scoring-rules:after,
   font-weight: 400;
   font-size: 12pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   padding: 10px 0;
 }
 @media (min-width: 768px) {
@@ -7100,6 +7125,7 @@ scoring-rules:after,
   font-weight: 700;
   font-size: 12pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   margin-top: 20px;
 }
 #contestInfoModal .modal-info-content .contestant-list-wrapper {
@@ -7149,6 +7175,7 @@ scoring-rules:after,
   font-size: 16pt;
   color: #0d75a6;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(13, 117, 166, 0.004);
 }
 @media (max-width: 767px) {
   .matches-involved .match .teams {
@@ -7156,6 +7183,7 @@ scoring-rules:after,
     font-weight: 700;
     font-size: 8pt;
     color: #0d75a6;
+    text-shadow: 1px 1px 1px rgba(13, 117, 166, 0.004);
   }
 }
 .matches-involved .match .date {
@@ -7163,12 +7191,14 @@ scoring-rules:after,
   font-weight: 700;
   font-size: 8pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
 }
 .rules-description {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 8pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   margin: 10px auto 0;
   background-color: #ecf0f1;
 }
@@ -7199,6 +7229,7 @@ scoring-rules:after,
   font-size: 12pt;
   color: #0d75a6;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(13, 117, 166, 0.004);
   background-color: #ecf0f1;
   padding: 5px 10px;
   margin: 10px auto;
@@ -7234,6 +7265,7 @@ scoring-rules:after,
   font-weight: 700;
   font-size: 10pt;
   color: #214a5f;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   margin: 10px auto 0;
 }
 .contestant-list {
@@ -7252,6 +7284,7 @@ scoring-rules:after,
   font-weight: 700;
   font-size: 10pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   text-align: center;
 }
 .contestant-list .contestant-name {
@@ -7267,6 +7300,7 @@ scoring-rules:after,
   font-weight: 700;
   font-size: 10pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   text-align: left;
 }
 .contestant-list .contestant-points {
@@ -7284,6 +7318,7 @@ scoring-rules:after,
   font-size: 14pt;
   color: #777777;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   text-align: right;
 }
 .contestant-list .prize-currency {
@@ -7291,6 +7326,7 @@ scoring-rules:after,
   font-weight: 700;
   font-size: 10pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   line-height: 39px;
 }
 .contestant-list .contestant-element {
@@ -7419,6 +7455,7 @@ scoring-rules:after,
   font-weight: 700;
   font-size: 9pt;
   color: #214a5f;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
 }
 @media (min-width: 768px) {
   .contests-list-f2p-root .contestSlot .time-section .column-start-time {
@@ -7435,6 +7472,7 @@ scoring-rules:after,
     font-size: 12pt;
     color: #214a5f;
     text-transform: uppercase;
+    text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   }
   .contests-list-f2p-root .contestSlot .time-section .column-start-time .column-start-hour.start-soon,
   .contests-list-f2p-root .contestSlot .time-section .column-start-time .column-start-date {
@@ -7443,6 +7481,7 @@ scoring-rules:after,
     font-size: 10pt;
     color: #214a5f;
     text-transform: uppercase;
+    text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   }
 }
 .contests-list-f2p-root .contestSlot .name-section {
@@ -7469,6 +7508,7 @@ scoring-rules:after,
   font-weight: 700;
   font-size: 9pt;
   color: #214a5f;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
 }
 @media (min-width: 768px) {
   .contests-list-f2p-root .contestSlot .name-section .contest-name {
@@ -7477,6 +7517,7 @@ scoring-rules:after,
     font-size: 12pt;
     color: #214a5f;
     text-transform: uppercase;
+    text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   }
 }
 .contests-list-f2p-root .contestSlot .name-section .contest-description {
@@ -7484,6 +7525,7 @@ scoring-rules:after,
   font-weight: 400;
   font-size: 9pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
 }
 @media (min-width: 768px) {
   .contests-list-f2p-root .contestSlot .name-section .contest-description {
@@ -7491,6 +7533,7 @@ scoring-rules:after,
     font-weight: 400;
     font-size: 9pt;
     color: #777777;
+    text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   }
 }
 .contests-list-f2p-root .contestSlot .conditions-section {
@@ -7519,6 +7562,7 @@ scoring-rules:after,
   font-weight: 700;
   font-size: 9pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   position: relative;
   background-color: #ffffff;
 }
@@ -7528,6 +7572,7 @@ scoring-rules:after,
     font-weight: 700;
     font-size: 14pt;
     color: #777777;
+    text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
     border-radius: 5px;
     box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5) inset;
     padding: 5px 10px 8px 10px;
@@ -7559,6 +7604,7 @@ scoring-rules:after,
   font-weight: 400;
   font-size: 8pt;
   color: #afafaf;
+  text-shadow: 1px 1px 1px rgba(175, 175, 175, 0.004);
   line-height: 15px;
   display: inline-block;
 }
@@ -7580,6 +7626,7 @@ scoring-rules:after,
   font-weight: 700;
   font-size: 9pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   position: relative;
   background-color: #ffffff;
 }
@@ -7589,6 +7636,7 @@ scoring-rules:after,
     font-weight: 700;
     font-size: 14pt;
     color: #777777;
+    text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
     border-radius: 5px;
     box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5) inset;
     padding: 5px 10px 8px 10px;
@@ -7620,6 +7668,7 @@ scoring-rules:after,
   font-weight: 400;
   font-size: 8pt;
   color: #afafaf;
+  text-shadow: 1px 1px 1px rgba(175, 175, 175, 0.004);
   line-height: 15px;
   display: inline-block;
 }
@@ -7653,6 +7702,7 @@ scoring-rules:after,
   font-weight: 700;
   font-size: 9pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   position: relative;
   background-color: #ffffff;
 }
@@ -7662,6 +7712,7 @@ scoring-rules:after,
     font-weight: 700;
     font-size: 14pt;
     color: #777777;
+    text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
     border-radius: 5px;
     box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5) inset;
     padding: 5px 10px 8px 10px;
@@ -7693,6 +7744,7 @@ scoring-rules:after,
   font-weight: 400;
   font-size: 8pt;
   color: #afafaf;
+  text-shadow: 1px 1px 1px rgba(175, 175, 175, 0.004);
   line-height: 15px;
   display: inline-block;
 }
@@ -7720,6 +7772,7 @@ scoring-rules:after,
   font-weight: 700;
   font-size: 9pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   position: relative;
   background-color: #ffffff;
 }
@@ -7729,6 +7782,7 @@ scoring-rules:after,
     font-weight: 700;
     font-size: 14pt;
     color: #777777;
+    text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
     border-radius: 5px;
     box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5) inset;
     padding: 5px 10px 8px 10px;
@@ -7760,6 +7814,7 @@ scoring-rules:after,
   font-weight: 400;
   font-size: 8pt;
   color: #afafaf;
+  text-shadow: 1px 1px 1px rgba(175, 175, 175, 0.004);
   line-height: 15px;
   display: inline-block;
 }
@@ -7781,6 +7836,7 @@ scoring-rules:after,
   font-weight: 700;
   font-size: 9pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   position: relative;
   background-color: #ffffff;
 }
@@ -7790,6 +7846,7 @@ scoring-rules:after,
     font-weight: 700;
     font-size: 14pt;
     color: #777777;
+    text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
     border-radius: 5px;
     box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5) inset;
     padding: 5px 10px 8px 10px;
@@ -7821,6 +7878,7 @@ scoring-rules:after,
   font-weight: 400;
   font-size: 8pt;
   color: #afafaf;
+  text-shadow: 1px 1px 1px rgba(175, 175, 175, 0.004);
   line-height: 15px;
   display: inline-block;
 }
@@ -7981,6 +8039,7 @@ scoring-rules:after,
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
@@ -8212,6 +8271,7 @@ scoring-rules #scoringForForwards .rules-content {
   font-size: 10pt;
   color: #ffffff;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #434343;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
@@ -8237,6 +8297,7 @@ scoring-rules #scoringForForwards .rules-content {
   font-size: 9pt;
   color: #777777;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   position: relative;
   float: left;
   width: 83.33333333%;
@@ -8252,6 +8313,7 @@ scoring-rules #scoringForForwards .rules-content {
   font-size: 9pt;
   color: #777777;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   position: relative;
   float: left;
   width: 16.66666667%;
@@ -8277,6 +8339,7 @@ scoring-rules #scoringForForwards .rules-content {
   font-size: 20pt;
   color: #ffffff;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   text-align: left;
   padding-left: 20px;
 }
@@ -8323,6 +8386,7 @@ button#personalDataContent .edit-personal-data-header button.close {
   font-weight: 700;
   font-size: 10pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   padding-top: 5px;
   padding-bottom: 5px;
   background-color: #214a5f;
@@ -8382,6 +8446,7 @@ button#personalDataContent .header button.close {
   font-size: 20pt;
   color: #ffffff;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   text-align: left;
 }
 #personalDataContent .field-padding {
@@ -8444,6 +8509,7 @@ button#personalDataContent .header button.close {
   font-weight: 700;
   font-size: 8pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
 }
 #personalDataContent .content-field-block {
   position: relative;
@@ -8475,6 +8541,7 @@ button#personalDataContent .header button.close {
   font-weight: 400;
   font-size: 8pt;
   color: #ff0000;
+  text-shadow: 1px 1px 1px rgba(255, 0, 0, 0.004);
 }
 #personalDataContent .subscriptions-content {
   margin-left: 0;
@@ -8521,6 +8588,7 @@ button#personalDataContent .header button.close {
   font-weight: 700;
   font-size: 8pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   padding-left: 10px;
   float: left;
 }
@@ -8591,6 +8659,7 @@ button#personalDataContent .header button.close {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
@@ -8755,6 +8824,7 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #afafaf;
   box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
   color: #ffffff;
@@ -8855,6 +8925,7 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   font-weight: 400;
   font-size: 8pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
 }
 .errorDetected {
   position: relative;
@@ -8867,6 +8938,7 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   font-weight: 400;
   font-size: 8pt;
   color: #ff0000;
+  text-shadow: 1px 1px 1px rgba(255, 0, 0, 0.004);
 }
 @-webkit-keyframes appear-from-right-keyframes {
   0% {
@@ -8935,6 +9007,7 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   font-size: 20pt;
   color: #214a5f;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   padding: 16px 10px 12px;
   text-align: center;
 }
@@ -8947,12 +9020,14 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   font-weight: 700;
   font-size: 10pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
 }
 #addFundsContent .description #descriptionTip2 {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 10pt;
   color: #214a5f;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
 }
 #addFundsContent .add-founds-box {
   background-color: #ecf0f1;
@@ -8981,12 +9056,14 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   font-weight: 400;
   font-size: 15pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
 }
 #addFundsContent .add-founds-box .money-selector .money-element label {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 12pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
 }
 #addFundsContent .add-founds-box .money-selector .money-element input[type="radio"],
 #addFundsContent .add-founds-box .money-selector .money-element label {
@@ -9006,6 +9083,7 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   font-weight: 400;
   font-size: 12pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   width: 90px;
   margin: 0px 5px;
   padding: 7px;
@@ -9019,6 +9097,7 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   font-weight: 300;
   font-size: 15pt;
   color: #214a5f;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   text-transform: uppercase;
 }
 #addFundsContent .add-founds-box h2 span {
@@ -9027,12 +9106,14 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   font-size: 15pt;
   color: #214a5f;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
 }
 #addFundsContent .add-founds-box p {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 10pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   margin: 10px;
 }
 #addFundsContent .add-founds-box .button-wrapper {
@@ -9068,6 +9149,7 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
@@ -9208,6 +9290,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   font-weight: 700;
   font-size: 10pt;
   color: #214a5f;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   margin-bottom: 0px;
 }
 #addFundsContent .need-help-box #need-help-email {
@@ -9215,6 +9298,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   font-weight: 700;
   font-size: 10pt;
   color: #59add5;
+  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
 }
 #addFundsContent .pay-faq-block .pay-faq-title {
   margin-left: 0;
@@ -9223,6 +9307,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   font-weight: 300;
   font-size: 20pt;
   color: #214a5f;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   padding: 30px 15px 30px 15px;
   background-color: #ecf0f1;
   background-color: #ffffff;
@@ -9238,6 +9323,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
     font-size: 16pt;
     color: #214a5f;
     text-transform: uppercase;
+    text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   }
 }
 #addFundsContent .toogle-block {
@@ -9249,6 +9335,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   font-weight: 600;
   font-size: 10pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   text-transform: uppercase;
   display: block;
   height: 28px;
@@ -9268,6 +9355,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
     font-size: 8pt;
     color: #777777;
     text-transform: uppercase;
+    text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   }
 }
 #addFundsContent .toogle-block label:hover {
@@ -9284,6 +9372,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   font-weight: 400;
   font-size: 10pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   padding: 0 10px;
   height: 0;
   -webkit-transform: scaleY(0);
@@ -9356,6 +9445,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   font-weight: 400;
   font-size: 10pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 @media (max-width: 767px) {
   #addFundsContent .help-info-tabs > li a {
@@ -9363,6 +9453,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
     font-weight: 400;
     font-size: 9pt;
     color: #ffffff;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   }
 }
 #addFundsContent .help-info-tabs > li[disabled] {
@@ -9469,6 +9560,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   font-weight: 700;
   font-size: 10pt;
   color: #214a5f;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   line-height: 2;
   padding: 10px;
 }
@@ -9483,6 +9575,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   font-weight: 700;
   font-size: 10pt;
   color: #214a5f;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   line-height: 2;
   padding: 10px;
 }
@@ -9503,6 +9596,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   font-weight: 700;
   font-size: 10pt;
   color: #214a5f;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   line-height: 2;
   padding: 10px;
 }
@@ -9523,6 +9617,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   font-weight: 700;
   font-size: 10pt;
   color: #214a5f;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   line-height: 2;
   padding: 10px;
 }
@@ -9544,6 +9639,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   font-weight: 700;
   font-size: 10pt;
   color: #214a5f;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   line-height: 2;
   padding: 10px;
 }
@@ -9571,6 +9667,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   font-weight: 700;
   font-size: 10pt;
   color: #214a5f;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   line-height: 2;
   padding: 10px;
 }
@@ -9610,6 +9707,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   font-weight: 700;
   font-size: 8pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   line-height: 2;
   padding: 10px;
 }
@@ -9627,6 +9725,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   font-weight: 700;
   font-size: 8pt;
   color: #214a5f;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
 }
 @media (max-width: 767px) {
   #transactionHistoryRoot .transaction-row .money-label {
@@ -9644,6 +9743,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   font-weight: 700;
   font-size: 8pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   line-height: 2;
   padding: 10px;
 }
@@ -9677,6 +9777,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   font-weight: 700;
   font-size: 8pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   line-height: 2;
   padding: 10px;
 }
@@ -9710,6 +9811,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   font-weight: 700;
   font-size: 8pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   line-height: 2;
   padding: 10px;
 }
@@ -9744,6 +9846,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   font-weight: 700;
   font-size: 8pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   line-height: 2;
   padding: 10px;
 }
@@ -9779,6 +9882,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   font-weight: 700;
   font-size: 8pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   line-height: 2;
   padding: 10px;
 }
@@ -9908,6 +10012,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   font-weight: 400;
   font-size: 11pt;
   color: #afd3e4;
+  text-shadow: 1px 1px 1px rgba(175, 211, 228, 0.004);
   top: 8px;
   position: relative;
 }
@@ -9942,6 +10047,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   font-size: 20pt;
   color: #ffffff;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   position: relative;
   top: 15px;
 }
@@ -9995,6 +10101,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
@@ -10132,6 +10239,7 @@ fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .cont
   font-weight: 700;
   font-size: 13pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .free-increment .free-increment-desc {
   display: block;
@@ -10139,6 +10247,7 @@ fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .cont
   font-weight: 700;
   font-size: 7pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   position: relative;
   bottom: 4px;
 }
@@ -10199,6 +10308,7 @@ fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .cont
   font-weight: 400;
   font-size: 10pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   text-align: center;
 }
 #mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper {
@@ -10234,6 +10344,7 @@ fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .cont
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
@@ -10361,6 +10472,7 @@ fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .bu
   font-size: 20pt;
   color: #ffffff;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   padding: 0 20px;
 }
 #mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button .quantity:after {
@@ -10386,6 +10498,7 @@ fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .bu
   font-size: 28pt;
   color: #59add5;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
 }
 #goldShopComp,
 #trainerPointsShopComp {
@@ -10546,6 +10659,7 @@ fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .bu
   font-weight: 400;
   font-size: 10pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 #goldShopComp .products-wrapper .product .slot-content .image-column,
 #trainerPointsShopComp .products-wrapper .product .slot-content .image-column {
@@ -10578,6 +10692,7 @@ fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .bu
   font-weight: 700;
   font-size: 10pt;
   color: #59add5;
+  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
 }
 #goldShopComp .products-wrapper .product .slot-content .quantity-column .product-count,
 #trainerPointsShopComp .products-wrapper .product .slot-content .quantity-column .product-count {
@@ -10587,6 +10702,7 @@ fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .bu
   font-size: 28pt;
   color: #ffffff;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 #goldShopComp .products-wrapper .product .slot-content .quantity-column .product-count:after,
 #trainerPointsShopComp .products-wrapper .product .slot-content .quantity-column .product-count:after {
@@ -10621,6 +10737,7 @@ fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .bu
   font-weight: 700;
   font-size: 13pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 #goldShopComp .products-wrapper .product .slot-content .price-column .free-increment .free-increment-desc,
 #trainerPointsShopComp .products-wrapper .product .slot-content .price-column .free-increment .free-increment-desc {
@@ -10629,6 +10746,7 @@ fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .bu
   font-weight: 700;
   font-size: 7pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 #goldShopComp .products-wrapper .product .slot-content .price-column .product-price,
 #trainerPointsShopComp .products-wrapper .product .slot-content .price-column .product-price {
@@ -10637,6 +10755,7 @@ fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .bu
   font-weight: 400;
   font-size: 14pt;
   color: #afd3e4;
+  text-shadow: 1px 1px 1px rgba(175, 211, 228, 0.004);
 }
 #goldShopComp .products-wrapper .product .slot-content .price-column .product-price.no-frees,
 #trainerPointsShopComp .products-wrapper .product .slot-content .price-column .product-price.no-frees {
@@ -10694,6 +10813,7 @@ fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .bu
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #afafaf;
   box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
   color: #ffffff;
@@ -10940,6 +11060,7 @@ fieldset[disabled] #trainerPointsShopComp .buttons-wrapper .cancel-button {
   font-weight: 400;
   font-size: 10pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 #energyshopComp .products-wrapper .product .slot-content .image-column {
   width: 104px;
@@ -10967,6 +11088,7 @@ fieldset[disabled] #trainerPointsShopComp .buttons-wrapper .cancel-button {
   font-weight: 400;
   font-size: 10pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 #energyshopComp .products-wrapper .product .slot-content .quantity-column .product-count {
   display: block;
@@ -10975,6 +11097,7 @@ fieldset[disabled] #trainerPointsShopComp .buttons-wrapper .cancel-button {
   font-size: 28pt;
   color: #ffffff;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 #energyshopComp .products-wrapper .product .slot-content .quantity-column .product-count:after {
   content: " ";
@@ -10994,6 +11117,7 @@ fieldset[disabled] #trainerPointsShopComp .buttons-wrapper .cancel-button {
   font-size: 28pt;
   color: #ffffff;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 #energyshopComp .products-wrapper .product .slot-content .price-column {
   width: 104px;
@@ -11013,6 +11137,7 @@ fieldset[disabled] #trainerPointsShopComp .buttons-wrapper .cancel-button {
   font-weight: 700;
   font-size: 13pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 #energyshopComp .products-wrapper .product .slot-content .price-column .free-increment .free-increment-desc {
   display: block;
@@ -11020,6 +11145,7 @@ fieldset[disabled] #trainerPointsShopComp .buttons-wrapper .cancel-button {
   font-weight: 700;
   font-size: 7pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 #energyshopComp .products-wrapper .product .slot-content .price-column .product-price {
   display: block;
@@ -11027,6 +11153,7 @@ fieldset[disabled] #trainerPointsShopComp .buttons-wrapper .cancel-button {
   font-weight: 400;
   font-size: 14pt;
   color: #afd3e4;
+  text-shadow: 1px 1px 1px rgba(175, 211, 228, 0.004);
 }
 #energyshopComp .products-wrapper .product .slot-content .price-column .product-price.no-frees {
   margin-top: 45px;
@@ -11085,6 +11212,7 @@ fieldset[disabled] #trainerPointsShopComp .buttons-wrapper .cancel-button {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #afafaf;
   box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
   color: #ffffff;
@@ -11215,6 +11343,7 @@ fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
   font-size: 11pt;
   color: #ffffff;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   padding-top: 5px;
 }
 .fantasy-team-header .ranking-box .content {
@@ -11257,6 +11386,7 @@ fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
   font-size: 11pt;
   color: #ffffff;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   padding-top: 5px;
 }
 .fantasy-team-header .score-box .content {
@@ -11287,6 +11417,7 @@ fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
   font-size: 14pt;
   color: #ffffff;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   height: 45px;
   padding-top: 5px;
 }
@@ -11296,6 +11427,7 @@ fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
   font-size: 20pt;
   color: #ffffff;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   padding: 20px 0 0 10px;
 }
 .fantasy-team-header .total-remaining-matches-time {
@@ -11303,6 +11435,7 @@ fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
   font-weight: 400;
   font-size: 8pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   height: 45px;
   padding-top: 5px;
 }
@@ -11323,6 +11456,7 @@ fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
   font-weight: 400;
   font-size: 8pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   position: relative;
   top: 3px;
 }
@@ -11372,6 +11506,7 @@ fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #59add5;
   box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
   color: #ffffff;
@@ -11577,6 +11712,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   font-weight: 700;
   font-size: 10pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   text-align: center;
   padding-top: 10px;
 }
@@ -11593,6 +11729,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   font-weight: 700;
   font-size: 10pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   display: block;
 }
 .fantasy-team-list .fantasy-team-slot .column-primary-info .match-event-name {
@@ -11600,12 +11737,14 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   font-weight: 400;
   font-size: 9pt;
   color: #59add5;
+  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
 }
 .fantasy-team-list .fantasy-team-slot .column-primary-info .remaining-match-time {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 8pt;
   color: #afafaf;
+  text-shadow: 1px 1px 1px rgba(175, 175, 175, 0.004);
   padding-left: 5px;
 }
 .fantasy-team-list .fantasy-team-slot .column-primary-info .remaining-match-time:before {
@@ -11626,6 +11765,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   font-size: 19pt;
   color: #59add5;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
   text-align: right;
   padding-right: 10px;
   background-color: #ffffff;
@@ -11648,6 +11788,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   font-weight: 700;
   font-size: 10pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   text-align: center;
   padding-top: 10px;
 }
@@ -11681,6 +11822,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   font-size: 11pt;
   color: #ffffff;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   padding-top: 5px;
 }
 .header-box .content {
@@ -11756,6 +11898,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   font-weight: 400;
   font-size: 8pt;
   color: #434343;
+  text-shadow: 1px 1px 1px rgba(67, 67, 67, 0.004);
   margin: 0 auto;
   background-color: #dcdcdc;
   padding: 2px 5px;
@@ -11775,6 +11918,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   font-weight: 400;
   font-size: 10pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
 }
 .statistic .stat-points {
   position: relative;
@@ -11788,6 +11932,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   font-size: 12pt;
   color: #777777;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   text-align: right;
 }
 @media (min-width: 768px) {
@@ -11862,6 +12007,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   font-weight: 700;
   font-size: 10pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   line-height: 35px;
   padding: 0 10px 0 0;
   border-left: 2px solid #ffffff;
@@ -11872,6 +12018,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
     font-weight: 400;
     font-size: 10pt;
     color: #afafaf;
+    text-shadow: 1px 1px 1px rgba(175, 175, 175, 0.004);
     border-color: #afafaf;
     padding-right: 10px;
   }
@@ -11985,6 +12132,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   font-weight: 700;
   font-size: 10pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   line-height: 35px;
   padding: 0 10px 0 0;
   border-left: 2px solid #ffffff;
@@ -11998,6 +12146,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
     font-weight: 400;
     font-size: 10pt;
     color: #afafaf;
+    text-shadow: 1px 1px 1px rgba(175, 175, 175, 0.004);
     border-color: #afafaf;
     padding-right: 10px;
   }
@@ -12012,6 +12161,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   font-weight: 700;
   font-size: 10pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   line-height: 35px;
   padding: 0 10px 0 0;
   border-left: 2px solid #ffffff;
@@ -12024,6 +12174,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
     font-weight: 400;
     font-size: 10pt;
     color: #afafaf;
+    text-shadow: 1px 1px 1px rgba(175, 175, 175, 0.004);
     border-color: #afafaf;
     padding-right: 10px;
   }
@@ -12039,6 +12190,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   font-weight: 700;
   font-size: 10pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   line-height: 35px;
   padding: 0 10px 0 0;
   border-left: 2px solid #ffffff;
@@ -12051,6 +12203,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
     font-weight: 400;
     font-size: 10pt;
     color: #afafaf;
+    text-shadow: 1px 1px 1px rgba(175, 175, 175, 0.004);
     border-color: #afafaf;
     padding-right: 10px;
   }
@@ -12065,6 +12218,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   font-weight: 700;
   font-size: 10pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   line-height: 35px;
   padding: 0 10px 0 0;
   border-left: 2px solid #ffffff;
@@ -12077,6 +12231,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
     font-weight: 400;
     font-size: 10pt;
     color: #afafaf;
+    text-shadow: 1px 1px 1px rgba(175, 175, 175, 0.004);
     border-color: #afafaf;
     padding-right: 10px;
   }
@@ -12091,6 +12246,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   font-weight: 700;
   font-size: 10pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   line-height: 35px;
   padding: 0 10px 0 0;
   border-left: 2px solid #ffffff;
@@ -12103,6 +12259,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
     font-weight: 400;
     font-size: 10pt;
     color: #afafaf;
+    text-shadow: 1px 1px 1px rgba(175, 175, 175, 0.004);
     border-color: #afafaf;
     padding-right: 10px;
   }
@@ -12119,6 +12276,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   font-weight: 400;
   font-size: 10pt;
   color: #f8f8f8;
+  text-shadow: 1px 1px 1px rgba(248, 248, 248, 0.004);
   line-height: 20px;
 }
 @media (max-width: 767px) {
@@ -12155,6 +12313,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   font-weight: 400;
   font-size: 11pt;
   color: #f8f8f8;
+  text-shadow: 1px 1px 1px rgba(248, 248, 248, 0.004);
   padding-right: 0;
   padding-top: 10px;
 }
@@ -12171,6 +12330,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   font-weight: 700;
   font-size: 9pt;
   color: #f8f8f8;
+  text-shadow: 1px 1px 1px rgba(248, 248, 248, 0.004);
   padding-top: 5px;
 }
 @media (max-width: 767px) {
@@ -12181,6 +12341,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
     font-weight: 400;
     font-size: 10pt;
     color: #afafaf;
+    text-shadow: 1px 1px 1px rgba(175, 175, 175, 0.004);
   }
 }
 #rootFooter .sub-footer-wrapper .sub-footer .social {
@@ -12228,6 +12389,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   font-size: 34pt;
   color: #214a5f;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
 }
 @media (max-width: 991px) {
   #obsoleteBrowserPageRoot #desktopContent .main-title-wrapper .main-title {
@@ -12236,6 +12398,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
     font-size: 25pt;
     color: #214a5f;
     text-transform: uppercase;
+    text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   }
 }
 #obsoleteBrowserPageRoot #desktopContent .main-title-wrapper .main-sub-title {
@@ -12244,6 +12407,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   font-weight: 400;
   font-size: 16pt;
   color: #214a5f;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
 }
 @media (max-width: 991px) {
   #obsoleteBrowserPageRoot #desktopContent .main-title-wrapper .main-sub-title {
@@ -12251,6 +12415,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
     font-weight: 400;
     font-size: 12pt;
     color: #214a5f;
+    text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   }
 }
 #obsoleteBrowserPageRoot #desktopContent .main-title-wrapper .modules-wrapper {
@@ -12294,6 +12459,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   font-weight: 700;
   font-size: 12pt;
   color: #214a5f;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   height: 60px;
   vertical-align: text-top;
   margin-top: 20px;
@@ -12355,6 +12521,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   font-weight: 400;
   font-size: 10pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 @media (max-width: 767px) {
   #viewContestRoot .view-contest-tabs > li a {
@@ -12362,6 +12529,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
     font-weight: 400;
     font-size: 9pt;
     color: #ffffff;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   }
 }
 #viewContestRoot .view-contest-tabs > li[disabled] {
@@ -12390,6 +12558,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   font-weight: 700;
   font-size: 10pt;
   color: #214a5f;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   text-align: right;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -12654,6 +12823,7 @@ main-menu-f2p {
     font-weight: 400;
     font-size: 10pt;
     color: #777777;
+    text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
     cursor: pointer;
   }
   #mainMenu #menuSlide .navbar-nav li .count {
@@ -12681,6 +12851,7 @@ main-menu-f2p {
     font-weight: 700;
     font-size: 10pt;
     color: #000000;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
   }
   #mainMenu #menuSlide .navbar-nav li.right-menu.open > a,
   #mainMenu #menuSlide .navbar-nav li.right-menu.open > a:focus,
@@ -12753,7 +12924,6 @@ main-menu-f2p {
   display: inline-block;
   cursor: pointer;
   text-decoration: none;
-  text-shadow: 0px 2px black;
   color: #59add5;
 }
 #mainMenu #desktopMenu .links-options .mainLink a:hover,
@@ -12785,7 +12955,7 @@ main-menu-f2p {
   font-weight: 400;
   font-size: 8pt;
   color: #ffffff;
-  text-shadow: none;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #ff0000;
   padding: 0 3px;
   min-width: 15px;
@@ -12815,6 +12985,14 @@ main-menu-f2p {
     margin: 0 0 0 5px;
   }
 }
+#mainMenu #desktopMenu .links-options .mainLink a#menuLeaderboard#menuLeaderboard:hover {
+  content: " ";
+  background-image: url("../images/menuLeaderboardLight.png");
+  width: 35px;
+  height: 31px;
+  display: inline-block;
+  vertical-align: middle;
+}
 #mainMenu #desktopMenu .links-options .mainLink a#menuNotifications {
   content: " ";
   background-image: url("../images/menuNotifications.png");
@@ -12823,9 +13001,25 @@ main-menu-f2p {
   display: inline-block;
   vertical-align: middle;
 }
+#mainMenu #desktopMenu .links-options .mainLink a#menuNotifications#menuNotifications:hover {
+  content: " ";
+  background-image: url("../images/menuNotificationsLight.png");
+  width: 35px;
+  height: 32px;
+  display: inline-block;
+  vertical-align: middle;
+}
 #mainMenu #desktopMenu .links-options .mainLink a#menuHelp {
   content: " ";
   background-image: url("../images/menuHelp.png");
+  width: 35px;
+  height: 32px;
+  display: inline-block;
+  vertical-align: middle;
+}
+#mainMenu #desktopMenu .links-options .mainLink a#menuHelp#menuHelp:hover {
+  content: " ";
+  background-image: url("../images/menuHelpLight.png");
   width: 35px;
   height: 32px;
   display: inline-block;
@@ -13029,6 +13223,7 @@ main-menu-f2p {
   font-weight: 700;
   font-size: 9pt;
   color: #000000;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
   background-color: #55c0ff;
   border-radius: 10px;
   width: 18px;
@@ -13197,6 +13392,7 @@ main-menu-f2p {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #59add5;
   box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
   color: #ffffff;
@@ -13323,6 +13519,7 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
   font-weight: 400;
   font-size: 10pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: transparent;
   border: 1px solid #ffffff;
   border-radius: 10px;
@@ -13336,6 +13533,7 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
   font-weight: 400;
   font-size: 10pt;
   color: #a1c931;
+  text-shadow: 1px 1px 1px rgba(161, 201, 49, 0.004);
 }
 @media (max-width: 767px) {
   #userBalanceIn,
@@ -13478,6 +13676,7 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
   font-weight: 700;
   font-size: 9pt;
   color: #fa9c19;
+  text-shadow: 1px 1px 1px rgba(250, 156, 25, 0.004);
 }
 .resume-bar .information-no-contest {
   position: relative;
@@ -13490,6 +13689,7 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
   font-weight: 700;
   font-size: 9pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   padding: 10px 10px 12px;
   text-align: center;
   min-height: 39px;
@@ -13501,6 +13701,7 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
     font-weight: 700;
     font-size: 7pt;
     color: #ffffff;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   }
 }
 .contest-count {
@@ -13548,6 +13749,7 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
   font-weight: 400;
   font-size: 10pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 @media (max-width: 767px) {
   #myContestMenuTabs > li a {
@@ -13555,6 +13757,7 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
     font-weight: 400;
     font-size: 9pt;
     color: #ffffff;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   }
 }
 #myContestMenuTabs > li[disabled] {
@@ -13587,6 +13790,7 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
   font-weight: 700;
   font-size: 8pt;
   color: #afafaf;
+  text-shadow: 1px 1px 1px rgba(175, 175, 175, 0.004);
 }
 @media (max-width: 767px) {
   .no-contests-wrapper .no-contests-content .no-contests-text {
@@ -13594,6 +13798,7 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
     font-weight: 700;
     font-size: 7pt;
     color: #afafaf;
+    text-shadow: 1px 1px 1px rgba(175, 175, 175, 0.004);
   }
 }
 .no-contests-wrapper .no-contests-content .no-contests-text strong {
@@ -13641,6 +13846,7 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
@@ -13772,6 +13978,7 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
   font-weight: 400;
   font-size: 9pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   line-height: 40px;
   background-color: #dcdcdc;
   padding-left: 10px;
@@ -13953,6 +14160,7 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
   font-size: 10pt;
   color: #ffffff;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   display: inline-block;
   background-color: #fa9c19;
   line-height: 31px;
@@ -14063,6 +14271,7 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
   font-weight: 400;
   font-size: 14pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   line-height: 66px;
   margin-left: 5px;
 }
@@ -14128,6 +14337,7 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #afafaf;
   box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
   color: #ffffff;
@@ -14245,6 +14455,7 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .actions-
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
@@ -14410,6 +14621,7 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .actions-
   font-weight: 700;
   font-size: 10pt;
   color: #afafaf;
+  text-shadow: 1px 1px 1px rgba(175, 175, 175, 0.004);
 }
 #modalSoccerPlayerStats .soccer-player-stats-header .description-header .soccer-player-description .soccer-player-pos-team span + span {
   color: #ffffff;
@@ -14426,6 +14638,7 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .actions-
   font-size: 20pt;
   color: #fba61a;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(251, 166, 26, 0.004);
 }
 #modalSoccerPlayerStats .soccer-player-stats-header .description-header .soccer-player-stats-info {
   float: left;
@@ -14467,6 +14680,7 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .actions-
   font-weight: 700;
   font-size: 9pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   padding-top: 5px;
 }
 @media (max-width: 767px) {
@@ -14487,6 +14701,7 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .actions-
   font-size: 18pt;
   color: #dcdcdc;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(220, 220, 220, 0.004);
   padding-top: 0;
 }
 @media (max-width: 767px) {
@@ -14529,6 +14744,7 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .actions-
   font-weight: 700;
   font-size: 9pt;
   color: #59add5;
+  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
   display: inline-block;
   margin-top: 10px;
   padding-right: 5px;
@@ -14565,6 +14781,7 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .actions-
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
@@ -14743,6 +14960,7 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .next-mat
   font-weight: 400;
   font-size: 10pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 @media (max-width: 767px) {
   #modalSoccerPlayerStats .soccer-player-stats-content .soccer-player-stats-tabs > li a {
@@ -14750,6 +14968,7 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .next-mat
     font-weight: 400;
     font-size: 9pt;
     color: #ffffff;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   }
 }
 #modalSoccerPlayerStats .soccer-player-stats-content .soccer-player-stats-tabs > li[disabled] {
@@ -14788,6 +15007,7 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .next-mat
   font-weight: 700;
   font-size: 9pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   padding: 20px 10px;
 }
 @media (max-width: 767px) {
@@ -14819,6 +15039,7 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .next-mat
   font-weight: 400;
   font-size: 16pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   padding: 10px;
 }
 @media (max-width: 767px) {
@@ -14914,6 +15135,7 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .next-mat
   font-weight: 400;
   font-size: 10pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   float: left;
   width: 16.66666667%;
   padding-left: 0;
@@ -14936,6 +15158,7 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .next-mat
     font-weight: 700;
     font-size: 9pt;
     color: #777777;
+    text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   }
 }
 #modalSoccerPlayerStats .soccer-player-stats-content .season-stats .season-stats-row .season-stats-info {
@@ -14944,6 +15167,7 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .next-mat
   font-size: 14pt;
   color: #777777;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   float: left;
   width: 83.33333333%;
   padding-left: 0;
@@ -14967,6 +15191,7 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .next-mat
     font-size: 24pt;
     color: #0d75a6;
     text-transform: uppercase;
+    text-shadow: 1px 1px 1px rgba(13, 117, 166, 0.004);
   }
 }
 #modalSoccerPlayerStats .soccer-player-stats-content .match-header {
@@ -14980,6 +15205,7 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .next-mat
   font-weight: 400;
   font-size: 16pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   padding: 10px;
 }
 @media (max-width: 767px) {
@@ -15001,6 +15227,7 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .next-mat
   font-weight: 700;
   font-size: 10pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   height: 268px;
   padding-top: 134px;
   text-align: center;
@@ -15058,6 +15285,7 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .next-mat
   font-weight: 700;
   font-size: 8pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   position: relative;
   float: left;
   width: 100%;
@@ -15076,6 +15304,7 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .next-mat
   font-weight: 700;
   font-size: 8pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   position: relative;
   float: left;
   width: 100%;
@@ -15107,6 +15336,7 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .next-mat
   font-weight: 700;
   font-size: 12pt;
   color: #214a5f;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   padding-left: 2px;
   padding-top: 2px;
   padding-bottom: 2px;
@@ -15130,6 +15360,7 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .next-mat
   font-weight: 700;
   font-size: 8pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   padding: 5px;
 }
 #modalSoccerPlayerStats .soccer-player-stats-content .blue {
@@ -15188,6 +15419,7 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .next-mat
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #afafaf;
   box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
   color: #ffffff;
@@ -15305,6 +15537,7 @@ fieldset[disabled] #modalSoccerPlayerStats .actions-footer-xs .button-cancel {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
@@ -15463,6 +15696,7 @@ fieldset[disabled] #modalSoccerPlayerStats .actions-footer-xs .button-add {
   font-weight: 400;
   font-size: 10pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 @media (max-width: 767px) {
   .enter-contest-tabs > li a {
@@ -15470,6 +15704,7 @@ fieldset[disabled] #modalSoccerPlayerStats .actions-footer-xs .button-add {
     font-weight: 400;
     font-size: 9pt;
     color: #ffffff;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   }
 }
 .enter-contest-tabs > li[disabled] {
@@ -15570,6 +15805,7 @@ fieldset[disabled] #modalSoccerPlayerStats .actions-footer-xs .button-add {
   font-size: 24px;
   color: #ffffff;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #fa9c19;
   text-align: center;
   border-radius: 3px;
@@ -15612,6 +15848,7 @@ fieldset[disabled] #modalSoccerPlayerStats .actions-footer-xs .button-add {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #afafaf;
   box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
   color: #ffffff;
@@ -15755,6 +15992,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-cancel-player-selection {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #afafaf;
   box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
   color: #ffffff;
@@ -15870,6 +16108,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-clean-lineup-list {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
@@ -16015,6 +16254,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   font-weight: 700;
   font-size: 9pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   text-align: center;
   margin-top: 20px;
 }
@@ -16105,6 +16345,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   font-size: 15pt;
   color: #ffffff;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   padding-left: 10px;
   padding-right: 2px;
   background-image: -webkit-linear-gradient(top, #fba61a 49%, #ec990e 51%);
@@ -16125,6 +16366,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
     font-size: 12pt;
     color: #ffffff;
     text-transform: uppercase;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   }
 }
 .enter-contest-lineup-wrapper .enter-contest-total-salary .total-salary {
@@ -16143,6 +16385,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   font-size: 22pt;
   color: #777777;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   margin-top: 3px;
   overflow: hidden;
 }
@@ -16296,6 +16539,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   font-weight: 700;
   font-size: 10pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 @media (max-width: 767px) {
   .soccer-player-list-header-table a {
@@ -16357,6 +16601,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   font-weight: 700;
   font-size: 9pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   text-align: center;
   padding-top: 12px;
 }
@@ -16406,6 +16651,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   font-weight: 700;
   font-size: 9pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   display: block;
   text-transform: uppercase;
   padding-top: 10px;
@@ -16424,6 +16670,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   font-weight: 400;
   font-size: 9pt;
   color: #59add5;
+  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
 }
 @media (max-width: 767px) {
   .soccer-players-list .soccer-players-list-slot .soccer-player-info .column-primary-info .match-event-name,
@@ -16442,6 +16689,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   font-weight: 700;
   font-size: 9pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   padding-top: 10px;
   text-align: center;
 }
@@ -16461,6 +16709,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   font-weight: 700;
   font-size: 9pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   padding-top: 10px;
   text-align: center;
 }
@@ -16481,6 +16730,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   font-weight: 700;
   font-size: 9pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   padding-top: 10px;
   text-align: center;
 }
@@ -16501,6 +16751,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   font-weight: 700;
   font-size: 9pt;
   color: #59add5;
+  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
   padding-top: 10px;
   text-align: right;
   visibility: hidden;
@@ -16558,6 +16809,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
@@ -16715,6 +16967,7 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
   font-weight: 400;
   font-size: 25pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 .soccer-players-list .soccer-players-list-slot .column-action .action-button.remove:hover,
 .soccer-players-list .soccer-players-list-slot .column-action .action-button.remove:focus,
@@ -16834,6 +17087,7 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
   font-weight: 400;
   font-size: 25pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 .soccer-players-list .soccer-players-list-slot .column-action .action-button.add.coin-purchase {
   text-align: right;
@@ -16894,6 +17148,7 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
   font-size: 14pt;
   color: #777777;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   padding: 0 10px 0 0;
 }
 @media (min-width: 768px) and (max-width: 991px) {
@@ -16931,6 +17186,7 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #59add5;
   box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
   color: #ffffff;
@@ -17256,6 +17512,7 @@ textarea.soccer-players-filter .name-player-input-filter {
   font-weight: 700;
   font-size: 9pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 #matchesFilterWrapper .matches-filter-buttons .button-filter-team:active,
 #matchesFilterWrapper .matches-filter-buttons .button-filter-team:focus,
@@ -17386,6 +17643,7 @@ lineup-selector {
   font-weight: 700;
   font-size: 9pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
 }
 @media (min-width: 768px) {
   .lineup-selector .lineup-selector-slot .column-fieldpos {
@@ -17429,6 +17687,7 @@ lineup-selector {
   font-weight: 700;
   font-size: 9pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
 }
 .lineup-selector .lineup-selector-slot .column-gold-cost .coins-amount:after {
   content: " ";
@@ -17449,6 +17708,7 @@ lineup-selector {
   font-weight: 700;
   font-size: 9pt;
   color: #fa9c19;
+  text-shadow: 1px 1px 1px rgba(250, 156, 25, 0.004);
   padding-top: 11px;
 }
 .lineup-selector .lineup-selector-slot .column-salary {
@@ -17456,6 +17716,7 @@ lineup-selector {
   font-weight: 700;
   font-size: 9pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   text-align: right;
 }
 .lineup-selector .lineup-selector-slot .column-action {
@@ -17537,6 +17798,7 @@ lineup-selector {
   font-size: 25pt;
   color: #08161b;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(8, 22, 27, 0.004);
   text-transform: initial;
   text-align: center;
   margin: 20px;
@@ -17575,6 +17837,7 @@ lineup-selector {
   font-size: 25pt;
   color: #ffffff;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 @media (min-width: 768px) {
   #leaderboard-wrapper #leaderboard-header-wrapper .rankings-wrapper .ranking .ranking-position {
@@ -17595,6 +17858,7 @@ lineup-selector {
   font-size: 8pt;
   color: #ffffff;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 @media (max-width: 767px) {
   #leaderboard-wrapper #leaderboard-header-wrapper .rankings-wrapper .ranking .ranking-info .ranking-name {
@@ -17607,6 +17871,7 @@ lineup-selector {
   font-size: 8pt;
   color: #fa9c19;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(250, 156, 25, 0.004);
 }
 @media (min-width: 768px) {
   #leaderboard-wrapper #leaderboard-header-wrapper .rankings-wrapper .ranking .ranking-info .ranking-value {
@@ -17649,6 +17914,7 @@ lineup-selector {
   font-weight: 400;
   font-size: 10pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 @media (max-width: 767px) {
   #leaderboard-wrapper .leaderboard-tabs > li a {
@@ -17656,6 +17922,7 @@ lineup-selector {
     font-weight: 400;
     font-size: 9pt;
     color: #ffffff;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   }
 }
 #leaderboard-wrapper .leaderboard-tabs > li[disabled] {
@@ -17733,6 +18000,7 @@ lineup-selector {
   font-size: 10pt;
   color: #214a5f;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   background-color: #ffffff;
 }
 #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-data .leaderboard-table-element {
@@ -17742,6 +18010,7 @@ lineup-selector {
   font-size: 10pt;
   color: #777777;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   background-color: #f8f8f8;
 }
 #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-data .leaderboard-table-element.player-position {
@@ -17750,6 +18019,7 @@ lineup-selector {
   font-size: 10pt;
   color: #ffffff;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #434343;
 }
 #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element {
@@ -17842,6 +18112,7 @@ lineup-selector {
   font-weight: 400;
   font-size: 8pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   border-top: 1px #000000;
   text-align: left;
 }
@@ -17851,12 +18122,14 @@ lineup-selector {
   font-weight: 400;
   font-size: 8pt;
   color: #59add5;
+  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
 }
 .small-text-centered {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 8pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   border-top: 1px #000000;
   text-align: left;
   text-align: center;
@@ -17867,12 +18140,14 @@ lineup-selector {
   font-weight: 400;
   font-size: 8pt;
   color: #59add5;
+  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
 }
 .error-text {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 9pt;
   color: #ff0000;
+  text-shadow: 1px 1px 1px rgba(255, 0, 0, 0.004);
   text-align: left;
   margin-top: 5px;
 }
@@ -17881,6 +18156,7 @@ lineup-selector {
   font-weight: 400;
   font-size: 9pt;
   color: #ff0000;
+  text-shadow: 1px 1px 1px rgba(255, 0, 0, 0.004);
   text-align: left;
   margin-top: 5px;
 }
@@ -17889,6 +18165,7 @@ lineup-selector {
   font-weight: 400;
   font-size: 9pt;
   color: #ff0000;
+  text-shadow: 1px 1px 1px rgba(255, 0, 0, 0.004);
   text-align: left;
   margin-top: 5px;
 }
@@ -17897,6 +18174,7 @@ lineup-selector {
   font-weight: 400;
   font-size: 9pt;
   color: #ff0000;
+  text-shadow: 1px 1px 1px rgba(255, 0, 0, 0.004);
   text-align: left;
   margin-top: 5px;
 }
@@ -17905,6 +18183,7 @@ lineup-selector {
   font-weight: 400;
   font-size: 8pt;
   color: #59add5;
+  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
   margin-bottom: 10px;
   text-align: right;
   cursor: pointer;
@@ -17915,6 +18194,7 @@ lineup-selector {
   font-size: 10pt;
   color: #59add5;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
 }
 .main-box {
   padding-left: 15px;
@@ -17959,6 +18239,7 @@ lineup-selector {
   font-weight: 700;
   font-size: 8pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   text-align: center;
 }
 .panel {
@@ -18017,6 +18298,7 @@ lineup-selector {
   font-size: 20pt;
   color: #ffffff;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 .panel .panel-heading button.close {
   float: right;
@@ -18069,6 +18351,7 @@ button.panel .panel-heading button.close {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   text-align: center;
   font-size: 8pt;
   padding: 0;
@@ -18079,6 +18362,7 @@ button.panel .panel-heading button.close {
   font-weight: 400;
   font-size: 8pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   position: relative;
   float: left;
   width: 25%;
@@ -18117,6 +18401,7 @@ button.panel .panel-heading button.close {
   font-weight: 700;
   font-size: 8pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   text-align: center;
 }
 .panel .panel-body .input-group input::-moz-placeholder {
@@ -18124,6 +18409,7 @@ button.panel .panel-heading button.close {
   font-weight: 700;
   font-size: 8pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   text-align: center;
 }
 .panel .panel-body .input-group input::-ms-input-placeholder {
@@ -18131,6 +18417,7 @@ button.panel .panel-heading button.close {
   font-weight: 700;
   font-size: 8pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   text-align: center;
 }
 .panel .panel-body .input-group input:-webkit-autofill {
@@ -18173,6 +18460,7 @@ button.panel .panel-heading button.close {
   font-weight: 400;
   font-size: 8pt;
   color: #59add5;
+  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
 }
 .panel .panel-body .top-separation-20 {
   margin-top: 20px;
@@ -18230,6 +18518,7 @@ button.panel .panel-heading button.close {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
@@ -18377,6 +18666,7 @@ fieldset[disabled] .panel .panel-body .new-row .enter-button {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
@@ -18529,6 +18819,7 @@ fieldset[disabled] .panel .panel-body .new-row .enter-button-half {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #afafaf;
   box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
   color: #ffffff;
@@ -18727,6 +19018,7 @@ fieldset[disabled] .panel .panel-body .new-row .cancel-button-half {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
@@ -18879,6 +19171,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .ok-button {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #afafaf;
   box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
   color: #ffffff;
@@ -19144,6 +19437,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   font-weight: 700;
   font-size: 10pt;
   color: #fa9c19;
+  text-shadow: 1px 1px 1px rgba(250, 156, 25, 0.004);
   border: 3px solid #6a8597;
   border-radius: 10px;
   background-color: #0a2938;
@@ -19155,6 +19449,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   font-weight: 400;
   font-size: 9pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
 }
 #alertRoot .energy-bar-wrapper {
   margin: 0 auto;
@@ -19188,6 +19483,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   font-size: 20pt;
   color: #ffffff;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 @media (min-width: 768px) {
   #welcomeRoot .panel-title {
@@ -19212,6 +19508,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   font-weight: 400;
   font-size: 10pt;
   color: #214a5f;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   margin: 10px 0;
   text-align: center;
 }
@@ -19221,6 +19518,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
     font-weight: 400;
     font-size: 12pt;
     color: #214a5f;
+    text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   }
 }
 @media (min-width: 992px) {
@@ -19229,6 +19527,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
     font-weight: 400;
     font-size: 14pt;
     color: #214a5f;
+    text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   }
 }
 #welcomeRoot .tut-title .subtitle {
@@ -19236,6 +19535,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   font-weight: 400;
   font-size: 8pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
 }
 @media (min-width: 768px) {
   #welcomeRoot .tut-title .subtitle {
@@ -19243,6 +19543,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
     font-weight: 400;
     font-size: 9pt;
     color: #214a5f;
+    text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   }
 }
 @media (min-width: 992px) {
@@ -19251,6 +19552,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
     font-weight: 400;
     font-size: 10pt;
     color: #214a5f;
+    text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   }
 }
 #welcomeRoot .tut-image-common {
@@ -19383,6 +19685,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   font-weight: 700;
   font-size: 10pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   border-width: 1px;
   border-style: none none solid none;
   border-color: #ffffff;
@@ -19438,6 +19741,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   font-size: 10pt;
   color: #214a5f;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
 }
 #usersListRoot .user-row .score-container span {
   background-color: #ffffff;
@@ -19460,6 +19764,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   font-weight: 700;
   font-size: 8pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   margin-left: 0;
   margin-right: 0;
 }
@@ -19570,6 +19875,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
     font-size: 14pt;
     color: #777777;
     text-transform: uppercase;
+    text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
     margin: 0px;
   }
   #usersListRoot .users-header h2 {
@@ -19577,6 +19883,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
     font-weight: 700;
     font-size: 9pt;
     color: #777777;
+    text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
     margin: 6px 0px 0px 0px;
   }
   #usersListRoot .users-header-next {
@@ -19589,6 +19896,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
     font-size: 16pt;
     color: #777777;
     text-transform: uppercase;
+    text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
     text-align: center;
   }
   #usersListRoot .users-table-rows {
@@ -19610,6 +19918,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   font-size: 12pt;
   color: #59add5;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
   margin: 0;
   text-align: center;
   cursor: pointer;
@@ -19642,6 +19951,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   font-size: 12pt;
   color: #214a5f;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
 }
 @media (min-width: 768px) {
   .profile-content .profile-section .data-header .data-header-title {
@@ -19650,6 +19960,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
     font-size: 20pt;
     color: #214a5f;
     text-transform: uppercase;
+    text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   }
 }
 .profile-content .profile-section .data-content {
@@ -19722,6 +20033,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   font-size: 10pt;
   color: #ffffff;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   padding: 12px 12px;
   width: 100%;
   max-width: 300px;
@@ -19853,6 +20165,7 @@ fieldset[disabled] .profile-content .profile-section .data-action .action-button
   font-weight: 700;
   font-size: 9pt;
   color: #214a5f;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   line-height: 25pt;
 }
 .profile-content .profile-section.personal-data .data-content .data-value {
@@ -19860,6 +20173,7 @@ fieldset[disabled] .profile-content .profile-section .data-action .action-button
   font-weight: 400;
   font-size: 9pt;
   color: #214a5f;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   line-height: 25pt;
   margin-left: 8px;
 }
@@ -19899,6 +20213,7 @@ fieldset[disabled] .profile-content .profile-section .data-action .action-button
   font-size: 25pt;
   color: #000000;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
 }
 .profile-content .profile-section.pocket-data .data-content .coin-icon {
   vertical-align: baseline;
@@ -19911,6 +20226,7 @@ fieldset[disabled] .profile-content .profile-section .data-action .action-button
     font-size: 35pt;
     color: #000000;
     text-transform: uppercase;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
   }
   .profile-content .profile-section.pocket-data .data-content .coin-icon {
     width: 32px;
@@ -19956,6 +20272,7 @@ fieldset[disabled] .profile-content .profile-section .data-action .action-button
   font-size: 10pt;
   color: #ffffff;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   padding: 12px 12px;
 }
 .profile-content .profile-section.pocket-data .data-action .action-button:hover,
@@ -20118,6 +20435,7 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   font-size: 25pt;
   color: #214a5f;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   display: block;
   margin-bottom: -5px;
 }
@@ -20127,6 +20445,7 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   font-size: 10pt;
   color: #fa9c19;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(250, 156, 25, 0.004);
   display: block;
 }
 .profile-content .profile-section.ranking-data .data-content .single-ranking-info.ranking-by-money {
@@ -20175,12 +20494,14 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   font-size: 20pt;
   color: #0d75a6;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(13, 117, 166, 0.004);
 }
 .info-complete-bar p + p {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
 }
 .view-contest-entry-actions-wrapper {
   margin-left: 0;
@@ -20265,6 +20586,7 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   font-weight: 400;
   font-size: 10pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 @media (max-width: 767px) {
   #viewContestEntry .view-contest-entry-tabs > li a {
@@ -20272,6 +20594,7 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
     font-weight: 400;
     font-size: 9pt;
     color: #ffffff;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   }
 }
 #viewContestEntry .view-contest-entry-tabs > li[disabled] {
@@ -20291,6 +20614,7 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   font-size: 20pt;
   color: #214a5f;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   padding: 16px 10px 12px;
   text-align: center;
 }
@@ -20299,6 +20623,7 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   font-weight: 700;
   font-size: 10pt;
   color: #214a5f;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   margin: 0;
   padding-top: 15px;
   text-transform: uppercase;
@@ -20308,6 +20633,7 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   font-weight: 400;
   font-size: 10pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   margin: 0;
   padding-top: 15px;
   text-align: justify;
@@ -20318,6 +20644,7 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   font-weight: 400;
   font-size: 10pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   margin: 0;
   text-align: justify;
 }
@@ -20355,6 +20682,7 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   font-weight: 400;
   font-size: 10pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   padding-top: 60px;
   padding-bottom: 60px;
   text-align: center;
@@ -20438,6 +20766,7 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   font-size: 10pt;
   color: #55c0ff;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(85, 192, 255, 0.004);
   list-style: none;
   margin: 0;
   background-image: url("../images/calendarBg.jpg");
@@ -20516,6 +20845,7 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   font-size: 10pt;
   color: #ffffff;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #0a2938;
   border-radius: 5px 5px 0px 0px;
   border: 1px solid #ffffff;
@@ -20564,6 +20894,7 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   font-weight: 400;
   font-size: 14pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   pointer-events: all;
 }
 .epic-tooltip:after {
@@ -20679,6 +21010,7 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   font-size: 20pt;
   color: #214a5f;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   text-transform: none;
   display: block;
   max-width: 400px;
@@ -20689,6 +21021,7 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   font-weight: 400;
   font-size: 12pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   display: block;
   max-width: 450px;
   margin: 0px auto 20px auto;
@@ -20785,6 +21118,7 @@ users-list#usersList > .epic-tooltip {
   font-size: 14pt;
   color: #ffffff;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 #homeRoot .home-tile-wrapper .tile .tile-title:after {
   content: "";
@@ -20799,6 +21133,7 @@ users-list#usersList > .epic-tooltip {
   font-weight: 400;
   font-size: 10pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   max-width: 200px;
   margin: 10px 0 5px 0;
   display: inline-block;
@@ -20952,6 +21287,7 @@ users-list#usersList > .epic-tooltip {
   font-size: 30pt;
   color: #ffffff;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 #homeRoot #contestTile.home-tile-wrapper .tile .tile-title:after {
   width: 85px;
@@ -20985,6 +21321,7 @@ users-list#usersList > .epic-tooltip {
   font-weight: 400;
   font-size: 14pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   max-width: 450px;
 }
 #homeRoot #contestTile.home-tile-wrapper .tile .tile-info .promo-date,
@@ -20994,6 +21331,7 @@ users-list#usersList > .epic-tooltip {
   font-weight: 400;
   font-size: 10pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 #homeRoot #contestTile.home-tile-wrapper .tile .tile-action {
   display: block;
@@ -21212,6 +21550,7 @@ users-list#usersList > .epic-tooltip {
   font-weight: 400;
   font-size: 10pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   /*
 			.entry-fee {
 				.opensans_normal(12pt, @black);
@@ -21234,6 +21573,7 @@ users-list#usersList > .epic-tooltip {
   font-weight: 700;
   font-size: 12pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   margin-bottom: 20px;
 }
 #createContest .create-contest-section-wrapper .create-contest-section .title .annotation {
@@ -21241,6 +21581,7 @@ users-list#usersList > .epic-tooltip {
   font-weight: 400;
   font-size: 10pt;
   color: #afafaf;
+  text-shadow: 1px 1px 1px rgba(175, 175, 175, 0.004);
   font-style: italic;
   margin-left: 20px;
 }
@@ -21261,6 +21602,7 @@ users-list#usersList > .epic-tooltip {
   font-weight: 400;
   font-size: 10pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   border: 1px solid transparent;
   border-radius: 5px;
   padding: 5px 5px;
@@ -21293,6 +21635,7 @@ users-list#usersList > .epic-tooltip {
   font-weight: 400;
   font-size: 12pt;
   color: #434343;
+  text-shadow: 1px 1px 1px rgba(67, 67, 67, 0.004);
 }
 #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee .data-element {
   position: relative;
@@ -21312,6 +21655,7 @@ users-list#usersList > .epic-tooltip {
   font-weight: 400;
   font-size: 12pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   padding: 5px 15px;
   margin: 0;
 }
@@ -21324,6 +21668,7 @@ users-list#usersList > .epic-tooltip {
   font-weight: 400;
   font-size: 14pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
 }
 #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee .data-element .entry-fee-values-wrapper .entry-fee-value:after {
   margin: 0 5px;
@@ -21510,6 +21855,7 @@ users-list#usersList > .epic-tooltip {
   font-weight: 400;
   font-size: 12pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:hover,
 #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:focus,
@@ -21657,6 +22003,7 @@ fieldset[disabled] #createContest .create-contest-section-wrapper .create-contes
   font-size: 10pt;
   color: #777777;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   background-image: none;
 }
 @media (min-width: 768px) {
@@ -21676,6 +22023,7 @@ fieldset[disabled] #createContest .create-contest-section-wrapper .create-contes
   font-size: 10pt;
   color: #000000;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
 }
 #createContest week-calendar#createContestCalendar .week-calendar .week-days-wrapper .week-day.active:after {
   border-bottom-color: #777777;
@@ -21716,6 +22064,7 @@ fieldset[disabled] #createContest .create-contest-section-wrapper .create-contes
   font-size: 20pt;
   color: #214a5f;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   padding: 16px 10px 12px;
   text-align: center;
 }
@@ -21724,6 +22073,7 @@ fieldset[disabled] #createContest .create-contest-section-wrapper .create-contes
   font-weight: 400;
   font-size: 10pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   text-align: center;
   padding: 20px 10px;
 }
@@ -21745,6 +22095,7 @@ fieldset[disabled] #createContest .create-contest-section-wrapper .create-contes
   font-weight: 700;
   font-size: 10pt;
   color: #434343;
+  text-shadow: 1px 1px 1px rgba(67, 67, 67, 0.004);
   text-align: center;
 }
 #helpInfo .block-last {
@@ -21772,6 +22123,7 @@ fieldset[disabled] #createContest .create-contest-section-wrapper .create-contes
   font-weight: 400;
   font-size: 10pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   text-align: center;
   padding: 10px;
 }
@@ -21810,6 +22162,7 @@ fieldset[disabled] #createContest .create-contest-section-wrapper .create-contes
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
@@ -21940,6 +22293,7 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   font-size: 10pt;
   color: #777777;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   display: block;
   height: 28px;
   padding: 5px 10px;
@@ -21965,6 +22319,7 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   font-weight: 400;
   font-size: 10pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   padding: 0 10px;
   height: 0;
   -webkit-transform: scaleY(0);
@@ -22037,6 +22392,7 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   font-weight: 400;
   font-size: 10pt;
   color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 @media (max-width: 767px) {
   #helpInfo .help-info-tabs > li a {
@@ -22044,6 +22400,7 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
     font-weight: 400;
     font-size: 9pt;
     color: #ffffff;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   }
 }
 #helpInfo .help-info-tabs > li[disabled] {
@@ -22104,6 +22461,7 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   font-size: 16pt;
   color: #ffffff;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   border-radius: 100%;
   border: 4px solid #ffffff;
   padding: 7px 0;
@@ -22122,6 +22480,7 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   font-size: 16pt;
   color: #434343;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(67, 67, 67, 0.004);
 }
 #achievements-wrapper .achievement .achievement-level {
   background-color: #434343;
@@ -22131,6 +22490,7 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   font-weight: 400;
   font-size: 10pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   line-height: 18px;
   height: 54px;
 }
@@ -22616,6 +22976,8 @@ html,
 body {
   height: 100%;
   font-size: 0;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
 }
 html {
   overflow-y: scroll;
@@ -22760,6 +23122,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #59add5;
   box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
   color: #ffffff;
@@ -22869,6 +23232,7 @@ fieldset[disabled] .btn-default {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
   box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
@@ -22978,6 +23342,7 @@ fieldset[disabled] .btn-primary {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #afafaf;
   box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
   color: #ffffff;
@@ -23087,6 +23452,7 @@ fieldset[disabled] .btn-cancel {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #fa9c19;
   box-shadow: 0px 5px 0px rgba(250, 156, 25, 0.5);
   color: #ffffff;
@@ -23223,6 +23589,7 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
   font-size: 20pt;
   color: #214a5f;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   padding: 30px 15px 30px 15px;
   background-color: #ecf0f1;
   text-align: center;
@@ -23235,6 +23602,7 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
     font-size: 16pt;
     color: #214a5f;
     text-transform: uppercase;
+    text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   }
 }
 .default-section-header.dark {
@@ -23260,6 +23628,7 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
   font-size: 20pt;
   color: #0d75a6;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(13, 117, 166, 0.004);
   text-align: center;
   margin: 0 auto;
   padding: 15px 0;
@@ -23271,6 +23640,7 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
     font-size: 12pt;
     color: #0d75a6;
     text-transform: uppercase;
+    text-shadow: 1px 1px 1px rgba(13, 117, 166, 0.004);
   }
 }
 .blue-separator {
@@ -23292,6 +23662,7 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
   font-size: 14pt;
   color: #214a5f;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
 }
 @media (max-width: 767px) {
   .contest-big-bold-text {
@@ -23299,6 +23670,7 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
     font-weight: 700;
     font-size: 10pt;
     color: #214a5f;
+    text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   }
 }
 .contest-big-light-text {
@@ -23307,6 +23679,7 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
   font-size: 18pt;
   color: #214a5f;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
 }
 @media (max-width: 767px) {
   .contest-big-light-text {
@@ -23314,6 +23687,7 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
     font-weight: 700;
     font-size: 10pt;
     color: #214a5f;
+    text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   }
 }
 .contest-small-bold-text {
@@ -23321,6 +23695,7 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
   font-weight: 700;
   font-size: 10pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
 }
 @media (max-width: 767px) {
   .contest-small-bold-text {
@@ -23328,6 +23703,7 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
     font-weight: 400;
     font-size: 10pt;
     color: #777777;
+    text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   }
 }
 .contest-small-light-text {
@@ -23335,6 +23711,7 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
   font-weight: 400;
   font-size: 10pt;
   color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
 }
 @media (max-width: 767px) {
   .contest-small-light-text {
@@ -23342,6 +23719,7 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
     font-weight: 400;
     font-size: 10pt;
     color: #777777;
+    text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   }
 }
 /*
@@ -23377,6 +23755,7 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
   font-weight: 400;
   font-size: 12pt;
   color: #ff0000;
+  text-shadow: 1px 1px 1px rgba(255, 0, 0, 0.004);
   border: 3px solid #ff0000;
   border-radius: 10px;
   background-color: #f8f0f0;
@@ -23478,6 +23857,7 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
   font-weight: 400;
   font-size: 12pt;
   color: #ff0000;
+  text-shadow: 1px 1px 1px rgba(255, 0, 0, 0.004);
   border: 3px solid #ff0000;
   border-radius: 10px;
   background-color: #f8f0f0;

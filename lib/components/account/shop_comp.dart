@@ -29,7 +29,7 @@ class ShopComp implements DetachAware{
   
   DateTime t = new DateTime.now();
   
-  String get timeLeft => _profileService.user.printableEnergyTimeLeft;
+  String get timeLeft => "06:30:33";// _profileService.user.printableEnergyTimeLeft;
   
   String getLocalizedText(key, {group: "shop", substitutions: null}) {
     return StringUtils.translate(key, group, substitutions);

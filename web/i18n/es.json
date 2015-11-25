@@ -190,7 +190,7 @@
       "name_played_official_contests_level_1" : "La Reválida",
       "desc_played_official_contests_level_1" : "Jugar 10 torneos oficiales",
       "name_played_official_contests_level_2" : "La Consolidación",
-      "desc_played_official_contests_level_2" : "Ganar N torneos oficiales",
+      "desc_played_official_contests_level_2" : "Ganar 10 torneos oficiales",
       "name_fp_official_contest_level_1"      : "La Gloria",
       "desc_fp_official_contest_level_1"      : "Puntuar más de 1000 FP con un equipo en un torneo oficial",
       "name_diff_fp_official_contest_level_1" : "Máster",
@@ -678,7 +678,7 @@
       "goldshopdescription"             : "Compra Oro y accede a <strong>Torneos Oficiales</strong>",
       "trainerpointsshopdescription"    : "Aumenta tu Nivel de Mánager y ficha a los <strong>mejores jugadores</strong>",
       "energyshopdescription"           : "Recárgate de energía para acceder a <strong>Torneos de Entrenamiento</strong>",
-      "free"                            : "GRATIS",      
+      "free"                            : "GRATIS",
       "mostpopularimagesource"          : "images/icon-mas-popular.png",
       "product_gold_1"                  : "CALDERILLA",
       "product_gold_2"                  : "PILA DE ORO",
@@ -698,7 +698,7 @@
     {
       "buttonback"                      : "Volver",
 
-      
+
       "erroruserbalancenegativetitle"   : "No tienes Oro suficiente",
       "erroruserbalancenegativegeneric" : "No tienes Oro suficiente. Por favor, compra Oro para poder continuar",
       "errordefaulttitle"               : "Atención",

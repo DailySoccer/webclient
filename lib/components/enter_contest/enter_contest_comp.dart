@@ -57,6 +57,8 @@ class EnterContestComp implements DetachAware {
 
   List<dynamic> allSoccerPlayers;
   List<dynamic> lineupSlots;
+  
+  //List<String> get lineupFormation =>;
 
   FieldPos fieldPosFilter;
   String nameFilter;
@@ -177,6 +179,7 @@ class EnterContestComp implements DetachAware {
         if (editingContestEntry) {
           ContestEntry contestEntry = contest.getContestEntry(contestEntryId);
           if (contestEntry != null) {
+            formation = contestEntry.formation;
             // Insertamos en el lineup el jugador
             contestEntry.instanceSoccerPlayers.forEach((instanceSoccerPlayer) {
               addSoccerPlayerToLineup(instanceSoccerPlayer.id);
@@ -300,7 +303,6 @@ class EnterContestComp implements DetachAware {
     else {
       _tryToAddSoccerPlayerToLineup(soccerPlayer);
     }
-
     _verifyMaxPlayersInSameTeam();
   }
 

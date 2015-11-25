@@ -1,5 +1,21 @@
 <div class="lineup-selector">
-  <div class="lineup-selector-slot" ng-repeat="slot in enterContestComp.lineupSlots" ng-click="enterContestComp.onLineupSlotSelected($index)" ng-class="getSlotClassColor($index)">
+  <div class="lineup-formation-selector-wrapper collapsed" data-toggle="collapse" data-target="#formationsPanel">
+    <span class="current-formation">{{getPrintableFormation()}}</span>
+    <span class="formation-change-button">{{getLocalizedText('change')}}</span>
+  </div>
+  <div id="formationsPanelRoot" class="animate">
+    <div class="formation-panel-wrapper" >
+       
+      <div id="formationsPanel" class="formations-container collapse">
+        <span class="formation-element" ng-repeat="key in formationList">
+          <input id="formation{{key}}" name="formation{{key}}" type="radio" value="{{key}}" ng-value="key" ng-model="lineupFormation">
+          <label for="formation{{key}}">{{formationToString(key)}}</label>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="lineup-selector-slot" ng-repeat="slot in lineupSlots" ng-click="onLineupSlotSelected({'slotIndex': $index})" ng-class="getSlotClassColor($index)">
 
     <div ng-if="slot == null">
       <div class="column-fieldpos"></div>

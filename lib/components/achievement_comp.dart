@@ -14,12 +14,18 @@ import 'package:webclient/models/achievement.dart';
 class AchievementComp {
  
   Achievement achiev;
+  bool earned;
   
-  @NgOneWay("data")
+  @NgOneWay("key")
   void set Data(value) {
     if (value != null) {
-      achiev = value;
+      achiev = Achievement.getAchievementWithKey(value);
     }
+  }
+  
+  @NgOneWay("enabled")
+  void set Earned(value) {
+      earned = value;
   }
   
   AchievementComp() {}

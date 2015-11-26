@@ -640,7 +640,8 @@
     }
     ,"notifications"                    :
     {
-      "name"                            : "NOTIFICATIONS" 
+      "name"                            : "NOTIFICATIONS",
+      "achievement_name"                : "ACHIEVEMENT @NAME UNLOCKED"
     }
   }
 }

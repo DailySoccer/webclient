@@ -5753,6 +5753,8 @@ scoring-rules:after,
 #notificationsComp:after,
 #notificationsComp .notification-list-wrapper:before,
 #notificationsComp .notification-list-wrapper:after,
+#notificationsComp .notification-list-wrapper .notification:before,
+#notificationsComp .notification-list-wrapper .notification:after,
 .default-section-header:before,
 .default-section-header:after,
 .modal-properties-default:before,
@@ -5851,6 +5853,7 @@ scoring-rules:after,
 #helpInfo .scores-wrapper:after,
 #notificationsComp:after,
 #notificationsComp .notification-list-wrapper:after,
+#notificationsComp .notification-list-wrapper .notification:after,
 .default-section-header:after,
 .modal-properties-default:after,
 .modal-properties-default .modal-content:after,
@@ -21894,6 +21897,7 @@ users-list#usersList > .epic-tooltip {
 #homeRoot #helpInfo .scores-wrapper,
 #homeRoot #notificationsComp,
 #homeRoot #notificationsComp .notification-list-wrapper,
+#homeRoot #notificationsComp .notification-list-wrapper .notification,
 #homeRoot .default-section-header,
 #homeRoot .modal-properties-default,
 #homeRoot .modal-properties-default .modal-content,
@@ -22848,13 +22852,15 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   padding: 20px 10px;
   background-color: #ffffff;
 }
-.achievement {
+#achievement-list-wrapper .achievement {
   position: relative;
   float: left;
   width: 25%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+}
+.achievement {
   text-align: center;
   padding: 10px 5px;
   opacity: 0.5;
@@ -23028,9 +23034,76 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   }
 }
 #notificationsComp .notification-list-wrapper {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 15px;
+}
+#notificationsComp .notification-list-wrapper > .navbar-header,
+#notificationsComp .notification-list-wrapper > .navbar-collapse {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+@media (min-width: 768px) {
+  #notificationsComp .notification-list-wrapper > .navbar-header,
+  #notificationsComp .notification-list-wrapper > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+#notificationsComp .notification-list-wrapper .notification {
   margin-left: 0;
   margin-right: 0;
-  padding: 15px;
+  margin: 10px 0;
+}
+#notificationsComp .notification-list-wrapper .notification achievement {
+  position: relative;
+  display: block;
+}
+#notificationsComp .notification-list-wrapper .notification .achievement {
+  display: block;
+  margin: 0 auto;
+  max-with: 140px;
+}
+#notificationsComp .notification-list-wrapper .notification .achievement .achievement-name,
+#notificationsComp .notification-list-wrapper .notification .achievement .achievement-description {
+  display: none !important;
+  visibility: hidden !important;
+}
+#notificationsComp .notification-list-wrapper .notification .main-info {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+#notificationsComp .notification-list-wrapper .notification .main-info .name {
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 14pt;
+  color: #ffffff;
+  text-transform: uppercase;
+  display: block;
+  padding: 5px 0;
+}
+#notificationsComp .notification-list-wrapper .notification .main-info .date {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #434343;
+  display: block;
+  padding: 5px 0;
+}
+#notificationsComp .notification-list-wrapper .uncommon {
+  background-image: url("../images/achievementNotificationBg.jpg");
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  border-radius: 5px;
+  text-align: center;
+  padding-bottom: 20px;
 }
 /*************************************************
 Si hay que añadir nuevas banderas, ir a la siguiente url

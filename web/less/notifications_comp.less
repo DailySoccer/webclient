@@ -3,7 +3,49 @@
 	padding: 0;
 
 	.notification-list-wrapper {
-		.make-row(0);
+
+	.container-fluid();
 		padding: 15px;
+
+		.notification {
+			.make-row(0);
+			margin: 10px 0;
+			achievement {
+				position: relative;
+				display: block;
+			}
+			.achievement {
+				display: block;
+				margin: 0 auto;
+				max-with: 140px;
+				.achievement-name, .achievement-description {
+					.hidden();
+				}
+			}
+
+			.main-info {
+				.make-xs-column(12);
+				.name {
+					.exo_light(14pt, @white);
+					display: block;					
+					padding: 5px 0;
+				}
+				.date {
+					.opensans_normal(10pt, @greyUltraDark);
+					display: block;
+					padding: 5px 0;
+				}
+			}
+		}
+		
+		.uncommon {
+			background-image: url("@{images}/achievementNotificationBg.jpg");
+			background-repeat: no-repeat;
+			background-position: center top;
+			background-size: cover;
+			border-radius: 5px;
+			text-align: center;
+			padding-bottom: 20px;
+		}
 	}
 }

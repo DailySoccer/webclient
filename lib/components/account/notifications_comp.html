@@ -3,8 +3,19 @@
   <div class="default-section-header">{{getLocalizedText('name')}}</div>
   
   <div class="notification-list-wrapper">
-    
-    
+      
+    <!-- Notificaciones tipo logro -->
+    <div class="notification" ng-class="{'uncommon': notificationList[0].type == 'ACHIVEMENT_OWNED'}">
+      <achievement enabled="true" key="notificationList[0]['info'].achievementKey"></achievement>
+      
+      <div class="main-info">
+        <span class="name">{{getNotificationName(notificationList[0].id)}}</span>
+        <span class="date">{{notificationList[0]['info']['date']}}</span>
+      </div>
+      
+      <span class="close-button" ng-click="closeNotification(notificationList[0].id)"></span>
+      
+    </div>  
     
   </div>
 

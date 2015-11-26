@@ -756,7 +756,8 @@
     }
     ,"notifications"                    :
     {
-      "name"                            : "NOTIFICACIONES" 
+      "name"                            : "NOTIFICACIONES",
+      "achievement_name"                : "HAS CONSEGUIDO @NAME"
     }
   }
 }

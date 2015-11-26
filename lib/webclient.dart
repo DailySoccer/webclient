@@ -70,7 +70,7 @@ import 'package:webclient/components/account/add_funds_comp.dart';
 import 'package:webclient/components/account/transaction_history_comp.dart';
 import 'package:webclient/components/account/shop_comp.dart';
 
-import 'package:webclient/components/account/notifications.dart';
+import 'package:webclient/components/account/notifications_comp.dart';
 
 import 'package:webclient/components/view_contest/view_contest_entry_comp.dart';
 import 'package:webclient/components/view_contest/view_contest_comp.dart';

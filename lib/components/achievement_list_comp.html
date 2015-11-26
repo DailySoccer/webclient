@@ -1,6 +1,6 @@
 <div id="achievement-list-wrapper">
   
-  <achievement ng-repeat="achiev in achievementList" class="achievement {{achiev.style}}" ng-class="{'earned': achievementEarned(achiev.id)}" data="achiev"></achievement>
+  <achievement ng-repeat="achiev in achievementList" enabled="achievementEarned(achiev.id)" key="achiev.id"></achievement>
 
   <div class="clearfix"></div>
 

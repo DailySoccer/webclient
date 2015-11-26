@@ -1,0 +1,33 @@
+library user_notification;
+import 'package:webclient/services/datetime_service.dart';
+
+class UserNotification {
+  static const String  NEW_SPECIAL_EVENT_ACTIVE = "NEW_SPECIAL_EVENT_ACTIVE";
+  static const String  NEW_OFFER_ACTIVE         = "NEW_OFFER_ACTIVE";
+
+  static const String  CONTEST_FINISHED         = "CONTEST_FINISHED";
+  static const String  DUEL_FINISHED            = "DUEL_FINISHED";
+  static const String  CONTEST_CANCELLED        = "CONTEST_CANCELLED";
+
+  static const String  DAILY_CHALLENGE_ENABLED  = "DAILY_CHALLENGE_ENABLED";
+  static const String  OFICIAL_CONTEST_START    = "OFICIAL_CONTEST_START";
+  static const String  CONTEST_INVITATIONS      = "CONTEST_INVITATIONS";
+  static const String  SKILL_LEVEL_UP           = "SKILL_LEVEL_UP";
+  static const String  SKILL_LEVEL_DOWN         = "SKILL_LEVEL_DOWN";
+
+  static const String  MANAGER_LEVEL_UP         = "MANAGER_LEVEL_UP";
+  static const String  MANAGER_LEVEL_DOWN       = "MANAGER_LEVEL_DOWN";
+  static const String  ACHIEVEMENT_EARNED       = "ACHIEVEMENT_EARNED";
+
+  String id;
+  String topic;
+  Map<String, String> info;
+  DateTime createdAt;
+
+  UserNotification.fromJsonObject(Map jsonMap) {
+    id = jsonMap["id"];
+    topic = jsonMap["topic"];
+    info = jsonMap.containsKey("info") ? jsonMap["info"] : {};
+    createdAt = jsonMap.containsKey("createdAt") ? DateTimeService.fromMillisecondsSinceEpoch(jsonMap["createdAt"]) : DateTimeService.now;
+  }
+}

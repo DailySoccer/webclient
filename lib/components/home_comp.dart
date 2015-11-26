@@ -40,6 +40,7 @@ class HomeComp  {
   bool get isLiveTileEnabled => isMyContestTilesEnabled;
   bool get isHistoryTileEnabled => isMyContestTilesEnabled;
   bool get isBlogTileEnabled => true;
+  bool get isHowItWorksEnabled => true;
   String get CreateContestTileText => !userIsLogged? getLocalizedText('create_contest_text_nolog') :
                                             !tutorialIsDone? getLocalizedText('create_contest_text_notut') :
                                                              getLocalizedText('create_contest_text_logNtut');
@@ -89,7 +90,7 @@ class HomeComp  {
   Map defaultPromo = {  'url' : '' // EJ: "#/enter_contest/lobby/564cb79ad4c6c22fa0407f5d/none"
                        ,'imageXs' : 'images/ht_ModuloTorneoBGPlay.jpg'  // Not used
                        ,'imageDesktop' : 'images/ht_ModuloTorneoBGPlay.jpg'
-                       ,'html' : '''  <span class="tile-title">${getStaticLocalizedText('play')}</span>
+                       ,'html' : '''  <span class="tile-title"><strong>${getStaticLocalizedText('play')}</strong></span>
                                       <span class="tile-info">${getStaticLocalizedText('learn_to_play')}</span>
                                  '''
                        ,'text' : 'The promo you are trying to access is not available'
@@ -102,10 +103,9 @@ class HomeComp  {
                         ,'imageXs' : 'images/ht_ModuloTorneoBG.jpg'  // Not used
                         ,'imageDesktop' : 'images/ht_ModuloTorneoBG.jpg'
                         ,'html' : '''  
-                            <span class="tile-title real">Superclásico</span>
+                            <span class="tile-title"><strong>Torneos Epic</strong> Eleven</span>
                             <div class="tile-info">
-                             <span class="promo-date">20-24 NOV.</span>
-                             <span class="promo-description">Haz tu once y compite en superligas de 30 jugadores</span>
+                             <span class="promo-description">Entra a la lista de torneos para empezar a jugar</span>
                             </div>
                                  '''
                         ,'text' : 'The promo you are trying to access is not available'
@@ -158,6 +158,11 @@ class HomeComp  {
   void onBlogClick() {
     if (!isBlogTileEnabled) return;
     window.location.assign("http://halftime.epiceleven.com");
+  }
+
+  void onHowItWorksClick() {
+    if (!isHowItWorksEnabled) return;
+    _router.go('help_info', {});
   }
 
 

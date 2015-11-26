@@ -78,10 +78,14 @@
 	#manageTile .home-tile-wrapper {
 		.make-tile(12, 1.5);
 	}
-	#blogTile.home-tile-wrapper {
-		.make-tile(4, 3);
+	#helpTile {
+		#blogTile.home-tile-wrapper {
+			.make-tile(12, 2);
+		}
+		#howitworksTile.home-tile-wrapper {
+			.make-tile(12, 1);
+		}
 	}
-	
 
 	#contestTile .tile {
 		background-image: url("@{images}/ht_ModuloTorneoBGPlay.jpg");
@@ -110,6 +114,9 @@
 	#blogTile .tile {
 		background-image: url("@{images}/ht_ModuloMisterBG.jpg");
 	}
+	#howitworksTile .tile {
+		background-image: url("@{images}/ht_ModuloOjeadorBG.jpg");
+	}
 	
 	
 	#contestTile.home-tile-wrapper {
@@ -122,9 +129,11 @@
 				&:after {
 					width: 85px;
 					margin-top: 5px;
+					margin-bottom: 15px;
 					border-bottom: 2px solid fade(@white, 75%);
 				}
-				.exo_bold(30pt, @white);
+				.exo_light(30pt, @white);
+				
 				&.real:before {
 					content: "";
 					.addIcon("trophy_light.png", 42px, 42px);
@@ -151,7 +160,7 @@
 			.tile-action {	
 				display: block;
 				float: none;
-				margin-top: 10px;
+				margin-top: 20px;
 			}
 		}
 	}
@@ -200,9 +209,18 @@
 		.tile-title {
 			color: @greyMed;
 		}
+		.tile-blog-author {
+			color: @greyMed;
+			.opensans_normal(10pt, @white);
+			font-style: italic;
+			position: absolute;
+			display: block;
+			bottom: 20px;
+		}
 		.tile-action {
-			position: relative;
-			margin-top: 200px;
+			position: absolute;
+			right: 20px;
+			bottom: 20px;
 		}
 	}
 	

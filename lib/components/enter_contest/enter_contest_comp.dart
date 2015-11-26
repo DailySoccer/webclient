@@ -728,8 +728,8 @@ class EnterContestComp implements DetachAware {
   }
 
   String getConfirmButtonText() {
-    if (contest == null) return getLocalizedText("buttoncontinue");
-
+    if (contest == null || (contest.entryFee.isEnergy && editingContestEntry)) return getLocalizedText("buttoncontinue");
+    
     Money cost = contest.entryFee.isEnergy? contest.entryFee : coinsNeeded;
     return'${getLocalizedText("buttoncontinue")}: <span class="confirm-cost ${cost.isEnergy? "energy": "coins"}">${cost.amount.toInt()}</span>';
   }

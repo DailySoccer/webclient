@@ -36,7 +36,7 @@ class NotificationsComp {
       "id": notification.id,
       "type" : notification.topic,
       "info" : notification.info,
-      "link": "http://127.0.0.1:3030/webclient/web/index.html#/leaderboard",
+      "link": notification.link,
       "date" : notification.createdAt
     }).toList();
 
@@ -51,6 +51,9 @@ class NotificationsComp {
       {"id": '6', "type" : UserNotification.OFICIAL_CONTEST_START,"info" : {"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec turpis vel enim finibus cursus. Sed aliquam felis turpis, et suscipit neque dignissim tempus.", "date": "10 Nov. 2015", "link": "http://127.0.0.1:3030/webclient/web/index.html#/notifications"}}
     ]
    */
+
+    // TEST: Link
+    // window.location.assign(notificationList.first["link"]);
   }
 
   String getNotificationName(String id) {

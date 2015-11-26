@@ -23,11 +23,31 @@ class UserNotification {
   String topic;
   Map<String, String> info;
   DateTime createdAt;
+  String link;
 
   UserNotification.fromJsonObject(Map jsonMap) {
     id = jsonMap["id"];
     topic = jsonMap["topic"];
     info = jsonMap.containsKey("info") ? jsonMap["info"] : {};
     createdAt = jsonMap.containsKey("createdAt") ? DateTimeService.fromMillisecondsSinceEpoch(jsonMap["createdAt"]) : DateTimeService.now;
+    link = _generateLink();
+  }
+
+  String _generateLink() {
+    String result = null;
+    switch(topic) {
+      case ACHIEVEMENT_EARNED:
+        result = "#/leaderboard";
+        break;
+      case CONTEST_FINISHED:
+        result = "#/history_contest/my_contests/${info['contestId']}";
+        break;
+
+      case CONTEST_CANCELLED:
+      case MANAGER_LEVEL_UP:
+      case MANAGER_LEVEL_DOWN:
+        break;
+    }
+    return result;
   }
 }

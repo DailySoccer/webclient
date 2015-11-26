@@ -41,6 +41,7 @@ class User {
   Money earnedMoney;
 
   Set<String> achievements = new Set<String>();
+  List<Map> notifications = new List<Map>();
 
   bool hasAchievement(String achievement) => achievements.contains(achievement);
 
@@ -165,6 +166,10 @@ class User {
 
       List<String> achievementList = jsonMap["achievements"];
       achievementList.forEach( (achievementId) => achievements.add(achievementId) );
+    }
+
+    if (jsonMap.containsKey("notifications")) {
+      notifications.addAll(jsonMap["notifications"].map((jsonMap) => jsonMap).toList());
     }
 
     return this;

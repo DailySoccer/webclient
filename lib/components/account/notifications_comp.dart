@@ -41,7 +41,7 @@ class NotificationsComp {
     }).toList();
 
     /*
-    [
+    notificationList = [
       {"id": '0', "type" : UserNotification.ACHIEVEMENT_EARNED,   "info" : {"date": "10 Nov. 2015", "link": "http://127.0.0.1:3030/webclient/web/index.html#/leaderboard", "achievementKey" : "WON_1_VIRTUAL_CONTEST"}},
       {"id": '1', "type" : UserNotification.CONTEST_FINISHED,     "info" : {"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec turpis vel enim finibus cursus. Sed aliquam felis turpis, et suscipit neque dignissim tempus.", "date": "10 Nov. 2015", "link": "http://127.0.0.1:3030/webclient/web/index.html#/notifications"}},
       {"id": '2', "type" : UserNotification.CONTEST_INVITATIONS,  "info" : {"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec turpis vel enim finibus cursus. Sed aliquam felis turpis, et suscipit neque dignissim tempus.", "date": "10 Nov. 2015", "link": "http://127.0.0.1:3030/webclient/web/index.html#/notifications"}},
@@ -49,7 +49,7 @@ class NotificationsComp {
       {"id": '4', "type" : UserNotification.SKILL_LEVEL_DOWN,     "info" : {"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec turpis vel enim finibus cursus. Sed aliquam felis turpis, et suscipit neque dignissim tempus.", "date": "10 Nov. 2015", "link": "http://127.0.0.1:3030/webclient/web/index.html#/notifications"}},
       {"id": '5', "type" : UserNotification.NEW_OFFER_ACTIVE,     "info" : {"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec turpis vel enim finibus cursus. Sed aliquam felis turpis, et suscipit neque dignissim tempus.", "date": "10 Nov. 2015", "link": "http://127.0.0.1:3030/webclient/web/index.html#/notifications"}},
       {"id": '6', "type" : UserNotification.OFICIAL_CONTEST_START,"info" : {"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec turpis vel enim finibus cursus. Sed aliquam felis turpis, et suscipit neque dignissim tempus.", "date": "10 Nov. 2015", "link": "http://127.0.0.1:3030/webclient/web/index.html#/notifications"}}
-    ]
+    ];
    */
 
     // TEST: Link
@@ -75,7 +75,9 @@ class NotificationsComp {
 
   void closeNotification(String notificationId) {
     print("Cerrando notificacion:" + notificationId);
-    _profileService.removeNotification(notificationId);
+    _profileService.removeNotification(notificationId).then((_) {
+      notificationList.removeWhere((notification) => notification['id'] == notificationId);
+    });
   }
 
   ProfileService _profileService;

@@ -26,7 +26,7 @@ class UserNotification {
   String link;
 
   UserNotification.fromJsonObject(Map jsonMap) {
-    id = jsonMap["id"];
+    id = jsonMap["_id"];
     topic = jsonMap["topic"];
     info = jsonMap.containsKey("info") ? jsonMap["info"] : {};
     createdAt = jsonMap.containsKey("createdAt") ? DateTimeService.fromMillisecondsSinceEpoch(jsonMap["createdAt"]) : DateTimeService.now;

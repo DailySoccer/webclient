@@ -52,10 +52,17 @@ class EnterContestComp implements DetachAware {
 
   Contest contest;
   String contestId;
+  String _formationId = ContestEntry.FORMATION_442;
+  String get formationId => _formationId;
+  void set formationId(String id) { 
+    _formationId = id;
+    onLineupFormationChange();
+  }
   String contestEntryId;
 
   List<dynamic> allSoccerPlayers;
   List<dynamic> lineupSlots;
+  List<String> get lineupFormation => FieldPos.FORMATIONS[formationId];
 
   FieldPos fieldPosFilter;
   String nameFilter;
@@ -176,6 +183,7 @@ class EnterContestComp implements DetachAware {
         if (editingContestEntry) {
           ContestEntry contestEntry = contest.getContestEntry(contestEntryId);
           if (contestEntry != null) {
+            formationId = contestEntry.formation;
             // Insertamos en el lineup el jugador
             contestEntry.instanceSoccerPlayers.forEach((instanceSoccerPlayer) {
               addSoccerPlayerToLineup(instanceSoccerPlayer.id);
@@ -226,12 +234,7 @@ class EnterContestComp implements DetachAware {
   }
 
   void resetLineup() {
-    lineupSlots = new List<dynamic>();
-
-    // Creamos los slots iniciales, todos vacios
-    FieldPos.LINEUP.forEach((pos) {
-      lineupSlots.add(null);
-    });
+    lineupSlots = new List.filled(lineupFormation.length, null);
   }
 
   void detach() {
@@ -277,7 +280,7 @@ class EnterContestComp implements DetachAware {
       // Cuando seleccionan un slot del lineup cambiamos siempre el filtro de la soccer-player-list, especialmente
       // en movil que cambiamos de vista a "solo ella".
       // El componente hijo se entera de que le hemos cambiado el filtro a traves del two-way binding.
-      fieldPosFilter = new FieldPos(FieldPos.LINEUP[slotIndex]);
+      fieldPosFilter = new FieldPos(lineupFormation[slotIndex]);
     }
 
     _verifyMaxPlayersInSameTeam();
@@ -290,6 +293,76 @@ class EnterContestComp implements DetachAware {
     }
   }
 
+  void onLineupFormationChange() {
+
+    int firstAvailablePosition(String soccerPosition) {
+      for (int c = 0; c < lineupSlots.length; ++c) {
+        if (lineupSlots[c] == null && lineupFormation[c] == soccerPosition) 
+          return c;
+      }
+      return -1;
+    }
+    
+    int cheapestByPosition(String soccerPosition) {
+      int cheapestIdx;
+      int cheapestValue = -1;
+      for (int c = 0; c < lineupSlots.length; ++c) {
+        if (lineupSlots[c] != null && lineupFormation[c] == soccerPosition) {
+          if (cheapestValue == -1 || lineupSlots[c]["salary"] < cheapestValue){
+            cheapestValue = lineupSlots[c]["salary"];
+            cheapestIdx = c;
+          }
+        }
+      }
+      return cheapestIdx;
+    }
+    
+    
+    for (int c = 0; c < lineupSlots.length; ++c) {
+      if (lineupSlots[c] != null && lineupFormation[c] != lineupSlots[c]["fieldPos"].value) {
+        print(lineupSlots[c]["fieldPos"].value + " -ConflictoCon- " + lineupFormation[c]);
+        var soccerPlayer = lineupSlots[c];
+        int availablePosition = firstAvailablePosition(lineupSlots[c]["fieldPos"].value);
+        print("Posicion disponible: $availablePosition");
+        
+        if (availablePosition != -1) {
+          onLineupSlotSelected(c);
+          _tryToAddSoccerPlayerToLineup(soccerPlayer);
+        } else {
+          int cheapestIndex = cheapestByPosition(lineupSlots[c]["fieldPos"].value);
+          print("Más barato: $cheapestIndex");
+          onLineupSlotSelected(c);
+          if (c != cheapestIndex) {
+            onLineupSlotSelected(cheapestIndex);
+            _tryToAddSoccerPlayerToLineup(soccerPlayer);
+          }
+        }
+      }
+    }
+    
+    /*
+    for (int c = 0; c < lineupSlots.length; ++c) {
+      if (lineupSlots[c] == null && lineupFormation[c] == theFieldPos.value) {
+        // TODO:...
+        // _catalogService.buySoccerPlayer(contest.contestId, soccerPlayer["id"]);
+
+        lineupSlots[c] = soccerPlayer;
+        isSelectingSoccerPlayer = false;
+        availableSalary -= soccerPlayer["salary"];
+        // Comprobamos si estamos en salario negativo
+        isNegativeBalance = availableSalary < 0;
+
+        nameFilter = null;
+        // Actualizamos el contestEntry, independientemente que estemos editando o creando
+        if(!_isRestoringTeam) {
+          saveContestEntry();
+        }
+        break;
+      }
+    }*/
+    
+  }
+  
   void onSoccerPlayerActionButton(var soccerPlayer) {
 
     int indexOfPlayer = lineupSlots.indexOf(soccerPlayer);
@@ -299,7 +372,6 @@ class EnterContestComp implements DetachAware {
     else {
       _tryToAddSoccerPlayerToLineup(soccerPlayer);
     }
-
     _verifyMaxPlayersInSameTeam();
   }
 
@@ -317,7 +389,7 @@ class EnterContestComp implements DetachAware {
     FieldPos theFieldPos = soccerPlayer["fieldPos"];
 
     for (int c = 0; c < lineupSlots.length; ++c) {
-      if (lineupSlots[c] == null && FieldPos.LINEUP[c] == theFieldPos.value) {
+      if (lineupSlots[c] == null && lineupFormation[c] == theFieldPos.value) {
         // TODO:...
         // _catalogService.buySoccerPlayer(contest.contestId, soccerPlayer["id"]);
 
@@ -362,7 +434,7 @@ class EnterContestComp implements DetachAware {
       return false;
     }
     for ( ; c < lineupSlots.length; ++c) {
-      if (lineupSlots[c] == null && FieldPos.LINEUP[c] == theFieldPos.value)
+      if (lineupSlots[c] == null && lineupFormation[c] == theFieldPos.value)
         return true;
     }
     return false;
@@ -445,7 +517,7 @@ class EnterContestComp implements DetachAware {
     }
 
     if (editingContestEntry) {
-      _contestsService.editContestEntry(contestEntryId, lineupSlots.map((player) => player["id"]).toList())
+      _contestsService.editContestEntry(contestEntryId, formationId, lineupSlots.map((player) => player["id"]).toList())
         .then((_) {
           _teamConfirmed = true;
           _router.go('view_contest_entry', { "contestId": contest.contestId,
@@ -455,7 +527,7 @@ class EnterContestComp implements DetachAware {
         .catchError((ServerError error) => _errorCreating(error));
     }
     else {
-        _contestsService.addContestEntry(contest.contestId, lineupSlots.map((player) => player["id"]).toList())
+        _contestsService.addContestEntry(contest.contestId, formationId, lineupSlots.map((player) => player["id"]).toList())
           .then((contestId) {
             GameMetrics.logEvent(GameMetrics.TEAM_CREATED);
             GameMetrics.identifyMixpanel(_profileService.user.email);
@@ -570,19 +642,24 @@ class EnterContestComp implements DetachAware {
 
   void saveContestEntry() {
     // Lo almacenamos localStorage.
-    saveContestEntryFromJson(_getKeyForCurrentUserContest, JSON.encode(lineupSlots.where((player) => player != null).map((player) => player["id"]).toList()));
+    Map data = { 'formation' :  formationId, 'lineupSlots' : lineupSlots.where((player) => player != null).map((player) => player["id"]).toList()};
+    
+    saveContestEntryFromJson(_getKeyForCurrentUserContest, JSON.encode(data));
   }
 
   void restoreContestEntry() {
     if (window.localStorage.containsKey(_getKeyForCurrentUserContest)) {
       // print ("localStorage: key: " + _getKeyForCurrentUserContest + ": " + window.localStorage[_getKeyForCurrentUserContest]);
-      List loadedData = JSON.decode(window.localStorage[_getKeyForCurrentUserContest]);
-      _isRestoringTeam = true;
-      loadedData.forEach((id) {
-        addSoccerPlayerToLineup(id);
-      });
-      _isRestoringTeam = false;
-      _verifyMaxPlayersInSameTeam();
+      Map loadedData = JSON.decode(window.localStorage[_getKeyForCurrentUserContest]);
+           
+     _isRestoringTeam = true;
+     formationId = loadedData['formation'];
+     List loadedLineup = loadedData['lineupSlots'];
+     loadedLineup.forEach((id) {
+       addSoccerPlayerToLineup(id);
+     });
+     _isRestoringTeam = false;
+     _verifyMaxPlayersInSameTeam();
     }
   }
 

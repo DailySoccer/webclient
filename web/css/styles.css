@@ -5705,6 +5705,10 @@ scoring-rules:after,
 .soccer-player-list-header-table:after,
 .soccer-players-list .soccer-players-list-slot:before,
 .soccer-players-list .soccer-players-list-slot:after,
+.lineup-selector .lineup-formation-selector-wrapper:before,
+.lineup-selector .lineup-formation-selector-wrapper:after,
+.lineup-selector #formationsPanelRoot .formations-container:before,
+.lineup-selector #formationsPanelRoot .formations-container:after,
 #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table:before,
 #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table:after,
 #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element:before,
@@ -5819,6 +5823,8 @@ scoring-rules:after,
 .enter-contest-actions-wrapper .bottom-content:after,
 .soccer-player-list-header-table:after,
 .soccer-players-list .soccer-players-list-slot:after,
+.lineup-selector .lineup-formation-selector-wrapper:after,
+.lineup-selector #formationsPanelRoot .formations-container:after,
 #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table:after,
 #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element:after,
 #loginRoot:after,
@@ -16277,7 +16283,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
     border-style: solid;
     border-color: #dcdcdc;
     border-radius: 8px;
-    height: 541px;
+    height: 580px;
     overflow: hidden;
   }
 }
@@ -16316,7 +16322,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
     border-style: solid;
     border-color: #fa9c19;
     border-radius: 8px;
-    min-height: 541px;
+    min-height: 580px;
     overflow: hidden;
   }
 }
@@ -16559,7 +16565,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
 @media (min-width: 768px) {
   .soccer-players-list {
     overflow-y: scroll;
-    max-height: 413px;
+    max-height: 448px;
   }
 }
 .soccer-players-list .posPOR {
@@ -17781,6 +17787,145 @@ lineup-selector {
 }
 .lineup-selector .alert-max-players-same-team.active {
   display: block;
+}
+.lineup-selector .lineup-formation-selector-wrapper {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: #ffffff;
+  display: block;
+  position: relative;
+  border-bottom: 1px solid #afafaf;
+  cursor: pointer;
+}
+.lineup-selector .lineup-formation-selector-wrapper > .navbar-header,
+.lineup-selector .lineup-formation-selector-wrapper > .navbar-collapse {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+@media (min-width: 768px) {
+  .lineup-selector .lineup-formation-selector-wrapper > .navbar-header,
+  .lineup-selector .lineup-formation-selector-wrapper > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+.lineup-selector .lineup-formation-selector-wrapper .current-formation {
+  cursor: pointer;
+  position: relative;
+  float: left;
+  width: 50%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 10px 0;
+  display: block;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #214a5f;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
+}
+.lineup-selector .lineup-formation-selector-wrapper .formation-change-button {
+  cursor: pointer;
+  position: relative;
+  float: left;
+  width: 50%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 10px 0;
+  display: block;
+  text-align: right;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #0d75a6;
+  text-shadow: 1px 1px 1px rgba(13, 117, 166, 0.004);
+}
+.lineup-selector .lineup-formation-selector-wrapper .formation-change-button::after {
+  font-family: 'Glyphicons Halflings';
+  content: "\E113";
+  font-size: 6pt;
+  color: #0d75a6;
+  padding-left: 5px;
+}
+.lineup-selector .lineup-formation-selector-wrapper.collapsed .formation-change-button::after {
+  font-family: 'Glyphicons Halflings';
+  content: "\E114";
+  font-size: 6pt;
+  color: #0d75a6;
+  padding-left: 5px;
+}
+.lineup-selector #formationsPanelRoot {
+  width: 100%;
+  background-color: #ecf0f1;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.lineup-selector #formationsPanelRoot .formations-container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 10px 15px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #0a2938;
+  text-shadow: 1px 1px 1px rgba(10, 41, 56, 0.004);
+  border-bottom: 1px solid #afafaf;
+}
+.lineup-selector #formationsPanelRoot .formations-container > .navbar-header,
+.lineup-selector #formationsPanelRoot .formations-container > .navbar-collapse {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+@media (min-width: 768px) {
+  .lineup-selector #formationsPanelRoot .formations-container > .navbar-header,
+  .lineup-selector #formationsPanelRoot .formations-container > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+.lineup-selector #formationsPanelRoot .formations-container .formation-element {
+  position: relative;
+  float: left;
+  width: 20%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 0 3px;
+}
+.lineup-selector #formationsPanelRoot .formations-container .formation-element input[type="radio"] {
+  display: none;
+}
+.lineup-selector #formationsPanelRoot .formations-container .formation-element input[type="radio"] + label {
+  width: 100%;
+  padding: 10px 0px;
+  text-align: center;
+  background-color: #59add5;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  margin-bottom: 0;
+}
+.lineup-selector #formationsPanelRoot .formations-container .formation-element input[type="radio"]:checked + label {
+  background-color: #ffffff;
+  color: #777777;
+  border: 1px solid #777777;
 }
 #leaderboard-wrapper {
   padding-bottom: 40px;
@@ -21452,6 +21597,8 @@ users-list#usersList > .epic-tooltip {
 #homeRoot .enter-contest-actions-wrapper .bottom-content,
 #homeRoot .soccer-player-list-header-table,
 #homeRoot .soccer-players-list .soccer-players-list-slot,
+#homeRoot .lineup-selector .lineup-formation-selector-wrapper,
+#homeRoot .lineup-selector #formationsPanelRoot .formations-container,
 #homeRoot #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table,
 #homeRoot #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element,
 #homeRoot #loginRoot,

@@ -23056,6 +23056,7 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   margin-left: 0;
   margin-right: 0;
   margin: 10px 0;
+  position: relative;
 }
 #notificationsComp .notification-list-wrapper .notification achievement {
   position: relative;
@@ -23095,6 +23096,12 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   color: #434343;
   display: block;
   padding: 5px 0;
+}
+#notificationsComp .notification-list-wrapper .close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
 }
 #notificationsComp .notification-list-wrapper .uncommon {
   background-image: url("../images/achievementNotificationBg.jpg");

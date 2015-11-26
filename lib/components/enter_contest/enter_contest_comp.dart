@@ -642,19 +642,24 @@ class EnterContestComp implements DetachAware {
 
   void saveContestEntry() {
     // Lo almacenamos localStorage.
-    saveContestEntryFromJson(_getKeyForCurrentUserContest, JSON.encode(lineupSlots.where((player) => player != null).map((player) => player["id"]).toList()));
+    Map data = { 'formation' :  formationId, 'lineupSlots' : lineupSlots.where((player) => player != null).map((player) => player["id"]).toList()};
+    
+    saveContestEntryFromJson(_getKeyForCurrentUserContest, JSON.encode(data));
   }
 
   void restoreContestEntry() {
     if (window.localStorage.containsKey(_getKeyForCurrentUserContest)) {
       // print ("localStorage: key: " + _getKeyForCurrentUserContest + ": " + window.localStorage[_getKeyForCurrentUserContest]);
-      List loadedData = JSON.decode(window.localStorage[_getKeyForCurrentUserContest]);
-      _isRestoringTeam = true;
-      loadedData.forEach((id) {
-        addSoccerPlayerToLineup(id);
-      });
-      _isRestoringTeam = false;
-      _verifyMaxPlayersInSameTeam();
+      Map loadedData = JSON.decode(window.localStorage[_getKeyForCurrentUserContest]);
+           
+     _isRestoringTeam = true;
+     formationId = loadedData['formation'];
+     List loadedLineup = loadedData['lineupSlots'];
+     loadedLineup.forEach((id) {
+       addSoccerPlayerToLineup(id);
+     });
+     _isRestoringTeam = false;
+     _verifyMaxPlayersInSameTeam();
     }
   }
 

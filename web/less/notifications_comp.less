@@ -26,8 +26,13 @@
 				}
 			}
 
+
+			
+
 			.main-info {
-				.make-xs-column(12);
+				.make-xs-column(4);
+				background-color: @blueDark;
+				text-align: center;
 
 				.name {
 					.exo_light(14pt, @white);
@@ -36,9 +41,16 @@
 				}
 
 				.date {
-					.opensans_normal(10pt, @greyUltraDark);
+					.opensans_normal(10pt, @white);
 					display: block;
 					padding: 5px 0;
+				}
+			}
+
+			.secondary-info {
+				.make-xs-column(8);
+				.description {
+
 				}
 			}
 		}
@@ -58,6 +70,12 @@
 			border-radius: 5px;
 			text-align: center;
 			padding-bottom: 20px;
+			.main-info { 
+				.make-xs-column(12); 
+				background-color: transparent;
+				.date {	.opensans_normal(10pt, @greyUltraDark);	}
+			}
+			.additional-info { .hidden(); }
 		}
 	}
 }

@@ -23075,10 +23075,12 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
 #notificationsComp .notification-list-wrapper .notification .main-info {
   position: relative;
   float: left;
-  width: 100%;
+  width: 33.33333333%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  background-color: #214a5f;
+  text-align: center;
 }
 #notificationsComp .notification-list-wrapper .notification .main-info .name {
   font-family: 'Exo', sans-serif;
@@ -23093,9 +23095,17 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
-  color: #434343;
+  color: #ffffff;
   display: block;
   padding: 5px 0;
+}
+#notificationsComp .notification-list-wrapper .notification .secondary-info {
+  position: relative;
+  float: left;
+  width: 66.66666667%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 #notificationsComp .notification-list-wrapper .close-button {
   position: absolute;
@@ -23111,6 +23121,25 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   border-radius: 5px;
   text-align: center;
   padding-bottom: 20px;
+}
+#notificationsComp .notification-list-wrapper .uncommon .main-info {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: transparent;
+}
+#notificationsComp .notification-list-wrapper .uncommon .main-info .date {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #434343;
+}
+#notificationsComp .notification-list-wrapper .uncommon .additional-info {
+  display: none !important;
+  visibility: hidden !important;
 }
 /*************************************************
 Si hay que añadir nuevas banderas, ir a la siguiente url

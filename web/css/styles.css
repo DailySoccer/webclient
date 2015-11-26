@@ -8187,7 +8187,7 @@ fieldset[disabled] .contests-list-f2p-root .contestSlot .action-section .action-
   color: #ffffff;
 }
 .contests-list-f2p-root .special .time-section .fake-time-column {
-  margin-top: 25px;
+  margin-top: 17px;
 }
 @media (max-width: 767px) {
   .contests-list-f2p-root .special .time-section .fake-time-column {
@@ -8197,6 +8197,10 @@ fieldset[disabled] .contests-list-f2p-root .contestSlot .action-section .action-
 .contests-list-f2p-root .special .name-section .contest-name,
 .contests-list-f2p-root .special .name-section .contest-description {
   color: #ffffff;
+}
+.contests-list-f2p-root .special .conditions-section {
+  margin-top: 8px;
+  margin-bottom: 5px;
 }
 .contests-list-f2p-root .special .conditions-section .player-position,
 .contests-list-f2p-root .special .conditions-section .entry-fee-box,

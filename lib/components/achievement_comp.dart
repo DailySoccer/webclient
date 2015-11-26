@@ -2,10 +2,7 @@ library achievement_comp;
 
 import 'dart:html';
 import 'package:angular/angular.dart';
-import 'package:webclient/models/user.dart';
-import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/models/achievement.dart';
-import 'package:webclient/services/profile_service.dart';
 
 
 @Component(
@@ -15,7 +12,17 @@ import 'package:webclient/services/profile_service.dart';
 )
 
 class AchievementComp {
+ 
+  Achievement achiev;
   
+  @NgOneWay("data")
+  void set Data(value) {
+    if (value != null) {
+      achiev = value;
+    }
+  }
+  
+  AchievementComp() {}
   
 
 }

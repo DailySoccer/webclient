@@ -1,3 +1,5 @@
+@cell-height: 130px;
+
 #notificationsComp {
 	.container-fluid();
 	padding: 0;
@@ -6,10 +8,18 @@
 		.container-fluid();
 		padding: 15px;
 
+		
 		.notification {
 			.make-row(0);
 			margin: 10px 0;
-			position: relative;
+			position: relative;			
+			min-height: 130px;
+			border-radius: 5px;
+			border: 2px solid @white;
+
+			&:hover {
+				.make-shadow(0px, 4px, 8px, 1px, @greyUltraDark, 0.5);
+			}
 
 			achievement {
 				position: relative;
@@ -26,31 +36,57 @@
 				}
 			}
 
-
-			
-
 			.main-info {
 				.make-xs-column(4);
 				background-color: @blueDark;
 				text-align: center;
+				height: @cell-height;
+				display: table;
+
+				.wrapper {
+					display: table-cell;
+					vertical-align: middle;
+				}
 
 				.name {
 					.exo_light(14pt, @white);
 					display: block;					
 					padding: 5px 0;
+					margin-left:auto;
+					margin-right:auto;
 				}
 
 				.date {
 					.opensans_normal(10pt, @white);
 					display: block;
 					padding: 5px 0;
+					margin-left:auto;
+					margin-right:auto;
 				}
 			}
 
-			.secondary-info {
+			.additional-info {
 				.make-xs-column(8);
-				.description {
+				display: table;
+				height: @cell-height;
 
+				.wrapper {
+					display: table-cell;
+					vertical-align: middle;
+				}
+
+				.description {
+					.opensans_normal(10pt, @greyDark);
+					padding: 0 50px 20px 20px;
+				}
+
+				.button-wrapper {
+					display: inline-block;					
+					height: 34px;
+				}
+
+				button {
+					margin-left: 20px;
 				}
 			}
 		}
@@ -67,14 +103,17 @@
 			background-repeat: no-repeat;
 			background-position: center top;
 			background-size: cover;
-			border-radius: 5px;
 			text-align: center;
 			padding-bottom: 20px;
+
 			.main-info { 
 				.make-xs-column(12); 
 				background-color: transparent;
+				height: auto;
+
 				.date {	.opensans_normal(10pt, @greyUltraDark);	}
 			}
+
 			.additional-info { .hidden(); }
 		}
 	}

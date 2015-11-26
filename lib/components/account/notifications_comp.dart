@@ -58,26 +58,28 @@ class NotificationsComp {
 
   String getNotificationName(String id) {
     Map notif;
-    try{
-      notif = notificationList.firstWhere((notification) => notification['id'] == id);
-    } catch (_) {
-      print("ERROR EN: $id");
-      return '';
-    }
+    
+    notif = notificationList.firstWhere((notification) => notification['id'] == id);
+    
     if (notif['type'] == UserNotification.ACHIEVEMENT_EARNED) {
-      Achievement a = Achievement.getAchievementWithKey(notif["info"]["achievement"]);
-      String text = getLocalizedText('achievement_name', substitutions:{'NAME': a.name});
-      return   text;
+      return getLocalizedText('achievement_name', substitutions:{'NAME': Achievement.getAchievementWithKey(notif["info"]["achievement"]).name});
     }
+    
+    String text = getLocalizedText(notif["type"], substitutions:{'NAME': notif["type"]});
+    return   text;
 
-    return "";
   }
+  
 
   void closeNotification(String notificationId) {
     print("Cerrando notificacion:" + notificationId);
     _profileService.removeNotification(notificationId).then((_) {
       notificationList.removeWhere((notification) => notification['id'] == notificationId);
     });
+  }
+  
+  void goToLink(String link) {
+    window.location.assign(link);
   }
 
   ProfileService _profileService;

@@ -7,16 +7,33 @@
     <!-- Notificaciones tipo logro -->
     <div class="notification"  ng-repeat="notification in notificationList" ng-class="{'uncommon': notification.type == 'ACHIEVEMENT_EARNED'}">
       
-
       <div class="main-info">
-        <achievement ng-if="notification.type == 'ACHIEVEMENT_EARNED'" enabled="true" key="notification['info'].achievement"></achievement>
-        <span class="name">{{getNotificationName(notification.id)}}</span>
-        <span class="date">{{notification.date}}</span>
+        <div class="wrapper">
+          <achievement ng-if="notification.type == 'ACHIEVEMENT_EARNED'" enabled="true" key="notification['info'].achievement"></achievement>
+          <span class="name">{{getNotificationName(notification.id)}}</span>
+          <span class="date">{{notification.date}}</span>
+        </div>
       </div>
+    
       <div class="additional-info">
-        <span class="description">Lorem fistrum te voy a borrar el cerito condemor tiene musho peligro mamaar sexuarl va usté muy cargadoo te voy a borrar el cerito no te digo trigo por no llamarte Rodrigor te voy a borrar el cerito.</span>
-        <button class="btn-primary">waqwerqwer</button>
+        <div class="wrapper">
+          <div class="description">Lorem fistrum te voy a borrar el cerito condemor tiene musho peligro mamaar sexuarl.</div>
+          <div class="button-wrapper"><button class="btn-primary" ng-click="goToLink(notification['link'])">Ir</button></div>
+        </div>
       </div>
+        
+      
+      
+      <!-- div style="display:table;">
+        <div style="display:table-cell;vertical-align:middle;">
+          <div style="margin-left:auto;margin-right:auto;"></div>
+        </div>
+      </div -->
+      
+      
+      
+      
+      
 
       <span class="close-button" ng-click="closeNotification(notificationList[0].id)"><img src="images/alertCloseButton.png"></span>
 

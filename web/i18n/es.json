@@ -757,7 +757,21 @@
     ,"notifications"                    :
     {
       "name"                            : "NOTIFICACIONES",
-      "achievement_name"                : "HAS CONSEGUIDO @NAME"
+      "achievement_name"                : "HAS CONSEGUIDO @NAME",
+      
+      "NEW_SPECIAL_EVENT_ACTIVE"        : "NEW_SPECIAL_EVENT_ACTIVE",
+      "NEW_OFFER_ACTIVE"                : "NEW_OFFER_ACTIVE",
+      "CONTEST_FINISHED"                : "CONTEST_FINISHED",
+      "DUEL_FINISHED"                   : "DUEL_FINISHED",
+      "CONTEST_CANCELLED"               : "CONTEST_CANCELLED",
+      "DAILY_CHALLENGE_ENABLED"         : "DAILY_CHALLENGE_ENABLED",
+      "OFICIAL_CONTEST_START"           : "OFICIAL_CONTEST_START",
+      "CONTEST_INVITATIONS"             : "CONTEST_INVITATIONS",
+      "SKILL_LEVEL_UP"                  : "SKILL_LEVEL_UP",
+      "SKILL_LEVEL_DOWN"                : "SKILL_LEVEL_DOWN",
+      "MANAGER_LEVEL_UP"                : "MANAGER_LEVEL_UP",
+      "MANAGER_LEVEL_DOWN"              : "MANAGER_LEVEL_DOWN",
+      "ACHIEVEMENT_EARNED"              : "ACHIEVEMENT_EARNED"     
     }
   }
 }

@@ -16282,7 +16282,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
     border-style: solid;
     border-color: #dcdcdc;
     border-radius: 8px;
-    height: 541px;
+    height: 580px;
     overflow: hidden;
   }
 }
@@ -16321,7 +16321,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
     border-style: solid;
     border-color: #fa9c19;
     border-radius: 8px;
-    min-height: 541px;
+    min-height: 580px;
     overflow: hidden;
   }
 }
@@ -16564,7 +16564,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
 @media (min-width: 768px) {
   .soccer-players-list {
     overflow-y: scroll;
-    max-height: 413px;
+    max-height: 448px;
   }
 }
 .soccer-players-list .posPOR {

@@ -402,7 +402,8 @@
       "classification"                  : "Clasificación",
       "howitworks2"                     : "Cómo funciona",
       "logout"                          : "Salir",
-      "login"                           : "Entrar"
+      "login"                           : "Entrar",
+      "signup"                          : "Regístrate"
     },
     "contestlist"                       :
     {

@@ -297,21 +297,21 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
     return "";
   }
 
-  String get _achivementsCountCode {
-    int numNotifications = 3;
-    
-    if (numNotifications > 0) {
-      return "<span class='count'>${numNotifications}</span>";
-    }
-    return "";
-  }
-
   String _getNotLoggedInHtml() {
     return '''
     <div id="menuNotLoggedIn">
       <div id="brandLogoNotLogged" class="navbar-brand" destination="home"></div>
-      <div class="button-wrapper">
-        <div id="loginButton" type="button" class="button-login-flat" destination="login">${StringUtils.translate("login", "mainmenu")}</div>
+      <div id ="desktopMenu" class="fixed-menu">        
+        <ul class="links-options">
+          <li highlights="home"          class="mainLink"> ${getMainMenuLink("home")}         </li>
+          <li highlights="lobby"         class="mainLink"> ${getMainMenuLink("lobby")}        </li>
+        </ul>
+        
+        <div class="button-wrapper">
+          <div id="helpButton" type="button" class="button-help-flat" destination="help_info" highlights="help_info">${StringUtils.translate("howitworks", "mainmenu")}</div>
+          <div id="signupButton" type="button" class="button-signup-flat" destination="join">${StringUtils.translate("signup", "mainmenu")}</div>
+          <div id="loginButton" type="button" class="button-login-flat" destination="login">${StringUtils.translate("login", "mainmenu")}</div>
+        </div>
       </div>
     </div>
     ''';
@@ -422,7 +422,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
         ret = '''<a id="menuMyContests"  destination="my_contests" params="section:live">${StringUtils.translate("mycontest",     "mainmenu")}</a>''';
         break;
       case "leaderboard":
-        ret = '''<a id="menuLeaderboard" destination="leaderboard">                      ${StringUtils.translate("leaderboard",   "mainmenu")}${_achivementsCountCode}</a>''';
+        ret = '''<a id="menuLeaderboard" destination="leaderboard">                      ${StringUtils.translate("leaderboard",   "mainmenu")}</a>''';
         break;
       case "notifications":
         ret = '''<a id="menuNotifications">                                              ${StringUtils.translate("notifications", "mainmenu")}${_notificationsCountCode}</a>''';

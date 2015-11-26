@@ -23,21 +23,22 @@ main-menu-f2p {
 	* {
 		.user-select(none);
 	}
+	
+	// Menu siempre arriba fijo cuando estamos logeados
 	&.logged-in {		
-		background-color: @blueUltraDark;
-		border-bottom: 1px solid @orange;		
-		height: 70px;
-
-		// Menu siempre arriba fijo cuando estamos logeados
 		position: fixed;
 		display: inline-block;
 		top: 0px;
-		width: 100%;
 	}
+	
+	background-color: @blueUltraDark;
+	border-bottom: 1px solid @orange;		
+	height: 70px;
 
-	background-color: fade(@blueUltraDark, 0%);
+	width: 100%;
+	//background-color: fade(@blueUltraDark, 0%);
 	z-index: 999;
-	border-style: none;	
+	//border-style: none;	
 	padding-left: 8px;
 	//padding-right: 8px;
 	.user-select(none);
@@ -59,8 +60,8 @@ main-menu-f2p {
  	 	.hidden-xs();
 	}
 
-   	// Version no XS (SM y Desktop)
-  	@media (min-width: @screen-sm-min) {
+  // Version no XS (SM y Desktop)
+	@media (min-width: @screen-sm-min) {
 
 		//elemento nombre menu usuario
 		.username-dropdown-toggle {
@@ -74,11 +75,11 @@ main-menu-f2p {
     	// elementos del sub-menu
         .dropdown-menu {
         	position: relative;
-            top: -4px;
+          top: -4px;
         	left: 10px;
-			& {
-				padding: 0px;
-			}
+					& {
+						padding: 0px;
+					}
 	        & > li > a {
 	        	text-align: left;
 	            cursor:pointer;
@@ -223,6 +224,8 @@ main-menu-f2p {
     }
 
 	#desktopMenu {
+		.user-select(none);
+		cursor: default;
 		.make-row(0);
 		padding-left: 100px;
 		@media (max-width: @screen-xs-max) {
@@ -242,16 +245,27 @@ main-menu-f2p {
 			.mainLink{					
 				display: inline-block;
 				a {
-					padding: 25px 5px;
+					padding: 23px 5px;
 					display: inline-block;
 					cursor: pointer;
 					text-decoration: none;
 					//text-shadow: 0px 2px black;
-					color: @blueLight;
+					.opensans_normal(12pt, @blueLight);
+					
 					&:hover, .active {
 						color: @white;
 					}
-								
+					
+					@media (max-width: @screen-sm-max) {
+						padding: 25px 3px;
+						margin: 0 0 0 5px;
+						.opensans_normal(10pt, @blueLight);
+						
+						&:hover, .active {
+							color: @white;
+						}
+					}
+					
 					&#menuLeaderboard,			
 					&#menuNotifications,			
 					&#menuHelp {
@@ -265,7 +279,7 @@ main-menu-f2p {
 
 						
 						@media (max-width: @screen-sm-max) {
-							margin: 0 0 0 5px;
+							margin: 0 0 0 4px;
 						}
 						
 						.count {
@@ -337,6 +351,8 @@ main-menu-f2p {
 			text-align: center;
 			display: inline-block;
 			width: 50px;
+			.user-select(none);
+			cursor: default;
 			//margin: 0 1%;
 			//En sm no cabe... hay que hacer algunos ajustes.
 			/*@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
@@ -344,6 +360,7 @@ main-menu-f2p {
 			}*/
 			img {
 				margin-left: 10px;
+				.user-select(none);
 			}
 			.count {
 				margin-top: 5px;
@@ -388,6 +405,7 @@ main-menu-f2p {
 				bottom: 0px;
 				font-size: 13pt;
 				line-height: 11pt;
+				cursor: pointer;
 			}
 		}
 		
@@ -422,7 +440,7 @@ main-menu-f2p {
 				.count {
 					padding-top: 0;
 				}
-				
+				cursor: pointer;
 			}
 			.manager-points{
 				.stats-commons();
@@ -450,17 +468,21 @@ main-menu-f2p {
 			.coins {
 				.stats-commons();
 				color: @orange;
+				cursor: pointer;
 			}
 			.profile {
 				.stats-commons();
+				cursor: pointer;
 				color: @white;
 				float: right;
 				position: relative;
 				img {
 					margin-left: 0px;
+					cursor: pointer;
 				}
 				.count {
 					border: none;
+					cursor: pointer;
 				}
 				#desktopUserMenu {
 					position: absolute;
@@ -485,8 +507,20 @@ main-menu-f2p {
 	  		margin-top: 8px;
 		}
 
+		.links-options {
+			.make-sm-column(3);
+		}
+		#desktopMenu {
+			top: 0;
+			.mainLink {
+				font-size: 12pt;
+			}
+		}
 		// Botones de login y join: ;
 		.button-wrapper {
+			.make-xs-column(12);
+			.make-sm-column(9);
+			text-align: right;
 			line-height: 1.1;
 			display: inline-block;
 			position: relative;
@@ -501,16 +535,46 @@ main-menu-f2p {
 				.button-base();
 				.btn-default();
 			}
-			.button-login-flat {
-				.opensans_normal(10pt, @white);
+			.button-flat(@textColor, @borderColor) {
+				.opensans_normal(12pt, @textColor);
 				background-color: transparent;
-				border: 1px solid @white;
-				border-radius: 10px;
-				padding: 10px 20px;
+				border: 1px solid @borderColor;
+				border-radius: 5px;
+				padding: 10px 10px;
+				width: 125px;
+				text-align: center;
+				margin-left: 5px;
 				cursor: pointer;
+				display: inline-block;
 				&:hover, &:active {
-					border: 1px solid @green;
-					.opensans_normal(10pt, @green);
+					border: 1px solid @white;
+					.opensans_normal(12pt, @white);
+				}
+				
+				@media (max-width: @screen-xs-min) {
+					.opensans_normal(12pt, @textColor);
+					width: 100px;
+					&:hover, &:active {
+						.opensans_normal(12pt, @white);
+					}
+				}
+			}
+			
+			.button-login-flat {
+				.button-flat(@green, @green);
+			}
+			.button-signup-flat {
+				.button-flat(@blueMenu, @blueLight);
+			}
+			.button-help-flat {
+				.button-flat(@blueLight, transparent);
+				text-align: right;
+				width: 75px;
+				&:hover, &:active {
+					border-color: transparent;
+				}
+				@media (max-width: @screen-xs-min) {
+					width: 75px;
 				}
 			}
 		}

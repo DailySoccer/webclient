@@ -12589,9 +12589,11 @@ main-menu-f2p {
   border-radius: 0;
 }
 #mainMenu {
-  background-color: rgba(10, 41, 56, 0);
+  background-color: #0a2938;
+  border-bottom: 1px solid #fa9c19;
+  height: 70px;
+  width: 100%;
   z-index: 999;
-  border-style: none;
   padding-left: 8px;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -12605,13 +12607,9 @@ main-menu-f2p {
   user-select: none;
 }
 #mainMenu.logged-in {
-  background-color: #0a2938;
-  border-bottom: 1px solid #fa9c19;
-  height: 70px;
   position: fixed;
   display: inline-block;
   top: 0px;
-  width: 100%;
 }
 @media (max-width: 991px) {
   #mainMenu #menuLoggedIn,
@@ -12888,6 +12886,11 @@ main-menu-f2p {
   }
 }
 #mainMenu #desktopMenu {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
   margin-left: 0;
   margin-right: 0;
   padding-left: 100px;
@@ -12927,15 +12930,34 @@ main-menu-f2p {
   display: inline-block;
 }
 #mainMenu #desktopMenu .links-options .mainLink a {
-  padding: 25px 5px;
+  padding: 23px 5px;
   display: inline-block;
   cursor: pointer;
   text-decoration: none;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12pt;
   color: #59add5;
+  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
 }
 #mainMenu #desktopMenu .links-options .mainLink a:hover,
 #mainMenu #desktopMenu .links-options .mainLink a .active {
   color: #ffffff;
+}
+@media (max-width: 991px) {
+  #mainMenu #desktopMenu .links-options .mainLink a {
+    padding: 25px 3px;
+    margin: 0 0 0 5px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 10pt;
+    color: #59add5;
+    text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
+  }
+  #mainMenu #desktopMenu .links-options .mainLink a:hover,
+  #mainMenu #desktopMenu .links-options .mainLink a .active {
+    color: #ffffff;
+  }
 }
 #mainMenu #desktopMenu .links-options .mainLink a#menuLeaderboard,
 #mainMenu #desktopMenu .links-options .mainLink a#menuNotifications,
@@ -12952,7 +12974,7 @@ main-menu-f2p {
   #mainMenu #desktopMenu .links-options .mainLink a#menuLeaderboard,
   #mainMenu #desktopMenu .links-options .mainLink a#menuNotifications,
   #mainMenu #desktopMenu .links-options .mainLink a#menuHelp {
-    margin: 0 0 0 5px;
+    margin: 0 0 0 4px;
   }
 }
 #mainMenu #desktopMenu .links-options .mainLink a#menuLeaderboard .count,
@@ -13064,12 +13086,21 @@ main-menu-f2p {
   text-align: center;
   display: inline-block;
   width: 50px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
   /*@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
 				margin: 0 5px;
 			}*/
 }
 #mainMenu #desktopMenu .stats-commons img {
   margin-left: 10px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 #mainMenu #desktopMenu .stats-commons .count {
   margin-top: 5px;
@@ -13114,6 +13145,7 @@ main-menu-f2p {
   bottom: 0px;
   font-size: 13pt;
   line-height: 11pt;
+  cursor: pointer;
 }
 #mainMenu #desktopMenu .fixed-user-stats {
   display: inline-block;
@@ -13146,13 +13178,23 @@ main-menu-f2p {
   text-align: center;
   display: inline-block;
   width: 50px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
   /*@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
 				margin: 0 5px;
 			}*/
   color: #a1c931;
+  cursor: pointer;
 }
 #mainMenu #desktopMenu .fixed-user-stats .energy img {
   margin-left: 10px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 #mainMenu #desktopMenu .fixed-user-stats .energy .count {
   margin-top: 5px;
@@ -13188,6 +13230,11 @@ main-menu-f2p {
   text-align: center;
   display: inline-block;
   width: 50px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
   /*@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
 				margin: 0 5px;
 			}*/
@@ -13198,6 +13245,10 @@ main-menu-f2p {
 }
 #mainMenu #desktopMenu .fixed-user-stats .manager-points img {
   margin-left: 10px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 #mainMenu #desktopMenu .fixed-user-stats .manager-points .count {
   margin-top: 5px;
@@ -13250,13 +13301,23 @@ main-menu-f2p {
   text-align: center;
   display: inline-block;
   width: 50px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
   /*@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
 				margin: 0 5px;
 			}*/
   color: #fa9c19;
+  cursor: pointer;
 }
 #mainMenu #desktopMenu .fixed-user-stats .coins img {
   margin-left: 10px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 #mainMenu #desktopMenu .fixed-user-stats .coins .count {
   margin-top: 5px;
@@ -13289,15 +13350,25 @@ main-menu-f2p {
   text-align: center;
   display: inline-block;
   width: 50px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
   /*@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
 				margin: 0 5px;
 			}*/
+  cursor: pointer;
   color: #ffffff;
   float: right;
   position: relative;
 }
 #mainMenu #desktopMenu .fixed-user-stats .profile img {
   margin-left: 10px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 #mainMenu #desktopMenu .fixed-user-stats .profile .count {
   margin-top: 5px;
@@ -13328,9 +13399,11 @@ main-menu-f2p {
 }
 #mainMenu #desktopMenu .fixed-user-stats .profile img {
   margin-left: 0px;
+  cursor: pointer;
 }
 #mainMenu #desktopMenu .fixed-user-stats .profile .count {
   border: none;
+  cursor: pointer;
 }
 #mainMenu #desktopMenu .fixed-user-stats .profile #desktopUserMenu {
   position: absolute;
@@ -13360,12 +13433,42 @@ main-menu-f2p {
     background-size: 99px 52px;
   }
 }
+#mainMenu #menuNotLoggedIn .links-options {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  #mainMenu #menuNotLoggedIn .links-options {
+    float: left;
+    width: 25%;
+  }
+}
+#mainMenu #menuNotLoggedIn #desktopMenu {
+  top: 0;
+}
+#mainMenu #menuNotLoggedIn #desktopMenu .mainLink {
+  font-size: 12pt;
+}
 #mainMenu #menuNotLoggedIn .button-wrapper {
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: right;
   line-height: 1.1;
   display: inline-block;
   position: relative;
   top: 15px;
   float: right !important;
+}
+@media (min-width: 768px) {
+  #mainMenu #menuNotLoggedIn .button-wrapper {
+    float: left;
+    width: 75%;
+  }
 }
 #mainMenu #menuNotLoggedIn .button-wrapper .button-base:active {
   margin-top: 10px !important;
@@ -13525,23 +13628,142 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
 #mainMenu #menuNotLoggedIn .button-wrapper .button-login-flat {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
-  font-size: 10pt;
-  color: #ffffff;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-size: 12pt;
+  color: #a1c931;
+  text-shadow: 1px 1px 1px rgba(161, 201, 49, 0.004);
   background-color: transparent;
-  border: 1px solid #ffffff;
-  border-radius: 10px;
-  padding: 10px 20px;
+  border: 1px solid #a1c931;
+  border-radius: 5px;
+  padding: 10px 10px;
+  width: 125px;
+  text-align: center;
+  margin-left: 5px;
   cursor: pointer;
+  display: inline-block;
 }
 #mainMenu #menuNotLoggedIn .button-wrapper .button-login-flat:hover,
 #mainMenu #menuNotLoggedIn .button-wrapper .button-login-flat:active {
-  border: 1px solid #a1c931;
+  border: 1px solid #ffffff;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
-  font-size: 10pt;
-  color: #a1c931;
-  text-shadow: 1px 1px 1px rgba(161, 201, 49, 0.004);
+  font-size: 12pt;
+  color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+}
+@media (max-width: 480px) {
+  #mainMenu #menuNotLoggedIn .button-wrapper .button-login-flat {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 12pt;
+    color: #a1c931;
+    text-shadow: 1px 1px 1px rgba(161, 201, 49, 0.004);
+    width: 100px;
+  }
+  #mainMenu #menuNotLoggedIn .button-wrapper .button-login-flat:hover,
+  #mainMenu #menuNotLoggedIn .button-wrapper .button-login-flat:active {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 12pt;
+    color: #ffffff;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  }
+}
+#mainMenu #menuNotLoggedIn .button-wrapper .button-signup-flat {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12pt;
+  color: #afd3e4;
+  text-shadow: 1px 1px 1px rgba(175, 211, 228, 0.004);
+  background-color: transparent;
+  border: 1px solid #59add5;
+  border-radius: 5px;
+  padding: 10px 10px;
+  width: 125px;
+  text-align: center;
+  margin-left: 5px;
+  cursor: pointer;
+  display: inline-block;
+}
+#mainMenu #menuNotLoggedIn .button-wrapper .button-signup-flat:hover,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-signup-flat:active {
+  border: 1px solid #ffffff;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12pt;
+  color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+}
+@media (max-width: 480px) {
+  #mainMenu #menuNotLoggedIn .button-wrapper .button-signup-flat {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 12pt;
+    color: #afd3e4;
+    text-shadow: 1px 1px 1px rgba(175, 211, 228, 0.004);
+    width: 100px;
+  }
+  #mainMenu #menuNotLoggedIn .button-wrapper .button-signup-flat:hover,
+  #mainMenu #menuNotLoggedIn .button-wrapper .button-signup-flat:active {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 12pt;
+    color: #ffffff;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  }
+}
+#mainMenu #menuNotLoggedIn .button-wrapper .button-help-flat {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12pt;
+  color: #59add5;
+  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  padding: 10px 10px;
+  width: 125px;
+  text-align: center;
+  margin-left: 5px;
+  cursor: pointer;
+  display: inline-block;
+  text-align: right;
+  width: 75px;
+}
+#mainMenu #menuNotLoggedIn .button-wrapper .button-help-flat:hover,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-help-flat:active {
+  border: 1px solid #ffffff;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12pt;
+  color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+}
+@media (max-width: 480px) {
+  #mainMenu #menuNotLoggedIn .button-wrapper .button-help-flat {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 12pt;
+    color: #59add5;
+    text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
+    width: 100px;
+  }
+  #mainMenu #menuNotLoggedIn .button-wrapper .button-help-flat:hover,
+  #mainMenu #menuNotLoggedIn .button-wrapper .button-help-flat:active {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 12pt;
+    color: #ffffff;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  }
+}
+#mainMenu #menuNotLoggedIn .button-wrapper .button-help-flat:hover,
+#mainMenu #menuNotLoggedIn .button-wrapper .button-help-flat:active {
+  border-color: transparent;
+}
+@media (max-width: 480px) {
+  #mainMenu #menuNotLoggedIn .button-wrapper .button-help-flat {
+    width: 75px;
+  }
 }
 @media (max-width: 767px) {
   #userBalanceIn,

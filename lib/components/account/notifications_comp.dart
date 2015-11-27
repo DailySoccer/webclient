@@ -22,7 +22,8 @@ class NotificationsComp {
   }
 
   NotificationsComp(this._profileService) {
-    // TEST: Incluir notificaciones al usuario
+    
+    /* TEST: Incluir notificaciones al usuario
     if (_profileService.isLoggedIn) {
       _profileService.user.notifications = [
         { "_id": '0', "topic": UserNotification.ACHIEVEMENT_EARNED, "info" : { "achievement": Achievement.WON_OFFICIAL_CONTESTS_LEVEL_1 } },
@@ -32,7 +33,7 @@ class NotificationsComp {
         { "_id": '4', "topic": UserNotification.MANAGER_LEVEL_DOWN, "info" : { "level": 1 } }
       ].map((jsonMap) => new UserNotification.fromJsonObject(jsonMap) ).toList();
     }
-    
+    */
     notificationList = _profileService.user.notifications.map( (notification) => {
       "id": notification.id,
       "type" : notification.topic,

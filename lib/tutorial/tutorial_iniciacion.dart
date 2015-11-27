@@ -12,6 +12,7 @@ import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/components/view_contest/view_contest_comp.dart';
 import 'package:webclient/services/tutorial_service.dart';
 import 'package:webclient/services/datetime_service.dart';
+import 'package:webclient/models/contest_entry.dart';
 
 class TutorialIniciacion extends Tutorial {
   static String NAME = "TUTORIAL_INICIACION";
@@ -96,7 +97,8 @@ class TutorialIniciacion extends Tutorial {
               'enter_contest' : () {
                 EnterContestComp enterContest = context;
                 enterContest.fieldPosFilter = FieldPos.FORWARD;
-                enterContest.saveContestEntryFromJson(KeyLocalStorage, JSON.encode(oficialFantasyTeam));
+                Map data = { 'formation' :  ContestEntry.FORMATION_442, 'lineupSlots' : oficialFantasyTeam};
+                enterContest.saveContestEntryFromJson(KeyLocalStorage, JSON.encode(data));
 
                 openModal(
                   text: () => getLocalizedText("msg-02b") // Los torneos oficiales se basan en partidos
@@ -209,7 +211,8 @@ class TutorialIniciacion extends Tutorial {
               'enter_contest' : () {
                 EnterContestComp enterContest = context;
                 enterContest.fieldPosFilter = FieldPos.FORWARD;
-                enterContest.saveContestEntryFromJson(KeyLocalStorage, JSON.encode(virtualFantasyTeam));
+                Map data = { 'formation' :  ContestEntry.FORMATION_442, 'lineupSlots' : virtualFantasyTeam};
+                enterContest.saveContestEntryFromJson(KeyLocalStorage, JSON.encode(data));
 
                 openModal(
                   text: () => getLocalizedText("msg-07") //A diferencia de los torneos oficiales

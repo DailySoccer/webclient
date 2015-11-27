@@ -203,7 +203,7 @@ abstract class Tutorial {
 
   String get KeyLocalStorage => TutorialPlayer()["userId"]+"#23";
 
-  Map TutorialPlayer({String goldBalance: null}) => {
+  Map TutorialPlayer({String energyBalance: null, String goldBalance: null}) => {
     "userId":"PLAYER-5625d093d4c6ebe295987fd1",
     "firstName": "Player",
     "lastName": "XXX",
@@ -212,6 +212,8 @@ abstract class Tutorial {
     "wins":0,
     "trueSkill":0,
     "earnedMoney": "AUD 0.00",
+    "energyBalance": energyBalance != null ? energyBalance : "JPY 10.00",
+    "lastUpdatedEnergy": DateTimeService.now.millisecondsSinceEpoch,
     "goldBalance": goldBalance != null ? goldBalance : "AUD 0.00"
   };
 

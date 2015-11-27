@@ -12,6 +12,7 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/models/money.dart';
 import 'package:webclient/services/server_error.dart';
 import 'package:webclient/utils/html_utils.dart';
+import 'package:webclient/services/tutorial_service.dart';
 
 @Component(
     selector: 'shop-comp',
@@ -26,18 +27,20 @@ class ShopComp implements DetachAware{
   List<Map> energyProducts;
 
   Map<String, Map> errorMap;
-  
+
   DateTime t = new DateTime.now();
-  
+
   String get timeLeft => _profileService.user.printableEnergyTimeLeft;
-  
+
   String getLocalizedText(key, {group: "shop", substitutions: null}) {
     return StringUtils.translate(key, group, substitutions);
   }
-  
 
-  ShopComp(this._flashMessage, this._profileService, this._catalogService) {
+
+  ShopComp(this._flashMessage, this._profileService, this._catalogService, this._tutorialService) {
     goldProducts = [];
+    energyProducts = [];
+
     _catalogService.getCatalog()
       .then((catalog) {
         for (Product info in catalog.where((g) => g.gained.isGold)) {
@@ -52,11 +55,7 @@ class ShopComp implements DetachAware{
           gProduct["purchasable"]    = true;
           goldProducts.add(gProduct);
         }
-    });
-    
-    energyProducts = [];
-    _catalogService.getCatalog()
-      .then((catalog) {
+
         for (Product info in catalog.where((e) => e.gained.isEnergy)) {
           Map eProduct = {};
           eProduct["info"]         = info;
@@ -73,9 +72,10 @@ class ShopComp implements DetachAware{
           {"id" : "AUTO_REFILL", "description" : getLocalizedText("autorefill"), "captionImage" : "images/icon-EnergyLevelUp.png","purchasable": false}
         ]);
     });
-    
+
+    _tutorialService.triggerEnter("shop", component: this);
   }
-  
+
   void buyGold(String id) {
     _catalogService.buyProduct(id)
       .then( (_) {
@@ -115,7 +115,7 @@ class ShopComp implements DetachAware{
       }
     }
   }
-  
+
   void alertNotEnoughResources(Money goldNeeded) {
      modalShow(
        "",
@@ -142,7 +142,7 @@ class ShopComp implements DetachAware{
     </div>
     ''';
    }
-  
+
    void detach() {
      window.localStorage.remove("add_funds_success");
      window.localStorage.remove("add_gold_success");
@@ -152,5 +152,6 @@ class ShopComp implements DetachAware{
   FlashMessagesService _flashMessage;
   ProfileService _profileService;
   CatalogService _catalogService;
+  TutorialService _tutorialService;
 }
 

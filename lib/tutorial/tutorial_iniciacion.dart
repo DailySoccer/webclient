@@ -20,6 +20,7 @@ class TutorialIniciacion extends Tutorial {
   static String STEP_1 = "1";
   static String STEP_2 = "2";
   static String STEP_3 = "3";
+  static String STEP_4 = "4";
 
   String get PATH => "tutorial/iniciacion/";
   String get name => TutorialIniciacion.NAME;
@@ -215,11 +216,28 @@ class TutorialIniciacion extends Tutorial {
         STEP_2: new TutorialStep(
             triggers: {
               'lobby': () {
+                //Puedes participar en torneos de entrenamiento
                 openModal(
-                  text: () => getLocalizedText("msg-04") //Puedes participar en torneos de entrenamiento siempre que quieras
+                  text: () => getLocalizedText("msg-04")
                 )
                 .then((_) {
-                  //Para participar en los torneos virtuales necesitarás energía
+                  // Participa en los torneos de entrenamiento para ganar prestigio
+                    Completer completer = new Completer();
+                    showTooltip(new ToolTip(".fixed-user-stats .energy", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-04a"), highlight: true, position: ToolTip.POSITION_BOTTOM, onClickCb: (_) {
+                        completer.complete(true);
+                      }));
+                    /*
+                    showTooltips([
+                      new ToolTip(".fixed-user-stats .energy", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-04a"), highlight: true, position: ToolTip.POSITION_BOTTOM, onClickCb: (_) {
+                        completer.complete(true);
+                      }),
+                      new ToolTip("main-menu-f2p", highlight: true)
+                    ]);
+                     */
+                  return completer.future;
+                })
+                .then((_) {
+                  //Cada torneo tiene un coste de energia.
                   showTooltip(new ToolTip(".entry-fee-box", tipText: getLocalizedText("msg-05"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
                     //Selecciona este torneo
                     showTooltips([
@@ -228,19 +246,7 @@ class TutorialIniciacion extends Tutorial {
                     ]);
                   }));
                 });
-                  /*
-                  openModal(
-                    text: () => getLocalizedText("msg-18") //Para participar en los torneos virtuales necesitarás energía
-                  )
-                  .then ((_) {
-                    //Selecciona este torneo
-                    showTooltips([
-                      new ToolTip("#activeContestList .contestSlot .action-section", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-19"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true),
-                      new ToolTip("#activeContestList .contestSlot", highlight: true)
-                    ]);
-                  });
-                  */
-                },
+              },
               'enter_contest' : () {
                 EnterContestComp enterContest = context;
                 enterContest.fieldPosFilter = FieldPos.FORWARD;
@@ -256,7 +262,6 @@ class TutorialIniciacion extends Tutorial {
                   ))
                 .then((_) {
                   //Añade un delantero
-                  //showTooltip(new ToolTip("#soccerPlayer344 .action-button", tipText: getLocalizedText("msg-24"), highlight: true, arrowPosition: ToolTip.POSITION_RIGHT, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true));
                   showTooltips([
                     new ToolTip("#soccerPlayer344 .action-button", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-09"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true),
                     new ToolTip("#soccerPlayer344", highlight: true)
@@ -270,17 +275,30 @@ class TutorialIniciacion extends Tutorial {
 
                 //Una vez completada una alineación se activa el botón de Continuar
                 showTooltip(new ToolTip(".button-wrapper .btn-confirm-lineup-list", tipId: 'continueButton', tipText: getLocalizedText("msg-10"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true));
+              },
+              'shop': () {
+                    CurrentStepId = STEP_3;
 
-                /*
-                openModal(
-                  text: () => getLocalizedText("msg-25") //Una vez completada una alineación se activa el botón de Continuar
-                );
-                 */
-              }
+                    clearTooltips();
+
+                    //Compra una recarga de energía.
+                    showTooltip(new ToolTip(".energy-layout", tipText: getLocalizedText("msg-10b"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true));
+                },
             },
             serverCalls: serverCallsWhenVirtual
         ),
         STEP_3: new TutorialStep(
+            triggers: {
+              'lobby': () {
+                clearTooltips();
+
+                //Púlsalo para completar tu entrada en el torneo.
+                showTooltip(new ToolTip(".button-wrapper .btn-confirm-lineup-list", tipId: 'continueButton', tipText: getLocalizedText("msg-10c"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true));
+              }
+            },
+            serverCalls: serverCallsWhenVirtual
+        ),
+        STEP_4: new TutorialStep(
             triggers: {
               'view_contest_entry': () {
                 openModal(
@@ -313,19 +331,7 @@ class TutorialIniciacion extends Tutorial {
                   }));
 
                   return completer.future;
-
-                  /*
-                  openModal(
-                    text: () => getLocalizedText("msg-27") //También podrás ver las alineaciones de tus rivales
-                  );
-                   */
                 })
-                /*
-                .then((_) =>
-                  openModal(
-                    text: () => getLocalizedText("msg-28") //Aqui se ve la simulación.
-                  ))
-                   */
                 .then((_) {
                   var completer = new Completer();
 
@@ -382,7 +388,7 @@ class TutorialIniciacion extends Tutorial {
     DateTimeService.setFakeDateTime(currentDate);
 
     CurrentStepId = Tutorial.STEP_BEGIN;
-    changeUser(TutorialPlayer(goldBalance: "AUD 1.00"));
+    changeUser(TutorialPlayer(energyBalance: "JPY 0.00", goldBalance: "AUD 1.00"));
 
     LiveMatchEventsList.add([]);
 

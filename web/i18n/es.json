@@ -587,13 +587,13 @@
       "msg-02b"                         : "Los torneos oficiales se basan en partidos de la vida real.",
       "msg-02c"                         : "Elige tu alineación ideal entre todos los jugadores que participaran en esos partidos.",
       "msg-02d"                         : "Esta es la lista de partidos de este torneo.",
-      
+
       "msg-02e"                         : "Aqui puedes desplegar la lista de formaciones",
       "msg-02f"                         : "Estas son las formaciones disponibles, por defecto esta seleccionada la 4-4-2",
       "msg-02g"                         : "Selecciona una formacion 4-3-3",
       "msg-02h"                         : "Al cambiar de formacion, cambia el numero de jugadores por posicion.",
       "msg-02i"                         : "Por ultimo tenemos, la lista de jugadores disponibles para el torneo",
-      
+
       "msg-03"                          : "Añade este jugador a tu alineación",
       "msg-03a"                         : "Bien, ya has añadido tu primer jugador",
       "msg-03b"                         : "Cuando añades un jugador, su salario se descuenta de tu presupuesto",
@@ -601,13 +601,17 @@
       "msg-03d"                         : "Los jugadores marcados en rojo requieren un nivel de manager superior a tu nivel actual",
       "msg-03e"                         : "Intenta seleccionar un jugador marcado en rojo",
       "msg-03f"                         : "Necesitas subir tu nivel de manager compitiendo en torneos de entrenamiento.",
-      "msg-04"                          : "Puedes participar en torneos de entrenamiento siempre que quieras. Participa para ganar puntos que harán subir tu nivel de manager.",
-      "msg-05"                          : "Para participar en torneos de práctica necesitarás energía.",
+      "msg-04"                          : "Puedes participar en torneos de entrenamiento siempre que tengas energía.",
+      "msg-04a"                         : "Participa en los torneos de entrenamiento para ganar prestigio que hará subir tu nivel de manager.",
+      "msg-05"                          : "Cada torneo tiene un coste de energia.",
       "msg-06"                          : "Selecciona este torneo",
       "msg-07"                          : "A diferencia de los torneos oficiales, en los torneo de entrenamiento no existe limitación por nivel de manager. Tu única limitación será tu presupuesto..",
       "msg-08"                          : "Esta vez hemos hecho la alineación por ti, sólo falta un delantero.",
       "msg-09"                          : "Añade un delantero",
-      "msg-10"                          : "Una vez completada la alineación se activa el botón de continuar.<br>Púlsalo para completar tu entrada en el torneo.",
+      "msg-10"                          : "Una vez completada la alineación, si tienes energia,<br>se activa el botón de continuar.",
+      "msg-10a"                         : "Si no tienes energía, siempre podrás comprarla en la tienda.",
+      "msg-10b"                         : "Compra una recarga de energía.",
+      "msg-10c"                         : "Púlsalo para completar tu entrada en el torneo.",
       "msg-11"                          : "Enhorabuena. Acabas de apuntarte a un torneo de práctica.",
       "msg-12"                          : "Esta es la pantalla de simulación, donde podrás ver en tiempo real cómo se desarrolla el torneo, la puntuación de tus jugadores y tu clasificación frente a los rivales.",
       "msg-13"                          : "Aquí podrás ver los puntos conseguidos por tus jugadores.",
@@ -756,7 +760,7 @@
       "blog_title"                      : "Palabra de Míster",
       "blog_info"                       : "Un blog escrito por Salva Carmona, el tio que más sabe de estadísticas futboleras del mundo.",
       "blog_author"                     : "Por Salva Carmona",
-   
+
       "help_title"                      : "Escuela de Entrenadores",
       "help_info"                       : "Aprende a jugar"
     }

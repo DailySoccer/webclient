@@ -587,7 +587,13 @@
       "msg-02b"                         : "Los torneos oficiales se basan en partidos de la vida real.",
       "msg-02c"                         : "Elige tu alineación ideal entre todos los jugadores que participaran en esos partidos.",
       "msg-02d"                         : "Esta es la lista de partidos de este torneo.",
-      "msg-02e"                         : "Esta es la lista de jugadores disponibles",
+      
+      "msg-02e"                         : "Aqui puedes desplegar la lista de formaciones",
+      "msg-02f"                         : "Estas son las formaciones disponibles, por defecto esta seleccionada la 4-4-2",
+      "msg-02g"                         : "Selecciona una formacion 4-3-3",
+      "msg-02h"                         : "Al cambiar de formacion, cambia el numero de jugadores por posicion.",
+      "msg-02i"                         : "Por ultimo tenemos, la lista de jugadores disponibles para el torneo",
+      
       "msg-03"                          : "Añade este jugador a tu alineación",
       "msg-03a"                         : "Bien, ya has añadido tu primer jugador",
       "msg-03b"                         : "Cuando añades un jugador, su salario se descuenta de tu presupuesto",
@@ -609,7 +615,7 @@
       "msg-15"                          : "Fijate, uno de tus jugadores acaba de conseguir sus primeros puntos.",
       "msg-16"                          : "Enhorabuena, has ganado tu primer torneo! Has conseguido n puntos de manager y has subido tu nivel de manager.",
       "msg-17"                          : "Ya estás preparado. Regístrate ahora y consigue tus primeras 30 monedas de oro para comenzar tu carrera como manager."
-     },
+    },
     "tutorial_entrenamiento"            :
     {
       "title-lobby"                     : "[ENTRENAMIENTO] SELECCIONA UN TORNEO",

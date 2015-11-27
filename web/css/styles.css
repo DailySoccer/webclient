@@ -21801,6 +21801,9 @@ users-list#usersList > .epic-tooltip {
   right: 20px;
   bottom: 20px;
 }
+#homeRoot #howitworksTile .tile .tile-title {
+  color: #afafaf;
+}
 #homeRoot .clearfix,
 #homeRoot .container,
 #homeRoot .container-fluid,

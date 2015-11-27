@@ -13,6 +13,7 @@ import 'package:webclient/components/view_contest/view_contest_comp.dart';
 import 'package:webclient/services/tutorial_service.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/models/contest_entry.dart';
+import 'dart:html';
 
 class TutorialIniciacion extends Tutorial {
   static String NAME = "TUTORIAL_INICIACION";
@@ -109,21 +110,56 @@ class TutorialIniciacion extends Tutorial {
                   ))
                 .then((_) {
                   Completer completer = new Completer();
-
+          
                   // Esta es la lista de partidos de este torneo.
                   showTooltip(
                     new ToolTip("matches-filter", tipText: getLocalizedText("msg-02d"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
                       clearTooltips();
-
-                      // Esta es la lista de jugadores disponibles
+                      querySelector(".lineup-formation-selector-wrapper").click();
+                      // Aquí puedes desplegar la lista de formaciones
                       showTooltip(
-                        new ToolTip(".enter-contest-soccer-players-wrapper", tipText: getLocalizedText("msg-02e"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
-                          completer.complete(true);
+                        new ToolTip(".lineup-formation-selector-wrapper", tipText: getLocalizedText("msg-02e"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
+                          // Éstas son las formaciones disponibles
+                          showTooltip(
+                            new ToolTip("#formationsPanelRoot", tipText: getLocalizedText("msg-02f"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
+                              completer.complete(true);
+                            })
+                          );
                         })
                       );
                     })
                   );
 
+                  return completer.future;
+                })
+                .then((_) {
+                  Completer completer = new Completer();
+                  
+                  // Selecciona una formación
+                  showTooltip(
+                    new ToolTip("#formationsPanel .formation-element#formationElement433", tipText: getLocalizedText("msg-02g"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
+                      querySelector(".lineup-formation-selector-wrapper").click();
+                      // Al cambiar de formación, cambia el número
+                      showTooltip(
+                        new ToolTip(".enter-contest-lineup-wrapper", tipText: getLocalizedText("msg-02h"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
+                          completer.complete(true);
+                        })
+                      );
+                    })
+                  );
+                  
+                  return completer.future;
+                })
+                .then((_) {
+                  Completer completer = new Completer();
+                  
+                  // Esta es la lista de jugadores disponibles
+                  showTooltip(
+                    new ToolTip(".enter-contest-soccer-players-wrapper", tipText: getLocalizedText("msg-02i"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
+                      completer.complete(true);
+                    })
+                  );
+                  
                   return completer.future;
                 })
                 .then((_) {
@@ -206,7 +242,7 @@ class TutorialIniciacion extends Tutorial {
                       new ToolTip("#activeContestList .contestSlot", highlight: true)
                     ]);
                   });
-                   */
+                  */
                 },
               'enter_contest' : () {
                 EnterContestComp enterContest = context;

@@ -14,6 +14,7 @@ import 'package:webclient/services/tutorial_service.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/models/contest_entry.dart';
 import 'dart:html';
+import 'package:webclient/models/user.dart';
 
 class TutorialIniciacion extends Tutorial {
   static String NAME = "TUTORIAL_INICIACION";
@@ -56,7 +57,8 @@ class TutorialIniciacion extends Tutorial {
       "get_active_contest" : (url, postData) => waitCompleter( () => TrainingContestList ),
       "get_contest_info" : (url, postData) => waitCompleter( () => TrainingContestList ),
       "get_instance_soccer_player_info": (url, postData) => getContentJson(PATH + "stats-player-03.json"),
-      "add_contest_entry": (url, postData) { CurrentStepId = STEP_3; return addContestEntry(postData); }
+      "add_contest_entry": (url, postData) { CurrentStepId = STEP_3; return addContestEntry(postData); },
+      "buy_product": (url, postData) { profileService.user.energyBalance.amount = User.MAX_ENERGY; return emptyContent(); }
     }]);
 
     var serverCallsWhenVirtualContestEntry = joinMaps([defaultServerCalls, {
@@ -287,6 +289,9 @@ class TutorialIniciacion extends Tutorial {
 
                 clearTooltips();
 
+                // FIX !!!!
+                profileService.user.goldBalance.amount += 30;
+
                 //Compra una recarga de energía.
                 showTooltip(new ToolTip(".energy-layout", tipText: getLocalizedText("msg-10b"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true));
               },
@@ -295,7 +300,7 @@ class TutorialIniciacion extends Tutorial {
         ),
         STEP_3: new TutorialStep(
             triggers: {
-              'lobby': () {
+              'enter_contest': () {
                 clearTooltips();
 
                 //Púlsalo para completar tu entrada en el torneo.

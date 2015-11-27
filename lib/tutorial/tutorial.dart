@@ -61,7 +61,8 @@ abstract class Tutorial {
     "get_my_contest_entry": (url, postData) => emptyContent(),
     "get_my_active_contest": (url, postData) => emptyContent(),
     "count_my_live_contests": (url, postData) => emptyContent(),
-    "get_live_match_events": (url, postData) => emptyContent(content: { "content": [] })
+    "get_live_match_events": (url, postData) => emptyContent(content: { "content": [] }),
+    "buy_product": (url, postData) => emptyContent()
   };
 
   Map joinMaps(List<Map> maps) {

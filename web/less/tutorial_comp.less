@@ -149,9 +149,12 @@
 
 #continueButton.epic-tooltip {
 	&.top {
-		top: -70px;
-		margin-left: -270px;
+		/* top: -70px; */
+		/* margin-left: -270px; */
 		font-size: 12pt;
+		white-space: normal;
+		width: 320px;
+		top: -85px;
 	}
 }
 
@@ -163,7 +166,21 @@
 	right: 10px;
 }
 #enterContest .enter-contest-lineup-wrapper .epic-tooltip.top {
-	margin-left: -180px;
+	//margin-left: -180px;
+	width: 320px;
+	top: -95px;
+	&#formationsPanelTip,
+	&#playerAddedTip {
+		top: -75px;
+	}
+	&#formation443Tip {
+		top: -55px;
+	}
+}
+
+.enter-contest-soccer-players-wrapper > .epic-tooltip.top {
+	width: 320px;
+	top: -95px;
 }
 
 #soccerPlayerRedStyle.epic-tooltip.top {
@@ -205,4 +222,21 @@ users-list#usersList > .epic-tooltip {
 
 #compareUserPoints {
 	bottom: -100px;
+}
+
+#energyTip {
+	bottom: -135px;
+}
+
+#alertBox .panel > .epic-tooltip {
+	bottom: -70px;
+	width: 320px;
+}
+
+.entry-fee-box > .epic-tooltip {
+	top: -85px;
+}
+.soccer-player-row[data-id='56260840c1f5fbc410f99549'] > .epic-tooltip {
+	top: -95px;
+	width: 320px;
 }

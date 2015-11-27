@@ -114,7 +114,7 @@ abstract class Tutorial {
   void showTooltips(List<ToolTip> tooltips) {
     if (isCompleted)
       return;
-    ToolTipService.instance.tipMultipleElement(tooltips, hideAllOnClick: false);
+    ToolTipService.instance.tipMultipleElement(tooltips, hideAllOnClick: tooltips.any((t) => (t.hasDuration || t.isClickable)));
   }
 
   void triggerEnter(String trigger, {Object component: null}) {

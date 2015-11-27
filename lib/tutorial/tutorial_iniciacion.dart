@@ -121,7 +121,7 @@ class TutorialIniciacion extends Tutorial {
                       querySelector(".lineup-formation-selector-wrapper").click();
                       // Aquí puedes desplegar la lista de formaciones
                       showTooltip(
-                        new ToolTip(".lineup-formation-selector-wrapper", tipText: getLocalizedText("msg-02e"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
+                        new ToolTip(".lineup-formation-selector-wrapper", tipId: "formationsPanelTip", tipText: getLocalizedText("msg-02e"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
                           // Éstas son las formaciones disponibles
                           showTooltip(
                             new ToolTip("#formationsPanelRoot", tipText: getLocalizedText("msg-02f"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
@@ -140,7 +140,7 @@ class TutorialIniciacion extends Tutorial {
 
                   // Selecciona una formación
                   showTooltips([
-                    new ToolTip("#formationsPanel .formation-element#formationElement433 label", tipText: getLocalizedText("msg-02g"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true),
+                    new ToolTip("#formationsPanel .formation-element#formationElement433 label", tipId: 'formation443Tip',  tipText: getLocalizedText("msg-02g"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true),
                     new ToolTip("#formationsPanel .formation-element#formationElement433", highlight: true)
                   ]);
 
@@ -175,7 +175,7 @@ class TutorialIniciacion extends Tutorial {
                 clearTooltips();
 
                 //Bien, ya has añadido tu primer jugador.
-                showTooltip(new ToolTip(".posDEL", tipText: getLocalizedText("msg-03a"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
+                showTooltip(new ToolTip(".posDEL", tipId: 'playerAddedTip', tipText: getLocalizedText("msg-03a"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
                   //Cuando añades un jugador su salario (".enter-contest-total-salary")
                   showTooltip(new ToolTip(".enter-contest-lineup-wrapper", tipText: getLocalizedText("msg-03b"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
                     //Cada jugador además de su salario
@@ -225,17 +225,17 @@ class TutorialIniciacion extends Tutorial {
                 .then((_) {
                   // Participa en los torneos de entrenamiento para ganar prestigio
                     Completer completer = new Completer();
-                    showTooltip(new ToolTip(".fixed-user-stats .energy", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-04a"), highlight: true, position: ToolTip.POSITION_BOTTOM, onClickCb: (_) {
+                    /*showTooltip(new ToolTip(".fixed-user-stats .energy", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-04a"), highlight: true, position: ToolTip.POSITION_BOTTOM, onClickCb: (_) {
                         completer.complete(true);
-                      }));
-                    /*
+                      }));*/
+                    
                     showTooltips([
-                      new ToolTip(".fixed-user-stats .energy", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-04a"), highlight: true, position: ToolTip.POSITION_BOTTOM, onClickCb: (_) {
+                      new ToolTip(".fixed-user-stats .energy", tipId: 'energyTip', arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-04a"), highlight: true, position: ToolTip.POSITION_BOTTOM, onClickCb: (_) {
                         completer.complete(true);
                       }),
                       new ToolTip("main-menu-f2p", highlight: true)
                     ]);
-                     */
+                    
                   return completer.future;
                 })
                 .then((_) {
@@ -278,12 +278,12 @@ class TutorialIniciacion extends Tutorial {
                 //Una vez completada una alineación se activa el botón de Continuar
                 showTooltip(new ToolTip(".button-wrapper .btn-confirm-lineup-list", tipId: 'continueButton', tipText: getLocalizedText("msg-10"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true));
               },
-              /*
+              
               'alert-not-enough-resources': () {
                 clearTooltips();
-                showTooltip(new ToolTip(".form-description", tipText: getLocalizedText("msg-10a"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true));
+                showTooltip(new ToolTip("#alertBox .panel", tipText: getLocalizedText("msg-10a"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true));
               },
-               */
+              
               'shop': () {
                 CurrentStepId = STEP_3;
 

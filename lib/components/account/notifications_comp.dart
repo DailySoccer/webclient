@@ -22,7 +22,7 @@ class NotificationsComp {
   }
 
   NotificationsComp(this._profileService) {
-    /*
+    
     // TEST: Incluir notificaciones al usuario
     if (_profileService.isLoggedIn) {
       _profileService.user.notifications = [
@@ -33,8 +33,8 @@ class NotificationsComp {
         { "_id": '4', "topic": UserNotification.MANAGER_LEVEL_DOWN, "info" : { "level": 1 } }
       ].map((jsonMap) => new UserNotification.fromJsonObject(jsonMap) ).toList();
     }
-     */
-
+    
+    /*
     notificationList = _profileService.user.notifications.map( (notification) => {
       "id": notification.id,
       "type" : notification.topic,
@@ -44,7 +44,8 @@ class NotificationsComp {
       "link": notification.link,
       "date" : DateTimeService.formatDateWithDayOfTheMonth(notification.createdAt).toUpperCase()
     }).toList();
-
+    */
+    
     /*
     notificationList = [
       {"id": '0', "type" : UserNotification.ACHIEVEMENT_EARNED,   "info" : {"date": "10 Nov. 2015", "link": "http://127.0.0.1:3030/webclient/web/index.html#/leaderboard", "achievementKey" : "WON_1_VIRTUAL_CONTEST"}},

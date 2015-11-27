@@ -61,7 +61,16 @@ class UserNotification {
   }
 
   String _generateDescription() {
-    return "Lorem fistrum te voy a borrar el cerito condemor tiene musho peligro mamaar sexuarl.";
+    String result = null;
+    switch(topic) {
+      case CONTEST_FINISHED:
+        result = getLocalizedText(topic + "_DESCRIPTION", substitutions:{'NAME': info["contestName"]});
+        break;
+
+      default:
+        result = "Lorem fistrum te voy a borrar el cerito condemor tiene musho peligro mamaar sexuarl.";
+    }
+    return result;
   }
 
   String _generateLinkUrl() {

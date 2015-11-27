@@ -760,8 +760,12 @@
 
       "NEW_SPECIAL_EVENT_ACTIVE"        : "NEW_SPECIAL_EVENT_ACTIVE",
       "NEW_OFFER_ACTIVE"                : "NEW_OFFER_ACTIVE",
+
       "CONTEST_FINISHED"                : "TORNEO TERMINADO",
+      "CONTEST_FINISHED_DESCRIPTION"    : "@NAME: Lorem fistrum te voy a borrar el cerito condemor tiene musho peligro mamaar sexuarl.",
+
       "DUEL_FINISHED"                   : "DUELO TERMINADO",
+
       "CONTEST_CANCELLED"               : "TORNEO CANCELADO",
       "DAILY_CHALLENGE_ENABLED"         : "DAILY_CHALLENGE_ENABLED",
       "OFICIAL_CONTEST_START"           : "OFICIAL_CONTEST_START",

@@ -102,6 +102,10 @@ class ProfileService {
         });
   }
 
+  Future<Map> removeNotification(String notificationId) {
+    return _server.removeNotification(notificationId);
+  }
+
   void updateProfileFromJson(Map jsonMap) {
     var storedSessionToken = window.localStorage['sessionToken'];
     if (storedSessionToken != null) {

@@ -5,6 +5,7 @@ import 'package:webclient/models/money.dart';
 import 'package:logging/logging.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:intl/intl.dart';
+import 'package:webclient/models/user_notification.dart';
 
 class User {
   static const int MINUTES_TO_RELOAD_ENERGY = 60;
@@ -41,6 +42,7 @@ class User {
   Money earnedMoney;
 
   Set<String> achievements = new Set<String>();
+  List<UserNotification> notifications = new List<UserNotification>();
 
   bool hasAchievement(String achievement) => achievements.contains(achievement);
 
@@ -165,6 +167,13 @@ class User {
 
       List<String> achievementList = jsonMap["achievements"];
       achievementList.forEach( (achievementId) => achievements.add(achievementId) );
+    }
+
+    if (jsonMap.containsKey("notifications")) {
+      notifications = jsonMap["notifications"].map((jsonMap) => new UserNotification.fromJsonObject(jsonMap) ).toList();
+
+      // Ordenarlos en orden decreciente (reciente -> antiguo)
+      notifications.sort((el1, el2) => el2.createdAt.compareTo(el1.createdAt));
     }
 
     return this;

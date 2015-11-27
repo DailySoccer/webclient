@@ -1,0 +1,44 @@
+<div id="notificationsComp">
+
+  <div class="default-section-header">{{getLocalizedText('name')}}</div>
+
+  <div class="notification-list-wrapper">
+
+    <!-- Notificaciones tipo logro -->
+    <div class="notification"  ng-repeat="notification in notificationList" ng-class="{'uncommon': notification.type == 'ACHIEVEMENT_EARNED'}">
+
+      <div class="main-info" ng-click="onAction(notification.id)">
+        <div class="wrapper">
+          <achievement ng-if="notification.type == 'ACHIEVEMENT_EARNED'" enabled="true" key="notification['info'].achievement"></achievement>
+          <span class="name">{{notification.name}}</span>
+          <span class="date">{{notification.date}}</span>
+        </div>
+      </div>
+
+      <div class="additional-info">
+        <div class="wrapper">
+          <div class="description">{{notification.description}}</div>
+          <div class="button-wrapper" ng-if="notification.link.name != ''"><button class="btn-primary" ng-click="goToLink(notification.link.url)">{{notification.link.name}}</button></div>
+        </div>
+      </div>
+
+
+
+      <!-- div style="display:table;">
+        <div style="display:table-cell;vertical-align:middle;">
+          <div style="margin-left:auto;margin-right:auto;"></div>
+        </div>
+      </div -->
+
+
+
+
+
+
+      <span class="close-button" ng-click="closeNotification(notificationList[0].id)"><img src="images/alertCloseButton.png"></span>
+
+    </div>
+
+  </div>
+
+</div>

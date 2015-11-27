@@ -26,6 +26,7 @@ abstract class ServerService {
   Future<Map> getUserProfile();
   Future<Map> changeUserProfile(String firstName, String lastName, String email, String nickName, String password);
   Future<Map> askForPasswordReset(String email);
+  Future<Map> removeNotification(String notificationId);
 
   // Conseguir la lista de Contests Active/Live/History en los que esté inscrito el User
   Future<Map> getMyContests();
@@ -126,6 +127,10 @@ class DailySoccerServer implements ServerService {
 
   Future<Map> askForPasswordReset(String email) {
     return _innerServerCall("${HostServer.url}/ask_for_password_reset", postData: {'email': email});
+  }
+
+  Future<Map> removeNotification(String notificationId) {
+    return _innerServerCall("${HostServer.url}/remove_notification/$notificationId");
   }
 
   Future<Map> getUserProfile() {

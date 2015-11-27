@@ -289,8 +289,8 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
   }
 
   String get _notificationsCountCode {
-    int numNotifications = 8;
-    
+    int numNotifications = profileService.isLoggedIn ? profileService.user.notifications.length : 0;
+
     if (numNotifications > 0) {
       return "<span class='count'>${numNotifications}</span>";
     }
@@ -425,7 +425,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
         ret = '''<a id="menuLeaderboard" destination="leaderboard">                      ${StringUtils.translate("leaderboard",   "mainmenu")}</a>''';
         break;
       case "notifications":
-        ret = '''<a id="menuNotifications">                                              ${StringUtils.translate("notifications", "mainmenu")}${_notificationsCountCode}</a>''';
+        ret = '''<a id="menuNotifications" destination="notifications">                  ${StringUtils.translate("notifications", "mainmenu")}${_notificationsCountCode}</a>''';
         break;
       case "help":
         ret = '''<a id="menuHelp"        destination="help_info">                        ${StringUtils.translate("howitworks",    "mainmenu")}</a>''';

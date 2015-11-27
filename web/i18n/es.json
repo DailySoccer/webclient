@@ -14,8 +14,8 @@
       "days"                            : " DÍAS ",
       "points"                          : " Puntos ",
       "abrevpoints"                     : " PTOS. "
-    },
-    "date"                              :
+    }
+    ,"date"                             :
     {
       "datewithdayofthemonth"           : "EEE, d MMM",
       "dateshort"                       : "dd/MM",
@@ -23,8 +23,8 @@
       "datetimeshort"                   : "E, HH:mm",
       "datetimelong"                    : "E, dd/MM/yy HH:mm",
       "datetimedayhour"                 : "dd/MM/yy HH:mm"
-    },
-    "weekcalendar"                      :
+    }
+    ,"weekcalendar"                     :
     {
       "1"                               : "L",
       "2"                               : "M",
@@ -33,8 +33,8 @@
       "5"                               : "V",
       "6"                               : "S",
       "7"                               : "D"
-    },
-    "landing"                           :
+    }
+    ,"landing"                          :
     {
       "title"                           : "LIGAS FANTÁSTICAS DIARIAS",
       "subtitle"                        : "Juega siempre que quieras, donde tú quieras y gana premios cada jornada.",
@@ -42,8 +42,8 @@
       "info1"                           : "Compite contra tus amigos en la Liga, Premier y Champions.",
       "info2"                           : "Crea tu alineación desde tu ordenador, tablet o móvil en segundos.",
       "info3"                           : "Recoge tus recompensas al instante."
-    },
-    "join"                              :
+    }
+    ,"join"                             :
     {
       "title"                           : "REGÍSTRATE",
       "description"                     : "¿No estás registrado aún? <br> Rellena el formulario.",
@@ -60,8 +60,8 @@
       "buttoncancel"                    : "CANCELAR",
       "registered"                      : "¿Ya estás registrado?",
       "loginhere"                       : "¡Accede desde aquí!"
-    },
-    "login"                             :
+    }
+    ,"login"                            :
     {
       "title"                           : "ENTRAR",
       "description"                     : "Introduce tu correo electrónico y contraseña",
@@ -73,8 +73,8 @@
       "buttoncancel"                    : "CANCELAR",
       "unregistered"                    : "¿Aún no estás registrado?",
       "signuphere"                      : "¡Regístrate aquí!"
-    },
-    "changepass"                        :
+    }
+    ,"changepass"                       :
     {
       "error503"                        : "ERROR 503",
       "changepass"                      : "CAMBIO DE CONTRASEÑA",
@@ -86,8 +86,8 @@
       "repass"                          : "Repite contraseña",
       "buttoncontinue"                  : "CONTINUAR",
       "buttoncancel"                    : "CANCELAR"
-    },
-    "rememberpass"                      :
+    }
+    ,"rememberpass"                      :
     {
       "title"                           : "RECORDAR CONTRASEÑA",
       "confirm_part_1"                  : "Te hemos mandado un correo electrónico a",
@@ -99,8 +99,8 @@
       "buttoncancel"                    : "CANCELAR",
       "unregistered"                    : "¿Aún no estás registrado?",
       "signuphere"                      : "¡Regístrate aquí!"
-    },
-    "addfunds"                          :
+    }
+    ,"addfunds"                         :
     {
       "status"                          : "----DEPRECATED----",
       "title"                           : "AÑADIR FONDOS",
@@ -112,8 +112,8 @@
       "paypalinfo"                      : "Puedes añadir fondos utilizando tu cuenta de PayPal. El dinero será trasnferido a Fantasy Sports Games S.L.",
       "buttonaddfunds"                  : "Añadir fondos",
       "needhelp"                        : "¿Necesitas ayuda?"
-    },
-    "editprofile"                       :
+    }
+    ,"editprofile"                      :
     {
       "title"                           : "EDITAR PERFIL",
       "name"                            : "Nombre",
@@ -129,15 +129,15 @@
       "transfernotifications"                         : "TRANSFERENCIA DE JUGADORES PROPIAS",
       "buttonsave"                      : "GUARDAR",
       "buttoncancel"                    : "CANCELAR"
-    },
-    "paymentresponse"                   :
+    }
+    ,"paymentresponse"                  :
     {
       "resultok"                        : "Pago completado",
       "resultnook"                      : "Pago cancelado",
       "resultokdesc"                    : "¡Gracias! Tu petición se ha completado con éxito.",
       "resultnookdesc"                  : "La transacción no se ha podido completar. Por favor, revisa los datos introducidos e inténtalo de nuevo."
-    },
-    "transactionhistory"                :
+    }
+    ,"transactionhistory"               :
     {
       "status"                          : "----DEPRECATED----",
       "title"                           : "HISTORIAL DE TRANSACCIONES",
@@ -146,8 +146,8 @@
       "subject"                         : "ASUNTO",
       "value"                           : "CANTIDAD",
       "balance"                         : "BALANCE"
-    },
-    "userprofile"                       :
+    }
+    ,"userprofile"                      :
     {
       "title"                           : "Mi cuenta",
       "buttonedit"                      : "EDITAR",
@@ -159,8 +159,8 @@
       "buttonbuy"                       : "Comprar",
       "ranking"                         : "Clasificación",
       "buttonrankingtable"              : "Ver en la tabla"
-    },
-    "leaderboard"                       :
+    }
+    ,"leaderboard"                      :
     {
       "title"                           : "Game Center",
       "trueskill_tab"                   : "Habilidad (@PLAYER_POSITIONº)",
@@ -172,8 +172,8 @@
       "topskill"                        : "RÁNKING HABILIDAD",
       "abrevposition"                   : "Pos.",
       "name"                            : "Nombre"
-    },
-    "achievements"                      :
+    }
+    ,"achievements"                     :
     {
       "name_won_virtual_contests_level_1"     : "El Principiante",
       "desc_won_virtual_contests_level_1"     : "Ganar el primer torneo virtual",
@@ -229,8 +229,8 @@
       "desc_manager_level_4"                  : "Nivel de Manager 4",
       "name_manager_level_5"                  : "Nivel de Manager 5",
       "desc_manager_level_5"                  : "Nivel de Manager 5"
-    },
-    "withdrawfunds"                     :
+    }
+    ,"withdrawfunds"                    :
     {
       "status"                          : "----DEPRECATED----",
       "title"                           : "RETIRAR FONDOS",
@@ -239,8 +239,8 @@
       "withdrawdesc2"                   : "Solo puedes retirar cantidades superiores a",
       "withdrawfunds"                   : "Retirar fondos",
       "needhelp"                        : "¿Necesitas ayuda?"
-    },
-    "entercontest"                      :
+    }
+    ,"entercontest"                     :
     {
       "tablineup"                       : "Tu alineación",
       "tabcontestinfo"                  : "Información del torneo",
@@ -272,8 +272,8 @@
       "buy-energy-button"               : "RECARGAR ENERGÍA",
       "alert-user-gold-message"         : "Tienes actualmente @MONEY",
       "alert-no-energy-message"         : "<strong>No tienes suficiente energía</strong><br>para entrar en este torneo."
-    },
-    "lineupselector"                    :
+    }
+    ,"lineupselector"                   :
     {
       "wastedsalarycap"                 : "<strong>Has gastado más presupuesto del permitido</strong><br> Por favor, cambia la alineación para no superar el límite.",
       "maxplayersteam"                  : "<strong>Tienes demasiados jugadores del mismo equipo.</strong><br>No superes el límite de @MAX_PLAYERS_SAME_TEAM jugadores.",
@@ -281,14 +281,14 @@
       "add"                             : "AÑADIR ",
       "formation"                       : "Formación",
       "change"                          : "Cambiar"
-    },
-    "matchesfilter"                     :
+    }
+    ,"matchesfilter"                     :
     {
       "all-matches"                     : "Todos<br>los encuentros",
       "allmatches"                      : "Todos los encuentros",
       "all"                             : "todos"
-    },
-    "soccerplayerlist"                  :
+    }
+    ,"soccerplayerlist"                 :
     {
       "positionabrev"                   : "Pos.",
       "name"                            : "Nombre",
@@ -297,8 +297,8 @@
       "salary"                          : "Salario",
       "search-player"                   : "Buscar jugador...",
       "players"                         : "Jugadores"
-    },
-    "soccerplayerpositions"             :
+    }
+    ,"soccerplayerpositions"            :
     {
       "goalkeeper"                      : "PORTERO",
       "gk"                              : "POR",
@@ -309,8 +309,8 @@
       "forward"                         : "DELANTERO",
       "for"                             : "DEL",
       "all"                             : "TODOS"
-    },
-    "soccerplayerstats"                 :
+    }
+    ,"soccerplayerstats"                :
     {
       "buttoncancel"                    : "CANCELAR",
       "buttonadd"                       : "AÑADIR",
@@ -376,16 +376,16 @@
       "dailyfantasypoints"              : "Daily Fantasy Points",
       "minutes"                         : "Minutos",
       "posessionlost"                   : "Perdidas de balón"
-    },
-    "footer"                            :
+    }
+    ,"footer"                           :
     {
       "help"                            : "AYUDA",
       "legal"                           : "LEGAL",
       "terms"                           : "TÉRMINOS<span> DE USO</span>",
       "privacy"                         : "POLÍTICAS<span> DE PRIVACIDAD</span>",
       "data-provided-by"                : "Datos provistos por"
-    },
-    "mainmenu"                          :
+    }
+    ,"mainmenu"                         :
     {
       "home"                            : "Inicio",
       "lobby"                           : "Torneos",
@@ -404,8 +404,8 @@
       "logout"                          : "Salir",
       "login"                           : "Entrar",
       "signup"                          : "Regístrate"
-    },
-    "contestlist"                       :
+    }
+    ,"contestlist"                      :
     {
       "entryfee"                        : "Precio:",
       "of"                              : "DE",
@@ -415,8 +415,8 @@
       "today"                           : "Hoy",
       "soonHint"                        : "Faltan<br>@TIME min",
       "verySoonHint"                    : "Faltan<br>@TIME"
-    },
-    "contestfilters"                    :
+    }
+    ,"contestfilters"                   :
     {
       "filters"                         : "FILTROS",
       "competition"                     : "COMPETICIÓN",
@@ -443,8 +443,8 @@
       "sortbyname"                      : "Nombre",
       "sortbyentryfee"                  : "Cuota",
       "sortbystartdate"                 : "Fecha"
-    },
-    "fantasyteam"                       :
+    }
+    ,"fantasyteam"                      :
     {
       "editlineup"                      : "EDITAR ALINEACIÓN",
       "pos"                             : "POS",
@@ -452,16 +452,16 @@
       "remainingtime"                   : "TIEMPO RESTANTE",
       "close"                           : "CERRAR",
       "owned"                           : "SELECCIONADO"
-    },
-    "teamspanel"                        :
+    }
+    ,"teamspanel"                       :
     {
       "showmatches"                     : "VER PARTIDOS",
       "firsthalf"                       : "1ª Parte - ",
       "secondhalf"                      : "2ª Parte - ",
       "error"                           : "-Err-",
       "finished"                        : "Terminado"
-    },
-    "userlist"                          :
+    }
+    ,"userlist"                         :
     {
       "title"                           : "PARTICIPANTES DEL TORNEO",
       "invite_text"                     : "Invitar amigos",
@@ -471,14 +471,14 @@
       "rt"                              : "T.R.",
       "points"                          : "PUNTOS",
       "prizes"                          : "PREMIOS"
-    },
-    "viewcontest"                       :
+    }
+    ,"viewcontest"                      :
     {
       "yourlineup"                      : "Tu alineación",
       "users"                           : "Usuarios",
       "opponent"                        : "Adversario"
-    },
-    "viewcontestentry":
+    }
+    ,"viewcontestentry":
     {
       "created"                         : "¡ENHORABUENA! HAS COMPLETADO TU ALINEACIÓN.",
       "edited"                          : "¡ENHORABUENA! HAS EDITADO TU ALINEACIÓN.",
@@ -493,8 +493,8 @@
       "alertcancelcontest"              : "Estás a punto de cancelar tu participación en este concurso.<br><br>¿Estás seguro de querer abandonar este concurso?<br><br>",
       "alertbuttonno"                   : "No",
       "alertbuttonyes"                  : "Sí"
-    },
-    "contestheader"                     :
+    }
+    ,"contestheader"                    :
     {
       "entryfee"                        : "CUOTA",
       "prizes"                          : "PREMIOS",
@@ -507,8 +507,8 @@
       "entryfee"                        : "Precio:",
       "prize"                           : "Premio:",
       "position"                        : "Posición:"
-    },
-    "contest"                           :
+    }
+    ,"contest"                          :
     {
       "contestfree"                     : "Gratuito",
       "contestheadtohead"               : "1 contra 1",
@@ -517,8 +517,8 @@
       "salarycap"                       : "Cuota",
       "contenders"                      : "participantes",
       "of"                              : "de"
-    },
-    "contestinfo"                       :
+    }
+    ,"contestinfo"                      :
     {
       "matches"                         : "Partidos",
       "prizes"                          : "Premios",
@@ -531,20 +531,20 @@
       "contenders2"                     : "CONCURSANTES",
       "rulestip"                        : "Elige un equipo de 11 jugadores de los siguientes encuentros.",
       "winnertakesall"                  : "El ganador de lo lleva todo"
-    },
-    "prizes"                            :
+    }
+    ,"prizes"                           :
     {
       "free"                            : "Concurso gratuito. No hay premios",
       "winnertakesall"                  : "El ganador se lo lleva todo",
       "first3"                          : "Los 3 primeros consiguen premio",
       "firstthird"                      : "El tercio superior de participantes tiene premio",
       "fifty"                           : "La primera mitad de participantes tiene premio"
-    },
-    "lobby"                             :
+    }
+    ,"lobby"                            :
     {
       "nextcontest"                     : "PRÓXIMOS TORNEOS"
-    },
-    "mycontest"                         :
+    }
+    ,"mycontest"                        :
     {
       "title"                           : "MIS TORNEOS",
       "tablive"                         : "En Directo",
@@ -567,8 +567,8 @@
       "hasHistoryContests1"             : "JUGADOS",
       "hasHistoryContests2"             : "GANADOS",
       "hasHistoryContests3"             : "AQUÍ PUEDES CONSULTAR LOS TORNEOS QUE JUGASTE: ALINEACIONES, PARTICIPANTES, PUNTUACIONES…"
-    },
-    "tutorial"                           :
+    }
+    ,"tutorial"                         :
     {
       "skip-tutorial"                   : "Saltar tutorial",
       "title-lobby"                     : "SELECCIONA UN TORNEO",
@@ -578,8 +578,8 @@
       "text-entercontest"               : "Elije 11 jugadores de la lista sin pasarte del presupuesto.",
       "text-viewcontestentry"           : "Ve a “<b>Mis Concursos</b>” para editar tus alineaciones, ver a tu equipo puntuando en directo o para ver tu histórico de concursos. <br> <br> <p class=\"subtitle\">Recuerda: puedes jugar a todos los concursos que quieras y elegir tantas alineaciones como quieras.</p>",
       "next"                            : "Continuar"
-    },
-    "tutorial_iniciacion"               :
+    }
+    ,"tutorial_iniciacion"              :
     {
       "msg-01"                          : "Bienvenido a Epic Eleven. Haz tu equipo ideal alineando jugadores reales de la Liga o Premier y enfréntate en torneos contra otros jugadores.",
       "msg-02"                          : "Comienza eligiendo un torneo oficial. Participar en los torneos cuesta oro, pero no te preocupes, esta vez invitamos nosotros.",
@@ -609,8 +609,8 @@
       "msg-15"                          : "Fijate, uno de tus jugadores acaba de conseguir sus primeros puntos.",
       "msg-16"                          : "Enhorabuena, has ganado tu primer torneo! Has conseguido n puntos de manager y has subido tu nivel de manager.",
       "msg-17"                          : "Ya estás preparado. Regístrate ahora y consigue tus primeras 30 monedas de oro para comenzar tu carrera como manager."
-     },
-    "tutorial_entrenamiento"            :
+     }
+    ,"tutorial_entrenamiento"           :
     {
       "title-lobby"                     : "[ENTRENAMIENTO] SELECCIONA UN TORNEO",
       "title-entercontest"              : "[ENTRENAMIENTO] SELECCIONA TU ALINEACIÓN",
@@ -618,8 +618,8 @@
       "text-lobby"                      : "Puedes participar en todos los torneos que quieras de La Liga BBVA, Barclays Premier League y UEFA Champions League.",
       "text-entercontest"               : "Elije 11 jugadores de la lista sin pasarte del presupuesto.",
       "text-viewcontestentry"           : "Ve a “<b>Mis Concursos</b>” para editar tus alineaciones, ver a tu equipo puntuando en directo o para ver tu histórico de concursos. <br> <br> <p class=\"subtitle\">Recuerda: puedes jugar a todos los concursos que quieras y elegir tantas alineaciones como quieras.</p>"
-    },
-    "tutorial_oficial"                  :
+    }
+    ,"tutorial_oficial"                 :
     {
       "title-lobby"                     : "[OFICIAL] SELECCIONA UN TORNEO",
       "title-entercontest"              : "[OFICIAL] SELECCIONA TU ALINEACIÓN",
@@ -627,13 +627,13 @@
       "text-lobby"                      : "Puedes participar en todos los torneos que quieras de La Liga BBVA, Barclays Premier League y UEFA Champions League.",
       "text-entercontest"               : "Elije 11 jugadores de la lista sin pasarte del presupuesto.",
       "text-viewcontestentry"           : "Ve a “<b>Mis Concursos</b>” para editar tus alineaciones, ver a tu equipo puntuando en directo o para ver tu histórico de concursos. <br> <br> <p class=\"subtitle\">Recuerda: puedes jugar a todos los concursos que quieras y elegir tantas alineaciones como quieras.</p>"
-    },
-    "restricted"                        :
+    }
+    ,"restricted"                       :
     {
       "desc"                            : "Lo sentimos, está prohibido comprar Oro desde el pais en el que estás.<br><br>Si piensas que esto se debe a un error y necesitas asistencia, por favor contacta con nosotros a través de <a href=\"mailto:support@epiceleven.com\">support@epiceleven.com</a>",
       "gotolobby"                       : "Volver a los concursos"
-    },
-    "scoringrules"                      :
+    }
+    ,"scoringrules"                     :
     {
       "all"                             : "TODOS LOS JUGADORES",
       "goalkeepers"                     : "PORTEROS",
@@ -647,7 +647,7 @@
       "tackle"                          : "Entrada",
       "interception"                    : "Intercepción",
       "save"                            : "Parada",
-      "saveshot"                       : "Bloqueo de tiro",
+      "saveshot"                        : "Bloqueo de tiro",
       "claim"                           : "Anticipación",
       "clearance"                       : "Despeje",
       "miss"                            : "Tiro fallado",
@@ -674,8 +674,8 @@
       "penaltysaved"                    : "Penalti parado",
       "clean"                           : "Portería a cero",
       "goalconceded"                    : "Gol recibido"
-    },
-    "shop"                              :
+    }
+    ,"shop"                             :
     {
       "name"                            : "TIENDA",
       "goldshopdescription"             : "Compra Oro y accede a <strong>Torneos Oficiales</strong>",
@@ -692,12 +692,12 @@
       "product_maxrefill"               : "Recarga al máximo con:",
       "autorefill"                      : "Recarga +1 automática en:",
       "alert-user-gold-message"         : "Tienes actualmente @MONEY"
-    },
-    "goldshop"                          :
+    }
+    ,"goldshop"                         :
     {
       "buttonback"                      : "Volver"
-    },
-    "energyshop"                        :
+    }
+    ,"energyshop"                       :
     {
       "buttonback"                      : "Volver",
 
@@ -706,8 +706,8 @@
       "erroruserbalancenegativegeneric" : "No tienes Oro suficiente. Por favor, compra Oro para poder continuar",
       "errordefaulttitle"               : "Atención",
       "errordefaultgeneric"             : "Ha ocurrido un error. Inténtalo mas tarde."
-    },
-    "createcontest"                     :
+    }
+    ,"createcontest"                    :
     {
       "select_event"                    : "Selecciona Evento",
       "select_competition_first"        : "Selecciona antes una competición",
@@ -729,8 +729,8 @@
       "fixed_hour_warning"              : "La fecha de los torneos oficiales es fija",
       "create_contest_btt"              : "Crear torneo",
       "matches_title"                   : "Partidos"
-    },
-    "home"                              :
+    }
+    ,"home"                             :
     {
       "play"                            : "Jugar",
       "learn_to_play"                   : "Aprende a ganar<br>y comienza tu carrera de manager",
@@ -754,6 +754,41 @@
       "help_title"                      : "Escuela de Entrenadores",
       "help_info"                       : "Aprende a jugar"
     }
+    ,"notifications"                    :
+    {
+      "name"                            : "NOTIFICACIONES",
 
+      "NEW_SPECIAL_EVENT_ACTIVE"        : "NEW_SPECIAL_EVENT_ACTIVE",
+      "NEW_OFFER_ACTIVE"                : "NEW_OFFER_ACTIVE",
+
+      "CONTEST_FINISHED"                : "TORNEO TERMINADO",
+      "CONTEST_FINISHED_DESCRIPTION"    : "@NAME: Lorem fistrum te voy a borrar el cerito condemor tiene musho peligro mamaar sexuarl.",
+
+      "DUEL_FINISHED"                   : "DUELO TERMINADO",
+
+      "CONTEST_CANCELLED"               : "TORNEO CANCELADO",
+      "DAILY_CHALLENGE_ENABLED"         : "DAILY_CHALLENGE_ENABLED",
+      "OFICIAL_CONTEST_START"           : "OFICIAL_CONTEST_START",
+      "CONTEST_INVITATIONS"             : "CONTEST_INVITATIONS",
+      "SKILL_LEVEL_UP"                  : "SKILL_LEVEL_UP",
+      "SKILL_LEVEL_DOWN"                : "SKILL_LEVEL_DOWN",
+      "MANAGER_LEVEL_UP"                : "HAS SUBIDO TU NIVEL DE MANAGER",
+      "MANAGER_LEVEL_DOWN"              : "HAS BAJADO TU NIVEL DE MANAGER",
+      "ACHIEVEMENT_EARNED"              : "HAS CONSEGUIDO @NAME",
+      
+      "BUTTON_NEW_SPECIAL_EVENT_ACTIVE" : "Participar",
+      "BUTTON_NEW_OFFER_ACTIVE"         : "Mas información",
+      "BUTTON_CONTEST_FINISHED"         : "Ver resultado",
+      "BUTTON_DUEL_FINISHED"            : "Ver resultado",
+      "BUTTON_CONTEST_CANCELLED"        : "Participar en otro",
+      "BUTTON_DAILY_CHALLENGE_ENABLED"  : "Entrar",
+      "BUTTON_OFICIAL_CONTEST_START"    : "Ver en vivo",
+      "BUTTON_CONTEST_INVITATIONS"      : "Ver",
+      "BUTTON_SKILL_LEVEL_UP"           : "",
+      "BUTTON_SKILL_LEVEL_DOWN"         : "",
+      "BUTTON_MANAGER_LEVEL_UP"         : "",
+      "BUTTON_MANAGER_LEVEL_DOWN"       : "",
+      "BUTTON_ACHIEVEMENT_EARNED"       : ""
+    }
   }
 }

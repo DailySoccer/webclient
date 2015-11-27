@@ -78,6 +78,10 @@ class Achievement {
   }
 
   static String translate(String key) => StringUtils.translate(key, "achievements");
+  
+  static Achievement getAchievementWithKey(String key){
+    return new Achievement.fromJsonObject(AVAILABLES.firstWhere((achievementMap) => achievementMap['id'] == key));
+  }
 
   static List<Map> AVAILABLES = [
     {

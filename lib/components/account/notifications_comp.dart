@@ -22,7 +22,6 @@ class NotificationsComp {
   }
 
   NotificationsComp(this._profileService) {
-    
     // TEST: Incluir notificaciones al usuario
     if (_profileService.isLoggedIn) {
       _profileService.user.notifications = [
@@ -34,7 +33,6 @@ class NotificationsComp {
       ].map((jsonMap) => new UserNotification.fromJsonObject(jsonMap) ).toList();
     }
     
-    /*
     notificationList = _profileService.user.notifications.map( (notification) => {
       "id": notification.id,
       "type" : notification.topic,
@@ -44,7 +42,6 @@ class NotificationsComp {
       "link": notification.link,
       "date" : DateTimeService.formatDateWithDayOfTheMonth(notification.createdAt).toUpperCase()
     }).toList();
-    */
     
     /*
     notificationList = [

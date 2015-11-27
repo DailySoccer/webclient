@@ -42,7 +42,7 @@ class UserNotification {
     description = _generateDescription();
     link = {
       "url": _generateLinkUrl(),
-      "name" : _generateLinkName()
+      "name" : _generateLinkName(jsonMap["topic"])
     };
   }
 
@@ -91,7 +91,7 @@ class UserNotification {
     return result;
   }
 
-  String _generateLinkName() {
-    return "Ir";
+  String _generateLinkName(String topic) {
+    return getLocalizedText('BUTTON_' + topic);
   }
 }

@@ -774,7 +774,21 @@
       "SKILL_LEVEL_DOWN"                : "SKILL_LEVEL_DOWN",
       "MANAGER_LEVEL_UP"                : "HAS SUBIDO TU NIVEL DE MANAGER",
       "MANAGER_LEVEL_DOWN"              : "HAS BAJADO TU NIVEL DE MANAGER",
-      "ACHIEVEMENT_EARNED"              : "HAS CONSEGUIDO @NAME"
+      "ACHIEVEMENT_EARNED"              : "HAS CONSEGUIDO @NAME",
+      
+      "BUTTON_NEW_SPECIAL_EVENT_ACTIVE" : "Participar",
+      "BUTTON_NEW_OFFER_ACTIVE"         : "Mas información",
+      "BUTTON_CONTEST_FINISHED"         : "Ver resultado",
+      "BUTTON_DUEL_FINISHED"            : "Ver resultado",
+      "BUTTON_CONTEST_CANCELLED"        : "Participar en otro",
+      "BUTTON_DAILY_CHALLENGE_ENABLED"  : "Entrar",
+      "BUTTON_OFICIAL_CONTEST_START"    : "Ver en vivo",
+      "BUTTON_CONTEST_INVITATIONS"      : "Ver",
+      "BUTTON_SKILL_LEVEL_UP"           : "",
+      "BUTTON_SKILL_LEVEL_DOWN"         : "",
+      "BUTTON_MANAGER_LEVEL_UP"         : "",
+      "BUTTON_MANAGER_LEVEL_DOWN"       : "",
+      "BUTTON_ACHIEVEMENT_EARNED"       : ""
     }
   }
 }

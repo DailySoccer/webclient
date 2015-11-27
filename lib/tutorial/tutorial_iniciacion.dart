@@ -110,7 +110,7 @@ class TutorialIniciacion extends Tutorial {
                   ))
                 .then((_) {
                   Completer completer = new Completer();
-          
+
                   // Esta es la lista de partidos de este torneo.
                   showTooltip(
                     new ToolTip("matches-filter", tipText: getLocalizedText("msg-02d"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
@@ -134,44 +134,41 @@ class TutorialIniciacion extends Tutorial {
                 })
                 .then((_) {
                   Completer completer = new Completer();
-                  
+
                   // Selecciona una formación
-                  showTooltip(
-                    new ToolTip("#formationsPanel .formation-element#formationElement433", tipText: getLocalizedText("msg-02g"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
-                      querySelector(".lineup-formation-selector-wrapper").click();
-                      // Al cambiar de formación, cambia el número
-                      showTooltip(
-                        new ToolTip(".enter-contest-lineup-wrapper", tipText: getLocalizedText("msg-02h"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
-                          completer.complete(true);
-                        })
-                      );
-                    })
-                  );
-                  
-                  return completer.future;
-                })
-                .then((_) {
-                  Completer completer = new Completer();
-                  
-                  // Esta es la lista de jugadores disponibles
-                  showTooltip(
-                    new ToolTip(".enter-contest-soccer-players-wrapper", tipText: getLocalizedText("msg-02i"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
-                      completer.complete(true);
-                    })
-                  );
-                  
-                  return completer.future;
-                })
-                .then((_) {
                   showTooltips([
-                    new ToolTip("#soccerPlayer220 .action-button", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-03"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true), //Añade este jugador a tu alineación.
-                    new ToolTip("#soccerPlayer220", highlight: true)
+                    new ToolTip("#formationsPanel .formation-element#formationElement433 label", tipText: getLocalizedText("msg-02g"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true),
+                    new ToolTip("#formationsPanel .formation-element#formationElement433", highlight: true)
                   ]);
+
+                  return completer.future;
                 })
                 .catchError((e) {
                 });
               },
-              'lineup-10': () {
+              'formation-433': () {
+                Completer completer = new Completer();
+
+                querySelector(".lineup-formation-selector-wrapper").click();
+                // Al cambiar de formación, cambia el número
+                showTooltip(
+                  new ToolTip(".enter-contest-lineup-wrapper", tipText: getLocalizedText("msg-02h"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
+                    // Esta es la lista de jugadores disponibles
+                    showTooltip(
+                      new ToolTip(".enter-contest-soccer-players-wrapper", tipText: getLocalizedText("msg-02i"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
+                        //Añade este jugador a tu alineación.
+                        showTooltips([
+                          new ToolTip("#soccerPlayer220 .action-button", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-03"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true),
+                          new ToolTip("#soccerPlayer220", highlight: true)
+                        ]);
+                      })
+                    );
+                  })
+                );
+
+                return completer.future;
+              },
+              'lineup-9': () {
                 clearTooltips();
 
                 //Bien, ya has añadido tu primer jugador.

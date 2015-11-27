@@ -54,7 +54,7 @@ class EnterContestComp implements DetachAware {
   String contestId;
   String _formationId = ContestEntry.FORMATION_442;
   String get formationId => _formationId;
-  void set formationId(String id) { 
+  void set formationId(String id) {
     _formationId = id;
     onLineupFormationChange();
   }
@@ -297,12 +297,12 @@ class EnterContestComp implements DetachAware {
 
     int firstAvailablePosition(String soccerPosition) {
       for (int c = 0; c < lineupSlots.length; ++c) {
-        if (lineupSlots[c] == null && lineupFormation[c] == soccerPosition) 
+        if (lineupSlots[c] == null && lineupFormation[c] == soccerPosition)
           return c;
       }
       return -1;
     }
-    
+
     int cheapestByPosition(String soccerPosition) {
       int cheapestIdx;
       int cheapestValue = -1;
@@ -316,15 +316,15 @@ class EnterContestComp implements DetachAware {
       }
       return cheapestIdx;
     }
-    
-    
+
+
     for (int c = 0; c < lineupSlots.length; ++c) {
       if (lineupSlots[c] != null && lineupFormation[c] != lineupSlots[c]["fieldPos"].value) {
         print(lineupSlots[c]["fieldPos"].value + " -ConflictoCon- " + lineupFormation[c]);
         var soccerPlayer = lineupSlots[c];
         int availablePosition = firstAvailablePosition(lineupSlots[c]["fieldPos"].value);
         print("Posicion disponible: $availablePosition");
-        
+
         if (availablePosition != -1) {
           onLineupSlotSelected(c);
           _tryToAddSoccerPlayerToLineup(soccerPlayer);
@@ -339,7 +339,9 @@ class EnterContestComp implements DetachAware {
         }
       }
     }
-    
+
+    _tutorialService.triggerEnter("formation-" + _formationId.toString(), activateIfNeeded: false);
+
     /*
     for (int c = 0; c < lineupSlots.length; ++c) {
       if (lineupSlots[c] == null && lineupFormation[c] == theFieldPos.value) {
@@ -360,9 +362,9 @@ class EnterContestComp implements DetachAware {
         break;
       }
     }*/
-    
+
   }
-  
+
   void onSoccerPlayerActionButton(var soccerPlayer) {
 
     int indexOfPlayer = lineupSlots.indexOf(soccerPlayer);
@@ -643,7 +645,7 @@ class EnterContestComp implements DetachAware {
   void saveContestEntry() {
     // Lo almacenamos localStorage.
     Map data = { 'formation' :  formationId, 'lineupSlots' : lineupSlots.where((player) => player != null).map((player) => player["id"]).toList()};
-    
+
     saveContestEntryFromJson(_getKeyForCurrentUserContest, JSON.encode(data));
   }
 
@@ -651,7 +653,7 @@ class EnterContestComp implements DetachAware {
     if (window.localStorage.containsKey(_getKeyForCurrentUserContest)) {
       // print ("localStorage: key: " + _getKeyForCurrentUserContest + ": " + window.localStorage[_getKeyForCurrentUserContest]);
       Map loadedData = JSON.decode(window.localStorage[_getKeyForCurrentUserContest]);
-           
+
      _isRestoringTeam = true;
      formationId = loadedData['formation'];
      List loadedLineup = loadedData['lineupSlots'];
@@ -729,7 +731,7 @@ class EnterContestComp implements DetachAware {
 
   String getConfirmButtonText() {
     if (contest == null || (contest.entryFee.isEnergy && editingContestEntry)) return getLocalizedText("buttoncontinue");
-    
+
     Money cost = contest.entryFee.isEnergy? contest.entryFee : coinsNeeded;
     return'${getLocalizedText("buttoncontinue")}: <span class="confirm-cost ${cost.isEnergy? "energy": "coins"}">${cost.amount.toInt()}</span>';
   }

@@ -18,7 +18,7 @@
       <div class="additional-info">
         <div class="wrapper">
           <div class="description">{{notification.description}}</div>
-          <div class="button-wrapper"><button class="btn-primary" ng-click="goToLink(notification['link'])">Ir</button></div>
+          <div class="button-wrapper"><button class="btn-primary" ng-click="goToLink(notification.link.url)">{{notification.link.name}}</button></div>
         </div>
       </div>
 

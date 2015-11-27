@@ -42,7 +42,7 @@ class NotificationsComp {
       "name" : notification.name,
       "description" : notification.description,
       "link": notification.link,
-      "date" : DateTimeService.formatDateTimeLong(notification.createdAt)
+      "date" : DateTimeService.formatDateWithDayOfTheMonth(notification.createdAt).toUpperCase()
     }).toList();
 
     /*
@@ -56,9 +56,6 @@ class NotificationsComp {
       {"id": '6', "type" : UserNotification.OFICIAL_CONTEST_START,"info" : {"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec turpis vel enim finibus cursus. Sed aliquam felis turpis, et suscipit neque dignissim tempus.", "date": "10 Nov. 2015", "link": "http://127.0.0.1:3030/webclient/web/index.html#/notifications"}}
     ];
    */
-
-    // TEST: Link
-    // window.location.assign(notificationList.first["link"]);
   }
 
   void closeNotification(String notificationId) {

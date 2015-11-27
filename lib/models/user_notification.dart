@@ -27,7 +27,7 @@ class UserNotification {
   DateTime createdAt;
   String name;
   String description;
-  String link;
+  Map link = {"url": null, "name": ""};
 
   String getLocalizedText(key, {substitutions: null}) {
     return StringUtils.translate(key, "notifications", substitutions);
@@ -40,7 +40,10 @@ class UserNotification {
     createdAt = jsonMap.containsKey("createdAt") ? DateTimeService.fromMillisecondsSinceEpoch(jsonMap["createdAt"]) : DateTimeService.now;
     name = _generateName();
     description = _generateDescription();
-    link = _generateLink();
+    link = {
+      "url": _generateLinkUrl(),
+      "name" : _generateLinkName()
+    };
   }
 
   String _generateName() {
@@ -48,7 +51,7 @@ class UserNotification {
 
     switch(topic) {
       case ACHIEVEMENT_EARNED:
-        result = getLocalizedText('achievement_name', substitutions:{'NAME': Achievement.getAchievementWithKey(info["achievement"]).name});
+        result = getLocalizedText(topic, substitutions:{'NAME': Achievement.getAchievementWithKey(info["achievement"]).name});
         break;
       default:
         result = getLocalizedText(topic, substitutions:{'NAME': topic});
@@ -61,7 +64,7 @@ class UserNotification {
     return "Lorem fistrum te voy a borrar el cerito condemor tiene musho peligro mamaar sexuarl.";
   }
 
-  String _generateLink() {
+  String _generateLinkUrl() {
     String result = null;
     switch(topic) {
       case ACHIEVEMENT_EARNED:
@@ -77,5 +80,9 @@ class UserNotification {
         break;
     }
     return result;
+  }
+
+  String _generateLinkName() {
+    return "Ir";
   }
 }

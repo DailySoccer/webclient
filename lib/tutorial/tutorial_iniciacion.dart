@@ -276,14 +276,20 @@ class TutorialIniciacion extends Tutorial {
                 //Una vez completada una alineación se activa el botón de Continuar
                 showTooltip(new ToolTip(".button-wrapper .btn-confirm-lineup-list", tipId: 'continueButton', tipText: getLocalizedText("msg-10"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true));
               },
+              /*
+              'alert-not-enough-resources': () {
+                clearTooltips();
+                showTooltip(new ToolTip(".form-description", tipText: getLocalizedText("msg-10a"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true));
+              },
+               */
               'shop': () {
-                    CurrentStepId = STEP_3;
+                CurrentStepId = STEP_3;
 
-                    clearTooltips();
+                clearTooltips();
 
-                    //Compra una recarga de energía.
-                    showTooltip(new ToolTip(".energy-layout", tipText: getLocalizedText("msg-10b"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true));
-                },
+                //Compra una recarga de energía.
+                showTooltip(new ToolTip(".energy-layout", tipText: getLocalizedText("msg-10b"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true));
+              },
             },
             serverCalls: serverCallsWhenVirtual
         ),

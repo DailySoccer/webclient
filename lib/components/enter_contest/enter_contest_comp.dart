@@ -699,6 +699,8 @@ class EnterContestComp implements DetachAware {
 
       _router.go(contest.entryFee.isEnergy ? 'shop' : 'shop', {});
     });
+
+    _tutorialService.triggerEnter("alert-not-enough-resources");
   }
 
   String getNotEnoughGoldContent() {
@@ -715,6 +717,7 @@ class EnterContestComp implements DetachAware {
     </div>
     ''';
   }
+
   String getNotEnoughEnergyContent() {
     return '''
     <div class="content-wrapper">

@@ -23168,6 +23168,7 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   background-position: center top;
   background-size: cover;
   text-align: center;
+  cursor: pointer;
 }
 #notificationsComp .notification-list-wrapper .uncommon .main-info {
   position: relative;

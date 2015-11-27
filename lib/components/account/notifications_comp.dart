@@ -66,6 +66,14 @@ class NotificationsComp {
   void goToLink(String link) {
     window.location.assign(link);
   }
+  
+  void onAction(String id) {
+    Map n = notificationList.firstWhere((notification) => notification['id'] == id);
+    
+    if (n['type'] == UserNotification.ACHIEVEMENT_EARNED) {
+      goToLink(n['link']['url']);
+    }    
+  }
 
   ProfileService _profileService;
 }

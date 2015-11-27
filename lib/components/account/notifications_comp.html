@@ -7,7 +7,7 @@
     <!-- Notificaciones tipo logro -->
     <div class="notification"  ng-repeat="notification in notificationList" ng-class="{'uncommon': notification.type == 'ACHIEVEMENT_EARNED'}">
 
-      <div class="main-info">
+      <div class="main-info" ng-click="onAction(notification.id)">
         <div class="wrapper">
           <achievement ng-if="notification.type == 'ACHIEVEMENT_EARNED'" enabled="true" key="notification['info'].achievement"></achievement>
           <span class="name">{{notification.name}}</span>

@@ -57,7 +57,7 @@ class TutorialIniciacion extends Tutorial {
       "get_active_contest" : (url, postData) => waitCompleter( () => TrainingContestList ),
       "get_contest_info" : (url, postData) => waitCompleter( () => TrainingContestList ),
       "get_instance_soccer_player_info": (url, postData) => getContentJson(PATH + "stats-player-03.json"),
-      "add_contest_entry": (url, postData) { CurrentStepId = STEP_3; return addContestEntry(postData); },
+      "add_contest_entry": (url, postData) { CurrentStepId = STEP_4; return addContestEntry(postData); },
       "buy_product": (url, postData) { profileService.user.energyBalance.amount = User.MAX_ENERGY; return emptyContent(); }
     }]);
 

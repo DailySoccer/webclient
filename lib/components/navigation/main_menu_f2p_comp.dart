@@ -289,8 +289,8 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
   }
 
   String get _notificationsCountCode {
-    int numNotifications = 8;
-    
+    int numNotifications = profileService.isLoggedIn ? profileService.user.notifications.length : 0;
+
     if (numNotifications > 0) {
       return "<span class='count'>${numNotifications}</span>";
     }

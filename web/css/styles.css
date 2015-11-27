@@ -23056,15 +23056,6 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   margin-left: 0;
   margin-right: 0;
   margin: 10px 0;
-  position: relative;
-  min-height: 130px;
-  border-radius: 5px;
-  border: 2px solid #ffffff;
-}
-#notificationsComp .notification-list-wrapper .notification:hover {
-  -webkit-box-shadow: 0px 4px 8px 1px rgba(67, 67, 67, 0.5);
-  -moz-box-shadow: 0px 4px 8px 1px rgba(67, 67, 67, 0.5);
-  box-shadow: 0px 4px 8px 1px rgba(67, 67, 67, 0.5);
 }
 #notificationsComp .notification-list-wrapper .notification achievement {
   position: relative;
@@ -23083,18 +23074,10 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
 #notificationsComp .notification-list-wrapper .notification .main-info {
   position: relative;
   float: left;
-  width: 33.33333333%;
+  width: 100%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  background-color: #214a5f;
-  text-align: center;
-  height: 130px;
-  display: table;
-}
-#notificationsComp .notification-list-wrapper .notification .main-info .wrapper {
-  display: table-cell;
-  vertical-align: middle;
 }
 #notificationsComp .notification-list-wrapper .notification .main-info .name {
   font-family: 'Exo', sans-serif;
@@ -23102,82 +23085,27 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   font-size: 14pt;
   color: #ffffff;
   text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   display: block;
   padding: 5px 0;
-  margin-left: auto;
-  margin-right: auto;
 }
 #notificationsComp .notification-list-wrapper .notification .main-info .date {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
-  color: #ffffff;
+  color: #434343;
+  text-shadow: 1px 1px 1px rgba(67, 67, 67, 0.004);
   display: block;
   padding: 5px 0;
-  margin-left: auto;
-  margin-right: auto;
-}
-#notificationsComp .notification-list-wrapper .notification .additional-info {
-  position: relative;
-  float: left;
-  width: 66.66666667%;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  display: table;
-  height: 130px;
-}
-#notificationsComp .notification-list-wrapper .notification .additional-info .wrapper {
-  display: table-cell;
-  vertical-align: middle;
-}
-#notificationsComp .notification-list-wrapper .notification .additional-info .description {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 10pt;
-  color: #777777;
-  padding: 0 50px 20px 20px;
-}
-#notificationsComp .notification-list-wrapper .notification .additional-info .button-wrapper {
-  display: inline-block;
-  height: 34px;
-}
-#notificationsComp .notification-list-wrapper .notification .additional-info button {
-  margin-left: 20px;
-}
-#notificationsComp .notification-list-wrapper .close-button {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  cursor: pointer;
 }
 #notificationsComp .notification-list-wrapper .uncommon {
   background-image: url("../images/achievementNotificationBg.jpg");
   background-repeat: no-repeat;
   background-position: center top;
   background-size: cover;
+  border-radius: 5px;
   text-align: center;
   padding-bottom: 20px;
-}
-#notificationsComp .notification-list-wrapper .uncommon .main-info {
-  position: relative;
-  float: left;
-  width: 100%;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  background-color: transparent;
-  height: auto;
-}
-#notificationsComp .notification-list-wrapper .uncommon .main-info .date {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 10pt;
-  color: #434343;
-}
-#notificationsComp .notification-list-wrapper .uncommon .additional-info {
-  display: none !important;
-  visibility: hidden !important;
 }
 /*************************************************
 Si hay que añadir nuevas banderas, ir a la siguiente url

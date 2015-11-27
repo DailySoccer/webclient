@@ -1,5 +1,7 @@
 library user_notification;
 import 'package:webclient/services/datetime_service.dart';
+import 'package:webclient/models/achievement.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 class UserNotification {
   static const String  NEW_SPECIAL_EVENT_ACTIVE = "NEW_SPECIAL_EVENT_ACTIVE";
@@ -23,14 +25,40 @@ class UserNotification {
   String topic;
   Map<String, String> info;
   DateTime createdAt;
+  String name;
+  String description;
   String link;
+
+  String getLocalizedText(key, {substitutions: null}) {
+    return StringUtils.translate(key, "notifications", substitutions);
+  }
 
   UserNotification.fromJsonObject(Map jsonMap) {
     id = jsonMap["_id"];
     topic = jsonMap["topic"];
     info = jsonMap.containsKey("info") ? jsonMap["info"] : {};
     createdAt = jsonMap.containsKey("createdAt") ? DateTimeService.fromMillisecondsSinceEpoch(jsonMap["createdAt"]) : DateTimeService.now;
+    name = _generateName();
+    description = _generateDescription();
     link = _generateLink();
+  }
+
+  String _generateName() {
+    String result = null;
+
+    switch(topic) {
+      case ACHIEVEMENT_EARNED:
+        result = getLocalizedText('achievement_name', substitutions:{'NAME': Achievement.getAchievementWithKey(info["achievement"]).name});
+        break;
+      default:
+        result = getLocalizedText(topic, substitutions:{'NAME': topic});
+    }
+
+    return result;
+  }
+
+  String _generateDescription() {
+    return "Lorem fistrum te voy a borrar el cerito condemor tiene musho peligro mamaar sexuarl.";
   }
 
   String _generateLink() {

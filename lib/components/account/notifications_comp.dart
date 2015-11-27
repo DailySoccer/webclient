@@ -6,6 +6,7 @@ import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/models/achievement.dart';
 import 'package:webclient/models/user_notification.dart';
 import 'package:webclient/services/profile_service.dart';
+import 'package:webclient/services/datetime_service.dart';
 
 @Component(
     selector: 'notifications',
@@ -21,6 +22,7 @@ class NotificationsComp {
   }
 
   NotificationsComp(this._profileService) {
+    /*
     // TEST: Incluir notificaciones al usuario
     if (_profileService.isLoggedIn) {
       _profileService.user.notifications = [
@@ -31,13 +33,16 @@ class NotificationsComp {
         { "_id": '4', "topic": UserNotification.MANAGER_LEVEL_DOWN, "info" : { "level": 1 } }
       ].map((jsonMap) => new UserNotification.fromJsonObject(jsonMap) ).toList();
     }
+     */
 
     notificationList = _profileService.user.notifications.map( (notification) => {
       "id": notification.id,
       "type" : notification.topic,
       "info" : notification.info,
+      "name" : notification.name,
+      "description" : notification.description,
       "link": notification.link,
-      "date" : notification.createdAt
+      "date" : DateTimeService.formatDateTimeLong(notification.createdAt)
     }).toList();
 
     /*
@@ -56,28 +61,13 @@ class NotificationsComp {
     // window.location.assign(notificationList.first["link"]);
   }
 
-  String getNotificationName(String id) {
-    Map notif;
-    
-    notif = notificationList.firstWhere((notification) => notification['id'] == id);
-    
-    if (notif['type'] == UserNotification.ACHIEVEMENT_EARNED) {
-      return getLocalizedText('achievement_name', substitutions:{'NAME': Achievement.getAchievementWithKey(notif["info"]["achievement"]).name});
-    }
-    
-    String text = getLocalizedText(notif["type"], substitutions:{'NAME': notif["type"]});
-    return   text;
-
-  }
-  
-
   void closeNotification(String notificationId) {
     print("Cerrando notificacion:" + notificationId);
     _profileService.removeNotification(notificationId).then((_) {
       notificationList.removeWhere((notification) => notification['id'] == notificationId);
     });
   }
-  
+
   void goToLink(String link) {
     window.location.assign(link);
   }

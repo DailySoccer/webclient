@@ -171,6 +171,9 @@ class User {
 
     if (jsonMap.containsKey("notifications")) {
       notifications = jsonMap["notifications"].map((jsonMap) => new UserNotification.fromJsonObject(jsonMap) ).toList();
+
+      // Ordenarlos en orden decreciente (reciente -> antiguo)
+      notifications.sort((el1, el2) => el2.createdAt.compareTo(el1.createdAt));
     }
 
     return this;

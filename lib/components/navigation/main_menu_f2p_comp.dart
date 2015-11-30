@@ -422,7 +422,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
         ret = '''<a id="menuMyContests"  destination="my_contests" params="section:live">${StringUtils.translate("mycontest",     "mainmenu")}</a>''';
         break;
       case "leaderboard":
-        ret = '''<a id="menuLeaderboard" destination="leaderboard">                      ${StringUtils.translate("leaderboard",   "mainmenu")}</a>''';
+        ret = '''<a id="menuLeaderboard" destination="leaderboard" params="section:points">                      ${StringUtils.translate("leaderboard",   "mainmenu")}</a>''';
         break;
       case "notifications":
         ret = '''<a id="menuNotifications" destination="notifications">                  ${StringUtils.translate("notifications", "mainmenu")}${_notificationsCountCode}</a>''';

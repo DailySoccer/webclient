@@ -129,6 +129,7 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
     //Cambiamos el activo del tab
     _rootElement.querySelectorAll("#myContestMenuTabs li").classes.remove('active');
     _rootElement.querySelector("#" + tab.replaceAll("content", "tab")).classes.add("active");
+    
     //Cambiamos el active del tab-pane
     querySelectorAll(".tab-pane").classes.remove("active");
     querySelector("#" + tab).classes.add("active");

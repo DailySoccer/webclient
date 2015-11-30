@@ -18338,7 +18338,7 @@ lineup-selector {
   display: inline-block;
   vertical-align: middle;
 }
-#leaderboard-wrapper .leaderboard-tabs .achivements-tab:before {
+#leaderboard-wrapper .leaderboard-tabs .achievements-tab:before {
   content: " ";
   background-image: url("../images/achivements-icon.png");
   width: 33px;

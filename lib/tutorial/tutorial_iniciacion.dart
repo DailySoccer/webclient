@@ -228,14 +228,14 @@ class TutorialIniciacion extends Tutorial {
                     /*showTooltip(new ToolTip(".fixed-user-stats .energy", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-04a"), highlight: true, position: ToolTip.POSITION_BOTTOM, onClickCb: (_) {
                         completer.complete(true);
                       }));*/
-                    
+
                     showTooltips([
                       new ToolTip(".fixed-user-stats .energy", tipId: 'energyTip', arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-04a"), highlight: true, position: ToolTip.POSITION_BOTTOM, onClickCb: (_) {
                         completer.complete(true);
                       }),
                       new ToolTip("main-menu-f2p", highlight: true)
                     ]);
-                    
+
                   return completer.future;
                 })
                 .then((_) {
@@ -278,12 +278,12 @@ class TutorialIniciacion extends Tutorial {
                 //Una vez completada una alineación se activa el botón de Continuar
                 showTooltip(new ToolTip(".button-wrapper .btn-confirm-lineup-list", tipId: 'continueButton', tipText: getLocalizedText("msg-10"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true));
               },
-              
+
               'alert-not-enough-resources': () {
                 clearTooltips();
                 showTooltip(new ToolTip("#alertBox .panel", tipText: getLocalizedText("msg-10a"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true));
               },
-              
+
               'shop': () {
                 CurrentStepId = STEP_3;
 
@@ -322,70 +322,66 @@ class TutorialIniciacion extends Tutorial {
                 });
               },
               'view_contest': () {
-                ViewContestComp liveContest = context;
-
                 openModal(
                   text: () => getLocalizedText("msg-12") //Ésta es la pantalla de simulación
                 )
                 .then((_) {
-                  var completer = new Completer();
-
                   //Aquí podrás ver los puntos conseguidos por tus jugadores
                   showTooltip(new ToolTip("fantasy-team", tipText: getLocalizedText("msg-13"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
                     //Aquí puedes ver tu puntuación frente a los rivales
-                    showTooltip(new ToolTip("#usersList", tipText: getLocalizedText("msg-14"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
-                      //Haz click...
-                      showTooltip(new ToolTip(".user-row", tipId: 'compareUserPoints', tipText: getLocalizedText("msg-14"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true, onClickCb: (_) {
-                        completer.complete(true);
-                      }));
-                    }));
+                    showTooltip(new ToolTip("#usersList", tipText: getLocalizedText("msg-14"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true));
                   }));
-
-                  return completer.future;
-                })
-                .then((_) {
-                  var completer = new Completer();
-
-                  clearTooltips();
-
-                  new Timer(new Duration(seconds: 3), () {
-                    if (liveStep + 1 < LiveMatchEventsList.length) {
-                      liveStep++;
-                      liveContest.updateLive();
-
-                      //Fijate, uno de tus jugadores acaba de conseguir sus primeros puntos
-                      showTooltip(new ToolTip(".soccer-player-row[data-id='56260840c1f5fbc410f99549']", delay: new Duration(seconds: 1), tipText: getLocalizedText("msg-15"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
-                        new Timer.periodic(new Duration(seconds: 3), (Timer t) {
-                            if (liveStep + 1 < LiveMatchEventsList.length) {
-                              liveStep++;
-                              liveContest.updateLive();
-                            }
-                            else {
-                              completer.complete(true);
-                              t.cancel();
-                            }
-                        });
-                      }));
-
-                    }
-                  });
-
-                  return completer.future;
-                })
-                .then((_) =>
-                  openModal(
-                    text: () => getLocalizedText("msg-16") //Enhorabuena, has ganado tu primer torneo!
-                  ))
-                .then((_) =>
-                  openModal(
-                    text: () => getLocalizedText("msg-17") //Esta vez hemos hecho la alineación por ti
-                  ))
-                .then((_) {
-                  CurrentStepId = Tutorial.STEP_END;
-                  TutorialService.Instance.skipTutorial(routePath: "join");
                 })
                 .catchError((e) {
                 });
+              },
+              'user_selected': () {
+                // TODO: Una vez recibido el evento de usuario seleccionado, dejamos de estar pendiente en el mismo.
+                removeTrigger('user_selected');
+
+                ViewContestComp liveContest = context;
+
+                var completer = new Completer();
+
+                clearTooltips();
+
+                new Timer(new Duration(seconds: 3), () {
+                  if (liveStep + 1 < LiveMatchEventsList.length) {
+                    liveStep++;
+                    liveContest.updateLive();
+
+                    //Fijate, uno de tus jugadores acaba de conseguir sus primeros puntos
+                    showTooltip(new ToolTip(".soccer-player-row[data-id='56260840c1f5fbc410f99549']", delay: new Duration(seconds: 1), tipText: getLocalizedText("msg-15"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
+                      new Timer.periodic(new Duration(seconds: 3), (Timer t) {
+                          if (liveStep + 1 < LiveMatchEventsList.length) {
+                            liveStep++;
+                            liveContest.updateLive();
+                          }
+                          else {
+                            completer.complete(true);
+                            t.cancel();
+                          }
+                      });
+                    }));
+
+                  }
+                });
+
+              return completer.future
+              .then((_) =>
+                openModal(
+                  text: () => getLocalizedText("msg-16") //Enhorabuena, has ganado tu primer torneo!
+                ))
+              .then((_) =>
+                openModal(
+                  text: () => getLocalizedText("msg-17") //Esta vez hemos hecho la alineación por ti
+                ))
+              .then((_) {
+                CurrentStepId = Tutorial.STEP_END;
+                TutorialService.Instance.skipTutorial(routePath: "join");
+              })
+              .catchError((e) {
+              });
               }
             },
             serverCalls: serverCallsWhenVirtualContestEntry

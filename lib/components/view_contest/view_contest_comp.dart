@@ -45,13 +45,13 @@ class ViewContestComp implements DetachAware {
   }
 
   ViewContestComp(this._routeProvider, this.scrDet, this._refreshTimersService,
-      this._contestsService, this._profileService, this._flashMessage, this.loadingService, TutorialService tutorialService) {
+      this._contestsService, this._profileService, this._flashMessage, this.loadingService, this._tutorialService) {
     loadingService.isLoading = true;
     lastOpponentSelected = getLocalizedText("opponent");
 
     contestId = _routeProvider.route.parameters['contestId'];
 
-    tutorialService.triggerEnter("view_contest", component: this);
+    _tutorialService.triggerEnter("view_contest", component: this);
 
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
 
@@ -122,6 +122,8 @@ class ViewContestComp implements DetachAware {
          }
         break;
       }
+
+      _tutorialService.triggerEnter("user_selected", component: this, activateIfNeeded: false);
     }
   }
 
@@ -150,5 +152,6 @@ class ViewContestComp implements DetachAware {
   ProfileService _profileService;
   RefreshTimersService _refreshTimersService;
   ContestsService _contestsService;
+  TutorialService _tutorialService;
 }
 

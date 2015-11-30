@@ -73,7 +73,7 @@ class ShopComp implements DetachAware{
         ]);
     });
 
-    _tutorialService.triggerEnter("shop", component: this);
+    _tutorialService.triggerEnter("shop", component: this, activateIfNeeded: false);
   }
 
   void buyGold(String id) {

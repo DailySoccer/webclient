@@ -257,7 +257,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
     if (!profileService.isLoggedIn) {
       return "";
     }
-    return "${profileService.user.ManagerPoints.toString()}/${profileService.user.pointsToNextLevel}";
+    return "<span class='current-manager'>${profileService.user.ManagerPoints.toString()}</span><span class='max-manager'>/${profileService.user.pointsToNextLevel}</span>";
   }
 
   String get _userManagerLevel {
@@ -367,7 +367,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
 
           <li class="coins additive" destination="shop">
             <img src="images/icon-coin-lg.png">      
-            <div class="count">${_userGold}<span class="plus">+</span></div>
+            <div class="count"><span class='amount'>${_userGold}</span><span class="plus">+</span></div>
           </li>
 
           <li id="desktopMenuUser" class="profile">

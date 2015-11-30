@@ -13102,18 +13102,17 @@ main-menu-f2p {
 #mainMenu #desktopMenu .stats-commons {
   text-align: center;
   display: inline-block;
-  width: 50px;
+  width: 65px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
   cursor: default;
-  /*@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-				margin: 0 5px;
-			}*/
+  border-left: 1px solid rgba(106, 133, 151, 0.5);
+  height: 50px;
+  position: relative;
 }
 #mainMenu #desktopMenu .stats-commons img {
-  margin-left: 10px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -13121,50 +13120,45 @@ main-menu-f2p {
 }
 #mainMenu #desktopMenu .stats-commons .count {
   margin-top: 5px;
-  font-size: 7pt;
-  border: 1px solid #6a8597;
-  border-right: none;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-  padding-top: 2px;
-  padding-bottom: 1px;
+  font-size: 9pt;
+  text-align: right;
+  width: 100%;
+  text-align: center;
+}
+#mainMenu #desktopMenu .stats-commons .count .amount {
+  width: 30px;
 }
 #mainMenu #desktopMenu .stats-commons .progress {
-  width: 70%;
   position: relative;
   display: inline-block;
-  height: 11px;
-  top: 2px;
-  left: -2px;
-  border-radius: 10px;
+  border-radius: 0px;
+  height: 9px;
   margin-bottom: 0;
   background-image: url("../images/progress-bar-back.png");
   background-color: transparent;
-  max-width: 30px;
+  width: 30px;
+  vertical-align: middle;
 }
 #mainMenu #desktopMenu .stats-commons .progress .progress-bar {
   background-image: url("../images/progress-bar-front.png");
   background-color: transparent;
 }
-#mainMenu #desktopMenu .additive {
-  text-align: left;
-  padding-left: 5px;
-  position: relative;
-}
 #mainMenu #desktopMenu .additive .plus {
-  border: 1px solid #6a8597;
+  border: 1px solid rgba(106, 133, 151, 0.5);
+  color: #6a8597;
   border-radius: 100%;
-  background-color: #0a2938;
-  position: absolute;
-  right: -10px;
-  height: 17px;
-  width: 17px;
-  bottom: 0px;
+  position: relative;
+  height: 18px;
+  width: 18px;
   font-size: 13pt;
-  line-height: 11pt;
+  line-height: 15px;
   cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
 }
 #mainMenu #desktopMenu .fixed-user-stats {
+  font-size: 0;
   display: inline-block;
   margin: 0;
   padding-top: 10px;
@@ -13194,20 +13188,24 @@ main-menu-f2p {
 #mainMenu #desktopMenu .fixed-user-stats .energy {
   text-align: center;
   display: inline-block;
-  width: 50px;
+  width: 65px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
   cursor: default;
-  /*@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-				margin: 0 5px;
-			}*/
+  border-left: 1px solid rgba(106, 133, 151, 0.5);
+  height: 50px;
+  position: relative;
   color: #a1c931;
-  cursor: pointer;
+  padding-left: 5px;
+  padding-right: 2px;
+  /*.count {
+					padding-top: 0;
+				}
+				cursor: pointer;*/
 }
 #mainMenu #desktopMenu .fixed-user-stats .energy img {
-  margin-left: 10px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -13215,53 +13213,48 @@ main-menu-f2p {
 }
 #mainMenu #desktopMenu .fixed-user-stats .energy .count {
   margin-top: 5px;
-  font-size: 7pt;
-  border: 1px solid #6a8597;
-  border-right: none;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-  padding-top: 2px;
-  padding-bottom: 1px;
+  font-size: 9pt;
+  text-align: right;
+  width: 100%;
+  text-align: center;
+}
+#mainMenu #desktopMenu .fixed-user-stats .energy .count .amount {
+  width: 30px;
 }
 #mainMenu #desktopMenu .fixed-user-stats .energy .progress {
-  width: 70%;
   position: relative;
   display: inline-block;
-  height: 11px;
-  top: 2px;
-  left: -2px;
-  border-radius: 10px;
+  border-radius: 0px;
+  height: 9px;
   margin-bottom: 0;
   background-image: url("../images/progress-bar-back.png");
   background-color: transparent;
-  max-width: 30px;
+  width: 30px;
+  vertical-align: middle;
 }
 #mainMenu #desktopMenu .fixed-user-stats .energy .progress .progress-bar {
   background-image: url("../images/progress-bar-front.png");
   background-color: transparent;
 }
-#mainMenu #desktopMenu .fixed-user-stats .energy .count {
-  padding-top: 0;
-}
 #mainMenu #desktopMenu .fixed-user-stats .manager-points {
   text-align: center;
   display: inline-block;
-  width: 50px;
+  width: 65px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
   cursor: default;
-  /*@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-				margin: 0 5px;
-			}*/
-  color: #afafaf;
+  border-left: 1px solid rgba(106, 133, 151, 0.5);
+  height: 50px;
   position: relative;
-  left: 3px;
-  width: 68px;
+  color: #afafaf;
+  /*position: relative;
+				.count {
+					position: relative;
+				}*/
 }
 #mainMenu #desktopMenu .fixed-user-stats .manager-points img {
-  margin-left: 10px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -13269,26 +13262,24 @@ main-menu-f2p {
 }
 #mainMenu #desktopMenu .fixed-user-stats .manager-points .count {
   margin-top: 5px;
-  font-size: 7pt;
-  border: 1px solid #6a8597;
-  border-right: none;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-  padding-top: 2px;
-  padding-bottom: 1px;
+  font-size: 9pt;
+  text-align: right;
+  width: 100%;
+  text-align: center;
+}
+#mainMenu #desktopMenu .fixed-user-stats .manager-points .count .amount {
+  width: 30px;
 }
 #mainMenu #desktopMenu .fixed-user-stats .manager-points .progress {
-  width: 70%;
   position: relative;
   display: inline-block;
-  height: 11px;
-  top: 2px;
-  left: -2px;
-  border-radius: 10px;
+  border-radius: 0px;
+  height: 9px;
   margin-bottom: 0;
   background-image: url("../images/progress-bar-back.png");
   background-color: transparent;
-  max-width: 30px;
+  width: 30px;
+  vertical-align: middle;
 }
 #mainMenu #desktopMenu .fixed-user-stats .manager-points .progress .progress-bar {
   background-image: url("../images/progress-bar-front.png");
@@ -13301,36 +13292,38 @@ main-menu-f2p {
   color: #000000;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
   background-color: #55c0ff;
+  border: 1px solid #0a2938;
   border-radius: 10px;
   width: 18px;
   height: 18px;
   position: absolute;
   top: 12px;
-  left: 22px;
+  left: 12px;
 }
 #mainMenu #desktopMenu .fixed-user-stats .manager-points .count {
-  border-right: 1px solid #6a8597;
-  border-radius: 10px;
-  position: relative;
-  left: 3px;
+  text-align: center;
+}
+#mainMenu #desktopMenu .fixed-user-stats .manager-points .current-manager {
+  color: #59add5;
+}
+#mainMenu #desktopMenu .fixed-user-stats .manager-points .max-manager {
+  color: #afd3e4;
 }
 #mainMenu #desktopMenu .fixed-user-stats .coins {
   text-align: center;
   display: inline-block;
-  width: 50px;
+  width: 65px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
   cursor: default;
-  /*@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-				margin: 0 5px;
-			}*/
+  border-left: 1px solid rgba(106, 133, 151, 0.5);
+  height: 50px;
+  position: relative;
   color: #fa9c19;
-  cursor: pointer;
 }
 #mainMenu #desktopMenu .fixed-user-stats .coins img {
-  margin-left: 10px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -13338,50 +13331,70 @@ main-menu-f2p {
 }
 #mainMenu #desktopMenu .fixed-user-stats .coins .count {
   margin-top: 5px;
-  font-size: 7pt;
-  border: 1px solid #6a8597;
-  border-right: none;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-  padding-top: 2px;
-  padding-bottom: 1px;
+  font-size: 9pt;
+  text-align: right;
+  width: 100%;
+  text-align: center;
+}
+#mainMenu #desktopMenu .fixed-user-stats .coins .count .amount {
+  width: 30px;
 }
 #mainMenu #desktopMenu .fixed-user-stats .coins .progress {
-  width: 70%;
   position: relative;
   display: inline-block;
-  height: 11px;
-  top: 2px;
-  left: -2px;
-  border-radius: 10px;
+  border-radius: 0px;
+  height: 9px;
   margin-bottom: 0;
   background-image: url("../images/progress-bar-back.png");
   background-color: transparent;
-  max-width: 30px;
+  width: 30px;
+  vertical-align: middle;
 }
 #mainMenu #desktopMenu .fixed-user-stats .coins .progress .progress-bar {
   background-image: url("../images/progress-bar-front.png");
   background-color: transparent;
 }
+#mainMenu #desktopMenu .fixed-user-stats .coins .count {
+  text-align: right;
+}
+#mainMenu #desktopMenu .fixed-user-stats .coins .plus {
+  margin: 0 5px;
+}
 #mainMenu #desktopMenu .fixed-user-stats .profile {
   text-align: center;
   display: inline-block;
-  width: 50px;
+  width: 65px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
   cursor: default;
-  /*@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-				margin: 0 5px;
-			}*/
-  cursor: pointer;
-  color: #ffffff;
-  float: right;
+  border-left: 1px solid rgba(106, 133, 151, 0.5);
+  height: 50px;
   position: relative;
+  color: #ffffff;
+  /*cursor: pointer;
+				color: @white;
+				float: right;
+				position: relative;
+				img {
+					margin-left: 0px;
+					cursor: pointer;
+				}
+				.count {
+					border: none;
+					cursor: pointer;
+				}
+				#desktopUserMenu {
+					position: absolute;
+					top: 57px;
+					left: -180px;
+					text-align: center;
+					padding: 0px;
+					width: 230px;					
+				}*/
 }
 #mainMenu #desktopMenu .fixed-user-stats .profile img {
-  margin-left: 10px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -13389,46 +13402,28 @@ main-menu-f2p {
 }
 #mainMenu #desktopMenu .fixed-user-stats .profile .count {
   margin-top: 5px;
-  font-size: 7pt;
-  border: 1px solid #6a8597;
-  border-right: none;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-  padding-top: 2px;
-  padding-bottom: 1px;
+  font-size: 9pt;
+  text-align: right;
+  width: 100%;
+  text-align: center;
+}
+#mainMenu #desktopMenu .fixed-user-stats .profile .count .amount {
+  width: 30px;
 }
 #mainMenu #desktopMenu .fixed-user-stats .profile .progress {
-  width: 70%;
   position: relative;
   display: inline-block;
-  height: 11px;
-  top: 2px;
-  left: -2px;
-  border-radius: 10px;
+  border-radius: 0px;
+  height: 9px;
   margin-bottom: 0;
   background-image: url("../images/progress-bar-back.png");
   background-color: transparent;
-  max-width: 30px;
+  width: 30px;
+  vertical-align: middle;
 }
 #mainMenu #desktopMenu .fixed-user-stats .profile .progress .progress-bar {
   background-image: url("../images/progress-bar-front.png");
   background-color: transparent;
-}
-#mainMenu #desktopMenu .fixed-user-stats .profile img {
-  margin-left: 0px;
-  cursor: pointer;
-}
-#mainMenu #desktopMenu .fixed-user-stats .profile .count {
-  border: none;
-  cursor: pointer;
-}
-#mainMenu #desktopMenu .fixed-user-stats .profile #desktopUserMenu {
-  position: absolute;
-  top: 57px;
-  left: -180px;
-  text-align: center;
-  padding: 0px;
-  width: 230px;
 }
 #mainMenu #menuNotLoggedIn {
   overflow: hidden;

@@ -319,119 +319,6 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
 
   </form>
 </div>"""));
-tc.put("packages/webclient/components/account/energy_shop_comp.html", new HttpResponse(200, r"""<modal id="energyshopComp">
-
-  <!--<div class="header"></div> -->
-
-  <div class="content">
-
-    <div class="content-banner">
-      <img ng-src="{{getShopBanner()}}">
-    </div>
-
-    <div class="products-wrapper">
-
-      <div ng-repeat="item in products"  ng-click="buyEnergy(item.id)">
-
-
-        <div ng-class="{'no-purchasable': !item.purchasable}" class="product" ng-if="item.price != null || timeLeft != ''">
-
-
-
-          <div class="slot-base">
-            <div class="shop-item-left"></div>
-            <div class="shop-item-middle"></div>
-            <div class="shop-item-right"></div>
-          </div>
-          <div class="shop-item-pattern"></div>
-
-          <div class="slot-content">
-
-            <div class="image-column">
-              <img class="item-icon" ng-src="{{item.captionImage}}">
-            </div>
-
-            <div class="quantity-column">
-              <span class="product-description">{{item.description}}</span>
-              <div ng-switch="item.purchasable">
-                <span ng-switch-when="true"  class="product-count">{{item.price}}</span>
-                <span ng-switch-when="false" class="product-time-left">{{timeLeft}}</span>
-              </div>
-            </div>
-
-       	  </div>
-
-
-
-        </div>
-
-
-
-      </div>
-
-    </div>
-
-    <div class="buttons-wrapper">
-     <div class="button-box"><button id="btnClose" class="cancel-button" ng-click="CloseModal()">{{getLocalizedText('buttonback')}}</button></div>
-    </div>
-
-  </div>
-
-</modal>"""));
-tc.put("packages/webclient/components/account/gold_shop_comp.html", new HttpResponse(200, r"""<modal id="goldShopComp">
-
-  <!--<div class="header"></div> -->
-
-  <div class="content">
-
-    <div class="content-banner">
-      <img ng-src="{{getShopBanner()}}">
-    </div>
-
-    <div class="products-wrapper">
-
-      <div ng-repeat="item in products" class="product" ng-click="buyItem(item.id)">
-        <div class="slot-base">
-          <div class="shop-item-left"></div>
-          <div class="shop-item-middle"></div>
-          <div class="shop-item-right"></div>
-        </div>
-        <div class="shop-item-pattern" ng-if="!item.isMostPopular"></div>
-
-        <div class="slot-content">
-
-          <div class="image-column">
-            <img class="item-icon" ng-src="{{item.captionImage}}">
-          </div>
-
-          <div class="quantity-column">
-            <span class="product-description">{{item.description}}</span>
-            <span class="product-count">{{item.quantity}}</span>
-          </div>
-
-          <div class="price-column">
-            <div class="free-increment" ng-if="item.freeIncrement > 0">
-              <span class="free-increment-count">{{item.freeIncrement}}</span>
-              <span class="free-increment-desc">{{getLocalizedText('free')}}</span>
-            </div>
-            <span class="product-price" ng-class="{'no-frees' : !(item.freeIncrement > 0)}">{{item.price}}</span>
-          </div>
-          <div class="clearfix"></div>
-          <img ng-src="{{getLocalizedText('mostpopularimagesource')}}" class="shop-item-popular" ng-if="item.isMostPopular">
-
-        </div>
-      </div>
-
-    </div>
-
-    <div class="buttons-wrapper">
-       <div class="button-box"><button id="btnClose" class="cancel-button" ng-click="CloseModal()">{{getLocalizedText('buttonback')}}</button></div>
-    </div>
-
-
-  </div>
-
-</modal>"""));
 tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(200, r"""<div id="joinRoot" ng-show="!loadingService.isLoading" ng-class="{'air':!isModal}">
   <div id="signupbox" class="main-box" ng-class="{'air':!isModal}">
 
@@ -621,6 +508,37 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
    }
  </script>
 """));
+tc.put("packages/webclient/components/account/notifications_comp.html", new HttpResponse(200, r"""<div id="notificationsComp">
+
+  <div class="default-section-header">{{getLocalizedText('name')}}</div>
+
+  <div class="notification-list-wrapper">
+
+    <!-- Notificaciones tipo logro -->
+    <div class="notification"  ng-repeat="notification in notificationList" ng-class="{'uncommon': notification.type == 'ACHIEVEMENT_EARNED'}">
+
+      <div class="main-info" ng-click="onAction(notification.id)">
+        <div class="wrapper">
+          <achievement ng-if="notification.type == 'ACHIEVEMENT_EARNED'" enabled="true" key="notification['info'].achievement"></achievement>
+          <span class="name">{{notification.name}}</span>
+          <span class="date">{{notification.date}}</span>
+        </div>
+      </div>
+
+      <div class="additional-info">
+        <div class="wrapper">
+          <div class="description">{{notification.description}}</div>
+          <div class="button-wrapper" ng-if="notification.link.name != ''"><button class="btn-primary" ng-click="goToLink(notification.link.url)">{{notification.link.name}}</button></div>
+        </div>
+      </div>
+
+      <span class="close-button" ng-click="closeNotification(notificationList[0].id)"><img src="images/alertCloseButton.png"></span>
+
+    </div>
+
+  </div>
+
+</div>"""));
 tc.put("packages/webclient/components/account/remember_password_comp.html", new HttpResponse(200, r"""<div id="rememberPasswordRoot" ng-show="!loadingService.isLoading">
   <div id="loginBox" class="main-box air">
 
@@ -694,26 +612,59 @@ tc.put("packages/webclient/components/account/remember_password_comp.html", new 
 </div>"""));
 tc.put("packages/webclient/components/account/shop_comp.html", new HttpResponse(200, r"""<div id="mainShopCompWrapper">
 
-  <div class="items-wrapper">  
-    <div ng-repeat="item in shops" class="shop-item" ng-click="openShop(item.name)">
-      <div class="slot-base">        
-        <div class="shop-item-left"></div>
-        <div class="shop-item-middle"></div>      
-        <div class="shop-item-right"></div>        
-      </div>
-      <div class="shop-item-pattern"></div>
-      <div class="slot-content">    
-        <img class="item-icon" ng-src="{{item.image}}">
-        <span class="shop-item-info" ng-bind-html="'<span>'+item.description+'</span>'"></span>
-      </div>   
+  <div class="default-section-header">{{getLocalizedText('name')}}</div>
+  
+  <div class="content">
+  
+    <div class="money-layout">        
+        <div class="money-tile-wrapper" ng-repeat="item in goldProducts">
+          <div class="tile">
+            <div class="header">
+              <span class="title">{{item.description}}</span>
+            </div>
+            <div class="content">
+              <img class="gold-icon" ng-src="{{item.captionImage}}">
+              <div class="content-info">
+                <span class="gold-quantity">{{item.quantity}}</span>
+                <div class="price-wrapper">
+                  <div class="free-increment" ng-if="item.freeIncrement > 0">
+                    <span class="free-increment-count">{{item.freeIncrement}}</span>
+                    <span class="free-increment-desc">{{getLocalizedText('free')}}</span>
+                  </div>
+                  <div class="button-wrapper">
+                    <button class="price" ng-click="buyGold(item.id)">{{item.price}}</button>
+                  </div>
+                </div>                
+              </div>
+              <img ng-src="{{getLocalizedText('mostpopularimagesource')}}" class="gold-item-popular" ng-if="item.isMostPopular">
+            </div>            
+          </div>
+        </div>
     </div>
-  
-    <!-- Punto de insercion de nuestra ruta hija contest-info (modal) -->
-    <ng-view ng-show="!loadingService.isLoading"></ng-view>
-  
+    
+    <div class="energy-layout">
+      <div class="energy-tiles-wrapper">
+        <div class="tile">
+          <div class="energy-items" ng-repeat="energyItem in energyProducts">
+            <div class="energy-separator" ng-if="(energyItem.price != null || timeLeft != '') && $index > 0"></div>
+            <div ng-class="{'no-purchasable': !energyItem.purchasable}" class="product" ng-if="energyItem.price != null || timeLeft != ''">
+              <img class="energy-icon" ng-src="{{energyItem.captionImage}}">
+              <div class="energy-description">{{energyItem.description}}</div>
+              <div ng-switch="energyItem.purchasable">
+                <div class="button-wrapper" ng-switch-when="true">
+                  <button class="refill-button" ng-click="buyEnergy(energyItem.id)">
+                    <span class="quantity">{{energyItem.price}}</span>
+                  </button>
+                </div>
+                <span ng-switch-when="false" class="product-time-left">{{timeLeft}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  
-</div>"""));
+</div> """));
 tc.put("packages/webclient/components/account/transaction_history_comp.html", new HttpResponse(200, r"""<div id="transactionHistoryRoot">
   <!-- header title -->
   <div class="default-section-header">{{getLocalizedText("title")}}</div>
@@ -792,19 +743,17 @@ tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpR
     </div>
   </div>
 </div>"""));
-tc.put("packages/webclient/components/achievements_comp.html", new HttpResponse(200, r"""<div id="achievements-wrapper">
-
-  <div ng-repeat="achiev in achievementList" class="achievement {{achiev.style}}" ng-class="{'earned': achievementEarned(achiev.id)}">
-    <div class="achievement-icon">
-      <img src="images/achievements/{{achiev.image}}" ng-if="achiev.image != ''">
-      <span class="achievement-level" ng-if="achiev.level != -1">{{achiev.level}}</span>
-    </div>
-    <div class="achievement-name">{{achiev.name}}</div>
-    <div class="achievement-description">{{achiev.description}}</div>
+tc.put("packages/webclient/components/achievement_comp.html", new HttpResponse(200, r"""<div class="achievement {{achiev.style}}" ng-class="{'earned': earned}">
+  <div class="achievement-icon">
+    <img src="images/achievements/{{achiev.image}}" ng-if="achiev.image != ''">
+    <span class="achievement-level" ng-if="achiev.level != -1">{{achiev.level}}</span>
   </div>
-
+  <div class="achievement-name">{{achiev.name}}</div>
+  <div class="achievement-description">{{achiev.description}}</div>
+</div>"""));
+tc.put("packages/webclient/components/achievement_list_comp.html", new HttpResponse(200, r"""<div id="achievement-list-wrapper">
+  <achievement ng-repeat="achiev in achievementList" enabled="achievementEarned(achiev.id)" key="achiev.id"></achievement>
   <div class="clearfix"></div>
-
 </div>"""));
 tc.put("packages/webclient/components/contest_header_f2p_comp.html", new HttpResponse(200, r"""
 <div class="contest-header-f2p-wrapper" ng-if="contest != null">
@@ -1239,13 +1188,17 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
                       <span class="total-salary-money" ng-class="{'red-numbers': availableSalary < 0 }" ng-show="contest != null">{{formatCurrency(printableAvailableSalary)}}</span>
                     </div>
                 </div>
-
+                
                 <lineup-selector ng-show="!isSelectingSoccerPlayer || scrDet.isNotXsScreen"
                                  not-enough-resources="!enoughResourcesForEntryFee"
                                  resource="resourceName"
                                  has-max-players-same-team="playersInSameTeamInvalid"
                                  has-negative-balance="isNegativeBalance"
-                                 manager-level="playerManagerLevel"></lineup-selector>
+                                 manager-level="playerManagerLevel"
+                                 lineup-slots="lineupSlots"
+                                 on-lineup-slot-selected="onLineupSlotSelected(slotIndex)"
+                                 formation-id="formationId"
+                                 lineup-formation="lineupFormation"></lineup-selector>
               </div>
             </div>
 
@@ -1303,7 +1256,23 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
 
 <ng-view></ng-view>"""));
 tc.put("packages/webclient/components/enter_contest/lineup_selector_comp.html", new HttpResponse(200, r"""<div class="lineup-selector">
-  <div class="lineup-selector-slot" ng-repeat="slot in enterContestComp.lineupSlots" ng-click="enterContestComp.onLineupSlotSelected($index)" ng-class="getSlotClassColor($index)">
+  <div class="lineup-formation-selector-wrapper collapsed" data-toggle="collapse" data-target="#formationsPanel">
+    <span class="current-formation">{{getPrintableFormation()}}</span>
+    <span class="formation-change-button">{{getLocalizedText('change')}}</span>
+  </div>
+  <div id="formationsPanelRoot" class="animate">
+    <div class="formation-panel-wrapper" >
+       
+      <div id="formationsPanel" class="formations-container collapse">
+        <span class="formation-element" id="formationElement{{key}}" ng-repeat="key in formationList">
+          <input id="formation{{key}}" name="formation{{key}}" type="radio" value="{{key}}" ng-value="key" ng-model="formationId">
+          <label for="formation{{key}}">{{formationToString(key)}}</label>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="lineup-selector-slot" ng-repeat="slot in lineupSlots" ng-click="onLineupSlotSelected({'slotIndex': $index})" ng-class="getSlotClassColor($index)">
 
     <div ng-if="slot == null">
       <div class="column-fieldpos"></div>
@@ -1474,7 +1443,7 @@ tc.put("packages/webclient/components/home_comp.html", new HttpResponse(200, r""
   -->
   
   <div id="contestTile" class="home-tile-wrapper enabled" ng-click="onContestsClick()">
-    <div id="createContestTile" class="home-tile-content">
+    <div class="home-tile-content">
       <div class="tile">
         <div ng-bind-html="contestTileHTML"></div>
         <span class="tile-action"></span>
@@ -1484,7 +1453,7 @@ tc.put("packages/webclient/components/home_comp.html", new HttpResponse(200, r""
   
   <div id="manageTile" class="vertical-layout-tilling">
     <div id="createContestTile" class="home-tile-wrapper" ng-click="onCreateContestClick()" ng-class="{'disabled': !isCreateContestTileEnabled}">
-      <div id="createContestTile" class="home-tile-content">
+      <div class="home-tile-content">
         <div class="tile">
           <span class="tile-title">{{getLocalizedText('create_contest_title')}}</span>
           <span class="tile-info">{{CreateContestTileText}}</span>
@@ -1493,7 +1462,7 @@ tc.put("packages/webclient/components/home_comp.html", new HttpResponse(200, r""
       </div>
     </div>
     <div id="scoutingTile" class="home-tile-wrapper" ng-click="onScoutingClick()" ng-class="{'disabled': !isScoutingTileEnabled}">
-      <div id="createContestTile" class="home-tile-content">
+      <div class="home-tile-content">
         <div class="tile">
           <span class="tile-title">{{getLocalizedText('scouting_title')}}</span>
           <span class="tile-info ">{{getLocalizedText('scouting_info')}}</span>
@@ -1505,7 +1474,7 @@ tc.put("packages/webclient/components/home_comp.html", new HttpResponse(200, r""
   
   <div id="myContestsTile" class="vertical-layout-tilling">
     <div id="upcomingTile" class="home-tile-wrapper" ng-click="onUpcomingClick()" ng-class="{'disabled': !isUpcomingTileEnabled}">
-      <div id="createContestTile" class="home-tile-content">
+      <div class="home-tile-content">
         <div class="tile">
           <span class="tile-title">{{getLocalizedText('upcoming_title')}}</span>
           <div class="tile-info">
@@ -1517,7 +1486,7 @@ tc.put("packages/webclient/components/home_comp.html", new HttpResponse(200, r""
       </div>
     </div>
     <div id="liveTile" class="home-tile-wrapper" ng-click="onLiveClick()" ng-class="{'disabled': !isLiveTileEnabled}">
-      <div id="createContestTile" class="home-tile-content">
+      <div class="home-tile-content">
         <div class="tile">
           <span class="tile-title">{{getLocalizedText('live_title')}}</span>
           <div class="tile-info">
@@ -1529,7 +1498,7 @@ tc.put("packages/webclient/components/home_comp.html", new HttpResponse(200, r""
       </div>
     </div>
     <div id="historyTile" class="home-tile-wrapper" ng-click="onHistoryClick()" ng-class="{'disabled': !isHistoryTileEnabled}">
-      <div id="createContestTile" class="home-tile-content">
+      <div class="home-tile-content">
         <div class="tile">
           <span class="tile-title">{{getLocalizedText('history_title')}}</span>
           <div class="tile-info">
@@ -1543,12 +1512,25 @@ tc.put("packages/webclient/components/home_comp.html", new HttpResponse(200, r""
     </div>
   </div>
   
-  <div id="blogTile" class="home-tile-wrapper enabled" ng-click="onBlogClick()" ng-class="{'disabled': !isBlogTileEnabled}">
-    <div id="createContestTile" class="home-tile-content">
-      <div class="tile">
-        <span class="tile-title">{{getLocalizedText('blog_title')}}</span>
-        <span class="tile-info">{{getLocalizedText('blog_info')}}</span>
-        <span class="tile-action"></span>
+  
+  <div id="helpTile" class="vertical-layout-tilling">
+    <div id="blogTile" class="home-tile-wrapper enabled" ng-click="onBlogClick()" ng-class="{'disabled': !isBlogTileEnabled}">
+      <div class="home-tile-content">
+        <div class="tile">
+          <span class="tile-title">{{getLocalizedText('blog_title')}}</span>
+          <span class="tile-info">{{getLocalizedText('blog_info')}}</span>
+          <span class="tile-blog-author">{{getLocalizedText('blog_author')}}</span>
+          <span class="tile-action"></span>
+        </div>
+      </div>
+    </div>
+    <div id="howitworksTile" class="home-tile-wrapper" ng-click="onHowItWorksClick()" ng-class="{'disabled': !isHowItWorksEnabled}">
+      <div class="home-tile-content">
+        <div class="tile">
+          <span class="tile-title">{{getLocalizedText('help_title')}}</span>
+          <span class="tile-info">{{getLocalizedText('help_info')}}</span>
+          <span class="tile-action"></span>
+        </div>
       </div>
     </div>
   </div>
@@ -1607,7 +1589,7 @@ tc.put("packages/webclient/components/leaderboard_comp.html", new HttpResponse(2
 
       <div class="tab-pane" id="achivements-content">
 
-        <achievements ng-show="!loadingService.isLoading"></achievements>
+        <achievement-list ng-show="!loadingService.isLoading"></achievement-list>
 
       </div>
     </div>

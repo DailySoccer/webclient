@@ -8056,7 +8056,6 @@ scoring-rules:after,
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
-  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
   outline: none !important;
   cursor: pointer;
@@ -8152,8 +8151,6 @@ fieldset[disabled] .contests-list-f2p-root .contestSlot .action-section .action-
 .contests-list-f2p-root .contestSlot .action-section .action-button:active,
 .contests-list-f2p-root .contestSlot .action-section .action-button.active {
   background-color: #a1c931;
-  margin-top: 4px;
-  box-shadow: none;
 }
 .contests-list-f2p-root .contestSlot .action-section .action-button:hover {
   background-color: #acd142;
@@ -8164,8 +8161,6 @@ fieldset[disabled] .contests-list-f2p-root .contestSlot .action-section .action-
 .contests-list-f2p-root .contestSlot .action-section .action-button[disabled],
 fieldset[disabled] .contests-list-f2p-root .contestSlot .action-section .action-button {
   background-color: #b5d657;
-  box-shadow: none;
-  margin-top: 4px;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
@@ -8681,7 +8676,6 @@ button#personalDataContent .header button.close {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
-  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
   outline: none !important;
   position: relative;
@@ -8780,8 +8774,6 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
 #personalDataContent .save-changes-content .forms-wrapper-button .action-button-save:active,
 #personalDataContent .save-changes-content .forms-wrapper-button .action-button-save.active {
   background-color: #a1c931;
-  margin-top: 4px;
-  box-shadow: none;
 }
 #personalDataContent .save-changes-content .forms-wrapper-button .action-button-save:hover {
   background-color: #acd142;
@@ -8792,8 +8784,6 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
 #personalDataContent .save-changes-content .forms-wrapper-button .action-button-save[disabled],
 fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-button .action-button-save {
   background-color: #b5d657;
-  box-shadow: none;
-  margin-top: 4px;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
@@ -8846,7 +8836,6 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #afafaf;
-  box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
   color: #ffffff;
   outline: none !important;
   position: relative;
@@ -8909,8 +8898,6 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
 #personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel:active,
 #personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel.active {
   background-color: #afafaf;
-  margin-top: 4px;
-  box-shadow: none;
 }
 #personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel:hover {
   background-color: #bcbcbc;
@@ -8921,8 +8908,6 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
 #personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel[disabled],
 fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel {
   background-color: #c9c9c9;
-  box-shadow: none;
-  margin-top: 4px;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
@@ -9171,7 +9156,6 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
-  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
   outline: none !important;
   text-transform: uppercase;
@@ -9268,8 +9252,6 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
 #addFundsContent .add-founds-box button.add-funds-button:active,
 #addFundsContent .add-founds-box button.add-funds-button.active {
   background-color: #a1c931;
-  margin-top: 4px;
-  box-shadow: none;
 }
 #addFundsContent .add-founds-box button.add-funds-button:hover {
   background-color: #acd142;
@@ -9280,8 +9262,6 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
 #addFundsContent .add-founds-box button.add-funds-button[disabled],
 fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   background-color: #b5d657;
-  box-shadow: none;
-  margin-top: 4px;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
@@ -10124,7 +10104,6 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
-  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
   outline: none !important;
   width: 100%;
@@ -10220,8 +10199,6 @@ fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .cont
 #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:active,
 #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.active {
   background-color: #a1c931;
-  margin-top: 4px;
-  box-shadow: none;
 }
 #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:hover {
   background-color: #acd142;
@@ -10232,8 +10209,6 @@ fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .cont
 #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price[disabled],
 fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price {
   background-color: #b5d657;
-  box-shadow: none;
-  margin-top: 4px;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
@@ -10367,7 +10342,6 @@ fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .cont
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
-  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
   outline: none !important;
   margin-right: auto;
@@ -10465,8 +10439,6 @@ fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .bu
 #mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:active,
 #mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button.active {
   background-color: #a1c931;
-  margin-top: 4px;
-  box-shadow: none;
 }
 #mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button:hover {
   background-color: #acd142;
@@ -10477,8 +10449,6 @@ fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .bu
 #mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button[disabled],
 fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .button-wrapper .refill-button {
   background-color: #b5d657;
-  box-shadow: none;
-  margin-top: 4px;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
@@ -10836,7 +10806,6 @@ fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .bu
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #afafaf;
-  box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
   color: #ffffff;
   outline: none !important;
   margin: 0 5px 0 5px;
@@ -10921,8 +10890,6 @@ fieldset[disabled] #trainerPointsShopComp .buttons-wrapper .cancel-button {
 #goldShopComp .buttons-wrapper .cancel-button.active,
 #trainerPointsShopComp .buttons-wrapper .cancel-button.active {
   background-color: #afafaf;
-  margin-top: 4px;
-  box-shadow: none;
 }
 #goldShopComp .buttons-wrapper .cancel-button:hover,
 #trainerPointsShopComp .buttons-wrapper .cancel-button:hover {
@@ -10937,8 +10904,6 @@ fieldset[disabled] #trainerPointsShopComp .buttons-wrapper .cancel-button {
 fieldset[disabled] #goldShopComp .buttons-wrapper .cancel-button,
 fieldset[disabled] #trainerPointsShopComp .buttons-wrapper .cancel-button {
   background-color: #c9c9c9;
-  box-shadow: none;
-  margin-top: 4px;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
@@ -11235,7 +11200,6 @@ fieldset[disabled] #trainerPointsShopComp .buttons-wrapper .cancel-button {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #afafaf;
-  box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
   color: #ffffff;
   outline: none !important;
   margin: 0 5px 0 5px;
@@ -11301,8 +11265,6 @@ fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
 #energyshopComp .buttons-wrapper .cancel-button:active,
 #energyshopComp .buttons-wrapper .cancel-button.active {
   background-color: #afafaf;
-  margin-top: 4px;
-  box-shadow: none;
 }
 #energyshopComp .buttons-wrapper .cancel-button:hover {
   background-color: #bcbcbc;
@@ -11313,8 +11275,6 @@ fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
 #energyshopComp .buttons-wrapper .cancel-button[disabled],
 fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
   background-color: #c9c9c9;
-  box-shadow: none;
-  margin-top: 4px;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
@@ -11529,7 +11489,6 @@ fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #59add5;
-  box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
   color: #ffffff;
   outline: none !important;
   line-height: 25px;
@@ -11625,8 +11584,6 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
 .fantasy-team-header .edit-team .btn-edit-team:active,
 .fantasy-team-header .edit-team .btn-edit-team.active {
   background-color: #59add5;
-  margin-top: 4px;
-  box-shadow: none;
 }
 .fantasy-team-header .edit-team .btn-edit-team:hover {
   background-color: #6db7da;
@@ -11637,8 +11594,6 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
 .fantasy-team-header .edit-team .btn-edit-team[disabled],
 fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   background-color: #82c1df;
-  box-shadow: none;
-  margin-top: 4px;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
@@ -13294,10 +13249,10 @@ main-menu-f2p {
   background-color: #55c0ff;
   border: 1px solid #0a2938;
   border-radius: 10px;
-  width: 18px;
-  height: 18px;
+  width: 19px;
+  height: 19px;
   position: absolute;
-  top: 12px;
+  top: 10px;
   left: 12px;
 }
 #mainMenu #desktopMenu .fixed-user-stats .manager-points .count {
@@ -13517,7 +13472,6 @@ main-menu-f2p {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #59add5;
-  box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
   color: #ffffff;
   outline: none !important;
 }
@@ -13615,8 +13569,6 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
 #mainMenu #menuNotLoggedIn .button-wrapper .button-join:active,
 #mainMenu #menuNotLoggedIn .button-wrapper .button-join.active {
   background-color: #59add5;
-  margin-top: 4px;
-  box-shadow: none;
 }
 #mainMenu #menuNotLoggedIn .button-wrapper .button-join:hover {
   background-color: #6db7da;
@@ -13627,8 +13579,6 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
 #mainMenu #menuNotLoggedIn .button-wrapper .button-join[disabled],
 fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
   background-color: #82c1df;
-  box-shadow: none;
-  margin-top: 4px;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
@@ -14090,7 +14040,6 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
-  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
   outline: none !important;
   margin: 0 auto;
@@ -14188,8 +14137,6 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
 .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contest:active,
 .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contest.active {
   background-color: #a1c931;
-  margin-top: 4px;
-  box-shadow: none;
 }
 .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contest:hover {
   background-color: #acd142;
@@ -14200,8 +14147,6 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
 .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contest[disabled],
 fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contest {
   background-color: #b5d657;
-  box-shadow: none;
-  margin-top: 4px;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
@@ -14581,7 +14526,6 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #afafaf;
-  box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
   color: #ffffff;
   outline: none !important;
   position: relative;
@@ -14646,8 +14590,6 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .actions-
 #modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-cancel:active,
 #modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-cancel.active {
   background-color: #afafaf;
-  margin-top: 4px;
-  box-shadow: none;
 }
 #modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-cancel:hover {
   background-color: #bcbcbc;
@@ -14658,8 +14600,6 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .actions-
 #modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-cancel[disabled],
 fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-cancel {
   background-color: #c9c9c9;
-  box-shadow: none;
-  margin-top: 4px;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
@@ -14699,7 +14639,6 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .actions-
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
-  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
   outline: none !important;
   position: relative;
@@ -14801,8 +14740,6 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .actions-
 #modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add:active,
 #modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add.active {
   background-color: #a1c931;
-  margin-top: 4px;
-  box-shadow: none;
 }
 #modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add:hover {
   background-color: #acd142;
@@ -14813,8 +14750,6 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .actions-
 #modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add[disabled],
 fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add {
   background-color: #b5d657;
-  box-shadow: none;
-  margin-top: 4px;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
@@ -15025,7 +14960,6 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .actions-
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
-  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
   outline: none !important;
   position: relative;
@@ -15126,8 +15060,6 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .next-mat
 #modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add:active,
 #modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add.active {
   background-color: #a1c931;
-  margin-top: 4px;
-  box-shadow: none;
 }
 #modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add:hover {
   background-color: #acd142;
@@ -15138,8 +15070,6 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .next-mat
 #modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add[disabled],
 fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add {
   background-color: #b5d657;
-  box-shadow: none;
-  margin-top: 4px;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
@@ -15663,7 +15593,6 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .next-mat
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #afafaf;
-  box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
   color: #ffffff;
   outline: none !important;
   position: relative;
@@ -15728,8 +15657,6 @@ fieldset[disabled] #modalSoccerPlayerStats .actions-footer-xs .button-cancel {
 #modalSoccerPlayerStats .actions-footer-xs .button-cancel:active,
 #modalSoccerPlayerStats .actions-footer-xs .button-cancel.active {
   background-color: #afafaf;
-  margin-top: 4px;
-  box-shadow: none;
 }
 #modalSoccerPlayerStats .actions-footer-xs .button-cancel:hover {
   background-color: #bcbcbc;
@@ -15740,8 +15667,6 @@ fieldset[disabled] #modalSoccerPlayerStats .actions-footer-xs .button-cancel {
 #modalSoccerPlayerStats .actions-footer-xs .button-cancel[disabled],
 fieldset[disabled] #modalSoccerPlayerStats .actions-footer-xs .button-cancel {
   background-color: #c9c9c9;
-  box-shadow: none;
-  margin-top: 4px;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
@@ -15781,7 +15706,6 @@ fieldset[disabled] #modalSoccerPlayerStats .actions-footer-xs .button-cancel {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
-  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
   outline: none !important;
   position: relative;
@@ -15883,8 +15807,6 @@ fieldset[disabled] #modalSoccerPlayerStats .actions-footer-xs .button-add {
 #modalSoccerPlayerStats .actions-footer-xs .button-add:active,
 #modalSoccerPlayerStats .actions-footer-xs .button-add.active {
   background-color: #a1c931;
-  margin-top: 4px;
-  box-shadow: none;
 }
 #modalSoccerPlayerStats .actions-footer-xs .button-add:hover {
   background-color: #acd142;
@@ -15895,8 +15817,6 @@ fieldset[disabled] #modalSoccerPlayerStats .actions-footer-xs .button-add {
 #modalSoccerPlayerStats .actions-footer-xs .button-add[disabled],
 fieldset[disabled] #modalSoccerPlayerStats .actions-footer-xs .button-add {
   background-color: #b5d657;
-  box-shadow: none;
-  margin-top: 4px;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
@@ -16092,7 +16012,6 @@ fieldset[disabled] #modalSoccerPlayerStats .actions-footer-xs .button-add {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #afafaf;
-  box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
   color: #ffffff;
   outline: none !important;
   position: relative;
@@ -16157,8 +16076,6 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-cancel-player-selection {
 .enter-contest-actions-wrapper .btn-cancel-player-selection:active,
 .enter-contest-actions-wrapper .btn-cancel-player-selection.active {
   background-color: #afafaf;
-  margin-top: 4px;
-  box-shadow: none;
 }
 .enter-contest-actions-wrapper .btn-cancel-player-selection:hover {
   background-color: #bcbcbc;
@@ -16169,8 +16086,6 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-cancel-player-selection {
 .enter-contest-actions-wrapper .btn-cancel-player-selection[disabled],
 fieldset[disabled] .enter-contest-actions-wrapper .btn-cancel-player-selection {
   background-color: #c9c9c9;
-  box-shadow: none;
-  margin-top: 4px;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
@@ -16236,7 +16151,6 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-cancel-player-selection {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #afafaf;
-  box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
   color: #ffffff;
   outline: none !important;
 }
@@ -16295,8 +16209,6 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-clean-lineup-list {
 .enter-contest-actions-wrapper .btn-clean-lineup-list:active,
 .enter-contest-actions-wrapper .btn-clean-lineup-list.active {
   background-color: #afafaf;
-  margin-top: 4px;
-  box-shadow: none;
 }
 .enter-contest-actions-wrapper .btn-clean-lineup-list:hover {
   background-color: #bcbcbc;
@@ -16307,8 +16219,6 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-clean-lineup-list {
 .enter-contest-actions-wrapper .btn-clean-lineup-list[disabled],
 fieldset[disabled] .enter-contest-actions-wrapper .btn-clean-lineup-list {
   background-color: #c9c9c9;
-  box-shadow: none;
-  margin-top: 4px;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
@@ -16352,7 +16262,6 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-clean-lineup-list {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
-  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
   outline: none !important;
 }
@@ -16447,8 +16356,6 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
 .enter-contest-actions-wrapper .btn-confirm-lineup-list:active,
 .enter-contest-actions-wrapper .btn-confirm-lineup-list.active {
   background-color: #a1c931;
-  margin-top: 4px;
-  box-shadow: none;
 }
 .enter-contest-actions-wrapper .btn-confirm-lineup-list:hover {
   background-color: #acd142;
@@ -16459,8 +16366,6 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
 .enter-contest-actions-wrapper .btn-confirm-lineup-list[disabled],
 fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   background-color: #b5d657;
-  box-shadow: none;
-  margin-top: 4px;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
@@ -16472,17 +16377,19 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
 .enter-contest-actions-wrapper .btn-confirm-lineup-list .confirm-cost.coins:after {
   content: " ";
   background-image: url("../images/icon-coin-xs.png");
-  width: 12pt;
-  height: 12pt;
+  width: 17px;
+  height: 17px;
   display: inline-block;
+  margin-left: 3px;
   vertical-align: middle;
 }
 .enter-contest-actions-wrapper .btn-confirm-lineup-list .confirm-cost.energy:after {
   content: " ";
   background-image: url("../images/icon-lightningWhite-xs.png");
-  width: 12pt;
-  height: 12pt;
+  width: 17px;
+  height: 17px;
   display: inline-block;
+  margin-left: 3px;
   vertical-align: middle;
 }
 .enter-contest-actions-wrapper p {
@@ -17053,7 +16960,6 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
-  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
   outline: none !important;
   padding: 5px;
@@ -17150,8 +17056,6 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
 .soccer-players-list .soccer-players-list-slot .column-action .action-button.add:active,
 .soccer-players-list .soccer-players-list-slot .column-action .action-button.add.active {
   background-color: #a1c931;
-  margin-top: 4px;
-  box-shadow: none;
 }
 .soccer-players-list .soccer-players-list-slot .column-action .action-button.add:hover {
   background-color: #acd142;
@@ -17162,8 +17066,6 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
 .soccer-players-list .soccer-players-list-slot .column-action .action-button.add[disabled],
 fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action .action-button.add {
   background-color: #b5d657;
-  box-shadow: none;
-  margin-top: 4px;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
@@ -17201,7 +17103,6 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
   transition: All 0.08s ease-out;
   font-size: 10pt;
   background-color: #59add5;
-  box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
   outline: none !important;
   padding: 5px;
   line-height: 18px;
@@ -17302,8 +17203,6 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
 .soccer-players-list .soccer-players-list-slot .column-action .action-button.remove:active,
 .soccer-players-list .soccer-players-list-slot .column-action .action-button.remove.active {
   background-color: #59add5;
-  margin-top: 4px;
-  box-shadow: none;
 }
 .soccer-players-list .soccer-players-list-slot .column-action .action-button.remove:hover {
   background-color: #6db7da;
@@ -17314,8 +17213,6 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
 .soccer-players-list .soccer-players-list-slot .column-action .action-button.remove[disabled],
 fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action .action-button.remove {
   background-color: #82c1df;
-  box-shadow: none;
-  margin-top: 4px;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
@@ -17339,10 +17236,11 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
 .soccer-players-list .soccer-players-list-slot .column-action .action-button .coins-to-buy:after {
   content: " ";
   background-image: url("../images/icon-coin-xs.png");
-  width: 12pt;
-  height: 12pt;
+  width: 17px;
+  height: 17px;
   display: inline-block;
   vertical-align: middle;
+  margin-left: 3px;
   vertical-align: top;
 }
 @media (max-width: 480px) {
@@ -17430,7 +17328,6 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #59add5;
-  box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
   color: #ffffff;
   outline: none !important;
   -webkit-transition: none;
@@ -17530,8 +17427,6 @@ fieldset[disabled] .soccer-players-filter .filter-by-position .button-filter-pos
 .soccer-players-filter .filter-by-position .button-filter-position:active,
 .soccer-players-filter .filter-by-position .button-filter-position.active {
   background-color: #59add5;
-  margin-top: 4px;
-  box-shadow: none;
 }
 .soccer-players-filter .filter-by-position .button-filter-position:hover {
   background-color: #6db7da;
@@ -17542,8 +17437,6 @@ fieldset[disabled] .soccer-players-filter .filter-by-position .button-filter-pos
 .soccer-players-filter .filter-by-position .button-filter-position[disabled],
 fieldset[disabled] .soccer-players-filter .filter-by-position .button-filter-position {
   background-color: #82c1df;
-  box-shadow: none;
-  margin-top: 4px;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
@@ -18901,7 +18794,6 @@ button.panel .panel-heading button.close {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
-  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
   outline: none !important;
 }
@@ -18996,8 +18888,6 @@ fieldset[disabled] .panel .panel-body .new-row .enter-button {
 .panel .panel-body .new-row .enter-button:active,
 .panel .panel-body .new-row .enter-button.active {
   background-color: #a1c931;
-  margin-top: 4px;
-  box-shadow: none;
 }
 .panel .panel-body .new-row .enter-button:hover {
   background-color: #acd142;
@@ -19008,8 +18898,6 @@ fieldset[disabled] .panel .panel-body .new-row .enter-button {
 .panel .panel-body .new-row .enter-button[disabled],
 fieldset[disabled] .panel .panel-body .new-row .enter-button {
   background-color: #b5d657;
-  box-shadow: none;
-  margin-top: 4px;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
@@ -19049,7 +18937,6 @@ fieldset[disabled] .panel .panel-body .new-row .enter-button {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
-  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
   outline: none !important;
   position: relative;
@@ -19151,8 +19038,6 @@ fieldset[disabled] .panel .panel-body .new-row .enter-button-half {
 .panel .panel-body .new-row .enter-button-half:active,
 .panel .panel-body .new-row .enter-button-half.active {
   background-color: #a1c931;
-  margin-top: 4px;
-  box-shadow: none;
 }
 .panel .panel-body .new-row .enter-button-half:hover {
   background-color: #acd142;
@@ -19163,8 +19048,6 @@ fieldset[disabled] .panel .panel-body .new-row .enter-button-half {
 .panel .panel-body .new-row .enter-button-half[disabled],
 fieldset[disabled] .panel .panel-body .new-row .enter-button-half {
   background-color: #b5d657;
-  box-shadow: none;
-  margin-top: 4px;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
@@ -19202,7 +19085,6 @@ fieldset[disabled] .panel .panel-body .new-row .enter-button-half {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #afafaf;
-  box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
   color: #ffffff;
   outline: none !important;
   position: relative;
@@ -19268,8 +19150,6 @@ fieldset[disabled] .panel .panel-body .new-row .cancel-button-half {
 .panel .panel-body .new-row .cancel-button-half:active,
 .panel .panel-body .new-row .cancel-button-half.active {
   background-color: #afafaf;
-  margin-top: 4px;
-  box-shadow: none;
 }
 .panel .panel-body .new-row .cancel-button-half:hover {
   background-color: #bcbcbc;
@@ -19280,8 +19160,6 @@ fieldset[disabled] .panel .panel-body .new-row .cancel-button-half {
 .panel .panel-body .new-row .cancel-button-half[disabled],
 fieldset[disabled] .panel .panel-body .new-row .cancel-button-half {
   background-color: #c9c9c9;
-  box-shadow: none;
-  margin-top: 4px;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
@@ -19401,7 +19279,6 @@ fieldset[disabled] .panel .panel-body .new-row .cancel-button-half {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
-  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
   outline: none !important;
   margin: 0 5px 0 5px;
@@ -19503,8 +19380,6 @@ fieldset[disabled] .autocentered-buttons-wrapper .ok-button {
 .autocentered-buttons-wrapper .ok-button:active,
 .autocentered-buttons-wrapper .ok-button.active {
   background-color: #a1c931;
-  margin-top: 4px;
-  box-shadow: none;
 }
 .autocentered-buttons-wrapper .ok-button:hover {
   background-color: #acd142;
@@ -19515,8 +19390,6 @@ fieldset[disabled] .autocentered-buttons-wrapper .ok-button {
 .autocentered-buttons-wrapper .ok-button[disabled],
 fieldset[disabled] .autocentered-buttons-wrapper .ok-button {
   background-color: #b5d657;
-  box-shadow: none;
-  margin-top: 4px;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
@@ -19554,7 +19427,6 @@ fieldset[disabled] .autocentered-buttons-wrapper .ok-button {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #afafaf;
-  box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
   color: #ffffff;
   outline: none !important;
   margin: 0 5px 0 5px;
@@ -19620,8 +19492,6 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
 .autocentered-buttons-wrapper .cancel-button:active,
 .autocentered-buttons-wrapper .cancel-button.active {
   background-color: #afafaf;
-  margin-top: 4px;
-  box-shadow: none;
 }
 .autocentered-buttons-wrapper .cancel-button:hover {
   background-color: #bcbcbc;
@@ -19632,8 +19502,6 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
 .autocentered-buttons-wrapper .cancel-button[disabled],
 fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   background-color: #c9c9c9;
-  box-shadow: none;
-  margin-top: 4px;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
@@ -20407,7 +20275,6 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   background-color: #59add5;
-  box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
   outline: none !important;
   font-family: 'Exo', sans-serif;
   font-weight: 600;
@@ -20511,8 +20378,6 @@ fieldset[disabled] .profile-content .profile-section .data-action .action-button
 .profile-content .profile-section .data-action .action-button:active,
 .profile-content .profile-section .data-action .action-button.active {
   background-color: #59add5;
-  margin-top: 4px;
-  box-shadow: none;
 }
 .profile-content .profile-section .data-action .action-button:hover {
   background-color: #6db7da;
@@ -20523,8 +20388,6 @@ fieldset[disabled] .profile-content .profile-section .data-action .action-button
 .profile-content .profile-section .data-action .action-button[disabled],
 fieldset[disabled] .profile-content .profile-section .data-action .action-button {
   background-color: #82c1df;
-  box-shadow: none;
-  margin-top: 4px;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
@@ -20646,7 +20509,6 @@ fieldset[disabled] .profile-content .profile-section .data-action .action-button
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   background-color: #a1c931;
-  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   outline: none !important;
   font-family: 'Exo', sans-serif;
   font-weight: 600;
@@ -20747,8 +20609,6 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
 .profile-content .profile-section.pocket-data .data-action .action-button:active,
 .profile-content .profile-section.pocket-data .data-action .action-button.active {
   background-color: #a1c931;
-  margin-top: 4px;
-  box-shadow: none;
 }
 .profile-content .profile-section.pocket-data .data-action .action-button:hover {
   background-color: #acd142;
@@ -20759,8 +20619,6 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
 .profile-content .profile-section.pocket-data .data-action .action-button[disabled],
 fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .action-button {
   background-color: #b5d657;
-  box-shadow: none;
-  margin-top: 4px;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
@@ -21678,7 +21536,7 @@ users-list#usersList > .epic-tooltip {
   background-image: url("../images/ht_ModuloOjeadorBG.jpg");
 }
 #homeRoot #upcomingTile .tile {
-  background-image: url("../images/ht_ModuloHistoricoBG.jpg");
+  background-image: url("../images/ht_ModuloProximosBG.jpg");
 }
 #homeRoot #liveTile .tile {
   background-image: url("../images/ht_ModuloEnVivoBG.jpg");
@@ -22297,7 +22155,6 @@ users-list#usersList > .epic-tooltip {
   transition: All 0.08s ease-out;
   font-size: 10pt;
   background-color: #a1c931;
-  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   outline: none !important;
   display: block;
   width: 100%;
@@ -22403,8 +22260,6 @@ fieldset[disabled] #createContest .create-contest-section-wrapper .create-contes
 #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:active,
 #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest.active {
   background-color: #a1c931;
-  margin-top: 4px;
-  box-shadow: none;
 }
 #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:hover {
   background-color: #acd142;
@@ -22415,8 +22270,6 @@ fieldset[disabled] #createContest .create-contest-section-wrapper .create-contes
 #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest[disabled],
 fieldset[disabled] #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest {
   background-color: #b5d657;
-  box-shadow: none;
-  margin-top: 4px;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
@@ -22619,7 +22472,6 @@ fieldset[disabled] #createContest .create-contest-section-wrapper .create-contes
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
-  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
   outline: none !important;
   margin-top: 5px;
@@ -22716,8 +22568,6 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
 #helpInfo .block-last .description-right .button-play:active,
 #helpInfo .block-last .description-right .button-play.active {
   background-color: #a1c931;
-  margin-top: 4px;
-  box-shadow: none;
 }
 #helpInfo .block-last .description-right .button-play:hover {
   background-color: #acd142;
@@ -22728,8 +22578,6 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
 #helpInfo .block-last .description-right .button-play[disabled],
 fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   background-color: #b5d657;
-  box-shadow: none;
-  margin-top: 4px;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
@@ -23768,7 +23616,6 @@ body {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #59add5;
-  box-shadow: 0px 5px 0px rgba(89, 173, 213, 0.5);
   color: #ffffff;
   outline: none !important;
 }
@@ -23827,8 +23674,6 @@ fieldset[disabled] .btn-default {
 .btn-default:active,
 .btn-default.active {
   background-color: #59add5;
-  margin-top: 4px;
-  box-shadow: none;
 }
 .btn-default:hover {
   background-color: #6db7da;
@@ -23839,8 +23684,6 @@ fieldset[disabled] .btn-default {
 .btn-default[disabled],
 fieldset[disabled] .btn-default {
   background-color: #82c1df;
-  box-shadow: none;
-  margin-top: 4px;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
@@ -23878,7 +23721,6 @@ fieldset[disabled] .btn-default {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
-  box-shadow: 0px 5px 0px rgba(161, 201, 49, 0.5);
   color: #ffffff;
   outline: none !important;
 }
@@ -23937,8 +23779,6 @@ fieldset[disabled] .btn-primary {
 .btn-primary:active,
 .btn-primary.active {
   background-color: #a1c931;
-  margin-top: 4px;
-  box-shadow: none;
 }
 .btn-primary:hover {
   background-color: #acd142;
@@ -23949,8 +23789,6 @@ fieldset[disabled] .btn-primary {
 .btn-primary[disabled],
 fieldset[disabled] .btn-primary {
   background-color: #b5d657;
-  box-shadow: none;
-  margin-top: 4px;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
@@ -23988,7 +23826,6 @@ fieldset[disabled] .btn-primary {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #afafaf;
-  box-shadow: 0px 5px 0px rgba(175, 175, 175, 0.5);
   color: #ffffff;
   outline: none !important;
 }
@@ -24047,8 +23884,6 @@ fieldset[disabled] .btn-cancel {
 .btn-cancel:active,
 .btn-cancel.active {
   background-color: #afafaf;
-  margin-top: 4px;
-  box-shadow: none;
 }
 .btn-cancel:hover {
   background-color: #bcbcbc;
@@ -24059,8 +23894,6 @@ fieldset[disabled] .btn-cancel {
 .btn-cancel[disabled],
 fieldset[disabled] .btn-cancel {
   background-color: #c9c9c9;
-  box-shadow: none;
-  margin-top: 4px;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
@@ -24098,7 +23931,6 @@ fieldset[disabled] .btn-cancel {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #fa9c19;
-  box-shadow: 0px 5px 0px rgba(250, 156, 25, 0.5);
   color: #ffffff;
   outline: none !important;
 }
@@ -24157,8 +23989,6 @@ fieldset[disabled] .btn-orange {
 .btn-orange:active,
 .btn-orange.active {
   background-color: #fa9c19;
-  margin-top: 4px;
-  box-shadow: none;
 }
 .btn-orange:hover {
   background-color: #fba732;
@@ -24169,8 +23999,6 @@ fieldset[disabled] .btn-orange {
 .btn-orange[disabled],
 fieldset[disabled] .btn-orange {
   background-color: #fbb14b;
-  box-shadow: none;
-  margin-top: 4px;
   color: #ebebeb;
   cursor: not-allowed !important;
 }

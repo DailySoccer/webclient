@@ -149,20 +149,20 @@ body {
 
 .btn {
 	border-width: 0;
-    .transition(All, 0.08s, ease-out);
+  .transition(All, 0.08s, ease-out);
 }
 
 .btn-bg-states(@theBgColor) {
 	.btn();
 	.opensans_normal(10pt, @white);
 	background-color: @theBgColor;
-	box-shadow: 0px 5px 0px rgba(red(@theBgColor), green(@theBgColor), blue(@theBgColor), 0.5);
+	//box-shadow: 0px 5px 0px rgba(red(@theBgColor), green(@theBgColor), blue(@theBgColor), 0.5);
 	color: @white;
 	outline: none !important;
 	&:active,
 	&.active {
-    	&:focus {
-    		color: @white;
+		&:focus {
+			color: @white;
 			background-color: lighten(@theBgColor,10%);
 		}
 		&:hover {
@@ -183,13 +183,12 @@ body {
 			background-color: @theBgColor; 
 			color: @white;
 		}
-
 	}
 	&:active,
 	&.active {
 		background-color: @theBgColor; 
-		margin-top: 4px;
-		box-shadow: none;
+		//margin-top: 4px;
+		//box-shadow: none;
 	}
 	&:hover {
 		background-color: lighten(@theBgColor, 5%);
@@ -200,9 +199,9 @@ body {
 	&[disabled],
 	fieldset[disabled] & {
 		background-color: lighten(@theBgColor,10%);
-		box-shadow: none;
+		//box-shadow: none;
 		//box-shadow: 0px 5px 0px lighten(@theBgColor, 20%);
-		margin-top: 4px;		
+		//margin-top: 4px;
 		color: darken(@white, 8%);
 		cursor: not-allowed !important;
 	}

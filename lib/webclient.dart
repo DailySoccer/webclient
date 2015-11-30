@@ -416,7 +416,7 @@ class WebClientApp extends Module {
         viewHtml: '''<simple-promo-viewer></simple-promo-viewer>'''
       )
       ,'leaderboard': ngRoute(
-        path: '/leaderboard',
+        path: '/leaderboard/:section/',
         preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
         viewHtml: '''<leaderboard></leaderboard>'''
       )

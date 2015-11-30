@@ -77,7 +77,7 @@ class UserNotification {
     String result = null;
     switch(topic) {
       case ACHIEVEMENT_EARNED:
-        result = "#/leaderboard";
+        result = "#/leaderboard/achievements/";
         break;
       case CONTEST_FINISHED:
         result = "#/history_contest/my_contests/${info['contestId']}";

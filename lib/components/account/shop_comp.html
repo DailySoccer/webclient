@@ -34,7 +34,7 @@
       <div class="energy-tiles-wrapper">
         <div class="tile">
           <div class="energy-items" ng-repeat="energyItem in energyProducts">
-            <div class="energy-separator" ng-if="(energyItem.price != null || timeLeft != '') && $index > 0"></div>
+            <div class="energy-separator" ng-if="$index > 0"></div>
             <div ng-class="{'no-purchasable': !energyItem.purchasable}" class="product" ng-if="energyItem.price != null || timeLeft != ''">
               <img class="energy-icon" ng-src="{{energyItem.captionImage}}">
               <div class="energy-description">{{energyItem.description}}</div>

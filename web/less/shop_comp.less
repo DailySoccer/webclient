@@ -1,3 +1,7 @@
+.global-shop #mainWrapper {
+	background-color: @white;
+}
+
 #mainShopCompWrapper {
 	@item-height: 195;
 	@quantity-font-size: 20pt;
@@ -28,7 +32,7 @@
 			.make-tile(9, 2, @item-height);
 			height: auto;
 			padding: 0;
-			background-color: @greyLight;
+			//background-color: @greyLight;
 		}
 		
 		.money-tile-wrapper {
@@ -40,26 +44,23 @@
 				background-color: transparent;
 				cursor: default;
 				position: relative;
-
+				background-image: url("@{images}/shopItemBg.jpg");
+				background-repeat: no-repeat;
+				background-position: center top;
+				background-size: cover;
+				border-radius: 10px;
 				.header{
 					height: 35px;
-					border-radius: 10px 10px 0 0;	
-					background-color: @blueMed;
 					text-align: center;
 					position: relative;
 
 					.title {
-						.opensans_normal(11pt, @blueMenu);
+						.opensans_bold(11pt, @blueUltraDark);
 						top: 8px;
 						position: relative;
 					}
 				}
 				.content{
-					background-image: url("@{images}/shopItemBg.jpg");
-					background-repeat: no-repeat;
-					background-position: center top;
-					background-size: cover;
-					border-radius: 0px 0px 10px 10px;
 					position: relative;
 					height: 150px;
 
@@ -79,7 +80,7 @@
 						height: 100%;
 
 						.gold-quantity{
-							.exo_light(@quantity-font-size, @white);
+							.exo_light(@quantity-font-size, @blueUltraDark);
 							position: relative;
 							top: 15px;
 							&:after{
@@ -96,18 +97,17 @@
 								width: @price-widht;
 								right: 15px;
 
-								.price {
-									.opensans_normal(14pt, @white);
+								.price {									
 									.btn-primary();
-									width: 100%;
-									
+									.opensans_normal(14pt, @white);
+									width: 100%;									
 								}
 							}
 							.free-increment {
-								.size(68px, 37px);
+								.size(68px, 42px);
 								background: url("@{images}/BuyGoldFreeBase.png");
 								position: absolute;
-								bottom: 40px;
+								bottom: 45px;
 								width: @price-widht;
 								background-position-x: center;
 								background-repeat: no-repeat;
@@ -116,12 +116,12 @@
 								.free-increment-count {
 									display: block; 
 									padding-top: 1px;
-									.opensans_bold(13pt, @white);
+									.opensans_bold(15pt, @white);
 								}
 
 			              		.free-increment-desc {
 									display: block;
-									.opensans_bold(7pt, @white);
+									.opensans_bold(9pt, @white);
 									position: relative;
 									bottom: 4px;
 			              		}
@@ -148,11 +148,14 @@
 
 		.energy-tiles-wrapper {
 			cursor: default;
-			background-color: @black;
-			background-image: url("@{images}/energyBg.png");
+			//background-color: @black;
+			//background-image: url("@{images}/energyBg.png");
+			background-color: @blueUltraDark;
 			background-repeat: no-repeat;
 			background-position: center top;
 			border-radius: 10px;
+			height: 380px;
+
 
 			.tile {
 				padding: 0;
@@ -162,7 +165,7 @@
 				min-height: 185px;
 
 				.products {
-					min-height: 170px;
+					height: 187px;
 				}
 				
 				.energy-separator {

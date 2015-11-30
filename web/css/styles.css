@@ -9906,6 +9906,9 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
 #transactionHistoryRoot .transaction-row .field-balance .red-numbers {
   color: #ff0000;
 }
+.global-shop #mainWrapper {
+  background-color: #ffffff;
+}
 #mainShopCompWrapper {
   margin-right: auto;
   margin-left: auto;
@@ -9961,7 +9964,6 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   cursor: pointer;
   height: auto;
   padding: 0;
-  background-color: #dcdcdc;
 }
 @media (min-width: 768px) {
   #mainShopCompWrapper .content .money-layout {
@@ -10000,29 +10002,27 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   background-color: transparent;
   cursor: default;
   position: relative;
+  background-image: url("../images/shopItemBg.jpg");
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  border-radius: 10px;
 }
 #mainShopCompWrapper .content .money-tile-wrapper .tile .header {
   height: 35px;
-  border-radius: 10px 10px 0 0;
-  background-color: #0d75a6;
   text-align: center;
   position: relative;
 }
 #mainShopCompWrapper .content .money-tile-wrapper .tile .header .title {
   font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
+  font-weight: 700;
   font-size: 11pt;
-  color: #afd3e4;
-  text-shadow: 1px 1px 1px rgba(175, 211, 228, 0.004);
+  color: #0a2938;
+  text-shadow: 1px 1px 1px rgba(10, 41, 56, 0.004);
   top: 8px;
   position: relative;
 }
 #mainShopCompWrapper .content .money-tile-wrapper .tile .content {
-  background-image: url("../images/shopItemBg.jpg");
-  background-repeat: no-repeat;
-  background-position: center top;
-  background-size: cover;
-  border-radius: 0px 0px 10px 10px;
   position: relative;
   height: 150px;
 }
@@ -10046,9 +10046,9 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   font-family: 'Exo', sans-serif;
   font-weight: 300;
   font-size: 20pt;
-  color: #ffffff;
+  color: #0a2938;
   text-transform: uppercase;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  text-shadow: 1px 1px 1px rgba(10, 41, 56, 0.004);
   position: relative;
   top: 15px;
 }
@@ -10073,7 +10073,6 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   right: 15px;
 }
 #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price {
-  font-size: 14pt;
   background-color: #428bca;
   border-color: #357ebd;
   display: inline-block;
@@ -10099,13 +10098,14 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   -ms-transition: All 0.08s ease-out;
   -o-transition: All 0.08s ease-out;
   transition: All 0.08s ease-out;
+  font-size: 10pt;
+  background-color: #a1c931;
+  outline: none !important;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
-  font-size: 10pt;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  background-color: #a1c931;
+  font-size: 14pt;
   color: #ffffff;
-  outline: none !important;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   width: 100%;
 }
 #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:hover,
@@ -10219,10 +10219,10 @@ fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .cont
 }
 #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .free-increment {
   width: 68px;
-  height: 37px;
+  height: 42px;
   background: url("../images/BuyGoldFreeBase.png");
   position: absolute;
-  bottom: 40px;
+  bottom: 45px;
   width: 125px;
   background-position-x: center;
   background-repeat: no-repeat;
@@ -10233,7 +10233,7 @@ fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .cont
   padding-top: 1px;
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
-  font-size: 13pt;
+  font-size: 15pt;
   color: #ffffff;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
@@ -10241,7 +10241,7 @@ fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .cont
   display: block;
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
-  font-size: 7pt;
+  font-size: 9pt;
   color: #ffffff;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   position: relative;
@@ -10275,11 +10275,11 @@ fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .cont
 }
 #mainShopCompWrapper .content .energy-tiles-wrapper {
   cursor: default;
-  background-color: #000000;
-  background-image: url("../images/energyBg.png");
+  background-color: #0a2938;
   background-repeat: no-repeat;
   background-position: center top;
   border-radius: 10px;
+  height: 380px;
 }
 #mainShopCompWrapper .content .energy-tiles-wrapper .tile {
   padding: 0;
@@ -10289,7 +10289,7 @@ fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .cont
   min-height: 185px;
 }
 #mainShopCompWrapper .content .energy-tiles-wrapper .tile .products {
-  min-height: 170px;
+  height: 187px;
 }
 #mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-separator {
   margin: 30px 20px 18px 25px;

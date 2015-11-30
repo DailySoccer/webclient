@@ -105,6 +105,26 @@ abstract class Tutorial {
     ToolTipService.instance.clear();
   }
 
+  Future onClick(List<ToolTip> tooltips) {
+    if (isCompleted)
+      return new Future.value(true);
+
+    Completer completer = new Completer();
+
+    tooltips.first.onHide.listen( (_) {
+      completer.complete(true);
+    } );
+
+    if (tooltips.length == 1) {
+      ToolTipService.instance.tipElement(tooltips.first, hideOnClick: true);
+    }
+    else {
+      ToolTipService.instance.tipMultipleElement(tooltips, hideAllOnClick: true);
+    }
+
+    return completer.future;
+  }
+
   void showTooltip(ToolTip tooltip) {
     if (isCompleted)
       return;

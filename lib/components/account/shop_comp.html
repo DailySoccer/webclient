@@ -35,7 +35,7 @@
         <div class="tile">
           <div class="energy-items" ng-repeat="energyItem in energyProducts">
             <div class="energy-separator" ng-if="$index > 0"></div>
-            <div ng-class="{'no-purchasable': !energyItem.purchasable}" class="product" ng-if="energyItem.price != null || timeLeft != ''">
+            <div ng-class="{'no-purchasable': !energyItem.purchasable}" class="product">
               <img class="energy-icon" ng-src="{{energyItem.captionImage}}">
               <div class="energy-description">{{energyItem.description}}</div>
               <div ng-switch="energyItem.purchasable">
@@ -44,7 +44,9 @@
                     <span class="quantity">{{energyItem.price}}</span>
                   </button>
                 </div>
-                <span ng-switch-when="false" class="product-time-left">{{timeLeft}}</span>
+                <div class="button-wrapper" ng-switch-when="false">
+                  <span  class="product-time-left" ng-if="timeLeft != ''">{{timeLeft}}</span>
+                </div>
               </div>
             </div>
           </div>

@@ -26,6 +26,10 @@ class HelpInfoComp {
   void goTo(String path) {
     _router.go(path, {});
   }
+  
+  void goTutorial(String tutorial) {
+    
+  }
 
   Router _router;
 }

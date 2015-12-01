@@ -97,7 +97,7 @@ Future<bool> modalShow(String title, String content, {String modalSize: "lg",
 
   String composeAlert() {
     return ''' 
-            <div id="alertRoot" class="modal container fade" tabindex="-1" role="dialog" style="display: block;">
+            <div id="alertRoot" class="modal container" tabindex="-1" role="dialog" style="display: block;">
               <div class="modal-dialog modal-${modalSize}">
                 <div class="modal-content"> 
   

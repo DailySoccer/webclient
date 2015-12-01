@@ -87,8 +87,8 @@ import 'package:webclient/components/enter_contest/soccer_player_stats_comp.dart
 
 import 'package:webclient/components/legalese_and_help/help_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/how_it_works_comp.dart';
-
-
+import 'package:webclient/components/legalese_and_help/tutorials_comp.dart';
+import 'package:webclient/components/legalese_and_help/rules_comp.dart';
 
 //import 'package:webclient/components/landing_page_1_slide_comp.dart';
 //import 'package:webclient/components/navigation/main_menu_slide_comp.dart';
@@ -192,6 +192,8 @@ class WebClientApp extends Module {
     bind(ShopComp);
     bind(NotificationsComp);    
     bind(HelpInfoComp);
+    bind(TutorialsComp);
+    bind(RulesComp);
     bind(AchievementListComp);
     bind(AchievementComp);
     bind(RouteInitializerFn, toValue: webClientRouteInitializer);

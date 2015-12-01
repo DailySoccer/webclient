@@ -10,11 +10,9 @@
 		.make-shadow(0px, 1px, 5px, 0px, @greyUltraDark, 0.5);
 		margin-top: 10px;		
 		min-height: 31px;
+		padding-bottom: 10px;
 		width: 100%;
 		position: relative;
-		@media (max-width: @screen-xs-max) {
-			padding-bottom: 10px;
-		}
 		background-color: @white;
 		//Sección de iconos que definen el tipo y torneo del concurso
 		.tournament-and-type-section {
@@ -75,6 +73,7 @@
 				@media (min-width: @screen-sm-min) {
 					padding-right: 0;
 					padding-left: 10px;
+					padding-top: 4px;
 					.exo_light(12pt, @blueDark);
 					
 					.column-start-hour.start-soon,
@@ -176,16 +175,16 @@
 				.condition-box-commons();
 			}
 			.fit-icon-size {
-				width: 16px;
-				height: 16px;
+				width: 17px;
+				height: 17px;
 				position: relative;
 				display: inline-block;
 				margin-left: 3px;
 				top: 2px;
 				@media (min-width: @screen-sm-min) {
 					float: right;
-					width: 25px;
-					height: 25px;
+					width: 27px;
+					height: 27px;
 					margin-left: 0px;
 					top: 0px;
 				}
@@ -263,6 +262,9 @@
 					margin-top: 0px;
 				}
 			}
+		}
+		.action-section {
+			top: 0;
 		}
 		.name-section {
 			.contest-name, .contest-description {color: @white;}

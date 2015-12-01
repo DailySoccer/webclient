@@ -19824,16 +19824,67 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   display: block;
   margin: 0 auto;
 }
-#alertRoot .not-enough-resources-count {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-  font-size: 10pt;
-  color: #fa9c19;
-  text-shadow: 1px 1px 1px rgba(250, 156, 25, 0.004);
-  border: 3px solid #6a8597;
-  border-radius: 10px;
-  background-color: #0a2938;
-  padding: 2px 35px;
+#alertRoot.noGold .panel {
+  background-image: url("../images/BgModalesEspeciales.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+#alertRoot.noGold .alert-content-title {
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  font-size: 18pt;
+  color: #214a5f;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
+}
+#alertRoot.noGold .gold-needed-icon-wrapper {
+  display: block;
+  position: relative;
+}
+#alertRoot.noGold .gold-needed-icon-wrapper .gold-image {
+  display: block;
+  position: relative;
+  margin: 0px auto -60px auto;
+}
+#alertRoot.noGold .gold-needed-icon-wrapper .not-enough-resources-count {
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  font-size: 18pt;
+  color: #214a5f;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
+  display: block;
+  margin: 0px auto;
+  width: 50px;
+  height: 50px;
+  position: relative;
+  border-radius: 100%;
+  background-color: #dcdcdc;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 5px 3px rgba(67, 67, 67, 0.5);
+  padding-top: 8px;
+  text-align: center;
+  padding-left: 2px;
+}
+#alertRoot.noGold .gold-icon-tiny {
+  content: " ";
+  background-image: url("../images/icon-coin-lg.png");
+  width: 27px;
+  height: 27px;
+  display: inline-block;
+  vertical-align: middle;
+  vertical-align: text-bottom;
+  margin-left: 5px;
+}
+#alertRoot.noGold .alert-content-subtitle {
+  vertical-align: middle;
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 14pt;
+  color: #214a5f;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
+  margin-bottom: 20px;
 }
 #alertRoot .content-text {
   margin-top: 20px;

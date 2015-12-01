@@ -270,7 +270,7 @@
       "resource-energy"                 : "ENERGÍA",
       "buy-gold-button"                 : "COMPRAR ORO",
       "buy-energy-button"               : "RECARGAR ENERGÍA",
-      "alert-user-gold-message"         : "Tienes actualmente @MONEY",
+      "alert-user-gold-message"         : "Tienes actualmente: @MONEY",
       "alert-no-energy-message"         : "<strong>No tienes suficiente energía</strong><br>para entrar en este torneo."
     }
     ,"lineupselector"                   :

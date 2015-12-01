@@ -27,10 +27,6 @@ class HelpInfoComp {
   void goTo(String path) {
     _router.go(path, {});
   }
-  
-  void goTutorial(String tutorial) {
-    
-  }
 
   String getLocalizedText(key) {
     return StringUtils.translate(key, "help");

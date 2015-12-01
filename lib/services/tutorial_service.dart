@@ -31,12 +31,13 @@ class TutorialService {
   TutorialService(this._router, this._profileService) {
     _instance = this;
 
+    _availables = [
+      new TutorialIniciacion(this._router, _profileService),
+    ];
+    
     // Incluir los tutoriales que no se hayan terminado
     _tutorials = {};
-
-    if (!isCompleted(TutorialIniciacion.NAME)) {
-      _tutorials[Tutorial.INITIATION] = new TutorialIniciacion(this._router, _profileService);
-    }
+    _availables.where((tutorial) => !isCompleted(tutorial.name)).forEach((t) => _tutorials[t.name] = t);
   }
 
   bool isCompleted(String tutorialKey) {
@@ -54,6 +55,16 @@ class TutorialService {
 
       _router.go('lobby', {});
     }
+  }
+  
+  void restart(String tutorialName) {
+    if (!_tutorials.containsKey(tutorialName)) {
+      Tutorial tutorial = _availables.firstWhere((t) => t.name == tutorialName, orElse: () => null);
+      if (tutorial != null) {
+        _tutorials[tutorialName] = tutorial;
+      }
+    }
+    start(tutorialName);
   }
 
   void disableElementEvents(String cssSelector) {
@@ -170,6 +181,7 @@ class TutorialService {
   bool _activated = false;
   Element _skipComp = null;
   Function _contentUpdater = null;
+  List<Tutorial> _availables;
 
   static TutorialService _instance;
 }

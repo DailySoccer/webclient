@@ -41,6 +41,7 @@ class ToolTipService {
     _requestedTooltips.addAll(tipList);
     Completer completer = new Completer();
     BackdropComp backdrop = BackdropComp.instance;
+    StreamSubscription subscription = null;
 
     void notifyFirstShow(ToolTip tip) {
       if (!completer.isCompleted) completer.complete(tip);
@@ -48,6 +49,7 @@ class ToolTipService {
     void hideAll([_]) {
       tipList.forEach( (tip) => tip.hide() );
       backdrop.hide();
+      if (subscription != null) subscription.cancel();
     };
 
     tipList.forEach( (tip) {
@@ -60,7 +62,7 @@ class ToolTipService {
       tip.show();
     });
 
-    if (hideAllOnClick) backdrop.onClick.listen(hideAll);
+    if (hideAllOnClick) subscription = backdrop.onClick.listen(hideAll);
 
     return completer.future;
   }
@@ -152,7 +154,7 @@ class ToolTip {
       _theTippedElem.classes.add('tooltipped-element');
       if (!_allowClickOnElement) _theTippedElem.classes.add('disabled-pointer-events');
       if (_highlight) _theTippedElem.classes.add('highlighted-tip');
-      
+
       if (_tipText != null && _tipText != '') {
         _theTip = new Element.div();
         _theTip.classes.addAll(["epic-tooltip", _position]);
@@ -163,7 +165,7 @@ class ToolTip {
           _onClick.add(this);
           e.stopImmediatePropagation();
         });
-        
+
         _theTippedElem.append(_theTip);
       }
 

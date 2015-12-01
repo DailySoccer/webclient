@@ -320,17 +320,17 @@ class EnterContestComp implements DetachAware {
 
     for (int c = 0; c < lineupSlots.length; ++c) {
       if (lineupSlots[c] != null && lineupFormation[c] != lineupSlots[c]["fieldPos"].value) {
-        print(lineupSlots[c]["fieldPos"].value + " -ConflictoCon- " + lineupFormation[c]);
+        // print(lineupSlots[c]["fieldPos"].value + " -ConflictoCon- " + lineupFormation[c]);
         var soccerPlayer = lineupSlots[c];
         int availablePosition = firstAvailablePosition(lineupSlots[c]["fieldPos"].value);
-        print("Posicion disponible: $availablePosition");
+        // print("Posicion disponible: $availablePosition");
 
         if (availablePosition != -1) {
           onLineupSlotSelected(c);
           _tryToAddSoccerPlayerToLineup(soccerPlayer);
         } else {
           int cheapestIndex = cheapestByPosition(lineupSlots[c]["fieldPos"].value);
-          print("Más barato: $cheapestIndex");
+          // print("Más barato: $cheapestIndex");
           onLineupSlotSelected(c);
           if (c != cheapestIndex) {
             onLineupSlotSelected(cheapestIndex);

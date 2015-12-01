@@ -36,6 +36,7 @@ import 'package:webclient/utils/limit_to_dot.dart';
 import 'package:webclient/utils/host_server.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/utils/noshim.dart';
+import 'package:webclient/utils/ng_bind_html_unsafe.dart';
 
 import 'package:webclient/components/navigation/main_menu_f2p_comp.dart';
 import 'package:webclient/components/navigation/footer_comp.dart';
@@ -89,6 +90,7 @@ import 'package:webclient/components/legalese_and_help/help_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/how_it_works_comp.dart';
 import 'package:webclient/components/legalese_and_help/tutorials_comp.dart';
 import 'package:webclient/components/legalese_and_help/rules_comp.dart';
+import 'package:webclient/components/legalese_and_help/terminus_info_comp.dart';
 
 //import 'package:webclient/components/landing_page_1_slide_comp.dart';
 //import 'package:webclient/components/navigation/main_menu_slide_comp.dart';
@@ -104,7 +106,6 @@ import 'package:webclient/components/legalese_and_help/rules_comp.dart';
 //import 'package:webclient/components/account/gold_shop_comp.dart';
 //import 'package:webclient/components/account/energy_shop_comp.dart';
 //import 'package:webclient/components/legalese_and_help/legal_info_comp.dart';
-//import 'package:webclient/components/legalese_and_help/terminus_info_comp.dart';
 //import 'package:webclient/components/legalese_and_help/policy_info_comp.dart';
 //import 'package:webclient/components/legalese_and_help/beta_info_comp.dart';
 //import 'package:webclient/components/legalese_and_help/restricted_comp.dart';
@@ -145,6 +146,7 @@ class WebClientApp extends Module {
     bind(TutorialService);
     bind(ToolTipService);
 
+    bind(NgBindHtmlUnsafeDirective);
     bind(FormAutofillDecorator);
     bind(AutoFocusDecorator);
     bind(LimitToDot);
@@ -199,6 +201,7 @@ class WebClientApp extends Module {
     bind(RouteInitializerFn, toValue: webClientRouteInitializer);
     bind(NgRoutingUsePushState, toValue: new NgRoutingUsePushState.value(false));
     bind(HowItWoksComp);
+    bind(TerminusInfoComp);
 
     //bind(LandingPage1SlideComp);
     //bind(MainMenuSlideComp);
@@ -209,7 +212,6 @@ class WebClientApp extends Module {
     //bind(ContestFiltersComp);
     //bind(ContestHeaderComp);
     //bind(LegalInfoComp);
-    //bind(TerminusInfoComp);
     //bind(PolicyInfoComp);
     //bind(BetaInfoComp);
     //bind(RestrictedComp);
@@ -240,11 +242,6 @@ class WebClientApp extends Module {
           path: '/legal_info',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
           viewHtml: '<legal-info></legal-info>'
-      )
-      ,'terminus_info': ngRoute(
-          path: '/terminus_info',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
-          viewHtml: '<terminus-info></terminus-info>'
       )
       ,'policy_info': ngRoute(
           path: '/policy_info',
@@ -435,6 +432,11 @@ class WebClientApp extends Module {
           path: '/help-info',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
           viewHtml: '<help-info></help-info>'
+      )
+      ,'terminus_info': ngRoute(
+          path: '/terminus_info',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
+          viewHtml: '<terminus-info></terminus-info>'
       )
     });
   }

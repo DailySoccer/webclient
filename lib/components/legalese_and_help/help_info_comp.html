@@ -1,13 +1,13 @@
 <div id="helpInfo">
 
   <!-- header title -->
-  <div class="default-section-header">HELP</div>
+  <div class="default-section-header">{{getLocalizedText('title')}}</div>
 
   <!-- Nav tabs -->
   <ul class="help-info-tabs" role="tablist">
-    <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('tutorial-content')">Tutorials</a></li>
-    <li><a role="tab" data-toggle="tab" ng-click="tabChange('how-works-content')">How it works</a></li>
-    <li><a role="tab" data-toggle="tab" ng-click="tabChange('rules-scores-content')">Rules and scoring</a></li>
+    <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('tutorial-content')">{{getLocalizedText('tutorials')}}</a></li>
+    <li><a role="tab" data-toggle="tab" ng-click="tabChange('how-works-content')">{{getLocalizedText('how-it-works')}}</a></li>
+    <li><a role="tab" data-toggle="tab" ng-click="tabChange('rules-scores-content')">{{getLocalizedText('rules')}}</a></li>
   </ul>
 
   <div class="tab-pane active" id="tutorial-content">
@@ -26,13 +26,7 @@
         <scoring-rules></scoring-rules>
       </div>
     </div-->
-    <div class="block-light">
-      <div class="title">RULES</div>
-      <div class="rules-wrapper">
-        <rules-comp></rules-comp>
-      </div>
-    
-    </div>
+    <rules-comp></rules-comp>
   </div>
 
 </div>

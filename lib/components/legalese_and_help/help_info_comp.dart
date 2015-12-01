@@ -3,6 +3,7 @@ library help_info_comp;
 import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/screen_detector_service.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 @Component(
    selector: 'help-info',
@@ -31,5 +32,9 @@ class HelpInfoComp {
     
   }
 
+  String getLocalizedText(key) {
+    return StringUtils.translate(key, "help");
+  }
+  
   Router _router;
 }

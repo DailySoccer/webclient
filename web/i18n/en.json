@@ -674,5 +674,18 @@
       "BUTTON_MANAGER_LEVEL_DOWN"       : "",
       "BUTTON_ACHIEVEMENT_EARNED"       : ""
     }
+    ,"howitworks"                       :
+    {
+      "point1title"                     : "<span class=\"help-point\">1</span> Choose Your Competition",
+      "point1content"                   : "<img class=\"capital-icon\" src=\"images/iconTrophyGold.png\"><br><strong>Torneos oficiales</strong><br>Cuestan y dan oro y se juegan cuando se celebran los partidos reales asociados<br><img class=\"capital-icon\" src=\"images/iconTrainerBlue.png\"><br><strong>Torneos de entrenamiento</strong><br>Cuestan energía y dan Manager Points. Comienzan a la hora anunciada",
+      "point2title"                     : "<span class=\"help-point\">2</span> Make your lineup",
+      "point2content"                   : "<strong>A continuación, selecciona los 11 jugadores de tu equipo<br>sin pasarte del límite salarial. Recuerda:<strong><br><br><br><ul><li>No puedes escoger a más de 4 jugadores del mismo equipo.</li><li>Puedes cambiar tu alineación hasta la hora de comienzo del torneo</li></ul>",
+      "point3title"                     : "<span class=\"help-point\">3</span> Score and Win",
+      "point3content"                   : "<strong>En los torneos oficiales, sigue la evolución de tu equipo</strong><br>en tiempo real cuando hayan comenzado los partidos asociados al torneo.<br>Una vez hayan terminado, puedes consultar el resultado en \"Mis torneos\"",
+      "point3content2"                  : "<strong>Los torneos de entrenamiento se resuelven de forma<br>automática en pocos segundos</strong>",
+      "point4title"                     : "Play from anywhere",
+      "point4description"               : "Es muy fácil jugar a Epic Eleven desde cualquier lugar y con cualquier dispositivo. Puedes seguir la evolución de tu alineación desde tu ordenador, tablet o smartphone con un diseño adaptado a cada dispositivo.",
+      "button-play"                     : "Play Now"
+    }
   }
 }

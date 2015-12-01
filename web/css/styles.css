@@ -22358,6 +22358,9 @@ fieldset[disabled] #createContest .create-contest-section-wrapper .create-contes
 #createContest #teamsToggler {
   text-align: center;
 }
+#helpInfo how-it-works {
+  display: block;
+}
 #helpInfo .block-dark {
   background-color: #ecf0f1;
   padding-bottom: 40px;
@@ -22369,21 +22372,41 @@ fieldset[disabled] #createContest .create-contest-section-wrapper .create-contes
 #helpInfo .title {
   font-family: 'Exo', sans-serif;
   font-weight: 300;
-  font-size: 20pt;
-  color: #214a5f;
+  font-size: 30pt;
+  color: #59add5;
   text-transform: uppercase;
-  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
+  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
   padding: 16px 10px 12px;
   text-align: center;
+}
+#helpInfo .title .help-point {
+  border: 1px solid #59add5;
+  border-radius: 1000px;
+  margin-right: 5px;
+  width: 60px;
+  display: inline-block;
 }
 #helpInfo .description {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
-  color: #777777;
-  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
+  color: #434343;
+  text-shadow: 1px 1px 1px rgba(67, 67, 67, 0.004);
   text-align: center;
-  padding: 20px 10px;
+  padding: 0 20px 10px 20px;
+}
+#helpInfo .description .capital-icon {
+  margin-top: 15px;
+}
+#helpInfo .description ul {
+  display: inline-block;
+}
+#helpInfo .description ul li {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #434343;
+  text-shadow: 1px 1px 1px rgba(67, 67, 67, 0.004);
 }
 #helpInfo .img-wrapper {
   max-width: 829px;

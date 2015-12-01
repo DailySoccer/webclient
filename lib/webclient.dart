@@ -86,6 +86,9 @@ import 'package:webclient/components/enter_contest/matches_filter_comp.dart';
 import 'package:webclient/components/enter_contest/soccer_player_stats_comp.dart';
 
 import 'package:webclient/components/legalese_and_help/help_info_comp.dart';
+import 'package:webclient/components/legalese_and_help/how_it_works_comp.dart';
+
+
 
 //import 'package:webclient/components/landing_page_1_slide_comp.dart';
 //import 'package:webclient/components/navigation/main_menu_slide_comp.dart';
@@ -193,6 +196,7 @@ class WebClientApp extends Module {
     bind(AchievementComp);
     bind(RouteInitializerFn, toValue: webClientRouteInitializer);
     bind(NgRoutingUsePushState, toValue: new NgRoutingUsePushState.value(false));
+    bind(HowItWoksComp);
 
     //bind(LandingPage1SlideComp);
     //bind(MainMenuSlideComp);

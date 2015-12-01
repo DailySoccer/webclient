@@ -88,140 +88,140 @@ class Achievement {
       "id": WON_VIRTUAL_CONTESTS_LEVEL_1,
       "name": translate("name_won_virtual_contests_level_1"), // "El Principiante",
       "description": translate("desc_won_virtual_contests_level_1"), // "Ganar el primer torneo virtual",
-      "image": 'IconManagerMister.png',
+      "image": 'IconEntrenamiento1.png',
       "style": 'Training'
     },
     {
       "id": PLAYED_VIRTUAL_CONTESTS_LEVEL_1,
       "name": translate("name_played_virtual_contests_level_1"), // "Superentreno",
       "description": translate("desc_played_virtual_contests_level_1"), // "Jugar 10 torneos virtuales",
-      "image": '',
+      "image": 'IconEntrenamiento2.png',
       "style": 'Training'
     },
     {
       "id": WON_VIRTUAL_CONTESTS_LEVEL_2,
       "name": translate("name_won_virtual_contests_level_2"), // "El Hacha",
       "description": translate("desc_won_virtual_contests_level_2"), //"Ganar 10 torneos virtuales",
-      "image": '',
+      "image": 'IconEntrenamiento3.png',
       "style": 'Training'
     },
     {
       "id": FP_VIRTUAL_CONTEST_LEVEL_1,
       "name": translate("name_fp_virtual_contest_level_1"), // "El Resultón",
       "description": translate("desc_fp_virtual_contest_level_1"), // "Puntuar más de 1000 FP con un equipo en un torneo virtual",
-      "image": '',
+      "image": 'Icon1000.png',
       "style": 'Training'
     },
     {
       "id": DIFF_FP_VIRTUAL_CONTEST_LEVEL_1,
       "name": translate("name_diff_fp_virtual_contest_level_1"), // "El Míster",
       "description": translate("desc_diff_fp_virtual_contest_level_1"), // "Ganar un torneo virtual por más de 200 FP de diferencia",
-      "image": '',
+      "image": 'IconEntrenamiento5.png',
       "style": 'Training'
     },
     {
       "id": WON_OFFICIAL_CONTESTS_LEVEL_1,
       "name": translate("name_won_official_contests_level_1"), // "El Debutante",
       "description": translate("desc_won_official_contests_level_1"), // "Ganar el primer torneo oficial",
-      "image": 'IconManagerPrincipiante.png',
+      "image": 'IconOficial1.png',
       "style": 'Oficial'
     },
     {
       "id": PLAYED_OFFICIAL_CONTESTS_LEVEL_1,
       "name": translate("name_played_official_contests_level_1"), // "La Reválida",
       "description": translate("desc_played_official_contests_level_1"), // "Jugar 10 torneos oficiales",
-      "image": 'IconManagerMister.png',
+      "image": 'IconOficial2.png',
       "style": 'Oficial'
     },
     {
       "id": WON_OFFICIAL_CONTESTS_LEVEL_2,
       "name": translate("name_played_official_contests_level_2"), // "La Consolidación",
       "description": translate("desc_played_official_contests_level_2"), // "Ganar N torneos oficiales",
-      "image": 'IconManagerMister.png',
+      "image": 'IconOficial3.png',
       "style": 'Oficial'
     },
     {
       "id": FP_OFFICIAL_CONTEST_LEVEL_1,
       "name": translate("name_fp_official_contest_level_1"), // "La Gloria",
       "description": translate("desc_fp_official_contest_level_1"), // "Puntuar más de 1000 FP con un equipo en un torneo oficial",
-      "image": 'IconManagerPrincipiante.png',
+      "image": 'Icon1000.png',
       "style": 'Oficial'
     },
     {
       "id": DIFF_FP_OFFICIAL_CONTEST_LEVEL_1,
       "name": translate("name_diff_fp_official_contest_level_1"), // "Máster",
       "description": translate("desc_diff_fp_official_contest_level_1"), // "Ganar un torneo oficial por más de 200 FP de diferencia",
-      "image": 'IconManagerPrincipiante.png',
+      "image": 'IconOficial5.png',
       "style": 'Oficial'
     },
     {
       "id": SOCCER_PLAYER_WON_FP_LEVEL_1,
       "name": translate("name_soccer_player_won_fp_level_1"), // "El Crack",
       "description": translate("desc_soccer_player_won_fp_level_1"), // "Un jugador consigue más de 200 FP en un torneo oficial",
-      "image": 'IconManagerPrincipiante.png',
+      "image": 'IconJugador1.png',
       "style": 'Player'
     },
     {
       "id": GOALKEEPER_SAVES_SHOTS_LEVEL_1,
       "name": translate("name_goalkeeper_saves_shots_level_1"), // "El Santo",
       "description": translate("desc_goalkeeper_saves_shots_level_1"), // "Portero hace más de 20 paradas",
-      "image": 'IconManagerPrincipiante.png',
+      "image": 'IconJugador2.png',
       "style": 'Player'
     },
     {
       "id": GOALKEEPER_0_GOAL_RECEIVED,
       "name": translate("name_goalkeeper_0_goal_received"), // "El Autobús",
       "description": translate("desc_goalkeeper_0_goal_received"), // "Portero recibe 0 goles",
-      "image": 'IconManagerMister.png',
+      "image": 'IconJugador3.png',
       "style": 'Player'
     },
     {
       "id": GOALKEEPER_RED_CARD,
       "name": translate("name_goalkeeper_red_card"), // "El Leñero",
       "description": translate("desc_goalkeeper_red_card"), // "Portero expulsado",
-      "image": 'IconManagerMister.png',
+      "image": 'IconJugador4.png',
       "style": 'Player'
     },
     {
       "id": GOALKEEPER_GOAL_SCORED,
       "name": translate("name_goalkeeper_goal_scored"), // "Al Ataque",
       "description": translate("desc_goalkeeper_goal_scored"), // "Portero hace gol",
-      "image": 'IconManagerPrincipiante.png',
+      "image": 'IconJugador5.png',
       "style": 'Player'
     },
     {
       "id": DEFENDER_INTERCEPTIONS_LEVEL_1,
       "name": translate("name_defender_interceptions_level_1"), // "El Muro",
       "description": translate("desc_defender_interceptions_level_1"), // "Defensa hace más de 30 intercepciones",
-      "image": 'IconManagerPrincipiante.png',
+      "image": 'IconJugador6.png',
       "style": 'Player'
     },
     {
       "id": MIDDLE_PASS_SUCCESSFUL_LEVEL_1,
       "name": translate("name_middle_pass_successful_level_1"), // "El Jugón",
       "description": translate("desc_middle_pass_successful_level_1"), // "Centrocampista hace más de 70 pases",
-      "image": 'IconManagerPrincipiante.png',
+      "image": 'IconJugador7.png',
       "style": 'Player'
     },
     {
       "id": FORWARD_GOAL_LEVEL_1,
       "name": translate("name_forward_goal_level_1"), // "El Pistolero",
       "description": translate("desc_forward_goal_level_1"), // "Delantero hace más de 4 goles",
-      "image": 'IconManagerPrincipiante.png',
+      "image": 'IconJugador8.png',
       "style": 'Player'
     },
     {
       "id": ALL_SOCCER_PLAYERS_WITH_FP,
       "name": translate("name_all_soccer_players_with_fp"), // "El Equipo",
       "description": translate("desc_all_soccer_players_with_fp"), // "Todos los jugadores puntúan",
-      "image": 'IconManagerPrincipiante.png',
+      "image": 'IconJugador9.png',
       "style": 'Player'
     },
     {
       "id": TRUE_SKILL_LEVEL_1,
       "name": translate("name_true_skill_level_1"), // "Nivel de Skill 1",
       "description": translate("desc_true_skill_level_1"), // "Nivel de Skill 1",
-      "image": 'IconManagerPrincipiante.png',
+      "image": 'IconSkill.png',
       "style": 'SkillLevel',
       "level": 1
     },
@@ -229,7 +229,7 @@ class Achievement {
       "id": TRUE_SKILL_LEVEL_2,
       "name": translate("name_true_skill_level_2"), // "Nivel de Skill 2",
       "description": translate("desc_true_skill_level_2"), // "Nivel de Skill 2",
-      "image": 'IconManagerPrincipiante.png',
+      "image": 'IconSkill.png',
       "style": 'SkillLevel',
       "level": 2
     },
@@ -237,7 +237,7 @@ class Achievement {
       "id": TRUE_SKILL_LEVEL_3,
       "name": translate("name_true_skill_level_3"), // "Nivel de Skill 3",
       "description": translate("desc_true_skill_level_3"), // "Nivel de Skill 3",
-      "image": 'IconManagerPrincipiante.png',
+      "image": 'IconSkill.png',
       "style": 'SkillLevel',
       "level": 3
     },
@@ -245,7 +245,7 @@ class Achievement {
       "id": TRUE_SKILL_LEVEL_4,
       "name": translate("name_true_skill_level_4"), // "Nivel de Skill 4",
       "description": translate("desc_true_skill_level_4"), // "Nivel de Skill 4",
-      "image": 'IconManagerPrincipiante.png',
+      "image": 'IconSkill.png',
       "style": 'SkillLevel',
       "level": 4
     },
@@ -253,7 +253,7 @@ class Achievement {
       "id": TRUE_SKILL_LEVEL_5,
       "name": translate("name_true_skill_level_5"), // "Nivel de Skill 5",
       "description": translate("desc_true_skill_level_5"), // "Nivel de Skill 5",
-      "image": 'IconManagerPrincipiante.png',
+      "image": 'IconSkill.png',
       "style": 'SkillLevel',
       "level": 5
     },
@@ -261,7 +261,7 @@ class Achievement {
       "id": MANAGER_LEVEL_3,
       "name": translate("name_manager_level_3"), // "Nivel de Manager 3",
       "description": translate("desc_manager_level_3"), // "Nivel de Manager 3",
-      "image": 'IconManagerPrincipiante.png',
+      "image": 'IconManager.png',
       "style": 'ManagerLevel',
       "level": 3
     },
@@ -269,7 +269,7 @@ class Achievement {
       "id": MANAGER_LEVEL_4,
       "name": translate("name_manager_level_4"), // "Nivel de Manager 4",
       "description": translate("desc_manager_level_4"), // "Nivel de Manager 4",
-      "image": 'IconManagerPrincipiante.png',
+      "image": 'IconManager.png',
       "style": 'ManagerLevel',
       "level": 4
     },
@@ -277,7 +277,7 @@ class Achievement {
       "id": MANAGER_LEVEL_5,
       "name": translate("name_manager_level_5"), // "Nivel de Manager 5",
       "description": translate("desc_manager_level_5"), // "Nivel de Manager 5",
-      "image": 'IconManagerPrincipiante.png',
+      "image": 'IconManager.png',
       "style": 'ManagerLevel',
       "level": 5
     }

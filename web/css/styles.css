@@ -18335,7 +18335,7 @@ lineup-selector {
 }
 #leaderboard-wrapper .leaderboard-tabs .top-money-tab:before {
   content: " ";
-  background-image: url("../images/icon-coin-lg.png");
+  background-image: url("../images/icon-Ranking-Monedas.png");
   width: 32px;
   height: 50px;
   display: inline-block;
@@ -23256,11 +23256,11 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
   font-family: 'Exo', sans-serif;
   font-weight: 600;
   font-size: 16pt;
-  color: #fa9c19;
+  color: #214a5f;
   text-transform: uppercase;
 }
 .achievement.Oficial .achievement-level {
-  background-color: #fa9c19;
+  background-color: #214a5f;
 }
 .achievement.ManagerLevel .achievement-icon {
   content: " ";
@@ -23274,11 +23274,11 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
   font-family: 'Exo', sans-serif;
   font-weight: 600;
   font-size: 16pt;
-  color: #d90006;
+  color: #214a5f;
   text-transform: uppercase;
 }
 .achievement.ManagerLevel .achievement-level {
-  background-color: #d90006;
+  background-color: #214a5f;
 }
 .achievement.Player .achievement-icon {
   content: " ";
@@ -23292,11 +23292,11 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
   font-family: 'Exo', sans-serif;
   font-weight: 600;
   font-size: 16pt;
-  color: #434343;
+  color: #214a5f;
   text-transform: uppercase;
 }
 .achievement.Player .achievement-level {
-  background-color: #434343;
+  background-color: #214a5f;
 }
 .achievement.SkillLevel .achievement-icon {
   content: " ";
@@ -23310,11 +23310,11 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
   font-family: 'Exo', sans-serif;
   font-weight: 600;
   font-size: 16pt;
-  color: #8eb819;
+  color: #214a5f;
   text-transform: uppercase;
 }
 .achievement.SkillLevel .achievement-level {
-  background-color: #8eb819;
+  background-color: #214a5f;
 }
 .global-notifications #mainWrapper {
   background-color: #ffffff;

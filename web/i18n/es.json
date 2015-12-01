@@ -610,7 +610,7 @@
       "msg-09"                          : "Añade un delantero",
       "msg-10"                          : "Una vez completada la alineación, si tienes energia, se activa el botón de continuar.",
       "msg-10a"                         : "Si no tienes energía, siempre podrás comprarla en la tienda.",
-      "msg-10b"                         : "Compra una recarga de energía.",
+      "msg-10b"                         : "Compra una recarga de energía, esta vez es gratis.",
       "msg-10c"                         : "Púlsalo para completar tu entrada en el torneo.",
       "msg-11"                          : "<span class='modal-body-title'>Enhorabuena.</span><span class='modal-body-text'> Acabas de apuntarte a un torneo de entrenamiento.</span>",
       "msg-12"                          : "Esta es la pantalla de simulación, donde podrás ver en tiempo real cómo se desarrolla el torneo, la puntuación de tus jugadores y tu clasificación frente a los rivales.",
@@ -619,7 +619,7 @@
       "msg-14"                          : "Aquí puedes ver tu puntuación frente a los rivales. Haz clic en el nombre de un rival para ver su alineación.",
       "msg-15"                          : "Fijate, uno de tus jugadores acaba de conseguir sus primeros puntos.",
       "msg-16"                          : "<span class='modal-body-title'>¡Enhorabuena, has ganado tu primer torneo!</span><span class='modal-body-text'> Has conseguido puntos de manager y has subido tu nivel de manager.",
-      "msg-17"                          : "Ya estás preparado. Regístrate ahora y consigue tus primeras 30 monedas de oro para comenzar tu carrera como manager.</span>"
+      "msg-17"                          : "<span class='modal-body-title'>Ya estás preparado. </span><span class='modal-body-text'>Regístrate ahora y consigue tus primeras 30 monedas de oro para comenzar tu carrera como manager.</span>"
     },
     "tutorial_entrenamiento"            :
     {

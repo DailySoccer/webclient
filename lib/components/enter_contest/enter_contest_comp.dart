@@ -680,6 +680,7 @@ class EnterContestComp implements DetachAware {
         </p>
       </div>
       '''
+    , onBackdropClick: true
     )
     .then((_) {
       _tutorialService.triggerEnter("alert-not-buy");
